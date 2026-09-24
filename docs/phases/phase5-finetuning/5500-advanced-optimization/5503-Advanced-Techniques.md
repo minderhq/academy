@@ -3,13 +3,13 @@ Document ID: 5503
 Title: Advanced Optimization Techniques
 Phase: 5
 Module: 5500
-Last Updated: 2026-09-24
-Status: Review
+Last Updated: 2026-09-25
+Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
 Prerequisites: See module README
-Related: 5501, 5502
-Tags: ['optimization', 'training', 'advanced']
+Related: See module README
+Tags: ['optimization', 'training', 'gradient-clipping', 'sam', 'memory']
 ---
 
 # 5503: Advanced Optimization Techniques
@@ -18,15 +18,15 @@ Tags: ['optimization', 'training', 'advanced']
 
 - [Learning Objectives](#learning-objectives)
 - [Abstract](#abstract)
-- [Gradient Clipping](#gradient-clipping)
-- [Regularization Techniques](#regularization-techniques)
-- [Learning Rate Warmup](#learning-rate-warmup)
-- [Advanced Optimizer Features](#advanced-optimizer-features)
-- [Gradient Accumulation](#gradient-accumulation)
-- [Gradient Checkpointing](#gradient-checkpointing)
-- [Sharpness-Aware Minimization (SAM)](#sharpness-aware-minimization-sam)
-- [Apex Learning Rate (Super-Convergence)](#apex-learning-rate-super-convergence)
-- [Best Practices Summary](#best-practices-summary)
+- [A Map of the Toolbox](#a-map-of-the-toolbox)
+- [Stability: Gradient Clipping](#stability-gradient-clipping)
+- [Memory: Gradient Accumulation](#memory-gradient-accumulation)
+- [Memory: Gradient Checkpointing](#memory-gradient-checkpointing)
+- [Regularization in One Screen](#regularization-in-one-screen)
+- [Flat Minima: SAM](#flat-minima-sam)
+- [Second-Order Optimizers: The Honest Status](#second-order-optimizers-the-honest-status)
+- [Scouting: The LR Range Test](#scouting-the-lr-range-test)
+- [Best Practices](#best-practices)
 - [References](#references)
 
 ---
@@ -35,450 +35,382 @@ Tags: ['optimization', 'training', 'advanced']
 
 After completing this lesson, you will be able to:
 
-- Explain Gradient Clipping
-- Explain Regularization Techniques
-- Explain Learning Rate Warmup
-- Explain Advanced Optimizer Features
-- Explain Gradient Accumulation
-- Explain Gradient Checkpointing
+- Choose between norm clipping, value clipping, and adaptive gradient clipping from the failure you are actually seeing
+- Write a gradient-accumulation loop that handles the remainder batch, AMP scaling, and scheduler placement correctly
+- Enable gradient checkpointing with the non-reentrant API and predict its memory/compute trade
+- Implement SAM correctly — global-norm perturbation, zero-grad between passes — and say when its 2x cost pays
+- Describe what Sophia computes (diagonal Hessian estimate, clipped update) and why it has not displaced AdamW
 
 ---
 
 ## Abstract
 
-Advanced optimization techniques go beyond basic optimizers and learning rate schedules to improve training stability, convergence, and final model performance.
+Beyond optimizer choice ([5501](./5501-Optimizer-Variants.md)) and schedules ([5502](./5502-Learning-Rate-Scheduling.md)) sits a toolbox of techniques that fix specific failures: clipping tames exploding gradients, accumulation and checkpointing buy batch size and depth with different currencies, SAM seeks flat minima for generalization. Each tool has a precise failure it addresses and a precise cost — and each has a canonical wrong implementation circulating online (the SAM loop that sums gradients across its two backward passes is the classic). This lesson builds the correct versions, names the trade for each, and closes with the honest 2026 status of second-order optimizers.
 
-## Gradient Clipping
+## A Map of the Toolbox
 
-Prevent gradient explosion during training:
+```text
+FAILURE you have          TOOL this lesson covers
+------------------------  ----------------------------------------
+gradients exploding       norm / value / adaptive clipping
+batch too big for HBM     gradient accumulation (grads, not acts)
+activations blow memory   gradient checkpointing (acts, not grads)
+overfitting a fine-tune   decoupled weight decay, dropout placement
+test loss > train loss    SAM: optimize the flat basin, not the point
+LR guesswork              LR range test (run BEFORE the real run)
+```
 
-### 1. Clip by Norm
+## Stability: Gradient Clipping
+
+### Clip by Norm (the default)
+
+Scales the whole gradient so its global L2 norm is at most `max_norm`:
 
 ```python
-import torch.nn.utils as nn_utils
+import torch
 
-# Clip gradients to maximum norm of 1.0
+optimizer.zero_grad(set_to_none=True)
+loss.backward()
+
 torch.nn.utils.clip_grad_norm_(
-    model.parameters(),
-    max_norm=1.0,
-    norm_type=2.0,  # L2 norm (default)
-)
+    model.parameters(), max_norm=1.0, norm_type=2.0,
+)                       # rescale if global norm exceeds 1.0
 
-# In training loop
-for batch in dataloader:
-    output = model(batch)
-    loss = criterion(output, target)
-
-    optimizer.zero_grad()
-    loss.backward()
-
-    # Clip before optimizer step
-    torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
-
-    optimizer.step()
+optimizer.step()
 ```
 
-### 2. Clip by Value
-
-```python
-# Clip individual gradient values
-torch.nn.utils.clip_grad_value_(
-    model.parameters(),
-    clip_value=0.5,  # Clip to [-0.5, 0.5]
-)
+```text
+- transformers + AdamW: max_norm=1.0 is the community default,
+  used even when nothing explodes - it costs nothing when the
+  norm is small and caps the damage when it is not
+- with AMP FP16: unscale_ BEFORE clip (5403/5502) - clipping
+  scaled gradients clips against the wrong norm
+- log the PRE-clip norm: it is a cheap training-health signal
+  (a slowly rising norm = instability forming; a spike = find
+  the bad batch or lower the LR)
 ```
 
-### 3. Adaptive Clipping (AGC)
+### Clip by Value
 
 ```python
-def adaptive_gradient_clip(parameters, clip_factor=0.01):
-    """Adaptive Gradient Clipping."""
+torch.nn.utils.clip_grad_value_(model.parameters(), clip_value=0.5)
+# every element clamped to [-0.5, 0.5] - changes the DIRECTION,
+# norm clipping preserves it
+```
+
+Value clipping distorts the gradient direction (every element saturates independently), which is why it lost to norm clipping everywhere except legacy RNN recipes, where it was the standard.
+
+### Adaptive Gradient Clipping (AGC)
+
+AGC (Brock et al., 2021, for training CNNs *without* normalization layers) bounds each weight **unit's** gradient relative to that unit's weight norm — the clip threshold adapts per unit instead of being global:
+
+```python
+@torch.no_grad()
+def agc(parameters, clip_factor=1e-2, eps=1e-3):
+    """Unit-wise AGC: clip each row/unit's grad norm to
+    clip_factor * that unit's weight norm."""
     for p in parameters:
-        if p.grad is not None:
-            # Compute clip threshold based on weight magnitude
-            grad_norm = p.grad.norm()
-            weight_norm = p.data.norm()
-            max_grad = clip_factor * weight_norm
-
-            # Clip if necessary
-            if grad_norm > max_grad:
-                p.grad.mul_(max_grad / (grad_norm + 1e-6))
+        if p.grad is None:
+            continue
+        dims = tuple(range(1, p.dim()))          # per-unit norms
+        w_norm = torch.linalg.norm(p, dim=dims, keepdim=True)
+        g_norm = torch.linalg.norm(p.grad, dim=dims, keepdim=True)
+        scale = (clip_factor * w_norm / (g_norm + eps)).clamp(max=1.0)
+        p.grad.mul_(scale)
 ```
 
-## Regularization Techniques
-
-### 1. Weight Decay
-
-```python
-# Built into optimizers
-optimizer = torch.optim.AdamW(
-    model.parameters(),
-    lr=1e-4,
-    weight_decay=0.01,  # L2 regularization
-)
-
-# Decoupled weight decay (AdamW)
-# Better than standard Adam with L2
+```text
+Scope note: AGC exists because nets without BatchNorm/LayerNorm
+produce occasional huge unit-wise gradients. Transformer
+fine-tuning already has LayerNorm + global norm clipping -
+AGC is for from-scratch norm-free architectures, not a
+drop-in upgrade for your LLM run.
 ```
 
-### 2. Dropout
+## Memory: Gradient Accumulation
+
+Simulates an effective batch of `micro_batch × accum_steps × world_size` by summing micro-batch gradients before stepping:
 
 ```python
-class CustomDropout(nn.Module):
-    def __init__(self, p=0.1):
-        super().__init__()
-        self.p = p
+accum_steps = 8
+optimizer.zero_grad(set_to_none=True)
 
-    def forward(self, x):
-        if not self.training:
-            return x
+for step, (x, y) in enumerate(loader, 1):
+    with torch.autocast("cuda", dtype=torch.bfloat16):    # 5403
+        loss = criterion(model(x), y) / accum_steps       # average,
+                                                          # not sum
+    scaler.scale(loss).backward()                         # accumulates
 
-        mask = (torch.rand_like(x) > self.p).float()
-        return x * mask / (1 - self.p)
+    if step % accum_steps == 0:
+        scaler.unscale_(optimizer)
+        torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
+        scaler.step(optimizer)
+        scaler.update()
+        scheduler.step()              # per OPTIMIZER step (5502)
+        optimizer.zero_grad(set_to_none=True)
 
-# Usage
-model = nn.Sequential(
-    nn.Linear(768, 3072),
-    nn.Dropout(0.1),
-    nn.GELU(),
-    nn.Linear(3072, 768),
-    nn.Dropout(0.1),
-)
+# remainder: flush the partial window at epoch end so the last
+# few batches are not silently dropped
+if len(loader) % accum_steps:
+    scaler.unscale_(optimizer)
+    scaler.step(optimizer)
+    scaler.update()
+    scheduler.step()
+    optimizer.zero_grad(set_to_none=True)
 ```
 
-### 3. Layer Normalization with Dropout
-
-```python
-class LayerNormDropout(nn.Module):
-    def __init__(self, hidden_size, dropout=0.1):
-        super().__init__()
-        self.norm = nn.LayerNorm(hidden_size)
-        self.dropout = nn.Dropout(dropout)
-
-    def forward(self, x):
-        # Apply norm then dropout
-        return self.dropout(self.norm(x))
+```text
+The three things every accumulation loop must get right
+1. divide the LOSS by accum_steps - backward() ADDS into
+   .grad, so the division turns the sum into an average and
+   keeps the gradient scale (and clip threshold) meaningful
+2. scheduler.step() fires once per optimizer step, not per
+   micro-batch - otherwise the schedule races accum_steps
+   times faster than the total_steps you declared (5502)
+3. handle the remainder window - the naive
+   `if (i+1) % accum == 0` pattern drops len(loader) % accum
+   batches every epoch without a word of warning
 ```
 
-## Learning Rate Warmup
+## Memory: Gradient Checkpointing
 
-Essential for stable transformer training:
-
-### Constant Warmup
+Trades recompute for memory: discard intermediate activations in the forward pass, recompute them during backward. Peak activation memory drops toward "one layer's worth" while the step gets ~30-50% slower.
 
 ```python
-class WarmupScheduler:
-    def __init__(self, optimizer, warmup_steps, base_lr):
-        self.optimizer = optimizer
-        self.warmup_steps = warmup_steps
-        self.base_lr = base_lr
-        self.current_step = 0
-
-    def step(self):
-        self.current_step += 1
-
-        if self.current_step <= self.warmup_steps:
-            lr = self.base_lr * self.current_step / self.warmup_steps
-        else:
-            lr = self.base_lr
-
-        for param_group in self.optimizer.param_groups:
-            param_group['lr'] = lr
-
-        return lr
-```
-
-## Advanced Optimizer Features
-
-### 1. Layer-wise Learning Rate Decay
-
-```python
-def get_layerwise_lr_groups(model, base_lr, decay=0.95):
-    """Create parameter groups with decreasing LR for earlier layers."""
-    layers = [model.embeddings] + list(model.encoder.layers)
-
-    # Create groups with decreasing LR
-    optimizer_grouped_parameters = []
-    for i, layer in enumerate(layers):
-        lr = base_lr * (decay ** (len(layers) - i - 1))
-        optimizer_grouped_parameters.append({
-            'params': layer.parameters(),
-            'lr': lr,
-        })
-
-    return optimizer_grouped_parameters
-
-# Usage
-optimizer = AdamW(
-    get_layerwise_lr_groups(model, base_lr=5e-5, decay=0.95),
-)
-```
-
-### 2. AdamW Parameter Tweaking
-
-```python
-optimizer = torch.optim.AdamW(
-    model.parameters(),
-    lr=1e-4,
-    betas=(0.9, 0.999),  # Momentum parameters
-    eps=1e-8,            # Numerical stability
-    weight_decay=0.01,
-
-    # Advanced settings
-    amsgrad=True,        # Use AMSGrad variant
-    foreach=True,        # Use fused implementation
-    capturable=True,     # CUDA graphs support
-)
-```
-
-### 3. Sophia Optimizer
-
-```python
-# Sophia: Second-order optimizer with Hessian approximation
-class Sophia:
-    def __init__(self, params, lr=1e-4, betas=(0.965, 0.99), rho=0.04):
-        self.params = list(params)
-        self.lr = lr
-        self.betas = betas
-        self.rho = rho
-        self.step_count = 0
-
-        # Initialize state
-        self.m = {}  # First moment
-        self.h = {}  # Hessian diagonal
-
-    def step(self, closure=None):
-        self.step_count += 1
-
-        for p in self.params:
-            if p.grad is None:
-                continue
-
-            state = self.state[p]
-
-            # Initialize state
-            if len(state) == 0:
-                state['step'] = 0
-                state['m'] = torch.zeros_like(p.data)
-                state['h'] = torch.zeros_like(p.data)
-
-            m, h = state['m'], state['h']
-            beta1, beta2 = self.betas
-
-            # Update biased first moment
-            m.mul_(beta1).add_(p.grad, alpha=1 - beta1)
-
-            # Update Hessian approximation (every k steps)
-            if self.step_count % 16 == 0:
-                hessian_diag = self._estimate_hessian_diag(p)
-                h.mul_(beta2).add_(hessian_diag, alpha=1 - beta2)
-
-            # Compute update
-            update = self.lr * m / (1 - beta1 ** self.step_count)
-            update.add_(self.rho * p.grad * h)
-
-            # Apply update
-            p.data.add_(-update)
-
-    def _estimate_hessian_diag(self, p):
-        """Estimate diagonal of Hessian."""
-        # Simplified - use Hutchinson's method in practice
-        with torch.enable_grad():
-            loss = (p.grad ** 2).sum()
-        return torch.autograd.grad(loss, p)[0]
-```
-
-## Gradient Accumulation
-
-Simulate larger batch sizes:
-
-```python
-def train_with_accumulation(model, dataloader, optimizer, accumulation_steps, scaler=None):
-    """Train with gradient accumulation."""
-    model.train()
-
-    for i, batch in enumerate(dataloader):
-        inputs, targets = batch
-
-        # Forward pass
-        with torch.cuda.amp.autocast():
-            outputs = model(inputs)
-            loss = criterion(outputs, targets) / accumulation_steps
-
-        # Backward pass (accumulate gradients)
-        if scaler:
-            scaler.scale(loss).backward()
-        else:
-            loss.backward()
-
-        # Optimizer step every N batches
-        if (i + 1) % accumulation_steps == 0:
-            if scaler:
-                scaler.step(optimizer)
-                scaler.update()
-            else:
-                optimizer.step()
-            optimizer.zero_grad()
-```
-
-## Gradient Checkpointing
-
-Trade compute for memory:
-
-```python
+import torch.nn as nn
 from torch.utils.checkpoint import checkpoint
 
-class CheckpointedTransformer(nn.Module):
-    def __init__(self, hidden_size, num_layers):
+class CheckpointedBlocks(nn.Module):
+    def __init__(self, blocks):
         super().__init__()
-        self.layers = nn.ModuleList([
-            TransformerBlock(hidden_size)
-            for _ in range(num_layers)
-        ])
+        self.blocks = blocks
 
     def forward(self, x):
-        # Checkpoint every other layer
-        for i, layer in enumerate(self.layers):
-            if i % 2 == 0:
-                # Checkpoint this layer
-                x = checkpoint(layer, x, use_reentrant=False)
-            else:
-                x = layer(x)
-
+        for i, block in enumerate(self.blocks):
+            # checkpoint every block; non-reentrant API
+            x = checkpoint(block, x, use_reentrant=False)
         return x
-
-# Or use built-in
-model.gradient_checkpointing_enable()
 ```
 
-## Sharpness-Aware Minimization (SAM)
+```text
+use_reentrant=False - always, in modern PyTorch
+- works with frozen inputs / PEFT setups (reentrant requires at
+  least one input with requires_grad, which breaks
+  LoRA-on-frozen-backbone runs; HF exposes
+  model.enable_input_require_grads() as the workaround when
+  you are stuck on reentrant)
+- supports rng_state preservation: dropout masks are identical
+  between forward and recompute (preserve_rng_state=True by
+  default) - disable only with a reason
 
-Optimize for flat minima:
+Framework surfaces
+- HF transformers: model.gradient_checkpointing_enable() -
+  and pass use_cache=False to the forward, or the KV cache
+  defeats the memory saving
+- selectivity: checkpointing every k-th block or only the
+  biggest (attention) blocks gives most of the win at a
+  fraction of the recompute cost
+```
+
+Accumulation and checkpointing compose: accumulation bounds **gradient** memory windows, checkpointing bounds **activation** memory. Long-sequence LLM fine-tunes typically need both.
+
+## Regularization in One Screen
+
+```text
+Decoupled weight decay (AdamW, 5501)
+- AdamW SUBTRACTS lr * wd * w after the Adam update - it is
+  decoupled from the gradient, which is the whole point
+  (Adam + L2 entangles the penalty with per-param adaptive
+  scaling and under-regularizes high-loss params)
+- wd is NOT scheduled with the LR; typical 0.01 (fine-tune)
+  to 0.1 (pretrain-scale)
+
+Dropout placement in a transformer block
+- canonical: Linear -> activation -> Dropout
+  (dropout AFTER the nonlinearity, before residual add)
+- rate: 0.1 classic fine-tuning; 0.0 for LLM pretraining at
+  scale (regularization comes from data, not dropout);
+  attention dropout separate from residual dropout
+
+LayerNorm: pre-norm (x + block(ln(x))) is the modern default -
+it is listed here because "is my instability a normalization
+or a gradient problem" is a clipping-vs-arch decision, and
+the answer is usually: with pre-norm + norm clipping, neither.
+```
+
+## Flat Minima: SAM
+
+Sharpness-Aware Minimization (Foret et al., 2021) optimizes the loss over a small *neighborhood* of each weight vector — a proxy for finding flat basins, which generalize better:
+
+```text
+One SAM step
+1. compute gradient g at w
+2. perturb:  w' = w + rho * g / ||g||_GLOBAL   (the ascent step)
+3. compute gradient g' at w'
+4. restore w and step the base optimizer with g'
+
+Cost: TWO forward-backward passes per step - the price of
+every SAM run is ~2x wall-clock.
+```
 
 ```python
-class SAMOptimizer:
-    def __init__(self, model, base_optimizer, rho=0.05, **kwargs):
-        self.model = model
-        self.base_optimizer = base_optimizer(model.parameters(), **kwargs)
+import torch
+
+class SAM(torch.optim.Optimizer):
+    def __init__(self, params, base_optimizer, rho=0.05, **kwargs):
+        super().__init__(params, defaults=dict(rho=rho, **kwargs))
+        self.base_optimizer = base_optimizer(self.param_groups, **kwargs)
         self.param_groups = self.base_optimizer.param_groups
-        self.rho = rho
 
     @torch.no_grad()
-    def first_step(self):
-        """Compute perturbed weights."""
+    def first_step(self, zero_grad=False):
+        grad_norm = torch.norm(torch.stack(        # GLOBAL norm across
+            [p.grad.norm() for g in self.param_groups
+             for p in g["params"] if p.grad is not None]))
         for group in self.param_groups:
-            for p in group['params']:
+            scale = group["rho"] / (grad_norm + 1e-12)
+            for p in group["params"]:
                 if p.grad is None:
                     continue
-
-                # Compute perturbation
-                grad_norm = torch.norm(p.grad)
-                scale = self.rho / (grad_norm + 1e-12)
-                p.add_(p.grad, alpha=scale)
-
-        # Store original weights
-        self.state['original_weights'] = [
-            p.data.clone() for p in self.model.parameters()
-        ]
+                e_w = p.grad * scale.to(p)
+                p.add_(e_w)
+                self.state[p]["e_w"] = e_w
+        if zero_grad:
+            self.zero_grad()
 
     @torch.no_grad()
-    def second_step(self):
-        """Restore original weights and update with SAM gradient."""
-        for i, p in enumerate(self.model.parameters()):
-            p.data.copy_(self.state['original_weights'][i])
-
+    def second_step(self, zero_grad=False):
+        for group in self.param_groups:
+            for p in group["params"]:
+                if "e_w" in self.state[p]:
+                    p.sub_(self.state[p]["e_w"])
         self.base_optimizer.step()
+        if zero_grad:
+            self.zero_grad()
 
-    def step(self, closure=None):
-        raise NotImplementedError("Use first_step() and second_step()")
+# ---- loop: the two zero_grads are load-bearing ----
+optimizer = SAM(model.parameters(), torch.optim.AdamW, rho=0.05, lr=1e-3)
 
-# Training loop
-optimizer = SAMOptimizer(model, torch.optim.SGD, lr=1e-3, momentum=0.9)
+loss = criterion(model(x), y)
+loss.backward()
+optimizer.first_step(zero_grad=True)     # perturb + CLEAR grads
 
-for batch in dataloader:
-    inputs, targets = batch
-
-    # First forward-backward pass
-    outputs = model(inputs)
-    loss = criterion(outputs, targets)
-
-    loss.backward()
-    optimizer.first_step()  # Perturb weights
-
-    # Second forward-backward pass
-    criterion(model(inputs), targets).backward()
-    optimizer.second_step()  # Update with SAM gradient
-
-    optimizer.zero_grad()
+criterion(model(x), y).backward()        # grads at perturbed point
+optimizer.second_step(zero_grad=True)    # restore + real step
 ```
 
-## Apex Learning Rate (Super-Convergence)
+```text
+The two canonical mistakes (both common in blog implementations)
+1. per-tensor scaling - perturbing each tensor by ITS OWN norm
+   is not SAM; the rho-neighborhood is defined by the GLOBAL
+   gradient norm
+2. no zero_grad between passes - backward() ACCUMULATES, so
+   the "perturbed" gradient becomes g(w) + g(w'), and you
+   train on the sum of two gradients from two points
 
-Find optimal learning rate:
+When it pays: vision fine-tunes and small-model generalization
+ squeezes (consistently +0.5-2% test acc). When it does not:
+LLM pretraining/fine-tuning at scale - the 2x cost dwarfs the
+gains. ASAM (adaptive, scale-invariant variant) is the better
+tuned version if you adopt it.
+```
+
+## Second-Order Optimizers: The Honest Status
+
+Sophia (Liu et al., 2023) is the serious recent challenger to AdamW for pretraining:
+
+```text
+The mechanism (Sophia-H)
+- maintain a DIAGONAL Hessian estimate h, updated every k steps
+  with a Hutchinson-style estimator: sample z from {-1,+1},
+  one extra backward of (g * z) through the graph, and
+  h <- beta2 * h + (1 - beta2) * |g * z|   (unbiased for |H_ii|)
+- update: w <- w - lr * clip(m / (h + eps), rho)
+  momentum over a Hessian-scaled denominator, clipped
+  elementwise to +-rho
+
+Why it is attractive: the paper reports ~2x fewer steps than
+AdamW for equal GPT-2-scale pretraining loss.
+
+Why it has not taken over (2026 status)
+- the Hessian estimate needs an EXTRA partial backward pass
+  and the gains shrink at frontier scale ( evaluated mainly
+  up to GPT-2-medium scale)
+- the training-stability story at 100B+ is owned by AdamW +
+  the distributed stack (5401-5404), which every framework
+  sharding path already supports
+- if you try it: use published implementations - hand-rolled
+  second-order code (h := gradient of ||g||^2, fabricated
+  update rules) is the most common way this idea gets
+  "disproven" wrongly
+```
+
+The practical rule from [5501](./5501-Optimizer-Variants.md) stands: AdamW (or Lion if you validated it on your task) plus the schedule from [5502](./5502-Learning-Rate-Scheduling.md) is the baseline to beat; exotic optimizers must beat it on YOUR loss curve.
+
+## Scouting: The LR Range Test
+
+Run before committing to any schedule from [5502](./5502-Learning-Rate-Scheduling.md): train while exponentially ramping the LR from tiny to huge, and read the curve:
 
 ```python
-def find_lr(model, dataloader, optimizer, init_lr=1e-7, final_lr=10, num_iter=100):
-    """Find optimal learning rate using LR range test."""
-    model.train()
-
+def lr_range_test(model, loader, optimizer, init_lr=1e-7, final_lr=10.0, num_iter=100):
+    """Train with an exponentially increasing LR; loss vs LR
+    shows where training is stable and where it diverges."""
     mult = (final_lr / init_lr) ** (1 / num_iter)
     lr = init_lr
-    optimizer.param_groups[0]['lr'] = lr
+    optimizer.param_groups[0]["lr"] = lr
+    losses, lrs = [], []
 
-    losses = []
-    lrs = []
-
-    for i, batch in enumerate(dataloader):
+    for i, (x, y) in enumerate(loader):
         if i >= num_iter:
             break
-
-        inputs, targets = batch
-        optimizer.zero_grad()
-
-        outputs = model(inputs)
-        loss = criterion(outputs, targets)
+        optimizer.zero_grad(set_to_none=True)
+        loss = criterion(model(x), y)
         loss.backward()
-
         optimizer.step()
 
         losses.append(loss.item())
         lrs.append(lr)
-
         lr *= mult
-        optimizer.param_groups[0]['lr'] = lr
+        optimizer.param_groups[0]["lr"] = lr
 
-    # Plot to find steepest descent
-    import matplotlib.pyplot as plt
-    plt.plot(lrs, losses)
-    plt.xscale('log')
-    plt.xlabel('Learning Rate')
-    plt.ylabel('Loss')
-
-    return lrs, losses
+    return lrs, losses        # plot with log-x
 ```
 
-## Best Practices Summary
+```text
+Reading the curve
+- LR where loss falls STEEPEST  -> good peak-LR candidate
+  (not the LR of the minimum loss - by the minimum you are
+  already destabilizing)
+- LR where loss turns flat/rough -> the ceiling you must
+  stay under
+- feed the bracket into 5502: OneCycle max_lr = the steep
+  region's upper edge; warmup start = 10-100x below it
+```
 
-1. **Always use gradient clipping for transformers**
-   - `clip_grad_norm_(model.parameters(), max_norm=1.0)`
+## Best Practices
 
-2. **Warmup is essential**
-   - 1-10% of total steps for most tasks
-
-3. **Use AdamW over Adam**
-   - Decoupled weight decay is better
-
-4. **Layer-wise decay for fine-tuning**
-   - Lower LR for earlier layers
-
-5. **Gradient accumulation for large effective batches**
-   - Effective batch size = batch_size × accumulation_steps × num_gpus
+```text
+1. Clip by norm (1.0), log the pre-clip norm, and treat a
+   rising norm as an early-warning system - it precedes NaNs
+2. Accumulation loop checklist: loss / accum_steps, scheduler
+   per optimizer step, remainder flush - audit all three, the
+   naive loop gets at least one wrong
+3. use_reentrant=False for checkpointing, always; with HF LLMs
+   pair gradient_checkpointing_enable() with use_cache=False
+4. Reach for SAM on small-model generalization work; skip it
+   wherever wall-clock is the binding constraint
+5. Treat Sophia/second-order as research-track: validated
+   implementations only, benchmarked against AdamW on your
+   loss curve, never hand-rolled
+6. Run the LR range test once per (model, dataset) pair before
+   scheduling experiments - it is 100 steps and kills a whole
+   class of wasted sweeps
+7. One instability fix at a time: clipping, LR, and batch size
+   all trade against each other; changing them together makes
+   the result unattributable
+```
 
 ---
-
-**Next:** [Assessment](./assessment/QUIZ.md)
-
-**Last Updated:** 2026-02-05
 
 ## References
 
@@ -486,5 +418,11 @@ def find_lr(model, dataloader, optimizer, init_lr=1e-7, final_lr=10, num_iter=10
 
 - [5501: Optimizer Variants](5501-Optimizer-Variants.md)
 - [5502: Learning Rate Scheduling](5502-Learning-Rate-Scheduling.md)
+- [5403: Mixed Precision Training](../5400-distributed-training/5403-Mixed-Precision.md)
 
 ---
+
+## Next Steps
+
+- Module 5500 complete — Phase 5 (Fine-tuning) done! Next: **[6101: HNSW Indexing](../../phase6-rag/6100-vector/6101-HNSW-Indexing.md)**
+- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
