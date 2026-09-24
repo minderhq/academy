@@ -35,8 +35,8 @@ After completing Phase 7, you will:
 3. What distinguishes agents from LLMs?
 
 **Lab Verification:**
-- [ ] Completed [LAB-004: ReAct Agent](../../../../learning-resources/labs/LAB-004-ReAct-Agent.md)
-- [ ] Completed [LAB-008: Agent Fleet](../../../../learning-resources/labs/LAB-008-Agent-Fleet.md)
+- [ ] Completed [LAB-004: ReAct Agent](../../learning-resources/labs/LAB-004-ReAct-Agent.md)
+- [ ] Completed [LAB-008: Agent Fleet](../../learning-resources/labs/LAB-008-Agent-Fleet.md)
 
 ---
 

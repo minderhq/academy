@@ -452,7 +452,7 @@ def evaluate_hnsw_index(index, test_queries, ground_truth, ef_values):
 
 ## Next Steps
 
-- Continue with: **[6102: Next Document](./6102-Vector-Embeddings.md)**
+- Continue with: **[6102: Semantic Similarity](./6102-Semantic-Similarity.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 
 ---

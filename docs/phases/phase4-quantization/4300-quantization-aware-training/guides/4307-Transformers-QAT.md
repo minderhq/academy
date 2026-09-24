@@ -390,7 +390,7 @@ for name in sensitive_layers:
 
 ## Next Steps
 
-→ **[guides/4308: BitBlade QAT](./guides/4308-BitBlade-QAT.md)** - Advanced quantization techniques
+→ **[guides/4308: BitBlade QAT](4308-BitBlade-QAT.md)** - Advanced quantization techniques
 
 ---
 

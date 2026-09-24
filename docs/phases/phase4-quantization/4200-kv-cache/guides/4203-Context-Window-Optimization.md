@@ -760,8 +760,8 @@ nvidia-smi -l 1
 ---
 
 **Related:**
-- [4201: Context Window Physics](../../4201-Context-Window-Physics.md)
+- [4201: Context Window Physics](../4201-Context-Window-Physics.md)
 - [4202: Speculative Decoding](../4202-Speculative-Decoding.md)
 - [4101: GGUF Physics](../../4100-low-bit/4101-GGUF-Physics.md)
-- [1402: vLLM and TGI](../../phase1-infra/1400-LLMOps/1402-vLLM-and-TGI.md)
-- [EXP_4201: Context Window](../../../experiments/EXP_4201_CONTEXT_WINDOW.md)
+- [1402: vLLM and TGI](../../../phase1-infra/1400-llmops/1402-vLLM-and-TGI.md)
+- [EXP_4201: Context Window](../../../../../experiments/EXP_4201_CONTEXT_WINDOW.md)

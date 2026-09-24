@@ -451,7 +451,7 @@ class HierarchicalReActAgent:
 ## Next Steps
 
 - Continue with: **[7102: Planning and Decomposition](./7102-Planning-Decomposition.md)**
-- Practical: **[LAB-004: ReAct Agent](../../../../learning-resources/labs/LAB-004-ReAct-Agent.md)**
+- Practical: **[LAB-004: ReAct Agent](../../../learning-resources/labs/LAB-004-ReAct-Agent.md)**
 - Assessment: **[assessment/QUIZ.md](assessment/QUIZ.md)**
 
 ---

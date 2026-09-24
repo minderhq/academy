@@ -475,7 +475,7 @@ quantized_merged = AutoModelForCausalLM.from_pretrained(
 
 ## Next Steps
 
-- Continue with: **[5201-RLHF-Fundamentals.md](./../5200-alignment/5201-RLHF-Fundamentals.md)**
+- Continue with: **[5201: DPO Theory](./../5200-alignment/5201-DPO-Theory.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 
 ---

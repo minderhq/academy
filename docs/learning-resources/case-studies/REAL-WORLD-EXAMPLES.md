@@ -330,8 +330,8 @@ Query → Embed → Retrieve → Rerank → LLM → Response
   - [PROJECT-006: Production RAG System](../projects/PROJECT-006-Production-RAG.md)
 
 - **Experiments:**
-  - [EXP_6201: Hybrid Search](../../experiments/EXP_6201_HYBRID_SEARCH.md)
-  - [EXP_7202: Multi-Agent Collaboration](../../experiments/EXP_7202_COLLABORATION.md)
+  - [EXP_6201: Hybrid Search](../../../experiments/EXP_6201_HYBRID_SEARCH.md)
+  - [EXP_7202: Multi-Agent Collaboration](../../../experiments/EXP_7202_COLLABORATION.md)
 
 ---
 

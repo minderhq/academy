@@ -591,7 +591,7 @@ if __name__ == '__main__':
 
 - **[4101: GGUF Physics](../../phases/phase4-quantization/4100-low-bit/4101-GGUF-Physics.md)** - GGUF format theory
 - **[4102: EXL2 and AWQ](../../phases/phase4-quantization/4100-low-bit/4102-EXL2-and-AWQ.md)** - Advanced quantization
-- **[LAB 004: Custom Quantization](./labs/LAB-004-Custom-Quantization.md)** - Hands-on quantization
+- **[EXP_4101: GGUF Quantization](../../../experiments/EXP_4101_GGUF.md)** - Hands-on quantization
 
 ---
 

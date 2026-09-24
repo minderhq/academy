@@ -1197,7 +1197,7 @@ curl -X POST http://localhost:8002/chat \
 - **[7101: ReAct Loop System](../../phases/phase7-agentic/7100-architecture/7101-ReAct-Loop-System.md)** - ReAct pattern theory
 - **[6201: Hybrid Search](../../phases/phase6-rag/6200-retrieval/6201-Hybrid-Search.md)** - Vector + Graph RAG
 - **[1402: vLLM and TGI](../../phases/phase1-infra/1400-LLMOps/1402-vLLM-and-TGI.md)** - Production inference
-- **[LAB 002: RAG Implementation](./labs/LAB-002-RAG-Implementation.md)** - RAG basics
+- **[LAB 002: RAG Implementation](../labs/LAB-002-RAG-Implementation.md)** - RAG basics
 
 ---
 

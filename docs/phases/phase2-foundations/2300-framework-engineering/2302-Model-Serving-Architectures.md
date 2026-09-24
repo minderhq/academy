@@ -1198,8 +1198,8 @@ See: [2306: Building Production Framework](./guides/2306-Building-Production-Fra
 
 ## Related Topics
 
-- [1401: Ollama Enterprise](../phase1-infra/1400-llmops/1401-Ollama-Enterprise.md) - Local model serving
-- [1402: vLLM and TGI](../phase1-infra/1400-llmops/1402-vLLM-and-TGI.md) - Production serving frameworks
+- [1401: Ollama Enterprise](../../phase1-infra/1400-llmops/1401-Ollama-Enterprise.md) - Local model serving
+- [1402: vLLM and TGI](../../phase1-infra/1400-llmops/1402-vLLM-and-TGI.md) - Production serving frameworks
 - [2303: API Design for ML](./2303-API-Design-for-ML.md) - Build APIs for served models
 - [2304: Production Deployment](./2304-Production-Deployment-Patterns.md) - Deploy serving systems
 - [LAB-007: Production RAG](../../../learning-resources/labs/LAB-007-Production-RAG.md) - Hands-on practice
@@ -1209,7 +1209,7 @@ See: [2306: Building Production Framework](./guides/2306-Building-Production-Fra
 ## Next Steps
 
 - Continue with: **[2303: API Design for ML](./2303-API-Design-for-ML.md)**
-- Practical: **[LAB-009: Model Deployment](../../../../learning-resources/labs/LAB-009-Production-Deployment.md)**
+- Practical: **[LAB-009: Model Deployment](../../../learning-resources/labs/LAB-009-Production-Deployment.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 
 ---

@@ -242,7 +242,7 @@ Use this checklist to track your progress:
 ### Common Issues in Volume 1
 
 **Problem:** Docker won't start
-- **Solution:** Check [CHEAT-SHEET-001-Docker.md](cheat-sheets/CHEAT-SHEET-001-Docker.md) for troubleshooting
+- **Solution:** Check [CHEAT-SHEET-001-Docker.md](../learning-resources/cheat-sheets/CHEAT-SHEET-001-Docker.md) for troubleshooting
 
 **Problem:** Ollama slow on CPU
 - **Solution:** Use smaller models (phi, gemma:2b) - see TUTORIAL-001

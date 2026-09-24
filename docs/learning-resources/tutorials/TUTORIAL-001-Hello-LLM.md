@@ -312,7 +312,7 @@ You've just:
 
 1. **[Tutorial 002: Docker Essentials](TUTORIAL-002-Docker-Essentials.md)** - Container basics for AI
 2. **[Tutorial 003: RAG Basics](TUTORIAL-003-RAG-Basics.md)** - Give the model knowledge
-3. **[0000-LEARNING-PATH.md](0000-LEARNING-PATH.md)** - Full curriculum roadmap
+3. **[0000-LEARNING-PATH.md](../../00-META/0000-LEARNING-PATH.md)** - Full curriculum roadmap
 
 ---
 

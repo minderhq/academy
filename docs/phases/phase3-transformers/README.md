@@ -677,7 +677,7 @@ Before starting this phase, ensure you understand:
 - **Backpropagation** (from 2100: Calculus)
 - **Neural Networks** (from 2300: Deep Learning)
 
-See [PREREQUISITES](./0000-PREREQUISITES.md) for details.
+See [PREREQUISITES](../../00-META/ENVIRONMENT-SETUP.md) for details.
 
 ---
 

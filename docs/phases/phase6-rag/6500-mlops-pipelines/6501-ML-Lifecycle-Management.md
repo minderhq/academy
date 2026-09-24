@@ -704,7 +704,7 @@ class ModelRetirement:
 ## Related Resources
 
 - **Next:** [6502: CI/CD for ML](./6502-CI-CD-for-ML.md)
-- **Experiment:** [EXP_6501: MLOps Pipeline](../../experiments/EXP_6501_MLOPS_PIPELINE.md)
+- **Experiment:** [EXP_6501: MLOps Pipeline](../../../../experiments/EXP_6501_MLOPS_PIPELINE.md)
 - **Lab:** [LAB-007: Production RAG](../../../learning-resources/labs/LAB-007-Production-RAG.md)
 
 
@@ -712,7 +712,7 @@ class ModelRetirement:
 
 ## Next Steps
 
-- Continue with: **[6502: Next Document](./6502-CI-CD-Pipelines.md)**
+- Continue with: **[6502: CI/CD for ML](./6502-CI-CD-for-ML.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 
 ---

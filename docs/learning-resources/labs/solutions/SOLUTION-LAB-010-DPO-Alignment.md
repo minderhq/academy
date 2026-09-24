@@ -221,4 +221,4 @@ print(metrics)
 **Difficulty:** ⭐⭐⭐⭐
 **Estimated Time:** 2-3 hours
 
-**Related:** [Phase 5: Alignment](../../phases/phase5-finetuning/5200-alignment/README.md)
+**Related:** [Phase 5: Alignment](../../../phases/phase5-finetuning/5200-alignment/README.md)

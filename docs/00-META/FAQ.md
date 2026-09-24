@@ -8,7 +8,7 @@
 
 ### What is PROJECT-OMEGA?
 
-PROJECT-OMEGA is a comprehensive 7-volume learning path for mastering AI infrastructure, model internals, quantization, fine-tuning, RAG systems, and production deployment. It consists of 97 core documents, 14 hands-on labs, 10 experiments, 6 tutorials, and 11 cheat sheets.
+PROJECT-OMEGA is a comprehensive 7-volume learning path for mastering AI infrastructure, model internals, quantization, fine-tuning, RAG systems, and production deployment. It consists of 465 documents across 7 phases, 30 hands-on labs, 46 experiments, 15 tutorials, and 13 cheat sheets.
 
 ### Who is this for?
 
@@ -44,7 +44,7 @@ You'll learn:
 ### Where should I start?
 
 Start here:
-1. **[README.md](README.md)** - Project overview
+1. **[README.md](../../README.md)** - Project overview
 2. **[VOLUME-GUIDE.md](VOLUME-GUIDE.md)** - Overview of all 7 volumes
 3. **[0000-LEARNING-PATH.md](0000-LEARNING-PATH.md)** - Choose your learning path
 4. **[PROGRESS-TRACKER.md](PROGRESS-TRACKER.md)** - Track your progress
@@ -501,7 +501,7 @@ PROJECT-OMEGA is an open educational resource. Join the community to:
 ## Still Have Questions?
 
 **Check:**
-- **[README.md](README.md)** - Project overview
+- **[README.md](../../README.md)** - Project overview
 - **[VOLUME-GUIDE.md](VOLUME-GUIDE.md)** - Volume details
 - **[0000-LEARNING-PATH.md](0000-LEARNING-PATH.md)** - Learning paths
 - **[TROUBLESHOOTING-Common-Issues.md](../learning-resources/troubleshooting/TROUBLESHOOTING-Common-Issues.md)** - Common issues

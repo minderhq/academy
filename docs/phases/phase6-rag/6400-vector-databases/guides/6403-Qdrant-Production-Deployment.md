@@ -1,17 +1,27 @@
-# 6403: Qdrant Vector Database Deployment for Synology NAS
+# 6403: Qdrant Production Deployment
 
 ## Abstract
-Complete guide for deploying Qdrant high-performance vector database on Synology DS720+ for PROJECT-OMEGA RAG and semantic search operations.
+Complete guide for deploying Qdrant high-performance vector database on any Docker-capable Linux host, NAS, or VPS for PROJECT-OMEGA RAG and semantic search operations.
 
-## Hardware Requirements
+## Deployment Targets
 
-### Synology DS720+ Specifications
-```
-CPU: Intel Celeron J4125 (4 cores @ 2.0 GHz)
-RAM: 6GB (expandable to 18GB)
-Storage: 2x 3.5" bays (supports RAID 0/1)
-Network: 1GbE (internal cluster via 2.5Gbps switch)
-```
+Qdrant ships as a single stateless container with one storage volume, so the same compose file works across hardware classes. Pick a target by budget and availability needs:
+
+| Target | Best For | Notes |
+|--------|----------|-------|
+| Linux host + Docker (recommended) | Full control, predictable performance | Any Debian/Ubuntu/Fedora box, mini PC, or used office PC |
+| NAS with Container Manager / Docker | Reusing existing storage hardware | Upload the compose file as a project/stack |
+| VPS / cloud VM | Remote access, offsite data | Watch egress bandwidth for large ingest jobs |
+
+### Sizing by Available RAM
+
+| Host RAM | Qdrant Memory Limit | Recommended Collection Size (768d, float32) | Notes |
+|----------|--------------------|----------------------------------------------|-------|
+| 8 GB (entry-level) | 2 GB | Up to ~500K vectors comfortably | Enable scalar quantization beyond this |
+| 16 GB | 4-6 GB | 1-3M vectors | Add on-disk payload index for large payloads |
+| 32 GB+ | 8-16 GB | 5M+ vectors | Consider sharding/replication for HA |
+
+With int8 scalar quantization (see [Quantization](#quantization)), stored vector footprint drops roughly 4x, so an 8 GB host can push past 1M vectors with a small recall trade-off.
 
 ### Resource Allocation
 | Component | Minimum | Recommended | Notes |
@@ -25,12 +35,12 @@ Network: 1GbE (internal cluster via 2.5Gbps switch)
 ### Method 1: Docker Compose (Recommended)
 
 ```bash
-# SSH into Synology
-ssh admin@192.168.1.100
+# SSH into your host (or run locally)
+ssh user@your-host
 
 # Create directory
-mkdir -p /volume1/docker/qdrant
-cd /volume1/docker/qdrant
+mkdir -p /srv/qdrant
+cd /srv/qdrant
 
 # Create docker-compose.yml
 cat > docker-compose.yml << 'EOF'
@@ -90,10 +100,10 @@ docker-compose up -d
 docker-compose logs -f qdrant
 ```
 
-### Method 2: Portainer (Web UI)
+### Method 2: Portainer / NAS Container Manager (Web UI)
 
-1. Open Portainer: http://192.168.1.100:9000
-2. Click "Stacks" → "Add Stack"
+1. Open Portainer or Container Manager: http://localhost:9000
+2. Click "Stacks" → "Add Stack" (Container Manager: "Project" → "Create")
 3. Name: `qdrant`
 4. Paste the docker-compose.yml content above
 5. Click "Deploy the stack"
@@ -103,33 +113,38 @@ docker-compose logs -f qdrant
 ### 1. Access Qdrant Dashboard
 
 ```
-Web UI: http://192.168.1.100:6335/dashboard
-REST API: http://192.168.1.100:6333
-gRPC API: http://192.168.1.100:6334
+Web UI: http://localhost:6335/dashboard
+REST API: http://localhost:6333
+gRPC API: http://localhost:6334
 ```
+
+Remote clients should point `QDRANT_URL` at the host address; examples in this guide default to `http://localhost:6333`.
 
 ### 2. Verify Installation
 
 ```bash
+export QDRANT_URL=${QDRANT_URL:-http://localhost:6333}
+
 # Check health
-curl http://192.168.1.100:6333/health
+curl $QDRANT_URL/health
 
 # Check collections
-curl http://192.168.1.100:6333/collections
+curl $QDRANT_URL/collections
 
 # Check cluster info
-curl http://192.168.1.100:6333/cluster
+curl $QDRANT_URL/cluster
 ```
 
 ### 3. Create First Collection
 
 ```python
 # qdrant_setup.py
+import os
 from qdrant_client import QdrantClient
 from qdrant_client.models import Distance, VectorParams, HnswConfigDiff
 
 # Connect to Qdrant
-client = QdrantClient(url="http://192.168.1.100:6333")
+client = QdrantClient(url=os.getenv("QDRANT_URL", "http://localhost:6333"))
 
 # Create collection for RAG
 client.create_collection(
@@ -154,7 +169,7 @@ print(client.get_collection("documents"))
 ### HNSW Configuration
 
 ```python
-# HNSW tuning for Synology DS720+
+# HNSW tuning for self-hosted Qdrant
 from qdrant_client.models import HnswConfigDiff
 
 # For small collections (<100K vectors)
@@ -189,6 +204,45 @@ client.create_collection(
 )
 ```
 
+### Quantization
+
+Quantization trades a small amount of recall for large memory/storage savings — essential on entry-level (8 GB) hosts:
+
+```python
+# Enable scalar int8 quantization on an existing collection
+from qdrant_client.models import ScalarQuantization, ScalarQuantizationConfig, QuantizationSearchParams
+
+client.update_collection(
+    collection_name="documents",
+    quantization_config=ScalarQuantization(
+        scalar=ScalarQuantizationConfig(
+            type="int8",
+            quantile=0.99,     # Ignore extreme outliers
+            always_ram=True,   # Keep quantized vectors in RAM
+        )
+    ),
+)
+
+# Search with quantized vectors + rescoring against originals
+results = client.search(
+    collection_name="documents",
+    query_vector=query_vector,
+    search_params=QuantizationSearchParams(
+        rescore=True,       # Re-rank against original vectors
+        oversampling=2.0,   # Fetch 2x candidates before rescore
+    ),
+    limit=10,
+)
+```
+
+Options at a glance:
+
+| Method | Compression | Recall Impact | Use When |
+|--------|-------------|---------------|----------|
+| Scalar int8 | ~4x | Minimal (with rescore) | Default choice for entry-level hosts |
+| Binary | ~32x | Noticeable | Huge collections, coarse filtering |
+| Product (PQ) | 10-30x | Tunable | RAM is the hard constraint |
+
 ### Memory Optimization
 
 ```yaml
@@ -218,10 +272,10 @@ services:
 ### 1. Automated Backup Script
 
 ```bash
-# /volume1/docker/qdrant/backup.sh
+# /srv/qdrant/backup.sh
 #!/bin/bash
 
-BACKUP_DIR="/volume1/backup/qdrant"
+BACKUP_DIR="/srv/backups/qdrant"
 DATE=$(date +%Y%m%d_%H%M%S)
 COLLECTIONS=("documents" "embeddings" "knowledge_graph")
 
@@ -250,10 +304,10 @@ echo "Backup completed: $DATE"
 ### 2. Restore from Backup
 
 ```bash
-# /volume1/docker/qdrant/restore.sh
+# /srv/qdrant/restore.sh
 #!/bin/bash
 
-BACKUP_DIR="/volume1/backup/qdrant/snapshots_$1"
+BACKUP_DIR="/srv/backups/qdrant/snapshots_$1"
 
 if [ -z "$1" ]; then
     echo "Usage: ./restore.sh <backup_date>"
@@ -262,7 +316,7 @@ if [ -z "$1" ]; then
 fi
 
 # Stop Qdrant
-cd /volume1/docker/qdrant
+cd /srv/qdrant
 docker-compose down
 
 # Restore data
@@ -275,13 +329,17 @@ docker-compose up -d
 echo "Restore completed from: $1"
 ```
 
-### 3. Schedule with Synology Task Scheduler
+### 3. Schedule with Cron
 
-1. Control Panel → Task Scheduler → Create → Scheduled Task → User-defined Script
-2. General: "Qdrant Backup"
-3. Schedule: Daily at 2:00 AM
-4. Task Settings: Run as root, copy backup script
-5. Settings: Send email notification on error
+1. Install the backup script: `chmod +x /srv/qdrant/backup.sh`
+2. Edit crontab: `crontab -e`
+3. Add a daily 2:00 AM entry with error logging:
+
+```cron
+0 2 * * * /srv/qdrant/backup.sh >> /var/log/qdrant-backup.log 2>&1
+```
+
+NAS users can schedule the same script through Container Manager / Task Scheduler instead of cron.
 
 ## Monitoring
 
@@ -289,9 +347,12 @@ echo "Restore completed from: $1"
 
 ```python
 # qdrant_monitoring.py
+import os
 import requests
 from prometheus_client import Counter, Gauge, start_http_server
 import time
+
+QDRANT_URL = os.getenv("QDRANT_URL", "http://localhost:6333")
 
 # Setup metrics
 qdrant_requests = Counter('qdrant_requests_total', 'Total Qdrant requests')
@@ -305,7 +366,7 @@ def monitor_qdrant():
     while True:
         try:
             # Get collection info
-            response = requests.get("http://192.168.1.100:6333/collections")
+            response = requests.get(f"{QDRANT_URL}/collections")
             collections = response.json()["result"]["collections"]
 
             for collection in collections:
@@ -356,10 +417,11 @@ services:
 
 ```python
 # Use API key in Python
+import os
 from qdrant_client import QdrantClient
 
 client = QdrantClient(
-    url="http://192.168.1.100:6333",
+    url=os.getenv("QDRANT_URL", "http://localhost:6333"),
     api_key="your_secure_api_key_here",
 )
 ```
@@ -396,6 +458,7 @@ services:
 
 ```python
 # rag_ingestion.py
+import os
 from sentence_transformers import SentenceTransformer
 from qdrant_client import QdrantClient
 from qdrant_client.models import PointStruct
@@ -404,8 +467,10 @@ import hashlib
 class RAGIngestion:
     """RAG document ingestion for Qdrant"""
 
-    def __init__(self, qdrant_url="http://192.168.1.100:6333"):
-        self.client = QdrantClient(url=qdrant_url)
+    def __init__(self, qdrant_url=None):
+        self.client = QdrantClient(
+            url=qdrant_url or os.getenv("QDRANT_URL", "http://localhost:6333")
+        )
         self.embedder = SentenceTransformer("all-MiniLM-L6-v2")
         self.collection = "documents"
 
@@ -482,14 +547,17 @@ ingestion.ingest_batch(documents)
 
 ```python
 # rag_search.py
+import os
 from qdrant_client import QdrantClient
 from sentence_transformers import SentenceTransformer
 
 class RAGSearch:
     """Semantic search using Qdrant"""
 
-    def __init__(self, qdrant_url="http://192.168.1.100:6333"):
-        self.client = QdrantClient(url=qdrant_url)
+    def __init__(self, qdrant_url=None):
+        self.client = QdrantClient(
+            url=qdrant_url or os.getenv("QDRANT_URL", "http://localhost:6333")
+        )
         self.embedder = SentenceTransformer("all-MiniLM-L6-v2")
         self.collection = "documents"
 
@@ -543,6 +611,8 @@ deploy:
     limits:
       memory: 1G
 ```
+
+On an 8 GB host, also enable scalar quantization (see above) to cut vector memory demand.
 
 #### 2. Slow Search Performance
 
@@ -624,7 +694,7 @@ metadata:
 spec:
   accessModes:
   - ReadWriteOnce
-  storageClassName: nfs-synology
+  storageClassName: local-path
   resources:
     requests:
       storage: 50Gi
@@ -658,8 +728,10 @@ spec:
 ---
 
 **Related:**
-- [6401: Qdrant Setup](../../6401-Qdrant-Setup.md)
+- [6401: Qdrant Setup](../6401-Qdrant-Setup.md)
 - [6101: HNSW Indexing](../../6100-Vector/6101-HNSW-Indexing.md)
 - [6103: HNSW Tuning Guide](../../6100-Vector/guides/6103-HNSW-Tuning-Guide.md)
 - [6201: Hybrid Search](../../6200-retrieval/6201-Hybrid-Search.md)
 - [EXP_6401: Vector DB](../../../../../experiments/EXP_6401_VECTOR_DB.md)
+
+**Last Updated:** 2026-09-24

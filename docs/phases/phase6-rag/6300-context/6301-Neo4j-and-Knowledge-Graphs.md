@@ -76,15 +76,15 @@ kg.add_edge("llama", "mistral", "COMPETES_WITH")
 
 ## Neo4j Setup
 
-### Installation on Synology
+### Installation with Docker
 ```bash
 # Install Neo4j using Docker
 docker run -d \
   --name neo4j \
   -p 7474:7474 -p 7687:7687 \
   -e NEO4J_AUTH=neo4j/password \
-  -v /volume1/docker/neo4j/data:/data \
-  -v /volume1/docker/neo4j/logs:/logs \
+  -v /srv/neo4j/data:/data \
+  -v /srv/neo4j/logs:/logs \
   neo4j:latest
 
 # Or using Docker Compose
@@ -468,7 +468,7 @@ model.wv.most_similar('Meta', topn=10)  # Similar entities
 
 ## Next Steps
 
-- Continue with: **[6401-Qdrant.md](./../6400-vector-databases/6401-Qdrant.md)**
+- Continue with: **[6401: Qdrant Setup](./../6400-vector-databases/6401-Qdrant-Setup.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 
 ---
@@ -477,6 +477,6 @@ model.wv.most_similar('Meta', topn=10)  # Similar entities
 **Related Documents:**
 - [6201: Hybrid Search](../6200-retrieval/6201-Hybrid-Search.md)
 - [6302: CAG Long Context](./6302-CAG-Long-Context-Architectures.md)
-- [7002: Collaborative Tasking](../../phase7-agentic/7200-tools/7301-Orchestration.md)
+- [7002: Collaborative Tasking](../../phase7-agentic/7300-orchestration/7301-Orchestration.md)
 
 **Experiment Template:** `experiments/EXP_6303_NEO4J.md"

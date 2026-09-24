@@ -385,13 +385,13 @@ If you didn't pass, review these sections:
 - **Questions 7-9:** [2304: Production Deployment](../2304-Production-Deployment-Patterns.md)
 - **Questions 10-12:** [2301: Framework Design Patterns](../2301-Framework-Design-Patterns.md)
 - **Questions 13-15:** [2303: API Design for ML](../2303-API-Design-for-ML.md)
-- **Questions 16-20:** [2306: Building Production Framework](./guides/2306-Building-Production-Framework.md)
+- **Questions 16-20:** [2306: Building Production Framework](../guides/2306-Building-Production-Framework.md)
 
 ---
 
 **Once you pass, you're ready to move on!** 🎉
 
-**Next:** [2400: Pre-training Fundamentals](../2400-pretraining/README.md)
+**Next:** [2400: Pre-training Fundamentals](../README.md)
 
 ---
 

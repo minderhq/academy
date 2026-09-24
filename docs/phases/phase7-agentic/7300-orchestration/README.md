@@ -411,8 +411,7 @@ class MultiAgentOrchestrator:
 | Experiment | Description |
 |------------|-------------|
 | [EXP_7201: Multi-Agent](../../../../experiments/EXP_7201_MULTI_AGENT.md) | Build multi-agent system |
-| [EXP_7301: Orchestration](../../../../experiments/EXP_7301_ORCHESTRATION.md) | Framework benchmarks |
-| [LAB-008: Agent Fleet](../../../../learning-resources/labs/LAB-008-Agent-Fleet.md) | Build production multi-agent system |
+| [LAB-008: Agent Fleet](../../../learning-resources/labs/LAB-008-Agent-Fleet.md) | Build production multi-agent system |
 
 ---
 

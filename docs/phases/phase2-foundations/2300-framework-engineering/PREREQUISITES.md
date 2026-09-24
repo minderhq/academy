@@ -475,4 +475,4 @@ Use this checklist to verify you're ready:
 
 **Next:** [2301: Framework Design Patterns](./2301-Framework-Design-Patterns.md)
 
-**Need Help?** See [TROUBLESHOOTING-QUICKSTART.md](../../00-META/TROUBLESHOOTING-QUICKSTART.md)
+**Need Help?** See [TROUBLESHOOTING-QUICKSTART.md](../../../00-META/TROUBLESHOOTING-QUICKSTART.md)

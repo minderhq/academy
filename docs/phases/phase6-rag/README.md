@@ -22,7 +22,7 @@
 
 **Augmenting LLMs with external knowledge from your data.**
 
-This phase covers Retrieval-Augmented Generation (RAG), Context-Augmented Generation (CAG), and external memory systems to integrate your Synology NAS data into the LLM logic flow, enabling you to:
+This phase covers Retrieval-Augmented Generation (RAG), Context-Augmented Generation (CAG), and external memory systems to integrate your own data into the LLM logic flow, enabling you to:
 - Build enterprise knowledge bases from your documents
 - Implement hybrid search (vector + keyword)
 - Create knowledge graphs with Neo4j
@@ -240,7 +240,7 @@ graph LR
 │ Disk Index       │   ✅   │    ✅    │    ✅    │   ✅   │  ❌  │
 │ Easy Setup       │   ✅   │    ✅    │    ✅    │   ⚠️   │  ✅  │
 │ Self-hosted      │   ✅   │    ❌    │    ✅    │   ✅   │  ✅  │
-│ Synology Ready   │   ✅   │    ❌    │    ⚠️    │   ⚠️   │  ✅  │
+│ Docker Ready     │   ✅   │    ❌    │    ⚠️    │   ⚠️   │  ✅  │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
@@ -275,8 +275,8 @@ graph LR
 │ Self-Hosted pgvec│ $0*       │ $0*       │ $0 (hardware only) │
 └─────────────────────────────────────────────────────────────────┘
 
-* Assumes existing Synology NAS or server
-* Hardware: Synology DS923+ ($900) one-time cost
+* Assumes an existing self-hosted machine (mini PC, used office PC, NAS, or VPS)
+* Example hardware: used mini PC $150-300; new entry-level mini PC $300-500; small VPS $60-120/year
 ```
 
 ### Break-Even Analysis
@@ -289,13 +289,13 @@ Cloud (Pinecone):
 - Queries: 100K × 30 × $0.10/1M = $300/month
 - Total: $370/month = $4,440/year
 
-Self-Hosted (Qdrant on Synology):
-- Hardware: $900 one-time
-- Storage: Existing NAS
+Self-Hosted (Qdrant on an entry-level box):
+- Hardware: $150-500 one-time (mini PC / used office PC)
+- Storage: Existing machine disk
 - Queries: $0
-- Break-even: $900 / ($370/month) = 2.4 months
+- Break-even: $500 / ($370/month) ≈ 1.4 months
 
-Conclusion: Self-hosted pays for itself in 3 months
+Conclusion: Self-hosted pays for itself within a few months
 ```
 
 ---
@@ -363,7 +363,7 @@ Conclusion: Self-hosted pays for itself in 3 months
 - Build knowledge graph with Neo4j
 - Implement GraphRAG pipeline
 - Optimize long-context usage
-- Deploy Neo4j on Synology
+- Deploy Neo4j with Docker
 
 ### [6400] Vector Databases
 
@@ -371,17 +371,17 @@ Conclusion: Self-hosted pays for itself in 3 months
 |----------|-------------|------|------------|
 | [6401: Qdrant Setup](./6400-vector-databases/6401-Qdrant-Setup.md) | Qdrant configuration | 2h | Intermediate |
 | [6402: Pinecone vs Weaviate](./6400-vector-databases/6402-Pinecone-vs-Weaviate.md) | Comparison guide | 2h | Beginner |
-| [6403: Qdrant Synology](./6400-vector-databases/guides/6403-Qdrant-Synology-Deployment.md) | Synology deployment | 2h | Intermediate |
+| [6403: Qdrant Production Deployment](./6400-vector-databases/guides/6403-Qdrant-Production-Deployment.md) | Production deployment guide | 2h | Intermediate |
 
 **What You'll Learn:**
 - Qdrant architecture and configuration
 - Vector database comparison
 - Deployment strategies
-- Synology NAS integration
+- Self-hosted Docker deployment
 - Performance optimization
 
 **Hands-On Practice:**
-- Deploy Qdrant on Synology
+- Deploy Qdrant with Docker Compose
 - Configure collections and indexes
 - Benchmark performance
 - Set up replication
@@ -411,7 +411,7 @@ graph TD
     K --> L[6304: GraphRAG Implementation]
 
     F --> M[6401: Qdrant Setup]
-    M --> N[6403: Synology Deployment]
+    M --> N[6403: Production Deployment]
 
     style C fill:#e1f5fe
     style D fill:#fff3e0
@@ -454,7 +454,7 @@ After completing this phase, you will be able to:
 
 4. **Choose the Right Vector Database**
    - Compare Qdrant, Pinecone, Weaviate
-   - Deploy on Synology NAS
+   - Deploy self-hosted with Docker
    - Optimize for your use case
 
 5. **Handle Long Contexts**
@@ -682,8 +682,8 @@ embeddings_fp32_reconstructed = (embeddings_uint8.astype(np.float32) - 128) / 12
    - Tune rank fusion weights
    - Compare vs vector-only
 
-3. **[EXP_6301: Neo4j](../../../experiments/EXP_6302_NEO4J.md)**
-   - Deploy Neo4j on Synology
+3. **[EXP_6303: Neo4j](../../../experiments/EXP_6303_NEO4J.md)**
+   - Deploy Neo4j with Docker
    - Build knowledge graph
    - Implement GraphRAG
 
@@ -703,7 +703,7 @@ Before starting this phase, ensure you understand:
 - **Database Basics** (SQL, indexing)
 - **REST APIs** (for integration)
 
-See [PREREQUISITES](./0000-PREREQUISITES.md) for details.
+See [PREREQUISITES](../../00-META/ENVIRONMENT-SETUP.md) for details.
 
 ---
 
@@ -731,7 +731,7 @@ After completing this phase:
 
 1. **Build Your Knowledge Base**
    - Index your documents
-   - Deploy Qdrant on Synology
+   - Deploy Qdrant self-hosted
    - Create RAG application
 
 2. **Continue Learning**
@@ -756,6 +756,6 @@ After completing this phase:
 **Status:** ✅ Complete
 **Module Duration:** 61 hours (35 reading + 26 practice)
 **Difficulty:** Intermediate
-**Last Updated:** 2026-02-05
+**Last Updated:** 2026-09-24
 
 **Ready to augment LLMs with your data?** Start with [6101: RAG Foundations](./6100-vector/6101-HNSW-Indexing.md) or [6201: Hybrid Search](./6200-retrieval/6201-Hybrid-Search.md)

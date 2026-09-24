@@ -44,7 +44,7 @@ Can you:
 - [ ] Design secure agent tools?
 - [ ] Audit agent behavior?
 
-**If YES:** Start with [7501: Agent Security](./7501-Agent-Security.md)
+**If YES:** Start with [7501: Prompt Injection Defense](./7501-Prompt-Injection-Defense.md)
 
 **If NO:** Review the resources above first.
 

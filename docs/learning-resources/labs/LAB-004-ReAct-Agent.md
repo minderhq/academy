@@ -1197,8 +1197,8 @@ if __name__ == "__main__":
 
 - **[7101: ReAct Loop System](../../phases/phase7-agentic/7100-architecture/7101-ReAct-Loop-System.md)** - Deep dive into ReAct
 - **[7102: Planning Decomposition](../../phases/phase7-agentic/7100-architecture/7102-Planning-Decomposition.md)** - Advanced planning
-- **[7201: AutoGen vs LangGraph](../../phases/phase7-agentic/7200-tools/7303-Framework-Comparison.md)** - Multi-agent frameworks
-- **[PROJECT 001: AI Assistant](../learning-resources/projects/PROJECT-001-AI-Assistant.md)** - Complete ReAct agent in production
+- **[7201: AutoGen vs LangGraph](../../phases/phase7-agentic/7300-orchestration/guides/7303-Framework-Comparison.md)** - Multi-agent frameworks
+- **[PROJECT 001: AI Assistant](../projects/PROJECT-001-AI-Assistant.md)** - Complete ReAct agent in production
 
 ---
 

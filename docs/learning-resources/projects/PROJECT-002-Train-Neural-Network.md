@@ -1115,7 +1115,7 @@ for epoch in range(n_epochs):
 - **[2101: Tensor Algebra](../../phases/phase2-foundations/2100-calculus/2101-Tensor-Algebra.md)** - Tensor theory
 - **[2102: Backpropagation](../../phases/phase2-foundations/2100-calculus/2102-Backpropagation-and-Derivatives.md)** - Gradient computation
 - **[2201: PyTorch Graphs](../../phases/phase2-foundations/2200-frameworks/2201-PyTorch-Computational-Graphs.md)** - PyTorch comparison
-- **[LAB 006: Train from Scratch](./labs/LAB-006-Train-Model-From-Scratch.md)** - Advanced training
+- **[LAB 006: Train from Scratch](../labs/LAB-006-Train-Model-From-Scratch.md)** - Advanced training
 
 ---
 

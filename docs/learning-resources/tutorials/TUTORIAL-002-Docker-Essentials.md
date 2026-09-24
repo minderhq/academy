@@ -506,9 +506,9 @@ How Docker fits into PROJECT-OMEGA:
 
 ## 📚 What's Next?
 
-1. **[Tutorial 003: Kubernetes Basics](TUTORIAL-003-Kubernetes-Basics.md)** - Scale your containers
-2. **[Tutorial 004: GPU Passthrough](TUTORIAL-004-GPU-Passthrough.md)** - Use GPU in containers
-3. **[0000-LEARNING-PATH.md](0000-LEARNING-PATH.md)** - Full curriculum
+1. **Tutorial 003: Kubernetes Basics** *(coming soon)* - Scale your containers
+2. **Tutorial 004: GPU Passthrough** *(coming soon)* - Use GPU in containers
+3. **[0000-LEARNING-PATH.md](../../00-META/0000-LEARNING-PATH.md)** - Full curriculum
 
 ---
 
@@ -527,4 +527,4 @@ docker-compose down                 # Stop services
 
 ---
 
-**Next:** [Tutorial 003: Kubernetes Basics](TUTORIAL-003-Kubernetes-Basics.md)
+**Next:** Tutorial 003: Kubernetes Basics *(coming soon)*

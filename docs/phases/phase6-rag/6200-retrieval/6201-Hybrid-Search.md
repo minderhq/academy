@@ -371,8 +371,8 @@ class EarlyFusionIndex:
 from qdrant_client import QdrantClient
 from qdrant_client.models import Distance, VectorParams, PointStruct
 
-# Connect to Qdrant (runs on Synology)
-client = QdrantClient(url="http://192.168.1.100:6333")
+# Connect to Qdrant (self-hosted Docker)
+client = QdrantClient(url="http://localhost:6333")
 
 # Create collection with hybrid search
 collection_name = "hybrid_docs"
@@ -461,15 +461,15 @@ def optimize_alpha(queries, ground_truth, bm25, semantic):
 
 ## Next Steps
 
-- Continue with: **[6202: Next Document](./6202-Re-ranking.md)**
+- Continue with: **[6202: Re-ranking](./6202-Re-ranking-and-Retrieval-Logistics.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 
 ---
 ---
 
 **Related Documents:**
-- [6101: HNSW Indexing](../6100-Vector/6101-HNSW-Indexing.md)
+- [6101: HNSW Indexing](../6100-vector/6101-HNSW-Indexing.md)
 - [6202: Re-ranking](./6202-Re-ranking-and-Retrieval-Logistics.md)
 - [6302: CAG Long Context](../6300-context/6302-CAG-Long-Context-Architectures.md)
 
-**Experiment Template:** `experiments/EXP_6201_HYBRID.md"
+**Experiment Template:** `experiments/EXP_6201_HYBRID_SEARCH.md`

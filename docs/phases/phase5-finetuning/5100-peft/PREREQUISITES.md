@@ -77,7 +77,7 @@ Result: Best of both worlds!
    - Understand why we fine-tune
 
 3. **GPU Memory (20 min):**
-   - Read [4101-GGUF-Physics.md](../../../phase4-quantization/4100-low-bit/4101-GGUF-Physics.md)
+   - Read [4101-GGUF-Physics.md](../../phase4-quantization/4100-low-bit/4101-GGUF-Physics.md)
    - Understand memory constraints
 
 ---

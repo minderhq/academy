@@ -953,14 +953,14 @@ class MemoryForgetting:
 
 ```bash
 # 1. Start Qdrant
-docker-compose -f /volume1/docker/qdrant/docker-compose.yml up -d
+docker compose -f /srv/qdrant/docker-compose.yml up -d
 
 # 2. Start PostgreSQL (for Memoria)
 docker run -d --name project-omega-postgres \
   -e POSTGRES_PASSWORD=your_password \
   -e POSTGRES_DB=agent_memory \
   -p 5432:5432 \
-  -v /volume1/docker/postgres:/var/lib/postgresql/data \
+  -v /srv/postgres:/var/lib/postgresql/data \
   postgres:15
 
 # 3. Run memory system
@@ -978,7 +978,7 @@ python unified_memory.py
 ---
 
 **Related:**
-- [7401: Long-term Memory](../../7401-Long-term-Memory.md)
-- [6101: HNSW Indexing](../../phase6-rag/6100-Vector/6101-HNSW-Indexing.md)
-- [6403: Qdrant Synology Deployment](../../phase6-rag/6400-Vector-Databases/guides/6403-Qdrant-Synology-Deployment.md)
+- [7401: Long-term Memory](../7401-Long-term-Memory.md)
+- [6101: HNSW Indexing](../../../phase6-rag/6100-vector/6101-HNSW-Indexing.md)
+- [6403: Qdrant Production Deployment](../../../phase6-rag/6400-vector-databases/guides/6403-Qdrant-Production-Deployment.md)
 - [7101: ReAct Loop System](../../7100-architecture/7101-ReAct-Loop-System.md)

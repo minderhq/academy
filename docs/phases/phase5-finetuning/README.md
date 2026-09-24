@@ -596,7 +596,6 @@ scheduler = get_cosine_schedule_with_warmup(
    - Compare teacher vs student
    - Optimize distillation loss
 
-5. **[EXP_5401: Distributed Training](../../../experiments/EXP_5401_DISTRIBUTED.md)**
    - Set up multi-GPU training
    - Benchmark scaling efficiency
    - Optimize communication
@@ -612,7 +611,7 @@ Before starting this phase, ensure you understand:
 - **Gradient Descent** (from 2300: Optimization)
 - **Basic Linear Algebra** (from 2100: Calculus)
 
-See [PREREQUISITES](./0000-PREREQUISITES.md) for details.
+See [PREREQUISITES](../../00-META/ENVIRONMENT-SETUP.md) for details.
 
 ---
 

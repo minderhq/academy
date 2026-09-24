@@ -972,7 +972,7 @@ Before starting this phase, ensure you understand:
 - **RAG Systems** (from 6100: Vector Architectures)
 - **API Design** (REST, webhooks)
 
-See [PREREQUISITES](./0000-PREREQUISITES.md) for details.
+See [PREREQUISITES](../../00-META/ENVIRONMENT-SETUP.md) for details.
 
 ---
 

@@ -15,15 +15,15 @@ Tags: ['rag', 'vector-db', 'qdrant', 'pinecone', 'weaviate']
 # 6401: Qdrant Setup Guide
 
 ## Abstract
-Qdrant is a vector database engine optimized for high-performance approximate nearest neighbor search. This guide covers deployment on Synology NAS for PROJECT-OMEGA.
+Qdrant is a vector database engine optimized for high-performance approximate nearest neighbor search. This guide covers deployment on any Docker-capable Linux host.
 
 ## Docker Deployment
 
 ### Installation
 ```bash
 # Create directory
-mkdir -p /volume1/docker/qdrant
-cd /volume1/docker/qdrant
+mkdir -p /srv/qdrant
+cd /srv/qdrant
 
 # Create docker-compose.yml
 cat > docker-compose.yml << 'EOF'
@@ -89,7 +89,7 @@ results = client.search(
 
 ## Next Steps
 
-- Continue with: **[6402: Next Document](./6402-Pinecone.md)**
+- Continue with: **[6402: Pinecone vs Weaviate](./6402-Pinecone-vs-Weaviate.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 
 ---

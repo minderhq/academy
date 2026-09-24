@@ -318,4 +318,4 @@ print(f"Sources: {[s['text'] for s in result['sources']]}")
 **Difficulty:** ⭐⭐⭐⭐
 **Estimated Time:** 3-4 hours
 
-**Related:** [Phase 3: Multi-modal](../../phases/phase3-transformers/3500-multimodal/README.md)
+**Related:** [Phase 3: Multi-modal](../../../phases/phase3-transformers/3500-multimodal/README.md)

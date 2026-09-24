@@ -459,7 +459,7 @@ Before starting this phase, ensure you understand:
 - **Model Training Loops** (from 2400: Pre-training)
 - **Basic Linear Algebra** (from 2100: Calculus)
 
-See [PREREQUISITES](./0000-PREREQUISITES.md) for details.
+See [PREREQUISITES](../../00-META/ENVIRONMENT-SETUP.md) for details.
 
 ---
 

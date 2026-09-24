@@ -675,7 +675,7 @@ curl http://localhost:9090/api/v1/query?query=up
 
 - **[1402: vLLM and TGI](../../phases/phase1-infra/1400-LLMOps/1402-vLLM-and-TGI.md)** - Production inference
 - **[1405: TGI Deployment Guide](../../phases/phase1-infra/1400-LLMOps/guides/1405-TGI-Deployment-Guide.md)** - TGI in production
-- **[PROJECT 001: AI Assistant](../learning-resources/projects/PROJECT-001-AI-Assistant.md)** - Complete production system
+- **[PROJECT 001: AI Assistant](../projects/PROJECT-001-AI-Assistant.md)** - Complete production system
 
 ---
 

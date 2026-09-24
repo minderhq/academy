@@ -47,8 +47,8 @@ After completing Phase 5, you will:
 3. What is the preference optimization process?
 
 **Lab Verification:**
-- [ ] Completed [LAB-003: LoRA Fine-Tuning](../../../../learning-resources/labs/LAB-003-LoRA-FineTuning.md)
-- [ ] Completed [LAB-010: DPO Alignment](../../../../learning-resources/labs/LAB-010-DPO-Alignment.md)
+- [ ] Completed [LAB-003: LoRA Fine-Tuning](../../learning-resources/labs/LAB-003-LoRA-FineTuning.md)
+- [ ] Completed [LAB-010: DPO Alignment](../../learning-resources/labs/LAB-010-DPO-Alignment.md)
 
 ---
 

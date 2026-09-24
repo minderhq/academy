@@ -743,8 +743,8 @@ class ModelLoader:
 ## Related Resources
 
 - **Previous:** [6502: CI/CD for ML](./6502-CI-CD-for-ML.md)
-- **Related:** [1502: Model Drift Detection](../phase1-infra/1500-monitoring/1502-Model-Drift-Detection.md)
-- **Experiment:** [EXP_6501: MLOps Pipeline](../../experiments/EXP_6501_MLOPS_PIPELINE.md)
+- **Related:** [1502: Model Drift Detection](../../phase1-infra/1500-monitoring/1502-Model-Drift-Detection.md)
+- **Experiment:** [EXP_6501: MLOps Pipeline](../../../../experiments/EXP_6501_MLOPS_PIPELINE.md)
 
 
 ---

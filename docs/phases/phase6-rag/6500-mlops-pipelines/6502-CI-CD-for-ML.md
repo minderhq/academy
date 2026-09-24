@@ -760,7 +760,7 @@ class ProgressiveCanary:
 
 - **Previous:** [6501: ML Lifecycle Management](./6501-ML-Lifecycle-Management.md)
 - **Next:** [6503: Model Registry](./6503-Model-Registry.md)
-- **Experiment:** [EXP_6501: MLOps Pipeline](../../experiments/EXP_6501_MLOPS_PIPELINE.md)
+- **Experiment:** [EXP_6501: MLOps Pipeline](../../../../experiments/EXP_6501_MLOPS_PIPELINE.md)
 
 
 ---

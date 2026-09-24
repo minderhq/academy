@@ -1283,7 +1283,7 @@ Hyperparameters:
 ## Next Steps
 
 - Continue with: **[2402: Large-Scale Training](./2402-Large-Scale-Training.md)**
-- Practical: **[LAB-006: Train Small Model](../../../../learning-resources/labs/LAB-006-Train-Model-From-Scratch.md)**
+- Practical: **[LAB-006: Train Small Model](../../../learning-resources/labs/LAB-006-Train-Model-From-Scratch.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 
 ---

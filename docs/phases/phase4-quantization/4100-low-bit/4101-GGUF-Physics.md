@@ -191,7 +191,7 @@ For 11GB VRAM GPU:
 ## Next Steps
 
 - Continue with: **[4102: EXL2 and AWQ](./4102-EXL2-and-AWQ.md)**
-- Practical: **[LAB-001: Docker & LLM](../../../../learning-resources/labs/LAB-001-Docker-LLM.md)**
+- Practical: **[LAB-001: Docker & LLM](../../../learning-resources/labs/LAB-001-Docker-LLM.md)**
 - Assessment: **[assessment/QUIZ.md](assessment/QUIZ.md)**
 
 ---

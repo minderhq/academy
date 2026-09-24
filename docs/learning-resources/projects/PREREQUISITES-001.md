@@ -104,8 +104,8 @@ git --version
 **Before starting PROJECT-001, complete:**
 
 1. [TUTORIAL-003: RAG Basics](../tutorials/TUTORIAL-003-RAG-Basics.md) (2 hours)
-2. [LAB-002: RAG Implementation](./labs/LAB-002-RAG-Implementation.md) (3 hours)
-3. [LAB-004: ReAct Agent](./labs/LAB-004-ReAct-Agent.md) (4 hours)
+2. [LAB-002: RAG Implementation](../labs/LAB-002-RAG-Implementation.md) (3 hours)
+3. [LAB-004: ReAct Agent](../labs/LAB-004-ReAct-Agent.md) (4 hours)
 
 ---
 
@@ -134,7 +134,7 @@ Before starting PROJECT-001:
 
 **Need help?** Check:
 - [ENVIRONMENT-SETUP.md](../../00-META/ENVIRONMENT-SETUP.md)
-- [LAB-000: Environment Setup](./labs/LAB-000-ENVIRONMENT-SETUP.md)
+- [LAB-000: Environment Setup](../labs/LAB-000-ENVIRONMENT-SETUP.md)
 
 ---
 

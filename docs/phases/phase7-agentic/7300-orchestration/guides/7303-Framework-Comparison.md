@@ -415,7 +415,7 @@ class HybridMultiAgentSystem:
 ---
 
 **Related:**
-- [Related Guides](./guides/7303-Framework-Comparison.md)
-- [7202: Collaborative Tasking](../../7301-Orchestration.md)
-- [7102: Planning Decomposition](../7100-architecture/7102-Planning-Decomposition.md)
+- [Related Guides](7303-Framework-Comparison.md)
+- [7202: Collaborative Tasking](../7301-Orchestration.md)
+- [7102: Planning Decomposition](../../7100-architecture/7102-Planning-Decomposition.md)
 - [7103: ReAct Implementation Guide](../../7100-architecture/guides/7103-ReAct-Implementation-Guide.md)

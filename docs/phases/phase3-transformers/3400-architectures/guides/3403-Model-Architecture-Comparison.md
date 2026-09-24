@@ -395,7 +395,7 @@ def monitor_inference(model, inputs, max_new_tokens=100):
 ---
 
 **Related:**
-- [3401: Encoder-Decoder Architectures](./3401-Encoder-Decoder-Architectures.md)
-- [3402: Decoder-Only Models](./3402-Decoder-Only-Models.md)
-- [4101: GGUF Physics](../../phase4-quantization/4100-low-bit/4101-GGUF-Physics.md)
-- [1402: vLLM and TGI](../../phase1-infra/1400-LLMOps/1402-vLLM-and-TGI.md)
+- [3401: Encoder-Decoder Architectures](../3401-Encoder-Decoder-Architectures.md)
+- [3402: Decoder-Only Models](../3402-Decoder-Only-Models.md)
+- [4101: GGUF Physics](../../../phase4-quantization/4100-low-bit/4101-GGUF-Physics.md)
+- [1402: vLLM and TGI](../../../phase1-infra/1400-llmops/1402-vLLM-and-TGI.md)

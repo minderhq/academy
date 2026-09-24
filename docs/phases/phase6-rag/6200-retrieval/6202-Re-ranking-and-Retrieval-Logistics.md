@@ -367,7 +367,7 @@ def ndcg(retrieved_docs, relevance_scores, k=10):
 
 ## Next Steps
 
-- Continue with: **[6301-Context-Window-Optimization.md](./../6300-context/6301-Context-Window-Optimization.md)**
+- Continue with: **[6301: Neo4j and Knowledge Graphs](./../6300-context/6301-Neo4j-and-Knowledge-Graphs.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 
 ---

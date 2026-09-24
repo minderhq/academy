@@ -568,7 +568,7 @@ Configuration   | Speedup | Efficiency |
 ---
 
 **Related:**
-- [1204: Multi-GPU Setup](../phase1-infra/1204-Multi-GPU-Setup.md)
-- [5101: LoRA Logic](./5100-Parameter-Efficient/5101-LoRA-Logic.md)
-- [5102: QLoRA Pipelines](./5100-Parameter-Efficient/5102-QLoRA-Pipelines.md)
-- [1301: K3s Architecture](../phase1-infra/1300-K3s/1301-K3s-Master-Worker-Arch.md)
+- [1204: Multi-GPU Setup](../../phase1-infra/1200-virtualization/1204-Multi-GPU-Setup.md)
+- [5101: LoRA Logic](../5100-peft/5101-LoRA-Logic.md)
+- [5102: QLoRA Pipelines](../5100-peft/5102-QLoRA-Pipelines.md)
+- [1301: K3s Architecture](../../phase1-infra/1300-kubernetes/1301-K3s-Master-Worker-Arch.md)

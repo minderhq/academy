@@ -71,8 +71,8 @@ PROJECT-007 deploys a complete AI system to production with monitoring, CI/CD, a
 **Required (Complete in order):**
 
 1. [TUTORIAL-005: Production Deployment](../tutorials/TUTORIAL-005-Production-Deployment.md)
-2. [LAB-007: Production RAG](./labs/LAB-007-Production-RAG.md)
-3. [LAB-009: Production Deployment](./labs/LAB-009-Production-Deployment.md)
+2. [LAB-007: Production RAG](../labs/LAB-007-Production-RAG.md)
+3. [LAB-009: Production Deployment](../labs/LAB-009-Production-Deployment.md)
 
 **Total Pre-Project Time:** 15-20 hours
 

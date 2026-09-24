@@ -246,8 +246,6 @@ class RMSNorm(nn.Module):
 
 | Experiment | Description |
 |------------|-------------|
-| [EXP_3301: Activation Functions](../../../../experiments/EXP_3301_ACTIVATION.md) | Benchmark activations |
-| [EXP_3302: Normalization](../../../../experiments/EXP_3302_NORMALIZATION.md) | Compare normalization strategies |
 
 ---
 

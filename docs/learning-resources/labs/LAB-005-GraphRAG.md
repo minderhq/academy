@@ -921,10 +921,10 @@ for test in complex_questions:
 
 ## 📚 Post-Lab Reading
 
-- **[6301: Neo4j and Knowledge Graphs](../../../phases/phase6-rag/6300-context/6301-Neo4j-and-Knowledge-Graphs.md)** - Graph database basics
-- **[6302: CAG Long Context](../../../phases/phase6-rag/6300-context/6302-CAG-Long-Context-Architectures.md)** - Long context as database
-- **[6304: GraphRAG Implementation](../../../phases/phase6-rag/6300-context/guides/6304-GraphRAG-Implementation.md)** - Complete implementation
-- **[LAB 004: ReAct Agent](./labs/LAB-004-ReAct-Agent.md)** - Build reasoning agents
+- **[6301: Neo4j and Knowledge Graphs](../../phases/phase6-rag/6300-context/6301-Neo4j-and-Knowledge-Graphs.md)** - Graph database basics
+- **[6302: CAG Long Context](../../phases/phase6-rag/6300-context/6302-CAG-Long-Context-Architectures.md)** - Long context as database
+- **[6304: GraphRAG Implementation](../../phases/phase6-rag/6300-context/guides/6304-GraphRAG-Implementation.md)** - Complete implementation
+- **[LAB 004: ReAct Agent](LAB-004-ReAct-Agent.md)** - Build reasoning agents
 
 ---
 
@@ -932,4 +932,4 @@ for test in complex_questions:
 
 **Earned:** GraphRAG Implementation Badge 🏅
 
-**Next:** [PROJECT 001: Build Your AI Assistant](../learning-resources/projects/PROJECT-001-AI-Assistant.md) - Combine everything!
+**Next:** [PROJECT 001: Build Your AI Assistant](../projects/PROJECT-001-AI-Assistant.md) - Combine everything!

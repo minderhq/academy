@@ -837,7 +837,7 @@ class PIIValidator:
 
 - **Previous:** [7501: Prompt Injection Defense](./7501-Prompt-Injection-Defense.md)
 - **Next:** [7503: Adversarial Attacks](./7503-Adversarial-Attacks.md)
-- **Experiment:** [EXP_7501: Prompt Injection](../../experiments/EXP_7501_PROMPT_INJECTION.md)
+- **Experiment:** [EXP_7501: Prompt Injection](../../../../experiments/EXP_7501_PROMPT_INJECTION.md)
 
 
 ---

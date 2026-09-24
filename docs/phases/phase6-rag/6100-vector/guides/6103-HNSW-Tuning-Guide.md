@@ -391,7 +391,7 @@ class AdaptiveSearch:
 
 ## Performance Benchmarks
 
-### Synology DS720+ Expected Performance
+### Expected Performance (entry-level 4-core host)
 
 | Vectors | M | ef | Index Time | Search QPS | Recall@10 |
 |---------|---|---|------------|------------|-----------|
@@ -435,7 +435,7 @@ class AdaptiveSearch:
 ---
 
 **Related:**
-- [6101: HNSW Indexing](./6101-HNSW-Indexing.md)
-- [6102: Semantic Similarity](./6102-Semantic-Similarity.md)
+- [6101: HNSW Indexing](../6101-HNSW-Indexing.md)
+- [6102: Semantic Similarity](../6102-Semantic-Similarity.md)
 - [6401: Qdrant Setup](../../6400-Vector-Databases/6401-Qdrant-Setup.md)
-- [EXP_6101: HNSW](../../../experiments/EXP_6101_HNSW.md)
+- [EXP_6101: HNSW](../../../../../experiments/EXP_6101_HNSW.md)

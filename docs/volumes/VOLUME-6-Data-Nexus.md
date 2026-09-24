@@ -228,7 +228,7 @@ search_params = {
 #### Day 1-3: Building RAG Systems
 **Retrieval-Augmented Generation**
 
-1. **[TUTORIAL-003: RAG Basics](../tutorials/TUTORIAL-003-RAG-Basics.md)** (90 min)
+1. **[TUTORIAL-003: RAG Basics](../learning-resources/tutorials/TUTORIAL-003-RAG-Basics.md)** (90 min)
    - RAG concepts
    - Document chunking
    - Vector database setup

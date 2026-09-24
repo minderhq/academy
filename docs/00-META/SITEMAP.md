@@ -172,7 +172,7 @@
 ### [6400] Vector Databases (2 files + 1 guide)
 - ✅ [6401-Qdrant-Setup.md](../phases/phase6-rag/6400-vector-databases/6401-Qdrant-Setup.md) - Qdrant deployment guide
 - ✅ [6402-Pinecone-vs-Weaviate.md](../phases/phase6-rag/6400-vector-databases/6402-Pinecone-vs-Weaviate.md) - Comparison
-- ✅ [6403-Qdrant-Synology-Deployment.md](../phases/phase6-rag/6400-vector-databases/guides/6403-Qdrant-Synology-Deployment.md) (NEW GUIDE)
+- ✅ [6403-Qdrant-Production-Deployment.md](../phases/phase6-rag/6400-vector-databases/guides/6403-Qdrant-Production-Deployment.md) (NEW GUIDE)
 
 ### [6500] MLOps Pipelines (3 files - NEW)
 - ✅ [6501-ML-Lifecycle-Management.md](../phases/phase6-rag/6500-mlops-pipelines/6501-ML-Lifecycle-Management.md) - Development, validation, deployment, monitoring, retirement (NEW)

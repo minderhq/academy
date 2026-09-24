@@ -52,16 +52,16 @@ After completing this module, you will be able to:
 - Test scalability
 - Analyze cost vs performance
 
-### 6403: Qdrant Synology Deployment
-**Production Vector Database on NAS** (Guide)
+### 6403: Qdrant Production Deployment
+**Production Vector Database Self-Hosted** (Guide)
 
-- Synology NAS setup for Qdrant
+- Docker deployment on any Linux host
 - Docker Compose configuration
 - Persistent storage and backups
 - Remote access and security
 - Performance optimization
 
-**Guide:** [guides/6403-Qdrant-Synology-Deployment.md](./guides/6403-Qdrant-Synology-Deployment.md)
+**Guide:** [guides/6403-Qdrant-Production-Deployment.md](./guides/6403-Qdrant-Production-Deployment.md)
 
 ## Prerequisites
 

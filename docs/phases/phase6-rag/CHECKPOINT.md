@@ -48,8 +48,8 @@ After completing Phase 6, you will:
 3. What are the RAG pipeline stages?
 
 **Lab Verification:**
-- [ ] Completed [LAB-002: RAG Implementation](../../../../learning-resources/labs/LAB-002-RAG-Implementation.md)
-- [ ] Completed [LAB-005: GraphRAG](../../../../learning-resources/labs/LAB-005-GraphRAG.md)
+- [ ] Completed [LAB-002: RAG Implementation](../../learning-resources/labs/LAB-002-RAG-Implementation.md)
+- [ ] Completed [LAB-005: GraphRAG](../../learning-resources/labs/LAB-005-GraphRAG.md)
 
 ---
 

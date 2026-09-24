@@ -6,16 +6,12 @@
 
   ### Neural-Architect Master Documentation
 
-  [![Status](https://img.shields.io/badge/Status-Production--Ready-brightgreen?style=flat-square)](#)
-  [![Version](https://img.shields.io/badge/Version-4.1-blue?style=flat-square)](#)
   [![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
-  [![Last Updated](https://img.shields.io/badge/Updated-2026--02--05-informational?style=flat-square)](#)
-  [![Documentation](https://img.shields.io/badge/Docs-505%20Files-orange?style=flat-square)](./docs)
+  [![Documentation](https://img.shields.io/badge/Docs-465%20Files-orange?style=flat-square)](./docs)
   [![Phases](https://img.shields.io/badge/Phases-7-purple?style=flat-square)](#-learning-phases)
-  [![Modules](https://img.shields.io/badge/Modules-85%20Complete-success?style=flat-square)](#-summary-statistics)
-  [![Quality](https://img.shields.io/badge/Quality-A%2B%20(98%2F100)-brightgreen?style=flat-square)](#-summary-statistics)
+  [![Modules](https://img.shields.io/badge/Modules-33-success?style=flat-square)](#-summary-statistics)
 
-  **A comprehensive, production-grade AI infrastructure and learning platform for HomeLab environments**
+  **A comprehensive, production-grade AI engineering curriculum — run it on your own hardware or in the cloud**
 
   [![Quick Start](https://img.shields.io/badge/Quick_Start-Get_Started-green?style=for-the-badge)](#-quick-start)
   [![Learning Path](https://img.shields.io/badge/Learning_Path-Choose_Track-blue?style=for-the-badge)](#-learning-path)
@@ -32,7 +28,6 @@
 - [Why PROJECT-OMEGA](#-why-project-omega)
 - [Key Features](#-key-features)
 - [Architecture](#-architecture)
-- [Infrastructure](#-infrastructure-specifications)
 - [Quick Start](#-quick-start)
 - [Learning Path](#-learning-path)
 - [Learning Phases](#-learning-phases)
@@ -83,10 +78,10 @@ graph LR
 
 </div>
 
-**PROJECT-OMEGA** is a **production-grade AI infrastructure and learning platform** designed specifically for HomeLab environments. It serves as both:
+**PROJECT-OMEGA** is a **production-grade AI infrastructure and learning platform**. It serves as both:
 
 ### 1. Technical Reference
-Implementation guides for enterprise-grade AI systems on consumer hardware. Learn to deploy, optimize, and scale AI models using practical, battle-tested configurations.
+Implementation guides for enterprise-grade AI systems on affordable hardware. Learn to deploy, optimize, and scale AI models using practical, battle-tested configurations — locally or in the cloud.
 
 ### 2. Educational Platform
 A structured curriculum taking you from foundations to production mastery. Each module includes theory, hands-on exercises, quizzes, and real-world projects.
@@ -95,9 +90,9 @@ A structured curriculum taking you from foundations to production mastery. Each 
 
 | Project | Description | Tech Stack |
 |---------|-------------|------------|
-| 🌐 **2.5Gbps Network** | High-throughput infrastructure | GPON, Star Topology |
+| 🌐 **Network Foundation** | High-throughput infrastructure | Wired networking, VLANs, bandwidth planning |
 | 🔧 **GPU Passthrough** | Multi-GPU virtualization | Proxmox, IOMMU, VFIO |
-| ☸️ **K8s Cluster** | Container orchestration | K3s, Helm, NFS |
+| ☸️ **K8s Cluster** | Container orchestration | K3s, Helm, persistent storage |
 | 🚀 **LLM Serving** | Production inference | vLLM, TGI, Ollama |
 | 🧠 **Fine-Tuning** | Custom model training | LoRA, QLoRA, DPO |
 | 🔍 **RAG System** | Knowledge retrieval | Qdrant, GraphRAG |
@@ -112,10 +107,10 @@ A structured curriculum taking you from foundations to production mastery. Each 
 After completing PROJECT-OMEGA, you will be able to:
 
 1. **Build Production AI Infrastructure**
-   - Deploy 2.5Gbps network with GPON
+   - Design a network that sustains AI workloads
    - Configure GPU passthrough on Proxmox
-   - Set up K3s Kubernetes cluster
-   - Implement monitoring stack (Prometheus, Grafana)
+   - Set up a K3s Kubernetes cluster
+   - Implement monitoring (Prometheus, Grafana)
 
 2. **Understand LLM Internals**
    - Implement self-attention from scratch
@@ -153,11 +148,11 @@ After completing PROJECT-OMEGA, you will be able to:
 
 | Challenge | PROJECT-OMEGA Solution |
 |:----------:|:----------------------:|
-| 💸 **Enterprise AI is expensive** | Run production AI on consumer hardware (RTX 2080 Ti, Intel NUC) |
-| 📚 **Documentation is scattered** | **505 files** in one organized, cross-referenced repository |
+| 💸 **AI infrastructure is expensive** | Run production-grade AI on affordable hardware or modest cloud instances |
+| 📚 **Documentation is scattered** | **465+ files** in one organized, cross-referenced repository |
 | 🎯 **Learning gaps exist** | Complete curriculum from infrastructure to agentic systems |
-| 📝 **Theory without practice** | **33 PRACTICE files** with runnable solutions, **47 experiments** |
-| 🗺️ **No clear path forward** | **7 Volumes**, **3 learning tracks**, progress tracking built-in |
+| 📝 **Theory without practice** | **33 PRACTICE files** with runnable solutions, **46 experiments** |
+| 🗺️ **No clear path forward** | **7 phases**, **3 learning tracks**, progress tracking built-in |
 
 ---
 
@@ -165,25 +160,22 @@ After completing PROJECT-OMEGA, you will be able to:
 
 ### 🎓 Comprehensive Curriculum
 - **7 Learning Phases** covering the full AI stack
-- **85 Technical Modules** with detailed documentation
+- **33 Technical Modules** with detailed documentation
 - **33 PRACTICE Files** with complete, runnable solutions
 - **33 QUIZ Files** for knowledge verification
-- **47 Experiment Files** for hands-on validation
+- **46 Experiment Files** for hands-on validation
 
 ### 🏗️ Production-Ready Infrastructure
-- Docker Compose configurations for full stack deployment
-- K3s Kubernetes manifests for container orchestration
-- Monitoring stack (Prometheus, Grafana, Loki, Tempo)
-- Nginx API Gateway with service mesh (Istio)
-- CI/CD pipelines for ML workflows
+- Docker Compose reference stack (vLLM inference + Qdrant vector DB)
+- Environment-driven configuration (`.env.example`) — no secrets in the repo
+- k6 load-testing scenarios for inference, retrieval, and end-to-end latency
+- Monitoring and observability recipes (Prometheus, Grafana, Loki) in the Phase 1 curriculum
 
 ### 📚 Rich Learning Resources
-- **7 Volume Guides** for structured learning
-- **14 Tutorials** with step-by-step instructions
-- **15 Hands-on Labs** with solutions
-- **20 Jupyter Notebooks** for interactive learning
-- **11 Cheat Sheets** for quick reference
-- **7 Project Templates** for capstone projects
+- **30 hands-on lab files** with solutions (LAB-001 to LAB-014 system)
+- **15 tutorials** with step-by-step instructions
+- **22 project files** for capstone projects
+- **13 cheat sheets** for quick reference
 
 ### 🔧 Real-World Applications
 - Vector database implementation guides
@@ -196,19 +188,21 @@ After completing PROJECT-OMEGA, you will be able to:
 
 ## Architecture
 
+The curriculum is hardware-agnostic. Below is the target architecture any suitable machine (or a small set of cloud instances) can realize:
+
 ```mermaid
 graph TB
     subgraph "Hardware Layer"
-        H1[Intel NUC 12th Gen+]
-        H2[RTX 2080 Ti 11GB eGPU]
-        H3[Synology DS720+ NAS]
-        H4[2.5Gbps Network Switch]
+        H1[x86_64 Host]
+        H2[NVIDIA GPU 8GB+ VRAM]
+        H3[Local SSD / NAS Storage]
+        H4[Gigabit+ Network]
     end
 
     subgraph "Virtualization Layer"
         V1[Proxmox VE]
         V2[K3s Kubernetes]
-        V3[NFS Storage]
+        V3[Persistent Volumes]
     end
 
     subgraph "Application Layer"
@@ -274,18 +268,14 @@ graph TB
     style M4 fill:#fff9c4
 ```
 
----
+### Deployment Targets
 
-## Infrastructure Specifications
-
-| Component | Specification | Purpose | Status |
-|-----------|---------------|---------|--------|
-| **Network** | 2.5Gbps Star Topology | High-throughput model serving | ✅ Configured |
-| **GPU** | RTX 2080 Ti 11GB (eGPU via Thunderbolt 3) | Model inference & training | ✅ Passthrough |
-| **Compute** | Intel NUC (12th Gen+) | Container orchestration | ✅ Deployed |
-| **Hypervisor** | Proxmox VE 8.x | VM & LXC management | ✅ Installed |
-| **Storage** | Synology DS720+ (NFS) | Persistent volumes & model storage | ✅ Mounted |
-| **Orchestration** | K3s Multi-Interface Cluster | Container management | ✅ Running |
+| Target | Fits | Notes |
+|--------|------|-------|
+| **Local Docker host** | Quick start, RAG experiments | Any machine with Docker; no GPU required for Qdrant |
+| **GPU workstation** | Inference, fine-tuning | NVIDIA GPU with 8GB+ VRAM, Docker + NVIDIA Container Toolkit |
+| **Home server / mini-PC cluster** | Full curriculum | Proxmox + K3s as taught in Phase 1 |
+| **Cloud instances** | Everything above | Any VM shape with an NVIDIA GPU works; sizes per module |
 
 ---
 
@@ -299,7 +289,7 @@ graph TB
 - RAM: 16GB minimum, 32GB+ recommended
 - GPU: 8GB+ VRAM (NVIDIA recommended)
 - Storage: 100GB+ SSD
-- Network: 1Gbps+ (2.5Gbps recommended)
+- Network: 1Gbps+
 ```
 
 ### Installation
@@ -315,11 +305,13 @@ cp configs/.env.example configs/.env
 # 3. Update configuration with your settings
 nano configs/.env
 
-# 4. Start the infrastructure stack
-docker-compose -f configs/docker-compose.yml up -d
+# 4. Start the reference stack (Qdrant + vLLM)
+docker compose -f configs/docker-compose.yml up -d
 
 # 5. Verify deployment
-docker-compose ps
+docker compose ps
+curl http://localhost:6333/collections   # Qdrant
+curl http://localhost:8000/v1/models     # vLLM
 ```
 
 ### Your First Steps
@@ -354,7 +346,7 @@ graph TD
 | Step | Action | Resource |
 |:----:|--------|----------|
 | 1️⃣ | Read the Quick Start Guide | [docs/00-META/QUICK-START.md](docs/00-META/QUICK-START.md) |
-| 2️⃣ | Explore the 7 Volumes | [docs/00-META/VOLUME-GUIDE.md](docs/00-META/VOLUME-GUIDE.md) |
+| 2️⃣ | Explore the 7 Phases | [docs/00-META/VOLUME-GUIDE.md](docs/00-META/VOLUME-GUIDE.md) |
 | 3️⃣ | Choose your Learning Path | [docs/00-META/0000-LEARNING-PATH.md](docs/00-META/0000-LEARNING-PATH.md) |
 | 4️⃣ | Track your Progress | [docs/00-META/PROGRESS-TRACKER.md](docs/00-META/PROGRESS-TRACKER.md) |
 
@@ -374,17 +366,17 @@ graph TB
     Level -->|3-6 Months| Intermediate[Intermediate Track]
     Level -->|3-6 Months| Advanced[Advanced Track]
 
-    Beginner --> B1[Volume 1: Infrastructure]
-    B1 --> B2[Volume 2: AI Foundations]
+    Beginner --> B1[Phase 1: Infrastructure]
+    B1 --> B2[Phase 2: AI Foundations]
     B2 --> B3[Tutorials & Labs LAB-001 to 014]
 
-    Intermediate --> I1[Volume 3: LLM Internals]
-    I1 --> I2[Volume 4: Quantization]
+    Intermediate --> I1[Phase 3: LLM Internals]
+    I1 --> I2[Phase 4: Quantization]
     I2 --> I3[Advanced Labs]
 
-    Advanced --> A1[Volume 5: Fine-Tuning]
-    A1 --> A2[Volume 6: RAG]
-    A2 --> A3[Volume 7: Agents]
+    Advanced --> A1[Phase 5: Fine-Tuning]
+    A1 --> A2[Phase 6: RAG]
+    A2 --> A3[Phase 7: Agents]
     A3 --> A4[Capstone Projects]
 
     style Beginner fill:#c8e6c9
@@ -400,12 +392,12 @@ graph TB
 
 | Phase | Focus | Duration | Output |
 |:-----:|-------|:--------:|--------|
-| 1 | Infrastructure Setup | 4-6 weeks | 2.5Gbps network, GPU passthrough VM |
+| 1 | Infrastructure Setup | 4-6 weeks | Proxmox host with GPU passthrough, K3s cluster |
 | 2 | AI/ML Foundations | 8-12 weeks | Math understanding, framework skills |
 | Labs | Hands-on Practice | Ongoing | LAB-001 to LAB-014 completed |
 
 **What you'll build:**
-- ✅ 2.5Gbps network infrastructure with GPON
+- ✅ High-throughput network design
 - ✅ GPU passthrough VM with Proxmox
 - ✅ K3s Kubernetes cluster
 - ✅ Basic LLM serving stack (Ollama)
@@ -446,17 +438,17 @@ graph TB
 ## Learning Phases
 
 ### Phase 1: Infrastructure Fabric [1000]
-**Converting hardware into a programmable, scalable, 2.5G-throughput factory**
+**Turning commodity hardware into a programmable, scalable AI factory**
 
 | Module | Topic | Docs | Status |
 |:------:|-------|:----:|:------:|
 | [1100](./docs/phases/phase1-infra/1100-network/README.md) | Network Topology | 3 | ✅ |
 | [1200](./docs/phases/phase1-infra/1200-virtualization/README.md) | Virtualization | 4 | ✅ |
 | [1300](./docs/phases/phase1-infra/1300-kubernetes/README.md) | Kubernetes | 3 | ✅ |
-| [1400](./docs/phases/phase1-infra/1400-llmops/README.md) | LLMOps | 5 | ✅ |
+| [1400](./docs/phases/phase1-infra/1400-llmops/README.md) | LLMOps | 4 | ✅ |
 | [1500](./docs/phases/phase1-infra/1500-monitoring/README.md) | Monitoring | 3 | ✅ |
 
-**Topics:** GPON, Star Topology, Proxmox, GPU Passthrough, K3s, vLLM, TGI, Observability
+**Topics:** Network Design, Proxmox, GPU Passthrough, K3s, vLLM, TGI, Observability
 
 ---
 
@@ -490,7 +482,7 @@ graph TB
 ---
 
 ### Phase 4: Quantization & Compression [4000]
-**Maximizing the 11GB VRAM for 8B-70B model execution**
+**Maximizing limited VRAM for 8B-70B model execution**
 
 | Module | Topic | Docs | Status |
 |:------:|-------|:----:|:------:|
@@ -519,7 +511,7 @@ graph TB
 ---
 
 ### Phase 6: Data Nexus [6000]
-**Integrating Synology NAS data into the LLM logic flow**
+**Integrating your data into the LLM logic flow**
 
 | Module | Topic | Docs | Status |
 |:------:|-------|:----:|:------:|
@@ -534,7 +526,7 @@ graph TB
 ---
 
 ### Phase 7: Agentic Systems [7000]
-**Creating a team of agents that can manage HomeLab and Code**
+**Creating a team of agents that can manage infrastructure and code**
 
 | Module | Topic | Docs | Status |
 |:------:|-------|:----:|:------:|
@@ -551,16 +543,16 @@ graph TB
 ## Documentation Index
 
 <details>
-<summary><b>📁 Phase 1: Infrastructure Fabric [1000]</b> - 18 documents</summary>
+<summary><b>📁 Phase 1: Infrastructure Fabric [1000]</b> - 17 documents</summary>
 
 #### [1100: Network Topology](./docs/phases/phase1-infra/1100-network/README.md)
-- [1101: Fiber GPON Modem](./docs/phases/phase1-infra/1100-network/1101-Fiber-GPON-Modem.md)
-- [1102: Star Topology Core](./docs/phases/phase1-infra/1100-network/1102-Star-Topology-Core.md)
+- [1101: Internet Uplink & Modem Configuration](./docs/phases/phase1-infra/1100-network/1101-Fiber-GPON-Modem.md)
+- [1102: Network Topology Design](./docs/phases/phase1-infra/1100-network/1102-Star-Topology-Core.md)
 - [1103: Jumbo Frames and MTU](./docs/phases/phase1-infra/1100-network/1103-Jumbo-Frames-and-MTU.md)
 
 #### [1200: Virtualization](./docs/phases/phase1-infra/1200-virtualization/README.md)
 - [1201: Proxmox Hypervisor SOP](./docs/phases/phase1-infra/1200-virtualization/1201-Proxmox-Hypervisor-SOP.md)
-- [1202: TB3 Passthrough](./docs/phases/phase1-infra/1200-virtualization/1202-TB3-UT3G-Passthrough.md)
+- [1202: GPU Passthrough (IOMMU/VFIO)](./docs/phases/phase1-infra/1200-virtualization/1202-TB3-UT3G-Passthrough.md)
 - [1203: Nvidia Kernel Module](./docs/phases/phase1-infra/1200-virtualization/1203-Nvidia-Kernel-Module.md)
 - [1204: Multi-GPU Setup](./docs/phases/phase1-infra/1200-virtualization/1204-Multi-GPU-Setup.md)
 
@@ -583,7 +575,7 @@ graph TB
 </details>
 
 <details>
-<summary><b>📁 Phase 2: Cognitive Science & Frameworks [2000]</b> - 13 documents</summary>
+<summary><b>📁 Phase 2: Cognitive Science & Frameworks [2000]</b> - 12 documents</summary>
 
 #### [2100: Calculus](./docs/phases/phase2-foundations/2100-calculus/README.md)
 - [2101: Tensor Algebra](./docs/phases/phase2-foundations/2100-calculus/2101-Tensor-Algebra.md)
@@ -594,21 +586,21 @@ graph TB
 - [2202: TensorFlow XLA](./docs/phases/phase2-foundations/2200-frameworks/2202-TensorFlow-XLA-Compilers.md)
 - [2203: CUDA Kernels](./docs/phases/phase2-foundations/2200-frameworks/2203-CUDA-Kernel-Syb-Level.md)
 
-#### [2400: Pre-training](./docs/phases/phase2-foundations/2400-pretraining/README.md)
-- [2401: Pre-training Fundamentals](./docs/phases/phase2-foundations/2400-pretraining/2401-Pre-training-Fundamentals.md)
-- [2402: Large-Scale Training](./docs/phases/phase2-foundations/2400-pretraining/2402-Large-Scale-Training.md)
-- [2403: Evaluation Frameworks](./docs/phases/phase2-foundations/2400-pretraining/2403-Evaluation-Frameworks.md)
-
 #### [2300: Framework Engineering](./docs/phases/phase2-foundations/2300-framework-engineering/README.md)
 - [2301: Framework Design Patterns](./docs/phases/phase2-foundations/2300-framework-engineering/2301-Framework-Design-Patterns.md)
 - [2302: Model Serving Architectures](./docs/phases/phase2-foundations/2300-framework-engineering/2302-Model-Serving-Architectures.md)
 - [2303: API Design for ML](./docs/phases/phase2-foundations/2300-framework-engineering/2303-API-Design-for-ML.md)
 - [2304: Production Deployment](./docs/phases/phase2-foundations/2300-framework-engineering/2304-Production-Deployment-Patterns.md)
 
+#### [2400: Pre-training](./docs/phases/phase2-foundations/2400-pretraining/README.md)
+- [2401: Pre-training Fundamentals](./docs/phases/phase2-foundations/2400-pretraining/2401-Pre-training-Fundamentals.md)
+- [2402: Large-Scale Training](./docs/phases/phase2-foundations/2400-pretraining/2402-Large-Scale-Training.md)
+- [2403: Evaluation Frameworks](./docs/phases/phase2-foundations/2400-pretraining/2403-Evaluation-Frameworks.md)
+
 </details>
 
 <details>
-<summary><b>📁 Phase 3: Transformer Physics [3000]</b> - 13 documents</summary>
+<summary><b>📁 Phase 3: Transformer Physics [3000]</b> - 12 documents</summary>
 
 #### [3100: Attention](./docs/phases/phase3-transformers/3100-attention/README.md)
 - [3101: Self-Attention](./docs/phases/phase3-transformers/3100-attention/3101-Self-Attention-DeepDive.md)
@@ -663,7 +655,7 @@ graph TB
 </details>
 
 <details>
-<summary><b>📁 Phase 5: Fine-Tuning & Alignment [5000]</b> - 11 documents</summary>
+<summary><b>📁 Phase 5: Fine-Tuning & Alignment [5000]</b> - 10 documents</summary>
 
 #### [5100: PEFT](./docs/phases/phase5-finetuning/5100-peft/README.md)
 - [5101: LoRA Logic](./docs/phases/phase5-finetuning/5100-peft/5101-LoRA-Logic.md)
@@ -688,7 +680,7 @@ graph TB
 </details>
 
 <details>
-<summary><b>📁 Phase 6: Data Nexus [6000]</b> - 16 documents</summary>
+<summary><b>📁 Phase 6: Data Nexus [6000]</b> - 15 documents</summary>
 
 #### [6100: Vector](./docs/phases/phase6-rag/6100-vector/README.md)
 - [6101: HNSW Indexing](./docs/phases/phase6-rag/6100-vector/6101-HNSW-Indexing.md)
@@ -708,7 +700,7 @@ graph TB
 #### [6400: Vector Databases](./docs/phases/phase6-rag/6400-vector-databases/README.md)
 - [6401: Qdrant Setup](./docs/phases/phase6-rag/6400-vector-databases/6401-Qdrant-Setup.md)
 - [6402: DB Comparison](./docs/phases/phase6-rag/6400-vector-databases/6402-Pinecone-vs-Weaviate.md)
-- [6403: Qdrant Synology](./docs/phases/phase6-rag/6400-vector-databases/guides/6403-Qdrant-Synology-Deployment.md)
+- [6403: Qdrant Production Deployment](./docs/phases/phase6-rag/6400-vector-databases/guides/6403-Qdrant-Production-Deployment.md)
 
 #### [6500: MLOps](./docs/phases/phase6-rag/6500-mlops-pipelines/README.md)
 - [6501: ML Lifecycle](./docs/phases/phase6-rag/6500-mlops-pipelines/6501-ML-Lifecycle-Management.md)
@@ -718,7 +710,7 @@ graph TB
 </details>
 
 <details>
-<summary><b>📁 Phase 7: Agentic Systems [7000]</b> - 13 documents</summary>
+<summary><b>📁 Phase 7: Agentic Systems [7000]</b> - 12 documents</summary>
 
 #### [7100: Architecture](./docs/phases/phase7-agentic/7100-architecture/README.md)
 - [7101: ReAct Loop](./docs/phases/phase7-agentic/7100-architecture/7101-ReAct-Loop-System.md)
@@ -783,11 +775,6 @@ AI agent implementations:
 | [IND-001: Healthcare AI](./docs/industry/IND-001-Healthcare-AI-Applications.md) | Clinical decision support |
 | [IND-002: Finance AI](./docs/industry/IND-002-Finance-AI-Applications.md) | Fraud detection |
 
-### Complete Solutions
-
-#### [SOL-001: Enterprise Knowledge Base](./docs/solutions/SOL-001-Enterprise-Knowledge-Base.md)
-End-to-end implementation with Docker Compose, FastAPI, and monitoring.
-
 ---
 
 ## Experiments
@@ -795,10 +782,10 @@ End-to-end implementation with Docker Compose, FastAPI, and monitoring.
 Each technical document has an associated experiment file for hands-on validation.
 
 <details>
-<summary><b>🔬 44 Experiment Files</b></summary>
+<summary><b>🔬 46 Experiment Files</b></summary>
 
 **Infrastructure (4):**
-- [EXP_1101: GPON](./experiments/EXP_1101_GPON.md) | [EXP_1302: GPU Scheduler](./experiments/EXP_1302_GPU_SCHEDULER.md)
+- [EXP_1101: Internet Uplink (case study)](./docs/case-study/experiments/EXP_1101_GPON.md) | [EXP_1302: GPU Scheduler](./experiments/EXP_1302_GPU_SCHEDULER.md)
 - [EXP_1501: Monitoring](./experiments/EXP_1501_MONITORING.md) | [EXP_1502: Model Drift](./experiments/EXP_1502_MODEL_DRIFT.md)
 
 **Frameworks (5):**
@@ -821,7 +808,7 @@ Each technical document has an associated experiment file for hands-on validatio
 
 **RAG (6):**
 - [EXP_6101: HNSW](./experiments/EXP_6101_HNSW.md) | [EXP_6201: Hybrid Search](./experiments/EXP_6201_HYBRID_SEARCH.md)
-- [EXP_6301: GraphRAG](./experiments/EXP_6301_GRAPHRAG.md) | [EXP_6302: Neo4j](./experiments/EXP_6302_NEO4J.md)
+- [EXP_6301: GraphRAG](./experiments/EXP_6301_GRAPHRAG.md) | [EXP_6303: Neo4j](./experiments/EXP_6303_NEO4J.md)
 - [EXP_6401: Vector DB](./experiments/EXP_6401_VECTOR_DB.md) | [EXP_6501: MLOps Pipeline](./experiments/EXP_6501_MLOPS_PIPELINE.md)
 
 **Agents (4):**
@@ -834,20 +821,16 @@ Each technical document has an associated experiment file for hands-on validatio
 
 ## Configurations
 
-Production-ready infrastructure configurations:
+The [`configs/`](./configs/) directory ships a lean, reproducible reference stack:
 
-| Config File | Description |
-|------------|-------------|
-| [docker-compose.yml](./configs/docker-compose.yml) | Complete stack deployment |
-| [docker-compose-complete.yml](./configs/docker-compose-complete.yml) | Full stack with monitoring |
-| [docker-compose-gpu.yml](./configs/docker-compose-gpu.yml) | GPU-specific services |
-| [k3s-manifests.yaml](./configs/k3s-manifests.yaml) | Kubernetes deployment |
-| [monitoring/](./configs/monitoring/) | Prometheus, Grafana, Loki, Tempo |
-| [nginx/](./configs/nginx/) | API Gateway configuration |
-| [services/](./configs/services/) | ReAct Agent, GraphRAG |
-| [scripts/](./configs/scripts/) | Backup and restore utilities |
-| [ci-cd/](./configs/ci-cd/) | GitHub Actions workflows |
-| [service-mesh/](./configs/service-mesh/) | Istio configuration |
+| File | Description |
+|------|-------------|
+| [docker-compose.yml](./configs/docker-compose.yml) | Reference stack: vLLM inference + Qdrant vector DB |
+| [.env.example](./configs/.env.example) | Environment template (model, tokens, limits) |
+| [README.md](./configs/README.md) | Stack guide, quick start, model sizing table |
+| [performance-testing/k6/load-test.js](./configs/performance-testing/k6/load-test.js) | Load tests: inference, streaming, retrieval |
+
+Optional add-ons (Ollama alternative, Neo4j for GraphRAG, monitoring stack) are documented in [`configs/README.md`](./configs/README.md) and the Phase 1 curriculum.
 
 ---
 
@@ -862,16 +845,17 @@ Production-ready infrastructure configurations:
 | GPU | 8GB+ VRAM (NVIDIA) |
 | Storage | 100GB+ SSD |
 
-### Recommended (PROJECT-OMEGA Stack)
+### Recommended
 
 | Component | Specification |
 |-----------|---------------|
-| Compute | Intel NUC (12th Gen+) |
+| CPU | Modern 4+ core x86_64 |
 | RAM | 32GB+ DDR4/DDR5 |
-| GPU | RTX 2080 Ti (11GB+ VRAM) |
+| GPU | Any NVIDIA GPU with 8GB+ VRAM |
 | Storage | 1TB+ NVMe SSD |
-| Network | 2.5Gbps Switch |
-| NAS | Synology DS720+ (NFS) |
+| Network | Wired Gigabit+ |
+
+See the [model sizing table](./configs/README.md#model-sizing) to match GPU VRAM to model families.
 
 ---
 
@@ -889,14 +873,15 @@ cp configs/.env.example configs/.env
 nano configs/.env
 
 # Start infrastructure
-docker-compose -f configs/docker-compose.yml up -d
+docker compose -f configs/docker-compose.yml up -d
 
 # Verify deployment
-docker-compose ps
-curl http://localhost:3000  # Grafana
-curl http://localhost:6333  # Qdrant
-curl http://localhost:11434 # Ollama
+docker compose ps
+curl http://localhost:8000/v1/models   # vLLM
+curl http://localhost:6333/collections # Qdrant
 ```
+
+No GPU? Start with the Qdrant service only (`docker compose up -d qdrant`) and use any OpenAI-compatible inference endpoint via `MODEL`/`BASE_URL` settings.
 
 ---
 
@@ -1036,22 +1021,18 @@ services:
   api:
     image: llm-api:latest
 
-# Right: Full observability stack
+# Right: Structured logs + metrics endpoints
 services:
   api:
     image: llm-api:latest
     logging:
-      driver: loki
-    deploy:
-      labels:
-        - "prometheus.io/scrape=true"
-        - "prometheus.io/port=8080"
-    depends_on:
-      - prometheus
-      - grafana
-      - loki
-      - tempo
+      driver: json-file
+    labels:
+      - "prometheus.io/scrape=true"
+      - "prometheus.io/port=8080"
 ```
+
+Monitoring stack recipes (Prometheus, Grafana, Loki, Tempo) are covered in [1501: Monitoring and Observability](./docs/phases/phase1-infra/1500-monitoring/1501-Monitoring-and-Observability.md).
 
 ---
 
@@ -1232,15 +1213,15 @@ class AgentMemory:
 
 ```bash
 # Infrastructure
-docker-compose up -d                    # Start all services
-docker-compose ps                        # Check status
-docker-compose logs -f [service]         # View logs
-kubectl get pods -A                      # Check K8s pods
+docker compose up -d                    # Start all services
+docker compose ps                       # Check status
+docker compose logs -f [service]        # View logs
+kubectl get pods -A                     # Check K8s pods
 
 # Model Operations
-ollama pull llama2:7b                    # Download model
-ollama run llama2:7b                     # Run model
-vllm serve llama2:7b --quantization awq  # Serve with vLLM
+ollama pull llama2:7b                   # Download model
+ollama run llama2:7b                    # Run model
+vllm serve llama2:7b --quantization awq # Serve with vLLM
 
 # Vector Database
 curl http://localhost:6333/collections   # List collections
@@ -1256,22 +1237,18 @@ curl http://localhost:3000               # Grafana dashboard
 
 | File | Purpose |
 |------|---------|
-| `configs/docker-compose.yml` | Main stack |
-| `configs/docker-compose-gpu.yml` | GPU services |
-| `configs/k3s-manifests.yaml` | K8s deployment |
-| `configs/.env` | Environment variables |
-| `configs/nginx/nginx.conf` | API gateway |
+| `configs/docker-compose.yml` | Reference stack (vLLM + Qdrant) |
+| `configs/.env.example` | Environment variables template |
+| `configs/performance-testing/k6/load-test.js` | Load testing scenarios |
 
-### Service URLs
+### Service URLs (reference stack)
 
 | Service | URL | Credentials |
 |---------|-----|-------------|
-| Grafana | http://localhost:3000 | admin/admin |
-| Prometheus | http://localhost:9090 | - |
-| Qdrant | http://localhost:6333 | - |
-| Ollama | http://localhost:11434 | - |
-| Neo4j | http://localhost:7474 | neo4j/password |
 | vLLM | http://localhost:8000 | - |
+| Qdrant | http://localhost:6333 | - |
+
+Optional services (Ollama on :11434, Neo4j on :7474, Grafana on :3000) are covered in [configs/README.md](./configs/README.md) and the [Phase 1 curriculum](./docs/phases/phase1-infra/1500-monitoring/1501-Monitoring-and-Observability.md).
 
 ---
 
@@ -1280,25 +1257,22 @@ curl http://localhost:3000               # Grafana dashboard
 ### Start the Stack
 
 ```bash
-# Start all services
-docker-compose -f configs/docker-compose.yml up -d
+# Start the reference stack
+docker compose -f configs/docker-compose.yml up -d
 
-# Start with GPU support
-docker-compose -f configs/docker-compose-gpu.yml up -d
+# Inference only (skip vector DB)
+docker compose -f configs/docker-compose.yml up -d vllm
 
-# Start complete stack with monitoring
-docker-compose -f configs/docker-compose-complete.yml up -d
+# Vector DB only (no GPU needed)
+docker compose -f configs/docker-compose.yml up -d qdrant
 ```
 
 ### Access Services
 
 | Service | URL | Credentials |
 |---------|-----|-------------|
-| Grafana | http://localhost:3000 | admin/admin |
-| Prometheus | http://localhost:9090 | - |
+| vLLM | http://localhost:8000 | - |
 | Qdrant | http://localhost:6333 | - |
-| Ollama | http://localhost:11434 | - |
-| Neo4j | http://localhost:7474 | neo4j/password |
 
 ---
 
@@ -1306,32 +1280,29 @@ docker-compose -f configs/docker-compose-complete.yml up -d
 
 ### Documentation Coverage
 
-| Phase | Technical | Supporting | Total | Status |
-|:-----:|:---------:|:----------:|:-----:|:------:|
-| **1** | 18 | 21 | 39 | ✅ |
-| **2** | 15 | 17 | 32 | ✅ |
-| **3** | 13 | 21 | 34 | ✅ |
-| **4** | 20 | 17 | 37 | ✅ |
-| **5** | 16 | 21 | 37 | ✅ |
-| **6** | 16 | 21 | 37 | ✅ |
-| **7** | 13 | 21 | 34 | ✅ |
-| **Total** | **85** | **139** | **224** | ✅ |
+| Phase | Documents |
+|:-----:|:---------:|
+| **1** | 39 |
+| **2** | 32 |
+| **3** | 34 |
+| **4** | 41 |
+| **5** | 40 |
+| **6** | 39 |
+| **7** | 37 |
+| **Phase total** | **262** |
 
 ### Additional Resources
 
 | Resource | Count |
 |----------|------:|
-| Volume Guides | 7 |
-| Tutorials | 14 |
-| Hands-on Labs | 15 |
-| Lab System (LAB-001-014) | 14 |
-| Jupyter Notebooks | 8 |
-| Project Templates | 7 |
-| Cheat Sheets | 11 |
-| Experiments | 44 |
-| Config Files | 20+ |
-| PRACTICE Files | 33 |
+| Learning Resources (labs, tutorials, projects, cheat sheets) | 88 |
+| Hands-on Labs (LAB-001 to LAB-014 system) | 30 |
+| Experiments | 46 |
 | QUIZ Files | 33 |
+| PRACTICE Files | 33 |
+| Use Cases / Comparisons / Industry docs | 13 |
+| Config Files | 4 |
+| Case Study (original home-lab build) | 6 |
 
 ### Topics Covered
 
@@ -1349,41 +1320,22 @@ Agents: ReAct, Tools, Memory, Orchestration, Security
 
 ## Roadmap
 
-### v4.1 - Q1 2026
-- [ ] Add video tutorials for each phase
+- [ ] Video tutorials for each phase
 - [ ] Interactive coding challenges
 - [ ] Community contribution guidelines
-
-### v5.0 - Q2 2026
-- [ ] Multi-language support (Spanish, Chinese)
-- [ ] Mobile app for progress tracking
-- [ ] AI-powered learning assistant
-
-### Future
+- [ ] Multi-language support
 - [ ] Certification program
-- [ ] Community projects showcase
-- [ ] Instructor-led cohorts
 
 ---
 
 ## Contributing
 
-We welcome contributions! Please see [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.
-
-### Quick Start
+Contributions are welcome! The fastest way to contribute:
 
 1. Fork the repository
 2. Create a feature branch
-3. Make your changes
+3. Follow the document structure conventions in [docs/00-META/STYLE-GUIDE.md](./docs/00-META/STYLE-GUIDE.md) and [docs/00-META/DOCUMENT-TEMPLATE.md](./docs/00-META/DOCUMENT-TEMPLATE.md)
 4. Submit a pull request
-
-### Development Standards
-
-See [prompt.txt](./prompt.txt) for:
-- Document structure templates
-- Naming conventions
-- Git commit standards
-- Code style guidelines
 
 ---
 
@@ -1401,6 +1353,7 @@ See [prompt.txt](./prompt.txt) for:
 ### Get Help
 
 - [FAQ](./docs/00-META/FAQ.md) - Frequently Asked Questions
+- [Troubleshooting Quickstart](./docs/00-META/TROUBLESHOOTING-QUICKSTART.md) - Fast diagnostics
 - [Issues](https://github.com/your-username/PROJECT-OMEGA/issues) - Report bugs
 - [Discussions](https://github.com/your-username/PROJECT-OMEGA/discussions) - Community forum
 
@@ -1415,13 +1368,15 @@ See [prompt.txt](./prompt.txt) for:
 | **Quick Start** | [docs/00-META/QUICK-START.md](./docs/00-META/QUICK-START.md) |
 | **Learning Path** | [docs/00-META/0000-LEARNING-PATH.md](./docs/00-META/0000-LEARNING-PATH.md) |
 | **Progress Tracker** | [docs/00-META/PROGRESS-TRACKER.md](./docs/00-META/PROGRESS-TRACKER.md) |
+| **Master Index** | [docs/00-META/MASTER-INDEX.md](./docs/00-META/MASTER-INDEX.md) |
 | **Volume Guide** | [docs/00-META/VOLUME-GUIDE.md](./docs/00-META/VOLUME-GUIDE.md) |
+| **Assessment Guide** | [docs/00-META/ASSESSMENT-GUIDE.md](./docs/00-META/ASSESSMENT-GUIDE.md) |
 | **Sitemap** | [docs/00-META/SITEMAP.md](./docs/00-META/SITEMAP.md) |
 | **FAQ** | [docs/00-META/FAQ.md](./docs/00-META/FAQ.md) |
 | **Resources** | [docs/00-META/RESOURCES.md](./docs/00-META/RESOURCES.md) |
 | **Labs** | [docs/learning-resources/labs/](./docs/learning-resources/labs/) |
-| **Notebooks** | [docs/learning-resources/notebooks/](./docs/learning-resources/notebooks/) |
 | **Projects** | [docs/learning-resources/projects/](./docs/learning-resources/projects/) |
+| **Case Study** | [docs/case-study/](./docs/case-study/README.md) |
 
 ---
 
@@ -1466,48 +1421,6 @@ SOFTWARE.
 
 ---
 
-## Status
-
-### v4.1 - README Enhanced (2026-02-05)
-
-| Component | Status | Quality |
-|-----------|--------|---------|
-| All Phase READMEs enriched (7/7) | ✅ | A+ |
-| All Volume READMEs enriched (7/7) | ✅ | A+ |
-| Main README.md enhanced | ✅ | A+ |
-| Common Pitfalls sections | ✅ | A+ |
-| Pro Tips sections | ✅ | A+ |
-| Performance Benchmarks | ✅ | A+ |
-| QUIZ.md files (33) | ✅ | A+ |
-| PRACTICE.md files (33) | ✅ | A+ |
-| Cross-reference links | ✅ | A+ |
-| Interactive diagrams | ✅ | A+ |
-
-### Documentation Quality Metrics
-
-| Metric | Score | Status |
-|--------|-------|--------|
-| **Comprehensiveness** | 98/100 | ✅ Excellent |
-| **Code Examples** | 100/100 | ✅ Complete |
-| **Visual Diagrams** | 95/100 | ✅ Excellent |
-| **Cross-References** | 97/100 | ✅ Excellent |
-| **Practical Content** | 100/100 | ✅ Complete |
-| **Learning Structure** | 98/100 | ✅ Excellent |
-| **Production Readiness** | 96/100 | ✅ Excellent |
-
-### Release History
-
-| Version | Date | Changes |
-|---------|------|---------|
-| **v4.1** | 2026-02-05 | README Enhanced - Added Common Pitfalls, Pro Tips, Benchmarks |
-| **v4.0** | 2026-02-05 | Quality Enhanced - All PRACTICE files complete |
-| **v3.1** | 2026-02-04 | Directory reorganization |
-| **v3.0** | 2026-02-03 | Phase-based structure |
-| **v2.0** | 2026-02-02 | Complete documentation rewrite |
-| **v1.0** | 2026-02-01 | Initial project setup |
-
----
-
 <div align="center">
 
 ## Ready to Build Your AI Future?
@@ -1518,13 +1431,11 @@ SOFTWARE.
 
 ---
 
-**PROJECT-OMEGA v4.1 - README Enhanced**
+**PROJECT-OMEGA**
 
-*Grade: A+ (98/100) | Version: 4.1 | Last Updated: 2026-02-05*
+*Last Updated: 2026-09-24*
 
-*570+ Documentation Files | 85 Technical Modules | 7 Learning Phases*
-
-*Generated for PROJECT-OMEGA HomeLab AI Master Project*
+*465+ Documentation Files | 33 Technical Modules | 7 Learning Phases*
 
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
 [![Contact](https://img.shields.io/badge/Contact-FAQ-blue?style=flat-square)](./docs/00-META/FAQ.md)
@@ -1532,6 +1443,6 @@ SOFTWARE.
 
 ---
 
-Made with ❤️ for the HomeLab AI Community
+Made with ❤️ for the local-AI community
 
 </div>

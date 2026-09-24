@@ -721,7 +721,7 @@ jobs:
 
 - **[7101: ReAct Loop](../../phases/phase7-agentic/7100-architecture/7101-ReAct-Loop-System.md)** - Agent pattern
 - **[7301: Orchestration](../../phases/phase7-agentic/7300-orchestration/7301-Orchestration.md)** - Multi-agent orchestration
-- **[LAB 009: Production Deployment](./labs/LAB-009-Production-Deployment.md)** - Deployment
+- **[LAB 009: Production Deployment](../labs/LAB-009-Production-Deployment.md)** - Deployment
 
 ---
 

@@ -66,7 +66,7 @@ Attention mechanism learns: "it" → "animal" (not "street")
    - Understand semantic meaning in vectors
 
 3. **Matrix Multiplication (15 min):**
-   - Review: [3201-Rotary-Positional-Embeddings-RoPE.md](../../3200-embeddings/3201-Rotary-Positional-Embeddings-RoPE.md)
+   - Review: [3201-Rotary-Positional-Embeddings-RoPE.md](../3200-embeddings/3201-Rotary-Positional-Embeddings-RoPE.md)
    - Understand dot product similarity
 
 ---

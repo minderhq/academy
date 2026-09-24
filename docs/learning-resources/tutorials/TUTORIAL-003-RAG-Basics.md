@@ -539,7 +539,7 @@ services:
 
 ## 📚 What's Next?
 
-1. **[Tutorial 004: GraphRAG](TUTORIAL-004-GraphRAG.md)** - Add knowledge graphs
+1. **Tutorial 004: GraphRAG** *(coming soon)* - Add knowledge graphs
 2. **[6201: Hybrid Search](../../phases/phase6-rag/6200-retrieval/6201-Hybrid-Search.md)** - Advanced retrieval
 3. **[6304: GraphRAG Implementation](../../phases/phase6-rag/6300-context/guides/6304-GraphRAG-Implementation.md)** - Production RAG
 
@@ -598,4 +598,4 @@ print(rag.query("What is PROJECT-OMEGA?"))
 
 ---
 
-**Next:** [Tutorial 004: GraphRAG](TUTORIAL-004-GraphRAG.md)
+**Next:** Tutorial 004: GraphRAG *(coming soon)*

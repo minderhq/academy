@@ -1101,9 +1101,9 @@ python ~/lab-002-rag/chatbot.py
 
 ## 📚 Post-Lab Reading
 
-- **[6101: HNSW Indexing](../phase6-rag/6100-Vector/6101-HNSW-Indexing.md)** - Vector search algorithms
-- **[6201: Hybrid Search](../phase6-rag/6200-retrieval/6201-Hybrid-Search.md)** - Combine keyword + semantic
-- **[6304: GraphRAG Implementation](../phase6-rag/6300-context/guides/6304-GraphRAG-Implementation.md)** - Add knowledge graphs
+- **[6101: HNSW Indexing](../../phases/phase6-rag/6100-vector/6101-HNSW-Indexing.md)** - Vector search algorithms
+- **[6201: Hybrid Search](../../phases/phase6-rag/6200-retrieval/6201-Hybrid-Search.md)** - Combine keyword + semantic
+- **[6304: GraphRAG Implementation](../../phases/phase6-rag/6300-context/guides/6304-GraphRAG-Implementation.md)** - Add knowledge graphs
 
 ---
 
@@ -1111,4 +1111,4 @@ python ~/lab-002-rag/chatbot.py
 
 **Earned:** RAG Implementation Badge 🏅
 
-Next: **[LAB 003: LoRA Fine-Tuning](./labs/LAB-003-LoRA-FineTuning.md)**
+Next: **[LAB 003: LoRA Fine-Tuning](LAB-003-LoRA-FineTuning.md)**

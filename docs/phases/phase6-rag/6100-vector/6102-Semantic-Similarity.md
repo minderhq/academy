@@ -413,6 +413,6 @@ for i, label in enumerate(labels):
 **Related Documents:**
 - [6101: HNSW Indexing](./6101-HNSW-Indexing.md)
 - [6201: Hybrid Search](../6200-retrieval/6201-Hybrid-Search.md)
-- [3201: RoPE](../../3000-Transformer-Physics/3200-Embeddings/3201-Rotary-Positional-Embeddings-RoPE.md)
+- [3201: RoPE](../../phase3-transformers/3200-embeddings/3201-Rotary-Positional-Embeddings-RoPE.md)
 
 **Experiment Template:** `experiments/EXP_6102_SIMILARITY.md"

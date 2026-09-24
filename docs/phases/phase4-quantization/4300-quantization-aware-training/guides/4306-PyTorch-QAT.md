@@ -430,7 +430,7 @@ model = quant.convert(model)
 
 ## Next Steps
 
-→ **[guides/4307: Transformers QAT](./guides/4307-Transformers-QAT.md)** - QAT with HuggingFace
+→ **[guides/4307: Transformers QAT](4307-Transformers-QAT.md)** - QAT with HuggingFace
 
 ---
 

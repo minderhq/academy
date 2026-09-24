@@ -135,7 +135,7 @@ graph TB
 #### Day 1-3: The Three Pillars
 **Metrics, Logs, Traces**
 
-1. **[TUTORIAL-004: Monitoring](../tutorials/TUTORIAL-004-Monitoring.md)** (90 min)
+1. **[TUTORIAL-004: Monitoring](../learning-resources/tutorials/TUTORIAL-004-Monitoring.md)** (90 min)
    - Observability concepts
    - Prometheus for metrics
    - Grafana for visualization
@@ -228,7 +228,7 @@ token_throughput.labels(model='mistral').set(tokens / duration)
 #### Day 1-3: SSL/TLS & Security
 **Secure your AI services**
 
-1. **[TUTORIAL-005: Production Deployment](../tutorials/TUTORIAL-005-Production-Deployment.md)** (90 min)
+1. **[TUTORIAL-005: Production Deployment](../learning-resources/tutorials/TUTORIAL-005-Production-Deployment.md)** (90 min)
    - SSL certificate setup (Let's Encrypt, self-signed)
    - Nginx reverse proxy
    - Security headers

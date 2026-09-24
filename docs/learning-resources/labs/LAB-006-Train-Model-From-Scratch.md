@@ -6,7 +6,7 @@
 
 ## Lab Overview
 
-**Prerequisites:** Volume 2 (Math), Volume 3 (LLM Internals), [2401: Pre-training Fundamentals](../../phases/phase2-foundations/2400-Pre-training/2401-Pre-training-Fundamentals.md)
+**Prerequisites:** Volume 2 (Math), Volume 3 (LLM Internals), [2401: Pre-training Fundamentals](../../phases/phase2-foundations/2400-pretraining/2401-Pre-training-Fundamentals.md)
 **Time:** 6-8 hours
 **Difficulty:** ⭐⭐⭐⭐ Advanced
 
@@ -1149,9 +1149,9 @@ Final Perplexity: 8-10
 
 ## 🎯 You're Now Ready For
 
-- **[Volume 5: Fine-Tuning](../VOLUME-5-Model-Adaptation.md)** - Adapt your model
-- **[Volume 7: Production](../VOLUME-7-Production-Mastery.md)** - Deploy your model
-- **[2402: Large-Scale Training](../../phases/phase2-foundations/2400-Pre-training/2402-Large-Scale-Training.md)** - Scale up training
+- **[Volume 5: Fine-Tuning](../../volumes/VOLUME-5-Model-Adaptation.md)** - Adapt your model
+- **[Volume 7: Production](../../volumes/VOLUME-7-Production-Mastery.md)** - Deploy your model
+- **[2402: Large-Scale Training](../../phases/phase2-foundations/2400-pretraining/2402-Large-Scale-Training.md)** - Scale up training
 
 ---
 

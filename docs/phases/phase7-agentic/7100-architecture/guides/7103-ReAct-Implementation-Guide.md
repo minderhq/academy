@@ -688,7 +688,7 @@ except Exception as e:
 ---
 
 **Related:**
-- [7101: ReAct Loop System](./7101-ReAct-Loop-System.md)
-- [7102: Planning Decomposition](./7102-Planning-Decomposition.md)
+- [7101: ReAct Loop System](../7101-ReAct-Loop-System.md)
+- [7102: Planning Decomposition](../7102-Planning-Decomposition.md)
 - [7202: Code Interpreter](../../7200-tools/guides/7202-Code-Interpreter.md)
 - [7401: Long-term Memory](../../7400-memory/7401-Long-term-Memory.md)

@@ -650,8 +650,8 @@ class RedTeamTester:
 ## Related Resources
 
 - **Next:** [7502: PII Redaction](./7502-PII-Redaction.md)
-- **Related:** [1503: LLM Observability](../phase1-infra/1500-monitoring/1503-LLM-Observability.md)
-- **Experiment:** [EXP_7501: Prompt Injection](../../experiments/EXP_7501_PROMPT_INJECTION.md)
+- **Related:** [1503: LLM Observability](../../phase1-infra/1500-monitoring/1503-LLM-Observability.md)
+- **Experiment:** [EXP_7501: Prompt Injection](../../../../experiments/EXP_7501_PROMPT_INJECTION.md)
 
 
 ---

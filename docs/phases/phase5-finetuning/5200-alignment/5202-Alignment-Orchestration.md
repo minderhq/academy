@@ -386,7 +386,7 @@ def human_eval(model_a, model_b, test_prompts):
 
 ## Next Steps
 
-- Continue with: **[5301-Synthetic-Data.md](./../5300-synthetic/5301-Synthetic-Data.md)**
+- Continue with: **[5301: Knowledge Distillation](./../5300-synthetic/5301-Knowledge-Distillation.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 
 ---

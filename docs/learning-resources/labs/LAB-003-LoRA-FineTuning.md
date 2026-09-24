@@ -1042,9 +1042,9 @@ python ~/lab-003-lora/chatbot.py
 
 ## 📚 Post-Lab Reading
 
-- **[5101: LoRA Logic](../5000-Fine-Tuning/5100-PEFT/5101-LoRA-Logic.md)** - Deep dive into LoRA
-- **[5102: QLoRA Pipelines](../5000-Fine-Tuning/5100-PEFT/5102-QLoRA-Pipelines.md)** - 4-bit fine-tuning
-- **[5201: DPO Theory](../5000-Fine-Tuning/5200-SFT-Preference/5201-DPO-Theory.md)** - Preference optimization
+- **[5101: LoRA Logic](../../phases/phase5-finetuning/5100-peft/5101-LoRA-Logic.md)** - Deep dive into LoRA
+- **[5102: QLoRA Pipelines](../../phases/phase5-finetuning/5100-peft/5102-QLoRA-Pipelines.md)** - 4-bit fine-tuning
+- **[5201: DPO Theory](../../phases/phase5-finetuning/5200-alignment/5201-DPO-Theory.md)** - Preference optimization
 
 ---
 
@@ -1052,4 +1052,4 @@ python ~/lab-003-lora/chatbot.py
 
 **Earned:** LoRA Fine-Tuning Badge 🏅
 
-Next: **[LAB 004: ReAct Agent](./labs/LAB-004-ReAct-Agent.md)**
+Next: **[LAB 004: ReAct Agent](LAB-004-ReAct-Agent.md)**

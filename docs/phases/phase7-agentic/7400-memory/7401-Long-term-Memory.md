@@ -1037,6 +1037,6 @@ Long-term memory systems enable AI agents to:
 ---
 
 **Related:**
-- [6101: HNSW](../../../phase6-rag/6100-vector/6101-HNSW-Indexing.md)
+- [6101: HNSW](../../phase6-rag/6100-vector/6101-HNSW-Indexing.md)
 - [7101: ReAct](../7100-architecture/7101-ReAct-Loop-System.md)
-- [6201: Hybrid Search](../../../phase6-rag/6200-retrieval/6201-Hybrid-Search.md)
+- [6201: Hybrid Search](../../phase6-rag/6200-retrieval/6201-Hybrid-Search.md)

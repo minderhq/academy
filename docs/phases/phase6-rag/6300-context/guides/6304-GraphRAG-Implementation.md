@@ -661,8 +661,8 @@ python -c "from complete_graph_rag import CompleteGraphRAG; rag = CompleteGraphR
 ---
 
 **Related:**
-- [6301: Neo4j and Knowledge Graphs](./6301-Neo4j-and-Knowledge-Graphs.md)
-- [6302: CAG Long Context Architectures](./6302-CAG-Long-Context-Architectures.md)
-- [6303: Neo4j Deployment Guide](./guides/6303-Neo4j-Deployment-Guide.md)
+- [6301: Neo4j and Knowledge Graphs](../6301-Neo4j-and-Knowledge-Graphs.md)
+- [6302: CAG Long Context Architectures](../6302-CAG-Long-Context-Architectures.md)
+- [6303: Neo4j Deployment Guide](6303-Neo4j-Deployment-Guide.md)
 - [6201: Hybrid Search](../../6200-retrieval/6201-Hybrid-Search.md)
 - [EXP_6301: Neo4j Knowledge Graph](../../../../../experiments/EXP_6303_NEO4J.md)

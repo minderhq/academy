@@ -319,18 +319,6 @@
 
 ---
 
-## 🎓 Print & Publish
-
-### Publishing Resources
-
-| Document | Purpose |
-|----------|---------|
-| **[PRINTING-GUIDE](PRINTING-GUIDE.md)** | Complete printing guide |
-| **[BOOK-OUTLINE](BOOK-OUTLINE.md)** | Book content outline |
-| **[PRINTING-CHECKLIST](PRINTING-CHECKLIST.md)** | Printing decision checklist |
-
----
-
 ## 🔧 Meta Documentation
 
 | Document | Purpose |
@@ -339,7 +327,6 @@
 | **[Document Template](DOCUMENT-TEMPLATE.md)** | File template |
 | **[Navigation Template](NAVIGATION-TEMPLATE.md)** | Navigation patterns |
 | **[Cross-Reference Guidelines](CROSS-REFERENCE-GUIDELINES.md)** | Linking standards |
-| **[Metadata Migration Tool](METADATA-MIGRATION-TOOL.md)** | Migration utilities |
 | **[Progress Checkpoints](PROGRESS-CHECKPOINTS.md)** | Milestone tracking |
 
 ---

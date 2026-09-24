@@ -758,4 +758,4 @@ You should have a working chat interface with memory!
 
 **Earned:** Docker & LLM Fundamentals Badge 🏅
 
-Next: **[LAB 002: RAG Implementation](./labs/LAB-002-RAG-Implementation.md)**
+Next: **[LAB 002: RAG Implementation](LAB-002-RAG-Implementation.md)**

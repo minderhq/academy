@@ -312,8 +312,8 @@ def multimodal_rag_query(query: str, vector_store, vision_llm):
 | Experiment | Description |
 |------------|-------------|
 | [EXP_3501: Multimodal RAG](../../../../experiments/EXP_3501_MULTIMODAL_RAG.md) | Build multimodal RAG system |
-| [LAB-011: Multi-Modal AI](../../../../learning-resources/labs/LAB-011-Multi-Modal-AI.md) | Vision + language hands-on |
-| [LAB-012: Audio AI](../../../../learning-resources/labs/LAB-012-Audio-AI.md) | Speech recognition and synthesis |
+| [LAB-011: Multi-Modal AI](../../../learning-resources/labs/LAB-011-Multi-Modal-AI.md) | Vision + language hands-on |
+| [LAB-012: Audio AI](../../../learning-resources/labs/LAB-012-Audio-AI.md) | Speech recognition and synthesis |
 
 ---
 

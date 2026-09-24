@@ -480,5 +480,5 @@ tools = {
 ---
 
 **Document ID:** 7201
-**Related:** [7202: Code Interpreter](./guides/7202-Code-Interpreter.md), [7203: Framework Comparison](./guides/7203-Framework-Comparison.md)
+**Related:** [7202: Code Interpreter](./guides/7202-Code-Interpreter.md), [7203: Framework Comparison](../7300-orchestration/guides/7303-Framework-Comparison.md)
 **Next:** [7301: Orchestration](../7300-orchestration/7301-Orchestration.md)

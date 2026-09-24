@@ -1213,7 +1213,7 @@ See: [2306: Building Production Framework](./guides/2306-Building-Production-Fra
 ## Next Steps
 
 - Continue with: **[2302: Model Serving Architectures](./2302-Model-Serving-Architectures.md)**
-- Practical: **[LAB-007: Production RAG](../../../../learning-resources/labs/LAB-007-Production-RAG.md)**
+- Practical: **[LAB-007: Production RAG](../../../learning-resources/labs/LAB-007-Production-RAG.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 
 ---

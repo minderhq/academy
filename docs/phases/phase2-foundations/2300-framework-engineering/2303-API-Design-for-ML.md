@@ -862,14 +862,14 @@ class PredictResponse(BaseModel):
 ## Next Steps
 
 - Continue with: **[2304: Production Deployment Patterns](./2304-Production-Deployment-Patterns.md)**
-- Practical: **[LAB-007: Production RAG](../../../../learning-resources/labs/LAB-007-Production-RAG.md)**
+- Practical: **[LAB-007: Production RAG](../../../learning-resources/labs/LAB-007-Production-RAG.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 
 ---
 
 ## Related Topics
 
-- [TUTORIAL-003: RAG Basics](../../../../learning-resources/tutorials/TUTORIAL-003-RAG-Basics.md)
+- [TUTORIAL-003: RAG Basics](../../../learning-resources/tutorials/TUTORIAL-003-RAG-Basics.md)
 - [1401: Ollama Enterprise](../../phase1-infra/1400-llmops/1401-Ollama-Enterprise.md)
 - [2302: Model Serving Architectures](./2302-Model-Serving-Architectures.md)
 - [6101: Vector Search](../../phase6-rag/6100-vector/6101-HNSW-Indexing.md)

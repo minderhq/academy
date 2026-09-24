@@ -368,7 +368,7 @@ You have successfully completed this lab if:
 
 With your environment ready:
 
-1. **Complete TUTORIAL-001:** [TUTORIAL-001-Hello-LLM.md](./TUTORIAL-001-Hello-LLM.md)
+1. **Complete TUTORIAL-001:** [TUTORIAL-001-Hello-LLM.md](../tutorials/TUTORIAL-001-Hello-LLM.md)
 2. **Progress to LAB-001:** [LAB-001-Docker-LLM.md](./LAB-001-Docker-LLM.md)
 3. **Track Progress:** [PROGRESS-TRACKER.md](../../00-META/PROGRESS-TRACKER.md)
 

@@ -1,17 +1,17 @@
-# 6303: Neo4j Deployment Guide for Synology NAS
+# 6303: Neo4j Deployment Guide
 
 ## Abstract
-Complete guide for deploying Neo4j knowledge graph database on Synology DS720+ for PROJECT-OMEGA.
+Complete guide for deploying Neo4j knowledge graph database on any Docker-capable Linux host, NAS, or VPS for PROJECT-OMEGA.
 
-## Hardware Requirements
+## Deployment Targets
 
-### Synology DS720+ Specifications
-```
-CPU: Intel Celeron J4125 (4 cores @ 2.0 GHz)
-RAM: 6GB (expandable to 18GB)
-Storage: 2x 3.5" bays (supports RAID 0/1)
-Network: 1GbE (internal cluster via 2.5Gbps switch)
-```
+Neo4j Community Edition runs as a single container with one data volume, so the same compose file works on any self-hosted target:
+
+| Target | Best For | Notes |
+|--------|----------|-------|
+| Linux host + Docker (recommended) | Full control, predictable performance | Mini PC, used office PC, homelab server, or VPS |
+| NAS with Container Manager / Docker | Reusing existing storage hardware | Import the compose file as a project/stack |
+| VPS / cloud VM | Remote access, offsite data | Size memory carefully; graph workloads are RAM-hungry |
 
 ### Resource Allocation
 | Component | Minimum | Recommended | Notes |
@@ -20,17 +20,27 @@ Network: 1GbE (internal cluster via 2.5Gbps switch)
 | Storage | 20GB | 100GB | Database growth + transactions |
 | CPU | 2 cores | 4 cores | Query performance |
 
+### Memory Tuning by Host RAM
+
+Set heap and page cache from what is actually available after the OS and other containers take their share:
+
+| Host RAM | Heap Max | Page Cache | Suitable Graph Size |
+|----------|----------|------------|---------------------|
+| 8 GB (entry-level) | 1G | 1G | Up to ~10M nodes/relationships |
+| 16 GB | 2G | 2-3G | ~50M nodes/relationships |
+| 32 GB+ | 4-8G | 4-8G | 100M+ nodes/relationships |
+
 ## Docker Deployment
 
 ### Method 1: Docker Compose (Recommended)
 
 ```bash
-# SSH into Synology
-ssh admin@192.168.1.100
+# SSH into your host (or run locally)
+ssh user@your-host
 
 # Create directory
-mkdir -p /volume1/docker/neo4j
-cd /volume1/docker/neo4j
+mkdir -p /srv/neo4j
+cd /srv/neo4j
 
 # Create docker-compose.yml
 cat > docker-compose.yml << 'EOF'
@@ -94,9 +104,9 @@ docker-compose up -d
 docker-compose logs -f neo4j
 ```
 
-### Method 2: Portainer (Web UI)
+### Method 2: Portainer / NAS Container Manager (Web UI)
 
-1. Open Portainer: http://192.168.1.100:9000
+1. Open Portainer or Container Manager: http://localhost:9000
 2. Click "Stacks" → "Add Stack"
 3. Name: `neo4j`
 4. Paste the docker-compose.yml content
@@ -107,7 +117,7 @@ docker-compose logs -f neo4j
 ### 1. Access Neo4j Browser
 
 ```
-URL: http://192.168.1.100:7474
+URL: http://localhost:7474
 Username: neo4j
 Password: your_secure_password_here
 ```
@@ -145,9 +155,9 @@ SHOW CONSTRAINTS
 
 ```bash
 # Edit conf/neo4j.conf
-cd /volume1/docker/neo4j/conf
+cd /srv/neo4j/conf
 
-# Optimize for 4GB available RAM (after Synology system)
+# Optimize for 4GB available RAM (see "Memory Tuning by Host RAM" above)
 cat >> neo4j.conf << 'EOF'
 
 # Heap Size (for query execution)
@@ -183,11 +193,11 @@ docker-compose restart neo4j
 ### Storage Optimization
 
 ```bash
-# Create data directory on faster storage (if using SSD volume)
-mkdir -p /volume1/docker/neo4j/data
+# Create data directory on fast local storage (SSD preferred)
+mkdir -p /srv/neo4j/data
 
 # Set proper permissions
-chmod 777 /volume1/docker/neo4j/data
+chmod 777 /srv/neo4j/data
 ```
 
 ## Backup Strategy
@@ -195,17 +205,17 @@ chmod 777 /volume1/docker/neo4j/data
 ### 1. Automated Backup Script
 
 ```bash
-# /volume1/docker/neo4j/backup.sh
+# /srv/neo4j/backup.sh
 #!/bin/bash
 
-BACKUP_DIR="/volume1/backup/neo4j"
+BACKUP_DIR="/srv/backups/neo4j"
 DATE=$(date +%Y%m%d_%H%M%S)
 
 # Create backup directory
 mkdir -p $BACKUP_DIR
 
 # Stop Neo4j
-cd /volume1/docker/neo4j
+cd /srv/neo4j
 docker-compose down
 
 # Backup data
@@ -220,13 +230,17 @@ find $BACKUP_DIR -name "neo4j_backup_*.tar.gz" -mtime +7 -delete
 echo "Backup completed: neo4j_backup_$DATE.tar.gz"
 ```
 
-### 2. Schedule with Synology Task Scheduler
+### 2. Schedule with Cron
 
-1. Control Panel → Task Scheduler → Create → Scheduled Task → User-defined Script
-2. General: "Neo4j Backup"
-3. Schedule: Daily at 2:00 AM
-4. Task Settings: Run as root, copy script above
-5. Settings: Send email notification on error
+1. Install the backup script: `chmod +x /srv/neo4j/backup.sh`
+2. Edit crontab: `crontab -e`
+3. Add a daily 2:00 AM entry:
+
+```cron
+0 2 * * * /srv/neo4j/backup.sh >> /var/log/neo4j-backup.log 2>&1
+```
+
+NAS users can schedule the same script through Container Manager / Task Scheduler instead of cron.
 
 ## Monitoring
 
@@ -240,7 +254,7 @@ def check_health():
     """Check Neo4j health"""
 
     driver = GraphDatabase.driver(
-        "bolt://192.168.1.100:7687",
+        "bolt://localhost:7687",
         auth=("neo4j", "your_secure_password_here")
     )
 
@@ -417,7 +431,7 @@ spec:
       name: data
     spec:
       accessModes: ["ReadWriteOnce"]
-      storageClassName: nfs-synology
+      storageClassName: local-path
       resources:
         requests:
           storage: 50Gi
@@ -451,7 +465,9 @@ spec:
 ---
 
 **Related:**
-- [6301: Neo4j and Knowledge Graphs](./6301-Neo4j-and-Knowledge-Graphs.md)
-- [6302: CAG Long Context](./6302-CAG-Long-Context-Architectures.md)
+- [6301: Neo4j and Knowledge Graphs](../6301-Neo4j-and-Knowledge-Graphs.md)
+- [6302: CAG Long Context](../6302-CAG-Long-Context-Architectures.md)
 - [6401: Qdrant Setup](../../6400-Vector-Databases/6401-Qdrant-Setup.md)
-- [EXP_6301: Neo4j Knowledge Graph](../../../experiments/EXP_6303_NEO4J.md)
+- [EXP_6301: Neo4j Knowledge Graph](../../../../../experiments/EXP_6303_NEO4J.md)
+
+**Last Updated:** 2026-09-24

@@ -330,6 +330,6 @@ Use the same activation as the base model:
 ---
 
 **Related:**
-- [3301: Activation Functions](./3301-Activation-Functions.md)
-- [3402: Decoder-Only Models](../../3400-Model-Architectures/3402-Decoder-Only-Models.md)
-- [2201: PyTorch Graphs](../../2200-framework-engineering/2201-PyTorch-Computational-Graphs.md)
+- [3301: Activation Functions](../3301-Activation-Functions.md)
+- [3402: Decoder-Only Models](../../3400-architectures/3402-Decoder-Only-Models.md)
+- [2201: PyTorch Graphs](../../../phase2-foundations/2200-frameworks/2201-PyTorch-Computational-Graphs.md)

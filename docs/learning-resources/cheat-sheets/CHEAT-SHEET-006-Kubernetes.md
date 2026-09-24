@@ -397,4 +397,4 @@ kubectl delete namespace llm
 **Quick Reference for:**
 - [Module 1300: K3s & Container Orchestration](../../phases/phase1-infra/1300-kubernetes/README.md)
 - [LAB-001: Docker LLM](../labs/LAB-001-Docker-LLM.md)
-- [EXP_1302: GPU Scheduler](../../experiments/EXP_1302_GPU_SCHEDULER.md)
+- [EXP_1302: GPU Scheduler](../../../experiments/EXP_1302_GPU_SCHEDULER.md)

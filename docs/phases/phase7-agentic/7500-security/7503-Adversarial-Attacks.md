@@ -769,8 +769,8 @@ class SecureInferencePipeline:
 ## Related Resources
 
 - **Previous:** [7502: PII Redaction](./7502-PII-Redaction.md)
-- **Related:** [6501: ML Lifecycle Management](../phase6-rag/6500-mlops-pipelines/6501-ML-Lifecycle-Management.md)
-- **Experiment:** [EXP_7501: Prompt Injection](../../experiments/EXP_7501_PROMPT_INJECTION.md)
+- **Related:** [6501: ML Lifecycle Management](../../phase6-rag/6500-mlops-pipelines/6501-ML-Lifecycle-Management.md)
+- **Experiment:** [EXP_7501: Prompt Injection](../../../../experiments/EXP_7501_PROMPT_INJECTION.md)
 
 
 ---
