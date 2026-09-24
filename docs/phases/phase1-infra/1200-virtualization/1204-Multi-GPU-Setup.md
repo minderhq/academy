@@ -22,7 +22,7 @@ Scaling GPU workloads from a single card to multi-GPU serving and training: devi
 ### Reference Card
 ```
 GPU:  Any NVIDIA card with 8GB+ VRAM
-      (e.g., RTX 2080 Ti 11GB, RTX 3060 12GB, RTX 4060 Ti 16GB)
+      (e.g., RTX 3060 12GB, RTX 4060 Ti 16GB, RTX 4070 12GB)
 VRAM: 8-16GB is the practical starting range
 Role: Sufficient for 7B models (4-bit quantization), QLoRA fine-tuning,
       and single-stream inference

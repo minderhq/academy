@@ -469,7 +469,7 @@ How Docker fits into PROJECT-OMEGA:
 │                    PROJECT-OMEGA Stack                       │
 ├─────────────────────────────────────────────────────────────┤
 │                                                             │
-│  Synology NAS:                                              │
+│  External NAS:                                              │
 │  ├─ Qdrant (Vector DB)    ← Docker container              │
 │  ├─ Neo4j (Graph DB)      ← Docker container              │
 │  ├─ Prometheus            ← Docker container              │

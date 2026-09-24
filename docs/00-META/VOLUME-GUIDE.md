@@ -54,7 +54,7 @@ Follow the volumes below, in order.
 2. [LAB-001: Docker & LLM](../learning-resources/labs/LAB-001-Docker-LLM.md)
 
 **Step 3: Network & Hardware (optional)**
-1. [1101: Fiber GPON Modem](../phases/phase1-infra/1100-network/1101-Fiber-GPON-Modem.md)
+1. [1101: Internet Uplink & Modem Configuration](../phases/phase1-infra/1100-network/1101-Fiber-GPON-Modem.md)
 2. [1102: Star Topology Core](../phases/phase1-infra/1100-network/1102-Star-Topology-Core.md)
 3. [1201: Proxmox Hypervisor SOP](../phases/phase1-infra/1200-virtualization/1201-Proxmox-Hypervisor-SOP.md)
 

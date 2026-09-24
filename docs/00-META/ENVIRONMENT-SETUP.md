@@ -22,7 +22,7 @@ This guide helps you set up a complete AI development environment for PROJECT-OM
 | **RAM** | 16GB | 32GB+ | More RAM = better model performance |
 | **Storage** | 100GB SSD | 500GB+ NVMe SSD | Models take significant space |
 | **GPU** | None (CPU mode) | 8GB+ VRAM | NVIDIA RTX 3060+ recommended |
-| **Network** | Stable internet | 2.5Gbps | For model downloads |
+| **Network** | Stable internet | 100Mbps+ | For model downloads |
 
 ### Check Your Hardware
 

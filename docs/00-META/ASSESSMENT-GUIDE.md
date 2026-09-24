@@ -289,7 +289,7 @@ After completing each phase, learners should be able to:
 
 **Phase 1 - Infrastructure:**
 - [ ] Set up Docker containerized applications
-- [ ] Configure 2.5Gbps network with jumbo frames
+- [ ] Configure multi-gigabit network with jumbo frames
 - [ ] Deploy GPU-enabled workloads
 - [ ] Monitor system with Prometheus/Grafana
 

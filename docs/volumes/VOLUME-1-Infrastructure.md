@@ -85,13 +85,13 @@ Before diving into model internals, fine-tuning, or RAG, you need a solid founda
 #### Day 4-5: Network & Hardware (Optional)
 **For those building HomeLab infrastructure**
 
-1. **[1101: Fiber GPON Modem](../phases/phase1-infra/1100-network/1101-Fiber-GPON-Modem.md)**
+1. **[1101: Internet Uplink & Modem Configuration](../phases/phase1-infra/1100-network/1101-Fiber-GPON-Modem.md)**
    - Understanding your internet connection
    - Signal path optimization
    - Bridge mode configuration
 
 2. **[1102: Star Topology Core](../phases/phase1-infra/1100-network/1102-Star-Topology-Core.md)**
-   - 2.5Gbps network design
+   - Multi-gigabit network design
    - Switch configuration
    - Traffic management
 
@@ -113,8 +113,8 @@ Before diving into model internals, fine-tuning, or RAG, you need a solid founda
    - RAM balloons
    - ZFS configurations
 
-2. **[1202: TB3 Passthrough](../phases/phase1-infra/1200-virtualization/1202-TB3-UT3G-Passthrough.md)**
-   - Thunderbolt 3 GPU passthrough
+2. **[1202: GPU Passthrough (IOMMU/VFIO)](../phases/phase1-infra/1200-virtualization/1202-TB3-UT3G-Passthrough.md)**
+   - IOMMU/VFIO GPU passthrough
    - eGPU configuration
 
 3. **[1203: Nvidia Kernel Module](../phases/phase1-infra/1200-virtualization/1203-Nvidia-Kernel-Module.md)**
@@ -185,7 +185,7 @@ Use this checklist to track your progress:
 **Total Core Time:** ~12-15 hours
 
 ### Advanced Content (Optional)
-- [ ] **1101: Fiber GPON Modem**
+- [ ] **1101: Internet Uplink & Modem Configuration**
 - [ ] **1102: Star Topology Core**
 - [ ] **1103: Jumbo Frames and MTU**
 - [ ] **1201: Proxmox Hypervisor SOP**

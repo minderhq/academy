@@ -47,7 +47,7 @@ GGUF enables running 7B-30B parameter models on consumer hardware by:
 - Using memory-mapped file loading
 
 > **⚠️ Hardware Reality Check:**
-> - **7B-13B models**: Run well on 8-12GB VRAM GPUs (e.g., RTX 2080 Ti, RTX 3060)
+> - **7B-13B models**: Run well on 8-12GB VRAM GPUs (e.g., RTX 3060, RTX 4060 Ti)
 > - **30B-34B models**: Require 20-24GB VRAM (e.g., RTX 3090, RTX 4090) OR hybrid CPU/GPU offloading
 > - **70B models**: Require 40GB+ VRAM (e.g., A100) OR very slow CPU-only inference
 >

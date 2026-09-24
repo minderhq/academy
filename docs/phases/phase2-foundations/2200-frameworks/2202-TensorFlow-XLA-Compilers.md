@@ -408,6 +408,6 @@ tf.debugging.set_log_device_placement(True)
 **Related Documents:**
 - [2201: PyTorch Graphs](./2201-PyTorch-Computational-Graphs.md)
 - [2203: CUDA Kernels](./2203-CUDA-Kernel-Syb-Level.md)
-- [1202: TB3 Passthrough](../../phase1-infra/1200-virtualization/1202-TB3-UT3G-Passthrough.md)
+- [1202: GPU Passthrough (IOMMU/VFIO)](../../phase1-infra/1200-virtualization/1202-TB3-UT3G-Passthrough.md)
 
 **Experiment Template:** `experiments/EXP_2202_TENSORFLOW_XLA.md`

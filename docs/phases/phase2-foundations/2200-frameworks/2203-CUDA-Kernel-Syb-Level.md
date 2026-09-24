@@ -430,7 +430,7 @@ ncu --metrics dram__throughput.avg.pct_of_peak \
 ---
 
 **Related Documents:**
-- [1202: TB3 Passthrough](../../phase1-infra/1200-virtualization/1202-TB3-UT3G-Passthrough.md)
+- [1202: GPU Passthrough (IOMMU/VFIO)](../../phase1-infra/1200-virtualization/1202-TB3-UT3G-Passthrough.md)
 - [1203: Nvidia Kernel Module](../../phase1-infra/1200-virtualization/1203-Nvidia-Kernel-Module.md)
 - [2201: PyTorch Graphs](./2201-PyTorch-Computational-Graphs.md)
 
