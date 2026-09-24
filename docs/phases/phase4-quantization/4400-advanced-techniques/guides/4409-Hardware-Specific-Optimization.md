@@ -1,15 +1,15 @@
 ---
 Document ID: 4409
-Title: "4409: Hardware-Specific Quantization Optimization"
+Title: Hardware-Specific Quantization Optimization
 Phase: 4
 Module: 4400
-Last Updated: 2026-09-24
-Status: Review
+Last Updated: 2026-09-25
+Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
-Prerequisites: 4101, 4401
-Related: 4408
-Tags: ['quantization', 'hardware', 'optimization']
+Prerequisites: See module README
+Related: See module README
+Tags: ['quantization', 'hardware', 'inference', 'deployment', 'benchmarking']
 ---
 
 # 4409: Hardware-Specific Quantization Optimization
@@ -18,14 +18,14 @@ Tags: ['quantization', 'hardware', 'optimization']
 
 - [Learning Objectives](#learning-objectives)
 - [Abstract](#abstract)
-- [Hardware Matrix](#hardware-matrix)
-- [NVIDIA GPU Optimization](#nvidia-gpu-optimization)
-- [Apple Silicon Optimization](#apple-silicon-optimization)
-- [CPU Optimization](#cpu-optimization)
-- [Mobile Optimization](#mobile-optimization)
-- [NPU Optimization (Edge TPUs, etc.)](#npu-optimization-edge-tpus-etc)
-- [Benchmarking](#benchmarking)
-- [Hardware-Specific Tips](#hardware-specific-tips)
+- [The Format × Hardware Map](#the-format--hardware-map)
+- [NVIDIA GPU](#nvidia-gpu)
+- [AMD GPU](#amd-gpu)
+- [Apple Silicon](#apple-silicon)
+- [x86 and ARM CPU](#x86-and-arm-cpu)
+- [Mobile and NPU: The Reality Check](#mobile-and-npu-the-reality-check)
+- [Benchmarking Across Hardware](#benchmarking-across-hardware)
+- [Best Practices](#best-practices)
 - [References](#references)
 
 ---
@@ -34,417 +34,332 @@ Tags: ['quantization', 'hardware', 'optimization']
 
 After completing this lesson, you will be able to:
 
-- Explain Hardware Matrix
-- Explain NVIDIA GPU Optimization
-- Explain Apple Silicon Optimization
-- Explain CPU Optimization
-- Explain Mobile Optimization
-- Explain NPU Optimization (Edge TPUs, etc.)
+- Pick the quantization format AND runtime for a given deployment target from the 2026 pairing table, and say which pairings are simply unsupported
+- Serve a quantized model on NVIDIA datacenter GPUs (vLLM, GPTQ/AWQ/FP8) and shard an oversized model across consumer GPUs with the correct `max_memory` API
+- Build and run llama.cpp on Apple Silicon and x86/ARM CPUs with the current toolchain (cmake build, `llama-quantize`, `llama-cli`, `llama-bench`)
+- Explain why mobile/NPU "INT4 LLM" claims need qualification — which stacks are real (MLC-LLM, ExecuTorch, QNN), what they actually quantize, and why Edge TPU-class parts cannot run LLMs at all
+- Benchmark quantized models fairly: decode token rate, TTFT, and peak memory on the TARGET hardware, with the same harness for every candidate
 
 ---
 
 ## Abstract
 
-Different hardware platforms require different quantization strategies. This guide covers CPU, GPU, NPU, and mobile optimization.
+The same INT4 checkpoint can be fast on one device and unusable on another, because quantization only pays when a kernel exists for that format on that silicon. This guide is the deployment-side companion to [4408](4408-Quantizing-for-Production.md): it maps every major hardware target to the format + runtime pairing that actually works in 2026 — vLLM with GPTQ/AWQ or FP8 for datacenter NVIDIA, GGUF over Metal for Apple Silicon, native-built llama.cpp for CPUs — and walks the working commands for each. It also does the unglamorous work tutorial sites skip: correcting the mobile/NPU story (which stacks are real and what they really quantize), and establishing a benchmarking harness that measures decode rate, time-to-first-token, and peak memory so hardware decisions rest on numbers rather than emoji tables.
 
-## Hardware Matrix
+## The Format × Hardware Map
 
-| Platform | Recommended Format | Tools | Speed | Memory |
-|----------|-------------------|-------|-------|--------|
-| **NVIDIA GPU** | INT4/INT8 GPTQ | AutoGPTQ, EXL2 | ⚡⚡⚡ | ⚡⚡⚡ |
-| **AMD GPU** | INT4 GGUF | llama.cpp, Vulkan | ⚡⚡ | ⚡⚡ |
-| **Apple Silicon** | INT4 GGUF | llama.cpp, Metal | ⚡⚡⚡ | ⚡⚡⚡ |
-| **x86 CPU** | INT4 GGUF | llama.cpp, AVX2 | ⚡ | ⚡⚡ |
-| **ARM CPU** | INT4 GGUF | llama.cpp, NEON | ⚡ | ⚡⚡ |
-| **Mobile** | INT4 GGUF | MLC-LLM, QNN | ⚡⚡ | ⚡⚡⚡ |
-| **NPU** | INT4/INT8 | QNN, SNPE | ⚡⚡⚡ | ⚡⚡⚡ |
+Quantization wins are kernel wins: a format is only as fast as its runtime support on that silicon.
 
-## NVIDIA GPU Optimization
+```text
+Target                    Format              Runtime              Notes
+------------------------  ------------------  -------------------  -------------------------
+NVIDIA datacenter         GPTQ/AWQ W4A16      vLLM                 throughput serving
+(A100/H100)               FP8 (W8A8)          vLLM                 H100-class: near-lossless
+                          (GGUF does NOT run here - no kernel path)
 
-### 1. EXL2 Format (Best for NVIDIA)
+Local NVIDIA GPU          EXL2                exllamav2            single-user, best bpw
+                          GGUF                llama.cpp (CUDA)     or llama.cpp server
+
+AMD GPU (ROCm)            GGUF                llama.cpp (ROCm)     INT4 GPTQ/AWQ kernels are
+                          FP16/16-bit         vLLM (ROCm)          NVIDIA-first; check before
+                                                                   planning an AMD 4-bit deploy
+
+Apple Silicon             GGUF                llama.cpp (Metal)    unified memory = big models
+                          MLX quants          MLX                  Apple's own stack
+
+x86 CPU                   GGUF                llama.cpp            native build; NUMA servers
+ARM CPU                   GGUF                llama.cpp            NEON auto-enabled
+
+Mobile (Android/iOS)      q4f16 (MLC)         MLC-LLM              full-stack mobile compile
+                          INT4 (ExecuTorch)   ExecuTorch           PyTorch edge runtime
+                          8/4-bit (QNN)       Qualcomm AI Engine   SoC NPU path, hardest
+
+Edge TPUs (Coral-class)   -                   -                    NOT an LLM target (8MB
+                                                                   SRAM; vision-scale models)
+```
+
+The rest of the guide works through the rows that matter most, in that order.
+
+## NVIDIA GPU
+
+### Datacenter serving: vLLM owns this row
 
 ```bash
-# Convert to EXL2 for optimal NVIDIA performance
-# EXL2 uses CUDA kernels specifically optimized for Tensor Cores
+# pre-quantized GPTQ/AWQ checkpoint (made in 4408)
+vllm serve ./models/llama-2-7b-w4a16-gptq --dtype float16
 
-# Install exllamav2
-pip install exllamav2
+# tensor parallel across 4 GPUs for throughput
+vllm serve ./models/llama-2-7b-w4a16-gptq --tensor-parallel-size 4
 
-# Convert model
-python -m exllamav2.convert \
-    --in /path/to/model \
-    --out /path/to/output \
-    --bf --quant 4.0
-
-# Run inference
-python -m exllamav2.chat \
-    --model-path /path/to/output \
-    --gpu-split 18,18  # For dual GPU setup
+# H100-class: FP8 at load time - near-lossless W8A8, no calibration
+vllm serve meta-llama/Llama-2-7b-hf --quantization fp8
 ```
 
-### 2. GPTQ Format (Alternative)
-
-```python
-from auto_gptq import AutoGPTQForCausalLM, BaseQuantizeConfig
-from transformers import AutoTokenizer
-
-# Configuration for NVIDIA A100/H100
-quantize_config = BaseQuantizeConfig(
-    bits=4,
-    group_size=128,
-    damp_percent=0.01,
-    desc_act=False,
-    sym=True,
-    true_sequential=True,
-    model_name_base='llama',
-)
-
-# Load and quantize
-model = AutoGPTQForCausalLM.from_pretrained(
-    pretrained_model_dir,
-    quantize_config=quantize_config,
-    use_triton=True,  # Enable Triton kernels
-    use_flash_attention_2=True,  # Flash Attention
-)
-
-# Optimize for NVIDIA
-model.quantize(
-    calibration_data,
-    batch_size=1,
-    use_triton=True,
-)
+```text
+- the serving decision beats the bit decision: a W4A16 model in
+  vLLM (continuous batching + paged KV) out-serves the same
+  weights in any single-stream runner by an order of magnitude
+  at load
+- FP8 on Hopper is the format to evaluate FIRST for datacenter
+  work - it keeps activations at 8 bits too, needs no
+  calibration set, and lands within noise of FP16 on most
+  quality gates (4408 Step 5 verifies this per model)
 ```
 
-### 3. Multi-GPU Optimization
+### Multi-GPU layer sharding (transformers)
 
 ```python
 import torch
-from accelerate import dispatch_model
-
-def setup_multi_gpu(model):
-    """Optimize for multi-GPU NVIDIA setup."""
-
-    # GPU memory map (in GB for each GPU)
-    gpu_memory = {
-        'gpu:0': 20,  # RTX 3090
-        'gpu:1': 20,  # RTX 3090
-        'gpu:2': 24,  # RTX 4090
-    }
-
-    # Device map for optimal distribution
-    device_map = dispatch_model(
-        model,
-        device_map='auto',
-        gpu_memory=gpu_memory
-    )
-
-    return model.to(device_map)
-
-# Enable CUDA optimizations
-torch.backends.cudnn.enabled = True
-torch.backends.cudnn.benchmark = True
-torch.backends.cuda.matmul.allow_tf32 = True
-```
-
-## Apple Silicon Optimization
-
-### 1. GGUF with Metal (M1/M2/M3)
-
-```bash
-# Build llama.cpp with Metal support
-cd llama.cpp
-make
-
-# Quantize for Apple Silicon
-./quantize \
-    /path/to/model/ggml-model-f16.gguf \
-    /path/to/output/model-q4_0.gguf \
-    Q4_K_M
-
-# Run with Metal acceleration
-./main -m model-q4_0.gguf \
-    -n 512 \
-    -ngl 99 \  # Number of layers to offload to GPU
-    --threads 8 \
-    --tensor-cores
-```
-
-### 2. Core ML Optimization
-
-```python
-import coremltools as ct
 from transformers import AutoModelForCausalLM
 
-# Load model
-model = AutoModelForCausalLM.from_pretrained("model-name")
-
-# Convert to Core ML
-mlmodel = ct.convert(
-    model,
-    source="pytorch",
-    inputs=[ct.TensorType(shape=(1, 512), dtype=np.int32)],
-    outputs=[ct.TensorType(shape=(1, 512, vocab_size))],
-    # Optimize for Apple Neural Engine
-    compute_precision=ct.precision.FLOAT16
+model = AutoModelForCausalLM.from_pretrained(
+    model_id,
+    torch_dtype=torch.float16,
+    device_map="auto",                     # pipeline-style layer split
+    max_memory={0: "20GiB", 1: "24GiB"},   # per-GPU budget
 )
-
-# Set minimum deployment target
-mlmodel.spec.description.metadata.shortDescription = (
-    "Quantized LLM for Apple Silicon"
-)
-
-# Save
-mlmodel.save("model.mlpackage")
 ```
 
-## CPU Optimization
+```text
+device_map="auto" shreds LAYERS across GPUs (pipeline parallel):
+simple, but every token traverses GPUs serially, so throughput
+does not scale with card count. vLLM's --tensor-parallel-size
+splits each layer across GPUs and DOES scale - prefer it
+whenever you serve rather than merely load.
 
-### 1. x86_64 with AVX-512
-
-```bash
-# Build llama.cpp with AVX-512 support
-cd llama-python
-CMAKE_ARGS="-DGGML_AVX512=ON" pip install llama-cpp-python
-
-# Run with AVX-512 optimization
-python -m llama_cpp \
-    --model model-q4_k.gguf \
-    --n-gpu-layers 0 \
-    --threads 16 \
-    --tensor-cores
+TF32 for Ampere+ (training/misc compute):
+    torch.backends.cuda.matmul.allow_tf32 = True
+    torch.backends.cudnn.allow_tf32 = True
 ```
 
-### 2. ARM64 with NEON
+## AMD GPU
+
+```text
+The honest 2026 picture
+- llama.cpp with ROCm (HIP) backend: the dependable AMD path for
+  quantized GGUF models; Vulkan backend as the fallback for
+  consumer cards
+- vLLM runs on ROCm (Instinct-class parts); INT4 GPTQ/AWQ kernel
+  coverage there is narrower than on NVIDIA - benchmark the
+  specific format before committing
+- 2:4 sparsity and FP8 are NVIDIA/other-vendor features; AMD
+  MI-series has neither (4405)
+Rule: on AMD, plan around GGUF + llama.cpp until you have
+measured otherwise on YOUR card.
+```
+
+## Apple Silicon
+
+### GGUF over Metal (the working path)
 
 ```bash
-# For Apple Silicon or ARM servers
+# build (Metal is auto-enabled on Apple Silicon; cmake is the
+# current build system - the old makefile flow is gone)
+git clone https://github.com/ggml-org/llama.cpp
 cd llama.cpp
-make LLAMA_NEON=1
+cmake -B build
+cmake --build build --config Release
 
-# Optimize for ARM
-./main -m model-q4_0.gguf \
-    -n 512 \
-    -ngl 0 \
-    --threads 8 \
-    --mlock \  # Lock memory
-    --numa distribute  # NUMA-aware scheduling
+# convert + quantize (converter runs on the Mac fine)
+python convert_hf_to_gguf.py ./Llama-2-7b-hf \
+    --outfile base-f16.gguf --outtype f16
+./build/bin/llama-quantize base-f16.gguf llama-2-7b-Q4_K_M.gguf Q4_K_M
+
+# run with full GPU offload
+./build/bin/llama-cli -m llama-2-7b-Q4_K_M.gguf \
+    -ngl 99 -t 8
 ```
 
-### 3. NUMA Optimization for Servers
+```text
+Why Macs punch above their watts for LLMs
+- unified memory: a 64GB M-series machine holds the WHOLE model
+  where a 24GB NVIDIA card cannot - CPU/GPU copies disappear
+- Q4_K_M is the community sweet spot; Q5_K_M when quality gates
+  (4408 Step 5) are tight
+- -ngl 99 offloads every layer to the GPU; partial offloads
+  trade tokens/sec for memory and are worth benchmarking only
+  under memory pressure
+```
+
+### Core ML / ANE: the honest note
+
+```text
+Running an LLM on the Apple NEURAL Engine is a research-grade
+pipeline, not a llama.cpp one-liner: full-graph compilation
+with static KV-cache shapes, per-op support checks, and Apple's
+own example converters as the reference. Generic
+coremltools.convert(causal_lm) does not produce a working LLM.
+In practice, quantized LLMs on Macs run on the GPU via Metal -
+treat ANE as a roadmap item, not a deployment option.
+```
+
+## x86 and ARM CPU
 
 ```bash
-# For multi-socket AMD EPYC or Xeon servers
+# native build: CPU feature flags (AVX2/AVX-512/NEON) are
+# auto-detected for the BUILD machine - hand-tuning -DGGML_*
+# vars is legacy guidance
+git clone https://github.com/ggml-org/llama.cpp
+cd llama.cpp
+cmake -B build && cmake --build build --config Release
+
+# NUMA server: bind memory to the socket running the threads
 numactl --cpunodebind=0 --membind=0 \
-    ./main -m model-q4_0.gguf
+    ./build/bin/llama-server -m llama-2-7b-Q4_K_M.gguf -t 32
 
-# Or distribute across NUMA nodes
-numactl --interleave=all \
-    ./main -m model-q4_0.gguf
+# memory-constrained box: lock pages, disable swap-out
+./build/bin/llama-cli -m llama-2-7b-Q4_K_M.gguf \
+    -t 16 --mlock
+
+# microbenchmark formats on YOUR cpu (the llama.cpp benchmark tool)
+./build/bin/llama-bench -m llama-2-7b-Q4_K_M.gguf -p 512 -n 128
 ```
 
-## Mobile Optimization
-
-### 1. Android with MLC-LLM
-
-```python
-# Convert to MLC format for Android
-import mlc_llm
-
-# Build for Android
-mlc_llm.build(
-    model="Llama-2-7b-chat-hf",
-    quantization="q4f16_1",  # Mobile-optimized format
-    target="android",  # or "ios"
-    # Options: adreno, mali, apple-gpu
-    device="adreno",
-)
-
-# Generate APK
-mlc_llm.package(
-    model="Llama-2-7b-chat-hf-q4f16_1",
-    output="llm_chat.apk",
-)
+```text
+CPU decode is memory-bandwidth-bound: tokens/sec tracks model
+size in bytes, which is exactly why quantization matters most
+here - Q4_K_M roughly doubles the decode rate of Q8_0 on the
+same DDR5 channel.
+Practical knobs, in order of impact:
+1. threads = PHYSICAL cores (SMT threads help prefill, often
+   hurt decode)
+2. one numa node's worth of cores + --membind, or --numa
+   distribute for multi-socket
+3. Q4_K_M over Q4_0/Q5 - the K-quants are built for CPU kernels
+4. llama-bench before and after every knob change
 ```
 
-### 2. iOS with Core ML
+## Mobile and NPU: The Reality Check
 
-```bash
-# Convert model for iOS
-coremltools convert \
-    --source model \
-    --target iOS \
-    --quantize INT4 \
-    --output model.mlmodel
+This row is where marketing and engineering diverge most. What is actually true:
 
-# Integrate into iOS app
-# In Swift:
-import CoreML
+```text
+REAL and usable today
+- MLC-LLM (TVM Unity): compiles a model INTO a phone app for
+  Adreno/Mali/Apple GPUs. Flow: convert weights to the MLC
+  format -> generate per-device config -> package (their CLI
+  does this per target; Android and iOS both ship). q4f16
+  quantization is the mobile sweet spot
+- ExecuTorch: PyTorch's edge runtime; quantized (INT4
+  weight-only) LLM recipes for mobile CPU/GPU delegates
+- Qualcomm AI Engine Direct (QNN): 8-bit (and newer 4-bit
+  weight) paths to the Hexagon NPU - the performance ceiling
+  on Snapdragon, and the highest-effort integration (per-model
+  graph conversion, fixed shapes)
 
-let model = try! LLMQuantized(configuration: MLModelConfiguration())
-let input = LLMQuantizedInput(tokens: tokenIds)
-let output = try! model.prediction(input: input)
+REAL but commonly misadvertised
+- "INT4 on NPU" usually means WEIGHTS at 4-bit with 8/16-bit
+  compute - the activation side is not 4-bit. Compression and
+  bandwidth story, not a full 4-bit datapath
+
+NOT an LLM target
+- Google Edge TPU / Coral-class parts: 8MB on-chip SRAM for
+  vision-scale CNNs. No LLM has ever run there. If a guide
+  lists "Edge TPU" for LLM quantization, it is wrong
+- Huawei Ascend: real LLM silicon (CANN toolchain, torch_npu
+  for training/inference, MindIE for serving) - but it is a
+  datacenter-class stack, not a "quantize and go" edge row
 ```
 
-### 3. Android NPU with QNN (Qualcomm)
-
-```python
-# Qualcomm Neural Processing Engine
-import snpe
-
-# Convert to QNN DLC format
-snpe.convert_to_dlc(
-    model_path="model.onnx",
-    input_dim="1,512",
-    output_path="model.dlc"
-)
-
-# Quantize for NPU
-snpe.dlc_quantize(
-    input_dlc="model.dlc",
-    output_dlc="model_quantized.dlc",
-    quantization_level="int4"  # or "int8"
-)
-
-# Deploy on Android
-adb push model_quantized.dlc /data/local/tmp/
-snpe-net-run --container model_quantized.dlc
+```text
+Mobile deployment triage
+1. can it run in MLC-LLM's supported list? -> fastest path
+2. PyTorch shop with existing model code?     -> ExecuTorch
+3. Snapdragon NPU required for power budget? -> QNN, budget
+   weeks for graph conversion and shape pinning
+4. context length: mobile KV cache is the real memory hog -
+   cap context aggressively (2-4k) and stream generation
 ```
 
-## NPU Optimization (Edge TPUs, etc.)
+## Benchmarking Across Hardware
 
-### 1. Google Edge TPU
-
-```bash
-# Convert to TFLite for Edge TPU
-edgetpu_compiler \
-    --model_file model.tflite \
-    --output_model model_edgetpu.tflite
-
-# Deploy on Coral Dev Board
-python3 edgetpu_classify.py \
-    --model model_edgetpu.tflite \
-    --labels labels.txt
-```
-
-### 2. Huawei Ascend NPU
-
-```python
-# Use CANN (Compute Architecture for Neural Networks)
-import torch_npu
-
-# Convert to NPU format
-model = model.to('npu:0')
-
-# Enable NPU optimizations
-torch.npu.set_option("OPT_ENABLENPUOPT", "1")
-
-# Mixed precision for NPU
-from npu_bridge.npu_model import NpuModel
-npu_model = NpuModel(model, "npu:0")
-```
-
-## Benchmarking
-
-### 1. Token Throughput Benchmark
+The same harness on every candidate, three numbers, no exceptions:
 
 ```python
 import time
 import torch
 
-def benchmark_inference(model, tokenizer, prompt, n_tokens=512):
-    """Benchmark tokens per second."""
+@torch.no_grad()
+def benchmark_llm(model, tokenizer, prompt,
+                  new_tokens=256, warmup=3, iters=5):
+    """Three numbers that describe LLM hardware fit:
+    decode token rate, time-to-first-token, peak memory."""
+    device = next(model.parameters()).device
+    ids = tokenizer(prompt, return_tensors="pt").to(device)
 
-    # Warmup
-    _ = model.generate(**tokenizer(prompt, return_tensors="pt"))
+    for _ in range(warmup):                     # caches, kernels
+        model.generate(**ids, max_new_tokens=16)
 
-    # Actual benchmark
-    start = time.time()
+    torch.cuda.reset_peak_memory_stats()
 
-    output = model.generate(
-        **tokenizer(prompt, return_tensors="pt"),
-        max_new_tokens=n_tokens,
-        do_sample=True
-    )
+    t0 = time.perf_counter()
+    for _ in range(iters):
+        model.generate(**ids, max_new_tokens=new_tokens)
+    decode_tps = iters * new_tokens / (time.perf_counter() - t0)
 
-    elapsed = time.time() - start
-    tokens_per_second = n_tokens / elapsed
+    t0 = time.perf_counter()
+    model.generate(**ids, max_new_tokens=1)
+    ttft_ms = (time.perf_counter() - t0) * 1000
 
-    return tokens_per_second
-
-# Test on different hardware
-for device in ['cuda', 'cpu', 'npu']:
-    model = model.to(device)
-    tps = benchmark_inference(model, tokenizer, "Hello world")
-    print(f"{device}: {tps:.2f} tokens/sec")
+    peak_gb = torch.cuda.max_memory_allocated() / 1e9
+    return {"decode_tok_s": round(decode_tps, 1),
+            "ttft_ms": round(ttft_ms, 1),
+            "peak_mem_gb": round(peak_gb, 2)}
 ```
 
-### 2. Memory Profiling
+```text
+Reading the three numbers
+- decode_tok_s  steady-state generation speed (bandwidth-bound)
+- ttft_ms       prefill cost - dominates UX on long prompts and
+                scales with batch size under load
+- peak_mem_gb   the number that decides WHICH GPU you can buy
+All three move differently per format - a format that wins
+decode can lose TTFT; measure, never assume.
 
-```python
-def profile_memory(model):
-    """Profile memory usage by layer."""
-
-    if torch.cuda.is_available():
-        torch.cuda.reset_peak_memory_stats()
-        torch.cuda.empty_cache()
-
-    # Get memory usage
-    if torch.cuda.is_available():
-        allocated = torch.cuda.memory_allocated() / 1e9
-        reserved = torch.cuda.memory_reserved() / 1e9
-        peak = torch.cuda.max_memory_allocated() / 1e9
-
-        print(f"GPU Memory:")
-        print(f"  Allocated: {allocated:.2f} GB")
-        print(f"  Reserved:  {reserved:.2f} GB")
-        print(f"  Peak:      {peak:.2f} GB")
-
-    # Layer-wise memory
-    for name, module in model.named_modules():
-        if hasattr(module, 'weight'):
-            weight_size = module.weight.numel() * module.weight.element_size()
-            print(f"{name}: {weight_size / 1e6:.2f} MB")
+Honest-comparison rules
+1. same harness, same prompt lengths, same new-token counts
+2. benchmark on the TARGET hardware, not "similar" hardware
+3. transformers generate() numbers are NOT serving numbers -
+   for production claims, use the serving stack's benchmark
+   (vLLM benchmark_serving, llama-bench for llama.cpp)
+4. report percentiles, not averages (p50/p95/p99 TTFT)
 ```
 
-## Hardware-Specific Tips
+## Best Practices
 
-### NVIDIA GPU Best Practices
-- Use EXL2 format for best performance
-- Enable Flash Attention 2
-- Offload all layers to GPU if memory allows
-- Use Triton kernels for custom ops
-- Enable TF32 for Ampere+
-
-### Apple Silicon Best Practices
-- Use GGUF Q4_K_M format
-- Enable Metal acceleration (-ngl 99)
-- Offload all 33 layers for M2/M3
-- Use Unified Memory for large models
-
-### CPU Best Practices
-- Use AVX-512 for Intel, AVX2 for AMD
-- Enable NUMA-aware scheduling
-- Lock memory with mlock
-- Use all physical cores
-- Disable hyperthreading for memory-bound tasks
-
-### Mobile Best Practices
-- Use INT4 quantization
-- Offload to NPU when available
-- Reduce context window
-- Use streaming generation
-- Implement prompt caching
+```text
+1. Decide format and runtime TOGETHER - a format without a
+   kernel on your target silicon is a paper feature
+2. Datacenter NVIDIA: vLLM first; evaluate FP8 (H100+) before
+   INT4; do not put GGUF on a datacenter GPU
+3. Mac/CPU/AMD: GGUF + llama.cpp is the dependable path; build
+   NATIVE (auto CPU flags), benchmark with llama-bench
+4. Multi-GPU: device_map="auto" loads what nothing else can;
+   tensor parallel serves what throughput demands
+5. Mobile: MLC-LLM or ExecuTorch for app integration, QNN for
+   the NPU ceiling; "4-bit" means weights-only - cap context
+   because the KV cache is the memory hog
+6. Edge TPU-class parts cannot run LLMs; do not schedule work
+   around them
+7. Never ship a hardware decision on one number: decode rate +
+   TTFT + peak memory, on target hardware, p95s included
+```
 
 ---
-
-**Next:** [Assessment](../assessment/QUIZ.md)
-
-**Last Updated:** 2026-02-05
 
 ## References
 
 ### Related ai-engineering-curriculum Documents
 
+- [4401: GPTQ](../4401-GPTQ.md)
+- [4403: GGUF Format](../4403-GGUF-Format.md)
+- [4404: EXL2 Format](../4404-EXL2-Format.md)
+- [4405: Sparsity + Quantization](../4405-Sparsity-Quantization.md)
 - [4408: Quantizing for Production](4408-Quantizing-for-Production.md)
 
 ---
+
+## Next Steps
+
+- Module 4400 complete — Return to: **[Module README](../README.md)**
+- Assessment: **[assessment/QUIZ.md](../assessment/QUIZ.md)**
