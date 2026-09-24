@@ -3,7 +3,7 @@ Document ID: 7503
 Title: Adversarial Attacks & Defense
 Phase: 7
 Module: 7500
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -19,6 +19,33 @@ Tags: ['agents', 'security', 'prompt-injection', 'pii', 'adversarial']
 **Last Updated:** 2026-02-04
 **Status:** Complete
 **Estimated Time:** 2 hours
+
+---
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Adversarial Attack Types](#adversarial-attack-types)
+- [Common Attack Methods](#common-attack-methods)
+- [Defense Strategies](#defense-strategies)
+- [Robustness Evaluation](#robustness-evaluation)
+- [Production Deployment](#production-deployment)
+- [Related Resources](#related-resources)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain Adversarial Attack Types
+- Explain Common Attack Methods
+- Explain Defense Strategies
+- Measure and evaluate Robustness Evaluation
+- Configure and operate Production Deployment
+- Explain Related Resources
 
 ---
 
@@ -772,6 +799,15 @@ class SecureInferencePipeline:
 - **Related:** [6501: ML Lifecycle Management](../../phase6-rag/6500-mlops-pipelines/6501-ML-Lifecycle-Management.md)
 - **Experiment:** [EXP_7501: Prompt Injection](../../../../experiments/EXP_7501_PROMPT_INJECTION.md)
 
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [7501: Prompt Injection Defense](7501-Prompt-Injection-Defense.md)
+- [7502: PII Redaction & Privacy Filtering](7502-PII-Redaction.md)
 
 ---
 

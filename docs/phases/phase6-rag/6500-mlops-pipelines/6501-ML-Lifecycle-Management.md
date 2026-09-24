@@ -3,7 +3,7 @@ Document ID: 6501
 Title: ML Model Lifecycle Management
 Phase: 6
 Module: 6500
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -19,6 +19,36 @@ Tags: ['mlops', 'pipeline', 'ci-cd', 'model-registry', 'lifecycle']
 **Last Updated:** 2026-02-04
 **Status:** Complete
 **Estimated Time:** 4 hours
+
+---
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [ML Lifecycle Stages](#ml-lifecycle-stages)
+- [Stage 1: Development](#stage-1-development)
+- [Stage 2: Validation](#stage-2-validation)
+- [Stage 3: Deployment](#stage-3-deployment)
+- [Stage 4: Monitoring](#stage-4-monitoring)
+- [Stage 5: Retirement](#stage-5-retirement)
+- [Production Checklist](#production-checklist)
+- [Best Practices](#best-practices)
+- [Related Resources](#related-resources)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain ML Lifecycle Stages
+- Explain Stage 1: Development
+- Explain Stage 2: Validation
+- Configure and operate Stage 3: Deployment
+- Measure and evaluate Stage 4: Monitoring
+- Explain Stage 5: Retirement
 
 ---
 
@@ -707,6 +737,15 @@ class ModelRetirement:
 - **Experiment:** [EXP_6501: MLOps Pipeline](../../../../experiments/EXP_6501_MLOPS_PIPELINE.md)
 - **Lab:** [LAB-007: Production RAG](../../../learning-resources/labs/LAB-007-Production-RAG.md)
 
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [6502: CI/CD for Machine Learning](6502-CI-CD-for-ML.md)
+- [6503: Model Registry](6503-Model-Registry.md)
 
 ---
 

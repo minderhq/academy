@@ -1,12 +1,46 @@
 ---
 Document ID: 4308
 Title: "4308: BitBlade QAT Guide"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
 ---
 
 # 4308: BitBlade QAT Guide
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [What is BitBlade?](#what-is-bitblade)
+- [Installation](#installation)
+- [Basic Usage](#basic-usage)
+- [Advanced Configuration](#advanced-configuration)
+- [Mixed Precision Training](#mixed-precision-training)
+- [Calibration](#calibration)
+- [Evaluation](#evaluation)
+- [Exporting](#exporting)
+- [Best Practices](#best-practices)
+- [Troubleshooting](#troubleshooting)
+- [Comparison with Other Libraries](#comparison-with-other-libraries)
+- [Further Resources](#further-resources)
+- [Summary](#summary)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain What is BitBlade
+- Apply Installation
+- Explain Basic Usage
+- Configure and operate Advanced Configuration
+- Explain Mixed Precision Training
+- Explain Calibration
+
+---
 
 ## Abstract
 
@@ -448,6 +482,15 @@ Use BitBlade when you need:
 - Easy export to production
 - Active development
 
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [4306: PyTorch QAT Guide](4306-PyTorch-QAT.md)
+- [4307: Transformers QAT Guide](4307-Transformers-QAT.md)
 
 ---
 

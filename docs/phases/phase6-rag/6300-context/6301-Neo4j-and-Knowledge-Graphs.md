@@ -3,7 +3,7 @@ Document ID: 6301
 Title: Neo4j and Knowledge Graphs for Multi-Hop Reasoning
 Phase: 6
 Module: 6300
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -13,6 +13,33 @@ Tags: ['rag', 'context', 'graphrag', 'neo4j', 'knowledge-graphs']
 ---
 
 # 6301: Neo4j and Knowledge Graphs for Multi-Hop Reasoning
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Knowledge Graph Fundamentals](#knowledge-graph-fundamentals)
+- [Neo4j Setup](#neo4j-setup)
+- [Cypher Query Language](#cypher-query-language)
+- [Building Knowledge Graphs](#building-knowledge-graphs)
+- [GraphRAG: Retrieval from Knowledge Graphs](#graphrag-retrieval-from-knowledge-graphs)
+- [Advanced Graph Techniques](#advanced-graph-techniques)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain the reasoning behind Knowledge Graph Fundamentals
+- Configure and operate Neo4j Setup
+- Explain Cypher Query Language
+- Explain Building Knowledge Graphs
+- Explain GraphRAG: Retrieval from Knowledge Graphs
+- Explain Advanced Graph Techniques
+
+---
 
 ## Abstract
 Knowledge graphs represent information as entities and relationships, enabling multi-hop reasoning that traditional RAG cannot handle. Neo4j is a graph database optimized for such queries.
@@ -463,6 +490,14 @@ model.wv['Meta']  # Embedding for Meta node
 model.wv.most_similar('Meta', topn=10)  # Similar entities
 ```
 
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [6302: CAG - Context Augmented Generation and Long Context Architectures](6302-CAG-Long-Context-Architectures.md)
 
 ---
 

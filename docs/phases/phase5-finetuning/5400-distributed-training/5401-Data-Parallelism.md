@@ -3,7 +3,7 @@ Document ID: 5401
 Title: Data Parallelism
 Phase: Unknown
 Module: 5400
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Review
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -13,6 +13,31 @@ Tags: ['documentation']
 ---
 
 # 5401: Data Parallelism
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Types of Data Parallelism](#types-of-data-parallelism)
+- [DDP Implementation](#ddp-implementation)
+- [FSDP Implementation](#fsdp-implementation)
+- [When to Use Each](#when-to-use-each)
+- [Best Practices](#best-practices)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain Types of Data Parallelism
+- Configure and operate DDP Implementation
+- Configure and operate FSDP Implementation
+- Explain When to Use Each
+- Explain Best Practices
+
+---
 
 ## Abstract
 
@@ -173,6 +198,16 @@ def setup_model_fsdp(rank):
 3. **Gradient accumulation:** Simulate larger batch sizes
 4. **Mixed precision:** Always use FP16/BF16 with DDP/FSDP
 
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [5402: Model Parallelism](5402-Model-Parallelism.md)
+- [5403: Mixed Precision Training](5403-Mixed-Precision.md)
+- [5404: Distributed Optimization](5404-Distributed-Optimization.md)
 
 ---
 

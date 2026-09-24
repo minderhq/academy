@@ -3,7 +3,7 @@ Document ID: 4403
 Title: GGUF Format
 Phase: 4
 Module: 4400
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Expert
 Estimated Time: 5 hours
@@ -13,6 +13,38 @@ Tags: ['quantization', 'advanced', 'optimization']
 ---
 
 # 4403: GGUF Format
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [What is GGUF?](#what-is-gguf)
+- [GGUF Quantization Types](#gguf-quantization-types)
+- [Converting to GGUF](#converting-to-gguf)
+- [Running GGUF Models](#running-gguf-models)
+- [GGUF with GPU Offloading](#gguf-with-gpu-offloading)
+- [GGUF Metadata](#gguf-metadata)
+- [Advanced: Quantization Configuration](#advanced-quantization-configuration)
+- [Troubleshooting](#troubleshooting)
+- [GGUF Ecosystem](#gguf-ecosystem)
+- [Best Practices](#best-practices)
+- [Further Reading](#further-reading)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain What is GGUF
+- Explain GGUF Quantization Types
+- Configure and operate Converting to GGUF
+- Explain Running GGUF Models
+- Explain GGUF with GPU Offloading
+- Explain GGUF Metadata
+
+---
 
 ## Abstract
 
@@ -399,6 +431,19 @@ python convert.py --model ./model --outfile model.gguf --imatrix imatrix.dat
 - **Documentation:** https://github.com/ggerganov/llama.cpp
 - **GGUF Spec:** https://github.com/ggerganov/ggml/blob/master/docs/gguf.md
 - **Python Lib:** https://github.com/abetlen/llama-cpp-python
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [4401: GPTQ](4401-GPTQ.md)
+- [4402: AWQ](4402-AWQ.md)
+- [4404: EXL2 Format](4404-EXL2-Format.md)
+- [4405: Sparsity + Quantization](4405-Sparsity-Quantization.md)
+- [4406: 1.58-bit Quantization](4406-1.58-bit-Quantization.md)
+- [4407: Ternary & Binary Networks](4407-Ternary-Binary.md)
+
+---
 
 ## Next Steps
 

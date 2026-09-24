@@ -3,7 +3,7 @@ Document ID: 3501
 Title: Vision-Language Models
 Phase: 3
 Module: 3500
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -19,6 +19,31 @@ Tags: ['transformers', 'multimodal', 'vision-language', 'clip', 'audio']
 **Last Updated:** 2026-02-04
 **Status:** Complete
 **Estimated Time:** 3 hours
+
+---
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [CLIP: Contrastive Language-Image Pre-training](#clip-contrastive-language-image-pre-training)
+- [Multimodal RAG](#multimodal-rag)
+- [LLaVA: Large Language and Vision Assistant](#llava-large-language-and-vision-assistant)
+- [Production Considerations](#production-considerations)
+- [Related Resources](#related-resources)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain CLIP: Contrastive Language-Image Pre-training
+- Explain Multimodal RAG
+- Explain LLaVA: Large Language and Vision Assistant
+- Explain Production Considerations
+- Explain Related Resources
 
 ---
 
@@ -307,6 +332,14 @@ class MultimodalPipeline:
         if len(images or []) > 10:
             raise ValueError("Maximum 10 images allowed")
 ```
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [3502: Audio Models](3502-Audio-Models.md)
 
 ---
 

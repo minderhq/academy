@@ -8,6 +8,34 @@ Difficulty: Advanced
 
 # 7402: Agent Memory Implementation Guide
 
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Memory Architecture](#memory-architecture)
+- [Memory Types Comparison](#memory-types-comparison)
+- [Implementation 1: VectorStore (Semantic Memory)](#implementation-1-vectorstore-semantic-memory)
+- [Implementation 2: Memoria (Episodic Memory)](#implementation-2-memoria-episodic-memory)
+- [Implementation 3: Unified Memory System](#implementation-3-unified-memory-system)
+- [Memory Forgetting Strategy](#memory-forgetting-strategy)
+- [Quick Start](#quick-start)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain Memory Architecture
+- Compare Memory Types Comparison
+- Apply Implementation 1: VectorStore (Semantic Memory)
+- Apply Implementation 2: Memoria (Episodic Memory)
+- Apply Implementation 3: Unified Memory System
+- Explain Memory Forgetting Strategy
+
+---
+
 ## Abstract
 Complete implementation guide for building persistent memory systems for AI agents on AI Engineering Curriculum infrastructure. Covers VectorStore for semantic memory and Memoria for episodic memory.
 
@@ -975,6 +1003,15 @@ docker run -d --name ai-engineering-curriculum-postgres \
 python unified_memory.py
 ```
 
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [7401: Long-term Memory for Agents](../7401-Long-term-Memory.md)
+- [7403: Vector Memory and Embedding-Based Storage](../7403-Vector-Memory.md)
 
 ---
 

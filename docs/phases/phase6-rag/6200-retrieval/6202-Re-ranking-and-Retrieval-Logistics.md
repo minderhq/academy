@@ -3,7 +3,7 @@ Document ID: 6202
 Title: Re-ranking and Retrieval Logistics
 Phase: 6
 Module: 6200
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -13,6 +13,31 @@ Tags: ['rag', 'retrieval', 'hybrid-search', 'reranking']
 ---
 
 # 6202: Re-ranking and Retrieval Logistics
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [The RAG Pipeline](#the-rag-pipeline)
+- [Reranking Models](#reranking-models)
+- [Retrieval Strategies](#retrieval-strategies)
+- [Query Expansion](#query-expansion)
+- [Evaluation](#evaluation)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain The RAG Pipeline
+- Explain Reranking Models
+- Explain Retrieval Strategies
+- Explain Query Expansion
+- Measure and evaluate Evaluation
+
+---
 
 ## Abstract
 Re-ranking improves retrieval quality by taking an initial set of documents and re-ordering them using more sophisticated (but slower) models.
@@ -362,6 +387,15 @@ def ndcg(retrieved_docs, relevance_scores, k=10):
     return dcg / idcg
 ```
 
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [6201: Hybrid Search - Combining Keyword and Semantic Search](6201-Hybrid-Search.md)
+- [6203: Advanced Retrieval Techniques](6203-Advanced-Retrieval.md)
 
 ---
 

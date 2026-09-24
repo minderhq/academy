@@ -3,7 +3,7 @@ Document ID: 5301
 Title: Knowledge Distillation - Training Small Models Using Big Model Outputs
 Phase: 5
 Module: 5300
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -13,6 +13,33 @@ Tags: ['finetuning', 'synthetic-data', 'distillation', 'federated']
 ---
 
 # 5301: Knowledge Distillation - Training Small Models Using Big Model Outputs
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Distillation Concepts](#distillation-concepts)
+- [Distillation Loss](#distillation-loss)
+- [Advanced Distillation Techniques](#advanced-distillation-techniques)
+- [Data Generation for Distillation](#data-generation-for-distillation)
+- [Evaluating Distillation](#evaluating-distillation)
+- [Practical Tips](#practical-tips)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain the reasoning behind Distillation Concepts
+- Explain Distillation Loss
+- Explain Advanced Distillation Techniques
+- Explain Data Generation for Distillation
+- Measure and evaluate Evaluating Distillation
+- Explain Practical Tips
+
+---
 
 ## Abstract
 Knowledge distillation transfers knowledge from a large "teacher" model to a smaller "student" model. This enables training efficient models that retain much of the teacher's performance.
@@ -435,6 +462,15 @@ Rule of thumb: α = 0.5 (balanced)
   - Late training: Higher α (0.7)
 ```
 
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [5302: Distributed Training Orchestration](5302-Distributed-Training.md)
+- [5303: Federated Learning](5303-Federated-Learning.md)
 
 ---
 

@@ -8,6 +8,35 @@ Difficulty: Intermediate
 
 # 1404: vLLM Production Deployment Guide
 
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Architecture](#architecture)
+- [Deployment Options](#deployment-options)
+- [Configuration Guide](#configuration-guide)
+- [Client Usage Examples](#client-usage-examples)
+- [Advanced Configuration](#advanced-configuration)
+- [Performance Benchmarks](#performance-benchmarks)
+- [Troubleshooting](#troubleshooting)
+- [Quick Start](#quick-start)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain Architecture
+- Apply Deployment Options
+- Apply Configuration Guide
+- Explain Client Usage Examples
+- Configure and operate Advanced Configuration
+- Measure and evaluate Performance Benchmarks
+
+---
+
 ## Abstract
 Complete production deployment guide for vLLM (Virtual Large Language Model) high-throughput inference engine on AI Engineering Curriculum infrastructure.
 
@@ -685,6 +714,14 @@ pip install openai
 python -c "from openai import OpenAI; client = OpenAI(base_url='http://localhost:8000/v1', api_key='dummy'); print(client.chat.completions.create(model='mistralai/Mistral-7B-Instruct-v0.2', messages=[{'role': 'user', 'content': 'Hello!'}]).choices[0].message.content)"
 ```
 
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [1405: Text Generation Inference (TGI) Deployment Guide](1405-TGI-Deployment-Guide.md)
 
 ---
 

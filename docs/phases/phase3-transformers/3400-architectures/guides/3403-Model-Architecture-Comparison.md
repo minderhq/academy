@@ -8,6 +8,38 @@ Difficulty: Advanced
 
 # 3403: Model Architecture Comparison Guide
 
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Architecture Comparison Matrix](#architecture-comparison-matrix)
+- [Detailed Comparison Table](#detailed-comparison-table)
+- [11GB VRAM GPU Deployment Analysis](#11gb-vram-gpu-deployment-analysis)
+- [Performance Benchmarks](#performance-benchmarks)
+- [Task-Specific Recommendations](#task-specific-recommendations)
+- [Hybrid Approaches](#hybrid-approaches)
+- [Deployment Configuration Examples](#deployment-configuration-examples)
+- [Decision Tree](#decision-tree)
+- [Quick Start Recommendations](#quick-start-recommendations)
+- [Memory Optimization Strategies](#memory-optimization-strategies)
+- [Monitoring Performance](#monitoring-performance)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Compare Architecture Comparison Matrix
+- Compare Detailed Comparison Table
+- Configure and operate 11GB VRAM GPU Deployment Analysis
+- Measure and evaluate Performance Benchmarks
+- Explain Task-Specific Recommendations
+- Explain Hybrid Approaches
+
+---
+
 ## Abstract
 Comprehensive comparison of Encoder-Decoder (T5, BART) vs Decoder-Only (GPT, LLaMA, Mistral) architectures for Homelab deployment.
 
@@ -392,6 +424,15 @@ def monitor_inference(model, inputs, max_new_tokens=100):
     print(f"VRAM: {mem_before:.2f}GB → {mem_after:.2f}GB")
 ```
 
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [3401: Encoder-Decoder Architectures](../3401-Encoder-Decoder-Architectures.md)
+- [3402: Decoder-Only Models (GPT, LLaMA, Mistral)](../3402-Decoder-Only-Models.md)
 
 ---
 

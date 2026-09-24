@@ -3,7 +3,7 @@ Document ID: 7502
 Title: PII Redaction & Privacy Filtering
 Phase: 7
 Module: 7500
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -19,6 +19,34 @@ Tags: ['agents', 'security', 'prompt-injection', 'pii', 'adversarial']
 **Last Updated:** 2026-02-04
 **Status:** Complete
 **Estimated Time:** 2 hours
+
+---
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [PII Categories](#pii-categories)
+- [PII Detection](#pii-detection)
+- [PII Redaction](#pii-redaction)
+- [Secure Data Handling](#secure-data-handling)
+- [Production Implementation](#production-implementation)
+- [Testing & Validation](#testing-validation)
+- [Related Resources](#related-resources)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain PII Categories
+- Explain PII Detection
+- Explain PII Redaction
+- Explain Secure Data Handling
+- Configure and operate Production Implementation
+- Explain Testing & Validation
 
 ---
 
@@ -839,6 +867,15 @@ class PIIValidator:
 - **Next:** [7503: Adversarial Attacks](./7503-Adversarial-Attacks.md)
 - **Experiment:** [EXP_7501: Prompt Injection](../../../../experiments/EXP_7501_PROMPT_INJECTION.md)
 
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [7501: Prompt Injection Defense](7501-Prompt-Injection-Defense.md)
+- [7503: Adversarial Attacks & Defense](7503-Adversarial-Attacks.md)
 
 ---
 

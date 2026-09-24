@@ -8,6 +8,36 @@ Difficulty: Advanced
 
 # 6303: Neo4j Deployment Guide
 
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Deployment Targets](#deployment-targets)
+- [Docker Deployment](#docker-deployment)
+- [Initial Configuration](#initial-configuration)
+- [Performance Tuning](#performance-tuning)
+- [Backup Strategy](#backup-strategy)
+- [Monitoring](#monitoring)
+- [Security Hardening](#security-hardening)
+- [Troubleshooting](#troubleshooting)
+- [K3s Deployment (Optional)](#k3s-deployment-optional)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Apply Deployment Targets
+- Configure and operate Docker Deployment
+- Configure and operate Initial Configuration
+- Measure and evaluate Performance Tuning
+- Explain Backup Strategy
+- Measure and evaluate Monitoring
+
+---
+
 ## Abstract
 Complete guide for deploying Neo4j knowledge graph database on any Docker-capable Linux host, NAS, or VPS for AI Engineering Curriculum.
 
@@ -462,6 +492,14 @@ spec:
   type: ClusterIP
 ```
 
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [6304: GraphRAG Implementation Guide](6304-GraphRAG-Implementation.md)
 
 ---
 

@@ -3,7 +3,7 @@ Document ID: 3202
 Title: Tokenizer Sciences - BPE, SentencePiece, and Tiktoken
 Phase: 3
 Module: 3200
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -13,6 +13,35 @@ Tags: ['transformers', 'embeddings', 'rope', 'tokenization', 'bpe']
 ---
 
 # 3202: Tokenizer Sciences - BPE, SentencePiece, and Tiktoken
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Tokenization Pipeline](#tokenization-pipeline)
+- [Byte-Pair Encoding (BPE)](#byte-pair-encoding-bpe)
+- [SentencePiece (Unigram Language Model)](#sentencepiece-unigram-language-model)
+- [Tiktoken (OpenAI)](#tiktoken-openai)
+- [Tokenizer Comparison](#tokenizer-comparison)
+- [Special Tokens](#special-tokens)
+- [Training Custom Tokenizer](#training-custom-tokenizer)
+- [Tokenizer Metrics](#tokenizer-metrics)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain Tokenization Pipeline
+- Explain Byte-Pair Encoding (BPE)
+- Explain SentencePiece (Unigram Language Model)
+- Explain Tiktoken (OpenAI)
+- Compare Tokenizer Comparison
+- Explain Special Tokens
+
+---
 
 ## Abstract
 Tokenizers convert text into numerical inputs for language models. The choice of tokenizer affects vocabulary size, sequence length, model size, and multilingual capability.
@@ -468,6 +497,14 @@ for tokenizer_name in ["gpt2", "cl100k_base", "bert-base-uncased"]:
     stats = analyze_token_lengths(tokenizer, test_texts)
     print(f"{tokenizer_name}: {stats}")
 ```
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [3201: Rotary Positional Embeddings (RoPE)](3201-Rotary-Positional-Embeddings-RoPE.md)
 
 ---
 

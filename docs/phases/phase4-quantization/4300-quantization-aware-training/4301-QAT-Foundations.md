@@ -3,7 +3,7 @@ Document ID: 4301
 Title: QAT Foundations
 Phase: 4
 Module: 4300
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -13,6 +13,34 @@ Tags: ['quantization', 'qat', 'quantization-aware-training']
 ---
 
 # 4301: QAT Foundations
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [What is QAT?](#what-is-qat)
+- [QAT vs PTQ](#qat-vs-ptq)
+- [How QAT Works](#how-qat-works)
+- [When to Use QAT](#when-to-use-qat)
+- [Common Issues](#common-issues)
+- [Implementation Checklist](#implementation-checklist)
+- [Further Reading](#further-reading)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain What is QAT
+- Compare QAT vs PTQ
+- Explain How QAT Works
+- Explain When to Use QAT
+- Explain Common Issues
+- Apply Implementation Checklist
+
+---
 
 ## Abstract
 
@@ -215,6 +243,17 @@ scale = weight.abs().max(dim=[1, 2], keepdim=True) / 127
 - **Paper:** "Training Low-bit Neural Networks" (Zhou et al., 2024)
 - **Tutorial:** PyTorch QAT Documentation
 - **Code:** HuggingFace `bitsandbytes` library
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [4302: Fake Quantization](4302-Fake-Quantization.md)
+- [4303: QAT for Transformers](4303-QAT-for-Transformers.md)
+- [4304: Low-bit QAT](4304-Low-bit-QAT.md)
+- [4305: Quantization Configuration](4305-Quantization-Configuration.md)
+
+---
 
 ## Next Steps
 

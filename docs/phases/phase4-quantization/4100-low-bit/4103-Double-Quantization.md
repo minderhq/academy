@@ -3,7 +3,7 @@ Document ID: 4103
 Title: Double Quantization - BitsAndBytes (bnb) Logic
 Phase: 4
 Module: 4100
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -13,6 +13,35 @@ Tags: ['quantization', 'gguf', 'exl2', 'awq', 'compression']
 ---
 
 # 4103: Double Quantization - BitsAndBytes (bnb) Logic
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [The Problem with Standard Quantization](#the-problem-with-standard-quantization)
+- [Double Quantization Solution](#double-quantization-solution)
+- [BitsAndBytes Implementation](#bitsandbytes-implementation)
+- [Memory Savings](#memory-savings)
+- [Quality Impact](#quality-impact)
+- [Advanced DQ Techniques](#advanced-dq-techniques)
+- [BitsAndBytes Training](#bitsandbytes-training)
+- [Troubleshooting](#troubleshooting)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain The Problem with Standard Quantization
+- Explain Double Quantization Solution
+- Configure and operate BitsAndBytes Implementation
+- Explain Memory Savings
+- Explain Quality Impact
+- Explain Advanced DQ Techniques
+
+---
 
 ## Abstract
 Double Quantization (DQ) is a technique introduced by bitsandbytes to further compress quantization parameters. It quantizes the quantization scales themselves, providing additional memory savings with minimal quality loss.
@@ -382,6 +411,15 @@ Solution:
   - Enable fused kernels
   - Batch inference requests
 ```
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [4101: GGUF Physics - CPU/GPU Hybrid Offloading](4101-GGUF-Physics.md)
+- [4102: EXL2 and AWQ - Extreme Quantization](4102-EXL2-and-AWQ.md)
 
 ---
 

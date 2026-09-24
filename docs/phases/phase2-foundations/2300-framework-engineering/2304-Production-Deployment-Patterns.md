@@ -3,7 +3,7 @@ Document ID: 2304
 Title: Production Deployment Patterns
 Phase: 2
 Module: 2300
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -19,6 +19,35 @@ Tags: ['frameworks', 'architecture', 'api-design', 'production']
 **Last Updated:** 2026-02-04
 **Status:** Complete
 **Estimated Time:** 2 hours
+
+---
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Pattern 1: Blue-Green Deployment](#pattern-1-blue-green-deployment)
+- [Pattern 2: Canary Deployment](#pattern-2-canary-deployment)
+- [Pattern 3: Rolling Updates](#pattern-3-rolling-updates)
+- [Pattern 4: A/B Testing](#pattern-4-ab-testing)
+- [Deployment Automation](#deployment-automation)
+- [Exercise: Deploy with Blue-Green](#exercise-deploy-with-blue-green)
+- [Related Topics](#related-topics)
+- [Summary](#summary)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Configure and operate Pattern 1: Blue-Green Deployment
+- Configure and operate Pattern 2: Canary Deployment
+- Explain Pattern 3: Rolling Updates
+- Explain Pattern 4: A/B Testing
+- Apply Deployment Automation
+- Configure and operate Exercise: Deploy with Blue-Green
 
 ---
 
@@ -966,6 +995,16 @@ Implement a complete blue-green deployment system with:
 - [LAB-009: Production Deployment](../../../learning-resources/labs/LAB-009-Production-Deployment.md)
 - [2302: Model Serving Architectures](./2302-Model-Serving-Architectures.md)
 - [2303: API Design for ML](./2303-API-Design-for-ML.md)
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [2301: Framework Design Patterns](2301-Framework-Design-Patterns.md)
+- [2302: Model Serving Architectures](2302-Model-Serving-Architectures.md)
+- [2303: API Design for ML Systems](2303-API-Design-for-ML.md)
 
 ---
 

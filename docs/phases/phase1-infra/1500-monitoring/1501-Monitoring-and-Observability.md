@@ -3,7 +3,7 @@ Document ID: 1501
 Title: Monitoring and Observability for AI Engineering Curriculum
 Phase: 1
 Module: 1500
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -13,6 +13,36 @@ Tags: ['infrastructure', 'monitoring', 'observability', 'prometheus']
 ---
 
 # 1501: Monitoring and Observability for AI Engineering Curriculum
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Architecture](#architecture)
+- [Component 1: Prometheus (Metrics Collection)](#component-1-prometheus-metrics-collection)
+- [Component 2: Grafana (Dashboards)](#component-2-grafana-dashboards)
+- [Component 3: Loki (Log Aggregation)](#component-3-loki-log-aggregation)
+- [Component 4: Tempo (Tracing)](#component-4-tempo-tracing)
+- [Component 5: Custom Exporters](#component-5-custom-exporters)
+- [K3s Monitoring Stack](#k3s-monitoring-stack)
+- [Alert Rules](#alert-rules)
+- [Quick Start](#quick-start)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain Architecture
+- Measure and evaluate Component 1: Prometheus (Metrics Collection)
+- Explain Component 2: Grafana (Dashboards)
+- Explain Component 3: Loki (Log Aggregation)
+- Explain Component 4: Tempo (Tracing)
+- Explain Component 5: Custom Exporters
+
+---
 
 ## Abstract
 Complete monitoring stack for tracking infrastructure health, model performance, and agent behavior in a home lab.
@@ -487,6 +517,15 @@ docker-compose up -d
 # Tempo: http://192.168.1.100:3200
 # Loki: http://192.168.1.100:3100
 ```
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [1502: Model Drift Detection](1502-Model-Drift-Detection.md)
+- [1503: LLM Observability](1503-LLM-Observability.md)
 
 ---
 

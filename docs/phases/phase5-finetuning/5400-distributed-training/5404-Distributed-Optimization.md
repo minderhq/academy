@@ -3,7 +3,7 @@ Document ID: 5404
 Title: Distributed Optimization
 Phase: 5
 Module: 5400
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Review
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -13,6 +13,33 @@ Tags: ['distributed', 'optimization', 'gradients']
 ---
 
 # 5404: Distributed Optimization
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Gradient Synchronization](#gradient-synchronization)
+- [Gradient Compression](#gradient-compression)
+- [Communication Backend](#communication-backend)
+- [Overlapping Computation and Communication](#overlapping-computation-and-communication)
+- [Framework Implementations](#framework-implementations)
+- [Best Practices](#best-practices)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain Gradient Synchronization
+- Explain Gradient Compression
+- Explain Communication Backend
+- Explain Overlapping Computation and Communication
+- Configure and operate Framework Implementations
+- Explain Best Practices
+
+---
 
 ## Abstract
 
@@ -361,3 +388,12 @@ for batch in dataloader:
 **Next:** [Assessment](./assessment/QUIZ.md)
 
 **Last Updated:** 2026-02-05
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [5401: Data Parallelism](5401-Data-Parallelism.md)
+- [5403: Mixed Precision Training](5403-Mixed-Precision.md)
+
+---

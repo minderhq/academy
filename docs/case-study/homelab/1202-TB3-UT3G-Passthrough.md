@@ -3,7 +3,7 @@ Document ID: 1202
 Title: Thunderbolt 3 eGPU Passthrough Configuration
 Phase: 1
 Module: 1200
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -13,6 +13,36 @@ Tags: ['infrastructure', 'virtualization', 'proxmox', 'gpu']
 ---
 
 # 1202: Thunderbolt 3 eGPU Passthrough Configuration
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Thunderbolt 3 Architecture](#thunderbolt-3-architecture)
+- [Hardware Configuration](#hardware-configuration)
+- [BIOS Configuration](#bios-configuration)
+- [Linux Configuration](#linux-configuration)
+- [VM Passthrough Configuration](#vm-passthrough-configuration)
+- [Performance Considerations](#performance-considerations)
+- [VM Guest Configuration](#vm-guest-configuration)
+- [K3s GPU Integration](#k3s-gpu-integration)
+- [Troubleshooting](#troubleshooting)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain Thunderbolt 3 Architecture
+- Configure and operate Hardware Configuration
+- Configure and operate BIOS Configuration
+- Configure and operate Linux Configuration
+- Configure and operate VM Passthrough Configuration
+- Measure and evaluate Performance Considerations
+
+---
 
 ## Abstract
 This document details the configuration of PCIe passthrough for the RTX 2080 Ti eGPU connected via Thunderbolt 3 to the Intel NUC. This enables direct GPU access from K3s pods for AI workloads.
@@ -276,6 +306,15 @@ dmesg | grep vfio
 # Monitor GPU performance
 nvidia-smi dmon -s u
 ```
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [1101: Fiber GPON Modem Configuration](1101-Fiber-GPON-Modem.md)
+- [1102: Star Topology Core Network Design](1102-Star-Topology-Core.md)
 
 ---
 

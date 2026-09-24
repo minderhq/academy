@@ -3,7 +3,7 @@ Document ID: 3302
 Title: Normalization Layers - BatchNorm vs LayerNorm vs RMSNorm
 Phase: 3
 Module: 3300
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 2 hours
@@ -13,6 +13,34 @@ Tags: ['transformers', 'activation', 'gelu', 'swiglu', 'normalization']
 ---
 
 # 3302: Normalization Layers - BatchNorm vs LayerNorm vs RMSNorm
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [The Normalization Problem](#the-normalization-problem)
+- [BatchNorm](#batchnorm)
+- [LayerNorm](#layernorm)
+- [RMSNorm](#rmsnorm)
+- [Comparison](#comparison)
+- [Implementation Tips](#implementation-tips)
+- [DeepNorm (Stable Deep Networks)](#deepnorm-stable-deep-networks)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain The Normalization Problem
+- Explain BatchNorm
+- Explain LayerNorm
+- Explain RMSNorm
+- Compare Comparison
+- Apply Implementation Tips
+
+---
 
 ## Abstract
 Normalization layers stabilize training by normalizing activations. In transformers, LayerNorm and RMSNorm are dominant, while BatchNorm is common in CNNs.
@@ -392,6 +420,14 @@ class DeepNormTransformerBlock(nn.Module):
         x = self.norm2(self.alpha * x + self.ff(x)) / (self.alpha ** 2)
         return x
 ```
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [3301: Activation Functions - GELU, SwiGLU, and Beyond](3301-Activation-Functions.md)
 
 ---
 

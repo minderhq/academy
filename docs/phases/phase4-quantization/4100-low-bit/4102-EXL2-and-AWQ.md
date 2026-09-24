@@ -3,7 +3,7 @@ Document ID: 4102
 Title: EXL2 and AWQ - Extreme Quantization
 Phase: 4
 Module: 4100
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -13,6 +13,31 @@ Tags: ['quantization', 'gguf', 'exl2', 'awq', 'compression']
 ---
 
 # 4102: EXL2 and AWQ - Extreme Quantization
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [EXL2 (ExLlamaV2)](#exl2-exllamav2)
+- [AWQ (Activation-aware Weight Quantization)](#awq-activation-aware-weight-quantization)
+- [GPTQ (Gradient-based Quantization)](#gptq-gradient-based-quantization)
+- [Comparison](#comparison)
+- [Advanced Techniques](#advanced-techniques)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain EXL2 (ExLlamaV2)
+- Explain AWQ (Activation-aware Weight Quantization)
+- Explain GPTQ (Gradient-based Quantization)
+- Compare Comparison
+- Explain Advanced Techniques
+
+---
 
 ## Abstract
 EXL2 and AWQ are advanced quantization methods optimized for GPU-only inference. They provide near-fp16 quality at 4-bit precision, making them ideal for an 11GB-class GPU.
@@ -370,6 +395,15 @@ class DynamicQuantizer:
     def quantize(self, x):
         return torch.round(x / self.scale) + self.zero_point
 ```
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [4101: GGUF Physics - CPU/GPU Hybrid Offloading](4101-GGUF-Physics.md)
+- [4103: Double Quantization - BitsAndBytes (bnb) Logic](4103-Double-Quantization.md)
 
 ---
 

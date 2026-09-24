@@ -3,7 +3,7 @@ Document ID: 3502
 Title: Audio Models
 Phase: 3
 Module: 3500
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -19,6 +19,29 @@ Tags: ['transformers', 'multimodal', 'vision-language', 'clip', 'audio']
 **Last Updated:** 2026-02-04
 **Status:** Complete
 **Estimated Time:** 3 hours
+
+---
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Whisper: Speech Recognition](#whisper-speech-recognition)
+- [Audio Generation](#audio-generation)
+- [Voice Assistant Integration](#voice-assistant-integration)
+- [Related Resources](#related-resources)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain Whisper: Speech Recognition
+- Explain Audio Generation
+- Explain Voice Assistant Integration
+- Explain Related Resources
 
 ---
 
@@ -197,6 +220,14 @@ class VoiceAssistant:
 
         return response, audio_output
 ```
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [3501: Vision-Language Models](3501-Vision-Language-Models.md)
 
 ---
 

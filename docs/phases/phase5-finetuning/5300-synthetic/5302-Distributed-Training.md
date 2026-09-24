@@ -3,7 +3,7 @@ Document ID: 5302
 Title: Distributed Training Orchestration
 Phase: 5
 Module: 5300
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -13,6 +13,34 @@ Tags: ['finetuning', 'synthetic-data', 'distillation', 'federated']
 ---
 
 # 5302: Distributed Training Orchestration
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Distributed Training Strategies](#distributed-training-strategies)
+- [K3s Cluster Training](#k3s-cluster-training)
+- [Fine-tuning Workflows](#fine-tuning-workflows)
+- [Orchestration with Ray](#orchestration-with-ray)
+- [Monitoring and Logging](#monitoring-and-logging)
+- [Performance Optimization](#performance-optimization)
+- [Expected Performance](#expected-performance)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain Distributed Training Strategies
+- Explain K3s Cluster Training
+- Explain Fine-tuning Workflows
+- Explain Orchestration with Ray
+- Measure and evaluate Monitoring and Logging
+- Measure and evaluate Performance Optimization
+
+---
 
 ## Abstract
 Distributed training strategies for Homelab. single-GPU constraints with optional Kubernetes orchestration.
@@ -556,6 +584,15 @@ Configuration   | Speedup | Efficiency |
 4x 11GB GPU  | 3.0x    | 75%        |
 ```
 
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [5301: Knowledge Distillation - Training Small Models Using Big Model Outputs](5301-Knowledge-Distillation.md)
+- [5303: Federated Learning](5303-Federated-Learning.md)
 
 ---
 

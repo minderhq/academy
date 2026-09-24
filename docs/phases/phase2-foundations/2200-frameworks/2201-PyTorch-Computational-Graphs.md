@@ -3,7 +3,7 @@ Document ID: 2201
 Title: PyTorch Computational Graphs and Dynamic Execution
 Phase: 2
 Module: 2200
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 4 hours
@@ -13,6 +13,36 @@ Tags: ['frameworks', 'pytorch', 'tensorflow', 'cuda']
 ---
 
 # 2201: PyTorch Computational Graphs and Dynamic Execution
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Dynamic vs Static Graphs](#dynamic-vs-static-graphs)
+- [Computational Graph Construction](#computational-graph-construction)
+- [Automatic Gradient Functions (grad_fn)](#automatic-gradient-functions-grad_fn)
+- [Dynamic Control Flow](#dynamic-control-flow)
+- [Custom Autograd Functions](#custom-autograd-functions)
+- [Graph Optimization](#graph-optimization)
+- [Debugging Computational Graphs](#debugging-computational-graphs)
+- [Memory Management](#memory-management)
+- [Advanced Patterns](#advanced-patterns)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Compare Dynamic vs Static Graphs
+- Explain Computational Graph Construction
+- Explain Automatic Gradient Functions (grad_fn)
+- Explain Dynamic Control Flow
+- Explain Custom Autograd Functions
+- Explain Graph Optimization
+
+---
 
 ## Abstract
 PyTorch uses dynamic computational graphs (define-by-run), unlike TensorFlow 1.x's static graphs. This flexibility enables more intuitive code, easier debugging, and dynamic control flow within models.
@@ -446,6 +476,15 @@ x = torch.randn(3, requires_grad=True)
 y = x ** 2 + x
 J = jacobian(y, x)
 ```
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [2202: TensorFlow XLA and Compiler Optimizations](2202-TensorFlow-XLA-Compilers.md)
+- [2203: CUDA Kernel Programming and GPU Architecture](2203-CUDA-Kernel-Syb-Level.md)
 
 ---
 

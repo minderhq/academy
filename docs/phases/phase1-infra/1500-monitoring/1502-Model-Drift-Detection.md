@@ -3,7 +3,7 @@ Document ID: 1502
 Title: Model Drift Detection
 Phase: 1
 Module: 1500
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -19,6 +19,33 @@ Tags: ['infrastructure', 'monitoring', 'observability', 'prometheus']
 **Last Updated:** 2026-02-04
 **Status:** Complete
 **Estimated Time:** 2 hours
+
+---
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Types of Drift](#types-of-drift)
+- [Drift Detection Algorithms](#drift-detection-algorithms)
+- [Feature-Level Monitoring](#feature-level-monitoring)
+- [Remeditation Strategies](#remeditation-strategies)
+- [Production Deployment](#production-deployment)
+- [Related Resources](#related-resources)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain Types of Drift
+- Explain Drift Detection Algorithms
+- Measure and evaluate Feature-Level Monitoring
+- Explain Remeditation Strategies
+- Configure and operate Production Deployment
+- Explain Related Resources
 
 ---
 
@@ -633,6 +660,15 @@ class DriftMetricsPublisher:
             model_name=self.model_name
         ).inc()
 ```
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [1501: Monitoring and Observability for AI Engineering Curriculum](1501-Monitoring-and-Observability.md)
+- [1503: LLM Observability](1503-LLM-Observability.md)
 
 ---
 

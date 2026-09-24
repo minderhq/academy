@@ -3,7 +3,7 @@ Document ID: 5102
 Title: QLoRA Pipelines - 4-bit Fine-Tuning on Consumer Hardware
 Phase: 5
 Module: 5100
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -13,6 +13,34 @@ Tags: ['finetuning', 'peft', 'lora', 'qlora', 'adaptation']
 ---
 
 # 5102: QLoRA Pipelines - 4-bit Fine-Tuning on Consumer Hardware
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [QLoRA Architecture](#qlora-architecture)
+- [QLoRA Implementation](#qlora-implementation)
+- [QLoRA Hyperparameters](#qlora-hyperparameters)
+- [QLoRA Training Pipeline](#qlora-training-pipeline)
+- [Memory Optimization](#memory-optimization)
+- [QLoRA Troubleshooting](#qlora-troubleshooting)
+- [Merging QLoRA Weights](#merging-qlora-weights)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain QLoRA Architecture
+- Configure and operate QLoRA Implementation
+- Explain QLoRA Hyperparameters
+- Explain QLoRA Training Pipeline
+- Explain Memory Optimization
+- Diagnose and resolve QLoRA Troubleshooting
+
+---
 
 ## Abstract
 QLoRA (Quantized LoRA) enables fine-tuning 65B+ parameter models on a single 24GB GPU by combining 4-bit quantization with LoRA. On 11GB VRAM GPU, QLoRA makes fine-tuning 7B models practical.
@@ -470,6 +498,15 @@ quantized_merged = AutoModelForCausalLM.from_pretrained(
 )
 ```
 
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [5101: LoRA (Low-Rank Adaptation) Logic](5101-LoRA-Logic.md)
+- [5103: Adapters & Parameter-Efficient Adaptation Methods](5103-Adapters.md)
 
 ---
 

@@ -3,7 +3,7 @@ Document ID: 5303
 Title: Federated Learning
 Phase: 5
 Module: 5300
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -19,6 +19,29 @@ Tags: ['finetuning', 'synthetic-data', 'distillation', 'federated']
 **Last Updated:** 2026-02-04
 **Status:** Complete
 **Estimated Time:** 4 hours
+
+---
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Federated Averaging Algorithm](#federated-averaging-algorithm)
+- [Privacy Preservation](#privacy-preservation)
+- [Production Deployment](#production-deployment)
+- [Related Resources](#related-resources)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain Federated Averaging Algorithm
+- Explain Privacy Preservation
+- Configure and operate Production Deployment
+- Explain Related Resources
 
 ---
 
@@ -286,6 +309,15 @@ class FederatedLearningOrchestrator:
 - **Related:** [5302: Distributed Training](./5302-Distributed-Training.md)
 - **Related:** [7502: PII Redaction](../../phase7-agentic/7500-security/7502-PII-Redaction.md)
 
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [5301: Knowledge Distillation - Training Small Models Using Big Model Outputs](5301-Knowledge-Distillation.md)
+- [5302: Distributed Training Orchestration](5302-Distributed-Training.md)
 
 ---
 

@@ -3,7 +3,7 @@ Document ID: 1204
 Title: Multi-GPU Setup
 Phase: 1
 Module: 1200
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -13,6 +13,36 @@ Tags: ['infrastructure', 'virtualization', 'proxmox', 'gpu']
 ---
 
 # 1204: Multi-GPU Setup
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Starting Point: A Single GPU](#starting-point-a-single-gpu)
+- [Multi-GPU Scenarios](#multi-gpu-scenarios)
+- [PyTorch Multi-GPU Setup](#pytorch-multi-gpu-setup)
+- [Model Parallelism (Large Models)](#model-parallelism-large-models)
+- [Inference with Multi-GPU](#inference-with-multi-gpu)
+- [Fine-Tuning with Multi-GPU](#fine-tuning-with-multi-gpu)
+- [Multi-GPU Benchmarks (Expected)](#multi-gpu-benchmarks-expected)
+- [Monitoring Multi-GPU](#monitoring-multi-gpu)
+- [Troubleshooting](#troubleshooting)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain Starting Point: A Single GPU
+- Explain Multi-GPU Scenarios
+- Configure and operate PyTorch Multi-GPU Setup
+- Explain Model Parallelism (Large Models)
+- Explain Inference with Multi-GPU
+- Explain Fine-Tuning with Multi-GPU
+
+---
 
 ## Abstract
 Scaling GPU workloads from a single card to multi-GPU serving and training: device selection, data and model parallelism in PyTorch, multi-GPU inference engines (vLLM, TGI, Ollama), fine-tuning strategies, and troubleshooting.
@@ -455,6 +485,16 @@ export NCCL_IB_DISABLE=1   # Disable InfiniBand (no IB hardware present)
 # Use gloo backend instead of nccl (slower but more compatible)
 torch.distributed.init_process_group(backend="gloo", ...)
 ```
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [1201: Proxmox Hypervisor Standard Operating Procedures](1201-Proxmox-Hypervisor-SOP.md)
+- [1202: GPU Passthrough (IOMMU/VFIO)](1202-TB3-UT3G-Passthrough.md)
+- [1203: NVIDIA Kernel Module Management](1203-Nvidia-Kernel-Module.md)
 
 ---
 

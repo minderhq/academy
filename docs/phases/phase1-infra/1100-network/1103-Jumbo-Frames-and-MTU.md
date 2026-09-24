@@ -3,7 +3,7 @@ Document ID: 1103
 Title: Jumbo Frames and MTU Optimization
 Phase: 1
 Module: 1100
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 2 hours
@@ -13,6 +13,35 @@ Tags: ['infrastructure', 'networking', 'hardware']
 ---
 
 # 1103: Jumbo Frames and MTU Optimization
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [MTU Fundamentals](#mtu-fundamentals)
+- [Mathematics of MTU](#mathematics-of-mtu)
+- [Configuration by Component](#configuration-by-component)
+- [Path MTU Discovery (PMTUD)](#path-mtu-discovery-pmtud)
+- [Performance Benchmarks](#performance-benchmarks)
+- [Troubleshooting MTU Issues](#troubleshooting-mtu-issues)
+- [MTU by Use Case](#mtu-by-use-case)
+- [Summary Configuration](#summary-configuration)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain the reasoning behind MTU Fundamentals
+- Explain Mathematics of MTU
+- Apply Configuration by Component
+- Explain Path MTU Discovery (PMTUD)
+- Measure and evaluate Performance Benchmarks
+- Diagnose and resolve MTU Issues
+
+---
 
 ## Abstract
 Jumbo Frames enable Ethernet packets larger than the standard 1500 bytes, reducing CPU overhead and increasing throughput for large data transfers. On any high-throughput LAN (gigabit and above), MTU 9000 provides measurable performance benefits.
@@ -240,6 +269,15 @@ Video Streaming            1500 (compatible)
       ↓
 [K3s Pod Network] ← MTU 9000
 ```
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [1101: Internet Uplink & Modem Configuration](1101-Fiber-GPON-Modem.md)
+- [1102: Network Topology Design](1102-Star-Topology-Core.md)
 
 ---
 

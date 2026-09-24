@@ -8,6 +8,35 @@ Difficulty: Advanced
 
 # 6103: HNSW Parameter Tuning Guide
 
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [HNSW Architecture](#hnsw-architecture)
+- [Parameter Deep Dive](#parameter-deep-dive)
+- [Tuning Strategy](#tuning-strategy)
+- [Production Configurations](#production-configurations)
+- [Optimal Settings by Use Case](#optimal-settings-by-use-case)
+- [Dynamic ef Adjustment](#dynamic-ef-adjustment)
+- [Performance Benchmarks](#performance-benchmarks)
+- [Tuning Checklist](#tuning-checklist)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain HNSW Architecture
+- Explain Parameter Deep Dive
+- Explain Tuning Strategy
+- Configure and operate Production Configurations
+- Explain Optimal Settings by Use Case
+- Explain Dynamic ef Adjustment
+
+---
+
 ## Abstract
 Comprehensive guide for tuning HNSW (Hierarchical Navigable Small World) index parameters for optimal vector search performance on AI Engineering Curriculum infrastructure.
 
@@ -432,6 +461,15 @@ class AdaptiveSearch:
 - [ ] Select optimal configuration
 - [ ] Validate with production load
 
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [6101: HNSW Indexing - Efficient Semantic Search at Scale](../6101-HNSW-Indexing.md)
+- [6102: Semantic Similarity Metrics - Cosine, Dot Product, and Manifold Metrics](../6102-Semantic-Similarity.md)
 
 ---
 

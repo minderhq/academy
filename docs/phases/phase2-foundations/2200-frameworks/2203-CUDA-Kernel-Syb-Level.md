@@ -3,7 +3,7 @@ Document ID: 2203
 Title: CUDA Kernel Programming and GPU Architecture
 Phase: 2
 Module: 2200
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 4 hours
@@ -13,6 +13,35 @@ Tags: ['frameworks', 'pytorch', 'tensorflow', 'cuda']
 ---
 
 # 2203: CUDA Kernel Programming and GPU Architecture
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [GPU Architecture Overview](#gpu-architecture-overview)
+- [CUDA Execution Model](#cuda-execution-model)
+- [CUDA Kernel Programming](#cuda-kernel-programming)
+- [Memory Hierarchy](#memory-hierarchy)
+- [PyTorch CUDA Integration](#pytorch-cuda-integration)
+- [Tensor Cores Programming](#tensor-cores-programming)
+- [Optimization Techniques](#optimization-techniques)
+- [Debugging CUDA](#debugging-cuda)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain GPU Architecture Overview
+- Explain CUDA Execution Model
+- Explain CUDA Kernel Programming
+- Explain Memory Hierarchy
+- Explain PyTorch CUDA Integration
+- Explain Tensor Cores Programming
+
+---
 
 ## Abstract
 CUDA (Compute Unified Device Architecture) is NVIDIA's parallel computing platform. Understanding CUDA kernel programming is essential for writing optimized deep learning code that leverages your GPU's CUDA cores.
@@ -419,6 +448,15 @@ ncu --metrics dram__throughput.avg.pct_of_peak \
 # - Memory Throughput
 # - Warp Execution Efficiency
 ```
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [2201: PyTorch Computational Graphs and Dynamic Execution](2201-PyTorch-Computational-Graphs.md)
+- [2202: TensorFlow XLA and Compiler Optimizations](2202-TensorFlow-XLA-Compilers.md)
 
 ---
 

@@ -3,7 +3,7 @@ Document ID: 4409
 Title: Hardware-Specific Optimization
 Phase: 4
 Module: 4400
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Review
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -13,6 +13,35 @@ Tags: ['quantization', 'hardware', 'optimization']
 ---
 
 # 4409: Hardware-Specific Quantization Optimization
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Hardware Matrix](#hardware-matrix)
+- [NVIDIA GPU Optimization](#nvidia-gpu-optimization)
+- [Apple Silicon Optimization](#apple-silicon-optimization)
+- [CPU Optimization](#cpu-optimization)
+- [Mobile Optimization](#mobile-optimization)
+- [NPU Optimization (Edge TPUs, etc.)](#npu-optimization-edge-tpus-etc)
+- [Benchmarking](#benchmarking)
+- [Hardware-Specific Tips](#hardware-specific-tips)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain Hardware Matrix
+- Explain NVIDIA GPU Optimization
+- Explain Apple Silicon Optimization
+- Explain CPU Optimization
+- Explain Mobile Optimization
+- Explain NPU Optimization (Edge TPUs, etc.)
+
+---
 
 ## Abstract
 
@@ -411,3 +440,11 @@ def profile_memory(model):
 **Next:** [Assessment](../assessment/QUIZ.md)
 
 **Last Updated:** 2026-02-05
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [4408: Quantizing for Production](4408-Quantizing-for-Production.md)
+
+---

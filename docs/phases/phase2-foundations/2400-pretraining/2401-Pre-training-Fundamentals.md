@@ -3,7 +3,7 @@ Document ID: 2401
 Title: Pre-training Fundamentals
 Phase: 2
 Module: 2400
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 6 hours
@@ -15,6 +15,34 @@ Tags: ['training', 'pretraining', 'evaluation', 'fsdp']
 # 2401: Pre-training Fundamentals
 
 **"From Data to Model"** - Understanding the complete pre-training pipeline.
+
+---
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Part 1: Data Collection & Curation](#part-1-data-collection-curation)
+- [Part 2: Tokenization for Pre-training](#part-2-tokenization-for-pre-training)
+- [Part 3: Training Curriculum Design](#part-3-training-curriculum-design)
+- [Part 4: Evaluation Frameworks](#part-4-evaluation-frameworks)
+- [Part 5: Infrastructure Requirements](#part-5-infrastructure-requirements)
+- [Part 6: End-to-End Training Script](#part-6-end-to-end-training-script)
+- [Summary](#summary)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain Part 1: Data Collection & Curation
+- Explain Part 2: Tokenization for Pre-training
+- Explain Part 3: Training Curriculum Design
+- Measure and evaluate Part 4: Evaluation Frameworks
+- Explain Part 5: Infrastructure Requirements
+- Explain Part 6: End-to-End Training Script
 
 ---
 
@@ -1277,6 +1305,15 @@ Hyperparameters:
   Learning rate: 6e-4 for small models, 3e-4 for large
   Warmup: 2-5% of total steps
 ```
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [2402: Large-Scale Training for Language Models](2402-Large-Scale-Training.md)
+- [2403: Evaluation Frameworks for Language Models](2403-Evaluation-Frameworks.md)
 
 ---
 

@@ -1,12 +1,43 @@
 ---
 Document ID: 4307
 Title: "4307: Transformers QAT Guide"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
 ---
 
 # 4307: Transformers QAT Guide
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [HuggingFace QAT Tools](#huggingface-qat-tools)
+- [Method 1: bitsandbytes NF4 Quantization](#method-1-bitsandbytes-nf4-quantization)
+- [Method 2: AutoGPTQ](#method-2-autogptq)
+- [Method 3: Optimum for ONNX Quantization](#method-3-optimum-for-onnx-quantization)
+- [Method 4: Training with Quantization Aware Training](#method-4-training-with-quantization-aware-training)
+- [Advanced: Custom QAT for Transformers](#advanced-custom-qat-for-transformers)
+- [Evaluation](#evaluation)
+- [Best Practices](#best-practices)
+- [Troubleshooting](#troubleshooting)
+- [Further Reading](#further-reading)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain HuggingFace QAT Tools
+- Explain Method 1: bitsandbytes NF4 Quantization
+- Explain Method 2: AutoGPTQ
+- Explain Method 3: Optimum for ONNX Quantization
+- Explain Method 4: Training with Quantization Aware Training
+- Explain Advanced: Custom QAT for Transformers
+
+---
 
 ## Abstract
 
@@ -395,6 +426,15 @@ for name in sensitive_layers:
 - **Library:** bitsandbytes GitHub
 - **Paper:** "QLoRA: Efficient Finetuning of Quantized LLMs"
 - **Paper:** "GPTQ: Accurate Post-Training Quantization"
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [4306: PyTorch QAT Guide](4306-PyTorch-QAT.md)
+- [4308: BitBlade QAT Guide](4308-BitBlade-QAT.md)
+
+---
 
 ## Next Steps
 

@@ -3,7 +3,7 @@ Document ID: 4404
 Title: EXL2 Format
 Phase: 4
 Module: 4400
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Expert
 Estimated Time: 5 hours
@@ -13,6 +13,40 @@ Tags: ['quantization', 'advanced', 'optimization']
 ---
 
 # 4404: EXL2 Format
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [What is EXL2?](#what-is-exl2)
+- [EXL2 vs Other Formats](#exl2-vs-other-formats)
+- [Converting to EXL2](#converting-to-exl2)
+- [Running EXL2 Models](#running-exl2-models)
+- [Streaming Inference](#streaming-inference)
+- [Low VRAM Mode](#low-vram-mode)
+- [Performance Optimization](#performance-optimization)
+- [Benchmarking](#benchmarking)
+- [EXL2 File Structure](#exl2-file-structure)
+- [Troubleshooting](#troubleshooting)
+- [Best Practices](#best-practices)
+- [EXL2 vs GGUF Decision Tree](#exl2-vs-gguf-decision-tree)
+- [Further Reading](#further-reading)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain What is EXL2
+- Compare EXL2 vs Other Formats
+- Configure and operate Converting to EXL2
+- Explain Running EXL2 Models
+- Explain Streaming Inference
+- Explain Low VRAM Mode
+
+---
 
 ## Abstract
 
@@ -341,6 +375,19 @@ Need CPU inference?
 - **GitHub:** https://github.com/turboderp/exllamav2
 - **Documentation:** ExLlamaV2 repo README
 - **Benchmarks:** Various comparison blogs
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [4401: GPTQ](4401-GPTQ.md)
+- [4402: AWQ](4402-AWQ.md)
+- [4403: GGUF Format](4403-GGUF-Format.md)
+- [4405: Sparsity + Quantization](4405-Sparsity-Quantization.md)
+- [4406: 1.58-bit Quantization](4406-1.58-bit-Quantization.md)
+- [4407: Ternary & Binary Networks](4407-Ternary-Binary.md)
+
+---
 
 ## Next Steps
 

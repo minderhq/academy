@@ -3,7 +3,7 @@ Document ID: 7102
 Title: Planning and Task Decomposition
 Phase: 7
 Module: 7100
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -13,6 +13,29 @@ Tags: ['agents', 'react', 'planning', 'autonomy', 'cognition']
 ---
 
 # 7102: Planning and Task Decomposition
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Task Decomposition](#task-decomposition)
+- [Planning Algorithms](#planning-algorithms)
+- [Dynamic Replanning](#dynamic-replanning)
+- [Multi-Agent Planning](#multi-agent-planning)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain Task Decomposition
+- Explain Planning Algorithms
+- Explain Dynamic Replanning
+- Explain Multi-Agent Planning
+
+---
 
 ## Abstract
 Planning and task decomposition enable agents to break down complex tasks into manageable sub-tasks, execute them systematically, and handle dependencies.
@@ -488,6 +511,14 @@ class CoordinatorAgent:
         return integrated
 ```
 
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [7101: ReAct (Reasoning + Acting) Loop System](7101-ReAct-Loop-System.md)
 
 ---
 

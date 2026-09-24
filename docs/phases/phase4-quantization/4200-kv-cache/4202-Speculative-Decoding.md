@@ -3,7 +3,7 @@ Document ID: 4202
 Title: Speculative Decoding - Accelerating Large Models
 Phase: 4
 Module: 4200
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -13,6 +13,33 @@ Tags: ['quantization', 'kv-cache', 'context-window', 'speculative-decoding']
 ---
 
 # 4202: Speculative Decoding - Accelerating Large Models
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [The Intuition](#the-intuition)
+- [Algorithm](#algorithm)
+- [Draft Model Selection](#draft-model-selection)
+- [Performance Analysis](#performance-analysis)
+- [Advanced Techniques](#advanced-techniques)
+- [Implementation Tips](#implementation-tips)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain the reasoning behind The Intuition
+- Explain Algorithm
+- Explain Draft Model Selection
+- Measure and evaluate Performance Analysis
+- Explain Advanced Techniques
+- Apply Implementation Tips
+
+---
 
 ## Abstract
 Speculative decoding uses a smaller "draft" model to predict tokens that a larger "target" model verifies. This can achieve 2-3x speedup with minimal quality loss.
@@ -449,6 +476,14 @@ class SpeculativeKVCache:
         for layer in self.draft_cache:
             self.draft_cache[layer] = {'k': [], 'v': []}
 ```
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [4201: Context Window Physics and OOM Prevention](4201-Context-Window-Physics.md)
 
 ---
 

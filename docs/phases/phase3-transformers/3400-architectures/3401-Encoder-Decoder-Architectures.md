@@ -3,7 +3,7 @@ Document ID: 3401
 Title: Encoder-Decoder Architectures
 Phase: 3
 Module: 3400
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 4 hours
@@ -13,6 +13,29 @@ Tags: ['transformers', 'architecture', 'encoder-decoder', 'gpt', 'llama']
 ---
 
 # 3401: Encoder-Decoder Architectures
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Architecture Comparison](#architecture-comparison)
+- [T5 (Text-to-Text Transfer Transformer)](#t5-text-to-text-transfer-transformer)
+- [BART (Denoising Auto-Encoder)](#bart-denoising-auto-encoder)
+- [Comparison](#comparison)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Compare Architecture Comparison
+- Explain T5 (Text-to-Text Transfer Transformer)
+- Explain BART (Denoising Auto-Encoder)
+- Compare Comparison
+
+---
 
 ## Abstract
 Encoder-decoder architectures use separate components for processing input and generating output, enabling sequence-to-sequence tasks like translation and summarization.
@@ -145,6 +168,14 @@ bart_pretraining = [
 | BART | Pre-norm | Pre-norm | Summarization, Translation |
 | GPT | - | Pre-norm | Generation only |
 | BERT | Pre-norm | - | Encoding only |
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [3402: Decoder-Only Models (GPT, LLaMA, Mistral)](3402-Decoder-Only-Models.md)
 
 ---
 

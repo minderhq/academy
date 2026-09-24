@@ -8,6 +8,34 @@ Difficulty: Advanced
 
 # 7303: Multi-Agent Framework Comparison
 
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Framework Comparison Matrix](#framework-comparison-matrix)
+- [AutoGen (Microsoft)](#autogen-microsoft)
+- [LangGraph (LangChain)](#langgraph-langchain)
+- [CrewAI](#crewai)
+- [Recommendation for AI Engineering Curriculum](#recommendation-for-ai-engineering-curriculum)
+- [Hybrid Approach](#hybrid-approach)
+- [Performance Comparison](#performance-comparison)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Compare Framework Comparison Matrix
+- Explain AutoGen (Microsoft)
+- Explain LangGraph (LangChain)
+- Explain CrewAI
+- Explain Recommendation for AI Engineering Curriculum
+- Explain Hybrid Approach
+
+---
+
 ## Abstract
 Comprehensive comparison of multi-agent frameworks for building autonomous AI systems on AI Engineering Curriculum.
 
@@ -415,6 +443,15 @@ class HybridMultiAgentSystem:
 
 ---
 
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [7301: Collaborative Tasking - Multi-Agent Synergy](../7301-Orchestration.md)
+- [7302: Multi-Agent Communication Protocols](../7302-Communication-Protocols.md)
+
+---
+
 ## Next Steps
 
 - Return to: **[Module README](../README.md)**
@@ -424,6 +461,6 @@ class HybridMultiAgentSystem:
 
 **Related:**
 - [Related Guides](7303-Framework-Comparison.md)
-- [7202: Collaborative Tasking](../7301-Orchestration.md)
+- [7301: Collaborative Tasking](../7301-Orchestration.md)
 - [7102: Planning Decomposition](../../7100-architecture/7102-Planning-Decomposition.md)
 - [7103: ReAct Implementation Guide](../../7100-architecture/guides/7103-ReAct-Implementation-Guide.md)

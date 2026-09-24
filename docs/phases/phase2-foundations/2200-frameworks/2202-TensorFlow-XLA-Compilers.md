@@ -3,7 +3,7 @@ Document ID: 2202
 Title: TensorFlow XLA and Compiler Optimizations
 Phase: 2
 Module: 2200
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 4 hours
@@ -13,6 +13,36 @@ Tags: ['frameworks', 'pytorch', 'tensorflow', 'cuda']
 ---
 
 # 2202: TensorFlow XLA and Compiler Optimizations
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [What is XLA?](#what-is-xla)
+- [Enabling XLA](#enabling-xla)
+- [Operation Fusion](#operation-fusion)
+- [HLO (High-Level Optimizer) Instructions](#hlo-high-level-optimizer-instructions)
+- [Memory Optimization](#memory-optimization)
+- [XLA for a mini-PC (11GB-class GPU)](#xla-for-a-mini-pc-11gb-class-gpu)
+- [Performance Profiling](#performance-profiling)
+- [XLA Best Practices](#xla-best-practices)
+- [Troubleshooting XLA](#troubleshooting-xla)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain What is XLA
+- Explain Enabling XLA
+- Explain Operation Fusion
+- Explain HLO (High-Level Optimizer) Instructions
+- Explain Memory Optimization
+- Explain XLA for a mini-PC (11GB-class GPU)
+
+---
 
 ## Abstract
 XLA (Accelerated Linear Algebra) is a compiler-based linear algebra executor that optimizes TensorFlow computations. It fuses operations, reduces memory bandwidth usage, and accelerates execution on an 11GB-class GPU.
@@ -395,6 +425,15 @@ tf.debugging.set_log_device_placement(True)
 # Look for "XLA" in device placement logs
 # Example: "Executing op MatMul in device /job:localhost/replica:0/task:0/device:GPU:0 XLA_GPU"
 ```
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [2201: PyTorch Computational Graphs and Dynamic Execution](2201-PyTorch-Computational-Graphs.md)
+- [2203: CUDA Kernel Programming and GPU Architecture](2203-CUDA-Kernel-Syb-Level.md)
 
 ---
 

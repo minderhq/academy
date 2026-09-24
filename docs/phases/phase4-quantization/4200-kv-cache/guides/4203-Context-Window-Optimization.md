@@ -8,6 +8,36 @@ Difficulty: Advanced
 
 # 4203: Context Window Optimization Guide
 
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Context Window Architecture](#context-window-architecture)
+- [KV Cache Memory Analysis](#kv-cache-memory-analysis)
+- [Implementation 1: KV Cache Quantization](#implementation-1-kv-cache-quantization)
+- [Implementation 2: Sliding Window Attention](#implementation-2-sliding-window-attention)
+- [Implementation 3: Multi-Round Context Management](#implementation-3-multi-round-context-management)
+- [Implementation 4: Streaming with Long Context](#implementation-4-streaming-with-long-context)
+- [Implementation 5: Context Chunking Strategy](#implementation-5-context-chunking-strategy)
+- [Memory Optimization Strategies](#memory-optimization-strategies)
+- [Quick Start](#quick-start)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain Context Window Architecture
+- Explain KV Cache Memory Analysis
+- Apply Implementation 1: KV Cache Quantization
+- Apply Implementation 2: Sliding Window Attention
+- Apply Implementation 3: Multi-Round Context Management
+- Apply Implementation 4: Streaming with Long Context
+
+---
+
 ## Abstract
 Practical guide for optimizing context windows in transformer models on an 11GB VRAM GPU. Covers KV cache management, memory optimization, and long-context strategies.
 
@@ -757,6 +787,15 @@ nvidia-smi -l 1
 # - If underutilized: increase max_model_len or batch size
 ```
 
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [4201: Context Window Physics and OOM Prevention](../4201-Context-Window-Physics.md)
+- [4202: Speculative Decoding - Accelerating Large Models](../4202-Speculative-Decoding.md)
 
 ---
 

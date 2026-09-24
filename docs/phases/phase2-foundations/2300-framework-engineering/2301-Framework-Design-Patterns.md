@@ -3,7 +3,7 @@ Document ID: 2301
 Title: Framework Design Patterns
 Phase: 2
 Module: 2300
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -19,6 +19,35 @@ Tags: ['frameworks', 'architecture', 'api-design', 'production']
 **Last Updated:** 2026-02-04
 **Status:** Complete
 **Estimated Time:** 2 hours
+
+---
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Pattern Categories](#pattern-categories)
+- [Pattern 1: Model Abstraction Layer](#pattern-1-model-abstraction-layer)
+- [Pattern 2: Configuration Management](#pattern-2-configuration-management)
+- [Pattern 3: Plugin Architecture](#pattern-3-plugin-architecture)
+- [Pattern 4: Version Handler](#pattern-4-version-handler)
+- [Exercise: Build Your Own Framework](#exercise-build-your-own-framework)
+- [Related Topics](#related-topics)
+- [Summary](#summary)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain Pattern Categories
+- Explain Pattern 1: Model Abstraction Layer
+- Configure and operate Pattern 2: Configuration Management
+- Explain Pattern 3: Plugin Architecture
+- Explain Pattern 4: Version Handler
+- Explain Exercise: Build Your Own Framework
 
 ---
 
@@ -1207,6 +1236,16 @@ See: [2306: Building Production Framework](./guides/2306-Building-Production-Fra
 - PyTorch Lightning (abstraction + plugins)
 - LangChain (plugins + versioning)
 - FastAPI (plugin middlewares)
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [2302: Model Serving Architectures](2302-Model-Serving-Architectures.md)
+- [2303: API Design for ML Systems](2303-API-Design-for-ML.md)
+- [2304: Production Deployment Patterns](2304-Production-Deployment-Patterns.md)
 
 ---
 

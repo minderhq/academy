@@ -3,7 +3,7 @@ Document ID: 1301
 Title: K3s Master-Worker Architecture
 Phase: 1
 Module: 1300
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -13,6 +13,35 @@ Tags: ['infrastructure', 'kubernetes', 'k3s', 'gpu']
 ---
 
 # 1301: K3s Master-Worker Architecture
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Architecture Overview](#architecture-overview)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [GPU Node Configuration](#gpu-node-configuration)
+- [Storage Integration](#storage-integration)
+- [Networking](#networking)
+- [Resource Management](#resource-management)
+- [Monitoring](#monitoring)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain Architecture Overview
+- Apply Installation
+- Apply Configuration
+- Configure and operate GPU Node Configuration
+- Explain Storage Integration
+- Explain Networking
+
+---
 
 ## Abstract
 K3s is a lightweight Kubernetes distribution optimized for edge computing and IoT. Here it orchestrates a small multi-node cluster: a control-plane node (any Linux VM or box) and a GPU worker node that runs AI workloads.
@@ -319,6 +348,15 @@ helm repo add prometheus-community https://prometheus-community.github.io/helm-c
 helm install prometheus-node-exporter prometheus-community/prometheus-node-exporter \
   --set service.hostPort=9100
 ```
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [1302: GPU Scheduler Configuration](1302-GPU-Scheduler.md)
+- [1303: Storage Classes for Dynamic Provisioning](1303-Storage-Classes.md)
 
 ---
 

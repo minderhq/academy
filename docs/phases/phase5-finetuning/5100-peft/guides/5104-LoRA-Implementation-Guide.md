@@ -8,6 +8,36 @@ Difficulty: Advanced
 
 # 5104: LoRA Implementation Guide
 
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [LoRA Architecture](#lora-architecture)
+- [Implementation 1: LoRA from Scratch](#implementation-1-lora-from-scratch)
+- [Implementation 2: LoRA with transformers](#implementation-2-lora-with-transformers)
+- [Implementation 3: QLoRA (4-bit LoRA)](#implementation-3-qlora-4-bit-lora)
+- [Implementation 4: Multi-Adapter LoRA](#implementation-4-multi-adapter-lora)
+- [Performance Benchmarks](#performance-benchmarks)
+- [Best Practices](#best-practices)
+- [Troubleshooting](#troubleshooting)
+- [Quick Start](#quick-start)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain LoRA Architecture
+- Apply Implementation 1: LoRA from Scratch
+- Apply Implementation 2: LoRA with transformers
+- Apply Implementation 3: QLoRA (4-bit LoRA)
+- Apply Implementation 4: Multi-Adapter LoRA
+- Measure and evaluate Performance Benchmarks
+
+---
+
 ## Abstract
 Complete implementation guide for LoRA (Low-Rank Adaptation) fine-tuning on an 11GB VRAM GPU. From theory to production deployment.
 
@@ -774,6 +804,16 @@ python merge_lora.py \
     --output_dir ./merged-model
 ```
 
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [5101: LoRA (Low-Rank Adaptation) Logic](../5101-LoRA-Logic.md)
+- [5102: QLoRA Pipelines - 4-bit Fine-Tuning on Consumer Hardware](../5102-QLoRA-Pipelines.md)
+- [5103: Adapters & Parameter-Efficient Adaptation Methods](../5103-Adapters.md)
 
 ---
 

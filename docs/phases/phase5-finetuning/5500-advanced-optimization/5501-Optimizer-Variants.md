@@ -3,7 +3,7 @@ Document ID: 5501
 Title: Optimizer Variants
 Phase: Unknown
 Module: 5500
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Review
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -13,6 +13,25 @@ Tags: ['documentation']
 ---
 
 # 5501: Optimizer Variants
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Common Optimizers](#common-optimizers)
+- [Choosing an Optimizer](#choosing-an-optimizer)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain Common Optimizers
+- Explain Choosing an Optimizer
+
+---
 
 ## Abstract
 
@@ -123,6 +142,15 @@ Model Size > 10B:
 └─ Use Adafactor or 8-bit AdamW
 ```
 
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [5502: Learning Rate Scheduling](5502-Learning-Rate-Scheduling.md)
+- [5503: Advanced Optimization Techniques](5503-Advanced-Techniques.md)
 
 ---
 

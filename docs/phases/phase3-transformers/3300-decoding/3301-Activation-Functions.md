@@ -3,7 +3,7 @@ Document ID: 3301
 Title: Activation Functions - GELU, SwiGLU, and Beyond
 Phase: 3
 Module: 3300
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 2 hours
@@ -13,6 +13,34 @@ Tags: ['transformers', 'activation', 'gelu', 'swiglu', 'normalization']
 ---
 
 # 3301: Activation Functions - GELU, SwiGLU, and Beyond
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [From ReLU to Modern Activations](#from-relu-to-modern-activations)
+- [GELU (Gaussian Error Linear Unit)](#gelu-gaussian-error-linear-unit)
+- [SwiGLU (Swish-Gated Linear Unit)](#swiglu-swish-gated-linear-unit)
+- [Comparison in Transformers](#comparison-in-transformers)
+- [Other Activations](#other-activations)
+- [Activation Function Properties](#activation-function-properties)
+- [Choosing the Right Activation](#choosing-the-right-activation)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain From ReLU to Modern Activations
+- Explain GELU (Gaussian Error Linear Unit)
+- Explain SwiGLU (Swish-Gated Linear Unit)
+- Compare Comparison in Transformers
+- Explain Other Activations
+- Explain Activation Function Properties
+
+---
 
 ## Abstract
 Activation functions introduce non-linearity into neural networks. Modern LLMs use specialized activations like GELU and SwiGLU that outperform traditional ReLU in transformer architectures.
@@ -375,6 +403,14 @@ SwiGLU        2x       1x        -0.8
 All values relative to ReLU baseline
 Negative perplexity = improvement
 ```
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [3302: Normalization Layers - BatchNorm vs LayerNorm vs RMSNorm](3302-Normalization-Layers.md)
 
 ---
 

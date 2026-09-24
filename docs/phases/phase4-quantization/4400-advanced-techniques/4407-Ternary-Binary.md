@@ -3,7 +3,7 @@ Document ID: 4407
 Title: Ternary & Binary Networks
 Phase: 4
 Module: 4400
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Review
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -13,6 +13,33 @@ Tags: ['quantization', 'binary', 'ternary', 'extreme']
 ---
 
 # 4407: Ternary & Binary Networks
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Binary vs Ternary Networks](#binary-vs-ternary-networks)
+- [Binary Neural Networks](#binary-neural-networks)
+- [Ternary Neural Networks](#ternary-neural-networks)
+- [Training Binary/Ternary Networks](#training-binaryternary-networks)
+- [Hardware Optimization](#hardware-optimization)
+- [State of the Art Results](#state-of-the-art-results)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Compare Binary vs Ternary Networks
+- Explain Binary Neural Networks
+- Explain Ternary Neural Networks
+- Explain Training Binary/Ternary Networks
+- Explain Hardware Optimization
+- Explain State of the Art Results
+
+---
 
 ## Abstract
 
@@ -496,3 +523,12 @@ def binary_matmul_gpu(a, b):
 **Next:** [guides/4408: Quantizing for Production](./guides/4408-Quantizing-for-Production.md)
 
 **Last Updated:** 2026-02-05
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [4405: Sparsity + Quantization](4405-Sparsity-Quantization.md)
+- [4406: 1.58-bit Quantization](4406-1.58-bit-Quantization.md)
+
+---

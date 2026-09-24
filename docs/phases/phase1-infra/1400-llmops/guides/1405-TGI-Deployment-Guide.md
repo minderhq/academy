@@ -8,6 +8,38 @@ Difficulty: Intermediate
 
 # 1405: Text Generation Inference (TGI) Deployment Guide
 
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [TGI vs vLLM Comparison](#tgi-vs-vllm-comparison)
+- [Quick Start](#quick-start)
+- [Configuration Guide](#configuration-guide)
+- [Parameter Reference](#parameter-reference)
+- [Deployment Options](#deployment-options)
+- [Client Usage Examples](#client-usage-examples)
+- [Advanced Features](#advanced-features)
+- [Performance Tuning](#performance-tuning)
+- [Monitoring](#monitoring)
+- [Troubleshooting](#troubleshooting)
+- [Quick Start](#quick-start-1)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Compare TGI vs vLLM Comparison
+- Explain Quick Start
+- Apply Configuration Guide
+- Explain Parameter Reference
+- Apply Deployment Options
+- Explain Client Usage Examples
+
+---
+
 ## Abstract
 Complete deployment guide for Text Generation Inference (TGI), Hugging Face's high-performance LLM serving engine, optimized for AI Engineering Curriculum infrastructure.
 
@@ -748,6 +780,14 @@ pip install requests
 python -c "import requests; print(requests.post('http://localhost:8080/generate', json={'inputs': 'Hello!', 'parameters': {'max_new_tokens': 50}}).json()[0]['generated_text'])"
 ```
 
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [1404: vLLM Production Deployment Guide](1404-vLLM-Production-Deployment.md)
 
 ---
 

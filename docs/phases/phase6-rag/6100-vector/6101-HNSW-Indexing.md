@@ -3,7 +3,7 @@ Document ID: 6101
 Title: HNSW Indexing - Efficient Semantic Search at Scale
 Phase: 6
 Module: 6100
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -13,6 +13,33 @@ Tags: ['rag', 'vectors', 'hnsw', 'embeddings', 'similarity']
 ---
 
 # 6101: HNSW Indexing - Efficient Semantic Search at Scale
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [The Problem of Vector Search](#the-problem-of-vector-search)
+- [HNSW Algorithm](#hnsw-algorithm)
+- [Using FAISS (Production HNSW)](#using-faiss-production-hnsw)
+- [HNSW Parameters](#hnsw-parameters)
+- [Integration with Embedding Models](#integration-with-embedding-models)
+- [Evaluation](#evaluation)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain The Problem of Vector Search
+- Explain HNSW Algorithm
+- Explain Using FAISS (Production HNSW)
+- Explain HNSW Parameters
+- Apply Integration with Embedding Models
+- Measure and evaluate Evaluation
+
+---
 
 ## Abstract
 HNSW (Hierarchical Navigable Small World) graphs enable efficient approximate nearest neighbor search in high-dimensional vector spaces. This is essential for semantic search and RAG systems.
@@ -447,6 +474,14 @@ def evaluate_hnsw_index(index, test_queries, ground_truth, ef_values):
 # ef=200: recall=99%,  time=4.0ms
 ```
 
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [6102: Semantic Similarity Metrics - Cosine, Dot Product, and Manifold Metrics](6102-Semantic-Similarity.md)
 
 ---
 

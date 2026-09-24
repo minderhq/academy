@@ -8,6 +8,31 @@ Difficulty: Advanced
 
 # 7103: ReAct Agent Implementation Guide
 
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Architecture Overview](#architecture-overview)
+- [Complete Implementation](#complete-implementation)
+- [Advanced Features](#advanced-features)
+- [Production Deployment](#production-deployment)
+- [Best Practices](#best-practices)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain Architecture Overview
+- Configure and operate Complete Implementation
+- Explain Advanced Features
+- Configure and operate Production Deployment
+- Explain Best Practices
+
+---
+
 ## Abstract
 Complete implementation guide for building production-ready ReAct (Reasoning + Acting) agents on AI Engineering Curriculum infrastructure.
 
@@ -685,6 +710,15 @@ except Exception as e:
     # Log and continue
 ```
 
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [7101: ReAct (Reasoning + Acting) Loop System](../7101-ReAct-Loop-System.md)
+- [7102: Planning and Task Decomposition](../7102-Planning-Decomposition.md)
 
 ---
 

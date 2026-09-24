@@ -3,7 +3,7 @@ Document ID: 6503
 Title: Model Registry
 Phase: 6
 Module: 6500
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -19,6 +19,34 @@ Tags: ['mlops', 'pipeline', 'ci-cd', 'model-registry', 'lifecycle']
 **Last Updated:** 2026-02-04
 **Status:** Complete
 **Estimated Time:** 2 hours
+
+---
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Model Registry Architecture](#model-registry-architecture)
+- [MLflow Integration](#mlflow-integration)
+- [Weights & Biases Integration](#weights-biases-integration)
+- [Model Versioning Strategy](#model-versioning-strategy)
+- [Model Metadata Management](#model-metadata-management)
+- [Production Deployment](#production-deployment)
+- [Related Resources](#related-resources)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain Model Registry Architecture
+- Explain MLflow Integration
+- Explain Weights & Biases Integration
+- Explain Model Versioning Strategy
+- Explain Model Metadata Management
+- Configure and operate Production Deployment
 
 ---
 
@@ -746,6 +774,15 @@ class ModelLoader:
 - **Related:** [1502: Model Drift Detection](../../phase1-infra/1500-monitoring/1502-Model-Drift-Detection.md)
 - **Experiment:** [EXP_6501: MLOps Pipeline](../../../../experiments/EXP_6501_MLOPS_PIPELINE.md)
 
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [6501: ML Model Lifecycle Management](6501-ML-Lifecycle-Management.md)
+- [6502: CI/CD for Machine Learning](6502-CI-CD-for-ML.md)
 
 ---
 

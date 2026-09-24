@@ -3,7 +3,7 @@ Document ID: 7201
 Title: Tool Calling & Function Execution
 Phase: 7
 Module: 7200
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -13,6 +13,37 @@ Tags: ['agents', 'tool-calling', 'function-calling', 'code-interpreter']
 ---
 
 # 7201: Tool Calling & Function Execution
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [What is Tool Calling?](#what-is-tool-calling)
+- [Tool Calling Mechanism](#tool-calling-mechanism)
+- [Tool Types](#tool-types)
+- [OpenAI Function Calling](#openai-function-calling)
+- [Tool Calling Best Practices](#tool-calling-best-practices)
+- [Advanced Tool Calling Patterns](#advanced-tool-calling-patterns)
+- [Tool Calling Security](#tool-calling-security)
+- [Tool Calling vs ReAct](#tool-calling-vs-react)
+- [AI Engineering Curriculum Implementation](#ai-engineering-curriculum-implementation)
+- [Experiment](#experiment)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain What is Tool Calling
+- Explain Tool Calling Mechanism
+- Explain Tool Types
+- Explain OpenAI Function Calling
+- Explain Tool Calling Best Practices
+- Explain Advanced Tool Calling Patterns
+
+---
 
 ## Abstract
 
@@ -468,6 +499,14 @@ tools = {
 - Tool selection: >95% accuracy
 - Parameter extraction: >90% F1 score
 
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [7200: Tool Calling and Function Execution](README.md)
 
 ---
 

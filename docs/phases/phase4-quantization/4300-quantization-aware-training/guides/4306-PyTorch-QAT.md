@@ -1,12 +1,43 @@
 ---
 Document ID: 4306
 Title: "4306: PyTorch QAT Guide"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
 ---
 
 # 4306: PyTorch QAT Guide
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [PyTorch QAT API Overview](#pytorch-qat-api-overview)
+- [Basic Workflow](#basic-workflow)
+- [Advanced Configuration](#advanced-configuration)
+- [Skipping Layers](#skipping-layers)
+- [Training Best Practices](#training-best-practices)
+- [Debugging QAT](#debugging-qat)
+- [Export for Deployment](#export-for-deployment)
+- [Performance Measurement](#performance-measurement)
+- [Common Issues](#common-issues)
+- [Further Resources](#further-resources)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain PyTorch QAT API Overview
+- Explain Basic Workflow
+- Configure and operate Advanced Configuration
+- Explain Skipping Layers
+- Explain Training Best Practices
+- Diagnose and resolve QAT
+
+---
 
 ## Abstract
 
@@ -435,6 +466,15 @@ model = quant.convert(model)
 - **Documentation:** https://pytorch.org/docs/stable/quantization.html
 - **Tutorial:** "Quantization Aware Training" (PyTorch tutorials)
 - **Examples:** PyTorch GitHub examples/quantization
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [4307: Transformers QAT Guide](4307-Transformers-QAT.md)
+- [4308: BitBlade QAT Guide](4308-BitBlade-QAT.md)
+
+---
 
 ## Next Steps
 

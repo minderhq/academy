@@ -3,7 +3,7 @@ Document ID: 2302
 Title: Model Serving Architectures
 Phase: 2
 Module: 2300
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -19,6 +19,35 @@ Tags: ['frameworks', 'architecture', 'api-design', 'production']
 **Last Updated:** 2026-02-04
 **Status:** Complete
 **Estimated Time:** 2.5 hours
+
+---
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Architecture 1: Request Batching](#architecture-1-request-batching)
+- [Architecture 2: Model Parallelism](#architecture-2-model-parallelism)
+- [Architecture 3: Load Balancing](#architecture-3-load-balancing)
+- [Architecture 4: Caching Strategies](#architecture-4-caching-strategies)
+- [Real-World: vLLM Architecture](#real-world-vllm-architecture)
+- [Exercise: Build a Serving System](#exercise-build-a-serving-system)
+- [Related Topics](#related-topics)
+- [Summary](#summary)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain Architecture 1: Request Batching
+- Explain Architecture 2: Model Parallelism
+- Explain Architecture 3: Load Balancing
+- Explain Architecture 4: Caching Strategies
+- Explain Real-World: vLLM Architecture
+- Explain Exercise: Build a Serving System
 
 ---
 
@@ -1203,6 +1232,16 @@ See: [2306: Building Production Framework](./guides/2306-Building-Production-Fra
 - [2303: API Design for ML](./2303-API-Design-for-ML.md) - Build APIs for served models
 - [2304: Production Deployment](./2304-Production-Deployment-Patterns.md) - Deploy serving systems
 - [LAB-007: Production RAG](../../../learning-resources/labs/LAB-007-Production-RAG.md) - Hands-on practice
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [2301: Framework Design Patterns](2301-Framework-Design-Patterns.md)
+- [2303: API Design for ML Systems](2303-API-Design-for-ML.md)
+- [2304: Production Deployment Patterns](2304-Production-Deployment-Patterns.md)
 
 ---
 

@@ -3,7 +3,7 @@ Document ID: 2403
 Title: Evaluation Frameworks for Language Models
 Phase: 2
 Module: 2400
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 6 hours
@@ -15,6 +15,32 @@ Tags: ['training', 'pretraining', 'evaluation', 'fsdp']
 # 2403: Evaluation Frameworks for Language Models
 
 **"Measuring Intelligence"** - Comprehensive evaluation of LLM quality and capabilities.
+
+---
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Part 1: Perplexity & Language Modeling Metrics](#part-1-perplexity-language-modeling-metrics)
+- [Part 2: Standard Benchmarks](#part-2-standard-benchmarks)
+- [Part 3: Human Preference Metrics](#part-3-human-preference-metrics)
+- [Part 4: Automated Evaluation Pipeline](#part-4-automated-evaluation-pipeline)
+- [Part 5: Evaluation Best Practices](#part-5-evaluation-best-practices)
+- [Summary](#summary)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Measure and evaluate Part 1: Perplexity & Language Modeling Metrics
+- Measure and evaluate Part 2: Standard Benchmarks
+- Measure and evaluate Part 3: Human Preference Metrics
+- Measure and evaluate Part 4: Automated Evaluation Pipeline
+- Measure and evaluate Part 5: Evaluation Best Practices
 
 ---
 
@@ -914,6 +940,15 @@ Complete Evaluation:
     [ ] Document all details
     [ ] Share evaluation code
 ```
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [2401: Pre-training Fundamentals](2401-Pre-training-Fundamentals.md)
+- [2402: Large-Scale Training for Language Models](2402-Large-Scale-Training.md)
 
 ---
 

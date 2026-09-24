@@ -600,7 +600,7 @@ def decompose_task(query):
    - State machine flows
    - Choose the right framework
 
-2. **[7202: Collaborative Tasking](../phases/phase7-agentic/7300-orchestration/7301-Orchestration.md)** (3-4 hours)
+2. **[7301: Collaborative Tasking](../phases/phase7-agentic/7300-orchestration/7301-Orchestration.md)** (3-4 hours)
    - Multi-agent architectures
    - Role specialization
    - Communication protocols
@@ -902,7 +902,7 @@ Use this checklist to track your progress:
 - [ ] **LAB-004: ReAct Agent** (4 hours)
 - [ ] **7102: Planning** (2-3 hours)
 - [ ] **7201: AutoGen vs LangGraph** (2-3 hours)
-- [ ] **7202: Collaborative Tasking** (3-4 hours)
+- [ ] **7301: Collaborative Tasking** (3-4 hours)
 - [ ] **7301: Safe Python Interpreter** (2-3 hours)
 - [ ] **7404: Agent Memory Implementation** (3-4 hours)
 

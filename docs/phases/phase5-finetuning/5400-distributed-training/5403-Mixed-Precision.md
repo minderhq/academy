@@ -3,7 +3,7 @@ Document ID: 5403
 Title: Mixed Precision Training
 Phase: 5
 Module: 5400
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Review
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -13,6 +13,35 @@ Tags: ['training', 'optimization', 'precision']
 ---
 
 # 5403: Mixed Precision Training
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Precision Formats](#precision-formats)
+- [Automatic Mixed Precision (AMP)](#automatic-mixed-precision-amp)
+- [Loss Scaling](#loss-scaling)
+- [Implementation Patterns](#implementation-patterns)
+- [Best Practices](#best-practices)
+- [Performance Optimization](#performance-optimization)
+- [Common Issues](#common-issues)
+- [Framework Support](#framework-support)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain Precision Formats
+- Explain Automatic Mixed Precision (AMP)
+- Explain Loss Scaling
+- Apply Implementation Patterns
+- Explain Best Practices
+- Measure and evaluate Performance Optimization
+
+---
 
 ## Abstract
 
@@ -321,3 +350,12 @@ def pad_to_eight(x):
 **Next:** [5404: Distributed Optimization](./5404-Distributed-Optimization.md)
 
 **Last Updated:** 2026-02-05
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [5402: Model Parallelism](5402-Model-Parallelism.md)
+- [5404: Distributed Optimization](5404-Distributed-Optimization.md)
+
+---

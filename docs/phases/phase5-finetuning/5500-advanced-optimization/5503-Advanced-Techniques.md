@@ -3,7 +3,7 @@ Document ID: 5503
 Title: Advanced Optimization Techniques
 Phase: 5
 Module: 5500
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Review
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -13,6 +13,36 @@ Tags: ['optimization', 'training', 'advanced']
 ---
 
 # 5503: Advanced Optimization Techniques
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Gradient Clipping](#gradient-clipping)
+- [Regularization Techniques](#regularization-techniques)
+- [Learning Rate Warmup](#learning-rate-warmup)
+- [Advanced Optimizer Features](#advanced-optimizer-features)
+- [Gradient Accumulation](#gradient-accumulation)
+- [Gradient Checkpointing](#gradient-checkpointing)
+- [Sharpness-Aware Minimization (SAM)](#sharpness-aware-minimization-sam)
+- [Apex Learning Rate (Super-Convergence)](#apex-learning-rate-super-convergence)
+- [Best Practices Summary](#best-practices-summary)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain Gradient Clipping
+- Explain Regularization Techniques
+- Explain Learning Rate Warmup
+- Explain Advanced Optimizer Features
+- Explain Gradient Accumulation
+- Explain Gradient Checkpointing
+
+---
 
 ## Abstract
 
@@ -449,3 +479,12 @@ def find_lr(model, dataloader, optimizer, init_lr=1e-7, final_lr=10, num_iter=10
 **Next:** [Assessment](./assessment/QUIZ.md)
 
 **Last Updated:** 2026-02-05
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [5501: Optimizer Variants](5501-Optimizer-Variants.md)
+- [5502: Learning Rate Scheduling](5502-Learning-Rate-Scheduling.md)
+
+---

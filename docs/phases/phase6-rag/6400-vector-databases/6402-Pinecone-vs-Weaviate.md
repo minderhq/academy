@@ -3,7 +3,7 @@ Document ID: 6402
 Title: Vector Database Comparison
 Phase: 6
 Module: 6400
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -13,6 +13,19 @@ Tags: ['rag', 'vector-db', 'qdrant', 'pinecone', 'weaviate', 'milvus', 'chroma']
 ---
 
 # 6402: Vector Database Comparison
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Compare Feature Comparison Matrix
+- Explain Database Deep Dives
+- Measure and evaluate Performance Benchmarks
+- Configure and operate Implementation Examples
+- Explain Selection Guide
+- Configure and operate Migration Strategies
+
+---
 
 ## Abstract
 
@@ -1021,6 +1034,14 @@ class VectorDBImporter:
 - Use **Weaviate** for complex features
 - Use **Milvus** for massive scale
 - Use **pgvector** for PostgreSQL integration
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [6401: Qdrant Setup Guide](6401-Qdrant-Setup.md)
 
 ---
 

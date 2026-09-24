@@ -8,6 +8,29 @@ Difficulty: Advanced
 
 # 7202: Code Interpreter - Sandbox Execution for Agent Code Testing
 
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Sandbox Architecture](#sandbox-architecture)
+- [Resource Management](#resource-management)
+- [Safe Execution for Agents](#safe-execution-for-agents)
+- [Monitoring and Logging](#monitoring-and-logging)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain Sandbox Architecture
+- Explain Resource Management
+- Explain Safe Execution for Agents
+- Measure and evaluate Monitoring and Logging
+
+---
+
 ## Abstract
 A safe Python interpreter enables agents to execute code in a sandboxed environment, preventing malicious or erroneous code from affecting the host system.
 
@@ -485,6 +508,14 @@ class MonitoredSandbox:
         }
 ```
 
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [7201: Tool Calling & Function Execution](../7201-Tool-Calling.md)
 
 ---
 

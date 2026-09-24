@@ -313,6 +313,16 @@ traceroute 1.1.1.1
 
 ---
 
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [1102: Network Topology Design](1102-Star-Topology-Core.md)
+- [1103: Jumbo Frames and MTU Optimization](1103-Jumbo-Frames-and-MTU.md)
+- [1201: Proxmox Hypervisor Standard Operating Procedures](../1200-virtualization/1201-Proxmox-Hypervisor-SOP.md)
+
+---
+
 ## Next Steps
 
 - Continue with: **[1102: Network Topology Design](./1102-Star-Topology-Core.md)**

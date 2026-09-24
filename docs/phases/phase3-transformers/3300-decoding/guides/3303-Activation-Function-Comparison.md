@@ -8,6 +8,35 @@ Difficulty: Advanced
 
 # 3303: Activation Function Comparison
 
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Activation Functions Comparison](#activation-functions-comparison)
+- [Mathematical Definitions](#mathematical-definitions)
+- [Performance Comparison](#performance-comparison)
+- [PyTorch Implementations](#pytorch-implementations)
+- [Visualization](#visualization)
+- [Model-Specific Usage](#model-specific-usage)
+- [Recommendations](#recommendations)
+- [Performance on an 11GB-class GPU](#performance-on-an-11gb-class-gpu)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Compare Activation Functions Comparison
+- Explain Mathematical Definitions
+- Compare Performance Comparison
+- Configure and operate PyTorch Implementations
+- Explain Visualization
+- Explain Model-Specific Usage
+
+---
+
 ## Abstract
 Comprehensive comparison of activation functions used in modern transformer models.
 
@@ -327,6 +356,15 @@ Use the same activation as the base model:
 | SiLU | 3.5 | 1.2 |
 | SwiGLU | 4.8 | 1.8 |
 
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [3301: Activation Functions - GELU, SwiGLU, and Beyond](../3301-Activation-Functions.md)
+- [3302: Normalization Layers - BatchNorm vs LayerNorm vs RMSNorm](../3302-Normalization-Layers.md)
 
 ---
 

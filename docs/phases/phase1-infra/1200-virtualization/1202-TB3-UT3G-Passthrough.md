@@ -16,6 +16,19 @@ Software: [Proxmox VE, Linux guest with NVIDIA drivers]
 
 # 1202: GPU Passthrough (IOMMU/VFIO)
 
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain Overview
+- Explain Prerequisites: IOMMU Hardware Support
+- Explain Enabling IOMMU in the Kernel
+- Explain Verifying IOMMU Groups
+- Explain VFIO Binding and Host Driver Blacklisting
+- Configure and operate Proxmox VM Configuration
+
+---
+
 ## Abstract
 
 GPU passthrough assigns a physical NVIDIA GPU to a single virtual machine, giving that VM near-native CUDA performance while the host runs other workloads. This document covers the IOMMU prerequisites, kernel configuration, IOMMU group verification, VFIO binding, and the Proxmox VM settings required to make passthrough work on any x86_64 host with VT-d or AMD-Vi.
@@ -359,6 +372,16 @@ dmesg | grep -i -e NVRM -e nvidia
 ## 10. When a Dedicated GPU Beats an External One
 
 A GPU connected by a physical PCIe slot is the reference case: full x16 bandwidth, no added latency, and the simplest IOMMU layout. If your machine is a laptop or small-form-factor box without a free slot, a GPU over an external enclosure is workable - the card appears as a regular PCIe device, and everything in this document applies unchanged. The caveat is bandwidth: external links (e.g., Thunderbolt's PCIe tunneling) carry roughly a quarter of a physical x16 slot, so workloads that shuttle large tensors between host RAM and VRAM pay a measurable penalty, while VRAM-resident inference is barely affected. For a learning lab, either path is fine; for a permanent multi-node setup, prefer native PCIe.
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [1201: Proxmox Hypervisor Standard Operating Procedures](1201-Proxmox-Hypervisor-SOP.md)
+- [1203: NVIDIA Kernel Module Management](1203-Nvidia-Kernel-Module.md)
+- [1204: Multi-GPU Setup](1204-Multi-GPU-Setup.md)
 
 ---
 

@@ -3,7 +3,7 @@ Document ID: 4304
 Title: Low-bit QAT
 Phase: 4
 Module: 4300
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -13,6 +13,35 @@ Tags: ['quantization', 'qat', 'quantization-aware-training']
 ---
 
 # 4304: Low-bit QAT
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Bit-Width Comparison](#bit-width-comparison)
+- [Challenges at Low Bits](#challenges-at-low-bits)
+- [Advanced Techniques](#advanced-techniques)
+- [Training Strategies](#training-strategies)
+- [Practical Results](#practical-results)
+- [Implementation Checklist](#implementation-checklist)
+- [When to Use Each Bit-Width](#when-to-use-each-bit-width)
+- [Further Reading](#further-reading)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Compare Bit-Width Comparison
+- Explain Challenges at Low Bits
+- Explain Advanced Techniques
+- Explain Training Strategies
+- Explain Practical Results
+- Apply Implementation Checklist
+
+---
 
 ## Abstract
 
@@ -328,6 +357,17 @@ For successful 4-bit QAT:
 - **Paper:** "QAT meets LLM: Training 4-bit Large Language Models" (2024)
 - **Library:** bitsandbytes `NF4` quantization
 - **Library:** AutoGPTQ 4-bit mode
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [4301: QAT Foundations](4301-QAT-Foundations.md)
+- [4302: Fake Quantization](4302-Fake-Quantization.md)
+- [4303: QAT for Transformers](4303-QAT-for-Transformers.md)
+- [4305: Quantization Configuration](4305-Quantization-Configuration.md)
+
+---
 
 ## Next Steps
 

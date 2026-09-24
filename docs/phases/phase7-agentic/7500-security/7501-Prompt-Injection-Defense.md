@@ -3,7 +3,7 @@ Document ID: 7501
 Title: Prompt Injection Defense
 Phase: 7
 Module: 7500
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -19,6 +19,34 @@ Tags: ['agents', 'security', 'prompt-injection', 'pii', 'adversarial']
 **Last Updated:** 2026-02-04
 **Status:** Complete
 **Estimated Time:** 2 hours
+
+---
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Prompt Injection Taxonomy](#prompt-injection-taxonomy)
+- [Attack Vectors](#attack-vectors)
+- [Defense Strategies](#defense-strategies)
+- [Defense in Depth](#defense-in-depth)
+- [Testing & Validation](#testing-validation)
+- [Production Checklist](#production-checklist)
+- [Related Resources](#related-resources)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain Prompt Injection Taxonomy
+- Explain Attack Vectors
+- Explain Defense Strategies
+- Explain Defense in Depth
+- Explain Testing & Validation
+- Explain Production Checklist
 
 ---
 
@@ -653,6 +681,15 @@ class RedTeamTester:
 - **Related:** [1503: LLM Observability](../../phase1-infra/1500-monitoring/1503-LLM-Observability.md)
 - **Experiment:** [EXP_7501: Prompt Injection](../../../../experiments/EXP_7501_PROMPT_INJECTION.md)
 
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [7502: PII Redaction & Privacy Filtering](7502-PII-Redaction.md)
+- [7503: Adversarial Attacks & Defense](7503-Adversarial-Attacks.md)
 
 ---
 

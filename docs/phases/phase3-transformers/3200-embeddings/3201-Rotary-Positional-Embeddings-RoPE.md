@@ -3,7 +3,7 @@ Document ID: 3201
 Title: Rotary Positional Embeddings (RoPE)
 Phase: 3
 Module: 3200
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -13,6 +13,34 @@ Tags: ['transformers', 'embeddings', 'rope', 'tokenization', 'bpe']
 ---
 
 # 3201: Rotary Positional Embeddings (RoPE)
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [The Problem with Positional Encodings](#the-problem-with-positional-encodings)
+- [RoPE: Rotary Positional Embeddings](#rope-rotary-positional-embeddings)
+- [Why RoPE Works](#why-rope-works)
+- [RoPE Variants](#rope-variants)
+- [RoPE in Practice](#rope-in-practice)
+- [Extended Context with RoPE](#extended-context-with-rope)
+- [Comparison with Other Methods](#comparison-with-other-methods)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain The Problem with Positional Encodings
+- Explain RoPE: Rotary Positional Embeddings
+- Explain the reasoning behind Why RoPE Works
+- Explain RoPE Variants
+- Explain RoPE in Practice
+- Explain Extended Context with RoPE
+
+---
 
 ## Abstract
 RoPE (Rotary Positional Embeddings) is a position encoding method that injects position information into the attention mechanism through rotation. It's the dominant approach in modern LLMs (LLaMA, Mistral, etc.).
@@ -367,6 +395,14 @@ def extend_context_via_interpolation(original_max_len=2048, new_max_len=8192):
 | Relative Bias | O(L²) | ~ | ✓ | High |
 | ALiBi | 0 | ✓ | ✓ | Low |
 | RoPE | 0 | ✓ | ✓ | Medium |
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [3202: Tokenizer Sciences - BPE, SentencePiece, and Tiktoken](3202-Tokenizer-Sciences.md)
 
 ---
 

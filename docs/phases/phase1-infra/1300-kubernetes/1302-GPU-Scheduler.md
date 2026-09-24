@@ -3,7 +3,7 @@ Document ID: 1302
 Title: GPU Scheduler Configuration
 Phase: 1
 Module: 1300
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -13,6 +13,35 @@ Tags: ['infrastructure', 'kubernetes', 'k3s', 'gpu']
 ---
 
 # 1302: GPU Scheduler Configuration
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [GPU Resource Model](#gpu-resource-model)
+- [NVIDIA Device Plugin](#nvidia-device-plugin)
+- [Scheduling Strategies](#scheduling-strategies)
+- [Resource Management](#resource-management)
+- [Workload Isolation](#workload-isolation)
+- [Scheduler Behavior](#scheduler-behavior)
+- [Monitoring GPU Usage](#monitoring-gpu-usage)
+- [Common Patterns](#common-patterns)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain GPU Resource Model
+- Explain NVIDIA Device Plugin
+- Explain Scheduling Strategies
+- Explain Resource Management
+- Explain Workload Isolation
+- Explain Scheduler Behavior
+
+---
 
 ## Abstract
 The K3s GPU scheduler enables intelligent allocation of 11GB-class GPU resources across AI workloads. This document covers device plugin configuration, resource management, and scheduling strategies.
@@ -427,6 +456,15 @@ spec:
           persistentVolumeClaim:
             claimName: model-output
 ```
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [1301: K3s Master-Worker Architecture](1301-K3s-Master-Worker-Arch.md)
+- [1303: Storage Classes for Dynamic Provisioning](1303-Storage-Classes.md)
 
 ---
 

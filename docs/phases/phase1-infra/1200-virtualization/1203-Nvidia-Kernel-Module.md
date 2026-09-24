@@ -3,7 +3,7 @@ Document ID: 1203
 Title: NVIDIA Kernel Module Management
 Phase: 1
 Module: 1200
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -13,6 +13,35 @@ Tags: ['infrastructure', 'virtualization', 'proxmox', 'gpu']
 ---
 
 # 1203: NVIDIA Kernel Module Management
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [NVIDIA Driver Architecture](#nvidia-driver-architecture)
+- [Kernel Modules Explained](#kernel-modules-explained)
+- [Installation Methods](#installation-methods)
+- [Module Configuration](#module-configuration)
+- [CUDA Memory Management](#cuda-memory-management)
+- [Power Management](#power-management)
+- [Driver Orchestration in Kubernetes](#driver-orchestration-in-kubernetes)
+- [Troubleshooting](#troubleshooting)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain NVIDIA Driver Architecture
+- Explain Kernel Modules Explained
+- Apply Installation Methods
+- Configure and operate Module Configuration
+- Explain CUDA Memory Management
+- Explain Power Management
+
+---
 
 ## Abstract
 This document covers NVIDIA driver and kernel module management for an 11GB-class GPU in a passthrough environment. Proper module handling ensures GPU stability across reboots and kernel updates.
@@ -312,6 +341,16 @@ dmesg | grep -i nvidia
 # X11 log (if using display)
 cat /var/log/Xorg.0.log | grep -i nvidia
 ```
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [1201: Proxmox Hypervisor Standard Operating Procedures](1201-Proxmox-Hypervisor-SOP.md)
+- [1202: GPU Passthrough (IOMMU/VFIO)](1202-TB3-UT3G-Passthrough.md)
+- [1204: Multi-GPU Setup](1204-Multi-GPU-Setup.md)
 
 ---
 

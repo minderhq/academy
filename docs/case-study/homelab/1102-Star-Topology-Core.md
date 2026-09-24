@@ -3,7 +3,7 @@ Document ID: 1102
 Title: Star Topology Core Network Design
 Phase: 1
 Module: 1100
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 2 hours
@@ -13,6 +13,35 @@ Tags: ['infrastructure', 'networking', 'hardware']
 ---
 
 # 1102: Star Topology Core Network Design
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Topology Diagram](#topology-diagram)
+- [Hardware Specifications](#hardware-specifications)
+- [Packet Flow Analysis](#packet-flow-analysis)
+- [VLAN Configuration](#vlan-configuration)
+- [Traffic Management](#traffic-management)
+- [Performance Optimization](#performance-optimization)
+- [Monitoring & Diagnostics](#monitoring-diagnostics)
+- [Integration Points](#integration-points)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain Topology Diagram
+- Explain Hardware Specifications
+- Explain Packet Flow Analysis
+- Configure and operate VLAN Configuration
+- Explain Traffic Management
+- Measure and evaluate Performance Optimization
+
+---
 
 ## Abstract
 The star topology forms the backbone of AI Engineering Curriculum's network, enabling 2.5Gbps connectivity between all critical infrastructure components. A central switch acts as the "Star-Hub" distributing packets to all endpoints.
@@ -170,6 +199,15 @@ snmpwalk -v2c -c public <switch-ip> IF-MIB::ifHCInOctets
 | NUC Proxmox | 10 | 30 | 2.5G |
 | Salon AP | 3-4 | 10,40 | 1G/2.5G |
 | Office PC | 5-6 | 40 | 2.5G |
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [1101: Fiber GPON Modem Configuration](1101-Fiber-GPON-Modem.md)
+- [1202: Thunderbolt 3 eGPU Passthrough Configuration](1202-TB3-UT3G-Passthrough.md)
 
 ---
 

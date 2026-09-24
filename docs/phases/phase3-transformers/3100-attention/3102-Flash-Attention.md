@@ -3,7 +3,7 @@ Document ID: 3102
 Title: Flash Attention - IO-Aware Exact Attention
 Phase: 3
 Module: 3100
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -13,6 +13,35 @@ Tags: ['transformers', 'attention', 'self-attention', 'flash-attention']
 ---
 
 # 3102: Flash Attention - IO-Aware Exact Attention
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [The Problem with Standard Attention](#the-problem-with-standard-attention)
+- [Flash Attention Algorithm](#flash-attention-algorithm)
+- [Flash Attention 2](#flash-attention-2)
+- [Using Flash Attention](#using-flash-attention)
+- [Performance Comparison](#performance-comparison)
+- [Implementation Details](#implementation-details)
+- [Limitations and Considerations](#limitations-and-considerations)
+- [Flash Attention 3](#flash-attention-3)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain The Problem with Standard Attention
+- Explain Flash Attention Algorithm
+- Explain Flash Attention 2
+- Explain Using Flash Attention
+- Compare Performance Comparison
+- Apply Implementation Details
+
+---
 
 ## Abstract
 Flash Attention is a reorganization of the attention computation that reduces memory IO (input/output) from quadratic to linear. It's exact (not approximate), faster, and uses less memory.
@@ -353,6 +382,14 @@ Key insight:
 - FA2: A100, V100 optimized
 - FA1: General purpose
 ```
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [3101: Self-Attention Deep Dive](3101-Self-Attention-DeepDive.md)
 
 ---
 

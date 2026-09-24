@@ -3,7 +3,7 @@ Document ID: 1503
 Title: LLM Observability
 Phase: 1
 Module: 1500
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -19,6 +19,34 @@ Tags: ['infrastructure', 'monitoring', 'observability', 'prometheus']
 **Last Updated:** 2026-02-04
 **Status:** Complete
 **Estimated Time:** 2 hours
+
+---
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [LLM-Specific Metrics](#llm-specific-metrics)
+- [Performance Monitoring](#performance-monitoring)
+- [Quality Monitoring](#quality-monitoring)
+- [Context Window Monitoring](#context-window-monitoring)
+- [Cost Optimization](#cost-optimization)
+- [Production Checklist](#production-checklist)
+- [Related Resources](#related-resources)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Measure and evaluate LLM-Specific Metrics
+- Measure and evaluate Performance Monitoring
+- Measure and evaluate Quality Monitoring
+- Measure and evaluate Context Window Monitoring
+- Measure and evaluate Cost Optimization
+- Explain Production Checklist
 
 ---
 
@@ -726,6 +754,15 @@ class LLMCostAnalyzer:
 - [ ] High context utilization (>90%)
 - [ ] High error rate (>5%)
 - [ ] Low cache hit rate (<50%)
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [1501: Monitoring and Observability for AI Engineering Curriculum](1501-Monitoring-and-Observability.md)
+- [1502: Model Drift Detection](1502-Model-Drift-Detection.md)
 
 ---
 

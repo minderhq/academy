@@ -3,7 +3,7 @@ Document ID: 6102
 Title: Semantic Similarity Metrics - Cosine, Dot Product, and Manifold Metrics
 Phase: 6
 Module: 6100
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -13,6 +13,34 @@ Tags: ['rag', 'vectors', 'hnsw', 'embeddings', 'similarity']
 ---
 
 # 6102: Semantic Similarity Metrics - Cosine, Dot Product, and Manifold Metrics
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Distance vs Similarity](#distance-vs-similarity)
+- [Cosine Similarity](#cosine-similarity)
+- [Dot Product Similarity](#dot-product-similarity)
+- [Euclidean Distance](#euclidean-distance)
+- [Manhattan Distance](#manhattan-distance)
+- [Advanced Metrics](#advanced-metrics)
+- [Similarity in Practice](#similarity-in-practice)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Compare Distance vs Similarity
+- Explain Cosine Similarity
+- Explain Dot Product Similarity
+- Explain Euclidean Distance
+- Explain Manhattan Distance
+- Measure and evaluate Advanced Metrics
+
+---
 
 ## Abstract
 Semantic similarity metrics quantify how similar two embeddings are. Different metrics suit different tasks and embedding spaces.
@@ -399,6 +427,14 @@ for i, label in enumerate(labels):
     print(f"{texts[i]} → Cluster {label}")
 ```
 
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [6101: HNSW Indexing - Efficient Semantic Search at Scale](6101-HNSW-Indexing.md)
 
 ---
 

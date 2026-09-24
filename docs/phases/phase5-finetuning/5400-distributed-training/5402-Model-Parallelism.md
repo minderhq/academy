@@ -3,7 +3,7 @@ Document ID: 5402
 Title: Model Parallelism
 Phase: 5
 Module: 5400
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Review
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -13,6 +13,33 @@ Tags: ['distributed', 'training', 'parallelism']
 ---
 
 # 5402: Model Parallelism
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Types of Model Parallelism](#types-of-model-parallelism)
+- [Megatron-LM Style Parallelism](#megatron-lm-style-parallelism)
+- [Implementation Patterns](#implementation-patterns)
+- [When to Use Each](#when-to-use-each)
+- [Best Practices](#best-practices)
+- [Tools and Frameworks](#tools-and-frameworks)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain Types of Model Parallelism
+- Explain Megatron-LM Style Parallelism
+- Apply Implementation Patterns
+- Explain When to Use Each
+- Explain Best Practices
+- Explain Tools and Frameworks
+
+---
 
 ## Abstract
 
@@ -214,3 +241,12 @@ class ParallelMultiHeadAttention(nn.Module):
 **Next:** [5403: Mixed Precision Training](./5403-Mixed-Precision.md)
 
 **Last Updated:** 2026-02-05
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [5401: Data Parallelism](5401-Data-Parallelism.md)
+- [5403: Mixed Precision Training](5403-Mixed-Precision.md)
+
+---

@@ -3,7 +3,7 @@ Document ID: 5201
 Title: DPO (Direct Preference Optimization) Theory
 Phase: 5
 Module: 5200
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -13,6 +13,33 @@ Tags: ['finetuning', 'alignment', 'dpo', 'rlhf', 'preference']
 ---
 
 # 5201: DPO (Direct Preference Optimization) Theory
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [The Problem with RLHF](#the-problem-with-rlhf)
+- [DPO Intuition](#dpo-intuition)
+- [DPO Implementation](#dpo-implementation)
+- [DPO Hyperparameters](#dpo-hyperparameters)
+- [DPO Variants](#dpo-variants)
+- [Using Libraries](#using-libraries)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain The Problem with RLHF
+- Explain the reasoning behind DPO Intuition
+- Configure and operate DPO Implementation
+- Explain DPO Hyperparameters
+- Explain DPO Variants
+- Explain Using Libraries
+
+---
 
 ## Abstract
 DPO (Direct Preference Optimization) is a simpler alternative to RLHF (Reinforcement Learning from Human Feedback) that optimizes language models directly from preference data without training a separate reward model.
@@ -436,6 +463,16 @@ dpo_trainer = DPOTrainer(
 )
 ```
 
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [5202: Alignment Orchestration - Reward Modeling vs Direct Preference](5202-Alignment-Orchestration.md)
+- [5203: Reinforcement Learning from Human Feedback](5203-RLHF.md)
+- [5204: Preference Dataset Creation](5204-Preference-Dataset-Creation.md)
 
 ---
 

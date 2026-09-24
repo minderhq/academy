@@ -1,7 +1,7 @@
 ---
 Document ID: 2306
 Title: "2306: Building a Production Framework"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
 ---
@@ -13,6 +13,35 @@ Difficulty: Advanced
 **Last Updated:** 2026-02-04
 **Status:** Complete
 **Estimated Time:** 3 hours
+
+---
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Step 1: Core Framework (30 minutes)](#step-1-core-framework-30-minutes)
+- [Step 2: Model Implementations (45 minutes)](#step-2-model-implementations-45-minutes)
+- [Step 3: Serving Layer (30 minutes)](#step-3-serving-layer-30-minutes)
+- [Step 4: REST API (30 minutes)](#step-4-rest-api-30-minutes)
+- [Step 5: Deployment (30 minutes)](#step-5-deployment-30-minutes)
+- [Complete Exercise](#complete-exercise)
+- [Extension Challenges](#extension-challenges)
+- [Solution Reference](#solution-reference)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain Step 1: Core Framework (30 minutes)
+- Configure and operate Step 2: Model Implementations (45 minutes)
+- Explain Step 3: Serving Layer (30 minutes)
+- Explain Step 4: REST API (30 minutes)
+- Configure and operate Step 5: Deployment (30 minutes)
+- Explain Complete Exercise
 
 ---
 
@@ -788,6 +817,14 @@ For complete implementation of all components, see the repository.
 
 **Congratulations!** You've built a production ML framework from scratch. 🎉
 
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [2305: Framework Comparison Guide](2305-Framework-Comparison.md)
 
 ---
 

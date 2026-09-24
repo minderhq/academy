@@ -3,7 +3,7 @@ Document ID: 3101
 Title: Self-Attention Deep Dive
 Phase: 3
 Module: 3100
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours

@@ -3,7 +3,7 @@ Document ID: 3402
 Title: Decoder-Only Models (GPT, LLaMA, Mistral)
 Phase: 3
 Module: 3400
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 4 hours
@@ -13,6 +13,31 @@ Tags: ['transformers', 'architecture', 'encoder-decoder', 'gpt', 'llama']
 ---
 
 # 3402: Decoder-Only Models (GPT, LLaMA, Mistral)
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Architecture](#architecture)
+- [Model Variants](#model-variants)
+- [Positional Embeddings](#positional-embeddings)
+- [Training Objectives](#training-objectives)
+- [Comparison](#comparison)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain Architecture
+- Explain Model Variants
+- Explain Positional Embeddings
+- Explain Training Objectives
+- Compare Comparison
+
+---
 
 ## Abstract
 Decoder-only models use autoregressive causally-masked attention for the entire sequence, enabling generative pre-training on unlabeled data.
@@ -183,6 +208,14 @@ def autoregressive_loss(logits, targets):
 | LLaMA 2 7B | 32 | 32 | 4096 | 4096 | RoPE, SwiGLU, GQA |
 | Mistral 7B | 32 | 32 | 4096 | 8192 | RoPE, SwiGLU, GQA, SWA |
 | Mixtral 8x7B | 32 | 32 | 4096 | 32768 | MoE, RoPE, SWA |
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [3401: Encoder-Decoder Architectures](3401-Encoder-Decoder-Architectures.md)
 
 ---
 

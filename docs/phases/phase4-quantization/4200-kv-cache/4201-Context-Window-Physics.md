@@ -3,7 +3,7 @@ Document ID: 4201
 Title: Context Window Physics and OOM Prevention
 Phase: 4
 Module: 4200
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -13,6 +13,34 @@ Tags: ['quantization', 'kv-cache', 'context-window', 'speculative-decoding']
 ---
 
 # 4201: Context Window Physics and OOM Prevention
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [KV Cache Memory Analysis](#kv-cache-memory-analysis)
+- [KV Cache Quantization](#kv-cache-quantization)
+- [Multi-Round Attention](#multi-round-attention)
+- [Context Window Extension](#context-window-extension)
+- [OOM Prevention Strategies](#oom-prevention-strategies)
+- [Memory Optimization Techniques](#memory-optimization-techniques)
+- [Monitoring KV Cache](#monitoring-kv-cache)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain KV Cache Memory Analysis
+- Explain KV Cache Quantization
+- Explain Multi-Round Attention
+- Explain Context Window Extension
+- Explain OOM Prevention Strategies
+- Explain Memory Optimization Techniques
+
+---
 
 ## Abstract
 The context window determines how much text the model can "remember" during inference. Understanding KV cache memory physics is essential for preventing OOM (Out of Memory) errors when extending context length.
@@ -419,6 +447,14 @@ tracker = track_kv_cache_memory(model)
 print(f"Current KV Cache: {tracker['current_memory'] / (1024**3):.2f} GB")
 print(f"Peak KV Cache: {tracker['peak_memory'] / (1024**3):.2f} GB")
 ```
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [4202: Speculative Decoding - Accelerating Large Models](4202-Speculative-Decoding.md)
 
 ---
 

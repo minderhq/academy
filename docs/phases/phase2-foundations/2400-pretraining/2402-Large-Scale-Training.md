@@ -3,7 +3,7 @@ Document ID: 2402
 Title: Large-Scale Training for Language Models
 Phase: 2
 Module: 2400
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 6 hours
@@ -15,6 +15,36 @@ Tags: ['training', 'pretraining', 'evaluation', 'fsdp']
 # 2402: Large-Scale Training for Language Models
 
 **"Training at Scale"** - Multi-GPU and multi-node training infrastructure.
+
+---
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Part 1: Distributed Training Architectures](#part-1-distributed-training-architectures)
+- [Part 2: FSDP - Fully Sharded Data Parallel](#part-2-fsdp---fully-sharded-data-parallel)
+- [Part 3: DeepSpeed](#part-3-deepspeed)
+- [Part 4: Multi-Node Cluster Setup](#part-4-multi-node-cluster-setup)
+- [Part 5: Fault Tolerance & Resilience](#part-5-fault-tolerance-resilience)
+- [Part 6: Monitoring at Scale](#part-6-monitoring-at-scale)
+- [Part 7: Cost Optimization](#part-7-cost-optimization)
+- [Part 8: Complete Training Script](#part-8-complete-training-script)
+- [Summary](#summary)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain Part 1: Distributed Training Architectures
+- Explain Part 2: FSDP - Fully Sharded Data Parallel
+- Explain Part 3: DeepSpeed
+- Configure and operate Part 4: Multi-Node Cluster Setup
+- Explain Part 5: Fault Tolerance & Resilience
+- Measure and evaluate Part 6: Monitoring at Scale
 
 ---
 
@@ -1372,6 +1402,15 @@ Cost Optimization:
   - Use CPU offloading if needed
   - Spot instances (70-90% savings)
 ```
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [2401: Pre-training Fundamentals](2401-Pre-training-Fundamentals.md)
+- [2403: Evaluation Frameworks for Language Models](2403-Evaluation-Frameworks.md)
 
 ---
 

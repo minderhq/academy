@@ -3,7 +3,7 @@ Document ID: 4303
 Title: QAT for Transformers
 Phase: 4
 Module: 4300
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -13,6 +13,37 @@ Tags: ['quantization', 'qat', 'quantization-aware-training']
 ---
 
 # 4303: QAT for Transformers
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Transformer Components to Quantize](#transformer-components-to-quantize)
+- [What NOT to Quantize](#what-not-to-quantize)
+- [Implementation for Self-Attention](#implementation-for-self-attention)
+- [Implementation for MLP/Feed-Forward](#implementation-for-mlpfeed-forward)
+- [Complete Transformer Block](#complete-transformer-block)
+- [Embedding Layer Quantization](#embedding-layer-quantization)
+- [Per-Channel vs Per-Tensor](#per-channel-vs-per-tensor)
+- [Training Considerations](#training-considerations)
+- [Common Issues](#common-issues)
+- [Results Expectations](#results-expectations)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain Transformer Components to Quantize
+- Explain What NOT to Quantize
+- Apply Implementation for Self-Attention
+- Apply Implementation for MLP/Feed-Forward
+- Explain Complete Transformer Block
+- Explain Embedding Layer Quantization
+
+---
 
 ## Abstract
 
@@ -364,6 +395,17 @@ For 4-bit QAT:
 - **Accuracy loss:** 1-3% vs FP32
 - **Model size:** 8x smaller
 - **Inference speed:** 4-8x faster
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [4301: QAT Foundations](4301-QAT-Foundations.md)
+- [4302: Fake Quantization](4302-Fake-Quantization.md)
+- [4304: Low-bit QAT](4304-Low-bit-QAT.md)
+- [4305: Quantization Configuration](4305-Quantization-Configuration.md)
+
+---
 
 ## Next Steps
 

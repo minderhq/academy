@@ -3,7 +3,7 @@ Document ID: 1401
 Title: Ollama Enterprise Deployment
 Phase: 1
 Module: 1400
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -13,6 +13,36 @@ Tags: ['infrastructure', 'llmops', 'ollama', 'vllm', 'tgi']
 ---
 
 # 1401: Ollama Enterprise Deployment
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Architecture](#architecture)
+- [Installation](#installation)
+- [Model Management](#model-management)
+- [API Usage](#api-usage)
+- [Configuration Options](#configuration-options)
+- [Performance Optimization](#performance-optimization)
+- [Service Mesh Integration](#service-mesh-integration)
+- [Monitoring](#monitoring)
+- [Security](#security)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain Architecture
+- Apply Installation
+- Explain Model Management
+- Explain API Usage
+- Apply Configuration Options
+- Measure and evaluate Performance Optimization
+
+---
 
 ## Abstract
 Ollama enables running large language models locally with a simple API. In AI Engineering Curriculum, Ollama serves as the model inference backend across the lab network.
@@ -405,6 +435,14 @@ spec:
     - protocol: TCP
       port: 11434
 ```
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [1402: vLLM and TGI High-Concurrency Inference](1402-vLLM-and-TGI.md)
 
 ---
 

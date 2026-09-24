@@ -3,7 +3,7 @@ Document ID: 2101
 Title: Tensor Algebra and Linear Algebra for AI
 Phase: 2
 Module: 2100
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 4 hours
@@ -13,6 +13,35 @@ Tags: ['math', 'calculus', 'tensors', 'backpropagation']
 ---
 
 # 2101: Tensor Algebra and Linear Algebra for AI
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Tensor Fundamentals](#tensor-fundamentals)
+- [Tensor Operations](#tensor-operations)
+- [Einstein Summation (einsum)](#einstein-summation-einsum)
+- [Tensor Manipulations](#tensor-manipulations)
+- [Dimensionality Reduction](#dimensionality-reduction)
+- [GPU Tensor Operations](#gpu-tensor-operations)
+- [Common Patterns in AI](#common-patterns-in-ai)
+- [Memory Considerations](#memory-considerations)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain the reasoning behind Tensor Fundamentals
+- Explain Tensor Operations
+- Explain Einstein Summation (einsum)
+- Explain Tensor Manipulations
+- Explain Dimensionality Reduction
+- Explain GPU Tensor Operations
+
+---
 
 ## Abstract
 Tensor algebra is the mathematical foundation of deep learning. Understanding tensor operations, dimensions, and the Einstein summation convention is essential for implementing and optimizing neural networks on GPU hardware.
@@ -388,6 +417,14 @@ fp16_size = model_size * 2 / (1024 ** 3)  # ~14 GB
 int8_size = model_size * 1 / (1024 ** 3)  # ~7 GB
 int4_size = model_size * 0.5 / (1024 ** 3)  # ~3.5 GB
 ```
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [2102: Backpropagation and Automatic Differentiation](2102-Backpropagation-and-Derivatives.md)
 
 ---
 

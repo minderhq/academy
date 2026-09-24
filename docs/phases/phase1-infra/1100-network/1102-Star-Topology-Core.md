@@ -303,6 +303,15 @@ ip -d link show eno1.20
 
 ---
 
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [1103: Jumbo Frames and MTU Optimization](1103-Jumbo-Frames-and-MTU.md)
+- [1201: Proxmox Hypervisor Standard Operating Procedures](../1200-virtualization/1201-Proxmox-Hypervisor-SOP.md)
+
+---
+
 ## Next Steps
 
 - Continue with: **[1103: Jumbo Frames and MTU](./1103-Jumbo-Frames-and-MTU.md)**

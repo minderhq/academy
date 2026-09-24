@@ -3,7 +3,7 @@ Document ID: 7301
 Title: "7301: Collaborative Tasking - Multi-Agent Synergy"
 Phase: 7
 Module: 7300
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -13,6 +13,33 @@ Tags: ['agents', 'orchestration', 'multi-agent', 'autogen', 'langgraph']
 ---
 
 # 7301: Collaborative Tasking - Multi-Agent Synergy
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Agent Specialization](#agent-specialization)
+- [Task Decomposition with Specialists](#task-decomposition-with-specialists)
+- [Agent Communication](#agent-communication)
+- [Collaboration Patterns](#collaboration-patterns)
+- [Conflict Resolution](#conflict-resolution)
+- [Practical Implementation](#practical-implementation)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain Agent Specialization
+- Explain Task Decomposition with Specialists
+- Explain Agent Communication
+- Explain Collaboration Patterns
+- Explain Conflict Resolution
+- Configure and operate Practical Implementation
+
+---
 
 ## Abstract
 Collaborative multi-agent systems involve specialized agents working together on complex tasks, each contributing their expertise to achieve goals beyond individual capabilities.
@@ -434,6 +461,14 @@ class LabSwarm:
         return sorted(issues, key=lambda x: x["severity"], reverse=True)
 ```
 
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [7302: Multi-Agent Communication Protocols](7302-Communication-Protocols.md)
 
 ---
 

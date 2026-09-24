@@ -3,7 +3,7 @@ Document ID: 5101
 Title: LoRA (Low-Rank Adaptation) Logic
 Phase: 5
 Module: 5100
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -13,6 +13,33 @@ Tags: ['finetuning', 'peft', 'lora', 'qlora', 'adaptation']
 ---
 
 # 5101: LoRA (Low-Rank Adaptation) Logic
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [The LoRA Hypothesis](#the-lora-hypothesis)
+- [LoRA Implementation](#lora-implementation)
+- [Hyperparameter Selection](#hyperparameter-selection)
+- [LoRA Variants](#lora-variants)
+- [Training with LoRA](#training-with-lora)
+- [LoRA for Specific Tasks](#lora-for-specific-tasks)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain The LoRA Hypothesis
+- Configure and operate LoRA Implementation
+- Explain Hyperparameter Selection
+- Explain LoRA Variants
+- Explain Training with LoRA
+- Explain LoRA for Specific Tasks
+
+---
 
 ## Abstract
 LoRA (Low-Rank Adaptation) is a parameter-efficient fine-tuning method that freezes pre-trained weights and injects trainable rank decomposition matrices. It enables fine-tuning large models with minimal GPU memory.
@@ -447,6 +474,15 @@ lora_config = LoraConfig(
 # Output: Model with different writing style
 ```
 
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [5102: QLoRA Pipelines - 4-bit Fine-Tuning on Consumer Hardware](5102-QLoRA-Pipelines.md)
+- [5103: Adapters & Parameter-Efficient Adaptation Methods](5103-Adapters.md)
 
 ---
 

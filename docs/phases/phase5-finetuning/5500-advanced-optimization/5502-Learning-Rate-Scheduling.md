@@ -3,7 +3,7 @@ Document ID: 5502
 Title: Learning Rate Scheduling
 Phase: 5
 Module: 5500
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Review
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -13,6 +13,34 @@ Tags: ['optimization', 'learning-rate', 'scheduling']
 ---
 
 # 5502: Learning Rate Scheduling
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Why Schedule Learning Rate?](#why-schedule-learning-rate)
+- [Common Schedulers](#common-schedulers)
+- [Custom Schedulers](#custom-schedulers)
+- [Choosing a Scheduler](#choosing-a-scheduler)
+- [Integration with Training Loop](#integration-with-training-loop)
+- [Hugging Face Integration](#hugging-face-integration)
+- [Best Practices](#best-practices)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain the reasoning behind Why Schedule Learning Rate
+- Explain Common Schedulers
+- Explain Custom Schedulers
+- Explain Choosing a Scheduler
+- Apply Integration with Training Loop
+- Explain Hugging Face Integration
+
+---
 
 ## Abstract
 
@@ -421,3 +449,12 @@ scheduler = get_scheduler(
 **Next:** [5503: Advanced Techniques](./5503-Advanced-Techniques.md)
 
 **Last Updated:** 2026-02-05
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [5501: Optimizer Variants](5501-Optimizer-Variants.md)
+- [5503: Advanced Optimization Techniques](5503-Advanced-Techniques.md)
+
+---

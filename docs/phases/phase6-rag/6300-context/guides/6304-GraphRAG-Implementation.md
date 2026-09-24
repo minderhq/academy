@@ -8,6 +8,34 @@ Difficulty: Advanced
 
 # 6304: GraphRAG Implementation Guide
 
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [GraphRAG Architecture](#graphrag-architecture)
+- [Implementation 1: Graph Construction](#implementation-1-graph-construction)
+- [Implementation 2: Hybrid Graph + Vector RAG](#implementation-2-hybrid-graph-vector-rag)
+- [Implementation 3: Multi-Hop Reasoning](#implementation-3-multi-hop-reasoning)
+- [Implementation 4: Entity Extraction with LLM](#implementation-4-entity-extraction-with-llm)
+- [Implementation 5: Complete GraphRAG Pipeline](#implementation-5-complete-graphrag-pipeline)
+- [Quick Start](#quick-start)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain GraphRAG Architecture
+- Apply Implementation 1: Graph Construction
+- Apply Implementation 2: Hybrid Graph + Vector RAG
+- Apply Implementation 3: Multi-Hop Reasoning
+- Apply Implementation 4: Entity Extraction with LLM
+- Apply Implementation 5: Complete GraphRAG Pipeline
+
+---
+
 ## Abstract
 Complete implementation guide for GraphRAG (Knowledge Graph-enhanced Retrieval Augmented Generation) on AI Engineering Curriculum infrastructure using Neo4j and vector databases.
 
@@ -658,6 +686,14 @@ python graph_rag.py
 python -c "from complete_graph_rag import CompleteGraphRAG; rag = CompleteGraphRAG(); print(rag.query('What is AI?'))"
 ```
 
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [6303: Neo4j Deployment Guide](6303-Neo4j-Deployment-Guide.md)
 
 ---
 

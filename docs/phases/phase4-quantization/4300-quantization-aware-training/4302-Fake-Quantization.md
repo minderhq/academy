@@ -3,7 +3,7 @@ Document ID: 4302
 Title: Fake Quantization
 Phase: 4
 Module: 4300
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -13,6 +13,34 @@ Tags: ['quantization', 'qat', 'quantization-aware-training']
 ---
 
 # 4302: Fake Quantization
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [The Challenge](#the-challenge)
+- [Straight-Through Estimator](#straight-through-estimator)
+- [Complete Fake Quantization Module](#complete-fake-quantization-module)
+- [Applying Fake Quantization to Models](#applying-fake-quantization-to-models)
+- [Debugging Fake Quantization](#debugging-fake-quantization)
+- [Common Pitfalls](#common-pitfalls)
+- [Performance Tips](#performance-tips)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain The Challenge
+- Explain Straight-Through Estimator
+- Explain Complete Fake Quantization Module
+- Explain Applying Fake Quantization to Models
+- Diagnose and resolve Fake Quantization
+- Diagnose and resolve Common Pitfalls
+
+---
 
 ## Abstract
 
@@ -367,6 +395,17 @@ scale = scale.clamp(min=1e-5)
 2. **Use Asymmetric for Activations**: Better handles non-centered distributions
 3. **Per-Channel for Weights**: Significantly better accuracy
 4. **Per-Tensor for Activations**: Usually sufficient, faster
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [4301: QAT Foundations](4301-QAT-Foundations.md)
+- [4303: QAT for Transformers](4303-QAT-for-Transformers.md)
+- [4304: Low-bit QAT](4304-Low-bit-QAT.md)
+- [4305: Quantization Configuration](4305-Quantization-Configuration.md)
+
+---
 
 ## Next Steps
 

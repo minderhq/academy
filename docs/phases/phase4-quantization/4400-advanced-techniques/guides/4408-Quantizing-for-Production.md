@@ -1,12 +1,43 @@
 ---
 Document ID: 4408
 Title: "4408: Quantizing for Production"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
 ---
 
 # 4408: Quantizing for Production
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Production Quantization Pipeline](#production-quantization-pipeline)
+- [Step 1: Model Selection](#step-1-model-selection)
+- [Step 2: Calibration Data](#step-2-calibration-data)
+- [Step 3: Choose Quantization Method](#step-3-choose-quantization-method)
+- [Step 4: Run Quantization](#step-4-run-quantization)
+- [Step 5: Validation](#step-5-validation)
+- [Step 6: Deployment](#step-6-deployment)
+- [Production Checklist](#production-checklist)
+- [Common Issues](#common-issues)
+- [Best Practices](#best-practices)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain Production Quantization Pipeline
+- Explain Step 1: Model Selection
+- Explain Step 2: Calibration Data
+- Explain Step 3: Choose Quantization Method
+- Explain Step 4: Run Quantization
+- Explain Step 5: Validation
+
+---
 
 ## Abstract
 
@@ -489,6 +520,14 @@ n_gpu_layers = 20  # Partial offload
 4. **Version control:** Keep track of quantization parameters
 5. **Document everything:** Calibration data, configs, results
 
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [4409: Hardware-Specific Quantization Optimization](4409-Hardware-Specific-Optimization.md)
 
 ---
 

@@ -3,7 +3,7 @@ Document ID: 1303
 Title: Storage Classes for Dynamic Provisioning
 Phase: 1
 Module: 1300
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -13,6 +13,36 @@ Tags: ['infrastructure', 'kubernetes', 'k3s', 'gpu']
 ---
 
 # 1303: Storage Classes for Dynamic Provisioning
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Storage Architecture](#storage-architecture)
+- [NFS Server Configuration](#nfs-server-configuration)
+- [CSI Driver Installation](#csi-driver-installation)
+- [Storage Class Definitions](#storage-class-definitions)
+- [PVC Examples](#pvc-examples)
+- [Performance Tuning](#performance-tuning)
+- [Volume Snapshots](#volume-snapshots)
+- [Monitoring](#monitoring)
+- [Best Practices](#best-practices)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain Storage Architecture
+- Configure and operate NFS Server Configuration
+- Configure and operate CSI Driver Installation
+- Explain Storage Class Definitions
+- Explain PVC Examples
+- Measure and evaluate Performance Tuning
+
+---
 
 ## Abstract
 Dynamic storage provisioning enables automatic creation of persistent volumes on demand. This document covers configuring K3s to dynamically provision NFS storage from any NFS server - a NAS appliance or a plain Linux box with an exported directory.
@@ -388,6 +418,15 @@ volumeClaimTemplates:
       requests:
         storage: 10Gi
 ```
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [1301: K3s Master-Worker Architecture](1301-K3s-Master-Worker-Arch.md)
+- [1302: GPU Scheduler Configuration](1302-GPU-Scheduler.md)
 
 ---
 

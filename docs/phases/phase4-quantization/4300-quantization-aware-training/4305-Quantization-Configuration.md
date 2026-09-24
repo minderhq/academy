@@ -3,7 +3,7 @@ Document ID: 4305
 Title: Quantization Configuration
 Phase: 4
 Module: 4300
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -13,6 +13,36 @@ Tags: ['quantization', 'qat', 'quantization-aware-training']
 ---
 
 # 4305: Quantization Configuration
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Configuration Dimensions](#configuration-dimensions)
+- [Layer-wise Configuration](#layer-wise-configuration)
+- [Per-Tensor vs Per-Channel](#per-tensor-vs-per-channel)
+- [Symmetric vs Asymmetric](#symmetric-vs-asymmetric)
+- [Dynamic vs Static Scale](#dynamic-vs-static-scale)
+- [Selective Quantization](#selective-quantization)
+- [Configuration Templates](#configuration-templates)
+- [Auto-Configuration](#auto-configuration)
+- [Validation Checklist](#validation-checklist)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Apply Configuration Dimensions
+- Configure and operate Layer-wise Configuration
+- Compare Per-Tensor vs Per-Channel
+- Compare Symmetric vs Asymmetric
+- Compare Dynamic vs Static Scale
+- Explain Selective Quantization
+
+---
 
 ## Abstract
 
@@ -427,6 +457,17 @@ Before finalizing configuration:
 - [ ] Measured inference speedup
 - [ ] Confirmed memory reduction
 - [ ] Tested on target hardware
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [4301: QAT Foundations](4301-QAT-Foundations.md)
+- [4302: Fake Quantization](4302-Fake-Quantization.md)
+- [4303: QAT for Transformers](4303-QAT-for-Transformers.md)
+- [4304: Low-bit QAT](4304-Low-bit-QAT.md)
+
+---
 
 ## Next Steps
 

@@ -1,7 +1,7 @@
 ---
 Document ID: 2305
 Title: "2305: Framework Comparison Guide"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
 ---
@@ -13,6 +13,36 @@ Difficulty: Advanced
 **Last Updated:** 2026-02-04
 **Status:** Complete
 **Estimated Time:** 1 hour
+
+---
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Comparison Criteria](#comparison-criteria)
+- [HuggingFace Transformers](#huggingface-transformers)
+- [PyTorch Lightning](#pytorch-lightning)
+- [LangChain](#langchain)
+- [Custom Framework](#custom-framework)
+- [Summary Table](#summary-table)
+- [Decision Guide](#decision-guide)
+- [Combining Frameworks](#combining-frameworks)
+- [Recommendations](#recommendations)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Compare Comparison Criteria
+- Explain HuggingFace Transformers
+- Explain PyTorch Lightning
+- Explain LangChain
+- Explain Custom Framework
+- Explain Summary Table
 
 ---
 
@@ -389,6 +419,14 @@ llm = HuggingFacePipeline(pipeline="text-generation", model=model)
 2. **HuggingFace** for baseline models
 3. Custom code for novel architectures
 
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [2306: Building a Production Framework](2306-Building-Production-Framework.md)
 
 ---
 

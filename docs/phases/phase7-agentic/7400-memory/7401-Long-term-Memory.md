@@ -3,7 +3,7 @@ Document ID: 7401
 Title: Long-term Memory for Agents
 Phase: 7
 Module: 7400
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -13,6 +13,19 @@ Tags: ['agents', 'memory', 'vector-store', 'long-term-memory', 'mem0', 'chromadb
 ---
 
 # 7401: Long-term Memory for Agents
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain Memory Architectures
+- Explain VectorStore Memory (LangChain)
+- Explain Mem0: Production Memory System
+- Explain ChromaDB Persistent Memory
+- Explain Memory Hierarchies
+- Configure and operate Implementation Examples
+
+---
 
 ## Abstract
 
@@ -1025,6 +1038,14 @@ Long-term memory systems enable AI agents to:
 - Implement consolidation to avoid redundancy
 - Set TTL policies for automatic cleanup
 - Track importance scores for prioritization
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [7403: Vector Memory and Embedding-Based Storage](7403-Vector-Memory.md)
 
 ---
 

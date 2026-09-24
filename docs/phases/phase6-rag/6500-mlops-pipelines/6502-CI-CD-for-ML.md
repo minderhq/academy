@@ -3,7 +3,7 @@ Document ID: 6502
 Title: CI/CD for Machine Learning
 Phase: 6
 Module: 6500
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -19,6 +19,34 @@ Tags: ['mlops', 'pipeline', 'ci-cd', 'model-registry', 'lifecycle']
 **Last Updated:** 2026-02-04
 **Status:** Complete
 **Estimated Time:** 2 hours
+
+---
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [CI/CD Pipeline Architecture](#cicd-pipeline-architecture)
+- [Pipeline Configuration](#pipeline-configuration)
+- [Automated Training Pipeline](#automated-training-pipeline)
+- [Model Validation in Pipeline](#model-validation-in-pipeline)
+- [Deployment Strategies](#deployment-strategies)
+- [Best Practices](#best-practices)
+- [Related Resources](#related-resources)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain CI/CD Pipeline Architecture
+- Apply Pipeline Configuration
+- Explain Automated Training Pipeline
+- Explain Model Validation in Pipeline
+- Apply Deployment Strategies
+- Explain Best Practices
 
 ---
 
@@ -762,6 +790,15 @@ class ProgressiveCanary:
 - **Next:** [6503: Model Registry](./6503-Model-Registry.md)
 - **Experiment:** [EXP_6501: MLOps Pipeline](../../../../experiments/EXP_6501_MLOPS_PIPELINE.md)
 
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [6501: ML Model Lifecycle Management](6501-ML-Lifecycle-Management.md)
+- [6503: Model Registry](6503-Model-Registry.md)
 
 ---
 

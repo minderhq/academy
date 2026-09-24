@@ -3,7 +3,7 @@ Document ID: 5202
 Title: Alignment Orchestration - Reward Modeling vs Direct Preference
 Phase: 5
 Module: 5200
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -13,6 +13,33 @@ Tags: ['finetuning', 'alignment', 'dpo', 'rlhf', 'preference']
 ---
 
 # 5202: Alignment Orchestration - Reward Modeling vs Direct Preference
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Alignment Methods Comparison](#alignment-methods-comparison)
+- [Reward Modeling (RLHF)](#reward-modeling-rlhf)
+- [Direct Preference Optimization](#direct-preference-optimization)
+- [KTO (Kahneman-Tversky Optimization)](#kto-kahneman-tversky-optimization)
+- [Practical Alignment Pipeline](#practical-alignment-pipeline)
+- [Evaluation](#evaluation)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Compare Alignment Methods Comparison
+- Explain Reward Modeling (RLHF)
+- Explain Direct Preference Optimization
+- Explain KTO (Kahneman-Tversky Optimization)
+- Explain Practical Alignment Pipeline
+- Measure and evaluate Evaluation
+
+---
 
 ## Abstract
 This document compares alignment approaches: Reward Modeling (RLHF) versus Direct Preference Optimization (DPO), and when to use each.
@@ -381,6 +408,16 @@ def human_eval(model_a, model_b, test_prompts):
 # Which is better? [A] [B] [Tie] [Both bad]
 ```
 
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [5201: DPO (Direct Preference Optimization) Theory](5201-DPO-Theory.md)
+- [5203: Reinforcement Learning from Human Feedback](5203-RLHF.md)
+- [5204: Preference Dataset Creation](5204-Preference-Dataset-Creation.md)
 
 ---
 

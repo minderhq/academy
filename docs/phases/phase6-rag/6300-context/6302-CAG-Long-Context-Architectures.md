@@ -3,7 +3,7 @@ Document ID: 6302
 Title: CAG - Context Augmented Generation and Long Context Architectures
 Phase: 6
 Module: 6300
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -13,6 +13,31 @@ Tags: ['rag', 'context', 'graphrag', 'neo4j', 'knowledge-graphs']
 ---
 
 # 6302: CAG - Context Augmented Generation and Long Context Architectures
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [RAG vs CAG](#rag-vs-cag)
+- [Long Context Models](#long-context-models)
+- [Context Management](#context-management)
+- [Implementation Examples](#implementation-examples)
+- [Context Optimization](#context-optimization)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Compare RAG vs CAG
+- Explain Long Context Models
+- Explain Context Management
+- Apply Implementation Examples
+- Explain Context Optimization
+
+---
 
 ## Abstract
 CAG (Context Augmented Generation) uses the model's large context window as a temporary database, retrieving and inserting relevant information directly into the context rather than using RAG.
@@ -459,6 +484,14 @@ def compress_context(context, target_length=50000):
     pass
 ```
 
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [6301: Neo4j and Knowledge Graphs for Multi-Hop Reasoning](6301-Neo4j-and-Knowledge-Graphs.md)
 
 ---
 

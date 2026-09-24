@@ -3,7 +3,7 @@ Document ID: 1201
 Title: Proxmox Hypervisor Standard Operating Procedures
 Phase: 1
 Module: 1200
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -13,6 +13,36 @@ Tags: ['infrastructure', 'virtualization', 'proxmox', 'gpu']
 ---
 
 # 1201: Proxmox Hypervisor Standard Operating Procedures
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Hardware Requirements](#hardware-requirements)
+- [Post-Installation Configuration](#post-installation-configuration)
+- [CPU Pinning & NUMA Awareness](#cpu-pinning-numa-awareness)
+- [Memory Management](#memory-management)
+- [Storage Configuration](#storage-configuration)
+- [GPU Passthrough Preparation](#gpu-passthrough-preparation)
+- [VM Templates](#vm-templates)
+- [Backup Strategy](#backup-strategy)
+- [Monitoring](#monitoring)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain Hardware Requirements
+- Configure and operate Post-Installation Configuration
+- Explain CPU Pinning & NUMA Awareness
+- Explain Memory Management
+- Configure and operate Storage Configuration
+- Explain GPU Passthrough Preparation
+
+---
 
 ## Abstract
 Proxmox VE is the virtualization layer at the center of this infrastructure, hosting the K3s cluster and providing the platform for GPU passthrough to a single NVIDIA GPU.
@@ -282,6 +312,16 @@ smartctl -a /dev/nvme0n1
 # Temperature
 sensors
 ```
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [1202: GPU Passthrough (IOMMU/VFIO)](1202-TB3-UT3G-Passthrough.md)
+- [1203: NVIDIA Kernel Module Management](1203-Nvidia-Kernel-Module.md)
+- [1204: Multi-GPU Setup](1204-Multi-GPU-Setup.md)
 
 ---
 

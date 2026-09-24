@@ -3,7 +3,7 @@ Document ID: 1402
 Title: vLLM and TGI High-Concurrency Inference
 Phase: 1
 Module: 1400
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -13,6 +13,36 @@ Tags: ['infrastructure', 'llmops', 'ollama', 'vllm', 'tgi']
 ---
 
 # 1402: vLLM and TGI High-Concurrency Inference
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Comparison](#comparison)
+- [vLLM Architecture](#vllm-architecture)
+- [vLLM Installation](#vllm-installation)
+- [vLLM Configuration](#vllm-configuration)
+- [TGI Installation](#tgi-installation)
+- [Performance Tuning](#performance-tuning)
+- [API Usage](#api-usage)
+- [Benchmarking](#benchmarking)
+- [Monitoring](#monitoring)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Compare Comparison
+- Explain vLLM Architecture
+- Configure and operate vLLM Installation
+- Configure and operate vLLM Configuration
+- Configure and operate TGI Installation
+- Measure and evaluate Performance Tuning
+
+---
 
 ## Abstract
 vLLM and Text Generation Inference (TGI) are optimized inference engines for LLMs. They provide PagedAttention, continuous batching, and KV cache optimization for high-throughput serving on an 11GB-class GPU.
@@ -406,6 +436,14 @@ watch -n 0.1 nvidia-smi
 # - Temperature (<80°C)
 # - Power draw (<250W)
 ```
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [1401: Ollama Enterprise Deployment](1401-Ollama-Enterprise.md)
 
 ---
 

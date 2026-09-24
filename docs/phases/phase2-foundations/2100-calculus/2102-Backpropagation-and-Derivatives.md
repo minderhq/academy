@@ -3,7 +3,7 @@ Document ID: 2102
 Title: Backpropagation and Automatic Differentiation
 Phase: 2
 Module: 2100
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 4 hours
@@ -13,6 +13,37 @@ Tags: ['math', 'calculus', 'tensors', 'backpropagation']
 ---
 
 # 2102: Backpropagation and Automatic Differentiation
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [The Chain Rule](#the-chain-rule)
+- [Computational Graphs](#computational-graphs)
+- [Automatic Differentiation (Autograd)](#automatic-differentiation-autograd)
+- [Backpropagation Algorithm](#backpropagation-algorithm)
+- [Common Gradient Patterns](#common-gradient-patterns)
+- [Vanishing and Exploding Gradients](#vanishing-and-exploding-gradients)
+- [Computational Graph Visualization](#computational-graph-visualization)
+- [Second-Order Derivatives (Hessian)](#second-order-derivatives-hessian)
+- [Gradient Accumulation](#gradient-accumulation)
+- [Best Practices](#best-practices)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain The Chain Rule
+- Explain Computational Graphs
+- Explain Automatic Differentiation (Autograd)
+- Explain Backpropagation Algorithm
+- Explain Common Gradient Patterns
+- Explain Vanishing and Exploding Gradients
+
+---
 
 ## Abstract
 Backpropagation is the algorithm that enables neural networks to learn. It computes gradients of the loss function with respect to all parameters by applying the chain rule of calculus recursively through the computational graph.
@@ -422,6 +453,14 @@ class DeepModel(nn.Module):
 
 # Trade-off: More compute, less memory
 ```
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [2101: Tensor Algebra and Linear Algebra for AI](2101-Tensor-Algebra.md)
 
 ---
 

@@ -8,6 +8,37 @@ Difficulty: Intermediate
 
 # 6403: Qdrant Production Deployment
 
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Deployment Targets](#deployment-targets)
+- [Docker Deployment](#docker-deployment)
+- [Initial Configuration](#initial-configuration)
+- [Performance Tuning](#performance-tuning)
+- [Backup Strategy](#backup-strategy)
+- [Monitoring](#monitoring)
+- [Security Hardening](#security-hardening)
+- [RAG Integration](#rag-integration)
+- [Troubleshooting](#troubleshooting)
+- [K3s Deployment (Optional)](#k3s-deployment-optional)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Apply Deployment Targets
+- Configure and operate Docker Deployment
+- Configure and operate Initial Configuration
+- Measure and evaluate Performance Tuning
+- Explain Backup Strategy
+- Measure and evaluate Monitoring
+
+---
+
 ## Abstract
 Complete guide for deploying Qdrant high-performance vector database on any Docker-capable Linux host, NAS, or VPS for AI Engineering Curriculum RAG and semantic search operations.
 
@@ -725,6 +756,15 @@ spec:
   type: ClusterIP
 ```
 
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [6401: Qdrant Setup Guide](../6401-Qdrant-Setup.md)
+- [6402: Vector Database Comparison](../6402-Pinecone-vs-Weaviate.md)
 
 ---
 

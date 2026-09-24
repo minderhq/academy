@@ -3,7 +3,7 @@ Document ID: 2303
 Title: API Design for ML Systems
 Phase: 2
 Module: 2300
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -19,6 +19,36 @@ Tags: ['frameworks', 'architecture', 'api-design', 'production']
 **Last Updated:** 2026-02-04
 **Status:** Complete
 **Estimated Time:** 2 hours
+
+---
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [API Protocol Comparison](#api-protocol-comparison)
+- [REST API Design](#rest-api-design)
+- [Streaming APIs](#streaming-apis)
+- [Error Handling](#error-handling)
+- [Rate Limiting](#rate-limiting)
+- [Authentication](#authentication)
+- [Monitoring & Logging](#monitoring-logging)
+- [Exercise: Build ML API](#exercise-build-ml-api)
+- [Related Topics](#related-topics)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Compare API Protocol Comparison
+- Explain REST API Design
+- Explain Streaming APIs
+- Explain Error Handling
+- Explain Rate Limiting
+- Explain Authentication
 
 ---
 
@@ -856,6 +886,16 @@ class PredictResponse(BaseModel):
 # TODO: Add rate limiting
 # TODO: Add authentication
 ```
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [2301: Framework Design Patterns](2301-Framework-Design-Patterns.md)
+- [2302: Model Serving Architectures](2302-Model-Serving-Architectures.md)
+- [2304: Production Deployment Patterns](2304-Production-Deployment-Patterns.md)
 
 ---
 

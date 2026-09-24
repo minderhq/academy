@@ -3,7 +3,7 @@ Document ID: 4405
 Title: Sparsity + Quantization
 Phase: 4
 Module: 4400
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Review
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -13,6 +13,34 @@ Tags: ['quantization', 'sparsity', 'optimization']
 ---
 
 # 4405: Sparsity + Quantization
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Why Combine Sparsity + Quantization?](#why-combine-sparsity-quantization)
+- [Types of Sparsity](#types-of-sparsity)
+- [Quantization for Sparse Models](#quantization-for-sparse-models)
+- [Sparsity-Aware Quantization Techniques](#sparsity-aware-quantization-techniques)
+- [Hardware Acceleration](#hardware-acceleration)
+- [Best Practices](#best-practices)
+- [Results Reference](#results-reference)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain the reasoning behind Why Combine Sparsity + Quantization
+- Explain Types of Sparsity
+- Explain Quantization for Sparse Models
+- Explain Sparsity-Aware Quantization Techniques
+- Explain Hardware Acceleration
+- Explain Best Practices
+
+---
 
 ## Abstract
 
@@ -410,3 +438,12 @@ def importance_aware_pruning(model, sparsity=0.5):
 **Next:** [4406: 1.58-bit Quantization](./4406-1.58-bit-Quantization.md)
 
 **Last Updated:** 2026-02-05
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [4402: AWQ](4402-AWQ.md)
+- [4406: 1.58-bit Quantization](4406-1.58-bit-Quantization.md)
+
+---

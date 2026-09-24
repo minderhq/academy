@@ -3,7 +3,7 @@ Document ID: 6401
 Title: Qdrant Setup Guide
 Phase: 6
 Module: 6400
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -13,6 +13,25 @@ Tags: ['rag', 'vector-db', 'qdrant', 'pinecone', 'weaviate']
 ---
 
 # 6401: Qdrant Setup Guide
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Docker Deployment](#docker-deployment)
+- [Python Client](#python-client)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Configure and operate Docker Deployment
+- Explain Python Client
+
+---
 
 ## Abstract
 Qdrant is a vector database engine optimized for high-performance approximate nearest neighbor search. This guide covers deployment on any Docker-capable Linux host.
@@ -84,6 +103,14 @@ results = client.search(
 )
 ```
 
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [6402: Vector Database Comparison](6402-Pinecone-vs-Weaviate.md)
 
 ---
 

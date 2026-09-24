@@ -3,7 +3,7 @@ Document ID: 6201
 Title: Hybrid Search - Combining Keyword and Semantic Search
 Phase: 6
 Module: 6200
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -13,6 +13,33 @@ Tags: ['rag', 'retrieval', 'hybrid-search', 'reranking']
 ---
 
 # 6201: Hybrid Search - Combining Keyword and Semantic Search
+
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Keyword Search (BM25)](#keyword-search-bm25)
+- [Semantic Search (Vector)](#semantic-search-vector)
+- [Hybrid Search](#hybrid-search)
+- [Dense vs Sparse Retrieval](#dense-vs-sparse-retrieval)
+- [Implementation with Qdrant](#implementation-with-qdrant)
+- [Optimizing Alpha](#optimizing-alpha)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this lesson, you will be able to:
+
+- Explain Keyword Search (BM25)
+- Explain Semantic Search (Vector)
+- Explain Hybrid Search
+- Compare Dense vs Sparse Retrieval
+- Apply Implementation with Qdrant
+- Explain Optimizing Alpha
+
+---
 
 ## Abstract
 Hybrid search combines traditional keyword search (BM25) with semantic vector search to get the best of both approaches: exact term matching + conceptual understanding.
@@ -456,6 +483,15 @@ def optimize_alpha(queries, ground_truth, bm25, semantic):
 # - Alpha = 0.1-0.3 for specific term queries
 ```
 
+
+---
+
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [6202: Re-ranking and Retrieval Logistics](6202-Re-ranking-and-Retrieval-Logistics.md)
+- [6203: Advanced Retrieval Techniques](6203-Advanced-Retrieval.md)
 
 ---
 
