@@ -1,439 +1,542 @@
 # PROJECT-OMEGA - Complete Sitemap
 
-## 📚 Book Structure - Volume Guides (NEW)
-
-**Start your journey with the volume guides:**
-
-- ✅ **[VOLUME-GUIDE.md](VOLUME-GUIDE.md)** - Complete volume overview and recommended paths (NEW)
-- ✅ **[VOLUME-1-Infrastructure.md](../volumes/VOLUME-1-Infrastructure.md)** - Docker, networks, local LLMs (NEW)
-- ✅ **[VOLUME-2-AI-Foundations.md](../volumes/VOLUME-2-AI-Foundations.md)** - Math, frameworks, CUDA (NEW)
-- ✅ **[VOLUME-3-LLM-Internals.md](../volumes/VOLUME-3-LLM-Internals.md)** - Transformers, attention, embeddings (NEW)
-- ✅ **[VOLUME-4-Quantization.md](../volumes/VOLUME-4-Quantization.md)** - GGUF, context windows, vLLM (NEW)
-- ✅ **[VOLUME-5-Model-Adaptation.md](../volumes/VOLUME-5-Model-Adaptation.md)** - LoRA, QLoRA, DPO (NEW)
-- ✅ **[VOLUME-6-Data-Nexus.md](../volumes/VOLUME-6-Data-Nexus.md)** - RAG, GraphRAG, knowledge graphs (NEW)
-- ✅ **[VOLUME-7-Production-Mastery.md](../volumes/VOLUME-7-Production-Mastery.md)** - Deployment, monitoring, agents (NEW)
+Auto-generated index of every document in the curriculum. Counts and links
+below are derived directly from the file tree.
 
 ---
 
-## Phase 1: [1000] - Infrastructure Fabric (18 files including 2 guides)
+## Getting Started
 
-### [1100] Network Topology & Traffic Management (3 files)
-- ✅ [1101-Fiber-GPON-Modem.md](../phases/phase1-infra/1100-network/1101-Fiber-GPON-Modem.md) - GPON configuration, bridge mode, WAN bypass
-- ✅ [1102-Star-Topology-Core.md](../phases/phase1-infra/1100-network/1102-Star-Topology-Core.md) - 2.5Gbps switch hub logic
-- ✅ [1103-Jumbo-Frames-and-MTU.md](../phases/phase1-infra/1100-network/1103-Jumbo-Frames-and-MTU.md) - MTU 9000 optimization
-
-### [1200] Host Virtualization & PCIE Passthrough (4 files)
-- ✅ [1201-Proxmox-Hypervisor-SOP.md](../phases/phase1-infra/1200-virtualization/1201-Proxmox-Hypervisor-SOP.md) - Core pinning, ZFS configs
-- ✅ [1202-TB3-UT3G-Passthrough.md](../phases/phase1-infra/1200-virtualization/1202-TB3-UT3G-Passthrough.md) - 11GB-class GPU eGPU passthrough
-- ✅ [1203-Nvidia-Kernel-Module.md](../phases/phase1-infra/1200-virtualization/1203-Nvidia-Kernel-Module.md) - DKMS, driver stability
-- ✅ [1204-Multi-GPU-Setup.md](../phases/phase1-infra/1200-virtualization/1204-Multi-GPU-Setup.md) - Multi-GPU configuration for an 11GB-class GPU
-
-### [1300] Kubernetes & Container Orchestration (3 files)
-- ✅ [1301-K3s-Master-Worker-Arch.md](../phases/phase1-infra/1300-kubernetes/1301-K3s-Master-Worker-Arch.md) - Cluster architecture
-- ✅ [1302-GPU-Scheduler.md](../phases/phase1-infra/1300-kubernetes/1302-GPU-Scheduler.md) - Nvidia device plugin
-- ✅ [1303-Storage-Classes.md](../phases/phase1-infra/1300-kubernetes/1303-Storage-Classes.md) - Dynamic NFS provisioning
-
-### [1400] LLMOps Infrastructure (2 files + 2 guides)
-- ✅ [1401-Ollama-Enterprise.md](../phases/phase1-infra/1400-llmops/1401-Ollama-Enterprise.md) - Local model APIs
-- ✅ [1402-vLLM-and-TGI.md](../phases/phase1-infra/1400-llmops/1402-vLLM-and-TGI.md) - High-concurrency engines
-- ✅ [1404-vLLM-Production-Deployment.md](../phases/phase1-infra/1400-llmops/guides/1404-vLLM-Production-Deployment.md)
-- ✅ [1405-TGI-Deployment-Guide.md](../phases/phase1-infra/1400-llmops/guides/1405-TGI-Deployment-Guide.md) (NEW GUIDE)
-
-### [1500] Monitoring & Observability (3 files - NEW)
-- ✅ [1501-Monitoring-and-Observability.md](../phases/phase1-infra/1500-monitoring/1501-Monitoring-and-Observability.md) - Prometheus, Grafana, Loki, Tempo
-- ✅ [1502-Model-Drift-Detection.md](../phases/phase1-infra/1500-monitoring/1502-Model-Drift-Detection.md) - Drift detection, statistical tests, retraining (NEW)
-- ✅ [1503-LLM-Observability.md](../phases/phase1-infra/1500-monitoring/1503-LLM-Observability.md) - LLM metrics, TTFT, TPS, cost tracking (NEW)
-
-## Phase 2: [2000] - Cognitive Science & Frameworks (9 files including 3 guides)
-
-### [2100] The Calculus of AI (2 files)
-- ✅ [2101-Tensor-Algebra.md](../phases/phase2-foundations/2100-calculus/2101-Tensor-Algebra.md)
-- ✅ [2102-Backpropagation-and-Derivatives.md](../phases/phase2-foundations/2100-calculus/2102-Backpropagation-and-Derivatives.md)
-
-### [2400] Pre-training (NEW)
-- ✅ [2401-Pre-training-Fundamentals.md](../phases/phase2-foundations/2400-pretraining/2401-Pre-training-Fundamentals.md) - Data curation, tokenization, training pipeline (NEW)
-- ✅ [2402-Large-Scale-Training.md](../phases/phase2-foundations/2400-pretraining/2402-Large-Scale-Training.md) - FSDP, DeepSpeed, multi-node training (NEW)
-- ✅ [2403-Evaluation-Frameworks.md](../phases/phase2-foundations/2400-pretraining/2403-Evaluation-Frameworks.md) - MMLU, HellaSwag, GSM8K, evaluation (NEW)
-
-### [2200] Framework Engineering (3 files)
-- ✅ [2201-PyTorch-Computational-Graphs.md](../phases/phase2-foundations/2200-frameworks/2201-PyTorch-Computational-Graphs.md)
-- ✅ [2202-TensorFlow-XLA-Compilers.md](../phases/phase2-foundations/2200-frameworks/2202-TensorFlow-XLA-Compilers.md)
-- ✅ [2203-CUDA-Kernel-Syb-Level.md](../phases/phase2-foundations/2200-frameworks/2203-CUDA-Kernel-Syb-Level.md)
-
-### [2300] Framework Engineering (4 files + 2 guides)
-- ✅ [2301-Framework-Design-Patterns.md](../phases/phase2-foundations/2300-framework-engineering/2301-Framework-Design-Patterns.md)
-- ✅ [2302-Model-Serving-Architectures.md](../phases/phase2-foundations/2300-framework-engineering/2302-Model-Serving-Architectures.md)
-- ✅ [2303-API-Design-for-ML.md](../phases/phase2-foundations/2300-framework-engineering/2303-API-Design-for-ML.md)
-- ✅ [2304-Production-Deployment-Patterns.md](../phases/phase2-foundations/2300-framework-engineering/2304-Production-Deployment-Patterns.md)
-- ✅ [2305-Framework-Comparison.md](../phases/phase2-foundations/2300-framework-engineering/guides/2305-Framework-Comparison.md) (NEW GUIDE)
-- ✅ [2306-Building-Production-Framework.md](../phases/phase2-foundations/2300-framework-engineering/guides/2306-Building-Production-Framework.md) (NEW GUIDE)
-
-## Phase 3: [3000] - Transformer Physics & LLM Internals (13 files including 3 guides)
-
-### [3100] Attention Architectures (2 files)
-- ✅ [3101-Self-Attention-DeepDive.md](../phases/phase3-transformers/3100-attention/3101-Self-Attention-DeepDive.md)
-- ✅ [3102-Flash-Attention.md](../phases/phase3-transformers/3100-attention/3102-Flash-Attention.md)
-
-### [3200] Embedding Latent Spaces (2 files)
-- ✅ [3201-Rotary-Positional-Embeddings-RoPE.md](../phases/phase3-transformers/3200-embeddings/3201-Rotary-Positional-Embeddings-RoPE.md)
-- ✅ [3202-Tokenizer-Sciences.md](../phases/phase3-transformers/3200-embeddings/3202-Tokenizer-Sciences.md)
-
-### [3300] The Decoding Block (2 files + 1 guide)
-- ✅ [3301-Activation-Functions.md](../phases/phase3-transformers/3300-decoding/3301-Activation-Functions.md)
-- ✅ [3302-Normalization-Layers.md](../phases/phase3-transformers/3300-decoding/3302-Normalization-Layers.md)
-- ✅ [3303-Activation-Function-Comparison.md](../phases/phase3-transformers/3300-decoding/guides/3303-Activation-Function-Comparison.md) (NEW GUIDE)
-
-### [3400] Model Architectures (2 files + 2 guides)
-- ✅ [3401-Encoder-Decoder-Architectures.md](../phases/phase3-transformers/3400-architectures/3401-Encoder-Decoder-Architectures.md) - T5, BART architectures
-- ✅ [3402-Decoder-Only-Models.md](../phases/phase3-transformers/3400-architectures/3402-Decoder-Only-Models.md) - GPT, LLaMA, Mistral
-- ✅ [3403-Model-Architecture-Comparison.md](../phases/phase3-transformers/3400-architectures/guides/3403-Model-Architecture-Comparison.md) (NEW GUIDE)
-
-### [3500] Multimodal Models (2 files - NEW)
-- ✅ [3501-Vision-Language-Models.md](../phases/phase3-transformers/3500-multimodal/3501-Vision-Language-Models.md) - CLIP, BLIP, LLaVA, multimodal RAG (NEW)
-- ✅ [3502-Audio-Models.md](../phases/phase3-transformers/3500-multimodal/3502-Audio-Models.md) - Whisper, AudioLM, voice assistants (NEW)
-
-## Phase 4: [4000] - Quantization & Compression (20 files including 5 guides)
-
-### [4100] Low-Bit Quantization (3 files)
-- ✅ [4101-GGUF-Physics.md](../phases/phase4-quantization/4100-low-bit/4101-GGUF-Physics.md)
-- ✅ [4102-EXL2-and-AWQ.md](../phases/phase4-quantization/4100-low-bit/4102-EXL2-and-AWQ.md)
-- ✅ [4103-Double-Quantization.md](../phases/phase4-quantization/4100-low-bit/4103-Double-Quantization.md)
-
-### [4200] KV-Cache Engineering (2 files + 1 guide)
-- ✅ [4201-Context-Window-Physics.md](../phases/phase4-quantization/4200-kv-cache/4201-Context-Window-Physics.md)
-- ✅ [4202-Speculative-Decoding.md](../phases/phase4-quantization/4200-kv-cache/4202-Speculative-Decoding.md)
-- ✅ [4203-Context-Window-Optimization.md](../phases/phase4-quantization/4200-kv-cache/guides/4203-Context-Window-Optimization.md) (NEW GUIDE)
-
-### [4300] Quantization-Aware Training (5 files + 3 guides)
-- ✅ [4301-QAT-Foundations.md](../phases/phase4-quantization/4300-quantization-aware-training/4301-QAT-Foundations.md)
-- ✅ [4302-Fake-Quantization.md](../phases/phase4-quantization/4300-quantization-aware-training/4302-Fake-Quantization.md)
-- ✅ [4303-QAT-for-Transformers.md](../phases/phase4-quantization/4300-quantization-aware-training/4303-QAT-for-Transformers.md)
-- ✅ [4304-Low-bit-QAT.md](../phases/phase4-quantization/4300-quantization-aware-training/4304-Low-bit-QAT.md)
-- ✅ [4305-Quantization-Configuration.md](../phases/phase4-quantization/4300-quantization-aware-training/4305-Quantization-Configuration.md)
-- ✅ [4306-PyTorch-QAT.md](../phases/phase4-quantization/4300-quantization-aware-training/guides/4306-PyTorch-QAT.md) (NEW GUIDE)
-- ✅ [4307-Transformers-QAT.md](../phases/phase4-quantization/4300-quantization-aware-training/guides/4307-Transformers-QAT.md) (NEW GUIDE)
-- ✅ [4308-BitBlade-QAT.md](../phases/phase4-quantization/4300-quantization-aware-training/guides/4308-BitBlade-QAT.md) (NEW GUIDE)
-
-### [4400] Advanced Techniques (7 files + 2 guides)
-- ✅ [4401-GPTQ.md](../phases/phase4-quantization/4400-advanced-techniques/4401-GPTQ.md)
-- ✅ [4402-AWQ.md](../phases/phase4-quantization/4400-advanced-techniques/4402-AWQ.md)
-- ✅ [4403-GGUF-Format.md](../phases/phase4-quantization/4400-advanced-techniques/4403-GGUF-Format.md)
-- ✅ [4404-EXL2-Format.md](../phases/phase4-quantization/4400-advanced-techniques/4404-EXL2-Format.md)
-- ✅ [4405-Sparsity-Quantization.md](../phases/phase4-quantization/4400-advanced-techniques/4405-Sparsity-Quantization.md)
-- ✅ [4406-1.58-bit-Quantization.md](../phases/phase4-quantization/4400-advanced-techniques/4406-1.58-bit-Quantization.md)
-- ✅ [4407-Ternary-Binary.md](../phases/phase4-quantization/4400-advanced-techniques/4407-Ternary-Binary.md)
-- ✅ [4408-Quantizing-for-Production.md](../phases/phase4-quantization/4400-advanced-techniques/guides/4408-Quantizing-for-Production.md) (NEW GUIDE)
-- ✅ [4409-Hardware-Specific-Optimization.md](../phases/phase4-quantization/4400-advanced-techniques/guides/4409-Hardware-Specific-Optimization.md) (NEW GUIDE)
-
-## Phase 5: [5000] - Model Adaptation: Fine-Tuning & Alignment (16 files including 1 guide)
-
-### [5100] Parameter Efficient Fine-Tuning (2 files + 1 guide)
-- ✅ [5101-LoRA-Logic.md](../phases/phase5-finetuning/5100-peft/5101-LoRA-Logic.md)
-- ✅ [5102-QLoRA-Pipelines.md](../phases/phase5-finetuning/5100-peft/5102-QLoRA-Pipelines.md)
-- ✅ [5104-LoRA-Implementation-Guide.md](../phases/phase5-finetuning/5100-peft/guides/5104-LoRA-Implementation-Guide.md) (NEW GUIDE)
-
-### [5200] SFT & Preference (2 files)
-- ✅ [5201-DPO-Theory.md](../phases/phase5-finetuning/5200-alignment/5201-DPO-Theory.md)
-- ✅ [5202-Alignment-Orchestration.md](../phases/phase5-finetuning/5200-alignment/5202-Alignment-Orchestration.md)
-
-### [5300] Dataset Synthetic Generation (3 files)
-- ✅ [5301-Knowledge-Distillation.md](../phases/phase5-finetuning/5300-synthetic/5301-Knowledge-Distillation.md)
-- ✅ [5302-Distributed-Training.md](../phases/phase5-finetuning/5300-synthetic/5302-Distributed-Training.md) - Distributed training orchestration
-- ✅ [5303-Federated-Learning.md](../phases/phase5-finetuning/5300-synthetic/5303-Federated-Learning.md) - Federated averaging, differential privacy (NEW)
-
-### [5400] Distributed Training (4 files)
-- ✅ [5401-Data-Parallelism.md](../phases/phase5-finetuning/5400-distributed-training/5401-Data-Parallelism.md)
-- ✅ [5402-Model-Parallelism.md](../phases/phase5-finetuning/5400-distributed-training/5402-Model-Parallelism.md)
-- ✅ [5403-Mixed-Precision.md](../phases/phase5-finetuning/5400-distributed-training/5403-Mixed-Precision.md)
-- ✅ [5404-Distributed-Optimization.md](../phases/phase5-finetuning/5400-distributed-training/5404-Distributed-Optimization.md)
-
-### [5500] Advanced Optimization (3 files)
-- ✅ [5501-Optimizer-Variants.md](../phases/phase5-finetuning/5500-advanced-optimization/5501-Optimizer-Variants.md)
-- ✅ [5502-Learning-Rate-Scheduling.md](../phases/phase5-finetuning/5500-advanced-optimization/5502-Learning-Rate-Scheduling.md)
-- ✅ [5503-Advanced-Techniques.md](../phases/phase5-finetuning/5500-advanced-optimization/5503-Advanced-Techniques.md)
-
-## Phase 6: [6000] - Data Nexus (16 files including 4 guides)
-
-### [6100] Vector Architectures (2 files + 1 guide)
-- ✅ [6101-HNSW-Indexing.md](../phases/phase6-rag/6100-vector/6101-HNSW-Indexing.md)
-- ✅ [6102-Semantic-Similarity.md](../phases/phase6-rag/6100-vector/6102-Semantic-Similarity.md)
-- ✅ [6103-HNSW-Tuning-Guide.md](../phases/phase6-rag/6100-vector/guides/6103-HNSW-Tuning-Guide.md) (NEW GUIDE)
-
-### [6200] RAG 2.0 (2 files)
-- ✅ [6201-Hybrid-Search.md](../phases/phase6-rag/6200-retrieval/6201-Hybrid-Search.md)
-- ✅ [6202-Re-ranking-and-Retrieval-Logistics.md](../phases/phase6-rag/6200-retrieval/6202-Re-ranking-and-Retrieval-Logistics.md)
-
-### [6300] GraphRAG (2 files + 2 guides)
-- ✅ [6301-Neo4j-and-Knowledge-Graphs.md](../phases/phase6-rag/6300-context/6301-Neo4j-and-Knowledge-Graphs.md)
-- ✅ [6302-CAG-Long-Context-Architectures.md](../phases/phase6-rag/6300-context/6302-CAG-Long-Context-Architectures.md)
-- ✅ [6303-Neo4j-Deployment-Guide.md](../phases/phase6-rag/6300-context/guides/6303-Neo4j-Deployment-Guide.md)
-- ✅ [6304-GraphRAG-Implementation.md](../phases/phase6-rag/6300-context/guides/6304-GraphRAG-Implementation.md) (NEW GUIDE)
-
-### [6400] Vector Databases (2 files + 1 guide)
-- ✅ [6401-Qdrant-Setup.md](../phases/phase6-rag/6400-vector-databases/6401-Qdrant-Setup.md) - Qdrant deployment guide
-- ✅ [6402-Pinecone-vs-Weaviate.md](../phases/phase6-rag/6400-vector-databases/6402-Pinecone-vs-Weaviate.md) - Comparison
-- ✅ [6403-Qdrant-Production-Deployment.md](../phases/phase6-rag/6400-vector-databases/guides/6403-Qdrant-Production-Deployment.md) (NEW GUIDE)
-
-### [6500] MLOps Pipelines (3 files - NEW)
-- ✅ [6501-ML-Lifecycle-Management.md](../phases/phase6-rag/6500-mlops-pipelines/6501-ML-Lifecycle-Management.md) - Development, validation, deployment, monitoring, retirement (NEW)
-- ✅ [6502-CI-CD-for-ML.md](../phases/phase6-rag/6500-mlops-pipelines/6502-CI-CD-for-ML.md) - Automated ML pipelines, canary deployment (NEW)
-- ✅ [6503-Model-Registry.md](../phases/phase6-rag/6500-mlops-pipelines/6503-Model-Registry.md) - MLflow, W&B, versioning, metadata (NEW)
-
-## Phase 7: [7000] - Agentic Cognition & Autonomy (13 files including 4 guides)
-
-### [7100] Reason & Plan (2 files + 1 guide)
-- ✅ [7101-ReAct-Loop-System.md](../phases/phase7-agentic/7100-architecture/7101-ReAct-Loop-System.md)
-- ✅ [7102-Planning-Decomposition.md](../phases/phase7-agentic/7100-architecture/7102-Planning-Decomposition.md)
-- ✅ [7103-ReAct-Implementation-Guide.md](../phases/phase7-agentic/7100-architecture/guides/7103-ReAct-Implementation-Guide.md) (NEW GUIDE)
-
-### [7200] Tool-Calling (1 file + 1 guide)
-- ✅ [7201-Tool-Calling.md](../phases/phase7-agentic/7200-tools/7201-Tool-Calling.md)
-- ✅ [7202-Code-Interpreter.md](../phases/phase7-agentic/7200-tools/guides/7202-Code-Interpreter.md) (NEW GUIDE)
-
-### [7300] Multi-Agent Orchestration (1 file + 1 guide)
-- ✅ [7301-Orchestration.md](../phases/phase7-agentic/7300-orchestration/7301-Orchestration.md)
-- ✅ [7303-Framework-Comparison.md](../phases/phase7-agentic/7300-orchestration/guides/7303-Framework-Comparison.md) (NEW GUIDE)
-
-### [7400] Agent Memory (1 file + 1 guide)
-- ✅ [7401-Long-term-Memory.md](../phases/phase7-agentic/7400-memory/7401-Long-term-Memory.md) - VectorStore and Memoria
-- ✅ [7402-Agent-Memory-Implementation.md](../phases/phase7-agentic/7400-memory/guides/7402-Agent-Memory-Implementation.md) (NEW GUIDE)
-
-### [7500] AI Security (3 files - NEW)
-- ✅ [7501-Prompt-Injection-Defense.md](../phases/phase7-agentic/7500-security/7501-Prompt-Injection-Defense.md) - Attack taxonomy, input filtering, perplexity detection (NEW)
-- ✅ [7502-PII-Redaction.md](../phases/phase7-agentic/7500-security/7502-PII-Redaction.md) - PII detection, redaction, Presidio, compliance (NEW)
-- ✅ [7503-Adversarial-Attacks.md](../phases/phase7-agentic/7500-security/7503-Adversarial-Attacks.md) - FGSM, adversarial training, robustness testing (NEW)
+- [README](../../README.md) - Project overview and quick start
+- [0000-LEARNING-PATH](0000-LEARNING-PATH.md) - Curriculum roadmap and study paths
+- [VOLUME-GUIDE](VOLUME-GUIDE.md) - Phase-by-phase overview and recommended routes
+- [QUICK-START](QUICK-START.md) - Get running in 30 minutes
+- [PROGRESS-TRACKER](PROGRESS-TRACKER.md) - Track your learning progress
+- [FAQ](FAQ.md) - Frequently asked questions
+- [MASTER-INDEX](MASTER-INDEX.md) - Master document index
+- [ENVIRONMENT-SETUP](ENVIRONMENT-SETUP.md) - Hardware and software prerequisites
+- [ASSESSMENT-GUIDE](ASSESSMENT-GUIDE.md) - How quizzes and practice sets work
+- [GLOSSARY](GLOSSARY.md) - Terminology reference
 
 ---
 
-## Additional Files
+## Phase 1 - Infrastructure Fabric (39 files)
 
-### Root Level
-- ✅ [README.md](../../README.md) - Main project overview
-- ✅ [SITEMAP.md](SITEMAP.md) - This file
-- ✅ **[0000-LEARNING-PATH.md](0000-LEARNING-PATH.md)** ← **START HERE: Complete curriculum roadmap (NEW)**
-- ✅ **[QUICK-START.md](QUICK-START.md)** - Get started in 30 minutes (NEW)
-- ✅ **[PROGRESS-TRACKER.md](PROGRESS-TRACKER.md)** - Track your learning progress (NEW)
+- [CHECKPOINT](../phases/phase1-infra/CHECKPOINT.md)
+- [README](../phases/phase1-infra/README.md)
 
-### Tutorials (UPDATED - 14 tutorials total)
-- ✅ **[TUTORIAL-000: Python for AI](../learning-resources/tutorials/TUTORIAL-000-Python-for-AI.md)** - Python fundamentals for AI development (NEW)
-- ✅ **[TUTORIAL-001: Hello LLM](../learning-resources/tutorials/TUTORIAL-001-Hello-LLM.md)** - Your first local LLM (NEW)
-- ✅ **[TUTORIAL-002: Docker Essentials](../learning-resources/tutorials/TUTORIAL-002-Docker-Essentials.md)** - Container basics for AI (NEW)
-- ✅ **[TUTORIAL-003: RAG Basics](../learning-resources/tutorials/TUTORIAL-003-RAG-Basics.md)** - Build your first RAG system (NEW)
-- ✅ **[TUTORIAL-004: Monitoring](../learning-resources/tutorials/TUTORIAL-004-Monitoring.md)** - Observability with Prometheus, Grafana, Loki, Tempo (NEW)
-- ✅ **[TUTORIAL-005: Production Deployment](../learning-resources/tutorials/TUTORIAL-005-Production-Deployment.md)** - SSL, Nginx, CI/CD (NEW)
-- ✅ **[TUTORIAL-006: Real-time AI](../learning-resources/tutorials/TUTORIAL-006-Real-time-AI.md)** - Streaming responses and WebSockets (NEW)
-- ✅ **[TUTORIAL-007: LoRA Basics](../learning-resources/tutorials/TUTORIAL-007-LoRA-Basics.md)** - LoRA fine-tuning fundamentals (NEW)
-- ✅ **[TUTORIAL-008: CUDA Programming](../learning-resources/tutorials/TUTORIAL-008-CUDA-Programming.md)** - GPU programming basics (NEW)
-- ✅ **[TUTORIAL-009: Advanced RAG Techniques](../learning-resources/tutorials/TUTORIAL-009-Advanced-RAG-Techniques.md)** - Hybrid search, re-ranking, GraphRAG (NEW)
-- ✅ **[TUTORIAL-010: Model Evaluation](../learning-resources/tutorials/TUTORIAL-010-Model-Evaluation.md)** - Benchmarking and metrics (NEW)
-- ✅ **[TUTORIAL-011: Multi-Modal AI](../learning-resources/tutorials/TUTORIAL-011-Multi-Modal-AI.md)** - Vision and language models (NEW)
-- ✅ **[TUTORIAL-012: Production LLMOps](../learning-resources/tutorials/TUTORIAL-012-Production-LLMOps.md)** - Production ML operations (NEW)
-- ✅ **[TUTORIAL-013: AI Security](../learning-resources/tutorials/TUTORIAL-013-AI-Security.md)** - Prompt injection, PII redaction (NEW)
-- ✅ **[TUTORIAL-014: Production LLM Systems](../learning-resources/tutorials/TUTORIAL-014-Production-LLM-Systems.md)** - End-to-end production systems (NEW)
+### [1100-network] (3 lessons, 0 guides)
 
-### Labs (NEW - Hands-on Exercises)
-- ✅ **[LAB 001: Docker & LLM](../learning-resources/labs/LAB-001-Docker-LLM.md)** - Run LLMs in Docker (2 hours) (NEW)
-- ✅ **[LAB 002: RAG Implementation](../learning-resources/labs/LAB-002-RAG-Implementation.md)** - Build RAG with Qdrant (3 hours) (NEW)
-- ✅ **[LAB 003: LoRA Fine-Tuning](../learning-resources/labs/LAB-003-LoRA-FineTuning.md)** - Fine-tune models with QLoRA (4 hours) (NEW)
-- ✅ **[LAB 004: ReAct Agent](../learning-resources/labs/LAB-004-ReAct-Agent.md)** - Build reasoning agents (4 hours) (NEW)
-- ✅ **[LAB 005: GraphRAG](../learning-resources/labs/LAB-005-GraphRAG.md)** - Knowledge graph RAG (5 hours) (NEW)
-- ✅ **[LAB 006: Train Model from Scratch](../learning-resources/labs/LAB-006-Train-Model-From-Scratch.md)** - Train 10M parameter model (6-8 hours) (NEW)
-- ✅ **[LAB 007: Production RAG](../learning-resources/labs/LAB-007-Production-RAG.md)** - Enterprise-grade RAG with hybrid search (6-8 hours) (NEW)
-- ✅ **[LAB 008: Agent Fleet](../learning-resources/labs/LAB-008-Agent-Fleet.md)** - Multi-agent system orchestration (6-8 hours) (NEW)
-- ✅ **[LAB 009: Production Deployment](../learning-resources/labs/LAB-009-Production-Deployment.md)** - Deploy AI systems at scale (8-10 hours) (NEW)
-- ✅ **[LAB 010: DPO Alignment](../learning-resources/labs/LAB-010-DPO-Alignment.md)** - Direct Preference Optimization for alignment (5-6 hours) (NEW)
-- ✅ **[LAB 011: Multi-Modal AI](../learning-resources/labs/LAB-011-Multi-Modal-AI.md)** - Vision + Language models (6-8 hours) (NEW)
-- ✅ **[LAB 012: Audio AI](../learning-resources/labs/LAB-012-Audio-AI.md)** - Speech recognition and synthesis (4-5 hours) (NEW)
-- ✅ **[LAB 013: Advanced Function Calling](../learning-resources/labs/LAB-013-Advanced-Function-Calling.md)** - Tool orchestration (5-6 hours) (NEW)
-- ✅ **[LAB 014: AI Evaluation & Safety](../learning-resources/labs/LAB-014-AI-Evaluation-Safety.md)** - Testing, benchmarking, and security (4-5 hours) (NEW)
+- [1101-Fiber-GPON-Modem](../phases/phase1-infra/1100-network/1101-Fiber-GPON-Modem.md)
+- [1102-Star-Topology-Core](../phases/phase1-infra/1100-network/1102-Star-Topology-Core.md)
+- [1103-Jumbo-Frames-and-MTU](../phases/phase1-infra/1100-network/1103-Jumbo-Frames-and-MTU.md)
+- [assessment: PRACTICE](../phases/phase1-infra/1100-network/assessment/PRACTICE.md)
+- [assessment: QUIZ](../phases/phase1-infra/1100-network/assessment/QUIZ.md)
 
-### Cheat Sheets (NEW - Quick Reference)
-- ✅ **[CHEAT SHEET 001: Docker](../learning-resources/cheat-sheets/CHEAT-SHEET-001-Docker.md)** - Essential Docker commands (NEW)
-- ✅ **[CHEAT SHEET 002: Python AI](../learning-resources/cheat-sheets/CHEAT-SHEET-002-Python-AI.md)** - Python for AI/ML (NEW)
-- ✅ **[CHEAT SHEET 003: Git](../learning-resources/cheat-sheets/CHEAT-SHEET-003-Git.md)** - Git & Version Control (NEW)
-- ✅ **[CHEAT SHEET 004: Linux](../learning-resources/cheat-sheets/CHEAT-SHEET-004-Linux.md)** - Linux Commands (NEW)
-- ✅ **[Volume 1 Quick Reference](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-1.md)** - Infrastructure essentials (NEW)
-- ✅ **[Volume 2 Quick Reference](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-2.md)** - AI foundations & math (NEW)
-- ✅ **[Volume 3 Quick Reference](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-3.md)** - Transformer internals (NEW)
-- ✅ **[Volume 4 Quick Reference](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-4.md)** - Quantization techniques (NEW)
-- ✅ **[Volume 5 Quick Reference](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-5.md)** - Fine-tuning & alignment (NEW)
-- ✅ **[Volume 6 Quick Reference](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-6.md)** - RAG & vector databases (NEW)
-- ✅ **[Volume 7 Quick Reference](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-7.md)** - Production systems & agents (NEW)
+### [1200-virtualization] (4 lessons, 0 guides)
 
-### Interactive Elements (NEW - Flashcards, Quizzes, Challenges)
-- ✅ **[INTERACTIVE: Learning Components](../learning-resources/interactive/FLASHCARDS.md)** - Flashcards, quizzes, code challenges, visual diagrams (NEW)
-  - Flashcards for quick recall
-  - Interactive quizzes with immediate feedback
-  - Coding challenges with hints and tests
-  - Animated concepts and visualizations
-  - Progress trackers for monitoring learning
+- [1201-Proxmox-Hypervisor-SOP](../phases/phase1-infra/1200-virtualization/1201-Proxmox-Hypervisor-SOP.md)
+- [1202-TB3-UT3G-Passthrough](../phases/phase1-infra/1200-virtualization/1202-TB3-UT3G-Passthrough.md)
+- [1203-Nvidia-Kernel-Module](../phases/phase1-infra/1200-virtualization/1203-Nvidia-Kernel-Module.md)
+- [1204-Multi-GPU-Setup](../phases/phase1-infra/1200-virtualization/1204-Multi-GPU-Setup.md)
+- [assessment: PRACTICE](../phases/phase1-infra/1200-virtualization/assessment/PRACTICE.md)
+- [assessment: QUIZ](../phases/phase1-infra/1200-virtualization/assessment/QUIZ.md)
 
-### Troubleshooting (NEW - Common Issues)
-- ✅ **[TROUBLESHOOTING: Common Issues](../learning-resources/troubleshooting/TROUBLESHOOTING-Common-Issues.md)** - Solutions to common problems (NEW)
+### [1300-kubernetes] (3 lessons, 0 guides)
 
-### Capstone Projects (NEW - End-to-End Projects)
-- ✅ **[PROJECT 001: Build Your AI Assistant](../learning-resources/projects/PROJECT-001-AI-Assistant.md)** - Complete AI assistant with RAG, ReAct, and tools (NEW)
-- ✅ **[PROJECT 002: Train Neural Network from Scratch](../learning-resources/projects/PROJECT-002-Train-Neural-Network.md)** - Mathematics meets implementation - Train your first model (NEW)
-- ✅ **[PROJECT 003: Transformer from Scratch](../learning-resources/projects/PROJECT-003-Transformer-From-Scratch.md)** - Build the architecture powering modern LLMs (NEW)
-- ✅ **[PROJECT 004: Quantize LLM from Scratch](../learning-resources/projects/PROJECT-004-Quantize-Model.md)** - Run large models on limited hardware (NEW)
-- ✅ **[PROJECT 005: Fine-Tune Domain Model](../learning-resources/projects/PROJECT-005-FineTune-Model.md)** - Adapt an LLM to your specific use case (NEW)
-- ✅ **[PROJECT 006: Build Production RAG System](../learning-resources/projects/PROJECT-006-Production-RAG.md)** - Integrate LLMs with your knowledge base (NEW)
-- ✅ **[PROJECT 007: Deploy Production AI System](../learning-resources/projects/PROJECT-007-Production-AI-System.md)** - Build and deploy a complete AI system at scale (NEW)
+- [1301-K3s-Master-Worker-Arch](../phases/phase1-infra/1300-kubernetes/1301-K3s-Master-Worker-Arch.md)
+- [1302-GPU-Scheduler](../phases/phase1-infra/1300-kubernetes/1302-GPU-Scheduler.md)
+- [1303-Storage-Classes](../phases/phase1-infra/1300-kubernetes/1303-Storage-Classes.md)
+- [assessment: PRACTICE](../phases/phase1-infra/1300-kubernetes/assessment/PRACTICE.md)
+- [assessment: QUIZ](../phases/phase1-infra/1300-kubernetes/assessment/QUIZ.md)
 
-### Case Studies (NEW - Real-World Examples)
-- ✅ **[Real-World Examples & Case Studies](../learning-resources/case-studies/REAL-WORLD-EXAMPLES.md)** - Production examples from enterprise systems (NEW)
+### [1400-llmops] (2 lessons, 2 guides)
 
-### Configurations
-- ✅ [configs/README.md](../../configs/README.md) - Complete configuration guide (UPDATED)
-- ✅ [configs/docker-compose.yml](../../configs/docker-compose.yml) - Docker Compose for Synology
-- ✅ [configs/docker-compose-complete.yml](../../configs/docker-compose-complete.yml) - Complete stack with monitoring (NEW)
-- ✅ [configs/docker-compose-gpu.yml](../../configs/docker-compose-gpu.yml) - GPU VM services (NEW)
-- ✅ [configs/k3s-manifests.yaml](../../configs/k3s-manifests.yaml) - Kubernetes manifests
-- ✅ [configs/nginx/nginx.conf](../../configs/nginx/nginx.conf) - Nginx API Gateway (NEW)
-- ✅ [configs/nginx/conf.d/default.conf](../../configs/nginx/conf.d/default.conf) - Service routes (NEW)
-- ✅ [configs/ci-cd/.github/workflows/deploy.yml](../../configs/ci-cd/.github/workflows/deploy.yml) - GitHub Actions CI/CD (NEW)
-- ✅ [configs/scripts/backup.sh](../../configs/scripts/backup.sh) - Backup script (NEW)
-- ✅ [configs/scripts/restore.sh](../../configs/scripts/restore.sh) - Restore script (NEW)
-- ✅ [configs/services/react-agent/Dockerfile](../../configs/services/react-agent/Dockerfile) - ReAct Agent container (NEW)
-- ✅ [configs/services/graphrag/Dockerfile](../../configs/services/graphrag/Dockerfile) - GraphRAG container (NEW)
-- ✅ [configs/monitoring/prometheus/prometheus.yml](../../configs/monitoring/prometheus/prometheus.yml) - Prometheus config (NEW)
-- ✅ [configs/monitoring/loki/loki.yml](../../configs/monitoring/loki/loki.yml) - Loki config (NEW)
-- ✅ [configs/monitoring/tempo/tempo.yml](../../configs/monitoring/tempo/tempo.yml) - Tempo config (NEW)
-- ✅ [configs/monitoring/promtail/promtail.yml](../../configs/monitoring/promtail/promtail.yml) - Promtail config (NEW)
-- ✅ [configs/monitoring/grafana/provisioning/datasources/datasources.yml](../../configs/monitoring/grafana/provisioning/datasources/datasources.yml) - Grafana datasources (NEW)
-- ✅ [configs/monitoring/grafana/provisioning/dashboards/dashboards.yml](../../configs/monitoring/grafana/provisioning/dashboards/dashboards.yml) - Grafana dashboards (NEW)
-- ✅ [configs/monitoring/grafana/dashboards/project-omega-overview.json](../../configs/monitoring/grafana/dashboards/project-omega-overview.json) - Overview dashboard (NEW)
-- ✅ [configs/monitoring/grafana/dashboards/gpu-monitoring.json](../../configs/monitoring/grafana/dashboards/gpu-monitoring.json) - GPU dashboard (NEW)
-- ✅ [configs/performance-testing/k6/load-test.js](../../configs/performance-testing/k6/load-test.js) - k6 load tests (NEW)
-- ✅ [configs/docs/ssl-tls-setup.md](../../configs/docs/ssl-tls-setup.md) - SSL/TLS setup guide (NEW)
-- ✅ [configs/service-mesh/istio/values.yaml](../../configs/service-mesh/istio/values.yaml) - Istio configuration (NEW)
-- ✅ [configs/service-mesh/istio/virtualservices.yaml](../../configs/service-mesh/istio/virtualservices.yaml) - Istio virtual services (NEW)
+- [1401-Ollama-Enterprise](../phases/phase1-infra/1400-llmops/1401-Ollama-Enterprise.md)
+- [1402-vLLM-and-TGI](../phases/phase1-infra/1400-llmops/1402-vLLM-and-TGI.md)
+- [guide: 1404-vLLM-Production-Deployment](../phases/phase1-infra/1400-llmops/guides/1404-vLLM-Production-Deployment.md)
+- [guide: 1405-TGI-Deployment-Guide](../phases/phase1-infra/1400-llmops/guides/1405-TGI-Deployment-Guide.md)
+- [assessment: PRACTICE](../phases/phase1-infra/1400-llmops/assessment/PRACTICE.md)
+- [assessment: QUIZ](../phases/phase1-infra/1400-llmops/assessment/QUIZ.md)
 
-### Experiments
-- ✅ 44 experiment template files covering key documentation topics
-  - [EXP_1101_GPON.md](../../experiments/EXP_1101_GPON.md)
-  - [EXP_1302_GPU_SCHEDULER.md](../../experiments/EXP_1302_GPU_SCHEDULER.md)
-  - [EXP_1501_MONITORING.md](../../experiments/EXP_1501_MONITORING.md) (NEW)
-  - [EXP_1502_MODEL_DRIFT.md](../../experiments/EXP_1502_MODEL_DRIFT.md) (NEW)
-  - [EXP_2101_TENSOR_ALGEBRA.md](../../experiments/EXP_2101_TENSOR_ALGEBRA.md)
-  - [EXP_2102_BACKPROPAGATION.md](../../experiments/EXP_2102_BACKPROPAGATION.md)
-  - [EXP_2201_PYTORCH_GRAPHS.md](../../experiments/EXP_2201_PYTORCH_GRAPHS.md)
-  - [EXP_2202_TENSORFLOW_XLA.md](../../experiments/EXP_2202_TENSORFLOW_XLA.md)
-  - [EXP_2203_CUDA_KERNELS.md](../../experiments/EXP_2203_CUDA_KERNELS.md)
-  - [EXP_3101_SELF_ATTENTION.md](../../experiments/EXP_3101_SELF_ATTENTION.md)
-  - [EXP_3102_FLASH_ATTENTION.md](../../experiments/EXP_3102_FLASH_ATTENTION.md) (NEW)
-  - [EXP_3201_ROPE.md](../../experiments/EXP_3201_ROPE.md) (NEW)
-  - [EXP_3202_TOKENIZER.md](../../experiments/EXP_3202_TOKENIZER.md) (NEW)
-  - [EXP_3401_ENCODER_DECODER.md](../../experiments/EXP_3401_ENCODER_DECODER.md)
-  - [EXP_3501_MULTIMODAL_RAG.md](../../experiments/EXP_3501_MULTIMODAL_RAG.md) (NEW)
-  - [EXP_4101_GGUF.md](../../experiments/EXP_4101_GGUF.md)
-  - [EXP_4102_EXL2_AWQ.md](../../experiments/EXP_4102_EXL2_AWQ.md)
-  - [EXP_4103_DOUBLE_QUANT.md](../../experiments/EXP_4103_DOUBLE_QUANT.md)
-  - [EXP_4201_CONTEXT_WINDOW.md](../../experiments/EXP_4201_CONTEXT_WINDOW.md) (NEW)
-  - [EXP_4202_SPECULATIVE_DECODING.md](../../experiments/EXP_4202_SPECULATIVE_DECODING.md) (NEW)
-  - [EXP_5101_LORA.md](../../experiments/EXP_5101_LORA.md) (UPDATED)
-  - [EXP_5102_QLORA.md](../../experiments/EXP_5102_QLORA.md)
-  - [EXP_5201_DPO.md](../../experiments/EXP_5201_DPO.md) (NEW)
-  - [EXP_5202_ALIGNMENT.md](../../experiments/EXP_5202_ALIGNMENT.md)
-  - [EXP_5301_DISTILLATION.md](../../experiments/EXP_5301_DISTILLATION.md)
-  - [EXP_5302_DISTRIBUTED.md](../../experiments/EXP_5302_DISTRIBUTED.md)
-  - [EXP_5303_FEDERATED_LEARNING.md](../../experiments/EXP_5303_FEDERATED_LEARNING.md) (NEW)
-  - [EXP_6101_HNSW.md](../../experiments/EXP_6101_HNSW.md)
-  - [EXP_6102_SIMILARITY.md](../../experiments/EXP_6102_SIMILARITY.md)
-  - [EXP_6201_HYBRID_SEARCH.md](../../experiments/EXP_6201_HYBRID_SEARCH.md) (NEW)
-  - [EXP_6202_RERANK.md](../../experiments/EXP_6202_RERANK.md)
-  - [EXP_6301_GRAPHRAG.md](../../experiments/EXP_6301_GRAPHRAG.md)
-  - [EXP_6302_CAG.md](../../experiments/EXP_6302_CAG.md)
-  - [EXP_6303_NEO4J.md](../../experiments/EXP_6303_NEO4J.md) (NEW)
-  - [EXP_6401_VECTOR_DB.md](../../experiments/EXP_6401_VECTOR_DB.md)
-  - [EXP_6501_MLOPS_PIPELINE.md](../../experiments/EXP_6501_MLOPS_PIPELINE.md) (NEW)
-  - [EXP_7101_REACT.md](../../experiments/EXP_7101_REACT.md)
-  - [EXP_7102_PLANNING.md](../../experiments/EXP_7102_PLANNING.md)
-  - [EXP_7201_MULTI_AGENT.md](../../experiments/EXP_7201_MULTI_AGENT.md)
-  - [EXP_7202_COLLABORATION.md](../../experiments/EXP_7202_COLLABORATION.md)
-  - [EXP_7301_SANDBOX.md](../../experiments/EXP_7301_SANDBOX.md)
-  - [EXP_7401_AGENT_MEMORY.md](../../experiments/EXP_7401_AGENT_MEMORY.md)
-  - [EXP_7501_PROMPT_INJECTION.md](../../experiments/EXP_7501_PROMPT_INJECTION.md) (NEW)
+### [1500-monitoring] (3 lessons, 0 guides)
 
-### Legacy Labs (Archived)
-- ⚠️ 15 legacy labs using old phase-based numbering (archived for reference)
-  - See [Legacy Labs](../learning-resources/labs/legacy/README.md) for full list
-  - LAB-201 through LAB-603 have been superseded by the new sequential lab system
+- [1501-Monitoring-and-Observability](../phases/phase1-infra/1500-monitoring/1501-Monitoring-and-Observability.md)
+- [1502-Model-Drift-Detection](../phases/phase1-infra/1500-monitoring/1502-Model-Drift-Detection.md)
+- [1503-LLM-Observability](../phases/phase1-infra/1500-monitoring/1503-LLM-Observability.md)
+- [assessment: PRACTICE](../phases/phase1-infra/1500-monitoring/assessment/PRACTICE.md)
+- [assessment: QUIZ](../phases/phase1-infra/1500-monitoring/assessment/QUIZ.md)
 
-### Diagrams
-- ✅ Architecture diagrams and visualizations
-  - [diagrams/README.md](../diagrams/README.md) - Diagram index
-  - Infrastructure topology diagrams
-  - RAG pipeline diagrams
-  - Agent architecture diagrams
-  - Transformer architecture diagrams
+## Phase 2 - AI & Cognitive Foundations (32 files)
+
+- [CHECKPOINT](../phases/phase2-foundations/CHECKPOINT.md)
+- [README](../phases/phase2-foundations/README.md)
+
+### [2100-calculus] (2 lessons, 0 guides)
+
+- [2101-Tensor-Algebra](../phases/phase2-foundations/2100-calculus/2101-Tensor-Algebra.md)
+- [2102-Backpropagation-and-Derivatives](../phases/phase2-foundations/2100-calculus/2102-Backpropagation-and-Derivatives.md)
+- [assessment: PRACTICE](../phases/phase2-foundations/2100-calculus/assessment/PRACTICE.md)
+- [assessment: QUIZ](../phases/phase2-foundations/2100-calculus/assessment/QUIZ.md)
+
+### [2200-frameworks] (3 lessons, 0 guides)
+
+- [2201-PyTorch-Computational-Graphs](../phases/phase2-foundations/2200-frameworks/2201-PyTorch-Computational-Graphs.md)
+- [2202-TensorFlow-XLA-Compilers](../phases/phase2-foundations/2200-frameworks/2202-TensorFlow-XLA-Compilers.md)
+- [2203-CUDA-Kernel-Syb-Level](../phases/phase2-foundations/2200-frameworks/2203-CUDA-Kernel-Syb-Level.md)
+- [assessment: PRACTICE](../phases/phase2-foundations/2200-frameworks/assessment/PRACTICE.md)
+- [assessment: QUIZ](../phases/phase2-foundations/2200-frameworks/assessment/QUIZ.md)
+
+### [2300-framework-engineering] (4 lessons, 2 guides)
+
+- [2301-Framework-Design-Patterns](../phases/phase2-foundations/2300-framework-engineering/2301-Framework-Design-Patterns.md)
+- [2302-Model-Serving-Architectures](../phases/phase2-foundations/2300-framework-engineering/2302-Model-Serving-Architectures.md)
+- [2303-API-Design-for-ML](../phases/phase2-foundations/2300-framework-engineering/2303-API-Design-for-ML.md)
+- [2304-Production-Deployment-Patterns](../phases/phase2-foundations/2300-framework-engineering/2304-Production-Deployment-Patterns.md)
+- [guide: 2305-Framework-Comparison](../phases/phase2-foundations/2300-framework-engineering/guides/2305-Framework-Comparison.md)
+- [guide: 2306-Building-Production-Framework](../phases/phase2-foundations/2300-framework-engineering/guides/2306-Building-Production-Framework.md)
+- [assessment: PRACTICE](../phases/phase2-foundations/2300-framework-engineering/assessment/PRACTICE.md)
+- [assessment: QUIZ](../phases/phase2-foundations/2300-framework-engineering/assessment/QUIZ.md)
+
+### [2400-pretraining] (3 lessons, 0 guides)
+
+- [2401-Pre-training-Fundamentals](../phases/phase2-foundations/2400-pretraining/2401-Pre-training-Fundamentals.md)
+- [2402-Large-Scale-Training](../phases/phase2-foundations/2400-pretraining/2402-Large-Scale-Training.md)
+- [2403-Evaluation-Frameworks](../phases/phase2-foundations/2400-pretraining/2403-Evaluation-Frameworks.md)
+- [assessment: PRACTICE](../phases/phase2-foundations/2400-pretraining/assessment/PRACTICE.md)
+- [assessment: QUIZ](../phases/phase2-foundations/2400-pretraining/assessment/QUIZ.md)
+
+## Phase 3 - Transformer Physics & LLM Internals (34 files)
+
+- [CHECKPOINT](../phases/phase3-transformers/CHECKPOINT.md)
+- [README](../phases/phase3-transformers/README.md)
+
+### [3100-attention] (2 lessons, 0 guides)
+
+- [3101-Self-Attention-DeepDive](../phases/phase3-transformers/3100-attention/3101-Self-Attention-DeepDive.md)
+- [3102-Flash-Attention](../phases/phase3-transformers/3100-attention/3102-Flash-Attention.md)
+- [assessment: PRACTICE](../phases/phase3-transformers/3100-attention/assessment/PRACTICE.md)
+- [assessment: QUIZ](../phases/phase3-transformers/3100-attention/assessment/QUIZ.md)
+
+### [3200-embeddings] (2 lessons, 0 guides)
+
+- [3201-Rotary-Positional-Embeddings-RoPE](../phases/phase3-transformers/3200-embeddings/3201-Rotary-Positional-Embeddings-RoPE.md)
+- [3202-Tokenizer-Sciences](../phases/phase3-transformers/3200-embeddings/3202-Tokenizer-Sciences.md)
+- [assessment: PRACTICE](../phases/phase3-transformers/3200-embeddings/assessment/PRACTICE.md)
+- [assessment: QUIZ](../phases/phase3-transformers/3200-embeddings/assessment/QUIZ.md)
+
+### [3300-decoding] (2 lessons, 1 guides)
+
+- [3301-Activation-Functions](../phases/phase3-transformers/3300-decoding/3301-Activation-Functions.md)
+- [3302-Normalization-Layers](../phases/phase3-transformers/3300-decoding/3302-Normalization-Layers.md)
+- [guide: 3303-Activation-Function-Comparison](../phases/phase3-transformers/3300-decoding/guides/3303-Activation-Function-Comparison.md)
+- [assessment: PRACTICE](../phases/phase3-transformers/3300-decoding/assessment/PRACTICE.md)
+- [assessment: QUIZ](../phases/phase3-transformers/3300-decoding/assessment/QUIZ.md)
+
+### [3400-architectures] (2 lessons, 1 guides)
+
+- [3401-Encoder-Decoder-Architectures](../phases/phase3-transformers/3400-architectures/3401-Encoder-Decoder-Architectures.md)
+- [3402-Decoder-Only-Models](../phases/phase3-transformers/3400-architectures/3402-Decoder-Only-Models.md)
+- [guide: 3403-Model-Architecture-Comparison](../phases/phase3-transformers/3400-architectures/guides/3403-Model-Architecture-Comparison.md)
+- [assessment: PRACTICE](../phases/phase3-transformers/3400-architectures/assessment/PRACTICE.md)
+- [assessment: QUIZ](../phases/phase3-transformers/3400-architectures/assessment/QUIZ.md)
+
+### [3500-multimodal] (2 lessons, 0 guides)
+
+- [3501-Vision-Language-Models](../phases/phase3-transformers/3500-multimodal/3501-Vision-Language-Models.md)
+- [3502-Audio-Models](../phases/phase3-transformers/3500-multimodal/3502-Audio-Models.md)
+- [assessment: PRACTICE](../phases/phase3-transformers/3500-multimodal/assessment/PRACTICE.md)
+- [assessment: QUIZ](../phases/phase3-transformers/3500-multimodal/assessment/QUIZ.md)
+
+## Phase 4 - Quantization & Compression (41 files)
+
+- [CHECKPOINT](../phases/phase4-quantization/CHECKPOINT.md)
+- [README](../phases/phase4-quantization/README.md)
+
+### [4100-low-bit] (3 lessons, 0 guides)
+
+- [4101-GGUF-Physics](../phases/phase4-quantization/4100-low-bit/4101-GGUF-Physics.md)
+- [4102-EXL2-and-AWQ](../phases/phase4-quantization/4100-low-bit/4102-EXL2-and-AWQ.md)
+- [4103-Double-Quantization](../phases/phase4-quantization/4100-low-bit/4103-Double-Quantization.md)
+- [assessment: PRACTICE](../phases/phase4-quantization/4100-low-bit/assessment/PRACTICE.md)
+- [assessment: QUIZ](../phases/phase4-quantization/4100-low-bit/assessment/QUIZ.md)
+
+### [4200-kv-cache] (2 lessons, 1 guides)
+
+- [4201-Context-Window-Physics](../phases/phase4-quantization/4200-kv-cache/4201-Context-Window-Physics.md)
+- [4202-Speculative-Decoding](../phases/phase4-quantization/4200-kv-cache/4202-Speculative-Decoding.md)
+- [guide: 4203-Context-Window-Optimization](../phases/phase4-quantization/4200-kv-cache/guides/4203-Context-Window-Optimization.md)
+- [assessment: PRACTICE](../phases/phase4-quantization/4200-kv-cache/assessment/PRACTICE.md)
+- [assessment: QUIZ](../phases/phase4-quantization/4200-kv-cache/assessment/QUIZ.md)
+
+### [4300-quantization-aware-training] (5 lessons, 3 guides)
+
+- [4301-QAT-Foundations](../phases/phase4-quantization/4300-quantization-aware-training/4301-QAT-Foundations.md)
+- [4302-Fake-Quantization](../phases/phase4-quantization/4300-quantization-aware-training/4302-Fake-Quantization.md)
+- [4303-QAT-for-Transformers](../phases/phase4-quantization/4300-quantization-aware-training/4303-QAT-for-Transformers.md)
+- [4304-Low-bit-QAT](../phases/phase4-quantization/4300-quantization-aware-training/4304-Low-bit-QAT.md)
+- [4305-Quantization-Configuration](../phases/phase4-quantization/4300-quantization-aware-training/4305-Quantization-Configuration.md)
+- [guide: 4306-PyTorch-QAT](../phases/phase4-quantization/4300-quantization-aware-training/guides/4306-PyTorch-QAT.md)
+- [guide: 4307-Transformers-QAT](../phases/phase4-quantization/4300-quantization-aware-training/guides/4307-Transformers-QAT.md)
+- [guide: 4308-BitBlade-QAT](../phases/phase4-quantization/4300-quantization-aware-training/guides/4308-BitBlade-QAT.md)
+- [assessment: PRACTICE](../phases/phase4-quantization/4300-quantization-aware-training/assessment/PRACTICE.md)
+- [assessment: QUIZ](../phases/phase4-quantization/4300-quantization-aware-training/assessment/QUIZ.md)
+
+### [4400-advanced-techniques] (7 lessons, 2 guides)
+
+- [4401-GPTQ](../phases/phase4-quantization/4400-advanced-techniques/4401-GPTQ.md)
+- [4402-AWQ](../phases/phase4-quantization/4400-advanced-techniques/4402-AWQ.md)
+- [4403-GGUF-Format](../phases/phase4-quantization/4400-advanced-techniques/4403-GGUF-Format.md)
+- [4404-EXL2-Format](../phases/phase4-quantization/4400-advanced-techniques/4404-EXL2-Format.md)
+- [4405-Sparsity-Quantization](../phases/phase4-quantization/4400-advanced-techniques/4405-Sparsity-Quantization.md)
+- [4406-1.58-bit-Quantization](../phases/phase4-quantization/4400-advanced-techniques/4406-1.58-bit-Quantization.md)
+- [4407-Ternary-Binary](../phases/phase4-quantization/4400-advanced-techniques/4407-Ternary-Binary.md)
+- [guide: 4408-Quantizing-for-Production](../phases/phase4-quantization/4400-advanced-techniques/guides/4408-Quantizing-for-Production.md)
+- [guide: 4409-Hardware-Specific-Optimization](../phases/phase4-quantization/4400-advanced-techniques/guides/4409-Hardware-Specific-Optimization.md)
+- [assessment: PRACTICE](../phases/phase4-quantization/4400-advanced-techniques/assessment/PRACTICE.md)
+- [assessment: QUIZ](../phases/phase4-quantization/4400-advanced-techniques/assessment/QUIZ.md)
+
+## Phase 5 - Model Adaptation: Fine-Tuning & Alignment (40 files)
+
+- [CHECKPOINT](../phases/phase5-finetuning/CHECKPOINT.md)
+- [README](../phases/phase5-finetuning/README.md)
+
+### [5100-peft] (3 lessons, 1 guides)
+
+- [5101-LoRA-Logic](../phases/phase5-finetuning/5100-peft/5101-LoRA-Logic.md)
+- [5102-QLoRA-Pipelines](../phases/phase5-finetuning/5100-peft/5102-QLoRA-Pipelines.md)
+- [5103-Adapters](../phases/phase5-finetuning/5100-peft/5103-Adapters.md)
+- [guide: 5104-LoRA-Implementation-Guide](../phases/phase5-finetuning/5100-peft/guides/5104-LoRA-Implementation-Guide.md)
+- [assessment: PRACTICE](../phases/phase5-finetuning/5100-peft/assessment/PRACTICE.md)
+- [assessment: QUIZ](../phases/phase5-finetuning/5100-peft/assessment/QUIZ.md)
+
+### [5200-alignment] (4 lessons, 0 guides)
+
+- [5201-DPO-Theory](../phases/phase5-finetuning/5200-alignment/5201-DPO-Theory.md)
+- [5202-Alignment-Orchestration](../phases/phase5-finetuning/5200-alignment/5202-Alignment-Orchestration.md)
+- [5203-RLHF](../phases/phase5-finetuning/5200-alignment/5203-RLHF.md)
+- [5204-Preference-Dataset-Creation](../phases/phase5-finetuning/5200-alignment/5204-Preference-Dataset-Creation.md)
+- [assessment: PRACTICE](../phases/phase5-finetuning/5200-alignment/assessment/PRACTICE.md)
+- [assessment: QUIZ](../phases/phase5-finetuning/5200-alignment/assessment/QUIZ.md)
+
+### [5300-synthetic] (3 lessons, 0 guides)
+
+- [5301-Knowledge-Distillation](../phases/phase5-finetuning/5300-synthetic/5301-Knowledge-Distillation.md)
+- [5302-Distributed-Training](../phases/phase5-finetuning/5300-synthetic/5302-Distributed-Training.md)
+- [5303-Federated-Learning](../phases/phase5-finetuning/5300-synthetic/5303-Federated-Learning.md)
+- [assessment: PRACTICE](../phases/phase5-finetuning/5300-synthetic/assessment/PRACTICE.md)
+- [assessment: QUIZ](../phases/phase5-finetuning/5300-synthetic/assessment/QUIZ.md)
+
+### [5400-distributed-training] (4 lessons, 0 guides)
+
+- [5401-Data-Parallelism](../phases/phase5-finetuning/5400-distributed-training/5401-Data-Parallelism.md)
+- [5402-Model-Parallelism](../phases/phase5-finetuning/5400-distributed-training/5402-Model-Parallelism.md)
+- [5403-Mixed-Precision](../phases/phase5-finetuning/5400-distributed-training/5403-Mixed-Precision.md)
+- [5404-Distributed-Optimization](../phases/phase5-finetuning/5400-distributed-training/5404-Distributed-Optimization.md)
+- [assessment: PRACTICE](../phases/phase5-finetuning/5400-distributed-training/assessment/PRACTICE.md)
+- [assessment: QUIZ](../phases/phase5-finetuning/5400-distributed-training/assessment/QUIZ.md)
+
+### [5500-advanced-optimization] (3 lessons, 0 guides)
+
+- [5501-Optimizer-Variants](../phases/phase5-finetuning/5500-advanced-optimization/5501-Optimizer-Variants.md)
+- [5502-Learning-Rate-Scheduling](../phases/phase5-finetuning/5500-advanced-optimization/5502-Learning-Rate-Scheduling.md)
+- [5503-Advanced-Techniques](../phases/phase5-finetuning/5500-advanced-optimization/5503-Advanced-Techniques.md)
+- [assessment: PRACTICE](../phases/phase5-finetuning/5500-advanced-optimization/assessment/PRACTICE.md)
+- [assessment: QUIZ](../phases/phase5-finetuning/5500-advanced-optimization/assessment/QUIZ.md)
+
+## Phase 6 - RAG & Data Nexus (39 files)
+
+- [CHECKPOINT](../phases/phase6-rag/CHECKPOINT.md)
+- [README](../phases/phase6-rag/README.md)
+
+### [6100-vector] (2 lessons, 1 guides)
+
+- [6101-HNSW-Indexing](../phases/phase6-rag/6100-vector/6101-HNSW-Indexing.md)
+- [6102-Semantic-Similarity](../phases/phase6-rag/6100-vector/6102-Semantic-Similarity.md)
+- [guide: 6103-HNSW-Tuning-Guide](../phases/phase6-rag/6100-vector/guides/6103-HNSW-Tuning-Guide.md)
+- [assessment: PRACTICE](../phases/phase6-rag/6100-vector/assessment/PRACTICE.md)
+- [assessment: QUIZ](../phases/phase6-rag/6100-vector/assessment/QUIZ.md)
+
+### [6200-retrieval] (3 lessons, 0 guides)
+
+- [6201-Hybrid-Search](../phases/phase6-rag/6200-retrieval/6201-Hybrid-Search.md)
+- [6202-Re-ranking-and-Retrieval-Logistics](../phases/phase6-rag/6200-retrieval/6202-Re-ranking-and-Retrieval-Logistics.md)
+- [6203-Advanced-Retrieval](../phases/phase6-rag/6200-retrieval/6203-Advanced-Retrieval.md)
+- [assessment: PRACTICE](../phases/phase6-rag/6200-retrieval/assessment/PRACTICE.md)
+- [assessment: QUIZ](../phases/phase6-rag/6200-retrieval/assessment/QUIZ.md)
+
+### [6300-context] (2 lessons, 2 guides)
+
+- [6301-Neo4j-and-Knowledge-Graphs](../phases/phase6-rag/6300-context/6301-Neo4j-and-Knowledge-Graphs.md)
+- [6302-CAG-Long-Context-Architectures](../phases/phase6-rag/6300-context/6302-CAG-Long-Context-Architectures.md)
+- [guide: 6303-Neo4j-Deployment-Guide](../phases/phase6-rag/6300-context/guides/6303-Neo4j-Deployment-Guide.md)
+- [guide: 6304-GraphRAG-Implementation](../phases/phase6-rag/6300-context/guides/6304-GraphRAG-Implementation.md)
+- [assessment: PRACTICE](../phases/phase6-rag/6300-context/assessment/PRACTICE.md)
+- [assessment: QUIZ](../phases/phase6-rag/6300-context/assessment/QUIZ.md)
+
+### [6400-vector-databases] (2 lessons, 1 guides)
+
+- [6401-Qdrant-Setup](../phases/phase6-rag/6400-vector-databases/6401-Qdrant-Setup.md)
+- [6402-Pinecone-vs-Weaviate](../phases/phase6-rag/6400-vector-databases/6402-Pinecone-vs-Weaviate.md)
+- [guide: 6403-Qdrant-Production-Deployment](../phases/phase6-rag/6400-vector-databases/guides/6403-Qdrant-Production-Deployment.md)
+- [assessment: PRACTICE](../phases/phase6-rag/6400-vector-databases/assessment/PRACTICE.md)
+- [assessment: QUIZ](../phases/phase6-rag/6400-vector-databases/assessment/QUIZ.md)
+
+### [6500-mlops-pipelines] (3 lessons, 0 guides)
+
+- [6501-ML-Lifecycle-Management](../phases/phase6-rag/6500-mlops-pipelines/6501-ML-Lifecycle-Management.md)
+- [6502-CI-CD-for-ML](../phases/phase6-rag/6500-mlops-pipelines/6502-CI-CD-for-ML.md)
+- [6503-Model-Registry](../phases/phase6-rag/6500-mlops-pipelines/6503-Model-Registry.md)
+- [assessment: PRACTICE](../phases/phase6-rag/6500-mlops-pipelines/assessment/PRACTICE.md)
+- [assessment: QUIZ](../phases/phase6-rag/6500-mlops-pipelines/assessment/QUIZ.md)
+
+### [assessment] (1 lessons, 0 guides)
+
+- [phase6-practice](../phases/phase6-rag/assessment/phase6-practice.md)
+
+## Phase 7 - Agentic Cognition & Production (37 files)
+
+- [CHECKPOINT](../phases/phase7-agentic/CHECKPOINT.md)
+- [README](../phases/phase7-agentic/README.md)
+
+### [7100-architecture] (2 lessons, 1 guides)
+
+- [7101-ReAct-Loop-System](../phases/phase7-agentic/7100-architecture/7101-ReAct-Loop-System.md)
+- [7102-Planning-Decomposition](../phases/phase7-agentic/7100-architecture/7102-Planning-Decomposition.md)
+- [guide: 7103-ReAct-Implementation-Guide](../phases/phase7-agentic/7100-architecture/guides/7103-ReAct-Implementation-Guide.md)
+- [assessment: PRACTICE](../phases/phase7-agentic/7100-architecture/assessment/PRACTICE.md)
+- [assessment: QUIZ](../phases/phase7-agentic/7100-architecture/assessment/QUIZ.md)
+
+### [7200-tools] (1 lessons, 1 guides)
+
+- [7201-Tool-Calling](../phases/phase7-agentic/7200-tools/7201-Tool-Calling.md)
+- [guide: 7202-Code-Interpreter](../phases/phase7-agentic/7200-tools/guides/7202-Code-Interpreter.md)
+- [assessment: PRACTICE](../phases/phase7-agentic/7200-tools/assessment/PRACTICE.md)
+- [assessment: QUIZ](../phases/phase7-agentic/7200-tools/assessment/QUIZ.md)
+
+### [7300-orchestration] (2 lessons, 1 guides)
+
+- [7301-Orchestration](../phases/phase7-agentic/7300-orchestration/7301-Orchestration.md)
+- [7302-Communication-Protocols](../phases/phase7-agentic/7300-orchestration/7302-Communication-Protocols.md)
+- [guide: 7303-Framework-Comparison](../phases/phase7-agentic/7300-orchestration/guides/7303-Framework-Comparison.md)
+- [assessment: PRACTICE](../phases/phase7-agentic/7300-orchestration/assessment/PRACTICE.md)
+- [assessment: QUIZ](../phases/phase7-agentic/7300-orchestration/assessment/QUIZ.md)
+
+### [7400-memory] (2 lessons, 1 guides)
+
+- [7401-Long-term-Memory](../phases/phase7-agentic/7400-memory/7401-Long-term-Memory.md)
+- [7403-Vector-Memory](../phases/phase7-agentic/7400-memory/7403-Vector-Memory.md)
+- [guide: 7402-Agent-Memory-Implementation](../phases/phase7-agentic/7400-memory/guides/7402-Agent-Memory-Implementation.md)
+- [assessment: PRACTICE](../phases/phase7-agentic/7400-memory/assessment/PRACTICE.md)
+- [assessment: QUIZ](../phases/phase7-agentic/7400-memory/assessment/QUIZ.md)
+
+### [7500-security] (3 lessons, 0 guides)
+
+- [7501-Prompt-Injection-Defense](../phases/phase7-agentic/7500-security/7501-Prompt-Injection-Defense.md)
+- [7502-PII-Redaction](../phases/phase7-agentic/7500-security/7502-PII-Redaction.md)
+- [7503-Adversarial-Attacks](../phases/phase7-agentic/7500-security/7503-Adversarial-Attacks.md)
+- [assessment: PRACTICE](../phases/phase7-agentic/7500-security/assessment/PRACTICE.md)
+- [assessment: QUIZ](../phases/phase7-agentic/7500-security/assessment/QUIZ.md)
+
+### [assessment] (1 lessons, 0 guides)
+
+- [phase7-practice](../phases/phase7-agentic/assessment/phase7-practice.md)
+
+---
+
+## Experiments (46 in experiments/, 2 in case study)
+
+- [EXP_1302_GPU_SCHEDULER](../../experiments/EXP_1302_GPU_SCHEDULER.md)
+- [EXP_1403_TGI_TUNING](../../experiments/EXP_1403_TGI_TUNING.md)
+- [EXP_1404_VLLM_TUNING](../../experiments/EXP_1404_VLLM_TUNING.md)
+- [EXP_1501_MONITORING](../../experiments/EXP_1501_MONITORING.md)
+- [EXP_1502_MODEL_DRIFT](../../experiments/EXP_1502_MODEL_DRIFT.md)
+- [EXP_1503_DRIFT_DETECTION](../../experiments/EXP_1503_DRIFT_DETECTION.md)
+- [EXP_2101_TENSOR_ALGEBRA](../../experiments/EXP_2101_TENSOR_ALGEBRA.md)
+- [EXP_2102_BACKPROPAGATION](../../experiments/EXP_2102_BACKPROPAGATION.md)
+- [EXP_2201_PYTORCH_GRAPHS](../../experiments/EXP_2201_PYTORCH_GRAPHS.md)
+- [EXP_2202_TENSORFLOW_XLA](../../experiments/EXP_2202_TENSORFLOW_XLA.md)
+- [EXP_2203_CUDA_KERNELS](../../experiments/EXP_2203_CUDA_KERNELS.md)
+- [EXP_3101_SELF_ATTENTION](../../experiments/EXP_3101_SELF_ATTENTION.md)
+- [EXP_3102_FLASH_ATTENTION](../../experiments/EXP_3102_FLASH_ATTENTION.md)
+- [EXP_3201_ROPE](../../experiments/EXP_3201_ROPE.md)
+- [EXP_3202_TOKENIZER](../../experiments/EXP_3202_TOKENIZER.md)
+- [EXP_3401_ENCODER_DECODER](../../experiments/EXP_3401_ENCODER_DECODER.md)
+- [EXP_3501_MULTIMODAL_RAG](../../experiments/EXP_3501_MULTIMODAL_RAG.md)
+- [EXP_4101_GGUF](../../experiments/EXP_4101_GGUF.md)
+- [EXP_4102_EXL2_AWQ](../../experiments/EXP_4102_EXL2_AWQ.md)
+- [EXP_4103_DOUBLE_QUANT](../../experiments/EXP_4103_DOUBLE_QUANT.md)
+- [EXP_4201_CONTEXT_WINDOW](../../experiments/EXP_4201_CONTEXT_WINDOW.md)
+- [EXP_4202_SPECULATIVE_DECODING](../../experiments/EXP_4202_SPECULATIVE_DECODING.md)
+- [EXP_5101_LORA](../../experiments/EXP_5101_LORA.md)
+- [EXP_5102_QLORA](../../experiments/EXP_5102_QLORA.md)
+- [EXP_5201_DPO](../../experiments/EXP_5201_DPO.md)
+- [EXP_5202_ALIGNMENT](../../experiments/EXP_5202_ALIGNMENT.md)
+- [EXP_5301_DISTILLATION](../../experiments/EXP_5301_DISTILLATION.md)
+- [EXP_5302_DISTRIBUTED](../../experiments/EXP_5302_DISTRIBUTED.md)
+- [EXP_5303_FEDERATED_LEARNING](../../experiments/EXP_5303_FEDERATED_LEARNING.md)
+- [EXP_6101_HNSW](../../experiments/EXP_6101_HNSW.md)
+- [EXP_6102_SIMILARITY](../../experiments/EXP_6102_SIMILARITY.md)
+- [EXP_6201_HYBRID_SEARCH](../../experiments/EXP_6201_HYBRID_SEARCH.md)
+- [EXP_6202_RERANK](../../experiments/EXP_6202_RERANK.md)
+- [EXP_6301_GRAPHRAG](../../experiments/EXP_6301_GRAPHRAG.md)
+- [EXP_6302_CAG](../../experiments/EXP_6302_CAG.md)
+- [EXP_6303_NEO4J](../../experiments/EXP_6303_NEO4J.md)
+- [EXP_6401_VECTOR_DB](../../experiments/EXP_6401_VECTOR_DB.md)
+- [EXP_6501_MLOPS_PIPELINE](../../experiments/EXP_6501_MLOPS_PIPELINE.md)
+- [EXP_7101_REACT](../../experiments/EXP_7101_REACT.md)
+- [EXP_7102_PLANNING](../../experiments/EXP_7102_PLANNING.md)
+- [EXP_7201_MULTI_AGENT](../../experiments/EXP_7201_MULTI_AGENT.md)
+- [EXP_7202_COLLABORATION](../../experiments/EXP_7202_COLLABORATION.md)
+- [EXP_7301_SANDBOX](../../experiments/EXP_7301_SANDBOX.md)
+- [EXP_7401_AGENT_MEMORY](../../experiments/EXP_7401_AGENT_MEMORY.md)
+- [EXP_7501_PROMPT_INJECTION](../../experiments/EXP_7501_PROMPT_INJECTION.md)
+- [TEMPLATE](../../experiments/TEMPLATE.md)
+- [EXP_1101_GPON](../case-study/experiments/EXP_1101_GPON.md)
+- [EXP_1103_STAR_TOPOLOGY](../case-study/experiments/EXP_1103_STAR_TOPOLOGY.md)
+
+---
+
+## Tutorials (15)
+
+- [TUTORIAL-000-Python-for-AI](../learning-resources/tutorials/TUTORIAL-000-Python-for-AI.md)
+- [TUTORIAL-001-Hello-LLM](../learning-resources/tutorials/TUTORIAL-001-Hello-LLM.md)
+- [TUTORIAL-002-Docker-Essentials](../learning-resources/tutorials/TUTORIAL-002-Docker-Essentials.md)
+- [TUTORIAL-003-RAG-Basics](../learning-resources/tutorials/TUTORIAL-003-RAG-Basics.md)
+- [TUTORIAL-004-Monitoring](../learning-resources/tutorials/TUTORIAL-004-Monitoring.md)
+- [TUTORIAL-005-Production-Deployment](../learning-resources/tutorials/TUTORIAL-005-Production-Deployment.md)
+- [TUTORIAL-006-Real-time-AI](../learning-resources/tutorials/TUTORIAL-006-Real-time-AI.md)
+- [TUTORIAL-007-LoRA-Basics](../learning-resources/tutorials/TUTORIAL-007-LoRA-Basics.md)
+- [TUTORIAL-008-CUDA-Programming](../learning-resources/tutorials/TUTORIAL-008-CUDA-Programming.md)
+- [TUTORIAL-009-Advanced-RAG-Techniques](../learning-resources/tutorials/TUTORIAL-009-Advanced-RAG-Techniques.md)
+- [TUTORIAL-010-Model-Evaluation](../learning-resources/tutorials/TUTORIAL-010-Model-Evaluation.md)
+- [TUTORIAL-011-Multi-Modal-AI](../learning-resources/tutorials/TUTORIAL-011-Multi-Modal-AI.md)
+- [TUTORIAL-012-Production-LLMOps](../learning-resources/tutorials/TUTORIAL-012-Production-LLMOps.md)
+- [TUTORIAL-013-AI-Security](../learning-resources/tutorials/TUTORIAL-013-AI-Security.md)
+- [TUTORIAL-014-Production-LLM-Systems](../learning-resources/tutorials/TUTORIAL-014-Production-LLM-Systems.md)
+
+## Labs (15)
+
+- [LAB-000-ENVIRONMENT-SETUP](../learning-resources/labs/LAB-000-ENVIRONMENT-SETUP.md)
+- [LAB-001-Docker-LLM](../learning-resources/labs/LAB-001-Docker-LLM.md)
+- [LAB-002-RAG-Implementation](../learning-resources/labs/LAB-002-RAG-Implementation.md)
+- [LAB-003-LoRA-FineTuning](../learning-resources/labs/LAB-003-LoRA-FineTuning.md)
+- [LAB-004-ReAct-Agent](../learning-resources/labs/LAB-004-ReAct-Agent.md)
+- [LAB-005-GraphRAG](../learning-resources/labs/LAB-005-GraphRAG.md)
+- [LAB-006-Train-Model-From-Scratch](../learning-resources/labs/LAB-006-Train-Model-From-Scratch.md)
+- [LAB-007-Production-RAG](../learning-resources/labs/LAB-007-Production-RAG.md)
+- [LAB-008-Agent-Fleet](../learning-resources/labs/LAB-008-Agent-Fleet.md)
+- [LAB-009-Production-Deployment](../learning-resources/labs/LAB-009-Production-Deployment.md)
+- [LAB-010-DPO-Alignment](../learning-resources/labs/LAB-010-DPO-Alignment.md)
+- [LAB-011-Multi-Modal-AI](../learning-resources/labs/LAB-011-Multi-Modal-AI.md)
+- [LAB-012-Audio-AI](../learning-resources/labs/LAB-012-Audio-AI.md)
+- [LAB-013-Advanced-Function-Calling](../learning-resources/labs/LAB-013-Advanced-Function-Calling.md)
+- [LAB-014-AI-Evaluation-Safety](../learning-resources/labs/LAB-014-AI-Evaluation-Safety.md)
+
+## Lab Solutions (15)
+
+- [SOLUTION-LAB-000-Environment-Setup](../learning-resources/labs/solutions/SOLUTION-LAB-000-Environment-Setup.md)
+- [SOLUTION-LAB-001-Docker-LLM](../learning-resources/labs/solutions/SOLUTION-LAB-001-Docker-LLM.md)
+- [SOLUTION-LAB-002-RAG-Implementation](../learning-resources/labs/solutions/SOLUTION-LAB-002-RAG-Implementation.md)
+- [SOLUTION-LAB-003-LoRA-FineTuning](../learning-resources/labs/solutions/SOLUTION-LAB-003-LoRA-FineTuning.md)
+- [SOLUTION-LAB-004-ReAct-Agent](../learning-resources/labs/solutions/SOLUTION-LAB-004-ReAct-Agent.md)
+- [SOLUTION-LAB-005-GraphRAG](../learning-resources/labs/solutions/SOLUTION-LAB-005-GraphRAG.md)
+- [SOLUTION-LAB-006-Train-Model-From-Scratch](../learning-resources/labs/solutions/SOLUTION-LAB-006-Train-Model-From-Scratch.md)
+- [SOLUTION-LAB-007-Production-RAG](../learning-resources/labs/solutions/SOLUTION-LAB-007-Production-RAG.md)
+- [SOLUTION-LAB-008-Agent-Fleet](../learning-resources/labs/solutions/SOLUTION-LAB-008-Agent-Fleet.md)
+- [SOLUTION-LAB-009-Production-Deployment](../learning-resources/labs/solutions/SOLUTION-LAB-009-Production-Deployment.md)
+- [SOLUTION-LAB-010-DPO-Alignment](../learning-resources/labs/solutions/SOLUTION-LAB-010-DPO-Alignment.md)
+- [SOLUTION-LAB-011-Multi-Modal-AI](../learning-resources/labs/solutions/SOLUTION-LAB-011-Multi-Modal-AI.md)
+- [SOLUTION-LAB-012-Audio-AI](../learning-resources/labs/solutions/SOLUTION-LAB-012-Audio-AI.md)
+- [SOLUTION-LAB-013-Advanced-Function-Calling](../learning-resources/labs/solutions/SOLUTION-LAB-013-Advanced-Function-Calling.md)
+- [SOLUTION-LAB-014-AI-Evaluation-Safety](../learning-resources/labs/solutions/SOLUTION-LAB-014-AI-Evaluation-Safety.md)
+
+## Capstone Projects (10)
+
+- [PREREQUISITES-001](../learning-resources/projects/PREREQUISITES-001.md)
+- [PREREQUISITES-007](../learning-resources/projects/PREREQUISITES-007.md)
+- [PROJECT-001-AI-Assistant](../learning-resources/projects/PROJECT-001-AI-Assistant.md)
+- [PROJECT-002-Train-Neural-Network](../learning-resources/projects/PROJECT-002-Train-Neural-Network.md)
+- [PROJECT-003-Transformer-From-Scratch](../learning-resources/projects/PROJECT-003-Transformer-From-Scratch.md)
+- [PROJECT-004-Quantize-Model](../learning-resources/projects/PROJECT-004-Quantize-Model.md)
+- [PROJECT-005-FineTune-Model](../learning-resources/projects/PROJECT-005-FineTune-Model.md)
+- [PROJECT-006-Production-RAG](../learning-resources/projects/PROJECT-006-Production-RAG.md)
+- [PROJECT-007-Production-AI-System](../learning-resources/projects/PROJECT-007-Production-AI-System.md)
+- [SETUP-GUIDE](../learning-resources/projects/SETUP-GUIDE.md)
+
+## Cheat Sheets (13)
+
+- [CHEAT-SHEET-001-Docker](../learning-resources/cheat-sheets/CHEAT-SHEET-001-Docker.md)
+- [CHEAT-SHEET-002-Python-AI](../learning-resources/cheat-sheets/CHEAT-SHEET-002-Python-AI.md)
+- [CHEAT-SHEET-003-Git](../learning-resources/cheat-sheets/CHEAT-SHEET-003-Git.md)
+- [CHEAT-SHEET-004-Linux](../learning-resources/cheat-sheets/CHEAT-SHEET-004-Linux.md)
+- [CHEAT-SHEET-005-RAG-Systems](../learning-resources/cheat-sheets/CHEAT-SHEET-005-RAG-Systems.md)
+- [CHEAT-SHEET-006-Kubernetes](../learning-resources/cheat-sheets/CHEAT-SHEET-006-Kubernetes.md)
+- [QUICK-REF-VOLUME-1](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-1.md)
+- [QUICK-REF-VOLUME-2](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-2.md)
+- [QUICK-REF-VOLUME-3](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-3.md)
+- [QUICK-REF-VOLUME-4](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-4.md)
+- [QUICK-REF-VOLUME-5](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-5.md)
+- [QUICK-REF-VOLUME-6](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-6.md)
+- [QUICK-REF-VOLUME-7](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-7.md)
+
+## Interactive (1)
+
+- [FLASHCARDS](../learning-resources/interactive/FLASHCARDS.md)
+
+## Troubleshooting (1)
+
+- [TROUBLESHOOTING-Common-Issues](../learning-resources/troubleshooting/TROUBLESHOOTING-Common-Issues.md)
+
+## Case Studies (1)
+
+- [REAL-WORLD-EXAMPLES](../learning-resources/case-studies/REAL-WORLD-EXAMPLES.md)
+
+---
+
+## Case Study Appendix (6 files)
+
+Optional deep-dive: one person's full home-lab build (NUC 12th Gen, RTX 2080 Ti
+11GB eGPU, Synology NAS) kept as a worked example of the phase 1 concepts.
+
+- [README](../case-study/README.md)
+- [EXP_1101_GPON](../case-study/experiments/EXP_1101_GPON.md)
+- [EXP_1103_STAR_TOPOLOGY](../case-study/experiments/EXP_1103_STAR_TOPOLOGY.md)
+- [1101-Fiber-GPON-Modem](../case-study/homelab/1101-Fiber-GPON-Modem.md)
+- [1102-Star-Topology-Core](../case-study/homelab/1102-Star-Topology-Core.md)
+- [1202-TB3-UT3G-Passthrough](../case-study/homelab/1202-TB3-UT3G-Passthrough.md)
+
+---
+
+## Reference Configuration (3 files in configs/)
+
+- `configs/README.md`
+- `configs/docker-compose.yml`
+- `configs/performance-testing/k6/load-test.js`
 
 ---
 
 ## Statistics
 
 ```
-Total Documentation Files: 570+ (including all markdown files)
-Total Phases: 7
-Total Phase Files: 224 (85 technical + 139 supporting)
-Total Volumes: 7 (Book-like structure)
-Main Categories: 29
-Experiment Templates: 47
-Configuration Files: 24
-Implementation Guides: 14
-Learning Resources: 75+ (volume guides + tutorials + labs + cheat sheets + projects + troubleshooting + case studies)
-Legacy Labs (Archived): 15 (LAB-201 through LAB-603)
+Total markdown files: 465
+Phases: 7
+Learning modules: 33
+Phase lesson/guide files: 262
+  Phase 1 - Infrastructure Fabric: 39
+  Phase 2 - AI & Cognitive Foundations: 32
+  Phase 3 - Transformer Physics & LLM Internals: 34
+  Phase 4 - Quantization & Compression: 41
+  Phase 5 - Model Adaptation: Fine-Tuning & Alignment: 40
+  Phase 6 - RAG & Data Nexus: 39
+  Phase 7 - Agentic Cognition & Production: 37
+Experiments: 46 (+ 2 in case study)
+Tutorials: 15
+Labs: 15 + 15 solutions
+Projects: 10
+Cheat sheets: 13
 ```
-
-**File Breakdown:**
-- Technical Modules: 85
-- Supporting Files (QUIZ, PRACTICE, CHECKPOINT, etc.): 139
-- Volume Guides: 7
-- Tutorials: 14
-- Active Labs: 15 (LAB-000 through LAB-014)
-- Lab Solutions: 15
-- Legacy Labs: 15 (archived)
-- Cheat Sheets: 11
-- Projects: 7 capstone + templates
-- Experiments: 47
-- Diagrams: 3+
-- Configuration Files: 24
 
 ---
 
-## Quick Navigation by Topic
-
-| Topic | Files |
-|-------|--------|
-| **Volume Guides** | VOLUME-1, VOLUME-2, VOLUME-3, VOLUME-4, VOLUME-5, VOLUME-6, VOLUME-7 |
-| **Quick Start** | QUICK-START, PROGRESS-TRACKER, 0000-LEARNING-PATH |
-| **Tutorials** | TUTORIAL-001 through 006 |
-| **Active Labs** | LAB-000 through LAB-014 (15 labs with solutions) |
-| **Legacy Labs** | LAB-201 through LAB-603 (archived, see labs/legacy/) |
-| **Cheat Sheets** | CHEAT-SHEET-001 through 004, QUICK-REF-VOLUME-1 through 7 |
-| **Projects** | PROJECT-001 through 007 |
-| **Case Studies** | REAL-WORLD-EXAMPLES |
-| **Troubleshooting** | TROUBLESHOOTING-Common-Issues |
-| **Diagrams** | Architecture diagrams (see diagrams/README.md) |
-| **Experiments** | EXP_1101 through EXP_7501 (47 experiment templates) |
-| **Networking** | 1101, 1102, 1103 |
-| **Monitoring** | 1501, 1502, 1503, TUTORIAL-004 |
-| **LLMOps** | 1401, 1402, 1404, 1405, TUTORIAL-005 |
-| **MLOps** | 6501, 6502, 6503 |
-| **GPU/Passthrough** | 1202, 1203, 1302 |
-| **Kubernetes** | 1301, 1302, 1303 |
-| **Math Foundation** | 2101, 2102 |
-| **ML Frameworks** | 2201, 2202, 2203 |
-| **Transformers** | 3101, 3102, 3201, 3202, 3301, 3302, 3303, 3401, 3402, 3403 |
-| **Multimodal** | 3501, 3502 |
-| **Quantization** | 4101, 4102, 4103, 4201, 4202, 4203 |
-| **Fine-Tuning** | 5101, 5102, 5104, 5201, 5202, 5301, 5302, 5303, LAB-003, LAB-010 |
-| **RAG/Vectors** | 6101, 6102, 6103, 6201, 6202, 6301, 6302, 6303, 6304, 6401, 6402, 6403, TUTORIAL-003, LAB-002, LAB-005, LAB-007 |
-| **GraphRAG** | 6301, 6302, 6303, 6304, LAB-005 |
-| **Agents** | 7101, 7102, 7103, 7201, 7202, 7203, 7301, 7302, 7401, 7402, LAB-004, LAB-008 |
-| **Security** | 7501, 7502, 7503 |
-| **Production** | 1501, 1502, 1503, LAB-007, LAB-008, LAB-009, TUTORIAL-005, TUTORIAL-006, REAL-WORLD-EXAMPLES |
-| **Multi-Modal** | 3501, 3502, LAB-011 |
-| **Audio/Speech** | 3502, LAB-012 |
-| **Function Calling** | LAB-013 |
-| **Evaluation/Safety** | LAB-014 |
+**Last Updated:** 2026-09-24 (auto-generated)
