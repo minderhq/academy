@@ -981,7 +981,7 @@ See [PREREQUISITES](../../00-META/ENVIRONMENT-SETUP.md) for details.
 Validate your knowledge with:
 
 - **[Phase c Quiz](../../00-META/assessment/phase7-quiz.md)** - Test your understanding (20 questions, 80% to pass)
-- **[Phase c Practice](../../00-META/assessment/phase7-practice.md)** - Hands-on exercises
+- **[Phase 7 Practice](../../00-META/assessment/phase7-practice.md)** - Hands-on exercises
 
 ---
 

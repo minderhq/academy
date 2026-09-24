@@ -1,7 +1,7 @@
 # Assessment Guide
 
 **Project:** PROJECT-OMEGA
-**Last Updated:** 2026-02-04
+**Last Updated:** 2026-09-24
 **Purpose:** Comprehensive assessment system for learning validation
 
 ---
@@ -9,6 +9,19 @@
 ## Overview
 
 This guide provides assessment materials for each phase of PROJECT-OMEGA, including quizzes, practical exams, and project evaluation rubrics.
+
+## Two-Tier Assessment System
+
+Assessment happens at two levels. Finish the module checkpoint before moving
+to the next module; finish the phase exam before moving to the next phase.
+
+| Tier | Location | Format | When |
+|------|----------|--------|------|
+| Module checkpoint | `<module>/assessment/QUIZ.md` + `PRACTICE.md` | 20 multiple-choice questions, 80% to pass, plus hands-on practice | End of each module |
+| Phase exam | `docs/00-META/assessment/phaseN-quiz.md` + `phaseN-practice.md` | 15-30 cumulative questions, 80% to pass, plus hands-on exercises | End of each phase |
+
+Phase quizzes and practice sets live in `docs/00-META/assessment/` (phase1
+through phase7). Phase quiz sizes: 15 / 20 / 25 / 30 / 30 / 30 / 30 questions.
 
 ---
 
@@ -93,7 +106,7 @@ This guide provides assessment materials for each phase of PROJECT-OMEGA, includ
 [... 18 more questions ...]
 ```
 
-### Phase 3: Transformers (20 Questions)
+### Phase 3: Transformers (25 Questions)
 
 ```markdown
 1. What is the key innovation of self-attention?
@@ -110,10 +123,10 @@ This guide provides assessment materials for each phase of PROJECT-OMEGA, includ
    d) Better generalization
    Answer: a
 
-[... 18 more questions ...]
+[... 23 more questions ...]
 ```
 
-### Phase 4: Quantization (15 Questions)
+### Phase 4: Quantization (30 Questions)
 
 ```markdown
 1. What is the main benefit of GGUF quantization?
@@ -130,10 +143,10 @@ This guide provides assessment materials for each phase of PROJECT-OMEGA, includ
    d) Inference latency
    Answer: a
 
-[... 13 more questions ...]
+[... 28 more questions ...]
 ```
 
-### Phase 5: Fine-tuning (20 Questions)
+### Phase 5: Fine-tuning (30 Questions)
 
 ```markdown
 1. What is the rank 'r' in LoRA?
@@ -150,10 +163,10 @@ This guide provides assessment materials for each phase of PROJECT-OMEGA, includ
    d) More accurate
    Answer: a
 
-[... 18 more questions ...]
+[... 28 more questions ...]
 ```
 
-### Phase 6: RAG (20 Questions)
+### Phase 6: RAG (30 Questions)
 
 ```markdown
 1. What is HNSW in vector databases?
@@ -170,10 +183,10 @@ This guide provides assessment materials for each phase of PROJECT-OMEGA, includ
    d) Simpler code
    Answer: a
 
-[... 18 more questions ...]
+[... 28 more questions ...]
 ```
 
-### Phase 7: Agents (20 Questions)
+### Phase 7: Agents (30 Questions)
 
 ```markdown
 1. What is the core idea of ReAct?
@@ -190,7 +203,7 @@ This guide provides assessment materials for each phase of PROJECT-OMEGA, includ
    d) Less memory
    Answer: a
 
-[... 18 more questions ...]
+[... 28 more questions ...]
 ```
 
 ---

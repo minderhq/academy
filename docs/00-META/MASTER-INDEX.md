@@ -271,10 +271,10 @@
 | **1** | [Phase 1 Quiz](assessment/phase1-quiz.md) | 15 questions |
 | **2** | [Phase 2 Quiz](assessment/phase2-quiz.md) | 20 questions |
 | **3** | [Phase 3 Quiz](assessment/phase3-quiz.md) | 25 questions |
-| **4** | [Phase 4 Quiz](assessment/phase4-quiz.md) | 20 questions |
-| **5** | [Phase 5 Quiz](assessment/phase5-quiz.md) | 20 questions |
-| **6** | [Phase 6 Quiz](assessment/phase6-quiz.md) | 20 questions |
-| **7** | [Phase 7 Quiz](assessment/phase7-quiz.md) | 15 questions |
+| **4** | [Phase 4 Quiz](assessment/phase4-quiz.md) | 30 questions |
+| **5** | [Phase 5 Quiz](assessment/phase5-quiz.md) | 30 questions |
+| **6** | [Phase 6 Quiz](assessment/phase6-quiz.md) | 30 questions |
+| **7** | [Phase 7 Quiz](assessment/phase7-quiz.md) | 30 questions |
 
 ---
 

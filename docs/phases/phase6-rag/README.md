@@ -712,7 +712,7 @@ See [PREREQUISITES](../../00-META/ENVIRONMENT-SETUP.md) for details.
 Validate your knowledge with:
 
 - **[Phase g Quiz](../../00-META/assessment/phase6-quiz.md)** - Test your understanding (20 questions, 80% to pass)
-- **[Phase g Practice](../../00-META/assessment/phase6-practice.md)** - Hands-on exercises
+- **[Phase 6 Practice](../../00-META/assessment/phase6-practice.md)** - Hands-on exercises
 
 ---
 

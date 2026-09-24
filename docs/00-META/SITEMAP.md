@@ -244,7 +244,7 @@ below are derived directly from the file tree.
 - [assessment: PRACTICE](../phases/phase5-finetuning/5500-advanced-optimization/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase5-finetuning/5500-advanced-optimization/assessment/QUIZ.md)
 
-## Phase 6 - RAG & Data Nexus (39 files)
+## Phase 6 - RAG & Data Nexus (38 files)
 
 - [CHECKPOINT](../phases/phase6-rag/CHECKPOINT.md)
 - [README](../phases/phase6-rag/README.md)
@@ -290,11 +290,7 @@ below are derived directly from the file tree.
 - [assessment: PRACTICE](../phases/phase6-rag/6500-mlops-pipelines/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase6-rag/6500-mlops-pipelines/assessment/QUIZ.md)
 
-### [assessment] (1 lessons, 0 guides)
-
-- [phase6-practice](../phases/phase6-rag/assessment/phase6-practice.md)
-
-## Phase 7 - Agentic Cognition & Production (37 files)
+## Phase 7 - Agentic Cognition & Production (36 files)
 
 - [CHECKPOINT](../phases/phase7-agentic/CHECKPOINT.md)
 - [README](../phases/phase7-agentic/README.md)
@@ -337,10 +333,6 @@ below are derived directly from the file tree.
 - [7503-Adversarial-Attacks](../phases/phase7-agentic/7500-security/7503-Adversarial-Attacks.md)
 - [assessment: PRACTICE](../phases/phase7-agentic/7500-security/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase7-agentic/7500-security/assessment/QUIZ.md)
-
-### [assessment] (1 lessons, 0 guides)
-
-- [phase7-practice](../phases/phase7-agentic/assessment/phase7-practice.md)
 
 ---
 
@@ -519,17 +511,17 @@ Optional deep-dive: one person's full home-lab build (NUC 12th Gen, RTX 2080 Ti
 ## Statistics
 
 ```
-Total markdown files: 465
+Total markdown files: 463
 Phases: 7
 Learning modules: 33
-Phase lesson/guide files: 262
+Phase lesson/guide files: 260
   Phase 1 - Infrastructure Fabric: 39
   Phase 2 - AI & Cognitive Foundations: 32
   Phase 3 - Transformer Physics & LLM Internals: 34
   Phase 4 - Quantization & Compression: 41
   Phase 5 - Model Adaptation: Fine-Tuning & Alignment: 40
-  Phase 6 - RAG & Data Nexus: 39
-  Phase 7 - Agentic Cognition & Production: 37
+  Phase 6 - RAG & Data Nexus: 38
+  Phase 7 - Agentic Cognition & Production: 36
 Experiments: 46 (+ 2 in case study)
 Tutorials: 15
 Labs: 15 + 15 solutions
