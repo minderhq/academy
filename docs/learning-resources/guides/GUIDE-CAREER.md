@@ -1,6 +1,6 @@
 # CAREER GUIDE: From Learning to Job-Ready
 
-**Target Audience:** PROJECT-OMEGA learners preparing for AI Engineering careers
+**Target Audience:** AI Engineering Curriculum learners preparing for AI Engineering careers
 **Read Time:** 25 minutes
 **Last Updated:** 2026-02-07
 
@@ -13,7 +13,7 @@ Before diving into career prep, understand the current AI job market:
 ### The Good News
 - :white_check_mark: AI Engineering is one of the fastest-growing fields
 - :white_check_mark: Companies desperately need practical AI skills (RAG, fine-tuning, deployment)
-- :white_check_mark: PROJECT-OMEGA covers in-demand skills (not just theory)
+- :white_check_mark: AI Engineering Curriculum covers in-demand skills (not just theory)
 
 ### The Hard Truth
 - :warning: **Having tutorials ≠ Being job-ready**
@@ -22,7 +22,7 @@ Before diving into career prep, understand the current AI job market:
 - :warning: **Completion rate matters more than enrollment**
 
 ### The Path Forward
-This guide bridges the gap between "completed PROJECT-OMEGA" and "hired as AI Engineer."
+This guide bridges the gap between "completed AI Engineering Curriculum" and "hired as AI Engineer."
 
 ---
 
@@ -39,7 +39,7 @@ This guide bridges the gap between "completed PROJECT-OMEGA" and "hired as AI En
 
 *US-based, 2026 estimates. Varies by location/experience.
 
-**You are training for: AI Engineer** (PROJECT-OMEGA's sweet spot)
+**You are training for: AI Engineer** (AI Engineering Curriculum's sweet spot)
 
 ---
 
@@ -54,7 +54,7 @@ Must do:
   - Optimize for cost/latency
   - Wear multiple hats (frontend, backend, DevOps)
 
-Skills from PROJECT-OMEGA:
+Skills from ai-engineering-curriculum:
   - TUTORIAL-003 (RAG) ✅
   - LAB-002 (RAG Implementation) ✅
   - LAB-003 (LoRA Fine-Tuning) ✅
@@ -71,7 +71,7 @@ Must do:
   - Monitor and maintain AI systems
   - Collaborate across teams
 
-Skills from PROJECT-OMEGA:
+Skills from ai-engineering-curriculum:
   - TUTORIAL-004 (Monitoring) ✅
   - TUTORIAL-013 (AI Security) ✅
   - Phase 7 (Agentic Systems) ✅
@@ -87,7 +87,7 @@ Must do:
   - Optimize model architectures
   - Stay current with research
 
-Skills from PROJECT-OMEGA:
+Skills from ai-engineering-curriculum:
   - Phase 2 (Foundations) ✅
   - Phase 3 (Transformer Physics) ✅
   - Phase 5 (Fine-Tuning) ✅
@@ -116,7 +116,7 @@ A tutorial completion is NOT a portfolio project. Here's the difference:
 
 ### 2.2 Required Portfolio Projects
 
-After completing PROJECT-OMEGA, build **3 portfolio projects**:
+After completing AI Engineering Curriculum, build **3 portfolio projects**:
 
 #### Project 1: RAG Chatbot (Entry-Level)
 **What:** Chatbot that answers questions from your own documents
@@ -380,7 +380,7 @@ Data: Python, NumPy, Pandas, SQL (PostgreSQL), PostgreSQL + pgvector
 
 ## Part 6: Continuous Learning
 
-### 6.1 Staying Current (Post-PROJECT-OMEGA)
+### 6.1 Staying Current (Post-AI Engineering Curriculum)
 
 **Daily (15 min):**
 - Skim arXiv papers (cs.CL, cs.LG)
@@ -485,7 +485,7 @@ Data: Python, NumPy, Pandas, SQL (PostgreSQL), PostgreSQL + pgvector
 
 **Your advantage:** Practical skills + ability to learn quickly.
 
-**PROJECT-OMEGA gives you:**
+**AI Engineering Curriculum gives you:**
 - :white_check_mark: Foundational knowledge
 - :white_check_mark: Hands-on experience
 - :white_check_mark: Portfolio-worthy projects
@@ -506,4 +506,4 @@ Data: Python, NumPy, Pandas, SQL (PostgreSQL), PostgreSQL + pgvector
 2. Read [GUIDE-INTERVIEW.md](./GUIDE-INTERVIEW.md) for interview prep
 3. Start building your portfolio today!
 
-**© 2026 PROJECT-OMEGA. All rights reserved.**
+**© 2026 AI Engineering Curriculum. All rights reserved.**

@@ -1699,7 +1699,7 @@ You can:
 
 After completing Volume 7 and a capstone project, you have earned:
 
-**🏆 PROJECT-OMEGA Master Certification**
+**🏆 AI Engineering Curriculum Master Certification**
 
 You have demonstrated mastery of:
 - Infrastructure and deployment
@@ -1731,4 +1731,4 @@ You have demonstrated mastery of:
 
 **Volume 7 Status:** 🟢 Complete
 **Last Updated:** 2026-02-04
-**Maintainer:** PROJECT-OMEGA Team
+**Maintainer:** AI Engineering Curriculum Team

@@ -1,7 +1,7 @@
 # 7103: ReAct Agent Implementation Guide
 
 ## Abstract
-Complete implementation guide for building production-ready ReAct (Reasoning + Acting) agents on PROJECT-OMEGA infrastructure.
+Complete implementation guide for building production-ready ReAct (Reasoning + Acting) agents on AI Engineering Curriculum infrastructure.
 
 ## Architecture Overview
 
@@ -43,7 +43,7 @@ Complete implementation guide for building production-ready ReAct (Reasoning + A
 ```python
 # react_agent.py
 """
-Production-ready ReAct Agent for PROJECT-OMEGA
+Production-ready ReAct Agent for ai-engineering-curriculum
 
 Features:
 - Tool calling with validation
@@ -582,7 +582,7 @@ version: "3.8"
 services:
   react-agent:
     build: ./agent
-    container_name: project-omega-react-agent
+    container_name: ai-engineering-curriculum-react-agent
     ports:
       - "8001:8000"
     environment:
@@ -599,7 +599,7 @@ services:
           memory: 8G
     restart: unless-stopped
     networks:
-      - project-omega-net
+      - ai-engineering-curriculum-net
 ```
 
 ### Kubernetes Deployment
@@ -609,7 +609,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: react-agent
-  namespace: project-omega
+  namespace: ai-engineering-curriculum
 spec:
   replicas: 1
   selector:
@@ -622,7 +622,7 @@ spec:
     spec:
       containers:
       - name: agent
-        image: project-omega/react-agent:latest
+        image: ai-engineering-curriculum/react-agent:latest
         ports:
         - containerPort: 8000
         env:

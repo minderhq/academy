@@ -1,4 +1,4 @@
-# PROJECT-OMEGA Master Index
+# AI Engineering Curriculum Master Index
 ## Complete Documentation Navigation Guide
 
 **Version:** 4.4
@@ -411,8 +411,8 @@ find docs/diagrams -name "*.md"
 
 **Master Index Version:** 4.4
 **Last Updated:** 2026-02-07
-**Maintained by:** PROJECT-OMEGA Team
+**Maintained by:** AI Engineering Curriculum Team
 
 ---
 
-© 2026 PROJECT-OMEGA. All rights reserved.
+© 2026 AI Engineering Curriculum. All rights reserved.

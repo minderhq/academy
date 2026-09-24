@@ -1,6 +1,6 @@
 # EXP_5202: Alignment Orchestration Experiment
 
-**Project:** PROJECT-OMEGA
+**Project:** AI Engineering Curriculum
 **Phase:** [5200] Alignment
 **Document ID:** 5202
 **Experiment ID:** EXP_5202_ALIGNMENT

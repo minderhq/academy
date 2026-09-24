@@ -1,4 +1,4 @@
-# PROJECT-OMEGA Cross-Reference Guidelines
+# AI Engineering Curriculum Cross-Reference Guidelines
 
 **Version:** 1.0
 **Last Updated:** 2026-02-05
@@ -8,7 +8,7 @@
 
 ## Overview
 
-This document provides guidelines for creating and maintaining cross-references between PROJECT-OMEGA documentation files. Proper cross-referencing improves navigation, discoverability, and learning path coherence.
+This document provides guidelines for creating and maintaining cross-references between AI Engineering Curriculum documentation files. Proper cross-referencing improves navigation, discoverability, and learning path coherence.
 
 ---
 
@@ -16,7 +16,7 @@ This document provides guidelines for creating and maintaining cross-references 
 
 ### 1. Internal Links (Relative)
 
-Use relative paths for links within PROJECT-OMEGA:
+Use relative paths for links within AI Engineering Curriculum:
 
 ```markdown
 # Same directory
@@ -74,7 +74,7 @@ Every technical document should include a References section:
 ### Documentation
 - [PyTorch Documentation](https://pytorch.org/docs) - Official PyTorch docs
 
-### Related PROJECT-OMEGA Documents
+### Related ai-engineering-curriculum Documents
 - [3101: Self-Attention](../../phases/phase3-transformers/3100-attention/3101-Self-Attention-DeepDive.md) - Deep dive into attention
 - [3301: Activation Functions](../../phases/phase3-transformers/3300-decoding/3301-Activation-Functions.md) - GELU, SwiGLU
 
@@ -248,7 +248,7 @@ Before marking a document as Complete, verify:
 
 ```bash
 # Find broken internal links (example script)
-grep -r '\[.*\](' PROJECT-OMEGA/docs/ | while read line; do
+grep -r '\[.*\](' ai-engineering-curriculum/docs/ | while read line; do
     # Extract link path
     link=$(echo "$line" | sed -n 's/.*](\([^)]*\)).*/\1/p')
     # Check if file exists (for relative links)

@@ -1,7 +1,7 @@
 # 1404: vLLM Production Deployment Guide
 
 ## Abstract
-Complete production deployment guide for vLLM (Virtual Large Language Model) high-throughput inference engine on PROJECT-OMEGA infrastructure.
+Complete production deployment guide for vLLM (Virtual Large Language Model) high-throughput inference engine on AI Engineering Curriculum infrastructure.
 
 ## Architecture
 
@@ -53,7 +53,7 @@ version: "3.8"
 services:
   vllm-mistral:
     image: vllm/vllm-openai:latest
-    container_name: project-omega-vllm-mistral
+    container_name: ai-engineering-curriculum-vllm-mistral
     ports:
       - "8000:8000"
     command: >
@@ -82,7 +82,7 @@ services:
       timeout: 10s
       retries: 3
     networks:
-      - project-omega-net
+      - ai-engineering-curriculum-net
     volumes:
       - /srv/models/vllm:/root/.cache/huggingface
     logging:
@@ -93,7 +93,7 @@ services:
 
   vllm-llama:
     image: vllm/vllm-openai:latest
-    container_name: project-omega-vllm-llama
+    container_name: ai-engineering-curriculum-vllm-llama
     ports:
       - "8001:8000"
     command: >
@@ -115,12 +115,12 @@ services:
               capabilities: [gpu]
     restart: unless-stopped
     networks:
-      - project-omega-net
+      - ai-engineering-curriculum-net
     depends_on:
       - vllm-mistral
 
 networks:
-  project-omega-net:
+  ai-engineering-curriculum-net:
     external: true
 ```
 
@@ -132,7 +132,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: vllm-config
-  namespace: project-omega
+  namespace: ai-engineering-curriculum
 data:
   MODEL_NAME: "mistralai/Mistral-7B-Instruct-v0.2"
   TENSOR_PARALLEL_SIZE: "1"
@@ -143,7 +143,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: vllm-mistral
-  namespace: project-omega
+  namespace: ai-engineering-curriculum
 spec:
   replicas: 1
   selector:
@@ -213,7 +213,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: vllm-mistral
-  namespace: project-omega
+  namespace: ai-engineering-curriculum
 spec:
   selector:
     app: vllm-mistral
@@ -227,7 +227,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: model-cache-pvc
-  namespace: project-omega
+  namespace: ai-engineering-curriculum
 spec:
   accessModes:
   - ReadWriteOnce
@@ -298,7 +298,7 @@ client = OpenAI(
 response = client.chat.completions.create(
     model="mistralai/Mistral-7B-Instruct-v0.2",
     messages=[
-        {"role": "system", "content": "You are a helpful assistant for PROJECT-OMEGA."},
+        {"role": "system", "content": "You are a helpful assistant for ai-engineering-curriculum."},
         {"role": "user", "content": "Explain quantum computing in simple terms."},
     ],
     max_tokens=512,
@@ -412,7 +412,7 @@ services:
       - vllm-llama
       - vllm-phi
     networks:
-      - project-omega-net
+      - ai-engineering-curriculum-net
 
   vllm-mistral:
     image: vllm/vllm-openai:latest
@@ -421,7 +421,7 @@ services:
       - "8001:8000"
     command: --model mistralai/Mistral-7B-Instruct-v0.2 --port 8000
     networks:
-      - project-omega-net
+      - ai-engineering-curriculum-net
 
   vllm-llama:
     image: vllm/vllm-openai:latest
@@ -430,7 +430,7 @@ services:
       - "8002:8000"
     command: --model meta-llama/Llama-2-7b-chat-hf --port 8000
     networks:
-      - project-omega-net
+      - ai-engineering-curriculum-net
 
   vllm-phi:
     image: vllm/vllm-openai:latest
@@ -439,7 +439,7 @@ services:
       - "8003:8000"
     command: --model microsoft/phi-2 --port 8000
     networks:
-      - project-omega-net
+      - ai-engineering-curriculum-net
 ```
 
 ### 2. Load Balancer Configuration (nginx.conf)
@@ -492,7 +492,7 @@ http {
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
     networks:
-      - project-omega-net
+      - ai-engineering-curriculum-net
 ```
 
 ```yaml

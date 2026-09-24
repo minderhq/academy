@@ -14,7 +14,7 @@ Tags: ['transformers', 'multimodal', 'vision-language', 'clip', 'audio']
 
 # 3501: Vision-Language Models
 
-**Project:** PROJECT-OMEGA
+**Project:** AI Engineering Curriculum
 **Phase:** [3500] Multimodal
 **Last Updated:** 2026-02-04
 **Status:** Complete

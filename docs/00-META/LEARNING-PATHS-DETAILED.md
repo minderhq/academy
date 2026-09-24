@@ -827,4 +827,4 @@ Each path has a completion certificate:
 ---
 
 **Last Updated:** 2026-02-04
-**Maintainer:** PROJECT-OMEGA Team
+**Maintainer:** AI Engineering Curriculum Team

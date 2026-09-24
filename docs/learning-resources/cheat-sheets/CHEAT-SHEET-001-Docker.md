@@ -400,9 +400,9 @@ docker build --mount=type=cache,target=/root/.cache pip install -r requirements.
 
 ---
 
-## 📚 PROJECT-OMEGA Specific
+## 📚 AI Engineering Curriculum Specific
 
-### Run PROJECT-OMEGA Stack
+### Run AI Engineering Curriculum Stack
 ```bash
 # From the configs/ directory
 cp .env.example .env

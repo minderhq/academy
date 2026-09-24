@@ -1,6 +1,6 @@
 # 2305: Framework Comparison Guide
 
-**Project:** PROJECT-OMEGA
+**Project:** AI Engineering Curriculum
 **Phase:** [2300] Framework Engineering
 **Last Updated:** 2026-02-04
 **Status:** Complete

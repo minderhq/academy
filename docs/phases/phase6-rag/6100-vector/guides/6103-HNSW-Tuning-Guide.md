@@ -1,7 +1,7 @@
 # 6103: HNSW Parameter Tuning Guide
 
 ## Abstract
-Comprehensive guide for tuning HNSW (Hierarchical Navigable Small World) index parameters for optimal vector search performance on PROJECT-OMEGA infrastructure.
+Comprehensive guide for tuning HNSW (Hierarchical Navigable Small World) index parameters for optimal vector search performance on AI Engineering Curriculum infrastructure.
 
 ## HNSW Architecture
 

@@ -53,7 +53,7 @@
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                    PROJECT-OMEGA Solutions                        │
+│                    AI Engineering Curriculum                    │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                  │
 │  🔍 Semantic Search (Vector DB)                                  │
@@ -121,7 +121,7 @@ graph TD
 
 ### Key Technologies in Healthcare
 
-| Technology | Healthcare Applications | PROJECT-OMEGA Phase |
+| Technology | Healthcare Applications | AI Engineering Curriculum Phase |
 |------------|------------------------|-------------------|
 | **RAG** | Medical literature search, Clinical decision support | Phase 6 |
 | **Vector DB** | Similar patient retrieval, Medical record search | Phase 6 |

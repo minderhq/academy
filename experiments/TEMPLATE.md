@@ -1,6 +1,6 @@
 # EXPERIMENT TEMPLATE
 
-**Project:** PROJECT-OMEGA
+**Project:** AI Engineering Curriculum
 **Phase:** [1000-7000]
 **Document ID:** [DOC-ID]
 **Experiment ID:** EXP_[NUM]_[ID]

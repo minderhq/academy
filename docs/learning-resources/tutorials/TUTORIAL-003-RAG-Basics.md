@@ -28,14 +28,14 @@ Think of RAG like an **open-book exam** for AI:
 
 ```
 Without RAG (Closed Book):
-Question: "What is PROJECT-OMEGA?"
+Question: "What is ai-engineering-curriculum?"
 LLM: "I don't know, my training data cutoff was earlier."
 
 With RAG (Open Book):
-Question: "What is PROJECT-OMEGA?"
+Question: "What is ai-engineering-curriculum?"
 RAG: "Let me search the documents..."
-Found: "PROJECT-OMEGA is an AI infrastructure learning platform"
-LLM: "PROJECT-OMEGA is an AI infrastructure learning platform..."
+Found: "ai-engineering-curriculum is an AI infrastructure learning platform"
+LLM: "ai-engineering-curriculum is an AI infrastructure learning platform..."
 ```
 
 ### RAG Architecture:
@@ -117,7 +117,7 @@ mkdir -p documents
 
 # Add some documents
 cat > documents/doc1.txt << 'EOF'
-PROJECT-OMEGA is a comprehensive learning platform for AI infrastructure.
+ai-engineering-curriculum is a comprehensive learning platform for AI infrastructure.
 It covers topics from basic Docker to advanced agent systems.
 EOF
 
@@ -344,7 +344,7 @@ curl -X POST http://localhost:8000/query \
 ```python
 # Test RAG vs direct query
 queries = [
-    "What is PROJECT-OMEGA?",
+    "What is ai-engineering-curriculum?",
     "How much VRAM does 11GB-class GPU have?",
     "What is Qdrant used for?"
 ]
@@ -431,7 +431,7 @@ def rerank(results, query):
 
 ## Step 8: Advanced RAG with GraphRAG
 
-PROJECT-OMEGA also supports **GraphRAG** - combining vector search with knowledge graphs!
+AI Engineering Curriculum also supports **GraphRAG** - combining vector search with knowledge graphs!
 
 ```
 Vector RAG:              GraphRAG:
@@ -592,8 +592,8 @@ class SimpleRAG:
 
 # Use it
 rag = SimpleRAG()
-rag.add("PROJECT-OMEGA is a learning platform for AI infrastructure")
-print(rag.query("What is PROJECT-OMEGA?"))
+rag.add("ai-engineering-curriculum is a learning platform for AI infrastructure")
+print(rag.query("What is ai-engineering-curriculum?"))
 ```
 
 ---

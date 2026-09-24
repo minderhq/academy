@@ -1,4 +1,4 @@
-# PROJECT-OMEGA: Interactive Learning Components
+# AI Engineering Curriculum: Interactive Learning Components
 
 Interactive elements to enhance the learning experience.
 

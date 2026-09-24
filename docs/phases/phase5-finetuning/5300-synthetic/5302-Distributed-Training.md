@@ -450,7 +450,7 @@ import wandb
 
 # Initialize wandb
 wandb.init(
-    project="project-omega",
+    project="ai-engineering-curriculum",
     entity="your-org",
     config={
         "model": "Llama-2-7b",

@@ -1,6 +1,6 @@
 # EXP_1502: Model Drift Experiments
 
-**Project:** PROJECT-OMEGA
+**Project:** AI Engineering Curriculum
 **Phase:** [1500] Monitoring
 **Experiment ID:** EXP_1502_MODEL_DRIFT
 **Date:** 2026-02-04

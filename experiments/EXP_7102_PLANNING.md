@@ -1,6 +1,6 @@
 # EXP_7102: Planning & Decomposition Experiment
 
-**Project:** PROJECT-OMEGA
+**Project:** AI Engineering Curriculum
 **Phase:** [7100] Agent Architecture
 **Document ID:** 7102
 **Experiment ID:** EXP_7102_PLANNING

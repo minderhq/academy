@@ -1,6 +1,6 @@
 # Assessment Guide
 
-**Project:** PROJECT-OMEGA
+**Project:** AI Engineering Curriculum
 **Last Updated:** 2026-09-24
 **Purpose:** Comprehensive assessment system for learning validation
 
@@ -8,7 +8,7 @@
 
 ## Overview
 
-This guide provides assessment materials for each phase of PROJECT-OMEGA, including quizzes, practical exams, and project evaluation rubrics.
+This guide provides assessment materials for each phase of AI Engineering Curriculum, including quizzes, practical exams, and project evaluation rubrics.
 
 ## Two-Tier Assessment System
 
@@ -346,7 +346,7 @@ After completing each phase, learners should be able to:
 
 ## Certification Criteria
 
-### PROJECT-OMEGA Certification: Associate
+### AI Engineering Curriculum Certification: Associate
 
 **Requirements:**
 - Complete all 7 phase quizzes (80%+ passing grade)
@@ -355,7 +355,7 @@ After completing each phase, learners should be able to:
 
 **Time Estimate:** 3-6 months
 
-### PROJECT-OMEGA Certification: Professional
+### AI Engineering Curriculum Certification: Professional
 
 **Requirements:**
 - Complete all 7 phase quizzes (90%+ passing grade)

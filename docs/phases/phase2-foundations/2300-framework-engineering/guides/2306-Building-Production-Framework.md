@@ -1,6 +1,6 @@
 # 2306: Building a Production Framework
 
-**Project:** PROJECT-OMEGA
+**Project:** AI Engineering Curriculum
 **Phase:** [2300] Framework Engineering
 **Last Updated:** 2026-02-04
 **Status:** Complete

@@ -1,9 +1,9 @@
 # Environment Setup for Fine-Tuning Notebooks (NB-501, NB-502, NB-503)
 # Create conda environment: conda env create -f environment-finetuning.yml
 # Update environment: conda env update -f environment-finetuning.yml
-# Activate environment: conda activate project-omega-finetuning
+# Activate environment: conda activate ai-engineering-curriculum-finetuning
 
-name: project-omega-finetuning
+name: ai-engineering-curriculum-finetuning
 
 channels:
   - pytorch

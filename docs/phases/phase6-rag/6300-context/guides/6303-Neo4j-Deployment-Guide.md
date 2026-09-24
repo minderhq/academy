@@ -1,7 +1,7 @@
 # 6303: Neo4j Deployment Guide
 
 ## Abstract
-Complete guide for deploying Neo4j knowledge graph database on any Docker-capable Linux host, NAS, or VPS for PROJECT-OMEGA.
+Complete guide for deploying Neo4j knowledge graph database on any Docker-capable Linux host, NAS, or VPS for AI Engineering Curriculum.
 
 ## Deployment Targets
 
@@ -49,7 +49,7 @@ version: "3.8"
 services:
   neo4j:
     image: neo4j:5.15-community
-    container_name: project-omega-neo4j
+    container_name: ai-engineering-curriculum-neo4j
     ports:
       - "7474:7474"  # HTTP
       - "7687:7687"  # Bolt
@@ -90,10 +90,10 @@ services:
       timeout: 10s
       retries: 5
     networks:
-      - project-omega-net
+      - ai-engineering-curriculum-net
 
 networks:
-  project-omega-net:
+  ai-engineering-curriculum-net:
     external: true
 EOF
 
@@ -302,7 +302,7 @@ services:
     depends_on:
       - neo4j
     networks:
-      - project-omega-net
+      - ai-engineering-curriculum-net
 ```
 
 ## Security Hardening
@@ -333,7 +333,7 @@ services:
   neo4j:
     # Remove ports section, only use internal network
     networks:
-      - project-omega-net
+      - ai-engineering-curriculum-net
     # Access via reverse proxy (Nginx)
 ```
 
@@ -387,7 +387,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: neo4j
-  namespace: project-omega
+  namespace: ai-engineering-curriculum
 spec:
   serviceName: neo4j
   replicas: 1
@@ -440,7 +440,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: neo4j
-  namespace: project-omega
+  namespace: ai-engineering-curriculum
 spec:
   selector:
     app: neo4j

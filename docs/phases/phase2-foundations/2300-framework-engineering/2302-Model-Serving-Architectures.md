@@ -14,7 +14,7 @@ Tags: ['frameworks', 'architecture', 'api-design', 'production']
 
 # 2302: Model Serving Architectures
 
-**Project:** PROJECT-OMEGA
+**Project:** AI Engineering Curriculum
 **Phase:** [2300] Framework Engineering
 **Last Updated:** 2026-02-04
 **Status:** Complete

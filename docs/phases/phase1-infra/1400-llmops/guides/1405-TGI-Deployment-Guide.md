@@ -1,7 +1,7 @@
 # 1405: Text Generation Inference (TGI) Deployment Guide
 
 ## Abstract
-Complete deployment guide for Text Generation Inference (TGI), Hugging Face's high-performance LLM serving engine, optimized for PROJECT-OMEGA infrastructure.
+Complete deployment guide for Text Generation Inference (TGI), Hugging Face's high-performance LLM serving engine, optimized for AI Engineering Curriculum infrastructure.
 
 ## TGI vs vLLM Comparison
 
@@ -124,7 +124,7 @@ version: "3.8"
 services:
   tgi-mistral:
     image: ghcr.io/huggingface/text-generation-inference:latest
-    container_name: project-omega-tgi-mistral
+    container_name: ai-engineering-curriculum-tgi-mistral
     ports:
       - "8080:80"
     environment:
@@ -159,7 +159,7 @@ services:
       timeout: 10s
       retries: 3
     networks:
-      - project-omega-net
+      - ai-engineering-curriculum-net
     volumes:
       - /srv/models/tgi:/data
     logging:
@@ -169,7 +169,7 @@ services:
         max-file: "3"
 
 networks:
-  project-omega-net:
+  ai-engineering-curriculum-net:
     external: true
 ```
 
@@ -181,7 +181,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: tgi-mistral
-  namespace: project-omega
+  namespace: ai-engineering-curriculum
 spec:
   replicas: 1
   selector:
@@ -236,7 +236,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: tgi-mistral
-  namespace: project-omega
+  namespace: ai-engineering-curriculum
 spec:
   selector:
     app: tgi-mistral

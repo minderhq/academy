@@ -14,7 +14,7 @@ Tags: ['agents', 'security', 'prompt-injection', 'pii', 'adversarial']
 
 # 7503: Adversarial Attacks & Defense
 
-**Project:** PROJECT-OMEGA
+**Project:** AI Engineering Curriculum
 **Phase:** [7500] Security
 **Last Updated:** 2026-02-04
 **Status:** Complete
@@ -777,7 +777,7 @@ class SecureInferencePipeline:
 
 ## Next Steps
 
-- 🎉 **Phase 7 Complete!** You've mastered the entire PROJECT-OMEGA curriculum!
+- 🎉 **Phase 7 Complete!** You've mastered the entire AI Engineering Curriculum curriculum!
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 
 ---

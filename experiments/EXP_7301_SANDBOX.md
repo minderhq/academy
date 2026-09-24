@@ -1,6 +1,6 @@
 # EXP_7301: Code Sandbox Experiment
 
-**Project:** PROJECT-OMEGA
+**Project:** AI Engineering Curriculum
 **Phase:** [7200] Tool Use
 **Document ID:** 7202
 **Experiment ID:** EXP_7301_SANDBOX

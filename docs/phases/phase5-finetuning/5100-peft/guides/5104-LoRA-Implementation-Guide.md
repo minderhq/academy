@@ -416,7 +416,7 @@ def example_training():
     import json
 
     sample_data = [
-        {"text": "PROJECT-OMEGA is an AI infrastructure project for homelab deployment."},
+        {"text": "ai-engineering-curriculum is an AI infrastructure project for homelab deployment."},
         {"text": "LoRA allows efficient fine-tuning by freezing original weights."},
         {"text": "11GB-class GPU has 11GB VRAM, suitable for 7B models with 4-bit quantization."},
     ]

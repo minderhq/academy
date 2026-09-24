@@ -18,7 +18,7 @@ Software: [Web browser, terminal]
 
 ## Abstract
 
-This document covers the GPON (Gigabit Passive Optical Network) modem configuration for PROJECT-OMEGA's network infrastructure. You will learn how to configure bridge mode, verify optical signal levels, and integrate the modem with a 2.5Gbps star topology network.
+This document covers the GPON (Gigabit Passive Optical Network) modem configuration for AI Engineering Curriculum's network infrastructure. You will learn how to configure bridge mode, verify optical signal levels, and integrate the modem with a 2.5Gbps star topology network.
 
 ---
 
@@ -29,7 +29,7 @@ This document covers the GPON (Gigabit Passive Optical Network) modem configurat
 - [3. Bridge Mode Configuration](#3-bridge-mode-configuration)
 - [4. Signal Path Diagram](#4-signal-path-diagram)
 - [5. Troubleshooting](#5-troubleshooting)
-- [6. Integration with PROJECT-OMEGA](#6-integration-with-project-omega)
+- [6. Integration with AI Engineering Curriculum](#6-integration-with-ai-engineering-curriculum)
 - [7. WAN Bypass (Advanced)](#7-wan-bypass-advanced)
 - [8. References](#8-references)
 
@@ -39,7 +39,7 @@ This document covers the GPON (Gigabit Passive Optical Network) modem configurat
 
 ### 1.1 Purpose
 
-The GPON modem serves as the entry point for fiber-optic internet connectivity in the PROJECT-OMEGA infrastructure. This document provides configuration guidance for optimal performance with 2.5Gbps networks.
+The GPON modem serves as the entry point for fiber-optic internet connectivity in the AI Engineering Curriculum infrastructure. This document provides configuration guidance for optimal performance with 2.5Gbps networks.
 
 ### 1.2 Prerequisites
 
@@ -165,7 +165,7 @@ Check optical power in modem interface:
 
 ---
 
-## 6. Integration with PROJECT-OMEGA
+## 6. Integration with AI Engineering Curriculum
 
 ### 6.1 Hardware Connection
 
@@ -203,7 +203,7 @@ For redundancy, consider:
 ### Technical Standards
 - [ITU-T G.984 Series](https://www.itu.int/rec/T-REC-G.984) - GPON standards
 
-### Related PROJECT-OMEGA Documents
+### Related AI Engineering Curriculum Documents
 - [1102: Star Topology Core](./1102-Star-Topology-Core.md) - Switch configuration
 - [1103: Jumbo Frames and MTU](../../phases/phase1-infra/1100-network/1103-Jumbo-Frames-and-MTU.md) - MTU optimization
 - [1201: Proxmox Hypervisor SOP](../../phases/phase1-infra/1200-virtualization/1201-Proxmox-Hypervisor-SOP.md) - Virtualization setup

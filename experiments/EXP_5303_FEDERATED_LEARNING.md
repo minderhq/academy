@@ -1,6 +1,6 @@
 # EXP_5303: Federated Learning Experiments
 
-**Project:** PROJECT-OMEGA
+**Project:** AI Engineering Curriculum
 **Phase:** [5300] Synthetic Data
 **Experiment ID:** EXP_5303_FEDERATED_LEARNING
 **Date:** 2026-02-04

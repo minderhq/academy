@@ -175,7 +175,7 @@ For 11GB VRAM GPU:
 - [llama.cpp GitHub](https://github.com/ggerganov/llama.cpp) - Source code and documentation
 - [GGUF Format Spec](https://github.com/ggerganov/ggml/blob/master/docs/gguf.md) - Format specification
 
-### Related PROJECT-OMEGA Documents
+### Related ai-engineering-curriculum Documents
 - [4102: EXL2 and AWQ](./4102-EXL2-and-AWQ.md) - VRAM-only quantization
 - [4103: Double Quantization](./4103-Double-Quantization.md) - BitsAndBytes 4-bit
 - [4201: Context Window Physics](../4200-kv-cache/4201-Context-Window-Physics.md) - KV cache optimization

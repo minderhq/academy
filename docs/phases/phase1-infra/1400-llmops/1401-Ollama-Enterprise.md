@@ -15,7 +15,7 @@ Tags: ['infrastructure', 'llmops', 'ollama', 'vllm', 'tgi']
 # 1401: Ollama Enterprise Deployment
 
 ## Abstract
-Ollama enables running large language models locally with a simple API. In PROJECT-OMEGA, Ollama serves as the model inference backend across the lab network.
+Ollama enables running large language models locally with a simple API. In AI Engineering Curriculum, Ollama serves as the model inference backend across the lab network.
 
 ## Architecture
 

@@ -433,7 +433,7 @@ class HierarchicalReActAgent:
 - [LangChain Agents](https://python.langchain.com/docs/modules/agents/) - Agent framework documentation
 - [LangGraph](https://langchain-ai.github.io/langgraph/) - Stateful agent framework
 
-### Related PROJECT-OMEGA Documents
+### Related AI Engineering Curriculum Documents
 - [7102: Planning and Decomposition](./7102-Planning-Decomposition.md) - Task breakdown strategies
 - [7201: Tool Calling](../7200-tools/7201-Tool-Calling.md) - Tool implementation
 - [7301: Orchestration](../7300-orchestration/7301-Orchestration.md) - Multi-agent coordination

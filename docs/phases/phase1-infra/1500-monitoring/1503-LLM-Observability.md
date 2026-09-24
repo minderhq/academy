@@ -14,7 +14,7 @@ Tags: ['infrastructure', 'monitoring', 'observability', 'prometheus']
 
 # 1503: LLM Observability
 
-**Project:** PROJECT-OMEGA
+**Project:** AI Engineering Curriculum
 **Phase:** [1500] Monitoring
 **Last Updated:** 2026-02-04
 **Status:** Complete

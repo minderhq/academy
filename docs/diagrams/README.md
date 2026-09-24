@@ -1,4 +1,4 @@
-# PROJECT-OMEGA Architecture Diagrams
+# AI Engineering Curriculum Architecture Diagrams
 
 **Visual documentation for key AI/ML concepts and system architectures**
 
@@ -6,7 +6,7 @@
 
 ## Overview
 
-This directory contains Mermaid diagrams that illustrate complex concepts from the PROJECT-OMEGA curriculum. These diagrams complement the technical documentation and provide visual learning aids.
+This directory contains Mermaid diagrams that illustrate complex concepts from the AI Engineering Curriculum curriculum. These diagrams complement the technical documentation and provide visual learning aids.
 
 ---
 

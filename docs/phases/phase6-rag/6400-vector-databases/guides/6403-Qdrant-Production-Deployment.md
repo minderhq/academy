@@ -1,7 +1,7 @@
 # 6403: Qdrant Production Deployment
 
 ## Abstract
-Complete guide for deploying Qdrant high-performance vector database on any Docker-capable Linux host, NAS, or VPS for PROJECT-OMEGA RAG and semantic search operations.
+Complete guide for deploying Qdrant high-performance vector database on any Docker-capable Linux host, NAS, or VPS for AI Engineering Curriculum RAG and semantic search operations.
 
 ## Deployment Targets
 
@@ -49,7 +49,7 @@ version: "3.8"
 services:
   qdrant:
     image: qdrant/qdrant:latest
-    container_name: project-omega-qdrant
+    container_name: ai-engineering-curriculum-qdrant
     ports:
       - "6333:6333"  # REST API
       - "6334:6334"  # gRPC API
@@ -86,10 +86,10 @@ services:
       timeout: 10s
       retries: 5
     networks:
-      - project-omega-net
+      - ai-engineering-curriculum-net
 
 networks:
-  project-omega-net:
+  ai-engineering-curriculum-net:
     external: true
 EOF
 
@@ -291,7 +291,7 @@ for collection in "${COLLECTIONS[@]}"; do
       -H "Content-Type: application/json"
 
     # Copy snapshot to backup
-    docker cp project-omega-qdrant:/qdrant/storage/snapshots \
+    docker cp ai-engineering-curriculum-qdrant:/qdrant/storage/snapshots \
       $BACKUP_DIR/snapshots_$DATE/
 done
 
@@ -434,7 +434,7 @@ services:
   qdrant:
     # Remove ports section, only use internal network
     networks:
-      - project-omega-net
+      - ai-engineering-curriculum-net
 
     # Access via reverse proxy (Nginx)
 ```
@@ -531,7 +531,7 @@ ingestion = RAGIngestion()
 
 # Ingest single document
 ingestion.ingest_document(
-    "PROJECT-OMEGA is an AI infrastructure project.",
+    "ai-engineering-curriculum is an AI infrastructure project.",
     metadata={"source": "README", "category": "project"}
 )
 
@@ -647,7 +647,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: qdrant
-  namespace: project-omega
+  namespace: ai-engineering-curriculum
 spec:
   replicas: 1
   selector:
@@ -690,7 +690,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: qdrant-pvc
-  namespace: project-omega
+  namespace: ai-engineering-curriculum
 spec:
   accessModes:
   - ReadWriteOnce
@@ -703,7 +703,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: qdrant
-  namespace: project-omega
+  namespace: ai-engineering-curriculum
 spec:
   selector:
     app: qdrant

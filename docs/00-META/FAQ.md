@@ -1,18 +1,18 @@
-# PROJECT-OMEGA FAQ
+# AI Engineering Curriculum FAQ
 
-**Frequently Asked Questions about the PROJECT-OMEGA Learning Path**
+**Frequently Asked Questions about the AI Engineering Curriculum Learning Path**
 
 ---
 
 ## General Questions
 
-### What is PROJECT-OMEGA?
+### What is AI Engineering Curriculum?
 
-PROJECT-OMEGA is a comprehensive 7-phase learning path for mastering AI infrastructure, model internals, quantization, fine-tuning, RAG systems, and production deployment. It consists of 463 documents across 7 phases, 30 hands-on labs, 46 experiments, 15 tutorials, and 13 cheat sheets.
+AI Engineering Curriculum is a comprehensive 7-phase learning path for mastering AI infrastructure, model internals, quantization, fine-tuning, RAG systems, and production deployment. It consists of 463 documents across 7 phases, 30 hands-on labs, 46 experiments, 15 tutorials, and 13 cheat sheets.
 
 ### Who is this for?
 
-PROJECT-OMEGA is designed for:
+AI Engineering Curriculum is designed for:
 - **Beginners** who want to learn AI from scratch
 - **Developers** who want to transition into AI/ML
 - **Data Scientists** who want to understand AI infrastructure
@@ -161,7 +161,7 @@ Start here:
 
 ### Can I mix and match paths?
 
-**Yes!** PROJECT-OMEGA is modular. You can:
+**Yes!** AI Engineering Curriculum is modular. You can:
 - Switch between paths mid-way
 - Focus on specific phases
 - Revisit topics later
@@ -260,7 +260,7 @@ Use **[PROGRESS-TRACKER.md](PROGRESS-TRACKER.md)** to:
 
 ## Cost & Budget
 
-### Is PROJECT-OMEGA free?
+### Is AI Engineering Curriculum free?
 
 **Yes!** All documentation is free.
 
@@ -314,7 +314,7 @@ Use **[PROGRESS-TRACKER.md](PROGRESS-TRACKER.md)** to:
 
 ## After Completion
 
-### What can I do after completing PROJECT-OMEGA?
+### What can I do after completing AI Engineering Curriculum?
 
 **Career Opportunities:**
 - ML Engineer
@@ -339,7 +339,7 @@ Use **[PROGRESS-TRACKER.md](PROGRESS-TRACKER.md)** to:
 - Specialized domains (medical AI, legal AI, etc.)
 - Advanced topics (RLHF, constitutional AI, etc.)
 
-### Can I contribute to PROJECT-OMEGA?
+### Can I contribute to AI Engineering Curriculum?
 
 **Yes!** We welcome contributions:
 - Report typos or errors
@@ -445,7 +445,7 @@ Use **[PROGRESS-TRACKER.md](PROGRESS-TRACKER.md)** to:
 
 ## Updates & Versioning
 
-### How often is PROJECT-OMEGA updated?
+### How often is AI Engineering Curriculum updated?
 
 **Ongoing:**
 - Bug fixes and typos: As needed
@@ -464,7 +464,7 @@ Check the **Last Updated** date at the bottom of each document.
 
 ### Is there a community?
 
-PROJECT-OMEGA is an open educational resource. Join the community to:
+AI Engineering Curriculum is an open educational resource. Join the community to:
 - Share your progress
 - Ask questions
 - Get help
@@ -490,9 +490,9 @@ PROJECT-OMEGA is an open educational resource. Join the community to:
 
 **Models:** Depends on the model license (check individual model licenses).
 
-### Can I redistribute PROJECT-OMEGA?
+### Can I redistribute AI Engineering Curriculum?
 
-**Yes!** PROJECT-OMEGA is free to redistribute for educational purposes.
+**Yes!** AI Engineering Curriculum is free to redistribute for educational purposes.
 
 **Attribution:** Appreciated but not required.
 
@@ -512,7 +512,7 @@ PROJECT-OMEGA is an open educational resource. Join the community to:
 
 **Last Updated:** 2026-09-24
 **Version:** 1.0
-**Maintainer:** PROJECT-OMEGA Team
+**Maintainer:** AI Engineering Curriculum Team
 
 ---
 

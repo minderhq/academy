@@ -1221,4 +1221,4 @@ After completing this lab:
 
 **Lab Status:** ✅ Complete
 **Last Updated:** 2026-02-04
-**Maintainer:** PROJECT-OMEGA Team
+**Maintainer:** AI Engineering Curriculum Team

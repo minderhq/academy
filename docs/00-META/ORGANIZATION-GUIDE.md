@@ -1,9 +1,9 @@
-# PROJECT-OMEGA Organization Guide
+# AI Engineering Curriculum Organization Guide
 ## Documentation Structure & Maintenance
 
 **Version:** 4.1
 **Last Updated:** 2026-02-05
-**Purpose:** Guide for understanding and maintaining the PROJECT-OMEGA documentation structure
+**Purpose:** Guide for understanding and maintaining the AI Engineering Curriculum documentation structure
 
 ---
 
@@ -12,7 +12,7 @@
 ### Root Level
 
 ```
-PROJECT-OMEGA/
+ai-engineering-curriculum/
 ├── README.md                          # Main project README
 ├── LICENSE                            # MIT License
 ├── prompt.txt                         # AI assistant prompt
@@ -626,8 +626,8 @@ See [STYLE-GUIDE.md](STYLE-GUIDE.md) for contribution guidelines.
 
 **Organization Guide Version:** 4.1
 **Last Updated:** 2026-02-05
-**Maintained by:** PROJECT-OMEGA Team
+**Maintained by:** AI Engineering Curriculum Team
 
 ---
 
-© 2026 PROJECT-OMEGA. All rights reserved.
+© 2026 AI Engineering Curriculum. All rights reserved.

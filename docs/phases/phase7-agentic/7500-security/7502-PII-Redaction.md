@@ -14,7 +14,7 @@ Tags: ['agents', 'security', 'prompt-injection', 'pii', 'adversarial']
 
 # 7502: PII Redaction & Privacy Filtering
 
-**Project:** PROJECT-OMEGA
+**Project:** AI Engineering Curriculum
 **Phase:** [7500] Security
 **Last Updated:** 2026-02-04
 **Status:** Complete

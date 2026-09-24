@@ -1,6 +1,6 @@
 # EXP_5301: Knowledge Distillation Experiment
 
-**Project:** PROJECT-OMEGA
+**Project:** AI Engineering Curriculum
 **Phase:** [5300] Synthetic Data
 **Document ID:** 5301
 **Experiment ID:** EXP_5301_DISTILLATION

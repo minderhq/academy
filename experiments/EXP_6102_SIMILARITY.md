@@ -1,6 +1,6 @@
 # EXP_6102: Semantic Similarity Experiment
 
-**Project:** PROJECT-OMEGA
+**Project:** AI Engineering Curriculum
 **Phase:** [6100] Vector Architectures
 **Document ID:** 6102
 **Experiment ID:** EXP_6102_SIMILARITY

@@ -2,7 +2,7 @@
 
 ## Overview
 
-This guide compares popular vector databases to help you choose the right one for PROJECT-OMEGA and your use cases.
+This guide compares popular vector databases to help you choose the right one for AI Engineering Curriculum and your use cases.
 
 ---
 
@@ -21,7 +21,7 @@ This guide compares popular vector databases to help you choose the right one fo
 
 ## Detailed Comparison
 
-### 1. Qdrant (Recommended for PROJECT-OMEGA)
+### 1. Qdrant (Recommended for AI Engineering Curriculum)
 
 #### Overview
 
@@ -429,7 +429,7 @@ LIMIT 5;
 
 ### Use Qdrant if:
 
-- ✅ Building HomeLab setup (PROJECT-OMEGA)
+- ✅ Building HomeLab setup (AI Engineering Curriculum)
 - ✅ Want self-hosted with easy setup
 - ✅ Need 1M-10M vectors
 - ✅ Want good performance with limited resources
@@ -512,7 +512,7 @@ LIMIT 5;
 
 ---
 
-## PROJECT-OMEGA Recommendation
+## AI Engineering Curriculum Recommendation
 
 ### Primary Choice: Qdrant
 

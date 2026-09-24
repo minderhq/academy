@@ -14,7 +14,7 @@ Tags: ['mlops', 'pipeline', 'ci-cd', 'model-registry', 'lifecycle']
 
 # 6501: ML Model Lifecycle Management
 
-**Project:** PROJECT-OMEGA
+**Project:** AI Engineering Curriculum
 **Phase:** [6500] MLOps Pipelines
 **Last Updated:** 2026-02-04
 **Status:** Complete

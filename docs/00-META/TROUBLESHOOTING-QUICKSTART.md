@@ -453,7 +453,7 @@ ollama run phi3 "test"
 
 1. **Official Ollama Docs:** https://ollama.com/docs
 2. **Ollama GitHub Issues:** https://github.com/ollama/ollama/issues
-3. **PROJECT-OMEGA Setup Guide:** [ENVIRONMENT-SETUP.md](ENVIRONMENT-SETUP.md)
+3. **AI Engineering Curriculum Setup Guide:** [ENVIRONMENT-SETUP.md](ENVIRONMENT-SETUP.md)
 4. **Environment Lab:** [LAB-000-ENVIRONMENT-SETUP.md](../learning-resources/labs/LAB-000-ENVIRONMENT-SETUP.md)
 
 ### Common Error Messages

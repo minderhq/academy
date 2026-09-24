@@ -1,4 +1,4 @@
-# PROJECT-OMEGA Lab Testing Framework
+# AI Engineering Curriculum Lab Testing Framework
 
 **Automated testing for hands-on lab validation**
 
@@ -225,4 +225,4 @@ When adding new labs:
 
 **Status:** ✅ Framework Ready
 **Last Updated:** 2026-02-05
-**Maintainer:** PROJECT-OMEGA Team
+**Maintainer:** AI Engineering Curriculum Team

@@ -1,6 +1,6 @@
 # Case Study: A Real HomeLab Build
 
-This appendix documents one concrete home lab that PROJECT-OMEGA was originally
+This appendix documents one concrete home lab that AI Engineering Curriculum was originally
 developed on. It is **optional reading** — the course modules are fully
 hardware-agnostic, but seeing one real build can help you map the concepts
 onto your own hardware.

@@ -516,5 +516,5 @@ pip help prometheus-client
 ---
 
 **Last Updated:** 2026-02-05
-**Author:** PROJECT-OMEGA Team
+**Author:** AI Engineering Curriculum Team
 **License:** MIT

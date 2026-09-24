@@ -14,7 +14,7 @@ Tags: ['agents', 'security', 'prompt-injection', 'pii', 'adversarial']
 
 # 7501: Prompt Injection Defense
 
-**Project:** PROJECT-OMEGA
+**Project:** AI Engineering Curriculum
 **Phase:** [7500] Security
 **Last Updated:** 2026-02-04
 **Status:** Complete

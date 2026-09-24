@@ -1,4 +1,4 @@
-// PROJECT-OMEGA Performance Testing with k6
+// ai-engineering-curriculum Performance Testing with k6
 // Load testing for LLM inference services (vLLM + Qdrant + Neo4j)
 //
 // Usage:

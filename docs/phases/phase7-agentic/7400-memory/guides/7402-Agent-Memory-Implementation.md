@@ -1,7 +1,7 @@
 # 7402: Agent Memory Implementation Guide
 
 ## Abstract
-Complete implementation guide for building persistent memory systems for AI agents on PROJECT-OMEGA infrastructure. Covers VectorStore for semantic memory and Memoria for episodic memory.
+Complete implementation guide for building persistent memory systems for AI agents on AI Engineering Curriculum infrastructure. Covers VectorStore for semantic memory and Memoria for episodic memory.
 
 ## Memory Architecture
 
@@ -264,7 +264,7 @@ memory.add_memory(
 )
 
 memory.add_memory(
-    "PROJECT-OMEGA uses 11GB-class GPU for inference",
+    "ai-engineering-curriculum uses 11GB-class GPU for inference",
     metadata={"type": "fact", "category": "infrastructure"},
     importance=0.9
 )
@@ -272,7 +272,7 @@ memory.add_memory(
 # Store conversation
 memory.add_conversation(
     user_message="What's your name?",
-    agent_response="I'm an AI assistant for PROJECT-OMEGA.",
+    agent_response="I'm an AI assistant for ai-engineering-curriculum.",
     metadata={"session_id": "session_001"}
 )
 
@@ -803,7 +803,7 @@ class MemoryEnabledAgent:
         # Build prompt with memory context
         context = self.memory.get_context_string(user_message)
 
-        prompt = f"""You are a helpful AI assistant for PROJECT-OMEGA.
+        prompt = f"""You are a helpful AI assistant for ai-engineering-curriculum.
 
 {context}
 
@@ -956,7 +956,7 @@ class MemoryForgetting:
 docker compose -f /srv/qdrant/docker-compose.yml up -d
 
 # 2. Start PostgreSQL (for Memoria)
-docker run -d --name project-omega-postgres \
+docker run -d --name ai-engineering-curriculum-postgres \
   -e POSTGRES_PASSWORD=your_password \
   -e POSTGRES_DB=agent_memory \
   -p 5432:5432 \

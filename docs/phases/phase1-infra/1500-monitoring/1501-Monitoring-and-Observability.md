@@ -1,6 +1,6 @@
 ---
 Document ID: 1501
-Title: Monitoring and Observability for PROJECT-OMEGA
+Title: Monitoring and Observability for AI Engineering Curriculum
 Phase: 1
 Module: 1500
 Last Updated: 2026-02-05
@@ -12,7 +12,7 @@ Related: See module README
 Tags: ['infrastructure', 'monitoring', 'observability', 'prometheus']
 ---
 
-# 1501: Monitoring and Observability for PROJECT-OMEGA
+# 1501: Monitoring and Observability for AI Engineering Curriculum
 
 ## Abstract
 Complete monitoring stack for tracking infrastructure health, model performance, and agent behavior in a home lab.
@@ -54,7 +54,7 @@ Complete monitoring stack for tracking infrastructure health, model performance,
 services:
   prometheus:
     image: prom/prometheus:latest
-    container_name: project-omega-prometheus
+    container_name: ai-engineering-curriculum-prometheus
     ports:
       - "9090:9090"
     volumes:
@@ -69,7 +69,7 @@ services:
       - '--web.enable-lifecycle'
     restart: unless-stopped
     networks:
-      - project-omega-net
+      - ai-engineering-curriculum-net
 ```
 
 ### Configuration
@@ -80,7 +80,7 @@ global:
   scrape_interval: 15s
   evaluation_interval: 15s
   external_labels:
-    cluster: 'project-omega'
+    cluster: 'ai-engineering-curriculum'
     env: 'lab'
 
 # Alerting
@@ -130,7 +130,7 @@ scrape_configs:
       - role: endpoints
         namespaces:
           names:
-            - project-omega
+            - ai-engineering-curriculum
 ```
 
 ## Component 2: Grafana (Dashboards)
@@ -141,7 +141,7 @@ scrape_configs:
 services:
   grafana:
     image: grafana/grafana:latest
-    container_name: project-omega-grafana
+    container_name: ai-engineering-curriculum-grafana
     ports:
       - "3000:3000"
     environment:
@@ -154,7 +154,7 @@ services:
       - ./monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro
     restart: unless-stopped
     networks:
-      - project-omega-net
+      - ai-engineering-curriculum-net
 ```
 
 ### Dashboard: Model Inference
@@ -237,24 +237,24 @@ services:
 services:
   loki:
     image: grafana/loki:latest
-    container_name: project-omega-loki
+    container_name: ai-engineering-curriculum-loki
     ports:
       - "3100:3100"
     command: -config.file=/etc/loki/local-config.yaml
     volumes:
       - ./monitoring/loki:/etc/loki
     networks:
-      - project-omega-net
+      - ai-engineering-curriculum-net
 
   promtail:
     image: grafana/promtail:latest
-    container_name: project-omega-promtail
+    container_name: ai-engineering-curriculum-promtail
     volumes:
       - /var/log:/var/log:ro
       - ./monitoring/promtail/config.yml:/etc/promtail/config.yml:ro
     command: -config.file=/etc/promtail/config.yml
     networks:
-      - project-omega-net
+      - ai-engineering-curriculum-net
 ```
 
 ### Promtail Config
@@ -286,7 +286,7 @@ scrape_configs:
 services:
   tempo:
     image: grafana/tempo:latest
-    container_name: project-omega-tempo
+    container_name: ai-engineering-curriculum-tempo
     ports:
       - "3200:3200"  # Jaeger UI
       - "4317:4317"  # OTLP gRPC
@@ -298,7 +298,7 @@ services:
     volumes:
       - ./monitoring/tempo/data:/tmp
     networks:
-      - project-omega-net
+      - ai-engineering-curriculum-net
 ```
 
 ### OpenTelemetry for Python Agents
@@ -399,7 +399,7 @@ grafana:
   enabled: true
   ingress:
     enabled: true
-    hosts: ["grafana.project-omega.local"]
+    hosts: ["grafana.ai-engineering-curriculum.local"]
 
 prometheus:
   prometheusSpec:
@@ -475,7 +475,7 @@ groups:
 
 ```bash
 # Clone configs
-git clone https://github.com/project-omega/monitoring.git
+git clone https://github.com/ai-engineering-curriculum/monitoring.git
 cd monitoring
 
 # Deploy all services

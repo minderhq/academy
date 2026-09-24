@@ -1,6 +1,6 @@
 # EXP_6501: MLOps Pipeline Experiments
 
-**Project:** PROJECT-OMEGA
+**Project:** AI Engineering Curriculum
 **Phase:** [6500] MLOps Pipelines
 **Experiment ID:** EXP_6501_MLOPS_PIPELINE
 **Date:** 2026-02-04

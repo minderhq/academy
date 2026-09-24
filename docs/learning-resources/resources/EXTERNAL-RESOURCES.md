@@ -1,4 +1,4 @@
-# PROJECT-OMEGA: Video & External Resources
+# AI Engineering Curriculum: Video & External Resources
 
 Curated list of videos, courses, and external resources to complement the learning path.
 

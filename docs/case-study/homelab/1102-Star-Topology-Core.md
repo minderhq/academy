@@ -15,7 +15,7 @@ Tags: ['infrastructure', 'networking', 'hardware']
 # 1102: Star Topology Core Network Design
 
 ## Abstract
-The star topology forms the backbone of PROJECT-OMEGA's network, enabling 2.5Gbps connectivity between all critical infrastructure components. A central switch acts as the "Star-Hub" distributing packets to all endpoints.
+The star topology forms the backbone of AI Engineering Curriculum's network, enabling 2.5Gbps connectivity between all critical infrastructure components. A central switch acts as the "Star-Hub" distributing packets to all endpoints.
 
 ## Topology Diagram
 

@@ -413,7 +413,7 @@ ReAct Agent → Uses Tool Calling → Executes Functions → Returns Result
 
 ---
 
-## PROJECT-OMEGA Implementation
+## AI Engineering Curriculum Implementation
 
 ### Local Tool Registry
 

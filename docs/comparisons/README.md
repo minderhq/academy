@@ -215,7 +215,7 @@ Compare Qdrant, Weaviate, Pinecone, Chroma, Milvus, and pgvector.
 - ✅ Detailed performance benchmarks
 - ✅ Cost analysis (self-hosted vs cloud)
 - ✅ Resource requirements by scale
-- ✅ PROJECT-OMEGA recommendations
+- ✅ AI Engineering Curriculum recommendations
 - ✅ Migration guides between databases
 - ✅ Deployment configurations
 - ✅ Query optimization tips
@@ -384,4 +384,4 @@ graph TD
 **Last Updated:** 2026-02-05
 **Total Comparisons:** 2 documents
 
-**Need a comparison?** Request one in the PROJECT-OMEGA issues!
+**Need a comparison?** Request one in the ai-engineering-curriculum issues!

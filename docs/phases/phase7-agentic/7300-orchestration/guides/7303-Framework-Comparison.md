@@ -1,7 +1,7 @@
 # 7303: Multi-Agent Framework Comparison
 
 ## Abstract
-Comprehensive comparison of multi-agent frameworks for building autonomous AI systems on PROJECT-OMEGA.
+Comprehensive comparison of multi-agent frameworks for building autonomous AI systems on AI Engineering Curriculum.
 
 ## Framework Comparison Matrix
 
@@ -93,7 +93,7 @@ user_proxy.initiate_chat(
 )
 ```
 
-### Use Cases for PROJECT-OMEGA
+### Use Cases for AI Engineering Curriculum
 - Code generation and review pipeline
 - Multi-step problem solving
 - Research assistant with different expert agents
@@ -198,7 +198,7 @@ result = app.invoke({
 })
 ```
 
-### Use Cases for PROJECT-OMEGA
+### Use Cases for AI Engineering Curriculum
 - Complex multi-step workflows
 - Stateful agent interactions
 - Long-running processes with checkpoints
@@ -302,7 +302,7 @@ result = crew.kickoff()
 print(result)
 ```
 
-### Use Cases for PROJECT-OMEGA
+### Use Cases for AI Engineering Curriculum
 - Content creation pipeline
 - Research and writing workflows
 - Quality assurance processes
@@ -310,7 +310,7 @@ print(result)
 
 ---
 
-## Recommendation for PROJECT-OMEGA
+## Recommendation for AI Engineering Curriculum
 
 ### Primary Framework: LangGraph
 

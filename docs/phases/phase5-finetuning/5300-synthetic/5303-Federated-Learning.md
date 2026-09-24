@@ -14,7 +14,7 @@ Tags: ['finetuning', 'synthetic-data', 'distillation', 'federated']
 
 # 5303: Federated Learning
 
-**Project:** PROJECT-OMEGA
+**Project:** AI Engineering Curriculum
 **Phase:** [5300] Synthetic Data
 **Last Updated:** 2026-02-04
 **Status:** Complete

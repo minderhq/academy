@@ -240,4 +240,4 @@ A:
 **Need Help?**
 - Check: [PREREQUISITES.md](./PREREQUISITES.md)
 - Review: [Troubleshooting Guide](../../../00-META/TROUBLESHOOTING-QUICKSTART.md)
-- Report Issues: [GitHub Issues](https://github.com/YOUR-ORG/PROJECT-OMEGA/issues)
+- Report Issues: [GitHub Issues](https://github.com/YOUR-ORG/ai-engineering-curriculum/issues)

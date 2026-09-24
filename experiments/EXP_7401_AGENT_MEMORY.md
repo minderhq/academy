@@ -1,7 +1,7 @@
 # EXP_7401: Agent Memory Systems Experiments
 
 ## Overview
-Practical experiments for implementing and testing long-term memory systems for AI agents on PROJECT-OMEGA infrastructure.
+Practical experiments for implementing and testing long-term memory systems for AI agents on AI Engineering Curriculum infrastructure.
 
 ## Experiment 1: Qdrant VectorStore with LangChain
 

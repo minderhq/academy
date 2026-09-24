@@ -1,5 +1,5 @@
 """
-Shared fixtures and configuration for PROJECT-OMEGA lab tests
+Shared fixtures and configuration for ai-engineering-curriculum lab tests
 """
 
 import pytest
@@ -19,7 +19,7 @@ SOLUTIONS_ROOT = LABS_ROOT / "solutions"
 
 @pytest.fixture(scope="session")
 def project_root():
-    """PROJECT-OMEGA root directory"""
+    """ai-engineering-curriculum root directory"""
     return PROJECT_ROOT
 
 

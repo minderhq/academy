@@ -391,7 +391,7 @@ class ConflictResolver:
 ```python
 class LabSwarm:
     """
-    Multi-agent system for PROJECT-OMEGA Homelab management
+    Multi-agent system for ai-engineering-curriculum Homelab management
     """
     def __init__(self):
         self.agents = {

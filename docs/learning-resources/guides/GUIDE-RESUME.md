@@ -1,6 +1,6 @@
 # RESUME TEMPLATES & EXAMPLES
 
-**For:** PROJECT-OMEGA graduates seeking AI Engineering roles
+**For:** AI Engineering Curriculum graduates seeking AI Engineering roles
 **Templates Included:** Entry-level, Mid-level, Senior
 **Last Updated:** 2026-02-07
 
@@ -457,7 +457,7 @@ Bachelor of Arts in English
 Yale University | 2015
 
 AI Training:
-• PROJECT-OMEGA: Complete (Phases 0-7) - 6 months
+• ai-engineering-curriculum: Complete (Phases 0-7) - 6 months
 • DeepLearning.AI: 5 courses completed
 • Hugging Face: 3 courses completed
 
@@ -550,4 +550,4 @@ Best,
 2. Practice explaining your projects out loud
 3. Get feedback from 2-3 people in AI
 
-**© 2026 PROJECT-OMEGA. All rights reserved.**
+**© 2026 AI Engineering Curriculum. All rights reserved.**

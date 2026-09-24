@@ -1,4 +1,4 @@
-# PROJECT-OMEGA - Complete Sitemap
+# AI Engineering Curriculum - Complete Sitemap
 
 Auto-generated index of every document in the curriculum. Counts and links
 below are derived directly from the file tree.

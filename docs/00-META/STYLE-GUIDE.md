@@ -1,4 +1,4 @@
-# PROJECT-OMEGA Style Guide
+# AI Engineering Curriculum Style Guide
 
 **Official Documentation Standards**
 
@@ -9,7 +9,7 @@
 
 ## 📖 Purpose
 
-This guide ensures consistency across all PROJECT-OMEGA documentation. Consistent documentation makes learning easier and reduces confusion.
+This guide ensures consistency across all AI Engineering Curriculum documentation. Consistent documentation makes learning easier and reduces confusion.
 
 ---
 
@@ -197,7 +197,7 @@ except SpecificError as e:
 ### File Paths
 
 ```markdown
-Absolute: C:\AI-Studio\PROJECT-OMEGA\docs\00-META\README.md
+Absolute: C:\AI-Studio\ai-engineering-curriculum\docs\00-META\README.md
 Relative: ../00-META/README.md
 Code: "docs/00-META/README.md"
 ```
@@ -562,4 +562,4 @@ Improvements welcome! Submit PR with:
 
 **Last Updated:** 2026-02-04
 **Version:** 1.0
-**Maintained By:** PROJECT-OMEGA Documentation Team
+**Maintained By:** AI Engineering Curriculum Documentation Team

@@ -1,4 +1,4 @@
-# PROGRESS TRACKER: PROJECT-OMEGA Learning Journey
+# PROGRESS TRACKER: AI Engineering Curriculum Learning Journey
 
 **Track your progress from beginner to expert through a 7-volume book series**
 
@@ -284,9 +284,9 @@ Copy a badge when you complete a volume:
 ### Mastery Levels
 
 ```
-[ ] 🎓 PROJECT-OMEGA Practitioner - All Labs Complete
-[ ] 🌟 PROJECT-OMEGA Expert - All Volumes Complete
-[ ] 👑 PROJECT-OMEGA Master - All Volumes + All Capstones Complete
+[ ] 🎓 ai-engineering-curriculum Practitioner - All Labs Complete
+[ ] 🌟 ai-engineering-curriculum Expert - All Volumes Complete
+[ ] 👑 ai-engineering-curriculum Master - All Volumes + All Capstones Complete
 ```
 
 ---
@@ -474,4 +474,4 @@ Focus on model adaptation:
 
 **Last Updated:** 2026-02-04
 **Total Files:** 97 core documents + 14 labs + 10 experiments + 6 tutorials + 11 cheat sheets
-**Maintainer:** PROJECT-OMEGA Team
+**Maintainer:** AI Engineering Curriculum Team

@@ -1,6 +1,6 @@
 # EXP_5102: QLoRA Pipelining Experiment
 
-**Project:** PROJECT-OMEGA
+**Project:** AI Engineering Curriculum
 **Phase:** [5100] PEFT
 **Document ID:** 5102
 **Experiment ID:** EXP_5102_QLORA

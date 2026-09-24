@@ -1,7 +1,7 @@
 # 6304: GraphRAG Implementation Guide
 
 ## Abstract
-Complete implementation guide for GraphRAG (Knowledge Graph-enhanced Retrieval Augmented Generation) on PROJECT-OMEGA infrastructure using Neo4j and vector databases.
+Complete implementation guide for GraphRAG (Knowledge Graph-enhanced Retrieval Augmented Generation) on AI Engineering Curriculum infrastructure using Neo4j and vector databases.
 
 ## GraphRAG Architecture
 

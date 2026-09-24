@@ -198,7 +198,7 @@ answer = generator.generate(**tokenizer(prompt, return_tensors="pt"))
 services:
   flan-t5:
     image: vllm/vllm-openai:latest
-    container_name: project-omega-flan-t5
+    container_name: ai-engineering-curriculum-flan-t5
     ports:
       - "8001:8000"
     command: >
@@ -218,7 +218,7 @@ services:
               capabilities: [gpu]
     restart: unless-stopped
     networks:
-      - project-omega-net
+      - ai-engineering-curriculum-net
 ```
 
 ### Mistral-7B (Decoder-Only)
@@ -227,7 +227,7 @@ services:
 services:
   mistral:
     image: vllm/vllm-openai:latest
-    container_name: project-omega-mistral
+    container_name: ai-engineering-curriculum-mistral
     ports:
       - "8002:8000"
     command: >
@@ -247,7 +247,7 @@ services:
               capabilities: [gpu]
     restart: unless-stopped
     networks:
-      - project-omega-net
+      - ai-engineering-curriculum-net
 ```
 
 ## Decision Tree

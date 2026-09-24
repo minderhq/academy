@@ -1,4 +1,4 @@
-# PROJECT-OMEGA Notebooks
+# AI Engineering Curriculum Notebooks
 
 **Interactive Jupyter notebooks for hands-on learning**
 
@@ -6,7 +6,7 @@
 
 ## 📚 Overview
 
-This directory contains Jupyter notebooks that provide practical, hands-on experience with the concepts covered in PROJECT-OMEGA. Each notebook is designed to be interactive and runnable, allowing you to experiment with code and see results in real-time.
+This directory contains Jupyter notebooks that provide practical, hands-on experience with the concepts covered in AI Engineering Curriculum. Each notebook is designed to be interactive and runnable, allowing you to experiment with code and see results in real-time.
 
 ---
 
@@ -19,19 +19,19 @@ Choose the appropriate environment file based on the notebook topic:
 ```bash
 # For PyTorch notebooks (NB-201, NB-202)
 conda env create -f environment-pytorch.yml
-conda activate project-omega-pytorch
+conda activate ai-engineering-curriculum-pytorch
 
 # For Transformer notebooks (NB-301, NB-302, NB-303)
 conda env create -f environment-transformers.yml
-conda activate project-omega-transformers
+conda activate ai-engineering-curriculum-transformers
 
 # For Fine-tuning notebooks (NB-501, NB-502, NB-503)
 conda env create -f environment-finetuning.yml
-conda activate project-omega-finetuning
+conda activate ai-engineering-curriculum-finetuning
 
 # For RAG notebooks (NB-601, NB-602, NB-603)
 conda env create -f environment-rag.yml
-conda activate project-omega-rag
+conda activate ai-engineering-curriculum-rag
 ```
 
 ### 2. Start Jupyter Lab

@@ -1,6 +1,6 @@
 # EXP_7202: Multi-Agent Collaboration Experiment
 
-**Project:** PROJECT-OMEGA
+**Project:** AI Engineering Curriculum
 **Phase:** [7300] Orchestration
 **Document ID:** 7202
 **Experiment ID:** EXP_7202_COLLABORATION

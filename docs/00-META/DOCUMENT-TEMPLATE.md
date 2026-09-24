@@ -1,4 +1,4 @@
-# PROJECT-OMEGA Document Template Standard
+# AI Engineering Curriculum Document Template Standard
 
 **Version:** 1.0
 **Last Updated:** 2026-02-05
@@ -171,7 +171,7 @@ setting: value
 ### Documentation
 - [Official Docs](URL) - Description
 
-### Related PROJECT-OMEGA Documents
+### Related ai-engineering-curriculum Documents
 - [XXXX: Title](../path/to/document.md) - Relationship
 
 ### External Resources
@@ -401,4 +401,4 @@ For existing documents, follow these steps:
 
 ---
 
-**This template ensures consistency across all PROJECT-OMEGA documentation.**
+**This template ensures consistency across all AI Engineering Curriculum documentation.**

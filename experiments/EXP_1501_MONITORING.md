@@ -1,7 +1,7 @@
 # EXP_1501: Monitoring and Observability Experiments
 
 ## Overview
-Practical experiments for monitoring LLM infrastructure, model performance, and agent behavior on PROJECT-OMEGA.
+Practical experiments for monitoring LLM infrastructure, model performance, and agent behavior on AI Engineering Curriculum.
 
 ## Experiment 1: Prometheus Metrics Collection
 
