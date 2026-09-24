@@ -579,7 +579,7 @@ Slow Inference:
   → Use EXL2 or GGUF
   → Enable flash attention
   → Optimize batch size
-""")
+```
 
 ---
 

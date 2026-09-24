@@ -158,11 +158,6 @@ For 11GB VRAM GPU:
 > - 30B @ Q4_K: ~16 GB VRAM (requires RTX 3090/4090)
 > - 70B @ Q4_K: ~35 GB VRAM (requires A100/H100 or heavy offloading)
 ```
-```
-
----
-
-[Full document content continues with quantization algorithms, K-quants, offloading, conversion, optimization, troubleshooting...]
 
 ---
 

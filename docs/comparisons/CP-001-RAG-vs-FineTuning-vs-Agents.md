@@ -189,6 +189,7 @@ Model writes: `def calculate(x, y): return x + y`
 
 # After fine-tuning (learns company patterns):
 Model writes:
+```
 ```python
 def calculate_summands(
     first_param: float,
