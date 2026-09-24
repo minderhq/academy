@@ -191,13 +191,13 @@ Link to related experiments:
 
 ### 1. Use Descriptive Link Text
 
-❌ **Bad:** [Click here](./document.md)
-✅ **Good:** [See Self-Attention Deep Dive](./3101-Self-Attention-DeepDive.md)
+❌ **Bad:** `[Click here](./document.md)`
+✅ **Good:** `[See Self-Attention Deep Dive](./3101-Self-Attention-DeepDive.md)`
 
 ### 2. Include Document IDs in Link Text
 
-❌ **Bad:** [See the attention guide](./3101-Self-Attention-DeepDive.md)
-✅ **Good:** [3101: Self-Attention Deep Dive](./3101-Self-Attention-DeepDive.md)
+❌ **Bad:** `[See the attention guide](./3101-Self-Attention-DeepDive.md)`
+✅ **Good:** `[3101: Self-Attention Deep Dive](./3101-Self-Attention-DeepDive.md)`
 
 ### 3. Group Related Links
 
