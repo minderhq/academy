@@ -1,9 +1,13 @@
 // PROJECT-OMEGA Performance Testing with k6
-// Load testing for LLM inference services
+// Load testing for LLM inference services (vLLM + Qdrant + Neo4j)
+//
+// Usage:
+//   k6 run -e BASE_URL=http://localhost:8000 load-test.js
+//   k6 run -e BASE_URL=http://localhost:8000 -e SCENARIO=chat load-test.js
 
 import http from 'k6/http';
 import { check, sleep } from 'k6';
-import { Rate, Trend, Counter } from 'k6/metrics';
+import { Rate, Trend } from 'k6/metrics';
 
 // Custom metrics
 const errorRate = new Rate('errors');
@@ -32,9 +36,12 @@ export const options = {
   },
 };
 
-// Configuration
-const BASE_URL = __ENV.BASE_URL || 'http://192.168.1.50:8000';
+// Configuration (all overridable via environment)
+const BASE_URL = __ENV.BASE_URL || 'http://localhost:8000';
 const API_KEY = __ENV.API_KEY || '';
+const MODEL = __ENV.MODEL || 'Qwen/Qwen2.5-7B-Instruct-AWQ';
+const QDRANT_URL = __ENV.QDRANT_URL || 'http://localhost:6333';
+const NEO4J_URL = __ENV.NEO4J_URL || 'http://localhost:7474';
 
 // Test prompts
 const PROMPTS = [
@@ -50,24 +57,25 @@ function getRandomPrompt() {
   return PROMPTS[Math.floor(Math.random() * PROMPTS.length)];
 }
 
+function authHeaders() {
+  return {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${API_KEY}`,
+  };
+}
+
 // vLLM completion test
 export function vllmCompletion() {
   const prompt = getRandomPrompt();
   const payload = JSON.stringify({
-    model: 'mistralai/Mistral-7B-Instruct-v0.2',
-    prompt: `<s>[INST] ${prompt} [/INST]`,
+    model: MODEL,
+    prompt: prompt,
     max_tokens: 256,
     temperature: 0.7,
     stream: false,
   });
 
-  const params = {
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${API_KEY}`,
-    },
-    tags: { name: 'vLLM-Completion' },
-  };
+  const params = { headers: authHeaders(), tags: { name: 'vLLM-Completion' } };
 
   const startTime = Date.now();
   const response = http.post(`${BASE_URL}/v1/completions`, payload, params);
@@ -100,7 +108,7 @@ export function vllmCompletion() {
 export function vllmChat() {
   const prompt = getRandomPrompt();
   const payload = JSON.stringify({
-    model: 'mistralai/Mistral-7B-Instruct-v0.2',
+    model: MODEL,
     messages: [
       { role: 'user', content: prompt }
     ],
@@ -108,13 +116,7 @@ export function vllmChat() {
     temperature: 0.7,
   });
 
-  const params = {
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${API_KEY}`,
-    },
-    tags: { name: 'vLLM-Chat' },
-  };
+  const params = { headers: authHeaders(), tags: { name: 'vLLM-Chat' } };
 
   const response = http.post(`${BASE_URL}/v1/chat/completions`, payload, params);
 
@@ -131,20 +133,14 @@ export function vllmChat() {
 export function vllmStream() {
   const prompt = getRandomPrompt();
   const payload = JSON.stringify({
-    model: 'mistralai/Mistral-7B-Instruct-v0.2',
-    prompt: `<s>[INST] ${prompt} [/INST]`,
+    model: MODEL,
+    prompt: prompt,
     max_tokens: 128,
     temperature: 0.7,
     stream: true,
   });
 
-  const params = {
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${API_KEY}`,
-    },
-    tags: { name: 'vLLM-Stream' },
-  };
+  const params = { headers: authHeaders(), tags: { name: 'vLLM-Stream' } };
 
   const startTime = Date.now();
   const response = http.post(`${BASE_URL}/v1/completions`, payload, params);
@@ -161,74 +157,7 @@ export function vllmStream() {
   sleep(0.5);
 }
 
-// ReAct Agent test
-export function reactAgentTest() {
-  const queries = [
-    'What is 15% of 237?',
-    'Search for information about quantum computing.',
-    'Calculate the square root of 144.',
-    'What is the capital of France?',
-  ];
-
-  const query = queries[Math.floor(Math.random() * queries.length)];
-  const payload = JSON.stringify({
-    query: query,
-    max_iterations: 10,
-  });
-
-  const params = {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    tags: { name: 'ReAct-Agent' },
-  };
-
-  const response = http.post('http://192.168.1.50:8001/api/query', payload, params);
-
-  check(response, {
-    'status is 200': (r) => r.status === 200,
-    'has answer': (r) => r.json('answer') !== undefined,
-  });
-
-  errorRate.add(response.status !== 200);
-  sleep(2);
-}
-
-// GraphRAG test
-export function graphragTest() {
-  const queries = [
-    'What is machine learning?',
-    'Explain neural networks.',
-    'What are the benefits of knowledge graphs?',
-  ];
-
-  const query = queries[Math.floor(Math.random() * queries.length)];
-  const payload = JSON.stringify({
-    query: query,
-    top_k: 5,
-    graph_depth: 2,
-    alpha: 0.5,
-  });
-
-  const params = {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    tags: { name: 'GraphRAG' },
-  };
-
-  const response = http.post('http://192.168.1.50:8002/api/query', payload, params);
-
-  check(response, {
-    'status is 200': (r) => r.status === 200,
-    'has context': (r) => r.json('context') !== undefined,
-  });
-
-  errorRate.add(response.status !== 200);
-  sleep(1);
-}
-
-// Vector search test (Qdrant)
+// Vector search test (Qdrant REST API, default port 6333)
 export function qdrantSearchTest() {
   const payload = JSON.stringify({
     vector: new Array(384).fill(0).map(() => Math.random()),
@@ -244,7 +173,7 @@ export function qdrantSearchTest() {
   };
 
   const response = http.post(
-    `http://192.168.1.100:6334/collections/documents/points/search`,
+    `${QDRANT_URL}/collections/documents/points/search`,
     payload,
     params
   );
@@ -258,21 +187,23 @@ export function qdrantSearchTest() {
   sleep(0.1);
 }
 
-// Knowledge graph test (Neo4j)
+// Knowledge graph test (Neo4j HTTP transactional endpoint)
 export function neo4jQueryTest() {
   const payload = JSON.stringify({
-    query: 'MATCH (n:Entity) RETURN count(n) as count',
+    statements: [
+      { statement: 'MATCH (n) RETURN count(n) as count' },
+    ],
   });
 
   const params = {
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Basic ${btoa('neo4j:' + (__ENV.NEO4J_PASSWORD || 'omega_change_me'))}`,
+      'Authorization': `Basic ${btoa('neo4j:' + (__ENV.NEO4J_PASSWORD || 'changeme'))}`,
     },
     tags: { name: 'Neo4j-Query' },
   };
 
-  const response = http.post('http://192.168.1.100:7474/db/neo4j/tx/commit', payload, params);
+  const response = http.post(`${NEO4J_URL}/db/neo4j/tx/commit`, payload, params);
 
   check(response, {
     'status is 200': (r) => r.status === 200,
@@ -283,31 +214,30 @@ export function neo4jQueryTest() {
   sleep(0.1);
 }
 
-// Main test scenario
+// Main test scenario — set SCENARIO=chat|completion|stream|qdrant|neo4j to
+// run a single test type; default mixes all of them at random.
 export default function () {
-  // Run all tests in random order
-  const tests = [
-    vllmCompletion,
-    vllmChat,
-    reactAgentTest,
-    graphragTest,
-    qdrantSearchTest,
-    neo4jQueryTest,
-  ];
+  const scenario = __ENV.SCENARIO || '';
+  const tests = {
+    'completion': vllmCompletion,
+    'chat': vllmChat,
+    'stream': vllmStream,
+    'qdrant': qdrantSearchTest,
+    'neo4j': neo4jQueryTest,
+  };
 
-  const test = tests[Math.floor(Math.random() * tests.length)];
+  const test = tests[scenario] ||
+    [vllmCompletion, vllmChat, qdrantSearchTest][Math.floor(Math.random() * 3)];
   test();
 }
 
 // Setup function
 export function setup() {
-  console.log(`Starting load test against ${BASE_URL}`);
+  console.log(`Starting load test against ${BASE_URL} (model: ${MODEL})`);
   console.log(`Test stages: ${JSON.stringify(options.stages)}`);
 }
 
 // Teardown function
 export function teardown(data) {
   console.log('Load test completed');
-  console.log(`Error rate: ${errorRate.name}`);
-  console.log(`Average token throughput: ${tokenThroughput.name}`);
 }

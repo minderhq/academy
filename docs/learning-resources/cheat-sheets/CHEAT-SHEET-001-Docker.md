@@ -404,23 +404,23 @@ docker build --mount=type=cache,target=/root/.cache pip install -r requirements.
 
 ### Run PROJECT-OMEGA Stack
 ```bash
-# Core services on Synology
-docker-compose -f docker-compose-complete.yml up -d
+# From the configs/ directory
+cp .env.example .env
 
-# GPU services on VM
-docker-compose -f docker-compose-gpu.yml up -d
+# Start inference (vLLM) + vector database (Qdrant)
+docker compose up -d
 
-# View all logs
-docker-compose -f docker-compose-complete.yml logs -f
+# View logs
+docker compose logs -f
 ```
 
 ### Check GPU Utilization
 ```bash
-# GPU stats
-docker exec project-omega-gpu-exporter curl localhost:9445/metrics
+# Host GPU stats
+nvidia-smi
 
-# Inside GPU container
-docker exec vllm nvidia-smi
+# Inside the inference container
+docker exec omega-vllm nvidia-smi
 ```
 
 ---

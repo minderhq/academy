@@ -18,8 +18,8 @@ PROJECT-OMEGA/
 ├── prompt.txt                         # AI assistant prompt
 ├── configs/                           # Configuration files
 │   ├── docker-compose.yml
-│   ├── k3s-manifests.yaml
-│   └── monitoring/
+│   ├── .env.example
+│   └── performance-testing/k6/
 ├── docs/                              # All documentation (462 files)
 │   ├── 00-META/                      # Meta documentation
 │   ├── phases/                       # Phase documentation (33 modules)

@@ -496,16 +496,20 @@ Vector RAG:              GraphRAG:
 
 ## Step 10: Production RAG
 
-For production, use PROJECT-OMEGA's complete stack:
+For production, use a dedicated compose file. The reference stack lives in
+[`configs/docker-compose.yml`](../../../configs/docker-compose.yml) — add a
+GraphRAG service alongside it when you need graph-aware retrieval:
 
 ```yaml
-# From docker-compose-gpu.yml
+# Add to configs/docker-compose.yml (or a separate override file)
 services:
-  qdrant:
-    image: qdrant/qdrant:v1.12.0
-
   neo4j:
     image: neo4j:5.15-community
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    environment:
+      - NEO4J_AUTH=neo4j/your_secure_password
 
   graphrag:
     build: ./services/graphrag
