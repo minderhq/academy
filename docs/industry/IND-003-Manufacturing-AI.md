@@ -1,508 +1,530 @@
 ---
 Document ID: IND-003
-Title: Manufacturing AI Applications
-Category: Industry Solutions
-Last Updated: 2026-02-05
-Status: Review
+Title: "IND-003: Manufacturing AI Applications"
+Last Updated: 2026-09-25
+Status: Complete
 Difficulty: Intermediate
 Estimated Time: 4 hours
-Prerequisites: 6100, 7100
-Related: IND-001, IND-002
-Tags: ['manufacturing', 'industry', 'ai', 'iot']
 ---
 
 # IND-003: Manufacturing AI Applications
 
+## Table of Contents
+
+- [Overview](#overview)
+- [The Manufacturing AI Landscape](#the-manufacturing-ai-landscape)
+- [1. Predictive Maintenance](#1-predictive-maintenance)
+- [2. Computer Vision Quality Control](#2-computer-vision-quality-control)
+- [3. Production Scheduling with RL](#3-production-scheduling-with-rl)
+- [4. Supply Chain RAG Agent](#4-supply-chain-rag-agent)
+- [5. Digital Twin Monitoring](#5-digital-twin-monitoring)
+- [End-to-End Orchestration](#end-to-end-orchestration)
+- [Key Technologies](#key-technologies)
+- [Best Practices](#best-practices)
+- [References](#references)
+
+---
+
 ## Overview
 
-AI is transforming manufacturing through predictive maintenance, quality control, supply chain optimization, and smart factory automation.
+Manufacturing is the industry where AI pays back fastest — the data is machine-generated (no consent issues), the failure modes are physical and repeatable, and the cost of a miss is measured in scrap and downtime rather than lawsuits. This survey walks the four application families that dominate real deployments: predictive maintenance on windowed sensor signals, computer-vision quality control, scheduling/optimization, and LLM-assisted decision support over historical episodes, plus the digital-twin pattern that ties monitoring together. Each section is a runnable skeleton with its provenance stated honestly — which model detects what, which thresholds are policy, and which parts must come from your plant. The multi-modal inspection pipeline this survey summarizes is built out in full in [SOL-002](../enterprise-solutions/SOL-002-Industry-Solution.md); the RAG and agent foundations live in [6100: Vector Databases](../phases/phase6-rag/6100-vector/README.md) and [7100: Agent Architecture](../phases/phase7-agentic/7100-architecture/README.md).
 
-## Key Applications
+## The Manufacturing AI Landscape
 
-### 1. Predictive Maintenance
+```text
+Where the wins actually are (in order of typical ROI)
 
-```python
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.preprocessing import StandardScaler
-import pandas as pd
+1. Predictive maintenance    sensor time-series -> failure risk
+                             - the most mature family; labeled
+                               failure history is the bottleneck
+2. Vision quality control    camera frames -> defect detection
+                             - biggest labor saving; the model
+                               is the easy part, the labeling
+                               and lighting are the project
+3. Scheduling/optimization   orders + machine state -> schedules
+                             - solvers (CP-SAT) usually beat RL
+                               here; see section 3 for when RL
+                               is actually justified
+4. LLM decision support      logs + episodes -> reports, advice
+                             - newest family; the LLM drafts and
+                               summarizes, deterministic systems
+                               keep the accept/reject decisions
 
-class PredictiveMaintenance:
-    """AI-driven predictive maintenance system."""
-
-    def __init__(self):
-        self.model = RandomForestClassifier(n_estimators=100)
-        self.scaler = StandardScaler()
-
-    def prepare_features(self, sensor_data):
-        """
-        Features from IoT sensors:
-        - Vibration frequency
-        - Temperature
-        - Pressure
-        - Acoustic emissions
-        - Motor current
-        """
-        features = pd.DataFrame()
-
-        # Time-based features
-        features['vibration_rms'] = sensor_data['vibration'].apply(lambda x: np.sqrt(np.mean(x**2)))
-        features['vibration_peak'] = sensor_data['vibration'].apply(np.max)
-        features['temperature_mean'] = sensor_data['temperature']
-        features['temperature_trend'] = sensor_data['temperature'].diff()
-
-        # Frequency domain features
-        features['dominant_freq'] = sensor_data['vibration'].apply(
-            lambda x: np.fft.fft(x).argmax()
-        )
-
-        return self.scaler.fit_transform(features)
-
-    def train(self, historical_data, failure_labels):
-        """Train on historical equipment data."""
-        X = self.prepare_features(historical_data)
-        self.model.fit(X, failure_labels)
-
-    def predict_failure(self, current_sensor_data):
-        """Predict probability of failure in next 24 hours."""
-        features = self.prepare_features(current_sensor_data)
-        probability = self.model.predict_proba(features)[0][1]
-
-        if probability > 0.7:
-            return "CRITICAL: Schedule maintenance immediately"
-        elif probability > 0.4:
-            return "WARNING: Monitor closely, plan maintenance"
-        else:
-            return "NORMAL: No action needed"
-
-# Integration with LLM for natural language reports
-def generate_maintenance_report(equipment_id, sensor_data, predictions):
-    """Generate natural language maintenance report."""
-    prompt = f"""
-    Equipment: {equipment_id}
-    Current Status:
-    - Vibration: {sensor_data['vibration_mean']:.2f} mm/s
-    - Temperature: {sensor_data['temperature']:.1f}°C
-    - Pressure: {sensor_data['pressure']:.1f} bar
-
-    AI Prediction: {predictions}
-
-    Generate a maintenance report with:
-    1. Summary of current condition
-    2. Risk assessment
-    3. Recommended actions
-    4. Timeline for maintenance
-    """
-
-    # Use LLM to generate report
-    from transformers import pipeline
-    generator = pipeline("text-generation", model="gpt-4")
-    report = generator(prompt, max_length=500)
-
-    return report[0]['generated_text']
+Cross-cutting truth: every family is gated by DATA ENGINEERING
+(labeled history, calibrated sensors, controlled taxonomies),
+not by model choice. Plan accordingly.
 ```
 
-### 2. Computer Vision for Quality Control
+---
+
+## 1. Predictive Maintenance
+
+Failure classification over windowed sensor signals. Three details decide whether this works: feature extraction on the right time scale, the scaler fitted on TRAINING data only (refitting on prediction data is silent data leakage), and class weighting — failures are rare by definition:
+
+```python
+import numpy as np
+import pandas as pd
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.preprocessing import StandardScaler
+
+class PredictiveMaintenance:
+    """Failure classifier over windowed sensor signals.
+    Rows = fixed-length windows (e.g. 10 s of vibration)."""
+
+    def __init__(self, sample_rate=1000):
+        self.model = RandomForestClassifier(
+            n_estimators=200, class_weight="balanced")
+        self.scaler = StandardScaler()
+        self.fs = sample_rate
+
+    def _window_features(self, vib: np.ndarray,
+                         temperature: float) -> dict:
+        spectrum = np.abs(np.fft.rfft(vib))
+        freqs = np.fft.rfftfreq(len(vib), d=1.0 / self.fs)
+        return {
+            'vibration_rms': float(np.sqrt(np.mean(vib ** 2))),
+            'vibration_peak': float(np.max(np.abs(vib))),
+            'dominant_freq': float(freqs[spectrum.argmax()]),
+            'spectral_energy': float(np.sum(spectrum)),
+            'temperature': temperature,
+        }
+
+    def build_features(self, windows: pd.DataFrame) -> pd.DataFrame:
+        rows = [self._window_features(row.vibration, row.temperature)
+                for row in windows.itertuples()]
+        feats = pd.DataFrame(rows)
+        feats['temp_trend'] = feats['temperature'].diff().fillna(0.0)
+        return feats
+
+    def train(self, windows: pd.DataFrame, labels: np.ndarray):
+        X = self.scaler.fit_transform(     # fit HERE, once
+            self.build_features(windows))
+        self.model.fit(X, labels)
+
+    def failure_probability(self, windows: pd.DataFrame) -> float:
+        X = self.scaler.transform(         # transform ONLY
+            self.build_features(windows))
+        return float(self.model.predict_proba(X)[:, 1].max())
+
+    def assess(self, windows, critical=0.7, warning=0.4):
+        p = self.failure_probability(windows)
+        if p > critical:
+            return 'CRITICAL: schedule maintenance now', p
+        if p > warning:
+            return 'WARNING: monitor closely, plan maintenance', p
+        return 'NORMAL: no action needed', p
+```
+
+```text
+Details that matter (and where quickstarts go wrong)
+- fft().argmax() returns a BIN INDEX, not a frequency - convert
+  with rfftfreq(len(x), 1/fs) or your "dominant frequency" is
+  a meaningless integer
+- scaler.fit_transform in the PREDICTION path refits the scaler
+  on today's data: the training distribution silently drifts.
+  Fit once at train time, transform at inference
+- class_weight="balanced": a line that fails 2% of the time
+  trains a classifier that predicts "healthy" forever unless
+  you weight the minority class
+- the critical/warning thresholds are POLICY agreed with
+  maintenance planning, not statistics - tune them with the
+  team that owns the downtime cost
+```
+
+The natural-language report on top — on-prem, as factory networks usually require. (`pipeline("text-generation", model="gpt-4")` does not work: GPT-4 is not a Hugging Face model; via `transformers` you can only load open-weight checkpoints):
+
+```python
+from langchain_ollama import ChatOllama
+
+def maintenance_report(llm, equipment_id, metrics, assessment) -> str:
+    """Grounded report: the model sees exactly the numbers the
+    pipeline measured, and is told to use only those."""
+    prompt = f"""Draft a maintenance report.
+Equipment: {equipment_id}
+Vibration RMS: {metrics['vibration_rms']:.2f} mm/s
+Dominant frequency: {metrics['dominant_freq']:.0f} Hz
+Temperature: {metrics['temperature']:.1f} C
+Assessment: {assessment}
+
+Sections: 1. Condition summary 2. Risk assessment
+3. Recommended actions 4. Timeline. Use ONLY the data above."""
+    return llm.invoke(prompt).content
+
+llm = ChatOllama(model="llama3.1", temperature=0)   # on-prem
+```
+
+## 2. Computer Vision Quality Control
+
+A Faster R-CNN candidate detector with honest provenance: the shipped weights are COCO-pretrained, so they detect *COCO objects* — a production defect detector is this exact plumbing after fine-tuning on YOUR labeled defect images:
 
 ```python
 import cv2
 import torch
-from transformers import AutoModelForObjectDetection
+from torchvision.models.detection import (
+    FasterRCNN_ResNet50_FPN_Weights, fasterrcnn_resnet50_fpn)
 
 class QualityInspection:
-    """AI-powered visual quality inspection."""
+    """Object detection -> pass/fail. Weights are COCO-
+    pretrained; the defect_classes map is valid only AFTER
+    fine-tuning on labeled defect images."""
 
-    def __init__(self):
-        # Load pre-trained defect detection model
-        self.model = torch.hub.load('pytorch/vision', 'fasterrcnn_resnet50_fpn', pretrained=True)
-        self.model.eval()
-
-        # Define defect classes
-        self.defect_classes = {
-            0: 'scratch',
-            1: 'dent',
-            2: 'crack',
-            3: 'color_variation',
-            4: 'misalignment'
+    def __init__(self, score_threshold=0.7):
+        self.weights = FasterRCNN_ResNet50_FPN_Weights.DEFAULT
+        self.model = fasterrcnn_resnet50_fpn(
+            weights=self.weights).eval()
+        self.threshold = score_threshold
+        self.defect_classes = {          # post-fine-tune labels
+            1: 'scratch', 2: 'dent', 3: 'crack',
+            4: 'color_variation', 5: 'misalignment',
         }
 
-    def inspect_product(self, image_path):
-        """Inspect product image for defects."""
-        # Load and preprocess image
-        image = cv2.imread(image_path)
-        image_tensor = torch.from_numpy(image).permute(2, 0, 1).float() / 255.0
-
-        # Detect defects
+    def inspect(self, bgr) -> dict:
+        rgb = cv2.cvtColor(bgr, cv2.COLOR_BGR2RGB)
+        tensor = torch.from_numpy(rgb).permute(2, 0, 1).float() / 255.0
+        # GeneralizedRCNNTransform normalizes internally - do NOT
+        # add manual mean/std on top (double normalization)
         with torch.no_grad():
-            predictions = self.model([image_tensor])
+            preds = self.model([tensor])[0]
 
-        # Process results
+        keep = preds['scores'] > self.threshold
         defects = []
-        for i, score in enumerate(predictions[0]['scores']):
-            if score > 0.7:  # Confidence threshold
-                label = predictions[0]['labels'][i].item()
-                box = predictions[0]['boxes'][i].tolist()
-
-                defects.append({
-                    'type': self.defect_classes.get(label, 'unknown'),
-                    'confidence': score.item(),
-                    'location': box
-                })
-
-        return {
-            'passed': len(defects) == 0,
-            'defects': defects,
-            'timestamp': datetime.now().isoformat()
-        }
-
-    def generate_inspection_summary(self, inspection_results):
-        """Generate human-readable summary using LLM."""
-        prompt = f"""
-        Quality Inspection Results:
-        - Total inspected: {len(inspection_results)}
-        - Passed: {sum(1 for r in inspection_results if r['passed'])}
-        - Failed: {sum(1 for r in inspection_results if not r['passed'])}
-
-        Common defect types:
-        {self._analyze_defect_patterns(inspection_results)}
-
-        Generate a quality report with recommendations.
-        """
-
-        # Use LLM to generate summary
-        summary = llm.generate(prompt)
-        return summary
+        for label, score, box in zip(
+                preds['labels'][keep], preds['scores'][keep],
+                preds['boxes'][keep]):
+            name = (self.defect_classes.get(label.item())
+                    or self.weights.meta['categories'][label.item()])
+            defects.append({
+                'type': name,
+                'confidence': round(score.item(), 3),
+                'bbox': box.tolist(),          # XYXY
+            })
+        return {'passed': len(defects) == 0, 'defects': defects}
 ```
-
-### 3. Production Line Optimization
-
-```python
-class ProductionOptimizer:
-    """Optimize production line using RL."""
-
-    def __init__(self, num_machines, num_products):
-        self.num_machines = num_machines
-        self.num_products = num_products
-        self.state_dim = num_machines * 3  # status, load, queue
-        self.action_dim = num_machines * num_products
-
-        # RL agent (simplified)
-        from stable_baselines3 import PPO
-        self.model = PPO("MlpPolicy", self.env, verbose=1)
-
-    def optimize_schedule(self, orders, machine_status):
-        """Generate optimal production schedule."""
-        # Current state
-        state = self._encode_state(orders, machine_status)
-
-        # Get optimal actions from RL model
-        actions, _ = self.model.predict(state)
-
-        # Decode actions to schedule
-        schedule = self._decode_actions(actions)
-
-        return schedule
-
-    def _encode_state(self, orders, machine_status):
-        """Encode current production state."""
-        state = []
-
-        for machine in machine_status:
-            state.extend([
-                machine['status'],  # 0=idle, 1=running, 2=maintenance
-                machine['load'],
-                len(machine['queue'])
-            ])
-
-        return np.array(state)
-
-    def decode_to_schedule(self, actions):
-        """Convert RL actions to production schedule."""
-        schedule = []
-
-        for i, action in enumerate(actions):
-            machine_id = i // self.num_products
-            product_id = i % self.num_products
-
-            if action > 0.5:  # Threshold for action
-                schedule.append({
-                    'machine': machine_id,
-                    'product': product_id,
-                    'priority': action
-                })
-
-        return sorted(schedule, key=lambda x: x['priority'], reverse=True)
-```
-
-### 4. Supply Chain Optimization with LLMs
-
-```python
-class SupplyChainAgent:
-    """AI agent for supply chain management."""
-
-    def __init__(self):
-        self.vector_db = QdrantClient()
-        self.llm = Ollama(model="llama2")
-
-    def analyze_supply_chain_risks(self, current_state):
-        """Analyze supply chain for potential risks."""
-        prompt = f"""
-        Current Supply Chain Status:
-        - Inventory levels: {current_state['inventory']}
-        - Supplier lead times: {current_state['lead_times']}
-        - Demand forecast: {current_state['demand']}
-        - Shipping delays: {current_state['delays']}
-
-        Analyze for:
-        1. Potential stockouts
-        2. Overstock situations
-        3. Supplier reliability issues
-        4. Logistics bottlenecks
-
-        Provide recommendations for mitigation.
-        """
-
-        response = self.llm.generate(prompt)
-        return response
-
-    def optimize_inventory(self, demand_forecast, supplier_data):
-        """Optimize inventory levels using AI."""
-        # RAG for similar historical situations
-        similar_situations = self.vector_db.search(
-            collection="supply_chain_history",
-            query=demand_forecast,
-            limit=5
-        )
-
-        # Use LLM to synthesize recommendations
-        prompt = f"""
-        Based on similar situations:
-        {similar_situations}
-
-        Current demand forecast: {demand_forecast}
-        Supplier capabilities: {supplier_data}
-
-        Recommend:
-        1. Optimal reorder points
-        2. Safety stock levels
-        3. Diversification strategy
-        """
-
-        recommendations = self.llm.generate(prompt)
-        return recommendations
-```
-
-### 5. Digital Twin with AI
-
-```python
-class DigitalTwin:
-    """AI-powered digital twin of manufacturing facility."""
-
-    def __init__(self):
-        self.simulation_model = None
-        self.predictor = None
-
-    def create_from_real_data(self, sensor_data, production_logs):
-        """Create digital twin from real-world data."""
-        # Train simulation model
-        from sklearn.neural_network import MLPRegressor
-
-        self.simulation_model = MLPRegressor(
-            hidden_layer_sizes=(128, 64, 32),
-            max_iter=1000
-        )
-
-        # Prepare training data
-        X = self._extract_features(sensor_data)
-        y = self._extract_outcomes(production_logs)
-
-        self.simulation_model.fit(X, y)
-
-    def simulate_scenario(self, scenario_config):
-        """Simulate what-if scenarios."""
-        # Scenario: What if machine X fails?
-        # Scenario: What if demand increases by 50%?
-
-        features = self._encode_scenario(scenario_config)
-        outcome = self.simulation_model.predict([features])[0]
-
-        return {
-            'predicted_output': outcome['output'],
-            'predicted_quality': outcome['quality'],
-            'predicted_downtime': outcome['downtime'],
-            'recommendations': self._generate_recommendations(outcome)
-        }
-
-    def real_time_monitoring(self, live_sensor_data):
-        """Compare real facility with digital twin."""
-        # Get prediction from digital twin
-        predicted = self.simulation_model.predict(
-            self._extract_features(live_sensor_data)
-        )
-
-        # Compare with actual
-        actual = live_sensor_data['actual_metrics']
-
-        # Detect anomalies
-        anomalies = self._detect_anomalies(predicted, actual)
-
-        if anomalies:
-            return self._generate_alerts(anomalies)
-
-        return {"status": "normal", "deviation": "low"}
-```
-
-## Implementation Architecture
 
 ```text
-┌─────────────────────────────────────────────────────────────┐
-│                    Manufacturing AI Platform                 │
-├─────────────────────────────────────────────────────────────┤
-│                                                               │
-│  ┌────────────┐  ┌────────────┐  ┌────────────┐            │
-│  │   IoT      │  │  Computer  │  │  Sensor    │            │
-│  │  Sensors   │→│  Vision    │→│  Analytics  │            │
-│  └────────────┘  └────────────┘  └────────────┘            │
-│         ↓                                    │              │
-│         └────────────┬───────────────────────┘              │
-│                      ↓                                       │
-│              ┌───────────────┐                                │
-│              │  Data Lake    │                                │
-│              └───────────────┘                                │
-│                      ↓                                       │
-│      ┌───────────────┼───────────────┐                      │
-│      ↓               ↓               ↓                      │
-│  ┌────────┐    ┌────────┐    ┌────────┐                    │
-│  │  LLM   │    │   ML   │    │   RL   │                    │
-│  │ Agents │    │Models  │    │Agents  │                    │
-│  └────────┘    └────────┘    └────────┘                    │
-│      ↓               ↓               ↓                      │
-│      └───────────────┼───────────────┘                      │
-│                      ↓                                       │
-│              ┌───────────────┐                                │
-│              │  Dashboard    │                                │
-│              │  & Alerts     │                                │
-│              └───────────────┘                                │
-│                                                               │
-└─────────────────────────────────────────────────────────────┘
+What the fine-tuned production version changes
+- the dataset: a few thousand labeled frames per defect class,
+  balanced across lighting/position variants - this is 90% of
+  the project
+- the label map: your taxonomy (the dict above), replacing
+  COCO's 80 categories
+- the threshold: chosen on a validation set at the FALSE-
+  POSITIVE rate your rework station can absorb - recall at a
+  fixed FPR, not accuracy, is the number that matters
+Deep dive with segmentation, thermal fusion, and a knowledge
+base: [SOL-002](../enterprise-solutions/SOL-002-Industry-Solution.md)
 ```
 
-## Use Case: End-to-End Implementation
+## 3. Production Scheduling with RL
+
+Honest framing first: for deterministic scheduling with explicit constraints (changeovers, due dates, capacity), a constraint solver — Google OR-Tools CP-SAT — is almost always the better first tool. RL earns its complexity when the objective or the process dynamics are hard to encode as constraints. The skeleton below shows the RL shape correctly:
 
 ```python
-class SmartFactoryAI:
-    """Complete AI system for smart manufacturing."""
+import gymnasium as gym
+import numpy as np
+from stable_baselines3 import PPO
+
+class LineSchedulingEnv(gym.Env):
+    """Simplified scheduling env: each step assigns the next
+    job to a machine; terminal reward = -makespan. Skeleton -
+    a real line adds changeover times, due dates, and
+    stochastic breakdowns in step()."""
+
+    def __init__(self, num_machines=10, num_jobs=50):
+        super().__init__()
+        self.num_machines = num_machines
+        self.num_jobs = num_jobs
+        self.observation_space = gym.spaces.Box(
+            low=0, high=1e6,
+            shape=(num_machines + num_jobs,), dtype=np.float32)
+        self.action_space = gym.spaces.Discrete(num_machines)
+
+    def reset(self, seed=None, options=None):
+        super().reset(seed=seed)
+        self.queue = np.random.uniform(1, 10, self.num_jobs)
+        self.machine_free = np.zeros(self.num_machines)
+        return self._obs(), {}
+
+    def step(self, action):
+        job = self.queue[0] if len(self.queue) else 0.0
+        self.machine_free[action] += job
+        self.queue = self.queue[1:]
+        done = len(self.queue) == 0
+        reward = -float(self.machine_free.max()) if done else 0.0
+        return self._obs(), reward, done, False, {}
+
+    def _obs(self):
+        padded = np.zeros(self.num_jobs)
+        padded[:len(self.queue)] = self.queue
+        return np.concatenate(
+            [self.machine_free, padded]).astype(np.float32)
+
+env = LineSchedulingEnv()
+model = PPO("MlpPolicy", env, verbose=0)
+model.learn(total_timesteps=100_000)
+
+# roll out a schedule
+obs, _ = env.reset()
+done = False
+while not done:
+    action, _ = model.predict(obs, deterministic=True)
+    obs, reward, done, _, _ = env.step(int(action))
+```
+
+```text
+Decision guide
+- explicit constraints, known durations -> CP-SAT (OR-Tools):
+  optimal or provably-good in seconds, explainable
+- stochastic process, soft objectives, simulator available ->
+  RL: PPO over a faithful env, evaluated on the simulator
+  against the CURRENT scheduler before anyone trusts it
+- never schedule the live line directly from an RL policy -
+  schedule into a planning buffer and let existing MES logic
+  remain the actuator
+```
+
+## 4. Supply Chain RAG Agent
+
+Decision support grounded in historical episodes: embeddings retrieve similar past situations, an on-prem LLM synthesizes. Modern Qdrant API (`query_points` — `search` is deprecated) and the current LangChain-Ollama integration:
+
+```python
+import uuid
+
+from langchain_ollama import ChatOllama
+from qdrant_client import QdrantClient
+from qdrant_client.models import (Distance, PointStruct,
+                                  VectorParams)
+from sentence_transformers import SentenceTransformer
+
+class SupplyChainAgent:
+    """RAG over supply-chain episodes + on-prem synthesis."""
+
+    def __init__(self, url="http://localhost:6333"):
+        self.encoder = SentenceTransformer("all-MiniLM-L6-v2")
+        self.llm = ChatOllama(model="llama3.1", temperature=0)
+        self.client = QdrantClient(url=url)
+        if "supply_episodes" not in [
+                c.name for c in
+                self.client.get_collections().collections]:
+            self.client.create_collection(
+                collection_name="supply_episodes",
+                vectors_config=VectorParams(
+                    size=384, distance=Distance.COSINE))
+
+    def remember_episode(self, description: str,
+                         resolution: str) -> None:
+        vec = self.encoder.encode(description).tolist()
+        self.client.upsert(
+            collection_name="supply_episodes",
+            points=[PointStruct(
+                id=str(uuid.uuid4()),
+                vector=vec,
+                payload={'description': description,
+                         'resolution': resolution})])
+
+    def similar_episodes(self, situation: str, limit: int = 3):
+        vec = self.encoder.encode(situation).tolist()
+        points = self.client.query_points(
+            collection_name="supply_episodes",
+            query=vec, limit=limit, with_payload=True).points
+        return "\n".join(
+            f"- {p.payload['description']} "
+            f"-> {p.payload['resolution']}"
+            for p in points)
+
+    def advise(self, situation: str) -> str:
+        context = self.similar_episodes(situation)
+        prompt = f"""Current situation:
+{situation}
+
+Similar historical episodes and how they were resolved:
+{context}
+
+Give: 1. Risk assessment 2. Recommended mitigation
+3. What to monitor. Ground every point in the episodes above;
+say so explicitly when the history does not cover this case."""
+        return self.llm.invoke(prompt).content
+```
+
+```text
+Two rules that keep supply-chain RAG honest
+- temperature=0 and the "ground in the episodes" instruction:
+  inventory and lead-time advice must be traceable to history,
+  not invented
+- the retrieval corpus needs CURATION - one bad resolution in
+  the episode store teaches the LLM to recommend it forever.
+  Review before ingestion (same pattern as SOL-001)
+```
+
+## 5. Digital Twin Monitoring
+
+The lightweight, honest version of "digital twin": an ML surrogate trained on historical sensor→outcome pairs, monitored by comparing its predictions against reality. (Enterprise digital twins are full simulation engines — Siemens, AnyLogic; the surrogate below is the AI-team-sized pattern that detects *drift*, which is its actual job):
+
+```python
+import numpy as np
+from sklearn.neural_network import MLPRegressor
+
+class DigitalTwin:
+    """Surrogate of one line: sensor features in,
+    (throughput, quality, downtime) out."""
 
     def __init__(self):
-        self.predictive_maintenance = PredictiveMaintenance()
-        self.quality_inspection = QualityInspection()
-        self.production_optimizer = ProductionOptimizer(
-            num_machines=10,
-            num_products=5
-        )
-        self.supply_chain_agent = SupplyChainAgent()
-        self.digital_twin = DigitalTwin()
+        self.model = MLPRegressor(hidden_layer_sizes=(128, 64, 32),
+                                  max_iter=1000)
+        self.feature_cols = ['temperature', 'pressure',
+                             'vibration_rms', 'line_speed']
 
-    def run_real_time_monitoring(self):
-        """Main monitoring loop."""
-        while True:
-            # Collect sensor data
-            sensor_data = self._collect_sensor_data()
+    def train(self, sensor_df, outcomes_df):
+        X = sensor_df[self.feature_cols].values
+        y = outcomes_df[['throughput', 'quality',
+                         'downtime']].values
+        self.model.fit(X, y)
 
-            # Predictive maintenance
-            maintenance_alerts = self.predictive_maintenance.predict_failure(
-                sensor_data
-            )
+    def simulate(self, scenario: dict) -> dict:
+        x = np.array([[scenario[c] for c in self.feature_cols]])
+        throughput, quality, downtime = self.model.predict(x)[0]
+        return {'throughput': float(throughput),
+                'quality': float(quality),
+                'downtime': float(downtime)}
 
-            # Quality inspection
-            if self._new_product_produced():
-                inspection_results = self.quality_inspection.inspect_product(
-                    latest_image
-                )
+    def deviation_alarm(self, live: dict, threshold=3.0) -> dict:
+        """Compare twin prediction against actual outcome.
+        Persistent deviation = sensor drift, model drift, or a
+        real process change - all three deserve a human."""
+        pred = self.simulate(live)
+        devs = {k: abs(pred[k] - live[f'actual_{k}'])
+                for k in pred}
+        worst = max(devs, key=devs.get)
+        return {'status': 'alarm' if devs[worst] > threshold
+                else 'normal',
+                'worst_deviation': worst,
+                'deviation': round(devs[worst], 2)}
+```
 
-            # Production optimization
-            if self._need_rescheduling():
-                new_schedule = self.production_optimizer.optimize_schedule(
-                    current_orders,
-                    machine_status
-                )
+```text
+What this twin is and is not
+- IS: a drift detector - "the line is behaving differently
+  than the model of the line expects"
+- IS NOT: a physics simulator; do not quote its predictions as
+  ground truth for capacity planning
+- threshold is in OUTCOME units (units/hour, % quality), which
+  is why plant engineers can actually set it
+```
 
-            # Digital twin comparison
-            twin_comparison = self.digital_twin.real_time_monitoring(
-                sensor_data
-            )
+## End-to-End Orchestration
 
-            # Generate comprehensive report
-            report = self._generate_status_report({
-                'maintenance': maintenance_alerts,
-                'quality': inspection_results,
-                'schedule': new_schedule,
-                'digital_twin': twin_comparison
-            })
+One monitoring cycle wiring the pieces above. The structural rule of the whole document is visible here: every decision is a deterministic threshold; the LLM only writes the prose:
 
-            # Send alerts if needed
-            if self._has_critical_issues(report):
-                self._send_alerts(report)
+```python
+import time
+from datetime import datetime, timezone
 
-            time.sleep(60)  # Check every minute
+class SmartFactoryMonitor:
+    """One cycle: assess + inspect + alarm, then an LLM report."""
 
-    def _generate_status_report(self, data):
-        """Generate natural language status report."""
-        prompt = f"""
-        Generate a factory status report:
+    def __init__(self, maintenance, inspection, twin, llm):
+        self.maintenance = maintenance
+        self.inspection = inspection
+        self.twin = twin
+        self.llm = llm
 
-        Maintenance Alerts: {data['maintenance']}
-        Quality Inspection: {data['quality']}
-        Production Schedule: {data['schedule']}
-        Digital Twin Status: {data['digital_twin']}
+    def run_cycle(self, sensor_windows, latest_image_bgr,
+                  live_metrics) -> dict:
+        assessment, prob = self.maintenance.assess(sensor_windows)
+        inspection = self.inspection.inspect(latest_image_bgr)
+        alarm = self.twin.deviation_alarm(live_metrics)
+        return {
+            'timestamp': datetime.now(timezone.utc).isoformat(),
+            'maintenance': assessment,
+            'failure_probability': round(prob, 3),
+            'inspection': inspection,
+            'twin': alarm,
+        }
 
-        Report format:
-        1. Executive Summary
-        2. Critical Issues
-        3. Recommendations
-        4. Next Shift Preview
-        """
+    def report(self, cycle: dict) -> str:
+        prompt = f"""Draft a shift status report from this data:
+{cycle}
 
-        # Use LLM to generate report
-        report = self.llm.generate(prompt)
-        return report
+Sections: 1. Executive summary 2. Critical issues
+3. Recommendations. Use ONLY the data above."""
+        return self.llm.invoke(prompt).content
+
+# plant-provided inputs (sensor SDK, camera, paging):
+#   sensor_windows(), grab_frame(), live_metrics(), send_alert()
+monitor = SmartFactoryMonitor(
+    maintenance, quality_inspection, twin, llm)
+
+while True:
+    cycle = monitor.run_cycle(
+        sensor_windows(), grab_frame(), live_metrics())
+    critical = (cycle['maintenance'].startswith('CRITICAL')
+                or cycle['twin']['status'] == 'alarm')
+    if critical:
+        send_alert(monitor.report(cycle))
+    time.sleep(60)
+```
+
+```text
+Read the wiring, not the loop
+- every branch (CRITICAL, alarm) is a threshold a plant
+  engineer can audit and retune
+- the LLM is called ONLY when something needs saying - and its
+  output goes to a human channel, never to an actuator
+- the plant hooks (sensor_windows, grab_frame, live_metrics,
+  send_alert) are the integration surface: everything above
+  them is portable, everything below is yours
 ```
 
 ## Key Technologies
 
 | Technology | Use Case |
 |------------|----------|
-| **IoT Sensors** | Real-time data collection |
-| **Computer Vision** | Quality inspection |
-| **Time Series ML** | Predictive maintenance |
-| **Reinforcement Learning** | Production optimization |
-| **LLMs + RAG** | Decision support, reporting |
-| **Digital Twins** | Simulation, what-if analysis |
-| **Edge Computing** | Low-latency inference |
+| **Time-series ML** | Predictive maintenance (section 1) |
+| **Computer vision** | Quality inspection (section 2) |
+| **Solvers / RL** | Scheduling — CP-SAT first, RL when stochastic (section 3) |
+| **RAG + on-prem LLM** | Supply-chain decision support (section 4) |
+| **ML surrogate** | Digital-twin drift monitoring (section 5) |
+| **Edge inference** | Line-side latency; quantized models (Phase 4) |
 
 ## Best Practices
 
-1. **Start with Predictive Maintenance**
-   - Highest ROI
-   - Reduces downtime
-   - Easy to implement
-
-2. **Use Edge AI for Quality Control**
-   - Low latency decisions
-   - Reduced bandwidth
-   - Privacy-preserving
-
-3. **Implement Digital Twins**
-   - Test scenarios safely
-   - Optimize processes
-   - Train operators
-
-4. **Combine Multiple AI Techniques**
-   - LLMs for decision support
-   - ML for prediction
-   - RL for optimization
+```text
+1. Start with predictive maintenance - the data already exists
+   in historians; the labeled failure history is the real
+   project. Budget for labeling before modeling
+2. Vision: the model is the easy part. Lighting, fixturing,
+   and a labeled defect taxonomy are the project. Recall at a
+   fixed FPR is the acceptance metric
+3. Scheduling: CP-SAT before RL. RL only with a faithful
+   simulator, and never wired directly to the live line
+4. LLMs draft and summarize; deterministic thresholds decide.
+   No actuator ever reads an LLM's output
+5. On-prem first: factory networks are air-gapped more often
+   than not - ChatOllama-class local serving is the default
+   assumption, cloud APIs the exception
+6. Ground every generated report in measured numbers, and
+   instruct the model to say when history does not cover a case
+7. Validate on YOUR line: inter-inspector agreement and
+   baseline downtime are the bars to beat - not paper
+   benchmarks (same honest-metrics rule as SOL-002)
+```
 
 ---
 
-**Next:** [IND-001: Healthcare AI](./IND-001-Healthcare-AI-Applications.md)
+## References
 
-**Last Updated:** 2026-02-05
+### Related ai-engineering-curriculum Documents
+
+- [SOL-002: Multi-Modal Industrial Inspection System](../enterprise-solutions/SOL-002-Industry-Solution.md)
+- [SOL-001: Enterprise Knowledge Base](../enterprise-solutions/SOL-001-Enterprise-Knowledge-Base.md)
+- [IND-001: Healthcare AI Applications](./IND-001-Healthcare-AI-Applications.md)
+- [IND-002: Finance AI Applications](./IND-002-Finance-AI-Applications.md)
+
+---
+
+## Next Steps
+
+- Full inspection pipeline (vision + fusion + knowledge base + report agent): **[SOL-002: Multi-Modal Industrial Inspection System](../enterprise-solutions/SOL-002-Industry-Solution.md)**
+- RAG foundations: **[6100: Vector Databases](../phases/phase6-rag/6100-vector/README.md)**
+- Agent architecture: **[7100: Agent Architecture](../phases/phase7-agentic/7100-architecture/README.md)**
+- Sibling surveys: **[IND-001: Healthcare](./IND-001-Healthcare-AI-Applications.md)** · **[IND-002: Finance](./IND-002-Finance-AI-Applications.md)**
