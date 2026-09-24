@@ -1,0 +1,520 @@
+# CHEAT SHEET 005: RAG Systems
+## Retrieval-Augmented Generation Quick Reference
+
+**Version:** 1.0
+**Last Updated:** 2026-02-05
+
+---
+
+## Quick Start
+
+```python
+# Basic RAG Pipeline
+from langchain.embeddings import OpenAIEmbeddings
+from langchain.vectorstores import Qdrant
+from langchain.chat_models import ChatOpenAI
+from langchain.chains import RetrievalQA
+
+# Setup
+embeddings = OpenAIEmbeddings()
+vectorstore = Qdrant.from_documents(docs, embeddings)
+retriever = vectorstore.as_retriever(search_kwargs={"k": 5})
+llm = ChatOpenAI(model="gpt-4")
+
+# Chain
+qa = RetrievalQA.from_chain_type(llm, retriever=retriever)
+result = qa.run("Your question here")
+```
+
+---
+
+## 1. Embedding Models
+
+### Popular Models
+
+| Model | Dim | Speed | Quality | Cost |
+|-------|-----:|------:|--------:|-----:|
+| **text-embedding-3-small** | 1536 | ⚡⚡⚡ | ⭐⭐⭐ | $/1M tokens |
+| **text-embedding-3-large** | 3072 | ⚡⚡ | ⭐⭐⭐⭐ | $/1M tokens |
+| **all-MiniLM-L6-v2** | 384 | ⚡⚡⚡ | ⭐⭐ | Free |
+| **e5-large-v2** | 1024 | ⚡⚡ | ⭐⭐⭐ | Free |
+
+### Usage
+
+```python
+# OpenAI
+from openai import OpenAI
+client = OpenAI()
+response = client.embeddings.create(
+    model="text-embedding-3-small",
+    input="Your text here"
+)
+embedding = response.data[0].embedding
+
+# Sentence Transformers
+from sentence_transformers import SentenceTransformer
+model = SentenceTransformer('all-MiniLM-L6-v2')
+embedding = model.encode("Your text here")
+```
+
+---
+
+## 2. Vector Databases
+
+### Qdrant Operations
+
+```python
+from qdrant_client import QdrantClient
+from qdrant_client.models import Distance, VectorParams, PointStruct
+
+client = QdrantClient("http://localhost:6333")
+
+# Create collection
+client.create_collection(
+    collection_name="docs",
+    vectors_config=VectorParams(size=1536, distance=Distance.COSINE)
+)
+
+# Insert points
+client.upsert(
+    collection_name="docs",
+    points=[
+        PointStruct(id=1, vector=embedding, payload={"text": "..."})
+    ]
+)
+
+# Search
+results = client.search(
+    collection_name="docs",
+    query_vector=query_embedding,
+    limit=5,
+    score_threshold=0.7
+)
+```
+
+### Pinecone Operations
+
+```python
+import pinecone
+
+pinecone.init(api_key="...", environment="...")
+index = pinecone.Index("my-index")
+
+# Upsert
+index.upsert([(id, embedding, {"text": "..."})])
+
+# Query
+results = index.query(vector=query_embedding, top_k=5)
+```
+
+---
+
+## 3. Chunking Strategies
+
+### Fixed Size
+
+```python
+def chunk_fixed_size(text, chunk_size=1000, overlap=200):
+    chunks = []
+    start = 0
+    while start < len(text):
+        end = start + chunk_size
+        chunks.append(text[start:end])
+        start = end - overlap
+    return chunks
+```
+
+### Semantic
+
+```python
+from semantic_text_splitter import TextSplitter
+
+splitter = TextSplitter("gpt-4")
+chunks = splitter.split_text(text)
+```
+
+### Markdown-Aware
+
+```python
+from langchain.text_splitter import MarkdownHeaderTextSplitter
+
+splitter = MarkdownHeaderTextSplitter(
+    headers_to_split_on=[
+        ("#", "Header 1"),
+        ("##", "Header 2"),
+        ("###", "Header 3"),
+    ]
+)
+chunks = splitter.split_text(markdown_text)
+```
+
+---
+
+## 4. Retrieval Methods
+
+### Vector Search
+
+```python
+results = vectorstore.similarity_search(query, k=5)
+```
+
+### MMR (Maximal Marginal Relevance)
+
+```python
+results = vectorstore.max_marginal_relevance_search(
+    query,
+    k=5,
+    fetch_k=20  # Retrieve more candidates
+)
+```
+
+### Similarity Score Threshold
+
+```python
+results = vectorstore.similarity_search_with_relevance_scores(
+    query,
+    k=5,
+    score_threshold=0.7
+)
+```
+
+---
+
+## 5. Re-ranking
+
+### Cross-Encoder
+
+```python
+from sentence_transformers import CrossEncoder
+
+reranker = CrossEncoder('cross-encoder/ms-marco-MiniLM-L-6-v2')
+
+# Initial retrieval
+candidates = vectorstore.similarity_search(query, k=50)
+
+# Re-rank
+pairs = [[query, doc.page_content] for doc in candidates]
+scores = reranker.predict(pairs)
+reranked = sorted(zip(candidates, scores),
+                  key=lambda x: x[1], reverse=True)[:5]
+```
+
+### Cohere Rerank
+
+```python
+import cohere
+
+co = cohere.Client("...")
+results = co.rerank(
+    model="rerank-english-v2.0",
+    query=query,
+    documents=[doc.page_content for doc in candidates],
+    top_n=5
+)
+```
+
+---
+
+## 6. Hybrid Search
+
+### Vector + BM25
+
+```python
+from rank_bm25 import BM25Okapi
+import numpy as np
+
+class HybridRetriever:
+    def __init__(self, docs, embedding_model):
+        self.docs = docs
+        self.embedding_model = embedding_model
+        self.embeddings = embedding_model.encode(docs)
+        tokenized_docs = [doc.split() for doc in docs]
+        self.bm25 = BM25Okapi(tokenized_docs)
+
+    def search(self, query, alpha=0.5, k=10):
+        # Vector search
+        q_emb = self.embedding_model.encode(query)
+        vec_scores = np.dot(q_emb, self.embeddings.T)
+
+        # BM25 search
+        tokenized_query = query.split()
+        bm25_scores = self.bm25.get_scores(tokenized_query)
+
+        # Normalize and combine
+        vec_scores = (vec_scores - vec_scores.min()) / (vec_scores.max() - vec_scores.min())
+        bm25_scores = (bm25_scores - bm25_scores.min()) / (bm25_scores.max() - bm25_scores.min())
+
+        combined = alpha * vec_scores + (1 - alpha) * bm25_scores
+        top_indices = np.argsort(combined)[::-1][:k]
+
+        return [(i, combined[i]) for i in top_indices]
+```
+
+### Reciprocal Rank Fusion
+
+```python
+def reciprocal_rank_fusion(results_dict, k=60):
+    scores = {}
+    for system, results in results_dict.items():
+        for rank, (doc_id, _) in enumerate(results):
+            if doc_id not in scores:
+                scores[doc_id] = 0
+            scores[doc_id] += 1 / (k + rank + 1)
+
+    return sorted(scores.items(), key=lambda x: x[1], reverse=True)
+
+# Usage
+rrf_results = reciprocal_rank_fusion({
+    "vector": vector_results,
+    "bm25": bm25_results,
+    "keyword": keyword_results
+})
+```
+
+---
+
+## 7. Context Building
+
+### Stuff (Simple Concatenation)
+
+```python
+def stuff_context(docs, query):
+    context = "\n\n".join([doc.page_content for doc in docs])
+    prompt = f"""Context: {context}
+
+Question: {query}
+Answer:"""
+    return prompt
+```
+
+### Map-Reduce
+
+```python
+def map_reduce_context(docs, query, llm):
+    # Map: Summarize each doc
+    summaries = []
+    for doc in docs:
+        summary = llm.predict(f"Summarize: {doc.page_content}")
+        summaries.append(summary)
+
+    # Reduce: Combine summaries
+    combined = "\n\n".join(summaries)
+    prompt = f"Context: {combined}\n\nQuestion: {query}\nAnswer:"
+    return prompt
+```
+
+### Refine
+
+```python
+def refine_context(docs, query, llm):
+    context = f"Question: {query}\n\nRelevant Context:\n{docs[0].page_content}"
+
+    for doc in docs[1:]:
+        context = llm.predict(f"""
+Original Question: {query}
+
+Current Context: {context}
+
+New Information: {doc.page_content}
+
+Refined Context:""")
+
+    return context
+```
+
+---
+
+## 8. Prompt Templates
+
+### Basic RAG
+
+```python
+template = """Use the following pieces of context to answer the question at the end.
+If you don't know the answer, just say that you don't know, don't try to make up an answer.
+
+Context: {context}
+
+Question: {question}
+
+Helpful Answer:"""
+```
+
+### With Citations
+
+```python
+template = """Answer the question using the context below. Each context item has a source ID [1], [2], etc.
+Include these source IDs in your answer when referencing information.
+
+Context:
+{context}
+
+Question: {question}
+
+Answer (with sources):"""
+```
+
+### Multi-Query
+
+```python
+template = """You are an AI assistant. Generate 3 different search queries for the following question.
+Each query should explore different aspects.
+
+Question: {question}
+
+Queries (one per line):"""
+```
+
+---
+
+## 9. Evaluation Metrics
+
+### Retrieval Metrics
+
+```python
+def precision_at_k(retrieved, relevant, k):
+    retrieved_k = retrieved[:k]
+    return len(set(retrieved_k) & set(relevant)) / k
+
+def recall_at_k(retrieved, relevant, k):
+    retrieved_k = retrieved[:k]
+    return len(set(retrieved_k) & set(relevant)) / len(relevant)
+
+def mrr(retrieved, relevant):
+    for i, doc_id in enumerate(retrieved):
+        if doc_id in relevant:
+            return 1 / (i + 1)
+    return 0
+```
+
+### Generation Metrics
+
+```python
+from rouge import Rouge
+from nltk.translate.bleu_score import sentence_bleu
+
+# ROUGE
+rouge = Rouge()
+scores = rouge.get_scores([generated], [reference])
+print(f"ROUGE-L: {scores[0]['rouge-l']['f']:.4f}")
+
+# BLEU
+from nltk.tokenize import word_tokenize
+reference = word_tokenize(reference)
+generated = word_tokenize(generated)
+bleu = sentence_bleu([reference], generated)
+```
+
+---
+
+## 10. Common Issues & Solutions
+
+### Low Retrieval Quality
+
+| Problem | Solution |
+|---------|----------|
+| Irrelevant results | Increase k, use re-ranking |
+| Missing info | Try hybrid search |
+| Slow retrieval | Add HNSW index |
+| Poor chunking | Use semantic chunking |
+
+### Generation Issues
+
+| Problem | Solution |
+|---------|----------|
+| Not using context | Improve prompt, check retrieval |
+| Hallucination | Add constraints, verify sources |
+| Poor formatting | Specify output format |
+| Inconsistent answers | Add conversation history |
+
+---
+
+## 11. Performance Optimization
+
+### Caching
+
+```python
+from functools import lru_cache
+
+@lru_cache(maxsize=1000)
+def get_embedding(text):
+    return embedding_model.encode(text)
+```
+
+### Batch Processing
+
+```python
+# Batch embeddings
+texts = ["text1", "text2", "text3"]
+embeddings = embedding_model.encode(texts, batch_size=32)
+
+# Batch search
+results = vectorstore.similarity_search_batch(queries, k=5)
+```
+
+### Async Operations
+
+```python
+import asyncio
+
+async def process_queries(queries):
+    tasks = [async_search(q) for q in queries]
+    return await asyncio.gather(*tasks)
+```
+
+---
+
+## 12. Production Checklist
+
+- [ ] Vector database configured
+- [ ] Embeddings cached
+- [ ] Re-ranking enabled
+- [ ] Context window optimized
+- [ ] Prompt templates tested
+- [ ] Evaluation metrics defined
+- [ ] Monitoring/logging setup
+- [ ] Error handling implemented
+- [ ] Rate limiting configured
+- [ ] Cost tracking enabled
+
+---
+
+## Quick Reference Commands
+
+```bash
+# Qdrant
+docker run -p 6333:6333 qdrant/qdrant
+
+# Pinecone
+pip install pinecone-client
+
+# Sentence Transformers
+pip install sentence-transformers
+
+# LangChain
+pip install langchain langchain-openai
+
+# Evaluation
+pip install rouge-score nltk
+
+# Monitoring
+pip help prometheus-client
+```
+
+---
+
+**Related Cheat Sheets:**
+- CHEAT-SHEET-001: Docker
+- CHEAT-SHEET-002: Python AI
+- CHEAT-SHEET-004: Linux
+
+**Next Steps:**
+- TUTORIAL-003: RAG Basics
+- TUTORIAL-009: Advanced RAG Techniques
+- LAB-002: RAG Implementation
+- LAB-007: Production RAG
+
+---
+
+**Last Updated:** 2026-02-05
+**Author:** PROJECT-OMEGA Team
+**License:** MIT

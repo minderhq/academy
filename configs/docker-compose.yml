@@ -1,0 +1,174 @@
+# PROJECT-OMEGA Docker Compose Configuration
+# For deployment on Synology DS720+ NAS
+# Network: 2.5Gbps Star Topology
+# GPU: RTX 2080 Ti via PCIe passthrough from Proxmox
+#
+# ⚠️ SECURITY WARNING: Before deploying to production:
+# 1. Copy .env.example to .env
+# 2. Change ALL default passwords in .env
+# 3. Generate secure random passwords (use: openssl rand -base64 32)
+# 4. Review security settings in configs/docs/ssl-tls-setup.md
+# 5. Enable SSL/TLS for all services
+# 6. Review firewall rules and network security
+
+version: "3.8"
+
+services:
+  # ============================================
+  # QDRANT - Vector Database
+  # ============================================
+  qdrant:
+    image: qdrant/qdrant:v1.7.4
+    container_name: project-omega-qdrant
+    ports:
+      - "6333:6333"  # gRPC
+      - "6334:6334"  # HTTP
+    volumes:
+      - ./data/qdrant:/qdrant/storage
+    environment:
+      - QDRANT__SERVICE__GRPC_PORT=6333
+      - QDRANT__SERVICE__HTTP_PORT=6334
+      - QDRANT__STORAGE__OPTIMIZER_CPU_BUDGET=4
+    restart: unless-stopped
+    networks:
+      - project-omega-net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:6334/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # ============================================
+  # NEO4J - Knowledge Graph
+  # ============================================
+  neo4j:
+    image: neo4j:5.15-community
+    container_name: project-omega-neo4j
+    ports:
+      - "7474:7474"  # HTTP
+      - "7687:7687"  # Bolt
+    volumes:
+      - ./data/neo4j/data:/data
+      - ./data/neo4j/logs:/logs
+      - ./data/neo4j/plugins:/plugins
+      - ./data/neo4j/conf:/conf
+    environment:
+      - NEO4J_AUTH=neo4j/omega_change_me
+      - NEO4J_PLUGINS=["apoc"]
+      - NEO4J_dbms_memory_heap_max__size=2G
+      - NEO4J_dbms_memory_pagecache_size=1G
+      - NEO4J_dbms_security_procedures_unrestricted=apoc.*
+      - NEO4J_dbms_security_procedures_allowlist=apoc.*
+    restart: unless-stopped
+    networks:
+      - project-omega-net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:7474"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # ============================================
+  # OLLAMA - Local LLM Inference
+  # Note: Run on VM with GPU passthrough, not NAS
+  # ============================================
+  # Uncomment this section for GPU-enabled VM
+  #
+  # ollama:
+  #   image: ollama/ollama:latest
+  #   container_name: project-omega-ollama
+  #   ports:
+  #     - "11434:11434"
+  #   volumes:
+  #     - ./data/ollama:/root/.ollama
+  #   environment:
+  #     - OLLAMA_HOST=0.0.0.0
+  #   deploy:
+  #     resources:
+  #       reservations:
+  #         devices:
+  #           - driver: nvidia
+  #             count: 1
+  #             capabilities: [gpu]
+  #   restart: unless-stopped
+  #   networks:
+  #     - project-omega-net
+
+  # ============================================
+  # VLLM - High-Performance Inference
+  # Note: Run on VM with GPU passthrough
+  # ============================================
+  # Uncomment this section for GPU-enabled VM
+  #
+  # vllm:
+  #   image: vllm/vllm-openai:latest
+  #   container_name: project-omega-vllm
+  #   ports:
+  #     - "8000:8000"
+  #   environment:
+  #     - MODEL=meta-llama/Llama-2-7b-hf
+  #     - TENSOR_PARALLEL_SIZE=1
+  #     - GPU_MEMORY_UTILIZATION=0.9
+  #     - MAX_MODEL_LEN=4096
+  #   deploy:
+  #     resources:
+  #       reservations:
+  #         devices:
+  #           - driver: nvidia
+  #             count: 1
+  #             capabilities: [gpu]
+  #   restart: unless-stopped
+  #   networks:
+  #     - project-omega-net
+
+  # ============================================
+  # REDIS - Caching Layer
+  # ============================================
+  redis:
+    image: redis:7-alpine
+    container_name: project-omega-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./data/redis:/data
+    command: redis-server --appendonly yes --maxmemory 512mb --maxmemory-policy allkeys-lru
+    restart: unless-stopped
+    networks:
+      - project-omega-net
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  # ============================================
+  # NGINX - Reverse Proxy
+  # ============================================
+  nginx:
+    image: nginx:alpine
+    container_name: project-omega-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - qdrant
+      - neo4j
+      - redis
+    restart: unless-stopped
+    networks:
+      - project-omega-net
+
+networks:
+  project-omega-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+
+volumes:
+  qdrant-data:
+  neo4j-data:
+  redis-data:

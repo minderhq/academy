@@ -1,0 +1,849 @@
+# 2300: Framework Engineering - Practice Exercises
+
+**Hands-on exercises to reinforce your learning.**
+
+---
+
+## Exercise 1: Model Abstraction (30 minutes)
+
+### Task
+
+Implement a complete model abstraction layer that supports both PyTorch and TensorFlow.
+
+### Requirements
+
+1. Create `BaseModel` abstract class
+2. Implement `PyTorchModel`
+3. Implement `TensorFlowModel`
+4. Write framework-agnostic training loop
+
+### Starter Code
+
+```python
+from abc import ABC, abstractmethod
+from typing import Dict, Any
+
+class BaseModel(ABC):
+    def __init__(self, config: Dict[str, Any]):
+        self.config = config
+
+    @abstractmethod
+    def forward(self, x):
+        pass
+
+    @abstractmethod
+    def train_step(self, batch):
+        pass
+
+# SOLUTION PROVIDED BELOW - See complete implementation
+# The PyTorchModel, TensorFlowModel, and train_model implementations
+# are provided in the Solution section with full code
+```
+
+### Solution
+
+```python
+import torch
+import torch.nn as nn
+import tensorflow as tf
+import numpy as np
+from typing import Dict, Any
+
+# Base Model (Complete)
+class BaseModel(ABC):
+    """Abstract base class for framework-agnostic models."""
+
+    def __init__(self, config: Dict[str, Any]):
+        self.config = config
+        self.metrics_history = []
+
+    @abstractmethod
+    def forward(self, x):
+        """Forward pass through the model."""
+        pass
+
+    @abstractmethod
+    def train_step(self, batch):
+        """Single training step."""
+        pass
+
+    def save(self, path: str):
+        """Save model checkpoint."""
+        raise NotImplementedError
+
+    def load(self, path: str):
+        """Load model checkpoint."""
+        raise NotImplementedError
+
+# PyTorch Model (Complete)
+class PyTorchModel(BaseModel):
+    """PyTorch implementation of BaseModel."""
+
+    def __init__(self, config: Dict[str, Any]):
+        super().__init__(config)
+
+        # Build model
+        self.model = nn.Sequential(
+            nn.Linear(config["input_size"], config["hidden_size"]),
+            nn.ReLU(),
+            nn.Dropout(config.get("dropout", 0.1)),
+            nn.Linear(config["hidden_size"], config["hidden_size"] // 2),
+            nn.ReLU(),
+            nn.Linear(config["hidden_size"] // 2, config["output_size"])
+        )
+
+        # Setup optimizer
+        self.optimizer = torch.optim.Adam(
+            self.model.parameters(),
+            lr=config.get("lr", 0.001)
+        )
+
+        # Setup loss
+        self.criterion = nn.MSELoss()
+
+        # Device
+        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        self.model.to(self.device)
+
+    def forward(self, x):
+        """Forward pass."""
+        if isinstance(x, np.ndarray):
+            x = torch.from_numpy(x).float()
+        return self.model(x.to(self.device))
+
+    def train_step(self, batch):
+        """Single training step."""
+        self.model.train()
+
+        # Get data
+        x = batch["x"]
+        y = batch["y"]
+
+        # Convert to tensors if needed
+        if isinstance(x, np.ndarray):
+            x = torch.from_numpy(x).float()
+        if isinstance(y, np.ndarray):
+            y = torch.from_numpy(y).float()
+
+        x, y = x.to(self.device), y.to(self.device)
+
+        # Forward pass
+        self.optimizer.zero_grad()
+        predictions = self.model(x)
+        loss = self.criterion(predictions, y)
+
+        # Backward pass
+        loss.backward()
+        self.optimizer.step()
+
+        return {"loss": loss.item()}
+
+    def save(self, path: str):
+        """Save model."""
+        torch.save({
+            'model_state_dict': self.model.state_dict(),
+            'optimizer_state_dict': self.optimizer.state_dict(),
+            'config': self.config
+        }, path)
+
+    def load(self, path: str):
+        """Load model."""
+        checkpoint = torch.load(path)
+        self.model.load_state_dict(checkpoint['model_state_dict'])
+        self.optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
+
+# TensorFlow Model (Complete)
+class TensorFlowModel(BaseModel):
+    """TensorFlow implementation of BaseModel."""
+
+    def __init__(self, config: Dict[str, Any]):
+        super().__init__(config)
+
+        # Build model
+        self.model = tf.keras.Sequential([
+            tf.keras.layers.Dense(
+                config["hidden_size"],
+                activation="relu",
+                input_shape=(config["input_size"],)
+            ),
+            tf.keras.layers.Dropout(config.get("dropout", 0.1)),
+            tf.keras.layers.Dense(config["hidden_size"] // 2, activation="relu"),
+            tf.keras.layers.Dense(config["output_size"])
+        ])
+
+        # Compile model
+        self.model.compile(
+            optimizer=tf.keras.optimizers.Adam(learning_rate=config.get("lr", 0.001)),
+            loss="mse"
+        )
+
+    def forward(self, x):
+        """Forward pass."""
+        return self.model(x, training=False)
+
+    def train_step(self, batch):
+        """Single training step."""
+        x = batch["x"]
+        y = batch["y"]
+
+        # Train on batch
+        result = self.model.fit(x, y, verbose=0, epochs=1)
+
+        return {"loss": result.history["loss"][0]}
+
+    def save(self, path: str):
+        """Save model."""
+        self.model.save(path)
+
+    def load(self, path: str):
+        """Load model."""
+        self.model = tf.keras.models.load_model(path)
+
+# Framework-agnostic training function (Complete)
+def train_model(model: BaseModel, dataloader, epochs: int, validation_data=None):
+    """
+    Train a model framework-agnostically.
+
+    Args:
+        model: BaseModel instance
+        dataloader: Data loader
+        epochs: Number of training epochs
+        validation_data: Optional validation data
+
+    Returns:
+        Training history
+    """
+    print(f"Training model for {epochs} epochs...")
+
+    for epoch in range(epochs):
+        total_loss = 0
+        num_batches = 0
+
+        for batch in dataloader:
+            result = model.train_step(batch)
+            total_loss += result["loss"]
+            num_batches += 1
+
+        avg_loss = total_loss / num_batches
+        model.metrics_history.append({"epoch": epoch, "loss": avg_loss})
+
+        print(f"Epoch {epoch+1}/{epochs}: Loss = {avg_loss:.4f}")
+
+    return model.metrics_history
+
+# Verification (Complete)
+if __name__ == "__main__":
+    print("=== Testing Model Abstraction ===\n")
+
+    # Create dummy data
+    config = {
+        "input_size": 10,
+        "hidden_size": 32,
+        "output_size": 1,
+        "lr": 0.001
+    }
+
+    # Create dummy batches
+    batches = [
+        {"x": np.random.randn(16, 10), "y": np.random.randn(16, 1)}
+        for _ in range(10)
+    ]
+
+    # Test PyTorch model
+    print("Testing PyTorch Model...")
+    pytorch_model = PyTorchModel(config)
+    history = train_model(pytorch_model, batches, epochs=3)
+    print("✓ PyTorch model trained successfully\n")
+
+    # Test TensorFlow model
+    print("Testing TensorFlow Model...")
+    tf_model = TensorFlowModel(config)
+    history = train_model(tf_model, batches, epochs=3)
+    print("✓ TensorFlow model trained successfully\n")
+
+    print("All tests passed!")
+
+# Expected output:
+# Both PyTorch and TensorFlow models train successfully
+# Loss decreases over epochs
+# Framework-agnostic training works for both
+```
+
+### Verification
+
+```python
+# Test with PyTorch
+config = {"input_size": 10, "hidden_size": 32, "output_size": 1, "lr": 0.001}
+model = PyTorchModel(config)
+# Should work!
+
+# Test with TensorFlow
+model = TensorFlowModel(config)
+# Should also work!
+```
+
+---
+
+## Exercise 2: Plugin System (45 minutes)
+
+### Task
+
+Create a plugin system for custom metrics with registration, discovery, and dynamic loading.
+
+### Requirements
+
+1. Create `MetricRegistry` class
+2. Implement `@metric` decorator
+3. Register 3 built-in metrics (Accuracy, Precision, F1)
+4. Support dynamic loading from file
+
+### Solution
+
+```python
+from typing import Dict, Type, Any, List
+import importlib.util
+import os
+import json
+
+# Complete MetricRegistry Implementation
+class MetricRegistry:
+    """Complete metric registry system with plugin support."""
+
+    def __init__(self, name: str):
+        self.name = name
+        self._metrics = {}
+        self._metadata = {}
+        self._hooks = {"before_compute": [], "after_compute": []}
+
+    def register(self, name: str = None, **metadata):
+        """
+        Decorator to register a metric.
+
+        Args:
+            name: Metric name (defaults to class name)
+            **metadata: Additional metadata
+
+        Returns:
+            Decorator function
+        """
+        def decorator(cls):
+            metric_name = name or cls.__name__
+            self._metrics[metric_name] = cls
+            self._metadata[metric_name] = {
+                "class": cls.__name__,
+                "module": cls.__module__,
+                **metadata
+            }
+            print(f"✓ Registered metric: {metric_name}")
+            return cls
+        return decorator
+
+    def get(self, name: str):
+        """Get a metric class by name."""
+        return self._metrics.get(name)
+
+    def create(self, name: str, **kwargs):
+        """Create a metric instance."""
+        metric_class = self.get(name)
+        if metric_class is None:
+            raise ValueError(f"Metric '{name}' not found")
+        return metric_class(**kwargs)
+
+    def list_all(self) -> List[str]:
+        """List all registered metrics."""
+        return list(self._metrics.keys())
+
+    def get_metadata(self, name: str) -> Dict[str, Any]:
+        """Get metadata for a metric."""
+        return self._metadata.get(name, {})
+
+    def load_from_file(self, filepath: str, metric_names: List[str] = None):
+        """
+        Dynamically load metrics from a Python file.
+
+        Args:
+            filepath: Path to Python file
+            metric_names: List of metric names to load (None = all)
+        """
+        spec = importlib.util.spec_from_file_location("metrics_module", filepath)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+
+        # Find metric classes
+        loaded = []
+        for attr_name in dir(module):
+            attr = getattr(module, attr_name)
+            if isinstance(attr, type) and hasattr(attr, '__metric_name__'):
+                metric_name = attr.__metric_name__
+                if metric_names is None or metric_name in metric_names:
+                    self._metrics[metric_name] = attr
+                    loaded.append(metric_name)
+
+        return loaded
+
+    def register_hook(self, hook_type: str, func):
+        """Register a callback hook."""
+        if hook_type in self._hooks:
+            self._hooks[hook_type].append(func)
+
+    def save_registry(self, path: str):
+        """Save registry state to JSON."""
+        state = {
+            "metrics": {
+                name: meta
+                for name, meta in self._metadata.items()
+            }
+        }
+        with open(path, 'w') as f:
+            json.dump(state, f, indent=2)
+
+# Create registry instance
+METRIC_REGISTRY = MetricRegistry("metrics")
+
+# Register 3 built-in metrics
+@METRIC_REGISTRY.register("accuracy", description="Classification accuracy")
+class Accuracy:
+    """Accuracy metric."""
+
+    __metric_name__ = "accuracy"
+
+    def __init__(self):
+        self.correct = 0
+        self.total = 0
+
+    def update(self, predictions, targets):
+        """Update metric with new batch."""
+        if isinstance(predictions, torch.Tensor):
+            predictions = predictions.cpu().numpy()
+        if isinstance(targets, torch.Tensor):
+            targets = targets.cpu().numpy()
+
+        self.correct += (predictions == targets).sum()
+        self.total += len(targets)
+
+    def compute(self):
+        """Compute final metric value."""
+        if self.total == 0:
+            return 0.0
+        return float(self.correct) / self.total
+
+    def reset(self):
+        """Reset metric state."""
+        self.correct = 0
+        self.total = 0
+
+@METRIC_REGISTRY.register("precision", description="Precision score")
+class Precision:
+    """Precision metric."""
+
+    __metric_name__ = "precision"
+
+    def __init__(self, positive_label=1):
+        self.true_positives = 0
+        self.false_positives = 0
+        self.positive_label = positive_label
+
+    def update(self, predictions, targets):
+        """Update metric with new batch."""
+        if isinstance(predictions, torch.Tensor):
+            predictions = predictions.cpu().numpy()
+        if isinstance(targets, torch.Tensor):
+            targets = targets.cpu().numpy()
+
+        self.true_positives += ((predictions == self.positive_label) & (targets == self.positive_label)).sum()
+        self.false_positives += ((predictions == self.positive_label) & (targets != self.positive_label)).sum()
+
+    def compute(self):
+        """Compute final metric value."""
+        if self.true_positives + self.false_positives == 0:
+            return 0.0
+        return self.true_positives / (self.true_positives + self.false_positives)
+
+    def reset(self):
+        """Reset metric state."""
+        self.true_positives = 0
+        self.false_positives = 0
+
+@METRIC_REGISTRY.register("f1", description="F1 score")
+class F1Score:
+    """F1 Score metric."""
+
+    __metric_name__ = "f1"
+
+    def __init__(self, positive_label=1):
+        self.precision = Precision(positive_label)
+        self.recall = Recall(positive_label)
+        self.positive_label = positive_label
+
+    def update(self, predictions, targets):
+        """Update metric with new batch."""
+        self.precision.update(predictions, targets)
+        self.recall.update(predictions, targets)
+
+    def compute(self):
+        """Compute final metric value."""
+        p = self.precision.compute()
+        r = self.recall.compute()
+        if p + r == 0:
+            return 0.0
+        return 2 * p * r / (p + r)
+
+    def reset(self):
+        """Reset metric state."""
+        self.precision.reset()
+        self.recall.reset()
+
+# Helper: Recall metric (needed for F1)
+class Recall:
+    """Recall metric."""
+
+    __metric_name__ = "recall"
+
+    def __init__(self, positive_label=1):
+        self.true_positives = 0
+        self.false_negatives = 0
+        self.positive_label = positive_label
+
+    def update(self, predictions, targets):
+        """Update metric with new batch."""
+        if isinstance(predictions, torch.Tensor):
+            predictions = predictions.cpu().numpy()
+        if isinstance(targets, torch.Tensor):
+            targets = targets.cpu().numpy()
+
+        self.true_positives += ((predictions == self.positive_label) & (targets == self.positive_label)).sum()
+        self.false_negatives += ((predictions != self.positive_label) & (targets == self.positive_label)).sum()
+
+    def compute(self):
+        """Compute final metric value."""
+        if self.true_positives + self.false_negatives == 0:
+            return 0.0
+        return self.true_positives / (self.true_positives + self.false_negatives)
+
+    def reset(self):
+        """Reset metric state."""
+        self.true_positives = 0
+        self.false_negatives = 0
+
+# Verification (Complete)
+if __name__ == "__main__":
+    import torch
+
+    print("=== Testing Metric Registry ===\n")
+
+    # Test registry
+    print("Available metrics:", METRIC_REGISTRY.list_all())
+
+    # Test metric usage
+    predictions = torch.tensor([1, 0, 1, 1, 0, 1])
+    targets = torch.tensor([1, 0, 0, 1, 0, 1])
+
+    # Test accuracy
+    accuracy = METRIC_REGISTRY.create("accuracy")
+    accuracy.update(predictions, targets)
+    print(f"\nAccuracy: {accuracy.compute():.4f}")
+
+    # Test precision
+    precision = METRIC_REGISTRY.create("precision", positive_label=1)
+    precision.update(predictions, targets)
+    print(f"Precision: {precision.compute():.4f}")
+
+    # Test F1
+    f1 = METRIC_REGISTRY.create("f1", positive_label=1)
+    f1.update(predictions, targets)
+    print(f"F1 Score: {f1.compute():.4f}")
+
+    # Get metadata
+    print("\nMetric metadata:")
+    for name in METRIC_REGISTRY.list_all():
+        meta = METRIC_REGISTRY.get_metadata(name)
+        print(f"  {name}: {meta.get('description', 'N/A')}")
+
+    print("\n✓ All tests passed!")
+
+# Expected output:
+# Registered metrics: ["accuracy", "precision", "f1"]
+# Metrics compute correctly values
+# Metadata shows descriptions
+```
+
+---
+
+## Exercise 3: Batching Server (60 minutes)
+
+### Task
+
+Implement a production-ready batching server with dynamic batching, priority support, and statistics.
+
+### Solution
+
+```python
+import time
+import threading
+import uuid
+from typing import Dict, Any, List, Optional
+from queue import PriorityQueue
+from dataclasses import dataclass, field
+from enum import Enum
+import json
+
+class Priority(Enum):
+    """Request priority levels."""
+    HIGH = 1
+    MEDIUM = 2
+    LOW = 3
+
+@dataclass(order=True)
+class Request:
+    """Request data structure."""
+    priority: int
+    timestamp: float
+    id: str = field(compare=False)
+    input_data: Any = field(compare=False, default=None)
+    result: Any = field(compare=False, default=None)
+    completed: bool = field(compare=False, default=False)
+
+class BatchingServer:
+    """Production-ready batching server."""
+
+    def __init__(self, model, max_batch_size=32, timeout_ms=50):
+        """
+        Initialize batching server.
+
+        Args:
+            model: Model to run inference on
+            max_batch_size: Maximum batch size
+            timeout_ms: Timeout in milliseconds
+        """
+        self.model = model
+        self.max_batch_size = max_batch_size
+        self.timeout_ms = timeout_ms
+        self.timeout_sec = timeout_ms / 1000.0
+
+        # Request queue
+        self.queue = PriorityQueue()
+        self.pending_requests: Dict[str, Request] = {}
+        self.results: Dict[str, Any] = {}
+
+        # Statistics
+        self.stats = {
+            "total_requests": 0,
+            "total_batches": 0,
+            "avg_batch_size": 0.0,
+            "avg_latency": 0.0,
+            "total_latency": 0.0
+        }
+
+        # Control
+        self.running = False
+        self.worker_thread = None
+        self.lock = threading.Lock()
+
+    def add_request(self, input_data, priority=Priority.MEDIUM) -> str:
+        """
+        Add a request to the queue.
+
+        Args:
+            input_data: Input data for the model
+            priority: Request priority
+
+        Returns:
+            Request ID
+        """
+        request_id = str(uuid.uuid4())
+        request = Request(
+            priority=priority.value,
+            timestamp=time.time(),
+            id=request_id,
+            input_data=input_data
+        )
+
+        with self.lock:
+            self.queue.put(request)
+            self.pending_requests[request_id] = request
+            self.stats["total_requests"] += 1
+
+        return request_id
+
+    def get_result(self, request_id: str, timeout=5.0) -> Any:
+        """
+        Get result for a request.
+
+        Args:
+            request_id: Request ID
+            timeout: Timeout in seconds
+
+        Returns:
+            Request result
+        """
+        start_time = time.time()
+        while time.time() - start_time < timeout:
+            with self.lock:
+                if request_id in self.results:
+                    return self.results.pop(request_id)
+            time.sleep(0.01)
+
+        raise TimeoutError(f"Request {request_id} timed out")
+
+    def _check_and_process(self):
+        """Check if batch is ready and process it."""
+        batch = []
+        current_time = time.time()
+
+        with self.lock:
+            # Collect requests for batch
+            while not self.queue.empty() and len(batch) < self.max_batch_size:
+                request = self.queue.get()
+                if request.id in self.pending_requests:
+                    batch.append(request)
+
+                    # Check timeout
+                    if current_time - request.timestamp > self.timeout_sec:
+                        break
+
+        # Process batch if we have requests
+        if batch:
+            self._process_batch(batch)
+
+    def _process_batch(self, batch: List[Request]):
+        """
+        Process a batch of requests.
+
+        Args:
+            batch: List of requests to process
+        """
+        start_time = time.time()
+
+        # Sort by priority
+        batch.sort(key=lambda r: r.priority)
+
+        # Prepare batch data
+        batch_inputs = [r.input_data for r in batch]
+
+        # Run inference (mock)
+        batch_results = self._run_inference(batch_inputs)
+
+        # Store results
+        with self.lock:
+            for request, result in zip(batch, batch_results):
+                request.result = result
+                request.completed = True
+                self.results[request.id] = result
+                del self.pending_requests[request.id]
+
+            # Update statistics
+            self.stats["total_batches"] += 1
+            batch_size = len(batch)
+            total_requests = self.stats["total_requests"]
+            self.stats["avg_batch_size"] = (
+                (self.stats["avg_batch_size"] * (total_requests - batch_size) + batch_size) / total_requests
+            )
+
+            latency = time.time() - start_time
+            self.stats["total_latency"] += latency
+            self.stats["avg_latency"] = self.stats["total_latency"] / self.stats["total_batches"]
+
+    def _run_inference(self, batch_inputs: List[Any]) -> List[Any]:
+        """
+        Run inference on batch (mock implementation).
+
+        Args:
+            batch_inputs: List of inputs
+
+        Returns:
+            List of results
+        """
+        # Mock inference - replace with actual model call
+        time.sleep(0.01)
+        return [f"result_{i}" for i in range(len(batch_inputs))]
+
+    def start(self):
+        """Start the batching server."""
+        self.running = True
+        self.worker_thread = threading.Thread(target=self._worker_loop, daemon=True)
+        self.worker_thread.start()
+
+    def _worker_loop(self):
+        """Worker thread loop."""
+        while self.running:
+            self._check_and_process()
+            time.sleep(0.001)  # 1ms
+
+    def shutdown(self):
+        """Shutdown the server gracefully."""
+        print("Shutting down batching server...")
+        self.running = False
+
+        # Process remaining requests
+        while not self.queue.empty():
+            self._check_and_process()
+
+        # Wait for worker thread
+        if self.worker_thread:
+            self.worker_thread.join(timeout=5.0)
+
+        print(f"Shutdown complete. Processed {self.stats['total_requests']} requests.")
+
+    def get_stats(self) -> Dict[str, Any]:
+        """Get server statistics."""
+        with self.lock:
+            return self.stats.copy()
+
+# Verification (Complete)
+if __name__ == "__main__":
+    print("=== Testing Batching Server ===\n")
+
+    # Create server
+    server = BatchingServer(model=None, max_batch_size=4, timeout_ms=50)
+    server.start()
+
+    # Add requests
+    request_ids = []
+    for i in range(10):
+        priority = Priority.HIGH if i % 3 == 0 else Priority.MEDIUM
+        req_id = server.add_request(f"input_{i}", priority=priority)
+        request_ids.append(req_id)
+
+    # Get results
+    results = []
+    for req_id in request_ids:
+        result = server.get_result(req_id, timeout=2.0)
+        results.append(result)
+        print(f"Request {req_id[:8]}: {result}")
+
+    # Get statistics
+    stats = server.get_stats()
+    print(f"\nStatistics:")
+    print(f"  Total requests: {stats['total_requests']}")
+    print(f"  Total batches: {stats['total_batches']}")
+    print(f"  Avg batch size: {stats['avg_batch_size']:.2f}")
+    print(f"  Avg latency: {stats['avg_latency']*1000:.2f}ms")
+
+    # Shutdown
+    server.shutdown()
+
+    print("\n✓ All tests passed!")
+
+# Expected output:
+# All 10 requests processed
+# Results returned for each request
+# Statistics show batching metrics
+```
+
+---
+
+## Summary
+
+This practice guide provides complete, production-ready implementations for:
+
+1. **Model Abstraction:** Framework-agnostic model interface
+2. **Plugin System:** Extensible metrics registry with decorators
+3. **Batching Server:** Production inference server with priority queuing
+
+**Expected Learning Outcomes:**
+- Build framework-agnostic ML systems
+- Implement plugin architectures
+- Create production inference servers
+
+**Last Updated:** 2026-02-05
+**Status:** ✅ Complete

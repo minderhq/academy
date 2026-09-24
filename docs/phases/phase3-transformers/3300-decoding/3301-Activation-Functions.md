@@ -1,0 +1,393 @@
+---
+Document ID: 3301
+Title: Activation Functions - GELU, SwiGLU, and Beyond
+Phase: 3
+Module: 3300
+Last Updated: 2026-02-05
+Status: Complete
+Difficulty: Beginner
+Estimated Time: 2 hours
+Prerequisites: See module README
+Related: See module README
+Tags: ['transformers', 'activation', 'gelu', 'swiglu', 'normalization']
+---
+
+# 3301: Activation Functions - GELU, SwiGLU, and Beyond
+
+## Abstract
+Activation functions introduce non-linearity into neural networks. Modern LLMs use specialized activations like GELU and SwiGLU that outperform traditional ReLU in transformer architectures.
+
+## From ReLU to Modern Activations
+
+### ReLU (Rectified Linear Unit)
+```python
+def relu(x):
+    return max(0, x)
+
+# PyTorch
+import torch.nn as nn
+relu = nn.ReLU()
+
+# Properties:
+# - Computationally cheap (comparison only)
+# - No vanishing gradient for positive inputs
+# - Dead neurons (gradient = 0 for negative inputs)
+# - Non-zero centered (output always ≥ 0)
+```
+
+### ReLU Problems in Transformers
+```
+1. Dead neurons:
+   - If input is consistently negative, neuron never activates
+   - Gradient flow is blocked
+
+2. Non-smooth:
+   - Discontinuity at x=0 causes optimization issues
+   - Not suitable for attention score refinement
+
+3. Not zero-centered:
+   - Can cause zigzagging in gradient descent
+```
+
+## GELU (Gaussian Error Linear Unit)
+
+### Definition
+```
+GELU(x) = x × Φ(x)
+
+Where Φ(x) is the cumulative distribution function
+of the standard normal distribution:
+Φ(x) = 0.5 × (1 + erf(x / √2))
+
+erf is the error function
+```
+
+### Exact vs Approximate
+```python
+import torch
+import math
+
+def gelu_exact(x):
+    """
+    Exact GELU computation
+    """
+    return 0.5 * x * (1.0 + torch.erf(x / math.sqrt(2.0)))
+
+def gelu_approx(x):
+    """
+    Approximation used in GPT-2 (faster)
+    GELU(x) ≈ 0.5 × x × (1 + tanh(√(2/π) × (x + 0.044715 × x³)))
+    """
+    return 0.5 * x * (1.0 + torch.tanh(
+        math.sqrt(2.0 / math.pi) * (x + 0.044715 * torch.pow(x, 3.0))
+    ))
+
+# PyTorch built-in
+gelu = nn.GELU()
+
+# Comparison:
+# Exact: More accurate, slower
+# Approx: 99.7% correlation, faster
+```
+
+### Why GELU Works Well
+```
+1. Smooth everywhere:
+   - No discontinuities
+   - Better gradient flow
+
+2. Self-gating:
+   - Output depends on input magnitude
+   - x is modulated by probability Φ(x)
+
+3. Expected behavior:
+   - Can be motivated by stochastic depth
+   - Represents expected value of ReLU with noise
+```
+
+### Visualization
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.linspace(-4, 4, 100)
+relu = np.maximum(0, x)
+gelu = 0.5 * x * (1 + np.erf(x / np.sqrt(2)))
+
+plt.figure(figsize=(12, 4))
+
+plt.subplot(1, 3, 1)
+plt.plot(x, relu, label='ReLU')
+plt.title('ReLU')
+plt.grid(True)
+
+plt.subplot(1, 3, 2)
+plt.plot(x, gelu, label='GELU')
+plt.title('GELU')
+plt.grid(True)
+
+plt.subplot(1, 3, 3)
+plt.plot(x, relu, label='ReLU')
+plt.plot(x, gelu, label='GELU')
+plt.title('Comparison')
+plt.legend()
+plt.grid(True)
+
+plt.show()
+```
+
+## SwiGLU (Swish-Gated Linear Unit)
+
+### Swish Activation
+```python
+def swish(x, beta=1.0):
+    """
+    Swish: x × sigmoid(βx)
+    """
+    return x * torch.sigmoid(beta * x)
+
+# Properties:
+# - Smooth
+# - Non-monotonic (for β > 0, dips slightly below 0)
+# - Self-gating like GELU
+# - Outperforms ReLU in deep networks
+```
+
+### GLU (Gated Linear Unit)
+```python
+def glu(x, gate):
+    """
+    GLU: x × σ(gate)
+
+    Commonly used in:
+    - LSTMs (gates)
+    - Convolutional networks
+    """
+    return x * torch.sigmoid(gate)
+
+# Split input into two halves
+def glu_from_single(x):
+    """
+    x: (batch, seq_len, 2 * hidden)
+    Split into two and apply gating
+    """
+    a, b = x.chunk(2, dim=-1)
+    return a * torch.sigmoid(b)
+```
+
+### SwiGLU (PaLM, LLaMA)
+```python
+def swiglu(x, W_gate, W_up, W_down):
+    """
+    SwiGLU activation in feed-forward network
+
+    Architecture:
+        x ──┬──► W_gate ──► SiLU ──┐
+            │                     ×
+            └──► W_up ────────────┘
+                                 │
+                                 ▼
+                              W_down
+
+    Used in: PaLM, LLaMA, Mistral
+    """
+    # Split into gate and up projections
+    gate = torch.nn.functional.linear(x, W_gate)
+    up = torch.nn.functional.linear(x, W_up)
+
+    # SwiGLU activation
+    output = torch.nn.functional.silu(gate) * up
+
+    # Down projection
+    output = torch.nn.functional.linear(output, W_down)
+
+    return output
+
+# In PyTorch module
+class SwiGLUFFN(nn.Module):
+    def __init__(self, dim, hidden_dim, multiple_of=256):
+        super().__init__()
+        # LLaMA formula: hidden_dim = int(2 * 4/3 * dim)
+        hidden_dim = int(2 * hidden_dim / 3)
+        hidden_dim = multiple_of * ((hidden_dim + multiple_of - 1) // multiple_of)
+
+        self.gate_proj = nn.Linear(dim, hidden_dim, bias=False)
+        self.up_proj = nn.Linear(dim, hidden_dim, bias=False)
+        self.down_proj = nn.Linear(hidden_dim, dim, bias=False)
+
+    def forward(self, x):
+        return self.down_proj(
+            torch.nn.functional.silu(self.gate_proj(x)) * self.up_proj(x)
+        )
+```
+
+### Why SwiGLU Outperforms GELU
+```
+Paper: "GLU Variants Improve Transformer" (Shazeer, 2020)
+
+Key findings:
+1. Gating mechanism allows more flexible transformations
+2. SwiGLU ≈ GLU with SiLU activation
+3. 1-2% improvement over GELU-FFN
+4. Better gradient flow through gating
+```
+
+## Comparison in Transformers
+
+### Standard FFN vs SwiGLU FFN
+```python
+# Standard FFN (GPT-2)
+class StandardFFN(nn.Module):
+    def __init__(self, d_model=512, d_ff=2048):
+        super().__init__()
+        self.fc1 = nn.Linear(d_model, d_ff)
+        self.fc2 = nn.Linear(d_ff, d_model)
+        self.activation = nn.GELU()
+
+    def forward(self, x):
+        return self.fc2(self.activation(self.fc1(x)))
+
+# SwiGLU FFN (LLaMA)
+class SwiGLUFFN(nn.Module):
+    def __init__(self, d_model=512, d_ff=2048):
+        super().__init__()
+        # Note: d_ff is typically different for SwiGLU
+        self.gate = nn.Linear(d_model, d_ff, bias=False)
+        self.up = nn.Linear(d_model, d_ff, bias=False)
+        self.down = nn.Linear(d_ff, d_model, bias=False)
+
+    def forward(self, x):
+        return self.down(torch.nn.functional.silu(self.gate(x)) * self.up(x))
+
+# Parameter comparison (d_model=512, d_ff=2048):
+# Standard: 512×2048 + 2048×512 = 2,097,152
+# SwiGLU:   3×512×2048 = 3,145,728 (1.5x parameters)
+```
+
+## Other Activations
+
+### GEGLU (BLOOM, GPT-NeoX)
+```python
+def geglu(x):
+    """
+    Gated Exponential Linear Unit
+    Used in: BLOOM, GPT-NeoX
+    """
+    a, b = x.chunk(2, dim=-1)
+    return a * torch.nn.functional.gelu(b)
+
+class GEGLUFFN(nn.Module):
+    def __init__(self, d_model=512, d_ff=2048):
+        super().__init__()
+        # d_ff is split between gate and up
+        self.gate_up = nn.Linear(d_model, 2 * d_ff, bias=False)
+        self.down = nn.Linear(d_ff, d_model, bias=False)
+
+    def forward(self, x):
+        gate_up = self.gate_up(x)
+        gate, up = gate_up.chunk(2, dim=-1)
+        return self.down(torch.nn.functional.gelu(gate) * up)
+```
+
+### ReGLU
+```python
+def reglu(x):
+    """
+    ReLU Gated Linear Unit
+    """
+    a, b = x.chunk(2, dim=-1)
+    return a * torch.nn.functional.relu(b)
+```
+
+### SMGeLU (Google's Switch Transformer)
+```python
+def smgelu(x, num_experts=4):
+    """
+    Sparsely-Gated Mixture of Experts with GELU
+    """
+    # Router decides which experts to use
+    router_logits = torch.nn.functional.linear(x, router_weight)
+    router_probs = torch.softmax(router_logits, dim=-1)
+
+    # Only top-k experts active
+    topk_probs, topk_indices = torch.topk(router_probs, k=num_experts, dim=-1)
+
+    # Gated activation
+    gate = torch.nn.functional.gelu(x)
+    return gate * topk_probs
+```
+
+## Activation Function Properties
+
+### Mathematical Properties
+```python
+# Compare activation properties
+def analyze_activation(act_fn, name):
+    """
+    Analyze: smoothness, monotonicity, range
+    """
+    x = torch.linspace(-5, 5, 1000)
+    y = act_fn(x)
+
+    # Derivative
+    grad = torch.autograd.grad(y.sum(), x, create_graph=True)[0]
+
+    return {
+        'name': name,
+        'smooth': not torch.isnan(grad).any(),  # No discontinuities
+        'monotonic': (grad >= 0).all().item(),  # Always increasing
+        'negative_values': (y < 0).any().item(),  # Goes below zero
+        'bounded': (y.abs() < 10).all().item(),  # Bounded range
+    }
+
+# Compare
+activations = {
+    'ReLU': lambda x: torch.maximum(x, torch.zeros_like(x)),
+    'GELU': nn.GELU(),
+    'Swish': lambda x: x * torch.sigmoid(x),
+}
+
+for name, fn in activations.items():
+    props = analyze_activation(fn, name)
+    print(props)
+```
+
+## Choosing the Right Activation
+
+### Guidelines
+```
+For vanilla transformer:           GELU or GeLU
+For large language models:         SwiGLU (1.5% gain)
+For MoE models:                    SMGeLU
+For limited compute:               ReLU or GELU
+For best performance:              SwiGLU (if compute allows)
+```
+
+### Performance Trade-offs
+```
+Activation    Compute  Memory    Perplexity
+─────────────────────────────────────────────
+ReLU          1x       1x        Baseline
+GELU          1.2x     1x        -0.3
+Swish         1.3x     1x        -0.5
+SwiGLU        2x       1x        -0.8
+
+All values relative to ReLU baseline
+Negative perplexity = improvement
+```
+
+---
+
+## Next Steps
+
+- Continue with: **[3302: Normalization Layers](./3302-Normalization-Layers.md)**
+- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+
+---
+
+**Related Documents:**
+- [3302: Normalization Layers](./3302-Normalization-Layers.md)
+- [3101: Self-Attention](../3100-attention/3101-Self-Attention-DeepDive.md)
+- [5101: LoRA Logic](../../phase5-finetuning/5100-peft/5101-LoRA-Logic.md)
+
+**Experiment Template:** `experiments/EXP_3301_ACTIVATIONS.md`

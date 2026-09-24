@@ -1,0 +1,342 @@
+# PROJECT-OMEGA Complete Docker Compose Configuration
+# Full deployment on Synology DS720+ NAS + GPU-enabled Proxmox VM
+# Network: 2.5Gbps Star Topology (192.168.1.x)
+# GPU: RTX 2080 Ti (11GB VRAM) via Thunderbolt 3
+#
+# ⚠️ SECURITY WARNING: Before deploying to production:
+# 1. Copy .env.example to .env
+# 2. Change ALL default passwords in .env
+# 3. Generate secure random passwords (use: openssl rand -base64 32)
+# 4. Review security settings in configs/docs/ssl-tls-setup.md
+# 5. Enable SSL/TLS for all services
+# 6. Review firewall rules and network security
+
+version: "3.8"
+
+services:
+  # ============================================
+  # LLM INFERENCE SERVICES (GPU VM)
+  # ============================================
+  # Note: These services should run on the GPU-enabled Proxmox VM
+  # Move them to a separate docker-compose-gpu.yml for GPU VM deployment
+
+  # ============================================
+  # QDRANT - Vector Database
+  # ============================================
+  qdrant:
+    image: qdrant/qdrant:v1.12.0
+    container_name: project-omega-qdrant
+    ports:
+      - "6333:6333"  # gRPC
+      - "6334:6334"  # HTTP
+    volumes:
+      - ./data/qdrant:/qdrant/storage
+    environment:
+      - QDRANT__SERVICE__GRPC_PORT=6333
+      - QDRANT__SERVICE__HTTP_PORT=6334
+      - QDRANT__STORAGE__OPTIMIZER_CPU_BUDGET=4
+      - QDRANT__LOG_LEVEL=INFO
+    restart: unless-stopped
+    networks:
+      - project-omega-net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:6334/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # ============================================
+  # NEO4J - Knowledge Graph
+  # ============================================
+  neo4j:
+    image: neo4j:5.15-community
+    container_name: project-omega-neo4j
+    ports:
+      - "7474:7474"  # HTTP
+      - "7687:7687"  # Bolt
+    volumes:
+      - ./data/neo4j/data:/data
+      - ./data/neo4j/logs:/logs
+      - ./data/neo4j/plugins:/plugins
+      - ./data/neo4j/import:/import
+      - ./data/neo4j/conf:/conf
+    environment:
+      - NEO4J_AUTH=${NEO4J_AUTH:-neo4j/$(openssl rand -base64 16 | head -c 16)}
+      - NEO4J_PLUGINS=["apoc"]
+      - NEO4J_dbms_memory_heap_initial__size=512m
+      - NEO4J_dbms_memory_heap_max__size=2G
+      - NEO4J_dbms_memory_pagecache_size=512m
+      - NEO4J_dbms_security_procedures_unrestricted=apoc.*
+      - NEO4J_dbms_security_procedures_allowlist=apoc.*
+      - NEO4J_dbms_connector_bolt_advertised__address=:7687
+      - NEO4J_dbms_connector_http_advertised__address=:7474
+    restart: unless-stopped
+    networks:
+      - project-omega-net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:7474"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+
+  # ============================================
+  # REDIS - Caching Layer
+  # ============================================
+  redis:
+    image: redis:7-alpine
+    container_name: project-omega-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./data/redis:/data
+    command: redis-server --appendonly yes --maxmemory 512mb --maxmemory-policy allkeys-lru
+    restart: unless-stopped
+    networks:
+      - project-omega-net
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  # ============================================
+  # MONITORING STACK
+  # ============================================
+
+  # Prometheus - Metrics Collection
+  prometheus:
+    image: prom/prometheus:v2.50.0
+    container_name: project-omega-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./monitoring/prometheus/rules:/etc/prometheus/rules:ro
+      - ./data/prometheus:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--storage.tsdb.retention.time=30d'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+    restart: unless-stopped
+    networks:
+      - project-omega-net
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:9090/-/healthy"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Grafana - Visualization
+  grafana:
+    image: grafana/grafana:10.3.0
+    container_name: project-omega-grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./data/grafana:/var/lib/grafana
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=omega_change_me
+      - GF_INSTALL_PLUGINS=redis-datasource
+      - GF_SERVER_ROOT_URL=http://localhost:3000
+      - GF_ANALYTICS_REPORTING_ENABLED=false
+      - GF_ANALYTICS_CHECK_FOR_UPDATES=false
+    restart: unless-stopped
+    networks:
+      - project-omega-net
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    depends_on:
+      - prometheus
+
+  # Loki - Log Aggregation
+  loki:
+    image: grafana/loki:2.9.10
+    container_name: project-omega-loki
+    ports:
+      - "3100:3100"
+    volumes:
+      - ./monitoring/loki/loki.yml:/etc/loki/local-config.yaml:ro
+      - ./data/loki:/loki
+    command: -config.file=/etc/loki/local-config.yaml
+    restart: unless-stopped
+    networks:
+      - project-omega-net
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3100/ready"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Promtail - Log Collector
+  promtail:
+    image: grafana/promtail:2.9.10
+    container_name: project-omega-promtail
+    volumes:
+      - ./monitoring/promtail/promtail.yml:/etc/promtail/config.yml:ro
+      - /var/log:/var/log:ro
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+    command: -config.file=/etc/promtail/config.yml
+    restart: unless-stopped
+    networks:
+      - project-omega-net
+    depends_on:
+      - loki
+
+  # Tempo - Distributed Tracing
+  tempo:
+    image: grafana/tempo:2.4.0
+    container_name: project-omega-tempo
+    ports:
+      - "3200:3200"  # Tempo
+      - "4317:4317"  # OTLP gRPC
+      - "4318:4318"  # OTLP HTTP
+    volumes:
+      - ./monitoring/tempo/tempo.yml:/etc/tempo.yaml:ro
+      - ./data/tempo:/tmp/tempo
+    command: -config.file=/etc/tempo.yaml
+    restart: unless-stopped
+    networks:
+      - project-omega-net
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3200/status"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # cAdvisor - Container Metrics
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:v0.48.0
+    container_name: project-omega-cadvisor
+    ports:
+      - "8081:8080"
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
+    privileged: true
+    devices:
+      - /dev/kmsg
+    restart: unless-stopped
+    networks:
+      - project-omega-net
+    depends_on:
+      - prometheus
+
+  # Node Exporter - System Metrics
+  node-exporter:
+    image: prom/node-exporter:v1.7.0
+    container_name: project-omega-node-exporter
+    ports:
+      - "9100:9100"
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.sysfs=/host/sys'
+      - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
+    restart: unless-stopped
+    networks:
+      - project-omega-net
+
+  # Redis Exporter - Redis Metrics
+  redis-exporter:
+    image: oliver006/redis_exporter:v1.56.0
+    container_name: project-omega-redis-exporter
+    ports:
+      - "9121:9121"
+    environment:
+      - REDIS_ADDR=redis://redis:6379
+    restart: unless-stopped
+    networks:
+      - project-omega-net
+    depends_on:
+      - redis
+
+  # ============================================
+  # REVERSE PROXY
+  # ============================================
+  nginx:
+    image: nginx:alpine
+    container_name: project-omega-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+      - ./nginx/logs:/var/log/nginx
+    depends_on:
+      - qdrant
+      - neo4j
+      - redis
+      - grafana
+      - prometheus
+    restart: unless-stopped
+    networks:
+      - project-omega-net
+
+  # ============================================
+  # UTILITY SERVICES
+  # ============================================
+
+  # Portainer - Container Management
+  portainer:
+    image: portainer/portainer-ce:2.19.4
+    container_name: project-omega-portainer
+    ports:
+      - "9000:9000"
+      - "9443:9443"
+    volumes:
+      - ./data/portainer:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped
+    networks:
+      - project-omega-net
+
+  # Dozzle - Container Logs Viewer
+  dozzle:
+    # ⚠️ PIN SPECIFIC VERSION in production! Check https://github.com/amir20/dozzle/releases
+    image: amir20/dozzle:v8.8.3
+    container_name: project-omega-dozzle
+    ports:
+      - "8888:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - DOZZLE_LEVEL=info
+      - DOZZLE_TAILSIZE=300
+    restart: unless-stopped
+    networks:
+      - project-omega-net
+
+networks:
+  project-omega-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+          gateway: 172.20.0.1
+
+volumes:
+  qdrant-data:
+  neo4j-data:
+  redis-data:
+  prometheus-data:
+  grafana-data:
+  loki-data:
+  tempo-data:
+  portainer-data:

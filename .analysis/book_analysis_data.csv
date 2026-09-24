@@ -1,0 +1,53 @@
+Category,Files,Word Count,Percentage,B5 Pages,A5 Pages,Content Type
+Volumes,7,27926,2.8%,93,124,Summaries
+Phases,245,541566,55.0%,1805,2474,Core Content
+Experiments,44,79086,8.0%,263,361,Hands-on
+Meta Files,19,54770,5.6%,182,249,Reference
+Tutorials,6,16700,1.7%,55,76,Learning
+Cheat Sheets,11,35444,3.6%,118,162,Reference
+Projects,10,35092,3.6%,117,161,Hands-on
+Labs,17,18662,1.9%,62,85,Hands-on
+Use Cases,4,15738,1.6%,52,71,Application
+Industry,3,9360,1.0%,31,43,Context
+Comparisons,3,8024,0.8%,27,37,Analysis
+Solutions,2,5180,0.5%,17,23,Application
+Notebooks,20,0,0%,0,0,Interactive
+TOTALS,427,984650,100%,3282,4219,All Content
+
+Phase,Files,Word Count,B5 Pages,A5 Pages,Code Density,Topics
+Phase 1 Infrastructure,39,98472,328,462,HIGH,Network,Virt,K8s,LLMops,Monitor
+Phase 2 AI Foundations,32,93066,310,435,MEDIUM,DL,NLP,Data,Eval
+Phase 3 LLM Internals,34,61478,205,287,HIGH,Attention,Transformers,GPT
+Phase 4 Quantization,37,67534,225,315,HIGH,GGUF,EXL2,AWQ,GPTQ
+Phase 5 Model Adaptation,32,56464,188,263,HIGH,LoRA,QLoRA,DPO,Align
+Phase 6 RAG,37,75810,252,353,MEDIUM-HIGH,RAG,Vector DB,Search,Graph
+Phase 7 Production,34,88742,295,413,MEDIUM,Agents,Memory,Security,Deploy
+TOTALS,245,541566,1805,2528,VARIES,All Phases
+
+Format,Words Per Page,Text Pages,With Code (1.5x),With Diagrams (1.8x),Recommendation
+A5 (14x21cm),350,2813,4219,5063,Portable but many volumes
+B5 (17x25cm),450,2188,3282,3938,RECOMMENDED - Technical book
+A4 (21x30cm),500,1969,2953,3544,Workbook - desk reference
+
+Print Decision,Content,Pages,Reason,Alternative
+PRINT,Volume Summaries,93,Overview and navigation,Keep in print
+PRINT,Phase Concepts,1805,Core learning content,Keep in print
+PRINT,Theory and Math,~400,Foundational knowledge,Keep in print
+PRINT,Architecture Diagrams,~100,Visual learning,Keep in print
+PRINT,Best Practices,~200,Production guidance,Keep in print
+PRINT,Answer Keys,~100,Assessment support,Keep in print
+DIGITAL,Notebooks,160,Interactive execution,Downloadable files
+DIGITAL,Experiments,260,Hands-on coding,QR code links
+DIGITAL,Labs,60,Environment setup,Separate workbook
+DIGITAL,Config Files,0,Version-specific,GitHub repo
+DIGITAL,Scripts,0,Executable code,GitHub repo
+
+Volume,Pages,Thickness,Binding,Cost (POD),Cost (Offset),Price,Topics
+Volume 1,250,0.65cm,Perfect,$10-15,$6-8,$24.99-29.99,Infrastructure
+Volume 2,280,0.73cm,Perfect,$11-16,$7-9,$26.99-31.99,Foundations
+Volume 3,200,0.52cm,Perfect,$9-13,$5-7,$22.99-27.99,LLM Internals
+Volume 4,220,0.57cm,Perfect,$9-14,$6-8,$23.99-28.99,Quantization
+Volume 5,190,0.49cm,Perfect,$8-12,$5-7,$21.99-26.99,Fine-Tuning
+Volume 6,250,0.65cm,Perfect,$10-15,$6-8,$24.99-29.99,RAG
+Volume 7,290,0.75cm,Perfect,$11-17,$7-9,$27.99-32.99,Production
+TOTAL,1680,4.36cm,Varies,$68-102,$42-56,$169.99-199.99,Complete Set

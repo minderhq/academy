@@ -1,0 +1,71 @@
+MIT License
+
+Copyright (c) 2026 PROJECT-OMEGA Contributors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+## Additional Permissions
+
+PROJECT-OMEGA is an educational platform. In addition to the MIT License terms:
+
+1. **Educational Use**: You are free to use all materials for educational purposes,
+   including teaching, training, and workshops.
+
+2. **Attribution**: While not required by the MIT License, attribution to PROJECT-OMEGA
+   is appreciated when using materials in derivative works or educational settings.
+
+3. **Commercial Use**: You may use this content in commercial training programs,
+   courses, or educational products.
+
+4. **Modification**: You are encouraged to improve and extend these materials
+   for your specific needs.
+
+## Third-Party Licenses
+
+This project may incorporate or reference third-party materials with their own
+licenses:
+- Docker images have their respective licenses
+- Python packages follow their own licensing terms
+- Code examples from official documentation may have specific attribution
+  requirements
+
+Please respect all third-party licenses and attributions.
+
+## Support and Contributions
+
+For questions, contributions, or issues, please visit:
+https://github.com/your-username/PROJECT-OMEGA
+
+---
+
+## Disclaimer
+
+This documentation is provided "as is" for educational purposes. The authors and
+contributors make no warranties about the completeness, reliability, or accuracy
+of the information. Any action you take upon the information in this documentation
+is strictly at your own risk. The authors will not be liable for any losses and/or
+damages in connection with the use of this documentation.
+
+---
+
+**Project**: PROJECT-OMEGA - Neural-Architect Master Documentation
+**Version**: 4.1
+**Last Updated**: 2026-02-08

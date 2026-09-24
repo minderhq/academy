@@ -1,0 +1,91 @@
+# Environment Setup for RAG Notebooks (NB-601, NB-602, NB-603)
+# Create conda environment: conda env create -f environment-rag.yml
+# Update environment: conda env update -f environment-rag.yml
+# Activate environment: conda activate project-omega-rag
+
+name: project-omega-rag
+
+channels:
+  - pytorch
+  - huggingface
+  - conda-forge
+  - defaults
+
+dependencies:
+  # Python version
+  - python=3.11
+
+  # PyTorch ecosystem
+  - pytorch=2.1.0
+  - torchvision=0.16.0
+  - torchaudio=2.1.0
+
+  # Hugging Face ecosystem
+  - transformers=4.35.0
+  - sentence-transformers=2.2.0
+  - datasets=2.14.0
+
+  # Vector databases
+  - pip
+  - pip:
+      - qdrant-client=1.6.0
+      - faiss-cpu=1.7.4  # Use faiss-gpu for GPU support
+      - chromadb=0.4.15
+      - pinecone-client=2.2.0
+      - weaviate-client=3.24.0
+
+  # LLM frameworks
+  - pip:
+      - langchain=0.0.330
+      - langchain-community=0.0.10
+      - llama-index=0.8.0
+      - llamaindex-community
+
+  # Web scraping
+  - pip:
+      - beautifulsoup4=4.12.0
+      - lxml=4.9.0
+      - html2text=2020.1.16
+      - trafilatura=1.6.0
+
+  # Core ML libraries
+  - numpy=1.24.0
+  - scipy=1.11.0
+  - scikit-learn=1.3.0
+  - pandas=2.0.0
+
+  # Visualization
+  - matplotlib=3.7.0
+  - seaborn=0.12.0
+
+  # Jupyter
+  - jupyter=1.0.0
+  - jupyterlab=4.0.0
+  - ipykernel=6.25.0
+
+  # Utilities
+  - tqdm=4.66.0
+  - requests=2.31.0
+  - python-dotenv=1.0.0
+
+# Verification:
+# After activation, verify installation:
+#   python -c "import qdrant_client; print('Qdrant client OK')"
+#   python -c "import sentence_transformers; print('Sentence transformers OK')"
+#   python -c "import chromadb; print('ChromaDB OK')"
+
+# Hardware Requirements:
+# - CPU: 4+ cores recommended
+# - RAM: 16GB+ recommended
+# - GPU: Optional but recommended for embeddings
+# - Storage: 50GB+ free space for vector databases
+
+# Service Requirements:
+# - Qdrant: docker run -p 6333:6333 qdrant/qdrant
+# - ChromaDB: pip install chromadb (runs locally)
+# - Neo4j (for GraphRAG): docker run -p 7474:7474 -p 7687:7687 neo4j:5.15-community
+
+# Notes:
+# - For production RAG, use dedicated vector database instances
+# - For large-scale RAG, consider GPU-accelerated FAISS (faiss-gpu)
+# - For GraphRAG, Neo4j is required (see 6301-Neo4j-and-Knowledge-Graphs.md)

@@ -1,0 +1,354 @@
+# PROJECT-OMEGA Istio Service Mesh Configuration
+# For microservices observability and security
+
+# Global settings
+global:
+  # Enable Istio injection for all namespaces
+  enabled: true
+
+  # Istio namespace
+  istioNamespace: istio-system
+
+  # Proxy configuration
+  proxy:
+    # Proxy resources
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+      limits:
+        cpu: 500m
+        memory: 256Mi
+
+    # Log level
+    logLevel: info
+
+    # Proxy configuration
+    componentLogLevel: "misc:error"
+
+    # Hold application until proxy is ready
+    holdApplicationUntilProxyStarts: true
+
+# Base configuration
+base:
+  # Enable validation webhook
+  enableIstioConfigCRDs: true
+  validateURL: ""
+
+  # Enable API server auto-configuration
+  enableCRDTemplates: true
+
+  # Default pod disruption budget
+  defaultPodDisruptionBudget:
+    enabled: true
+
+    # Minimum available pods
+    minAvailable: 1
+
+# Pilot configuration
+pilot:
+  # Autoscale enabled
+  autoscaleEnabled: false
+
+  # Replica count
+  replicaCount: 1
+
+  # Resources
+  resources:
+    requests:
+      cpu: 500m
+      memory: 2048Mi
+
+  # Envoy stats configuration
+  env:
+    PILOT_ENABLE_STATUS: true
+    PILOT_ENABLE_CRD_VALIDATION: true
+
+  # Trace sampling (100% for development)
+  traceSampling: 100.0
+
+# Gateways configuration
+gateways:
+  # Istio ingress gateway
+  istio-ingressgateway:
+    # Enable gateway
+    enabled: true
+
+    # Replica count
+    replicaCount: 1
+
+    # Autoscaling
+    autoscaleEnabled: true
+    autoscaleMin: 1
+    autoscaleMax: 5
+    autoscaleTargetCPUUtilizationPercentage: 80
+
+    # Resources
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+      limits:
+        cpu: 2000m
+        memory: 512Mi
+
+    # Ports
+    ports:
+      - name: status-port
+        port: 15021
+        targetPort: 15021
+      - name: http2
+        port: 80
+        targetPort: 8080
+      - name: https
+        port: 443
+        targetPort: 8443
+      - name: grpc
+        port: 15443
+        targetPort: 15443
+
+    # Service annotations
+    serviceAnnotations:
+      service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+
+  # Istio egress gateway
+  istio-egressgateway:
+    enabled: true
+    replicaCount: 1
+
+# Sidecar injector configuration
+sidecarInjectorWebhook:
+  # Enable webhook
+  enabled: true
+
+  # Replica count
+  replicaCount: 1
+
+  # Resources
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+
+  # Inject sidecar by default
+  enableNamespacesByDefault: true
+
+  # Sidecar injection template
+  templates: {}
+
+# telemetry configuration
+telemetry:
+  # Enable v2 telemetry
+  v2:
+    enabled: true
+
+# Policy configuration
+policy:
+  # Enable CheckPolicy
+  enabled: true
+
+  # Replica count
+  replicaCount: 1
+
+  # Resources
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+
+# Telemetry v2 configuration
+telemetryV2:
+  enabled: true
+
+# Prometheus configuration
+prometheus:
+  # Enable Prometheus
+  enabled: true
+
+  # Scrape interval
+  scrapeInterval: 15s
+
+  # Resources
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+
+# Grafana configuration
+grafana:
+  # Enable Grafana
+  enabled: true
+
+  # Resources
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+
+  # Persistence
+  persistence:
+    enabled: true
+    storageClassName: nfs-client
+    size: 10Gi
+
+# Kiali configuration
+kiali:
+  # Enable Kiali
+  enabled: true
+
+  # Replica count
+  replicaCount: 1
+
+  # Resources
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+
+  # Dashboard configuration
+  dashboard:
+    enabled: true
+
+  # Grafana URL
+  externalServices:
+    grafana:
+      enabled: true
+      url: "http://grafana:3000"
+
+    prometheus:
+      enabled: true
+      url: "http://prometheus:9090"
+
+# Tracing configuration
+tracing:
+  # Enable tracing
+  enabled: true
+
+  # Sampling rate
+  sampling: 100.0
+
+  # Custom tracing provider
+  customProvider: ""
+
+# Mesh configuration
+meshConfig:
+  # Enable access logging
+  accessLogFile: /dev/stdout
+
+  # Access log format
+  accessLogEncoding: JSON
+
+  # Enable auto mTLS
+  enableAutoMtls: true
+
+  # Mutual TLS configuration
+  mtls:
+    # Auto mTLS enabled
+    enabled: true
+
+  # Connect timeout
+  connectTimeout: 10s
+
+  # Proxy configuration
+  defaultConfig:
+    # Discovery rate
+    discoveryAddress: istiod.istio-system.svc:15012
+
+    # Proxy admin port
+    proxyAdminPort: 15000
+
+    # Service cluster
+    serviceCluster: "{{.ServiceName}}"
+
+    # Tracing configuration
+    tracing:
+      # Sampling rate
+      sampling: 100.0
+
+      # Custom tags
+      custom_tags:
+        # Pod name
+        pod_name:
+          environment:
+            name: POD_NAME
+            defaultValue: "unknown"
+
+        # Pod namespace
+        pod_namespace:
+          environment:
+            name: POD_NAMESPACE
+            defaultValue: "unknown"
+
+    # Stats configuration
+    statsdUdpAddress: ""
+
+    # Metrics configuration
+    proxyStatsMatcher:
+      # Include all metrics
+      inclusionRegex: ".*"
+
+      # Exclude specific metrics
+      inclusionPrefixes:
+        - "mixer"
+        - "python"
+        - "go"
+        - "rust"
+        - "component"
+
+    # Remote address configuration
+    remoteLocalAddress:
+      - "127.0.0.1"
+
+    # Logging level
+    logging:
+      level: info
+
+# Component configuration
+components:
+  # Pilot
+  pilot:
+    enabled: true
+
+  # Policy
+  policy:
+    enabled: true
+
+  # Telemetry
+  telemetry:
+    enabled: true
+
+  # Citadel (security)
+  citadel:
+    enabled: true
+
+  # Galley
+  galley:
+    enabled: true
+
+  # Sidecar injector
+  sidecarInjector:
+    enabled: true
+
+  # Ingress gateways
+  ingressGateways:
+    - name: istio-ingressgateway
+      enabled: true
+
+  # Egress gateways
+  egressGateways:
+    - name: istio-egressgateway
+      enabled: true
+
+# Multi-cluster configuration
+multiCluster:
+  # Enable multi-cluster
+  enabled: false
+
+  # Cluster name
+  clusterName: ""
+
+# Overlay configuration
+overlay: {}
+
+# Profile
+profile: default
