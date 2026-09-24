@@ -3,13 +3,13 @@ Document ID: 4405
 Title: Sparsity + Quantization
 Phase: 4
 Module: 4400
-Last Updated: 2026-09-24
-Status: Review
+Last Updated: 2026-09-25
+Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
-Prerequisites: 4101, 4401
-Related: 4402, 4406
-Tags: ['quantization', 'sparsity', 'optimization']
+Prerequisites: See module README
+Related: See module README
+Tags: ['quantization', 'sparsity', 'pruning', 'compression', 'inference']
 ---
 
 # 4405: Sparsity + Quantization
@@ -18,13 +18,12 @@ Tags: ['quantization', 'sparsity', 'optimization']
 
 - [Learning Objectives](#learning-objectives)
 - [Abstract](#abstract)
-- [Why Combine Sparsity + Quantization?](#why-combine-sparsity-quantization)
-- [Types of Sparsity](#types-of-sparsity)
-- [Quantization for Sparse Models](#quantization-for-sparse-models)
-- [Sparsity-Aware Quantization Techniques](#sparsity-aware-quantization-techniques)
-- [Hardware Acceleration](#hardware-acceleration)
+- [Does Sparsity Pay? Do the Math First](#does-sparsity-pay-do-the-math-first)
+- [The Three Sparsity Regimes](#the-three-sparsity-regimes)
+- [Hardware Support: The Honest Table](#hardware-support-the-honest-table)
+- [LLM Pruning Methods That Ship](#llm-pruning-methods-that-ship)
+- [Combining with Quantization, Correctly](#combining-with-quantization-correctly)
 - [Best Practices](#best-practices)
-- [Results Reference](#results-reference)
 - [References](#references)
 
 ---
@@ -33,417 +32,313 @@ Tags: ['quantization', 'sparsity', 'optimization']
 
 After completing this lesson, you will be able to:
 
-- Explain the reasoning behind Why Combine Sparsity + Quantization
-- Explain Types of Sparsity
-- Explain Quantization for Sparse Models
-- Explain Sparsity-Aware Quantization Techniques
-- Explain Hardware Acceleration
-- Explain Best Practices
+- Compute the CSR storage break-even and explain why "50% sparse = 50% smaller" is false
+- Choose between unstructured, semi-structured (2:4), and structured pruning from the deployment target
+- Run one-shot magnitude-activation pruning (Wanda-style) on a transformer without retraining
+- Implement 2:4 semi-structured sparsity and know exactly which hardware accelerates it (and which does not)
+- Order a prune → recover → quantize pipeline and avoid the in-place fake-quant corruption bug
 
 ---
 
 ## Abstract
 
-Combining sparsity (pruning) with quantization achieves extreme compression while maintaining model accuracy.
+Sparsity (zeros in the weight matrix) and quantization (fewer bits per weight) attack compression from different directions, and they compose — but not as simply as "multiply the savings." This lesson does the storage math first, because the index overhead of sparse formats and the accelerating gains of low-bit formats interact in ways that flip conclusions: 50% unstructured sparsity on top of INT4 can be a net *loss*. From there: the three sparsity regimes (unstructured, 2:4 semi-structured, structured), the hardware that actually accelerates each, the LLM pruning methods that ship in production (Wanda, SparseGPT, structured depth pruning), and the correct order of operations when combining pruning with [4401](./4401-GPTQ.md)-style quantization.
 
-## Why Combine Sparsity + Quantization?
+## Does Sparsity Pay? Do the Math First
 
-**Synergistic Effects:**
-- **Sparsity:** Removes redundant weights (0s)
-- **Quantization:** Reduces bit width of remaining weights
-- **Result:** 10-50x compression with minimal accuracy loss
+Sparse storage does not store zeros — it stores the nonzero values *plus indices to locate them*. That index tax is the whole story:
 
 ```text
-Dense FP32:      100% size, 100% accuracy
-Sparse INT8:      25% size,  98% accuracy
-Sparse INT4:      12% size,  95% accuracy
+Storage per weight
+
+dense FP16:                 16 bits
+CSR (value 16 + col 32):    48 bits PER NONZERO
+
+break-even density d (where sparse storage = dense storage):
+  d = value_bits / (value_bits + index_bits)
+
+format           break-even density     sparsity needed to WIN
+FP16 + CSR32     16/48  = 33%           > 67% sparsity
+FP16 + CSR16     16/32  = 50%           > 50% sparsity
+INT4  + CSR32    4/36   = 11%           > 89% sparsity
+2:4 packed       ~44% effective         exactly 50% (fixed pattern)
+
+Consequences
+1. "50% unstructured sparsity = half the memory" is FALSE in
+   CSR32 - you PAY MORE until past 67%
+2. The better your quantization, the more sparsity has to give:
+   on top of INT4 (4401), sparsity is nearly irrelevant for
+   storage until ~90%
+3. Sparsity's real winning card is SPEED on specific hardware
+   (2:4 tensor cores) or a genuinely smaller model (structured)
+   - not raw bit savings
 ```
 
-## Types of Sparsity
+```text
+Speed reality, per regime
 
-### 1. Unstructured Sparsity
+unstructured 50%     no GPU speedup (irregular access defeats
+                     tiling); storage-only, and see above
+2:4 semi-structured  2x math throughput on Ampere+ sparse
+                     tensor cores; real-world end-to-end ~1.4-1.8x
+structured (drop     genuine dense speedup - the model is
+heads/layers)        literally smaller and denser
+```
 
-Random individual weights become zero:
+## The Three Sparsity Regimes
+
+### Unstructured: Any Weights to Zero
 
 ```python
-import torch.nn.utils.prune as prune
+import torch
+import torch.nn as nn
+from torch.nn.utils import prune
 
-def prune_model(model, sparsity=0.5):
-    """Apply unstructured L1 pruning."""
-    for name, module in model.named_modules():
-        if isinstance(module, (nn.Linear, nn.Conv2d)):
-            prune.l1_unstructured(
-                module,
-                name='weight',
-                amount=sparsity
-            )
-    return model
+model = ...  # any model with nn.Linear layers
 
-# 50% of weights become zero
-model = prune_model(model, sparsity=0.5)
+for name, module in model.named_modules():
+    if isinstance(module, nn.Linear):
+        prune.l1_unstructured(module, name="weight", amount=0.5)
+        # removes the 50% smallest-magnitude weights
 ```
 
-**Advantages:**
-- Easy to implement
-- Good accuracy preservation
-- Flexible sparsity levels
-
-**Challenges:**
-- Irregular memory access
-- No speedup without special hardware
-- Difficult to quantize efficiently
-
-### 2. Structured Sparsity
-
-Remove entire structures (channels, heads, layers):
-
-```python
-def prune_structured(model, sparsity=0.3):
-    """Remove entire output channels."""
-    for module in model.modules():
-        if isinstance(module, nn.Conv2d):
-            prune.ln_structured(
-                module,
-                name='weight',
-                amount=sparsity,
-                n=2,  # L2 norm
-                dim=0  # Prune channels
-            )
-    return model
+```text
+What you actually got
+- a weight_mask buffer next to the weight (pruning in PyTorch
+  is MASKED, not removed - run prune.remove(module, "weight")
+  to bake it in)
+- accuracy: at 50%, small models recover with fine-tuning
+  (iterative magnitude pruning + rewinding); LLMs at 50%
+  UNSTRUCTURED degrade badly one-shot
+- deployment value: none without sparse runtime support - on
+  GPUs, dense kernels beat sparse gather/scatter until very
+  high sparsity
+Verdict: a research baseline; skip for LLM deployment
 ```
 
-**Types:**
-- **Channel pruning:** Remove entire output channels
-- **Filter pruning:** Remove convolution filters
-- **Head pruning:** Remove attention heads
-- **Layer pruning:** Remove entire layers
+### Semi-Structured 2:4: The Hardware-Aligned Pattern
 
-**Advantages:**
-- Regular memory patterns
-- Hardware acceleration possible
-- Better for quantization
-
-### 3. Semi-Structured Sparsity (2:4)
-
-Fixed pattern: 2 zeros out of every 4 elements:
+Exactly 2 nonzeros per block of 4 (≤50% sparsity), which NVIDIA's sparse Tensor Cores execute at 2x math throughput:
 
 ```python
 import torch
 
-def apply_2to4_sparsity(tensor):
-    """Apply 2:4 semi-structured sparsity pattern."""
-    # Process in blocks of 4
-    original_shape = tensor.shape
-    tensor = tensor.view(-1, 4)
+@torch.no_grad()
+def apply_2to4_(weight: torch.Tensor) -> torch.Tensor:
+    """Keep the 2 largest-magnitude entries of every block of 4
+    along the last dim; zero the rest. In-place."""
+    flat = weight.reshape(-1, 4)
+    _, idx = torch.topk(flat.abs(), k=2, dim=1, largest=True)
+    mask = torch.zeros_like(flat, dtype=torch.bool)
+    mask.scatter_(1, idx, True)
+    weight.reshape(-1, 4)[~mask] = 0
+    return weight
 
-    # Find smallest 2 values in each block of 4
-    _, indices = torch.topk(torch.abs(tensor), k=2, dim=1, largest=False)
+# convert to the accelerated layout for Ampere+ execution:
+# (requires a 2:4-masked tensor)
+from torch.sparse import to_sparse_semi_structured
 
-    # Create mask
-    mask = torch.ones_like(tensor)
-    mask.scatter_(1, indices, 0)
-
-    # Apply mask
-    result = tensor * mask
-    return result.view(original_shape)
+w2to4 = apply_2to4_(linear.weight)
+linear.weight = torch.nn.Parameter(to_sparse_semi_structured(w2to4))
 ```
 
-**Hardware Support:**
-- NVIDIA Ampere+ (Tensor Cores)
-- Intel AVX-512 VNNI
-- Apple Neural Engine
-
-## Quantization for Sparse Models
-
-### 1. Post-Training Quantization
-
-```python
-def quantize_sparse_model(model, calibration_loader):
-    """Quantize sparse model with calibration."""
-
-    # 1. Identify sparse weights
-    sparse_mask = {}
-    for name, param in model.named_parameters():
-        if 'weight' in name:
-            sparse_mask[name] = (param.data == 0)
-
-    # 2. Collect activation statistics
-    activation_stats = collect_stats(model, calibration_loader)
-
-    # 3. Compute scale factors for non-zero weights
-    scales = {}
-    for name, param in model.named_parameters():
-        if 'weight' in name:
-            # Only consider non-zero weights
-            nonzero = param.data[~sparse_mask[name]]
-            scales[name] = compute_scale(nonzero)
-
-    # 4. Quantize
-    for name, param in model.named_parameters():
-        if 'weight' in name:
-            param.data = quantize(
-                param.data,
-                scales[name],
-                sparse_mask[name]
-            )
-
-    return model
+```text
+Storage of 2:4: per block of 4 -> 2 values (full precision)
++ 2-bit index = (2*v + 2)/4 bits per weight
+FP16: 8.5 bits (1.9x smaller); 2x math throughput
+Caveat: the format conversion + metadata means end-to-end
+speedup lands at ~1.4-1.8x, and only on Ampere (2020)+
 ```
 
-### 2. Quantization-Aware Training with Sparsity
+### Structured: Remove Whole Units
 
-```python
-class SparseQuantAwareTraining:
-    def __init__(self, model, sparsity=0.5):
-        self.model = model
-        self.sparsity = sparsity
-        self.pruning_schedule = self._create_schedule()
+Channels, attention heads, MLP intermediate dims, or entire **layers** — the result is a genuinely smaller dense model:
 
-    def _create_schedule(self):
-        """Gradual pruning schedule."""
-        return {
-            0: 0.0,     # Start with no pruning
-            100: 0.2,   # 20% at step 100
-            500: 0.5,   # 50% at step 500
-            1000: 0.5   # Maintain 50%
-        }
-
-    def step(self, current_step, optimizer):
-        """Training step with pruning and quantization."""
-
-        # 1. Update sparsity level
-        target_sparsity = self._get_sparsity(current_step)
-
-        # 2. Apply pruning
-        if current_step % 100 == 0:
-            self._prune_model(target_sparsity)
-
-        # 3. Forward with fake quantization
-        with torch.cuda.amp.autocast():
-            output = self._fake_quant_forward(self.model)
-
-        # 4. Backward
-        loss.backward()
-
-        # 5. Zero out gradients for pruned weights
-        self._mask_gradients()
-
-        # 6. Optimizer step
-        optimizer.step()
-
-    def _prune_model(self, sparsity):
-        """Apply magnitude-based pruning."""
-        for name, param in self.model.named_parameters():
-            if 'weight' in name:
-                # Compute threshold
-                weight_abs = torch.abs(param.data)
-                threshold = torch.quantile(
-                    weight_abs.flatten(),
-                    sparsity
-                )
-
-                # Create and apply mask
-                mask = (weight_abs > threshold).float()
-                param.data *= mask
-
-    def _fake_quant_forward(self, model):
-        """Forward pass with fake quantization."""
-        # Apply fake quantization to weights
-        for name, module in model.named_modules():
-            if hasattr(module, 'weight'):
-                # Fake quantize
-                w = module.weight.data
-                scale = w.abs().max() / 127
-                module.weight.data = torch.round(w / scale) * scale
-
-        return model
+```text
+Granularity ladder for transformers (coarse -> fine)
+- layer / depth pruning    LLM-Pruner, Sheared-LLaMA: drop whole
+                           blocks; recover with brief continued
+                           pretraining. The only regime that
+                           scales a 7B -> ~4-5B honestly
+- head pruning             attention heads are near-independent;
+                           20-40% of heads often removable with
+                           light recovery
+- intermediate-dim pruning FFN width is the biggest parameter
+                           sink in LLMs; structured FFN slicing
+                           gives real speed + real memory
+Structured + quantization is THE production combination:
+a structurally-pruned INT4 model beats a same-accuracy
+denser-INT4 model on both size and speed.
 ```
 
-## Sparsity-Aware Quantization Techniques
+## Hardware Support: The Honest Table
 
-### 1. Outlier-Aware Quantization
+| Feature | NVIDIA | Intel | Apple/other |
+|---|---|---|---|
+| 2:4 sparse math | **Ampere+ (A100/H100/…)** — 2x tensor-core throughput | none | none |
+| INT8 dot products | tensor cores | AMX / VNNI (fast INT8, **not** sparsity) | ANE |
+| BF16/FP16 | tensor cores | AMX (4th-gen Xeon+) | ANE / Metal |
 
-Handle outliers in sparse distributions:
-
-```python
-def outlier_aware_quantize(tensor, bits=8):
-    """Quantize with outlier handling."""
-
-    # Flatten tensor
-    t = tensor.flatten()
-
-    # Detect outliers (> 3 std from mean)
-    mean, std = t.mean(), t.std()
-    outliers = (t - mean).abs() > 3 * std
-
-    # Separate outliers
-    normal_values = t[~outliers]
-    outlier_values = t[outliers]
-
-    # Quantize normal values
-    scale = (normal_values.max() - normal_values.min()) / (2**bits - 1)
-    zero_point = (-normal_values.min() / scale).round().clamp(0, 2**bits - 1)
-
-    # Store outliers separately
-    outlier_indices = torch.where(outliers)[0]
-
-    return {
-        'quantized': quantize(normal_values, scale, zero_point),
-        'scale': scale,
-        'zero_point': zero_point,
-        'outliers': outlier_values,
-        'outlier_indices': outlier_indices
-    }
+```text
+Common misinformation, corrected
+- "Intel AVX-512 VNNI accelerates 2:4 sparsity" - no. VNNI is
+  INT8 dot-product throughput; it has no sparse mode
+- torch.backends.cudnn.flags() has nothing to do with sparse
+  execution - 2:4 runs through to_sparse_semi_structured +
+  cuSPARSELt under the hood
+- AMD MI-series: no 2:4 equivalent; do not build a 2:4
+  deployment on hardware you do not own yet
 ```
 
-### 2. Group-Wise Quantization for Sparse Models
+## LLM Pruning Methods That Ship
+
+The magnitude criterion that works for CNNs mostly fails on LLMs — the methods below are the ones with production traction.
+
+### Wanda: One-Shot, Activation-Aware, No Retraining
+
+Wanda (Sun et al., 2023) prunes by the product of weight magnitude and **input activation norm** — outlier-heavy activations make their incoming weights important regardless of magnitude:
 
 ```python
-def group_wise_sparse_quantize(tensor, group_size=64):
-    """Quantize sparse tensors in groups."""
-
-    # Reshape into groups
-    tensor_2d = tensor.view(-1, group_size)
-
-    # Process each group
-    quantized_groups = []
-    scales = []
-    zero_points = []
-    masks = []
-
-    for group in tensor_2d:
-        # Find non-zero elements
-        mask = group != 0
-        nonzero = group[mask]
-
-        if len(nonzero) > 0:
-            # Quantize non-zero values
-            scale = nonzero.abs().max() / 127
-            quantized = torch.round(nonzero / scale).clamp(-127, 127)
-        else:
-            scale = 1.0
-            quantized = torch.zeros_like(group)
-
-        quantized_groups.append(quantized)
-        scales.append(scale)
-        masks.append(mask)
-
-    return {
-        'quantized': quantized_groups,
-        'scales': scales,
-        'masks': masks
-    }
-```
-
-## Hardware Acceleration
-
-### NVIDIA Sparse Tensor Cores (Ampere+)
-
-```python
-# Automatic 2:4 sparse support
 import torch
 
-# Enable sparse support (Ampere+)
-with torch.backends.cudnn.flags(enabled=True, allow_tf32=True):
-    output = model(input)
-
-# NVIDIA provides 2x speedup for 2:4 sparse matrices
+@torch.no_grad()
+def wanda_prune_linear(linear, x_norms, sparsity=0.5):
+    """x_norms: per-input-column ||x|| norms from a small
+    calibration pass (a handful of sequences suffice)."""
+    W = linear.weight                       # [out, in]
+    metric = W.abs() * x_norms              # broadcast to [out, in]
+    k = int(metric.numel() * sparsity)
+    threshold = metric.flatten().kthvalue(k).values
+    W[metric < threshold] = 0
+    return linear
 ```
 
-### Intel AMX (Advanced Matrix Extensions)
+```text
+Why kthvalue instead of torch.quantile
+torch.quantile raises "input tensor is too large" above
+16,777,216 elements - a 4096x4096 matrix is already past it.
+Use kthvalue / topk on the flattened metric.
+```
+
+### SparseGPT: One-Shot at Higher Sparsity
+
+SparseGPT (Frantar & Aichner, 2023 — same lab as GPTQ) solves a layer-wise reconstruction problem with an approximate inverse-Hessian, like GPTQ but with a sparsity mask instead of a bit-grid. It reaches 50-60% unstructured sparsity on OPT/LLaMA-class models one-shot; pair it with GPTQ for sparse+quantized checkpoints.
+
+### Structured: LLM-Pruner and Sheared-LLaMA
+
+```text
+- LLM-Pruner: gradient+activation importance -> remove coupled
+  structures (heads, FFN dims) -> brief LoRA recovery (~3% of
+  pretraining data budget for usable quality)
+- Sheared-LLaMA: learned structured pruning of LLaMA-2-7B to
+  1.3B/2.7B with targeted continued pretraining - the reference
+  result for "honestly smaller LLaMA"
+Rule: structured pruning always costs a recovery-finetune
+budget. One-shot structured pruning without recovery is a
+random model generator.
+```
+
+## Combining with Quantization, Correctly
+
+### Order of Operations
+
+```text
+prune -> recover -> quantize -> calibrate
+
+1. PRUNE with the method matched to your regime (Wanda/SparseGPT
+   unstructured; LLM-Pruner structured)
+2. RECOVER: fine-tune briefly to heal pruning damage - pruning
+   error and quantization error compound, so heal the first
+   before measuring the second
+3. QUANTIZE the sparse model (GPTQ 4401 / AWQ 4402 - their
+   calibration handles the now-spikier weight distributions)
+4. CALIBRATE end-to-end: measure the JOINT degradation, not the
+   sum of individual losses - interactions are real and
+   occasionally positive
+```
+
+### QAT with Masks: The Two Classic Bugs
+
+If you go further into quantization-aware training of a pruned model, the fake-quantize step is where implementations go wrong:
 
 ```python
-# Intel sparsity support (4th Gen Xeon+)
-# OneAPI toolkit
-import intel_extension_for_pytorch as ipex
+import torch
+import torch.nn.functional as F
 
-model = ipex.optimize(model, dtype=torch.bfloat16)
+def fake_quant_weight(w, bits=4):
+    """STE fake quant - RETURNS a new tensor, never mutates w."""
+    qmax = 2 ** (bits - 1) - 1
+    scale = w.abs().max() / qmax
+    w_q = torch.round(w / scale).clamp(-qmax, qmax) * scale
+    return w + (w_q - w).detach()      # straight-through estimator
+
+def masked_qat_forward(x, linear, mask, bits=4):
+    w = fake_quant_weight(linear.weight * mask, bits)   # apply mask
+    return F.linear(x, w, linear.bias)                  # FUNCTIONAL -
+                                                        # .weight untouched
+```
+
+```text
+Bug 1 - in-place fake quant (the silent killer):
+    module.weight.data = torch.round(w / s) * s
+  overwrites the weights with their quantized selves EVERY
+  forward - the model degrades step over step and gradients
+  flow into rounded values. Fake quant must be FUNCTIONAL with
+  a straight-through gradient (the (w_q - w).detach() term).
+
+Bug 2 - unmasked gradients: pruned weights must stay pruned:
+    mask = (w != 0)
+    grad = grad * mask            # after backward, before step
+  otherwise the optimizer resurrects pruned weights and your
+  sparsity silently decays to zero over training.
+```
+
+### Gradual Sparsity Schedule
+
+Jumping straight to the target sparsity wrecks accuracy; ramp it with a cubic schedule (Zhu & Gupta, 2017):
+
+```text
+s_t = s_final - (s_final - s_init) * (1 - (t - t0) / (T - t0))^3
+      ramp from step t0 to T, then hold at s_final
+
+intuition: most pruning happens in the MIDDLE of training -
+early pruning removes weights the model still needs, late
+pruning leaves no time to recover
 ```
 
 ## Best Practices
 
-### 1. Prune Before Quantize
-
-```python
-# Wrong order: Quantize then prune
-model = quantize(model)  # Loses info about small weights
-model = prune(model)     # Already lost precision
-
-# Correct order: Prune then quantize
-model = prune(model)     # Remove redundant weights first
-model = quantize(model)  # Quantize remaining weights
+```text
+1. Do the storage math before pruning: on top of INT4, only
+   2:4 or structured sparsity changes anything
+2. Unstructured sparsity buys NOTHING on standard GPU serving
+   - choose it only with a sparse runtime (SparseGPT+GPTQ
+   checkpoints on cuSPARSELt-class stacks)
+3. 2:4 is the unstructured-looking option that actually
+   accelerates - Ampere+ only; verify with a microbenchmark
+   (to_sparse_semi_structured vs dense matmul) on your shapes
+4. For a genuinely smaller LLM, prune STRUCTURED and pay the
+   recovery budget - LLM-Pruner/Sheared-LLaMA-style pipelines
+5. Activation-aware criteria (Wanda) >> plain magnitude for
+   LLMs; keep calibration data small but IN-DISTRIBUTION
+6. kthvalue/topk, never torch.quantile, on real matrices
+7. Fake quant is functional + STE; masks reapply to gradients;
+   measure prune+quant JOINTLY against the dense baseline
 ```
-
-### 2. Iterative Refinement
-
-```python
-def iterative_prune_quantize(model, target_sparsity, bits):
-    """Gradually increase sparsity and decrease bits."""
-
-    current_sparsity = 0.3
-    current_bits = 16
-
-    while current_sparsity < target_sparsity or current_bits > bits:
-        # Prune
-        model = prune(model, current_sparsity)
-
-        # Quantize-aware finetune
-        model = finetune_qat(model, current_bits)
-
-        # Increase sparsity
-        current_sparsity = min(current_sparsity + 0.1, target_sparsity)
-
-        # Decrease bits
-        current_bits = max(current_bits // 2, bits)
-
-    return model
-```
-
-### 3. Maintain Critical Weights
-
-```python
-def importance_aware_pruning(model, sparsity=0.5):
-    """Preserve important weights during pruning."""
-
-    # Compute importance scores
-    importance = {}
-    for name, param in model.named_parameters():
-        if 'weight' in name:
-            # Magnitude × gradient sensitivity
-            grad = param.grad
-            importance[name] = (param.data.abs() * grad.abs())
-
-    # Protect top-k weights
-    for name, param in model.named_parameters():
-        if name in importance:
-            imp = importance[name].flatten()
-            threshold = torch.quantile(imp, sparsity)
-            mask = (imp > threshold).view(param.shape)
-            param.data *= mask.float()
-
-    return model
-```
-
-## Results Reference
-
-| Model | Method | Sparsity | Bits | Size | Accuracy |
-|-------|--------|----------|------|------|----------|
-| LLaMA-7B | Baseline | 0% | 16 | 13GB | - |
-| LLaMA-7B | Sparse only | 50% | 16 | 6.5GB | -0.5% |
-| LLaMA-7B | Quant only | 0% | 4 | 3.3GB | -1.2% |
-| LLaMA-7B | **Sparse + Quant** | 50% | 4 | **1.6GB** | **-1.8%** |
 
 ---
-
-**Next:** [4406: 1.58-bit Quantization](./4406-1.58-bit-Quantization.md)
-
-**Last Updated:** 2026-02-05
 
 ## References
 
 ### Related ai-engineering-curriculum Documents
 
+- [4401: GPTQ](4401-GPTQ.md)
 - [4402: AWQ](4402-AWQ.md)
 - [4406: 1.58-bit Quantization](4406-1.58-bit-Quantization.md)
 
 ---
+
+## Next Steps
+
+- Continue with: **[4406: 1.58-bit Quantization](./4406-1.58-bit-Quantization.md)**
+- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
