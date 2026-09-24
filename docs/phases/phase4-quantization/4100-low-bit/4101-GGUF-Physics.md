@@ -3,8 +3,8 @@ Document ID: 4101
 Title: GGUF Physics - CPU/GPU Hybrid Offloading
 Phase: 4
 Module: 4100
-Last Updated: 2026-02-05
-Status: Draft
+Last Updated: 2026-09-24
+Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
 Prerequisites: Phase 3 completion (transformer architecture), basic C/C++ knowledge
@@ -161,6 +161,214 @@ For 11GB VRAM GPU:
 
 ---
 
+## 4. Quantization Algorithm
+
+### Q4_0: The Baseline Scheme
+
+Q4_0 quantizes weights in **blocks of 32 values**. Each block stores one
+FP16 scale and 32 four-bit integers:
+
+```text
+Q4_0 block (32 weights):
+┌──────────────┬──────────────────────────────┐
+│ scale (FP16) │ 32 × 4-bit quants (16 bytes) │
+│    2 bytes   │         16 bytes             │
+└──────────────┴──────────────────────────────┘
+Size: 18 bytes / 32 weights = 4.5 bits per weight
+```
+
+```python
+import numpy as np
+
+def quantize_q4_0(weights: np.ndarray) -> dict:
+    """Quantize one block of 32 FP16 weights to Q4_0."""
+    assert weights.size == 32
+    d = np.abs(weights).max() / 7.0          # symmetric scale
+    if d == 0:
+        d = 1e-8                              # all-zero block guard
+    q = np.clip(np.round(weights / d), -8, 7).astype(np.int8)
+    return {"d": d.astype(np.float16), "q": q}  # pack q as 4-bit nibbles
+
+def dequantize_q4_0(block: dict) -> np.ndarray:
+    return block["d"].astype(np.float32) * block["q"].astype(np.float32)
+```
+
+**Where:**
+- **d**: per-block scale, maps the 4-bit integer range back to weight range
+- **q**: integer codes clamped to [-8, 7]
+- Error per weight is bounded by `d / 2` — smaller blocks adapt to local weight distributions
+
+### Q4_K: Finer Scales
+
+Q4_K keeps the 4-bit payload but adds a **hierarchy of scales**
+(see Section 5), which shrinks the quantization error without adding
+bits per weight.
+
+---
+
+## 5. K-Quants
+
+### Super-Block Structure
+
+K-quants group **256 weights into a super-block** of 8 sub-blocks of 32.
+Each sub-block gets its own scale and offset; the 8 scales are themselves
+compressed with a shared exponent:
+
+```text
+Q4_K super-block (256 weights, 144 bytes → 4.5 bpw):
+┌────────────────────────────────────────────────────────┐
+│ ql: 128 bytes  (256 × 4-bit quantized values)          │
+│ qh: 12 bytes   (8 × 6-bit scales + min, split encoded) │
+│ + shared 2-bit exponents and sign bits for scales      │
+└────────────────────────────────────────────────────────┘
+Weight ≈ d_scale[sub] × q4 + d_min[sub]
+```
+
+### Why K-Quants Win at the Same Size
+
+| Property | Q4_0 | Q4_K |
+|----------|------|------|
+| Weights per super-block | 32 | 256 |
+| Independent scales | 1 | 8 |
+| Handles asymmetric ranges | No (symmetric only) | Yes (min offset) |
+| Perplexity penalty vs FP16 | Baseline | ~5% better |
+| Bits per weight | 4.5 | 4.5 |
+
+> **📊 Rule of Thumb:**
+> - `Q4_K_M` (medium) is the default recommendation for balanced size/quality
+> - `Q4_K_S` (small) when every 100 MB matters
+> - `Q6_K` when you have the VRAM — near-lossless for most models
+> - Legacy `Q4_0`/`Q5_0` remain for tool compatibility, not for quality
+
+---
+
+## 6. Hybrid CPU/GPU Offloading
+
+### The `-ngl` Knob
+
+llama.cpp offloads whole transformer layers to the GPU with `--n-gpu-layers`:
+
+```bash
+# Offload 24 of 32 layers, keep 8 on CPU
+./llama-server -m model-q4_k_m.gguf -ngl 24 -c 4096
+```
+
+```text
+VRAM budget = model weights (offloaded layers)
+            + KV cache (grows with context length - ALWAYS on GPU)
+            + compute buffers (~200-500 MB)
+
+RAM budget = weights of remaining CPU layers
+```
+
+### What Actually Bottlenecks Speed
+
+Decode speed is **memory-bandwidth-bound**: each generated token requires
+reading every active weight once. When some layers live on the CPU, those
+layers are read from system RAM (25-100 GB/s) instead of VRAM (200-900 GB/s),
+so partial offload performance drops sharply, not linearly:
+
+```text
+Illustrative: 7B Q4_K_M, RTX 3060 + DDR4
+──────────────────────────────────────────
+-ngl 32 (all)      ~35-45 tokens/s
+-ngl 28            ~12-15 tokens/s
+-ngl 24             ~7-9 tokens/s
+-ngl 0  (CPU only)  ~5-7 tokens/s
+```
+
+> **⚠️ Practical Threshold:**
+> Either the model fits fully on the GPU (fast), or a large fraction spills
+> to CPU (slow). Offloading "just a few layers" of a model that mostly runs
+> on CPU yields little benefit — the CPU layers still dominate.
+
+### Choosing a Configuration
+
+| GPU VRAM | Fully offloaded target |
+|----------|------------------------|
+| 8 GB     | 7-8B @ Q4_K_M |
+| 12 GB    | 13B @ Q4_K_M, or 7-8B @ Q6_K |
+| 24 GB    | 30B+ @ Q4_K_M, or 13B @ Q8_0 |
+| 48 GB+   | 70B @ Q4_K_M |
+
+---
+
+## 7. GGUF Conversion
+
+### Two-Step: FP16 Export, Then Quantize
+
+```bash
+# Step 1: convert HuggingFace weights to (unquantized) GGUF
+python convert_hf_to_gguf.py ./my-model-hf \
+    --outtype f16 \
+    --outfile my-model-f16.gguf
+
+# Step 2: quantize from the FP16 master
+./llama-quantize my-model-f16.gguf my-model-q4_k_m.gguf Q4_K_M
+```
+
+**Requirements and pitfalls:**
+- The HF directory must contain tokenizer files (`tokenizer.json` /
+  `tokenizer.model`) and the model config
+- **Merge LoRA adapters first** (`model.merge_and_unload()` in PEFT) —
+  converters do not apply adapters
+- Always quantize from the FP16 master; quantizing an already-quantized
+  file compounds error
+- For chat models, verify the chat template is detected (`--chat-template`
+  override if not)
+
+---
+
+## 8. Performance Optimization
+
+### Decode Is Bandwidth, Prefill Is Compute
+
+| Phase | Bound by | Optimization |
+|-------|----------|--------------|
+| Prompt processing (prefill) | Compute | More GPU layers, larger `-ub` batch |
+| Token generation (decode) | Memory bandwidth | Lower bpw, fewer CPU layers |
+
+### Checklist
+
+```bash
+# A well-tuned consumer setup
+./llama-server -m model-q4_k_m.gguf \
+    -ngl 99 \
+    -c 8192 \
+    -ctk q8_0 -ctv q8_0 \
+    -fa \
+    -t 8 \
+    --mlock
+```
+
+- **`-ctk q8_0 -ctv q8_0`**: quantize the KV cache — roughly halves KV
+  memory for ~1% quality cost (details: [4201](../4200-kv-cache/4201-Context-Window-Physics.md))
+- **`-fa`**: FlashAttention — faster prompt processing, lower buffer memory
+- **`-t N`**: set to *physical* cores; hyper-threads usually hurt
+- **`--mlock`**: pin weights in RAM (skip if RAM-tight; mmap is the default and fine for most)
+- **Measure, don't guess**: `./llama-bench -m model.gguf -ngl 99 -p 512 -n 128`
+
+### Speculative Decoding
+
+Pair a small draft model with the main model to raise decode throughput —
+see [4202: Speculative Decoding](../4200-kv-cache/4202-Speculative-Decoding.md).
+
+---
+
+## 9. Troubleshooting
+
+| Issue | Likely Cause | Solution |
+|-------|--------------|----------|
+| `CUDA out of memory` at load | Weights + KV cache exceed VRAM | Lower quant (Q4_K_S), reduce `-ngl`, reduce `-c`, add `-ctk/-ctv q8_0` |
+| `invalid magic` / load failure | Corrupted or truncated download | Re-download; verify SHA256 |
+| Gibberish output | Bad conversion or wrong quant source | Re-convert from FP16 master with `llama-quantize` |
+| < 2 tokens/s despite GPU | Most layers still on CPU | Check `-ngl`; watch VRAM usage — if far under capacity, raise `-ngl` |
+| Out of system RAM while loading | `--no-mmap` with tight RAM | Drop `--no-mmap`, let mmap page weights from disk |
+| Slow prompt processing | Prefill on CPU, or tiny batch | Raise `-ngl`, increase `-ub`/`-b` |
+| Thread contention on hybrid CPUs | Scheduler spreads over E-cores | Pin `-t` to P-cores; benchmark both settings |
+
+---
+
 ## 10. References
 
 ### Academic Papers
@@ -192,6 +400,6 @@ For 11GB VRAM GPU:
 ---
 
 **Document ID:** 4101
-**Last Updated:** 2026-02-05
+**Last Updated:** 2026-09-24
 **Status:** Complete
 **Related Documents:** [4102, 4103, 4201]
