@@ -3,13 +3,13 @@ Document ID: 5402
 Title: Model Parallelism
 Phase: 5
 Module: 5400
-Last Updated: 2026-09-24
-Status: Review
+Last Updated: 2026-09-25
+Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
 Prerequisites: See module README
-Related: 5401, 5403
-Tags: ['distributed', 'training', 'parallelism']
+Related: See module README
+Tags: ['distributed', 'pipeline-parallelism', 'tensor-parallelism', 'training', 'gpu']
 ---
 
 # 5402: Model Parallelism
@@ -18,12 +18,12 @@ Tags: ['distributed', 'training', 'parallelism']
 
 - [Learning Objectives](#learning-objectives)
 - [Abstract](#abstract)
-- [Types of Model Parallelism](#types-of-model-parallelism)
-- [Megatron-LM Style Parallelism](#megatron-lm-style-parallelism)
-- [Implementation Patterns](#implementation-patterns)
-- [When to Use Each](#when-to-use-each)
+- [When Data Parallelism Runs Out](#when-data-parallelism-runs-out)
+- [Pipeline Parallelism](#pipeline-parallelism)
+- [Tensor Parallelism](#tensor-parallelism)
+- [Combining Axes: 3D Parallelism](#combining-axes-3d-parallelism)
+- [Choosing a Scheme](#choosing-a-scheme)
 - [Best Practices](#best-practices)
-- [Tools and Frameworks](#tools-and-frameworks)
 - [References](#references)
 
 ---
@@ -32,215 +32,307 @@ Tags: ['distributed', 'training', 'parallelism']
 
 After completing this lesson, you will be able to:
 
-- Explain Types of Model Parallelism
-- Explain Megatron-LM Style Parallelism
-- Apply Implementation Patterns
-- Explain When to Use Each
-- Explain Best Practices
-- Explain Tools and Frameworks
+- Compute the pipeline bubble fraction from stage count and micro-batch count
+- Contrast 1F1B with GPipe scheduling and say what each holds in memory
+- Explain Megatron's column/row-parallel pairing and why it needs only one all-reduce per layer
+- Place TP, PP, and DP degrees on a physical cluster (which axis goes intra-node, which inter-node)
+- Read a per-GPU memory profile and choose which parallelism axis it actually calls for
 
 ---
 
 ## Abstract
 
-Model parallelism splits the model itself across multiple GPUs, enabling training of models that are too large to fit on a single device.
+Data parallelism (5401) replicates the model; when the model itself no longer fits, model parallelism splits it. Two axes exist: **pipeline parallelism** assigns contiguous layer ranges to different GPUs, and **tensor parallelism** splits individual weight matrices inside a layer. This lesson builds both from the bubble math and the Megatron f/g communication pattern outward, then combines them with data parallelism into the 3D-parallel layouts that train frontier models, and closes with the decision table that maps a memory profile to an axis.
 
-## Types of Model Parallelism
+## When Data Parallelism Runs Out
 
-### 1. Pipeline Parallelism
+```text
+What FSDP (5401) does NOT solve
 
-**Concept:** Split model layers across GPUs, with data flowing through them sequentially.
+- FSDP shards params/grads/optimizer state, but activations do
+  NOT shard - peak memory is bounded by activations per layer
+- the FULLY-GATHERED parameter of the live FSDP unit must still
+  fit on one GPU: a 100B+ single layer block exceeds any card
+- communication grows with world size: at large W the all-gather
+  per unit becomes the bottleneck
 
-```python
-from torch.distributed.pipeline.sync import Pipe
-
-# Create model chunks for each GPU
-model = nn.Sequential(
-    nn.Linear(1024, 4096),
-    nn.ReLU(),
-    nn.Linear(4096, 4096),
-    nn.ReLU(),
-    nn.Linear(4096, 1024),
-)
-
-# Split across 4 GPUs
-model = Pipe(model, chunks=4)
-
-# Forward pass automatically pipelines
-output = model(input)
+Model parallelism removes the constraint instead of dividing it:
+the model is PHYSICALLY SPLIT, no device ever holds one layer
+complete (TP) or even a contiguous half of the stack (PP).
 ```
 
-**Advantages:**
-- Load balancing across devices
-- Minimal communication overhead
-- Easy to implement
+```text
+The two splitting axes
 
-**Challenges:**
-- Pipeline bubbles (idle time)
-- Complex implementation
-- Micro-batch management
+pipeline (PP)    split ALONG depth: GPU0 gets layers 0-7,
+                 GPU1 gets 8-15, ... one activation flows
+                 through stages. Coarse-grained, cheap comms
+                 (point-to-point), but stages idle in a bubble
 
-### 2. Tensor Parallelism
+tensor (TP)      split WITHIN a layer: one 4096x4096 matmul's
+                 weight is sharded 4 ways, every GPU computes
+                 a slice of every layer. Fine-grained, latency-
+                 sensitive all-reduces on EVERY layer
+```
 
-**Concept:** Split individual tensors across GPUs, computing operations in parallel.
+## Pipeline Parallelism
+
+### The Bubble Problem
+
+```text
+Naive schedule: one batch at a time through the stages
+
+GPU0  [ F0        ][ idle ][ idle ][ idle ]
+GPU1  [       F1   ][ B1    ][ idle ][ idle ]      B0..: backward
+GPU2  [            ][    F2 ][ B2  ][ idle ]
+GPU3  [            ][       ][  F3  ][ B3  ]
+        ^ only one GPU busy at a time - pointless
+
+GPipe fix: split the batch into M MICRO-BATCHES and interleave
+
+GPU0  [F0 F1 F2 F3][B0 B1 B2 B3]
+GPU1  [   F0 F1 F2 F3][B0 B1 B2 B3]
+GPU2  [      F0 F1 F2 F3][B0 B1 B2 B3]
+GPU3  [         F0 F1 F2 F3][B0 B1 B2 B3]
+                          ^^^^^^^^^^ bubble
+
+Bubble fraction = (P - 1) / (M + P - 1)
+P = stages, M = micro-batches
+
+P=4, M=4  -> 3/7  ~ 43% idle    (bad)
+P=4, M=32 -> 3/35 ~ 8.6% idle   (acceptable)
+```
+
+The bubble shrinks with more micro-batches — but each in-flight micro-batch holds activations until its backward runs, so **GPipe memory scales with M**. That trade is what the second schedule fixes.
+
+### 1F1B: One Forward, One Backward
+
+```text
+GPipe:      all M forwards first, then all M backwards
+            -> M micro-batches of activations resident per stage
+
+1F1B        alternate 1 forward, 1 backward per stage once warm
+(PipeDream-Flush)
+            -> at most P activations resident per stage,
+               regardless of M
+
+Consequence: with P=8 stages, 1F1B holds 8 in-flight
+micro-batches where GPipe needed M=32 for the same bubble.
+Modern default everywhere (Megatron, DeepSpeed, torch.
+distributed.pipelining).
+```
+
+```text
+Interleaved (virtual pipeline) schedules
+- each device owns v NON-CONTIGUOUS chunks (e.g. ranks
+  round-robin over layer groups) instead of one block
+- micro-batches hop device-to-device more often
+- bubble shrinks ~v-fold; point-to-point traffic grows ~v-fold
+- Megatron default for large PP degrees
+```
+
+### Modern PyTorch Surface
+
+The old `torch.distributed.pipeline.sync.Pipe` is **removed** from PyTorch 2.x. The maintained module is `torch.distributed.pipelining` (PyTorch 2.4+):
 
 ```python
+import torch
 import torch.distributed as dist
+from torch.distributed.pipelining import pipeline, SplitPoint, PipelineStage, Schedule1F1B
+
+dist.init_process_group(backend="nccl")
+rank, W = dist.get_rank(), dist.get_world_size()
+
+# 32-layer transformer; 4 split points -> 4 stages
+split_spec = {f"layers.{i}": SplitPoint.BEGINNING for i in (8, 16, 24)}
+pipe = pipeline(model, mb_args=(torch.randn(1, 512, 4096),), split_spec=split_spec)
+
+stage = PipelineStage(pipe, stage_id=rank, num_stages=W, device=torch.cuda.current_device())
+schedule = Schedule1F1B(stage, n_microbatches=32, loss_fn=torch.nn.functional.cross_entropy)
+
+# training step: micro-batch slicing + stage routing are handled
+# by the schedule; you feed the full batch input
+loss = schedule.step(batch["input"], labels=batch["labels"])
+```
+
+APIs in this module are still evolving — pin your PyTorch version and check the docs for your release before productionizing; the *schedules* (GPipe, 1F1B, interleaved-1F1B) are stable concepts regardless of surface.
+
+```text
+Stage placement rule (balance COMPUTE, not layer count)
+- stage 0 also runs the embedding table
+- last stage also runs the LM head + loss (and its big softmax)
+- profile per-stage step time; move layers until forward times
+  are within a few percent - imbalance multiplies through every
+  micro-batch
+```
+
+## Tensor Parallelism
+
+### Column and Row Parallel: The Megatron Pairing
+
+Tensor parallelism splits one weight matrix across ranks. The design question is what the communication pattern per layer becomes — and Megatron-LM's answer is that a transformer layer needs exactly **one all-reduce forward, one backward**, if you pair the splits correctly.
+
+```text
+ColumnParallelLinear      weight [out, in] split along OUT dim
+  each rank computes its slice of the OUTPUT features
+  output stays SHARDED across ranks (no gather!)
+  backward: grad of the input needs an ALL-REDUCE ("f" op)
+
+RowParallelLinear         weight [out, in] split along IN dim
+  input must arrive SHARDED (it does, if the previous layer
+  was column-parallel)
+  forward ENDS with an ALL-REDUCE of partial outputs ("g" op)
+  backward: grad flows sharded, no comm
+```
+
+```python
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
 
 class ColumnParallelLinear(nn.Module):
-    def __init__(self, in_features, out_features):
+    """Output stays sharded - that is the point."""
+    def __init__(self, in_features, out_features, world_size):
         super().__init__()
-        # Split weight matrix across GPUs column-wise
-        self.rank = dist.get_rank()
-        self.world_size = dist.get_world_size()
+        assert out_features % world_size == 0
+        self.out_local = out_features // world_size
+        self.weight = nn.Parameter(torch.empty(self.out_local, in_features))
+        self.bias = nn.Parameter(torch.zeros(self.out_local))
+        nn.init.kaiming_uniform_(self.weight)
 
-        # Each GPU gets out_features // world_size columns
-        self.weight = nn.Parameter(
-            torch.randn(out_features // self.world_size, in_features)
-        )
-        self.bias = nn.Parameter(torch.zeros(out_features // self.world_size))
+    def forward(self, x):                       # x: full input
+        return F.linear(x, self.weight, self.bias)   # sharded out
 
-    def forward(self, x):
-        # Local matrix multiply
-        local_out = torch.matmul(x, self.weight.t()) + self.bias
-
-        # All-gather to combine results
-        outputs = [torch.empty_like(local_out) for _ in range(self.world_size)]
-        dist.all_gather(outputs, local_out)
-
-        return torch.cat(outputs, dim=-1)
-```
-
-**Advantages:**
-- No pipeline bubbles
-- Better for very large models
-- Synchronous computation
-
-**Challenges:**
-- More communication
-- Complex implementation
-- Requires careful tensor sharding
-
-## Megatron-LM Style Parallelism
-
-Combines tensor and pipeline parallelism:
-
-```python
-from megatron import get_args
-from megatron.model import MegatronModule
-
-class ParallelTransformerBlock(MegatronModule):
-    def __init__(self):
-        args = get_args()
+class RowParallelLinear(nn.Module):
+    """Input sharded; output all-reduced once."""
+    def __init__(self, in_features, out_features, world_size, rank):
         super().__init__()
+        assert in_features % world_size == 0
+        self.in_local = in_features // world_size
+        self.rank = rank
+        self.weight = nn.Parameter(torch.empty(out_features, self.in_local))
+        self.bias = nn.Parameter(torch.zeros(out_features))
+        nn.init.kaiming_uniform_(self.weight)
 
-        # Column parallel (QKV projection split across GPUs)
-        self.query_key_value = ColumnParallelLinear(
-            args.hidden_size,
-            3 * args.kv_channels * args.num_attention_heads,
-        )
-
-        # Row parallel (output projection)
-        self.dense = RowParallelLinear(
-            args.kv_channels * args.num_attention_heads,
-            args.hidden_size,
-        )
+    def forward(self, x):                       # x: sharded input
+        out = F.linear(x, self.weight)
+        torch.distributed.all_reduce(out)        # the "g" operator
+        return out + self.bias                   # bias added ONCE, post-reduce
 ```
 
-## Implementation Patterns
+```text
+The pairing that makes transformers TP-friendly
 
-### Pipeline Parallel with Micro-batches
+self-attention:   QKV projection = COLUMN parallel
+                  (heads split cleanly across ranks - each rank
+                  runs whole heads, no communication inside)
+                  out-projection = ROW parallel
+                  -> exactly one all-reduce per attention block
 
-```python
-def pipeline_forward(model_chunks, micro_batches, devices):
-    """Execute pipeline parallel forward pass."""
-    results = []
+MLP:              up/gate projection = COLUMN parallel
+                  down projection = ROW parallel
+                  -> exactly one all-reduce per MLP block
 
-    for micro_batch in micro_batches:
-        # Forward through pipeline stages
-        x = micro_batch
-        for i, chunk in enumerate(model_chunks):
-            x = chunk(x.to(devices[i]))
-
-        results.append(x)
-
-    # Combine micro-batch results
-    return torch.cat(results, dim=0)
+Between the two halves of each block: NO communication at all -
+activations arrive at the row-parallel layer already sharded.
+Total: 2 all-reduces per layer per forward (+2 in backward).
 ```
 
-### Tensor Parallel with Attention
+### Why TP Is Bandwidth-Hungry
 
-```python
-class ParallelMultiHeadAttention(nn.Module):
-    def __init__(self, hidden_size, num_heads):
-        super().__init__()
-        self.hidden_size = hidden_size
-        self.num_heads = num_heads
-        self.head_dim = hidden_size // num_heads
+```text
+All-reduce is latency-sensitive at transformer layer sizes
+- message sizes per all-reduce are megabytes, not gigabytes
+- NCCL latency dominates small messages -> TP wants NVLink
+  (intra-node), typically TP degree <= 8 (one node)
+- rule of thumb: TP INTRA-NODE, everything else can cross nodes
 
-        # Split heads across GPUs
-        self.local_heads = num_heads // dist.get_world_size()
-
-        # Column parallel QKV projection
-        self.qkv = ColumnParallelLinear(hidden_size, 3 * hidden_size)
-
-        # Row parallel output projection
-        self.out_proj = RowParallelLinear(hidden_size, hidden_size)
-
-    def forward(self, x, mask=None):
-        batch_size, seq_len, _ = x.shape
-
-        # Project QKV (tensor parallel)
-        qkv = self.qkv(x)
-        qkv = qkv.reshape(batch_size, seq_len, 3, self.num_heads, self.head_dim)
-
-        # Only process local heads
-        qkv = qkv[:, :, :, self.local_rank::self.world_size, :]
-
-        # Attention computation
-        attn_out = self._attention(qkv, mask)
-
-        # Project output (row parallel)
-        return self.out_proj(attn_out)
+Sequence parallelism (Megatron-SP): LayerNorm and dropout regions
+keep per-rank FULL activations in plain TP; splitting THOSE
+regions along the sequence dim removes that duplication and
+pairs naturally with the f/g pattern.
 ```
 
-## When to Use Each
+## Combining Axes: 3D Parallelism
 
-| Technique | Model Size | Hardware | Use Case |
-|-----------|-----------|----------|----------|
-| **Pipeline Parallel** | 10B+ params | Multiple GPUs | Inference, moderate training |
-| **Tensor Parallel** | 100B+ params | High-bandwidth | Training very large models |
-| **Hybrid** | 50B+ params | GPU clusters | Production-scale training |
+Frontier training runs use all three axes at once. The placement rules fall out of each axis's communication profile:
+
+```text
+Axis   Communication           Wants                     Typical degree
+TP     all-reduce per layer    NVLink, intra-node        2-8
+PP     point-to-point acts     moderate, cross-node OK   4-32
+DP     grad all-reduce/step    anything left over        whatever remains
+
+Example: 64 GPUs, TP=4, PP=4
+- TP=4 x PP=4 = 16 GPUs hold one full model replica ("pipeline unit")
+- DP = 64 / 16 = 4 replicas process different data
+- placement: ranks of one TP group on the SAME node (NVLink),
+  pipeline stages ring ACROSS nodes, the 4 replicas are
+  independent except for the optimizer-step all-reduce
+```
+
+```text
+Mental model
+- TP is the FINE knife (splits a single matmul) - expensive comms,
+  use only as much as one node's NVLink affords
+- PP is the COARSE knife (splits layer ranges) - cheap comms,
+  scales across nodes, costs you the bubble + schedule complexity
+- DP is the THROUGHPUT dial - no memory help beyond what
+  FSDP/ZeRO already give, but perfect scaling for whatever
+  replica count the cluster affords
+- FSDP/ZeRO (5401, 5404) composes with all of the above
+```
+
+## Choosing a Scheme
+
+Diagnose from the memory profile, not from fashion:
+
+| Symptom in the profile | Constraint | Reach for |
+|---|---|---|
+| Optimizer state dominates; model fits | Memory of state | FSDP / ZeRO (5401, 5404) — not model parallelism |
+| Activations dominate at long seq len | Activation memory | Activation checkpointing + sequence parallel; PP if still OOM |
+| Single layer block cannot fit one GPU | Hard capacity | Tensor parallelism (intra-node) |
+| Model fits a node but not a card | Capacity + scale | TP=4-8 within node |
+| Model exceeds one node | Capacity at scale | PP across nodes + TP intra-node (3D) |
+| Throughput too low, memory is fine | Speed | Data parallelism (more replicas) |
+
+```text
+Order of escalation (cheapest complexity first)
+
+1. FSDP only                       (solves 90% of "7B-70B on N GPUs")
+2. + activation checkpointing      (activations are the binding
+                                    constraint more often than weights)
+3. + PP with 1F1B                  (stack exceeds node or activations
+                                    still blow up)
+4. + TP intra-node                 (single layers too big; latency
+                                    budget already tight)
+5. only then add MoE/EP or exotic schedules
+```
 
 ## Best Practices
 
-1. **Minimize Communication:**
-   - Use high-bandwidth interconnects (NVLink)
-   - Overlap communication with computation
-   - Group small operations
-
-2. **Balance Load:**
-   - Distribute layers evenly in pipeline
-   - Split tensors uniformly
-   - Profile to find bottlenecks
-
-3. **Handle Memory:**
-   - Clear gradients timely
-   - Use gradient checkpointing
-   - Monitor memory per GPU
-
-## Tools and Frameworks
-
-- **PyTorch:** `torch.distributed.pipeline`
-- **DeepSpeed:** Pipeline parallelism
-- **Megatron-LM:** Tensor parallelism
-- **Alpa:** Automatic parallelism
+```text
+1. Profile FIRST: per-GPU memory breakdown (weights / grads /
+   optimizer / activations) tells you which axis the job needs;
+   adding TP because it sounds advanced costs 10-30% throughput
+2. Balance pipeline stages by measured step time, not layer
+   count - embedding at the head of stage 0, LM head + loss at
+   the tail of the last stage
+3. M (micro-batches) >= 4x P to keep the GPipe bubble sane, and
+   prefer 1F1B so activation memory does not scale with M
+4. Keep TP intra-node; the moment an all-reduce crosses the
+   node boundary, per-layer latency tax eats the schedule
+5. Version-checkpoint every pipeline stage together - a stage-
+   local checkpoint cannot restore anything
+6. Validate numerics against a single-GPU reference run
+   (loss curves must overlap within float noise) before scaling
+   the cluster further
+7. Gradient checkpointing and TP interact: recomputation adds
+   forward passes but REDUCES the all-reduce pressure - re-profile
+   after enabling
+```
 
 ---
-
-**Next:** [5403: Mixed Precision Training](./5403-Mixed-Precision.md)
-
-**Last Updated:** 2026-02-05
 
 ## References
 
@@ -248,5 +340,11 @@ class ParallelMultiHeadAttention(nn.Module):
 
 - [5401: Data Parallelism](5401-Data-Parallelism.md)
 - [5403: Mixed Precision Training](5403-Mixed-Precision.md)
+- [5404: Distributed Optimization](5404-Distributed-Optimization.md)
 
 ---
+
+## Next Steps
+
+- Continue with: **[5403: Mixed Precision Training](./5403-Mixed-Precision.md)**
+- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
