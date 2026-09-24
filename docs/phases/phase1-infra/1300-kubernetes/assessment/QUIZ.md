@@ -24,133 +24,133 @@ B) Lightweight Kubernetes
 C) Container runtime
 D) Monitoring tool
 
-**2) A pod is:**
+**2. A pod is:**
 
 A) A container
 B) One or more containers
 C) A VM
 D) A service
 
-**3) GPU in Kubernetes requires:**
+**3. GPU in Kubernetes requires:**
 
 A) Device plugins
 B) Special scheduler
 C) No configuration
 D) Only Nvidia GPUs
 
-**4) A node is:**
+**4. A node is:**
 
 A) A container
 B) A worker machine
 C) A pod
 D) A service
 
-**5) GPU scheduler ensures:**
+**5. GPU scheduler ensures:**
 
 A) Pods are scheduled on GPU nodes
 B) All nodes have GPUs
 C) Load balancing
 D) Autoscaling
 
-**6) Storage classes provide:**
+**6. Storage classes provide:**
 
 A) Dynamic provisioning
 B) Static storage
 C) Only local storage
 D) No storage
 
-**7) A service exposes:**
+**7. A service exposes:**
 
 A) Pods externally
 B) Storage
 C) ConfigMaps
 D) Nodes
 
-**8) K3s uses less memory because:**
+**8. K3s uses less memory because:**
 
 A) No components
 B) Removed unnecessary components
 C) Only runs on ARM
 D) Uses SQLite
 
-**9) GPU resource limits are specified:**
+**9. GPU resource limits are specified:**
 
 A) In container spec
 B) In pod spec
 C) In node spec
 D) In service spec
 
-**10) Persistent volumes:**
+**10. Persistent volumes:**
 
 A) Survive pod restarts
 B) Are deleted with pods
 C) Only work with GPUs
 D) Are not supported
 
-**11) Helm is:**
+**11. Helm is:**
 
 A) A package manager for K8s
 B) A container runtime
 C) A monitoring tool
 D) A storage driver
 
-**12) A deployment:**
+**12. A deployment:**
 
 A) Manages pods
 B) Manages storage
 C) Manages services
 D) Manages nodes
 
-**13) The GPU device plugin runs:**
+**13. The GPU device plugin runs:**
 
 A) On each node
 B) On master only
 C) In a separate cluster
 D) On demand
 
-**14) K3s master node can also:**
+**14. K3s master node can also:**
 
 A) Run workloads
 B) Only manage
 C) Only schedule
 D) No workloads
 
-**15) YAML is used for:**
+**15. YAML is used for:**
 
 A) K8s configuration
 B) Container images
 C) Storage only
 D) Monitoring
 
-**16) Namespace provides:**
+**16. Namespace provides:**
 
 A) Resource isolation
 B) Security
 C) Both A and B
 D) Neither
 
-**17) A ConfigMap stores:**
+**17. A ConfigMap stores:**
 
 A) Configuration data
 B) Secrets
 C) Storage
 D) Pods
 
-**18) For GPU workloads, you need:**
+**18. For GPU workloads, you need:**
 
 A) Node labels
 B) Pod affinity
 C) Taints and tolerations
 D) All of the above
 
-**19) Longhorn provides:**
+**19. Longhorn provides:**
 
 A) Block storage
 B) Object storage
 C) File storage
 D) No storage
 
-**20) Helm charts:**
+**20. Helm charts:**
 
 A) Define K8s resources
 B) Are containers

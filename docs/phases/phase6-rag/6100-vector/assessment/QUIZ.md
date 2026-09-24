@@ -129,28 +129,28 @@ B) Tests language models
 C) Tests image models
 D) Doesn't exist
 
-**17) Multi-lingual embeddings:**
+**17. Multi-lingual embeddings:**
 
 A) Work on one language
 B) Work on multiple languages
 C) Don't exist
 D) Are worse
 
-**18) Long documents can be embedded by:**
+**18. Long documents can be embedded by:**
 
 A) Using the first sentence
 B) Chunking and embedding each chunk
 C) Not possible
 D) Using only title
 
-**19) Query-document similarity:**
+**19. Query-document similarity:**
 
 A) Uses different embedding models
 B) Uses same embedding model
 C) Doesn't use embeddings
 D) Uses random vectors
 
-**20) Bi-encoders:**
+**20. Bi-encoders:**
 
 A) Encode query and document separately
 B) Encode together

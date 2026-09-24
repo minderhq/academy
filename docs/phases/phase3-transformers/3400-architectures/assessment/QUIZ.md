@@ -1,116 +1,189 @@
 ---
 Document ID: 3400-QUIZ
-Title: "Module 3400: Model Architectures Quiz"
+Title: "3400: Model Architectures - Quiz"
 Last Updated: 2026-09-24
 Status: Complete
-Difficulty: Advanced
+Difficulty: Intermediate
 ---
 
-# Module 3400: Model Architectures Quiz
-
-**Module:** Model Architectures
-**Document ID:** 3400
-**Difficulty:** Intermediate
-**Time:** 30 minutes
-
----
+# 3400: Model Architectures - Quiz
 
 ## Instructions
 
-Select the best answer for each question. Answers are provided at the bottom.
+- **20 questions**
+- **Passing score: 80%** (16/20 correct)
 
 ---
 
 ## Questions
 
-### 1. What is the key difference between encoder-only and decoder-only models?
+**1. What is the key difference between encoder-only and decoder-only models?**
 
 A) Number of layers
 B) Attention mask pattern (bidirectional vs causal)
 C) Vocabulary size
 D) Training data size
 
-### 2. Which architecture is used by BERT?
+**2. Which architecture is used by BERT?**
 
 A) Decoder-only
 B) Encoder-only
 C) Encoder-decoder
 D) None of the above
 
-### 3. Which architecture is used by GPT-4?
+**3. Which architecture is used by GPT-4?**
 
 A) Decoder-only
 B) Encoder-only
 C) Encoder-decoder
 D) Hybrid
 
-### 4. What is the main advantage of encoder-decoder models?
+**4. What is the main advantage of encoder-decoder models?**
 
 A) Faster inference
 B) Better for sequence-to-sequence tasks
 C) Lower memory usage
 D) Simpler training
 
-### 5. Which model uses encoder-decoder architecture?
+**5. Which model uses encoder-decoder architecture?**
 
 A) GPT
 B) BERT
 C) T5
 D) LLaMA
 
-### 6. What is causal masking?
+**6. What is causal masking?**
 
 A) Masking padding tokens
 B) Preventing tokens from attending to future tokens
 C) Random masking for pretraining
 D) Masking special tokens
 
-### 7. Which attention pattern allows each token to attend to all tokens?
+**7. Which attention pattern allows each token to attend to all tokens?**
 
 A) Causal attention
 B) Bidirectional attention
 C) Sliding window attention
 D) Sparse attention
 
-### 8. What is the primary use case for encoder-only models?
+**8. What is the primary use case for encoder-only models?**
 
 A) Text generation
 B) Text understanding and classification
 C) Translation
 D) Summarization
 
-### 9. What is the primary use case for decoder-only models?
+**9. What is the primary use case for decoder-only models?**
 
 A) Text classification
 B) Text generation
 C) Named entity recognition
 D) Sentiment analysis
 
-### 10. Why are decoder-only models dominant for LLMs?
+**10. Why are decoder-only models dominant for LLMs?**
 
 A) They're easier to train
 B) Better scaling properties
 C) More efficient inference
 D) All of the above
 
+**11. In encoder-decoder models, the decoder accesses the input sequence through:**
+
+A) Causal self-attention over the input
+B) Cross-attention to encoder outputs
+C) A shared embedding table
+D) Position-wise feedforward layers only
+
+**12. BERT's pretraining objectives are:**
+
+A) Masked language modeling (and originally next-sentence prediction)
+B) Next-token prediction
+C) Image-text contrastive learning
+D) Reinforcement learning from human feedback
+
+**13. The original Transformer paper (2017) used which architecture?**
+
+A) Decoder-only
+B) Encoder-only
+C) Encoder-decoder
+D) Mixture-of-experts
+
+**14. In GPT-style models, tokens attend to:**
+
+A) Only previous positions (causal mask)
+B) All positions
+C) Only future positions
+D) Only the current position
+
+**15. Which task fits encoder-decoder models best?**
+
+A) Sentence classification
+B) Text embedding
+C) Language modeling continuation
+D) Translation from source to target
+
+**16. Mixture-of-Experts (MoE) changes a transformer by:**
+
+A) Removing attention
+B) Routing each token to a subset of expert FFNs
+C) Replacing self-attention with convolution
+D) Sharing one expert across all layers
+
+**17. T5 frames every NLP task as:**
+
+A) A classification head
+B) A retrieval problem
+C) Text-to-text (text in, text out)
+D) An image captioning task
+
+**18. Which statement about decoder-only inference is true?**
+
+A) The KV cache lets each step reuse keys/values instead of recomputing past positions
+B) It must re-encode the full prompt at every step
+C) It cannot reuse computation across steps
+D) It needs cross-attention to be efficient
+
+**19. Encoder-only models output:**
+
+A) Autoregressive text
+B) Translations
+C) Audio features
+D) Contextual token representations for downstream heads
+
+**20. A key reason decoder-only dominates modern LLMs:**
+
+A) It avoids attention entirely
+B) It requires no pretraining data
+C) A simple single-stream objective that scales well with one unified training signal
+D) It cannot be scaled
+
 ---
 
-## Answers
+## Answer Key
 
-1. **B** - Encoder uses bidirectional attention, decoder uses causal (autoregressive)
-2. **B** - BERT is encoder-only (Bidirectional Encoder Representations from Transformers)
-3. **A** - GPT-4 is decoder-only (like all GPT models)
-4. **B** - Best for seq2seq tasks like translation, summarization
-5. **C** - T5 (Text-to-Text Transfer Transformer) is encoder-decoder
-6. **B** - Ensures autoregressive property (can't see future)
-7. **B** - Used in encoders for full context understanding
-8. **B** - Classification, NER, sentiment analysis, etc.
-9. **B** - Text generation, chatbots, code generation
-10. **D** - All reasons contribute to decoder dominance
+| # | Answer |
+|---|--------|
+| 1 | B |
+| 2 | B |
+| 3 | A |
+| 4 | B |
+| 5 | C |
+| 6 | B |
+| 7 | B |
+| 8 | B |
+| 9 | B |
+| 10 | D |
+| 11 | B |
+| 12 | A |
+| 13 | C |
+| 14 | A |
+| 15 | D |
+| 16 | B |
+| 17 | C |
+| 18 | A |
+| 19 | D |
+| 20 | C |
 
 ---
 
-**Score:** ___ / 10
-**Passing:** 7/10
-
-**Next:** Review [PRACTICE.md](./PRACTICE.md) for hands-on exercises
+**Last Updated:** 2026-09-24

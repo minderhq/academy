@@ -108,7 +108,7 @@ B) A class inheriting from nn.Module
 C) A dictionary
 D) A list
 
-**14) `.to(device)` is used to:**
+**14. `.to(device)` is used to:**
 
 A) Save model
 B) Move tensors/models to GPU or CPU
