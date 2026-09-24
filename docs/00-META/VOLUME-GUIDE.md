@@ -313,7 +313,7 @@ Follow the volumes below, in order.
 1. [7101: ReAct Loop](../phases/phase7-agentic/7100-architecture/7101-ReAct-Loop-System.md)
 2. [7102: Planning](../phases/phase7-agentic/7100-architecture/7102-Planning-Decomposition.md)
 3. [LAB-004: ReAct Agent](../learning-resources/labs/LAB-004-ReAct-Agent.md)
-4. [7201: AutoGen vs LangGraph](../phases/phase7-agentic/7300-orchestration/guides/7303-Framework-Comparison.md)
+4. [7303: AutoGen vs LangGraph](../phases/phase7-agentic/7300-orchestration/guides/7303-Framework-Comparison.md)
 5. [7301: Orchestration](../phases/phase7-agentic/7300-orchestration/7301-Orchestration.md)
 
 **Step 4: Tool Calling & Memory (1 week)**

@@ -444,4 +444,3 @@ class DeepNormTransformerBlock(nn.Module):
 - [3101: Self-Attention](../3100-attention/3101-Self-Attention-DeepDive.md)
 - [2202: TensorFlow XLA](../../phase2-foundations/2200-frameworks/2202-TensorFlow-XLA-Compilers.md)
 
-**Experiment Template:** `experiments/EXP_3302_NORM.md`

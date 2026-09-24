@@ -500,4 +500,4 @@ J = jacobian(y, x)
 - [2102: Backpropagation](../2100-calculus/2102-Backpropagation-and-Derivatives.md)
 - [2202: TensorFlow XLA](./2202-TensorFlow-XLA-Compilers.md)
 
-**Experiment Template:** `experiments/EXP_2201_PYTORCH_GRAPH.md`
+**Experiment Template:** `experiments/EXP_2201_PYTORCH_GRAPHS.md`

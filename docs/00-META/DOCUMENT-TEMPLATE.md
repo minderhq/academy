@@ -112,7 +112,7 @@ After reading this document, you will be able to:
 [Include relevant formulas and equations]
 
 **Key Formula:**
-```
+```text
 [Formula with proper formatting]
 ```
 
@@ -123,7 +123,7 @@ After reading this document, you will be able to:
 [Explain core concepts with examples]
 
 ### 2.3 Architecture Diagram
-```
+```text
 [ASCII art or reference to diagram file]
 ```
 

@@ -458,4 +458,3 @@ spec:
 - [1402: vLLM and TGI](./1402-vLLM-and-TGI.md)
 - [4101: GGUF Physics](../../phase4-quantization/4100-low-bit/4101-GGUF-Physics.md)
 
-**Experiment Template:** `experiments/EXP_1401_OLLAMA.md`

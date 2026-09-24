@@ -1,3 +1,11 @@
+---
+Document ID: 0000
+Title: "AI Engineering Curriculum Learning Path"
+Last Updated: 2026-09-25
+Status: Complete
+Difficulty: Beginner
+---
+
 # AI Engineering Curriculum Learning Path
 
 ## Table of Contents
@@ -260,7 +268,7 @@ Learning Path:
 ├── [2101: Tensor Algebra](../phases/phase2-foundations/2100-calculus/2101-Tensor-Algebra.md)
 ├── [2102: Backpropagation](../phases/phase2-foundations/2100-calculus/2102-Backpropagation-and-Derivatives.md)
 ├── [2201: PyTorch Graphs](../phases/phase2-foundations/2200-frameworks/2201-PyTorch-Computational-Graphs.md)
-└── EXP_2201_PYTORCH_GRAPH.md
+└── EXP_2201_PYTORCH_GRAPHS.md
 ```
 
 **Projects:**
@@ -682,8 +690,8 @@ Learning Path:
 
 ### Volume 6: Agentic AI
 20. [7101-7103: ReAct](../phases/phase7-agentic/7100-architecture/)
-21. [7201-7203: Multi-Agent](../phases/phase7-agentic/7200-tools/)
-22. [7301-7302: Tool-Calling](../phases/phase7-agentic/7300-orchestration/)
+21. [7201-7202: Tool Calling](../phases/phase7-agentic/7200-tools/)
+22. [7301-7303: Multi-Agent Orchestration](../phases/phase7-agentic/7300-orchestration/)
 23. [7401-7402: Agent Memory](../phases/phase7-agentic/7400-memory/)
 
 ### Volume 7: Production

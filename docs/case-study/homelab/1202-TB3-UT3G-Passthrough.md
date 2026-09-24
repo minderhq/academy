@@ -330,4 +330,3 @@ nvidia-smi dmon -s u
 - [1203: Nvidia Kernel Module](../../phases/phase1-infra/1200-virtualization/1203-Nvidia-Kernel-Module.md)
 - [1302: GPU Scheduler](../../phases/phase1-infra/1300-kubernetes/1302-GPU-Scheduler.md)
 
-**Experiment Template:** `experiments/EXP_1202_TB3_PASSTHROUGH.md`

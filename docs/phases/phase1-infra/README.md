@@ -659,7 +659,7 @@ global:
    - Configure the uplink modem in bridge mode
    - Verify ISP handoff and internet connectivity
 
-2. **[EXP_1103: Star Topology](../../case-study/experiments/EXP_1103_STAR_TOPOLOGY.md)** (case study)
+2. **[EXP_1103: Star Topology](../../case-study/experiments/EXP_1102_STAR_TOPOLOGY.md)** (case study)
    - Build a star topology network
    - Enable jumbo frames
    - Benchmark network performance

@@ -104,10 +104,6 @@ COMPLETE
 
 Apply your knowledge with these hands-on experiments:
 
-- **Experiment Template:** `experiments/EXP_2301_FRAMEWORK_PATTERNS.md` - Implement patterns from scratch
-- **Experiment Template:** `experiments/EXP_2302_SERVING_ARCH.md` - Build a batching server
-- **Experiment Template:** `experiments/EXP_2303_API_DESIGN.md` - Create production API
-
 ---
 
 ## Practice Labs

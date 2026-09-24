@@ -946,12 +946,12 @@ message = AgentMessage(
    - Build task planning system
    - Debug agent reasoning
 
-2. **[EXP_7301: Sandbox](../../../experiments/EXP_7301_SANDBOX.md)**
+2. **[EXP_7301: Sandbox](../../../experiments/EXP_7202_SANDBOX.md)**
    - Implement function calling
    - Build code interpreter
    - Create custom tools
 
-3. **[EXP_7202: Collaboration](../../../experiments/EXP_7202_COLLABORATION.md)**
+3. **[EXP_7202: Collaboration](../../../experiments/EXP_7301_COLLABORATION.md)**
    - Build multi-agent system
    - Implement communication protocols
    - Orchestrate complex workflow

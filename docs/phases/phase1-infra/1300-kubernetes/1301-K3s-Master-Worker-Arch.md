@@ -372,4 +372,3 @@ helm install prometheus-node-exporter prometheus-community/prometheus-node-expor
 - [1302: GPU Scheduler](./1302-GPU-Scheduler.md)
 - [1303: Storage Classes](./1303-Storage-Classes.md)
 
-**Experiment Template:** `experiments/EXP_1301_K3S_ARCH.md`

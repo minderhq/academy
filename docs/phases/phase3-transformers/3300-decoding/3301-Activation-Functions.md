@@ -426,4 +426,3 @@ Negative perplexity = improvement
 - [3101: Self-Attention](../3100-attention/3101-Self-Attention-DeepDive.md)
 - [5101: LoRA Logic](../../phase5-finetuning/5100-peft/5101-LoRA-Logic.md)
 
-**Experiment Template:** `experiments/EXP_3301_ACTIVATIONS.md`

@@ -485,6 +485,6 @@ Rule of thumb: α = 0.5 (balanced)
 **Related Documents:**
 - [5101: LoRA Logic](../5100-PEFT/5101-LoRA-Logic.md)
 - [6202: RAG Retrieval](../../phase6-rag/6200-retrieval/6202-Re-ranking-and-Retrieval-Logistics.md)
-- [7001: ReAct Loop](../../phase7-agentic/7100-architecture/7101-ReAct-Loop-System.md)
+- [7101: ReAct Loop](../../phase7-agentic/7100-architecture/7101-ReAct-Loop-System.md)
 
 **Experiment Template:** `experiments/EXP_5301_DISTILLATION.md"

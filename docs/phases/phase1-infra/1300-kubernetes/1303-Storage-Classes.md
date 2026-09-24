@@ -442,4 +442,3 @@ volumeClaimTemplates:
 - [1401: Ollama Enterprise](../1400-llmops/1401-Ollama-Enterprise.md)
 - [6101: HNSW Indexing](../../phase6-rag/6100-vector/6101-HNSW-Indexing.md)
 
-**Experiment Template:** `experiments/EXP_1303_STORAGE.md`

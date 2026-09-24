@@ -337,4 +337,3 @@ sensors
 - [1203: Nvidia Kernel Module](./1203-Nvidia-Kernel-Module.md)
 - [1301: K3s Architecture](../1300-kubernetes/1301-K3s-Master-Worker-Arch.md)
 
-**Experiment Template:** `experiments/EXP_1201_PROXMOX.md`

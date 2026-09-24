@@ -441,7 +441,7 @@ access_token = token_response.json()["access_token"]
 
 ---
 
-### Use Case 4: Legal Contract Analysis
+## Use Case 4: Legal Contract Analysis
 
 **Business Problem:**
 Lawyers need to analyze contracts for specific clauses, risks, and compliance issues across thousands of documents.

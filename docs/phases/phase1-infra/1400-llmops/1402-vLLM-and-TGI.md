@@ -460,4 +460,3 @@ watch -n 0.1 nvidia-smi
 - [4101: GGUF Physics](../../phase4-quantization/4100-low-bit/4101-GGUF-Physics.md)
 - [4202: Speculative Decoding](../../phase4-quantization/4200-kv-cache/4202-Speculative-Decoding.md)
 
-**Experiment Template:** `experiments/EXP_1402_VLLM_TGI.md`

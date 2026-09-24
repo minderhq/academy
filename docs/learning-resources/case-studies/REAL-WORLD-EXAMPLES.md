@@ -80,7 +80,7 @@ Real-world examples of AI systems in production, illustrating the concepts and t
 
 ### Solution: Multi-Agent Code Review
 ```python
-# Multi-agent architecture similar to EXP_7202
+# Multi-agent architecture similar to EXP_7301
 agents = {
     "reviewer": CodeReviewAgent(),
     "security": SecurityAgent(),
@@ -166,7 +166,7 @@ workflow = SequentialWorkflow(
 ### Solution: GraphRAG + Tools
 ```python
 # See EXP_6301_GRAPHRAG.md for GraphRAG details
-# See EXP_7301_SANDBOX.md for tool execution
+# See EXP_7202_SANDBOX.md for tool execution
 
 tools = [
     YahooFinanceTool(),
@@ -209,7 +209,7 @@ agent = GraphRAGAgent(
 
 ### Solution: RAG + Consensus
 ```python
-# Multi-agent consensus (see EXP_7202)
+# Multi-agent consensus (see EXP_7301)
 agents = [
     DiagnosticAgent(model="med-palm-2"),
     LiteratureSearchAgent(vector_db=PubMed),
@@ -339,7 +339,7 @@ Query → Embed → Retrieve → Rerank → LLM → Response
 
 - **Experiments:**
   - [EXP_6201: Hybrid Search](../../../experiments/EXP_6201_HYBRID_SEARCH.md)
-  - [EXP_7202: Multi-Agent Collaboration](../../../experiments/EXP_7202_COLLABORATION.md)
+  - [EXP_7202: Multi-Agent Collaboration](../../../experiments/EXP_7301_COLLABORATION.md)
 
 ---
 

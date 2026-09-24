@@ -500,4 +500,4 @@ class SpeculativeKVCache:
 - [1402: vLLM and TGI](../../phase1-infra/1400-llmops/1402-vLLM-and-TGI.md)
 - [3102: Flash Attention](../../phase3-transformers/3100-attention/3102-Flash-Attention.md)
 
-**Experiment Template:** `experiments/EXP_4202_SPECULATIVE.md`
+**Experiment Template:** `experiments/EXP_4202_SPECULATIVE_DECODING.md`

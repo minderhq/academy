@@ -441,7 +441,7 @@ def rerank(results, query):
 
 AI Engineering Curriculum also supports **GraphRAG** - combining vector search with knowledge graphs!
 
-```
+```text
 Vector RAG:              GraphRAG:
 ┌─────────┐              ┌──────────────┐
 │  Query  │              │    Query    │

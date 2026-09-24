@@ -379,13 +379,13 @@ below are derived directly from the file tree.
 - [EXP_7101_REACT](../../experiments/EXP_7101_REACT.md)
 - [EXP_7102_PLANNING](../../experiments/EXP_7102_PLANNING.md)
 - [EXP_7201_MULTI_AGENT](../../experiments/EXP_7201_MULTI_AGENT.md)
-- [EXP_7202_COLLABORATION](../../experiments/EXP_7202_COLLABORATION.md)
-- [EXP_7301_SANDBOX](../../experiments/EXP_7301_SANDBOX.md)
+- [EXP_7301_COLLABORATION](../../experiments/EXP_7301_COLLABORATION.md)
+- [EXP_7202_SANDBOX](../../experiments/EXP_7202_SANDBOX.md)
 - [EXP_7401_AGENT_MEMORY](../../experiments/EXP_7401_AGENT_MEMORY.md)
 - [EXP_7501_PROMPT_INJECTION](../../experiments/EXP_7501_PROMPT_INJECTION.md)
 - [TEMPLATE](../../experiments/TEMPLATE.md)
 - [EXP_1101_GPON](../case-study/experiments/EXP_1101_GPON.md)
-- [EXP_1103_STAR_TOPOLOGY](../case-study/experiments/EXP_1103_STAR_TOPOLOGY.md)
+- [EXP_1102_STAR_TOPOLOGY](../case-study/experiments/EXP_1102_STAR_TOPOLOGY.md)
 
 ---
 
@@ -493,7 +493,7 @@ Optional deep-dive: one person's full home-lab build (NUC 12th Gen, RTX 2080 Ti
 
 - [README](../case-study/README.md)
 - [EXP_1101_GPON](../case-study/experiments/EXP_1101_GPON.md)
-- [EXP_1103_STAR_TOPOLOGY](../case-study/experiments/EXP_1103_STAR_TOPOLOGY.md)
+- [EXP_1102_STAR_TOPOLOGY](../case-study/experiments/EXP_1102_STAR_TOPOLOGY.md)
 - [1101-Fiber-GPON-Modem](../case-study/homelab/1101-Fiber-GPON-Modem.md)
 - [1102-Star-Topology-Core](../case-study/homelab/1102-Star-Topology-Core.md)
 - [1202-TB3-UT3G-Passthrough](../case-study/homelab/1202-TB3-UT3G-Passthrough.md)

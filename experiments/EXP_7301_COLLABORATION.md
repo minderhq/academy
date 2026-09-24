@@ -1,17 +1,17 @@
 ---
-Document ID: EXP_7202
-Title: "EXP_7202: Multi-Agent Collaboration Experiment"
+Document ID: EXP_7301
+Title: "EXP_7301: Multi-Agent Collaboration Experiment"
 Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
 ---
 
-# EXP_7202: Multi-Agent Collaboration Experiment
+# EXP_7301: Multi-Agent Collaboration Experiment
 
 **Project:** AI Engineering Curriculum
 **Phase:** [7300] Orchestration
-**Document ID:** 7202
-**Experiment ID:** EXP_7202_COLLABORATION
+**Document ID:** 7301
+**Experiment ID:** EXP_7301_COLLABORATION
 **Date:** 2026-02-04
 **Status:** Completed
 

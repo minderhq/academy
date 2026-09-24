@@ -325,7 +325,7 @@ ip -d link show eno1.20
 - [1103: Jumbo Frames and MTU](./1103-Jumbo-Frames-and-MTU.md)
 - [1201: Proxmox Hypervisor SOP](../1200-virtualization/1201-Proxmox-Hypervisor-SOP.md)
 
-**Experiment Template:** `experiments/EXP_1102_STAR_TOPO.md`
+**Experiment Template:** `experiments/EXP_1102_STAR_TOPOLOGY.md`
 
 ---
 

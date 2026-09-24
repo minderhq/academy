@@ -1,12 +1,12 @@
 ---
-Document ID: EXP_1103
-Title: "EXP_1103: Star Topology and Network Performance Experiments"
+Document ID: EXP_1102
+Title: "EXP_1102: Star Topology and Network Performance Experiments"
 Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Beginner
 ---
 
-# EXP_1103: Star Topology and Network Performance Experiments
+# EXP_1102: Star Topology and Network Performance Experiments
 
 ## Overview
 Practical experiments for configuring and optimizing star topology network infrastructure for 2.5Gbps LLM model serving.

@@ -366,4 +366,3 @@ cat /var/log/Xorg.0.log | grep -i nvidia
 - [1302: GPU Scheduler](../1300-kubernetes/1302-GPU-Scheduler.md)
 - [2203: CUDA Kernel](../../phase2-foundations/2200-frameworks/2203-CUDA-Kernel-Syb-Level.md)
 
-**Experiment Template:** `experiments/EXP_1203_NVIDIA_MODULES.md`

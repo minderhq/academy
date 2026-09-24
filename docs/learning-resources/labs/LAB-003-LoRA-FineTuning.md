@@ -10,7 +10,7 @@ Difficulty: Intermediate
 
 **Prerequisites:**
 
-### Required Knowledge
+## Required Knowledge
 - **[Tutorial 001: Hello LLM](../tutorials/TUTORIAL-001-Hello-LLM.md)** - LLM basics
 - **[Tutorial 002: Docker Essentials](../tutorials/TUTORIAL-002-Docker-Essentials.md)** - Docker fundamentals
 - **[LAB 001: Docker & LLM](LAB-001-Docker-LLM.md)** - Docker practice

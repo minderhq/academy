@@ -1,6 +1,6 @@
 ---
 Document ID: 4409
-Title: Hardware-Specific Optimization
+Title: "4409: Hardware-Specific Quantization Optimization"
 Phase: 4
 Module: 4400
 Last Updated: 2026-09-24

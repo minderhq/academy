@@ -294,4 +294,3 @@ Video Streaming            1500 (compatible)
 - [1201: Proxmox Hypervisor](../1200-virtualization/1201-Proxmox-Hypervisor-SOP.md)
 - [1301: K3s Architecture](../1300-kubernetes/1301-K3s-Master-Worker-Arch.md)
 
-**Experiment Template:** `experiments/EXP_1103_MTU.md`
