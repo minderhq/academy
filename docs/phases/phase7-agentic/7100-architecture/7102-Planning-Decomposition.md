@@ -501,7 +501,7 @@ class CoordinatorAgent:
 
 **Related Documents:**
 - [7101: ReAct Loop](./7101-ReAct-Loop-System.md)
-- [7202: Collaborative Tasking](../7300-orchestration/7301-Orchestration.md)
+- [7301: Collaborative Tasking](../7300-orchestration/7301-Orchestration.md)
 - [7303: Framework Comparison](../7300-orchestration/guides/7303-Framework-Comparison.md)
 
 **Experiment Template:** `experiments/EXP_7102_PLANNING.md"

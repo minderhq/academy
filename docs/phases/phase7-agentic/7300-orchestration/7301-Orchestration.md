@@ -1,6 +1,6 @@
 ---
 Document ID: 7301
-Title: Collaborative Tasking - Multi-Agent Synergy
+Title: "7301: Collaborative Tasking - Multi-Agent Synergy"
 Phase: 7
 Module: 7300
 Last Updated: 2026-02-05
@@ -12,7 +12,7 @@ Related: See module README
 Tags: ['agents', 'orchestration', 'multi-agent', 'autogen', 'langgraph']
 ---
 
-# 7202: Collaborative Tasking - Multi-Agent Synergy
+# 7301: Collaborative Tasking - Multi-Agent Synergy
 
 ## Abstract
 Collaborative multi-agent systems involve specialized agents working together on complex tasks, each contributing their expertise to achieve goals beyond individual capabilities.
@@ -443,11 +443,10 @@ class LabSwarm:
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 
 ---
----
 
 **Related Documents:**
 - [Related Guides](./guides/7303-Framework-Comparison.md)
 - [7102: Planning Decomposition](../7100-architecture/7102-Planning-Decomposition.md)
 - [7202: Code Interpreter](../7200-tools/guides/7202-Code-Interpreter.md)
 
-**Experiment Template:** `experiments/EXP_7202_COLLABORATION.md"
+**Experiment Template:** `experiments/EXP_7301_COLLABORATION.md

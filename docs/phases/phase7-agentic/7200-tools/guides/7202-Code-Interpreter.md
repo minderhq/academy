@@ -496,7 +496,7 @@ class MonitoredSandbox:
 ---
 
 **Related Documents:**
-- [7202: Collaborative Tasking](../../7300-orchestration/7301-Orchestration.md)
+- [7301: Collaborative Tasking](../../7300-orchestration/7301-Orchestration.md)
 - [7101: ReAct Loop](../../7100-architecture/7101-ReAct-Loop-System.md)
 - [1302: GPU Scheduler](../../../phase1-infra/1300-kubernetes/1302-GPU-Scheduler.md)
 
