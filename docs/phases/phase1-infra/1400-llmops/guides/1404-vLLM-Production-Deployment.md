@@ -84,7 +84,7 @@ services:
     networks:
       - project-omega-net
     volumes:
-      - /volume1/docker/vllm/models:/root/.cache/huggingface
+      - /srv/models/vllm:/root/.cache/huggingface
     logging:
       driver: "json-file"
       options:
@@ -231,7 +231,7 @@ metadata:
 spec:
   accessModes:
   - ReadWriteOnce
-  storageClassName: nfs-synology
+  storageClassName: nfs-standard
   resources:
     requests:
       storage: 50Gi
@@ -688,8 +688,8 @@ python -c "from openai import OpenAI; client = OpenAI(base_url='http://localhost
 ---
 
 **Related:**
-- [1402: vLLM and TGI](../../1402-vLLM-and-TGI.md)
+- [1402: vLLM and TGI](../1402-vLLM-and-TGI.md)
 - [1401: Ollama Enterprise](../1401-Ollama-Enterprise.md)
-- [4101: GGUF Physics](../../phase4-quantization/4100-low-bit/4101-GGUF-Physics.md)
+- [4101: GGUF Physics](../../../phase4-quantization/4100-low-bit/4101-GGUF-Physics.md)
 - [1302: GPU Scheduler](../../1300-kubernetes/1302-GPU-Scheduler.md)
 - [1501: Monitoring and Observability](../../1500-Monitoring/1501-Monitoring-and-Observability.md)

@@ -15,19 +15,23 @@ Tags: ['infrastructure', 'virtualization', 'proxmox', 'gpu']
 # 1201: Proxmox Hypervisor Standard Operating Procedures
 
 ## Abstract
-Proxmox VE is the foundation of PROJECT-OMEGA's virtualization layer, hosting the K3s cluster and providing infrastructure for GPU passthrough to the NUC's RTX 2080 Ti.
+Proxmox VE is the virtualization layer at the center of this infrastructure, hosting the K3s cluster and providing the platform for GPU passthrough to a single NVIDIA GPU.
 
-## Hardware Architecture
+## Hardware Requirements
 
-### Intel NUC Specifications
-```
-Model: Intel NUC 12 Enthusiast (Serpent Canyon)
-CPU:  i7-12700H (12 cores / 20 threads)
-RAM:  64GB DDR5-4800 (2×32GB)
-Storage: 2TB NVMe SSD
-eGPU: RTX 2080 Ti via Thunderbolt 3
-NIC: 2.5Gbps Ethernet
-```
+### Reference Hardware
+
+Any machine meeting these minimums works - a dedicated desktop, a mini PC, a repurposed server, or a cloud VM with PCI passthrough enabled:
+
+| Component | Minimum | Recommended | Notes |
+|-----------|---------|-------------|-------|
+| CPU | x86_64 with VT-d (Intel) or AMD-Vi (AMD) | 8+ cores | IOMMU support is required for GPU passthrough |
+| RAM | 16 GB | 32 GB+ | K3s VMs plus host overhead |
+| GPU | None (CPU-only path works) | One NVIDIA GPU with 8GB+ VRAM | Passthrough-capable (see [1202](./1202-TB3-UT3G-Passthrough.md)) |
+| Storage | 250 GB | 500 GB+ NVMe | ZFS prefers fast local disks |
+| Network | 1 Gbps Ethernet | Multi-gig | Any wired NIC |
+
+Virtualization extensions to confirm in BIOS/UEFI before installing: **VT-x** (Intel) or **SVM** (AMD), plus **VT-d** / **IOMMU** for passthrough.
 
 ### Proxmox Installation
 ```bash
@@ -78,7 +82,7 @@ apt update && apt dist-upgrade -y
 # Enable ZFS compression
 zfs set compression=lz4 rpool
 
-# Adjust ARC max (use 50% of RAM)
+# Adjust ARC max (example: 32GB cap on a 64GB host; budget ~50% of your RAM)
 echo "options zfs zfs_arc_max=34359738368" >> /etc/modprobe.d/zfs.conf
 
 # Disable ZFS commit delay (better for VMs)
@@ -95,17 +99,16 @@ update-initramfs -u
 # Check CPU topology
 lscpu -p=CPU,CORE,SOCKET
 
-# Example output for i7-12700H:
-# P-Cores: 6 (hyperthreaded = 12 threads)
-# E-Cores: 8 (no hyperthreading)
-# Total: 20 logical CPUs
+# Example output (any modern CPU): one line per logical CPU,
+# listing CPU index, physical core, and socket. Uniform cores are
+# the common case; heterogeneous (P/E-core) laptop CPUs need care.
 ```
 
 ### CPU Pinning Strategy
 ```
-VM 101 (K3s Master):  P-Cores 0-3 (4 vCPU)
-VM 102 (K3s Worker):  P-Cores 4-7 (4 vCPU)
-Host:                 P-Cores 8-11 + All E-Cores
+VM 101 (K3s Master):  cores 0-3 (4 vCPU)
+VM 102 (K3s Worker):  cores 4-7 (4 vCPU)
+Host:                 all remaining cores
 ```
 
 ### VM CPU Configuration
@@ -172,17 +175,16 @@ pvesm add zfspool rpool-images \
   --sparse 1
 ```
 
-## Thunderbolt 3 / eGPU Preparation
+## GPU Passthrough Preparation
 
-### TB3 Device Identification
+### GPU Device Identification
 ```bash
-# List TB3 devices
-boltctl list
+# List NVIDIA devices and their PCI addresses
+lspci -nn | grep -i nvidia
 
 # Example output:
-# o20: RTX 2080 Ti eGPU
-#   Vendor: Razer
-#   Sysfs: /sys/bus/thunderbolt/devices/0-20
+# 01:00.0 VGA compatible controller [10de:2503]: NVIDIA Corporation ...
+# 01:00.1 Audio device [10de:228b]: NVIDIA Corporation ...
 ```
 
 ### IOMMU Configuration
@@ -285,13 +287,13 @@ sensors
 
 ## Next Steps
 
-- Continue with: **[1202: TB3 Passthrough](./1202-TB3-UT3G-Passthrough.md)**
+- Continue with: **[1202: GPU Passthrough (IOMMU/VFIO)](./1202-TB3-UT3G-Passthrough.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 
 ---
 
 **Related Documents:**
-- [1202: TB3 Passthrough](./1202-TB3-UT3G-Passthrough.md)
+- [1202: GPU Passthrough (IOMMU/VFIO)](./1202-TB3-UT3G-Passthrough.md)
 - [1203: Nvidia Kernel Module](./1203-Nvidia-Kernel-Module.md)
 - [1301: K3s Architecture](../1300-kubernetes/1301-K3s-Master-Worker-Arch.md)
 

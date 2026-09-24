@@ -20,7 +20,7 @@
 
 **Questions:**
 1. What minimum bandwidth do you need between workstation and NAS?
-2. Do you need fiber GPON for this setup?
+2. Do you need a fiber uplink (e.g., GPON) for this setup?
 3. What latency is acceptable for training?
 4. When would fiber be necessary?
 
@@ -62,9 +62,9 @@ Internet (Fiber 1Gbps)
 
 ---
 
-### Exercise 3: GPON vs Fiber Comparison
+### Exercise 3: Shared vs Dedicated Uplink
 
-**Task:** Compare GPON with dedicated fiber for AI workloads.
+**Task:** Compare a shared consumer uplink (GPON as the example) with dedicated fiber for AI workloads.
 
 **Create table comparing:**
 
@@ -133,7 +133,7 @@ Internet (Fiber 1Gbps)
 **Build a home AI network:**
 
 1. **Hardware:**
-   - 10Gbps switch (二手 Mikrotik/Ubiquiti)
+   - 10Gbps switch (used enterprise gear, e.g., Mikrotik/Ubiquiti)
    - CAT6a cables
    - WiFi 6 AP for management
 

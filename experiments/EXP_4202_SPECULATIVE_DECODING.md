@@ -468,6 +468,6 @@ if __name__ == "__main__":
 ---
 
 ## Related Documentation
-- [4202: Speculative Decoding](../docs/4000-Quantization/4200-KV-Cache/4202-Speculative-Decoding.md)
-- [4201: Context Window Physics](../docs/4000-Quantization/4200-KV-Cache/4201-Context-Window-Physics.md)
-- [1402: vLLM and TGI](../docs/1000-Infrastructure-Fabric/1400-LLMOps/1402-vLLM-and-TGI.md)
+- [4202: Speculative Decoding](../docs/phases/phase4-quantization/4200-kv-cache/4202-Speculative-Decoding.md)
+- [4201: Context Window Physics](../docs/phases/phase4-quantization/4200-kv-cache/4201-Context-Window-Physics.md)
+- [1402: vLLM and TGI](../docs/phases/phase1-infra/1400-llmops/1402-vLLM-and-TGI.md)

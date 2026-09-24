@@ -1,37 +1,37 @@
 ---
 Document ID: 1101
-Title: Fiber GPON Modem Configuration
+Title: Internet Uplink & Modem Configuration
 Phase: 1
 Module: 1100
-Last Updated: 2026-02-05
+Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 2 hours
 Prerequisites: Basic networking knowledge
 Related: [1102, 1103, 1201]
-Tags: [networking, fiber, gpont, bridge-mode, isp]
-Hardware: [GPON ONT/ONU, Ethernet switch]
+Tags: [networking, wan, uplink, bridge-mode, isp]
+Hardware: [WAN uplink (fiber ONT, cable modem, DSL modem, or fixed-wireless CPE), Ethernet router]
 Software: [Web browser, terminal]
 ---
 
-# 1101: Fiber GPON Modem Configuration
+# 1101: Internet Uplink & Modem Configuration
 
 ## Abstract
 
-This document covers the GPON (Gigabit Passive Optical Network) modem configuration for PROJECT-OMEGA's network infrastructure. You will learn how to configure bridge mode, verify optical signal levels, and integrate the modem with a 2.5Gbps star topology network.
+Every AI lab starts with a WAN uplink: the connection between your network and the internet. This document covers the common uplink technologies (fiber, cable, DSL, fixed wireless), how to configure the provider modem or gateway in router mode vs bridge mode, MTU considerations, and how to verify that your uplink actually delivers the throughput you are paying for. It closes with the safest ways to expose self-hosted AI services to the internet.
 
 ---
 
 ## Table of Contents
 
 - [1. Overview](#1-overview)
-- [2. Technical Specifications](#2-technical-specifications)
-- [3. Bridge Mode Configuration](#3-bridge-mode-configuration)
-- [4. Signal Path Diagram](#4-signal-path-diagram)
-- [5. Troubleshooting](#5-troubleshooting)
-- [6. Integration with PROJECT-OMEGA](#6-integration-with-project-omega)
-- [7. WAN Bypass (Advanced)](#7-wan-bypass-advanced)
-- [8. References](#8-references)
+- [2. WAN Uplink Technologies](#2-wan-uplink-technologies)
+- [3. Router Mode vs Bridge Mode](#3-router-mode-vs-bridge-mode)
+- [4. MTU Considerations](#4-mtu-considerations)
+- [5. Verifying Uplink Throughput](#5-verifying-uplink-throughput)
+- [6. Exposing Lab Services to the Internet](#6-exposing-lab-services-to-the-internet)
+- [7. Troubleshooting](#7-troubleshooting)
+- [8. Summary](#8-summary)
 
 ---
 
@@ -39,192 +39,298 @@ This document covers the GPON (Gigabit Passive Optical Network) modem configurat
 
 ### 1.1 Purpose
 
-The GPON modem serves as the entry point for fiber-optic internet connectivity in the PROJECT-OMEGA infrastructure. This document provides configuration guidance for optimal performance with 2.5Gbps networks.
+The WAN uplink is the entry point for internet connectivity in your lab. Everything else in this course - the star topology, the hypervisor, the GPU node - sits behind it. Getting the uplink configured correctly matters for two reasons:
+
+1. **Throughput**: Downloading model weights (often 5-40 GB each) is bandwidth-bound. A misconfigured uplink slows every `pull` and `wget` you run.
+2. **Control**: You want *your* router, not the ISP's combo box, to own NAT, DHCP, and firewall decisions.
 
 ### 1.2 Prerequisites
 
-- Basic understanding of networking concepts
-- Access to GPON modem administrative interface
-- ISP-provided fiber connection
-- Ethernet cable (CAT6A recommended for 2.5Gbps)
+- Basic understanding of networking concepts (IP addressing, NAT, DHCP)
+- Access to the administrative interface of your modem/gateway
+- An active internet subscription of any type
+- An Ethernet cable (Cat5e or better) from the modem to your router
 
 ### 1.3 Learning Objectives
 
-After completing this configuration, you will be able to:
-- ✅ Configure GPON modem in bridge mode
-- ✅ Verify optical signal levels
-- ✅ Integrate modem with 2.5Gbps star topology
-- ✅ Troubleshoot common fiber connectivity issues
+After completing this document, you will be able to:
+
+- Identify which WAN technology you have and its realistic performance ceiling
+- Decide between router mode and bridge mode, and configure each
+- Set a correct MTU for your uplink type
+- Measure real uplink throughput and latency with `iperf3` and `ping`
+- Expose a self-hosted service safely, understanding the risks
 
 ---
 
-## 2. Technical Specifications
+## 2. WAN Uplink Technologies
 
-### 2.1 GPON Architecture
+### 2.1 Technology Comparison
+
+There is no single "correct" uplink. Any of the technologies below can run this course; what changes is the hardware at your edge and the performance ceiling.
+
+| Technology | Typical Downstream | Typical Upstream | Media | Notes |
+|------------|-------------------|------------------|-------|-------|
+| **Fiber (e.g., GPON)** | 300 Mbps - 10 Gbps | Symmetric or 2:1 | Optical | Signal carried to an ONT/ONU box; Ethernet out |
+| **Cable (DOCSIS 3.1)** | 100 Mbps - 2 Gbps | 10-100 Mbps | Coax | Shared bandwidth with neighbors; asymmetry common |
+| **DSL / VDSL2 / G.fast** | 20-300 Mbps | 5-100 Mbps | Telephone line | Performance degrades with distance from the DSLAM |
+| **Fixed wireless / 5G FWA** | 50-1000 Mbps | Variable | Radio | Latency and throughput vary with congestion and weather |
+| **Cellular (LTE/5G hotspot)** | 20-500 Mbps | Variable | Radio | Usable fallback; NAT and CGNAT complicate inbound access |
+
+### 2.2 Example: GPON Fiber Architecture
+
+Fiber deployments such as GPON (Gigabit Passive Optical Network) are one common example. The provider terminates a shared optical signal at a passive splitter, and a small ONT box in your home converts light back to Ethernet:
 
 ```
-OLT (Optical Line Terminal)
-    ↓ (Fiber - up to 20km)
-Splitter (Passive 1:N)
-    ↓ (Fiber to each subscriber)
-ONT/ONU (Optical Network Terminal/Unit) → Your Modem
+OLT (provider equipment)
+    | (fiber, up to ~20 km)
+Passive splitter (1:32 or 1:64)
+    | (fiber to each subscriber)
+ONT / ONU (your premises) --> Ethernet --> your router
 ```
 
-### 2.2 Key Standards
+Key properties of the fiber example:
 
-| Standard | Description |
-|----------|-------------|
-| **ITU-T G.984** | GPON standard family |
-| **Downstream** | 2.488 Gbps |
-| **Upstream** | 1.244 Gbps |
-| **Wavelengths** | 1490nm (down), 1310nm (up) |
-| **Split Ratio** | Typically 1:32 or 1:64 |
+| Property | Typical Value |
+|----------|---------------|
+| Downstream (shared) | 2.488 Gbps (GPON) or 10 Gbps (XGS-PON) |
+| Upstream (shared) | 1.244 Gbps (GPON) |
+| Optical receive power | -8 to -28 dBm (check the ONT status page) |
+
+The same pattern applies to every technology: a provider-owned device converts the carrier medium to Ethernet, and your job is to make sure the *routing* happens on equipment you control.
 
 ---
 
-## 3. Bridge Mode Configuration
+## 3. Router Mode vs Bridge Mode
 
-### 3.1 Why Bridge Mode?
+### 3.1 The Double NAT Problem
 
-Bridge mode disables routing/NAT functions on the modem, allowing your downstream router to handle:
-- Public IP assignment
-- NAT translation
-- DHCP server
-- Firewall rules
-- Port forwarding
-
-### 3.2 Configuration Steps
-
-#### Step 1: Access Modem Interface
-```
-Default Gateway: 192.168.100.1 or 192.168.1.1
-Credentials: admin/admin (check ISP documentation)
-```
-
-#### Step 2: Enable Bridge Mode
-
-Navigate to: **Advanced Settings → WAN Settings → Mode**
+Most ISPs ship a combined modem + router + Wi-Fi gateway. In its default **router mode**, that box performs NAT itself, and if you attach your own router behind it, packets traverse **two** NAT layers:
 
 ```
-Mode: Bridge
-VLAN ID: [ISP-specific, often 0 or disabled]
-IGMP: Enabled (for IPTV if applicable)
+Internet --> [ISP gateway: NAT #1] --> [Your router: NAT #2] --> Lab
 ```
 
-#### Step 3: Disable Wireless (if applicable)
+Double NAT works for outbound traffic but causes:
+
+- Broken or unreliable inbound port forwarding (which gateway forwards the port?)
+- Game/VoIP/STUN quirks and duplicate DHCP servers
+- Two firewall rule sets to maintain
+
+### 3.2 Option A: Bridge Mode (Recommended)
+
+Bridge mode disables routing/NAT on the provider box, passing the public IP straight through to your router:
+
 ```
-Wireless: Disabled
-(in 2.4GHz and 5GHz bands)
+Internet --> [ISP gateway: bridge] --> [Your router: NAT, DHCP, firewall] --> Lab
 ```
 
-#### Step 4: Save and Reboot
+Generic configuration steps (menu names vary by vendor):
+
 ```
-Apply Settings → Reboot ONT
+1. Log in to the gateway admin UI (usually http://192.168.100.1 or http://192.168.1.1)
+2. Navigate to WAN / Internet / Connection settings
+3. Set operating mode: Bridge
+4. If asked, set the ISP VLAN ID (commonly required on fiber; 0 = untagged elsewhere)
+5. Disable the gateway's Wi-Fi radios
+6. Apply and let the gateway reboot
+7. Reboot your own router - it should now receive the public IP on its WAN port
+```
+
+Verification - the WAN IP on your router should match your public IP:
+
+```bash
+# On a client behind your router, compare these two:
+curl -s ifconfig.me        # your public IP as seen from the internet
+ip addr show               # WAN interface of the router (check via router UI)
+# If they match (and are not RFC1918/private), bridge mode is working
+```
+
+### 3.3 Option B: Router Mode with Demilitarized Zone (DMZ)
+
+If the ISP gateway cannot be bridged (some are locked), put your router in the gateway's **DMZ**. The gateway forwards all unsolicited traffic to your router, which still applies its own firewall. It is functionally single-NAT from your lab's point of view, with the gateway still holding the public IP.
+
+### 3.4 CGNAT Consideration
+
+On cable, fixed wireless, and cellular uplinks, the ISP may apply **carrier-grade NAT (CGNAT)**: you never receive a routable public IP at all. Inbound hosting (Section 6) then requires a tunnel or relay (e.g., a VPN to a VPS with a public IP, Cloudflare Tunnel, or Tailscale Funnel). Check whether your router's WAN IP is in `100.64.0.0/10` - that range signals CGNAT.
+
+---
+
+## 4. MTU Considerations
+
+MTU (Maximum Transmission Unit) is the largest packet size a link carries. Getting it wrong causes the classic "some sites load, others hang" symptom.
+
+| Uplink Type | Typical WAN MTU | Why |
+|-------------|-----------------|-----|
+| Ethernet/fiber, DHCP | 1500 | Standard Ethernet payload |
+| PPPoE (common on DSL/fiber) | 1492 | 8 bytes consumed by PPPoE header |
+| Some mobile/fixed wireless | 1420-1440 | Tunnel overhead varies |
+
+```bash
+# Discover the largest unfragmented payload to a public host
+# Linux (8972 + 28 bytes of IP/ICMP headers = 9000 for jumbo LANs;
+#        for a 1500 WAN, start at 1472):
+ping -M do -s 1472 -c 3 1.1.1.1
+
+# Windows equivalent:
+ping 1.1.1.1 -f -l 1472
+```
+
+If the probe fails, lower the payload in 10-byte steps until it succeeds; add 28 to find the true MTU.
+
+MSS clamping on your router is the belt-and-braces fix for paths that drop the "Fragmentation Needed" ICMP messages PMTUD relies on:
+
+```bash
+# On your router (iptables example):
+iptables -t mangle -A FORWARD -p tcp --tcp-flags SYN,RST SYN \
+  -j TCPMSS --clamp-mss-to-pmtu
+```
+
+Note: jumbo frames (MTU 9000) are a **LAN-only** optimization. See [1103: Jumbo Frames and MTU](./1103-Jumbo-Frames-and-MTU.md) - the WAN link stays at 1500/1492.
+
+---
+
+## 5. Verifying Uplink Throughput
+
+Marketing numbers describe the best case. Measure what you actually get.
+
+### 5.1 Latency Baseline
+
+```bash
+# Round-trip time to a nearby well-connected host
+ping -c 20 1.1.1.1
+
+# Reference points:
+#   Fiber / cable:        2-30 ms
+#   DSL:                  10-40 ms
+#   Fixed wireless / 5G:  20-80 ms
+#   Satellite LEO:        30-80 ms
+```
+
+Latency matters for interactive AI workloads (streaming tokens to a remote client, pulling from Hugging Face).
+
+### 5.2 iperf3 Against a Public Server
+
+Many public `iperf3` servers exist (search "public iperf3 servers" for a current list), or use a VPS you control:
+
+```bash
+# On the VPS:
+iperf3 -s
+
+# From your lab (download test, 4 parallel streams):
+iperf3 -c <vps-ip> -P 4 -R -t 30
+
+# Upload test:
+iperf3 -c <vps-ip> -P 4 -t 30
+```
+
+### 5.3 Interpreting Results
+
+```
+Observed vs advertised:
+  >= 90% of plan     : healthy
+  60-90% of plan     : normal for shared media (cable) at peak hours
+  < 60% of plan      : investigate (Section 7)
+
+Asymmetric links: upload may be 5-20x slower than download.
+Self-hosting visitors will be limited by UPLOAD bandwidth.
 ```
 
 ---
 
-## 4. Signal Path Diagram
+## 6. Exposing Lab Services to the Internet
+
+Self-hosting an OpenAI-compatible API or a Grafana dashboard is a common goal. There are two mainstream patterns.
+
+### 6.1 Port Forwarding
+
+Forward a specific external port to an internal host:
 
 ```
-[ISP OLT] --(Fiber)--> [Splitter] --(Fiber)--> [GPON ONT]
-                                                    |
-                                                    | (Ethernet)
-                                                    ↓
-                                            [2.5Gbps Switch #1]
-                                                    |
-                               +--------------------+--------------------+
-                               |                    |                    |
-                        [Salon Port]          [Office Port]         [NAS LAN3]
-                               |                    |                    |
-                               ↓                    ↓                    ↓
-                          [PC/Devices]        [Access Point]      [Synology NAS]
+WAN :8443 --> 192.168.1.50:8443   (e.g., inference API on your GPU server)
+```
+
+**Security warning - read before opening any port:**
+
+- Exposing an LLM API keylessly means anyone on the internet can burn your GPU hours. Always put authentication (reverse proxy with TLS + auth, API gateway) in front of the service.
+- Forward only the exact ports needed; never use DMZ-toward-a-lab-host.
+- Keep the host patched; an exposed K3s API server or hypervisor UI is a critical incident waiting to happen.
+- Prefer inbound-allow-nothing designs (Section 6.2) when possible.
+
+### 6.2 Outbound Tunnels (Safer Default)
+
+Instead of allowing inbound connections, establish an outbound tunnel from the lab to a relay:
+
+- **WireGuard/Tailscale to a VPS**: the VPS holds the public IP and reverse-proxies to the lab over the tunnel.
+- **Cloudflare Tunnel**: no public IP required at all; also a workaround for CGNAT.
+
+```
+[User] --> [VPS / edge] <--outbound WireGuard tunnel-- [Lab service]
+```
+
+No firewall ports are opened on your uplink, and the attack surface moves to the VPS, where it is easier to monitor and rebuild.
+
+---
+
+## 7. Troubleshooting
+
+### 7.1 Common Issues
+
+| Symptom | Likely Cause | Fix |
+|---------|--------------|-----|
+| Frequent disconnects (fiber) | Marginal optical signal | Check Rx power in ONT status page (-8 to -28 dBm); call ISP if out of range |
+| Some websites hang | MTU mismatch / PMTUD black hole | Lower MTU or enable MSS clamping (Section 4) |
+| Cannot reach lab from outside | Double NAT or CGNAT | Bridge mode, DMZ, or outbound tunnel (Sections 3, 6.2) |
+| Speed far below plan at all hours | Old modem / negotiation at 100 Mbps | Check link speed on router WAN port; request modem swap |
+| Slow only at peak hours | Shared-media congestion (cable/fixed wireless) | Expected; measure at different times |
+| Public IP starts with 100.64-100.127 | CGNAT | Use tunnel-based exposure |
+
+### 7.2 Diagnostic Commands
+
+```bash
+# What IP does the world see for us?
+curl -s ifconfig.me
+
+# Is the WAN interface in bridge mode? (run on router)
+ip -4 addr show | grep -A 2 <wan-iface>
+
+# Latency and loss over 60 seconds
+ping -c 60 1.1.1.1 | tail -3
+
+# Trace where the path breaks
+traceroute 1.1.1.1
 ```
 
 ---
 
-## 5. Troubleshooting
+## 8. Summary
 
-### 5.1 Optical Signal Levels
-
-Check optical power in modem interface:
-
-| Metric | Acceptable Range |
-|--------|------------------|
-| **Rx Power** | -8 to -28 dBm |
-| **Tx Power** | 0 to +7 dBm |
-| **Temperature** | < 70°C |
-
-### 5.2 Common Issues
-
-| Symptom | Cause | Solution |
-|---------|-------|----------|
-| No LOS light | Fiber disconnected | Check SC/APC connector |
-| Intermittent drops | Signal degradation | Contact ISP for line check |
-| Cannot access modem | IP conflict | Use direct connection |
-
----
-
-## 6. Integration with PROJECT-OMEGA
-
-### 6.1 Hardware Connection
-
-```
-GPON ONT Port 1 ────────┐
-                       │
-                  [CAT6A/Ethernet]
-                       │
-         ┌─────────────┴─────────────┐
-         │   2.5Gbps Switch #1       │
-         │   Port 1 (WAN Input)      │
-         └───────────────────────────┘
-```
-
-### 6.2 Throughput Considerations
-
-- GPON theoretical: 2.488 Gbps downstream
-- Real-world with TCP overhead: ~2.2-2.3 Gbps
-- Switch upgrade to 2.5Gbps required for full utilization
-
----
-
-## 7. WAN Bypass (Advanced)
-
-For redundancy, consider:
-
-1. **4G/5G Backup**: USB LTE modem on secondary router
-2. **Multi-WAN**: Load balancing between GPON and backup
-3. **Failover**: Automatic switch when GPON down
-
----
-
-## 8. References
-
-### Technical Standards
-- [ITU-T G.984 Series](https://www.itu.int/rec/T-REC-G.984) - GPON standards
-
-### Related PROJECT-OMEGA Documents
-- [1102: Star Topology Core](./1102-Star-Topology-Core.md) - Switch configuration
-- [1103: Jumbo Frames and MTU](./1103-Jumbo-Frames-and-MTU.md) - MTU optimization
-- [1201: Proxmox Hypervisor SOP](../1200-virtualization/1201-Proxmox-Hypervisor-SOP.md) - Virtualization setup
-
-### Experiments
-- [EXP_1101: GPON Configuration](../../../../../experiments/EXP_1101_GPON.md) - Hands-on modem configuration
-
-### External Resources
-- [GPON Technology Overview](https://en.wikipedia.org/wiki/Gigabit-capable_PON) - Wikipedia reference
+- Any uplink technology (fiber, cable, DSL, fixed wireless) can host this course; know your realistic ceiling.
+- Prefer **bridge mode** so your router owns NAT, DHCP, and the firewall; use DMZ if the gateway cannot be bridged.
+- Match MTU to the uplink type (1500, or 1492 under PPPoE) and clamp MSS as a safety net.
+- Measure real throughput with `iperf3`; upload bandwidth governs self-hosting.
+- Expose services via outbound tunnels when possible; if you port-forward, authenticate everything.
 
 ---
 
 ## Next Steps
 
-- Continue with: **[1102: Star Topology Core](./1102-Star-Topology-Core.md)**
-- Practical: **[LAB-001: Docker & LLM](../../../../learning-resources/labs/LAB-001-Docker-LLM.md)**
+- Continue with: **[1102: Network Topology Design](./1102-Star-Topology-Core.md)**
+- Practical: **[LAB-001: Docker & LLM](../../../learning-resources/labs/LAB-001-Docker-LLM.md)**
 - Assessment: **[assessment/QUIZ.md](assessment/QUIZ.md)**
 
 ---
 
+**Related Documents:**
+- [1102: Network Topology Design](./1102-Star-Topology-Core.md) - LAN design behind the uplink
+- [1103: Jumbo Frames and MTU](./1103-Jumbo-Frames-and-MTU.md) - LAN MTU optimization
+- [1201: Proxmox Hypervisor SOP](../1200-virtualization/1201-Proxmox-Hypervisor-SOP.md) - The server that sits behind this uplink
+
+**Case Study Experiment:** [EXP_1101: GPON Configuration](../../../case-study/experiments/EXP_1101_GPON.md) - a hands-on fiber (GPON) example from the original build
+
+---
+
 **Document ID:** 1101
-**Last Updated:** 2026-02-05
+**Last Updated:** 2026-09-24
 **Status:** Complete
 **Related Documents:** [1102, 1103, 1201]

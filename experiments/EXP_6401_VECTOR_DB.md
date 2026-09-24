@@ -1,21 +1,21 @@
 # EXP_6401: Vector Database Performance Experiments
 
 ## Overview
-Practical experiments for comparing vector database performance on PROJECT-OMEGA infrastructure (Synology NAS + K3s cluster).
+Practical experiments for comparing vector database performance on PROJECT-OMEGA infrastructure (self-hosted Docker host; optional K3s cluster).
 
 ## Experiment 1: Qdrant Deployment and Baseline
 
 ### Objective
-Deploy Qdrant on Synology NAS and establish baseline performance metrics.
+Deploy Qdrant on a self-hosted Docker host and establish baseline performance metrics.
 
 ### Deployment
 ```bash
-# SSH into Synology
-ssh admin@192.168.1.100
+# SSH into your host (or run locally)
+ssh user@your-host
 
 # Create project directory
-mkdir -p /volume1/docker/qdrant
-cd /volume1/docker/qdrant
+mkdir -p /srv/qdrant
+cd /srv/qdrant
 
 # Create docker-compose.yml
 cat > docker-compose.yml << 'EOF'
@@ -26,13 +26,13 @@ services:
     image: qdrant/qdrant:v1.7.4
     container_name: qdrant
     ports:
-      - 6333:6333  # gRPC
-      - 6334:6334  # HTTP
+      - 6333:6333  # HTTP (REST API)
+      - 6334:6334  # gRPC
     volumes:
       - ./data:/qdrant/storage
     environment:
-      - QDRANT__SERVICE__GRPC_PORT=6333
-      - QDRANT__SERVICE__HTTP_PORT=6334
+      - QDRANT__SERVICE__GRPC_PORT=6334
+      - QDRANT__SERVICE__HTTP_PORT=6333
       - QDRANT__STORAGE__OPTIMIZER_CPU_BUDGET=4
     restart: unless-stopped
 EOF
@@ -41,7 +41,7 @@ EOF
 docker-compose up -d
 
 # Verify
-curl http://192.168.1.100:6334/health
+curl http://localhost:6333/health
 ```
 
 ### Python Test Script
@@ -53,7 +53,7 @@ from qdrant_client import QdrantClient
 from qdrant_client.models import Distance, VectorParams, PointStruct
 
 # Configuration
-QDRANT_URL = "http://192.168.1.100:6334"
+QDRANT_URL = "http://localhost:6333"
 COLLECTION_NAME = "test_benchmark"
 VECTOR_DIM = 384  # E5-small embedding dimension
 N_VECTORS = 100_000
@@ -218,7 +218,7 @@ class VectorDBBenchmark:
         from qdrant_client import QdrantClient
         from qdrant_client.models import VectorParams, Distance, PointStruct
 
-        client = QdrantClient(url="http://192.168.1.100:6334")
+        client = QdrantClient(url="http://localhost:6333")
         collection = "benchmark_qdrant"
 
         # Setup
@@ -257,7 +257,7 @@ class VectorDBBenchmark:
         """Benchmark Weaviate"""
         import weaviate
 
-        client = weaviate.Client("http://192.168.1.100:8080")
+        client = weaviate.Client("http://localhost:8080")
 
         # Setup (skip if Weaviate not deployed)
         try:
@@ -483,7 +483,7 @@ import time
 
 def test_hnsw_params(m_values=[8, 16, 24, 32], ef_values=[50, 100, 200]):
     """Test HNSW parameter combinations"""
-    client = QdrantClient(url="http://192.168.1.100:6334")
+    client = QdrantClient(url="http://localhost:6333")
 
     # Generate test data
     n_vectors = 10_000
@@ -544,7 +544,7 @@ def test_hnsw_params(m_values=[8, 16, 24, 32], ef_values=[50, 100, 200]):
 
 ---
 
-## Expected Performance (entry-level NAS)
+## Expected Performance (entry-level 4-core host)
 
 | Operation | Expected | Notes |
 |-----------|----------|-------|
@@ -559,7 +559,7 @@ def test_hnsw_params(m_values=[8, 16, 24, 32], ef_values=[50, 100, 200]):
 
 ## Experiment Checklist
 
-- [ ] Qdrant deployment on Synology NAS
+- [ ] Qdrant deployment with Docker
 - [ ] Baseline insert performance (100K vectors)
 - [ ] Baseline search performance (100 queries)
 - [ ] Weaviate deployment (optional)
@@ -573,7 +573,7 @@ def test_hnsw_params(m_values=[8, 16, 24, 32], ef_values=[50, 100, 200]):
 ---
 
 ## Related Documentation
-- [6401: Qdrant Setup](../docs/6000-Data-Nexus/6400-Vector-Databases/6401-Qdrant-Setup.md)
-- [6402: Vector DB Comparison](../docs/6000-Data-Nexus/6400-Vector-Databases/6402-Pinecone-vs-Weaviate.md)
-- [6101: HNSW Indexing](../docs/6000-Data-Nexus/6100-Vector-Search/6101-HNSW-Indexing.md)
-- [6201: Hybrid Search](../docs/6000-Data-Nexus/6200-RAG/6201-Hybrid-Search.md)
+- [6401: Qdrant Setup](../docs/phases/phase6-rag/6400-vector-databases/6401-Qdrant-Setup.md)
+- [6402: Vector DB Comparison](../docs/phases/phase6-rag/6400-vector-databases/6402-Pinecone-vs-Weaviate.md)
+- [6101: HNSW Indexing](../docs/phases/phase6-rag/6100-vector/6101-HNSW-Indexing.md)
+- [6201: Hybrid Search](../docs/phases/phase6-rag/6200-retrieval/6201-Hybrid-Search.md)

@@ -31,13 +31,13 @@ After completing Phase 1, you will:
 **After completing 1101-1103, you should:**
 
 **Knowledge Check:**
-- [ ] Explain GPON bridge mode
+- [ ] Explain bridge mode (and why it avoids double NAT)
 - [ ] Understand star topology benefits
 - [ ] Know when to use jumbo frames (MTU 9000)
 
 **Practical Skills:**
 - [ ] Configure modem for bridge mode
-- [ ] Set up 2.5Gbps switch
+- [ ] Configure a managed switch (VLANs, MTU)
 - [ ] Verify network throughput
 
 **Troubleshooting:**
@@ -52,7 +52,7 @@ After completing Phase 1, you will:
 
 **Ready for Next Module?**
 - If YES → Continue to 1200
-- If NO → Review [1101-Fiber-GPON-Modem.md](../../phases/phase1-infra/1100-network/1101-Fiber-GPON-Modem.md)
+- If NO → Review [1101: Internet Uplink & Modem Configuration](../../phases/phase1-infra/1100-network/1101-Fiber-GPON-Modem.md)
 
 ---
 
@@ -300,6 +300,6 @@ Total Time: _____ hours (Expected: 20-40 hours)
 
 ---
 
-**Last Updated:** 2026-02-04
+**Last Updated:** 2026-09-24
 **Phase:** 1000 - Infrastructure Fabric
 **Next Phase:** 2000 - Cognitive Science & Frameworks

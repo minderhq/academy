@@ -1,6 +1,6 @@
 ---
 Document ID: 1204
-Title: Multi-GPU Setup for RTX 2080 Ti
+Title: Multi-GPU Setup
 Phase: 1
 Module: 1200
 Last Updated: 2026-02-05
@@ -12,37 +12,43 @@ Related: See module README
 Tags: ['infrastructure', 'virtualization', 'proxmox', 'gpu']
 ---
 
-# 1204: Multi-GPU Setup for RTX 2080 Ti
+# 1204: Multi-GPU Setup
 
 ## Abstract
-Multi-GPU configuration for PROJECT-OMEGA. Single RTX 2080 Ti eGPU via Thunderbolt 3, with future expansion considerations.
+Scaling GPU workloads from a single card to multi-GPU serving and training: device selection, data and model parallelism in PyTorch, multi-GPU inference engines (vLLM, TGI, Ollama), fine-tuning strategies, and troubleshooting.
 
-## Current Hardware
+## Starting Point: A Single GPU
 
-### RTX 2080 Ti Specifications
+### Reference Card
 ```
-GPU: NVIDIA TU102 (Turing Architecture)
-VRAM: 11GB GDDR6
-CUDA Cores: 4352
-Tensor Cores: 544 (FP16)
-Memory Bandwidth: 616 GB/s
-TDP: 250W
-Interface: Thunderbolt 3 (40 Gbps)
+GPU:  Any NVIDIA card with 8GB+ VRAM
+      (e.g., RTX 2080 Ti 11GB, RTX 3060 12GB, RTX 4060 Ti 16GB)
+VRAM: 8-16GB is the practical starting range
+Role: Sufficient for 7B models (4-bit quantization), QLoRA fine-tuning,
+      and single-stream inference
 ```
 
-### Thunderbolt 3 Limitations
+> **External GPU note:** If your host has no free PCIe slot, a GPU in an
+> external enclosure is workable - the card appears as a normal PCIe device
+> and everything in this document applies. Expect reduced host-to-device
+> bandwidth versus a physical slot. See the original build's write-up:
+> `docs/case-study/homelab/1202-TB3-UT3G-Passthrough.md`.
+
+### Single-GPU Limits
 ```
-Bandwidth: 40 Gbps (effective ~32 Gbps)
-Latency: ~5-10ms
-Impact: 5-10% performance penalty for PCIe x16 equivalent
+One 11GB card:
+  - 7B model at 4-bit:  ~4-5 GB weights, fits with context to spare
+  - 13B model at 4-bit: ~8 GB weights, tight with KV cache
+  - Serving while fine-tuning on the same card: not practical
+Once you hit any of these walls, a second GPU (or a bigger one) is the answer.
 ```
 
 ## Multi-GPU Scenarios
 
-### Scenario 1: Single GPU (Current)
+### Scenario 1: Single GPU (Baseline)
 ```yaml
 Configuration:
-  - 1x RTX 2080 Ti (eGPU via TB3)
+  - GPU 0: 11GB VRAM card (example)
   - 11GB VRAM total
   - Suitable for:
     - 7B models (4-bit quantization)
@@ -50,25 +56,26 @@ Configuration:
     - Inference (vLLM, Ollama)
 ```
 
-### Scenario 2: Dual GPU (Future)
+### Scenario 2: Dual GPU
 ```yaml
 Configuration:
-  - 1x RTX 2080 Ti (eGPU)
-  - 1x RTX 3090/4090 (internal PCIe)
-  - 22GB+ VRAM total
+  - GPU 0: 11GB VRAM card
+  - GPU 1: 24GB VRAM card (e.g., RTX 3090/4090 class)
+  - 35GB+ VRAM total
   - Suitable for:
-    - 13B models (4-bit)
+    - 13B models (4-bit) with long context
     - Parallel fine-tuning
-    - Inference + training simultaneously
+    - Inference + training simultaneously (one card each)
 ```
 
-### Scenario 3: Multiple eGPUs
+### Scenario 3: Multiple Matched GPUs
 ```yaml
 Configuration:
-  - 2x RTX 2080 Ti (dual TB3 docks)
-  - 22GB VRAM total
-  - Bottleneck: Single TB3 bus shared
-  - Not recommended due to bandwidth limitations
+  - 2-4x identical cards on native PCIe
+  - Identical VRAM simplifies tensor parallelism and pipeline stages
+  - Note: mismatched cards (different VRAM) work with device_map
+    sharding but the smallest card caps each layer placement
+  - Prefer native PCIe slots; share the bandwidth budget accordingly
 ```
 
 ## PyTorch Multi-GPU Setup
@@ -352,7 +359,7 @@ trainer.train()
 
 ## Multi-GPU Benchmarks (Expected)
 
-### RTX 2080 Ti + RTX 2080 Ti (Dual)
+### Dual 11GB GPUs (example measurements)
 ```
 Model           | Single GPU | Dual GPU | Speedup |
 ----------------|------------|----------|---------|
@@ -441,8 +448,9 @@ gradient_accumulation_steps=16
 NCCL_DEBUG=INFO python train.py
 
 # Set NCCL backend
-export NCCL_P2P_DISABLE=1  # Disable P2P for eGPU
-export NCCL_IB_DISABLE=1   # Disable InfiniBand
+export NCCL_P2P_DISABLE=1  # Disable P2P (needed when GPUs cannot peer directly,
+                           # e.g., across IOMMU groups or on some virtualized hosts)
+export NCCL_IB_DISABLE=1   # Disable InfiniBand (no IB hardware present)
 
 # Use gloo backend instead of nccl (slower but more compatible)
 torch.distributed.init_process_group(backend="gloo", ...)
@@ -458,7 +466,7 @@ torch.distributed.init_process_group(backend="gloo", ...)
 ---
 
 **Related:**
-- [1202: TB3-UT3G Passthrough](./1202-TB3-UT3G-Passthrough.md)
+- [1202: GPU Passthrough (IOMMU/VFIO)](./1202-TB3-UT3G-Passthrough.md)
 - [1203: NVIDIA Kernel Module](./1203-Nvidia-Kernel-Module.md)
 - [1301: K3s Architecture](../1300-kubernetes/1301-K3s-Master-Worker-Arch.md)
-- [2203: CUDA Kernel](../../phase2-foundations/2200-Framework-Engineering/2203-CUDA-Kernel-Syb-Level.md)
+- [2203: CUDA Kernel](../../phase2-foundations/2200-frameworks/2203-CUDA-Kernel-Syb-Level.md)

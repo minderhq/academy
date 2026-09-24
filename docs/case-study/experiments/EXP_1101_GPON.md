@@ -58,5 +58,5 @@ Improvement: 13.2% throughput
 - [ ] Document optimal MTU for different workloads
 
 ## Related Files
-- [1101-Fiber-GPON-Modem.md](../docs/phases/phase1-infra/1100-network/1101-Fiber-GPON-Modem.md)
-- [1102-Star-Topology-Core.md](../docs/phases/phase1-infra/1100-network/1102-Star-Topology-Core.md)
+- [1101-Fiber-GPON-Modem.md](../homelab/1101-Fiber-GPON-Modem.md)
+- [1102-Star-Topology-Core.md](../homelab/1102-Star-Topology-Core.md)

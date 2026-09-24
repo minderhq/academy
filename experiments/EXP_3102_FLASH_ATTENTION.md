@@ -518,7 +518,7 @@ if __name__ == "__main__":
 ---
 
 ## Related Documentation
-- [3101: Self-Attention](../docs/3000-Transformer-Physics/3100-Attention/3101-Self-Attention-DeepDive.md)
-- [3102: Flash Attention](../docs/3000-Transformer-Physics/3100-Attention/3102-Flash-Attention.md)
-- [2203: CUDA Kernels](../docs/2000-Cognitive-Science/2200-Framework-Engineering/2203-CUDA-Kernel-Syb-Level.md)
-- [4201: Context Window Physics](../docs/4000-Quantization/4200-KV-Cache/4201-Context-Window-Physics.md)
+- [3101: Self-Attention](../docs/phases/phase3-transformers/3100-attention/3101-Self-Attention-DeepDive.md)
+- [3102: Flash Attention](../docs/phases/phase3-transformers/3100-attention/3102-Flash-Attention.md)
+- [2203: CUDA Kernels](../docs/phases/phase2-foundations/2200-frameworks/2203-CUDA-Kernel-Syb-Level.md)
+- [4201: Context Window Physics](../docs/phases/phase4-quantization/4200-kv-cache/4201-Context-Window-Physics.md)

@@ -15,7 +15,7 @@ Tags: ['infrastructure', 'monitoring', 'observability', 'prometheus']
 # 1501: Monitoring and Observability for PROJECT-OMEGA
 
 ## Abstract
-Complete monitoring stack for tracking infrastructure health, model performance, and agent behavior on Homelab.
+Complete monitoring stack for tracking infrastructure health, model performance, and agent behavior in a home lab.
 
 ## Architecture
 
@@ -81,7 +81,7 @@ global:
   evaluation_interval: 15s
   external_labels:
     cluster: 'project-omega'
-    env: 'homelab'
+    env: 'lab'
 
 # Alerting
 alerting:
@@ -498,6 +498,6 @@ docker-compose up -d
 ---
 
 **Related:**
-- [1102: Star Topology Core](../1100-network/1102-Star-Topology-Core.md)
+- [1102: Network Topology Design](../1100-network/1102-Star-Topology-Core.md)
 - [1301: K3s Architecture](../1300-kubernetes/1301-K3s-Master-Worker-Arch.md)
 - [1402: vLLM and TGI](../1400-llmops/1402-vLLM-and-TGI.md)

@@ -1,21 +1,21 @@
 # EXP_6303: Neo4j Knowledge Graph Experiments
 
 ## Overview
-Practical experiments for Neo4j knowledge graph implementation on Synology NAS for PROJECT-OMEGA.
+Practical experiments for Neo4j knowledge graph implementation on any Docker-capable Linux host, NAS, or VPS for PROJECT-OMEGA.
 
-## Experiment 1: Neo4j Deployment on Synology
+## Experiment 1: Neo4j Deployment (Docker)
 
 ### Objective
-Deploy Neo4j on Synology NAS via Docker.
+Deploy Neo4j on a self-hosted Docker host.
 
 ### Deployment
 ```bash
-# SSH into Synology
-ssh admin@192.168.1.100
+# SSH into your host (or run locally)
+ssh user@your-host
 
 # Create directory
-mkdir -p /volume1/docker/neo4j
-cd /volume1/docker/neo4j
+mkdir -p /srv/neo4j
+cd /srv/neo4j
 
 # Create docker-compose.yml
 cat > docker-compose.yml << 'EOF'
@@ -45,7 +45,7 @@ EOF
 docker-compose up -d
 
 # Verify
-curl http://192.168.1.100:7474
+curl http://localhost:7474
 ```
 
 ---
@@ -64,7 +64,7 @@ import os
 class KnowledgeGraphBuilder:
     """Build knowledge graph in Neo4j"""
 
-    def __init__(self, uri="bolt://192.168.1.100:7687", user="neo4j", password="your_password"):
+    def __init__(self, uri="bolt://localhost:7687", user="neo4j", password="your_password"):
         self.driver = GraphDatabase.driver(uri, auth=(user, password))
 
     def close(self):
@@ -170,7 +170,7 @@ from neo4j import GraphDatabase
 class GraphRAG:
     """Graph-based RAG queries"""
 
-    def __init__(self, uri="bolt://192.168.1.100:7687", user="neo4j", password="your_password"):
+    def __init__(self, uri="bolt://localhost:7687", user="neo4j", password="your_password"):
         self.driver = GraphDatabase.driver(uri, auth=(user, password))
 
     def find_related_documents(self, entity_name: str, max_hops: int = 2):
@@ -254,12 +254,12 @@ class HybridRAG:
 
     def __init__(self):
         # Vector store
-        self.qdrant = QdrantClient(url="http://192.168.1.100:6334")
+        self.qdrant = QdrantClient(url="http://localhost:6333")
         self.embedder = SentenceTransformer('all-MiniLM-L6-v2')
 
         # Knowledge graph
         self.neo4j = GraphDatabase.driver(
-            "bolt://192.168.1.100:7687",
+            "bolt://localhost:7687",
             auth=("neo4j", "your_password")
         )
 
@@ -338,7 +338,7 @@ def test_hybrid_rag():
 
 ---
 
-## Expected Performance (entry-level NAS)
+## Expected Performance (entry-level 4-core host)
 
 | Operation | Expected Latency | Notes |
 |-----------|------------------|-------|
@@ -351,7 +351,7 @@ def test_hybrid_rag():
 
 ## Experiment Checklist
 
-- [ ] Neo4j deployment on Synology
+- [ ] Neo4j deployment with Docker
 - [ ] Knowledge graph builder test
 - [ ] Entity extraction from documents
 - [ ] Multi-hop reasoning queries
@@ -365,6 +365,6 @@ def test_hybrid_rag():
 ---
 
 ## Related Documentation
-- [6301: Neo4j and Knowledge Graphs](../docs/6000-Data-Nexus/6300-GraphRAG/6301-Neo4j-and-Knowledge-Graphs.md)
-- [6201: Hybrid Search](../docs/6000-Data-Nexus/6200-RAG/6201-Hybrid-Search.md)
-- [6101: HNSW Indexing](../docs/6000-Data-Nexus/6100-Vector/6101-HNSW-Indexing.md)
+- [6301: Neo4j and Knowledge Graphs](../docs/phases/phase6-rag/6300-context/6301-Neo4j-and-Knowledge-Graphs.md)
+- [6201: Hybrid Search](../docs/phases/phase6-rag/6200-retrieval/6201-Hybrid-Search.md)
+- [6101: HNSW Indexing](../docs/phases/phase6-rag/6100-vector/6101-HNSW-Indexing.md)

@@ -323,8 +323,8 @@ cat /var/log/Xorg.0.log | grep -i nvidia
 ---
 
 **Related Documents:**
-- [1202: TB3 Passthrough](./1202-TB3-UT3G-Passthrough.md)
+- [1202: GPU Passthrough (IOMMU/VFIO)](./1202-TB3-UT3G-Passthrough.md)
 - [1302: GPU Scheduler](../1300-kubernetes/1302-GPU-Scheduler.md)
-- [2203: CUDA Kernel](../../phase2-foundations/2200-Framework-Engineering/2203-CUDA-Kernel-Syb-Level.md)
+- [2203: CUDA Kernel](../../phase2-foundations/2200-frameworks/2203-CUDA-Kernel-Syb-Level.md)
 
 **Experiment Template:** `experiments/EXP_1203_NVIDIA_MODULES.md`

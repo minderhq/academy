@@ -73,5 +73,5 @@ Flash Attention: 2.5x speedup, 30% memory reduction
 - Multi-head provides diverse representations
 
 ## Related Files
-- [3101-Self-Attention-DeepDive.md](../docs/3000-Transformer-Physics/3100-Attention/3101-Self-Attention-DeepDive.md)
-- [3102-Flash-Attention.md](../docs/3000-Transformer-Physics/3100-Attention/3102-Flash-Attention.md)
+- [3101-Self-Attention-DeepDive.md](../docs/phases/phase3-transformers/3100-attention/3101-Self-Attention-DeepDive.md)
+- [3102-Flash-Attention.md](../docs/phases/phase3-transformers/3100-attention/3102-Flash-Attention.md)

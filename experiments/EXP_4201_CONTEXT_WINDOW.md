@@ -637,7 +637,7 @@ if __name__ == "__main__":
 ---
 
 ## Related Documentation
-- [4201: Context Window Physics](../docs/4000-Quantization/4200-KV-Cache/4201-Context-Window-Physics.md)
-- [3102: Flash Attention](../docs/3000-Transformer-Physics/3100-Attention/3102-Flash-Attention.md)
-- [4101: GGUF Physics](../docs/4000-Quantization/4100-Low-Bit/4101-GGUF-Physics.md)
-- [1204: Multi-GPU Setup](../docs/1204-Multi-GPU-Setup.md)
+- [4201: Context Window Physics](../docs/phases/phase4-quantization/4200-kv-cache/4201-Context-Window-Physics.md)
+- [3102: Flash Attention](../docs/phases/phase3-transformers/3100-attention/3102-Flash-Attention.md)
+- [4101: GGUF Physics](../docs/phases/phase4-quantization/4100-low-bit/4101-GGUF-Physics.md)
+- [1204: Multi-GPU Setup](../docs/phases/phase1-infra/1200-virtualization/1204-Multi-GPU-Setup.md)

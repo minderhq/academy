@@ -657,7 +657,7 @@ if __name__ == "__main__":
 ---
 
 ## Related Documentation
-- [7401: Long-term Memory](../docs/7000-Agentic/7400-Agent-Memory/7401-Long-term-Memory.md)
-- [7101: ReAct Loop System](../docs/7000-Agentic/7100-Reasoning/7101-ReAct-Loop-System.md)
-- [6401: Qdrant Setup](../docs/6000-Data-Nexus/6400-Vector-Databases/6401-Qdrant-Setup.md)
-- [6101: HNSW Indexing](../docs/6000-Data-Nexus/6100-Vector-Search/6101-HNSW-Indexing.md)
+- [7401: Long-term Memory](../docs/phases/phase7-agentic/7400-memory/7401-Long-term-Memory.md)
+- [7101: ReAct Loop System](../docs/phases/phase7-agentic/7100-architecture/7101-ReAct-Loop-System.md)
+- [6401: Qdrant Setup](../docs/phases/phase6-rag/6400-vector-databases/6401-Qdrant-Setup.md)
+- [6101: HNSW Indexing](../docs/phases/phase6-rag/6100-vector/6101-HNSW-Indexing.md)

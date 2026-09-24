@@ -44,7 +44,7 @@ Can you:
 - [ ] Explain pod vs deployment?
 - [ ] Understand service discovery?
 
-**If YES:** Start with [1301: K8s Architecture](./1301-K8s-Architecture.md)
+**If YES:** Start with [1301: K3s Master-Worker Architecture](./1301-K3s-Master-Worker-Arch.md)
 
 **If NO:** Review the resources above first.
 

@@ -161,7 +161,7 @@ services:
     networks:
       - project-omega-net
     volumes:
-      - /volume1/docker/tgi/models:/data
+      - /srv/models/tgi:/data
     logging:
       driver: "json-file"
       options:
@@ -751,8 +751,8 @@ python -c "import requests; print(requests.post('http://localhost:8080/generate'
 ---
 
 **Related:**
-- [1402: vLLM and TGI](../../1402-vLLM-and-TGI.md)
+- [1402: vLLM and TGI](../1402-vLLM-and-TGI.md)
 - [1404: vLLM Production Deployment](./1404-vLLM-Production-Deployment.md)
-- [1401: Ollama Enterprise](../../1401-Ollama-Enterprise.md)
-- [4201: Context Window Physics](../../phase4-quantization/4200-KV-Cache/4201-Context-Window-Physics.md)
+- [1401: Ollama Enterprise](../1401-Ollama-Enterprise.md)
+- [4201: Context Window Physics](../../../phase4-quantization/4200-kv-cache/4201-Context-Window-Physics.md)
 - [1501: Monitoring and Observability](../../1500-Monitoring/1501-Monitoring-and-Observability.md)

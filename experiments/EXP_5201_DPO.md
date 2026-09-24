@@ -428,7 +428,7 @@ if __name__ == "__main__":
 ---
 
 ## Related Documentation
-- [5201: DPO Theory](../docs/5000-Fine-Tuning/5200-SFT-Preference/5201-DPO-Theory.md)
-- [5202: Alignment Orchestration](../docs/5000-Fine-Tuning/5200-SFT-Preference/5202-Alignment-Orchestration.md)
-- [5102: QLoRA Pipelines](../docs/5000-Fine-Tuning/5100-PEFT/5102-QLoRA-Pipelines.md)
-- [5302: Distributed Training](../docs/5302-Distributed-Training.md)
+- [5201: DPO Theory](../docs/phases/phase5-finetuning/5200-alignment/5201-DPO-Theory.md)
+- [5202: Alignment Orchestration](../docs/phases/phase5-finetuning/5200-alignment/5202-Alignment-Orchestration.md)
+- [5102: QLoRA Pipelines](../docs/phases/phase5-finetuning/5100-peft/5102-QLoRA-Pipelines.md)
+- [5302: Distributed Training](../docs/phases/phase5-finetuning/5300-synthetic/5302-Distributed-Training.md)

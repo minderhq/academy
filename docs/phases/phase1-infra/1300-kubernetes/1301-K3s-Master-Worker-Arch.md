@@ -15,31 +15,31 @@ Tags: ['infrastructure', 'kubernetes', 'k3s', 'gpu']
 # 1301: K3s Master-Worker Architecture
 
 ## Abstract
-K3s is a lightweight Kubernetes distribution optimized for edge computing and IoT. In PROJECT-OMEGA, K3s orchestrates a multi-node cluster spanning the Synology NAS VM and the NUC Proxmox VM.
+K3s is a lightweight Kubernetes distribution optimized for edge computing and IoT. Here it orchestrates a small multi-node cluster: a control-plane node (any Linux VM or box) and a GPU worker node that runs AI workloads.
 
 ## Architecture Overview
 
 ### Cluster Topology
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                    K3s Cluster (PROJECT-OMEGA)              │
+│                       K3s Cluster                           │
 ├─────────────────────────────────────────────────────────────┤
 │                                                             │
 │  ┌──────────────────┐         ┌──────────────────┐        │
-│  │   Master Node    │         │   Worker Node    │        │
-│  │  (Synology VM)   │◄────────┤  (NUC Proxmox)   │        │
-│  │                  │  API    │                  │        │
+│  │  Control-Plane   │         │   Worker Node    │        │
+│  │      Node        │◄────────┤   (GPU Node)     │        │
+│  │ (Linux VM/box)   │  API    │                  │        │
 │  │  - API Server    │  6443   │  - Kubelet       │        │
 │  │  - Scheduler     │────────►│  - Containerd    │        │
 │  │  - Controller    │         │  - GPU Device    │        │
-│  │  - etcd          │         │  - RTX 2080 Ti   │        │
+│  │  - etcd          │         │  - NVIDIA GPU    │        │
 │  └──────────────────┘         └──────────────────┘        │
 │         │                              │                   │
 └─────────┼──────────────────────────────┼───────────────────┘
           │                              │
      VLAN 30                        VLAN 30
           │                              │
-    [Synology NAS]               [2.5Gbps Switch]
+   [Storage Server]            [Managed Switch]
                                          │
                                     [192.168.1.0/24]
 ```
@@ -56,7 +56,7 @@ Controller Manager        10250    Runs controllers
 etcd                      2379     Cluster state database
 ```
 
-#### Worker Node (NUC + GPU)
+#### Worker Node (GPU + Kubelet)
 ```
 Services:                 Port:    Purpose:
 ────────────────────────────────────────────────────
@@ -68,7 +68,7 @@ NVIDIA Device Plugin      -        GPU resource exposure
 
 ## Installation
 
-### Master Node (Synology VM)
+### Control-Plane Node
 ```bash
 # Download K3s binary
 curl -sfL https://get.k3s.io | sh -
@@ -84,7 +84,7 @@ cat /var/lib/rancher/k3s/server/node-token
 ip addr show eth0 | grep 'inet ' | awk '{print $2}' | cut -d/ -f1
 ```
 
-### Worker Node (NUC VM)
+### GPU Worker Node
 ```bash
 # Install K3s agent
 curl -sfL https://get.k3s.io | K3S_URL=https://192.168.1.50:6443 \
@@ -156,11 +156,11 @@ kubectl -n kube-system logs ds/nvidia-device-plugin-daemonset
 
 ### Node Labels for GPU
 ```bash
-# Label GPU node
+# Label GPU node (use values matching YOUR hardware)
 kubectl label node omega-worker-gpu \
-  accelerator=nvidia-2080ti \
+  accelerator=nvidia \
   gpu.memory=11GB \
-  gpu.compute=8.6
+  gpu.count=1
 
 # Verify
 kubectl describe node omega-worker-gpu | grep -A 5 "Labels"
@@ -181,12 +181,12 @@ kubectl taint node omega-worker-gpu \
 
 ## Storage Integration
 
-### Synology NFS Storage Class
+### NFS Storage (Static PV)
 ```yaml
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: synology-nfs-pv
+  name: nfs-ai-pv
 spec:
   capacity:
     storage: 1Ti
@@ -194,7 +194,7 @@ spec:
     - ReadWriteMany
   nfs:
     server: 192.168.1.100
-    path: "/volume1/ai-storage"
+    path: "/srv/ai-storage"
   mountOptions:
     - hard
     - nfsvers=4.2
@@ -203,14 +203,14 @@ spec:
 apiVersion: storage.k8s.io/v1
 kind: PersistentVolumeClaim
 metadata:
-  name: synology-nfs-pvc
+  name: nfs-ai-pvc
 spec:
   accessModes:
     - ReadWriteMany
   resources:
     requests:
       storage: 1Ti
-  volumeName: synology-nfs-pv
+  volumeName: nfs-ai-pv
   storageClassName: ""
 ```
 
@@ -219,11 +219,11 @@ spec:
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: synology-nfs
+  name: nfs
 provisioner: nfs.csi.k8s.io
 parameters:
   server: 192.168.1.100
-  share: /volume1/ai-storage
+  share: /srv/ai-storage
 reclaimPolicy: Delete
 volumeBindingMode: Immediate
 mountOptions:

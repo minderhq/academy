@@ -677,6 +677,6 @@ if __name__ == "__main__":
 ---
 
 ## Related Documentation
-- [3201: RoPE](../docs/3000-Transformer-Physics/3200-Embeddings/3201-Rotary-Positional-Embeddings-RoPE.md)
-- [3101: Self-Attention](../docs/3000-Transformer-Physics/3100-Attention/3101-Self-Attention-DeepDive.md)
-- [3402: Decoder-Only Models](../docs/3000-Transformer-Physics/3400-Model-Architectures/3402-Decoder-Only-Models.md)
+- [3201: RoPE](../docs/phases/phase3-transformers/3200-embeddings/3201-Rotary-Positional-Embeddings-RoPE.md)
+- [3101: Self-Attention](../docs/phases/phase3-transformers/3100-attention/3101-Self-Attention-DeepDive.md)
+- [3402: Decoder-Only Models](../docs/phases/phase3-transformers/3400-architectures/3402-Decoder-Only-Models.md)

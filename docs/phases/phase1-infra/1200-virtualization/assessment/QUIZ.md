@@ -24,9 +24,9 @@ B) A VM to directly access GPU hardware
 C) Only CPU access
 D) No GPU access
 
-**3. Thunderbolt 3 GPU passthrough uses:**
+**3. A GPU passed through to a VM connects to the CPU via:**
 
-A) PCIe over Thunderbolt
+A) PCIe lanes
 B) USB connection
 C) HDMI connection
 D) Ethernet

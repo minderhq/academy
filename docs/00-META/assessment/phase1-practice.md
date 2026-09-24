@@ -4,7 +4,7 @@
 
 ### Exercise 1: Configure Star Topology Network
 
-**Objective:** Set up a 2.5Gbps star topology network with central switch.
+**Objective:** Set up a star topology network with a central managed switch.
 
 ```bash
 #!/bin/bash
@@ -49,14 +49,14 @@ ping -c 100 $SWITCH_IP | tail -1
 echo "Step 5: Testing throughput..."
 iperf3 -c $SWITCH_IP -t 30
 
-# Expected output: 2.5+ Gbps
+# Expected output: near line rate (>900 Mbps on gigabit, higher on multi-gig)
 echo "=== Network Setup Complete ==="
 ```
 
 **Expected Results:**
 - MTU set to 9000
 - Latency <1ms
-- Throughput >2 Gbps
+- Throughput near line rate
 
 **Troubleshooting:**
 - If MTU change fails: Check if driver supports jumbo frames
@@ -221,7 +221,7 @@ def deploy_vllm():
         "docker", "run", "-d", "--name", "vllm-server",
         "--gpus", "all",
         "-p", "8000:8000",
-        "-v", "/volume1/models:/models",
+        "-v", "/srv/models/vllm:/models",
         "vllm/vllm-openai:latest",
         "--model", "mistralai/Mistral-7B-Instruct-v0.2",
         "--quantization", "awq",
@@ -369,8 +369,8 @@ docker run -d \
   --name prometheus \
   --network monitoring \
   -p 9090:9090 \
-  -v /volume1/docker/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml \
-  -v /volume1/docker/prometheus/alerts.yml:/etc/prometheus/alerts.yml \
+  -v /srv/docker/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml \
+  -v /srv/docker/prometheus/alerts.yml:/etc/prometheus/alerts.yml \
   prom/prometheus:latest
 
 # Deploy Grafana
@@ -378,7 +378,7 @@ docker run -d \
   --name grafana \
   --network monitoring \
   -p 3000:3000 \
-  -v /volume1/docker/grafana:/var/lib/grafana \
+  -v /srv/docker/grafana:/var/lib/grafana \
   grafana/grafana:latest
 
 # Deploy Loki
@@ -386,7 +386,7 @@ docker run -d \
   --name loki \
   --network monitoring \
   -p 3100:3100 \
-  -v /volume1/docker/loki:/loki \
+  -v /srv/docker/loki:/loki \
   grafana/loki:latest
 
 # Deploy Tempo
@@ -394,7 +394,7 @@ docker run -d \
   --name tempo \
   --network monitoring \
   -p 3200:3200 \
-  -v /volume1/docker/tempo:/etc/tempo \
+  -v /srv/docker/tempo:/etc/tempo \
   grafana/tempo:latest
 
 # Deploy Node Exporter
@@ -456,7 +456,7 @@ FAILED=0
 
 # Test functions
 test_network() {
-    echo -n "Testing 2.5Gbps network... "
+    echo -n "Testing lab network... "
     PING_RESULT=$(ping -c 5 192.168.1.1 | tail -1 | awk '{print $4}')
     if [[ "$PING_RESULT" < "2.0" ]]; then
         echo "✅ PASS (latency: $PING_RESULT ms)"
@@ -580,7 +580,7 @@ fi
 
 ## Completion Checklist
 
-- [ ] Star topology configured with 2.5Gbps
+- [ ] Star topology configured with a managed switch
 - [ ] Jumbo frames (MTU 9000) enabled
 - [ ] GPU passthrough working on VM
 - [ ] K3s cluster with 2+ nodes

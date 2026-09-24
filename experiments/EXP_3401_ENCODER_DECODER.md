@@ -352,6 +352,6 @@ if __name__ == "__main__":
 ---
 
 ## Related Documentation
-- [3401: Encoder-Decoder Architectures](../docs/3000-Transformer-Physics/3400-Model-Architectures/3401-Encoder-Decoder-Architectures.md)
-- [3402: Decoder-Only Models](../docs/3000-Transformer-Physics/3400-Model-Architectures/3402-Decoder-Only-Models.md)
-- [5102: QLoRA Pipelines](../docs/5000-Fine-Tuning/5100-Parameter-Efficient/5102-QLoRA-Pipelines.md)
+- [3401: Encoder-Decoder Architectures](../docs/phases/phase3-transformers/3400-architectures/3401-Encoder-Decoder-Architectures.md)
+- [3402: Decoder-Only Models](../docs/phases/phase3-transformers/3400-architectures/3402-Decoder-Only-Models.md)
+- [5102: QLoRA Pipelines](../docs/phases/phase5-finetuning/5100-peft/5102-QLoRA-Pipelines.md)

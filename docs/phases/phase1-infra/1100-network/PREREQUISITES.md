@@ -44,7 +44,7 @@ Can you:
 - [ ] Understand TCP vs UDP?
 - [ ] Set up a reverse proxy?
 
-**If YES:** Start with [1101: Fiber GPON Modem](./1101-Fiber-GPON-Modem.md)
+**If YES:** Start with [1101: Internet Uplink & Modem Configuration](./1101-Fiber-GPON-Modem.md)
 
 **If NO:** Review the resources above first.
 

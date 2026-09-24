@@ -33,13 +33,13 @@ Total: [░░░░░░░░░░░░░░░░░] 0% (0/97 core files
 - [ ] **LAB-001: Docker & LLM** (2 hours)
 
 **Network Topology [1100]:**
-- [ ] 1101-Fiber-GPON-Modem.md
-- [ ] 1102-Star-Topology-Core.md
+- [ ] 1101: Internet Uplink & Modem Configuration (1101-Fiber-GPON-Modem.md)
+- [ ] 1102: Network Topology Design (1102-Star-Topology-Core.md)
 - [ ] 1103-Jumbo-Frames-and-MTU.md
 
 **Virtualization [1200]:**
 - [ ] 1201-Proxmox-Hypervisor-SOP.md
-- [ ] 1202-TB3-UT3G-Passthrough.md
+- [ ] 1202: GPU Passthrough (IOMMU/VFIO) (1202-TB3-UT3G-Passthrough.md)
 - [ ] 1203-Nvidia-Kernel-Module.md
 - [ ] 1204-Multi-GPU-Setup.md
 

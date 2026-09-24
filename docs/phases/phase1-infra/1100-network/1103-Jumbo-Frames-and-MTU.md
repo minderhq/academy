@@ -15,7 +15,7 @@ Tags: ['infrastructure', 'networking', 'hardware']
 # 1103: Jumbo Frames and MTU Optimization
 
 ## Abstract
-Jumbo Frames enable Ethernet packets larger than the standard 1500 bytes, reducing CPU overhead and increasing throughput for large data transfers. For PROJECT-OMEGA's 2.5Gbps infrastructure, MTU 9000 provides significant performance benefits.
+Jumbo Frames enable Ethernet packets larger than the standard 1500 bytes, reducing CPU overhead and increasing throughput for large data transfers. On any high-throughput LAN (gigabit and above), MTU 9000 provides measurable performance benefits.
 
 ## MTU Fundamentals
 
@@ -28,7 +28,7 @@ Reduction:         87.5% fewer packets
 
 ### Why It Matters
 ```
-For 11GB model file transfer at 2.5Gbps:
+For an 11GB model file transfer over the LAN:
 MTU 1500: ~11,000,000 packets → High CPU overhead
 MTU 9000: ~1,200,000 packets   → Low CPU overhead
 ```
@@ -77,16 +77,21 @@ interface 1/0/9
   mtu 9216
 ```
 
-### 2. Synology NAS (DS720+)
+### 2. NAS or Storage Server (Linux)
 ```bash
-# Edit network interface
-vi /etc/sysconfig/network-scripts/ifcfg-eth0
+# Set MTU immediately (replace eth0 with your interface name)
+ip link set dev eth0 mtu 9000
 
-# Add/modify
+# Make it persistent, RHEL-style (/etc/sysconfig/network-scripts/ifcfg-eth0):
 MTU=9000
 
-# Restart network
-synoservice --restart network
+# Or Debian-style (/etc/network/interfaces):
+#   iface eth0 inet static
+#       address 192.168.1.100/24
+#       mtu 9000
+
+# Apply
+systemctl restart networking    # or: ifreload -a
 ```
 
 ### 3. Proxmox Host
@@ -153,7 +158,7 @@ iptables -t mangle -A FORWARD -p tcp \
 
 ## Performance Benchmarks
 
-### iperf3 Results (NAS ↔ NUC)
+### iperf3 Results (Storage Server ↔ GPU Server, multi-gigabit LAN)
 ```
 MTU 1500:
   [ ID] Interval           Transfer     Bitrate
@@ -225,11 +230,11 @@ Video Streaming            1500 (compatible)
 ```
 [Switch Port] ← MTU 9000 ←
       ↓
-[NAS LAN3] ← MTU 9000 ←
+[NAS / Storage Server] ← MTU 9000 ←
       ↓
-[2.5Gbps Link]
+[High-Throughput LAN Link]
       ↓
-[NUC Port] ← MTU 9000 ←
+[Server Port] ← MTU 9000 ←
       ↓
 [Proxmox Bridge] ← MTU 9000 ←
       ↓
@@ -247,7 +252,7 @@ Video Streaming            1500 (compatible)
 ---
 
 **Related Documents:**
-- [1102: Star Topology Core](./1102-Star-Topology-Core.md)
+- [1102: Network Topology Design](./1102-Star-Topology-Core.md)
 - [1201: Proxmox Hypervisor](../1200-virtualization/1201-Proxmox-Hypervisor-SOP.md)
 - [1301: K3s Architecture](../1300-kubernetes/1301-K3s-Master-Worker-Arch.md)
 

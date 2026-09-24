@@ -29,7 +29,7 @@
 │  ├── Virtualization (Proxmox)                                            │
 │  ├── Container Orchestration (K3s)                                      │
 │  ├── GPU Passthrough & Drivers                                          │
-│  └── Network Topology (2.5Gbps)                                          │
+│  └── Network Topology                                                    │
 │                                                                           │
 │  Phase 3: AI/ML Fundamentals (Weeks 13-20)                               │
 │  ├── Neural Network Architecture                                         │
@@ -110,7 +110,7 @@ Learning Path:
 
 | Day | Topic | Resources | Exercises |
 |-----|-------|-----------|-----------|
-| 1-2 | File System & Commands | [1101: Fiber GPON](../phases/phase1-infra/1100-network/1101-Fiber-GPON-Modem.md) | Practice: Navigate `/sys`, `/proc`, `/dev` |
+| 1-2 | File System & Commands | [1101: Internet Uplink & Modem Configuration](../phases/phase1-infra/1100-network/1101-Fiber-GPON-Modem.md) | Practice: Navigate `/sys`, `/proc`, `/dev` |
 | 3-4 | Permissions & Users | `man chmod`, `man chown` | Exercise: Set up user with sudo access |
 | 5-7 | Package Management | `apt`, `dnf`, `pip` | Project: Install Docker from scratch |
 
@@ -132,20 +132,20 @@ Learning Path:
 
 | Day | Topic | Resources | Exercises |
 |-----|-------|-----------|-----------|
-| 1-2 | OSI Model & Protocols | [1102: Star Topology](../phases/phase1-infra/1100-network/1102-Star-Topology-Core.md) | Exercise: Packet capture with Wireshark |
+| 1-2 | OSI Model & Protocols | [1102: Network Topology Design](../phases/phase1-infra/1100-network/1102-Star-Topology-Core.md) | Exercise: Packet capture with Wireshark |
 | 3-4 | IP Addressing & Subnets | CIDR notation | Project: Design a home network |
 | 5-7 | Jumbo Frames & MTU | [1103: Jumbo Frames](../phases/phase1-infra/1100-network/1103-Jumbo-Frames-and-MTU.md) | Lab: Configure MTU 9000 |
 
-**Deliverable:** Configure 2.5Gbps network with jumbo frames
+**Deliverable:** Configure your network with jumbo frames end-to-end
 
 ### Week 4: Hardware Architecture
-**Goal:** Understand PCIE, TB3, and GPU passthrough
+**Goal:** Understand PCIe and GPU passthrough
 
 | Day | Topic | Resources | Exercises |
 |-----|-------|-----------|-----------|
-| 1-2 | PCIE Lanes & Bandwidth | [1202: TB3 Passthrough](../phases/phase1-infra/1200-virtualization/1202-TB3-UT3G-Passthrough.md) | Research: Calculate TB3 bandwidth |
+| 1-2 | PCIE Lanes & Bandwidth | [1202: GPU Passthrough (IOMMU/VFIO)](../phases/phase1-infra/1200-virtualization/1202-TB3-UT3G-Passthrough.md) | Research: Calculate PCIe link bandwidth |
 | 3-4 | GPU Architecture | CUDA cores, VRAM | Exercise: GPU benchmarking |
-| 5-7 | Thunderbolt 3 | TB3 protocol specs | Project: Verify TB3 connection |
+| 5-7 | GPU Interfaces | PCIe slot types (x16, x8, x4) | Project: Verify your GPU's link width |
 
 **Deliverable:** Document your hardware topology
 
@@ -194,7 +194,7 @@ Learning Path:
 
 ```
 Learning Path:
-├── [1202: TB3 Passthrough](../phases/phase1-infra/1200-virtualization/1202-TB3-UT3G-Passthrough.md)
+├── [1202: GPU Passthrough (IOMMU/VFIO)](../phases/phase1-infra/1200-virtualization/1202-TB3-UT3G-Passthrough.md)
 ├── [1203: Nvidia Kernel Module](../phases/phase1-infra/1200-virtualization/1203-Nvidia-Kernel-Module.md)
 ├── IOMMU configuration
 └── VFIO setup
@@ -208,7 +208,7 @@ Learning Path:
 **Deliverable:** GPU VM with nvidia-smi working
 
 ### Week 11-12: Network Optimization
-**Goal:** Achieve 2.5Gbps throughput
+**Goal:** Achieve full line-rate throughput
 
 ```
 Learning Path:
@@ -221,7 +221,7 @@ Learning Path:
 **Projects:**
 1. Benchmark network throughput
 2. Optimize TCP settings
-3. Verify 2.5Gbps speed
+3. Verify line-rate speed
 
 **Deliverable:** Network performance report
 
@@ -389,12 +389,12 @@ Learning Path:
 ├── [6102: Semantic Similarity](../phases/phase6-rag/6100-vector/6102-Semantic-Similarity.md)
 ├── [6103: HNSW Tuning Guide](../phases/phase6-rag/6100-vector/guides/6103-HNSW-Tuning-Guide.md)
 ├── [6401: Qdrant Setup](../phases/phase6-rag/6400-vector-databases/6401-Qdrant-Setup.md)
-├── [6403: Qdrant Synology Deployment](../phases/phase6-rag/6400-vector-databases/guides/6403-Qdrant-Synology-Deployment.md)
+├── [6403: Qdrant Production Deployment](../phases/phase6-rag/6400-vector-databases/guides/6403-Qdrant-Production-Deployment.md)
 └── EXP_6101_HNSW.md
 ```
 
 **Projects:**
-1. Deploy Qdrant on Synology
+1. Deploy Qdrant on a Linux host (Docker)
 2. Index 10K documents
 3. Implement semantic search
 
@@ -412,7 +412,7 @@ Learning Path:
 ```
 
 **Projects:**
-1. Deploy Neo4j on Synology
+1. Deploy Neo4j on a Linux host (Docker)
 2. Build knowledge graph from documents
 3. Implement graph queries
 
@@ -571,15 +571,14 @@ Learning Path:
 
 ```
 Learning Path:
-├── [SSL/TLS Setup Guide](../../configs/docs/ssl-tls-setup.md)
 ├── Certificate management
-├── mTLS with Istio
+├── TLS termination with a reverse proxy
 └── Security policies
 ```
 
 **Projects:**
 1. Set up Let's Encrypt
-2. Configure mTLS
+2. Configure TLS termination on a reverse proxy
 3. Implement security policies
 
 **Deliverable:** Secured infrastructure
@@ -676,7 +675,7 @@ Each experiment corresponds to a documentation topic:
 
 | Phase | Experiment | Focus |
 |-------|-----------|-------|
-| Infrastructure | [EXP_1101_GPON.md](../../experiments/EXP_1101_GPON.md) | Network setup |
+| Infrastructure | [EXP_1101_GPON.md](../case-study/experiments/EXP_1101_GPON.md) | Network setup (case study) |
 | Attention | [EXP_3101_SELF_ATTENTION.md](../../experiments/EXP_3101_SELF_ATTENTION.md) | Self-attention |
 | Quantization | [EXP_4101_GGUF.md](../../experiments/EXP_4101_GGUF.md) | GGUF format |
 | Fine-tuning | [EXP_5101_LORA.md](../../experiments/EXP_5101_LORA.md) | LoRA training |

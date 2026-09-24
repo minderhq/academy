@@ -438,7 +438,7 @@ spec:
 ---
 
 **Related Documents:**
-- [1202: TB3 Passthrough](../1200-virtualization/1202-TB3-UT3G-Passthrough.md)
+- [1202: GPU Passthrough (IOMMU/VFIO)](../1200-virtualization/1202-TB3-UT3G-Passthrough.md)
 - [1203: Nvidia Kernel Module](../1200-virtualization/1203-Nvidia-Kernel-Module.md)
 - [1301: K3s Architecture](./1301-K3s-Master-Worker-Arch.md)
 

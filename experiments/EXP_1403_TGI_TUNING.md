@@ -574,7 +574,7 @@ docker pull ghcr.io/huggingface/text-generation-inference:latest
 # Start TGI server
 docker run -d --gpus all \
   -p 8080:80 \
-  -v /volume1/models:/models \
+  -v /srv/models:/models \
   --name tgi-mistral \
   ghcr.io/huggingface/text-generation-inference:latest \
   --model-id mistralai/Mistral-7B-Instruct-v0.2 \

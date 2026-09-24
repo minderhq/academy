@@ -791,7 +791,7 @@ kubectl top pods
 
 ```yaml
 Setup:
-  Hardware: 1x NUC, 2x RTX 4090
+  Hardware: 1x x86_64 host, 2x 24GB GPUs (e.g., RTX 4090)
   Kubernetes: K3s single-node
   Models: Llama-3-70B, Whisper Large
 

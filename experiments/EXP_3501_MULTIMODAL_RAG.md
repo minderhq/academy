@@ -55,4 +55,4 @@
 
 ---
 
-**Next:** [3501: Vision-Language Models](../../docs/phases/phase3-transformers/3500-multimodal/3501-Vision-Language-Models.md)
+**Next:** [3501: Vision-Language Models](../docs/phases/phase3-transformers/3500-multimodal/3501-Vision-Language-Models.md)

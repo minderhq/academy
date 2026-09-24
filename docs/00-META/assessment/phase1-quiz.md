@@ -26,9 +26,9 @@ d) device plugin
 
 ---
 
-### 3. What is MTU 9000 used for in PROJECT-OMEGA infrastructure?
+### 3. What is MTU 9000 used for in this course's infrastructure?
 a) VPN tunneling
-b) Jumbo frames for 2.5Gbps throughput
+b) Jumbo frames for high-throughput transfers
 c) Security filtering
 d) Load balancing
 
@@ -46,7 +46,7 @@ d) Storage management
 
 ---
 
-### 5. What is Thunderbolt 3 passthrough used for in PROJECT-OMEGA?
+### 5. What is PCIe passthrough used for in the virtualization module?
 a) Network routing
 b) CPU optimization
 c) GPU passthrough to VM
@@ -56,7 +56,7 @@ d) Storage expansion
 
 ---
 
-### 6. Which storage protocol is used for NFS from Synology?
+### 6. Which storage protocol is used to share the central storage server over the network?
 a) SMB
 b) NFS
 c) iSCSI

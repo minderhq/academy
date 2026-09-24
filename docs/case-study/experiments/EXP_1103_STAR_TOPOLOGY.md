@@ -651,6 +651,6 @@ python throughput_test.py
 
 ## Related Documentation
 
-- [1102: Star Topology Core](../docs/phases/phase1-infra/1100-network/1102-Star-Topology-Core.md)
-- [1103: Jumbo Frames and MTU](../docs/phases/phase1-infra/1100-network/1103-Jumbo-Frames-and-MTU.md)
-- [1402: vLLM and TGI](../docs/phases/phase1-infra/1400-llmops/1402-vLLM-and-TGI.md)
+- [1102: Star Topology Core](../homelab/1102-Star-Topology-Core.md)
+- [1103: Jumbo Frames and MTU](../../phases/phase1-infra/1100-network/1103-Jumbo-Frames-and-MTU.md)
+- [1402: vLLM and TGI](../../phases/phase1-infra/1400-llmops/1402-vLLM-and-TGI.md)

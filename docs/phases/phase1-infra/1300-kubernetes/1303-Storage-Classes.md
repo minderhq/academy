@@ -15,7 +15,7 @@ Tags: ['infrastructure', 'kubernetes', 'k3s', 'gpu']
 # 1303: Storage Classes for Dynamic Provisioning
 
 ## Abstract
-Dynamic storage provisioning enables automatic creation of persistent volumes on demand. This document covers configuring K3s to dynamically provision NFS storage from the Synology DS720+.
+Dynamic storage provisioning enables automatic creation of persistent volumes on demand. This document covers configuring K3s to dynamically provision NFS storage from any NFS server - a NAS appliance or a plain Linux box with an exported directory.
 
 ## Storage Architecture
 
@@ -29,51 +29,54 @@ Dynamic storage provisioning enables automatic creation of persistent volumes on
 │    "I need 10Gi of fast storage"                        │
 │           ↓                                             │
 │  StorageClass                                           │
-│    "Use synology-nfs-fast for this claim"               │
+│    "Use nfs-fast for this claim"                        │
 │           ↓                                             │
 │  Provisioner                                           │
-│    "Create NFS share on Synology"                       │
+│    "Create subdirectory on the NFS server"              │
 │           ↓                                             │
 │  PV (Persistent Volume)                                 │
-│    "192.168.1.100:/volume1/k3s/pvc-abc123"              │
+│    "192.168.1.100:/srv/k8s-storage/pvc-abc123"          │
 │           ↓                                             │
 │  Physical Storage                                       │
-│    Synology DS720+ (RAID-1 Btrfs)                       │
+│    NFS server (any RAID-capable NAS or Linux host)      │
 │                                                         │
 └─────────────────────────────────────────────────────────┘
 ```
 
-## Synology NFS Configuration
+## NFS Server Configuration
 
-### Enable NFS Service
-```
-Control Panel → File Services → NFS
-Enable NFS Service: ON
-```
+Any machine that runs an NFS server works: a NAS appliance (configure shares and exports through its web UI, following its documentation) or a plain Linux box as shown below.
 
-### Create NFS Share
+### Install the NFS Server (Linux)
 ```bash
-# SSH into Synology
-ssh admin@192.168.1.100
+# Debian/Ubuntu
+apt install nfs-kernel-server
 
-# Create directory
-mkdir -p /volume1/k8s-storage/{models,data,output}
+# RHEL/Fedora
+dnf install nfs-utils
+```
 
-# Set permissions
-chmod 777 /volume1/k8s-storage
+### Create and Export a Directory
+```bash
+# Create directory tree
+mkdir -p /srv/k8s-storage/{models,data,output}
+
+# Permissions: the provisioner creates subdirectories as root
+chmod 777 /srv/k8s-storage
 ```
 
 ### Configure Export
 ```bash
 # Edit /etc/exports
-/volume1/k8s-storage \
-  192.168.1.0/24(rw,async,no_root_squash,no_subtree_check,crossmnt,fsid=0)
+/srv/k8s-storage \
+  192.168.1.0/24(rw,async,no_root_squash,no_subtree_check,fsid=0)
 
-# Reload exports
-/usr/syno/etc/rc.sysv/nfsd restart
-# or
+# Apply and verify
 exportfs -ra
+exportfs -v
 ```
+
+On a NAS appliance the same settings exist as checkboxes/share permissions: enable NFS service, export the share to 192.168.1.0/24 with root squashing disabled for the provisioner to work.
 
 ### Verify
 ```bash
@@ -81,7 +84,7 @@ exportfs -ra
 showmount -e 192.168.1.100
 
 # Expected output:
-# /volume1/k8s-storage 192.168.1.0/24
+# /srv/k8s-storage 192.168.1.0/24
 ```
 
 ## CSI Driver Installation
@@ -96,9 +99,9 @@ helm repo add csi-driver-nfs \
 helm install csi-driver-nfs csi-driver-nfs/nfs-subdir-external-provisioner \
   --namespace kube-system \
   --set nfs.server=192.168.1.100 \
-  --set nfs.path=/volume1/k8s-storage \
+  --set nfs.path=/srv/k8s-storage \
   --set storageClass.default=true \
-  --set storageClass.name=synology-nfs
+  --set storageClass.name=nfs
 ```
 
 ### Alternative: Manual Provisioner
@@ -131,12 +134,12 @@ spec:
         - name: NFS_SERVER
           value: 192.168.1.100
         - name: NFS_PATH
-          value: /volume1/k8s-storage
+          value: /srv/k8s-storage
       volumes:
       - name: nfs-client-root
         nfs:
           server: 192.168.1.100
-          path: /volume1/k8s-storage
+          path: /srv/k8s-storage
 ```
 
 ## Storage Class Definitions
@@ -146,7 +149,7 @@ spec:
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: synology-nfs-standard
+  name: nfs-standard
 provisioner: k8s-sigs.io/nfs-subdir-external-provisioner
 parameters:
   archiveOnDelete: "false"  # Keep data after PVC deletion
@@ -166,7 +169,7 @@ mountOptions:
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: synology-nfs-fast
+  name: nfs-fast
 provisioner: k8s-sigs.io/nfs-subdir-external-provisioner
 parameters:
   archiveOnDelete: "false"
@@ -187,7 +190,7 @@ mountOptions:
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: synology-nfs-archive
+  name: nfs-archive
 provisioner: k8s-sigs.io/nfs-subdir-external-provisioner
 parameters:
   archiveOnDelete: "true"   # Archive on delete
@@ -211,7 +214,7 @@ metadata:
   name: model-cache
   namespace: ai-services
 spec:
-  storageClassName: synology-nfs-fast
+  storageClassName: nfs-fast
   accessModes:
     - ReadWriteMany
   resources:
@@ -227,7 +230,7 @@ metadata:
   name: training-data
   namespace: ai-training
 spec:
-  storageClassName: synology-nfs-standard
+  storageClassName: nfs-standard
   accessModes:
     - ReadWriteMany
   resources:
@@ -243,7 +246,7 @@ metadata:
   name: model-output
   namespace: ai-training
 spec:
-  storageClassName: synology-nfs-standard
+  storageClassName: nfs-standard
   accessModes:
     - ReadWriteOnce
   resources:
@@ -279,30 +282,32 @@ mountOptions:
   - nfsvers=4.1            # NFS 4.1 (more stable)
 ```
 
-### Btrfs Considerations
+### Filesystem Considerations
 ```
-Synology DS720+ uses Btrfs (if configured)
+The NFS server's local filesystem affects behavior; any of these work:
 
-Advantages:
-- Snapshots
-- Compression (zstd, lzo)
-- Self-healing (RAID-1)
-- Copy-on-write
+ext4 / xfs : Simple, fast, boring (recommended default)
+ZFS        : Snapshots, compression (lz4/zstd), checksumming
+Btrfs      : Snapshots, compression, copy-on-write
 
 Tuning for AI workloads:
-- Disable snapshots for high-churn directories
-- Enable compression for model weights
-- Use SSD cache if available
+- Disable per-share snapshots on high-churn directories (checkpoints)
+- Enable transparent compression for model weights (they compress well)
+- RAID-1/10 gives read throughput; RAIDZ/5 trades writes for capacity
+- An SSD cache tier helps random reads during many small model loads
 ```
 
 ## Volume Snapshots
 
-### Synology Snapshot Integration
+### Snapshot Integration
 ```bash
-# Create snapshot from Synology
-synoshare --snapshot synology-nfs take k3s-models
+# Snapshot on the server (ZFS example):
+zfs snapshot tank/k8s-storage@model-snapshot
 
-# From Kubernetes
+# Btrfs example:
+btrfs subvolume snapshot /srv/k8s-storage /srv/k8s-storage/.snapshots/model-snapshot
+
+# From Kubernetes (requires a CSI driver with snapshot support)
 kubectl create snapshotvolumesnapshot model-snapshot \
   --source=model-cache-pvc
 ```
@@ -312,7 +317,7 @@ kubectl create snapshotvolumesnapshot model-snapshot \
 apiVersion: snapshot.storage.k8s.io/v1
 kind: VolumeSnapshotClass
 metadata:
-  name: synology-nfs-snapshot
+  name: nfs-snapshot
 driver: csi.nfs.com
 deletionPolicy: Delete
 ```
@@ -378,7 +383,7 @@ volumeClaimTemplates:
     name: data
   spec:
     accessModes: ["ReadWriteOnce"]
-    storageClassName: synology-nfs-fast
+    storageClassName: nfs-fast
     resources:
       requests:
         storage: 10Gi

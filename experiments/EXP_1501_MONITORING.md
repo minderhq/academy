@@ -728,8 +728,9 @@ def test_agent_metrics():
 ### Deploy Monitoring Stack
 
 ```bash
-# Start Prometheus, Grafana, Loki, Tempo
-docker-compose -f /volume1/docker/monitoring/docker-compose.yml up -d
+# Start Prometheus, Grafana, Loki, Tempo using the compose definitions
+# provided in the companion lesson:
+# docs/phases/phase1-infra/1500-monitoring/1501-Monitoring-and-Observability.md
 
 # Access dashboards
 # Grafana: http://192.168.1.100:3000
@@ -789,5 +790,5 @@ curl http://localhost:8000/metrics
 ## Related Documentation
 - [1501: Monitoring and Observability](../docs/phases/phase1-infra/1500-monitoring/1501-Monitoring-and-Observability.md)
 - [1402: vLLM and TGI](../docs/phases/phase1-infra/1400-llmops/1402-vLLM-and-TGI.md)
-- [6403: Qdrant Synology Deployment](../docs/phases/phase6-data/6400-vector-db/guides/6403-Qdrant-Synology-Deployment.md)
-- [7101: ReAct Loop System](../docs/phases/phase7-agentic/7100-reason/7101-ReAct-Loop-System.md)
+- [6403: Qdrant Production Deployment](../docs/phases/phase6-rag/6400-vector-databases/guides/6403-Qdrant-Production-Deployment.md)
+- [7101: ReAct Loop System](../docs/phases/phase7-agentic/7100-architecture/7101-ReAct-Loop-System.md)

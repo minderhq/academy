@@ -24,8 +24,8 @@
 
 **Converting hardware into a programmable, scalable, high-throughput AI factory.**
 
-This phase covers the foundational infrastructure needed to run enterprise-grade AI systems on consumer HomeLab hardware, enabling you to:
-- Build a 2.5Gbps star topology network
+This phase covers the foundational infrastructure needed to run enterprise-grade AI systems on commodity hardware - a dedicated desktop, a mini PC, a repurposed server, or a cloud VM - enabling you to:
+- Build a high-throughput star topology network
 - Configure GPU passthrough for VM access
 - Deploy multi-node K3s Kubernetes cluster
 - Run vLLM/TGI for high-throughput inference
@@ -50,9 +50,9 @@ This phase covers the foundational infrastructure needed to run enterprise-grade
 
 With Proper Infrastructure:
 ┌─────────────────────────────────────────────────────────┐
-│               Enterprise-Grade HomeLab                  │
+│               Well-Designed Lab                         │
 ├─────────────────────────────────────────────────────────┤
-│ ✅ 2.5Gbps throughput (model loading 2.5x faster)       │
+│ ✅ High LAN throughput (faster model loading)            │
 │ ✅ GPU passthrough (VMs access GPU directly)            │
 │ ✅ K8s orchestration (auto-scaling, self-healing)       │
 │ ✅ Full observability (metrics, logs, traces)            │
@@ -64,7 +64,7 @@ With Proper Infrastructure:
 
 | Component | Without | With | Impact |
 |-----------|---------|------|--------|
-| **Network** | 1Gbps | 2.5Gbps + Jumbo Frames | 2.5x faster model loading |
+| **Network** | 1Gbps | Multi-gigabit + Jumbo Frames | Faster model loading |
 | **GPU Passthrough** | Host only | VM access | Full isolation and flexibility |
 | **Kubernetes** | Manual | K3s cluster | Auto-deployment, scaling |
 | **Monitoring** | None | Prometheus + Grafana | Proactive issue detection |
@@ -75,12 +75,12 @@ With Proper Infrastructure:
 
 ```mermaid
 graph LR
-    A[ISP Fiber] --> B[GPON Modem<br/>Bridge Mode]
-    B --> C[2.5Gbps Switch<br/>Star Hub]
+    A[ISP Uplink] --> B[Edge Modem<br/>Bridge Mode]
+    B --> C[Managed Switch<br/>Star Hub]
 
     C --> D[Proxmox Host]
-    C --> E[Synology NAS]
-    C --> F[a mini-PC]
+    C --> E[NFS Storage Server]
+    C --> F[Secondary Node]
     C --> G[Workstations]
 
     D --> H[VM: K3s Master]
@@ -92,7 +92,7 @@ graph LR
     style J fill:#c8e6c9
 ```
 
-### 2.5Gbps Star Topology
+### Star Topology
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
@@ -100,8 +100,8 @@ graph LR
 ├─────────────────────────────────────────────────────────────────┤
 │ Component           │ Benefit                                  │
 ├─────────────────────────────────────────────────────────────────┤
-│ Central Switch      │ Single point of management, 2.5Gbps back │
-│ Jumbo Frames (MTU 9000) │ 2.5x more data per packet           │
+│ Central Switch      │ Single point of management, fast backplane │
+│ Jumbo Frames (MTU 9000) │ ~90% fewer packets per transfer     │
 │ Direct Connections  │ Minimal latency (<1ms)                   │
 │ Redundant Paths     │ No single point of failure              │
 └─────────────────────────────────────────────────────────────────┘
@@ -145,19 +145,19 @@ GPU: 11GB-class GPU (11GB VRAM)
 ```mermaid
 graph TB
     subgraph "Cluster Control Plane"
-        A[K3s Master<br/>Synology VM]
+        A[K3s Master<br/>Control-Plane VM]
     end
 
     subgraph "Worker Nodes"
         B[Worker 1<br/>Proxmox VM + GPU]
-        C[Worker 2<br/>a mini-PC]
+        C[Worker 2<br/>Secondary Node]
     end
 
     A -->|API Server| B
     A -->|API Server| C
 
     B --> D[GPU Scheduler]
-    B --> E[Storage Class<br/>NFS from Synology]
+    B --> E[Storage Class<br/>NFS]
 
     C --> E
 
@@ -173,8 +173,8 @@ graph TB
 
 - **Lightweight**: Single binary, minimal dependencies
 - **GPU Support**: Nvidia device plugin for GPU scheduling
-- **Storage**: Dynamic NFS provisioning from Synology
-- **Networking**: Flannel CNI with 2.5Gbps backend
+- **Storage**: Dynamic NFS provisioning
+- **Networking**: Flannel CNI overlay network
 
 ---
 
@@ -256,22 +256,21 @@ graph LR
 |-----------|---------|-------------|---------|
 | **Host CPU** | 6 cores | 12+ cores | Proxmox + VMs |
 | **Host RAM** | 32GB | 64GB+ | VM memory allocation |
-| **GPU** | 11GB-class GPU | RTX 3090/4090 | Model inference |
-| **GPU VRAM** | 11GB | 24GB+ | Larger models |
-| **Network** | 2.5Gbps switch | 10Gbps | Fast data transfer |
+| **GPU** | Any NVIDIA, 8GB+ VRAM | 24GB+ (RTX 3090/4090 class) | Model inference |
+| **GPU VRAM** | 8GB | 16GB+ | Larger models |
+| **Network** | 1Gbps switch | Multi-gigabit (10Gbps) | Fast data transfer |
 | **Storage** | 500GB NVMe | 1TB+ NVMe | Fast I/O for models |
-| **NAS** | Synology DS720+ | DS923+ | Central storage |
+| **Storage server** | Any NFS-capable NAS or Linux box | RAID-capable NAS | Central storage |
 
 ### Cost Analysis (Estimated)
 
 | Component | Cost (USD) |
 |-----------|------------|
-| a mini-PC 12th Gen | $600-800 |
-| 11GB-class GPU (used) | $400-500 |
-| 2.5Gbps Switch | $50-100 |
-| Synology DS720+ | $400-500 |
-| Proxmox Host (DIY) | $800-1000 |
-| **Total** | **~$2,250-2,900** |
+| Hypervisor host (mini PC, desktop, or DIY server) | $600-1000 |
+| GPU with 8GB+ VRAM (used market) | $400-500 |
+| Managed switch | $50-100 |
+| NAS or Linux storage server (optional) | $400-500 |
+| **Total** | **~$1,050-1,600** (plus optional storage server) |
 
 ---
 
@@ -281,18 +280,18 @@ graph LR
 
 | Document | Description | Time | Difficulty |
 |----------|-------------|------|------------|
-| [1101: Fiber GPON Modem](./1100-network/1101-Fiber-GPON-Modem.md) | Signal path, WAN bypass | 2h | Beginner |
-| [1102: Star Topology Core](./1100-network/1102-Star-Topology-Core.md) | 2.5Gbps switch configuration | 3h | Intermediate |
+| [1101: Internet Uplink & Modem Configuration](./1100-network/1101-Fiber-GPON-Modem.md) | WAN uplink types, bridge mode | 2h | Beginner |
+| [1102: Network Topology Design](./1100-network/1102-Star-Topology-Core.md) | Star topology, VLANs, switch setup | 3h | Intermediate |
 | [1103: Jumbo Frames and MTU](./1100-network/1103-Jumbo-Frames-and-MTU.md) | MTU 9000 optimization | 2h | Intermediate |
 
 **What You'll Learn:**
-- GPON modem bridge mode configuration
-- Star topology with 2.5Gbps switch
+- WAN uplink and bridge mode configuration
+- Star topology with a managed switch
 - Jumbo frames (MTU 9000) for throughput optimization
 - Network latency optimization
 
 **Hands-On Practice:**
-- Configure GPON modem in bridge mode
+- Configure the modem in bridge mode
 - Set up star topology network
 - Enable jumbo frames end-to-end
 - Benchmark network throughput
@@ -302,14 +301,14 @@ graph LR
 | Document | Description | Time | Difficulty |
 |----------|-------------|------|------------|
 | [1201: Proxmox Hypervisor SOP](./1200-virtualization/1201-Proxmox-Hypervisor-SOP.md) | Core pinning, RAM balloons | 3h | Intermediate |
-| [1202: TB3 UT3G Passthrough](./1200-virtualization/1202-TB3-UT3G-Passthrough.md) | Thunderbolt 3 GPU passthrough | 4h | Advanced |
+| [1202: GPU Passthrough (IOMMU/VFIO)](./1200-virtualization/1202-TB3-UT3G-Passthrough.md) | IOMMU groups, VFIO binding, qm passthrough | 4h | Advanced |
 | [1203: Nvidia Kernel Module](./1200-virtualization/1203-Nvidia-Kernel-Module.md) | DKMS, driver stability | 2h | Intermediate |
 | [1204: Multi-GPU Setup](./1200-virtualization/1204-Multi-GPU-Setup.md) | Multiple GPU configuration | 3h | Advanced |
 
 **What You'll Learn:**
 - Proxmox VE installation and configuration
 - CPU pinning and memory ballooning
-- GPU passthrough via Thunderbolt 3
+- GPU passthrough via IOMMU/VFIO
 - Nvidia driver management in VMs
 
 **Hands-On Practice:**
@@ -427,7 +426,7 @@ graph TD
 After completing this phase, you will be able to:
 
 1. **Build High-Speed Network**
-   - Configure 2.5Gbps star topology
+   - Design a star topology network
    - Enable jumbo frames (MTU 9000)
    - Optimize network latency
    - Benchmark throughput performance
@@ -554,8 +553,8 @@ spec:
 iperf3 -s  # Server
 iperf3 -c 192.168.1.1 -t 30  # Client
 
-# Expected: >2 Gbps with 2.5Gbps network
-# If <1 Gbps: Check cables (Cat6+ required)
+# Expected: near line rate (>900 Mbps on gigabit, >2 Gbps on multi-gig)
+# If well below: Check cables (Cat6+ required)
 ```
 
 ### 💡 Proxmox Performance
@@ -656,35 +655,14 @@ global:
 
 ### Hands-on Practice
 
-1. **[EXP_1101: GPON](../../../experiments/EXP_1101_GPON.md)**
-   - Configure GPON modem bridge mode
-   - Test WAN bypass
-   - Verify internet connectivity
+1. **[EXP_1101: WAN Uplink](../../case-study/experiments/EXP_1101_GPON.md)** (case study)
+   - Configure the uplink modem in bridge mode
+   - Verify ISP handoff and internet connectivity
 
-2. **[EXP_1103: Star Topology](../../../experiments/EXP_1103_STAR_TOPOLOGY.md)**
-   - Build 2.5Gbps star topology
+2. **[EXP_1103: Star Topology](../../case-study/experiments/EXP_1103_STAR_TOPOLOGY.md)** (case study)
+   - Build a star topology network
    - Enable jumbo frames
    - Benchmark network performance
-
-3. **[EXP_1302: GPU Scheduler](../../../experiments/EXP_1302_GPU_SCHEDULER.md)**
-   - Deploy K3s GPU scheduler
-   - Run GPU workloads
-   - Verify resource allocation
-
-4. **[EXP_1403: TGI Tuning](../../../experiments/EXP_1403_TGI_TUNING.md)**
-   - Deploy TGI server
-   - Optimize parameters
-   - Benchmark throughput
-
-5. **[EXP_1404: vLLM Tuning](../../../experiments/EXP_1404_VLLM_TUNING.md)**
-   - Deploy vLLM server
-   - Tune block size and concurrency
-   - Compare vs TGI
-
-6. **[EXP_1501: Monitoring](../../../experiments/EXP_1501_MONITORING.md)**
-   - Deploy Prometheus + Grafana
-   - Create dashboards
-   - Set up alerts
 
 ---
 
@@ -692,8 +670,8 @@ global:
 
 Validate your knowledge with:
 
-- **[Phase a Quiz](../../00-META/assessment/phase1-quiz.md)** - Test your understanding (25 questions, 80% to pass)
-- **[Phase a Practice](../../00-META/assessment/phase1-practice.md)** - Hands-on infrastructure exercises
+- **[Phase 1 Quiz](../../00-META/assessment/phase1-quiz.md)** - Test your understanding (25 questions, 80% to pass)
+- **[Phase 1 Practice](../../00-META/assessment/phase1-practice.md)** - Hands-on infrastructure exercises
 
 ---
 
@@ -722,9 +700,8 @@ After completing this phase:
 
 ---
 
-**Status:** ✅ Complete
 **Module Duration:** 75 hours (44 reading + 31 practice)
 **Difficulty:** Intermediate
-**Last Updated:** 2026-02-05
+**Last Updated:** 2026-09-24
 
-**Ready to build your HomeLab infrastructure?** Start with [1101: Fiber GPON Modem](./1100-network/1101-Fiber-GPON-Modem.md) or [1102: Star Topology Core](./1100-network/1102-Star-Topology-Core.md)
+**Ready to build your infrastructure?** Start with [1101: Internet Uplink & Modem Configuration](./1100-network/1101-Fiber-GPON-Modem.md) or [1102: Network Topology Design](./1100-network/1102-Star-Topology-Core.md)

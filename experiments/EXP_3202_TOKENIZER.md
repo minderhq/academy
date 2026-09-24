@@ -382,5 +382,5 @@ if __name__ == "__main__":
 ---
 
 ## Related Documentation
-- [3202: Tokenizer Sciences](../docs/3000-Transformer-Physics/3200-Embeddings/3202-Tokenizer-Sciences.md)
-- [3402: Decoder-Only Models](../docs/3000-Transformer-Physics/3400-Model-Architectures/3402-Decoder-Only-Models.md)
+- [3202: Tokenizer Sciences](../docs/phases/phase3-transformers/3200-embeddings/3202-Tokenizer-Sciences.md)
+- [3402: Decoder-Only Models](../docs/phases/phase3-transformers/3400-architectures/3402-Decoder-Only-Models.md)

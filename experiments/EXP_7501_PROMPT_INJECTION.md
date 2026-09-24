@@ -88,4 +88,4 @@ if not is_safe:
 
 ---
 
-**Next:** [7501: Prompt Injection Defense](../../docs/phases/phase7-agentic/7500-security/7501-Prompt-Injection-Defense.md)
+**Next:** [7501: Prompt Injection Defense](../docs/phases/phase7-agentic/7500-security/7501-Prompt-Injection-Defense.md)

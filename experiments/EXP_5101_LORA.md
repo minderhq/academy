@@ -131,5 +131,5 @@ model.print_trainable_parameters()
 ---
 
 ## Related Documentation
-- [5101: LoRA Logic](../docs/5000-Fine-Tuning/5100-PEFT/5101-LoRA-Logic.md)
-- [5102: QLoRA Pipelines](../docs/5000-Fine-Tuning/5100-PEFT/5102-QLoRA-Pipelines.md)
+- [5101: LoRA Logic](../docs/phases/phase5-finetuning/5100-peft/5101-LoRA-Logic.md)
+- [5102: QLoRA Pipelines](../docs/phases/phase5-finetuning/5100-peft/5102-QLoRA-Pipelines.md)

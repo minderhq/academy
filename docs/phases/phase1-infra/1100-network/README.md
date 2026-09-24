@@ -83,7 +83,7 @@ Pipeline Parallelism across 2 nodes (100GbE):
                             │
                     ┌───────▼────────┐
                     │  Fiber Modem   │
-                    │   (GPON/EPON)  │
+                    │  (fiber/cable) │
                     └───────┬────────┘
                             │
                     ┌───────▼────────┐
@@ -203,8 +203,8 @@ Cabling:
 
 ## Learning Path
 
-1. **[1101: Fiber GPON Modem Setup](./1101-Fiber-GPON-Modem.md)** - High-speed internet setup
-2. **[1102: Star Topology Core Network](./1102-Star-Topology-Core.md)** - Network architecture design
+1. **[1101: Internet Uplink & Modem Configuration](./1101-Fiber-GPON-Modem.md)** - Internet uplink setup
+2. **[1102: Network Topology Design](./1102-Star-Topology-Core.md)** - Network architecture design
 3. **[1103: Jumbo Frames and MTU](./1103-Jumbo-Frames-and-MTU.md)** - Performance optimization
 
 ## Prerequisites
@@ -660,8 +660,8 @@ After completing this module, you will understand:
    - Medium models (13-34B): 10 Gbps recommended
    - Large models (70B+): 25-100 Gbps required
 
-✅ **How to set up high-speed fiber internet connections**
-   - GPON vs EPON differences
+✅ **How to set up a high-speed internet uplink**
+   - Uplink technology differences (GPON, EPON, DOCSIS)
    - Modem configuration
    - Router setup
 
@@ -775,6 +775,6 @@ Production Ready:
 
 **Module Duration:** 6-8 hours
 **Difficulty:** Beginner-Intermediate
-**Last Updated:** 2026-02-04
+**Last Updated:** 2026-09-24
 
-**Ready to proceed?** Continue to [1101: Fiber GPON Modem Setup](./1101-Fiber-GPON-Modem.md)
+**Ready to proceed?** Continue to [1101: Internet Uplink & Modem Configuration](./1101-Fiber-GPON-Modem.md)
