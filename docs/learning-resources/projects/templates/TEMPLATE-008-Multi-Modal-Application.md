@@ -4,7 +4,7 @@ Build applications with vision + language models.
 
 ## Project Structure
 
-```
+```text
 multimodal-app/
 ├── README.md
 ├── requirements.txt

@@ -128,7 +128,7 @@ For a model with:
 - Context length: 8192
 
 Memory calculation:
-```
+```text
 KV Cache Memory = 2 × layers × hidden × context × bytes_per_param
                 = 2 × 32 × 4096 × 8192 × 2 (FP16)
                 ≈ 4 GB per batch

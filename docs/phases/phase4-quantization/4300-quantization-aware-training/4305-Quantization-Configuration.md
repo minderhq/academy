@@ -20,7 +20,7 @@ Designing effective quantization configurations requires understanding which lay
 
 ## Configuration Dimensions
 
-```
+```text
 Quantization Config = {
     ├─ Which layers to quantize?
     ├─ What precision per layer?
@@ -108,7 +108,7 @@ QAT_CONFIG = {
 
 Single scale for entire tensor:
 
-```
+```text
 Weight [out_channels, in_channels]
 ├─ Scale: scalar
 └─ All elements share same scale
@@ -133,7 +133,7 @@ Weight [out_channels, in_channels]
 
 One scale per output channel:
 
-```
+```text
 Weight [out_channels, in_channels]
 ├─ Scale: [out_channels, 1]
 └─ Each output channel has its own scale
@@ -183,7 +183,7 @@ for name, module in model.named_modules():
 
 ### Symmetric Quantization
 
-```
+```text
 Range: [-scale * qmax, scale * qmax]
 Zero-point: Always 0
 Example (INT8): [-127, 127]
@@ -200,7 +200,7 @@ Example (INT8): [-127, 127]
 
 ### Asymmetric Quantization
 
-```
+```text
 Range: [scale * (qmin - zp), scale * (qmax - zp)]
 Zero-point: Learned/observed
 Example (INT8): [-128, 127] with zp = -10

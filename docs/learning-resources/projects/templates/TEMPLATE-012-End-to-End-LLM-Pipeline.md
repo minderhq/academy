@@ -4,7 +4,7 @@ Complete pipeline from data to deployment.
 
 ## Project Structure
 
-```
+```text
 e2e-llm-pipeline/
 ├── README.md
 ├── requirements.txt

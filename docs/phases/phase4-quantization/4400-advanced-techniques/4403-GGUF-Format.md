@@ -26,7 +26,7 @@ GGUF is a binary file format that stores:
 - Tokenizer vocabulary
 - KV cache configuration
 
-```
+```text
 GGUF File Structure:
 ┌─────────────────────────────────────────────────────────────┐
 │  Header                                                     │
@@ -53,7 +53,7 @@ GGUF File Structure:
 
 ### Q4_K_M (Recommended)
 
-```
+```yaml
 Q4_K_M:
 - 6-bit super-blocks
 - 4-bit sub-blocks
@@ -65,7 +65,7 @@ Speed: Fast on CPU, very fast on GPU
 
 ### Q5_K_M (High Accuracy)
 
-```
+```yaml
 Q5_K_M:
 - 8-bit super-blocks
 - 5-bit sub-blocks
@@ -77,7 +77,7 @@ Speed: Medium on CPU, fast on GPU
 
 ### Q8_0 (8-bit)
 
-```
+```yaml
 Q8_0:
 - Pure 8-bit quantization
 - Near FP32 accuracy

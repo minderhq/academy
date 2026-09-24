@@ -20,7 +20,7 @@ This document details the configuration of PCIe passthrough for the RTX 2080 Ti 
 ## Thunderbolt 3 Architecture
 
 ### TB3 Protocol Stack
-```
+```text
 ┌─────────────────────────────────────────┐
 │         Application Layer               │
 │  (PCIe Tunnelling / DisplayPort / USB)  │
@@ -38,7 +38,7 @@ This document details the configuration of PCIe passthrough for the RTX 2080 Ti 
 ```
 
 ### PCIe Tunneling Over TB3
-```
+```text
 [RTX 2080 Ti] ← PCIe x16 → [eGPU Enclosure TB3 Controller]
                                           ↓
                                     [TB3 Cable]
@@ -51,14 +51,14 @@ This document details the configuration of PCIe passthrough for the RTX 2080 Ti 
 ## Hardware Configuration
 
 ### eGPU Enclosure (Razer Core X / UT3G)
-```
+```text
 Controller: Intel Alpine Ridge
 Bands:     4x PCIe 3.0 lanes (32Gbps theoretical)
 Power:      100W (60W for GPU + rest for system)
 ```
 
 ### GPU Specifications
-```
+```text
 Model:      NVIDIA RTX 2080 Ti
 Cores:      4352 CUDA cores
 VRAM:       11GB GDDR6
@@ -69,7 +69,7 @@ TDP:        250W
 ## BIOS Configuration
 
 ### Required BIOS Settings
-```
+```text
 Intel VT-x:                 Enabled
 Intel VT-d:                 Enabled
 Thunderbolt Security:       No Security (or User Mode)
@@ -149,7 +149,7 @@ hostpci1: 20:00.1,pcie=1
 ```
 
 ### Explanation
-```
+```text
 20:00.0 = GPU PCIe address (check with lspci)
 20:00.1 = Audio controller
 pcie=1   = Use PCIe (not PCI) passthrough
@@ -170,7 +170,7 @@ lspci -nnk -d 10de:
 ## Performance Considerations
 
 ### TB3 Bandwidth Analysis
-```
+```text
 PCIe 3.0 x4 theoretical:  31.5 Gbps
 RTX 2080 Ti needs:        ~16-20 Gbps (typical AI workload)
 
@@ -181,7 +181,7 @@ Bottleneck Analysis:
 ```
 
 ### Overhead Comparison
-```
+```yaml
 Direct PCIe 3.0 x16:  0% overhead
 TB3 (PCIe 3.0 x4):   ~15-20% overhead for data-heavy workloads
 

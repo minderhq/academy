@@ -24,7 +24,7 @@
 
 ## Infrastructure Used
 
-```
+```yaml
 Hardware Path:
 Fiber Modem → Switch → a mini-PC → 11GB-class GPU (eGPU)
 

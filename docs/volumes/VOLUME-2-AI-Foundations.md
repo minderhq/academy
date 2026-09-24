@@ -79,7 +79,7 @@ batch_result = torch.bmm(batch_A, batch_B)
    - Gradient clipping
 
 **Key Concepts:**
-```
+```text
 Forward pass: Compute output
 Backward pass: Compute gradients
 Update: Adjust weights using gradients
@@ -148,7 +148,7 @@ output = checkpoint(custom_forward, input_tensor)
    - TPUs and accelerators
 
 **Key Concepts:**
-```
+```text
 Python Code → TensorFlow Graph → XLA Compiler → Optimized HLO → Device Code
 ```
 
@@ -420,7 +420,7 @@ Use this checklist to track your progress:
 ### Backpropagation
 
 **Chain Rule:**
-```
+```text
 If y = f(x) and L = g(y)
 Then dL/dx = dL/dy × dy/dx
 ```

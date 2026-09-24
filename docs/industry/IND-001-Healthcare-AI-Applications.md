@@ -21,7 +21,7 @@
 
 ### Why AI in Healthcare
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────┐
 │                   Healthcare Challenges                          │
 ├─────────────────────────────────────────────────────────────────┤
@@ -51,7 +51,7 @@
 
 ### AI Solutions for Healthcare
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────┐
 │                    AI Engineering Curriculum                    │
 ├─────────────────────────────────────────────────────────────────┤
@@ -256,7 +256,7 @@ class ClinicalDecisionSupport:
 
 **Real-World Example:**
 
-```
+```yaml
 INPUT PATIENT CASE:
 {
     "age": 54,
@@ -525,7 +525,7 @@ class MedicalCodingAgent:
 
 **Real-World Example:**
 
-```
+```yaml
 INPUT CLINICAL NOTE:
 "54-year-old male presents with chest pain of 2 hours duration.
 Pain is substernal, radiating to left arm, associated with
@@ -664,7 +664,7 @@ class UrgencyAssessmentAgent:
 
 **Real-World Example:**
 
-```
+```yaml
 PATIENT INPUT:
 {
     "age": 35,

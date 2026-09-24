@@ -30,7 +30,7 @@ Complete these before starting:
 
 ## 🏗️ Project Architecture
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────┐
 │                    Fine-Tuning Pipeline                     │
 ├─────────────────────────────────────────────────────────────┤
@@ -508,7 +508,7 @@ echo "Model deployed at http://localhost:8000"
 
 ## 🏆 Project Completion Checklist
 
-```
+```text
 [ ] Phase 1: Domain Data Prepared
 [ ] Phase 2: QLoRA Fine-Tuning
 [ ] Phase 3: Evaluation

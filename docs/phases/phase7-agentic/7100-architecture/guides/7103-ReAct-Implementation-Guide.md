@@ -5,7 +5,7 @@ Complete implementation guide for building production-ready ReAct (Reasoning + A
 
 ## Architecture Overview
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────┐
 │                        ReAct Agent                              │
 ├─────────────────────────────────────────────────────────────────┤

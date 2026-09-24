@@ -97,7 +97,7 @@ After reading this document, you will be able to:
 **Key Formula:**
 ```
 [Formula with proper formatting]
-```
+```text
 
 **Where:**
 - **Variable**: Description
@@ -108,7 +108,7 @@ After reading this document, you will be able to:
 ### 2.3 Architecture Diagram
 ```
 [ASCII art or reference to diagram file]
-```
+```yaml
 
 ---
 
@@ -205,7 +205,7 @@ setting: value
 **Last Updated:** YYYY-MM-DD
 **Status:** [Status]
 **Related Documents:** [List]
-```
+```yaml
 
 ---
 

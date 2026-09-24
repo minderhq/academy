@@ -93,7 +93,7 @@ C = A + bias
 ## 🔄 Backpropagation
 
 ### Chain Rule
-```
+```text
 If y = f(x) and L = g(y)
 Then dL/dx = dL/dy × dy/dx
 
@@ -261,7 +261,7 @@ def matmul_kernel(
 ```
 
 ### Memory Hierarchy
-```
+```text
 Fastest
 ┌────────────────────────────────────┐
 │ Registers (per thread)             │ ~1KB

@@ -7,7 +7,7 @@
 - **Parameters Tested:** Bridge mode, MTU settings, VLAN configuration
 
 ## Experiment Setup
-```
+```text
 Physical Connection:
 [ISP Fiber] → [GPON ONT] → [Port 1: Switch] → [Clients]
 ```
@@ -21,7 +21,7 @@ Physical Connection:
 - Result: Public IP assigned to downstream router
 
 ### 2. Switch Configuration
-```
+```text
 Switch Model: QNAP QSW-2104-1T
 Port 1: WAN (GPON)
 Port 9: NAS LAN3
@@ -32,14 +32,14 @@ MTU: 9000 (tested)
 ## Measurements
 
 ### Without Jumbo Frames (MTU 1500)
-```
+```text
 iperf3 (NAS → NUC):
   [ ID] Interval           Transfer     Bitrate
   [  5]   0.00-60.00 sec  15.2 GBytes  2.12 Gbits/sec
 ```
 
 ### With Jumbo Frames (MTU 9000)
-```
+```text
 iperf3 (NAS → NUC):
   [ ID] Interval           Transfer     Bitrate
   [  5]   0.00-60.00 sec  16.8 GBytes  2.40 Gbits/sec

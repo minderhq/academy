@@ -4,7 +4,7 @@ Deploy LLMs to production with various serving options.
 
 ## Project Structure
 
-```
+```text
 llm-deployment/
 ├── README.md
 ├── requirements.txt

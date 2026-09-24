@@ -7,7 +7,7 @@ Comprehensive guide for tuning HNSW (Hierarchical Navigable Small World) index p
 
 ### Understanding the Structure
 
-```
+```text
 Layer 2:  ┌─────┐         ┌─────┐         ┌─────┐
            │  1  │────────▶│  5  │────────▶│  9  │
            └─────┘         └─────┘         └─────┘
@@ -38,7 +38,7 @@ Layer 0:  ┌─────┐   ┌─────┐   ┌─────┐ 
 **Purpose:** Controls graph density in HNSW layers
 
 **Trade-offs:**
-```
+```text
 Low M (2-8):
   ✓ Faster index build
   ✓ Less memory
@@ -69,7 +69,7 @@ M = 64
 **Purpose:** Controls quality/accuracy during index building
 
 **Impact:**
-```
+```text
 Low ef (40-100):
   ✓ Fast indexing
   ✗ Lower search accuracy
@@ -96,7 +96,7 @@ ef_construction = 400
 **Purpose:** Controls search quality at query time
 
 **Impact:**
-```
+```text
 Low ef (10-50):
   ✓ Fast search
   ✗ Lower recall

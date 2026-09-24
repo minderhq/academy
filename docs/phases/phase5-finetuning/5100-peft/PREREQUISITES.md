@@ -30,7 +30,7 @@
 ### The Problem LoRA Solves
 
 **Full Fine-Tuning:**
-```
+```text
 Model: 7B parameters
 Update: All 7B parameters
 Memory: ~28 GB (FP32) + gradients
@@ -39,7 +39,7 @@ Storage: Full model checkpoint
 ```
 
 **LoRA Fine-Tuning:**
-```
+```text
 Model: 7B parameters (frozen)
 Update: ~4M parameters (LoRA adapters)
 Memory: ~16 GB (much less!)
@@ -49,7 +49,7 @@ Storage: Only adapter weights
 
 ### Key Intuition
 
-```
+```text
 Think of LoRA like this:
 
 Base model = General knowledge (frozen)

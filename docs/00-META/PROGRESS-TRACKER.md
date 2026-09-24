@@ -6,7 +6,7 @@
 
 ## 📊 Overall Progress
 
-```
+```text
 Volume 1: Infrastructure Mastery  [░░░░░░░░░░░] 0% (0/15)
 Volume 2: AI Foundations          [░░░░░░░░░░░] 0% (0/17)
 Volume 3: LLM Internals           [░░░░░░░░░░░] 0% (0/12)
@@ -252,7 +252,7 @@ Total: [░░░░░░░░░░░░░░░░░] 0% (0/97 core files
 
 Copy a badge when you complete a volume:
 
-```
+```text
 [ ] 🥉 Infrastructure Architect - Volume 1 Complete
 [ ] 🥉 AI Mathematics Master - Volume 2 Complete
 [ ] 🥉 Transformer Expert - Volume 3 Complete
@@ -264,7 +264,7 @@ Copy a badge when you complete a volume:
 
 ### Lab Completion Badges
 
-```
+```text
 [ ] 🏅 Docker & LLM Fundamentals - LAB-001 Complete
 [ ] 🏅 RAG Implementation - LAB-002 Complete
 [ ] 🏅 LoRA Fine-Tuning - LAB-003 Complete
@@ -283,7 +283,7 @@ Copy a badge when you complete a volume:
 
 ### Mastery Levels
 
-```
+```text
 [ ] 🎓 ai-engineering-curriculum Practitioner - All Labs Complete
 [ ] 🌟 ai-engineering-curriculum Expert - All Volumes Complete
 [ ] 👑 ai-engineering-curriculum Master - All Volumes + All Capstones Complete
@@ -295,7 +295,7 @@ Copy a badge when you complete a volume:
 
 Use this space for your learning notes:
 
-```
+```text
 Date: ______________________
 
 Volume: ________    Document: ________________
@@ -356,7 +356,7 @@ Track your major achievements:
 
 Set weekly learning goals:
 
-```
+```text
 Week of: _____________
 
 Volume Focus: ________

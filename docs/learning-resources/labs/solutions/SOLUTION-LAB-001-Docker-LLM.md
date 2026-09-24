@@ -536,7 +536,7 @@ async def clear_history(session_id: str):
 
 ### Project Structure
 
-```
+```text
 ~/lab-001-docker-llm/
 ├── docker-compose.yml
 ├── data/

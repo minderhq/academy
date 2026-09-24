@@ -20,7 +20,7 @@ Tensor algebra is the mathematical foundation of deep learning. Understanding te
 ## Tensor Fundamentals
 
 ### Scalar, Vector, Matrix, Tensor
-```
+```text
 Scalar (0-rank tensor):    x = 5
 Vector (1-rank tensor):    x = [1, 2, 3, 4]
 Matrix (2-rank tensor):    x = [[1, 2], [3, 4]]
@@ -98,7 +98,7 @@ C = torch.matmul(A, B)      # (2, 3, 4, 6)
 ## Einstein Summation (einsum)
 
 ### The Einstein Notation
-```
+```text
 Principle: Sum over repeated indices
 
 ij,jk->ik  means:
@@ -259,7 +259,7 @@ x_cpu = x_gpu.cpu()
 ```
 
 ### Tensor Cores (11GB-class GPU)
-```
+```yaml
 Tensor Cores specialize in matrix multiplication:
 - FP16 (half precision) input
 - FP32 (full precision) accumulation

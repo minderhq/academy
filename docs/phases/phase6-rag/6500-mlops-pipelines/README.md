@@ -137,7 +137,7 @@ This module connects to:
 
 ## ML Pipeline Stages
 
-```
+```text
 ┌─────────────────────────────────────────────────────┐
 │                  ML Lifecycle                        │
 ├─────────────────────────────────────────────────────┤
@@ -231,7 +231,7 @@ Before deploying to production:
 
 ## Model Promotion Workflow
 
-```
+```text
 Development → Staging → Production
      ↓            ↓           ↓
    Experimental  A/B Test    Full Traffic

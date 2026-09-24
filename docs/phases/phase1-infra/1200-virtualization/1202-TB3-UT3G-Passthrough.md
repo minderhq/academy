@@ -65,7 +65,7 @@ The IOMMU (Input-Output Memory Management Unit) is what makes PCI passthrough sa
 
 Enable it in BIOS/UEFI first. Names vary by vendor:
 
-```
+```text
 Intel platforms:      VT-d, "Intel Virtualization Technology for Directed I/O"
 AMD platforms:        AMD-Vi / IOMMU, "SVM" (SVM covers AMD-V; IOMMU is a separate toggle)
 Also useful:          Above 4G Decoding: Enabled (see Section 9 for why)
@@ -101,7 +101,7 @@ GRUB_CMDLINE_LINUX_DEFAULT="quiet amd_iommu=on iommu=pt"
 
 What each parameter does:
 
-```
+```text
 intel_iommu=on   Force-enable the Intel IOMMU driver (some distros default off)
 amd_iommu=on     Same for AMD (usually on by default, harmless to set)
 iommu=pt         Pass-through mode for non-passthrough devices:
@@ -153,7 +153,7 @@ done
 
 Example output:
 
-```
+```text
 IOMMU Group 14:
         01:00.0 VGA compatible controller [0300]: NVIDIA Corporation GA106 [GeForce RTX 3060] [10de:2503] (rev a1)
         01:00.1 Audio device [0403]: NVIDIA Corporation GA106 High Definition Audio [10de:228b] (rev a1)
@@ -233,7 +233,7 @@ lspci -nnk -s 01:00.
 
 Passthrough requires a modern machine type and UEFI firmware:
 
-```
+```text
 Machine:  q35          (Intel's modern chipset model; required for PCIe passthrough)
 BIOS:     OVMF (UEFI)  (SeaBIOS works but complicates large-BAR setups)
 ```
@@ -248,7 +248,7 @@ qm set 102 --hostpci1 0000:01:00.1,pcie=1
 
 ### 6.2 Flag Meanings
 
-```
+```text
 0000:01:00.0   PCI address of the GPU (domain:bus:slot.function)
 pcie=1         Present the device as PCIe (not legacy PCI) - required for
                modern NVIDIA drivers to map large BARs correctly
@@ -261,7 +261,7 @@ Alternatively use the GUI: **VM -> Hardware -> Add -> PCI Device**, tick *All Fu
 
 The resulting config file (`/etc/pve/qemu-server/102.conf`) contains:
 
-```
+```text
 machine: q35
 bios: ovmf
 hostpci0: 0000:01:00.0,pcie=1,x-vga=1

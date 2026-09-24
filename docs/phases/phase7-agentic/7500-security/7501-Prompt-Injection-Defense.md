@@ -30,7 +30,7 @@ Prompt injection attacks attempt to manipulate AI systems by crafting malicious 
 
 ## Prompt Injection Taxonomy
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                    Prompt Injection Attack Types                        │
 ├─────────────────────────────────────────────────────────────────────────┤

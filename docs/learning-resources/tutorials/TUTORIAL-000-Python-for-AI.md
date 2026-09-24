@@ -163,7 +163,7 @@ print(is_student)
 ```
 
 **Output:**
-```
+```text
 Alice
 30
 1.75
@@ -2053,7 +2053,7 @@ def load_config(config_path: str) -> Dict[str, Any]:
 
 # :trophy: Completion Checklist
 
-```
+```text
 [ ] Part 1: Python Basics (2 hours)
     [ ] 1.1 What is Python?
     [ ] 1.2 Installing Python
@@ -2111,7 +2111,7 @@ Congratulations! You now have the Python skills needed for AI development!
 
 ### Recommended Learning Path:
 
-```
+```text
 TUTORIAL-000: Python for AI (YOU ARE HERE)
          ↓
 TUTORIAL-001: Hello LLM (Build your first AI app)

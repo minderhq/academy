@@ -23,7 +23,7 @@ After this tutorial, you will:
 ### Development vs Production
 
 **Development:**
-```
+```text
 Single Docker container
 No SSL
 No monitoring
@@ -31,7 +31,7 @@ Manual deployment
 ```
 
 **Production:**
-```
+```text
 Multiple services (API, Database, Monitoring)
 SSL/TLS encryption
 Load balancing
@@ -42,7 +42,7 @@ Backups & disaster recovery
 
 ### Architecture Overview
 
-```
+```text
 Internet → Nginx (SSL) → Load Balancer
                               ↓
                     ┌─────────┴─────────┐
@@ -629,7 +629,7 @@ EOF
 
 ### Production Checklist
 
-```
+```text
 [ ] SSL/TLS configured
 [ ] Nginx reverse proxy setup
 [ ] Multiple API instances

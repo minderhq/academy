@@ -239,7 +239,7 @@ class DevOpsAgent:
 
 **Real-World Incident Handling:**
 
-```
+```text
 INCIDENT: "LLM inference API is returning 500 errors"
 
 AGENT REASONING:
@@ -588,7 +588,7 @@ class SalesAgent:
 
 **Real-World Multi-Agent Conversation:**
 
-```
+```text
 CUSTOMER: "I was charged twice this month but my service isn't working!"
 
 MANAGER AGENT:
@@ -777,7 +777,7 @@ class ResearchAssistantAgent:
 
 **Real-World Research Task:**
 
-```
+```text
 USER: "Research the latest developments in transformer architecture efficiency improvements"
 
 AGENT EXECUTION:
@@ -855,7 +855,7 @@ proportional increases in compute.
 
 ### Pattern 1: ReAct (Reasoning + Acting)
 
-```
+```text
 User Query
     ↓
 Thought → Action → Observation → Thought → Action → Finish
@@ -865,7 +865,7 @@ Thought → Action → Observation → Thought → Action → Finish
 
 ### Pattern 2: Hierarchical (Manager-Worker)
 
-```
+```text
 Manager Agent
     ├─ Worker Agent 1
     ├─ Worker Agent 2
@@ -876,7 +876,7 @@ Manager Agent
 
 ### Pattern 3: Sequential (Pipeline)
 
-```
+```text
 Agent 1 → Agent 2 → Agent 3 → Final Output
 ```
 
@@ -884,7 +884,7 @@ Agent 1 → Agent 2 → Agent 3 → Final Output
 
 ### Pattern 4: Consensus (Voting)
 
-```
+```text
 All Agents → Vote → Consensus → Decision
 ```
 

@@ -30,7 +30,7 @@ Model registry is the central repository for managing trained machine learning m
 
 ## Model Registry Architecture
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                      Model Registry Architecture                         │
 ├─────────────────────────────────────────────────────────────────────────┤

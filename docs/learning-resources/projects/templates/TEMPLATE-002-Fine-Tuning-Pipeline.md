@@ -4,7 +4,7 @@ A complete template for fine-tuning LLMs with custom data.
 
 ## Project Structure
 
-```
+```text
 fine-tuning-pipeline/
 ├── README.md
 ├── requirements.txt

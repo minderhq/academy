@@ -19,7 +19,7 @@ Complete monitoring stack for tracking infrastructure health, model performance,
 
 ## Architecture
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────┐
 │                    Monitoring Stack                             │
 ├─────────────────────────────────────────────────────────────────┤

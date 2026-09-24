@@ -176,7 +176,7 @@ Before deploying agents:
 
 ## PII Redaction Pipeline
 
-```
+```text
 Input Text
     ↓
 PII Detection (NER)

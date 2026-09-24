@@ -353,7 +353,7 @@ class DigitalTwin:
 
 ## Implementation Architecture
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────┐
 │                    Manufacturing AI Platform                 │
 ├─────────────────────────────────────────────────────────────┤

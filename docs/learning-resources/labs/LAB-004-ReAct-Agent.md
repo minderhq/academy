@@ -1181,7 +1181,7 @@ if __name__ == "__main__":
 
 ## 🎓 Lab Completion Checklist
 
-```
+```text
 [ ] Exercise 1: Understanding ReAct Pattern
 [ ] Exercise 2: Tool System
 [ ] Exercise 3: Enhanced ReAct Agent

@@ -4,7 +4,7 @@ Merge and combine LLMs for better performance.
 
 ## Project Structure
 
-```
+```text
 model-merging-moe/
 ├── README.md
 ├── requirements.txt

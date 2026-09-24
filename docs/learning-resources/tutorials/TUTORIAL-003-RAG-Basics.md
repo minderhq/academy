@@ -26,7 +26,7 @@ By the end of this tutorial, you will:
 
 Think of RAG like an **open-book exam** for AI:
 
-```
+```text
 Without RAG (Closed Book):
 Question: "What is ai-engineering-curriculum?"
 LLM: "I don't know, my training data cutoff was earlier."
@@ -40,7 +40,7 @@ LLM: "ai-engineering-curriculum is an AI infrastructure learning platform..."
 
 ### RAG Architecture:
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────┐
 │                     RAG Pipeline                            │
 ├─────────────────────────────────────────────────────────────┤
@@ -96,7 +96,7 @@ print(f"First 10 values: {embedding[:10]}")
 ```
 
 ### How it works:
-```
+```text
 "cat"  → [0.1, -0.5, 0.8, ...]   (384 numbers)
 "dog"  → [0.2, -0.3, 0.7, ...]   (384 numbers)
 
@@ -425,7 +425,7 @@ def rerank(results, query):
     # Sort by rerank scores
     reranked = sorted(zip(results, scores), key=lambda x: x[1], reverse=True)
     return [r[0] for r in reranked]
-```
+```yaml
 
 ---
 
@@ -455,7 +455,7 @@ Vector RAG:              GraphRAG:
                          ┌──────────────┐
                          │     LLM      │
                          └──────────────┘
-```
+```yaml
 
 ### Learn More:
 - [6304: GraphRAG Implementation](../../phases/phase6-rag/6300-context/guides/6304-GraphRAG-Implementation.md)

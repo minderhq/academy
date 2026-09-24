@@ -20,7 +20,7 @@ K3s is a lightweight Kubernetes distribution optimized for edge computing and Io
 ## Architecture Overview
 
 ### Cluster Topology
-```
+```text
 ┌─────────────────────────────────────────────────────────────┐
 │                       K3s Cluster                           │
 ├─────────────────────────────────────────────────────────────┤
@@ -47,7 +47,7 @@ K3s is a lightweight Kubernetes distribution optimized for edge computing and Io
 ### Component Breakdown
 
 #### Master Node (Control Plane)
-```
+```text
 Services:                 Port:    Purpose:
 ────────────────────────────────────────────────────
 API Server                6443     All cluster communication
@@ -57,7 +57,7 @@ etcd                      2379     Cluster state database
 ```
 
 #### Worker Node (GPU + Kubelet)
-```
+```text
 Services:                 Port:    Purpose:
 ────────────────────────────────────────────────────
 Kubelet                   10250    Pod lifecycle management
@@ -235,7 +235,7 @@ mountOptions:
 ## Networking
 
 ### Cluster IP Range
-```
+```text
 Pod CIDR:        10.42.0.0/16
 Service CIDR:    10.43.0.0/16
 Cluster Domain:  omega.local

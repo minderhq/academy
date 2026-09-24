@@ -19,7 +19,7 @@ The star topology forms the backbone of AI Engineering Curriculum's network, ena
 
 ## Topology Diagram
 
-```
+```text
                     ┌─────────────────────────────────────┐
                     │      2.5Gbps Managed Switch #1      │
                     │         (Star Topology Hub)         │
@@ -59,21 +59,21 @@ The star topology forms the backbone of AI Engineering Curriculum's network, ena
 ## Packet Flow Analysis
 
 ### Path 1: NAS → NUC (AI Training)
-```
+```text
 [NAS LAN3 @ 2.5G] → [Switch] → [NUC @ 2.5G]
 Latency: <0.5ms
 Jumbo Frames: Enabled (MTU 9000)
 ```
 
 ### Path 2: Internet → All Devices
-```
+```text
 [GPON ONT] → [Switch Port 1] → [Broadcast to all]
 NAT: Handled by router on Port 1
 DHCP: Handled by router
 ```
 
 ### Path 3: NUC → eGPU (TB3 Internal)
-```
+```text
 Not network path - PCIe tunnel over Thunderbolt 3
 Bandwidth: ~32Gbps (4x PCIe 3.0)
 ```
@@ -81,7 +81,7 @@ Bandwidth: ~32Gbps (4x PCIe 3.0)
 ## VLAN Configuration
 
 ### Recommended VLAN Layout
-```
+```text
 VLAN 10 (Management):   Switch, APs, NAS
 VLAN 20 (IoT):          Smart devices, isolated
 VLAN 30 (Servers):      Proxmox, K3s nodes
@@ -110,7 +110,7 @@ interface 1/0/10
 ## Traffic Management
 
 ### QoS Priority Queue
-```
+```text
 Priority 1 (Highest):   VoIP, SSH
 Priority 2:             K8s API, Storage I/O
 Priority 3:             General traffic
@@ -118,7 +118,7 @@ Priority 4 (Lowest):    Bulk transfer, Backup
 ```
 
 ### Flow Control
-```
+```text
 802.3x Flow Control: ENABLED (prevents packet loss)
 PFC (Priority Flow Control): Consider for 10G upgrade
 ```
@@ -126,7 +126,7 @@ PFC (Priority Flow Control): Consider for 10G upgrade
 ## Performance Optimization
 
 ### 2.5Gbps Real-World Throughput
-```
+```text
 Protocol     Theoretical    Real-World     Efficiency
 ─────────────────────────────────────────────────────
 TCP (IPv4)   2.5 Gbps       2.3-2.4 Gbps   92-96%
@@ -137,7 +137,7 @@ NFS (Linux)  2.5 Gbps       2.3-2.4 Gbps   92-96%
 
 ### Link Aggregation (LACP)
 For NAS with multiple LAN ports:
-```
+```text
 NAS LAN1 + LAN2 + LAN3 → LAGG → Switch Port 20-22
 Result: 7.5Gbps theoretical (6Gbps real-world)
 ```

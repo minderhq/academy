@@ -20,7 +20,7 @@ Normalization layers stabilize training by normalizing activations. In transform
 ## The Normalization Problem
 
 ### Why Normalize?
-```
+```text
 Without normalization:
   - Activations can grow/shrink exponentially
   - Gradients vanish or explode
@@ -35,7 +35,7 @@ With normalization:
 ```
 
 ### General Normalization Formula
-```
+```yaml
 y = γ × ((x - μ) / σ) + β
 
 Where:
@@ -95,7 +95,7 @@ class BatchNorm1d(nn.Module):
 ```
 
 ### BatchNorm Properties
-```
+```yaml
 Normalization dimensions: Over batch and spatial
 Statistics computed: (B, H, W) → single value per channel
 
@@ -177,7 +177,7 @@ class PostLNTransformerBlock(nn.Module):
 ```
 
 ### Pre-LN vs Post-LN
-```
+```text
 Post-LN (original):
   x = LayerNorm(x + Sublayer(x))
   - Gradient flow issues in deep networks
@@ -216,7 +216,7 @@ class RMSNorm(nn.Module):
 ```
 
 ### Why RMSNorm Works
-```
+```text
 LayerNorm:  (x - μ) / σ
 RMSNorm:    x / RMS(x)
 
@@ -305,7 +305,7 @@ compare_normalizations()
 | InstanceNorm | Style transfer | StyleGAN |
 
 ### Performance Impact
-```
+```text
 In transformer training:
 
 No Norm:       Unstable, NaNs
@@ -363,7 +363,7 @@ class SafeLayerNorm(nn.Module):
 ## DeepNorm (Stable Deep Networks)
 
 ### DeepNorm Formula
-```
+```text
 For very deep transformers (>24 layers):
 
 DeepNorm:   y = Sublayer(LayerNorm(α×x + Sublayer(x))) / α²

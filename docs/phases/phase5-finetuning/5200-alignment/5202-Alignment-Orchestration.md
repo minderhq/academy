@@ -20,7 +20,7 @@ This document compares alignment approaches: Reward Modeling (RLHF) versus Direc
 ## Alignment Methods Comparison
 
 ### Full Comparison Table
-```
+```text
 Method          | Reward Model | Stability | Sample Eff | Complexity | Quality
 ──────────────────────────────────────────────────────────────────────────
 SFT             | No           | High      | High       | Low        | Baseline
@@ -31,7 +31,7 @@ IPO             | No           | Very High | Medium     | Medium     | Very Good
 ```
 
 ### Decision Tree
-```
+```text
 Start → Have preference pairs?
          ├─ Yes → Use DPO or IPO
          │        ├─ Want best quality? → IPO
@@ -45,7 +45,7 @@ Start → Have preference pairs?
 ## Reward Modeling (RLHF)
 
 ### When to Use Reward Models
-```
+```text
 Use Reward Modeling when:
 ✓ You have extensive preference data (>100K samples)
 ✓ You need the absolute best quality
@@ -200,7 +200,7 @@ dpo_trainer.train()
 ```
 
 ### DPO Pros and Cons
-```
+```text
 Pros:
 ✓ No separate reward model training
 ✓ More stable (no PPO)
@@ -240,7 +240,7 @@ kto_trainer.train()
 ```
 
 ### When to Use KTO
-```
+```text
 Use KTO when:
 ✓ You have binary feedback (thumbs up/down)
 ✓ Preference pairs not available
@@ -256,7 +256,7 @@ Example: Chatbot analytics
 ## Practical Alignment Pipeline
 
 ### Recommended Pipeline
-```
+```text
 Stage 1: SFT (Supervised Fine-Tuning)
   Goal: Learn task format
   Data: Instruction-response pairs

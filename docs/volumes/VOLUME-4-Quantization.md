@@ -46,7 +46,7 @@ This volume is **critical for HomeLab enthusiasts** with limited VRAM. You'll le
    - llama.cpp integration
 
 **Key Concept:**
-```
+```text
 GGUF Quantization Levels:
 Q8_0: 8-bit, ~90% quality, ~1.8x faster
 Q5_K_M: 5-bit mixed, ~85% quality, ~2.2x faster
@@ -88,7 +88,7 @@ cd llama.cpp
    - Quality benchmarks
 
 **EXL2 Advantages:**
-```
+```text
 GGUF: CPU/GPU hybrid, slower TB3 bus
 EXL2: VRAM-only, blazing fast
 AWQ: Smart quantization, better quality
@@ -160,7 +160,7 @@ model = AutoModelForCausalLM.from_pretrained(
 ```
 
 **Double Quantization Explained:**
-```
+```text
 Standard Quantization:
 FP32 → INT4 (quantization constants in FP32)
 
@@ -342,7 +342,7 @@ docker run --gpus all \
    - Performance tuning
 
 **TGI vs vLLM:**
-```
+```text
 vLLM: Best for throughput, continuous batching
 TGI: Best for latency, Flash Attention, ease of use
 
@@ -495,7 +495,7 @@ Use this checklist to track your progress:
 
 ### Quantization Trade-offs
 
-```
+```text
 FP32 (Full precision):
 - Quality: 100%
 - Memory: 100% (baseline)
@@ -521,7 +521,7 @@ Choose based on your hardware and quality requirements!
 
 ### GGUF vs EXL2
 
-```
+```yaml
 GGUF:
 - CPU/GPU hybrid offloading
 - Slower TB3 bus
@@ -537,7 +537,7 @@ EXL2:
 
 ### Context Window Memory
 
-```
+```text
 KV Cache Memory Formula:
 memory = 2 × layers × heads × seq_len × head_dim × bytes
 

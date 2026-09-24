@@ -181,7 +181,7 @@ This module connects to:
 
 ## Model Compression Pipeline
 
-```
+```text
 Original Model (7B)
         ↓
     Pruning (removing weights)

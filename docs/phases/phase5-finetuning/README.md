@@ -32,7 +32,7 @@ This phase covers fine-tuning and alignment techniques to transform general-purp
 
 ### The Generalization Problem
 
-```
+```text
 Pre-trained LLMs are generalists:
 ┌─────────────────────────────────────────────────────────┐
 │ Base Model (e.g., Llama-2-70B)                          │
@@ -94,7 +94,7 @@ graph LR
 
 ### VRAM Requirements by Model Size
 
-```
+```text
 ┌──────────────────────────────────────────────────────────────────┐
 │                    VRAM Requirements (Training)                  │
 ├──────────────────────────────────────────────────────────────────┤
@@ -532,7 +532,7 @@ scheduler = get_cosine_schedule_with_warmup(
 
 ### Minimum Configuration
 
-```
+```text
 ┌─────────────────────────────────────────────────────────┐
 │              Minimum Requirements (QLoRA)               │
 ├─────────────────────────────────────────────────────────┤
@@ -547,7 +547,7 @@ scheduler = get_cosine_schedule_with_warmup(
 
 ### Recommended Configuration
 
-```
+```text
 ┌─────────────────────────────────────────────────────────┐
 │            Recommended Requirements (LoRA)              │
 ├─────────────────────────────────────────────────────────┤

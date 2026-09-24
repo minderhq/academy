@@ -30,7 +30,7 @@ LLM observability focuses on monitoring language model specific metrics includin
 
 ## LLM-Specific Metrics
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                      LLM Observability Metrics                          │
 ├─────────────────────────────────────────────────────────────────────────┤

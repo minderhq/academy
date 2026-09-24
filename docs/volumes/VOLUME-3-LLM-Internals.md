@@ -99,7 +99,7 @@ def scaled_dot_product_attention(Q, K, V, mask=None):
    - Speed benchmarks
 
 **Key Innovation:**
-```
+```text
 Standard Attention: O(N²) memory
 Flash Attention: O(N) memory with tiling
 
@@ -169,7 +169,7 @@ def rotate_position(x, seq_len, dim):
    - Special tokens handling
 
 **Tokenization Examples:**
-```
+```text
 Input: "Hello, world!"
 BPE: ["Hello", ",", " world", "!"]
 SentencePiece: ["▁Hello", ",", "▁world", "!"]
@@ -269,7 +269,7 @@ RMSNorm: x / sqrt(mean(x^2) + epsilon)
    - When to use each
 
 **Comparison:**
-```
+```text
 Decoder-only (GPT, LLaMA, Mistral):
 - Best for generation
 - Causal masking
@@ -426,7 +426,7 @@ Use this checklist to track your progress:
 ### Attention Mechanism
 
 **Core Formula:**
-```
+```yaml
 Attention(Q, K, V) = softmax(QK^T / √d_k) V
 
 Where:

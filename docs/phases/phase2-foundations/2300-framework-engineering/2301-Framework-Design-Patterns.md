@@ -550,7 +550,7 @@ if __name__ == "__main__":
 
     # Print config
     print(config3)
-```
+```python
 
 ### Best Practices
 
@@ -1098,7 +1098,7 @@ if __name__ == "__main__":
     # Save versioned model
     model = VersionedModel(config={}, framework="pytorch")
     model.save("model_checkpoint.json")
-```
+```python
 
 ---
 

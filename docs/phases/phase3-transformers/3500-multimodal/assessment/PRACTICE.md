@@ -475,7 +475,7 @@ print("4. Get top-k most similar images")
 
 ## Summary: Multimodal AI Applications
 
-```
+```text
 APPLICATIONS → MODELS:
 
 Image Classification:

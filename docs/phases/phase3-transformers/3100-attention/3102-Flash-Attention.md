@@ -46,7 +46,7 @@ def standard_attention(Q, K, V):
 ```
 
 ### Memory Bandwidth Bottleneck
-```
+```text
 GPU Memory Hierarchy Speed Comparison:
 HBM (GPU VRAM):    ~600 GB/s
 SRAM (On-chip):    ~30 TB/s (50x faster!)
@@ -63,7 +63,7 @@ Flash attention:
 ## Flash Attention Algorithm
 
 ### Key Ideas
-```
+```text
 1. Tiling: Split Q, K, V into blocks
 2. Incremental softmax: Update softmax statistics online
 3. No materialization: Never store full attention matrix
@@ -132,7 +132,7 @@ def flash_attention(Q, K, V, block_size=16):
 ## Flash Attention 2
 
 ### Improvements over Flash Attention 1
-```
+```text
 Flash Attention 1:
 - Better algorithm, but not fully optimized
 - Used shared memory inefficiently
@@ -221,7 +221,7 @@ model = AutoModelForCausalLM.from_pretrained(
 ## Performance Comparison
 
 ### Benchmarks (A100 GPU, sequence length 2048)
-```
+```text
 Attention Type    Time (ms)   Memory (GB)
 ────────────────────────────────────────
 Standard          45          16.0
@@ -234,7 +234,7 @@ Memory: 5x less memory usage
 ```
 
 ### Sequence Length Scaling
-```
+```text
 Standard Attention:
   Time: O(L²) - doubles when L × √2
   Memory: O(L²) - doubles when L × √2
@@ -301,7 +301,7 @@ Q = Q.to(torch.bfloat16)
 ## Limitations and Considerations
 
 ### When NOT to use Flash Attention
-```
+```text
 1. Very short sequences (< 512):
    - Overhead of tiling outweighs benefits
    - Standard attention is fine
@@ -340,7 +340,7 @@ def get_attention_weights(Q, K, V):
 ## Flash Attention 3
 
 ### Hardware-Aware Optimization
-```
+```text
 Flash Attention 3 (2024):
 - Optimized for Hopper (H100) architecture
 - Hardware-specific tiling

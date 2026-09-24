@@ -4,7 +4,7 @@ Generate training data with LLMs.
 
 ## Project Structure
 
-```
+```text
 synthetic-data-generator/
 ├── README.md
 ├── requirements.txt
@@ -153,7 +153,7 @@ augmented = augmenter.augment(original_data)
 ## Templates
 
 Create custom templates in `templates/`:
-```
+```text
 Generate a {domain} question about {topic}.
 The question should be {difficulty} level.
 

@@ -121,12 +121,12 @@ This module connects to:
 ## DPO vs RLHF Pipeline
 
 **Traditional RLHF:**
-```
+```text
 1. SFT → 2. Reward Model → 3. PPO Training (3 components)
 ```
 
 **DPO:**
-```
+```text
 1. SFT → 2. DPO Training (2 components, no reward model)
 ```
 

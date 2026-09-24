@@ -20,7 +20,7 @@ This directory contains practical use case documentation showing how to apply AI
 
 ### Why Use Case Documentation Matters
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────┐
 │                    From Theory to Practice                       │
 ├─────────────────────────────────────────────────────────────────┤
@@ -37,7 +37,7 @@ This directory contains practical use case documentation showing how to apply AI
 
 Each use case document provides:
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────┐
 │                    Complete Use Case Package                     │
 ├─────────────────────────────────────────────────────────────────┤
@@ -125,7 +125,7 @@ Comprehensive guide on when and how to use vector databases with decision matric
 - ✅ Industry-specific applications (healthcare, finance, manufacturing)
 
 **Business Impact:**
-```
+```text
 E-Commerce Recommendation:
 - +35% increase in cross-sell
 - +20% higher conversion rate
@@ -177,7 +177,7 @@ Retrieval-Augmented Generation use cases and implementation patterns.
 
 **When to Use RAG:**
 
-```
+```text
 ✅ Use RAG When:
 ├─ You have current/frequently changing information
 ├─ You need source citations for answers
@@ -204,7 +204,7 @@ Retrieval-Augmented Generation use cases and implementation patterns.
 
 **RAG Architecture Patterns:**
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────┐
 │                     RAG Architecture Patterns                    │
 ├─────────────────────────────────────────────────────────────────┤
@@ -241,7 +241,7 @@ Retrieval-Augmented Generation use cases and implementation patterns.
 ```
 
 **Business Impact:**
-```
+```text
 Enterprise Knowledge Base:
 - 90% reduction in time to find information
 - 75% decrease in repetitive questions to IT
@@ -279,7 +279,7 @@ AI agent and multi-agent system implementations.
 
 **Agent Architecture Patterns:**
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────┐
 │                    Agent Architecture Patterns                   │
 ├─────────────────────────────────────────────────────────────────┤
@@ -347,7 +347,7 @@ AI agent and multi-agent system implementations.
 ```
 
 **Business Impact:**
-```
+```text
 DevOps Automation Agent:
 - 70% reduction in MTTR (Mean Time To Resolve)
 - 50% decrease in manual intervention
@@ -365,7 +365,7 @@ Multi-Agent Customer Service:
 
 ### By Sector
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────┐
 │                      Industry Use Cases                          │
 ├─────────────────────────────────────────────────────────────────┤

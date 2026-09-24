@@ -116,7 +116,7 @@ docker-compose logs -f neo4j
 
 ### 1. Access Neo4j Browser
 
-```
+```text
 URL: http://localhost:7474
 Username: neo4j
 Password: your_secure_password_here
@@ -343,7 +343,7 @@ services:
 
 #### 1. Out of Memory
 
-```
+```text
 Error: Java heap space
 ```
 

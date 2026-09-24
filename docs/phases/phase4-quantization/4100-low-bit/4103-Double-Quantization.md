@@ -20,7 +20,7 @@ Double Quantization (DQ) is a technique introduced by bitsandbytes to further co
 ## The Problem with Standard Quantization
 
 ### Standard 4-bit Quantization Memory
-```
+```text
 For a weight matrix W ∈ ℝ^(m×n):
 
 Standard 4-bit:
@@ -40,7 +40,7 @@ The scales and zero points add overhead!
 ```
 
 ### Visualizing Memory Layout
-```
+```text
 Weight Matrix (4096 × 4096):
 ┌─────────────────────────────────────────┐
 │  Weights (4-bit): 8 MB                   │
@@ -55,7 +55,7 @@ Total: 8.26 MB (~3% overhead for metadata)
 ## Double Quantization Solution
 
 ### What is Double Quantized?
-```
+```text
 Key idea: The scales themselves can be quantized!
 
 Standard:
@@ -68,7 +68,7 @@ Meta-meta: scales of scales!
 ```
 
 ### Double Quantization Formula
-```
+```text
 Let c be the quantization constant for scales:
 
 c = max(|scales|) / 127
@@ -223,7 +223,7 @@ model = AutoModelForCausalLM.from_pretrained(
 ## Memory Savings
 
 ### Standard vs Double Quantization
-```
+```text
 Llama-2-7B (4096 × 4096 weights, 32 layers):
 
 Standard 4-bit (no DQ):
@@ -242,7 +242,7 @@ For 70B model: ~0.5 GB savings!
 ```
 
 ### Visual Comparison
-```
+```text
 Without DQ:
 Weights  ████████████████████ 3.5 GB
 Scales   ███ 0.1 GB
@@ -260,7 +260,7 @@ Total:   3.55 GB
 ## Quality Impact
 
 ### Perplexity Comparison
-```
+```text
 WikiText-2 Perplexity (lower is better):
 
 Model           fp16    4-bit    4-bit+DQ
@@ -274,7 +274,7 @@ Memory savings: ~0.5-1%
 ```
 
 ### When to Use DQ
-```
+```text
 Use Double Quantization:
 ✓ Limited VRAM (saving 0.5GB matters)
 ✓ Large models (70B+)
@@ -289,7 +289,7 @@ Skip Double Quantization:
 ## Advanced DQ Techniques
 
 ### Triple Quantization?
-```
+```text
 Can we quantize the meta-scales?
 
 Theoretically: Yes!
@@ -363,7 +363,7 @@ model.print_trainable_parameters()
 ## Troubleshooting
 
 ### Common Issues
-```
+```yaml
 Issue: "CUDA out of memory"
 Solution:
   - Reduce batch size

@@ -24,7 +24,7 @@
 
 ## Infrastructure Used
 
-```
+```text
 Sandbox: RestrictedPython + Docker
 Agent: Llama-2-7B with tool access
 Test Cases: Safe, unsafe, malicious code

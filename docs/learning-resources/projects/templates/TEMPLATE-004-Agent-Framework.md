@@ -4,7 +4,7 @@ Build agentic systems with tools and memory.
 
 ## Project Structure
 
-```
+```text
 agent-framework/
 ├── README.md
 ├── requirements.txt

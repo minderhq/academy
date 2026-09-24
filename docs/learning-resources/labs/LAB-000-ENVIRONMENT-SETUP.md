@@ -139,7 +139,7 @@ docker run hello-world
 ```
 
 **Expected Output:**
-```
+```text
 Hello from Docker!
 This message shows that your installation appears to be working correctly.
 ```
@@ -259,7 +259,7 @@ ollama run phi3 "Hello! What is 2+2?"
 ```
 
 **Expected Response:**
-```
+```text
 The answer is 4.
 ```
 
@@ -312,7 +312,7 @@ python test_env.py
 ```
 
 **Expected Output:**
-```
+```text
 ✅ Ollama imported
 ✅ PyTorch 2.x.x
 ✅ LLM Response: Hello!...

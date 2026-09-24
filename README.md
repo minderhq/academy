@@ -1306,7 +1306,7 @@ docker compose -f configs/docker-compose.yml up -d qdrant
 
 ### Topics Covered
 
-```
+```text
 Infrastructure: Network, Virtualization, K8s, Serving, Monitoring
 Foundations: Math, Frameworks, Pre-training, Evaluation
 Transformers: Attention, RoPE, Tokenization, Activations, Architectures
@@ -1384,7 +1384,7 @@ Contributions are welcome! The fastest way to contribute:
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-```
+```text
 MIT License
 
 Copyright (c) 2026 AI Engineering Curriculum

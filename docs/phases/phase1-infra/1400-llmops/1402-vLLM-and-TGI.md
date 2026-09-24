@@ -33,7 +33,7 @@ vLLM and Text Generation Inference (TGI) are optimized inference engines for LLM
 ## vLLM Architecture
 
 ### PagedAttention Mechanism
-```
+```text
 Traditional KV Cache:
 [───────────────────────────────────────────────────────]
 Fixed contiguous allocation → Waste + Fragmentation
@@ -46,7 +46,7 @@ Analogy: Like virtual memory paging for LLM KV cache
 ```
 
 ### Memory Layout
-```
+```text
 GPU VRAM (11GB):
 ┌────────────────────────────────────────────────────┐
 │ Model Weights         ~4-5GB (Llama-7B fp16)      │
@@ -161,7 +161,7 @@ sampling_params = SamplingParams(
 ```
 
 ### Continuous Batching
-```
+```text
 Static Batching (Traditional):
 Batch 1: [Request A (1000 tokens), Request B (500 tokens)]
 Wait for both to complete before processing new requests
@@ -365,7 +365,7 @@ benchmark_vllm()
 ```
 
 ### Expected Performance (11GB VRAM GPU)
-```
+```text
 Model          Quant    Context    Tokens/sec
 ────────────────────────────────────────────
 Llama-2-7B     fp16     2048       ~30-40

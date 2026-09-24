@@ -225,7 +225,7 @@ After completing Phase 1, you will:
 
 ### Module Completion
 
-```
+```text
 1100 Network: ☐ Optional
 1200 Virtualization: ☐ Optional
 1300 Kubernetes: ☐ Optional
@@ -237,7 +237,7 @@ Phase 1 Progress: ___ / 2 required modules
 
 ### Time Tracking
 
-```
+```text
 Started: _____________
 Module 1100: _____ hours
 Module 1200: _____ hours

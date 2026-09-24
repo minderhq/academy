@@ -11,7 +11,7 @@
 **Estimated Time:** 6-12 months
 
 **Your Progress:**
-```
+```text
 Phase 1: ☐ Infrastructure Fabric (2-3 weeks)
 Phase 2: ☐ Cognitive Science & Frameworks (3-4 weeks)
 Phase 3: ☐ Transformer Physics (3-4 weeks)
@@ -50,7 +50,7 @@ Phase 7: ☐ Agentic Systems (5-6 weeks)
 **Path:** All 7 phases in order
 
 **Track your progress:**
-```
+```text
 Phase 1: _____ weeks (started: _____)
 Phase 2: _____ weeks (started: _____)
 Phase 3: _____ weeks (started: _____)

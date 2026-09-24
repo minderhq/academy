@@ -150,7 +150,7 @@ ollama run mistral
 Type your message and press Enter!
 
 **Try these:**
-```
+```text
 Hello! What can you do?
 Explain quantum computing like I'm five
 Write a Python function to check if a number is prime
@@ -392,7 +392,7 @@ You just completed your first step into the world of local AI!
 
 ## 📊 Learning Path Overview
 
-```
+```text
 Start Here (You are here)
     │
     ├─► Quick Start (30 min) ✅ DONE

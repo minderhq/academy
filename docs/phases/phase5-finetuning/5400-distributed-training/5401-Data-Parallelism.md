@@ -20,7 +20,7 @@ Data parallelism replicates the model across multiple GPUs, each processing a po
 
 ## Types of Data Parallelism
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────┐
 │  Data Parallel (DP)                                          │
 │  ┌─────┐  ┌─────┐  ┌─────┐  ┌─────┐                       │

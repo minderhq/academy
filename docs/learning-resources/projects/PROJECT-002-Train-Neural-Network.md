@@ -30,7 +30,7 @@ Complete these before starting:
 
 ## 🏗️ Project Architecture
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────┐
 │                    Custom Deep Learning Framework            │
 ├─────────────────────────────────────────────────────────────┤
@@ -1099,7 +1099,7 @@ for epoch in range(n_epochs):
 
 ## 🏆 Project Completion Checklist
 
-```
+```text
 [ ] Phase 1: Tensor Library
 [ ] Phase 2: Neural Network Module
 [ ] Phase 3: Training Loop & Data Loading

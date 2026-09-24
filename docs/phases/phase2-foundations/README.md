@@ -34,7 +34,7 @@ This phase covers the mathematical foundations and framework engineering needed 
 
 ### The "Black Box" Problem
 
-```
+```text
 ┌─────────────────────────────────────────────────────────┐
 │               Without Foundations                        │
 ├─────────────────────────────────────────────────────────┤
@@ -72,7 +72,7 @@ With Strong Foundations:
 
 ### Tensor Algebra
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────┐
 │                    Essential Tensor Operations                   │
 ├─────────────────────────────────────────────────────────────────┤
@@ -114,7 +114,7 @@ result = torch.einsum('ij->j', A)
 
 ### Backpropagation Chain
 
-```
+```text
 Loss L
   │
   ├─ ∂L/∂output (gradient of loss)
@@ -180,7 +180,7 @@ graph TB
 
 ### Computational Graphs
 
-```
+```text
 Forward Pass (Computation Graph):
 ┌─────────────────────────────────────────────────────────────────┐
 │                                                                 │

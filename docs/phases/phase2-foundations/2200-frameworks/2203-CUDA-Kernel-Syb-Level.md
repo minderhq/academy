@@ -20,7 +20,7 @@ CUDA (Compute Unified Device Architecture) is NVIDIA's parallel computing platfo
 ## GPU Architecture Overview
 
 ### 11GB-class GPU Specifications
-```
+```text
 CUDA Architecture:   Turing TU102
 CUDA Cores:         4352 (FP32)
 Tensor Cores:       544 (for mixed precision)
@@ -33,7 +33,7 @@ L2 Cache:           5.5 MB
 ```
 
 ### Hardware Organization
-```
+```text
 ┌─────────────────────────────────────────────────────────┐
 │                     GPU (TU102)                         │
 ├─────────────────────────────────────────────────────────┤
@@ -56,7 +56,7 @@ L2 Cache:           5.5 MB
 ```
 
 ### SM (Streaming Multiprocessor)
-```
+```text
 Each SM contains:
 - 64 CUDA cores (FP32 units)
 - 8 Tensor cores (for mixed precision)
@@ -70,7 +70,7 @@ Each SM contains:
 ## CUDA Execution Model
 
 ### Hierarchy of Execution
-```
+```text
 ┌─────────────────────────────────────────────────────────┐
 │                    Grid (Kernel Launch)                 │
 │  Entire computation, contains multiple blocks          │
@@ -89,7 +89,7 @@ Each SM contains:
 ```
 
 ### Warps
-```
+```text
 A Warp = 32 threads executing in lockstep
 
 All threads in warp execute SAME instruction
@@ -149,7 +149,7 @@ my_kernel<<<dim3(2, 2), dim3(16, 16), 0, 0>>>(...);
 ## Memory Hierarchy
 
 ### CUDA Memory Types
-```
+```text
 ┌─────────────────────────────────────────────────────────┐
 │                    Memory Hierarchy                     │
 ├─────────────────────────────────────────────────────────┤
@@ -313,7 +313,7 @@ __global__ void tensor_core_mma(
 ```
 
 ### Tensor Core Requirements
-```
+```yaml
 Requirements for Tensor Core usage:
 1. Data types: FP16, BF16, INT8, INT4
 2. Dimensions: Multiples of 16 (for mma.sync)
@@ -359,7 +359,7 @@ __global__ void padded_kernel() {
 ```
 
 ### Occupancy Optimization
-```
+```text
 Occupancy = Active Warps / Max Warps per SM
 
 Factors affecting occupancy:

@@ -22,7 +22,7 @@ Quantization Aware Training (QAT) is a technique that simulates the effects of q
 
 **Key Idea:** Instead of quantizing after training (PTQ), we simulate quantization during training so the model learns to handle reduced precision.
 
-```
+```text
 Training Flow:
 ┌─────────────────────────────────────────────────────────────┐
 │  Forward Pass                                                │

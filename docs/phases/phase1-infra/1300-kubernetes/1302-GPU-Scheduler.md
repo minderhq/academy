@@ -20,7 +20,7 @@ The K3s GPU scheduler enables intelligent allocation of 11GB-class GPU resources
 ## GPU Resource Model
 
 ### Kubernetes Resource Model
-```
+```text
 Traditional CPU/Memory:    Quantitative (count/bytes)
 GPU Resources:             Qualitative + Quantitative
 
@@ -31,7 +31,7 @@ nvidia.com/gpu.product:    → GPU model constraint
 ```
 
 ### Resource Allocation Types
-```
+```text
 Exclusive Allocation:      Pod gets entire GPU
 Shared Allocation:         Multiple pods share GPU (MIG - not on 11GB-class GPU)
 Time-Sliced:               Multiple pods, time-division
@@ -40,7 +40,7 @@ Time-Sliced:               Multiple pods, time-division
 ## NVIDIA Device Plugin
 
 ### Architecture
-```
+```text
 ┌─────────────────────────────────────────────┐
 │         Kubernetes Scheduler                │
 │         (Resource: nvidia.com/gpu)          │
@@ -256,7 +256,7 @@ MemoryLimit=8G
 ## Scheduler Behavior
 
 ### Pod Scheduling Flow
-```
+```text
 1. Pod created with GPU request
 2. Scheduler filters nodes:
    - Must have nvidia.com/gpu available

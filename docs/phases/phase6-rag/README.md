@@ -35,7 +35,7 @@ This phase covers Retrieval-Augmented Generation (RAG), Context-Augmented Genera
 
 ### The Knowledge Cutoff Problem
 
-```
+```text
 ┌─────────────────────────────────────────────────────────┐
 │               Base LLM Limitations                      │
 ├─────────────────────────────────────────────────────────┤
@@ -128,7 +128,7 @@ graph TD
 
 ### Pipeline Components
 
-```
+```text
 ┌──────────────────────────────────────────────────────────────────┐
 │                     RAG Pipeline Breakdown                       │
 ├──────────────────────────────────────────────────────────────────┤
@@ -193,7 +193,7 @@ graph LR
 
 ### When to Use GraphRAG
 
-```
+```text
 ✅ Use GraphRAG when:
    - Questions require multi-hop reasoning
    - Relationships between entities matter
@@ -225,7 +225,7 @@ graph LR
 
 ### Feature Comparison
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────┐
 │                    Feature Comparison                           │
 ├─────────────────────────────────────────────────────────────────┤
@@ -260,7 +260,7 @@ graph LR
 
 ### Cloud vs Self-Hosted (10M documents)
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────┐
 │               Annual Cost Comparison (10M docs)                 │
 ├─────────────────────────────────────────────────────────────────┤
@@ -281,7 +281,7 @@ graph LR
 
 ### Break-Even Analysis
 
-```
+```text
 Scenario: 1M documents, 100K queries/day
 
 Cloud (Pinecone):

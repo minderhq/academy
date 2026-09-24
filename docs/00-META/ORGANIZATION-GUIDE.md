@@ -11,7 +11,7 @@
 
 ### Root Level
 
-```
+```text
 ai-engineering-curriculum/
 ├── README.md                          # Main project README
 ├── LICENSE                            # MIT License
@@ -42,7 +42,7 @@ ai-engineering-curriculum/
 
 **Purpose:** Project-level documentation and guides
 
-```
+```text
 docs/00-META/
 ├── MASTER-INDEX.md                   # ← Start here! Complete navigation
 ├── QUICK-START.md                    # 5-minute setup guide
@@ -88,7 +88,7 @@ docs/00-META/
 
 **Purpose:** Core technical content organized by learning phase
 
-```
+```text
 docs/phases/
 ├── phase1-infra/                     # Phase 1: Infrastructure [1000]
 │   ├── 1100-network/                 # Module 1100
@@ -151,7 +151,7 @@ docs/phases/
 
 **Purpose:** Hands-on learning content
 
-```
+```text
 docs/learning-resources/
 ├── tutorials/                        # 14 tutorial files
 │   ├── TUTORIAL-001-Hello-LLM.md
@@ -201,7 +201,7 @@ docs/learning-resources/
 
 ### Module Numbering
 
-```
+```text
 [Phase][Module][Sub-module]
 
 Examples:

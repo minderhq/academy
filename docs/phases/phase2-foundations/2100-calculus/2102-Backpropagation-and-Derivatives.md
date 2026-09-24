@@ -20,7 +20,7 @@ Backpropagation is the algorithm that enables neural networks to learn. It compu
 ## The Chain Rule
 
 ### Single Variable Chain Rule
-```
+```text
 If y = f(g(x)), then:
 dy/dx = f'(g(x)) × g'(x)
 
@@ -30,7 +30,7 @@ dy/dx = cos(x²) × 2x
 ```
 
 ### Multivariate Chain Rule (for Tensors)
-```
+```text
 If y = f(x₁, x₂, ..., xₙ), then:
 ∂y/∂x₁, ∂y/∂x₂, ..., ∂y/∂xₙ
 
@@ -73,7 +73,7 @@ print(x.grad)  # tensor(64.)
 ## Automatic Differentiation (Autograd)
 
 ### How PyTorch Autograd Works
-```
+```text
 1. Forward pass:
    - Record operations in a DAG (Directed Acyclic Graph)
    - Store the "how to compute gradient" function
@@ -149,7 +149,7 @@ print(f"dL/db:\n{b.grad}")
 ```
 
 ### Mathematical Derivation
-```
+```text
 Given:
   h = xW^T + b
   ŷ = σ(h)
@@ -224,7 +224,7 @@ def softmax_ce_backward(logits, targets):
 ## Vanishing and Exploding Gradients
 
 ### Vanishing Gradient Problem
-```
+```text
 In deep networks, repeated multiplication of small gradients:
 ∂L/∂x₁ = ∂L/∂xₙ × ∂xₙ/∂xₙ₋₁ × ... × ∂x₂/∂x₁
 
@@ -255,7 +255,7 @@ class ResidualBlock(nn.Module):
 ```
 
 ### Exploding Gradient Problem
-```
+```text
 If gradients grow too large:
   Weights updated too aggressively
   Optimization diverges
@@ -292,7 +292,7 @@ make_dot(y, params=dict(x=x)).render("graph", format="png")
 ```
 
 ### Reading the Graph
-```
+```text
 Each node shows:
   - Operation name (e.g., AddBackward0)
   - Gradient shape
@@ -333,7 +333,7 @@ def hessian(y, x):
 ```
 
 ### Applications
-```
+```text
 Hessian applications:
   - Newton's method optimization
   - Uncertainty estimation
@@ -344,7 +344,7 @@ Hessian applications:
 ## Gradient Accumulation
 
 ### Why Accumulate Gradients?
-```
+```yaml
 When GPU memory is limited:
   - Can't fit large batch
   - Accumulate gradients over smaller batches

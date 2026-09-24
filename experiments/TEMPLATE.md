@@ -24,7 +24,7 @@
 
 ## Infrastructure Used
 
-```
+```yaml
 Hardware Path:
 [Switch 1] → [Component 1] → [Component 2]
 
@@ -104,7 +104,7 @@ if __name__ == '__main__':
 
 ### Data
 
-```
+```text
 Dataset: [Name]
 Size: [Training/Validation/Test split]
 Location: [NFS path or local]
@@ -143,13 +143,13 @@ Preprocessing: [Steps taken]
 
 ### Qualitative Observations
 
-```
+```text
 [Notes about the run, anomalies, observations]
 ```
 
 ### Visualizations
 
-```
+```text
 [Include or link to plots/graphs]
 
 Example commands:
@@ -175,7 +175,7 @@ print(f"p-value: {p_value:.4f}")
 
 ### Conclusions
 
-```
+```text
 [What did we learn? Was hypothesis confirmed?]
 
 Key findings:
@@ -190,13 +190,13 @@ Key findings:
 
 ### For Production
 
-```
+```text
 [Based on results, what configuration should be used?]
 ```
 
 ### For Future Work
 
-```
+```text
 [What should be explored next?]
 ```
 
@@ -206,7 +206,7 @@ Key findings:
 
 ### A. Hardware Monitoring Log
 
-```
+```text
 Timestamp,GPU Temp,GPU Util%,GPU Power%,Memory Used%
 2024-02-04 10:00:00,45°C,85%,180W,8.5GB
 ...
@@ -238,7 +238,7 @@ data:
 
 ### C. Error Logs
 
-```
+```text
 [Any errors or warnings encountered]
 ```
 

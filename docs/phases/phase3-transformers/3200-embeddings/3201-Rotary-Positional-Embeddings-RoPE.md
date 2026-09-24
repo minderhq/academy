@@ -20,7 +20,7 @@ RoPE (Rotary Positional Embeddings) is a position encoding method that injects p
 ## The Problem with Positional Encodings
 
 ### Why We Need Position Information
-```
+```text
 Transformers are permutation invariant:
 Attention("cat chases dog") = Attention("dog chases cat")
 
@@ -72,7 +72,7 @@ def relative_position_bias(seq_len):
 ## RoPE: Rotary Positional Embeddings
 
 ### Core Intuition
-```
+```text
 Instead of adding position to embeddings,
 rotate the query and key vectors by their position!
 
@@ -84,7 +84,7 @@ Analogous to: Rotating a vector in 2D space
 ### Mathematical Formulation
 
 #### 2D Rotation
-```
+```text
 Given vector v = [x, y] and angle θ:
 Rotated vector v' = R(θ) × v
 
@@ -96,7 +96,7 @@ v' = [x·cos(θ) - y·sin(θ), x·sin(θ) + y·cos(θ)]
 ```
 
 #### High-Dimensional Rotation
-```
+```text
 For d-dimensional vector, rotate in 2D subspaces:
   (x₀, x₁) rotated by m·θ₀
   (x₂, x₃) rotated by m·θ₁
@@ -192,7 +192,7 @@ q_rot, k_rot = apply_rotary_pos_emb(q, k, cos_cached, sin_cached)
 ## Why RoPE Works
 
 ### Relative Position Awareness
-```
+```text
 RoPE makes attention score depend on RELATIVE position:
 
 Attention(Q_m, K_n) depends on (m - n), not m and n separately!

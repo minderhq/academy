@@ -14,7 +14,7 @@ This hands-on guide walks you through building a complete mini ML framework from
 
 **What you'll build:**
 
-```
+```text
 mini-ml-framework/
 ├── core/
 │   ├── __init__.py

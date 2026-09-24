@@ -65,7 +65,7 @@ After completing this document, you will:
 ## 2. The ReAct Pattern
 
 ### Basic Loop Structure
-```
+```text
 ReAct Loop:
   Thought: Analyze current state and decide next action
   Action: Execute the action (tool call, query, etc.)
@@ -81,7 +81,7 @@ Example:
 ```
 
 ### ReAct vs Standard Reasoning
-```
+```yaml
 Standard (Chain of Thought):
   - Single forward pass
   - No intermediate actions

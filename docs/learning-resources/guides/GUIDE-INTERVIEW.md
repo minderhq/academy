@@ -193,7 +193,7 @@ def merge_sorted(arr1, arr2):
 - 95% accuracy
 
 **High-Level Design:**
-```
+```text
 ┌─────────────┐
  │   Ingest    │
  │   Pipeline  │
@@ -245,7 +245,7 @@ def merge_sorted(arr1, arr2):
 - Auto-scaling
 
 **High-Level Design:**
-```
+```text
 ┌─────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐
  │  Client │─▶│ Gateway  │─▶│ Router   │─▶│ Model    │
  └─────────┘  └──────────┘  └──────────┘  │  Server  │
@@ -329,7 +329,7 @@ def merge_sorted(arr1, arr2):
 ### 3.3 Answer Templates
 
 #### Template 1: Challenging Project
-```
+```text
 **Situation:** "In my previous role, we needed to build a RAG system
 for 100K legal documents."
 
@@ -345,7 +345,7 @@ now handles 10K queries per day and reduced legal research time by 60%."
 ```
 
 #### Template 2: Learning Quickly
-```
+```text
 **Situation:** "We needed to implement LoRA fine-tuning but I had no
 prior experience."
 
@@ -400,7 +400,7 @@ we achieved a 15% improvement in domain-specific benchmarks."
 **Requirement:** "Build a simple RAG system that can answer questions from PDF documents."
 
 **Solution Structure:**
-```
+```text
 project/
 ├── app/
 │   ├── __init__.py
@@ -531,7 +531,7 @@ project/
 - [ ] Note areas to improve
 
 **Thank You Template:**
-```
+```text
 Subject: Thank you - [Role] interview - [Your Name]
 
 Hi [Interviewer Name],
@@ -578,7 +578,7 @@ Best,
 
 ### 7.3 Negotiation Script
 
-```
+```text
 "Thank you so much for the offer! I'm really excited about
 joining the team and working on [specific project].
 
@@ -591,7 +591,7 @@ Is there flexibility here?"
 ```
 
 **If they say no:**
-```
+```text
 "I understand. Could we discuss other aspects of compensation?
 Perhaps equity, signing bonus, or additional PTO?"
 ```

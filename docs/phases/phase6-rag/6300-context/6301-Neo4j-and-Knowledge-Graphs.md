@@ -20,7 +20,7 @@ Knowledge graphs represent information as entities and relationships, enabling m
 ## Knowledge Graph Fundamentals
 
 ### Graph Structure
-```
+```text
 Traditional database: Tables and rows
 Knowledge graph: Nodes and relationships
 

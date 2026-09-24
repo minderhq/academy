@@ -12,7 +12,7 @@ This guide helps you transition from tutorials (watching/reading) to labs (doing
 
 ## 📚 Learning Pathway
 
-```
+```text
 ENVIRONMENT SETUP
         ↓
    TUTORIALS (Learn)
@@ -251,7 +251,7 @@ Before starting any lab, ensure:
 
 ## 📊 Progression Difficulty
 
-```
+```text
 TUTORIAL Difficulty:
 ⭐ Beginner → ⭐⭐ Intermediate → ⭐⭐⭐ Advanced
 
@@ -305,22 +305,22 @@ After completing each lab, ask yourself:
 ## 📈 Recommended Sequences
 
 ### Beginner Track
-```
+```text
 QUICK-START → TUTORIAL-001 → LAB-000 → LAB-001
 ```
 
 ### RAG Focus
-```
+```text
 TUTORIAL-003 → LAB-002 → LAB-005 → LAB-007 → PROJECT-006
 ```
 
 ### Agent Focus
-```
+```text
 LAB-004 → LAB-008 → PROJECT-001 → PROJECT-007
 ```
 
 ### Full Curriculum
-```
+```text
 Volume 1 → Volume 3 → Volume 5 → Volume 6 → Volume 7
 ```
 

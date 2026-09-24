@@ -29,7 +29,7 @@ Backpropagation is the cornerstone of neural network training. It efficiently co
 
 For a composite function f(g(x)), the derivative is:
 
-```
+```text
 df/dx = (df/dg) * (dg/dx)
 ```
 

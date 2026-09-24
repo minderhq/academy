@@ -29,7 +29,7 @@
 
 ### Model Size & Memory
 
-```
+```text
 Model Size = Parameters × Bytes per Parameter
 
 Example (7B model):

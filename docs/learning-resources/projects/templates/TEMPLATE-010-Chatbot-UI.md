@@ -4,7 +4,7 @@ Build modern chat interfaces for LLMs.
 
 ## Project Structure
 
-```
+```text
 chatbot-ui/
 ├── README.md
 ├── package.json

@@ -35,7 +35,7 @@ With LoRA:
 
 Instead of updating the weight matrix `W` directly, LoRA adds two small matrices `A` and `B`:
 
-```
+```yaml
 Original:  y = Wx + b
 LoRA:      y = (W + BA)x + b
 
@@ -48,7 +48,7 @@ Where:
 
 ### Matrix Multiplication Visualized
 
-```
+```text
 Full Weight Update (Not LoRA):
 ┌─────────────────────────────┐
 │  Original: W (4096 × 4096)  │  = 16,777,216 parameters

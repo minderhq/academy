@@ -20,7 +20,7 @@ Encoder-decoder architectures use separate components for processing input and g
 ## Architecture Comparison
 
 ### Encoder-Decoder (T5, BART)
-```
+```text
 Input → [Encoder] → Context → [Decoder] → Output
 
 Encoder: Processes input into fixed-length representation
@@ -28,7 +28,7 @@ Decoder: Generates output from encoded context
 ```
 
 ### Decoder-Only (GPT, LLaMA)
-```
+```text
 Input → [Decoder] → Output
 
 Single model: Causal mask on entire sequence

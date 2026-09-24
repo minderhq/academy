@@ -351,7 +351,7 @@ Implementation Tips:
 
 ## Summary: KV Cache Optimization
 
-```
+```text
 KV CACHE IMPACT:
 
 Without Cache:

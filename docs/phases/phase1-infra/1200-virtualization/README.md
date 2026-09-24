@@ -9,7 +9,7 @@ This module covers virtualization technologies and GPU passthrough configuration
 ### 1. Resource Isolation
 
 **Problem Solved:**
-```
+```text
 Without Virtualization:
 ├── Host OS runs everything
 ├── Model A crashes → entire system unstable ❌
@@ -49,7 +49,7 @@ Benefits:
 | **VM with Passthrough** | 98-100% | 98-100% | +1-2% |
 
 **Key Insight:**
-```
+```text
 GPU Passthrough = Near-native performance
 Overhead: <2% for most workloads
 Cost: Slight complexity increase
@@ -90,7 +90,7 @@ Benefits:
 ### 4. Cost Efficiency
 
 **Hardware Utilization:**
-```
+```text
 Without Virtualization:
 ├── Server 1: Running Llama-3-70B (2x GPU)
 ├── Server 2: Running training (4x GPU)
@@ -111,7 +111,7 @@ Total: 2 servers, 8 GPUs (50% hardware savings!)
 
 ## Virtualization Architecture
 
-```
+```text
 ┌──────────────────────────────────────────────────────────────┐
 │                      Hardware Layer                          │
 │  ┌─────────┐ ┌─────────┐ ┌─────────┐ ┌─────────┐             │
@@ -434,7 +434,7 @@ lspci -nnk | grep -A 3 VGA
 ### ❌ Pitfall 1: Wrong IOMMU Configuration
 
 **Problem:**
-```
+```yaml
 Symptoms:
 - VM won't start with GPU
 - Error: "Failed to assign device"
@@ -464,7 +464,7 @@ cat /proc/cmdline | grep iommu
 ### ❌ Pitfall 2: GPU Other Resources Not Passed Through
 
 **Problem:**
-```
+```yaml
 Symptoms:
 - VM boots with GPU
 - No display output
@@ -494,7 +494,7 @@ Root Cause:
 ### ❌ Pitfall 3: Memory/PCIe Bus Issues
 
 **Problem:**
-```
+```yaml
 Symptoms:
 - Random VM crashes
 - GPU disappears from VM
@@ -520,7 +520,7 @@ echo "options vfio-pci disable_acs_redirection=1" >> /etc/modprobe.d/vfio.conf
 ### ❌ Pitfall 4: Driver Conflicts
 
 **Problem:**
-```
+```yaml
 Symptoms:
 - GPU works on host but not in VM
 - VM crashes when loading GPU driver
@@ -544,7 +544,7 @@ options vfio-pci ids=10de:2204,10de:2205 disable_vga=1
 ### CPU Pinning
 
 **What it does:**
-```
+```text
 Without Pinning:
 ├── VM vCPUs can migrate between physical cores
 ├── Cache misses increase
@@ -588,7 +588,7 @@ lxc.cgroup.cpuset.cpus = "0-3"
 ### Huge Pages
 
 **Benefits:**
-```
+```text
 Standard Pages (4KB):
 ├── More page table entries
 ├── More TLB misses
@@ -659,7 +659,7 @@ lvconvert --type cache --cachemode writeback \
 ### Network Optimization
 
 **Virtio vs. E1000:**
-```
+```text
 E1000 (Emulated):
 ├── Emulated hardware
 ├── CPU overhead
@@ -690,7 +690,7 @@ net0: virtio=XX:XX:XX:XX:XX:XX,bridge=vmbr0,queues=4
 ### Problem 1: VM Won't Start with GPU
 
 **Symptoms:**
-```
+```text
 Error: "KVM_VGIC: invalid vgic interrupt number"
 Error: "Failed to assign device"
 ```
@@ -716,7 +716,7 @@ dmesg | grep -i vfio
 ### Problem 2: Poor GPU Performance in VM
 
 **Symptoms:**
-```
+```text
 Expected: 50 tokens/sec
 Actual: 5 tokens/sec ❌
 
@@ -746,7 +746,7 @@ nvidia-smi -q -d THERMAL
 ### Problem 3: GPU Not Visible in VM
 
 **Symptoms:**
-```
+```text
 lspci in VM: No GPU found ✗
 nvidia-smi: "Command not found"
 ```
@@ -772,7 +772,7 @@ tail -f /var/log/qemu-server/100.log
 ### Problem 4: VM Random Crashes
 
 **Symptoms:**
-```
+```text
 VM runs for minutes/hours then crashes
 No clear error message
 ```

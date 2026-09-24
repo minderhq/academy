@@ -72,7 +72,7 @@ print(c.grad_fn.next_functions[0][0].next_functions[0][0])  # AddBackward0
 ```
 
 ### Graph Structure
-```
+```text
         [x: Leaf]
            │
            ▼

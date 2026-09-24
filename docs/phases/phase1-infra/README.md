@@ -37,7 +37,7 @@ This phase covers the foundational infrastructure needed to run enterprise-grade
 
 ### The Foundation Problem
 
-```
+```text
 ┌─────────────────────────────────────────────────────────┐
 │               Poor Infrastructure                        │
 ├─────────────────────────────────────────────────────────┤
@@ -94,7 +94,7 @@ graph LR
 
 ### Star Topology
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────┐
 │                    Star Topology Benefits                       │
 ├─────────────────────────────────────────────────────────────────┤
@@ -113,7 +113,7 @@ graph LR
 
 ### Proxmox + GPU Passthrough
 
-```
+```text
 Host: Proxmox VE
 ├── VM 101: K3s Master (4 vCPU, 8GB RAM)
 ├── VM 102: K3s Worker + GPU (8 vCPU, 16GB RAM, 11GB-class GPU)
@@ -182,7 +182,7 @@ graph TB
 
 ### vLLM and TGI
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────┐
 │                  Inference Engine Comparison                    │
 ├─────────────────────────────────────────────────────────────────┤

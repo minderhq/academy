@@ -344,28 +344,28 @@ Follow the volumes below, in order.
 ### Path 1: Fast Track to Production (8-10 weeks)
 **For developers who want to deploy quickly**
 
-```
+```text
 Volume 1 (2 weeks) → Volume 3 (3 weeks) → Volume 4 (2 weeks) → Volume 7 (3 weeks)
 ```
 
 ### Path 2: Deep Learning Research (6-8 months)
 **For those who want to understand everything**
 
-```
+```text
 Volume 1 → Volume 2 → Volume 3 → Volume 4 → Volume 5 → Volume 6 → Volume 7
 ```
 
 ### Path 3: RAG Specialist (10-12 weeks)
 **Focus on retrieval-augmented generation**
 
-```
+```text
 Volume 1 (2 weeks) → Volume 3 (3 weeks) → Volume 6 (5 weeks) → Volume 7 (2 weeks)
 ```
 
 ### Path 4: Fine-Tuning Expert (10-12 weeks)
 **Focus on model adaptation**
 
-```
+```text
 Volume 1 (2 weeks) → Volume 2 (2 weeks) → Volume 4 (3 weeks) → Volume 5 (5 weeks)
 ```
 
@@ -406,7 +406,7 @@ Track your progress using: **[PROGRESS-TRACKER.md](PROGRESS-TRACKER.md)**
 
 ## 📝 Document Structure
 
-```
+```text
 ai-engineering-curriculum/docs/
 ├── 00-META/                     # Meta documentation
 │   ├── VOLUME-GUIDE.md          # This file - volume overview

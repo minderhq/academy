@@ -35,7 +35,7 @@
 ### Week 1-2: Foundation (Volume 1)
 **Goal:** Set up your AI lab
 
-```
+```text
 Day 1-3:
 ├── VOLUME-1-Infrastructure.md (read guide)
 ├── TUTORIAL-001: Hello LLM (30 min)
@@ -53,7 +53,7 @@ Checkpoint: Running LLM locally in Docker
 ### Week 3-6: AI Mathematics (Volume 2)
 **Goal:** Understand how models work
 
-```
+```text
 Day 1-5: Tensors
 ├── 2101-Tensor-Algebra.md (2-3 hours)
 ├── EXP_2101: Tensor Algebra (2 hours)
@@ -75,7 +75,7 @@ Checkpoint: Understanding gradient computation
 ### Week 7-10: Model Internals (Volume 3 - Selected)
 **Goal:** Grasp transformer essentials
 
-```
+```text
 Focus on:
 ├── 3101-Self-Attention-DeepDive.md
 ├── 3201-Rotary-Positional-Embeddings-RoPE.md
@@ -86,7 +86,7 @@ Focus on:
 ### Week 11-14: Fine-Tuning (Volume 5)
 **Goal:** Adapt models to your needs
 
-```
+```text
 Day 1-5: LoRA
 ├── 5101-LoRA-Logic.md
 ├── 5102-QLoRA-Pipelines.md
@@ -104,7 +104,7 @@ Checkpoint: Fine-tuned domain-specific model
 ### Week 15-16: Deployment (Volume 7 - Selected)
 **Goal:** Deploy to production
 
-```
+```text
 ├── TUTORIAL-004: Production Deployment (1 hour)
 ├── LAB-009: Production Deployment (8-10 hours)
 └── Practice: Deploy your fine-tuned model
@@ -135,7 +135,7 @@ Checkpoint: Fine-tuned domain-specific model
 
 **Volume 1: Infrastructure Mastery** (75-100 hours)
 
-```
+```text
 Week 1-2: Network & Hardware
 ├── 1101-Fiber-GPON-Modem.md
 ├── 1102-Star-Topology-Core.md
@@ -165,7 +165,7 @@ Checkpoint: Complete AI infrastructure running
 
 **Volume 2: AI/ML Foundations** (100-130 hours)
 
-```
+```text
 Week 1-2: Tensor Algebra
 ├── 2101-Tensor-Algebra.md
 ├── EXP_2101: Tensor Algebra
@@ -201,7 +201,7 @@ Checkpoint: Trained 10M parameter model
 
 **Volume 3: LLM Internals** (35-40 hours)
 
-```
+```text
 Week 1-2: Attention Mechanisms
 ├── 3101-Self-Attention-DeepDive.md
 ├── 3102-Flash-Attention.md
@@ -227,7 +227,7 @@ Checkpoint: Deep understanding of transformers
 
 **Volume 4: Quantization Mastery** (30-35 hours)
 
-```
+```text
 Week 1-2: Low-Bit Quantization
 ├── 4101-GGUF-Physics.md
 ├── 4102-EXL2-and-AWQ.md
@@ -249,7 +249,7 @@ Checkpoint: Optimized model running on consumer hardware
 
 **Volume 5: Fine-Tuning Expert** (35-40 hours)
 
-```
+```text
 Week 1-2: PEFT Methods
 ├── 5101-LoRA-Logic.md
 ├── 5102-QLoRA-Pipelines.md
@@ -274,7 +274,7 @@ Checkpoint: Production fine-tuning workflow
 
 **Volume 6: RAG & Data Systems** (40-45 hours)
 
-```
+```text
 Week 1-2: Vector Search
 ├── 6101-HNSW-Indexing.md
 ├── 6102-Semantic-Similarity.md
@@ -301,7 +301,7 @@ Checkpoint: Enterprise-grade RAG system
 
 **Volume 7: Production Systems** (45-50 hours)
 
-```
+```text
 Week 1-2: Agent Frameworks
 ├── 7101-ReAct-Loop-System.md
 ├── 7102-Planning-Decomposition.md
@@ -342,7 +342,7 @@ Checkpoint: Production AI expert
 
 ### Month 1: Foundation
 
-```
+```text
 Week 1-2: Quick Infrastructure
 ├── VOLUME-1-Infrastructure.md (skim)
 ├── 1201-Proxmox-Hypervisor-SOP.md
@@ -360,7 +360,7 @@ Week 3-4: Embeddings & Similarity
 
 ### Month 2: Core RAG
 
-```
+```text
 Week 1-2: RAG Fundamentals
 ├── TUTORIAL-003: RAG Basics
 ├── LAB-002: RAG Implementation
@@ -378,7 +378,7 @@ Week 3-4: GraphRAG & Long Context
 
 ### Month 3: Production
 
-```
+```text
 Week 1-2: Vector Databases
 ├── 6401-Qdrant-Setup.md
 ├── 6402-Pinecone-vs-Weaviate.md
@@ -406,7 +406,7 @@ Capstone: Multi-modal RAG system
 
 ### Month 1: Foundations
 
-```
+```text
 Week 1-2: AI Mathematics
 ├── VOLUME-2-AI-Foundations.md
 ├── 2101-Tensor-Algebra.md
@@ -423,7 +423,7 @@ Week 3-4: Transformer Architecture
 
 ### Month 2: Fine-Tuning
 
-```
+```text
 Week 1-2: LoRA & QLoRA
 ├── 5101-LoRA-Logic.md
 ├── 5102-QLoRA-Pipelines.md
@@ -440,7 +440,7 @@ Week 3-4: DPO & Alignment
 
 ### Month 3: Optimization & Production
 
-```
+```text
 Week 1-2: Quantization for Deployment
 ├── 4101-GGUF-Physics.md
 ├── 4102-EXL2-and-AWQ.md
@@ -471,7 +471,7 @@ Capstone: Domain-specific model pipeline
 
 ### Month 1: Hardware & Virtualization
 
-```
+```text
 Week 1-2: Network & Hardware
 ├── 1101-Fiber-GPON-Modem.md
 ├── 1102-Star-Topology-Core.md
@@ -488,7 +488,7 @@ Week 3-4: GPU Passthrough
 
 ### Month 2: Kubernetes & LLMOps
 
-```
+```text
 Week 1-2: Kubernetes for AI
 ├── 1301-K3s-Master-Worker-Arch.md
 ├── 1302-GPU-Scheduler.md
@@ -506,7 +506,7 @@ Week 3-4: LLMOps Stack
 
 ### Month 3: Production & Monitoring
 
-```
+```text
 Week 1-2: Monitoring
 ├── 1501-Monitoring-and-Observability.md
 └── Practice: Set up monitoring
@@ -533,7 +533,7 @@ Capstone: Complete AI infrastructure
 
 ### Month 1: Foundation
 
-```
+```text
 Week 1-2: Quick Start
 ├── VOLUME-1-Infrastructure.md (skim)
 ├── LAB-001: Docker & LLM
@@ -549,7 +549,7 @@ Week 3-4: Model Understanding
 
 ### Month 2: RAG Foundation
 
-```
+```text
 Week 1-2: RAG Systems
 ├── LAB-002: RAG Implementation
 ├── 6101-HNSW-Indexing.md
@@ -564,7 +564,7 @@ Week 3-4: Advanced RAG
 
 ### Month 3: Agent Frameworks
 
-```
+```text
 Week 1-2: ReAct Agents
 ├── 7101-ReAct-Loop-System.md
 ├── 7102-Planning-Decomposition.md
@@ -583,7 +583,7 @@ Week 3-4: Multi-Agent
 
 ### Month 4: Production
 
-```
+```text
 Week 1-2: Agent Memory & Planning
 ├── 7401-Long-term-Memory.md
 ├── 6302-CAG-Long-Context-Architectures.md
@@ -611,7 +611,7 @@ Capstone: Multi-agent system
 
 ### Phase 1: Mathematical Foundation (Month 1-3)
 
-```
+```text
 Complete Volume 2 in depth:
 ├── 2101-Tensor-Algebra.md (deep study)
 ├── All experiments (EXP_2101, EXP_2102, etc.)
@@ -627,7 +627,7 @@ Checkpoint: Deep mathematical understanding
 
 ### Phase 2: Architecture Deep Dive (Month 3-5)
 
-```
+```text
 Complete Volume 3 in depth:
 ├── 3101-Self-Attention-DeepDive.md
 ├── 3102-Flash-Attention.md
@@ -644,7 +644,7 @@ Checkpoint: Architecture mastery
 
 ### Phase 3: Advanced Techniques (Month 5-7)
 
-```
+```text
 Complete Volumes 4 & 5:
 ├── 4101-GGUF-Physics.md
 ├── 4103-Double-Quantization.md
@@ -660,7 +660,7 @@ Checkpoint: Advanced techniques mastery
 
 ### Phase 4: Research Project (Month 7-10)
 
-```
+```text
 Choose research focus:
 ├── Novel architecture component
 ├── New training technique
@@ -734,7 +734,7 @@ You can switch paths at any time! Here are common transitions:
 
 Each path has a completion certificate:
 
-```
+```text
 ╔══════════════════════════════════════════════════════════════╗
 ║                                                                ║
 ║     [PATH NAME] COMPLETION CERTIFICATE                        ║

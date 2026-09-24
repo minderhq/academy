@@ -9,7 +9,7 @@
 ### Issue: Container won't start
 
 **Symptoms:**
-```
+```text
 Error: Cannot connect to the Docker daemon
 docker: Error response from daemon: ...
 ```
@@ -47,7 +47,7 @@ netstat -ano | findstr <port>
 ### Issue: Out of Memory (OOM)
 
 **Symptoms:**
-```
+```text
 ERROR: for <container> Cannot start service ...
 OCI runtime create failed: container_linux.go:370: starting container process caused: process_linux.go:459: container init caused "write /proc/self/attr/keycreate: invalid argument"
 ```
@@ -72,7 +72,7 @@ docker run -m 512m myapp
 ### Issue: GPU not accessible in container
 
 **Symptoms:**
-```
+```bash
 Error: could not select device driver
 nvidia-smi not found
 ```
@@ -106,7 +106,7 @@ nvidia-smi
 ### Issue: Model download fails
 
 **Symptoms:**
-```
+```text
 Error: failed to load model
 Connection timeout during download
 ```
@@ -142,7 +142,7 @@ git clone https://huggingface.co/model-name
 ### Issue: CUDA out of memory
 
 **Symptoms:**
-```
+```text
 RuntimeError: CUDA out of memory. Tried to allocate XYZ MiB
 ```
 
@@ -284,7 +284,7 @@ results = qdrant.search_batch(
 ### Issue: Qdrant connection fails
 
 **Symptoms:**
-```
+```text
 ConnectionError: Failed to connect to Qdrant
 urllib3.exceptions.MaxRetryError
 ```
@@ -363,7 +363,7 @@ gradient_accumulation_steps = 8  # Effective batch = 1 * 8 = 8
 ### Issue: LoRA adapters not loading
 
 **Symptoms:**
-```
+```text
 ValueError: Cannot load PeftModel
 KeyError: 'base_model.model.model.layers'
 ```
@@ -398,7 +398,7 @@ model = PeftModel.from_pretrained(model, adapter_path)
 ### Issue: Import errors
 
 **Symptoms:**
-```
+```text
 ModuleNotFoundError: No module named 'transformers'
 ImportError: cannot import name 'AutoModel'
 ```
@@ -441,7 +441,7 @@ sys.path.append('/path/to/module')
 ### Issue: Version conflicts
 
 **Symptoms:**
-```
+```text
 ERROR: pip's dependency resolver does not currently take into account all the packages that are installed.
 TypeError: __init__() got an unexpected keyword argument
 ```
@@ -483,7 +483,7 @@ pip install transformers
 ### Issue: Proxy blocking downloads
 
 **Symptoms:**
-```
+```text
 SSLError: HTTPSConnectionPool
 ProxyError: Unable to connect to proxy
 ```
@@ -512,7 +512,7 @@ export HF_ENDPOINT=https://hf-mirror.com
 ### Issue: Git clone fails
 
 **Symptoms:**
-```
+```text
 fatal: unable to access 'https://github.com/.../'
 Failed to connect to github.com
 ```
@@ -543,7 +543,7 @@ git clone https://gitee.com/mirrors/repo.git
 ### Issue: Disk space full
 
 **Symptoms:**
-```
+```text
 No space left on device
 ERROR: write error
 ```

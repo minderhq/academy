@@ -37,7 +37,7 @@ This phase covers AI agent architectures, tool use, multi-agent orchestration, a
 
 ### From Chatbots to Agents
 
-```
+```text
 ┌─────────────────────────────────────────────────────────┐
 │                    Chatbot (Passive)                    │
 ├─────────────────────────────────────────────────────────┤
@@ -124,7 +124,7 @@ graph TD
 
 ### ReAct Pattern Breakdown
 
-```
+```text
 ┌──────────────────────────────────────────────────────────────────┐
 │                    ReAct Loop Components                         │
 ├──────────────────────────────────────────────────────────────────┤
@@ -248,7 +248,7 @@ graph LR
 
 ### Agent Architectures
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────┐
 │                  Agent Architecture Spectrum                    │
 ├─────────────────────────────────────────────────────────────────┤
@@ -291,7 +291,7 @@ graph LR
 
 ### Feature Comparison
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────┐
 │                    Framework Feature Comparison                 │
 ├─────────────────────────────────────────────────────────────────┤
@@ -1014,7 +1014,7 @@ After completing this phase:
 
 ### ReAct Pattern
 
-```
+```text
 Thought → Action → Observation → Thought → Action → Finish
 
 Example:

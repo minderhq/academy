@@ -41,7 +41,7 @@ docker compose logs -f
 
 ## 📁 Common Project Structure
 
-```
+```text
 project-XXX/
 ├── docker-compose.yml
 ├── .env
@@ -82,7 +82,7 @@ services:
 
 ### Python Requirements Pattern
 
-```
+```text
 fastapi>=0.104.0
 uvicorn[standard]>=0.24.0
 pydantic>=2.0.0

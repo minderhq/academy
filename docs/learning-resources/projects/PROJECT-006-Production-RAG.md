@@ -32,7 +32,7 @@ Complete these before starting:
 
 ## 🏗️ Project Architecture
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────────┐
 │                      Production RAG System                          │
 ├─────────────────────────────────────────────────────────────────────┤
@@ -644,7 +644,7 @@ if __name__ == "__main__":
 
 ## 🏆 Project Completion Checklist
 
-```
+```text
 [ ] Phase 1: Document Ingestion
 [ ] Phase 2: Indexing
 [ ] Phase 3: Retrieval & Generation

@@ -24,7 +24,7 @@ After this tutorial, you will:
 
 ### Understanding the GPU
 
-```
+```text
 GPU (NVIDIA 11GB-class GPU):
 ├── 4352 CUDA cores
 ├── 11GB GDDR6 memory

@@ -25,7 +25,7 @@ Combining sparsity (pruning) with quantization achieves extreme compression whil
 - **Quantization:** Reduces bit width of remaining weights
 - **Result:** 10-50x compression with minimal accuracy loss
 
-```
+```text
 Dense FP32:      100% size, 100% accuracy
 Sparse INT8:      25% size,  98% accuracy
 Sparse INT4:      12% size,  95% accuracy

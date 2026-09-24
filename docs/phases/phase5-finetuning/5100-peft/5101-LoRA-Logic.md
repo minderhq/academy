@@ -20,7 +20,7 @@ LoRA (Low-Rank Adaptation) is a parameter-efficient fine-tuning method that free
 ## The LoRA Hypothesis
 
 ### Key Insight
-```
+```text
 Hypothesis: During fine-tuning, weight changes have low intrinsic rank
 
 Standard fine-tuning:
@@ -38,7 +38,7 @@ If r=8, d=4096, k=4096:
 ```
 
 ### Mathematical Foundation
-```
+```yaml
 Given weight matrix W ∈ ℝ^(d×k):
   Forward: h = Wx
 
@@ -167,7 +167,7 @@ model = apply_lora_to_model(
 ## Hyperparameter Selection
 
 ### Rank (r)
-```
+```text
 Rank determines capacity of LoRA adaptation:
 
 Low rank (2-4):
@@ -189,7 +189,7 @@ Guideline: Start with r=8, increase if underfitting
 ```
 
 ### Alpha (α)
-```
+```yaml
 Alpha controls the scaling of LoRA weights:
 
 Scaling = α / r

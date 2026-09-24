@@ -478,7 +478,7 @@ print("✓ Saved visualization to gradient_flow.png")
 
 ### Graph Construction
 
-```
+```text
 Forward Pass:
 x → [op1] → a → [op2] → b → [op3] → loss
 

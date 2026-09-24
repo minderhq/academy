@@ -30,7 +30,7 @@ Tool calling (also called function calling) allows LLMs to:
 
 ### Traditional LLM vs Tool-Calling LLM
 
-```
+```text
 Traditional LLM:
 User: "What's the weather in Tokyo?"
 LLM:  "I cannot access real-time weather data..."
@@ -75,7 +75,7 @@ tools = [
 
 ### 2. Tool Selection Process
 
-```
+```text
 ┌─────────────────────────────────────────────────────────┐
 │                     LLM Processing                      │
 │                                                          │
@@ -304,7 +304,7 @@ class ToolRegistry:
 
 ### 1. Multi-Step Tool Use
 
-```
+```text
 User: "Analyze the latest stock data and send me a report"
 
 LLM Process:
@@ -407,7 +407,7 @@ def validate_tool_input(tool_name: str, arguments: Dict) -> bool:
 | **Implementation** | API-driven | Prompt-based |
 
 Both patterns can be combined:
-```
+```text
 ReAct Agent → Uses Tool Calling → Executes Functions → Returns Result
 ```
 

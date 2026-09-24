@@ -60,7 +60,7 @@ scheduler = get_lr_schedule_with_warmup(
 ```
 
 **Visual:**
-```
+```text
 LR │
    │     ╱──────────────
    │    ╱
@@ -114,7 +114,7 @@ class CosineSchedulerWithWarmup:
 ```
 
 **Visual:**
-```
+```text
 LR │
    │     ╱╲
    │    ╱  ╲
@@ -151,7 +151,7 @@ scheduler = MultiStepLR(
 ```
 
 **Visual:**
-```
+```text
 LR │
    │───────────
    │           ───────
@@ -192,7 +192,7 @@ scheduler = CosineAnnealingWarmRestarts(
 ```
 
 **Visual:**
-```
+```text
 LR │
    │     ╱╲    ╱╲    ╱╲
    │    ╱  ╲  ╱  ╲  ╱  ╲
@@ -221,7 +221,7 @@ scheduler = CyclicLR(
 ```
 
 **Visual:**
-```
+```text
 LR │
    │     ╱╲    ╱╲    ╱╲
    │    ╱  ╲  ╱  ╲  ╱  ╲
@@ -250,7 +250,7 @@ scheduler = OneCycleLR(
 ```
 
 **Visual:**
-```
+```text
 LR │
    │         ╱───╲
    │        ╱     ╲

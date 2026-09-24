@@ -36,7 +36,7 @@ After completing this lab, you will be able to:
 
 ### DPO vs RLHF
 
-```
+```text
 Traditional RLHF:
 Data → Train Reward Model → PPO with Reward Model → Aligned Model
 (Complex, unstable, many hyperparameters)
@@ -93,7 +93,7 @@ DPO requires paired examples:
 - **Chosen:** Better response
 - **Rejected:** Worse response
 
-```
+```text
 Example:
 Prompt: "What's the capital of France?"
 Chosen: "The capital of France is Paris, known for the Eiffel Tower."

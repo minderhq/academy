@@ -5,7 +5,7 @@ Complete implementation guide for GraphRAG (Knowledge Graph-enhanced Retrieval A
 
 ## GraphRAG Architecture
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                        GraphRAG Pipeline                                │
 ├─────────────────────────────────────────────────────────────────────────┤

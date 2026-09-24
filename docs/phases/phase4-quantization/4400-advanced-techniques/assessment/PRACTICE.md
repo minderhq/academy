@@ -531,7 +531,7 @@ Best Overall:
 
 ## Summary: Advanced Quantization Techniques
 
-```
+```text
 METHOD COMPARISON:
 
 ┌────────────┬──────────┬──────────┬──────────┬──────────┐

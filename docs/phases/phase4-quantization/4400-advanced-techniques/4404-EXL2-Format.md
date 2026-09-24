@@ -22,7 +22,7 @@ EXL2 is the quantization format for ExLlamaV2, a highly optimized inference libr
 
 EXL2 (ExLlamaV2 Format) is designed specifically for GPU inference:
 
-```
+```text
 EXL2 Features:
 - Optimized for NVIDIA GPUs (CUDA kernels)
 - Faster than GGUF on GPU
@@ -273,7 +273,7 @@ print(f"Speed: {tps:.2f} tokens/sec")
 
 ## EXL2 File Structure
 
-```
+```text
 model.exl2:
 ├── config.json           # Model configuration
 ├── tokenizer.model       # Sentence piece tokenizer
@@ -328,7 +328,7 @@ python convert.py \
 
 ## EXL2 vs GGUF Decision Tree
 
-```
+```text
 Need CPU inference?
 └─ Yes: Use GGUF
 └─ No: Have NVIDIA GPU?

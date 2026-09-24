@@ -43,7 +43,7 @@ Build a fully-functional AI assistant that can:
 
 ## 🏗️ Architecture Overview
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────┐
 │                     Frontend (Web UI)                        │
 │                    React / FastAPI                          │
@@ -1179,7 +1179,7 @@ curl -X POST http://localhost:8002/chat \
 
 ## 🏆 Project Completion Checklist
 
-```
+```text
 [ ] Phase 1: Setup & Infrastructure
 [ ] Phase 2: Knowledge Base Setup
 [ ] Phase 3: RAG Service

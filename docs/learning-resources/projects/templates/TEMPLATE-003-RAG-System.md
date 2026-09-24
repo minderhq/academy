@@ -4,7 +4,7 @@ Build a Retrieval-Augmented Generation system from scratch.
 
 ## Project Structure
 
-```
+```text
 rag-system/
 ├── README.md
 ├── requirements.txt

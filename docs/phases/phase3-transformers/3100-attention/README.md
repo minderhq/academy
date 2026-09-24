@@ -38,7 +38,7 @@ After completing this module, you will:
 
 ### Scaled Dot-Product Attention
 
-```
+```text
 Attention(Q, K, V) = softmax(QK^T / √d_k) × V
 ```
 
@@ -49,7 +49,7 @@ Attention(Q, K, V) = softmax(QK^T / √d_k) × V
 
 ### Multi-Head Attention
 
-```
+```text
 Single head: Each token attends to all tokens with one pattern
 Multiple heads: Each token attends with multiple patterns simultaneously
 ```

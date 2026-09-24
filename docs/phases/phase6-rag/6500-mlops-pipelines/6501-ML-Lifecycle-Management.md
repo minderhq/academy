@@ -30,7 +30,7 @@ End-to-end machine learning model lifecycle management from development to produ
 
 ## ML Lifecycle Stages
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                    ML Model Lifecycle Management                        │
 ├─────────────────────────────────────────────────────────────────────────┤

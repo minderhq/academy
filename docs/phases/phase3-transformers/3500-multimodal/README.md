@@ -38,7 +38,7 @@ After completing this module, you will:
 
 ### What is Multimodal AI?
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────┐
 │                      Multimodal Models                       │
 ├─────────────────────────────────────────────────────────────┤
@@ -71,7 +71,7 @@ After completing this module, you will:
 
 **Core Idea:** Learn visual concepts from natural language supervision
 
-```
+```text
 Training: (Image, Text) pairs with contrastive loss
 
 ┌──────────────────┐              ┌──────────────────┐
@@ -92,7 +92,7 @@ Training: (Image, Text) pairs with contrastive loss
 ```
 
 **Key Formula:**
-```
+```yaml
 L = -log(exp(sim(z_i, z_j) / τ) / Σ exp(sim(z_i, z_k) / τ))
 
 Where:
@@ -107,7 +107,7 @@ Where:
 
 **Architecture:** Connect vision encoder to LLM via projection layer
 
-```
+```text
 Image Input
     ↓
 CLIP ViT-L/14 (Vision Encoder)
@@ -127,7 +127,7 @@ LLaMA: The image shows a cat sitting on a windowsill...
 
 **Idea:** Extend text RAG with visual documents
 
-```
+```text
 Query: "What did the Q4 earnings report say about revenue?"
 
 ┌─────────────────────────────────────────────────────────────┐
@@ -162,7 +162,7 @@ Query: "What did the Q4 earnings report say about revenue?"
 
 **Architecture:** Encoder-decoder Transformer
 
-```
+```text
 Audio Input (16kHz)
     ↓
 Log-Mel Spectrogram (80 channels)
@@ -184,7 +184,7 @@ Text Output (with timestamps)
 
 **Approach:** Language modeling approach to audio
 
-```
+```text
 Audio Input
     ↓
 Semantic Tokens (from w2v-BERT encoder)

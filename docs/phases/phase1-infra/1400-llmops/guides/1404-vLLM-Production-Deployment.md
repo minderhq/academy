@@ -5,7 +5,7 @@ Complete production deployment guide for vLLM (Virtual Large Language Model) hig
 
 ## Architecture
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                       vLLM Production Stack                             │
 ├─────────────────────────────────────────────────────────────────────────┤
@@ -594,7 +594,7 @@ response = client.chat.completions.create(
 
 #### 1. Out of Memory
 
-```
+```text
 Error: CUDA out of memory
 ```
 
@@ -615,7 +615,7 @@ Error: CUDA out of memory
 
 #### 2. Slow First Request
 
-```
+```text
 First request takes 10+ seconds
 ```
 
@@ -633,7 +633,7 @@ First request takes 10+ seconds
 
 #### 3: High Latency
 
-```
+```text
 P95 latency > 500ms
 ```
 

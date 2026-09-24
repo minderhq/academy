@@ -38,7 +38,7 @@ After completing this module, you will:
 
 ### The Three Architecture Families
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────┐
 │                    Transformer Architectures                 │
 ├─────────────────────────────────────────────────────────────┤
@@ -81,7 +81,7 @@ After completing this module, you will:
 
 ### Structure
 
-```
+```text
 Input: "Translate English to German: The house is wonderful"
 
 ┌─────────────────────────────────────────────────────────────┐
@@ -120,7 +120,7 @@ Input: "Translate English to German: The house is wonderful"
 
 ### Structure
 
-```
+```text
 Input: "Once upon a time"
 
 [Once] [upon] [a] [time] [<EOS>]
@@ -152,7 +152,7 @@ Output: "Once upon a time, there was a..."
 
 ### Structure
 
-```
+```text
 Input: "The [MASK] is on the table"
 
 [The] [MASK] [is] [on] [the] [table]
@@ -177,7 +177,7 @@ Output: "cat" (predict masked token)
 
 ### Decision Tree
 
-```
+```text
 Task: ?
 │
 ├─ Text Generation → Decoder-Only (GPT, LLaMA)

@@ -28,7 +28,7 @@ Traditional manufacturing inspection requires:
 
 ## Solution Architecture
 
-```
+```text
 ┌────────────────────────────────────────────────────────────────┐
 │                   Multi-Modal Inspection System                 │
 ├────────────────────────────────────────────────────────────────┤

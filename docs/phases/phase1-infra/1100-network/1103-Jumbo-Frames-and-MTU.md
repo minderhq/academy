@@ -20,14 +20,14 @@ Jumbo Frames enable Ethernet packets larger than the standard 1500 bytes, reduci
 ## MTU Fundamentals
 
 ### Standard vs Jumbo Frames
-```
+```text
 Standard MTU 1500:  953 packets/MB (IPv4)
 Jumbo MTU 9000:    119 packets/MB (IPv4)
 Reduction:         87.5% fewer packets
 ```
 
 ### Why It Matters
-```
+```text
 For an 11GB model file transfer over the LAN:
 MTU 1500: ~11,000,000 packets → High CPU overhead
 MTU 9000: ~1,200,000 packets   → Low CPU overhead
@@ -36,7 +36,7 @@ MTU 9000: ~1,200,000 packets   → Low CPU overhead
 ## Mathematics of MTU
 
 ### Packet Processing Overhead
-```
+```text
 CPU Cycles per packet interrupt: ~10,000 cycles
 At 3.5GHz CPU: ~2.86µs per packet
 
@@ -50,7 +50,7 @@ MTU 9000 (11GB):
 ```
 
 ### Throughput Efficiency
-```
+```text
 Effective Throughput = Line Rate × (Payload / Total Size)
 
 MTU 1500 (IPv4):
@@ -69,7 +69,7 @@ Gain: 4.3% more data per bit
 ## Configuration by Component
 
 ### 1. Switch Configuration
-```
+```text
 # Most managed switches
 system mtu 9216
 # or per-port
@@ -132,7 +132,7 @@ Set-NetIPInterface -InterfaceAlias "Ethernet" -MTU 9000
 ## Path MTU Discovery (PMTUD)
 
 ### How It Works
-```
+```text
 Host A (MTU 9000) → Host B (MTU 1500)
                     ↓
                 [DF bit set]
@@ -143,7 +143,7 @@ Host A (MTU 9000) → Host B (MTU 1500)
 ```
 
 ### Common PMTUD Issues
-```
+```text
 Problem: Black hole router (drops ICMP)
 Solution: Clamp MSS to safe value
 ```
@@ -159,7 +159,7 @@ iptables -t mangle -A FORWARD -p tcp \
 ## Performance Benchmarks
 
 ### iperf3 Results (Storage Server ↔ GPU Server, multi-gigabit LAN)
-```
+```text
 MTU 1500:
   [ ID] Interval           Transfer     Bitrate
   [  4]   0.00-60.00 sec  15.6 GBytes  2.23 Gbits/sec
@@ -173,7 +173,7 @@ CPU Usage: -15% during transfer
 ```
 
 ### Large File Transfer (SMB)
-```
+```text
 11GB Model File:
   MTU 1500: 48 seconds → 2.30 Gbps avg
   MTU 9000: 42 seconds → 2.44 Gbps avg
@@ -213,7 +213,7 @@ netsh interface ipv4 show subinterfaces
 
 ## MTU by Use Case
 
-```
+```text
 Use Case                    Recommended MTU
 ─────────────────────────────────────────────
 General Internet           1500 (ISP limit)
@@ -227,7 +227,7 @@ Video Streaming            1500 (compatible)
 ## Summary Configuration
 
 ### End-to-End MTU 9000 Path
-```
+```text
 [Switch Port] ← MTU 9000 ←
       ↓
 [NAS / Storage Server] ← MTU 9000 ←

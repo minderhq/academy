@@ -24,7 +24,7 @@
 
 ## Infrastructure Used
 
-```
+```text
 GPU: 11GB VRAM GPU
 Models Tested: all-MiniLM-L6-v2, bge-base-en-v1.5, e5-large-v2
 ```

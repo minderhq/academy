@@ -24,7 +24,7 @@
 
 ## Infrastructure Used
 
-```
+```text
 Model: Llama-2-7B-Chat
 Framework: LangChain Agent
 Tasks: Multi-step reasoning problems

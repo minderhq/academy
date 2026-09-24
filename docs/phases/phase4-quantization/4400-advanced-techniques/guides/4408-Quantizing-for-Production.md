@@ -6,7 +6,7 @@ This guide covers end-to-end quantization workflows for production deployment.
 
 ## Production Quantization Pipeline
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────┐
 │  1. Model Selection                                         │
 │     ├─ Choose base model                                    │
@@ -100,7 +100,7 @@ calib_data = prepare_calibration_data(tokenizer, code_texts)
 
 ### Decision Tree
 
-```
+```text
 Target Hardware?
 ├─ CPU Only
 │  └─ Use GGUF (Q4_K_M or Q5_K_M)

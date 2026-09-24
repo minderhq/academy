@@ -122,7 +122,7 @@ This module connects to:
 
 ## Memory Architecture
 
-```
+```text
 ┌─────────────────────────────────────┐
 │         Memory System               │
 ├─────────────────────────────────────┤

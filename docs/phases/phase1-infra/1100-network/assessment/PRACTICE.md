@@ -48,7 +48,7 @@
 - Backup considerations
 
 **Solution:**
-```
+```text
 Internet (Fiber 1Gbps)
     |
 [Router/Firewall]

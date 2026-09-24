@@ -648,7 +648,7 @@ for hit in results:
 
 ## Decision Tree: Should I Use a Vector Database?
 
-```
+```text
 START
   │
   ├─ Do you need to find SIMILAR items?

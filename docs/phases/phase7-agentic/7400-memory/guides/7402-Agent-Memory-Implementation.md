@@ -5,7 +5,7 @@ Complete implementation guide for building persistent memory systems for AI agen
 
 ## Memory Architecture
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                        AGENT MEMORY SYSTEM                              │
 ├─────────────────────────────────────────────────────────────────────────┤

@@ -41,7 +41,7 @@
 
 ### Key Intuition
 
-```
+```text
 Attention = "What should I pay attention to?"
 
 Example: "The animal didn't cross the street because it was too tired"

@@ -114,25 +114,25 @@ Consistent terminology prevents confusion and makes learning easier. When you se
 ## 📁 File & Module Naming
 
 ### Phase Numbers (4-digit format)
-```
+```text
 ✅ CORRECT: 3100-attention, 6100-vector, 7100-architecture
 ❌ INCORRECT: 3100, 31xx, attention-3100
 ```
 
 ### Module Naming (kebab-case)
-```
+```text
 ✅ CORRECT: model-drift-detection, prompt-injection-defense
 ❌ INCORRECT: ModelDriftDetection, model_drift_detection
 ```
 
 ### File Names (Title-Case with hyphens)
-```
+```text
 ✅ CORRECT: 3101-Self-Attention-DeepDive.md
 ❌ INCORRECT: 3101_self_attention.md, self-attention-3101.md
 ```
 
 ### Guide Files (explicit "guide" suffix)
-```
+```text
 ✅ CORRECT: 5104-LoRA-Implementation-Guide.md
 ❌ INCORRECT: 5104-LoRA-Implementation.md, LoRA-guide.md
 ```
@@ -142,7 +142,7 @@ Consistent terminology prevents confusion and makes learning easier. When you se
 ## 🎯 Learning Phases
 
 ### Phase Names (consistent usage)
-```
+```text
 Phase 1: [1000] Infrastructure Fabric
 Phase 2: [2000] Cognitive Science & Frameworks
 Phase 3: [3000] Transformer Physics & LLM Internals
@@ -153,7 +153,7 @@ Phase 7: [7000] Agentic Cognition & Autonomy
 ```
 
 ### Volume Names (consistent usage)
-```
+```text
 Volume 1: Infrastructure Fundamentals
 Volume 2: AI/ML Foundations
 Volume 3: LLM Internals & Architecture
@@ -168,7 +168,7 @@ Volume 7: Production Mastery
 ## 🔢 Numbering Conventions
 
 ### Module Numbers (4-digit format)
-```
+```text
 [3100] Attention Architectures
 [3200] Embedding Latent Spaces
 [3300] The Decoding Block
@@ -176,13 +176,13 @@ Volume 7: Production Mastery
 ```
 
 ### Document Numbers (4-digit + sequential)
-```
+```text
 3101, 3102, 3103... (sequential within module)
 5101, 5102, 5103, 5104... (allow gaps for guides)
 ```
 
 ### Experiment Numbers (EXP_XXXX_...)
-```
+```text
 EXP_1101_GPON.md
 EXP_3101_SELF_ATTENTION.md
 EXP_6501_MLOPS_PIPELINE.md
@@ -248,7 +248,7 @@ React agents perform tool-calling to complete tasks."
 ```
 
 ### In File Names
-```
+```text
 ✅ CORRECT:
 docs/phases/phase3-transformers/3100-attention/3101-Self-Attention-DeepDive.md
 

@@ -20,7 +20,7 @@ Decoder-only models use autoregressive causally-masked attention for the entire 
 ## Architecture
 
 ### Core Components
-```
+```text
 Input Embedding → [Layer 0] → [Layer 1] → ... → [Layer N] → LM Head
                     ↓           ↓               ↓
                  Same block structure repeated

@@ -35,7 +35,7 @@ Complete these before starting:
 
 ## 🏗️ System Architecture
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │                        Production AI System Architecture                    │
 ├─────────────────────────────────────────────────────────────────────────────┤
@@ -704,7 +704,7 @@ jobs:
 
 ## 🏆 Project Completion Checklist
 
-```
+```text
 [ ] Phase 1: Multi-Agent System
 [ ] Phase 2: Real-Time Streaming
 [ ] Phase 3: Scalable Infrastructure

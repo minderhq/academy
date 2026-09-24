@@ -20,7 +20,7 @@ Collaborative multi-agent systems involve specialized agents working together on
 ## Agent Specialization
 
 ### Common Agent Types
-```
+```text
 Specialized Agent Roles:
 
 1. Planner Agent

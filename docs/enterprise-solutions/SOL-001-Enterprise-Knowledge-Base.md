@@ -8,7 +8,7 @@ End-to-end implementation guide for building an enterprise knowledge base using 
 
 ## Architecture
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────┐
 │                     ENTERPRISE KNOWLEDGE BASE                │
 └─────────────────────────────────────────────────────────────┘

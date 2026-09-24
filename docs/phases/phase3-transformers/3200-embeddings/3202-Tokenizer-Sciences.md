@@ -19,7 +19,7 @@ Tokenizers convert text into numerical inputs for language models. The choice of
 
 ## Tokenization Pipeline
 
-```
+```text
 Raw Text
     ↓
 Normalization (lowercase, accent removal)
@@ -36,7 +36,7 @@ Token IDs
 ## Byte-Pair Encoding (BPE)
 
 ### Algorithm Overview
-```
+```text
 BPE iteratively merges the most frequent pair of characters/tokens.
 
 Starting: "h u g h u g h u g"
@@ -171,7 +171,7 @@ def bytes_to_unicode():
 ## SentencePiece (Unigram Language Model)
 
 ### Unigram Tokenization
-```
+```text
 Unlike BPE (bottom-up), Unigram is top-down:
 
 1. Start with large vocabulary
@@ -238,7 +238,7 @@ spm.SentencePieceTrainer.train(
 ## Tiktoken (OpenAI)
 
 ### Tiktoken Design
-```
+```text
 Tiktoken is OpenAI's tokenizer for GPT-3.5/4:
 - Byte-level BPE
 - Optimized for code + text

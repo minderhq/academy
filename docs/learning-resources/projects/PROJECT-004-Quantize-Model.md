@@ -30,7 +30,7 @@ Complete these before starting:
 
 ## 🏗️ Project Architecture
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────┐
 │                    Quantization Pipeline                    │
 ├─────────────────────────────────────────────────────────────┤
@@ -575,7 +575,7 @@ if __name__ == '__main__':
 
 ## 🏆 Project Completion Checklist
 
-```
+```text
 [ ] Phase 1: Quantization Algorithms
 [ ] Phase 2: GGUF Format
 [ ] Phase 3: Quantized Inference

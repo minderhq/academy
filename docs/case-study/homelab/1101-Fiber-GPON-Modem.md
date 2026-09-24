@@ -62,7 +62,7 @@ After completing this configuration, you will be able to:
 
 ### 2.1 GPON Architecture
 
-```
+```text
 OLT (Optical Line Terminal)
     ↓ (Fiber - up to 20km)
 Splitter (Passive 1:N)
@@ -96,7 +96,7 @@ Bridge mode disables routing/NAT functions on the modem, allowing your downstrea
 ### 3.2 Configuration Steps
 
 #### Step 1: Access Modem Interface
-```
+```text
 Default Gateway: 192.168.100.1 or 192.168.1.1
 Credentials: admin/admin (check ISP documentation)
 ```
@@ -105,20 +105,20 @@ Credentials: admin/admin (check ISP documentation)
 
 Navigate to: **Advanced Settings → WAN Settings → Mode**
 
-```
+```text
 Mode: Bridge
 VLAN ID: [ISP-specific, often 0 or disabled]
 IGMP: Enabled (for IPTV if applicable)
 ```
 
 #### Step 3: Disable Wireless (if applicable)
-```
+```text
 Wireless: Disabled
 (in 2.4GHz and 5GHz bands)
 ```
 
 #### Step 4: Save and Reboot
-```
+```text
 Apply Settings → Reboot ONT
 ```
 
@@ -126,7 +126,7 @@ Apply Settings → Reboot ONT
 
 ## 4. Signal Path Diagram
 
-```
+```text
 [ISP OLT] --(Fiber)--> [Splitter] --(Fiber)--> [GPON ONT]
                                                     |
                                                     | (Ethernet)
@@ -169,7 +169,7 @@ Check optical power in modem interface:
 
 ### 6.1 Hardware Connection
 
-```
+```text
 GPON ONT Port 1 ────────┐
                        │
                   [CAT6A/Ethernet]

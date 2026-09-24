@@ -7,7 +7,7 @@ Comprehensive comparison of Encoder-Decoder (T5, BART) vs Decoder-Only (GPT, LLa
 
 ### Core Architecture Differences
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                    ENCODER-DECODER (Seq2Seq)                             │
 ├─────────────────────────────────────────────────────────────────────────┤
@@ -68,7 +68,7 @@ Comprehensive comparison of Encoder-Decoder (T5, BART) vs Decoder-Only (GPT, LLa
 
 ### Inference Speed (tokens/sec) - 11GB-class GPU
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────┐
 │                  DECODER-ONLY (7B)                          │
 ├─────────────────────────────────────────────────────────────┤
@@ -252,7 +252,7 @@ services:
 
 ## Decision Tree
 
-```
+```text
                     ┌─────────────────┐
                     │   Start Task    │
                     └────────┬────────┘

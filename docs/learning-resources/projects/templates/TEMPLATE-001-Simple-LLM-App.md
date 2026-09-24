@@ -4,7 +4,7 @@ A simple template for building applications with LLMs.
 
 ## Project Structure
 
-```
+```text
 simple-llm-app/
 ├── README.md
 ├── requirements.txt

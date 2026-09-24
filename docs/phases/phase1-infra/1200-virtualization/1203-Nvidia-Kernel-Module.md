@@ -20,7 +20,7 @@ This document covers NVIDIA driver and kernel module management for an 11GB-clas
 ## NVIDIA Driver Architecture
 
 ### Component Stack
-```
+```text
 ┌─────────────────────────────────────────┐
 │         User Space                      │
 │  CUDA Toolkit, cuDNN, TensorRT          │
@@ -44,7 +44,7 @@ This document covers NVIDIA driver and kernel module management for an 11GB-clas
 ## Kernel Modules Explained
 
 ### Module Breakdown
-```
+```text
 nvidia.ko           - Main driver module (4352 CUDA cores management)
 nvidia-uvm.ko       - Unified Virtual Memory (for CUDA managed memory)
 nvidia-mig.ko       - Multi-Instance GPU (not used on 11GB-class GPU)
@@ -168,7 +168,7 @@ systemctl enable nvidia-persistence.service
 ## CUDA Memory Management
 
 ### Unified Memory (nvidia-uvm)
-```
+```yaml
 Standard Memory:     CPU pointer → memcpy → GPU pointer
 Unified Memory:      Single pointer accessible by CPU and GPU
 
@@ -190,7 +190,7 @@ nvidia-smi -q | grep -A 3 "Bar1 Memory Usage"
 ## Power Management
 
 ### Power States (P-States)
-```
+```bash
 P0:  Maximum performance (all cores active)
 P1-P8: Intermediate states
 P8:  Minimum power (idle)

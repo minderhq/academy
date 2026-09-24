@@ -27,7 +27,7 @@ Think of containers like **lightweight virtual machines**:
 
 ### Containers vs VMs:
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────┐
 │ Virtual Machine                                            │
 ├─────────────────────────────────────────────────────────────┤
@@ -464,7 +464,7 @@ docker history <image>
 
 How Docker fits into AI Engineering Curriculum:
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────┐
 │               AI Engineering Curriculum Stack               │
 ├─────────────────────────────────────────────────────────────┤

@@ -150,7 +150,7 @@ This module connects to:
 
 ## GraphRAG Architecture
 
-```
+```text
 Document
     ↓
 ┌──────────────┬──────────────┐
@@ -234,7 +234,7 @@ RETURN path
 
 ## Context Window Management
 
-```
+```text
 Available Context: 128K tokens
 
 Distribution Strategy:

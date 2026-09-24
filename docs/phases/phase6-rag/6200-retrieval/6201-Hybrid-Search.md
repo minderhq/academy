@@ -296,7 +296,7 @@ fused = reciprocal_rank_fusion(bm25_results, semantic_results)
 ## Dense vs Sparse Retrieval
 
 ### Comparison
-```
+```yaml
 Sparse Retrieval (BM25):
   - Lexical matching
   - Exact terms

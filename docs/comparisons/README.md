@@ -21,7 +21,7 @@ This directory contains comprehensive comparison guides to help you choose the r
 
 Choosing the right AI technology is critical for project success. These comparison guides provide:
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────┐
 │                  Informed Technology Decisions                   │
 ├─────────────────────────────────────────────────────────────────┤
@@ -137,7 +137,7 @@ decision_factors = {
 Complete decision guide for choosing between RAG, Fine-Tuning, and AI Agents.
 
 **Quick Decision Guide:**
-```
+```text
 ┌─────────────────────────────────────────────────────────────────┐
 │                     Choose RAG when:                            │
 ├─────────────────────────────────────────────────────────────────┤
@@ -351,7 +351,7 @@ graph TD
 
 ### Technology Selection Cheat Sheet
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────┐
 │                    Quick Technology Selection                    │
 ├─────────────────────────────────────────────────────────────────┤

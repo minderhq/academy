@@ -498,7 +498,7 @@ plt.show()
 
 ## Summary: Quantization Trade-offs
 
-```
+```yaml
 BIT WIDTH → USE CASE:
 
 32-bit (FP32):

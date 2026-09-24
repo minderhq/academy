@@ -31,7 +31,7 @@ Think of it as a very smart text-completion engine:
 
 ### How LLMs Work (Simplified)
 
-```
+```text
 Input: "The sky is"
           ↓
     LLM Brain
@@ -90,7 +90,7 @@ ollama run mistral
 ```
 
 **Try these prompts:**
-```
+```text
 1. Hello! What can you do?
 
 2. Write a haiku about AI
@@ -225,19 +225,19 @@ A **prompt** is the input you give to the LLM.
 ### Prompt Engineering Basics:
 
 #### 1. Be Clear and Specific
-```
+```text
 ❌ Bad: "Write code"
 ✅ Good: "Write a Python function that sorts a list of numbers in ascending order"
 ```
 
 #### 2. Provide Context
-```
+```text
 ❌ Bad: "What is this?"
 ✅ Good: "I'm learning Python. Can you explain what this code does: def foo(): return [x*2 for x in range(10)]"
 ```
 
 #### 3. Use Examples (Few-Shot)
-```
+```text
 ❌ Bad: "Convert to uppercase"
 ✅ Good: """
 Convert the following words to uppercase:
@@ -252,7 +252,7 @@ Convert the following words to uppercase:
 ## Step 8: Advanced Prompts
 
 ### Chain of Thought:
-```
+```text
 Solve this step by step:
 If I have 3 apples and eat 1, then buy 5 more, how many do I have?
 
@@ -265,13 +265,13 @@ Answer: 7 apples
 ```
 
 ### Role Playing:
-```
+```text
 You are a Python expert. Explain the difference between lists and tuples
 to a beginner programmer.
 ```
 
 ### Format Instructions:
-```
+```text
 Write a JSON object with these keys:
 - name (string)
 - age (number)

@@ -30,7 +30,7 @@ Personally Identifiable Information (PII) redaction is critical for privacy comp
 
 ## PII Categories
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                      PII Classification Matrix                           │
 ├─────────────────────────────────────────────────────────────────────────┤

@@ -24,7 +24,7 @@ spec:
 ## Measurements
 
 ### Memory Utilization
-```
+```bash
 nvidia-smi dmon:
 
 # gpu    sm    mem    enc    dec    jpg    jpeg    frm
@@ -40,7 +40,7 @@ Total: ~8.5 GB (fits with room to spare)
 ```
 
 ### Throughput
-```
+```text
 vLLM @ 4-bit, context=2048:
   Tokens/sec: ~85-95
   Batch Size: 1
@@ -62,7 +62,7 @@ gpu_memory_utilization=0.9  # Default
 ```
 
 ### Batch Size Optimization
-```
+```text
 | Batch | Tokens/sec | VRAM Usage |
 |-------|------------|------------|
 | 1     | 90         | 8.2 GB     |

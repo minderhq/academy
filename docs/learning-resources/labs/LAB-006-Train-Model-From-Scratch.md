@@ -201,7 +201,7 @@ python prepare_data.py
 ```
 
 ### Expected Output:
-```
+```text
 Downloading Wikipedia dataset...
 Total articles: 6,427,685
 Taking first 10,000 articles...
@@ -315,7 +315,7 @@ python train_tokenizer.py
 ```
 
 ### Expected Output:
-```
+```text
 Loading data...
 Loaded 9847 documents
 Training tokenizer with vocab_size=10000...
@@ -577,7 +577,7 @@ python model.py
 ```
 
 ### Expected Output:
-```
+```text
 Model Parameters: 10,234,567
 Input shape: torch.Size([2, 128])
 Output shape: torch.Size([2, 128, 10000])
@@ -832,7 +832,7 @@ python train.py
 
 ### Expected Training Progress:
 
-```
+```text
 Using device: cuda
 Loading datasets...
 Loaded 9847 documents
@@ -938,7 +938,7 @@ python generate.py
 
 ### Expected Output (example):
 
-```
+```text
 Model loaded. Ready to generate!
 
 Prompt: Artificial intelligence is
@@ -1130,7 +1130,7 @@ Train on 2+ GPUs simultaneously
 
 ### Key Metrics
 
-```
+```text
 Model Size: 10M parameters
 Training Tokens: ~20M tokens
 Training Time: ~6 hours (on an 11GB-class GPU)

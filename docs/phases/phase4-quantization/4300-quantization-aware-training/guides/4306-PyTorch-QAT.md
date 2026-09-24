@@ -6,7 +6,7 @@ PyTorch provides native support for Quantization Aware Training through `torch.a
 
 ## PyTorch QAT API Overview
 
-```
+```text
 torch.ao.quantization
 ├── prepare_qat()           # Insert fake quant modules
 ├── convert()               # Convert to actual INT8

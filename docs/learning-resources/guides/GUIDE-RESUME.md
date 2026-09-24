@@ -36,7 +36,7 @@ Most resumes go through Applicant Tracking Systems first:
 
 ---
 
-```
+```text
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
                     ALEX CHEN
@@ -136,7 +136,7 @@ CERTIFICATIONS & AWARDS
 
 ---
 
-```
+```text
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
                     JORDAN PATEL
@@ -243,7 +243,7 @@ PUBLICATIONS & TALKS
 
 ---
 
-```
+```text
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
                     DR. SAMANTHA WILLIAMS
@@ -378,7 +378,7 @@ TALKS & MEDIA
 
 ---
 
-```
+```text
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
                     MARIA GONZALEZ
@@ -518,7 +518,7 @@ AWARDS & RECOGNITION
 
 ## Cover Letter Template (Brief)
 
-```
+```text
 Subject: AI Engineer Application - [Your Name] - [Job Title]
 
 Hi [Hiring Manager Name],

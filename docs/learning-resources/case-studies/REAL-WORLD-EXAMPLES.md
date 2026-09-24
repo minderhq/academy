@@ -25,7 +25,7 @@ Real-world examples of AI systems in production, illustrating the concepts and t
 - Employees spending 2+ hours/day searching for information
 
 ### Solution
-```
+```text
 ┌─────────────────────────────────────────────────────────────┐
 │                  Knowledge Assistant Architecture           │
 │                                                              │
@@ -112,7 +112,7 @@ workflow = SequentialWorkflow(
 - Complex product catalog (100K+ items)
 
 ### Solution: Tiered Agent System
-```
+```text
 ┌─────────────────────────────────────────────────────────────┐
 │                   Tiered Support Architecture                │
 │                                                              │
@@ -234,7 +234,7 @@ diagnosis = ConsensusAgent(
 ## Common Patterns Across Case Studies
 
 ### 1. **Model Tiering**
-```
+```text
 Small Model (Cheap, Fast)
     ↓ (threshold)
 Medium Model (Balanced)
@@ -245,7 +245,7 @@ Human (Final Authority)
 ```
 
 ### 2. **RAG Pipeline**
-```
+```text
 Documents → Chunk → Embed → Store
                                     ↓
 Query → Embed → Retrieve → Rerank → LLM → Response

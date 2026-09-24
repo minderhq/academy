@@ -735,7 +735,7 @@ You should have a working chat interface with memory!
 
 ## 🎓 Lab Completion Checklist
 
-```
+```text
 [ ] Exercise 1: Run Ollama in Docker
 [ ] Exercise 2: Build LLM API Server
 [ ] Exercise 3: Chat Completion Test

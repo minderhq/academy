@@ -189,7 +189,7 @@ This module connects to:
 
 ## Hybrid Search Pipeline
 
-```
+```text
 Query
   ↓
 ┌─────────────┬─────────────┐

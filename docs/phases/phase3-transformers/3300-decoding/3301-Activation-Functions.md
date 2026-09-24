@@ -36,7 +36,7 @@ relu = nn.ReLU()
 ```
 
 ### ReLU Problems in Transformers
-```
+```text
 1. Dead neurons:
    - If input is consistently negative, neuron never activates
    - Gradient flow is blocked
@@ -52,7 +52,7 @@ relu = nn.ReLU()
 ## GELU (Gaussian Error Linear Unit)
 
 ### Definition
-```
+```text
 GELU(x) = x × Φ(x)
 
 Where Φ(x) is the cumulative distribution function
@@ -91,7 +91,7 @@ gelu = nn.GELU()
 ```
 
 ### Why GELU Works Well
-```
+```text
 1. Smooth everywhere:
    - No discontinuities
    - Better gradient flow
@@ -222,7 +222,7 @@ class SwiGLUFFN(nn.Module):
 ```
 
 ### Why SwiGLU Outperforms GELU
-```
+```text
 Paper: "GLU Variants Improve Transformer" (Shazeer, 2020)
 
 Key findings:
@@ -355,7 +355,7 @@ for name, fn in activations.items():
 ## Choosing the Right Activation
 
 ### Guidelines
-```
+```text
 For vanilla transformer:           GELU or GeLU
 For large language models:         SwiGLU (1.5% gain)
 For MoE models:                    SMGeLU
@@ -364,7 +364,7 @@ For best performance:              SwiGLU (if compute allows)
 ```
 
 ### Performance Trade-offs
-```
+```text
 Activation    Compute  Memory    Perplexity
 ─────────────────────────────────────────────
 ReLU          1x       1x        Baseline

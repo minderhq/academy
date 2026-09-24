@@ -112,7 +112,7 @@ When creating new diagrams:
 
 ### Mermaid Template
 
-```markdown
+````markdown
 # Diagram Title
 
 **Brief description**
@@ -143,7 +143,7 @@ sequenceDiagram
 
 **Last Updated:** YYYY-MM-DD
 **Related:** [Path to related doc](../path/to/doc.md)
-```
+````
 
 ---
 

@@ -25,7 +25,7 @@ V = torch.randn(batch_size, num_heads, seq_len, d_model // num_heads)
 ```
 
 ### Results: Attention Patterns
-```
+```text
 Head 0: Local attention pattern
   ┌───────────────────────────────────────────────────┐
   │     Tokens →                                     │
@@ -57,7 +57,7 @@ Head 3: Global attention pattern
 3. This diversity improves model capacity
 
 ## Performance Comparison
-```
+```text
 Implementation           Time (ms)  Memory (MB)
 ───────────────────────────────────────────────────
 Naive (no optimization)    45.2      1200

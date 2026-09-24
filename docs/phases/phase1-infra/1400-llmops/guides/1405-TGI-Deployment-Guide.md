@@ -5,7 +5,7 @@ Complete deployment guide for Text Generation Inference (TGI), Hugging Face's hi
 
 ## TGI vs vLLM Comparison
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                    TGI vs vLLM Feature Comparison                      │
 ├─────────────────────────────────────────────────────────────────────────┤
@@ -667,7 +667,7 @@ scrape_configs:
 
 #### 1. Out of Memory
 
-```
+```text
 Error: CUDA out of memory
 ```
 
@@ -685,7 +685,7 @@ Error: CUDA out of memory
 
 #### 2. Slow First Request
 
-```
+```text
 First request takes 10+ seconds
 ```
 
@@ -700,7 +700,7 @@ First request takes 10+ seconds
 
 #### 3. Low Throughput
 
-```
+```text
 Less than 10 tokens/sec
 ```
 

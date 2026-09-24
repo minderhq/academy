@@ -55,7 +55,7 @@ Pre-trained models have fixed knowledge. This volume teaches you to:
 
 ### The Data Nexus Advantage
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────┐
 │                   Traditional LLM Limitations                   │
 ├─────────────────────────────────────────────────────────────────┤
@@ -186,7 +186,7 @@ similarities = cosine_similarity(query, embeddings)
    - Memory vs speed trade-offs
 
 **HNSW Concept:**
-```
+```text
 Brute Force Search:
 - Compare query with ALL vectors
 - O(N) complexity
@@ -374,7 +374,7 @@ reranked = reranker.rank(query, candidates, top_k=10)
    - Relationship building
 
 **Knowledge Graph Structure:**
-```
+```text
 Entities (Nodes):
 - Person: "Elon Musk"
 - Company: "Tesla"
@@ -525,7 +525,7 @@ def graphrag_retrieval(query):
    - Compression techniques
 
 **CAG vs RAG:**
-```
+```yaml
 RAG:
 - Retrieve relevant chunks
 - Limit context window
@@ -582,7 +582,7 @@ Question: {query}
 **Complex queries requiring multiple steps**
 
 **Multi-Hop Example:**
-```
+```text
 Question: "Who founded the company that makes the Model S?"
 
 Step 1: What makes Model S?
@@ -741,7 +741,7 @@ Use this checklist to track your progress:
 
 ### RAG Pipeline
 
-```
+```text
 Documents → Chunk → Embed → Store (Qdrant)
                                  ↓
 Query → Embed → Retrieve → Re-rank → Generate
@@ -749,7 +749,7 @@ Query → Embed → Retrieve → Re-rank → Generate
 
 ### Hybrid Search Benefits
 
-```
+```text
 Vector Search:
 - Semantic meaning
 - Synonyms
@@ -767,7 +767,7 @@ Hybrid (RRF):
 
 ### GraphRAG vs RAG
 
-```
+```yaml
 RAG:
 - Unstructured text
 - Vector similarity
@@ -1105,7 +1105,7 @@ def evaluate_rag_system(queries, ground_truth):
 ### Minimum Requirements
 
 **For Learning & Development:**
-```
+```text
 CPU: 4 cores
 RAM: 16 GB
 GPU: Not required (CPU inference)
@@ -1113,7 +1113,7 @@ Storage: 50 GB SSD
 ```
 
 **For Small RAG System (<10k docs):**
-```
+```text
 CPU: 8 cores
 RAM: 32 GB
 GPU: RTX 3060 (12 GB)
@@ -1123,7 +1123,7 @@ Storage: 100 GB NVMe SSD
 ### Recommended Requirements
 
 **For Production RAG (100k-1M docs):**
-```
+```text
 CPU: 16 cores
 RAM: 64 GB
 GPU: RTX 3090 (24 GB) or A4000 (16 GB)
@@ -1132,7 +1132,7 @@ Network: 1 Gbps
 ```
 
 **For Large-Scale Deployment (1M+ docs):**
-```
+```text
 CPU: 32 cores
 RAM: 128 GB
 GPU: A100 (40 GB) or 2x RTX 4090

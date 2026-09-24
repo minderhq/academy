@@ -37,7 +37,7 @@ After completing this lab, you will be able to:
 
 ### Architecture
 
-```
+```text
 ┌─────────────────────────────────────────────────────────┐
 │                      Load Balancer                       │
 └─────────────────────────────────────────────────────────┘
@@ -1192,7 +1192,7 @@ Use this checklist to track your progress:
 
 ### Performance Metrics
 
-```
+```text
 Search Latency: <200ms (P95)
 Throughput: >100 queries/second per instance
 Accuracy (P@10): >90% for relevant queries

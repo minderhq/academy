@@ -20,7 +20,7 @@ CAG (Context Augmented Generation) uses the model's large context window as a te
 ## RAG vs CAG
 
 ### Traditional RAG
-```
+```text
 RAG (Retrieval-Augmented Generation):
   Query → Retrieve chunks → Insert into prompt → Generate
   - External vector database
@@ -30,7 +30,7 @@ RAG (Retrieval-Augmented Generation):
 ```
 
 ### CAG (Context Augmented Generation)
-```
+```text
 CAG (Context Augmented Generation):
   Pre-load entire relevant doc into context → Query → Generate
   - No external retrieval at inference
@@ -40,7 +40,7 @@ CAG (Context Augmented Generation):
 ```
 
 ### Comparison
-```
+```text
 | Aspect         | RAG                  | CAG                      |
 |----------------|----------------------|--------------------------|
 | Context window | 4k-8k tokens         | 32k-128k tokens          |
@@ -408,7 +408,7 @@ File: {file_path}
     """
 
         return self.model.generate(prompt)
-```
+```python
 
 ## Context Optimization
 

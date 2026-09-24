@@ -19,14 +19,14 @@ Comprehensive comparison of activation functions used in modern transformer mode
 ## Mathematical Definitions
 
 ### ReLU (Rectified Linear Unit)
-```
+```text
 f(x) = max(0, x)
 
 f'(x) = 1 if x > 0 else 0
 ```
 
 ### GeLU (Gaussian Error Linear Unit)
-```
+```text
 f(x) = x · Φ(x) = x · 0.5 · (1 + erf(x/√2))
 
 where Φ(x) is the cumulative distribution function of standard normal distribution
@@ -37,7 +37,7 @@ f'(x) = Φ(x) + xφ(x)
 ```
 
 ### SwiGLU (Swish-Gated Linear Unit)
-```
+```text
 SwiGLU(x) = Swish(xW) ⊗ (xV)
 where Swish(x) = x · σ(βx)
 
@@ -47,7 +47,7 @@ LLaMA uses: f(x) = (xW) ⊗ SiLU(xV)
 ```
 
 ### GLU Variants
-```
+```text
 GLU(x) = (xW) ⊗ σ(xV)
 ReGLU(x) = ReLU(xW) ⊗ (xV)
 GeGLU(x) = GELU(xW) ⊗ (xV)
@@ -249,37 +249,37 @@ if __name__ == "__main__":
 ## Model-Specific Usage
 
 ### GPT-2 / GPT-3
-```
+```text
 Activation: GeLU
 FFN: GeLU(4x expansion)
 ```
 
 ### BERT
-```
+```text
 Activation: GeLU
 FFN: GeLU(4x expansion)
 ```
 
 ### T5
-```
+```text
 Activation: GeLU (or ReGLU in some versions)
 FFN: GEGLU (Gated)
 ```
 
 ### LLaMA / LLaMA 2
-```
+```text
 Activation: SwiGLU
 FFN: SwiGLU with ~2.67x expansion (not 4x)
 ```
 
 ### Mistral
-```
+```text
 Activation: SwiGLU
 FFN: SwiGLU with ~2.67x expansion
 ```
 
 ### Mixtral (MoE)
-```
+```text
 Activation: SwiGLU
 FFN: SwiGLU per expert
 ```
@@ -299,7 +299,7 @@ FFN: SwiGLU per expert
 
 ### For Fine-Tuning
 
-```
+```text
 Use the same activation as the base model:
 - LLaMA/Mistral → SwiGLU
 - BERT → GeLU

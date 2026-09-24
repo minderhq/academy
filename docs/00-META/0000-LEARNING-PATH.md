@@ -9,7 +9,7 @@
 
 ## 📚 Curriculum Overview
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                 AI ENGINEERING CURRICULUM LEARNING PATH                 │
 ├─────────────────────────────────────────────────────────────────────────┤
@@ -72,7 +72,7 @@
 
 **Goal:** Learn Python programming from absolute zero
 
-```
+```text
 Learning Path:
 ├── [TUTORIAL-000: Python for AI](../learning-resources/tutorials/TUTORIAL-000-Python-for-AI.md)
 ├── Part 1: Python Basics (2 hours)
@@ -156,7 +156,7 @@ Learning Path:
 ### Week 5-6: Proxmox Virtualization
 **Goal:** Master hypervisor basics
 
-```
+```text
 Learning Path:
 ├── [1201: Proxmox Hypervisor SOP](../phases/phase1-infra/1200-virtualization/1201-Proxmox-Hypervisor-SOP.md)
 ├── VM Creation & Management
@@ -174,7 +174,7 @@ Learning Path:
 ### Week 7-8: Kubernetes (K3s)
 **Goal:** Deploy containerized apps at scale
 
-```
+```text
 Learning Path:
 ├── [1301: K3s Architecture](../phases/phase1-infra/1300-kubernetes/1301-K3s-Master-Worker-Arch.md)
 ├── [1302: GPU Scheduler](../phases/phase1-infra/1300-kubernetes/1302-GPU-Scheduler.md)
@@ -192,7 +192,7 @@ Learning Path:
 ### Week 9-10: GPU Passthrough Deep Dive
 **Goal:** Pass 11GB-class GPU to VM
 
-```
+```text
 Learning Path:
 ├── [1202: GPU Passthrough (IOMMU/VFIO)](../phases/phase1-infra/1200-virtualization/1202-TB3-UT3G-Passthrough.md)
 ├── [1203: Nvidia Kernel Module](../phases/phase1-infra/1200-virtualization/1203-Nvidia-Kernel-Module.md)
@@ -210,7 +210,7 @@ Learning Path:
 ### Week 11-12: Network Optimization
 **Goal:** Achieve full line-rate throughput
 
-```
+```text
 Learning Path:
 ├── MTU 9000 configuration
 ├── TCP tuning
@@ -232,7 +232,7 @@ Learning Path:
 ### Week 13-14: Neural Network Foundations
 **Goal:** Understand how LLMs work internally
 
-```
+```text
 Learning Path:
 ├── [2101: Tensor Algebra](../phases/phase2-foundations/2100-calculus/2101-Tensor-Algebra.md)
 ├── [2102: Backpropagation](../phases/phase2-foundations/2100-calculus/2102-Backpropagation-and-Derivatives.md)
@@ -250,7 +250,7 @@ Learning Path:
 ### Week 15-16: Transformer Architecture
 **Goal:** Master attention mechanisms
 
-```
+```text
 Learning Path:
 ├── [3101: Self-Attention](../phases/phase3-transformers/3100-attention/3101-Self-Attention-DeepDive.md)
 ├── [3102: Flash Attention](../phases/phase3-transformers/3100-attention/3102-Flash-Attention.md)
@@ -268,7 +268,7 @@ Learning Path:
 ### Week 17-18: Embeddings & Tokenization
 **Goal:** Understand how text becomes numbers
 
-```
+```text
 Learning Path:
 ├── [3201: RoPE](../phases/phase3-transformers/3200-embeddings/3201-Rotary-Positional-Embeddings-RoPE.md)
 ├── [3202: Tokenizer Sciences](../phases/phase3-transformers/3200-embeddings/3202-Tokenizer-Sciences.md)
@@ -286,7 +286,7 @@ Learning Path:
 ### Week 19-20: Model Architectures
 **Goal:** Understand encoder-decoder vs decoder-only
 
-```
+```text
 Learning Path:
 ├── [3401: Encoder-Decoder](../phases/phase3-transformers/3400-architectures/3401-Encoder-Decoder-Architectures.md)
 ├── [3402: Decoder-Only Models](../phases/phase3-transformers/3400-architectures/3402-Decoder-Only-Models.md)
@@ -308,7 +308,7 @@ Learning Path:
 ### Week 21-22: Model Serving
 **Goal:** Deploy LLMs with vLLM
 
-```
+```text
 Learning Path:
 ├── [1402: vLLM and TGI](../phases/phase1-infra/1400-llmops/1402-vLLM-and-TGI.md)
 ├── [1404: vLLM Production Deployment](../phases/phase1-infra/1400-llmops/guides/1404-vLLM-Production-Deployment.md)
@@ -326,7 +326,7 @@ Learning Path:
 ### Week 23-24: Prompt Engineering
 **Goal:** Master effective prompting
 
-```
+```text
 Topics:
 ├── System prompts
 ├── Few-shot learning
@@ -344,7 +344,7 @@ Topics:
 ### Week 25-26: Fine-Tuning
 **Goal:** Adapt models to your domain
 
-```
+```text
 Learning Path:
 ├── [5101: LoRA Logic](../phases/phase5-finetuning/5100-peft/5101-LoRA-Logic.md)
 ├── [5102: QLoRA Pipelines](../phases/phase5-finetuning/5100-peft/5102-QLoRA-Pipelines.md)
@@ -362,7 +362,7 @@ Learning Path:
 ### Week 27-28: Alignment
 **Goal:** Align models with human preferences
 
-```
+```text
 Learning Path:
 ├── [5201: DPO Theory](../phases/phase5-finetuning/5200-alignment/5201-DPO-Theory.md)
 ├── [5202: Alignment Orchestration](../phases/phase5-finetuning/5200-alignment/5202-Alignment-Orchestration.md)
@@ -383,7 +383,7 @@ Learning Path:
 ### Week 29-30: Vector Databases
 **Goal:** Master semantic search
 
-```
+```text
 Learning Path:
 ├── [6101: HNSW Indexing](../phases/phase6-rag/6100-vector/6101-HNSW-Indexing.md)
 ├── [6102: Semantic Similarity](../phases/phase6-rag/6100-vector/6102-Semantic-Similarity.md)
@@ -403,7 +403,7 @@ Learning Path:
 ### Week 31-32: Knowledge Graphs
 **Goal:** Build Neo4j knowledge graphs
 
-```
+```text
 Learning Path:
 ├── [6301: Neo4j and Knowledge Graphs](../phases/phase6-rag/6300-context/6301-Neo4j-and-Knowledge-Graphs.md)
 ├── [6303: Neo4j Deployment Guide](../phases/phase6-rag/6300-context/guides/6303-Neo4j-Deployment-Guide.md)
@@ -421,7 +421,7 @@ Learning Path:
 ### Week 33-34: Hybrid Search
 **Goal:** Combine keyword and semantic search
 
-```
+```text
 Learning Path:
 ├── [6201: Hybrid Search](../phases/phase6-rag/6200-retrieval/6201-Hybrid-Search.md)
 ├── [6202: Re-ranking](../phases/phase6-rag/6200-retrieval/6202-Re-ranking-and-Retrieval-Logistics.md)
@@ -438,7 +438,7 @@ Learning Path:
 ### Week 35-36: GraphRAG
 **Goal:** Combine graphs and vectors
 
-```
+```text
 Learning Path:
 ├── [6302: CAG Long Context](../phases/phase6-rag/6300-context/6302-CAG-Long-Context-Architectures.md)
 ├── [6304: GraphRAG Implementation](../phases/phase6-rag/6300-context/guides/6304-GraphRAG-Implementation.md)
@@ -459,7 +459,7 @@ Learning Path:
 ### Week 37-38: ReAct Agents
 **Goal:** Build reasoning agents
 
-```
+```text
 Learning Path:
 ├── [7101: ReAct Loop System](../phases/phase7-agentic/7100-architecture/7101-ReAct-Loop-System.md)
 ├── [7102: Planning Decomposition](../phases/phase7-agentic/7100-architecture/7102-Planning-Decomposition.md)
@@ -477,7 +477,7 @@ Learning Path:
 ### Week 39-40: Multi-Agent Systems
 **Goal:** Coordinate multiple agents
 
-```
+```text
 Learning Path:
 ├── [7201: Tool Calling](../phases/phase7-agentic/7200-tools/7201-Tool-Calling.md)
 ├── [7202: Code Interpreter](../phases/phase7-agentic/7200-tools/guides/7202-Code-Interpreter.md)
@@ -494,7 +494,7 @@ Learning Path:
 ### Week 41-42: Tool Calling
 **Goal:** Give agents real-world capabilities
 
-```
+```text
 Learning Path:
 ├── [7301: Orchestration](../phases/phase7-agentic/7300-orchestration/7301-Orchestration.md)
 └── Tool validation
@@ -510,7 +510,7 @@ Learning Path:
 ### Week 43-44: Agent Memory
 **Goal:** Give agents long-term memory
 
-```
+```text
 Learning Path:
 ├── [7401: Long-term Memory](../phases/phase7-agentic/7400-memory/7401-Long-term-Memory.md)
 ├── [7402: Agent Memory Implementation](../phases/phase7-agentic/7400-memory/guides/7402-Agent-Memory-Implementation.md)
@@ -532,7 +532,7 @@ Learning Path:
 ### Week 45-46: Monitoring & Observability
 **Goal:** See everything in your system
 
-```
+```text
 Learning Path:
 ├── [1501: Monitoring and Observability](../phases/phase1-infra/1500-Monitoring/1501-Monitoring-and-Observability.md)
 ├── Prometheus metrics
@@ -551,7 +551,7 @@ Learning Path:
 ### Week 47-48: CI/CD Pipelines
 **Goal:** Automate everything
 
-```
+```text
 Learning Path:
 ├── GitHub Actions workflows
 ├── Docker image building
@@ -569,7 +569,7 @@ Learning Path:
 ### Week 49-50: Security & SSL/TLS
 **Goal:** Secure your infrastructure
 
-```
+```text
 Learning Path:
 ├── Certificate management
 ├── TLS termination with a reverse proxy
@@ -586,7 +586,7 @@ Learning Path:
 ### Week 51-52: Performance Optimization
 **Goal:** Make it fast
 
-```
+```text
 Learning Path:
 ├── [Performance Testing](../../configs/performance-testing/k6/load-test.js)
 ├── GPU optimization
@@ -688,7 +688,7 @@ Each experiment corresponds to a documentation topic:
 
 Track your learning journey:
 
-```
+```text
 [ ] Phase 1: Foundations (Weeks 1-4)
     [ ] Week 1: Linux Essentials
     [ ] Week 2: Docker Fundamentals

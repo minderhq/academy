@@ -70,7 +70,7 @@ After completing this document, you will:
 
 ### 2.1 Scaled Dot-Product Attention
 
-```
+```yaml
 The fundamental operation of Transformers:
 
 Attention(Q, K, V) = softmax(QK^T / √d_k) × V
@@ -121,7 +121,7 @@ def scaled_dot_product_attention(Q, K, V, mask=None):
 
 ### 3.1 Why Multiple Heads?
 
-```
+```text
 Single head: Each token attends to all tokens with one pattern
 Multiple heads: Each token attends with multiple patterns simultaneously
 
@@ -175,7 +175,7 @@ class MultiHeadAttention(nn.Module):
 
 ### 3.3 Mathematical Formulation
 
-```
+```yaml
 Given input X (sequence of embeddings):
 
 MultiHead(X) = Concat(head_1, ..., head_h) × W^O
@@ -230,7 +230,7 @@ visualize_attention(attn_weights, tokens, head_idx=0)
 
 ### Pattern Types
 
-```
+```text
 1. Diagonal (Self-Attention):
    Each token attends to itself
    Use case: Positional encoding reinforcement
@@ -305,7 +305,7 @@ def causal_attention(Q, K, V):
 
 ### Interpretation
 
-```
+```text
 Attention can be viewed as a directed weighted graph:
 
 Nodes: Tokens in the sequence
@@ -349,7 +349,7 @@ def attention_graph_properties(attn_weights):
 
 ### Time and Space Complexity
 
-```
+```text
 Standard Attention:
   Time: O(L² × d)  - L² from QK^T, d from final matmul
   Space: O(L²)     - Store attention matrix

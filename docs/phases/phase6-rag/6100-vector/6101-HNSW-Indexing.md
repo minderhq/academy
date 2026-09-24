@@ -42,7 +42,7 @@ def brute_force_search(query, vectors, k=10):
 ```
 
 ### Approximate Nearest Neighbor (ANN)
-```
+```text
 Goal: Fast approximate search
 Trade-off: Small accuracy loss for massive speed gain
 
@@ -56,7 +56,7 @@ ANN Methods:
 ## HNSW Algorithm
 
 ### Small World Graphs
-```
+```text
 Small world property:
   - Most nodes reachable in few hops
   - Some long-range connections (shortcuts)
@@ -74,7 +74,7 @@ HNSW builds this in multiple layers
 ```
 
 ### Hierarchical Structure
-```
+```text
 HNSW builds multiple graph layers:
 
 Layer 2:  ───○───────○───          (fewest nodes)

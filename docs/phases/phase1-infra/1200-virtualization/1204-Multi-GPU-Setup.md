@@ -20,7 +20,7 @@ Scaling GPU workloads from a single card to multi-GPU serving and training: devi
 ## Starting Point: A Single GPU
 
 ### Reference Card
-```
+```text
 GPU:  Any NVIDIA card with 8GB+ VRAM
       (e.g., RTX 3060 12GB, RTX 4060 Ti 16GB, RTX 4070 12GB)
 VRAM: 8-16GB is the practical starting range
@@ -35,7 +35,7 @@ Role: Sufficient for 7B models (4-bit quantization), QLoRA fine-tuning,
 > `docs/case-study/homelab/1202-TB3-UT3G-Passthrough.md`.
 
 ### Single-GPU Limits
-```
+```text
 One 11GB card:
   - 7B model at 4-bit:  ~4-5 GB weights, fits with context to spare
   - 13B model at 4-bit: ~8 GB weights, tight with KV cache
@@ -360,7 +360,7 @@ trainer.train()
 ## Multi-GPU Benchmarks (Expected)
 
 ### Dual 11GB GPUs (example measurements)
-```
+```text
 Model           | Single GPU | Dual GPU | Speedup |
 ----------------|------------|----------|---------|
 Llama-2-7B (4-bit) | 35 t/s | 60 t/s  | 1.7x |
@@ -369,7 +369,7 @@ Mistral-7B (4-bit)  | 40 t/s | 70 t/s  | 1.75x |
 ```
 
 ### Training Speedup
-```
+```text
 Batch Size | Single GPU | Dual GPU | Speedup |
 -----------|------------|----------|---------|
 2          | 100%       | 180%     | 1.8x |

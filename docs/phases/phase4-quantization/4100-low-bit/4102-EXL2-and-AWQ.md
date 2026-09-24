@@ -20,7 +20,7 @@ EXL2 and AWQ are advanced quantization methods optimized for GPU-only inference.
 ## EXL2 (ExLlamaV2)
 
 ### What is EXL2?
-```
+```text
 EXL2 is a custom quantization format for ExLlamaV2:
 
 - Designed specifically for GPU inference
@@ -31,7 +31,7 @@ EXL2 is a custom quantization format for ExLlamaV2:
 ```
 
 ### EXL2 Architecture
-```
+```text
 EXL2 Format:
 ┌─────────────────────────────────────────┐
 │  Header                                 │
@@ -121,7 +121,7 @@ print(text)
 ```
 
 ### EXL2 Performance
-```
+```text
 11GB-class GPU (11GB VRAM):
 Llama-2-7B @ 4.5 bpw:
   - Model size: ~4.2 GB
@@ -142,7 +142,7 @@ Comparison (same hardware):
 ## AWQ (Activation-aware Weight Quantization)
 
 ### What is AWQ?
-```
+```text
 AWQ (Activation-aware Weight Quantization):
 - Observes activation statistics during calibration
 - Only quantizes 1% of weights (salient weights)
@@ -238,7 +238,7 @@ print(tokenizer.decode(output[0]))
 ```
 
 ### AWQ Performance
-```
+```text
 Llama-2-7B AWQ @ 4-bit:
   - VRAM usage: ~4.5 GB
   - Perplexity: Within 2% of fp16
@@ -253,7 +253,7 @@ Comparison with other 4-bit methods:
 ## GPTQ (Gradient-based Quantization)
 
 ### GPTQ Overview
-```
+```text
 GPTQ: Post-Training Quantization with Gradient Information
 - Uses Hessian information for optimal quantization
 - Second-order optimization
@@ -302,7 +302,7 @@ output = model.generate(**inputs, max_new_tokens=100)
 ## Comparison
 
 ### Quantization Method Comparison
-```
+```text
 Method    Quality    Speed    VRAM    Use Case
 ──────────────────────────────────────────────────
 fp16      Reference  Fast     14GB    Development
@@ -316,7 +316,7 @@ Perplexity increase vs fp16 (lower is better)
 ```
 
 ### Recommendation for an 11GB-class GPU
-```
+```text
 For 7B models:
   - Best quality: AWQ 4-bit or EXL2 4.5
   - Fastest: EXL2 4.5

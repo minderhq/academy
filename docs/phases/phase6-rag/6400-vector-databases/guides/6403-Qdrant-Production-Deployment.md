@@ -112,7 +112,7 @@ docker-compose logs -f qdrant
 
 ### 1. Access Qdrant Dashboard
 
-```
+```text
 Web UI: http://localhost:6335/dashboard
 REST API: http://localhost:6333
 gRPC API: http://localhost:6334
@@ -599,7 +599,7 @@ for r in results:
 
 #### 1. Out of Memory
 
-```
+```text
 Error: Cannot allocate memory
 ```
 

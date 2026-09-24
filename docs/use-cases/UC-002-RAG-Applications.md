@@ -429,7 +429,7 @@ access_token = token_response.json()["access_token"]
 
 **Documentation:** [API Authentication Guide](https://docs.example.com/auth)
 """
-```
+```python
 
 ---
 

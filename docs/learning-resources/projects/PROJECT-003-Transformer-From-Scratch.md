@@ -32,7 +32,7 @@ Complete these before starting:
 
 ## 🏗️ Project Architecture
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────────┐
 │                     Transformer Architecture                        │
 ├─────────────────────────────────────────────────────────────────────┤
@@ -1040,7 +1040,7 @@ print(f"Generated: {generated}")
 
 ## 🏆 Project Completion Checklist
 
-```
+```text
 [ ] Phase 1: Attention Mechanism
 [ ] Phase 2: Transformer Components
 [ ] Phase 3: Transformer Block

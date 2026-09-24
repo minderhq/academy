@@ -138,7 +138,7 @@ This module connects to:
 
 ## ReAct Loop Structure
 
-```
+```text
 ┌─────────────────────────────────────┐
 │         ReAct Loop                  │
 ├─────────────────────────────────────┤
@@ -211,7 +211,7 @@ This module connects to:
 
 ## Example ReAct Prompt
 
-```
+```text
 You are a helpful agent with access to tools.
 
 Use this format:

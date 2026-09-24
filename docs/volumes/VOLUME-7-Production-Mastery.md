@@ -62,7 +62,7 @@ This is the **culmination of the curriculum**. You'll learn to:
 
 ### Production vs Development
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────┐
 │                     Development Environment                      │
 ├─────────────────────────────────────────────────────────────────┤
@@ -950,7 +950,7 @@ Use this checklist to track your progress:
 
 ### Production Deployment
 
-```
+```yaml
 Development:
 - Single container
 - No SSL
@@ -968,7 +968,7 @@ Production:
 
 ### Monitoring Stack
 
-```
+```text
 Prometheus: Collect metrics
 Grafana: Visualize metrics
 Loki: Aggregate logs
@@ -979,7 +979,7 @@ Together: Complete observability
 
 ### Multi-Agent Systems
 
-```
+```yaml
 Specialized Roles:
 - Architect: Design and plan
 - Coder: Write code
@@ -999,7 +999,7 @@ Coordination:
 
 ### ReAct Pattern
 
-```
+```text
 Loop: Think → Act → Observe → Repeat
 
 Think: What should I do next?
@@ -1433,7 +1433,7 @@ jobs:
 
 ### Complete Production Stack
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────┐
 │                        Production Stack                         │
 ├─────────────────────────────────────────────────────────────────┤
@@ -1497,7 +1497,7 @@ jobs:
 ### Minimum Production Setup
 
 **For Small Production (100-1000 users):**
-```
+```yaml
 Server:
   CPU: 16 cores
   RAM: 64 GB
@@ -1517,7 +1517,7 @@ Components:
 ### Recommended Production Setup
 
 **For Medium Production (1000-10000 users):**
-```
+```text
 Servers:
   API Server:
     CPU: 32 cores
@@ -1543,7 +1543,7 @@ Network:
 ### Enterprise Production Setup
 
 **For Large Production (10000+ users):**
-```
+```text
 Load Balancers:
   2x Nginx (HA setup)
 
@@ -1604,7 +1604,7 @@ Monitoring:
 
 ### ROI Calculator
 
-```
+```yaml
 Scenario: Customer Support Chatbot
 
 Costs:

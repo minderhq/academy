@@ -73,7 +73,7 @@ After completing this document, you will:
 ## 2. GGUF File Format
 
 ### Structure
-```
+```text
 GGUF File Structure:
 ┌─────────────────────────────────────────────┐
 │  General Header (Magic + Version)           │
@@ -136,7 +136,7 @@ GGUF_FORMATS = {
 ```
 
 ### VRAM Requirements (7B Model)
-```
+```text
 Quantization    VRAM Usage    Quality (Perplexity)
 ───────────────────────────────────────────────────
 Q4_0           ~4.5 GB       Baseline

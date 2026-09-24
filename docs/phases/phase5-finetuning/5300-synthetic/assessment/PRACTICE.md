@@ -348,7 +348,7 @@ with open("code_text_pairs.json", "w") as f:
 print(f"\nGenerated {len(pairs)} code-text pairs")
 print(f"Sample:")
 print(json.dumps(pairs[0], indent=2))
-```
+```python
 
 ### Exercise 6: Quality Filtering
 

@@ -36,7 +36,7 @@ AI agents need persistent memory across sessions to maintain context, learn from
 
 ### 1.1 Types of Memory
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────┐
 │                    AGENT MEMORY SYSTEM                       │
 ├─────────────────────────────────────────────────────────────┤

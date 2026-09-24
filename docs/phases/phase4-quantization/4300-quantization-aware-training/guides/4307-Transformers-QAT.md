@@ -6,7 +6,7 @@ HuggingFace Transformers provides built-in support for QAT through the `bitsandb
 
 ## HuggingFace QAT Tools
 
-```
+```text
 Transformers QAT Ecosystem
 ├── bitsandbytes      # NF4, INT8 quantization
 ├── optimum           # ONNX, Habana quantization

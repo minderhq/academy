@@ -20,7 +20,7 @@ Applying QAT to transformer models requires special handling for attention mecha
 
 ## Transformer Components to Quantize
 
-```
+```text
 Transformer Block
 ├── Self-Attention
 │   ├── Q projection (Linear)      ← Quantize

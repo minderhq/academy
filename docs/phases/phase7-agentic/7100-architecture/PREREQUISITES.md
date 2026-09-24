@@ -30,12 +30,12 @@
 ### What is an AI Agent?
 
 **Traditional LLM:**
-```
+```text
 User → LLM → Response
 ```
 
 **AI Agent:**
-```
+```text
 User → Agent → Plan → Tools → Execute → Observe → Agent → Response
                    ↑___________________________|
                         ReAct Loop
@@ -43,7 +43,7 @@ User → Agent → Plan → Tools → Execute → Observe → Agent → Response
 
 ### ReAct Pattern
 
-```
+```text
 Reason: I need to answer a question
 Act: Call a tool to get information
 Observe: What did the tool return?

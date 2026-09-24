@@ -6,7 +6,7 @@ A safe Python interpreter enables agents to execute code in a sandboxed environm
 ## Sandbox Architecture
 
 ### Why Sandboxing?
-```
+```text
 Agent-generated code risks:
   - Infinite loops
   - Excessive resource usage

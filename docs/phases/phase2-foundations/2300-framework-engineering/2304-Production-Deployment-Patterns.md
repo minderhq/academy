@@ -38,7 +38,7 @@ Deploying ML systems to production requires careful planning to ensure zero down
 
 ### Concept
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────┐
 │                                                             │
 │  BLUE (Current Version)        GREEN (New Version)          │
@@ -276,7 +276,7 @@ echo "GREEN (new) is now active"
 
 ### Concept
 
-```
+```text
 Load Balancer
     ↓
     ├─→ 90% → BLUE (Current)  ← Production traffic
@@ -492,7 +492,7 @@ async def metrics():
 
 Update instances one by one (or in small groups), ensuring some instances are always running.
 
-```
+```text
 Before:  [v1.0] [v1.0] [v1.0] [v1.0]
 Update 1: [v2.0] [v1.0] [v1.0] [v1.0]  ← Update instance 1
 Update 2: [v2.0] [v2.0] [v1.0] [v1.0]  ← Update instance 2
@@ -624,7 +624,7 @@ echo "Rolling update complete!"
 
 Compare model versions in production to determine which performs better.
 
-```
+```text
 Model A (Control)     Model B (Treatment)
     │                      │
     ├─→ 50% traffic        ├─→ 50% traffic

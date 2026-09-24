@@ -14,7 +14,7 @@ This module covers networking fundamentals essential for deploying and operating
 - **Large models (70B+):** 2-10 Gbps per concurrent user
 
 **Real-world example:**
-```
+```text
 Serving Llama-3-70B with 4-bit quantization:
 - Model size: ~40 GB
 - Token throughput: ~50 tokens/sec per GPU
@@ -30,7 +30,7 @@ Serving Llama-3-70B with 4-bit quantization:
 - **Standard Ethernet:** 25-100 Gbps - Suitable for small clusters
 
 **Training Bottleneck Example:**
-```
+```text
 Training a 70B model on 8 GPUs:
 - Compute time per step: 200ms
 - Gradient sync time (1Gbps): 500ms ❌ Bottleneck!
@@ -47,7 +47,7 @@ Lesson: Network speed can make training 100x slower
 - **Batch processing:** <1s acceptable
 
 **Latency Budget Example:**
-```
+```text
 Total budget: 200ms for chat response
 ├── Model inference: 100ms
 ├── Network (server → user): 30ms
@@ -67,7 +67,7 @@ Network optimization saves 60ms (30% of budget!)
 - **25Gb Ethernet:** 3.1 GB/s (between nodes)
 
 **Impact on Model Parallelism:**
-```
+```text
 Pipeline Parallelism across 2 nodes (100GbE):
 - Each forward pass: ~50ms compute + ~10ms communication
 - With slow network (1GbE): ~50ms compute + ~1000ms communication ❌
@@ -76,7 +76,7 @@ Pipeline Parallelism across 2 nodes (100GbE):
 
 ## Network Architecture Overview
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────┐
 │                        Internet (ISP)                        │
 └───────────────────────────┬─────────────────────────────────┘
@@ -114,7 +114,7 @@ Pipeline Parallelism across 2 nodes (100GbE):
 ### Real-World Case Studies
 
 **Case 1: Startup with Limited Budget**
-```
+```text
 Setup: 4x RTX 4090, 25GbE network
 Model: Llama-3-70B (4-bit quantized)
 Result: 15 tokens/sec per user, supports 50 concurrent users
@@ -122,7 +122,7 @@ Cost: $20,000 (hardware) + $500/month (internet)
 ```
 
 **Case 2: Production System**
-```
+```text
 Setup: 8x H100, InfiniBand NDR400
 Model: Custom 175B model
 Result: 200 tokens/sec per user, supports 10,000 concurrent users
@@ -134,7 +134,7 @@ Cost: $2,000,000 (hardware) + $50,000/month (dedicated line)
 ### Step 1: Assess Your Requirements
 
 **For Home Lab / Learning:**
-```
+```text
 Budget: $500 - $2,000
 Network: 1-10 Gbps
 Use Case: Learning, small model inference (≤7B)
@@ -142,7 +142,7 @@ Recommended: 1 Gbps fiber + consumer router
 ```
 
 **For Startup / Production:**
-```
+```text
 Budget: $5,000 - $50,000
 Network: 10-25 Gbps
 Use Case: Model serving, training medium models (≤34B)
@@ -150,7 +150,7 @@ Recommended: 10 Gbps fiber + enterprise switch + dedicated firewall
 ```
 
 **For Enterprise / Research:**
-```
+```text
 Budget: $100,000+
 Network: 100 Gbps+ with InfiniBand
 Use Case: Training large models (70B+), production serving
@@ -229,7 +229,7 @@ See [PREREQUISITES.md](./PREREQUISITES.md) for detailed requirements.
 ### ❌ Pitfall 1: Neglecting Upload Speed
 
 **Problem:**
-```
+```text
 Most ISPs advertise: "1 Gbps download!"
 Actual: 1 Gbps down / 50 Mbps up ❌
 
@@ -247,7 +247,7 @@ Impact on LLMs:
 ### ❌ Pitfall 2: WiFi vs Wired
 
 **Problem:**
-```
+```text
 WiFi 6E theoretical: 9.6 Gbps
 WiFi 6E actual (5ft away): 2 Gbps
 WiFi 6E actual (50ft away): 200 Mbps
@@ -265,7 +265,7 @@ Impact: Inconsistent latency, packet loss, interference
 ### ❌ Pitfall 3: Wrong MTU Configuration
 
 **Problem:**
-```
+```text
 Default MTU: 1500 bytes
 Jumbo frames: 9000 bytes
 Benefit: 6x fewer packets, less overhead
@@ -349,7 +349,7 @@ Step 3: Network Monitoring
 ### Problem 1: Slow Model Downloads
 
 **Symptoms:**
-```
+```text
 Expected: 1 Gbps download
 Actual: 100 Mbps download
 
@@ -379,7 +379,7 @@ cat /proc/sys/net/ipv4/tcp_available_congestion_control
 ### Problem 2: High Training Latency
 
 **Symptoms:**
-```
+```text
 Expected training speed: 50 steps/sec
 Actual training speed: 5 steps/sec ❌
 
@@ -409,7 +409,7 @@ export NCCL_IB_TIMEOUT=22
 ### Problem 3: Inference Timeout Errors
 
 **Symptoms:**
-```
+```text
 Error: "ReadTimeoutError: HTTPConnectionPool: Read timed out"
 Frequency: Random, mostly under load
 ```

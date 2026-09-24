@@ -510,7 +510,7 @@ Optional deep-dive: one person's full home-lab build (NUC 12th Gen, RTX 2080 Ti
 
 ## Statistics
 
-```
+```text
 Total markdown files: 463
 Phases: 7
 Learning modules: 33

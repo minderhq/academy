@@ -511,7 +511,7 @@ nvidia_gpu_power_usage_milliwatts{gpu="0"} / 1000
 3. Add panels with these queries:
 
 **Panel 1: GPU Utilization**
-```
+```text
 Query: rate(nvidia_gpu_utilization_gpu0[5m]) * 100
 Type: Time series
 Title: GPU Utilization %
@@ -519,7 +519,7 @@ Unit: Percent (0-100)
 ```
 
 **Panel 2: GPU Memory**
-```
+```text
 Query: nvidia_gpu_memory_used_bytes{gpu="0"} / 1024 / 1024 / 1024
 Type: Time series
 Title: GPU Memory (GB)
@@ -527,7 +527,7 @@ Unit: Data (IEC)
 ```
 
 **Panel 3: GPU Temperature**
-```
+```text
 Query: nvidia_gpu_temperature_celsius_gpu{gpu="0"}
 Type: Stat
 Title: Current Temperature

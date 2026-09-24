@@ -9,7 +9,7 @@ This module covers production LLMOps practices and model serving infrastructure 
 ### 1. Production Readiness: Deploy Models Reliably at Scale
 
 **Development vs Production:**
-```
+```text
 Development (your laptop):
 ├── Single user (you) ✅
 ├── Model loads in 30 seconds ✅
@@ -58,7 +58,7 @@ LLMOps approach:
 | **vLLM** | 250 | 30ms | 100ms |
 
 **Key Insight:**
-```
+```text
 Same GPU, same model:
 - Basic Python: 10 tokens/sec ❌
 - vLLM: 250 tokens/sec ✅
@@ -148,7 +148,7 @@ Savings: 52%!
 
 ## LLMOps Architecture
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────┐
 │                        Load Balancer                        │
 │                   (ALB / NGINX / Envoy)                    │
@@ -464,7 +464,7 @@ panels:
 ### ❌ Pitfall 1: Cold Starts
 
 **Problem:**
-```
+```text
 First request: 30 seconds (model loading) ❌
 Subsequent: 100ms ✅
 
@@ -490,7 +490,7 @@ curl -X POST http://localhost:8000/generate \
 ### ❌ Pitfall 2: Memory Fragmentation
 
 **Problem:**
-```
+```text
 After 1000 requests:
 - GPU memory: 95% used
 - Available: 5% (fragmented)
@@ -513,7 +513,7 @@ python -m vllm.entrypoints.api_server \
 ### ❌ Pitfall 3: No Rate Limiting
 
 **Problem:**
-```
+```text
 Normal load: 100 requests/sec ✅
 Attack/Bot: 10,000 requests/sec ❌
 Result: All users affected
@@ -539,7 +539,7 @@ async def generate(request: Request, prompt: str):
 ### ❌ Pitfall 4: Missing Observability
 
 **Problem:**
-```
+```text
 User: "It's slow"
 You: "Let me check... I have no metrics" ❌
 ```
@@ -567,7 +567,7 @@ Recommended:
 ### 1. Deployment Strategies
 
 **Blue-Green Deployment:**
-```
+```text
 Step 1: Deploy new version to "green"
   - Current traffic: blue (v1.0)
   - New deployment: green (v1.1)

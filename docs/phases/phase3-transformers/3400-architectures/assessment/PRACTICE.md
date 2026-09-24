@@ -595,7 +595,7 @@ print(f"Rotated shape: {x_rotated.shape}")
 
 ## Summary: Architecture Selection Guide
 
-```
+```text
 TASK → ARCHITECTURE RECOMMENDATIONS:
 
 Text Classification:

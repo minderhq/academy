@@ -22,7 +22,7 @@ Fake quantization is the core mechanism of QAT. It simulates quantization during
 
 **Problem:** Rounding operations are not differentiable (gradient is zero everywhere).
 
-```
+```text
       ┌─────┐
 x ───>│round│───> round(x)      Gradient = 0 almost everywhere
       └─────┘
@@ -30,7 +30,7 @@ x ───>│round│───> round(x)      Gradient = 0 almost everywhere
 
 **Solution:** Straight-Through Estimator (STE) pretends rounding didn't happen.
 
-```
+```text
 Forward:  round(x)     Actual computation
 Backward: x            Pretend identity function
 ```
@@ -41,7 +41,7 @@ Backward: x            Pretend identity function
 
 The STE approximates the gradient of the rounding function:
 
-```
+```text
 ∂round(x) / ∂x ≈ 1  (when x is in reasonable range)
 ```
 

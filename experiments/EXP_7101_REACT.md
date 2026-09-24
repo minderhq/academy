@@ -27,7 +27,7 @@ ReAct combines **Reasoning** (thinking) with **Acting** (tool use) in an iterati
 
 ### The ReAct Loop
 
-```
+```text
 1. Thought → What should I do?
 2. Action → Execute a tool/operation
 3. Observation → What happened?

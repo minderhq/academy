@@ -46,7 +46,7 @@ This guide bridges the gap between "completed AI Engineering Curriculum" and "hi
 ### 1.2 What Companies Actually Hire For
 
 #### Startup AI Engineer (<50 employees)
-```
+```text
 Must do:
   - Build RAG systems from scratch
   - Fine-tune models for specific use cases
@@ -63,7 +63,7 @@ Skills from ai-engineering-curriculum:
 ```
 
 #### Enterprise AI Engineer (500+ employees)
-```
+```text
 Must do:
   - Integrate with existing systems
   - Follow security/compliance protocols
@@ -79,7 +79,7 @@ Skills from ai-engineering-curriculum:
 ```
 
 #### AI Research Engineer (1000+ employees or AI lab)
-```
+```text
 Must do:
   - Implement recent papers
   - Run experiments and analyze results
@@ -228,7 +228,7 @@ Use the **XYZ formula**:
 ### 3.3 Skills Section - Be Specific
 
 **Bad:**
-```
+```yaml
 Skills:
 - Python
 - Machine Learning
@@ -237,7 +237,7 @@ Skills:
 ```
 
 **Good:**
-```
+```text
 Skills:
 LLMs & Transformers: PyTorch, Hugging Face, LoRA, QLoRA, vLLM, Ollama
 RAG & Vector Search: Qdrant, Chroma, LangChain, LlamaIndex, Re-ranking

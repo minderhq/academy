@@ -20,7 +20,7 @@ Semantic similarity metrics quantify how similar two embeddings are. Different m
 ## Distance vs Similarity
 
 ### Key Distinction
-```
+```text
 Distance: Lower = more similar
   - Euclidean distance
   - Manhattan distance
@@ -35,7 +35,7 @@ Conversion: similarity = 1 / (1 + distance)
 ```
 
 ### Normalized vs Non-Normalized Embeddings
-```
+```text
 Normalized embeddings (unit length):
   - All embeddings have ||v|| = 1
   - Cosine similarity = dot product
@@ -90,7 +90,7 @@ print(cosine_similarity(v1, v2))  # 1.0 (perfect similarity)
 ```
 
 ### When to Use Cosine Similarity
-```
+```text
 Use Cosine Similarity when:
 ✓ Comparing semantic similarity
 ✓ Magnitude doesn't matter (direction only)
@@ -157,7 +157,7 @@ def scaled_dot_product_attention(Q, K, V):
 ```
 
 ### Cosine vs Dot Product
-```
+```text
 Normalized vectors:
   Cosine similarity = Dot product similarity
   (Both measure angular similarity)
@@ -211,7 +211,7 @@ def cosine_to_euclidean_distance(cosine_sim, norm_a, norm_b):
 ```
 
 ### When to Use Euclidean Distance
-```
+```text
 Use Euclidean Distance when:
 ✓ Physical distance interpretation needed
 ✓ Clustering (k-means uses Euclidean)
@@ -248,7 +248,7 @@ manhattan = manhattan_distance(start, end)  # 7.0 (city blocks)
 ```
 
 ### When to Use Manhattan Distance
-```
+```text
 Use Manhattan Distance when:
 ✓ Grid-based pathfinding
 ✓ Robustness to outliers needed (L1 vs L2)

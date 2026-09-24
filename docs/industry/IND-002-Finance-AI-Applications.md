@@ -21,7 +21,7 @@
 
 ### Why AI in Finance
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────┐
 │                     Finance Challenges                            │
 ├─────────────────────────────────────────────────────────────────┤
@@ -51,7 +51,7 @@
 
 ### AI Solutions for Finance
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────┐
 │                    AI Engineering Curriculum                    │
 ├─────────────────────────────────────────────────────────────────┤
@@ -232,7 +232,7 @@ class FinancialDocumentSearch:
 
 **Real-World Example:**
 
-```
+```yaml
 QUERY: "What are the key revenue growth drivers and risks for AAPL?"
 
 ANALYSIS:
@@ -409,7 +409,7 @@ class FraudDetectionSystem:
 
 **Real-World Example:**
 
-```
+```yaml
 TRANSACTION:
 {
     "id": "TXN-2024-01345678",
@@ -550,7 +550,7 @@ class FinancialReportGenerator:
 
 **Real-World Output:**
 
-```
+```yaml
 INPUT:
 {
     "report_type": "earnings_release",
@@ -728,7 +728,7 @@ class ComplianceChecker:
 
 **Real-World Example:**
 
-```
+```yaml
 FEATURE TO CHECK:
 {
     "name": "Facial Recognition for Authentication",

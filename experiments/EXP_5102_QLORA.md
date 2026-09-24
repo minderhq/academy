@@ -24,7 +24,7 @@
 
 ## Infrastructure Used
 
-```
+```text
 GPU: 11GB VRAM GPU
 Memory: 32GB RAM
 Storage: NFS for model storage

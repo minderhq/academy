@@ -30,7 +30,7 @@ Adversarial attacks attempt to fool AI systems through carefully crafted inputs.
 
 ## Adversarial Attack Types
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                   Adversarial Attack Taxonomy                           │
 ├─────────────────────────────────────────────────────────────────────────┤

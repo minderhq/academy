@@ -20,7 +20,7 @@ Re-ranking improves retrieval quality by taking an initial set of documents and 
 ## The RAG Pipeline
 
 ### Standard Pipeline
-```
+```text
 Query → Retriever → Reranker → Generator
          (Fast)      (Slow)      (Slow)
 

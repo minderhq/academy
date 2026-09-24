@@ -30,7 +30,7 @@ Continuous Integration and Continuous Deployment (CI/CD) pipeline specifically d
 
 ## CI/CD Pipeline Architecture
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                    ML CI/CD Pipeline Architecture                        │
 ├─────────────────────────────────────────────────────────────────────────┤

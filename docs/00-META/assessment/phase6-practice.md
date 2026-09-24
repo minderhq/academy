@@ -98,7 +98,7 @@ Implement BM25 (Best Matching 25) ranking algorithm for keyword search.
    - Configurable parameters (k1, b)
 
 2. Use the following BM25 formula:
-   ```
+   ```text
    score(D,Q) = Σ IDF(qi) × (f(qi,D) × (k1 + 1)) /
                          (f(qi,D) + k1 × (1 - b + b × |D| / avgdl))
    ```
@@ -179,7 +179,7 @@ Implement a hybrid search system combining vector and keyword search using Recip
    - RRF fusion algorithm
 
 2. RRF formula:
-   ```
+   ```text
    fused_score(d) = Σ 1 / (k + rank_i(d))
    ```
    Where k=60 (default) and rank_i is rank in result list i

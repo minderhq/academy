@@ -621,7 +621,7 @@ watch -n 1 nvidia-smi
 
 ### Expected output:
 
-```
+```text
 Loading model and tokenizer...
 Preparing model for LoRA...
 trainable params: 6,553,600 || all params: 7,242,739,712 || trainable%: 0.0905
@@ -1027,7 +1027,7 @@ python ~/lab-003-lora/chatbot.py
 
 ## 🎓 Lab Completion Checklist
 
-```
+```text
 [ ] Exercise 1: LoRA Theory and Setup
 [ ] Exercise 2: Dataset Preparation
 [ ] Exercise 3: QLoRA Fine-Tuning Setup

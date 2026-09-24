@@ -53,7 +53,7 @@ After completing this module, you will be able to:
 
 ## Learning Path
 
-```
+```text
 START
   ↓
 [PREREQUISITES.md] (30 min)
@@ -147,7 +147,7 @@ Test your knowledge:
 
 You will have built:
 
-```
+```text
 Your Mini Framework
 ├── Model Abstraction
 │   ├── BaseModel interface

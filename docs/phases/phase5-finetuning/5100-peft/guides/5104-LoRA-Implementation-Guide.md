@@ -7,7 +7,7 @@ Complete implementation guide for LoRA (Low-Rank Adaptation) fine-tuning on an 1
 
 ### Understanding LoRA
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                        STANDARD LINEAR LAYER                            │
 ├─────────────────────────────────────────────────────────────────────────┤
@@ -43,13 +43,13 @@ Complete implementation guide for LoRA (Low-Rank Adaptation) fine-tuning on an 1
 ### Mathematical Foundation
 
 **Standard Linear Layer:**
-```
+```text
 h = Wx
 where W ∈ R^(d×d)
 ```
 
 **LoRA Layer:**
-```
+```yaml
 h = Wx + ΔWx = Wx + BAx
 where:
   - W ∈ R^(d×d) (frozen pre-trained weights)

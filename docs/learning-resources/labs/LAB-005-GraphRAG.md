@@ -39,21 +39,21 @@ mkdir -p scripts
 ### Task: Learn the difference between Vector RAG and GraphRAG
 
 **Vector RAG (What you did in LAB 002):**
-```
+```text
 Query → Embed → Search Vector DB → Retrieve → Generate
 ```
 - Good for: Semantic similarity
 - Limitation: Misses relationships between entities
 
 **GraphRAG (This lab):**
-```
+```text
 Query → Extract Entities → Traverse Graph → Retrieve Context → Generate
 ```
 - Good for: Multi-hop reasoning, entity relationships
 - Limitation: More complex setup
 
 **Hybrid RAG (Best of both):**
-```
+```text
 Query → Vector Search + Graph Traversal → Combine Results → Generate
 ```
 
@@ -64,7 +64,7 @@ Query → Vector Search + Graph Traversal → Combine Results → Generate
 **Vector RAG:** Might retrieve documents about Tesla and CEOs, but may miss the specific connection.
 
 **GraphRAG:** Can traverse:
-```
+```text
 Tesla --[CEO]--> Elon Musk --[Founded]--> SpaceX
 ```
 
@@ -906,7 +906,7 @@ for test in complex_questions:
 
 ## 🎓 Lab Completion Checklist
 
-```
+```text
 [ ] Exercise 1: Understanding GraphRAG
 [ ] Exercise 2: Deploy Neo4j
 [ ] Exercise 3: Build Knowledge Graph

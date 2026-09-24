@@ -20,7 +20,7 @@ Speculative decoding uses a smaller "draft" model to predict tokens that a large
 ## The Intuition
 
 ### Standard Decoding
-```
+```text
 For each token:
   1. Run full model (expensive!)
   2. Sample token
@@ -30,7 +30,7 @@ Bottleneck: Full model for EVERY token
 ```
 
 ### Speculative Decoding
-```
+```text
 1. Draft model (small, fast) predicts N tokens
 2. Target model (large, accurate) verifies all N at once
 3. Accept tokens that match
@@ -165,7 +165,7 @@ def speculative_sampling(
 ## Draft Model Selection
 
 ### Model Size Comparison
-```
+```yaml
 Target Model: Llama-2-70B
 Draft Options:
   - TinyLlama-1B    (50x smaller, ~30x faster)
@@ -224,7 +224,7 @@ def train_draft_model(
 ## Performance Analysis
 
 ### Theoretical Speedup
-```
+```text
 Speedup = 1 / (P_accept × T_draft + (1 - P_accept) × T_target)
 
 Where:

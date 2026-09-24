@@ -24,7 +24,7 @@
 
 ## Infrastructure Used
 
-```
+```text
 Vector DB: Qdrant
 Reranker: Cross-Encoder (ms-marco-MiniLM-L-6-v2)
 Dataset: MS MARCO passages

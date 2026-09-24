@@ -30,7 +30,7 @@ Model drift occurs when model performance degrades over time due to changes in d
 
 ## Types of Drift
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                      Model Drift Types                                   │
 ├─────────────────────────────────────────────────────────────────────────┤

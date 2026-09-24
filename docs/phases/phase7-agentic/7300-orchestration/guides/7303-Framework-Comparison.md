@@ -21,7 +21,7 @@ Comprehensive comparison of multi-agent frameworks for building autonomous AI sy
 ## AutoGen (Microsoft)
 
 ### Architecture
-```
+```text
 ┌─────────────────────────────────────────────────────────────┐
 │                    AutoAgent (User Proxy)                    │
 │                                                              │
@@ -104,7 +104,7 @@ user_proxy.initiate_chat(
 ## LangGraph (LangChain)
 
 ### Architecture
-```
+```text
 ┌─────────────────────────────────────────────────────────────┐
 │                      Workflow Graph                          │
 │                                                              │
@@ -209,7 +209,7 @@ result = app.invoke({
 ## CrewAI
 
 ### Architecture
-```
+```text
 ┌─────────────────────────────────────────────────────────────┐
 │                        Crew                                 │
 │                                                              │

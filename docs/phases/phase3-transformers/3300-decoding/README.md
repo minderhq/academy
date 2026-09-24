@@ -40,7 +40,7 @@ After completing this module, you will:
 
 ### The Transformer Feed-Forward Block
 
-```
+```text
 Input (from attention)
     ↓
 LayerNorm
@@ -75,7 +75,7 @@ Output
 
 ### The Problem with ReLU
 
-```
+```text
 ReLU(x) = max(0, x)
 
 Issues:
@@ -86,7 +86,7 @@ Issues:
 
 ### GELU: Smooth Approximation
 
-```
+```yaml
 GELU(x) = x * Φ(x)
          ≈ 0.5 * x * (1 + tanh(√(2/π) * (x + 0.044715x³)))
 
@@ -101,7 +101,7 @@ Advantages:
 
 ### SwiGLU: Gated Linear Units
 
-```
+```yaml
 SwiGLU(x) = Swish(xW) ⊗ (xV)
           = (xW * σ(xW)) ⊗ (xV)
 
@@ -120,7 +120,7 @@ Advantages:
 
 ### The Normalization Problem
 
-```
+```text
 Without normalization:
 - Gradients can explode/vanish
 - Training becomes unstable
@@ -153,7 +153,7 @@ RMS(x) = √(mean(x²) + ε)
 
 ### GPT-2 Style
 
-```
+```text
 x = x + MultiHeadAttention(LayerNorm(x))
 x = x + FFN(LayerNorm(x))
 
@@ -163,7 +163,7 @@ Normalization: LayerNorm (post-norm)
 
 ### LLaMA Style
 
-```
+```text
 x = x + RMSNorm(FFN(RMSNorm(Attention(x))))
     (Pre-norm architecture)
 

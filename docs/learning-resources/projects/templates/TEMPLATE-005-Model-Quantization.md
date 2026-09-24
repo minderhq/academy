@@ -4,7 +4,7 @@ Quantize LLMs for efficient deployment.
 
 ## Project Structure
 
-```
+```text
 quantization-project/
 ├── README.md
 ├── requirements.txt

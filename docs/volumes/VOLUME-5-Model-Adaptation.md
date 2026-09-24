@@ -562,7 +562,7 @@ Use this checklist to track your progress:
 
 ### LoRA vs Full Fine-Tuning
 
-```
+```text
 Full Fine-Tuning:
 - Update all 7B parameters
 - Memory: ~28GB (FP32)
@@ -584,7 +584,7 @@ Choose LoRA for:
 
 ### QLoRA Memory Savings
 
-```
+```text
 FP16 Training:
 - Model: ~14GB (7B params × 2 bytes)
 - Gradients: ~14GB
@@ -602,7 +602,7 @@ QLoRA (4-bit):
 
 ### Alignment Pipeline
 
-```
+```text
 1. Pre-training (Base Model)
    ↓
 2. SFT (Instruction Following)

@@ -20,7 +20,7 @@ Dynamic storage provisioning enables automatic creation of persistent volumes on
 ## Storage Architecture
 
 ### Storage Hierarchy
-```
+```text
 ┌─────────────────────────────────────────────────────────┐
 │                    K3s Storage Layer                    │
 ├─────────────────────────────────────────────────────────┤
@@ -283,7 +283,7 @@ mountOptions:
 ```
 
 ### Filesystem Considerations
-```
+```text
 The NFS server's local filesystem affects behavior; any of these work:
 
 ext4 / xfs : Simple, fast, boring (recommended default)
@@ -352,7 +352,7 @@ rate(node_disk_io_time_seconds_total[5m])
 ## Best Practices
 
 ### 1. Use ReadWriteMany When Possible
-```
+```text
 Multiple pods can access the same PVC
 Essential for:
 - Model serving (all pods read same weights)
@@ -360,7 +360,7 @@ Essential for:
 ```
 
 ### 2. Separate Hot and Cold Data
-```
+```text
 Hot data (models, active datasets):  Use fast class with SSD cache
 Cold data (archives, logs):          Use standard class
 ```

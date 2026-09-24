@@ -350,7 +350,7 @@ CMD ["uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8000"]
 
 ### Calculate Your Score
 
-```
+```text
 Multiple Choice: 15 questions × 1 point = 15 points
 Coding Questions: 5 questions × 1 point = 5 points
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

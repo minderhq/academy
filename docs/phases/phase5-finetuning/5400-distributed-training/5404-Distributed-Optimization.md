@@ -188,7 +188,7 @@ class CompressedGradientOptimizer:
                     p.grad = decompressed
 
         self.optimizer.step()
-```
+```python
 
 ## Communication Backend
 

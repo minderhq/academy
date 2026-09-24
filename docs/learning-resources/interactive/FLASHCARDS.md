@@ -246,7 +246,7 @@ visualize_attention(attn_weights, tokens)
 ```
 
 🎨 **Challenge:** Try different colormaps (viridis, plasma, inferno)
-```
+```text
 
 ## Comparison Tables
 

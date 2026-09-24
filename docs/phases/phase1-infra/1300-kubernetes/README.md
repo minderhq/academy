@@ -9,7 +9,7 @@ This module covers Kubernetes deployment patterns for running LLM inference and 
 ### 1. Scalability: Auto-Scale Based on Demand
 
 **Manual Scaling Problem:**
-```
+```text
 Without Kubernetes:
 ├── Monitor load manually ❌
 ├── SSH into servers to add replicas ❌
@@ -48,7 +48,7 @@ Kubernetes approach:
 ### 2. High Availability: Built-in Redundancy
 
 **Without Kubernetes:**
-```
+```text
 Server dies:
 ├── Service goes down ❌
 ├── Users see errors ❌
@@ -57,7 +57,7 @@ Server dies:
 ```
 
 **With Kubernetes:**
-```
+```text
 Node dies:
 ├── Kubernetes detects failure (<5 seconds)
 ├── Reschedules pods to healthy nodes
@@ -75,7 +75,7 @@ Example deployment:
 ### 3. Resource Management: Efficient GPU Allocation
 
 **Problem: GPUs are Expensive**
-```
+```text
 Scenario: 4 GPUs, 3 models
 
 Without Kubernetes (static allocation):
@@ -87,7 +87,7 @@ Without Kubernetes (static allocation):
 ```
 
 **With Kubernetes (dynamic allocation):**
-```
+```text
 Kubernetes monitors GPU utilization
 Automatically consolidates workloads:
 ├── GPU 0: Llama-3-70B + Whisper (50% utilization)
@@ -100,7 +100,7 @@ Automatically consolidates workloads:
 ### 4. Multi-Model Serving: Run Multiple Models Simultaneously
 
 **Architecture:**
-```
+```text
                     Internet
                        │
                   ┌────▼────┐
@@ -131,7 +131,7 @@ Automatically consolidates workloads:
 
 ## Kubernetes Architecture for LLMs
 
-```
+```text
 ┌──────────────────────────────────────────────────────────────┐
 │                         Load Balancer                        │
 │                  (Cloud: ALB / On-prem: Nginx)               │
@@ -513,7 +513,7 @@ kubectl get pods
 ### ❌ Pitfall 1: GPU Resource Not Requested
 
 **Problem:**
-```
+```yaml
 Symptoms:
 - Pod pending with "Insufficient nvidia.com/gpu"
 - Scheduler can't place pod
@@ -544,7 +544,7 @@ resources:
 ### ❌ Pitfall 2: Model Not in Image
 
 **Problem:**
-```
+```yaml
 Symptoms:
 - Pod takes forever to start
 - High bandwidth usage on deployment
@@ -583,7 +583,7 @@ initContainers:
 ### ❌ Pitfall 3: Memory Limits Too Low
 
 **Problem:**
-```
+```yaml
 Symptoms:
 - Pod OOMKilled
 - Inference fails mid-generation
@@ -617,7 +617,7 @@ resources:
 ### ❌ Pitfall 4: Wrong Storage Class
 
 **Problem:**
-```
+```yaml
 Symptoms:
 - Slow inference (waiting for model loading)
 - Pods timeout on PVC mount

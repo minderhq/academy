@@ -157,7 +157,7 @@ tool_schema = {
 
 ## Tool Calling Flow
 
-```
+```text
 User Query
     ↓
 Agent Thought

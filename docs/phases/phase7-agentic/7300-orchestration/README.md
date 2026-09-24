@@ -38,7 +38,7 @@ After completing this module, you will:
 
 ### What is Multi-Agent Orchestration?
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────┐
 │                  Multi-Agent Orchestration                   │
 ├─────────────────────────────────────────────────────────────┤
@@ -76,7 +76,7 @@ After completing this module, you will:
 
 ### Structure
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────┐
 │                     Hierarchical Pattern                     │
 ├─────────────────────────────────────────────────────────────┤
@@ -171,7 +171,7 @@ workflow.add_edge("review", END)
 
 ### Structure
 
-```
+```text
 Task → Agent 1 → Result 1 → Agent 2 → Result 2 → Agent 3 → Final Result
 ```
 
@@ -200,7 +200,7 @@ class SequentialWorkflow:
 
 ### Structure
 
-```
+```text
                     User Request
                          │
                     ┌────┴────┐

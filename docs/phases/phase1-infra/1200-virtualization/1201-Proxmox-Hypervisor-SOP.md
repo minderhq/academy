@@ -105,7 +105,7 @@ lscpu -p=CPU,CORE,SOCKET
 ```
 
 ### CPU Pinning Strategy
-```
+```text
 VM 101 (K3s Master):  cores 0-3 (4 vCPU)
 VM 102 (K3s Worker):  cores 4-7 (4 vCPU)
 Host:                 all remaining cores
@@ -154,7 +154,7 @@ cat /proc/meminfo | grep Huge
 ## Storage Configuration
 
 ### ZFS Dataset Layout
-```
+```text
 rpool (ROOT)
 ├── rpool/ROOT (System)
 ├── rpool/data (VM storage)
@@ -253,7 +253,7 @@ qm template 101
 ```
 
 ### Backup Retention
-```
+```text
 Daily:   Keep last 7 days
 Weekly:  Keep last 4 weeks
 Monthly: Keep last 3 months

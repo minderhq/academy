@@ -111,7 +111,7 @@ optimizer = Adafactor(
 
 ## Choosing an Optimizer
 
-```
+```text
 Model Size < 1B:
 └─ Use AdamW (simple, effective)
 

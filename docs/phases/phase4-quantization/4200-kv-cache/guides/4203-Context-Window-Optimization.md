@@ -5,7 +5,7 @@ Practical guide for optimizing context windows in transformer models on an 11GB 
 
 ## Context Window Architecture
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                    CONTEXT WINDOW MEMORY ANALYSIS                       │
 ├─────────────────────────────────────────────────────────────────────────┤

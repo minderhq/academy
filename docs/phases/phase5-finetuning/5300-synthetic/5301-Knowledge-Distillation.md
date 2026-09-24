@@ -20,7 +20,7 @@ Knowledge distillation transfers knowledge from a large "teacher" model to a sma
 ## Distillation Concepts
 
 ### Hard vs Soft Labels
-```
+```text
 Hard Labels (Standard training):
   - One-hot encoded: [0, 0, 1, 0, 0]
   - Only correct class has probability
@@ -39,7 +39,7 @@ Example: "Cat" vs "Dog" classification
 ```
 
 ### Temperature Scaling
-```
+```text
 Softmax with temperature T:
 
 softmax_T(x_i) = exp(x_i / T) / Σ exp(x_j / T)
@@ -410,7 +410,7 @@ metrics = {
 ## Practical Tips
 
 ### Temperature Selection
-```
+```text
 Temperature effects:
   T = 1: Minimal softening (close to hard labels)
   T = 3-5: Moderate softening (recommended)
@@ -422,7 +422,7 @@ Rule of thumb: Start with T = 3-5
 ```
 
 ### Alpha (Loss Weight)
-```
+```text
 Alpha effects:
   α = 0: Only hard labels (no distillation)
   α = 0.3: Mostly hard labels, some distillation

@@ -42,7 +42,7 @@ pytest tests/ -n auto
 
 ## Test Structure
 
-```
+```text
 tests/
 ├── README.md                    # This file
 ├── conftest.py                  # Shared fixtures

@@ -4,7 +4,7 @@ Comprehensive evaluation framework for LLMs.
 
 ## Project Structure
 
-```
+```text
 llm-evaluation-benchmark/
 ├── README.md
 ├── requirements.txt

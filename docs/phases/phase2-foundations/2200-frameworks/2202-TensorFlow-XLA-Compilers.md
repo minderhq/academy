@@ -20,7 +20,7 @@ XLA (Accelerated Linear Algebra) is a compiler-based linear algebra executor tha
 ## What is XLA?
 
 ### XLA Compilation Pipeline
-```
+```text
 ┌─────────────────────────────────────────────────────────┐
 │                    TensorFlow Graph                      │
 │  (High-level ops: MatMul, Add, ReLU, ...)               │
@@ -45,7 +45,7 @@ XLA (Accelerated Linear Algebra) is a compiler-based linear algebra executor tha
 ```
 
 ### Key Benefits
-```
+```text
 1. Operation Fusion: Combine multiple ops into single kernel
 2. Memory Optimization: Reduce memory bandwidth usage
 3. Specialization: Compile for specific input shapes
@@ -123,7 +123,7 @@ def with_xla(x):
 ```
 
 ### Fusion Example Visualization
-```
+```text
 Original:
 ┌─────┐   ┌─────┐   ┌─────┐   ┌─────┐
 │  +  │ → │  *  │ → │  ^  │ → │  +  │
@@ -166,7 +166,7 @@ from tensorflow.compiler.xla import xla_data_pb2
 ```
 
 ### Manual HLO Construction
-```
+```text
 HLO: add {
   x = f32[100,100] parameter(0)
   y = f32[100,100] parameter(1)
@@ -261,7 +261,7 @@ if gpus:
 ```
 
 ### Tensor Core Utilization
-```
+```python
 XLA automatically uses Tensor Cores when:
 1. Data type is FP16 or BF16
 2. Dimensions are multiples of 8

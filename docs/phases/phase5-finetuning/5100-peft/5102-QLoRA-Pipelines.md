@@ -20,7 +20,7 @@ QLoRA (Quantized LoRA) enables fine-tuning 65B+ parameter models on a single 24G
 ## QLoRA Architecture
 
 ### Key Innovations
-```
+```text
 1. 4-bit NormalFloat (NF4) quantization
    - Optimized for normally distributed weights
    - Better than uniform quantization
@@ -38,7 +38,7 @@ Result: Fine-tune 65B on 24GB GPU
 ```
 
 ### QLoRA vs LoRA
-```
+```text
 Standard LoRA (7B model):
   Base model (fp16):  14 GB
   LoRA params:        0.02 GB

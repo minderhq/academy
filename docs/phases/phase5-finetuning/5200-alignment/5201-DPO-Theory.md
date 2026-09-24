@@ -20,7 +20,7 @@ DPO (Direct Preference Optimization) is a simpler alternative to RLHF (Reinforce
 ## The Problem with RLHF
 
 ### RLHF Pipeline
-```
+```yaml
 Traditional RLHF requires:
 1. SFT Model → Collect completions
 2. Human Labeling → Rank completions
@@ -35,7 +35,7 @@ Problems:
 ```
 
 ### RLHF Objective
-```
+```yaml
 RLHF maximizes:
 
 L(π) = E[log π(y|x) × R(x, y)] - KL(π || π_ref)
@@ -52,7 +52,7 @@ Requires separate reward model training!
 ## DPO Intuition
 
 ### Key Insight
-```
+```yaml
 DPO eliminates the reward model:
 
 RLHF: Maximize reward R(x,y) subject to KL constraint
@@ -80,7 +80,7 @@ This means: Reward = log-ratio of policy to reference!
 ```
 
 ### DPO Derivation
-```
+```text
 Given preference: (y_w preferred over y_l)
 
  Bradley-Terry model:

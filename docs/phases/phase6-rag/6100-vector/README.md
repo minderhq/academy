@@ -183,7 +183,7 @@ This module connects to:
 
 ## Embedding Workflow
 
-```
+```text
 1. Chunk Documents
    ↓
 2. Generate Embeddings (batch)

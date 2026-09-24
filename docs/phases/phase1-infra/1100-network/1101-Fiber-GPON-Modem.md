@@ -81,7 +81,7 @@ There is no single "correct" uplink. Any of the technologies below can run this 
 
 Fiber deployments such as GPON (Gigabit Passive Optical Network) are one common example. The provider terminates a shared optical signal at a passive splitter, and a small ONT box in your home converts light back to Ethernet:
 
-```
+```text
 OLT (provider equipment)
     | (fiber, up to ~20 km)
 Passive splitter (1:32 or 1:64)
@@ -107,7 +107,7 @@ The same pattern applies to every technology: a provider-owned device converts t
 
 Most ISPs ship a combined modem + router + Wi-Fi gateway. In its default **router mode**, that box performs NAT itself, and if you attach your own router behind it, packets traverse **two** NAT layers:
 
-```
+```text
 Internet --> [ISP gateway: NAT #1] --> [Your router: NAT #2] --> Lab
 ```
 
@@ -121,13 +121,13 @@ Double NAT works for outbound traffic but causes:
 
 Bridge mode disables routing/NAT on the provider box, passing the public IP straight through to your router:
 
-```
+```text
 Internet --> [ISP gateway: bridge] --> [Your router: NAT, DHCP, firewall] --> Lab
 ```
 
 Generic configuration steps (menu names vary by vendor):
 
-```
+```text
 1. Log in to the gateway admin UI (usually http://192.168.100.1 or http://192.168.1.1)
 2. Navigate to WAN / Internet / Connection settings
 3. Set operating mode: Bridge
@@ -226,7 +226,7 @@ iperf3 -c <vps-ip> -P 4 -t 30
 
 ### 5.3 Interpreting Results
 
-```
+```text
 Observed vs advertised:
   >= 90% of plan     : healthy
   60-90% of plan     : normal for shared media (cable) at peak hours
@@ -246,7 +246,7 @@ Self-hosting an OpenAI-compatible API or a Grafana dashboard is a common goal. T
 
 Forward a specific external port to an internal host:
 
-```
+```text
 WAN :8443 --> 192.168.1.50:8443   (e.g., inference API on your GPU server)
 ```
 
@@ -264,7 +264,7 @@ Instead of allowing inbound connections, establish an outbound tunnel from the l
 - **WireGuard/Tailscale to a VPS**: the VPS holds the public IP and reverse-proxies to the lab over the tunnel.
 - **Cloudflare Tunnel**: no public IP required at all; also a workaround for CGNAT.
 
-```
+```text
 [User] --> [VPS / edge] <--outbound WireGuard tunnel-- [Lab service]
 ```
 

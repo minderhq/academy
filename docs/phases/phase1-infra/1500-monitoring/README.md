@@ -9,7 +9,7 @@ This module covers monitoring and observability practices specifically for LLM s
 ### 1. Performance Tracking: Ensure Models Meet SLA Requirements
 
 **SLA Example:**
-```
+```text
 Service Level Agreement:
 - Response time (p50): <100ms
 - Response time (p95): <300ms
@@ -76,7 +76,7 @@ if accuracy_degraded(10%):
 ### 3. Resource Optimization: Monitor GPU/CPU/Memory
 
 **Why Monitor Resources:**
-```
+```text
 Scenario: Underutilized GPUs
 
 Without monitoring:
@@ -121,7 +121,7 @@ Network Metrics:
 ### 4. Debugging: Identify and Resolve Production Issues
 
 **Debugging Scenario:**
-```
+```text
 User Report: "Responses are slow"
 
 Without monitoring:
@@ -143,7 +143,7 @@ With monitoring:
 
 ## The Three Pillars of Observability
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────┐
 │                   OBSERVABILITY STACK                        │
 │                                                              │
@@ -232,7 +232,7 @@ With monitoring:
 - Distributed context
 
 **LLM Request Trace:**
-```
+```text
 Request: "What is machine learning?"
 
 Trace:
@@ -256,7 +256,7 @@ Bottleneck: Model forward pass (250ms)
 
 ## LLM Monitoring Architecture
 
-```
+```text
 ┌──────────────────────────────────────────────────────────────┐
 │                        LLM Application                        │
 │  ┌─────────────────────────────────────────────────────┐    │
@@ -522,7 +522,7 @@ route:
 ### ❌ Pitfall 1: Monitoring Everything
 
 **Problem:**
-```
+```text
 Monitoring all possible metrics:
 ├── 10,000+ metrics ❌
 ├── Alert fatigue ❌
@@ -585,7 +585,7 @@ Result:
 ### ❌ Pitfall 3: No Business Metrics
 
 **Problem:**
-```
+```text
 Monitoring only technical metrics:
 ├── GPU utilization: 80% ✅
 ├── Latency: 100ms ✅
@@ -618,7 +618,7 @@ Usage Patterns:
 ### ❌ Pitfall 4: No Historical Context
 
 **Problem:**
-```
+```yaml
 Alert: "GPU utilization is 80%"
 
 Question: Is this normal?
@@ -688,7 +688,7 @@ llm_requests_total{
 ### 3. Dashboard Design
 
 **Dashboard Hierarchy:**
-```
+```text
 1. Executive Dashboard (high-level)
    ├── Requests per day
    ├── Active users

@@ -429,7 +429,7 @@ print(f"Compression: {size_fp32 / size_int8:.2f}x")
 
 ## Summary: QAT Workflow
 
-```
+```yaml
 QUANTIZATION AWARE TRAINING STEPS:
 
 1. Model Preparation

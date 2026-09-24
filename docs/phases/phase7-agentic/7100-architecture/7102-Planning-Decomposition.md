@@ -20,7 +20,7 @@ Planning and task decomposition enable agents to break down complex tasks into m
 ## Task Decomposition
 
 ### Why Decompose?
-```
+```text
 Complex task: "Build a sentiment analysis service"
 
 Without decomposition:

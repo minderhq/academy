@@ -539,7 +539,7 @@ for i, (data, target) in enumerate(dataloader):
 ## Expected Performance
 
 ### 11GB-class GPU Single GPU
-```
+```text
 Task                     | Batch Size | Throughput | VRAM |
 -------------------------|------------|------------|------|
 Llama-2-7B QLoRA         | 2          | ~500 samples/s | ~8GB |
@@ -548,7 +548,7 @@ Mistral-7B QLoRA         | 2          | ~450 samples/s | ~8GB |
 ```
 
 ### Scaling Efficiency
-```
+```text
 Configuration   | Speedup | Efficiency |
 ----------------|---------|------------|
 1x 11GB GPU  | 1.0x    | 100%       |

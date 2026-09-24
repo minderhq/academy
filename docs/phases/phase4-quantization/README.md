@@ -29,7 +29,7 @@ This phase covers quantization techniques to run larger models on limited hardwa
 
 ### The Memory Challenge
 
-```
+```text
 Model Size Comparison (FP16):
 ┌─────────────────────────────────────────────────────────┐
 │ Model              │ Parameters │ FP16 Size │ Typical GPU │
@@ -282,7 +282,7 @@ model = quantize(
 ### ⚠️ Format Compatibility
 
 **Pitfall:** Choosing incompatible format for your hardware
-```
+```text
 ❌ EXL2 → Requires CUDA (NVIDIA only)
 ❌ GGUF Q4_K → Requires AVX2 (x86_64 only)
 ❌ AWQ → Requires GPU with tensor cores

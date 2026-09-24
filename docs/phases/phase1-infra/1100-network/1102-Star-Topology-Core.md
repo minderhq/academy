@@ -64,7 +64,7 @@ After completing this document, you will be able to:
 
 In a star topology every device connects to a central switch:
 
-```
+```text
                     +-------------------------------------+
                     |        Managed Switch (hub)         |
                     |                                     |
@@ -172,7 +172,7 @@ Pick one subnet per VLAN and reserve ranges by role so that an IP address tells 
 
 Names should encode function, not brand or purchase date:
 
-```
+```text
 Pattern:  <role><index>.<domain>
 
 omega-gw1      - gateway/router
@@ -195,7 +195,7 @@ Rules of thumb:
 
 The CLI dialect varies by vendor (Cisco-style, NETGEAR, MikroTik, ProCurve...), but the concepts are identical. The example below is a Cisco-like generic dialect:
 
-```
+```text
 ! 1. Define the VLANs
 vlan 10
   name MGMT

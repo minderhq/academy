@@ -20,7 +20,7 @@ The context window determines how much text the model can "remember" during infe
 ## KV Cache Memory Analysis
 
 ### What is KV Cache?
-```
+```yaml
 During autoregressive generation, we cache:
 - K (Key): What each position offers
 - V (Value): The actual content at each position
@@ -72,7 +72,7 @@ print(f"KV Cache: {memory / (1024**3):.2f} GB")
 ```
 
 ### Memory Breakdown
-```
+```text
 Llama-2-7B KV Cache @ 4096 context:
 
 Component               Memory

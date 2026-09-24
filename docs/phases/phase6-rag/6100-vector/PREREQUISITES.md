@@ -44,7 +44,7 @@ matches = ["machine learning", "ML algorithms",  # Works!
 
 ### Vector Similarity
 
-```
+```text
 Similarity = cos(angle between vectors)
 
 cos_sim(v1, v2) = (v1 · v2) / (||v1|| × ||v2||)

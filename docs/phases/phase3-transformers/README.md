@@ -32,7 +32,7 @@ This phase covers the internal mechanics of transformer models, from attention m
 
 ### The Knowledge Gap
 
-```
+```text
 Without Understanding Internals:
 ┌─────────────────────────────────────────────────────────┐
 │ ❌ Black-box approach to LLMs                           │

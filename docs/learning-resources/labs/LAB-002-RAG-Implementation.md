@@ -1086,7 +1086,7 @@ python ~/lab-002-rag/chatbot.py
 
 ## 🎓 Lab Completion Checklist
 
-```
+```text
 [ ] Exercise 1: Deploy Qdrant Vector Database
 [ ] Exercise 2: Document Chunking Strategies
 [ ] Exercise 3: Build Complete RAG Pipeline

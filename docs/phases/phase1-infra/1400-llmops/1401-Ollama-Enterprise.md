@@ -19,7 +19,7 @@ Ollama enables running large language models locally with a simple API. In AI En
 
 ## Architecture
 
-```
+```text
 ┌─────────────────────────────────────────────────────────┐
 │                   Client Layer                          │
 │  Python Apps, REST APIs, CLI Tools                      │
@@ -113,7 +113,7 @@ ollama pull mixtral:8x7b
 ```
 
 ### Model Quantization Levels
-```
+```text
 Tag           Size     Context   Parameters    Memory
 ──────────────────────────────────────────────────────
 :latest       ~4GB     2048      7B            ~6GB VRAM

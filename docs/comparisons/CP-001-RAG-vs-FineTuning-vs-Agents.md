@@ -27,7 +27,7 @@ This comparison guide helps you decide when to use RAG, Fine-Tuning, or Agents f
 
 #### What It Does
 
-```
+```text
 User Question
     ↓
 Search Documents → Find Relevant Chunks
@@ -131,7 +131,7 @@ sources = [doc.metadata["source"] for doc in result["source_documents"]]
 
 #### What It Does
 
-```
+```text
 Base Model (GPT/Llama)
     +
 Training Data (Your examples)
@@ -272,7 +272,7 @@ trainer.train()
 
 #### What They Do
 
-```
+```text
 User Request
     ↓
 Agent Thinks: "What do I need to do?"
@@ -486,7 +486,7 @@ agent = Agent(
 
 ## Decision Tree
 
-```
+```text
 START: What do you need?
 
 ├─ Need to query documents/policies?

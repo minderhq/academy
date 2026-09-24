@@ -291,7 +291,7 @@ if __name__ == "__main__":
 
 ### Expected Output
 
-```
+```text
 Request 0: output_0
 Request 1: output_1
 ...
@@ -335,7 +335,7 @@ Server Statistics:
 
 **Scenario:** Model is too large to fit on single GPU
 
-```
+```text
 Model Size: 70B parameters (140GB VRAM required)
 Available: 4x A100 (40GB each = 160GB total)
 
@@ -344,7 +344,7 @@ Solution: Distribute model across GPUs
 
 ### Data Parallel vs Model Parallel
 
-```
+```text
 DATA PARALLELISM (same model on multiple GPUs):
 ┌─────────┐  ┌─────────┐  ┌─────────┐  ┌─────────┐
 │ GPU 0   │  │ GPU 1   │  │ GPU 2   │  │ GPU 3   │

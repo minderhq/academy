@@ -41,7 +41,7 @@ After completing this module, you will:
 
 **Challenge:** Transformers process tokens in parallel and have no inherent sense of position or order.
 
-```
+```text
 Input: "The cat sat on the mat"
 Input: "The mat sat on the cat"
 
@@ -75,7 +75,7 @@ Without positional encoding → Same representation!
 
 Instead of adding position to embeddings, **rotate** the query and key vectors based on their positions:
 
-```
+```text
 For position m (query) and n (key):
 Rotate q_m by angle m*θ
 Rotate k_n by angle n*θ
@@ -134,7 +134,7 @@ corpus = ["hug", "pug", "puggle", "bug"]
 
 ### Tokenizer Comparison
 
-```
+```text
 Input: "Tokenization is fascinating"
 
 Word-level:
