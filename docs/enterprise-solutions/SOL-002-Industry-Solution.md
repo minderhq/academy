@@ -2,520 +2,577 @@
 Document ID: SOL-002
 Title: Multi-Modal Industrial Inspection System
 Category: Industry Solution
-Last Updated: 2026-02-05
-Status: Review
+Last Updated: 2026-09-25
+Status: Complete
 Difficulty: Advanced
 Estimated Time: 6-8 hours
-Prerequisites: 6100, 7100, IND-003
-Related: SOL-001, IND-003
+Prerequisites: See module README
+Related: See module README
 Tags: ['solution', 'manufacturing', 'multimodal', 'vision', 'llm']
 ---
 
 # SOL-002: Multi-Modal Industrial Inspection System
 
-## Overview
+## Table of Contents
 
-Complete end-to-end solution for AI-powered industrial inspection using vision models, vector databases, and LLM agents for automated quality control and reporting.
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Problem Statement](#problem-statement)
+- [System Architecture](#system-architecture)
+- [1. Sensor Data Collection](#1-sensor-data-collection)
+- [2. RGB Defect Detection and Segmentation](#2-rgb-defect-detection-and-segmentation)
+- [3. Thermal Anomaly Detection](#3-thermal-anomaly-detection)
+- [4. Cross-Modal Fusion](#4-cross-modal-fusion)
+- [5. Defect Knowledge Base](#5-defect-knowledge-base)
+- [6. LLM Report Generation](#6-llm-report-generation)
+- [7. System Orchestration](#7-system-orchestration)
+- [Deployment](#deployment)
+- [Metrics: Targets, Not Guarantees](#metrics-targets-not-guarantees)
+- [Best Practices](#best-practices)
+- [References](#references)
+
+---
+
+## Learning Objectives
+
+After completing this solution, you will be able to:
+
+- Assemble a multi-modal inspection pipeline from real, running components: OpenCV preprocessing, a transformer detector with proper post-processing, SAM box-prompted segmentation, and threshold-based thermal analysis
+- Fuse detections across modalities honestly — IoU-based matching with calibrated confidence, instead of ad-hoc multipliers
+- Build a defect knowledge base in Qdrant with the current client API (`query_points`, payload filters) and structured-text embeddings
+- Wire a tool-calling LLM agent that generates inspection reports grounded in the knowledge base — with every tool it calls actually defined
+- Separate what this reference code proves (pipeline mechanics) from what it cannot (plant-specific model accuracy), and plan a validation strategy accordingly
+
+---
+
+## Abstract
+
+Manual visual inspection does not scale: it is slow, subjective, and produces paper trails that resist root-cause analysis. This solution walks through an AI-powered inspection system that fuses RGB defect detection, thermal anomaly screening, and an LLM reporting layer on top of a vector-database knowledge base of historical defects. Every code path uses real, current APIs — OpenCV CLAHE, DETR with `post_process_object_detection`, SAM box prompts, Qdrant `query_points`, LangChain tool-calling agents — and every integration point that must come from your plant (camera SDKs, a fine-tuned defect model, calibrated thresholds) is marked as such rather than papered over. The knowledge-base and report-agent layers reuse the patterns from [SOL-001](./SOL-001-Enterprise-Knowledge-Base.md); the manufacturing-domain context is in [IND-003](../industry/IND-003-Manufacturing-AI.md).
 
 ## Problem Statement
 
-Traditional manufacturing inspection requires:
-- Manual visual inspection (slow, error-prone)
-- Subjective quality assessments
-- Paper-based documentation
-- Delayed root cause analysis
-- Inconsistent defect categorization
+Traditional manufacturing inspection fails on five axes:
 
-## Solution Architecture
+```text
+- manual visual inspection: slow, fatiguing, error-prone
+- subjective quality assessments: inspector-to-inspector variance
+- paper-based documentation: no queryable history
+- delayed root cause analysis: defects recur for weeks
+- inconsistent defect categorization: no shared taxonomy
+```
+
+The system below attacks all five: automated multi-modal capture, a shared defect taxonomy, a queryable knowledge base, and LLM-drafted reports with historical grounding.
+
+## System Architecture
 
 ```text
 ┌────────────────────────────────────────────────────────────────┐
 │                   Multi-Modal Inspection System                 │
 ├────────────────────────────────────────────────────────────────┤
-│                                                                  │
-│  ┌──────────┐    ┌──────────┐    ┌──────────┐    ┌──────────┐ │
-│  │ Camera   │    │ Thermal  │    │  X-Ray   │    │ Acoustic │ │
-│  │  (RGB)   │    │ Imaging │    │          │    │ Sensors  │ │
-│  └────┬─────┘    └────┬─────┘    └────┬─────┘    └────┬─────┘ │
-│       │               │               │               │        │
-│       └───────────────┴───────────────┴───────────────┘        │
-│                           │                                    │
-│                           ↓                                    │
-│              ┌─────────────────────────┐                       │
-│              │  Multi-Modal Encoder    │                       │
-│              │  (Vision + Sensors)     │                       │
-│              └───────────┬─────────────┘                       │
-│                          │                                     │
-│          ┌───────────────┼───────────────┐                    │
-│          ↓               ↓               ↓                    │
-│   ┌──────────┐    ┌──────────┐    ┌──────────┐               │
-│   │ Defect   │    │  Vector  │    │   LLM    │               │
-│   │Detection │    │   DB     │    │  Agent   │               │
-│   └────┬─────┘    └────┬─────┘    └────┬─────┘               │
-│        │               │               │                      │
-│        └───────────────┴───────────────┘                      │
-│                           │                                    │
-│                           ↓                                    │
-│              ┌─────────────────────────┐                       │
-│              │   Inspection Report     │                       │
-│              │   (Generated by LLM)    │                       │
-│              └─────────────────────────┘                       │
-│                                                                  │
+│  ┌──────────┐    ┌──────────┐    ┌──────────┐                  │
+│  │ Camera   │    │ Thermal  │    │ Acoustic │   ...sensors     │
+│  │  (RGB)   │    │ Imaging  │    │  (opt.)  │                  │
+│  └────┬─────┘    └────┬─────┘    └────┬─────┘                  │
+│       └───────────────┼───────────────┘                        │
+│                       ↓                                        │
+│           ┌─────────────────────────┐                          │
+│           │  Capture + Preprocess   │  CLAHE, registration,   │
+│           │  (per-modality)         │  calibration            │
+│           └───────────┬─────────────┘                          │
+│        ┌──────────────┼──────────────┐                         │
+│        ↓              ↓              ↓                         │
+│  ┌──────────┐   ┌──────────┐   ┌──────────┐                  │
+│  │ RGB      │   │ Thermal  │   │ (future  │                  │
+│  │ Detector │   │ Anomaly  │   │ modality)│                  │
+│  │ + SAM    │   │ Scan     │   │          │                  │
+│  └────┬─────┘   └────┬─────┘   └──────────┘                  │
+│       └───────┬──────┘                                        │
+│               ↓                                               │
+│     ┌───────────────────┐     ┌───────────────────┐           │
+│     │ Cross-Modal Fuse  │ --> │ Defect Knowledge  │           │
+│     │ (IoU + confidence)│     │ Base (Qdrant)     │           │
+│     └─────────┬─────────┘     └─────────┬─────────┘           │
+│               ↓                         ↓                     │
+│     ┌───────────────────────────────────────────┐             │
+│     │  LLM Report Agent (tool-calling,          │             │
+│     │  grounded in the knowledge base)          │             │
+│     └───────────────────────────────────────────┘             │
 └────────────────────────────────────────────────────────────────┘
 ```
 
-## Implementation
+## 1. Sensor Data Collection
 
-### 1. Multi-Modal Data Collection
+The capture layer is plant-specific by definition — camera models, mounts, part rotation hardware. The class below defines the interface and the preprocessing that IS general; the hardware methods are stubs you wire to your plant SDK:
 
 ```python
 import cv2
 import numpy as np
-from collections import defaultdict
 from datetime import datetime
 
+def enhance_contrast(bgr_image: np.ndarray) -> np.ndarray:
+    """CLAHE on the L channel of LAB: lighting-neutral contrast
+    boost - the standard preprocessing for factory-floor RGB.
+    (There is no cv2.enhanceContrast; CLAHE is the tool.)"""
+    lab = cv2.cvtColor(bgr_image, cv2.COLOR_BGR2LAB)
+    l, a, b = cv2.split(lab)
+    clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
+    lab = cv2.merge((clahe.apply(l), a, b))
+    return cv2.cvtColor(lab, cv2.COLOR_LAB2RGB)   # RGB out
+
 class MultiModalDataCollector:
-    """Collect data from multiple sensor types."""
+    """Captures aligned sensor data per part. Hardware methods
+    are STUBS - integrate with your plant's SDK."""
 
     def __init__(self, config):
         self.config = config
-        self.sensors = {}
-
-        # Initialize cameras
+        # STUB: replace with your camera drivers
         self.rgb_camera = cv2.VideoCapture(config['rgb_camera_id'])
-        self.thermal_camera = ThermalCamera(config['thermal_camera_id'])
+        self.thermal_camera = None    # thermal SDK handle
+        self.acoustic_sensor = None   # acquisition handle
 
-        # Initialize other sensors
-        self.acoustic_sensor = AcousticSensor(config['acoustic_port'])
-        self.vibration_sensor = VibrationSensor(config['vibration_port'])
+    def capture_rgb(self) -> np.ndarray | None:
+        ret, frame = self.rgb_camera.read()
+        return enhance_contrast(frame) if ret else None
 
-    def collect_inspection_data(self, product_id):
-        """Collect all sensor data for a product."""
+    def collect_inspection_data(self, product_id: str) -> dict:
         data = {
             'product_id': product_id,
             'timestamp': datetime.now().isoformat(),
             'rgb_images': [],
             'thermal_images': [],
             'acoustic_data': None,
-            'vibration_data': None,
-            'metadata': {}
         }
-
-        # Capture RGB images from multiple angles
         for angle in [0, 45, 90, 135, 180]:
-            self.rotate_product(angle)
-            rgb_frame = self.capture_rgb()
-            data['rgb_images'].append({
-                'angle': angle,
-                'image': rgb_frame,
-                'timestamp': datetime.now().isoformat()
-            })
-
-        # Capture thermal images
-        thermal_frame = self.thermal_camera.capture()
-        data['thermal_images'].append(thermal_frame)
-
-        # Capture acoustic data
-        data['acoustic_data'] = self.acoustic_sensor.record(duration=2.0)
-
-        # Capture vibration data
-        data['vibration_data'] = self.vibration_sensor.read()
-
+            self.rotate_product(angle)          # STUB: stage control
+            frame = self.capture_rgb()
+            if frame is not None:
+                data['rgb_images'].append({
+                    'angle': angle,
+                    'image': frame,
+                })
+        if self.thermal_camera is not None:
+            data['thermal_images'].append(
+                self.thermal_camera.capture_celsius())
         return data
 
-    def capture_rgb(self):
-        """Capture high-resolution RGB image."""
-        ret, frame = self.rgb_camera.read()
-        if ret:
-            # Preprocess: enhance contrast, remove noise
-            frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-            frame = cv2.enhanceContrast(frame)
-            return frame
-        return None
+    def rotate_product(self, angle: float) -> None:
+        raise NotImplementedError("wire to your stage controller")
 ```
 
-### 2. Multi-Modal Defect Detection
+```text
+What matters at capture time (and what tutorial code skips)
+- registration: RGB and thermal frames must map to the same
+  part coordinates, or cross-modal fusion is meaningless.
+  Calibrate the transform once per station
+- consistent lighting drives RGB accuracy more than model
+  choice does; CLAHE is mitigation, not a cure
+- keep raw captures: every model iteration will want to
+  re-label and re-train against the same parts
+```
+
+## 2. RGB Defect Detection and Segmentation
+
+Two stages: a detector proposes regions, SAM turns each box into a pixel mask. The detector here is COCO-pretrained DETR — it detects *objects*, not yet *your defects*; the mechanical pipeline is what this class teaches, and the fine-tuning requirement is stated, not hidden:
 
 ```python
 import torch
-from transformers import AutoModel, AutoProcessor
+from transformers import (AutoImageProcessor,
+                          AutoModelForObjectDetection)
 from segment_anything import sam_model_registry, SamPredictor
 
-class MultiModalDefectDetector:
-    """Detect defects using multiple modalities."""
+class RgbDefectDetector:
+    """DETR detection + SAM segmentation. DETR-resnet-50 is
+    COCO-pretrained: for production, fine-tune it on YOUR
+    labeled defect dataset - the pipeline below is the
+    deployment skeleton either way."""
 
-    def __init__(self):
-        # Vision transformer for defect detection
-        self.vision_model = AutoModel.from_pretrained(
-            "microsoft/dit-base-finetuned-ade-640-640"
-        )
+    def __init__(self, model_id="facebook/detr-resnet-50",
+                 score_threshold=0.7, device="cuda"):
+        self.processor = AutoImageProcessor.from_pretrained(model_id)
+        self.model = AutoModelForObjectDetection.from_pretrained(
+            model_id).to(device).eval()
+        self.threshold = score_threshold
+        self.device = device
 
-        # SAM for precise segmentation
-        self.sam_predictor = SamPredictor(
-            sam_model_registry["vit_h"](checkpoint="sam_vit_h_4b8939.pth")
-        )
+    @torch.no_grad()
+    def detect(self, rgb_image: np.ndarray) -> list[dict]:
+        inputs = self.processor(
+            images=rgb_image, return_tensors="pt").to(self.device)
+        outputs = self.model(**inputs)
+        target_sizes = torch.tensor([rgb_image.shape[:2]])
+        results = self.processor.post_process_object_detection(
+            outputs, target_sizes=target_sizes,
+            threshold=self.threshold)[0]
 
-        # Thermal anomaly detector
-        self.thermal_detector = ThermalAnomalyDetector()
-
-    def detect_defects(self, inspection_data):
-        """Detect defects across all modalities."""
-        results = {
-            'visual_defects': [],
-            'thermal_defects': [],
-            'acoustic_defects': [],
-            'combined_assessment': None
-        }
-
-        # Process RGB images
-        for img_data in inspection_data['rgb_images']:
-            defects = self._detect_visual_defects(img_data['image'])
-            results['visual_defects'].extend(defects)
-
-        # Process thermal images
-        for thermal_img in inspection_data['thermal_images']:
-            defects = self._detect_thermal_anomalies(thermal_img)
-            results['thermal_defects'].extend(defects)
-
-        # Process acoustic data
-        if inspection_data['acoustic_data']:
-            defects = self._detect_acoustic_anomalies(
-                inspection_data['acoustic_data']
-            )
-            results['acoustic_defects'].extend(defects)
-
-        # Combine assessments from all modalities
-        results['combined_assessment'] = self._combine_assessments(results)
-
-        return results
-
-    def _detect_visual_defects(self, image):
-        """Detect visual defects using vision model."""
-        defects = []
-
-        # Preprocess
-        inputs = self.processor(images=image, return_tensors="pt")
-
-        # Forward pass
-        outputs = self.vision_model(**inputs)
-
-        # Post-process to find defects
-        defect_locations = self._find_defect_locations(outputs)
-
-        for location in defect_locations:
-            # Use SAM for precise segmentation
-            self.sam_predictor.set_image(image)
-            masks, _, _ = self.sam_predictor.predict(
-                point_coords=location['center'],
-                point_labels=np.array([1])
-            )
-
-            defects.append({
-                'type': location['type'],
-                'mask': masks[0],
-                'confidence': location['confidence'],
-                'bbox': location['bbox']
+        detections = []
+        for score, label, box in zip(
+                results["scores"], results["labels"],
+                results["boxes"]):
+            detections.append({
+                "type": self.model.config.id2label[label.item()],
+                "confidence": score.item(),
+                "bbox": [round(v, 1) for v in box.tolist()],  # XYXY
             })
+        return detections
 
-        return defects
+class SamSegmenter:
+    """Box-prompted SAM: turns detector boxes into masks."""
 
-    def _detect_thermal_anomalies(self, thermal_image):
-        """Detect thermal anomalies (hot spots, cold spots)."""
-        anomalies = []
+    def __init__(self, checkpoint="sam_vit_h_4b8939.pth"):
+        build_sam = sam_model_registry["vit_h"]
+        sam = build_sam(checkpoint=checkpoint)
+        self.predictor = SamPredictor(sam)
 
-        # Temperature thresholding
-        hot_spots = thermal_image > 80  # Celsius
-        cold_spots = thermal_image < 10  # Celsius
-
-        # Find connected components
-        hot_contours, _ = cv2.findContours(
-            hot_spots.astype(np.uint8),
-            cv2.RETR_EXTERNAL,
-            cv2.CHAIN_APPROX_SIMPLE
-        )
-
-        for contour in hot_contours:
-            if cv2.contourArea(contour) > 100:  # Filter small noise
-                x, y, w, h = cv2.boundingRect(contour)
-                anomalies.append({
-                    'type': 'thermal_hotspot',
-                    'bbox': [x, y, w, h],
-                    'severity': 'high'
-                })
-
-        return anomalies
-
-    def _combine_assessments(self, results):
-        """Combine defect detections from all modalities."""
-        combined = []
-
-        # Check for correlated defects across modalities
-        for visual_defect in results['visual_defects']:
-            # Find if thermal or acoustic modalities also detected issues
-            correlated_thermal = self._find_overlapping_defects(
-                visual_defect['bbox'],
-                results['thermal_defects']
-            )
-
-            if correlated_thermal:
-                combined.append({
-                    'type': visual_defect['type'],
-                    'severity': 'critical',
-                    'modalities': ['visual', 'thermal'],
-                    'confidence': visual_defect['confidence'] * 1.5
-                })
-            else:
-                combined.append({
-                    'type': visual_defect['type'],
-                    'severity': 'moderate',
-                    'modalities': ['visual'],
-                    'confidence': visual_defect['confidence']
-                })
-
-        return combined
+    def mask_from_box(self, rgb_image, bbox) -> np.ndarray:
+        self.predictor.set_image(rgb_image)
+        masks, scores, _ = self.predictor.predict(
+            box=np.array(bbox, dtype=np.float32),
+            multimask_output=True)
+        return masks[int(scores.argmax())]   # best mask
 ```
 
-### 3. Vector Database for Similarity Search
+```text
+Why box-prompted SAM instead of point prompts
+- the detector already gives XYXY boxes; passing the box to
+  SAM constrains the mask to the right region. Point prompts
+  from unverified centers segment the wrong object
+- SAM needs no retraining for your parts - zero-shot masks
+  are the reason it fits a production skeleton
+- the defect-vs-part distinction is the DETR fine-tune's job,
+  not SAM's
+```
+
+## 3. Thermal Anomaly Detection
+
+Thermal screening is classical CV, not deep learning — and that is a feature: it is explainable to a quality engineer on day one:
 
 ```python
+import cv2
+import numpy as np
+
+def thermal_anomalies(thermal_celsius: np.ndarray,
+                      hot: float = 80.0, cold: float = 10.0,
+                      min_area_px: int = 100) -> list[dict]:
+    """Threshold + connected components on a calibrated
+    thermal frame. Thresholds are per-product calibration
+    values, not universal constants."""
+    flags = ((thermal_celsius > hot) |
+             (thermal_celsius < cold)).astype(np.uint8)
+    contours, _ = cv2.findContours(
+        flags, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+    anomalies = []
+    for c in contours:
+        if cv2.contourArea(c) < min_area_px:
+            continue                       # sensor noise
+        x, y, w, h = cv2.boundingRect(c)
+        region = thermal_celsius[y:y + h, x:x + w]
+        anomalies.append({
+            'type': 'hotspot' if region.max() > hot else 'cold_spot',
+            'bbox': [x, y, x + w, y + h],   # XYXY (boundingRect is XYWH)
+            'peak_celsius': float(region.max()),
+            'severity': 'high',
+        })
+    return anomalies
+```
+
+```text
+Acoustic/vibration modalities
+- the same shape applies: calibrated feature extraction
+  (RMS energy, spectral peaks) + threshold or one-class model
+- add modalities ONLY when you have labeled examples of the
+  failure mode they catch - a silent modality is dead weight
+  in fusion
+```
+
+## 4. Cross-Modal Fusion
+
+Two modalities agreeing is evidence — but the naive implementation (`confidence * 1.5`) is not evidence combination, it can exceed 1.0, and it hides its assumptions. The honest version: match detections across modalities by IoU, apply a bounded boost:
+
+```python
+def iou(a: list, b: list) -> float:
+    """IoU of XYXY boxes - one format everywhere: DETR emits
+    XYXY, SAM prompts take XYXY, and thermal bboxes are
+    converted to XYXY at source. Mixing XYWH and XYXY here is
+    the classic fusion bug: nothing crashes, every overlap is
+    just wrong."""
+    x1, y1 = max(a[0], b[0]), max(a[1], b[1])
+    x2, y2 = min(a[2], b[2]), min(a[3], b[3])
+    inter = max(0, x2 - x1) * max(0, y2 - y1)
+    area_a = (a[2] - a[0]) * (a[3] - a[1])
+    area_b = (b[2] - b[0]) * (b[3] - b[1])
+    union = area_a + area_b - inter
+    return inter / union if union else 0.0
+
+def fuse(rgb_detections, thermal_anomalies,
+         iou_threshold=0.3, agreement_boost=1.25) -> list[dict]:
+    """Cross-modal fusion: thermal agreement boosts a visual
+    detection's confidence, bounded at 1.0. All bboxes XYXY."""
+    fused = []
+    for det in rgb_detections:
+        agreeing = [t for t in thermal_anomalies
+                    if iou(det['bbox'], t['bbox']) >= iou_threshold]
+        conf = det['confidence']
+        if agreeing:
+            conf = min(1.0, conf * agreement_boost)
+        fused.append({
+            'type': det['type'],
+            'confidence': round(conf, 3),
+            'bbox': det['bbox'],
+            'modalities': ['rgb'] + (['thermal'] if agreeing else []),
+        })
+    return fused
+```
+
+```text
+The honest limits of this fusion
+- agreement_boost=1.25 is a POLICY, not a probability. The
+  principled upgrade: calibrate each modality's detector on a
+  held-out set (Platt/isotonic), then combine as independent
+  evidence: p_fused = 1 - (1-p_rgb)(1-p_thermal)
+- iou_threshold depends on your registration accuracy - if
+  RGB/thermal frames misalign by 20 px, 0.3 IoU is fiction
+- for a report, "visual + thermal agree" is more actionable
+  than any single number; keep the modality list in the payload
+```
+
+## 5. Defect Knowledge Base
+
+Qdrant with the current client API (`query_points`, payload filters — `search` is deprecated). Defects are embedded as structured text; ids are UUIDs:
+
+```python
+import uuid
+from datetime import datetime, timedelta
+
 from qdrant_client import QdrantClient
-from qdrant_client.models import Distance, VectorParams, PointStruct
+from qdrant_client.models import (DatetimeRange, Distance,
+                                  FieldCondition, Filter,
+                                  PointStruct, VectorParams)
+from sentence_transformers import SentenceTransformer
 
 class DefectKnowledgeBase:
-    """Vector database for historical defect data."""
+    """Historical defect store: embeddings for similarity,
+    payload filters for trends. Text-embedding approach: a
+    trained image-embedding model is a later upgrade."""
 
-    def __init__(self):
-        self.client = QdrantClient(url="http://localhost:6333")
+    def __init__(self, url="http://localhost:6333"):
+        self.client = QdrantClient(url=url)
+        self.encoder = SentenceTransformer("all-MiniLM-L6-v2")
+        self.dim = self.encoder.get_sentence_embedding_dimension()
 
-        # Create collection
-        self.client.create_collection(
-            collection_name="defects",
-            vectors_config=VectorParams(size=512, distance=Distance.COSINE)
-        )
+        if "defects" not in [c.name for c in
+                             self.client.get_collections().collections]:
+            self.client.create_collection(
+                collection_name="defects",
+                vectors_config=VectorParams(
+                    size=self.dim, distance=Distance.COSINE))
 
-    def store_defect(self, defect_data, defect_vector, metadata):
-        """Store defect in vector database."""
-        point_id = self._generate_id()
+    def embed(self, defect: dict) -> list[float]:
+        text = (f"{defect['type']} defect, severity "
+                f"{defect.get('severity', 'unknown')}")
+        return self.encoder.encode(text).tolist()
 
+    def store_defect(self, defect: dict, product_id: str) -> str:
+        point_id = str(uuid.uuid4())
         self.client.upsert(
             collection_name="defects",
             points=[PointStruct(
                 id=point_id,
-                vector=defect_vector,
+                vector=self.embed(defect),
                 payload={
-                    'type': metadata['type'],
-                    'severity': metadata['severity'],
-                    'product_id': metadata['product_id'],
-                    'timestamp': metadata['timestamp'],
-                    'root_cause': metadata.get('root_cause', 'unknown')
-                }
-            )]
-        )
+                    'type': defect['type'],
+                    'severity': defect.get('severity', 'unknown'),
+                    'modalities': defect.get('modalities', []),
+                    'product_id': product_id,
+                    'timestamp': datetime.now().isoformat(),
+                })])
+        return point_id
 
-    def find_similar_defects(self, defect_vector, limit=5):
-        """Find similar historical defects."""
-        results = self.client.search(
+    def find_similar(self, vector: list[float], limit: int = 3):
+        response = self.client.query_points(
             collection_name="defects",
-            query_vector=defect_vector,
+            query=vector,
             limit=limit,
-            with_payload=True
-        )
+            with_payload=True)
+        return response.points
 
-        return results
-
-    def analyze_trends(self, time_period_days=30):
-        """Analyze defect trends over time."""
-        # Query recent defects
-        from datetime import datetime, timedelta
-        cutoff_date = datetime.now() - timedelta(days=time_period_days)
-
-        results = self.client.scroll(
+    def trends(self, days: int = 30) -> dict:
+        """Counts by type, filtered SERVER-side by timestamp -
+        do not scroll the whole collection to filter in Python."""
+        cutoff = (datetime.now() - timedelta(days=days)).isoformat()
+        response = self.client.scroll(
             collection_name="defects",
+            scroll_filter=Filter(must=[FieldCondition(
+                key="timestamp",
+                range=DatetimeRange(gte=cutoff))]),
             limit=1000,
-            with_payload=True
-        )[0]
-
-        # Filter by date and analyze
-        recent_defects = [
-            r for r in results
-            if datetime.fromisoformat(r.payload['timestamp']) > cutoff_date
-        ]
-
-        # Count by type
-        defect_counts = defaultdict(int)
-        for defect in recent_defects:
-            defect_counts[defect.payload['type']] += 1
-
-        return dict(defect_counts)
+            with_payload=True)
+        counts: dict[str, int] = {}
+        for point in response[0]:
+            counts[point.payload['type']] = \
+                counts.get(point.payload['type'], 0) + 1
+        return dict(sorted(counts.items(),
+                           key=lambda kv: -kv[1]))
 ```
 
-### 4. LLM Agent for Report Generation
+```text
+Taxonomy first, vectors second
+- 'type' values must come from a controlled vocabulary agreed
+  with quality engineering - free-form types make trends and
+  similarity both useless
+- embeddings make SIMILARITY work; the structured payload
+  makes TRENDS and reporting work. Design both fields on day
+  one (this mirrors the SOL-001 knowledge-base pattern)
+```
+
+## 6. LLM Report Generation
+
+A tool-calling agent grounded in the knowledge base. Every tool referenced is actually defined — the agent can only know what the tools return:
 
 ```python
-from langchain.agents import AgentExecutor, create_openai_functions_agent
+from langchain.agents import AgentExecutor, create_tool_calling_agent
+from langchain_core.prompts import (ChatPromptTemplate,
+                                    MessagesPlaceholder)
+from langchain_core.tools import tool
 from langchain_openai import ChatOpenAI
-from langchain.tools import tool
+
+SYSTEM_PROMPT = """You are a quality-engineering assistant that
+drafts inspection reports. Ground every claim in the tool
+results - never invent defect statistics. Report structure:
+1. Executive Summary  2. Detailed Findings  3. Historical
+Comparison (from the knowledge base)  4. Recommendations."""
 
 class InspectionReportAgent:
-    """LLM-powered agent for generating inspection reports."""
+    """Tool-calling agent over the defect knowledge base."""
 
-    def __init__(self):
-        self.llm = ChatOpenAI(model="gpt-4", temperature=0)
+    def __init__(self, knowledge_base: DefectKnowledgeBase):
+        self.kb = knowledge_base
+        self.llm = ChatOpenAI(model="gpt-4o", temperature=0)
+        self.tools = self._build_tools()
 
-        # Define tools for the agent
-        self.tools = [
-            self._get_similar_defects_tool(),
-            self._get_defect_trends_tool(),
-            self._get_root_cause_analysis_tool(),
-            self._get_recommendation_tool()
-        ]
-
-        # Create agent
-        prompt = self._create_agent_prompt()
-        self.agent = create_openai_functions_agent(
-            self.llm,
-            self.tools,
-            prompt
-        )
+        prompt = ChatPromptTemplate.from_messages([
+            ("system", SYSTEM_PROMPT),
+            ("human", "{input}"),
+            MessagesPlaceholder("agent_scratchpad"),
+        ])
+        agent = create_tool_calling_agent(
+            self.llm, self.tools, prompt)
         self.executor = AgentExecutor(
-            agent=self.agent,
-            tools=self.tools,
-            verbose=True
-        )
+            agent=agent, tools=self.tools, verbose=False)
 
-    def _get_similar_defects_tool(self):
+    def _build_tools(self):
+        kb = self.kb
+
         @tool
-        def search_similar_defects(defect_type: str) -> str:
-            """Search for similar historical defects."""
-            # Query vector database
-            results = self.vector_db.search(
-                collection="defects",
-                query=defect_type,
-                limit=3
-            )
+        def search_similar_defects(defect_description: str) -> str:
+            """Search the historical defect knowledge base for
+            cases similar to the given description."""
+            vector = kb.embed(
+                {'type': defect_description, 'severity': 'unknown'})
+            hits = kb.find_similar(vector, limit=3)
+            if not hits:
+                return "No similar historical defects found."
+            return "\n".join(
+                f"- {p.payload['type']} (severity "
+                f"{p.payload['severity']}, seen "
+                f"{p.payload['timestamp'][:10]})"
+                for p in hits)
 
-            return f"Found {len(results)} similar defects: {results}"
-
-        return search_similar_defects
-
-    def _get_root_cause_analysis_tool(self):
         @tool
-        def analyze_root_cause(defect_description: str) -> str:
-            """Analyze root cause of defect."""
-            # Use knowledge base and similar defects
-            analysis = self._perform_rca(defect_description)
-            return analysis
+        def defect_trends(days: int) -> str:
+            """Defect counts by type over the last N days."""
+            return str(kb.trends(days=days))
 
-        return analyze_root_cause
+        return [search_similar_defects, defect_trends]
 
-    def generate_report(self, inspection_results):
-        """Generate comprehensive inspection report."""
-        prompt = f"""
-        Generate an inspection report based on the following results:
-
-        Visual Defects Found: {len(inspection_results['visual_defects'])}
-        Thermal Anomalies: {len(inspection_results['thermal_defects'])}
-        Acoustic Issues: {len(inspection_results['acoustic_defects'])}
-
-        Combined Assessment: {inspection_results['combined_assessment']}
-
-        Please create a detailed report including:
-        1. Executive Summary
-        2. Detailed Findings (with images)
-        3. Root Cause Analysis
-        4. Recommendations
-        5. Historical Comparison
-
-        Use available tools to search for similar defects and analyze trends.
-        """
-
-        response = self.executor.invoke({"input": prompt})
-        return response['output']
+    def generate_report(self, product_id: str,
+                        fused_defects: list[dict]) -> str:
+        findings = "\n".join(
+            f"- {d['type']} (confidence {d['confidence']}, "
+            f"modalities: {', '.join(d['modalities'])})"
+            for d in fused_defects) or "- none detected"
+        result = self.executor.invoke({
+            "input": (f"Draft the inspection report for product "
+                      f"{product_id}. Findings:\n{findings}\n"
+                      f"Use the tools for historical context."),
+        })
+        return result["output"]
 ```
 
-### 5. Complete System Integration
+```text
+Agent design for production floors
+- temperature=0: reports are not creative writing; identical
+  findings must produce identical drafts
+- two tools, not ten: every tool is a way to be wrong. Add a
+  root-cause tool only when the knowledge base actually holds
+  root-cause labels
+- the LLM formats and drafts; the deterministic pipeline
+  decides pass/fail. Never let the model make the accept/
+  reject call - that is a calibrated threshold decision
+```
+
+## 7. System Orchestration
 
 ```python
+from datetime import datetime
+
 class IndustrialInspectionSystem:
-    """Complete multi-modal inspection system."""
+    """Wires the pipeline together. The pass/fail decision is
+    a threshold on fused confidence - deterministic, auditable."""
 
     def __init__(self, config):
-        self.data_collector = MultiModalDataCollector(config)
-        self.defect_detector = MultiModalDefectDetector()
+        self.collector = MultiModalDataCollector(config)
+        self.detector = RgbDefectDetector()
+        self.segmenter = SamSegmenter()
         self.knowledge_base = DefectKnowledgeBase()
-        self.report_agent = InspectionReportAgent()
+        self.report_agent = InspectionReportAgent(
+            self.knowledge_base)
+        self.pass_threshold = 0.5   # calibrated per line
 
-    def inspect_product(self, product_id):
-        """Complete inspection workflow."""
+    def inspect_product(self, product_id: str) -> dict:
+        data = self.collector.collect_inspection_data(product_id)
 
-        # Step 1: Collect multi-modal data
-        print("Collecting sensor data...")
-        inspection_data = self.data_collector.collect_inspection_data(
-            product_id
-        )
+        rgb_detections, masks = [], []
+        for img_data in data['rgb_images']:
+            dets = self.detector.detect(img_data['image'])
+            rgb_detections.extend(dets)
+            masks.extend(
+                self.segmenter.mask_from_box(
+                    img_data['image'], d['bbox'])
+                for d in dets)
 
-        # Step 2: Detect defects
-        print("Detecting defects...")
-        defect_results = self.defect_detector.detect_defects(
-            inspection_data
-        )
+        thermal = [a for frame in data['thermal_images']
+                   for a in thermal_anomalies(frame)]
 
-        # Step 3: Store in knowledge base
-        print("Storing in knowledge base...")
-        for defect in defect_results['combined_assessment']:
-            defect_vector = self._encode_defect(defect)
+        fused = fuse(rgb_detections, thermal)
+
+        for defect in fused:
             self.knowledge_base.store_defect(
-                defect_data=defect,
-                defect_vector=defect_vector,
-                metadata={
-                    'type': defect['type'],
-                    'severity': defect['severity'],
-                    'product_id': product_id,
-                    'timestamp': datetime.now().isoformat()
-                }
-            )
+                defect, product_id)
 
-        # Step 4: Generate report
-        print("Generating inspection report...")
         report = self.report_agent.generate_report(
-            defect_results
-        )
-
-        # Step 5: Save report and images
-        self._save_inspection_report(
-            product_id,
-            report,
-            inspection_data,
-            defect_results
-        )
+            product_id, fused)
 
         return {
             'product_id': product_id,
-            'status': 'passed' if len(defect_results['combined_assessment']) == 0 else 'failed',
-            'defect_count': len(defect_results['combined_assessment']),
-            'report': report
+            'status': ('passed'
+                       if not fused
+                       else 'review'),
+            'defect_count': len(fused),
+            'report': report,
         }
+```
 
-    def _encode_defect(self, defect):
-        """Encode defect as vector for similarity search."""
-        # Use vision encoder to create embedding
-        image = defect.get('image')
-        if image:
-            encoding = self.vision_encoder.encode(image)
-            return encoding
-
-        # Fallback: text-based encoding
-        text = f"{defect['type']} {defect['severity']}"
-        return self.text_encoder.encode(text)
+```text
+One honest simplification vs the diagram: acoustic data is
+captured-then-ignored in this reference - add it to fusion
+only after you have labeled acoustic failure examples. A
+modality that never votes should not be in the pipeline.
 ```
 
 ## Deployment
 
-### Docker Compose Setup
-
 ```yaml
-version: '3.8'
-
 services:
   inspection-api:
     build: ./api
@@ -546,32 +603,78 @@ services:
     environment:
       POSTGRES_DB: inspection_db
       POSTGRES_USER: user
-      POSTGRES_PASSWORD: pass
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set in .env}
     volumes:
       - postgres_data:/var/lib/postgresql/data
-
-  redis:
-    image: redis:7
-    ports:
-      - "6379:6379"
 
 volumes:
   qdrant_data:
   postgres_data:
 ```
 
-## Results and Metrics
+```text
+Deployment notes
+- the `version:` key is obsolete in Compose V2 - omit it
+- secrets come from .env, never inline in the compose file
+- SAM vit_h needs ~6 GB VRAM beside the detector; size the
+  GPU reservation for BOTH models, or run SAM on CPU for
+  lower throughput at zero extra VRAM
+```
 
-| Metric | Before AI | After AI | Improvement |
-|--------|-----------|----------|-------------|
-| Defect Detection Rate | 75% | 98% | +23% |
-| False Positive Rate | 15% | 2% | -87% |
-| Inspection Time | 5 min | 30 sec | 10x faster |
-| Reporting Time | 30 min | 2 min | 15x faster |
-| Root Cause Analysis | Manual | Automated | 100% coverage |
+## Metrics: Targets, Not Guarantees
+
+Accuracy numbers for inspection systems are properties of YOUR parts, lighting, and labels — any table of universal "before/after" numbers is fiction. What a deployment should measure and commit to:
+
+```text
+Define and baseline these on your own line:
+- detection recall at a FIXED false-positive budget
+  (the FPR your rework station can absorb)
+- inspection cycle time per part (capture + inference)
+- report turnaround (capture -> signed PDF)
+- root-cause closure rate: defects with a confirmed root
+  cause within N days
+- inter-inspector agreement BEFORE deployment: that number,
+  not a paper benchmark, is the bar the system must beat
+Illustrative industry targets (to validate, not to quote):
+98% recall / 2% FPR class systems exist in controlled
+lighting with fine-tuned models - they are earned, not assumed.
+```
+
+## Best Practices
+
+```text
+1. Mark the plant-specific boundary explicitly: camera SDKs,
+   stage control, and the fine-tuned detector are YOURS; the
+   pipeline mechanics are reusable. Code that pretends
+   otherwise (fake hardware classes, undefined methods) is a
+   tutorial smell
+2. Calibrate before fusing: each modality's confidence must
+   mean something on a held-out set before you combine them
+3. The pass/fail decision is a threshold, not the LLM - keep
+   the model in drafting and summarization
+4. Server-side filtering (payload indexes + filters), never
+   scroll-and-filter, as the knowledge base grows
+5. Controlled defect taxonomy agreed with quality engineering
+   on day one; similarity search and trends both depend on it
+6. Keep raw captures - the next model iteration trains on them
+7. Report the modality list with every finding; "RGB+thermal
+   agree" is more actionable to a floor engineer than a
+   single fused score
+```
 
 ---
 
-**Next:** [SOL-001: Enterprise Knowledge Base](./SOL-001-Enterprise-Knowledge-Base.md)
+## References
 
-**Last Updated:** 2026-02-05
+### Related ai-engineering-curriculum Documents
+
+- [SOL-001: Enterprise Knowledge Base](./SOL-001-Enterprise-Knowledge-Base.md)
+- [IND-003: Manufacturing AI](../industry/IND-003-Manufacturing-AI.md)
+
+---
+
+## Next Steps
+
+- Knowledge-base patterns this solution reuses: **[SOL-001: Enterprise Knowledge Base](./SOL-001-Enterprise-Knowledge-Base.md)**
+- Manufacturing-domain deep dive: **[IND-003: Manufacturing AI](../industry/IND-003-Manufacturing-AI.md)**
+- Module overview: **[README](./README.md)**
