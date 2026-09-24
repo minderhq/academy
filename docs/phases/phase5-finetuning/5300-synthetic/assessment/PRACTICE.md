@@ -294,7 +294,7 @@ print(json.dumps(reasoning_data[0], indent=2)[:300] + "...")
 
 ### Exercise 5: Generate Code-Text Pairs
 
-```python
+````python
 def generate_code_explanations(model, tokenizer, code_snippets):
     """Generate natural language explanations for code."""
 
@@ -348,7 +348,7 @@ with open("code_text_pairs.json", "w") as f:
 print(f"\nGenerated {len(pairs)} code-text pairs")
 print(f"Sample:")
 print(json.dumps(pairs[0], indent=2))
-```python
+````
 
 ### Exercise 6: Quality Filtering
 

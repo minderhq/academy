@@ -1245,7 +1245,7 @@ Implement a creative system for:
 
 ---
 
-# Appendix: Phase 7 - Complete Reference Implementations
+## Appendix: Phase 7 - Complete Reference Implementations
 
 The exercises above use solution templates. This appendix contains
 complete, working implementations of each exercise for self-checking

@@ -1,24 +1,24 @@
 <div align="center">
 
-  ![AI Engineering Curriculum Logo](https://img.shields.io/badge/AI--Engineering--Curriculum-Neural--Architect%20Master-blue?style=for-the-badge&logo=ai&logoColor=white)
+![AI Engineering Curriculum Logo](https://img.shields.io/badge/AI--Engineering--Curriculum-Neural--Architect%20Master-blue?style=for-the-badge&logo=ai&logoColor=white)
 
-  # AI Engineering Curriculum
+# AI Engineering Curriculum
 
-  ### Neural-Architect Master Documentation
+## Neural-Architect Master Documentation
 
-  [![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
-  [![Documentation](https://img.shields.io/badge/Docs-463%20Files-orange?style=flat-square)](./docs)
-  [![Phases](https://img.shields.io/badge/Phases-7-purple?style=flat-square)](#-learning-phases)
-  [![Modules](https://img.shields.io/badge/Modules-33-success?style=flat-square)](#-summary-statistics)
+[![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
+[![Documentation](https://img.shields.io/badge/Docs-463%20Files-orange?style=flat-square)](./docs)
+[![Phases](https://img.shields.io/badge/Phases-7-purple?style=flat-square)](#-learning-phases)
+[![Modules](https://img.shields.io/badge/Modules-33-success?style=flat-square)](#-summary-statistics)
 
-  **A comprehensive, production-grade AI engineering curriculum — run it on your own hardware or in the cloud**
+**A comprehensive, production-grade AI engineering curriculum — run it on your own hardware or in the cloud**
 
-  [![Quick Start](https://img.shields.io/badge/Quick_Start-Get_Started-green?style=for-the-badge)](#-quick-start)
-  [![Learning Path](https://img.shields.io/badge/Learning_Path-Choose_Track-blue?style=for-the-badge)](#-learning-path)
-  [![Documentation](https://img.shields.io/badge/Documentation-Browse_Docs-orange?style=for-the-badge)](#-documentation-index)
-  [![Contributing](https://img.shields.io/badge/Contributing-Join_Us-yellow?style=for-the-badge)](#-contributing)
+[![Quick Start](https://img.shields.io/badge/Quick_Start-Get_Started-green?style=for-the-badge)](#-quick-start)
+[![Learning Path](https://img.shields.io/badge/Learning_Path-Choose_Track-blue?style=for-the-badge)](#-learning-path)
+[![Documentation](https://img.shields.io/badge/Documentation-Browse_Docs-orange?style=for-the-badge)](#-documentation-index)
+[![Contributing](https://img.shields.io/badge/Contributing-Join_Us-yellow?style=for-the-badge)](#-contributing)
 
-  ---
+---
 </div>
 
 ## Table of Contents

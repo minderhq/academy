@@ -328,7 +328,7 @@ Reproducible experiments require:
 
 ### Implementation
 
-```python
+````python
 from dataclasses import dataclass, field, asdict
 from typing import Optional, List, Dict, Any
 import yaml
@@ -550,7 +550,7 @@ if __name__ == "__main__":
 
     # Print config
     print(config3)
-```python
+````
 
 ### Best Practices
 
@@ -827,7 +827,7 @@ Model versioning ensures:
 
 ### Implementation
 
-```python
+````python
 from typing import Dict, List, Optional, Tuple
 from dataclasses import dataclass
 from packaging import version
@@ -1098,7 +1098,7 @@ if __name__ == "__main__":
     # Save versioned model
     model = VersionedModel(config={}, framework="pytorch")
     model.save("model_checkpoint.json")
-```python
+````
 
 ---
 

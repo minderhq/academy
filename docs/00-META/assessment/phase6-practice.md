@@ -628,7 +628,7 @@ Create adaptive retrieval system that:
 
 ---
 
-# Appendix: Phase 6 - Complete Reference Implementations
+## Appendix: Phase 6 - Complete Reference Implementations
 
 The exercises above use solution templates. This appendix contains
 complete, working implementations of each exercise for self-checking
