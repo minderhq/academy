@@ -1,3 +1,11 @@
+---
+Document ID: 6400-PRACTICE
+Title: "6400: Vector Databases - Practice"
+Last Updated: 2026-02-05
+Status: Complete
+Difficulty: Intermediate
+---
+
 # 6400: Vector Databases - Practice
 
 ## Exercises

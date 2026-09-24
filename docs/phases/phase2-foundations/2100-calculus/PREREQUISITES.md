@@ -1,3 +1,11 @@
+---
+Document ID: 2100-PREREQUISITES
+Title: "2100: Tensor Algebra - Prerequisites"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Intermediate
+---
+
 # 2100: Tensor Algebra - Prerequisites
 
 ## Before You Start

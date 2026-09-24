@@ -1,3 +1,11 @@
+---
+Document ID: 7400-QUIZ
+Title: "7400: Memory Systems - Quiz"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Advanced
+---
+
 # 7400: Memory Systems - Quiz
 
 ## Instructions

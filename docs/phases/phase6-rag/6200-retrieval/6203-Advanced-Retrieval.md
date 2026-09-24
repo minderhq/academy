@@ -1,3 +1,11 @@
+---
+Document ID: 6203
+Title: "6203: Advanced Retrieval Techniques"
+Last Updated: 2026-02-08
+Status: Draft
+Difficulty: Advanced
+---
+
 # 6203: Advanced Retrieval Techniques
 
 **Status:** 🚧 Coming Soon - Under Development

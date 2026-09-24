@@ -1,3 +1,11 @@
+---
+Document ID: 7302
+Title: "7302: Multi-Agent Communication Protocols"
+Last Updated: 2026-02-08
+Status: Draft
+Difficulty: Advanced
+---
+
 # 7302: Multi-Agent Communication Protocols
 
 **Status:** 🚧 Coming Soon - Under Development

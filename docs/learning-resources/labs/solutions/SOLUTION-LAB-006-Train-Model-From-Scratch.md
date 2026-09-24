@@ -1,3 +1,11 @@
+---
+Document ID: SOLUTION-LAB-006
+Title: "SOLUTION-LAB-006: Train Model From Scratch"
+Last Updated: 2026-02-07
+Status: Complete
+Difficulty: Intermediate
+---
+
 # SOLUTION-LAB-006: Train Model From Scratch
 
 ## Overview

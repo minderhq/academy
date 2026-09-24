@@ -1,3 +1,11 @@
+---
+Document ID: 2400-QUIZ
+Title: "Module 2400: Pretraining Fundamentals Quiz"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Intermediate
+---
+
 # Module 2400: Pretraining Fundamentals Quiz
 
 **Module:** Pretraining & Distributed Training

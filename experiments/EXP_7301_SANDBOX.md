@@ -1,3 +1,11 @@
+---
+Document ID: EXP_7301
+Title: "EXP_7301: Code Sandbox Experiment"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Advanced
+---
+
 # EXP_7301: Code Sandbox Experiment
 
 **Project:** AI Engineering Curriculum

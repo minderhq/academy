@@ -1,4 +1,12 @@
-# LAB-005: DPO Alignment
+---
+Document ID: LAB-010
+Title: "LAB-010: DPO Alignment"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Intermediate
+---
+
+# LAB-010: DPO Alignment
 
 **Align language models with human preferences using Direct Preference Optimization**
 

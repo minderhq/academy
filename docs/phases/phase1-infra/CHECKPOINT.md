@@ -1,3 +1,11 @@
+---
+Document ID: PHASE1-CHECKPOINT
+Title: "Progress Checkpoints: Phase 1 - Infrastructure Fabric"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Beginner
+---
+
 # Progress Checkpoints: Phase 1 - Infrastructure Fabric
 
 **Track your progress through Phase 1 modules**

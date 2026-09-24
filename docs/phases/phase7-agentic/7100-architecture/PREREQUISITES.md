@@ -1,3 +1,11 @@
+---
+Document ID: 7100-PREREQUISITES
+Title: "Prerequisites: AI Agents"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Advanced
+---
+
 # Prerequisites: AI Agents
 
 **For:** [7101-ReAct-Loop-System.md](./7101-ReAct-Loop-System.md)

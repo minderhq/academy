@@ -1,3 +1,11 @@
+---
+Document ID: VOLUME-4
+Title: "Volume 4: Quantization & Optimization"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Intermediate
+---
+
 # Volume 4: Quantization & Optimization
 
 **"Bending the Brain"** - Maximize your hardware to run larger, faster models.

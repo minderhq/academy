@@ -1,3 +1,11 @@
+---
+Document ID: TUTORIAL-013
+Title: "TUTORIAL-013: AI Security and Safety"
+Last Updated: 2026-02-05
+Status: Complete
+Difficulty: Intermediate
+---
+
 # TUTORIAL-013: AI Security and Safety
 
 ## Overview

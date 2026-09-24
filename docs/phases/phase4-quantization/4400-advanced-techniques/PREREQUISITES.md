@@ -1,3 +1,11 @@
+---
+Document ID: 4400-PREREQUISITES
+Title: "4400: Advanced Quantization Techniques - Prerequisites"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Advanced
+---
+
 # 4400: Advanced Quantization Techniques - Prerequisites
 
 ## Before You Start

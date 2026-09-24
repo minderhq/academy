@@ -1,3 +1,11 @@
+---
+Document ID: GUIDE-CAREER
+Title: "CAREER GUIDE: From Learning to Job-Ready"
+Last Updated: 2026-02-07
+Status: Complete
+Difficulty: Intermediate
+---
+
 # CAREER GUIDE: From Learning to Job-Ready
 
 **Target Audience:** AI Engineering Curriculum learners preparing for AI Engineering careers

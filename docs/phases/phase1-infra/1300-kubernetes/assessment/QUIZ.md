@@ -1,3 +1,11 @@
+---
+Document ID: 1300-QUIZ
+Title: "1300: Kubernetes - Quiz"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Intermediate
+---
+
 # 1300: Kubernetes - Quiz
 
 ## Instructions

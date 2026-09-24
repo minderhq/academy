@@ -1,3 +1,11 @@
+---
+Document ID: 1500-PRACTICE
+Title: "1500: Monitoring - Practice"
+Last Updated: 2026-02-05
+Status: Complete
+Difficulty: Intermediate
+---
+
 # 1500: Monitoring - Practice
 
 ## Exercises

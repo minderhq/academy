@@ -1,3 +1,11 @@
+---
+Document ID: 6500-PRACTICE
+Title: "6500: RAG MLOps - Practice"
+Last Updated: 2026-02-05
+Status: Complete
+Difficulty: Intermediate
+---
+
 # 6500: RAG MLOps - Practice
 
 ## Exercises

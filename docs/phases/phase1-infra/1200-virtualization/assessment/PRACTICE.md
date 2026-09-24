@@ -1,3 +1,11 @@
+---
+Document ID: 1200-PRACTICE
+Title: "1200: Virtualization - Practice"
+Last Updated: 2026-02-05
+Status: Complete
+Difficulty: Beginner
+---
+
 # 1200: Virtualization - Practice
 
 ## Exercises

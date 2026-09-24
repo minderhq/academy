@@ -1,3 +1,11 @@
+---
+Document ID: 5200-PRACTICE
+Title: "5200: LLM Alignment - Practice"
+Last Updated: 2026-02-05
+Status: Complete
+Difficulty: Advanced
+---
+
 # 5200: LLM Alignment - Practice
 
 ## Exercises

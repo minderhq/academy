@@ -1,3 +1,11 @@
+---
+Document ID: 7100-QUIZ
+Title: "7100: Agent Architecture - Quiz"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Advanced
+---
+
 # 7100: Agent Architecture - Quiz
 
 ## Instructions

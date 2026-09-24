@@ -1,3 +1,11 @@
+---
+Document ID: 4306
+Title: "4306: PyTorch QAT Guide"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Advanced
+---
+
 # 4306: PyTorch QAT Guide
 
 ## Abstract

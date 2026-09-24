@@ -1,3 +1,11 @@
+---
+Document ID: EXP_7201
+Title: "EXP-7201: Multi-Agent Systems"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Advanced
+---
+
 # EXP-7201: Multi-Agent Systems
 
 **Orchestrating multiple AI agents for complex tasks**

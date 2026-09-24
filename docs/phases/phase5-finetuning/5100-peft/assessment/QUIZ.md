@@ -1,3 +1,11 @@
+---
+Document ID: 5100-QUIZ
+Title: "Module 5100: PEFT Methods Quiz"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Advanced
+---
+
 # Module 5100: PEFT Methods Quiz
 
 **Module:** Parameter-Efficient Fine-Tuning

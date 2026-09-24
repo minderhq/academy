@@ -1,3 +1,11 @@
+---
+Document ID: 4307
+Title: "4307: Transformers QAT Guide"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Advanced
+---
+
 # 4307: Transformers QAT Guide
 
 ## Abstract

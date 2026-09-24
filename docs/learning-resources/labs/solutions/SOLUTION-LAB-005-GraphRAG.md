@@ -1,3 +1,11 @@
+---
+Document ID: SOLUTION-LAB-005
+Title: "SOLUTION-LAB-005: GraphRAG"
+Last Updated: 2026-02-07
+Status: Complete
+Difficulty: Intermediate
+---
+
 # SOLUTION-LAB-005: GraphRAG
 
 ## Overview

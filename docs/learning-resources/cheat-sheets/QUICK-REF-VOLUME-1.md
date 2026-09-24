@@ -1,3 +1,11 @@
+---
+Document ID: QUICK-REF-VOLUME-1
+Title: "Volume 1: Infrastructure Mastery - Quick Reference"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Intermediate
+---
+
 # Volume 1: Infrastructure Mastery - Quick Reference
 
 **Build Your AI Laboratory** - Essential commands and concepts

@@ -1,3 +1,11 @@
+---
+Document ID: 4300-PREREQUISITES
+Title: "4300: Quantization Aware Training - Prerequisites"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Advanced
+---
+
 # 4300: Quantization Aware Training - Prerequisites
 
 ## Before You Start

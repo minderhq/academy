@@ -1,3 +1,11 @@
+---
+Document ID: 3500-PREREQUISITES
+Title: "3500: Multimodal - Prerequisites"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Advanced
+---
+
 # 3500: Multimodal - Prerequisites
 
 ## Before You Start

@@ -1,3 +1,11 @@
+---
+Document ID: 5200-QUIZ
+Title: "Module 5200: Alignment Methods Quiz"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Advanced
+---
+
 # Module 5200: Alignment Methods Quiz
 
 **Module:** LLM Alignment (RLHF & DPO)

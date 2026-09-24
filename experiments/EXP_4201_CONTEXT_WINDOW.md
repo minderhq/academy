@@ -1,3 +1,11 @@
+---
+Document ID: EXP_4201
+Title: "EXP_4201: Context Window Physics Experiments"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Advanced
+---
+
 # EXP_4201: Context Window Physics Experiments
 
 ## Overview

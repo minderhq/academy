@@ -1,3 +1,11 @@
+---
+Document ID: EXP_6102
+Title: "EXP_6102: Semantic Similarity Experiment"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Advanced
+---
+
 # EXP_6102: Semantic Similarity Experiment
 
 **Project:** AI Engineering Curriculum

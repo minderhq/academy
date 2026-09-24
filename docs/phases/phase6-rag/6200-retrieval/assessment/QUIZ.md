@@ -1,3 +1,11 @@
+---
+Document ID: 6200-QUIZ
+Title: "6200: Retrieval - Quiz"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Advanced
+---
+
 # 6200: Retrieval - Quiz
 
 ## Instructions

@@ -1,3 +1,11 @@
+---
+Document ID: EXP_4103
+Title: "EXP_4103: Double Quantization Experiment"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Advanced
+---
+
 # EXP_4103: Double Quantization Experiment
 
 **Project:** AI Engineering Curriculum

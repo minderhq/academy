@@ -1,3 +1,11 @@
+---
+Document ID: UC-002
+Title: "UC-002: RAG (Retrieval-Augmented Generation) Practical Use Cases"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Intermediate
+---
+
 # UC-002: RAG (Retrieval-Augmented Generation) Practical Use Cases
 
 ## Overview

@@ -1,3 +1,11 @@
+---
+Document ID: 5300-PRACTICE
+Title: "5300: Synthetic Data Generation - Practice"
+Last Updated: 2026-02-05
+Status: Complete
+Difficulty: Advanced
+---
+
 # 5300: Synthetic Data Generation - Practice
 
 ## Exercises

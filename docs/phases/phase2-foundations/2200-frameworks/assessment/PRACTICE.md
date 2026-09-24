@@ -1,3 +1,11 @@
+---
+Document ID: 2200-PRACTICE
+Title: "2200: Frameworks - Practice"
+Last Updated: 2026-02-05
+Status: Complete
+Difficulty: Intermediate
+---
+
 # 2200: Frameworks - Practice
 
 ## Exercises

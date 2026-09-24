@@ -1,3 +1,11 @@
+---
+Document ID: 2300-QUIZ
+Title: "2300: Framework Engineering - Quiz"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Advanced
+---
+
 # 2300: Framework Engineering - Quiz
 
 **Test your knowledge of framework design patterns and deployment.**

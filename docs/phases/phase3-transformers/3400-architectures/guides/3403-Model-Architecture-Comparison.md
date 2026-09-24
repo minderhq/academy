@@ -1,3 +1,11 @@
+---
+Document ID: 3403
+Title: "3403: Model Architecture Comparison Guide"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Advanced
+---
+
 # 3403: Model Architecture Comparison Guide
 
 ## Abstract

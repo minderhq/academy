@@ -1,3 +1,11 @@
+---
+Document ID: EXP_7202
+Title: "EXP_7202: Multi-Agent Collaboration Experiment"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Advanced
+---
+
 # EXP_7202: Multi-Agent Collaboration Experiment
 
 **Project:** AI Engineering Curriculum

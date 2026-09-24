@@ -1,3 +1,11 @@
+---
+Document ID: GUIDE-INTERVIEW
+Title: INTERVIEW PREPARATION GUIDE
+Last Updated: 2026-02-07
+Status: Complete
+Difficulty: Intermediate
+---
+
 # INTERVIEW PREPARATION GUIDE
 
 **For:** AI Engineering Curriculum graduates preparing for AI Engineering interviews

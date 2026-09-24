@@ -1,3 +1,11 @@
+---
+Document ID: IND-002
+Title: "IND-002: Finance AI Applications"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Intermediate
+---
+
 # IND-002: Finance AI Applications
 
 ## Table of Contents

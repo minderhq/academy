@@ -1,3 +1,11 @@
+---
+Document ID: GUIDE-RESUME
+Title: RESUME TEMPLATES & EXAMPLES
+Last Updated: 2026-02-07
+Status: Complete
+Difficulty: Intermediate
+---
+
 # RESUME TEMPLATES & EXAMPLES
 
 **For:** AI Engineering Curriculum graduates seeking AI Engineering roles

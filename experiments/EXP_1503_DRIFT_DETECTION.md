@@ -1,3 +1,11 @@
+---
+Document ID: EXP_1503
+Title: "EXP_1503: Model Drift Detection Experiments"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Intermediate
+---
+
 # EXP_1503: Model Drift Detection Experiments
 
 ## Overview

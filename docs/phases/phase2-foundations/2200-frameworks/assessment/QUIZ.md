@@ -1,3 +1,11 @@
+---
+Document ID: 2200-QUIZ
+Title: "2200: Frameworks - Quiz"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Intermediate
+---
+
 # 2200: Frameworks - Quiz
 
 ## Instructions

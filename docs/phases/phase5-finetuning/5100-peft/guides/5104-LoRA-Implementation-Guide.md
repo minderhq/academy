@@ -1,3 +1,11 @@
+---
+Document ID: 5104
+Title: "5104: LoRA Implementation Guide"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Advanced
+---
+
 # 5104: LoRA Implementation Guide
 
 ## Abstract

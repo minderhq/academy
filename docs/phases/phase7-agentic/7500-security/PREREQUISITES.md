@@ -1,3 +1,11 @@
+---
+Document ID: 7500-PREREQUISITES
+Title: "7500: Security - Prerequisites"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Advanced
+---
+
 # 7500: Security - Prerequisites
 
 ## Before You Start

@@ -1,3 +1,11 @@
+---
+Document ID: 3300-PRACTICE
+Title: "3300: Decoding - Practice"
+Last Updated: 2026-02-05
+Status: Complete
+Difficulty: Advanced
+---
+
 # 3300: Decoding - Practice
 
 ## Exercises

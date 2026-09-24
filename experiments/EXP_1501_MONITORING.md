@@ -1,3 +1,11 @@
+---
+Document ID: EXP_1501
+Title: "EXP_1501: Monitoring and Observability Experiments"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Intermediate
+---
+
 # EXP_1501: Monitoring and Observability Experiments
 
 ## Overview

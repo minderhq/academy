@@ -1,32 +1,49 @@
 # AI Engineering Curriculum Document Template Standard
 
-**Version:** 1.0
-**Last Updated:** 2026-02-05
+**Version:** 1.1
+**Last Updated:** 2026-09-24
 **Status:** Active
 
 ---
 
 ## Frontmatter Metadata Standard
 
-Every technical document MUST include the following frontmatter:
+Every content document MUST start with YAML frontmatter containing the
+following five **core fields**:
 
 ```yaml
 ---
 Document ID: XXXX
 Title: [Document Title]
-Phase: X
-Module: XX00
 Last Updated: YYYY-MM-DD
 Status: [Draft/Review/Complete]
 Difficulty: [Beginner/Intermediate/Advanced/Expert]
-Estimated Time: X hours
-Prerequisites: [List of document IDs or topics]
-Related: [List of related document IDs]
-Tags: [relevant tags]
-Hardware: [Required hardware if applicable]
-Software: [Required software/versions]
 ---
 ```
+
+### Core Field Rules
+
+| Field | Rule |
+|-------|------|
+| Document ID | Short, corpus-unique identifier derived from the filename: the leading numeric code (`2301`), or prefix + number (`TUTORIAL-007`, `EXP_3101`, `SOL-002`). Module-level files use `<module>-<TYPE>` (`2300-QUIZ`); phase-level files use `PHASE<N>-<TYPE>` (`PHASE6-QUIZ`). |
+| Title | Exactly the document's H1 text (without `#`). Quote the value when it contains a colon+space: `Title: "Phase 6: Data Nexus (RAG) Quiz"`. |
+| Last Updated | ISO date `YYYY-MM-DD` of the last meaningful content change. |
+| Status | One of the lifecycle values below. |
+| Difficulty | One of the levels below. |
+
+### Optional Extended Fields
+
+Documents may add fields beyond the core set (Phase, Module, Estimated Time,
+Prerequisites, Related, Tags, Hardware, Software, Category). Extended fields
+are optional; the five core fields are the only requirement for a document to
+be considered valid.
+
+### Scope
+
+Frontmatter applies to content documents: lessons, guides, labs, tutorials,
+projects, cheat sheets, assessments, experiments, volumes, and case studies.
+It is **not** applied to README/index files, CHANGELOG, templates, or diagram
+containers.
 
 ### Status Values
 
@@ -51,7 +68,7 @@ Software: [Required software/versions]
 
 ## Document Structure Template
 
-```markdown
+````markdown
 ---
 [FRONTMATTER METADATA]
 ---
@@ -97,7 +114,7 @@ After reading this document, you will be able to:
 **Key Formula:**
 ```
 [Formula with proper formatting]
-```text
+```
 
 **Where:**
 - **Variable**: Description
@@ -108,7 +125,7 @@ After reading this document, you will be able to:
 ### 2.3 Architecture Diagram
 ```
 [ASCII art or reference to diagram file]
-```yaml
+```
 
 ---
 
@@ -205,7 +222,7 @@ setting: value
 **Last Updated:** YYYY-MM-DD
 **Status:** [Status]
 **Related Documents:** [List]
-```yaml
+````
 
 ---
 

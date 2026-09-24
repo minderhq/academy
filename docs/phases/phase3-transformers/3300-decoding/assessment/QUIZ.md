@@ -1,3 +1,11 @@
+---
+Document ID: 3300-QUIZ
+Title: "3300: Decoding - Quiz"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Advanced
+---
+
 # 3300: Decoding - Quiz
 
 ## Instructions

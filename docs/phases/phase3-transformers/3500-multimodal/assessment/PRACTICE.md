@@ -1,3 +1,11 @@
+---
+Document ID: 3500-PRACTICE
+Title: "3500: Multimodal AI - Practice"
+Last Updated: 2026-02-05
+Status: Complete
+Difficulty: Advanced
+---
+
 # 3500: Multimodal AI - Practice
 
 ## Exercises

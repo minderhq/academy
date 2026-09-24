@@ -1,3 +1,11 @@
+---
+Document ID: 7400-PRACTICE
+Title: "7400: Agent Memory Systems - Practice"
+Last Updated: 2026-02-05
+Status: Complete
+Difficulty: Advanced
+---
+
 # 7400: Agent Memory Systems - Practice
 
 ## Exercises

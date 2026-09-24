@@ -1,3 +1,11 @@
+---
+Document ID: EXP_6501
+Title: "EXP_6501: MLOps Pipeline Experiments"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Intermediate
+---
+
 # EXP_6501: MLOps Pipeline Experiments
 
 **Project:** AI Engineering Curriculum

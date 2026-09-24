@@ -1,3 +1,11 @@
+---
+Document ID: TUTORIAL-009
+Title: "TUTORIAL-009: Advanced RAG Techniques"
+Last Updated: 2026-02-05
+Status: Complete
+Difficulty: Intermediate
+---
+
 # TUTORIAL-009: Advanced RAG Techniques
 
 ## Overview

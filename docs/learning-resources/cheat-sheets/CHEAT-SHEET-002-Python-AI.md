@@ -1,3 +1,11 @@
+---
+Document ID: CHEAT-SHEET-002
+Title: "CHEAT SHEET: Python for AI/ML"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Intermediate
+---
+
 # CHEAT SHEET: Python for AI/ML
 
 **Essential Python for AI/ML development**

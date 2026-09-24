@@ -1,3 +1,11 @@
+---
+Document ID: EXP_6302
+Title: "EXP_6302: Long Context Architecture Experiment"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Advanced
+---
+
 # EXP_6302: Long Context Architecture Experiment
 
 **Project:** AI Engineering Curriculum

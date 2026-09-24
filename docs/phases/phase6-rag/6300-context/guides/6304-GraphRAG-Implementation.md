@@ -1,3 +1,11 @@
+---
+Document ID: 6304
+Title: "6304: GraphRAG Implementation Guide"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Advanced
+---
+
 # 6304: GraphRAG Implementation Guide
 
 ## Abstract

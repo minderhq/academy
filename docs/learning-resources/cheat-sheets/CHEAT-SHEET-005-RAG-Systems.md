@@ -1,3 +1,11 @@
+---
+Document ID: CHEAT-SHEET-005
+Title: "CHEAT SHEET 005: RAG Systems"
+Last Updated: 2026-02-05
+Status: Complete
+Difficulty: Intermediate
+---
+
 # CHEAT SHEET 005: RAG Systems
 ## Retrieval-Augmented Generation Quick Reference
 

@@ -1,3 +1,11 @@
+---
+Document ID: 2400-PREREQUISITES
+Title: "2400: Pre-training - Prerequisites"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Intermediate
+---
+
 # 2400: Pre-training - Prerequisites
 
 ## Before You Start

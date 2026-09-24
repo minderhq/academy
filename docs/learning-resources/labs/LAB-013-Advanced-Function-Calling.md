@@ -1,3 +1,11 @@
+---
+Document ID: LAB-013
+Title: "LAB-013: Advanced Function Calling"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Intermediate
+---
+
 # LAB-013: Advanced Function Calling
 
 **Master Tool Use and Orchestration in AI Systems**

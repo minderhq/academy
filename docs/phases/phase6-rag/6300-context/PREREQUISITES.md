@@ -1,3 +1,11 @@
+---
+Document ID: 6300-PREREQUISITES
+Title: "6300: Context - Prerequisites"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Advanced
+---
+
 # 6300: Context - Prerequisites
 
 ## Before You Start

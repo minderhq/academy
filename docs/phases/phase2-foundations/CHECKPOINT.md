@@ -1,3 +1,11 @@
+---
+Document ID: PHASE2-CHECKPOINT
+Title: "Progress Checkpoint: Phase 2 - Cognitive Science & Frameworks"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Intermediate
+---
+
 # Progress Checkpoint: Phase 2 - Cognitive Science & Frameworks
 
 **Track your progress through Phase 2 modules**

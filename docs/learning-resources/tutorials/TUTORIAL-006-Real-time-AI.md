@@ -1,3 +1,11 @@
+---
+Document ID: TUTORIAL-006
+Title: "TUTORIAL-006: Real-time AI"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Intermediate
+---
+
 # TUTORIAL-006: Real-time AI
 
 **Streaming Responses and Real-Time Interactions**

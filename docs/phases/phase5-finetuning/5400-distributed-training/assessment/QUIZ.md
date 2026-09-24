@@ -1,3 +1,11 @@
+---
+Document ID: 5400-QUIZ
+Title: "5400: Distributed Training - Quiz"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Advanced
+---
+
 # 5400: Distributed Training - Quiz
 
 ## Instructions

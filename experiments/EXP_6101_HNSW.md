@@ -1,3 +1,11 @@
+---
+Document ID: EXP_6101
+Title: "EXP-6101: HNSW Benchmarking"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Advanced
+---
+
 # EXP-6101: HNSW Benchmarking
 
 **Performance testing of hierarchical navigable small world graphs**

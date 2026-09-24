@@ -1,3 +1,11 @@
+---
+Document ID: PROJECT-003
+Title: "CAPSTONE PROJECT 003: Transformer from Scratch"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Intermediate
+---
+
 # CAPSTONE PROJECT 003: Transformer from Scratch
 
 **Build the architecture powering modern LLMs**

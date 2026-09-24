@@ -1,3 +1,11 @@
+---
+Document ID: CHEAT-SHEET-001
+Title: "CHEAT SHEET: Docker Commands"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Intermediate
+---
+
 # CHEAT SHEET: Docker Commands
 
 **Essential Docker commands for AI/ML development**

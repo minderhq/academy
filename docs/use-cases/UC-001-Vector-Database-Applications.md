@@ -1,3 +1,11 @@
+---
+Document ID: UC-001
+Title: "UC-001: Vector Database Practical Use Cases"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Intermediate
+---
+
 # UC-001: Vector Database Practical Use Cases
 
 ## Overview

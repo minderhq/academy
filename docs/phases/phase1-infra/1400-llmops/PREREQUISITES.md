@@ -1,3 +1,11 @@
+---
+Document ID: 1400-PREREQUISITES
+Title: "1400: LLMOps - Prerequisites"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Intermediate
+---
+
 # 1400: LLMOps - Prerequisites
 
 ## Before You Start

@@ -1,3 +1,11 @@
+---
+Document ID: PHASE1-QUIZ
+Title: "Phase 1: Infrastructure Quiz"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Beginner
+---
+
 # Phase 1: Infrastructure Quiz
 
 **15 Questions | Passing Score: 80% | Time: 30 minutes**

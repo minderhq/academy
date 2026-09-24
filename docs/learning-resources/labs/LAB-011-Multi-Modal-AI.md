@@ -1,3 +1,11 @@
+---
+Document ID: LAB-011
+Title: "LAB-011: Multi-Modal AI"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Intermediate
+---
+
 # LAB-011: Multi-Modal AI
 
 **Vision + Language Models - Build Systems That See and Understand**

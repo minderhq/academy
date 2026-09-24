@@ -1,3 +1,11 @@
+---
+Document ID: 7303
+Title: "7303: Multi-Agent Framework Comparison"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Advanced
+---
+
 # 7303: Multi-Agent Framework Comparison
 
 ## Abstract

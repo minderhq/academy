@@ -1,3 +1,11 @@
+---
+Document ID: 6100-PREREQUISITES
+Title: "Prerequisites: Vector Databases"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Advanced
+---
+
 # Prerequisites: Vector Databases
 
 **For:** [6101-HNSW-Indexing.md](./6101-HNSW-Indexing.md)

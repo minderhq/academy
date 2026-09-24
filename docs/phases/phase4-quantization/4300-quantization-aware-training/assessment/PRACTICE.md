@@ -1,3 +1,11 @@
+---
+Document ID: 4300-PRACTICE
+Title: "4300: Quantization Aware Training - Practice"
+Last Updated: 2026-02-05
+Status: Complete
+Difficulty: Advanced
+---
+
 # 4300: Quantization Aware Training - Practice
 
 ## Overview

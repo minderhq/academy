@@ -1,3 +1,11 @@
+---
+Document ID: 4100-PREREQUISITES
+Title: "Prerequisites: GGUF & Quantization"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Advanced
+---
+
 # Prerequisites: GGUF & Quantization
 
 **For:** [4101-GGUF-Physics.md](./4101-GGUF-Physics.md)

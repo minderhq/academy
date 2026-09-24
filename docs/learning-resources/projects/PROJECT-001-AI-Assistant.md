@@ -1,3 +1,11 @@
+---
+Document ID: PROJECT-001
+Title: "CAPSTONE PROJECT 001: Build Your AI Assistant"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Intermediate
+---
+
 # CAPSTONE PROJECT 001: Build Your AI Assistant
 
 **A complete end-to-end project combining all learned concepts**

@@ -1,3 +1,11 @@
+---
+Document ID: PHASE5-PRACTICE
+Title: "Phase 5: Fine-Tuning Practice"
+Last Updated: 2026-02-05
+Status: Complete
+Difficulty: Advanced
+---
+
 # Phase 5: Fine-Tuning Practice
 
 ## Hands-On Exercises

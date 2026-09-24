@@ -1,3 +1,11 @@
+---
+Document ID: QUICK-REF-VOLUME-6
+Title: "Volume 6: RAG & Data Systems - Quick Reference"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Intermediate
+---
+
 # Volume 6: RAG & Data Systems - Quick Reference
 
 **Build Intelligent Data Systems** - Vector search, RAG, GraphRAG, and vector databases

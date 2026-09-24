@@ -1,3 +1,11 @@
+---
+Document ID: 1405
+Title: "1405: Text Generation Inference (TGI) Deployment Guide"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Intermediate
+---
+
 # 1405: Text Generation Inference (TGI) Deployment Guide
 
 ## Abstract

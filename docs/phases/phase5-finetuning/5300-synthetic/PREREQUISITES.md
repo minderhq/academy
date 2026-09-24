@@ -1,3 +1,11 @@
+---
+Document ID: 5300-PREREQUISITES
+Title: "5300: Synthetic Data - Prerequisites"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Advanced
+---
+
 # 5300: Synthetic Data - Prerequisites
 
 ## Before You Start

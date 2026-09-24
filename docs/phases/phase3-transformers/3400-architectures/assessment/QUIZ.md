@@ -1,3 +1,11 @@
+---
+Document ID: 3400-QUIZ
+Title: "Module 3400: Model Architectures Quiz"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Advanced
+---
+
 # Module 3400: Model Architectures Quiz
 
 **Module:** Model Architectures

@@ -1,3 +1,11 @@
+---
+Document ID: 7200-PRACTICE
+Title: "7200: Tools & Function Calling - Practice"
+Last Updated: 2026-02-05
+Status: Complete
+Difficulty: Advanced
+---
+
 # 7200: Tools & Function Calling - Practice
 
 ## Exercises

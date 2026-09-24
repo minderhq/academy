@@ -1,3 +1,11 @@
+---
+Document ID: 3400-PRACTICE
+Title: "3400: Architectures - Practice"
+Last Updated: 2026-02-05
+Status: Complete
+Difficulty: Advanced
+---
+
 # 3400: Architectures - Practice
 
 ## Exercises

@@ -1,3 +1,11 @@
+---
+Document ID: PHASE5-QUIZ
+Title: "Phase 5: Fine-Tuning & Alignment Quiz"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Advanced
+---
+
 # Phase 5: Fine-Tuning & Alignment Quiz
 
 **30 Questions | Passing Score: 80% | Time: 60 minutes**

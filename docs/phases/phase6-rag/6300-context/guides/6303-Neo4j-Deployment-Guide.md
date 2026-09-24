@@ -1,3 +1,11 @@
+---
+Document ID: 6303
+Title: "6303: Neo4j Deployment Guide"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Advanced
+---
+
 # 6303: Neo4j Deployment Guide
 
 ## Abstract

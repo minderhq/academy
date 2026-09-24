@@ -1,3 +1,11 @@
+---
+Document ID: 5200-PREREQUISITES
+Title: "5200: Alignment - Prerequisites"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Advanced
+---
+
 # 5200: Alignment - Prerequisites
 
 ## Before You Start

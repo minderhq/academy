@@ -1,3 +1,11 @@
+---
+Document ID: EXP_5303
+Title: "EXP_5303: Federated Learning Experiments"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Advanced
+---
+
 # EXP_5303: Federated Learning Experiments
 
 **Project:** AI Engineering Curriculum

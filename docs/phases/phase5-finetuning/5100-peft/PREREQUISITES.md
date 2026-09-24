@@ -1,3 +1,11 @@
+---
+Document ID: 5100-PREREQUISITES
+Title: "Prerequisites: LoRA & Fine-Tuning"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Advanced
+---
+
 # Prerequisites: LoRA & Fine-Tuning
 
 **For:** [5101-LoRA-Logic.md](./5101-LoRA-Logic.md)

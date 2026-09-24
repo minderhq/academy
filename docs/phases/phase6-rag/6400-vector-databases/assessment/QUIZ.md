@@ -1,3 +1,11 @@
+---
+Document ID: 6400-QUIZ
+Title: "6400: Vector Databases - Quiz"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Intermediate
+---
+
 # 6400: Vector Databases - Quiz
 
 ## Instructions

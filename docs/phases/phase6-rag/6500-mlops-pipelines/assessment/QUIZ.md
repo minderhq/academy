@@ -1,3 +1,11 @@
+---
+Document ID: 6500-QUIZ
+Title: "6500: RAG MLOps - Quiz"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Intermediate
+---
+
 # 6500: RAG MLOps - Quiz
 
 ## Instructions

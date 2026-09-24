@@ -1,3 +1,11 @@
+---
+Document ID: 4308
+Title: "4308: BitBlade QAT Guide"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Advanced
+---
+
 # 4308: BitBlade QAT Guide
 
 ## Abstract

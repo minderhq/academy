@@ -1,3 +1,11 @@
+---
+Document ID: 1500-QUIZ
+Title: "1500: Monitoring - Quiz"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Intermediate
+---
+
 # 1500: Monitoring - Quiz
 
 ## Instructions

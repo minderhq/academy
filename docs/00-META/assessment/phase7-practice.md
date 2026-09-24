@@ -1,3 +1,11 @@
+---
+Document ID: PHASE7-PRACTICE
+Title: "Phase 7: Agentic Systems - Practice Exercises"
+Last Updated: 2026-02-05
+Status: Complete
+Difficulty: Advanced
+---
+
 # Phase 7: Agentic Systems - Practice Exercises
 
 ## Overview

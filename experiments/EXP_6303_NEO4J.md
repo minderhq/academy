@@ -1,3 +1,11 @@
+---
+Document ID: EXP_6303
+Title: "EXP_6303: Neo4j Knowledge Graph Experiments"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Advanced
+---
+
 # EXP_6303: Neo4j Knowledge Graph Experiments
 
 ## Overview

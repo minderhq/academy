@@ -1,3 +1,11 @@
+---
+Document ID: 4200-QUIZ
+Title: "Module 4200: KV Cache & Context Window Quiz"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Advanced
+---
+
 # Module 4200: KV Cache & Context Window Quiz
 
 **Module:** KV Cache & Context Window Physics

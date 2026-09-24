@@ -1,3 +1,11 @@
+---
+Document ID: 5103
+Title: "5103: Adapters & Parameter-Efficient Adaptation Methods"
+Last Updated: 2026-02-08
+Status: Draft
+Difficulty: Advanced
+---
+
 # 5103: Adapters & Parameter-Efficient Adaptation Methods
 
 **Status:** 🚧 Coming Soon - Under Development

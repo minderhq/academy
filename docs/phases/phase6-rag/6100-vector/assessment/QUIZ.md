@@ -1,3 +1,11 @@
+---
+Document ID: 6100-QUIZ
+Title: "6100: Vector Embeddings - Quiz"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Advanced
+---
+
 # 6100: Vector Embeddings - Quiz
 
 ## Instructions

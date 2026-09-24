@@ -1,3 +1,11 @@
+---
+Document ID: TUTORIAL-011
+Title: "TUTORIAL-011: Multi-Modal AI"
+Last Updated: 2026-02-05
+Status: Complete
+Difficulty: Intermediate
+---
+
 # TUTORIAL-011: Multi-Modal AI
 
 ## Overview

@@ -1,3 +1,11 @@
+---
+Document ID: TUTORIAL-001
+Title: "Tutorial 001: Hello LLM! - Your First AI Model"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Intermediate
+---
+
 # Tutorial 001: Hello LLM! - Your First AI Model
 
 **Difficulty:** ⭐ Beginner

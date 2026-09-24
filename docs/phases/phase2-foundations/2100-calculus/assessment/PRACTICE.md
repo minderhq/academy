@@ -1,3 +1,11 @@
+---
+Document ID: 2100-PRACTICE
+Title: "2100: Calculus - Practice"
+Last Updated: 2026-02-05
+Status: Complete
+Difficulty: Intermediate
+---
+
 # 2100: Calculus - Practice
 
 ## Exercises

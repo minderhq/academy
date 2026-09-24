@@ -1,3 +1,11 @@
+---
+Document ID: 1400-QUIZ
+Title: "1400: LLMOps - Quiz"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Intermediate
+---
+
 # 1400: LLMOps - Quiz
 
 ## Instructions

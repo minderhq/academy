@@ -1,3 +1,11 @@
+---
+Document ID: 7200-QUIZ
+Title: "Module 7200: Tool Calling Quiz"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Advanced
+---
+
 # Module 7200: Tool Calling Quiz
 
 **Module:** Tool & Function Calling

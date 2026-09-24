@@ -1,3 +1,11 @@
+---
+Document ID: PHASE3-CHECKPOINT
+Title: "Progress Checkpoint: Phase 3 - Transformer Physics"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Advanced
+---
+
 # Progress Checkpoint: Phase 3 - Transformer Physics
 
 **Track your progress through Phase 3 modules**

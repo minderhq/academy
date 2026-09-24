@@ -1,3 +1,11 @@
+---
+Document ID: QUICK-REF-VOLUME-3
+Title: "Volume 3: LLM Internals - Quick Reference"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Intermediate
+---
+
 # Volume 3: LLM Internals - Quick Reference
 
 **Transformer Architecture Deep Dive** - Attention, embeddings, and architectures

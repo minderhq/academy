@@ -1,3 +1,11 @@
+---
+Document ID: UC-003
+Title: "UC-003: AI Agent Practical Use Cases"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Intermediate
+---
+
 # UC-003: AI Agent Practical Use Cases
 
 ## Overview

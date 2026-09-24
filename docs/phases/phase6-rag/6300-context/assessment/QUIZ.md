@@ -1,3 +1,11 @@
+---
+Document ID: 6300-QUIZ
+Title: "6300: Context Window Management - Quiz"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Advanced
+---
+
 # 6300: Context Window Management - Quiz
 
 ## Instructions

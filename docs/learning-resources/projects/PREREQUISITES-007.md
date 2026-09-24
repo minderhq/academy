@@ -1,3 +1,11 @@
+---
+Document ID: PREREQUISITES-007
+Title: "PROJECT-007: Prerequisites & Setup Guide"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Intermediate
+---
+
 # PROJECT-007: Prerequisites & Setup Guide
 
 **For:** [PROJECT-007: Production AI System](./PROJECT-007-Production-AI-System.md)

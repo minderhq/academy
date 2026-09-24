@@ -1,3 +1,11 @@
+---
+Document ID: 6200-PRACTICE
+Title: "6200: Advanced Retrieval - Practice"
+Last Updated: 2026-02-05
+Status: Complete
+Difficulty: Advanced
+---
+
 # 6200: Advanced Retrieval - Practice
 
 ## Exercises

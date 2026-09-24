@@ -1,3 +1,11 @@
+---
+Document ID: 7500-QUIZ
+Title: "7500: Agent Security - Quiz"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Advanced
+---
+
 # 7500: Agent Security - Quiz
 
 ## Instructions

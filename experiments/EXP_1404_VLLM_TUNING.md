@@ -1,3 +1,11 @@
+---
+Document ID: EXP_1404
+Title: "EXP_1404: vLLM Production Tuning Experiments"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Intermediate
+---
+
 # EXP_1404: vLLM Production Tuning Experiments
 
 ## Overview

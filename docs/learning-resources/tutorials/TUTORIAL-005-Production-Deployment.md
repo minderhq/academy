@@ -1,3 +1,11 @@
+---
+Document ID: TUTORIAL-005
+Title: "TUTORIAL 005: Production Deployment with CI/CD"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Intermediate
+---
+
 # TUTORIAL 005: Production Deployment with CI/CD
 
 **Prerequisites:** Tutorial 001 (Hello LLM), Tutorial 002 (Docker Essentials), Tutorial 004 (Monitoring)

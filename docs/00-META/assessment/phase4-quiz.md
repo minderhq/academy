@@ -1,3 +1,11 @@
+---
+Document ID: PHASE4-QUIZ
+Title: "Phase 4: Quantization & Compression Quiz"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Advanced
+---
+
 # Phase 4: Quantization & Compression Quiz
 
 **30 Questions | Passing Score: 80% | Time: 60 minutes**

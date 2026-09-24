@@ -1,3 +1,11 @@
+---
+Document ID: VOLUME-1
+Title: "Volume 1: Infrastructure Fundamentals"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Intermediate
+---
+
 # Volume 1: Infrastructure Fundamentals
 
 **"Building the Foundation"** - Set up your AI lab and run your first local LLMs.

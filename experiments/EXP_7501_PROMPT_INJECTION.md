@@ -1,3 +1,11 @@
+---
+Document ID: EXP_7501
+Title: "EXP_7501: Prompt Injection Experiments"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Advanced
+---
+
 # EXP_7501: Prompt Injection Experiments
 
 **Project:** AI Engineering Curriculum

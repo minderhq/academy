@@ -1,3 +1,11 @@
+---
+Document ID: EXP_7401
+Title: "EXP_7401: Agent Memory Systems Experiments"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Advanced
+---
+
 # EXP_7401: Agent Memory Systems Experiments
 
 ## Overview

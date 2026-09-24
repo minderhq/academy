@@ -1,3 +1,11 @@
+---
+Document ID: EXP_1101
+Title: "EXP_1101_GPON: Fiber GPON Modem Configuration"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Beginner
+---
+
 # EXP_1101_GPON: Fiber GPON Modem Configuration
 
 ## Experiment Information

@@ -1,3 +1,11 @@
+---
+Document ID: EXP_4102
+Title: "EXP-4102: EXL2 vs AWQ"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Advanced
+---
+
 # EXP-4102: EXL2 vs AWQ
 
 **Comparing advanced quantization methods**

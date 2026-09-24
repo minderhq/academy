@@ -1,3 +1,11 @@
+---
+Document ID: SOLUTION-LAB-013
+Title: "SOLUTION-LAB-013: Advanced Function Calling"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Intermediate
+---
+
 # SOLUTION-LAB-013: Advanced Function Calling
 
 ## Overview

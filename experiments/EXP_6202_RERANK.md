@@ -1,3 +1,11 @@
+---
+Document ID: EXP_6202
+Title: "EXP_6202: Re-ranking Experiment"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Advanced
+---
+
 # EXP_6202: Re-ranking Experiment
 
 **Project:** AI Engineering Curriculum

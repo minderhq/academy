@@ -1,3 +1,11 @@
+---
+Document ID: LAB-008
+Title: "LAB-008: Multi-Agent Fleet"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Intermediate
+---
+
 # LAB-008: Multi-Agent Fleet
 
 **Build a fleet of specialized AI agents working collaboratively**

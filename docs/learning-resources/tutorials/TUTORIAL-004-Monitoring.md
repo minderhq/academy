@@ -1,3 +1,11 @@
+---
+Document ID: TUTORIAL-004
+Title: "TUTORIAL 004: Monitoring & Observability for AI Systems"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Intermediate
+---
+
 # TUTORIAL 004: Monitoring & Observability for AI Systems
 
 **Prerequisites:** Tutorial 001 (Hello LLM), Tutorial 002 (Docker Essentials), LAB 001 (Docker & LLM)

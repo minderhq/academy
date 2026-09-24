@@ -1,3 +1,11 @@
+---
+Document ID: PREREQUISITES-001
+Title: "PROJECT-001: Prerequisites & Setup Guide"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Intermediate
+---
+
 # PROJECT-001: Prerequisites & Setup Guide
 
 **For:** [PROJECT-001: Build Your AI Assistant](./PROJECT-001-AI-Assistant.md)

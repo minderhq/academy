@@ -1,3 +1,11 @@
+---
+Document ID: 5300-QUIZ
+Title: "Module 5300: Synthetic Data & Advanced Methods Quiz"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Advanced
+---
+
 # Module 5300: Synthetic Data & Advanced Methods Quiz
 
 **Module:** Synthetic Data & Advanced Methods

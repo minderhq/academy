@@ -1,3 +1,11 @@
+---
+Document ID: 7100-PRACTICE
+Title: "7100: LLM Reasoning - Practice"
+Last Updated: 2026-02-05
+Status: Complete
+Difficulty: Advanced
+---
+
 # 7100: LLM Reasoning - Practice
 
 ## Exercises

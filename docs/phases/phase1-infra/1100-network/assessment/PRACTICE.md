@@ -1,3 +1,11 @@
+---
+Document ID: 1100-PRACTICE
+Title: "Module 1100: Network Infrastructure Practice"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Beginner
+---
+
 # Module 1100: Network Infrastructure Practice
 
 **Module:** Network Infrastructure for AI

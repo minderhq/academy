@@ -1,3 +1,11 @@
+---
+Document ID: 2400-PRACTICE
+Title: "2400: Pretraining - Practice"
+Last Updated: 2026-02-05
+Status: Complete
+Difficulty: Intermediate
+---
+
 # 2400: Pretraining - Practice
 
 ## Exercises

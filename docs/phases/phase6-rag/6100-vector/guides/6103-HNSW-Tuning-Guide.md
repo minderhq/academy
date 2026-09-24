@@ -1,3 +1,11 @@
+---
+Document ID: 6103
+Title: "6103: HNSW Parameter Tuning Guide"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Advanced
+---
+
 # 6103: HNSW Parameter Tuning Guide
 
 ## Abstract

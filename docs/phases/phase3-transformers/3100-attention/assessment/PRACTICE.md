@@ -1,3 +1,11 @@
+---
+Document ID: 3100-PRACTICE
+Title: "3100: Attention - Practice"
+Last Updated: 2026-02-05
+Status: Complete
+Difficulty: Advanced
+---
+
 # 3100: Attention - Practice
 
 ## Exercises

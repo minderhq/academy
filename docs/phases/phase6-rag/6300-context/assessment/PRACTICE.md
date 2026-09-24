@@ -1,3 +1,11 @@
+---
+Document ID: 6300-PRACTICE
+Title: "6300: Context Window Optimization - Practice"
+Last Updated: 2026-02-05
+Status: Complete
+Difficulty: Advanced
+---
+
 # 6300: Context Window Optimization - Practice
 
 ## Exercises

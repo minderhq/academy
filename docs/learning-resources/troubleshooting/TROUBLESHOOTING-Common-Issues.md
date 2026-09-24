@@ -1,3 +1,11 @@
+---
+Document ID: TROUBLESHOOTING-Common-Issues
+Title: "TROUBLESHOOTING: Common Issues & Solutions"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Intermediate
+---
+
 # TROUBLESHOOTING: Common Issues & Solutions
 
 **Solutions to the most common problems encountered during learning**

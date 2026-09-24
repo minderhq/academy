@@ -1,3 +1,11 @@
+---
+Document ID: 1500-PREREQUISITES
+Title: "1500: Monitoring - Prerequisites"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Intermediate
+---
+
 # 1500: Monitoring - Prerequisites
 
 ## Before You Start

@@ -1,3 +1,11 @@
+---
+Document ID: 2305
+Title: "2305: Framework Comparison Guide"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Advanced
+---
+
 # 2305: Framework Comparison Guide
 
 **Project:** AI Engineering Curriculum

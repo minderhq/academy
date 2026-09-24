@@ -1,3 +1,11 @@
+---
+Document ID: 3300-PREREQUISITES
+Title: "3300: Decoding - Prerequisites"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Advanced
+---
+
 # 3300: Decoding - Prerequisites
 
 ## Before You Start

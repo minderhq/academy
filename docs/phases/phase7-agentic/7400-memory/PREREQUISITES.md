@@ -1,3 +1,11 @@
+---
+Document ID: 7400-PREREQUISITES
+Title: "7400: Memory - Prerequisites"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Advanced
+---
+
 # 7400: Memory - Prerequisites
 
 ## Before You Start

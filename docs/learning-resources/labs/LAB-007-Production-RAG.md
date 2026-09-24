@@ -1,3 +1,11 @@
+---
+Document ID: LAB-007
+Title: "LAB-007: Production RAG System"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Intermediate
+---
+
 # LAB-007: Production RAG System
 
 **Build enterprise-grade RAG with hybrid search, re-ranking, and monitoring**

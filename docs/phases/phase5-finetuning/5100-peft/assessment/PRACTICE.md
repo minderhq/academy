@@ -1,3 +1,11 @@
+---
+Document ID: 5100-PRACTICE
+Title: "5100: PEFT Techniques - Practice"
+Last Updated: 2026-02-05
+Status: Complete
+Difficulty: Advanced
+---
+
 # 5100: PEFT Techniques - Practice
 
 ## Exercises

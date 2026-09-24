@@ -1,3 +1,11 @@
+---
+Document ID: 4100-PRACTICE
+Title: "4100: Low-Bit Quantization - Practice"
+Last Updated: 2026-02-05
+Status: Complete
+Difficulty: Advanced
+---
+
 # 4100: Low-Bit Quantization - Practice
 
 ## Exercises

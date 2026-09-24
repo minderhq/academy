@@ -1,3 +1,11 @@
+---
+Document ID: VOLUME-3
+Title: "Volume 3: LLM Internals & Architecture"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Intermediate
+---
+
 # Volume 3: LLM Internals & Architecture
 
 **"Understanding the Transformer"** - Deep dive into how LLMs work internally.

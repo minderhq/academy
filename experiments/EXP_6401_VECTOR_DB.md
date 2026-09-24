@@ -1,3 +1,11 @@
+---
+Document ID: EXP_6401
+Title: "EXP_6401: Vector Database Performance Experiments"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Intermediate
+---
+
 # EXP_6401: Vector Database Performance Experiments
 
 ## Overview

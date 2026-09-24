@@ -1,3 +1,11 @@
+---
+Document ID: 1400-PRACTICE
+Title: "1400: LLMOps - Practice"
+Last Updated: 2026-02-05
+Status: Complete
+Difficulty: Intermediate
+---
+
 # 1400: LLMOps - Practice
 
 ## Exercises

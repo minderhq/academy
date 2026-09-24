@@ -1,3 +1,11 @@
+---
+Document ID: 4300-QUIZ
+Title: "4300: Quantization Aware Training - Quiz"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Advanced
+---
+
 # 4300: Quantization Aware Training - Quiz
 
 ## Instructions

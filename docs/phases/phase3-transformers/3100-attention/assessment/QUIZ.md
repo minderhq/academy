@@ -1,3 +1,11 @@
+---
+Document ID: 3100-QUIZ
+Title: "3100: Attention - Quiz"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Advanced
+---
+
 # 3100: Attention - Quiz
 
 ## Instructions

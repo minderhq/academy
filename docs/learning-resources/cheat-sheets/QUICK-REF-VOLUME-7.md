@@ -1,3 +1,11 @@
+---
+Document ID: QUICK-REF-VOLUME-7
+Title: "Volume 7: Production Systems - Quick Reference"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Intermediate
+---
+
 # Volume 7: Production Systems - Quick Reference
 
 **Deploy at Scale** - Agents, multi-agent systems, and production deployment

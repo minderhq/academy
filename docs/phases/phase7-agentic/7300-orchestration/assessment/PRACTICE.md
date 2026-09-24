@@ -1,3 +1,11 @@
+---
+Document ID: 7300-PRACTICE
+Title: "7300: Agent Orchestration - Practice"
+Last Updated: 2026-02-05
+Status: Complete
+Difficulty: Advanced
+---
+
 # 7300: Agent Orchestration - Practice
 
 ## Exercises

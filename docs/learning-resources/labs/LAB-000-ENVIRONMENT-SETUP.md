@@ -1,3 +1,11 @@
+---
+Document ID: LAB-000
+Title: "LAB-000: Environment Setup"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Beginner
+---
+
 # LAB-000: Environment Setup
 
 **Duration:** 45-60 minutes

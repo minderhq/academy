@@ -1,3 +1,11 @@
+---
+Document ID: 6100-PRACTICE
+Title: "6100: Vector Embeddings - Practice"
+Last Updated: 2026-02-05
+Status: Complete
+Difficulty: Advanced
+---
+
 # 6100: Vector Embeddings - Practice
 
 ## Exercises

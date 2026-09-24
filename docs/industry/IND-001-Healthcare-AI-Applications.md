@@ -1,3 +1,11 @@
+---
+Document ID: IND-001
+Title: "IND-001: Healthcare AI Applications"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Intermediate
+---
+
 # IND-001: Healthcare AI Applications
 
 ## Table of Contents

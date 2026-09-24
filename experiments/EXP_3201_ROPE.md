@@ -1,3 +1,11 @@
+---
+Document ID: EXP_3201
+Title: "EXP_3201: RoPE Positional Embeddings Experiments"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Advanced
+---
+
 # EXP_3201: RoPE Positional Embeddings Experiments
 
 ## Overview

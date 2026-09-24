@@ -1,3 +1,11 @@
+---
+Document ID: PHASE4-PRACTICE
+Title: "Phase 4: Quantization Practice"
+Last Updated: 2026-02-05
+Status: Complete
+Difficulty: Advanced
+---
+
 # Phase 4: Quantization Practice
 
 ## Hands-On Exercises

@@ -1,3 +1,11 @@
+---
+Document ID: LAB-012
+Title: "LAB-012: Audio AI"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Intermediate
+---
+
 # LAB-012: Audio AI
 
 **Speech Recognition, Synthesis, and Voice Systems**

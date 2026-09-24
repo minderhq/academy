@@ -1,3 +1,11 @@
+---
+Document ID: PHASE7-QUIZ
+Title: "Phase 7: Agentic Systems Quiz"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Advanced
+---
+
 # Phase 7: Agentic Systems Quiz
 
 **30 Questions | Passing Score: 80% | Time: 60 minutes**

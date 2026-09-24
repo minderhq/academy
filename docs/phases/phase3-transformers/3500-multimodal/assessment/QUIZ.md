@@ -1,3 +1,11 @@
+---
+Document ID: 3500-QUIZ
+Title: "Module 3500: Multimodal Models Quiz"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Advanced
+---
+
 # Module 3500: Multimodal Models Quiz
 
 **Module:** Multimodal Models

@@ -1,3 +1,11 @@
+---
+Document ID: VOLUME-2
+Title: "Volume 2: AI/ML Foundations"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Intermediate
+---
+
 # Volume 2: AI/ML Foundations
 
 **"The Mathematics of Intelligence"** - Deep dive into the calculus, linear algebra, and frameworks behind AI.

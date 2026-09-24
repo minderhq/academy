@@ -1,3 +1,11 @@
+---
+Document ID: 6400-PREREQUISITES
+Title: "6400: Vector Databases - Prerequisites"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Intermediate
+---
+
 # 6400: Vector Databases - Prerequisites
 
 ## Before You Start

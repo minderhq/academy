@@ -1,3 +1,11 @@
+---
+Document ID: 2200-PREREQUISITES
+Title: "2200: Frameworks - Prerequisites"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Intermediate
+---
+
 # 2200: Frameworks - Prerequisites
 
 ## Before You Start

@@ -1,3 +1,11 @@
+---
+Document ID: 3200-QUIZ
+Title: "3200: Embeddings - Quiz"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Advanced
+---
+
 # 3200: Embeddings - Quiz
 
 ## Instructions

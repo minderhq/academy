@@ -1,3 +1,11 @@
+---
+Document ID: PHASE3-PRACTICE
+Title: "Phase 3: Transformer Physics Practice"
+Last Updated: 2026-02-05
+Status: Complete
+Difficulty: Advanced
+---
+
 # Phase 3: Transformer Physics Practice
 
 ## Hands-On Exercises

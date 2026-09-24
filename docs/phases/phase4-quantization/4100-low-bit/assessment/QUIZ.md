@@ -1,3 +1,11 @@
+---
+Document ID: 4100-QUIZ
+Title: "4100: Low-bit Quantization - Quiz"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Advanced
+---
+
 # 4100: Low-bit Quantization - Quiz
 
 ## Instructions

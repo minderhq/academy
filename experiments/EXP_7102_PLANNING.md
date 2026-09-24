@@ -1,3 +1,11 @@
+---
+Document ID: EXP_7102
+Title: "EXP_7102: Planning & Decomposition Experiment"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Advanced
+---
+
 # EXP_7102: Planning & Decomposition Experiment
 
 **Project:** AI Engineering Curriculum

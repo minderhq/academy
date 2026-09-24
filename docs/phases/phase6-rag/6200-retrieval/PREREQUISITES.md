@@ -1,3 +1,11 @@
+---
+Document ID: 6200-PREREQUISITES
+Title: "6200: Retrieval - Prerequisites"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Advanced
+---
+
 # 6200: Retrieval - Prerequisites
 
 ## Before You Start

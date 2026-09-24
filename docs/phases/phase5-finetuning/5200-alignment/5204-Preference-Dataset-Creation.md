@@ -1,3 +1,11 @@
+---
+Document ID: 5204
+Title: "5204: Preference Dataset Creation"
+Last Updated: 2026-02-08
+Status: Draft
+Difficulty: Advanced
+---
+
 # 5204: Preference Dataset Creation
 
 **Status:** 🚧 Coming Soon - Under Development

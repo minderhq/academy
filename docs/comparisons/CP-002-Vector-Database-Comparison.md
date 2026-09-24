@@ -1,3 +1,11 @@
+---
+Document ID: CP-002
+Title: "CP-002: Vector Database Comparison Guide"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Intermediate
+---
+
 # CP-002: Vector Database Comparison Guide
 
 ## Overview

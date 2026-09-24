@@ -1,3 +1,11 @@
+---
+Document ID: EXP_1302
+Title: "EXP_1302_GPU_SCHEDULER: GPU Scheduler Configuration"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Intermediate
+---
+
 # EXP_1302_GPU_SCHEDULER: GPU Scheduler Configuration
 
 ## Experiment Information

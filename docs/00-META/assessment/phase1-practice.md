@@ -1,3 +1,11 @@
+---
+Document ID: PHASE1-PRACTICE
+Title: "Phase 1: Infrastructure Practice"
+Last Updated: 2026-02-05
+Status: Complete
+Difficulty: Beginner
+---
+
 # Phase 1: Infrastructure Practice
 
 ## Hands-On Exercises

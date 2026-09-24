@@ -1,3 +1,11 @@
+---
+Document ID: SOLUTION-LAB-012
+Title: "SOLUTION-LAB-012: Audio AI"
+Last Updated: 2026-02-07
+Status: Complete
+Difficulty: Intermediate
+---
+
 # SOLUTION-LAB-012: Audio AI
 
 ## Overview

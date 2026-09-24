@@ -1,3 +1,11 @@
+---
+Document ID: SOLUTION-LAB-014
+Title: "SOLUTION-LAB-014: AI Evaluation & Safety"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Intermediate
+---
+
 # SOLUTION-LAB-014: AI Evaluation & Safety
 
 ## Overview

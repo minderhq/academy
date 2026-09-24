@@ -1,3 +1,11 @@
+---
+Document ID: TUTORIAL-TO-LAB-BRIDGE
+Title: Tutorial to Lab Bridge Guide
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Intermediate
+---
+
 # Tutorial to Lab Bridge Guide
 
 **Bridging the Gap Between Tutorials and Hands-on Labs**

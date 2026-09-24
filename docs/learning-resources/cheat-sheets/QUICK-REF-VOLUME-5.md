@@ -1,3 +1,11 @@
+---
+Document ID: QUICK-REF-VOLUME-5
+Title: "Volume 5: Fine-Tuning Expert - Quick Reference"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Intermediate
+---
+
 # Volume 5: Fine-Tuning Expert - Quick Reference
 
 **Adapt Models to Your Needs** - LoRA, QLoRA, DPO, and alignment

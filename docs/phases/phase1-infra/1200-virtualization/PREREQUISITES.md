@@ -1,3 +1,11 @@
+---
+Document ID: 1200-PREREQUISITES
+Title: "1200: Virtualization - Prerequisites"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Beginner
+---
+
 # 1200: Virtualization - Prerequisites
 
 ## Before You Start

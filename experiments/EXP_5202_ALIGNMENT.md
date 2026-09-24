@@ -1,3 +1,11 @@
+---
+Document ID: EXP_5202
+Title: "EXP_5202: Alignment Orchestration Experiment"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Advanced
+---
+
 # EXP_5202: Alignment Orchestration Experiment
 
 **Project:** AI Engineering Curriculum

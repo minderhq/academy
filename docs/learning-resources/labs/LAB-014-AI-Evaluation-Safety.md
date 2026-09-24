@@ -1,3 +1,11 @@
+---
+Document ID: LAB-014
+Title: "LAB-014: AI Evaluation & Safety"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Intermediate
+---
+
 # LAB-014: AI Evaluation & Safety
 
 **Testing, Benchmarking, and Securing AI Systems**

@@ -1,3 +1,11 @@
+---
+Document ID: SOLUTION-LAB-011
+Title: "SOLUTION-LAB-011: Multi-Modal AI"
+Last Updated: 2026-02-05
+Status: Complete
+Difficulty: Intermediate
+---
+
 # SOLUTION-LAB-011: Multi-Modal AI
 
 ## Overview

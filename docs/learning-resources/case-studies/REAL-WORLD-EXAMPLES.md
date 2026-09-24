@@ -1,3 +1,11 @@
+---
+Document ID: REAL-WORLD-EXAMPLES
+Title: Real-World Examples & Case Studies
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Intermediate
+---
+
 # Real-World Examples & Case Studies
 
 **Project:** AI Engineering Curriculum

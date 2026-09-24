@@ -1,3 +1,11 @@
+---
+Document ID: 2100-QUIZ
+Title: "2100: Calculus - Quiz"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Intermediate
+---
+
 # 2100: Calculus - Quiz
 
 ## Instructions

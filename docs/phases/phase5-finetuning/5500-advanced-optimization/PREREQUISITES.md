@@ -1,3 +1,11 @@
+---
+Document ID: 5500-PREREQUISITES
+Title: "5500: Advanced Optimization - Prerequisites"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Advanced
+---
+
 # 5500: Advanced Optimization - Prerequisites
 
 ## Before You Start

@@ -1,3 +1,11 @@
+---
+Document ID: 5400-PREREQUISITES
+Title: "5400: Distributed Training - Prerequisites"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Advanced
+---
+
 # 5400: Distributed Training - Prerequisites
 
 ## Before You Start

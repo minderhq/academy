@@ -1,4 +1,12 @@
-# 7301: Safe Python Interpreter - Sandbox Execution for Agent Code Testing
+---
+Document ID: 7202
+Title: "7202: Code Interpreter - Sandbox Execution for Agent Code Testing"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Advanced
+---
+
+# 7202: Code Interpreter - Sandbox Execution for Agent Code Testing
 
 ## Abstract
 A safe Python interpreter enables agents to execute code in a sandboxed environment, preventing malicious or erroneous code from affecting the host system.

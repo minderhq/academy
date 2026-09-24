@@ -1,3 +1,11 @@
+---
+Document ID: 4200-PRACTICE
+Title: "4200: KV Cache Optimization - Practice"
+Last Updated: 2026-02-05
+Status: Complete
+Difficulty: Advanced
+---
+
 # 4200: KV Cache Optimization - Practice
 
 ## Exercises

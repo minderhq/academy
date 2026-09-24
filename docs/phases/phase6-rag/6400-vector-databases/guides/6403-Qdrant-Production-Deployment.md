@@ -1,3 +1,11 @@
+---
+Document ID: 6403
+Title: "6403: Qdrant Production Deployment"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Intermediate
+---
+
 # 6403: Qdrant Production Deployment
 
 ## Abstract

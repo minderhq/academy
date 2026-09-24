@@ -1,3 +1,11 @@
+---
+Document ID: 2300-PREREQUISITES
+Title: "2300: Framework Engineering - Prerequisites"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Advanced
+---
+
 # 2300: Framework Engineering - Prerequisites
 
 ## Before You Start

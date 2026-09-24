@@ -1,3 +1,11 @@
+---
+Document ID: EXP_6201
+Title: "EXP-6201: Hybrid Search"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Advanced
+---
+
 # EXP-6201: Hybrid Search
 
 **Combining vector and keyword search for better retrieval**

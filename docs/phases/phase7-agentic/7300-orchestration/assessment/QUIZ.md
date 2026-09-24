@@ -1,3 +1,11 @@
+---
+Document ID: 7300-QUIZ
+Title: "7300: Agent Orchestration - Quiz"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Advanced
+---
+
 # 7300: Agent Orchestration - Quiz
 
 ## Instructions

@@ -1,3 +1,11 @@
+---
+Document ID: EXP_2202
+Title: "EXP-2202: TensorFlow XLA Optimization"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Intermediate
+---
+
 # EXP-2202: TensorFlow XLA Optimization
 
 **Accelerating TensorFlow with XLA (Accelerated Linear Algebra)**

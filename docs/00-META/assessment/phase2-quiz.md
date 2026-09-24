@@ -1,3 +1,11 @@
+---
+Document ID: PHASE2-QUIZ
+Title: "Phase 2: AI/ML Foundations Quiz"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Intermediate
+---
+
 # Phase 2: AI/ML Foundations Quiz
 
 **20 Questions | Passing Score: 80% | Time: 45 minutes**

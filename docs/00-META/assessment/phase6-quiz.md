@@ -1,3 +1,11 @@
+---
+Document ID: PHASE6-QUIZ
+Title: "Phase 6: Data Nexus (RAG) Quiz"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Advanced
+---
+
 # Phase 6: Data Nexus (RAG) Quiz
 
 **30 Questions | Passing Score: 80% | Time: 60 minutes**

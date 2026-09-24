@@ -1,3 +1,11 @@
+---
+Document ID: 7300-PREREQUISITES
+Title: "7300: Orchestration - Prerequisites"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Advanced
+---
+
 # 7300: Orchestration - Prerequisites
 
 ## Before You Start

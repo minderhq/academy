@@ -1,3 +1,11 @@
+---
+Document ID: CHEAT-SHEET-003
+Title: "CHEAT SHEET: Git & Version Control"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Intermediate
+---
+
 # CHEAT SHEET: Git & Version Control
 
 **Essential Git commands for AI/ML development**

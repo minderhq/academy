@@ -1,3 +1,11 @@
+---
+Document ID: QUICK-REF-VOLUME-2
+Title: "Volume 2: AI/ML Foundations - Quick Reference"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Intermediate
+---
+
 # Volume 2: AI/ML Foundations - Quick Reference
 
 **The Mathematics of Intelligence** - Essential tensors, gradients, and CUDA

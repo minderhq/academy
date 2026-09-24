@@ -1,3 +1,11 @@
+---
+Document ID: EXP_4202
+Title: "EXP_4202: Speculative Decoding Experiments"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Advanced
+---
+
 # EXP_4202: Speculative Decoding Experiments
 
 ## Overview

@@ -1,3 +1,11 @@
+---
+Document ID: 5500-PRACTICE
+Title: "5500: Advanced Optimization - Practice"
+Last Updated: 2026-02-05
+Status: Complete
+Difficulty: Advanced
+---
+
 # 5500: Advanced Optimization - Practice
 
 ## Exercises

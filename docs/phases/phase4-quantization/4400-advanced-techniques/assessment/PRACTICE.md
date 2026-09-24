@@ -1,3 +1,11 @@
+---
+Document ID: 4400-PRACTICE
+Title: "4400: Advanced Quantization Techniques - Practice"
+Last Updated: 2026-02-05
+Status: Complete
+Difficulty: Advanced
+---
+
 # 4400: Advanced Quantization Techniques - Practice
 
 ## Overview

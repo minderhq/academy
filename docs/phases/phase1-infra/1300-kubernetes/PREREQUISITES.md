@@ -1,3 +1,11 @@
+---
+Document ID: 1300-PREREQUISITES
+Title: "1300: Kubernetes - Prerequisites"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Intermediate
+---
+
 # 1300: Kubernetes - Prerequisites
 
 ## Before You Start

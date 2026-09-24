@@ -1,3 +1,11 @@
+---
+Document ID: EXP_2101
+Title: "EXP-2101: Tensor Algebra"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Intermediate
+---
+
 # EXP-2101: Tensor Algebra
 
 **Hands-on tensor operations and einsum notation**

@@ -1,3 +1,11 @@
+---
+Document ID: PROJECT-002
+Title: "CAPSTONE PROJECT 002: Train Neural Network from Scratch"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Intermediate
+---
+
 # CAPSTONE PROJECT 002: Train Neural Network from Scratch
 
 **Mathematics meets implementation - Train your first model**

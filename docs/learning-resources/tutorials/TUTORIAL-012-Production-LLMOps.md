@@ -1,3 +1,11 @@
+---
+Document ID: TUTORIAL-012
+Title: "TUTORIAL-012: Production LLMOps"
+Last Updated: 2026-02-05
+Status: Complete
+Difficulty: Intermediate
+---
+
 # TUTORIAL-012: Production LLMOps
 
 ## Overview

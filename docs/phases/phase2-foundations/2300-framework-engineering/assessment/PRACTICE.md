@@ -1,3 +1,11 @@
+---
+Document ID: 2300-PRACTICE
+Title: "2300: Framework Engineering - Practice Exercises"
+Last Updated: 2026-02-05
+Status: Complete
+Difficulty: Advanced
+---
+
 # 2300: Framework Engineering - Practice Exercises
 
 **Hands-on exercises to reinforce your learning.**

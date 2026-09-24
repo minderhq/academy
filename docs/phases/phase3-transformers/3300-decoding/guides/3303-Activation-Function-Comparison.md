@@ -1,3 +1,11 @@
+---
+Document ID: 3303
+Title: "3303: Activation Function Comparison"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Advanced
+---
+
 # 3303: Activation Function Comparison
 
 ## Abstract

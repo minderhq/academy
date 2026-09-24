@@ -1,3 +1,11 @@
+---
+Document ID: 1100-QUIZ
+Title: "1100: Network - Quiz"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Beginner
+---
+
 # 1100: Network - Quiz
 
 ## Instructions

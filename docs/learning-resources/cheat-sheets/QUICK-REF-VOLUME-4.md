@@ -1,3 +1,11 @@
+---
+Document ID: QUICK-REF-VOLUME-4
+Title: "Volume 4: Quantization Mastery - Quick Reference"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Intermediate
+---
+
 # Volume 4: Quantization Mastery - Quick Reference
 
 **Run Models Anywhere** - Quantization, compression, and optimization

@@ -1,3 +1,11 @@
+---
+Document ID: PHASE2-PRACTICE
+Title: "Phase 2: AI/ML Foundations Practice"
+Last Updated: 2026-02-05
+Status: Complete
+Difficulty: Intermediate
+---
+
 # Phase 2: AI/ML Foundations Practice
 
 ## Hands-On Exercises

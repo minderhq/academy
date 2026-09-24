@@ -1,3 +1,11 @@
+---
+Document ID: VOLUME-5
+Title: "Volume 5: Model Adaptation"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Intermediate
+---
+
 # Volume 5: Model Adaptation
 
 **"Making Models Your Own"** - Fine-tune and align LLMs for your specific use cases.

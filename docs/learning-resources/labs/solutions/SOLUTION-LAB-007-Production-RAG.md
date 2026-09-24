@@ -1,3 +1,11 @@
+---
+Document ID: SOLUTION-LAB-007
+Title: "SOLUTION-LAB-007: Production RAG"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Intermediate
+---
+
 # SOLUTION-LAB-007: Production RAG
 
 ## Overview

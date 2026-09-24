@@ -1,3 +1,11 @@
+---
+Document ID: SOL-001
+Title: "SOL-001: Enterprise Knowledge Base - Complete Implementation"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Intermediate
+---
+
 # SOL-001: Enterprise Knowledge Base - Complete Implementation
 
 ## Overview

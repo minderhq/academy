@@ -1,3 +1,11 @@
+---
+Document ID: SOLUTION-LAB-004
+Title: "SOLUTION-LAB-004: ReAct Agent"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Intermediate
+---
+
 # SOLUTION-LAB-004: ReAct Agent
 
 ## Overview

@@ -1,3 +1,11 @@
+---
+Document ID: EXP_3102
+Title: "EXP_3102: Flash Attention Experiments"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Advanced
+---
+
 # EXP_3102: Flash Attention Experiments
 
 ## Overview

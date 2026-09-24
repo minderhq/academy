@@ -1,3 +1,11 @@
+---
+Document ID: LAB-006
+Title: "LAB 006: Train a Small Language Model from Scratch"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Intermediate
+---
+
 # LAB 006: Train a Small Language Model from Scratch
 
 **"Birth of a Model"** - Train your first language model end-to-end.

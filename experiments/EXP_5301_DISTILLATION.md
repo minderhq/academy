@@ -1,3 +1,11 @@
+---
+Document ID: EXP_5301
+Title: "EXP_5301: Knowledge Distillation Experiment"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Advanced
+---
+
 # EXP_5301: Knowledge Distillation Experiment
 
 **Project:** AI Engineering Curriculum

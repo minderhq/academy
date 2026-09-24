@@ -1,3 +1,11 @@
+---
+Document ID: EXP_3401
+Title: "EXP_3401: Encoder-Decoder Architecture Experiments"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Advanced
+---
+
 # EXP_3401: Encoder-Decoder Architecture Experiments
 
 ## Overview

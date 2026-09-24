@@ -1,3 +1,11 @@
+---
+Document ID: 3100-PREREQUISITES
+Title: "Prerequisites: Attention Mechanisms"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Advanced
+---
+
 # Prerequisites: Attention Mechanisms
 
 **For:** [3101-Self-Attention-DeepDive.md](./3101-Self-Attention-DeepDive.md)

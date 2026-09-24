@@ -1,3 +1,11 @@
+---
+Document ID: EXP_5302
+Title: "EXP_5302: Distributed Training Experiment"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Advanced
+---
+
 # EXP_5302: Distributed Training Experiment
 
 **Project:** AI Engineering Curriculum

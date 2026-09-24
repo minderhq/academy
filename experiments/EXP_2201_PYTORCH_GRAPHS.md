@@ -1,3 +1,11 @@
+---
+Document ID: EXP_2201
+Title: "EXP-2201: PyTorch Computational Graphs"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Intermediate
+---
+
 # EXP-2201: PyTorch Computational Graphs
 
 **Understanding dynamic computation graphs and autograd**

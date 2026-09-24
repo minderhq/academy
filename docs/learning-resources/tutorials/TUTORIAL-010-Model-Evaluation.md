@@ -1,3 +1,11 @@
+---
+Document ID: TUTORIAL-010
+Title: "TUTORIAL-010: Model Evaluation and Benchmarking"
+Last Updated: 2026-02-05
+Status: Complete
+Difficulty: Intermediate
+---
+
 # TUTORIAL-010: Model Evaluation and Benchmarking
 
 ## Overview

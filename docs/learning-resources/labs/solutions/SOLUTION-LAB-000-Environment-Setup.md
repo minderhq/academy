@@ -1,3 +1,11 @@
+---
+Document ID: SOLUTION-LAB-000
+Title: "SOLUTION-LAB-000: Environment Setup"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Intermediate
+---
+
 # SOLUTION-LAB-000: Environment Setup
 
 ## Overview

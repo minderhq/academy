@@ -1,3 +1,11 @@
+---
+Document ID: 7200-PREREQUISITES
+Title: "7200: Tools - Prerequisites"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Advanced
+---
+
 # 7200: Tools - Prerequisites
 
 ## Before You Start

@@ -1,3 +1,11 @@
+---
+Document ID: 1300-PRACTICE
+Title: "1300: Kubernetes - Practice"
+Last Updated: 2026-02-05
+Status: Complete
+Difficulty: Intermediate
+---
+
 # 1300: Kubernetes - Practice
 
 ## Exercises

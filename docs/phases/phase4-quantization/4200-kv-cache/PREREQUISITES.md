@@ -1,3 +1,11 @@
+---
+Document ID: 4200-PREREQUISITES
+Title: "4200: KV Cache - Prerequisites"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Advanced
+---
+
 # 4200: KV Cache - Prerequisites
 
 ## Before You Start

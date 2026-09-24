@@ -1,3 +1,11 @@
+---
+Document ID: EXP_1502
+Title: "EXP_1502: Model Drift Experiments"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Intermediate
+---
+
 # EXP_1502: Model Drift Experiments
 
 **Project:** AI Engineering Curriculum

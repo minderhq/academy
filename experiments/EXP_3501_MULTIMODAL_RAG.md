@@ -1,3 +1,11 @@
+---
+Document ID: EXP_3501
+Title: "EXP_3501: Multimodal RAG Experiments"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Advanced
+---
+
 # EXP_3501: Multimodal RAG Experiments
 
 **Project:** AI Engineering Curriculum

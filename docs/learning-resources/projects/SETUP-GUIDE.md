@@ -1,3 +1,11 @@
+---
+Document ID: SETUP-GUIDE
+Title: "PROJECT-001-007: Common Setup Guide"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Intermediate
+---
+
 # PROJECT-001-007: Common Setup Guide
 
 **For:** All PROJECT-XXX capstone projects

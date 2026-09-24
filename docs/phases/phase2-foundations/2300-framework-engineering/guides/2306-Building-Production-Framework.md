@@ -1,3 +1,11 @@
+---
+Document ID: 2306
+Title: "2306: Building a Production Framework"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Advanced
+---
+
 # 2306: Building a Production Framework
 
 **Project:** AI Engineering Curriculum

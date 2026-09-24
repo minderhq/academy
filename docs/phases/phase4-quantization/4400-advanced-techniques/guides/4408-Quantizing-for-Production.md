@@ -1,3 +1,11 @@
+---
+Document ID: 4408
+Title: "4408: Quantizing for Production"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Advanced
+---
+
 # 4408: Quantizing for Production
 
 ## Abstract

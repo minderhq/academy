@@ -1,3 +1,11 @@
+---
+Document ID: 5400-PRACTICE
+Title: "5400: Distributed Training - Practice"
+Last Updated: 2026-02-05
+Status: Complete
+Difficulty: Advanced
+---
+
 # 5400: Distributed Training - Practice
 
 ## Exercises

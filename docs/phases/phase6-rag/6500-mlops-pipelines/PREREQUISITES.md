@@ -1,3 +1,11 @@
+---
+Document ID: 6500-PREREQUISITES
+Title: "6500: RAG MLOps - Prerequisites"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Intermediate
+---
+
 # 6500: RAG MLOps - Prerequisites
 
 ## Before You Start
