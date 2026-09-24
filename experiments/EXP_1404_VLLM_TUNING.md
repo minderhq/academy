@@ -1,7 +1,7 @@
 # EXP_1404: vLLM Production Tuning Experiments
 
 ## Overview
-Practical experiments for tuning vLLM (Virtual Large Language Model) for production deployment on RTX 2080 Ti 11GB.
+Practical experiments for tuning vLLM (Virtual Large Language Model) for production deployment on an 11GB VRAM GPU.
 
 ## Experiment 1: vLLM Server Configuration
 
@@ -598,7 +598,7 @@ python concurrent_requests.py
 
 ## Expected Results
 
-### Performance Targets (RTX 2080 Ti 11GB)
+### Performance Targets (11GB VRAM GPU)
 
 | Configuration | Throughput | Latency (P95) |
 |--------------|-----------|---------------|

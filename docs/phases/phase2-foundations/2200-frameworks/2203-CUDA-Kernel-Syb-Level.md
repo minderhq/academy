@@ -15,11 +15,11 @@ Tags: ['frameworks', 'pytorch', 'tensorflow', 'cuda']
 # 2203: CUDA Kernel Programming and GPU Architecture
 
 ## Abstract
-CUDA (Compute Unified Device Architecture) is NVIDIA's parallel computing platform. Understanding CUDA kernel programming is essential for writing optimized deep learning code that leverages the RTX 2080 Ti's 4352 CUDA cores.
+CUDA (Compute Unified Device Architecture) is NVIDIA's parallel computing platform. Understanding CUDA kernel programming is essential for writing optimized deep learning code that leverages your GPU's CUDA cores.
 
 ## GPU Architecture Overview
 
-### RTX 2080 Ti Specifications
+### 11GB-class GPU Specifications
 ```
 CUDA Architecture:   Turing TU102
 CUDA Cores:         4352 (FP32)

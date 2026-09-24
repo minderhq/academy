@@ -190,7 +190,7 @@ Learning Path:
 **Deliverable:** K3s cluster running a web application
 
 ### Week 9-10: GPU Passthrough Deep Dive
-**Goal:** Pass RTX 2080 Ti to VM
+**Goal:** Pass 11GB-class GPU to VM
 
 ```
 Learning Path:

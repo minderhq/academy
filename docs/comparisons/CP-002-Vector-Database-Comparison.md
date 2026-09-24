@@ -25,7 +25,7 @@ This guide compares popular vector databases to help you choose the right one fo
 
 #### Overview
 
-Qdrant is a high-performance vector database written in Rust. It's the recommended choice for PROJECT-OMEGA HomeLab deployment.
+Qdrant is a high-performance vector database written in Rust. It's the recommended choice for Homelab deployment.
 
 #### Key Features
 
@@ -38,7 +38,7 @@ Qdrant is a high-performance vector database written in Rust. It's the recommend
 
 #### Pros
 
-✅ Lightweight (runs well on Intel NUC)
+✅ Lightweight (runs well on consumer hardware)
 ✅ Easy Docker deployment
 ✅ Excellent documentation
 ✅ Built-in dashboard UI
@@ -101,7 +101,7 @@ results = client.search(
 | 1M | 4GB | 10GB | 2 cores |
 | 10M | 32GB | 100GB | 4 cores |
 
-**PROJECT-OMEGA HomeLab:** Handles 1M+ vectors on Intel NUC
+**Homelab:** Handles 1M+ vectors on consumer hardware
 
 ---
 
@@ -518,7 +518,7 @@ LIMIT 5;
 
 **Reasons:**
 
-1. **HomeLab Optimized:** Runs efficiently on Intel NUC with limited RAM
+1. **HomeLab Optimized:** Runs efficiently on consumer hardware with limited RAM
 2. **Easy Setup:** Single Docker container
 3. **Built-in Dashboard:** Visualize collections and vectors
 4. **Excellent Documentation:** Clear guides and examples

@@ -6,7 +6,7 @@ Practical experiments for optimizing TGI (Text Generation Inference) deployment 
 ## Experiment 1: TGI Deployment Configuration
 
 ### Objective
-Deploy and configure TGI with optimal settings for RTX 2080 Ti 11GB.
+Deploy and configure TGI with optimal settings for an 11GB VRAM GPU.
 
 ### Implementation
 
@@ -437,7 +437,7 @@ if __name__ == "__main__":
 ## Experiment 4: Memory Optimization
 
 ### Objective
-Optimize memory usage for fitting larger models on RTX 2080 Ti 11GB.
+Optimize memory usage for fitting larger models on an 11GB VRAM GPU.
 
 ### Implementation
 
@@ -596,7 +596,7 @@ python batch_optimization.py
 
 ## Expected Results
 
-### Performance Targets (RTX 2080 Ti 11GB)
+### Performance Targets (11GB VRAM GPU)
 
 | Metric | Target | Acceptable |
 |--------|--------|------------|

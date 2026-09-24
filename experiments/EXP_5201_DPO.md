@@ -1,7 +1,7 @@
 # EXP_5201: DPO (Direct Preference Optimization) Experiments
 
 ## Overview
-Practical experiments for DPO alignment on RTX 2080 Ti (11GB VRAM).
+Practical experiments for DPO alignment on an 11GB VRAM GPU.
 
 ## Experiment 1: DPO Implementation from Scratch
 
@@ -391,7 +391,7 @@ if __name__ == "__main__":
 
 ---
 
-## Expected Results (RTX 2080 Ti)
+## Expected Results (11GB VRAM GPU)
 
 ### Memory Usage
 

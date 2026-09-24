@@ -244,7 +244,7 @@ Flash Attention:
   Memory: O(L) - linear!
 
 For L = 8192:
-  Standard: 16GB (VRAM limit for RTX 2080 Ti)
+  Standard: 16GB (VRAM limit for an 11GB-class GPU)
   Flash: 4GB (can handle much longer!)
 ```
 
@@ -253,7 +253,7 @@ For L = 8192:
 ### Block Size Selection
 ```python
 # Optimal block size depends on GPU
-# For RTX 2080 Ti (Turing):
+# For an 11GB VRAM GPU (Turing):
 # - Shared memory: 48KB per SM
 # - L2 cache: 5.5MB
 

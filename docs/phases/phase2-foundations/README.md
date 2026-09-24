@@ -297,7 +297,7 @@ metrics = {
 |----------|-------------|------|------------|
 | [2201: PyTorch Graphs](./2200-frameworks/2201-PyTorch-Computational-Graphs.md) | Dynamic vs static graphs | 3h | Intermediate |
 | [2202: TensorFlow XLA](./2200-frameworks/2202-TensorFlow-XLA-Compilers.md) | Optimizing graph performance | 3h | Advanced |
-| [2203: CUDA Kernels](./2200-frameworks/2203-CUDA-Kernel-Syb-Level.md) | Python to 2080 Ti CUDA cores | 5h | Advanced |
+| [2203: CUDA Kernels](./2200-frameworks/2203-CUDA-Kernel-Syb-Level.md) | Python to 11GB-class GPU CUDA cores | 5h | Advanced |
 
 **What You'll Learn:**
 - PyTorch dynamic computation graphs
@@ -660,10 +660,10 @@ with torch.profiler.profile(
 
 | Hardware | Batch Size | Tokens/sec | Model |
 |----------|------------|------------|-------|
-| RTX 2080 Ti | 8 | 15K | GPT-2 Small |
+| 11GB-class GPU | 8 | 15K | GPT-2 Small |
 | RTX 3090 | 16 | 45K | GPT-2 Small |
 | A100 (40GB) | 32 | 120K | GPT-2 Small |
-| 8x RTX 2080 Ti | 64 | 100K | GPT-2 Small |
+| 8x 11GB GPU | 64 | 100K | GPT-2 Small |
 
 ---
 

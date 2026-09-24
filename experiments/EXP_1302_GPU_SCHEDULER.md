@@ -1,7 +1,7 @@
 # EXP_1302_GPU_SCHEDULER: GPU Scheduler Configuration
 
 ## Experiment Information
-- **Infrastructure Used:** NUC Proxmox → RTX 2080 Ti eGPU
+- **Infrastructure Used:** Kubernetes cluster with a GPU worker node
 - **Model:** Llama-2-7B running in K3s pod
 - **Framework:** vLLM with tensor-parallel-size=1
 
@@ -31,7 +31,7 @@ nvidia-smi dmon:
 # Idx    %      %      %      %      %      %      %      %
   0     95     82      0      0      0      0      0      0
 
-GPU: 2080 Ti (11GB VRAM)
+GPU: Any NVIDIA GPU with 11GB+ VRAM
 Model: Llama-2-7B @ 4-bit quantization
 Weights: ~3.5 GB
 KV Cache: ~4 GB @ 4096 context
@@ -70,7 +70,7 @@ gpu_memory_utilization=0.9  # Default
 | 4     | 200        | 10.5 GB    |
 | 8     | OOM        | -          |
 
-Optimal batch size: 4 for RTX 2080 Ti
+Optimal batch size: 4 for an 11GB-class GPU
 ```
 
 ## Lessons Learned

@@ -415,7 +415,7 @@ ReAct Agent → Uses Tool Calling → Executes Functions → Returns Result
 
 ## PROJECT-OMEGA Implementation
 
-### HomeLab Tool Registry
+### Local Tool Registry
 
 ```python
 # /home/omni/configs/tool_registry.py

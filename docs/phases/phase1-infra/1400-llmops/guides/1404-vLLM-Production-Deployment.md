@@ -28,7 +28,7 @@ Complete production deployment guide for vLLM (Virtual Large Language Model) hig
 │  │  └────────────────────────────────────────────────────────┘    │      │
 │  │  ┌────────────────────────────────────────────────────────┐    │      │
 │  │  │              PagedAttention Kernel                     │    │      │
-│  │  │     GPU 0 (RTX 2080 Ti) │ GPU 1 (optional)             │    │      │
+│  │  │     GPU 0 (11GB-class GPU) │ GPU 1 (optional)             │    │      │
 │  │  └────────────────────────────────────────────────────────┘    │      │
 │  └─────────────────────────────────────────────────────────────────┘      │
 │                               │                                          │
@@ -241,7 +241,7 @@ spec:
 
 ### Key Parameters Explained
 
-| Parameter | Default | Description | RTX 2080 Ti Recommended |
+| Parameter | Default | Description | 11GB-class GPU Recommended |
 |-----------|---------|-------------|------------------------|
 | `--tensor-parallel-size` | 1 | Number of GPUs for tensor parallelism | 1 (single GPU) |
 | `--gpu-memory-utilization` | 0.9 | Fraction of GPU memory to use | 0.85 (leave room for KV cache) |
@@ -554,7 +554,7 @@ async def chat_completions(request: Request):
 
 ## Performance Benchmarks
 
-### RTX 2080 Ti (11GB VRAM) Performance
+### 11GB-class GPU (11GB VRAM) Performance
 
 | Model | Quantization | Max Seq Len | Batch Size | Throughput | Latency (p50) |
 |-------|-------------|-------------|------------|------------|---------------|

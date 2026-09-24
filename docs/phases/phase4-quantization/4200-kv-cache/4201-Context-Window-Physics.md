@@ -83,7 +83,7 @@ Activations             1 GB
 ──────────────────────────────────────
 Total                   17 GB
 
-Problem: RTX 2080 Ti has only 11 GB!
+Problem: an 11GB GPU has only 11 GB!
 Solution: Quantize KV cache
 ```
 

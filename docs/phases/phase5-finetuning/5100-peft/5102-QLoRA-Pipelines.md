@@ -15,7 +15,7 @@ Tags: ['finetuning', 'peft', 'lora', 'qlora', 'adaptation']
 # 5102: QLoRA Pipelines - 4-bit Fine-Tuning on Consumer Hardware
 
 ## Abstract
-QLoRA (Quantized LoRA) enables fine-tuning 65B+ parameter models on a single 24GB GPU by combining 4-bit quantization with LoRA. On RTX 2080 Ti (11GB), QLoRA makes fine-tuning 7B models practical.
+QLoRA (Quantized LoRA) enables fine-tuning 65B+ parameter models on a single 24GB GPU by combining 4-bit quantization with LoRA. On 11GB VRAM GPU, QLoRA makes fine-tuning 7B models practical.
 
 ## QLoRA Architecture
 

@@ -15,7 +15,7 @@ Tags: ['infrastructure', 'kubernetes', 'k3s', 'gpu']
 # 1302: GPU Scheduler Configuration
 
 ## Abstract
-The K3s GPU scheduler enables intelligent allocation of RTX 2080 Ti resources across AI workloads. This document covers device plugin configuration, resource management, and scheduling strategies.
+The K3s GPU scheduler enables intelligent allocation of 11GB-class GPU resources across AI workloads. This document covers device plugin configuration, resource management, and scheduling strategies.
 
 ## GPU Resource Model
 
@@ -33,7 +33,7 @@ nvidia.com/gpu.product:    → GPU model constraint
 ### Resource Allocation Types
 ```
 Exclusive Allocation:      Pod gets entire GPU
-Shared Allocation:         Multiple pods share GPU (MIG - not on 2080 Ti)
+Shared Allocation:         Multiple pods share GPU (MIG - not on 11GB-class GPU)
 Time-Sliced:               Multiple pods, time-division
 ```
 
@@ -132,7 +132,7 @@ metadata:
   name: training-pod
 spec:
   nodeSelector:
-    accelerator: nvidia-2080ti  # Must have this label
+    accelerator: nvidia-gpu  # Must have this label
   tolerations:
   - key: nvidia.com/gpu
     operator: Exists
@@ -174,7 +174,7 @@ spec:
 
 ### GPU Memory Slicing (Experimental)
 ```yaml
-# For RTX 2080 Ti, we can use time-slicing
+# For an 11GB VRAM GPU, we can use time-slicing
 # This is NOT MIG (Maxwell is too old for MIG)
 
 apiVersion: v1

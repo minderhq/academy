@@ -338,7 +338,7 @@ def test_hybrid_rag():
 
 ---
 
-## Expected Performance (Synology DS720+)
+## Expected Performance (entry-level NAS)
 
 | Operation | Expected Latency | Notes |
 |-----------|------------------|-------|

@@ -39,13 +39,13 @@
 1. ✅ DDP works well for 2-4 GPUs
 2. ✅ FSDP enables training larger models
 3. ⚠️ Communication overhead increases with more GPUs
-4. ⚠️ RTX 2080 Ti eGPU has limited bandwidth
+4. ⚠️ external GPUs (eGPU) have limited bandwidth
 
 ---
 
 ## Recommendations
 
-**For PROJECT-OMEGA HomeLab:**
+**For Homelab:**
 - Use DDP for 2 GPUs (1.7x speedup)
 - Use FSDP for models >13B parameters
 - Consider gradient checkpointing to save memory

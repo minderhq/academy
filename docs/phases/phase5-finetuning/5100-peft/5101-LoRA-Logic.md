@@ -379,7 +379,7 @@ training_args = TrainingArguments(
 # Optimizer states:      ~0.06 GB
 # Activations (frozen):  ~1 GB
 # ────────────────────────────────
-# Total:                 ~4.6 GB (fits on RTX 2080 Ti!)
+# Total:                 ~4.6 GB (fits on an 11GB-class GPU!)
 ```
 
 ### Merging LoRA Weights

@@ -77,7 +77,7 @@ Each solution is designed to be:
 - **Modular** - Use only what you need
 - **Extensible** - Easy to add features
 - **Production-Ready** - Security and monitoring included
-- **HomeLab Compatible** - Runs on PROJECT-OMEGA hardware
+- **HomeLab Compatible** - Runs on consumer hardware
 
 ---
 
@@ -95,7 +95,7 @@ Each solution is designed to be:
 Before starting any solution:
 1. Complete **Volume 1: Infrastructure**
 2. Complete **Volume 6: Data Nexus** (for RAG solutions)
-3. Have PROJECT-OMEGA HomeLab running
+3. Have Homelab running
 4. Basic Python and Docker knowledge
 
 ---

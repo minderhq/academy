@@ -59,11 +59,11 @@ End-to-end implementation guide for building an enterprise knowledge base using 
 
 ### 1.1 Hardware Requirements
 
-**Minimum (PROJECT-OMEGA HomeLab):**
-- CPU: Intel NUC or equivalent (4+ cores)
+**Minimum (Homelab):**
+- CPU: a mini-PC or equivalent (4+ cores)
 - RAM: 16GB
 - Storage: 500GB SSD
-- GPU: RTX 2080 Ti 11GB (for Llama 2 7B 4-bit)
+- GPU: 11GB VRAM GPU (for Llama 2 7B 4-bit)
 
 **Recommended:**
 - CPU: 8+ cores

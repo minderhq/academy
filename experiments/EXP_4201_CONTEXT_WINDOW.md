@@ -1,7 +1,7 @@
 # EXP_4201: Context Window Physics Experiments
 
 ## Overview
-Practical experiments for understanding KV cache, context window limits, and OOM prevention on RTX 2080 Ti (11GB VRAM).
+Practical experiments for understanding KV cache, context window limits, and OOM prevention on an 11GB VRAM GPU.
 
 ## Experiment 1: KV Cache Memory Analysis
 
@@ -163,7 +163,7 @@ def plot_kv_cache_memory(results: dict, context_lengths: list):
         mem_gb = [d["total_gb"] for d in data]
         ax1.plot(ctx_lens, mem_gb, 'o-', label=model_name, linewidth=2)
 
-    ax1.axhline(y=11, color='r', linestyle='--', label='RTX 2080 Ti VRAM')
+    ax1.axhline(y=11, color='r', linestyle='--', label='11GB VRAM limit')
     ax1.set_xlabel('Context Length (tokens)')
     ax1.set_ylabel('KV Cache Memory (GB)')
     ax1.set_title('KV Cache Memory vs Context Length')
@@ -581,7 +581,7 @@ def test_multi_round_conversation():
     ax1.grid(True, alpha=0.3)
 
     ax2.plot(range(1, len(vram_usage)+1), vram_usage, 's-', color='orange', linewidth=2)
-    ax2.axhline(y=11, color='r', linestyle='--', label='RTX 2080 Ti VRAM')
+    ax2.axhline(y=11, color='r', linestyle='--', label='11GB VRAM limit')
     ax2.set_xlabel('Conversation Turn')
     ax2.set_ylabel('VRAM Usage (GB)')
     ax2.set_title('VRAM Usage in Conversation')
@@ -599,7 +599,7 @@ if __name__ == "__main__":
 
 ---
 
-## Expected Results (RTX 2080 Ti 11GB)
+## Expected Results (11GB VRAM GPU)
 
 ### KV Cache Memory by Context Length
 

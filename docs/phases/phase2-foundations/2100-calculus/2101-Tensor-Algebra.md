@@ -251,14 +251,14 @@ x_gpu = x.cuda()
 # Create directly on GPU
 x = torch.randn(3, 4, device='cuda')
 
-# Specific GPU (RTX 2080 Ti)
+# Specific GPU (11GB-class GPU)
 x = torch.randn(3, 4, device='cuda:0')
 
 # Move back to CPU
 x_cpu = x_gpu.cpu()
 ```
 
-### Tensor Cores (RTX 2080 Ti)
+### Tensor Cores (11GB-class GPU)
 ```
 Tensor Cores specialize in matrix multiplication:
 - FP16 (half precision) input

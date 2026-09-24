@@ -6,7 +6,7 @@ Practical experiments for testing encoder-decoder models (T5, BART) on PROJECT-O
 ## Experiment 1: T5 Model Benchmarking
 
 ### Objective
-Compare T5 model variants on seq2seq tasks with RTX 2080 Ti (11GB VRAM).
+Compare T5 model variants on seq2seq tasks with 11GB-class GPU (11GB VRAM).
 
 ### Setup
 ```bash

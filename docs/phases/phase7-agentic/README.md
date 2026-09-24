@@ -24,7 +24,7 @@
 
 **Creating autonomous AI systems that can reason, plan, and execute complex tasks.**
 
-This phase covers AI agent architectures, tool use, multi-agent orchestration, and memory systems for building autonomous AI systems that can manage your HomeLab and code, enabling you to:
+This phase covers AI agent architectures, tool use, multi-agent orchestration, and memory systems for building autonomous AI systems that can manage your infrastructure and code, enabling you to:
 - Build autonomous agents that reason and plan
 - Implement tool calling for real-world actions
 - Orchestrate multi-agent teams
@@ -328,8 +328,8 @@ graph LR
 ### Essential Agent Tools
 
 ```python
-# HomeLab Management Tools
-tools_homelab = {
+# Infrastructure Management Tools
+tools_local = {
     # GPU/Compute Management
     "nvidia_smi": {
         "description": "Get GPU utilization and memory stats",
@@ -453,24 +453,24 @@ tools_homelab = {
 
 # Agent Role Tools
 tools_coder = {
-    "read_file": tools_homelab["read_file"],
-    "write_file": tools_homelab["write_file"],
-    "run_python": tools_homelab["run_python"],
-    "run_bash": tools_homelab["run_bash"],
-    "search_files": tools_homelab["search_files"]
+    "read_file": tools_local["read_file"],
+    "write_file": tools_local["write_file"],
+    "run_python": tools_local["run_python"],
+    "run_bash": tools_local["run_bash"],
+    "search_files": tools_local["search_files"]
 }
 
 tools_ops = {
-    "nvidia_smi": tools_homelab["nvidia_smi"],
-    "list_pods": tools_homelab["list_pods"],
-    "get_pod_logs": tools_homelab["get_pod_logs"],
-    "restart_pod": tools_homelab["restart_pod"]
+    "nvidia_smi": tools_local["nvidia_smi"],
+    "list_pods": tools_local["list_pods"],
+    "get_pod_logs": tools_local["get_pod_logs"],
+    "restart_pod": tools_local["restart_pod"]
 }
 
 tools_researcher = {
-    "web_search": tools_homelab["web_search"],
-    "fetch_url": tools_homelab["fetch_url"],
-    "query_vector_db": tools_homelab["query_vector_db"]
+    "web_search": tools_local["web_search"],
+    "fetch_url": tools_local["fetch_url"],
+    "query_vector_db": tools_local["query_vector_db"]
 }
 ```
 

@@ -15,7 +15,7 @@
 
 ## Overview
 
-**Maximizing the 11GB VRAM for 8B-70B model execution.**
+**Maximizing constrained VRAM for 8B-70B model execution.**
 
 This phase covers quantization techniques to run larger models on limited hardware, enabling you to:
 - Run 70B parameter models on consumer GPUs (RTX 3090/4090)
@@ -79,7 +79,7 @@ graph LR
 
 | Document | Description | Time | Difficulty |
 |----------|-------------|------|------------|
-| [4101: GGUF Physics](./4100-low-bit/4101-GGUF-Physics.md) | CPU/GPU hybrid over TB3 bus | 2h | Intermediate |
+| [4101: GGUF Physics](./4100-low-bit/4101-GGUF-Physics.md) | CPU/GPU hybrid inference | 2h | Intermediate |
 | [4102: EXL2 and AWQ](./4100-low-bit/4102-EXL2-and-AWQ.md) | Extreme quantization for VRAM-only | 2h | Advanced |
 | [4103: Double Quantization](./4100-low-bit/4103-Double-Quantization.md) | BitsAndBytes 4-bit loading | 1h | Intermediate |
 

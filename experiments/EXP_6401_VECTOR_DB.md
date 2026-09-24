@@ -544,7 +544,7 @@ def test_hnsw_params(m_values=[8, 16, 24, 32], ef_values=[50, 100, 200]):
 
 ---
 
-## Expected Performance (Synology DS720+)
+## Expected Performance (entry-level NAS)
 
 | Operation | Expected | Notes |
 |-----------|----------|-------|

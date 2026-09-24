@@ -1,7 +1,7 @@
 # EXP_3102: Flash Attention Experiments
 
 ## Overview
-Practical experiments for testing Flash Attention implementation and performance on RTX 2080 Ti (11GB VRAM).
+Practical experiments for testing Flash Attention implementation and performance on an 11GB VRAM GPU.
 
 ## Experiment 1: Standard vs Flash Attention Benchmark
 
@@ -481,7 +481,7 @@ def analyze_kernel_benefits():
 
     # HBM bandwidth utilization
     print(f"\nHBM Bandwidth Utilization:")
-    print(f"  RTX 2080 Ti: 616 GB/s")
+    print(f"  11GB-class GPU: 616 GB/s")
     print(f"  Standard: ~2x materialization = lower effective bandwidth")
     print(f"  Flash: ~1x pass = higher effective bandwidth")
 
@@ -491,7 +491,7 @@ if __name__ == "__main__":
 
 ---
 
-## Expected Performance (RTX 2080 Ti)
+## Expected Performance (11GB VRAM GPU)
 
 | Sequence Length | Standard Time | Flash Time | Speedup | Standard VRAM | Flash VRAM |
 |----------------|---------------|------------|---------|---------------|-------------|

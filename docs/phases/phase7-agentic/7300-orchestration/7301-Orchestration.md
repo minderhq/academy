@@ -387,9 +387,9 @@ class ConflictResolver:
 
 ## Practical Implementation
 
-### HomeLab Multi-Agent System
+### Local Multi-Agent System
 ```python
-class HomeLabSwarm:
+class LabSwarm:
     """
     Multi-agent system for PROJECT-OMEGA Homelab management
     """

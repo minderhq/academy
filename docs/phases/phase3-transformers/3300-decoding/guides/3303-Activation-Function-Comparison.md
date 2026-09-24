@@ -308,7 +308,7 @@ Use the same activation as the base model:
 
 ---
 
-## Performance on RTX 2080 Ti
+## Performance on an 11GB-class GPU
 
 ### Benchmark Results (Batch=32, Dim=4096)
 

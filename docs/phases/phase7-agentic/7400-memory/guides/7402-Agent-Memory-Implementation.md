@@ -264,7 +264,7 @@ memory.add_memory(
 )
 
 memory.add_memory(
-    "PROJECT-OMEGA uses RTX 2080 Ti for inference",
+    "PROJECT-OMEGA uses 11GB-class GPU for inference",
     metadata={"type": "fact", "category": "infrastructure"},
     importance=0.9
 )

@@ -25,7 +25,7 @@
 ## Infrastructure Used
 
 ```
-GPU: RTX 2080 Ti 11GB
+GPU: 11GB VRAM GPU
 Models Tested: all-MiniLM-L6-v2, bge-base-en-v1.5, e5-large-v2
 ```
 
@@ -59,7 +59,7 @@ Models Tested: all-MiniLM-L6-v2, bge-base-en-v1.5, e5-large-v2
 
 ## Recommendations
 
-**For PROJECT-OMEGA HomeLab:**
+**For Homelab:**
 ```python
 model = SentenceTransformer('all-MiniLM-L6-v2')
 # Fast, efficient, good quality

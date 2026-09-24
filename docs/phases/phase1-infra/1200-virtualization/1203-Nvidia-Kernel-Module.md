@@ -15,7 +15,7 @@ Tags: ['infrastructure', 'virtualization', 'proxmox', 'gpu']
 # 1203: NVIDIA Kernel Module Management
 
 ## Abstract
-This document covers NVIDIA driver and kernel module management for the RTX 2080 Ti in a passthrough environment. Proper module handling ensures GPU stability across reboots and kernel updates.
+This document covers NVIDIA driver and kernel module management for an 11GB-class GPU in a passthrough environment. Proper module handling ensures GPU stability across reboots and kernel updates.
 
 ## NVIDIA Driver Architecture
 
@@ -37,7 +37,7 @@ This document covers NVIDIA driver and kernel module management for the RTX 2080
 └─────────────────────────────────────────┘
                   ↓
 ┌─────────────────────────────────────────┐
-│         Hardware (RTX 2080 Ti)          │
+│         Hardware (11GB-class GPU)          │
 └─────────────────────────────────────────┘
 ```
 
@@ -47,7 +47,7 @@ This document covers NVIDIA driver and kernel module management for the RTX 2080
 ```
 nvidia.ko           - Main driver module (4352 CUDA cores management)
 nvidia-uvm.ko       - Unified Virtual Memory (for CUDA managed memory)
-nvidia-mig.ko       - Multi-Instance GPU (not used on 2080 Ti)
+nvidia-mig.ko       - Multi-Instance GPU (not used on 11GB-class GPU)
 nvidia-drm.ko       - Direct Rendering Manager (display output)
 nvidia-peermem.ko   - Peer-to-peer memory (GPUDirect)
 ```

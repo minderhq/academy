@@ -12,7 +12,7 @@
 :warning: **Strong Python Required:** This lab involves PyTorch, training loops, and model architecture. Complete **TUTORIAL-000** and review **Phase 2** content first.
 
 ### Required Hardware
-- **GPU:** NVIDIA GPU with 11GB+ VRAM (RTX 2080 Ti, RTX 3060 12GB, or better)
+- **GPU:** NVIDIA GPU with 11GB+ VRAM (11GB-class GPU, RTX 3060 12GB, or better)
 - **RAM:** 32GB+ system RAM recommended
 - **Storage:** 50GB+ free space for models and checkpoints
 - **CPU:** 8+ cores recommended
@@ -641,7 +641,7 @@ Starting training...
    - Increase `GRADIENT_ACCUMULATION_STEPS` to maintain effective batch size
 
 2. **Speed:**
-   - QLoRA on RTX 2080 Ti: ~1-2 samples/sec
+   - QLoRA on an 11GB-class GPU: ~1-2 samples/sec
    - 10 samples × 3 epochs ≈ 15-30 seconds
    - Real datasets (1000+ samples): several hours
 

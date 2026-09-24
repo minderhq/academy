@@ -22,7 +22,7 @@
 
 ## Overview
 
-**Converting hardware into a programmable, scalable, 2.5G-throughput factory.**
+**Converting hardware into a programmable, scalable, high-throughput AI factory.**
 
 This phase covers the foundational infrastructure needed to run enterprise-grade AI systems on consumer HomeLab hardware, enabling you to:
 - Build a 2.5Gbps star topology network
@@ -80,13 +80,13 @@ graph LR
 
     C --> D[Proxmox Host]
     C --> E[Synology NAS]
-    C --> F[Intel NUC]
+    C --> F[a mini-PC]
     C --> G[Workstations]
 
     D --> H[VM: K3s Master]
     D --> I[VM: K3s Worker]
 
-    I --> J[GPU: RTX 2080 Ti<br/>Passthrough]
+    I --> J[GPU: 11GB-class GPU<br/>Passthrough]
 
     style C fill:#fff9c4
     style J fill:#c8e6c9
@@ -116,11 +116,11 @@ graph LR
 ```
 Host: Proxmox VE
 ├── VM 101: K3s Master (4 vCPU, 8GB RAM)
-├── VM 102: K3s Worker + GPU (8 vCPU, 16GB RAM, RTX 2080 Ti)
+├── VM 102: K3s Worker + GPU (8 vCPU, 16GB RAM, 11GB-class GPU)
 ├── VM 103: Database (2 vCPU, 4GB RAM)
 └── VM 104: Monitoring (2 vCPU, 4GB RAM)
 
-GPU: RTX 2080 Ti (11GB VRAM)
+GPU: 11GB-class GPU (11GB VRAM)
 └── Passthrough to VM 102 (K3s Worker)
     ├── IOMMU enabled
     ├── VFIO drivers loaded
@@ -150,7 +150,7 @@ graph TB
 
     subgraph "Worker Nodes"
         B[Worker 1<br/>Proxmox VM + GPU]
-        C[Worker 2<br/>Intel NUC]
+        C[Worker 2<br/>a mini-PC]
     end
 
     A -->|API Server| B
@@ -256,7 +256,7 @@ graph LR
 |-----------|---------|-------------|---------|
 | **Host CPU** | 6 cores | 12+ cores | Proxmox + VMs |
 | **Host RAM** | 32GB | 64GB+ | VM memory allocation |
-| **GPU** | RTX 2080 Ti | RTX 3090/4090 | Model inference |
+| **GPU** | 11GB-class GPU | RTX 3090/4090 | Model inference |
 | **GPU VRAM** | 11GB | 24GB+ | Larger models |
 | **Network** | 2.5Gbps switch | 10Gbps | Fast data transfer |
 | **Storage** | 500GB NVMe | 1TB+ NVMe | Fast I/O for models |
@@ -266,8 +266,8 @@ graph LR
 
 | Component | Cost (USD) |
 |-----------|------------|
-| Intel NUC 12th Gen | $600-800 |
-| RTX 2080 Ti (used) | $400-500 |
+| a mini-PC 12th Gen | $600-800 |
+| 11GB-class GPU (used) | $400-500 |
 | 2.5Gbps Switch | $50-100 |
 | Synology DS720+ | $400-500 |
 | Proxmox Host (DIY) | $800-1000 |

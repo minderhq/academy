@@ -63,9 +63,9 @@ print(f"GPU count: {torch.cuda.device_count()}")
 print(f"GPU name: {torch.cuda.get_device_name(0)}")
 print(f"GPU memory: {torch.cuda.get_device_properties(0).total_memory / 1e9:.1f} GB")
 
-# Expected output on RTX 2080 Ti:
+# Expected output on an 11GB-class GPU:
 # CUDA available: True
-# GPU name: NVIDIA GeForce RTX 2080 Ti
+# GPU name: NVIDIA GeForce RTX 3060 (12GB)
 # GPU memory: 11.0 GB
 ```
 
@@ -1133,7 +1133,7 @@ Train on 2+ GPUs simultaneously
 ```
 Model Size: 10M parameters
 Training Tokens: ~20M tokens
-Training Time: ~6 hours (on RTX 2080 Ti)
+Training Time: ~6 hours (on an 11GB-class GPU)
 Final Perplexity: 8-10
 ```
 

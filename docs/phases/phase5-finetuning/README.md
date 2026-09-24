@@ -129,7 +129,7 @@ Recommended Hardware:
 | Document | Description | Time | Difficulty |
 |----------|-------------|------|------------|
 | [5101: LoRA Logic](./5100-peft/5101-LoRA-Logic.md) | Modifying without retraining 7B params | 3h | Intermediate |
-| [5102: QLoRA Pipelines](./5100-peft/5102-QLoRA-Pipelines.md) | 4-bit fine-tuning on 2080 Ti | 3h | Intermediate |
+| [5102: QLoRA Pipelines](./5100-peft/5102-QLoRA-Pipelines.md) | 4-bit fine-tuning on 11GB-class GPU | 3h | Intermediate |
 | [5103: Adapters](./5100-peft/5103-Adapters.md) | Adapter layers and bottleneck | 2h | Intermediate |
 | [5104: LoRA Implementation](./5100-peft/guides/5104-LoRA-Implementation-Guide.md) | Complete implementation guide | 3h | Advanced |
 

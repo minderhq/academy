@@ -63,7 +63,7 @@ docker run -d --gpus all \
   --model-id mistralai/Mistral-7B-Instruct-v0.2
 ```
 
-### Optimized Configuration (RTX 2080 Ti)
+### Optimized Configuration (11GB-class GPU)
 
 ```bash
 # Memory-optimized for 11GB VRAM
@@ -100,7 +100,7 @@ docker run -d --gpus all \
 
 ## Parameter Reference
 
-| Parameter | Default | Description | RTX 2080 Ti Value |
+| Parameter | Default | Description | 11GB-class GPU Value |
 |-----------|---------|-------------|-------------------|
 | `--model-id` | - | Model name/path | mistralai/Mistral-7B-Instruct-v0.2 |
 | `--quantize` | None | Quantization (awq/gptq/bnb) | awq (for 7B+ models) |

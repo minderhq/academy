@@ -1,7 +1,7 @@
 # EXP_4202: Speculative Decoding Experiments
 
 ## Overview
-Practical experiments for Speculative Decoding (also known as Draft-Verify or Assisted Generation) on RTX 2080 Ti.
+Practical experiments for Speculative Decoding (also known as Draft-Verify or Assisted Generation) on an 11GB-class GPU.
 
 ## Experiment 1: Speculative Decoding Implementation
 
@@ -419,7 +419,7 @@ if __name__ == "__main__":
 
 ---
 
-## Expected Results (RTX 2080 Ti)
+## Expected Results (11GB VRAM GPU)
 
 ### Acceptance Rate vs Gamma
 

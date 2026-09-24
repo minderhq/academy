@@ -288,7 +288,7 @@ distances, indices = gpu_index.search(query, k)
 # Benefits:
 # - 10-50x faster than CPU
 # - Essential for large-scale deployment
-# - RTX 2080 Ti: ~5000 queries/sec for 1M vectors
+# - 11GB-class GPU: ~5000 queries/sec for 1M vectors
 ```
 
 ## HNSW Parameters

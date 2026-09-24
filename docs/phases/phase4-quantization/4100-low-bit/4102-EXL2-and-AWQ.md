@@ -15,7 +15,7 @@ Tags: ['quantization', 'gguf', 'exl2', 'awq', 'compression']
 # 4102: EXL2 and AWQ - Extreme Quantization
 
 ## Abstract
-EXL2 and AWQ are advanced quantization methods optimized for GPU-only inference. They provide near-fp16 quality at 4-bit precision, making them ideal for the RTX 2080 Ti.
+EXL2 and AWQ are advanced quantization methods optimized for GPU-only inference. They provide near-fp16 quality at 4-bit precision, making them ideal for an 11GB-class GPU.
 
 ## EXL2 (ExLlamaV2)
 
@@ -58,7 +58,7 @@ EXL2_QUANT_LEVELS = {
     8.0: {"description": "8-bit", "vram_7b": "~8GB", "quality": "fp16"},
 }
 
-# Recommended for RTX 2080 Ti (11GB):
+# Recommended for an 11GB VRAM GPU:
 # - Llama-2-7B: 4.5 or 5.0 bpw
 # - Llama-2-13B: 4.0 bpw
 # - Mistral-7B: 4.5 bpw
@@ -122,7 +122,7 @@ print(text)
 
 ### EXL2 Performance
 ```
-RTX 2080 Ti (11GB VRAM):
+11GB-class GPU (11GB VRAM):
 Llama-2-7B @ 4.5 bpw:
   - Model size: ~4.2 GB
   - Speed: ~80-100 tokens/sec
@@ -242,7 +242,7 @@ print(tokenizer.decode(output[0]))
 Llama-2-7B AWQ @ 4-bit:
   - VRAM usage: ~4.5 GB
   - Perplexity: Within 2% of fp16
-  - Speed: ~60-70 tokens/sec on RTX 2080 Ti
+  - Speed: ~60-70 tokens/sec on an 11GB-class GPU
 
 Comparison with other 4-bit methods:
   - GPTQ: 5-7% perplexity increase
@@ -315,7 +315,7 @@ GGUF Q4_K +6%       Medium   4.5GB   CPU/GPU Hybrid
 Perplexity increase vs fp16 (lower is better)
 ```
 
-### Recommendation for RTX 2080 Ti
+### Recommendation for an 11GB-class GPU
 ```
 For 7B models:
   - Best quality: AWQ 4-bit or EXL2 4.5
@@ -328,7 +328,7 @@ For 13B models:
 
 For 34B models:
   - Hybrid: GGUF Q4_K with CPU offload
-  - Not recommended for RTX 2080 Ti
+  - Not recommended for an 11GB-class GPU
 ```
 
 ## Advanced Techniques

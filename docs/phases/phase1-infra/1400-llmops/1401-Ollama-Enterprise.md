@@ -27,7 +27,7 @@ Ollama enables running large language models locally with a simple API. In PROJE
                           ↓ HTTP/11434
 ┌─────────────────────────────────────────────────────────┐
 │                   Ollama Server                         │
-│  [K3s Pod → GPU Node → RTX 2080 Ti]                    │
+│  [K3s Pod → GPU Node → 11GB-class GPU]                    │
 └─────────────────────────────────────────────────────────┘
                           ↓
 ┌─────────────────────────────────────────────────────────┐
@@ -56,7 +56,7 @@ spec:
         app: ollama
     spec:
       nodeSelector:
-        accelerator: nvidia-2080ti
+        accelerator: nvidia-gpu
       containers:
       - name: ollama
         image: ollama/ollama:0.5.7  # ⚠️ PIN SPECIFIC VERSION in production! Never use :latest

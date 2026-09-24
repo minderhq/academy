@@ -14,7 +14,7 @@
 | Field | Value |
 |-------|-------|
 | **Title** | Double Quantization Performance Evaluation |
-| **Objective** | Test double quantization (4-bit + 8-bit) on RTX 2080 Ti 11GB |
+| **Objective** | Test double quantization (4-bit + 8-bit) on an 11GB VRAM GPU |
 | **Hypothesis** | Double quantization reduces memory by ~40% with minimal quality loss |
 | **Category** | Performance/Comparison |
 | **Priority** | High |
@@ -26,12 +26,12 @@
 
 ```
 Hardware Path:
-Fiber Modem → Switch → Intel NUC → RTX 2080 Ti (eGPU)
+Fiber Modem → Switch → a mini-PC → 11GB-class GPU (eGPU)
 
-CPU: Intel NUC 12th Gen (i5 or i7)
-GPU: RTX 2080 Ti 11GB via Thunderbolt 3
+CPU: a mini-PC 12th Gen (i5 or i7)
+GPU: Any NVIDIA GPU with 11GB+ VRAM
 Memory: 32GB DDR4
-Storage: NFS (Synology NAS)
+Storage: Local SSD or NFS
 
 Network:
 - Internal bandwidth: 2.5Gbps
@@ -73,7 +73,7 @@ Double Quantization Experiment
 Configuration:
 - Model: Llama-2-7B, Mistral-7B
 - Quantization: 4-bit vs 4-bit + double quant
-- Hardware: RTX 2080 Ti 11GB
+- Hardware: 11GB VRAM GPU
 """
 
 import torch
@@ -178,7 +178,7 @@ if __name__ == '__main__':
 1. **Memory Savings:** Double quantization reduces VRAM usage by ~27%
 2. **Quality:** No perceptible quality degradation in generation
 3. **Speed:** Slight increase (~5%) in generation speed
-4. **Compatibility:** Works seamlessly with RTX 2080 Ti 11GB
+4. **Compatibility:** Works seamlessly with 11GB VRAM GPU
 
 ---
 

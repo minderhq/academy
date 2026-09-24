@@ -1,7 +1,7 @@
 # 3403: Model Architecture Comparison Guide
 
 ## Abstract
-Comprehensive comparison of Encoder-Decoder (T5, BART) vs Decoder-Only (GPT, LLaMA, Mistral) architectures for PROJECT-OMEGA HomeLab deployment.
+Comprehensive comparison of Encoder-Decoder (T5, BART) vs Decoder-Only (GPT, LLaMA, Mistral) architectures for Homelab deployment.
 
 ## Architecture Comparison Matrix
 
@@ -45,7 +45,7 @@ Comprehensive comparison of Encoder-Decoder (T5, BART) vs Decoder-Only (GPT, LLa
 | **Best For** | Translation, summarization, QA | Chat, code generation, creative writing |
 | **VRAM (7B model)** | ~14GB (encoder + decoder) | ~7GB (decoder only) |
 
-## RTX 2080 Ti (11GB) Deployment Analysis
+## 11GB VRAM GPU Deployment Analysis
 
 ### Model Size Compatibility
 
@@ -66,7 +66,7 @@ Comprehensive comparison of Encoder-Decoder (T5, BART) vs Decoder-Only (GPT, LLa
 
 ## Performance Benchmarks
 
-### Inference Speed (tokens/sec) - RTX 2080 Ti
+### Inference Speed (tokens/sec) - 11GB-class GPU
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -283,7 +283,7 @@ services:
 
 ## Quick Start Recommendations
 
-### For PROJECT-OMEGA HomeLab
+### For Homelab
 
 **Start with Decoder-Only:**
 ```bash
@@ -311,7 +311,7 @@ docker run -d --gpus all \
 
 ## Memory Optimization Strategies
 
-### For RTX 2080 Ti (11GB)
+### For an 11GB VRAM GPU (11GB)
 
 **Decoder-Only (7B parameters):**
 ```python

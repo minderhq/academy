@@ -122,7 +122,7 @@ It covers topics from basic Docker to advanced agent systems.
 EOF
 
 cat > documents/doc2.txt << 'EOF'
-The RTX 2080 Ti has 11GB of VRAM and is suitable for running 7B parameter models.
+A GPU like the 11GB-class GPU has 11GB of VRAM and is suitable for running 7B parameter models.
 It supports tensor cores for accelerated AI workloads.
 EOF
 
@@ -345,7 +345,7 @@ curl -X POST http://localhost:8000/query \
 # Test RAG vs direct query
 queries = [
     "What is PROJECT-OMEGA?",
-    "How much VRAM does RTX 2080 Ti have?",
+    "How much VRAM does 11GB-class GPU have?",
     "What is Qdrant used for?"
 ]
 

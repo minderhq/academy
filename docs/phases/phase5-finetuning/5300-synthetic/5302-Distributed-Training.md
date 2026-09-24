@@ -15,7 +15,7 @@ Tags: ['finetuning', 'synthetic-data', 'distillation', 'federated']
 # 5302: Distributed Training Orchestration
 
 ## Abstract
-Distributed training strategies for PROJECT-OMEGA HomeLab. Single RTX 2080 Ti constraints with K3s cluster orchestration.
+Distributed training strategies for Homelab. single-GPU constraints with optional Kubernetes orchestration.
 
 ## Distributed Training Strategies
 
@@ -240,7 +240,7 @@ spec:
         image: ghcr.io/your-org/llm-trainer:latest
         resources:
           limits:
-            nvidia.com/gpu: "1"  # Request RTX 2080 Ti
+            nvidia.com/gpu: "1"  # Request 11GB-class GPU
         command:
           - python
           - train.py
@@ -538,7 +538,7 @@ for i, (data, target) in enumerate(dataloader):
 
 ## Expected Performance
 
-### RTX 2080 Ti Single GPU
+### 11GB-class GPU Single GPU
 ```
 Task                     | Batch Size | Throughput | VRAM |
 -------------------------|------------|------------|------|
@@ -551,9 +551,9 @@ Mistral-7B QLoRA         | 2          | ~450 samples/s | ~8GB |
 ```
 Configuration   | Speedup | Efficiency |
 ----------------|---------|------------|
-1x RTX 2080 Ti  | 1.0x    | 100%       |
-2x RTX 2080 Ti  | 1.7x    | 85%        |
-4x RTX 2080 Ti  | 3.0x    | 75%        |
+1x 11GB GPU  | 1.0x    | 100%       |
+2x 11GB GPU  | 1.7x    | 85%        |
+4x 11GB GPU  | 3.0x    | 75%        |
 ```
 
 

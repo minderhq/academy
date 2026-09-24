@@ -15,7 +15,7 @@ Tags: ['infrastructure', 'monitoring', 'observability', 'prometheus']
 # 1501: Monitoring and Observability for PROJECT-OMEGA
 
 ## Abstract
-Complete monitoring stack for tracking infrastructure health, model performance, and agent behavior on PROJECT-OMEGA HomeLab.
+Complete monitoring stack for tracking infrastructure health, model performance, and agent behavior on Homelab.
 
 ## Architecture
 

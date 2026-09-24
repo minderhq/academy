@@ -29,7 +29,7 @@ Hardware Path:
 [Switch 1] → [Component 1] → [Component 2]
 
 CPU: [Model and cores]
-GPU: [RTX 2080 Ti specifications]
+GPU: [11GB-class GPU specifications]
 Memory: [RAM allocation]
 Storage: [NFS/Local path]
 

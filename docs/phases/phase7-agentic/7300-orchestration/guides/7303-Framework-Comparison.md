@@ -385,7 +385,7 @@ class HybridMultiAgentSystem:
 
 ## Performance Comparison
 
-### Resource Usage (RTX 2080 Ti)
+### Resource Usage (11GB-class GPU)
 
 | Framework | Memory | Tokens/Call | Overhead |
 |-----------|--------|-------------|----------|

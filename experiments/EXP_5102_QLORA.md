@@ -14,7 +14,7 @@
 | Field | Value |
 |-------|-------|
 | **Title** | QLoRA Fine-tuning Pipeline |
-| **Objective** | Test QLoRA fine-tuning on RTX 2080 Ti 11GB |
+| **Objective** | Test QLoRA fine-tuning on an 11GB VRAM GPU |
 | **Hypothesis** | QLoRA enables fine-tuning 7B models on consumer GPUs |
 | **Category** | Performance/Ablation |
 | **Priority** | Critical |
@@ -25,7 +25,7 @@
 ## Infrastructure Used
 
 ```
-GPU: RTX 2080 Ti 11GB
+GPU: 11GB VRAM GPU
 Memory: 32GB RAM
 Storage: NFS for model storage
 ```
@@ -97,7 +97,7 @@ model.print_trainable_parameters()
 
 ### Key Findings
 
-1. ✅ QLoRA works on RTX 2080 Ti 11GB
+1. ✅ QLoRA works on an 11GB VRAM GPU
 2. ✅ Rank 16 provides best balance
 3. ✅ Gradient checkpointing enables batch size 4
 4. ⚠️ Training takes ~2.5 hours for 3 epochs
@@ -106,7 +106,7 @@ model.print_trainable_parameters()
 
 ## Recommendations
 
-**Optimal Config for RTX 2080 Ti:**
+**Optimal Config for an 11GB-class GPU:**
 ```python
 lora_r = 16
 lora_alpha = 32

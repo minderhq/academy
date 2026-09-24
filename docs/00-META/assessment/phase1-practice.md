@@ -100,7 +100,7 @@ echo "vfio_iommu_type1" | sudo tee -a /etc/modules-load.d/vfio.conf
 echo "Step 4: Configuring VFIO..."
 sudo lspci -nnk -d ::1a
 
-# Find GPU ID (e.g., 10de:1e82 for RTX 2080 Ti)
+# Find GPU ID (e.g., 10de:1e82 for an 11GB-class GPU)
 echo "Add GPU ID to /etc/modprobe.d/vfio.conf:"
 echo "options vfio-pci ids=10de:1e82"
 

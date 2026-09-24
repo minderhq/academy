@@ -1,7 +1,7 @@
 # 4203: Context Window Optimization Guide
 
 ## Abstract
-Practical guide for optimizing context windows in transformer models on RTX 2080 Ti (11GB VRAM). Covers KV cache management, memory optimization, and long-context strategies.
+Practical guide for optimizing context windows in transformer models on an 11GB VRAM GPU. Covers KV cache management, memory optimization, and long-context strategies.
 
 ## Context Window Architecture
 
@@ -694,12 +694,12 @@ def test_chunking():
 | **Context Compression** | Low | Lower | High | Very long context |
 | **Sparse Attention** | Medium | Good | High | Long sequences |
 
-### RTX 2080 Ti Recommendations
+### 11GB-class GPU Recommendations
 
 ```python
-# rtx_2080_ti_config.py
+# example_gpu_config.py
 
-# Configuration for RTX 2080 Ti (11GB VRAM)
+# Configuration for an 11GB-class GPU (11GB VRAM)
 
 CONFIG = {
     "model": "mistralai/Mistral-7B-Instruct-v0.2",

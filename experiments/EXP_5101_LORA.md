@@ -1,7 +1,7 @@
 # EXP_5101: LoRA Fine-Tuning Experiments
 
 ## Overview
-Practical experiments for LoRA (Low-Rank Adaptation) fine-tuning on RTX 2080 Ti (11GB VRAM).
+Practical experiments for LoRA (Low-Rank Adaptation) fine-tuning on an 11GB VRAM GPU.
 
 ## Experiment 1: LoRA Implementation from Scratch
 

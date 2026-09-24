@@ -25,7 +25,7 @@ from qdrant_client import QdrantClient
 from qdrant_client.models import Distance, VectorParams
 
 # Initialize Qdrant
-qdrant_client = QdrantClient(url="http://192.168.1.100:6334")
+qdrant_client = QdrantClient(url="http://localhost:6334")
 
 # Create collection for memories
 COLLECTION_NAME = "agent_memories"
@@ -289,7 +289,7 @@ def test_memoria_memory():
         ("User prefers Python over JavaScript", 0.9, {"type": "preference"}),
         ("Today is Monday and it's raining", 0.3, {"type": "context"}),
         ("User asked about CNN architectures", 0.8, {"type": "question"}),
-        ("User mentioned they have RTX 2080 Ti GPU", 0.9, {"type": "hardware"}),
+        ("User mentioned they have 11GB-class GPU GPU", 0.9, {"type": "hardware"}),
     ]
 
     for content, importance, metadata in memories:
@@ -463,7 +463,7 @@ Your response:"""
 
         # Simulated search results
         simulated_results = {
-            "GPU": "NVIDIA RTX 2080 Ti has 11GB VRAM, 4352 CUDA cores",
+            "GPU": "NVIDIA 11GB-class GPU has 11GB VRAM, 4352 CUDA cores",
             "Python": "Python is a high-level programming language",
             "machine learning": "ML enables computers to learn from data",
         }
@@ -484,7 +484,7 @@ class MockLLM:
 
         if "GPU" in prompt or "gpu" in prompt:
             return """Thought: I recall information about the user's GPU from memory.
-Action: Answer[The user has an NVIDIA RTX 2080 Ti GPU with 11GB VRAM]"""
+Action: Answer[The user has an NVIDIA GPU with 11GB VRAM]"""
         elif "Python" in prompt:
             return """Thought: I should search for Python information.
 Action: Search[Python programming language]"""
@@ -504,7 +504,7 @@ def test_memory_react_agent():
 
     # Add some memories
     memory.remember(
-        "User has NVIDIA RTX 2080 Ti GPU with 11GB VRAM",
+        "User has NVIDIA 11GB-class GPU GPU with 11GB VRAM",
         metadata={"type": "hardware"},
         importance=0.9
     )
@@ -564,7 +564,7 @@ def test_memory_retrieval_quality():
         ("User is a machine learning engineer", 0.9, {"domain": "ml"}),
         ("User works on computer vision projects", 0.8, {"domain": "cv"}),
         ("User uses PyTorch framework", 0.7, {"tool": "pytorch"}),
-        ("User has RTX 2080 Ti GPU", 0.9, {"hardware": "gpu"}),
+        ("User has 11GB-class GPU GPU", 0.9, {"hardware": "gpu"}),
         ("User prefers Linux over Windows", 0.6, {"os": "linux"}),
     ]
 
@@ -575,7 +575,7 @@ def test_memory_retrieval_quality():
     # Test queries with expected results
     test_queries = [
         ("What does the user work on?", ["machine learning", "computer vision"]),
-        ("What GPU does the user have?", ["RTX 2080 Ti"]),
+        ("What GPU does the user have?", ["11GB-class GPU"]),
         ("What tools does the user use?", ["PyTorch"]),
         ("What's the user's OS preference?", ["Linux"]),
     ]
@@ -622,7 +622,7 @@ if __name__ == "__main__":
 
 ## Performance Benchmarks
 
-### Expected Memory Operations (Qdrant on Synology NAS)
+### Expected Memory Operations (Qdrant, local deployment)
 
 | Operation | Expected Latency | Notes |
 |-----------|------------------|-------|

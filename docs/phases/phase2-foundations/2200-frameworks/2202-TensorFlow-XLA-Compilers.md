@@ -15,7 +15,7 @@ Tags: ['frameworks', 'pytorch', 'tensorflow', 'cuda']
 # 2202: TensorFlow XLA and Compiler Optimizations
 
 ## Abstract
-XLA (Accelerated Linear Algebra) is a compiler-based linear algebra executor that optimizes TensorFlow computations. It fuses operations, reduces memory bandwidth usage, and accelerates execution on the RTX 2080 Ti.
+XLA (Accelerated Linear Algebra) is a compiler-based linear algebra executor that optimizes TensorFlow computations. It fuses operations, reduces memory bandwidth usage, and accelerates execution on an 11GB-class GPU.
 
 ## What is XLA?
 
@@ -234,7 +234,7 @@ def good_fixed_batch(x):
     return result[:batch_size, :batch_size]
 ```
 
-## XLA for Intel NUC (RTX 2080 Ti)
+## XLA for a mini-PC (11GB-class GPU)
 
 ### GPU-Specific Optimizations
 ```python

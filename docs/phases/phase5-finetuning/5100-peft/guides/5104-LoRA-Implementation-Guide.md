@@ -1,7 +1,7 @@
 # 5104: LoRA Implementation Guide
 
 ## Abstract
-Complete implementation guide for LoRA (Low-Rank Adaptation) fine-tuning on RTX 2080 Ti (11GB VRAM). From theory to production deployment.
+Complete implementation guide for LoRA (Low-Rank Adaptation) fine-tuning on an 11GB VRAM GPU. From theory to production deployment.
 
 ## LoRA Architecture
 
@@ -416,9 +416,9 @@ def example_training():
     import json
 
     sample_data = [
-        {"text": "PROJECT-OMEGA is an AI infrastructure project for HomeLab deployment."},
+        {"text": "PROJECT-OMEGA is an AI infrastructure project for homelab deployment."},
         {"text": "LoRA allows efficient fine-tuning by freezing original weights."},
-        {"text": "RTX 2080 Ti has 11GB VRAM, suitable for 7B models with 4-bit quantization."},
+        {"text": "11GB-class GPU has 11GB VRAM, suitable for 7B models with 4-bit quantization."},
     ]
 
     with open("sample_data.jsonl", "w") as f:
@@ -618,7 +618,7 @@ def example_multi_adapter():
 
 ## Performance Benchmarks
 
-### RTX 2080 Ti (11GB VRAM)
+### 11GB-class GPU (11GB VRAM)
 
 | Model | Method | VRAM | Batch Size | Speed |
 |-------|--------|------|------------|-------|

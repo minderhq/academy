@@ -15,7 +15,7 @@ Tags: ['infrastructure', 'llmops', 'ollama', 'vllm', 'tgi']
 # 1402: vLLM and TGI High-Concurrency Inference
 
 ## Abstract
-vLLM and Text Generation Inference (TGI) are optimized inference engines for LLMs. They provide PagedAttention, continuous batching, and KV cache optimization for high-throughput serving on the RTX 2080 Ti.
+vLLM and Text Generation Inference (TGI) are optimized inference engines for LLMs. They provide PagedAttention, continuous batching, and KV cache optimization for high-throughput serving on an 11GB-class GPU.
 
 ## Comparison
 
@@ -90,7 +90,7 @@ spec:
         app: vllm
     spec:
       nodeSelector:
-        accelerator: nvidia-2080ti
+        accelerator: nvidia-gpu
       containers:
       - name: vllm
         image: vllm/vllm-openai:latest
@@ -134,7 +134,7 @@ llm = LLM(
     model="meta-llama/Llama-2-7b-hf",
 
     # Tensor Parallelism (multi-GPU)
-    tensor_parallel_size=1,          # 1 for single RTX 2080 Ti
+    tensor_parallel_size=1,          # 1 for single 11GB-class GPU
 
     # Memory Management
     gpu_memory_utilization=0.9,     # Use 90% of GPU for KV cache
@@ -195,7 +195,7 @@ spec:
         app: tgi
     spec:
       nodeSelector:
-        accelerator: nvidia-2080ti
+        accelerator: nvidia-gpu
       containers:
       - name: tgi
         image: ghcr.io/huggingface/text-generation-inference:latest
@@ -230,7 +230,7 @@ spec:
 
 ### Memory Utilization
 ```python
-# For RTX 2080 Ti (11GB VRAM)
+# For an 11GB VRAM GPU (11GB VRAM)
 # Llama-7B fp16: ~13GB weights (doesn't fit!)
 # Solution: Quantization
 
@@ -364,7 +364,7 @@ def benchmark_vllm():
 benchmark_vllm()
 ```
 
-### Expected Performance (RTX 2080 Ti)
+### Expected Performance (11GB VRAM GPU)
 ```
 Model          Quant    Context    Tokens/sec
 ────────────────────────────────────────────

@@ -147,7 +147,7 @@ Q6_K           ~6.5 GB       +15% better
 Q8_0           ~8.5 GB       +20% better (near fp16)
 fp16           ~14 GB        Reference
 
-For RTX 2080 Ti (11GB):
+For 11GB VRAM GPU:
   - Best quality: Q5_K or Q6_K
   - Balanced: Q4_K or Q5_0
   - Maximum context: Q4_0

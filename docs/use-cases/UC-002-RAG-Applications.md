@@ -64,7 +64,7 @@ class EnterpriseKnowledgeAssistant:
         model = AutoModelForCausalLM.from_pretrained(
             model_id,
             device_map="auto",
-            load_in_4bit=True  # For 2080 Ti compatibility
+            load_in_4bit=True  # Works on any 11GB+ VRAM GPU
         )
 
         pipe = pipeline(

@@ -34,7 +34,7 @@
 
 1. ✅ Distilled 7B achieves 90% of 70B performance
 2. ✅ Huge cost savings (13GB vs 140GB)
-3. ✅ Can run on RTX 2080 Ti 11GB
+3. ✅ Can run on an 11GB VRAM GPU
 4. ⚠️ Requires 70B for teacher (need cloud access)
 
 ---

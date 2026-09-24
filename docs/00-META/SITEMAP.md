@@ -24,9 +24,9 @@
 
 ### [1200] Host Virtualization & PCIE Passthrough (4 files)
 - ✅ [1201-Proxmox-Hypervisor-SOP.md](../phases/phase1-infra/1200-virtualization/1201-Proxmox-Hypervisor-SOP.md) - Core pinning, ZFS configs
-- ✅ [1202-TB3-UT3G-Passthrough.md](../phases/phase1-infra/1200-virtualization/1202-TB3-UT3G-Passthrough.md) - RTX 2080 Ti eGPU passthrough
+- ✅ [1202-TB3-UT3G-Passthrough.md](../phases/phase1-infra/1200-virtualization/1202-TB3-UT3G-Passthrough.md) - 11GB-class GPU eGPU passthrough
 - ✅ [1203-Nvidia-Kernel-Module.md](../phases/phase1-infra/1200-virtualization/1203-Nvidia-Kernel-Module.md) - DKMS, driver stability
-- ✅ [1204-Multi-GPU-Setup.md](../phases/phase1-infra/1200-virtualization/1204-Multi-GPU-Setup.md) - Multi-GPU configuration for RTX 2080 Ti
+- ✅ [1204-Multi-GPU-Setup.md](../phases/phase1-infra/1200-virtualization/1204-Multi-GPU-Setup.md) - Multi-GPU configuration for an 11GB-class GPU
 
 ### [1300] Kubernetes & Container Orchestration (3 files)
 - ✅ [1301-K3s-Master-Worker-Arch.md](../phases/phase1-infra/1300-kubernetes/1301-K3s-Master-Worker-Arch.md) - Cluster architecture

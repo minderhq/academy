@@ -25,7 +25,7 @@ After this tutorial, you will:
 ### Understanding the GPU
 
 ```
-GPU (NVIDIA RTX 2080 Ti):
+GPU (NVIDIA 11GB-class GPU):
 ├── 4352 CUDA cores
 ├── 11GB GDDR6 memory
 ├── Memory bandwidth: 616 GB/s
@@ -265,7 +265,7 @@ def profile_kernel():
 
     # Measure performance
     threads_per_block = 256
-    blocks_per_grid = 32 * 20  # Optimal for RTX 2080 Ti
+    blocks_per_grid = 32 * 20  # Optimal for an 11GB-class GPU
 
     # Warmup
     for _ in range(5):
