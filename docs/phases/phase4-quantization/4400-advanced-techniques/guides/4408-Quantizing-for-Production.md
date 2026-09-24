@@ -1,9 +1,15 @@
 ---
 Document ID: 4408
-Title: "4408: Quantizing for Production"
-Last Updated: 2026-09-24
+Title: Quantizing for Production
+Phase: 4
+Module: 4400
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Advanced
+Estimated Time: 3 hours
+Prerequisites: See module README
+Related: See module README
+Tags: ['quantization', 'production', 'deployment', 'gptq', 'gguf', 'serving']
 ---
 
 # 4408: Quantizing for Production
@@ -12,13 +18,13 @@ Difficulty: Advanced
 
 - [Learning Objectives](#learning-objectives)
 - [Abstract](#abstract)
-- [Production Quantization Pipeline](#production-quantization-pipeline)
+- [The Pipeline at a Glance](#the-pipeline-at-a-glance)
 - [Step 1: Model Selection](#step-1-model-selection)
 - [Step 2: Calibration Data](#step-2-calibration-data)
-- [Step 3: Choose Quantization Method](#step-3-choose-quantization-method)
+- [Step 3: Choose the Method](#step-3-choose-the-method)
 - [Step 4: Run Quantization](#step-4-run-quantization)
-- [Step 5: Validation](#step-5-validation)
-- [Step 6: Deployment](#step-6-deployment)
+- [Step 5: Validate Before Shipping](#step-5-validate-before-shipping)
+- [Step 6: Deploy](#step-6-deploy)
 - [Production Checklist](#production-checklist)
 - [Common Issues](#common-issues)
 - [Best Practices](#best-practices)
@@ -30,496 +36,513 @@ Difficulty: Advanced
 
 After completing this lesson, you will be able to:
 
-- Explain Production Quantization Pipeline
-- Explain Step 1: Model Selection
-- Explain Step 2: Calibration Data
-- Explain Step 3: Choose Quantization Method
-- Explain Step 4: Run Quantization
-- Explain Step 5: Validation
+- Run the six-step production quantization pipeline end to end: select → calibrate → choose → quantize → validate → deploy
+- Build a calibration set that actually protects quality — in-distribution samples at serving-length sequences — and explain what breaks when either property is violated
+- Choose a format from the deployment target using the 2026 toolchain reality: GPTQ via `transformers` for GPU serving, GGUF for CPU, EXL2 for local GPU, FP8 on Hopper-class datacenter hardware
+- Validate a quantized model with three independent gates (perplexity delta, KL vs the FP teacher, latency/throughput on target hardware) instead of one weak signal
+- Serve the result with vLLM and identify why a hand-rolled `model.generate` wrapper is a demo pattern, not a production one
 
 ---
 
 ## Abstract
 
-This guide covers end-to-end quantization workflows for production deployment.
+Quantizing a model for production is a pipeline, not a one-liner: the format decision, the calibration set, and the validation gates each independently decide whether the shipped model is a win or an incident. This guide walks the full six steps with the 2026 toolchain — the standalone AutoGPTQ and AutoAWQ packages are no longer maintained, so GPTQ runs through the `transformers`-native config, CPU deployment goes through llama.cpp's current converter, and datacenter serving on Hopper-class GPUs increasingly skips INT4 entirely for FP8. Just as important as producing the quantized checkpoint is *proving* it: perplexity deltas on your own domain data, distribution divergence against the full-precision teacher, and benchmarks on the hardware you will actually serve on. The algorithm theory lives in [4401](../4401-GPTQ.md) and [4402](../4402-AWQ.md); this guide is the surrounding operational discipline.
 
-## Production Quantization Pipeline
+## The Pipeline at a Glance
 
 ```text
-┌─────────────────────────────────────────────────────────────┐
-│  1. Model Selection                                         │
-│     ├─ Choose base model                                    │
-│     └─ Verify license and usage rights                      │
-├─────────────────────────────────────────────────────────────┤
-│  2. Calibration Data                                        │
-│     ├─ Collect domain-specific data                         │
-│     └─ Prepare for quantization                             │
-├─────────────────────────────────────────────────────────────┤
-│  3. Quantization Method                                     │
-│     ├─ Choose: GPTQ / AWQ / QAT / GGUF / EXL2              │
-│     └─ Configure quantization parameters                    │
-├─────────────────────────────────────────────────────────────┤
-│  4. Quantization                                            │
-│     ├─ Run quantization                                     │
-│     └─ Monitor process                                      │
-├─────────────────────────────────────────────────────────────┤
-│  5. Validation                                              │
-│     ├─ Accuracy benchmarks                                  │
-│     ├─ Quality checks                                       │
-│     └─ Performance testing                                   │
-├─────────────────────────────────────────────────────────────┤
-│  6. Deployment                                              │
-│     ├─ Optimize for target hardware                         │
-│     ├─ Create API wrapper                                   │
-│     └─ Monitor in production                                │
-└─────────────────────────────────────────────────────────────┘
+1. SELECT       base model, license, architecture support
+2. CALIBRATE    256-512 in-distribution samples at serving length
+3. CHOOSE       format + runtime from the deployment target
+4. QUANTIZE     run the conversion; record every parameter
+5. VALIDATE     three gates: perplexity, KL vs FP, perf on target HW
+6. DEPLOY       serving stack, monitoring, rollback plan
+
+Skip step 2 and no downstream fix matters; skip step 5 and you
+find out from users.
 ```
 
 ## Step 1: Model Selection
 
+Check architecture support and the license *programmatically* — model configs do not carry a `license` field; the license lives in the model card metadata exposed as tags:
+
 ```python
-# Verify model compatibility
+from huggingface_hub import HfApi
 from transformers import AutoConfig
 
-model_name = "meta-llama/Llama-2-7b-hf"
+model_id = "meta-llama/Llama-2-7b-hf"
 
-config = AutoConfig.from_pretrained(model_name)
+config = AutoConfig.from_pretrained(model_id)
 
-# Check supported architectures
-SUPPORTED_ARCHITECTURES = [
-    "llama", "mistral", "mixtral", "qwen", "phi",
-    "gemma", "gpt-neox", "falcon",
-]
+# architectures every major quantization path supports well
+SUPPORTED = {"llama", "mistral", "mixtral", "qwen2", "phi3", "gemma2"}
+if config.model_type not in SUPPORTED:
+    print(f"Warning: {config.model_type} may lag in kernel support")
 
-if config.model_type not in SUPPORTED_ARCHITECTURES:
-    print(f"Warning: {config.model_type} may not be well-supported")
+def model_license(model_id: str):
+    """License arrives as a 'license:<name>' tag, not a config
+    attribute - read it from the Hub API."""
+    info = HfApi().model_info(model_id)
+    for tag in info.tags:
+        if tag.startswith("license:"):
+            return tag.split(":", 1)[1]
+    return None    # no license tag: treat as unusable commercially
 
-# Check license
-if hasattr(config, 'license'):
-    print(f"License: {config.license}")
-    # Verify commercial use allowed
+print(model_license(model_id))
+```
+
+```text
+Selection criteria that matter for quantization
+- parameter count vs your memory budget AT the target bit-width
+  (a 7B at INT4 fits 12GB consumer cards; a 13B does not)
+- architecture maturity: quantization kernels land for popular
+  archs first; brand-new architectures quantize last
+- if a quantized checkpoint already exists from the publisher
+  (Qwen, Gemma ship official quants) - prefer it, they are
+  validated more deeply than a fresh local conversion
 ```
 
 ## Step 2: Calibration Data
 
+PTQ minimizes weight reconstruction error **against the activations your traffic produces** — the calibration set is a proxy for that traffic, and its two properties are load-bearing:
+
 ```python
-def prepare_calibration_data(tokenizer, domain_texts, num_samples=256):
-    """
-    Prepare calibration data for quantization.
+def build_calibration_texts(domain_texts, tokenizer,
+                            num_samples=256, min_chars=200):
+    """In-distribution strings; transformers tokenizes them
+    internally for GPTQConfig, so pass raw text, not tensors."""
+    seen = [t.strip() for t in domain_texts
+            if len(t.strip()) >= min_chars]
+    return seen[:num_samples]
 
-    Args:
-        tokenizer: Model tokenizer
-        domain_texts: List of domain-specific texts
-        num_samples: Number of calibration samples
+# example: a code-focused model gets code, not wikitext
+with open("code_samples.txt", encoding="utf-8") as f:
+    domain_texts = f.read().split("\n\n")     # chunked documents
 
-    Returns:
-        List of tokenized inputs
-    """
-    calibration_data = []
-
-    for text in domain_texts[:num_samples]:
-        # Tokenize
-        tokens = tokenizer(
-            text,
-            return_tensors="pt",
-            truncation=True,
-            max_length=2048,
-        )
-
-        calibration_data.append(tokens["input_ids"])
-
-    return calibration_data
-
-# Example: Code-focused model
-code_texts = open("code_samples.txt").readlines()[:256]
-calib_data = prepare_calibration_data(tokenizer, code_texts)
+calibration_texts = build_calibration_texts(domain_texts, tokenizer)
 ```
-
-## Step 3: Choose Quantization Method
-
-### Decision Tree
 
 ```text
-Target Hardware?
-├─ CPU Only
-│  └─ Use GGUF (Q4_K_M or Q5_K_M)
-├─ NVIDIA GPU
-│  └─ Use EXL2 (fastest) or AWQ (good compatibility)
-└─ Multiple Platforms
-   └─ Use GPTQ + GGUF (offer both)
+The two properties that decide calibration quality
+1. IN-DISTRIBUTION: 256-512 samples from your actual domain.
+   C4/wikitext defaults measure generic English; for a code,
+   legal, or medical model they miscalibrate the scales that
+   matter (the #1 cause of "GPTQ hurt my model")
+2. SERVING-LENGTH: calibrate at the sequence length you serve
+   at (or above). Scales fit on 512-token samples degrade on
+   8k-token prompts - outlier statistics accumulate with depth
 
-Have Training Data?
-├─ Yes
-│  └─ Consider QAT (best accuracy)
-└─ No
-   └─ Use PTQ (GPTQ/AWQ)
+Budget guidance: 128 samples is the floor, 256-512 is the
+standard, beyond ~1024 the gains flatten (4401).
 ```
 
-### Configuration Template
+## Step 3: Choose the Method
+
+The decision is made by the deployment target — and the 2026 toolchain narrowed the options:
+
+```text
+Target                       Format + runtime
+---------------------------  ------------------------------------
+GPU datacenter, many users   GPTQ/AWQ W4A16 + vLLM
+                             (H100-class: FP8 instead - W8A8,
+                             near-lossless, no calibration)
+CPU only / consumer devices  GGUF Q4_K_M + llama.cpp
+Local single-user GPU        EXL2 or GGUF + exllamav2/llama.cpp
+Accuracy-critical + data +   QAT (training-time; different budget,
+compute budget               different lesson)
+
+Deprecated, do not start new work on: standalone AutoGPTQ and
+AutoAWQ repos (both archived/unmaintained). Use the
+transformers-native configs and llm-compressor instead.
+```
 
 ```python
-# GPTQ Configuration
-GPTQ_CONFIG = {
-    "bits": 4,
-    "group_size": 128,
-    "damp_percent": 0.01,
-    "desc_act": True,
-}
+# Config templates for the formats this guide runs in Step 4
 
-# AWQ Configuration
-AWQ_CONFIG = {
-    "zero_point": True,
-    "q_group_size": 128,
-    "w_bit": 4,
-    "version": "GEMM",
-}
+GPTQ_CONFIG = dict(
+    bits=4,
+    group_size=128,     # 64 for stubborn layers (2x scales)
+    desc_act=True,      # activation ordering - helps LLMs
+)
 
-# GGUF Configuration
-GGUF_CONFIG = {
-    "type": "Q4_K_M",  # or "Q5_K_M" for better accuracy
-}
-
-# EXL2 Configuration
-EXL2_CONFIG = {
-    "bits": "4.0,4.5,5.0,6.0",  # Variable bit-width
-}
+GGUF_QUANT = "Q4_K_M"   # CPU sweet spot; Q5_K_M if quality-tight
+EXL2_BITS = 4.5         # exl2 hits the target bpw with automatic
+                        # per-layer mixed precision
 ```
+
+Format deep-dives live in [4403](../4403-GGUF-Format.md) and [4404](../4404-EXL2-Format.md).
 
 ## Step 4: Run Quantization
 
-### GPTQ Quantization
-
-```python
-from transformers import AutoTokenizer
-from auto_gptq import AutoGPTQForCausalLM, BaseQuantizeConfig
-
-model_name = "meta-llama/Llama-2-7b-hf"
-
-# Setup
-tokenizer = AutoTokenizer.from_pretrained(model_name)
-quantize_config = BaseQuantizeConfig(**GPTQ_CONFIG)
-
-# Load model
-model = AutoGPTQForCausalLM.from_pretrained(
-    model_name,
-    quantize_config=quantize_config,
-    trust_remote_code=True,
-)
-
-# Quantize
-print("Starting quantization...")
-model.quantize(calib_data, batch_size=1)
-
-# Save
-output_dir = "./models/llama-2-7b-gptq"
-model.save_quantized(output_dir)
-tokenizer.save_pretrained(output_dir)
-
-print(f"Model saved to {output_dir}")
-```
-
-### AWQ Quantization
-
-```python
-from awq import AutoAWQForCausalLM
-
-model = AutoAWQForCausalLM.from_pretrained(model_name)
-tokenizer = AutoTokenizer.from_pretrained(model_name)
-
-# Quantize
-model.quantize(calib_data, AWQ_CONFIG)
-
-# Save
-output_dir = "./models/llama-2-7b-awq"
-model.save_quantized(output_dir)
-tokenizer.save_pretrained(output_dir)
-```
-
-### GGUF Conversion
-
-```bash
-# Convert to GGUF
-python /path/to/llama.cpp/convert.py \
-    --model ./Llama-2-7b-hf \
-    --outfile ./models/Llama-2-7b-Q4_K_M.gguf \
-    --outtype q4_k_m
-```
-
-### EXL2 Conversion
-
-```bash
-# Convert to EXL2
-python /path/to/exllamav2/convert.py \
-    --in_dir ./Llama-2-7b-hf \
-    --out_file ./models/Llama-2-7b-exl2 \
-    --output-format exl2 \
-    --bits 4.0,4.5,5.0,6.0
-```
-
-## Step 5: Validation
-
-### Accuracy Validation
+### GPTQ via transformers (GPU serving path)
 
 ```python
 import torch
-from datasets import load_dataset
-from transformers import AutoModelForCausalLM
+from transformers import (AutoModelForCausalLM, AutoTokenizer,
+                          GPTQConfig)
 
-def evaluate_perplexity(model, tokenizer, test_data):
-    """Calculate perplexity on test data."""
+model_id = "meta-llama/Llama-2-7b-hf"
+tokenizer = AutoTokenizer.from_pretrained(model_id)
 
-    model.eval()
-    total_loss = 0
-    total_tokens = 0
+quant_config = GPTQConfig(
+    bits=GPTQ_CONFIG["bits"],
+    group_size=GPTQ_CONFIG["group_size"],
+    desc_act=GPTQ_CONFIG["desc_act"],
+    dataset=calibration_texts,      # your Step-2 texts
+    tokenizer=tokenizer,
+)
 
-    with torch.no_grad():
-        for batch in test_data:
-            outputs = model(
-                input_ids=batch["input_ids"],
-                labels=batch["input_ids"],
-            )
-            total_loss += outputs.loss * batch["input_ids"].size(1)
-            total_tokens += batch["input_ids"].size(1)
+model = AutoModelForCausalLM.from_pretrained(
+    model_id,
+    quantization_config=quant_config,
+    device_map="auto",
+    torch_dtype=torch.float16,
+)
 
-    perplexity = torch.exp(total_loss / total_tokens)
-    return perplexity.item()
+out_dir = "./models/llama-2-7b-w4a16-gptq"
+model.save_pretrained(out_dir)
+tokenizer.save_pretrained(out_dir)
 
-# Load test data
-test_data = load_dataset("wikitext", "wikitext-2-raw-v1", split="test")
-
-# Compare models
-model_fp32 = AutoModelForCausalLM.from_pretrained(model_name)
-ppl_fp32 = evaluate_perplexity(model_fp32, tokenizer, test_data)
-
-model_quantized = load_quantized_model("./models/llama-2-7b-gptq")
-ppl_quantized = evaluate_perplexity(model_quantized, tokenizer, test_data)
-
-print(f"FP32 Perplexity: {ppl_fp32:.2f}")
-print(f"Quantized Perplexity: {ppl_quantized:.2f}")
-print(f"Difference: {ppl_quantized - ppl_fp32:.2f}")
+# the saved checkpoint loads back like any HF model:
+# AutoModelForCausalLM.from_pretrained(out_dir, ...)
 ```
 
-### Quality Validation
+```text
+Notes
+- quantization RUNS ON GPU: the full-precision model must fit
+  during the pass (7B ~= 14GB FP16 + overhead) - a CPU-only
+  box cannot GPTQ a 7B; use GGUF there instead
+- requires a maintained GPTQ backend (gptqmodel); the legacy
+  auto-gptq/optimum path is deprecated
+- AWQ equivalent exists for loading pre-quantized checkpoints
+  (AwqConfig); producing NEW AWQ quantizations now goes through
+  llm-compressor (4402)
+```
+
+### GGUF (CPU path) — two steps
+
+```bash
+# 1) HF weights -> f16 GGUF (current converter name)
+python convert_hf_to_gguf.py ./Llama-2-7b-hf \
+    --outfile ./models/base-f16.gguf --outtype f16
+
+# 2) quantize with the llama.cpp binary
+./llama-quantize ./models/base-f16.gguf \
+    ./models/llama-2-7b-Q4_K_M.gguf Q4_K_M
+```
+
+```bash
+# optional: keep sensitive layers (attention) higher precision
+python convert_hf_to_gguf.py ./Llama-2-7b-hf \
+    --outfile ./models/mixed.gguf --outtype f16 \
+    --tensor-type "ffn_=q8_0"
+./llama-quantize ./models/mixed.gguf ./models/mixed-Q4_K_M.gguf Q4_K_M
+```
+
+### EXL2 (local GPU path)
+
+```bash
+# from the exllamav2 repo; -c is a calibration file (jsonl),
+# -b the target bits-per-weight, -hf writes the HF config/tokenizer
+python convert.py \
+    -i ./Llama-2-7b-hf \
+    -o ./models/llama-2-7b-exl2-4.5bpw \
+    -c calibration.jsonl \
+    -b 4.5 \
+    -hf
+```
+
+### FP8 (Hopper-class datacenter path)
+
+```text
+On H100-class GPUs, FP8 (W8A8) has largely replaced INT4 for
+serving: near-lossless quality, no calibration set required
+with dynamic scaling, native tensor-core throughput.
+
+Fastest route - let vLLM quantize at load time:
+    vllm serve meta-llama/Llama-2-7b-hf --quantization fp8
+
+For a saved FP8 checkpoint, produce it with llm-compressor
+(vLLM's companion quantization library); its output is a
+standard HF checkpoint vLLM serves natively.
+```
+
+## Step 5: Validate Before Shipping
+
+Three independent gates. One green light is not a signal; three are.
+
+### Gate 1: Perplexity on YOUR domain
 
 ```python
-def test_generation_quality(model, tokenizer, test_prompts):
-    """Test generation on domain-specific prompts."""
+import torch
 
-    results = []
+@torch.no_grad()
+def evaluate_perplexity(model, tokenizer, texts, max_length=2048):
+    """Tokenize FIRST - a raw-text dataset has no input_ids;
+    weighted mean NLL over the whole corpus -> perplexity."""
+    model.eval()
+    device = next(model.parameters()).device
+    total_nll, total_tokens = 0.0, 0
 
-    for prompt in test_prompts:
-        # Generate
-        inputs = tokenizer(prompt, return_tensors="pt")
-        outputs = model.generate(**inputs, max_new_tokens=128)
-        text = tokenizer.decode(outputs[0])
+    for text in texts:
+        ids = tokenizer(text, return_tensors="pt", truncation=True,
+                        max_length=max_length).input_ids.to(device)
+        if ids.size(1) < 2:
+            continue
+        loss = model(input_ids=ids, labels=ids).loss  # batch mean
+        total_nll += loss.item() * ids.size(1)
+        total_tokens += ids.size(1)
 
-        # Manual review or automated metrics
-        results.append({
-            "prompt": prompt,
-            "output": text,
-        })
-
-    return results
-
-# Example test prompts
-test_prompts = [
-    "def fibonacci(n):",
-    "The capital of France is",
-    "Explain quantum computing:",
-]
-
-results = test_generation_quality(model_quantized, tokenizer, test_prompts)
+    return float(torch.exp(torch.tensor(total_nll / total_tokens)))
 ```
 
-### Performance Validation
+```text
+Gate: perplexity delta vs FP16 <= 5% on your DOMAIN eval set.
+Generic benchmarks (wikitext) can look fine while domain
+capability fell apart - and vice versa. Measure both if you can.
+```
+
+### Gate 2: KL divergence vs the FP teacher
+
+Perplexity is one aggregate number; KL catches *distributional* damage that an average hides:
+
+```python
+@torch.no_grad()
+def prompt_kl(fp_model, q_model, tokenizer, prompt, device):
+    ids = tokenizer(prompt, return_tensors="pt").input_ids.to(device)
+    p = torch.log_softmax(fp_model(ids).logits, dim=-1)
+    q = torch.log_softmax(q_model(ids).logits, dim=-1)
+    return torch.nn.functional.kl_div(
+        q, p, log_target=True, reduction="batchmean").item()
+```
+
+```text
+Run 50+ REAL prompts through both models; watch for a tail of
+high-KL prompts - a median of 0.05 with a tail at 3.0 means
+specific capabilities broke. Investigate the tail before ship.
+```
+
+### Gate 3: Performance on the TARGET hardware
 
 ```python
 import time
+import torch
 
-def benchmark_inference(model, tokenizer, batch_size=1, num_iterations=100):
-    """Benchmark inference speed."""
-
+@torch.no_grad()
+def benchmark_decode(model, tokenizer, prompt,
+                     max_new_tokens=64, warmup=5, iters=20):
     model.eval()
-    prompt = "The future of AI is"
+    device = next(model.parameters()).device
+    for _ in range(warmup):
+        ids = tokenizer(prompt, return_tensors="pt").to(device)
+        model.generate(**ids, max_new_tokens=8)
 
-    # Warmup
-    for _ in range(10):
-        inputs = tokenizer(prompt, return_tensors="pt")
-        _ = model.generate(**inputs, max_new_tokens=10)
-
-    # Benchmark
-    start = time.time()
-    tokens_generated = 0
-
-    for _ in range(num_iterations):
-        inputs = tokenizer(prompt, return_tensors="pt")
-        outputs = model.generate(**inputs, max_new_tokens=50)
-        tokens_generated += 50
-
-    end = time.time()
-
-    avg_time = (end - start) / num_iterations * 1000  # ms
-    tokens_per_sec = tokens_generated / (end - start)
-
-    return {
-        "avg_latency_ms": avg_time,
-        "tokens_per_sec": tokens_per_sec,
-    }
-
-# Benchmark
-stats = benchmark_inference(model_quantized, tokenizer)
-print(f"Average Latency: {stats['avg_latency_ms']:.2f} ms")
-print(f"Throughput: {stats['tokens_per_sec']:.2f} tokens/sec")
+    start = time.perf_counter()
+    out_tokens = 0
+    for _ in range(iters):
+        ids = tokenizer(prompt, return_tensors="pt").to(device)
+        model.generate(**ids, max_new_tokens=max_new_tokens)
+        out_tokens += max_new_tokens
+    elapsed = time.perf_counter() - start
+    return out_tokens / elapsed      # tokens/sec, single stream
 ```
 
-## Step 6: Deployment
-
-### Docker Container
-
-```dockerfile
-FROM nvidia/cuda:12.1.0-runtime-ubuntu22.04
-
-# Install dependencies
-RUN apt-get update && apt-get install -y python3 python3-pip
-
-# Install libraries
-COPY requirements.txt .
-RUN pip3 install -r requirements.txt
-
-# Copy model
-COPY model/ /app/model
-
-# Expose port
-EXPOSE 8000
-
-# Run API
-CMD ["python3", "api.py"]
+```text
+Caveat: this measures the transformers generate() loop, which
+is NOT your serving throughput (no batching, no paged KV).
+It is a same-harness comparison FP vs quantized - valid for the
+relative claim. ABSOLUTE serving numbers come from the serving
+stack's benchmark (vLLM benchmark_serving: TTFT + TPOT).
 ```
 
-### FastAPI Wrapper
+## Step 6: Deploy
+
+### The honest answer: a real serving stack
+
+```bash
+# pre-quantized GPTQ/AWQ checkpoint, served directly
+vllm serve ./models/llama-2-7b-w4a16-gptq --dtype float16
+
+# FP8 quantization at load time (Hopper-class)
+vllm serve meta-llama/Llama-2-7b-hf --quantization fp8
+```
+
+```text
+Why vLLM instead of a generate() wrapper
+- continuous batching (10-100x throughput at the same GPU)
+- paged KV cache (memory scales with ACTUAL sequence lengths)
+- OpenAI-compatible API + metrics for free
+A hand-rolled FastAPI + model.generate service is a demo
+pattern: one concurrent user saturates it. Only embed the model
+in your own service when you specifically need in-process
+control - and then use the pattern below, knowing its limits.
+```
+
+### Embedded-service pattern (only when you must)
 
 ```python
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
+from contextlib import asynccontextmanager
+
 import torch
-from transformers import AutoTokenizer
+from fastapi import FastAPI
+from pydantic import BaseModel
+from transformers import AutoModelForCausalLM, AutoTokenizer
 
-from awq import AutoAWQForCausalLM
+MODEL_DIR = "./models/llama-2-7b-w4a16-gptq"
 
-app = FastAPI()
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    app.state.tokenizer = AutoTokenizer.from_pretrained(MODEL_DIR)
+    app.state.model = AutoModelForCausalLM.from_pretrained(
+        MODEL_DIR, torch_dtype=torch.float16, device_map="cuda")
+    app.state.model.eval()
+    yield
 
-# Load model
-model = AutoAWQForCausalLM.from_quantized("./model", device_map="auto")
-tokenizer = AutoTokenizer.from_pretrained("./model")
+app = FastAPI(lifespan=lifespan)     # load once, not per request
 
 class GenerationRequest(BaseModel):
     prompt: str
     max_tokens: int = 128
     temperature: float = 0.7
 
-class GenerationResponse(BaseModel):
-    text: str
+@app.post("/generate")
+def generate(req: GenerationRequest):
+    tok = app.state.tokenizer
+    model = app.state.model
+    ids = tok(req.prompt, return_tensors="pt").to(model.device)
 
-@app.post("/generate", response_model=GenerationResponse)
-async def generate(request: GenerationRequest):
-    try:
-        inputs = tokenizer(request.prompt, return_tensors="pt").to(model.device)
+    sampling = {}
+    if req.temperature > 0:
+        sampling = dict(do_sample=True, temperature=req.temperature)
 
-        outputs = model.generate(
-            **inputs,
-            max_new_tokens=request.max_tokens,
-            temperature=request.temperature,
-        )
-
-        text = tokenizer.decode(outputs[0])
-
-        return GenerationResponse(text=text)
-
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    out = model.generate(**ids,
+                         max_new_tokens=req.max_tokens,
+                         **sampling)
+    n_new = out.shape[1] - ids.input_ids.shape[1]
+    return {"text": tok.decode(out[0][ids.input_ids.shape[1]:],
+                               skip_special_tokens=True),
+            "tokens": n_new}
 ```
 
 ### Monitoring
 
 ```python
-from prometheus_client import Counter, Histogram, generate_latest
+import time
+from fastapi import Response
+from prometheus_client import (Counter, Histogram,
+                               generate_latest)
 
-# Metrics
-inference_count = Counter('inference_count', 'Total inference requests')
-inference_duration = Histogram('inference_duration_seconds', 'Inference duration')
-token_count = Counter('token_count', 'Total tokens generated')
+REQUESTS = Counter("generate_requests_total",
+                   "Generation requests")
+LATENCY = Histogram("generate_latency_seconds",
+                    "End-to-end request latency")
+TOKENS = Counter("generate_output_tokens_total",
+                 "Output tokens generated")
 
-# Track usage
 @app.post("/generate")
-async def generate(request: GenerationRequest):
-    inference_count.inc()
-
-    with inference_duration.time():
-        outputs = model.generate(...)
-        tokens = outputs.shape[1]
-        token_count.inc(tokens)
-
-    return {"text": text}
+def generate(req: GenerationRequest):
+    REQUESTS.inc()
+    with LATENCY.time():
+        result = _generate_impl(req)      # the handler above
+    TOKENS.inc(result["tokens"])
+    return result
 
 @app.get("/metrics")
-async def metrics():
-    return generate_latest()
+def metrics():
+    return Response(generate_latest(),
+                    media_type="text/plain")
+```
+
+```text
+What to alert on in production for a QUANTIZED model
+- p95 latency and TTFT regressions (quant kernels + batching
+  interact with load in non-obvious ways)
+- output token distribution shifts vs the FP baseline (a slow
+  quality regression, not a crash)
+- fallback rate: if your stack can downgrade to FP16 on OOM,
+  a rising fallback rate silently doubles your GPU footprint
 ```
 
 ## Production Checklist
 
-- [ ] Model selected and license verified
-- [ ] Calibration data prepared
-- [ ] Quantization method chosen
-- [ ] Quantization completed successfully
-- [ ] Accuracy validated (<5% loss)
-- [ ] Quality validated (manual review)
-- [ ] Performance benchmarked
-- [ ] Docker image created
-- [ ] API wrapper tested
-- [ ] Monitoring configured
-- [ ] Documentation updated
-- [ ] Rollback plan ready
+```text
+- [ ] License verified via Hub API for your actual use case
+- [ ] Calibration: 256-512 in-distribution samples, serving-length
+- [ ] Every quantization parameter recorded (format, bits,
+      group_size, calibration set hash + count)
+- [ ] Gate 1: perplexity delta <= 5% on DOMAIN eval
+- [ ] Gate 2: KL vs FP teacher on 50+ real prompts, tail inspected
+- [ ] Gate 3: TTFT/TPOT benchmarked on TARGET hardware + load
+- [ ] Format <-> runtime pairing verified END-TO-END in the
+      serving stack (load + generate, not just file exists)
+- [ ] FP16 checkpoint retained for rollback
+- [ ] Monitoring + alerting wired (latency, token distribution)
+- [ ] Canary or shadow deployment before full traffic
+```
 
 ## Common Issues
 
-### Issue 1: Accuracy Drop >5%
+### Perplexity blowup after GPTQ
 
-**Solution:** Try higher bit-width or mixed precision
-```python
-# Use 8-bit for embeddings and early layers
-config = {"bits": "embeddings:8.0,blk.0-10:6.0,blk.11-32:4.0"}
+```text
+Ordered fixes
+1. calibration/domain mismatch -> rebuild Step 2 in-distribution
+2. embeddings/lm_head quantized -> keep them FP (default in most
+   recipes; verify in the saved config)
+3. stubborn layers -> group_size 128 -> 64 (doubles scale memory,
+   usually recovers most of the delta)
+4. still broken -> desc_act=True if off, or bits 4 -> 8 for the
+   worst layers via a mixed recipe (llm-compressor)
 ```
 
-### Issue 2: Slow Inference
+### Long prompts degrade, short ones are fine
 
-**Solution:** Optimize for target hardware
-- GPU: Use EXL2 or AWQ with layer fusion
-- CPU: Use GGUF with thread optimization
+```text
+Calibration length < serving length. Recalibrate with
+sequences at (or above) your production context size - outlier
+statistics accumulate with depth, and short-sample scales
+clip under long prompts.
+```
 
-### Issue 3: High Memory Usage
+### Quantized model will not load in the serving stack
 
-**Solution:** Enable streaming or offloading
-```python
-# EXL2: Low memory mode
-config.low_mem = True
+```text
+Format <-> runtime pairing is strict:
+- GGUF runs in llama.cpp-family runtimes, NOT in vLLM/TRT-LLM
+- EXL2 runs in exllamav2 only
+- vLLM accepts GPTQ/AWQ/FP8-style HF checkpoints - if it
+  rejects one, re-export via the maintained path rather than
+  force an unsupported scheme
+```
 
-# GGUF: CPU offloading
-n_gpu_layers = 20  # Partial offload
+### Quantization OOMs on your box
+
+```text
+GPTQ needs the FP model resident on GPU during the pass
+(7B ~= 14GB+). Options: a bigger GPU, CPU offload with a large
+time penalty, or GGUF (converts from disk, needs no GPU).
 ```
 
 ## Best Practices
 
-1. **Always validate:** Test on domain-specific data
-2. **Offer multiple formats:** GGUF for CPU, EXL2 for GPU
-3. **Monitor in production:** Track accuracy and performance
-4. **Version control:** Keep track of quantization parameters
-5. **Document everything:** Calibration data, configs, results
-
+```text
+1. Prefer publisher-released quantized checkpoints when they
+   exist - deeper validation than a fresh local conversion
+2. Calibration quality > algorithm choice: in-distribution
+   samples at serving length fix more models than parameter
+   tuning does
+3. Validate with three gates (perplexity, KL tail, target-HW
+   perf); any single gate can pass a broken model
+4. Do not start new work on AutoGPTQ/AutoAWQ - transformers
+   configs + llm-compressor are the maintained 2026 paths
+5. Hopper-class datacenter serving: evaluate FP8 before INT4 -
+   near-lossless W8A8 with zero calibration beats a 4-bit
+   compromise when VRAM allows
+6. Record calibration set hash + parameters with the artifact;
+   an unexplained checkpoint cannot be reproduced or debugged
+7. Keep the FP16 checkpoint until the quantized service has a
+   production track record - rollback is the cheapest insurance
+```
 
 ---
 
@@ -527,15 +550,15 @@ n_gpu_layers = 20  # Partial offload
 
 ### Related ai-engineering-curriculum Documents
 
-- [4409: Hardware-Specific Quantization Optimization](4409-Hardware-Specific-Optimization.md)
+- [4401: GPTQ](../4401-GPTQ.md)
+- [4402: AWQ](../4402-AWQ.md)
+- [4403: GGUF Format](../4403-GGUF-Format.md)
+- [4404: EXL2 Format](../4404-EXL2-Format.md)
+- [4409: Hardware-Specific Quantization Optimization](./4409-Hardware-Specific-Optimization.md)
 
 ---
 
 ## Next Steps
 
-- Return to: **[Module README](../README.md)**
-
----
----
-
-**Last Updated:** 2026-02-04
+- Continue with: **[4409: Hardware-Specific Quantization Optimization](./4409-Hardware-Specific-Optimization.md)**
+- Assessment: **[assessment/QUIZ.md](../assessment/QUIZ.md)**
