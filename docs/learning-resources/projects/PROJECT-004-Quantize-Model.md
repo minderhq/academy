@@ -609,4 +609,6 @@ if __name__ == '__main__':
 - ⚡ Quantized inference kernels
 - 💾 >50% memory reduction
 
-**Next:** Volume 5 - Fine-Tuning Expert
+## Next Steps
+
+- **[Volume 5: Model Adaptation](../../volumes/VOLUME-5-Model-Adaptation.md)**

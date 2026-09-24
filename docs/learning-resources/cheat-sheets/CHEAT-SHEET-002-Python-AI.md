@@ -612,4 +612,6 @@ print(MODEL_CONFIG['name'])
 
 ---
 
-**Next:** [CHEAT SHEET: Git & Version Control](CHEAT-SHEET-003-Git.md)
+## Next Steps
+
+- **[CHEAT SHEET: Git & Version Control](CHEAT-SHEET-003-Git.md)**

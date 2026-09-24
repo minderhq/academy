@@ -677,4 +677,6 @@ if __name__ == "__main__":
 - 🧠 GraphRAG integration
 - 🚀 Production API deployment
 
-**Next:** Volume 7 - Production Systems
+## Next Steps
+
+- **[Volume 7: Production Mastery](../../volumes/VOLUME-7-Production-Mastery.md)**

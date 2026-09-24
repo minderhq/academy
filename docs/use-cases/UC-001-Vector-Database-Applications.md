@@ -4,6 +4,7 @@ Title: "UC-001: Vector Database Practical Use Cases"
 Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Intermediate
+Related: [6101, 6401]
 ---
 
 # UC-001: Vector Database Practical Use Cases
@@ -681,6 +682,6 @@ START
 
 ---
 
-**Use Case ID:** UC-001
-**Related Documents:** [6101: HNSW Indexing](../phases/phase6-rag/6100-vector/6101-HNSW-Indexing.md), [6401: Qdrant Setup](../phases/phase6-rag/6400-vector-databases/6401-Qdrant-Setup.md)
-**Next:** [UC-002: RAG System Applications](./UC-002-RAG-Applications.md)
+## Next Steps
+
+- **[UC-002: RAG System Applications](./UC-002-RAG-Applications.md)**

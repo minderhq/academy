@@ -4,6 +4,7 @@ Title: "UC-002: RAG (Retrieval-Augmented Generation) Practical Use Cases"
 Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Intermediate
+Related: [6101, 6201, 6302]
 ---
 
 # UC-002: RAG (Retrieval-Augmented Generation) Practical Use Cases
@@ -879,6 +880,6 @@ else:
 
 ---
 
-**Use Case ID:** UC-002
-**Related Documents:** [6101: HNSW Indexing](../phases/phase6-rag/6100-vector/6101-HNSW-Indexing.md), [6201: Hybrid Search](../phases/phase6-rag/6200-retrieval/6201-Hybrid-Search.md), [6302: CAG Architectures](../phases/phase6-rag/6300-context/6302-CAG-Long-Context-Architectures.md)
-**Next:** [UC-003: Agent Applications](./UC-003-Agent-Applications.md)
+## Next Steps
+
+- **[UC-003: Agent Applications](./UC-003-Agent-Applications.md)**

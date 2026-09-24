@@ -351,4 +351,6 @@ Test your understanding:
 
 ---
 
-**Next:** [Tutorial 002: Docker Essentials](TUTORIAL-002-Docker-Essentials.md)
+## Next Steps
+
+- **[Tutorial 002: Docker Essentials](TUTORIAL-002-Docker-Essentials.md)**

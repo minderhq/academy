@@ -553,7 +553,8 @@ Best,
 
 ---
 
-**Next:**
+## Next Steps
+
 1. Use [GUIDE-INTERVIEW.md](./GUIDE-INTERVIEW.md) for interview prep
 2. Practice explaining your projects out loud
 3. Get feedback from 2-3 people in AI

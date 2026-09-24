@@ -1133,4 +1133,6 @@ for epoch in range(n_epochs):
 - 📈 Training loops and optimizers
 - 🎯 Working models (XOR, MNIST)
 
-**Next:** Volume 3 - LLM Internals
+## Next Steps
+
+- **[Volume 3: LLM Internals](../../volumes/VOLUME-3-LLM-Internals.md)**

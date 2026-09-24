@@ -606,4 +606,6 @@ print(rag.query("What is ai-engineering-curriculum?"))
 
 ---
 
-**Next:** Tutorial 004: GraphRAG *(coming soon)*
+## Next Steps
+
+- Tutorial 004: GraphRAG *(coming soon)*

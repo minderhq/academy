@@ -617,4 +617,6 @@ wandb/
 
 ---
 
-**Next:** [CHEAT SHEET: Linux Commands](CHEAT-SHEET-004-Linux.md)
+## Next Steps
+
+- **[CHEAT SHEET: Linux Commands](CHEAT-SHEET-004-Linux.md)**

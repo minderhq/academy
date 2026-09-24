@@ -482,4 +482,6 @@ docker system prune -a --volumes -f
 
 ---
 
-**Next:** [CHEAT SHEET: Python for AI](CHEAT-SHEET-002-Python-AI.md)
+## Next Steps
+
+- **[CHEAT SHEET: Python for AI](CHEAT-SHEET-002-Python-AI.md)**

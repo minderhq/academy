@@ -1216,4 +1216,6 @@ curl -X POST http://localhost:8002/chat \
 - 💾 Memory system
 - 🚀 Production deployment
 
-**Next:** Explore advanced topics in [7000-Agentic](../../phases/phase7-agentic/) or build your own project!
+## Next Steps
+
+- Explore advanced topics in **[7000: Agentic Systems](../../phases/phase7-agentic/)** or build your own project!

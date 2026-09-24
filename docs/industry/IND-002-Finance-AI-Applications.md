@@ -1366,4 +1366,6 @@ def generate_regulatory_report(financial_data: dict):
 
 **Industry ID:** IND-002
 **Related:** [UC-001: Vector Database Applications](../use-cases/UC-001-Vector-Database-Applications.md), [UC-002: RAG Applications](../use-cases/UC-002-RAG-Applications.md), [6201: Hybrid Search](../phases/phase6-rag/6200-retrieval/6201-Hybrid-Search.md)
-**Next:** [IND-003: Manufacturing AI](./IND-003-Manufacturing-AI.md)
+## Next Steps
+
+- **[IND-003: Manufacturing AI](./IND-003-Manufacturing-AI.md)**

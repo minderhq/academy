@@ -541,4 +541,6 @@ echo "Model deployed at http://localhost:8000"
 - 📈 Performance evaluated
 - 🚀 Production deployment
 
-**Next:** Volume 6 - RAG & Data Systems
+## Next Steps
+
+- **[Volume 6: Data Nexus](../../volumes/VOLUME-6-Data-Nexus.md)**

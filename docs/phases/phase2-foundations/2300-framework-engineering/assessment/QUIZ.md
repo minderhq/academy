@@ -399,7 +399,9 @@ If you didn't pass, review these sections:
 
 **Once you pass, you're ready to move on!** 🎉
 
-**Next:** [2400: Pre-training Fundamentals](../README.md)
+## Next Steps
+
+- **[2400: Pre-training Fundamentals](../../2400-pretraining/README.md)**
 
 ---
 

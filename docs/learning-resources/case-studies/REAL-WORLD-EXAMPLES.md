@@ -344,4 +344,6 @@ Query → Embed → Retrieve → Rerank → LLM → Response
 ---
 
 **Status:** ✅ Complete
-**Next:** Apply these patterns to your own use case in [PROJECT-007: Production AI System](../projects/PROJECT-007-Production-AI-System.md)
+## Next Steps
+
+- Apply these patterns to your own use case in **[PROJECT-007: Production AI System](../projects/PROJECT-007-Production-AI-System.md)**

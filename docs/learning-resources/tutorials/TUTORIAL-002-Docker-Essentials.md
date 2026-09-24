@@ -535,4 +535,6 @@ docker-compose down                 # Stop services
 
 ---
 
-**Next:** Tutorial 003: Kubernetes Basics *(coming soon)*
+## Next Steps
+
+- Tutorial 003: Kubernetes Basics *(coming soon)*

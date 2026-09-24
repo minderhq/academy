@@ -1193,4 +1193,6 @@ def explainable_clinical_decision(patient_case):
 
 **Industry ID:** IND-001
 **Related:** [UC-001: Vector Database Applications](../use-cases/UC-001-Vector-Database-Applications.md), [UC-002: RAG Applications](../use-cases/UC-002-RAG-Applications.md), [6102: Semantic Similarity](../phases/phase6-rag/6100-vector/6102-Semantic-Similarity.md)
-**Next:** [IND-002: Finance AI Applications](./IND-002-Finance-AI-Applications.md)
+## Next Steps
+
+- **[IND-002: Finance AI Applications](./IND-002-Finance-AI-Applications.md)**

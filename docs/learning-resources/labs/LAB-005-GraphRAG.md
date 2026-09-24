@@ -940,4 +940,6 @@ for test in complex_questions:
 
 **Earned:** GraphRAG Implementation Badge 🏅
 
-**Next:** [PROJECT 001: Build Your AI Assistant](../projects/PROJECT-001-AI-Assistant.md) - Combine everything!
+## Next Steps
+
+- **[PROJECT-001: Build Your AI Assistant](../projects/PROJECT-001-AI-Assistant.md)** - Combine everything!

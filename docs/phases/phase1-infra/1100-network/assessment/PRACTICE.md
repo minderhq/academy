@@ -160,4 +160,6 @@ Internet (Fiber 1Gbps)
 **Completed:** ___ / 5 exercises
 **Project:** ___ / 3 steps
 
-**Next:** Review [QUIZ.md](./QUIZ.md) to test your knowledge
+## Next Steps
+
+- Review **[QUIZ.md](./QUIZ.md)** to test your knowledge

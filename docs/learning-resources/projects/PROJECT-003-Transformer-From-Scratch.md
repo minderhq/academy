@@ -1075,4 +1075,6 @@ print(f"Generated: {generated}")
 - 📝 Text generation
 - 🎯 End-to-end training
 
-**Next:** Volume 4 - Quantization Mastery
+## Next Steps
+
+- **[Volume 4: Quantization Mastery](../../volumes/VOLUME-4-Quantization.md)**

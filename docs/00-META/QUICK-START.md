@@ -418,7 +418,9 @@ Start Here (You are here)
 
 **🎉 Congratulations on starting your AI journey!**
 
-**Next:** [Tutorial 001: Hello LLM](../learning-resources/tutorials/TUTORIAL-001-Hello-LLM.md)
+## Next Steps
+
+- **[Tutorial 001: Hello LLM](../learning-resources/tutorials/TUTORIAL-001-Hello-LLM.md)**
 
 **Questions?** Check [Troubleshooting](../learning-resources/troubleshooting/TROUBLESHOOTING-Common-Issues.md)
 

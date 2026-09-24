@@ -581,4 +581,6 @@ result = executor.invoke({"input": "your task"})
 
 **Comparison ID:** CP-001
 **Related:** [UC-002: RAG Applications](../use-cases/UC-002-RAG-Applications.md), [UC-003: Agent Applications](../use-cases/UC-003-Agent-Applications.md), [5101: LoRA Logic](../phases/phase5-finetuning/5100-peft/5101-LoRA-Logic.md)
-**Next:** [CP-002: Vector DB Comparison](./CP-002-Vector-Database-Comparison.md)
+## Next Steps
+
+- **[CP-002: Vector DB Comparison](./CP-002-Vector-Database-Comparison.md)**

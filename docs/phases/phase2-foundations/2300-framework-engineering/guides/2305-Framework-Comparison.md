@@ -434,11 +434,5 @@ llm = HuggingFacePipeline(pipeline="text-generation", model=model)
 
 - Continue with: **[2306-Building-Production-Framework.md](./2306-Building-Production-Framework.md)**
 
----
----
-
-**Next:** [2306: Building Production Framework](./2306-Building-Production-Framework.md) - Hands-on implementation
-
-**Last Updated:** 2026-02-04
 **Status:** Complete
 **Estimated Time:** 1 hour
