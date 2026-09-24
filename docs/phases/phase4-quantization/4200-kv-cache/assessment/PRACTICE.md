@@ -401,7 +401,3 @@ PRACTICAL TIPS:
 - Use FP16/BF16 for cache storage
 - Implement cache eviction for streaming
 ```
-
----
-
-**Last Updated:** 2026-02-05

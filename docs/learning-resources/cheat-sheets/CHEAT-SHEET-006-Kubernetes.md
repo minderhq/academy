@@ -11,7 +11,6 @@ Difficulty: Intermediate
 ## Quick Reference for K3s/K8s LLM Workloads
 
 **Version:** 1.0
-**Last Updated:** 2026-02-05
 
 ---
 

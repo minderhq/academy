@@ -551,7 +551,3 @@ for penalty in [1.0, 1.2, 1.5]:
 - Adjust temperature based on desired diversity
 - Add repetition penalty for longer generations
 - Monitor output quality and adjust parameters
-
----
-
-**Last Updated:** 2026-02-05

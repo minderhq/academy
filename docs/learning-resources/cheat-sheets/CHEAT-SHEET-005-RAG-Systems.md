@@ -520,9 +520,3 @@ pip help prometheus-client
 - TUTORIAL-009: Advanced RAG Techniques
 - LAB-002: RAG Implementation
 - LAB-007: Production RAG
-
----
-
-**Last Updated:** 2026-02-05
-**Author:** AI Engineering Curriculum Team
-**License:** MIT

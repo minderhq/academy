@@ -339,7 +339,3 @@ if __name__ == "__main__":
 - [ ] Flash Attention understood
 - [ ] Tokenization compared
 - [ ] Architecture analysis complete
-
----
-
-**Last Updated:** 2026-02-05

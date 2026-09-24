@@ -1109,8 +1109,6 @@ Best Practices:
 
 ---
 
-**Last Updated:** 2026-02-05
-
 **Solutions Provided:**
 - Complete RLHF pipeline implementation
 - Reward model training with ranking loss

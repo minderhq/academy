@@ -794,5 +794,3 @@ print(f"Tool call safe: {is_safe}, Reason: {reason}")
 ---
 
 **Next Steps:** LAB-014: AI Evaluation Safety or EXP_7501: Prompt Injection
-
-**Last Updated:** 2026-02-05

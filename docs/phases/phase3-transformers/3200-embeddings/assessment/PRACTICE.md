@@ -703,7 +703,3 @@ compare_embedding_methods()
 3. **BERT**: Contextual embeddings, good for many NLP tasks
 4. **Visualization**: Essential for understanding embedding quality
 5. **Search**: Semantic search beats keyword search for meaning
-
----
-
-**Last Updated:** 2026-02-05

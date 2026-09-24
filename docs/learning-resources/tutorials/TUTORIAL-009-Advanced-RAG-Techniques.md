@@ -479,5 +479,3 @@ class CachedRetriever:
 ---
 
 **Next Steps:** LAB-005: GraphRAG or EXP_6201: Hybrid Search
-
-**Last Updated:** 2026-02-05

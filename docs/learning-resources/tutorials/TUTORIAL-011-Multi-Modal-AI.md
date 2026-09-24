@@ -556,5 +556,3 @@ class MultiModalRAG:
 ---
 
 **Next Steps:** LAB-011: Multi-Modal AI or EXP_3501: Multi-Modal RAG
-
-**Last Updated:** 2026-02-05

@@ -588,7 +588,3 @@ Slow Inference:
   → Enable flash attention
   → Optimize batch size
 ```
-
----
-
-**Last Updated:** 2026-02-05

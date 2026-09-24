@@ -642,7 +642,3 @@ KEY DECISION FACTORS:
    - Causal LM: GPT-style
    - Span corruption: T5-style
 ```
-
----
-
-**Last Updated:** 2026-02-05

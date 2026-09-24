@@ -408,7 +408,3 @@ print("  - Cross-Attention: Encoder-Decoder (inter-sequence)")
 2. **Scaled Dot-Product**: Prevents softmax saturation by scaling with √d_k
 3. **Causal Masking**: Ensures autoregressive property for generation
 4. **Attention Visualization**: Crucial for interpretability and debugging
-
----
-
-**Last Updated:** 2026-02-05

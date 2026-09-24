@@ -357,5 +357,3 @@ def sum_reduction(array, result):
 ---
 
 **Next Steps:** LAB-203: Transformer Block or EXP_2203: CUDA Kernels
-
-**Last Updated:** 2026-02-05

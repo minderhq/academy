@@ -855,5 +855,3 @@ class TokenBudget:
 ---
 
 **Next Steps:** LAB-009: Production Deployment or EXP_1404: vLLM Tuning
-
-**Last Updated:** 2026-02-05

@@ -552,7 +552,3 @@ TIPS:
 - Consider per-channel quantization
 - Keep sensitive layers in FP16
 ```
-
----
-
-**Last Updated:** 2026-02-05

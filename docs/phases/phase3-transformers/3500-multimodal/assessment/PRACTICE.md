@@ -528,7 +528,3 @@ KEY PRINCIPLES:
    - Natural language prompts
    - No task-specific training needed
 ```
-
----
-
-**Last Updated:** 2026-02-05

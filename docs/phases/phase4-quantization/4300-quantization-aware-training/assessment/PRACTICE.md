@@ -468,7 +468,3 @@ TIPS:
 - Monitor accuracy during training
 - Compare with FP32 baseline
 ```
-
----
-
-**Last Updated:** 2026-02-05

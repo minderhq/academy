@@ -753,6 +753,3 @@ This practice guide covers:
 - Save and load training checkpoints
 - Evaluate models using perplexity
 - Apply advanced training techniques
-
-**Last Updated:** 2026-02-05
-**Status:** ✅ Complete
