@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE3-PRACTICE
 Title: "Phase 3: Transformer Physics Practice"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Advanced
 ---
@@ -108,7 +108,6 @@ if __name__ == "__main__":
 ```python
 import torch
 import torch.nn as nn
-import math
 
 class RotaryPositionEmbedding(nn.Module):
     """Rotary Position Embedding implementation"""
@@ -127,12 +126,14 @@ class RotaryPositionEmbedding(nn.Module):
 
     def forward(self, x):
         """Apply rotary embeddings"""
-        batch_size, seq_len, _ = x.shape
+        _, seq_len, _ = x.shape
 
-        # Split into pairs for rotation
+        # GPT-NeoX style pairing: first half is the real part, second
+        # half the imaginary - the magnitude is the input itself, so a
+        # zeros_like magnitude would make the whole output zero
         x_complex = torch.polar(
-            torch.zeros_like(x[:, :, :self.d_model//2]),
-            x[:, :, :self.d_model//2]
+            x[:, :, :self.d_model//2],
+            x[:, :, self.d_model//2:]
         )
 
         # Apply rotation
@@ -172,7 +173,6 @@ if __name__ == "__main__":
 
 ```python
 from collections import defaultdict
-import json
 
 class BPETokenizer:
     """Byte Pair Encoding tokenizer"""
@@ -236,8 +236,8 @@ class BPETokenizer:
             # Apply merges
             while len(word) > 1:
                 # Find best merge
+                merged = False
                 for pair in self.merges:
-                    merged = False
                     for i in range(len(word) - 1):
                         if (word[i], word[i+1]) == pair:
                             word = word[:i] + [pair[0] + pair[1]] + word[i+2:]
@@ -245,6 +245,10 @@ class BPETokenizer:
                             break
                     if merged:
                         break
+                if not merged:
+                    # No trained merge applies (unseen text) - stop,
+                    # otherwise this while-loop never terminates
+                    break
             tokens.extend(word)
 
         return [self.vocab.get(t, 0) for t in tokens]
@@ -278,6 +282,7 @@ if __name__ == "__main__":
 ```python
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 
 class SwiGLU(nn.Module):
     """SwiGLU activation implementation"""
@@ -336,6 +341,3 @@ if __name__ == "__main__":
 - [ ] RoPE position embedding working
 - [ ] BPE tokenizer trained
 - [ ] SwiGLU activation tested
-- [ ] Flash Attention understood
-- [ ] Tokenization compared
-- [ ] Architecture analysis complete
