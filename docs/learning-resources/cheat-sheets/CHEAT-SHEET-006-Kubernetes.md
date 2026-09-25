@@ -1,7 +1,7 @@
 ---
 Document ID: CHEAT-SHEET-006
 Title: "CHEAT-SHEET-006: Kubernetes for LLM Deployment"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -10,7 +10,7 @@ Difficulty: Intermediate
 
 ## Quick Reference for K3s/K8s LLM Workloads
 
-**Version:** 1.0
+**Version:** 1.1
 
 ---
 
@@ -86,6 +86,11 @@ spec:
           requests:
             memory: "16Gi"
             cpu: "4"
+        # vLLM reads no config env vars - the server takes --model as a
+        # CLI arg; $(MODEL_NAME) expands from the container's env below
+        args:
+        - "--model"
+        - "$(MODEL_NAME)"
         env:
         - name: MODEL_NAME
           value: "mistralai/Mistral-7B-Instruct-v0.2"
@@ -220,9 +225,11 @@ metadata:
   name: llm-config
   namespace: llm
 data:
-  model.name: "mistralai/Mistral-7B-Instruct-v0.2"
-  model.max-tokens: "2048"
-  api.port: "8000"
+  # envFrom maps each key 1:1 to an env var name - use env-style keys
+  # (a dotted key cannot be referenced as $model.name in any shell)
+  MODEL_NAME: "mistralai/Mistral-7B-Instruct-v0.2"
+  MAX_TOKENS: "2048"
+  API_PORT: "8000"
 ```
 
 ### Secret
