@@ -3,7 +3,7 @@ Document ID: 1402
 Title: vLLM and TGI High-Concurrency Inference
 Phase: 1
 Module: 1400
-Last Updated: 2026-09-24
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -45,7 +45,7 @@ After completing this lesson, you will be able to:
 ---
 
 ## Abstract
-vLLM and Text Generation Inference (TGI) are optimized inference engines for LLMs. They provide PagedAttention, continuous batching, and KV cache optimization for high-throughput serving on an 11GB-class GPU.
+vLLM and Text Generation Inference (TGI) are optimized inference engines for LLMs. Both provide continuous batching and KV cache management for high-throughput serving on an 11GB-class GPU; vLLM additionally brings PagedAttention, which segments the KV cache into fixed-size pages to eliminate fragmentation. On 11GB, fp16 7B weights (~14GB) do not fit — the runnable examples in this lesson use a pre-quantized AWQ checkpoint (~3.5GB).
 
 ## Comparison
 
@@ -54,7 +54,7 @@ vLLM and Text Generation Inference (TGI) are optimized inference engines for LLM
 | PagedAttention | Yes | No |
 | Continuous Batching | Yes | Yes |
 | Multi-GPU | Yes | Yes |
-| Open Source | MIT | Apache 2.0 |
+| Open Source | Apache 2.0 | Apache 2.0 |
 | Model Support | HuggingFace | HuggingFace |
 | Flash Attention | Yes | Yes |
 | Speculative Decoding | Yes | Experimental |
@@ -77,25 +77,32 @@ Analogy: Like virtual memory paging for LLM KV cache
 
 ### Memory Layout
 ```text
-GPU VRAM (11GB):
+GPU VRAM (11GB, gpu_memory_utilization=0.9 → ~9.9GB usable):
 ┌────────────────────────────────────────────────────┐
-│ Model Weights         ~4-5GB (Llama-7B fp16)      │
+│ Model Weights         ~3.5GB (Llama-2-7B AWQ 4-bit)│
 ├────────────────────────────────────────────────────┤
 │ KV Cache (Paged)      ~4-5GB (dynamic)            │
 ├────────────────────────────────────────────────────┤
-│ Activation Buffer     ~1GB                         │
+│ Activations + CUDA    ~1-2GB                       │
 └────────────────────────────────────────────────────┘
+
+Note: the same 7B model in fp16 needs ~14GB for weights
+alone (7B params × 2 bytes) — it does not fit 11GB at all.
+Quantization is not optional on this hardware (see
+Performance Tuning below).
 ```
 
 ## vLLM Installation
 
 ### From Source
 ```bash
+# Recommended: prebuilt wheel (Linux + CUDA)
+pip install vllm
+
+# From source (development):
 # On GPU VM with CUDA 12.1
 git clone https://github.com/vllm-project/vllm.git
 cd vllm
-
-# Install with CUDA
 pip install -e . --no-build-isolation
 
 # Verify
@@ -120,13 +127,14 @@ spec:
         app: vllm
     spec:
       nodeSelector:
-        accelerator: nvidia-gpu
+        accelerator: nvidia   # must match the GPU node label (see 1301)
       containers:
       - name: vllm
-        image: vllm/vllm-openai:latest
-        command:
+        image: vllm/vllm-openai:latest   # pin a released tag for reproducible deploys
+        # args (not command:) — command: would replace the image ENTRYPOINT
+        args:
           - --model
-          - meta-llama/Llama-2-7b-hf
+          - TheBloke/Llama-2-7B-AWQ   # pre-quantized AWQ: ungated, fits 11GB
           - --tensor-parallel-size
           - "1"
           - --gpu-memory-utilization
@@ -140,6 +148,12 @@ spec:
         env:
         - name: HF_HOME
           value: /models
+        # Gated models (e.g. meta-llama/Llama-2-7b-hf) also need:
+        # - name: HF_TOKEN
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: hf-token
+        #       key: token
         resources:
           limits:
             nvidia.com/gpu: 1
@@ -161,19 +175,22 @@ from vllm import LLM, SamplingParams
 
 # Initialize
 llm = LLM(
-    model="meta-llama/Llama-2-7b-hf",
+    model="TheBloke/Llama-2-7B-AWQ",  # pre-quantized checkpoint (ungated, fits 11GB)
 
     # Tensor Parallelism (multi-GPU)
     tensor_parallel_size=1,          # 1 for single 11GB-class GPU
 
     # Memory Management
-    gpu_memory_utilization=0.9,     # Use 90% of GPU for KV cache
+    gpu_memory_utilization=0.9,     # fraction of total VRAM vLLM may use
+                                     # (weights + KV cache + activations)
     max_model_len=4096,              # Max sequence length
-    swap_space=4,                    # GB of CPU swap for KV cache
+    # swap_space: legacy-engine KV CPU swap (GB) — the V1 engine ignores it;
+    # over-budget sequences are preempted and recomputed instead
 
     # Quantization
-    quantization="awq",              # or "gptq", "squeezellm"
-    dtype="half",                    # fp16 for faster inference
+    quantization="awq",              # requires a pre-quantized AWQ checkpoint
+                                     # (as above); "gptq" likewise needs a GPTQ repo
+    dtype="half",                    # compute dtype for activations/KV
 
     # Optimization
     enforce_eager=True,              # Disable CUDA graph (debugging)
@@ -225,31 +242,34 @@ spec:
         app: tgi
     spec:
       nodeSelector:
-        accelerator: nvidia-gpu
+        accelerator: nvidia   # must match the GPU node label (see 1301)
       containers:
       - name: tgi
-        image: ghcr.io/huggingface/text-generation-inference:latest
-        command:
+        image: ghcr.io/huggingface/text-generation-inference:latest   # pin a released tag for reproducible deploys
+        # args (not command:) — command: would replace the
+        # text-generation-launcher entrypoint
+        args:
           - --model-id
-          - meta-llama/Llama-2-7b-hf
+          - TheBloke/Llama-2-7B-AWQ   # pre-quantized AWQ: quantization is
+                                      # auto-detected — no --quantize/--dtype
           - --num-shard
           - "1"
           - --max-total-tokens
           - "4096"
           - --max-batch-total-tokens
           - "8192"
-          - --dtype
-          - float16
         ports:
         - containerPort: 80
-        env:
-        - name: HF_TOKEN
-          valueFrom:
-            secretKeyRef:
-              name: hf-token
-              key: token
-        - name: FLASH_ATTENTION
-          value: "true"
+        # Flash attention is auto-enabled when the model and kernels support
+        # it — there is no FLASH_ATTENTION environment variable to set.
+        # TheBloke/Llama-2-7B-AWQ is ungated, so no token is needed. For a
+        # gated model, add:
+        # env:
+        # - name: HF_TOKEN
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: hf-token
+        #       key: token
         resources:
           limits:
             nvidia.com/gpu: 1
@@ -260,11 +280,10 @@ spec:
 
 ### Memory Utilization
 ```python
-# For an 11GB VRAM GPU (11GB VRAM)
-# Llama-7B fp16: ~13GB weights (doesn't fit!)
-# Solution: Quantization
+# For an 11GB VRAM GPU
+# Llama-2-7B fp16: ~14GB weights alone (doesn't fit!)
+# Solution: pre-quantized checkpoints
 
-# AWQ 4-bit quantization
 llm = LLM(
     model="TheBloke/Llama-2-7B-AWQ",
     quantization="awq",
@@ -272,11 +291,14 @@ llm = LLM(
     max_model_len=8192  # Longer context with quantized weights
 )
 
-# Memory breakdown (AWQ):
-# Weights: ~3.5GB (4-bit)
-# KV Cache: ~6GB (at 8k context)
+# Memory budget: 0.9 × 11GB ≈ 9.9GB (AWQ)
+# Weights:     ~3.5GB (4-bit)
+# KV Cache:    ~4.9GB left for KV + activations
 # Activations: ~1.5GB
-# Total: ~11GB (fits!)
+#
+# KV cache math (Llama-2-7B, fp16 KV):
+#   per token = 2 (K+V) × 32 layers × 4096 hidden × 2 bytes = 512KB
+#   one 8k-token sequence: 8192 × 512KB ≈ 4GB  → fits the budget
 ```
 
 ### Batch Size Optimization
@@ -289,29 +311,32 @@ for batch_size in [1, 2, 4, 8, 16, 32]:
     start = time.time()
     outputs = llm.generate(prompts, sampling_params)
     duration = time.time() - start
-    tokens_per_sec = batch_size * 512 / duration
-    print(f"Batch {batch_size}: {tokens_per_sec:.1f} tok/s")
+    # Count actual generated tokens — requests may stop early on EOS, so
+    # batch_size * max_tokens overestimates throughput
+    tokens = sum(len(o.outputs[0].token_ids) for o in outputs)
+    print(f"Batch {batch_size}: {tokens / duration:.1f} tok/s ({duration:.2f}s)")
 ```
 
 ### KV Cache Configuration
 ```python
 # vLLM KV cache allocation
-# Larger cache = longer context OR more concurrent requests
+# Larger cache = longer context OR more concurrent requests.
+# One LLM instance owns the whole gpu_memory_utilization budget —
+# pick one configuration per process.
 
 # Option 1: Maximize context length
 llm = LLM(
-    model="...",
+    model="TheBloke/Llama-2-7B-AWQ",
     gpu_memory_utilization=0.9,
-    max_model_len=16384,  # 16k context
-    # But: limited concurrent requests
+    max_model_len=4096,  # Llama-2's ceiling (max_position_embeddings);
+                         # longer contexts need a long-context model family
 )
 
 # Option 2: Maximize concurrency
 llm = LLM(
-    model="...",
+    model="TheBloke/Llama-2-7B-AWQ",
     gpu_memory_utilization=0.9,
-    max_model_len=2048,  # Shorter context
-    # But: more concurrent requests
+    max_model_len=2048,  # Shorter context → more KV pages per request
 )
 ```
 
@@ -319,13 +344,14 @@ llm = LLM(
 
 ### vLLM OpenAI-Compatible API
 ```bash
-# Start server
-python -m vllm.entrypoints.openai.api_server \
-  --model meta-llama/Llama-2-7b-hf \
+# Start server — must be a quantized checkpoint to fit 11GB
+vllm serve TheBloke/Llama-2-7B-AWQ \
   --tensor-parallel-size 1 \
   --gpu-memory-utilization 0.9
+```
 
-# Use with OpenAI client
+```python
+# Use with OpenAI client — the model name must match the served model
 from openai import OpenAI
 
 client = OpenAI(
@@ -334,7 +360,7 @@ client = OpenAI(
 )
 
 response = client.chat.completions.create(
-    model="meta-llama/Llama-2-7b-hf",
+    model="TheBloke/Llama-2-7B-AWQ",
     messages=[{"role": "user", "content": "Hello!"}],
     max_tokens=512
 )
@@ -372,8 +398,10 @@ from vllm import LLM, SamplingParams
 
 def benchmark_vllm():
     llm = LLM(
-        model="meta-llama/Llama-2-7b-hf",
-        gpu_memory_utilization=0.9
+        model="TheBloke/Llama-2-7B-AWQ",
+        gpu_memory_utilization=0.9,
+        enable_prefix_caching=False,  # identical prompts would all hit the
+                                      # prefix cache and skew the numbers
     )
 
     test_cases = [
@@ -396,13 +424,20 @@ benchmark_vllm()
 
 ### Expected Performance (11GB VRAM GPU)
 ```text
-Model          Quant    Context    Tokens/sec
-────────────────────────────────────────────
-Llama-2-7B     fp16     2048       ~30-40
-Llama-2-7B     AWQ      2048       ~40-50
-Llama-2-7B     4-bit    2048       ~50-60
-Mistral-7B     fp16     2048       ~35-45
-Mixtral-8x7B   4-bit    4096       ~5-10 (slow)
+Aggregate throughput on one 11GB GPU — illustrative ranges; measure on
+your own hardware with the script above.
+
+Model          Quant      Context    Aggregate tok/s
+──────────────────────────────────────────────────────
+Llama-2-7B     AWQ 4-bit  2048       ~40-80
+Llama-2-7B     GPTQ 4-bit 2048       ~40-80
+Mistral-7B     AWQ 4-bit  2048       ~40-80
+Llama-2-7B     fp16       —          does not fit 11GB (~14GB weights)
+Mixtral-8x7B   4-bit      —          does not fit 11GB (~26GB weights)
+
+Per-stream latency is single-digit tok/s; continuous batching multiplies
+aggregate throughput roughly with concurrency until the KV cache
+saturates (watch vllm:kv_cache_usage_perc).
 ```
 
 ## Monitoring
@@ -416,13 +451,19 @@ import requests
 
 metrics = requests.get("http://localhost:8000/metrics").text
 
-# Key metrics:
-# vllm:num_requests_waiting
-# vllm:num_requests_running
-# vllm:num_requests_swapped
-# vllm:gpu_cache_usage_perc
-# vllm:avg_prompt_throughput_toks_per_s
-# vllm:avg_generation_throughput_toks_per_s
+# Key metrics (vLLM V1 engine):
+# vllm:num_requests_running     gauge — executing now
+# vllm:num_requests_waiting     gauge — queued waiting for KV budget
+# vllm:kv_cache_usage_perc      gauge — 0-1; sustained ~1.0 means raise
+#                               gpu_memory_utilization or cut max_model_len
+# vllm:num_preemptions_total    counter — V1 has no CPU swap; over-budget
+#                               sequences are preempted and recomputed
+#
+# Throughput has no precomputed gauge — derive it from the token counters:
+#   rate(vllm:prompt_tokens_total[5m])
+#   rate(vllm:generation_tokens_total[5m])
+# Latency histograms (p50/p90/p99 via histogram_quantile()):
+#   vllm:time_to_first_token_seconds, vllm:e2e_request_latency_seconds
 ```
 
 ### GPU Monitoring
