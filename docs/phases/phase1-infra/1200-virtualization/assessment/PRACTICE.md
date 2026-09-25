@@ -1,7 +1,7 @@
 ---
 Document ID: 1200-PRACTICE
 Title: "1200: Virtualization - Practice"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Beginner
 ---
@@ -26,7 +26,15 @@ lspci -nnk | grep -A 3 "VGA"
 # 3. Enable IOMMU in GRUB
 # Edit /etc/default/grub and add to GRUB_CMDLINE_LINUX_DEFAULT:
 # For Intel: intel_iommu=on iommu=pt pcie_acs_override=downstream,multifunction
-# For AMD: amd_iommu=on iommu=pt pcie_acs_override=downstream,multifunction
+# For AMD: iommu=pt pcie_acs_override=downstream,multifunction
+# (AMD IOMMU is enabled by default on modern kernels - there is no
+# amd_iommu=on parameter to set.)
+#
+# pcie_acs_override breaks the device-isolation guarantees ACS
+# provides: devices in different groups can then reach each other.
+# Use it only as a last resort on consumer boards whose groups cannot
+# be split otherwise, and never on a host shared with untrusted
+# workloads.
 
 # Update GRUB and reboot
 update-grub
@@ -39,6 +47,9 @@ vfio
 vfio_iommu_type1
 vfio_pci
 vfio_virqfd
+# (On kernel >= 6.2 - e.g. Proxmox 8 - vfio_virqfd is folded back into
+# vfio and no longer exists as a separate module: load only the first
+# three there.)
 
 # 5. Blacklist Nouveau and other GPU drivers
 # Create /etc/modprobe.d/blacklist-nouveau.conf:
@@ -78,8 +89,12 @@ lsmod | grep vfio
 # Verify IOMMU is enabled
 dmesg | grep -E "IOMMU|iommu"
 
-# Check GPU IOMMU group
-find /sys/kernel/iommu_groups/ -name "*gpu*" -o -name "*nvidia*"
+# Check GPU IOMMU group (list each group's devices - no file under
+# iommu_groups is literally named "gpu" or "nvidia", so a -name probe
+# can never match)
+for d in /sys/kernel/iommu_groups/*/devices/*; do
+  printf 'IOMMU group %s: %s\n' "$(echo "$d" | cut -d/ -f5)" "$(lspci -nns ${d##*/})"
+done | grep -Ei 'vga|3d|nvidia'
 
 # Verify VM configuration
 qm config VMID
@@ -103,8 +118,9 @@ Multi-GPU Proxmox VM Configuration
 """
 
 vm_config = {
+    "vmid": 101,  # qm commands take a VMID, not a name
     "name": "dl-workspace",
-    "memory": "64G",
+    "memory": 65536,  # MiB, as qm config expects
     "cores": 16,
     "cpu": "host",
     "sockets": 1,
@@ -117,9 +133,10 @@ vm_config = {
         "00:03.0,pcie=1,rombar=1",  # GPU 2 - PCIe address
     ],
     # Additional settings for multi-GPU
-    "cpu_type": "host",
     "hugepages": 2,
-    "ivshmem": 64,  # Shared memory for GPU communication
+    # NOTE: GPUs talk to each other over PCIe P2P, not shared memory -
+    # there is no ivshmem entry here (ivshmem is for VM-to-VM memory
+    # sharing). NVLink does not survive passthrough.
 }
 
 def validate_multi_gpu_config(config):
@@ -130,24 +147,24 @@ def validate_multi_gpu_config(config):
     # Check IOMMU groups are separate
     import subprocess
     try:
-        result = subprocess.run(
-            ["find", "/sys/kernel/iommu_groups/", "-name", "devices"],
-            capture_output=True, text=True
-        )
-        # Parse output to verify GPU isolation
-        if "00:02.0" in result.stdout and "00:03.0" in result.stdout:
-            # Check if they're in different IOMMU groups
-            group1 = subprocess.run(
-                ["readlink", "-f", "/sys/bus/pci/devices/0000:00:02.0/iommu_group"],
-                capture_output=True, text=True
-            ).stdout
-            group2 = subprocess.run(
-                ["readlink", "-f", "/sys/bus/pci/devices/0000:00:03.0/iommu_group"],
-                capture_output=True, text=True
-            ).stdout
+        # Resolve each GPU's group straight from sysfs - a find-based
+        # probe for -name "devices" returns directory paths that never
+        # contain the PCI addresses, so the old pre-filter never fired.
+        group_paths = []
+        for hostpci in config["hostpci"]:
+            addr = hostpci.split(",")[0]  # "00:02.0"
+            group_paths.append(
+                subprocess.run(
+                    ["readlink", "-f", f"/sys/bus/pci/devices/0000:{addr}/iommu_group"],
+                    capture_output=True, text=True,
+                ).stdout.strip()
+            )
 
-            if group1 == group2:
-                issues.append("GPUs are in the same IOMMU group - passthrough may fail")
+        if all(group_paths):
+            if len(set(group_paths)) < len(group_paths):
+                issues.append("GPUs share an IOMMU group - pass the whole group together")
+        else:
+            issues.append("Could not resolve IOMMU groups for all GPUs")
     except Exception as e:
         issues.append(f"Could not verify IOMMU groups: {e}")
 
@@ -162,10 +179,10 @@ def validate_multi_gpu_config(config):
     except Exception as e:
         issues.append(f"Could not verify PCIe topology: {e}")
 
-    # Test GPU visibility in VM
+    # Test GPU visibility in VM (qm status takes the VMID)
     try:
         result = subprocess.run(
-            ["qm", "status", "dl-workspace"],
+            ["qm", "status", str(config["vmid"])],
             capture_output=True, text=True
         )
         if "running" not in result.stdout:
@@ -288,8 +305,14 @@ def diagnose_gpu_passthrough(vm_name=None):
         for line in gpu_lines:
             print(f"      {line}")
 
-        # Check IOMMU groups
-        stdout, _, _ = run_command("find /sys/kernel/iommu_groups/ -name '*gpu*' -o -name '*nvidia*' -o -name '*amd*'")
+        # Check IOMMU groups (list each group's devices via sysfs - no
+        # file under iommu_groups is literally named "gpu"/"nvidia",
+        # so a -name probe can never match)
+        stdout, _, _ = run_command(
+            "for d in /sys/kernel/iommu_groups/*/devices/*; do "
+            "printf 'IOMMU group %s: %s\\n' \"$(echo \"$d\" | cut -d/ -f5)\" "
+            "\"$(lspci -nns ${d##*/})\"; done | grep -Ei 'vga|3d|nvidia'"
+        )
         if stdout:
             print("   ✅ GPUs found in IOMMU groups")
         else:
@@ -323,8 +346,9 @@ def diagnose_gpu_passthrough(vm_name=None):
         for line in stdout.strip().split('\n')[:10]:
             print(f"      {line}")
 
-        # Check if drivers are attached
-        stdout, _, _ = run_command("lspci -k | grep -A 3 'VGA'")
+        # Check if drivers are attached (same pattern as the display
+        # scan above - 3D/Display entries cover headless/secondary GPUs)
+        stdout, _, _ = run_command("lspci -k | grep -E -A 3 'VGA|3D|Display'")
         if "nvidia" in stdout.lower() or "nouveau" in stdout.lower():
             issues.append("❌ GPU driver loaded on host - prevents passthrough")
             issues.append("   Blacklist nouveau and unload nvidia driver")
@@ -375,9 +399,10 @@ def diagnose_gpu_passthrough(vm_name=None):
 if __name__ == "__main__":
     issues, warnings = diagnose_gpu_passthrough("dl-vm")
 
-    # Exit with error code if issues found
+    # Exit non-zero if issues found (a raw count can exceed 255 and
+    # wrap the exit code; len(issues) also counts the hint lines)
     import sys
-    sys.exit(len(issues))
+    sys.exit(1 if issues else 0)
 ```
 
 **Quick Troubleshooting Commands:**
@@ -451,18 +476,22 @@ class GPUBenchmark:
         print(f"   Total Memory: {torch.cuda.get_device_properties(0).total_memory / 1e9:.2f} GB")
         print(f"   Multi-processors: {torch.cuda.get_device_properties(0).multi_processor_count}")
 
-        # Check if passthrough
+        # Heuristic type check - a virtual VGA device (QEMU/bochs-drm)
+        # also reports "VGA compatible controller", so that string can
+        # never distinguish passthrough from vGPU. Match the discrete
+        # GPU vendor instead; for a definitive answer compare the
+        # vendor:device IDs from `lspci -nn` against the host.
         try:
             import subprocess
             result = subprocess.run(
-                ["lspci", "-vv"],
+                ["lspci", "-nn"],
                 capture_output=True, text=True, timeout=5
             )
-            if "VGA compatible controller" in result.stdout:
-                print("   Type: Passthrough GPU (physical)")
+            if "NVIDIA" in result.stdout or "Advanced Micro Devices" in result.stdout:
+                print("   Type: physical GPU present (likely passthrough)")
             else:
-                print("   Type: Virtual GPU (vGPU/software)")
-        except:
+                print("   Type: virtual GPU (vGPU/software)")
+        except Exception:
             print("   Type: Unknown")
 
         return True
@@ -603,14 +632,20 @@ class GPUBenchmark:
             avg_time_ms = (elapsed / iterations) * 1000
             throughput = 1000 / avg_time_ms  # batches per second
 
+            # Real FLOPs for this network: two big matmuls plus the
+            # output layer, times the batch size, 2 FLOPs per MAC.
+            flops_per_batch = 32 * 2 * (784 * 512 + 512 * 256 + 256 * 10)
+            gflops = flops_per_batch * iterations / elapsed / 1e9
+
             print(f"✅ Average time: {avg_time_ms:.2f} ms")
             print(f"✅ Throughput: {throughput:.0f} batches/sec")
+            print(f"✅ Performance: {gflops:.2f} GFLOPS")
 
             return BenchmarkResult(
                 name="Neural Network",
                 avg_time_ms=avg_time_ms,
-                gflops=0,
-                memory_bw_gb_s=throughput / 1000,  # GB/s approx
+                gflops=gflops,
+                memory_bw_gb_s=0,
                 success=True
             )
 
@@ -661,30 +696,20 @@ class GPUBenchmark:
                 else:
                     print(f"  {r.name}: {r.avg_time_ms:.2f} ms")
 
-        # Performance expectations
+        # Performance expectations. The tool cannot detect passthrough
+        # vs vGPU on its own - total VRAM and lspci strings are shared
+        # by both - so both reference tables are printed: run the suite
+        # in each environment and compare against them.
         print("\n📈 PERFORMANCE EXPECTATIONS:")
-        gpu_type = "Passthrough GPU" if self.is_passthrough() else "Virtual GPU"
-
-        if gpu_type == "Passthrough GPU":
-            print("  ✅ Passthrough GPU should achieve:")
-            print("     - Matrix: 1000+ GFLOPS (modern GPU)")
-            print("     - Memory: 200+ GB/s (PCIe 3.0 x16)")
-            print("     - Network: 1000+ batches/sec")
-        else:
-            print("  ⚠️  Virtual GPU typical performance:")
-            print("     - Matrix: 100-500 GFLOPS (depends on host)")
-            print("     - Memory: 50-100 GB/s (software overhead)")
-            print("     - Network: 200-500 batches/sec")
-
-    def is_passthrough(self):
-        """Detect if this is a passthrough GPU."""
-        try:
-            result = torch.cuda.get_device_properties(0)
-            # Passthrough GPUs show full memory
-            total_memory = result.total_memory / 1e9
-            return total_memory > 5  # More than 5GB indicates passthrough
-        except:
-            return False
+        print("  ✅ Passthrough GPU typically:")
+        print("     - Matrix: 1000+ GFLOPS (on par with bare metal)")
+        print("     - Memory: 200+ GB/s device bandwidth - transfers")
+        print("       to/from the device remain PCIe-bound, not this")
+        print("     - Network: 1000+ batches/sec")
+        print("  ⚠️  Virtual GPU (vGPU) typically:")
+        print("     - Matrix: 100-500 GFLOPS (depends on profile)")
+        print("     - Memory: profile-dependent, often 50-100 GB/s")
+        print("     - Network: 200-500 batches/sec")
 
 def main():
     """Run benchmark comparison."""
