@@ -1,7 +1,7 @@
 ---
 Document ID: 4200-PRACTICE
 Title: "4200: KV Cache Optimization - Practice"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Advanced
 ---
@@ -19,23 +19,25 @@ import torch.nn as nn
 class KVCache:
     """Key-Value cache for efficient transformer inference."""
 
-    def __init__(self, batch_size, num_heads, head_dim, max_len, dtype=torch.float16):
+    def __init__(self, batch_size, num_heads, head_dim, max_len,
+                 dtype=torch.float16, device=None):
         self.batch_size = batch_size
         self.num_heads = num_heads
         self.head_dim = head_dim
         self.max_len = max_len
         self.dtype = dtype
+        # Default: CUDA when available - but everything that touches the
+        # cache (inputs, modules) must live on the same device
+        self.device = device or ('cuda' if torch.cuda.is_available() else 'cpu')
 
         # Initialize cache tensors
         self.key_cache = torch.zeros(
             (batch_size, num_heads, max_len, head_dim),
-            dtype=dtype,
-            device='cuda' if torch.cuda.is_available() else 'cpu'
+            dtype=dtype, device=self.device
         )
         self.value_cache = torch.zeros(
             (batch_size, num_heads, max_len, head_dim),
-            dtype=dtype,
-            device='cuda' if torch.cuda.is_available() else 'cpu'
+            dtype=dtype, device=self.device
         )
         self.current_len = 0
 
@@ -89,6 +91,7 @@ print("Testing KV Cache Implementation")
 print("="*60)
 
 cache = KVCache(batch_size=1, num_heads=4, head_dim=64, max_len=100)
+device = cache.key_cache.device  # inputs must match the cache device
 
 # Simulate processing tokens in chunks
 chunk_size = 10
@@ -96,8 +99,8 @@ num_chunks = 5
 
 for i in range(num_chunks):
     # Simulate new keys and values
-    new_keys = torch.randn(1, 4, chunk_size, 64)
-    new_values = torch.randn(1, 4, chunk_size, 64)
+    new_keys = torch.randn(1, 4, chunk_size, 64, device=device)
+    new_values = torch.randn(1, 4, chunk_size, 64, device=device)
 
     # Update cache
     cached_keys, cached_values = cache.update(new_keys, new_values)
@@ -110,8 +113,9 @@ print(f"Key cache shape: {cached_keys.shape}")
 print(f"Value cache shape: {cached_values.shape}")
 
 # Expected Output:
-# Cache grows with each chunk
-# Final length = 50 (5 chunks * 10 tokens)
+# Chunk 1..5: Cache length = 10, 20, 30, 40, 50
+# Final cache length: 50 (5 chunks * 10 tokens)
+# Key/Value cache shape: torch.Size([1, 4, 50, 64])
 ```
 
 **Explanation:**
@@ -122,13 +126,16 @@ print(f"Value cache shape: {cached_values.shape}")
 
 **Memory Usage:**
 - Proportional to batch_size × num_heads × seq_len × head_dim
-- For a 7B model: ~2-3 GB for 2K sequence length
+- For LLaMA-7B in FP16: ~1 GB at 2K sequence length (see Exercise 3)
 
 ---
 
 ### Exercise 2: Multi-Query Attention with KV Cache
 
 ```python
+import torch
+import torch.nn as nn
+
 class MultiQueryAttentionWithCache(nn.Module):
     """Multi-Query Attention with KV cache support."""
 
@@ -188,7 +195,11 @@ seq_len = 10
 batch_size = 1
 
 mqa = MultiQueryAttentionWithCache(d_model, n_heads)
-cache = KVCache(batch_size, n_heads, d_model // n_heads, max_len=100)
+# MQA stores just ONE K/V head per token - the cache is sized with 1,
+# not n_heads (that is where the memory saving comes from); the head
+# dim still comes from d_model // n_heads
+cache = KVCache(batch_size, 1, d_model // n_heads, max_len=100,
+                device=next(mqa.parameters()).device)
 
 # Process in chunks
 for i in range(3):
@@ -197,9 +208,12 @@ for i in range(3):
     print(f"Chunk {i+1}: Output shape = {output.shape}, Cache length = {cache.current_len}")
 
 # Expected Output:
-# Each chunk processes new tokens
-# Cache accumulates across chunks
-# Multi-query uses single K/V for all heads (memory efficient)
+# Chunk 1: Output shape = torch.Size([1, 5, 256]), Cache length = 5
+# Chunk 2: ... Cache length = 10
+# Chunk 3: ... Cache length = 15 (each chunk attends over all
+# previous tokens plus itself via the cached K/V)
+# Cache holds a single K/V head - the expand() fans it out to all
+# query heads without copying
 ```
 
 **Explanation:**
@@ -278,9 +292,12 @@ for seq_len in seq_lengths:
     print(f"Seq {seq_len:>5}: {cache_gb:>8.2f} GB")
 
 # Expected Output:
-# Cache grows linearly with sequence length
-# LLaMA-7B at 2K: ~2 GB
-# LLaMA-70B at 2K: ~8 GB
+# Cache grows linearly with sequence length (each token costs
+# 2 * n_layers * hidden_size * bytes - 512 KB per token for
+# LLaMA-7B in FP16)
+# Table at seq 2048: GPT-2 Small 0.07, Medium 0.19, Large 0.35,
+# LLaMA-7B 1.00, 13B 1.56, 70B 5.00 GB
+# Seq table (LLaMA-7B): 0.25 / 0.50 / 1.00 / 2.00 / 4.00 / 8.00 GB
 ```
 
 ---
@@ -353,6 +370,11 @@ Implementation Tips:
 - Monitor memory usage during generation
 - Clear cache between independent requests
 """)
+
+# Expected Output:
+# The "Key Benefits of KV Cache" banner and the numbered list print
+# directly; the generate_with_cache block above is commented out -
+# uncommenting needs transformers and the gpt2 download
 ```
 
 ---
@@ -368,7 +390,7 @@ Without Cache:
   - Speed: Slow for long sequences
 
 With Cache:
-  - Complexity: O(1) per generated token (after prompt)
+  - Complexity: O(n) per generated token (attend over cached prefix)
   - Memory: O(n) total
   - Speed: Much faster generation
 
