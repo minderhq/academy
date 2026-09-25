@@ -3,7 +3,7 @@ Document ID: 1204
 Title: Multi-GPU Setup
 Phase: 1
 Module: 1200
-Last Updated: 2026-09-24
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -154,7 +154,6 @@ output = model(input_data)
 ### DistributedDataParallel (Recommended)
 ```python
 import torch.distributed as dist
-import torch.multiprocessing as mp
 from torch.nn.parallel import DistributedDataParallel as DDP
 
 def setup(rank, world_size):
@@ -201,15 +200,21 @@ def train(rank, world_size):
 
     cleanup()
 
-# Launch with torchrun
+# Launch with torchrun (it sets RANK / WORLD_SIZE / MASTER_ADDR /
+# MASTER_PORT for every process):
 # torchrun --nproc_per_node=2 train.py
+# In train(): rank = int(os.environ["RANK"])
+#             world_size = int(os.environ["WORLD_SIZE"])
 ```
 
 ## Model Parallelism (Large Models)
 
 ### Pipeline Parallelism
+
+Split the model at layer boundaries and place each stage on its own GPU:
+
 ```python
-from torch.distributed.pipeline.sync import Pipe
+import torch.nn as nn
 
 # Split model across GPUs
 # GPU 0: First half of model
@@ -233,30 +238,40 @@ class MyModel(nn.Module):
         x = self.layer4(x)
         return x
 
-# Or use Pipe for automatic pipeline
-model = Pipe(
-    MyModel(),
-    chunks=8,  # Split batch into chunks
-)
 ```
 
-### Tensor Parallelism (HuggingFace Accelerate)
+For automatic micro-batch pipelining, the old
+`torch.distributed.pipeline.sync.Pipe` API was removed in PyTorch 2.x -
+use `torch.distributed.pipelining` (PyTorch 2.4+) or the device_map-based
+sharding shown in the next section.
+
+### Layer Sharding (HuggingFace Accelerate)
 ```python
 from accelerate import infer_auto_device_map, dispatch_model
 
-# Auto-assign layers across GPUs
-device_map = infer_auto_device_map(model)
+# Auto-assign layers across GPUs. This is NAIVE model parallelism
+# (whole layers sharded, no compute overlap) - for true tensor
+# parallelism, see the vLLM section below.
+max_memory = {0: "10GiB", 1: "22GiB"}
+device_map = infer_auto_device_map(
+    model,  # your loaded model
+    max_memory=max_memory,
+    no_split_module_classes=["LlamaDecoderLayer"],
+)
 
 # Dispatch model
 model = dispatch_model(model, device_map=device_map)
 
-# Example device_map for 2 GPUs:
+# Example output for a Llama-style model (40 layers) on 2 GPUs:
 # {
-#     'transformer.embed_tokens': 0,
-#     'transformer.h.0': 0,
-#     'transformer.h.10': 0,
-#     'transformer.h.11': 1,
-#     'transformer.h.21': 1,
+#     'model.embed_tokens': 0,
+#     'model.layers.0': 0,
+#     ...
+#     'model.layers.19': 0,
+#     'model.layers.20': 1,
+#     ...
+#     'model.layers.39': 1,
+#     'model.norm': 1,
 #     'lm_head': 1,
 # }
 ```
@@ -265,18 +280,21 @@ model = dispatch_model(model, device_map=device_map)
 
 ### vLLM Multi-GPU
 ```bash
-# Tensor parallelism across GPUs
-python -m vllm.entrypoints.api_server \
-    --model meta-llama/Llama-2-13b-hf \
+# True tensor parallelism: each layer's weight matrices are split
+# across the cards. `vllm serve` replaces the long-deprecated
+# python -m vllm.entrypoints.api_server entrypoint.
+# Sizing note: Llama-2-13B at fp16 needs ~13GB per shard - too big for
+# two 11GB cards. The 7B below fits (~7GB per shard):
+vllm serve meta-llama/Llama-2-7b-hf \
     --tensor-parallel-size 2 \
     --gpu-memory-utilization 0.9 \
     --port 8000
 ```
 
-### Ollama Multi-GPU (Single GPU Selection)
+### Ollama Multi-GPU
 ```bash
-# Ollama uses single GPU by default
-# To select specific GPU:
+# Ollama splits model layers across ALL detected GPUs automatically
+# (no flag needed). To pin it to a single GPU, restrict visibility:
 CUDA_VISIBLE_DEVICES=0 ollama serve
 
 # Or set in environment:
@@ -285,8 +303,10 @@ export CUDA_VISIBLE_DEVICES=0
 
 ### Text Generation Inference (TGI)
 ```bash
-# Multi-GPU inference
-model=meta-llama/Llama-2-13b-hf
+# Multi-GPU inference (num-shard splits the weights; the shard must
+# fit - 7B fp16 = ~7GB per shard across two 11GB cards, while 13B
+# needs ~13GB per shard, i.e. 24GB-class cards):
+model=meta-llama/Llama-2-7b-hf
 
 text-generation-launcher \
     --model-id $model \
@@ -298,8 +318,11 @@ text-generation-launcher \
 ## Fine-Tuning with Multi-GPU
 
 ### DeepSpeed ZeRO (Memory Optimization)
-```python
-# DeepSpeed configuration for 2 GPUs
+
+DeepSpeed loads a strict-JSON config (`ds_config.json`). The batch math
+below balances on 2 GPUs: 2 GPUs x 2 micro-batch x 4 accumulation = 16.
+
+```json
 {
     "train_batch_size": 16,
     "train_micro_batch_size_per_gpu": 2,
@@ -309,7 +332,7 @@ text-generation-launcher \
         "params": {
             "lr": 1e-4,
             "betas": [0.9, 0.95],
-            "eps": 1e-8,
+            "eps": 1e-8
         }
     },
     "scheduler": {
@@ -324,34 +347,35 @@ text-generation-launcher \
         "enabled": true
     },
     "zero_optimization": {
-        "stage": 2,  # ZeRO Stage 2: optimizer + gradients partitioning
+        "stage": 2,
         "allgather_bucket_size": 5e8,
-        "reduce_bucket_size": 5e8,
+        "reduce_bucket_size": 5e8
     },
-    "gradient_clipping": 1.0,
+    "gradient_clipping": 1.0
 }
+```
 
-# Run with:
+Run it with:
+
+```bash
 deepspeed --num_gpus=2 train.py --deepspeed ds_config.json
 ```
+
+(`"stage": 2` - ZeRO Stage 2: optimizer-state + gradient partitioning.)
 
 ### QLoRA Multi-GPU
 ```python
 from transformers import AutoModelForCausalLM, TrainingArguments, Trainer
 from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
 
-# Load model on both GPUs
-device_map = {
-    "transformer.embed_tokens": 0,
-    "transformer.h.0": 0,
-    "transformer.h.16": 1,
-    "transformer.h.31": 1,
-    "lm_head": 1,
-}
-
+# Load the model sharded across both GPUs. Llama-2-13b's top-level
+# modules are model.embed_tokens, model.layers.{0..39} (40 decoder
+# layers), model.norm and lm_head - device_map="auto" places them by
+# the per-card budget (a hand-written map would need all 40 keys):
 model = AutoModelForCausalLM.from_pretrained(
     "meta-llama/Llama-2-13b-hf",
-    device_map=device_map,
+    device_map="auto",
+    max_memory={0: "9GiB", 1: "9GiB"},
     load_in_4bit=True,
 )
 
@@ -457,19 +481,19 @@ def print_gpu_stats():
 ### Out of Memory (OOM)
 ```python
 # 1. Reduce batch size
-per_device_train_batch_size=1
+#    per_device_train_batch_size=1
 
 # 2. Enable gradient checkpointing
-gradient_checkpointing=True
+#    gradient_checkpointing=True
 
 # 3. Use 4-bit quantization
-load_in_4bit=True
+#    load_in_4bit=True
 
 # 4. Clear cache
 torch.cuda.empty_cache()
 
 # 5. Use gradient accumulation instead of large batch
-gradient_accumulation_steps=16
+#    gradient_accumulation_steps=16
 ```
 
 ### Multi-GPU Communication Issues
@@ -482,8 +506,8 @@ export NCCL_P2P_DISABLE=1  # Disable P2P (needed when GPUs cannot peer directly,
                            # e.g., across IOMMU groups or on some virtualized hosts)
 export NCCL_IB_DISABLE=1   # Disable InfiniBand (no IB hardware present)
 
-# Use gloo backend instead of nccl (slower but more compatible)
-torch.distributed.init_process_group(backend="gloo", ...)
+# Use gloo backend instead of nccl (slower but more compatible):
+# torch.distributed.init_process_group(backend="gloo")
 ```
 
 ---
@@ -507,6 +531,6 @@ torch.distributed.init_process_group(backend="gloo", ...)
 
 **Related:**
 - [1202: GPU Passthrough (IOMMU/VFIO)](./1202-TB3-UT3G-Passthrough.md)
-- [1203: NVIDIA Kernel Module](./1203-Nvidia-Kernel-Module.md)
-- [1301: K3s Architecture](../1300-kubernetes/1301-K3s-Master-Worker-Arch.md)
-- [2203: CUDA Kernel](../../phase2-foundations/2200-frameworks/2203-CUDA-Kernel-Syb-Level.md)
+- [1203: NVIDIA Kernel Module Management](./1203-Nvidia-Kernel-Module.md)
+- [1301: K3s Master-Worker Architecture](../1300-kubernetes/1301-K3s-Master-Worker-Arch.md)
+- [2203: CUDA Kernel Programming and GPU Architecture](../../phase2-foundations/2200-frameworks/2203-CUDA-Kernel-Syb-Level.md)
