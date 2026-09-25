@@ -1,7 +1,7 @@
 ---
 Document ID: 4300-PRACTICE
 Title: "4300: Quantization Aware Training - Practice"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Advanced
 ---
@@ -62,9 +62,10 @@ class FakeQuantizeFunc(torch.autograd.Function):
         qmin = ctx.qmin
         qmax = ctx.qmax
 
-        # Compute gradient mask
-        x_lower = (zero_point - qmin) * scale
-        x_upper = (zero_point - qmax) * scale
+        # Gradient mask: inputs inside the representable window
+        # [ (qmin - zero_point) * scale, (qmax - zero_point) * scale ]
+        x_lower = (qmin - zero_point) * scale
+        x_upper = (qmax - zero_point) * scale
 
         # Pass through gradients for inputs within quantization range
         grad_input = grad_output.clone()
@@ -119,15 +120,13 @@ print(f"Gradient norm: {x.grad.norm():.4f}")
 print(f"Gradient has NaNs: {torch.isnan(x.grad).any()}")
 
 # Expected Output:
-# Quantized values show step-like pattern
-# Gradients flow through (not zero, no NaNs)
-# STE allows gradient propagation despite discrete forward pass
+# Output range spans ≈ ±0.8 × input max (scale = max/qmax with a
+# 0.8 margin; ±127 levels at 8 bits)
+# Gradient norm: ~9-10 for randn(100) - the STE passes gradients
+# for every input inside the quantization window (≈95% of a
+# standard normal lies within ±2), so the norm ≈ sqrt of that count
+# Gradient has NaNs: tensor(False)
 ```
-
-**Expected Output:**
-- Quantized values should be step-like
-- Gradients should flow (not zero)
-- No NaN gradients
 
 ---
 
@@ -209,6 +208,24 @@ def train_model(model, epochs=2, lr=0.001):
 
     return model
 
+def evaluate_model(model):
+    """Full test-set accuracy check (the metric the Success
+    Criteria are written on - without it QAT's payoff is unmeasured)."""
+    transform = transforms.Compose([transforms.ToTensor()])
+    test_dataset = datasets.MNIST('./data', train=False, download=True, transform=transform)
+    test_loader = torch.utils.data.DataLoader(test_dataset, batch_size=256, shuffle=False)
+
+    model.eval()
+    correct = total = 0
+    with torch.no_grad():
+        for data, target in test_loader:
+            pred = model(data).argmax(dim=1)
+            correct += (pred == target).sum().item()
+            total += target.size(0)
+
+    model.train()
+    return correct / total * 100
+
 print("Training Models with and without QAT")
 print("="*60)
 
@@ -218,8 +235,21 @@ model_fp32 = train_model(MNISTClassifier(), epochs=2)
 print("\nTraining QAT Model...")
 model_qat = train_model(QuantizedMNISTClassifier(), epochs=2)
 
+acc_fp32 = evaluate_model(model_fp32)
+acc_qat = evaluate_model(model_qat)
+
 print("\nQAT training complete!")
-print("Both models trained successfully with fake quantization.")
+print(f"FP32 accuracy: {acc_fp32:.2f}%")
+print(f"QAT accuracy:  {acc_qat:.2f}%")
+print(f"Accuracy drop: {acc_fp32 - acc_qat:.2f} percentage points")
+
+# Expected Output:
+# Each epoch prints 10 batch lines (every 100 of ~938 batches) plus
+# the epoch average: loss falls from ~0.3 to ~0.1 over 2 epochs for
+# an MLP on MNIST; the QAT run sits slightly above the FP32 run
+# (quantization noise during training)
+# Accuracy: FP32 ≈ 96-98%, QAT within ~1 point of it (8-bit QAT on
+# MNIST typically loses <1%) - exact numbers vary run to run
 ```
 
 **Success Criteria:**
@@ -233,6 +263,8 @@ print("Both models trained successfully with fake quantization.")
 **Task:** Implement per-channel quantization for Linear layers.
 
 ```python
+import torch
+
 def per_channel_quantize(weight, bit_width=8):
     """
     Quantize weight tensor per output channel.
@@ -309,8 +341,10 @@ print(f"Per-tensor error: {pt_error:.6f}")
 print(f"Improvement: {(pt_error - pc_error) / pt_error * 100:.2f}%")
 
 # Expected Output:
-# Per-channel should have lower error
-# Especially when weight distribution varies per channel
+# Per-channel error is the lower of the two - each row gets its own
+# step, and a row's range never exceeds the tensor's, so its step
+# can only be finer. On a Gaussian tensor the gap is modest (rows
+# have similar ranges); it widens when channels carry outliers
 ```
 
 ---
@@ -325,9 +359,10 @@ print("="*60)
 
 # Broken Code Example with bugs
 bugs = """
-Bug 1: FakeQuantize module initialization
-  Issue: Self.quant = FakeQuantize(bit_width=4)
-  Fix: Initialize with proper bit_width and learnable parameters
+Bug 1: FakeQuantize never initializes
+  Issue: Model left in eval mode - the scale init inside
+         forward() only runs when self.training
+  Fix: Call model.train() before QAT training or calibration
 
 Bug 2: Missing scale initialization
   Issue: scale not initialized based on input statistics
@@ -339,7 +374,8 @@ Bug 3: Quantizing attention scores
 
 Bug 4: Wrong placement of fake quantization
   Issue: Quantizing after residual addition
-  Fix: Quantize before residual addition (Pre-LN style)
+  Fix: Quantize the branch output, add the residual in higher
+       precision
 """
 
 print("Common QAT Bugs:")
@@ -356,6 +392,10 @@ print("""
 7. Initialize scale based on calibration data
 8. Monitor accuracy during training
 """)
+
+# Expected Output:
+# The "Common QAT Bugs" list (4 bugs) and the 8-item "Best
+# Practices" list print directly - no model runs in this exercise
 ```
 
 ---
@@ -431,6 +471,12 @@ size_int8 = get_model_size(model_quantized)
 print(f"\nFP32 size: {size_fp32:.2f} MB")
 print(f"INT8 size: {size_int8:.2f} MB")
 print(f"Compression: {size_fp32 / size_int8:.2f}x")
+
+# Expected Output:
+# "Model prepared for QAT", the QConfig repr, one training loss
+# ≈ 2.3 (ln 10 - a fresh 10-class head on random inputs), then
+# "Model converted to INT8" and sizes ≈ 0.78 MB -> ≈ 0.20 MB
+# (compression ≈ 4x - the Linear weights go FP32 -> INT8)
 ```
 
 ---
