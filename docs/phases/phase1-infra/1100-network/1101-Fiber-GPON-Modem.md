@@ -3,7 +3,7 @@ Document ID: 1101
 Title: Internet Uplink & Modem Configuration
 Phase: 1
 Module: 1100
-Last Updated: 2026-09-24
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 2 hours
@@ -141,9 +141,11 @@ Generic configuration steps (menu names vary by vendor):
 Verification - the WAN IP on your router should match your public IP:
 
 ```bash
-# On a client behind your router, compare these two:
-curl -s ifconfig.me        # your public IP as seen from the internet
-ip addr show               # WAN interface of the router (check via router UI)
+# From a client behind your router - the public IP as seen from the internet:
+curl -s ifconfig.me
+
+# On the ROUTER itself (SSH session, or its UI's WAN status page) - the WAN address:
+ip addr show
 # If they match (and are not RFC1918/private), bridge mode is working
 ```
 
@@ -386,6 +388,6 @@ Out-of-range Rx power shows up as LOS light loss or intermittent drops long befo
 ---
 
 **Document ID:** 1101
-**Last Updated:** 2026-09-24
+**Last Updated:** 2026-09-25
 **Status:** Complete
 **Related Documents:** [1102, 1103, 1201]
