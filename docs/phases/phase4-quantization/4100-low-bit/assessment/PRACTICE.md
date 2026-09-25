@@ -1,7 +1,7 @@
 ---
 Document ID: 4100-PRACTICE
 Title: "4100: Low-Bit Quantization - Practice"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Advanced
 ---
@@ -86,8 +86,10 @@ print(f"Quantized size: {quantized_size / 1024:.2f} KB")
 print(f"Compression ratio: {compression:.2f}x")
 
 # Expected Output:
-# Error should be small (< 0.01 for good quantization)
-# Compression ratio: 4x (float32 to int8)
+# Mean error lands near scale/4 (uniform rounding error over the step
+# size; with this tensor's scale ≈ 0.035 that is ≈ 0.009 - it holds
+# run after run because it averages over 131k samples)
+# Compression ratio: 4.00x (float32 to int8)
 ```
 
 **Explanation:**
@@ -183,8 +185,11 @@ for name, module in quantized_model.named_modules():
         print(f"  {name}: {module.weight().dtype}")
 
 # Expected Output:
-# Model size reduced by ~2-4x
-# Inference speedup of 1.5-3x
+# Compression ≈ 4x for this model (the three Linear weight matrices
+# dominate and go fp32 -> int8, 4 bytes per weight -> 1)
+# Speedup is hardware-dependent: int8 GEMM wins on CPU integer
+# throughput, but at this tiny batch-1 shape the gain can be modest
+# or even negative (framework overhead)
 # Linear layers converted to qint8
 ```
 
@@ -277,9 +282,10 @@ output_diff = torch.abs(original_output - quantized_output).mean()
 print(f"\nOutput difference: {output_diff:.6f}")
 
 # Expected Output:
-# Static quantization yields better accuracy than dynamic
-# Requires calibration data
-# ~4x compression
+# Quantization complete!
+# Original size: ~0.8 MB, quantized size: ~0.2 MB -> compression ≈ 4x
+# Output difference: small but nonzero - the quantized model
+# approximates the fp32 one on the same random input
 ```
 
 **Explanation:**
@@ -364,9 +370,11 @@ print("- Compute dtype: Use FP16 or BF16 for computations")
 print("- Typical compression: ~8x (FP32 to INT4)")
 
 # Expected Output:
-# Model loaded in 4-bit precision
-# Significant memory reduction (~8x for large models)
-# Minimal accuracy loss with NF4
+# The loading block above is commented out - nothing downloads or
+# runs. This exercise prints the banner, the "For demonstration"
+# note, and the four Key points lines; uncommenting needs a GPU and
+# the bitsandbytes package (then: ~8x memory reduction, minimal
+# accuracy loss with NF4)
 ```
 
 **Explanation:**
@@ -416,26 +424,18 @@ def analyze_quantization_error(original_tensor, quantized_tensor):
 
     return results
 
-def compare_bit_widths(tensor, bit_widths=[4, 8, 16]):
+def compare_bit_widths(tensor, bit_widths=(4, 8, 16)):
     """Compare quantization at different bit widths."""
     results = {}
 
     for bits in bit_widths:
-        if bits == 4:
-            dtype = torch.qint8  # Approximate for 4-bit
-            scale_factor = 0.1
-        elif bits == 8:
-            dtype = torch.qint8
-            scale_factor = 1.0
-        else:
-            dtype = torch.qint8
-            scale_factor = 1.0
-
-        # Simple quantization simulation
+        # Simple symmetric quantization simulation: the only thing
+        # that changes with bit width is the integer range - fewer
+        # levels mean a coarser step, nothing else
         qmin = -(2 ** (bits - 1))
         qmax = 2 ** (bits - 1) - 1
 
-        scale = tensor.max() / qmax * scale_factor
+        scale = tensor.max() / qmax
         quantized = torch.round(tensor / scale)
         quantized = torch.clamp(quantized, qmin, qmax)
         dequantized = quantized * scale
@@ -497,9 +497,11 @@ plt.tight_layout()
 plt.show()
 
 # Expected Output:
-# Lower bits = higher error
-# SQNR increases with bit width
-# 16-bit usually sufficient for minimal loss
+# The table's error columns fall as bit width rises and SQNR climbs
+# roughly 6 dB per added bit (each bit doubles the number of levels,
+# halving the step); 4-bit is visibly coarse while 16/32-bit are
+# near-lossless. The histogram's 4-bit curve shows the same coarse
+# binning next to the 8-bit one
 ```
 
 ---
