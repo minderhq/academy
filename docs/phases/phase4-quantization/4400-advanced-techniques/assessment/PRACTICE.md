@@ -1,7 +1,7 @@
 ---
 Document ID: 4400-PRACTICE
 Title: "4400: Advanced Quantization Techniques - Practice"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Advanced
 ---
@@ -20,14 +20,13 @@ Hands-on exercises for advanced quantization techniques.
 # GPTQ: Accurate Quantization for Generative Pre-trained Transformers
 # Key insight: Optimize weights to minimize quantization error in one pass
 
-from transformers import AutoModelForCausalLM, AutoTokenizer
-import torch
-
 print("GPTQ Quantization")
 print("="*60)
 
 # Note: GPTQ requires auto-gptq library
 # Installation: pip install auto-gptq
+# (auto-gptq is deprecated - the current path is transformers' native
+#  GPTQConfig or gptqmodel; the workflow below is conceptually identical)
 
 print("""
 GPTQ Workflow:
@@ -70,7 +69,7 @@ Key Parameters:
 Expected Results:
 - 7B model: ~4 GB (vs ~13 GB FP16)
 - Perplexity increase: <10%
-- Inference speed: similar to FP16
+- Inference speed: similar to or faster than FP16 (decode is memory-bandwidth bound)
 """)
 
 # Simulated example
@@ -85,6 +84,13 @@ for model in models:
     }[model]
     gptq_gb = fp16_gb / 3.5  # Approximate compression
     print(f"{model}: FP16={fp16_gb}GB, GPTQ-4bit={gptq_gb:.1f}GB")
+
+# Expected Output:
+# The GPTQ workflow text prints directly (no library call runs -
+# GPTQ needs a GPU and a real model)
+# Simulated table: LLaMA-7B 13->3.7, LLaMA-13B 26->7.4,
+# LLaMA-70B 140->40.0 GB (4-bit ~ 0.5 bytes/weight plus group
+# scale overhead -> ~3.5x compression)
 ```
 
 ---
@@ -112,27 +118,22 @@ Domain-Specific Calibration:
        "legal": ["contract terms", "liability", "jurisdiction"]
    }
 
-2. Calibration data format
-   calibration_data = [
-       tokenizer(text, return_tensors="pt")["input_ids"]
-       for text in domain_texts[domain][:100]
-   ]
+2. Calibration data - raw domain texts (AutoAWQ tokenizes internally)
+   calibration_data = domain_texts[domain]
 
 3. Configure AWQ
    quant_config = {
        "zero_point": True,
        "q_group_size": 128,
        "w_bit": 4,
-       "q_config": {
-           "zero_point": True,
-           "w_bit": 4
-       }
+       "version": "GEMM"
    }
 
 4. Quantize with domain calibration
    model.quantize(
-       calibration_data,
-       quant_config=quant_config
+       tokenizer=tokenizer,
+       quant_config=quant_config,
+       calib_data=calibration_data
    )
 
 Benefits of Domain Calibration:
@@ -152,6 +153,11 @@ domains = {
 
 for domain, source in domains.items():
     print(f"{domain}: {source}")
+
+# Expected Output:
+# The AWQ key-idea text and the 4-step domain calibration recipe
+# print directly; then the 4 recommended-source lines
+# (General/Code/Medical/Legal)
 ```
 
 ---
@@ -166,26 +172,26 @@ print("="*60)
 
 gguf_types = {
     'Q4_K_M': {
-        'bits': 'mostly 4-bit, some 2-3 bit',
-        'size_gb': '4.0 GB (for 7B model)',
+        'bits': 'mostly 4-bit, key tensors 6-bit',
+        'size_gb': '4.1 GB (for 7B model)',
         'quality': 'Good balance',
         'speed': 'Fast'
     },
     'Q5_K_M': {
-        'bits': 'mostly 5-bit, some 3-4 bit',
-        'size_gb': '5.0 GB (for 7B model)',
+        'bits': 'mostly 5-bit, key tensors 6-bit',
+        'size_gb': '4.8 GB (for 7B model)',
         'quality': 'Better than Q4',
         'speed': 'Fast'
     },
     'Q8_0': {
         'bits': '8-bit',
-        'size_gb': '8.0 GB (for 7B model)',
+        'size_gb': '7.2 GB (for 7B model)',
         'quality': 'Near FP16',
         'speed': 'Moderate'
     },
     'Q2_K': {
         'bits': '2-3 bit',
-        'size_gb': '2.5 GB (for 7B model)',
+        'size_gb': '2.8 GB (for 7B model)',
         'quality': 'Significant degradation',
         'speed': 'Very Fast'
     }
@@ -209,7 +215,15 @@ python convert.py llama-7b --outfile llama-7b-f16.gguf --outtype f16
 
 # Run with llama.cpp
 ./main -m llama-7b-q4_k_m.gguf -p "Hello, world" -n 100
+
+# (binary names above are the classic ones - current llama.cpp
+#  ships convert_hf_to_gguf.py, llama-quantize and llama-cli)
 """)
+
+# Expected Output:
+# The 4-row quantization table (Q2_K 2.8 / Q4_K_M 4.1 / Q5_K_M 4.8 /
+# Q8_0 7.2 GB for a 7B - llama.cpp's published sizes) and the
+# conversion + inference commands print directly
 ```
 
 ---
@@ -244,14 +258,14 @@ Benefits:
 - Smaller than uniform 8-bit
 - Optimal quality-size trade-off
 
-Conversion:
+Conversion (exllamav2 - EXL2 output is a safetensors repo, not GGUF):
 python convert.py \\
     --in_dir ./llama-7b \\
-    --out_file llama-7b-exl2.gguf \\
-    --bits 4.5 \\
-    --config ./custom_bit_config.json
+    --output_dir llama-7b-exl2 \\
+    --bits 4.5
 
-Custom Config Example:
+Per-layer bit targets (conceptual - EXL2 measures layers and
+optimizes the allocation around your average-bits target):
 {
     "embeddings": 8.0,
     "layers.0.weight": 6.0,
@@ -272,6 +286,13 @@ configs = [
 for name, avg_bits in configs:
     size_gb = 7 * (avg_bits / 16) * 2  # Approximate
     print(f"{name}: {avg_bits}b avg = {size_gb:.1f} GB")
+
+# Expected Output:
+# The philosophy/bit-config text prints directly, then:
+# Uniform 4-bit: 4.0b avg = 3.5 GB
+# Variable (4-8 bit): 5.5b avg = 4.8 GB
+# Uniform 8-bit: 8.0b avg = 7.0 GB
+# (7B params * bits/16 * 2 bytes)
 ```
 
 ---
@@ -310,18 +331,20 @@ Comprehensive Validation Metrics:
    ]
 
    for prompt in prompts:
-       gen_fp16 = model_fp16.generate(prompt, max_tokens=50)
-       gen_quant = model_quant.generate(prompt, max_tokens=50)
+       inputs = tokenizer(prompt, return_tensors="pt")
+       gen_fp16 = model_fp16.generate(**inputs, max_new_tokens=50)
+       gen_quant = model_quant.generate(**inputs, max_new_tokens=50)
        # Compare outputs qualitatively
 
 3. Performance Benchmark
    import time
 
    def benchmark_inference(model, tokenizer, prompt):
+       inputs = tokenizer(prompt, return_tensors="pt")
        start = time.time()
-       output = model.generate(tokenizer(prompt), max_tokens=100)
+       output = model.generate(**inputs, max_new_tokens=100)
        elapsed = time.time() - start
-       tokens = len(output)
+       tokens = output.shape[1] - inputs["input_ids"].shape[1]
        return tokens / elapsed
 
    tps_fp16 = benchmark_inference(model_fp16, tokenizer, "test")
@@ -346,6 +369,11 @@ Success Criteria:
 - Speed: similar or faster
 - Memory: significantly reduced
 """)
+
+# Expected Output:
+# The four-part validation pipeline text and the sample report
+# print directly - the pipeline code is illustrative (it needs a
+# real fp16/quant model pair; nothing executes here)
 
 print("\nValidation Report Template:")
 print("-" * 60)
@@ -411,16 +439,22 @@ uvicorn>=0.23.0
 
 3. server.py (FastAPI)
 ───────────────────────────────────────────────────────────
+import torch
 from fastapi import FastAPI
 from pydantic import BaseModel
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 
 app = FastAPI()
+
+bnb_config = BitsAndBytesConfig(
+    load_in_4bit=True,
+    bnb_4bit_compute_dtype=torch.float16
+)
 
 model = AutoModelForCausalLM.from_pretrained(
     "./model",
     device_map="auto",
-    load_in_4bit=True
+    quantization_config=bnb_config
 )
 tokenizer = AutoTokenizer.from_pretrained("./model")
 
@@ -437,7 +471,7 @@ async def generate(req: GenerateRequest):
         max_new_tokens=req.max_tokens,
         temperature=req.temperature
     )
-    return {"text": tokenizer.decode(outputs[0])}
+    return {"text": tokenizer.decode(outputs[0], skip_special_tokens=True)}
 
 @app.get("/health")
 async def health():
@@ -478,6 +512,11 @@ curl -X POST http://localhost:8000/generate \\
   -H "Content-Type: application/json" \\
   -d '{"prompt": "Hello, world", "max_tokens": 50}'
 """)
+
+# Expected Output:
+# The four package files (Dockerfile, requirements.txt, server.py,
+# docker-compose.yml) and the build/run/test commands print
+# directly - nothing here executes in the notebook itself
 ```
 
 ---
@@ -499,6 +538,7 @@ comparison_data = {
 
 print(f"{'Method':<15} {'Time':<10} {'Size':<10} {'Speed':<10} {'PPL':<8} {'Quality':<10}")
 print("-" * 70)
+print("Illustrative numbers - always benchmark on your own hardware\n")
 
 for i in range(len(comparison_data['Method'])):
     print(f"{comparison_data['Method'][i]:<15} "
@@ -532,6 +572,10 @@ Best Overall:
   → AWQ-4bit (better quality)
   → EXL2 (best speed/quality)
 """)
+
+# Expected Output:
+# The 5-row comparison table (illustrative, order-of-magnitude
+# values) and the 5 recommendation blocks print directly
 ```
 
 ---
@@ -568,7 +612,7 @@ Research:
 
 Production:
   → PTQ-INT8 (reliable)
-  → GPTQ/AWX (memory savings)
+  → GPTQ/AWQ (memory savings)
 
 TROUBLESHOOTING:
 
