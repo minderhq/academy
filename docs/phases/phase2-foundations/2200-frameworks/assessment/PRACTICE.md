@@ -1,7 +1,7 @@
 ---
 Document ID: 2200-PRACTICE
 Title: "2200: Frameworks - Practice"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -170,7 +170,9 @@ for epoch in range(num_epochs):
 
 # Expected output:
 # Epoch 1-5 with decreasing loss and increasing accuracy
-# Final accuracy should be > 80% (since data is random, actual may vary)
+# Labels here are random: chance level is 20% with 5 classes, and the
+# 325-parameter net can only partially memorize 100 random samples in
+# 5 epochs - expect accuracy above chance, not a specific threshold
 
 print("Training complete!")
 
@@ -273,7 +275,8 @@ with torch.no_grad():
 
 # Expected output:
 # If GPU available: Training runs on GPU
-# If no GPU: Training runs on CPU with warning
+# If no GPU: everything silently runs on CPU - there is no warning,
+# the "Using device: cpu" line is the only tell
 # Predictions for 10 test samples
 ```
 
@@ -297,8 +300,11 @@ model_path = 'checkpoints/simplenet.pth'
 torch.save(model, model_path)
 print(f"Saved entire model to {model_path}")
 
-# Load model
-loaded_model = torch.load(model_path)
+# Load model - torch >= 2.6 defaults weights_only=True, which refuses
+# to unpickle a full model object (UnpicklingError); whole-model
+# pickles also execute arbitrary code at load time, which is exactly
+# why the state_dict path below is the recommended one
+loaded_model = torch.load(model_path, weights_only=False)
 loaded_model.eval()
 print("Loaded entire model")
 
