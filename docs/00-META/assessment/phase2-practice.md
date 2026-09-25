@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE2-PRACTICE
 Title: "Phase 2: AI/ML Foundations Practice"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -16,7 +16,6 @@ Difficulty: Intermediate
 
 ```python
 import torch
-import numpy as np
 
 def einsum_basics():
     """Learn einsum notation through examples"""
@@ -184,8 +183,6 @@ if __name__ == "__main__":
 
 ```python
 import torch
-import torch.nn as nn
-import torch.nn.functional as F
 
 class AutogradTensor:
     """Simple automatic differentiation tensor"""
@@ -218,26 +215,26 @@ class AutogradTensor:
 
         build_graph(self)
 
-        # Backpropagate
-        grad = grad_output
+        # Seed the output gradient, then let every node push its OWN
+        # gradient to its inputs in reverse topological order - a single
+        # running accumulator would bleed sibling branches into each other
+        self.grad = grad_output
         for node in reversed(nodes):
-            if node.grad is None:
-                node.grad = torch.zeros_like(node.data)
-            node.grad += grad
-
-            if node._backward_fn:
+            if node._backward_fn and node.grad is not None:
                 backward_fn, inputs = node._backward_fn
-                grads = backward_fn(grad)
-                grad = torch.zeros_like(grad)  # Reset for next
+                grads = backward_fn(node.grad)
                 for input_node, input_grad in zip(inputs, grads):
                     if input_node.requires_grad:
-                        grad += input_grad
+                        if input_node.grad is None:
+                            input_node.grad = torch.zeros_like(input_node.data)
+                        input_node.grad += input_grad
 
     def __add__(self, other):
         """Addition operation"""
         other = other if isinstance(other, AutogradTensor) else AutogradTensor(other)
 
-        result = AutogradTensor(self.data + other.data)
+        result = AutogradTensor(self.data + other.data,
+                                requires_grad=self.requires_grad or other.requires_grad)
 
         def backward_grad(grad):
             return grad, grad
@@ -249,7 +246,8 @@ class AutogradTensor:
         """Multiplication operation"""
         other = other if isinstance(other, AutogradTensor) else AutogradTensor(other)
 
-        result = AutogradTensor(self.data * other.data)
+        result = AutogradTensor(self.data * other.data,
+                                requires_grad=self.requires_grad or other.requires_grad)
 
         def backward_grad(grad):
             return grad * other.data, grad * self.data
@@ -259,7 +257,8 @@ class AutogradTensor:
 
     def __matmul__(self, other):
         """Matrix multiplication"""
-        result = AutogradTensor(self.data @ other.data)
+        result = AutogradTensor(self.data @ other.data,
+                                requires_grad=self.requires_grad or other.requires_grad)
 
         def backward_grad(grad):
             # d(A@B)/dA = grad @ B.T
@@ -271,7 +270,8 @@ class AutogradTensor:
 
     def sum(self):
         """Sum reduction"""
-        result = AutogradTensor(self.data.sum())
+        result = AutogradTensor(self.data.sum(),
+                                requires_grad=self.requires_grad)
 
         def backward_grad(grad):
             return torch.ones_like(self.data) * grad
@@ -282,7 +282,8 @@ class AutogradTensor:
     def relu(self):
         """ReLU activation"""
         mask = self.data > 0
-        result = AutogradTensor(self.data * mask.float())
+        result = AutogradTensor(self.data * mask.float(),
+                                requires_grad=self.requires_grad)
 
         def backward_grad(grad):
             return grad * mask.float()
@@ -332,9 +333,10 @@ def test_autograd():
     print(f"   dA:\n{A.grad}")
     print(f"   dB:\n{B.grad}")
 
-    # Verify gradients
-    expected_dA = B.data.T
-    expected_dB = A.data.T
+    # Verify gradients: d(sum(A @ B))/dA = ones @ B^T (every row of dA is a
+    # row-sum of B); dB = A^T @ ones (every column of dB is a column-sum of A)
+    expected_dA = B.data.sum(dim=1, keepdim=True).expand(2, 2)
+    expected_dB = A.data.sum(dim=0, keepdim=True).expand(2, 2)
     assert torch.allclose(A.grad, expected_dA)
     assert torch.allclose(B.grad, expected_dB)
     print("   ✅ PASS\n")
@@ -391,7 +393,6 @@ if __name__ == "__main__":
 ```python
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
 
 class CustomLinear(nn.Module):
     """Custom linear layer implementation"""
@@ -406,7 +407,7 @@ class CustomLinear(nn.Module):
         if bias:
             self.bias = nn.Parameter(torch.zeros(out_features))
         else:
-            self.register_buffer('bias', None)
+            self.register_parameter('bias', None)
 
     def forward(self, input):
         """Forward pass: y = xW^T + b"""
@@ -559,7 +560,6 @@ if __name__ == "__main__":
 
 ```python
 import torch
-import torch.nn.functional as F
 
 def simple_cuda_kernel():
     """Implement and test simple CUDA kernel"""
@@ -612,7 +612,9 @@ def simple_cuda_kernel():
     torch.cuda.synchronize()
     elapsed = start.elapsed_time(end)
 
-    gflops = (2 * M * N * K) / (elapsed / 100 / 1e9)  # 2 MNK for matmul
+    # 2*M*N*K FLOPs per matmul; elapsed is in ms for all 100 iterations, so
+    # per-iter seconds = (elapsed / 100) / 1e3 and GFLOPS divides FLOP/s by 1e9
+    gflops = (2 * M * N * K) / ((elapsed / 100) * 1e6)
 
     print(f"   Matrix sizes: {M}x{K} @ {K}x{N}")
     print(f"   Time for 100 iterations: {elapsed:.2f} ms")
@@ -657,6 +659,10 @@ if __name__ == "__main__":
 ## Bonus: Build Simple Transformer Block
 
 ```python
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+
 class TransformerBlock(nn.Module):
     """Complete transformer block from scratch"""
 
