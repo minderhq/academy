@@ -1,7 +1,7 @@
 ---
 Document ID: 2300-PRACTICE
 Title: "2300: Framework Engineering - Practice Exercises"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Advanced
 ---
@@ -51,6 +51,10 @@ class BaseModel(ABC):
 ### Solution
 
 ```python
+# The solution block is standalone-complete (it re-imports torch/tf/np),
+# so it also re-imports the abc names the starter block had - BaseModel
+# below subclasses ABC and uses @abstractmethod
+from abc import ABC, abstractmethod
 import torch
 import torch.nn as nn
 import tensorflow as tf
@@ -308,7 +312,7 @@ Create a plugin system for custom metrics with registration, discovery, and dyna
 ### Solution
 
 ```python
-from typing import Dict, Type, Any, List
+from typing import Dict, Any, List
 import importlib.util
 import os
 import json
@@ -570,9 +574,13 @@ if __name__ == "__main__":
     print("\n✓ All tests passed!")
 
 # Expected output:
-# Registered metrics: ["accuracy", "precision", "f1"]
-# Metrics compute correctly values
-# Metadata shows descriptions
+# ✓ Registered metric: accuracy / precision / f1 (one line each,
+#   printed at decoration time)
+# Available metrics: ['accuracy', 'precision', 'f1']
+# Accuracy: 0.8333     (5 of 6 predictions match)
+# Precision: 0.7500    (3 true positives, 1 false positive)
+# F1 Score: 0.8571     (recall is 1.0 - no positive was missed)
+# Metric metadata: description printed for each registered metric
 ```
 
 ---
@@ -593,7 +601,6 @@ from typing import Dict, Any, List, Optional
 from queue import PriorityQueue
 from dataclasses import dataclass, field
 from enum import Enum
-import json
 
 class Priority(Enum):
     """Request priority levels."""
@@ -742,9 +749,13 @@ class BatchingServer:
             # Update statistics
             self.stats["total_batches"] += 1
             batch_size = len(batch)
-            total_requests = self.stats["total_requests"]
+            # Running mean over batches: dividing by total_requests
+            # instead of total_batches is not an average of anything -
+            # 10 requests in batches of 4/4/2 would print 0.71 instead
+            # of the true mean batch size 3.33
             self.stats["avg_batch_size"] = (
-                (self.stats["avg_batch_size"] * (total_requests - batch_size) + batch_size) / total_requests
+                (self.stats["avg_batch_size"] * (self.stats["total_batches"] - 1) + batch_size)
+                / self.stats["total_batches"]
             )
 
             latency = time.time() - start_time
