@@ -1,7 +1,7 @@
 ---
 Document ID: 7400-PRACTICE
 Title: "7400: Agent Memory Systems - Practice"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Advanced
 ---
@@ -395,6 +395,8 @@ test_entity_memory()
 ### Exercise 4: Implement Summary Memory
 
 ```python
+from langchain_openai import ChatOpenAI
+
 class SummaryMemory:
     def __init__(self, max_tokens=500):
         self.max_tokens = max_tokens
@@ -482,7 +484,7 @@ def test_summary_memory():
     """
     print("=== Summary Memory Test ===\n")
 
-    summary_memory = SummaryMemory(max_tokens=200)
+    summary_memory = SummaryMemory(max_tokens=35)
 
     print("Adding messages to conversation...")
     summary_memory.add_message("user", "Hi, I'm Alice and I'm a software engineer")
@@ -517,7 +519,7 @@ class HybridMemory:
         self.short_term = ShortTermMemory(max_messages=10)
         self.long_term = LongTermMemory()
         self.entity_memory = EntityMemory()
-        self.summary_memory = SummaryMemory(max_tokens=300)
+        self.summary_memory = SummaryMemory(max_tokens=40)
 
     def add(self, role: str, content: str, metadata: dict = None):
         """
@@ -643,6 +645,10 @@ test_hybrid_memory()
 ### Exercise 6: Memory with Reflection
 
 ```python
+import time
+
+from langchain_openai import ChatOpenAI
+
 class ReflectiveMemory:
     def __init__(self):
         self.memories = []
@@ -656,7 +662,6 @@ class ReflectiveMemory:
         SOLUTION: Automatically triggers reflection every 5 memories
         to extract insights and patterns from accumulated experiences.
         """
-        import time
         self.memories.append({
             "content": memory,
             "timestamp": time.time(),
@@ -715,6 +720,7 @@ Reflection:"""
 ```python
 import json
 import sqlite3
+import time
 from pathlib import Path
 
 class PersistentMemory:
@@ -839,7 +845,6 @@ def test_persistent_memory():
     Note: Data persists across sessions in SQLite database.
     """
     import os
-    import time
 
     print("=== Persistent Memory Test ===\n")
 

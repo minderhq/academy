@@ -1,7 +1,7 @@
 ---
 Document ID: 7100-PRACTICE
 Title: "7100: LLM Reasoning - Practice"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Advanced
 ---
@@ -498,16 +498,14 @@ def mock_react_llm(prompt):
     Mock LLM for ReAct pattern.
 
     SOLUTION: Returns structured responses with Thought and Action.
+    An Observation in the prompt means the tool already ran, so finish.
     """
-    if "Question:" in prompt and "Thought:" in prompt:
-        if "trajectory" not in prompt.lower() or len(prompt.split("Thought:")) < 3:
-            return """Thought: I need to calculate the result step by step
-Action: calculator(3-1+5-2)"""
-        else:
-            return """Thought: I have the answer now
+    if "Observation:" in prompt:
+        return """Thought: I have the answer now
 Action: finish"""
 
-    return "Thought: Processing\nAction: finish"
+    return """Thought: I need to calculate the result step by step
+Action: calculator(3-1+5-2)"""
 
 # SOLUTION: Test ReAct Agent
 print("\n" + "=" * 60)
@@ -719,26 +717,30 @@ def mock_planning_llm(prompt):
     """
     Mock LLM for plan-and-solve.
 
-    SOLUTION: Returns structured plans and step executions.
+    SOLUTION: Returns structured plans and step executions. Execution
+    calls are matched on the "Current step:" line only - the
+    "Previous steps" context repeats earlier step wording, so
+    matching on the whole prompt would misroute every later step.
     """
-    if "List the steps" in prompt or "Step 1:" in prompt:
+    if "Execute this step" in prompt:
+        current = prompt.split("Current step:")[1]
+        if "Identify the starting number" in current:
+            return "Starting with 3 apples"
+        if "after eating one" in current:
+            return "After eating 1: 3 - 1 = 2 apples"
+        if "after buying more" in current:
+            return "After buying 5: 2 + 5 = 7 apples"
+        if "after giving away" in current:
+            return "After giving away 2: 7 - 2 = 5 apples"
+        if "final answer" in current:
+            return "Final answer: 5 apples"
+
+    if "List the steps" in prompt:
         return """Step 1: Identify the starting number of apples
 Step 2: Calculate apples after eating one
 Step 3: Calculate apples after buying more
 Step 4: Calculate final count after giving away
 Step 5: Provide final answer"""
-
-    if "Execute this step" in prompt:
-        if "Step 1" in prompt:
-            return "Starting with 3 apples"
-        elif "Step 2" in prompt:
-            return "After eating 1: 3 - 1 = 2 apples"
-        elif "Step 3" in prompt:
-            return "After buying 5: 2 + 5 = 7 apples"
-        elif "Step 4" in prompt:
-            return "After giving away 2: 7 - 2 = 5 apples"
-        elif "Step 5" in prompt:
-            return "Final answer: 5 apples"
 
     return "Executed"
 
