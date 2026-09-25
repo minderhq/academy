@@ -3,7 +3,7 @@ Document ID: 1303
 Title: Storage Classes for Dynamic Provisioning
 Phase: 1
 Module: 1300
-Last Updated: 2026-09-24
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -88,11 +88,9 @@ dnf install nfs-utils
 
 ### Create and Export a Directory
 ```bash
-# Create directory tree
-mkdir -p /srv/k8s-storage/{models,data,output}
-
-# Permissions: the provisioner creates subdirectories as root
-chmod 777 /srv/k8s-storage
+# One directory is enough - the CSI driver creates a per-PVC
+# subdirectory under the share automatically:
+mkdir -p /srv/k8s-storage
 ```
 
 ### Configure Export
@@ -121,56 +119,27 @@ showmount -e 192.168.1.100
 
 ### NFS CSI Driver
 ```bash
-# Add Helm repo
+# Add the official chart repo and install the driver. The chart
+# creates no StorageClass by default - this lesson defines its own
+# three classes below (nfs-standard / nfs-fast / nfs-archive):
 helm repo add csi-driver-nfs \
-  https://raw.githubusercontent.com/kubernetes-sigs/nfs-subdir-external-provisioner/master/deploy/charts
+  https://raw.githubusercontent.com/kubernetes-csi/csi-driver-nfs/master/charts
+helm install csi-driver-nfs csi-driver-nfs/csi-driver-nfs \
+  --namespace kube-system
 
-# Install
-helm install csi-driver-nfs csi-driver-nfs/nfs-subdir-external-provisioner \
-  --namespace kube-system \
-  --set nfs.server=192.168.1.100 \
-  --set nfs.path=/srv/k8s-storage \
-  --set storageClass.default=true \
-  --set storageClass.name=nfs
+# Verify the driver pods are running:
+kubectl -n kube-system get pod -o wide -l app=csi-nfs-controller
+kubectl -n kube-system get pod -o wide -l app=csi-nfs-node
 ```
 
-### Alternative: Manual Provisioner
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: nfs-client-provisioner
-  namespace: kube-system
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: nfs-client-provisioner
-  template:
-    metadata:
-      labels:
-        app: nfs-client-provisioner
-    spec:
-      serviceAccountName: nfs-client-provisioner
-      containers:
-      - name: nfs-client-provisioner
-        image: registry.k8s.io/sig-storage/nfs-subdir-external-provisioner:v4.0.2
-        volumeMounts:
-        - name: nfs-client-root
-          mountPath: /persistentvolumes
-        env:
-        - name: PROVISIONER_NAME
-          value: k8s-sigs.io/nfs-subdir-external-provisioner
-        - name: NFS_SERVER
-          value: 192.168.1.100
-        - name: NFS_PATH
-          value: /srv/k8s-storage
-      volumes:
-      - name: nfs-client-root
-        nfs:
-          server: 192.168.1.100
-          path: /srv/k8s-storage
-```
+### Why Not the Legacy Provisioner?
+An older non-CSI option, `nfs-subdir-external-provisioner`
+(registry.k8s.io/sig-storage/nfs-subdir-external-provisioner), still
+works but predates the CSI volume model: no VolumeSnapshots and no
+volume expansion (attempting one fails with "didn't find a plugin
+capable of expanding the volume"). The CSI driver above is the
+maintained path and is what this lesson uses - it is also the
+provisioner the 1301 StorageClass (`nfs.csi.k8s.io`) points at.
 
 ## Storage Class Definitions
 
@@ -180,12 +149,15 @@ apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   name: nfs-standard
-provisioner: k8s-sigs.io/nfs-subdir-external-provisioner
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "true"
+provisioner: nfs.csi.k8s.io
 parameters:
-  archiveOnDelete: "false"  # Keep data after PVC deletion
-reclaimPolicy: Delete       # or Retain
+  server: 192.168.1.100
+  share: /srv/k8s-storage
+  onDelete: delete         # Remove the PVC's subdirectory when the PVC is deleted
+reclaimPolicy: Delete
 volumeBindingMode: Immediate
-allowVolumeExpansion: true
 mountOptions:
   - hard
   - nfsvers=4.2
@@ -200,12 +172,13 @@ apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   name: nfs-fast
-provisioner: k8s-sigs.io/nfs-subdir-external-provisioner
+provisioner: nfs.csi.k8s.io
 parameters:
-  archiveOnDelete: "false"
-reclaimPolicy: Retain        # Keep data
+  server: 192.168.1.100
+  share: /srv/k8s-storage
+  onDelete: retain         # Keep the subdirectory's data when the PVC is deleted
+reclaimPolicy: Retain      # Keep the PV object itself too
 volumeBindingMode: Immediate
-allowVolumeExpansion: true
 mountOptions:
   - hard
   - nfsvers=4.2
@@ -221,12 +194,13 @@ apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   name: nfs-archive
-provisioner: k8s-sigs.io/nfs-subdir-external-provisioner
+provisioner: nfs.csi.k8s.io
 parameters:
-  archiveOnDelete: "true"   # Archive on delete
+  server: 192.168.1.100
+  share: /srv/k8s-storage
+  onDelete: archive        # Move data aside instead of deleting it
 reclaimPolicy: Retain
 volumeBindingMode: WaitForFirstConsumer  # Bind at pod schedule time
-allowVolumeExpansion: true
 mountOptions:
   - hard
   - nfsvers=4.1            # More stable for large files
@@ -293,23 +267,22 @@ mountOptions:
   - rsize=1048576           # Read chunk size (1MB = 2^20)
   - wsize=1048576           # Write chunk size
 
-  # Caching
-  - noac                   # No attribute cache (force fresh reads)
+  # Caching (noac is just actimeo=0 + page-cache bypass; one line is enough)
   - actimeo=0              # Attribute cache timeout (0 = disable)
 
-  # Write behavior
+  # Write behavior - mutually exclusive, pick ONE
   - sync                   # Write-through (safer, slower)
-  - async                  # Write-back (faster, risk of data loss)
+  # - async                # Write-back (faster, risk of data loss)
 
-  # Connection
+  # Connection - mutually exclusive, pick ONE
   - hard                   # Hard mount (retry forever)
-  - soft                   # Soft mount (timeout after retrans)
+  # - soft                 # Soft mount (timeout after retrans)
   - timeo=600              # Timeout (deciseconds, 600 = 60s)
   - retrans=2              # Retries before timeout
 
-  # Protocol version
+  # Protocol version - pick one
   - nfsvers=4.2            # NFS 4.2 (latest features)
-  - nfsvers=4.1            # NFS 4.1 (more stable)
+  # - nfsvers=4.1          # NFS 4.1 (older, widely compatible)
 ```
 
 ### Filesystem Considerations
@@ -331,25 +304,40 @@ Tuning for AI workloads:
 
 ### Snapshot Integration
 ```bash
+# Kubernetes-side snapshots need the snapshot CRDs and a
+# snapshot-controller. The csi-driver-nfs chart can deploy one:
+helm upgrade csi-driver-nfs csi-driver-nfs/csi-driver-nfs \
+  --namespace kube-system \
+  --reuse-values \
+  --set externalSnapshotter.enabled=true
+
 # Snapshot on the server (ZFS example):
 zfs snapshot tank/k8s-storage@model-snapshot
 
 # Btrfs example:
 btrfs subvolume snapshot /srv/k8s-storage /srv/k8s-storage/.snapshots/model-snapshot
-
-# From Kubernetes (requires a CSI driver with snapshot support)
-kubectl create snapshotvolumesnapshot model-snapshot \
-  --source=model-cache-pvc
 ```
 
 ### Snapshot Class
 ```yaml
+# There is no kubectl create subcommand for snapshots - declare a
+# VolumeSnapshot object (same namespace as the source PVC):
 apiVersion: snapshot.storage.k8s.io/v1
 kind: VolumeSnapshotClass
 metadata:
   name: nfs-snapshot
-driver: csi.nfs.com
+driver: nfs.csi.k8s.io
 deletionPolicy: Delete
+---
+apiVersion: snapshot.storage.k8s.io/v1
+kind: VolumeSnapshot
+metadata:
+  name: model-snapshot
+  namespace: ai-services
+spec:
+  volumeSnapshotClassName: nfs-snapshot
+  source:
+    persistentVolumeClaimName: model-cache  # the PVC from PVC Examples
 ```
 
 ## Monitoring
@@ -395,14 +383,23 @@ Hot data (models, active datasets):  Use fast class with SSD cache
 Cold data (archives, logs):          Use standard class
 ```
 
-### 3. Set Resource Limits
+### 3. Cap PVC Sizes with a LimitRange
 ```yaml
-# Prevent runaway storage consumption
-resources:
-  requests:
-    storage: 10Gi
+# A PVC has no resources.limits field - to cap how big a claim can be,
+# put a LimitRange in the namespace. It bounds the REQUESTED size at
+# claim time (NFS itself cannot enforce per-volume usage quotas):
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: storage-cap
+  namespace: ai-training
+spec:
   limits:
-    storage: 50Gi  # Reject writes above 50Gi
+  - type: PersistentVolumeClaim
+    max:
+      storage: 50Gi
+    min:
+      storage: 1Gi
 ```
 
 ### 4. Use Volume Claim Templates
@@ -438,7 +435,7 @@ volumeClaimTemplates:
 ---
 
 **Related Documents:**
-- [1301: K3s Architecture](./1301-K3s-Master-Worker-Arch.md)
-- [1401: Ollama Enterprise](../1400-llmops/1401-Ollama-Enterprise.md)
-- [6101: HNSW Indexing](../../phase6-rag/6100-vector/6101-HNSW-Indexing.md)
+- [1301: K3s Master-Worker Architecture](./1301-K3s-Master-Worker-Arch.md)
+- [1401: Ollama Enterprise Deployment](../1400-llmops/1401-Ollama-Enterprise.md)
+- [6101: HNSW Indexing - Efficient Semantic Search at Scale](../../phase6-rag/6100-vector/6101-HNSW-Indexing.md)
 
