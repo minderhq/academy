@@ -1,14 +1,30 @@
 ---
 Document ID: TUTORIAL-009
 Title: "TUTORIAL-009: Advanced RAG Techniques"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-25
 Status: Complete
-Difficulty: Intermediate
+Difficulty: Advanced
 ---
 
 # TUTORIAL-009: Advanced RAG Techniques
 
-## Overview
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Part 1: Hybrid Search](#part-1-hybrid-search)
+- [Part 2: Re-ranking](#part-2-re-ranking)
+- [Part 3: GraphRAG](#part-3-graphrag)
+- [Part 4: Long-Context Handling](#part-4-long-context-handling)
+- [Part 5: Evaluation](#part-5-evaluation)
+- [Part 6: Performance Optimization](#part-6-performance-optimization)
+- [Exercises](#exercises)
+- [References](#references)
+- [Next Steps](#next-steps)
+
+---
+
+## Abstract
 
 This tutorial covers advanced Retrieval-Augmented Generation techniques including hybrid search, re-ranking, and GraphRAG.
 
@@ -30,6 +46,18 @@ After this tutorial, you will:
 ---
 
 ## Part 1: Hybrid Search
+
+### Installation
+
+```bash
+pip install rank-bm25 sentence-transformers neo4j spacy
+python -m spacy download en_core_web_sm
+```
+
+Part 1 needs rank-bm25, Part 2 sentence-transformers, and Part 3
+neo4j + spaCy — the spaCy pipeline must be downloaded once with the
+second command before `spacy.load("en_core_web_sm")` will work.
+The remaining parts are standard library only.
 
 ### Combining Vector and BM25 Search
 
@@ -123,11 +151,21 @@ def reciprocal_rank_fusion(
     sorted_results = sorted(fused_scores.items(), key=lambda x: x[1], reverse=True)
     return sorted_results
 
-# Usage
-vector_results = retriever.vector_search(query, k=20)
-keyword_results = retriever.keyword_search(query, k=20)
+# Usage - RRF fuses ranked lists from independent retrievers, each a
+# list of (doc_id, score) pairs ordered best-first. Only the ranks
+# matter; the raw scores are discarded.
+vector_results = [(0, 0.91), (2, 0.87), (1, 0.85)]
+keyword_results = [(1, 8.2), (0, 7.9), (3, 7.1)]
 
 fused = reciprocal_rank_fusion([vector_results, keyword_results])
+print([(doc_id, round(score, 4)) for doc_id, score in fused[:3]])
+
+# Expected Output:
+# [(0, 0.0325), (1, 0.0323), (2, 0.0161)]
+# (k=60: each list contributes 1/(60 + rank + 1). Docs 0 and 1 were
+#  found by BOTH retrievers, so their terms add - 1/61+1/62 and
+#  1/63+1/61; docs 2 and 3 were found by only one, which is exactly
+#  the recall boost RRF is used for)
 ```
 
 ---
@@ -244,7 +282,10 @@ class GraphRAG:
                         name=entity, type=label
                     )
 
-                # Create relationships
+                # Create relationships. MATCH (not MERGE) means pairs
+                # whose endpoints were never created as Entity nodes
+                # above are silently skipped - only known entities
+                # get edges.
                 for source, rel_type, target in relationships:
                     session.run("""
                         MATCH (s:Entity {name: $source})
@@ -304,15 +345,20 @@ class ContextManager:
 
         Strategies:
         - stuff: Combine all (if fits)
-        - map_reduce: Summarize then combine
+        - map_reduce: Summarize then combine (needs an LLM
+          summarizer - raises NotImplementedError here)
         - refine: Iteratively refine
         """
         if strategy == "stuff":
             return self._stuff_context(retrieved_docs, query)
         elif strategy == "map_reduce":
-            return self._map_reduce_context(retrieved_docs, query)
+            # Requires an LLM summarizer this class does not hold -
+            # left as an exercise, so fail loudly rather than pretend
+            raise NotImplementedError("map_reduce needs a summarizer; see Exercises")
         elif strategy == "refine":
             return self._refine_context(retrieved_docs, query)
+        else:
+            raise ValueError(f"Unknown strategy: {strategy}")
 
     def _stuff_context(self, docs: List[Dict], query: str) -> str:
         """Simple concatenation (if fits in context)"""
@@ -321,6 +367,8 @@ class ContextManager:
         total_tokens = 0
         for doc in docs:
             doc_text = doc["text"]
+            # Word count as a rough token proxy - real tokenizers
+            # yield more tokens than words for typical English prose
             tokens = len(doc_text.split())
 
             if total_tokens + tokens > self.context_budget:
@@ -349,8 +397,10 @@ class ContextManager:
 ### RAG Evaluation Metrics
 
 ```python
-from typing import List
-import numpy as np
+# List/Dict were already imported in Parts 1-2; the old numpy import
+# here was unused - every metric below is pure Python.
+import math
+from collections import Counter
 
 class RAGEvaluator:
     """Evaluate RAG system performance"""
@@ -373,22 +423,27 @@ class RAGEvaluator:
         for query, true_docs, true_answer in zip(
             test_queries, ground_truth_docs, ground_truth_answers
         ):
-            # Evaluate retrieval
+            # Evaluate retrieval - accumulate per-query values; the old
+            # update() overwrote the same keys every iteration, so
+            # _average_dict would have averaged a single (last-query)
+            # sample
             retrieved = self.retriever.search(query, k=10)
-            retrieval_metrics.update({
+            for name, value in {
                 "precision@5": self._precision_at_k(retrieved, true_docs, k=5),
                 "recall@10": self._recall_at_k(retrieved, true_docs, k=10),
                 "mrr": self._mrr(retrieved, true_docs)
-            })
+            }.items():
+                retrieval_metrics.setdefault(name, []).append(value)
 
             # Evaluate generation
             context = "\n".join([d["text"] for d in retrieved[:3]])
             response = self.generator.generate(query, context)
 
-            generation_metrics.update({
+            for name, value in {
                 "bleu": self._bleu_score(response, true_answer),
                 "rouge": self._rouge_score(response, true_answer)
-            })
+            }.items():
+                generation_metrics.setdefault(name, []).append(value)
 
         return {
             "retrieval": self._average_dict(retrieval_metrics),
@@ -410,6 +465,61 @@ class RAGEvaluator:
             if doc_id in true_docs:
                 return 1 / (i + 1)
         return 0
+
+    def _average_dict(self, metrics):
+        """Mean of each metric across all evaluated queries"""
+        return {
+            name: sum(values) / len(values)
+            for name, values in metrics.items()
+        }
+
+    def _bleu_score(self, response, reference, max_n=4):
+        """Simplified BLEU-N: clipped n-gram precisions, geometric
+        mean, brevity penalty. Production code should use sacrebleu."""
+        resp = response.lower().split()
+        ref = reference.lower().split()
+        if not resp or not ref:
+            return 0.0
+
+        precisions = []
+        for n in range(1, max_n + 1):
+            resp_ngrams = Counter(
+                tuple(resp[i:i + n]) for i in range(len(resp) - n + 1)
+            )
+            ref_ngrams = Counter(
+                tuple(ref[i:i + n]) for i in range(len(ref) - n + 1)
+            )
+            clipped = sum((resp_ngrams & ref_ngrams).values())
+            total = max(sum(resp_ngrams.values()), 1)
+            precisions.append(clipped / total)
+
+        if min(precisions) == 0:
+            return 0.0
+        geo_mean = math.exp(sum(math.log(p) for p in precisions) / max_n)
+        brevity = min(1.0, math.exp(1 - len(ref) / len(resp)))
+        return geo_mean * brevity
+
+    def _rouge_score(self, response, reference):
+        """ROUGE-L: F1 over the longest common subsequence.
+        Production code should use the rouge-score package."""
+        resp = response.lower().split()
+        ref = reference.lower().split()
+        if not resp or not ref:
+            return 0.0
+
+        lcs = [[0] * (len(ref) + 1) for _ in range(len(resp) + 1)]
+        for i in range(1, len(resp) + 1):
+            for j in range(1, len(ref) + 1):
+                if resp[i - 1] == ref[j - 1]:
+                    lcs[i][j] = lcs[i - 1][j - 1] + 1
+                else:
+                    lcs[i][j] = max(lcs[i - 1][j], lcs[i][j - 1])
+        lcs_len = lcs[-1][-1]
+        if lcs_len == 0:
+            return 0.0
+        precision = lcs_len / len(resp)
+        recall = lcs_len / len(ref)
+        return 2 * precision * recall / (precision + recall)
 ```
 
 ---
@@ -420,8 +530,6 @@ class RAGEvaluator:
 
 ```python
 import hashlib
-import pickle
-from functools import lru_cache
 
 class CachedRetriever:
     """Retriever with caching for common queries"""
@@ -478,4 +586,18 @@ class CachedRetriever:
 
 ---
 
-**Next Steps:** LAB-005: GraphRAG or EXP_6201: Hybrid Search
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [TUTORIAL-003: RAG Basics](TUTORIAL-003-RAG-Basics.md)
+- [LAB-002: RAG Implementation](../labs/LAB-002-RAG-Implementation.md)
+- [LAB-005: GraphRAG](../labs/LAB-005-GraphRAG.md)
+- [6201: Hybrid Search](../../phases/phase6-rag/6200-retrieval/6201-Hybrid-Search.md)
+
+---
+
+## Next Steps
+
+- Hands-on: **[6201: Hybrid Search](../../phases/phase6-rag/6200-retrieval/6201-Hybrid-Search.md)**
+- Practice: **[LAB-005: GraphRAG](../labs/LAB-005-GraphRAG.md)**
