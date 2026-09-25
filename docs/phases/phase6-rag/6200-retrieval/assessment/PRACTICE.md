@@ -1,7 +1,7 @@
 ---
 Document ID: 6200-PRACTICE
 Title: "6200: Advanced Retrieval - Practice"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Advanced
 ---
@@ -349,8 +349,13 @@ for i, res in enumerate(results, 1):
 ### Exercise 5: Hierarchical Retrieval
 
 ```python
+import numpy as np
+
+
 class HierarchicalRetriever:
     def __init__(self, documents, window_size=3):
+        self.window_size = window_size
+
         # Create document hierarchy
         self.chunks = documents
         self.parent_docs = self._create_parent_docs(window_size)
@@ -392,11 +397,12 @@ class HierarchicalRetriever:
         seen_parents = set()
 
         for chunk_idx in top_chunk_indices:
-            parent_idx = chunk_idx // 3
+            parent_idx = chunk_idx // self.window_size
             if parent_idx not in seen_parents:
                 seen_parents.add(parent_idx)
                 # Aggregate scores from all chunks in this parent
-                parent_chunks = range(parent_idx * 3, min((parent_idx + 1) * 3, len(self.chunks)))
+                start = parent_idx * self.window_size
+                parent_chunks = range(start, min(start + self.window_size, len(self.chunks)))
                 aggregated_score = float(np.mean([chunk_scores[i] for i in parent_chunks]))
                 results.append({
                     "document": self.parent_docs[parent_idx],
@@ -427,13 +433,28 @@ for i, res in enumerate(results, 1):
 ### Exercise 6: Multi-Vector Retrieval
 
 ```python
+import numpy as np
+
+
 def multi_vector_retrieve(documents, query, embedder, top_k=5):
     """Retrieve using multiple document representations."""
 
-    # Create multiple representations
+    # Create genuinely different representations: the title (first
+    # sentence), the significant keywords (stopwords dropped), and the
+    # full text. Two near-identical views would just double-count the
+    # first sentence instead of adding signal.
+    stopwords = {
+        "the", "a", "an", "is", "are", "was", "were", "and", "or",
+        "of", "to", "in", "for", "with", "on", "from", "that", "this",
+    }
+
+    def keywords(doc):
+        words = [w.strip(".,") for w in doc.lower().split()]
+        return " ".join(w for w in words if w and w not in stopwords)
+
     representations = {
         "title": [doc.split(".")[0] for doc in documents],  # First sentence as title
-        "first_sentence": [doc.split(".")[0] + "." for doc in documents],
+        "keywords": [keywords(doc) for doc in documents],
         "full": documents,
     }
 
@@ -448,11 +469,11 @@ def multi_vector_retrieve(documents, query, embedder, top_k=5):
     all_scores = []
     weights = {
         "title": 0.4,
-        "first_sentence": 0.3,
+        "keywords": 0.3,
         "full": 0.3,
     }
 
-    for key in ["title", "first_sentence", "full"]:
+    for key in ["title", "keywords", "full"]:
         scores = np.dot(embedded[key], query_emb.T).flatten()
         # Normalize scores
         scores = (scores - scores.min()) / (scores.max() - scores.min() + 1e-8)
@@ -496,6 +517,9 @@ for i, res in enumerate(results, 1):
 ### Exercise 7: Recursive Retrieval
 
 ```python
+import numpy as np
+
+
 class RecursiveRetriever:
     def __init__(self, documents):
         # Build recursive index
@@ -508,7 +532,9 @@ class RecursiveRetriever:
         sentences = []
         for doc in docs:
             sents = doc.split(". ")
-            sentences.extend([s + "." for s in sents if s])
+            # rstrip normalizes pieces that already end in a period,
+            # otherwise every sentence would end in ".."
+            sentences.extend(s.rstrip(".") + "." for s in sents if s)
         return sentences
 
     def _build_index(self):

@@ -1,7 +1,7 @@
 ---
 Document ID: 6300-PRACTICE
 Title: "6300: Context Window Optimization - Practice"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Advanced
 ---
@@ -96,16 +96,20 @@ summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
 def compress_context(long_context, target_length=512):
     """Compress long context by summarizing older parts."""
 
-    tokens = len(long_context.split())
+    # Everything is measured in words here: target_length, chunk_size
+    # and the split below share one unit, so a "512" budget really is
+    # 512 words (the old version compared a word count against
+    # character slices).
+    words = long_context.split()
 
-    if tokens <= target_length:
+    if len(words) <= target_length:
         return long_context
 
-    # Split into chunks
-    chunk_size = 1024
+    # Split into word-based chunks
+    chunk_size = 256
     chunks = [
-        long_context[i:i+chunk_size]
-        for i in range(0, len(long_context), chunk_size)
+        " ".join(words[i:i+chunk_size])
+        for i in range(0, len(words), chunk_size)
     ]
 
     # Summarize older chunks, keep recent ones
@@ -137,7 +141,8 @@ print(compressed[:300] + "...")
 # Expected output:
 # - Original text compressed significantly
 # - Older content summarized, recent content preserved
-# - Compression ratio: ~30-50%
+# - Compression ratio: roughly 40-70%, depending on how much the
+#   older half condenses
 ```
 
 ### Exercise 3: Sliding Window Attention
@@ -205,8 +210,12 @@ if __name__ == "__main__":
     print(f"Sliding window attention working!")
 
 # Expected output:
-# - Attention only computed within sliding window
-# - Reduces computation from O(n^2) to O(n * window_size)
+# - Each position only attends within its sliding window (semantics)
+# - Note: this naive implementation still builds the full seq_len x
+#   seq_len score matrix (plus a Python loop for the window mask) -
+#   the O(n * window_size) savings only materialize in production
+#   kernels that exploit the sparsity (FlashAttention, Mistral's
+#   sliding-window attention)
 # - Enables processing of much longer sequences
 ```
 
@@ -253,28 +262,46 @@ def chunk_context(context, chunk_size=512, overlap=50, strategy="fixed"):
         return _recursive_split(context, chunk_size, separators)
 
 def _recursive_split(text, chunk_size, separators):
-    """Recursively split text by separators."""
+    """Split text by the coarsest separator that appears, packing the
+    pieces greedily; pieces still over budget fall through to the next
+    (finer) separator."""
     if len(text) <= chunk_size:
         return [text]
 
-    for sep in separators:
-        if sep in text:
-            parts = text.split(sep)
-            chunks = []
-            current = ""
+    for i, sep in enumerate(separators):
+        if not sep:
+            # Last resort: no separator left ("".split would raise
+            # ValueError), so cut on fixed character boundaries.
+            return [text[j:j+chunk_size] for j in range(0, len(text), chunk_size)]
 
-            for part in parts:
-                if len(current) + len(part) + len(sep) <= chunk_size:
-                    current += part + sep
-                else:
-                    if current:
-                        chunks.append(current.strip())
-                    current = part + sep
+        if sep not in text:
+            continue
 
-            if current:
-                chunks.append(current.strip())
+        rest = separators[i+1:]
+        chunks = []
+        current = ""
 
-            return chunks
+        for part in text.split(sep):
+            if len(part) > chunk_size and rest:
+                # Flush what we have, then recurse into the oversized
+                # piece with finer separators.
+                if current:
+                    chunks.append(current.strip())
+                    current = ""
+                chunks.extend(_recursive_split(part, chunk_size, rest))
+                continue
+
+            if len(current) + len(part) + len(sep) <= chunk_size:
+                current += part + sep
+            else:
+                if current:
+                    chunks.append(current.strip())
+                current = part + sep
+
+        if current:
+            chunks.append(current.strip())
+
+        return chunks
 
     return [text]
 
@@ -392,13 +419,14 @@ for i, item in enumerate(selected, 1):
 ### Exercise 6: LongContext LLM (Llama-2-Long style)
 
 ```python
-from transformers import AutoModelForCausalLM
+from transformers import AutoModelForCausalLM, AutoTokenizer
 
 # Use long context model
 model = AutoModelForCausalLM.from_pretrained(
     "togethercomputer/Llama-2-7B-32K",  # 32K context
     device_map="auto"
 )
+tokenizer = AutoTokenizer.from_pretrained("togethercomputer/Llama-2-7B-32K")
 
 def generate_with_long_context(model, tokenizer, prompt, documents):
     """Generate with long context window."""
@@ -464,7 +492,7 @@ print("Long context generation ready!")
 ### Exercise 7: Context Distillation
 
 ```python
-def distill_context(teacher_model, student_model, long_contexts, queries):
+def distill_context(teacher_model, teacher_tokenizer, long_contexts, queries):
     """Distill knowledge from long-context to shorter-context model."""
 
     # Generate answers with teacher (long context)
@@ -473,10 +501,11 @@ def distill_context(teacher_model, student_model, long_contexts, queries):
     for context, query in zip(long_contexts, queries):
         prompt = f"Context: {context}\n\nQuestion: {query}\nAnswer:"
 
-        # Use teacher with full context
-        inputs = teacher_model.tokenizer(prompt, return_tensors="pt", truncation=False)
+        # Use teacher with full context. The tokenizer is passed in
+        # separately - HF models don't carry a .tokenizer attribute.
+        inputs = teacher_tokenizer(prompt, return_tensors="pt", truncation=False)
         outputs = teacher_model.generate(**inputs, max_new_tokens=200)
-        answer = teacher_model.tokenizer.decode(outputs[0], skip_special_tokens=True)
+        answer = teacher_tokenizer.decode(outputs[0], skip_special_tokens=True)
         teacher_answers.append(answer)
 
     # Compress contexts for student
@@ -504,13 +533,13 @@ def distill_context(teacher_model, student_model, long_contexts, queries):
     }
 
 # Test
-teacher_model = None  # Your long-context teacher model
-student_model = None  # Your student model
+teacher_model = None      # Your long-context teacher model
+teacher_tokenizer = None  # Its tokenizer
 
 long_contexts = ["...long context..."] * 3
 queries = ["What is X?", "Explain Y", "Compare Z and W"]
 
-# results = distill_context(teacher_model, student_model, long_contexts, queries)
+# results = distill_context(teacher_model, teacher_tokenizer, long_contexts, queries)
 
 print("Context distillation framework ready!")
 print("Student will learn to answer using compressed contexts")
