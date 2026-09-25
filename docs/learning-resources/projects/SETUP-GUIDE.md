@@ -70,7 +70,6 @@ project-XXX/
 ### Docker Compose Pattern
 
 ```yaml
-version: '3.8'
 
 services:
   app:

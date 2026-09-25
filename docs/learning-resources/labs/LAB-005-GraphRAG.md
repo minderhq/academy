@@ -602,7 +602,6 @@ if __name__ == "__main__":
 
 ```yaml
 # ~/lab-005-graphrag/docker-compose.yml
-version: "3.8"
 
 services:
   # Neo4j Graph Database

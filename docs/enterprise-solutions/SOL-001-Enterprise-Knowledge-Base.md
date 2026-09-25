@@ -83,7 +83,6 @@ End-to-end implementation guide for building an enterprise knowledge base using 
 
 ```yaml
 # docker-compose.yml
-version: '3.8'
 
 services:
   # Qdrant Vector Database
@@ -904,7 +903,6 @@ CMD ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "8000"]
 
 ```yaml
 # docker-compose.prod.yml
-version: '3.8'
 
 services:
   api:

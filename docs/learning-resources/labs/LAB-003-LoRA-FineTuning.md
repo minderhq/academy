@@ -859,7 +859,6 @@ make
 ```bash
 # Create docker-compose.yml
 cat > ~/lab-003-lora/docker-compose.yml << 'EOF'
-version: "3.8"
 
 services:
   vllm-ft:

@@ -338,7 +338,6 @@ http {
 
 ```yaml
 # File: docker-compose.yml
-version: '3.8'
 
 services:
   api-1:

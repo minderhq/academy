@@ -104,7 +104,6 @@ mkdir -p scripts
 
 ```yaml
 # ~/ai-assistant/docker-compose.yml
-version: "3.8"
 
 services:
   # Neo4j Knowledge Graph

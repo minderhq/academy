@@ -245,8 +245,8 @@ docker run -d \
 
 ```bash
 cat > docker-compose.yml << 'EOF'
-version: "3.8"
-
+# Note: older examples start with `version: "3.8"` - the key is
+# obsolete in the Compose Spec; the modern CLI warns on it, so omit it.
 services:
   web:
     build: .

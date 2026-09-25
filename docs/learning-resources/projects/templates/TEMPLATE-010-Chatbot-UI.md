@@ -228,7 +228,6 @@ export class ChatWebSocket {
 
 ```yaml
 # deployment/docker-compose.yml
-version: '3.8'
 services:
   frontend:
     build: ./frontend

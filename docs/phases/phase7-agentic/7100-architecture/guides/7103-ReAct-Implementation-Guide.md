@@ -610,7 +610,6 @@ class HierarchicalAgent(ReActAgent):
 
 ```yaml
 # docker-compose-agent.yml
-version: "3.8"
 
 services:
   react-agent:

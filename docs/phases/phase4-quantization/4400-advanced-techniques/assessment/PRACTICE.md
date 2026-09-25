@@ -450,7 +450,6 @@ if __name__ == "__main__":
 
 4. docker-compose.yml
 ───────────────────────────────────────────────────────────
-version: '3.8'
 services:
   api:
     build: .

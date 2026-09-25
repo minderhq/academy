@@ -16,7 +16,6 @@ Complete solution for deploying ML models with blue-green strategy.
 ## Docker Compose Setup
 
 ```yaml
-version: '3.8'
 
 services:
   # Current version (Blue)

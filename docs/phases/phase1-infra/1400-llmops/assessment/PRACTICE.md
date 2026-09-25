@@ -574,7 +574,6 @@ server {
 
 ```yaml
 # docker-compose.yml - Complete vLLM cluster setup
-version: '3.8'
 
 services:
   vllm-1:

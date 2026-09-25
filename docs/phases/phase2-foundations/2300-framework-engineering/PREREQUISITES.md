@@ -255,7 +255,6 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
 **Example: Docker Compose**
 
 ```yaml
-version: '3.8'
 
 services:
   api:

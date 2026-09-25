@@ -307,7 +307,6 @@ Bottleneck: Model forward pass (250ms)
 **Docker Compose Setup:**
 ```yaml
 # docker-compose.yml
-version: '3.8'
 services:
   prometheus:
     image: prom/prometheus:latest

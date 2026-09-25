@@ -71,7 +71,6 @@ cd ~/monitoring-tutorial
 
 # Create docker-compose.yml
 cat > docker-compose.yml << 'EOF'
-version: "3.8"
 
 services:
   # Prometheus - Metrics Collection

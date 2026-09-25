@@ -306,7 +306,6 @@ Connect all services with Docker Compose.
 
 ```yaml
 # ~/lab-001-docker-llm/docker-compose.yml
-version: '3.8'
 
 services:
   # Ollama LLM service

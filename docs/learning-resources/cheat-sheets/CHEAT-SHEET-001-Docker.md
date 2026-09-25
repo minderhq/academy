@@ -317,7 +317,7 @@ HEALTHCHECK CMD curl -f http://localhost:8000/ || exit 1
 
 ### Database + Application
 ```yaml
-version: "3.8"
+# version: is obsolete in the Compose Spec - omit it
 services:
   db:
     image: postgres:15

@@ -598,7 +598,6 @@ EOF
 
 ```bash
 cat > ~/lab-002-rag/docker-compose.yml << 'EOF'
-version: "3.8"
 
 services:
   # Ollama LLM server

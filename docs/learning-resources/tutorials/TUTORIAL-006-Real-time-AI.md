@@ -405,7 +405,6 @@ if __name__ == "__main__":
 
 ```yaml
 # File: docker-compose.realtime.yml
-version: '3.8'
 
 services:
   realtime-api:

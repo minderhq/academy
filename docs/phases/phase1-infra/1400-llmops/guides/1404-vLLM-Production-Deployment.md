@@ -85,7 +85,6 @@ Complete production deployment guide for vLLM (Virtual Large Language Model) hig
 
 ```yaml
 # docker-compose.yml
-version: "3.8"
 
 services:
   vllm-mistral:

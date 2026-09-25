@@ -81,7 +81,6 @@ mkdir -p qdrant-cluster/{node1,node2,node3}
 
 # Create docker-compose for Qdrant cluster
 cat > qdrant-cluster/docker-compose.yml << 'EOF'
-version: '3.8'
 
 services:
   qdrant-node1:
@@ -1126,7 +1125,6 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
 
 ```yaml
 # File: rag-service/docker-compose.yml
-version: '3.8'
 
 services:
   rag-api:

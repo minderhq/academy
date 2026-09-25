@@ -159,7 +159,6 @@ docker run -d --gpus all \
 
 ```yaml
 # docker-compose.yml
-version: "3.8"
 
 services:
   tgi-mistral:

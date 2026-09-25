@@ -299,7 +299,6 @@ server {
 
 **Production Compose:**
 ```yaml
-version: "3.8"
 
 services:
   nginx:

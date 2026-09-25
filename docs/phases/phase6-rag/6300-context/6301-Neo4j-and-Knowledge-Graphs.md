@@ -116,7 +116,6 @@ docker run -d \
 
 # Or using Docker Compose
 cat > docker-compose.yml << EOF
-version: '3'
 services:
   neo4j:
     image: neo4j:latest

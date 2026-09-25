@@ -82,7 +82,6 @@ cd /srv/neo4j
 
 # Create docker-compose.yml
 cat > docker-compose.yml << 'EOF'
-version: "3.8"
 
 services:
   neo4j:

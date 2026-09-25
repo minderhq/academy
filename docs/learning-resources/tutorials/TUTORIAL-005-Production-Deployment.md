@@ -282,7 +282,6 @@ docker run --rm -v $(pwd)/nginx:/etc/nginx nginx nginx -t
 
 ```bash
 cat > docker-compose.prod.yml << 'EOF'
-version: "3.8"
 
 services:
   # Nginx Reverse Proxy

@@ -83,7 +83,6 @@ cd /srv/qdrant
 
 # Create docker-compose.yml
 cat > docker-compose.yml << 'EOF'
-version: "3.8"
 
 services:
   qdrant:

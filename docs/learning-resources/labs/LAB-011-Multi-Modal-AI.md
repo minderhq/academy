@@ -1400,7 +1400,6 @@ if __name__ == "__main__":
 
 ```yaml
 # File: docker-compose.multimodal.yml
-version: '3.8'
 
 services:
   multimodal-api:

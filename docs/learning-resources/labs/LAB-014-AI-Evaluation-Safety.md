@@ -1272,7 +1272,6 @@ if __name__ == "__main__":
 
 ```yaml
 # File: docker-compose.evaluation.yml
-version: '3.8'
 
 services:
   evaluation-api:

@@ -332,7 +332,6 @@ python ~/lab-001-docker-llm/test_chat.py
 
 ```bash
 cat > ~/lab-001-docker-llm/docker-compose.yml << 'EOF'
-version: "3.8"
 
 services:
   # Ollama LLM server
@@ -449,7 +448,6 @@ docker-compose logs -f api
 
 ```bash
 cat > ~/lab-001-docker-llm/docker-compose.yml << 'EOF'
-version: "3.8"
 
 services:
   ollama:

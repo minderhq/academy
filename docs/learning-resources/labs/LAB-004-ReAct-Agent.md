@@ -805,7 +805,6 @@ pydantic==2.5.3
 
 ```yaml
 # ~/lab-004-react/docker-compose.yml
-version: "3.8"
 
 services:
   # Ollama LLM

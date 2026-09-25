@@ -105,7 +105,6 @@ graph TB
 
 ```yaml
 # docker-compose.yml for production
-version: '3.8'
 
 services:
   # vLLM inference server
@@ -529,11 +528,13 @@ start_http_server(8000)
         "type": "graph",
         "targets": [
           {
-            "expr": "histogram_quantile(0.95, llm_request_duration_seconds_bucket)",
+            # histogram_quantile needs rate() over the _bucket series:
+            # a raw histogram is cumulative counts, not a distribution
+            "expr": "histogram_quantile(0.95, rate(llm_request_duration_seconds_bucket[5m]))",
             "legendFormat": "P95 - {{model}}"
           },
           {
-            "expr": "histogram_quantile(0.99, llm_request_duration_seconds_bucket)",
+            "expr": "histogram_quantile(0.99, rate(llm_request_duration_seconds_bucket[5m]))",
             "legendFormat": "P99 - {{model}}"
           }
         ]

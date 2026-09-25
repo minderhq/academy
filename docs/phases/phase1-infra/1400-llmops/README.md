@@ -231,7 +231,6 @@ curl http://localhost:8000/generate \
 **Docker Deployment:**
 ```yaml
 # docker-compose.yml
-version: '3.8'
 services:
   vllm:
     image: vllm/vllm-openai:latest
@@ -449,8 +448,9 @@ panels:
   - title: Tokens per Second
     query: rate(vllm_tokens_generated_total[1m])
 
-  - title: Request Latency (p50, p95, p99)
-    query: histogram_quantile(0.95, rate(vllm_request_duration_seconds[1m]))
+  - title: Request Latency (p95)
+    # quantiles come from the cumulative _bucket series via rate()
+    query: histogram_quantile(0.95, rate(vllm_request_duration_seconds_bucket[5m]))
 
   - title: GPU Utilization
     query: DCGM_FI_DEV_GPU_UTIL
