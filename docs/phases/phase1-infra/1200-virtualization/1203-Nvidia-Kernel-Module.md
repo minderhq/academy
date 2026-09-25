@@ -3,7 +3,7 @@ Document ID: 1203
 Title: NVIDIA Kernel Module Management
 Phase: 1
 Module: 1200
-Last Updated: 2026-09-24
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -62,7 +62,8 @@ This document covers NVIDIA driver and kernel module management for an 11GB-clas
                   ↓
 ┌─────────────────────────────────────────┐
 │         Kernel Modules                  │
-│  nvidia.ko, nvidia-uvm.ko, nvidia-mig.ko│
+│  nvidia.ko, nvidia-uvm.ko,              │
+│  nvidia-modeset.ko, nvidia-drm.ko       │
 └─────────────────────────────────────────┘
                   ↓
 ┌─────────────────────────────────────────┐
@@ -76,9 +77,12 @@ This document covers NVIDIA driver and kernel module management for an 11GB-clas
 ```text
 nvidia.ko           - Main driver module (4352 CUDA cores management)
 nvidia-uvm.ko       - Unified Virtual Memory (for CUDA managed memory)
-nvidia-mig.ko       - Multi-Instance GPU (not used on 11GB-class GPU)
+nvidia-modeset.ko   - Kernel mode-setting (display config; nvidia-drm depends on it)
 nvidia-drm.ko       - Direct Rendering Manager (display output)
 nvidia-peermem.ko   - Peer-to-peer memory (GPUDirect)
+
+# MIG (Multi-Instance GPU) is a driver feature of A100/A30/H100-class
+# GPUs managed through NVML - it is not a separate kernel module.
 ```
 
 ### Module Loading Order
@@ -86,8 +90,9 @@ nvidia-peermem.ko   - Peer-to-peer memory (GPUDirect)
 # Critical load order
 1. nvidia          # Core driver
 2. nvidia-uvm      # Memory management
-3. nvidia-drm      # Display (if needed)
-4. nvidia-peermem  # Optional, for RDMA
+3. nvidia-modeset  # Display mode-setting (nvidia-drm needs it)
+4. nvidia-drm      # Display (if needed)
+5. nvidia-peermem  # Optional, for RDMA
 ```
 
 ## Installation Methods
@@ -97,8 +102,9 @@ nvidia-peermem.ko   - Peer-to-peer memory (GPUDirect)
 # Install DKMS build dependencies
 apt install dkms build-essential linux-headers-$(uname -r)
 
-# Install NVIDIA driver with DKMS
-apt install nvidia-driver-535
+# Install NVIDIA driver with DKMS - the -dkms package registers the
+# module build with DKMS
+apt install nvidia-driver-535 nvidia-dkms-535
 
 # DKMS rebuilds module on kernel update automatically
 dkms status
@@ -123,12 +129,12 @@ lsmod | grep nvidia
 # Download from NVIDIA
 wget https://download.nvidia.com/XFree86/Linux-x86_64/535.154.05/NVIDIA-Linux-x86_64-535.154.05.run
 
-# Install with kernel module source
+# Single invocation: point at the matching kernel headers and skip
+# the OpenGL userspace libraries (they conflict with mesa)
 chmod +x NVIDIA-Linux-x86_64-*.run
-./NVIDIA-Linux-x86_64-*.run --kernel-source-path /usr/src/linux-headers-$(uname -r)
-
-# Don't install OpenGL (conflicts with mesa)
-./NVIDIA-Linux-x86_64-*.run --no-opengl-files --kernel-source-only
+./NVIDIA-Linux-x86_64-*.run \
+  --kernel-source-path=/usr/src/linux-headers-$(uname -r) \
+  --no-opengl-files
 ```
 
 ## Module Configuration
@@ -161,10 +167,11 @@ options nvidia NVreg_EnableGpuFirmware=0
 options nvidia NVreg_EnablePageRetirement=1
 options nvidia NVreg_UsePageAttributeTable=1
 options nvidia NVreg_EnableStreamMemOPs=1
-options nvidia NVreg_EnableGpuFirmware=0
 options nvidia NVreg_DynamicPowerManagement=0
 
 # Explanation:
+# EnableGpuFirmware: 0 = legacy firmware path instead of the GSP
+#   (GPU System Processor) firmware
 # EnablePageRetirement: Handle bad VRAM pages gracefully
 # UsePageAttributeTable: Improved memory performance
 # EnableStreamMemOPs: Enable CUDA stream operations
@@ -197,7 +204,7 @@ systemctl enable nvidia-persistence.service
 ## CUDA Memory Management
 
 ### Unified Memory (nvidia-uvm)
-```yaml
+```text
 Standard Memory:     CPU pointer → memcpy → GPU pointer
 Unified Memory:      Single pointer accessible by CPU and GPU
 
@@ -220,11 +227,12 @@ nvidia-smi -q | grep -A 3 "Bar1 Memory Usage"
 
 ### Power States (P-States)
 ```bash
-P0:  Maximum performance (all cores active)
-P1-P8: Intermediate states
-P8:  Minimum power (idle)
+# P0:  Maximum performance (all cores active)
+# P8:  Idle (minimum power draw); P1-P12 are intermediate
+#      states - which ones a card exposes varies by model
 
-For eGPU, avoid P-state switching:
+# For eGPU, cap power draw at TDP - steadier clocks under load
+# (enclosures often have weak cooling):
 nvidia-smi -pl 250  # Set power limit to TDP
 ```
 
@@ -233,7 +241,7 @@ nvidia-smi -pl 250  # Set power limit to TDP
 # Check current temperature
 nvidia-smi --query-gpu=temperature.gpu --format=csv
 
-# Set fan curve (if available)
+# Pin a static fan speed (static target - not a curve)
 nvidia-settings -a "[gpu:0]/GPUFanControlState=1"
 nvidia-settings -a "[fan:0]/GPUTargetFanSpeed=50"
 
@@ -243,7 +251,7 @@ watch -n 1 nvidia-smi
 
 ## Driver Orchestration in Kubernetes
 
-### Init Container for Driver Loading
+### Init Container for Driver Readiness Check
 ```yaml
 apiVersion: v1
 kind: Pod
@@ -255,16 +263,25 @@ spec:
     - sh
     - -c
     - |
-      # Verify modules loaded
-      lsmod | grep nvidia || exit 1
-      # Verify device files
+      # Host kernel modules are visible through /proc/modules
+      # (the ubuntu base image has no kmod, hence no lsmod):
+      grep -q '^nvidia' /proc/modules || exit 1
+      # Device files need an explicit hostPath mount - the init
+      # container does not request nvidia.com/gpu itself
       ls -l /dev/nvidia0 || exit 1
+    volumeMounts:
+    - name: dev
+      mountPath: /dev
   containers:
   - name: main-app
     image: your-app:latest
     resources:
       limits:
         nvidia.com/gpu: 1
+  volumes:
+  - name: dev
+    hostPath:
+      path: /dev
 ```
 
 ### DaemonSet for Node Management
@@ -285,16 +302,28 @@ spec:
       hostPID: true
       containers:
       - name: validator
-        image: nvidia/driver:535.54.03-ubuntu22.04
+        # Driver containers live on NGC (Docker Hub nvidia/driver is
+        # deprecated); the tag embeds driver AND host kernel version
+        image: nvcr.io/nvidia/driver:535-5.15.0-179-generic-ubuntu22.04
         securityContext:
           privileged: true
         volumeMounts:
         - name: dev
           mountPath: /dev
+        - name: modules
+          mountPath: /lib/modules
+        - name: kernelsrc
+          mountPath: /usr/src
       volumes:
       - name: dev
         hostPath:
           path: /dev
+      - name: modules
+        hostPath:
+          path: /lib/modules
+      - name: kernelsrc
+        hostPath:
+          path: /usr/src
 ```
 
 ## Troubleshooting
@@ -305,8 +334,8 @@ spec:
 |---------|-------|----------|
 | Code 43 | Version mismatch | Update guest driver |
 | Module not loading | Wrong kernel headers | Install `linux-headers-generic` |
-| CUDA OOM | Memory leak | `nvidia-smi --gpu-reset` |
-| Slow transfers | UVM not loaded | `modprobe nvidia-uvm` |
+| CUDA OOM | VRAM still held after crashed/killed pods | Stop GPU pods, then `nvidia-smi --gpu-reset` (reset requires the GPU idle) |
+| CUDA app fails: "UVM not available" | nvidia_uvm not loaded | `modprobe nvidia-uvm` |
 
 ### Diagnostic Commands
 ```bash
@@ -363,6 +392,6 @@ cat /var/log/Xorg.0.log | grep -i nvidia
 
 **Related Documents:**
 - [1202: GPU Passthrough (IOMMU/VFIO)](./1202-TB3-UT3G-Passthrough.md)
-- [1302: GPU Scheduler](../1300-kubernetes/1302-GPU-Scheduler.md)
-- [2203: CUDA Kernel](../../phase2-foundations/2200-frameworks/2203-CUDA-Kernel-Syb-Level.md)
+- [1302: GPU Scheduler Configuration](../1300-kubernetes/1302-GPU-Scheduler.md)
+- [2203: CUDA Kernel Programming and GPU Architecture](../../phase2-foundations/2200-frameworks/2203-CUDA-Kernel-Syb-Level.md)
 
