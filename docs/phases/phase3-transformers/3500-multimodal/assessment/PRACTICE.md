@@ -1,7 +1,7 @@
 ---
 Document ID: 3500-PRACTICE
 Title: "3500: Multimodal AI - Practice"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Advanced
 ---
@@ -75,6 +75,7 @@ print(f"\nBest match: \"{texts[best_idx]}\" with score {similarity[best_idx]:.4f
 ### Exercise 2: Vision Transformer (ViT)
 
 ```python
+import torch
 from transformers import ViTForImageClassification, ViTImageProcessor
 from PIL import Image
 import requests
@@ -94,10 +95,6 @@ inputs = processor(images=image, return_tensors="pt")
 with torch.no_grad():
     outputs = model(**inputs)
     logits = outputs.logits
-
-# Get prediction
-predicted_class_idx = logits.argmax(-1).item()
-predicted_class = model.config.id2label[predicted_class_idx]
 
 # Get top-5 predictions
 top5_idx = logits.topk(5).indices.squeeze().tolist()
@@ -133,7 +130,6 @@ for idx, score in zip(top5_idx, top5_scores):
 ```python
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
 
 class MultimodalFusion(nn.Module):
     """Fusion module for combining text and image features."""
@@ -238,7 +234,9 @@ for fusion_type in ['concat', 'gate', 'add']:
     print(f"{fusion_type.upper()} fusion output shape: {logits.shape}")
 
 # Expected Output:
-# All fusion types produce shape (batch, num_classes) = (4, 10)
+# CONCAT fusion output shape: torch.Size([4, 10])
+# GATE fusion output shape: torch.Size([4, 10])
+# ADD fusion output shape: torch.Size([4, 10])
 ```
 
 **Explanation:**
@@ -257,6 +255,7 @@ for fusion_type in ['concat', 'gate', 'add']:
 ### Exercise 4: Image Captioning with BLIP
 
 ```python
+import torch
 from transformers import BlipProcessor, BlipForConditionalGeneration
 from PIL import Image
 import requests
@@ -304,6 +303,7 @@ print(f"Unconditional caption: \"{unconditional_caption}\"")
 ### Exercise 5: Visual Question Answering
 
 ```python
+import torch
 from transformers import ViltProcessor, ViltForQuestionAnswering
 from PIL import Image
 import requests
@@ -385,7 +385,7 @@ inputs = processor(dummy_audio, return_tensors="pt", sampling_rate=sampling_rate
 with torch.no_grad():
     predicted_ids = model.generate(**inputs)
 
-transcription = processor.decode(predicted_ids[0])
+transcription = processor.decode(predicted_ids[0], skip_special_tokens=True)
 print(f"\nTranscription: {transcription}")
 
 # Expected Output:
@@ -405,8 +405,6 @@ print(f"\nTranscription: {transcription}")
 
 ```python
 import torch
-from sklearn.metrics.pairwise import cosine_similarity
-import numpy as np
 
 class CrossModalRetrieval:
     """Retrieve images given text queries or vice versa."""
@@ -430,7 +428,7 @@ class CrossModalRetrieval:
 
     def encode_texts(self, texts):
         """Encode multiple texts to features."""
-        inputs = self.processor(text=texts, return_tensors="pt, padding=True")
+        inputs = self.processor(text=texts, return_tensors="pt", padding=True)
         with torch.no_grad():
             features = self.model.get_text_features(**inputs)
         features = features / features.norm(dim=-1, keepdim=True)
@@ -474,9 +472,9 @@ print("3. Query with text using retrieve_images()")
 print("4. Get top-k most similar images")
 
 # Expected Output:
-# Query "two cats" returns image with two cats
-# Query "bird" returns bird image
-# Similarity scores indicate relevance
+# The 5 sample texts, then the 4 usage steps
+# (no retrieval runs here - the encode/retrieve methods follow
+# the same flow as Exercise 1: normalize, matmul, top-k)
 ```
 
 ---
