@@ -1,7 +1,7 @@
 ---
 Document ID: 7300-PRACTICE
 Title: "7300: Agent Orchestration - Practice"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Advanced
 ---
@@ -16,6 +16,33 @@ Difficulty: Advanced
 from langchain.agents import AgentExecutor, create_openai_functions_agent
 from langchain.memory import ConversationBufferMemory
 from langchain_openai import ChatOpenAI
+from langchain_core.tools import tool
+
+# NOTE: AgentExecutor + ConversationBufferMemory is the legacy
+# LangChain 0.x pattern (removed in LangChain 1.x); the current path
+# is langchain.agents.create_agent / LangGraph with a checkpointer.
+
+# Shared tools - the same @tool definitions as the 7200 Practice
+# file, repeated here so this file runs standalone.
+@tool
+def calculator(expression: str) -> str:
+    """Evaluate a mathematical expression."""
+    try:
+        return str(eval(expression))
+    except Exception as e:
+        return f"Error: {e}"
+
+@tool
+def search_web(query: str) -> str:
+    """Search the web for information."""
+    # Simplified - in production, use an actual search API
+    return f"Results for: {query}"
+
+@tool
+def get_weather(location: str, unit: str = "celsius") -> str:
+    """Get current weather for a location."""
+    # Simplified - in production, use a weather API
+    return f"Weather in {location}: 22°C, Partly cloudy"
 
 # SOLUTION: Create agent with memory for conversation context
 llm = ChatOpenAI(model="gpt-4", temperature=0)
@@ -280,6 +307,8 @@ for task in tasks:
 ### Exercise 5: Agent Communication Protocol
 
 ```python
+import time
+
 class Message:
     def __init__(self, sender, receiver, content, message_type="request"):
         self.sender = sender
@@ -358,6 +387,9 @@ print(f"Research response: {responses[0].content}")
 ### Exercise 6: Agent Team with Shared Memory
 
 ```python
+import threading
+import time
+
 class SharedMemory:
     def __init__(self):
         self.memory = {}
@@ -417,8 +449,6 @@ class TeamAgent:
         return result["output"]
 
 # SOLUTION: Initialize team with shared memory
-import threading
-
 shared_memory = SharedMemory()
 
 team = {
@@ -446,6 +476,8 @@ print(final_article)
 ### Exercise 7: AutoGPT-style Autonomous Agent
 
 ```python
+import json
+
 class AutonomousAgent:
     def __init__(self, goal, tools):
         self.goal = goal
@@ -505,9 +537,13 @@ Respond in JSON format:
                 print("Goal achieved!")
                 break
 
-            # SOLUTION: Execute the decided action
+            # SOLUTION: Execute the decided action. The model may
+            # return the input as a JSON object or as a JSON string.
             if decision["tool"] != "none":
-                result = self.execute(decision["tool"], json.loads(decision["input"]))
+                tool_input = decision["input"]
+                if isinstance(tool_input, str):
+                    tool_input = json.loads(tool_input)
+                result = self.execute(decision["tool"], tool_input)
                 print(f"Action: {decision['tool']}({decision['input']})")
                 print(f"Result: {result}")
 

@@ -1,7 +1,7 @@
 ---
 Document ID: 7200-PRACTICE
 Title: "7200: Tools & Function Calling - Practice"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Advanced
 ---
@@ -13,7 +13,7 @@ Difficulty: Advanced
 ### Exercise 1: Define Custom Tools
 
 ```python
-from langchain.tools import tool
+from langchain_core.tools import tool
 from typing import Optional
 
 # SOLUTION: Define calculator tool - Complete implementation with error handling
@@ -79,6 +79,8 @@ for tool in tools:
 ### Exercise 2: Implement Tool Calling with OpenAI
 
 ```python
+import json
+
 from openai import OpenAI
 
 client = OpenAI()
@@ -148,11 +150,13 @@ def run_with_tools(user_message):
             function_name = tool_call.function.name
             function_args = json.loads(tool_call.function.arguments)
 
-            # SOLUTION: Execute the requested function
+            # SOLUTION: Execute the requested function. The @tool
+            # decorator wraps the raw callable in .func, so invoke
+            # that - calling the tool object directly is an error.
             if function_name == "calculator":
-                result = calculator(**function_args)
+                result = calculator.func(**function_args)
             elif function_name == "get_weather":
-                result = get_weather(**function_args)
+                result = get_weather.func(**function_args)
             else:
                 result = "Unknown function"
 
@@ -182,6 +186,10 @@ print(result)
 ### Exercise 3: Build Tool-Using Agent
 
 ```python
+# NOTE: create_openai_functions_agent + AgentExecutor is the legacy
+# LangChain 0.x API (removed in LangChain 1.x); the current path is
+# langchain.agents.create_agent / LangGraph. The flow below still
+# teaches the executor loop correctly.
 from langchain.agents import create_openai_functions_agent, AgentExecutor
 from langchain_openai import ChatOpenAI
 from langchain import hub
@@ -348,7 +356,7 @@ def safe_tool_execution(tool, args):
 
 ```python
 import asyncio
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 async def execute_tools_parallel(tools_and_args):
     """Execute multiple tools in parallel."""
@@ -366,7 +374,7 @@ async def execute_tools_parallel(tools_and_args):
             futures[future] = tool_name
 
         # SOLUTION: Collect results from all tasks
-        for future in asyncio.as_completed(futures):
+        for future in as_completed(futures):
             tool_name = futures[future]
             try:
                 result = future.result()
