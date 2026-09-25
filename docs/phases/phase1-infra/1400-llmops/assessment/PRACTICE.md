@@ -1,7 +1,7 @@
 ---
 Document ID: 1400-PRACTICE
 Title: "1400: LLMOps - Practice"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -52,9 +52,13 @@ ollama run llama2:7b "The future of AI is"
 echo "Starting interactive mode (press Ctrl-D to exit)..."
 ollama run llama2:7b
 
-# 6. Test with different parameters
-echo "Testing with custom parameters..."
-ollama run llama2:7b "Explain quantum computing" --temperature 0.5 --num_predict 100
+# 6. Test with different parameters. The ollama CLI itself takes no
+#    sampling flags (--temperature/--num_predict would be rejected) -
+#    parameters are set in a Modelfile or per-request through the
+#    API's options object, as ollama_client.py below does
+printf 'FROM llama2:7b\nPARAMETER temperature 0.5\nPARAMETER num_predict 100\n' > Modelfile
+ollama create llama2-tuned -f Modelfile
+ollama run llama2-tuned "Explain quantum computing"
 
 # Troubleshooting Tips:
 # - If curl fails: Check internet connection and firewall settings
@@ -154,12 +158,14 @@ if __name__ == "__main__":
 
 # 1. Install vLLM
 echo "Installing vLLM..."
-pip install vllm>=0.6.0
+# Quoted: an unquoted >= is a shell redirect - it installs the latest
+# vllm and silently creates a file named "=0.6.0"
+pip install "vllm>=0.6.0"
 
 # 2. Start vLLM server with optimized settings
 echo "Starting vLLM server..."
 python -m vllm.entrypoints.openai.api_server \
-    --model meta-llama/Llama-2-7b-hf \
+    --model Qwen/Qwen2.5-7B-Instruct \
     --tensor-parallel-size 1 \
     --dtype half \
     --host 0.0.0.0 \
@@ -175,7 +181,10 @@ python -m vllm.entrypoints.openai.api_server \
 
 # Troubleshooting Tips:
 # - If OOM error: Reduce --gpu-memory-utilization to 0.8 or lower
-# - If model not found: Ensure HUGGING_FACE_TOKEN is set for private models
+# - If the model download fails with 401/403: vLLM reads the HF token
+#   from HF_TOKEN (huggingface_hub does not read HUGGING_FACE_TOKEN);
+#   gated models such as Llama-2 need it, the ungated Qwen model here
+#   does not
 # - If port in use: Change --port to available port
 # - If slow inference: Check GPU utilization with 'nvidia-smi'
 ```
@@ -192,11 +201,12 @@ until curl -s http://localhost:8000/health > /dev/null; do
 done
 echo "Server is ready!"
 
-# 1. Health check
+# 1. Health check - /health answers with an empty 200 body, so check
+#    the status code rather than the body
 echo "=== Health Check ==="
-curl http://localhost:8000/health
+curl -s -o /dev/null -w '%{http_code}\n' http://localhost:8000/health
 
-# Expected output: {"status":"ok"}
+# Expected output: 200
 
 # 2. List models
 echo -e "\n=== Available Models ==="
@@ -209,7 +219,7 @@ echo -e "\n=== Chat Completion ==="
 curl -X POST http://localhost:8000/v1/chat/completions \
     -H "Content-Type: application/json" \
     -d '{
-        "model": "meta-llama/Llama-2-7b-hf",
+        "model": "Qwen/Qwen2.5-7B-Instruct",
         "messages": [
             {"role": "system", "content": "You are a helpful assistant."},
             {"role": "user", "content": "Explain neural networks in one sentence."}
@@ -225,7 +235,7 @@ echo -e "\n=== Streaming Completion ==="
 curl -X POST http://localhost:8000/v1/chat/completions \
     -H "Content-Type: application/json" \
     -d '{
-        "model": "meta-llama/Llama-2-7b-hf",
+        "model": "Qwen/Qwen2.5-7B-Instruct",
         "messages": [{"role": "user", "content": "Count to 5"}],
         "stream": true
     }'
@@ -237,7 +247,7 @@ echo -e "\n=== Performance Test ==="
 time curl -X POST http://localhost:8000/v1/completions \
     -H "Content-Type: application/json" \
     -d '{
-        "model": "meta-llama/Llama-2-7b-hf",
+        "model": "Qwen/Qwen2.5-7B-Instruct",
         "prompt": "Write a short story about AI",
         "max_tokens": 200
     }' > /dev/null
@@ -275,7 +285,7 @@ class VLLMClient:
     def chat_completion(
         self,
         messages: List[Dict[str, str]],
-        model: str = "meta-llama/Llama-2-7b-hf",
+        model: str = "Qwen/Qwen2.5-7B-Instruct",
         temperature: float = 0.7,
         max_tokens: int = 100,
         stream: bool = False
@@ -297,7 +307,7 @@ class VLLMClient:
     def completion(
         self,
         prompt: str,
-        model: str = "meta-llama/Llama-2-7b-hf",
+        model: str = "Qwen/Qwen2.5-7B-Instruct",
         temperature: float = 0.7,
         max_tokens: int = 100
     ) -> Dict:
@@ -349,7 +359,7 @@ from prometheus_client import Counter, Gauge, Histogram, start_http_server
 import time
 import logging
 from functools import wraps
-from typing import Dict, Any
+from typing import Dict
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -467,7 +477,8 @@ if __name__ == "__main__":
         logger.info(f"Request {i+1}: {result}")
 
     logger.info("Metrics available at http://localhost:8001/metrics")
-    logger.info("Sample output: llm_requests_total{model='llama2-7b',status='success'} 5.0")
+    # Prometheus exposition format uses double quotes for label values
+    logger.info('Sample output: llm_requests_total{model="llama2-7b",status="success"} 5.0')
 ```
 
 ```yaml
@@ -519,8 +530,13 @@ server {
     listen 80;
     server_name llm.example.com;
 
-    # Logging
-    access_log /var/log/nginx/vllm_access.log;
+    # Logging. The default combined format omits $upstream_addr, and
+    # docker logs only shows stdout/stderr - so the load-distribution
+    # check in test_load_balancer.sh needs both the upstream field and
+    # a /dev/stdout target
+    log_format upstream_log '$time_local upstream=$upstream_addr '
+                            'request="$request" status=$status';
+    access_log /dev/stdout upstream_log;
     error_log /var/log/nginx/vllm_error.log;
 
     # Client settings
@@ -537,8 +553,10 @@ server {
     # Health check endpoint
     location /health {
         access_log off;
+        # default_type sets the Content-Type; add_header would only
+        # append a second Content-Type header alongside the default
+        default_type text/plain;
         return 200 "healthy\n";
-        add_header Content-Type text/plain;
     }
 
     # vLLM API endpoints
@@ -575,6 +593,9 @@ server {
 ```yaml
 # docker-compose.yml - Complete vLLM cluster setup
 
+# count: 1 reserves the first available GPU for each container - on a
+# single-GPU host all three services share that one GPU, which is fine
+# for practice; pin distinct GPUs with device_ids when more are present
 services:
   vllm-1:
     image: vllm/vllm-openai:v0.6.0
@@ -582,7 +603,7 @@ services:
     ports:
       - "8001:8000"
     command: >
-      --model meta-llama/Llama-2-7b-hf
+      --model Qwen/Qwen2.5-7B-Instruct
       --host 0.0.0.0
       --port 8000
       --gpu-memory-utilization 0.9
@@ -602,7 +623,7 @@ services:
     ports:
       - "8002:8000"
     command: >
-      --model meta-llama/Llama-2-7b-hf
+      --model Qwen/Qwen2.5-7B-Instruct
       --host 0.0.0.0
       --port 8000
       --gpu-memory-utilization 0.9
@@ -622,7 +643,7 @@ services:
     ports:
       - "8003:8000"
     command: >
-      --model meta-llama/Llama-2-7b-hf
+      --model Qwen/Qwen2.5-7B-Instruct
       --host 0.0.0.0
       --port 8000
       --gpu-memory-utilization 0.9
@@ -668,7 +689,7 @@ for i in {1..10}; do
   response=$(curl -s -X POST $ENDPOINT \
     -H "Content-Type: application/json" \
     -d '{
-      "model": "meta-llama/Llama-2-7b-hf",
+      "model": "Qwen/Qwen2.5-7B-Instruct",
       "messages": [{"role": "user", "content": "Hello"}]
     }')
 
@@ -676,9 +697,12 @@ for i in {1..10}; do
   sleep 0.1
 done
 
-# Check nginx logs for distribution
+# Check nginx logs for distribution - matches the upstream= field of
+# the custom log format in nginx.conf. The default combined format
+# omits $upstream_addr, and only stdout/stderr reach `docker logs`, so
+# this check needs both changes the config above makes
 echo -e "\nRequest distribution:"
-docker logs nginx-lb --tail=50 | grep "vllm-" | awk '{print $1}' | sort | uniq -c
+docker logs nginx-lb --tail=50 2>&1 | grep -o "upstream=vllm-[0-9]*" | sort | uniq -c
 
 # Expected output: Shows requests distributed across backends
 ```
@@ -694,7 +718,7 @@ docker logs nginx-lb --tail=50 | grep "vllm-" | awk '{print $1}' | sort | uniq -
 import numpy as np
 from typing import Dict, Tuple, List
 from dataclasses import dataclass
-from datetime import datetime, timedelta
+from datetime import datetime
 import json
 
 @dataclass
@@ -748,7 +772,11 @@ class ModelDriftDetector:
 
             baseline_value = self.baseline_metrics[metric_name]
 
-            # Calculate relative change
+            # Relative change, direction-blind for simplicity: an
+            # improvement above the threshold flags drift too.
+            # Production detectors usually check a per-metric
+            # direction (accuracy down = bad, latency up = bad,
+            # throughput down = bad)
             if baseline_value > 0:
                 relative_change = abs(current_value - baseline_value) / baseline_value
             else:
