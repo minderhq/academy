@@ -3,7 +3,7 @@ Document ID: 1102
 Title: Network Topology Design
 Phase: 1
 Module: 1100
-Last Updated: 2026-09-24
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 2 hours
@@ -107,9 +107,9 @@ You do not need exotic hardware. Evaluate any switch against this table:
 | Port speed | 1 Gbps all ports | Baseline; fine for a single-GPU lab |
 | Multi-gig / 2.5G+ ports | Optional | Useful if your NICs support it and NFS transfers are slow |
 | 10G uplink/SFP+ | Optional | Storage-heavy labs, multi-node clusters |
-| Managed (VLANs) | Required for VLAN section | Unmanaged switches pass only VLAN 1 |
+| Managed (VLANs) | Required for VLAN section | Unmanaged switches cannot create or assign VLANs (all ports effectively sit in VLAN 1) |
 | Jumbo frame support (MTU 9216) | Recommended | Pairs with [1103](./1103-Jumbo-Frames-and-MTU.md) |
-| Backplane capacity | >= sum of all port speeds | Prevents blocking under full load |
+| Backplane capacity | >= 2x sum of all port speeds (full duplex) | Prevents blocking under full load |
 | Fanless or quiet | Nice to have | Labs usually live in living spaces |
 
 Selection guidance:
@@ -242,7 +242,9 @@ Verify from a connected host:
 
 ```bash
 ping -c 3 192.168.20.10     # storage VLAN reachable
-sudo vlan_id=$(cat /proc/net/vlan/eno1.20 | grep VID)   # confirm tagging
+
+# Confirm the subinterface is tagged with VLAN 20 (world-readable, no sudo needed):
+grep VID /proc/net/vlan/eno1.20        # expect: VID: 20
 ```
 
 ---
@@ -253,7 +255,7 @@ Copper Ethernet categories set the ceiling:
 
 | Cable | 1 Gbps | 2.5/5G Multi-Gig | 10 Gbps | Notes |
 |-------|--------|------------------|---------|-------|
-| Cat5e | 100 m | Supported | Not rated | Adequate for most starter labs |
+| Cat5e | 100 m | 2.5G at 100 m; 5G needs Cat6 | Not rated | Adequate for most starter labs |
 | Cat6 | 100 m | Supported | Up to ~55 m | Common sweet spot |
 | Cat6a | 100 m | Supported | 100 m | Required for 10G across a room |
 
@@ -383,6 +385,6 @@ The original build ran a 16-port 2.5G managed switch through a small apartment w
 ---
 
 **Document ID:** 1102
-**Last Updated:** 2026-09-24
+**Last Updated:** 2026-09-25
 **Status:** Complete
 **Related Documents:** [1103, 1201]
