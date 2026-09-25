@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE5-PRACTICE
 Title: "Phase 5: Fine-Tuning Practice"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Advanced
 ---
@@ -33,7 +33,9 @@ class LoRALayer(nn.Module):
 
     def forward(self, x):
         # LoRA forward: W + BA where B is (out, rank) and A is (rank, in)
-        lora_output = x @ (self.lora_A @ self.lora_B).T * self.scaling
+        # - B @ A is the (out, in) delta weight; A @ B only exists when
+        # in == out, and even then x cannot multiply a (rank, rank) matrix
+        lora_output = x @ (self.lora_B @ self.lora_A).T * self.scaling
         return lora_output
 
 
@@ -84,7 +86,8 @@ if __name__ == "__main__":
 ### Exercise 2: QLoRA Training
 
 ```python
-from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig, TrainingArguments, Trainer
+import torch
+from transformers import AutoModelForCausalLM, BitsAndBytesConfig
 from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
 
 def setup_qlora():
@@ -140,7 +143,6 @@ if __name__ == "__main__":
 
 ```python
 import torch
-from transformers import AutoModelForCausalLM
 
 class DPOTrainer:
     """Direct Preference Optimization trainer"""
@@ -195,6 +197,3 @@ if __name__ == "__main__":
 - [ ] LoRA implemented from scratch
 - [ ] QLoRA configured and tested
 - [ ] DPO loss calculated
-- [ ] Fine-tuning loop implemented
-- [ ] Memory usage optimized
-- [ ] Training speed benchmarked
