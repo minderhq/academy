@@ -1,7 +1,7 @@
 ---
 Document ID: 3400-PRACTICE
 Title: "3400: Architectures - Practice"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Advanced
 ---
@@ -52,7 +52,8 @@ class BERTLayer(nn.Module):
             (batch, seq_len, d_model)
         """
         # Self-attention block with residual connection
-        attn_output, attn_weights = self.self_attn(
+        # (need_weights=False makes the second return None)
+        attn_output, _ = self.self_attn(
             x, x, x,
             attn_mask=mask,
             need_weights=False
@@ -82,7 +83,7 @@ print(f"Output shape: {output.shape}")
 
 **Explanation:**
 - BERT uses bidirectional attention (can see entire sequence)
-- Layer normalization BEFORE residual connections (Post-LN)
+- Layer normalization AFTER residual connections (Post-LN)
 - GELU activation instead of ReLU
 - No causal masking - sees full context
 
@@ -427,8 +428,8 @@ print(f"Input IDs shape: {input_ids.shape}")
 print(f"LM logits shape: {logits.shape}")
 
 # Expected Output:
-# BERT: logits shape (batch, seq_len, vocab_size), pooled (batch, d_model)
-# GPT: logits shape (batch, seq_len, vocab_size)
+# BERT: Input IDs (2, 10), LM logits (2, 10, 1000), pooled (2, 128)
+# GPT:  Input IDs (2, 10), LM logits (2, 10, 1000)
 ```
 
 **Explanation:**
@@ -549,7 +550,9 @@ bert, gpt = compare_architectures()
 
 # Expected Output:
 # Detailed comparison of parameters, shapes, and memory usage
-# BERT and GPT should have similar parameter counts for same config
+# GPT comes out ~20% smaller at the same config: its lm_head is tied
+# to the token embedding, while BERT carries a separate lm_head plus
+# the 2-class cls_head
 ```
 
 ---
@@ -587,7 +590,11 @@ class RotaryEmbedding(nn.Module):
 
         # Split into real and imaginary parts
         x_complex = torch.view_as_complex(x.reshape(*x.shape[:-1], -1, 2))
-        x_rotated = x_complex * freqs.unsqueeze(0).unsqueeze(-2)
+        # freqs is (seq_len, d_model // 2); for this (batch, seq, d_model)
+        # input one batch broadcast dim is enough. The extra unsqueeze(-2)
+        # left over from the 4D (batch, heads, seq, head_dim) usage made
+        # the shapes (2, 10, 64) vs (1, 10, 1, 64) incompatible and raised
+        x_rotated = x_complex * freqs.unsqueeze(0)
 
         return torch.view_as_real(x_rotated).flatten(-2)
 
@@ -597,6 +604,10 @@ x = torch.randn(2, 10, 128)
 x_rotated = rope(x)
 print(f"Input shape: {x.shape}")
 print(f"Rotated shape: {x_rotated.shape}")
+
+# Expected Output:
+# Input shape: torch.Size([2, 10, 128])
+# Rotated shape: torch.Size([2, 10, 128])
 ```
 
 ---
