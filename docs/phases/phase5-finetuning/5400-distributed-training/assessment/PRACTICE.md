@@ -1,7 +1,7 @@
 ---
 Document ID: 5400-PRACTICE
 Title: "5400: Distributed Training - Practice"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Advanced
 ---
@@ -15,6 +15,8 @@ Difficulty: Advanced
 Convert this single-GPU training loop to use DDP:
 
 ```python
+import os
+
 import torch
 import torch.distributed as dist
 import torch.multiprocessing as mp
@@ -41,6 +43,7 @@ def setup(rank, world_size):
     os.environ['MASTER_ADDR'] = 'localhost'
     os.environ['MASTER_PORT'] = '12355'
     dist.init_process_group("nccl", rank=rank, world_size=world_size)
+    torch.cuda.set_device(rank)  # each worker must target its own GPU
 
 def cleanup():
     """Clean up the distributed environment."""
@@ -58,6 +61,9 @@ def train_ddp(rank, world_size, train_dataset, model_class, epochs=10):
 
     # Create optimizer
     optimizer = torch.optim.Adam(ddp_model.parameters(), lr=1e-3)
+
+    # Loss follows the original single-GPU script (classification task)
+    criterion = torch.nn.CrossEntropyLoss()
 
     # Create data loader with distributed sampler
     from torch.utils.data.distributed import DistributedSampler
@@ -91,12 +97,13 @@ def train_ddp(rank, world_size, train_dataset, model_class, epochs=10):
 
     cleanup()
 
-# Launch training
+# Launch training (MyModel and train_dataset come from the original
+# single-GPU script above)
 if __name__ == "__main__":
     world_size = torch.cuda.device_count()
     mp.spawn(train_ddp, args=(world_size, train_dataset, MyModel), nprocs=world_size)
 
-# Expected output:
+# Expected Output:
 # - Training runs across all available GPUs
 # - Each GPU processes a different subset of data
 # - Gradients are synchronized across GPUs
@@ -108,6 +115,10 @@ if __name__ == "__main__":
 Implement gradient accumulation to simulate larger batch sizes:
 
 ```python
+import torch
+from torch.utils.data import DataLoader
+
+
 def train_with_gradient_accumulation(model, train_loader, optimizer, criterion,
                                      accumulation_steps=4, epochs=10):
     """Train with gradient accumulation."""
@@ -152,7 +163,8 @@ def train_with_gradient_accumulation(model, train_loader, optimizer, criterion,
             optimizer.step()
             optimizer.zero_grad()
 
-# Usage
+# Usage (MyModel/criterion come from the original single-GPU script;
+# the function derives the device from the model's parameters)
 model = MyModel().cuda()
 optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
 train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True)
@@ -163,6 +175,14 @@ train_with_gradient_accumulation(
     accumulation_steps=4,
     epochs=10
 )
+
+# Expected Output:
+# Training with gradient accumulation:
+#   Per-GPU batch size: 32
+#   Accumulation steps: 4
+#   Effective batch size: 128
+# (epoch/loss lines follow every 100 optimizer steps; loss values
+# depend on MyModel and the data)
 
 # Expected benefits:
 # - Can train with larger effective batch sizes on limited GPU memory
@@ -176,9 +196,15 @@ Configure FSDP for a large model:
 
 ```python
 import torch
-from torch.distributed.fsdp import FullyShardedDataParallel as FSDP
+from functools import partial
+
+from torch.distributed.fsdp import (
+    CPUOffload,
+    FullyShardedDataParallel as FSDP,
+    MixedPrecision,
+    ShardingStrategy,
+)
 from torch.distributed.fsdp.wrap import size_based_auto_wrap_policy
-from torch.distributed.fsdp import MixedPrecision, CPUOffload
 
 def setup_fsdp_model(model):
     """Configure model with FSDP for training large models."""
@@ -193,9 +219,12 @@ def setup_fsdp_model(model):
     # CPU offload configuration
     cpu_offload = CPUOffload(offload_params=True)
 
-    # Auto-wrap policy: shard layers larger than 100M parameters
-    auto_wrap_policy = size_based_auto_wrap_policy(
-        min_num_params=100_000_000  # 100M parameters
+    # Auto-wrap policy: shard layers larger than 100M parameters.
+    # size_based_auto_wrap_policy is the callback FSDP invokes as
+    # (module, recurse, min_num_params) - partial() binds the size
+    # threshold; calling it directly raises TypeError.
+    auto_wrap_policy = partial(
+        size_based_auto_wrap_policy, min_num_params=100_000_000
     )
 
     # Wrap model with FSDP
@@ -204,7 +233,8 @@ def setup_fsdp_model(model):
         mixed_precision=mixed_precision,
         auto_wrap_policy=auto_wrap_policy,
         cpu_offload=cpu_offload,
-        sharding_strategy="FULL_SHARD",  # Full parameter sharding
+        # Pass the enum - FSDP does not coerce the "FULL_SHARD" string
+        sharding_strategy=ShardingStrategy.FULL_SHARD,
     )
 
     return fsdp_model
@@ -213,13 +243,14 @@ def setup_fsdp_model(model):
 if __name__ == "__main__":
     import torch.distributed as dist
 
-    # Initialize distributed
+    # Initialize distributed (torchrun sets the MASTER_* env vars)
     dist.init_process_group("nccl")
     rank = dist.get_rank()
-    world_size = dist.get_world_size()
 
-    # Create large model (e.g., 7B parameters)
-    model = LargeModel()  # Your large model definition
+    # Create large model (e.g., 7B parameters) and move it to this
+    # rank's GPU before wrapping - FSDP shards in place and mixed
+    # precision runs on CUDA
+    model = LargeModel().to(rank)  # Your large model definition
 
     # Configure FSDP
     fsdp_model = setup_fsdp_model(model)
@@ -227,7 +258,10 @@ if __name__ == "__main__":
     # Create optimizer
     optimizer = torch.optim.AdamW(fsdp_model.parameters(), lr=1e-4)
 
-    # Training loop (similar to DDP)
+    # Training loop mirrors Exercise 1's DDP pattern - FSDP is a
+    # drop-in wrapper (same forward/backward/step). train_loader,
+    # epochs and criterion come from the surrounding training script.
+    # Launch with: torchrun --nproc_per_node=<num_gpus> this_file.py
     for epoch in range(epochs):
         for data, target in train_loader:
             data, target = data.to(rank), target.to(rank)
@@ -240,7 +274,7 @@ if __name__ == "__main__":
 
     print(f"Rank {rank}: Training complete")
 
-# Expected results:
+# Expected Output:
 # - Model parameters sharded across all GPUs
 # - Significant memory savings (can train models 10x+ larger than GPU memory)
 # - BF16 mixed precision reduces memory and speeds up training
@@ -252,10 +286,16 @@ if __name__ == "__main__":
 Compare single-GPU vs multi-GPU training speed:
 
 ```python
+import os
 import time
+
 import torch
 import torch.distributed as dist
+import torch.multiprocessing as mp
+from torch.nn.parallel import DistributedDataParallel as DDP
 from torch.utils.data import DataLoader, TensorDataset
+from torch.utils.data.distributed import DistributedSampler
+
 
 def create_dummy_data(samples=10000, dim=784):
     """Create dummy dataset for benchmarking."""
@@ -263,76 +303,106 @@ def create_dummy_data(samples=10000, dim=784):
     labels = torch.randint(0, 10, (samples,))
     return TensorDataset(data, labels)
 
-def benchmark_training(gpu_count, batch_size=32, epochs=5):
-    """Benchmark training with different GPU counts."""
 
-    print(f"\n{'='*60}")
-    print(f"Benchmarking with {gpu_count} GPU(s)")
-    print(f"{'='*60}")
+class BenchmarkModel(torch.nn.Module):
+    """Small MLP so the benchmark runs without MyModel."""
 
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    def __init__(self, dim=784, num_classes=10):
+        super().__init__()
+        self.net = torch.nn.Sequential(
+            torch.nn.Linear(dim, 256),
+            torch.nn.ReLU(),
+            torch.nn.Linear(256, num_classes),
+        )
 
-    # Create model
-    model = MyModel().to(device)
+    def forward(self, x):
+        return self.net(x)
 
-    # Create data
-    train_dataset = create_dummy_data()
-    train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
 
-    # Create optimizer
+def _ddp_bench(rank, world_size, dataset, batch_size, epochs, results):
+    """Worker body: one DDP process per GPU, timed on rank 0."""
+    os.environ["MASTER_ADDR"] = "localhost"
+    os.environ["MASTER_PORT"] = "12356"
+    dist.init_process_group("nccl", rank=rank, world_size=world_size)
+    torch.cuda.set_device(rank)
+
+    sampler = DistributedSampler(
+        dataset, num_replicas=world_size, rank=rank, shuffle=True
+    )
+    loader = DataLoader(dataset, batch_size=batch_size, sampler=sampler)
+
+    model = DDP(BenchmarkModel().to(rank), device_ids=[rank])
     optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
+    criterion = torch.nn.CrossEntropyLoss()
 
-    # Benchmark
+    torch.cuda.synchronize(rank)
     start_time = time.time()
-    total_tokens = 0
 
     for epoch in range(epochs):
         epoch_start = time.time()
+        sampler.set_epoch(epoch)
 
-        for data, target in train_loader:
-            data, target = data.to(device), target.to(device)
-
+        for data, target in loader:
+            data, target = data.to(rank), target.to(rank)
             optimizer.zero_grad()
-            output = model(data)
-            loss = criterion(output, target)
+            loss = criterion(model(data), target)
             loss.backward()
             optimizer.step()
 
-            total_tokens += data.numel()
+        if rank == 0:
+            torch.cuda.synchronize(rank)
+            print(f"Epoch {epoch+1}/{epochs}: {time.time() - epoch_start:.2f}s")
 
-        epoch_time = time.time() - epoch_start
-        print(f"Epoch {epoch+1}/{epochs}: {epoch_time:.2f}s")
+    # rank 0's wall time covers the slowest rank each step (DDP
+    # gradient all-reduce), so it is the honest end-to-end number
+    if rank == 0:
+        torch.cuda.synchronize(rank)
+        total_time = time.time() - start_time
+        results["total_time"] = total_time
+        results["samples_per_second"] = len(dataset) * epochs / total_time
+        results["memory_gb"] = torch.cuda.max_memory_allocated() / 1024**3
+        torch.cuda.reset_peak_memory_stats()  # fresh peak for the next config
+    dist.destroy_process_group()
 
-    total_time = time.time() - start_time
 
-    # Calculate metrics
-    tokens_per_second = total_tokens / total_time
-    samples_per_second = len(train_dataset) * epochs / total_time
+def benchmark_training(gpu_count, batch_size=32, epochs=5):
+    """Benchmark DDP training, one process per GPU.
 
-    # Get memory usage
-    if torch.cuda.is_available():
-        memory_allocated = torch.cuda.max_memory_allocated() / 1024**3  # GB
-        torch.cuda.reset_peak_memory_stats()
-    else:
-        memory_allocated = 0
+    Every configuration uses its actual GPU count (capped by the
+    hardware) - looping single-device code while printing "2 GPUs"
+    would report a speedup of ~1.0x, not the hardware's scaling.
+    """
 
-    results = {
-        "gpu_count": gpu_count,
-        "total_time": total_time,
-        "tokens_per_second": tokens_per_second,
-        "samples_per_second": samples_per_second,
-        "memory_gb": memory_allocated,
-    }
+    world_size = max(1, min(gpu_count, torch.cuda.device_count()))
+    print(f"\n{'='*60}")
+    print(f"Benchmarking with {world_size} GPU(s)")
+    print(f"{'='*60}")
+
+    train_dataset = create_dummy_data()
+
+    manager = mp.Manager()
+    results = manager.dict()
+    mp.spawn(
+        _ddp_bench,
+        args=(world_size, train_dataset, batch_size, epochs, results),
+        nprocs=world_size,
+    )
+    results = dict(results)
 
     print(f"\nResults:")
-    print(f"  Total time: {total_time:.2f}s")
-    print(f"  Tokens/sec: {tokens_per_second:,.0f}")
-    print(f"  Samples/sec: {samples_per_second:,.0f}")
-    print(f"  GPU memory: {memory_allocated:.2f} GB")
+    print(f"  Total time: {results['total_time']:.2f}s")
+    print(f"  Samples/sec: {results['samples_per_second']:,.0f}")
+    print(f"  GPU memory: {results['memory_gb']:.2f} GB")
 
     return results
 
+
 if __name__ == "__main__":
+    if torch.cuda.device_count() == 0:
+        raise SystemExit(
+            "This benchmark needs CUDA - DDP's NCCL backend requires GPUs"
+        )
+
     # Benchmark single GPU
     results_1gpu = benchmark_training(gpu_count=1, batch_size=32, epochs=5)
 
@@ -360,9 +430,20 @@ if __name__ == "__main__":
             print(f"  Speedup: {speedup_4x:.2f}x")
             print(f"  Efficiency: {efficiency_4x:.1f}%")
 
-# Expected results:
-# - 2 GPUs: ~1.7-1.9x speedup (85-95% efficiency)
-# - 4 GPUs: ~3.2-3.8x speedup (80-95% efficiency)
-# - Memory scales approximately linearly with GPU count
-# - Larger batch sizes improve scaling efficiency
+# Expected Output:
+# ============================================================
+# Benchmarking with 1 GPU(s)
+# ============================================================
+# Epoch 1/5: ...
+# ...
+# Epoch 5/5: ...
+#
+# Results:
+#   Total time: ...
+#   Samples/sec: ...
+#   GPU memory: ... GB
+#
+# (absolute numbers are hardware-dependent; the Scaling Analysis
+# blocks print only when 2+/4+ GPUs are present - this benchmark
+# needs a CUDA machine, DDP's NCCL backend requires GPUs)
 ```
