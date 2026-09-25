@@ -24,3 +24,6 @@ Thumbs.db
 # Misc
 node_modules/
 *.log
+
+# Local Claude session artifacts
+.claude/
