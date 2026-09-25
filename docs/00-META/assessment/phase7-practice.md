@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE7-PRACTICE
 Title: "Phase 7: Agentic Systems - Practice Exercises"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Advanced
 ---
@@ -48,14 +48,14 @@ Implement a basic ReAct (Reasoning + Acting) loop from scratch.
 ### Solution Template
 
 ```python
-from typing import List, Dict, Optional, Callable
+from typing import Any, List, Dict, Optional, Callable
 import re
 import json
 
 class ReActAgent:
     def __init__(
         self,
-        llm_client: any,
+        llm_client: Any,
         tools: Dict[str, Callable],
         max_steps: int = 10
     ):
@@ -117,7 +117,7 @@ class ReActAgent:
         # TODO: Implement action execution
         pass
 
-    def run(self, query: str) -> Dict[str, any]:
+    def run(self, query: str) -> Dict[str, Any]:
         """
         Run ReAct loop.
 
@@ -354,6 +354,7 @@ Implement a multi-agent system with specialized agents and coordination.
 ```python
 from typing import List, Dict, Any
 from enum import Enum
+import time
 import uuid
 
 class AgentRole(Enum):
@@ -1247,7 +1248,7 @@ Implement a creative system for:
 
 ---
 
-**Last Updated:** 2026-02-05
+**Last Updated:** 2026-09-25
 **Phase:** 7 - Agentic Systems
 **Status:** Ready for Practice
 
@@ -1256,15 +1257,18 @@ Implement a creative system for:
 ## Appendix: Phase 7 - Complete Reference Implementations
 
 The exercises above use solution templates. This appendix contains
-complete, working implementations of each exercise for self-checking
-after you have attempted them on your own.
+complete, working reference implementations of Exercises 1-5 for
+self-checking after you have attempted them on your own. Exercises 6-7
+have no separate reference implementation: Exercise 6 is a
+self-contained pattern-matching exercise and Exercise 7 composes the
+Exercise 1-5 components into one system.
 
 
 ### Exercise 1: Implement ReAct Loop from Scratch
 
 ```python
 import json
-from typing import List, Dict, Callable, Optional
+from typing import List, Callable
 from dataclasses import dataclass
 
 @dataclass
@@ -1392,10 +1396,14 @@ What do you do?
 def mock_llm_generate(prompt: str) -> str:
     """Mock LLM for testing"""
     # In real implementation, call OpenAI API or local model
-    if "search" in prompt.lower():
+    final_answer = "FINAL: Python is widely used for machine learning with libraries like scikit-learn and TensorFlow."
+    if "Found 5 results" in prompt:
+        # The search observation is already in the history - finalize
+        return final_answer
+    elif "search" in prompt.lower():
         return 'search: {"query": "Python machine learning"}'
     elif "final" in prompt.lower() or "answer" in prompt.lower():
-        return "FINAL: Python is widely used for machine learning with libraries like scikit-learn and TensorFlow."
+        return final_answer
     return "I need to search for information."
 
 
@@ -1763,7 +1771,7 @@ if __name__ == "__main__":
 
 ```python
 import numpy as np
-from typing import List, Dict, Optional
+from typing import List
 from datetime import datetime, timedelta
 from collections import defaultdict
 
@@ -1884,15 +1892,22 @@ class AgentMemory:
         now = datetime.now()
         scores = []
 
-        for memory in self.memories:
+        for idx, memory in enumerate(self.memories):
             age_days = (now - memory.timestamp).days
             recency_score = 1.0 / (1.0 + age_days / 30.0)  # Decay over 30 days
             total_score = memory.importance * recency_score
-            scores.append((total_score, memory))
+            scores.append((total_score, idx))
 
-        # Sort by score and keep top memories
-        scores.sort(key=lambda x: x[0], reverse=True)
-        self.memories = [m for _, m in scores[:self.max_memories]]
+        # Sort by score and keep top memories. Embeddings are stored
+        # positionally aligned with self.memories, so they must be
+        # reordered with the same indices or retrieve()'s lookups break
+        scores.sort(reverse=True)
+        keep = [i for _, i in scores[:self.max_memories]]
+        self.memories = [self.memories[i] for i in keep]
+        self.embeddings = self.embeddings[keep]
+        self.memory_types = defaultdict(list)
+        for memory in self.memories:
+            self.memory_types[memory.memory_type].append(memory)
 
     def get_recent(self, hours: int = 24, k: int = 10) -> List[MemoryEntry]:
         """Get recent memories"""
@@ -2001,9 +2016,7 @@ class SandboxedExecutor:
                 ['python', temp_file],
                 capture_output=True,
                 text=True,
-                timeout=self.timeout,
-                # Restrict permissions
-                preexec_fn=lambda: None  # Isolate process
+                timeout=self.timeout
             )
 
             result["output"] = process.stdout
