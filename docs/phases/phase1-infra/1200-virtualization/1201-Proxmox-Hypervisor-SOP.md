@@ -3,7 +3,7 @@ Document ID: 1201
 Title: Proxmox Hypervisor Standard Operating Procedures
 Phase: 1
 Module: 1200
-Last Updated: 2026-09-24
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -65,24 +65,28 @@ Virtualization extensions to confirm in BIOS/UEFI before installing: **VT-x** (I
 
 ### Proxmox Installation
 ```bash
-# Download latest ISO
-wget https://enterprise.proxmox.com/iso/proxmox-ve_*.iso
+# Download the latest ISO from https://www.proxmox.com/en/downloads
+# (the filename changes with each release, e.g. proxmox-ve_8.3-1.iso)
+wget https://download.proxmox.com/iso/proxmox-ve_8.3-1.iso
 
 # Create bootable USB
 dd if=proxmox-ve.iso of=/dev/sdX bs=4M status=progress
 
 # Boot and install with ZFS
-Target: /dev/nvme0n1
-ZFS Configuration: RAID-1 (mirror) if dual NVMe available
+# Target: /dev/nvme0n1
+# ZFS Configuration: RAID-1 (mirror) if dual NVMe available
 ```
 
 ## Post-Installation Configuration
 
 ### 1. Network Setup
 ```bash
-# Edit /etc/network/interfaces
-auto eno1
-iface eno1 inet static
+# Edit /etc/network/interfaces - the host IP lives on the bridge;
+# VMs attach to vmbr0 (see the VM template below)
+iface eno1 inet manual
+
+auto vmbr0
+iface vmbr0 inet static
     address 192.168.1.10/24
     gateway 192.168.1.1
     bridge-ports eno1
@@ -115,7 +119,9 @@ zfs set compression=lz4 rpool
 # Adjust ARC max (example: 32GB cap on a 64GB host; budget ~50% of your RAM)
 echo "options zfs zfs_arc_max=34359738368" >> /etc/modprobe.d/zfs.conf
 
-# Disable ZFS commit delay (better for VMs)
+# TXG timeout (seconds) - how long ZFS batches dirty data before
+# committing. 5 is already the default; lower it (e.g. 1) to trade
+# throughput for lower VM write latency
 echo "options zfs zfs_txg_timeout=5" >> /etc/modprobe.d/zfs.conf
 
 # Rebuild initramfs
@@ -144,17 +150,30 @@ Host:                 all remaining cores
 ### VM CPU Configuration
 ```bash
 # In Proxmox GUI or /etc/pve/qemu-server/101.conf
+# (+hv-evmcs is Intel-only - remove that flag on AMD hosts)
 cpu: host,hidden=0,flags=+hv-evmcs
 cores: 4
 sockets: 1
 numa: 1
 vcpus: 4
 
-# CPU Pinning via hooks
-# /var/lib/vz/snippets/vm-pinning.sh
-cat >> /etc/pve/qemu-server/101.conf << EOF
-args: -set device virtio0.pci.0,addr=0x04
+# CPU Pinning via hookscript
+# 1. Enable snippets on the local storage (once per cluster):
+pvesm set local --content iso,vztmpl,backup,snippets
+
+# 2. Create the snippet:
+cat > /var/lib/vz/snippets/vm-pinning.sh << 'EOF'
+#!/bin/bash
+VMID="$1"; ACTION="$2"
+if [ "$ACTION" == "post-start" ]; then
+  VMPID=$(cat /var/run/qemu-server/${VMID}.pid)
+  taskset -pc 0-3 "$VMPID"
+fi
 EOF
+chmod +x /var/lib/vz/snippets/vm-pinning.sh
+
+# 3. Attach the hookscript to the VM (repeats on every start):
+qm set 101 --hookscript local:snippets/vm-pinning.sh
 ```
 
 ## Memory Management
@@ -171,11 +190,11 @@ memory: 16384  # 16GB for K3s Master
 
 ### Huge Pages
 ```bash
-# Enable 1GB huge pages
-echo 1024 > /sys/kernel/mm/hugepages/hugepages-1048576kB/nr_hugepages
+# Reserve 16 x 1GiB huge pages (= 16 GiB - must fit in host RAM)
+echo 16 > /sys/kernel/mm/hugepages/hugepages-1048576kB/nr_hugepages
 
-# Make persistent
-echo "vm.nr_hugepages = 1024" >> /etc/sysctl.conf
+# Make persistent (applied at boot, before memory fragmentation)
+echo "vm.nr_hugepages = 16" >> /etc/sysctl.conf
 
 # Verify
 cat /proc/meminfo | grep Huge
@@ -203,6 +222,12 @@ pvesm add zfspool rpool-images \
   --pool rpool/images \
   --content rootdir,images \
   --sparse 1
+
+# Add backup storage (used by the backup section below)
+zfs create rpool/backups
+pvesm add zfspool rpool-backups \
+  --pool rpool/backups \
+  --content backup
 ```
 
 ## GPU Passthrough Preparation
@@ -269,13 +294,16 @@ qm template 101
 
 ### Automated Backups
 ```bash
-# /etc/pve/vzdump.cron
-# Daily backup at 2AM
-00 02 * * * vzdump 101 --storage rpool-backups \
-  --mode snapshot --compress zstd --mailnotification always
+# Root crontab (crontab -e). The Datacenter > Backup GUI is the
+# managed alternative - it stores jobs in /etc/pve/jobs.cfg.
 
-# Weekly full backup
-00 03 * * 0 vzdump --all 101,102 \
+# Daily backup at 2AM, keep 7 (matches the retention policy below)
+00 02 * * * vzdump 101 --storage rpool-backups \
+  --mode snapshot --compress zstd --keep-last 7 \
+  --mailnotification always
+
+# Weekly backup of both VMs, Sunday 3AM, keep 4
+00 03 * * 0 vzdump 101 102 \
   --storage rpool-backups \
   --mode snapshot \
   --compress zstd \
@@ -293,12 +321,14 @@ Monthly: Keep last 3 months
 
 ### Proxmox Metrics
 ```bash
-# Enable metrics export
-pvesh set /cluster/metrics \
+# Export metrics to InfluxDB (creates the server entry; InfluxDB
+# receives these over UDP port 8089)
+pvesh create /cluster/metrics \
+  --id influx-local \
   --type influxdb \
-  --server influx.local \
-  --influxdb-server 192.168.1.100:8086 \
-  --influxdb-protocol http
+  --server 192.168.1.100 \
+  --port 8089 \
+  --influxdbproto udp
 ```
 
 ### Health Checks
@@ -334,6 +364,6 @@ sensors
 
 **Related Documents:**
 - [1202: GPU Passthrough (IOMMU/VFIO)](./1202-TB3-UT3G-Passthrough.md)
-- [1203: Nvidia Kernel Module](./1203-Nvidia-Kernel-Module.md)
-- [1301: K3s Architecture](../1300-kubernetes/1301-K3s-Master-Worker-Arch.md)
+- [1203: NVIDIA Kernel Module Management](./1203-Nvidia-Kernel-Module.md)
+- [1301: K3s Master-Worker Architecture](../1300-kubernetes/1301-K3s-Master-Worker-Arch.md)
 
