@@ -3,7 +3,7 @@ Document ID: 1401
 Title: Ollama Enterprise Deployment
 Phase: 1
 Module: 1400
-Last Updated: 2026-09-24
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -99,9 +99,20 @@ spec:
         - name: OLLAMA_HOST
           value: "0.0.0.0"
         - name: OLLAMA_MODELS
-          value: "/models"
-        - name: OLLAMA_GPU_MEMORY_FRACTION
-          value: "0.9"
+          value: "/models"             # must match the volumeMount below
+        - name: OLLAMA_KEEP_ALIVE
+          value: "30m"
+        - name: OLLAMA_NUM_PARALLEL
+          value: "1"
+        # There is no GPU-memory-fraction setting in Ollama (that is vLLM's
+        # --gpu-memory-utilization). VRAM use is controlled indirectly:
+        # OLLAMA_NUM_PARALLEL x num_ctx scales the KV cache, and flash
+        # attention + KV-cache quantization shrink it. Ollama silently
+        # ignores unknown OLLAMA_* variables, so a bogus one does nothing.
+        - name: OLLAMA_FLASH_ATTENTION
+          value: "1"
+        - name: OLLAMA_KV_CACHE_TYPE
+          value: "q8_0"                # f16 (default) | q8_0 | q4_0
         resources:
           limits:
             nvidia.com/gpu: 1
@@ -110,7 +121,9 @@ spec:
             memory: "8Gi"
         volumeMounts:
         - name: models
-          mountPath: /root/.ollama/models
+          mountPath: /models           # must equal OLLAMA_MODELS — a mismatch
+                                       # writes to the ephemeral container layer
+                                       # and models vanish on pod restart
       volumes:
       - name: models
         persistentVolumeClaim:
@@ -122,9 +135,11 @@ spec:
 # Install Ollama
 curl -fsSL https://ollama.com/install.sh | sh
 
-# Verify GPU support
-ollama --version
-# Should show CUDA support
+# Verify GPU support — `ollama --version` prints only the version; GPU
+# detection shows up at server startup and when a model first loads
+journalctl -u ollama --no-pager | grep -i "inference compute"  # lists CUDA devices
+ollama pull llama2:7b
+ollama ps    # PROCESSOR column: "100% GPU" = CUDA active, "100% CPU" = fallback
 
 # Start server
 ollama serve
@@ -139,21 +154,27 @@ ollama pull llama2:7b
 ollama pull codellama:13b
 ollama pull mistral:7b
 ollama pull neural-chat:7b
-ollama pull mixtral:8x7b
+ollama pull mixtral:8x7b   # ~26GB — will not fit an 11GB-class GPU; needs a multi-GPU host
 ```
 
 ### Model Quantization Levels
+
+Sizes below are the published registry sizes for the Llama 2 family
+(`ollama.com/library/llama2/tags`). Note the real tag shape: quantization
+variants combine parameter size and flavor (`7b-chat-q4_K_M`) — bare
+suffixes like `:q4_K_M` alone are not pullable tags.
+
 ```text
-Tag           Size     Context   Parameters    Memory
-──────────────────────────────────────────────────────
-:latest       ~4GB     2048      7B            ~6GB VRAM
-:7b           ~4GB     2048      7B            ~6GB VRAM
-:13b          ~8GB     2048      13B           ~10GB VRAM
-:34b          ~20GB    2048      34B           >11GB (OOM)
-:q4_0         ~4GB     2048      7B            ~5GB VRAM
-:q4_K_M       ~4.5GB   2048      7B            ~6GB VRAM
-:q5_K_M       ~5.5GB   2048      7B            ~7GB VRAM
-:q8_0         ~8.5GB   2048      7B            ~9GB VRAM
+Tag (pullable)              Size     Parameters   Fits 11GB GPU?
+──────────────────────────────────────────────────────────────────
+llama2:latest (=7b chat)    3.8GB    7B           yes (~6GB VRAM)
+llama2:7b                   3.8GB    7B           yes (~6GB VRAM)
+llama2:13b                  7.4GB    13B          tight (~10-11GB VRAM)
+llama2:7b-chat-q4_K_M       4.1GB    7B           yes (~6GB VRAM)
+llama2:7b-chat-q5_K_M       4.8GB    7B           yes (~7GB VRAM)
+llama2:7b-chat-q8_0         7.2GB    7B           yes (~9GB VRAM)
+codellama:34b               ~19GB    34B          no — 34B is CodeLlama-only,
+                                                  and it exceeds 11GB VRAM
 ```
 
 ### Custom Model from GGUF
@@ -210,7 +231,7 @@ curl http://localhost:11434/api/tags
 
 # Model info
 curl http://localhost:11434/api/show -d '{
-  "name": "llama2"
+  "model": "llama2"
 }'
 ```
 
@@ -238,29 +259,44 @@ for chunk in ollama.generate(model='llama2', prompt='Tell me a story', stream=Tr
 
 ### Server Configuration
 ```yaml
-# Environment variables
+# Environment variables (verify against `ollama serve --help` / official docs)
 OLLAMA_HOST: "0.0.0.0:11434"          # Listen address
 OLLAMA_MODELS: "/models"               # Model storage path
-OLLAMA_KEEP_ALIVE: "30m"               # Keep models in memory
-OLLAMA_GPU_MEMORY_FRACTION: "0.9"      # GPU memory to use
-OLLAMA_LOAD_TIMEOUT: "5m"              # Model load timeout
-OLLAMA_NUM_THREAD: "8"                 # CPU threads (for CPU inference)
-OLLAMA_MAX_QUEUE: "512"                # Max queued requests
+OLLAMA_KEEP_ALIVE: "30m"               # Keep models in memory (default 5m; <=0 = forever)
+OLLAMA_LOAD_TIMEOUT: "5m"              # Stall-detection window during a model load
+OLLAMA_MAX_QUEUE: "512"                # Max queued requests (default 512)
+OLLAMA_NUM_PARALLEL: "1"               # Concurrent requests per model (scales KV cache)
+OLLAMA_MAX_LOADED_MODELS: "1"          # Models held in memory (default 3x GPU count)
+OLLAMA_FLASH_ATTENTION: "1"            # Flash attention — lower VRAM, faster long contexts
+OLLAMA_KV_CACHE_TYPE: "q8_0"           # KV cache: f16 (default) | q8_0 | q4_0
+OLLAMA_CONTEXT_LENGTH: "2048"          # Server default context window (default 4096)
 ```
 
+Ollama ignores unknown `OLLAMA_*` variables **silently** — there is no
+`OLLAMA_GPU_MEMORY_FRACTION` (that is vLLM's `--gpu-memory-utilization`) and
+no `OLLAMA_NUM_THREAD`; CPU thread count is a per-model option
+(`num_thread` in the Modelfile or API `options`), not a server env var.
+
 ### Model Parameters
-```json
-{
-  "temperature": 0.7,        // 0.0-1.0 (creativity)
-  "top_p": 0.9,             // 0.0-1.0 (nucleus sampling)
-  "top_k": 40,              // 1+ (top-k sampling)
-  "repeat_penalty": 1.1,    // 1.0+ (reduce repetition)
-  "num_predict": 512,       // Max tokens to generate
-  "num_ctx": 2048,          // Context window size
-  "seed": 42,               // Random seed
-  "stop": ["\n", "User:"]   // Stop sequences
-}
-```
+
+Sampling options go in the Modelfile (`PARAMETER ...`), per request via the
+API `options` object, or on the CLI (`ollama run --temperature 0.7`). The
+API examples above use `temperature 0.7`, `num_predict 512`, `seed 42`;
+defaults for reference:
+
+| Parameter      | Default | Notes                                 |
+|----------------|---------|---------------------------------------|
+| temperature    | 0.8     | Higher = more random                  |
+| top_p          | 0.9     | Nucleus sampling cutoff               |
+| top_k          | 40      | Sample from the top-k logits          |
+| repeat_penalty | 1.1     | Above 1.0 penalizes repetition        |
+| num_predict    | 128     | Max generated tokens; -1 = unlimited  |
+| num_ctx        | 2048    | Context window; drives KV-cache VRAM  |
+| seed           | 0       | 0 = randomize each call               |
+| stop           | []      | Stop sequences                        |
+
+`num_ctx` is commonly 2048 per model, while the server-level default is
+`OLLAMA_CONTEXT_LENGTH` (4096).
 
 ## Performance Optimization
 
@@ -272,10 +308,14 @@ watch -n 1 nvidia-smi
 # Keep model in memory
 OLLAMA_KEEP_ALIVE="-1" ollama serve  # Never unload
 
-# Preload models on startup
-for model in llama2 codellama mistral; do
-  ollama run $model "" &
-done
+# Preload one model so the first request does not pay the load cost.
+# keep_alive: -1 keeps it resident until explicitly unloaded.
+curl -s http://localhost:11434/api/generate \
+  -d '{"model": "llama2:7b", "keep_alive": -1}' > /dev/null
+
+# An 11GB GPU holds ONE 7B model comfortably (~6GB VRAM). Preloading
+# llama2 + codellama + mistral together (~12GB of weights) forces Ollama
+# to unload and reload on every model switch — pick a single hot model.
 ```
 
 ### Batch Processing
@@ -292,6 +332,10 @@ def process_batch(prompts):
 
 prompts = ["Prompt 1", "Prompt 2", "Prompt 3", "Prompt 4"]
 results = process_batch(prompts)
+
+# With OLLAMA_NUM_PARALLEL=1 the server queues these four requests and runs
+# them serially — raising OLLAMA_NUM_PARALLEL gives true concurrency at the
+# cost of a proportionally larger KV cache.
 ```
 
 ### Caching
@@ -310,10 +354,20 @@ import numpy as np
 
 encoder = SentenceTransformer('all-MiniLM-L6-v2')
 
-def semantic_cache(prompt, threshold=0.95):
-    prompt_embedding = encoder.encode(prompt)
-    # Check against cached prompts
-    # Return cached response if similarity > threshold
+_semantic_cache = []  # list of (embedding, response) tuples
+
+def semantic_cache(prompt, model="llama2:7b", threshold=0.95):
+    emb = encoder.encode(prompt, normalize_embeddings=True)
+    for cached_emb, cached_response in _semantic_cache:
+        if float(np.dot(emb, cached_emb)) >= threshold:
+            return cached_response          # near-duplicate hit: skip the LLM
+    response = ollama.generate(model=model, prompt=prompt)["response"]
+    _semantic_cache.append((emb, response))
+    return response
+
+# Trade-off: cosine >= 0.95 means *similar*, not *identical* — a hit returns
+# the earlier answer verbatim. Tune the threshold per workload and treat
+# this as an optimization, not a correctness layer.
 ```
 
 ## Service Mesh Integration
@@ -362,24 +416,29 @@ spec:
 ## Monitoring
 
 ### Metrics Endpoint
-```bash
-# Ollama doesn't have built-in metrics
-# Use sidecar for metrics collection
 
-apiVersion: v1
-kind: Pod
-metadata:
-  name: ollama-metrics
-spec:
-  containers:
-  - name: ollama-exporter
-    image: your-ollama-exporter:1.0.0  # ⚠️ PIN SPECIFIC VERSION in production!
-    env:
-    - name: OLLAMA_URL
-      value: "http://ollama:11434"
-    ports:
-    - containerPort: 9101
+Ollama has **no native Prometheus endpoint**, so monitoring composes two
+sources:
+
+**1. GPU metrics — dcgm-exporter** (canonical pattern from
+[1302: GPU Scheduler](../1300-kubernetes/1302-GPU-Scheduler.md)):
+
+```bash
+helm repo add gpu-helm-charts https://nvidia.github.io/dcgm-exporter/helm-charts
+helm repo update
+helm install dcgm-exporter gpu-helm-charts/dcgm-exporter \
+  --namespace monitoring --create-namespace
 ```
+
+**2. Model state — poll the API** (which models are loaded, and their VRAM share):
+
+```bash
+curl -s http://localhost:11434/api/ps | python3 -m json.tool
+```
+
+Request-level metrics (latency, token throughput) need a proxy in front of
+Ollama — vLLM exposes Prometheus natively instead
+([1402: vLLM and TGI](./1402-vLLM-and-TGI.md)).
 
 ### Health Check
 ```yaml
@@ -409,7 +468,7 @@ metadata:
   name: ollama-auth
   annotations:
     nginx.ingress.kubernetes.io/auth-type: basic
-    nginx.ingress.kubernetes.io/auth-secret: ollama-auth
+    nginx.ingress.kubernetes.io/auth-secret: ollama-auth  # create the htpasswd Secret first
     nginx.ingress.kubernetes.io/auth-realm: "Ollama Authentication"
 spec:
   # ... rest of ingress
@@ -430,7 +489,9 @@ spec:
   - from:
     - namespaceSelector:
         matchLabels:
-          name: ai-services
+          kubernetes.io/metadata.name: ai-services  # auto-set on every namespace (v1.21+);
+                                                    # a custom "name" label matches nothing,
+                                                    # which blocks ALL ingress silently
     ports:
     - protocol: TCP
       port: 11434
