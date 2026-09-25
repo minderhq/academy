@@ -29,7 +29,7 @@ GGUF (GPT-Generated Unified Format) is a file format that enables running large 
 - [3. Quantization Types](#3-quantization-types)
 - [4. Quantization Algorithm](#4-quantization-algorithm)
 - [5. K-Quants](#5-k-quants)
-- [6. Hybrid CPU/GPU Offloading](#6-hybrid-cpu-gpu-offloading)
+- [6. Hybrid CPU/GPU Offloading](#6-hybrid-cpugpu-offloading)
 - [7. GGUF Conversion](#7-gguf-conversion)
 - [8. Performance Optimization](#8-performance-optimization)
 - [9. Troubleshooting](#9-troubleshooting)

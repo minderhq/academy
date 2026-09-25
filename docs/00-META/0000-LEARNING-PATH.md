@@ -11,22 +11,21 @@ Difficulty: Beginner
 ## Table of Contents
 
 - [Complete AI/LLM Infrastructure Curriculum - From Zero to Hero](#complete-aillm-infrastructure-curriculum---from-zero-to-hero)
-- [📚 Curriculum Overview](#curriculum-overview)
-- [Phase 0: Python Fundamentals (Week 1) :star3: NEW](#phase-0-python-fundamentals-week-1-star3-new)
+- [📚 Curriculum Overview](#-curriculum-overview)
+- [Phase 0: Python Fundamentals (Week 1) :star3: NEW](#phase-0-python-fundamentals-week-1--new)
 - [Phase 1: Foundations (Weeks 2-5)](#phase-1-foundations-weeks-2-5)
 - [Phase 2: Infrastructure (Weeks 5-12)](#phase-2-infrastructure-weeks-5-12)
 - [Phase 3: AI/ML Fundamentals (Weeks 13-20)](#phase-3-aiml-fundamentals-weeks-13-20)
 - [Phase 4: LLMOps (Weeks 21-28)](#phase-4-llmops-weeks-21-28)
-- [Phase 5: RAG & Knowledge (Weeks 29-36)](#phase-5-rag-knowledge-weeks-29-36)
+- [Phase 5: RAG & Knowledge (Weeks 29-36)](#phase-5-rag--knowledge-weeks-29-36)
 - [Phase 6: Agentic AI (Weeks 37-44)](#phase-6-agentic-ai-weeks-37-44)
 - [Phase 7: Production (Weeks 45-52)](#phase-7-production-weeks-45-52)
-- [🎯 Capstone Project](#capstone-project)
-- [📖 Recommended Reading Order (Book Style)](#recommended-reading-order-book-style)
-- [🧪 Experiments (Hands-on Labs)](#experiments-hands-on-labs)
-- [📊 Progress Tracker](#progress-tracker)
-- [🎓 Certification Path](#certification-path)
-- [📝 Tips for Success](#tips-for-success)
-- [References](#references)
+- [🎯 Capstone Project](#-capstone-project)
+- [📖 Recommended Reading Order (Book Style)](#-recommended-reading-order-book-style)
+- [🧪 Experiments (Hands-on Labs)](#-experiments-hands-on-labs)
+- [📊 Progress Tracker](#-progress-tracker)
+- [🎓 Certification Path](#-certification-path)
+- [📝 Tips for Success](#-tips-for-success)
 
 ---
 
@@ -791,7 +790,7 @@ Complete all phases to earn:
 ---
 
 **Next Steps:**
-1. Start with [Phase 1: Foundations](#phase-1-foundations-weeks-1-4)
+1. Start with [Phase 1: Foundations](#phase-1-foundations-weeks-2-5)
 2. Set up your learning environment
 3. Join the community discussions
 4. Track your progress in the checklist above

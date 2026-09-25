@@ -9,12 +9,11 @@
 
 ## 🗂️ Quick Navigation
 
-- [Getting Started](#getting-started)
-- [Phase Documentation](#phase-documentation)
-- [Learning Resources](#learning-resources)
-- [Assessment & Practice](#assessment--practice)
-- [Reference Materials](#reference-materials)
-- [Print & Publish](#print--publish)
+- [Getting Started](#-getting-started)
+- [Phase Documentation](#-phase-documentation)
+- [Learning Resources](#-learning-resources)
+- [Assessment & Practice](#-assessment--practice)
+- [Reference Materials](#-reference-materials)
 
 ---
 
@@ -398,8 +397,8 @@ find docs/diagrams -name "*.md"
 
 - [FAQ](FAQ.md) - Frequently Asked Questions
 - [Troubleshooting Quick Start](TROUBLESHOOTING-QUICKSTART.md) - Common Issues
-- [Community](#) - Join the community
-- [Issues](#) - Report bugs
+- Community - Join the community
+- Issues - Report bugs
 
 ### Contributing
 

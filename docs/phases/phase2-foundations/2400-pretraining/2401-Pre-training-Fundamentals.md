@@ -22,7 +22,7 @@ Tags: ['training', 'pretraining', 'evaluation', 'fsdp']
 
 - [Learning Objectives](#learning-objectives)
 - [Abstract](#abstract)
-- [Part 1: Data Collection & Curation](#part-1-data-collection-curation)
+- [Part 1: Data Collection & Curation](#part-1-data-collection--curation)
 - [Part 2: Tokenization for Pre-training](#part-2-tokenization-for-pre-training)
 - [Part 3: Training Curriculum Design](#part-3-training-curriculum-design)
 - [Part 4: Evaluation Frameworks](#part-4-evaluation-frameworks)

@@ -24,7 +24,7 @@ Tags: ['infrastructure', 'networking', 'hardware']
 - [VLAN Configuration](#vlan-configuration)
 - [Traffic Management](#traffic-management)
 - [Performance Optimization](#performance-optimization)
-- [Monitoring & Diagnostics](#monitoring-diagnostics)
+- [Monitoring & Diagnostics](#monitoring--diagnostics)
 - [Integration Points](#integration-points)
 - [References](#references)
 

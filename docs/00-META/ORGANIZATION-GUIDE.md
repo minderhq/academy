@@ -616,7 +616,7 @@ if __name__ == "__main__":
 - **Documentation:** [MASTER-INDEX.md](MASTER-INDEX.md)
 - **Style:** [STYLE-GUIDE.md](STYLE-GUIDE.md)
 - **Templates:** [DOCUMENT-TEMPLATE.md](DOCUMENT-TEMPLATE.md)
-- **Issues:** [GitHub Issues](#)
+- **Issues:** GitHub Issues
 
 ### Contributing
 

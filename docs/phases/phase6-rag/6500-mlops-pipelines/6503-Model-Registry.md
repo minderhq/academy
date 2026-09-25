@@ -28,7 +28,7 @@ Tags: ['mlops', 'pipeline', 'ci-cd', 'model-registry', 'lifecycle']
 - [Abstract](#abstract)
 - [Model Registry Architecture](#model-registry-architecture)
 - [MLflow Integration](#mlflow-integration)
-- [Weights & Biases Integration](#weights-biases-integration)
+- [Weights & Biases Integration](#weights--biases-integration)
 - [Model Versioning Strategy](#model-versioning-strategy)
 - [Model Metadata Management](#model-metadata-management)
 - [Production Deployment](#production-deployment)

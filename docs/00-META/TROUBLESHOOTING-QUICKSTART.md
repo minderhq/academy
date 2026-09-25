@@ -13,12 +13,12 @@
 
 | Symptom | Go To Section |
 |---------|--------------|
-| Ollama won't install | [Installation Issues](#installation-issues) |
-| Model download stuck/fails | [Download Problems](#download-problems) |
-| "Connection refused" error | [Connection Issues](#connection-issues) |
-| Out of memory errors | [Memory Issues](#memory-issues) |
-| Model runs very slow | [Performance Issues](#performance-issues) |
-| Ollama commands not found | [Command Not Found](#command-not-found) |
+| Ollama won't install | [Installation Issues](#-installation-issues) |
+| Model download stuck/fails | [Download Problems](#-download-problems) |
+| "Connection refused" error | [Connection Issues](#-connection-issues) |
+| Out of memory errors | [Memory Issues](#-memory-issues) |
+| Model runs very slow | [Performance Issues](#-performance-issues) |
+| Ollama commands not found | [Command Not Found](#-command-not-found) |
 
 ---
 

@@ -31,7 +31,7 @@ Tags: ['agents', 'security', 'prompt-injection', 'pii', 'adversarial']
 - [PII Redaction](#pii-redaction)
 - [Secure Data Handling](#secure-data-handling)
 - [Production Implementation](#production-implementation)
-- [Testing & Validation](#testing-validation)
+- [Testing & Validation](#testing--validation)
 - [Related Resources](#related-resources)
 - [References](#references)
 

@@ -20,7 +20,7 @@ Tags: ['infrastructure', 'virtualization', 'proxmox', 'gpu']
 - [Abstract](#abstract)
 - [Hardware Requirements](#hardware-requirements)
 - [Post-Installation Configuration](#post-installation-configuration)
-- [CPU Pinning & NUMA Awareness](#cpu-pinning-numa-awareness)
+- [CPU Pinning & NUMA Awareness](#cpu-pinning--numa-awareness)
 - [Memory Management](#memory-management)
 - [Storage Configuration](#storage-configuration)
 - [GPU Passthrough Preparation](#gpu-passthrough-preparation)

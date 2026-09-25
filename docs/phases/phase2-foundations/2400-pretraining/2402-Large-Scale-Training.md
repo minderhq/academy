@@ -26,7 +26,7 @@ Tags: ['training', 'pretraining', 'evaluation', 'fsdp']
 - [Part 2: FSDP - Fully Sharded Data Parallel](#part-2-fsdp---fully-sharded-data-parallel)
 - [Part 3: DeepSpeed](#part-3-deepspeed)
 - [Part 4: Multi-Node Cluster Setup](#part-4-multi-node-cluster-setup)
-- [Part 5: Fault Tolerance & Resilience](#part-5-fault-tolerance-resilience)
+- [Part 5: Fault Tolerance & Resilience](#part-5-fault-tolerance--resilience)
 - [Part 6: Monitoring at Scale](#part-6-monitoring-at-scale)
 - [Part 7: Cost Optimization](#part-7-cost-optimization)
 - [Part 8: Complete Training Script](#part-8-complete-training-script)

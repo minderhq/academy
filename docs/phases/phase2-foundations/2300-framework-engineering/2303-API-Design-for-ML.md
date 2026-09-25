@@ -32,7 +32,7 @@ Tags: ['frameworks', 'architecture', 'api-design', 'production']
 - [Error Handling](#error-handling)
 - [Rate Limiting](#rate-limiting)
 - [Authentication](#authentication)
-- [Monitoring & Logging](#monitoring-logging)
+- [Monitoring & Logging](#monitoring--logging)
 - [Exercise: Build ML API](#exercise-build-ml-api)
 - [Related Topics](#related-topics)
 - [References](#references)

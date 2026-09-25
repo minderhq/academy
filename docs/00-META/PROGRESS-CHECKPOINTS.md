@@ -185,22 +185,22 @@ Total: _____ months
 **Week of:** _____________
 
 **What I accomplished:**
-- 
-- 
-- 
+-
+-
+-
 
 **What I learned:**
-- 
-- 
-- 
+-
+-
+-
 
 **Challenges faced:**
-- 
-- 
+-
+-
 
 **Next week goals:**
-- 
-- 
+-
+-
 
 ---
 
@@ -219,16 +219,16 @@ Total: _____ months
 **Projects completed:** ___ / 7
 
 **Key achievements:**
-- 
-- 
+-
+-
 
 **Areas to improve:**
-- 
-- 
+-
+-
 
 **Next month focus:**
-- 
-- 
+-
+-
 
 ---
 

@@ -23,32 +23,32 @@
 
 ## Table of Contents
 
-- [Overview](#-overview)
-- [Key Takeaways](#-key-takeaways)
-- [Why AI Engineering Curriculum](#-why-ai-engineering-curriculum)
-- [Key Features](#-key-features)
-- [Architecture](#-architecture)
-- [Quick Start](#-quick-start)
-- [Learning Path](#-learning-path)
-- [Learning Phases](#-learning-phases)
-- [Documentation Index](#-documentation-index)
-- [Practical Applications](#-practical-applications)
-- [Experiments](#-experiments)
-- [Configurations](#-configurations)
-- [Hardware Requirements](#-hardware-requirements)
-- [Installation](#-installation)
-- [Common Pitfalls](#-common-pitfalls)
-- [Pro Tips](#-pro-tips)
-- [Performance Benchmarks](#-performance-benchmarks)
-- [Quick Reference](#-quick-reference)
-- [Usage](#-usage)
-- [Statistics](#-summary-statistics)
-- [Roadmap](#-roadmap)
-- [Contributing](#-contributing)
-- [Troubleshooting](#-troubleshooting)
-- [Community](#-community)
-- [License](#-license)
-- [Acknowledgments](#-acknowledgments)
+- [Overview](#overview)
+- [Key Takeaways](#key-takeaways)
+- [Why AI Engineering Curriculum](#why-ai-engineering-curriculum)
+- [Key Features](#key-features)
+- [Architecture](#architecture)
+- [Quick Start](#quick-start)
+- [Learning Path](#learning-path)
+- [Learning Phases](#learning-phases)
+- [Documentation Index](#documentation-index)
+- [Practical Applications](#practical-applications)
+- [Experiments](#experiments)
+- [Configurations](#configurations)
+- [Hardware Requirements](#hardware-requirements)
+- [Installation](#installation-1)
+- [Common Pitfalls](#common-pitfalls)
+- [Pro Tips](#pro-tips)
+- [Performance Benchmarks](#performance-benchmarks)
+- [Quick Reference](#quick-reference)
+- [Usage](#usage)
+- [Statistics](#summary-statistics)
+- [Roadmap](#roadmap)
+- [Contributing](#contributing)
+- [Troubleshooting](#troubleshooting)
+- [Community](#community)
+- [License](#license)
+- [Acknowledgments](#acknowledgments)
 
 ---
 
@@ -545,29 +545,29 @@ graph TB
 <details>
 <summary><b>📁 Phase 1: Infrastructure Fabric [1000]</b> - 17 documents</summary>
 
-#### [1100: Network Topology](./docs/phases/phase1-infra/1100-network/README.md)
+### [1100: Network Topology](./docs/phases/phase1-infra/1100-network/README.md)
 - [1101: Internet Uplink & Modem Configuration](./docs/phases/phase1-infra/1100-network/1101-Fiber-GPON-Modem.md)
 - [1102: Network Topology Design](./docs/phases/phase1-infra/1100-network/1102-Star-Topology-Core.md)
 - [1103: Jumbo Frames and MTU](./docs/phases/phase1-infra/1100-network/1103-Jumbo-Frames-and-MTU.md)
 
-#### [1200: Virtualization](./docs/phases/phase1-infra/1200-virtualization/README.md)
+### [1200: Virtualization](./docs/phases/phase1-infra/1200-virtualization/README.md)
 - [1201: Proxmox Hypervisor SOP](./docs/phases/phase1-infra/1200-virtualization/1201-Proxmox-Hypervisor-SOP.md)
 - [1202: GPU Passthrough (IOMMU/VFIO)](./docs/phases/phase1-infra/1200-virtualization/1202-TB3-UT3G-Passthrough.md)
 - [1203: Nvidia Kernel Module](./docs/phases/phase1-infra/1200-virtualization/1203-Nvidia-Kernel-Module.md)
 - [1204: Multi-GPU Setup](./docs/phases/phase1-infra/1200-virtualization/1204-Multi-GPU-Setup.md)
 
-#### [1300: Kubernetes](./docs/phases/phase1-infra/1300-kubernetes/README.md)
+### [1300: Kubernetes](./docs/phases/phase1-infra/1300-kubernetes/README.md)
 - [1301: K3s Architecture](./docs/phases/phase1-infra/1300-kubernetes/1301-K3s-Master-Worker-Arch.md)
 - [1302: GPU Scheduler](./docs/phases/phase1-infra/1300-kubernetes/1302-GPU-Scheduler.md)
 - [1303: Storage Classes](./docs/phases/phase1-infra/1300-kubernetes/1303-Storage-Classes.md)
 
-#### [1400: LLMOps](./docs/phases/phase1-infra/1400-llmops/README.md)
+### [1400: LLMOps](./docs/phases/phase1-infra/1400-llmops/README.md)
 - [1401: Ollama Enterprise](./docs/phases/phase1-infra/1400-llmops/1401-Ollama-Enterprise.md)
 - [1402: vLLM and TGI](./docs/phases/phase1-infra/1400-llmops/1402-vLLM-and-TGI.md)
 - [1404: vLLM Production](./docs/phases/phase1-infra/1400-llmops/guides/1404-vLLM-Production-Deployment.md)
 - [1405: TGI Deployment](./docs/phases/phase1-infra/1400-llmops/guides/1405-TGI-Deployment-Guide.md)
 
-#### [1500: Monitoring](./docs/phases/phase1-infra/1500-monitoring/README.md)
+### [1500: Monitoring](./docs/phases/phase1-infra/1500-monitoring/README.md)
 - [1501: Monitoring Stack](./docs/phases/phase1-infra/1500-monitoring/1501-Monitoring-and-Observability.md)
 - [1502: Model Drift Detection](./docs/phases/phase1-infra/1500-monitoring/1502-Model-Drift-Detection.md)
 - [1503: LLM Observability](./docs/phases/phase1-infra/1500-monitoring/1503-LLM-Observability.md)
@@ -577,22 +577,22 @@ graph TB
 <details>
 <summary><b>📁 Phase 2: Cognitive Science & Frameworks [2000]</b> - 12 documents</summary>
 
-#### [2100: Calculus](./docs/phases/phase2-foundations/2100-calculus/README.md)
+### [2100: Calculus](./docs/phases/phase2-foundations/2100-calculus/README.md)
 - [2101: Tensor Algebra](./docs/phases/phase2-foundations/2100-calculus/2101-Tensor-Algebra.md)
 - [2102: Backpropagation](./docs/phases/phase2-foundations/2100-calculus/2102-Backpropagation-and-Derivatives.md)
 
-#### [2200: Frameworks](./docs/phases/phase2-foundations/2200-frameworks/README.md)
+### [2200: Frameworks](./docs/phases/phase2-foundations/2200-frameworks/README.md)
 - [2201: PyTorch Graphs](./docs/phases/phase2-foundations/2200-frameworks/2201-PyTorch-Computational-Graphs.md)
 - [2202: TensorFlow XLA](./docs/phases/phase2-foundations/2200-frameworks/2202-TensorFlow-XLA-Compilers.md)
 - [2203: CUDA Kernels](./docs/phases/phase2-foundations/2200-frameworks/2203-CUDA-Kernel-Syb-Level.md)
 
-#### [2300: Framework Engineering](./docs/phases/phase2-foundations/2300-framework-engineering/README.md)
+### [2300: Framework Engineering](./docs/phases/phase2-foundations/2300-framework-engineering/README.md)
 - [2301: Framework Design Patterns](./docs/phases/phase2-foundations/2300-framework-engineering/2301-Framework-Design-Patterns.md)
 - [2302: Model Serving Architectures](./docs/phases/phase2-foundations/2300-framework-engineering/2302-Model-Serving-Architectures.md)
 - [2303: API Design for ML](./docs/phases/phase2-foundations/2300-framework-engineering/2303-API-Design-for-ML.md)
 - [2304: Production Deployment](./docs/phases/phase2-foundations/2300-framework-engineering/2304-Production-Deployment-Patterns.md)
 
-#### [2400: Pre-training](./docs/phases/phase2-foundations/2400-pretraining/README.md)
+### [2400: Pre-training](./docs/phases/phase2-foundations/2400-pretraining/README.md)
 - [2401: Pre-training Fundamentals](./docs/phases/phase2-foundations/2400-pretraining/2401-Pre-training-Fundamentals.md)
 - [2402: Large-Scale Training](./docs/phases/phase2-foundations/2400-pretraining/2402-Large-Scale-Training.md)
 - [2403: Evaluation Frameworks](./docs/phases/phase2-foundations/2400-pretraining/2403-Evaluation-Frameworks.md)
@@ -602,25 +602,25 @@ graph TB
 <details>
 <summary><b>📁 Phase 3: Transformer Physics [3000]</b> - 12 documents</summary>
 
-#### [3100: Attention](./docs/phases/phase3-transformers/3100-attention/README.md)
+### [3100: Attention](./docs/phases/phase3-transformers/3100-attention/README.md)
 - [3101: Self-Attention](./docs/phases/phase3-transformers/3100-attention/3101-Self-Attention-DeepDive.md)
 - [3102: Flash Attention](./docs/phases/phase3-transformers/3100-attention/3102-Flash-Attention.md)
 
-#### [3200: Embeddings](./docs/phases/phase3-transformers/3200-embeddings/README.md)
+### [3200: Embeddings](./docs/phases/phase3-transformers/3200-embeddings/README.md)
 - [3201: RoPE](./docs/phases/phase3-transformers/3200-embeddings/3201-Rotary-Positional-Embeddings-RoPE.md)
 - [3202: Tokenizer Sciences](./docs/phases/phase3-transformers/3200-embeddings/3202-Tokenizer-Sciences.md)
 
-#### [3300: Decoding](./docs/phases/phase3-transformers/3300-decoding/README.md)
+### [3300: Decoding](./docs/phases/phase3-transformers/3300-decoding/README.md)
 - [3301: Activation Functions](./docs/phases/phase3-transformers/3300-decoding/3301-Activation-Functions.md)
 - [3302: Normalization Layers](./docs/phases/phase3-transformers/3300-decoding/3302-Normalization-Layers.md)
 - [3303: Activation Comparison](./docs/phases/phase3-transformers/3300-decoding/guides/3303-Activation-Function-Comparison.md)
 
-#### [3400: Architectures](./docs/phases/phase3-transformers/3400-architectures/README.md)
+### [3400: Architectures](./docs/phases/phase3-transformers/3400-architectures/README.md)
 - [3401: Encoder-Decoder](./docs/phases/phase3-transformers/3400-architectures/3401-Encoder-Decoder-Architectures.md)
 - [3402: Decoder-Only](./docs/phases/phase3-transformers/3400-architectures/3402-Decoder-Only-Models.md)
 - [3403: Architecture Comparison](./docs/phases/phase3-transformers/3400-architectures/guides/3403-Model-Architecture-Comparison.md)
 
-#### [3500: Multimodal](./docs/phases/phase3-transformers/3500-multimodal/README.md)
+### [3500: Multimodal](./docs/phases/phase3-transformers/3500-multimodal/README.md)
 - [3501: Vision-Language Models](./docs/phases/phase3-transformers/3500-multimodal/3501-Vision-Language-Models.md)
 - [3502: Audio Models](./docs/phases/phase3-transformers/3500-multimodal/3502-Audio-Models.md)
 
@@ -629,24 +629,24 @@ graph TB
 <details>
 <summary><b>📁 Phase 4: Quantization & Compression [4000]</b> - 15 documents</summary>
 
-#### [4100: Low-Bit Quantization](./docs/phases/phase4-quantization/4100-low-bit/README.md)
+### [4100: Low-Bit Quantization](./docs/phases/phase4-quantization/4100-low-bit/README.md)
 - [4101: GGUF Physics](./docs/phases/phase4-quantization/4100-low-bit/4101-GGUF-Physics.md)
 - [4102: EXL2 and AWQ](./docs/phases/phase4-quantization/4100-low-bit/4102-EXL2-and-AWQ.md)
 - [4103: Double Quantization](./docs/phases/phase4-quantization/4100-low-bit/4103-Double-Quantization.md)
 
-#### [4200: KV-Cache](./docs/phases/phase4-quantization/4200-kv-cache/README.md)
+### [4200: KV-Cache](./docs/phases/phase4-quantization/4200-kv-cache/README.md)
 - [4201: Context Window Physics](./docs/phases/phase4-quantization/4200-kv-cache/4201-Context-Window-Physics.md)
 - [4202: Speculative Decoding](./docs/phases/phase4-quantization/4200-kv-cache/4202-Speculative-Decoding.md)
 - [4203: Context Optimization](./docs/phases/phase4-quantization/4200-kv-cache/guides/4203-Context-Window-Optimization.md)
 
-#### [4300: Quantization Aware Training](./docs/phases/phase4-quantization/4300-quantization-aware-training/README.md)
+### [4300: Quantization Aware Training](./docs/phases/phase4-quantization/4300-quantization-aware-training/README.md)
 - [4301: QAT Foundations](./docs/phases/phase4-quantization/4300-quantization-aware-training/4301-QAT-Foundations.md)
 - [4302: Fake Quantization](./docs/phases/phase4-quantization/4300-quantization-aware-training/4302-Fake-Quantization.md)
 - [4303: QAT for Transformers](./docs/phases/phase4-quantization/4300-quantization-aware-training/4303-QAT-for-Transformers.md)
 - [4304: Low-bit QAT](./docs/phases/phase4-quantization/4300-quantization-aware-training/4304-Low-bit-QAT.md)
 - [4305: Quantization Configuration](./docs/phases/phase4-quantization/4300-quantization-aware-training/4305-Quantization-Configuration.md)
 
-#### [4400: Advanced Quantization](./docs/phases/phase4-quantization/4400-advanced-techniques/README.md)
+### [4400: Advanced Quantization](./docs/phases/phase4-quantization/4400-advanced-techniques/README.md)
 - [4401: GPTQ](./docs/phases/phase4-quantization/4400-advanced-techniques/4401-GPTQ.md)
 - [4402: AWQ](./docs/phases/phase4-quantization/4400-advanced-techniques/4402-AWQ.md)
 - [4403: GGUF Format](./docs/phases/phase4-quantization/4400-advanced-techniques/4403-GGUF-Format.md)
@@ -657,24 +657,24 @@ graph TB
 <details>
 <summary><b>📁 Phase 5: Fine-Tuning & Alignment [5000]</b> - 10 documents</summary>
 
-#### [5100: PEFT](./docs/phases/phase5-finetuning/5100-peft/README.md)
+### [5100: PEFT](./docs/phases/phase5-finetuning/5100-peft/README.md)
 - [5101: LoRA Logic](./docs/phases/phase5-finetuning/5100-peft/5101-LoRA-Logic.md)
 - [5102: QLoRA Pipelines](./docs/phases/phase5-finetuning/5100-peft/5102-QLoRA-Pipelines.md)
 - [5104: LoRA Implementation](./docs/phases/phase5-finetuning/5100-peft/guides/5104-LoRA-Implementation-Guide.md)
 
-#### [5200: Alignment](./docs/phases/phase5-finetuning/5200-alignment/README.md)
+### [5200: Alignment](./docs/phases/phase5-finetuning/5200-alignment/README.md)
 - [5201: DPO Theory](./docs/phases/phase5-finetuning/5200-alignment/5201-DPO-Theory.md)
 - [5202: Alignment Orchestration](./docs/phases/phase5-finetuning/5200-alignment/5202-Alignment-Orchestration.md)
 
-#### [5300: Synthetic Data](./docs/phases/phase5-finetuning/5300-synthetic/README.md)
+### [5300: Synthetic Data](./docs/phases/phase5-finetuning/5300-synthetic/README.md)
 - [5301: Knowledge Distillation](./docs/phases/phase5-finetuning/5300-synthetic/5301-Knowledge-Distillation.md)
 - [5302: Distributed Training](./docs/phases/phase5-finetuning/5300-synthetic/5302-Distributed-Training.md)
 - [5303: Federated Learning](./docs/phases/phase5-finetuning/5300-synthetic/5303-Federated-Learning.md)
 
-#### [5400: Distributed Training](./docs/phases/phase5-finetuning/5400-distributed-training/README.md)
+### [5400: Distributed Training](./docs/phases/phase5-finetuning/5400-distributed-training/README.md)
 - [5401: Data Parallelism](./docs/phases/phase5-finetuning/5400-distributed-training/5401-Data-Parallelism.md)
 
-#### [5500: Advanced Optimization](./docs/phases/phase5-finetuning/5500-advanced-optimization/README.md)
+### [5500: Advanced Optimization](./docs/phases/phase5-finetuning/5500-advanced-optimization/README.md)
 - [5501: Optimizer Variants](./docs/phases/phase5-finetuning/5500-advanced-optimization/5501-Optimizer-Variants.md)
 
 </details>
@@ -682,27 +682,27 @@ graph TB
 <details>
 <summary><b>📁 Phase 6: Data Nexus [6000]</b> - 15 documents</summary>
 
-#### [6100: Vector](./docs/phases/phase6-rag/6100-vector/README.md)
+### [6100: Vector](./docs/phases/phase6-rag/6100-vector/README.md)
 - [6101: HNSW Indexing](./docs/phases/phase6-rag/6100-vector/6101-HNSW-Indexing.md)
 - [6102: Semantic Similarity](./docs/phases/phase6-rag/6100-vector/6102-Semantic-Similarity.md)
 - [6103: HNSW Tuning](./docs/phases/phase6-rag/6100-vector/guides/6103-HNSW-Tuning-Guide.md)
 
-#### [6200: Retrieval](./docs/phases/phase6-rag/6200-retrieval/README.md)
+### [6200: Retrieval](./docs/phases/phase6-rag/6200-retrieval/README.md)
 - [6201: Hybrid Search](./docs/phases/phase6-rag/6200-retrieval/6201-Hybrid-Search.md)
 - [6202: Re-ranking](./docs/phases/phase6-rag/6200-retrieval/6202-Re-ranking-and-Retrieval-Logistics.md)
 
-#### [6300: Context](./docs/phases/phase6-rag/6300-context/README.md)
+### [6300: Context](./docs/phases/phase6-rag/6300-context/README.md)
 - [6301: Knowledge Graphs](./docs/phases/phase6-rag/6300-context/6301-Neo4j-and-Knowledge-Graphs.md)
 - [6302: Long Context](./docs/phases/phase6-rag/6300-context/6302-CAG-Long-Context-Architectures.md)
 - [6303: Neo4j Deployment](./docs/phases/phase6-rag/6300-context/guides/6303-Neo4j-Deployment-Guide.md)
 - [6304: GraphRAG Implementation](./docs/phases/phase6-rag/6300-context/guides/6304-GraphRAG-Implementation.md)
 
-#### [6400: Vector Databases](./docs/phases/phase6-rag/6400-vector-databases/README.md)
+### [6400: Vector Databases](./docs/phases/phase6-rag/6400-vector-databases/README.md)
 - [6401: Qdrant Setup](./docs/phases/phase6-rag/6400-vector-databases/6401-Qdrant-Setup.md)
 - [6402: DB Comparison](./docs/phases/phase6-rag/6400-vector-databases/6402-Pinecone-vs-Weaviate.md)
 - [6403: Qdrant Production Deployment](./docs/phases/phase6-rag/6400-vector-databases/guides/6403-Qdrant-Production-Deployment.md)
 
-#### [6500: MLOps](./docs/phases/phase6-rag/6500-mlops-pipelines/README.md)
+### [6500: MLOps](./docs/phases/phase6-rag/6500-mlops-pipelines/README.md)
 - [6501: ML Lifecycle](./docs/phases/phase6-rag/6500-mlops-pipelines/6501-ML-Lifecycle-Management.md)
 - [6502: CI/CD for ML](./docs/phases/phase6-rag/6500-mlops-pipelines/6502-CI-CD-for-ML.md)
 - [6503: Model Registry](./docs/phases/phase6-rag/6500-mlops-pipelines/6503-Model-Registry.md)
@@ -712,24 +712,24 @@ graph TB
 <details>
 <summary><b>📁 Phase 7: Agentic Systems [7000]</b> - 12 documents</summary>
 
-#### [7100: Architecture](./docs/phases/phase7-agentic/7100-architecture/README.md)
+### [7100: Architecture](./docs/phases/phase7-agentic/7100-architecture/README.md)
 - [7101: ReAct Loop](./docs/phases/phase7-agentic/7100-architecture/7101-ReAct-Loop-System.md)
 - [7102: Planning](./docs/phases/phase7-agentic/7100-architecture/7102-Planning-Decomposition.md)
 - [7103: ReAct Implementation](./docs/phases/phase7-agentic/7100-architecture/guides/7103-ReAct-Implementation-Guide.md)
 
-#### [7200: Tools](./docs/phases/phase7-agentic/7200-tools/README.md)
+### [7200: Tools](./docs/phases/phase7-agentic/7200-tools/README.md)
 - [7201: Tool Calling](./docs/phases/phase7-agentic/7200-tools/7201-Tool-Calling.md)
 - [7202: Code Interpreter](./docs/phases/phase7-agentic/7200-tools/guides/7202-Code-Interpreter.md)
 
-#### [7300: Orchestration](./docs/phases/phase7-agentic/7300-orchestration/README.md)
+### [7300: Orchestration](./docs/phases/phase7-agentic/7300-orchestration/README.md)
 - [7301: Multi-Agent](./docs/phases/phase7-agentic/7300-orchestration/7301-Orchestration.md)
 - [7303: Framework Comparison](./docs/phases/phase7-agentic/7300-orchestration/guides/7303-Framework-Comparison.md)
 
-#### [7400: Memory](./docs/phases/phase7-agentic/7400-memory/README.md)
+### [7400: Memory](./docs/phases/phase7-agentic/7400-memory/README.md)
 - [7401: Long-term Memory](./docs/phases/phase7-agentic/7400-memory/7401-Long-term-Memory.md)
 - [7402: Memory Implementation](./docs/phases/phase7-agentic/7400-memory/guides/7402-Agent-Memory-Implementation.md)
 
-#### [7500: Security](./docs/phases/phase7-agentic/7500-security/README.md)
+### [7500: Security](./docs/phases/phase7-agentic/7500-security/README.md)
 - [7501: Prompt Injection Defense](./docs/phases/phase7-agentic/7500-security/7501-Prompt-Injection-Defense.md)
 - [7502: PII Redaction](./docs/phases/phase7-agentic/7500-security/7502-PII-Redaction.md)
 - [7503: Adversarial Attacks](./docs/phases/phase7-agentic/7500-security/7503-Adversarial-Attacks.md)

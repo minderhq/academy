@@ -14,7 +14,7 @@ Difficulty: Advanced
 - [Abstract](#abstract)
 - [GraphRAG Architecture](#graphrag-architecture)
 - [Implementation 1: Graph Construction](#implementation-1-graph-construction)
-- [Implementation 2: Hybrid Graph + Vector RAG](#implementation-2-hybrid-graph-vector-rag)
+- [Implementation 2: Hybrid Graph + Vector RAG](#implementation-2-hybrid-graph--vector-rag)
 - [Implementation 3: Multi-Hop Reasoning](#implementation-3-multi-hop-reasoning)
 - [Implementation 4: Entity Extraction with LLM](#implementation-4-entity-extraction-with-llm)
 - [Implementation 5: Complete GraphRAG Pipeline](#implementation-5-complete-graphrag-pipeline)

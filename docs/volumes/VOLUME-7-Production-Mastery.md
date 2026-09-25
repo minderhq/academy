@@ -29,12 +29,12 @@ Difficulty: Intermediate
 - [Cross-References](#-cross-references)
 - [Key Takeaways](#-key-takeaways)
 - [Common Pitfalls](#common-pitfalls)
-- [Pro Tips](#-pro-tips)
+- [Pro Tips](#pro-tips)
 - [Performance Benchmarks](#performance-benchmarks)
 - [Production Architecture](#production-architecture)
 - [Hardware Requirements](#hardware-requirements)
 - [Cost Analysis](#cost-analysis)
-- [Troubleshooting](#troubleshooting)
+- [Troubleshooting](#-troubleshooting)
 - [After Volume 7](#-after-volume-7)
 
 ---

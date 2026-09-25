@@ -30,7 +30,7 @@ Tags: ['agents', 'security', 'prompt-injection', 'pii', 'adversarial']
 - [Attack Vectors](#attack-vectors)
 - [Defense Strategies](#defense-strategies)
 - [Defense in Depth](#defense-in-depth)
-- [Testing & Validation](#testing-validation)
+- [Testing & Validation](#testing--validation)
 - [Production Checklist](#production-checklist)
 - [Related Resources](#related-resources)
 - [References](#references)

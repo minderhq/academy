@@ -22,7 +22,7 @@ Tags: ['training', 'pretraining', 'evaluation', 'fsdp']
 
 - [Learning Objectives](#learning-objectives)
 - [Abstract](#abstract)
-- [Part 1: Perplexity & Language Modeling Metrics](#part-1-perplexity-language-modeling-metrics)
+- [Part 1: Perplexity & Language Modeling Metrics](#part-1-perplexity--language-modeling-metrics)
 - [Part 2: Standard Benchmarks](#part-2-standard-benchmarks)
 - [Part 3: Human Preference Metrics](#part-3-human-preference-metrics)
 - [Part 4: Automated Evaluation Pipeline](#part-4-automated-evaluation-pipeline)

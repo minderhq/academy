@@ -13,7 +13,7 @@
 - [Key Takeaways](#key-takeaways)
 - [Common Pitfalls](#common-pitfalls)
 - [Pro Tips](#pro-tips)
-- [Performance Benchmarks](#performance-benchmarks)
+- [Performance Benchmarks](#performance-benchmarks-1)
 - [Related Experiments](#related-experiments)
 
 ---
