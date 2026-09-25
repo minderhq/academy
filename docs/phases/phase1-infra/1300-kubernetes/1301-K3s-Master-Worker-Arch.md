@@ -3,7 +3,7 @@ Document ID: 1301
 Title: K3s Master-Worker Architecture
 Phase: 1
 Module: 1300
-Last Updated: 2026-09-24
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -60,8 +60,8 @@ K3s is a lightweight Kubernetes distribution optimized for edge computing and Io
 │  │ (Linux VM/box)   │  API    │                  │        │
 │  │  - API Server    │  6443   │  - Kubelet       │        │
 │  │  - Scheduler     │────────►│  - Containerd    │        │
-│  │  - Controller    │         │  - GPU Device    │        │
-│  │  - etcd          │         │  - NVIDIA GPU    │        │
+│  │  - Controller    │         │  - Device Plugin │        │
+│  │  - SQLite store  │         │  - NVIDIA GPU    │        │
 │  └──────────────────┘         └──────────────────┘        │
 │         │                              │                   │
 └─────────┼──────────────────────────────┼───────────────────┘
@@ -81,8 +81,11 @@ Services:                 Port:    Purpose:
 ────────────────────────────────────────────────────
 API Server                6443     All cluster communication
 Scheduler                 -        Pod placement decisions
-Controller Manager        10250    Runs controllers
-etcd                      2379     Cluster state database
+Controller Manager        -        Runs controllers
+SQLite (embedded)         -        Cluster state database
+# Single-server k3s boots with an embedded SQLite datastore; etcd
+# only comes into play for HA (2+ server nodes). 10250 is the
+# kubelet port - every node listens on it, not just the control plane.
 ```
 
 #### Worker Node (GPU + Kubelet)
@@ -91,7 +94,7 @@ Services:                 Port:    Purpose:
 ────────────────────────────────────────────────────
 Kubelet                   10250    Pod lifecycle management
 Containerd                -        Container runtime
-Flannel/Cilium            8472     Overlay networking
+Flannel (default CNI)     8472     Overlay networking
 NVIDIA Device Plugin      -        GPU resource exposure
 ```
 
@@ -133,27 +136,28 @@ cluster-dns: "10.43.0.10"
 
 # Networking
 flannel-iface: "eth0"
-flannel-mtu: 9000
-node-name: "omega-master"
-
-# etcd configuration
-etcd-expose-metrics: true
+# NOTE: there is no flannel-mtu flag - the overlay MTU is set in the
+# flannel net-conf (see the Flannel Configuration section below).
 
 # Disable unnecessary features
 disable:
   - traefik          # Use ingress-nginx instead
   - servicelb        # Use MetalLB instead
 
-# Feature gates
-feature-gates: "CPUManager=true,MemoryManager=true"
+# CPU/Memory managers are kubelet POLICIES, not feature gates (k3s has
+# no feature-gates flag either) - configure them through the kubelet
+# config, see the Resource Management section.
 
-# Audit logging
-audit-log-file: "/var/log/k3s/audit.log"
-audit-log-maxage: 30
-audit-log-maxbackup: 10
+# Audit logging - k3s has no audit-log-* flags; they are passed to the
+# API server (audit-policy-file must point at a real policy file):
+kube-apiserver-arg:
+  - "audit-policy-file=/etc/rancher/k3s/audit-policy.yaml"
+  - "audit-log-path=/var/log/k3s/audit.log"
+  - "audit-log-maxage=30"
+  - "audit-log-maxbackup=10"
 ```
 
-### Worker Configuration
+### Worker Configuration (/etc/rancher/k3s/config.yaml on the agent)
 ```yaml
 # Node identity
 node-name: "omega-worker-gpu"
@@ -161,12 +165,18 @@ node-external-ip: "192.168.1.10"
 
 # GPU support
 kubelet-arg:
-  - "feature-gates=DevicePlugins=false"
   - "cpu-manager-policy=static"
 
-# Containerd
-containerd-arg:
-  - "config=/var/lib/rancher/k3s/agent/etc/containerd/config.toml"
+# Device plugins MUST stay enabled for GPUs: the NVIDIA device plugin
+# talks to the kubelet's DevicePlugin socket, and modern Kubernetes
+# has no DevicePlugins gate to turn off. Never add
+# "feature-gates=DevicePlugins=false" on a GPU node - it would hide
+# the GPU from Kubernetes entirely.
+
+# Containerd - k3s has no containerd-arg flag; to customize containerd
+# write a template instead:
+#   /var/lib/rancher/k3s/agent/etc/containerd/config.toml.tmpl
+# (k3s renders it into config.toml on start)
 
 # Resolv.conf (for custom DNS)
 resolv-conf: "/etc/k3s-resolv.conf"
@@ -329,24 +339,23 @@ evictionHard:
 
 ### Metrics Server
 ```bash
-# Install
-kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/metrics-server/main/components.yaml
+# Install (the manifest ships as a release asset, not in the repo
+# tree - raw .../main/components.yaml is a 404):
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
 
-# Add trusted CA for self-signed certs
-patch=`
-- op: add
-  path: /spec/template/spec/containers/0/args/-
-  value: --kubelet-insecure-tls
-`
-kubectl patch deployment metrics-server -n kube-system --type=json -p="$patch"
+# Homelab kubelets use self-signed certs - add --kubelet-insecure-tls
+# (--type json takes a literal JSON patch array, not YAML):
+kubectl patch deployment metrics-server -n kube-system \
+  --type json \
+  -p='[{"op":"add","path":"/spec/template/spec/containers/0/args/-","value":"--kubelet-insecure-tls"}]'
 ```
 
 ### Node Exporter
 ```bash
-# Deploy node exporter
+# Deploy node exporter (hostNetwork binds it to the host's :9100)
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm install prometheus-node-exporter prometheus-community/prometheus-node-exporter \
-  --set service.hostPort=9100
+  --set hostNetwork=true
 ```
 
 ---
@@ -362,13 +371,13 @@ helm install prometheus-node-exporter prometheus-community/prometheus-node-expor
 
 ## Next Steps
 
-- Continue with: **[1302: GPU Scheduler](./1302-GPU-Scheduler.md)**
+- Continue with: **[1302: GPU Scheduler Configuration](./1302-GPU-Scheduler.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 
 ---
 
 **Related Documents:**
-- [1201: Proxmox Hypervisor](../1200-virtualization/1201-Proxmox-Hypervisor-SOP.md)
-- [1302: GPU Scheduler](./1302-GPU-Scheduler.md)
-- [1303: Storage Classes](./1303-Storage-Classes.md)
+- [1201: Proxmox Hypervisor Standard Operating Procedures](../1200-virtualization/1201-Proxmox-Hypervisor-SOP.md)
+- [1302: GPU Scheduler Configuration](./1302-GPU-Scheduler.md)
+- [1303: Storage Classes for Dynamic Provisioning](./1303-Storage-Classes.md)
 
