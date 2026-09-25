@@ -1,7 +1,7 @@
 ---
 Document ID: 3300-PRACTICE
 Title: "3300: Decoding - Practice"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Advanced
 ---
@@ -39,8 +39,11 @@ def greedy_decode(model, input_ids, max_new_tokens=50, eos_token_id=None):
         with torch.no_grad():
             outputs = model(generated)
 
-        # Get next token logits (last position)
-        logits = outputs[:, -1, :] if outputs.dim() == 3 else outputs[:, -1:]
+        # Get next token logits (last position). transformers models
+        # return a ModelOutput object, not a bare tensor - calling
+        # .dim() on it raises AttributeError
+        logits = outputs.logits if hasattr(outputs, 'logits') else outputs
+        logits = logits[:, -1, :]
 
         # Convert to probabilities
         probs = F.softmax(logits, dim=-1)
@@ -99,8 +102,6 @@ print(f"\nGenerated text:\n{text}\n")
 
 ```python
 import heapq
-import torch
-import torch.nn.functional as F
 
 def beam_search(model, input_ids, num_beams=5, max_new_tokens=50, eos_token_id=None):
     """
@@ -140,8 +141,11 @@ def beam_search(model, input_ids, num_beams=5, max_new_tokens=50, eos_token_id=N
             with torch.no_grad():
                 outputs = model(seq)
 
-            # Get logits for next token
-            logits = outputs[:, -1, :] if outputs.dim() == 3 else outputs[:, -1:]
+            # Get logits for next token. transformers models return a
+            # ModelOutput, not a bare tensor - .dim() would raise
+            # AttributeError on it
+            logits = outputs.logits if hasattr(outputs, 'logits') else outputs
+            logits = logits[:, -1, :]
             log_probs = F.log_softmax(logits, dim=-1)
 
             # Get top-k tokens and their log probabilities
@@ -153,18 +157,19 @@ def beam_search(model, input_ids, num_beams=5, max_new_tokens=50, eos_token_id=N
                 new_seq = torch.cat([seq, topk_ids[0, i:i+1]], dim=1)
                 new_beams.append((new_score, new_seq))
 
-        # Keep top-k beams overall
+        # Keep top-k beams overall (raw cumulative log-probabilities)
         beams = heapq.nlargest(num_beams, new_beams, key=lambda x: x[0])
-
-        # Normalize scores by sequence length to avoid bias toward shorter sequences
-        beams = [(score / (seq.shape[1] ** 0.7), seq) for score, seq in beams]
 
         # Check if all beams finished
         if all_finished:
             break
 
-    # Return best sequence (highest score)
-    best_beam = max(beams, key=lambda x: x[0])
+    # Pick the winner by length-normalized score. Normalizing inside
+    # the loop would corrupt the next step: normalized scores and raw
+    # log-prob increments would be added together, making the beams
+    # incomparable. Length normalization belongs at selection time
+    # only (exponent 0.7 counters the bias toward short sequences)
+    best_beam = max(beams, key=lambda x: x[0] / (x[1].shape[1] ** 0.7))
     return best_beam[1]
 
 # Test beam search
@@ -203,9 +208,6 @@ for num_beams in [1, 3, 5]:
 ### Exercise 3: Implement Top-k Sampling
 
 ```python
-import torch
-import torch.nn.functional as F
-
 def top_k_sampling(model, input_ids, top_k=50, temperature=0.7, max_new_tokens=50, eos_token_id=None):
     """
     Top-k sampling: Sample from top-k most likely tokens.
@@ -231,8 +233,11 @@ def top_k_sampling(model, input_ids, top_k=50, temperature=0.7, max_new_tokens=5
         with torch.no_grad():
             outputs = model(generated)
 
-        # Get logits and apply temperature
-        logits = outputs[:, -1, :] if outputs.dim() == 3 else outputs[:, -1:]
+        # Get logits and apply temperature. transformers models return
+        # a ModelOutput, not a bare tensor - .dim() would raise
+        # AttributeError on it
+        logits = outputs.logits if hasattr(outputs, 'logits') else outputs
+        logits = logits[:, -1, :]
         logits = logits / temperature
 
         # Get top-k logits and indices
@@ -318,8 +323,11 @@ def nucleus_sampling(model, input_ids, top_p=0.9, temperature=0.7, max_new_token
         with torch.no_grad():
             outputs = model(generated)
 
-        # Get logits and apply temperature
-        logits = outputs[:, -1, :] if outputs.dim() == 3 else outputs[:, -1:]
+        # Get logits and apply temperature. transformers models return
+        # a ModelOutput, not a bare tensor - .dim() would raise
+        # AttributeError on it
+        logits = outputs.logits if hasattr(outputs, 'logits') else outputs
+        logits = logits[:, -1, :]
         logits = logits / temperature
 
         # Sort by probability (descending)
@@ -329,11 +337,14 @@ def nucleus_sampling(model, input_ids, top_p=0.9, temperature=0.7, max_new_token
         # Calculate cumulative probabilities
         cumulative_probs = torch.cumsum(sorted_probs, dim=-1)
 
-        # Remove tokens beyond top_p threshold
-        # Always keep at least one token
+        # Remove tokens beyond the top_p threshold. Shift the mask one
+        # step right: a token survives if the cumulative mass BEFORE
+        # it is still below top_p, so the kept set is the smallest one
+        # that reaches top_p. Without the shift the crossing token was
+        # dropped too and the kept set stayed strictly under threshold
         sorted_indices_to_remove = cumulative_probs >= top_p
-        sorted_indices_to_remove[..., 0:] = cumulative_probs[..., 0:] >= top_p
-        sorted_indices_to_remove[..., 0] = False  # Keep at least the top token
+        sorted_indices_to_remove[..., 1:] = sorted_indices_to_remove[..., :-1].clone()
+        sorted_indices_to_remove[..., 0] = False  # Always keep at least the top token
 
         # Set logits of removed tokens to -inf
         sorted_logits[sorted_indices_to_remove] = float('-inf')
@@ -456,7 +467,7 @@ print("""
    - Pros: Better quality than greedy, still efficient
    - Cons: Can still be repetitive, more compute
    - Use when: Quality matters, want some diversity control
-   - Beam size: 1=growth, 3-5=typical, 10+=high quality but slow
+   - Beam size: 1=greedy, 3-5=typical, 10+=high quality but slow
 
 3. TOP-k SAMPLING
    - Pros: Introduces diversity, controlled randomness
@@ -501,14 +512,22 @@ def sample_with_repetition_penalty(model, input_ids, temperature=0.7,
         with torch.no_grad():
             outputs = model(generated)
 
-        logits = outputs[:, -1, :] if outputs.dim() == 3 else outputs[:, -1:]
+        # transformers models return a ModelOutput, not a bare tensor
+        logits = outputs.logits if hasattr(outputs, 'logits') else outputs
+        logits = logits[:, -1, :]
         logits = logits / temperature
 
-        # Apply repetition penalty
+        # Apply repetition penalty (CTRL-style: positive logits are
+        # divided, negative ones multiplied - dividing a negative
+        # logit by the penalty would push it toward zero and REWARD
+        # the repeated token instead of discouraging it)
         if repetition_penalty > 1.0:
             # Get token IDs in generated sequence
             for token_id in generated[0].unique():
-                logits[0, token_id] /= repetition_penalty
+                if logits[0, token_id] < 0:
+                    logits[0, token_id] *= repetition_penalty
+                else:
+                    logits[0, token_id] /= repetition_penalty
 
         # Sample
         probs = F.softmax(logits, dim=-1)
@@ -535,6 +554,13 @@ for penalty in [1.0, 1.2, 1.5]:
     text = tokenizer.decode(output_ids[0], skip_special_tokens=True)
     print(f"\nPenalty={penalty}:")
     print(text[:200])
+
+# Expected Output:
+# Penalty=1.0: baseline sample - often drifts into repeated phrases
+# Penalty=1.2: noticeably fewer token-level loops
+# Penalty=1.5: much more varied vocabulary, occasionally less fluent
+# Sampling makes the exact text non-reproducible - read the trend,
+# not the words
 ```
 
 **Key Takeaways:**
