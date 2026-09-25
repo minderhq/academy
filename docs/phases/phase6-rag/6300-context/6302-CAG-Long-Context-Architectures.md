@@ -373,7 +373,7 @@ class DocumentQA:
 ```
 
 ### Code Analysis System
-```python
+````python
 class CodeAnalyzer:
     """
     Analyze entire code repository using CAG
@@ -433,7 +433,7 @@ File: {file_path}
     """
 
         return self.model.generate(prompt)
-```python
+````
 
 ## Context Optimization
 

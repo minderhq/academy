@@ -170,7 +170,7 @@ Interactive SVG diagrams.
 Guided notebook exercises.
 
 ### Notebook Template
-```markdown
+````markdown
 # Interactive Notebook: Self-Attention
 
 ## Learning Objectives
@@ -206,6 +206,7 @@ def compute_attention_scores(Q, K):
 
     return scores
 ```
+````
 
 **Test Your Code:**
 ```python
@@ -254,7 +255,6 @@ visualize_attention(attn_weights, tokens)
 ```
 
 🎨 **Challenge:** Try different colormaps (viridis, plasma, inferno)
-```text
 
 ## Comparison Tables
 

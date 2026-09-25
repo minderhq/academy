@@ -159,7 +159,7 @@ venv\Scripts\activate  # Windows
 pip install -r requirements.txt
 ```
 
-```txt
+```text
 # requirements.txt
 qdrant-client==1.7.0
 fastapi==0.109.0

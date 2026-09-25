@@ -787,7 +787,7 @@ CMD ["uvicorn", "react_agent:app", "--host", "0.0.0.0", "--port", "8002"]
 
 ### Requirements:
 
-```txt
+```text
 fastapi==0.109.0
 uvicorn[standard]==0.27.0
 requests==2.31.0

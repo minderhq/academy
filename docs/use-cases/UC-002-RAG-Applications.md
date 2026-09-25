@@ -389,7 +389,7 @@ class DocumentationRAG:
 
 **Real-World Usage:**
 
-```python
+````python
 # Developer query
 question = "How do I authenticate with the API using OAuth2?"
 
@@ -438,7 +438,7 @@ access_token = token_response.json()["access_token"]
 
 **Documentation:** [API Authentication Guide](https://docs.example.com/auth)
 """
-```python
+````
 
 ---
 

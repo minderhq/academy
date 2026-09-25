@@ -420,7 +420,7 @@ def hybrid_search(query, alpha=0.5):
 ```
 
 ### 3. Re-ranking
-```python`
+```python
 def rerank(results, query):
     """Re-rank results using a more sophisticated model"""
     from sentence_transformers import CrossEncoder
@@ -433,7 +433,7 @@ def rerank(results, query):
     # Sort by rerank scores
     reranked = sorted(zip(results, scores), key=lambda x: x[1], reverse=True)
     return [r[0] for r in reranked]
-```yaml
+```
 
 ---
 
@@ -463,7 +463,7 @@ Vector RAG:              GraphRAG:
                          ┌──────────────┐
                          │     LLM      │
                          └──────────────┘
-```yaml
+```
 
 ### Learn More:
 - [6304: GraphRAG Implementation](../../phases/phase6-rag/6300-context/guides/6304-GraphRAG-Implementation.md)

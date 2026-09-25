@@ -469,7 +469,7 @@ pip install -r requirements.txt
 ```
 
 3. **Pin exact versions:**
-```txt
+```text
 # requirements.txt
 transformers==4.36.0
 torch==2.1.0
