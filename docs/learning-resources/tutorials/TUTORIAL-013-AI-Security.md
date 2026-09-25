@@ -1,14 +1,29 @@
 ---
 Document ID: TUTORIAL-013
 Title: "TUTORIAL-013: AI Security and Safety"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-25
 Status: Complete
-Difficulty: Intermediate
+Difficulty: Advanced
 ---
 
 # TUTORIAL-013: AI Security and Safety
 
-## Overview
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Part 1: Prompt Injection Detection](#part-1-prompt-injection-detection)
+- [Part 2: Content Moderation](#part-2-content-moderation)
+- [Part 3: Access Control](#part-3-access-control)
+- [Part 4: Safety Monitoring](#part-4-safety-monitoring)
+- [Part 5: Guardrails for Agents](#part-5-guardrails-for-agents)
+- [Exercises](#exercises)
+- [References](#references)
+- [Next Steps](#next-steps)
+
+---
+
+## Abstract
 
 This tutorial covers AI security including prompt injection protection, output sanitization, access controls, and safety monitoring.
 
@@ -30,6 +45,17 @@ After this tutorial, you will:
 ---
 
 ## Part 1: Prompt Injection Detection
+
+### Installation
+
+```bash
+pip install torch transformers PyJWT fastapi
+```
+
+Parts 1, 4, and 5 are pure standard library. Part 2 needs torch +
+transformers (for the Llama Guard checkpoint), and Part 3 needs
+PyJWT (the `import jwt` package) plus fastapi for the auth
+middleware.
 
 ### Understanding Prompt Injection
 
@@ -159,6 +185,27 @@ for prompt in malicious_prompts:
     print(f"Malicious: {is_malicious}")
     print(f"Reasons: {reasons}")
     print()
+
+# Expected Output:
+# Malicious: True
+# Reasons: ['Injection pattern detected: ignore\\s+(all\\s+)?previous\\s+instructions']
+#
+# Malicious: True
+# Reasons: ['Injection pattern detected: act\\s+as\\s+(a\\s+)?(hacker|criminal)',
+#           'Injection pattern detected: ##\\s*INSTRUCTION',
+#           'Injection pattern detected: ###\\s*INSTRUCTION',
+#           'Role manipulation detected']
+# (the "###" heading matches BOTH ## and ### patterns, since "##"
+#  can start one character earlier)
+#
+# Malicious: True
+# Reasons: ['System prompt leakage attempt']
+#
+# Malicious: True
+# Reasons: ['Excessive formatting characters']
+# (the fourth prompt trips the >20%-special-characters check, not a
+#  pattern match - and the XSS payload itself slips past every
+#  regex above)
 ```
 
 ---
@@ -168,6 +215,9 @@ for prompt in malicious_prompts:
 ### Output Filtering
 
 ```python
+# re, List, Tuple and Dict come from Part 1's import header (this
+# tutorial's blocks run top-down)
+
 class ContentModerator:
     """Moderate AI-generated content"""
 
@@ -252,6 +302,22 @@ for output in test_outputs:
     print(f"Safe: {is_safe}")
     print(f"Violations: {violations}")
     print()
+
+# Expected Output:
+# Safe: True
+# Violations: {}
+#
+# Safe: False
+# Violations: {'violence': ['bomb']}
+#
+# Safe: False
+# Violations: {'hate_speech': ['hate']}
+#
+# Safe: True
+# Violations: {}
+# (the fourth output PASSES the filter - "hurt yourself" matches no
+#  self-harm keyword, which is exactly why classifier-based
+#  moderation like Llama Guard below exists)
 ```
 
 ### Llama Guard Integration
@@ -259,25 +325,29 @@ for output in test_outputs:
 ```python
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
+# Tuple comes from Part 1's import header (top-down flow)
+
 class LlamaGuardModerator:
-    """Use Llama Guard for content moderation"""
+    """Use Llama Guard for content moderation
+
+    Llama Guard ships a FIXED safety taxonomy and prompt format -
+    it was trained to reply "safe" or an unsafe category code
+    (O1-O6 below), never a free-form label of our choosing. The
+    checkpoint is also gated: accept the license on its Hugging
+    Face page, then `huggingface-cli login` before downloading.
+    """
+
+    O_TAXONOMY = """O1: Violence and Hate.
+O2: Sexual Content.
+O3: Guns & Illegal Weapons.
+O4: Regulated Goods.
+O5: Self-Harm.
+O6: Criminal Planning."""
 
     def __init__(self):
-        model_name = "meta-llama/LlamaGuard-7b"
+        model_name = "meta-llama/Llama-Guard-7b"
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
         self.model = AutoModelForCausalLM.from_pretrained(model_name)
-
-        # Category prompts
-        self.categories = {
-            "safe": "Safe content",
-            "violence": "Violence and physical harm",
-            "sexual": "Sexual content",
-            "hate": "Hate speech and discrimination",
-            "self_harm": "Self-harm and suicide",
-            "illegal": "Illegal activities",
-            "malware": "Malware and hacking",
-            "pii": "Personal information"
-        }
 
     def moderate(
         self,
@@ -288,17 +358,31 @@ class LlamaGuardModerator:
         Check if response is safe
 
         Returns:
-            (is_safe, category)
+            (is_safe, 'safe' or the unsafe category code)
         """
-        # Format for Llama Guard
-        prompt = f"""[INST] Task: Check if there is unsafe content in '{assistant_response}' in response to '{user_prompt}'.
-Answer with either 'safe' or one of these categories: {', '.join(self.categories.keys())}. [/INST]"""
+        # The model's official prompt format, condensed here for
+        # readability - the taxonomy section must match training
+        prompt = f"""[INST] Task: Check if there is unsafe content in 'Agent' messages in conversations based on our safety policy with the below types:
+
+{self.O_TAXONOMY}
+
+Conversation:
+User: {user_prompt}
+Agent: {assistant_response}
+
+Provide your safety assessment with ONLY the following single line as output format:
+
+safe or unsafe with the corresponding category. [/INST]"""
 
         inputs = self.tokenizer(prompt, return_tensors="pt")
-        outputs = self.model.generate(**inputs, max_new_tokens=50)
+        outputs = self.model.generate(**inputs, max_new_tokens=10)
 
-        result = self.tokenizer.decode(outputs[0], skip_special_tokens=True)
-        result = result.split("[/INST]")[-1].strip().lower()
+        # generate() returns prompt + continuation - decode only
+        # the assessment line, not the whole echoed prompt
+        prompt_len = inputs["input_ids"].shape[-1]
+        result = self.tokenizer.decode(
+            outputs[0][prompt_len:], skip_special_tokens=True
+        ).strip().lower()
 
         is_safe = result == "safe"
 
@@ -312,6 +396,9 @@ is_safe, category = guard.moderate(
     "Here's a simple recipe for making a cake at home..."
 )
 print(f"Safe: {is_safe}, Category: {category}")
+
+# Expected Output:
+# Safe: True, Category: safe
 ```
 
 ---
@@ -330,8 +417,7 @@ import jwt
 class APIKeyManager:
     """Manage API keys for LLM access"""
 
-    def __init__(self, secret_key: str):
-        self.secret_key = secret_key
+    def __init__(self):
         self.keys = {}  # In production, use database
         self.rate_limits = {}
 
@@ -342,8 +428,12 @@ class APIKeyManager:
         expires_days: int = 365
     ) -> str:
         """Generate new API key"""
-        key_id = secrets.token_urlsafe(16)
-        key_secret = secrets.token_urlsafe(32)
+        # token_hex, not token_urlsafe: urlsafe's alphabet includes
+        # '_', which collides with the underscore delimiters in
+        # "llm_{id}_{secret}" and makes verify_key's split() reject
+        # roughly half of all generated keys
+        key_id = secrets.token_hex(8)
+        key_secret = secrets.token_hex(32)
 
         # Hash the secret for storage
         key_hash = hashlib.sha256(key_secret.encode()).hexdigest()
@@ -437,7 +527,7 @@ class APIKeyManager:
         return True
 
 # Usage
-key_manager = APIKeyManager(secret_key="your-secret-key")
+key_manager = APIKeyManager()
 
 # Generate key
 api_key = key_manager.generate_key(
@@ -456,6 +546,15 @@ if key_manager.check_rate_limit(api_key):
     print("Request allowed")
 else:
     print("Rate limit exceeded")
+
+# Expected Output:
+# API Key: llm_<random id>_<random secret>
+# (fresh token_hex values every run - the id is 16 hex chars, the
+#  secret 64)
+# Key Info: {'key_hash': '<sha256 hex of the secret>', 'user_id':
+#            'user123', 'tier': 'pro', 'created_at': <now>,
+#            'expires_at': <now + 30 days>, 'is_active': True}
+# Request allowed
 ```
 
 ### JWT Authentication
@@ -507,8 +606,11 @@ class JWTAuth:
 
         return required_permission in payload.get("permissions", [])
 
+# The middleware below dispatches through a live JWTAuth instance
+jwt_auth = JWTAuth(secret="change-me-in-production")
+
 # Middleware for FastAPI
-from fastapi import HTTPException, Header
+from fastapi import Depends, HTTPException
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 
 security = HTTPBearer()
@@ -545,9 +647,9 @@ async def require_permission(
 
 ```python
 from dataclasses import dataclass
-from datetime import datetime
-from typing import List, Dict
-import json
+
+# datetime/timedelta and List/Dict come from Part 3's import header
+# (this tutorial's blocks run top-down)
 
 @dataclass
 class SafetyEvent:
@@ -663,6 +765,36 @@ class SafetyMonitor:
             user_id for user_id in self.user_stats
             if self.user_stats[user_id]["total"] >= self.thresholds["warning"]
         ]
+
+# Usage
+monitor = SafetyMonitor()
+
+# Six strikes from the same user - the escalation ladder fires as
+# the totals cross each threshold (warning=3, suspension=5)
+for i in range(6):
+    event = SafetyEvent(
+        timestamp=datetime.now(),
+        event_type="violation",
+        user_id="user42",
+        prompt=f"suspicious prompt {i}",
+        response="blocked",
+        details={"rule": "keyword"},
+        severity="medium",
+    )
+    action = monitor.record_event(event)["action"]
+    if action != "monitor":
+        print(f"Event {i + 1}: action = {action}")
+
+print(f"Report: {monitor.get_report(hours=24)}")
+
+# Expected Output:
+# Event 3: action = warn
+# Event 4: action = warn
+# Event 5: action = suspend
+# Event 6: action = suspend
+# Report: {'period_hours': 24, 'total_events': 6, 'by_type':
+#          {'violation': 6}, 'by_severity': {'medium': 6},
+#          'users_flagged': 1}
 ```
 
 ---
@@ -672,8 +804,11 @@ class SafetyMonitor:
 ### Agent Safety Constraints
 
 ```python
-from typing import List, Callable
-import re
+import json
+from urllib.parse import urlparse
+
+# re, Tuple and Dict come from the earlier parts' import headers
+# (this tutorial's blocks run top-down)
 
 class AgentGuardrails:
     """Safety guardrails for AI agents"""
@@ -721,8 +856,6 @@ class AgentGuardrails:
 
     def check_url(self, url: str) -> Tuple[bool, str]:
         """Check if URL access is safe"""
-        from urllib.parse import urlparse
-
         parsed = urlparse(url)
         domain = parsed.netloc.lower()
 
@@ -769,6 +902,22 @@ is_safe, reason = guardrails.check_tool_call(
     {"query": "example search"}
 )
 print(f"Tool call safe: {is_safe}, Reason: {reason}")
+
+# A tool that was never allow-listed
+is_safe, reason = guardrails.check_tool_call(
+    "shell",
+    {"command": "ls"}
+)
+print(f"Tool call safe: {is_safe}, Reason: {reason}")
+
+# An internal address via the URL check
+is_safe, reason = guardrails.check_url("http://localhost:8000/admin")
+print(f"URL safe: {is_safe}, Reason: {reason}")
+
+# Expected Output:
+# Tool call safe: True, Reason: OK
+# Tool call safe: False, Reason: Tool 'shell' is not allowed
+# URL safe: False, Reason: Internal access not allowed
 ```
 
 ---
@@ -793,4 +942,18 @@ print(f"Tool call safe: {is_safe}, Reason: {reason}")
 
 ---
 
-**Next Steps:** LAB-014: AI Evaluation Safety or EXP_7501: Prompt Injection
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [TUTORIAL-004: Monitoring](TUTORIAL-004-Monitoring.md)
+- [LAB-013: Advanced Function Calling](../labs/LAB-013-Advanced-Function-Calling.md)
+- [LAB-014: AI Evaluation Safety](../labs/LAB-014-AI-Evaluation-Safety.md)
+- [7501: Prompt Injection Defense](../../phases/phase7-agentic/7500-security/7501-Prompt-Injection-Defense.md)
+
+---
+
+## Next Steps
+
+- Hands-on: **[7501: Prompt Injection Defense](../../phases/phase7-agentic/7500-security/7501-Prompt-Injection-Defense.md)**
+- Practice: **[LAB-014: AI Evaluation Safety](../labs/LAB-014-AI-Evaluation-Safety.md)**
