@@ -358,11 +358,15 @@ class DocumentIndexer:
         self.embedding_dim = self.embedder.get_sentence_embedding_dimension()
 
     def create_collection(self, name: str):
-        """Create collection"""
-        self.qdrant.recreate_collection(
-            collection_name=name,
-            vectors_config=VectorParams(size=self.embedding_dim, distance=Distance.COSINE)
-        )
+        """Create the collection only if it does not already exist.
+
+        recreate_collection would silently wipe every stored vector.
+        """
+        if not self.qdrant.collection_exists(name):
+            self.qdrant.create_collection(
+                collection_name=name,
+                vectors_config=VectorParams(size=self.embedding_dim, distance=Distance.COSINE)
+            )
 
     def index_documents(self, collection_name: str,
                         documents: List[Dict]) -> int:

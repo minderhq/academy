@@ -150,11 +150,14 @@ from qdrant_client.models import Distance, VectorParams, PayloadSchemaType, Poin
 
 client = QdrantClient(url="http://localhost:6333")
 
-# one collection per agent/tenant; named vector = embedding model version
-client.recreate_collection(
-    collection_name="agent_memory_v1",
-    vectors_config=VectorParams(size=1024, distance=Distance.COSINE),
-)
+# one collection per agent/tenant; named vector = embedding model version.
+# Guarded create - recreate_collection would wipe the agent's memory
+# every time this snippet re-runs.
+if not client.collection_exists("agent_memory_v1"):
+    client.create_collection(
+        collection_name="agent_memory_v1",
+        vectors_config=VectorParams(size=1024, distance=Distance.COSINE),
+    )
 # payload indexes make filtered recall fast
 client.create_payload_index("agent_memory_v1", "type", PayloadSchemaType.KEYWORD)
 client.create_payload_index("agent_memory_v1", "entities", PayloadSchemaType.KEYWORD)

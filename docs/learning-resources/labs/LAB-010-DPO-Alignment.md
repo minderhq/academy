@@ -388,8 +388,8 @@ Train model with DPO alignment
 """
 
 import torch
-from transformers import AutoTokenizer, AutoModelForCausalLM, TrainingArguments
-from trl import DPOTrainer
+from transformers import AutoTokenizer, AutoModelForCausalLM
+from trl import DPOConfig, DPOTrainer
 from datasets import Dataset
 import json
 
@@ -445,8 +445,10 @@ peft_config = LoraConfig(
 model = get_peft_model(model, peft_config)
 model.print_trainable_parameters()
 
-# Configure DPO training
-training_args = TrainingArguments(
+# Configure DPO training. DPOConfig extends TrainingArguments and is
+# also where the DPO-specific fields live (beta, label_smoothing,
+# loss_type, max_length) - the trainer itself takes none of them.
+training_args = DPOConfig(
     output_dir="./dpo_output",
     num_train_epochs=3,
     per_device_train_batch_size=2,  # Adjust based on GPU memory
@@ -461,30 +463,29 @@ training_args = TrainingArguments(
     gradient_checkpointing=True,
     report_to="wandb",  # Or "tensorboard"
     run_name="dpo-alignment-lab",
+    # DPO-specific:
+    beta=0.1,  # KL-anchor strength: HIGHER = more conservative,
+               # i.e. the policy stays closer to the SFT reference
+    label_smoothing=0.0,  # No label smoothing
+    loss_type="sigmoid",  # Loss type
+    max_length=512,  # max_prompt_length was removed from TRL -
+                     # truncate prompt/completion in data prep
 )
 
-# DPO configuration
-dpo_config = {
-    "beta": 0.1,  # DPO temperature (lower = more conservative)
-    "label_smoothing": 0.0,  # No label smoothing
-    "loss_type": "sigmoid",  # Loss type
-}
-
 # Create DPO trainer
+# ref_model=None + LoRA: the frozen base model under the adapter
+# serves as the reference - no second model in VRAM.
 dpo_trainer = DPOTrainer(
     model=model,
-    ref_model=None,  # Will use model as reference
+    ref_model=None,
     args=training_args,
     train_dataset=train_data,
     eval_dataset=eval_data,
-    tokenizer=tokenizer,
-    beta=dpo_config["beta"],
-    max_length=512,
-    max_prompt_length=256,
+    processing_class=tokenizer,
 )
 
 print("\nStarting DPO training...")
-print(f"Configuration: {dpo_config}")
+print(f"Beta (KL anchor): {training_args.beta} | max_length: {training_args.max_length}")
 
 # Train
 dpo_trainer.train()

@@ -287,6 +287,8 @@ for i, chunk in enumerate(chunks):
 
 ```python
 # ~/lab-002-rag/services/rag/rag_service.py
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from typing import List, Optional, Dict, Any
@@ -298,8 +300,6 @@ from sentence_transformers import SentenceTransformer
 import hashlib
 import uuid
 
-app = FastAPI(title="RAG Service")
-
 # Configuration
 QDRANT_URL = "http://qdrant:6333"
 OLLAMA_URL = "http://ollama:11434"
@@ -309,6 +309,28 @@ COLLECTION_NAME = "documents"
 # Initialize clients
 qdrant = QdrantClient(url=QDRANT_URL)
 embedder = SentenceTransformer(EMBEDDING_MODEL)
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """Ensure the Qdrant collection exists before serving traffic.
+
+    Guarded create - recreate_collection would wipe every stored
+    vector, so a service restart must never go through it.
+    """
+    if not qdrant.collection_exists(COLLECTION_NAME):
+        qdrant.create_collection(
+            collection_name=COLLECTION_NAME,
+            vectors_config=VectorParams(
+                size=384,  # all-MiniLM-L6-v2 dimension
+                distance=Distance.COSINE
+            )
+        )
+    yield
+
+
+# on_event("startup") is deprecated - lifespan owns startup AND shutdown
+app = FastAPI(title="RAG Service", lifespan=lifespan)
 
 class Document(BaseModel):
     text: str
@@ -323,21 +345,6 @@ class RAGResponse(BaseModel):
     answer: str
     sources: List[Dict[str, Any]]
     query_time: float
-
-@app.on_event("startup")
-async def startup():
-    """Initialize Qdrant collection"""
-    try:
-        qdrant.create_collection(
-            collection_name=COLLECTION_NAME,
-            vectors_config=VectorParams(
-                size=384,  # all-MiniLM-L6-v2 dimension
-                distance=Distance.COSINE
-            )
-        )
-        print(f"Created collection: {COLLECTION_NAME}")
-    except Exception as e:
-        print(f"Collection exists or error: {e}")
 
 @app.get("/")
 def root():

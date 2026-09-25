@@ -751,8 +751,10 @@ CONFIG = {
     "max_model_len": 8192,  # Maximum with 4-bit + 8-bit KV
     "max_new_tokens": 512,
 
-    # KV Cache
-    "kv_cache_quantization": "int8",  # Reduce KV cache by 2x
+    # KV Cache - there is no model-load flag for this; a quantized
+    # cache is a per-generate() setting in transformers:
+    #   model.generate(..., cache_implementation="quantized",
+    #                  cache_config={"nbits": 8, "backend": "hqq"})
 
     # Attention
     "use_flash_attention_2": True,  # Faster attention

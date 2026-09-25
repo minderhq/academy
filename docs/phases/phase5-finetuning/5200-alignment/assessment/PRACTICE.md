@@ -577,7 +577,7 @@ Solutions:
 
 ```python
 from trl import DPOTrainer, DPOConfig
-from transformers import AutoModelForCausalLM
+from transformers import AutoModelForCausalLM, AutoTokenizer
 import torch
 
 # SOLUTION: DPO - Direct Preference Optimization
@@ -602,14 +602,15 @@ given preferences, without needing to train a reward model.
 # SOLUTION: Load models
 model = AutoModelForCausalLM.from_pretrained("gpt2")
 ref_model = AutoModelForCausalLM.from_pretrained("gpt2")
+tokenizer = AutoTokenizer.from_pretrained("gpt2")
 
 # SOLUTION: Configure DPO
 dpo_config = DPOConfig(
+    output_dir="./dpo_output",
     learning_rate=1e-5,
-    beta=0.1,  # Temperature parameter (lower = more optimization)
-    max_length=512,
-    max_prompt_length=256,
-    max_target_length=256,
+    beta=0.1,  # KL-anchor strength: higher = stays closer to ref_model
+    max_length=512,  # max_prompt_length/max_target_length were removed
+                     # from TRL - truncate prompt/completion in data prep
     gradient_accumulation_steps=4,
 )
 
@@ -628,8 +629,9 @@ dpo_dataset = [
 trainer = DPOTrainer(
     model=model,
     ref_model=ref_model,
-    config=dpo_config,
+    args=dpo_config,  # DPOTrainer takes args=, not config=
     train_dataset=dpo_dataset,
+    processing_class=tokenizer,
 )
 
 # SOLUTION: Train with DPO

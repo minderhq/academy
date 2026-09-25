@@ -403,7 +403,7 @@ def dpo_loss_with_label_smoothing(
 
 ### TRL (Transformer Reinforcement Learning)
 ```python
-from trl import DPOTrainer
+from trl import DPOConfig, DPOTrainer
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from datasets import load_dataset
 
@@ -415,16 +415,24 @@ tokenizer = AutoTokenizer.from_pretrained("llama-2-7b-sft")
 # Load dataset
 dataset = load_dataset("Anthropic/hh-rlhf", split="train")
 
+# All hyperparameters live in DPOConfig (beta, max_length and
+# generate_during_eval are config fields, not trainer kwargs).
+# max_prompt_length no longer exists in TRL - truncate the
+# prompt/completion columns during data prep instead.
+training_args = DPOConfig(
+    output_dir="./dpo_output",
+    beta=0.1,
+    max_length=512,
+    generate_during_eval=False,
+)
+
 # DPO Trainer
 dpo_trainer = DPOTrainer(
     model=model,
     ref_model=ref_model,
+    args=training_args,
     train_dataset=dataset,
-    tokenizer=tokenizer,
-    beta=0.1,
-    max_length=512,
-    max_prompt_length=256,
-    generate_during_eval=False,
+    processing_class=tokenizer,
 )
 
 # Train

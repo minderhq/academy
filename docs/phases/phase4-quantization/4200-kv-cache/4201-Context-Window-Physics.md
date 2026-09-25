@@ -119,48 +119,65 @@ Solution: Quantize KV cache
 
 ### 8-bit KV Cache
 ```python
-# Quantize K and V to 8-bit
-# Saves 50% memory with minimal quality loss
+# Two independent knobs: WEIGHTS via BitsAndBytesConfig, KV cache
+# via QuantizedCache at generate() time (hqq/quanto backends).
+# Saves 50% cache memory with minimal quality loss.
 
-from transformers import AutoModelForCausalLM
+from transformers import AutoModelForCausalLM, BitsAndBytesConfig
 
 model = AutoModelForCausalLM.from_pretrained(
     "meta-llama/Llama-2-7b-hf",
-    load_in_8bit=True,  # Model weights
-    quantization_config={
-        "kv_cache_quantization": "int8",  # KV cache
-    }
+    quantization_config=BitsAndBytesConfig(load_in_8bit=True),  # weights
+)
+
+out = model.generate(
+    **inputs,
+    cache_implementation="quantized",             # KV cache
+    cache_config={"nbits": 8, "backend": "hqq"},  # hqq supports int8
 )
 
 # Memory breakdown:
-# Model (8-bit):    7 GB
-# KV Cache (8-bit):  1 GB
-# Activations:       1 GB
-# Total:             9 GB ✓ (fits!)
+# Model weights (8-bit):  7 GB
+# KV Cache (8-bit):       1 GB
+# Activations:            1 GB
+# Total:                  9 GB ✓ (fits!)
 ```
 
 ### 4-bit KV Cache
 ```python
-# More aggressive: 4-bit KV cache
-# Saves 75% memory, some quality loss
+# More aggressive: 4-bit KV cache (quanto backend; hqq cache values
+# stop at int8). Saves 75% cache memory, some quality loss.
 
-quantization_config = BitsAndBytesConfig(
-    load_in_4bit=True,
-    bnb_4bit_quant_type="nf4",
-    bnb_4bit_use_double_quant=True,
+from transformers import AutoModelForCausalLM, BitsAndBytesConfig
 
-    # KV cache quantization
-    llm_int8_threshold=6.0,
-    llm_int8_has_fp16_weight=False,
-    quantization_type="4bit",
+model = AutoModelForCausalLM.from_pretrained(
+    "meta-llama/Llama-2-7b-hf",
+    quantization_config=BitsAndBytesConfig(  # weights only
+        load_in_4bit=True,
+        bnb_4bit_quant_type="nf4",
+        bnb_4bit_use_double_quant=True,
+    ),
+)
+
+out = model.generate(
+    **inputs,
+    cache_implementation="quantized",             # KV cache
+    cache_config={"nbits": 4, "backend": "quanto"},
 )
 
 # Memory breakdown:
-# Model (4-bit):    3.5 GB
-# KV Cache (4-bit):  0.5 GB
-# Activations:       1 GB
-# Total:             5 GB ✓ (plenty of room!)
+# Model weights (4-bit):  3.5 GB
+# KV Cache (4-bit):       0.5 GB
+# Activations:            1 GB
+# Total:                  5 GB ✓ (plenty of room!)
 ```
+
+> **Latency trade-off:** quantizing the cache adds dequantize work on
+> every step - with a short context and free VRAM, an fp16 cache is
+> faster. Reach for `cache_implementation="quantized"` when the context
+> length, not compute, is what pushes you into OOM.
+
+## Multi-Round Attention
 
 ## Multi-Round Attention
 

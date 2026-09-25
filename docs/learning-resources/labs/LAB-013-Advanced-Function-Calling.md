@@ -1357,30 +1357,20 @@ Production Tool-Enabled Agent API
 ==================================
 """
 
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from typing import Dict, List, Any, Optional
 import uvicorn
 
-app = FastAPI(title="Tool-Enabled Agent API")
-
 # Global registry and engine
 registry = ToolRegistry()
 engine = None
 
-class ToolCallRequest(BaseModel):
-    tool_name: str
-    parameters: Dict[str, Any]
 
-class WorkflowRequest(BaseModel):
-    steps: List[Dict]
-
-class ChatRequest(BaseModel):
-    message: str
-    tools: Optional[List[str]] = None
-
-@app.on_event("startup")
-async def startup():
+@asynccontextmanager
+async def lifespan(app: FastAPI):
     """Initialize tools on startup"""
     global engine
 
@@ -1391,6 +1381,26 @@ async def startup():
     client = OpenAI()
 
     engine = FunctionCallingEngine(client, registry)
+
+    yield
+
+
+# on_event("startup") is deprecated - lifespan owns startup AND shutdown
+app = FastAPI(title="Tool-Enabled Agent API", lifespan=lifespan)
+
+
+class ToolCallRequest(BaseModel):
+    tool_name: str
+    parameters: Dict[str, Any]
+
+
+class WorkflowRequest(BaseModel):
+    steps: List[Dict]
+
+
+class ChatRequest(BaseModel):
+    message: str
+    tools: Optional[List[str]] = None
 
 @app.post("/tools/execute")
 async def execute_tool(request: ToolCallRequest) -> Dict:

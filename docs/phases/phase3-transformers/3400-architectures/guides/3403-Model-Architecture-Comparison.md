@@ -375,10 +375,14 @@ model = AutoModelForCausalLM.from_pretrained(
 
 **Encoder-Decoder (3B parameters - FLAN-T5-XL):**
 ```python
-# 8-bit quantization (encoder-decoder needs more precision)
+# 8-bit quantization (encoder-decoder needs more precision).
+# load_in_8bit on from_pretrained is deprecated - wrap it in
+# BitsAndBytesConfig instead.
+from transformers import BitsAndBytesConfig, T5ForConditionalGeneration
+
 model = T5ForConditionalGeneration.from_pretrained(
     "google/flan-t5-xl",
-    load_in_8bit=True,
+    quantization_config=BitsAndBytesConfig(load_in_8bit=True),
     device_map="auto",
 )
 # VRAM Usage: ~6GB (leaves 5GB for inference)

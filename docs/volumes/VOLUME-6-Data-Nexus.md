@@ -496,7 +496,13 @@ def graph_retrieval(entities, max_hops=2):
 # 4. Vector retrieval
 def vector_retrieval(query):
     client = QdrantClient("localhost", port=6333)
-    return client.search(collection_name="docs", query_vector=embed(query))
+    # query_points replaces the deprecated search(); it returns a
+    # QueryResponse whose .points carry score + payload
+    return client.query_points(
+        collection_name="docs",
+        query=embed(query),
+        limit=5,
+    ).points
 
 # 5. Combine
 def graphrag_retrieval(query):

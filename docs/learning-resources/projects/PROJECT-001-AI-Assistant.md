@@ -319,11 +319,13 @@ import uuid
 qdrant = QdrantClient(url="http://localhost:6333")
 embedder = SentenceTransformer('all-MiniLM-L6-v2')
 
-# Create collection
-qdrant.recreate_collection(
-    collection_name="knowledge_base",
-    vectors_config=VectorParams(size=384, distance=Distance.COSINE)
-)
+# Create collection only if missing - recreate_collection would wipe
+# every stored vector, so re-running this script must not use it
+if not qdrant.collection_exists("knowledge_base"):
+    qdrant.create_collection(
+        collection_name="knowledge_base",
+        vectors_config=VectorParams(size=384, distance=Distance.COSINE)
+    )
 
 # Load and index documents
 docs_dir = Path("~/ai-assistant/data/documents").expanduser()
