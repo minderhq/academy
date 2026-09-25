@@ -1,7 +1,7 @@
 ---
 Document ID: 5500-PRACTICE
 Title: "5500: Advanced Optimization - Practice"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Advanced
 ---
@@ -32,8 +32,10 @@ def get_lr_schedule(current_step, total_steps, warmup_steps, max_lr):
         # Linear warmup
         return max_lr * current_step / warmup_steps
     else:
-        # Cosine decay
+        # Cosine decay. Clamp progress at 1.0: past total_steps the raw
+        # cosine would rise again (a restart) instead of decaying.
         progress = (current_step - warmup_steps) / (total_steps - warmup_steps)
+        progress = min(progress, 1.0)
         return max_lr * 0.5 * (1 + math.cos(math.pi * progress))
 
 # Test the schedule
@@ -68,11 +70,25 @@ if __name__ == "__main__":
     plt.savefig("lr_schedule.png")
     print("\nLearning rate schedule plot saved to lr_schedule.png")
 
-# Expected output:
-# - Linear increase from 0 to max_lr during warmup
-# - Cosine decay from max_lr to ~0 after warmup
-# - Smooth transition without sudden jumps
-# - Final LR close to 0 at end of training
+# Expected Output:
+# Learning Rate Schedule Test:
+# Total steps: 10000
+# Warmup steps: 500
+# Max learning rate: 0.0001
+#
+# Step     0: LR = 0.000000e+00
+# Step   100: LR = 2.000000e-05
+# Step   500: LR = 1.000000e-04
+# Step  1000: LR = 9.9318e-05
+# Step  5000: LR = 5.4129e-05
+# Step 10000: LR = 0.000000e+00
+#
+# Learning rate schedule plot saved to lr_schedule.png
+# (the script prints LRs in %.6e scientific notation; the two
+#  approximate values above are the exact formula outputs rounded
+#  to 4 digits)
+# - Linear warmup reaches max_lr exactly at the warmup boundary
+# - Cosine decay is smooth and hits 0 at total_steps
 ```
 
 ### Exercise 2: Compare Optimizers
@@ -104,7 +120,15 @@ def train_with_optimizer(optimizer_name, model, train_loader, epochs=5):
         optimizer = torch.optim.AdamW(model.parameters(), lr=1e-3, weight_decay=0.01)
     elif optimizer_name == "Adafactor":
         from transformers import Adafactor
-        optimizer = Adafactor(model.parameters(), lr=1e-3, scale_parameter=False)
+
+        # relative_step=False: with the default True, Adafactor ignores
+        # the lr argument and follows its own 1/sqrt(step) schedule
+        optimizer = Adafactor(
+            model.parameters(),
+            lr=1e-3,
+            scale_parameter=False,
+            relative_step=False,
+        )
     elif optimizer_name == "Adam":
         optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
     elif optimizer_name == "SGD":
@@ -159,10 +183,11 @@ for opt_name in optimizers:
     results[opt_name] = loss_curve
 
 # Plot comparison
+import numpy as np
+
 plt.figure(figsize=(12, 6))
 for opt_name, loss_curve in results.items():
     # Smooth the loss curve with moving average
-    import numpy as np
     window = 10
     smoothed = np.convolve(loss_curve, np.ones(window)/window, mode='valid')
     plt.plot(smoothed, label=opt_name, linewidth=2)
@@ -182,11 +207,33 @@ for opt_name, loss_curve in results.items():
     final_loss = loss_curve[-1]
     print(f"{opt_name:10s}: {final_loss:.4f}")
 
-# Expected results:
-# - AdamW: Fast convergence, good final performance
-# - Adafactor: Slower convergence, memory efficient for large models
-# - Adam: Similar to AdamW but without weight decay
-# - SGD: Slower convergence but can achieve better generalization
+# Expected Output:
+# Comparing Optimizers:
+# ============================================================
+#
+# Training with AdamW...
+# AdamW - Epoch 1/5: Loss = <N>.NNNN
+# ...
+# AdamW - Epoch 5/5: Loss = <N>.NNNN
+#
+# (the same banner/epoch pattern repeats for Adafactor, Adam, SGD)
+#
+# Optimizer comparison plot saved to optimizer_comparison.png
+#
+# Final Losses:
+# ============================================================
+# AdamW     : <N>.NNNN
+# Adafactor : <N>.NNNN
+# Adam      : <N>.NNNN
+# SGD       : <N>.NNNN
+# (seed-fixed run, but exact loss values vary with device/backend)
+#
+# - AdamW: decoupled weight decay, usually the strongest here
+# - Adafactor: with relative_step=False it honors lr=1e-3; its
+#   factorized second moments trade speed for memory on big models
+# - Adam: same family as AdamW without decoupled weight decay
+# - SGD: lr=1e-3 lags the adaptive methods over only 5 epochs; it
+#   typically needs a larger LR or a longer schedule to compete
 ```
 
 ### Exercise 3: Implement Gradient Clipping
@@ -305,8 +352,10 @@ if __name__ == "__main__":
     plt.savefig("gradient_clipping.png")
     print("\nPlots saved to gradient_clipping.png")
 
-# Expected results:
-# - Gradient norms clipped to max_norm (1.0)
+# Expected Output:
+# - Gradients exceeding max_norm (1.0) are rescaled to exactly 1.0
+#   (the recorded norms are pre-clip, hence the crossings above the
+#   red threshold line in the plot)
 # - Training remains stable even with occasional large gradients
 # - Prevents exploding gradients in RNNs or deep networks
 # - Can improve training stability for large language models
