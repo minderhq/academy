@@ -514,4 +514,4 @@ model.wv.most_similar('Meta', topn=10)  # Similar entities
 - [6302: CAG Long Context](./6302-CAG-Long-Context-Architectures.md)
 - [7301: Collaborative Tasking](../../phase7-agentic/7300-orchestration/7301-Orchestration.md)
 
-**Experiment Template:** `experiments/EXP_6303_NEO4J.md"
+**Experiment Template:** [EXP_6303: Neo4j](../../../../experiments/EXP_6303_NEO4J.md)

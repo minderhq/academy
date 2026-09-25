@@ -499,4 +499,4 @@ lora_config = LoraConfig(
 - [5201: DPO Theory](../5200-alignment/5201-DPO-Theory.md)
 - [4103: Double Quantization](../../phase4-quantization/4100-low-bit/4103-Double-Quantization.md)
 
-**Experiment Template:** `experiments/EXP_5101_LORA.md`
+**Experiment Template:** [EXP_5101: LoRA](../../../../experiments/EXP_5101_LORA.md)

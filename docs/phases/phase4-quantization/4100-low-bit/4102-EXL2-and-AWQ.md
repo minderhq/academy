@@ -419,4 +419,4 @@ class DynamicQuantizer:
 - [4103: Double Quantization](./4103-Double-Quantization.md)
 - [1402: vLLM and TGI](../../phase1-infra/1400-llmops/1402-vLLM-and-TGI.md)
 
-**Experiment Template:** `experiments/EXP_4102_EXL2_AWQ.md`
+**Experiment Template:** [EXP_4102: EXL2 & AWQ](../../../../experiments/EXP_4102_EXL2_AWQ.md)

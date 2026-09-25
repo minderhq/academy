@@ -472,4 +472,4 @@ ncu --metrics dram__throughput.avg.pct_of_peak \
 - [1203: Nvidia Kernel Module](../../phase1-infra/1200-virtualization/1203-Nvidia-Kernel-Module.md)
 - [2201: PyTorch Graphs](./2201-PyTorch-Computational-Graphs.md)
 
-**Experiment Template:** `experiments/EXP_2203_CUDA_KERNELS.md`
+**Experiment Template:** [EXP_2203: CUDA Kernels](../../../../experiments/EXP_2203_CUDA_KERNELS.md)

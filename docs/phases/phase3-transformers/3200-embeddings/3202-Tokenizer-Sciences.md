@@ -521,4 +521,4 @@ for tokenizer_name in ["gpt2", "cl100k_base", "bert-base-uncased"]:
 - [3101: Self-Attention](../3100-attention/3101-Self-Attention-DeepDive.md)
 - [6201: Hybrid Search](../../phase6-rag/6200-retrieval/6201-Hybrid-Search.md)
 
-**Experiment Template:** `experiments/EXP_3202_TOKENIZER.md`
+**Experiment Template:** [EXP_3202: Tokenizer](../../../../experiments/EXP_3202_TOKENIZER.md)

@@ -449,4 +449,4 @@ tf.debugging.set_log_device_placement(True)
 - [2203: CUDA Kernels](./2203-CUDA-Kernel-Syb-Level.md)
 - [1202: GPU Passthrough (IOMMU/VFIO)](../../phase1-infra/1200-virtualization/1202-TB3-UT3G-Passthrough.md)
 
-**Experiment Template:** `experiments/EXP_2202_TENSORFLOW_XLA.md`
+**Experiment Template:** [EXP_2202: TensorFlow XLA](../../../../experiments/EXP_2202_TENSORFLOW_XLA.md)

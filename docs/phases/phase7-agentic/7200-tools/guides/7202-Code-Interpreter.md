@@ -531,4 +531,4 @@ class MonitoredSandbox:
 - [7101: ReAct Loop](../../7100-architecture/7101-ReAct-Loop-System.md)
 - [1302: GPU Scheduler](../../../phase1-infra/1300-kubernetes/1302-GPU-Scheduler.md)
 
-**Experiment Template:** `experiments/EXP_7202_SANDBOX.md`
+**Experiment Template:** [EXP_7202: Sandbox](../../../../../experiments/EXP_7202_SANDBOX.md)

@@ -223,5 +223,3 @@ snmpwalk -v2c -c public <switch-ip> IF-MIB::ifHCInOctets
 - [1101: Fiber GPON Modem](./1101-Fiber-GPON-Modem.md)
 - [1103: Jumbo Frames and MTU](../../phases/phase1-infra/1100-network/1103-Jumbo-Frames-and-MTU.md)
 - [1301: K3s Architecture](../../phases/phase1-infra/1300-kubernetes/1301-K3s-Master-Worker-Arch.md)
-
-**Experiment Template:** `experiments/EXP_1102_STAR_TOPOLOGY.md`

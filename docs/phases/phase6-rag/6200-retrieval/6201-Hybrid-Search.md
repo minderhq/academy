@@ -508,4 +508,4 @@ def optimize_alpha(queries, ground_truth, bm25, semantic):
 - [6202: Re-ranking](./6202-Re-ranking-and-Retrieval-Logistics.md)
 - [6302: CAG Long Context](../6300-context/6302-CAG-Long-Context-Architectures.md)
 
-**Experiment Template:** `experiments/EXP_6201_HYBRID_SEARCH.md`
+**Experiment Template:** [EXP_6201: Hybrid Search](../../../../experiments/EXP_6201_HYBRID_SEARCH.md)

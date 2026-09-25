@@ -523,4 +523,4 @@ quantized_merged = AutoModelForCausalLM.from_pretrained(
 - [4103: Double Quantization](../../phase4-quantization/4100-low-bit/4103-Double-Quantization.md)
 - [5202: Alignment Orchestration](../5200-alignment/5202-Alignment-Orchestration.md)
 
-**Experiment Template:** `experiments/EXP_5102_QLORA.md`
+**Experiment Template:** [EXP_5102: QLoRA](../../../../experiments/EXP_5102_QLORA.md)

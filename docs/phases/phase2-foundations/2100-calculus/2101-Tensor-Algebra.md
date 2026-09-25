@@ -440,4 +440,4 @@ int4_size = model_size * 0.5 / (1024 ** 3)  # ~3.5 GB
 - [2201: PyTorch Graphs](../2200-frameworks/2201-PyTorch-Computational-Graphs.md)
 - [2203: CUDA Kernels](../2200-frameworks/2203-CUDA-Kernel-Syb-Level.md)
 
-**Experiment Template:** `experiments/EXP_2101_TENSOR_ALGEBRA.md`
+**Experiment Template:** [EXP_2101: Tensor Algebra](../../../../experiments/EXP_2101_TENSOR_ALGEBRA.md)

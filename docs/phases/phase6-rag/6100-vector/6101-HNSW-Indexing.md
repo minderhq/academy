@@ -498,4 +498,4 @@ def evaluate_hnsw_index(index, test_queries, ground_truth, ef_values):
 - [6201: Hybrid Search](../6200-retrieval/6201-Hybrid-Search.md)
 - [6301: Neo4j GraphRAG](../6300-context/6301-Neo4j-and-Knowledge-Graphs.md)
 
-**Experiment Template:** `experiments/EXP_6101_HNSW.md"
+**Experiment Template:** [EXP_6101: HNSW](../../../../experiments/EXP_6101_HNSW.md)

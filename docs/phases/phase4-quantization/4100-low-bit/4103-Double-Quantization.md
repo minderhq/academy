@@ -436,4 +436,4 @@ Solution:
 - [4102: EXL2 and AWQ](./4102-EXL2-and-AWQ.md)
 - [5102: QLoRA Pipelines](../../phase5-finetuning/5100-peft/5102-QLoRA-Pipelines.md)
 
-**Experiment Template:** `experiments/EXP_4103_DOUBLE_QUANT.md`
+**Experiment Template:** [EXP_4103: Double Quantization](../../../../experiments/EXP_4103_DOUBLE_QUANT.md)

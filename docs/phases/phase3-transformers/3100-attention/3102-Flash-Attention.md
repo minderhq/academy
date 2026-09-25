@@ -406,4 +406,4 @@ Key insight:
 - [4201: Context Window](../../phase4-quantization/4200-kv-cache/4201-Context-Window-Physics.md)
 - [2203: CUDA Kernels](../../phase2-foundations/2200-frameworks/2203-CUDA-Kernel-Syb-Level.md)
 
-**Experiment Template:** `experiments/EXP_3102_FLASH_ATTENTION.md`
+**Experiment Template:** [EXP_3102: Flash Attention](../../../../experiments/EXP_3102_FLASH_ATTENTION.md)

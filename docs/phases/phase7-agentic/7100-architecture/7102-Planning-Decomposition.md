@@ -535,4 +535,4 @@ class CoordinatorAgent:
 - [7301: Collaborative Tasking](../7300-orchestration/7301-Orchestration.md)
 - [7303: Framework Comparison](../7300-orchestration/guides/7303-Framework-Comparison.md)
 
-**Experiment Template:** `experiments/EXP_7102_PLANNING.md"
+**Experiment Template:** [EXP_7102: Planning](../../../../experiments/EXP_7102_PLANNING.md)

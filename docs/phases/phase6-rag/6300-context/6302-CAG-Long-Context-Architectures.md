@@ -508,4 +508,4 @@ def compress_context(context, target_length=50000):
 - [6301: Neo4j GraphRAG](./6301-Neo4j-and-Knowledge-Graphs.md)
 - [6202: Re-ranking](../6200-retrieval/6202-Re-ranking-and-Retrieval-Logistics.md)
 
-**Experiment Template:** `experiments/EXP_6302_CAG.md"
+**Experiment Template:** [EXP_6302: CAG](../../../../experiments/EXP_6302_CAG.md)

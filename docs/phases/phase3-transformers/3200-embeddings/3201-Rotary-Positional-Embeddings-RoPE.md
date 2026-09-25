@@ -418,4 +418,4 @@ def extend_context_via_interpolation(original_max_len=2048, new_max_len=8192):
 - [3202: Tokenizer Sciences](./3202-Tokenizer-Sciences.md)
 - [4201: Context Window](../../phase4-quantization/4200-kv-cache/4201-Context-Window-Physics.md)
 
-**Experiment Template:** `experiments/EXP_3201_ROPE.md`
+**Experiment Template:** [EXP_3201: RoPE](../../../../experiments/EXP_3201_ROPE.md)

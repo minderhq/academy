@@ -484,4 +484,4 @@ class LabSwarm:
 - [7102: Planning Decomposition](../7100-architecture/7102-Planning-Decomposition.md)
 - [7202: Code Interpreter](../7200-tools/guides/7202-Code-Interpreter.md)
 
-**Experiment Template:** `experiments/EXP_7301_COLLABORATION.md
+**Experiment Template:** [EXP_7301: Collaboration](../../../../experiments/EXP_7301_COLLABORATION.md)

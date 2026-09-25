@@ -477,4 +477,4 @@ class DeepModel(nn.Module):
 - [2201: PyTorch Graphs](../2200-frameworks/2201-PyTorch-Computational-Graphs.md)
 - [3301: Activation Functions](../../phase3-transformers/3300-decoding/3301-Activation-Functions.md)
 
-**Experiment Template:** `experiments/EXP_2102_BACKPROPAGATION.md`
+**Experiment Template:** [EXP_2102: Backpropagation](../../../../experiments/EXP_2102_BACKPROPAGATION.md)

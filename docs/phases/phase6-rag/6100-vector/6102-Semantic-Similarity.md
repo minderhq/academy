@@ -451,4 +451,4 @@ for i, label in enumerate(labels):
 - [6201: Hybrid Search](../6200-retrieval/6201-Hybrid-Search.md)
 - [3201: RoPE](../../phase3-transformers/3200-embeddings/3201-Rotary-Positional-Embeddings-RoPE.md)
 
-**Experiment Template:** `experiments/EXP_6102_SIMILARITY.md"
+**Experiment Template:** [EXP_6102: Semantic Similarity](../../../../experiments/EXP_6102_SIMILARITY.md)
