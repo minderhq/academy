@@ -1,7 +1,7 @@
 ---
 Document ID: 6500-PRACTICE
 Title: "6500: RAG MLOps - Practice"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -16,6 +16,12 @@ Difficulty: Intermediate
 from datasets import Dataset
 from ragas import evaluate
 from ragas.metrics import faithfulness, answer_relevancy
+
+# NOTE: faithfulness and answer_relevancy are LLM-judged metrics -
+# evaluate() falls back to a default OpenAI judge, so an
+# OPENAI_API_KEY is required. The lowercase imports are the legacy
+# style (supported through v0.3); newer versions prefer explicit
+# classes like Faithfulness(llm=your_judge_llm).
 
 def create_evaluation_dataset(queries, retriever, generator):
     """Create dataset for RAG evaluation."""
@@ -226,13 +232,12 @@ class RAGMetrics:
         self.retrieval_latency = Histogram('rag_retrieval_latency_seconds', 'Retrieval latency')
         self.generation_latency = Histogram('rag_generation_latency_seconds', 'Generation latency')
         self.total_latency = Histogram('rag_total_latency_seconds', 'Total latency')
-        self.retrieved_docs = Histogram('rag_retrieved_docs_count', 'Documents retrieved')
+        self.retrieved_docs = Histogram('rag_retrieved_docs', 'Documents retrieved')
         self.faithfulness_score = Gauge('rag_faithfulness_score', 'Answer faithfulness')
         self.relevancy_score = Gauge('rag_relevancy_score', 'Answer relevancy')
 
     def record_request(self, retrieval_time, generation_time, num_docs, faithfulness, relevancy):
         """Record metrics for a request."""
-        import time
         self.requests_total.inc()
         self.retrieval_latency.observe(retrieval_time)
         self.generation_latency.observe(generation_time)
@@ -336,21 +341,27 @@ class RAGModelRegistry:
 # Test
 registry = RAGModelRegistry("sqlite:///mlflow.db")
 
-print("Logging retriever model...")
-registry.log_retriever(
-    MockRetriever(),
-    {"top_k": 3, "embedding_model": "miniLM"},
-    {"precision": 0.85, "recall": 0.78}
-)
+# NOTE: log_model needs real artifacts - mlflow.sklearn requires a
+# scikit-learn estimator and mlflow.transformers a transformers model
+# or pipeline. The mocks cannot be serialized with those flavors, so
+# the calls stay commented here and run unchanged against real
+# components.
+print("Logging retriever model (skipped with mocks)...")
+# registry.log_retriever(
+#     retriever,  # a real sklearn-compatible retriever
+#     {"top_k": 3, "embedding_model": "miniLM"},
+#     {"precision": 0.85, "recall": 0.78},
+# )
 
-print("Logging generator model...")
-registry.log_generator(
-    MockGenerator(),
-    {"model": "gpt-4", "temperature": 0.7},
-    {"latency": 0.5, "quality": 0.9}
-)
+print("Logging generator model (skipped with mocks)...")
+# registry.log_generator(
+#     generator,  # a real transformers pipeline/model
+#     {"model": "gpt-4", "temperature": 0.7},
+#     {"latency": 0.5, "quality": 0.9},
+# )
 
-print("Models logged to registry")
+print("Registry demo complete - params/metrics logging and the")
+print("models:/ URI loading shown above run with real artifacts")
 
 # Expected output:
 # - Models versioned and tracked
@@ -410,6 +421,11 @@ class CanaryDeployment:
                 "canary": canary_metrics["avg_quality"],
                 "diff": canary_metrics["avg_quality"] - production_metrics["avg_quality"],
             },
+            "error_rate": {
+                "production": production_metrics["error_rate"],
+                "canary": canary_metrics["error_rate"],
+                "diff": canary_metrics["error_rate"] - production_metrics["error_rate"],
+            },
         }
 
         return comparison
@@ -420,10 +436,14 @@ def evaluate_canary_promotion(canary_deployment, threshold=0.05):
 
     comparison = canary_deployment.compare_metrics()
 
-    # Promote if latency improves and quality improves
+    # Promote if latency is not materially worse (threshold is in
+    # seconds), quality improves, and the error rate does not regress.
+    # Ignoring error_rate here would promote a canary that fails more
+    # often, as long as it is fast and fluent.
     if (
         comparison["latency"]["diff"] < threshold and
-        comparison["quality"]["diff"] > 0
+        comparison["quality"]["diff"] > 0 and
+        comparison["error_rate"]["diff"] <= 0
     ):
         return True, "Canary performs better - promote"
     else:
@@ -472,8 +492,13 @@ def retrain_pipeline():
 
     print("Checking if retraining is needed...")
 
+    needs_retrain = False
+
+    # Each metric is checked independently: a relevancy drop alone must
+    # also trigger retraining, not just a faithfulness drop.
     if current_metrics["faithfulness"] < threshold_metrics["faithfulness"]:
         print("Faithfulness below threshold - triggering retraining")
+        needs_retrain = True
 
         # Fetch new data
         new_data = [{"query": f"Query {i}", "context": f"Context {i}"} for i in range(100)]
@@ -487,18 +512,18 @@ def retrain_pipeline():
         print("Logging new retriever model...")
         # registry.log_retriever(new_retriever, config, retriever_metrics)
 
-        # Retrain generator if needed
-        if current_metrics["relevancy"] < threshold_metrics["relevancy"]:
-            print("Relevancy below threshold - retraining generator")
+    if current_metrics["relevancy"] < threshold_metrics["relevancy"]:
+        print("Relevancy below threshold - retraining generator")
+        needs_retrain = True
 
-            new_generator = MockGenerator()
-            generator_metrics = {"latency": 0.4, "quality": 0.92}
+        new_generator = MockGenerator()
+        generator_metrics = {"latency": 0.4, "quality": 0.92}
 
-            # registry.log_generator(new_generator, config, generator_metrics)
+        # registry.log_generator(new_generator, config, generator_metrics)
 
-            print("Deploying new models...")
-            # deploy_new_models(new_retriever, new_generator)
-
+    if needs_retrain:
+        print("Deploying new models...")
+        # deploy_new_models(...)
         print("Retraining complete - new models deployed")
     else:
         print("Metrics within thresholds - no retraining needed")
