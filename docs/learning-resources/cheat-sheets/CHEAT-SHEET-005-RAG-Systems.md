@@ -1,7 +1,7 @@
 ---
 Document ID: CHEAT-SHEET-005
 Title: "CHEAT SHEET 005: RAG Systems"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -9,8 +9,8 @@ Difficulty: Intermediate
 # CHEAT SHEET 005: RAG Systems
 ## Retrieval-Augmented Generation Quick Reference
 
-**Version:** 1.0
-**Last Updated:** 2026-02-05
+**Version:** 1.1
+**Last Updated:** 2026-09-25
 
 ---
 
@@ -18,13 +18,13 @@ Difficulty: Intermediate
 
 ```python
 # Basic RAG Pipeline
-from langchain.embeddings import OpenAIEmbeddings
-from langchain.vectorstores import Qdrant
-from langchain.chat_models import ChatOpenAI
+from langchain_openai import OpenAIEmbeddings, ChatOpenAI
+from langchain_community.vectorstores import Qdrant
 from langchain.chains import RetrievalQA
 
 # Setup
 embeddings = OpenAIEmbeddings()
+# docs: a list of LangChain Document objects
 vectorstore = Qdrant.from_documents(docs, embeddings)
 retriever = vectorstore.as_retriever(search_kwargs={"k": 5})
 llm = ChatOpenAI(model="gpt-4")
@@ -42,8 +42,8 @@ result = qa.run("Your question here")
 
 | Model | Dim | Speed | Quality | Cost |
 |-------|-----:|------:|--------:|-----:|
-| **text-embedding-3-small** | 1536 | ⚡⚡⚡ | ⭐⭐⭐ | $/1M tokens |
-| **text-embedding-3-large** | 3072 | ⚡⚡ | ⭐⭐⭐⭐ | $/1M tokens |
+| **text-embedding-3-small** | 1536 | ⚡⚡⚡ | ⭐⭐⭐ | $0.02 / 1M tokens |
+| **text-embedding-3-large** | 3072 | ⚡⚡ | ⭐⭐⭐⭐ | $0.13 / 1M tokens |
 | **all-MiniLM-L6-v2** | 384 | ⚡⚡⚡ | ⭐⭐ | Free |
 | **e5-large-v2** | 1024 | ⚡⚡ | ⭐⭐⭐ | Free |
 
@@ -92,21 +92,23 @@ client.upsert(
 )
 
 # Search
-results = client.search(
+# (client.search(query_vector=...) is deprecated since qdrant-client 1.10)
+results = client.query_points(
     collection_name="docs",
-    query_vector=query_embedding,
+    query=query_embedding,
     limit=5,
     score_threshold=0.7
-)
+).points
 ```
 
 ### Pinecone Operations
 
 ```python
-import pinecone
+from pinecone import Pinecone
 
-pinecone.init(api_key="...", environment="...")
-index = pinecone.Index("my-index")
+# pinecone.init() was removed in pinecone-client 3.0
+pc = Pinecone(api_key="...")
+index = pc.Index("my-index")
 
 # Upsert
 index.upsert([(id, embedding, {"text": "..."})])
@@ -135,16 +137,18 @@ def chunk_fixed_size(text, chunk_size=1000, overlap=200):
 ### Semantic
 
 ```python
-from semantic_text_splitter import TextSplitter
+from langchain_experimental.text_splitter import SemanticChunker
+from langchain_openai import OpenAIEmbeddings
 
-splitter = TextSplitter("gpt-4")
+# Embedding-based semantic chunking (breaks at topic shifts)
+splitter = SemanticChunker(OpenAIEmbeddings())
 chunks = splitter.split_text(text)
 ```
 
 ### Markdown-Aware
 
 ```python
-from langchain.text_splitter import MarkdownHeaderTextSplitter
+from langchain_text_splitters import MarkdownHeaderTextSplitter
 
 splitter = MarkdownHeaderTextSplitter(
     headers_to_split_on=[
@@ -214,7 +218,7 @@ import cohere
 
 co = cohere.Client("...")
 results = co.rerank(
-    model="rerank-english-v2.0",
+    model="rerank-v3.5",  # rerank-english-v2.0 is retired
     query=query,
     documents=[doc.page_content for doc in candidates],
     top_n=5
@@ -397,13 +401,14 @@ def mrr(retrieved, relevant):
 ### Generation Metrics
 
 ```python
-from rouge import Rouge
+from rouge_score import rouge_scorer
 from nltk.translate.bleu_score import sentence_bleu
 
-# ROUGE
-rouge = Rouge()
-scores = rouge.get_scores([generated], [reference])
-print(f"ROUGE-L: {scores[0]['rouge-l']['f']:.4f}")
+# ROUGE (the rouge-score package's API - `from rouge import Rouge`
+# belongs to a different pip package)
+scorer = rouge_scorer.RougeScorer(["rouge1", "rougeL"], use_stemmer=True)
+scores = scorer.score(reference, generated)
+print(f"ROUGE-L: {scores['rougeL'].fmeasure:.4f}")
 
 # BLEU
 from nltk.tokenize import word_tokenize
@@ -455,8 +460,8 @@ def get_embedding(text):
 texts = ["text1", "text2", "text3"]
 embeddings = embedding_model.encode(texts, batch_size=32)
 
-# Batch search
-results = vectorstore.similarity_search_batch(queries, k=5)
+# Batch search - VectorStore has no batch API; loop the queries
+results = [vectorstore.similarity_search(q, k=5) for q in queries]
 ```
 
 ### Async Operations
@@ -464,8 +469,12 @@ results = vectorstore.similarity_search_batch(queries, k=5)
 ```python
 import asyncio
 
+async def search_one(query):
+    # sync vectorstore calls block the event loop - offload to a thread
+    return await asyncio.to_thread(vectorstore.similarity_search, query, k=5)
+
 async def process_queries(queries):
-    tasks = [async_search(q) for q in queries]
+    tasks = [search_one(q) for q in queries]
     return await asyncio.gather(*tasks)
 ```
 
@@ -491,32 +500,37 @@ async def process_queries(queries):
 ```bash
 # Qdrant
 docker run -p 6333:6333 qdrant/qdrant
+pip install qdrant-client
 
 # Pinecone
 pip install pinecone-client
 
-# Sentence Transformers
-pip install sentence-transformers
+# OpenAI + Cohere
+pip install openai cohere
+
+# Sentence Transformers + BM25
+pip install sentence-transformers rank_bm25
 
 # LangChain
-pip install langchain langchain-openai
+pip install langchain langchain-openai langchain-community \
+    langchain-text-splitters langchain-experimental
 
 # Evaluation
 pip install rouge-score nltk
 
 # Monitoring
-pip help prometheus-client
+pip install prometheus-client
 ```
 
 ---
 
 **Related Cheat Sheets:**
-- CHEAT-SHEET-001: Docker
-- CHEAT-SHEET-002: Python AI
-- CHEAT-SHEET-004: Linux
+- [CHEAT-SHEET-001: Docker](CHEAT-SHEET-001-Docker.md)
+- [CHEAT-SHEET-002: Python AI](CHEAT-SHEET-002-Python-AI.md)
+- [CHEAT-SHEET-004: Linux](CHEAT-SHEET-004-Linux.md)
 
 **Next Steps:**
-- TUTORIAL-003: RAG Basics
-- TUTORIAL-009: Advanced RAG Techniques
-- LAB-002: RAG Implementation
-- LAB-007: Production RAG
+- [TUTORIAL-003: RAG Basics](../tutorials/TUTORIAL-003-RAG-Basics.md)
+- [TUTORIAL-009: Advanced RAG Techniques](../tutorials/TUTORIAL-009-Advanced-RAG-Techniques.md)
+- [LAB-002: RAG Implementation](../labs/LAB-002-RAG-Implementation.md)
+- [LAB-007: Production RAG](../labs/LAB-007-Production-RAG.md)
