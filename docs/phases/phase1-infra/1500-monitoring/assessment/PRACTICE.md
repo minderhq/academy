@@ -1,7 +1,7 @@
 ---
 Document ID: 1500-PRACTICE
 Title: "1500: Monitoring - Practice"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -92,10 +92,11 @@ scrape_configs:
 EOF
 
 # 3. Run Prometheus with Docker
+# --network host already exposes 9090 on the host; a -p mapping is
+# silently ignored for host-networked containers
 docker run -d \
     --name prometheus \
     --network host \
-    -p 9090:9090 \
     -v $(pwd)/prometheus/config/prometheus.yml:/etc/prometheus/prometheus.yml \
     -v $(pwd)/prometheus/data:/prometheus \
     prom/prometheus:latest \
@@ -108,15 +109,16 @@ docker run -d \
 echo "Waiting for Prometheus to start..."
 sleep 5
 
-# 5. Verify
-curl -s http://localhost:9090/-/healthy | grep "Prometheus is Healthy."
+# 5. Verify - the body reads "Prometheus Server is Healthy."; -f makes
+#    curl itself fail on a non-200, which is scriptable
+curl -fsS http://localhost:9090/-/healthy
 
 # 6. Check targets
 echo "Checking targets..."
 curl -s http://localhost:9090/api/v1/targets | jq '.data.activeTargets[] | {job: .labels.job, health: .health}'
 
 # Expected output:
-# Prometheus is Healthy.
+# Prometheus Server is Healthy.
 # Shows job names and health status
 
 # Troubleshooting Tips:
@@ -149,7 +151,7 @@ dashboard = {
                 "type": "graph",
                 "targets": [
                     {
-                        "expr": "rate(llm_requests_total{model='llama2-7b'}[1m])",
+                        "expr": "rate(llm_requests_total{model=\"llama2-7b\"}[1m])",
                         "legendFormat": "{{status}} requests/sec"
                     }
                 ],
@@ -163,11 +165,11 @@ dashboard = {
                 "type": "graph",
                 "targets": [
                     {
-                        "expr": "rate(llm_tokens_total{model='llama2-7b',type='output'}[1m])",
+                        "expr": "rate(llm_tokens_total{model=\"llama2-7b\",type=\"output\"}[1m])",
                         "legendFormat": "Output tokens/sec"
                     },
                     {
-                        "expr": "rate(llm_tokens_total{model='llama2-7b',type='input'}[1m])",
+                        "expr": "rate(llm_tokens_total{model=\"llama2-7b\",type=\"input\"}[1m])",
                         "legendFormat": "Input tokens/sec"
                     }
                 ],
@@ -181,7 +183,7 @@ dashboard = {
                 "type": "graph",
                 "targets": [
                     {
-                        "expr": "histogram_quantile(0.95, rate(llm_inference_latency_seconds_bucket{model='llama2-7b'}[5m]))",
+                        "expr": "histogram_quantile(0.95, rate(llm_inference_latency_seconds_bucket{model=\"llama2-7b\"}[5m]))",
                         "legendFormat": "P95 Latency"
                     }
                 ],
@@ -195,6 +197,10 @@ dashboard = {
                 "type": "graph",
                 "targets": [
                     {
+                        # Metric names follow the nvidia_gpu exporter
+                        # scraped on :9400 in Exercise 1 - DCGM names
+                        # them DCGM_FI_DEV_* instead; match these to
+                        # whichever exporter you deploy
                         "expr": "nvidia_gpu_utilization",
                         "legendFormat": "GPU {{gpu_id}}"
                     }
@@ -234,7 +240,10 @@ dashboard = {
                 "type": "graph",
                 "targets": [
                     {
-                        "expr": "rate(llm_requests_total{status='error'}[5m]) / rate(llm_requests_total[5m]) * 100",
+                        # sum() first: the status label survives on both
+                        # sides of a per-series division, so the error
+                        # series would be divided by itself (ratio 1.0)
+                        "expr": "sum(rate(llm_requests_total{status=\"error\"}[5m])) / sum(rate(llm_requests_total[5m])) * 100",
                         "legendFormat": "Error rate %"
                     }
                 ],
@@ -274,9 +283,12 @@ print("Dashboard configuration saved to grafana_llm_dashboard.json")
 #!/bin/bash
 # setup_grafana.sh - Complete Grafana setup
 
-# 1. Start Grafana with Docker
+# 1. Start Grafana with Docker - host.docker.internal below needs the
+#    host-gateway mapping; inside the container localhost is Grafana
+#    itself, not the Prometheus on your host
 docker run -d \
     --name grafana \
+    --add-host=host.docker.internal:host-gateway \
     -p 3000:3000 \
     -e GF_SECURITY_ADMIN_PASSWORD=admin \
     -e GF_USERS_ALLOW_SIGN_UP=false \
@@ -296,7 +308,7 @@ curl -X POST http://localhost:3000/api/datasources \
     -d '{
         "name": "Prometheus",
         "type": "prometheus",
-        "url": "http://localhost:9090",
+        "url": "http://host.docker.internal:9090",
         "access": "proxy",
         "isDefault": true
     }'
@@ -336,8 +348,6 @@ from prometheus_client import Counter, Histogram, Gauge, start_http_server
 import time
 import logging
 from functools import wraps
-from typing import Dict, Any, Optional
-import torch
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -519,9 +529,23 @@ def generate_with_metrics(model, prompt: str, max_tokens: int = 100):
     preprocessing_time = time.time() - preprocess_start
     metrics.preprocessing_latency.labels(model=model_name).observe(preprocessing_time)
 
-    # Inference
-    with metrics.track_request(model_name):
+    # Inference - track_request is a decorator factory (for @-use), not
+    # a context manager; record the same metrics manually here
+    start_time = time.time()
+    try:
         outputs = model.generate(tokens, max_tokens=max_tokens)
+        metrics.requests_total.labels(
+            model=model_name, status='success', endpoint='generate'
+        ).inc()
+    except Exception:
+        metrics.requests_total.labels(
+            model=model_name, status='error', endpoint='generate'
+        ).inc()
+        raise
+    finally:
+        metrics.inference_latency.labels(
+            model=model_name, endpoint='generate'
+        ).observe(time.time() - start_time)
 
     # Postprocessing
     postprocess_start = time.time()
@@ -560,9 +584,11 @@ if __name__ == "__main__":
 
     logger.info("Metrics available at http://localhost:8001/metrics")
     logger.info("Expected output:")
-    logger.info("  - llm_requests_total{model='llama2-7b',status='success'} 10.0")
-    logger.info("  - llm_tokens_total{model='llama2-7b',type='input'} 50.0")
-    logger.info("  - llm_tokens_total{model='llama2-7b',type='output'} 200.0")
+    # requests_total is a three-label metric - the endpoint label is
+    # part of every series it emits
+    logger.info('  - llm_requests_total{endpoint="chat",model="llama2-7b",status="success"} 10.0')
+    logger.info("  - llm_tokens_total{model=\"llama2-7b\",type=\"input\"} 50.0")
+    logger.info("  - llm_tokens_total{model=\"llama2-7b\",type=\"output\"} 200.0")
 ```
 
 ### Exercise 4: Alert Rules
@@ -605,7 +631,7 @@ groups:
       # Low throughput alert
       - alert: LowThroughput
         expr: |
-          rate(llm_tokens_total{type='output'}[5m]) < 100
+          rate(llm_tokens_total{type="output"}[5m]) < 100
         for: 10m
         labels:
           severity: warning
@@ -614,10 +640,12 @@ groups:
           summary: "Token throughput below threshold"
           description: "Throughput is {{ $value }} tokens/sec (expected >100)"
 
-      # High error rate alert
+      # High error rate alert - sum() first: the status label survives
+      # on both sides of a per-series division, so the error series
+      # would be divided by itself and the ratio would always be 1.0
       - alert: HighErrorRate
         expr: |
-          rate(llm_requests_total{status='error'}[5m]) / rate(llm_requests_total[5m]) > 0.05
+          sum(rate(llm_requests_total{status="error"}[5m])) / sum(rate(llm_requests_total[5m])) > 0.05
         for: 5m
         labels:
           severity: warning
@@ -629,7 +657,7 @@ groups:
       # Critical error rate alert
       - alert: CriticalErrorRate
         expr: |
-          rate(llm_requests_total{status='error'}[5m]) / rate(llm_requests_total[5m]) > 0.10
+          sum(rate(llm_requests_total{status="error"}[5m])) / sum(rate(llm_requests_total[5m])) > 0.10
         for: 2m
         labels:
           severity: critical
@@ -641,7 +669,7 @@ groups:
       # High GPU memory alert
       - alert: HighGPUMemory
         expr: |
-          llm_gpu_memory_bytes / nvidia_gpu_total_memory_bytes > 0.9
+          llm_gpu_memory_bytes / nvidia_gpu_memory_total_bytes > 0.9
         for: 5m
         labels:
           severity: warning
@@ -653,7 +681,7 @@ groups:
       # GPU OOM prediction
       - alert: GPUMemoryPredictedOOM
         expr: |
-          predict_linear(llm_gpu_memory_bytes[1h], 3600) > nvidia_gpu_total_memory_bytes * 0.95
+          predict_linear(llm_gpu_memory_bytes[1h], 3600) > nvidia_gpu_memory_total_bytes * 0.95
         for: 5m
         labels:
           severity: warning
@@ -664,7 +692,7 @@ groups:
 
       # Service down alert
       - alert: ServiceDown
-        expr: up{job='llm-api'} == 0
+        expr: up{job="llm-api"} == 0
         for: 1m
         labels:
           severity: critical
@@ -688,10 +716,13 @@ groups:
   - name: llm_infrastructure_alerts
     interval: 30s
     rules:
-      # High CPU alert
+      # High CPU alert - rate(process_cpu_seconds_total) yields CPU
+      # cores, not a fraction of the host, so "> 0.8" meant "more than
+      # 0.8 of one core" (an LLM server exceeds that at idle). The
+      # node_exporter idle rate gives a real host-wide percentage
       - alert: HighCPUUsage
         expr: |
-          rate(process_cpu_seconds_total{job='llm-api'}[5m]) > 0.8
+          1 - avg(rate(node_cpu_seconds_total{mode="idle"}[5m])) > 0.8
         for: 10m
         labels:
           severity: warning
@@ -700,10 +731,13 @@ groups:
           summary: "High CPU usage"
           description: "CPU usage is {{ $value | humanizePercentage }}"
 
-      # High memory alert
+      # High memory alert - process_resident_memory_bytes carries
+      # job="llm-api" while node_memory_MemTotal_bytes carries
+      # job="node", so a division between them matches no label set and
+      # the alert could never fire. Host memory on both sides instead
       - alert: HighMemoryUsage
         expr: |
-          process_resident_memory_bytes{job='llm-api'} / node_memory_MemTotal_bytes > 0.9
+          (node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes > 0.9
         for: 5m
         labels:
           severity: warning
@@ -729,16 +763,21 @@ groups:
 #!/bin/bash
 # setup_alerts.sh - Complete alert setup
 
-# 1. Validate alert rules
+# 1. Validate alert rules - the image entrypoint is the prometheus
+#    binary itself, so promtool must be selected explicitly, and a
+#    rules file is validated with check rules (not check config)
 docker run --rm \
+    --entrypoint promtool \
     -v $(pwd)/alerts.yml:/etc/prometheus/alerts.yml \
     prom/prometheus:latest \
-    promtool check config /etc/prometheus/alerts.yml
+    check rules /etc/prometheus/alerts.yml
 
-# Expected output: SUCCESS: 0 rule files found
+# Expected output: SUCCESS: 1 rule file found
 
-# 2. Update Prometheus configuration to use alerts
-cat >> prometheus.yml <<EOF
+# 2. Wire alerts into the SAME prometheus.yml Exercise 1 mounted -
+#    appending to a different copy in the current directory would
+#    never reach the container
+cat >> prometheus/config/prometheus.yml <<EOF
 
 # Alertmanager configuration
 alerting:
@@ -751,8 +790,21 @@ rule_files:
     - 'alerts.yml'
 EOF
 
-# 3. Restart Prometheus with alerts
-docker restart prometheus
+# 3. Recreate Prometheus with alerts.yml mounted: docker restart
+#    cannot add a volume, and with rule_files pointing at a file the
+#    container does not have, Prometheus aborts at startup
+docker rm -f prometheus
+docker run -d \
+    --name prometheus \
+    --network host \
+    -v $(pwd)/prometheus/config/prometheus.yml:/etc/prometheus/prometheus.yml \
+    -v $(pwd)/alerts.yml:/etc/prometheus/alerts.yml \
+    -v $(pwd)/prometheus/data:/prometheus \
+    prom/prometheus:latest \
+    --config.file=/etc/prometheus/prometheus.yml \
+    --storage.tsdb.path=/prometheus \
+    --web.console.libraries=/usr/share/prometheus/console_libraries \
+    --web.console.templates=/usr/share/prometheus/consoles
 
 # 4. Verify alerts are loaded
 curl -s http://localhost:9090/api/v1/rules | jq '.data.groups[].rules[] | {name: .name, type: .type}'
@@ -782,7 +834,7 @@ import structlog
 import logging
 import json
 import time
-from datetime import datetime
+import traceback
 from typing import Dict, Any, Optional
 from contextlib import contextmanager
 
@@ -794,9 +846,6 @@ structlog.configure(
 
         # Add timestamp
         structlog.processors.TimeStamper(fmt="iso"),
-
-        # Add logger name
-        structlog.stdlib.add_logger_name,
 
         # Add call site info
         structlog.processors.CallsiteParameterAdder(
@@ -813,8 +862,13 @@ structlog.configure(
         # For development, use ConsoleRenderer instead:
         # structlog.dev.ConsoleRenderer()
     ],
-    wrapper_class=structlog.stdlib.BoundLogger,
-    logger_factory=structlog.stdlib.LoggerFactory(),
+    # PrintLoggerFactory writes the rendered JSON lines straight to
+    # stdout; the stdlib factory routes through Python logging, whose
+    # own formatter wraps each JSON line in "LEVEL:logger: ..." text.
+    # (stdlib.add_logger_name above was removed because it only works
+    # with the stdlib logger.)
+    wrapper_class=structlog.make_filtering_bound_logger(logging.INFO),
+    logger_factory=structlog.PrintLoggerFactory(),
     cache_logger_on_first_use=True,
 )
 
@@ -1027,10 +1081,9 @@ if __name__ == "__main__":
         "service": "llm-service",
         "request_id": request_id,
         "model": "llama2-7b",
-        "prompt_length": 10,
+        "prompt_length": 11,
         "timestamp": "2026-02-05T10:30:00.000Z",
-        "level": "info",
-        "logger": "__main__"
+        "level": "info"
     }, indent=2))
 ```
 
@@ -1084,13 +1137,15 @@ table_manager:
   retention_period: 0s
 EOF
 
-# 2. Start Loki with Docker
+# 2. Start Loki with Docker. 2.9.x pinned deliberately: Loki 3.x
+#    removed table_manager and enforce_metric_name, which this config
+#    uses
 docker run -d \
     --name loki \
     -p 3100:3100 \
     -v $(pwd)/loki-data:/loki \
     -v $(pwd)/loki-config.yml:/etc/loki/local-config.yaml \
-    grafana/loki:latest \
+    grafana/loki:2.9.8 \
     -config.file=/etc/loki/local-config.yaml
 
 # 3. Start Promtail to collect logs
@@ -1102,7 +1157,7 @@ positions:
   filename: /tmp/positions.yaml
 
 clients:
-  - url: http://localhost:3100/loki/api/v1/push
+  - url: http://host.docker.internal:3100/loki/api/v1/push
 
 scrape_configs:
   - job_name: llm-service
@@ -1115,12 +1170,20 @@ scrape_configs:
           __path__: /var/log/llm-service/*.log
 EOF
 
+# promtail also needs the host-gateway mapping to reach Loki, and
+# the directory it tails must exist before the app writes into it
+mkdir -p /var/log/llm-service
 docker run -d \
     --name promtail \
+    --add-host=host.docker.internal:host-gateway \
     -v $(pwd)/promtail-config.yml:/etc/promtail/config.yml \
     -v /var/log:/var/log:ro \
     grafana/promtail:latest \
     -config.file=/etc/promtail/config.yml
+
+# The Exercise 5 demo prints to stdout - redirect it into the folder
+# Promtail tails so the logs actually reach Loki:
+#   python structured_logging.py >> /var/log/llm-service/app.log 2>&1
 
 # 4. Add Loki datasource to Grafana
 curl -X POST http://localhost:3000/api/datasources \
@@ -1129,7 +1192,7 @@ curl -X POST http://localhost:3000/api/datasources \
     -d '{
         "name": "Loki",
         "type": "loki",
-        "url": "http://localhost:3100",
+        "url": "http://host.docker.internal:3100",
         "access": "proxy"
     }'
 
