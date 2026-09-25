@@ -1,7 +1,7 @@
 ---
 Document ID: 3200-PRACTICE
 Title: "3200: Embeddings - Practice"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Advanced
 ---
@@ -14,17 +14,23 @@ Difficulty: Advanced
 
 ```python
 from gensim.models import Word2Vec
-from gensim.models.word2vec import LineSentence
-import numpy as np
 
 # Prepare training sentences
+# The corpus must contain every word the tests below query: only
+# plural 'dogs'/'cats' existed before, so similarity('cat', 'dog')
+# raised KeyError, and the analogy words (king/man/woman) were not
+# in the vocabulary at all
 sentences = [
     ['the', 'cat', 'sits', 'on', 'the', 'mat'],
+    ['the', 'dog', 'is', 'a', 'loyal', 'pet'],
     ['dogs', 'are', 'loyal', 'animals'],
     ['paris', 'is', 'the', 'capital', 'of', 'france'],
     ['london', 'is', 'in', 'england'],
     ['cats', 'and', 'dogs', 'are', 'pets'],
     ['france', 'is', 'in', 'europe'],
+    ['the', 'king', 'is', 'the', 'ruler', 'of', 'the', 'country'],
+    ['the', 'queen', 'is', 'the', 'wife', 'of', 'the', 'king'],
+    ['a', 'man', 'and', 'a', 'woman', 'walked', 'in', 'the', 'park'],
 ] * 100  # Repeat for better training
 
 # Train Word2Vec model
@@ -85,11 +91,16 @@ except KeyError as e:
 model.save("word2vec.model")
 print("\nModel saved to 'word2vec.model'")
 
-# Expected Output:
-# Cat-Dog similarity: 0.85XX (similar semantic category)
-# Cat-Paris similarity: -0.12XX (unrelated)
-# France-Paris similarity: 0.78XX (related location)
-# Most similar to 'cat': cats, dog, pets, animals, sits
+# Expected Output (values are NOT reproducible on this toy corpus -
+# random initialization over ~10 distinct sentences makes every run
+# differ; read the qualitative direction, not the numbers):
+# - Cat-Dog and France-Paris similarities tend to run higher than
+#   Cat-Paris (shared context vs. unrelated words)
+# - The King - Man + Woman analogy prints neighbors, but at this
+#   corpus size the result is illustrative, not reliable - real
+#   analogy quality needs orders of magnitude more text
+# - Most similar to 'cat': co-occurring words (cats/dogs, pets,
+#   mat, sits) dominate
 ```
 
 **Explanation:**
@@ -281,7 +292,11 @@ inputs = tokenizer(
 
 with torch.no_grad():
     outputs = model(**inputs)
-    embeddings = outputs.last_hidden_state.mean(dim=1)
+    # Masked mean pooling: the batch is padded, so a plain mean over
+    # dim=1 would dilute short sentences with PAD-token outputs.
+    # Weight each token by the attention mask before averaging
+    mask = inputs['attention_mask'].unsqueeze(-1).float()
+    embeddings = (outputs.last_hidden_state * mask).sum(dim=1) / mask.sum(dim=1)
 
 # Compute similarities
 similarities = cosine_similarity(embeddings.numpy())
@@ -351,7 +366,7 @@ tsne_embeddings = TSNE(
     n_components=2,
     perplexity=5,  # Lower for small datasets
     random_state=42,
-    n_iter=1000
+    max_iter=1000  # renamed from n_iter in scikit-learn 1.5
 ).fit_transform(embeddings)
 print(f"t-SNE reduced shape: {tsne_embeddings.shape}")
 
@@ -409,8 +424,6 @@ plt.tight_layout()
 plt.show()
 
 # 3D visualization
-from mpl_toolkits.mplot3d import Axes3D
-
 fig = plt.figure(figsize=(12, 8))
 ax = fig.add_subplot(111, projection='3d')
 
@@ -438,6 +451,14 @@ print("\nInterpretation:")
 print("- Similar words cluster together")
 print("- Different categories should be separated")
 print("- t-SNE often shows better separation than PCA")
+
+# Expected Output:
+# Original embedding shape: (25, 384)
+# PCA reduced shape: (25, 2)
+# t-SNE reduced shape: (25, 2)
+# - Two side-by-side scatter plots (PCA and t-SNE), each point
+#   annotated with its word, plus a 3D PCA figure
+# - Same-category words (animals, foods, ...) form loose clusters
 ```
 
 **Explanation:**
@@ -694,6 +715,12 @@ def compare_embedding_methods():
 
 # Run comparison
 compare_embedding_methods()
+
+# Expected Output:
+# - Two 6x6 similarity matrices printed to the console (exact
+#   values vary by model version), then two side-by-side heatmaps
+# - Sentence Transformer matrix: similar pairs near 0.6-0.8,
+#   unrelated pairs near 0.0-0.2 - higher contrast than BERT
 ```
 
 **Key Takeaways:**
