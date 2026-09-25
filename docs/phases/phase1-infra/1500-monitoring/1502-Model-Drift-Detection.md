@@ -3,7 +3,7 @@ Document ID: 1502
 Title: Model Drift Detection
 Phase: 1
 Module: 1500
-Last Updated: 2026-09-24
+Last Updated: 2026-09-26
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -14,14 +14,6 @@ Tags: ['infrastructure', 'monitoring', 'observability', 'prometheus']
 
 # 1502: Model Drift Detection
 
-**Project:** AI Engineering Curriculum
-**Phase:** [1500] Monitoring
-**Last Updated:** 2026-02-04
-**Status:** Complete
-**Estimated Time:** 2 hours
-
----
-
 ## Table of Contents
 
 - [Learning Objectives](#learning-objectives)
@@ -29,9 +21,8 @@ Tags: ['infrastructure', 'monitoring', 'observability', 'prometheus']
 - [Types of Drift](#types-of-drift)
 - [Drift Detection Algorithms](#drift-detection-algorithms)
 - [Feature-Level Monitoring](#feature-level-monitoring)
-- [Remeditation Strategies](#remeditation-strategies)
+- [Remediation Strategies](#remediation-strategies)
 - [Production Deployment](#production-deployment)
-- [Related Resources](#related-resources)
 - [References](#references)
 
 ---
@@ -43,7 +34,7 @@ After completing this lesson, you will be able to:
 - Explain Types of Drift
 - Explain Drift Detection Algorithms
 - Measure and evaluate Feature-Level Monitoring
-- Explain Remeditation Strategies
+- Explain Remediation Strategies
 - Configure and operate Production Deployment
 - Explain Related Resources
 
@@ -72,7 +63,7 @@ Model drift occurs when model performance degrades over time due to changes in d
 │  └──────────────────────────────────────────────────────────────────┘   │
 │                                                                         │
 │  ┌──────────────────────────────────────────────────────────────────┐   │
-│  │  CONCEPT DRIFT (Label Shift)                                     │   │
+│  │  CONCEPT DRIFT                                                   │   │
 │  ├──────────────────────────────────────────────────────────────────┤   │
 │  │  • Relationship between features and labels changes              │   │
 │  │  • P(Y|X) changes over time                                      │   │
@@ -91,6 +82,12 @@ Model drift occurs when model performance degrades over time due to changes in d
 └─────────────────────────────────────────────────────────────────────────┘
 ```
 
+Concept drift and label shift are distinct phenomena: concept drift is a change
+in **P(Y|X)**; label shift is a change in the class prior **P(Y)** while P(X|Y)
+stays fixed. The statistical tests below detect input distribution change —
+concept drift additionally requires comparing predictions against ground-truth
+labels (see `concept_drift.py`).
+
 ---
 
 ## Drift Detection Algorithms
@@ -101,7 +98,6 @@ Model drift occurs when model performance degrades over time due to changes in d
 # drift_detection.py
 import numpy as np
 from scipy import stats
-from typing import Tuple, Dict, List
 from dataclasses import dataclass
 from datetime import datetime
 
@@ -192,11 +188,12 @@ class DriftDetector:
             is_drift = False
         elif psi < 0.2:
             is_drift = True  # Moderate drift
-            print("⚠️ Moderate drift detected (PSI:", f"{psi:.3f})")
+            print(f"⚠️ Moderate drift detected (PSI: {psi:.3f})")
         else:
             is_drift = True  # Significant drift
-            print("🔴 Significant drift detected (PSI:", f"{psi:.3f})")
+            print(f"🔴 Significant drift detected (PSI: {psi:.3f})")
 
+        # PSI has no p-value; sentinel values satisfy the shared DriftResult schema
         return DriftResult(
             is_drift=is_drift,
             p_value=1.0 if psi < 0.1 else 0.0,
@@ -211,7 +208,7 @@ class DriftDetector:
         current_data: np.ndarray,
         bins: int = 10
     ) -> DriftResult:
-        """Chi-square test for categorical drift"""
+        """Chi-square goodness-of-fit test on binned numeric features"""
 
         if self.baseline_distribution is None:
             raise ValueError("Baseline not set")
@@ -226,11 +223,17 @@ class DriftDetector:
             bins=bin_edges
         )
 
-        # Chi-square test
-        statistic, p_value = stats.chisquare(
-            current_hist,
-            baseline_hist
-        )
+        # Scale baseline counts to the observed total: chisquare requires
+        # observed and expected sums to match (raises ValueError otherwise).
+        expected = baseline_hist / baseline_hist.sum() * current_hist.sum()
+
+        # Bins with zero expected frequency make the statistic undefined;
+        # drop them (standard practice for empty categories).
+        mask = expected > 0
+        if not mask.any():
+            raise ValueError("Baseline has no samples in the bin range")
+
+        statistic, p_value = stats.chisquare(current_hist[mask], expected[mask])
 
         is_drift = p_value < self.threshold
 
@@ -248,6 +251,9 @@ class DriftDetector:
 
 ```python
 # concept_drift.py
+import numpy as np
+from datetime import datetime
+from typing import Dict
 
 class ConceptDriftDetector:
     """Detect concept drift (P(Y|X) changes)"""
@@ -309,6 +315,11 @@ class ConceptDriftDetector:
 
 ```python
 # drift_monitor.py
+import numpy as np
+from datetime import datetime
+from typing import Dict
+
+from drift_detection import DriftDetector
 
 class RealTimeDriftMonitor:
     """Real-time drift monitoring for production"""
@@ -380,6 +391,7 @@ class RealTimeDriftMonitor:
             'total_checks': total_checks,
             'drift_count': drift_count,
             'drift_rate': drift_rate,
+            'consecutive_drifts': self.consecutive_drifts,
             'status': 'ALERT' if drift_rate > 0.3 else 'OK'
         }
 ```
@@ -392,6 +404,10 @@ class RealTimeDriftMonitor:
 
 ```python
 # feature_drift.py
+import numpy as np
+from typing import Dict, List
+
+from drift_detection import DriftDetector, DriftResult
 
 class FeatureDriftMonitor:
     """Monitor drift for individual features"""
@@ -455,6 +471,10 @@ class FeatureDriftMonitor:
 
 ```python
 # embedding_drift.py
+import numpy as np
+from typing import Dict
+
+from sklearn.metrics.pairwise import cosine_similarity
 
 class EmbeddingDriftDetector:
     """Detect drift in embedding distributions"""
@@ -480,9 +500,7 @@ class EmbeddingDriftDetector:
 
         current_mean = current_embeddings.mean(axis=0)
 
-        # Calculate cosine similarity shift
-        from sklearn.metrics.pairwise import cosine_similarity
-
+        # Cosine similarity between baseline and current mean embeddings
         baseline_2d = self.baseline_mean.reshape(1, -1)
         current_2d = current_mean.reshape(1, -1)
 
@@ -502,12 +520,17 @@ class EmbeddingDriftDetector:
 
 ---
 
-## Remeditation Strategies
+## Remediation Strategies
 
 ### Retraining Pipeline
 
 ```python
 # retraining_pipeline.py
+import numpy as np
+from datetime import datetime
+from typing import Tuple, Dict
+
+from drift_monitor import RealTimeDriftMonitor
 
 class RetrainingPipeline:
     """Automated retraining pipeline for drifted models"""
@@ -528,34 +551,44 @@ class RetrainingPipeline:
 
         summary = self.drift_monitor.get_drift_summary(window_days=7)
 
+        if summary['consecutive_drifts'] >= self.drift_monitor.alert_threshold:
+            return (
+                True,
+                f"{summary['consecutive_drifts']} consecutive drifts - retraining recommended"
+            )
+
         if summary['drift_rate'] > self.retraining_threshold:
             return True, f"Drift rate {summary['drift_rate']:.2f} exceeds threshold"
-
-        if summary['status'] == 'ALERT':
-            return True, "Consecutive drifts detected - retraining recommended"
 
         return False, "No retraining needed"
 
     def trigger_retraining(
         self,
-        new_training_data,
+        new_training_data: Tuple[np.ndarray, np.ndarray],
         validation_split: float = 0.2
     ) -> Dict:
-        """Trigger model retraining"""
+        """Trigger model retraining
+
+        new_training_data is an (X, y) tuple for a scikit-learn-style
+        estimator (fit(X, y) / score(X, y)).
+        """
 
         print("🔄 Starting model retraining...")
 
         # Split data
-        n_val = int(len(new_training_data) * validation_split)
-        train_data = new_training_data[:-n_val]
-        val_data = new_training_data[-n_val:]
+        X, y = new_training_data
 
-        # Retrain model
-        # (Simplified - actual implementation depends on model type)
-        old_accuracy = self.model.score(val_data)
+        # max(1, ...): n_val = 0 would make X[:-0] an empty slice and put
+        # every sample into validation.
+        n_val = max(1, int(len(X) * validation_split))
+        X_train, X_val = X[:-n_val], X[-n_val:]
+        y_train, y_val = y[:-n_val], y[-n_val:]
 
-        self.model.fit(train_data)
-        new_accuracy = self.model.score(val_data)
+        # Retrain model (scikit-learn estimator API)
+        old_accuracy = self.model.score(X_val, y_val)
+
+        self.model.fit(X_train, y_train)
+        new_accuracy = self.model.score(X_val, y_val)
 
         improvement = new_accuracy - old_accuracy
 
@@ -585,6 +618,8 @@ class RetrainingPipeline:
 
 from prometheus_client import Gauge, Counter
 
+from drift_detection import DriftResult
+
 # Define metrics
 drift_detection = Gauge(
     'model_drift_detected',
@@ -610,8 +645,9 @@ consecutive_drifts = Gauge(
     ['model_name']
 )
 
+# prometheus_client strips and re-appends _total on exposure; pass the bare name
 retraining_triggered = Counter(
-    'model_retraining_triggered_total',
+    'model_retraining_triggered',
     'Total number of retraining triggers',
     ['model_name']
 )
@@ -659,6 +695,57 @@ class DriftMetricsPublisher:
         retraining_triggered.labels(
             model_name=self.model_name
         ).inc()
+
+
+if __name__ == "__main__":
+    from prometheus_client import start_http_server
+    import time
+
+    # Expose metrics so Prometheus actually has something to scrape
+    # (scrape job: drift-dashboard, port 8001).
+    start_http_server(8001)
+    print("✅ Drift metrics exposed on :8001/metrics")
+
+    while True:
+        time.sleep(3600)
+```
+
+### Drift Alerts
+
+Prometheus rules for the metrics above. Merge into the `alerts.yml` wired via
+`rule_files` in [1501: Monitoring and Observability](./1501-Monitoring-and-Observability.md):
+
+```yaml
+# drift_alerts.yml
+groups:
+  - name: model_drift_alerts
+    interval: 60s
+    rules:
+      # A feature drifted on the latest check
+      - alert: ModelDriftDetected
+        expr: model_drift_detected == 1
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Drift detected: {{ $labels.model_name }} / {{ $labels.feature }}"
+
+      # Sustained drift rate above the retraining threshold
+      - alert: ModelDriftRateHigh
+        expr: model_drift_rate > 0.3
+        for: 30m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Drift rate {{ $value | humanizePercentage }} on {{ $labels.model_name }}"
+
+      # Matches the monitor's alert_threshold (consecutive drifts)
+      - alert: ModelConsecutiveDrifts
+        expr: model_consecutive_drifts >= 3
+        labels:
+          severity: critical
+        annotations:
+          summary: "{{ $value }} consecutive drift detections on {{ $labels.model_name }}"
 ```
 
 ---
@@ -667,8 +754,15 @@ class DriftMetricsPublisher:
 
 ### Related ai-engineering-curriculum Documents
 
-- [1501: Monitoring and Observability for AI Engineering Curriculum](1501-Monitoring-and-Observability.md)
+- [1501: Monitoring and Observability](1501-Monitoring-and-Observability.md)
 - [1503: LLM Observability](1503-LLM-Observability.md)
+
+### External References
+
+- [scipy.stats.ks_2samp](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.ks_2samp.html)
+- [scipy.stats.chisquare](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.chisquare.html)
+- [alibi-detect](https://github.com/SeldonIO/alibi-detect)
+- [Evidently](https://github.com/evidentlyai/evidently)
 
 ---
 
@@ -679,11 +773,7 @@ class DriftMetricsPublisher:
 
 ---
 
-## Related Resources
-
-- **Related:** [1501: Monitoring and Observability](./1501-Monitoring-and-Observability.md)
+**Related:**
+- [1501: Monitoring and Observability](./1501-Monitoring-and-Observability.md)
+- [1402: vLLM and TGI](../1400-llmops/1402-vLLM-and-TGI.md)
 - **Experiment:** [EXP_1502: Model Drift](../../../../experiments/EXP_1502_MODEL_DRIFT.md)
-
----
-
-**Status:** ✅ Complete
