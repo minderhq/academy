@@ -1,14 +1,29 @@
 ---
 Document ID: TUTORIAL-010
 Title: "TUTORIAL-010: Model Evaluation and Benchmarking"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Intermediate
 ---
 
 # TUTORIAL-010: Model Evaluation and Benchmarking
 
-## Overview
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Part 1: LLM Evaluation Metrics](#part-1-llm-evaluation-metrics)
+- [Part 2: Benchmark Datasets](#part-2-benchmark-datasets)
+- [Part 3: RAG Evaluation](#part-3-rag-evaluation)
+- [Part 4: Evaluation Framework](#part-4-evaluation-framework)
+- [Part 5: Tracking and Comparison](#part-5-tracking-and-comparison)
+- [Exercises](#exercises)
+- [References](#references)
+- [Next Steps](#next-steps)
+
+---
+
+## Abstract
 
 This tutorial covers comprehensive model evaluation including metrics, benchmarks, and evaluation frameworks for LLMs.
 
@@ -31,11 +46,24 @@ After this tutorial, you will:
 
 ## Part 1: LLM Evaluation Metrics
 
+### Installation
+
+```bash
+pip install torch transformers datasets nltk rouge sentence-transformers spacy pandas matplotlib
+python -m spacy download en_core_web_sm
+```
+
+Part 1 needs transformers (Perplexity), nltk (BLEU), and rouge (ROUGE); Part 2 the
+`datasets` library; Part 3 sentence-transformers and spaCy — the spaCy pipeline must
+be downloaded once with the second command before `spacy.load("en_core_web_sm")`
+will work; Part 5 pandas + matplotlib. numpy ships with the rest of the stack.
+
 ### Perplexity
 
 ```python
 import torch
 from torch.nn import CrossEntropyLoss
+from transformers import AutoModelForCausalLM, AutoTokenizer
 from typing import List
 
 def calculate_perplexity(model, tokenizer, texts: List[str]) -> float:
@@ -56,8 +84,11 @@ def calculate_perplexity(model, tokenizer, texts: List[str]) -> float:
             inputs = tokenizer(text, return_tensors="pt")
             input_ids = inputs["input_ids"].to(model.device)
 
-            # Forward pass
-            outputs = model(input_ids, labels=input_ids)
+            # Forward pass - no labels argument: the loss is computed
+            # manually below, so the token averaging stays explicit
+            # (passing labels would make the model compute a second,
+            # silently discarded loss)
+            outputs = model(input_ids)
             logits = outputs.logits
 
             # Calculate loss
@@ -90,6 +121,11 @@ texts = [
 
 perplexity = calculate_perplexity(model, tokenizer, texts)
 print(f"Perplexity: {perplexity:.2f}")
+
+# Expected Output:
+# Perplexity: <N>.NN
+# (lower is better; the exact value comes from the gpt2 checkpoint
+#  loaded above run over these three sentences)
 ```
 
 ### BLEU Score
@@ -139,6 +175,13 @@ references = [
 
 bleu = calculate_bleu(predictions, references)
 print(f"BLEU Score: {bleu:.4f}")
+
+# Expected Output:
+# BLEU Score: <N>.NNNN
+# (predictions and references overlap only partially, so even correct
+#  paraphrases score well below 1.0; NLTK's method1 smoothing keeps
+#  the near-zero 4-gram precision of short sentences from collapsing
+#  the whole score to 0)
 ```
 
 ### ROUGE Score
@@ -175,12 +218,19 @@ predictions = [
 references = [
     "Artificial intelligence is helping doctors diagnose diseases more accurately.",
     "Global action is needed to combat climate change effectively."
-}
+]
 
 rouge_scores = calculate_rouge(predictions, references)
 print(f"ROUGE-1: {rouge_scores['rouge-1']:.4f}")
 print(f"ROUGE-2: {rouge_scores['rouge-2']:.4f}")
 print(f"ROUGE-L: {rouge_scores['rouge-l']:.4f}")
+
+# Expected Output:
+# ROUGE-1: <N>.NNNN
+# ROUGE-2: <N>.NNNN
+# ROUGE-L: <N>.NNNN
+# (average F-measures over the two sentence pairs - partial overlaps,
+#  so each value is a fraction rather than a near-1.0 match)
 ```
 
 ---
@@ -190,8 +240,7 @@ print(f"ROUGE-L: {rouge_scores['rouge-l']:.4f}")
 ### MMLU (Massive Multitask Language Understanding)
 
 ```python
-import requests
-import json
+import re
 from typing import List, Dict
 
 def load_mmlu(subject: str = "abstract_algebra") -> List[Dict]:
@@ -235,14 +284,25 @@ def evaluate_mmlu(model, tokenizer, subject: str = "abstract_algebra") -> Dict:
         for i, choice in enumerate(choices):
             prompt += f"{chr(65+i)}. {choice}\n"
 
-        # Get model response
+        # Get model response - generate() returns the full
+        # prompt+continuation sequence, so decode only the newly
+        # generated token; taking the last character of the whole
+        # decode works only while the continuation happens to end in
+        # a letter - a whitespace/newline token would let strip()
+        # trim back into the prompt and silently read a letter from
+        # the last choice instead
         inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
         outputs = model.generate(**inputs, max_new_tokens=1)
-        response = tokenizer.decode(outputs[0], skip_special_tokens=True)
+        prompt_len = inputs["input_ids"].shape[-1]
+        continuation = tokenizer.decode(
+            outputs[0][prompt_len:], skip_special_tokens=True
+        ).strip()
 
-        # Extract answer (A, B, C, D)
-        predicted_letter = response.strip()[-1].upper()
-        predicted_answer = ord(predicted_letter) - ord('A')
+        # Extract answer (A, B, C, D) - the first A-D letter in the
+        # continuation; anything else counts as wrong rather than
+        # silently mapping an arbitrary character onto a choice index
+        match = re.search(r"[A-D]", continuation.upper())
+        predicted_answer = ord(match.group(0)) - ord("A") if match else -1
 
         if predicted_answer == correct_answer:
             correct += 1
@@ -274,6 +334,18 @@ def load_gsm8k() -> List[Dict]:
         for item in dataset
     ]
 
+# re is imported in Part 2's MMLU block above (this tutorial's blocks
+# run top-down)
+def extract_final_number(text: str):
+    """Last number appearing anywhere in the text, or None.
+
+    GSM8K reference answers end with '#### <number>' and a
+    chain-of-thought response typically ends with its final number
+    too, so the last number is the one worth comparing.
+    """
+    numbers = re.findall(r"-?\d+\.?\d*", text.replace(",", ""))
+    return float(numbers[-1]) if numbers else None
+
 def evaluate_gsm8k(model, tokenizer) -> Dict:
     """Evaluate model on grade school math"""
     data = load_gsm8k()
@@ -289,15 +361,21 @@ def evaluate_gsm8k(model, tokenizer) -> Dict:
         prompt = f"Q: {question}\nA: Let's think step by step.\n"
         inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
 
-        outputs = model.generate(
-            **inputs,
-            max_new_tokens=256,
-            temperature=0.0
-        )
-        response = tokenizer.decode(outputs[0], skip_special_tokens=True)
+        # Greedy decoding (the default) - deterministic, which is what
+        # an eval run wants; temperature=0.0 without do_sample=True
+        # only triggers a transformers warning and is ignored
+        outputs = model.generate(**inputs, max_new_tokens=256)
 
-        # Extract final answer (numeric)
-        # In practice, use more sophisticated parsing
+        # Decode only the continuation - the full sequence would end
+        # with the response, but a number-free response would make the
+        # parser fall back to the last number inside the question
+        prompt_len = inputs["input_ids"].shape[-1]
+        response = tokenizer.decode(
+            outputs[0][prompt_len:], skip_special_tokens=True
+        )
+
+        # Extract final answer (numeric) - a None never equals a
+        # number, so unparseable responses simply count as wrong
         predicted_number = extract_final_number(response)
         correct_number = extract_final_number(answer)
 
@@ -380,6 +458,15 @@ print(f"Precision@5: {evaluator.precision_at_k(retrieved_docs, relevant_docs, 5)
 print(f"Recall@5: {evaluator.recall_at_k(retrieved_docs, relevant_docs, 5):.3f}")
 print(f"MRR: {evaluator.mrr(retrieved_docs, relevant_docs):.3f}")
 print(f"NDCG@5: {evaluator.ndcg_at_k(retrieved_docs, relevant_docs, 5):.3f}")
+
+# Expected Output:
+# Precision@5: 0.400
+# Recall@5: 0.500
+# MRR: 0.333
+# NDCG@5: 0.346
+# (docs 2 and 3 are the relevant hits among the five retrieved: 2/5
+#  precision, 2/4 recall, first hit at rank 3 -> 1/3 MRR, and
+#  NDCG = (1/log2(4) + 1/log2(6)) / (1/log2(2)+1/log2(3)+1/log2(4)+1/log2(5)))
 ```
 
 ### RAG Quality Metrics
@@ -452,6 +539,7 @@ class RAGEvaluator:
 
 ```python
 from dataclasses import dataclass
+from datetime import datetime
 from typing import Any, Dict
 import json
 
@@ -517,6 +605,19 @@ class ModelEvaluator:
         results["average_accuracy"] = sum(results.values()) / len(results)
         return results
 
+    def _evaluate_gsm8k(self) -> Dict[str, float]:
+        """Run GSM8K evaluation - delegates to Part 2's function"""
+        return evaluate_gsm8k(self.model, self.tokenizer)
+
+    def _evaluate_rag(self) -> Dict[str, float]:
+        """RAG evaluation needs a labeled QA corpus (queries, gold
+        answers, retrieved contexts) that this class does not hold -
+        assemble one and score it with Part 3's RAGEvaluator, or see
+        the Exercises. Fail loudly rather than pretend."""
+        raise NotImplementedError(
+            "rag evaluation needs a labeled QA corpus; see Part 3 and the Exercises"
+        )
+
     def _save_results(self, result: EvaluationResult):
         """Save results to file"""
         filename = f"eval_{self.name}_{result.timestamp.replace(':', '-')}.json"
@@ -536,7 +637,6 @@ class ModelEvaluator:
 
 ```python
 import pandas as pd
-from typing import List
 
 class EvaluationTracker:
     """Track model performance over time"""
@@ -614,4 +714,17 @@ class EvaluationTracker:
 
 ---
 
-**Next Steps:** LAB-014: AI Evaluation Safety or LAB-006: Train Model From Scratch
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [LAB-014: AI Evaluation Safety](../labs/LAB-014-AI-Evaluation-Safety.md)
+- [LAB-006: Train Model From Scratch](../labs/LAB-006-Train-Model-From-Scratch.md)
+- [TUTORIAL-004: Monitoring](TUTORIAL-004-Monitoring.md)
+
+---
+
+## Next Steps
+
+- Hands-on: **[LAB-014: AI Evaluation Safety](../labs/LAB-014-AI-Evaluation-Safety.md)**
+- Practice: **[LAB-006: Train Model From Scratch](../labs/LAB-006-Train-Model-From-Scratch.md)**
