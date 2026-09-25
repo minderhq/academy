@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE1-PRACTICE
 Title: "Phase 1: Infrastructure Practice"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Beginner
 ---
@@ -93,7 +93,14 @@ sudo update-grub
 
 # 2. Check IOMMU groups
 echo "Step 2: Checking IOMMU groups..."
-find /sys/kernel/iommu_groups/ -type l -name "devices:*" -exec sh -c 'echo "Group: $(basename $(dirname {}))"; ls -l {}; echo' \;
+# Device symlinks under each group are named after the PCI address
+# (e.g. 0000:01:00.0) - list them per group with lspci
+for g in /sys/kernel/iommu_groups/*; do
+    echo "IOMMU Group ${g##*/}:"
+    for d in "$g"/devices/*; do
+        echo -e "\t$(lspci -nns ${d##*/})"
+    done
+done
 
 # Look for GPU in isolated group
 # Expected: GPU in its own IOMMU group
@@ -106,7 +113,7 @@ echo "vfio_iommu_type1" | sudo tee -a /etc/modules-load.d/vfio.conf
 
 # 4. Configure VFIO for GPU
 echo "Step 4: Configuring VFIO..."
-sudo lspci -nnk -d ::1a
+sudo lspci -nnk -d 10de::  # NVIDIA vendor - the device ID comes from this output
 
 # Find GPU ID (e.g., 10de:1e82 for an 11GB-class GPU)
 echo "Add GPU ID to /etc/modprobe.d/vfio.conf:"
@@ -231,7 +238,8 @@ def deploy_vllm():
         "-p", "8000:8000",
         "-v", "/srv/models/vllm:/models",
         "vllm/vllm-openai:latest",
-        "--model", "mistralai/Mistral-7B-Instruct-v0.2",
+        # --quantization awq requires an AWQ-quantized repo, not the fp16 checkpoint
+        "--model", "TheBloke/Mistral-7B-Instruct-v0.2-AWQ",
         "--quantization", "awq",
         "--max-model-len", "4096",
         "--gpu-memory-utilization", "0.9",
@@ -261,7 +269,8 @@ def deploy_vllm():
         response = requests.post(
             "http://localhost:8000/v1/chat/completions",
             json={
-                "model": "mistralai/Mistral-7B-Instruct-v0.2",
+                # served model name follows --model
+                "model": "TheBloke/Mistral-7B-Instruct-v0.2-AWQ",
                 "messages": [{"role": "user", "content": "Hello!"}],
                 "max_tokens": 50
             },
@@ -305,7 +314,7 @@ nvidia-smi
 for i in {1..10}; do
   curl -X POST http://localhost:8000/v1/chat/completions \
     -H "Content-Type: application/json" \
-    -d '{"model":"mistralai/Mistral-7B-Instruct-v0.2","messages":[{"role":"user","content":"Test"}]}'
+    -d '{"model":"TheBloke/Mistral-7B-Instruct-v0.2-AWQ","messages":[{"role":"user","content":"Test"}]}'
 done
 ```
 
@@ -406,14 +415,17 @@ docker run -d \
   grafana/tempo:latest
 
 # Deploy Node Exporter
+# Stays on the monitoring bridge so prometheus.yml can scrape
+# node-exporter:9100 by DNS name; --path.rootfs makes the /proc
+# and /sys mounts actually feed host metrics
 docker run -d \
   --name node-exporter \
   --network monitoring \
   -p 9100:9100 \
   -v /proc:/host/proc:ro \
   -v /sys:/host/sys:ro \
-  --network host \
-  prom/node-exporter:latest
+  prom/node-exporter:latest \
+  --path.rootfs=/host
 
 # Deploy cAdvisor
 docker run -d \
@@ -465,8 +477,10 @@ FAILED=0
 # Test functions
 test_network() {
     echo -n "Testing lab network... "
-    PING_RESULT=$(ping -c 5 192.168.1.1 | tail -1 | awk '{print $4}')
-    if [[ "$PING_RESULT" < "2.0" ]]; then
+    # rtt line reads "rtt min/avg/max/mdev = a/b/c/d ms" - take the avg
+    PING_RESULT=$(ping -c 5 192.168.1.1 | tail -1 | awk -F'=' '{print $2}' | cut -d'/' -f2)
+    # numeric compare - bash [[ < ]] is lexicographic
+    if awk -v r="$PING_RESULT" 'BEGIN{exit !(r<2.0)}'; then
         echo "✅ PASS (latency: $PING_RESULT ms)"
         ((PASSED++))
     else
@@ -477,7 +491,7 @@ test_network() {
 
 test_jumbo_frames() {
     echo -n "Testing jumbo frames... "
-    MTU=$(ip link show eth0 | grep mtu | awk '{print $2}')
+    MTU=$(ip link show eth0 | grep -oP 'mtu \K[0-9]+')
     if [ "$MTU" = "9000" ]; then
         echo "✅ PASS (MTU: $MTU)"
         ((PASSED++))
@@ -489,7 +503,7 @@ test_jumbo_frames() {
 
 test_gpu_passthrough() {
     echo -n "Testing GPU passthrough... "
-    if dmesg | grep -q "VFIO"; then
+    if sudo dmesg | grep -qi "vfio"; then  # kernel messages are lowercase (vfio-pci)
         echo "✅ PASS (VFIO enabled)"
         ((PASSED++))
     else
@@ -512,8 +526,8 @@ test_k3s_cluster() {
 
 test_vllm_server() {
     echo -n "Testing vLLM server... "
-    RESPONSE=$(curl -s http://localhost:8000/health)
-    if [ -n "$RESPONSE" ]; then
+    # vLLM /health returns 200 with an empty body when healthy
+    if curl -sf http://localhost:8000/health > /dev/null; then
         echo "✅ PASS (server responding)"
         ((PASSED++))
     else
