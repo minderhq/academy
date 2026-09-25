@@ -50,8 +50,8 @@ Jumbo Frames enable Ethernet packets larger than the standard 1500 bytes, reduci
 
 ### Standard vs Jumbo Frames
 ```text
-Standard MTU 1500:  ~718 packets/MB (IPv4, 1460-byte payload)
-Jumbo MTU 9000:     ~117 packets/MB (8966-byte payload)
+Standard MTU 1500:  ~718 packets/MiB (IPv4, 1460-byte payload)
+Jumbo MTU 9000:     ~117 packets/MiB (8966-byte payload)
 Reduction:          ~84% fewer packets
 ```
 
