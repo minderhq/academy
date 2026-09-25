@@ -10,7 +10,7 @@ Difficulty: Beginner
 
 ## Experiment Information
 - **Infrastructure Used:** GPON ONT → 2.5Gbps Switch #1 → Multiple endpoints
-- **Date:** [TBD]
+- **Date:** Original home-lab build (2024-2026 era)
 - **Hardware:** ISP-provided GPON ONT, QNAP QSW-2104-1T Switch
 - **Parameters Tested:** Bridge mode, MTU settings, VLAN configuration
 

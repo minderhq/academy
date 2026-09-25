@@ -505,7 +505,7 @@ Every document must include:
 - [ ] Check for orphaned files
 - [ ] Verify code examples still work
 - [ ] Update deprecated commands
-- [ ] Review and update TODO items
+- [ ] Review and update cross-references
 - [ ] Archive outdated content
 
 ### Quarterly Audit Tasks

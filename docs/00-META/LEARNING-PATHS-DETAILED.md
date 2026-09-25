@@ -105,7 +105,7 @@ Checkpoint: Fine-tuned domain-specific model
 **Goal:** Deploy to production
 
 ```text
-├── TUTORIAL-004: Production Deployment (1 hour)
+├── TUTORIAL-004: Monitoring (90 min)
 ├── LAB-009: Production Deployment (8-10 hours)
 └── Practice: Deploy your fine-tuned model
 ```
@@ -318,7 +318,7 @@ Week 3-4: Multi-Agent Systems
 
 Week 5-6: Production Deployment
 ├── 7401-Long-term-Memory.md
-├── TUTORIAL-004: Production Deployment
+├── TUTORIAL-004: Monitoring
 ├── LAB-009: Production Deployment
 └── Practice: Deploy at scale
 
@@ -512,7 +512,7 @@ Week 1-2: Monitoring
 └── Practice: Set up monitoring
 
 Week 3-4: Production Deployment
-├── TUTORIAL-004: Production Deployment
+├── TUTORIAL-004: Monitoring
 ├── LAB-009: Production Deployment
 └── Practice: Deploy at scale
 
@@ -590,7 +590,7 @@ Week 1-2: Agent Memory & Planning
 └── Practice: Add memory to agents
 
 Week 3-4: Production Deployment
-├── TUTORIAL-004: Production Deployment
+├── TUTORIAL-004: Monitoring
 ├── LAB-009: Production Deployment
 └── Practice: Deploy agent system
 

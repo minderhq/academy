@@ -213,7 +213,7 @@ Total: [░░░░░░░░░░░░░░░░░] 0% (0/97 core files
 **"Deploy at Scale"** - 45-50 hours | Difficulty: ⭐⭐⭐⭐ Expert
 
 - [ ] **VOLUME-7-Production-Mastery.md** - Volume guide (read first!)
-- [ ] **TUTORIAL-004: Production Deployment** (60 min)
+- [ ] **TUTORIAL-004: Monitoring** (90 min)
 
 **Agent Frameworks [7100]:**
 - [ ] 7101-ReAct-Loop-System.md

@@ -22,7 +22,7 @@ Difficulty: Intermediate
 - [Performance Tuning](#performance-tuning)
 - [Monitoring](#monitoring)
 - [Troubleshooting](#troubleshooting)
-- [Quick Start](#quick-start-1)
+- [End-to-End Deployment Walkthrough](#end-to-end-deployment-walkthrough)
 - [References](#references)
 
 ---
@@ -756,7 +756,7 @@ Less than 10 tokens/sec
 --max-total-tokens 4096
 ```
 
-## Quick Start
+## End-to-End Deployment Walkthrough
 
 ```bash
 # 1. Pull latest TGI image

@@ -13,7 +13,7 @@
 - [Key Takeaways](#key-takeaways)
 - [Common Pitfalls](#common-pitfalls)
 - [Pro Tips](#pro-tips)
-- [Performance Benchmarks](#performance-benchmarks-1)
+- [Performance Benchmarks](#performance-benchmarks)
 - [Related Experiments](#related-experiments)
 
 ---
@@ -244,7 +244,7 @@ graph LR
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-### Performance Benchmarks
+### Vector DB Benchmarks
 
 | Database | Queries/sec (1M vectors) | P95 Latency | Memory (1M, 768d) |
 |----------|-------------------------|-------------|-------------------|

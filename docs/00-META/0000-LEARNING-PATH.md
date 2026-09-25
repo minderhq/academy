@@ -117,7 +117,7 @@ Learning Path:
 | Day | Topic | Resources | Exercises |
 |-----|-------|-----------|-----------|
 | 1-2 | Python Basics | TUTORIAL-000 Part 1 | Calculator exercise |
-| 3-4 | Data Structures | TUTORIAL-000 Part 2 | Todo list manager |
+| 3-4 | Data Structures | TUTORIAL-000 Part 2 | To-do list manager |
 | 5-6 | OOP + Practical | TUTORIAL-000 Part 3-4 | JSON config loader |
 | 7 | AI-Specific Python | TUTORIAL-000 Part 5 | NumPy practice |
 

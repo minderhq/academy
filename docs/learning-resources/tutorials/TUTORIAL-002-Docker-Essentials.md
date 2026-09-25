@@ -514,8 +514,8 @@ How Docker fits into AI Engineering Curriculum:
 
 ## 📚 What's Next?
 
-1. **Tutorial 003: Kubernetes Basics** *(coming soon)* - Scale your containers
-2. **Tutorial 004: GPU Passthrough** *(coming soon)* - Use GPU in containers
+1. **[1301: K3s Master-Worker Architecture](../../phases/phase1-infra/1300-kubernetes/1301-K3s-Master-Worker-Arch.md)** - Orchestrate containers at cluster scale
+2. **[1405: TGI Deployment Guide](../../phases/phase1-infra/1400-llmops/guides/1405-TGI-Deployment-Guide.md)** - Serve LLMs in GPU containers
 3. **[0000-LEARNING-PATH.md](../../00-META/0000-LEARNING-PATH.md)** - Full curriculum
 
 ---
@@ -537,4 +537,4 @@ docker-compose down                 # Stop services
 
 ## Next Steps
 
-- Tutorial 003: Kubernetes Basics *(coming soon)*
+- Tutorial 003: [RAG Basics](./TUTORIAL-003-RAG-Basics.md) - the next tutorial in the series
