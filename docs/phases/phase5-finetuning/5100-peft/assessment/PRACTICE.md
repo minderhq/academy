@@ -1,7 +1,7 @@
 ---
 Document ID: 5100-PRACTICE
 Title: "5100: PEFT Techniques - Practice"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Advanced
 ---
@@ -135,7 +135,14 @@ if __name__ == "__main__":
     print(f"Trainable parameters: {trainable_params:,}")
     print(f"Trainable %: {trainable_params/total_params*100:.2f}%")
 
-    # Expected output: Only ~2-5% of parameters are trainable
+    # Expected Output:
+    # Applied LoRA to layers.0 (rank=8)
+    # Applied LoRA to layers.2 (rank=8)
+    # Total parameters: 616,016
+    # Trainable parameters: 18,512
+    # Trainable %: 3.00%
+    # (both Linear layers get a 2*768*8 = 12,288 / 768*8+8*10 = 6,224
+    #  pair of LoRA matrices; 18,512 / 616,016 = 3.00%)
 ```
 
 ### Exercise 2: Apply LoRA with HuggingFace
@@ -167,10 +174,15 @@ peft_model = get_peft_model(model, lora_config)
 # SOLUTION: Check trainable parameters
 peft_model.print_trainable_parameters()
 
-# Expected output:
-# trainable params: ~600,000 || all params: ~124,000,000 || trainable%: ~0.5%
+# Expected Output:
+# trainable params: 589,824 || all params: 124,439,808 || trainable%: 0.474
 #
-# This shows the power of PEFT - we only train 0.5% of parameters!
+# (4 attention projections x 12 layers x 2*768*8 LoRA params)
+#
+# Then ~96 trainable-weight lines (12 layers x {q,k,v,o} x
+# {lora_A, lora_B}), the large wrapped-model repr, and the
+# generation test - which returns base-gpt2-style text, since
+# fresh LoRA B matrices start at zero (adapter = identity at init)
 
 # Detailed parameter inspection
 print("\n" + "="*60)
@@ -215,7 +227,7 @@ print("""
 
 ```python
 from transformers import BitsAndBytesConfig, AutoModelForCausalLM, AutoTokenizer
-from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
+from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training, TaskType
 import torch
 
 # SOLUTION: Configure 4-bit quantization
@@ -279,7 +291,7 @@ print("""
 
 2. Double Quantization:
    - Quantize the quantization constants
-   - Saves additional 0.5GB per parameter
+   - Saves ~0.4 bits per parameter (~0.3 GB on a 7B model)
 
 3. Paged Optimizers:
    - Use CPU RAM for optimizer state overflow
@@ -320,6 +332,13 @@ trainer = Trainer(
 
 trainer.train()
 """)
+
+# Expected Output:
+# The loading/applying status lines, the trainable-params summary
+# (r=16 on all 7 projections of a 7B: ~29M trainable of ~6.7B
+# total, ~0.4%), then the memory comparison, QLoRA-innovations
+# and training-config text print directly - the load itself needs
+# a GPU and gated Llama-2 access
 ```
 
 ### Exercise 4: Prefix Tuning
@@ -335,9 +354,9 @@ import torch
 prefix_config = PrefixTuningConfig(
     task_type=TaskType.CAUSAL_LM,
     num_virtual_tokens=20,  # Number of virtual tokens (longer = more control)
-    prefix_projection=True,  # Learn a reprojection matrix (more flexible)
-    encoder_hidden_size=768,  # Hidden size for projection (if enabled)
-    token_dim=768,  # Dimension of token embeddings
+    prefix_projection=False,  # True adds a 768 x (2*12*768) reprojection
+    # matrix (~14M params for gpt2) that dwarfs the prefix itself -
+    # the default False stores the prefix embeddings directly
 )
 
 print("Loading model...")
@@ -366,7 +385,7 @@ print("="*60)
 comparison = """
 Aspect              | Prefix Tuning  | LoRA
 --------------------|----------------|----------------------
-Trainable params    | ~0.1%          | ~0.5%
+Trainable params    | ~0.3%          | ~0.5%
 Training stability  | Lower          | Higher
 Memory efficiency   | Higher         | Moderate
 Inference cost      | Yes (longer)   | Minimal
@@ -424,6 +443,15 @@ print("""
 ✗ When training stability is critical
 ✗ When you need to fine-tune on large datasets
 """)
+
+# Expected Output:
+# Original model parameters: 124,439,808
+# Prefix trainable parameters: 368,640
+# Percentage: 0.30%
+# (20 virtual tokens x 2 x 12 layers x 768 hidden = 368,640)
+# Then the comparison, architecture and guidance text print
+# directly; the generation test returns base-gpt2-style text
+# (the prefix is untrained)
 ```
 
 ### Exercise 5: Prompt Tuning
@@ -539,7 +567,9 @@ print("""
    - Longer prompts (20-100 tokens) work better
 
 2. Training:
-   - Use lower learning rates (1e-5 to 1e-4)
+   - Use higher learning rates than full fine-tuning
+     (1e-3 to 1e-2 - soft prompts are a tiny fresh embedding
+     and need much larger updates than pretrained weights)
    - Train for more epochs
    - Larger batch sizes help
 
@@ -549,6 +579,14 @@ print("""
    - Quick prototyping
    - Simple classification/formatting tasks
 """)
+
+# Expected Output:
+# One trainable-parameter line:
+# Trainable: base_model.model...prompt_embeddings | Shape: [20, 768]
+# Total trainable parameters: 15,360  (20 x 768 - 0.012% of gpt2;
+# the static comparison table rounds it to 15,000). The comparison
+# tables and guidance text print directly; the generation test
+# returns base-gpt2-style text (the prompt is untrained)
 ```
 
 ### Exercise 6: AdapterHub Style Adapters
@@ -625,7 +663,8 @@ def add_adapters_to_model(model, adapter_size=64):
         # Look for transformer layers
         if "layer" in name.lower() or "block" in name.lower():
             # Try to add adapter after FFN/output layer
-            if hasattr(module, 'output') or hasattr(module, 'fc2') or hasattr(module, 'linear2'):
+            if hasattr(module, 'output') or hasattr(module, 'fc2') or \
+               hasattr(module, 'linear2') or hasattr(module, 'ffn'):
                 # Get the output dimension
                 if hasattr(module, 'output'):
                     hidden_size = module.output.out_features
@@ -633,6 +672,8 @@ def add_adapters_to_model(model, adapter_size=64):
                     hidden_size = module.fc2.out_features
                 elif hasattr(module, 'linear2'):
                     hidden_size = module.linear2.out_features
+                elif hasattr(module, 'ffn'):
+                    hidden_size = module.ffn[2].out_features
                 else:
                     continue
 
@@ -680,11 +721,21 @@ class SimpleTransformerBlock(nn.Module):
         return x
 
 # Create model and add adapters
+# Wrapper gives the blocks matchable names - add_adapters_to_model
+# looks for "layer"/"block" in module names, and nn.Sequential's
+# children are just named "0", "1", ... (no match, no adapters)
+class TinyTransformer(nn.Module):
+    def __init__(self, hidden_size):
+        super().__init__()
+        self.block_0 = SimpleTransformerBlock(hidden_size)
+        self.block_1 = SimpleTransformerBlock(hidden_size)
+
+    def forward(self, x):
+        x = self.block_0(x)
+        return self.block_1(x)
+
 print("Creating transformer model...")
-base_model = nn.Sequential(
-    SimpleTransformerBlock(hidden_size=256),
-    SimpleTransformerBlock(hidden_size=256),
-)
+base_model = TinyTransformer(hidden_size=256)
 
 print("\nAdding adapters...")
 model_with_adapters = add_adapters_to_model(base_model, adapter_size=64)
@@ -696,8 +747,8 @@ print("="*60)
 # Count parameters
 total_params = sum(p.numel() for p in model_with_adapters.parameters())
 adapter_params = sum(
-    p.numel() for p in model_with_adapters.parameters()
-    if "adapter" in n
+    p.numel() for name, p in model_with_adapters.named_parameters()
+    if "adapter" in name
 )
 
 print(f"Total parameters: {total_params:,}")
@@ -748,7 +799,7 @@ print("""
 
 3. Adapter Variants:
    - Sequential: Single bottleneck
-   - Parallel: Multiple bottleneks
+   - Parallel: Multiple bottlenecks
    - Compacter: Factorized adapters
 
 4. Composition:
@@ -771,14 +822,24 @@ output = model_with_adapters(x)
 print(f"Input shape: {x.shape}")
 print(f"Output shape: {output.shape}")
 print("✓ Forward pass successful!")
+
+# Expected Output:
+# Added adapter to block_0
+# Added adapter to block_1
+# Total adapters added: 2
+# Total parameters: 1,645,696
+# Adapter parameters: 66,176
+# Adapter %: 4.02%
+# (each adapter: 256->64 down + 64->256 up with biases = 33,088;
+#  two 789,760-param blocks plus the adapters)
+# Input shape: torch.Size([4, 10, 256])
+# Output shape: torch.Size([4, 10, 256])
+# ✓ Forward pass successful!
 ```
 
 ### Exercise 7: Compare PEFT Methods
 
 ```python
-import matplotlib.pyplot as plt
-import numpy as np
-
 def compare_peft_methods():
     """
     Compare different PEFT approaches across multiple dimensions.
@@ -840,6 +901,7 @@ def compare_peft_methods():
 
     print(f"{'Method':<20} {'Trainable':<15} {'% of Base':<15} {'Memory':<10} {'Speed':<10}")
     print("-" * 70)
+    print("Illustrative numbers - always benchmark on your own hardware\n")
 
     for method, data in methods.items():
         print(f"{method:<20} {data['params']:>14,} {data['trainable_pct']:>14.2f}% "
@@ -886,7 +948,8 @@ def compare_peft_methods():
     print("Efficiency vs Quality Trade-off:")
     print("="*60)
 
-    # Quality estimates (based on research papers)
+    # Quality estimates (illustrative - order-of-magnitude figures
+    # from published comparisons, not measurements on your workload)
     quality_scores = {
         'Full Fine-tuning': 1.00,
         'LoRA (r=8)': 0.95,
@@ -969,6 +1032,12 @@ Need max quality?
                   ├─ Yes → Adapters
                   └─ No → Prompt Tuning (simplest)
 """)
+
+# Expected Output:
+# The 6-row comparison table (illustrative training hours, memory
+# and speed multipliers), the 6 use-case recommendations, the
+# efficiency-vs-quality table, the cost table and the decision
+# tree all print directly - no model runs in this exercise
 ```
 
 ---
