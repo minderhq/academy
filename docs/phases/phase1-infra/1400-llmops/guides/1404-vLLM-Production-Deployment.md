@@ -1,7 +1,7 @@
 ---
 Document ID: 1404
 Title: "1404: vLLM Production Deployment Guide"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -38,7 +38,7 @@ After completing this lesson, you will be able to:
 ---
 
 ## Abstract
-Complete production deployment guide for vLLM (Virtual Large Language Model) high-throughput inference engine on AI Engineering Curriculum infrastructure.
+vLLM is a high-throughput LLM inference engine: PagedAttention segments the KV cache into fixed-size pages to eliminate fragmentation, and continuous batching keeps the GPU fed across concurrent requests. On an 11GB-class GPU, fp16 7B weights (~14GB) do not fit — every runnable example in this guide serves a pre-quantized AWQ checkpoint (~3.5GB weights).
 
 ## Architecture
 
@@ -73,7 +73,7 @@ Complete production deployment guide for vLLM (Virtual Large Language Model) hig
 │  │              Monitoring (Prometheus + Grafana)                 │      │
 │  │   - Request rate, latency, throughput                         │      │
 │  │   - GPU utilization, memory, temperature                      │      │
-│  │   - KV cache hit rate                                         │      │
+│  │   - KV cache usage                                            │      │
 │  └─────────────────────────────────────────────────────────────────┘      │
 │                                                                           │
 └─────────────────────────────────────────────────────────────────────────┘
@@ -85,25 +85,26 @@ Complete production deployment guide for vLLM (Virtual Large Language Model) hig
 
 ```yaml
 # docker-compose.yml
-
 services:
   vllm-mistral:
-    image: vllm/vllm-openai:latest
+    image: vllm/vllm-openai:latest   # pin a released tag for reproducible deploys
     container_name: ai-engineering-curriculum-vllm-mistral
     ports:
       - "8000:8000"
+    # command: overrides CMD — the image ENTRYPOINT (the OpenAI-compatible
+    # API server) is preserved, so these are server arguments:
     command: >
-      --model mistralai/Mistral-7B-Instruct-v0.2
+      --model TheBloke/Mistral-7B-Instruct-v0.2-AWQ
       --tensor-parallel-size 1
       --gpu-memory-utilization 0.9
       --max-model-len 4096
-      --dtype float16
+      --dtype half
       --host 0.0.0.0
       --port 8000
-      --api-key optional-api-key
+      --api-key ${VLLM_API_KEY:?set VLLM_API_KEY in .env}
+      # delete the --api-key line to serve without authentication
     environment:
       - CUDA_VISIBLE_DEVICES=0
-      - VLLM_USAGE_SOURCE=production
     deploy:
       resources:
         reservations:
@@ -113,7 +114,8 @@ services:
               capabilities: [gpu]
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      # python3 ships in the image; curl is not guaranteed to be present
+      test: ["CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -127,21 +129,25 @@ services:
         max-size: "10m"
         max-file: "3"
 
+  # meta-llama/Llama-2-7b-chat-hf is gated ("manual" on the Hub) and would
+  # need an HF token with accepted license terms. TheBloke/Llama-2-7B-AWQ is
+  # ungated and pre-quantized, so it needs no token and fits 11GB.
   vllm-llama:
     image: vllm/vllm-openai:latest
     container_name: ai-engineering-curriculum-vllm-llama
     ports:
       - "8001:8000"
     command: >
-      --model meta-llama/Llama-2-7b-chat-hf
+      --model TheBloke/Llama-2-7B-AWQ
       --tensor-parallel-size 1
       --gpu-memory-utilization 0.9
       --max-model-len 4096
-      --dtype float16
+      --dtype half
       --host 0.0.0.0
       --port 8000
     environment:
-      - CUDA_VISIBLE_DEVICES=0
+      - CUDA_VISIBLE_DEVICES=1   # second GPU; on a single 11GB GPU run only
+                                 # ONE service — two 7B servers don't fit
     deploy:
       resources:
         reservations:
@@ -152,10 +158,9 @@ services:
     restart: unless-stopped
     networks:
       - ai-engineering-curriculum-net
-    depends_on:
-      - vllm-mistral
 
 networks:
+  # create once first: docker network create ai-engineering-curriculum-net
   ai-engineering-curriculum-net:
     external: true
 ```
@@ -164,17 +169,6 @@ networks:
 
 ```yaml
 # k8s-vllm-deployment.yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: vllm-config
-  namespace: ai-engineering-curriculum
-data:
-  MODEL_NAME: "mistralai/Mistral-7B-Instruct-v0.2"
-  TENSOR_PARALLEL_SIZE: "1"
-  GPU_MEMORY_UTILIZATION: "0.9"
-  MAX_MODEL_LEN: "4096"
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -190,30 +184,34 @@ spec:
       labels:
         app: vllm-mistral
     spec:
+      nodeSelector:
+        accelerator: nvidia   # must match the GPU node label (see 1301)
       containers:
       - name: vllm
-        image: vllm/vllm-openai:latest
+        image: vllm/vllm-openai:latest   # pin a released tag for reproducible deploys
+        # args (not command:) — command: would replace the image ENTRYPOINT
+        args:
+          - --model
+          - TheBloke/Mistral-7B-Instruct-v0.2-AWQ   # pre-quantized AWQ: fits 11GB
+          - --tensor-parallel-size
+          - "1"
+          - --gpu-memory-utilization
+          - "0.9"
+          - --max-model-len
+          - "4096"
+          - --dtype
+          - half
         ports:
         - containerPort: 8000
           name: http
-        env:
-        - name: MODEL_NAME
-          valueFrom:
-            configMapKeyRef:
-              name: vllm-config
-              key: MODEL_NAME
-        - name: CUDA_VISIBLE_DEVICES
-          value: "0"
-        command: ["/bin/bash", "-c"]
-        args:
-          - |
-            vllm serve $(MODEL_NAME) \
-              --tensor-parallel-size $(TENSOR_PARALLEL_SIZE) \
-              --gpu-memory-utilization $(GPU_MEMORY_UTILIZATION) \
-              --max-model-len $(MAX_MODEL_LEN) \
-              --dtype float16 \
-              --host 0.0.0.0 \
-              --port 8000
+        # Gated checkpoints (e.g. meta-llama/Llama-2-7b-chat-hf) additionally
+        # need the token:
+        # env:
+        # - name: HF_TOKEN
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: hf-token
+        #       key: token
         resources:
           requests:
             memory: "8Gi"
@@ -230,20 +228,20 @@ spec:
           httpGet:
             path: /health
             port: 8000
-          initialDelaySeconds: 60
+          # first boot downloads ~3.5GB of weights to the PVC — don't
+          # kill-restart-loop the pod before that finishes
+          initialDelaySeconds: 300
           periodSeconds: 30
         readinessProbe:
           httpGet:
             path: /health
             port: 8000
-          initialDelaySeconds: 30
+          initialDelaySeconds: 60
           periodSeconds: 10
       volumes:
       - name: model-cache
         persistentVolumeClaim:
           claimName: model-cache-pvc
-      nodeSelector:
-        gpu: "true"
 ---
 apiVersion: v1
 kind: Service
@@ -267,7 +265,7 @@ metadata:
 spec:
   accessModes:
   - ReadWriteOnce
-  storageClassName: nfs-standard
+  storageClassName: nfs-standard   # NFS CSI storage class (see 1303)
   resources:
     requests:
       storage: 50Gi
@@ -277,43 +275,45 @@ spec:
 
 ### Key Parameters Explained
 
-| Parameter | Default | Description | 11GB-class GPU Recommended |
+| Parameter | Default | Description | 11GB-class GPU Guidance |
 |-----------|---------|-------------|------------------------|
-| `--tensor-parallel-size` | 1 | Number of GPUs for tensor parallelism | 1 (single GPU) |
-| `--gpu-memory-utilization` | 0.9 | Fraction of GPU memory to use | 0.85 (leave room for KV cache) |
-| `--max-model-len` | 4096 | Maximum sequence length | 4096 (balance quality/speed) |
-| `--dtype` | auto | Data type (float16/bfloat16) | float16 (better performance) |
-| `--quantization` | None | 4-bit/8-bit quantization | awq (if memory constrained) |
-| `--block-size` | 16 | KV cache block size | 16 (default) |
-| `--enable-prefix-caching` | False | Cache shared prefixes | True (for system prompts) |
-| `--max-num-seqs` | 256 | Max concurrent sequences | 128 (limited by VRAM) |
+| `--tensor-parallel-size` | 1 | GPUs used for tensor parallelism | 1 (single GPU) |
+| `--gpu-memory-utilization` | 0.9 | Fraction of total VRAM vLLM may use (weights + KV cache + activations) | 0.9 — lower only when other processes share the GPU |
+| `--max-model-len` | model's `max_position_embeddings` | Max sequence length. Mistral-7B-v0.2's ceiling is 32768 — left at the default it over-runs the 11GB KV budget, so set it explicitly | 4096 |
+| `--dtype` | auto (from checkpoint config) | Compute dtype for activations/KV | `half` for AWQ checkpoints |
+| `--quantization` | auto-detected for pre-quantized checkpoints | awq/gptq — requires a pre-quantized checkpoint repo | pre-quantized AWQ |
+| `--block-size` | 16 | KV cache block size | leave the default |
+| `--enable-prefix-caching` | enabled (V1 engine) | Cache shared prefixes | keep on; disable only when benchmarking identical prompts |
+| `--max-num-seqs` | 256 | Max concurrent sequences | 64–128 (KV-cache-bound on 11GB) |
 
 ### Performance Tuning Configuration
 
 ```bash
-# High Throughput Configuration
---model mistralai/Mistral-7B-Instruct-v0.2 \
---gpu-memory-utilization 0.95 \
+# High Throughput Configuration (pre-quantized AWQ: ~3.5GB weights)
+--model TheBloke/Mistral-7B-Instruct-v0.2-AWQ \
+--gpu-memory-utilization 0.9 \
 --max-model-len 2048 \
---max-num-seqs 256 \
---enable-prefix-caching \
---dtype float16
+--max-num-seqs 128 \
+--dtype half
+# prefix caching stays on for shared system prompts
 
 # Long Context Configuration
---model mistralai/Mistral-7B-Instruct-v0.2 \
---gpu-memory-utilization 0.85 \
+--model TheBloke/Mistral-7B-Instruct-v0.2-AWQ \
+--gpu-memory-utilization 0.9 \
 --max-model-len 8192 \
---max-num-seqs 32 \
---block-size 32 \
---dtype float16
+--max-num-seqs 16 \
+--dtype half
+# budget check: 0.9 x 11GB ~ 9.9GB, minus ~3.5GB weights and ~1.5GB
+# activations leaves ~4.9GB for KV. 7B fp16 KV is ~512KB/token
+# (2 x 32 layers x 4096 hidden x 2 bytes), so one 8k-token
+# sequence needs ~4GB — one long sequence dominates the budget.
 
-# Memory Optimized Configuration (for 11GB VRAM)
---model mistralai/Mistral-7B-Instruct-v0.2 \
---quantization awq \
+# Balanced Configuration (11GB VRAM)
+--model TheBloke/Mistral-7B-Instruct-v0.2-AWQ \
 --gpu-memory-utilization 0.9 \
 --max-model-len 4096 \
 --max-num-seqs 64 \
---dtype float16
+--dtype half
 ```
 
 ## Client Usage Examples
@@ -322,17 +322,19 @@ spec:
 
 ```python
 # vllm_client.py
+import os
+
 from openai import OpenAI
 
-# Initialize client
+# The model name must match the checkpoint the server was started with
 client = OpenAI(
     base_url="http://192.168.1.100:8000/v1",
-    api_key="optional-api-key",
+    api_key=os.environ["VLLM_API_KEY"],   # required only when the server runs --api-key
 )
 
 # Chat completion
 response = client.chat.completions.create(
-    model="mistralai/Mistral-7B-Instruct-v0.2",
+    model="TheBloke/Mistral-7B-Instruct-v0.2-AWQ",
     messages=[
         {"role": "system", "content": "You are a helpful assistant for ai-engineering-curriculum."},
         {"role": "user", "content": "Explain quantum computing in simple terms."},
@@ -342,14 +344,14 @@ response = client.chat.completions.create(
     stream=True,
 )
 
-# Stream response
+# Stream response — some chunks carry no choices, so guard the index
 for chunk in response:
-    if chunk.choices[0].delta.content:
+    if chunk.choices and chunk.choices[0].delta.content:
         print(chunk.choices[0].delta.content, end="")
 
 # Non-streaming response
 response = client.chat.completions.create(
-    model="mistralai/Mistral-7B-Instruct-v0.2",
+    model="TheBloke/Mistral-7B-Instruct-v0.2-AWQ",
     messages=[{"role": "user", "content": "What is AI?"}],
     max_tokens=100,
 )
@@ -365,12 +367,12 @@ curl http://192.168.1.100:8000/health
 # List models
 curl http://192.168.1.100:8000/v1/models
 
-# Chat completion
+# Chat completion (Authorization header only needed with --api-key)
 curl -X POST http://192.168.1.100:8000/v1/chat/completions \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer optional-api-key" \
+  -H "Authorization: Bearer $VLLM_API_KEY" \
   -d '{
-    "model": "mistralai/Mistral-7B-Instruct-v0.2",
+    "model": "TheBloke/Mistral-7B-Instruct-v0.2-AWQ",
     "messages": [
       {"role": "user", "content": "Hello!"}
     ],
@@ -382,7 +384,7 @@ curl -X POST http://192.168.1.100:8000/v1/chat/completions \
 curl -X POST http://192.168.1.100:8000/v1/completions \
   -H "Content-Type: application/json" \
   -d '{
-    "model": "mistralai/Mistral-7B-Instruct-v0.2",
+    "model": "TheBloke/Mistral-7B-Instruct-v0.2-AWQ",
     "prompt": "The future of AI is",
     "max_tokens": 50
   }'
@@ -396,12 +398,12 @@ import OpenAI from 'openai';
 
 const client = new OpenAI({
   baseURL: 'http://192.168.1.100:8000/v1',
-  apiKey: 'optional-api-key',
+  apiKey: process.env.VLLM_API_KEY as string,
 });
 
 async function chat() {
   const response = await client.chat.completions.create({
-    model: 'mistralai/Mistral-7B-Instruct-v0.2',
+    model: 'TheBloke/Mistral-7B-Instruct-v0.2-AWQ',
     messages: [
       { role: 'system', content: 'You are a helpful assistant.' },
       { role: 'user', content: 'Explain Docker.' },
@@ -416,9 +418,9 @@ async function chat() {
 // Streaming
 async function chatStream() {
   const stream = await client.chat.completions.create({
-    model: 'mistralai/Mistral-7B-Instruct-v0.2',
+    model: 'TheBloke/Mistral-7B-Instruct-v0.2-AWQ',
     messages: [
-      { role: 'user', 'content': 'Write a short poem.' },
+      { role: 'user', content: 'Write a short poem.' },
     ],
     stream: true,
   });
@@ -445,35 +447,38 @@ services:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
       - vllm-mistral
-      - vllm-llama
       - vllm-phi
     networks:
       - ai-engineering-curriculum-net
 
+  # One model per service. One 11GB GPU hosts roughly one quantized 7B
+  # (weights + KV cache) — put services on different GPUs via
+  # CUDA_VISIBLE_DEVICES.
   vllm-mistral:
-    image: vllm/vllm-openai:latest
+    image: vllm/vllm-openai:latest   # pin a released tag for reproducible deploys
     container_name: vllm-mistral
     ports:
       - "8001:8000"
-    command: --model mistralai/Mistral-7B-Instruct-v0.2 --port 8000
+    command: >
+      --model TheBloke/Mistral-7B-Instruct-v0.2-AWQ
+      --gpu-memory-utilization 0.9 --max-model-len 4096 --dtype half
+    environment:
+      - CUDA_VISIBLE_DEVICES=0
     networks:
       - ai-engineering-curriculum-net
 
-  vllm-llama:
-    image: vllm/vllm-openai:latest
-    container_name: vllm-llama
-    ports:
-      - "8002:8000"
-    command: --model meta-llama/Llama-2-7b-chat-hf --port 8000
-    networks:
-      - ai-engineering-curriculum-net
-
+  # phi-2 (2.7B, MIT license) runs fp16 in ~5.5GB — small enough alone,
+  # max context defaults to its 2048-token ceiling
   vllm-phi:
     image: vllm/vllm-openai:latest
     container_name: vllm-phi
     ports:
       - "8003:8000"
-    command: --model microsoft/phi-2 --port 8000
+    command: >
+      --model microsoft/phi-2
+      --gpu-memory-utilization 0.9
+    environment:
+      - CUDA_VISIBLE_DEVICES=1
     networks:
       - ai-engineering-curriculum-net
 ```
@@ -481,17 +486,21 @@ services:
 ### 2. Load Balancer Configuration (nginx.conf)
 
 ```nginx
-# nginx.conf
+# nginx.conf — load-balance across REPLICAS OF ONE MODEL.
+# Different models are not interchangeable: a request for model X must not
+# land on model Y. Use plain LB only within a replica pool, and route
+# across models in model-aware code (see the API gateway below).
 events {
     worker_connections 1024;
 }
 
 http {
-    upstream vllm_backends {
+    upstream mistral_replicas {
         least_conn;
-        server vllm-mistral:8000 weight=3;
-        server vllm-llama:8000 weight=2;
-        server vllm-phi:8000 weight=1;
+        server vllm-mistral:8000;
+        # add replicas with: docker compose up --scale vllm-mistral=2
+        # (remove container_name from the service first — scaling
+        # conflicts with a fixed container name)
     }
 
     server {
@@ -499,15 +508,17 @@ http {
         server_name _;
 
         location /v1 {
-            proxy_pass http://vllm-backends;
+            proxy_pass http://mistral_replicas;
             proxy_set_header Host $host;
             proxy_set_header X-Real-IP $remote_addr;
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
             proxy_buffering off;
+            # long generations exceed the default 60s upstream timeout
+            proxy_read_timeout 300s;
         }
 
         location /health {
-            proxy_pass http://vllm-backends/health;
+            proxy_pass http://mistral_replicas/health;
         }
     }
 }
@@ -517,9 +528,9 @@ http {
 
 ```yaml
 # Add to docker-compose.yml
-  prometheus-vllm-exporter:
+  prometheus:
     image: prom/prometheus:latest
-    container_name: prometheus-vllm-exporter
+    container_name: prometheus
     ports:
       - "9091:9090"
     volumes:
@@ -543,25 +554,48 @@ scrape_configs:
     metrics_path: /metrics
 ```
 
+vLLM serves its own Prometheus metrics at `/metrics` on the API port — no
+sidecar exporter is needed. Key series (V1 engine):
+
+```text
+vllm:num_requests_running / vllm:num_requests_waiting   gauges
+vllm:kv_cache_usage_perc      KV budget saturation (sustained ~1.0 = raise
+                              gpu_memory_utilization or cut max_model_len)
+vllm:num_preemptions_total    over-budget sequences preempted and recomputed
+rate(vllm:prompt_tokens_total[5m])       prompt throughput
+rate(vllm:generation_tokens_total[5m])   generation throughput
+vllm:time_to_first_token_seconds,
+vllm:e2e_request_latency_seconds         latency histograms (histogram_quantile
+                                         for p50/p90/p99)
+```
+
 ### 4. API Gateway with Authentication
 
 ```python
 # api_gateway.py
-from fastapi import FastAPI, Request, HTTPException
+from fastapi import FastAPI, HTTPException, Request, Response
 from httpx import AsyncClient
 import os
 
 app = FastAPI()
 
+# Route by the full repo name the server was started with — the "model"
+# field in requests carries exactly that name
 VLLM_ENDPOINTS = {
-    "mistral": "http://vllm-mistral:8000/v1",
-    "llama": "http://vllm-llama:8000/v1",
+    "TheBloke/Mistral-7B-Instruct-v0.2-AWQ": "http://vllm-mistral:8000/v1",
+    "TheBloke/Llama-2-7B-AWQ": "http://vllm-llama:8000/v1",
 }
+DEFAULT_ENDPOINT = VLLM_ENDPOINTS["TheBloke/Mistral-7B-Instruct-v0.2-AWQ"]
 
-API_KEYS = os.getenv("API_KEYS", "").split(",")
+# Drop empty entries: with API_KEYS unset, "".split(",") yields [""] —
+# an empty-key entry would let requests without an Authorization
+# header authenticate
+API_KEYS = {k for k in os.getenv("API_KEYS", "").split(",") if k}
 
 async def verify_api_key(request: Request):
-    api_key = request.headers.get("Authorization", "").replace("Bearer ", "")
+    if not API_KEYS:
+        return  # auth stays disabled until API_KEYS is configured
+    api_key = request.headers.get("Authorization", "").removeprefix("Bearer ")
     if api_key not in API_KEYS:
         raise HTTPException(status_code=401, detail="Invalid API key")
 
@@ -570,13 +604,7 @@ async def chat_completions(request: Request):
     await verify_api_key(request)
 
     body = await request.json()
-    model = body.get("model", "mistral")
-
-    # Route to appropriate backend
-    if model in VLLM_ENDPOINTS:
-        backend = VLLM_ENDPOINTS[model]
-    else:
-        backend = VLLM_ENDPOINTS["mistral"]
+    backend = VLLM_ENDPOINTS.get(body.get("model"), DEFAULT_ENDPOINT)
 
     async with AsyncClient() as client:
         response = await client.post(
@@ -585,43 +613,70 @@ async def chat_completions(request: Request):
             timeout=300.0
         )
 
-    return response.json()
+    # Forward the upstream content-type — reading the body with .json()
+    # would collapse a streaming (SSE) response into one blob; streaming
+    # requests need a StreamingResponse passthrough (httpx stream +
+    # aiter_raw)
+    return Response(
+        content=response.content,
+        status_code=response.status_code,
+        media_type=response.headers.get("content-type"),
+    )
 ```
 
 ## Performance Benchmarks
 
-### 11GB-class GPU (11GB VRAM) Performance
+### Expected Performance (11GB-class GPU)
 
-| Model | Quantization | Max Seq Len | Batch Size | Throughput | Latency (p50) |
-|-------|-------------|-------------|------------|------------|---------------|
-| Mistral-7B | FP16 | 2048 | 8 | 45 tok/s | 80ms |
-| Mistral-7B | AWQ 4-bit | 4096 | 16 | 65 tok/s | 60ms |
-| Llama-2-7B | FP16 | 2048 | 8 | 42 tok/s | 85ms |
-| Llama-2-7B | AWQ 4-bit | 4096 | 16 | 60 tok/s | 65ms |
-| Phi-2 | FP16 | 2048 | 16 | 80 tok/s | 40ms |
-| Mixtral-8x7B | AWQ 4-bit | 2048 | 1 | 15 tok/s | 200ms |
+```text
+Aggregate throughput on one 11GB GPU — illustrative ranges; measure on
+your own hardware with the concurrency techniques below.
+
+Model              Quant      Context    Aggregate tok/s
+──────────────────────────────────────────────────────────
+Mistral-7B         AWQ 4-bit  2048       ~40-80
+Llama-2-7B         AWQ 4-bit  2048       ~40-80
+Phi-2              fp16       2048       ~60-100 (2.7B weights)
+Llama-2-7B         fp16       —          does not fit 11GB (~14GB weights)
+Mixtral-8x7B       4-bit      —          does not fit 11GB (~26GB weights)
+
+Per-stream latency stays in the single-digit tok/s; continuous batching
+multiplies aggregate throughput roughly with concurrency until the KV
+cache saturates (watch vllm:kv_cache_usage_perc).
+```
 
 ### Throughput Optimization Tips
 
 ```python
-# Batch multiple requests
-requests = [
-    "What is AI?",
-    "Explain ML.",
-    "Define neural networks.",
-]
+# Send requests concurrently — server-side continuous batching fills
+# the GPU automatically
+import asyncio
+import os
 
-responses = client.chat.completions.create(
-    model="mistralai/Mistral-7B-Instruct-v0.2",
-    messages=[{"role": "user", "content": req} for req in requests],
+from openai import AsyncOpenAI
+
+client = AsyncOpenAI(
+    base_url="http://localhost:8000/v1",
+    api_key=os.environ["VLLM_API_KEY"],
 )
 
-# Use streaming for faster time-to-first-token
-response = client.chat.completions.create(
-    model="mistralai/Mistral-7B-Instruct-v0.2",
-    messages=[{"role": "user", "content": "Hello!"}],
-    stream=True,
-)
+async def ask(question: str) -> str:
+    response = await client.chat.completions.create(
+        model="TheBloke/Mistral-7B-Instruct-v0.2-AWQ",
+        messages=[{"role": "user", "content": question}],
+        max_tokens=256,
+    )
+    return response.choices[0].message.content
+
+async def main():
+    questions = ["What is AI?", "Explain ML.", "Define neural networks."]
+    answers = await asyncio.gather(*(ask(q) for q in questions))
+
+asyncio.run(main())
+
+# chat.completions.create takes ONE conversation per call — putting
+# several user messages into a single messages list is not batching;
+# the parallelism comes from concurrent requests, not message lists.
 ```
 
 ## Troubleshooting
@@ -636,38 +691,41 @@ Error: CUDA out of memory
 
 **Solutions:**
 ```bash
-# Reduce max sequence length
+# Serve a pre-quantized checkpoint — fp16 7B weights (~14GB) are over
+# budget; --quantization awq is auto-detected from the checkpoint config
+--model TheBloke/Mistral-7B-Instruct-v0.2-AWQ
+
+# Shorter sequences shrink the KV cache
 --max-model-len 2048
 
-# Reduce batch size
+# Cap concurrent sequences
 --max-num-seqs 32
 
-# Enable quantization
---quantization awq
-
-# Reduce GPU memory utilization
+# Only when other processes share the GPU:
 --gpu-memory-utilization 0.8
 ```
 
 #### 2. Slow First Request
 
 ```text
-First request takes 10+ seconds
+The first request after startup takes 10+ seconds
 ```
+
+**Why:** startup includes a warmup dummy run and CUDA graph capture, and
+early requests still pay for lazily-compiled kernels. There is no
+`--preload-model` flag — readiness is signalled by `/health` returning 200.
 
 **Solutions:**
 ```bash
-# Enable model preloading
---preload-model
+# Gate traffic on health before sending real requests
+curl http://localhost:8000/health   # 200 = ready
 
-# Increase warmup time
---gpu-memory-utilization 0.85
-
-# Use smaller model for quick starts
---model microsoft/phi-2
+# Diagnose startup cost only — keep CUDA graphs on in production,
+# enforce_eager disables them and slows steady-state serving:
+--enforce-eager
 ```
 
-#### 3: High Latency
+#### 3. High Latency
 
 ```text
 P95 latency > 500ms
@@ -681,36 +739,37 @@ P95 latency > 500ms
 # Use smaller context
 --max-model-len 2048
 
-# Enable prefix caching
---enable-prefix-caching
+# Shared system prompts: prefix caching avoids recomputation
+# (already on by default on the V1 engine)
 
-# Use faster model
---model mistralai/Mistral-7B-Instruct-v0.2
+# Smaller model for latency-bound paths
+--model microsoft/phi-2
 ```
 
 ## Quick Start
 
 ```bash
-# 1. Pull latest vLLM image
+# 1. Pull the vLLM OpenAI-compatible server image (pin a tag in production)
 docker pull vllm/vllm-openai:latest
 
-# 2. Start vLLM server
+# 2. Start the server — the pre-quantized AWQ checkpoint fits an 11GB GPU
+#    (fp16 7B weights need ~14GB and would OOM)
 docker run -d --gpus all \
   -p 8000:8000 \
   --name vllm-mistral \
   vllm/vllm-openai:latest \
-  --model mistralai/Mistral-7B-Instruct-v0.2 \
+  --model TheBloke/Mistral-7B-Instruct-v0.2-AWQ \
   --gpu-memory-utilization 0.9 \
   --max-model-len 4096
 
-# 3. Test with curl
+# 3. Test with curl (no --api-key above, so no auth is required)
 curl http://localhost:8000/v1/chat/completions \
   -H "Content-Type: application/json" \
-  -d '{"model": "mistralai/Mistral-7B-Instruct-v0.2", "messages": [{"role": "user", "content": "Hello!"}]}'
+  -d '{"model": "TheBloke/Mistral-7B-Instruct-v0.2-AWQ", "messages": [{"role": "user", "content": "Hello!"}]}'
 
 # 4. Test with Python
 pip install openai
-python -c "from openai import OpenAI; client = OpenAI(base_url='http://localhost:8000/v1', api_key='dummy'); print(client.chat.completions.create(model='mistralai/Mistral-7B-Instruct-v0.2', messages=[{'role': 'user', 'content': 'Hello!'}]).choices[0].message.content)"
+python -c "from openai import OpenAI; client = OpenAI(base_url='http://localhost:8000/v1', api_key='dummy'); print(client.chat.completions.create(model='TheBloke/Mistral-7B-Instruct-v0.2-AWQ', messages=[{'role': 'user', 'content': 'Hello!'}]).choices[0].message.content)"
 ```
 
 
@@ -736,4 +795,4 @@ python -c "from openai import OpenAI; client = OpenAI(base_url='http://localhost
 - [1401: Ollama Enterprise](../1401-Ollama-Enterprise.md)
 - [4101: GGUF Physics](../../../phase4-quantization/4100-low-bit/4101-GGUF-Physics.md)
 - [1302: GPU Scheduler](../../1300-kubernetes/1302-GPU-Scheduler.md)
-- [1501: Monitoring and Observability](../../1500-Monitoring/1501-Monitoring-and-Observability.md)
+- [1501: Monitoring and Observability](../../1500-monitoring/1501-Monitoring-and-Observability.md)
