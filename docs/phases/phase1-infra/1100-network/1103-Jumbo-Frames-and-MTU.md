@@ -3,7 +3,7 @@ Document ID: 1103
 Title: Jumbo Frames and MTU Optimization
 Phase: 1
 Module: 1100
-Last Updated: 2026-09-24
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 2 hours
@@ -50,16 +50,16 @@ Jumbo Frames enable Ethernet packets larger than the standard 1500 bytes, reduci
 
 ### Standard vs Jumbo Frames
 ```text
-Standard MTU 1500:  953 packets/MB (IPv4)
-Jumbo MTU 9000:    119 packets/MB (IPv4)
-Reduction:         87.5% fewer packets
+Standard MTU 1500:  ~718 packets/MB (IPv4, 1460-byte payload)
+Jumbo MTU 9000:     ~117 packets/MB (8966-byte payload)
+Reduction:          ~84% fewer packets
 ```
 
 ### Why It Matters
 ```text
 For an 11GB model file transfer over the LAN:
-MTU 1500: ~11,000,000 packets → High CPU overhead
-MTU 9000: ~1,200,000 packets   → Low CPU overhead
+MTU 1500: ~7,500,000 packets → High CPU overhead
+MTU 9000: ~1,200,000 packets  → Low CPU overhead
 ```
 
 ## Mathematics of MTU
@@ -70,8 +70,8 @@ CPU Cycles per packet interrupt: ~10,000 cycles
 At 3.5GHz CPU: ~2.86µs per packet
 
 MTU 1500 (11GB):
-  Packets: 11,000,000
-  CPU time: 11,000,000 × 2.86µs = 31.5 seconds
+  Packets: 7,500,000
+  CPU time: 7,500,000 × 2.86µs = 21.5 seconds
 
 MTU 9000 (11GB):
   Packets: 1,200,000
@@ -140,13 +140,13 @@ ifreload -a
 ```yaml
 # Flannel CNI configuration
 # /etc/rancher/k3s/config.yaml
-flannel-interface: eno1
+flannel-iface: eno1
 flannel-mtu: 9000
 
-# Or for Cilium
+# Or for Cilium (MTU is normally auto-detected; override via extraConfig)
 helm install cilium cilium/cilium \
   --set tunnel=vxlan \
-  --set mtu=9000
+  --set extraConfig.mtu=9000
 ```
 
 ### 5. Windows Client
@@ -204,9 +204,9 @@ CPU Usage: -15% during transfer
 ### Large File Transfer (SMB)
 ```text
 11GB Model File:
-  MTU 1500: 48 seconds → 2.30 Gbps avg
-  MTU 9000: 42 seconds → 2.44 Gbps avg
-  Improvement: 12.5% time reduction
+  MTU 1500: 38 seconds → 2.30 Gbps avg
+  MTU 9000: 36 seconds → 2.44 Gbps avg
+  Improvement: ~6% faster transfer
 ```
 
 ## Troubleshooting MTU Issues
@@ -292,5 +292,5 @@ Video Streaming            1500 (compatible)
 **Related Documents:**
 - [1102: Network Topology Design](./1102-Star-Topology-Core.md)
 - [1201: Proxmox Hypervisor](../1200-virtualization/1201-Proxmox-Hypervisor-SOP.md)
-- [1301: K3s Architecture](../1300-kubernetes/1301-K3s-Master-Worker-Arch.md)
+- [1301: K3s Master-Worker Architecture](../1300-kubernetes/1301-K3s-Master-Worker-Arch.md)
 
