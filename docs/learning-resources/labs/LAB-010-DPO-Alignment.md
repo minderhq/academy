@@ -760,9 +760,9 @@ print(f"  Human Preference Rate: {results['human_preference_rate']:.1%}")
 Compare DPO with different beta values
 """
 
-# Beta controls the "temperature" of DPO
-# - Lower beta (0.01-0.1): More conservative, smaller changes
-# - Higher beta (0.1-1.0): More aggressive, larger changes
+# Beta controls the KL-strength of DPO (weight on staying close to the reference)
+# - Lower beta (0.01-0.1): Weaker anchor, larger drift from the reference
+# - Higher beta (0.1-1.0): Stronger anchor, stays closer to the reference
 
 beta_values = [0.01, 0.05, 0.1, 0.5, 1.0]
 
@@ -773,10 +773,10 @@ for beta in beta_values:
     # (Simplified - in practice, run full training for each)
 
     # Expected outcomes:
-    # beta=0.01: Minimal change, high stability
-    # beta=0.1: Balanced change and stability (recommended)
-    # beta=0.5: Aggressive alignment, may overfit
-    # beta=1.0: Very aggressive, risk of degradation
+    # beta=0.01: Largest drift from reference (aggressive, least stable)
+    # beta=0.1: Balanced change and stability (recommended default)
+    # beta=0.5: Conservative, smaller behavior changes
+    # beta=1.0: Very conservative, may barely move the model
 ```
 
 ---
