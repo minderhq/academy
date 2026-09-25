@@ -1,7 +1,7 @@
 ---
 Document ID: 5200-PRACTICE
 Title: "5200: LLM Alignment - Practice"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Advanced
 ---
@@ -14,8 +14,6 @@ Difficulty: Advanced
 
 ```python
 from datasets import Dataset
-import json
-import random
 
 # SOLUTION: Create preference pairs
 def create_preference_dataset(prompts, responses_a, responses_b, preferences):
@@ -94,7 +92,7 @@ print(f"Average chosen length: {sum(len(d['chosen'].split()) for d in dataset) /
 print(f"Average rejected length: {sum(len(d['rejected'].split()) for d in dataset) / len(dataset):.1f} words")
 
 print("\n" + "="*60)
-print "Best Practices for Preference Data:")
+print("Best Practices for Preference Data:"))
 print("="*60)
 print("""
 1. Quality Over Quantity:
@@ -121,6 +119,15 @@ print("""
    ✗ Responses are too similar
    ✗ Prompts are ambiguous or unclear
 """)
+
+# Expected Output:
+# The sample dict (prompt + chosen "The capital of France is Paris..."
+# + rejected "France's capital is Paris, located..."), then:
+# Total samples: 5
+# Average prompt length: 4.6 words
+# Average chosen length: 11.6 words
+# Average rejected length: 10.6 words
+# The 5 numbered best-practice sections print directly
 ```
 
 ### Exercise 2: Reward Model Training
@@ -128,8 +135,7 @@ print("""
 ```python
 import torch
 import torch.nn as nn
-from transformers import AutoModel, AutoTokenizer
-from torch.utils.data import DataLoader
+from transformers import AutoModel
 
 # SOLUTION: Reward Model Architecture
 class RewardModel(nn.Module):
@@ -150,6 +156,11 @@ class RewardModel(nn.Module):
         # SOLUTION: Load base model
         # We use a pretrained encoder and add a reward head
         self.base_model = AutoModel.from_pretrained(base_model_name)
+
+        # SOLUTION: Freeze the encoder - only the reward head trains
+        # (matching the "frozen pretrained encoder" design above)
+        for param in self.base_model.parameters():
+            param.requires_grad = False
 
         # SOLUTION: Reward head
         # Maps hidden states to scalar rewards
@@ -316,14 +327,19 @@ print("""
    ✗ Ignoring safety considerations
    ✗ Using too small a dataset
 """)
+
+# Expected Output:
+# The setup banner and the 5 numbered "Key Concepts" sections print
+# directly - training itself needs a real model, tokenizer and
+# batched preference data (RewardModel + train_reward_model are
+# defined but not executed here)
 ```
 
 ### Exercise 3: PPO Implementation
 
 ```python
-from transformers import AutoTokenizer, AutoModelForCausalLM
-import torch.nn.functional as F
 import torch
+import torch.nn.functional as F
 
 # SOLUTION: PPO Trainer
 class PPOTrainer:
@@ -397,7 +413,12 @@ class PPOTrainer:
             truncation=True,
             max_length=512,
         )
-        inputs = {k: v.to(self.reward_model.device) for k, v in inputs.items()}
+        # nn.Module has no .device - derive it from the parameters
+        # (unlike HF models, which expose a .device property)
+        inputs = {
+            k: v.to(next(self.reward_model.parameters()).device)
+            for k, v in inputs.items()
+        }
 
         # SOLUTION: Get reward scores
         with torch.no_grad():
@@ -478,10 +499,16 @@ class PPOTrainer:
         # SOLUTION: Generate responses
         response_ids = self.generate_responses(prompts)
 
-        # Decode responses
+        # Decode only the newly generated tokens. generate() returns the
+        # full prompt+response sequences, and compute_rewards re-prepends
+        # the prompt - decoding everything would score "prompt + prompt
+        # + response" in the reward model
+        prompt_lengths = [
+            len(ids) for ids in self.tokenizer(prompts)["input_ids"]
+        ]
         responses = [
-            self.tokenizer.decode(ids, skip_special_tokens=True)
-            for ids in response_ids
+            self.tokenizer.decode(ids[p_len:], skip_special_tokens=True)
+            for ids, p_len in zip(response_ids, prompt_lengths)
         ]
 
         # SOLUTION: Compute rewards
@@ -490,10 +517,15 @@ class PPOTrainer:
         # Compute advantages
         advantages = self.compute_advantages(rewards)
 
-        # Get log probs from policy
+        # Get per-token log probs for the generated tokens
+        # (gather the log prob of the token actually sampled at each
+        # position - the PPO ratio in compute_ppo_loss acts on the
+        # actions taken, not on full vocab distributions)
         policy_outputs = self.policy_model(response_ids)
         policy_logits = policy_outputs.logits
-        log_probs = F.log_softmax(policy_logits, dim=-1)
+        log_probs = F.log_softmax(policy_logits[:, :-1, :], dim=-1).gather(
+            2, response_ids[:, 1:].unsqueeze(-1)
+        ).squeeze(-1)
 
         # Get log probs from reference (for KL)
         with torch.no_grad():
@@ -569,16 +601,19 @@ Solutions:
 - Use reward model ensembles
 - Early stopping on KL divergence
 """)
-```
 
-[Continue with remaining exercises 4-7 with same level of detail...]
+# Expected Output:
+# The 5-part "PPO Algorithm Breakdown" text prints directly - the
+# trainer class is defined but never instantiated here (a real PPO
+# step needs policy/reference/reward models and a GPU)
+```
 
 ### Exercise 4: DPO (Direct Preference Optimization)
 
 ```python
 from trl import DPOTrainer, DPOConfig
+from datasets import Dataset
 from transformers import AutoModelForCausalLM, AutoTokenizer
-import torch
 
 # SOLUTION: DPO - Direct Preference Optimization
 """
@@ -603,6 +638,9 @@ given preferences, without needing to train a reward model.
 model = AutoModelForCausalLM.from_pretrained("gpt2")
 ref_model = AutoModelForCausalLM.from_pretrained("gpt2")
 tokenizer = AutoTokenizer.from_pretrained("gpt2")
+# gpt2's tokenizer has no pad token - the trainer needs one to pad
+# the chosen/rejected sequences in a batch
+tokenizer.pad_token = tokenizer.eos_token
 
 # SOLUTION: Configure DPO
 dpo_config = DPOConfig(
@@ -616,14 +654,15 @@ dpo_config = DPOConfig(
 
 # SOLUTION: Prepare dataset for DPO
 # Format: {"prompt": str, "chosen": str, "rejected": str}
-dpo_dataset = [
+# TRL needs a datasets.Dataset, not a plain list of dicts
+dpo_dataset = Dataset.from_list([
     {
         "prompt": "What is the capital of France?",
         "chosen": "The capital of France is Paris, known for the Eiffel Tower.",
         "rejected": "France has a capital.",
     },
     # ... more samples
-]
+])
 
 # SOLUTION: Create DPO trainer
 trainer = DPOTrainer(
@@ -688,18 +727,26 @@ print("""
    ✗ Slow learning: Decrease beta
    ✗ Overfitting: More data or regularization
 """)
+
+# Expected Output:
+# "Training DPO model..." prints, then trainer.train() runs a real
+# training pass (needs trl + two gpt2-sized models in memory), then
+# the "DPO vs PPO Comparison" and "DPO Best Practices" tables print
 ```
 
 ### Exercise 5: ORPO (Odds Ratio Preference Optimization)
 
 ```python
+import torch
+import torch.nn.functional as F
+
 # SOLUTION: ORPO Implementation
 """
 ORPO combines supervised fine-tuning with preference optimization
 in a single loss function. No separate reference model needed.
 
 ORPO Loss:
-L_ORO = -log σ(β * log_odds_ratio)
+L_ORPO = -log σ(β * log_odds_ratio)
 
 where:
 log_odds_ratio = log π(y_chosen|x) - log π(y_rejected|x)
@@ -742,11 +789,14 @@ def compute_orpo_loss(policy_logits, chosen_ids, rejected_ids, beta=0.1):
         rejected_ids[:, 1:].unsqueeze(-1)
     ).squeeze(-1).sum(dim=-1)
 
-    # SOLUTION: Compute log odds ratio
+    # SOLUTION: Compute log odds ratio (simplified surrogate - the
+    # paper's log OR also carries the log(1 - P) odds denominators;
+    # the total-log-prob difference captures the same preference
+    # direction)
     log_odds_ratio = chosen_logprobs - rejected_logprobs
 
     # SOLUTION: Odds ratio loss
-    # L_ORO = -log σ(β * log_odds_ratio)
+    # L_ORPO = -log σ(β * log_odds_ratio)
     orpo_loss = -torch.log(torch.sigmoid(beta * log_odds_ratio) + 1e-8).mean()
 
     # SOLUTION: SFT loss (standard language modeling)
@@ -796,11 +846,18 @@ print("""
    ✗ Can be sensitive to initialization
    ✗ Less established than PPO/DPO
 """)
+
+# Expected Output:
+# The 6 numbered "ORPO Key Concepts" sections print directly -
+# compute_orpo_loss is defined but never called here (it needs
+# real model logits and tokenized chosen/rejected pairs)
 ```
 
 ### Exercise 6: KTO (Kahneman-Tversky Optimization)
 
 ```python
+import torch
+
 # SOLUTION: KTO Implementation
 """
 KTO is based on prospect theory from behavioral economics.
@@ -838,19 +895,18 @@ def compute_kto_loss(policy_logprob, ref_logprob, is_chosen, beta=0.1):
     # SOLUTION: KTO loss differs for chosen vs rejected
     # This is the key innovation of KTO
 
-    if is_chosen:
-        # For chosen outcomes:
-        # Maximize reward subject to KL constraint
-        # Loss = -(1 - β * KL)^+
-        # We want KL to be small but not zero
-        loss = -(1 - beta * kl_div).clamp(min=0)
-    else:
-        # For rejected outcomes:
-        # Minimize with loss aversion
-        # Losses hurt more than equivalent gains help
-        # Loss = 2 * (1 + β * KL)^+
-        # The factor of 2 implements loss aversion
-        loss = 2 * (1 + beta * kl_div).clamp(min=0)
+    # For chosen outcomes: maximize reward subject to the KL
+    # constraint - Loss = -(1 - β * KL)^+
+    # We want KL to be small but not zero
+    chosen_loss = -(1 - beta * kl_div).clamp(min=0)
+
+    # For rejected outcomes: losses hurt more than equivalent gains
+    # help (loss aversion) - Loss = 2 * (1 + β * KL)^+
+    rejected_loss = 2 * (1 + beta * kl_div).clamp(min=0)
+
+    # Select per sample - is_chosen is a boolean tensor, so a Python
+    # `if` would raise "Boolean value of Tensor is ambiguous"
+    loss = torch.where(is_chosen, chosen_loss, rejected_loss)
 
     return loss.mean()
 
@@ -882,13 +938,20 @@ When to use KTO:
 - When preferences are noisy
 - When you need robust optimization
 """)
+
+# Expected Output:
+# The "KTO vs DPO Comparison" table and the advantage/usage lists
+# print directly - compute_kto_loss is defined but never called
+# here (it needs real policy/reference log probs)
 ```
 
 ### Exercise 7: Alignment Evaluation
 
 ```python
+import re
+
 import numpy as np
-from typing import List, Dict
+from typing import List
 
 # SOLUTION: Comprehensive Alignment Evaluation
 def evaluate_alignment(model, tokenizer, test_cases, max_length=100):
@@ -914,7 +977,6 @@ def evaluate_alignment(model, tokenizer, test_cases, max_length=100):
 
     for test_case in test_cases:
         query = test_case["query"]
-        expected_behavior = test_case.get("behavior", "helpful")
 
         # SOLUTION: Generate response
         inputs = tokenizer(query, return_tensors="pt")
@@ -942,13 +1004,22 @@ def evaluate_alignment(model, tokenizer, test_cases, max_length=100):
         )
         results["instruction_following"].append(instruction_following)
 
-        # Overall score (weighted average)
-        overall = (
-            helpfulness * 0.3 +
-            harmless * 0.3 +
-            results["honesty"][-1] if results["honesty"] else 0.2 +
-            instruction_following * 0.2
-        )
+        # Overall score (weighted average). Honesty is only scored
+        # when a reference exists, so the weights renormalize over
+        # the metrics that were actually measured
+        if results["honesty"]:
+            overall = (
+                helpfulness * 0.3 +
+                harmless * 0.3 +
+                results["honesty"][-1] * 0.2 +
+                instruction_following * 0.2
+            )
+        else:
+            overall = (
+                helpfulness * 0.4 +
+                harmless * 0.4 +
+                instruction_following * 0.2
+            )
         results["overall_scores"].append(overall)
 
     # Compute averages
@@ -1008,8 +1079,13 @@ def evaluate_harmlessness(response: str) -> float:
 
     response_lower = response.lower()
 
+    # Match at word boundaries - a plain substring test would flag
+    # "kill" inside "skills" and return 0.0 for a harmless response
     for category, keywords in harmful_categories.items():
-        if any(keyword in response_lower for keyword in keywords):
+        if any(
+            re.search(rf"\b{re.escape(keyword)}", response_lower)
+            for keyword in keywords
+        ):
             # Found harmful content
             return 0.0
 
@@ -1022,8 +1098,9 @@ def evaluate_honesty(response: str, reference: str) -> float:
     In practice, use a separate judge model or fact-checking system.
     This is a simplified version.
     """
-    # Simple heuristic: check if response contradicts reference
-    # In production, use NLI model or fact-checker
+    # This simplified heuristic only inspects hedging vs
+    # overconfidence markers - contradicting the reference needs
+    # an NLI model or fact-checker in production
 
     # Check for uncertainty markers (good for honesty)
     uncertainty_markers = ["might", "possibly", "maybe", "i think", "probably"]
@@ -1055,7 +1132,8 @@ def evaluate_instruction_following(query: str, response: str, instructions: List
 
     return followed / len(instructions)
 
-# Example evaluation
+# Example evaluation cases - pass these to evaluate_alignment once
+# you have a real model and tokenizer to score
 test_cases = [
     {
         "query": "What's the capital of France?",
@@ -1107,6 +1185,12 @@ Best Practices:
 ✓ Track metrics over time
 ✓ Compare to baselines
 """)
+
+# Expected Output:
+# The 5-metric "Alignment Evaluation Framework" text prints
+# directly - evaluate_alignment and the four heuristic evaluators
+# are defined but need a real model to run; the test cases show
+# the expected structure (query + optional reference/instructions)
 ```
 
 ---
