@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE6-PRACTICE
 Title: "Phase 6: Data Nexus - Practice Exercises"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Advanced
 ---
@@ -370,16 +370,16 @@ class KnowledgeGraph:
         # TODO: Implement
         pass
 
-# Close driver when done
-def close(self):
-    self.driver.close()
+    def close(self):
+        """Close the Neo4j driver connection."""
+        self.driver.close()
 ```
 
 ### Success Criteria
 
 - [ ] Entities created successfully
 - [ ] Relationships formed correctly
-- - Graph traversal returns connected entities
+- [ ] Graph traversal returns connected entities
 - [ ] Cypher queries work as expected
 
 ---
@@ -630,7 +630,7 @@ Create adaptive retrieval system that:
 
 ---
 
-**Last Updated:** 2026-02-05
+**Last Updated:** 2026-09-25
 **Phase:** 6 - Data Nexus
 **Status:** Ready for Practice
 
@@ -639,8 +639,10 @@ Create adaptive retrieval system that:
 ## Appendix: Phase 6 - Complete Reference Implementations
 
 The exercises above use solution templates. This appendix contains
-complete, working implementations of each exercise for self-checking
-after you have attempted them on your own.
+complete, working reference implementations of Exercises 1-6 for
+self-checking after you have attempted them on your own. Exercise 7
+composes these building blocks into a full pipeline, so no separate
+reference implementation is provided for it.
 
 
 ### Exercise 1: Implement Vector Search from Scratch
@@ -721,7 +723,7 @@ if __name__ == "__main__":
 ```python
 from collections import defaultdict
 import math
-from typing import List, Dict
+from typing import List
 
 class BM25:
     """BM25 keyword search implementation"""
@@ -826,7 +828,7 @@ if __name__ == "__main__":
 
 ```python
 from typing import List, Tuple
-import numpy as np
+from collections import defaultdict
 
 class HybridSearch:
     """Hybrid search combining vector and keyword search"""
