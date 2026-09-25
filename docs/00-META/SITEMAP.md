@@ -486,17 +486,18 @@ below are derived directly from the file tree.
 
 ---
 
-## Case Study Appendix (6 files)
+## Case Study Appendix (2 files)
 
 Optional deep-dive: one person's full home-lab build (NUC 12th Gen, RTX 2080 Ti
-11GB eGPU, Synology NAS) kept as a worked example of the phase 1 concepts.
+11GB eGPU, Synology NAS) kept as a worked example of the phase 1 concepts. The
+build's written walkthroughs live inside the lessons themselves - see the
+"Case Study" sections of [1101](../phases/phase1-infra/1100-network/1101-Fiber-GPON-Modem.md),
+[1102](../phases/phase1-infra/1100-network/1102-Star-Topology-Core.md), and
+[1202](../phases/phase1-infra/1200-virtualization/1202-TB3-UT3G-Passthrough.md).
 
 - [README](../case-study/README.md)
 - [EXP_1101_GPON](../case-study/experiments/EXP_1101_GPON.md)
 - [EXP_1102_STAR_TOPOLOGY](../case-study/experiments/EXP_1102_STAR_TOPOLOGY.md)
-- [1101-Fiber-GPON-Modem](../case-study/homelab/1101-Fiber-GPON-Modem.md)
-- [1102-Star-Topology-Core](../case-study/homelab/1102-Star-Topology-Core.md)
-- [1202-TB3-UT3G-Passthrough](../case-study/homelab/1202-TB3-UT3G-Passthrough.md)
 
 ---
 

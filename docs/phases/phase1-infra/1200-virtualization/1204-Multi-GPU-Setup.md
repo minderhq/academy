@@ -62,7 +62,7 @@ Role: Sufficient for 7B models (4-bit quantization), QLoRA fine-tuning,
 > external enclosure is workable - the card appears as a normal PCIe device
 > and everything in this document applies. Expect reduced host-to-device
 > bandwidth versus a physical slot. See the original build's write-up:
-> `docs/case-study/homelab/1202-TB3-UT3G-Passthrough.md`.
+> [1202 - Case Study: RTX 2080 Ti eGPU over Thunderbolt 3](./1202-TB3-UT3G-Passthrough.md#case-study-rtx-2080-ti-egpu-over-thunderbolt-3).
 
 ### Single-GPU Limits
 ```text

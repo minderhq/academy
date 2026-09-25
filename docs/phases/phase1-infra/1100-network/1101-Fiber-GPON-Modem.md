@@ -32,6 +32,7 @@ Every AI lab starts with a WAN uplink: the connection between your network and t
 - [6. Exposing Lab Services to the Internet](#6-exposing-lab-services-to-the-internet)
 - [7. Troubleshooting](#7-troubleshooting)
 - [8. Summary](#8-summary)
+- [Case Study: Fiber GPON Uplink](#case-study-fiber-gpon-uplink)
 
 ---
 
@@ -310,6 +311,50 @@ traceroute 1.1.1.1
 - Match MTU to the uplink type (1500, or 1492 under PPPoE) and clamp MSS as a safety net.
 - Measure real throughput with `iperf3`; upload bandwidth governs self-hosting.
 - Expose services via outbound tunnels when possible; if you port-forward, authenticate everything.
+
+---
+
+## Case Study: Fiber GPON Uplink
+
+The original build this course was developed on used a fiber GPON uplink, so the generic flow above (bridge mode, MTU, throughput verification) looked like this in practice.
+
+**Line parameters.** GPON carries the whole downstream on a shared wavelength; the ITU-T G.984 family defines the split:
+
+| Parameter | Value |
+|-----------|-------|
+| Downstream (shared) | 2.488 Gbps |
+| Upstream (shared) | 1.244 Gbps |
+| Wavelengths | 1490 nm (down), 1310 nm (up) |
+| Split ratio at the street cabinet | 1:32 typical (1:64 allowed) |
+
+**Optical budget.** The ONT status page exposes receive/transmit power. The build treated these ranges as healthy:
+
+| Metric | Acceptable range |
+|--------|------------------|
+| Rx power | -8 to -28 dBm |
+| Tx power | 0 to +7 dBm |
+| ONT temperature | < 70 C |
+
+Out-of-range Rx power shows up as LOS light loss or intermittent drops long before throughput tests fail (Section 7.1).
+
+**Signal path.** After bridge mode, the physical chain was:
+
+```text
+[ISP OLT] --fiber--> [splitter] --fiber--> [ONT] --CAT6A--> [2.5G switch, port 1]
+                                                                  |
+                        +-----------------------------------------+
+                        |                    |                    |
+                   living-room            office              NAS (LAN3)
+                   devices + AP           workstation         Synology
+```
+
+**Measured throughput.** The 2.488 Gbps shared downstream translates to roughly 2.2-2.3 Gbps of real TCP goodput after overhead. Read the "healthy" threshold in Section 5.3 against the shared rate, not the marketing number on the plan.
+
+**Redundancy.** For an uplink this critical to model downloads, the build planned a WAN bypass path, which the generic sections do not cover:
+
+1. **4G/5G backup**: a USB LTE modem as a secondary WAN on the router.
+2. **Multi-WAN**: policy routing or load balancing between GPON and the backup.
+3. **Failover**: automatic switchover when the GPON link drops, so long-running weight downloads survive an ISP outage.
 
 ---
 

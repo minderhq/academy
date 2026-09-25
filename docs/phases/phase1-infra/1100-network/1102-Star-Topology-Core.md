@@ -34,6 +34,7 @@ The physical and logical layout of your network determines how well the AI lab p
 - [8. Cabling](#8-cabling)
 - [9. Troubleshooting](#9-troubleshooting)
 - [10. Summary](#10-summary)
+- [Case Study: A 2.5G Apartment Star Network](#case-study-a-25g-apartment-star-network)
 
 ---
 
@@ -303,6 +304,58 @@ ip -d link show eno1.20
 
 ---
 
+## Case Study: A 2.5G Apartment Star Network
+
+The original build ran a 16-port 2.5G managed switch through a small apartment with three zones - the generic star above with real port assignments:
+
+```text
+             +--------------------------------------------+
+             |        2.5G managed switch (star hub)      |
+             |  P1 WAN (ONT)        P5-8 office/lab       |
+             |  P2-4 living room    P9 NAS      P10 NUC   |
+             |  P11-16 expansion                          |
+             +---------------------+----------------------+
+                                   |
+         +-------------------------+-------------------------+
+         |                         |                         |
+   living room                office                    server
+   AP, media, IoT             workstation, lab PC       NAS, NUC (Proxmox)
+```
+
+**Packet flows that justified the design:**
+
+| Flow | Path | Why it matters |
+|------|------|----------------|
+| Model transfer NAS -> NUC | NAS LAN3 (P9) -> switch -> NUC (P10) | < 0.5 ms, jumbo frames (MTU 9000) on both ends |
+| Internet -> all devices | ONT (P1) -> switch -> everywhere | NAT/DHCP on the router behind bridge mode (see [1101](./1101-Fiber-GPON-Modem.md)) |
+| NUC -> eGPU | Not a network path | PCIe tunnel over Thunderbolt 3, ~32 Gbps - the switch never sees it |
+
+**VLAN plan the build actually used** (different roles than the lesson table - a home needs an IoT quarantine):
+
+| VLAN | Name | Carries |
+|------|------|---------|
+| 10 | Management | Switch, APs, NAS admin |
+| 20 | IoT | Smart devices, isolated from everything else |
+| 30 | Servers | Proxmox, K3s nodes |
+| 40 | Workstations | PC, NUC desktop clients |
+| 50 | Guest | Internet-only, fully isolated |
+
+**Real-world 2.5G throughput:**
+
+| Protocol | Theoretical | Measured | Efficiency |
+|----------|-------------|----------|------------|
+| TCP (IPv4) | 2.5 Gbps | 2.3-2.4 Gbps | 92-96% |
+| SMB (Windows) | 2.5 Gbps | 2.2-2.3 Gbps | 88-92% |
+| NFS (Linux) | 2.5 Gbps | 2.3-2.4 Gbps | 92-96% |
+
+**QoS and flow control.** The switch queued by priority: SSH/VoIP highest, cluster API and storage I/O next, general traffic, bulk backup last. 802.3x flow control stayed enabled so a saturated NFS stream degraded instead of dropping packets.
+
+**LACP in practice.** The NAS aggregated LAN1+LAN2+LAN3 into one LAG: 7.5 Gbps theoretical, about 6 Gbps real-world for parallel streams - and no improvement for a single NFS stream, exactly the caveat Section 3 makes.
+
+**Monitoring.** SNMP on the switch (`snmpwalk -v2c -c public <switch-ip> IF-MIB::ifHCInOctets` from the NAS), with periodic checks of per-port CRC errors, discards, and pause frames - the counters that catch cabling problems before users do.
+
+---
+
 ## References
 
 ### Related ai-engineering-curriculum Documents
@@ -324,6 +377,8 @@ ip -d link show eno1.20
 - [1101: Internet Uplink & Modem Configuration](./1101-Fiber-GPON-Modem.md)
 - [1103: Jumbo Frames and MTU](./1103-Jumbo-Frames-and-MTU.md)
 - [1201: Proxmox Hypervisor SOP](../1200-virtualization/1201-Proxmox-Hypervisor-SOP.md)
+
+**Case Study Experiment:** [EXP_1102: Star Topology and Network Performance Experiments](../../../case-study/experiments/EXP_1102_STAR_TOPOLOGY.md) - hands-on topology and throughput experiments from the original build
 
 ---
 

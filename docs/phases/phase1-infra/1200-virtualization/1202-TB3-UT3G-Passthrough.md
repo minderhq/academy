@@ -47,6 +47,7 @@ GPU passthrough assigns a physical NVIDIA GPU to a single virtual machine, givin
 - [8. NVIDIA-Specific Quirks](#8-nvidia-specific-quirks)
 - [9. Troubleshooting](#9-troubleshooting)
 - [10. When a Dedicated GPU Beats an External One](#10-when-a-dedicated-gpu-beats-an-external-one)
+- [Case Study: RTX 2080 Ti eGPU over Thunderbolt 3](#case-study-rtx-2080-ti-egpu-over-thunderbolt-3)
 
 ---
 
@@ -372,6 +373,54 @@ dmesg | grep -i -e NVRM -e nvidia
 ## 10. When a Dedicated GPU Beats an External One
 
 A GPU connected by a physical PCIe slot is the reference case: full x16 bandwidth, no added latency, and the simplest IOMMU layout. If your machine is a laptop or small-form-factor box without a free slot, a GPU over an external enclosure is workable - the card appears as a regular PCIe device, and everything in this document applies unchanged. The caveat is bandwidth: external links (e.g., Thunderbolt's PCIe tunneling) carry roughly a quarter of a physical x16 slot, so workloads that shuttle large tensors between host RAM and VRAM pay a measurable penalty, while VRAM-resident inference is barely affected. For a learning lab, either path is fine; for a permanent multi-node setup, prefer native PCIe.
+
+---
+
+## Case Study: RTX 2080 Ti eGPU over Thunderbolt 3
+
+The original build passed an RTX 2080 Ti through to a K3s worker VM from an Intel NUC with no free PCIe slot - the card sat in an external enclosure connected by Thunderbolt 3. Section 10's caveat, made concrete.
+
+**Hardware:**
+
+| Component | Detail |
+|-----------|--------|
+| Enclosure | TB3 chassis (Razer Core X class), Intel Alpine Ridge controller |
+| Link | 4x PCIe 3.0 lanes over TB3 (~32 Gbps effective) |
+| GPU | RTX 2080 Ti: 4352 CUDA cores, 11 GB GDDR6, 616 GB/s, 250 W TDP |
+
+**The TB3-specific steps the generic sections do not cover:**
+
+1. BIOS: set *Thunderbolt Security* to "No Security" (or "User") and *Thunderbolt Support* to "Always On" - power saving otherwise detaches the GPU mid-session.
+2. Authorize the device with `bolt` (the TB3 daemon), once and permanently:
+
+```bash
+apt install bolt
+boltctl enroll              # authorize + store the device
+boltctl configure --auto 0  # auto-authorize on every plug-in
+boltctl list                # status: authorized, stored: yes
+```
+
+3. Bind by device ID early (`vfio-pci.ids=10de:1e04,10de:10f8` in the GRUB line). The TB3 controller tends to share its IOMMU group with the host bridge, which is also why the build grudgingly used `pcie_acs_override` - Section 9.2's last resort - after confirming nothing else essential lived in the group.
+
+**Bandwidth reality check:**
+
+```text
+TB3 PCIe tunnel (x4, PCIe 3.0):  ~31.5 Gbps ceiling
+RTX 2080 Ti typical workload:    ~16-20 Gbps
+
+VRAM-resident inference : no measurable bottleneck
+Training (host<->VRAM)  : ~15-20% overhead vs a native x16 slot
+```
+
+Keeping model weights resident in VRAM and batching inference made the penalty negligible for serving; only data-heavy fine-tuning felt the tunnel.
+
+**TB3 quirks seen in practice:**
+
+| Symptom | Cause | Fix |
+|---------|-------|-----|
+| GPU vanishes after minutes | TB3 power management | "Always On" in BIOS |
+| Passthrough fails after cold boot | PCIe link renegotiates differently | Warm reboot the host, not cold |
+| Code 43 in guest | Ancient-driver holdover | Update guest driver (Section 8.1) - not a TB3 problem |
 
 ---
 
