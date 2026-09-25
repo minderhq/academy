@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE4-PRACTICE
 Title: "Phase 4: Quantization Practice"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Advanced
 ---
@@ -14,7 +14,6 @@ Difficulty: Advanced
 
 ```python
 import torch
-import numpy as np
 
 def quantize_4bit(tensor):
     """Quantize tensor to 4-bit (INT4)"""
@@ -45,7 +44,7 @@ def test_quantization():
     x = torch.randn(1000)
 
     # Quantize
-    x_q, scale, zp = quantize_4_bit(x)
+    x_q, scale, zp = quantize_4bit(x)
 
     # Dequantize
     x_dq = dequantize_4bit(x_q, scale, zp)
@@ -56,7 +55,7 @@ def test_quantization():
     print(f"Original mean: {x.mean():.4f}")
     print(f"Dequantized mean: {x_dq.mean():.4f}")
     print(f"MSE error: {mse_error:.6f}")
-    print(f"Compression: 16x -> 4x memory (4-bit)")
+    print(f"Compression: fp16 (16-bit) -> int4 (4-bit) = 4x smaller")
 
     print("✅ Quantization working!\n")
 
@@ -138,9 +137,11 @@ class QuantizedKVCache(nn.Module):
         self.register_buffer('v_scale', torch.ones(1))
 
     def quantize(self, tensor):
-        """Quantize tensor to specified bits"""
+        """Quantize tensor to the configured bit width"""
         if self.bits == 8:
-            return tensor.to(torch.uint8)
+            scale = tensor.abs().max() / 127.0
+            quantized = torch.clamp((tensor / scale).round(), -128, 127).to(torch.int8)
+            return quantized, scale
         elif self.bits == 4:
             scale = tensor.abs().max() / 7.0
             quantized = torch.clamp((tensor / scale).round().to(torch.int8) + 8, 0, 15)
@@ -149,6 +150,8 @@ class QuantizedKVCache(nn.Module):
 
     def dequantize(self, tensor, scale):
         """Dequantize tensor"""
+        if self.bits == 8:
+            return tensor.to(torch.float32) * scale
         if self.bits == 4:
             return (tensor.to(torch.float32) - 8) * scale
         return tensor.to(torch.float32)
@@ -156,17 +159,14 @@ class QuantizedKVCache(nn.Module):
     def update(self, k, v, position):
         """Update KV cache at position"""
 
-        # Quantize and store
-        if self.bits == 4:
-            k_q, k_scale = self.quantize(k)
-            v_q, v_scale = self.quantize(v)
-            self.k_cache[position] = k_q
-            self.v_cache[position] = v_q
-            self.k_scale = k_scale
-            self.v_scale = v_scale
-        else:
-            self.k_cache[position] = k
-            self.v_cache[position] = v
+        # Quantize and store - quantized values are kept in the float
+        # buffers, which preserves them exactly (0-15 or -128..127)
+        k_q, k_scale = self.quantize(k)
+        v_q, v_scale = self.quantize(v)
+        self.k_cache[position] = k_q
+        self.v_cache[position] = v_q
+        self.k_scale = k_scale
+        self.v_scale = v_scale
 
 
 def test_kv_cache():
@@ -191,11 +191,11 @@ def test_kv_cache():
     print(f"Head dim: {head_dim}")
     print(f"Quantization: {kv_cache.bits}-bit")
 
-    # Calculate memory
-    memory_fp16 = cache_size * num_heads * head_dim * 2 * 2 / 1e9  # K + V
-    memory_4bit = cache_size * num_heads * head_dim * 1 * 2 / 1e9  # 4-bit
-    print(f"\nFP16 cache: {memory_fp16:.2f} GB")
-    print(f"4-bit cache: {memory_4bit:.2f} GB")
+    # Calculate memory - fp16 is 2 bytes/element, 4-bit is 0.5 bytes
+    memory_fp16 = cache_size * num_heads * head_dim * 2 * 2 / 1e3  # K + V, KB
+    memory_4bit = cache_size * num_heads * head_dim * 0.5 * 2 / 1e3  # K + V, KB
+    print(f"\nFP16 cache: {memory_fp16:.2f} KB")
+    print(f"4-bit cache: {memory_4bit:.2f} KB")
     print(f"Reduction: {memory_fp16 / memory_4bit:.2f}x")
 
     print("✅ KV cache working!\n")
@@ -205,14 +205,14 @@ if __name__ == "__main__":
     test_kv_cache()
 ```
 
-### Exercise 4: Context Window Extension
+### Exercise 4: Context Window Length Test
 
 ```python
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 def test_context_window():
-    """Test extended context window"""
+    """Test the context window at increasing sequence lengths"""
 
     print("=== Context Window Extension Test ===")
 
@@ -238,8 +238,9 @@ def test_context_window():
     for seq_len in seq_lengths:
         print(f"\nTesting seq_len={seq_len}...")
 
-        # Create input
-        text = "Hello " * (seq_len // 6)
+        # Create input - each "Hello " is ~1 token, so this builds
+        # roughly seq_len tokens to match the label printed above
+        text = "Hello " * seq_len
         inputs = tokenizer(text, return_tensors="pt").to(model.device)
 
         try:
@@ -265,7 +266,4 @@ if __name__ == "__main__":
 - [ ] 4-bit quantization implemented
 - [ ] Quantization methods compared
 - [ ] KV cache quantization working
-- [ ] Context window extended
-- [ ] Memory usage optimized
-- [ ] Speed benchmarks measured
-- [ ] Quality metrics validated
+- [ ] Context window length tested
