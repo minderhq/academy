@@ -1,7 +1,7 @@
 ---
 Document ID: 6400-PRACTICE
 Title: "6400: Vector Databases - Practice"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -56,11 +56,11 @@ print("\nSearching...")
 query = "artificial intelligence"
 query_vector = embedder.encode([query])[0].tolist()
 
-results = client.search(
+results = client.query_points(
     collection_name=collection_name,
-    query_vector=query_vector,
+    query=query_vector,
     limit=3,
-)
+).points
 
 print(f"Query: '{query}'\n")
 for result in results:
@@ -138,14 +138,13 @@ for result in results[0]:
 
 ```python
 import chromadb
-from chromadb.config import Settings
 
 # Initialize ChromaDB
 print("Initializing ChromaDB...")
-chroma_client = chromadb.Client(Settings(
-    chroma_db_impl="duckdb+parquet",
-    persist_directory="./chroma_db",
-))
+# PersistentClient stores to disk. The old Settings(chroma_db_impl=
+# "duckdb+parquet", persist_directory=...) keys were removed in
+# Chroma 0.4 and raise on modern versions.
+chroma_client = chromadb.PersistentClient(path="./chroma_db")
 
 # Create collection
 collection = chroma_client.create_collection(name="documents")
@@ -184,21 +183,39 @@ for i, (doc, score, metadata) in enumerate(zip(
 ### Exercise 4: Multi-Vector Collection
 
 ```python
-from qdrant_client.models import VectorParams
+from qdrant_client.models import (
+    Distance, VectorParams, SparseVectorParams, SparseVector, PointStruct,
+)
+import hashlib
+
+def toy_sparse(text, dim=10000):
+    """Toy sparse encoding: hash words into a fixed-size space.
+
+    Real pipelines use BM25/TF-IDF/SPLADE, but the API shape is the
+    same: a SparseVector of unique indices and same-length values.
+    """
+    buckets = {}
+    for word in text.lower().split():
+        idx = int(hashlib.md5(word.encode()).hexdigest(), 16) % dim
+        buckets[idx] = buckets.get(idx, 0.0) + 1.0
+    return SparseVector(indices=list(buckets), values=list(buckets.values()))
 
 def create_multi_vector_collection(client):
-    """Create collection with multiple vector types."""
+    """Create collection with named dense and sparse vectors.
 
-    # Create collection with multiple vectors
+    Dense vectors live in vectors_config; sparse vectors need their
+    own sparse_vectors_config with SparseVectorParams.
+    """
     client.create_collection(
         collection_name="multi_vector_docs",
         vectors_config={
             "dense": VectorParams(size=384, distance=Distance.COSINE),
-            "sparse": VectorParams(size=10000, distance=Distance.DOT),
+        },
+        sparse_vectors_config={
+            "sparse": SparseVectorParams(),
         },
     )
 
-    # Insert with multiple vectors
     client.upsert(
         collection_name="multi_vector_docs",
         points=[
@@ -206,7 +223,7 @@ def create_multi_vector_collection(client):
                 id=i,
                 vector={
                     "dense": embedder.encode([doc])[0].tolist(),
-                    "sparse": np.random.rand(10000).tolist(),
+                    "sparse": toy_sparse(doc),
                 },
                 payload={"text": doc, "id": i},
             )
@@ -217,32 +234,29 @@ def create_multi_vector_collection(client):
 # Create multi-vector collection
 create_multi_vector_collection(client)
 
-# Search with multiple vectors
-def search_multi_vector(client, query_dense, query_sparse):
-    """Search using multiple vector types."""
-
-    return client.search(
+# A single query_points call targets one named vector via using=.
+# Dense query: a plain vector. Sparse query: a dict of indices+values,
+# e.g. query={"indices": [...], "values": [...]}, using="sparse".
+def search_multi_vector(client, query_text):
+    return client.query_points(
         collection_name="multi_vector_docs",
-        query_vector={
-            "dense": query_dense,
-            "sparse": query_sparse,
-        },
+        query=embedder.encode([query_text])[0].tolist(),
+        using="dense",
         limit=3,
         with_payload=["text"],
-    )
+    ).points
 
 # Test
-query_sparse = np.random.rand(10000).tolist()
-results = search_multi_vector(client, query_vector, query_sparse)
+results = search_multi_vector(client, "artificial intelligence")
 
 print("\nMulti-vector search results:")
 for result in results:
     print(f"[{result.score:.3f}] {result.payload['text']}")
 
 # Expected output:
-# - Combines dense and sparse embeddings
-# - Better semantic + keyword matching
-# - Scores weighted combination of both
+# - One collection serves dense and sparse embeddings side by side
+# - query_points picks the vector space with using="dense"/"sparse"
+# - Full dense+sparse hybrid runs both queries and fuses the ranks
 ```
 
 ### Exercise 5: Filtering with Metadata
@@ -270,9 +284,9 @@ client.upsert(
 
 # Search with filter
 print("Searching with category filter...")
-results = client.search(
+results = client.query_points(
     collection_name="filtered_docs",
-    query_vector=query_vector,
+    query=query_vector,
     query_filter=Filter(
         must=[
             FieldCondition(
@@ -282,7 +296,7 @@ results = client.search(
         ]
     ),
     limit=3,
-)
+).points
 
 print("Tech category results:")
 for result in results:
@@ -290,9 +304,9 @@ for result in results:
 
 # Complex filter
 print("\nSearching with year range filter...")
-results = client.search(
+results = client.query_points(
     collection_name="filtered_docs",
-    query_vector=query_vector,
+    query=query_vector,
     query_filter=Filter(
         must=[
             FieldCondition(
@@ -302,7 +316,7 @@ results = client.search(
         ]
     ),
     limit=3,
-)
+).points
 
 print("2024+ documents:")
 for result in results:
@@ -321,12 +335,12 @@ def hybrid_search(client, collection_name, query_text, query_vector, alpha=0.7):
     """Combine vector search with keyword matching."""
 
     # Vector search
-    vector_results = client.search(
+    vector_results = client.query_points(
         collection_name=collection_name,
-        query_vector=query_vector,
+        query=query_vector,
         limit=10,
         with_payload=True,
-    )
+    ).points
 
     # Keyword search (simplified - use full-text in production)
     keyword_results = client.scroll(
@@ -405,12 +419,19 @@ client.create_collection(
             "ef_construct": 100,  # Index build speed vs accuracy
         },
     ),
-    # Payload indexing for filtering
-    payload_schema={
-        "category": PayloadSchemaType.KEYWORD,
-        "year": PayloadSchemaType.INTEGER,
-    },
+    # Payload indexing for filtering: payload indexes are created with
+    # separate create_payload_index calls (create_collection silently
+    # ignores unknown kwargs like the old payload_schema= pattern).
 )
+for field, schema in [
+    ("category", PayloadSchemaType.KEYWORD),
+    ("year", PayloadSchemaType.INTEGER),
+]:
+    client.create_payload_index(
+        collection_name="optimized_docs",
+        field_name=field,
+        field_schema=schema,
+    )
 
 # Batch upsert
 def batch_upsert(client, collection_name, points, batch_size=100):
@@ -451,11 +472,11 @@ print("\nBenchmarking search performance...")
 query_vector = np.random.rand(384).tolist()
 
 start = time.time()
-results = client.search(
+results = client.query_points(
     collection_name="optimized_docs",
-    query_vector=query_vector,
+    query=query_vector,
     limit=10,
-)
+).points
 search_time = time.time() - start
 
 print(f"Search time: {search_time*1000:.2f}ms")
@@ -464,6 +485,6 @@ print(f"Throughput: {len(results)/search_time:.0f} results/sec")
 # Expected output:
 # - Fast indexing with HNSW
 # - Batch insert improves throughput
-# - Search time < 10ms for 1M vectors
+# - Single-digit ms search at this 1k-vector scale
 # - Indexed payloads enable fast filtering
 ```
