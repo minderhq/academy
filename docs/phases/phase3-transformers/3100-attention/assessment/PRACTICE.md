@@ -1,7 +1,7 @@
 ---
 Document ID: 3100-PRACTICE
 Title: "3100: Attention - Practice"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Advanced
 ---
@@ -288,9 +288,11 @@ plt.show()
 # Test with causal attention pattern
 print("\nTest 3: Causal Attention Pattern")
 causal_attn = torch.tril(torch.ones(10, 10))
+# Row-normalizing gives the pattern directly: 1/(i+1) at allowed
+# positions, 0 above the diagonal. Applying softmax to those equal
+# values would return them unchanged, and no row is ever fully
+# masked (the diagonal always survives), so no NaN guard is needed
 causal_attn = causal_attn / causal_attn.sum(dim=-1, keepdim=True)
-causal_attn = causal_attn.masked_fill(causal_attn == 0, float('-inf'))
-causal_attn = F.softmax(causal_attn, dim=-1).masked_fill(torch.isnan(causal_attn), 0)
 fig3 = visualize_attention(causal_attn, tokens, cmap='Reds')
 plt.show()
 
@@ -365,11 +367,15 @@ def compare_attention_mechanisms():
             B, N, C = x.shape
             _, M, _ = context.shape
 
-            q = self.q(x).reshape(B, N, self.n_heads, self.head_dim)
+            # Heads must move to dim 1: (B, H, N, head_dim). Without the
+            # transposes the matmul runs per sequence position (H x H
+            # scores instead of N x M) and the output is silent nonsense
+            q = self.q(x).reshape(B, N, self.n_heads, self.head_dim).transpose(1, 2)
             kv = self.kv(context).reshape(B, M, 2, self.n_heads, self.head_dim)
             k, v = kv[..., 0, :, :], kv[..., 1, :, :]
+            k, v = k.transpose(1, 2), v.transpose(1, 2)
 
-            attn = (q @ k.transpose(-2, -1)) * self.scale
+            attn = (q @ k.transpose(-2, -1)) * self.scale  # (B, H, N, M)
             attn = F.softmax(attn, dim=-1)
 
             out = (attn @ v).transpose(1, 2).reshape(B, N, C)
@@ -400,6 +406,12 @@ print("Cross-Attention: Q from input, K,V from context")
 print("Use Cases:")
 print("  - Self-Attention: BERT, GPT (intra-sequence)")
 print("  - Cross-Attention: Encoder-Decoder (inter-sequence)")
+
+# Expected Output:
+# Self-attention output shape: torch.Size([1, 8, 64])
+# Cross-attention output shape: torch.Size([1, 8, 64])
+# Self-attention weights shape: torch.Size([1, 4, 8, 8])
+# Cross-attention weights shape: torch.Size([1, 4, 8, 8])
 ```
 
 **Summary of Key Concepts:**
