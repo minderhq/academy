@@ -3,7 +3,7 @@ Document ID: 1302
 Title: GPU Scheduler Configuration
 Phase: 1
 Module: 1300
-Last Updated: 2026-09-24
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -53,10 +53,13 @@ The K3s GPU scheduler enables intelligent allocation of 11GB-class GPU resources
 Traditional CPU/Memory:    Quantitative (count/bytes)
 GPU Resources:             Qualitative + Quantitative
 
+Schedulable resource (integer values only, in limits):
 nvidia.com/gpu: 1          → Allocate 1 GPU (exclusive)
-nvidia.com/gpu.memory:     → Request specific VRAM (custom)
-nvidia.com/gpu.count:      → Number of GPUs
-nvidia.com/gpu.product:    → GPU model constraint
+nvidia.com/gpu.shared: 1   → 1 time-sliced replica (renameByDefault: true)
+
+NOT resources - GPU Feature Discovery NODE LABELS (nodeSelector only):
+nvidia.com/gpu.memory:     → Card VRAM in MiB, e.g. 11264
+nvidia.com/gpu.product:    → GPU model, e.g. NVIDIA-GeForce-RTX-2080-Ti
 ```
 
 ### Resource Allocation Types
@@ -89,7 +92,7 @@ Time-Sliced:               Multiple pods, time-division
 └─────────────────────────────────────────────┘
                   ↓
 ┌─────────────────────────────────────────────┐
-│         nvidia-smi (CUDA runtime)           │
+│         NVML / NVIDIA driver (nvidia-smi)  │
 └─────────────────────────────────────────────┘
 ```
 
@@ -117,7 +120,10 @@ spec:
       - image: nvcr.io/nvidia/k8s-device-plugin:v0.14.0
         name: nvidia-device-plugin
         args:
-          - --mig-strategy=single
+          # GeForce-class cards have no MIG; "single"/"mixed" are for
+          # MIG-capable data-center GPUs (A100/H100) and would advertise
+          # no devices here:
+          - --mig-strategy=none
           - --fail-on-init-error=true
         env:
           - name: NVIDIA_VISIBLE_DEVICES
@@ -161,7 +167,7 @@ metadata:
   name: training-pod
 spec:
   nodeSelector:
-    accelerator: nvidia-gpu  # Must have this label
+    accelerator: nvidia  # The label 1301 puts on the GPU node
   tolerations:
   - key: nvidia.com/gpu
     operator: Exists
@@ -185,6 +191,14 @@ value: 1000
 globalDefault: false
 description: "Critical GPU workloads"
 ---
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: gpu-training
+value: 100
+globalDefault: false
+description: "Batch GPU training - preemptable by gpu-critical"
+---
 apiVersion: v1
 kind: Pod
 metadata:
@@ -203,8 +217,10 @@ spec:
 
 ### GPU Memory Slicing (Experimental)
 ```yaml
-# For an 11GB VRAM GPU, we can use time-slicing
-# This is NOT MIG (Maxwell is too old for MIG)
+# Time-slicing: the plugin advertises N replicas of the SAME GPU and
+# pods take turns on the hardware. This is NOT MIG - MIG requires
+# Ampere-or-newer data-center GPUs (A100/A30/H100); consumer cards
+# do not support it at all.
 
 apiVersion: v1
 kind: ConfigMap
@@ -218,37 +234,40 @@ data:
       timeSlicing:
         renameByDefault: false
         failRequestsGreaterThanOne: true
-        plugins:
+        resources:
         - name: nvidia.com/gpu
-          renameByDefault: false
-          failRequestsGreaterThanOne: false
-          devices:
-          - name: "0"
-            # Split 11GB into 3 slices
-            # WARNING: This is time-slicing, not real partitioning
-            slices: 3
+          replicas: 3
 ```
 
-### Custom Resources (Advanced)
-```yaml
-# Extending device plugin for finer-grained control
-# This requires modifying the device plugin
+Feed the config to the plugin by mounting this ConfigMap into the
+DaemonSet pod and adding `--config-file=/etc/nvidia-plugin-config/
+config.yaml` to the plugin args. With `replicas: 3` the node now
+advertises `nvidia.com/gpu: 3` - three pods can share one physical
+GPU, each getting at most ~1/3 of its compute time and a share of
+the same 11GB VRAM.
 
+### GPU-Aware Placement with Labels
+```yaml
+# There is no "request 4GB VRAM" knob: extended resources must be
+# integer quantities advertised by a device plugin, and the plugin
+# publishes only nvidia.com/gpu (fractional values are rejected).
+# VRAM-based placement is done with LABELS instead - the hand-made
+# ones 1301 applied (accelerator, gpu.memory) or the ones GPU
+# Feature Discovery publishes (nvidia.com/gpu.product, MiB memory):
 apiVersion: v1
 kind: Pod
 metadata:
-  name: custom-gpu-request
+  name: vram-pinned-inference
 spec:
+  nodeSelector:
+    accelerator: nvidia
+    gpu.memory: 11GB            # placement label - NOT a resource request
   containers:
   - name: app
     image: myapp:latest
     resources:
-      requests:
-        nvidia.com/gpu.memory: "4096"  # Request 4GB VRAM
-        nvidia.com/gpu.count: "0.25"   # Fractional GPU
       limits:
-        nvidia.com/gpu.memory: "8192"
-        nvidia.com/gpu.count: "0.5"
+        nvidia.com/gpu: 1       # the real schedulable GPU resource
 ```
 
 ## Workload Isolation
@@ -269,17 +288,18 @@ my_python_script.py
 
 ### cgroups for GPU
 ```bash
-# Limit GPU power per pod
-# Via nvidia-smi
-nvidia-smi -i 0 -pl 150  # Limit to 150W
+# GPU power is a GPU-level knob, not a pod-level one: -pl caps the
+# whole card for every workload on it (needs root; resets on reboot
+# unless persisted).
+nvidia-smi -i 0 -pl 150  # Limit the card to 150W (GPU-global)
 
-# Or via systemd service
-[Service]
-ExecStart=/usr/bin/my-app
-CPUAccounting=true
-CPUQuota=200%
-MemoryAccounting=true
-MemoryLimit=8G
+# CPU/memory of the app itself can be capped per-service:
+# [Service]
+# ExecStart=/usr/bin/my-app
+# CPUAccounting=true
+# CPUQuota=200%
+# MemoryAccounting=true
+# MemoryMax=8G
 ```
 
 ## Scheduler Behavior
@@ -311,7 +331,7 @@ spec:
   priorityClassName: gpu-critical  # Value: 1000
   containers:
   - name: inference
-    image: vllm:latest
+    image: vllm/vllm-openai:latest
     resources:
       limits:
         nvidia.com/gpu: 1
@@ -322,49 +342,30 @@ spec:
 ## Monitoring GPU Usage
 
 ### Prometheus Metrics
-```yaml
-# gpu-exporter deployment
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: gpu-metrics-exporter
-  namespace: monitoring
-spec:
-  template:
-    spec:
-      hostNetwork: true
-      containers:
-      - name: exporter
-        image: mindprince/gpu-metrics-exporter:v1.0.0
-        ports:
-        - containerPort: 9401
-        volumeMounts:
-        - name: gpu
-          mountPath: /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.1
-        - name: proc
-          mountPath: /proc
-      volumes:
-      - name: gpu
-        hostPath:
-          path: /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.535
-      - name: proc
-        hostPath:
-          path: /proc
+```bash
+# NVIDIA's canonical GPU metrics exporter is dcgm-exporter (the
+# mindprince exporter this lesson once used is gone from GitHub and
+# Docker Hub). The chart deploys a DaemonSet on GPU nodes and wires
+# the ServiceMonitor for Prometheus Operator:
+helm repo add gpu-helm-charts https://nvidia.github.io/dcgm-exporter/helm-charts
+helm repo update
+helm install dcgm-exporter gpu-helm-charts/dcgm-exporter \
+  --namespace monitoring --create-namespace
 ```
 
 ### Queries
 ```promql
-# GPU utilization
-nvidia_gpu_utilization
+# GPU utilization (%)
+DCGM_FI_DEV_GPU_UTIL
 
-# GPU memory used
-nvidia_memory_used_bytes
+# GPU framebuffer memory used (MiB)
+DCGM_FI_DEV_FB_USED
 
-# GPU temperature
-nvidia_temperature_gpu
+# GPU temperature (C)
+DCGM_FI_DEV_GPU_TEMP
 
-# GPU power draw
-nvidia_power_draw_watts
+# GPU power draw (W)
+DCGM_FI_DEV_POWER_USAGE
 
 # Pod GPU allocation
 kube_pod_container_resource_requests{resource="nvidia.com/gpu"}
@@ -394,8 +395,10 @@ spec:
       - name: vllm
         image: vllm/vllm-openai:latest
         args:
+          # ~6GB fp16 weights - fits the 11GB card at 0.9 utilization
+          # (a 7B fp16 model needs ~14GB and would OOM on one card):
           - --model
-          - meta-llama/Llama-2-7b
+          - Qwen/Qwen2.5-3B-Instruct
           - --tensor-parallel-size
           - "1"
           - --gpu-memory-utilization
@@ -470,14 +473,14 @@ spec:
 
 ## Next Steps
 
-- Continue with: **[1303: Storage Classes](./1303-Storage-Classes.md)**
+- Continue with: **[1303: Storage Classes for Dynamic Provisioning](./1303-Storage-Classes.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 
 ---
 
 **Related Documents:**
 - [1202: GPU Passthrough (IOMMU/VFIO)](../1200-virtualization/1202-TB3-UT3G-Passthrough.md)
-- [1203: Nvidia Kernel Module](../1200-virtualization/1203-Nvidia-Kernel-Module.md)
-- [1301: K3s Architecture](./1301-K3s-Master-Worker-Arch.md)
+- [1203: NVIDIA Kernel Module Management](../1200-virtualization/1203-Nvidia-Kernel-Module.md)
+- [1301: K3s Master-Worker Architecture](./1301-K3s-Master-Worker-Arch.md)
 
 **Experiment Template:** [EXP_1302: GPU Scheduler](../../../../experiments/EXP_1302_GPU_SCHEDULER.md)
