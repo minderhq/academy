@@ -1,7 +1,7 @@
 ---
 Document ID: 6100-PRACTICE
 Title: "6100: Vector Embeddings - Practice"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Advanced
 ---
@@ -80,13 +80,15 @@ print("\nHeatmap saved to similarity_heatmap.png")
 
 ```python
 import time
+import numpy as np
 from sentence_transformers import SentenceTransformer
+from sklearn.metrics.pairwise import cosine_similarity
 
 # Define models to compare
 models_config = {
     "miniLM": "all-MiniLM-L6-v2",
     "mpnet": "all-mpnet-base-v2",
-    "gte": "BAAI/bge-small-en-v1.5"
+    "bge": "BAAI/bge-small-en-v1.5"
 }
 
 # Test documents
@@ -159,7 +161,7 @@ print(f"Fastest encoding: {fastest[0]} ({fastest[1]['encoding_time']:.4f}s)")
 # Expected results:
 # - miniLM: Fastest, good quality, 384 dims
 # - mpnet: Slower, better quality, 768 dims
-# - gte: Best semantic understanding, competitive speed
+# - bge: Best semantic understanding, competitive speed
 ```
 
 ### Exercise 3: Chunking Strategy

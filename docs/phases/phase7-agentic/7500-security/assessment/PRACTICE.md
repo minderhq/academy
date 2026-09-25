@@ -1,7 +1,7 @@
 ---
 Document ID: 7500-PRACTICE
 Title: "7500: AI Agent Security - Practice"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Advanced
 ---
@@ -593,10 +593,11 @@ if __name__ == "__main__":
 ### Exercise 3: Implement Sandboxed Code Execution
 
 ```python
-import RestrictedPython
-from RestrictedPython import compile_restricted
-from RestrictedPython.Guards import guarded_iter_unpack_sequence, safe_builtins
-import sys
+import re
+
+from RestrictedPython import compile_restricted_exec
+from RestrictedPython.Eval import default_guarded_getiter
+from RestrictedPython.Guards import guarded_iter_unpack_sequence
 import signal
 import time
 from typing import Dict, Any, List
@@ -646,8 +647,11 @@ class SandboxExecutor:
                 "False": False,
                 "None": None,
             },
-            # Guards for safe iteration
-            "_getiter_": guarded_iter_unpack_sequence,
+            # Guards for safe iteration: _getiter_ wraps every `for`
+            # target and comprehension; _iter_unpack_sequence_ guards
+            # tuple unpacking in for statements.
+            "_getiter_": default_guarded_getiter,
+            "_iter_unpack_sequence_": guarded_iter_unpack_sequence,
         }
 
         # Track execution statistics
@@ -688,11 +692,13 @@ class SandboxExecutor:
         start_time = time.time()
 
         try:
-            # SOLUTION: Compile with restrictions
-            byte_code = compile_restricted(
+            # SOLUTION: Compile with restrictions. compile_restricted_exec
+            # returns a CompileResult namedtuple whose .code is None when
+            # .errors is non-empty - plain compile_restricted returns the
+            # code object directly and raises SyntaxError instead.
+            byte_code = compile_restricted_exec(
                 code,
                 filename="<sandbox>",
-                mode="exec"
             )
 
             # Check for compilation errors
