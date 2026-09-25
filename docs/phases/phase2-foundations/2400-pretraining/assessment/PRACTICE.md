@@ -1,7 +1,7 @@
 ---
 Document ID: 2400-PRACTICE
 Title: "2400: Pretraining - Practice"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -35,17 +35,22 @@ tokenizer.pad_token = tokenizer.eos_token
 print(f"\nDataset statistics:")
 print(f"  Total samples: {len(dataset)}")
 print(f"  Vocabulary size: {len(tokenizer)}")
-print(f"  Max length: {max(len(text) for text in dataset[:1000])}")
+# dataset[:1000] returns a dict of columns - iterating that yields the
+# column NAME ("text", length 4), not the rows; slice the column first
+print(f"  Max length: {max(len(text) for text in dataset['text'][:1000])}")
 
 # Tokenization function
 def tokenize_function(examples):
     """Tokenize a batch of examples."""
+    # No return_tensors="pt" here: .map() wants per-example lists, and a
+    # batched call returning one (batch, 512) tensor collapses the whole
+    # batch into a single nested row. Ex2's Dataset wraps each item in
+    # torch.tensor itself
     return tokenizer(
         examples["text"],
         truncation=True,
         max_length=512,
-        padding="max_length",
-        return_tensors="pt"
+        padding="max_length"
     )
 
 # Apply tokenization
@@ -176,7 +181,8 @@ print(f"  Total batches per epoch: {len(dataloader)}")
 
 ```python
 import torch
-from transformers import GPT2LMHeadModel, AutoConfig, AdamW, get_linear_schedule_with_warmup
+from torch.optim import AdamW  # transformers.AdamW was deprecated (4.29) and has since been removed
+from transformers import GPT2LMHeadModel, AutoConfig, get_linear_schedule_with_warmup
 from tqdm import tqdm
 import time
 
@@ -276,13 +282,15 @@ print("\n✓ Training complete!")
 
 # Expected output:
 # Loss decreases over epochs
-# Typical loss progression: 3.5 -> 3.2 -> 3.0
-# Training speed: ~10-50 steps/s depending on hardware
+# A freshly initialized LM head starts at loss = ln(vocab) ~ 10.8;
+# with this 4-layer/128-dim model expect epoch averages around ~7
+# falling toward ~5-6 - exact numbers vary with seed and hardware
+# Training speed: tens of steps/s on GPU, only a few on CPU
 
 # Troubleshooting Tips:
 # - If loss is NaN: Reduce learning rate or check gradient clipping
 # - If loss increases: Check learning rate schedule and data quality
-# - If slow training: Enable mixed precision with torch.cuda.amp
+# - If slow training: Enable mixed precision (torch.amp, Exercise 6)
 ```
 
 ### Exercise 4: Checkpointing
@@ -292,7 +300,6 @@ print("\n✓ Training complete!")
 **Solution:**
 
 ```python
-import os
 import json
 from pathlib import Path
 
@@ -434,7 +441,6 @@ print(f"\n✓ Resuming from epoch {epoch + 1}")
 
 ```python
 import math
-from typing import Dict
 
 def evaluate(model, dataloader, device):
     """
@@ -450,7 +456,7 @@ def evaluate(model, dataloader, device):
     """
     model.eval()
     total_loss = 0.0
-    total_tokens = 0
+    total_examples = 0
 
     print("\n=== Evaluating Model ===\n")
 
@@ -467,10 +473,13 @@ def evaluate(model, dataloader, device):
             )
 
             loss = outputs.loss
-            total_loss += loss.item() * input_ids.size(0)  # Scale by batch size
-            total_tokens += input_ids.numel()
+            # Batch loss is a mean over tokens: weight by the batch's
+            # example count. Dividing the weighted sum by len(dataloader)
+            # instead inflates the result by the batch size (4x here)
+            total_loss += loss.item() * input_ids.size(0)
+            total_examples += input_ids.size(0)
 
-    avg_loss = total_loss / len(dataloader)
+    avg_loss = total_loss / total_examples
     perplexity = math.exp(avg_loss)
 
     return avg_loss, perplexity
@@ -522,9 +531,13 @@ for prompt in prompts:
     print(f"Generated: {generated_text}\n")
 
 # Expected output:
-# Validation perplexity: 50-200 for small model
-# Generated text should be coherent (though not perfect for small model)
-# Loss should be lower than initial random model
+# Loss and perplexity far below the untrained model (which sits at
+# perplexity ~ vocab size)
+# Note: labels are not masked for padding, so EOS pad tokens count
+# toward the loss - computed perplexity underestimates true text
+# difficulty; watch the trend, not a specific range
+# Generated text: short and repetitive at this model size, coherent
+# only in style
 
 # Troubleshooting Tips:
 # - If perplexity is >1000: Model may not have trained enough
@@ -559,7 +572,6 @@ def compute_diversity(model, tokenizer, prompts, device):
                 generations.append(tokenizer.decode(output, skip_special_tokens=True))
 
     # Compute diversity (unique n-grams / total n-grams)
-    from collections import Counter
     all_bigrams = []
     for gen in generations:
         words = gen.split()
@@ -590,12 +602,15 @@ print(f"  Diversity: {diversity:.2%}")
 
 ```python
 # Mixed Precision Training
-from torch.cuda.amp import autocast, GradScaler
+# torch.cuda.amp is deprecated since PyTorch 2.4 - the canonical home
+# is torch.amp, whose autocast/GradScaler take the device explicitly
+from torch.amp import autocast, GradScaler
+from transformers import get_cosine_schedule_with_warmup
 
 def train_with_mixed_precision(model, dataloader, optimizer, scheduler, device, epochs=3):
     """Train with automatic mixed precision for faster training."""
 
-    scaler = GradScaler()
+    scaler = GradScaler("cuda")
 
     for epoch in range(epochs):
         model.train()
@@ -610,7 +625,7 @@ def train_with_mixed_precision(model, dataloader, optimizer, scheduler, device, 
             optimizer.zero_grad()
 
             # Mixed precision forward pass
-            with autocast():
+            with autocast("cuda"):
                 outputs = model(
                     input_ids=input_ids,
                     attention_mask=attention_mask,
@@ -636,6 +651,10 @@ def train_with_mixed_precision(model, dataloader, optimizer, scheduler, device, 
 def train_with_gradient_accumulation(model, dataloader, optimizer, scheduler, device, accumulation_steps=4, epochs=3):
     """Train with gradient accumulation for larger effective batch size."""
 
+    # One scaler for the whole run: a fresh GradScaler every batch would
+    # reset the scale state, so dynamic loss scaling could never adapt
+    scaler = GradScaler("cuda")
+
     for epoch in range(epochs):
         model.train()
         total_loss = 0
@@ -648,7 +667,7 @@ def train_with_gradient_accumulation(model, dataloader, optimizer, scheduler, de
             attention_mask = batch['attention_mask'].to(device)
 
             # Forward pass
-            with autocast():
+            with autocast("cuda"):
                 outputs = model(
                     input_ids=input_ids,
                     attention_mask=attention_mask,
@@ -657,7 +676,6 @@ def train_with_gradient_accumulation(model, dataloader, optimizer, scheduler, de
                 loss = outputs.loss / accumulation_steps
 
             # Backward pass
-            scaler = GradScaler()
             scaler.scale(loss).backward()
             accumulated_steps += 1
 
@@ -690,6 +708,9 @@ def train_with_warmup_cosine(model, dataloader, device, epochs=3, warmup_ratio=0
         num_training_steps=num_training_steps
     )
 
+    # One persistent scaler for the whole run (see gradient accumulation)
+    scaler = GradScaler("cuda")
+
     for epoch in range(epochs):
         model.train()
         total_loss = 0
@@ -700,11 +721,11 @@ def train_with_warmup_cosine(model, dataloader, device, epochs=3, warmup_ratio=0
             input_ids = batch['input_ids'].to(device)
             attention_mask = batch['attention_mask'].to(device)
 
-            with autocast():
+            with autocast("cuda"):
                 outputs = model(input_ids=input_ids, attention_mask=attention_mask, labels=input_ids)
                 loss = outputs.loss
 
-            scaler = GradScaler()
+            # Same rule: one persistent scaler, not one per batch
             scaler.scale(loss).backward()
             scaler.step(optimizer)
             scaler.update()
