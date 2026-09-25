@@ -1,14 +1,30 @@
 ---
 Document ID: TUTORIAL-011
 Title: "TUTORIAL-011: Multi-Modal AI"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-25
 Status: Complete
-Difficulty: Intermediate
+Difficulty: Advanced
 ---
 
 # TUTORIAL-011: Multi-Modal AI
 
-## Overview
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Part 1: Vision-Language Models](#part-1-vision-language-models)
+- [Part 2: Image Understanding](#part-2-image-understanding)
+- [Part 3: Cross-Modal Retrieval](#part-3-cross-modal-retrieval)
+- [Part 4: Video Understanding](#part-4-video-understanding)
+- [Part 5: Audio Transcription](#part-5-audio-transcription)
+- [Part 6: Multi-Modal RAG](#part-6-multi-modal-rag)
+- [Exercises](#exercises)
+- [References](#references)
+- [Next Steps](#next-steps)
+
+---
+
+## Abstract
 
 This tutorial covers multi-modal AI systems that can understand and generate content across text, images, audio, and video.
 
@@ -25,11 +41,23 @@ After this tutorial, you will:
 - Use vision-language models (CLIP, BLIP)
 - Build image captioning systems
 - Implement video understanding
+- Transcribe a video's audio track with Whisper
 - Create cross-modal retrieval systems
 
 ---
 
 ## Part 1: Vision-Language Models
+
+### Installation
+
+```bash
+pip install torch transformers pillow opencv-python qdrant-client torchaudio
+```
+
+Parts 1-3 need torch/transformers/pillow, Part 4 opencv-python (the
+cv2 import), Part 5 torchaudio plus a system **ffmpeg** on the PATH
+(the code shells out to it for audio extraction), and Part 6
+qdrant-client. numpy ships with the rest of the stack.
 
 ### CLIP (Contrastive Language-Image Pre-training)
 
@@ -75,6 +103,14 @@ def clip_demo():
 
 # Usage
 clip_demo()
+
+# Expected Output:
+# a photo of a cat: <N>.NN%
+# a photo of a dog: <N>.NN%
+# a photo of a bird: <N>.NN%
+# a photo of a car: <N>.NN%
+# (percentages depend entirely on the image; the four scores are a
+#  softmax over the candidate captions, so they sum to ~100%)
 ```
 
 ### BLIP (Bootstrapped Language-Image Pre-training)
@@ -109,6 +145,12 @@ def image_captioning(image_path: str):
 
 # Usage
 image_captioning("path/to/image.jpg")
+
+# Expected Output:
+# Caption: <BLIP caption, continuing from the "a photo of" prompt>
+# Caption (unconditional): <BLIP caption, conditioned only on the image>
+# (exact text depends on the image; BLIP's captioning checkpoint
+#  generates lowercase text with no terminal punctuation)
 ```
 
 ---
@@ -143,6 +185,14 @@ def visual_qa(image_path: str, question: str):
 # Usage
 visual_qa("image.jpg", "What color is the cat?")
 visual_qa("image.jpg", "How many animals are in the image?")
+
+# Expected Output:
+# Q: What color is the cat?
+# A: <one-to-few-word answer from BLIP-VQA>
+# Q: How many animals are in the image?
+# A: <short answer - counting is BLIP-VQA's weak spot, expect noise>
+# (answers depend on the image; BLIP-VQA is trained to reply in a
+#  handful of words)
 ```
 
 ### Image Classification with CLIP
@@ -181,6 +231,12 @@ zero_shot_classification(
     "image.jpg",
     ["cat", "dog", "bird", "fish", "reptile"]
 )
+
+# Expected Output:
+# Predicted: <class> (<N>.NN%)
+#   <class>: <N>.NN%
+#   ... (five lines, one per candidate - a softmax over them, so
+#        they sum to ~100%; which class wins depends on the image)
 ```
 
 ---
@@ -193,11 +249,13 @@ zero_shot_classification(
 import numpy as np
 from typing import List, Tuple
 
+# CLIPModel/CLIPProcessor/torch/PIL Image come from Part 1's import
+# header (this tutorial's blocks run top-down)
+
 class MultiModalRetriever:
     """Retrieve images using text queries or vice versa"""
 
     def __init__(self):
-        from sentence_transformers import SentenceTransformer
         self.clip_model = CLIPModel.from_pretrained("openai/clip-vit-base-patch32")
         self.clip_processor = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32")
 
@@ -208,8 +266,6 @@ class MultiModalRetriever:
 
     def index(self, images: List[str], captions: List[str]):
         """Index images with captions"""
-        from PIL import Image
-
         for img_path, caption in zip(images, captions):
             image = Image.open(img_path).convert("RGB")
 
@@ -284,7 +340,6 @@ class MultiModalRetriever:
 
 ```python
 import cv2
-import torch
 from PIL import Image
 
 def analyze_video(video_path: str, frame_interval: int = 30):
@@ -332,17 +387,31 @@ def analyze_video(video_path: str, frame_interval: int = 30):
 
 # Usage
 captions = analyze_video("video.mp4", frame_interval=30)
+
+# Expected Output:
+# Frame 0: <caption>
+# Frame 30: <caption>
+# ... (one line per sampled frame - every frame_interval-th frame;
+#      captions depend on the video content)
 ```
 
 ### Video Question Answering
 
 ```python
+# cv2/numpy/PIL Image/BLIP classes come from the earlier parts
+# (top-down flow); the LLM that reads the captions is new here
+from transformers import AutoModelForCausalLM, AutoTokenizer
+
 def video_qa(video_path: str, question: str):
     """Answer questions about video content"""
 
     # Sample frames
     cap = cv2.VideoCapture(video_path)
-    total_frames = int(cap.get(cv2.CAP_PROP_FPS) * cap.get(cv2.CAP_PROP_FRAME_COUNT))
+    # CAP_PROP_FRAME_COUNT is already a frame COUNT - multiplying it
+    # by the FPS inflates it by the fps factor, pushing the sampled
+    # indices past the end of the video (cap.read() then returns
+    # False and frames are silently dropped)
+    total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
 
     # Get representative frames
     frame_indices = np.linspace(0, total_frames - 1, 8).astype(int)
@@ -372,8 +441,6 @@ def video_qa(video_path: str, question: str):
     context = " ".join(frame_captions)
 
     # Use LLM to answer
-    from transformers import AutoModelForCausalLM, AutoTokenizer
-
     llm = AutoModelForCausalLM.from_pretrained("gpt2")
     tokenizer = AutoTokenizer.from_pretrained("gpt2")
 
@@ -384,44 +451,60 @@ Answer:"""
 
     inputs = tokenizer(prompt, return_tensors="pt")
     outputs = llm.generate(**inputs, max_new_tokens=50)
-    answer = tokenizer.decode(outputs[0], skip_special_tokens=True)
+    # generate() returns the FULL prompt+continuation sequence -
+    # decoding the whole thing would print the entire prompt back
+    # under the "Answer:" label, so slice off the continuation only
+    prompt_len = inputs["input_ids"].shape[-1]
+    answer = tokenizer.decode(
+        outputs[0][prompt_len:], skip_special_tokens=True
+    )
 
     print(f"Answer: {answer}")
+
+# Expected Output:
+# Answer: <continuation generated from the caption context>
+# (gpt2 is a tiny base model - expect fluent but loosely grounded
+#  text; production video QA feeds frames directly to an
+#  instruction-tuned vision-language model instead)
 ```
 
 ---
 
-## Part 5: Audio-Visual Models
+## Part 5: Audio Transcription
 
-### Audio-Visual Speech Recognition
+### Audio Transcription (Whisper)
 
 ```python
-from transformers import AutoProcessor, AutoModelForCTC
+import subprocess
+
 import torchaudio
+from transformers import WhisperProcessor, WhisperForConditionalGeneration
 
-def audio_visual_asr(video_path: str):
+def transcribe_audio(video_path: str):
     """
-    Combine audio and visual for speech recognition
-    (Requires specialized model like RAVEn)
+    Transcribe a video's audio track with Whisper.
+
+    True audio-VISUAL ASR - lip-reading models like RAVEn or
+    AV-HuBERT that fuse mouth-region video frames with the audio -
+    is a specialized model family; the audio-only branch below is
+    the piece every such system still needs.
     """
 
-    # Extract audio from video
-    import subprocess
-
+    # Extract mono 16 kHz audio - Whisper's expected input rate.
+    # check=True so a missing ffmpeg or unreadable video fails
+    # loudly instead of leaving torchaudio.load to fail obscurely
     audio_path = "temp_audio.wav"
     subprocess.run([
         "ffmpeg", "-i", video_path,
         "-vn", "-acodec", "pcm_s16le",
         "-ar", "16000", "-ac", "1",
         audio_path
-    ])
+    ], check=True)
 
     # Load audio
     waveform, sample_rate = torchaudio.load(audio_path)
 
     # Transcribe
-    from transformers import WhisperProcessor, WhisperForConditionalGeneration
-
     processor = WhisperProcessor.from_pretrained("openai/whisper-base")
     model = WhisperForConditionalGeneration.from_pretrained("openai/whisper-base")
 
@@ -434,6 +517,14 @@ def audio_visual_asr(video_path: str):
     print(f"Transcription: {transcription}")
 
     return transcription
+
+# Usage
+transcribe_audio("video.mp4")
+
+# Expected Output:
+# Transcription: <verbatim English transcription of the audio>
+# (exact words depend on the recording; whisper-base decodes plain
+#  English text and needs the 16 kHz mono wav produced above)
 ```
 
 ---
@@ -446,6 +537,8 @@ def audio_visual_asr(video_path: str):
 from transformers import CLIPModel, CLIPProcessor
 from qdrant_client import QdrantClient
 from qdrant_client.models import Distance, VectorParams, PointStruct
+
+# torch and PIL Image come from Part 1's import header (top-down flow)
 
 class MultiModalRAG:
     """RAG system that handles both images and text"""
@@ -473,8 +566,9 @@ class MultiModalRAG:
         for i, doc in enumerate(documents):
             # Get embeddings
             if "image" in doc:
-                from PIL import Image
-                image = Image.open(doc["image"])
+                # .convert("RGB") - grayscale/palette images would
+                # otherwise hit the processor's RGB expectation
+                image = Image.open(doc["image"]).convert("RGB")
                 inputs = self.processor(images=image, return_tensors="pt")
 
                 with torch.no_grad():
@@ -506,29 +600,31 @@ class MultiModalRAG:
         with torch.no_grad():
             query_emb = self.clip.get_text_features(**inputs)
 
-        results = self.client.search(
+        # query_points replaces client.search, deprecated since
+        # qdrant-client 1.10 - it returns a QueryResponse whose
+        # .points hold the ScoredPoint list
+        results = self.client.query_points(
             collection_name="multimodal",
-            query_vector=query_emb.squeeze().cpu().tolist(),
+            query=query_emb.squeeze().cpu().tolist(),
             limit=k
-        )
+        ).points
 
         return results
 
     def search_by_image(self, image_path: str, k: int = 5) -> List[dict]:
         """Search with image query"""
-        from PIL import Image
-        image = Image.open(image_path)
+        image = Image.open(image_path).convert("RGB")
 
         inputs = self.processor(images=image, return_tensors="pt")
 
         with torch.no_grad():
             query_emb = self.clip.get_image_features(**inputs)
 
-        results = self.client.search(
+        results = self.client.query_points(
             collection_name="multimodal",
-            query_vector=query_emb.squeeze().cpu().tolist(),
+            query=query_emb.squeeze().cpu().tolist(),
             limit=k
-        )
+        ).points
 
         return results
 ```
@@ -551,8 +647,23 @@ class MultiModalRAG:
 - [ ] Image captioning implemented
 - [ ] Cross-modal retrieval built
 - [ ] Video analysis completed
+- [ ] Audio transcription working
 - [ ] Multi-modal RAG prototype
 
 ---
 
-**Next Steps:** LAB-011: Multi-Modal AI or EXP_3501: Multi-Modal RAG
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [TUTORIAL-001: Hello LLM](TUTORIAL-001-Hello-LLM.md)
+- [TUTORIAL-003: RAG Basics](TUTORIAL-003-RAG-Basics.md)
+- [LAB-011: Multi-Modal AI](../labs/LAB-011-Multi-Modal-AI.md)
+- [3501: Vision-Language Models](../../phases/phase3-transformers/3500-multimodal/3501-Vision-Language-Models.md)
+
+---
+
+## Next Steps
+
+- Hands-on: **[3501: Vision-Language Models](../../phases/phase3-transformers/3500-multimodal/3501-Vision-Language-Models.md)**
+- Practice: **[LAB-011: Multi-Modal AI](../labs/LAB-011-Multi-Modal-AI.md)**
