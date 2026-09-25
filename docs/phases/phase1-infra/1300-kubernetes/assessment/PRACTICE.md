@@ -1,7 +1,7 @@
 ---
 Document ID: 1300-PRACTICE
 Title: "1300: Kubernetes - Practice"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -85,7 +85,7 @@ kubectl logs -l app=test --tail=20
 # NAME       READY   UP-TO-DATE   AVAILABLE   AGE
 # test-app   3/3     3            3           30s
 
- Troubleshooting Tips:
+# Troubleshooting Tips:
 # - If pods are pending: Check node resources with 'kubectl describe nodes'
 # - If pods are crash looping: Check logs with 'kubectl logs <pod-name>'
 # - If image pull errors: Verify image name and registry access
@@ -119,6 +119,15 @@ spec:
       containers:
       - name: vllm
         image: vllm/vllm-openai:v0.6.0
+        # The vLLM OpenAI server is configured with CLI flags, not
+        # env vars - MODEL_NAME-style env settings are silently
+        # ignored. The model here is ungated; a gated model (Llama-2
+        # etc.) would also need an HF token injected as HF_TOKEN.
+        args:
+        - --model=Qwen/Qwen2.5-7B-Instruct
+        - --tensor-parallel-size=1
+        - --dtype=half
+        - --max-model-len=4096
         ports:
         - containerPort: 8000
           protocol: TCP
@@ -131,21 +140,14 @@ spec:
             memory: "32Gi"
             cpu: "8"
             nvidia.com/gpu: 1
-        env:
-        - name: MODEL_NAME
-          value: "meta-llama/Llama-2-7b-hf"
-        - name: TENSOR_PARALLEL_SIZE
-          value: "1"
-        - name: DTYPE
-          value: "half"
-        - name: MAX_MODEL_LEN
-          value: "4096"
         volumeMounts:
         - name: model-cache
           mountPath: /root/.cache
       volumes:
       - name: model-cache
         emptyDir: {}
+      # The selector needs labeled nodes first:
+      #   kubectl label node <node-name> gpu=true
       nodeSelector:
         gpu: "true"
       tolerations:
@@ -158,9 +160,12 @@ spec:
 # Deploy GPU application
 kubectl apply -f gpu-deployment.yaml
 
-# Verify GPU allocation
+# Verify GPU allocation - "Allocated resources" is a section of node
+# describe output, not pod describe, so grepping the pod never matches
 kubectl get pods -l app=llm-serving
-kubectl describe pod -l app=llm-serving | grep -A 10 "Allocated resources"
+kubectl get pod -l app=llm-serving \
+  -o jsonpath='{.items[0].spec.containers[0].resources}' && echo
+kubectl describe node | grep -A 10 "Allocated resources" | head -15
 
 # Check GPU utilization from within pod
 kubectl exec -it deployment/llm-serving -- nvidia-smi
@@ -245,7 +250,9 @@ kubectl apply -f ingress.yaml
 kubectl get svc llm-service
 kubectl describe svc llm-service
 
-# Test service access
+# Test service access. On on-prem/homelab clusters a LoadBalancer IP
+# only appears with MetalLB/kube-vip installed; on kind/minikube use
+# port-forward or a NodePort service instead.
 SERVICE_IP=$(kubectl get svc llm-service -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
 curl http://$SERVICE_IP:80/v1/models
 
@@ -298,7 +305,7 @@ metadata:
     app: llm-serving
 type: Opaque
 stringData:
-  HUGGING_FACE_TOKEN: "hf_your_token_here"
+  HF_TOKEN: "hf_your_token_here"  # huggingface_hub reads HF_TOKEN (or HUGGING_FACE_HUB_TOKEN), not HUGGING_FACE_TOKEN
   API_KEY: "your-api-key-here"
   DATABASE_URL: "postgresql://user:pass@localhost:5432/db"
 ```
@@ -322,22 +329,15 @@ spec:
       containers:
       - name: vllm
         image: vllm/vllm-openai:v0.6.0
+        # envFrom injects every key of both resources as environment
+        # variables - no per-key env entries are needed on top of it
+        # (the old MODEL_NAME / HUGGING_FACE_TOKEN entries only
+        # duplicated what envFrom already provided).
         envFrom:
         - configMapRef:
             name: app-config
         - secretRef:
             name: app-secret
-        env:
-        - name: MODEL_NAME
-          valueFrom:
-            configMapKeyRef:
-              name: app-config
-              key: MODEL_NAME
-        - name: HUGGING_FACE_TOKEN
-          valueFrom:
-            secretKeyRef:
-              name: app-secret
-              key: HUGGING_FACE_TOKEN
         volumeMounts:
         - name: config-volume
           mountPath: /etc/config
@@ -385,7 +385,8 @@ kubectl exec deployment/llm-serving-configured -- cat /etc/config/prompt.txt
 ```bash
 # Scaling operations
 
-# Manual scaling to 5 replicas
+# Manual scaling to 5 replicas (once the HPA below exists it overrides
+# manual scale - delete it first: kubectl delete hpa test-app)
 kubectl scale deployment test-app --replicas=5
 
 # Verify scaling
@@ -398,8 +399,11 @@ kubectl autoscale deployment test-app --min=2 --max=10 --cpu-percent=70
 # Check HPA status
 kubectl get hpa
 
-# Update deployment with new image
-kubectl set image deployment/test-app nginx=nginx:1.25-alpine --record
+# Update deployment with a NEW tag - setting the same tag the
+# manifest already has changes nothing and no rollout starts
+# (--record is deprecated and ignored; revision history is tracked
+# automatically)
+kubectl set image deployment/test-app nginx=nginx:1.27-alpine
 
 # Watch rollout status in real-time
 kubectl rollout status deployment/test-app --watch
@@ -411,7 +415,7 @@ kubectl rollout history deployment/test-app
 # NAME       READY   UP-TO-DATE   AVAILABLE   AGE
 # test-app   5/5     5            5           2m
 
- Rollout strategies and rollback
+# Rollout strategies and rollback
 
 # Pause rollout (for manual verification)
 kubectl rollout pause deployment/test-app
@@ -449,8 +453,8 @@ kubectl scale deployment test-app --replicas=5
 kubectl wait --for=condition=available deployment/test-app --timeout=60s
 echo "✓ Scaled to 5 replicas"
 
-# 3. Update image
-kubectl set image deployment/test-app nginx=nginx:1.25-alpine --record
+# 3. Update image (a tag different from the manifest, so a rollout starts)
+kubectl set image deployment/test-app nginx=nginx:1.27-alpine
 echo "✓ Image update initiated"
 
 # 4. Monitor rollout
