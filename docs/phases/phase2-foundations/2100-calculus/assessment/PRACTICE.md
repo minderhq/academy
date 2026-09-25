@@ -1,7 +1,7 @@
 ---
 Document ID: 2100-PRACTICE
 Title: "2100: Calculus - Practice"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -132,8 +132,11 @@ result, history = gradient_descent(
 )
 
 # Expected output:
-# Final result: x ≈ 2.9973, loss ≈ 0.000007
-# The minimum of f(x) = (x-3)² is at x = 3
+# Final result: x = 3.0000, loss = 0.000000
+# The minimum of f(x) = (x-3)² is at x = 3. The error shrinks by a
+# factor of 0.8 per step at this learning rate (e' = 0.8·e), so after
+# 100 steps it is ~6e-10 - below float32 resolution, which prints as
+# exactly 3.0000
 
 # Visualization
 plt.figure(figsize=(12, 4))
@@ -347,7 +350,10 @@ ax1.grid(True, alpha=0.3)
 
 # Plot 2: Loss convergence
 ax2 = fig.add_subplot(1, 2, 2)
-steps = [h[0] for h in range(len(history))]
+# History tuples are (x, y, loss) - the iteration index comes from
+# the list length, not h[0] (and range() yields ints, which are not
+# subscriptable)
+steps = list(range(len(history)))
 losses = [h[2] for h in history]
 ax2.plot(steps, losses, 'b-', linewidth=2)
 ax2.set_xlabel('Iteration')
@@ -431,8 +437,11 @@ print(f"Autograd computation: df/dx = {deriv_autograd}")
 # df/dx = 4x
 # At x=3: df/dx = 4(3) = 12
 
-print(f"\nDirect differentiation: df/dx = 4x = 4({x_value}) = 12")
-print(f"Result verification: {abs(analytical_chain_rule(x_value) - 12) < 1e-6}")
+# Compute the expected value from x_value instead of hardcoding 12,
+# so the verification stays honest if you change the evaluation point
+expected = 4 * x_value
+print(f"\nDirect differentiation: df/dx = 4x = 4({x_value}) = {expected}")
+print(f"Result verification: {abs(analytical_chain_rule(x_value) - expected) < 1e-6}")
 
 # Expected output:
 # All methods should yield df/dx = 12 at x = 3
