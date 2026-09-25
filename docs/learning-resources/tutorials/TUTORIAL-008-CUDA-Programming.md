@@ -1,14 +1,30 @@
 ---
 Document ID: TUTORIAL-008
 Title: "TUTORIAL-008: CUDA Programming for AI"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-25
 Status: Complete
-Difficulty: Intermediate
+Difficulty: Advanced
 ---
 
 # TUTORIAL-008: CUDA Programming for AI
 
-## Overview
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Part 1: GPU Architecture](#part-1-gpu-architecture)
+- [Part 2: Writing CUDA Kernels with Numba](#part-2-writing-cuda-kernels-with-numba)
+- [Part 3: Matrix Multiplication](#part-3-matrix-multiplication)
+- [Part 4: Memory Coalescing](#part-4-memory-coalescing)
+- [Part 5: Profiling and Optimization](#part-5-profiling-and-optimization)
+- [Part 6: Common CUDA Patterns](#part-6-common-cuda-patterns)
+- [Exercises](#exercises)
+- [References](#references)
+- [Next Steps](#next-steps)
+
+---
+
+## Abstract
 
 This tutorial teaches you how to write custom CUDA kernels to accelerate AI workloads on NVIDIA GPUs.
 
@@ -68,8 +84,10 @@ block_dim = (16, 16)  # 16x16 = 256 threads per block
 ### Installation
 
 ```bash
-pip install numba cuda-python
+pip install numba
 ```
+
+Numba's CUDA target additionally needs an NVIDIA GPU with a recent driver — it loads the CUDA runtime itself, so a full CUDA Toolkit install is not required.
 
 ### Your First Kernel
 
@@ -82,11 +100,11 @@ def add_kernel(x, y, out):
     """Add two arrays element-wise on GPU"""
     # Get thread position
     tx = cuda.threadIdx.x
-    ty = cuda.blockIdx.x
+    bx = cuda.blockIdx.x
     bw = cuda.blockDim.x
 
     # Compute global index
-    i = ty * bw + tx
+    i = bx * bw + tx
 
     # Boundary check
     if i < out.size:
@@ -119,6 +137,10 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+# Expected Output:
+# First 5 results: [-0.NN, -0.NN, ...]   (random inputs, so values vary)
+# GPU result matches CPU: True
 ```
 
 ---
@@ -171,14 +193,32 @@ def benchmark_matmul(size=1024):
     print(f"GPU time: {gpu_time:.4f}s")
     print(f"CPU time: {cpu_time:.4f}s")
     print(f"Speedup: {cpu_time/gpu_time:.2f}x")
+
+# Expected Output:
+# GPU time: <N>.NNNNs
+# CPU time: <N>.NNNNs
+# Speedup: <N>.NNx
+# (times are hardware-dependent. At 1024x1024 the naive GPU kernel
+#  often LOSES to the CPU: NumPy's `@` dispatches to a highly tuned
+#  BLAS, while the kernel above does one global-memory load per FMA.
+#  That gap is exactly what shared-memory tiling below closes.)
 ```
 
 ### Shared Memory Optimization
 
 ```python
+# Shared memory shapes must be compile-time constants - a kernel
+# argument cannot size cuda.shared.array. Module-level globals are
+# frozen into the compiled kernel, so TILE_SIZE lives here.
+TILE_SIZE = 16
+
 @cuda.jit
-def matmul_shared(A, B, C, TILE_SIZE=16):
-    """Matrix multiplication with shared memory tiling"""
+def matmul_shared(A, B, C):
+    """Matrix multiplication with shared memory tiling
+
+    Launch with (TILE_SIZE, TILE_SIZE) threads per block - the tiling
+    assumes blockDim == (TILE_SIZE, TILE_SIZE).
+    """
     row = cuda.blockIdx.y * cuda.blockDim.y + cuda.threadIdx.y
     col = cuda.blockIdx.x * cuda.blockDim.x + cuda.threadIdx.x
     tx = cuda.threadIdx.x
@@ -247,11 +287,11 @@ def bad_memory_access(array):
 
 ## Part 5: Profiling and Optimization
 
-### Using Numba Profiler
+### Benchmarking Effective Bandwidth
 
 ```python
-from numba import cuda
-import numpy as np
+# add_kernel comes from Part 2's "Your First Kernel" block; cuda and
+# np are imported there too (this tutorial's blocks run top-down).
 
 def profile_kernel():
     # Create test data
@@ -273,7 +313,11 @@ def profile_kernel():
 
     # Measure performance
     threads_per_block = 256
-    blocks_per_grid = 32 * 20  # Optimal for an 11GB-class GPU
+    # Cover ALL n elements - a fixed 640-block grid would launch only
+    # 163,840 threads, and the kernel's boundary check would silently
+    # skip the other ~98% of the array while the prints below still
+    # reported numbers as if it had been fully processed
+    blocks_per_grid = (n + threads_per_block - 1) // threads_per_block
 
     # Warmup
     for _ in range(5):
@@ -294,6 +338,18 @@ def profile_kernel():
     print(f"Time: {elapsed:.4f}s")
     print(f"Throughput: {elements/elapsed/1e6:.2f}M elements/sec")
     print(f"Effective bandwidth: {bandwidth:.2f} GB/s")
+
+# Expected Output:
+# GPU: <GPU name from device.name>
+# Compute Capability: (<major>, <minor>)
+# Total Memory: <N>.NN GB
+# Processed 1.00B elements
+# Time: <N>.NNNNs
+# Throughput: <N>NNNN.NN M elements/sec
+# Effective bandwidth: <N>.NN GB/s
+# (each element adds two float32 reads and one write = 12 bytes, so
+#  bandwidth = elements * 12 / time; expect a fraction of the peak
+#  616 GB/s - the small kernel is launch-latency bound at this size)
 ```
 
 ---
@@ -303,9 +359,20 @@ def profile_kernel():
 ### Parallel Reduction
 
 ```python
+# cuda.shared.array needs a compile-time constant shape, and
+# cuda.blockDim.x is only known at runtime - size the buffer with a
+# module-level constant and launch with exactly this many threads
+# per block.
+BLOCK_SIZE = 256
+
 @cuda.jit
 def sum_reduction(array, result):
-    """Compute sum using parallel reduction"""
+    """Compute sum using parallel reduction
+
+    Launch with BLOCK_SIZE threads per block; each block reduces
+    2 * BLOCK_SIZE elements, and `result` receives one partial sum
+    per block (sum `result` on the host to get the total).
+    """
     tid = cuda.threadIdx.x
     i = cuda.blockIdx.x * cuda.blockDim.x * 2 + tid
 
@@ -317,7 +384,7 @@ def sum_reduction(array, result):
         partial_sum += array[i + cuda.blockDim.x]
 
     # Shared memory for block-level reduction
-    s_data = cuda.shared.array(cuda.blockDim.x, dtype=np.float32)
+    s_data = cuda.shared.array(BLOCK_SIZE, dtype=np.float32)
     s_data[tid] = partial_sum
     cuda.syncthreads()
 
@@ -356,4 +423,16 @@ def sum_reduction(array, result):
 
 ---
 
-**Next Steps:** LAB-203: Transformer Block or EXP_2203: CUDA Kernels
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [2203: CUDA Kernel Syb-Level](../../phases/phase2-foundations/2200-frameworks/2203-CUDA-Kernel-Syb-Level.md)
+- [LAB-006: Train Model From Scratch](../labs/LAB-006-Train-Model-From-Scratch.md)
+
+---
+
+## Next Steps
+
+- Hands-on: **[2203: CUDA Kernel Syb-Level](../../phases/phase2-foundations/2200-frameworks/2203-CUDA-Kernel-Syb-Level.md)**
+- Practice: **[LAB-006: Train Model From Scratch](../labs/LAB-006-Train-Model-From-Scratch.md)**
