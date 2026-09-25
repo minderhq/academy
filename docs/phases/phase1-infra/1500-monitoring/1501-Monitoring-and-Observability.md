@@ -1,9 +1,9 @@
 ---
 Document ID: 1501
-Title: Monitoring and Observability for AI Engineering Curriculum
+Title: Monitoring and Observability
 Phase: 1
 Module: 1500
-Last Updated: 2026-09-24
+Last Updated: 2026-09-26
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -12,7 +12,7 @@ Related: See module README
 Tags: ['infrastructure', 'monitoring', 'observability', 'prometheus']
 ---
 
-# 1501: Monitoring and Observability for AI Engineering Curriculum
+# 1501: Monitoring and Observability
 
 ## Table of Contents
 
@@ -68,7 +68,7 @@ Complete monitoring stack for tracking infrastructure health, model performance,
 │  Sources:                                 │              │      │
 │  - Qdrant (metrics)                      │              │      │
 │  - Neo4j (metrics)                       │              │      │
-│  - Ollama (metrics)                      │              │      │
+│  - Ollama (metrics via exporter)          │              │      │
 │  - vLLM (metrics)                        │              │      │
 │  - Agents (traces)                       │              │      │
 │  - K3s cluster (metrics)                  │              │      │
@@ -80,23 +80,38 @@ Complete monitoring stack for tracking infrastructure health, model performance,
 ### Docker Compose Setup
 
 ```yaml
-# Add to docker-compose.yml
+# Merge into docker-compose.yml. The shared network is declared once at
+# the top level: networks: { ai-engineering-curriculum-net: {} }
 services:
   prometheus:
-    image: prom/prometheus:latest
+    image: prom/prometheus:latest   # pin a released tag for reproducible deploys
     container_name: ai-engineering-curriculum-prometheus
     ports:
       - "9090:9090"
     volumes:
       - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./monitoring/prometheus/alerts.yml:/etc/prometheus/alerts.yml:ro
       - ./monitoring/prometheus/data:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
-      - '--web.console.libraries=/etc/prometheus/console_libraries'
-      - '--web.console.templates=/etc/prometheus/consoles'
       - '--storage.tsdb.retention.time=200h'
       - '--web.enable-lifecycle'
+    # Needed to scrape the agent exporter running on the host (Component 5).
+    # Inside a container, localhost is the container itself.
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+    restart: unless-stopped
+    networks:
+      - ai-engineering-curriculum-net
+
+  alertmanager:
+    image: prom/alertmanager:latest   # pin a released tag for reproducible deploys
+    container_name: ai-engineering-curriculum-alertmanager
+    ports:
+      - "9093:9093"
+    # The image ships a usable default /etc/alertmanager/alertmanager.yml,
+    # so no config mount is required to receive alerts.
     restart: unless-stopped
     networks:
       - ai-engineering-curriculum-net
@@ -113,54 +128,70 @@ global:
     cluster: 'ai-engineering-curriculum'
     env: 'lab'
 
+# Load the alert rules (evaluated every evaluation_interval)
+rule_files:
+  - /etc/prometheus/alerts.yml
+
 # Alerting
 alerting:
   alertmanagers:
     - static_configs:
         - targets: ['alertmanager:9093']
 
-# Scrape configs
+# Scrape configs (/metrics is the default metrics_path)
 scrape_configs:
   # Prometheus itself
   - job_name: 'prometheus'
     static_configs:
       - targets: ['localhost:9090']
 
-  # Qdrant metrics
+  # Qdrant metrics (served on the REST port, enabled by default)
   - job_name: 'qdrant'
     static_configs:
       - targets: ['qdrant:6333']
-    metrics_path: /metrics
 
-  # Neo4j metrics
+  # Neo4j metrics are disabled by default. Enable them in neo4j.conf:
+  #   server.metrics.prometheus.enabled=true
+  #   server.metrics.prometheus.endpoint=0.0.0.0:2004
+  # (the default endpoint binds localhost only, which the Prometheus
+  # container cannot reach)
   - job_name: 'neo4j'
     static_configs:
       - targets: ['neo4j:2004']
-    metrics_path: /metrics
 
-  # Ollama metrics
-  - job_name: 'ollama'
-    static_configs:
-      - targets: ['ollama:11434']
-    metrics_path: /metrics
+  # Ollama has NO native /metrics endpoint (open feature request,
+  # ollama/ollama#3144). Monitor inference through the GPU metrics (dcgm
+  # job below), or deploy a community exporter such as
+  # NorskHelsenett/ollama-metrics and scrape it here.
+  # - job_name: 'ollama'
+  #   static_configs:
+  #     - targets: ['ollama-exporter:<port>']
 
   # Node exporter (system metrics)
   - job_name: 'node'
     static_configs:
       - targets: ['192.168.1.100:9100', '192.168.1.101:9100']
 
+  # dcgm-exporter (GPU metrics) on the GPU host, next to node-exporter
+  - job_name: 'dcgm'
+    static_configs:
+      - targets: ['192.168.1.100:9400']
+
   # cAdvisor (container metrics)
   - job_name: 'cadvisor'
     static_configs:
       - targets: ['cadvisor:8080']
 
-  # K3s cluster
-  - job_name: 'k3s'
-    kubernetes_sd_configs:
-      - role: endpoints
-        namespaces:
-          names:
-            - ai-engineering-curriculum
+  # Agent metrics from the custom exporter (Component 5) running on the
+  # host, reachable through the host gateway mapped in the compose file
+  - job_name: 'agents'
+    static_configs:
+      - targets: ['host.docker.internal:8000']
+
+  # NOTE: this docker stack does NOT scrape the K3s cluster —
+  # kubernetes_sd_configs discovers cluster-internal IPs that the docker
+  # bridge cannot reach. Run kube-prometheus-stack inside the cluster
+  # instead (see K3s Monitoring Stack below).
 ```
 
 ## Component 2: Grafana (Dashboards)
@@ -170,14 +201,16 @@ scrape_configs:
 ```yaml
 services:
   grafana:
-    image: grafana/grafana:latest
+    image: grafana/grafana:latest   # pin a released tag for reproducible deploys
     container_name: ai-engineering-curriculum-grafana
     ports:
       - "3000:3000"
     environment:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=your_secure_password
-      - GF_INSTALL_PLUGINS=grafana-piechart-panel,grafana-worldmap-panel
+      # No GF_INSTALL_PLUGINS needed — the old grafana-piechart-panel and
+      # grafana-worldmap-panel plugins are deprecated; Pie chart and Geomap
+      # are built-in core panels since Grafana 8/9
     volumes:
       - ./monitoring/grafana/data:/var/lib/grafana
       - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
@@ -195,18 +228,18 @@ services:
     "title": "Model Inference Metrics",
     "panels": [
       {
-        "title": "Tokens per Second",
+        "title": "Generated Tokens per Second",
         "targets": [
           {
-            "expr": "rate(vllm_requests_total[1m])"
+            "expr": "sum(rate(vllm:generation_tokens_total[1m]))"
           }
         ]
       },
       {
-        "title": "Request Latency",
+        "title": "Request Latency (p95)",
         "targets": [
           {
-            "expr": "histogram_quantile(0.95, rate(vllm_request_duration_seconds_bucket[5m]))"
+            "expr": "histogram_quantile(0.95, sum(rate(vllm:e2e_request_latency_seconds_bucket[5m])) by (le))"
           }
         ]
       },
@@ -214,7 +247,7 @@ services:
         "title": "GPU Utilization",
         "targets": [
           {
-            "expr": "nvidia_gpu_utilization"
+            "expr": "DCGM_FI_DEV_GPU_UTIL"
           }
         ]
       }
@@ -225,32 +258,37 @@ services:
 
 ### Dashboard: Vector Database
 
+Qdrant's built-in `/metrics` endpoint exposes **gauges only** — collection and
+vector counts, memory usage, and cluster health. It publishes no per-request
+counters or latency histograms, so there is no QPS or p95 panel to build from
+it; query-level latency belongs in the application's own instrumentation.
+
 ```json
 {
   "dashboard": {
-    "title": "Qdrant Performance",
+    "title": "Qdrant State",
     "panels": [
       {
-        "title": "Search QPS",
+        "title": "Collections",
         "targets": [
           {
-            "expr": "rate(qdrant_search_requests_total[1m])"
+            "expr": "collections_total"
           }
         ]
       },
       {
-        "title": "Search Latency (p95)",
+        "title": "Vectors Stored",
         "targets": [
           {
-            "expr": "histogram_quantile(0.95, rate(qdrant_search_duration_seconds_bucket[5m]))"
+            "expr": "collections_vector_total"
           }
         ]
       },
       {
-        "title": "Vector Count",
+        "title": "Resident Memory",
         "targets": [
           {
-            "expr": "qdrant_vectors_total"
+            "expr": "memory_resident_bytes"
           }
         ]
       }
@@ -266,25 +304,71 @@ services:
 ```yaml
 services:
   loki:
-    image: grafana/loki:latest
+    image: grafana/loki:2.9.8   # pin the LTS; 3.x changed config defaults
     container_name: ai-engineering-curriculum-loki
     ports:
       - "3100:3100"
-    command: -config.file=/etc/loki/local-config.yaml
     volumes:
-      - ./monitoring/loki:/etc/loki
+      # Mount the config as a single file — a directory mount over /etc/loki
+      # hides the image's default local-config.yaml and Loki aborts on startup
+      - ./monitoring/loki/local-config.yaml:/etc/loki/local-config.yaml:ro
+      - ./monitoring/loki/data:/loki
     networks:
       - ai-engineering-curriculum-net
 
   promtail:
-    image: grafana/promtail:latest
+    image: grafana/promtail:2.9.8   # match the Loki LTS; Promtail is in LTS maintenance — new deployments use Grafana Alloy
     container_name: ai-engineering-curriculum-promtail
     volumes:
       - /var/log:/var/log:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro   # docker_sd needs it
       - ./monitoring/promtail/config.yml:/etc/promtail/config.yml:ro
     command: -config.file=/etc/promtail/config.yml
     networks:
       - ai-engineering-curriculum-net
+```
+
+### Loki Config
+
+This is the image's shipped default `local-config.yaml`, copied into the repo
+with one deliberate fix: the default `ruler.alertmanager_url` points at
+`localhost:9093`, and inside the container localhost is the container itself —
+the compose service name is what actually routes the ruler's alerts.
+
+```yaml
+# monitoring/loki/local-config.yaml — the grafana/loki:2.9.8 default,
+# with the ruler's alertmanager_url pointed at the compose service name
+auth_enabled: false
+
+server:
+  http_listen_port: 3100
+
+common:
+  path_prefix: /loki
+  storage:
+    filesystem:
+      chunks_directory: /loki/chunks
+      rules_directory: /loki/rules
+  replication_factor: 1
+  ring:
+    kvstore:
+      store: inmemory
+
+schema_config:
+  configs:
+    - from: 2020-10-24
+      store: boltdb-shipper
+      object_store: filesystem
+      schema: v11
+      index:
+        prefix: index_
+        period: 24h
+
+ruler:
+  alertmanager_url: http://alertmanager:9093
+
+analytics:
+  reporting_enabled: false
 ```
 
 ### Promtail Config
@@ -315,20 +399,50 @@ scrape_configs:
 ```yaml
 services:
   tempo:
-    image: grafana/tempo:latest
+    image: grafana/tempo:latest   # pin a released tag for reproducible deploys
     container_name: ai-engineering-curriculum-tempo
     ports:
-      - "3200:3200"  # Jaeger UI
+      - "3200:3200"  # HTTP API + TraceQL UI
       - "4317:4317"  # OTLP gRPC
       - "4318:4318"  # OTLP HTTP
-    command:
-      - "-storage.trace.backend=local"
-      - "-storage.trace.local.path=/tmp"
-      - "-auth.enabled=false"
+    # The legacy -storage.trace.* flags no longer configure Tempo; point it
+    # at a config file instead
+    command: "-target=all -config.file=/etc/tempo/tempo.yaml"
     volumes:
-      - ./monitoring/tempo/data:/tmp
+      - ./monitoring/tempo/tempo.yaml:/etc/tempo/tempo.yaml:ro
+      - ./monitoring/tempo/data:/var/tempo
     networks:
       - ai-engineering-curriculum-net
+```
+
+The receiver endpoints in Tempo's defaults bind to localhost, and inside the
+container localhost is the container itself — bind `0.0.0.0` or no other
+container can reach the OTLP ports:
+
+```yaml
+# monitoring/tempo/tempo.yaml
+server:
+  http_listen_port: 3200
+
+distributor:
+  receivers:
+    otlp:
+      protocols:
+        grpc:
+          endpoint: "0.0.0.0:4317"
+        http:
+          endpoint: "0.0.0.0:4318"
+
+storage:
+  trace:
+    backend: local
+    wal:
+      path: /var/tempo/wal
+    local:
+      path: /var/tempo/blocks
+
+usage_report:
+  reporting_enabled: false
 ```
 
 ### OpenTelemetry for Python Agents
@@ -373,18 +487,25 @@ def run_agent_with_tracing():
 
 ```python
 # agent_exporter.py
+import time
+
 from prometheus_client import Counter, Histogram, Gauge, start_http_server
 
-# Metrics
-agent_requests = Counter('agent_requests_total', 'Total agent requests', ['agent_type'])
+# Metrics — pass Counter names WITHOUT the _total suffix; the client library
+# strips it if given and appends it automatically when the series is exposed
+agent_requests = Counter('agent_requests', 'Total agent requests', ['agent_type'])
 agent_duration = Histogram('agent_duration_seconds', 'Agent execution duration')
-agent_errors = Counter('agent_errors_total', 'Agent errors', ['error_type'])
+agent_errors = Counter('agent_errors', 'Agent errors', ['error_type'])
 active_agents = Gauge('active_agents', 'Currently active agents')
 
 # Instrument agent
 class InstrumentedAgent:
     def __init__(self, agent_type):
         self.agent_type = agent_type
+
+    def _execute(self, query):
+        # Replace with your agent loop (tool calls, LLM requests, ...)
+        return f"stub result for: {query}"
 
     def run(self, query):
         active_agents.inc()
@@ -400,9 +521,29 @@ class InstrumentedAgent:
             finally:
                 active_agents.dec()
 
-# Start exporter
+# Run the exporter
 if __name__ == "__main__":
+    # start_http_server serves /metrics on port 8000 in a daemon thread
     start_http_server(8000)
+    # One warmup run so the series exist before the first scrape
+    InstrumentedAgent("react").run("warmup query")
+    # Keep the process alive — only the metrics server runs in a thread
+    while True:
+        time.sleep(60)
+```
+
+### GPU Metrics Exporter
+
+GPU metrics come from NVIDIA's [dcgm-exporter](https://github.com/NVIDIA/dcgm-exporter).
+It listens on `:9400` by default and publishes one series per counter from its
+default counter set — including `DCGM_FI_DEV_GPU_UTIL` (GPU utilization),
+`DCGM_FI_DEV_FB_USED` and `DCGM_FI_DEV_FB_FREE` (framebuffer memory):
+
+```bash
+docker run -d --restart unless-stopped \
+  --gpus all --cap-add SYS_ADMIN \
+  -p 9400:9400 \
+  nvcr.io/nvidia/k8s/dcgm-exporter:latest   # pin a released tag for reproducible deploys
 ```
 
 ## K3s Monitoring Stack
@@ -457,13 +598,15 @@ kubeStateMetrics:
 ### Prometheus Alerts
 
 ```yaml
-# monitoring/alerts.yml
+# monitoring/prometheus/alerts.yml — mounted into the prometheus container
+# and loaded via rule_files in prometheus.yml
 groups:
   - name: agent_alerts
     interval: 30s
     rules:
+      # agent_errors_total — the exposed series name (the client appends _total)
       - alert: HighErrorRate
-        expr: rate(agent_errors_total[5m]) > 0.1
+        expr: sum(rate(agent_errors_total[5m])) > 0.1
         for: 5m
         labels:
           severity: warning
@@ -481,41 +624,39 @@ groups:
   - name: vector_db_alerts
     interval: 30s
     rules:
-      - alert: SlowSearch
-        expr: histogram_quantile(0.95, rate(qdrant_search_duration_seconds_bucket[5m])) > 1
+      # Qdrant /metrics publishes no latency histograms; alert on replica health
+      - alert: QdrantDeadReplicas
+        expr: collection_dead_replicas > 0
         for: 5m
         labels:
           severity: warning
         annotations:
-          summary: "Vector search is slow"
+          summary: "Qdrant collection has dead replicas"
 
   - name: gpu_alerts
     interval: 15s
     rules:
       - alert: GPUOutOfMemory
-        expr: nvidia_gpu_memory_utilization > 0.95
+        expr: DCGM_FI_DEV_FB_USED / (DCGM_FI_DEV_FB_USED + DCGM_FI_DEV_FB_FREE) > 0.95
         for: 5m
         labels:
           severity: warning
         annotations:
-          summary: "GPU is running out of memory"
+          summary: "GPU framebuffer memory is running out"
 ```
 
 ## Quick Start
 
 ```bash
-# Clone configs
-git clone https://github.com/ai-engineering-curriculum/monitoring.git
-cd monitoring
-
-# Deploy all services
-docker-compose up -d
+# From the repo root, after merging the services and configs above
+docker compose up -d
 
 # Access dashboards
-# Grafana: http://192.168.1.100:3000
-# Prometheus: http://192.168.1.100:9090
-# Tempo: http://192.168.1.100:3200
-# Loki: http://192.168.1.100:3100
+# Grafana:            http://192.168.1.100:3000
+# Prometheus:         http://192.168.1.100:9090
+# Alertmanager:       http://192.168.1.100:9093
+# Tempo (TraceQL UI): http://192.168.1.100:3200
+# Loki:               http://192.168.1.100:3100
 ```
 
 ---
@@ -526,6 +667,16 @@ docker-compose up -d
 
 - [1502: Model Drift Detection](1502-Model-Drift-Detection.md)
 - [1503: LLM Observability](1503-LLM-Observability.md)
+
+### External References
+
+- [Prometheus configuration reference](https://prometheus.io/docs/prometheus/latest/configuration/configuration/)
+- [Loki 2.9 documentation](https://grafana.com/docs/loki/v2.9.x/)
+- [Tempo documentation](https://grafana.com/docs/tempo/latest/)
+- [dcgm-exporter](https://github.com/NVIDIA/dcgm-exporter)
+- [kube-prometheus-stack](https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack)
+- [Ollama metrics feature request](https://github.com/ollama/ollama/issues/3144)
+- [Qdrant monitoring guide](https://qdrant.tech/documentation/guides/monitoring/)
 
 ---
 
