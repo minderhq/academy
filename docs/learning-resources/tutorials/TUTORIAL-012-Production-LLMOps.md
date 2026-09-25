@@ -1,14 +1,29 @@
 ---
 Document ID: TUTORIAL-012
 Title: "TUTORIAL-012: Production LLMOps"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-25
 Status: Complete
-Difficulty: Intermediate
+Difficulty: Advanced
 ---
 
 # TUTORIAL-012: Production LLMOps
 
-## Overview
+## Table of Contents
+
+- [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
+- [Part 1: Production Architecture](#part-1-production-architecture)
+- [Part 2: Load Balancing](#part-2-load-balancing)
+- [Part 3: Monitoring and Observability](#part-3-monitoring-and-observability)
+- [Part 4: Model Management](#part-4-model-management)
+- [Part 5: Cost Optimization](#part-5-cost-optimization)
+- [Exercises](#exercises)
+- [References](#references)
+- [Next Steps](#next-steps)
+
+---
+
+## Abstract
 
 This tutorial covers production-grade LLMOps including deployment, scaling, monitoring, and maintenance of LLM systems.
 
@@ -37,6 +52,17 @@ After this tutorial, you will:
 ---
 
 ## Part 1: Production Architecture
+
+### Installation
+
+```bash
+pip install prometheus-client httpx numpy
+```
+
+Part 3 needs prometheus-client (the metrics library) and httpx (the
+async HTTP client), Parts 4-5 numpy. Parts 1-2 are pure configuration
+(Docker Compose, nginx, Kubernetes) - nothing to install beyond the
+Docker toolchain itself.
 
 ### Reference Architecture
 
@@ -108,27 +134,33 @@ graph TB
 
 services:
   # vLLM inference server
+  # deploy.replicas is a Swarm-only field - plain compose ignores it,
+  # and a fixed container_name could not name 3 replicas anyway.
+  # Scale instead with `docker compose up --scale vllm=3` (no fixed
+  # host port: replicas would all try to bind 8000 on the host, and
+  # nginx reaches them over the compose network)
   vllm:
     image: vllm/vllm-openai:latest
-    container_name: vllm-server
     deploy:
-      replicas: 3
       resources:
         reservations:
           devices:
             - driver: nvidia
               count: 1
               capabilities: [gpu]
-    environment:
-      - MODEL_NAME=mistralai/Mistral-7B-Instruct-v0.2
-      - QUANTIZATION=awq
-      - TENSOR_PARALLEL_SIZE=1
-      - MAX_MODEL_LEN=4096
-      - GPU_MEMORY_UTILIZATION=0.9
-    ports:
-      - "8000:8000"
+    # the vLLM server takes its configuration as CLI arguments - it
+    # reads none of the MODEL_NAME-style env vars, so pass them here.
+    # The repo must be the AWQ-quantized checkpoint: --quantization
+    # awq on the fp16 repo fails at load time
+    command: >
+      --model TheBloke/Mistral-7B-Instruct-v0.2-AWQ
+      --quantization awq
+      --max-model-len 4096
+      --gpu-memory-utilization 0.9
+    expose:
+      - "8000"
     volumes:
-      - ./models:/models
+      - ./models:/root/.cache/huggingface  # persist the HF download cache
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
       interval: 30s
@@ -218,12 +250,15 @@ http {
         # random: Random selection
         least_conn;
 
-        server vllm-1:8000 weight=3 max_fails=3 fail_timeout=30s;
-        server vllm-2:8000 weight=3 max_fails=3 fail_timeout=30s;
-        server vllm-3:8000 weight=2 max_fails=3 fail_timeout=30s;
-
-        # Health check
-        check interval=3000 rise=2 fall=3 timeout=1000;
+        # vllm is the compose service name: Docker's embedded DNS
+        # returns one A record per replica and nginx round-robins
+        # across every resolved address (least_conn still picks among
+        # them; run `nginx -s reload` after scaling so new replicas
+        # join). max_fails/fail_timeout below are stock passive
+        # health checks - the active `check` directive needs the
+        # third-party nginx_upstream_check_module and fails nginx -t
+        # on a vanilla build
+        server vllm:8000 max_fails=3 fail_timeout=30s;
     }
 
     # Rate limiting
@@ -244,9 +279,9 @@ http {
         ssl_certificate /etc/nginx/ssl/cert.pem;
         ssl_certificate_key /etc/nginx/ssl/key.pem;
 
-        # Enable request queuing
-        proxy_queue on;
-        proxy_queue_limit 100;
+        # There is no proxy_queue directive in stock nginx (the old
+        # proxy_queue on / proxy_queue_limit lines fail nginx -t) -
+        # limit_req's burst below is the request queue
 
         location /v1/chat/completions {
             # Apply rate limiting
@@ -288,7 +323,9 @@ kind: ConfigMap
 metadata:
   name: vllm-config
 data:
-  MODEL_NAME: "mistralai/Mistral-7B-Instruct-v0.2"
+  # AWQ-quantized checkpoint - --quantization awq on the fp16 repo
+  # fails at load time
+  MODEL_NAME: "TheBloke/Mistral-7B-Instruct-v0.2-AWQ"
   QUANTIZATION: "awq"
   MAX_MODEL_LEN: "4096"
 ---
@@ -322,6 +359,23 @@ spec:
             configMapKeyRef:
               name: vllm-config
               key: QUANTIZATION
+        - name: MAX_MODEL_LEN
+          valueFrom:
+            configMapKeyRef:
+              name: vllm-config
+              key: MAX_MODEL_LEN
+        # the vLLM server reads none of these env vars itself - it is
+        # configured through CLI arguments, so expand them here
+        # ($(VAR) substitution from the container env is native K8s)
+        args:
+        - --model
+        - $(MODEL_NAME)
+        - --quantization
+        - $(QUANTIZATION)
+        - --max-model-len
+        - $(MAX_MODEL_LEN)
+        - --gpu-memory-utilization
+        - "0.9"
         resources:
           requests:
             nvidia.com/gpu: 1
@@ -406,6 +460,7 @@ spec:
 
 ```python
 from prometheus_client import Counter, Histogram, Gauge, start_http_server
+import httpx
 import time
 
 # Define metrics
@@ -484,7 +539,7 @@ class MonitoredLLMClient:
                 status = "error"
                 response.raise_for_status()
 
-        except Exception as e:
+        except Exception:
             status = "error"
             raise
         finally:
@@ -502,11 +557,19 @@ class MonitoredLLMClient:
 
             active_requests.labels(model=self.model).dec()
 
-# Start metrics server
-start_http_server(8000)
+# Start the metrics server on 9100 - port 8000 is already the vLLM
+# servers' port in this stack, and binding it a second time fails
+# with EADDRINUSE
+start_http_server(9100)
 ```
 
 ### Custom Grafana Dashboard
+
+The dashboard below is plain JSON (JSON has no comment syntax, so the
+notes live here). Watch the P95/P99 expressions: they wrap
+`histogram_quantile` in `rate()` over the `_bucket` series - a raw
+histogram metric is a running cumulative count, not a distribution,
+and quantiles computed over it directly are meaningless.
 
 ```json
 {
@@ -528,8 +591,6 @@ start_http_server(8000)
         "type": "graph",
         "targets": [
           {
-            # histogram_quantile needs rate() over the _bucket series:
-            # a raw histogram is cumulative counts, not a distribution
             "expr": "histogram_quantile(0.95, rate(llm_request_duration_seconds_bucket[5m]))",
             "legendFormat": "P95 - {{model}}"
           },
@@ -593,6 +654,8 @@ start_http_server(8000)
 ```python
 from enum import Enum
 from typing import Dict
+import hashlib
+import time
 import numpy as np
 
 class RolloutStrategy(Enum):
@@ -681,11 +744,28 @@ class ModelManager:
 
             if i < steps:
                 time.sleep(step_duration)
+
+# Usage (duration_hours=0 makes the steps print instantly instead of
+# sleeping duration/steps between them)
+manager = ModelManager()
+manager.register_model("mistral", "v1", "http://vllm:8000")
+manager.register_model("mistral", "v2", "http://vllm-v2:8000")
+
+manager.gradual_rollout("mistral:v2", "mistral:v1", steps=3, duration_hours=0)
+
+# Expected Output:
+# Step 0: mistral:v2 at 0.0%
+# Step 1: mistral:v2 at 33.3%
+# Step 2: mistral:v2 at 66.7%
+# Step 3: mistral:v2 at 100.0%
 ```
 
 ### A/B Testing Framework
 
 ```python
+# time/numpy/Dict come from the Model Rollout header above (this
+# tutorial's blocks run top-down)
+
 class ABTestFramework:
     """A/B test different model versions"""
 
@@ -697,7 +777,7 @@ class ABTestFramework:
         self,
         name: str,
         models: list,
-        split: str = "even"  # even, custom
+        split = "even"  # "even" or a {model: fraction} dict
     ):
         """Create A/B test experiment"""
         if split == "even":
@@ -728,17 +808,24 @@ class ABTestFramework:
         })
 
     def get_results(self, experiment: str) -> Dict:
-        """Get A/B test results"""
+        """Get A/B test results
+
+        Averages every recorded metric - pick_winner can then rank
+        by any of them, not just latency.
+        """
         exp_metrics = self.metrics[experiment]
 
         results = {}
         for model, metrics in exp_metrics.items():
-            # Calculate averages
-            values = [m["value"] for m in metrics if m["metric"] == "latency"]
+            by_metric = {}
+            for record in metrics:
+                by_metric.setdefault(record["metric"], []).append(record["value"])
+
             results[model] = {
-                "avg_latency": np.mean(values) if values else 0,
-                "sample_count": len(metrics)
+                f"avg_{name}": float(np.mean(values)) if values else 0.0
+                for name, values in by_metric.items()
             }
+            results[model]["sample_count"] = len(metrics)
 
         return results
 
@@ -757,6 +844,22 @@ class ABTestFramework:
             winner = max(results.items(), key=lambda x: x[1][f"avg_{metric}"])
 
         return winner[0]
+
+# Usage
+ab = ABTestFramework()
+ab.create_experiment("latency-test", ["mistral-7b-v1", "mistral-7b-v2"])
+
+ab.record_metric("latency-test", "mistral-7b-v1", "latency", 1.0)
+ab.record_metric("latency-test", "mistral-7b-v1", "latency", 1.5)
+ab.record_metric("latency-test", "mistral-7b-v2", "latency", 0.5)
+ab.record_metric("latency-test", "mistral-7b-v2", "latency", 1.0)
+
+print(ab.get_results("latency-test"))
+print(f"Winner: {ab.pick_winner('latency-test')}")
+
+# Expected Output:
+# {'mistral-7b-v1': {'avg_latency': 1.25, 'sample_count': 2}, 'mistral-7b-v2': {'avg_latency': 0.75, 'sample_count': 2}}
+# Winner: mistral-7b-v2
 ```
 
 ---
@@ -766,6 +869,9 @@ class ABTestFramework:
 ### Token Budget Management
 
 ```python
+# Dict comes from Part 4's import header (this tutorial's blocks run
+# top-down)
+
 class TokenBudget:
     """Manage token usage and costs"""
 
@@ -774,7 +880,8 @@ class TokenBudget:
         "gpt-4": {"input": 30.0, "output": 60.0},
         "gpt-3.5-turbo": {"input": 0.5, "output": 1.5},
         "claude-3-opus": {"input": 15.0, "output": 75.0},
-        "mistral-7b": {"input": 0.1, "output": 0.1},  # Self-hosted
+        # Self-hosted - amortized infra cost per 1M tokens, not API pricing
+        "mistral-7b": {"input": 0.1, "output": 0.1},
     }
 
     def __init__(self, monthly_budget: float):
@@ -796,7 +903,11 @@ class TokenBudget:
                 "cost": 0.0
             }
 
-        pricing = self.PRICING.get(model, {"input": 0.1, "output": 0.1})
+        # fail loudly instead of silently pricing unknown models at
+        # mistral-7b's rate and under/over-reporting real spend
+        if model not in self.PRICING:
+            raise KeyError(f"No pricing entry for {model!r} - add it to TokenBudget.PRICING")
+        pricing = self.PRICING[model]
 
         input_cost = (input_tokens / 1e6) * pricing["input"]
         output_cost = (output_tokens / 1e6) * pricing["output"]
@@ -831,6 +942,20 @@ class TokenBudget:
             "budget_remaining": self.monthly_budget - total_cost,
             "by_model": self.usage
         }
+
+# Usage
+budget = TokenBudget(monthly_budget=50.0)
+
+budget.track_usage("gpt-4", input_tokens=100_000, output_tokens=20_000)
+budget.track_usage("gpt-3.5-turbo", input_tokens=500_000, output_tokens=100_000)
+
+report = budget.get_usage_report()
+print(f"Total cost: ${report['total_cost']:.2f}")
+print(f"Budget remaining: ${report['budget_remaining']:.2f}")
+
+# Expected Output:
+# Total cost: $4.60
+# Budget remaining: $45.40
 ```
 
 ---
@@ -855,4 +980,19 @@ class TokenBudget:
 
 ---
 
-**Next Steps:** LAB-009: Production Deployment or EXP_1404: vLLM Tuning
+## References
+
+### Related ai-engineering-curriculum Documents
+
+- [TUTORIAL-004: Monitoring](TUTORIAL-004-Monitoring.md)
+- [TUTORIAL-005: Production Deployment](TUTORIAL-005-Production-Deployment.md)
+- [LAB-009: Production Deployment](../labs/LAB-009-Production-Deployment.md)
+- [1402: vLLM and TGI](../../phases/phase1-infra/1400-llmops/1402-vLLM-and-TGI.md)
+- [1501: Monitoring and Observability](../../phases/phase1-infra/1500-monitoring/1501-Monitoring-and-Observability.md)
+
+---
+
+## Next Steps
+
+- Hands-on: **[1404: vLLM Production Deployment](../../phases/phase1-infra/1400-llmops/guides/1404-vLLM-Production-Deployment.md)**
+- Practice: **[LAB-009: Production Deployment](../labs/LAB-009-Production-Deployment.md)**
