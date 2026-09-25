@@ -3,7 +3,7 @@ Document ID: 1202
 Title: GPU Passthrough (IOMMU/VFIO)
 Phase: 1
 Module: 1200
-Last Updated: 2026-09-24
+Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -180,7 +180,7 @@ A group containing **only the GPU and its own audio function** is ideal (this is
 | Group contents | Verdict |
 |----------------|---------|
 | GPU + GPU audio only | Pass through both functions together |
-| GPU + unrelated PCI devices (USB controller, NIC...) | Risky: passing the group's other devices too, or enabling ACS override (Section 9.3) |
+| GPU + unrelated PCI devices (USB controller, NIC...) | Risky: passing the group's other devices too, or enabling ACS override (Section 9.2) |
 | GPU shares a group with the root port itself | Common on consumer boards with few slots; may still pass if nothing else is in the group |
 
 Note: the GPU's audio function must be passed through alongside the GPU or HDMI audio inside the VM breaks.
@@ -395,12 +395,14 @@ The original build passed an RTX 2080 Ti through to a K3s worker VM from an Inte
 
 ```bash
 apt install bolt
-boltctl enroll              # authorize + store the device
-boltctl configure --auto 0  # auto-authorize on every plug-in
-boltctl list                # status: authorized, stored: yes
+
+# Enroll the device once - find its UUID first:
+boltctl list
+boltctl enroll --policy auto <UUID>   # store + auto-authorize on every plug-in
+boltctl list                          # status: authorized, stored: yes
 ```
 
-3. Bind by device ID early (`vfio-pci.ids=10de:1e04,10de:10f8` in the GRUB line). The TB3 controller tends to share its IOMMU group with the host bridge, which is also why the build grudgingly used `pcie_acs_override` - Section 9.2's last resort - after confirming nothing else essential lived in the group.
+3. Bind by device ID early (`vfio-pci.ids=10de:1e04,10de:10f7` in the GRUB line). The TB3 controller tends to share its IOMMU group with the host bridge, which is also why the build grudgingly used `pcie_acs_override` - Section 9.2's last resort - after confirming nothing else essential lived in the group.
 
 **Bandwidth reality check:**
 
@@ -436,19 +438,19 @@ Keeping model weights resident in VRAM and batching inference made the penalty n
 
 ## Next Steps
 
-- Continue with: **[1203: Nvidia Kernel Module](./1203-Nvidia-Kernel-Module.md)**
+- Continue with: **[1203: NVIDIA Kernel Module Management](./1203-Nvidia-Kernel-Module.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 
 ---
 
 **Related Documents:**
-- [1201: Proxmox Hypervisor](./1201-Proxmox-Hypervisor-SOP.md)
-- [1203: Nvidia Kernel Module](./1203-Nvidia-Kernel-Module.md)
+- [1201: Proxmox Hypervisor Standard Operating Procedures](./1201-Proxmox-Hypervisor-SOP.md)
+- [1203: NVIDIA Kernel Module Management](./1203-Nvidia-Kernel-Module.md)
 - [1204: Multi-GPU Setup](./1204-Multi-GPU-Setup.md)
 
 ---
 
 **Document ID:** 1202
-**Last Updated:** 2026-09-24
+**Last Updated:** 2026-09-25
 **Status:** Complete
 **Related Documents:** [1201, 1203, 1204]
