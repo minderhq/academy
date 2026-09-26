@@ -3,7 +3,7 @@ Document ID: 2203
 Title: CUDA Kernel Programming and GPU Architecture
 Phase: 2
 Module: 2200
-Last Updated: 2026-09-24
+Last Updated: 2026-09-26
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 4 hours
@@ -44,15 +44,15 @@ After completing this lesson, you will be able to:
 ---
 
 ## Abstract
-CUDA (Compute Unified Device Architecture) is NVIDIA's parallel computing platform. Understanding CUDA kernel programming is essential for writing optimized deep learning code that leverages your GPU's CUDA cores.
+CUDA (Compute Unified Device Architecture) is NVIDIA's parallel computing platform. Understanding CUDA kernel programming is essential for writing optimized deep learning code - the grid/block/warp model and the memory hierarchy decide how fast your GPU actually runs.
 
 ## GPU Architecture Overview
 
-### 11GB-class GPU Specifications
+### RTX 2080 Ti (TU102) Specifications
 ```text
 CUDA Architecture:   Turing TU102
-CUDA Cores:         4352 (FP32)
-Tensor Cores:       544 (for mixed precision)
+CUDA Cores:         4352 (FP32, 64 per SM x 68 SMs)
+Tensor Cores:       544 (2nd generation, 8 per SM)
 VRAM:               11GB GDDR6
 Memory Bandwidth:   616 GB/s
 Base Clock:         1350 MHz
@@ -64,20 +64,19 @@ L2 Cache:           5.5 MB
 ### Hardware Organization
 ```text
 ┌─────────────────────────────────────────────────────────┐
-│                     GPU (TU102)                         │
+│                     GPU (TU102)                          │
 ├─────────────────────────────────────────────────────────┤
 │                                                          │
+│  6 GPCs x 6 TPCs, 2 SMs per TPC = 72 SMs on the die    │
+│  (the RTX 2080 Ti enables 68 of them)                   │
+│                                                          │
 │  ┌────────────┐  ┌────────────┐  ┌────────────┐        │
-│  │  GPC 0     │  │  GPC 1     │  │  GPC ...   │  GPCs   │
-│  │  (6 SMs)   │  │  (6 SMs)   │  │            │        │
+│  │  GPC 0     │  │  GPC 1     │  │  GPC ...   │  GPCs  │
+│  │ (12 SMs)   │  │ (12 SMs)   │  │            │        │
 │  └────────────┘  └────────────┘  └────────────┘        │
 │                                                          │
-│  Each GPC (Graphics Processing Cluster):                │
-│  ┌─────────────────────────────────────────────────┐   │
-│  │  SM 0  │  SM 1  │  SM 2  │  SM 3  │  SM 4  │ SM5│   │
-│  │ 64 FP32│ 64 FP32│ 64 FP32│ 64 FP32│ 64 FP32│...│   │
-│  │ 8 Tensor│ 8 Tensor│ ... │                            │
-│  └─────────────────────────────────────────────────┘   │
+│  Each SM: 64 FP32 cores, 8 Tensor cores,                │
+│           4 texture units, 96KB unified L1/shared       │
 │                                                          │
 │  Memory Controller → GDDR6 (11GB @ 14 Gbps)             │
 │                                                          │
@@ -87,13 +86,14 @@ L2 Cache:           5.5 MB
 ### SM (Streaming Multiprocessor)
 ```text
 Each SM contains:
-- 64 CUDA cores (FP32 units)
-- 8 Tensor cores (for mixed precision)
+- 64 FP32 CUDA cores + 64 INT32 cores
+- 8 Tensor cores (2nd generation)
 - 4 texture units
-- 1 register file (64K × 32-bit)
-- Shared memory (varies, ~64-96KB)
-- L1 cache
-- Warp scheduler
+- 1 register file (64K x 32-bit = 256KB; up to 255
+  registers per thread)
+- 96KB unified L1 + shared memory - the shared/L1 split
+  is configurable (e.g. 64KB shared + 32KB L1, or reverse)
+- 4 warp schedulers (one per 16-core processing block)
 ```
 
 ## CUDA Execution Model
@@ -119,21 +119,24 @@ Each SM contains:
 
 ### Warps
 ```text
-A Warp = 32 threads executing in lockstep
+A Warp = 32 threads - the unit the SM schedules
 
-All threads in warp execute SAME instruction
-If threads diverge (if/else), they serialize!
+Warps execute one common instruction at a time. Pre-Volta
+hardware ran the whole warp in strict lockstep; since Volta
+(compute capability 7.0+), Independent Thread Scheduling gives
+every thread its own program counter. The warp still issues
+one instruction at a time, so divergent paths serialize:
 
-Example:
 if (threadIdx.x < 16) {
     // Threads 0-15 execute this
-    // Threads 16-31 are idle
+    // Threads 16-31 are disabled here
 } else {
     // Threads 16-31 execute this
-    // Threads 0-15 are idle
+    // Threads 0-15 are disabled here
 }
 
-Performance penalty for warp divergence!
+Performance penalty for warp divergence - the two paths
+run sequentially!
 ```
 
 ## CUDA Kernel Programming
@@ -154,8 +157,11 @@ __global__ void vector_add(float* a, float* b, float* c, int n) {
 int main() {
     int n = 1000000;
     int block_size = 256;
+    // Ceiling division: enough blocks to cover all n elements
     int grid_size = (n + block_size - 1) / block_size;
 
+    // d_a, d_b, d_c: device pointers from cudaMalloc(),
+    // with inputs copied over via cudaMemcpy(..., HostToDevice)
     vector_add<<<grid_size, block_size>>>(d_a, d_b, d_c, n);
     cudaDeviceSynchronize();
 }
@@ -172,7 +178,7 @@ my_kernel<<<dim3(2, 2), dim3(16, 16), 0, 0>>>(...);
 // Total threads: 4 × 256 = 1024
 
 // shared_mem: Dynamic shared memory (bytes)
-// stream: CUDA stream for async execution
+// stream: CUDA stream for async execution (0 = default stream)
 ```
 
 ## Memory Hierarchy
@@ -184,19 +190,19 @@ my_kernel<<<dim3(2, 2), dim3(16, 16), 0, 0>>>(...);
 ├─────────────────────────────────────────────────────────┤
 │                                                          │
 │  Registers (fastest)                                    │
-│  └─ Per-thread, limited (~64 per thread)               │
+│  └─ Per-thread, up to 255 per thread                    │
 │                                                          │
 │  Shared Memory (fast, block-local)                      │
-│  └─ Per-block, ~64KB, programmable cache                │
+│  └─ Up to 64KB per block, programmable cache           │
 │                                                          │
-│  L1 Cache (fast, read-only)                             │
-│  └─ Per-SM, ~128KB                                      │
+│  L1 Cache (fast, per-SM)                                │
+│  └─ Shares the SM's unified 96KB pool with shared mem   │
 │                                                          │
-│  L2 Cache (medium, global)                              │
+│  L2 Cache (medium, GPU-wide)                            │
 │  └─ Per-GPU, ~5.5MB                                     │
 │                                                          │
 │  Global Memory (slow, main GPU memory)                  │
-│  └─ 11GB GDDR6, ~400-600 cycle latency                 │
+│  └─ 11GB GDDR6, ~400-600 cycle latency                  │
 │                                                          │
 └─────────────────────────────────────────────────────────┘
 ```
@@ -220,6 +226,8 @@ __global__ void strided_read(float* data, int stride) {
 
 ### Shared Memory Usage
 ```cuda
+// Tiled matmul: launch with dim3(16, 16) blocks and a grid of
+// (N/16, N/16); requires N % 16 == 0 - no boundary checks below
 __global__ void matrix_multiply_shared(float* A, float* B, float* C, int N) {
     // Shared memory tiles
     __shared__ float tile_A[16][16];
@@ -272,6 +280,8 @@ __global__ void my_kernel_kernel(
 }
 
 torch::Tensor my_kernel_forward(torch::Tensor input) {
+    TORCH_CHECK(input.is_cuda() && input.is_contiguous(),
+                "expected a contiguous CUDA tensor");
     auto output = torch::zeros_like(input);
     int size = input.numel();
 
@@ -283,6 +293,8 @@ torch::Tensor my_kernel_forward(torch::Tensor input) {
         output.data_ptr<float>(),
         size
     );
+    // Production code: follow the launch with
+    // C10_CUDA_KERNEL_LAUNCH_CHECK() or cudaGetLastError()
 
     return output;
 }
@@ -297,12 +309,14 @@ PYBIND11_MODULE(TORCH_EXTENSION_NAME, m) {
 import torch
 from torch.utils.cpp_extension import load
 
-# Load custom CUDA kernel
+# Build and load the extension - the .cu file carries both the
+# kernel and the PYBIND11_MODULE binding; load() compiles it
+# with nvcc at first call
 custom_kernel = load(
     name='custom_kernel',
-    sources=['my_kernel.cpp', 'my_kernel.cu'],
+    sources=['my_kernel.cu'],
     extra_cuda_cflags=['-O3'],
-    verbose=True
+    verbose=True,
 )
 
 # Use the kernel
@@ -314,6 +328,10 @@ y = custom_kernel.forward(x)
 
 ### Matrix Multiply-Accumulate (WMMA)
 ```cuda
+// WMMA ops are warp-wide: a fragment is a matrix tile distributed
+// across all 32 threads of a warp, and every thread must execute
+// load_matrix_sync / mma_sync / store_matrix_sync with the same
+// arguments. One 16x16x16 tile per warp.
 #include <mma.h>
 using namespace nvcuda::wmma;
 
@@ -342,17 +360,20 @@ __global__ void tensor_core_mma(
 ```
 
 ### Tensor Core Requirements
-```yaml
+```text
 Requirements for Tensor Core usage:
-1. Data types: FP16, BF16, INT8, INT4
-2. Dimensions: Multiples of 16 (for mma.sync)
-3. Alignment: 32-byte aligned (128-bit)
-4. Architecture: Volta (Turing is Volta successor)
+1. Data types: FP16, INT8, INT4 (INT8/INT4 added with Turing;
+   BF16 support requires Ampere or newer)
+2. Dimensions: Multiples of 16 (the 16x16x16 wmma tile)
+3. Alignment: load/store pointers 256-bit (32-byte) aligned,
+   leading dimension (ldm) a multiple of 16
+4. Architecture: Volta or newer (Turing = 2nd generation)
 
-Performance:
-- FP16: 8x faster than FP32
-- INT8: 16x faster than FP32
-- Only for matrix operations!
+Performance, RTX 2080 Ti peak (dense):
+- FP16 Tensor: ~108 TFLOPS  ~ 8x the 13.4 TFLOPS FP32 rate
+- INT8 Tensor: ~215 TOPS    ~ 16x FP32
+- INT4 Tensor: ~430 TOPS
+- Only for matrix multiply-accumulate!
 ```
 
 ## Optimization Techniques
@@ -362,7 +383,8 @@ Performance:
 __global__ void unrolled_kernel(float* data, int n) {
     int idx = blockIdx.x * blockDim.x + threadIdx.x;
 
-    // Manual loop unrolling (4x)
+    // A fixed trip count lets the compiler unroll; #pragma unroll
+    // makes that intent explicit even if it cannot prove the count
     #pragma unroll
     for (int i = 0; i < 4; ++i) {
         int pos = idx * 4 + i;
@@ -375,15 +397,26 @@ __global__ void unrolled_kernel(float* data, int n) {
 
 ### Memory Padding
 ```cuda
-// Avoid bank conflicts by padding
-// Shared memory has 32 banks
-// Access pattern: shared_memory[idx * 32] causes bank conflict!
+// Shared memory has 32 banks; successive 32-bit words land in
+// successive banks. A warp accessing a stride-32 pattern sends
+// all 32 lanes to the same bank - a 32-way bank conflict that
+// serializes into 32 separate accesses.
 
-__global__ void padded_kernel() {
-    __shared__ float shared[32][33];  // Pad to 33!
+// Bad: column writes into a plain [32][32] tile
+__global__ void column_write_bad() {
+    __shared__ float tile[32][32];
+    int idx = threadIdx.x;              // blockDim.x == 32
+    tile[idx][0] = idx;
+    // addresses idx*32 -> bank (idx*32) % 32 == 0 for EVERY lane
+}
+// 32-way bank conflict!
 
+// Good: pad each row to 33 floats
+__global__ void column_write_good() {
+    __shared__ float tile[32][33];      // pad to 33!
     int idx = threadIdx.x;
-    shared[idx][0] = idx;  // No bank conflict
+    tile[idx][0] = idx;
+    // addresses idx*33 -> banks (idx*33) % 32 == idx: all distinct
 }
 ```
 
@@ -391,12 +424,18 @@ __global__ void padded_kernel() {
 ```text
 Occupancy = Active Warps / Max Warps per SM
 
+Turing: an SM can hold up to 32 warps (1024 threads)
+
 Factors affecting occupancy:
-1. Registers per thread (reduce register usage)
-2. Shared memory per block (use less shared mem)
+1. Registers per thread (up to 255 - more registers means
+   fewer resident warps)
+2. Shared memory per block (up to 64KB - large tiles limit
+   how many blocks fit per SM)
 3. Block size (tune for optimal occupancy)
 
-Target: >50% occupancy for good performance
+Target: >50% occupancy for good performance - and measure:
+a memory-bound kernel can saturate bandwidth below 100%
+occupancy
 ```
 
 ## Debugging CUDA
@@ -439,13 +478,15 @@ cuda-gdb ./my_program
 # Profile kernel
 ncu --set full ./my_program
 
-# Analyze memory bandwidth
-ncu --metrics dram__throughput.avg.pct_of_peak \
-    --metrics l2_cache_hit_rate ./my_program
+# Analyze memory bandwidth and cache behavior (comma-separated
+# metric names; discover more with: ncu --query-metrics)
+ncu --metrics dram__throughput.avg.pct_of_peak_sustained_elapsed,lts__t_sector_hit_rate.pct \
+    ./my_program
 
 # Key metrics:
-# - Achieved Occupancy
-# - Memory Throughput
+# - Achieved Occupancy: sm__warps_active.avg.pct_of_peak_sustained_active
+# - DRAM Throughput:    dram__throughput.avg.pct_of_peak_sustained_elapsed
+# - L2 Hit Rate:        lts__t_sector_hit_rate.pct
 # - Warp Execution Efficiency
 ```
 
@@ -453,23 +494,31 @@ ncu --metrics dram__throughput.avg.pct_of_peak \
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related Documents
 
-- [2201: PyTorch Computational Graphs and Dynamic Execution](2201-PyTorch-Computational-Graphs.md)
-- [2202: TensorFlow XLA and Compiler Optimizations](2202-TensorFlow-XLA-Compilers.md)
+- [2201: PyTorch Computational Graphs and Dynamic Execution](./2201-PyTorch-Computational-Graphs.md)
+- [2202: TensorFlow XLA and Compiler Optimizations](./2202-TensorFlow-XLA-Compilers.md)
+- [1202: GPU Passthrough (IOMMU/VFIO)](../../phase1-infra/1200-virtualization/1202-TB3-UT3G-Passthrough.md)
+
+### External References
+
+- [CUDA C++ Programming Guide — NVIDIA](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html)
+- [NVIDIA Turing Architecture In-Depth — NVIDIA Developer Blog](https://developer.nvidia.com/blog/nvidia-turing-architecture-in-depth/)
+- [torch.utils.cpp_extension — PyTorch 2.14 documentation](https://docs.pytorch.org/docs/2.14/cpp_extension.html)
+- [Nsight Compute Profiling Guide — NVIDIA](https://docs.nvidia.com/nsight-compute/ProfilingGuide/index.html)
 
 ---
 
 ## Next Steps
 
 - Next Module: **[2300: Framework Engineering](../2300-framework-engineering/)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[2200: Frameworks - Quiz](./assessment/QUIZ.md)**
 
 ---
 
-**Related Documents:**
-- [1202: GPU Passthrough (IOMMU/VFIO)](../../phase1-infra/1200-virtualization/1202-TB3-UT3G-Passthrough.md)
-- [1203: Nvidia Kernel Module](../../phase1-infra/1200-virtualization/1203-Nvidia-Kernel-Module.md)
-- [2201: PyTorch Graphs](./2201-PyTorch-Computational-Graphs.md)
+**Related:**
+- [2102: Backpropagation and Automatic Differentiation](../2100-calculus/2102-Backpropagation-and-Derivatives.md)
+- [2201: PyTorch Computational Graphs and Dynamic Execution](./2201-PyTorch-Computational-Graphs.md)
+- [2202: TensorFlow XLA and Compiler Optimizations](./2202-TensorFlow-XLA-Compilers.md)
 
-**Experiment Template:** [EXP_2203: CUDA Kernels](../../../../experiments/EXP_2203_CUDA_KERNELS.md)
+**Experiment:** [EXP-2203: CUDA Kernels](../../../../experiments/EXP_2203_CUDA_KERNELS.md)
