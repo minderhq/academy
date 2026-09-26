@@ -276,8 +276,8 @@ metrics = {
 
 | Document | Description | Time | Difficulty |
 |----------|-------------|------|------------|
-| [2101: Tensor Algebra](./2100-calculus/2101-Tensor-Algebra.md) | Dimensions, dot products, einsum | 3h | Intermediate |
-| [2102: Backpropagation](./2100-calculus/2102-Backpropagation-and-Derivatives.md) | Automatic differentiation logic | 4h | Advanced |
+| [2101: Tensor Algebra](./2100-calculus/2101-Tensor-Algebra.md) | Dimensions, dot products, einsum | 4h | Intermediate |
+| [2102: Backpropagation](./2100-calculus/2102-Backpropagation-and-Derivatives.md) | Automatic differentiation logic | 4h | Intermediate |
 
 **What You'll Learn:**
 - Tensor operations and broadcasting
@@ -291,13 +291,13 @@ metrics = {
 - Visualize gradient flow
 - Debug backpropagation
 
-### [2200] Framework Engineering
+### [2200] Deep Learning Frameworks
 
 | Document | Description | Time | Difficulty |
 |----------|-------------|------|------------|
-| [2201: PyTorch Graphs](./2200-frameworks/2201-PyTorch-Computational-Graphs.md) | Dynamic vs static graphs | 3h | Intermediate |
-| [2202: TensorFlow XLA](./2200-frameworks/2202-TensorFlow-XLA-Compilers.md) | Optimizing graph performance | 3h | Advanced |
-| [2203: CUDA Kernels](./2200-frameworks/2203-CUDA-Kernel-Programming.md) | Python to 11GB-class GPU CUDA cores | 5h | Advanced |
+| [2201: PyTorch Graphs](./2200-frameworks/2201-PyTorch-Computational-Graphs.md) | Dynamic vs static graphs | 4h | Intermediate |
+| [2202: TensorFlow XLA](./2200-frameworks/2202-TensorFlow-XLA-Compilers.md) | Optimizing graph performance | 4h | Intermediate |
+| [2203: CUDA Kernels](./2200-frameworks/2203-CUDA-Kernel-Programming.md) | Python to 11GB-class GPU CUDA cores | 4h | Intermediate |
 
 **What You'll Learn:**
 - PyTorch dynamic computation graphs
@@ -311,13 +311,34 @@ metrics = {
 - Write CUDA kernel for matrix multiply
 - Profile GPU performance
 
+### [2300] Framework Engineering
+
+| Document | Description | Time | Difficulty |
+|----------|-------------|------|------------|
+| [2301: Framework Design Patterns](./2300-framework-engineering/2301-Framework-Design-Patterns.md) | Model abstraction, config management, plugins | 5h | Advanced |
+| [2302: Model Serving Architectures](./2300-framework-engineering/2302-Model-Serving-Architectures.md) | Batching, parallelism, load balancing | 5h | Advanced |
+| [2303: API Design for ML](./2300-framework-engineering/2303-API-Design-for-ML.md) | REST, streaming, error handling | 5h | Advanced |
+| [2304: Production Deployment](./2300-framework-engineering/2304-Production-Deployment-Patterns.md) | Blue-green, canary, rolling updates | 5h | Advanced |
+
+**What You'll Learn:**
+- Extensible ML framework design
+- Model serving architectures
+- Production ML API design
+- Zero-downtime deployment strategies
+
+**Hands-On Practice:**
+- Design a mini ML framework
+- Build a model serving pipeline
+- Create a clean ML API
+- Plan a zero-downtime rollout
+
 ### [2400] Pre-training
 
 | Document | Description | Time | Difficulty |
 |----------|-------------|------|------------|
-| [2401: Pre-training Fundamentals](./2400-pretraining/2401-Pre-training-Fundamentals.md) | Training from scratch basics | 4h | Intermediate |
-| [2402: Large-Scale Training](./2400-pretraining/2402-Large-Scale-Training.md) | Distributed training strategies | 4h | Advanced |
-| [2403: Evaluation Frameworks](./2400-pretraining/2403-Evaluation-Frameworks.md) | Metrics and benchmarks | 3h | Intermediate |
+| [2401: Pre-training Fundamentals](./2400-pretraining/2401-Pre-training-Fundamentals.md) | Training from scratch basics | 4h | Advanced |
+| [2402: Large-Scale Training](./2400-pretraining/2402-Large-Scale-Training.md) | Distributed training strategies | 6h | Advanced |
+| [2403: Evaluation Frameworks](./2400-pretraining/2403-Evaluation-Frameworks.md) | Metrics and benchmarks | 3h | Advanced |
 
 **What You'll Learn:**
 - Pre-training pipeline architecture
@@ -355,7 +376,8 @@ graph TD
     G --> I[2203: CUDA Kernels]
     H --> I
 
-    I --> J[2400: Pre-training]
+    I --> M[2300: Framework Engineering]
+    M --> J[2400: Pre-training]
     J --> K[Foundations Complete]
 
     style C fill:#e1f5fe
@@ -368,10 +390,11 @@ graph TD
 
 | Module | Reading | Practice | Total |
 |--------|---------|----------|-------|
-| 2100: Calculus | 7h | 8h | 15h |
-| 2200: Frameworks | 11h | 10h | 21h |
-| 2400: Pre-training | 11h | 8h | 19h |
-| **Total** | **29h** | **26h** | **55h** |
+| 2100: Calculus | 9h | 2-3h | 11-12h |
+| 2200: Frameworks | 13h | 4-6h | 17-19h |
+| 2300: Framework Engineering | 13.5h | 2.5h | 16h |
+| 2400: Pre-training | 12h | 22-26h | 34-38h |
+| **Total** | **47.5h** | **30.5-37.5h** | **78-85h** |
 
 ---
 
@@ -770,7 +793,7 @@ l2.backward()
 ---
 
 **Status:** ✅ Complete
-**Module Duration:** 55 hours (29 reading + 26 practice)
+**Module Duration:** 78-85 hours (47.5h reading + 30.5-37.5h practice)
 **Difficulty:** Intermediate
 **Last Updated:** 2026-02-05
 
