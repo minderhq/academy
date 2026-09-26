@@ -655,11 +655,11 @@ global:
 
 ### Hands-on Practice
 
-1. **[EXP_1101: WAN Uplink](../../case-study/experiments/EXP_1101_GPON.md)** (case study)
+1. **[EXP_1101: WAN Uplink](../../../experiments/EXP_1101_GPON.md)** (case study)
    - Configure the uplink modem in bridge mode
    - Verify ISP handoff and internet connectivity
 
-2. **[EXP_1103: Star Topology](../../case-study/experiments/EXP_1102_STAR_TOPOLOGY.md)** (case study)
+2. **[EXP_1102: Star Topology](../../../experiments/EXP_1102_STAR_TOPOLOGY.md)** (case study)
    - Build a star topology network
    - Enable jumbo frames
    - Benchmark network performance

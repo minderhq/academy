@@ -705,7 +705,7 @@ Each experiment corresponds to a documentation topic:
 
 | Phase | Experiment | Focus |
 |-------|-----------|-------|
-| Infrastructure | [EXP_1101_GPON.md](../case-study/experiments/EXP_1101_GPON.md) | Network setup (case study) |
+| Infrastructure | [EXP_1101_GPON.md](../../experiments/EXP_1101_GPON.md) | Network setup (case study) |
 | Attention | [EXP_3101_SELF_ATTENTION.md](../../experiments/EXP_3101_SELF_ATTENTION.md) | Self-attention |
 | Quantization | [EXP_4101_GGUF.md](../../experiments/EXP_4101_GGUF.md) | GGUF format |
 | Fine-tuning | [EXP_5101_LORA.md](../../experiments/EXP_5101_LORA.md) | LoRA training |

@@ -380,7 +380,7 @@ The original build ran a 16-port 2.5G managed switch through a small apartment w
 - [1103: Jumbo Frames and MTU](./1103-Jumbo-Frames-and-MTU.md)
 - [1201: Proxmox Hypervisor SOP](../1200-virtualization/1201-Proxmox-Hypervisor-SOP.md)
 
-**Case Study Experiment:** [EXP_1102: Star Topology and Network Performance Experiments](../../../case-study/experiments/EXP_1102_STAR_TOPOLOGY.md) - hands-on topology and throughput experiments from the original build
+**Case Study Experiment:** [EXP_1102: Star Topology and Network Performance Experiments](../../../../experiments/EXP_1102_STAR_TOPOLOGY.md) - hands-on topology and throughput experiments from the original build
 
 ---
 

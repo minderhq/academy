@@ -384,8 +384,8 @@ below are derived directly from the file tree.
 - [EXP_7401_AGENT_MEMORY](../../experiments/EXP_7401_AGENT_MEMORY.md)
 - [EXP_7501_PROMPT_INJECTION](../../experiments/EXP_7501_PROMPT_INJECTION.md)
 - [TEMPLATE](../../experiments/TEMPLATE.md)
-- [EXP_1101_GPON](../case-study/experiments/EXP_1101_GPON.md)
-- [EXP_1102_STAR_TOPOLOGY](../case-study/experiments/EXP_1102_STAR_TOPOLOGY.md)
+- [EXP_1101_GPON](../../experiments/EXP_1101_GPON.md)
+- [EXP_1102_STAR_TOPOLOGY](../../experiments/EXP_1102_STAR_TOPOLOGY.md)
 
 ---
 
@@ -495,9 +495,8 @@ build's written walkthroughs live inside the lessons themselves - see the
 [1102](../phases/phase1-infra/1100-network/1102-Star-Topology-Core.md), and
 [1202](../phases/phase1-infra/1200-virtualization/1202-TB3-UT3G-Passthrough.md).
 
-- [README](../case-study/README.md)
-- [EXP_1101_GPON](../case-study/experiments/EXP_1101_GPON.md)
-- [EXP_1102_STAR_TOPOLOGY](../case-study/experiments/EXP_1102_STAR_TOPOLOGY.md)
+- [EXP_1101_GPON](../../experiments/EXP_1101_GPON.md)
+- [EXP_1102_STAR_TOPOLOGY](../../experiments/EXP_1102_STAR_TOPOLOGY.md)
 
 ---
 

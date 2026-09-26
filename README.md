@@ -785,7 +785,7 @@ Each technical document has an associated experiment file for hands-on validatio
 <summary><b>🔬 46 Experiment Files</b></summary>
 
 **Infrastructure (4):**
-- [EXP_1101: Internet Uplink (case study)](./docs/case-study/experiments/EXP_1101_GPON.md) | [EXP_1302: GPU Scheduler](./experiments/EXP_1302_GPU_SCHEDULER.md)
+- [EXP_1101: Internet Uplink (case study)](./experiments/EXP_1101_GPON.md) | [EXP_1302: GPU Scheduler](./experiments/EXP_1302_GPU_SCHEDULER.md)
 - [EXP_1501: Monitoring](./experiments/EXP_1501_MONITORING.md) | [EXP_1502: Model Drift](./experiments/EXP_1502_MODEL_DRIFT.md)
 
 **Frameworks (5):**
@@ -1376,7 +1376,7 @@ Contributions are welcome! The fastest way to contribute:
 | **Resources** | [docs/00-META/RESOURCES.md](./docs/00-META/RESOURCES.md) |
 | **Labs** | [docs/learning-resources/labs/](./docs/learning-resources/labs/) |
 | **Projects** | [docs/learning-resources/projects/](./docs/learning-resources/projects/) |
-| **Case Study** | [docs/case-study/](./docs/case-study/README.md) |
+| **Case Study** | [EXP_1101_GPON: Fiber GPON Modem Configuration](./experiments/EXP_1101_GPON.md) · [EXP_1102: Star Topology and Network Performance Experiments](./experiments/EXP_1102_STAR_TOPOLOGY.md) |
 
 ---
 

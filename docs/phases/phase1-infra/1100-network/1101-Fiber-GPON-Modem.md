@@ -383,7 +383,7 @@ Out-of-range Rx power shows up as LOS light loss or intermittent drops long befo
 - [1103: Jumbo Frames and MTU](./1103-Jumbo-Frames-and-MTU.md) - LAN MTU optimization
 - [1201: Proxmox Hypervisor SOP](../1200-virtualization/1201-Proxmox-Hypervisor-SOP.md) - The server that sits behind this uplink
 
-**Case Study Experiment:** [EXP_1101: GPON Configuration](../../../case-study/experiments/EXP_1101_GPON.md) - a hands-on fiber (GPON) example from the original build
+**Case Study Experiment:** [EXP_1101: GPON Configuration](../../../../experiments/EXP_1101_GPON.md) - a hands-on fiber (GPON) example from the original build
 
 ---
 
