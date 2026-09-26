@@ -400,7 +400,7 @@ Operations
 
 - [5301: Knowledge Distillation](5301-Knowledge-Distillation.md)
 - [5302: Distributed Training Orchestration](5302-Distributed-Training.md)
-- [5102: QLoRA Pipelines](../5100-PEFT/5102-QLoRA-Pipelines.md)
+- [5102: QLoRA Pipelines](../5100-peft/5102-QLoRA-Pipelines.md)
 
 ---
 

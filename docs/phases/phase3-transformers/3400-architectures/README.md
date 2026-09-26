@@ -32,6 +32,8 @@ After completing this module, you will:
 - **Programming:** PyTorch, attention mechanisms
 - **Previous:** [3100: Attention](../3100-attention/), [3300: Decoding](../3300-decoding/)
 
+See [PREREQUISITES.md](./PREREQUISITES.md) for detailed requirements.
+
 ---
 
 ## Key Concepts

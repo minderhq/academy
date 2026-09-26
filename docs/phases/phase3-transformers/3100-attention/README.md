@@ -32,6 +32,8 @@ After completing this module, you will:
 - **Programming:** Python, PyTorch tensors
 - **Previous:** Phase 2 completion (tensor algebra, neural network fundamentals)
 
+See [PREREQUISITES.md](./PREREQUISITES.md) for detailed requirements.
+
 ---
 
 ## Key Concepts

@@ -256,7 +256,7 @@ Use this checklist to track your progress:
 - **Solution:** Use smaller models (phi, gemma:2b) - see TUTORIAL-001
 
 **Problem:** GPU not detected
-- **Solution:** Check [1203: Nvidia Kernel Module](../phases/phase1-infra/1200-Virtualization/1203-Nvidia-Kernel-Module.md)
+- **Solution:** Check [1203: Nvidia Kernel Module](../phases/phase1-infra/1200-virtualization/1203-Nvidia-Kernel-Module.md)
 
 For more help, see **[TROUBLESHOOTING-Common-Issues.md](../learning-resources/troubleshooting/TROUBLESHOOTING-Common-Issues.md)**
 

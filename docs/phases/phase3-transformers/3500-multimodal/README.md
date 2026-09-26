@@ -32,6 +32,8 @@ After completing this module, you will:
 - **Audio:** Signal processing basics (MFCC, spectrograms)
 - **Previous:** [3100: Attention](../3100-attention/), [3400: Architectures](../3400-architectures/)
 
+See [PREREQUISITES.md](./PREREQUISITES.md) for detailed requirements.
+
 ---
 
 ## Key Concepts

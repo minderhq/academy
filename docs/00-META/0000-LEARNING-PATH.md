@@ -694,7 +694,7 @@ Learning Path:
 23. [7401-7402: Agent Memory](../phases/phase7-agentic/7400-memory/)
 
 ### Volume 7: Production
-24. [1501: Monitoring](../phases/phase1-infra/1500-Monitoring/)
+24. [1501: Monitoring](../phases/phase1-infra/1500-monitoring/)
 25. [1404-1405: LLMOps](../phases/phase1-infra/1400-llmops/guides/)
 
 ---

@@ -754,8 +754,8 @@ You should have a working chat interface with memory!
 
 ## 📚 Post-Lab Reading
 
-- **[1401: Ollama Enterprise](../../phases/phase1-infra/1400-LLMOps/1401-Ollama-Enterprise.md)** - Production Ollama deployment
-- **[1402: vLLM and TGI](../../phases/phase1-infra/1400-LLMOps/1402-vLLM-and-TGI.md)** - Advanced inference engines
+- **[1401: Ollama Enterprise](../../phases/phase1-infra/1400-llmops/1401-Ollama-Enterprise.md)** - Production Ollama deployment
+- **[1402: vLLM and TGI](../../phases/phase1-infra/1400-llmops/1402-vLLM-and-TGI.md)** - Advanced inference engines
 - **[Tutorial 003: RAG Basics](../tutorials/TUTORIAL-003-RAG-Basics.md)** - Add knowledge to your LLM
 
 ---

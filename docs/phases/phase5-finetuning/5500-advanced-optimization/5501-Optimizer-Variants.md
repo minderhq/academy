@@ -361,5 +361,5 @@ Pitfalls checklist
 ---
 
 **Related:**
-- [5102: QLoRA Pipelines](../5100-PEFT/5102-QLoRA-Pipelines.md)
+- [5102: QLoRA Pipelines](../5100-peft/5102-QLoRA-Pipelines.md)
 - [4401: GPTQ](../../phase4-quantization/4400-advanced-techniques/4401-GPTQ.md)

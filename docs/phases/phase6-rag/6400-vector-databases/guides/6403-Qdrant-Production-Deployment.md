@@ -776,8 +776,8 @@ spec:
 
 **Related:**
 - [6401: Qdrant Setup](../6401-Qdrant-Setup.md)
-- [6101: HNSW Indexing](../../6100-Vector/6101-HNSW-Indexing.md)
-- [6103: HNSW Tuning Guide](../../6100-Vector/guides/6103-HNSW-Tuning-Guide.md)
+- [6101: HNSW Indexing](../../6100-vector/6101-HNSW-Indexing.md)
+- [6103: HNSW Tuning Guide](../../6100-vector/guides/6103-HNSW-Tuning-Guide.md)
 - [6201: Hybrid Search](../../6200-retrieval/6201-Hybrid-Search.md)
 - [EXP_6401: Vector DB](../../../../../experiments/EXP_6401_VECTOR_DB.md)
 

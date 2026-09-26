@@ -498,6 +498,12 @@ build's written walkthroughs live inside the lessons themselves - see the
 - [EXP_1101_GPON](../../experiments/EXP_1101_GPON.md)
 - [EXP_1102_STAR_TOPOLOGY](../../experiments/EXP_1102_STAR_TOPOLOGY.md)
 
+## Meta & Reference (3 files)
+
+- [ORGANIZATION-GUIDE](../00-META/ORGANIZATION-GUIDE.md)
+- [TUTORIAL-TO-LAB-BRIDGE](../learning-resources/bridges/TUTORIAL-TO-LAB-BRIDGE.md)
+- [EXTERNAL-RESOURCES](../learning-resources/resources/EXTERNAL-RESOURCES.md)
+
 ---
 
 ## Reference Configuration (3 files in configs/)

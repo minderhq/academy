@@ -504,7 +504,7 @@ def compress_context(context, target_length=50000):
 ---
 
 **Related Documents:**
-- [4201: Context Window](../../phase4-quantization/4200-KV-Cache/4201-Context-Window-Physics.md)
+- [4201: Context Window](../../phase4-quantization/4200-kv-cache/4201-Context-Window-Physics.md)
 - [6301: Neo4j GraphRAG](./6301-Neo4j-and-Knowledge-Graphs.md)
 - [6202: Re-ranking](../6200-retrieval/6202-Re-ranking-and-Retrieval-Logistics.md)
 

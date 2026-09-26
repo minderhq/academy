@@ -59,7 +59,7 @@ Positioning among self-hosted vector stores
 - gRPC + REST on separate ports; OpenAPI at :6333/docs
 ```
 
-Qdrant is the default recommendation in this curriculum when you want a **self-hosted, single-binary** vector store with production features. For a managed-service comparison, see [6402: Pinecone vs Weaviate](./6402-Pinecone-vs-Weaviate.md). For the index math behind it, see [6101: HNSW Indexing](../6100-Vector/6101-HNSW-Indexing.md).
+Qdrant is the default recommendation in this curriculum when you want a **self-hosted, single-binary** vector store with production features. For a managed-service comparison, see [6402: Pinecone vs Weaviate](./6402-Pinecone-vs-Weaviate.md). For the index math behind it, see [6101: HNSW Indexing](../6100-vector/6101-HNSW-Indexing.md).
 
 ## Docker Deployment
 
@@ -352,5 +352,5 @@ Data lost after restart              Volume not mounted; ./data recreated empty.
 ---
 
 **Related:**
-- [6101: HNSW](../6100-Vector/6101-HNSW-Indexing.md)
+- [6101: HNSW](../6100-vector/6101-HNSW-Indexing.md)
 - [6201: Hybrid Search](../6200-retrieval/6201-Hybrid-Search.md)

@@ -187,7 +187,7 @@ Benefit: Saves ~0.5GB per 7B model
 #### Day 1-3: Context Window Physics
 **Dealing with OOM in long sequences**
 
-1. **[4201: Context Window Physics](../phases/phase4-quantization/4200-KV-Cache/4201-Context-Window-Physics.md)** (3-4 hours)
+1. **[4201: Context Window Physics](../phases/phase4-quantization/4200-kv-cache/4201-Context-Window-Physics.md)** (3-4 hours)
    - KV cache memory analysis
    - Context window size vs memory
    - Sliding window attention
@@ -224,7 +224,7 @@ reduce KV cache size by num_heads
 summarize older context
 ```
 
-2. **[4203: Context Window Optimization](../phases/phase4-quantization/4200-KV-Cache/guides/4203-Context-Window-Optimization.md)** (2-3 hours)
+2. **[4203: Context Window Optimization](../phases/phase4-quantization/4200-kv-cache/guides/4203-Context-Window-Optimization.md)** (2-3 hours)
    - Complete optimization guide
    - Sliding window implementation
    - KV cache quantization
@@ -237,7 +237,7 @@ summarize older context
 #### Day 4-5: Speculative Decoding
 **Accelerate generation with draft models**
 
-1. **[4202: Speculative Decoding](../phases/phase4-quantization/4200-KV-Cache/4202-Speculative-Decoding.md)** (3-4 hours)
+1. **[4202: Speculative Decoding](../phases/phase4-quantization/4200-kv-cache/4202-Speculative-Decoding.md)** (3-4 hours)
    - Speculative decoding concept
    - Draft model strategies
    - Verification process
@@ -290,14 +290,14 @@ outputs = llm.generate(["Hello, world!"])
 #### Day 1-3: vLLM Production Deployment
 **High-concurrency inference engine**
 
-1. **[1402: vLLM and TGI](../phases/phase1-infra/1400-LLMOps/1402-vLLM-and-TGI.md)** (2-3 hours)
+1. **[1402: vLLM and TGI](../phases/phase1-infra/1400-llmops/1402-vLLM-and-TGI.md)** (2-3 hours)
    - vLLM architecture
    - PagedAttention
    - KV cache sharding
    - Continuous batching
    - Performance comparison
 
-2. **[1404: vLLM Production Deployment](../phases/phase1-infra/1400-LLMOps/guides/1404-vLLM-Production-Deployment.md)** (3-4 hours)
+2. **[1404: vLLM Production Deployment](../phases/phase1-infra/1400-llmops/guides/1404-vLLM-Production-Deployment.md)** (3-4 hours)
    - Production setup
    - Docker deployment
    - Kubernetes configuration
@@ -342,7 +342,7 @@ docker run --gpus all \
 #### Day 4-5: TGI Deployment
 **Text Generation Inference by HuggingFace**
 
-1. **[1405: TGI Deployment Guide](../phases/phase1-infra/1400-LLMOps/guides/1405-TGI-Deployment-Guide.md)** (3-4 hours)
+1. **[1405: TGI Deployment Guide](../phases/phase1-infra/1400-llmops/guides/1405-TGI-Deployment-Guide.md)** (3-4 hours)
    - TGI architecture
    - Deployment strategies
    - Flash Attention integration

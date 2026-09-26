@@ -34,6 +34,8 @@ After completing this module, you will:
 - **Programming:** PyTorch, automatic differentiation
 - **Previous:** [3100: Attention](../3100-attention/), [3200: Embeddings](../3200-embeddings/)
 
+See [PREREQUISITES.md](./PREREQUISITES.md) for detailed requirements.
+
 ---
 
 ## Key Concepts

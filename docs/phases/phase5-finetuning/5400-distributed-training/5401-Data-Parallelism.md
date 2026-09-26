@@ -337,4 +337,4 @@ Rules of thumb
 
 **Related:**
 - [5501: Optimizer Variants](../5500-advanced-optimization/5501-Optimizer-Variants.md)
-- [5102: QLoRA Pipelines](../5100-PEFT/5102-QLoRA-Pipelines.md)
+- [5102: QLoRA Pipelines](../5100-peft/5102-QLoRA-Pipelines.md)

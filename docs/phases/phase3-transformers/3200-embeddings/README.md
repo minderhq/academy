@@ -33,6 +33,8 @@ After completing this module, you will:
 - **Programming:** Python, string manipulation
 - **Previous:** [3100: Attention Architectures](../3100-attention/)
 
+See [PREREQUISITES.md](./PREREQUISITES.md) for detailed requirements.
+
 ---
 
 ## Key Concepts

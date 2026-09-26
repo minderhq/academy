@@ -494,7 +494,7 @@ dpo_trainer = DPOTrainer(
 
 **Related Documents:**
 - [5202: Alignment Orchestration](./5202-Alignment-Orchestration.md)
-- [5102: QLoRA Pipelines](../5100-PEFT/5102-QLoRA-Pipelines.md)
+- [5102: QLoRA Pipelines](../5100-peft/5102-QLoRA-Pipelines.md)
 - [7301: Collaborative Tasking](../../phase7-agentic/7300-orchestration/7301-Orchestration.md)
 
 **Experiment Template:** [EXP_5201: DPO](../../../../experiments/EXP_5201_DPO.md)

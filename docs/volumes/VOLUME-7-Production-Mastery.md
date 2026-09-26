@@ -150,7 +150,7 @@ graph TB
    - Loki for log aggregation
    - Tempo for distributed tracing
 
-2. **[1501: Monitoring Stack](../phases/phase1-infra/1500-Monitoring/1501-Monitoring-and-Observability.md)** (2-3 hours)
+2. **[1501: Monitoring Stack](../phases/phase1-infra/1500-monitoring/1501-Monitoring-and-Observability.md)** (2-3 hours)
    - Complete monitoring architecture
    - GPU monitoring setup
    - Alert configuration

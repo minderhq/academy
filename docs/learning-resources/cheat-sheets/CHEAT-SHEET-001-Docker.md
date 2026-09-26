@@ -476,7 +476,7 @@ docker system prune -a --volumes -f
 
 - **[Tutorial 002: Docker Essentials](../tutorials/TUTORIAL-002-Docker-Essentials.md)** - Full tutorial
 - **[Tutorial 003: RAG Basics](../tutorials/TUTORIAL-003-RAG-Basics.md)** - RAG with Docker
-- **[1201: Proxmox Hypervisor SOP](../../phases/phase1-infra/1200-Virtualization/1201-Proxmox-Hypervisor-SOP.md)** - Proxmox basics
+- **[1201: Proxmox Hypervisor SOP](../../phases/phase1-infra/1200-virtualization/1201-Proxmox-Hypervisor-SOP.md)** - Proxmox basics
 - **[LAB 001: Docker & LLM](../labs/LAB-001-Docker-LLM.md)** - Hands-on exercises with LLM containers
 - **[LAB 002: RAG Implementation](../labs/LAB-002-RAG-Implementation.md)** - Build RAG stack with Docker Compose
 

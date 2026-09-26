@@ -718,7 +718,7 @@ docker-compose down
 
 ## 🎯 Next Steps
 
-- **[1501: Monitoring Stack](../../phases/phase1-infra/1500-Monitoring/1501-Monitoring-and-Observability.md)** - Deep dive into monitoring
+- **[1501: Monitoring Stack](../../phases/phase1-infra/1500-monitoring/1501-Monitoring-and-Observability.md)** - Deep dive into monitoring
 - **[LAB 001: Docker & LLM](../labs/LAB-001-Docker-LLM.md)** - Add monitoring to LLM apps
 - **[TUTORIAL 005: Production Deployment](TUTORIAL-005-Production-Deployment.md)** - Deploy to production
 

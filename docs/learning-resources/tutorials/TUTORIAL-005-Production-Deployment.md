@@ -680,8 +680,8 @@ curl http://localhost:9090/api/v1/query?query=up
 
 ## 🎯 Next Steps
 
-- **[1402: vLLM and TGI](../../phases/phase1-infra/1400-LLMOps/1402-vLLM-and-TGI.md)** - Production inference
-- **[1405: TGI Deployment Guide](../../phases/phase1-infra/1400-LLMOps/guides/1405-TGI-Deployment-Guide.md)** - TGI in production
+- **[1402: vLLM and TGI](../../phases/phase1-infra/1400-llmops/1402-vLLM-and-TGI.md)** - Production inference
+- **[1405: TGI Deployment Guide](../../phases/phase1-infra/1400-llmops/guides/1405-TGI-Deployment-Guide.md)** - TGI in production
 - **[PROJECT 001: AI Assistant](../projects/PROJECT-001-AI-Assistant.md)** - Complete production system
 
 ---

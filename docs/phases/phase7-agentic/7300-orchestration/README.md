@@ -32,6 +32,8 @@ After completing this module, you will:
 - **Programming:** Python, async/await patterns
 - **Previous:** [7100: Agent Architecture](../7100-architecture/), [7200: Tool Calling](../7200-tools/)
 
+See [PREREQUISITES.md](./PREREQUISITES.md) for detailed requirements.
+
 ---
 
 ## Key Concepts

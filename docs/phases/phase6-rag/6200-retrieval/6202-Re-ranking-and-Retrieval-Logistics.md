@@ -409,7 +409,7 @@ def ndcg(retrieved_docs, relevance_scores, k=10):
 
 **Related Documents:**
 - [6201: Hybrid Search](./6201-Hybrid-Search.md)
-- [6101: HNSW Indexing](../6100-Vector/6101-HNSW-Indexing.md)
+- [6101: HNSW Indexing](../6100-vector/6101-HNSW-Indexing.md)
 - [6301: Neo4j GraphRAG](../6300-context/6301-Neo4j-and-Knowledge-Graphs.md)
 
 **Experiment Template:** [EXP_6202: Re-ranking](../../../../experiments/EXP_6202_RERANK.md)

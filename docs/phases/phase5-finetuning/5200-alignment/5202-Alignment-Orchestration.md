@@ -431,7 +431,7 @@ def human_eval(model_a, model_b, test_prompts):
 
 **Related Documents:**
 - [5201: DPO Theory](./5201-DPO-Theory.md)
-- [5102: QLoRA Pipelines](../5100-PEFT/5102-QLoRA-Pipelines.md)
+- [5102: QLoRA Pipelines](../5100-peft/5102-QLoRA-Pipelines.md)
 - [7101: ReAct Loop](../../phase7-agentic/7100-architecture/7101-ReAct-Loop-System.md)
 
 **Experiment Template:** [EXP_5202: Alignment](../../../../experiments/EXP_5202_ALIGNMENT.md)
