@@ -27,6 +27,8 @@ below are derived directly from the file tree.
 
 ### [1100-network] (3 lessons, 0 guides)
 
+- [PREREQUISITES](../phases/phase1-infra/1100-network/PREREQUISITES.md)
+- [README](../phases/phase1-infra/1100-network/README.md)
 - [1101-Fiber-GPON-Modem](../phases/phase1-infra/1100-network/1101-Fiber-GPON-Modem.md)
 - [1102-Star-Topology-Core](../phases/phase1-infra/1100-network/1102-Star-Topology-Core.md)
 - [1103-Jumbo-Frames-and-MTU](../phases/phase1-infra/1100-network/1103-Jumbo-Frames-and-MTU.md)
@@ -35,6 +37,8 @@ below are derived directly from the file tree.
 
 ### [1200-virtualization] (4 lessons, 0 guides)
 
+- [PREREQUISITES](../phases/phase1-infra/1200-virtualization/PREREQUISITES.md)
+- [README](../phases/phase1-infra/1200-virtualization/README.md)
 - [1201-Proxmox-Hypervisor-SOP](../phases/phase1-infra/1200-virtualization/1201-Proxmox-Hypervisor-SOP.md)
 - [1202-TB3-UT3G-Passthrough](../phases/phase1-infra/1200-virtualization/1202-TB3-UT3G-Passthrough.md)
 - [1203-Nvidia-Kernel-Module](../phases/phase1-infra/1200-virtualization/1203-Nvidia-Kernel-Module.md)
@@ -44,6 +48,8 @@ below are derived directly from the file tree.
 
 ### [1300-kubernetes] (3 lessons, 0 guides)
 
+- [PREREQUISITES](../phases/phase1-infra/1300-kubernetes/PREREQUISITES.md)
+- [README](../phases/phase1-infra/1300-kubernetes/README.md)
 - [1301-K3s-Master-Worker-Arch](../phases/phase1-infra/1300-kubernetes/1301-K3s-Master-Worker-Arch.md)
 - [1302-GPU-Scheduler](../phases/phase1-infra/1300-kubernetes/1302-GPU-Scheduler.md)
 - [1303-Storage-Classes](../phases/phase1-infra/1300-kubernetes/1303-Storage-Classes.md)
@@ -52,6 +58,8 @@ below are derived directly from the file tree.
 
 ### [1400-llmops] (2 lessons, 2 guides)
 
+- [PREREQUISITES](../phases/phase1-infra/1400-llmops/PREREQUISITES.md)
+- [README](../phases/phase1-infra/1400-llmops/README.md)
 - [1401-Ollama-Enterprise](../phases/phase1-infra/1400-llmops/1401-Ollama-Enterprise.md)
 - [1402-vLLM-and-TGI](../phases/phase1-infra/1400-llmops/1402-vLLM-and-TGI.md)
 - [guide: 1404-vLLM-Production-Deployment](../phases/phase1-infra/1400-llmops/guides/1404-vLLM-Production-Deployment.md)
@@ -61,6 +69,8 @@ below are derived directly from the file tree.
 
 ### [1500-monitoring] (3 lessons, 0 guides)
 
+- [PREREQUISITES](../phases/phase1-infra/1500-monitoring/PREREQUISITES.md)
+- [README](../phases/phase1-infra/1500-monitoring/README.md)
 - [1501-Monitoring-and-Observability](../phases/phase1-infra/1500-monitoring/1501-Monitoring-and-Observability.md)
 - [1502-Model-Drift-Detection](../phases/phase1-infra/1500-monitoring/1502-Model-Drift-Detection.md)
 - [1503-LLM-Observability](../phases/phase1-infra/1500-monitoring/1503-LLM-Observability.md)
@@ -74,6 +84,8 @@ below are derived directly from the file tree.
 
 ### [2100-calculus] (2 lessons, 0 guides)
 
+- [PREREQUISITES](../phases/phase2-foundations/2100-calculus/PREREQUISITES.md)
+- [README](../phases/phase2-foundations/2100-calculus/README.md)
 - [2101-Tensor-Algebra](../phases/phase2-foundations/2100-calculus/2101-Tensor-Algebra.md)
 - [2102-Backpropagation-and-Derivatives](../phases/phase2-foundations/2100-calculus/2102-Backpropagation-and-Derivatives.md)
 - [assessment: PRACTICE](../phases/phase2-foundations/2100-calculus/assessment/PRACTICE.md)
@@ -81,6 +93,8 @@ below are derived directly from the file tree.
 
 ### [2200-frameworks] (3 lessons, 0 guides)
 
+- [PREREQUISITES](../phases/phase2-foundations/2200-frameworks/PREREQUISITES.md)
+- [README](../phases/phase2-foundations/2200-frameworks/README.md)
 - [2201-PyTorch-Computational-Graphs](../phases/phase2-foundations/2200-frameworks/2201-PyTorch-Computational-Graphs.md)
 - [2202-TensorFlow-XLA-Compilers](../phases/phase2-foundations/2200-frameworks/2202-TensorFlow-XLA-Compilers.md)
 - [2203-CUDA-Kernel-Syb-Level](../phases/phase2-foundations/2200-frameworks/2203-CUDA-Kernel-Syb-Level.md)
@@ -89,6 +103,8 @@ below are derived directly from the file tree.
 
 ### [2300-framework-engineering] (4 lessons, 2 guides)
 
+- [PREREQUISITES](../phases/phase2-foundations/2300-framework-engineering/PREREQUISITES.md)
+- [README](../phases/phase2-foundations/2300-framework-engineering/README.md)
 - [2301-Framework-Design-Patterns](../phases/phase2-foundations/2300-framework-engineering/2301-Framework-Design-Patterns.md)
 - [2302-Model-Serving-Architectures](../phases/phase2-foundations/2300-framework-engineering/2302-Model-Serving-Architectures.md)
 - [2303-API-Design-for-ML](../phases/phase2-foundations/2300-framework-engineering/2303-API-Design-for-ML.md)
@@ -100,6 +116,8 @@ below are derived directly from the file tree.
 
 ### [2400-pretraining] (3 lessons, 0 guides)
 
+- [PREREQUISITES](../phases/phase2-foundations/2400-pretraining/PREREQUISITES.md)
+- [README](../phases/phase2-foundations/2400-pretraining/README.md)
 - [2401-Pre-training-Fundamentals](../phases/phase2-foundations/2400-pretraining/2401-Pre-training-Fundamentals.md)
 - [2402-Large-Scale-Training](../phases/phase2-foundations/2400-pretraining/2402-Large-Scale-Training.md)
 - [2403-Evaluation-Frameworks](../phases/phase2-foundations/2400-pretraining/2403-Evaluation-Frameworks.md)
@@ -113,6 +131,8 @@ below are derived directly from the file tree.
 
 ### [3100-attention] (2 lessons, 0 guides)
 
+- [PREREQUISITES](../phases/phase3-transformers/3100-attention/PREREQUISITES.md)
+- [README](../phases/phase3-transformers/3100-attention/README.md)
 - [3101-Self-Attention-DeepDive](../phases/phase3-transformers/3100-attention/3101-Self-Attention-DeepDive.md)
 - [3102-Flash-Attention](../phases/phase3-transformers/3100-attention/3102-Flash-Attention.md)
 - [assessment: PRACTICE](../phases/phase3-transformers/3100-attention/assessment/PRACTICE.md)
@@ -120,6 +140,8 @@ below are derived directly from the file tree.
 
 ### [3200-embeddings] (2 lessons, 0 guides)
 
+- [PREREQUISITES](../phases/phase3-transformers/3200-embeddings/PREREQUISITES.md)
+- [README](../phases/phase3-transformers/3200-embeddings/README.md)
 - [3201-Rotary-Positional-Embeddings-RoPE](../phases/phase3-transformers/3200-embeddings/3201-Rotary-Positional-Embeddings-RoPE.md)
 - [3202-Tokenizer-Sciences](../phases/phase3-transformers/3200-embeddings/3202-Tokenizer-Sciences.md)
 - [assessment: PRACTICE](../phases/phase3-transformers/3200-embeddings/assessment/PRACTICE.md)
@@ -127,6 +149,8 @@ below are derived directly from the file tree.
 
 ### [3300-decoding] (2 lessons, 1 guides)
 
+- [PREREQUISITES](../phases/phase3-transformers/3300-decoding/PREREQUISITES.md)
+- [README](../phases/phase3-transformers/3300-decoding/README.md)
 - [3301-Activation-Functions](../phases/phase3-transformers/3300-decoding/3301-Activation-Functions.md)
 - [3302-Normalization-Layers](../phases/phase3-transformers/3300-decoding/3302-Normalization-Layers.md)
 - [guide: 3303-Activation-Function-Comparison](../phases/phase3-transformers/3300-decoding/guides/3303-Activation-Function-Comparison.md)
@@ -135,6 +159,8 @@ below are derived directly from the file tree.
 
 ### [3400-architectures] (2 lessons, 1 guides)
 
+- [PREREQUISITES](../phases/phase3-transformers/3400-architectures/PREREQUISITES.md)
+- [README](../phases/phase3-transformers/3400-architectures/README.md)
 - [3401-Encoder-Decoder-Architectures](../phases/phase3-transformers/3400-architectures/3401-Encoder-Decoder-Architectures.md)
 - [3402-Decoder-Only-Models](../phases/phase3-transformers/3400-architectures/3402-Decoder-Only-Models.md)
 - [guide: 3403-Model-Architecture-Comparison](../phases/phase3-transformers/3400-architectures/guides/3403-Model-Architecture-Comparison.md)
@@ -143,6 +169,8 @@ below are derived directly from the file tree.
 
 ### [3500-multimodal] (2 lessons, 0 guides)
 
+- [PREREQUISITES](../phases/phase3-transformers/3500-multimodal/PREREQUISITES.md)
+- [README](../phases/phase3-transformers/3500-multimodal/README.md)
 - [3501-Vision-Language-Models](../phases/phase3-transformers/3500-multimodal/3501-Vision-Language-Models.md)
 - [3502-Audio-Models](../phases/phase3-transformers/3500-multimodal/3502-Audio-Models.md)
 - [assessment: PRACTICE](../phases/phase3-transformers/3500-multimodal/assessment/PRACTICE.md)
@@ -155,6 +183,8 @@ below are derived directly from the file tree.
 
 ### [4100-low-bit] (3 lessons, 0 guides)
 
+- [PREREQUISITES](../phases/phase4-quantization/4100-low-bit/PREREQUISITES.md)
+- [README](../phases/phase4-quantization/4100-low-bit/README.md)
 - [4101-GGUF-Physics](../phases/phase4-quantization/4100-low-bit/4101-GGUF-Physics.md)
 - [4102-EXL2-and-AWQ](../phases/phase4-quantization/4100-low-bit/4102-EXL2-and-AWQ.md)
 - [4103-Double-Quantization](../phases/phase4-quantization/4100-low-bit/4103-Double-Quantization.md)
@@ -163,6 +193,8 @@ below are derived directly from the file tree.
 
 ### [4200-kv-cache] (2 lessons, 1 guides)
 
+- [PREREQUISITES](../phases/phase4-quantization/4200-kv-cache/PREREQUISITES.md)
+- [README](../phases/phase4-quantization/4200-kv-cache/README.md)
 - [4201-Context-Window-Physics](../phases/phase4-quantization/4200-kv-cache/4201-Context-Window-Physics.md)
 - [4202-Speculative-Decoding](../phases/phase4-quantization/4200-kv-cache/4202-Speculative-Decoding.md)
 - [guide: 4203-Context-Window-Optimization](../phases/phase4-quantization/4200-kv-cache/guides/4203-Context-Window-Optimization.md)
@@ -171,6 +203,8 @@ below are derived directly from the file tree.
 
 ### [4300-quantization-aware-training] (5 lessons, 3 guides)
 
+- [PREREQUISITES](../phases/phase4-quantization/4300-quantization-aware-training/PREREQUISITES.md)
+- [README](../phases/phase4-quantization/4300-quantization-aware-training/README.md)
 - [4301-QAT-Foundations](../phases/phase4-quantization/4300-quantization-aware-training/4301-QAT-Foundations.md)
 - [4302-Fake-Quantization](../phases/phase4-quantization/4300-quantization-aware-training/4302-Fake-Quantization.md)
 - [4303-QAT-for-Transformers](../phases/phase4-quantization/4300-quantization-aware-training/4303-QAT-for-Transformers.md)
@@ -184,6 +218,8 @@ below are derived directly from the file tree.
 
 ### [4400-advanced-techniques] (7 lessons, 2 guides)
 
+- [PREREQUISITES](../phases/phase4-quantization/4400-advanced-techniques/PREREQUISITES.md)
+- [README](../phases/phase4-quantization/4400-advanced-techniques/README.md)
 - [4401-GPTQ](../phases/phase4-quantization/4400-advanced-techniques/4401-GPTQ.md)
 - [4402-AWQ](../phases/phase4-quantization/4400-advanced-techniques/4402-AWQ.md)
 - [4403-GGUF-Format](../phases/phase4-quantization/4400-advanced-techniques/4403-GGUF-Format.md)
@@ -203,6 +239,8 @@ below are derived directly from the file tree.
 
 ### [5100-peft] (3 lessons, 1 guides)
 
+- [PREREQUISITES](../phases/phase5-finetuning/5100-peft/PREREQUISITES.md)
+- [README](../phases/phase5-finetuning/5100-peft/README.md)
 - [5101-LoRA-Logic](../phases/phase5-finetuning/5100-peft/5101-LoRA-Logic.md)
 - [5102-QLoRA-Pipelines](../phases/phase5-finetuning/5100-peft/5102-QLoRA-Pipelines.md)
 - [5103-Adapters](../phases/phase5-finetuning/5100-peft/5103-Adapters.md)
@@ -212,6 +250,8 @@ below are derived directly from the file tree.
 
 ### [5200-alignment] (4 lessons, 0 guides)
 
+- [PREREQUISITES](../phases/phase5-finetuning/5200-alignment/PREREQUISITES.md)
+- [README](../phases/phase5-finetuning/5200-alignment/README.md)
 - [5201-DPO-Theory](../phases/phase5-finetuning/5200-alignment/5201-DPO-Theory.md)
 - [5202-Alignment-Orchestration](../phases/phase5-finetuning/5200-alignment/5202-Alignment-Orchestration.md)
 - [5203-RLHF](../phases/phase5-finetuning/5200-alignment/5203-RLHF.md)
@@ -221,6 +261,8 @@ below are derived directly from the file tree.
 
 ### [5300-synthetic] (3 lessons, 0 guides)
 
+- [PREREQUISITES](../phases/phase5-finetuning/5300-synthetic/PREREQUISITES.md)
+- [README](../phases/phase5-finetuning/5300-synthetic/README.md)
 - [5301-Knowledge-Distillation](../phases/phase5-finetuning/5300-synthetic/5301-Knowledge-Distillation.md)
 - [5302-Distributed-Training](../phases/phase5-finetuning/5300-synthetic/5302-Distributed-Training.md)
 - [5303-Federated-Learning](../phases/phase5-finetuning/5300-synthetic/5303-Federated-Learning.md)
@@ -229,6 +271,8 @@ below are derived directly from the file tree.
 
 ### [5400-distributed-training] (4 lessons, 0 guides)
 
+- [PREREQUISITES](../phases/phase5-finetuning/5400-distributed-training/PREREQUISITES.md)
+- [README](../phases/phase5-finetuning/5400-distributed-training/README.md)
 - [5401-Data-Parallelism](../phases/phase5-finetuning/5400-distributed-training/5401-Data-Parallelism.md)
 - [5402-Model-Parallelism](../phases/phase5-finetuning/5400-distributed-training/5402-Model-Parallelism.md)
 - [5403-Mixed-Precision](../phases/phase5-finetuning/5400-distributed-training/5403-Mixed-Precision.md)
@@ -238,6 +282,8 @@ below are derived directly from the file tree.
 
 ### [5500-advanced-optimization] (3 lessons, 0 guides)
 
+- [PREREQUISITES](../phases/phase5-finetuning/5500-advanced-optimization/PREREQUISITES.md)
+- [README](../phases/phase5-finetuning/5500-advanced-optimization/README.md)
 - [5501-Optimizer-Variants](../phases/phase5-finetuning/5500-advanced-optimization/5501-Optimizer-Variants.md)
 - [5502-Learning-Rate-Scheduling](../phases/phase5-finetuning/5500-advanced-optimization/5502-Learning-Rate-Scheduling.md)
 - [5503-Advanced-Techniques](../phases/phase5-finetuning/5500-advanced-optimization/5503-Advanced-Techniques.md)
@@ -251,6 +297,8 @@ below are derived directly from the file tree.
 
 ### [6100-vector] (2 lessons, 1 guides)
 
+- [PREREQUISITES](../phases/phase6-rag/6100-vector/PREREQUISITES.md)
+- [README](../phases/phase6-rag/6100-vector/README.md)
 - [6101-HNSW-Indexing](../phases/phase6-rag/6100-vector/6101-HNSW-Indexing.md)
 - [6102-Semantic-Similarity](../phases/phase6-rag/6100-vector/6102-Semantic-Similarity.md)
 - [guide: 6103-HNSW-Tuning-Guide](../phases/phase6-rag/6100-vector/guides/6103-HNSW-Tuning-Guide.md)
@@ -259,6 +307,8 @@ below are derived directly from the file tree.
 
 ### [6200-retrieval] (3 lessons, 0 guides)
 
+- [PREREQUISITES](../phases/phase6-rag/6200-retrieval/PREREQUISITES.md)
+- [README](../phases/phase6-rag/6200-retrieval/README.md)
 - [6201-Hybrid-Search](../phases/phase6-rag/6200-retrieval/6201-Hybrid-Search.md)
 - [6202-Re-ranking-and-Retrieval-Logistics](../phases/phase6-rag/6200-retrieval/6202-Re-ranking-and-Retrieval-Logistics.md)
 - [6203-Advanced-Retrieval](../phases/phase6-rag/6200-retrieval/6203-Advanced-Retrieval.md)
@@ -267,6 +317,8 @@ below are derived directly from the file tree.
 
 ### [6300-context] (2 lessons, 2 guides)
 
+- [PREREQUISITES](../phases/phase6-rag/6300-context/PREREQUISITES.md)
+- [README](../phases/phase6-rag/6300-context/README.md)
 - [6301-Neo4j-and-Knowledge-Graphs](../phases/phase6-rag/6300-context/6301-Neo4j-and-Knowledge-Graphs.md)
 - [6302-CAG-Long-Context-Architectures](../phases/phase6-rag/6300-context/6302-CAG-Long-Context-Architectures.md)
 - [guide: 6303-Neo4j-Deployment-Guide](../phases/phase6-rag/6300-context/guides/6303-Neo4j-Deployment-Guide.md)
@@ -276,6 +328,8 @@ below are derived directly from the file tree.
 
 ### [6400-vector-databases] (2 lessons, 1 guides)
 
+- [PREREQUISITES](../phases/phase6-rag/6400-vector-databases/PREREQUISITES.md)
+- [README](../phases/phase6-rag/6400-vector-databases/README.md)
 - [6401-Qdrant-Setup](../phases/phase6-rag/6400-vector-databases/6401-Qdrant-Setup.md)
 - [6402-Pinecone-vs-Weaviate](../phases/phase6-rag/6400-vector-databases/6402-Pinecone-vs-Weaviate.md)
 - [guide: 6403-Qdrant-Production-Deployment](../phases/phase6-rag/6400-vector-databases/guides/6403-Qdrant-Production-Deployment.md)
@@ -284,6 +338,8 @@ below are derived directly from the file tree.
 
 ### [6500-mlops-pipelines] (3 lessons, 0 guides)
 
+- [PREREQUISITES](../phases/phase6-rag/6500-mlops-pipelines/PREREQUISITES.md)
+- [README](../phases/phase6-rag/6500-mlops-pipelines/README.md)
 - [6501-ML-Lifecycle-Management](../phases/phase6-rag/6500-mlops-pipelines/6501-ML-Lifecycle-Management.md)
 - [6502-CI-CD-for-ML](../phases/phase6-rag/6500-mlops-pipelines/6502-CI-CD-for-ML.md)
 - [6503-Model-Registry](../phases/phase6-rag/6500-mlops-pipelines/6503-Model-Registry.md)
@@ -297,6 +353,8 @@ below are derived directly from the file tree.
 
 ### [7100-architecture] (2 lessons, 1 guides)
 
+- [PREREQUISITES](../phases/phase7-agentic/7100-architecture/PREREQUISITES.md)
+- [README](../phases/phase7-agentic/7100-architecture/README.md)
 - [7101-ReAct-Loop-System](../phases/phase7-agentic/7100-architecture/7101-ReAct-Loop-System.md)
 - [7102-Planning-Decomposition](../phases/phase7-agentic/7100-architecture/7102-Planning-Decomposition.md)
 - [guide: 7103-ReAct-Implementation-Guide](../phases/phase7-agentic/7100-architecture/guides/7103-ReAct-Implementation-Guide.md)
@@ -305,6 +363,8 @@ below are derived directly from the file tree.
 
 ### [7200-tools] (1 lessons, 1 guides)
 
+- [PREREQUISITES](../phases/phase7-agentic/7200-tools/PREREQUISITES.md)
+- [README](../phases/phase7-agentic/7200-tools/README.md)
 - [7201-Tool-Calling](../phases/phase7-agentic/7200-tools/7201-Tool-Calling.md)
 - [guide: 7202-Code-Interpreter](../phases/phase7-agentic/7200-tools/guides/7202-Code-Interpreter.md)
 - [assessment: PRACTICE](../phases/phase7-agentic/7200-tools/assessment/PRACTICE.md)
@@ -312,6 +372,8 @@ below are derived directly from the file tree.
 
 ### [7300-orchestration] (2 lessons, 1 guides)
 
+- [PREREQUISITES](../phases/phase7-agentic/7300-orchestration/PREREQUISITES.md)
+- [README](../phases/phase7-agentic/7300-orchestration/README.md)
 - [7301-Orchestration](../phases/phase7-agentic/7300-orchestration/7301-Orchestration.md)
 - [7302-Communication-Protocols](../phases/phase7-agentic/7300-orchestration/7302-Communication-Protocols.md)
 - [guide: 7303-Framework-Comparison](../phases/phase7-agentic/7300-orchestration/guides/7303-Framework-Comparison.md)
@@ -320,6 +382,8 @@ below are derived directly from the file tree.
 
 ### [7400-memory] (2 lessons, 1 guides)
 
+- [PREREQUISITES](../phases/phase7-agentic/7400-memory/PREREQUISITES.md)
+- [README](../phases/phase7-agentic/7400-memory/README.md)
 - [7401-Long-term-Memory](../phases/phase7-agentic/7400-memory/7401-Long-term-Memory.md)
 - [7403-Vector-Memory](../phases/phase7-agentic/7400-memory/7403-Vector-Memory.md)
 - [guide: 7402-Agent-Memory-Implementation](../phases/phase7-agentic/7400-memory/guides/7402-Agent-Memory-Implementation.md)
@@ -328,15 +392,44 @@ below are derived directly from the file tree.
 
 ### [7500-security] (3 lessons, 0 guides)
 
+- [PREREQUISITES](../phases/phase7-agentic/7500-security/PREREQUISITES.md)
+- [README](../phases/phase7-agentic/7500-security/README.md)
 - [7501-Prompt-Injection-Defense](../phases/phase7-agentic/7500-security/7501-Prompt-Injection-Defense.md)
 - [7502-PII-Redaction](../phases/phase7-agentic/7500-security/7502-PII-Redaction.md)
 - [7503-Adversarial-Attacks](../phases/phase7-agentic/7500-security/7503-Adversarial-Attacks.md)
 - [assessment: PRACTICE](../phases/phase7-agentic/7500-security/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase7-agentic/7500-security/assessment/QUIZ.md)
 
+## Volumes (7 files)
+
+- [VOLUME-1-Infrastructure](../volumes/VOLUME-1-Infrastructure.md)
+- [VOLUME-2-AI-Foundations](../volumes/VOLUME-2-AI-Foundations.md)
+- [VOLUME-3-LLM-Internals](../volumes/VOLUME-3-LLM-Internals.md)
+- [VOLUME-4-Quantization](../volumes/VOLUME-4-Quantization.md)
+- [VOLUME-5-Model-Adaptation](../volumes/VOLUME-5-Model-Adaptation.md)
+- [VOLUME-6-Data-Nexus](../volumes/VOLUME-6-Data-Nexus.md)
+- [VOLUME-7-Production-Mastery](../volumes/VOLUME-7-Production-Mastery.md)
+
+## Phase Assessments (14 files)
+
+- [phase1-practice](../00-META/assessment/phase1-practice.md)
+- [phase1-quiz](../00-META/assessment/phase1-quiz.md)
+- [phase2-practice](../00-META/assessment/phase2-practice.md)
+- [phase2-quiz](../00-META/assessment/phase2-quiz.md)
+- [phase3-practice](../00-META/assessment/phase3-practice.md)
+- [phase3-quiz](../00-META/assessment/phase3-quiz.md)
+- [phase4-practice](../00-META/assessment/phase4-practice.md)
+- [phase4-quiz](../00-META/assessment/phase4-quiz.md)
+- [phase5-practice](../00-META/assessment/phase5-practice.md)
+- [phase5-quiz](../00-META/assessment/phase5-quiz.md)
+- [phase6-practice](../00-META/assessment/phase6-practice.md)
+- [phase6-quiz](../00-META/assessment/phase6-quiz.md)
+- [phase7-practice](../00-META/assessment/phase7-practice.md)
+- [phase7-quiz](../00-META/assessment/phase7-quiz.md)
+
 ---
 
-## Experiments (46 in experiments/, 2 in case study)
+## Experiments (48 files: 47 experiments + TEMPLATE)
 
 - [EXP_1302_GPU_SCHEDULER](../../experiments/EXP_1302_GPU_SCHEDULER.md)
 - [EXP_1403_TGI_TUNING](../../experiments/EXP_1403_TGI_TUNING.md)
@@ -484,6 +577,64 @@ below are derived directly from the file tree.
 
 - [REAL-WORLD-EXAMPLES](../learning-resources/case-studies/REAL-WORLD-EXAMPLES.md)
 
+## Learning Guides (3 files)
+
+- [GUIDE-CAREER](../learning-resources/guides/GUIDE-CAREER.md)
+- [GUIDE-INTERVIEW](../learning-resources/guides/GUIDE-INTERVIEW.md)
+- [GUIDE-RESUME](../learning-resources/guides/GUIDE-RESUME.md)
+
+## Comparisons (3 files)
+
+- [CP-001-RAG-vs-FineTuning-vs-Agents](../comparisons/CP-001-RAG-vs-FineTuning-vs-Agents.md)
+- [CP-002-Vector-Database-Comparison](../comparisons/CP-002-Vector-Database-Comparison.md)
+- [README](../comparisons/README.md)
+
+## Diagrams (4 files)
+
+- [ML-LIFECYCLE](../diagrams/ML-LIFECYCLE.md)
+- [PROJECT-001-ARCHITECTURE](../diagrams/PROJECT-001-ARCHITECTURE.md)
+- [REACT-LOOP](../diagrams/REACT-LOOP.md)
+- [README](../diagrams/README.md)
+
+## Enterprise Solutions (3 files)
+
+- [README](../enterprise-solutions/README.md)
+- [SOL-001-Enterprise-Knowledge-Base](../enterprise-solutions/SOL-001-Enterprise-Knowledge-Base.md)
+- [SOL-002-Industry-Solution](../enterprise-solutions/SOL-002-Industry-Solution.md)
+
+## Industry Applications (4 files)
+
+- [IND-001-Healthcare-AI-Applications](../industry/IND-001-Healthcare-AI-Applications.md)
+- [IND-002-Finance-AI-Applications](../industry/IND-002-Finance-AI-Applications.md)
+- [IND-003-Manufacturing-AI](../industry/IND-003-Manufacturing-AI.md)
+- [README](../industry/README.md)
+
+## Use Cases (4 files)
+
+- [README](../use-cases/README.md)
+- [UC-001-Vector-Database-Applications](../use-cases/UC-001-Vector-Database-Applications.md)
+- [UC-002-RAG-Applications](../use-cases/UC-002-RAG-Applications.md)
+- [UC-003-Agent-Applications](../use-cases/UC-003-Agent-Applications.md)
+
+## Notebooks (1)
+
+- [README](../notebooks/README.md)
+
+## Project Templates (12 files)
+
+- [TEMPLATE-001-Simple-LLM-App](../learning-resources/projects/templates/TEMPLATE-001-Simple-LLM-App.md)
+- [TEMPLATE-002-Fine-Tuning-Pipeline](../learning-resources/projects/templates/TEMPLATE-002-Fine-Tuning-Pipeline.md)
+- [TEMPLATE-003-RAG-System](../learning-resources/projects/templates/TEMPLATE-003-RAG-System.md)
+- [TEMPLATE-004-Agent-Framework](../learning-resources/projects/templates/TEMPLATE-004-Agent-Framework.md)
+- [TEMPLATE-005-Model-Quantization](../learning-resources/projects/templates/TEMPLATE-005-Model-Quantization.md)
+- [TEMPLATE-006-Synthetic-Data-Generator](../learning-resources/projects/templates/TEMPLATE-006-Synthetic-Data-Generator.md)
+- [TEMPLATE-007-LLM-Evaluation-Benchmark](../learning-resources/projects/templates/TEMPLATE-007-LLM-Evaluation-Benchmark.md)
+- [TEMPLATE-008-Multi-Modal-Application](../learning-resources/projects/templates/TEMPLATE-008-Multi-Modal-Application.md)
+- [TEMPLATE-009-Model-Deployment](../learning-resources/projects/templates/TEMPLATE-009-Model-Deployment.md)
+- [TEMPLATE-010-Chatbot-UI](../learning-resources/projects/templates/TEMPLATE-010-Chatbot-UI.md)
+- [TEMPLATE-011-Model-Merging-MoE](../learning-resources/projects/templates/TEMPLATE-011-Model-Merging-MoE.md)
+- [TEMPLATE-012-End-to-End-LLM-Pipeline](../learning-resources/projects/templates/TEMPLATE-012-End-to-End-LLM-Pipeline.md)
+
 ---
 
 ## Case Study Appendix (2 files)
@@ -498,29 +649,38 @@ build's written walkthroughs live inside the lessons themselves - see the
 - [EXP_1101_GPON](../../experiments/EXP_1101_GPON.md)
 - [EXP_1102_STAR_TOPOLOGY](../../experiments/EXP_1102_STAR_TOPOLOGY.md)
 
-## Meta & Reference (3 files)
+## Meta & Reference (11 files)
 
 - [ORGANIZATION-GUIDE](../00-META/ORGANIZATION-GUIDE.md)
 - [TUTORIAL-TO-LAB-BRIDGE](../learning-resources/bridges/TUTORIAL-TO-LAB-BRIDGE.md)
 - [EXTERNAL-RESOURCES](../learning-resources/resources/EXTERNAL-RESOURCES.md)
+- [CROSS-REFERENCE-GUIDELINES](../00-META/CROSS-REFERENCE-GUIDELINES.md)
+- [DOCUMENT-TEMPLATE](../00-META/DOCUMENT-TEMPLATE.md)
+- [LEARNING-PATHS-DETAILED](../00-META/LEARNING-PATHS-DETAILED.md)
+- [NAVIGATION-TEMPLATE](../00-META/NAVIGATION-TEMPLATE.md)
+- [PROGRESS-CHECKPOINTS](../00-META/PROGRESS-CHECKPOINTS.md)
+- [RESOURCES](../00-META/RESOURCES.md)
+- [STYLE-GUIDE](../00-META/STYLE-GUIDE.md)
+- [TROUBLESHOOTING-QUICKSTART](../00-META/TROUBLESHOOTING-QUICKSTART.md)
 
 ---
 
 ## Reference Configuration (3 files in configs/)
 
-- `configs/README.md`
-- `configs/docker-compose.yml`
-- `configs/performance-testing/k6/load-test.js`
+- [README](../../configs/README.md)
+- [docker-compose.yml](../../configs/docker-compose.yml)
+- [load-test.js](../../configs/performance-testing/k6/load-test.js)
 
 ---
 
 ## Statistics
 
 ```text
-Total markdown files: 463
+Total markdown files: 458
+  docs/: 407, experiments/: 48, configs/: 1, repo root: 2
 Phases: 7
-Learning modules: 33
-Phase lesson/guide files: 260
+Learning modules (topics): 33
+Phase files (lessons, guides, assessments, topic README/PREREQUISITES): 260
   Phase 1 - Infrastructure Fabric: 39
   Phase 2 - AI & Cognitive Foundations: 32
   Phase 3 - Transformer Physics & LLM Internals: 34
@@ -528,13 +688,19 @@ Phase lesson/guide files: 260
   Phase 5 - Model Adaptation: Fine-Tuning & Alignment: 40
   Phase 6 - RAG & Data Nexus: 38
   Phase 7 - Agentic Cognition & Production: 36
-Experiments: 46 (+ 2 in case study)
+Volume guides: 7
+Phase assessment sets: 14 (7 phases x quiz + practice)
+Experiments: 47 (+ TEMPLATE)
 Tutorials: 15
-Labs: 15 + 15 solutions
-Projects: 10
+Labs: 15 (+ 15 solutions)
+Capstone projects: 10
+Project templates: 12
 Cheat sheets: 13
+Learning guides: 3
+Comparisons: 3 | Diagrams: 4 | Enterprise solutions: 3
+Industry applications: 4 | Use cases: 4 | Notebooks: 1
 ```
 
 ---
 
-**Last Updated:** 2026-09-24 (auto-generated)
+**Last Updated:** 2026-09-26 (auto-generated)
