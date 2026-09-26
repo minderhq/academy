@@ -3,7 +3,7 @@ Document ID: 2301
 Title: Framework Design Patterns
 Phase: 2
 Module: 2300
-Last Updated: 2026-09-24
+Last Updated: 2026-09-26
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -13,12 +13,6 @@ Tags: ['frameworks', 'architecture', 'api-design', 'production']
 ---
 
 # 2301: Framework Design Patterns
-
-**Project:** AI Engineering Curriculum
-**Phase:** [2300] Framework Engineering
-**Last Updated:** 2026-02-04
-**Status:** Complete
-**Estimated Time:** 2 hours
 
 ---
 
@@ -32,7 +26,6 @@ Tags: ['frameworks', 'architecture', 'api-design', 'production']
 - [Pattern 3: Plugin Architecture](#pattern-3-plugin-architecture)
 - [Pattern 4: Version Handler](#pattern-4-version-handler)
 - [Exercise: Build Your Own Framework](#exercise-build-your-own-framework)
-- [Related Topics](#related-topics)
 - [Summary](#summary)
 - [References](#references)
 
@@ -149,6 +142,11 @@ class PyTorchModel(BaseModel):
         self.model = self._build_model()
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.model.to(self.device)
+        self.loss_fn = torch.nn.MSELoss()
+        self.optimizer = torch.optim.Adam(
+            self.model.parameters(),
+            lr=self.config.get("learning_rate", 0.001),
+        )
 
     def _build_model(self) -> torch.nn.Module:
         """Build a simple neural network."""
@@ -184,9 +182,8 @@ class PyTorchModel(BaseModel):
         # Forward pass
         outputs = self.model(inputs)
 
-        # Calculate loss
-        loss_fn = torch.nn.MSELoss()
-        loss = loss_fn(outputs, targets)
+        # Calculate loss (loss_fn and optimizer are built in __init__, not per step)
+        loss = self.loss_fn(outputs, targets)
 
         # Backward pass
         loss.backward()
@@ -228,7 +225,8 @@ class TensorFlowModel(BaseModel):
         num_layers = self.config.get("num_layers", 3)
 
         layers = []
-        input_size = self.config["input_size"]
+        # No input_size threading needed here: Keras Dense layers infer the
+        # input dimension from the first batch at build time.
 
         for i in range(num_layers):
             layers.extend([
@@ -250,7 +248,10 @@ class TensorFlowModel(BaseModel):
 
         with tf.GradientTape() as tape:
             predictions = self.model(inputs, training=True)
-            loss = tf.keras.losses.MSE(targets, predictions)
+            # tf.keras.losses.MSE returns the per-example loss VECTOR (no
+            # reduction), unlike torch's default mean reduction - reduce_mean
+            # produces the scalar the {"loss": float} interface promises.
+            loss = tf.reduce_mean(tf.keras.losses.MSE(targets, predictions))
 
         gradients = tape.gradient(loss, self.model.trainable_variables)
         self.optimizer.apply_gradients(zip(gradients, self.model.trainable_variables))
@@ -322,25 +323,26 @@ if __name__ == "__main__":
 ### Real-World Example: HuggingFace
 
 ```python
-# HuggingFace uses this pattern
-from transformers import PreTrainedModel
+from transformers import PreTrainedModel, BertModel
+import torch
 
-class PreTrainedModel(ABC):
-    # All models inherit from this
-    @abstractmethod
-    def forward(self, *args, **kwargs):
-        pass
+# PreTrainedModel ("Base class for all models") subclasses torch.nn.Module:
+# it inherits the nn.Module machinery and adds shared from_pretrained() /
+# save_pretrained(), config plumbing, and weight-initialization hooks.
+# Every shipped architecture - BertModel, GPT2Model, LlamaModel, ... -
+# subclasses it and implements its own forward().
+print(issubclass(PreTrainedModel, torch.nn.Module))  # True
+print(issubclass(BertModel, PreTrainedModel))        # True
 
-# Specific implementations
-class BertModel(PreTrainedModel):
-    def forward(self, *args, **kwargs):
-        # BERT-specific forward
-        pass
-
-class GPT2Model(PreTrainedModel):
-    def forward(self, *args, **kwargs):
-        # GPT-2-specific forward
-        pass
+# Defining your own architecture means subclassing PreTrainedModel:
+#
+# class MyModel(PreTrainedModel):
+#     config_class = MyConfig
+#     def __init__(self, config):
+#         super().__init__(config)
+#         ...  # build layers from config
+#     def forward(self, input_ids, attention_mask=None):
+#         ...  # your forward pass
 ```
 
 ---
@@ -592,7 +594,8 @@ if __name__ == "__main__":
 ### Real-World Example: HuggingFace
 
 ```python
-# HuggingFace uses this pattern
+import json
+from pathlib import Path
 from transformers import TrainingArguments
 
 args = TrainingArguments(
@@ -603,9 +606,10 @@ args = TrainingArguments(
     # ... many more parameters
 )
 
-# Save/load
-args.to_json("config.json")
-args = TrainingArguments.from_json("config.json")
+# TrainingArguments has no to_json()/from_json() method pair, but it does
+# serialize with to_json_string() - round-trip via the constructor:
+Path("config.json").write_text(args.to_json_string())
+args = TrainingArguments(**json.loads(Path("config.json").read_text()))
 ```
 
 ---
@@ -828,18 +832,19 @@ if __name__ == "__main__":
 ### Real-World Example: LangChain
 
 ```python
-# LangChain uses plugin pattern for tools
-from langchain.tools import BaseTool
+# LangChain uses the plugin pattern for tools. The @tool decorator wraps the
+# plain function in a StructuredTool whose name, description, and argument
+# schema are derived from the function name, docstring, and type hints.
 from langchain_core.tools import tool
 
 @tool
 def search_api(query: str) -> str:
     """Search the API for query."""
-    # Implementation
     return "results"
 
-# Tool is automatically registered
-# Can be discovered and used dynamically
+print(search_api.name)         # search_api
+print(search_api.description)  # Search the API for query.
+print(search_api.args)         # {'query': {'title': 'Query', 'type': 'string'}}
 ```
 
 ---
@@ -859,6 +864,7 @@ Model versioning ensures:
 ````python
 from typing import Dict, List, Optional, Tuple
 from dataclasses import dataclass
+from importlib.metadata import version as get_installed_version
 from packaging import version
 import json
 from pathlib import Path
@@ -1054,9 +1060,14 @@ class VersionedModel:
         self.framework = framework
         self.version_manager = VersionManager()
 
-        # Check compatibility
-        import torch
-        fw_version = torch.__version__
+        # Resolve the INSTALLED framework version from package metadata.
+        # torch.__version__ would report PyTorch even for framework="tensorflow";
+        # importlib.metadata works for any distribution (PyTorch's PyPI
+        # distribution name is "torch").
+        dist_name = {"pytorch": "torch", "tensorflow": "tensorflow"}.get(framework)
+        if dist_name is None:
+            raise ValueError(f"unsupported framework: {framework!r}")
+        fw_version = get_installed_version(dist_name)
         compatible, issues = self.version_manager.check_compatibility(
             self.MODEL_VERSION,
             framework,
@@ -1209,16 +1220,7 @@ result = accuracy(predictions, targets)
 
 ### Solution Reference
 
-See: [2306: Building Production Framework](./guides/2306-Building-Production-Framework.md) for complete solution.
-
----
-
-## Related Topics
-
-- [2302: Model Serving Architectures](./2302-Model-Serving-Architectures.md) - Build on these patterns
-- [2201: PyTorch Computational Graphs](../2200-frameworks/2201-PyTorch-Computational-Graphs.md) - Framework internals
-- [2203: CUDA Kernels](../2200-frameworks/2203-CUDA-Kernel-Syb-Level.md) - Low-level optimization
-- [EXP_2201: PyTorch Framework Experiment](../../../../experiments/EXP_2201_PYTORCH_GRAPHS.md) - Hands-on practice
+See: [2306: Building a Production Framework](./guides/2306-Building-Production-Framework.md) for complete solution.
 
 ---
 
@@ -1241,31 +1243,30 @@ See: [2306: Building Production Framework](./guides/2306-Building-Production-Fra
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related Documents
 
-- [2302: Model Serving Architectures](2302-Model-Serving-Architectures.md)
-- [2303: API Design for ML Systems](2303-API-Design-for-ML.md)
-- [2304: Production Deployment Patterns](2304-Production-Deployment-Patterns.md)
+- [2302: Model Serving Architectures](./2302-Model-Serving-Architectures.md)
+- [2303: API Design for ML Systems](./2303-API-Design-for-ML.md)
+- [2304: Production Deployment Patterns](./2304-Production-Deployment-Patterns.md)
+
+### External References
+
+- [PreTrainedModel - HuggingFace Transformers](https://huggingface.co/docs/transformers/main_classes/model)
+- [Trainer and TrainingArguments - HuggingFace Transformers](https://huggingface.co/docs/transformers/main_classes/trainer)
+- [dataclasses - Python documentation](https://docs.python.org/3/library/dataclasses.html)
+- [langchain_core API reference](https://reference.langchain.com/python/langchain_core/)
 
 ---
 
 ## Next Steps
 
-- Continue with: **[2302: Model Serving Architectures](./2302-Model-Serving-Architectures.md)**
-- Practical: **[LAB-007: Production RAG](../../../learning-resources/labs/LAB-007-Production-RAG.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Next Lesson: **[2302: Model Serving Architectures](./2302-Model-Serving-Architectures.md)**
+- Practical: **[LAB-007: Production RAG System](../../../learning-resources/labs/LAB-007-Production-RAG.md)**
+- Assessment: **[2300: Framework Engineering - Quiz](./assessment/QUIZ.md)**
 
----
+**Related:**
+- [2201: PyTorch Computational Graphs and Dynamic Execution](../2200-frameworks/2201-PyTorch-Computational-Graphs.md)
+- [2202: TensorFlow XLA and Compiler Optimizations](../2200-frameworks/2202-TensorFlow-XLA-Compilers.md)
+- [2203: CUDA Kernel Programming and GPU Architecture](../2200-frameworks/2203-CUDA-Kernel-Syb-Level.md)
 
-**Key Takeaways:**
-
-1. **Model Abstraction** - Write framework-agnostic code
-2. **Configuration Management** - Reproducible experiments
-3. **Plugin Architecture** - Extensible systems
-4. **Version Handling** - Manage model compatibility
-
-**Real-World Frameworks Using These Patterns:**
-- HuggingFace Transformers (model abstraction + configs)
-- PyTorch Lightning (abstraction + plugins)
-- LangChain (plugins + versioning)
-- FastAPI (plugin middlewares)
+**Experiment:** [EXP-2201: PyTorch Computational Graphs](../../../../experiments/EXP_2201_PYTORCH_GRAPHS.md)
