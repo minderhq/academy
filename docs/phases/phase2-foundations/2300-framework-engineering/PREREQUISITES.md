@@ -1,12 +1,37 @@
 ---
 Document ID: 2300-PREREQUISITES
 Title: "2300: Framework Engineering - Prerequisites"
-Last Updated: 2026-09-24
+Phase: 2
+Module: 2300
+Last Updated: 2026-09-26
 Status: Complete
 Difficulty: Advanced
+Estimated Time: 30 minutes (quick review) - 12.5 hours (full review)
+Prerequisites: See module README
+Related: See module README
+Tags: framework-engineering, prerequisites, preparation
 ---
 
 # 2300: Framework Engineering - Prerequisites
+
+**Verify you're ready before starting the module.**
+
+---
+
+## Contents
+
+- [Before You Start](#before-you-start)
+- [Required Knowledge](#required-knowledge)
+- [Quick Refresher](#quick-refresher)
+- [Self-Assessment](#self-assessment)
+- [Estimated Preparation Time](#estimated-preparation-time)
+- [Common Gaps](#common-gaps)
+- [Preparation Checklist](#preparation-checklist)
+- [Summary](#summary)
+- [References](#references)
+- [Next Steps](#next-steps)
+
+---
 
 ## Before You Start
 
@@ -80,23 +105,45 @@ class MyModel(Model):
 from abc import ABC, abstractmethod
 
 class OptimizationStrategy(ABC):
+    """Interface for optimizers - interchangeable at runtime."""
+
     @abstractmethod
-    def optimize(self, params, gradients):
+    def optimize(self, params: dict, gradients: dict) -> dict:
+        """Return NEW params after one update step."""
         pass
 
-class AdamStrategy(OptimizationStrategy):
-    def optimize(self, params, gradients):
-        # Adam optimization
-        return updated_params
-
 class SGDStrategy(OptimizationStrategy):
-    def optimize(self, params, gradients):
-        # SGD optimization
-        return updated_params
+    def __init__(self, lr: float = 0.01):
+        self.lr = lr
 
-# Usage
-optimizer = AdamStrategy()
-updated = optimizer.optimize(params, gradients)
+    def optimize(self, params, gradients):
+        # param := param - lr * gradient
+        return {k: params[k] - self.lr * gradients[k] for k in params}
+
+class AdamStrategy(OptimizationStrategy):
+    """Illustrative simplified Adam: the step is scaled per parameter by
+    gradient magnitude. Real Adam additionally tracks running first/second
+    moment estimates (see torch.optim.Adam)."""
+
+    def __init__(self, lr: float = 0.01):
+        self.lr = lr
+
+    def optimize(self, params, gradients):
+        new_params = {}
+        for k in params:
+            adaptive = self.lr / (1.0 + abs(gradients[k]))
+            new_params[k] = params[k] - adaptive * gradients[k]
+        return new_params
+
+# Usage: same call site, different algorithm behind the interface
+params = {"w": 1.0}
+gradients = {"w": 0.5}
+
+optimizer = SGDStrategy(lr=0.1)
+print(optimizer.optimize(params, gradients))   # {'w': 0.95}
+
+optimizer = AdamStrategy(lr=0.1)               # swap the strategy - nothing else changes
+print(optimizer.optimize(params, gradients))   # {'w': 0.9666666666666667}
 ```
 
 **Example: Registry Pattern**
@@ -154,6 +201,15 @@ class SimpleModel(nn.Module):
     def forward(self, x):
         return self.linear(x)
 
+# Minimal data setup so the training loop below is runnable: two tiny
+# batches of input features (x) and targets (y). A real dataloader
+# yields the same dict shape.
+dataloader = [
+    {"x": torch.randn(8, 784), "y": torch.randn(8, 10)},
+    {"x": torch.randn(8, 784), "y": torch.randn(8, 10)},
+]
+loss_fn = nn.MSELoss()
+
 # Training
 model = SimpleModel()
 optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
@@ -169,12 +225,15 @@ for batch in dataloader:
 torch.save(model.state_dict(), "model.pt")
 
 # Load
+# weights_only=True is the torch >= 2.6 default; passing it explicitly
+# keeps the checkpoint load safe (no arbitrary code execution) and
+# version-stable
 model = SimpleModel()
-model.load_state_dict(torch.load("model.pt"))
+model.load_state_dict(torch.load("model.pt", weights_only=True))
 ```
 
 **If you're not familiar:**
-- Review: [2201: PyTorch Computational Graphs](../2200-frameworks/2201-PyTorch-Computational-Graphs.md)
+- Review: [2201: PyTorch Computational Graphs and Dynamic Execution](../2200-frameworks/2201-PyTorch-Computational-Graphs.md)
 - Practice: Train and save a simple model
 - Estimated time: 2 hours
 
@@ -191,7 +250,7 @@ model.load_state_dict(torch.load("model.pt"))
 **Example: FastAPI**
 
 ```python
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI
 from pydantic import BaseModel
 
 app = FastAPI()
@@ -203,15 +262,19 @@ class PredictResponse(BaseModel):
     prediction: str
     confidence: float
 
+# Stand-in for your loaded model - in a real application this is where
+# you load weights (e.g. model = MyModel(); model.load_state_dict(...)).
+# Defining it here keeps the example self-contained.
+MODEL = {"label": "positive", "score": 0.98}
+
 @app.get("/")
 async def root():
     return {"message": "ML API"}
 
 @app.post("/predict", response_model=PredictResponse)
 async def predict(request: PredictRequest):
-    # Model inference
-    result = model.predict(request.text)
-
+    # model.predict(request.text) in a real app
+    result = MODEL
     return PredictResponse(
         prediction=result["label"],
         confidence=result["score"]
@@ -255,7 +318,6 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
 **Example: Docker Compose**
 
 ```yaml
-
 services:
   api:
     build: .
@@ -273,8 +335,8 @@ services:
 ```
 
 **If you're not familiar:**
-- Review: [TUTORIAL-002: Docker Essentials](../../../learning-resources/tutorials/TUTORIAL-002-Docker-Essentials.md)
-- Practice: Complete [LAB-001: Docker & LLM](../../../learning-resources/labs/LAB-001-Docker-LLM.md)
+- Review: [Tutorial 002: Docker Essentials for AI](../../../learning-resources/tutorials/TUTORIAL-002-Docker-Essentials.md)
+- Practice: Complete [LAB 001: Docker & LLM Fundamentals](../../../learning-resources/labs/LAB-001-Docker-LLM.md)
 - Estimated time: 2 hours
 
 ---
@@ -290,6 +352,7 @@ services:
 
 ```python
 import asyncio
+from typing import List
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -300,7 +363,10 @@ async def process_batch(batch):
     return [item * 2 for item in batch]
 
 @app.post("/predict")
-async def predict(items: list):
+async def predict(items: List[int]):
+    # A typed List[int] body parameter IS the whole request body: POST
+    # [1, 2, 3] as a bare JSON array. (A bare `items: list` annotation
+    # behaves differently - FastAPI embeds it as {"items": [...]}.)
     results = await process_batch(items)
     return {"results": results}
 ```
@@ -335,18 +401,20 @@ class Rectangle(Shape):
 ### Decorators
 
 ```python
+import time
+
 def timer(func):
     def wrapper(*args, **kwargs):
-        import time
-        start = time.time()
+        # monotonic clock: wall-clock jumps (NTP, manual changes) would
+        # corrupt elapsed-time math
+        start = time.monotonic()
         result = func(*args, **kwargs)
-        print(f"{func.__name__} took {time.time() - start:.2f}s")
+        print(f"{func.__name__} took {time.monotonic() - start:.2f}s")
         return result
     return wrapper
 
 @timer
 def slow_function():
-    import time
     time.sleep(1)
     return "Done"
 ```
@@ -394,7 +462,7 @@ Before starting, can you:
 - [ ] Understand basic ML training loops?
 
 **If you answered NO to any question:**
-Review the suggested materials above. Total review time: ~10-12 hours
+Review the suggested materials above. Total review time: 12.5 hours
 
 **If you answered YES to all questions:**
 You're ready to start! Begin with [2301: Framework Design Patterns](./2301-Framework-Design-Patterns.md)
@@ -404,7 +472,7 @@ You're ready to start! Begin with [2301: Framework Design Patterns](./2301-Frame
 ## Estimated Preparation Time
 
 - **If familiar with prerequisites:** 0 hours (ready to start)
-- **If need review:** 10-12 hours (spread over 2-3 days)
+- **If need review:** 12.5 hours (2 + 3 + 2 + 2 + 2 + 1.5, spread over 2-3 days)
 
 ---
 
@@ -442,8 +510,8 @@ You're ready to start! Begin with [2301: Framework Design Patterns](./2301-Frame
 **Symptoms:** Don't know how to containerize applications
 
 **Fix:**
-1. Complete TUTORIAL-002 (1.5 hours)
-2. Complete LAB-001 (2 hours)
+1. Complete Tutorial 002 (1.5 hours)
+2. Complete LAB 001 (2 hours)
 3. Build your own Dockerfile
 
 ---
@@ -480,8 +548,42 @@ Use this checklist to verify you're ready:
 
 ---
 
+## Summary
+
+- This module assumes **OOP, design patterns, ML basics, REST APIs, Docker** — plus helpful async Python knowledge.
+- Each knowledge area ships a runnable example (abstract base class, strategy/registry patterns, a complete PyTorch train/save/load loop, a self-contained FastAPI app, Dockerfile + Compose) — run them, don't just read them.
+- **Full review takes 12.5 hours** (2 + 3 + 2 + 2 + 2 + 1.5); a quick skim of this guide takes ~30 minutes.
+- Use the self-assessment and checklist to find your gaps; the Common Gaps section gives a fix plan per gap.
+- Every example in the module builds on these — 2301's abstraction layers are the ABC here, 2301's plugin systems are the Registry here.
+
+---
+
+## References
+
+### Related Documents
+
+- [Phase 2: Module 2300 - Framework Engineering](./README.md) — module overview and learning path
+- [2201: PyTorch Computational Graphs and Dynamic Execution](../2200-frameworks/2201-PyTorch-Computational-Graphs.md) — deeper PyTorch review (Section 3)
+- [2301: Framework Design Patterns](./2301-Framework-Design-Patterns.md) — where the ABC and Registry patterns pay off
+- [Tutorial 002: Docker Essentials for AI](../../../learning-resources/tutorials/TUTORIAL-002-Docker-Essentials.md) — Docker review (Section 5)
+- [LAB 001: Docker & LLM Fundamentals](../../../learning-resources/labs/LAB-001-Docker-LLM.md) — hands-on Docker practice
+- [Quick Start Troubleshooting Guide](../../../00-META/TROUBLESHOOTING-QUICKSTART.md) — when setup problems block you
+
+### External References
+
+- [Python OOP Tutorial](https://docs.python.org/3/tutorial/classes.html) — classes, inheritance, ABCs (Section 1)
+- [Refactoring.Guru Design Patterns](https://refactoring.guru/design-patterns) — strategy, factory, observer, registry (Section 2)
+- [FastAPI Tutorial](https://fastapi.tiangolo.com/tutorial/) — the API framework used throughout this module (Section 4)
+- [Real Python: Async IO in Python](https://realpython.com/async-io-python/) — async/await deep dive (Section 6)
+
+---
+
 ## Next Steps
 
-- **[2301: Framework Design Patterns](./2301-Framework-Design-Patterns.md)**
+1. **Gaps found?** Work the fix plans in [Common Gaps](#common-gaps), then re-run the [Self-Assessment](#self-assessment).
+2. **Ready?** Start the module with [2301: Framework Design Patterns](./2301-Framework-Design-Patterns.md).
+3. **After the module:** take the [2300: Framework Engineering - Quiz](./assessment/QUIZ.md), then the [2300: Framework Engineering - Practice Exercises](./assessment/PRACTICE.md).
 
-**Need Help?** See [TROUBLESHOOTING-QUICKSTART.md](../../../00-META/TROUBLESHOOTING-QUICKSTART.md)
+**Related:** [Phase 2: Module 2300 - Framework Engineering](./README.md) · [2301: Framework Design Patterns](./2301-Framework-Design-Patterns.md) · [Tutorial 002: Docker Essentials for AI](../../../learning-resources/tutorials/TUTORIAL-002-Docker-Essentials.md)
+
+**Experiment:** No EXP_23xx exists yet — nearest relevant: [EXP_1403: TGI (Text Generation Inference) Tuning Experiments](../../../../experiments/EXP_1403_TGI_TUNING.md) (serving-stack fundamentals, the direction this module prepares you for).

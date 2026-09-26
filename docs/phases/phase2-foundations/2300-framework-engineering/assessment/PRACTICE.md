@@ -1,14 +1,31 @@
 ---
 Document ID: 2300-PRACTICE
 Title: "2300: Framework Engineering - Practice Exercises"
-Last Updated: 2026-09-25
+Phase: 2
+Module: 2300
+Last Updated: 2026-09-26
 Status: Complete
 Difficulty: Advanced
+Estimated Time: 2.5 hours
+Prerequisites: See module README
+Related: See module README
+Tags: framework-engineering, assessment, practice, hands-on
 ---
 
 # 2300: Framework Engineering - Practice Exercises
 
 **Hands-on exercises to reinforce your learning.**
+
+---
+
+## Contents
+
+- [Exercise 1: Model Abstraction (30 minutes)](#exercise-1-model-abstraction-30-minutes)
+- [Exercise 2: Plugin System (45 minutes)](#exercise-2-plugin-system-45-minutes)
+- [Exercise 3: Batching Server (60 minutes)](#exercise-3-batching-server-60-minutes)
+- [Summary](#summary)
+- [References](#references)
+- [Next Steps](#next-steps)
 
 ---
 
@@ -24,6 +41,8 @@ Implement a complete model abstraction layer that supports both PyTorch and Tens
 2. Implement `PyTorchModel`
 3. Implement `TensorFlowModel`
 4. Write framework-agnostic training loop
+
+> **Prerequisite:** the solution imports both `torch` and `tensorflow`. Install TensorFlow with `pip install tensorflow` if you only have PyTorch.
 
 ### Starter Code
 
@@ -160,7 +179,9 @@ class PyTorchModel(BaseModel):
 
     def load(self, path: str):
         """Load model."""
-        checkpoint = torch.load(path)
+        # weights_only=True is the torch >= 2.6 default; passing it
+        # explicitly keeps the checkpoint load safe and version-stable
+        checkpoint = torch.load(path, weights_only=True)
         self.model.load_state_dict(checkpoint['model_state_dict'])
         self.optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
 
@@ -273,12 +294,21 @@ if __name__ == "__main__":
     history = train_model(tf_model, batches, epochs=3)
     print("✓ TensorFlow model trained successfully\n")
 
+    # Round-trip a checkpoint through save/load
+    pytorch_model.save("pytorch_model.pt")
+    fresh = PyTorchModel(config)
+    fresh.load("pytorch_model.pt")
+    print("✓ Checkpoint save/load round-trip works\n")
+
     print("All tests passed!")
 
 # Expected output:
-# Both PyTorch and TensorFlow models train successfully
-# Loss decreases over epochs
-# Framework-agnostic training works for both
+# Both PyTorch and TensorFlow models train successfully and the
+# checkpoint round-trips through save/load.
+# Per-epoch loss decreases (PyTorch side reaches a far lower loss than
+# TensorFlow's single-epoch-per-fit first steps). Exact values are not
+# reproducible as printed - the batches come from unseeded
+# np.random.randn - so treat any specific numbers as run-dependent.
 ```
 
 ### Verification
@@ -316,6 +346,7 @@ from typing import Dict, Any, List
 import importlib.util
 import os
 import json
+import torch
 
 # Complete MetricRegistry Implementation
 class MetricRegistry:
@@ -376,6 +407,11 @@ class MetricRegistry:
         Args:
             filepath: Path to Python file
             metric_names: List of metric names to load (None = all)
+
+        Note:
+            Plugins loaded this way enter the registry directly, so they
+            carry no decorator metadata - get_metadata() returns {} for
+            them. Only the @register decorator path records metadata.
         """
         spec = importlib.util.spec_from_file_location("metrics_module", filepath)
         module = importlib.util.module_from_spec(spec)
@@ -413,6 +449,10 @@ class MetricRegistry:
 METRIC_REGISTRY = MetricRegistry("metrics")
 
 # Register 3 built-in metrics
+# torch is imported at module top level on purpose: the metric classes'
+# update() methods reference torch.Tensor. Importing it only inside the
+# __main__ demo would work when run as a script but crash with NameError
+# the moment another module imports this block and calls update().
 @METRIC_REGISTRY.register("accuracy", description="Classification accuracy")
 class Accuracy:
     """Accuracy metric."""
@@ -506,6 +546,8 @@ class F1Score:
         self.recall.reset()
 
 # Helper: Recall metric (needed for F1)
+# Not registered - F1 composes it internally. The @register path is for
+# metrics users create by name; internal collaborators stay private.
 class Recall:
     """Recall metric."""
 
@@ -539,7 +581,7 @@ class Recall:
 
 # Verification (Complete)
 if __name__ == "__main__":
-    import torch
+    import tempfile
 
     print("=== Testing Metric Registry ===\n")
 
@@ -565,22 +607,77 @@ if __name__ == "__main__":
     f1.update(predictions, targets)
     print(f"F1 Score: {f1.compute():.4f}")
 
+    # Requirement 4 demonstrated: dynamic loading from file.
+    # Write a plugin file, then load its metric classes into the registry.
+    plugin_src = '''
+import torch
+
+class Specificity:
+    """True negative rate - loaded dynamically from a plugin file."""
+
+    __metric_name__ = "specificity"
+
+    def __init__(self, positive_label=1):
+        self.positive_label = positive_label
+        self.true_negatives = 0
+        self.false_positives = 0
+
+    def update(self, predictions, targets):
+        if isinstance(predictions, torch.Tensor):
+            predictions = predictions.cpu().numpy()
+        if isinstance(targets, torch.Tensor):
+            targets = targets.cpu().numpy()
+        self.true_negatives += ((predictions != self.positive_label) & (targets != self.positive_label)).sum()
+        self.false_positives += ((predictions == self.positive_label) & (targets != self.positive_label)).sum()
+
+    def compute(self):
+        denom = self.true_negatives + self.false_positives
+        if denom == 0:
+            return 0.0
+        return float(self.true_negatives) / denom
+
+    def reset(self):
+        self.true_negatives = 0
+        self.false_positives = 0
+'''
+    plugin_path = os.path.join(tempfile.mkdtemp(), "custom_metrics.py")
+    with open(plugin_path, "w") as f:
+        f.write(plugin_src)
+
+    loaded = METRIC_REGISTRY.load_from_file(plugin_path)
+    print(f"\nDynamically loaded from file: {loaded}")
+
+    specificity = METRIC_REGISTRY.create("specificity", positive_label=1)
+    specificity.update(predictions, targets)
+    print(f"Specificity: {specificity.compute():.4f}")
+
     # Get metadata
     print("\nMetric metadata:")
     for name in METRIC_REGISTRY.list_all():
         meta = METRIC_REGISTRY.get_metadata(name)
         print(f"  {name}: {meta.get('description', 'N/A')}")
 
-    print("\n✓ All tests passed!")
+    # Persist registry state to JSON
+    state_path = os.path.join(tempfile.mkdtemp(), "registry.json")
+    METRIC_REGISTRY.save_registry(state_path)
+    print(f"\n✓ All tests passed! (registry state written to {os.path.basename(state_path)})")
 
-# Expected output:
-# ✓ Registered metric: accuracy / precision / f1 (one line each,
-#   printed at decoration time)
+# Expected output (verified by running the block):
+# ✓ Registered metric: accuracy
+# ✓ Registered metric: precision
+# ✓ Registered metric: f1                (printed at decoration time)
 # Available metrics: ['accuracy', 'precision', 'f1']
 # Accuracy: 0.8333     (5 of 6 predictions match)
 # Precision: 0.7500    (3 true positives, 1 false positive)
 # F1 Score: 0.8571     (recall is 1.0 - no positive was missed)
-# Metric metadata: description printed for each registered metric
+# Dynamically loaded from file: ['specificity']
+# Specificity: 0.6667  (2 true negatives, 1 false positive)
+# Metric metadata:
+#   accuracy: Classification accuracy
+#   precision: Precision score
+#   f1: F1 score
+#   specificity: N/A     (loaded directly, no decorator metadata)
+# ✓ All tests passed! (registry state written to registry.json)
 ```
 
 ---
@@ -610,7 +707,13 @@ class Priority(Enum):
 
 @dataclass(order=True)
 class Request:
-    """Request data structure."""
+    """Request data structure.
+
+    order=True makes PriorityQueue sort instances as (priority, timestamp)
+    tuples and pop the LOWEST first: HIGH (1) jumps MEDIUM (2), and equal
+    priorities keep FIFO order because earlier monotonic timestamps are
+    smaller.
+    """
     priority: int
     timestamp: float
     id: str = field(compare=False)
@@ -668,7 +771,10 @@ class BatchingServer:
         request_id = str(uuid.uuid4())
         request = Request(
             priority=priority.value,
-            timestamp=time.time(),
+            # monotonic clock, not wall clock: an NTP correction or manual
+            # clock change mid-run would otherwise corrupt both the queue
+            # ordering and the deadline arithmetic below
+            timestamp=time.monotonic(),
             id=request_id,
             input_data=input_data
         )
@@ -691,8 +797,8 @@ class BatchingServer:
         Returns:
             Request result
         """
-        start_time = time.time()
-        while time.time() - start_time < timeout:
+        start_time = time.monotonic()
+        while time.monotonic() - start_time < timeout:
             with self.lock:
                 if request_id in self.results:
                     return self.results.pop(request_id)
@@ -703,7 +809,7 @@ class BatchingServer:
     def _check_and_process(self):
         """Check if batch is ready and process it."""
         batch = []
-        current_time = time.time()
+        current_time = time.monotonic()
 
         with self.lock:
             # Collect requests for batch
@@ -727,7 +833,7 @@ class BatchingServer:
         Args:
             batch: List of requests to process
         """
-        start_time = time.time()
+        start_time = time.monotonic()
 
         # Sort by priority
         batch.sort(key=lambda r: r.priority)
@@ -758,7 +864,7 @@ class BatchingServer:
                 / self.stats["total_batches"]
             )
 
-            latency = time.time() - start_time
+            latency = time.monotonic() - start_time
             self.stats["total_latency"] += latency
             self.stats["avg_latency"] = self.stats["total_latency"] / self.stats["total_batches"]
 
@@ -774,6 +880,8 @@ class BatchingServer:
         """
         # Mock inference - replace with actual model call
         time.sleep(0.01)
+        # Result labels carry the BATCH position, not the original input
+        # number: input_9 served in the first batch receives result_0.
         return [f"result_{i}" for i in range(len(batch_inputs))]
 
     def start(self):
@@ -843,10 +951,34 @@ if __name__ == "__main__":
 
     print("\n✓ All tests passed!")
 
-# Expected output:
-# All 10 requests processed
-# Results returned for each request
-# Statistics show batching metrics
+# Expected output (structure verified by running the block; the
+# 8-character request-id prefixes are uuid4 fragments and differ every run):
+# === Testing Batching Server ===
+#
+# Request 3f2a81bc: result_0      <- HIGH-priority requests (i = 0, 3, 6, 9)
+# Request 9d1c04e7: result_1         form the first batch of 4
+# Request 51b7e2aa: result_2
+# Request c8e93f10: result_3
+# Request ...: result_0           <- MEDIUM requests batch as 4 + 2
+# ...
+#
+# Statistics:
+#   Total requests: 10
+#   Total batches: 3
+#   Avg batch size: 3.33          (4 + 4 + 2 requests across 3 batches)
+#   Avg latency: 10.x xms         (~10ms mock inference per batch)
+# Shutting down batching server...
+# Shutdown complete. Processed 10 requests.
+#
+# ✓ All tests passed!
+#
+# Timing caveat: batch boundaries depend on when the 1ms worker loop
+# runs relative to the request arrivals. With all 10 requests queued
+# within a few milliseconds the 4/4/2 split above is the typical
+# outcome, but a slow machine can produce different splits (e.g. 4/3/3)
+# and correspondingly different avg_batch_size. The invariants that
+# always hold: every request gets a result, total_requests == 10, and
+# avg_batch_size equals 10 / total_batches.
 ```
 
 ---
@@ -855,11 +987,45 @@ if __name__ == "__main__":
 
 This practice guide provides complete, production-ready implementations for:
 
-1. **Model Abstraction:** Framework-agnostic model interface
-2. **Plugin System:** Extensible metrics registry with decorators
-3. **Batching Server:** Production inference server with priority queuing
+1. **Model Abstraction:** Framework-agnostic model interface (PyTorch + TensorFlow) with checkpoint save/load round-trip
+2. **Plugin System:** Extensible metrics registry with decorators, metadata, JSON persistence, and true dynamic loading from file
+3. **Batching Server:** Production inference server with priority queuing, monotonic-clock deadlines, and honest running-average statistics
 
 **Expected Learning Outcomes:**
 - Build framework-agnostic ML systems
-- Implement plugin architectures
-- Create production inference servers
+- Implement plugin architectures — including dynamic loading, not just decoration
+- Create production inference servers with correct timeout and priority semantics
+
+---
+
+## References
+
+### Related Documents
+
+- [Phase 2: Module 2300 - Framework Engineering](../README.md) — module overview and learning path
+- [2301: Framework Design Patterns](../2301-Framework-Design-Patterns.md) — abstraction layers, registries (Exercises 1-2)
+- [2302: Model Serving Architectures](../2302-Model-Serving-Architectures.md) — batching theory (Exercise 3)
+- [2303: API Design for ML Systems](../2303-API-Design-for-ML.md) — serving the batching layer over HTTP
+- [2304: Production Deployment Patterns](../2304-Production-Deployment-Patterns.md) — deploying what you built
+- [2305: Framework Comparison Guide](../guides/2305-Framework-Comparison.md) — when to build vs adopt
+- [2306: Building a Production Framework](../guides/2306-Building-Production-Framework.md) — assembles these pieces into a full framework
+- [2300: Framework Engineering - Quiz](./QUIZ.md) — assessment for this module
+
+### External References
+
+- [queue — Priority Queue](https://docs.python.org/3/library/queue.html) — ordering semantics behind the priority batching (Exercise 3)
+- [threading — Thread-based parallelism](https://docs.python.org/3/library/threading.html) — the worker loop and graceful shutdown (Exercise 3)
+- [time — Clock functions](https://docs.python.org/3/library/time.html) — `time.monotonic()` vs `time.time()` for deadline math (Exercise 3)
+- [torch.load — PyTorch docs](https://docs.pytorch.org/docs/stable/generated/torch.load.html) — `weights_only=True` default since torch 2.6 (Exercise 1)
+
+---
+
+## Next Steps
+
+1. **Check yourself:** take the [2300: Framework Engineering - Quiz](./QUIZ.md) — the coding questions there mirror these exercises at smaller scale.
+2. **Apply it:** [LAB-007: Production RAG System](../../../../learning-resources/labs/LAB-007-Production-RAG.md) and [LAB-009: Production Deployment](../../../../learning-resources/labs/LAB-009-Production-Deployment.md) use the batching and deployment patterns from Exercises 1 and 3.
+3. **Next Module:** [2400: LLM Pretraining](../../2400-pretraining/README.md)
+
+**Related:** [Phase 2: Module 2300 - Framework Engineering](../README.md) · [2306: Building a Production Framework](../guides/2306-Building-Production-Framework.md) · [1402: vLLM and TGI High-Concurrency Inference](../../../phase1-infra/1400-llmops/1402-vLLM-and-TGI.md)
+
+**Experiment:** No EXP_23xx exists yet — nearest relevant: [EXP_1404: vLLM Production Tuning Experiments](../../../../../experiments/EXP_1404_VLLM_TUNING.md) (dynamic batching and throughput tuning in a real serving engine, Exercise 3's themes at production scale).

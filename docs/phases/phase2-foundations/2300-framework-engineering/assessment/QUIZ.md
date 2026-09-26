@@ -1,14 +1,34 @@
 ---
 Document ID: 2300-QUIZ
 Title: "2300: Framework Engineering - Quiz"
-Last Updated: 2026-02-04
+Phase: 2
+Module: 2300
+Last Updated: 2026-09-26
 Status: Complete
 Difficulty: Advanced
+Estimated Time: 30 minutes
+Prerequisites: See module README
+Related: See module README
+Tags: framework-engineering, assessment, quiz
 ---
 
 # 2300: Framework Engineering - Quiz
 
 **Test your knowledge of framework design patterns and deployment.**
+
+---
+
+## Contents
+
+- [Instructions](#instructions)
+- [Multiple Choice Questions](#multiple-choice-questions)
+- [Coding Questions](#coding-questions)
+- [Scoring](#scoring)
+- [Self-Grading](#self-grading)
+- [Need to Review?](#need-to-review)
+- [Summary](#summary)
+- [References](#references)
+- [Next Steps](#next-steps)
 
 ---
 
@@ -19,7 +39,7 @@ Difficulty: Advanced
 3. Take your time - no time limit
 4. Reference materials are allowed
 
-**Passing Score:** 16/20 (80%)
+**Passing Score:** 20/25 (80%)
 
 ---
 
@@ -216,7 +236,7 @@ D) 500
 
 **Answer:** C
 
-**Explanation:** 429 Too Many Requests is the standard status code for rate limiting.
+**Explanation:** 429 Too Many Requests is the standard status code for rate limiting (defined in RFC 6585).
 
 ---
 
@@ -319,14 +339,14 @@ class PluginRegistry:
 
 ### Question 19: Implement Batch Processing
 
-**Write code to process requests in batches:**
+**Write code to process requests in batches. The model is passed in explicitly so the function has no hidden dependencies:**
 
 ```python
-def process_batch(requests, batch_size=32):
+def process_batch(requests, model, batch_size=32):
+    """Run model.predict over requests in fixed-size batches."""
     results = []
     for i in range(0, len(requests), batch_size):
         batch = requests[i:i+batch_size]
-        # Process batch
         batch_results = model.predict(batch)
         results.extend(batch_results)
     return results
@@ -359,24 +379,24 @@ CMD ["uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8000"]
 ### Calculate Your Score
 
 ```text
-Multiple Choice: 15 questions × 1 point = 15 points
-Coding Questions: 5 questions × 1 point = 5 points
+Multiple Choice: 15 questions x 1 point = 15 points
+Coding Questions:  5 questions x 2 points = 10 points
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Total: 20 points
+Total: 25 points
 ```
 
 ### Results
 
-- **18-20 points:** Excellent! 🌟
-- **16-17 points:** Pass ✅
-- **14-15 points:** Review recommended
-- **Below 14:** Retake module
+- **23-25 points:** Excellent! 🌟
+- **20-22 points:** Pass ✅
+- **18-19 points:** Review recommended
+- **Below 18:** Retake module
 
 ---
 
 ## Self-Grading
 
-Grade your coding questions honestly:
+Grade your coding questions honestly (each is worth up to 2 points):
 
 - **2 points:** Complete and correct
 - **1 point:** Mostly correct with minor issues
@@ -386,25 +406,58 @@ Grade your coding questions honestly:
 
 ## Need to Review?
 
-If you didn't pass, review these sections:
+Each question maps to the lesson that teaches it:
 
-- **Questions 1-3:** [2301: Framework Design Patterns](../2301-Framework-Design-Patterns.md)
-- **Questions 4-6:** [2302: Model Serving Architectures](../2302-Model-Serving-Architectures.md)
-- **Questions 7-9:** [2304: Production Deployment](../2304-Production-Deployment-Patterns.md)
-- **Questions 10-12:** [2301: Framework Design Patterns](../2301-Framework-Design-Patterns.md)
-- **Questions 13-15:** [2303: API Design for ML](../2303-API-Design-for-ML.md)
-- **Questions 16-20:** [2306: Building Production Framework](../guides/2306-Building-Production-Framework.md)
+- **Questions 1-3:** [2301: Framework Design Patterns](../2301-Framework-Design-Patterns.md) — abstraction, patterns, configuration
+- **Questions 4-5:** [2302: Model Serving Architectures](../2302-Model-Serving-Architectures.md) — batching, parallelism
+- **Questions 6-7:** [2304: Production Deployment Patterns](../2304-Production-Deployment-Patterns.md) — blue-green, canary
+- **Questions 8-9:** [2303: API Design for ML Systems](../2303-API-Design-for-ML.md) — REST methods, rate limiting
+- **Question 10:** [2301: Framework Design Patterns](../2301-Framework-Design-Patterns.md) — plugin registries
+- **Questions 11-12:** [2304: Production Deployment Patterns](../2304-Production-Deployment-Patterns.md) — A/B testing, rolling updates
+- **Questions 13, 15:** [2303: API Design for ML Systems](../2303-API-Design-for-ML.md) — status codes, SSE
+- **Question 14:** [2304: Production Deployment Patterns](../2304-Production-Deployment-Patterns.md) — Docker deployment
+- **Questions 16-20:** [2306: Building a Production Framework](../guides/2306-Building-Production-Framework.md) — hands-on framework building
 
 ---
 
-**Once you pass, you're ready to move on!** 🎉
+## Summary
+
+- **20 questions** covering all four module lessons plus the hands-on guide: model abstraction and design patterns (2301), serving and batching (2302), API design (2303), deployment strategies (2304), and end-to-end framework building (2306).
+- **25 points total** — 15 multiple-choice (1 point each) plus 5 coding questions (2 points each); **20/25 (80%) passes**.
+- **Self-graded**: score the coding questions against the reference code using the honest 2/1/0 scale.
+- Every wrong answer points back to the exact lesson that teaches it — use the review map above before retaking.
+- Once you pass, you're ready to move on! 🎉
+
+---
+
+## References
+
+### Related Documents
+
+- [Phase 2: Module 2300 - Framework Engineering](../README.md) — module overview and learning path
+- [2301: Framework Design Patterns](../2301-Framework-Design-Patterns.md) — Questions 1-3, 10
+- [2302: Model Serving Architectures](../2302-Model-Serving-Architectures.md) — Questions 4-5
+- [2303: API Design for ML Systems](../2303-API-Design-for-ML.md) — Questions 8-9, 13, 15
+- [2304: Production Deployment Patterns](../2304-Production-Deployment-Patterns.md) — Questions 6-7, 11-12, 14
+- [2305: Framework Comparison Guide](../guides/2305-Framework-Comparison.md) — framework selection context
+- [2306: Building a Production Framework](../guides/2306-Building-Production-Framework.md) — Questions 16-20
+- [2300: Framework Engineering - Practice Exercises](./PRACTICE.md) — hands-on reinforcement for the coding questions
+
+### External References
+
+- [RFC 6585: Additional HTTP Status Codes](https://datatracker.ietf.org/doc/html/rfc6585) — defines 429 Too Many Requests (Question 13). Note: 429 is *not* part of RFC 9110's core status-code set.
+- [Dockerfile reference](https://docs.docker.com/reference/dockerfile/) — instruction reference for Question 20.
+
+---
 
 ## Next Steps
 
-- **[2400: Pre-training Fundamentals](../../2400-pretraining/README.md)**
+1. **Score below 20?** Work through the review map above, then retake.
+2. **Passed?** Deepen the hands-on skills with [2300: Framework Engineering - Practice Exercises](./PRACTICE.md), then do the practical labs:
+   - [LAB-007: Production RAG System](../../../../learning-resources/labs/LAB-007-Production-RAG.md)
+   - [LAB-009: Production Deployment](../../../../learning-resources/labs/LAB-009-Production-Deployment.md)
+3. **Next Module:** [2400: LLM Pretraining](../../2400-pretraining/README.md)
 
----
+**Related:** [Phase 2: Module 2300 - Framework Engineering](../README.md) · [2304: Production Deployment Patterns](../2304-Production-Deployment-Patterns.md) · [Tutorial 003: RAG Basics - Give Your LLM Knowledge](../../../../learning-resources/tutorials/TUTORIAL-003-RAG-Basics.md)
 
-**Last Updated:** 2026-02-04
-**Status:** Complete
-**Time:** 30 minutes
+**Experiment:** No EXP_23xx exists yet — nearest relevant: [EXP_1403: TGI (Text Generation Inference) Tuning Experiments](../../../../../experiments/EXP_1403_TGI_TUNING.md) (serving-layer performance, matches this module's serving themes).
