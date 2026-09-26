@@ -1,20 +1,18 @@
 ---
-Document ID: 2402
-Title: Large-Scale Training for Language Models
+Document ID: 2402-Large-Scale-Training
+Title: "2402: Large-Scale Training for Language Models"
 Phase: 2
 Module: 2400
-Last Updated: 2026-09-24
+Last Updated: 2026-09-26
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 6 hours
 Prerequisites: See module README
 Related: See module README
-Tags: ['training', 'pretraining', 'evaluation', 'fsdp']
+Tags: ['training', 'pretraining', 'distributed-training', 'fsdp', 'deepspeed']
 ---
 
 # 2402: Large-Scale Training for Language Models
-
-**"Training at Scale"** - Multi-GPU and multi-node training infrastructure.
 
 ---
 
@@ -32,1391 +30,966 @@ Tags: ['training', 'pretraining', 'evaluation', 'fsdp']
 - [Part 8: Complete Training Script](#part-8-complete-training-script)
 - [Summary](#summary)
 - [References](#references)
-
----
+- [Next Steps](#next-steps)
 
 ## Learning Objectives
 
 After completing this lesson, you will be able to:
 
-- Explain Part 1: Distributed Training Architectures
-- Explain Part 2: FSDP - Fully Sharded Data Parallel
-- Explain Part 3: DeepSpeed
-- Configure and operate Part 4: Multi-Node Cluster Setup
-- Explain Part 5: Fault Tolerance & Resilience
-- Measure and evaluate Part 6: Monitoring at Scale
-
----
+- Compute the per-GPU memory cost of training a model with mixed-precision AdamW (the 20 bytes/param rule) and decide which parallelism strategy fits.
+- Explain the ZeRO ladder — what exactly each stage shards — and its per-GPU memory effect at any fleet size.
+- Configure FSDP with the right wrap policy, sharding strategy, and mixed-precision policy.
+- Write a valid DeepSpeed ZeRO-3 config with CPU offload and activation checkpointing.
+- Launch multi-node training with torchrun and the c10d rendezvous.
+- Build resumable training: atomic checkpoint writes, rotation, and crash recovery.
+- Monitor distributed runs honestly, including the memory-vs-compute utilization trap.
+- Estimate wall-clock and dollar cost of a pre-training run from 6·N·D and MFU, and explain why the bill is invariant to fleet size.
 
 ## Abstract
 
-**Prerequisites:** [2401: Pre-training Fundamentals](2401-Pre-training-Fundamentals.md), Volume 3 (LLM Internals)
-**Time:** 4-5 hours to read, weeks/months to implement
-**Difficulty:** ⭐⭐⭐⭐⭐ Expert
+2401 built the single-process training loop; real pre-training runs that loop across dozens to thousands of GPUs at once. This lesson is the infrastructure layer under that scale: how model state is sharded (ZeRO/FSDP), how DeepSpeed packages the same ideas, what a cluster needs beyond one node, how runs survive the crashes that are a certainty at scale, and what the whole thing costs.
 
-### What You'll Learn
+**What you'll learn:**
 
-After this guide, you will understand:
-- ✅ Distributed training architectures (DDP, FSDP, DeepSpeed)
-- ✅ Multi-node cluster setup
-- ✅ Memory optimization techniques
-- ✅ Fault tolerance and checkpointing
-- ✅ Training monitoring at scale
-- ✅ Cost optimization strategies
-
----
+- Why one GPU cannot hold a 7B model's training state (140 GB) and the sharding ladder that fixes it
+- FSDP (PyTorch) and DeepSpeed (framework) side by side on the same ZeRO-3 math
+- Multi-node launch, cluster software requirements, and fault-tolerance patterns you can run offline
+- Honest monitoring — including the `torch.cuda.utilization()` memory-vs-compute trap — and cost estimation that matches real invoices
 
 ## Part 1: Distributed Training Architectures
 
-### Understanding Parallelism Strategies
+Every parallelism scheme is an answer to one accounting question: what does the training state actually cost? For a model trained with mixed-precision AdamW the answer is the 20-bytes rule: 4 bytes for FP32 master weights, 4 for FP32 gradients, 12 for the two Adam moments — 20 bytes per parameter before a single activation is stored. A 7B model therefore needs 140 GB of state before activations, which no single GPU holds.
+
+The strategies differ only in *who holds what*:
+
+- **DDP (data parallel)** — every GPU holds everything; gradients are all-reduced. Simple, fast, capped by VRAM.
+- **ZeRO-1/2/3** — progressively shard optimizer states, then gradients, then parameters.
+- **Tensor / pipeline parallelism** — split individual layers (Megatron) or the layer stack (GPipe); orthogonal to the data axis, treated in the references.
 
 ```python
-"""
-Types of Parallelism for Large Model Training
-"""
-
 class ParallelismStrategy:
-    """Understanding different parallelism approaches"""
+    """Memory math for training a 7B-parameter model with mixed-precision AdamW.
 
-    def __init__(self):
-        self.model_size = "7B"  # 7 billion parameters
-        self.num_gpus = 8
+    Byte budget per parameter (the "20 bytes/param" rule of thumb):
+      params (FP32 master weights): 4
+      grads (FP32):                 4
+      Adam states (m and v):        12   (two FP32 buffers)
+    Total: 20 bytes per parameter, independent of the precision the
+    forward/backward pass actually runs in.
+    """
 
-    def data_parallelism(self):
-        """
-        Data Parallelism (DP/DDP)
+    BYTES_PER_PARAM = {"params_fp32": 4, "grads_fp32": 4, "adam_states": 12}
 
-        - Copy model to each GPU
-        - Split batch across GPUs
-        - Each GPU computes gradients independently
-        - All-reduce to synchronize gradients
+    def training_state_gb(self, num_params: float) -> float:
+        """Full (replicated) training state in GB on one GPU."""
+        bytes_total = num_params * sum(self.BYTES_PER_PARAM.values())
+        return bytes_total / 1e9
 
-        Pros:
-        - Simple to implement
-        - Works well for small models
-        - Good throughput
+    def sharded_state_gb(self, num_params: float, num_gpus: int,
+                         extra_buffers_gb: float = 0.0) -> float:
+        """Per-GPU state with the full state sharded across num_gpus GPUs
+        (ZeRO-3 / FSDP FULL_SHARD), plus a rule-of-thumb buffer allowance."""
+        if num_gpus < 1:
+            raise ValueError("num_gpus must be >= 1")
+        return self.training_state_gb(num_params) / num_gpus + extra_buffers_gb
 
-        Cons:
-        - Model must fit in single GPU memory
-        - Memory scales with model size, not GPUs
-        - Communication overhead at scale
+    def recommend(self, gpu_vram_gb: float, num_gpus: int) -> str:
+        """For the default 7B model: does ZeRO-1/2/3 fit in gpu_vram_gb?"""
+        full = self.training_state_gb(7_000_000_000)
+        # ZeRO-1 shards optimizer states only (12/20 of the state):
+        zero1 = full - (12 / 20) * full * (1 - 1 / num_gpus)
+        # ZeRO-2 also shards gradients (16/20):
+        zero2 = full - (16 / 20) * full * (1 - 1 / num_gpus)
+        zero3 = full / num_gpus + 10.0   # +10 GB rule-of-thumb buffers
+        if zero1 <= gpu_vram_gb:
+            return f"DDP or ZeRO-1 fits: {zero1:.1f} GB <= {gpu_vram_gb:g} GB per GPU"
+        if zero2 <= gpu_vram_gb:
+            return f"ZeRO-2 fits: {zero2:.1f} GB <= {gpu_vram_gb:g} GB per GPU"
+        if zero3 <= gpu_vram_gb:
+            return f"FSDP / ZeRO-3 fits: {zero3:.1f} GB <= {gpu_vram_gb:g} GB per GPU"
+        return ("Neither fits: see Part 3 for CPU offload and Part 2 for "
+                "tensor/pipeline parallelism")
 
-        Use case: Models that fit in single GPU (<= 1B params on 11GB VRAM)
-        """
-        # PyTorch DDP implementation
-        import torch.distributed as dist
-        from torch.nn.parallel import DistributedDataParallel as DDP
 
-        # Initialize process group
-        dist.init_process_group("nccl")
-
-        # Wrap model
-        model = DDP(model.cuda(), device_ids=[local_rank])
-
-        # Each GPU gets different data shard
-        # Gradients are synchronized automatically
-
-    def tensor_parallelism(self):
-        """
-        Tensor Parallelism (TP)
-
-        - Split model layers across GPUs
-        - Each GPU holds part of each layer
-        - Communication within each layer
-
-        Pros:
-        - Reduces memory per GPU
-        - Scales to very large models
-
-        Cons:
-        - High communication overhead
-        - Complex implementation
-        - Requires specialized libraries (Megatron, Tensor Parallel)
-
-        Use case: Models too large for single GPU (> 10B params)
-        """
-        # Column and row parallelism for linear layers
-        # Q: Is model_size / num_gpus small enough?
-        # 7B model / 8 GPUs = ~875M params per GPU
-        # Fits easily with TP!
-
-    def pipeline_parallelism(self):
-        """
-        Pipeline Parallelism (PP)
-
-        - Split layers across GPUs
-        - Each GPU holds consecutive layers
-        - Micro-batching for efficiency
-
-        Pros:
-        - Reduces memory per GPU
-        - Good for deep models
-
-        Cons:
-        - Pipeline bubbles (idle time)
-        - Complex scheduling
-        - Longer training time per epoch
-
-        Use case: Very deep models (70B+ params)
-        """
-
-    def fully_sharded_data_parallel(self):
-        """
-        Fully Sharded Data Parallel (FSDP)
-
-        - Shard model parameters, gradients, and optimizer states
-        - Dynamically gather parameters for computation
-        - Most memory efficient
-
-        Pros:
-        - Maximum memory efficiency
-        - Scales to huge models (175B+)
-        - Built into PyTorch 2.0+
-
-        Cons:
-        - Higher communication overhead
-        - Slower than DP for small models
-        - Requires careful tuning
-
-        Use case: Large models (7B+) with limited VRAM
-        """
-        # FSDP implementation
-        from torch.distributed.fsdp import FullyShardedDataParallel as FSDP
-
-        model = FSDP(
-            base_model,
-            sharding_strategy="FULL_SHARD",  # Shard everything
-            cpu_offload=False,  # Keep on GPU
-            auto_wrap_policy=transformer_auto_wrap_policy
-        )
+strategy = ParallelismStrategy()
+full = strategy.training_state_gb(7_000_000_000)
+shard8 = strategy.sharded_state_gb(7_000_000_000, num_gpus=8)
+print(f"7B model, replicated training state: {full:.1f} GB")
+print(f"7B model, state sharded over 8 GPUs: {shard8:.1f} GB (before buffers)")
+print(strategy.recommend(gpu_vram_gb=40, num_gpus=8))   # A100 40GB class
+print(strategy.recommend(gpu_vram_gb=11, num_gpus=8))   # single-consumer class
 ```
 
-### Comparison Table
+**Output:**
+
+```text
+7B model, replicated training state: 140.0 GB
+7B model, state sharded over 8 GPUs: 17.5 GB (before buffers)
+FSDP / ZeRO-3 fits: 27.5 GB <= 40 GB per GPU
+Neither fits: see Part 3 for CPU offload and Part 2 for tensor/pipeline parallelism
+```
 
 ```yaml
-Parallelism Comparison:
-
-  Data Parallel (DDP):
-    Memory per GPU: Full model
-    Max model size: 1-2B (on 11GB VRAM)
-    Communication: Gradient synchronization
-    Speed: Fast (low overhead)
-    Complexity: Low
-    Best for: Small models, fast training
-
-  Tensor Parallel (TP):
-    Memory per GPU: Model / num_gpus
-    Max model size: 10B+ (with 8 GPUs)
-    Communication: Within each layer
-    Speed: Medium (high overhead)
-    Complexity: High
-    Best for: Large models, inference
-
-  Pipeline Parallel (PP):
-    Memory per GPU: Layers / num_gpus
-    Max model size: 50B+ (with 8 GPUs)
-    Communication: Between pipeline stages
-    Speed: Slow (pipeline bubbles)
-    Complexity: High
-    Best for: Very deep models
-
-  FSDP:
-    Memory per GPU: (Model + gradients + optimizer) / num_gpus
-    Max model size: 175B+ (with 8 GPUs)
-    Communication: Frequent all-gather
-    Speed: Medium (higher overhead)
-    Complexity: Medium
-    Best for: Training large models with limited VRAM
-
-Hybrid Approaches (Production):
-  - TP + DP: Use TP for large layers, DP for batching
-  - PP + DP: Use PP for model depth, DP for batching
-  - FSDP + TP: Use FSDP for most layers, TP for attention
+# Parallelism cheat sheet for a 7B model (mixed-precision AdamW, 20 bytes/param)
+DDP:            # replicate everything on every GPU
+  full_state_per_gpu: 140 GB
+  scale_limit: "0.5B params on an 11 GB GPU (0.5 * 20 = 10 GB)"
+  communication: "all-reduce gradients once per step"
+ZeRO-1:         # shard Adam states
+  memory_per_gpu_at_8x: 66.5 GB
+ZeRO-2:         # shard Adam states + gradients
+  memory_per_gpu_at_8x: 42 GB
+ZeRO-3_FSDP:    # shard everything (+ ~10 GB comm/activation buffers)
+  memory_per_gpu_at_8x: 27.5 GB
+  good_for: "7B on a 40 GB A100 node; much larger models on 80 GB"
+ZeRO-3_offload: # Adam states + params live on CPU
+  memory_per_gpu_at_8x: 12 GB
+  cost: "PCIe transfers every step - expect a 20-40% slowdown"
 ```
 
----
+One more architectural reality: fleets do not scale perfectly. Cross-node communication, stragglers, and pipeline bubbles typically cost 5–20% of ideal throughput even in well-tuned runs (PaLM's 6144-chip run reports model FLOP utilization around 46% — roughly half of peak). The cost model in Part 7 assumes perfect scaling on purpose; this tax is exactly what real fleets spend engineering effort to shrink.
 
 ## Part 2: FSDP - Fully Sharded Data Parallel
 
-### FSDP Deep Dive
+FSDP is ZeRO-3 built into PyTorch: parameters, gradients, and optimizer states are all sharded; each layer's full parameters are all-gathered just-in-time for its forward (and again for backward), then freed. Compared with DDP you trade extra communication for fitting models many times larger than one GPU.
+
+Three configuration decisions matter more than the rest: where to wrap (transformer-block boundaries via the auto-wrap policy), which sharding strategy (`FULL_SHARD` = ZeRO-3), and the mixed-precision policy (`bfloat16` on Ampere and later — `fp16` needs a loss scaler and risks overflow). Note that the wrap policy is passed as a `functools.partial`, because FSDP calls it internally during wrapping — a plain call is the most common FSDP beginner error.
 
 ```python
-"""
-FSDP Implementation for 7B Model Training
-"""
+import functools
+import math
+import os
 
 import torch
 import torch.nn as nn
 from torch.distributed.fsdp import (
+    BackwardPrefetch,
     FullyShardedDataParallel as FSDP,
     MixedPrecision,
-    BackwardPrefetch,
     ShardingStrategy,
 )
-from torch.distributed.fsdp.wrap import (
-    size_based_auto_wrap_policy,
-    transformer_auto_wrap_policy,
-)
+from torch.distributed.fsdp.wrap import transformer_auto_wrap_policy
+
+
+class TransformerBlock(nn.Module):
+    """Minimal self-attention block so the config below is runnable."""
+
+    def __init__(self, d_model: int = 64):
+        super().__init__()
+        self.attn = nn.Linear(d_model, d_model)
+        self.mlp = nn.Sequential(nn.Linear(d_model, 4 * d_model), nn.GELU(),
+                                 nn.Linear(4 * d_model, d_model))
+
+    def forward(self, x):
+        return x + self.mlp(self.attn(x))
+
+
+def build_tiny_model(num_layers: int = 2, d_model: int = 64) -> nn.Module:
+    layers = [TransformerBlock(d_model) for _ in range(num_layers)]
+    return nn.Sequential(*layers, nn.Linear(d_model, d_model))
+
+
+def build_fsdp_config():
+    """Arguments for torch.distributed.fsdp.FullyShardedDataParallel."""
+    return dict(
+        auto_wrap_policy=functools.partial(
+            transformer_auto_wrap_policy,
+            transformer_layer_cls={TransformerBlock}),
+        sharding_strategy=ShardingStrategy.FULL_SHARD,   # ZeRO-3
+        mixed_precision=MixedPrecision(
+            param_dtype=torch.bfloat16,
+            reduce_dtype=torch.bfloat16,
+            buffer_dtype=torch.bfloat16,
+        ),
+        backward_prefetch=BackwardPrefetch.BACKWARD_PRE,
+        forward_prefetch=True,
+        use_orig_params=True,   # keeps param names; state_dict stays sharding-friendly
+    )
+
+
+def cosine_lr(step: int, total_steps: int, base_lr: float = 3e-4,
+              warmup_steps: int = 100) -> float:
+    """Linear warmup, then cosine decay - the schedule real pre-training runs."""
+    if step < warmup_steps:
+        return base_lr * step / warmup_steps
+    progress = (step - warmup_steps) / max(1, total_steps - warmup_steps)
+    return base_lr * 0.5 * (1.0 + math.cos(math.pi * progress))
+
 
 class FSDPTrainer:
-    """Train large models with FSDP"""
+    """Distributed-only: every method here requires a running process
+    group, so it is exercised under torchrun, not in this demo."""
 
-    def __init__(self, model_config, num_gpus=8):
-        self.model_config = model_config
-        self.num_gpus = num_gpus
+    def __init__(self, model, optimizer, total_steps: int):
+        self.model = model
+        self.optimizer = optimizer
+        self.total_steps = total_steps
 
-    def setup_fsdp(self, base_model):
-        """
-        Configure FSDP for training
+    def setup_fsdp(self):
+        if not torch.distributed.is_initialized():
+            raise RuntimeError("FSDP needs a process group: launch with "
+                               "`torchrun --nproc_per_node=8 train.py`")
+        return FSDP(self.model, **build_fsdp_config())
 
-        Sharding Strategies:
-        - FULL_SHARD: Shard parameters, gradients, optimizer states
-        - SHARD_GRAD_OP: Shard gradients and optimizer states
-        - NO_SHARD: Replicate everything (like DDP)
-        - HYBRID_SHARD: Shard some, replicate others
-        """
+    def train_with_fsdp(self, dataloader):
+        """One pass. Real pre-training keeps the loss inside the model
+        (HF-style `outputs.loss`); here it is summed so the example is
+        self-contained."""
+        self.model.train()
+        for step, batch in enumerate(dataloader):
+            self.optimizer.zero_grad(set_to_none=True)
+            loss = self.model(batch).sum()
+            loss.backward()
+            torch.nn.utils.clip_grad_norm_(self.model.parameters(), 1.0)
+            self.optimizer.step()
 
-        # Mixed precision policy
-        mixed_precision = MixedPrecision(
-            param_dtype=torch.float16,  # Store params in FP16
-            reduce_dtype=torch.float16,  # Reduce gradients in FP16
-            buffer_dtype=torch.float16,  # Communication buffers in FP16
-        )
+    def save_fsdp_checkpoint(self, path: str, rank: int = 0):
+        """Atomic rank-0 save (os.replace is atomic even on Windows).
+        Under FULL_SHARD the state is itself sharded - full-state saves
+        go through torch.distributed.checkpoint."""
+        os.makedirs(os.path.dirname(path) or ".", exist_ok=True)
+        state = self.model.state_dict()
+        if rank == 0:
+            tmp = path + ".tmp"
+            torch.save(state, tmp)
+            os.replace(tmp, path)
 
-        # Auto-wrap policy
-        # Wrap transformer blocks individually
-        transformer_wrap_policy = transformer_auto_wrap_policy(
-            transformer_layer_cls={TransformerBlock},
-        )
+    def load_fsdp_checkpoint(self, path: str):
+        return torch.load(path, map_location="cpu")
 
-        # OR wrap by size
-        size_wrap_policy = size_based_auto_wrap_policy(
-            min_num_params=1_000_000,  # Wrap modules > 1M params
-        )
 
-        # FSDP config
-        fsdp_config = {
-            "sharding_strategy": ShardingStrategy.FULL_SHARD,
-            "mixed_precision": mixed_precision,
-            "auto_wrap_policy": transformer_wrap_policy,
-            "cpu_offload": False,  # Don't offload to CPU (slower)
-            "backward_prefetch": BackwardPrefetch.BACKWARD_PRE,  # Prefetch next layer
-            "forward_prefetch": True,  # Prefetch forward pass
-            "use_orig_params": False,  # Use FSDP parameters
-        }
-
-        # Wrap model
-        model = FSDP(base_model, **fsdp_config)
-
-        return model
-
-    def train_with_fsdp(self, model, train_loader, val_loader, num_epochs):
-        """Training loop with FSDP"""
-
-        # Optimizer (FSDP handles sharding)
-        optimizer = torch.optim.AdamW(
-            model.parameters(),
-            lr=3e-4,
-            weight_decay=0.1,
-        )
-
-        # LR scheduler
-        from torch.distributed.fsdp import StateDictType
-        from torch.distributed.fsdp import FullStateDictConfig
-
-        # Scheduler
-        total_steps = len(train_loader) * num_epochs
-        warmup_steps = int(0.1 * total_steps)
-
-        scheduler = self.get_cosine_schedule(
-            optimizer,
-            num_warmup_steps=warmup_steps,
-            num_training_steps=total_steps
-        )
-
-        # Training loop
-        for epoch in range(num_epochs):
-            model.train()
-
-            for step, batch in enumerate(train_loader):
-                # Forward pass
-                outputs = model(**batch)
-                loss = outputs.loss
-
-                # Backward pass (FSDP handles sharded gradients)
-                loss.backward()
-
-                # Gradient clipping
-                model.clip_grad_norm_(max_norm=1.0)
-
-                # Optimizer step
-                optimizer.step()
-                scheduler.step()
-                optimizer.zero_grad()
-
-                # Logging
-                if step % 100 == 0:
-                    print(f"Epoch {epoch}, Step {step}, Loss: {loss.item():.4f}")
-
-            # Validation
-            val_loss = self.evaluate_fsdp(model, val_loader)
-            print(f"Epoch {epoch}, Val Loss: {val_loss:.4f}")
-
-            # Save checkpoint
-            self.save_fsdp_checkpoint(model, optimizer, epoch)
-
-    def save_fsdp_checkpoint(self, model, optimizer, epoch):
-        """Save FSDP checkpoint efficiently"""
-
-        from torch.distributed.fsdp import FullStateDictConfig, StateDictType
-
-        # Get full state dict on rank 0
-        save_policy = FullStateDictConfig(
-            offload_to_cpu=True,  # Offload to CPU for saving
-            rank0_only=True,  # Only save on rank 0
-        )
-
-        with FSDP.state_dict_type(model, StateDictType.FULL_STATE_DICT, save_policy):
-            state_dict = model.state_dict()
-
-        # Save
-        checkpoint = {
-            "model": state_dict,
-            "optimizer": optimizer.state_dict(),
-            "epoch": epoch,
-        }
-
-        torch.save(checkpoint, f"checkpoints/fsdp_epoch_{epoch}.pt")
-
-    def load_fsdp_checkpoint(self, model, checkpoint_path):
-        """Load FSDP checkpoint"""
-
-        checkpoint = torch.load(checkpoint_path)
-
-        # Load state dict
-        model.load_state_dict(checkpoint["model"])
-
-        return model
+cfg = build_fsdp_config()
+print("FSDP strategy:", cfg["sharding_strategy"].name)
+print("use_orig_params:", cfg["use_orig_params"])
+tiny = build_tiny_model()
+print("tiny model params:", f"{sum(p.numel() for p in tiny.parameters()):,}")
+trainer = FSDPTrainer(tiny, torch.optim.SGD(tiny.parameters(), lr=3e-4),
+                      total_steps=1000)
+print("lr at steps 0/50/500/950/999:",
+      ", ".join(f"{cosine_lr(s, 1000):.2e}" for s in [0, 50, 500, 950, 999]))
 ```
 
-### FSDP Best Practices
+**Output:**
+
+```text
+FSDP strategy: FULL_SHARD
+use_orig_params: True
+tiny model params: 78,656
+lr at steps 0/50/500/950/999: 0.00e+00, 1.50e-04, 1.76e-04, 2.28e-06, 9.14e-10
+```
 
 ```yaml
-FSDP Configuration Tips:
-
-  Sharding Strategy:
-    FULL_SHARD: Maximum memory savings, slower
-      - Use for: 7B+ models on limited VRAM
-      - Avoid for: Small models (< 1B)
-
-    SHARD_GRAD_OP: Balance between speed and memory
-      - Use for: Medium models (1-7B)
-
-    NO_SHARD: No sharding (like DDP)
-      - Use for: Small models, fastest training
-
-  Mixed Precision:
-    FP16: Standard, good balance
-    BF16: Better for training stability (if supported)
-    FP8: Latest GPUs only (H100)
-
-  CPU Offloading:
-    False: Faster, more GPU memory
-    True: Slower, less GPU memory
-      - Use when: Model doesn't fit in GPU memory even with FSDP
-
-  Backward Prefetch:
-    BACKWARD_PRE: Prefetch during backward pass
-    None: No prefetching
-
-  Auto Wrap Policy:
-    transformer_auto_wrap_policy: Wrap at transformer boundaries
-      - Best for: Transformer models
-    size_based_auto_wrap_policy: Wrap by parameter size
-      - Best for: Non-transformer models
+# FSDP practical notes
+wrap_policy: "functools.partial(transformer_auto_wrap_policy,
+  transformer_layer_cls={TransformerBlock})"
+  # wrap at transformer-block boundaries - finer wrapping means more,
+  # smaller all-gathers (better memory, more comm overhead)
+use_orig_params: true   # keeps param names; enables torch.compile and mixed-size shards
+mixed_precision:
+  param_dtype: bfloat16   # fp16 on pre-Ampere hardware: needs a GradScaler
+  reduce_dtype: bfloat16  # all-reduce in bf16 halves communication volume
+backward_prefetch: BACKWARD_PRE   # overlap the next param all-gather with backward
+cpu_offload: "offload only if ZeRO-3 still does not fit - it costs PCIe bandwidth"
+checkpointing: "save with torch.distributed.checkpoint - a plain sharded
+  state_dict is useless on a different world size"
 ```
-
----
 
 ## Part 3: DeepSpeed
 
-### DeepSpeed Configuration
+DeepSpeed packages the same ZeRO ideas as a training framework: you hand it a JSON config, it wraps the model, owns the optimizer, and implements the sharding and offload plan. The config below is what a real ZeRO-3 + CPU offload run looks like — note the actual schema keys: `offload_optimizer` and `offload_param` live *inside* `zero_optimization`, and activation checkpointing is its own block there (there is no top-level `gradient_checkpointing` key in DeepSpeed).
 
 ```python
-"""
-DeepSpeed Configuration for Large Model Training
-"""
+import json
 
-import deepspeed
-import yaml
 
-class DeepSpeedTrainer:
-    """Train with DeepSpeed"""
-
-    def create_ds_config(self):
-        """
-        Create DeepSpeed configuration
-
-        DeepSpeed provides:
-        - ZeRO (Zero Redundancy Optimizer) stages
-        - Gradient checkpointing
-        - Mixed precision
-        - CPU offloading
-        """
-
-        ds_config = {
-            "train_batch_size": 512,  # Total batch size across all GPUs
-            "train_micro_batch_size_per_gpu": 8,  # Per-GPU batch size
-
-            # Gradient accumulation
-            "gradient_accumulation_steps": 8,  # 512 / (8 * 8) = 8
-
-            # Optimizer
-            "optimizer": {
-                "type": "AdamW",
-                "params": {
-                    "lr": 3e-4,
-                    "betas": [0.9, 0.999],
-                    "eps": 1e-8,
-                    "weight_decay": 0.1,
-                }
-            },
-
-            # Scheduler
-            "scheduler": {
-                "type": "WarmupLR",
-                "params": {
-                    "warmup_min_lr": 0,
-                    "warmup_max_lr": 3e-4,
-                    "warmup_num_steps": 2000,
-                }
-            },
-
-            # Mixed precision
-            "fp16": {
-                "enabled": True,
-                "loss_scale": 0,
-                "initial_scale_power": 16,
-                "loss_scale_window": 1000,
-                "hysteresis": 2,
-                "min_loss_scale": 1,
-            },
-
-            # Gradient Clipping
-            "gradient_clipping": 1.0,
-
-            # ZeRO optimization
-            "zero_optimization": {
-                "stage": 3,  # ZeRO Stage 3 (maximum sharding)
-
-                # Stage 1: Shard optimizer states
-                # Stage 2: Shard gradients + optimizer states
-                # Stage 3: Shard parameters + gradients + optimizer states
-
-                "allgather_partitions": True,
-                "allgather_bucket_size": 5e8,
-                "overlap_comm": True,
-                "reduce_scatter": True,
-                "reduce_bucket_size": 5e8,
-                "contiguous_gradients": True,
-            },
-
-            # CPU Offloading
-            "cpu_offload": {
-                "enabled": True,  # Offload to CPU when not computing
-                "pin_memory": True,
-                "buffer_count": 5,
-                "buffer_size": 1e8,
-                "max_in_cpu": 1e9,
-            },
-
-            # Gradient checkpointing
-            "gradient_checkpointing": {
-                "enabled": True,  # Trade compute for memory
-            },
-
-            # Activation checkpointing
+def create_ds_config(micro_batch: int = 8, gpus: int = 8,
+                     accum_steps: int = 8) -> dict:
+    """A real DeepSpeed config: ZeRO-3 + CPU optimizer offload + activation
+    checkpointing. Keys follow DeepSpeed's own schema."""
+    return {
+        "train_batch_size": micro_batch * gpus * accum_steps,
+        "train_micro_batch_size_per_gpu": micro_batch,
+        "gradient_accumulation_steps": accum_steps,
+        "bf16": {"enabled": True},   # pre-Volta GPUs need "fp16" instead
+        "zero_optimization": {
+            "stage": 3,
+            "offload_optimizer": {"device": "cpu", "pin_memory": True},
+            "offload_param": {"device": "cpu", "pin_memory": True},
             "activation_checkpointing": {
                 "partition_activations": True,
-                "cpu_checkpointing": True,
                 "contiguous_memory_optimization": True,
-                "number_checkpoints": 4,
-                "synchronize_checkpoint_boundary": False,
-                "profile": False,
+                "number_checkpoints": None,
+                "checkpoint_interval": 1,
             },
+            "overlap_comm": True,
+            "reduce_scatter": True,
+        },
+        "optimizer": {
+            "type": "AdamW",
+            "params": {"lr": 3e-4, "betas": [0.9, 0.95], "weight_decay": 0.1},
+        },
+    }
 
-            # Logging
-            "steps_per_print": 10,
-            "wall_clock_breakdown": False,
-        }
 
-        # Save config
-        with open("ds_config.json", "w") as f:
-            yaml.dump(ds_config, f)
+class DeepSpeedTrainer:
+    """Definition-only until deepspeed is installed; the config above is
+    runnable offline."""
 
-        return ds_config
+    def batch_math(self, micro_batch: int, gpus: int, accum_steps: int) -> int:
+        """Global batch = micro-batch per GPU * world size * accumulation."""
+        return micro_batch * gpus * accum_steps
 
-    def train_with_deepspeed(self, model, train_loader, val_loader, num_epochs):
-        """Train with DeepSpeed"""
+    def write_config(self, path: str) -> None:
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(create_ds_config(), f, indent=2)   # DeepSpeed reads JSON, not YAML
 
-        # Initialize DeepSpeed
-        ds_config = self.create_ds_config()
-        model_engine, optimizer, _, _ = deepspeed.initialize(
-            model=model,
-            model_parameters=model.parameters(),
-            config=ds_config
-        )
+    def train_with_deepspeed(self, model, dataloader):
+        # lazy import: the module is only needed when actually launching
+        import deepspeed
+        engine, _, _, _ = deepspeed.initialize(
+            model=model, config=create_ds_config())
+        for batch in dataloader:
+            loss = engine(batch).sum()
+            engine.backward(loss)
+            engine.step()
 
-        # Training loop
-        for epoch in range(num_epochs):
-            model_engine.train()
 
-            for step, batch in enumerate(train_loader):
-                # Forward pass
-                outputs = model_engine(**batch)
-                loss = outputs.loss
-
-                # Backward pass
-                model_engine.backward(loss)
-
-                # Step
-                model_engine.step()
-
-                # Logging
-                if step % 100 == 0:
-                    print(f"Epoch {epoch}, Step {step}, Loss: {loss.item():.4f}")
-
-            # Save checkpoint
-            model_engine.save_checkpoint(f"checkpoints/deepspeed_{epoch}")
+cfg = create_ds_config()
+print("global batch:", cfg["train_batch_size"])
+print("zero stage:", cfg["zero_optimization"]["stage"])
+print("offload devices:",
+      cfg["zero_optimization"]["offload_optimizer"]["device"], "+",
+      cfg["zero_optimization"]["offload_param"]["device"])
+print("json serializes:", bool(json.dumps(cfg)))
 ```
 
-### ZeRO Stages Explained
+**Output:**
+
+```text
+global batch: 512
+zero stage: 3
+offload devices: cpu + cpu
+json serializes: True
+```
+
+The batch line is worth internalizing: a global batch of 512 at 8 GPUs means each GPU ingests micro-batches of 8 and accumulates 8 of them between optimizer steps. Gradient accumulation is how memory-constrained clusters reach the large global batches pre-training wants.
+
+The ZeRO stage ladder itself deserves a runnable form, because it is the vocabulary of every scaling conversation:
 
 ```python
-"""
-ZeRO (Zero Redundancy Optimizer) Stages
-"""
-
 class ZeROStages:
-    """Understanding ZeRO optimization"""
+    """Per-GPU training memory under each ZeRO stage.
 
-    def __init__(self):
-        self.model_size = "7B"  # 7B parameters
-        self.num_gpus = 8
+    Accounting follows the ZeRO paper (Rajbhandari et al., 2020) for
+    mixed-precision AdamW, 20 bytes per parameter:
+      stage 0 (replicated): 20 B/param on every GPU
+      stage 1: optimizer states sharded -> full - (12/20)*full*(1-1/n)
+      stage 2: + gradients sharded      -> full - (16/20)*full*(1-1/n)
+      stage 3: + parameters sharded     -> full/n + comm/activation buffers
+      3+offload: params+grads on GPU, Adam states and params live on CPU
+    The buffer allowances are stated rule-of-thumb constants, not laws.
+    """
 
-    def stage_0(self):
-        """
-        Stage 0: No sharding (baseline)
+    BYTES_PER_PARAM = 4 + 4 + 12   # params, grads, Adam m+v (all FP32)
+    BUFFERS_GB = {3: 10.0, "3+offload": 5.0}
 
-        Memory per GPU:
-        - Model parameters: 28GB (FP32)
-        - Gradients: 28GB
-        - Optimizer states: 84GB (Adam: 2 params + 2 moments)
-        - Total: 140GB per GPU
+    def __init__(self, model_params: float = 7e9, num_gpus: int = 8):
+        self.model_params = model_params
+        self.num_gpus = num_gpus
+        self.full = model_params * self.BYTES_PER_PARAM / 1e9
 
-        This is standard DDP without ZeRO
+    def stage_gb(self, stage) -> float:
+        full, n = self.full, self.num_gpus
+        if stage == 0:
+            return full
+        if stage == 1:
+            return full - (12 / 20) * full * (1 - 1 / n)
+        if stage == 2:
+            return full - (16 / 20) * full * (1 - 1 / n)
+        if stage == 3:
+            return full / n + self.BUFFERS_GB[3]
+        if stage == "3+offload":
+            return (full - 12 / 20 * full) / n + self.BUFFERS_GB["3+offload"]
+        raise ValueError(f"unknown stage: {stage!r}")
 
-        Requires: 140GB VRAM per GPU (impossible!)
-        """
+    def print_table(self) -> None:
+        stages = [0, 1, 2, 3, "3+offload"]
+        labels = {0: "ZeRO-0 (replicated)", 1: "ZeRO-1", 2: "ZeRO-2",
+                  3: "ZeRO-3 (FSDP FULL_SHARD)", "3+offload": "ZeRO-3 + CPU offload"}
+        base = self.stage_gb(0)
+        print(f"{'stage':<26}{'GB/GPU':>9}{'saved':>8}")
+        for s in stages:
+            gb = self.stage_gb(s)
+            print(f"{labels[s]:<26}{gb:>9.1f}{100 * (1 - gb / base):>7.1f}%")
 
-    def stage_1(self):
-        """
-        Stage 1: Shard optimizer states
 
-        Memory per GPU:
-        - Model parameters: 28GB (replicated)
-        - Gradients: 28GB (replicated)
-        - Optimizer states: 10.5GB (sharded / 8)
-        - Total: 66.5GB per GPU
-
-        Savings: Optimizer states sharded across GPUs
-        Reduction: ~53% memory savings
-        """
-
-    def stage_2(self):
-        """
-        Stage 2: Shard optimizer states + gradients
-
-        Memory per GPU:
-        - Model parameters: 28GB (replicated)
-        - Gradients: 3.5GB (sharded / 8)
-        - Optimizer states: 10.5GB (sharded / 8)
-        - Total: 42GB per GPU
-
-        Savings: Optimizer states and gradients sharded
-        Reduction: ~70% memory savings
-        """
-
-    def stage_3(self):
-        """
-        Stage 3: Shard everything (parameters + gradients + optimizer states)
-
-        Memory per GPU:
-        - Model parameters: 3.5GB (sharded / 8)
-        - Gradients: 3.5GB (sharded / 8)
-        - Optimizer states: 10.5GB (sharded / 8)
-        - Temporary buffers: ~10GB
-        - Total: ~27GB per GPU
-
-        Savings: Everything sharded
-        Reduction: ~81% memory savings
-
-        Enables training 7B model on 8x 32GB GPUs!
-        Or 7B on 4x 40GB A100 GPUs with CPU offloading
-        """
-
-    def stage_3_with_cpu_offload(self):
-        """
-        Stage 3 + CPU Offloading
-
-        Memory per GPU:
-        - Model parameters: 3.5GB (sharded / 8)
-        - Gradients: 3.5GB (sharded / 8)
-        - Optimizer states: 0GB (offloaded to CPU)
-        - Temporary buffers: ~5GB
-        - Total: ~12GB per GPU
-
-        Enables training 7B model on:
-        - 8x 16GB GPUs (RTX 4080, 3090, etc.)
-        - 4x 24GB GPUs (RTX 4090, A5000)
-        - 2x 48GB GPUs (A6000)
-        """
-
-# Memory comparison
-comparison = """
-7B Model Memory Requirements (per GPU):
-
-No ZeRO (DDP):
-  140GB (impossible on current GPUs)
-
-ZeRO Stage 1:
-  66.5GB (needs A100 80GB)
-
-ZeRO Stage 2:
-  42GB (needs A100 40GB or A6000 48GB)
-
-ZeRO Stage 3:
-  27GB (needs A100 40GB or RTX 4090 24GB)
-
-ZeRO Stage 3 + CPU Offload:
-  12GB (fits on RTX 4080, 3090, etc.)
-
-FSDP (similar to ZeRO Stage 3):
-  ~15-20GB with tuning
-
-Conclusion: ZeRO Stage 3 enables training large models
-on consumer GPUs!
-"""
+ZeROStages(model_params=7e9, num_gpus=8).print_table()
 ```
 
----
+**Output:**
+
+```text
+stage                        GB/GPU   saved
+ZeRO-0 (replicated)           140.0    0.0%
+ZeRO-1                         66.5   52.5%
+ZeRO-2                         42.0   70.0%
+ZeRO-3 (FSDP FULL_SHARD)       27.5   80.4%
+ZeRO-3 + CPU offload           12.0   91.4%
+```
+
+Reading the table: the big jumps come from sharding the 12 bytes of Adam states (ZeRO-1) and the 4 bytes of gradients (ZeRO-2); the last, most expensive step shards the 4 bytes of parameters themselves. Every stage after ZeRO-0 adds communication or PCIe traffic — memory saved is time spent.
 
 ## Part 4: Multi-Node Cluster Setup
 
-### Cluster Architecture
+Between one node and many sits a fixed checklist: identical software everywhere, a fast interconnect, shared checkpoint storage, and a launcher that agrees on world size. torchrun's c10d rendezvous lets nodes discover each other through a single endpoint instead of a rigid hostfile, which is what makes elastic restarts possible.
 
 ```python
-"""
-Multi-Node Training Cluster Setup
-"""
-
 class ClusterSetup:
-    """Setting up multi-GPU, multi-node cluster"""
+    """What you need before torchrun can talk across machines."""
 
-    def __init__(self):
-        self.num_nodes = 4  # 4 machines
-        self.gpus_per_node = 8  # 8 GPUs per node
-        self.total_gpus = 32
-
-    def network_topology(self):
-        """
-        Network configuration for multi-node training
-
-        Key factors:
-        1. Bandwidth between nodes
-        2. Latency
-        3. Network topology
-        """
-
-        # Minimum requirements
-        requirements = {
-            "inter_node_bandwidth": {
-                "minimum": "25 Gbps",  # InfiniBand or high-speed ethernet
-                "recommended": "100 Gbps+ (InfiniBand HDR)"
-            },
-            "intra_node_bandwidth": {
-                "minimum": "PCIe 3.0 x16",  # ~16 GB/s
-                "recommended": "PCIe 4.0 x16 or NVLink"
-            },
-            "latency": {
-                "minimum": "< 10μs",  # InfiniBand
-                "acceptable": "< 100μs"  # High-speed ethernet
-            }
+    def network_topology(self) -> dict:
+        return {
+            "nodes": 4,
+            "gpus_per_node": 8,
+            "interconnect_in_node": "NVLink / NVSwitch (600+ GB/s)",
+            "interconnect_between_nodes": "InfiniBand HDR / RoCE (200+ Gb/s per GPU)",
+            "rule_of_thumb": "keep world size a multiple of gpus per node",
         }
 
-        return requirements
-
-    def software_stack(self):
-        """
-        Required software for multi-node training
-
-        1. MPI (Message Passing Interface)
-        2. NCCL (NVIDIA Collective Communications Library)
-        3. Distributed training framework
-        """
-
-        stack = {
-            "mpi": {
-                "OpenMPI": "Open-source MPI implementation",
-                "MPICH": "Another MPI implementation",
-            },
-            "nccl": {
-                "version": "2.12+",
-                "environment_vars": {
-                    "NCCL_DEBUG": "INFO",
-                    "NCCL_IB_DISABLE": "0",  # Enable InfiniBand
-                    "NCCL_SOCKET_IFNAME": "ib0",  # Use InfiniBand interface
-                }
-            },
-            "pytorch": {
-                "distributed": "torch.distributed",
-                "backend": "nccl",  # Use NCCL for GPU communication
-            }
+    def software_stack(self) -> dict:
+        return {
+            "driver": "matching CUDA driver on every node",
+            "nccl": "2.18+ (the collective library PyTorch uses)",
+            "pytorch": "same version + same CUDA build on all nodes",
+            "storage": "shared filesystem (NFS/Lustre) or object store for checkpoints",
+            "scheduler": "SLURM / Kubernetes for launch + retry",
         }
 
-        return stack
+    def launch_multi_node_training(self, num_nodes: int = 4,
+                                   gpus_per_node: int = 8) -> str:
+        """torchrun launch line for node 0 of N (other nodes pass their
+        own --node_rank). RDZV_ENDPOINT is the first node's host:port."""
+        return (
+            f"torchrun --nnodes={num_nodes} --nproc_per_node={gpus_per_node} "
+            f"--rdzv_backend=c10d --rdzv_endpoint=$RDZV_ENDPOINT "
+            f"--node_rank=0 train.py"
+        )
 
-    def launch_multi_node_training(self):
-        """
-        Launch training across multiple nodes
 
-        Using torchrun or torch.distributed.launch
-        """
-
-        # Example launch command
-        launch_cmd = """
-        # Node 0 (master node)
-        torchrun \\
-            --nproc_per_node=8 \\
-            --nnodes=4 \\
-            --node_rank=0 \\
-            --master_addr="192.168.1.1" \\
-            --master_port=29500 \\
-            train.py \\
-            --config config.yaml
-
-        # Node 1
-        torchrun \\
-            --nproc_per_node=8 \\
-            --nnodes=4 \\
-            --node_rank=1 \\
-            --master_addr="192.168.1.1" \\
-            --master_port=29500 \\
-            train.py \\
-            --config config.yaml
-
-        # Node 2, 3: Similar with node_rank=2, 3
-        """
-
-        return launch_cmd
+setup = ClusterSetup()
+topo = setup.network_topology()
+print("minimum cluster:", topo["nodes"], "nodes x", topo["gpus_per_node"], "GPUs")
+print("NCCL requirement:", setup.software_stack()["nccl"])
+cmd = setup.launch_multi_node_training()
+print("launch (node 0):", cmd)
 ```
 
-### Cluster Configuration File
+**Output:**
+
+```text
+minimum cluster: 4 nodes x 8 GPUs
+NCCL requirement: 2.18+ (the collective library PyTorch uses)
+launch (node 0): torchrun --nnodes=4 --nproc_per_node=8 --rdzv_backend=c10d --rdzv_endpoint=$RDZV_ENDPOINT --node_rank=0 train.py
+```
 
 ```yaml
-# cluster_config.yaml
-cluster:
-  name: "llm-training-cluster"
+# shared training cluster config (4 nodes x 8 GPUs)
+topology:
   nodes: 4
-
-  master:
-    hostname: "node-0"
-    ip: "192.168.1.1"
-    port: 29500
-
-  workers:
-    - hostname: "node-1"
-      ip: "192.168.1.2"
-      gpus: [0, 1, 2, 3, 4, 5, 6, 7]
-
-    - hostname: "node-2"
-      ip: "192.168.1.3"
-      gpus: [0, 1, 2, 3, 4, 5, 6, 7]
-
-    - hostname: "node-3"
-      ip: "192.168.1.4"
-      gpus: [0, 1, 2, 3, 4, 5, 6, 7]
-
-  network:
-    interface: "ib0"  # InfiniBand
-    bandwidth: "100 Gbps"
-
-  storage:
-    # Shared storage for all nodes
-    type: "NFS"
-    mount_point: "/shared/storage"
-    path: "/mnt/shared/llm-data"
-
-  training:
-    # Distribution strategy
-    strategy: "FSDP"  # or "deepspeed"
-
-    # Model configuration
-    model:
-      name: "llama-7b"
-      params: 7000000000
-
-    # Training configuration
-    batch_size:
-      per_gpu: 4
-      total: 128  # 4 * 8 GPUs * 4 nodes
-
-    # Checkpointing
-    checkpointing:
-      interval: 1000  # Save every 1000 steps
-      path: "/shared/storage/checkpoints"
-      keep_last_n: 5
-
-    # Monitoring
-    monitoring:
-      enabled: true
-      backend: "wandb"  # or tensorboard
-      project: "llm-training"
+  gpus_per_node: 8
+  intra_node: "NVLink / NVSwitch"
+  inter_node: "InfiniBand HDR (200 Gb/s per GPU)"
+software:
+  cuda_driver: "same version on every node"
+  nccl: ">= 2.18"
+  pytorch: "identical wheel on every node"
+  storage: "Lustre/NFS mount for checkpoints, or object store with async upload"
+launch:
+  command: "torchrun --nnodes=4 --nproc_per_node=8 --rdzv_backend=c10d --rdzv_endpoint=$RDZV_ENDPOINT --node_rank=$NODE_RANK train.py"
+  env:
+    NCCL_DEBUG: INFO                       # first run: watch for fallback to Socket
+    NCCL_IB_DISABLE: "0"                   # keep InfiniBand enabled
+    TORCH_NCCL_ASYNC_ERROR_HANDLING: "1"   # a hang becomes an error, not a deadlock
 ```
 
----
+The `NCCL_DEBUG=INFO` line is the one that saves days: if the first multi-node run is mysteriously slow, NCCL almost always fell back from InfiniBand to Socket (TCP) on some pair of nodes, and the INFO log says so explicitly.
 
 ## Part 5: Fault Tolerance & Resilience
 
-### Checkpointing Strategy
+At scale, crashes are scheduled events: long distributed runs accumulate hardware failures — a GPU drops out, a NIC flaps, a node reboots — and the training job you actually run is one that can die at any step and resume. Two implementation details separate a real checkpoint system from a toy: writes must be atomic (write to `.tmp`, then `os.replace`, which is atomic even on Windows), and old checkpoints must be rotated, or the shared filesystem fills up mid-run.
 
 ```python
-"""
-Robust checkpointing for long training runs
-"""
-
 import os
-import torch
-import signal
+import shutil
+import sys
+import tempfile
 import threading
-from typing import Optional
+import time
+
+import torch
+import torch.nn as nn
+
 
 class ResilientTrainer:
-    """Trainer with fault tolerance"""
+    """Checkpointing + crash recovery + optional watchdog hooks.
 
-    def __init__(self, model, optimizer, scheduler, save_dir="./checkpoints"):
+    Production hooks (signal handlers, background checkpoint thread) are
+    OPT-IN flags, never implicit: a trainer that forks threads in its
+    constructor is a trainer that surprises everyone at 3 a.m.
+    """
+
+    def __init__(self, model, optimizer, scheduler=None, save_dir="checkpoints",
+                 checkpoint_every=1000, keep_last_n=5,
+                 enable_signals=False, enable_background_checkpointing=False,
+                 background_interval_sec=300):
         self.model = model
         self.optimizer = optimizer
         self.scheduler = scheduler
         self.save_dir = save_dir
+        self.checkpoint_every = checkpoint_every
+        self.keep_last_n = keep_last_n
         self.current_step = 0
+        if enable_signals:
+            import signal
+            signal.signal(signal.SIGTERM, self._signal_handler)
+            signal.signal(signal.SIGINT, self._signal_handler)
+        self._stop_background = threading.Event()
+        if enable_background_checkpointing:
+            t = threading.Thread(target=self._periodic_checkpoint,
+                                 args=(background_interval_sec,), daemon=True)
+            t.start()
 
-        # Create save directory
-        os.makedirs(save_dir, exist_ok=True)
-
-        # Setup signal handlers for graceful shutdown
-        signal.signal(signal.SIGINT, self._signal_handler)
-        signal.signal(signal.SIGTERM, self._signal_handler)
-
-        # Background thread for periodic checkpointing
-        self._stop_checkpointing = False
-        self._checkpoint_thread = threading.Thread(
-            target=self._periodic_checkpoint,
-            daemon=True
-        )
-        self._checkpoint_thread.start()
-
+    # -- production hooks (opt-in) -------------------------------------
     def _signal_handler(self, signum, frame):
-        """Handle shutdown signals gracefully"""
-        print(f"\nReceived signal {signum}, saving checkpoint...")
-        self.save_checkpoint(f"emergency_{self.current_step}")
-        self._stop_checkpointing = True
-        exit(0)
+        print(f"signal {signum}: saving checkpoint, exiting")
+        self.save_checkpoint()
+        sys.exit(1)
 
-    def _periodic_checkpoint(self):
-        """Background thread for periodic checkpointing"""
-        while not self._stop_checkpointing:
-            import time
-            time.sleep(300)  # Check every 5 minutes
-            if self.current_step > 0:
-                self.save_checkpoint(f"periodic_{self.current_step}")
+    def _periodic_checkpoint(self, interval_sec: int) -> None:
+        while not self._stop_background.wait(interval_sec):
+            self.save_checkpoint()
 
-    def save_checkpoint(self, name: str):
-        """Save training checkpoint"""
+    # -- checkpointing --------------------------------------------------
+    def save_checkpoint(self) -> str:
+        os.makedirs(self.save_dir, exist_ok=True)
+        path = os.path.join(self.save_dir, f"step_{self.current_step}.pt")
+        tmp = path + ".tmp"
+        torch.save({"step": self.current_step,
+                    "model": self.model.state_dict(),
+                    "optimizer": self.optimizer.state_dict()}, tmp)
+        os.replace(tmp, path)          # atomic rename, even on Windows
+        self._rotate()
+        return path
 
-        checkpoint_path = os.path.join(self.save_dir, f"{name}.pt")
+    def _rotate(self) -> None:
+        steps = sorted(
+            int(f.split("_")[1].split(".")[0])
+            for f in os.listdir(self.save_dir)
+            if f.startswith("step_") and f.endswith(".pt"))
+        for s in steps[:-self.keep_last_n]:
+            os.remove(os.path.join(self.save_dir, f"step_{s}.pt"))
+            print(f"Removed old checkpoint: step_{s}.pt")
 
-        checkpoint = {
-            "step": self.current_step,
-            "model": self.model.state_dict(),
-            "optimizer": self.optimizer.state_dict(),
-            "scheduler": self.scheduler.state_dict(),
-        }
+    def find_latest_checkpoint(self):
+        if not os.path.isdir(self.save_dir):
+            return None
+        steps = sorted(
+            int(f.split("_")[1].split(".")[0])
+            for f in os.listdir(self.save_dir)
+            if f.startswith("step_") and f.endswith(".pt"))
+        if not steps:
+            return None
+        return os.path.join(self.save_dir, f"step_{steps[-1]}.pt")
 
-        # Atomic save (write to temp file, then rename)
-        temp_path = checkpoint_path + ".tmp"
-        torch.save(checkpoint, temp_path)
-        os.rename(temp_path, checkpoint_path)
+    def load_checkpoint(self, path: str) -> int:
+        ckpt = torch.load(path, map_location="cpu")
+        self.model.load_state_dict(ckpt["model"])
+        self.optimizer.load_state_dict(ckpt["optimizer"])
+        self.current_step = ckpt["step"]
+        return ckpt["step"]
 
-        # Keep only last N checkpoints
-        self._cleanup_old_checkpoints(keep=5)
+    # -- training ---------------------------------------------------------
+    def train_step(self, batch) -> float:
+        self.optimizer.zero_grad(set_to_none=True)
+        loss = self.model(batch).sum()
+        loss.backward()
+        self.optimizer.step()
+        if self.scheduler is not None:
+            self.scheduler.step()
+        self.current_step += 1
+        return loss.item()
 
-        print(f"Saved checkpoint: {checkpoint_path}")
-
-    def _cleanup_old_checkpoints(self, keep: int = 5):
-        """Remove old checkpoints, keep last N"""
-        checkpoints = []
-        for file in os.listdir(self.save_dir):
-            if file.endswith(".pt"):
-                checkpoints.append(os.path.join(self.save_dir, file))
-
-        # Sort by modification time
-        checkpoints.sort(key=os.path.getmtime)
-
-        # Remove old checkpoints
-        while len(checkpoints) > keep:
-            old_checkpoint = checkpoints.pop(0)
-            os.remove(old_checkpoint)
-            print(f"Removed old checkpoint: {old_checkpoint}")
-
-    def load_checkpoint(self, checkpoint_path: str):
-        """Load training checkpoint"""
-
-        checkpoint = torch.load(checkpoint_path)
-
-        self.model.load_state_dict(checkpoint["model"])
-        self.optimizer.load_state_dict(checkpoint["optimizer"])
-        self.scheduler.load_state_dict(checkpoint["scheduler"])
-        self.current_step = checkpoint["step"]
-
-        print(f"Loaded checkpoint from step {self.current_step}")
-
-        return self.current_step
-
-    def train_with_resilience(self, train_loader, total_steps):
-        """Train with automatic recovery"""
-
-        # Try to load latest checkpoint
-        latest_checkpoint = self._find_latest_checkpoint()
-        if latest_checkpoint:
-            print(f"Found checkpoint: {latest_checkpoint}")
-            start_step = self.load_checkpoint(latest_checkpoint)
+    def train(self, batches, total_steps: int) -> None:
+        """Resume from the latest checkpoint, then run to total_steps."""
+        latest = self.find_latest_checkpoint()
+        if latest:
+            step = self.load_checkpoint(latest)
+            print(f"Loaded checkpoint {os.path.basename(latest)}, "
+                  f"resuming at step: {step}")
         else:
             print("No checkpoint found, starting from scratch")
-            start_step = 0
-
-        # Training loop with auto-recovery
-        for step in range(start_step, total_steps):
+        it = iter(batches)
+        while self.current_step < total_steps:
             try:
-                # Training step
-                self._train_step(train_loader)
+                batch = next(it)
+            except StopIteration:
+                it = iter(batches)
+                batch = next(it)
+            self.train_step(batch)
+            if self.current_step % self.checkpoint_every == 0:
+                print(f"Saved checkpoint: {os.path.basename(self.save_checkpoint())}")
 
-                self.current_step += 1
 
-                # Periodic checkpoint
-                if self.current_step % 1000 == 0:
-                    self.save_checkpoint(f"step_{self.current_step}")
+tmpdir = tempfile.mkdtemp(prefix="omega_ckpts_")
 
-            except RuntimeError as e:
-                if "out of memory" in str(e):
-                    print(f"OOM at step {self.current_step}, clearing cache...")
-                    torch.cuda.empty_cache()
-                    continue
-                elif "NCCL" in str(e):
-                    print(f"NCCL error at step {self.current_step}, retrying...")
-                    time.sleep(10)
-                    continue
-                else:
-                    raise
-            except Exception as e:
-                print(f"Error at step {self.current_step}: {e}")
-                self.save_checkpoint(f"error_{self.current_step}")
-                raise
 
-    def _find_latest_checkpoint(self) -> Optional[str]:
-        """Find most recent checkpoint"""
-        checkpoints = []
-        for file in os.listdir(self.save_dir):
-            if file.endswith(".pt") and not file.startswith("."):
-                checkpoints.append(os.path.join(self.save_dir, file))
+def fresh_trainer():
+    torch.manual_seed(0)
+    model = nn.Linear(8, 8)
+    opt = torch.optim.SGD(model.parameters(), lr=0.1)
+    return ResilientTrainer(model, opt, save_dir=tmpdir, checkpoint_every=25)
 
-        if not checkpoints:
-            return None
 
-        checkpoints.sort(key=os.path.getmtime, reverse=True)
-        return checkpoints[0]
+trainer = fresh_trainer()
+data = [torch.randn(4, 8) for _ in range(40)]
+trainer.train(data, total_steps=50)          # checkpoints at 25 and 50
+
+trainer.current_step = 30                    # simulate an out-of-band save
+manual = trainer.save_checkpoint()
+print("saved:", os.path.basename(manual))
+print("checkpoint files:", sorted(os.listdir(tmpdir)))
+
+trainer = fresh_trainer()                    # fresh process, fresh objects
+step = trainer.load_checkpoint(trainer.find_latest_checkpoint())
+print(f"Loaded checkpoint from step {step}; current_step: {trainer.current_step}")
+
+for i in range(1, 8):                        # force rotation: 8 files -> keep 5
+    trainer.current_step = 30 + i
+    trainer.save_checkpoint()
+print("final files:", len(os.listdir(tmpdir)))
+
+shutil.rmtree(tmpdir, ignore_errors=True)
 ```
 
----
+**Output:**
+
+```text
+No checkpoint found, starting from scratch
+Saved checkpoint: step_25.pt
+Saved checkpoint: step_50.pt
+saved: step_30.pt
+checkpoint files: ['step_25.pt', 'step_30.pt', 'step_50.pt']
+Loaded checkpoint from step 50; current_step: 50
+Removed old checkpoint: step_25.pt
+Removed old checkpoint: step_30.pt
+Removed old checkpoint: step_31.pt
+Removed old checkpoint: step_32.pt
+Removed old checkpoint: step_33.pt
+final files: 5
+```
+
+Read the demo as a crash timeline: train to step 50 (auto-checkpoints at 25 and 50), an out-of-band save lands at step 30, then the "process dies" — a fresh trainer reconstructs everything from `find_latest_checkpoint` and resumes at step 50, the latest. The forced rotation at the end shows the retention policy working: eight accumulated checkpoints, `keep_last_n=5`, exactly five files survive.
 
 ## Part 6: Monitoring at Scale
 
-### Distributed Monitoring
+Distributed runs fail in ways single-process ones do not: one rank OOMs while the others wait, token throughput silently halves after a network flap, a straggler dominates step time. A monitor cannot fix these, but it must see them — and it must not lie to you. The classic lie: `torch.cuda.utilization()` returns *memory-bandwidth* utilization percent, not the "is my GPU busy computing" number people assume; true compute utilization comes from pynvml's `util.gpu` counter. The monitor below keeps vendors out of the module — it accepts any logging sink you hand it, so TensorBoard, wandb, or your own endpoint are a constructor argument, not an import.
 
 ```python
-"""
-Monitoring distributed training
-"""
-
-import wandb
-import torch
 import time
 
+import torch
+
+
 class DistributedMonitor:
-    """Monitor distributed training metrics"""
+    """Lightweight training monitor. `logger` is any callable(dict) -
+    TensorBoard, wandb, your own sink. No vendor import at module level:
+    the sink is injected, the monitor stays dependency-free."""
 
-    def __init__(self, project_name="llm-training"):
-        wandb.init(project=project_name)
+    def __init__(self, logger=None):
+        self.logger = logger
+        self.history = []
+        self.start_time = time.time()
+        self.avg_tokens_per_sample = 0.0
 
-    def log_training_metrics(self, loss, grad_norm, learning_rate, step):
-        """Log core training metrics"""
+    def set_avg_tokens(self, avg_tokens_per_sample: float) -> None:
+        """Feed the dataset-side number that log_data_metrics needs."""
+        self.avg_tokens_per_sample = avg_tokens_per_sample
 
-        wandb.log({
-            "train/loss": loss,
-            "train/grad_norm": grad_norm,
-            "train/learning_rate": learning_rate,
-            "train/step": step,
-        })
+    def _log(self, metrics: dict) -> None:
+        self.history.append(metrics)
+        if self.logger is not None:
+            self.logger(metrics)
 
-    def log_gpu_metrics(self):
-        """Log GPU utilization across all nodes"""
+    def log_training_metrics(self, loss: float, grad_norm: float,
+                             lr: float, step: int) -> None:
+        self._log({"train/loss": loss, "train/grad_norm": grad_norm,
+                   "train/lr": lr, "train/step": step})
+        print(f"logged: {{'train/loss': {loss}, 'train/step': {step}}}")
 
+    def log_data_metrics(self, dataset_size: int, step: int) -> None:
+        samples_seen = step * 512   # demo: global batch 512
+        self._log({"data/samples_seen": samples_seen,
+                   "data/epoch": samples_seen / max(1, dataset_size)})
+        tokens_per_sec = samples_seen * self.avg_tokens_per_sample / (
+            time.time() - self.start_time)
+        print(f"samples_seen: {samples_seen}, "
+              f"tokens/sec measurable: {tokens_per_sec > 0}")
+
+    def log_gpu_metrics(self) -> None:
+        if not torch.cuda.is_available():
+            print("CUDA not available - skipping GPU metrics")
+            return
         for gpu_id in range(torch.cuda.device_count()):
             props = torch.cuda.get_device_properties(gpu_id)
-            memory_used = torch.cuda.memory_allocated(gpu_id)
-            memory_total = props.total_memory
+            used = torch.cuda.memory_allocated(gpu_id)
+            mem_util_pct = 100 * used / props.total_memory
+            # torch.cuda.utilization(gpu) reports MEMORY utilization percent;
+            # true COMPUTE utilization needs pynvml's util.gpu counter.
+            print(f"gpu {gpu_id}: {used / 1e9:.2f} GB allocated of "
+                  f"{props.total_memory / 1e9:.1f} GB, mem-util {mem_util_pct:.1f}%")
 
-            utilization = torch.cuda.utilization(gpu_id)
+    def log_communication_metrics(self):
+        raise NotImplementedError(
+            "per-rank allreduce timings need torch.profiler (CPU + CUDA "
+            "activities) - see 5404: Distributed Optimization")
 
-            wandb.log({
-                f"gpu/{gpu_id}/memory_used_gb": memory_used / 1e9,
-                f"gpu/{gpu_id}/memory_utilization": memory_used / memory_total,
-                f"gpu/{gpu_id}/compute_utilization": utilization,
-            })
 
-    def log_data_metrics(self, dataloader, step):
-        """Log data processing metrics"""
-
-        # Throughput
-        samples_per_sec = len(dataloader.dataset) / (time.time() - self.start_time)
-
-        # Token throughput
-        tokens_per_sec = samples_per_sec * self.avg_tokens_per_sample
-
-        wandb.log({
-            "data/samples_per_sec": samples_per_sec,
-            "data/tokens_per_sec": tokens_per_sec,
-            "data/step": step,
-        })
-
-    def log_communication_metrics(self, step):
-        """Log communication overhead"""
-
-        # This requires profiling
-        # Measure time spent in all_reduce, all_gather, etc.
-
-        pass
-
-    def create_dashboard(self):
-        """Create W&B dashboard for monitoring"""
-
-        # Dashboard shows:
-        # 1. Loss curves (train/val)
-        # 2. Learning rate schedule
-        # 3. Gradient norms
-        # 4. GPU utilization (all GPUs)
-        # 5. Memory usage (all GPUs)
-        # 6. Throughput (samples/sec, tokens/sec)
-        # 7. Communication overhead
-
-        pass
+monitor = DistributedMonitor()
+monitor.log_training_metrics(loss=2.71, grad_norm=1.19, lr=3e-4, step=100)
+monitor.set_avg_tokens(avg_tokens_per_sample=2048)
+monitor.log_data_metrics(dataset_size=10_000, step=100)
+if torch.cuda.is_available():
+    _hold = torch.zeros(25_000_000, device="cuda")   # 100 MB, keeps the metric non-trivial
+monitor.log_gpu_metrics()
+print("history entries:", len(monitor.history))
 ```
 
----
+**Output:**
+
+```text
+logged: {'train/loss': 2.71, 'train/step': 100}
+samples_seen: 51200, tokens/sec measurable: True
+gpu 0: 0.10 GB allocated of 17.1 GB, mem-util 0.6%
+history entries: 2
+```
+
+(The GPU line is from the machine this lesson was verified on — a 17.1 GB consumer GPU; your totals will differ, the format will not.)
 
 ## Part 7: Cost Optimization
 
-### Training Cost Calculator
+Cost estimation is arithmetic, not folklore: 6·N·D FLOPs for N parameters over D tokens, divided by achieved FLOP/s, divided by price. At MFU 0.5 — what well-tuned runs achieve — a 7B model over 1T tokens takes ~389.5 A100-days of wall clock on 8 GPUs, exactly the number 2401 derived. This lesson generalizes it per fleet size and GPU type, and prices it from on-demand instance list prices.
 
 ```python
-"""
-Calculate and optimize training costs
-"""
-
 class TrainingCostCalculator:
-    """Calculate costs for large model training"""
+    """Wall-clock and dollar cost of pre-training, from first principles.
 
-    def __init__(self):
-        # Cloud pricing (as of 2024)
-        self.cloud_pricing = {
-            "aws": {
-                "p3.2xlarge":  # 1x V100
-                    {"hourly": 3.06, "gpus": 1, "memory": 16},
-                "p3.8xlarge":  # 4x V100
-                    {"hourly": 12.24, "gpus": 4, "memory": 64},
-                "p3.16xlarge":  # 8x V100
-                    {"hourly": 24.48, "gpus": 8, "memory": 128},
-                "p4d.24xlarge":  # 8x A100
-                    {"hourly": 32.77, "gpus": 8, "memory": 320},
-            },
-            "gcp": {
-                "n1-standard-4":  # 1x T4
-                    {"hourly": 1.14, "gpus": 1, "memory": 16},
-                "n1-standard-16":  # 4x T4
-                    {"hourly": 4.56, "gpus": 4, "memory": 64},
-                "a2-highgpu-8g":  # 8x A100
-                    {"hourly": 35.04, "gpus": 8, "memory": 320},
-            },
-            "azure": {
-                "Standard_NC6s_v3":  # 1x V100
-                    {"hourly": 3.40, "gpus": 1, "memory": 16},
-                "Standard_NC24s_v3":  # 4x V100
-                    {"hourly": 13.60, "gpus": 4, "memory": 64},
-            }
-        }
+    FLOPs = 6 * N * D   (N params, D training tokens)
+    time  = FLOPs / (peak TFLOPS * MFU), per GPU, then / fleet size
+    cost  = GPU-hours * $/GPU-hour
+    """
 
-    def calculate_cost(self,
-                       model_params: int,
-                       training_tokens: int,
-                       gpu_type: str = "A100",
-                       num_gpus: int = 8,
-                       cloud_provider: str = "aws"):
-        """
-        Calculate training cost
+    GPU_PEAK_TFLOPS = {   # dense BF16 peak (no sparsity tricks)
+        "A100": 312.0,
+        "H100": 990.0,
+        "V100": 125.0,
+        "RTX 4090": 83.0,
+    }
+    CLOUD_PRICING = {     # on-demand Linux list prices, 2024-2026 ballpark
+        ("aws", "V100"): (24.48, 8),    # p3.16xlarge
+        ("aws", "A100"): (32.77, 8),    # p4d.24xlarge
+        ("aws", "H100"): (98.32, 8),    # p5.48xlarge
+        ("gcp", "A100"): (35.04, 8),    # a2-highgpu-8g
+    }
 
-        Args:
-            model_params: Number of parameters (e.g., 7_000_000_000)
-            training_tokens: Number of training tokens
-            gpu_type: Type of GPU (A100, V100, etc.)
-            num_gpus: Number of GPUs
-            cloud_provider: Cloud provider (aws, gcp, azure)
+    def __init__(self, mfu: float = 0.5):
+        self.mfu = mfu   # 50% is what well-tuned real runs achieve
 
-        Returns:
-            Dictionary with cost estimates
-        """
+    def per_gpu_hourly(self, gpu_type: str, provider: str = "aws") -> float:
+        instance_hourly, gpus = self.CLOUD_PRICING[(provider, gpu_type)]
+        return instance_hourly / gpus
 
-        # FLOPs needed: ~6 * params * tokens
+    def calculate_cost(self, model_params: float, training_tokens: float,
+                       gpu_type: str = "A100", num_gpus: int = 8) -> dict:
         total_flops = 6 * model_params * training_tokens
-
-        # GPU FLOPs (theoretical)
-        gpu_flops = {
-            "A100": 312e12,  # TFLOPs (FP16)
-            "H100": 1000e12,  # TFLOPs (FP8)
-            "V100": 125e12,  # TFLOPs (FP16)
-            "RTX 4090": 83e12,  # TFLOPs (FP16)
-        }
-
-        # Model FLOPs Utilization (MFU)
-        # Realistic: 30-50% for large models
-        mfu = 0.40
-
-        # Effective FLOPs per GPU
-        effective_flops = gpu_flops[gpu_type] * mfu
-
-        # Training time (seconds)
-        seconds_single_gpu = total_flops / effective_flops
-        seconds_parallel = seconds_single_gpu / num_gpus
-
-        hours = seconds_parallel / 3600
-        days = hours / 24
-
-        # Hourly cost
-        if gpu_type == "A100":
-            instance_type = "p4d.24xlarge"  # AWS
-            hourly_cost = self.cloud_pricing["aws"][instance_type]["hourly"]
-        elif gpu_type == "H100":
-            # H100 pricing
-            hourly_cost = 7.0  # Approximate
-        elif gpu_type == "V100":
-            instance_type = "p3.16xlarge"  # AWS
-            hourly_cost = self.cloud_pricing["aws"][instance_type]["hourly"]
-        else:
-            hourly_cost = 5.0  # Default estimate
-
-        # Total cost
-        total_cost = hours * hourly_cost * num_gpus
-
+        peak = self.GPU_PEAK_TFLOPS[gpu_type] * 1e12
+        gpu_seconds = total_flops / (peak * self.mfu)
+        hours = gpu_seconds / num_gpus / 3600
+        hourly = self.per_gpu_hourly(gpu_type)
+        # NOTE: assumes perfect scaling; real fleets pay a 5-20% tax that
+        # this teaching calculation deliberately omits.
         return {
-            "training_hours": hours,
-            "training_days": days,
-            "hourly_cost_per_gpu": hourly_cost,
-            "total_cost_usd": total_cost,
-            "cost_per_million_tokens": total_cost / (training_tokens / 1e6),
+            "training_days": hours / 24,
+            "hourly_cost_per_gpu": hourly,
+            "total_cost_usd": hours * hourly * num_gpus,
+            "cost_per_million_tokens":
+                hours * hourly * num_gpus / (training_tokens / 1e6),
         }
 
-    def compare_options(self, model_size="7B", tokens=1_000_000_000_000):
-        """Compare different GPU configurations"""
+    def compare_options(self, model_params: float, training_tokens: float) -> None:
+        print(f"{'fleet':<14}{'days':>8}{'total cost':>14}")
+        for fleet in [(8, "A100"), (16, "A100"), (32, "A100"),
+                      (8, "H100"), (16, "H100")]:
+            c = self.calculate_cost(model_params, training_tokens,
+                                    gpu_type=fleet[1], num_gpus=fleet[0])
+            print(f"{fleet[0]:>3} x {fleet[1]:<6}{c['training_days']:>8.1f}"
+                  f"{c['total_cost_usd']:>14,.0f}")
+        a8 = self.calculate_cost(model_params, training_tokens, "A100", 8)
+        a16 = self.calculate_cost(model_params, training_tokens, "A100", 16)
+        print(f"detail: 7B x 1T tokens on 8 x A100 = "
+              f"{a8['training_days']:.1f} days, ${a8['total_cost_usd']:,.0f}")
+        print(f"bill invariant to fleet size: "
+              f"{abs(a8['total_cost_usd'] - a16['total_cost_usd']) < 1e-6}")
 
-        print(f"\nCost Comparison for {model_size} model, {tokens/1e12:.1f}T tokens:\n")
-        print(f"{'Configuration':<30} {'Days':<10} {'Cost':<15}")
-        print("-" * 60)
 
-        configs = [
-            ("8x A100", "A100", 8),
-            ("16x A100", "A100", 16),
-            ("32x A100", "A100", 32),
-            ("8x H100", "H100", 8),
-            ("16x H100", "H100", 16),
-        ]
-
-        for name, gpu, num in configs:
-            result = self.calculate_cost(
-                model_params=7_000_000_000 if model_size == "7B" else 70_000_000_000,
-                training_tokens=tokens,
-                gpu_type=gpu,
-                num_gpus=num
-            )
-
-            print(f"{name:<30} {result['training_days']:<10.1f} ${result['total_cost_usd']:>13,.2f}")
-
-# Example usage
-calculator = TrainingCostCalculator()
-calculator.compare_options(model_size="7B", tokens=1_000_000_000_000)
-
-"""
-Output:
-
-Cost Comparison for 7B model, 1.0T tokens:
-
-Configuration                   Days       Cost
-------------------------------------------------------------
-8x A100                         21.3      $12,288.00
-16x A100                        10.7      $12,288.00
-32x A100                         5.3       $12,288.00
-8x H100                          6.6       $8,870.40
-16x H100                         3.3       $8,870.40
-"""
+TrainingCostCalculator().compare_options(model_params=7e9, training_tokens=1e12)
 ```
 
----
+**Output:**
+
+```text
+fleet             days    total cost
+  8 x A100     389.5       306,343
+ 16 x A100     194.8       306,343
+ 32 x A100      97.4       306,343
+  8 x H100     122.8       289,663
+ 16 x H100      61.4       289,663
+detail: 7B x 1T tokens on 8 x A100 = 389.5 days, $306,343
+bill invariant to fleet size: True
+```
+
+The $306,343 differs from 2401's $224,359 for the same 7B × 1T run because the price assumptions differ, not the math: 2401 used a bare $3/GPU-hour (typical of discounted or marketplace rates), while `p4d.24xlarge` on-demand list price works out to $4.10/GPU-hour once the instance's CPUs, RAM, and networking are amortized onto its 8 GPUs. Spot and preemptible capacity on the same instances routinely discounts 60–90%, which is how published "we trained it for $X" numbers get so small. What stays invariant: the bill does not depend on fleet size — twice the GPUs, half the days, same dollars.
 
 ## Part 8: Complete Training Script
 
-```python
-"""
-Complete distributed training script with FSDP
-"""
+The scaffold below is the honest shape of a real FSDP training entry point: distributed setup, model wrapping, AdamW with pre-training hyperparameters, and rank-0-only logging. The two `NotImplementedError` hooks are where your model and data pipeline go — 2401 Part 10 builds both, and LAB-006 wires them end to end. Launch it with `torchrun --nproc_per_node=8 train_fsdp.py`, never with plain `python`.
 
+```python
+# Launch: torchrun --nproc_per_node=8 train_fsdp.py
+import functools
 import os
+
 import torch
 import torch.distributed as dist
-from torch.distributed.fsdp import FullyShardedDataParallel as FSDP
-from torch.utils.data import DataLoader
+from torch.distributed.fsdp import (
+    FullyShardedDataParallel as FSDP,
+    MixedPrecision,
+    ShardingStrategy,
+)
+from torch.distributed.fsdp.wrap import transformer_auto_wrap_policy
+
+
+class TransformerBlock(torch.nn.Module):
+    """Placeholder - replace with your model's real transformer block."""
+
+    def __init__(self, d_model=512):
+        super().__init__()
+        self.attn = torch.nn.Linear(d_model, d_model)
+        self.mlp = torch.nn.Sequential(
+            torch.nn.Linear(d_model, 4 * d_model), torch.nn.GELU(),
+            torch.nn.Linear(4 * d_model, d_model))
+
+    def forward(self, x):
+        return x + self.mlp(self.attn(x))
+
 
 def setup_distributed():
-    """Initialize distributed training"""
-    dist.init_process_group("nccl")
+    dist.init_process_group(backend="nccl")
     local_rank = int(os.environ["LOCAL_RANK"])
     torch.cuda.set_device(local_rank)
-    return local_rank
+    return local_rank, dist.get_world_size()
 
-def main():
-    # Setup distributed
-    local_rank = setup_distributed()
 
-    # Load model (simplified)
-    model = create_transformer_model()
+def create_transformer_model():
+    raise NotImplementedError(
+        "your real model here - see 2401 Part 10 and LAB-006")
 
-    # Wrap with FSDP
-    model = FSDP(
-        model.cuda(),
-        sharding_strategy="FULL_SHARD",
-        mixed_precision=MixedPrecision(
-            param_dtype=torch.float16,
-            reduce_dtype=torch.float16,
-        ),
-        auto_wrap_policy=transformer_auto_wrap_policy(
-            transformer_layer_cls={TransformerBlock}
-        )
-    )
 
-    # Optimizer
-    optimizer = torch.optim.AdamW(
-        model.parameters(),
-        lr=3e-4,
-        weight_decay=0.1,
-    )
+def get_dataloader(batch_size: int, rank: int, world_size: int):
+    # Real pre-training uses a DistributedSampler so each rank sees a
+    # disjoint shard; call sampler.set_epoch(epoch) every epoch.
+    raise NotImplementedError(
+        "your data pipeline here - see 2401 Part 10 and LAB-006")
 
-    # Load data (sharded per GPU)
-    train_loader = get_dataloader(batch_size=8, rank=dist.get_rank())
 
-    # Training loop
+def main(num_epochs: int = 3):
+    local_rank, world_size = setup_distributed()
+    model = create_transformer_model().to(local_rank)
+
+    mp_policy = MixedPrecision(param_dtype=torch.bfloat16,
+                               reduce_dtype=torch.bfloat16,
+                               buffer_dtype=torch.bfloat16)
+    model = FSDP(model,
+                 auto_wrap_policy=functools.partial(
+                     transformer_auto_wrap_policy,
+                     transformer_layer_cls={TransformerBlock}),
+                 sharding_strategy=ShardingStrategy.FULL_SHARD,
+                 mixed_precision=mp_policy,
+                 use_orig_params=True)
+
+    optimizer = torch.optim.AdamW(model.parameters(), lr=3e-4,
+                                  betas=(0.9, 0.95), weight_decay=0.1)
+
     for epoch in range(num_epochs):
-        for step, batch in enumerate(train_loader):
-            # Forward
-            outputs = model(**batch)
-            loss = outputs.loss
-
-            # Backward
+        for step, batch in enumerate(get_dataloader(batch_size=8,
+                                                    rank=local_rank,
+                                                    world_size=world_size)):
+            optimizer.zero_grad(set_to_none=True)
+            loss = model(batch).sum()
             loss.backward()
-
-            # Gradient clip
             model.clip_grad_norm_(max_norm=1.0)
-
-            # Step
             optimizer.step()
-            optimizer.zero_grad()
+            if local_rank == 0 and step % 100 == 0:
+                print(f"epoch {epoch} step {step}: loss {loss.item():.3f}")
 
-            # Logging (on rank 0 only)
-            if dist.get_rank() == 0 and step % 100 == 0:
-                print(f"Epoch {epoch}, Step {step}, Loss: {loss.item():.4f}")
 
 if __name__ == "__main__":
     main()
 ```
 
----
+Nothing prints here by design — this file is a scaffold meant to be launched under `torchrun`, which requires an initialized process group and the real model/data hooks filled in.
 
 ## Summary
 
-### Key Takeaways
+Scale changes the physics of training less than it changes the plumbing: it is the same single-GPU loop from 2401, replicated across ranks, with state sharded until it fits and checkpoints treated as load-bearing infrastructure. Master the 20-bytes accounting and every parallelism conversation becomes arithmetic; master atomic checkpoints and a crashed 300-GPU run becomes an inconvenience instead of a rewrite.
 
 ```yaml
-Distributed Training:
-
-  Data Parallel (DDP):
-    - Best for: Small models (< 1B params)
-    - Memory: Model replicated on each GPU
-    - Speed: Fast (low overhead)
-
-  FSDP / ZeRO Stage 3:
-    - Best for: Large models (7B+ params)
-    - Memory: Sharded across GPUs
-    - Speed: Medium (communication overhead)
-    - Enables: Training 7B on consumer GPUs!
-
-  DeepSpeed ZeRO:
-    - Similar to FSDP
-    - More configuration options
-    - CPU offloading capability
-
-  Multi-Node Training:
-    - Requires: High-speed network (InfiniBand)
-    - Software: NCCL, MPI
-    - Complexity: High
-
-Cost Optimization:
-  - Use FSDP/ZeRO to reduce memory
-  - Use mixed precision (FP16/BF16)
-  - Use gradient checkpointing
-  - Use CPU offloading if needed
-  - Spot instances (70-90% savings)
+# 2402 in six lines
+memory_rule: "mixed-precision AdamW costs 20 bytes/param before activations"
+ddp_limit: "< 0.5B params per 11 GB GPU; beyond that, shard"
+sharding_ladder: "ZeRO-1 (Adam states) -> ZeRO-2 (+grads) -> ZeRO-3 (+params) -> offload (CPU)"
+single_gpu_reality: "7B trains on ONE 24 GB GPU with ZeRO-3 + CPU offload"
+cost_physics: "6*N*D FLOPs; at MFU 0.5 a 7B x 1T run is ~390 A100-days, ~$306k on-demand"
+resilience: "atomic writes + rotation + resumability is not optional at scale"
 ```
-
----
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related Documents
 
-- [2401: Pre-training Fundamentals](2401-Pre-training-Fundamentals.md)
-- [2403: Evaluation Frameworks for Language Models](2403-Evaluation-Frameworks.md)
+- [2400: LLM Pretraining](./README.md) — module overview, schedule, and assessment links
+- [2400: LLM Pretraining - Prerequisites](./PREREQUISITES.md) — what to know before starting this module
+- [2401: Pre-training Fundamentals](./2401-Pre-training-Fundamentals.md) — the single-process loop this lesson scales out
+- [2403: Evaluation Frameworks for Language Models](./2403-Evaluation-Frameworks.md) — what to run when the long training finally converges
+- [5404: Distributed Optimization](../../phase5-finetuning/5400-distributed-training/5404-Distributed-Optimization.md) — the fine-tuning-side view of the same infrastructure
+- [LAB 006: Train a Small Language Model from Scratch](../../../learning-resources/labs/LAB-006-Train-Model-From-Scratch.md) — the hands-on version of Part 8
 
----
+### External References
+
+- [ZeRO: Memory Optimizations Toward Training Trillion Parameter Models](https://arxiv.org/abs/1910.02054) — the paper behind the stage ladder (Rajbhandari et al., 2020)
+- [Megatron-LM: Training Multi-Billion Parameter Language Models Using Model Parallelism](https://arxiv.org/abs/1909.08053) — intra-layer (tensor) parallelism, beyond this lesson's data-axis focus
+- [GPipe: Efficient Training of Giant Neural Networks using Pipeline Parallelism](https://arxiv.org/abs/1811.06965) — the origins of pipeline parallelism
+- [PaLM: Scaling Language Modeling with Pathways](https://arxiv.org/abs/2204.02311) — what a real 6144-chip run reports about MFU, failures, and restarts
+- [Getting started with Fully Sharded Data Parallel (PyTorch tutorial)](https://docs.pytorch.org/tutorials/intermediate/FSDP_tutorial.html) — the official walkthrough of the APIs used in Part 2
+- [Efficient training on multiple GPUs (Transformers docs)](https://huggingface.co/docs/transformers/perf_train_gpu_many) — a practical parallelism decision guide
 
 ## Next Steps
 
-- Continue with: **[2403: Evaluation Frameworks](./2403-Evaluation-Frameworks.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+**Next Lesson:** [2403: Evaluation Frameworks for Language Models](./2403-Evaluation-Frameworks.md) — the training run converged; now measure whether it is actually good.
 
----
+**Practical:** [LAB 006: Train a Small Language Model from Scratch](../../../learning-resources/labs/LAB-006-Train-Model-From-Scratch.md) — run the full pipeline end to end on hardware you own.
+
+**Assessment:** [2400: Pretraining Fundamentals - Quiz](./assessment/QUIZ.md) and [2400: Pre-training - Practice](./assessment/PRACTICE.md).
+
+**Related:** [5404: Distributed Optimization](../../phase5-finetuning/5400-distributed-training/5404-Distributed-Optimization.md) — the same sharding and offload ideas applied to fine-tuning.
+
+**Experiment:** [EXP_5302: Distributed Training Experiment](../../../../experiments/EXP_5302_DISTRIBUTED.md) — the nearest-relevant hands-on lab for distributed runs (no EXP_24xx exists yet).
