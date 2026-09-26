@@ -3,7 +3,7 @@ Document ID: 6501
 Title: ML Model Lifecycle Management
 Phase: 6
 Module: 6500
-Last Updated: 2026-09-24
+Last Updated: 2026-09-26
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -13,12 +13,6 @@ Tags: ['mlops', 'pipeline', 'ci-cd', 'model-registry', 'lifecycle']
 ---
 
 # 6501: ML Model Lifecycle Management
-
-**Project:** AI Engineering Curriculum
-**Phase:** [6500] MLOps Pipelines
-**Last Updated:** 2026-02-04
-**Status:** Complete
-**Estimated Time:** 4 hours
 
 ---
 
@@ -33,9 +27,8 @@ Tags: ['mlops', 'pipeline', 'ci-cd', 'model-registry', 'lifecycle']
 - [Stage 4: Monitoring](#stage-4-monitoring)
 - [Stage 5: Retirement](#stage-5-retirement)
 - [Production Checklist](#production-checklist)
-- [Best Practices](#best-practices)
-- [Related Resources](#related-resources)
 - [References](#references)
+- [Next Steps](#next-steps)
 
 ---
 
@@ -43,700 +36,319 @@ Tags: ['mlops', 'pipeline', 'ci-cd', 'model-registry', 'lifecycle']
 
 After completing this lesson, you will be able to:
 
-- Explain ML Lifecycle Stages
-- Explain Stage 1: Development
-- Explain Stage 2: Validation
-- Configure and operate Stage 3: Deployment
-- Measure and evaluate Stage 4: Monitoring
-- Explain Stage 5: Retirement
+- Map the five lifecycle stages and the state machine that gates every transition between them
+- Trace a model version from `registered` to `retired` through a transition map that forbids shortcuts (a candidate cannot skip the canary stage)
+- Judge a challenger against a champion with McNemar's exact test on discordant prediction pairs
+- Emit serving metrics (counters, histograms, gauges) in Prometheus exposition format with an isolated registry
+- Apply four retirement criteria — age, performance, usage, cost — to decide archive versus keep
+- Separate symptom-based paging from cause-based logging per Google SRE practice
 
 ---
 
 ## Abstract
 
-End-to-end machine learning model lifecycle management from development to production. This document covers the complete ML lifecycle including training, validation, deployment, monitoring, and retirement.
+A model's life does not end at the first deploy — it begins there. This lesson models the ML lifecycle as an explicit state machine over five stages (development, validation, deployment, monitoring, retirement), where each state transition is a gated, auditable step rather than an informal habit. The decision mechanics are runnable: a transition map that rejects shortcuts, McNemar's exact test for challenger-vs-champion decisions, real Prometheus metric emission, and a retirement review. The platform pieces — MLflow tracking and the routing-layer flip — are labeled sketches. [6502: CI/CD for Machine Learning](6502-CI-CD-for-ML.md) automates these stages; [6503: Model Registry](6503-Model-Registry.md) records where each version currently stands.
 
 ---
 
 ## ML Lifecycle Stages
 
 ```text
-┌─────────────────────────────────────────────────────────────────────────┐
-│                    ML Model Lifecycle Management                        │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                         │
-│  ┌──────────┐    ┌──────────┐    ┌──────────┐    ┌──────────┐        │
-│  │          │    │          │    │          │    │          │        │
-│  │ DEVELOP  │───►│ VALIDATE │───►│ DEPLOY   │───►│ MONITOR  │        │
-│  │          │    │          │    │          │    │          │        │
-│  └────┬─────┘    └────┬─────┘    └────┬─────┘    └────┬─────┘        │
-│       │              │              │              │                 │
-│       ▼              ▼              ▼              ▼                 │
-│  ┌──────────┐    ┌──────────┐    ┌──────────┐    ┌──────────┐        │
-│  │Feature   │    │Model     │    │Canary    │    │Drift     │        │
-│  │Engineering│  │Testing   │    │Release   │    │Detection │        │
-│  └──────────┘    └──────────┘    └──────────┘    └──────────┘        │
-│                                                           │            │
-│                                                           ▼            │
-│                                                    ┌──────────┐        │
-│                                                    │ RETIRE   │        │
-│                                                    └──────────┘        │
-└─────────────────────────────────────────────────────────────────────────┘
+  registered --> candidate --> canary --> production --> shadow --> retired
+                   ^             |           |
+                   |   rollback  |           |  rollback (one alias write)
+                   +-------------+           +--> candidate
+  shortcuts are forbidden: candidate -> production must pass through canary
 ```
+
+The stages map onto states, and the gates between them are the discipline:
+
+- **registered** — training finished and the artifact is in the registry; nothing serves it yet
+- **candidate** — passed offline validation; eligible for a controlled rollout
+- **canary** — taking a fraction of live traffic under close watch (mechanics: [6502, Deployment Strategies](6502-CI-CD-for-ML.md))
+- **production** — taking full traffic; rollback is repointing the alias, never a rebuild
+- **shadow** — receiving mirrored traffic for evaluation only; the exit path to retirement
+
+The transition map below is the lifecycle as code. Note what it forbids: after a rollback to candidate, the model must re-enter through canary — there is no direct hop back to production, because the reason it was rolled back has not changed.
+
+```python
+ALLOWED = {
+    "registered": ["candidate"],
+    "candidate":  ["canary", "retired"],
+    "canary":     ["production", "candidate"],   # candidate = rollback
+    "production": ["shadow", "candidate"],
+    "shadow":     ["retired"],
+    "retired":    [],
+}
+
+def transition(model, src, dst):
+    if model["stage"] != src:
+        print("%-11s -> %-11s REJECTED (model is in %s)" % (src, dst, model["stage"]))
+        return False
+    if dst not in ALLOWED.get(src, []):
+        allowed = ", ".join(ALLOWED.get(src, [])) or "none (terminal)"
+        print("%-11s -> %-11s REJECTED (from %s only: %s)" % (src, dst, src, allowed))
+        return False
+    print("%-11s -> %-11s ok" % (src, dst))
+    model["stage"] = dst
+    model["history"].append(dst)
+    return True
+
+model = {"name": "text-classifier", "stage": "registered",
+         "history": ["registered"]}
+
+transition(model, "registered", "candidate")
+transition(model, "candidate", "canary")
+transition(model, "canary", "production")
+transition(model, "production", "candidate")    # rollback: repoint, not delete
+transition(model, "candidate", "production")    # shortcut: must re-enter via canary
+transition(model, "candidate", "canary")
+transition(model, "canary", "production")
+transition(model, "production", "shadow")
+transition(model, "shadow", "retired")
+print("final history: %s" % " -> ".join(model["history"]))
+```
+
+**Output:**
+
+```text
+registered  -> candidate   ok
+candidate   -> canary      ok
+canary      -> production  ok
+production  -> candidate   ok
+candidate   -> production  REJECTED (from candidate only: canary, retired)
+candidate   -> canary      ok
+canary      -> production  ok
+production  -> shadow      ok
+shadow      -> retired     ok
+final history: registered -> candidate -> canary -> production -> candidate -> canary -> production -> shadow -> retired
+```
+
+The full history is the audit trail: when someone asks six months later why the model visited canary twice, the answer is in the transition log.
 
 ---
 
 ## Stage 1: Development
 
-### 1.1 Feature Engineering Pipeline
+Development's deliverable is not a model file — it is a *reproducible run*: pinned parameters, logged metrics, and a registered artifact that the rest of the lifecycle can address. The sketch uses MLflow for the run + registration (needs a tracking server and data on disk):
 
-```python
-# feature_pipeline.py
-import pandas as pd
-import numpy as np
-from sklearn.preprocessing import StandardScaler
-from sklearn.model_selection import train_test_split
-
-class FeaturePipeline:
-    """Production feature engineering pipeline"""
-
-    def __init__(self, config):
-        self.scaler = StandardScaler()
-        self.config = config
-        self.feature_stats = {}
-
-    def extract_features(self, raw_data):
-        """Extract features from raw data"""
-        features = {}
-
-        # Text features
-        features['text_length'] = raw_data['text'].str.len()
-        features['word_count'] = raw_data['text'].str.split().str.len()
-        features['avg_word_length'] = (
-            features['text_length'] / features['word_count']
-        )
-
-        # Embedding features
-        features['embedding'] = self._get_embeddings(raw_data['text'])
-
-        return pd.DataFrame(features)
-
-    def transform(self, features):
-        """Transform features for model input"""
-        # Normalize numerical features
-        numerical_cols = features.select_dtypes(include=[np.number]).columns
-        features[numerical_cols] = self.scaler.fit_transform(features[numerical_cols])
-
-        # Store statistics for monitoring
-        self.feature_stats = {
-            col: {
-                'mean': features[col].mean(),
-                'std': features[col].std(),
-                'min': features[col].min(),
-                'max': features[col].max()
-            }
-            for col in numerical_cols
-        }
-
-        return features
-
-    def _get_embeddings(self, texts):
-        """Get embeddings using LLM"""
-        # Implementation depends on your embedding model
-        pass
-```
-
-### 1.2 Model Training Pipeline
-
-```python
-# training_pipeline.py
+```text
+# sketch - needs `pip install mlflow` + a tracking server + data on disk
 import mlflow
-import mlflow.sklearn
-from datetime import datetime
+from sklearn.ensemble import GradientBoostingClassifier
 
-class TrainingPipeline:
-    """Production training pipeline with MLflow tracking"""
-
-    def __init__(self, experiment_name):
-        mlflow.set_experiment(experiment_name)
-        self.run_id = None
-
-    def train(self, model, X_train, y_train, params):
-        """Train model with experiment tracking"""
-        with mlflow.start_run() as run:
-            self.run_id = run.info.run_id
-
-            # Log parameters
-            mlflow.log_params(params)
-
-            # Train model
-            model.fit(X_train, y_train)
-
-            # Log metrics
-            train_score = model.score(X_train, y_train)
-            mlflow.log_metric("train_score", train_score)
-
-            # Log model
-            mlflow.sklearn.log_model(
-                model,
-                "model",
-                registered_model_name=self.model_name
-            )
-
-            return model, run
-
-    def validate(self, model, X_val, y_val):
-        """Validate model and log metrics"""
-        val_score = model.score(X_val, y_val)
-        mlflow.log_metric("val_score", val_score)
-
-        # Log predictions for analysis
-        predictions = model.predict(X_val)
-        mlflow.log_text(
-            str(predictions[:10]),
-            "sample_predictions.txt"
-        )
-
-        return val_score
-
-    def register_model(self, model_name, stage="Staging"):
-        """Register model for deployment"""
-        model_uri = f"runs:/{self.run_id}/model"
-        mlflow.register_model(
-            model_uri,
-            model_name,
-            tags={"version": "1.0"}
-        )
+params = {"n_estimators": 200, "max_depth": 4, "random_state": 42}
+mlflow.set_experiment("text-classifier")
+with mlflow.start_run() as run:
+    mlflow.log_params(params)
+    model = GradientBoostingClassifier(**params)
+    model.fit(X_train, y_train)
+    mlflow.log_metric("val_accuracy", model.score(X_val, y_val))
+    mlflow.sklearn.log_model(model, "model",
+                             registered_model_name="text-classifier")
+    print("registered from run %s" % run.info.run_id)
 ```
+
+The last line is the lifecycle entry point: `log_model` with `registered_model_name` puts the version into the `registered` state. Everything after — validation, rollout, retirement — operates on registry entries, not on files in someone's working directory.
 
 ---
 
 ## Stage 2: Validation
 
-### 2.1 Model Validation Framework
+Offline metrics decide whether a model *works*; a paired comparison decides whether it *beats the champion*. The distinction matters because small accuracy differences are usually noise. McNemar's test looks only at the **discordant pairs** — the examples where the two models disagree — and, per [Wikipedia](https://en.wikipedia.org/wiki/McNemar%27s_test), "the exact test compares *b* to a binomial distribution with n = b + c and p = 0.5", which is the right tool when the disagreement count is small:
 
 ```python
-# model_validation.py
-from sklearn.metrics import (
-    accuracy_score, precision_score, recall_score,
-    f1_score, roc_auc_score, confusion_matrix
-)
-import numpy as np
+from math import comb
 
-class ModelValidator:
-    """Comprehensive model validation"""
+def mcnemar_exact(b, c):
+    """Two-sided exact p-value from the discordant counts.
 
-    def __init__(self, thresholds):
-        self.thresholds = thresholds
-        self.results = {}
+    b = challenger right & champion wrong, c = challenger wrong & champion
+    right; concordant pairs carry no signal and are discarded.
+    """
+    n = b + c
+    k = min(b, c)
+    tail = sum(comb(n, i) for i in range(k + 1)) / 2 ** n
+    return min(1.0, 2 * tail)
 
-    def validate(self, model, X_test, y_test):
-        """Run all validation checks"""
-        y_pred = model.predict(X_test)
-        y_proba = model.predict_proba(X_test)[:, 1]
+def compare(label, b, c, alpha=0.05):
+    p = mcnemar_exact(b, c)
+    if p < alpha:
+        winner = "challenger wins" if b > c else "champion wins"
+        print("%s: b=%2d c=%2d p=%.4f -> significant, %s" % (label, b, c, p, winner))
+    else:
+        print("%s: b=%2d c=%2d p=%.4f -> not significant, keep champion"
+              % (label, b, c, p))
 
-        # Performance metrics
-        self.results['accuracy'] = accuracy_score(y_test, y_pred)
-        self.results['precision'] = precision_score(y_test, y_pred)
-        self.results['recall'] = recall_score(y_test, y_pred)
-        self.results['f1'] = f1_score(y_test, y_pred)
-        self.results['auc'] = roc_auc_score(y_test, y_proba)
-
-        # Confusion matrix
-        self.results['confusion_matrix'] = confusion_matrix(y_test, y_pred)
-
-        # Check thresholds
-        passed = self._check_thresholds()
-
-        return passed, self.results
-
-    def _check_thresholds(self):
-        """Check if metrics meet thresholds"""
-        passed = True
-        for metric, threshold in self.thresholds.items():
-            if self.results.get(metric, 0) < threshold:
-                print(f"❌ {metric}: {self.results[metric]:.3f} < {threshold}")
-                passed = False
-            else:
-                print(f"✅ {metric}: {self.results[metric]:.3f} >= {threshold}")
-
-        return passed
-
-    def generate_report(self):
-        """Generate validation report"""
-        report = f"""
-# Model Validation Report
-
-## Performance Metrics
-- Accuracy: {self.results['accuracy']:.3f}
-- Precision: {self.results['precision']:.3f}
-- Recall: {self.results['recall']:.3f}
-- F1 Score: {self.results['f1']:.3f}
-- AUC: {self.results['auc']:.3f}
-
-## Confusion Matrix
-{self.results['confusion_matrix']}
-
-## Recommendation
-{'✅ APPROVED for deployment' if self._check_thresholds() else '❌ REJECTED - Below thresholds'}
-        """
-        return report
+compare("eval-1", 14, 3)
+compare("eval-2", 5, 7)
+compare("eval-3", 3, 13)
 ```
 
-### 2.2 A/B Testing Framework
+**Output:**
 
-```python
-# ab_testing.py
-from scipy import stats
-import pandas as pd
-
-class ABTest:
-    """A/B testing for model comparison"""
-
-    def __init__(self, alpha=0.05):
-        self.alpha = alpha
-        self.results = {}
-
-    def compare_models(self, model_a, model_b, X_test, y_test):
-        """Compare two models using statistical tests"""
-        # Get predictions
-        pred_a = model_a.predict(X_test)
-        pred_b = model_b.predict(X_test)
-
-        # Calculate metrics
-        acc_a = accuracy_score(y_test, pred_a)
-        acc_b = accuracy_score(y_test, pred_b)
-
-        # Statistical test
-        stat, p_value = stats.ttest_rel(
-            (pred_a == y_test),
-            (pred_b == y_test)
-        )
-
-        self.results = {
-            'model_a_accuracy': acc_a,
-            'model_b_accuracy': acc_b,
-            'difference': acc_a - acc_b,
-            'p_value': p_value,
-            'significant': p_value < self.alpha
-        }
-
-        return self.results
-
-    def generate_report(self):
-        """Generate A/B test report"""
-        significance = "✅ Significant" if self.results['significant'] else "⚠️ Not significant"
-
-        report = f"""
-# A/B Test Results
-
-## Model Comparison
-- Model A Accuracy: {self.results['model_a_accuracy']:.3f}
-- Model B Accuracy: {self.results['model_b_accuracy']:.3f}
-- Difference: {self.results['difference']:.3f}
-- P-value: {self.results['p_value']:.4f}
-
-## Conclusion
-{significance} ({self.results['p_value']:.4f} {'<' if self.results['significant'] else '>='} {self.alpha})
-
-## Recommendation
-{'Model A is significantly better' if self.results['difference'] > 0 and self.results['significant'] else
- 'Model B is significantly better' if self.results['difference'] < 0 and self.results['significant'] else
- 'No significant difference - consider other metrics'}
-        """
-        return report
+```text
+eval-1: b=14 c= 3 p=0.0127 -> significant, challenger wins
+eval-2: b= 5 c= 7 p=0.7744 -> not significant, keep champion
+eval-3: b= 3 c=13 p=0.0213 -> significant, champion wins
 ```
+
+Read the three verdicts as the full decision space: `eval-1` promotes the challenger, `eval-3` is evidence *for the champion* (a significant result can argue against the new version), and `eval-2` — the most common outcome — is an honest "not enough evidence", not a tie. No statistical library is needed here: the exact p-value is a binomial tail computed with `math.comb`.
 
 ---
 
 ## Stage 3: Deployment
 
-### 3.1 Canary Deployment Strategy
+Canary rollout — traffic raised in stages with metric gates and automatic rollback — is covered end to end in [6502, Deployment Strategies](6502-CI-CD-for-ML.md). The other classic pattern is **blue-green**: the new version is deployed fully but takes zero traffic until a single routing write flips it over. The trade-off is binary risk against binary rollback:
 
-```python
-# canary_deployment.py
-from dataclasses import dataclass
-from typing import Optional
-import random
-
-@dataclass
-class DeploymentConfig:
-    """Canary deployment configuration"""
-    model_name: str
-    canary_percentage: float = 0.1  # Start with 10% traffic
-    min_success_rate: float = 0.95
-    max_error_rate: float = 0.05
-    duration_hours: int = 24
-
-class CanaryDeployment:
-    """Progressive canary deployment"""
-
-    def __init__(self, config: DeploymentConfig):
-        self.config = config
-        self.traffic_split = config.canary_percentage
-        self.metrics = {
-            'requests': 0,
-            'errors': 0,
-            'success_rate': 0.0
-        }
-
-    def route_request(self, request):
-        """Route request based on traffic split"""
-        self.metrics['requests'] += 1
-
-        if random.random() < self.traffic_split:
-            # Route to canary (new model)
-            response = self._serve_canary(request)
-        else:
-            # Route to production (old model)
-            response = self._serve_production(request)
-
-        if not response['success']:
-            self.metrics['errors'] += 1
-
-        self._update_metrics()
-
-        return response
-
-    def _update_metrics(self):
-        """Update success rate"""
-        if self.metrics['requests'] > 0:
-            self.metrics['success_rate'] = (
-                (self.metrics['requests'] - self.metrics['errors']) /
-                self.metrics['requests']
-            )
-
-    def should_increase_traffic(self):
-        """Check if canary traffic should be increased"""
-        if self.metrics['requests'] < 100:
-            return False  # Not enough data
-
-        conditions = [
-            self.metrics['success_rate'] >= self.config.min_success_rate,
-            (self.metrics['errors'] / self.metrics['requests']) < self.config.max_error_rate
-        ]
-
-        return all(conditions)
-
-    def increase_traffic(self, increment=0.1):
-        """Increase canary traffic percentage"""
-        if self.traffic_split < 1.0:
-            self.traffic_split = min(1.0, self.traffic_split + increment)
-            print(f"📈 Traffic increased to {self.traffic_split*100:.0f}%")
-
-    def rollback(self):
-        """Rollback to production model"""
-        self.traffic_split = 0.0
-        print("⚠️ Rolling back to production model")
+```text
+# sketch - blue-green flip at the routing layer (ingress / mesh config)
+#   active:  service/green   (champion, live, takes 100% of traffic)
+#   standby: service/blue    (challenger, fully deployed, 0% traffic)
+#
+# flip sequence:
+#   1. warm up blue: run the smoke suite against it directly
+#   2. flip the one routing entry  green -> blue   (single atomic write)
+#   3. watch p95 latency + error rate for the observation window
+#   4. keep, or flip back -- rollback is the same single write
 ```
 
-### 3.2 Blue-Green Deployment
-
-```python
-# blue_green_deployment.py
-class BlueGreenDeployment:
-    """Blue-green deployment strategy"""
-
-    def __init__(self, blue_model, green_model):
-        self.blue = blue_model  # Current production
-        self.green = green_model  # New version
-        self.active = 'blue'
-
-    def deploy_green(self):
-        """Switch to green (new model)"""
-        print("🟢 Switching to green deployment")
-        self.active = 'green'
-
-    def rollback_blue(self):
-        """Rollback to blue (old model)"""
-        print("🔵 Rolling back to blue deployment")
-        self.active = 'blue'
-
-    def predict(self, X):
-        """Route to active model"""
-        if self.active == 'blue':
-            return self.blue.predict(X)
-        else:
-            return self.green.predict(X)
-
-    def health_check(self):
-        """Health check for active deployment"""
-        active_model = self.blue if self.active == 'blue' else self.green
-
-        # Run health checks
-        checks = {
-            'model_loaded': active_model is not None,
-            'latency_ok': self._check_latency(),
-            'memory_ok': self._check_memory()
-        }
-
-        return all(checks.values()), checks
-
-    def _check_latency(self):
-        """Check prediction latency"""
-        import time
-        start = time.time()
-        # Make test prediction
-        # active_model.predict(test_data)
-        latency = time.time() - start
-        return latency < 1.0  # 1 second threshold
-
-    def _check_memory(self):
-        """Check memory usage"""
-        import psutil
-        return psutil.virtual_memory().percent < 90
-```
+Choose per blast radius: canary exposes a small slice and *measures* its way to 100%; blue-green exposes everyone at once but restores the old version in one step. Both depend on the same precondition — the previous version stays warm and addressable, which is exactly what registry aliases (see [6503](6503-Model-Registry.md)) provide.
 
 ---
 
 ## Stage 4: Monitoring
 
-### 4.1 Performance Monitoring Dashboard
+Google SRE's rule is "Every page should be actionable" — alerts fire on *symptoms* the user experiences (latency, errors, accuracy on live traffic), while *causes* (disk usage, queue depth, CPU) are logged for debugging but never page a human. The serving side of that contract is standard metrics: a counter for requests, a histogram for latency, a gauge for the latest evaluated accuracy. The `prometheus_client` library is installed in this environment, so the emission side runs for real — the registry is isolated so repeated imports never collide:
 
 ```python
-# monitoring.py
-from prometheus_client import Counter, Histogram, Gauge
-import time
+from prometheus_client import CollectorRegistry, Counter, Gauge, Histogram, generate_latest
 
-# Define metrics
-prediction_counter = Counter(
-    'model_predictions_total',
-    'Total number of predictions',
-    ['model_name', 'status']
-)
+registry = CollectorRegistry()   # isolated so repeated runs never collide
 
-prediction_latency = Histogram(
-    'model_prediction_latency_seconds',
-    'Prediction latency',
-    ['model_name']
-)
+predictions = Counter("model_predictions_total", "Prediction count",
+                      ["model_name", "status"], registry=registry)
+latency = Histogram("model_prediction_latency_seconds", "Prediction latency",
+                    ["model_name"], registry=registry,
+                    buckets=[0.05, 0.1, 0.25, 0.5, 1.0])
+accuracy = Gauge("model_accuracy", "Latest evaluated accuracy",
+                 ["model_name"], registry=registry)
 
-model_accuracy = Gauge(
-    'model_accuracy',
-    'Current model accuracy',
-    ['model_name']
-)
+for _ in range(97):
+    predictions.labels("text-classifier", "success").inc()
+predictions.labels("text-classifier", "error").inc(3)
+for seconds in (0.042, 0.118, 0.310):
+    latency.labels("text-classifier").observe(seconds)
+accuracy.labels("text-classifier").set(0.891)
 
-class ModelMonitor:
-    """Production model monitoring"""
-
-    def __init__(self, model_name):
-        self.model_name = model_name
-
-    def track_prediction(self, success=True):
-        """Track prediction count"""
-        status = 'success' if success else 'error'
-        prediction_counter.labels(
-            model_name=self.model_name,
-            status=status
-        ).inc()
-
-    def track_latency(self, latency):
-        """Track prediction latency"""
-        prediction_latency.labels(
-            model_name=self.model_name
-        ).observe(latency)
-
-    def update_accuracy(self, accuracy):
-        """Update model accuracy gauge"""
-        model_accuracy.labels(
-            model_name=self.model_name
-        ).set(accuracy)
-
-    def predict(self, model, X):
-        """Predict with monitoring"""
-        start = time.time()
-
-        try:
-            result = model.predict(X)
-            success = True
-        except Exception as e:
-            print(f"Prediction error: {e}")
-            result = None
-            success = False
-
-        latency = time.time() - start
-
-        # Track metrics
-        self.track_prediction(success)
-        self.track_latency(latency)
-
-        return result
+for line in generate_latest(registry).decode().splitlines():
+    if line.startswith(("model_accuracy",
+                        "model_prediction_latency_seconds_count",
+                        "model_prediction_latency_seconds_sum",
+                        "model_predictions_total")):
+        print(line)
 ```
 
-### 4.2 Alert System
+**Output:**
 
-```python
-# alerting.py
-from dataclasses import dataclass
-from enum import Enum
-import smtplib
-
-class AlertSeverity(Enum):
-    INFO = "INFO"
-    WARNING = "WARNING"
-    CRITICAL = "CRITICAL"
-
-@dataclass
-class Alert:
-    severity: AlertSeverity
-    message: str
-    metric: str
-    value: float
-    threshold: float
-
-class AlertManager:
-    """Production alert management"""
-
-    def __init__(self, config):
-        self.config = config
-        self.alerts = []
-
-    def check_thresholds(self, metrics):
-        """Check if metrics exceed thresholds"""
-        for metric, value in metrics.items():
-            threshold = self.config.get(f'{metric}_threshold')
-
-            if threshold and value > threshold:
-                alert = Alert(
-                    severity=AlertSeverity.CRITICAL if value > threshold * 1.5 else AlertSeverity.WARNING,
-                    message=f"{metric} exceeded threshold: {value:.3f} > {threshold:.3f}",
-                    metric=metric,
-                    value=value,
-                    threshold=threshold
-                )
-                self.alerts.append(alert)
-                self._send_alert(alert)
-
-    def _send_alert(self, alert: Alert):
-        """Send alert notification"""
-        if alert.severity == AlertSeverity.CRITICAL:
-            self._send_email(alert)
-            self._send_slack(alert)
-
-    def _send_email(self, alert: Alert):
-        """Send email alert"""
-        # Implementation
-        pass
-
-    def _send_slack(self, alert: Alert):
-        """Send Slack alert"""
-        # Implementation
-        pass
+```text
+model_predictions_total{model_name="text-classifier",status="success"} 97.0
+model_predictions_total{model_name="text-classifier",status="error"} 3.0
+model_prediction_latency_seconds_count{model_name="text-classifier"} 3.0
+model_prediction_latency_seconds_sum{model_name="text-classifier"} 0.47
+model_accuracy{model_name="text-classifier"} 0.891
 ```
+
+That is the exact text format a Prometheus server scrapes. Escalation policy on top of these signals stays simple: a symptom breaching its threshold raises a **WARNING**, a breach past 1.5x the threshold raises **CRITICAL**, and anything in the "why" category writes to the debug log instead. Two of the lifecycle's monitoring inputs come from elsewhere: data drift detection ([1502: Model Drift Detection](../../phase1-infra/1500-monitoring/1502-Model-Drift-Detection.md)) and the quality gate re-evaluations from the [6502 pipeline](6502-CI-CD-for-ML.md).
 
 ---
 
 ## Stage 5: Retirement
 
-### 5.1 Model Retirement Process
+Models retire for boring reasons — they got old, their accuracy slid, nobody calls them, or they cost too much per prediction. Any one criterion is enough, because the review runs periodically and false positives only cost a re-review, while a false negative keeps a decaying model on live traffic:
 
 ```python
-# retirement.py
-class ModelRetirement:
-    """Model retirement and decommissioning"""
+from datetime import date
 
-    def __init__(self, model_name, model_registry):
-        self.model_name = model_name
-        self.registry = model_registry
+TODAY = date(2026, 9, 26)
+AGE_LIMIT_DAYS = 365
+DEGRADATION_LIMIT = 0.10      # 10% relative accuracy drop vs baseline
+MIN_CALLS_30D = 1000
+COST_LIMIT = 0.75             # dollars per 1k predictions
 
-    def check_retirement_criteria(self):
-        """Check if model should be retired"""
-        criteria = {
-            'age': self._check_model_age(),
-            'performance': self._check_performance_degradation(),
-            'usage': self._check_usage_metrics(),
-            'cost': self._check_cost_efficiency()
-        }
+MODELS = [
+    {"version": "1.0.0", "deployed": date(2025, 6, 15), "accuracy": 0.710,
+     "baseline": 0.880, "calls_30d": 120, "cost_per_1k": 0.90},
+    {"version": "1.4.2", "deployed": date(2026, 7, 1), "accuracy": 0.891,
+     "baseline": 0.880, "calls_30d": 54000, "cost_per_1k": 0.40},
+]
 
-        should_retire = any(criteria.values())
+def retirement_review(rec):
+    age_days = (TODAY - rec["deployed"]).days
+    degradation = (rec["baseline"] - rec["accuracy"]) / rec["baseline"]
+    criteria = [
+        ("age", age_days > AGE_LIMIT_DAYS,
+         "age %d d > %d d" % (age_days, AGE_LIMIT_DAYS)),
+        ("performance", degradation > DEGRADATION_LIMIT,
+         "degradation %.1f%% > %.0f%%" % (degradation * 100, DEGRADATION_LIMIT * 100)),
+        ("usage", rec["calls_30d"] < MIN_CALLS_30D,
+         "usage %d calls/30d < %d" % (rec["calls_30d"], MIN_CALLS_30D)),
+        ("cost", rec["cost_per_1k"] > COST_LIMIT,
+         "cost $%.2f/1k > $%.2f" % (rec["cost_per_1k"], COST_LIMIT)),
+    ]
+    hits = [name for name, breached, _why in criteria if breached]
+    print("model %s:" % rec["version"])
+    for name, breached, why in criteria:
+        print("  %-11s %s" % (name, why if breached else "ok"))
+    if hits:
+        print("  verdict: RETIRE (%s) - archive artifacts, repoint alias"
+              % ", ".join(hits))
+    else:
+        print("  verdict: KEEP - re-review next quarter")
+    return bool(hits)
 
-        return should_retire, criteria
-
-    def _check_model_age(self):
-        """Check if model is too old"""
-        # Retire models older than 6 months
-        from datetime import datetime, timedelta
-        max_age = timedelta(days=180)
-
-        # Get model deployment date
-        # deployment_date = self.registry.get_deployment_date(self.model_name)
-        # age = datetime.now() - deployment_date
-
-        # return age > max_age
-        return False  # Placeholder
-
-    def _check_performance_degradation(self):
-        """Check if performance degraded significantly"""
-        # Compare current vs baseline performance
-        current_accuracy = 0.85  # Example
-        baseline_accuracy = 0.90
-
-        degradation = (baseline_accuracy - current_accuracy) / baseline_accuracy
-
-        return degradation > 0.10  # 10% degradation threshold
-
-    def retire_model(self):
-        """Retire model from production"""
-        steps = [
-            "1. Stop routing new traffic to model",
-            "2. Complete ongoing requests",
-            "3. Archive model artifacts",
-            "4. Document retirement reason",
-            "5. Update model registry"
-        ]
-
-        for step in steps:
-            print(f"✅ {step}")
-
-        print(f"🏁 Model {self.model_name} retired successfully")
+for rec in MODELS:
+    retirement_review(rec)
 ```
+
+**Output:**
+
+```text
+model 1.0.0:
+  age         age 468 d > 365 d
+  performance degradation 19.3% > 10%
+  usage       usage 120 calls/30d < 1000
+  cost        cost $0.90/1k > $0.75
+  verdict: RETIRE (age, performance, usage, cost) - archive artifacts, repoint alias
+model 1.4.2:
+  age         ok
+  performance ok
+  usage       ok
+  cost        ok
+  verdict: KEEP - re-review next quarter
+```
+
+Retirement is *not* deletion: artifacts are archived (a retired model must remain loadable for audits and retraining comparisons), the alias is repointed, and the version's state moves to `retired` — terminal in the state machine, terminal in the registry.
 
 ---
 
 ## Production Checklist
 
-### Pre-Deployment Checklist
-- [ ] Model validated on test set
-- [ ] Performance metrics meet thresholds
-- [ ] A/B test completed and significant
-- [ ] Canary deployment plan ready
-- [ ] Rollback plan documented
-- [ ] Monitoring dashboards configured
-- [ ] Alert thresholds set
-- [ ] Documentation updated
-- [ ] Team notified of deployment
+Before a version may leave `candidate`:
 
-### Post-Deployment Checklist
-- [ ] Canary traffic percentage
-- [ ] Error rate within threshold
-- [ ] Latency within SLA
-- [ ] No critical alerts
-- [ ] Automated tests passing
-- [ ] Stakeholder sign-off
-- [ ] Incident runbook updated
+- [ ] Validated on a held-out test set, metrics meet the quality floor
+- [ ] Challenger beat the champion on a paired test (Stage 2), or there is no champion yet
+- [ ] Rollback path verified: the previous version is warm and the alias repoint is rehearsed
+- [ ] Monitoring wired: counter, latency histogram and accuracy gauge scrape before the first canary stage
+- [ ] Alert thresholds set — symptom-based only, with the 1.5x CRITICAL escalation
+- [ ] The transition record will be written to the version's history (state machine, ML Lifecycle Stages)
 
----
+Before a version is called `production`:
 
-## Best Practices
-
-1. **Automate Everything**: Manual processes fail
-2. **Version Control**: Track all model versions
-3. **Feature Store**: Centralize feature management
-4. **Monitoring**: Real-time metrics and alerts
-5. **Testing**: Comprehensive validation before deployment
-6. **Rollback Plan**: Always have a rollback strategy
-7. **Documentation**: Document every decision and process
-8. **Team Communication**: Keep all stakeholders informed
-
----
-
-## Related Resources
-
-- **Next:** [6502: CI/CD for ML](./6502-CI-CD-for-ML.md)
-- **Experiment:** [EXP_6501: MLOps Pipeline](../../../../experiments/EXP_6501_MLOPS_PIPELINE.md)
-- **Lab:** [LAB-007: Production RAG](../../../learning-resources/labs/LAB-007-Production-RAG.md)
-
+- [ ] Canary stages passed their error-rate and latency limits (6502, Deployment Strategies)
+- [ ] No CRITICAL alerts open during the observation window
+- [ ] Drift monitors registered against the serving version (1502)
+- [ ] Incident runbook names the alias to repoint and who repoints it
 
 ---
 
@@ -746,16 +358,23 @@ class ModelRetirement:
 
 - [6502: CI/CD for Machine Learning](6502-CI-CD-for-ML.md)
 - [6503: Model Registry](6503-Model-Registry.md)
+- [1502: Model Drift Detection](../../phase1-infra/1500-monitoring/1502-Model-Drift-Detection.md)
+- [LAB-007: Production RAG](../../../learning-resources/labs/LAB-007-Production-RAG.md)
+
+### External References
+
+- [McNemar's test (Wikipedia)](https://en.wikipedia.org/wiki/McNemar%27s_test) — discordant-pair definition and the exact binomial p-value behind Stage 2
+- [Google SRE: Monitoring Distributed Systems](https://sre.google/sre-book/monitoring-distributed-systems/) — "Every page should be actionable": symptom-based paging, cause-based logging
+- [MLflow Model Registry](https://mlflow.org/docs/latest/ml/model-registry/) — the registration and alias flow behind the registered/candidate/production states
 
 ---
 
 ## Next Steps
 
-- Continue with: **[6502: CI/CD for ML](./6502-CI-CD-for-ML.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- The pipeline that automates these stage transitions: **[6502: CI/CD for Machine Learning](6502-CI-CD-for-ML.md)**
+- Phase 6 complete! Next: **[Phase 7: Agents](../../phase7-agentic/README.md)**
+- Assessment: **[assessment/PRACTICE.md](./assessment/PRACTICE.md)** and **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 
----
----
+**Related:** [6502](6502-CI-CD-for-ML.md) — the pipeline automating these stage transitions; [6503](6503-Model-Registry.md) — where every version's current state lives; [1502](../../phase1-infra/1500-monitoring/1502-Model-Drift-Detection.md) — the drift signal feeding Stage 4; [EXP_6501_MLOPS_PIPELINE](../../../../experiments/EXP_6501_MLOPS_PIPELINE.md)
 
-**Status:** ✅ Complete
-**Next Steps:** Implement CI/CD pipeline for automated deployment
+**Experiment:** [EXP_6501_MLOPS_PIPELINE.md](../../../../experiments/EXP_6501_MLOPS_PIPELINE.md) — nearest-relevant lifecycle experiment; the state machine, McNemar test, Prometheus emission and retirement review here run in-process, while MLflow tracking and metric scraping need their servers
