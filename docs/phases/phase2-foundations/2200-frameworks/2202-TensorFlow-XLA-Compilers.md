@@ -487,7 +487,7 @@ print(hlo.splitlines()[0])   # HLO module header
 ### Related Documents
 
 - [2201: PyTorch Computational Graphs and Dynamic Execution](./2201-PyTorch-Computational-Graphs.md)
-- [2203: CUDA Kernel Programming and GPU Architecture](./2203-CUDA-Kernel-Syb-Level.md)
+- [2203: CUDA Kernel Programming and GPU Architecture](./2203-CUDA-Kernel-Programming.md)
 - [2102: Backpropagation and Automatic Differentiation](../2100-calculus/2102-Backpropagation-and-Derivatives.md)
 
 ### External References
@@ -501,7 +501,7 @@ print(hlo.splitlines()[0])   # HLO module header
 
 ## Next Steps
 
-- Continue with: **[2203: CUDA Kernel Programming and GPU Architecture](./2203-CUDA-Kernel-Syb-Level.md)**
+- Continue with: **[2203: CUDA Kernel Programming and GPU Architecture](./2203-CUDA-Kernel-Programming.md)**
 - Next Module: **[2300: Framework Engineering](../2300-framework-engineering/)**
 - Assessment: **[2200: Frameworks - Quiz](./assessment/QUIZ.md)**
 
@@ -510,6 +510,6 @@ print(hlo.splitlines()[0])   # HLO module header
 **Related:**
 - [2102: Backpropagation and Automatic Differentiation](../2100-calculus/2102-Backpropagation-and-Derivatives.md)
 - [2201: PyTorch Computational Graphs and Dynamic Execution](./2201-PyTorch-Computational-Graphs.md)
-- [2203: CUDA Kernel Programming and GPU Architecture](./2203-CUDA-Kernel-Syb-Level.md)
+- [2203: CUDA Kernel Programming and GPU Architecture](./2203-CUDA-Kernel-Programming.md)
 
 **Experiment:** [EXP-2202: TensorFlow XLA Optimization](../../../../experiments/EXP_2202_TENSORFLOW_XLA.md)

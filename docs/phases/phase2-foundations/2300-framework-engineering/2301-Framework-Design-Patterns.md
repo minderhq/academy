@@ -1267,6 +1267,6 @@ See: [2306: Building a Production Framework](./guides/2306-Building-Production-F
 **Related:**
 - [2201: PyTorch Computational Graphs and Dynamic Execution](../2200-frameworks/2201-PyTorch-Computational-Graphs.md)
 - [2202: TensorFlow XLA and Compiler Optimizations](../2200-frameworks/2202-TensorFlow-XLA-Compilers.md)
-- [2203: CUDA Kernel Programming and GPU Architecture](../2200-frameworks/2203-CUDA-Kernel-Syb-Level.md)
+- [2203: CUDA Kernel Programming and GPU Architecture](../2200-frameworks/2203-CUDA-Kernel-Programming.md)
 
 **Experiment:** [EXP-2201: PyTorch Computational Graphs](../../../../experiments/EXP_2201_PYTORCH_GRAPHS.md)

@@ -557,7 +557,7 @@ if has_cuda:
 
 ## 🚀 Next Steps
 
-1. **2203-CUDA-Kernel-Syb-Level.md**: Deep CUDA theory
+1. **2203-CUDA-Kernel-Programming.md**: Deep CUDA theory
 2. **LAB-006: Train Model from Scratch** - Apply GPU optimization
 3. **2402-Large-Scale-Training.md** - Distributed GPU training
 

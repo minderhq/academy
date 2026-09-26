@@ -477,6 +477,6 @@ int4_size = model_size * 0.5 / (1024 ** 3)  # ~3.5 GB
 **Related:**
 - [2102: Backpropagation and Automatic Differentiation](./2102-Backpropagation-and-Derivatives.md)
 - [2201: PyTorch Computational Graphs and Dynamic Execution](../2200-frameworks/2201-PyTorch-Computational-Graphs.md)
-- [2203: CUDA Kernel Programming and GPU Architecture](../2200-frameworks/2203-CUDA-Kernel-Syb-Level.md)
+- [2203: CUDA Kernel Programming and GPU Architecture](../2200-frameworks/2203-CUDA-Kernel-Programming.md)
 
 **Experiment:** [EXP-2101: Tensor Algebra](../../../../experiments/EXP_2101_TENSOR_ALGEBRA.md)

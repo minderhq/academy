@@ -584,7 +584,7 @@ graph TB
 ### [2200: Frameworks](./docs/phases/phase2-foundations/2200-frameworks/README.md)
 - [2201: PyTorch Graphs](./docs/phases/phase2-foundations/2200-frameworks/2201-PyTorch-Computational-Graphs.md)
 - [2202: TensorFlow XLA](./docs/phases/phase2-foundations/2200-frameworks/2202-TensorFlow-XLA-Compilers.md)
-- [2203: CUDA Kernels](./docs/phases/phase2-foundations/2200-frameworks/2203-CUDA-Kernel-Syb-Level.md)
+- [2203: CUDA Kernels](./docs/phases/phase2-foundations/2200-frameworks/2203-CUDA-Kernel-Programming.md)
 
 ### [2300: Framework Engineering](./docs/phases/phase2-foundations/2300-framework-engineering/README.md)
 - [2301: Framework Design Patterns](./docs/phases/phase2-foundations/2300-framework-engineering/2301-Framework-Design-Patterns.md)

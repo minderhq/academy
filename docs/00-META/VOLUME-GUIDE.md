@@ -95,7 +95,7 @@ Follow the volumes below, in order.
 **Step 2: Framework Deep Dive (2 weeks)**
 1. [2201: PyTorch Graphs](../phases/phase2-foundations/2200-frameworks/2201-PyTorch-Computational-Graphs.md)
 2. [2202: TensorFlow XLA](../phases/phase2-foundations/2200-frameworks/2202-TensorFlow-XLA-Compilers.md)
-3. [2203: CUDA Kernels](../phases/phase2-foundations/2200-frameworks/2203-CUDA-Kernel-Syb-Level.md)
+3. [2203: CUDA Kernels](../phases/phase2-foundations/2200-frameworks/2203-CUDA-Kernel-Programming.md)
 
 **Step 3: Linux & Git (1 day)**
 1. [CHEAT-SHEET-003: Git](../learning-resources/cheat-sheets/CHEAT-SHEET-003-Git.md)

@@ -97,7 +97,7 @@ below are derived directly from the file tree.
 - [README](../phases/phase2-foundations/2200-frameworks/README.md)
 - [2201-PyTorch-Computational-Graphs](../phases/phase2-foundations/2200-frameworks/2201-PyTorch-Computational-Graphs.md)
 - [2202-TensorFlow-XLA-Compilers](../phases/phase2-foundations/2200-frameworks/2202-TensorFlow-XLA-Compilers.md)
-- [2203-CUDA-Kernel-Syb-Level](../phases/phase2-foundations/2200-frameworks/2203-CUDA-Kernel-Syb-Level.md)
+- [2203-CUDA-Kernel-Programming](../phases/phase2-foundations/2200-frameworks/2203-CUDA-Kernel-Programming.md)
 - [assessment: PRACTICE](../phases/phase2-foundations/2200-frameworks/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase2-foundations/2200-frameworks/assessment/QUIZ.md)
 

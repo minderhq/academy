@@ -85,7 +85,7 @@ Total: [░░░░░░░░░░░░░░░░░] 0% (0/97 core files
 - [ ] **EXP_2202: XLA Optimization** (experiment)
 
 **CUDA [2200]:**
-- [ ] 2203-CUDA-Kernel-Syb-Level.md
+- [ ] 2203-CUDA-Kernel-Programming.md
 - [ ] **EXP_2203: CUDA Kernels** (experiment)
 
 **Pre-training [2400] (NEW):**

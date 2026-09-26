@@ -184,7 +184,7 @@ Week 5-6: PyTorch Deep Dive
 Week 7-8: TensorFlow & CUDA
 ├── 2202-TensorFlow-XLA-Compilers.md
 ├── EXP_2202: XLA Optimization
-├── 2203-CUDA-Kernel-Syb-Level.md
+├── 2203-CUDA-Kernel-Programming.md
 ├── EXP_2203: CUDA Kernels
 └── Capstone C: Write CUDA kernel
 
@@ -616,7 +616,7 @@ Complete Volume 2 in depth:
 ├── 2101-Tensor-Algebra.md (deep study)
 ├── All experiments (EXP_2101, EXP_2102, etc.)
 ├── Implement everything from scratch
-├── 2203-CUDA-Kernel-Syb-Level.md
+├── 2203-CUDA-Kernel-Programming.md
 ├── 2401-Pre-training-Fundamentals.md
 ├── 2402-Large-Scale-Training.md
 ├── 2403-Evaluation-Frameworks.md

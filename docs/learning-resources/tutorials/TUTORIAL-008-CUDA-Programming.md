@@ -427,12 +427,12 @@ def sum_reduction(array, result):
 
 ### Related ai-engineering-curriculum Documents
 
-- [2203: CUDA Kernel Syb-Level](../../phases/phase2-foundations/2200-frameworks/2203-CUDA-Kernel-Syb-Level.md)
+- [2203: CUDA Kernel Programming and GPU Architecture](../../phases/phase2-foundations/2200-frameworks/2203-CUDA-Kernel-Programming.md)
 - [LAB-006: Train Model From Scratch](../labs/LAB-006-Train-Model-From-Scratch.md)
 
 ---
 
 ## Next Steps
 
-- Hands-on: **[2203: CUDA Kernel Syb-Level](../../phases/phase2-foundations/2200-frameworks/2203-CUDA-Kernel-Syb-Level.md)**
+- Hands-on: **[2203: CUDA Kernel Programming and GPU Architecture](../../phases/phase2-foundations/2200-frameworks/2203-CUDA-Kernel-Programming.md)**
 - Practice: **[LAB-006: Train Model From Scratch](../labs/LAB-006-Train-Model-From-Scratch.md)**

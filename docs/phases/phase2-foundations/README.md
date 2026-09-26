@@ -297,7 +297,7 @@ metrics = {
 |----------|-------------|------|------------|
 | [2201: PyTorch Graphs](./2200-frameworks/2201-PyTorch-Computational-Graphs.md) | Dynamic vs static graphs | 3h | Intermediate |
 | [2202: TensorFlow XLA](./2200-frameworks/2202-TensorFlow-XLA-Compilers.md) | Optimizing graph performance | 3h | Advanced |
-| [2203: CUDA Kernels](./2200-frameworks/2203-CUDA-Kernel-Syb-Level.md) | Python to 11GB-class GPU CUDA cores | 5h | Advanced |
+| [2203: CUDA Kernels](./2200-frameworks/2203-CUDA-Kernel-Programming.md) | Python to 11GB-class GPU CUDA cores | 5h | Advanced |
 
 **What You'll Learn:**
 - PyTorch dynamic computation graphs

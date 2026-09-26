@@ -605,7 +605,7 @@ J = jacobian(y, x)
 ### Related Documents
 
 - [2202: TensorFlow XLA and Compiler Optimizations](./2202-TensorFlow-XLA-Compilers.md)
-- [2203: CUDA Kernel Programming and GPU Architecture](./2203-CUDA-Kernel-Syb-Level.md)
+- [2203: CUDA Kernel Programming and GPU Architecture](./2203-CUDA-Kernel-Programming.md)
 - [2102: Backpropagation and Automatic Differentiation](../2100-calculus/2102-Backpropagation-and-Derivatives.md)
 
 ### External References

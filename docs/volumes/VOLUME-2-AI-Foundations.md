@@ -174,7 +174,7 @@ Python Code → TensorFlow Graph → XLA Compiler → Optimized HLO → Device C
 #### Day 1-4: CUDA Kernel Programming
 **Bridging Python and GPU**
 
-1. **[2203: CUDA Kernels](../phases/phase2-foundations/2200-frameworks/2203-CUDA-Kernel-Syb-Level.md)** (3-4 hours)
+1. **[2203: CUDA Kernels](../phases/phase2-foundations/2200-frameworks/2203-CUDA-Kernel-Programming.md)** (3-4 hours)
    - CUDA programming model
    - Kernel launch and execution
    - Memory hierarchy (global, shared, registers)
