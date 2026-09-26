@@ -28,6 +28,7 @@ Tags: ['frameworks', 'architecture', 'api-design', 'production']
 - [Exercise: Build a Serving System](#exercise-build-a-serving-system)
 - [Summary](#summary)
 - [References](#references)
+- [Next Steps](#next-steps)
 
 ---
 
@@ -35,12 +36,12 @@ Tags: ['frameworks', 'architecture', 'api-design', 'production']
 
 After completing this lesson, you will be able to:
 
-- Explain Architecture 1: Request Batching
-- Explain Architecture 2: Model Parallelism
-- Explain Architecture 3: Load Balancing
-- Explain Architecture 4: Caching Strategies
-- Explain Real-World: vLLM Architecture
-- Explain Exercise: Build a Serving System
+- Design a dynamic batching server and reason about the latency/throughput trade-off its timeout and size controls make
+- Contrast pipeline parallelism (stage split across devices) with tensor parallelism (weight shards across devices) and know when each applies
+- Compute per-GPU optimizer-state memory under the ZeRO stages from the 16-bytes-per-parameter rule
+- Implement round-robin, least-connections, and memory-aware load balancing over serving replicas
+- Add response, embedding, and KV caching at the layer where each pays off
+- Explain how vLLM's PagedAttention and continuous batching turn fragmentation and head-of-line blocking into throughput
 
 ---
 
@@ -61,22 +62,51 @@ Serving machine learning models in production requires specialized architectural
 
 ### The Problem
 
-```python
-# BAD: Process requests one at a time
-def serve_single_request(request):
-    result = model(request)
-    return result
+A serving loop that handles one request at a time feeds the GPU one tiny
+matrix multiplication per call. The block below issues the same 32
+predictions twice: once row at a time, once as a single batched matmul.
 
-# Problem: GPU is underutilized
-# Throughput: 5 requests/second
-# GPU utilization: 20%
+```python
+import torch
+
+torch.manual_seed(0)
+
+# Each row is one "request's" feature vector. Serving rows one at a time
+# issues 32 separate matmul calls; one batched matmul issues a single call
+# that computes the same result (to float32 rounding).
+batch = torch.randn(32, 12288)
+w = torch.randn(12288, 128)
+
+calls = 0
+serial = torch.empty(32, 128)
+for i, row in enumerate(batch):
+    serial[i] = row @ w
+    calls += 1
+
+batched = batch @ w
+diff = (serial - batched).abs().max().item()
+scale = batched.abs().max().item()
+assert diff < 0.01 * scale              # rounding, far below the value magnitudes
+print("row-at-a-time:", calls, "separate matmul calls")
+print("all-at-once:   ", 1, "call ->", tuple(batched.shape))
+print("max abs diff: %.2e (values reach %.1f - float32 rounding, not a bug)"
+      % (diff, scale))
 ```
 
-**Why it's bad:**
-- GPU designed for parallel processing
-- Single request doesn't utilize all GPU cores
-- High latency per request
-- Low throughput overall
+**Output:**
+
+```text
+row-at-a-time: 32 separate matmul calls
+all-at-once:    1 call -> (32, 128)
+max abs diff: 6.10e-04 (values reach 420.1 - float32 rounding, not a bug)
+```
+
+**Why batching wins:**
+- One batched call replaces 32 separate kernel launches - less dispatch overhead
+- GPUs are throughput machines: a wide matmul saturates the cores, a thin one idles them
+- Batching changes how the math is scheduled, not what it computes - the results
+  agree to float32 rounding
+- The serial loop pays with high per-request latency and low throughput
 
 ### The Solution: Dynamic Batching
 
@@ -311,32 +341,31 @@ if __name__ == "__main__":
         print(f"  {key}: {value}")
 ```
 
-### Expected Output
+**Output:**
 
 ```text
-Request 2: output_2
-Request 3: output_3
-Request 4: output_4
-Request 1: output_1
-...
-Request 14: output_0
-Request 19: output_3
-Request 18: output_2
+Request 5: output_5
+Request 9: output_1
+Request 0: output_0
+Request 12: output_6
+...16 more Request lines, interleaved...
 
 Server Statistics:
   total_requests: 20
   batches_processed: 3
   avg_batch_size: 6.666666666666667
-  avg_latency_ms: 20.23426691691081
+  avg_latency_ms: 20.30833562215169
   pending_requests: 0
   cached_results: 0
 ```
 
 Line order varies with thread scheduling - requests resolve as their
-batch completes, not in submission order. `batches_processed` and
-`avg_batch_size` are deterministic for this workload (8 + 8 + 4);
-`avg_latency_ms` is timing-dependent and floors near the 20 ms batch
-timeout.
+batch completes, not in submission order, and each `output_N` label
+pairs with the slot the request happened to occupy inside its batch,
+so the request-to-output mapping differs from run to run too.
+`batches_processed` and `avg_batch_size` are deterministic for this
+workload (8 + 8 + 4); `avg_latency_ms` is timing-dependent and floors
+near the 20 ms inference time.
 
 ### Benefits
 
@@ -405,218 +434,166 @@ Use case: Large model, limited GPU memory
 
 ### Implementation: Pipeline Parallelism
 
+A pipeline splits the model into contiguous stages and pins each stage to
+one device; activations flow stage to stage. The block below builds such a
+pipeline at a scale that runs on any machine, placing stages round-robin
+over every device PyTorch can see - one stage per GPU on a 4-GPU server,
+all stages co-located on one GPU here.
+
 ```python
 import torch
 import torch.nn as nn
-from typing import Any, List
+
+torch.manual_seed(0)
 
 
-class PipelineModel:
+class PipelineStage(nn.Module):
+    """A contiguous slice of the model, pinned to one device."""
+
+    def __init__(self, layers, device):
+        super().__init__()
+        self.layers = nn.Sequential(*layers).to(device)
+        self.device = device
+
+    def forward(self, x):
+        return self.layers(x.to(self.device))
+
+
+def build_pipeline(num_stages, blocks_per_stage, d_model):
+    """Round-robin the stages over every device PyTorch can see.
+
+    Production scale: a Llama-2-7B-shaped stack is 70 transformer blocks
+    at d_model 4096 - roughly 44 GB of parameters alone, spread as one
+    stage per GPU. Here: 4 stages x 2 blocks at d_model 64 so the
+    mechanics run anywhere.
     """
-    Split model across multiple GPUs in pipeline fashion.
-
-    Each GPU hosts a portion of the model's layers.
-    Data flows sequentially through GPUs.
-    """
-
-    def __init__(self, layers: List[nn.Module], device_ids: List[int]):
-        """
-        Args:
-            layers: List of model layers to distribute
-            device_ids: GPU IDs for each pipeline stage
-        """
-        assert len(device_ids) <= len(layers), "More GPUs than layers!"
-
-        # Calculate layers per GPU
-        layers_per_stage = len(layers) // len(device_ids)
-
-        # Create pipeline stages
-        self.stages = []
-        for i, device_id in enumerate(device_ids):
-            start_idx = i * layers_per_stage
-            end_idx = start_idx + layers_per_stage if i < len(device_ids) - 1 else len(layers)
-
-            # Create stage and move to GPU
-            stage = nn.Sequential(*layers[start_idx:end_idx])
-            stage = stage.to(f"cuda:{device_id}")
-            self.stages.append(stage)
-
-        self.device_ids = device_ids
-
-    def forward(self, x: Any) -> Any:
-        """
-        Forward pass through pipeline.
-
-        Note: This is a simplified synchronous version.
-        Production systems use asynchronous pipelines
-        for better throughput.
-        """
-        current = x
-
-        # Sequentially process through each stage
-        for i, stage in enumerate(self.stages):
-            device = f"cuda:{self.device_ids[i]}"
-
-            # Move to current GPU
-            if isinstance(current, torch.Tensor):
-                current = current.to(device)
-
-            # Process through stage
-            current = stage(current)
-
-        return current
+    n_gpu = torch.cuda.device_count()
+    devices = [f"cuda:{i}" for i in range(n_gpu)] or ["cpu"]
+    devices = [devices[i % len(devices)] for i in range(num_stages)]
+    stages = []
+    for s in range(num_stages):
+        layers = [
+            nn.TransformerEncoderLayer(
+                d_model=d_model, nhead=4, dim_feedforward=4 * d_model,
+                dropout=0.0, batch_first=True)
+            for _ in range(blocks_per_stage)
+        ]
+        stages.append(PipelineStage(layers, devices[s]))
+    return stages
 
 
-# Example: Large Transformer Model
-def create_large_model() -> PipelineModel:
-    """Create a model split across 4 GPUs."""
+stages = build_pipeline(num_stages=4, blocks_per_stage=2, d_model=64)
+total = sum(p.numel() for st in stages for p in st.parameters())
+print("stage devices:", [st.device for st in stages])
+print("total parameters:", total)
 
-    # 70 transformer blocks (demo depth) - block dims below match
-    # Llama-2-7B: d_model 4096, 32 heads, FFN 11008
-    num_layers = 70
-    hidden_size = 4096
-
-    # Create transformer blocks
-    layers = []
-    for i in range(num_layers):
-        block = nn.TransformerEncoderLayer(
-            d_model=hidden_size,
-            nhead=32,
-            dim_feedforward=11008,
-        )
-        layers.append(block)
-
-    # Distribute across 4 GPUs: 70 // 4 = 17 layers per stage,
-    # the last stage takes the remainder (17 + 17 + 17 + 19 = 70)
-    # GPU 0: Layers 0-16
-    # GPU 1: Layers 17-33
-    # GPU 2: Layers 34-50
-    # GPU 3: Layers 51-69
-    device_ids = [0, 1, 2, 3]
-
-    model = PipelineModel(layers, device_ids)
-    return model
-
-
-# Usage
-if __name__ == "__main__":
-    # Create distributed model
-    model = create_large_model()
-
-    # Forward pass
-    batch = torch.randn(8, 1024, 4096)  # (batch, seq, hidden)
-    output = model.forward(batch)
-
-    print(f"Output shape: {output.shape}")
+x = torch.randn(8, 16, 64)
+for st in stages:
+    x = st(x)
+print("output shape:", tuple(x.shape))
+print("output device:", x.device.type)
 ```
+
+**Output:**
+
+```text
+stage devices: ['cuda:0', 'cuda:0', 'cuda:0', 'cuda:0']
+total parameters: 399872
+output shape: (8, 16, 64)
+output device: cuda
+```
+
+On this single-GPU machine all four stages co-locate on `cuda:0`; on a
+4-GPU host the same call returns `['cuda:0', 'cuda:1', 'cuda:2', 'cuda:3']`
+and each stage owns a GPU. This synchronous version drains the whole
+pipeline before the next micro-batch enters - production pipelines keep
+every stage busy with in-flight micro-batches instead.
 
 ### Implementation: Tensor Parallelism
 
+Tensor parallelism splits ONE layer's weight across devices: each shard
+holds a column slice of the output features, computes its partial product,
+and the partials concatenate back into the full output. The block below
+verifies the sharded math against the equivalent single-device layer.
+
 ```python
 import torch
 import torch.nn as nn
-from typing import List
+
+torch.manual_seed(0)
 
 
 class TensorParallelLinear(nn.Module):
-    """
-    Split a large linear layer across multiple GPUs.
+    """y = x @ W + b computed as concat of per-device partial products.
 
-    Instead of: y = x @ W
-    We do: y = concat(x @ W1, x @ W2, ...) where W = concat(W1, W2, ...)
+    W is split column-wise: every shard produces its slice of the output
+    features, so no single device ever materializes the full weight.
     """
 
-    def __init__(self, in_features: int, out_features: int, device_ids: List[int]):
+    def __init__(self, in_features, out_features, devices):
         super().__init__()
-        self.in_features = in_features
-        self.out_features = out_features
-        self.device_ids = device_ids
-        self.num_gpus = len(device_ids)
-
-        # Split output dimension across GPUs
-        self.out_features_per_gpu = out_features // self.num_gpus
-
-        # Create partitioned weights on each GPU.
-        # The device belongs on the tensor - nn.Parameter has no device
-        # kwarg (TypeError in torch 2.x).
+        assert out_features % len(devices) == 0, "shards must divide out_features"
+        self.shard = out_features // len(devices)
+        self.devices = devices
         self.weights = nn.ParameterList([
-            nn.Parameter(
-                torch.randn(in_features, self.out_features_per_gpu,
-                            device=f"cuda:{device_id}")
-            )
-            for device_id in device_ids
-        ])
-
-        # Split bias similarly
+            nn.Parameter(torch.randn(in_features, self.shard, device=d) * 0.02)
+            for d in devices])
         self.biases = nn.ParameterList([
-            nn.Parameter(
-                torch.randn(self.out_features_per_gpu,
-                            device=f"cuda:{device_id}")
-            )
-            for device_id in device_ids
-        ])
+            nn.Parameter(torch.zeros(self.shard, device=d))
+            for d in devices])
 
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
-        """
-        Forward pass with tensor parallelism.
-
-        Input x is replicated to all GPUs.
-        Each GPU computes partial output.
-        Outputs are concatenated.
-        """
-        # Replicate input to all GPUs
-        # (In practice, this is done once at setup)
-        first = f"cuda:{self.device_ids[0]}"
-        outputs = []
-
-        for i, device_id in enumerate(self.device_ids):
-            # Move input to this GPU
-            x_device = x.to(f"cuda:{device_id}")
-
-            # Compute partial output
-            out = torch.matmul(x_device, self.weights[i]) + self.biases[i]
-
-            # Gather partials on the first GPU - torch.cat cannot span
-            # devices, so every shard must be moved before concatenation
-            outputs.append(out.to(first))
-
-        # Concatenate outputs
-        return torch.cat(outputs, dim=-1)
+    def forward(self, x):
+        host = self.devices[0]
+        parts = []
+        for i, d in enumerate(self.devices):
+            part = x.to(d) @ self.weights[i] + self.biases[i]
+            # torch.cat cannot span devices: gather every shard on the host
+            parts.append(part.to(host))
+        return torch.cat(parts, dim=-1)
 
 
-# Example: Large Linear Layer
-def create_tp_linear():
-    """Create a tensor parallel linear layer."""
+# One physical GPU here: two shards co-located on cuda:0 run exactly the
+# math a 4-GPU host runs with devices = ["cuda:0", "cuda:1", "cuda:2", "cuda:3"].
+n_gpu = torch.cuda.device_count()
+n_shards = max(2, min(n_gpu, 4)) if n_gpu else 2
+devices = ([f"cuda:{i % n_gpu}" for i in range(n_shards)]
+           if n_gpu else ["cpu"] * n_shards)
 
-    # Normally: 4096 x 4096 = 16M parameters (64MB)
-    # With TP: Each GPU has 4096 x 1024 = 4M parameters (16MB)
+layer = TensorParallelLinear(64, 96, devices)
 
-    layer = TensorParallelLinear(
-        in_features=4096,
-        out_features=4096,
-        device_ids=[0, 1, 2, 3]  # 4 GPUs
-    )
+# Reference: the equivalent single-device layer, weights concatenated back.
+ref_w = torch.cat([p.detach().cpu() for p in layer.weights], dim=1)
+ref_b = torch.cat([p.detach().cpu() for p in layer.biases])
+x = torch.randn(2, 5, 64)
+y = layer(x).cpu()
 
-    return layer
-
-
-if __name__ == "__main__":
-    # Create TP layer
-    layer = create_tp_linear()
-
-    # Forward pass
-    x = torch.randn(1, 128, 4096)  # (batch, seq, hidden)
-    output = layer(x)
-
-    print(f"Input shape: {x.shape}")
-    print(f"Output shape: {output.shape}")
+print("devices:", devices)
+print("shard shape:", tuple(layer.weights[0].shape))
+diff = (y - (x @ ref_w + ref_b)).abs().max().item()
+assert diff < 1e-4                      # sharding agrees to float32 rounding
+print("matches single-device math: max diff %.2e (float32 rounding)" % diff)
 ```
+
+**Output:**
+
+```text
+devices: ['cuda:0', 'cuda:0']
+shard shape: (64, 48)
+matches single-device math: max diff 1.19e-07 (float32 rounding)
+```
+
+At production scale the point is memory: a 4096 x 4096 linear layer is
+16M parameters on one device - 4M per shard across four GPUs.
 
 ### Production Framework: DeepSpeed
 
-```python
+[DeepSpeed](https://www.deepspeed.ai/getting-started/) wraps an ordinary
+training loop and shards the training state across GPUs (`pip install
+deepspeed`). The sketch below is the entire integration surface - your
+model and dataloader stay untouched:
+
+```text
 # Sketch: model and dataloader come from your training script.
-# deepspeed is a separate pip install (pip install deepspeed).
 import deepspeed
 
 # Initialize DeepSpeed
@@ -626,25 +603,58 @@ model_engine, optimizer, _, _ = deepspeed.initialize(
     config={
         "train_batch_size": 32,
         "gradient_accumulation_steps": 4,
-        "fp16": {
-            "enabled": True
-        },
-        "zero_optimization": {
-            "stage": 3,  # ZeRO Stage 3 - maximum memory optimization
-        }
+        "fp16": {"enabled": True},
+        "zero_optimization": {"stage": 3},   # ZeRO Stage 3
     }
 )
 
-# Training loop
 for batch in dataloader:
-    # DeepSpeed handles:
-    # - Gradient partitioning across GPUs
-    # - Optimizer state sharding
-    # - Memory efficient training
-    loss = model_engine(batch)
-    model_engine.backward(loss)
-    model_engine.step()
+    loss = model_engine(batch)      # forward with partitioned parameters
+    model_engine.backward(loss)     # gradient sharding across GPUs
+    model_engine.step()             # optimizer-state sharding
 ```
+
+What each ZeRO stage buys is pure arithmetic. fp32 training state costs
+16 bytes per parameter (4 weights + 4 grads + 4 Adam m + 4 Adam v); the
+stages shard increasing slices of that state across the pool:
+
+```python
+def zero_stage_gb(params_billion: float, stage: int, gpus: int) -> float:
+    """Per-GPU GB of parameter/grad/optimizer state under ZeRO stages 0-3.
+
+    fp32 training state costs 16 B/param: 4 B weights + 4 B grads +
+    4 B Adam m + 4 B Adam v. Stage 1 shards the optimizer states across
+    GPUs, stage 2 shards the gradients too, stage 3 shards the
+    parameters as well - so nothing is ever replicated.
+    """
+    base = params_billion * 16
+    if stage == 0:
+        return base
+    if stage == 1:
+        return base - params_billion * 8 * (1 - 1 / gpus)
+    if stage == 2:
+        return base - params_billion * 12 * (1 - 1 / gpus)
+    return base / gpus
+
+
+for stage in (0, 1, 2, 3):
+    gb = zero_stage_gb(7.0, stage, 8)
+    print(f"ZeRO stage {stage}: {gb:5.1f} GB per GPU (7B params, 8 GPUs)")
+```
+
+**Output:**
+
+```text
+ZeRO stage 0: 112.0 GB per GPU (7B params, 8 GPUs)
+ZeRO stage 1:  63.0 GB per GPU (7B params, 8 GPUs)
+ZeRO stage 2:  38.5 GB per GPU (7B params, 8 GPUs)
+ZeRO stage 3:  14.0 GB per GPU (7B params, 8 GPUs)
+```
+
+Stage 1 shards optimizer states, stage 2 adds gradients, and stage 3
+shards the parameters themselves - nothing is replicated anywhere, which
+is how a 7B model trains on hardware that could never hold 112 GB of
+state per card.
 
 ---
 
@@ -669,6 +679,17 @@ class RoundRobinBalancer:
         server = self.servers[self.current]
         self.current = (self.current + 1) % len(self.servers)
         return server
+
+
+balancer = RoundRobinBalancer(["gpu-0", "gpu-1", "gpu-2"])
+picks = [balancer.next_server() for _ in range(7)]
+print(picks)
+```
+
+**Output:**
+
+```text
+['gpu-0', 'gpu-1', 'gpu-2', 'gpu-0', 'gpu-1', 'gpu-2', 'gpu-0']
 ```
 
 **Pros:** Simple, fair distribution
@@ -704,6 +725,20 @@ class LeastConnectionsBalancer:
         """Decrement connection count when request completes."""
         with self.lock:
             self.connections[server] = max(0, self.connections[server] - 1)
+
+
+lb = LeastConnectionsBalancer(["gpu-0", "gpu-1"])
+first_two = [lb.next_server() for _ in range(2)]
+print("in flight:", dict(lb.connections))
+lb.release(first_two[0])
+print("after one release, next is:", lb.next_server())
+```
+
+**Output:**
+
+```text
+in flight: {'gpu-0': 1, 'gpu-1': 1}
+after one release, next is: gpu-0
 ```
 
 **Pros:** Accounts for current load
@@ -711,71 +746,66 @@ class LeastConnectionsBalancer:
 
 #### 3. GPU Memory Aware
 
+Route each request to the (server, gpu) pair that currently has the most
+free memory. The memory probe is injected: production passes a callable
+that shells out to `nvidia-smi` over ssh (or calls
+`torch.cuda.mem_get_info` locally), tests pass a dict-backed fake - the
+routing logic below is exercised identically either way.
+
 ```python
-import subprocess
 import threading
 import time
-from typing import List, Tuple
+from typing import Dict, Tuple
 
 
 class GPUMemoryAwareBalancer:
-    """Route to server with most available GPU memory."""
+    """Route to the (server, gpu) pair with the most free memory.
 
-    def __init__(self, gpu_servers: List[Tuple[str, int]]):
-        """
-        Args:
-            gpu_servers: List of (server_address, gpu_id) tuples
-        """
-        self.servers = gpu_servers
-        self.memory_cache = {}
-        self.cache_lock = threading.Lock()
-        self.cache_ttl = 5  # seconds
-        self.last_update = 0
+    The probe is injected so the routing logic is testable without
+    nvidia-smi/ssh: production passes a callable that shells out (or
+    calls torch.cuda.mem_get_info); tests pass a dict-backed fake.
+    """
 
-    def _update_memory_cache(self):
-        """Query GPU memory for all servers."""
-        current_time = time.time()
+    def __init__(self, servers, probe, ttl_seconds: float = 5.0):
+        self.probe = probe                     # callable() -> {(server, gpu): free_mb}
+        self.ttl = ttl_seconds
+        self.cache: Dict[Tuple[str, int], int] = {}
+        self.last_update = 0.0
+        self.lock = threading.Lock()
 
-        # Only update if cache is stale
-        if current_time - self.last_update < self.cache_ttl:
-            return
-
-        with self.cache_lock:
-            for server, gpu_id in self.servers:
-                try:
-                    # Query nvidia-smi
-                    result = subprocess.run([
-                        "ssh", server,
-                        "nvidia-smi",
-                        "--query-gpu=memory.free",
-                        f"--id={gpu_id}",
-                        "--format=csv,noheader,nounits"
-                    ], capture_output=True, text=True, timeout=5)
-
-                    free_mb = int(result.stdout.strip())
-                    self.memory_cache[(server, gpu_id)] = free_mb
-
-                except Exception as e:
-                    print(f"Error querying {server}:{gpu_id}: {e}")
-                    # Use cached value or default
-                    if (server, gpu_id) not in self.memory_cache:
-                        self.memory_cache[(server, gpu_id)] = 1000  # Default 1GB
-
-            self.last_update = current_time
+    def _refresh(self):
+        now = time.time()
+        if now - self.last_update < self.ttl:
+            return                              # cache still fresh
+        with self.lock:
+            if now - self.last_update < self.ttl:   # double-checked
+                return
+            self.cache = dict(self.probe())
+            self.last_update = now
 
     def next_server(self) -> Tuple[str, int]:
-        """Get server with most available GPU memory."""
-        self._update_memory_cache()
+        self._refresh()
+        return max(self.cache, key=self.cache.get)
 
-        with self.cache_lock:
-            # Find server with max free memory
-            server_gpu = max(
-                self.memory_cache.keys(),
-                key=lambda sg: self.memory_cache[sg]
-            )
 
-            return server_gpu
+free_mb = {("gpu-a", 0): 21000, ("gpu-a", 1): 4000, ("gpu-b", 0): 15000}
+balancer = GPUMemoryAwareBalancer(list(free_mb), probe=lambda: free_mb)
+
+picks = [balancer.next_server() for _ in range(3)]
+print("routes:", picks)
+print("cached view:", balancer.cache)
 ```
+
+**Output:**
+
+```text
+routes: [('gpu-a', 0), ('gpu-a', 0), ('gpu-a', 0)]
+cached view: {('gpu-a', 0): 21000, ('gpu-a', 1): 4000, ('gpu-b', 0): 15000}
+```
+
+The TTL with a double-checked lock means concurrent requests share one
+probe sweep per window instead of stampeding the fleet with nvidia-smi
+calls.
 
 **Pros:** Optimizes for GPU constraints
 **Cons:** Requires GPU access, higher latency
@@ -921,6 +951,17 @@ assert cache.get(input_data) == cached
 print(cache.get(input_data))
 ```
 
+**Output:**
+
+```text
+expensive_result for {'prompt': 'hello'}
+```
+
+The cache persists as pickle files under `./cache/`, so hits survive a
+process restart - the TTL check reads each file's mtime, not an in-memory
+index. Production deployments point `cache_dir` at fast local disk, or a
+shared store when replicas must share the cache.
+
 ### 2. Embedding Cache (for RAG)
 
 ```python
@@ -996,7 +1037,57 @@ class EmbeddingCache:
         # Sort by original index and return
         embeddings.sort(key=lambda x: x[0])
         return [emb for _, emb in embeddings]
+
+
+class MockEmbedder:
+    """Stand-in for a real sentence encoder; counts compute calls."""
+
+    def __init__(self, dim: int = 8):
+        self.dim = dim
+        self.calls = 0
+
+    def _vec(self, text):
+        self.calls += 1
+        g = torch.Generator().manual_seed(len(text))
+        return torch.randn(self.dim, generator=g)
+
+    def embed(self, text):
+        return self._vec(text)
+
+    def embed_batch(self, texts):
+        return torch.stack([self._vec(t) for t in texts])
+
+
+embedder = MockEmbedder()
+cache = EmbeddingCache(embedder, cache_dir="./embeddings")
+
+texts = ["gpu serving", "kv cache", "gpu serving", "paged attention", "kv cache"]
+embeddings = cache.embed_batch(texts)          # first pass: cache is cold
+print("texts:", len(texts), "-> embeddings:", len(embeddings))
+print("cold-cache compute calls:", embedder.calls)
+
+cache.embed_batch(texts)                       # second pass: every text hits disk
+print("warm-cache compute calls:", embedder.calls, "(repeats served from cache)")
+again = cache.embed_batch(texts)
+print("warm pass returns identical vectors:",
+      all(torch.equal(a, b) for a, b in zip(embeddings, again)))
 ```
+
+**Output:**
+
+```text
+texts: 5 -> embeddings: 5
+cold-cache compute calls: 5
+warm-cache compute calls: 5 (repeats served from cache)
+warm pass returns identical vectors: True
+```
+
+Note the cold pass still spends one compute call per text - within a
+single batch call, duplicates are not coalesced (each miss joins the
+uncached list independently). The cache pays off from the second call
+onward, which is exactly the RAG pattern: the same indexed chunks get
+re-embedded by query after query. The demo writes `.pt` files under
+`./embeddings/`.
 
 ### 3. KV Cache (for LLMs)
 
@@ -1019,13 +1110,14 @@ class KVCache:
         num_layers: int,
         num_heads: int,
         head_dim: int,
-        device: str = "cuda"
+        device: str = ""
     ):
         self.max_seq_len = max_seq_len
         self.num_layers = num_layers
         self.num_heads = num_heads
         self.head_dim = head_dim
-        self.device = device
+        # Portable default: cuda when available, else cpu
+        self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
 
         # Pre-allocate the full cache up front. The batch dimension must be
         # real allocated storage: expand() only creates a stride-0 view, so
@@ -1040,7 +1132,7 @@ class KVCache:
             num_heads,
             max_seq_len,
             head_dim,
-            device=device
+            device=self.device
         )
 
         self.current_seq_len = 0
@@ -1082,7 +1174,46 @@ class KVCache:
     def reset(self):
         """Clear cache for new sequence."""
         self.current_seq_len = 0
+
+
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+kv = KVCache(batch_size=2, max_seq_len=16, num_layers=2,
+             num_heads=2, head_dim=4, device=str(device))
+print("cache device:", kv.device)
+print("cache buffer:", tuple(kv.cache.shape), "=", kv.cache.numel(), "floats")
+
+torch.manual_seed(0)
+# Prefill: process a 5-token prompt for layer 0 in one shot
+kv.update(0, torch.randn(2, 2, 5, 4), torch.randn(2, 2, 5, 4))
+print("after prefill:", kv.current_seq_len, "tokens cached")
+
+# Decode: 3 tokens, one at a time - each step reuses the cached prefix
+for _ in range(3):
+    kv.update(0, torch.randn(2, 2, 1, 4), torch.randn(2, 2, 1, 4))
+print("after 3 decode steps:", kv.current_seq_len, "tokens cached")
+
+k, v = kv.get(0)
+print("layer-0 K/V view:", tuple(k.shape))
+kv.reset()
+print("after reset:", kv.current_seq_len, "tokens cached")
 ```
+
+**Output:**
+
+```text
+cache device: cuda
+cache buffer: (2, 2, 2, 2, 16, 4) = 1024 floats
+after prefill: 5 tokens cached
+after 3 decode steps: 8 tokens cached
+layer-0 K/V view: (2, 2, 8, 4)
+after reset: 0 tokens cached
+```
+
+This is the prefill-then-decode pattern every LLM server runs: the prompt
+lands in the cache in one forward pass, then each generated token
+re-attends over the cached prefix instead of recomputing it. The `get()`
+view stops at `current_seq_len`, so attention never sees the zeros of
+unwritten slots.
 
 ---
 
@@ -1186,7 +1317,39 @@ class ContinuousBatching:
     def can_add_more(self) -> bool:
         """Check if batch has room."""
         return len(self.active_requests) < self.max_batch_size
+
+
+pa = PagedAttention(page_size=16, num_blocks=8)
+b1 = pa.allocate("req-1", 40)          # 40 tokens -> 3 pages
+b2 = pa.allocate("req-2", 20)          # 20 tokens -> 2 pages
+print("req-1 pages:", b1)
+print("req-2 pages:", b2)
+print("free after two allocations:", pa.free_blocks)
+pa.free("req-1")                        # pages return for reuse
+print("free after req-1 completes:", pa.free_blocks)
+
+cb = ContinuousBatching(max_batch_size=3)
+admitted = [cb.add_request(f"r{i}") for i in range(4)]
+print("admit up to capacity:", admitted)
+print("can_add_more:", cb.can_add_more())
 ```
+
+**Output:**
+
+```text
+req-1 pages: [0, 1, 2]
+req-2 pages: [3, 4]
+free after two allocations: [5, 6, 7]
+free after req-1 completes: [5, 6, 7, 0, 1, 2]
+admit up to capacity: [True, True, True, False]
+can_add_more: False
+```
+
+Two ideas carry real vLLM: requests own PAGES, not contiguous regions, so
+finishing requests leave usable holes (req-1's pages go straight back to
+the free list) instead of fragmenting the pool; and batches admit new
+requests the moment older ones finish, instead of waiting for a fixed
+batch size to drain.
 
 ---
 
@@ -1256,19 +1419,18 @@ class YourModelServer:
 
 ### Testing
 
-```python
-# Test your implementation
+A checklist to run against your implementation - each item maps to a
+requirement above:
+
+```text
 server = YourModelServer(model)
 
-# Concurrent requests
-def make_request(i):
-    rid = server.add_request(f"input_{i}")
-    result = server.get_result(rid)
-    print(f"Request {i}: {result}")
-
-# Run 50 concurrent requests
-# Check stats
-# Verify caching works
+# 1. Concurrency: 50 requests from 10 threads all return correct outputs
+# 2. Batching: stats show fewer model calls than requests (batching happened)
+# 3. Timeout: a single lone request still completes (timeout flush works)
+# 4. GPU memory: _get_gpu_memory_mb returns a positive int; below the
+#    threshold the server rejects instead of crashing
+# 5. Caching: the same input twice triggers one model call, not two
 ```
 
 ### Solution Reference
@@ -1316,6 +1478,6 @@ See: [2306: Building a Production Framework](./guides/2306-Building-Production-F
 - Practical: **[LAB-009: Production Deployment](../../../learning-resources/labs/LAB-009-Production-Deployment.md)**
 - Assessment: **[2300: Framework Engineering - Quiz](./assessment/QUIZ.md)**
 
-**Related:** [1401: Ollama Enterprise Deployment](../../phase1-infra/1400-llmops/1401-Ollama-Enterprise.md), [1402: vLLM and TGI High-Concurrency Inference](../../phase1-infra/1400-llmops/1402-vLLM-and-TGI.md), [LAB-007: Production RAG System](../../../learning-resources/labs/LAB-007-Production-RAG.md)
+**Related:** [1401: Ollama Enterprise Deployment](../../phase1-infra/1400-llmops/1401-Ollama-Enterprise.md) — deploy and load-balance a real serving stack yourself; [1402: vLLM and TGI High-Concurrency Inference](../../phase1-infra/1400-llmops/1402-vLLM-and-TGI.md) — the production engines that run this lesson's batching, paging, and continuous batching at scale; [LAB-007: Production RAG System](../../../learning-resources/labs/LAB-007-Production-RAG.md) — serving a retrieval pipeline under real load
 
-**Experiment:** [EXP_1404: vLLM Production Tuning Experiments](../../../../experiments/EXP_1404_VLLM_TUNING.md)
+**Experiment:** [EXP_1404: vLLM Production Tuning Experiments](../../../../experiments/EXP_1404_VLLM_TUNING.md) — the nearest hands-on lab to this lesson's subject: tune real vLLM serving throughput and latency (nearest-relevant — no EXP_23xx exists yet)
