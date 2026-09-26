@@ -3,22 +3,16 @@ Document ID: 6503
 Title: Model Registry
 Phase: 6
 Module: 6500
-Last Updated: 2026-09-24
+Last Updated: 2026-09-26
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
 Prerequisites: See module README
 Related: See module README
-Tags: ['mlops', 'pipeline', 'ci-cd', 'model-registry', 'lifecycle']
+Tags: ['mlops', 'model-registry', 'versioning', 'aliases', 'lifecycle']
 ---
 
 # 6503: Model Registry
-
-**Project:** AI Engineering Curriculum
-**Phase:** [6500] MLOps Pipelines
-**Last Updated:** 2026-02-04
-**Status:** Complete
-**Estimated Time:** 2 hours
 
 ---
 
@@ -27,13 +21,14 @@ Tags: ['mlops', 'pipeline', 'ci-cd', 'model-registry', 'lifecycle']
 - [Learning Objectives](#learning-objectives)
 - [Abstract](#abstract)
 - [Model Registry Architecture](#model-registry-architecture)
-- [MLflow Integration](#mlflow-integration)
-- [Weights & Biases Integration](#weights--biases-integration)
 - [Model Versioning Strategy](#model-versioning-strategy)
 - [Model Metadata Management](#model-metadata-management)
+- [Registry Aliases](#registry-aliases)
+- [MLflow Integration](#mlflow-integration)
+- [Weights & Biases Integration](#weights--biases-integration)
 - [Production Deployment](#production-deployment)
-- [Related Resources](#related-resources)
 - [References](#references)
+- [Next Steps](#next-steps)
 
 ---
 
@@ -41,739 +36,398 @@ Tags: ['mlops', 'pipeline', 'ci-cd', 'model-registry', 'lifecycle']
 
 After completing this lesson, you will be able to:
 
-- Explain Model Registry Architecture
-- Explain MLflow Integration
-- Explain Weights & Biases Integration
-- Explain Model Versioning Strategy
-- Explain Model Metadata Management
-- Configure and operate Production Deployment
+- Explain what a model registry adds over a folder of checkpoints: identity, lineage, and a promotion workflow
+- Map training changes to MAJOR/MINOR/PATCH bumps with an explicit, mechanical decision rule
+- Sort and compare version strings correctly using tuple semantics, not lexicographic order
+- Promote and roll back models with aliases - one auditable write, no stage ceremony
+- Persist model metadata so any registered version is auditable and reproducible
+- Map registry concepts onto MLflow and Weights & Biases, and load production models through alias URIs
 
 ---
 
 ## Abstract
 
-Model registry is the central repository for managing trained machine learning models. This document covers MLflow and Weights & Biases integration for version control, metadata tracking, and model deployment.
+A model registry is the versioned, queryable index between training and serving. It gives every trained model a stable identity (name + version), attaches the metadata needed to audit it (metrics, parameters, data lineage), and provides a promotion mechanism that decides which version production traffic actually sees. This lesson builds the core registry mechanics in plain Python - version bumps, alias resolution, metadata persistence - then maps them onto the two tools you will meet in practice: MLflow and Weights & Biases.
 
 ---
 
 ## Model Registry Architecture
 
+A shared folder of checkpoints answers none of the operational questions: which artifact is serving traffic, what data trained it, what score did it get, and how do we go back one step safely. The registry answers all four with three layers:
+
 ```text
-┌─────────────────────────────────────────────────────────────────────────┐
-│                      Model Registry Architecture                         │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                         │
-│  ┌──────────────────────────────────────────────────────────────────┐   │
-│  │                    Model Registry Layer                          │   │
-│  ├──────────────────────────────────────────────────────────────────┤   │
-│  │                                                                  │   │
-│  │  ┌────────────┐  ┌────────────┐  ┌────────────┐  ┌────────────┐  │   │
-│  │  │   Model    │  │   Model    │  │   Model    │  │   Model    │  │   │
-│  │  │  Version   │  │  Version   │  │  Version   │  │  Version   │  │   │
-│  │  │    1.0     │  │    1.1     │  │    2.0     │  │    2.1     │  │   │
-│  │  └────────────┘  └────────────┘  └────────────┘  └────────────┘  │   │
-│  │        │              │              │              │            │   │
-│  │        └──────────────┴──────────────┴──────────────┘            │   │
-│  │                             │                                 │   │
-│  │  ┌────────────────────────────────────────────────────────┐   │   │
-│  │  │              Model Metadata & Artifacts                │   │   │
-│  │  │  - Performance metrics                                 │   │   │
-│  │  │  - Training parameters                                 │   │   │
-│  │  │  - Data lineage                                       │   │   │
-│  │  │  - Deployment history                                  │   │   │
-│  │  └────────────────────────────────────────────────────────┘   │   │
-│  └──────────────────────────────────────────────────────────────────┘   │
-│                                                                         │
-│  ┌──────────────────────────────────────────────────────────────────┐   │
-│  │                 Backend Storage Options                         │   │   │
-│  ├──────────────────────────────────────────────────────────────────┤   │
-│  │                                                                  │   │
-│  │  ┌──────────────┐      ┌──────────────┐      ┌──────────────┐   │   │
-│  │  │    MLflow     │      │   Weights &   │      │   DVC + S3    │   │   │
-│  │  │  (Open Source)│      │  Biases       │      │  (Custom)     │   │   │
-│  │  └──────────────┘      └──────────────┘      └──────────────┘   │   │
-│  └──────────────────────────────────────────────────────────────────┘   │
-└─────────────────────────────────────────────────────────────────────────┘
+   training job                MODEL REGISTRY                  consumers
+ (run_id, params,       +----------------------------+      resolve at load:
+  metrics) -----------> | versions : v1  v2  v3      | -----> models:/name@champion
+                        |            (immutable)     |
+                        | metadata : metrics,        |        promotion:
+                        |            params,         | -----> one auditable alias
+                        |            data lineage    |        write; versions stay
+                        | aliases  : champion -> v3  |        untouched
+                        |            challenger -> 2 |
+                        +----------------------------+
 ```
 
----
-
-## MLflow Integration
-
-### MLflow Setup
-
-```python
-# mlflow_setup.py
-import mlflow
-from mlflow.tracking import MlflowClient
-import os
-
-class MLflowSetup:
-    """MLflow tracking server setup"""
-
-    def __init__(self, tracking_uri, registry_uri):
-        self.tracking_uri = tracking_uri
-        self.registry_uri = registry_uri
-        self.client = None
-
-    def setup(self):
-        """Initialize MLflow client"""
-        # Set tracking URI
-        mlflow.set_tracking_uri(self.tracking_uri)
-        mlflow.set_registry_uri(self.registry_uri)
-
-        # Initialize client
-        self.client = MlflowClient()
-
-        print(f"✅ MLflow connected to: {self.tracking_uri}")
-        print(f"✅ Registry connected to: {self.registry_uri}")
-
-        return self.client
-
-# Usage
-setup = MLflowSetup(
-    tracking_uri="http://localhost:5000",
-    registry_uri="http://localhost:5000"
-)
-client = setup.setup()
-```
-
-### Model Registration
-
-```python
-# model_registration.py
-import mlflow
-import mlflow.sklearn
-from datetime import datetime
-import json
-
-class ModelRegistrar:
-    """Register and manage models in MLflow"""
-
-    def __init__(self, experiment_name, model_name):
-        self.experiment_name = experiment_name
-        self.model_name = model_name
-        self.client = MlflowClient()
-
-    def register_model(
-        self,
-        model,
-        artifact_path,
-        metrics,
-        params,
-        tags=None,
-        stage="Staging"
-    ):
-        """Register model with metadata"""
-
-        with mlflow.start_run() as run:
-            # Log parameters
-            mlflow.log_params(params)
-
-            # Log metrics
-            mlflow.log_metrics(metrics)
-
-            # Log tags
-            if tags:
-                mlflow.set_tags(tags)
-
-            # Log model
-            mlflow.sklearn.log_model(
-                model,
-                artifact_path,
-                registered_model_name=self.model_name
-            )
-
-            # Add description
-            self._add_model_version_description(
-                run.info.run_id,
-                self._generate_description(metrics, params)
-            )
-
-            # Transition to stage
-            model_version = self._get_latest_version()
-            self.client.transition_model_version_stage(
-                name=self.model_name,
-                version=model_version,
-                stage=stage
-            )
-
-            print(f"✅ Model registered: {self.model_name} v{model_version}")
-            print(f"✅ Stage: {stage}")
-
-            return run.info.run_id, model_version
-
-    def _get_latest_version(self):
-        """Get latest model version"""
-        versions = self.client.get_latest_versions(
-            self.model_name,
-            stages=["None"]
-        )
-        return versions[0].version if versions else None
-
-    def _add_model_version_description(self, run_id, description):
-        """Add description to model version"""
-        model_version = self._get_latest_version()
-
-        self.client.update_model_version(
-            name=self.model_name,
-            version=model_version,
-            description=description
-        )
-
-    def _generate_description(self, metrics, params):
-        """Generate model description"""
-        desc = f"""
-# Model Training Summary
-
-**Training Date:** {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
-
-## Performance Metrics
-- Accuracy: {metrics.get('accuracy', 'N/A'):.4f}
-- Precision: {metrics.get('precision', 'N/A'):.4f}
-- Recall: {metrics.get('recall', 'N/A'):.4f}
-- F1 Score: {metrics.get('f1', 'N/A'):.4f}
-
-## Training Parameters
-{json.dumps(params, indent=2)}
-
-## Notes
-This model was trained using the standard training pipeline.
-        """
-        return desc.strip()
-
-    def promote_to_production(self, version, archive_current=True):
-        """Promote model to production"""
-
-        if archive_current:
-            # Archive current production model
-            self._archive_production_version()
-
-        # Promote new version
-        self.client.transition_model_version_stage(
-            name=self.model_name,
-            version=version,
-            stage="Production"
-        )
-
-        print(f"✅ Model {self.model_name} v{version} promoted to Production")
-
-    def _archive_production_version(self):
-        """Archive current production model"""
-        production_models = self.client.get_latest_versions(
-            self.model_name,
-            stages=["Production"]
-        )
-
-        for model in production_models:
-            self.client.transition_model_version_stage(
-                name=self.model_name,
-                version=model.version,
-                stage="Archived"
-            )
-
-    def get_model_info(self, stage="Production"):
-        """Get model information for stage"""
-        models = self.client.get_latest_versions(
-            self.model_name,
-            stages=[stage]
-        )
-
-        if models:
-            model = models[0]
-            run = self.client.get_run(model.run_id)
-
-            info = {
-                'name': self.model_name,
-                'version': model.version,
-                'stage': stage,
-                'run_id': model.run_id,
-                'creation_timestamp': datetime.fromtimestamp(model.creation_timestamp / 1000),
-                'metrics': run.data.metrics,
-                'params': run.data.params,
-                'tags': run.data.tags
-            }
-
-            return info
-
-        return None
-```
-
----
-
-## Weights & Biases Integration
-
-### W&B Setup
-
-```python
-# wandb_setup.py
-import wandb
-from wandb.keras import WandBMetricsCallback
-import os
-
-class WandBSetup:
-    """Weights & Biases integration"""
-
-    def __init__(self, project, entity=None):
-        self.project = project
-        self.entity = entity
-
-    def init_run(self, config=None, tags=None):
-        """Initialize W&B run"""
-        run = wandb.init(
-            project=self.project,
-            entity=self.entity,
-            config=config,
-            tags=tags
-        )
-
-        print(f"✅ W&B run initialized: {run.url}")
-
-        return run
-
-    def log_model(self, model_path, model_name="model"):
-        """Log model artifact to W&B"""
-        artifact = wandb.Artifact(
-            model_name,
-            type="model"
-        )
-        artifact.add_file(model_path)
-
-        wandb.log_artifact(artifact)
-
-        print(f"✅ Model logged: {model_name}")
-
-    def log_dataset(self, dataset_path, dataset_name="dataset"):
-        """Log dataset artifact to W&B"""
-        artifact = wandb.Artifact(
-            dataset_name,
-            type="dataset"
-        )
-        artifact.add_dir(dataset_path)
-
-        wandb.log_artifact(artifact)
-
-        print(f"✅ Dataset logged: {dataset_name}")
-
-# Usage
-wandb_setup = WandBSetup(project="sentiment-analysis")
-
-run = wandb_setup.init_run(
-    config={
-        "learning_rate": 0.001,
-        "batch_size": 32,
-        "epochs": 10
-    },
-    tags=["baseline", "production"]
-)
-```
-
-### W&B Model Registry
-
-```python
-# wandb_registry.py
-import wandb
-from pathlib import Path
-
-class WandBModelRegistry:
-    """Model registry using Weights & Biases"""
-
-    def __init__(self, project, entity=None):
-        self.project = project
-        self.entity = entity
-
-    def register_model(
-        self,
-        model_path,
-        model_name,
-        metrics,
-        aliases=None
-    ):
-        """Register model in W&B"""
-
-        # Create artifact
-        artifact = wandb.Artifact(
-            name=f"{model_name}:latest",
-            type="model"
-        )
-
-        # Add model files
-        if Path(model_path).is_dir():
-            artifact.add_dir(model_path)
-        else:
-            artifact.add_file(model_path)
-
-        # Log metrics
-        wandb.log(metrics)
-
-        # Save artifact
-        wandb.log_artifact(artifact, aliases=aliases)
-
-        print(f"✅ Model registered: {model_name}")
-
-    def link_model_to_production(self, model_name, version):
-        """Link model version to production stage"""
-
-        # Get artifact
-        api = wandb.Api()
-        artifact = api.artifact(f"{self.project}/{model_name}:{version}")
-
-        # Create production link
-        artifact.aliases.append("production")
-        artifact.save()
-
-        print(f"✅ Model {model_name}:{version} linked to production")
-
-    def get_production_model(self, model_name):
-        """Get production model artifact"""
-
-        api = wandb.Api()
-
-        # Get latest production version
-        artifacts = api.artifact_type(f"{self.project}/{model_name}", "model")
-        production_artifact = None
-
-        for artifact in artifacts.collections():
-            if "production" in artifact.aliases:
-                production_artifact = artifact
-                break
-
-        if production_artifact:
-            # Download artifact
-            downloaded_path = production_artifact.download()
-            print(f"✅ Production model downloaded: {downloaded_path}")
-            return downloaded_path
-
-        return None
-```
+- **Versions are immutable.** Registering produces a new version; nothing overwrites an existing one. History stays reconstructable.
+- **Metadata rides with the version.** Metrics, hyperparameters, and the training run ID that produced it - stored once, queried later during audits and incident reviews.
+- **Aliases are the only mutable part.** A named reference (`champion`, `challenger`, `production`) points at one version at a time. Consumers resolve through the alias, so promotion and rollback never require touching consumer code.
+
+Backend options in practice: an MLflow tracking server (open source, self-hosted), the Weights & Biases registry (managed), or a custom store (DVC or S3 plus a metadata database) when neither fits. The mechanics this lesson simulates - versions, metadata, aliases - are the same in all three.
 
 ---
 
 ## Model Versioning Strategy
 
-### Semantic Versioning for Models
+Semantic versioning maps cleanly onto model changes: **MAJOR** for an incompatible change (different architecture or estimator family, or a large quality regression), **MINOR** for a backward-compatible improvement (a new feature, a solid metric gain), **PATCH** for fixes that should not move the needle. The exact thresholds are a team convention - what matters is that the decision is mechanical, not vibes:
 
 ```python
-# versioning.py
 from dataclasses import dataclass
 from enum import Enum
 
-class VersionChange(Enum):
-    MAJOR = "major"  # Incompatible changes
-    MINOR = "minor"  # New features, backward compatible
-    PATCH = "patch"  # Bug fixes, backward compatible
+class Change(Enum):
+    MAJOR = "major"   # architecture changed, or a large regression
+    MINOR = "minor"   # significant improvement, or a new feature
+    PATCH = "patch"   # bug fixes and small tweaks
 
 @dataclass
 class ModelVersion:
-    """Semantic versioning for models"""
     major: int = 1
     minor: int = 0
     patch: int = 0
 
     def __str__(self):
-        return f"{self.major}.{self.minor}.{self.patch}"
+        return "%d.%d.%d" % (self.major, self.minor, self.patch)
 
-    def increment(self, change: VersionChange):
-        """Increment version"""
-        if change == VersionChange.MAJOR:
-            self.major += 1
-            self.minor = 0
-            self.patch = 0
-        elif change == VersionChange.MINOR:
-            self.minor += 1
-            self.patch = 0
-        elif change == VersionChange.PATCH:
+    def bump(self, change):
+        if change is Change.MAJOR:
+            self.major, self.minor, self.patch = self.major + 1, 0, 0
+        elif change is Change.MINOR:
+            self.minor, self.patch = self.minor + 1, 0
+        else:
             self.patch += 1
+        return str(self)
 
-        return self
+def decide_change(old, new, delta):
+    """old/new are model specs; delta is the validation-score change."""
+    if old["params"] != new["params"]:
+        return Change.MAJOR          # different estimator family or layout
+    if delta < -0.05:
+        return Change.MAJOR          # too big a regression to hide in a patch
+    if delta > 0.05 or (new["features"] - old["features"]):
+        return Change.MINOR
+    return Change.PATCH
 
-class ModelVersionManager:
-    """Manage model versions"""
+baseline = {"params": {"model": "logreg", "hidden": 128},
+            "features": {"text_len", "lexicon_score"}}
+swapped = {"params": {"model": "mlp", "hidden": 256},
+           "features": {"text_len", "lexicon_score"}}
+augmented = {"params": baseline["params"],
+             "features": {"text_len", "lexicon_score", "bigram_counts"}}
 
-    def __init__(self, model_name):
-        self.model_name = model_name
-        self.current_version = ModelVersion()
+scenarios = [
+    ("bug fix, same spec, +0.001", baseline, baseline, 0.001),
+    ("new feature added, +0.002", baseline, augmented, 0.002),
+    ("architecture swap, +0.030", baseline, swapped, 0.030),
+    ("same spec, -0.120 regression", baseline, baseline, -0.120),
+]
 
-    def determine_version_change(
-        self,
-        old_model,
-        new_model,
-        performance_change
-    ):
-        """Determine version change type"""
-
-        # Major version: Architecture change
-        if self._architecture_changed(old_model, new_model):
-            return VersionChange.MAJOR
-
-        # Major version: Significant performance regression
-        if performance_change < -0.05:
-            return VersionChange.MAJOR
-
-        # Minor version: Significant performance improvement
-        if performance_change > 0.05:
-            return VersionChange.MINOR
-
-        # Minor version: New features added
-        if self._features_added(old_model, new_model):
-            return VersionChange.MINOR
-
-        # Patch: Bug fix or small improvement
-        return VersionChange.PATCH
-
-    def _architecture_changed(self, old_model, new_model):
-        """Check if model architecture changed"""
-        # Compare model architectures
-        old_params = old_model.get_params()
-        new_params = new_model.get_params()
-
-        # Check for significant architectural differences
-        return old_params != new_params
-
-    def _features_added(self, old_model, new_model):
-        """Check if new features were added"""
-        # Compare feature sets
-        old_features = set(old_model.feature_names_in_)
-        new_features = set(new_model.feature_names_in_)
-
-        return len(new_features - old_features) > 0
-
-    def register_new_version(
-        self,
-        model,
-        metrics,
-        change_type: VersionChange
-    ):
-        """Register new model version"""
-
-        # Increment version
-        self.current_version.increment(change_type)
-        version_str = str(self.current_version)
-
-        print(f"📦 Registering {self.model_name} v{version_str}")
-
-        # Register with MLflow or W&B
-        # Implementation...
-
-        return version_str
+v = ModelVersion()
+print("registry head starts at", v)
+for label, old, new, delta in scenarios:
+    c = decide_change(old, new, delta)
+    print("  %-32s %-6s -> %s" % (label, c.value, v.bump(c)))
+print("final head:", v)
 ```
+
+**Output:**
+
+```text
+registry head starts at 1.0.0
+  bug fix, same spec, +0.001       patch  -> 1.0.1
+  new feature added, +0.002        minor  -> 1.1.0
+  architecture swap, +0.030        major  -> 2.0.0
+  same spec, -0.120 regression     major  -> 3.0.0
+final head: 3.0.0
+```
+
+The decision rule runs before registration, so the version history itself documents what changed and why. Note that the architecture swap bumps MAJOR even though the score improved - a different estimator family is a different contract, and anything downstream (feature expectations, latency profile, monitoring thresholds) may need to change with it.
+
+One classic pitfall when you handle version strings yourself: registry versions sort badly as strings. String comparison orders `1.10.0` before `1.2.0`, because `1` sorts before `2` character by character. Compare as tuples of integers instead:
+
+```python
+versions = ["1.0.0", "1.2.0", "1.10.0", "1.9.2", "2.0.0"]
+
+def semver_key(v):
+    """'1.10.0' -> (1, 10, 0): tuple comparison is numeric per field."""
+    return tuple(int(part) for part in v.split("."))
+
+lex = sorted(versions)
+semantic = sorted(versions, key=semver_key)
+print("lexicographic (string) order:", ", ".join(lex))
+print("  '1.10.0' lands before '1.2.0' - string order, not version order")
+print("semantic (tuple) order:       ", ", ".join(semantic))
+print("is 1.10.0 newer than 1.9.2:", semver_key("1.10.0") > semver_key("1.9.2"))
+```
+
+**Output:**
+
+```text
+lexicographic (string) order: 1.0.0, 1.10.0, 1.2.0, 1.9.2, 2.0.0
+  '1.10.0' lands before '1.2.0' - string order, not version order
+semantic (tuple) order:        1.0.0, 1.2.0, 1.9.2, 1.10.0, 2.0.0
+is 1.10.0 newer than 1.9.2: True
+```
+
+Any tooling that ranks registered versions - "give me the newest", "is B newer than A" - must use the tuple key. Real registries store versions as integers (MLflow) or ordered indexes (W&B) precisely to avoid this trap.
 
 ---
 
 ## Model Metadata Management
 
-### Metadata Schema
+The version number says *that* something changed; the metadata says *what*. A registration without metadata is a mystery artifact: six months later nobody can answer "which data produced this" or "why did we trust it". Store enough to reproduce and audit the model, and persist it durably - the registry's file (or database row) must survive the process that created it:
 
 ```python
-# metadata.py
-from dataclasses import dataclass, asdict
-from datetime import datetime
-from typing import Dict, Any, List
 import json
+from dataclasses import dataclass
+from datetime import datetime
 
 @dataclass
 class ModelMetadata:
-    """Comprehensive model metadata"""
-
-    # Basic Info
     model_name: str
     version: str
-    framework: str  # sklearn, tensorflow, pytorch
-
-    # Training Info
-    training_date: datetime
-    training_duration_seconds: float
+    framework: str
     training_samples: int
-    validation_samples: int
-
-    # Performance Metrics
     accuracy: float
-    precision: float
-    recall: float
-    f1_score: float
-    auc_roc: float = None
-
-    # Model Parameters
-    hyperparameters: Dict[str, Any]
-
-    # Data Info
-    feature_names: List[str]
-    target_name: str
-    data_hash: str  # For reproducibility
-
-    # Deployment Info
-    stage: str = "Development"  # Development, Staging, Production
-    deployment_date: datetime = None
-    endpoint_url: str = None
-
-    # Monitoring
-    drift_threshold: float = 0.05
-    retraining_threshold: float = 0.90
-
-    # Tags
-    tags: List[str] = None
-
-    # Notes
+    f1: float
+    hyperparameters: dict
+    feature_names: list
+    stage: str = "Development"
+    training_date: datetime = None
     notes: str = ""
 
     def to_dict(self):
-        """Convert to dictionary"""
-        data = asdict(self)
-        data['training_date'] = self.training_date.isoformat()
-        if self.deployment_date:
-            data['deployment_date'] = self.deployment_date.isoformat()
+        data = dict(self.__dict__)
+        if data["training_date"] is not None:
+            data["training_date"] = data["training_date"].isoformat()
         return data
 
-    def to_json(self):
-        """Convert to JSON"""
-        return json.dumps(self.to_dict(), indent=2)
-
     @classmethod
-    def from_json(cls, json_str):
-        """Create from JSON"""
-        data = json.loads(json_str)
-        data['training_date'] = datetime.fromisoformat(data['training_date'])
-        if data.get('deployment_date'):
-            data['deployment_date'] = datetime.fromisoformat(data['deployment_date'])
+    def from_dict(cls, data):
+        data = dict(data)
+        if data.get("training_date") is not None:
+            data["training_date"] = datetime.fromisoformat(data["training_date"])
         return cls(**data)
 
-class ModelMetadataRegistry:
-    """Manage model metadata"""
-
-    def __init__(self, storage_path="model_metadata.json"):
+class MetadataRegistry:
+    def __init__(self, storage_path):
         self.storage_path = storage_path
-        self.metadata_store = {}
+        self.store = {}
 
-    def register(self, metadata: ModelMetadata):
-        """Register model metadata"""
-        key = f"{metadata.model_name}_{metadata.version}"
-        self.metadata_store[key] = metadata
-
-        # Persist to disk
+    def register(self, md):
+        key = "%s_%s" % (md.model_name, md.version)
+        self.store[key] = md
         self._save()
+        print("registered: %s | stage %s" % (key, md.stage))
 
-        print(f"✅ Metadata registered: {key}")
-
-    def get(self, model_name: str, version: str) -> ModelMetadata:
-        """Get model metadata"""
-        key = f"{model_name}_{version}"
-        return self.metadata_store.get(key)
-
-    def list_versions(self, model_name: str) -> List[ModelMetadata]:
-        """List all versions of a model"""
-        versions = []
-
-        for key, metadata in self.metadata_store.items():
-            if metadata.model_name == model_name:
-                versions.append(metadata)
-
-        # Sort by version
-        versions.sort(key=lambda m: m.version, reverse=True)
-
-        return versions
-
-    def get_production_model(self, model_name: str) -> ModelMetadata:
-        """Get production model metadata"""
-        versions = self.list_versions(model_name)
-
-        for metadata in versions:
-            if metadata.stage == "Production":
-                return metadata
-
+    def get_production(self, model_name):
+        for md in self.store.values():
+            if md.model_name == model_name and md.stage == "Production":
+                return md
         return None
 
     def _save(self):
-        """Save metadata to disk"""
-        with open(self.storage_path, 'w') as f:
-            json.dump({
-                key: metadata.to_dict()
-                for key, metadata in self.metadata_store.items()
-            }, f, indent=2)
+        with open(self.storage_path, "w", encoding="utf-8") as f:
+            json.dump({k: m.to_dict() for k, m in self.store.items()},
+                      f, indent=2)
 
     def _load(self):
-        """Load metadata from disk"""
         try:
-            with open(self.storage_path, 'r') as f:
+            with open(self.storage_path, "r", encoding="utf-8") as f:
                 data = json.load(f)
-
-            self.metadata_store = {
-                key: ModelMetadata.from_json(json.dumps(value))
-                for key, value in data.items()
-            }
+            return {k: ModelMetadata.from_dict(v) for k, v in data.items()}
         except FileNotFoundError:
-            self.metadata_store = {}
+            return {}
+
+trained = datetime(2026, 9, 20, 14, 30)
+reg = MetadataRegistry("registry_ledger.json")
+reg.register(ModelMetadata("sentiment-bow", "1.2.0", "scikit-learn", 25000,
+                           0.842, 0.835, {"C": 1.0},
+                           ["text_len", "lexicon_score"], "Archived", trained))
+reg.register(ModelMetadata("sentiment-bow", "1.3.0", "scikit-learn", 25000,
+                           0.884, 0.871, {"C": 0.5},
+                           ["text_len", "lexicon_score", "bigrams"],
+                           "Production", trained))
+reg.register(ModelMetadata("sentiment-bow", "1.3.1", "scikit-learn", 25000,
+                           0.886, 0.873, {"C": 0.5},
+                           ["text_len", "lexicon_score", "bigrams"],
+                           "Development", trained))
+
+prod = reg.get_production("sentiment-bow")
+print("production model: v%s (accuracy %.3f)" % (prod.version, prod.accuracy))
+reloaded = reg._load()
+print("reloaded %d versions from disk" % len(reloaded))
+print("json roundtrip preserved all fields:",
+      reloaded["sentiment-bow_1.3.0"] == reg.store["sentiment-bow_1.3.0"])
 ```
+
+**Output:**
+
+```text
+registered: sentiment-bow_1.2.0 | stage Archived
+registered: sentiment-bow_1.3.0 | stage Production
+registered: sentiment-bow_1.3.1 | stage Development
+production model: v1.3.0 (accuracy 0.884)
+reloaded 3 versions from disk
+json roundtrip preserved all fields: True
+```
+
+The roundtrip equality check is the point of the block: datetimes serialize to ISO strings and reconstruct exactly, so a metadata ledger written by one process reads back faithfully in another. Fields worth keeping in a real registry beyond this schema: the training run ID (links metrics to the full run log), a data hash or dataset version (reproducibility), and the deployment history (who promoted, when, under which ticket).
+
+---
+
+## Registry Aliases
+
+The promotion mechanism is where registries earn their keep. The modern pattern is **aliases**: a named, mutable reference that points at one version. Promoting `v3` to `champion` is a single write; `v1` is not deleted or archived - it simply loses the alias. Rollback is the same write in reverse. A minimal simulation makes the mechanics visible:
+
+```python
+class Registry:
+    """Minimal registry: integer versions plus mutable named aliases."""
+
+    def __init__(self, name):
+        self.name = name
+        self._next = 1
+        self.versions = {}                    # "1" -> {"aliases": set()}
+
+    def register(self):
+        key = str(self._next)
+        self._next += 1
+        self.versions[key] = {"aliases": set()}
+        return key
+
+    def set_alias(self, version, alias):
+        """An alias points at exactly one version - reassigning is one write."""
+        for meta in self.versions.values():
+            meta["aliases"].discard(alias)
+        self.versions[version]["aliases"].add(alias)
+
+    def resolve(self, alias):
+        hits = [v for v, meta in self.versions.items()
+                if alias in meta["aliases"]]
+        return hits[0] if hits else None
+
+reg = Registry("sentiment-bow")
+for _ in range(3):
+    reg.register()
+reg.set_alias("1", "champion")
+reg.set_alias("2", "challenger")
+
+print("registered versions:", sorted(reg.versions, key=int))
+print("champion ->", reg.resolve("champion"),
+      "| challenger ->", reg.resolve("challenger"))
+
+reg.set_alias("3", "champion")                # promotion: one auditable write
+print("after promoting v3:")
+print("  champion ->", reg.resolve("champion"))
+print("  v1 still exists, it just loses the alias:",
+      ", ".join(sorted(reg.versions["1"]["aliases"])) or "(none)")
+print("  alias map:", {v: sorted(m["aliases"]) for v, m
+                       in sorted(reg.versions.items(), key=lambda kv: int(kv[0]))})
+```
+
+**Output:**
+
+```text
+registered versions: ['1', '2', '3']
+champion -> 1 | challenger -> 2
+after promoting v3:
+  champion -> 3
+  v1 still exists, it just loses the alias: (none)
+  alias map: {'1': [], '2': ['challenger'], '3': ['champion']}
+```
+
+Two aliases to keep in every production setup: `champion` (the version serving traffic) and `challenger` (the candidate being compared against it). New versions land as `challenger`, accumulate evidence, and take `champion` only when they beat it - and because promotion is an alias write, reversing a bad promotion takes seconds, not a redeploy.
+
+---
+
+## MLflow Integration
+
+MLflow ships a tracking server plus a model registry on top: training runs log params and metrics, `log_model` registers the artifact as a named model version, and aliases drive promotion. The sketch below is the full loop (this environment has no MLflow installed and no server running, so it is documentation, not a runnable block):
+
+```text
+# sketch - needs `pip install mlflow` plus a running tracking server
+import mlflow
+from mlflow.tracking import MlflowClient
+
+mlflow.set_tracking_uri("http://localhost:5000")
+client = MlflowClient()
+
+with mlflow.start_run() as run:
+    mlflow.log_params({"C": 0.5, "epochs": 10})
+    mlflow.log_metrics({"accuracy": 0.884, "f1": 0.871})
+    mlflow.sklearn.log_model(model, artifact_path="model",
+                             registered_model_name="sentiment-bow")
+# a new immutable version of "sentiment-bow" now exists, linked to this run
+
+# promotion is one auditable alias write - older versions stay intact
+client.set_registered_model_alias("sentiment-bow", "champion", "3")
+client.set_registered_model_alias("sentiment-bow", "production", "3")
+
+# consumers resolve through the alias, never a hard-coded version number
+model = mlflow.sklearn.load_model("models:/sentiment-bow@production")
+```
+
+A note on older code you will find in the wild: earlier MLflow workflows used named *stages* (`Staging`/`Production`/`Archived`) moved with `transition_model_version_stage` calls. The current MLflow documentation leads with aliases instead - "Model aliases allow you to assign a mutable, named reference to a particular version of a registered model", useful for "promoting models to experimental, staging, or production environments in a controlled and auditable way" - and resolves them through `models:/name@alias` URIs. The alias model is strictly more flexible (any number of named references, one write per promotion), and it is the same mechanism the `Registry` class above simulates.
+
+---
+
+## Weights & Biases Integration
+
+W&B splits the job in two: **artifacts** carry the model files and their lineage inside a project run, and the **W&B Registry** is the cross-project central repository they get linked into. The flow is `log_artifact` (attach files to a run) then `link_artifact` (put that version into a registry collection); W&B creates the collection on first link (sketch - `wandb` is not installed in this environment):
+
+```text
+# sketch - needs `pip install wandb` and an authenticated project
+import wandb
+
+run = wandb.init(project="sentiment-analysis", config={"C": 0.5})
+
+artifact = wandb.Artifact("sentiment-bow", type="model")
+artifact.add_file("model.pkl")
+run.log_artifact(artifact, aliases=["v3"])
+
+# link the logged version into a registry collection; the target path is
+# wandb-registry-<registry-name>/<collection> and the collection is
+# created automatically on first link
+run.link_artifact(artifact,
+                  target_path="wandb-registry-models/sentiment-prod")
+```
+
+The registry collection then holds the curated, permission-controlled versions that other teams consume, with W&B tracking lineage from the training run through to the linked registry version. Conceptually it is the same two-layer design as before: the project artifact is the training-side record, the registry collection is the promotion-facing identity - aliases/collections stand in for the champion/challenger pattern.
 
 ---
 
 ## Production Deployment
 
-### Load Model from Registry
+Serving code should never name a version directly. Pin the *alias* in the serving config; the registry resolves it to a concrete version at load time. That single indirection is what makes promotion and rollback a registry operation instead of a deployment operation:
 
-```python
-# load_model.py
+```text
+# sketch - resolve the production alias; never a bare "latest"
 import mlflow
-import joblib
-from typing import Union
 
-class ModelLoader:
-    """Load models from registry"""
+model = mlflow.sklearn.load_model("models:/sentiment-bow@production")
 
-    @staticmethod
-    def load_production_model(model_name: str):
-        """Load production model from MLflow"""
-
-        # Get production model URI
-        model_uri = f"models:/{model_name}/Production"
-
-        # Load model
-        model = mlflow.sklearn.load_model(model_uri)
-
-        print(f"✅ Loaded production model: {model_name}")
-
-        return model
-
-    @staticmethod
-    def load_staging_model(model_name: str):
-        """Load staging model from MLflow"""
-
-        model_uri = f"models:/{model_name}/Staging"
-        model = mlflow.sklearn.load_model(model_uri)
-
-        print(f"✅ Loaded staging model: {model_name}")
-
-        return model
-
-    @staticmethod
-    def load_version(model_name: str, version: str):
-        """Load specific model version"""
-
-        model_uri = f"models:/{model_name}/{version}"
-        model = mlflow.sklearn.load_model(model_uri)
-
-        print(f"✅ Loaded model: {model_name} v{version}")
-
-        return model
-
-    @staticmethod
-    def load_local_model(model_path: str):
-        """Load model from local file"""
-
-        model = joblib.load(model_path)
-
-        print(f"✅ Loaded model from: {model_path}")
-
-        return model
+# rollback is a one-line repoint of the same alias:
+#   client.set_registered_model_alias("sentiment-bow", "production", "2")
+# for air-gapped hosts, export the resolved version once:
+#   mlflow.sklearn.save_model(model, "snapshots/sentiment-bow-3")
+# and load the local snapshot where the registry is unreachable:
+#   import joblib; model = joblib.load("snapshots/sentiment-bow-3/model.pkl")
 ```
 
----
+Operating rules that keep this safe:
 
-## Related Resources
-
-- **Previous:** [6502: CI/CD for ML](./6502-CI-CD-for-ML.md)
-- **Related:** [1502: Model Drift Detection](../../phase1-infra/1500-monitoring/1502-Model-Drift-Detection.md)
-- **Experiment:** [EXP_6501: MLOps Pipeline](../../../../experiments/EXP_6501_MLOPS_PIPELINE.md)
-
+- **Pin aliases, not versions, in serving configs.** The alias indirection is the rollback mechanism; a hard-coded version number disables it.
+- **Promote through evidence, not hope.** A version becomes `challenger` first; it takes `production` when its live metrics beat the champion.
+- **Re-check drift signals against the registry metadata.** When [1502: Model Drift Detection](../../phase1-infra/1500-monitoring/1502-Model-Drift-Detection.md) fires, the registry record tells you exactly which data and parameters produced the serving version.
 
 ---
 
@@ -784,15 +438,20 @@ class ModelLoader:
 - [6501: ML Model Lifecycle Management](6501-ML-Lifecycle-Management.md)
 - [6502: CI/CD for Machine Learning](6502-CI-CD-for-ML.md)
 
+### External References
+
+- [MLflow Model Registry](https://mlflow.org/docs/latest/ml/model-registry/) — versions, metadata, and aliases with `models:/name@alias` resolution
+- [W&B Registry guide](https://docs.wandb.ai/guides/registry/) — `log_artifact` → `link_artifact` into registry collections
+- [Semantic Versioning 2.0.0](https://semver.org/) — the MAJOR/MINOR/PATCH contract the bump rules borrow from
+
 ---
 
 ## Next Steps
 
-- Phase 6 Complete! Next: **[Phase 7: Agents](../../phase7-agentic/)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Review the pipeline around the registry: **[6502: CI/CD for ML](6502-CI-CD-for-ML.md)** wires registration and promotion into the delivery flow
+- Phase 6 complete! Next: **[Phase 7: Agents](../../phase7-agentic/README.md)**
+- Assessment: **[assessment/PRACTICE.md](./assessment/PRACTICE.md)** and **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 
----
----
+**Related:** [6501](6501-ML-Lifecycle-Management.md) — the lifecycle stage this registry serves; [6502](6502-CI-CD-for-ML.md) — automates registration and promotion; [1502](../../phase1-infra/1500-monitoring/1502-Model-Drift-Detection.md) — drift signals that trigger rollbacks; [EXP_6501_MLOPS_PIPELINE](../../../../experiments/EXP_6501_MLOPS_PIPELINE.md)
 
-**Status:** ✅ Complete
-**Next Steps:** Implement AI Security measures
+**Experiment:** [EXP_6501_MLOPS_PIPELINE.md](../../../../experiments/EXP_6501_MLOPS_PIPELINE.md) — nearest-relevant pipeline experiment; the registry mechanics here are simulated in-process, and the MLflow/W&B flows above want a tracking server or an authenticated W&B project
