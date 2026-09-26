@@ -3,7 +3,7 @@ Document ID: 2202
 Title: TensorFlow XLA and Compiler Optimizations
 Phase: 2
 Module: 2200
-Last Updated: 2026-09-24
+Last Updated: 2026-09-26
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 4 hours
@@ -21,9 +21,9 @@ Tags: ['frameworks', 'pytorch', 'tensorflow', 'cuda']
 - [What is XLA?](#what-is-xla)
 - [Enabling XLA](#enabling-xla)
 - [Operation Fusion](#operation-fusion)
-- [HLO (High-Level Optimizer) Instructions](#hlo-high-level-optimizer-instructions)
+- [HLO (High-Level Operations) Instructions](#hlo-high-level-operations-instructions)
 - [Memory Optimization](#memory-optimization)
-- [XLA for a mini-PC (11GB-class GPU)](#xla-for-a-mini-pc-11gb-class-gpu)
+- [GPU Compilation and Tensor Cores](#gpu-compilation-and-tensor-cores)
 - [Performance Profiling](#performance-profiling)
 - [XLA Best Practices](#xla-best-practices)
 - [Troubleshooting XLA](#troubleshooting-xla)
@@ -38,40 +38,40 @@ After completing this lesson, you will be able to:
 - Explain What is XLA
 - Explain Enabling XLA
 - Explain Operation Fusion
-- Explain HLO (High-Level Optimizer) Instructions
+- Explain HLO (High-Level Operations) Instructions
 - Explain Memory Optimization
-- Explain XLA for a mini-PC (11GB-class GPU)
+- Explain GPU Compilation and Tensor Cores
 
 ---
 
 ## Abstract
-XLA (Accelerated Linear Algebra) is a compiler-based linear algebra executor that optimizes TensorFlow computations. It fuses operations, reduces memory bandwidth usage, and accelerates execution on an 11GB-class GPU.
+XLA (Accelerated Linear Algebra) is an open-source machine-learning compiler, integrated into TensorFlow, PyTorch, and JAX. It fuses operations, optimizes buffer allocation, and lowers computations to device-specific code through LLVM.
 
 ## What is XLA?
 
 ### XLA Compilation Pipeline
 ```text
-┌─────────────────────────────────────────────────────────┐
-│                    TensorFlow Graph                      │
-│  (High-level ops: MatMul, Add, ReLU, ...)               │
-└─────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────┐
+│              Framework graph (TF / PyTorch / JAX)         │
+│  (High-level ops: MatMul, Add, ReLU, ...)                │
+└──────────────────────────────────────────────────────────┘
                           ↓
-┌─────────────────────────────────────────────────────────┐
-│                    XLA HLO (High Level Optimizer)        │
-│  (Lower-level ops: DotGeneral, Slice, Reduce)           │
-└─────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────┐
+│            HLO (High-Level Operations) IR                 │
+│  StableHLO: versioned op set — Dot, Slice, Reduce, ...   │
+└──────────────────────────────────────────────────────────┘
                           ↓
-┌─────────────────────────────────────────────────────────┐
-│                    XLA Optimizer                         │
-│  - Operation fusion                                     │
-│  - Buffer allocation optimization                       │
-│  - Loop rewriting                                       │
-└─────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────┐
+│                    XLA Optimizer                          │
+│  - Common subexpression elimination                      │
+│  - Operation fusion                                      │
+│  - Buffer analysis / allocation                          │
+└──────────────────────────────────────────────────────────┘
                           ↓
-┌─────────────────────────────────────────────────────────┐
-│                    Device-specific Backend              │
-│  (PTX for NVIDIA GPUs, LLVM for CPU)                    │
-└─────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────┐
+│               Device-Specific Backend Codegen             │
+│  (NVIDIA GPUs via LLVM NVPTX, CPUs via LLVM)             │
+└──────────────────────────────────────────────────────────┘
 ```
 
 ### Key Benefits
@@ -88,19 +88,17 @@ XLA (Accelerated Linear Algebra) is a compiler-based linear algebra executor tha
 ```python
 import tensorflow as tf
 
-# Method 1: jit_compile decorator
+# Method 1: compile one function with jit_compile=True
+layer = tf.keras.layers.Dense(10)
+
 @tf.function(jit_compile=True)
 def my_model(x):
-    x = tf.nn.dense(x, 128)
-    x = tf.nn.relu(x)
-    x = tf.nn.dense(x, 10)
-    return x
+    return tf.nn.relu(layer(x))
 
-# Method 2: Global JIT compilation
+# Method 2: process-wide setting, before functions are built
 tf.config.optimizer.set_jit(True)
-
-# Method 3: Auto-clustering (automatic XLA)
-tf.config.optimizer.set_experimental_options({'auto_clustering': True})
+# The milder variant lets the compiler pick the clusters itself:
+# tf.config.optimizer.set_experimental_options({"auto_clustering": True})
 ```
 
 ### In JAX
@@ -126,21 +124,24 @@ result = jitted_function(jnp.ones((1000, 1000)))
 
 ### Without XLA (Separate Kernels)
 ```python
+import tensorflow as tf
+
 def no_xla(x):
-    # Each op is a separate kernel launch
-    y = x + 1      # Kernel 1
-    y = y * 2      # Kernel 2
-    y = y ** 2     # Kernel 3
+    # Each op runs as its own kernel launch
+    y = x + 1      # kernel 1: reads x, writes y
+    y = y * 2      # kernel 2: reads y, writes a new y
+    y = y ** 2     # kernel 3: reads y, writes the final y
     return y
 
-# Memory traffic:
-# x → [GPU] → y → [CPU] → [GPU] → y → [CPU] → [GPU] → y
-# ↑         ↑        ↑        ↑
-# Read     Write    Read     Write...
+# Device traffic: every intermediate is written to and read back
+# from device memory - 3 kernel launches, 6 full passes of
+# memory bandwidth across 3 temporary buffers.
 ```
 
 ### With XLA (Fused Kernel)
 ```python
+import tensorflow as tf
+
 @tf.function(jit_compile=True)
 def with_xla(x):
     y = x + 1
@@ -148,244 +149,282 @@ def with_xla(x):
     y = y ** 2
     return y
 
-# Memory traffic:
-# x → [GPU] → y (all operations in single kernel)
+# One fused kernel: x is read from memory once, the result is
+# written once - intermediates live in registers/shared memory.
 ```
 
 ### Fusion Example Visualization
 ```text
 Original:
-┌─────┐   ┌─────┐   ┌─────┐   ┌─────┐
-│  +  │ → │  *  │ → │  ^  │ → │  +  │
-└─────┘   └─────┘   └─────┘   └─────┘
-GPU mem   GPU mem   GPU mem   GPU mem
+┌─────┐   ┌─────┐   ┌─────┐
+│  +  │ → │  *  │ → │  ^  │
+└─────┘   └─────┘   └─────┘
+GPU mem   GPU mem   GPU mem
+(x+1)      (×2)      (²)
 
 XLA Fused:
-┌───────────────────────────────────┐
-│     (x + 1) * 2 ** 2 + 3          │
-└───────────────────────────────────┘
-         GPU mem (once!)
+┌─────────────────────────────┐
+│     ((x + 1) * 2) ** 2      │
+└─────────────────────────────┘
+      GPU mem (once!)
 ```
 
-## HLO (High-Level Optimizer) Instructions
+## HLO (High-Level Operations) Instructions
 
-### Common HLO Operations
+### Inspecting Compiled HLO
 ```python
 import tensorflow as tf
 
-# Compile and inspect HLO
 @tf.function(jit_compile=True)
 def my_function(x, y):
     return tf.matmul(x, y) + tf.reduce_sum(x, axis=1)
 
-# Get HLO graph
-log_dir = "/tmp/xla_logs"
-tf.debugging.experimental.enable_dump_debug_info(
-    log_dir,
-    tensor_debug_mode="FULL_HEALTH"
-)
+# Get the compiler IR for concrete input shapes - works only for
+# functions compiled with jit_compile=True, and only for shapes
+# known at compile time
+x = tf.random.normal((32, 64))
+y = tf.random.normal((64, 32))
 
-# Or use XLA debugger
-from tensorflow.compiler.xla import xla_data_pb2
+hlo = my_function.experimental_get_compiler_ir(x, y)(stage="hlo")
+print(hlo.splitlines()[0])          # HLO module header
 
-# HLO ops include:
-# - DotGeneral: General dot product
+optimized = my_function.experimental_get_compiler_ir(x, y)(stage="optimized_hlo")
+graphviz = my_function.experimental_get_compiler_ir(x, y)(stage="optimized_hlo_dot")
+
+# HLO ops you will see in the dumps:
+# - Dot / DotGeneral: matrix products
 # - Slice: Array slicing
 # - Reduce: Reduction operations
 # - Broadcast: Broadcasting operations
 ```
 
-### Manual HLO Construction
+### Manual HLO Example
 ```text
-HLO: add {
-  x = f32[100,100] parameter(0)
-  y = f32[100,100] parameter(1)
-  ROOT add = f32[100,100] add(x, y)
+HloModule add_module
+
+ENTRY add {
+  x = f32[100,100]{1,0} parameter(0)
+  y = f32[100,100]{1,0} parameter(1)
+  ROOT add = f32[100,100]{1,0} add(x, y)
 }
 
-This gets compiled to optimized PTX for the GPU
+The backend lowers this HLO text through LLVM to device code -
+for NVIDIA GPUs that is the LLVM NVPTX target.
 ```
 
 ## Memory Optimization
 
 ### Buffer Elimination
 ```python
-# Without XLA: Each op creates intermediate buffer
+import tensorflow as tf
+
+# Without XLA: each op may materialize its own intermediate buffer
 def inefficient(x):
-    a = x + 1      # Allocate buffer a
-    b = a * 2      # Allocate buffer b
-    c = b - 3      # Allocate buffer c
+    a = x + 1      # buffer for a
+    b = a * 2      # buffer for b
+    c = b - 3      # buffer for c
     return c
 
-# With XLA: In-place where possible
+# With XLA: buffer analysis reuses and aliases allocations where
+# it is safe, so fewer live temporaries
 @tf.function(jit_compile=True)
 def efficient(x):
-    a = x + 1      # Reuse x buffer
-    b = a * 2      # Reuse a buffer
-    c = b - 3      # Reuse b buffer
+    a = x + 1
+    b = a * 2
+    c = b - 3
     return c
 ```
 
 ### Shape Specialization
 ```python
-# XLA compiles for specific shapes
+import tensorflow as tf
+
+# XLA compiles for specific input shapes
 @tf.function(jit_compile=True)
 def process_batch(x):
-    return tf.nn.dense(x, 128)
+    return tf.matmul(x, x, transpose_b=True)
 
 # First call with shape (32, 64)
 x = tf.random.normal((32, 64))
 y = process_batch(x)  # Compilation triggered
 
-# Same shape: fast
+# Same shape: fast (cached compiled executable)
 x = tf.random.normal((32, 64))
-y = process_batch(x)  # Uses compiled version
+y = process_batch(x)
 
 # Different shape: recompile!
 x = tf.random.normal((64, 64))
-y = process_batch(x)  # New compilation
+y = process_batch(x)
 ```
 
 ### Static Shape Recommendations
 ```python
-# Bad: Dynamic shapes (causes recompilation)
+import tensorflow as tf
+
+# Bad: the batch dimension is dynamic, so every new batch size
+# triggers a fresh compilation
 @tf.function(jit_compile=True)
 def bad_varying_batch(x):
-    # Different batch sizes → recompilation
-    return tf.matmul(x, x.T)
+    return tf.matmul(x, tf.transpose(x))
 
-# Good: Fixed batch size or padding
+# Good: pad OUTSIDE the compiled function, compile once per
+# fixed shape
 @tf.function(jit_compile=True)
 def good_fixed_batch(x):
-    # Pad to fixed size if needed
-    batch_size = tf.shape(x)[0]
-    padded = tf.pad(x, [[0, 64 - batch_size], [0, 0]])
-    result = tf.matmul(padded, padded.T)
-    return result[:batch_size, :batch_size]
+    # x is always (64, D) here
+    return tf.matmul(x, tf.transpose(x))
+
+def pad_to_batch(x, batch=64):
+    # runs eagerly - never inside the jitted region
+    deficit = batch - tf.shape(x)[0]
+    return tf.pad(x, [[0, deficit], [0, 0]])
 ```
 
-## XLA for a mini-PC (11GB-class GPU)
+## GPU Compilation and Tensor Cores
 
-### GPU-Specific Optimizations
+### GPU-Specific Configuration
 ```python
-# Configure TensorFlow for optimal GPU performance
-gpus = tf.config.experimental.list_physical_devices('GPU')
+import tensorflow as tf
+
+gpus = tf.config.list_physical_devices('GPU')
 
 if gpus:
     try:
-        # Enable memory growth (don't allocate all VRAM)
+        # Option A: memory growth - TF allocates VRAM as needed
+        # instead of grabbing (nearly) all of it up front
         for gpu in gpus:
             tf.config.experimental.set_memory_growth(gpu, True)
-
-        # Enable XLA
-        tf.config.optimizer.set_jit(True)
-
-        # Set virtual device configuration
-        tf.config.experimental.set_virtual_device_configuration(
-            gpus[0],
-            [tf.config.experimental.VirtualDeviceConfiguration(
-                memory_limit=1024)]  # 1GB per virtual GPU
-        )
     except RuntimeError as e:
+        # Device configuration is locked once TF initializes the
+        # GPU - these calls must run before any op touches it
         print(e)
+
+    # Option B (mutually exclusive with A): cap VRAM through a
+    # virtual device instead of using memory growth
+    # tf.config.experimental.set_virtual_device_configuration(
+    #     gpus[0],
+    #     [tf.config.experimental.VirtualDeviceConfiguration(memory_limit=1024)]
+    # )
+
+    tf.config.optimizer.set_jit(True)   # XLA on
 ```
 
 ### Tensor Core Utilization
+Matmuls in FP16/BF16 with dimensions divisible by 8 can run on Tensor Cores; both cuBLAS and the XLA GPU backend exploit that alignment.
+
 ```python
-XLA automatically uses Tensor Cores when:
-1. Data type is FP16 or BF16
-2. Dimensions are multiples of 8
-3. Operations are matrix multiplications
+import tensorflow as tf
 
 @tf.function(jit_compile=True)
 def tensor_core_friendly(x):
     x = tf.cast(x, tf.float16)  # Use FP16
     return tf.matmul(x, x, transpose_b=True)
 
-# Ensure dimensions are multiples of 8
+# Keep dimensions multiples of 8
 batch_size = 32
 hidden_dim = 128  # Both divisible by 8
+
+x = tf.random.normal((batch_size, hidden_dim))
+scores = tensor_core_friendly(x)   # (32, 32) similarity matrix
 ```
 
 ## Performance Profiling
 
 ### Using TensorBoard Profiler
 ```python
-# Set up profiling
+import tensorflow as tf
+
+layer = tf.keras.layers.Dense(128)
+
+@tf.function(jit_compile=True)
+def step(x):
+    return tf.nn.relu(layer(x))
+
+inputs = tf.random.normal((128, 128))
+step(inputs)  # warmup: the one-time XLA compilation lands here
+
 tf.profiler.experimental.start('/tmp/xla_profile')
-
-# Run model
 for _ in range(100):
-    result = model(inputs)
-
+    result = step(inputs)
 tf.profiler.experimental.stop()
 
 # View in TensorBoard
 # tensorboard --logdir=/tmp/xla_profile
 
 # Look for:
-# - XLA ops (fused kernels)
-# - Kernel execution time
-# - Memory usage
+# - Fused kernels replacing many small ops
+# - Per-kernel execution time
+# - Memory traffic between kernels
 ```
 
 ### Benchmark Comparison
 ```python
 import time
+import tensorflow as tf
 
-def benchmark(model, x, n_runs=100):
-    # Warmup
-    for _ in range(10):
-        _ = model(x)
+layer = tf.keras.layers.Dense(256)
 
-    # Time it
-    start = time.time()
+def plain_step(x):                # eager: one kernel launch per op
+    return tf.nn.relu(layer(x))
+
+xla_step = tf.function(jit_compile=True)(plain_step)
+
+x = tf.random.normal((256, 256))
+plain_step(x)
+xla_step(x)   # warmup: absorbs the one-time XLA compilation
+
+def benchmark(fn, x, n_runs=100):
+    start = time.perf_counter()
     for _ in range(n_runs):
-        _ = model(x)
-    elapsed = time.time() - start
+        out = fn(x)
+    out.numpy()   # sync the device queue before reading the clock
+    return (time.perf_counter() - start) / n_runs
 
-    return elapsed / n_runs
-
-# Compare
-xla_model = tf.function(jit_compile=True)(plain_model)
-
-no_xla_time = benchmark(plain_model, inputs)
-xla_time = benchmark(xla_model, inputs)
+no_xla_time = benchmark(plain_step, x)
+xla_time = benchmark(xla_step, x)
 
 print(f"Without XLA: {no_xla_time*1000:.2f}ms")
 print(f"With XLA: {xla_time*1000:.2f}ms")
-print(f"Speedup: {no_xla_time/xla_time:.2f}x")
+# Tiny graphs can tie: XLA pays off on many-op graphs and
+# amortized repeated calls, and costs compile time up front.
 ```
 
 ## XLA Best Practices
 
 ### 1. Use tf.function
 ```python
-# Always decorate performance-critical code
+import tensorflow as tf
+
+# Always compile performance-critical code
+dense = tf.keras.layers.Dense(256)
+
 @tf.function(jit_compile=True)
 def fast_layer(x):
-    return tf.nn.dense(x, 256)
+    return tf.nn.relu(dense(x))
 ```
 
-### 2. Avoid Python Control Flow
+### 2. Python Control Flow and AutoGraph
 ```python
-# Bad: Python if statement
-@tf.function
-def bad(x):
-    if x > 0:  # Static condition, not traced
-        return x * 2
-    else:
-        return x * 3
+import tensorflow as tf
 
-# Good: TensorFlow control flow
+# A Python `if` over a Tensor is not a plain Python branch under
+# @tf.function: AutoGraph rewrites it into tf.cond and BOTH
+# branches are baked into the graph - with jit_compile=True both
+# are compiled too. Fine for small models; costly if the branches
+# are large.
 @tf.function
-def good(x):
-    return tf.cond(x > 0, lambda: x * 2, lambda: x * 3)
+def autograph_branch(x):
+    if x > 0:
+        return x * 2
+    return x * 3   # compiled as the other tf.cond branch
 ```
 
 ### 3. Minimize tf.py_function
 ```python
-# Bad: Python code breaks XLA
+import tensorflow as tf
+
+# Bad: Python code has no XLA lowering - ops after it cannot be
+# clustered with ops before it
 @tf.function
 def bad(x):
     return tf.py_function(lambda x: x.numpy() + 1, [x], tf.float32)
@@ -398,12 +437,16 @@ def good(x):
 
 ### 4. Be Careful with Shapes
 ```python
-# Use static shapes when possible
+import tensorflow as tf
+
+# Fully static shapes compile best - a None batch dimension is
+# a different compilation for every batch size
+filters = tf.random.normal((3, 3, 3, 16))  # (kH, kW, in, out)
+
 @tf.function(jit_compile=True)
 def fixed_shape(x):
-    # Specify shape if known
-    x = tf.ensure_shape(x, (None, 224, 224, 3))
-    return tf.nn.conv2d(x, filters, strides=[1,1,1,1], padding='SAME')
+    x = tf.ensure_shape(x, (32, 224, 224, 3))
+    return tf.nn.conv2d(x, filters, strides=[1, 1, 1, 1], padding='SAME')
 ```
 
 ## Troubleshooting XLA
@@ -412,41 +455,61 @@ def fixed_shape(x):
 
 | Issue | Cause | Solution |
 |-------|-------|----------|
-| Recompilation overhead | Varying input shapes | Pad to fixed shape |
-| Out of memory | Large intermediate buffers | Use gradient checkpointing |
-| Slow compilation | Complex graph | Simplify or pre-compile |
+| Recompilation overhead | Varying input shapes | Pad to fixed shape outside the jitted function |
+| Out of memory | Large intermediate buffers | Smaller batch, or tf.recompute_grad |
+| Slow compilation | Complex graph | Simplify, or compile once and reuse the executable |
 | Incorrect results | Unsupported ops | Rewrite using supported ops |
 
 ### Checking Compilation
 ```python
-# Check if XLA is being used
-tf.debugging.set_log_device_placement(True)
+import tensorflow as tf
 
-# Look for "XLA" in device placement logs
-# Example: "Executing op MatMul in device /job:localhost/replica:0/task:0/device:GPU:0 XLA_GPU"
+@tf.function(jit_compile=True)
+def fused(x):
+    return tf.reduce_sum(tf.sin(x) * tf.cos(x))
+
+x = tf.random.normal((8, 8))
+
+# 1. Compilation announces itself in the log:
+#    "Compiled cluster using XLA!"
+fused(x)
+
+# 2. Compiler IR exists only for compiled functions - this raises
+#    if jit_compile was not actually in effect
+hlo = fused.experimental_get_compiler_ir(x)(stage="hlo")
+print(hlo.splitlines()[0])   # HLO module header
 ```
 
 ---
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related Documents
 
-- [2201: PyTorch Computational Graphs and Dynamic Execution](2201-PyTorch-Computational-Graphs.md)
-- [2203: CUDA Kernel Programming and GPU Architecture](2203-CUDA-Kernel-Syb-Level.md)
+- [2201: PyTorch Computational Graphs and Dynamic Execution](./2201-PyTorch-Computational-Graphs.md)
+- [2203: CUDA Kernel Programming and GPU Architecture](./2203-CUDA-Kernel-Syb-Level.md)
+- [2102: Backpropagation and Automatic Differentiation](../2100-calculus/2102-Backpropagation-and-Derivatives.md)
+
+### External References
+
+- [XLA — OpenXLA documentation](https://openxla.org/xla)
+- [XLA Architecture — OpenXLA documentation](https://openxla.org/xla/architecture)
+- [Using XLA with tf.function — OpenXLA tutorial](https://openxla.org/xla/tf2xla/tutorials/jit_compile)
+- [Better performance with tf.function — TensorFlow guide](https://www.tensorflow.org/guide/function)
 
 ---
 
 ## Next Steps
 
-- Continue with: **[2203: CUDA Kernels](./2203-CUDA-Kernel-Syb-Level.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Continue with: **[2203: CUDA Kernel Programming and GPU Architecture](./2203-CUDA-Kernel-Syb-Level.md)**
+- Next Module: **[2300: Framework Engineering](../2300-framework-engineering/)**
+- Assessment: **[2200: Frameworks - Quiz](./assessment/QUIZ.md)**
 
 ---
 
-**Related Documents:**
-- [2201: PyTorch Graphs](./2201-PyTorch-Computational-Graphs.md)
-- [2203: CUDA Kernels](./2203-CUDA-Kernel-Syb-Level.md)
-- [1202: GPU Passthrough (IOMMU/VFIO)](../../phase1-infra/1200-virtualization/1202-TB3-UT3G-Passthrough.md)
+**Related:**
+- [2102: Backpropagation and Automatic Differentiation](../2100-calculus/2102-Backpropagation-and-Derivatives.md)
+- [2201: PyTorch Computational Graphs and Dynamic Execution](./2201-PyTorch-Computational-Graphs.md)
+- [2203: CUDA Kernel Programming and GPU Architecture](./2203-CUDA-Kernel-Syb-Level.md)
 
-**Experiment Template:** [EXP_2202: TensorFlow XLA](../../../../experiments/EXP_2202_TENSORFLOW_XLA.md)
+**Experiment:** [EXP-2202: TensorFlow XLA Optimization](../../../../experiments/EXP_2202_TENSORFLOW_XLA.md)
