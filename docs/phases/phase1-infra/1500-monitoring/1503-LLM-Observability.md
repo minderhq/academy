@@ -3,7 +3,7 @@ Document ID: 1503
 Title: LLM Observability
 Phase: 1
 Module: 1500
-Last Updated: 2026-09-24
+Last Updated: 2026-09-26
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -13,12 +13,6 @@ Tags: ['infrastructure', 'monitoring', 'observability', 'prometheus']
 ---
 
 # 1503: LLM Observability
-
-**Project:** AI Engineering Curriculum
-**Phase:** [1500] Monitoring
-**Last Updated:** 2026-02-04
-**Status:** Complete
-**Estimated Time:** 2 hours
 
 ---
 
@@ -32,7 +26,6 @@ Tags: ['infrastructure', 'monitoring', 'observability', 'prometheus']
 - [Context Window Monitoring](#context-window-monitoring)
 - [Cost Optimization](#cost-optimization)
 - [Production Checklist](#production-checklist)
-- [Related Resources](#related-resources)
 - [References](#references)
 
 ---
@@ -64,13 +57,13 @@ LLM observability focuses on monitoring language model specific metrics includin
 ├─────────────────────────────────────────────────────────────────────────┤
 │                                                                         │
 │  ┌──────────────────────────────────────────────────────────────────┐   │
-│  │  PERFORMANCE METRICS                                              │   │
+│  │  PERFORMANCE METRICS                                             │   │
 │  ├──────────────────────────────────────────────────────────────────┤   │
 │  │  • Time to First Token (TTFT)                                    │   │
 │  │  • Tokens per Second (TPS)                                       │   │
 │  │  • End-to-End Latency                                            │   │
-│  │  • Queue Wait Time                                              │   │
-│  │  • Request Throughput                                           │   │
+│  │  • Queue Wait Time                                               │   │
+│  │  • Request Throughput                                            │   │
 │  └──────────────────────────────────────────────────────────────────┘   │
 │                                                                         │
 │  ┌──────────────────────────────────────────────────────────────────┐   │
@@ -78,27 +71,27 @@ LLM observability focuses on monitoring language model specific metrics includin
 │  ├──────────────────────────────────────────────────────────────────┤   │
 │  │  • Input Tokens (prompt length)                                  │   │
 │  │  • Output Tokens (completion length)                             │   │
-│  │  • Total Tokens                                                 │   │
-│  │  • Cache Hit Rate (KV cache)                                    │   │
-│  │  • Context Window Usage                                         │   │
+│  │  • Total Tokens                                                  │   │
+│  │  • Cache Hit Rate (KV cache)                                     │   │
+│  │  • Context Window Usage                                          │   │
 │  └──────────────────────────────────────────────────────────────────┘   │
 │                                                                         │
 │  ┌──────────────────────────────────────────────────────────────────┐   │
-│  │  COST METRICS                                                     │   │
+│  │  COST METRICS                                                    │   │
 │  ├──────────────────────────────────────────────────────────────────┤   │
-│  │  • Cost per Request                                             │   │
-│  │  • Cost per 1K Tokens                                           │   │
-│  │  • Total Daily Cost                                             │   │
-│  │  • Cost by User/Application                                     │   │
+│  │  • Cost per Request                                              │   │
+│  │  • Cost per 1K Tokens                                            │   │
+│  │  • Total Daily Cost                                              │   │
+│  │  • Cost by User/Application                                      │   │
 │  └──────────────────────────────────────────────────────────────────┘   │
 │                                                                         │
 │  ┌──────────────────────────────────────────────────────────────────┐   │
 │  │  QUALITY METRICS                                                 │   │
 │  ├──────────────────────────────────────────────────────────────────┤   │
-│  │  • Response Relevance                                           │   │
-│  │  • Hallucination Rate                                           │   │
-│  │  • Safety Filter Triggers                                       │   │
-│  │  • User Satisfaction Scores                                     │   │
+│  │  • Response Relevance                                            │   │
+│  │  • Hallucination Rate                                            │   │
+│  │  • Safety Filter Triggers                                        │   │
+│  │  • User Satisfaction Scores                                      │   │
 │  └──────────────────────────────────────────────────────────────────┘   │
 └─────────────────────────────────────────────────────────────────────────┘
 ```
@@ -128,19 +121,21 @@ class LLMRequestMetrics:
     input_tokens: int
     output_tokens: int
     total_tokens: int
-    cache_hit_tokens: int = 0
 
     # Timing (ms)
     time_to_first_token: float
     time_per_output_token: float
     total_latency: float
-    queue_time: float = 0.0
 
     # Throughput
     tokens_per_second: float
 
     # Cost
     cost: float
+
+    # Optional fields (dataclasses require defaults after non-default fields)
+    queue_time: float = 0.0
+    cache_hit_tokens: int = 0
 
 class LLMMetricsCollector:
     """Collect LLM-specific metrics"""
@@ -159,14 +154,17 @@ class LLMMetricsCollector:
         response: str,
         start_time: float,
         first_token_time: Optional[float] = None,
-        end_time: Optional[float] = None
+        end_time: Optional[float] = None,
+        cache_hit_tokens: int = 0
     ) -> LLMRequestMetrics:
         """Record metrics for a request"""
 
         if end_time is None:
             end_time = time.time()
 
-        # Count tokens (approximate)
+        # Count tokens (approximate: whitespace words. A word is often more
+        # than one BPE token, so this undercounts; use the model's tokenizer,
+        # e.g. tiktoken for OpenAI models, in production.)
         input_tokens = len(prompt.split())
         output_tokens = len(response.split())
         total_tokens = input_tokens + output_tokens
@@ -182,8 +180,10 @@ class LLMMetricsCollector:
         generation_time = end_time - (first_token_time or start_time)
         time_per_output_token_ms = (generation_time * 1000) / output_tokens if output_tokens > 0 else 0
 
-        # Throughput
-        tokens_per_second = total_tokens / (end_time - start_time)
+        # Throughput: decode rate = output tokens over the generation window.
+        # total_tokens / total_duration would fold prompt processing into the
+        # number and inflate it several-fold on long prompts.
+        tokens_per_second = output_tokens / generation_time if generation_time > 0 else 0
 
         # Cost calculation
         cost = self._calculate_cost(model_name, input_tokens, output_tokens)
@@ -195,6 +195,7 @@ class LLMMetricsCollector:
             input_tokens=input_tokens,
             output_tokens=output_tokens,
             total_tokens=total_tokens,
+            cache_hit_tokens=cache_hit_tokens,
             time_to_first_token=time_to_first_token_ms,
             time_per_output_token=time_per_output_token_ms,
             total_latency=total_latency_ms,
@@ -225,8 +226,10 @@ class LLMMetricsCollector:
 ```python
 # llm_monitor.py
 
-from prometheus_client import Histogram, Gauge, Counter
+from prometheus_client import Histogram, Gauge, Counter, start_http_server
 import time
+
+from llm_metrics import LLMMetricsCollector, LLMRequestMetrics
 
 # Prometheus metrics
 llm_request_duration = Histogram(
@@ -236,7 +239,7 @@ llm_request_duration = Histogram(
 )
 
 llm_time_to_first_token = Histogram(
-    'llm_time_to_first_token_milliseconds',
+    'llm_time_to_first_token_seconds',
     'Time to first token',
     ['model_name']
 )
@@ -328,7 +331,7 @@ class LLMObserver:
                 status="error"
             ).observe(end_time - start_time)
 
-            raise e
+            raise
 
     def _publish_metrics(self, metrics: LLMRequestMetrics, status: str):
         """Publish metrics to Prometheus"""
@@ -338,9 +341,12 @@ class LLMObserver:
             status=status
         ).observe(metrics.total_latency / 1000)
 
-        llm_time_to_first_token.labels(
-            model_name=self.model_name
-        ).observe(metrics.time_to_first_token)
+        # Non-streaming requests have no first-token timestamp (stored 0.0);
+        # observing 0.0 would pollute the histogram with fake sub-ms samples.
+        if metrics.time_to_first_token > 0:
+            llm_time_to_first_token.labels(
+                model_name=self.model_name
+            ).observe(metrics.time_to_first_token / 1000)
 
         llm_tokens_per_second.labels(
             model_name=self.model_name
@@ -359,6 +365,18 @@ class LLMObserver:
         llm_cost_total.labels(
             model_name=self.model_name
         ).inc(metrics.cost)
+
+        if metrics.total_tokens > 0:
+            llm_cache_hit_rate.labels(
+                model_name=self.model_name
+            ).set(metrics.cache_hit_tokens / metrics.total_tokens)
+
+
+if __name__ == "__main__":
+    start_http_server(8002)
+    print("LLM observability metrics exposed on :8002/metrics")
+    while True:
+        time.sleep(3600)
 ```
 
 ---
@@ -369,6 +387,9 @@ class LLMObserver:
 
 ```python
 # quality_metrics.py
+
+from difflib import SequenceMatcher
+from typing import Optional
 
 class LLMQualityMonitor:
     """Monitor LLM response quality"""
@@ -430,8 +451,6 @@ class LLMQualityMonitor:
     def _similarity(self, text1: str, text2: str) -> float:
         """Calculate text similarity"""
 
-        from difflib import SequenceMatcher
-
         return SequenceMatcher(None, text1, text2).ratio()
 ```
 
@@ -439,6 +458,8 @@ class LLMQualityMonitor:
 
 ```python
 # hallucination_detector.py
+
+import re
 
 class HallucinationDetector:
     """Detect potential hallucinations in LLM responses"""
@@ -476,10 +497,12 @@ class HallucinationDetector:
             if not self._has_citations(response):
                 indicators['indicators'].append('specific_without_sources')
 
-        # Indicator 3: Contradiction with knowledge base
+        # Indicator 3: Unsupported by knowledge base. The substring check
+        # cannot detect true contradiction - it only knows whether any known
+        # fact appears verbatim in the response.
         if self.knowledge_base:
-            if self._contradicts_knowledge(response):
-                indicators['indicators'].append('contradicts_knowledge')
+            if self._unsupported_by_knowledge(response):
+                indicators['indicators'].append('unsupported_by_knowledge')
                 indicators['is_hallucination'] = True
 
         # Indicator 4: Implausible numbers
@@ -499,8 +522,6 @@ class HallucinationDetector:
         """Check for specific factual claims"""
 
         # Look for patterns like: "According to X, ..." or "In year Y, ..."
-        import re
-
         specific_patterns = [
             r'\d{4}',  # Years
             r'\d+\.\d+%',  # Percentages
@@ -514,21 +535,23 @@ class HallucinationDetector:
     def _has_citations(self, response: str) -> bool:
         """Check if response has citations"""
 
+        # Anchored patterns: a bare parenthetical like "(maybe)" is not a
+        # citation, and treating "according to" as a citation would let the
+        # same phrase be both the un-sourced claim and the source that clears it.
         citation_patterns = [
-            r'\[.*?\]',  # [1], [source]
-            r'\(.*?\)',  # (Author, Year)
-            r'source:',
-            r'ccording to'
+            r'\[\d+\]',         # [1], [12]
+            r'\(\w+, \d{4}\)',  # (Author, Year)
+            r'source:'
         ]
 
-        import re
         return any(re.search(pattern, response.lower()) for pattern in citation_patterns)
 
-    def _contradicts_knowledge(self, response: str) -> bool:
-        """Check if response contradicts knowledge base"""
+    def _unsupported_by_knowledge(self, response: str) -> bool:
+        """Check if response contains nothing from the knowledge base"""
 
-        # Simplified: check for opposite statements
-        # In production, use semantic similarity
+        # Absence of supporting evidence is NOT the same as contradiction.
+        # Verify with semantic similarity (or an NLI model) in production
+        # before treating this flag as decisive.
 
         for fact in self.knowledge_base:
             if fact.lower() in response.lower():
@@ -539,8 +562,6 @@ class HallucinationDetector:
     def _has_implausible_numbers(self, response: str) -> bool:
         """Check for implausible numbers"""
 
-        import re
-
         # Extract percentages
         percentages = re.findall(r'\d+\.?\d*%', response)
 
@@ -549,8 +570,9 @@ class HallucinationDetector:
             if value > 100 or value < 0:
                 return True
 
-        # Extract years
-        years = re.findall(r'\d{4}', response)
+        # Extract years - the \b anchors keep 4-digit windows inside longer
+        # numbers ("1000000" -> "1000") from being read as years
+        years = re.findall(r'\b\d{4}\b', response)
 
         for year in years:
             year_int = int(year)
@@ -616,10 +638,14 @@ class ContextWindowMonitor:
 
         utilizations = [u['utilization'] for u in self.usage_history]
 
+        # Nearest-rank percentile. The naive int(n * 0.95) index returns the
+        # MAXIMUM value for n <= 20 - p100 masquerading as p95.
+        p95_index = max(0, int(len(utilizations) * 0.95) - 1)
+
         return {
             'avg_utilization': sum(utilizations) / len(utilizations),
             'max_utilization': max(utilizations),
-            'p95_utilization': sorted(utilizations)[int(len(utilizations) * 0.95)],
+            'p95_utilization': sorted(utilizations)[p95_index],
             'overflow_count': sum(1 for u in self.usage_history if not u['fits_in_context'])
         }
 ```
@@ -632,6 +658,10 @@ class ContextWindowMonitor:
 
 ```python
 # cost_analytics.py
+
+from datetime import datetime
+
+from llm_metrics import LLMRequestMetrics
 
 class LLMCostAnalyzer:
     """Analyze and optimize LLM costs"""
@@ -694,6 +724,11 @@ class LLMCostAnalyzer:
         """Suggest cost optimizations"""
 
         suggestions = []
+
+        # Empty log: the averages below divide by zero and max() on an empty
+        # dict raises ValueError
+        if not self.request_log:
+            return suggestions
 
         # Analyze request patterns
         avg_input_tokens = sum(r.input_tokens for r in self.request_log) / len(self.request_log)
@@ -761,8 +796,14 @@ class LLMCostAnalyzer:
 
 ### Related ai-engineering-curriculum Documents
 
-- [1501: Monitoring and Observability for AI Engineering Curriculum](1501-Monitoring-and-Observability.md)
-- [1502: Model Drift Detection](1502-Model-Drift-Detection.md)
+- [1501: Monitoring and Observability](./1501-Monitoring-and-Observability.md)
+- [1502: Model Drift Detection](./1502-Model-Drift-Detection.md)
+
+### External References
+
+- [Prometheus: Metric Naming Best Practices](https://prometheus.io/docs/practices/naming/)
+- [OpenTelemetry GenAI Semantic Conventions](https://github.com/open-telemetry/semantic-conventions-genai)
+- [openai/tiktoken](https://github.com/openai/tiktoken)
 
 ---
 
@@ -773,12 +814,8 @@ class LLMCostAnalyzer:
 
 ---
 
-## Related Resources
-
-- **Previous:** [1502: Model Drift Detection](./1502-Model-Drift-Detection.md)
-- **Related:** [2101: Tensor Algebra](../../phase2-foundations/2100-calculus/2101-Tensor-Algebra.md)
-- **Experiment:** [EXP_1502: Model Drift](../../../../experiments/EXP_1502_MODEL_DRIFT.md)
-
----
-
-**Status:** ✅ Complete
+**Related:**
+- [1501: Monitoring and Observability](./1501-Monitoring-and-Observability.md)
+- [1502: Model Drift Detection](./1502-Model-Drift-Detection.md)
+- [2101: Tensor Algebra and Linear Algebra for AI](../../phase2-foundations/2100-calculus/2101-Tensor-Algebra.md)
+- **Experiment:** [EXP_1503: Model Drift Detection Experiments](../../../../experiments/EXP_1503_DRIFT_DETECTION.md)
