@@ -3,7 +3,7 @@ Document ID: 2102
 Title: Backpropagation and Automatic Differentiation
 Phase: 2
 Module: 2100
-Last Updated: 2026-09-24
+Last Updated: 2026-09-26
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 4 hours
@@ -93,12 +93,12 @@ y = c - 4      # y = 32
 y.backward()
 
 # dy/dx at x = 2
-print(x.grad)  # tensor(64.)
+print(x.grad)  # tensor(24.)
 
 # Manual calculation:
 # y = ((x + 1) × 2)² - 4
 # dy/dx = 2((x+1)×2) × 2 = 4(x+1)×2 = 8(x+1)
-# At x = 2: 8(3) = 64 ✓
+# At x = 2: 8(3) = 24 ✓
 ```
 
 ## Automatic Differentiation (Autograd)
@@ -134,20 +134,19 @@ Graph Structure:
 ```python
 import torch
 
-# Each tensor has:
-print(x.requires_grad)   # Need gradient?
-print(x.grad)            # Accumulated gradient
-print(x.grad_fn)         # Function that created this tensor
-print(x.is_leaf)         # Is this a leaf node (user-created)?
-
 # Example:
 x = torch.tensor(2.0, requires_grad=True)
 y = x ** 2
 z = 2 * y
 
-print(x.grad_fn)         # None (leaf)
-print(y.grad_fn)         # <PowBackward0>
-print(z.grad_fn)         # <MulBackward0>
+# Each tensor has:
+print(x.requires_grad)   # True (need gradient?)
+print(x.grad)            # None (accumulated gradient, filled by backward())
+print(x.grad_fn)         # None (function that created this tensor; leaves have none)
+print(x.is_leaf)         # True (leaf node, user-created)
+
+print(y.grad_fn)         # <PowBackward0 object at 0x...>
+print(z.grad_fn)         # <MulBackward0 object at 0x...>
 ```
 
 ## Backpropagation Algorithm
@@ -217,7 +216,7 @@ def linear_backward(grad_output, x, W):
     """
     grad_W = torch.einsum('bi,bj->ji', x, grad_output)
     grad_b = grad_output.sum(dim=0)
-    grad_input = torch.einsum('bi,ji->bj', grad_output, W)
+    grad_input = torch.einsum('bo,oi->bi', grad_output, W)  # grad_output @ W
 
     return grad_input, grad_W, grad_b
 ```
@@ -269,19 +268,27 @@ Example with sigmoid:
 
 ### Solutions
 ```python
+import torch
+import torch.nn as nn
+
 # 1. ReLU activation (gradient = 1 for positive)
 torch.nn.ReLU()
 
 # 2. Proper initialization (Xavier/He)
+W = torch.empty(64, 64)
 torch.nn.init.xavier_uniform_(W)
 torch.nn.init.kaiming_normal_(W, mode='fan_in')
 
 # 3. Batch normalization
-torch.nn.BatchNorm1d(num_features)
+torch.nn.BatchNorm1d(64)
 
 # 4. Residual connections (skip connections)
 class ResidualBlock(nn.Module):
-    def __forward__(self, x):
+    def __init__(self, fn):
+        super().__init__()
+        self.fn = fn
+
+    def forward(self, x):
         return self.fn(x) + x  # Gradient flows directly!
 ```
 
@@ -296,22 +303,33 @@ Detection: NaN or Inf in gradients
 
 ### Solutions
 ```python
+import torch
+
+model = torch.nn.Linear(16, 4)
+optimizer = torch.optim.Adam(model.parameters(), lr=1e-5)
+
 # 1. Gradient clipping
 torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
 
-# 2. Lower learning rate
-optimizer = torch.optim.Adam(model.parameters(), lr=1e-5)
+# 2. Lower learning rate (see optimizer above)
 
 # 3. Gradient checkpointing (trade compute for memory)
 from torch.utils.checkpoint import checkpoint
 
-output = checkpoint(my_expensive_function, input)
+def my_expensive_function(x):
+    return torch.relu(x) ** 2
+
+x = torch.randn(8, 16, requires_grad=True)
+output = checkpoint(my_expensive_function, x, use_reentrant=False)
 ```
 
 ## Computational Graph Visualization
 
 ### Using torchviz
 ```python
+# torchviz is a third-party package: pip install torchviz (requires graphviz)
+# https://github.com/szagoruyko/pytorchviz
+import torch
 from torchviz import make_dot
 
 x = torch.randn(2, requires_grad=True)
@@ -339,28 +357,31 @@ Graph structure helps with:
 
 ### Computing Hessian
 ```python
+import torch
+
 x = torch.tensor([2.0, 3.0], requires_grad=True)
 y = x[0] ** 2 + x[1] ** 3
 
 # First derivatives
-grad = torch.autograd.grad(y, x, create_graph=True)[0
-# grad = [4, 27]
+grad = torch.autograd.grad(y, x, create_graph=True)[0]  # [4, 27]
 
 # Second derivatives (Hessian diagonal)
 hessian_diag = torch.autograd.grad(grad.sum(), x)[0]
-# = [2, 18x] at x=[2,3] = [2, 54]
+# = [2, 6*x[1]] at x=[2, 3] = [2, 18]
 
-# Full Hessian matrix
+# Full Hessian matrix (row i = gradient of grad[i] w.r.t. x)
 def hessian(y, x):
     """Compute full Hessian matrix"""
     grad = torch.autograd.grad(y, x, create_graph=True)[0]
-    hessian = torch.zeros(len(x), len(x))
+    H = torch.zeros(len(x), len(x))
 
     for i in range(len(x)):
         grad2 = torch.autograd.grad(grad[i], x, retain_graph=True)[0]
-        hessian[i] = grad2
+        H[i] = grad2
 
-    return hessian
+    return H
+
+print(hessian(y, x))  # tensor([[2., 0.], [0., 18.]])
 ```
 
 ### Applications
@@ -389,10 +410,16 @@ Example:
 
 ### Implementation
 ```python
-model = MyModel().cuda()
+import torch
+import torch.nn.functional as F
+
+model = torch.nn.Linear(768, 10).cuda()
 optimizer = torch.optim.Adam(model.parameters())
 
 accumulation_steps = 4
+
+# Toy DataLoader stand-in: 8 batches of (data, target)
+dataloader = [(torch.randn(32, 768), torch.randint(0, 10, (32,))) for _ in range(8)]
 
 for i, (data, target) in enumerate(dataloader):
     data, target = data.cuda(), target.cuda()
@@ -408,12 +435,19 @@ for i, (data, target) in enumerate(dataloader):
     if (i + 1) % accumulation_steps == 0:
         optimizer.step()  # Update weights
         optimizer.zero_grad()  # Reset gradients
+
+# 8 batches / 4 accumulation steps = 2 optimizer steps
 ```
 
 ## Best Practices
 
 ### 1. Gradient Zeroing
 ```python
+import torch
+
+model = torch.nn.Linear(4, 2)
+optimizer = torch.optim.SGD(model.parameters(), lr=0.1)
+
 # Always zero gradients before backward
 optimizer.zero_grad()
 # or
@@ -425,14 +459,18 @@ model.zero_grad()
 
 ### 2. Disable Gradients for Inference
 ```python
+import torch
+
+model = torch.nn.Linear(4, 2)
+
 # Saves memory and computation
 with torch.no_grad():
-    output = model(input)
+    output = model(torch.randn(3, 4))
 
-# Or use eval mode
+# eval mode additionally disables dropout / BatchNorm running-stats updates
 model.eval()
 with torch.no_grad():
-    for batch in test_loader:
+    for batch in [torch.randn(3, 4) for _ in range(2)]:
         output = model(batch)
 
 model.train()  # Back to training mode
@@ -441,14 +479,25 @@ model.train()  # Back to training mode
 ### 3. Gradient Checkpointing
 ```python
 # For very deep models or long sequences
+import torch
+import torch.nn as nn
 from torch.utils.checkpoint import checkpoint
 
 class DeepModel(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.layer1 = nn.Linear(64, 64)
+        self.layer2 = nn.Linear(64, 64)
+        self.layer3 = nn.Linear(64, 64)
+
     def forward(self, x):
-        # Checkpoint middle layers
-        x = checkpoint(self.layer1, x)
-        x = checkpoint(self.layer2, x)
-        x = checkpoint(self.layer3, x)
+        # Checkpoint middle layers.
+        # use_reentrant=False is required: with the default (True) and an
+        # input that doesn't require grad, backward() fails with
+        # "element 0 of tensors does not require grad" (torch 2.12)
+        x = checkpoint(self.layer1, x, use_reentrant=False)
+        x = checkpoint(self.layer2, x, use_reentrant=False)
+        x = checkpoint(self.layer3, x, use_reentrant=False)
         return x
 
 # Trade-off: More compute, less memory
@@ -458,23 +507,31 @@ class DeepModel(nn.Module):
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related Documents
 
-- [2101: Tensor Algebra and Linear Algebra for AI](2101-Tensor-Algebra.md)
+- [2101: Tensor Algebra and Linear Algebra for AI](./2101-Tensor-Algebra.md)
+
+### External References
+
+- [torch.autograd — PyTorch documentation](https://docs.pytorch.org/docs/2.14/autograd.html)
+- [torch.autograd.grad — PyTorch documentation](https://docs.pytorch.org/docs/2.14/generated/torch.autograd.grad.html)
+- [torch.nn.utils.clip_grad_norm_ — PyTorch documentation](https://docs.pytorch.org/docs/2.14/generated/torch.nn.utils.clip_grad_norm_.html)
+- [torch.utils.checkpoint — PyTorch documentation](https://docs.pytorch.org/docs/2.14/checkpoint.html)
+- [szagoruyko/pytorchviz — Visualizations of PyTorch execution graphs](https://github.com/szagoruyko/pytorchviz)
 
 ---
 
 ## Next Steps
 
 - Next Module: **[2200: Frameworks](../2200-frameworks/)**
-- Continue with: **[2201: PyTorch Graphs](../2200-frameworks/2201-PyTorch-Computational-Graphs.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Continue with: **[2201: PyTorch Computational Graphs and Dynamic Execution](../2200-frameworks/2201-PyTorch-Computational-Graphs.md)**
+- Assessment: **[2100: Calculus - Quiz](./assessment/QUIZ.md)**
 
 ---
 
-**Related Documents:**
-- [2101: Tensor Algebra](./2101-Tensor-Algebra.md)
-- [2201: PyTorch Graphs](../2200-frameworks/2201-PyTorch-Computational-Graphs.md)
-- [3301: Activation Functions](../../phase3-transformers/3300-decoding/3301-Activation-Functions.md)
+**Related:**
+- [2101: Tensor Algebra and Linear Algebra for AI](./2101-Tensor-Algebra.md)
+- [2201: PyTorch Computational Graphs and Dynamic Execution](../2200-frameworks/2201-PyTorch-Computational-Graphs.md)
+- [3301: Activation Functions - GELU, SwiGLU, and Beyond](../../phase3-transformers/3300-decoding/3301-Activation-Functions.md)
 
-**Experiment Template:** [EXP_2102: Backpropagation](../../../../experiments/EXP_2102_BACKPROPAGATION.md)
+**Experiment:** [EXP-2102: Backpropagation Experiment](../../../../experiments/EXP_2102_BACKPROPAGATION.md)
