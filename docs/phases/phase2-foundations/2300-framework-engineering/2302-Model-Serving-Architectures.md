@@ -3,7 +3,7 @@ Document ID: 2302
 Title: Model Serving Architectures
 Phase: 2
 Module: 2300
-Last Updated: 2026-09-24
+Last Updated: 2026-09-26
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -13,12 +13,6 @@ Tags: ['frameworks', 'architecture', 'api-design', 'production']
 ---
 
 # 2302: Model Serving Architectures
-
-**Project:** AI Engineering Curriculum
-**Phase:** [2300] Framework Engineering
-**Last Updated:** 2026-02-04
-**Status:** Complete
-**Estimated Time:** 2.5 hours
 
 ---
 
@@ -32,7 +26,6 @@ Tags: ['frameworks', 'architecture', 'api-design', 'production']
 - [Architecture 4: Caching Strategies](#architecture-4-caching-strategies)
 - [Real-World: vLLM Architecture](#real-world-vllm-architecture)
 - [Exercise: Build a Serving System](#exercise-build-a-serving-system)
-- [Related Topics](#related-topics)
 - [Summary](#summary)
 - [References](#references)
 
@@ -90,10 +83,10 @@ def serve_single_request(request):
 ```python
 import time
 import threading
-from collections import defaultdict
-from typing import Dict, List, Any, Optional
-from dataclasses import dataclass
 import uuid
+import concurrent.futures
+from typing import Any, Dict, List
+from dataclasses import dataclass
 
 
 @dataclass
@@ -184,6 +177,11 @@ class BatchingModelServer:
                     result = self.results.pop(request_id)
                     return result
 
+                # Waiters double as the timeout flusher: batch checks only
+                # run inside add_request, so a trailing partial batch would
+                # otherwise sit unprocessed forever once submissions stop.
+                self._check_and_process_batch()
+
             time.sleep(0.001)  # Sleep 1ms
 
         raise TimeoutError(f"Request {request_id} timed out after {timeout}s")
@@ -259,11 +257,11 @@ class BatchingModelServer:
         """
         Prepare batch input for model.
 
-        Override this for specific model formats.
+        Default: pass the list through unchanged - any model that iterates
+        over its batch works with a plain list. Override this for tensor
+        models, e.g. torch.stack(inputs).
         """
-        # Default: stack inputs
-        import torch
-        return torch.stack(inputs)
+        return inputs
 
     def get_stats(self) -> Dict[str, Any]:
         """Get server statistics."""
@@ -276,9 +274,6 @@ class BatchingModelServer:
 
 
 # Usage Example
-import numpy as np
-
-
 class MockModel:
     """Mock model for demonstration."""
 
@@ -305,8 +300,6 @@ if __name__ == "__main__":
         result = server.get_result(request_id)
         print(f"Request {i}: {result}")
 
-    import concurrent.futures
-
     # Send 20 requests concurrently
     with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
         futures = [executor.submit(send_request, i) for i in range(20)]
@@ -321,19 +314,29 @@ if __name__ == "__main__":
 ### Expected Output
 
 ```text
-Request 0: output_0
+Request 2: output_2
+Request 3: output_3
+Request 4: output_4
 Request 1: output_1
 ...
-Request 19: output_19
+Request 14: output_0
+Request 19: output_3
+Request 18: output_2
 
 Server Statistics:
   total_requests: 20
   batches_processed: 3
-  avg_batch_size: 6.67
-  avg_latency_ms: 20.0
+  avg_batch_size: 6.666666666666667
+  avg_latency_ms: 20.23426691691081
   pending_requests: 0
   cached_results: 0
 ```
+
+Line order varies with thread scheduling - requests resolve as their
+batch completes, not in submission order. `batches_processed` and
+`avg_batch_size` are deterministic for this workload (8 + 8 + 4);
+`avg_latency_ms` is timing-dependent and floors near the 20 ms batch
+timeout.
 
 ### Benefits
 
@@ -394,7 +397,7 @@ MODEL PARALLELISM (model split across GPUs):
 ┌─────────┐  ┌─────────┐  ┌─────────┐  ┌─────────┐
 │ GPU 0   │──→│ GPU 1   │──→│ GPU 2   │──→│ GPU 3   │
 │ Layer   │  │ Layer   │  │ Layer   │  │ Layer   │
-│ 1-18    │  │ 19-36   │  │ 37-54   │  │ 55-70   │
+│ 1-17    │  │ 18-34   │  │ 35-51   │  │ 52-70   │
 └─────────┘  └─────────┘  └─────────┘  └─────────┘
 
 Use case: Large model, limited GPU memory
@@ -405,9 +408,7 @@ Use case: Large model, limited GPU memory
 ```python
 import torch
 import torch.nn as nn
-from typing import List, Any
-import threading
-import queue
+from typing import Any, List
 
 
 class PipelineModel:
@@ -470,7 +471,8 @@ class PipelineModel:
 def create_large_model() -> PipelineModel:
     """Create a model split across 4 GPUs."""
 
-    # Simulate 70 layers (e.g., LLaMA-70B)
+    # 70 transformer blocks (demo depth) - block dims below match
+    # Llama-2-7B: d_model 4096, 32 heads, FFN 11008
     num_layers = 70
     hidden_size = 4096
 
@@ -484,11 +486,12 @@ def create_large_model() -> PipelineModel:
         )
         layers.append(block)
 
-    # Distribute across 4 GPUs
-    # GPU 0: Layers 0-17
-    # GPU 1: Layers 18-35
-    # GPU 2: Layers 36-53
-    # GPU 3: Layers 54-69
+    # Distribute across 4 GPUs: 70 // 4 = 17 layers per stage,
+    # the last stage takes the remainder (17 + 17 + 17 + 19 = 70)
+    # GPU 0: Layers 0-16
+    # GPU 1: Layers 17-33
+    # GPU 2: Layers 34-50
+    # GPU 3: Layers 51-69
     device_ids = [0, 1, 2, 3]
 
     model = PipelineModel(layers, device_ids)
@@ -512,7 +515,7 @@ if __name__ == "__main__":
 ```python
 import torch
 import torch.nn as nn
-from typing import Tuple
+from typing import List
 
 
 class TensorParallelLinear(nn.Module):
@@ -533,11 +536,13 @@ class TensorParallelLinear(nn.Module):
         # Split output dimension across GPUs
         self.out_features_per_gpu = out_features // self.num_gpus
 
-        # Create partitioned weights on each GPU
+        # Create partitioned weights on each GPU.
+        # The device belongs on the tensor - nn.Parameter has no device
+        # kwarg (TypeError in torch 2.x).
         self.weights = nn.ParameterList([
             nn.Parameter(
-                torch.randn(in_features, self.out_features_per_gpu),
-                device=f"cuda:{device_id}"
+                torch.randn(in_features, self.out_features_per_gpu,
+                            device=f"cuda:{device_id}")
             )
             for device_id in device_ids
         ])
@@ -545,8 +550,8 @@ class TensorParallelLinear(nn.Module):
         # Split bias similarly
         self.biases = nn.ParameterList([
             nn.Parameter(
-                torch.randn(self.out_features_per_gpu),
-                device=f"cuda:{device_id}"
+                torch.randn(self.out_features_per_gpu,
+                            device=f"cuda:{device_id}")
             )
             for device_id in device_ids
         ])
@@ -561,6 +566,7 @@ class TensorParallelLinear(nn.Module):
         """
         # Replicate input to all GPUs
         # (In practice, this is done once at setup)
+        first = f"cuda:{self.device_ids[0]}"
         outputs = []
 
         for i, device_id in enumerate(self.device_ids):
@@ -569,13 +575,13 @@ class TensorParallelLinear(nn.Module):
 
             # Compute partial output
             out = torch.matmul(x_device, self.weights[i]) + self.biases[i]
-            outputs.append(out)
+
+            # Gather partials on the first GPU - torch.cat cannot span
+            # devices, so every shard must be moved before concatenation
+            outputs.append(out.to(first))
 
         # Concatenate outputs
-        result = torch.cat(outputs, dim=-1)
-
-        # Move to first GPU for convenience
-        return result.to(f"cuda:{self.device_ids[0]}")
+        return torch.cat(outputs, dim=-1)
 
 
 # Example: Large Linear Layer
@@ -609,6 +615,8 @@ if __name__ == "__main__":
 ### Production Framework: DeepSpeed
 
 ```python
+# Sketch: model and dataloader come from your training script.
+# deepspeed is a separate pip install (pip install deepspeed).
 import deepspeed
 
 # Initialize DeepSpeed
@@ -647,6 +655,9 @@ for batch in dataloader:
 #### 1. Round Robin
 
 ```python
+from typing import List
+
+
 class RoundRobinBalancer:
     """Distribute requests sequentially across servers."""
 
@@ -668,6 +679,7 @@ class RoundRobinBalancer:
 ```python
 from collections import defaultdict
 import threading
+from typing import List
 
 
 class LeastConnectionsBalancer:
@@ -702,6 +714,8 @@ class LeastConnectionsBalancer:
 ```python
 import subprocess
 import threading
+import time
+from typing import List, Tuple
 
 
 class GPUMemoryAwareBalancer:
@@ -733,7 +747,7 @@ class GPUMemoryAwareBalancer:
                     result = subprocess.run([
                         "ssh", server,
                         "nvidia-smi",
-                        f"--query-gpu=memory.free",
+                        "--query-gpu=memory.free",
                         f"--id={gpu_id}",
                         "--format=csv,noheader,nounits"
                     ], capture_output=True, text=True, timeout=5)
@@ -833,14 +847,12 @@ class ModelResponseCache:
         if not cache_path.exists():
             return None
 
-        # Check if expired
-        if input_hash in self.index:
-            cache_time = self.index[input_hash]
-            if time.time() - cache_time > self.ttl_seconds:
-                # Expired, remove
-                cache_path.unlink(missing_ok=True)
-                del self.index[input_hash]
-                return None
+        # Check if expired - use the file's mtime, not the in-memory index:
+        # the index is lost on restart while the cache files persist
+        if time.time() - cache_path.stat().st_mtime > self.ttl_seconds:
+            cache_path.unlink(missing_ok=True)
+            self.index.pop(input_hash, None)
+            return None
 
         # Load from cache
         try:
@@ -887,19 +899,38 @@ class ModelResponseCache:
 # Usage
 cache = ModelResponseCache()
 
-# Without cache
-response = model.compute(input_data)
 
-# With cache
+class EchoModel:
+    """Stand-in for an expensive model call."""
+
+    def compute(self, input_data):
+        return f"expensive_result for {input_data}"
+
+
+model = EchoModel()
+input_data = {"prompt": "hello"}
+
+# Cache miss -> compute, then store
 cached = cache.get(input_data)
 if cached is None:
     cached = model.compute(input_data)
     cache.put(input_data, cached)
+
+# Same input again -> cache hit, no compute
+assert cache.get(input_data) == cached
+print(cache.get(input_data))
 ```
 
 ### 2. Embedding Cache (for RAG)
 
 ```python
+import hashlib
+from pathlib import Path
+from typing import Any, List
+
+import torch
+
+
 class EmbeddingCache:
     """
     Cache embeddings for RAG systems.
@@ -924,14 +955,12 @@ class EmbeddingCache:
 
         # Check cache
         if cache_path.exists():
-            import torch
             return torch.load(cache_path)
 
         # Compute embedding
         embedding = self.embed_model.embed(text)
 
         # Cache it
-        import torch
         torch.save(embedding, cache_path)
 
         return embedding
@@ -947,7 +976,6 @@ class EmbeddingCache:
             cache_path = self._get_cache_path(text)
 
             if cache_path.exists():
-                import torch
                 embedding = torch.load(cache_path)
                 embeddings.append((i, embedding))
             else:
@@ -956,7 +984,6 @@ class EmbeddingCache:
 
         # Batch compute uncached
         if uncached_texts:
-            import torch
             new_embeddings = self.embed_model.embed_batch(uncached_texts)
 
             for text, emb, idx in zip(uncached_texts, new_embeddings, uncached_indices):
@@ -974,6 +1001,9 @@ class EmbeddingCache:
 ### 3. KV Cache (for LLMs)
 
 ```python
+import torch
+
+
 class KVCache:
     """
     Key-Value cache for transformer attention.
@@ -982,20 +1012,31 @@ class KVCache:
     Avoids recomputing for autoregressive generation.
     """
 
-    def __init__(self, max_seq_len: int, num_layers: int, num_heads: int, head_dim: int, device: str = "cuda"):
+    def __init__(
+        self,
+        batch_size: int,
+        max_seq_len: int,
+        num_layers: int,
+        num_heads: int,
+        head_dim: int,
+        device: str = "cuda"
+    ):
         self.max_seq_len = max_seq_len
         self.num_layers = num_layers
         self.num_heads = num_heads
         self.head_dim = head_dim
         self.device = device
 
-        # Pre-allocate cache
+        # Pre-allocate the full cache up front. The batch dimension must be
+        # real allocated storage: expand() only creates a stride-0 view, so
+        # writing through an expanded batch dim aliases every batch row to
+        # the same memory (silent data corruption).
         # Shape: (num_layers, 2, batch, num_heads, seq_len, head_dim)
         # 2 is for keys and values
         self.cache = torch.zeros(
             num_layers,
             2,
-            1,  # batch_size (will expand dynamically)
+            batch_size,
             num_heads,
             max_seq_len,
             head_dim,
@@ -1015,19 +1056,27 @@ class KVCache:
         """
         batch_size, num_heads, seq_len, head_dim = keys.shape
 
-        # Expand cache if needed
-        if self.cache.shape[2] != batch_size:
-            self.cache = self.cache.expand(-1, -1, batch_size, -1, -1, -1)
+        if batch_size != self.cache.shape[2]:
+            raise ValueError(
+                f"batch size {batch_size} != cache batch size "
+                f"{self.cache.shape[2]} - allocate one cache per batch"
+            )
+
+        end_pos = self.current_seq_len + seq_len
+        if end_pos > self.max_seq_len:
+            raise ValueError("sequence exceeds max_seq_len")
 
         # Store in cache
-        end_pos = self.current_seq_len + seq_len
         self.cache[layer_idx, 0, :, :, self.current_seq_len:end_pos, :] = keys
         self.cache[layer_idx, 1, :, :, self.current_seq_len:end_pos, :] = values
 
+        # Advance the write position
+        self.current_seq_len = end_pos
+
     def get(self, layer_idx: int) -> tuple:
-        """Get cached keys and values for a layer."""
-        keys = self.cache[layer_idx, 0]  # All cached keys
-        values = self.cache[layer_idx, 1]  # All cached values
+        """Get cached keys and values for a layer (up to the current position)."""
+        keys = self.cache[layer_idx, 0, :, :, :self.current_seq_len, :]
+        values = self.cache[layer_idx, 1, :, :, :self.current_seq_len, :]
         return keys, values
 
     def reset(self):
@@ -1051,6 +1100,9 @@ Key optimizations:
 3. KV cache optimization - Smart caching
 4. Speculative decoding - Acceleration via draft models
 """
+
+from typing import List
+
 
 class PagedAttention:
     """
@@ -1221,35 +1273,7 @@ def make_request(i):
 
 ### Solution Reference
 
-See: [2306: Building Production Framework](./guides/2306-Building-Production-Framework.md)
-
----
-
-## Related Topics
-
-- [1401: Ollama Enterprise](../../phase1-infra/1400-llmops/1401-Ollama-Enterprise.md) - Local model serving
-- [1402: vLLM and TGI](../../phase1-infra/1400-llmops/1402-vLLM-and-TGI.md) - Production serving frameworks
-- [2303: API Design for ML](./2303-API-Design-for-ML.md) - Build APIs for served models
-- [2304: Production Deployment](./2304-Production-Deployment-Patterns.md) - Deploy serving systems
-- [LAB-007: Production RAG](../../../learning-resources/labs/LAB-007-Production-RAG.md) - Hands-on practice
-
----
-
-## References
-
-### Related ai-engineering-curriculum Documents
-
-- [2301: Framework Design Patterns](2301-Framework-Design-Patterns.md)
-- [2303: API Design for ML Systems](2303-API-Design-for-ML.md)
-- [2304: Production Deployment Patterns](2304-Production-Deployment-Patterns.md)
-
----
-
-## Next Steps
-
-- Continue with: **[2303: API Design for ML](./2303-API-Design-for-ML.md)**
-- Practical: **[LAB-009: Model Deployment](../../../learning-resources/labs/LAB-009-Production-Deployment.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+See: [2306: Building a Production Framework](./guides/2306-Building-Production-Framework.md)
 
 ---
 
@@ -1266,3 +1290,32 @@ See: [2306: Building Production Framework](./guides/2306-Building-Production-Fra
 - vLLM (PagedAttention + Continuous Batching)
 - TGI (Tensor Parallelism + Flash Attention)
 - Triton Inference Server (Multi-framework support)
+
+---
+
+## References
+
+### Related Documents
+
+- [2301: Framework Design Patterns](./2301-Framework-Design-Patterns.md)
+- [2303: API Design for ML Systems](./2303-API-Design-for-ML.md)
+- [2304: Production Deployment Patterns](./2304-Production-Deployment-Patterns.md)
+
+### External References
+
+- [Welcome to vLLM - vLLM Documentation](https://docs.vllm.ai/en/latest/)
+- [Efficient Memory Management for Large Language Model Serving with PagedAttention (SOSP 2023)](https://arxiv.org/abs/2309.06180)
+- [DeepSpeed - Getting Started](https://www.deepspeed.ai/getting-started/)
+- [NVIDIA Dynamo-Triton (formerly Triton Inference Server)](https://developer.nvidia.com/triton-inference-server)
+
+---
+
+## Next Steps
+
+- Next Lesson: **[2303: API Design for ML Systems](./2303-API-Design-for-ML.md)**
+- Practical: **[LAB-009: Production Deployment](../../../learning-resources/labs/LAB-009-Production-Deployment.md)**
+- Assessment: **[2300: Framework Engineering - Quiz](./assessment/QUIZ.md)**
+
+**Related:** [1401: Ollama Enterprise Deployment](../../phase1-infra/1400-llmops/1401-Ollama-Enterprise.md), [1402: vLLM and TGI High-Concurrency Inference](../../phase1-infra/1400-llmops/1402-vLLM-and-TGI.md), [LAB-007: Production RAG System](../../../learning-resources/labs/LAB-007-Production-RAG.md)
+
+**Experiment:** [EXP_1404: vLLM Production Tuning Experiments](../../../../experiments/EXP_1404_VLLM_TUNING.md)
