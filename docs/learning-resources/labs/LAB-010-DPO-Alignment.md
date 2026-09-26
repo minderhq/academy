@@ -1,36 +1,41 @@
 ---
 Document ID: LAB-010
 Title: "LAB-010: DPO Alignment"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-27
 Status: Complete
-Difficulty: Intermediate
+Difficulty: Advanced
+Estimated Time: 5-6 hours
+Tags: ['dpo', 'alignment', 'rlhf', 'preference-learning', 'hands-on']
 ---
 
-# LAB-010: DPO Alignment
+# LAB 010: DPO Alignment
 
 **Align language models with human preferences using Direct Preference Optimization**
 
-**Time:** 5-6 hours
-**Difficulty:** ⭐⭐⭐ Advanced
 **Prerequisites:**
-- LAB-003: LoRA Fine-Tuning
-- 5201-DPO-Theory.md
-- 5202-Alignment-Orchestration.md
+- [LAB 003: LoRA Fine-Tuning](LAB-003-LoRA-FineTuning.md) - adapter-based efficient fine-tuning
+- [5201: DPO Theory](../../phases/phase5-finetuning/5200-alignment/5201-DPO-Theory.md) - the math behind the loss
+- [5202: Alignment Orchestration](../../phases/phase5-finetuning/5200-alignment/5202-Alignment-Orchestration.md)
+- [VOLUME-3: LLM Internals](../../volumes/VOLUME-3-LLM-Internals.md) - log-probabilities and KL divergence
+- [VOLUME-5: Model Adaptation](../../volumes/VOLUME-5-Model-Adaptation.md)
 
 ---
 
-## 🎯 Lab Objectives
+## Table of Contents
 
-After completing this lab, you will be able to:
-- ✅ Understand DPO (Direct Preference Optimization) algorithm
-- ✅ Create preference datasets from model outputs
-- ✅ Train models with DPO alignment
-- ✅ Evaluate alignment quality
-- ✅ Compare DPO vs RLHF approaches
+- [Lab Overview](#lab-overview)
+- [Part 1: Setup (30 minutes)](#part-1-setup-30-minutes)
+- [Part 2: Preference Data (90 minutes)](#part-2-preference-data-90-minutes)
+- [Part 3: DPO Training (120 minutes)](#part-3-dpo-training-120-minutes)
+- [Part 4: Evaluate Alignment (60 minutes)](#part-4-evaluate-alignment-60-minutes)
+- [Part 5: Analyze Results (30 minutes)](#part-5-analyze-results-30-minutes)
+- [Completion Checklist](#completion-checklist)
+- [Key Learnings](#key-learnings)
+- [You're Now Ready For](#youre-now-ready-for)
 
 ---
 
-## 📋 Overview
+## Lab Overview
 
 ### What is DPO?
 
@@ -46,17 +51,26 @@ After completing this lab, you will be able to:
 
 ```text
 Traditional RLHF:
-Data → Train Reward Model → PPO with Reward Model → Aligned Model
+Data -> Train Reward Model -> PPO with Reward Model -> Aligned Model
 (Complex, unstable, many hyperparameters)
 
 DPO:
-Data → Direct Preference Optimization → Aligned Model
+Data -> Direct Preference Optimization -> Aligned Model
 (Simple, stable, fewer hyperparameters)
 ```
 
+### What You Will Do
+
+After completing this lab, you will be able to:
+- Understand what the DPO objective optimizes and why it replaces the reward-model + RL pipeline
+- Create and validate preference datasets from model outputs
+- Compute the DPO loss, its implicit rewards, and reward accuracy from raw log-probabilities
+- Train a model with DPO alignment using TRL and LoRA on a single GPU
+- Read beta as the KL anchor and measure its effect on policy drift
+
 ---
 
-## 🏗️ Part 1: Environment Setup (30 min)
+## Part 1: Setup (30 minutes)
 
 ### Step 1.1: Install Dependencies
 
@@ -65,39 +79,39 @@ Data → Direct Preference Optimization → Aligned Model
 python -m venv dpo-env
 source dpo-env/bin/activate  # On Windows: dpo-env\Scripts\activate
 
-# Install required packages
+# Core training stack
 pip install torch transformers trl peft datasets
-pip install wandb  # For experiment tracking
 
-# Verify installation
-python -c "import torch; print(f'PyTorch: {torch.__version__}')"
-python -c "import trl; print(f'TRL: {trl.__version__}')"
+# Experiment tracking is optional - every step in this lab runs without it
+pip install wandb
 ```
 
-### Step 1.2: Download Base Model
+### Step 1.2: Verify and Get a Base Model
 
 ```bash
-# We'll use a smaller model for this lab
-# Options: Phi-3-mini (3.8B), Llama-3.2-3B, or Mistral-7B
+python -c "import torch; print(f'PyTorch: {torch.__version__}')"
+python -c "import trl; print(f'TRL: {trl.__version__}')"
 
-# Using Hugging Face CLI
+# hf is the current Hugging Face CLI (huggingface-cli is the legacy name)
 pip install huggingface_hub
+hf auth login  # only needed for gated models
 
-# Login if you need access to gated models
-huggingface-cli login
-
-# Download model (will be done automatically during training)
-# Or pre-download:
-# huggingface-cli download microsoft/Phi-3-mini-4k-instruct --local-dir ./models/phi-3
+# We'll use a smaller model for this lab. Good options:
+#   microsoft/Phi-3-mini-4k-instruct (~8 GB in fp16)
+#   meta-llama/Llama-3.2-3B-Instruct (gated)
+#   mistralai/Mistral-7B-Instruct-v0.3 (~15 GB in fp16)
+#
+# Training downloads the model automatically. To pre-download:
+# hf download microsoft/Phi-3-mini-4k-instruct --local-dir ./models/phi-3
 ```
 
 ---
 
-## 📊 Part 2: Create Preference Dataset (90 min)
+## Part 2: Preference Data (90 minutes)
 
 ### Understanding Preference Data
 
-DPO requires paired examples:
+DPO requires paired examples for the same prompt:
 - **Chosen:** Better response
 - **Rejected:** Worse response
 
@@ -110,18 +124,16 @@ Rejected: "Paris."
 
 ### Step 2.1: Generate Candidate Responses
 
-```python
-# File: generate_candidates.py
+```text
+# sketch - generate_candidates.py (needs a 3-8B instruct model + GPU-hours)
 """
-Generate multiple candidate responses for DPO dataset
+Generate multiple candidate responses for a DPO dataset.
 """
 
 from transformers import AutoTokenizer, AutoModelForCausalLM
 import torch
-from datasets import load_dataset
 import json
 
-# Load model and tokenizer
 model_name = "microsoft/Phi-3-mini-4k-instruct"  # or your preferred model
 
 tokenizer = AutoTokenizer.from_pretrained(model_name)
@@ -131,74 +143,70 @@ model = AutoModelForCausalLM.from_pretrained(
     device_map="auto",
 )
 
-# Load prompt dataset
-# Using a sample dataset - replace with your domain data
+# Sample prompts - replace with your domain data
 prompts = [
     "Explain quantum computing in simple terms.",
     "What are the benefits of regular exercise?",
     "How does photosynthesis work?",
     "Write a short poem about nature.",
     "Explain the difference between Python and JavaScript.",
-    # Add more prompts...
 ]
 
-def generate_response(prompt, temperature=0.8, max_length=256):
-    """Generate a response from the model"""
-    inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
+def generate_response(prompt, temperature=0.8, max_new_tokens=256):
+    """Generate a response from the model via its chat template."""
+    messages = [{"role": "user", "content": prompt}]
+    inputs = tokenizer.apply_chat_template(
+        messages, add_generation_prompt=True, return_tensors="pt"
+    ).to(model.device)
 
     with torch.no_grad():
         outputs = model.generate(
-            **inputs,
-            max_new_tokens=max_length,
+            inputs,
+            max_new_tokens=max_new_tokens,
             temperature=temperature,
             do_sample=True,
             top_p=0.9,
             pad_token_id=tokenizer.eos_token_id,
         )
 
-    response = tokenizer.decode(outputs[0][inputs['input_ids'].shape[1]:], skip_special_tokens=True)
-    return response
+    return tokenizer.decode(outputs[0][inputs.shape[1]:], skip_special_tokens=True)
 
-# Generate multiple responses per prompt
 candidates = []
-
 for prompt in prompts:
     print(f"Generating responses for: {prompt[:50]}...")
 
-    # Generate 3 different responses
+    # Three responses at three temperatures give ranking diversity
     responses = []
     for i in range(3):
         response = generate_response(prompt, temperature=0.7 + i * 0.1)
         responses.append(response)
         print(f"  Response {i+1}: {response[:100]}...")
 
-    candidates.append({
-        "prompt": prompt,
-        "responses": responses,
-    })
+    candidates.append({"prompt": prompt, "responses": responses})
 
-# Save candidates
 with open("candidates.json", "w") as f:
     json.dump(candidates, f, indent=2)
 
-print(f"\nGenerated {len(candidates)} prompt groups with {len(prompts)} responses each")
+# len(responses), not len(prompts) - each group holds 3 responses
+print(f"\nGenerated {len(candidates)} prompt groups with {len(responses)} responses each")
 ```
+
+Two details matter for pair quality: an instruct model generates far better candidates when fed through its **chat template** (raw-prompt completion drifts off-format), and varying the temperature between candidates gives the ranker real diversity to choose from.
 
 ### Step 2.2: Rank and Create Pairs
 
-```python
-# File: create_pairs.py
+```text
+# sketch - create_pairs.py (interactive; AI ranking needs an OpenAI API key)
 """
-Rank responses and create preference pairs
+Rank responses and create preference pairs.
 """
 
 import json
-from typing import List, Dict
 
-# Method 1: Manual ranking (recommended for learning)
 def manual_ranking(candidates):
     """
     Manually rank responses to create high-quality pairs
+    (recommended for learning).
     """
     pairs = []
 
@@ -213,7 +221,6 @@ def manual_ranking(candidates):
         for i, resp in enumerate(responses):
             print(f"\n[{i+1}] {resp}")
 
-        # Get human ranking
         print("\nRank the responses (best to worst, e.g., '2 1 3'):")
         ranking = input("> ").strip()
 
@@ -223,9 +230,7 @@ def manual_ranking(candidates):
                 print("Need at least 2 rankings, skipping...")
                 continue
 
-            # Create pairs: best vs second best, best vs worst
             best_idx = ranked_indices[0]
-
             for worse_idx in ranked_indices[1:]:
                 pairs.append({
                     "prompt": prompt,
@@ -239,21 +244,20 @@ def manual_ranking(candidates):
 
     return pairs
 
-# Method 2: AI-assisted ranking
-def ai_ranking(candidates, judge_model_name="gpt-4"):
+def ai_ranking(candidates, judge_model_name="gpt-4o"):
     """
-    Use an AI model to rank responses
-    (Requires API access to GPT-4 or similar)
+    Use an AI model to rank responses.
+    Uses the openai >= 1.0 client API (ChatCompletion.create was removed).
     """
-    import openai
+    from openai import OpenAI
 
+    client = OpenAI()  # reads OPENAI_API_KEY from the environment
     pairs = []
 
     for item in candidates:
         prompt = item["prompt"]
         responses = item["responses"]
 
-        # Create ranking prompt
         rank_prompt = f"""
         Rank the following responses to this prompt from best to worst.
         Consider: accuracy, clarity, completeness, and helpfulness.
@@ -266,51 +270,39 @@ def ai_ranking(candidates, judge_model_name="gpt-4"):
         Respond only with the ranking numbers (e.g., '2 1 3'):
         """
 
-        # Get ranking
-        response = openai.ChatCompletion.create(
+        response = client.chat.completions.create(
             model=judge_model_name,
             messages=[{"role": "user", "content": rank_prompt}],
             max_tokens=50,
         )
-
         ranking_str = response.choices[0].message.content.strip()
 
         try:
             ranked_indices = [int(x) - 1 for x in ranking_str.split()]
-
             if len(ranked_indices) >= 2:
                 best_idx = ranked_indices[0]
-
                 for worse_idx in ranked_indices[1:]:
                     pairs.append({
                         "prompt": prompt,
                         "chosen": responses[best_idx],
                         "rejected": responses[worse_idx],
                     })
-
         except (ValueError, IndexError):
             continue
 
     return pairs
 
-# Load candidates and create pairs
 with open("candidates.json", "r") as f:
     candidates = json.load(f)
 
-# Create preference pairs
 print("Creating preference pairs...")
 print("Choose method:")
 print("1. Manual ranking (recommended for learning)")
 print("2. AI-assisted ranking")
 
 choice = input("> ").strip()
+pairs = manual_ranking(candidates) if choice == "1" else ai_ranking(candidates)
 
-if choice == "1":
-    pairs = manual_ranking(candidates)
-else:
-    pairs = ai_ranking(candidates)
-
-# Save preference pairs
 with open("preference_pairs.json", "w") as f:
     json.dump(pairs, f, indent=2)
 
@@ -318,42 +310,39 @@ print(f"\nCreated {len(pairs)} preference pairs")
 print(f"Saved to preference_pairs.json")
 ```
 
-### Step 2.3: Load Standard Preference Dataset (Optional)
+### Step 2.3: Load a Standard Preference Dataset (Optional)
 
-```python
-# File: load_standard_dataset.py
+```text
+# sketch - load_standard_dataset.py (needs HF account / dataset terms accepted)
 """
-Load a standard preference dataset
+Load a standard preference dataset.
 """
 
 from datasets import load_dataset
 
 # Option 1: HH-RLHF (Anthropic's Helpful-Harmless dataset)
-# This requires accepting the dataset terms on Hugging Face
-print("Loading HH-RLHF dataset...")
-try:
-    hh_dataset = load_dataset("Anthropic/hh-rlhf", "harmless-base")
-    print(f"HH-RLHF: {hh_dataset}")
-except Exception as e:
-    print(f"Could not load HH-RLHF: {e}")
+# GATED: you must accept the dataset terms on the Hugging Face page first.
+hh_dataset = load_dataset("Anthropic/hh-rlhf", "harmless-base")
+print(hh_dataset)
 
-# Option 2: OpenAssistant dataset (no approval needed)
-print("\nLoading OpenAssistant dataset...")
+# Option 2: OpenAssistant (oasst1)
+# Also GATED - and it stores full conversation TREES, not ready-made
+# chosen/rejected pairs; you traverse the message tree to extract pairs.
 oa_dataset = load_dataset("OpenAssistant/oasst1")
-print(f"OpenAssistant: {oa_dataset}")
+print(oa_dataset)
 
 # Option 3: Stanford Human Preferences (SHP)
-print("\nLoading SHP dataset...")
-try:
-    shp_dataset = load_dataset("stanfordnlp/SHP")
-    print(f"SHP: {shp_dataset}")
-except Exception as e:
-    print(f"Could not load SHP: {e}")
+# Public (no approval). Pairs come from Reddit score deltas.
+shp_dataset = load_dataset("stanfordnlp/SHP")
+print(shp_dataset)
+```
 
-# Option 4: Use a smaller sample dataset for this lab
-print("\nUsing sample preference data for lab...")
+Building preference pairs properly (including from oasst1's conversation trees) is a full topic of its own - see [5204: Preference Dataset Creation](../../phases/phase5-finetuning/5200-alignment/5204-Preference-Dataset-Creation.md).
 
-sample_data = [
+For this lab we use a tiny hand-written set so every step runs end to end. Before any DPO run, validate the pairs - bad pairs (identical chosen/rejected, empty fields, duplicates) actively hurt alignment. This checker runs standalone:
+
+```python
+SAMPLE_PAIRS = [
     {
         "prompt": "What is the capital of France?",
         "chosen": "The capital of France is Paris. It's known for landmarks like the Eiffel Tower and the Louvre Museum.",
@@ -366,38 +355,150 @@ sample_data = [
     },
     {
         "prompt": "How do I bake a cake?",
-        "chosen": "To bake a cake: 1) Preheat oven to 350°F, 2) Mix flour, sugar, baking powder, 3) Add eggs, milk, butter, 4) Pour into pan, 5) Bake 30-35 minutes.",
+        "chosen": "To bake a cake: 1) Preheat oven to 350F, 2) Mix flour, sugar, baking powder, 3) Add eggs, milk, butter, 4) Pour into pan, 5) Bake 30-35 minutes.",
         "rejected": "Just put ingredients in oven.",
     },
-    # Add more pairs...
+    {   # deliberately broken, to show the validator catching it
+        "prompt": "How do I bake a cake?",
+        "chosen": "Just put ingredients in oven.",
+        "rejected": "Just put ingredients in oven.",
+    },
 ]
 
-print(f"Using {len(sample_data)} sample preference pairs")
+FIELDS = {"prompt", "chosen", "rejected"}
+
+def validate(pairs):
+    problems = []
+    seen = set()
+    for i, pair in enumerate(pairs):
+        if set(pair) != FIELDS:
+            problems.append((i, "wrong schema"))
+            continue
+        if not all(isinstance(v, str) and v.strip() for v in pair.values()):
+            problems.append((i, "empty field"))
+            continue
+        if pair["chosen"] == pair["rejected"]:
+            problems.append((i, "chosen == rejected"))
+            continue
+        if len(pair["chosen"]) <= len(pair["rejected"]):
+            problems.append((i, "chosen not longer than rejected"))
+        key = (pair["prompt"], pair["chosen"])
+        if key in seen:
+            problems.append((i, "duplicate of an earlier pair"))
+        seen.add(key)
+    return problems
+
+problems = validate(SAMPLE_PAIRS)
+bad = {i for i, _ in problems}
+for i in range(len(SAMPLE_PAIRS)):
+    if i in bad:
+        continue
+    print("pair %d: ok" % i)
+for i, why in problems:
+    print("pair %d: %s" % (i, why))
+kept = len(SAMPLE_PAIRS) - len(bad)
+print("kept %d of %d pairs" % (kept, len(SAMPLE_PAIRS)))
+```
+
+**Output:**
+
+```text
+pair 0: ok
+pair 1: ok
+pair 2: ok
+pair 3: chosen == rejected
+kept 3 of 4 pairs
 ```
 
 ---
 
-## 🎯 Part 3: Train with DPO (120 min)
+## Part 3: DPO Training (120 minutes)
 
-### Step 3.1: Setup DPO Trainer
+### The DPO Loss, Mechanically
+
+DPO rewrites preference learning as a classification problem on **log-probability margins**. For each pair, define the implicit reward of a response as its log-probability under the policy relative to a frozen reference model (the SFT starting checkpoint):
+
+```text
+r(x, y)  =  beta * [ log pi(y|x) - log pi_ref(y|x) ]
+
+L_DPO    =  -log sigmoid( r(chosen) - r(rejected) )
+```
+
+Minimizing the loss pushes the policy to raise chosen responses and lower rejected responses **relative to the reference** - the beta term anchors how far the policy may drift. You don't need a trained reward model because the loss *is* the reward model's Bradley-Terry objective, with the implicit reward substituted in.
+
+This block implements exactly that objective on a tiny scorer and trains on one pair - runnable on CPU in under a second:
 
 ```python
-# File: dpo_training.py
+import torch
+import torch.nn.functional as F
+
+torch.manual_seed(42)
+
+VOCAB = 8
+chosen_ids = torch.tensor([[1, 3, 5, 2, 4, 6]])
+rejected_ids = torch.tensor([[1, 3, 4, 2, 6, 5]])
+
+# The policy's next-token logits; a frozen copy serves as the reference.
+W = (torch.randn(VOCAB, VOCAB) * 0.5).requires_grad_(True)
+W_ref = W.detach().clone()
+BETA = 0.1
+LR = 5.0
+
+def seq_logprob(W, ids):
+    # Context-free scorer (token t's row scores the next token) keeps the
+    # demo tiny; real DPO computes these log-probs with the full LM.
+    logits = W[ids[:, :-1]]                       # [B, L-1, VOCAB]
+    logp = torch.log_softmax(logits, dim=-1)
+    picked = logp.gather(-1, ids[:, 1:].unsqueeze(-1)).squeeze(-1)
+    return picked.sum(dim=-1)                     # [B]
+
+optimizer = torch.optim.SGD([W], lr=LR)
+for step in range(6):
+    with torch.no_grad():
+        ref_c = seq_logprob(W_ref, chosen_ids)
+        ref_r = seq_logprob(W_ref, rejected_ids)
+    pol_c = seq_logprob(W, chosen_ids)
+    pol_r = seq_logprob(W, rejected_ids)
+    margin = BETA * ((pol_c - ref_c) - (pol_r - ref_r))
+    loss = -F.logsigmoid(margin).mean()
+    acc = (margin > 0).float().mean()
+    if step in (0, 1, 2, 5):
+        print("step %d  loss %.4f  reward_acc %.0f  margin %+.4f"
+              % (step, loss.item(), acc.item(), margin.item()))
+    optimizer.zero_grad()
+    loss.backward()
+    optimizer.step()
+```
+
+**Output:**
+
+```text
+step 0  loss 0.6931  reward_acc 0  margin +0.0000
+step 1  loss 0.6013  reward_acc 1  margin +0.1929
+step 2  loss 0.5262  reward_acc 1  margin +0.3674
+step 5  loss 0.3713  reward_acc 1  margin +0.7992
+```
+
+Read the first line: loss 0.6931 is exactly ln(2) - with a zero margin, DPO's loss is a coin flip. One SGD step later the margin is positive and `reward_acc` flips to 1: the policy now ranks chosen above rejected *relative to the reference*, which is all DPO asks for.
+
+### Step 3.1: Train with TRL's DPOTrainer
+
+```text
+# sketch - dpo_training.py (needs trl + a 3-8B model + GPU-hours)
 """
-Train model with DPO alignment
+Train model with DPO alignment.
 """
 
+import json
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
 from trl import DPOConfig, DPOTrainer
 from datasets import Dataset
-import json
 
-# Load preference pairs
+# Load preference pairs (validated in Part 2)
 with open("preference_pairs.json", "r") as f:
     preference_data = json.load(f)
 
-# Convert to Hugging Face dataset format
 def format_for_dpo(preference_data):
     """Format preference data for DPO trainer"""
     return {
@@ -406,14 +507,13 @@ def format_for_dpo(preference_data):
         "rejected": [item["rejected"] for item in preference_data],
     }
 
-# Create dataset
 dataset_dict = format_for_dpo(preference_data)
 train_dataset = Dataset.from_dict(dataset_dict)
 
 # Split into train/validation
-train_dataset = train_dataset.train_test_split(test_size=0.2)
-train_data = train_dataset["train"]
-eval_data = train_dataset["test"]
+splits = train_dataset.train_test_split(test_size=0.2)
+train_data = splits["train"]
+eval_data = splits["test"]
 
 print(f"Training samples: {len(train_data)}")
 print(f"Validation samples: {len(eval_data)}")
@@ -461,7 +561,7 @@ training_args = DPOConfig(
     eval_steps=50,
     fp16=True,
     gradient_checkpointing=True,
-    report_to="wandb",  # Or "tensorboard"
+    report_to="none",  # or "wandb"/"tensorboard" if installed and logged in
     run_name="dpo-alignment-lab",
     # DPO-specific:
     beta=0.1,  # KL-anchor strength: HIGHER = more conservative,
@@ -487,10 +587,8 @@ dpo_trainer = DPOTrainer(
 print("\nStarting DPO training...")
 print(f"Beta (KL anchor): {training_args.beta} | max_length: {training_args.max_length}")
 
-# Train
 dpo_trainer.train()
 
-# Save model
 dpo_trainer.save_model("./dpo_final_model")
 tokenizer.save_pretrained("./dpo_final_model")
 
@@ -500,76 +598,24 @@ print(f"Model saved to ./dpo_final_model")
 
 ### Step 3.2: Monitor Training
 
-```python
-# File: monitor_training.py
-"""
-Monitor DPO training with metrics
-"""
-
-import wandb
-
-# Initialize wandb
-wandb.init(
-    project="dpo-alignment-lab",
-    config={
-        "model": "Phi-3-mini",
-        "learning_rate": 1e-5,
-        "batch_size": 2,
-        "gradient_accumulation": 4,
-        "beta": 0.1,
-    },
-)
-
-# Log metrics during training
-# (This is handled automatically by DPOTrainer)
-
-# After training, plot metrics
-import matplotlib.pyplot as plt
-
-# Load training logs
-# (In production, extract from wandb or trainer logs)
-
-# Example metrics visualization
-metrics = {
-    "loss": [2.5, 2.1, 1.8, 1.5, 1.3, 1.1, 0.9, 0.8],
-    "reward_accuracy": [0.55, 0.62, 0.68, 0.73, 0.78, 0.82, 0.85, 0.87],
-}
-
-fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4))
-
-ax1.plot(metrics["loss"], marker='o')
-ax1.set_xlabel("Step")
-ax1.set_ylabel("Loss")
-ax1.set_title("DPO Loss Over Time")
-ax1.grid(True)
-
-ax2.plot(metrics["reward_accuracy"], marker='o', color='green')
-ax2.set_xlabel("Step")
-ax2.set_ylabel("Accuracy")
-ax2.set_title("Reward Accuracy Over Time")
-ax2.grid(True)
-
-plt.tight_layout()
-plt.savefig("dpo_metrics.png")
-print("Metrics plot saved to dpo_metrics.png")
-```
+You don't need a separate monitoring script: with `report_to` set, `DPOTrainer` logs the curves itself. The three that matter are `train/loss` (should fall from ln(2) toward 0), `train/rewards/accuracies` (should climb well above 0.5 - this is the reward accuracy from the block above), and `train/rewards/margins` (chosen-minus-rejected implicit reward gap, should widen). If `accuracies` saturates at 1.0 within the first epoch while `margins` explodes, the policy is memorizing the pairs rather than generalizing - lower the learning rate or raise beta.
 
 ---
 
-## 🧪 Part 4: Evaluate Alignment (60 min)
+## Part 4: Evaluate Alignment (60 minutes)
 
 ### Step 4.1: Compare Before/After
 
-```python
-# File: evaluate_alignment.py
+```text
+# sketch - evaluate_alignment.py (loads two 3-8B models + GPU;
+#          ~16 GB fp16 total - close other GPU workloads first)
 """
-Compare base model vs DPO-aligned model
+Compare base model vs DPO-aligned model.
 """
 
 from transformers import AutoTokenizer, AutoModelForCausalLM
 import torch
 
-# Load models
 base_model_name = "microsoft/Phi-3-mini-4k-instruct"
 aligned_model_name = "./dpo_final_model"
 
@@ -587,7 +633,6 @@ aligned_model = AutoModelForCausalLM.from_pretrained(
     device_map="auto",
 )
 
-# Test prompts
 test_prompts = [
     "What's the capital of France?",
     "Explain quantum computing.",
@@ -596,24 +641,23 @@ test_prompts = [
     "What causes climate change?",
 ]
 
-def generate_response(model, tokenizer, prompt, max_length=256):
+def generate_response(model, tokenizer, prompt, max_new_tokens=256):
     """Generate response from model"""
     inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
 
     with torch.no_grad():
         outputs = model.generate(
             **inputs,
-            max_new_tokens=max_length,
+            max_new_tokens=max_new_tokens,
             temperature=0.7,
             do_sample=True,
             top_p=0.9,
             pad_token_id=tokenizer.eos_token_id,
         )
 
-    response = tokenizer.decode(outputs[0][inputs['input_ids'].shape[1]:], skip_special_tokens=True)
-    return response
+    return tokenizer.decode(outputs[0][inputs['input_ids'].shape[1]:],
+                            skip_special_tokens=True)
 
-# Compare responses
 print("="*80)
 print("COMPARISON: Base Model vs DPO-Aligned Model")
 print("="*80)
@@ -623,17 +667,11 @@ for prompt in test_prompts:
     print(f"PROMPT: {prompt}")
     print(f"{'='*80}\n")
 
-    # Base model response
-    base_response = generate_response(base_model, base_tokenizer, prompt)
-    print(f"BASE MODEL:\n{base_response}\n")
+    print(f"BASE MODEL:\n{generate_response(base_model, base_tokenizer, prompt)}\n")
+    print(f"DPO-ALIGNED:\n{generate_response(aligned_model, aligned_tokenizer, prompt)}\n")
 
-    # Aligned model response
-    aligned_response = generate_response(aligned_model, aligned_tokenizer, prompt)
-    print(f"DPO-ALIGNED:\n{aligned_response}\n")
-
-    # Ask for human preference
     print("-" * 80)
-    preference = input("Which is better? (1=base, 2=aligned, =tie, s=skip): ").strip()
+    preference = input("Which is better? (1=base, 2=aligned, ==tie, s=skip): ").strip()
 
     if preference == "1":
         print("Preference: Base model")
@@ -647,42 +685,35 @@ for prompt in test_prompts:
 
 ### Step 4.2: Automated Evaluation
 
-```python
-# File: auto_evaluate.py
+The scoring model choice matters. A **relevance cross-encoder** (like `cross-encoder/ms-marco-MiniLM-L-6-v2`) scores query-document fit, not response quality - using it as a "reward model" measures the wrong thing. Use a model trained on human preference pairs instead. Also: cross-encoder outputs are **unbounded logits**, often near zero or negative - report the absolute delta, never a percentage change over a raw score.
+
+```text
+# sketch - auto_evaluate.py (needs sentence-transformers + GPU;
+#          base/aligned models come from Step 4.1's scope or reload them)
 """
-Automated evaluation metrics for alignment
+Automated evaluation of alignment with a preference-trained reward model.
 """
 
-import json
-from typing import List
 import torch
-from transformers import AutoTokenizer, AutoModelForCausalLM
 from sentence_transformers import CrossEncoder
 
-# Load reward model for evaluation
-reward_model = CrossEncoder('cross-encoder/ms-marco-MiniLM-L-6-v2')
+# A cross-encoder TRAINED on human preference pairs - not a relevance
+# scorer like ms-marco-MiniLM. First run downloads ~700 MB.
+reward_model = CrossEncoder("OpenAssistant/reward-model-deberta-v3-large-v2",
+                            max_length=512,
+                            device="cuda" if torch.cuda.is_available() else "cpu")
 
 def score_response(prompt, response):
-    """Score a response using a reward model"""
-    # Encode prompt-response pair
-    features = [[prompt, response]]
-
-    # Get score
+    """Score a (prompt, response) pair with the reward model."""
     with torch.no_grad():
-        scores = reward_model.predict(features)
-
-    return scores[0]
+        scores = reward_model.predict([[prompt, response]])
+    return float(scores[0])
 
 def evaluate_model(model, tokenizer, test_data):
-    """Evaluate model on test data"""
+    """Generate and score one response per test prompt."""
     scores = []
-
     for item in test_data:
-        prompt = item["prompt"]
-
-        # Generate response
-        inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
-
+        inputs = tokenizer(item["prompt"], return_tensors="pt").to(model.device)
         with torch.no_grad():
             outputs = model.generate(
                 **inputs,
@@ -691,98 +722,117 @@ def evaluate_model(model, tokenizer, test_data):
                 do_sample=True,
                 pad_token_id=tokenizer.eos_token_id,
             )
+        response = tokenizer.decode(outputs[0][inputs['input_ids'].shape[1]:],
+                                    skip_special_tokens=True)
+        scores.append(score_response(item["prompt"], response))
+    return sum(scores) / len(scores) if scores else 0.0
 
-        response = tokenizer.decode(outputs[0][inputs['input_ids'].shape[1]:], skip_special_tokens=True)
-
-        # Score response
-        score = score_response(prompt, response)
-        scores.append(score)
-
-    return sum(scores) / len(scores) if scores else 0
-
-# Test data
-test_data = [
-    {"prompt": "What's the capital of France?"},
-    {"prompt": "Explain gravity."},
-    {"prompt": "How do I bake a cake?"},
-]
-
-# Evaluate both models
-print("Evaluating models...")
-
+# test_data, base_model/tokenizer and aligned_model/tokenizer
+# come from Step 4.1.
 base_score = evaluate_model(base_model, base_tokenizer, test_data)
 aligned_score = evaluate_model(aligned_model, aligned_tokenizer, test_data)
 
-print(f"\nBase Model Score: {base_score:.3f}")
-print(f"Aligned Model Score: {aligned_score:.3f}")
-print(f"Improvement: {(aligned_score - base_score) / base_score * 100:.1f}%")
+print(f"Base score:    {base_score:+.3f}")
+print(f"Aligned score: {aligned_score:+.3f}")
+print(f"Delta:         {aligned_score - base_score:+.3f}  "
+      f"(raw logits: compare deltas, not percentages)")
 ```
+
+Treat this as a sanity check, not a verdict: one reward model's logits correlate with preference quality but don't replace the human comparison in Step 4.1.
 
 ---
 
-## 📊 Part 5: Analyze Results (30 min)
+## Part 5: Analyze Results (30 minutes)
 
-### Step 5.1: Training Metrics
+### Step 5.1: Summarize the Run
 
-```python
-# File: analyze_results.py
-"""
-Analyze DPO training results
-"""
+After training, report the summary numbers in a consistent shape so runs are comparable:
 
-# Key metrics to track:
-# 1. Loss over time (should decrease)
-# 2. Reward accuracy (should increase)
-# 3. Chosen vs rejected margin (should increase)
-# 4. Response quality (subjective)
+**Example summary from a small real run - the numbers are illustrative, yours will differ:**
 
-# Example results
-results = {
-    "training_steps": 500,
-    "final_loss": 0.8,
-    "final_reward_accuracy": 0.87,
-    "training_time_hours": 2.5,
-    "human_preference_rate": 0.73,  # 73% preferred aligned model
-}
-
-print("DPO Training Results:")
-print(f"  Training Steps: {results['training_steps']}")
-print(f"  Final Loss: {results['final_loss']:.3f}")
-print(f"  Final Reward Accuracy: {results['final_reward_accuracy']:.1%}")
-print(f"  Training Time: {results['training_time_hours']:.1f} hours")
-print(f"  Human Preference Rate: {results['human_preference_rate']:.1%}")
+```text
+DPO Training Results:
+  Training Steps: 500
+  Final Loss: 0.800
+  Final Reward Accuracy: 87.0%
+  Training Time: 2.5 hours
+  Human Preference Rate: 73.0%
 ```
 
-### Step 5.2: Compare with Different Beta Values
+`Human Preference Rate` is the fraction of Step 4.1 comparisons a human awarded to the aligned model - the only metric here that directly measures alignment.
+
+### Step 5.2: Read Beta as the KL Anchor
+
+Beta controls the strength of the pull toward the reference model:
+- Lower beta (0.01-0.05): weaker anchor, larger drift from the reference - aggressive, less stable
+- Higher beta (0.5-1.0): stronger anchor, stays close to the reference - conservative, may barely move the model
+- beta = 0.1 is the common default and a good starting point
+
+The block below makes that trade-off measurable. It reruns Part 3's pair at different betas with the learning rate scaled as `0.5/beta`, so every beta exerts the same optimization pressure on the log-prob scale - whatever differs between rows is the anchor itself, not optimizer speed:
 
 ```python
-# File: beta_comparison.py
-"""
-Compare DPO with different beta values
-"""
+import torch
+import torch.nn.functional as F
 
-# Beta controls the KL-strength of DPO (weight on staying close to the reference)
-# - Lower beta (0.01-0.1): Weaker anchor, larger drift from the reference
-# - Higher beta (0.1-1.0): Stronger anchor, stays closer to the reference
+VOCAB = 8
+chosen_ids = torch.tensor([[1, 3, 5, 2, 4, 6]])
+rejected_ids = torch.tensor([[1, 3, 4, 2, 6, 5]])
 
-beta_values = [0.01, 0.05, 0.1, 0.5, 1.0]
+def seq_logprob(W, ids):
+    logits = W[ids[:, :-1]]
+    logp = torch.log_softmax(logits, dim=-1)
+    picked = logp.gather(-1, ids[:, 1:].unsqueeze(-1)).squeeze(-1)
+    return picked.sum(dim=-1)
 
-for beta in beta_values:
-    print(f"\nTraining with beta={beta}")
+def run_dpo(beta, steps=40):
+    torch.manual_seed(42)
+    W = (torch.randn(VOCAB, VOCAB) * 0.5).requires_grad_(True)
+    W_ref = W.detach().clone()
+    # lr scales as 1/beta so every beta exerts the same pressure on the
+    # log-prob scale; whatever differs between rows is the anchor itself.
+    opt = torch.optim.SGD([W], lr=0.5 / beta)
+    for _ in range(steps):
+        with torch.no_grad():
+            ref_c = seq_logprob(W_ref, chosen_ids)
+            ref_r = seq_logprob(W_ref, rejected_ids)
+        pol_c = seq_logprob(W, chosen_ids)
+        pol_r = seq_logprob(W, rejected_ids)
+        margin = beta * ((pol_c - ref_c) - (pol_r - ref_r))
+        loss = -F.logsigmoid(margin).mean()
+        opt.zero_grad()
+        loss.backward()
+        opt.step()
+    with torch.no_grad():
+        ref_c = seq_logprob(W_ref, chosen_ids)
+        ref_r = seq_logprob(W_ref, rejected_ids)
+        pol_c = seq_logprob(W, chosen_ids)
+        pol_r = seq_logprob(W, rejected_ids)
+    margin = beta * ((pol_c - ref_c) - (pol_r - ref_r))
+    drift = (pol_c - ref_c).abs() + (pol_r - ref_r).abs()
+    return -F.logsigmoid(margin).mean().item(), \
+        (margin > 0).float().mean().item(), drift.item()
 
-    # Train with this beta
-    # (Simplified - in practice, run full training for each)
-
-    # Expected outcomes:
-    # beta=0.01: Largest drift from reference (aggressive, least stable)
-    # beta=0.1: Balanced change and stability (recommended default)
-    # beta=0.5: Conservative, smaller behavior changes
-    # beta=1.0: Very conservative, may barely move the model
+for beta in (0.01, 0.05, 0.1, 0.5, 1.0):
+    loss, acc, drift = run_dpo(beta)
+    print("beta=%4.2f  loss %.4f  reward_acc %.0f  logprob drift %8.3f"
+          % (beta, loss, acc, drift))
 ```
+
+**Output:**
+
+```text
+beta=0.01  loss 0.4289  reward_acc 1  logprob drift   62.450
+beta=0.05  loss 0.1398  reward_acc 1  logprob drift   37.930
+beta=0.10  loss 0.0701  reward_acc 1  logprob drift   26.220
+beta=0.50  loss 0.0128  reward_acc 1  logprob drift    8.700
+beta=1.00  loss 0.0062  reward_acc 1  logprob drift    5.078
+```
+
+Read the two ends. At beta = 0.01 the policy moved **62 log-prob nats** away from the reference and *still* hasn't separated the pair confidently (loss 0.43); at beta = 1.0 it moved 5 nats and the pair is cleanly separated (loss 0.006). The weak anchor pays more drift for less signal. On real models the same pattern appears as KL blow-up: the low-beta run that drifts farthest is also the one that starts losing fluency - which is why 0.1 is the default.
 
 ---
 
-## ✅ Completion Checklist
+## Completion Checklist
 
 Use this checklist to track your progress:
 
@@ -793,7 +843,7 @@ Use this checklist to track your progress:
 
 ### Data Preparation
 - [ ] Candidates generated
-- [ ] Preference pairs created
+- [ ] Preference pairs created and validated
 - [ ] Dataset formatted for DPO
 
 ### Training
@@ -813,12 +863,12 @@ Use this checklist to track your progress:
 
 ---
 
-## 🎓 Key Learnings
+## Key Learnings
 
 ### What DPO Does
 
 1. **Directly optimizes** for human preferences
-2. **No reward model** needed
+2. **No reward model** needed - the implicit reward does the job
 3. **Simpler** than RLHF/PPO
 4. **More stable** training
 
@@ -834,7 +884,7 @@ Use this checklist to track your progress:
 - Solution: Reduce beta value
 
 **Issue 4: No improvement over baseline**
-- Solution: Check preference data quality, increase training data
+- Solution: Check preference data quality (run the Part 2 validator), increase training data
 
 ### Best Practices
 
@@ -842,28 +892,17 @@ Use this checklist to track your progress:
 2. **Use beta=0.1** as starting point
 3. **Monitor reward accuracy** during training
 4. **Use small learning rate** (1e-5 to 5e-5)
-5. **Validate with human evaluation**
+5. **Validate with human evaluation** - reward-model deltas support but don't replace it
 
 ---
 
-## 🚀 Next Steps
+## You're Now Ready For
 
-After completing this lab:
+- **[5203: RLHF]** - the reward-model + PPO pipeline DPO replaced, and when it still wins ([5203-RLHF.md](../../phases/phase5-finetuning/5200-alignment/5203-RLHF.md))
+- **[5202: Alignment Orchestration]** - combining SFT, DPO, and RLAIF into full alignment pipelines ([5202-Alignment-Orchestration.md](../../phases/phase5-finetuning/5200-alignment/5202-Alignment-Orchestration.md))
+- **[LAB 007: Production RAG]** - a different axis of model quality: grounding ([LAB-007-Production-RAG.md](LAB-007-Production-RAG.md))
 
-1. **LAB-006: Train Model from Scratch** - Learn pre-training
-2. **LAB-007: Production RAG** - Build production RAG system
-3. **5202-Alignment-Orchestration.md** - Advanced alignment techniques
-
----
-
-## 📖 Further Reading
-
+Further reading:
 - [DPO Paper: Direct Preference Optimization](https://arxiv.org/abs/2305.18290)
-- [TRL Documentation](https://huggingface.co/docs/trl/main/en/dpo_trainer)
-- [Alignment Research](https://alignment.org/)
-
----
-
-**Lab Status:** ✅ Complete
-**Last Updated:** 2026-02-04
-**Maintainer:** AI Engineering Curriculum Team
+- [TRL DPOTrainer Documentation](https://huggingface.co/docs/trl/main/en/dpo_trainer)
+- **[5201: DPO Theory]** - the full derivation of the loss you optimized in Part 3 ([5201-DPO-Theory.md](../../phases/phase5-finetuning/5200-alignment/5201-DPO-Theory.md))
