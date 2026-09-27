@@ -36,12 +36,12 @@ Tags: ['math', 'calculus', 'tensors', 'backpropagation']
 
 After completing this lesson, you will be able to:
 
-- Explain The Chain Rule
-- Explain Computational Graphs
-- Explain Automatic Differentiation (Autograd)
-- Explain Backpropagation Algorithm
-- Explain Common Gradient Patterns
-- Explain Vanishing and Exploding Gradients
+- Apply the chain rule by hand to a composed function and predict the backward result of the x → +1 → ×2 → ² → −4 graph before calling `backward()`
+- Trace a PyTorch autograd DAG through `grad_fn`/`is_leaf` and explain how gradients accumulate along the reverse topological order
+- Derive ∂L/∂W and ∂L/∂b for a sigmoid layer with MSE loss and match each factor of the chain rule to autograd's output
+- Reproduce the linear, ReLU, and softmax+cross-entropy backward formulas and state why `softmax − one_hot` is the numerically stable form
+- Diagnose vanishing gradients via the (0.25)ⁿ sigmoid bound and exploding gradients via NaN/Inf, then fix each with initialization, normalization, residual connections, clipping, or checkpointing
+- Train under limited GPU memory with gradient accumulation (loss normalization, step/zero_grad cadence) and compute full Hessians with `create_graph=True`
 
 ---
 
