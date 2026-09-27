@@ -1,7 +1,7 @@
 ---
 Document ID: 6103
 Title: "6103: HNSW Parameter Tuning Guide"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Advanced
 ---
@@ -28,12 +28,12 @@ Difficulty: Advanced
 
 After completing this lesson, you will be able to:
 
-- Explain HNSW Architecture
-- Explain Parameter Deep Dive
-- Explain Tuning Strategy
-- Configure and operate Production Configurations
-- Explain Optimal Settings by Use Case
-- Explain Dynamic ef Adjustment
+- Map the HNSW layer hierarchy — exponentially fewer nodes at the top, greedy descent from the sparse layers into the dense layer-0 graph, and where M, ef_construction, and ef_search act on it
+- Tune M, ef_construction, and ef_search from their trade-off surfaces — graph density and the ≈2·M·4-byte link memory per vector, build speed vs build quality, query recall vs latency
+- Run the two-step tuning loop — benchmark a configuration grid end-to-end (index throughput + search QPS via `query_points`), then sweep ef and plot the recall@k vs latency curve to locate the operating point
+- Ship production Qdrant collections with `HnswConfigDiff` — m, ef_construct, and full_scan_threshold (KB of vector storage below which Qdrant skips HNSW for exact scan) — sized to the dataset scale
+- Match preset configurations to SLAs — low-latency (M=16, ef=50), high-recall (M=32, ef=200), balanced (M=24, ef=100) — and read their expected QPS/recall envelopes
+- Adapt ef at query time — double it when the previous query starved (<5 results), halve it when the result stream was rich (>50), clamped to [50, 200]
 
 ---
 
@@ -151,7 +151,7 @@ ef_search = 50
 # For balanced search
 ef_search = 100
 
-# For exact search (slow)
+# For very high recall (still approximate — exact = full scan)
 ef_search = 200
 ```
 
@@ -162,7 +162,13 @@ ef_search = 200
 ```python
 # hnsw_benchmark.py
 from qdrant_client import QdrantClient
-from qdrant_client.models import Distance, VectorParams, HnswConfigDiff
+from qdrant_client.models import (
+    Distance,
+    HnswConfigDiff,
+    PointStruct,
+    SearchParams,
+    VectorParams,
+)
 import numpy as np
 import time
 
@@ -191,13 +197,15 @@ def benchmark_hnsw_params():
     for config in configs:
         print(f"\nTesting: M={config['m']}, ef={config['ef']}, ef_construction={config['ef_construction']}")
 
-        client = QdrantClient(url="http://192.168.1.100:6334")
+        # A REAL server is required: local `:memory:` mode does exact
+        # brute-force search and ignores hnsw_ef — nothing to tune there
+        client = QdrantClient(url="http://localhost:6333")
         collection = f"test_m{config['m']}_ef{config['ef']}"
 
         # Create collection
         try:
             client.delete_collection(collection)
-        except:
+        except Exception:
             pass
 
         client.create_collection(
@@ -236,11 +244,14 @@ def benchmark_hnsw_params():
 
         start = time.time()
         for query in query_vectors:
-            client.search(
+            # client.search() was deprecated in qdrant-client 1.10 and
+            # is REMOVED by 1.19 (AttributeError) — query_points() is
+            # the universal API; ef travels via SearchParams now
+            client.query_points(
                 collection,
-                query_vector=query.tolist(),
+                query=query.tolist(),
                 limit=10,
-                hnsw_ef=config["ef"]
+                search_params=SearchParams(hnsw_ef=config["ef"]),
             )
         search_time = time.time() - start
 
@@ -267,41 +278,57 @@ if __name__ == "__main__":
 
 ```python
 # recall_analysis.py
+import time
+
+from qdrant_client.models import SearchParams
+
+
 def calculate_recall(search_results, ground_truth, k):
     """Calculate recall@k"""
     retrieved_ids = set(r.id for r in search_results[:k])
     relevant_ids = set(ground_truth)
     return len(retrieved_ids & relevant_ids) / len(relevant_ids)
 
-def analyze_recall_vs_speed():
-    """Analyze recall-speed tradeoff"""
 
+def analyze_recall_vs_speed(client, collection, queries, ground_truth):
+    """
+    Sweep ef_search, measure recall@10 and mean latency per query.
+
+    queries: list of query vectors (each a list of floats)
+    ground_truth: list of id-lists — the exact top-10 neighbors per
+    query, from a brute-force pass over the same vectors
+    """
     ef_values = [10, 20, 50, 100, 150, 200]
-
     results = {}
 
     for ef in ef_values:
-        # Search with different ef
-        search_results = client.search(
-            collection,
-            query_vector=query,
-            limit=100,
-            hnsw_ef=ef
-        )
-
-        recall = calculate_recall(search_results, ground_truth, k=10)
+        recalls, times = [], []
+        for query, truth in zip(queries, ground_truth):
+            start = time.time()
+            found = client.query_points(
+                collection,
+                query=query,
+                limit=10,
+                search_params=SearchParams(hnsw_ef=ef),
+            ).points
+            times.append((time.time() - start) * 1000)  # ms
+            recalls.append(calculate_recall(found, truth, k=10))
 
         results[ef] = {
-            "recall": recall,
-            "time": measure_search_time(ef)
+            "recall": sum(recalls) / len(recalls),
+            "time_ms": sum(times) / len(times),
         }
 
-    # Plot
+    return results
+
+
+def plot_recall_vs_speed(results, out_path="hnsw_ef_analysis.png"):
+    """Two-panel plot: recall@10 and latency as functions of ef"""
     import matplotlib.pyplot as plt
 
-    ef_list = list(results.keys())
+    ef_list = sorted(results)
     recalls = [results[e]["recall"] for e in ef_list]
-    times = [results[e]["time"] for e in ef_list]
+    times = [results[e]["time_ms"] for e in ef_list]
 
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
 
@@ -318,11 +345,15 @@ def analyze_recall_vs_speed():
     ax2.grid(True, alpha=0.3)
 
     plt.tight_layout()
-    plt.savefig('/workspace/hnsw_ef_analysis.png', dpi=150)
+    plt.savefig(out_path, dpi=150)
 
 
 if __name__ == "__main__":
-    analyze_recall_vs_speed()
+    # client: QdrantClient(url="http://localhost:6333") against a real
+    # server (local :memory: mode does exact brute-force, so ef has no
+    # effect there); collection built as in Step 1; ground_truth from
+    # an exact brute-force pass over the inserted vectors
+    pass
 ```
 
 ## Production Configurations
@@ -330,7 +361,7 @@ if __name__ == "__main__":
 ### Qdrant HNSW Config
 
 ```python
-from qdrant_client.models import HnswConfigDiff
+from qdrant_client.models import Distance, HnswConfigDiff, VectorParams
 
 # Small dataset (<100K vectors)
 hnsw_config_small = HnswConfigDiff(
@@ -339,6 +370,8 @@ hnsw_config_small = HnswConfigDiff(
 )
 
 # Medium dataset (100K-1M vectors)
+# full_scan_threshold is KILOBYTES of vector storage: collections
+# smaller than this skip HNSW entirely and answer with exact scan
 hnsw_config_medium = HnswConfigDiff(
     m=32,
     ef_construct=200,
@@ -352,15 +385,20 @@ hnsw_config_large = HnswConfigDiff(
     full_scan_threshold=20000,
 )
 
-# Create collection with HNSW config
-client.create_collection(
-    collection_name="documents",
-    vectors_config=VectorParams(
-        size=384,
-        distance=Distance.COSINE,
-        hnsw_config=hnsw_config_medium
+
+if __name__ == "__main__":
+    # Needs a live server (local :memory: mode cannot tune HNSW)
+    from qdrant_client import QdrantClient
+
+    client = QdrantClient(url="http://localhost:6333")
+    client.create_collection(
+        collection_name="documents",
+        vectors_config=VectorParams(
+            size=384,
+            distance=Distance.COSINE,
+            hnsw_config=hnsw_config_medium
+        )
     )
-)
 ```
 
 ## Optimal Settings by Use Case
@@ -368,6 +406,8 @@ client.create_collection(
 ### Real-time Search (Low Latency)
 
 ```python
+from qdrant_client.models import HnswConfigDiff
+
 hnsw_config = HnswConfigDiff(
     m=16,           # Sparse graph
     ef_construct=100,  # Quick indexing
@@ -380,6 +420,8 @@ ef_search = 50        # Fast search
 ### High Quality (High Recall)
 
 ```python
+from qdrant_client.models import HnswConfigDiff
+
 hnsw_config = HnswConfigDiff(
     m=32,           # Denser graph
     ef_construct=200,  # Quality indexing
@@ -392,6 +434,8 @@ ef_search = 200       # Thorough search
 ### Balanced (Production)
 
 ```python
+from qdrant_client.models import HnswConfigDiff
+
 hnsw_config = HnswConfigDiff(
     m=24,           # Balanced density
     ef_construct=150,  # Balanced quality
@@ -406,24 +450,28 @@ ef_search = 100       # Balanced search
 ```python
 # dynamic_ef.py
 class AdaptiveSearch:
-    """Adjust ef based on query complexity"""
+    """Adjust ef at query time based on how many results came back."""
 
-    def __init__(self, base_ef=100):
+    def __init__(self, base_ef=100, min_ef=50, max_ef=200):
         self.base_ef = base_ef
+        self.min_ef = min_ef
+        self.max_ef = max_ef
         self.history = []
 
-    def get_ef(self, query: str, results_count: int) -> int:
-        """Adjust ef based on query and previous results"""
+    def get_ef(self, results_count: int) -> int:
+        """Adjust ef based on the previous query's result count"""
 
-        # Increase ef if few results found
+        # Increase ef if few results found (starved -> look harder)
         if results_count < 5:
-            return min(self.base_ef * 2, 200)
+            ef = min(self.base_ef * 2, self.max_ef)
+        # Decrease ef if many results found (rich -> spend less)
+        elif results_count > 50:
+            ef = max(self.base_ef // 2, self.min_ef)
+        else:
+            ef = self.base_ef
 
-        # Decrease ef if many results found (speed up)
-        if results_count > 50:
-            return max(self.base_ef // 2, 50)
-
-        return self.base_ef
+        self.history.append((results_count, ef))
+        return ef
 ```
 
 ## Performance Benchmarks
@@ -440,11 +488,15 @@ class AdaptiveSearch:
 
 ### Memory Usage
 
-| M | Vectors | Memory per Vector | Total Memory (100K) |
-|---|---------|-------------------|---------------------|
-| 16 | 100K | ~0.1 KB | ~10 MB |
-| 32 | 100K | ~0.2 KB | ~20 MB |
-| 64 | 100K | ~0.4 KB | ~40 MB |
+HNSW adds ~2·M link ids per vector at 4 bytes each (bidirectional
+graph edges); on top of that come the vectors themselves (4 bytes ×
+dim — 1.5 KB at 384-D) and any payloads:
+
+| M | Link bytes / vector (2·M × 4 B) | Total link memory (100K vectors) |
+|---|---------------------------------|----------------------------------|
+| 16 | 128 B | ~12.8 MB |
+| 32 | 256 B | ~25.6 MB |
+| 64 | 512 B | ~51.2 MB |
 
 ## Tuning Checklist
 
@@ -470,18 +522,12 @@ class AdaptiveSearch:
 
 - [6101: HNSW Indexing - Efficient Semantic Search at Scale](../6101-HNSW-Indexing.md)
 - [6102: Semantic Similarity Metrics - Cosine, Dot Product, and Manifold Metrics](../6102-Semantic-Similarity.md)
+- [6401: Qdrant Setup](../../6400-vector-databases/6401-Qdrant-Setup.md)
 
 ---
 
 ## Next Steps
 
 - Return to: **[Module README](../README.md)**
-
----
----
-
-**Related:**
-- [6101: HNSW Indexing](../6101-HNSW-Indexing.md)
-- [6102: Semantic Similarity](../6102-Semantic-Similarity.md)
-- [6401: Qdrant Setup](../../6400-vector-databases/6401-Qdrant-Setup.md)
-- [EXP_6101: HNSW](../../../../../experiments/EXP_6101_HNSW.md)
+- Lessons: **[6101: HNSW Indexing](../6101-HNSW-Indexing.md)** · **[6102: Semantic Similarity](../6102-Semantic-Similarity.md)**
+- Experiment: **[EXP_6101: HNSW](../../../../../experiments/EXP_6101_HNSW.md)**
