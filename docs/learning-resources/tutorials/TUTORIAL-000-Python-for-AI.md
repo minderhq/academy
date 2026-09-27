@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-000
 Title: "TUTORIAL-000: Python for AI (Complete Beginner)"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Beginner
 ---
@@ -894,17 +894,19 @@ except ValueError as e:
 
 ### Installing Packages:
 ```bash
-# Using pip
-pip install requests
-pip install numpy
-pip install pandas
+# Using uv (the 2026 curriculum standard - 10-100x faster than pip)
+uv pip install requests
+uv pip install numpy
+uv pip install pandas
 
 # Multiple packages
-pip install requests numpy pandas
+uv pip install requests numpy pandas
 
 # From requirements.txt
-pip install -r requirements.txt
+uv pip install -r requirements.txt
 ```
+
+> Every `pip install X` you see online maps 1:1 to `uv pip install X`.
 
 ### Importing Modules:
 ```python
@@ -949,7 +951,25 @@ print(mymodule.PI)              # 3.14159
 
 Virtual environments isolate project dependencies.
 
-### venv (Built-in):
+### uv (Recommended):
+```bash
+# Create a project environment (uv downloads Python 3.11 if missing)
+uv venv --python 3.11
+
+# Activate (Windows)
+.venv\Scripts\activate
+
+# Activate (Mac/Linux)
+source .venv/bin/activate
+
+# Install packages (uv finds .venv automatically)
+uv pip install requests
+
+# Deactivate
+deactivate
+```
+
+### venv (Built-in fallback):
 ```bash
 # Create virtual environment
 python -m venv myenv
@@ -969,11 +989,11 @@ deactivate
 
 ### requirements.txt:
 ```bash
-# Generate requirements.txt
-pip freeze > requirements.txt
+# Generate requirements.txt from the active environment
+uv pip freeze > requirements.txt
 
 # Install from requirements.txt
-pip install -r requirements.txt
+uv pip install -r requirements.txt
 ```
 
 ---
@@ -991,7 +1011,7 @@ pip install -r requirements.txt
 
 ### Installation:
 ```bash
-pip install numpy
+uv pip install numpy
 ```
 
 ---
@@ -1556,7 +1576,7 @@ class Query(BaseModel):
 
 ### Installation:
 ```bash
-pip install pydantic
+uv pip install pydantic
 ```
 
 ### Basic Pydantic Models
@@ -1707,7 +1727,7 @@ def health():
 
 ### Installation:
 ```bash
-pip install fastapi uvicorn
+uv pip install fastapi uvicorn
 ```
 
 ### Basic FastAPI App

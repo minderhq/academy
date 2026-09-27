@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-003
 Title: "LAB 003: LoRA Fine-Tuning with QLoRA"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -50,7 +50,7 @@ nvcc --version
 #### 2. HuggingFace Authentication (Required)
 ```bash
 # Install HuggingFace CLI
-pip install -U "huggingface_hub[cli]"
+uv pip install -U "huggingface_hub[cli]"
 
 # Login (you need a HuggingFace account with access to Mistral-7B)
 # Visit https://huggingface.co/settings/tokens to create a token
@@ -68,8 +68,13 @@ huggingface-cli login
 # Verify Python version (3.10+ required)
 python --version  # Should be 3.10 or 3.11
 
+# Create the project environment with uv
+# (uv fetches the Python 3.11 interpreter itself if it is missing)
+uv venv --python 3.11
+
 # Install PyTorch with CUDA support
-pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+# (cu130 wheels bundle the CUDA runtime - a recent driver is enough)
+uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu130
 
 # Verify GPU access
 python -c "import torch; print(f'CUDA available: {torch.cuda.is_available()}')"
@@ -382,16 +387,16 @@ preparer.split_dataset(
 
 ```bash
 # Install PyTorch with CUDA support
-pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu130
 
 # Install fine-tuning libraries
-pip install -q -U bitsandbytes  # Note: Correct spelling (not "bitsandpeed")
-pip install -q -U transformers
-pip install -q -U peft
-pip install -q -U accelerate
-pip install -q -U datasets
-pip install -q -U trl
-pip install -q -U wandb
+uv pip install -q -U bitsandbytes  # Note: Correct spelling (not "bitsandpeed")
+uv pip install -q -U transformers
+uv pip install -q -U peft
+uv pip install -q -U accelerate
+uv pip install -q -U datasets
+uv pip install -q -U trl
+uv pip install -q -U wandb
 ```
 
 ### Create training script:
@@ -602,7 +607,7 @@ protobuf>=3.20.0
 wandb>=0.16.0
 EOF
 
-pip install -r ~/lab-003-lora/requirements.txt
+uv pip install -r ~/lab-003-lora/requirements.txt
 ```
 
 ### ✅ Checkpoint: Exercise 3

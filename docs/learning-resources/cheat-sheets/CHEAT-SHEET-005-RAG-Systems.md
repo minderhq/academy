@@ -1,7 +1,7 @@
 ---
 Document ID: CHEAT-SHEET-005
 Title: "CHEAT SHEET 005: RAG Systems"
-Last Updated: 2026-09-25
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -10,7 +10,7 @@ Difficulty: Intermediate
 ## Retrieval-Augmented Generation Quick Reference
 
 **Version:** 1.1
-**Last Updated:** 2026-09-25
+**Last Updated:** 2026-09-27
 
 ---
 
@@ -500,26 +500,26 @@ async def process_queries(queries):
 ```bash
 # Qdrant
 docker run -p 6333:6333 qdrant/qdrant
-pip install qdrant-client
+uv pip install qdrant-client
 
 # Pinecone
-pip install pinecone-client
+uv pip install pinecone-client
 
 # OpenAI + Cohere
-pip install openai cohere
+uv pip install openai cohere
 
 # Sentence Transformers + BM25
-pip install sentence-transformers rank_bm25
+uv pip install sentence-transformers rank_bm25
 
 # LangChain
-pip install langchain langchain-openai langchain-community \
+uv pip install langchain langchain-openai langchain-community \
     langchain-text-splitters langchain-experimental
 
 # Evaluation
-pip install rouge-score nltk
+uv pip install rouge-score nltk
 
 # Monitoring
-pip install prometheus-client
+uv pip install prometheus-client
 ```
 
 ---
