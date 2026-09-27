@@ -33,18 +33,18 @@ Difficulty: Advanced
 
 After completing this lesson, you will be able to:
 
-- Explain What is BitBlade
-- Apply Installation
-- Explain Basic Usage
-- Configure and operate Advanced Configuration
-- Explain Mixed Precision Training
-- Explain Calibration
+- Locate BitBlade's four techniques in their production homes — NF4 + double quantization in bitsandbytes, layer-wise mixed bits in torchao/GPTQ configs, GGUF export in llama.cpp — via the technique-to-library map
+- Quantize a causal LM with NF4Config — bits=4, quant_type="nf4", double_quant=True — reading the win from FP32-before/quantized-after get_memory_footprint() snapshots
+- Customize layer treatment three ways — LayerWiseConfig per-range maps (embeddings 8-bit symmetric, early 8, middle/late NF4), AutoBitConfig driven by target_size_gb=4.0 with a perplexity metric, and a CustomQuantConfig scheme whose clamp bounds derive from self.bits
+- Set up MixedPrecisionTraining's mp_config — fp16 embeddings/output, int8 attention, nf4 MLP — optimizing only requires_grad params, as QLoRA-style training demands
+- Weigh the three calibrate_quantization methods — percentile 99.9, entropy, MSE — across 128 calibration samples before freezing scales
+- Export the quantized model to ONNX (opset 17, dynamic batch/sequence axes) and GGUF q4_k_m, then read evaluate_model/benchmark_inference deltas — ppl 12.4→13.1, 2.75× latency speedup, 3.71× compression
 
 ---
 
 ## Abstract
 
-BitBlade is an advanced quantization library that provides state-of-the-art low-bit quantization techniques. This guide covers using BitBlade for extreme compression.
+BitBlade is this curriculum's pedagogical composite of the low-bit quantization toolkit: it bundles techniques that in production live in separate libraries. The APIs shown here are illustrative — every technique is real, and the table below maps each one to its production home.
 
 ## What is BitBlade?
 
@@ -53,6 +53,16 @@ BitBlade combines multiple quantization techniques:
 - **Double Quantization**: Quantizing the quantization parameters
 - **Mixed Precision**: Different bits for different layers
 - **Adaptive Rounding**: Smart rounding strategies
+
+### Technique-to-Library Map
+
+| BitBlade feature | Production home |
+|------------------|-----------------|
+| NF4 + double quantization | bitsandbytes `BitsAndBytesConfig` (see 4307) |
+| Layer-wise mixed bits | torchao, GPTQ-style layer configs |
+| Adaptive rounding + calibration | GPTQ calibration, torch.ao observers |
+| GGUF export | llama.cpp convert scripts |
+| ONNX export | optimum ONNXRuntime (see 4307) |
 
 ## Installation
 
@@ -95,10 +105,12 @@ config = NF4Config(
     quant_type="nf4",
 )
 
+# Snapshot the FP32 footprint BEFORE quantizing — the comparison
+# is only honest if the baseline is captured first
+print(f"Original: {model.get_memory_footprint() / 1e9:.2f} GB")
+
 model_quantized = quantize_model(model, config)
 
-# Check memory
-print(f"Original: {model.get_memory_footprint() / 1e9:.2f} GB")
 print(f"Quantized: {model_quantized.get_memory_footprint() / 1e9:.2f} GB")
 ```
 
@@ -206,7 +218,11 @@ class MyQuantScheme:
         # Custom quantization logic
         scale = tensor.abs().max() / (2 ** (self.bits - 1) - 1)
         quantized = torch.round(tensor / scale)
-        return torch.clamp(quantized, -2**3, 2**3-1) * scale
+        # Clamp bounds must follow bits — hardcoding -8..7 would
+        # silently claim a 4-bit range even at bits=3
+        return torch.clamp(
+            quantized, -2 ** (self.bits - 1), 2 ** (self.bits - 1) - 1
+        ) * scale
 
 # Apply custom scheme
 config = CustomQuantConfig(
@@ -233,8 +249,11 @@ mp_config = {
 # Prepare model
 model_mp = MixedPrecisionTraining(model, mp_config)
 
-# Training loop
-optimizer = torch.optim.AdamW(model_mp.parameters(), lr=1e-4)
+# Training loop — only the trainable (adapter/high-precision) params:
+# frozen quantized weights must not enter the optimizer
+optimizer = torch.optim.AdamW(
+    (p for p in model_mp.parameters() if p.requires_grad), lr=1e-4
+)
 
 for epoch in range(epochs):
     for batch in dataloader:
@@ -462,25 +481,25 @@ model_quantized = IPEXBackend.compile(model_quantized)
 
 ## Further Resources
 
-- **GitHub:** https://github.com/bitblade-ai/bitblade
-- **Documentation:** https://docs.bitblade.ai
-- **Paper:** "BitBlade: Advanced Quantization for LLMs"
-- **Discord:** https://discord.gg/bitblade
+- **Library:** bitsandbytes GitHub (NF4 + double quantization)
+- **Library:** torchao (layer-wise and low-bit quantization)
+- **Docs:** llama.cpp GGUF conversion guide
+- **See also:** 4307 for the bitsandbytes/optimum flows in production APIs
 
 ## Summary
 
-BitBlade provides the most advanced quantization techniques for LLMs:
+BitBlade's composite toolkit covers the techniques production libraries use for LLMs:
 
 - **NF4:** Optimal 4-bit data type
 - **Double Quantization:** Compress quantization parameters
 - **Mixed Precision:** Layer-wise bit-width
 - **Production Ready:** Export to ONNX, GGUF
 
-Use BitBlade when you need:
+Use these techniques (via their production homes) when you need:
 - Maximum compression
 - State-of-the-art accuracy
 - Easy export to production
-- Active development
+- Backing by maintained libraries
 
 
 ---
