@@ -1,9 +1,15 @@
 ---
 Document ID: 6303
 Title: "6303: Neo4j Deployment Guide"
-Last Updated: 2026-09-24
+Phase: 6
+Module: 6300
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Advanced
+Estimated Time: 3 hours
+Prerequisites: See module README
+Related: See module README
+Tags: ['rag', 'neo4j', 'deployment', 'docker']
 ---
 
 # 6303: Neo4j Deployment Guide
@@ -29,17 +35,17 @@ Difficulty: Advanced
 
 After completing this lesson, you will be able to:
 
-- Apply Deployment Targets
-- Configure and operate Docker Deployment
-- Configure and operate Initial Configuration
-- Measure and evaluate Performance Tuning
-- Explain Backup Strategy
-- Measure and evaluate Monitoring
+- Size a deployment — pick a target (Docker host, NAS stack, VPS) from the trade-off table and derive heap + page cache from the host-RAM table, keeping page cache sized to the hot graph rather than the whole store
+- Deploy with Docker Compose — pin `neo4j:2026.09.0` (calendar versioning; 5.26 is the LTS line), single-source the password through `${NEO4J_PASSWORD:-…}` substitution into both `NEO4J_AUTH` and the healthcheck, and install the APOC plugin
+- Configure and verify — create `Entity`/`Document` uniqueness constraints, confirm `dbms.components()` + `apoc.version()`, and use the Neo4j 5 setting names (`server.memory.*` — the `dbms.memory.*` names configure nothing on this release)
+- Run the backup loop — stop → tar → start with 7-day rotation on a cron entry, and explain why the container must stop first (store files must be quiescent for a consistent copy)
+- Monitor health — run the Bolt liveness/inventory script (`RETURN 1`, `SHOW CONSTRAINTS`, node count) and name the Enterprise-only native Prometheus endpoint (:2004) versus the Community options
+- Harden and troubleshoot — `ALTER CURRENT USER SET PASSWORD`, a `reader`-role limited user (fine-grained `GRANT MATCH` is Enterprise-only), and `SHOW TRANSACTIONS` / `TERMINATE TRANSACTIONS` for stuck queries
 
 ---
 
 ## Abstract
-Complete guide for deploying Neo4j knowledge graph database on any Docker-capable Linux host, NAS, or VPS for AI Engineering Curriculum.
+Complete guide for deploying the Neo4j knowledge graph database on any Docker-capable Linux host, NAS, or VPS: image pinning, Compose, memory sizing, backup, monitoring, and hardening.
 
 ## Deployment Targets
 
@@ -82,14 +88,14 @@ cd /srv/neo4j
 
 # Create docker-compose.yml
 cat > docker-compose.yml << 'EOF'
-
 services:
   neo4j:
-    image: neo4j:5.15-community
-    container_name: ai-engineering-curriculum-neo4j
+    # Calendar-versioned tag; 5.26 is the LTS maintenance line (see 6301)
+    image: neo4j:2026.09.0
+    container_name: neo4j
     ports:
-      - "7474:7474"  # HTTP
-      - "7687:7687"  # Bolt
+      - "7474:7474"  # HTTP (Browser)
+      - "7687:7687"  # Bolt (drivers)
     volumes:
       - ./data:/data
       - ./logs:/logs
@@ -97,48 +103,44 @@ services:
       - ./conf:/conf
       - ./import:/import
     environment:
-      # Authentication
-      - NEO4J_AUTH=neo4j/your_secure_password_here
+      # One source of truth: Compose substitutes ${NEO4J_PASSWORD:-default}
+      # in BOTH NEO4J_AUTH and the healthcheck below, so the two can never
+      # drift apart. Export NEO4J_PASSWORD on the host to override.
+      - NEO4J_AUTH=neo4j/${NEO4J_PASSWORD:-change-me-strong-password}
 
-      # Memory settings (adjust based on available RAM)
-      - NEO4J_dbms_memory_heap_initial__size=512m
-      - NEO4J_dbms_memory_heap_max__size=2G
-      - NEO4J_dbms_memory_pagecache_size=1G
+      # Memory — Neo4j 5 renamed dbms.memory.* to server.memory.*; the old
+      # dbms_memory_* env names configure nothing on this release
+      - NEO4J_server_memory_heap_initial__size=512m
+      - NEO4J_server_memory_heap_max__size=2G
+      - NEO4J_server_memory_pagecache_size=1G
 
-      # Plugins
+      # Plugins (apoc = core APOC; GDS would need its own plugin entry)
       - NEO4J_PLUGINS=["apoc"]
 
-      # APOC settings
+      # Procedure permissions (dbms.security.* kept its prefix in 5.x)
       - NEO4J_dbms_security_procedures_unrestricted=apoc.*
       - NEO4J_dbms_security_procedures_allowlist=apoc.*
 
-      # Performance tuning
-      - NEO4J_dbms_connector_bolt_advertised__address=:7687
-      - NEO4J_dbms_connector_http_advertised__address=:7474
-
-      # Import settings
-      - NEO4J_dbms_security_procedures_unrestricted=gds.*
-      - NEO4J_dbms_security_procedures_allowlist=gds.*
-
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "cypher-shell", "-u", "neo4j", "-p", "your_secure_password_here", "RETURN 1"]
+      # Reads the same substituted password — see the env block above
+      test: ["CMD-SHELL", "cypher-shell -u neo4j -p \"${NEO4J_PASSWORD:-change-me-strong-password}\" RETURN 1"]
       interval: 30s
       timeout: 10s
       retries: 5
     networks:
-      - ai-engineering-curriculum-net
+      - neo4j-net
 
 networks:
-  ai-engineering-curriculum-net:
-    external: true
+  neo4j-net:
+    driver: bridge
 EOF
 
-# Start Neo4j
-docker-compose up -d
+# Start Neo4j (Compose v2 CLI — the hyphenated docker-compose is v1, EOL)
+docker compose up -d
 
 # Check logs
-docker-compose logs -f neo4j
+docker compose logs -f neo4j
 ```
 
 ### Method 2: Portainer / NAS Container Manager (Web UI)
@@ -167,13 +169,11 @@ Run in Neo4j Browser:
 CALL dbms.components() YIELD name, versions, edition
 RETURN name, versions[0] as version, edition
 
-// Check database size
-CALL dbms.queryJmx("org.neo4j:Instance name=kernel#0,name=Store file size") YIELD attributes
-RETURN attributes["MaximumFilesize"] as max_bytes
-
 // Verify APOC
 RETURN apoc.version()
 ```
+
+Store size: the 4.x "Store file size" JMX bean shifted across majors — measure `data/` with `du -sh` on the host instead of querying an unstable bean name.
 
 ### 3. Create Schema
 
@@ -194,37 +194,32 @@ SHOW CONSTRAINTS
 # Edit conf/neo4j.conf
 cd /srv/neo4j/conf
 
-# Optimize for 4GB available RAM (see "Memory Tuning by Host RAM" above)
+# Optimize for 4GB available RAM (see "Memory Tuning by Host RAM" above).
+# Equivalent to the compose env vars; use the Neo4j 5 setting names — the
+# dbms.* → server.* renames landed in the 5.0 migration, and removed 4.x
+# settings (per-tx transaction.max_size, byte-valued query_cache_size)
+# no longer exist at all
 cat >> neo4j.conf << 'EOF'
 
 # Heap Size (for query execution)
-dbms.memory.heap.initial_size=512m
-dbms.memory.heap.max_size=2G
+server.memory.heap.initial_size=512m
+server.memory.heap.max_size=2G
 
 # Page Cache (for caching graph data)
-dbms.memory.pagecache.size=1G
+server.memory.pagecache.size=1G
 
-# Transaction state
-dbms.memory.transaction.global_max_size=1G
-dbms.memory.transaction.max_size=256M
-
-# Query cache
-dbms.query_cache_size=256m
+# Transaction state (global budget)
+server.memory.transaction.global_max_size=1G
 
 # Connection limits
-dbms.connector.bolt.thread_pool_max_size=400
-dbms.connector.http.thread_pool_max_size=400
-
-# Performance
-dbms.connector.bolt.advertised_address=:7687
-dbms.connector.http.advertised_address=:7474
+server.bolt.thread_pool_max_size=400
 
 # Log settings
-dbms.logs.debug.level=INFO
+server.logs.debug.level=INFO
 EOF
 
 # Restart
-docker-compose restart neo4j
+docker compose restart neo4j
 ```
 
 ### Storage Optimization
@@ -233,8 +228,9 @@ docker-compose restart neo4j
 # Create data directory on fast local storage (SSD preferred)
 mkdir -p /srv/neo4j/data
 
-# Set proper permissions
-chmod 777 /srv/neo4j/data
+# The official image runs as uid/gid 7474 — hand the volume to that user
+# (chmod 777 would leave the store world-writable)
+chown -R 7474:7474 /srv/neo4j/data
 ```
 
 ## Backup Strategy
@@ -244,28 +240,31 @@ chmod 777 /srv/neo4j/data
 ```bash
 # /srv/neo4j/backup.sh
 #!/bin/bash
+set -euo pipefail
 
 BACKUP_DIR="/srv/backups/neo4j"
 DATE=$(date +%Y%m%d_%H%M%S)
 
 # Create backup directory
-mkdir -p $BACKUP_DIR
+mkdir -p "$BACKUP_DIR"
 
-# Stop Neo4j
+# Stop Neo4j — the store files must be quiescent for a consistent copy
 cd /srv/neo4j
-docker-compose down
+docker compose stop neo4j
 
 # Backup data
-tar -czf $BACKUP_DIR/neo4j_backup_$DATE.tar.gz data/
+tar -czf "$BACKUP_DIR/neo4j_backup_$DATE.tar.gz" data/
 
 # Start Neo4j
-docker-compose up -d
+docker compose start neo4j
 
 # Keep only last 7 days of backups
-find $BACKUP_DIR -name "neo4j_backup_*.tar.gz" -mtime +7 -delete
+find "$BACKUP_DIR" -name "neo4j_backup_*.tar.gz" -mtime +7 -delete
 
 echo "Backup completed: neo4j_backup_$DATE.tar.gz"
 ```
+
+The tar approach is the sledgehammer: one artifact captures store files, plugins, and conf. The database-native alternative is a dump against the stopped container — `docker compose exec neo4j neo4j-admin database dump neo4j --to-path=/backups` with a `/backups` volume mounted — which produces a single restorable snapshot instead of a directory tree.
 
 ### 2. Schedule with Cron
 
@@ -287,79 +286,64 @@ NAS users can schedule the same script through Container Manager / Task Schedule
 # neo4j_health.py
 from neo4j import GraphDatabase
 
-def check_health():
-    """Check Neo4j health"""
-
-    driver = GraphDatabase.driver(
-        "bolt://localhost:7687",
-        auth=("neo4j", "your_secure_password_here")
-    )
+def check_health(uri="bolt://localhost:7687", user="neo4j",
+                 password="your_secure_password_here"):
+    """Liveness + basic inventory over Bolt"""
+    driver = GraphDatabase.driver(uri, auth=(user, password))
 
     with driver.session() as session:
-        # Check connectivity
-        result = session.run("RETURN 1")
-        if not result.single()[0] == 1:
-            return False
+        # 1. Liveness: trivial round-trip
+        if session.run("RETURN 1").single()[0] != 1:
+            return {"healthy": False, "reason": "RETURN 1 failed"}
 
-        # Check database size
-        result = session.run("CALL dbms.queryJmx('org.neo4j:Instance name=kernel#0,name=Store file size') YIELD attributes RETURN attributes['MaximumFilesize'] as size")
-        size_mb = result.single()[0] / (1024*1024)
+        # 2. Schema sanity: the Entity/Document constraints exist
+        constraint_count = len(list(session.run("SHOW CONSTRAINTS")))
 
-        # Check node count
-        result = session.run("MATCH (n) RETURN count(n) as count")
-        node_count = result.single()[0]
+        # 3. Graph size
+        node_count = session.run("MATCH (n) RETURN count(n) as count").single()[0]
 
-    return {
-        "healthy": True,
-        "size_mb": size_mb,
-        "node_count": node_count
-    }
+    driver.close()
+    return {"healthy": True, "constraints": constraint_count,
+            "node_count": node_count}
 
 if __name__ == "__main__":
     health = check_health()
     print(f"Healthy: {health['healthy']}")
-    print(f"Size: {health['size_mb']:.2f} MB")
-    print(f"Nodes: {health['node_count']}")
+    if health["healthy"]:
+        print(f"Constraints: {health['constraints']}")
+        print(f"Nodes: {health['node_count']}")
 ```
 
-### 2. Prometheus Metrics (Optional)
+### 2. Metrics Export
+
+Neo4j exposes Prometheus metrics natively on port 2004 — **Enterprise Edition only**. Add to the `neo4j` service in docker-compose.yml:
 
 ```yaml
-# Add to docker-compose.yml for Prometheus scraping
-services:
-  neo4j-exporter:
-    image: neo4j-contrib/neo4j-prometheus-exporter:latest
-    container_name: neo4j-prometheus-exporter
-    environment:
-      - NEO4J_URI=bolt://neo4j:7687
-      - NEO4J_USER=neo4j
-      - NEO4J_PASSWORD=your_secure_password_here
     ports:
-      - "9301:9301"
-    depends_on:
-      - neo4j
-    networks:
-      - ai-engineering-curriculum-net
+      - "2004:2004"
+    environment:
+      - NEO4J_server_metrics_prometheus_enabled=true
 ```
+
+Community Edition has no `:2004` endpoint. Monitor it through the Bolt health script above, or enable CSV metrics (`NEO4J_server_metrics_csv_enabled=true`) and scrape the files. The 1500-monitoring Prometheus stack adds a scrape job pointing at either.
 
 ## Security Hardening
 
 ### 1. Change Default Password
 
 ```cypher
-// In Neo4j Browser
-CALL dbms.security.changePassword('neo4j', 'new_secure_password')
+// In Neo4j Browser — the old dbms.security.changePassword procedure took
+// only the CURRENT user's new password and is deprecated; 4.x+ uses ALTER
+ALTER CURRENT USER SET PASSWORD FROM 'your_secure_password_here' TO 'new_secure_password'
 ```
 
 ### 2. Create Limited User
 
 ```cypher
-// Create user for agents (read-only)
-CREATE USER agent_user SET PASSWORD 'agent_password'
-SET DATABASE ROLE DEFAULT
-GRANT ACCESS ON DATABASE * TO agent_user
-GRANT MATCH ON GRAPH * NODES * TO agent_user
-GRANT MATCH ON GRAPH * RELATIONSHIPS * TO agent_user
+// Create user for agents (read-only). SET DATABASE ROLE and fine-grained
+// GRANT MATCH ON GRAPH are Enterprise-only — Community uses built-in roles
+CREATE USER agent_user IF NOT EXISTS SET PASSWORD 'agent_password' CHANGE NOT REQUIRED
+GRANT ROLE reader TO agent_user
 ```
 
 ### 3. Network Isolation
@@ -370,7 +354,7 @@ services:
   neo4j:
     # Remove ports section, only use internal network
     networks:
-      - ai-engineering-curriculum-net
+      - neo4j-net
     # Access via reverse proxy (Nginx)
 ```
 
@@ -386,34 +370,33 @@ Error: Java heap space
 
 **Solution:**
 ```bash
-# Reduce memory settings
-NEO4J_dbms_memory_heap_max__size=1G
-NEO4J_dbms_memory_pagecache_size=512m
+# Reduce memory settings (Neo4j 5 names — the dbms_memory_* spellings
+# configure nothing on this release)
+NEO4J_server_memory_heap_max__size=1G
+NEO4J_server_memory_pagecache_size=512m
 ```
 
 #### 2. Slow Queries
 
 ```cypher
-// Check running queries
-CALL dbms.listQueries() YIELD queryId, query, runtimeMillis
-WHERE runtimeMillis > 1000
-RETURN queryId, query, runtimeMillis
-ORDER BY runtimeMillis DESC
+// 5.x+: SHOW TRANSACTIONS / TERMINATE TRANSACTIONS replaced the 4.x
+// dbms.listQueries()/dbms.terminateQuery() procedures. YIELD * is
+// version-proof — column names shifted between minors
+SHOW TRANSACTIONS YIELD *
 
-// Kill long-running query
-CALL dbms.terminateQuery('<query-id>')
+// Kill a long-running transaction
+TERMINATE TRANSACTIONS '<transaction-id>'
 ```
 
 #### 3. High CPU Usage
 
 ```cypher
-// Check connection count
-CALL dbms.listConnections() YIELD connectionCount
-RETURN connectionCount
+// dbms.listConnections() never existed, and dbms.listTransactions() was
+// folded into SHOW TRANSACTIONS — one command covers both checks
+SHOW TRANSACTIONS YIELD *
 
-// Check active transactions
-CALL dbms.listTransactions() YIELD transactionId, currentQueryId
-RETURN transactionId, currentQueryId
+// Bolt connection pressure is governed by the thread pool:
+// server.bolt.thread_pool_max_size (see Performance Tuning)
 ```
 
 ## K3s Deployment (Optional)
@@ -424,7 +407,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: neo4j
-  namespace: ai-engineering-curriculum
+  namespace: neo4j
 spec:
   serviceName: neo4j
   replicas: 1
@@ -438,7 +421,7 @@ spec:
     spec:
       containers:
       - name: neo4j
-        image: neo4j:5.15-community
+        image: neo4j:2026.09.0
         ports:
         - containerPort: 7474
           name: http
@@ -447,9 +430,9 @@ spec:
         env:
         - name: NEO4J_AUTH
           value: "neo4j/password"
-        - name: NEO4J_dbms_memory_heap_max__size
+        - name: NEO4J_server_memory_heap_max__size
           value: "2G"
-        - name: NEO4J_dbms_memory_pagecache_size
+        - name: NEO4J_server_memory_pagecache_size
           value: "1G"
         - name: NEO4J_PLUGINS
           value: "[\"apoc\"]"
@@ -477,7 +460,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: neo4j
-  namespace: ai-engineering-curriculum
+  namespace: neo4j
 spec:
   selector:
     app: neo4j
@@ -498,20 +481,15 @@ spec:
 
 ### Related ai-engineering-curriculum Documents
 
+- [6301: Neo4j and Knowledge Graphs](../6301-Neo4j-and-Knowledge-Graphs.md)
+- [6302: CAG - Context Augmented Generation and Long Context Architectures](../6302-CAG-Long-Context-Architectures.md)
 - [6304: GraphRAG Implementation Guide](6304-GraphRAG-Implementation.md)
+- [6401: Qdrant Setup](../../6400-vector-databases/6401-Qdrant-Setup.md)
 
 ---
 
 ## Next Steps
 
 - Return to: **[Module README](../README.md)**
-
----
----
-
-**Related:**
-- [6301: Neo4j and Knowledge Graphs](../6301-Neo4j-and-Knowledge-Graphs.md)
-- [6302: CAG Long Context](../6302-CAG-Long-Context-Architectures.md)
-- [6401: Qdrant Setup](../../6400-vector-databases/6401-Qdrant-Setup.md)
-- [EXP_6301: Neo4j Knowledge Graph](../../../../../experiments/EXP_6303_NEO4J.md)
+- Experiment: **[EXP_6303: Neo4j](../../../../../experiments/EXP_6303_NEO4J.md)**
 
