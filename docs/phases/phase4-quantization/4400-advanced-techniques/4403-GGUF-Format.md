@@ -3,7 +3,7 @@ Document ID: 4403
 Title: GGUF Format
 Phase: 4
 Module: 4400
-Last Updated: 2026-09-24
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Expert
 Estimated Time: 5 hours
@@ -37,12 +37,12 @@ Tags: ['quantization', 'advanced', 'optimization']
 
 After completing this lesson, you will be able to:
 
-- Explain What is GGUF
-- Explain GGUF Quantization Types
-- Configure and operate Converting to GGUF
-- Explain Running GGUF Models
-- Explain GGUF with GPU Offloading
-- Explain GGUF Metadata
+- Read a GGUF file's anatomy from raw bytes — magic 0x46554747 ("GGUF", little-endian), version 3, then the KV metadata — decoding STRING fields with `bytes(field.parts[field.data[0]]).decode("utf-8")` (raw `parts[-1]` prints the padded buffer)
+- Choose a K-quant from the size/accuracy table — Q4_K_M's 4-bit quants with 6-bit quantized scales (~4.08 GB at 7B), Q5_K_M ~4.78, Q8_0 ~7.16 near-FP16, Q3_K_M ~3.30
+- Run the two-step conversion — convert_hf_to_gguf.py (or `--remote` a HF repo id) emits an F16/BF16 GGUF with `--outtype f16|f32|bf16|q8_0|tq1_0|tq2_0|auto`, then `llama-quantize in.gguf out.gguf Q4_K_M`; convert.py's one-step `--outtype q4_k_m` flow is gone
+- Steer per-tensor bits with `--tensor-type attn_v=q5_k` (regex-based, repeatable) plus `--token-embedding-type`/`--output-tensor-type`, and lift low-bit quality with `--imatrix` from llama-imatrix
+- Serve GGUF — `llama-cli` (or the unified `llama cli -hf ggml-org/...` launcher) plus the llama-cpp-python `Llama(n_ctx=…, n_gpu_layers=…)` and `create_chat_completion` APIs
+- Budget GPU offload at ~200 MB per Q4_K_M 7B layer (~140 MB weights + KV-cache headroom), and avoid the phantom flags (`--gpu-layers metal` doesn't exist — Metal is built into default macOS builds)
 
 ---
 
@@ -87,11 +87,11 @@ GGUF File Structure:
 
 ```yaml
 Q4_K_M:
-- 6-bit super-blocks
-- 4-bit sub-blocks
+- 4-bit quants + 6-bit quantized scales
+- 256-weight super-blocks split into 8×32 sub-blocks
 - Good balance of size and speed
 
-Size: ~4.5 GB for 7B model
+Size: ~4.08 GB for Llama-2-7B
 Speed: Fast on CPU, very fast on GPU
 ```
 
@@ -99,11 +99,11 @@ Speed: Fast on CPU, very fast on GPU
 
 ```yaml
 Q5_K_M:
-- 8-bit super-blocks
-- 5-bit sub-blocks
+- 5-bit quants + 6-bit quantized scales
+- Same 8×32 sub-block structure as Q4_K_M
 - Better accuracy, slightly larger
 
-Size: ~5.5 GB for 7B model
+Size: ~4.78 GB for Llama-2-7B
 Speed: Medium on CPU, fast on GPU
 ```
 
@@ -111,21 +111,21 @@ Speed: Medium on CPU, fast on GPU
 
 ```yaml
 Q8_0:
-- Pure 8-bit quantization
-- Near FP32 accuracy
+- 8-bit quants, one FP16 scale per 32-weight block
+- Near FP16 accuracy
 
-Size: ~8.5 GB for 7B model
+Size: ~7.16 GB for Llama-2-7B
 Speed: Slower on CPU
 ```
 
 ### Comparison
 
-| Type | Size (7B) | Accuracy | CPU Speed | GPU Support |
-|------|-----------|----------|-----------|-------------|
-| **Q4_K_M** | 4.5 GB | Good | Fast | Full |
-| **Q5_K_M** | 5.5 GB | Better | Medium | Full |
-| **Q8_0** | 8.5 GB | Best | Slow | Full |
-| **Q3_K_M** | 3.5 GB | OK | Fast | Full |
+| Type | Size (Llama-2-7B) | Accuracy | CPU Speed | GPU Support |
+|------|-------------------|----------|-----------|-------------|
+| **Q4_K_M** | 4.08 GB | Good | Fast | Full |
+| **Q5_K_M** | 4.78 GB | Better | Medium | Full |
+| **Q8_0** | 7.16 GB | Best | Slow | Full |
+| **Q3_K_M** | 3.30 GB | OK | Fast | Full |
 
 ## Converting to GGUF
 
@@ -133,47 +133,51 @@ Speed: Slower on CPU
 
 ```bash
 # Clone llama.cpp
-git clone https://github.com/ggerganov/llama.cpp
+git clone https://github.com/ggml-org/llama.cpp
 cd llama.cpp
 
-# Build
-make
+# Build with cmake — binaries land in ./build/bin
+cmake -B build
+cmake --build build --config Release -j
 
 # Download model (in HF format)
 # (Assume already downloaded to ./Llama-2-7b-hf)
 
-# Convert to GGUF
-python convert.py \
-    --model ../Llama-2-7b-hf \
-    --outfile Llama-2-7b-Q4_K_M.gguf \
-    --outtype q4_k_m
+# Step 1: convert to GGUF at a float precision. convert.py was split
+# into convert_hf_to_gguf.py (FP/BF16 output) + the llama-quantize tool
+# (K-quants). --outtype accepts f32/f16/bf16/q8_0/tq1_0/tq2_0/auto —
+# never a K-quant name. A local directory or --remote HF repo id works:
+python convert_hf_to_gguf.py \
+    ../Llama-2-7b-hf \
+    --outfile Llama-2-7b-f16.gguf \
+    --outtype f16
 
-# Output:
-# Sorting vocab...
-# Writing GGUF...
-# Model written to Llama-2-7b-Q4_K_M.gguf
+# Step 2: quantize to K-quant
+./build/bin/llama-quantize Llama-2-7b-f16.gguf Llama-2-7b-Q4_K_M.gguf Q4_K_M
 ```
 
 ### Quantization Options
 
 ```bash
 # Q4_K_M (recommended)
-python convert.py --model ./model --outfile model-Q4_K_M.gguf --outtype q4_k_m
+./build/bin/llama-quantize model-f16.gguf model-Q4_K_M.gguf Q4_K_M
 
 # Q5_K_M (better accuracy)
-python convert.py --model ./model --outfile model-Q5_K_M.gguf --outtype q5_k_m
+./build/bin/llama-quantize model-f16.gguf model-Q5_K_M.gguf Q5_K_M
 
 # Q8_0 (best accuracy)
-python convert.py --model ./model --outfile model-Q8_0.gguf --outtype q8_0
+./build/bin/llama-quantize model-f16.gguf model-Q8_0.gguf Q8_0
 
 # Q3_K_M (smaller size)
-python convert.py --model ./model --outfile model-Q3_K_M.gguf --outtype q3_k_m
+./build/bin/llama-quantize model-f16.gguf model-Q3_K_M.gguf Q3_K_M
 
-# Mixed precision (custom)
-python convert.py \
-    --model ./model \
-    --outfile model-mixed.gguf \
-    --quantize Q4_K_M,blk.0-10:Q8_0,blk.11-32:Q4_K_M
+# Per-tensor overrides: --tensor-type is regex-based and repeatable
+# (q5_k attention-V and FFN-down on a Q4_K_M base; sensitive
+# tensors get more headroom than the blanket default)
+./build/bin/llama-quantize model-f16.gguf model-mixed.gguf Q4_K_M \
+    --tensor-type attn_v=q5_k \
+    --tensor-type ffn_down=q5_k \
+    --token-embedding-type q8_0
 ```
 
 ## Running GGUF Models
@@ -181,16 +185,19 @@ python convert.py \
 ### Basic Inference
 
 ```bash
-# Interactive mode
-./main -m Llama-2-7b-Q4_K_M.gguf \
+# Interactive mode (the old ./main binary is now llama-cli)
+llama-cli -m Llama-2-7b-Q4_K_M.gguf \
     --color \
-    --interactive \
-    --prompt "You are a helpful assistant."
+    -p "You are a helpful assistant."
 
-# Generate from file
-./main -m Llama-2-7b-Q4_K_M.gguf \
-    --file prompt.txt \
-    --n-predict 512
+# Generate from a prompt file
+llama-cli -m Llama-2-7b-Q4_K_M.gguf \
+    -f prompt.txt \
+    -n 512
+
+# The unified launcher fetches + runs straight from Hugging Face
+# (llama serve -hf starts an OpenAI-compatible server the same way)
+llama cli -hf ggml-org/gemma-3-1b-it-GGUF
 ```
 
 ### Python API
@@ -251,7 +258,8 @@ import torch
 gpu_memory = torch.cuda.get_device_properties(0).total_memory / (1024**3)  # GB
 
 # Calculate layers to offload
-# Approximate: each layer ~100MB for 7B model at Q4_K_M
+# Budget ~200 MB per layer for a Q4_K_M 7B: ~140 MB of weights plus
+# KV-cache headroom (1 GB of VRAM buys ~5 layers)
 n_gpu_layers = min(int(gpu_memory * 5), 33)  # Conservative estimate
 
 print(f"GPU Memory: {gpu_memory:.2f} GB")
@@ -300,71 +308,81 @@ print(f"Speedup: {cpu_time / gpu_time:.2f}x")
 ### Reading Metadata
 
 ```python
-from gguf import GGUFReader
+from gguf import GGUFReader, GGUFValueType
 
 reader = GGUFReader("Llama-2-7b-Q4_K_M.gguf")
 
+def field_value(field):
+    # STRING values live in byte segments: parts[-1] prints the raw
+    # padded buffer — index through field.data and decode instead
+    if field.types[:1] == [GGUFValueType.STRING]:
+        return bytes(field.parts[field.data[0]]).decode("utf-8")
+    return field.parts[field.data[0]]
+
 # Print metadata
 print("Model Metadata:")
-for key, value in reader.fields.items():
-    if hasattr(value, 'parts'):
-        print(f"  {key}: {value.parts[-1]}")
-    else:
-        print(f"  {key}: {value}")
+for key, field in reader.fields.items():
+    print(f"  {key}: {field_value(field)}")
 
 # List tensors
 print("\nTensors:")
 for tensor in reader.tensors:
-    print(f"  {tensor.name}: {tensor.shape} ({tensor.type})")
+    print(f"  {tensor.name}: {tuple(tensor.shape)} ({tensor.tensor_type})")
 ```
 
 ### Custom Metadata
 
 ```python
-# When converting, add custom metadata
-python convert.py \
-    --model ./model \
-    --outfile model.gguf \
-    --metadata "author=Your Name" \
-    --metadata "description=Custom finetune" \
-    --metadata "license=Apache-2.0"
+# llama.cpp's converters derive the standard general.* keys themselves;
+# to write custom KV pairs, use GGUFWriter programmatically
+from gguf import GGUFWriter
+
+writer = GGUFWriter("model.gguf", "llama")
+writer.add_string("general.author", "Your Name")
+writer.add_string("general.description", "Custom finetune")
+writer.add_string("general.license", "Apache-2.0")
+# ... add_tensor() calls for every weight would go here ...
+writer.write_header_to_file()
+writer.write_kv_data_to_file()
+writer.write_tensors_to_file()
+writer.close()
+
+# Online alternative: HuggingFace's GGUF-my-repo converts HF repos to
+# GGUF and GGUF-editor edits metadata without any local tooling
 ```
 
 ## Advanced: Quantization Configuration
 
 ### Per-Layer Quantization
 
-```python
-# Create custom quantization config
-quant_config = {
-    'embeddings': 'Q8_0',  # Keep embeddings at 8-bit
-    'layers.0-10': 'Q5_K_M',  # Early layers at 5-bit
-    'layers.11-32': 'Q4_K_M',  # Later layers at 4-bit
-}
-
-# Apply during conversion
-python convert.py \
-    --model ./model \
-    --outfile model-custom.gguf \
-    --quantize embeddings:Q8_0,layers.0-10:Q5_K_M,layers.11-32:Q4_K_M
+```bash
+# llama-quantize steers bits per TENSOR NAME (regex, repeatable) —
+# there is no layer-range DSL at conversion time. Mixed bits for
+# layer ranges are a GPTQ/AWQ-side concern (see 4401/4402); here,
+# protect the embedding and output tensors and sensitive tensors:
+./build/bin/llama-quantize model-f16.gguf model-custom.gguf Q4_K_M \
+    --token-embedding-type q8_0 \
+    --output-tensor-type q8_0 \
+    --tensor-type 'attn_k=q5_k' \
+    --tensor-type 'attn_v=q5_k'
 ```
 
 ### Importance Matrix Quantization (IMatrix)
 
 ```bash
-# Generate importance matrix from calibration data
-./imatrix \
-    -m Llama-2-7b-Q4_K_M.gguf \
+# Generate importance matrix from calibration data (run it on the
+# F16 GGUF, before any quantization has been applied)
+./build/bin/llama-imatrix \
+    -m Llama-2-7b-f16.gguf \
     -f calibration_data.txt \
     -o imatrix.dat \
     -n 100
 
-# Use IMatrix for better quantization
-python convert.py \
-    --model ./model \
-    --outfile model-imatrix.gguf \
-    --imatrix imatrix.dat \
-    --outtype q4_k_m
+# Use IMatrix for better quantization — the llama.cpp analogue of the
+# activation-aware weighting from 4402 (AWQ)
+./build/bin/llama-quantize \
+    Llama-2-7b-f16.gguf model-imatrix.gguf Q4_K_M \
+    --imatrix imatrix.dat
 ```
 
 ## Troubleshooting
@@ -377,29 +395,30 @@ python convert.py \
 # Solution: Verify file integrity
 sha256sum Llama-2-7b-Q4_K_M.gguf
 
-# Or re-download/convert
-python convert.py --model ./model --outfile model.gguf --outtype q4_k_m
+# Or re-convert/re-quantize
+python convert_hf_to_gguf.py ./model --outfile model-f16.gguf --outtype f16
+./build/bin/llama-quantize model-f16.gguf model.gguf Q4_K_M
 ```
 
 ### Issue 2: Slow Inference
 
 ```bash
 # Solution: Check GPU offloading
-./main -m model.gguf --n-gpu-layers 33  # Offload all layers
+llama-cli -m model.gguf -ngl 33  # Offload all layers
 
-# Or use metal backend for Mac
-./main -m model.gguf --n-gpu-layers 33 --gpu-layers metal
+# Metal is enabled automatically in default macOS builds — there is
+# no backend-selection flag; -ngl offloads whatever fits
 ```
 
 ### Issue 3: Poor Quality
 
 ```bash
 # Solution: Use higher quantization
-python convert.py --model ./model --outfile model-Q5_K_M.gguf --outtype q5_k_m
+./build/bin/llama-quantize model-f16.gguf model-Q5_K_M.gguf Q5_K_M
 
 # Or use IMatrix
-./imatrix -m model.gguf -f calib.txt -o imatrix.dat
-python convert.py --model ./model --outfile model.gguf --imatrix imatrix.dat
+./build/bin/llama-imatrix -m model-f16.gguf -f calib.txt -o imatrix.dat
+./build/bin/llama-quantize model-f16.gguf model.gguf Q4_K_M --imatrix imatrix.dat
 ```
 
 ## GGUF Ecosystem
@@ -408,14 +427,14 @@ python convert.py --model ./model --outfile model.gguf --imatrix imatrix.dat
 
 - **llama.cpp**: Core inference engine
 - **llama-cpp-python**: Python bindings
-- **Ollama**: Mac app using GGUF
+- **Ollama**: Cross-platform GGUF runner (macOS/Windows/Linux)
 - **LM Studio**: GUI for GGUF models
 - **text-generation-webui**: Web UI with GGUF support
 
 ### Finding GGUF Models
 
 - HuggingFace: Search for "gguf" filter
-- TheBloke: Popular quantizer on HuggingFace
+- Official orgs + quality quantizers (bartowski, etc.) — TheBloke is archived; its uploads remain but are frozen
 - Civitai: Community models
 
 ## Best Practices
@@ -428,9 +447,10 @@ python convert.py --model ./model --outfile model.gguf --imatrix imatrix.dat
 
 ## Further Reading
 
-- **Documentation:** https://github.com/ggerganov/llama.cpp
-- **GGUF Spec:** https://github.com/ggerganov/ggml/blob/master/docs/gguf.md
+- **Documentation:** https://github.com/ggml-org/llama.cpp (quantization workflow in tools/quantize/README.md)
+- **GGUF Spec:** https://github.com/ggml-org/ggml/blob/master/docs/gguf.md
 - **Python Lib:** https://github.com/abetlen/llama-cpp-python
+- **See also:** 4402 (AWQ) for the activation-aware idea behind --imatrix
 
 ## References
 
