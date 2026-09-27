@@ -14,6 +14,10 @@ and assessment/PRACTICE.md. The corpus standard these files already meet:
          "**Answer:** X" per question, or a self-graded "**Score:** __"
          blank (coding questions)
   AS-08  where both exist, Answer Key and inline answers agree
+  AS-09  answer key is not degenerate: no single letter on >= 70% of
+         the answered questions (all-B authoring lets learners ace a
+         quiz by pattern-matching instead of reading). Report-mode
+         while the option-shuffle queue drains; flip to hard when empty
   AS-05  assessment/PRACTICE.md exists
   AS-06  PRACTICE holds >= 3 exercises ("## / ### Exercise N")
   AS-07  each exercise carries a solution marker (Expected Output,
@@ -35,7 +39,10 @@ from __future__ import annotations
 import argparse
 import re
 import sys
+from collections import Counter
 from pathlib import Path
+
+DEGENERATE_RATIO = 0.7
 
 QUESTION_BOLD = re.compile(r"^\*\*(\d+)\.")
 QUESTION_H3 = re.compile(r"^###\s+Question\s+(\d+)\s*[:.]")
@@ -62,9 +69,15 @@ def fence_aware(lines):
 class Linter:
     def __init__(self) -> None:
         self.findings: list[str] = []
+        self.queued: list[str] = []
 
     def report(self, rel: str, rule: str, detail: str) -> None:
         self.findings.append("%s: %s" % (rel, rule))
+        print("%s: %s - %s" % (rel, rule,
+              detail.encode("ascii", "backslashreplace").decode("ascii")))
+
+    def report_queued(self, rel: str, rule: str, detail: str) -> None:
+        self.queued.append("%s: %s" % (rel, rule))
         print("%s: %s - %s" % (rel, rule,
               detail.encode("ascii", "backslashreplace").decode("ascii")))
 
@@ -130,6 +143,20 @@ class Linter:
                             "question %d: key=%s inline=%s"
                             % (n, key[n], inline[n]))
 
+        # AS-09: degenerate answer distribution. One letter dominating
+        # the key (all-B authoring) leaks the answer; queued for a
+        # position-shuffle pass, report-mode until that queue drains.
+        letters = [key[n] for n in sorted(set(key) & qnums)]
+        letters += [inline[n] for n in sorted(set(inline) & qnums)
+                    if n not in key]
+        if len(letters) >= 10:
+            top, count = Counter(letters).most_common(1)[0]
+            if count >= DEGENERATE_RATIO * len(letters):
+                self.report_queued(
+                    rel, "AS-09",
+                    "answer key degenerate: '%s' on %d/%d questions "
+                    "(shuffle option positions)" % (top, count, len(letters)))
+
     def lint_practice(self, module: str, prac: Path) -> None:
         rel = "%s assessment/PRACTICE.md" % module
         lines = prac.read_text(encoding="utf-8").split("\n")
@@ -185,10 +212,13 @@ def main() -> int:
                       if p.is_dir() and MODULE_DIR.match(p.name)):
         linter.lint_module(args.root, mod)
 
-    print("assessment_lint: %d findings across %d module assessments"
-          % (len(linter.findings),
-             len([p for p in phases.glob("*/*")
-                  if p.is_dir() and MODULE_DIR.match(p.name)])))
+    mods = [p for p in phases.glob("*/*")
+            if p.is_dir() and MODULE_DIR.match(p.name)]
+    print("assessment_lint: %d findings + %d queued across %d module "
+          "assessments" % (len(linter.findings), len(linter.queued),
+                           len(mods)))
+    # Report-mode contract: queued items (AS-09 shuffle queue) do not
+    # fail the gate until the queue drains, mirroring objectives_lint.
     return 1 if linter.findings else 0
 
 
