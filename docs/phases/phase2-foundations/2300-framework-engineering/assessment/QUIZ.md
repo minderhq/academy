@@ -374,6 +374,32 @@ CMD ["uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8000"]
 
 ---
 
+## Answer Key
+
+Multiple-choice answers for Questions 1-15. Questions 16-20 are self-graded
+coding questions — score them against the model solution using the
+**Self-Grading** rubric below.
+
+| # | Answer |
+|---|--------|
+| 1 | B |
+| 2 | B |
+| 3 | B |
+| 4 | B |
+| 5 | C |
+| 6 | B |
+| 7 | B |
+| 8 | B |
+| 9 | B |
+| 10 | B |
+| 11 | B |
+| 12 | B |
+| 13 | C |
+| 14 | B |
+| 15 | B |
+
+---
+
 ## Scoring
 
 ### Calculate Your Score

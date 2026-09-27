@@ -1,7 +1,7 @@
 ---
 Document ID: 4306
 Title: "4306: PyTorch QAT Guide"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Advanced
 ---
@@ -30,12 +30,12 @@ Difficulty: Advanced
 
 After completing this lesson, you will be able to:
 
-- Explain PyTorch QAT API Overview
-- Explain Basic Workflow
-- Configure and operate Advanced Configuration
-- Explain Skipping Layers
-- Explain Training Best Practices
-- Diagnose and resolve QAT
+- Drive the `torch.ao.quantization` QAT cycle end-to-end — `prepare_qat`, train, `convert` — and explain what `MinMaxObserver` records at each stage
+- Author a custom `QConfig` (per-tensor activations, per-channel symmetric weights) and apply per-layer overrides where a layer's sensitivity demands it
+- Leave fragile layers (LayerNorm, Softmax) in float with `qconfig=None` and defend the accuracy trade-off
+- Schedule gradual QAT correctly: `qat_start`, `disable_fake_quant` on rollback, `disable_observer` for final calibration epochs, `MultiStepLR` milestones
+- Inspect a QAT model with `print_qparams` and weight histograms, and diff behavior before/after `convert` to catch silent quantization damage
+- Debug the classic QAT failures — missing observer modules, observers that never update, `AssertionError` at convert — down to root cause
 
 ---
 

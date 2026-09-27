@@ -52,7 +52,7 @@ B) System Level Agreement
 C) Service Level Assurance
 D) None
 
-**4. SLO is:**
+**6. SLO is:**
 
 A) Service Level Objective
 B) Service Level Option

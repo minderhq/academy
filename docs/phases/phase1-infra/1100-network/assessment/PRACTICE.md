@@ -134,6 +134,8 @@ Internet (Fiber 1Gbps)
 - Enable flow control on switch
 - Use local SSD for checkpoints, sync to NAS later
 
+**Success Criteria:** Checkpoint saves complete without timeouts; `iperf3` sustains expected throughput between GPU server and NAS for 60+ minutes.
+
 ---
 
 ## Project

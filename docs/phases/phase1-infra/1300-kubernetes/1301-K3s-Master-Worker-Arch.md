@@ -3,7 +3,7 @@ Document ID: 1301
 Title: K3s Master-Worker Architecture
 Phase: 1
 Module: 1300
-Last Updated: 2026-09-25
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -34,12 +34,12 @@ Tags: ['infrastructure', 'kubernetes', 'k3s', 'gpu']
 
 After completing this lesson, you will be able to:
 
-- Explain Architecture Overview
-- Apply Installation
-- Apply Configuration
-- Configure and operate GPU Node Configuration
-- Explain Storage Integration
-- Explain Networking
+- Map the K3s control plane (API server :6443, embedded SQLite, scheduler/controller) to its GPU worker counterpart (kubelet :10250, containerd, flannel :8472) and justify when etcd replaces SQLite for HA
+- Bootstrap a cluster with get.k3s.io — `K3S_URL` plus node-token on workers — then shape `config.yaml` (disable traefik/servicelb, add audit `kube-apiserver-arg` flags)
+- Expose GPUs to pods through the NVIDIA device plugin, using labels and taints/tolerations so only GPU-requesting pods schedule onto GPU nodes
+- Provision shared training storage with NFS static PV/PVC (`ReadWriteMany`) backed by the `nfs.csi.k8s.io` StorageClass
+- Reason about flannel networking — pod CIDR 10.42.0.0/16, service CIDR 10.43.0.0/16, vxlan MTU 9000, ingress-nginx NodePort — when debugging cross-node connectivity
+- Tune the kubelet resource policy (static cpu-manager, `full-pcpus-only`, reserved system memory, `evictionHard`) so training pods never starve the node
 
 ---
 

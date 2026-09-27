@@ -3,7 +3,7 @@ Document ID: 2203
 Title: CUDA Kernel Programming and GPU Architecture
 Phase: 2
 Module: 2200
-Last Updated: 2026-09-26
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 4 hours
@@ -34,12 +34,12 @@ Tags: ['frameworks', 'pytorch', 'tensorflow', 'cuda']
 
 After completing this lesson, you will be able to:
 
-- Explain GPU Architecture Overview
-- Explain CUDA Execution Model
-- Explain CUDA Kernel Programming
-- Explain Memory Hierarchy
-- Explain PyTorch CUDA Integration
-- Explain Tensor Cores Programming
+- Trace a kernel launch from grid/block dimensions through warp scheduling on the SM, and predict where warp divergence costs throughput
+- Write and launch a custom CUDA kernel with `<<<grid, block, shared_mem, stream>>>` and validate its output against a PyTorch reference implementation
+- Choose the right memory tier (global, shared, registers, constant) for a workload, then apply coalescing and tiled matmul with `__syncthreads()` to cut global-memory traffic
+- Bind a custom kernel into PyTorch via a C++ extension (`PYBIND11_MODULE`, `torch.utils.cpp_extension.load`) and call it from a training loop
+- Use Tensor Cores through WMMA 16x16x16 fragments, stating the tile-shape and precision requirements they impose
+- Diagnose bank conflicts (and the padding-33 fix), low occupancy, and missing-sync bugs using ncu metrics, `CUDA_CHECK`, and cuda-gdb
 
 ---
 
