@@ -3,7 +3,7 @@ Document ID: 3201
 Title: Rotary Positional Embeddings (RoPE)
 Phase: 3
 Module: 3200
-Last Updated: 2026-09-24
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -33,12 +33,12 @@ Tags: ['transformers', 'embeddings', 'rope', 'tokenization', 'bpe']
 
 After completing this lesson, you will be able to:
 
-- Explain The Problem with Positional Encodings
-- Explain RoPE: Rotary Positional Embeddings
-- Explain the reasoning behind Why RoPE Works
-- Explain RoPE Variants
-- Explain RoPE in Practice
-- Explain Extended Context with RoPE
+- Contrast the three failure modes RoPE replaces — permutation invariance, absolute encodings that fail to extrapolate, and relative-bias tables costing O(L²) parameters
+- Derive the 2D rotation block and its extension to d/2 subspaces, then implement `apply_rotary_pos_emb` with `rotate_half` and the `q·cos + rotate_half(q)·sin` form
+- Prove the core property — rotating Q_m by mθ and K_n by nθ makes attention scores depend only on (m − n) — with zero added parameters
+- Precompute frequency tables via `1/θ^(2i/d)` and an outer product with positions, caching cos/sin buffers LLaMA-style (`register_buffer`) for reuse across forward passes
+- Wire RoPE into multi-head attention — rotating Q and K only, after projection and head split, before the score matmul — and predict what breaks if V were rotated too
+- Extend context with position interpolation (m′ = m·L_orig/L_new) and NTK-aware YaRN base scaling, and place both in the method-comparison table against ALiBi and relative bias
 
 ---
 
