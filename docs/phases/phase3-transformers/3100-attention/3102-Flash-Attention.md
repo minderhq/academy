@@ -34,12 +34,12 @@ Tags: ['transformers', 'attention', 'self-attention', 'flash-attention']
 
 After completing this lesson, you will be able to:
 
-- Explain The Problem with Standard Attention
-- Explain Flash Attention Algorithm
-- Explain Flash Attention 2
-- Explain Using Flash Attention
-- Compare Performance Comparison
-- Apply Implementation Details
+- Contrast the O(L²) HBM traffic of materializing S and P against Flash's linear memory, using the ~600 GB/s HBM vs ~30 TB/s SRAM hierarchy to argue why attention is bandwidth-bound
+- Implement incremental (online) softmax — running max, the `exp(m_old − m_new)` rescaling correction, and running sum — and update a partial output block without ever materializing the L×L matrix
+- Attribute FA2's ~2x A100 speedup over FA1 to the swapped K-outer/Q-inner loop order, reduced non-matmul FLOPs, and better work partitioning
+- Enable Flash Attention three ways — `xformers.ops.memory_efficient_attention` with an `attn_bias`, `flash_attn_func(causal=True)`, and HF `attn_implementation="flash_attention_2"` under FP16
+- Read the A100/2048 benchmark table (45 ms/16 GB standard → 12 ms/3.2 GB FA2) and predict when Flash does not pay off: sequences under ~512 tokens, weight inspection, CPU inference
+- Size Q/K/V blocks against shared-memory limits (48 KB/SM on Turing, block ≈ 128) and cast inputs to FP16/BF16 as Flash requires
 
 ---
 
