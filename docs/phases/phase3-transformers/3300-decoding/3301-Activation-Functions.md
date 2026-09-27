@@ -3,7 +3,7 @@ Document ID: 3301
 Title: Activation Functions - GELU, SwiGLU, and Beyond
 Phase: 3
 Module: 3300
-Last Updated: 2026-09-24
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 2 hours
@@ -33,12 +33,12 @@ Tags: ['transformers', 'activation', 'gelu', 'swiglu', 'normalization']
 
 After completing this lesson, you will be able to:
 
-- Explain From ReLU to Modern Activations
-- Explain GELU (Gaussian Error Linear Unit)
-- Explain SwiGLU (Swish-Gated Linear Unit)
-- Compare Comparison in Transformers
-- Explain Other Activations
-- Explain Activation Function Properties
+- List ReLU's three failure modes in transformers — dead neurons that block gradient flow, non-smoothness at x=0, non-zero-centered outputs causing zigzagging — and why each motivates a smooth replacement
+- Derive exact GELU as x·Φ(x) via `torch.erf`, state the GPT-2 tanh approximation (√(2/π) scaling, 0.044715x³ term), and justify the ≈99.7%-correlation speed/accuracy trade-off
+- Implement the SwiGLU FFN's three bias-free projections (`gate_proj`, `up_proj`, `down_proj`) with `silu(gate) * up` gating, including LLaMA's 8/3·d hidden-dim rule rounded to `multiple_of=256`
+- Reconcile SwiGLU's 1.5x parameter count (3,145,728 vs 2,097,152 at d_model=512, d_ff=2048) against Shazeer's reported 1-2% perplexity gain for equal-compute comparisons
+- Distinguish the gated variants by their gate function and chunking layout — GEGLU (BLOOM, GPT-NeoX), ReGLU, and SMGeLU's router `topk` sparsity
+- Probe activations with the `analyze_activation` autograd-derivative harness (smoothness, monotonicity, sign, boundedness) and read the compute-vs-perplexity table to select per scenario: vanilla → GELU, LLM → SwiGLU, MoE → SMGeLU
 
 ---
 
@@ -140,7 +140,8 @@ import numpy as np
 
 x = np.linspace(-4, 4, 100)
 relu = np.maximum(0, x)
-gelu = 0.5 * x * (1 + np.erf(x / np.sqrt(2)))
+# GPT-2 tanh approximation (np.erf does not exist in NumPy)
+gelu = 0.5 * x * (1 + np.tanh(np.sqrt(2 / np.pi) * (x + 0.044715 * x**3)))
 
 plt.figure(figsize=(12, 4))
 
