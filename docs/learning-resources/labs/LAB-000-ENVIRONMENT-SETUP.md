@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-000
 Title: "LAB-000: Environment Setup"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Beginner
 ---
@@ -214,13 +214,12 @@ which python
 **Install Essential Packages:**
 
 ```bash
-# Upgrade pip
-pip install --upgrade pip
-
-# Install core packages
-pip install torch transformers
-pip install datasets accelerate
-pip install jupyter pandas numpy
+# Install core packages with uv
+# (uv pip works inside any active virtualenv, including the one above;
+#  uv manages itself - no "upgrade pip" step is needed)
+uv pip install torch transformers
+uv pip install datasets accelerate
+uv pip install jupyter pandas numpy
 ```
 
 **Test Installation:**

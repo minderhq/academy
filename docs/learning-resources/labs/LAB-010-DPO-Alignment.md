@@ -80,10 +80,10 @@ python -m venv dpo-env
 source dpo-env/bin/activate  # On Windows: dpo-env\Scripts\activate
 
 # Core training stack
-pip install torch transformers trl peft datasets
+uv pip install torch transformers trl peft datasets
 
 # Experiment tracking is optional - every step in this lab runs without it
-pip install wandb
+uv pip install wandb
 ```
 
 ### Step 1.2: Verify and Get a Base Model
@@ -93,7 +93,7 @@ python -c "import torch; print(f'PyTorch: {torch.__version__}')"
 python -c "import trl; print(f'TRL: {trl.__version__}')"
 
 # hf is the current Hugging Face CLI (huggingface-cli is the legacy name)
-pip install huggingface_hub
+uv pip install huggingface_hub
 hf auth login  # only needed for gated models
 
 # We'll use a smaller model for this lab. Good options:

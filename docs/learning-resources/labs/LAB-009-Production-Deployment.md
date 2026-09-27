@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-009
 Title: "LAB-009: Production Deployment"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -473,8 +473,9 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install -r requirements.txt
-          pip install pytest pytest-cov
+          pip install uv
+          uv pip install --system -r requirements.txt
+          uv pip install --system pytest pytest-cov
 
       - name: Run tests
         run: |

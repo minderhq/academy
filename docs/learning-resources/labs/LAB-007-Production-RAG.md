@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-007
 Title: "LAB-007: Production RAG System"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -174,7 +174,7 @@ EOF
 
 # Install dependencies
 cd rag-service
-pip install -r requirements.txt
+uv pip install -r requirements.txt
 ```
 
 ---

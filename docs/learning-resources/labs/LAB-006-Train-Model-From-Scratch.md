@@ -132,7 +132,7 @@ Ten thousand Wikipedia articles is a real corpus — large enough that tokenizer
 
 ```text
 # sketch - prepare_data.py
-# needs network + `pip install datasets`; the first run downloads a
+# needs network + `uv pip install datasets`; the first run downloads a
 # slice of the wikipedia 20220301.en snapshot (gigabytes - be patient)
 import json
 import os
