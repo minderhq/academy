@@ -3,7 +3,7 @@ Document ID: 6201
 Title: Hybrid Search - Combining Keyword and Semantic Search
 Phase: 6
 Module: 6200
-Last Updated: 2026-09-24
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -32,12 +32,12 @@ Tags: ['rag', 'retrieval', 'hybrid-search', 'reranking']
 
 After completing this lesson, you will be able to:
 
-- Explain Keyword Search (BM25)
-- Explain Semantic Search (Vector)
-- Explain Hybrid Search
-- Compare Dense vs Sparse Retrieval
-- Apply Implementation with Qdrant
-- Explain Optimizing Alpha
+- Trace the BM25 ranking — TF saturation (k1), document-length normalization (b), and the +1-guarded IDF log((N−df+0.5)/(df+0.5)+1) — and read a real tie: "cat" hits doc 0 while "pets" hits doc 3, both scoring 1.157 because the terms share one IDF
+- Run dense retrieval end-to-end — SentenceTransformer encode, L2-normalize to the unit sphere, FAISS IndexFlatIP where inner product equals cosine similarity
+- Fuse the two channels two ways — score-level linear combination α × semantic + (1−α) × bm25 over per-query min-max-normalized scores, and rank-based Reciprocal Rank Fusion Σ 1/(k+rank+1) that needs no score normalization at all
+- Choose dense vs sparse vs hybrid by failure mode — exact terms and rare tokens favor BM25, paraphrase and synonymy favor embeddings; late fusion retrieves separately then fuses, early fusion scores both in a single pass
+- Ship a true Qdrant hybrid collection — named dense + sparse vector spaces (`SparseVectorParams`), a `PointStruct` carrying BOTH vectors, and server-side RRF via `query_points` with `prefetch` + `FusionQuery(fusion=Fusion.RRF)` (client.search is REMOVED in qdrant-client 1.19)
+- Tune α empirically — sweep 0.0–1.0, score each weight with MAP@10 (mean Average Precision over a labeled query set), and read the per-query-type guidance (0.3–0.5 general, higher for conceptual)
 
 ---
 
@@ -49,7 +49,7 @@ Hybrid search combines traditional keyword search (BM25) with semantic vector se
 ### BM25 Algorithm
 ```python
 import math
-from collections import defaultdict
+from collections import Counter, defaultdict
 import numpy as np
 
 class BM25:
@@ -139,6 +139,10 @@ corpus = [
 
 bm25 = BM25(corpus)
 results = bm25.search("cat pets", k=3)
+# [(3, 1.1567), (0, 1.1567), (2, 0.0)] — an exact tie for first: "cat"
+# hits only doc 0 and "pets" only doc 3, and both terms share one IDF
+# (each appears in 1 of 4 docs). Docs 1 and 2 score 0.0; a zero-score
+# doc still appears in the ranking because search() scores every doc.
 print(results)
 ```
 
@@ -191,7 +195,7 @@ class SemanticSearch:
             for i, idx in enumerate(indices[0])
         ]
 
-# Usage
+# Usage — corpus comes from the BM25 usage in the section above
 semantic_search = SemanticSearch()
 semantic_search.index_documents(corpus)
 results = semantic_search.search("feline animals", k=3)
@@ -201,6 +205,9 @@ results = semantic_search.search("feline animals", k=3)
 
 ### Combining BM25 and Semantic
 ```python
+# BM25 and SemanticSearch are defined in the two sections above;
+# corpus comes from the BM25 usage there.
+
 class HybridSearch:
     """
     Hybrid search: BM25 + Semantic
@@ -218,10 +225,10 @@ class HybridSearch:
         """
         Hybrid search with score fusion
 
-        Methods:
-        - Linear combination: α × semantic + (1-α) × bm25
-        - Reciprocal rank fusion
-        - Condorcet fusion
+        Implemented here: linear combination α × semantic +
+        (1-α) × bm25 over min-max-normalized scores. Rank-based
+        fusion (RRF) is the section below — it needs no score
+        normalization at all.
         """
         # BM25 scores
         bm25_results = self.bm25.search(query, k=len(self.corpus))
@@ -283,6 +290,8 @@ for idx, score in results:
 
 ### Reciprocal Rank Fusion (RRF)
 ```python
+from collections import defaultdict
+
 def reciprocal_rank_fusion(bm25_results, semantic_results, k=60):
     """
     Reciprocal Rank Fusion: Rank-based fusion
@@ -313,7 +322,7 @@ def reciprocal_rank_fusion(bm25_results, semantic_results, k=60):
 
     return sorted_results
 
-# Usage
+# Usage — bm25 and semantic_search come from the sections above
 bm25_results = bm25.search("cat pets", k=10)
 semantic_results = semantic_search.search("cat pets", k=10)
 
@@ -344,7 +353,10 @@ Hybrid:
 
 ### Late Fusion vs Early Fusion
 ```python
+import numpy as np
+
 # Late Fusion (separate retrieval, then combine)
+# reciprocal_rank_fusion comes from the RRF section above
 def late_fusion(query, bm25, semantic, k=10):
     """Retrieve separately, then fuse"""
     bm25_docs = bm25.search(query, k=k)
@@ -356,7 +368,7 @@ def late_fusion(query, bm25, semantic, k=10):
 # Early Fusion (combine representations)
 class EarlyFusionIndex:
     """
-    Combine BM25 and semantic in single index
+    Combine BM25 and semantic in a single scoring pass
     """
     def __init__(self, corpus):
         self.corpus = corpus
@@ -364,27 +376,32 @@ class EarlyFusionIndex:
         # Sparse features (BM25)
         self.bm25 = BM25(corpus)
 
-        # Dense features (embeddings)
-        self.embeddings = SentenceTransformer('all-MiniLM-L6-v2').encode(corpus)
+        # Dense features (embeddings) — keep the model so the query
+        # side uses the SAME encoder; normalize so dot product = cosine
+        self.model = SentenceTransformer('all-MiniLM-L6-v2')
+        self.embeddings = self.model.encode(corpus).astype('float32')
+        faiss.normalize_L2(self.embeddings)
 
     def search(self, query, k=10, alpha=0.5):
-        # Query features
-        query_bm25 = self.bm25.score
-        query_embedding = self.model.encode([query])
+        # Query features — same encoder, same normalization
+        query_embedding = self.model.encode([query]).astype('float32')
+        faiss.normalize_L2(query_embedding)
 
-        # Combine both
+        # Combine both signals
         scores = []
         for idx, doc in enumerate(self.corpus):
-            # BM25 score
+            # BM25 score (unbounded, typically 0-15)
             bm25_score = self.bm25.score(query, idx)
 
-            # Semantic score
-            semantic_score = np.dot(
+            # Semantic score (cosine, [-1, 1] after normalization)
+            semantic_score = float(np.dot(
                 query_embedding[0],
                 self.embeddings[idx]
-            )
+            ))
 
-            # Combined
+            # Combined — NOTE: the two channels live on different raw
+            # scales; a principled fusion normalizes both (HybridSearch
+            # above) or fuses ranks instead (RRF below)
             combined = alpha * semantic_score + (1 - alpha) * bm25_score
             scores.append((idx, combined))
 
@@ -396,85 +413,124 @@ class EarlyFusionIndex:
 ### Qdrant Hybrid Search
 ```python
 from qdrant_client import QdrantClient
-from qdrant_client.models import Distance, VectorParams, PointStruct
+from qdrant_client.models import (
+    Distance,
+    Fusion,
+    FusionQuery,
+    PointStruct,
+    Prefetch,
+    SparseVector,
+    SparseVectorParams,
+    VectorParams,
+)
 
 # Connect to Qdrant (self-hosted Docker)
 client = QdrantClient(url="http://localhost:6333")
 
-# Create collection with hybrid search
+# A true hybrid collection: a named DENSE vector space (semantic)
+# plus a named SPARSE vector space (BM25-style) on the same collection
 collection_name = "hybrid_docs"
 client.create_collection(
     collection_name=collection_name,
-    vectors_config=VectorParams(size=384, distance=Distance.COSINE),
-    # Qdrant supports sparse vectors (BM25)
-    sparse_vectors_config={
-        "text": SparseVectorParams()
-    }
+    vectors_config={"dense": VectorParams(size=384, distance=Distance.COSINE)},
+    sparse_vectors_config={"text": SparseVectorParams()},
 )
 
-# Index documents
+# BM25-style bag of words as a SparseVector. Python's hash() is salted
+# per process for strings — fine here, indices only need to be
+# consistent within one run; production stacks use an IDF-weighted
+# tokenizer (e.g. fastembed's bm25 or a SPLADE model) instead
+def tokenize(text):
+    tokens = text.lower().split()
+    return SparseVector(
+        indices=[abs(hash(t)) % 100000 for t in tokens],
+        values=[1.0] * len(tokens),
+    )
+
+# Index documents — corpus and semantic_model come from the sections
+# above. ONE PointStruct carries BOTH vectors under their names.
 for idx, doc in enumerate(corpus):
-    # Dense vector (semantic)
-    dense_vector = semantic_model.encode(doc).tolist()
-
-    # Sparse vector (BM25-style)
-    tokens = tokenize(doc)
-    sparse_vector = {
-        "indices": [hash(t) % 100000 for t in tokens],
-        "values": [1.0] * len(tokens)
-    }
-
     client.upsert(
         collection_name=collection_name,
         points=[
             PointStruct(
                 id=idx,
-                vector=dense_vector,
+                vector={
+                    "dense": semantic_model.encode(doc).tolist(),
+                    "text": tokenize(doc),
+                },
                 payload={"text": doc},
-                sparse_vector={"text": sparse_vector}
             )
         ]
     )
 
-# Hybrid search
-search_results = client.search(
+query = "feline pets"
+
+# Hybrid search: prefetch BOTH channels, fuse server-side with RRF.
+# client.search() was deprecated in 1.10 and is REMOVED by 1.19
+# (AttributeError) — query_points() with prefetch + FusionQuery is
+# Qdrant's hybrid-search API
+search_results = client.query_points(
     collection_name=collection_name,
-    query_vector=semantic_model.encode(query).tolist(),
-    query_filter=None,
+    prefetch=[
+        Prefetch(query=tokenize(query), using="text", limit=20),
+        Prefetch(query=semantic_model.encode(query).tolist(), using="dense", limit=20),
+    ],
+    query=FusionQuery(fusion=Fusion.RRF),
     limit=10,
-    # Hybrid search parameters
     with_payload=["text"],
-    score_threshold=0.5,
-)
+).points
+
+for point in search_results:
+    print(f"{point.score:.4f}: {point.payload['text']}")
 ```
 
 ## Optimizing Alpha
 
 ### Finding Optimal Weight
 ```python
-def optimize_alpha(queries, ground_truth, bm25, semantic):
-    """
-    Find optimal alpha for hybrid search
+import numpy as np
 
-    Uses: Mean average precision (MAP)
+def average_precision(retrieved, relevant, k=10):
+    """
+    Average Precision@k: mean of precision@i over each relevant hit
+    in the top-k ranking
+    """
+    relevant = set(relevant)
+    retrieved_ids = [idx for idx, _ in retrieved[:k]]
+    hits, sum_precision = 0, 0.0
+    for i, doc_id in enumerate(retrieved_ids, start=1):
+        if doc_id in relevant:
+            hits += 1
+            sum_precision += hits / i
+    return sum_precision / len(relevant) if relevant else 0.0
+
+
+def optimize_alpha(corpus, ground_truth):
+    """
+    Find the optimal alpha by sweeping 0.0-1.0 and scoring each weight
+    with MAP@10: the mean of Average Precision over the query set
+
+    ground_truth: list of (query, relevant_doc_ids) pairs
     """
     alphas = np.linspace(0, 1, 11)  # 0.0, 0.1, ..., 1.0
     results = []
 
     for alpha in alphas:
+        # HybridSearch comes from the Hybrid Search section above
         hybrid = HybridSearch(corpus, alpha=alpha)
 
         # Evaluate on queries
         map_score = 0
         for query, relevant_docs in ground_truth:
             retrieved = hybrid.search(query, k=10)
-            map_score += average_precision(retrieved, relevant_docs)
+            map_score += average_precision(retrieved, relevant_docs, k=10)
 
         map_score /= len(ground_truth)
-        results.append((alpha, map_score))
+        results.append((float(alpha), map_score))
 
-    # Return best alpha
-    best_alpha, best_score = max(results, key=lambda x: x[1])
+    # Return best alpha (and the full sweep for plotting)
+    best_alpha = max(results, key=lambda x: x[1])[0]
     return best_alpha, results
 
 # Typical findings:
@@ -490,6 +546,7 @@ def optimize_alpha(queries, ground_truth, bm25, semantic):
 
 ### Related ai-engineering-curriculum Documents
 
+- [6101: HNSW Indexing - Efficient Semantic Search at Scale](../6100-vector/6101-HNSW-Indexing.md)
 - [6202: Re-ranking and Retrieval Logistics](6202-Re-ranking-and-Retrieval-Logistics.md)
 - [6203: Advanced Retrieval Techniques](6203-Advanced-Retrieval.md)
 
@@ -499,13 +556,4 @@ def optimize_alpha(queries, ground_truth, bm25, semantic):
 
 - Continue with: **[6202: Re-ranking](./6202-Re-ranking-and-Retrieval-Logistics.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
-
----
----
-
-**Related Documents:**
-- [6101: HNSW Indexing](../6100-vector/6101-HNSW-Indexing.md)
-- [6202: Re-ranking](./6202-Re-ranking-and-Retrieval-Logistics.md)
-- [6302: CAG Long Context](../6300-context/6302-CAG-Long-Context-Architectures.md)
-
-**Experiment Template:** [EXP_6201: Hybrid Search](../../../../experiments/EXP_6201_HYBRID_SEARCH.md)
+- Experiment: **[EXP_6201: Hybrid Search](../../../../experiments/EXP_6201_HYBRID_SEARCH.md)**
