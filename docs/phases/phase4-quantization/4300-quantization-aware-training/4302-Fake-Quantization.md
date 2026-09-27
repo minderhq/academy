@@ -3,7 +3,7 @@ Document ID: 4302
 Title: Fake Quantization
 Phase: 4
 Module: 4300
-Last Updated: 2026-09-24
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -33,12 +33,12 @@ Tags: ['quantization', 'qat', 'quantization-aware-training']
 
 After completing this lesson, you will be able to:
 
-- Explain The Challenge
-- Explain Straight-Through Estimator
-- Explain Complete Fake Quantization Module
-- Explain Applying Fake Quantization to Models
-- Diagnose and resolve Fake Quantization
-- Diagnose and resolve Common Pitfalls
+- State the rounding problem — round(x) has zero gradient almost everywhere, so QAT needs an estimator — and the STE contract: round in forward, identity in backward
+- Contrast the three STE options — RoundSTE's identity gradient, ClampedSTE zeroing gradients outside [qmin, qmax], HardTanhSTE's linear band over [qmin−1, qmax+1] via saved tensors
+- Trace `FakeQuantize` — training-only observer updates, symmetric (qmin −2^(bw−1), qmax 2^(bw−1)−1) vs asymmetric (0..2^bw−1) ranges, per-channel amin/amax excluding the channel dim, and the clamp(round(x/scale)+zp) dequantize round trip
+- Wire fake quantization into models two ways — QuantizedWrapper insertion (activation + weight quant, F.linear/F.conv2d call-through) versus torch.ao.quantization's prepare_qat/train/convert flow
+- Debug fake quantization with the three checks — quantization stats via _get_qparams, gradient norms flagging NO GRADIENT! parameters, and the error distribution (mean/max/P95 plus histogram)
+- Resolve the three pitfalls — freeze observers in eval mode (momentum 0), one scale per output channel from max(dim=1) reduction, and a 1e-5 scale floor against division-by-zero
 
 ---
 
@@ -124,6 +124,7 @@ Smoother gradient handling:
 class HardTanhSTE(torch.autograd.Function):
     @staticmethod
     def forward(ctx, x, qmin, qmax):
+        ctx.save_for_backward(x)  # backward's mask needs the raw input
         return torch.clamp(torch.round(x), qmin, qmax)
 
     @staticmethod
@@ -193,6 +194,13 @@ class FakeQuantize(nn.Module):
             x_max = x.max()
 
         # Exponential moving average
+        # Seed on the first batch: EMA against the inf/-inf initial
+        # buffers would stay at ±inf forever
+        if torch.isinf(self.min_val):
+            self.min_val = x_min
+            self.max_val = x_max
+            return
+
         self.min_val = (
             self.momentum * x_min +
             (1 - self.momentum) * self.min_val
@@ -205,7 +213,8 @@ class FakeQuantize(nn.Module):
     def _get_qparams(self):
         """Calculate scale and zero point"""
         if self.symmetric:
-            scale = self.max_val.abs().max() / self.qmax
+            # Symmetric range must cover BOTH sides: max(|min|, |max|)
+            scale = torch.max(self.max_val.abs(), self.min_val.abs()) / self.qmax
             zero_point = torch.zeros_like(scale)
         else:
             scale = (self.max_val - self.min_val) / (self.qmax - self.qmin)
@@ -309,10 +318,12 @@ def check_quantization_stats(model):
     """Print quantization statistics"""
     for name, module in model.named_modules():
         if hasattr(module, 'weight_quant'):
-            scale = module.weight_quant.scale.item()
+            # Scale comes from _get_qparams(), it is not an attribute
+            scale, _ = module.weight_quant._get_qparams()
+            scale = scale.item()
             print(f"{name}: scale={scale:.6f}, "
-                  f"min={module.weight_quant.min_val:.4f}, "
-                  f"max={module.weight_quant.max_val:.4f}")
+                  f"min={module.weight_quant.min_val.item():.4f}, "
+                  f"max={module.weight_quant.max_val.item():.4f}")
 ```
 
 ### Check 2: Gradient Flow
@@ -374,7 +385,7 @@ for module in model.modules():
 **Fix:**
 ```python
 # For Linear: weight shape [out_features, in_features]
-# Per-channel quantize along dim=0
+# One scale per output channel: reduce over in_features (dim=1)
 scale = weight.abs().max(dim=1, keepdim=True).values / 127
 # Shape: [out_features, 1]
 ```
