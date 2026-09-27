@@ -30,12 +30,12 @@ Difficulty: Advanced
 
 After completing this lesson, you will be able to:
 
-- Explain HuggingFace QAT Tools
-- Explain Method 1: bitsandbytes NF4 Quantization
-- Explain Method 2: AutoGPTQ
-- Explain Method 3: Optimum for ONNX Quantization
-- Explain Method 4: Training with Quantization Aware Training
-- Explain Advanced: Custom QAT for Transformers
+- Map the four HuggingFace QAT tools — bitsandbytes for NF4/INT8 loading, optimum for ONNX/Habana export, auto-gptq for GPTQ, and native torch.ao QAT carried through the Trainer
+- Load a 4-bit Llama with BitsAndBytesConfig — nf4 quant type, float16 compute dtype, double quant — and read the footprint from get_memory_footprint()
+- Quantize a causal LM with AutoGPTQ — BaseQuantizeConfig (bits=4, group_size=128, damp_percent=0.01), 128 calibration examples through model.quantize(), save_quantized/reload via from_quantized()
+- Export gpt2 to ONNX with ORTModelForCausalLM(export=True) and shrink it via ORTQuantizer + AutoQuantizationConfig.arm64(is_static=False) dynamic quantization
+- Wire BERT for QAT in the Trainer — get_default_qat_qconfig('x86'), prepare_qat before training, convert(model.eval()) to a true INT8 model afterward
+- Evaluate a stub-placed BertPreTrainedModel subclass — accuracy delta and ms-per-forward speedup from a 100-iteration warmed benchmark
 
 ---
 
@@ -59,18 +59,22 @@ Transformers QAT Ecosystem
 
 ```python
 import torch
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 
 model_name = "meta-llama/Llama-2-7b-hf"
 
-# Load with 4-bit quantization
-model = AutoModelForCausalLM.from_pretrained(
-    model_name,
+# Canonical 4-bit loading: pass quantization_config (the bare bnb_4bit_*
+# from_pretrained kwargs are legacy shortcuts)
+bnb_config = BitsAndBytesConfig(
     load_in_4bit=True,
-    device_map="auto",
     bnb_4bit_quant_type="nf4",  # NormalFloat 4
     bnb_4bit_compute_dtype=torch.float16,
     bnb_4bit_use_double_quant=True,
+)
+model = AutoModelForCausalLM.from_pretrained(
+    model_name,
+    quantization_config=bnb_config,
+    device_map="auto",
 )
 
 tokenizer = AutoTokenizer.from_pretrained(model_name)
@@ -148,8 +152,8 @@ quantize_config = BaseQuantizeConfig(
     desc_act=False,
     sym=True,
     true_sequential=True,
-    model_name_base="llama-2-7b-gptq",
 )
+# Model naming happens at save_quantized below, not in the config
 
 # Load model
 tokenizer = AutoTokenizer.from_pretrained(model_name)
@@ -257,7 +261,7 @@ training_args = TrainingArguments(
     num_train_epochs=3,
     per_device_train_batch_size=16,
     learning_rate=2e-5,
-    evaluation_strategy="epoch",
+    eval_strategy="epoch",  # renamed from evaluation_strategy (transformers 4.41+)
 )
 
 # Train
@@ -277,6 +281,7 @@ model_int8 = quant.convert(model.eval())
 ## Advanced: Custom QAT for Transformers
 
 ```python
+import torch.nn as nn
 from transformers import BertPreTrainedModel, BertModel
 import torch.ao.quantization as quant
 
@@ -284,6 +289,7 @@ class QuantizedBertForSequenceClassification(BertPreTrainedModel):
     def __init__(self, config):
         super().__init__(config)
         self.bert = BertModel(config)
+        self.num_labels = config.num_labels  # forward's loss needs it
         self.dropout = nn.Dropout(config.hidden_dropout_prob)
         self.classifier = nn.Linear(config.hidden_size, config.num_labels)
 
@@ -292,8 +298,11 @@ class QuantizedBertForSequenceClassification(BertPreTrainedModel):
         self.dequant = torch.ao.quantization.DeQuantStub()
 
     def forward(self, input_ids, attention_mask=None, labels=None):
-        # Quantize input
-        input_ids = self.quant(input_ids.float())
+        # Caveat: token ids must reach the embedding as Long — quantizing
+        # them to float breaks word_embeddings. Real QAT moves QuantStub
+        # to the embedding output (module surgery); these stubs mark the
+        # boundary prepare_qat wires up.
+        input_ids = self.quant(input_ids.float()).long()
 
         # BERT model
         outputs = self.bert(input_ids, attention_mask=attention_mask)
@@ -324,9 +333,10 @@ model = quant.prepare_qat(model)
 ### Accuracy Comparison
 
 ```python
-from datasets import load_metric
+# datasets.load_metric was removed — accuracy lives in the evaluate library
+import evaluate
 
-metric = load_metric("accuracy")
+metric = evaluate.load("accuracy")
 
 def evaluate(model, dataloader):
     model.eval()
@@ -415,9 +425,14 @@ training_args.gradient_accumulation_steps = 8
 
 ```python
 # Use higher bit-width for sensitive layers
-sensitive_layers = ['embeddings', 'encoder.layer.0']
-for name in sensitive_layers:
-    set_bit_width(model, name, bit_width=8)
+def set_prefix_bit_width(model, prefix, bit_width=8):
+    # FakeQuantize is defined in 4302-Fake-Quantization.md
+    for module_name, module in model.named_modules():
+        if module_name.startswith(prefix) and isinstance(module, FakeQuantize):
+            module.bit_width = bit_width
+
+for prefix in ['embeddings', 'encoder.layer.0']:
+    set_prefix_bit_width(model, prefix)
 ```
 
 ## Further Reading
