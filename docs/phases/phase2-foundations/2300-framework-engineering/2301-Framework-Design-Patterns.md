@@ -35,12 +35,12 @@ Tags: ['frameworks', 'architecture', 'api-design', 'production']
 
 After completing this lesson, you will be able to:
 
-- Explain Pattern Categories
-- Explain Pattern 1: Model Abstraction Layer
-- Configure and operate Pattern 2: Configuration Management
-- Explain Pattern 3: Plugin Architecture
-- Explain Pattern 4: Version Handler
-- Explain Exercise: Build Your Own Framework
+- Classify the four architectural patterns of this lesson against the behavioral set (strategy, factory, observer, registry) and state which real framework exercises each
+- Design a `BaseModel` ABC whose five abstract methods (`forward`, `train_step`, `save`, `load`, `to`) let one framework-agnostic `train_model` loop drive PyTorch and TensorFlow backends unchanged — and explain why loss/optimizer objects live in `__init__`, not per step
+- Build a `ModelConfig` dataclass with `str`-Enum fields, `__post_init__` validation, and YAML/JSON round-trips via `from_yaml`/`to_yaml`, mirroring how `TrainingArguments` serializes through `to_json_string()`
+- Implement a `PluginRegistry` whose `@register` decorator rejects duplicate names, loads plugin files dynamically through `importlib.util`, and feeds per-type registries (layers, optimizers, losses) consumed by a `ModelBuilder`
+- Gate model loading with a `VersionManager` that parses `>=` requirements via `packaging.version` and embeds `model_version` in every checkpoint, resolving the installed framework through `importlib.metadata` instead of `torch.__version__`
+- Complete the mini-framework exercise — `BaseModel` + validated `ModelConfig` + metric registry with at least two metrics — using the 2306 production-framework guide as the solution reference
 
 ---
 
