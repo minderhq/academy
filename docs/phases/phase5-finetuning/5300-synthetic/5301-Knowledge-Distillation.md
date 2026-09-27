@@ -3,7 +3,7 @@ Document ID: 5301
 Title: Knowledge Distillation - Training Small Models Using Big Model Outputs
 Phase: 5
 Module: 5300
-Last Updated: 2026-09-24
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -32,12 +32,12 @@ Tags: ['finetuning', 'synthetic-data', 'distillation', 'federated']
 
 After completing this lesson, you will be able to:
 
-- Explain the reasoning behind Distillation Concepts
-- Explain Distillation Loss
-- Explain Advanced Distillation Techniques
-- Explain Data Generation for Distillation
-- Measure and evaluate Evaluating Distillation
-- Explain Practical Tips
+- Trace the soft-target pipeline — hard one-hot labels vs the teacher's full softmax, the dark knowledge it carries (inter-class similarity like "dog resembles cat"), and temperature's sweep (T=1 nearly hard, T→∞ uniform)
+- Implement the combined loss — flatten (B,T,V) logits to (N,V) for both terms, KL(soft student ‖ soft teacher)·T² over non-padding positions, plus (1−α)·CE with ignore_index=-100
+- Distinguish the advanced variants — feature-level (MSE on output_hidden_states layers, projection when depths differ), multi-teacher (weighted soft-target mixture — only from local logit-exposing teachers), self-distillation (a frozen EMA copy, not a per-forward rebuild)
+- Generate distillation data from an API teacher — the modern `OpenAI()` client with `chat.completions.create`, n samples per prompt, and a Q:/A: parser for synthetic QA sets
+- Evaluate the transfer — masked next-token accuracy (shifted logits vs labels) and the teacher−student gap, agreement rate between the two argmax streams, KL between output distributions
+- Pick T and α from the failure modes — T=1 collapses to hard labels, T=10+ makes gradients noisy; α≈0.5 balanced, lower early (hard labels first), higher late
 
 ---
 
@@ -85,7 +85,6 @@ T → ∞: Uniform [0.2, 0.2, 0.2, 0.2, 0.2]  ← No information
 ### Combined Loss Function
 ```python
 import torch
-import torch.nn as nn
 import torch.nn.functional as F
 
 def distillation_loss(
@@ -96,31 +95,41 @@ def distillation_loss(
     alpha=0.5
 ):
     """
-    Distillation loss = α × distillation_loss + (1-α) × student_loss
+    Distillation loss = α × soft-target KL + (1-α) × hard-label CE
 
     Args:
-        student_logits: Raw outputs from student model
-        teacher_logits: Raw outputs from teacher model (no grad)
-        labels: Ground truth labels
-        temperature: Softmax temperature
+        student_logits: (B, T, V) raw outputs from the student
+        teacher_logits: (B, T, V) raw teacher outputs (computed under no_grad)
+        labels: (B, T) target token ids, padding positions marked -100
+        temperature: Softmax temperature (see Temperature Scaling above)
         alpha: Weight between distillation and hard label loss
     """
-    # 1. Distillation loss (soft targets)
-    # High temperature softens distributions
-    soft_student = F.log_softmax(student_logits / temperature, dim=-1)
-    soft_teacher = F.softmax(teacher_logits / temperature, dim=-1)
+    # Flatten to (N, V): cross_entropy and batchmean KL both expect 2-D —
+    # on a 4-D (B, T, V) input cross_entropy treats dim 1 (the SEQUENCE
+    # axis) as the class axis and raises "Expected target size"
+    V = student_logits.size(-1)
+    flat_student = student_logits.reshape(-1, V)
+    flat_teacher = teacher_logits.reshape(-1, V)
+    flat_labels = labels.reshape(-1)
 
-    distillation_loss = F.kl_div(
+    # 1. Distillation loss (soft targets)
+    # High temperature softens distributions; padding positions (-100)
+    # must not vote
+    keep = flat_labels != -100
+    soft_student = F.log_softmax(flat_student[keep] / temperature, dim=-1)
+    soft_teacher = F.softmax(flat_teacher[keep] / temperature, dim=-1)
+
+    distill_loss = F.kl_div(
         soft_student,
         soft_teacher,
         reduction="batchmean"
-    ) * (temperature ** 2)  # Scale by T²
+    ) * (temperature ** 2)  # T² keeps gradient scale comparable as T moves
 
     # 2. Student loss (hard labels)
-    student_loss = F.cross_entropy(student_logits, labels)
+    student_loss = F.cross_entropy(flat_student, flat_labels, ignore_index=-100)
 
     # 3. Combined
-    loss = alpha * distillation_loss + (1 - alpha) * student_loss
+    loss = alpha * distill_loss + (1 - alpha) * student_loss
 
     return loss
 ```
@@ -130,9 +139,12 @@ def distillation_loss(
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-# 1. Load models
-teacher_model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-2-70b-hf")
-student_model = AutoModelForCausalLM.from_pretrained("tinyllama-1b")
+# 1. Load models — a vocab-compatible pair so the KL over logits is
+# meaningful (the whole Qwen2.5 family shares one 151936-token
+# tokenizer). Ungated demo pair; production recipes distill big →
+# tiny (e.g. 70B → 1.1B) the exact same way
+teacher_model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen2.5-1.5B")
+student_model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen2.5-0.5B")
 
 teacher_model.eval()  # Teacher is frozen
 student_model.train()
@@ -146,7 +158,7 @@ alpha = 0.5  # Balance soft/hard targets
 
 for batch in dataloader:
     input_ids = batch["input_ids"]
-    labels = batch["labels"]
+    labels = batch["labels"]  # -100 on padding — distillation_loss masks it
 
     # Teacher forward (no grad)
     with torch.no_grad():
@@ -176,6 +188,8 @@ for batch in dataloader:
 
 ### Feature-level Distillation
 ```python
+import torch.nn as nn
+
 class FeatureDistillation(nn.Module):
     """
     Distill intermediate representations, not just logits
@@ -184,24 +198,28 @@ class FeatureDistillation(nn.Module):
         super().__init__()
         self.student = student
         self.teacher = teacher
+        self.teacher.eval()  # the teacher never trains
 
-    def forward(self, x, labels):
-        # Get features from intermediate layers
+    def forward(self, x):
+        # Hidden states come from the model OUTPUT, not a get_features()
+        # method: pass output_hidden_states=True and index the layer
         with torch.no_grad():
-            teacher_features = self.teacher.get_features(x)
+            teacher_out = self.teacher(x, output_hidden_states=True)
+        student_out = self.student(x, output_hidden_states=True)
 
-        student_features = self.student.get_features(x)
-
-        # Feature-level loss (MSE between features)
+        # Feature loss: MSE on the last hidden layer. Different depths or
+        # hidden sizes need a linear projection first — raw MSE raises a
+        # shape error instead of "aligning" anything
         feature_loss = F.mse_loss(
-            student_features["hidden_states"],
-            teacher_features["hidden_states"]
+            student_out.hidden_states[-1],
+            teacher_out.hidden_states[-1],
         )
 
-        # Logit-level loss
-        logit_loss = F.mse_loss(
-            self.student(x),
-            self.teacher(x)
+        # Logit-level loss on the same pass (teacher is under no_grad)
+        logit_loss = F.kl_div(
+            F.log_softmax(student_out.logits, dim=-1),
+            F.softmax(teacher_out.logits, dim=-1),
+            reduction="batchmean",
         )
 
         # Combined
@@ -211,14 +229,18 @@ class FeatureDistillation(nn.Module):
 
 ### Multi-Teacher Distillation
 ```python
-def multi_teacher_distillation(student_logits, teacher_logits_list, weights):
+def multi_teacher_distillation(student_logits, teacher_logits_list, weights,
+                               temperature=5.0):
     """
-    Combine multiple teachers with weighted averaging
+    Combine multiple teachers into ONE soft target (weighted average of
+    their distributions), then measure the student against it.
 
     Args:
         student_logits: Student outputs
-        teacher_logits_list: List of teacher outputs
-        weights: Weight for each teacher (sum to 1)
+        teacher_logits_list: List of teacher outputs (same vocab!)
+        weights: One weight per teacher, summing to 1 — its length MUST
+            match teacher_logits_list
+        temperature: Softmax temperature shared across teachers
     """
     # Soft targets from each teacher
     soft_targets = []
@@ -226,53 +248,60 @@ def multi_teacher_distillation(student_logits, teacher_logits_list, weights):
         soft = F.softmax(teacher_logits / temperature, dim=-1)
         soft_targets.append(soft * weight)
 
-    # Average soft targets
+    # Weighted-average soft target
     averaged_soft = sum(soft_targets)
 
-    # Distillation loss
+    # Distillation loss against the mixture
     soft_student = F.log_softmax(student_logits / temperature, dim=-1)
     loss = F.kl_div(soft_student, averaged_soft, reduction="batchmean")
 
     return loss
 
-# Example: Ensemble of Llama-2-70B, GPT-4, Claude
-teachers = [
-    llama_70b_model,
-    # Could use API calls for other teachers
-]
-weights = [0.5, 0.3, 0.2]  # Weighted ensemble
+# Example: two LOCAL teachers with a shared tokenizer (Qwen2.5 family).
+# API teachers (GPT-4, Claude) can't join this loss — their logits are
+# never exposed, so distill from them via generated DATA instead
+# (Data Generation section below)
+teachers = [teacher_a, teacher_b]  # loaded AutoModelForCausalLM
+weights = [0.6, 0.4]               # one weight per teacher
 ```
 
 ### Self-Distillation
 ```python
+import copy
+import torch.nn as nn
+
 class SelfDistillation(nn.Module):
     """
-    Student learns from its own predictions (from previous epoch)
+    Student learns from its own earlier state (mean-teacher style):
+    a frozen EMA copy built ONCE, not rebuilt per forward pass
     """
     def __init__(self, model):
         super().__init__()
         self.model = model
-        self.teacher_state = None
+        # ONE frozen snapshot from init — reconstructing the teacher with
+        # self.model.__class__(config) + load_state_dict inside forward
+        # would copy the whole model on EVERY step
+        self.teacher = copy.deepcopy(model)
+        self.teacher.eval()
+        for p in self.teacher.parameters():
+            p.requires_grad_(False)
+        self.teacher_ready = False
 
     def update_teacher(self):
-        """Update teacher with current student state"""
-        self.teacher_state = {
-            k: v.detach().clone()
-            for k, v in self.model.state_dict().items()
-        }
+        """EMA: the teacher slowly tracks the student's weights"""
+        with torch.no_grad():
+            for t, s in zip(self.teacher.parameters(), self.model.parameters()):
+                t.mul_(0.999).add_(s.detach(), alpha=0.001)
+        self.teacher_ready = True
 
     def forward(self, x, labels):
         # Student forward
-        student_logits = self.model(x)
+        student_logits = self.model(x).logits
 
-        # Teacher forward (using cached state)
-        if self.teacher_state is not None:
-            teacher_model = self.model.__class__(self.model.config)
-            teacher_model.load_state_dict(self.teacher_state)
-            teacher_model.eval()
-
+        # Teacher forward (frozen copy, cached since __init__)
+        if self.teacher_ready:
             with torch.no_grad():
-                teacher_logits = teacher_model(x)
+                teacher_logits = self.teacher(x).logits
 
             # Distillation loss
             loss = distillation_loss(
@@ -283,26 +312,33 @@ class SelfDistillation(nn.Module):
                 alpha=0.7
             )
         else:
-            # First epoch: standard training
-            loss = F.cross_entropy(student_logits, labels)
+            # Before the first update_teacher(): standard training
+            V = student_logits.size(-1)
+            loss = F.cross_entropy(
+                student_logits.view(-1, V),
+                labels.view(-1),
+                ignore_index=-100,
+            )
 
         return loss
 ```
 
 ## Data Generation for Distillation
 
-### Using GPT-4 as Teacher
+### Using an API Teacher
 ```python
-import openai
+from openai import OpenAI  # openai>=1.0 — ChatCompletion.create is gone
 
-def generate_teacher_data(prompt, model="gpt-4"):
+client = OpenAI()  # reads OPENAI_API_KEY from the environment
+
+def generate_teacher_data(prompt, model="gpt-4o", temperature=0.7):
     """
-    Generate training data using GPT-4 as teacher
+    Generate training data using an API teacher
     """
-    response = openai.ChatCompletion.create(
+    response = client.chat.completions.create(
         model=model,
         messages=[{"role": "user", "content": prompt}],
-        temperature=0.7,  # Sample diverse outputs
+        temperature=temperature,  # Sample diverse outputs
     )
 
     return response.choices[0].message.content
@@ -324,12 +360,26 @@ def create_distillation_dataset(base_prompts, num_samples_per_prompt=5):
     return dataset
 
 # Use to train smaller model
-dataset = create_distillation_dataset(my_prompts)
-# Train student model on this dataset
+base_prompts = [
+    "Explain how KV caches speed up autoregressive decoding.",
+    "Write a pytest for a rate limiter.",
+]
+dataset = create_distillation_dataset(base_prompts)
+# Train the student on this dataset (standard SFT — see 5100/5202)
 ```
 
 ### Synthetic Question-Answer Pairs
 ```python
+import re
+
+def parse_qa_pairs(text):
+    """Parse 'Q: ... A: ...' blocks out of the teacher's reply"""
+    matches = re.findall(r"Q:\s*(.+?)\s*A:\s*(.+?)(?=\n\s*Q:|\Z)", text, re.S)
+    return [
+        {"question": q.strip(), "answer": a.strip()}
+        for q, a in matches
+    ]
+
 def generate_qa_pairs(context, num_pairs=10):
     """
     Generate QA pairs from context using teacher model
@@ -343,7 +393,7 @@ def generate_qa_pairs(context, num_pairs=10):
     Format each as Q: [question] A: [answer]
     """
 
-    response = generate_teacher_data(prompt, model="gpt-4")
+    response = generate_teacher_data(prompt, model="gpt-4o")
     return parse_qa_pairs(response)
 
 # Example
@@ -363,10 +413,12 @@ qa_pairs = generate_qa_pairs(context)
 ```python
 def evaluate_distillation(teacher, student, test_loader):
     """
-    Compare teacher and student performance
+    Compare teacher and student next-token predictions on labeled data.
+    logits[t] predicts token t+1 — SHIFT before comparing to labels.
+    (Teacher and student share the tokenizer, so argmax ids are
+    directly comparable.)
     """
-    teacher_results = []
-    student_results = []
+    teacher_correct = student_correct = agreed = total = 0
 
     teacher.eval()
     student.eval()
@@ -374,38 +426,41 @@ def evaluate_distillation(teacher, student, test_loader):
     with torch.no_grad():
         for batch in test_loader:
             inputs = batch["input_ids"]
+            tgt = batch["labels"][:, 1:]    # targets at positions 1..T-1
+            mask = tgt != -100              # real (non-padding) targets
 
-            # Teacher predictions
-            teacher_logits = teacher(inputs)
-            teacher_preds = teacher_logits.argmax(dim=-1)
-            teacher_results.append(teacher_preds)
+            # Predictions — drop the last logits row to align with tgt
+            teacher_preds = teacher(inputs).logits[:, :-1].argmax(dim=-1)
+            student_preds = student(inputs).logits[:, :-1].argmax(dim=-1)
 
-            # Student predictions
-            student_logits = student(inputs)
-            student_preds = student_logits.argmax(dim=-1)
-            student_results.append(student_preds)
+            teacher_correct += (teacher_preds[mask] == tgt[mask]).sum().item()
+            student_correct += (student_preds[mask] == tgt[mask]).sum().item()
+            agreed += (teacher_preds == student_preds)[mask].sum().item()
+            total += mask.sum().item()
 
-    # Compute metrics
-    teacher_acc = compute_accuracy(teacher_results)
-    student_acc = compute_accuracy(student_results)
+    if total == 0:
+        raise ValueError("no labeled positions in the test set")
 
-    # Agreement rate
-    agreement = (torch.cat(teacher_results) == torch.cat(student_results)).float().mean()
+    teacher_acc = teacher_correct / total
+    student_acc = student_correct / total
 
     return {
         "teacher_accuracy": teacher_acc,
         "student_accuracy": student_acc,
         "performance_gap": teacher_acc - student_acc,
-        "agreement_rate": agreement,
+        "agreement_rate": agreed / total,
     }
 ```
 
 ### Distillation Quality Metrics
 ```python
-def kl_divergence(student_dist, teacher_dist):
+def kl_divergence(teacher_dist, student_dist):
     """
-    KL divergence between student and teacher distributions
-    Lower is better
+    KL(teacher ‖ student) between the two output distributions —
+    lower means the student tracks the teacher more closely.
+
+    F.kl_div takes LOG-probs as its first argument:
+    kl_div(student.log(), teacher) = Σ teacher·(log teacher − log student)
     """
     return F.kl_div(
         student_dist.log(),
@@ -462,7 +517,6 @@ Rule of thumb: α = 0.5 (balanced)
   - Late training: Higher α (0.7)
 ```
 
-
 ---
 
 ## References
@@ -476,15 +530,6 @@ Rule of thumb: α = 0.5 (balanced)
 
 ## Next Steps
 
-- Continue with: **[5401-Data-Parallelism.md](./../5400-distributed-training/5401-Data-Parallelism.md)**
+- Continue with: **[5401: Data Parallelism](./../5400-distributed-training/5401-Data-Parallelism.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
-
----
----
-
-**Related Documents:**
-- [5101: LoRA Logic](../5100-peft/5101-LoRA-Logic.md)
-- [6202: RAG Retrieval](../../phase6-rag/6200-retrieval/6202-Re-ranking-and-Retrieval-Logistics.md)
-- [7101: ReAct Loop](../../phase7-agentic/7100-architecture/7101-ReAct-Loop-System.md)
-
-**Experiment Template:** [EXP_5301: Distillation](../../../../experiments/EXP_5301_DISTILLATION.md)
+- Experiment: **[EXP_5301: Distillation](../../../../experiments/EXP_5301_DISTILLATION.md)**
