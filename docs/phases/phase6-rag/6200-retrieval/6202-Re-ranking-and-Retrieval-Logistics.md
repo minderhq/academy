@@ -3,7 +3,7 @@ Document ID: 6202
 Title: Re-ranking and Retrieval Logistics
 Phase: 6
 Module: 6200
-Last Updated: 2026-09-24
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -31,11 +31,12 @@ Tags: ['rag', 'retrieval', 'hybrid-search', 'reranking']
 
 After completing this lesson, you will be able to:
 
-- Explain The RAG Pipeline
-- Explain Reranking Models
-- Explain Retrieval Strategies
-- Explain Query Expansion
-- Measure and evaluate Evaluation
+- Trace the two-stage pipeline trade-off — a fast retriever casts a wide net (retrieve_n=100), a slow accurate reranker shrinks it to top_k=10, and one model cannot be both fast and accurate
+- Run a cross-encoder reranker — score (query, document) pairs with `CrossEncoder.predict`, sort descending, and explain why it beats a bi-encoder on precision but costs a forward pass per pair
+- Score with ColBERT's MaxSim rule — Σᵢ maxⱼ (qᵢ · dⱼ) over token embeddings in numpy, and know that full PLAID indexing is offline tooling (colbert-ai / RAGatouille), not per-document calls
+- Pick a retrieval strategy by failure mode — dense (paraphrases, misses exact terms), sparse/BM25 (exact terms, no semantics), hybrid = retrieve 2k from each channel and fuse ranks with RRF
+- Expand a query two ways — pseudo-relevance feedback pulls the top TF-IDF terms out of first-pass documents back into the query; LLM fan-out paraphrases then dedup per document by best score before reranking
+- Score a run with AP / MAP / NDCG — AP sums precision at each relevant hit over |relevant|, MAP averages it over queries, and NDCG discounts graded relevance by log₂(rank+1) against the ideal ordering
 
 ---
 
@@ -83,7 +84,8 @@ class TwoStageRetriever:
         # Return top k
         return reranked_docs[:top_k]
 
-# Usage
+# Usage — HybridSearch is the hybrid retriever from 6201-Hybrid-Search;
+# CrossEncoderReranker is defined in the next section below
 retriever = HybridSearch(corpus)  # Fast
 reranker = CrossEncoderReranker()  # Slow but accurate
 
@@ -146,41 +148,55 @@ print(top_docs)  # ML and Deep learning docs
 
 ### ColBERT Reranking
 ```python
-# ColBERT: Late interaction model
-# More accurate than cross-encoder for longer documents
+import numpy as np
+
+# ColBERT's scoring rule (late interaction): every query token takes its
+# best-matching document token, then the maxima are summed
+def maxsim_score(query_emb, doc_emb):
+    """query_emb: (n_query_tokens, dim); doc_emb: (n_doc_tokens, dim)"""
+    sims = query_emb @ doc_emb.T           # all-pairs token similarities
+    return float(sims.max(axis=1).sum())   # max over doc tokens, sum over query tokens
 
 class ColBERTReranker:
     """
-    ColBERT: Token-level interaction between query and document
+    Late-interaction reranking over precomputed token embeddings.
+
+    A full ColBERT index (PLAID) is offline tooling — colbert-ai or the
+    RAGatouille wrapper builds it from a whole collection; there is no
+    per-document index_doc call. The scoring rule itself, MaxSim, is
+    cheap to apply to a shortlist once token embeddings exist.
     """
     def __init__(self, model_name='colbert-ir/colbertv2.0'):
-        from colbert import Indexer, Searcher
+        # Real deployments load this checkpoint with colbert-ai /
+        # RAGatouille, which emits one embedding per token; the
+        # embeddings are supplied per call here so the scoring rule
+        # is runnable on its own
         self.model_name = model_name
-        self.indexer = None
 
-    def build_index(self, documents):
-        """Build ColBERT index"""
-        # This is expensive, done offline
-        import os
-        os.makedirs('colbert_index', exist_ok=True)
+    def rerank(self, query_emb, doc_embs, top_k=10):
+        """query_emb: (n_q, dim); doc_embs: list of (n_d, dim) arrays.
+        Returns [(doc_position, maxsim_score)] sorted descending."""
+        scored = [
+            (pos, maxsim_score(query_emb, d))
+            for pos, d in enumerate(doc_embs)
+        ]
+        return sorted(scored, key=lambda x: x[1], reverse=True)[:top_k]
 
-        self.indexer = Indexer(self.model_name, 'colbert_index')
-        for idx, doc in enumerate(documents):
-            self.indexer.index_doc(idx, doc)
+# Usage — token embeddings normally come from a ColBERT checkpoint; any
+# per-token vectors demonstrate the rule:
+query_emb = np.array([[1.0, 0.0], [0.0, 1.0]])      # 2 query tokens
+doc_embs = [
+    np.array([[1.0, 0.1], [0.9, 0.0], [0.0, 0.9]]),  # doc A: strong match per token
+    np.array([[0.2, 0.0], [0.0, 0.2]]),              # doc B: weak everywhere
+]
+ranked = ColBERTReranker().rerank(query_emb, doc_embs, top_k=2)
+# [(0, 1.9), (1, 0.4)] — doc A first: q0's best match is [1.0, 0.1] (= 1.0),
+# q1's best is [0.0, 0.9] (= 0.9), sum 1.9; doc B maxes at 0.2 + 0.2
+print(ranked)
 
-    def rerank(self, query, documents, top_k=10):
-        """Rerank using ColBERT"""
-        from colbert import Searcher
-
-        searcher = Searcher(self.model_name, index='colbert_index')
-
-        # Search
-        results = searcher.search(query, k=top_k)
-
-        return [documents[r[0]] for r in results]
-
-# Note: ColBERT is slower but more accurate than cross-encoder
-# Use for: Final re-ranking stage when accuracy critical
+# Note: unlike a cross-encoder, ColBERT precomputes document token
+# embeddings — query cost is one query encode + MaxSim, not a joint
+# forward pass per (query, document) pair
 ```
 
 ## Retrieval Strategies
@@ -189,7 +205,9 @@ class ColBERTReranker:
 ```python
 # Dense: Pure vector similarity
 
-def dense_retrieval(query, index, k=10):
+# model: a sentence-transformer-style encoder (encode(text) → vector);
+# index: an ANN index with search(q, k) → (scores, ids), e.g. FAISS
+def dense_retrieval(query, model, index, k=10):
     """
     Retrieve using semantic search only
     """
@@ -230,12 +248,13 @@ def sparse_retrieval(query, bm25_index, k=10):
 
 ### Hybrid Retrieval
 ```python
-def hybrid_retrieval(query, dense_index, sparse_index, k=10, alpha=0.5):
+# reciprocal_rank_fusion: the RRF definition from 6201-Hybrid-Search
+def hybrid_retrieval(query, model, dense_index, sparse_index, k=10):
     """
-    Combine dense and sparse
+    Combine dense and sparse by rank fusion (no score normalization)
     """
-    # Dense results
-    dense_results = dense_retrieval(query, dense_index, k=k*2)
+    # Dense results — over-retrieve 2k from each channel
+    dense_results = dense_retrieval(query, model, dense_index, k=k*2)
 
     # Sparse results
     sparse_results = sparse_retrieval(query, sparse_index, k=k*2)
@@ -250,24 +269,27 @@ def hybrid_retrieval(query, dense_index, sparse_index, k=10, alpha=0.5):
 
 ### Pseudo-Relevance Feedback
 ```python
-def pseudo_relevance_feedback(query, initial_results, top_n=10, expand_terms=3):
+import numpy as np
+from sklearn.feature_extraction.text import TfidfVectorizer
+
+def pseudo_relevance_feedback(query, initial_results, corpus, top_n=10, expand_terms=3):
     """
     Expand query using terms from top retrieved documents
 
+    initial_results: (doc_id, score) pairs from a first-pass search;
+    corpus maps the ids back to document text
+
     Assumes top results are relevant (pseudo-relevance)
     """
-    # Get top documents
-    top_docs = [doc for doc, score in initial_results[:top_n]]
-
-    # Extract important terms
-    from sklearn.feature_extraction.text import TfidfVectorizer
+    # Get top documents — initial_results carry ids, not text
+    top_docs = [corpus[idx] for idx, _ in initial_results[:top_n]]
 
     vectorizer = TfidfVectorizer(max_features=100)
     tfidf = vectorizer.fit_transform(top_docs)
 
     # Get top terms
     feature_names = vectorizer.get_feature_names_out()
-    mean_scores = tfidf.mean(axis=0).A1
+    mean_scores = np.asarray(tfidf.mean(axis=0)).ravel()
 
     top_terms_idx = mean_scores.argsort()[-expand_terms:][::-1]
     expansion_terms = [feature_names[i] for i in top_terms_idx]
@@ -277,9 +299,9 @@ def pseudo_relevance_feedback(query, initial_results, top_n=10, expand_terms=3):
 
     return expanded_query
 
-# Usage
+# Usage — bm25: a first-pass searcher (BM25 as in 6201-Hybrid-Search)
 initial_results = bm25.search("machine learning", k=100)
-expanded_query = pseudo_relevance_feedback("machine learning", initial_results)
+expanded_query = pseudo_relevance_feedback("machine learning", initial_results, corpus)
 final_results = bm25.search(expanded_query, k=10)
 ```
 
@@ -300,22 +322,35 @@ def llm_query_expansion(query, llm_client):
 
     variations = llm_client.generate(prompt)
 
-    # Combine original + variations
-    all_queries = [query] + variations.strip().split('\n')
+    # Combine original + variations (drop blank lines)
+    return [query] + [v.strip() for v in variations.strip().split('\n') if v.strip()]
 
-    return all_queries
 
-# Usage
-queries = llm_query_expansion("What is machine learning?", gpt4)
+def dedup_by_best_score(results):
+    """Collapse (doc_id, score) pairs gathered across query fan-outs:
+    one entry per document, keeping its best score."""
+    best = {}
+    for idx, score in results:
+        if idx not in best or score > best[idx]:
+            best[idx] = score
+    return sorted(best.items(), key=lambda x: x[1], reverse=True)
+
+# Usage — llm_client: any chat client with a .generate(prompt) facade;
+# reranker: CrossEncoderReranker above; bm25: a first-pass searcher;
+# corpus: the document list the searcher indexed
+queries = llm_query_expansion("What is machine learning?", llm_client)
 
 # Retrieve with all queries
 all_results = []
 for q in queries:
     all_results.extend(bm25.search(q, k=10))
 
-# Deduplicate and rerank
-unique_results = deduplicate(all_results)
-final_results = reranker.rerank(query, unique_results)
+# Deduplicate — rerank expects texts, not id/score pairs
+unique_results = dedup_by_best_score(all_results)
+final_results = reranker.rerank(
+    queries[0],
+    [corpus[idx] for idx, _ in unique_results],
+)
 ```
 
 ## Evaluation
@@ -341,6 +376,8 @@ def average_precision(retrieved_docs, relevant_docs):
     if not precision_scores:
         return 0.0
 
+    # Denominator is |relevant|: relevant docs never retrieved cap AP
+    # below 1.0 (this is AP over the full relevance set, not AP@k)
     return sum(precision_scores) / len(relevant_docs)
 
 def mean_average_precision(queries, retriever):
@@ -361,6 +398,8 @@ def mean_average_precision(queries, retriever):
 
 ### Normalized Discounted Cumulative Gain (NDCG)
 ```python
+import math
+
 def ndcg(retrieved_docs, relevance_scores, k=10):
     """
     NDCG: Accounts for graded relevance
@@ -394,6 +433,7 @@ def ndcg(retrieved_docs, relevance_scores, k=10):
 
 ### Related ai-engineering-curriculum Documents
 
+- [6101: HNSW Indexing - Efficient Semantic Search at Scale](../6100-vector/6101-HNSW-Indexing.md)
 - [6201: Hybrid Search - Combining Keyword and Semantic Search](6201-Hybrid-Search.md)
 - [6203: Advanced Retrieval Techniques](6203-Advanced-Retrieval.md)
 
@@ -403,13 +443,4 @@ def ndcg(retrieved_docs, relevance_scores, k=10):
 
 - Continue with: **[6301: Neo4j and Knowledge Graphs](./../6300-context/6301-Neo4j-and-Knowledge-Graphs.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
-
----
----
-
-**Related Documents:**
-- [6201: Hybrid Search](./6201-Hybrid-Search.md)
-- [6101: HNSW Indexing](../6100-vector/6101-HNSW-Indexing.md)
-- [6301: Neo4j GraphRAG](../6300-context/6301-Neo4j-and-Knowledge-Graphs.md)
-
-**Experiment Template:** [EXP_6202: Re-ranking](../../../../experiments/EXP_6202_RERANK.md)
+- Experiment: **[EXP_6202: Re-ranking](../../../../experiments/EXP_6202_RERANK.md)**
