@@ -3,7 +3,7 @@ Document ID: 4301
 Title: QAT Foundations
 Phase: 4
 Module: 4300
-Last Updated: 2026-09-24
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -33,12 +33,12 @@ Tags: ['quantization', 'qat', 'quantization-aware-training']
 
 After completing this lesson, you will be able to:
 
-- Explain What is QAT
-- Compare QAT vs PTQ
-- Explain How QAT Works
-- Explain When to Use QAT
-- Explain Common Issues
-- Apply Implementation Checklist
+- Define QAT as forward-pass fake quantization — round to the INT8 grid then dequantize back, while the weights stay FP32 so the backward pass sees real values
+- Choose between PTQ and QAT from the trade-off table — minutes vs hours-days of training, PTQ quality holding at 8-bit but degrading at 4-bit where QAT wins
+- Trace the three QAT mechanics — `fake_quantize`'s clamp(round(x/scale)+zero_point, -128, 127), the STE in the `FakeQuantize` autograd.Function passing grad_output through rounding untouched, and `QuantizationObserver`'s momentum-0.01 moving average yielding scale = (max−min)/255
+- Decide QAT vs PTQ from the scenario lists — QAT for ≤4-bit targets, sensitive tasks (translation, code, math), edge deployment, and available training data; PTQ for 8-bit sufficiency, missing data, quick turnaround, limited compute
+- Mitigate the three failure modes — activation outliers clipped to [-5, 5] before quantization, early-training divergence handled by enabling QAT after epoch 5, per-channel range mismatch solved with amax-derived channel scales
+- Execute the 8-step implementation checklist — fake-quant modules, STE backward, observers, per-channel config, layer selection, gradual QAT enable, accuracy-vs-bit-width evaluation, final export
 
 ---
 
@@ -222,7 +222,8 @@ for epoch in range(num_epochs):
 **Solution:**
 ```python
 # Per-channel quantization (for weights)
-scale = weight.abs().max(dim=[1, 2], keepdim=True) / 127
+# amax (not max): max() only takes a single int dim, amax takes lists
+scale = weight.abs().amax(dim=[1, 2], keepdim=True) / 127
 # Shape: [out_channels, 1, 1] instead of scalar
 ```
 
