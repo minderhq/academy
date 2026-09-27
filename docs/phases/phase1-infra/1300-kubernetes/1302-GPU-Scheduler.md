@@ -3,7 +3,7 @@ Document ID: 1302
 Title: GPU Scheduler Configuration
 Phase: 1
 Module: 1300
-Last Updated: 2026-09-25
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -34,12 +34,12 @@ Tags: ['infrastructure', 'kubernetes', 'k3s', 'gpu']
 
 After completing this lesson, you will be able to:
 
-- Explain GPU Resource Model
-- Explain NVIDIA Device Plugin
-- Explain Scheduling Strategies
-- Explain Resource Management
-- Explain Workload Isolation
-- Explain Scheduler Behavior
+- Map the extended-resource model - why nvidia.com/gpu is integer-only and VRAM placement uses labels instead
+- Deploy the NVIDIA device plugin DaemonSet with MIG-off args and time-slicing replicas for consumer cards
+- Schedule GPU pods with node selectors, taint tolerations, and priority classes that enable preemption
+- Configure time-slicing (renameByDefault, failRequestsGreaterThanOne) and pin pods to VRAM classes with FGD labels
+- Export GPU telemetry with dcgm-exporter and read utilization, framebuffer, and power metrics in Prometheus
+- Isolate GPU workloads with MPS plus cgroup-level CPU/memory caps alongside the GPU-global power limit
 
 ---
 
@@ -117,7 +117,7 @@ spec:
         operator: Exists
         effect: NoSchedule
       containers:
-      - image: nvcr.io/nvidia/k8s-device-plugin:v0.14.0
+      - image: nvcr.io/nvidia/k8s-device-plugin:v0.20.1
         name: nvidia-device-plugin
         args:
           # GeForce-class cards have no MIG; "single"/"mixed" are for
@@ -174,7 +174,9 @@ spec:
     effect: NoSchedule
   containers:
   - name: trainer
-    image: pytorch/pytorch:2.1.0-cuda12.1-cudnn8-runtime
+    # CUDA 13 runtime image - pairs with the 580 driver branch (see 1203);
+    # a container's CUDA must not exceed the max CUDA the host driver supports
+    image: pytorch/pytorch:2.9.0-cuda13.0-cudnn9-runtime
     resources:
       limits:
         nvidia.com/gpu: 1
