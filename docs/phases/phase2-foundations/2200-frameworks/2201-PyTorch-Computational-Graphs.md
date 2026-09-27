@@ -35,12 +35,12 @@ Tags: ['frameworks', 'pytorch', 'tensorflow', 'cuda']
 
 After completing this lesson, you will be able to:
 
-- Compare Dynamic vs Static Graphs
-- Explain Computational Graph Construction
-- Explain Automatic Gradient Functions (grad_fn)
-- Explain Dynamic Control Flow
-- Explain Custom Autograd Functions
-- Explain Graph Optimization
+- Contrast define-by-run graphs with `@tf.function` tracing and predict how AutoGraph bakes both branches of a tensor-conditioned `if` into `tf.cond`
+- Walk a constructed autograd graph through `grad_fn.next_functions` and map common ops to their `*Backward` node types
+- Write a custom autograd `Function` with `save_for_backward` and validate its gradient against the built-in op it mirrors
+- Reason about the three in-place regimes (leaf error, saved-tensor version counter, silent-but-fragile) and choose rebinding, `detach()`, or `no_grad()` accordingly
+- Diagnose broken gradient flow — `None`, `NaN`, and `Inf` gradients — and manage the memory/compute trade with `retain_graph`, checkpointing, or accumulation
+- Compute higher-order derivatives and Jacobians with `create_graph`/`retain_graph` and predict their values on toy functions before running autograd
 
 ---
 
