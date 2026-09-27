@@ -980,8 +980,8 @@ myenv\Scripts\activate
 # Activate (Mac/Linux)
 source myenv/bin/activate
 
-# Install packages
-pip install requests
+# Install packages (uv pip works in any active venv, built-in included)
+uv pip install requests
 
 # Deactivate
 deactivate

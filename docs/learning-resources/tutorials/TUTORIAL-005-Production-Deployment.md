@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-005
 Title: "TUTORIAL 005: Production Deployment with CI/CD"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -521,8 +521,9 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install -r requirements.txt
-          pip install pytest pytest-cov
+          pip install uv
+          uv pip install --system -r requirements.txt
+          uv pip install --system pytest pytest-cov
 
       - name: Run tests
         run: |

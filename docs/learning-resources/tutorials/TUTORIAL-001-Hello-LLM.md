@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-001
 Title: "Tutorial 001: Hello LLM! - Your First AI Model"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -175,7 +175,7 @@ Let's use Python to talk to the LLM!
 
 ### Install requests:
 ```bash
-pip install requests
+uv pip install requests
 ```
 
 ### Create `hello_llm.py`:

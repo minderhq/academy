@@ -2,7 +2,7 @@
 Document ID: TUTORIAL-014
 Title: Production LLM Systems
 Category: Tutorial
-Last Updated: 2026-09-25
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -567,8 +567,9 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install -r requirements.txt
-          pip install pytest pytest-cov
+          pip install uv
+          uv pip install --system -r requirements.txt
+          uv pip install --system pytest pytest-cov
 
       - name: Run tests
         run: pytest --cov=app tests/

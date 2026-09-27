@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-013
 Title: "TUTORIAL-013: AI Security and Safety"
-Last Updated: 2026-09-25
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Advanced
 ---
@@ -49,7 +49,7 @@ After this tutorial, you will:
 ### Installation
 
 ```bash
-pip install torch transformers PyJWT fastapi
+uv pip install torch transformers PyJWT fastapi
 ```
 
 Parts 1, 4, and 5 are pure standard library. Part 2 needs torch +

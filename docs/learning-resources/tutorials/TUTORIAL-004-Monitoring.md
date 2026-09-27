@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-004
 Title: "TUTORIAL 004: Monitoring & Observability for AI Systems"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -652,7 +652,7 @@ if __name__ == "__main__":
 
 ```bash
 # Install dependencies
-pip install fastapi uvicorn opentelemetry-api opentelemetry-sdk opentelemetry-instrumentation-fastapi requests
+uv pip install fastapi uvicorn opentelemetry-api opentelemetry-sdk opentelemetry-instrumentation-fastapi requests
 
 # Run the service
 python example_llm_with_tracing.py

@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-012
 Title: "TUTORIAL-012: Production LLMOps"
-Last Updated: 2026-09-25
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Advanced
 ---
@@ -56,7 +56,7 @@ After this tutorial, you will:
 ### Installation
 
 ```bash
-pip install prometheus-client httpx numpy
+uv pip install prometheus-client httpx numpy
 ```
 
 Part 3 needs prometheus-client (the metrics library) and httpx (the

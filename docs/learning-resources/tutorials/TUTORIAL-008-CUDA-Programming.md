@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-008
 Title: "TUTORIAL-008: CUDA Programming for AI"
-Last Updated: 2026-09-25
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Advanced
 ---
@@ -84,7 +84,7 @@ block_dim = (16, 16)  # 16x16 = 256 threads per block
 ### Installation
 
 ```bash
-pip install numba
+uv pip install numba
 ```
 
 Numba's CUDA target additionally needs an NVIDIA GPU with a recent driver — it loads the CUDA runtime itself, so a full CUDA Toolkit install is not required.

@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-003
 Title: "Tutorial 003: RAG Basics - Give Your LLM Knowledge"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -73,7 +73,7 @@ LLM: "ai-engineering-curriculum is an AI infrastructure learning platform..."
 ## Step 1: Install Dependencies
 
 ```bash
-pip install sentence-transformers qdrant-client fastapi uvicorn
+uv pip install sentence-transformers qdrant-client fastapi uvicorn
 ```
 
 ### What we're installing:

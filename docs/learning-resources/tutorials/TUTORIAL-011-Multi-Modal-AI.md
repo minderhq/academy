@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-011
 Title: "TUTORIAL-011: Multi-Modal AI"
-Last Updated: 2026-09-25
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Advanced
 ---
@@ -51,7 +51,7 @@ After this tutorial, you will:
 ### Installation
 
 ```bash
-pip install torch transformers pillow opencv-python qdrant-client torchaudio
+uv pip install torch transformers pillow opencv-python qdrant-client torchaudio
 ```
 
 Parts 1-3 need torch/transformers/pillow, Part 4 opencv-python (the

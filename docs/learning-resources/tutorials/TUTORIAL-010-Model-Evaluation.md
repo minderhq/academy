@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-010
 Title: "TUTORIAL-010: Model Evaluation and Benchmarking"
-Last Updated: 2026-09-25
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -49,7 +49,7 @@ After this tutorial, you will:
 ### Installation
 
 ```bash
-pip install torch transformers datasets nltk rouge sentence-transformers spacy pandas matplotlib
+uv pip install torch transformers datasets nltk rouge sentence-transformers spacy pandas matplotlib
 python -m spacy download en_core_web_sm
 ```
 

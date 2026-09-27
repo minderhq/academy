@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-009
 Title: "TUTORIAL-009: Advanced RAG Techniques"
-Last Updated: 2026-09-25
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Advanced
 ---
@@ -50,7 +50,7 @@ After this tutorial, you will:
 ### Installation
 
 ```bash
-pip install rank-bm25 sentence-transformers neo4j spacy
+uv pip install rank-bm25 sentence-transformers neo4j spacy
 python -m spacy download en_core_web_sm
 ```
 
