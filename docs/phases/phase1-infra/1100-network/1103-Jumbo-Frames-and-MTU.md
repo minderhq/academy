@@ -3,13 +3,13 @@ Document ID: 1103
 Title: Jumbo Frames and MTU Optimization
 Phase: 1
 Module: 1100
-Last Updated: 2026-09-25
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 2 hours
-Prerequisites: See module README
-Related: See module README
-Tags: ['infrastructure', 'networking', 'hardware']
+Prerequisites: "[1101] Internet Uplink & Modem Configuration, [1102] Network Topology Design"
+Related: [1101, 1102]
+Tags: [networking, mtu, jumbo-frames, performance]
 ---
 
 # 1103: Jumbo Frames and MTU Optimization
@@ -34,12 +34,11 @@ Tags: ['infrastructure', 'networking', 'hardware']
 
 After completing this lesson, you will be able to:
 
-- Explain the reasoning behind MTU Fundamentals
-- Explain Mathematics of MTU
-- Apply Configuration by Component
-- Explain Path MTU Discovery (PMTUD)
-- Measure and evaluate Performance Benchmarks
-- Diagnose and resolve MTU Issues
+- Distinguish MTU, IP payload, and TCP payload sizes, and compute the packet count for a transfer of a given size
+- Calculate per-packet CPU overhead and wire efficiency for MTU 1500 vs MTU 9000
+- Configure MTU 9000 end to end on switches, Linux hosts, Proxmox bridges, and the K3s pod network
+- Trace PMTUD with DF-bit probes and diagnose an MTU black hole
+- Apply MSS clamping on the router where ICMP "Fragmentation Needed" is filtered
 
 ---
 
@@ -51,7 +50,7 @@ Jumbo Frames enable Ethernet packets larger than the standard 1500 bytes, reduci
 ### Standard vs Jumbo Frames
 ```text
 Standard MTU 1500:  ~718 packets/MiB (IPv4, 1460-byte payload)
-Jumbo MTU 9000:     ~117 packets/MiB (8966-byte payload)
+Jumbo MTU 9000:     ~117 packets/MiB (8960-byte TCP payload)
 Reduction:          ~84% fewer packets
 ```
 
@@ -83,16 +82,16 @@ MTU 9000 (11GB):
 Effective Throughput = Line Rate × (Payload / Total Size)
 
 MTU 1500 (IPv4):
-  Payload: 1460 bytes
-  Total: 1538 bytes (with headers)
+  Payload: 1460 bytes (TCP payload; 1500 - 20 IP - 20 TCP)
+  Total: 1538 bytes on the wire (frame + preamble + FCS + interframe gap)
   Efficiency: 94.9%
 
 MTU 9000 (IPv4):
-  Payload: 8966 bytes
-  Total: 9038 bytes
-  Efficiency: 99.2%
+  Payload: 8960 bytes (TCP payload; 9000 - 20 IP - 20 TCP)
+  Total: 9038 bytes on the wire (frame + preamble + FCS + interframe gap)
+  Efficiency: 99.1%
 
-Gain: 4.3% more data per bit
+Gain: ~4.2 percentage points more data per bit
 ```
 
 ## Configuration by Component
@@ -138,15 +137,18 @@ ifreload -a
 
 ### 4. K3s Container Network
 ```yaml
-# Flannel CNI configuration
-# /etc/rancher/k3s/config.yaml
+# Flannel has no MTU override flag: it derives the pod-network MTU from
+# the host interface you point it at, subtracting 50 bytes of VXLAN
+# overhead (/etc/rancher/k3s/config.yaml):
 flannel-iface: eno1
-flannel-mtu: 9000
+# host MTU 9000  ->  pod network MTU 8950
+# (verify inside a pod: ip link shows the veth MTU)
 
-# Or for Cilium (MTU is normally auto-detected; override via extraConfig)
+# Cilium auto-detects the host MTU the same way; override the agent only
+# when detection gets it wrong:
 helm install cilium cilium/cilium \
   --set tunnel=vxlan \
-  --set extraConfig.mtu=9000
+  --set extraConfig.mtu=8950
 ```
 
 ### 5. Windows Client
@@ -245,11 +247,11 @@ netsh interface ipv4 show subinterfaces
 ```text
 Use Case                    Recommended MTU
 ─────────────────────────────────────────────
-General Internet           1500 (ISP limit)
+General Internet (WAN)     1500 (ISP limit; PPPoE 1492 - see 1101 §4)
 LAN (NAS to Workstation)   9000
-K8s Pod-to-Pod             9000
+K8s Pod-to-Pod (VXLAN)     8950 (host 9000 - 50 overhead)
 Storage (NFS/iSCSI)        9000
-VPN (Wireguard)            1420 (tunnel overhead)
+VPN (WireGuard)            1420 (tunnel overhead)
 Video Streaming            1500 (compatible)
 ```
 
@@ -267,7 +269,7 @@ Video Streaming            1500 (compatible)
       ↓
 [Proxmox Bridge] ← MTU 9000 ←
       ↓
-[K3s Pod Network] ← MTU 9000
+[K3s Pod Network] ← MTU 8950
 ```
 
 ---
