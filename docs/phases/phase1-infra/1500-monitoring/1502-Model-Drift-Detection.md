@@ -3,7 +3,7 @@ Document ID: 1502
 Title: Model Drift Detection
 Phase: 1
 Module: 1500
-Last Updated: 2026-09-26
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -31,12 +31,12 @@ Tags: ['infrastructure', 'monitoring', 'observability', 'prometheus']
 
 After completing this lesson, you will be able to:
 
-- Explain Types of Drift
-- Explain Drift Detection Algorithms
-- Measure and evaluate Feature-Level Monitoring
-- Explain Remediation Strategies
-- Configure and operate Production Deployment
-- Explain Related Resources
+- Distinguish data, concept, and prediction drift, and separate label shift from concept drift
+- Run KS, PSI, and chi-square tests on binned features and interpret each drift verdict
+- Monitor per-feature and embedding-space drift and reason about consecutive-drift thresholds
+- Decide when to retrain from 7-day drift summaries and validate the retrained model's score
+- Publish drift gauges and counters from the exporter and expose them on :8001/metrics
+- Wire ModelDriftDetected, ModelDriftRateHigh, and ModelConsecutiveDrifts rules into alerts.yml
 
 ---
 
