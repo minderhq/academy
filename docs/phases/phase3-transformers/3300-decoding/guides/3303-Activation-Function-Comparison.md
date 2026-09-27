@@ -1,7 +1,7 @@
 ---
 Document ID: 3303
 Title: "3303: Activation Function Comparison"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Advanced
 ---
@@ -28,12 +28,12 @@ Difficulty: Advanced
 
 After completing this lesson, you will be able to:
 
-- Compare Activation Functions Comparison
-- Explain Mathematical Definitions
-- Compare Performance Comparison
-- Configure and operate PyTorch Implementations
-- Explain Visualization
-- Explain Model-Specific Usage
+- Read the quick-reference table by formula and range — ReLU `[0, ∞)` with dead neurons, GeLU `x·Φ(x)` dipping to −0.17, SwiGLU/SiLU to −0.28 — and place each in BERT/GPT-2 vs LLaMA/Mistral lineages
+- Distinguish the GLU variant family by gate choice — GLU uses σ, ReGLU ReLU, GeGLU GELU, SwiGLU SiLU — all sharing the `(xW) ⊗ gate(xV)` layout LLaMA instantiates
+- Read the cost/quality tables — GeLU 1.5x forward / 1.6x backward, SwiGLU 2.0x/2.2x plus 1.5x memory for the extra projection — against perplexity gains of 18.5→17.2 (WikiText-103) and 22.1→20.8 (PBXT)
+- Reproduce the `compare_activations` benchmark harness — 10-iteration warmup, 100 timed forward/backward passes, μ/σ/range output statistics — and plot derivatives numerically via `np.gradient`
+- Map activations to model families — GPT-2/BERT GeLU at 4x expansion, T5 GEGLU, LLaMA/Mistral/Mixtral SwiGLU at ~2.67x expansion (not 4x) — and keep the base model's activation when fine-tuning
+- Pick from the use-case table (general → SwiGLU, speed-critical → ReLU, memory-limited → GeLU) and predict the cost from the 11GB-class benchmark: 2.5 ms/1.2 GB ReLU vs 4.8 ms/1.8 GB SwiGLU
 
 ---
 
