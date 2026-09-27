@@ -1,6 +1,6 @@
 # Environment Setup Guide
 
-**Last Updated:** 2026-02-04
+**Last Updated:** 2026-09-27
 **Reading Time:** 15 minutes
 **Difficulty:** ⭐ Beginner
 
@@ -123,47 +123,52 @@ docker --version
 
 ---
 
-### Step 3: Python Environment
+### Step 3: Python Environment (uv)
 
-#### Install Python 3.10+
+> **Tooling standard (2026):** this curriculum uses [uv](https://docs.astral.sh/uv/)
+> as its package manager. uv resolves and installs packages 10-100x faster
+> than pip (parallel downloads + a global cache) and manages Python versions,
+> virtual environments, and project dependencies in one tool. Everywhere else
+> in the corpus, a `pip install X` you encounter maps 1:1 to `uv pip install X`.
 
-**Windows:**
-1. Download from [python.org](https://www.python.org/downloads/)
-2. Check "Add Python to PATH"
-3. Verify:
+#### Install uv
+
+**Windows (PowerShell):**
 ```powershell
-python --version
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
 ```
 
-**macOS:**
+**macOS / Linux:**
 ```bash
-# Using Homebrew (recommended)
-brew install python@3.11
+curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-**Linux:**
+Verify:
 ```bash
-sudo apt install -y python3.11 python3-pip python3-venv
+uv --version
 ```
 
-#### Create Virtual Environment
+> **Prefer pip?** uv is a drop-in replacement, but a system Python 3.10+ with
+> `python -m venv` and plain `pip` still works for every lesson. On Windows,
+> install Python from [python.org](https://www.python.org/downloads/) (check
+> "Add Python to PATH"); on macOS use `brew install python@3.11`; on Linux
+> `sudo apt install -y python3.11 python3-pip python3-venv`.
+
+#### Create the Project Environment
 
 ```bash
 # Create project directory
 mkdir -p ~/ai-engineering-curriculum
 cd ~/ai-engineering-curriculum
 
-# Create virtual environment
-python -m venv venv
+# Create a virtual environment with Python 3.11
+# (uv downloads the interpreter itself if it is missing)
+uv venv --python 3.11
 
-# Activate (Windows)
-venv\Scripts\activate
-
-# Activate (Mac/Linux)
-source venv/bin/activate
-
-# Upgrade pip
-pip install --upgrade pip
+# Activate — optional: uv finds .venv automatically when run
+# inside the project directory
+source .venv/bin/activate    # Mac/Linux
+.venv\Scripts\activate       # Windows
 ```
 
 ---
@@ -208,26 +213,31 @@ ollama run mistral "Hello, can you help me learn AI?"
 
 ```bash
 # Core AI/ML packages
-pip install torch torchvision torchaudio
-pip install transformers
-pip install datasets
-pip install accelerate
+uv pip install torch torchvision torchaudio
+uv pip install transformers
+uv pip install datasets
+uv pip install accelerate
 
 # RAG and vector databases
-pip install chromadb qdrant-client
-pip install langchain
-pip install sentence-transformers
+uv pip install chromadb qdrant-client
+uv pip install langchain
+uv pip install sentence-transformers
 
 # Fine-tuning
-pip install peft
-pip install bitsandbytes
-pip install trl
+uv pip install peft
+uv pip install bitsandbytes
+uv pip install trl
 
 # Utilities
-pip install jupyter
-pip install pandas numpy matplotlib
-pip install requests tqdm
+uv pip install jupyter
+uv pip install pandas numpy matplotlib
+uv pip install requests tqdm
 ```
+
+> NVIDIA GPU on Linux? Torch needs the CUDA wheel index:
+> `uv pip install torch --index-url https://download.pytorch.org/whl/cu130`.
+> `uv pip install` accepts every `pip install` flag, so any package
+> instructions elsewhere in the curriculum work unchanged.
 
 ---
 
@@ -326,9 +336,13 @@ python --version
 # Should be 3.10 or higher
 ```
 
-2. **Use pyenv (Mac/Linux):**
+2. **Use uv (recommended) or pyenv:**
 ```bash
-# Install pyenv
+# uv manages interpreter versions too - simplest path
+uv python install 3.11
+uv venv --python 3.11
+
+# pyenv alternative (Mac/Linux)
 brew install pyenv  # Mac
 curl https://pyenv.run | bash  # Linux
 
@@ -382,8 +396,8 @@ Before starting tutorials, verify:
 
 ### Software Verification
 - [ ] Docker running: `docker ps`
-- [ ] Python 3.10+: `python --version`
-- [ ] Virtual environment active: `which python`
+- [ ] uv installed: `uv --version`
+- [ ] Virtual environment active: `which python` (or `.venv` exists in the project)
 - [ ] Ollama running: `ollama list`
 - [ ] Model downloaded: `ollama pull mistral`
 

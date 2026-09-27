@@ -164,6 +164,10 @@ Write a Python function to check if a number is prime
 
 ### Install the Ollama Python library
 ```bash
+# uv (fast, recommended - see ENVIRONMENT-SETUP.md)
+uv pip install ollama
+
+# plain pip works too
 pip install ollama
 ```
 
@@ -331,14 +335,13 @@ You're now ready for the full learning journey!
 
 **Solution:**
 ```bash
-# Make sure pip is installed
+# Recommended: install into the project venv with uv
+# (run from the directory that holds .venv)
+uv pip install ollama
+
+# Plain pip fallback
 python -m pip install --upgrade pip
-
-# Install ollama package
 pip install ollama
-
-# If using Python 3 specifically
-python3 -m pip install ollama
 ```
 
 ---
