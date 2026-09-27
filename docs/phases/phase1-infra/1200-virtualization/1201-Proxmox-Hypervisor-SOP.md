@@ -3,7 +3,7 @@ Document ID: 1201
 Title: Proxmox Hypervisor Standard Operating Procedures
 Phase: 1
 Module: 1200
-Last Updated: 2026-09-25
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -35,12 +35,12 @@ Tags: ['infrastructure', 'virtualization', 'proxmox', 'gpu']
 
 After completing this lesson, you will be able to:
 
-- Explain Hardware Requirements
-- Configure and operate Post-Installation Configuration
-- Explain CPU Pinning & NUMA Awareness
-- Explain Memory Management
-- Configure and operate Storage Configuration
-- Explain GPU Passthrough Preparation
+- Select hypervisor hardware against the VT-x/SVM, VT-d/AMD-Vi, RAM, and NVMe requirements of a GPU-passthrough K3s host
+- Configure the vmbr0 bridge, no-subscription repository, and ZFS ARC tuning on a fresh Proxmox VE install
+- Pin a VM's QEMU threads to dedicated host cores with a hookscript, and justify ballooning-off plus NUMA-on for K3s nodes
+- Reserve 1 GiB huge pages at boot and verify the allocation from /proc/meminfo
+- Create ZFS datasets and register them as Proxmox storage targets for VM disks and vzdump backups
+- Enable IOMMU in GRUB, load the VFIO modules, and locate the GPU's PCI address and IOMMU group for passthrough
 
 ---
 
@@ -66,8 +66,8 @@ Virtualization extensions to confirm in BIOS/UEFI before installing: **VT-x** (I
 ### Proxmox Installation
 ```bash
 # Download the latest ISO from https://www.proxmox.com/en/downloads
-# (the filename changes with each release, e.g. proxmox-ve_8.3-1.iso)
-wget https://download.proxmox.com/iso/proxmox-ve_8.3-1.iso
+# (the filename changes with each release, e.g. proxmox-ve_9.1-1.iso)
+wget https://download.proxmox.com/iso/proxmox-ve_9.1-1.iso
 
 # Create bootable USB
 dd if=proxmox-ve.iso of=/dev/sdX bs=4M status=progress
@@ -100,11 +100,13 @@ ifreload -a
 
 ### 2. Repository Configuration
 ```bash
-# Remove enterprise repository (no subscription)
-rm /etc/apt/sources.list.d/pve-enterprise.list
+# Disable the enterprise repository (no subscription). PVE 9 ships
+# deb822-style pve-enterprise.sources; PVE 8 used pve-enterprise.list.
+rm -f /etc/apt/sources.list.d/pve-enterprise.sources
 
-# Add no-subscription repository
-echo "deb http://download.proxmox.com/debian/pve bookworm pve-no-subscription" \
+# Add the no-subscription repository for the current release
+# (PVE 9.x is based on Debian 13 "trixie")
+echo "deb http://download.proxmox.com/debian/pve trixie pve-no-subscription" \
   > /etc/apt/sources.list.d/pve-no-subscription.list
 
 # Update
@@ -120,9 +122,9 @@ zfs set compression=lz4 rpool
 echo "options zfs zfs_arc_max=34359738368" >> /etc/modprobe.d/zfs.conf
 
 # TXG timeout (seconds) - how long ZFS batches dirty data before
-# committing. 5 is already the default; lower it (e.g. 1) to trade
-# throughput for lower VM write latency
-echo "options zfs zfs_txg_timeout=5" >> /etc/modprobe.d/zfs.conf
+# committing. Lower than the default 5 trades throughput for
+# lower VM write latency
+echo "options zfs zfs_txg_timeout=1" >> /etc/modprobe.d/zfs.conf
 
 # Rebuild initramfs
 update-initramfs -u
@@ -167,7 +169,11 @@ cat > /var/lib/vz/snippets/vm-pinning.sh << 'EOF'
 VMID="$1"; ACTION="$2"
 if [ "$ACTION" == "post-start" ]; then
   VMPID=$(cat /var/run/qemu-server/${VMID}.pid)
-  taskset -pc 0-3 "$VMPID"
+  # Pin every QEMU thread - vCPU workers are separate TIDs, so
+  # pinning only the leader PID would not constrain them
+  for TID in /proc/${VMPID}/task/*; do
+    taskset -pc 0-3 "$(basename "$TID")"
+  done
 fi
 EOF
 chmod +x /var/lib/vz/snippets/vm-pinning.sh
@@ -193,8 +199,12 @@ memory: 16384  # 16GB for K3s Master
 # Reserve 16 x 1GiB huge pages (= 16 GiB - must fit in host RAM)
 echo 16 > /sys/kernel/mm/hugepages/hugepages-1048576kB/nr_hugepages
 
-# Make persistent (applied at boot, before memory fragmentation)
-echo "vm.nr_hugepages = 16" >> /etc/sysctl.conf
+# Make persistent: 1 GiB pages must be reserved at boot, before host
+# memory fragments. sysctl vm.nr_hugepages allocates the 2 MiB default
+# size, so put the sizes on the kernel command line instead
+# (/etc/default/grub):
+GRUB_CMDLINE_LINUX_DEFAULT="quiet default_hugepagesz=1G hugepagesz=1G hugepages=16"
+update-grub
 
 # Verify
 cat /proc/meminfo | grep Huge
@@ -213,8 +223,8 @@ rpool (ROOT)
 
 ### Storage Pool Configuration
 ```bash
-# Create storage for VM images
-zfs create -o mountpoint=/var/lib/vz rpool/data
+# The installer already created rpool/data for VM disks (the local-zfs
+# storage); add datasets for disk images and backups alongside it
 zfs create -o compression=lz4 -o sync=standard rpool/images
 
 # Add to Proxmox storage
@@ -244,7 +254,8 @@ lspci -nn | grep -i nvidia
 
 ### IOMMU Configuration
 ```bash
-# Edit /etc/default/grub
+# Edit /etc/default/grub - Intel needs intel_iommu=on; the AMD IOMMU
+# is on by default, keep only the passthrough policy
 GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_iommu=on iommu=pt"
 
 # Update grub
@@ -272,7 +283,7 @@ qm create 101 \
   --ostype l26
 
 # Import cloud-init disk
-qm importdisk 101 ubuntu-22.04-cloud.img rpool-images
+qm importdisk 101 ubuntu-24.04-cloud.img rpool-images
 
 # Attach disk
 qm set 101 --scsi0 rpool-images:vm-101-disk-0
