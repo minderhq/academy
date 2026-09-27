@@ -3,7 +3,7 @@ Document ID: 5102
 Title: QLoRA Pipelines - 4-bit Fine-Tuning on Consumer Hardware
 Phase: 5
 Module: 5100
-Last Updated: 2026-09-24
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -33,17 +33,17 @@ Tags: ['finetuning', 'peft', 'lora', 'qlora', 'adaptation']
 
 After completing this lesson, you will be able to:
 
-- Explain QLoRA Architecture
-- Configure and operate QLoRA Implementation
-- Explain QLoRA Hyperparameters
-- Explain QLoRA Training Pipeline
-- Explain Memory Optimization
-- Diagnose and resolve QLoRA Troubleshooting
+- Quantify the three QLoRA innovations — NF4 (4-bit NormalFloat tuned for the normal weight distribution), double quantization (0.37 bits/param: ~3 GB per 65B, ~0.3 per 7B), and paged optimizers (CUDA unified memory) — behind the headline: a 65B fine-tunes on one 48 GB GPU, a 7B in ~5.6 GB
+- Run the PEFT + bitsandbytes pipeline — `BitsAndBytesConfig(load_in_4bit, nf4, bf16 compute, double quant)` → `prepare_model_for_kbit_training` → `LoraConfig` → `get_peft_model` (r=16, all attention: 16,777,216 trainable = 0.249%)
+- Pick hyperparameters from the tables — the rank ladder (r=8-16 consumer default vs the paper's r=64-on-all-linear Guanaco), α = 2r, target modules at their real r=16 budgets (0.12 / 0.25 / 0.59%), and lr 2e-4 with cosine + 3% warmup
+- Wire paged optimizers through `TrainingArguments` — `optim="paged_adamw_32bit"`; the `Paged*` classes are paged by construction, and subclassing torch's AdamW buys nothing
+- Cut memory further — gradient checkpointing (~50% of activations for ~20% time), CPU offload via `device_map`/`max_memory`, 8-bit optimizer state (`paged_adamw_8bit`)
+- Diagnose the failure modes — NaN loss → halve lr, OOM → smaller batch + accumulation + checkpointing, slow convergence → raise rank — then merge on the 16-bit base and re-quantize for inference
 
 ---
 
 ## Abstract
-QLoRA (Quantized LoRA) enables fine-tuning 65B+ parameter models on a single 24GB GPU by combining 4-bit quantization with LoRA. On 11GB VRAM GPU, QLoRA makes fine-tuning 7B models practical.
+QLoRA (Quantized LoRA) enables fine-tuning a 65B parameter model on a single 48GB GPU (the paper's headline claim) by combining 4-bit quantization with LoRA. On an 11GB VRAM GPU, QLoRA makes fine-tuning 7B models practical.
 
 ## QLoRA Architecture
 
@@ -54,36 +54,36 @@ QLoRA (Quantized LoRA) enables fine-tuning 65B+ parameter models on a single 24G
    - Better than uniform quantization
 
 2. Double Quantization
-   - Quantize the quantization constants
-   - Saves ~0.5GB per 65B model
+   - Quantize the quantization constants themselves
+   - Saves 0.37 bits/param: ~3 GB per 65B (~0.3 GB per 7B)
 
 3. Paged Optimizers
-   - Use CPU RAM for optimizer states
-   - Transfer to GPU only when needed
+   - Page optimizer states through CPU RAM (CUDA unified memory)
+   - Migrate to GPU only when needed
 
-Result: Fine-tune 65B on 24GB GPU
-        Fine-tune 7B on 8GB GPU
+Result (paper): Fine-tune 65B on a single 48GB GPU
+                Fine-tune 7B comfortably on 8GB
 ```
 
 ### QLoRA vs LoRA
 ```text
-Standard LoRA (7B model):
+Standard LoRA (7B model, r=8 q+v adapters):
   Base model (fp16):  14 GB
   LoRA params:        0.02 GB
   Gradients:          0.02 GB
-  Optimizer states:   0.06 GB
+  Optimizer states:   0.03 GB
   Activations:        2 GB
   ─────────────────────────────
-  Total:              16 GB (doesn't fit!)
+  Total:              ~16.1 GB (needs a 24GB-class GPU)
 
-QLoRA (7B model):
+QLoRA (7B model, same adapters):
   Base model (NF4):   3.5 GB
   LoRA params:        0.02 GB
   Gradients:          0.02 GB
-  Optimizer states:   0.06 GB (paged)
+  Optimizer states:   0.03 GB (paged)
   Activations:        2 GB
   ─────────────────────────────
-  Total:              5.6 GB ✓ (fits!)
+  Total:              ~5.6 GB ✓ (fits 8GB-class)
 ```
 
 ## QLoRA Implementation
@@ -126,26 +126,23 @@ lora_config = LoraConfig(
 model = get_peft_model(model, lora_config)
 model.print_trainable_parameters()
 
-# Output: trainable params: 0.1% || all params: 100%
+# Output (r=16, all four attention projections, Llama-2-7B):
+# trainable params: 16,777,216 || all params: 6,738,415,616 || trainable%: 0.2491
 ```
 
 ### Paged Optimizer
 ```python
-from transformers import Trainer, TrainingArguments
-import torch
+from transformers import TrainingArguments
 
-class PagedAdamW(torch.optim.AdamW):
-    """
-    AdamW with paged memory (CPU offload)
-    """
-    def __init__(self, params, lr=1e-3, **kwargs):
-        # Regular AdamW parameters
-        super().__init__(params, lr=lr, **kwargs)
+# Paged optimizers are a TrainingArguments string — no custom class.
+# Subclassing torch.optim.AdamW buys nothing: the paging lives in
+# bitsandbytes' own Optimizer2State (CUDA unified memory; state tensors
+# above 100k elements migrate CPU<->GPU page by page).
+#
+# Direct form, if you need it: bnb.optim.PagedAdamW32bit(params, lr=...)
+# — the Paged* classes are paged BY CONSTRUCTION (is_paged defines
+# them; it is not an option you switch on).
 
-        # Paged memory logic handled internally
-        # by bitsandbytes optimizer
-
-# Use in training
 training_args = TrainingArguments(
     output_dir="./qlora-output",
     optim="paged_adamw_32bit",  # Paged optimizer
@@ -153,7 +150,7 @@ training_args = TrainingArguments(
     per_device_train_batch_size=4,
     gradient_accumulation_steps=4,
     num_train_epochs=3,
-    fp16=True,
+    bf16=True,
 )
 
 trainer = Trainer(
@@ -190,27 +187,32 @@ rank_guide = {
     },
 }
 
-# Recommendation: Start with r=16, alpha=32 for QLoRA
+# Recommendation: Start with r=16, alpha=32 for QLoRA.
+# (The paper's Guanaco headline runs go much bigger: r=64 on ALL
+# linear layers. On consumer GPUs, r=8-16 on attention is the
+# practical starting point — scale up only if underfitting.)
 ```
 
 ### Target Modules
 ```python
 # QLoRA benefits from more extensive LoRA
+# (trainable counts at r=16 on Llama-2-7B, 6,738,415,616 total)
 
 qlora_configs = {
     "minimal": {
         "target_modules": ["q_proj", "v_proj"],
-        "trainable%": "0.04%",
+        "trainable": "8,388,608 (0.12%)",
         "use_case": "Simple instruction tuning"
     },
     "standard": {
         "target_modules": ["q_proj", "k_proj", "v_proj", "o_proj"],
-        "trainable%": "0.08%",
+        "trainable": "16,777,216 (0.25%)",
         "use_case": "Recommended default"
     },
     "full": {
-        "target_modules": ["all-linear"],
-        "trainable%": "0.15%",
+        "target_modules": "all-linear",  # string form — ["all-linear"]
+                                         # silently wraps nothing
+        "trainable": "~40M (0.59%)",
         "use_case": "Complex domain adaptation"
     },
 }
@@ -234,8 +236,6 @@ lr_schedule = {
 # Recommended: 2e-4 to 5e-4 for QLoRA
 # Lower than 1e-4: Underfitting
 # Higher than 5e-4: Instability
-
-from transformers import get_scheduler
 
 training_args = TrainingArguments(
     output_dir="./output",
@@ -275,7 +275,7 @@ def tokenize_function(examples):
         truncation=True,
         max_length=512,
         padding="max_length",
-)
+    )
 
 tokenized_dataset = dataset.map(tokenize_function, batched=True)
 
@@ -314,7 +314,9 @@ training_args = TrainingArguments(
     per_device_train_batch_size=4,
     gradient_accumulation_steps=4,
     num_train_epochs=3,
-    fp16=True,
+    bf16=True,  # matches bnb_4bit_compute_dtype=torch.bfloat16 —
+                # wrapping bf16 compute in fp16 AMP + grad scaler
+                # is a contradiction
     optim="paged_adamw_32bit",
     logging_steps=10,
     save_steps=100,
@@ -397,8 +399,11 @@ import bitsandbytes as bnb
 optimizer = bnb.optim.PagedAdamW32bit(
     model.parameters(),
     lr=2e-4,
-    is_paged=True,  # Enable paged memory
 )
+# PagedAdamW32bit is paged by construction — there is no is_paged
+# flag to set. In practice TrainingArguments(optim="paged_adamw_8bit")
+# wires this for you; the 8-bit state halves optimizer memory vs the
+# 32-bit variant.
 
 # Or via TrainingArguments
 training_args = TrainingArguments(
@@ -481,10 +486,17 @@ model = PeftModel.from_pretrained(
     "./qlora-adapter",
 )
 
-# 3. Merge and unload
+# 3. Merge and unload — merging happens HERE on the 16-bit base:
+# merge_and_unload on a 4-bit bnb-quantized model isn't supported,
+# and the adapter was trained against dequantized weights anyway
 merged_model = model.merge_and_unload()
 
-# 4. (Optional) Re-quantize to 4-bit
+# 4. Save the merged 16-bit model
+merged_model.save_pretrained("./merged-model")
+
+# 5. (Optional) Re-quantize to 4-bit for inference
+from transformers import BitsAndBytesConfig
+
 bnb_config = BitsAndBytesConfig(
     load_in_4bit=True,
     bnb_4bit_quant_type="nf4",
@@ -513,14 +525,7 @@ quantized_merged = AutoModelForCausalLM.from_pretrained(
 ## Next Steps
 
 - Continue with: **[5201: DPO Theory](./../5200-alignment/5201-DPO-Theory.md)**
+- Double quantization deep-dive: **[4103: Double Quantization](../../phase4-quantization/4100-low-bit/4103-Double-Quantization.md)**
+- DPO training on QLoRA adapters: **[5202: Alignment Orchestration](../5200-alignment/5202-Alignment-Orchestration.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
-
----
----
-
-**Related Documents:**
-- [5101: LoRA Logic](./5101-LoRA-Logic.md)
-- [4103: Double Quantization](../../phase4-quantization/4100-low-bit/4103-Double-Quantization.md)
-- [5202: Alignment Orchestration](../5200-alignment/5202-Alignment-Orchestration.md)
-
-**Experiment Template:** [EXP_5102: QLoRA](../../../../experiments/EXP_5102_QLORA.md)
+- Experiment: **[EXP_5102: QLoRA](../../../../experiments/EXP_5102_QLORA.md)**
