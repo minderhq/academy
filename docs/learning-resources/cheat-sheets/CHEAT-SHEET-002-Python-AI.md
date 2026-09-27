@@ -1,7 +1,7 @@
 ---
 Document ID: CHEAT-SHEET-002
 Title: "CHEAT SHEET: Python for AI/ML"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -16,47 +16,48 @@ Difficulty: Intermediate
 
 ### Virtual Environments
 ```bash
-# Create venv
-python -m venv myenv
+# Create project environment with uv (recommended)
+# (uv downloads Python 3.11 itself if it is missing)
+uv venv --python 3.11
 
 # Activate (Linux/Mac)
-source myenv/bin/activate
+source .venv/bin/activate
 
 # Activate (Windows)
-myenv\Scripts\activate
+.venv\Scripts\activate
 
 # Deactivate
 deactivate
 
 # Export requirements
-pip freeze > requirements.txt
+uv pip freeze > requirements.txt
 
 # Install from requirements
-pip install -r requirements.txt
+uv pip install -r requirements.txt
 ```
 
 ### Package Management
 ```bash
 # Install package
-pip install numpy
+uv pip install numpy
 
 # Install specific version
-pip install numpy==1.24.0
+uv pip install numpy==1.24.0
 
 # Install from GitHub
-pip install git+https://github.com/user/repo.git
+uv pip install git+https://github.com/user/repo.git
 
 # Show package info
-pip show numpy
+uv pip show numpy
 
 # List installed packages
-pip list
+uv pip list
 
 # Uninstall package
-pip uninstall numpy
+uv pip uninstall numpy
 
-# Upgrade pip
-python -m pip install --upgrade pip
+# uv manages itself - no "upgrade pip" step needed
+# (plain-pip fallback: python -m pip install --upgrade pip)
 ```
 
 ---
@@ -440,7 +441,7 @@ def divide(a: float, b: float) -> float:
 ### Type Checking
 ```python
 # Install mypy
-# pip install mypy
+# uv pip install mypy
 
 # Run type checker
 # mypy script.py
@@ -510,7 +511,7 @@ if __name__ == '__main__':
 
 ### Pytest
 ```python
-# pip install pytest
+# uv pip install pytest
 
 def test_addition():
     assert 1 + 1 == 2

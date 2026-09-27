@@ -1,7 +1,7 @@
 ---
 Document ID: TROUBLESHOOTING-Common-Issues
 Title: "TROUBLESHOOTING: Common Issues & Solutions"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -386,9 +386,9 @@ base_model = "mistralai/Mistral-7B-Instruct-v0.2"
 
 2. **Verify PEFT version:**
 ```bash
-pip show peft
+uv pip show peft
 # Should be >= 0.7.0
-pip install --upgrade peft
+uv pip install --upgrade peft
 ```
 
 3. **Load adapter explicitly:**
@@ -421,18 +421,18 @@ python --version
 
 2. **Install in correct environment:**
 ```bash
-# Create virtual environment
-python -m venv myenv
-source myenv/bin/activate  # Linux/Mac
-myenv\Scripts\activate     # Windows
+# Create the project environment with uv
+uv venv --python 3.11
+source .venv/bin/activate  # Linux/Mac
+.venv\Scripts\activate     # Windows
 
 # Install requirements
-pip install -r requirements.txt
+uv pip install -r requirements.txt
 ```
 
 3. **Verify installation:**
 ```bash
-pip list | grep transformers
+uv pip list | grep transformers
 ```
 
 4. **Check import path:**
@@ -456,16 +456,16 @@ TypeError: __init__() got an unexpected keyword argument
 
 **Solutions:**
 
-1. **Use pip's dependency resolver:**
+1. **Reinstall with uv's resolver:**
 ```bash
-pip install --upgrade --force-reinstall package-name
+uv pip install --reinstall package-name
 ```
 
 2. **Create fresh environment:**
 ```bash
-python -m venv fresh_env
+uv venv fresh_env
 source fresh_env/bin/activate
-pip install -r requirements.txt
+uv pip install -r requirements.txt
 ```
 
 3. **Pin exact versions:**
@@ -505,9 +505,9 @@ export HTTPS_PROXY=http://proxy.example.com:8080
 export NO_PROXY=localhost,127.0.0.1
 ```
 
-2. **Configure pip to use proxy:**
+2. **Set the proxy per command** (uv and pip both honor the variables above):
 ```bash
-pip install --proxy http://proxy.example.com:8080 package-name
+HTTPS_PROXY=http://proxy.example.com:8080 uv pip install package-name
 ```
 
 3. **Use Hugging Face mirror:**
@@ -579,9 +579,9 @@ docker volume prune
 docker system prune -a --volumes
 ```
 
-3. **Clean pip cache:**
+3. **Clean package cache (uv):**
 ```bash
-pip cache purge
+uv cache clean
 ```
 
 4. **Clean model cache:**
