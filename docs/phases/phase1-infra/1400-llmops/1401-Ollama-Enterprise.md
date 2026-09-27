@@ -3,7 +3,7 @@ Document ID: 1401
 Title: Ollama Enterprise Deployment
 Phase: 1
 Module: 1400
-Last Updated: 2026-09-25
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -35,12 +35,12 @@ Tags: ['infrastructure', 'llmops', 'ollama', 'vllm', 'tgi']
 
 After completing this lesson, you will be able to:
 
-- Explain Architecture
-- Apply Installation
-- Explain Model Management
-- Explain API Usage
-- Apply Configuration Options
-- Measure and evaluate Performance Optimization
+- Diagram the client → server → model-storage chain and locate each piece on the K3s GPU node
+- Deploy a pinned Ollama image on Kubernetes with GPU resources, or natively on the VM, and confirm CUDA is actually serving (ollama ps, journalctl)
+- Pull models, read registry tags and sizes (7b-chat-q4_K_M-style suffixes), and build a custom model from GGUF with a Modelfile
+- Call the generate / chat / show endpoints and stream responses from both curl and the Python client
+- Tune the server with the env vars that exist (KEEP_ALIVE, NUM_PARALLEL, FLASH_ATTENTION, KV_CACHE_TYPE) and avoid the silently-ignored ones
+- Keep one hot model resident per 11GB GPU, preload it with keep_alive, and budget KV cache as num_ctx × NUM_PARALLEL instead of guessing
 
 ---
 
@@ -89,7 +89,7 @@ spec:
         accelerator: nvidia-gpu
       containers:
       - name: ollama
-        image: ollama/ollama:0.5.7  # ⚠️ PIN SPECIFIC VERSION in production! Never use :latest
+        image: ollama/ollama:0.34.4  # ⚠️ PIN SPECIFIC VERSION in production! Never use :latest
         # Check https://github.com/ollama/ollama/releases for latest stable version
         # Using :latest can break production when new versions are released
         ports:
