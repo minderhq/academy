@@ -39,24 +39,24 @@ This phase covers the foundational infrastructure needed to run enterprise-grade
 
 ```text
 ┌─────────────────────────────────────────────────────────┐
-│               Poor Infrastructure                        │
+│               Poor Infrastructure                       │
 ├─────────────────────────────────────────────────────────┤
-│ ❌ Network bottlenecks (1Gbps limits throughput)        │
-│ │ GPU trapped in host OS (can't be used by VMs)         │
-│ ❌ Manual deployments (no orchestration)                │
-│ │ No monitoring (blind to failures)                     │
-│ ❌ Single points of failure                             │
+│ - Network bottlenecks (1Gbps limits throughput)         │
+│ - GPU trapped in host OS (can't be used by VMs)         │
+│ - Manual deployments (no orchestration)                 │
+│ - No monitoring (blind to failures)                     │
+│ - Single points of failure                              │
 └─────────────────────────────────────────────────────────┘
 
 With Proper Infrastructure:
 ┌─────────────────────────────────────────────────────────┐
 │               Well-Designed Lab                         │
 ├─────────────────────────────────────────────────────────┤
-│ ✅ High LAN throughput (faster model loading)            │
-│ ✅ GPU passthrough (VMs access GPU directly)            │
-│ ✅ K8s orchestration (auto-scaling, self-healing)       │
-│ ✅ Full observability (metrics, logs, traces)            │
-│ ✅ Production-ready deployment                          │
+│ + High LAN throughput (faster model loading)            │
+│ + GPU passthrough (VMs access GPU directly)             │
+│ + K8s orchestration (auto-scaling, self-healing)        │
+│ + Full observability (metrics, logs, traces)            │
+│ + Production-ready deployment                           │
 └─────────────────────────────────────────────────────────┘
 ```
 
@@ -95,16 +95,16 @@ graph LR
 ### Star Topology
 
 ```text
-┌─────────────────────────────────────────────────────────────────┐
-│                    Star Topology Benefits                       │
-├─────────────────────────────────────────────────────────────────┤
-│ Component           │ Benefit                                  │
-├─────────────────────────────────────────────────────────────────┤
-│ Central Switch      │ Single point of management, fast backplane │
-│ Jumbo Frames (MTU 9000) │ ~90% fewer packets per transfer     │
-│ Direct Connections  │ Minimal latency (<1ms)                   │
-│ Redundant Paths     │ No single point of failure              │
-└─────────────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────────────┐
+│                    Star Topology Benefits                            │
+├──────────────────────────────────────────────────────────────────────┤
+│ Component               │ Benefit                                    │
+├─────────────────────────┼────────────────────────────────────────────┤
+│ Central Switch          │ Single point of management, fast backplane │
+│ Jumbo Frames (MTU 9000) │ ~90% fewer packets per transfer            │
+│ Direct Connections      │ Minimal latency (<1ms)                     │
+│ Redundant Paths         │ No single point of failure                 │
+└──────────────────────────────────────────────────────────────────────┘
 ```
 
 ---
@@ -183,18 +183,18 @@ graph TB
 ### vLLM and TGI
 
 ```text
-┌─────────────────────────────────────────────────────────────────┐
-│                  Inference Engine Comparison                    │
-├─────────────────────────────────────────────────────────────────┤
-│ Feature             │ Ollama    │ vLLM      │ TGI              │
-├─────────────────────────────────────────────────────────────────┤
-│ Concurrency         │ Low       │ Very High │ High             │
-│ Throughput (tok/s)  │ 30-50     │ 200-500   │ 150-300          │
-│ Memory Efficiency   │ Medium    │ Best      │ High             │
-│ PagedAttention      │ ❌        │ ✅        │ ✅               │
-│ Quantization        │ GGUF      │ AWQ/GPTQ  │ AWQ/GPTQ/BNB     │
-│ Use Case            │ Dev/Test  │ Production │ Production       │
-└─────────────────────────────────────────────────────────────────┘
+┌───────────────────────────────────────────────────────────┐
+│                  Inference Engine Comparison              │
+├───────────────────────────────────────────────────────────┤
+│ Feature            │ Ollama   │ vLLM       │ TGI          │
+├────────────────────┼──────────┼────────────┼──────────────┤
+│ Concurrency        │ Low      │ Very High  │ High         │
+│ Throughput (tok/s) │ 30-50    │ 200-500    │ 150-300      │
+│ Memory Efficiency  │ Medium   │ Best       │ High         │
+│ PagedAttention     │ N        │ Y          │ Y            │
+│ Quantization       │ GGUF     │ AWQ/GPTQ   │ AWQ/GPTQ/BNB │
+│ Use Case           │ Dev/Test │ Production │ Production   │
+└───────────────────────────────────────────────────────────┘
 ```
 
 ### Engine Selection
@@ -421,7 +421,7 @@ graph TD
 
 ## Key Takeaways
 
-### ✅ You Will Learn
+### You Will Learn
 
 After completing this phase, you will be able to:
 
@@ -459,7 +459,7 @@ After completing this phase, you will be able to:
 
 ## Common Pitfalls
 
-### ⚠️ MTU Mismatch
+### MTU Mismatch
 
 **Pitfall:** Different MTU settings causing packet fragmentation
 ```bash
@@ -475,7 +475,7 @@ ip link set docker0 mtu 9000
 ping -M do -s 8972 192.168.1.1
 ```
 
-### ⚠️ GPU Passthrough Fails
+### GPU Passthrough Fails
 
 **Pitfall:** IOMMU not properly configured
 ```bash
@@ -492,7 +492,7 @@ sudo update-grub && sudo reboot
 dmesg | grep -e DMAR -e IOMMU
 ```
 
-### ⚠️ K3s GPU Not Available
+### K3s GPU Not Available
 
 **Pitfall:** Nvidia device plugin not installed
 ```bash
@@ -507,7 +507,7 @@ kubectl apply -f https://raw.githubusercontent.com/NVIDIA/k8s-device-plugin/v0.1
 kubectl describe node | grep nvidia.com/gpu
 ```
 
-### ⚠️ vLLM Out of Memory
+### vLLM Out of Memory
 
 **Pitfall:** Loading full model without quantization
 ```python
@@ -522,7 +522,7 @@ vllm serve mistralai/Mistral-7B-Instruct-v0.2 \
   --gpu-memory-utilization 0.9
 ```
 
-### ⚠️ Monitoring Data Loss
+### Monitoring Data Loss
 
 **Pitfall:** Prometheus not persisting metrics
 ```yaml
@@ -545,7 +545,7 @@ spec:
 
 ## Pro Tips
 
-### 💡 Network Optimization
+### Network Optimization
 
 **Tip:** Test throughput before deploying
 ```bash
@@ -557,7 +557,7 @@ iperf3 -c 192.168.1.1 -t 30  # Client
 # If well below: Check cables (Cat6+ required)
 ```
 
-### 💡 Proxmox Performance
+### Proxmox Performance
 
 **Tip:** Pin CPU cores for GPU VM
 ```bash
@@ -573,7 +573,7 @@ hostpci0: 0000:03:00.0,pcie=1
 args: -set device.hostpci0.host=03:00.0 -set device.hostpci0 rombar=0
 ```
 
-### 💡 K3s Quick Deploy
+### K3s Quick Deploy
 
 **Tip:** Use installation script with tokens
 ```bash
@@ -587,7 +587,7 @@ curl -sfL https://get.k3s.io | \
   K3S_TOKEN=$TOKEN sh -
 ```
 
-### 💡 vLLM Performance
+### vLLM Performance
 
 **Tip:** Tune block size for throughput
 ```bash
@@ -597,7 +597,7 @@ vllm serve model \
   --max-num-batched-tokens 8192  # Increase for faster generation
 ```
 
-### 💡 Prometheus Retention
+### Prometheus Retention
 
 **Tip:** Adjust retention for storage
 ```yaml
@@ -702,6 +702,6 @@ After completing this phase:
 
 **Module Duration:** 75 hours (44 reading + 31 practice)
 **Difficulty:** Intermediate
-**Last Updated:** 2026-09-24
+**Last Updated:** 2026-09-27
 
 **Ready to build your infrastructure?** Start with [1101: Internet Uplink & Modem Configuration](./1100-network/1101-Fiber-GPON-Modem.md) or [1102: Network Topology Design](./1100-network/1102-Star-Topology-Core.md)

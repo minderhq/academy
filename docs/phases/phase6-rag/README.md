@@ -39,23 +39,23 @@ This phase covers Retrieval-Augmented Generation (RAG), Context-Augmented Genera
 ┌─────────────────────────────────────────────────────────┐
 │               Base LLM Limitations                      │
 ├─────────────────────────────────────────────────────────┤
-│ ❌ Training data cutoff (can't access recent info)      │
-│ ❌ No access to private documents                       │
-│ ❌ No knowledge of your company/processes               │
-│ ❌ Hallucinations (making things up)                    │
-│ ❌ No source attribution                                │
+│ - Training data cutoff (can't access recent info)       │
+│ - No access to private documents                        │
+│ - No knowledge of your company/processes                │
+│ - Hallucinations (making things up)                     │
+│ - No source attribution                                 │
 └─────────────────────────────────────────────────────────┘
 
 With RAG:
 ┌─────────────────────────────────────────────────────────┐
 │               RAG-Enhanced LLM                          │
 ├─────────────────────────────────────────────────────────┤
-│ ✅ Access to real-time information                      │
-│ ✅ Uses your private documents                          │
-│ ✅ Knows your company's specific processes              │
-│ ✅ Grounded responses (with citations)                  │
-│ ✅ Source attribution and traceability                 │
-│ ✅ Updatable without retraining                         │
+│ + Access to real-time information                       │
+│ + Uses your private documents                           │
+│ + Knows your company's specific processes               │
+│ + Grounded responses (with citations)                   │
+│ + Source attribution and traceability                   │
+│ + Updatable without retraining                          │
 └─────────────────────────────────────────────────────────┘
 ```
 
@@ -132,17 +132,17 @@ graph TD
 ┌──────────────────────────────────────────────────────────────────┐
 │                     RAG Pipeline Breakdown                       │
 ├──────────────────────────────────────────────────────────────────┤
-│ Component           │ Function                                  │
+│ Component           │ Function                                   │
 ├──────────────────────────────────────────────────────────────────┤
-│ Query Processor     │ Clean, normalize, expand queries          │
-│ Embedding Model     │ Convert text to vectors (384-1536 dim)    │
-│ Keyword Extractor   │ Extract terms for BM25 search             │
-│ Vector Database     │ Store and search embeddings (HNSW index)  │
-│ BM25 Search         │ Keyword-based sparse retrieval            │
-│ Hybrid Search       │ Combine vector + keyword (RRF/Reciprocal) │
-│ Re-ranker           │ Refine results with cross-encoder         │
-│ Context Builder     │ Assemble retrieved chunks into prompt     │
-│ LLM Generator       │ Generate response with context            │
+│ Query Processor     │ Clean, normalize, expand queries           │
+│ Embedding Model     │ Convert text to vectors (384-1536 dim)     │
+│ Keyword Extractor   │ Extract terms for BM25 search              │
+│ Vector Database     │ Store and search embeddings (HNSW index)   │
+│ BM25 Search         │ Keyword-based sparse retrieval             │
+│ Hybrid Search       │ Combine vector + keyword (RRF/Reciprocal)  │
+│ Re-ranker           │ Refine results with cross-encoder          │
+│ Context Builder     │ Assemble retrieved chunks into prompt      │
+│ LLM Generator       │ Generate response with context             │
 └──────────────────────────────────────────────────────────────────┘
 ```
 
@@ -194,14 +194,14 @@ graph LR
 ### When to Use GraphRAG
 
 ```text
-✅ Use GraphRAG when:
++ Use GraphRAG when:
    - Questions require multi-hop reasoning
    - Relationships between entities matter
    - Need to trace connections (supply chain, dependencies)
    - Questions like "Who is connected to X through Y?"
    - Need community detection and clustering
 
-❌ Use Vector RAG when:
+- Use Vector RAG when:
    - Simple semantic similarity is enough
    - Documents are flat (no relationships)
    - Need fastest possible retrieval
@@ -216,12 +216,12 @@ graph LR
 
 | Database | Open Source | Cloud | Best For | Latency | Scalability |
 |----------|-------------|-------|----------|---------|-------------|
-| **Qdrant** | ✅ | ✅ | HomeLab/Self-hosted | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
-| **Pinecone** | ❌ | ✅ | Quick start, managed | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
-| **Weaviate** | ✅ | ✅ | Multi-modal search | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
-| **Milvus** | ✅ | ✅ | Large-scale deployments | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
-| **Chroma** | ✅ | ❌ | Simple Python apps | ⭐⭐⭐ | ⭐⭐ |
-| **pgvector** | ✅ | ❌ | Existing PostgreSQL | ⭐⭐⭐ | ⭐⭐⭐ |
+| **Qdrant** | Yes | Yes | HomeLab/Self-hosted | Excellent | Good |
+| **Pinecone** | No | Yes | Quick start, managed | Excellent | Excellent |
+| **Weaviate** | Yes | Yes | Multi-modal search | Good | Good |
+| **Milvus** | Yes | Yes | Large-scale deployments | Good | Excellent |
+| **Chroma** | Yes | No | Simple Python apps | Medium | Basic |
+| **pgvector** | Yes | No | Existing PostgreSQL | Medium | Medium |
 
 ### Feature Comparison
 
@@ -231,16 +231,16 @@ graph LR
 ├─────────────────────────────────────────────────────────────────┤
 │ Feature          │ Qdrant │ Pinecone │ Weaviate │ Milvus │ pgv  │
 ├─────────────────────────────────────────────────────────────────┤
-│ Hybrid Search    │   ✅   │    ✅    │    ✅    │   ✅   │  ❌  │
-│ Filtering        │   ✅   │    ✅    │    ✅    │   ✅   │  ✅  │
-│ Quantization     │   ✅   │    ✅    │    ✅    │   ✅   │  ❌  │
-│ Replication      │   ✅   │    ✅    │    ✅    │   ✅   │  ✅  │
-│ Sharding         │   ✅   │    ✅    │    ✅    │   ✅   │  ❌  │
-│ Multi-modal      │   ✅   │    ✅    │    ✅    │   ✅   │  ❌  │
-│ Disk Index       │   ✅   │    ✅    │    ✅    │   ✅   │  ❌  │
-│ Easy Setup       │   ✅   │    ✅    │    ✅    │   ⚠️   │  ✅  │
-│ Self-hosted      │   ✅   │    ❌    │    ✅    │   ✅   │  ✅  │
-│ Docker Ready     │   ✅   │    ❌    │    ⚠️    │   ⚠️   │  ✅  │
+│ Hybrid Search    │   Y    │    Y     │    Y     │   Y    │  N   │
+│ Filtering        │   Y    │    Y     │    Y     │   Y    │  Y   │
+│ Quantization     │   Y    │    Y     │    Y     │   Y    │  N   │
+│ Replication      │   Y    │    Y     │    Y     │   Y    │  Y   │
+│ Sharding         │   Y    │    Y     │    Y     │   Y    │  N   │
+│ Multi-modal      │   Y    │    Y     │    Y     │   Y    │  N   │
+│ Disk Index       │   Y    │    Y     │    Y     │   Y    │  N   │
+│ Easy Setup       │   Y    │    Y     │    Y     │   !    │  Y   │
+│ Self-hosted      │   Y    │    N     │    Y     │   Y    │  Y   │
+│ Docker Ready     │   Y    │    N     │    !     │   !    │  Y   │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
@@ -261,19 +261,19 @@ graph LR
 ### Cloud vs Self-Hosted (10M documents)
 
 ```text
-┌─────────────────────────────────────────────────────────────────┐
-│               Annual Cost Comparison (10M docs)                 │
-├─────────────────────────────────────────────────────────────────┤
-│ Provider          │ Storage   │ Queries   │ Total/Year         │
-├─────────────────────────────────────────────────────────────────┤
-│ Pinecone (Starter)│ $70/mo    │ Included  │ $840              │
-│ Pinecone (Prod)   │ $200/mo   │ $0.10/1M  │ $2,400 + queries   │
-│ Weaviate Cloud    │ $150/mo   │ Included  │ $1,800            │
-│ Qdrant Cloud      │ $100/mo   │ Included  │ $1,200            │
+┌────────────────────────────────────────────────────────────────┐
+│               Annual Cost Comparison (10M docs)                │
+├────────────────────────────────────────────────────────────────┤
+│ Provider             │ Storage │ Queries  │ Total/Year         │
+├──────────────────────┼─────────┼──────────┼────────────────────┤
+│ Pinecone (Starter)   │ $70/mo  │ Included │ $840               │
+│ Pinecone (Prod)      │ $200/mo │ $0.10/1M │ $2,400 + queries   │
+│ Weaviate Cloud       │ $150/mo │ Included │ $1,800             │
+│ Qdrant Cloud         │ $100/mo │ Included │ $1,200             │
 │ ──────────────────┼───────────┼───────────┼──────────────────  │
-│ Self-Hosted Qdrant│ $0*       │ $0*       │ $0 (hardware only)│
-│ Self-Hosted pgvec│ $0*       │ $0*       │ $0 (hardware only) │
-└─────────────────────────────────────────────────────────────────┘
+│ Self-Hosted Qdrant   │ $0*     │ $0*      │ $0 (hardware only) │
+│ Self-Hosted pgvector │ $0*     │ $0*      │ $0 (hardware only) │
+└────────────────────────────────────────────────────────────────┘
 
 * Assumes an existing self-hosted machine (mini PC, used office PC, NAS, or VPS)
 * Example hardware: used mini PC $150-300; new entry-level mini PC $300-500; small VPS $60-120/year
@@ -462,7 +462,7 @@ graph TD
 
 ## Key Takeaways
 
-### ✅ You Will Learn
+### You Will Learn
 
 After completing this phase, you will be able to:
 
@@ -495,7 +495,7 @@ After completing this phase, you will be able to:
 
 ## Common Pitfalls
 
-### ⚠️ Poor Chunking Strategy
+### Poor Chunking Strategy
 
 **Pitfall:** Chunking documents without context
 ```python
@@ -514,7 +514,7 @@ splitter = TextSplitter(
 chunks = splitter.split_text(text)
 ```
 
-### ⚠️ Ignoring Embedding Model Mismatch
+### Ignoring Embedding Model Mismatch
 
 **Pitfall:** Using different models for index and query
 ```python
@@ -529,7 +529,7 @@ index_embeddings = embedding_model.encode(docs)
 query_embedding = embedding_model.encode(query)
 ```
 
-### ⚠️ Not Optimizing HNSW Parameters
+### Not Optimizing HNSW Parameters
 
 **Pitfall:** Using default HNSW parameters
 ```python
@@ -546,7 +546,7 @@ index = HNSWIndex(
 )
 ```
 
-### ⚠️ No Re-ranking
+### No Re-ranking
 
 **Pitfall:** Trusting initial retrieval blindly
 ```python
@@ -561,7 +561,7 @@ reranked = cross_encoder_rerank(query, initial_results)
 context = reranked[:10]
 ```
 
-### ⚠️ Ignoring Metadata Filtering
+### Ignoring Metadata Filtering
 
 **Pitfall:** Not pre-filtering with metadata
 ```python
@@ -581,7 +581,7 @@ results = vector_db.search(
 
 ## Pro Tips
 
-### 💡 Chunking Strategy
+### Chunking Strategy
 
 **Tip:** Use semantic chunking with overlap
 ```python
@@ -598,7 +598,7 @@ chunks = chunk_text(
 )
 ```
 
-### 💡 Embedding Model Selection
+### Embedding Model Selection
 
 **Tip:** Choose model based on use case
 ```python
@@ -610,7 +610,7 @@ chunks = chunk_text(
 model = SentenceTransformer("all-MiniLM-L6-v2")  # Start here
 ```
 
-### 💡 Hybrid Search Weights
+### Hybrid Search Weights
 
 **Tip:** Tune alpha for hybrid search
 ```python
@@ -627,7 +627,7 @@ alpha = 0.7  # Vector-heavy
 alpha = 0.3  # Keyword-heavy
 ```
 
-### 💡 Reducing Hallucinations
+### Reducing Hallucinations
 
 **Tip:** Use citations and confidence scores
 ```python
@@ -643,7 +643,7 @@ response = generate_with_citations(
 # "According to [Document A], ... However, [Document B] suggests..."
 ```
 
-### 💡 Cost Optimization
+### Cost Optimization
 
 **Tip:** Quantize embeddings for storage
 ```python
@@ -688,12 +688,12 @@ embeddings_fp32_reconstructed = (embeddings_uint8.astype(np.float32) - 128) / 12
 
 | Task | GPU | CPU | RAM |
 |------|-----|-----|-----|
-| **Embedding (small model)** | ❌ | ✅ | 4 GB |
-| **Embedding (large model)** | ✅ | ✅ | 8 GB |
-| **Vector DB (1M docs)** | ❌ | ✅ | 8 GB |
-| **Vector DB (10M docs)** | ❌ | ✅ | 32 GB |
-| **Re-ranking** | ✅ | ✅ | 8 GB |
-| **GraphRAG** | ✅ | ✅ | 16 GB |
+| **Embedding (small model)** | No | Yes | 4 GB |
+| **Embedding (large model)** | Yes | Yes | 8 GB |
+| **Vector DB (1M docs)** | No | Yes | 8 GB |
+| **Vector DB (10M docs)** | No | Yes | 32 GB |
+| **Re-ranking** | Yes | Yes | 8 GB |
+| **GraphRAG** | Yes | Yes | 16 GB |
 
 ---
 
@@ -788,7 +788,7 @@ After completing this phase:
 
 ---
 
-**Status:** ✅ Complete
+**Status:** Complete
 **Module Duration:** 78 hours (52 reading + 26 practice)
 **Difficulty:** Intermediate
 **Last Updated:** 2026-09-27

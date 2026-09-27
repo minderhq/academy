@@ -35,22 +35,22 @@ This phase covers the internal mechanics of transformer models, from attention m
 ```text
 Without Understanding Internals:
 ┌─────────────────────────────────────────────────────────┐
-│ ❌ Black-box approach to LLMs                           │
-│ ❌ Cannot debug model behavior                           │
-│ ❌ Limited optimization capabilities                    │
-│ ❌ Cannot choose right architecture for task            │
-│ ❌ Struggle with long context windows                   │
-│ ❌ Cannot implement custom modifications                 │
+│ - Black-box approach to LLMs                            │
+│ - Cannot debug model behavior                           │
+│ - Limited optimization capabilities                     │
+│ - Cannot choose right architecture for task             │
+│ - Struggle with long context windows                    │
+│ - Cannot implement custom modifications                 │
 └─────────────────────────────────────────────────────────┘
 
 With Deep Understanding:
 ┌─────────────────────────────────────────────────────────┐
-│ ✅ Understand every component of transformer            │
-│ ✅ Implement attention mechanisms from scratch          │
-│ ✅ Optimize for memory and speed                        │
-│ ✅ Choose right model for your use case                 │
-│ ✅ Extend context windows efficiently                   │
-│ ✅ Build custom model architectures                     │
+│ + Understand every component of transformer             │
+│ + Implement attention mechanisms from scratch           │
+│ + Optimize for memory and speed                         │
+│ + Choose right model for your use case                  │
+│ + Extend context windows efficiently                    │
+│ + Build custom model architectures                      │
 └─────────────────────────────────────────────────────────┘
 ```
 
@@ -334,7 +334,7 @@ graph TD
 
 ## Key Takeaways
 
-### ✅ You Will Learn
+### You Will Learn
 
 After completing this phase, you will be able to:
 
@@ -372,7 +372,7 @@ After completing this phase, you will be able to:
 
 ## Common Pitfalls
 
-### ⚠️ Attention Implementation
+### Attention Implementation
 
 **Pitfall:** Incorrect attention mask leading to information leakage
 ```python
@@ -395,7 +395,7 @@ def attention(Q, K, V, mask=None):
 causal_mask = torch.tril(torch.ones(seq_len, seq_len))
 ```
 
-### ⚠️ Memory Management
+### Memory Management
 
 **Pitfall:** Computing full attention matrix causing OOM
 ```python
@@ -420,7 +420,7 @@ def chunked_attention(Q, K, V, chunk_size=512):
     return torch.cat(outputs, dim=1)
 ```
 
-### ⚠️ Position Encoding
+### Position Encoding
 
 **Pitfall:** Using absolute positional encoding that doesn't extrapolate
 ```python
@@ -438,7 +438,7 @@ def rotate_position(x, seq_len, dim):
     return apply_rotary_emb(x, emb)
 ```
 
-### ⚠️ Tokenizer Choice
+### Tokenizer Choice
 
 **Pitfall:** Using wrong tokenizer for your domain
 ```python
@@ -453,7 +453,7 @@ tokenizer = CodeLlamaTokenizer.from_pretrained('codellama/CodeLlama-7b')
 # Better: Fine-tune tokenizer on your domain
 ```
 
-### ⚠️ Activation Function
+### Activation Function
 
 **Pitfall:** Using ReLU in transformer (dead neurons)
 ```python
@@ -474,7 +474,7 @@ class SwiGLU(nn.Module):
         return self.w2(F.silu(self.w(x)) * self.v(x))
 ```
 
-### ⚠️ Normalization Placement
+### Normalization Placement
 
 **Pitfall:** Post-Norm in deep networks (training instability)
 ```python
@@ -493,7 +493,7 @@ class TransformerBlock(nn.Module):
         return x
 ```
 
-### ⚠️ Architecture Selection
+### Architecture Selection
 
 **Pitfall:** Using wrong architecture for task
 ```python
@@ -514,7 +514,7 @@ model = AutoModelForSeq2SeqLM.from_pretrained('t5-base')
 
 ## Pro Tips
 
-### 💡 Attention Optimization
+### Attention Optimization
 
 **Tip:** Use KV cache for faster autoregressive generation
 ```python
@@ -543,7 +543,7 @@ def generate_fast(model, input_ids, max_length=100):
 # Result: 2-3x speedup!
 ```
 
-### 💡 Memory Reduction
+### Memory Reduction
 
 **Tip:** Combine gradient checkpointing with Flash Attention
 ```python
@@ -561,7 +561,7 @@ def forward_with_checkpointing(x):
 # - Trade-off: ~20% slower (recompute on backward)
 ```
 
-### 💡 Tokenizer Efficiency
+### Tokenizer Efficiency
 
 **Tip:** Analyze token distribution before choosing tokenizer
 ```python
@@ -583,7 +583,7 @@ for name in ['gpt2', 'codellama', 'sentencepiece']:
     print(f"{name}: {stats}")
 ```
 
-### 💡 Architecture Debugging
+### Architecture Debugging
 
 **Tip:** Visualize attention patterns to understand model
 ```python
@@ -607,7 +607,7 @@ def visualize_attention(model, text, layer=0, head=0):
 # Reveals what tokens attend to what!
 ```
 
-### 💡 Performance Benchmarking
+### Performance Benchmarking
 
 **Tip:** Profile different components to find bottlenecks
 ```python
@@ -647,10 +647,10 @@ def profile_model(model, input_ids):
 
 | Tokenizer | Vocab Size | Compression | Multilingual | Code Support |
 |-----------|-----------|-------------|--------------|--------------|
-| **GPT-2 BPE** | 50k | 1.2x | ❌ | Poor |
-| **GPT-4 TikToken** | 100k | 1.5x | ✅ | Good |
-| **SentencePiece** | 32k-250k | 1.4x | ✅ | Medium |
-| **CodeLlama** | 32k | 1.3x | ❌ | Excellent |
+| **GPT-2 BPE** | 50k | 1.2x | No | Poor |
+| **GPT-4 TikToken** | 100k | 1.5x | Yes | Good |
+| **SentencePiece** | 32k-250k | 1.4x | Yes | Medium |
+| **CodeLlama** | 32k | 1.3x | No | Excellent |
 
 ### Activation Functions
 
@@ -718,7 +718,7 @@ See [PREREQUISITES](../../00-META/ENVIRONMENT-SETUP.md) for details.
 
 Validate your knowledge with:
 
-- **[Phase s Quiz](../../00-META/assessment/phase3-quiz.md)** - Test your understanding (25 questions, 80% to pass)
+- **[Phase 3 Quiz](../../00-META/assessment/phase3-quiz.md)** - Test your understanding (25 questions, 80% to pass)
 - **[Phase s Practice](../../00-META/assessment/phase3-practice.md)** - Hands-on exercises
 
 ---
@@ -751,9 +751,9 @@ After completing this phase:
 
 ---
 
-**Status:** ✅ Complete & Enriched
+**Status:** Complete & Enriched
 **Module Duration:** 54-56 hours (39 reading + 15-17 practice)
 **Difficulty:** Intermediate to Advanced
-**Last Updated:** 2026-02-05
+**Last Updated:** 2026-09-27
 
 **Ready to understand transformers?** Start with [3101: Self-Attention Deep Dive](./3100-attention/3101-Self-Attention-DeepDive.md) or [3102: Flash Attention](./3100-attention/3102-Flash-Attention.md)

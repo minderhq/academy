@@ -31,26 +31,26 @@ This phase covers quantization techniques to run larger models on limited hardwa
 
 ```text
 Model Size Comparison (FP16):
-┌─────────────────────────────────────────────────────────┐
-│ Model              │ Parameters │ FP16 Size │ Typical GPU │
-├─────────────────────────────────────────────────────────┤
-│ Llama-2-7B         │ 6.7B      │ 13.4 GB   │ RTX 3060   │
-│ Llama-2-13B        │ 13B       │ 26 GB     │ RTX 3090   │
-│ Llama-2-70B        │ 70B       │ 140 GB    │ A100 40GB  │
-│ CodeLlama-34B      │ 34B       │ 68 GB     │ A100 80GB  │
-│ Mixtral-8x7B        │ 46.7B     │ 93.4 GB   │ 2xA100    │
-└─────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────┐
+│ Model         │ Parameters │ FP16 Size │ Typical GPU │
+├───────────────┼────────────┼───────────┼─────────────┤
+│ Llama-2-7B    │ 6.7B       │ 13.4 GB   │ RTX 3060    │
+│ Llama-2-13B   │ 13B        │ 26 GB     │ RTX 3090    │
+│ Llama-2-70B   │ 70B        │ 140 GB    │ A100 40GB   │
+│ CodeLlama-34B │ 34B        │ 68 GB     │ A100 80GB   │
+│ Mixtral-8x7B  │ 46.7B      │ 93.4 GB   │ 2xA100      │
+└──────────────────────────────────────────────────────┘
 
 After 4-bit Quantization:
-┌─────────────────────────────────────────────────────────┐
-│ Model              │ Q4 Size   │ Reduction │ Can Run On │
-├─────────────────────────────────────────────────────────┤
-│ Llama-2-7B         │ 4.2 GB    │ 3.2x      │ RTX 3060   │
-│ Llama-2-13B        │ 8.5 GB    │ 3.1x      │ RTX 3090   │
-│ Llama-2-70B        │ 42 GB     │ 3.3x      │ RTX 4090   │
-│ CodeLlama-34B      │ 21 GB     │ 3.2x      │ RTX 4090   │
-│ Mixtral-8x7B        │ 29 GB     │ 3.2x      │ RTX 6000   │
-└─────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────┐
+│ Model         │ Q4 Size │ Reduction │ Can Run On │
+├───────────────┼─────────┼───────────┼────────────┤
+│ Llama-2-7B    │ 4.2 GB  │ 3.2x      │ RTX 3060   │
+│ Llama-2-13B   │ 8.5 GB  │ 3.1x      │ RTX 3090   │
+│ Llama-2-70B   │ 42 GB   │ 3.3x      │ RTX 4090   │
+│ CodeLlama-34B │ 21 GB   │ 3.2x      │ RTX 4090   │
+│ Mixtral-8x7B  │ 29 GB   │ 3.2x      │ RTX 6000   │
+└──────────────────────────────────────────────────┘
 ```
 
 ### Performance vs Accuracy Trade-offs
@@ -213,7 +213,7 @@ graph TD
 
 ## Key Takeaways
 
-### ✅ You Will Learn
+### You Will Learn
 
 After completing this phase, you will be able to:
 
@@ -246,7 +246,7 @@ After completing this phase, you will be able to:
 
 ## Common Pitfalls
 
-### ⚠️ Memory Issues
+### Memory Issues
 
 **Pitfall:** Underestimating VRAM requirements for quantization
 ```bash
@@ -262,7 +262,7 @@ python quantize.py \
   --max-vram 20GB
 ```
 
-### ⚠️ Accuracy Loss
+### Accuracy Loss
 
 **Pitfall:** Using too aggressive quantization without validation
 ```python
@@ -279,20 +279,20 @@ model = quantize(
 )
 ```
 
-### ⚠️ Format Compatibility
+### Format Compatibility
 
 **Pitfall:** Choosing incompatible format for your hardware
 ```text
-❌ EXL2 → Requires CUDA (NVIDIA only)
-❌ GGUF Q4_K → Requires AVX2 (x86_64 only)
-❌ AWQ → Requires GPU with tensor cores
+- EXL2 → Requires CUDA (NVIDIA only)
+- GGUF Q4_K → Requires AVX2 (x86_64 only)
+- AWQ → Requires GPU with tensor cores
 
-✅ GGUF → Most versatile (CPU + GPU + ARM)
-✅ EXL2 → Best for NVIDIA GPUs
-✅ AWQ → Balanced choice
++ GGUF → Most versatile (CPU + GPU + ARM)
++ EXL2 → Best for NVIDIA GPUs
++ AWQ → Balanced choice
 ```
 
-### ⚠️ Calibration Data Quality
+### Calibration Data Quality
 
 **Pitfall:** Using poor calibration data
 ```python
@@ -308,7 +308,7 @@ calibration_data = load_target_domain_samples(n=256, diversity=True)
 
 ## Pro Tips
 
-### 💡 VRAM Optimization
+### VRAM Optimization
 
 **Tip:** Use gradient checkpointing during quantization calibration
 ```python
@@ -323,7 +323,7 @@ def calibrate_with_checkpointing(model, data):
         torch.cuda.empty_cache()  # Clear cache between batches
 ```
 
-### 💡 Accuracy Recovery
+### Accuracy Recovery
 
 **Tip:** Apply layer-wise quantization for better accuracy
 ```python
@@ -335,7 +335,7 @@ quant_config = {
 }
 ```
 
-### 💡 Speed Optimization
+### Speed Optimization
 
 **Tip:** Combine quantization with speculative decoding
 ```python
@@ -351,7 +351,7 @@ output = speculative_decode(
 )
 ```
 
-### 💡 Format Selection Guide
+### Format Selection Guide
 
 ```mermaid
 graph TD
@@ -374,7 +374,7 @@ graph TD
     style I fill:#ffd
 ```
 
-### 💡 Production Deployment
+### Production Deployment
 
 **Tip:** Use multiple quantization levels for different use cases
 ```yaml
@@ -467,7 +467,7 @@ See [PREREQUISITES](../../00-META/ENVIRONMENT-SETUP.md) for details.
 
 Validate your knowledge with:
 
-- **[Phase n Quiz](../../00-META/assessment/phase4-quiz.md)** - Test your understanding (20 questions, 80% to pass)
+- **[Phase 4 Quiz](../../00-META/assessment/phase4-quiz.md)** - Test your understanding (20 questions, 80% to pass)
 - **[Phase n Practice](../../00-META/assessment/phase4-practice.md)** - Hands-on exercises
 
 ---
@@ -497,9 +497,9 @@ After completing this phase:
 
 ---
 
-**Status:** ✅ Complete
+**Status:** Complete
 **Module Duration:** 73 hours (43 reading + 30 practice)
 **Difficulty:** Advanced
-**Last Updated:** 2026-02-05
+**Last Updated:** 2026-09-27
 
 **Ready to maximize your VRAM?** Start with [4101: GGUF Physics](./4100-low-bit/4101-GGUF-Physics.md) or [4102: EXL2 and AWQ](./4100-low-bit/4102-EXL2-and-AWQ.md)

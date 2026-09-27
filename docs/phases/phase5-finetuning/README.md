@@ -37,24 +37,24 @@ Pre-trained LLMs are generalists:
 ┌─────────────────────────────────────────────────────────┐
 │ Base Model (e.g., Llama-2-70B)                          │
 ├─────────────────────────────────────────────────────────┤
-│ ✅ General knowledge (Wikipedia, books, web)            │
-│ ✅ Common reasoning patterns                            │
-│ ✅ Broad language understanding                         │
-│ ❌ Domain-specific terminology                          │
-│ ❌ Company-specific knowledge                           │
-│ ❌ Task-specific formatting                             │
-│ ❌ Aligned with your preferences                        │
+│ + General knowledge (Wikipedia, books, web)             │
+│ + Common reasoning patterns                             │
+│ + Broad language understanding                          │
+│ - Domain-specific terminology                           │
+│ - Company-specific knowledge                            │
+│ - Task-specific formatting                              │
+│ - Aligned with your preferences                         │
 └─────────────────────────────────────────────────────────┘
 
 After Fine-Tuning:
 ┌─────────────────────────────────────────────────────────┐
 │ Specialized Model                                       │
 ├─────────────────────────────────────────────────────────┤
-│ ✅ All base model capabilities                          │
-│ ✅ Domain-specific expertise (medical, legal, code)     │
-│ ✅ Task-specific behavior (summarization, extraction)   │
-│ ✅ Custom formatting and structure                      │
-│ ✅ Aligned with your requirements                       │
+│ + All base model capabilities                           │
+│ + Domain-specific expertise (medical, legal, code)      │
+│ + Task-specific behavior (summarization, extraction)    │
+│ + Custom formatting and structure                       │
+│ + Aligned with your requirements                        │
 └─────────────────────────────────────────────────────────┘
 ```
 
@@ -84,13 +84,13 @@ graph LR
 
 | Method | VRAM Required | Training Speed | Quality | Best For |
 |--------|--------------|----------------|---------|----------|
-| **Full Fine-Tuning** | 140 GB (70B) | 1x | ⭐⭐⭐⭐⭐ | Maximum adaptation |
-| **LoRA** | 24 GB (70B) | 0.8x | ⭐⭐⭐⭐ | Most use cases |
-| **QLoRA** | 12 GB (70B) | 0.6x | ⭐⭐⭐⭐ | Limited VRAM |
-| **AdaLoRA** | 20 GB (70B) | 0.7x | ⭐⭐⭐⭐ | Dynamic adaptation |
-| **Prefix Tuning** | 16 GB (70B) | 0.9x | ⭐⭐⭐ | Lightweight tasks |
-| **Prompt Tuning** | 14 GB (70B) | 0.95x | ⭐⭐⭐ | Very simple tasks |
-| **DPO** | 24 GB (70B) | 0.7x | ⭐⭐⭐⭐⭐ | Alignment |
+| **Full Fine-Tuning** | 140 GB (70B) | 1x | Excellent | Maximum adaptation |
+| **LoRA** | 24 GB (70B) | 0.8x | Good | Most use cases |
+| **QLoRA** | 12 GB (70B) | 0.6x | Good | Limited VRAM |
+| **AdaLoRA** | 20 GB (70B) | 0.7x | Good | Dynamic adaptation |
+| **Prefix Tuning** | 16 GB (70B) | 0.9x | Medium | Lightweight tasks |
+| **Prompt Tuning** | 14 GB (70B) | 0.95x | Medium | Very simple tasks |
+| **DPO** | 24 GB (70B) | 0.7x | Excellent | Alignment |
 
 ### VRAM Requirements by Model Size
 
@@ -98,26 +98,26 @@ graph LR
 ┌──────────────────────────────────────────────────────────────────┐
 │                    VRAM Requirements (Training)                  │
 ├──────────────────────────────────────────────────────────────────┤
-│ Model Size     │ Full FT │ LoRA  │ QLoRA │ DPO   │ Multi-GPU    │
+│ Model Size     │ Full FT │ LoRA  │ QLoRA │ DPO   │ Multi-GPU     │
 ├──────────────────────────────────────────────────────────────────┤
-│ 1B (TinyLlama) │ 8 GB    │ 4 GB  │ 2 GB  │ 6 GB  │ Not needed  │
-│ 7B (Llama-2)   │ 56 GB   │ 16 GB │ 8 GB  │ 18 GB │ 2× RTX 3090 │
-│ 13B (Llama-2)  │ 104 GB  │ 24 GB │ 12 GB │ 28 GB │ 2× RTX 4090 │
-│ 34B (CodeLlama)│ 272 GB  │ 48 GB │ 24 GB │ 52 GB │ 4× A100 40GB│
-│ 70B (Llama-2)  │ 560 GB  │ 80 GB │ 40 GB │ 96 GB │ 8× A100 80GB│
+│ 1B (TinyLlama) │ 8 GB    │ 4 GB  │ 2 GB  │ 6 GB  │ Not needed    │
+│ 7B (Llama-2)   │ 56 GB   │ 16 GB │ 8 GB  │ 18 GB │ 2× RTX 3090   │
+│ 13B (Llama-2)  │ 104 GB  │ 24 GB │ 12 GB │ 28 GB │ 2× RTX 4090   │
+│ 34B (CodeLlama)│ 272 GB  │ 48 GB │ 24 GB │ 52 GB │ 4× A100 40GB  │
+│ 70B (Llama-2)  │ 560 GB  │ 80 GB │ 40 GB │ 96 GB │ 8× A100 80GB  │
 └──────────────────────────────────────────────────────────────────┘
 
 Recommended Hardware:
-┌──────────────────────────────────────────────────────────────────┐
-│ Hardware          │ Max Model (LoRA) │ Max Model (QLoRA)         │
-├──────────────────────────────────────────────────────────────────┤
-│ RTX 3060 (12GB)   │ 7B              │ 13B                       │
-│ RTX 3090 (24GB)   │ 13B             │ 34B                       │
-│ RTX 4090 (24GB)   │ 13B             │ 34B                       │
-│ A100 40GB         │ 34B             │ 70B                       │
-│ A100 80GB         │ 70B             │ 70B (with headroom)       │
-│ 2× RTX 3090       │ 34B             │ 70B                       │
-└──────────────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────┐
+│ Hardware        │ Max Model (LoRA) │ Max Model (QLoRA)   │
+├─────────────────┼──────────────────┼─────────────────────┤
+│ RTX 3060 (12GB) │ 7B               │ 13B                 │
+│ RTX 3090 (24GB) │ 13B              │ 34B                 │
+│ RTX 4090 (24GB) │ 13B              │ 34B                 │
+│ A100 40GB       │ 34B              │ 70B                 │
+│ A100 80GB       │ 70B              │ 70B (with headroom) │
+│ 2× RTX 3090     │ 34B              │ 70B                 │
+└──────────────────────────────────────────────────────────┘
 ```
 
 ---
@@ -288,7 +288,7 @@ graph TD
 
 ## Key Takeaways
 
-### ✅ You Will Learn
+### You Will Learn
 
 After completing this phase, you will be able to:
 
@@ -331,7 +331,7 @@ After completing this phase, you will be able to:
 
 ## Common Pitfalls
 
-### ⚠️ Overfitting to Small Datasets
+### Overfitting to Small Datasets
 
 **Pitfall:** Fine-tuning on insufficient data
 ```python
@@ -352,7 +352,7 @@ model = train(
 )
 ```
 
-### ⚠️ Catastrophic Forgetting
+### Catastrophic Forgetting
 
 **Pitfall:** Losing pre-trained knowledge during fine-tuning
 ```python
@@ -367,7 +367,7 @@ optimizer = Adam([
 ])
 ```
 
-### ⚠️ Improper Evaluation
+### Improper Evaluation
 
 **Pitfall:** Not validating on held-out data
 ```python
@@ -384,7 +384,7 @@ train_loss, val_loss = train(
 test_metrics = evaluate(model, test_data)
 ```
 
-### ⚠️ VRAM Exhaustion
+### VRAM Exhaustion
 
 **Pitfall:** Underestimating memory requirements
 ```python
@@ -402,7 +402,7 @@ model = AutoModelForCausalLM.from_pretrained(
 model.gradient_checkpointing_enable()
 ```
 
-### ⚠️ Poor Hyperparameter Choices
+### Poor Hyperparameter Choices
 
 **Pitfall:** Using default hyperparameters
 ```python
@@ -424,7 +424,7 @@ trainer = Trainer(model, args=TrainingArguments(
 
 ## Pro Tips
 
-### 💡 Efficient LoRA Configuration
+### Efficient LoRA Configuration
 
 **Tip:** Optimal LoRA rank and alpha
 ```python
@@ -445,7 +445,7 @@ lora_config = {
 }
 ```
 
-### 💡 QLoRA Memory Optimization
+### QLoRA Memory Optimization
 
 **Tip:** Maximum memory efficiency with QLoRA
 ```python
@@ -466,7 +466,7 @@ model = AutoModelForCausalLM.from_pretrained(
 )
 ```
 
-### 💡 DPO Dataset Construction
+### DPO Dataset Construction
 
 **Tip:** Create high-quality preference pairs
 ```python
@@ -488,7 +488,7 @@ preference_pair = {
 # - Prompt-specific formatting only
 ```
 
-### 💡 Multi-GPU Training Strategy
+### Multi-GPU Training Strategy
 
 **Tip:** Choose the right parallelism strategy
 ```python
@@ -507,7 +507,7 @@ data_parallel_size = 2
 world_size = model_parallel_size * data_parallel_size  # 8 GPUs
 ```
 
-### 💡 Learning Rate Scheduling
+### Learning Rate Scheduling
 
 **Tip:** Cosine decay with warmup for LLMs
 ```python
@@ -533,31 +533,31 @@ scheduler = get_cosine_schedule_with_warmup(
 ### Minimum Configuration
 
 ```text
-┌─────────────────────────────────────────────────────────┐
-│              Minimum Requirements (QLoRA)               │
-├─────────────────────────────────────────────────────────┤
-│ Model Size     │ GPU            │ System RAM │ Storage │
-├─────────────────────────────────────────────────────────┤
-│ 7B             │ RTX 3060 12GB  │ 32 GB     │ 50 GB   │
-│ 13B            │ RTX 3090 24GB  │ 64 GB     │ 100 GB  │
-│ 34B            │ 2× RTX 3090    │ 128 GB    │ 200 GB  │
-│ 70B            │ 4× A100 40GB   │ 256 GB    │ 400 GB  │
-└─────────────────────────────────────────────────────────┘
+┌───────────────────────────────────────────────────┐
+│              Minimum Requirements (QLoRA)         │
+├───────────────────────────────────────────────────┤
+│ Model Size │ GPU           │ System RAM │ Storage │
+├────────────┼───────────────┼────────────┼─────────┤
+│ 7B         │ RTX 3060 12GB │ 32 GB      │ 50 GB   │
+│ 13B        │ RTX 3090 24GB │ 64 GB      │ 100 GB  │
+│ 34B        │ 2× RTX 3090   │ 128 GB     │ 200 GB  │
+│ 70B        │ 4× A100 40GB  │ 256 GB     │ 400 GB  │
+└───────────────────────────────────────────────────┘
 ```
 
 ### Recommended Configuration
 
 ```text
-┌─────────────────────────────────────────────────────────┐
-│            Recommended Requirements (LoRA)              │
-├─────────────────────────────────────────────────────────┤
-│ Model Size     │ GPU            │ System RAM │ Storage │
-├─────────────────────────────────────────────────────────┤
-│ 7B             │ RTX 4090 24GB  │ 32 GB     │ 50 GB   │
-│ 13B            │ 2× RTX 3090    │ 64 GB     │ 100 GB  │
-│ 34B            │ 4× A100 40GB   │ 128 GB    │ 200 GB  │
-│ 70B            │ 8× A100 80GB   │ 512 GB    │ 500 GB  │
-└─────────────────────────────────────────────────────────┘
+┌───────────────────────────────────────────────────┐
+│            Recommended Requirements (LoRA)        │
+├───────────────────────────────────────────────────┤
+│ Model Size │ GPU           │ System RAM │ Storage │
+├────────────┼───────────────┼────────────┼─────────┤
+│ 7B         │ RTX 4090 24GB │ 32 GB      │ 50 GB   │
+│ 13B        │ 2× RTX 3090   │ 64 GB      │ 100 GB  │
+│ 34B        │ 4× A100 40GB  │ 128 GB     │ 200 GB  │
+│ 70B        │ 8× A100 80GB  │ 512 GB     │ 500 GB  │
+└───────────────────────────────────────────────────┘
 ```
 
 ### Training Performance Benchmarks
@@ -649,9 +649,9 @@ After completing this phase:
 
 ---
 
-**Status:** ✅ Complete
+**Status:** Complete
 **Module Duration:** 96 hours (56 reading + 40 practice)
 **Difficulty:** Advanced
-**Last Updated:** 2026-02-05
+**Last Updated:** 2026-09-27
 
 **Ready to fine-tune LLMs?** Start with [5101: LoRA Logic](./5100-peft/5101-LoRA-Logic.md) or [5102: QLoRA Pipelines](./5100-peft/5102-QLoRA-Pipelines.md)

@@ -41,22 +41,22 @@ This phase covers AI agent architectures, tool use, multi-agent orchestration, a
 ┌─────────────────────────────────────────────────────────┐
 │                    Chatbot (Passive)                    │
 ├─────────────────────────────────────────────────────────┤
-│ ❌ Single-turn responses                               │
-│ ❌ No memory of past interactions                       │
-│ ❌ Cannot take actions                                 │
-│ ❌ No reasoning or planning                            │
-│ ❌ Limited to text generation                          │
+│ - Single-turn responses                                 │
+│ - No memory of past interactions                        │
+│ - Cannot take actions                                   │
+│ - No reasoning or planning                              │
+│ - Limited to text generation                            │
 └─────────────────────────────────────────────────────────┘
 
 With Agents:
 ┌─────────────────────────────────────────────────────────┐
 │                    AI Agent (Active)                    │
 ├─────────────────────────────────────────────────────────┤
-│ ✅ Multi-step reasoning and planning                   │
-│ ✅ Persistent memory across sessions                   │
-│ ✅ Can execute tools and APIs                          │
-│ ✅ Autonomous decision making                         │
-│ ✅ Interacts with external systems                    │
+│ + Multi-step reasoning and planning                     │
+│ + Persistent memory across sessions                     │
+│ + Can execute tools and APIs                            │
+│ + Autonomous decision making                            │
+│ + Interacts with external systems                       │
 └─────────────────────────────────────────────────────────┘
 ```
 
@@ -128,7 +128,7 @@ graph TD
 ┌──────────────────────────────────────────────────────────────────┐
 │                    ReAct Loop Components                         │
 ├──────────────────────────────────────────────────────────────────┤
-│ Component        │ Function                                     │
+│ Component        │ Function                                      │
 ├──────────────────────────────────────────────────────────────────┤
 │ Thought          │ Reasoning step: "What should I do next?"      │
 │ Action           │ Tool/function call with parameters            │
@@ -253,7 +253,7 @@ graph LR
 │                  Agent Architecture Spectrum                    │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                 │
-│ Simple ──────────────────────────────────────────── Complex    │
+│ Simple ──────────────────────────────────────────── Complex     │
 │                                                                 │
 │ Prompt → LLM                    Multi-Agent System              │
 │     ↓                                ↓                          │
@@ -262,14 +262,14 @@ graph LR
 │                              └───────┬─────────┘                │
 │                                      ↓                          │
 │                              ┌───────┴───────┐                  │
-│                              ↓              ↓                  │
-│                          [Agent 1]      [Agent 2]              │
-│                              ↓              ↓                  │
-│                          [Tools]        [Tools]                │
-│                              ↓              ↓                  │
-│                          └─────────────────┘                  │
+│                              ↓              ↓                   │
+│                          [Agent 1]      [Agent 2]               │
+│                              ↓              ↓                   │
+│                          [Tools]        [Tools]                 │
+│                              ↓              ↓                   │
+│                          └─────────────────┘                    │
 │                                      ↓                          │
-│                              [Shared Memory]                   │
+│                              [Shared Memory]                    │
 │                                                                 │
 └─────────────────────────────────────────────────────────────────┘
 ```
@@ -282,32 +282,32 @@ graph LR
 
 | Framework | Type | Learning Curve | Best For | Ecosystem |
 |-----------|------|----------------|----------|-----------|
-| **LangGraph** | Multi-Agent | Medium | Complex workflows | ⭐⭐⭐⭐⭐ |
-| **AutoGen** | Multi-Agent | Medium | Conversational agents | ⭐⭐⭐⭐ |
-| **CrewAI** | Multi-Agent | Low | Role-playing agents | ⭐⭐⭐ |
-| **OpenAI Swarm** | Multi-Agent | Low | Simple orchestration | ⭐⭐ |
-| **LangChain** | Single/Multi | High | Production systems | ⭐⭐⭐⭐⭐ |
-| **LlamaIndex Agents** | Single/Multi | Medium | RAG-enhanced agents | ⭐⭐⭐⭐ |
+| **LangGraph** | Multi-Agent | Medium | Complex workflows | Excellent |
+| **AutoGen** | Multi-Agent | Medium | Conversational agents | Good |
+| **CrewAI** | Multi-Agent | Low | Role-playing agents | Medium |
+| **OpenAI Swarm** | Multi-Agent | Low | Simple orchestration | Basic |
+| **LangChain** | Single/Multi | High | Production systems | Excellent |
+| **LlamaIndex Agents** | Single/Multi | Medium | RAG-enhanced agents | Good |
 
 ### Feature Comparison
 
 ```text
-┌─────────────────────────────────────────────────────────────────┐
-│                    Framework Feature Comparison                 │
-├─────────────────────────────────────────────────────────────────┤
-│ Feature           │ LangGraph │ AutoGen │ CrewAI │ Swarm │ LC   │
-├─────────────────────────────────────────────────────────────────┤
-│ Visual Builder   │    ✅     │   ❌    │   ❌   │  ❌   │  ❌  │
-│ Type Safety      │    ✅     │   ⚠️    │   ❌   │  ❌   │  ❌  │
-│ Persistence      │    ✅     │   ✅    │   ✅   │  ❌   │  ✅  │
-│ Human-in-Loop    │    ✅     │   ✅    │   ✅   │  ✅   │  ✅  │
-│ Memory Systems   │    ✅     │   ⚠️    │   ⚠️   │  ❌   │  ✅  │
-│ Tool Calling     │    ✅     │   ✅    │   ✅   │  ✅   │  ✅  │
-│ Multi-Modal      │    ✅     │   ✅    │   ❌   │  ✅   │  ✅  │
-│ Streaming        │    ✅     │   ✅    │   ⚠️   │  ✅   │  ✅  │
-│ Easy Debug       │    ✅     │   ✅    │   ✅   │  ✅   │  ⚠️  │
-│ Production Ready │    ✅     │   ✅    │   ⚠️   │  ⚠️   │  ✅  │
-└─────────────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────┐
+│                    Framework Feature Comparison              │
+├──────────────────────────────────────────────────────────────┤
+│ Feature          │ LangGraph │ AutoGen │ CrewAI │ Swarm │ LC │
+├──────────────────┼───────────┼─────────┼────────┼───────┼────┤
+│ Visual Builder   │    Y      │   N     │   N    │  N    │  N │
+│ Type Safety      │    Y      │   !     │   N    │  N    │  N │
+│ Persistence      │    Y      │   Y     │   Y    │  N    │  Y │
+│ Human-in-Loop    │    Y      │   Y     │   Y    │  Y    │  Y │
+│ Memory Systems   │    Y      │   !     │   !    │  N    │  Y │
+│ Tool Calling     │    Y      │   Y     │   Y    │  Y    │  Y │
+│ Multi-Modal      │    Y      │   Y     │   N    │  Y    │  Y │
+│ Streaming        │    Y      │   Y     │   !    │  Y    │  Y │
+│ Easy Debug       │    Y      │   Y     │   Y    │  Y    │  ! │
+│ Production Ready │    Y      │   Y     │   !    │  !    │  Y │
+└──────────────────────────────────────────────────────────────┘
 ```
 
 ### Recommended by Use Case
@@ -633,7 +633,7 @@ graph TD
 
 ## Key Takeaways
 
-### ✅ You Will Learn
+### You Will Learn
 
 After completing this phase, you will be able to:
 
@@ -671,7 +671,7 @@ After completing this phase, you will be able to:
 
 ## Common Pitfalls
 
-### ⚠️ Infinite Loops
+### Infinite Loops
 
 **Pitfall:** Agent gets stuck in reasoning loop
 ```python
@@ -695,7 +695,7 @@ for i in range(max_iterations):
         break
 ```
 
-### ⚠️ Unsafe Tool Execution
+### Unsafe Tool Execution
 
 **Pitfall:** Executing arbitrary code without sandboxing
 ```python
@@ -711,7 +711,7 @@ import subprocess
 result = run_in_sandbox(user_code, timeout=30)
 ```
 
-### ⚠️ Poor Tool Selection
+### Poor Tool Selection
 
 **Pitfall:** Agent calls wrong tools repeatedly
 ```python
@@ -731,7 +731,7 @@ tools = [
 ]
 ```
 
-### ⚠️ Missing Error Handling
+### Missing Error Handling
 
 **Pitfall:** Agent fails on tool errors
 ```python
@@ -751,7 +751,7 @@ except Exception as e:
     }
 ```
 
-### ⚠️ No Memory Retrieval
+### No Memory Retrieval
 
 **Pitfall:** Agent forgets previous interactions
 ```python
@@ -772,7 +772,7 @@ response = agent.generate(
 
 ## Pro Tips
 
-### 💡 ReAct Loop Design
+### ReAct Loop Design
 
 **Tip:** Structure thoughts for better reasoning
 ```python
@@ -809,7 +809,7 @@ thought = thought_template.format(
 )
 ```
 
-### 💡 Agent Role Definition
+### Agent Role Definition
 
 **Tip:** Clear role definitions improve multi-agent systems
 ```python
@@ -837,7 +837,7 @@ agent_roles = {
 }
 ```
 
-### 💡 Tool Schema Best Practices
+### Tool Schema Best Practices
 
 **Tip:** Detailed schemas improve tool selection
 ```python
@@ -871,7 +871,7 @@ tool_schema = {
 }
 ```
 
-### 💡 Memory Chunking Strategy
+### Memory Chunking Strategy
 
 **Tip:** Organize memory for efficient retrieval
 ```python
@@ -895,7 +895,7 @@ retrieved = memory.search(
 )
 ```
 
-### 💡 Multi-Agent Communication
+### Multi-Agent Communication
 
 **Tip:** Structured message protocols
 ```python
@@ -949,11 +949,11 @@ message = AgentMessage(
 
 | Framework | Setup Time | Runtime Overhead | Ease of Debugging |
 |-----------|-----------|------------------|------------------|
-| **LangGraph** | Medium | Low | ⭐⭐⭐⭐⭐ |
-| **AutoGen** | Low | Medium | ⭐⭐⭐⭐ |
-| **CrewAI** | Low | Medium | ⭐⭐⭐⭐ |
-| **Swarm** | Very Low | Low | ⭐⭐⭐ |
-| **LangChain** | High | Medium | ⭐⭐⭐ |
+| **LangGraph** | Medium | Low | Excellent |
+| **AutoGen** | Low | Medium | Good |
+| **CrewAI** | Low | Medium | Good |
+| **Swarm** | Very Low | Low | Medium |
+| **LangChain** | High | Medium | Medium |
 
 ### Cost Analysis (GPT-4)
 
@@ -1087,7 +1087,7 @@ Example:
 
 ---
 
-**Status:** ✅ Complete
+**Status:** Complete
 **Module Duration:** 65 hours (43 reading + 22 practice)
 **Difficulty:** Advanced
 **Last Updated:** 2026-09-27
