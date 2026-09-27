@@ -3,7 +3,7 @@ Document ID: 1303
 Title: Storage Classes for Dynamic Provisioning
 Phase: 1
 Module: 1300
-Last Updated: 2026-09-25
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -35,12 +35,12 @@ Tags: ['infrastructure', 'kubernetes', 'k3s', 'gpu']
 
 After completing this lesson, you will be able to:
 
-- Explain Storage Architecture
-- Configure and operate NFS Server Configuration
-- Configure and operate CSI Driver Installation
-- Explain Storage Class Definitions
-- Explain PVC Examples
-- Measure and evaluate Performance Tuning
+- Trace the PVC → StorageClass → CSI provisioner → PV chain and say what each of the three StorageClasses in this lesson customizes
+- Export an NFS share for the provisioner (root squashing off, fsid=0) and verify it with showmount from a K3s node
+- Install csi-driver-nfs with Helm and define nfs-standard / nfs-fast / nfs-archive yourself - the chart creates no StorageClass by default
+- Pick onDelete, reclaimPolicy, and volumeBindingMode per workload: Delete+Immediate for scratch, Retain for weights, WaitForFirstConsumer for archives
+- Reason through mount options - rsize/wsize caps, sync vs async, hard vs soft with timeo/retrans, NFS 4.2 vs 4.1 - and their throughput/durability trade-offs
+- Enable the snapshot-controller chart value, take a VolumeSnapshot of the model-cache PVC, and alert at 90% full via kubelet_volume_stats
 
 ---
 
