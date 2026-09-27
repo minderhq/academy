@@ -35,12 +35,12 @@ Tags: ['infrastructure', 'llmops', 'ollama', 'vllm', 'tgi']
 
 After completing this lesson, you will be able to:
 
-- Compare Comparison
-- Explain vLLM Architecture
-- Configure and operate vLLM Installation
-- Configure and operate vLLM Configuration
-- Configure and operate TGI Installation
-- Measure and evaluate Performance Tuning
+- Contrast the vLLM and TGI feature sets and place each engine in its 2026 status (vLLM the default; TGI archived)
+- Explain PagedAttention's page-level KV allocation against contiguous caching and the 11GB VRAM layout
+- Deploy vLLM from wheels (uv pip) or the pinned Docker image on a GPU node serving an AWQ checkpoint
+- Tune gpu_memory_utilization, max_model_len, and quantization - and budget KV cache from the layer/hidden-size math
+- Run the TGI container as the archived legacy engine (auto-detected quantization, HF token handling for gated models)
+- Benchmark throughput honestly (count EOS-truncated tokens) and read the V1 Prometheus metrics
 
 ---
 
@@ -58,7 +58,12 @@ vLLM and Text Generation Inference (TGI) are optimized inference engines for LLM
 | Model Support | HuggingFace | HuggingFace |
 | Flash Attention | Yes | Yes |
 | Speculative Decoding | Yes | Experimental |
-| Recommended For | Research/Custom | Production/Enterprise |
+| Recommended For | Research/Custom + production default | Legacy - existing fleets only |
+
+Status note (Sep 2026): the TGI repository was archived on GitHub
+(read-only) in March 2026; v3.3.7 was its final release. The server
+still runs and the TGI sections below remain technically valid, but new
+production deployments should default to vLLM.
 
 ## vLLM Architecture
 
@@ -130,7 +135,7 @@ spec:
         accelerator: nvidia   # must match the GPU node label (see 1301)
       containers:
       - name: vllm
-        image: vllm/vllm-openai:latest   # pin a released tag for reproducible deploys
+        image: vllm/vllm-openai:v0.30.0   # pinned release (Sep 2026); check releases for newer
         # args (not command:) — command: would replace the image ENTRYPOINT
         args:
           - --model
@@ -245,7 +250,7 @@ spec:
         accelerator: nvidia   # must match the GPU node label (see 1301)
       containers:
       - name: tgi
-        image: ghcr.io/huggingface/text-generation-inference:latest   # pin a released tag for reproducible deploys
+        image: ghcr.io/huggingface/text-generation-inference:3.3.7   # final release - repo archived Mar 2026
         # args (not command:) — command: would replace the
         # text-generation-launcher entrypoint
         args:
