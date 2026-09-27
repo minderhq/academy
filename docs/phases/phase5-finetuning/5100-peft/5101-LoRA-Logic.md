@@ -3,7 +3,7 @@ Document ID: 5101
 Title: LoRA (Low-Rank Adaptation) Logic
 Phase: 5
 Module: 5100
-Last Updated: 2026-09-24
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -32,12 +32,12 @@ Tags: ['finetuning', 'peft', 'lora', 'qlora', 'adaptation']
 
 After completing this lesson, you will be able to:
 
-- Explain The LoRA Hypothesis
-- Configure and operate LoRA Implementation
-- Explain Hyperparameter Selection
-- Explain LoRA Variants
-- Explain Training with LoRA
-- Explain LoRA for Specific Tasks
+- Quantify the LoRA hypothesis — ΔW = BAᵀ has rank r ≪ min(d,k): at r=8 a 4096×4096 projection carries 65,536 trainable params vs 16,777,216 (256×), and the kaiming-A / zero-B init makes every adapter start as an exact identity
+- Build a `LoRALinear` and merge it correctly — frozen base, A (r×in) projecting down then B (out×r) up, scaling α/r — with a `merged` flag so folding ΔW into W doesn't double-count it in the forward
+- Pick the three hyperparameters from the tables — the rank 2-4 / 8-16 / 32-64 capacity ladder, α = r or α = 2r scaling, and target-module configs with their real budgets on Llama-2-7B at r=8 (q+v 0.06%, all-attention 0.12%, +FFN ~0.30%)
+- Route the variants to their use cases — input-side dropout (the PEFT convention), DoRA's magnitude/direction decomposition (`use_dora=True`), AdaLoRA's adaptive rank (`AdaLoraConfig`)
+- Train through PEFT — `LoraConfig` + `get_peft_model` + `print_trainable_parameters` (4,194,304 / 6,738,415,616 = 0.062% on Llama-2-7B), bf16 + gradient checkpointing, and the ~8 GB 8-bit memory table
+- Match configs to tasks — instruction tuning (r=8, q+v), domain adaptation (r=16, all-linear), style transfer (r=4) — then `merge_and_unload()` for a zero-overhead deployment model
 
 ---
 
@@ -88,65 +88,76 @@ Inference:
 
 ### Basic LoRA Layer
 ```python
+import math
+
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 
 class LoRALinear(nn.Module):
     """
     LoRA-enhanced linear layer
     """
-    def __init__(self, in_features, out_features, rank=8, alpha=16, dropout=0.1):
+    def __init__(self, in_features, out_features, rank=8, alpha=16, dropout=0.1, bias=False):
         super().__init__()
         self.in_features = in_features
         self.out_features = out_features
         self.rank = rank
         self.alpha = alpha
+        self.merged = False
 
         # Frozen base weights
         self.weight = nn.Parameter(torch.randn(out_features, in_features))
         self.weight.requires_grad = False
+        self.bias = nn.Parameter(torch.zeros(out_features)) if bias else None
 
-        # Trainable LoRA matrices
+        # Trainable LoRA matrices — A projects down (in -> r), B up (r -> out)
         self.lora_A = nn.Parameter(torch.randn(rank, in_features))
-        self.lora_B = nn.Parameter(torch.randn(out_features, rank))
+        self.lora_B = nn.Parameter(torch.zeros(out_features, rank))
 
         # Scaling
         self.scaling = alpha / rank
 
-        # Optional dropout
+        # Optional dropout — applied on the INPUT of the LoRA path
+        # (the PEFT/HF convention), not on its output
         self.dropout = nn.Dropout(dropout) if dropout > 0 else None
 
-        # Initialize
+        # Paper init: kaiming-uniform A, zeros B — ΔW = B@A = 0, so the
+        # adapter starts as an exact identity
         nn.init.kaiming_uniform_(self.lora_A, a=math.sqrt(5))
         nn.init.zeros_(self.lora_B)
 
     def forward(self, x):
         # Base computation (frozen)
-        base_output = F.linear(x, self.weight)
+        base_output = F.linear(x, self.weight, self.bias)
+
+        # Merged: the delta already lives in self.weight — adding the
+        # LoRA path again would count ΔW TWICE
+        if self.merged:
+            return base_output
 
         # LoRA computation
+        lora_in = self.dropout(x) if self.dropout is not None else x
         lora_output = F.linear(
-            F.linear(x, self.lora_A),  # (B, in) @ (in, r) = (B, r)
+            F.linear(lora_in, self.lora_A),  # (B, in) @ (in, r) = (B, r)
             self.lora_B  # (B, r) @ (r, out) = (B, out)
         ) * self.scaling
-
-        # Optional dropout
-        if self.dropout is not None:
-            lora_output = self.dropout(lora_output)
 
         # Combine
         return base_output + lora_output
 
     def merge_weights(self):
         """
-        Merge LoRA weights into base weights
-        Call before saving for faster inference
+        Merge LoRA weights into base weights — zero LoRA overhead after
+        this, but the forward must skip the LoRA path (merged flag).
         """
+        if self.merged:
+            return
         delta_w = (self.lora_B @ self.lora_A) * self.scaling
         self.weight.data += delta_w
-        # Disable LoRA
-        self.lora_A.requires_grad = False
-        self.lora_B.requires_grad = False
+        self.merged = True
+        # Without the flag (and with requires_grad toggles alone) the
+        # forward would emit Wx + 2·ΔWx — silently wrong outputs
 ```
 
 ### Applying LoRA to a Model
@@ -163,16 +174,20 @@ def apply_lora_to_model(model, target_modules, rank=8, alpha=16):
             in_features = module.in_features
             out_features = module.out_features
 
-            # Create LoRA-enhanced module
+            # Create LoRA-enhanced module (carry the bias when the
+            # source layer has one — Llama-style Linears are bias-free)
             lora_module = LoRALinear(
                 in_features,
                 out_features,
                 rank=rank,
-                alpha=alpha
+                alpha=alpha,
+                bias=module.bias is not None,
             )
 
             # Copy weights
             lora_module.weight.data = module.weight.data.clone()
+            if module.bias is not None:
+                lora_module.bias = nn.Parameter(module.bias.data.clone())
 
             # Replace module
             parent_name = '.'.join(name.split('.')[:-1])
@@ -242,13 +257,13 @@ Example:
 target_modules = ["q_proj", "v_proj"]
 # - Minimal parameters
 # - Good for instruction tuning
-# - ~0.2% of total parameters for r=8
+# - 4,194,304 trainable (0.06%) at r=8 on Llama-2-7B
 
 # Config 2: All attention projections
 target_modules = ["q_proj", "k_proj", "v_proj", "o_proj"]
 # - More capacity
 # - Better for style transfer
-# - ~0.4% of total parameters for r=8
+# - 8,388,608 trainable (0.12%) at r=8
 
 # Config 3: Attention + FFN
 target_modules = [
@@ -257,80 +272,80 @@ target_modules = [
 ]
 # - Maximum LoRA coverage
 # - Good for domain adaptation
-# - ~0.8% of total parameters for r=8
+# - ~20M trainable (0.30%) at r=8
 
-# Config 4: All linear layers
-target_modules = ["all-linear"]  # PEFT syntax
-# - Full model LoRA
-# - ~1.5% of total parameters for r=8
+# Config 4: All linear layers — the STRING form is load-bearing:
+# peft matches target_modules == "all-linear" exactly; a list like
+# ["all-linear"] never matches a module name and silently wraps
+# NOTHING. It targets every nn.Linear EXCEPT the LM head, which on a
+# Llama is exactly config 3 (0.30% at r=8)
+target_modules = "all-linear"
 ```
 
 ## LoRA Variants
 
-### LoRA with Dropout
+### Dropout on the LoRA Path
 ```python
-class LoRALinearWithDropout(nn.Module):
-    """
-    Add dropout to LoRA path for regularization
-    """
-    def __init__(self, in_features, out_features, rank=8, alpha=16, dropout=0.1):
-        super().__init__()
-        self.weight = nn.Parameter(torch.randn(out_features, in_features))
-        self.weight.requires_grad = False
-
-        self.lora_A = nn.Parameter(torch.randn(rank, in_features))
-        self.lora_B = nn.Parameter(torch.randn(out_features, rank))
-
-        self.scaling = alpha / rank
-        self.dropout = nn.Dropout(dropout)
-
-    def forward(self, x):
-        base = F.linear(x, self.weight)
-        lora = self.dropout(F.linear(F.linear(x, self.lora_A), self.lora_B))
-        return base + lora * self.scaling
+# LoRALinear above already carries this: the dropout sits on the LoRA
+# path's INPUT (the PEFT/HF convention — lora_dropout=0.1 in
+# LoraConfig), never on its OUTPUT, where it would scramble the
+# base + delta sum the layer returns. Typical values: 0.05-0.1 for
+# instruction/domain tuning; 0.0 for style transfer, where
+# deterministic adaptation helps.
 ```
 
 ### DoRA (Weight-Decomposed LoRA)
 ```python
 class DoRALinear(nn.Module):
     """
-    DoRA: Decompose weights into magnitude and direction
-    Apply LoRA to direction only
+    DoRA: decompose weights into per-output-channel magnitude and unit
+    direction; LoRA perturbs the direction only.
     """
     def __init__(self, in_features, out_features, rank=8, alpha=16):
         super().__init__()
-        # Base weight
+        # Base weight — frozen, exactly as in plain LoRA
         self.weight = nn.Parameter(torch.randn(out_features, in_features))
+        self.weight.requires_grad = False
 
-        # Magnitude vector (trainable)
-        self.magnitude = nn.Parameter(torch.ones(out_features, 1))
+        # Magnitude (trainable), seeded with the base norms so the
+        # layer starts as an exact identity together with zero-B
+        self.magnitude = nn.Parameter(
+            self.weight.norm(dim=-1, keepdim=True).detach()
+        )
 
         # LoRA for direction
         self.lora_A = nn.Parameter(torch.randn(rank, in_features))
-        self.lora_B = nn.Parameter(torch.randn(out_features, rank))
+        self.lora_B = nn.Parameter(torch.zeros(out_features, rank))
 
         self.scaling = alpha / rank
 
     def forward(self, x):
-        # Normalize base weight to unit direction
-        direction = F.normalize(self.weight, dim=-1)
-
-        # Add LoRA to direction
-        lora_delta = (self.lora_B @ self.lora_A) * self.scaling
-        direction = direction + lora_delta
-
-        # Apply magnitude
-        weight = direction * self.magnitude
+        # The paper's update: W' = m ⊙ (W + ΔW) / ‖W + ΔW‖ — the
+        # COMBINED weight is normalized. Normalizing W first and
+        # adding ΔW afterward (a tempting shortcut) produces a
+        # different, unnormalized direction and changes what the
+        # magnitudes mean.
+        delta_w = (self.lora_B @ self.lora_A) * self.scaling
+        combined = self.weight + delta_w
+        direction = F.normalize(combined, dim=-1)
+        weight = self.magnitude * direction
 
         return F.linear(x, weight)
+
+# In practice this is one flag: LoraConfig(..., use_dora=True) builds
+# PEFT's DoraLinearLayer, which normalizes the combined weight per
+# output channel exactly as sketched here.
 ```
 
 ### AdaLoRA (Adaptive Rank)
 ```python
 class AdaLoRALayer(nn.Module):
     """
-    AdaLoRA: Adaptively allocate rank across layers
-    Important layers get higher rank
+    AdaLoRA sketch: shift rank budget toward the layers that matter.
+
+    A real implementation needs SVD-form updates, PIMO importance
+    scoring, and scheduled rank trimming — the machinery lives in
+    PEFT; this sketch only shows the budget interface.
     """
     def __init__(self, base_layer, max_rank=8):
         super().__init__()
@@ -353,6 +368,22 @@ class AdaLoRALayer(nn.Module):
         effective_rank = self.get_effective_rank()
         # Use effective_rank for LoRA computation
         # ...
+
+# The trainable version is a config swap — PEFT runs the trimming
+# schedule itself (budget initialized at init_r, frozen until tinit,
+# pruned toward r by tfinal, stepped every deltaT):
+from peft import AdaLoraConfig
+
+adalora_config = AdaLoraConfig(
+    task_type=TaskType.CAUSAL_LM,
+    r=8,            # Final rank
+    init_r=12,      # Starting rank budget
+    tinit=200,      # Warmup steps (no trimming)
+    tfinal=1000,    # Steps after which rank == r
+    deltaT=10,      # Trim interval (steps)
+    target_modules=["q_proj", "v_proj"],
+)
+model = get_peft_model(base_model, adalora_config)
 ```
 
 ## Training with LoRA
@@ -400,22 +431,28 @@ training_args = TrainingArguments(
 )
 
 # Memory breakdown for Llama-2-7B:
-# Base model (8-bit):    ~3.5 GB
+# Base model (8-bit):    ~7.0 GB  (6.9B params × 1 byte)
 # LoRA parameters:       ~0.02 GB
 # Gradients:             ~0.02 GB
-# Optimizer states:      ~0.06 GB
+# Optimizer states:      ~0.03 GB
 # Activations (frozen):  ~1 GB
 # ────────────────────────────────
-# Total:                 ~4.6 GB (fits on an 11GB-class GPU!)
+# Total:                 ~8.1 GB (fits an 11 GB-class GPU)
+# Dropping the base to 4-bit — QLoRA, next lesson (5102) — removes
+# ~3.5 GB and brings the whole setup to 5-6 GB.
 ```
 
 ### Merging LoRA Weights
 ```python
 # After training, merge LoRA into base weights
+import torch
 from peft import PeftModel
+from transformers import AutoModelForCausalLM
 
 # Load base model
-base_model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-2-7b-hf")
+base_model = AutoModelForCausalLM.from_pretrained(
+    "meta-llama/Llama-2-7b-hf", torch_dtype=torch.bfloat16
+)
 
 # Load LoRA adapter
 model = PeftModel.from_pretrained(base_model, "./lora-checkpoint")
@@ -451,7 +488,7 @@ lora_config = LoraConfig(
 lora_config = LoraConfig(
     r=16,  # Higher rank for domain shift
     lora_alpha=32,
-    target_modules=["all-linear"],
+    target_modules="all-linear",  # string form — see Target Modules
     lora_dropout=0.1,
     task_type=TaskType.CAUSAL_LM,
 )
@@ -488,15 +525,8 @@ lora_config = LoraConfig(
 
 ## Next Steps
 
-- Continue with: **[5102: Next Document](./5102-QLoRA-Pipelines.md)**
+- Continue with: **[5102: QLoRA Pipelines](./5102-QLoRA-Pipelines.md)**
+- DPO training on merged models: **[5201: DPO Theory](../5200-alignment/5201-DPO-Theory.md)**
+- QLoRA's memory trick, double quantization: **[4103: Double Quantization](../../phase4-quantization/4100-low-bit/4103-Double-Quantization.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
-
----
----
-
-**Related Documents:**
-- [5102: QLoRA Pipelines](./5102-QLoRA-Pipelines.md)
-- [5201: DPO Theory](../5200-alignment/5201-DPO-Theory.md)
-- [4103: Double Quantization](../../phase4-quantization/4100-low-bit/4103-Double-Quantization.md)
-
-**Experiment Template:** [EXP_5101: LoRA](../../../../experiments/EXP_5101_LORA.md)
+- Experiment: **[EXP_5101: LoRA](../../../../experiments/EXP_5101_LORA.md)**
