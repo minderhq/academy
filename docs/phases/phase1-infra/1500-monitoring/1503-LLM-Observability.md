@@ -3,7 +3,7 @@ Document ID: 1503
 Title: LLM Observability
 Phase: 1
 Module: 1500
-Last Updated: 2026-09-26
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -34,12 +34,12 @@ Tags: ['infrastructure', 'monitoring', 'observability', 'prometheus']
 
 After completing this lesson, you will be able to:
 
-- Measure and evaluate LLM-Specific Metrics
-- Measure and evaluate Performance Monitoring
-- Measure and evaluate Quality Monitoring
-- Measure and evaluate Context Window Monitoring
-- Measure and evaluate Cost Optimization
-- Explain Production Checklist
+- Record TTFT, TPOT, decode rate, and cost for a request in the LLMRequestMetrics dataclass
+- Stream-wrap generation to publish latency histograms, token counters, and cost gauges to Prometheus
+- Score response quality with relevance, repetition, and safety heuristics and reason about their limits
+- Flag candidate hallucinations from uncertainty, citation, and implausible-number indicators
+- Track context-window utilization and compute overflow and nearest-rank p95 statistics
+- Break down 7-day cost by model and apply the prompt, output-limit, and model-selection levers
 
 ---
 
