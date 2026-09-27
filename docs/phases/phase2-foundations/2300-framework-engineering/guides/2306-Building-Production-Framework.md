@@ -50,7 +50,7 @@ This guide builds a miniature production framework — small enough to hold in y
 
 The request path through the finished system:
 
-```
+```text
 client ──> nginx :80 ──> api replica(s) :8000 ──> BatchingServer ──> model (PyTorch)
                               │
                         config.yaml + registries decide WHAT runs and HOW
@@ -58,7 +58,7 @@ client ──> nginx :80 ──> api replica(s) :8000 ──> BatchingServer ─
 
 The complete file tree — and this time it is honest: every file shown below is built in this guide, and nothing is promised that is not delivered:
 
-```
+```text
 framework/
 ├── core/
 │   ├── __init__.py          # empty package markers
