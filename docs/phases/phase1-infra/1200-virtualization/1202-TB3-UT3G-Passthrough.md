@@ -451,6 +451,5 @@ Keeping model weights resident in VRAM and batching inference made the penalty n
 ---
 
 **Document ID:** 1202
-**Last Updated:** 2026-09-25
 **Status:** Complete
 **Related Documents:** [1201, 1203, 1204]

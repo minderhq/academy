@@ -313,6 +313,5 @@ surface — swap `LoraConfig` for `IA3Config` / `PrefixTuningConfig` /
 ---
 
 **Document ID:** 5103
-**Last Updated:** 2026-09-24
 **Status:** Complete
 **Related Documents:** [5101, 5102, 5201]

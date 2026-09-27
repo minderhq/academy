@@ -183,7 +183,3 @@ D) Audio transcripts
 | 18 | B |
 | 19 | D |
 | 20 | A |
-
----
-
-**Last Updated:** 2026-09-24

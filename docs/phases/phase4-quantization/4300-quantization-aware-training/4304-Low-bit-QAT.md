@@ -372,7 +372,3 @@ For successful 4-bit QAT:
 ## Next Steps
 
 → **[4305: Quantization Configuration](./4305-Quantization-Configuration.md)** - Designing quantization schemes
-
----
-
-**Last Updated:** 2026-02-04

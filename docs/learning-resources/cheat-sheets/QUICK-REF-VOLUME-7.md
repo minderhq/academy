@@ -789,6 +789,5 @@ print(calculate_cost_per_1k_requests())
 
 ---
 
-**Last Updated:** 2026-02-04
 **Volume:** 7 - Production Systems
 **Estimated Time:** 45-50 hours

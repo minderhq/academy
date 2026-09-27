@@ -183,7 +183,3 @@ D) Only working on encoder models
 | 18 | B |
 | 19 | A |
 | 20 | C |
-
----
-
-**Last Updated:** 2026-09-24

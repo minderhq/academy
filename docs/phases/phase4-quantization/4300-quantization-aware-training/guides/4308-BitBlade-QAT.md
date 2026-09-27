@@ -497,8 +497,3 @@ Use BitBlade when you need:
 ## Next Steps
 
 - Return to: **[Module README](../README.md)**
-
----
----
-
-**Last Updated:** 2026-02-04

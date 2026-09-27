@@ -183,7 +183,3 @@ D) It cannot be scaled
 | 18 | A |
 | 19 | D |
 | 20 | C |
-
----
-
-**Last Updated:** 2026-09-24

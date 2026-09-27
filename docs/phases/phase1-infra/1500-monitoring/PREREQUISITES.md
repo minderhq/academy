@@ -55,7 +55,3 @@ Can you:
 **If YES:** Start with [1501: Monitoring and Observability](./1501-Monitoring-and-Observability.md)
 
 **If NO:** Review the resources above first.
-
----
-
-**Last Updated:** 2026-02-04

@@ -292,6 +292,5 @@ stage only if its metric delta survives on the golden set.
 ---
 
 **Document ID:** 6203
-**Last Updated:** 2026-09-24
 **Status:** Complete
 **Related Documents:** [6201, 6202, 6301, 6302]

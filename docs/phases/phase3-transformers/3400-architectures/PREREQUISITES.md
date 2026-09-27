@@ -51,7 +51,3 @@ Can you:
 **If YES:** Start with [3401: Encoder-Decoder](./3401-Encoder-Decoder-Architectures.md)
 
 **If NO:** Review the resources above first.
-
----
-
-**Last Updated:** 2026-02-04

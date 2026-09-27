@@ -631,6 +631,5 @@ print(result)
 
 ---
 
-**Last Updated:** 2026-02-04
 **Volume:** 6 - RAG & Data Systems
 **Estimated Time:** 40-45 hours

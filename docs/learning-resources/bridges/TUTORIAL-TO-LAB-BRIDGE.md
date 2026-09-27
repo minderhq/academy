@@ -386,7 +386,6 @@ Learning AI is challenging! Celebrate milestones:
 
 ---
 
-**Last Updated:** 2026-02-04
 **Version:** 1.0
 
 **Ready to start?** Begin with [QUICK-START.md](../../00-META/QUICK-START.md)

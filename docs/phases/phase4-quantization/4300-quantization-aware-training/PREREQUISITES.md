@@ -55,7 +55,3 @@ Can you:
 **If YES:** Start with [4301: QAT Foundations](./4301-QAT-Foundations.md)
 
 **If NO:** Review the resources above first.
-
----
-
-**Last Updated:** 2026-02-04

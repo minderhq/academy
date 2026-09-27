@@ -93,7 +93,3 @@ After completing Phase 7, you will:
 - Can deploy to production
 - Can secure AI systems
 - Have built production AI system
-
----
-
-**Last Updated:** 2026-09-27

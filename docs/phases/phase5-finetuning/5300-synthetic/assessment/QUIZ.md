@@ -183,7 +183,3 @@ D) Train a model on it and measure downstream task performance
 | 18 | A |
 | 19 | C |
 | 20 | D |
-
----
-
-**Last Updated:** 2026-09-24

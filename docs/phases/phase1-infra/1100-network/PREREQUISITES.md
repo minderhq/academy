@@ -55,7 +55,3 @@ Can you:
 **If YES:** Start with [1101: Internet Uplink & Modem Configuration](./1101-Fiber-GPON-Modem.md)
 
 **If NO:** Review the resources above first.
-
----
-
-**Last Updated:** 2026-02-04

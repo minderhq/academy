@@ -51,7 +51,3 @@ Can you:
 **If YES:** Start with [3301: Activation Functions](./3301-Activation-Functions.md)
 
 **If NO:** Review the resources above first.
-
----
-
-**Last Updated:** 2026-02-04

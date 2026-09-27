@@ -183,7 +183,3 @@ D) A distillation method
 | 18 | C |
 | 19 | B |
 | 20 | A |
-
----
-
-**Last Updated:** 2026-09-24

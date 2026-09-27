@@ -183,7 +183,3 @@ D) No trade-off
 | 18 | B |
 | 19 | B |
 | 20 | B |
-
----
-
-**Last Updated:** 2026-02-04

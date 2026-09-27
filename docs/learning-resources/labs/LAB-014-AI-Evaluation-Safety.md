@@ -1336,7 +1336,6 @@ In this lab, you learned:
 
 ---
 
-**Last Updated:** 2026-02-04
 **Lab:** 014 - AI Evaluation & Safety
 **Time Estimate:** 4-5 hours
 **Difficulty:** ⭐⭐⭐ Advanced

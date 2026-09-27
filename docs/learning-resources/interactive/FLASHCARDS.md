@@ -367,6 +367,5 @@ GIF animations for complex topics.
 
 ---
 
-**Last Updated:** 2026-02-04
 
 **Note:** These components are designed to be integrated into the learning platform or used as standalone study aids.

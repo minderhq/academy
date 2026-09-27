@@ -448,7 +448,3 @@ python convert.py --model ./model --outfile model.gguf --imatrix imatrix.dat
 ## Next Steps
 
 → **[4404: EXL2 Format](./4404-EXL2-Format.md)** - GPU-optimized format
-
----
-
-**Last Updated:** 2026-02-04

@@ -183,7 +183,3 @@ D) No difference
 | 18 | B |
 | 19 | A |
 | 20 | B |
-
----
-
-**Last Updated:** 2026-02-04

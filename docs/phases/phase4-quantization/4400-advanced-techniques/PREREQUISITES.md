@@ -56,7 +56,3 @@ Can you:
 **If NO:** Review the resources above first, especially:
 - 4100: Low-bit Quantization
 - 4300: Quantization Aware Training
-
----
-
-**Last Updated:** 2026-02-04

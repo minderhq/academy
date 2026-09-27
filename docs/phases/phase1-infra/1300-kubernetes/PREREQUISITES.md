@@ -55,7 +55,3 @@ Can you:
 **If YES:** Start with [1301: K3s Master-Worker Architecture](./1301-K3s-Master-Worker-Arch.md)
 
 **If NO:** Review the resources above first.
-
----
-
-**Last Updated:** 2026-02-04

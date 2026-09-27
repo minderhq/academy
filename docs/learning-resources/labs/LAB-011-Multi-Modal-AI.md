@@ -1456,7 +1456,6 @@ In this lab, you learned:
 
 ---
 
-**Last Updated:** 2026-02-04
 **Lab:** 011 - Multi-Modal AI
 **Time Estimate:** 6-8 hours
 **Difficulty:** ⭐⭐⭐⭐ Expert

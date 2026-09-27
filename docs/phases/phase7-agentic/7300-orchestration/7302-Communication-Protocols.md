@@ -307,6 +307,5 @@ Fleet-level rules:
 ---
 
 **Document ID:** 7302
-**Last Updated:** 2026-09-24
 **Status:** Complete
 **Related Documents:** [7301, 7101, 7200, 7303]

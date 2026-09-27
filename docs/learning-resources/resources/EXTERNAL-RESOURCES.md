@@ -325,6 +325,5 @@ Curated list of videos, courses, and external resources to complement the learni
 
 ---
 
-**Last Updated:** 2026-02-04
 
 **Contributing:** To suggest additions, please open an issue or submit a PR.

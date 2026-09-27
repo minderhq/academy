@@ -479,7 +479,3 @@ model = quant.convert(model)
 ## Next Steps
 
 → **[guides/4307: Transformers QAT](4307-Transformers-QAT.md)** - QAT with HuggingFace
-
----
-
-**Last Updated:** 2026-02-04

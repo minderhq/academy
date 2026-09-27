@@ -258,7 +258,3 @@ scale = weight.abs().max(dim=[1, 2], keepdim=True) / 127
 ## Next Steps
 
 → **[4302: Fake Quantization](./4302-Fake-Quantization.md)** - Deep dive into STE and quantization simulation
-
----
-
-**Last Updated:** 2026-02-04

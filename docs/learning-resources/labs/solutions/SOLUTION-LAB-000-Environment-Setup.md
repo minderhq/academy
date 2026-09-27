@@ -98,5 +98,4 @@ print(response['response'])
 
 ---
 
-**Last Updated:** 2026-02-04
 **Difficulty:** ⭐ Beginner

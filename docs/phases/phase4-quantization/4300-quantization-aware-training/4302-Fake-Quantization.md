@@ -410,7 +410,3 @@ scale = scale.clamp(min=1e-5)
 ## Next Steps
 
 → **[4303: QAT for Transformers](./4303-QAT-for-Transformers.md)** - Apply QAT to transformer architectures
-
----
-
-**Last Updated:** 2026-02-04

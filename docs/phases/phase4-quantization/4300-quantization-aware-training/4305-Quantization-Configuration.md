@@ -472,7 +472,3 @@ Before finalizing configuration:
 ## Next Steps
 
 → **[guides/4306: PyTorch QAT](./guides/4306-PyTorch-QAT.md)** - Implementing QAT with PyTorch
-
----
-
-**Last Updated:** 2026-02-04

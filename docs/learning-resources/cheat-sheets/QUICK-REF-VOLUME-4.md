@@ -525,6 +525,5 @@ class SpeculativeDecoding:
 
 ---
 
-**Last Updated:** 2026-02-04
 **Volume:** 4 - Quantization Mastery
 **Estimated Time:** 30-35 hours

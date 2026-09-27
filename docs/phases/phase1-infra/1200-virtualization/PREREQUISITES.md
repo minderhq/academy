@@ -55,7 +55,3 @@ Can you:
 **If YES:** Start with [1201: Proxmox Hypervisor SOP](./1201-Proxmox-Hypervisor-SOP.md)
 
 **If NO:** Review the resources above first.
-
----
-
-**Last Updated:** 2026-02-04

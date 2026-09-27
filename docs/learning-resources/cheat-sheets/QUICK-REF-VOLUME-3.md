@@ -636,6 +636,5 @@ text = sp.decode(token_ids)
 
 ---
 
-**Last Updated:** 2026-02-04
 **Volume:** 3 - LLM Internals
 **Estimated Time:** 35-40 hours

@@ -55,7 +55,3 @@ Can you:
 **If YES:** Start with [7301: Orchestration](./7301-Orchestration.md)
 
 **If NO:** Review the resources above first.
-
----
-
-**Last Updated:** 2026-02-04

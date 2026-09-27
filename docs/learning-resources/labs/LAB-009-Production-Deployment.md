@@ -1739,7 +1739,6 @@ In this lab, you learned:
 
 ---
 
-**Last Updated:** 2026-02-04
 **Lab:** 009 - Production Deployment
 **Time Estimate:** 8-10 hours
 **Difficulty:** ⭐⭐⭐⭐ Expert

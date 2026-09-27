@@ -183,7 +183,3 @@ D) All of the above
 | 18 | A |
 | 19 | A |
 | 20 | D |
-
----
-
-**Last Updated:** 2026-02-04

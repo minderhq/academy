@@ -781,4 +781,3 @@ spec:
 - [6201: Hybrid Search](../../6200-retrieval/6201-Hybrid-Search.md)
 - [EXP_6401: Vector DB](../../../../../experiments/EXP_6401_VECTOR_DB.md)
 
-**Last Updated:** 2026-09-24

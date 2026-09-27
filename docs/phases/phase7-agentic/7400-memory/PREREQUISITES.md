@@ -55,7 +55,3 @@ Can you:
 **If YES:** Start with [7401: Long-term Memory](./7401-Long-term-Memory.md)
 
 **If NO:** Review the resources above first.
-
----
-
-**Last Updated:** 2026-02-04

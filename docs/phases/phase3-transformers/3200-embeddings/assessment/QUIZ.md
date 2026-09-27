@@ -183,7 +183,3 @@ D) Doesn't use vocabulary
 | 18 | B |
 | 19 | B |
 | 20 | B |
-
----
-
-**Last Updated:** 2026-02-04

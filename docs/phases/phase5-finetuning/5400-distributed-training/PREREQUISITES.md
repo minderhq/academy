@@ -54,7 +54,3 @@ Can you:
 **If YES:** Start with [5401: Data Parallelism](./5401-Data-Parallelism.md)
 
 **If NO:** Review the resources above first.
-
----
-
-**Last Updated:** 2026-02-04

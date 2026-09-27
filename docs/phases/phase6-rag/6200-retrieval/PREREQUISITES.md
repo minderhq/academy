@@ -52,7 +52,3 @@ Can you:
 **If YES:** Start with [6201: Hybrid Search](./6201-Hybrid-Search.md)
 
 **If NO:** Review the resources above first.
-
----
-
-**Last Updated:** 2026-02-04

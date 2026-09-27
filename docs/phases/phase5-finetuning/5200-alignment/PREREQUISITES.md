@@ -52,7 +52,3 @@ Can you:
 **If YES:** Start with [5201: DPO Theory](./5201-DPO-Theory.md)
 
 **If NO:** Review the resources above first.
-
----
-
-**Last Updated:** 2026-02-04

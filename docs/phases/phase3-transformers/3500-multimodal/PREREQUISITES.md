@@ -55,7 +55,3 @@ Can you:
 **If YES:** See module README for available content
 
 **If NO:** Review the resources above first.
-
----
-
-**Last Updated:** 2026-02-04

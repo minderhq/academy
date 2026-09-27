@@ -385,6 +385,5 @@ The original build ran a 16-port 2.5G managed switch through a small apartment w
 ---
 
 **Document ID:** 1102
-**Last Updated:** 2026-09-25
 **Status:** Complete
 **Related Documents:** [1103, 1201]

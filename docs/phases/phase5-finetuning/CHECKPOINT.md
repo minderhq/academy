@@ -110,7 +110,3 @@ After completing Phase 5, you will:
 - Can implement LoRA
 - Can apply DPO alignment
 - Have fine-tuned a model
-
----
-
-**Last Updated:** 2026-09-27

@@ -183,7 +183,3 @@ D) Direct variable access
 | 18 | A |
 | 19 | A |
 | 20 | B |
-
----
-
-**Last Updated:** 2026-02-04

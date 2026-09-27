@@ -184,7 +184,3 @@ D) The learning rate is zero
 | 18 | B |
 | 19 | B |
 | 20 | A |
-
----
-
-**Last Updated:** 2026-02-04

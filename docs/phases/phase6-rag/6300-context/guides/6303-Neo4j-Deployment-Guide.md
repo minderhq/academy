@@ -515,4 +515,3 @@ spec:
 - [6401: Qdrant Setup](../../6400-vector-databases/6401-Qdrant-Setup.md)
 - [EXP_6301: Neo4j Knowledge Graph](../../../../../experiments/EXP_6303_NEO4J.md)
 
-**Last Updated:** 2026-09-24

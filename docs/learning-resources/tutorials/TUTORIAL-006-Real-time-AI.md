@@ -488,7 +488,6 @@ In this tutorial, you learned:
 
 ---
 
-**Last Updated:** 2026-02-04
 **Tutorial:** 006 - Real-time AI
 **Time Estimate:** 60 minutes
 **Difficulty:** ⭐⭐ Intermediate

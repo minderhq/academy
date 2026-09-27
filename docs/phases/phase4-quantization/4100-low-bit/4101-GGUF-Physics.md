@@ -400,6 +400,5 @@ see [4202: Speculative Decoding](../4200-kv-cache/4202-Speculative-Decoding.md).
 ---
 
 **Document ID:** 4101
-**Last Updated:** 2026-09-24
 **Status:** Complete
 **Related Documents:** [4102, 4103, 4201]

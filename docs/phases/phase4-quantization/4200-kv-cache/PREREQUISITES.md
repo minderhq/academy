@@ -51,7 +51,3 @@ Can you:
 **If YES:** Start with [4201: Context Window Physics](./4201-Context-Window-Physics.md)
 
 **If NO:** Review the resources above first.
-
----
-
-**Last Updated:** 2026-02-04

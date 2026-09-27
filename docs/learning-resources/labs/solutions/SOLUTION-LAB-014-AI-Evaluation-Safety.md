@@ -83,5 +83,4 @@ class ModelEvaluator:
 
 ---
 
-**Last Updated:** 2026-02-04
 **Difficulty:** ⭐⭐⭐⭐⭐

@@ -390,6 +390,5 @@ kubectl get -n longhorn volume
 
 ---
 
-**Last Updated:** 2026-02-04
 **Volume:** 1 - Infrastructure Mastery
 **Estimated Time:** 40-50 hours

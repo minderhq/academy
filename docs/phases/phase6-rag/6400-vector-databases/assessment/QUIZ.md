@@ -183,7 +183,3 @@ D) Only queries
 | 18 | B |
 | 19 | C |
 | 20 | B |
-
----
-
-**Last Updated:** 2026-02-04

@@ -77,5 +77,4 @@ result = agent.run("What is 25 * 34 + 10?")
 
 ---
 
-**Last Updated:** 2026-02-04
 **Difficulty:** ⭐⭐⭐⭐

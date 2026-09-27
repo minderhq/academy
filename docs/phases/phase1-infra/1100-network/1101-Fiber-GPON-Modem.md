@@ -388,6 +388,5 @@ Out-of-range Rx power shows up as LOS light loss or intermittent drops long befo
 ---
 
 **Document ID:** 1101
-**Last Updated:** 2026-09-25
 **Status:** Complete
 **Related Documents:** [1102, 1103, 1201]

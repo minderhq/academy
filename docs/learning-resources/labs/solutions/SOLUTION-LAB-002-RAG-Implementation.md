@@ -171,5 +171,4 @@ See main implementation with:
 
 ---
 
-**Last Updated:** 2026-02-04
 **Difficulty:** ⭐⭐ Intermediate

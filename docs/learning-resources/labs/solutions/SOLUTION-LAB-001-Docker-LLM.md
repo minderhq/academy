@@ -669,6 +669,5 @@ After completing this lab, you should:
 
 ---
 
-**Last Updated:** 2026-02-04
 **Difficulty:** ⭐ Beginner
 **Time to Complete:** 2 hours

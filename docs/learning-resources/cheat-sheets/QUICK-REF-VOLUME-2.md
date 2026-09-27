@@ -586,6 +586,5 @@ for i, batch in enumerate(dataloader):
 
 ---
 
-**Last Updated:** 2026-02-04
 **Volume:** 2 - AI/ML Foundations
 **Estimated Time:** 50-55 hours

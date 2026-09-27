@@ -55,7 +55,3 @@ Can you:
 **If YES:** Start with [6401: Qdrant Setup](./6401-Qdrant-Setup.md)
 
 **If NO:** Review the resources above first.
-
----
-
-**Last Updated:** 2026-02-04

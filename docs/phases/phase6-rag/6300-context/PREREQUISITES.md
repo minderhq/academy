@@ -55,7 +55,3 @@ Can you:
 **If YES:** Start with [6301: Neo4j and Knowledge Graphs](./6301-Neo4j-and-Knowledge-Graphs.md)
 
 **If NO:** Review the resources above first.
-
----
-
-**Last Updated:** 2026-02-04

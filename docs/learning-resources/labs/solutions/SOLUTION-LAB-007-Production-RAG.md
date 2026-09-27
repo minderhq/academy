@@ -77,5 +77,4 @@ CMD ["uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8000"]
 
 ---
 
-**Last Updated:** 2026-02-04
 **Difficulty:** ⭐⭐⭐⭐

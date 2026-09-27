@@ -64,7 +64,3 @@ After completing Phase 4, you will:
 - ✅ Can quantize models
 - ✅ Can optimize context windows
 - ✅ Can run 70B on 11GB VRAM
-
----
-
-**Last Updated:** 2026-02-04

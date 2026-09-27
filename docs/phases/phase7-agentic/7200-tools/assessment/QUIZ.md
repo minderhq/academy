@@ -183,7 +183,3 @@ D) The user, step by step
 | 18 | B |
 | 19 | A |
 | 20 | A |
-
----
-
-**Last Updated:** 2026-09-24

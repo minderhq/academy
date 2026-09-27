@@ -643,6 +643,5 @@ def compare_before_after(base_model, lora_model, tokenizer, test_prompts):
 
 ---
 
-**Last Updated:** 2026-02-07
 **Difficulty:** ⭐⭐⭐⭐
 **Lines of Code:** ~450

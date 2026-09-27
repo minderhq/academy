@@ -885,6 +885,5 @@ if __name__ == "__main__":
 
 ---
 
-**Last Updated:** 2026-02-07
 **Difficulty:** ⭐⭐⭐⭐
 **Lines of Code:** ~700

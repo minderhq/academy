@@ -52,7 +52,3 @@ Can you:
 **If YES:** Start with [3201: RoPE](./3201-Rotary-Positional-Embeddings-RoPE.md)
 
 **If NO:** Review the resources above first.
-
----
-
-**Last Updated:** 2026-02-04

@@ -297,6 +297,5 @@ def synth_label(judge_model, prompt, a, b, principle):
 ---
 
 **Document ID:** 5204
-**Last Updated:** 2026-09-24
 **Status:** Complete
 **Related Documents:** [5201, 5202, 5300]

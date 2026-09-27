@@ -476,6 +476,5 @@ When running this solution:
 
 ---
 
-**Last Updated:** 2026-02-07
 **Difficulty:** ⭐⭐⭐⭐
 **Lines of Code:** ~450

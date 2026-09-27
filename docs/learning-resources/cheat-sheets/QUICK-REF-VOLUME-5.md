@@ -482,6 +482,5 @@ TRAINING_HYPERPARAMETERS = {
 
 ---
 
-**Last Updated:** 2026-02-04
 **Volume:** 5 - Fine-Tuning Expert
 **Estimated Time:** 35-40 hours

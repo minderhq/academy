@@ -101,7 +101,3 @@ After completing Phase 6, you will:
 - Can build RAG systems
 - Can implement GraphRAG
 - Have built production RAG
-
----
-
-**Last Updated:** 2026-09-27

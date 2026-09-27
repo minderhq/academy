@@ -392,7 +392,3 @@ Need CPU inference?
 ## Next Steps
 
 → **[4405: Sparsity + Quantization](./4405-Sparsity-Quantization.md)** - Combining pruning with quantization
-
----
-
-**Last Updated:** 2026-02-04

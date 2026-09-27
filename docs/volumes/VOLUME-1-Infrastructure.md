@@ -295,5 +295,4 @@ For more help, see **[TROUBLESHOOTING-Common-Issues.md](../learning-resources/tr
 ---
 
 **Volume 1 Status:** 🟢 Complete
-**Last Updated:** 2026-02-04
 **Maintainer:** AI Engineering Curriculum Team

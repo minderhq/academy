@@ -824,6 +824,5 @@ def train_with_checkpointing(model, train_loader, test_loader, epochs=20):
 
 ---
 
-**Last Updated:** 2026-02-07
 **Difficulty:** ⭐⭐⭐
 **Lines of Code:** ~550

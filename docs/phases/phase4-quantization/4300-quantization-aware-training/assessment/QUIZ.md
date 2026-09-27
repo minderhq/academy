@@ -215,7 +215,3 @@ If you didn't pass, review:
 - Questions you missed
 - Related documentation sections
 - Then retake the quiz
-
----
-
-**Last Updated:** 2026-02-04

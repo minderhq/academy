@@ -183,7 +183,3 @@ D) Deploy applications
 | 18 | D |
 | 19 | A |
 | 20 | A |
-
----
-
-**Last Updated:** 2026-02-04

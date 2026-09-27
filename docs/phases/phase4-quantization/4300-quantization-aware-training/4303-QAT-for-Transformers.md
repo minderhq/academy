@@ -410,7 +410,3 @@ For 4-bit QAT:
 ## Next Steps
 
 → **[4304: Low-bit QAT](./4304-Low-bit-QAT.md)** - Techniques for 4-bit and below
-
----
-
-**Last Updated:** 2026-02-04
