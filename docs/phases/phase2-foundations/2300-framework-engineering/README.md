@@ -6,7 +6,7 @@ Module: 2300
 Last Updated: 2026-09-26
 Status: Complete
 Difficulty: Intermediate
-Estimated Time: 16 hours
+Estimated Time: 28 hours
 Prerequisites: See PREREQUISITES.md
 Related: See References
 Tags: framework-engineering, module, serving, deployment
@@ -40,10 +40,10 @@ This module covers framework design patterns and production deployment strategie
 **Learning Objectives**
 
 After completing this module, you will be able to:
-- ✅ Design extensible ML frameworks with abstraction layers
-- ✅ Implement model serving architectures for high throughput
-- ✅ Build production ML APIs with proper error handling
-- ✅ Deploy models with zero downtime using blue-green/canary deployments
+- Design extensible ML frameworks with abstraction layers
+- Implement model serving architectures for high throughput
+- Build production ML APIs with proper error handling
+- Deploy models with zero downtime using blue-green/canary deployments
 
 ---
 
@@ -70,17 +70,17 @@ After completing this module, you will be able to:
 
 | Document | Topic | Time | Difficulty |
 |----------|-------|------|------------|
-| [2301: Framework Design Patterns](./2301-Framework-Design-Patterns.md) | Model abstraction, config management, plugins | 2 hrs | ⭐⭐⭐ |
-| [2302: Model Serving Architectures](./2302-Model-Serving-Architectures.md) | Batching, parallelism, load balancing | 2.5 hrs | ⭐⭐⭐ |
-| [2303: API Design for ML Systems](./2303-API-Design-for-ML.md) | REST, streaming, error handling | 2 hrs | ⭐⭐⭐ |
-| [2304: Production Deployment Patterns](./2304-Production-Deployment-Patterns.md) | Blue-green, canary, rolling updates | 2 hrs | ⭐⭐⭐ |
+| [2301: Framework Design Patterns](./2301-Framework-Design-Patterns.md) | Model abstraction, config management, plugins | 5 hrs | Advanced |
+| [2302: Model Serving Architectures](./2302-Model-Serving-Architectures.md) | Batching, parallelism, load balancing | 5 hrs | Advanced |
+| [2303: API Design for ML Systems](./2303-API-Design-for-ML.md) | REST, streaming, error handling | 5 hrs | Advanced |
+| [2304: Production Deployment Patterns](./2304-Production-Deployment-Patterns.md) | Blue-green, canary, rolling updates | 5 hrs | Advanced |
 
 ### Guides (2305-2306)
 
 | Document | Topic | Time | Difficulty |
 |----------|-------|------|------------|
-| [2305: Framework Comparison Guide](./guides/2305-Framework-Comparison.md) | Compare HuggingFace, LangChain, custom | 1 hr | ⭐⭐ |
-| [2306: Building a Production Framework](./guides/2306-Building-Production-Framework.md) | Hands-on framework building | 3 hrs | ⭐⭐⭐⭐ |
+| [2305: Framework Comparison Guide](./guides/2305-Framework-Comparison.md) | Compare HuggingFace, LangChain, custom | 1.5 hrs | Intermediate |
+| [2306: Building a Production Framework](./guides/2306-Building-Production-Framework.md) | Hands-on framework building | 3 hrs | Advanced |
 
 ---
 
@@ -91,31 +91,31 @@ START
   ↓
 [PREREQUISITES.md] (30 min)
   ↓
-[2301: Framework Design Patterns] (2 hr)
+[2301: Framework Design Patterns] (5 hr)
   - Model abstraction layers
   - Configuration management
   - Plugin architectures
   - Version handling
   ↓
-[2302: Model Serving Architectures] (2.5 hr)
+[2302: Model Serving Architectures] (5 hr)
   - Request batching
   - Model parallelism
   - Load balancing
   - Caching strategies
   ↓
-[2303: API Design for ML] (2 hr)
+[2303: API Design for ML] (5 hr)
   - REST vs GraphQL vs gRPC
   - Streaming APIs
   - Error handling
   - Rate limiting
   ↓
-[2304: Production Deployment] (2 hr)
+[2304: Production Deployment] (5 hr)
   - Blue-green deployment
   - Canary deployment
   - Rolling updates
   - A/B testing
   ↓
-[2305: Framework Comparison] (1 hr)
+[2305: Framework Comparison] (1.5 hr)
   - HuggingFace Transformers
   - LangChain
   - Custom frameworks
@@ -131,7 +131,7 @@ START
 COMPLETE
 ```
 
-**Estimated Total Time:** ~16 hours — 12.5 hr of lessons and guides + 0.5 hr prerequisites review + 0.5 hr quiz + 2.5 hr practice exercises.
+**Estimated Total Time:** ~28 hours — 24.5 hr of lessons and guides + 0.5 hr prerequisites review + 0.5 hr quiz + 2.5 hr practice exercises.
 
 ---
 
@@ -256,7 +256,7 @@ A:
 ## Summary
 
 - **Module 2300** bridges individual model development and production ML systems: four lessons (abstraction → serving → API design → deployment) plus two guides (framework comparison, hands-on framework building).
-- **~16 hours total**: 12.5 hr lessons/guides + 0.5 hr prerequisite review + 0.5 hr quiz + 2.5 hr practice exercises.
+- **~28 hours total**: 24.5 hr lessons/guides + 0.5 hr prerequisite review + 0.5 hr quiz + 2.5 hr practice exercises.
 - **Assessment**: a 25-point quiz (80% to pass) plus three hands-on exercises that build a real model abstraction, a dynamic-loading plugin registry, and a priority batching server.
 - **Best applied through**: LAB-007/008/009 and the EXP_1403/1404 serving experiments, then PROJECT-001/007 in the projects track.
 - Stuck? Start from [PREREQUISITES.md](./PREREQUISITES.md) or the troubleshooting guide in References.

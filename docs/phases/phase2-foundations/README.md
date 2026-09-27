@@ -392,9 +392,9 @@ graph TD
 |--------|---------|----------|-------|
 | 2100: Calculus | 9h | 2-3h | 11-12h |
 | 2200: Frameworks | 13h | 4-6h | 17-19h |
-| 2300: Framework Engineering | 13.5h | 2.5h | 16h |
+| 2300: Framework Engineering | 25.5h | 2.5h | 28h |
 | 2400: Pre-training | 12h | 22-26h | 34-38h |
-| **Total** | **47.5h** | **30.5-37.5h** | **78-85h** |
+| **Total** | **59.5h** | **30.5-37.5h** | **90-97h** |
 
 ---
 
@@ -793,7 +793,7 @@ l2.backward()
 ---
 
 **Status:** ✅ Complete
-**Module Duration:** 78-85 hours (47.5h reading + 30.5-37.5h practice)
+**Module Duration:** 90-97 hours (59.5h reading + 30.5-37.5h practice)
 **Difficulty:** Intermediate
 **Last Updated:** 2026-02-05
 
