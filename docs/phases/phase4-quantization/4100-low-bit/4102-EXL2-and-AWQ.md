@@ -31,11 +31,11 @@ Tags: ['quantization', 'gguf', 'exl2', 'awq', 'compression']
 
 After completing this lesson, you will be able to:
 
-- Explain EXL2 (ExLlamaV2)
-- Explain AWQ (Activation-aware Weight Quantization)
-- Explain GPTQ (Gradient-based Quantization)
-- Compare Comparison
-- Explain Advanced Techniques
+- Configure EXL2 conversions with `convert.py -b` — single 4.5 bpw targets and mixed `-b 4.0,3.5` attention/FFN splits — and read the 2.0-8.0 bpw ladder's VRAM-per-quality step
+- Load EXL2 checkpoints with the ExLlamaV2 stack (Config → ExLlamaV2 → ExLlamaV2Cache → Generator) and attribute the ~2x speedup over GGUF Q4_K (90 vs 45 tok/s at 7B) to its CUDA-tensor-core layout
+- Implement AWQ's salient-weight rule — calibration activation scales × weight magnitudes select the top 1% kept in fp16 — and account for its 2-3% perplexity cost against GPTQ's 5-7%
+- Quantize with GPTQ via `optimum-cli export llama --format gptq --bits 4 --group-size 128 --dataset c4`, explaining its Hessian-driven, block-wise, calibration-dependent nature
+- Read the method table to select per scenario — AWQ (+3%) for quality or EXL2 4.5 (+4%) for speed at 7B, EXL2 4.0 for 13B, GGUF Q4_K hybrid for 34B (not recommended on an 11GB-class GPU) — then refine with layer-wise bpw (5-bit attention, 4-bit FFN, 8-bit lm_head)
 
 ---
 
