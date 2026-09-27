@@ -3,7 +3,7 @@ Document ID: 6101
 Title: HNSW Indexing - Efficient Semantic Search at Scale
 Phase: 6
 Module: 6100
-Last Updated: 2026-09-24
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -32,12 +32,12 @@ Tags: ['rag', 'vectors', 'hnsw', 'embeddings', 'similarity']
 
 After completing this lesson, you will be able to:
 
-- Explain The Problem of Vector Search
-- Explain HNSW Algorithm
-- Explain Using FAISS (Production HNSW)
-- Explain HNSW Parameters
-- Apply Integration with Embedding Models
-- Measure and evaluate Evaluation
+- Contrast brute-force vs ANN search — O(N·D) per query at 1M×768 forces approximation; HNSW trades a bounded recall loss for orders-of-magnitude speedups
+- Trace the HNSW graph — exponentially-decaying level assignment (P(l)=0.5^l), greedy descent through upper layers with ef=1, beam search on layer 0 with ef, and why neighbor lists must be PER-LAYER
+- Build the production index with FAISS — IndexHNSWFlat(dim, M), efConstruction/efSearch, write/read persistence — and normalize + METRIC_INNER_PRODUCT when you want cosine
+- Predict parameter effects before tuning — M sets graph degree (memory ≈ 4·D bytes/vector + ~2·M ids, accuracy and build time rise together); efSearch is the query-time recall/speed dial (keep ef ≥ k)
+- Wire an end-to-end semantic search pipeline — SentenceTransformer encoder → float32 → index.add → query encode → top-k with real cosine similarity scores
+- Measure recall@k against exact ground truth across ef values and read the recall/latency curve to pick the operating point
 
 ---
 
@@ -92,10 +92,10 @@ Small world property:
 Example:
   1 ── 2 ── 3 ── 4 ── 5
   │                   │
-  └───────────────────┘  (long-range shortcut)
+  └───────────────────┘  (long-range shortcut 1→5)
 
-With shortcut: 3 hops from 1 to 4
-Without: Need 3 hops
+With the 1→5 shortcut:  1 → 5 → 4 = 2 hops
+Without it:             1 → 2 → 3 → 4 = 3 hops
 
 HNSW builds this in multiple layers
 ```
@@ -125,147 +125,153 @@ import numpy as np
 
 class HNSWIndex:
     """
-    Hierarchical Navigable Small World index
+    Hierarchical Navigable Small World index (compact teaching build).
+
+    The one data-structure rule that makes HNSW "hierarchical": each
+    point keeps PER-LAYER neighbor lists. A single flat neighbors list
+    would turn every layer into the same graph — the hierarchy
+    decorative — and break insertion, which links different nodes on
+    different layers.
     """
-    def __init__(self, dim=768, max_connections=16, max_layer=16):
+    def __init__(self, dim=768, max_connections=16, max_layer=16,
+                 ef_construction=100):
         self.dim = dim
         self.max_connections = max_connections  # M parameter
         self.max_layer = max_layer
-
-        # Each layer is a graph
-        self.layers = {0: []}  # Start with layer 0
-
-        # Points: (vector_id, vector, neighbors[])
-        self.points = {}
-
-    def insert(self, vector_id, vector):
-        """
-        Insert a vector into HNSW index
-        """
-        point = {
-            'id': vector_id,
-            'vector': vector,
-            'neighbors': []
-        }
-        self.points[vector_id] = point
-
-        # Determine layer for this point
-        # Higher layers have exponentially fewer points
-        layer = self._get_random_layer()
-        self._ensure_layer(layer)
-
-        # Insert into each layer up to assigned layer
-        entry_point = self._get_entry_point()
-
-        for current_layer in range(self.max_layer, layer, -1):
-            # Search through higher layers (no insertion)
-            entry_point = self._search_layer(
-                vector, entry_point, current_layer, ef=1
-            )
-
-        # Insert into layers [layer, 0]
-        for current_layer in range(min(layer, self.max_layer), -1, -1):
-            # Find closest neighbors
-            candidates = self._search_layer(
-                vector, entry_point, current_layer, ef=self.max_connections
-            )
-
-            # Select M nearest neighbors
-            neighbors = self._select_neighbors(
-                vector, candidates, self.max_connections
-            )
-
-            # Add bidirectional connections
-            point['neighbors'] = neighbors
-            for neighbor_id in neighbors:
-                neighbor = self.points[neighbor_id]
-                if len(neighbor['neighbors']) < self.max_connections:
-                    neighbor['neighbors'].append(vector_id)
-
-            entry_point = point['id'] if current_layer == 0 else entry_point
+        # Construction-time beam. MUST exceed M: with beam = M the
+        # insert search saturates inside the first local cluster it
+        # lands in, no long-range links ever form, and the graph
+        # fragments into disconnected ~M-sized cliques
+        self.ef_construction = ef_construction
+        self.layers = {}  # layer -> [ids whose TOP layer is that layer]
+        self.points = {}  # id -> {'vector': ..., 'neighbors': {layer: [ids]}}
 
     def _get_random_layer(self):
         """
-        Determine layer for new point
-        Higher layers: exponentially less likely
+        Determine layer for new point.
+        Higher layers: exponentially less likely — P(level = l) = 0.5^l
         """
         level = 0
         while np.random.rand() < 0.5 and level < self.max_layer:
             level += 1
         return level
 
-    def search(self, query, k=10, ef=50):
-        """
-        Search for k nearest neighbors
-        """
-        # Start from entry point at top layer
-        entry_point = self._get_entry_point()
-        current_layer = self.max_layer
-
-        # Search through higher layers
-        while current_layer > 0:
-            entry_point = self._search_layer(
-                query, entry_point, current_layer, ef=1
-            )
-            current_layer -= 1
-
-        # Final search at bottom layer with higher ef
-        candidates = self._search_layer(
-            query, entry_point, 0, ef=ef
-        )
-
-        # Return top k
-        top_k = sorted(candidates, key=lambda x: x[1])[:k]
-        return [(self.points[p[0]]['vector'], p[1]) for p in top_k]
-
-    def _search_layer(self, query, entry_point, layer, ef):
-        """
-        Greedy search on a specific layer
-        ef: number of candidates to track
-        """
-        visited = set()
-        candidates = [(entry_point, self._distance(query, entry_point))]
-        best = entry_point
-
-        while candidates:
-            # Get closest unvisited candidate
-            candidates.sort(key=lambda x: x[1])
-
-            current, dist = candidates.pop(0)
-
-            if current in visited:
-                continue
-
-            visited.add(current)
-
-            # Update best
-            current_point = self.points[current]
-            if dist < self._distance(query, best):
-                best = current
-
-            # Add neighbors
-            for neighbor in current_point['neighbors']:
-                if neighbor not in visited:
-                    neighbor_dist = self._distance(query, neighbor)
-                    candidates.append((neighbor, neighbor_dist))
-
-            # Keep only ef closest
-            if len(candidates) > ef:
-                candidates = sorted(candidates, key=lambda x: x[1])[:ef]
-
-        return [p[0] for p in candidates]
+    def _get_entry_point(self):
+        """An id on the highest populated layer (None while empty)"""
+        if not self.points:
+            return None
+        top = max(self.layers)
+        return self.layers[top][0]
 
     def _distance(self, vector_a, vector_b_or_id):
-        """Compute distance (cosine or Euclidean)"""
-        if isinstance(vector_b_or_id, int):
-            vector_b = self.points[vector_b_or_id]['vector']
-        else:
-            vector_b = vector_b_or_id
-
-        # Cosine distance
+        """Cosine distance to a raw vector or a stored id"""
+        vector_b = (self.points[vector_b_or_id]['vector']
+                    if isinstance(vector_b_or_id, int) else vector_b_or_id)
         return 1 - np.dot(vector_a, vector_b) / (
             np.linalg.norm(vector_a) * np.linalg.norm(vector_b)
         )
+
+    def _search_layer(self, query, entry_point, layer, ef):
+        """
+        Greedy best-first beam search along ONE layer's edges.
+        ef: beam width — candidates tracked. Returns up to ef
+        (distance, id) pairs, closest first.
+        """
+        visited = {entry_point}
+        d0 = self._distance(query, entry_point)
+        candidates = [(d0, entry_point)]   # frontier to expand (min first)
+        results = [(d0, entry_point)]      # best ef seen so far
+
+        while candidates:
+            candidates.sort()
+            d_curr, curr = candidates.pop(0)
+            # Stop when the closest frontier node is worse than the
+            # ef-th best result — nothing closer is reachable from here
+            if len(results) >= ef and d_curr > max(results)[0]:
+                break
+            for neighbor in self.points[curr]['neighbors'].get(layer, []):
+                if neighbor in visited:
+                    continue
+                visited.add(neighbor)
+                d = self._distance(query, neighbor)
+                if len(results) < ef or d < max(results)[0]:
+                    candidates.append((d, neighbor))
+                    results.append((d, neighbor))
+                    if len(results) > ef:
+                        results.sort()   # ascending by distance...
+                        results.pop()    # ...drop the worst (largest)
+        return sorted(results)
+
+    def insert(self, vector_id, vector):
+        """Draw a level, descend from the top, link on layers <= level"""
+        entry_point = self._get_entry_point()
+        level = self._get_random_layer()
+
+        self.points[vector_id] = {'vector': vector, 'level': level,
+                                  'neighbors': {}}
+        if entry_point is None:
+            self.layers.setdefault(level, []).append(vector_id)
+            return  # first point in the index
+
+        old_top = max(self.layers)
+        self.layers.setdefault(level, []).append(vector_id)
+
+        # Zoom in through layers ABOVE the new point (greedy, ef=1)
+        for current_layer in range(old_top, level, -1):
+            entry_point = self._search_layer(
+                vector, entry_point, current_layer, ef=1
+            )[0][1]
+
+        # Link on every POPULATED layer the point lives on: wide beam
+        # (ef_construction) to SEE far enough, then keep the top M
+        for current_layer in range(min(level, old_top), -1, -1):
+            found = self._search_layer(
+                vector, entry_point, current_layer, ef=self.ef_construction
+            )
+            neighbors = [n for _, n in found[:self.max_connections]]
+            self.points[vector_id]['neighbors'][current_layer] = list(neighbors)
+            for n in neighbors:
+                # n gets the reverse edge ONLY if it lives on this
+                # layer; phantom cross-layer edges would collapse the
+                # hierarchy back into one flat graph
+                if current_layer > self.points[n]['level']:
+                    continue
+                adj = self.points[n]['neighbors'].setdefault(current_layer, [])
+                if len(adj) < self.max_connections:
+                    adj.append(vector_id)
+                else:
+                    # Bounded update WITH eviction: a hard cap without
+                    # replacement saturates the early core — its slots
+                    # fill, nothing can ever attach again, and the
+                    # graph freezes into disconnected islands. Keep the
+                    # M CLOSEST instead: evict n's farthest neighbor
+                    # when the newcomer is closer
+                    dists = [self._distance(self.points[n]['vector'],
+                                            self.points[m]['vector'])
+                             for m in adj]
+                    far_i = int(np.argmax(dists))
+                    if dists[far_i] > self._distance(
+                            self.points[n]['vector'], vector):
+                        adj[far_i] = vector_id
+            if neighbors:
+                entry_point = neighbors[0]
+
+    def search(self, query, k=10, ef=50):
+        """Greedy descent, then beam search layer 0 with the query's ef"""
+        entry_point = self._get_entry_point()
+        if entry_point is None:
+            return []
+
+        # Search through higher layers — the CURRENT top, not max_layer
+        # (most points never live above layer 0-2)
+        for current_layer in range(max(self.layers), 0, -1):
+            entry_point = self._search_layer(
+                query, entry_point, current_layer, ef=1
+            )[0][1]
+
+        # Final beam at the bottom layer (ef >= k so k results exist)
+        found = self._search_layer(query, entry_point, 0, ef=max(ef, k))
+        return [(self.points[n]['vector'], d) for d, n in found[:k]]
 ```
 
 ## Using FAISS (Production HNSW)
@@ -275,7 +281,8 @@ class HNSWIndex:
 import faiss
 import numpy as np
 
-# 1. Create HNSW index
+# 1. Create HNSW index — the default metric is L2; for cosine see
+# the Integration section (normalize + METRIC_INNER_PRODUCT)
 dim = 768
 M = 32  # Max connections per node
 index = faiss.IndexHNSWFlat(dim, M)
@@ -301,21 +308,22 @@ faiss.write_index(index, "hnsw.index")
 index = faiss.read_index("hnsw.index")
 ```
 
-### GPU-Accelerated HNSW
-```python
-# Use GPU for faster search
+### GPU-Accelerated HNSW — the honest map
+```text
+Stock FAISS has NO GPU HNSW: graph traversal stays on CPU, and
+faiss.index_cpu_to_gpu() on an IndexHNSW* raises — graph indexes are
+not supported by the GPU transfer. The real GPU paths:
 
-# 1. Transfer to GPU
-res = faiss.StandardGpuResources()
-gpu_index = faiss.index_cpu_to_gpu(res, 0, index)
+  - GpuIndexIVFFlat / GpuIndexIVFPQ — the classic GPU ANN route
+    (coarse quantizer partitions, then an exact or refined scan);
+    10-50x over CPU at large N, but you accept IVF's recall curve
+  - CAGRA (RAPIDS cuVS, integrated into recent faiss builds) — a
+    GPU-native graph index; the modern choice when you want
+    HNSW-like graph search with GPU throughput
 
-# 2. Search on GPU
-distances, indices = gpu_index.search(query, k)
-
-# Benefits:
-# - 10-50x faster than CPU
-# - Essential for large-scale deployment
-# - 11GB-class GPU: ~5000 queries/sec for 1M vectors
+Rule of thumb: keep HNSW on CPU — it already saturates a single
+core, and typical RAG traffic rarely needs more. Reach for the GPU
+when batch QPS demands it, and switch index type to get there.
 ```
 
 ## HNSW Parameters
@@ -353,6 +361,10 @@ M_values = {
     },
 }
 
+# Memory per vector ≈ 4·D bytes (flat storage) + ~2·M neighbor ids
+# (bidirectional graph links, 4 bytes each) — M=32 roughly doubles the
+# GRAPH memory over M=16; at 768-D the flat vectors still dominate
+
 # Recommendation: M=16 for most cases
 ```
 
@@ -372,6 +384,8 @@ ef_values = {
 # - For recall-critical: ef=200-500
 # - For speed-critical: ef=20-50
 # - For balanced: ef=100
+# Keep ef >= k: ef bounds the result beam, so ef < k cannot return
+# k neighbors at all
 ```
 
 ## Integration with Embedding Models
@@ -392,25 +406,32 @@ documents = [
     # ... more documents
 ]
 
-embeddings = encoder.encode(documents)
+embeddings = encoder.encode(documents).astype('float32')
 
-# 3. Build HNSW index
+# 3. Build HNSW index — FAISS's default metric is L2, and 1 - L2
+# distance is NOT cosine similarity. For cosine: normalize to the
+# unit sphere and switch to inner product — after normalize_L2 the
+# inner product EQUALS cosine similarity, so the returned "distance"
+# is already the similarity score you want to print
 dim = embeddings.shape[1]
 M = 16
-index = faiss.IndexHNSWFlat(dim, M)
+index = faiss.IndexHNSWFlat(dim, M, faiss.METRIC_INNER_PRODUCT)
+index.hnsw.efConstruction = 200  # build quality — set before add()
 index.hnsw.efSearch = 100
 
-index.add(embeddings.astype('float32'))
+faiss.normalize_L2(embeddings)   # in-place; requires float32
+index.add(embeddings)
 
-# 4. Search
+# 4. Search — the query gets the same normalization as the corpus
 query = "artificial intelligence"
-query_embedding = encoder.encode([query])
+query_embedding = encoder.encode([query]).astype('float32')
+faiss.normalize_L2(query_embedding)
 
-distances, indices = index.search(query_embedding.astype('float32'), k=5)
+distances, indices = index.search(query_embedding, k=5)
 
-# 5. Display results
-for i, (idx, dist) in enumerate(zip(indices[0], distances[0])):
-    print(f"{i+1}. {documents[idx]} (similarity: {1-dist:.4f})")
+# 5. Display results — with the normalized IP metric, distance IS similarity
+for i, (idx, sim) in enumerate(zip(indices[0], distances[0])):
+    print(f"{i+1}. {documents[idx]} (similarity: {sim:.4f})")
 ```
 
 ### Updating HNSW Index
@@ -435,6 +456,10 @@ index.add(new_embeddings.astype('float32'))
 
 ### Recall vs Speed Trade-off
 ```python
+import time
+
+import numpy as np
+
 def evaluate_hnsw_index(index, test_queries, ground_truth, ef_values):
     """
     Evaluate HNSW recall at different ef values
@@ -474,7 +499,6 @@ def evaluate_hnsw_index(index, test_queries, ground_truth, ef_values):
 # ef=200: recall=99%,  time=4.0ms
 ```
 
-
 ---
 
 ## References
@@ -489,13 +513,4 @@ def evaluate_hnsw_index(index, test_queries, ground_truth, ef_values):
 
 - Continue with: **[6102: Semantic Similarity](./6102-Semantic-Similarity.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
-
----
----
-
-**Related Documents:**
-- [6102: Semantic Similarity](./6102-Semantic-Similarity.md)
-- [6201: Hybrid Search](../6200-retrieval/6201-Hybrid-Search.md)
-- [6301: Neo4j GraphRAG](../6300-context/6301-Neo4j-and-Knowledge-Graphs.md)
-
-**Experiment Template:** [EXP_6101: HNSW](../../../../experiments/EXP_6101_HNSW.md)
+- Experiment: **[EXP_6101: HNSW](../../../../experiments/EXP_6101_HNSW.md)**
