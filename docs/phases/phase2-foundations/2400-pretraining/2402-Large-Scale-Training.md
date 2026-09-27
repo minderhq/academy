@@ -1,5 +1,5 @@
 ---
-Document ID: 2402-Large-Scale-Training
+Document ID: 2402
 Title: "2402: Large-Scale Training for Language Models"
 Phase: 2
 Module: 2400

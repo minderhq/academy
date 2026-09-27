@@ -1,5 +1,5 @@
 ---
-Document ID: 2401-Pre-training-Fundamentals
+Document ID: 2401
 Title: "2401: Pre-training Fundamentals"
 Phase: 2
 Module: 2400

@@ -7,7 +7,7 @@ Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
-Prerequisites: [1201] Proxmox Hypervisor SOP
+Prerequisites: "[1201] Proxmox Hypervisor SOP"
 Related: [1201, 1203, 1204]
 Tags: [virtualization, proxmox, gpu, iommu, vfio]
 Hardware: [x86_64 host with VT-d or AMD-Vi, one NVIDIA GPU (8GB+ VRAM)]
@@ -20,12 +20,12 @@ Software: [Proxmox VE, Linux guest with NVIDIA drivers]
 
 After completing this lesson, you will be able to:
 
-- Explain Overview
-- Explain Prerequisites: IOMMU Hardware Support
-- Explain Enabling IOMMU in the Kernel
-- Explain Verifying IOMMU Groups
-- Explain VFIO Binding and Host Driver Blacklisting
-- Configure and operate Proxmox VM Configuration
+- Explain why IOMMU/VFIO isolation is required for passthrough and confirm a host has VT-d or AMD-Vi support in firmware
+- Enable IOMMU with the correct kernel parameters and verify the target GPU sits in a clean, isolated IOMMU group
+- Bind a GPU to vfio-pci, blacklist the host NVIDIA driver, and confirm the host no longer claims the device
+- Configure a Proxmox VM with q35 machine type, OVMF (UEFI) BIOS, and the GPU passed through as a raw PCIe device
+- Verify passthrough inside the guest with nvidia-smi and correct VRAM reporting
+- Recognize NVIDIA-specific quirks - Code 43, the vendor-reset myth, and reset bugs between VM starts - and apply the documented mitigations
 
 ---
 

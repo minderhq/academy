@@ -7,7 +7,7 @@ Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 2 hours
-Prerequisites: [1101] Internet Uplink & Modem Configuration
+Prerequisites: "[1101] Internet Uplink & Modem Configuration"
 Related: [1103, 1201]
 Tags: [networking, topology, vlan, switch, star-topology]
 Hardware: [Managed Ethernet switch, Cat5e/6/6a cabling, router]

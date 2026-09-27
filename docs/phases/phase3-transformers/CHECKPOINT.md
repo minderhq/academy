@@ -3,7 +3,7 @@ Document ID: PHASE3-CHECKPOINT
 Title: "Progress Checkpoint: Phase 3 - Transformer Physics"
 Last Updated: 2026-09-27
 Status: Complete
-Difficulty: Intermediate to Advanced
+Difficulty: Advanced
 ---
 
 # Progress Checkpoint: Phase 3 - Transformer Physics
