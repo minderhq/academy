@@ -3,13 +3,13 @@ Document ID: 6302
 Title: CAG - Context Augmented Generation and Long Context Architectures
 Phase: 6
 Module: 6300
-Last Updated: 2026-09-24
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
 Prerequisites: See module README
 Related: See module README
-Tags: ['rag', 'context', 'graphrag', 'neo4j', 'knowledge-graphs']
+Tags: ['rag', 'context', 'cag', 'long-context']
 ---
 
 # 6302: CAG - Context Augmented Generation and Long Context Architectures
@@ -31,11 +31,12 @@ Tags: ['rag', 'context', 'graphrag', 'neo4j', 'knowledge-graphs']
 
 After completing this lesson, you will be able to:
 
-- Compare RAG vs CAG
-- Explain Long Context Models
-- Explain Context Management
-- Apply Implementation Examples
-- Explain Context Optimization
+- Compare RAG vs CAG trade-offs — per-query retrieval over a vector database vs pre-loading the corpus into the window, and name the regime (small, stable corpus; document/code QA) where CAG wins
+- Size a long-context model from the 2026 table — Gemini 3 (2M), GPT-5.x (~1M in / 128k out), Claude 1M, Qwen3 256k native → 1M with YaRN, Llama 4 Scout 10M paper-spec — and separate advertised ceilings from reliable working length
+- Chunk long documents with overlap — run the `chunk_size`/`overlap` sliding window and justify the `overlap < chunk_size` guard that keeps `start` advancing
+- Run an evicting context manager — `ContextManager.add_document`/`_make_room` evicts lowest-priority-then-oldest documents when the token budget is exceeded, with a truthful token ledger
+- Prune context by query relevance — `split_context` into windows, score chunks (`keyword_score` fallback or the 6202 cross-encoder), keep the top `keep_ratio`, and restore reading order
+- Defeat lost-in-the-middle and compress — `optimize_context_order` parks important chunks at the start and end, and `compress_context` extractively keeps high-information sentences within a budget
 
 ---
 
@@ -68,7 +69,7 @@ CAG (Context Augmented Generation):
 ```text
 | Aspect         | RAG                  | CAG                      |
 |----------------|----------------------|--------------------------|
-| Context window | 4k-8k tokens         | 32k-128k tokens          |
+| Context window | Prompt budget (few chunks) | 128k-2M+ tokens    |
 | Latency        | Higher (retrieve)    | Lower (pre-loaded)       |
 | Knowledge       | External DB          | In-context               |
 | Use case        | Large corpus         | Specific documents       |
@@ -79,37 +80,34 @@ CAG (Context Augmented Generation):
 
 ### Models with Extended Context
 ```python
-# Models supporting long context
+# Flagship context windows as of 2026-09. Advertised maxima are ceilings,
+# not working memory — quality degrades well before the limit on most
+# models (lost-in-the-middle, below), so budget 100-200k as the reliable zone
 long_context_models = {
-    "Claude 2": {
-        "context": "100k tokens",
-        "architecture": "Attention with efficient cache",
-        "use_case": "Book-length analysis"
+    "Gemini 3": {
+        "context": "2M tokens",
+        "architecture": "Sparse attention + implicit caching",
+        "use_case": "Largest usable frontier context"
     },
-    "Claude 2.1/3": {
-        "context": "200k tokens",
-        "architecture": "Improved attention",
-        "use_case": "Enterprise document analysis"
-    },
-    "GPT-4-Turbo": {
-        "context": "128k tokens",
+    "GPT-5.x": {
+        "context": "~1M input / 128k output",
         "architecture": "GQA + attention optimizations",
         "use_case": "Code repository analysis"
     },
-    "GPT-4-32k": {
-        "context": "32k tokens",
-        "architecture": "Standard attention",
-        "use_case": "Meeting transcripts"
+    "Claude (Sonnet 4.6 / Opus 4.7)": {
+        "context": "1M tokens (200k standard)",
+        "architecture": "Efficient attention + prompt caching",
+        "use_case": "Book-length and agentic analysis"
     },
-    "Llama-2-Long": {
-        "context": "32k+ tokens",
-        "architecture": "Trained with longer sequences",
-        "use_case": "Open-source long context"
-    },
-    "Mistral-7B": {
-        "context": "32k tokens (with YaRN)",
+    "Qwen3": {
+        "context": "256k native, 1M with YaRN",
         "architecture": "YaRN position interpolation",
-        "use_case": "Local deployment"
+        "use_case": "Open-weight long context"
+    },
+    "Llama 4 Scout": {
+        "context": "10M tokens (paper spec)",
+        "architecture": "MoE + iRoPE, early-fusion multimodal",
+        "use_case": "Massive single documents; degrades at extremes"
     },
 }
 ```
@@ -138,6 +136,10 @@ def chunked_cag(document, query, model, chunk_size=8000, overlap=200):
     """
     Process very long document in chunks
     """
+    # `start = end - overlap` advances by chunk_size - overlap per step;
+    # overlap >= chunk_size would never advance start and stall the loop
+    if overlap >= chunk_size:
+        raise ValueError("overlap must be < chunk_size")
     chunks = []
     start = 0
 
@@ -145,6 +147,8 @@ def chunked_cag(document, query, model, chunk_size=8000, overlap=200):
         end = start + chunk_size
         chunk = document[start:end]
         chunks.append(chunk)
+        if end >= len(document):
+            break
         start = end - overlap  # Overlap
 
     # Process each chunk
@@ -182,42 +186,54 @@ class ContextManager:
     """
     Manage long context for CAG
     """
-    def __init__(self, model, max_context=100000):
+    def __init__(self, model, max_context=100000, headroom=1000):
         self.model = model
-        self.max_context = max_context
-        self.context = ""
-        self.context_tokens = 0
+        self.max_context = max_context   # token budget (word-count estimate)
+        self.headroom = headroom        # buffer kept free when evicting
+        self.documents = []             # (priority, seq, text, tokens)
+        self._seq = 0                   # insertion order
 
     def add_document(self, document, priority="low"):
         """
-        Add document to context
-        Priority determines removal order when full
+        Add document to context. When the budget is exceeded,
+        low-priority (then oldest) documents are evicted first.
         """
-        document_tokens = len(document.split())  # Rough estimate
+        document_tokens = len(document.split())  # word count ≈ token estimate
 
         if self.context_tokens + document_tokens > self.max_context:
-            # Remove old documents based on priority
-            self._make_room(document_tokens, priority)
+            self._make_room(document_tokens)
 
-        # Add new document
-        self.context += f"\n\n{document}"
-        self.context_tokens += document_tokens
+        self.documents.append((priority, self._seq, document, document_tokens))
+        self._seq += 1
 
-    def _make_room(self, needed_tokens, priority):
+    @property
+    def context_tokens(self):
+        # Ledger is derived from what is actually stored — never drifts
+        return sum(doc[3] for doc in self.documents)
+
+    @property
+    def context(self):
+        return "\n\n".join(doc[2] for doc in self.documents)
+
+    def _make_room(self, needed_tokens):
         """
-        Remove old documents to make room
+        Evict lowest-priority, then oldest, documents until the new
+        document fits with headroom. Returns the tokens actually freed.
         """
-        # Simple strategy: remove from start
-        # Could be more sophisticated (LRU, importance)
-        tokens_to_remove = needed_tokens + 1000  # Buffer
+        rank = {"low": 0, "high": 1}
+        candidates = sorted(self.documents, key=lambda d: (rank[d[0]], d[1]))
 
-        # Remove from start
-        while tokens_to_remove > 0:
-            removed = self.context[:tokens_to_remove]
-            self.context = self.context[tokens_to_remove:]
-            tokens_to_remove = 0
+        freed = 0
+        evict = []
+        for doc in candidates:
+            if freed >= needed_tokens + self.headroom:
+                break
+            freed += doc[3]
+            evict.append(doc)
 
-        self.context_tokens -= needed_tokens
+        for doc in evict:
+            self.documents.remove(doc)  # (priority, seq) unique → safe
+        return freed
 
     def query(self, question):
         """
@@ -237,22 +253,48 @@ class ContextManager:
 
 ### Dynamic Context Pruning
 ```python
-def dynamic_context_pruning(context, query, model, keep_ratio=0.5):
+def split_context(context, chunk_size=500):
+    """
+    Split context into fixed-size character windows. Production pipelines
+    split on paragraph/sentence boundaries instead so windows don't cut
+    sentences in half.
+    """
+    return [context[i:i + chunk_size]
+            for i in range(0, len(context), chunk_size)]
+
+
+def keyword_score(query, chunk):
+    """
+    Fallback scorer: fraction of query words present in the chunk.
+    Production: swap in a cross-encoder — CrossEncoderReranker in
+    6202-Re-ranking — wrapped as score_fn(query, chunk) -> float.
+    """
+    q_words = set(query.lower().split())
+    if not q_words:
+        return 0.0
+    return len(q_words & set(chunk.lower().split())) / len(q_words)
+
+
+def dynamic_context_pruning(context, query, model, keep_ratio=0.5,
+                            chunk_size=500, score_fn=keyword_score):
     """
     Dynamically prune context based on query relevance
 
-    Approach: Score each chunk by relevance to query, keep top K
+    Approach: Score each chunk by relevance to query, keep the top
+    keep_ratio of chunks, and restore the original reading order
+    (shuffled context reads as noise to the model)
     """
-    # Split context into chunks
-    chunks = split_context(context, chunk_size=500)
+    chunks = split_context(context, chunk_size=chunk_size)
 
-    # Score relevance
-    scorer = CrossEncoderReranker()
-    scored_chunks = scorer.rerank(query, chunks, top_k=len(chunks))
+    # Score relevance — rank chunk positions by score
+    ranked = sorted(range(len(chunks)),
+                    key=lambda i: score_fn(query, chunks[i]),
+                    reverse=True)
 
     # Keep top K
-    keep = int(len(scored_chunks) * keep_ratio)
-    pruned_context = "\n\n".join(scored_chunks[:keep])
+    keep = max(1, int(len(chunks) * keep_ratio))
+    kept = sorted(ranked[:keep])
+    pruned_context = "\n\n".join(chunks[i] for i in kept)
 
     # Generate answer
     prompt = f"""
@@ -297,8 +339,11 @@ class DocumentQA:
 
     def _create_chunks(self, text, chunk_size, overlap):
         """
-        Create overlapping chunks
+        Create overlapping chunks (same overlap < chunk_size guard as
+        chunked_cag above — otherwise start never advances)
         """
+        if overlap >= chunk_size:
+            raise ValueError("overlap must be < chunk_size")
         chunks = []
         start = 0
 
@@ -306,6 +351,8 @@ class DocumentQA:
             end = start + chunk_size
             chunk = text[start:end]
             chunks.append(chunk)
+            if end >= len(text):
+                break
             start = end - overlap
 
         return chunks
@@ -358,13 +405,16 @@ class DocumentQA:
 
     def _find_relevant_chunks(self, query, top_k=5):
         """
-        Find most relevant chunks using BM25 or semantic search
+        Find most relevant chunks using keyword overlap
         """
-        # Simple keyword search (could use semantic)
+        # Token-set matching: whole words only. A substring test like
+        # `word in chunk` would count "the" inside "theory"
+        query_words = set(query.lower().split())
         scored = []
 
         for i, chunk in enumerate(self.chunks):
-            score = sum(word in chunk.lower() for word in query.lower().split())
+            chunk_words = set(chunk.lower().split())
+            score = len(query_words & chunk_words)
             scored.append((i, score, chunk))
 
         # Sort and return top k
@@ -374,12 +424,18 @@ class DocumentQA:
 
 ### Code Analysis System
 ````python
+import os
+
 class CodeAnalyzer:
     """
     Analyze entire code repository using CAG
     """
-    def __init__(self, model):
+    def __init__(self, model, max_context_chars=600000):
         self.model = model
+        # Model clients expose their window in tokens via their own config,
+        # not a .max_tokens attribute — budget in characters here
+        # (~4 chars/token → 600k chars ≈ 150k tokens)
+        self.max_context_chars = max_context_chars
         self.repository = {}
 
     def load_repository(self, repo_path):
@@ -394,11 +450,11 @@ class CodeAnalyzer:
                 file_path = os.path.join(root, file)
 
                 try:
-                    with open(file_path, 'r') as f:
+                    with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
                         content = f.read()
                         self.repository[file_path] = content
-                except:
-                    pass  # Binary files
+                except (OSError, UnicodeDecodeError):
+                    pass  # Unreadable or binary files
 
     def analyze_codebase(self, question):
         """
@@ -418,10 +474,9 @@ File: {file_path}
         # Combine (may need to truncate for very large repos)
         full_context = "\n\n".join(context_parts)
 
-        # Truncate if needed
-        if len(full_context) > self.model.max_tokens:
-            # Could implement smarter truncation
-            full_context = full_context[:self.model.max_tokens - 1000]
+        # Truncate if needed (smarter option: per-file relevance ranking)
+        if len(full_context) > self.max_context_chars:
+            full_context = full_context[:self.max_context_chars]
 
         prompt = f"""
     Codebase:
@@ -445,43 +500,64 @@ Models struggle with information in the middle of long context
 Solution: Important information at start or end
 """
 
-def optimize_context_order(context_chunks, query, important_chunks):
+def optimize_context_order(context_chunks, important_indices):
     """
-    Reorder context to optimize for "lost in the middle"
+    Reorder context to mitigate "lost in the middle" (Liu et al. 2023):
+    recall is strongest at the start and end of the window, weakest in
+    the middle.
 
-    Strategy:
-    - Important chunks at start and end
-    - Less important in middle
+    important_indices: positions (into context_chunks) of the chunks most
+    relevant to the query — identify them with the retrieval scorer of
+    your pipeline. The first half goes to the front, the second half to
+    the back; remaining chunks fill the middle.
     """
-    # Identify important chunks (could use retrieval)
-    # ...
+    important = [context_chunks[i] for i in sorted(important_indices)]
+    rest = [c for i, c in enumerate(context_chunks)
+            if i not in set(important_indices)]
 
-    # Reorder
-    # Start: Top 20% important
-    # Middle: Remaining 60%
-    # End: Top 20% important
-
-    # This reduces "lost in the middle" effect
-    pass
+    half = len(important) // 2
+    return important[:half] + rest + important[half:]
 ```
 
 ### Context Compression
 ```python
 def compress_context(context, target_length=50000):
     """
-    Compress context while preserving information
+    Extractive compression: keep the highest-information sentences until
+    the target character budget is reached.
+
+    Informativeness ≈ mean in-document word frequency per sentence (the
+    Luhn-style extractive heuristic) — no model call needed. Abstractive
+    or hierarchical variants swap this ranker for a summarizer.
     """
-    # Method 1: Extractive summarization
-    # Select most important sentences
+    sentences = [s.strip() for s in context.split(".") if s.strip()]
+    if not sentences:
+        return ""
 
-    # Method 2: Abstractive summarization
-    # Generate summary of sections
+    word_freq = {}
+    for s in sentences:
+        for w in s.lower().split():
+            word_freq[w] = word_freq.get(w, 0) + 1
 
-    # Method 3: Hierarchical compression
-    # Summarize chunks, then summarize summaries
+    def informativeness(i):
+        words = sentences[i].lower().split()
+        return sum(word_freq[w] for w in words) / max(len(words), 1)
 
-    # Implementation depends on use case
-    pass
+    # Rank sentence POSITIONS (duplicated sentences stay distinct), keep
+    # the best until the budget is reached
+    ranked = sorted(range(len(sentences)), key=informativeness, reverse=True)
+    kept_idx, budget = [], 0
+    for i in ranked:
+        if budget + len(sentences[i]) > target_length:
+            break
+        kept_idx.append(i)
+        budget += len(sentences[i])
+
+    if not kept_idx:  # every sentence exceeds the budget: top one, trimmed
+        return sentences[ranked[0]][:target_length]
+
+    # Restore the original reading order (positions are unique — no dupes)
+    return ". ".join(sentences[i] for i in sorted(kept_idx)) + "."
 ```
 
 
@@ -492,20 +568,13 @@ def compress_context(context, target_length=50000):
 ### Related ai-engineering-curriculum Documents
 
 - [6301: Neo4j and Knowledge Graphs for Multi-Hop Reasoning](6301-Neo4j-and-Knowledge-Graphs.md)
+- [4201: Context Window](../../phase4-quantization/4200-kv-cache/4201-Context-Window-Physics.md)
+- [6202: Re-ranking](../6200-retrieval/6202-Re-ranking-and-Retrieval-Logistics.md)
 
 ---
 
 ## Next Steps
 
-- Continue with: **[../6400-vector-databases/6401-Qdrant-Setup.md](./../6400-vector-databases/6401-Qdrant-Setup.md)**
+- Continue with: **[6401: Qdrant Setup](./../6400-vector-databases/6401-Qdrant-Setup.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
-
----
----
-
-**Related Documents:**
-- [4201: Context Window](../../phase4-quantization/4200-kv-cache/4201-Context-Window-Physics.md)
-- [6301: Neo4j GraphRAG](./6301-Neo4j-and-Knowledge-Graphs.md)
-- [6202: Re-ranking](../6200-retrieval/6202-Re-ranking-and-Retrieval-Logistics.md)
-
-**Experiment Template:** [EXP_6302: CAG](../../../../experiments/EXP_6302_CAG.md)
+- Experiment: **[EXP_6302: CAG](../../../../experiments/EXP_6302_CAG.md)**
