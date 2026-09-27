@@ -3,7 +3,7 @@ Document ID: 4404
 Title: EXL2 Format
 Phase: 4
 Module: 4400
-Last Updated: 2026-09-24
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Expert
 Estimated Time: 5 hours
@@ -81,7 +81,7 @@ EXL2 Features:
 # Install ExLlamaV2
 git clone https://github.com/turboderp/exllamav2
 cd exllamav2
-pip install -r requirements.txt
+uv pip install -r requirements.txt
 
 # Convert HF model to EXL2
 python convert.py \

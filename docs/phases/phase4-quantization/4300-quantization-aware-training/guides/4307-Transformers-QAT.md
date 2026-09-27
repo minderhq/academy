@@ -1,7 +1,7 @@
 ---
 Document ID: 4307
 Title: "4307: Transformers QAT Guide"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Advanced
 ---
@@ -128,8 +128,8 @@ trainer.train()
 ### Installation
 
 ```bash
-pip install auto-gptq
-pip install optimum
+uv pip install auto-gptq
+uv pip install optimum
 ```
 
 ### Quantizing with AutoGPTQ

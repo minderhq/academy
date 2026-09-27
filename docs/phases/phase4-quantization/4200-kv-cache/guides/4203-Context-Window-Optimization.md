@@ -1,7 +1,7 @@
 ---
 Document ID: 4203
 Title: "4203: Context Window Optimization Guide"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Advanced
 ---
@@ -776,7 +776,7 @@ CONFIG = {
 
 ```bash
 # 1. Install dependencies
-pip install transformers accelerate bitsandbytes
+uv pip install transformers accelerate bitsandbytes
 
 # 2. Run with long context
 python long_context_example.py

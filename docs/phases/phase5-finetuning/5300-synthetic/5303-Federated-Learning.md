@@ -3,7 +3,7 @@ Document ID: 5303
 Title: Federated Learning
 Phase: 5
 Module: 5300
-Last Updated: 2026-09-25
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -312,7 +312,7 @@ Honest state of the field
 
 ## Orchestration with Flower
 
-Hand-rolled servers are fine for learning and wrong for production. [Flower](https://flower.ai) (`pip install flwr`) is the de-facto framework: it owns selection, dropout handling, serialization, and strategy plugins. The client is a thin subclass:
+Hand-rolled servers are fine for learning and wrong for production. [Flower](https://flower.ai) (`uv pip install flwr`) is the de-facto framework: it owns selection, dropout handling, serialization, and strategy plugins. The client is a thin subclass:
 
 ```python
 import flwr as fl

@@ -3,7 +3,7 @@ Document ID: 5501
 Title: Optimizer Variants
 Phase: 5
 Module: 5500
-Last Updated: 2026-09-25
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -228,7 +228,7 @@ Today 8-bit Adam has mostly displaced Adafactor for memory-constrained runs, bec
 Lion replaces the adaptive machinery with a sign update on the interpolation of two gradients — only **one** moment is stored:
 
 ```python
-# pip install lion-pytorch
+# uv pip install lion-pytorch
 from lion_pytorch import Lion
 
 optimizer = Lion(model.parameters(), lr=3e-5, weight_decay=0.1)

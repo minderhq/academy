@@ -1,7 +1,7 @@
 ---
 Document ID: 4308
 Title: "4308: BitBlade QAT Guide"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Advanced
 ---
@@ -58,13 +58,13 @@ BitBlade combines multiple quantization techniques:
 
 ```bash
 # Install BitBlade
-pip install bitblade
+uv pip install bitblade
 
 # Install with extras for CUDA support
-pip install bitblade[cuda]
+uv pip install bitblade[cuda]
 
 # Install development version
-pip install git+https://github.com/bitblade-ai/bitblade.git
+uv pip install git+https://github.com/bitblade-ai/bitblade.git
 ```
 
 ## Basic Usage

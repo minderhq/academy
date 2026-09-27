@@ -1,7 +1,7 @@
 ---
 Document ID: 4400-PRACTICE
 Title: "4400: Advanced Quantization Techniques - Practice"
-Last Updated: 2026-09-25
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Advanced
 ---
@@ -24,7 +24,7 @@ print("GPTQ Quantization")
 print("="*60)
 
 # Note: GPTQ requires auto-gptq library
-# Installation: pip install auto-gptq
+# Installation: uv pip install auto-gptq
 # (auto-gptq is deprecated - the current path is transformers' native
 #  GPTQConfig or gptqmodel; the workflow below is conceptually identical)
 

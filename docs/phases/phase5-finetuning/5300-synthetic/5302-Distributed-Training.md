@@ -3,7 +3,7 @@ Document ID: 5302
 Title: Distributed Training Orchestration
 Phase: 5
 Module: 5300
-Last Updated: 2026-09-26
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -261,7 +261,7 @@ Once each `mlp` is wrapped (524k params ≥ 100k), the `blocks` container's *res
 ZeRO shards optimizer states (stage 1), gradients (stage 2), and parameters (stage 3) to cut per-GPU memory — see the stage-by-stage memory calculator in [2302: Model Serving Architectures](../../phase2-foundations/2300-framework-engineering/2302-Model-Serving-Architectures.md). The `deepspeed` package is not part of this lesson environment, so the engine construction is a reference sketch ([DeepSpeed - Getting Started](https://www.deepspeed.ai/getting-started/)); the config arithmetic it depends on runs fine on plain Python:
 
 ```text
-import deepspeed   # pip install deepspeed  (CUDA + Linux toolchain)
+import deepspeed   # uv pip install deepspeed  (CUDA + Linux toolchain)
 
 model_engine, optimizer, _, _ = deepspeed.initialize(
     model=model,             # your torch nn.Module
@@ -420,7 +420,7 @@ spec:
 QLoRA freezes a 4-bit (NF4) base model and trains LoRA adapters on top — the recipe is developed in [5102: QLoRA Pipelines](../5100-peft/5102-QLoRA-Pipelines.md) and [5101: LoRA Logic](../5100-peft/5101-LoRA-Logic.md). The reference script needs `bitsandbytes` plus access to a gated 7B repo, so it cannot run in this lesson's environment; it is kept as a text reference with the two footguns that most often break it:
 
 ```text
-# pip install bitsandbytes peft transformers  (CUDA required for NF4)
+# uv pip install bitsandbytes peft transformers  (CUDA required for NF4)
 import torch
 from transformers import (AutoModelForCausalLM, TrainingArguments,
                           Trainer, BitsAndBytesConfig)
@@ -504,7 +504,7 @@ Adapter weights scale roughly with `r x (in_dim + out_dim)` per targeted project
 For heterogeneous clusters (mixed GPU sizes, preemption, many concurrent jobs), Ray Train wraps the DDP loop with resource allocation, scaling, and fault tolerance. The `ray` package is not installed in this environment; the sketch is a reference ([Ray Train Documentation](https://docs.ray.io/en/latest/train/train.html)) — note the `zero_grad()` that the distributed loop must not forget:
 
 ```text
-# pip install "ray[train]"
+# uv pip install "ray[train]"
 import ray
 from ray.train import ScalingConfig
 from ray.train.torch import TorchTrainer, get_device
@@ -624,7 +624,7 @@ keys: ['lr', 'step', 'train_loss']
 `wandb` needs an account and API key (`wandb login`), so it is a reference here ([Weights & Biases Documentation](https://docs.wandb.ai/)):
 
 ```text
-# pip install wandb  &&  wandb login
+# uv pip install wandb  &&  wandb login
 import wandb
 
 wandb.init(project="ai-engineering-curriculum", entity="your-org", config={
@@ -643,7 +643,7 @@ wandb.save("./checkpoints/model.pth")   # uploads an artifact; resuming a run
 PyTorch's `SummaryWriter` needs the `tensorboard` package installed even to write event files (it is not installed in this environment); the viewer is a separate process ([torch.utils.tensorboard - PyTorch docs](https://docs.pytorch.org/docs/2.14/tensorboard.html)):
 
 ```text
-# pip install tensorboard     (torch.utils.tensorboard writes event files)
+# uv pip install tensorboard     (torch.utils.tensorboard writes event files)
 from torch.utils.tensorboard import SummaryWriter
 
 writer = SummaryWriter("./logs")

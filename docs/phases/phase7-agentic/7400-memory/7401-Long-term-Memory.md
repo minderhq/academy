@@ -3,7 +3,7 @@ Document ID: 7401
 Title: Long-term Memory for Agents
 Phase: 7
 Module: 7400
-Last Updated: 2026-09-24
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -220,9 +220,9 @@ memory = VectorStoreMemory(
 ### 3.1 Installation and Setup
 
 ```bash
-pip install mem0ai
+uv pip install mem0ai
 # or
-pip install "mem0ai[chroma]"  # With ChromaDB backend
+uv pip install "mem0ai[chroma]"  # With ChromaDB backend
 ```
 
 ### 3.2 Basic Mem0 Usage

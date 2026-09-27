@@ -3,7 +3,7 @@ Document ID: 3102
 Title: Flash Attention - IO-Aware Exact Attention
 Phase: 3
 Module: 3100
-Last Updated: 2026-09-24
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -192,7 +192,7 @@ for K_block in K_blocks:
 
 ### Via xFormers (Meta's library)
 ```bash
-pip install xformers
+uv pip install xformers
 ```
 
 ```python
@@ -214,7 +214,7 @@ O = memory_efficient_attention(Q, K, V, attn_bias=mask)
 
 ### Via Flash Attention Library
 ```bash
-pip install flash-attn
+uv pip install flash-attn
 ```
 
 ```python

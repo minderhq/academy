@@ -1,7 +1,7 @@
 ---
 Document ID: 5104
 Title: "5104: LoRA Implementation Guide"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Advanced
 ---
@@ -788,7 +788,7 @@ target_modules = ["q_proj", "k_proj", "v_proj", "o_proj",
 
 ```bash
 # 1. Install dependencies
-pip install transformers peft bitsandbytes accelerate datasets
+uv pip install transformers peft bitsandbytes accelerate datasets
 
 # 2. Train with QLoRA
 python lora_finetuning.py \

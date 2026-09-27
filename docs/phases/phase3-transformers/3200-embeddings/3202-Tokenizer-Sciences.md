@@ -3,7 +3,7 @@ Document ID: 3202
 Title: Tokenizer Sciences - BPE, SentencePiece, and Tiktoken
 Phase: 3
 Module: 3200
-Last Updated: 2026-09-24
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -215,7 +215,7 @@ Key difference: Can tokenize ambiguous strings differently
 
 ### SentencePiece Implementation
 ```python
-# pip install sentencepiece
+# uv pip install sentencepiece
 import sentencepiece as spm
 
 # Train SentencePiece model
@@ -276,7 +276,7 @@ Tiktoken is OpenAI's tokenizer for GPT-3.5/4:
 
 ### Using Tiktoken
 ```python
-# pip install tiktoken
+# uv pip install tiktoken
 import tiktoken
 
 # Load encoding
