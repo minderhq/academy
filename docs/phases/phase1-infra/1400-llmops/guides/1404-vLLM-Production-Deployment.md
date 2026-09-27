@@ -28,12 +28,12 @@ Difficulty: Intermediate
 
 After completing this lesson, you will be able to:
 
-- Explain Architecture
-- Apply Deployment Options
-- Apply Configuration Guide
-- Explain Client Usage Examples
-- Configure and operate Advanced Configuration
-- Measure and evaluate Performance Benchmarks
+- Walk the production stack diagram - Nginx gateway, vLLM server, Prometheus - and state what each layer adds
+- Deploy the pinned vllm/vllm-openai image via Docker Compose and K3s with PVC model cache and health-gated probes
+- Size gpu_memory_utilization, max_model_len, and max_num_seqs from the 11GB budget math (~4.9GB left for KV)
+- Call the OpenAI-compatible API with streaming from Python, curl, and TypeScript, honoring --api-key auth
+- Operate the advanced pieces: multi-model routing, replica-pool nginx LB, Prometheus scraping, and the FastAPI model-aware gateway
+- Read the V1 Prometheus metrics (kv_cache_usage_perc, preemptions, TTFT histograms) and benchmark concurrency honestly
 
 ---
 
@@ -87,7 +87,7 @@ vLLM is a high-throughput LLM inference engine: PagedAttention segments the KV c
 # docker-compose.yml
 services:
   vllm-mistral:
-    image: vllm/vllm-openai:latest   # pin a released tag for reproducible deploys
+    image: vllm/vllm-openai:v0.30.0   # pinned release (Sep 2026); check releases for newer
     container_name: ai-engineering-curriculum-vllm-mistral
     ports:
       - "8000:8000"
@@ -133,7 +133,7 @@ services:
   # need an HF token with accepted license terms. TheBloke/Llama-2-7B-AWQ is
   # ungated and pre-quantized, so it needs no token and fits 11GB.
   vllm-llama:
-    image: vllm/vllm-openai:latest
+    image: vllm/vllm-openai:v0.30.0
     container_name: ai-engineering-curriculum-vllm-llama
     ports:
       - "8001:8000"
@@ -188,7 +188,7 @@ spec:
         accelerator: nvidia   # must match the GPU node label (see 1301)
       containers:
       - name: vllm
-        image: vllm/vllm-openai:latest   # pin a released tag for reproducible deploys
+        image: vllm/vllm-openai:v0.30.0   # pinned release (Sep 2026); check releases for newer
         # args (not command:) — command: would replace the image ENTRYPOINT
         args:
           - --model
@@ -455,7 +455,7 @@ services:
   # (weights + KV cache) — put services on different GPUs via
   # CUDA_VISIBLE_DEVICES.
   vllm-mistral:
-    image: vllm/vllm-openai:latest   # pin a released tag for reproducible deploys
+    image: vllm/vllm-openai:v0.30.0   # pinned release (Sep 2026); check releases for newer
     container_name: vllm-mistral
     ports:
       - "8001:8000"
@@ -470,7 +470,7 @@ services:
   # phi-2 (2.7B, MIT license) runs fp16 in ~5.5GB — small enough alone,
   # max context defaults to its 2048-token ceiling
   vllm-phi:
-    image: vllm/vllm-openai:latest
+    image: vllm/vllm-openai:v0.30.0
     container_name: vllm-phi
     ports:
       - "8003:8000"
@@ -749,15 +749,15 @@ P95 latency > 500ms
 ## Quick Start
 
 ```bash
-# 1. Pull the vLLM OpenAI-compatible server image (pin a tag in production)
-docker pull vllm/vllm-openai:latest
+# 1. Pull the vLLM OpenAI-compatible server image (pinned release; check releases for newer)
+docker pull vllm/vllm-openai:v0.30.0
 
 # 2. Start the server — the pre-quantized AWQ checkpoint fits an 11GB GPU
 #    (fp16 7B weights need ~14GB and would OOM)
 docker run -d --gpus all \
   -p 8000:8000 \
   --name vllm-mistral \
-  vllm/vllm-openai:latest \
+  vllm/vllm-openai:v0.30.0 \
   --model TheBloke/Mistral-7B-Instruct-v0.2-AWQ \
   --gpu-memory-utilization 0.9 \
   --max-model-len 4096
@@ -785,9 +785,10 @@ python -c "from openai import OpenAI; client = OpenAI(base_url='http://localhost
 
 ## Next Steps
 
-- Continue with: **[1405-TGI-Deployment-Guide.md](./1405-TGI-Deployment-Guide.md)**
+- Continue with: **[1405-TGI-Deployment-Guide.md](./1405-TGI-Deployment-Guide.md)** — legacy
+  reference only: the TGI repo was archived on GitHub (read-only) in March 2026; new production
+  deployments default to vLLM (this guide)
 
----
 ---
 
 **Related:**
