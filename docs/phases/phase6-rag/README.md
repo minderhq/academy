@@ -327,7 +327,7 @@ Conclusion: Self-hosted pays for itself within a few months
 | Document | Description | Time | Difficulty |
 |----------|-------------|------|------------|
 | [6201: Hybrid Search](./6200-retrieval/6201-Hybrid-Search.md) | BM25 + Vector combination | 3h | Intermediate |
-| [6202: Re-ranking](./6200-retrieval/6202-Re-ranking-and-Retrieval-Logistics.md) | Post-search relevance filtering | 3h | Advanced |
+| [6202: Re-ranking](./6200-retrieval/6202-Re-ranking-and-Retrieval-Logistics.md) | Post-search relevance filtering | 3h | Intermediate |
 | [6203: Advanced Retrieval](./6200-retrieval/6203-Advanced-Retrieval.md) | Query expansion, fusion | 2h | Advanced |
 
 **What You'll Learn:**
@@ -347,9 +347,9 @@ Conclusion: Self-hosted pays for itself within a few months
 
 | Document | Description | Time | Difficulty |
 |----------|-------------|------|------------|
-| [6301: Long Context Reorder](./6300-context/6301-Neo4j-and-Knowledge-Graphs.md) | Neo4j and Knowledge Graphs | 4h | Advanced |
-| [6302: Caching and Memory](./6300-context/6302-CAG-Long-Context-Architectures.md) | 128k+ token as "Temporary Database" | 3h | Intermediate |
-| [6303: Neo4j Deployment](./6300-context/guides/6303-Neo4j-Deployment-Guide.md) | Neo4j setup guide | 2h | Intermediate |
+| [6301: Neo4j and Knowledge Graphs](./6300-context/6301-Neo4j-and-Knowledge-Graphs.md) | Neo4j and Knowledge Graphs | 5h | Advanced |
+| [6302: Caching and Memory](./6300-context/6302-CAG-Long-Context-Architectures.md) | 128k+ token as "Temporary Database" | 5h | Advanced |
+| [6303: Neo4j Deployment](./6300-context/guides/6303-Neo4j-Deployment-Guide.md) | Neo4j setup guide | 2h | Advanced |
 | [6304: GraphRAG Implementation](./6300-context/guides/6304-GraphRAG-Implementation.md) | Complete GraphRAG pipeline | 4h | Advanced |
 
 **What You'll Learn:**
@@ -369,8 +369,8 @@ Conclusion: Self-hosted pays for itself within a few months
 
 | Document | Description | Time | Difficulty |
 |----------|-------------|------|------------|
-| [6401: Qdrant Setup](./6400-vector-databases/6401-Qdrant-Setup.md) | Qdrant configuration | 2h | Intermediate |
-| [6402: Pinecone vs Weaviate](./6400-vector-databases/6402-Pinecone-vs-Weaviate.md) | Comparison guide | 2h | Beginner |
+| [6401: Qdrant Setup](./6400-vector-databases/6401-Qdrant-Setup.md) | Qdrant configuration | 3h | Intermediate |
+| [6402: Pinecone vs Weaviate](./6400-vector-databases/6402-Pinecone-vs-Weaviate.md) | Comparison guide | 3h | Intermediate |
 | [6403: Qdrant Production Deployment](./6400-vector-databases/guides/6403-Qdrant-Production-Deployment.md) | Production deployment guide | 2h | Intermediate |
 
 **What You'll Learn:**
@@ -386,6 +386,27 @@ Conclusion: Self-hosted pays for itself within a few months
 - Benchmark performance
 - Set up replication
 
+### [6500] MLOps Pipelines for RAG
+
+| Document | Description | Time | Difficulty |
+|----------|-------------|------|------------|
+| [6501: ML Lifecycle Management](./6500-mlops-pipelines/6501-ML-Lifecycle-Management.md) | End-to-end ML pipeline for RAG | 4h | Advanced |
+| [6502: CI/CD for ML](./6500-mlops-pipelines/6502-CI-CD-for-ML.md) | Automated testing and deployment | 4h | Advanced |
+| [6503: Model Registry](./6500-mlops-pipelines/6503-Model-Registry.md) | Versioning and lineage tracking | 4h | Advanced |
+
+**What You'll Learn:**
+- ML lifecycle management for RAG systems
+- CI/CD pipelines with automated testing
+- Model registries, versioning, and lineage
+- Monitoring and drift detection
+- Production deployment strategies
+
+**Hands-On Practice:**
+- Build an ML pipeline for RAG
+- Set up GitHub Actions for ML
+- Implement automated model testing
+- Deploy and monitor a RAG system
+
 ---
 
 ## Learning Path
@@ -400,6 +421,7 @@ graph TD
     B -->|Improve retrieval| D[6200: RAG 2.0]
     B -->|Use knowledge graphs| E[6300: Context Augmentation]
     B -->|Deploy vector DB| F[6400: Vector Databases]
+    B -->|Automate MLOps| O[6500: MLOps Pipelines]
 
     C --> G[6101: RAG Foundations]
     G --> H[6102: Embedding Models]
@@ -413,10 +435,14 @@ graph TD
     F --> M[6401: Qdrant Setup]
     M --> N[6403: Production Deployment]
 
+    O --> P[6501: Lifecycle Management]
+    P --> Q[6503: Model Registry]
+
     style C fill:#e1f5fe
     style D fill:#fff3e0
     style E fill:#f3e5f5
     style F fill:#fce4ec
+    style O fill:#e8f5e9
 ```
 
 ### Time Estimates
@@ -425,9 +451,12 @@ graph TD
 |--------|---------|----------|-------|
 | 6100: Vector Architectures | 8h | 6h | 14h |
 | 6200: RAG 2.0 | 8h | 6h | 14h |
-| 6300: Context Augmentation | 13h | 10h | 23h |
-| 6400: Vector Databases | 6h | 4h | 10h |
-| **Total** | **35h** | **26h** | **61h** |
+| 6300: Context Augmentation | 16h | 10h | 26h |
+| 6400: Vector Databases | 8h | 4h | 12h |
+| 6500: MLOps Pipelines | 12h | — | 12h |
+| **Total** | **52h** | **26h** | **78h** |
+
+*6500 practice time is not yet estimated in its PRACTICE.md; phase totals cover the estimated modules.*
 
 ---
 
@@ -692,6 +721,11 @@ embeddings_fp32_reconstructed = (embeddings_uint8.astype(np.float32) - 128) / 12
    - Index millions of documents
    - Benchmark performance
 
+5. **[EXP_6501: MLOps Pipeline](../../../experiments/EXP_6501_MLOPS_PIPELINE.md)**
+   - Set up a CI/CD pipeline for ML
+   - Measure deployment time reduction
+   - Configure canary deployment and rollback
+
 ---
 
 ## Prerequisites
@@ -711,7 +745,7 @@ See [PREREQUISITES](../../00-META/ENVIRONMENT-SETUP.md) for details.
 
 Validate your knowledge with:
 
-- **[Phase g Quiz](../../00-META/assessment/phase6-quiz.md)** - Test your understanding (20 questions, 80% to pass)
+- **[Phase 6 Quiz](../../00-META/assessment/phase6-quiz.md)** - Test your understanding (20 questions, 80% to pass)
 - **[Phase 6 Practice](../../00-META/assessment/phase6-practice.md)** - Hands-on exercises
 
 ---
@@ -721,6 +755,7 @@ Validate your knowledge with:
 - **4100: Quantization** - Quantize embeddings
 - **5100: PEFT** - Fine-tune embedding models
 - **7100: Agents** - Use RAG in agents
+- **6500: MLOps** - Productionize RAG pipelines
 - **SOL-001: Enterprise KB** - Complete RAG solution
 
 ---
@@ -754,8 +789,8 @@ After completing this phase:
 ---
 
 **Status:** ✅ Complete
-**Module Duration:** 61 hours (35 reading + 26 practice)
+**Module Duration:** 78 hours (52 reading + 26 practice)
 **Difficulty:** Intermediate
-**Last Updated:** 2026-09-24
+**Last Updated:** 2026-09-27
 
 **Ready to augment LLMs with your data?** Start with [6101: RAG Foundations](./6100-vector/6101-HNSW-Indexing.md) or [6201: Hybrid Search](./6200-retrieval/6201-Hybrid-Search.md)

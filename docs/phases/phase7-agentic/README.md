@@ -482,8 +482,8 @@ tools_researcher = {
 
 | Document | Description | Time | Difficulty |
 |----------|-------------|------|------------|
-| [7101: Agent Architecture](./7100-architecture/7101-ReAct-Loop-System.md) | Thought, Action, Observation patterns | 3h | Intermediate |
-| [7102: State Machines](./7100-architecture/7102-Planning-Decomposition.md) | Breaking down complex tasks | 3h | Intermediate |
+| [7101: Agent Architecture](./7100-architecture/7101-ReAct-Loop-System.md) | Thought, Action, Observation patterns | 4h | Advanced |
+| [7102: State Machines](./7100-architecture/7102-Planning-Decomposition.md) | Breaking down complex tasks | 4h | Advanced |
 | [7103: ReAct Implementation](./7100-architecture/guides/7103-ReAct-Implementation-Guide.md) | Complete ReAct implementation | 3h | Advanced |
 
 **What You'll Learn:**
@@ -502,7 +502,7 @@ tools_researcher = {
 
 | Document | Description | Time | Difficulty |
 |----------|-------------|------|------------|
-| [7201: Tool Calling](./7200-tools/7201-Tool-Calling.md) | OpenAI-style function calling | 2h | Intermediate |
+| [7201: Tool Calling](./7200-tools/7201-Tool-Calling.md) | OpenAI-style function calling | 3h | Intermediate |
 | [7202: Code Interpreter](./7200-tools/guides/7202-Code-Interpreter.md) | Sandboxed code execution | 3h | Advanced |
 
 **What You'll Learn:**
@@ -522,8 +522,8 @@ tools_researcher = {
 | Document | Description | Time | Difficulty |
 |----------|-------------|------|------------|
 | [7301: Orchestration](./7300-orchestration/7301-Orchestration.md) | Multi-agent collaboration | 4h | Advanced |
-| [7302: Communication Protocols](./7300-orchestration/7302-Communication-Protocols.md) | Agent-to-agent messaging | 2h | Intermediate |
-| [7303: Framework Comparison](./7300-orchestration/guides/7303-Framework-Comparison.md) | AutoGen vs LangGraph vs others | 2h | Beginner |
+| [7302: Communication Protocols](./7300-orchestration/7302-Communication-Protocols.md) | Agent-to-agent messaging | 2h | Advanced |
+| [7303: Framework Comparison](./7300-orchestration/guides/7303-Framework-Comparison.md) | AutoGen vs LangGraph vs others | 2h | Advanced |
 
 **What You'll Learn:**
 - Multi-agent patterns (hierarchical, sequential, parallel)
@@ -541,9 +541,9 @@ tools_researcher = {
 
 | Document | Description | Time | Difficulty |
 |----------|-------------|------|------------|
-| [7401: Long-term Memory](./7400-memory/7401-Long-term-Memory.md) | Persistent memory systems | 3h | Intermediate |
+| [7401: Long-term Memory](./7400-memory/7401-Long-term-Memory.md) | Persistent memory systems | 4h | Advanced |
 | [7402: Memory Implementation](./7400-memory/guides/7402-Agent-Memory-Implementation.md) | Memory architecture guide | 3h | Advanced |
-| [7403: Vector Memory](./7400-memory/7403-Vector-Memory.md) | Embedding-based memory | 2h | Intermediate |
+| [7403: Vector Memory](./7400-memory/7403-Vector-Memory.md) | Embedding-based memory | 2h | Advanced |
 
 **What You'll Learn:**
 - Memory architectures (short-term, long-term, episodic)
@@ -556,6 +556,27 @@ tools_researcher = {
 - Build vector memory store
 - Create memory retrieval mechanisms
 - Optimize memory performance
+
+### [7500] AI Agent Security
+
+| Document | Description | Time | Difficulty |
+|----------|-------------|------|------------|
+| [7501: Prompt Injection Defense](./7500-security/7501-Prompt-Injection-Defense.md) | Injection detection and prevention | 3h | Advanced |
+| [7502: PII Redaction](./7500-security/7502-PII-Redaction.md) | Privacy filtering and compliance | 3h | Advanced |
+| [7503: Adversarial Attacks](./7500-security/7503-Adversarial-Attacks.md) | Attack types and defense layers | 3h | Advanced |
+
+**What You'll Learn:**
+- Prompt injection techniques and defense layers
+- PII detection, redaction, and compliance (GDPR, HIPAA)
+- Adversarial attack types (jailbreak, DAN, roleplay)
+- Input validation and output filtering
+- Red teaming agent systems
+
+**Hands-On Practice:**
+- Build an injection detector
+- Implement a PII redaction system
+- Test agents with adversarial prompts
+- Design a multi-layer defense pipeline
 
 ---
 
@@ -571,6 +592,7 @@ graph TD
     B -->|Add tool capabilities| D[7200: Tool Use]
     B -->|Coordinate multiple agents| E[7300: Orchestration]
     B -->|Add persistent memory| F[7400: Memory]
+    B -->|Secure your agents| O[7500: Security]
 
     C --> G[7101: ReAct Loop]
     G --> H[7103: Implementation]
@@ -584,21 +606,28 @@ graph TD
     F --> M[7401: Long-term Memory]
     M --> N[7402: Implementation]
 
+    O --> P[7501: Prompt Injection]
+    P --> Q[7503: Adversarial]
+
     style C fill:#e1f5fe
     style D fill:#fff3e0
     style E fill:#f3e5f5
     style F fill:#fce4ec
+    style O fill:#e8f5e9
 ```
 
 ### Time Estimates
 
 | Module | Reading | Practice | Total |
 |--------|---------|----------|-------|
-| 7100: Architecture | 9h | 6h | 15h |
-| 7200: Tool Use | 5h | 4h | 9h |
+| 7100: Architecture | 11h | 6h | 17h |
+| 7200: Tool Use | 6h | 4h | 10h |
 | 7300: Orchestration | 8h | 6h | 14h |
-| 400: Memory | 8h | 6h | 14h |
-| **Total** | **30h** | **22h** | **52h** |
+| 7400: Memory | 9h | 6h | 15h |
+| 7500: Security | 9h | — | 9h |
+| **Total** | **43h** | **22h** | **65h** |
+
+*7500 practice time is not yet estimated in its PRACTICE.md; phase totals cover the estimated modules.*
 
 ---
 
@@ -946,12 +975,12 @@ message = AgentMessage(
    - Build task planning system
    - Debug agent reasoning
 
-2. **[EXP_7301: Sandbox](../../../experiments/EXP_7202_SANDBOX.md)**
+2. **[EXP_7202: Sandbox](../../../experiments/EXP_7202_SANDBOX.md)**
    - Implement function calling
    - Build code interpreter
    - Create custom tools
 
-3. **[EXP_7202: Collaboration](../../../experiments/EXP_7301_COLLABORATION.md)**
+3. **[EXP_7301: Collaboration](../../../experiments/EXP_7301_COLLABORATION.md)**
    - Build multi-agent system
    - Implement communication protocols
    - Orchestrate complex workflow
@@ -960,6 +989,11 @@ message = AgentMessage(
    - Implement memory system
    - Build vector memory store
    - Optimize retrieval
+
+5. **[EXP_7501: Prompt Injection](../../../experiments/EXP_7501_PROMPT_INJECTION.md)**
+   - Run injection attacks against an agent
+   - Measure multi-layer defense effectiveness
+   - Detect injections with perplexity
 
 ---
 
@@ -980,7 +1014,7 @@ See [PREREQUISITES](../../00-META/ENVIRONMENT-SETUP.md) for details.
 
 Validate your knowledge with:
 
-- **[Phase c Quiz](../../00-META/assessment/phase7-quiz.md)** - Test your understanding (20 questions, 80% to pass)
+- **[Phase 7 Quiz](../../00-META/assessment/phase7-quiz.md)** - Test your understanding (20 questions, 80% to pass)
 - **[Phase 7 Practice](../../00-META/assessment/phase7-practice.md)** - Hands-on exercises
 
 ---
@@ -989,6 +1023,7 @@ Validate your knowledge with:
 
 - **5100: PEFT** - Fine-tune models for agents
 - **6100: RAG** - Add memory to agents
+- **7500: Security** - Secure deployed agents
 - **SOL-001: Enterprise KB** - RAG + Agent solution
 - **Industry Guides:** Domain-specific agents
 
@@ -1053,8 +1088,8 @@ Example:
 ---
 
 **Status:** ✅ Complete
-**Module Duration:** 52 hours (30 reading + 22 practice)
+**Module Duration:** 65 hours (43 reading + 22 practice)
 **Difficulty:** Advanced
-**Last Updated:** 2026-02-05
+**Last Updated:** 2026-09-27
 
 **Ready to build autonomous agents?** Start with [7101: Agent Architecture](./7100-architecture/7101-ReAct-Loop-System.md) or [7201: Tool Calling](./7200-tools/7201-Tool-Calling.md)
