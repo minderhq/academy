@@ -3,7 +3,7 @@ Document ID: 6102
 Title: Semantic Similarity Metrics - Cosine, Dot Product, and Manifold Metrics
 Phase: 6
 Module: 6100
-Last Updated: 2026-09-24
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -33,12 +33,12 @@ Tags: ['rag', 'vectors', 'hnsw', 'embeddings', 'similarity']
 
 After completing this lesson, you will be able to:
 
-- Compare Distance vs Similarity
-- Explain Cosine Similarity
-- Explain Dot Product Similarity
-- Explain Euclidean Distance
-- Explain Manhattan Distance
-- Measure and evaluate Advanced Metrics
+- Contrast distance vs similarity conventions — lower-vs-higher-is-closer, bounded vs unbounded ranges, and the metric-specific conversions (cosine similarity = 1 − cosine distance exactly; 1/(1+d) is just one arbitrary monotone squash)
+- Compute cosine similarity in scalar and batched form — the dot-over-norms pipeline and `F.normalize`; verify scale-invariance ([1,2,3] vs [2,4,6] → 1.0 regardless of magnitude)
+- Choose cosine vs dot product with the normalization rule — identical on the unit sphere; on raw vectors dot product rewards magnitude (these toy vectors tie on cosine 0.988 vs 0.983 but separate on dot: 0.88 vs 0.66)
+- Derive Euclidean from cosine — ‖a−b‖² = ‖a‖² + ‖b‖² − 2·a·b (law of cosines), and why squared L2 preserves ranking without paying for the sqrt
+- Place Manhattan and Minkowski — L1's robustness to outliers, and the p dial interpolating L1 → L2 → Chebyshev (p→∞)
+- Run the end-to-end practice loop — encoder embeddings, vectorized similarity matrix, nearest-neighbor extraction, and sklearn ≥1.4 `AgglomerativeClustering(metric='precomputed')` on 1 − sim
 
 ---
 
@@ -59,7 +59,10 @@ Similarity: Higher = more similar
   - Dot product
   - Jaccard similarity
 
-Conversion: similarity = 1 / (1 + distance)
+Conversion is metric-specific, not universal:
+  - Cosine: similarity = 1 - cosine_distance  (exact, by definition)
+  - 1 / (1 + distance): an arbitrary monotone squash into [0, 1] —
+    fine for ranking, but the absolute values carry no meaning
 ```
 
 ### Normalized vs Non-Normalized Embeddings
@@ -135,6 +138,8 @@ Don't Use when:
 
 ### Formula and Implementation
 ```python
+import numpy as np
+
 def dot_product_similarity(a, b):
     """
     Dot product: a · b = Σ(a_i × b_i)
@@ -157,13 +162,18 @@ king = np.array([0.8, 0.5, 0.3])
 queen = np.array([0.7, 0.4, 0.4])
 man = np.array([0.6, 0.3, 0.1])
 
-# Dot product captures both direction and magnitude
-print(dot_product_similarity(king, queen))  # High similarity
-print(dot_product_similarity(king, man))    # Moderate similarity
+# Dot product captures both direction and magnitude.
+# These toy vectors are all nearly parallel, so cosine can barely
+# separate them (0.988 vs 0.983) — the dot product's magnitude term
+# is what creates the gap here:
+print(dot_product_similarity(king, queen))  # 0.88
+print(dot_product_similarity(king, man))    # 0.66
 ```
 
 ### Dot Product in Attention
 ```python
+import torch
+
 # Self-attention uses scaled dot product
 
 def scaled_dot_product_attention(Q, K, V):
@@ -198,15 +208,21 @@ Example:
   v1 = [1, 1, 1], v2 = [100, 100, 100]
 
   Cosine similarity: 1.0 (same direction)
-  Dot product: 300 (high, but penalizes magnitude diff)
+  Dot product: 300 — NOT because the texts are "more similar",
+  but because v2's raw scale inflates the score. Dot product is
+  not scale-invariant: unnormalized corpora leak magnitude in.
 
-Recommendation: Use cosine for text, dot product for attention
+Recommendation: Normalize when you want pure direction (cosine
+behavior); use raw dot product only when magnitude IS signal
+(attention logits, recommendation scores)
 ```
 
 ## Euclidean Distance
 
 ### Formula and Implementation
 ```python
+import numpy as np
+
 def euclidean_distance(a, b):
     """
     L2 distance: ||a - b|| = √(Σ(a_i - b_i)²)
@@ -248,7 +264,7 @@ Use Euclidean Distance when:
 
 Don't Use when:
 ✗ Directional similarity only
-✓ High-dimensional sparse data (curse of dimensionality)
+✗ High-dimensional sparse data (curse of dimensionality)
 ✗ Semantic text similarity
 ```
 
@@ -256,6 +272,8 @@ Don't Use when:
 
 ### Formula and Implementation
 ```python
+import numpy as np
+
 def manhattan_distance(a, b):
     """
     L1 distance: Σ|a_i - b_i|
@@ -265,9 +283,11 @@ def manhattan_distance(a, b):
 
 # Batched PyTorch
 def batch_manhattan_distance(a, b):
+    import torch
     return torch.abs(a - b).sum(dim=-1)
 
 # Example: Grid pathfinding
+# (euclidean_distance comes from the Euclidean section above)
 start = np.array([0, 0])
 end = np.array([3, 4])
 
@@ -292,6 +312,8 @@ Don't Use when:
 
 ### Minkowski Distance (Generalization)
 ```python
+import numpy as np
+
 def minkowski_distance(a, b, p=2):
     """
     General distance: (Σ|a_i - b_i|^p)^(1/p)
@@ -313,6 +335,8 @@ print(minkowski_distance(a, b, p=10)) # Approaches max diff
 
 ### Jaccard Similarity
 ```python
+import numpy as np
+
 def jaccard_similarity(a, b):
     """
     Jaccard: |A ∩ B| / |A ∪ B|
@@ -338,6 +362,8 @@ def jaccard_similarity_continuous(a, b):
 
 ### Pearson Correlation
 ```python
+import numpy as np
+
 def pearson_correlation(a, b):
     """
     Pearson correlation coefficient
@@ -350,11 +376,13 @@ def pearson_correlation(a, b):
     a_centered = a - np.mean(a)
     b_centered = b - np.mean(b)
 
-    # Compute correlation
-    numerator = np.dot(a_centered, b_centered)
+    # A constant vector has zero variance — centered norm is 0 and
+    # the division would return nan, so guard it
     denominator = np.linalg.norm(a_centered) * np.linalg.norm(b_centered)
+    if denominator == 0:
+        return 0.0
 
-    return numerator / denominator
+    return np.dot(a_centered, b_centered) / denominator
 
 # Difference from cosine:
 # Cosine: Original vectors
@@ -407,16 +435,19 @@ for i in range(len(texts)):
 from sklearn.cluster import AgglomerativeClustering
 from sklearn.metrics.pairwise import cosine_similarity
 
+# embeddings / texts come from the Text Similarity Pipeline above
+
 # 1. Compute similarity matrix
 sim_matrix = cosine_similarity(embeddings)
 
 # 2. Convert to distance for clustering
 dist_matrix = 1 - sim_matrix
 
-# 3. Cluster
+# 3. Cluster — the parameter is `metric` since scikit-learn 1.4
+# (the old `affinity='precomputed'` was removed and raises TypeError)
 clustering = AgglomerativeClustering(
     n_clusters=2,
-    affinity='precomputed',
+    metric='precomputed',
     linkage='average',
 )
 
@@ -440,15 +471,6 @@ for i, label in enumerate(labels):
 
 ## Next Steps
 
-- Continue with: **[6201-Hybrid-Search.md](./../6200-retrieval/6201-Hybrid-Search.md)**
+- Continue with: **[6201: Hybrid Search](./../6200-retrieval/6201-Hybrid-Search.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
-
----
----
-
-**Related Documents:**
-- [6101: HNSW Indexing](./6101-HNSW-Indexing.md)
-- [6201: Hybrid Search](../6200-retrieval/6201-Hybrid-Search.md)
-- [3201: RoPE](../../phase3-transformers/3200-embeddings/3201-Rotary-Positional-Embeddings-RoPE.md)
-
-**Experiment Template:** [EXP_6102: Semantic Similarity](../../../../experiments/EXP_6102_SIMILARITY.md)
+- Experiment: **[EXP_6102: Semantic Similarity](../../../../experiments/EXP_6102_SIMILARITY.md)**
