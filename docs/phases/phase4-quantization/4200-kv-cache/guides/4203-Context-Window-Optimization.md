@@ -29,12 +29,12 @@ Difficulty: Advanced
 
 After completing this lesson, you will be able to:
 
-- Explain Context Window Architecture
-- Explain KV Cache Memory Analysis
-- Apply Implementation 1: KV Cache Quantization
-- Apply Implementation 2: Sliding Window Attention
-- Apply Implementation 3: Multi-Round Context Management
-- Apply Implementation 4: Streaming with Long Context
+- Place the two context budgets side by side — 4K fp16 7B at ~10 GB (7 weights + 2 KV + 1 activations) vs 32K 4-bit + int8-KV at ~5 GB (3.5 + 0.5 + 1) — and say which knob buys each factor
+- Compute KV-cache memory with `calculate_kv_cache_memory` (2 × heads × head_dim × seq × batch × bytes × layers) and read the model table — Llama-2-7B 2.00 GB at 4K fp16 doubling per context doubling, Phi-2 at 1.25 GB (head_dim 80), Mixtral-8x7B at 0.50 GB via its 8 GQA KV heads
+- Build `QuantizedKVCache` — int8 storage (1 byte vs fp16's 2) with per-layer `abs().max()/127` scales, `round().clamp(-128, 127)` quantize and scale-multiply dequantize — halving cache VRAM through independent per-layer write positions
+- Implement `SlidingWindowAttention` at O(n·w) — windowed mask over the recent window_size tokens plus every-128th history anchor, self-inclusive window slices, cache trimmed to max_cache_size — and read the op-savings table from 1024 to 16384 seq len
+- Manage multi-round conversations with `ContextManager` — timestamped, importance-scored `ContextSegment`s compressed at the 0.8 capacity threshold down to summary_ratio 0.3 by keeping the highest-importance segments
+- Stream long contexts with `StreamingLLM` — single-token generate loop reusing `past_key_values`, prompt truncation at max_context_tokens, EOS break — and chunk retrieval inputs with `ContextChunker` (1024-token chunks, 128 overlap, token-offset metadata)
 
 ---
 
@@ -112,7 +112,8 @@ models = {
     "Llama-2-7B": {"layers": 32, "heads": 32, "head_dim": 128},
     "Mistral-7B": {"layers": 32, "heads": 32, "head_dim": 128},
     "Phi-2": {"layers": 32, "heads": 32, "head_dim": 80},
-    "Mixtral-8x7B": {"layers": 32, "heads": 32, "head_dim": 128},
+    # Mixtral uses GQA: 8 KV heads per layer, not 32
+    "Mixtral-8x7B": {"layers": 32, "heads": 8, "head_dim": 128},
 }
 
 print("KV Cache Memory Analysis (Batch Size: 1)")
@@ -145,7 +146,7 @@ for model_name, config in models.items():
 # Llama-2-7B      | 2.00       | 4.00       | 8.00       | 8.00
 # Mistral-7B      | 2.00       | 4.00       | 8.00       | 8.00
 # Phi-2           | 1.25       | 2.50       | 5.00       | 5.00
-# Mixtral-8x7B     | 2.00       | 4.00       | 8.00       | 8.00
+# Mixtral-8x7B    | 0.50       | 1.00       | 2.00       | 2.00
 ```
 
 ## Implementation 1: KV Cache Quantization
@@ -185,7 +186,8 @@ class QuantizedKVCache:
         self.k_scales = torch.ones(num_layers, dtype=torch.float32, device="cuda")
         self.v_scales = torch.ones(num_layers, dtype=torch.float32, device="cuda")
 
-        self.current_len = 0
+        # Per-layer write position — all layers fill independently
+        self.write_pos = [0] * num_layers
 
     def update(
         self,
@@ -205,8 +207,8 @@ class QuantizedKVCache:
         k_quantized = (k / k_scale).round().clamp(-128, 127).to(torch.int8)
         v_quantized = (v / v_scale).round().clamp(-128, 127).to(torch.int8)
 
-        # Store in cache
-        start = self.current_len
+        # Store in cache at this layer's write position
+        start = self.write_pos[layer_idx]
         end = start + seq_len
 
         self.k_cache[layer_idx, start:end] = k_quantized[0]
@@ -216,7 +218,7 @@ class QuantizedKVCache:
         self.k_scales[layer_idx] = k_scale
         self.v_scales[layer_idx] = v_scale
 
-        self.current_len = end
+        self.write_pos[layer_idx] = end
 
     def get(
         self,
@@ -227,7 +229,7 @@ class QuantizedKVCache:
         """Retrieve dequantized KV cache"""
 
         if end_pos is None:
-            end_pos = self.current_len
+            end_pos = self.write_pos[layer_idx]
 
         # Get quantized cache
         k = self.k_cache[layer_idx, start_pos:end_pos]  # (seq_len, heads, head_dim)
@@ -267,7 +269,7 @@ def test_quantized_kv_cache():
         # Update cache
         cache.update(layer, k, v)
 
-    print(f"Cache length: {cache.current_len}")
+    print(f"Cache length: {cache.write_pos[0]}")
     print(f"Memory usage: {cache.k_cache.element_size() * cache.k_cache.nelement() / 1024**2:.1f} MB")
 
     # Retrieve
@@ -287,6 +289,7 @@ if __name__ == "__main__":
 import torch
 import torch.nn as nn
 import math
+from typing import Optional, Tuple
 
 class SlidingWindowAttention(nn.Module):
     """
@@ -350,9 +353,10 @@ class SlidingWindowAttention(nn.Module):
         for i in range(seq_len):
             pos = cache_len + i
 
-            # Recent tokens (sliding window)
+            # Recent tokens (sliding window; pos+1 so the query
+            # still attends to its own token)
             window_start = max(0, pos - self.window_size)
-            mask[:, :, i, window_start:pos] = False
+            mask[:, :, i, window_start:pos + 1] = False
 
             # Sparse attention to history (every 128th token)
             for j in range(0, window_start, 128):
@@ -409,6 +413,7 @@ if __name__ == "__main__":
 
 ```python
 # context_management.py
+import time
 from typing import List, Dict, Optional
 from dataclasses import dataclass
 import torch
@@ -632,7 +637,7 @@ def test_streaming():
 
 ```python
 # context_chunking.py
-from typing import List, Tuple
+from typing import List, Dict
 import tiktoken
 
 class ContextChunker:
@@ -805,7 +810,6 @@ nvidia-smi -l 1
 
 - Return to: **[Module README](../README.md)**
 
----
 ---
 
 **Related:**
