@@ -1,7 +1,7 @@
 ---
 Document ID: SOL-001
 Title: "SOL-001: Enterprise Knowledge Base - Complete Implementation"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -156,7 +156,7 @@ source venv/bin/activate  # Linux/Mac
 venv\Scripts\activate  # Windows
 
 # Install dependencies
-pip install -r requirements.txt
+uv pip install -r requirements.txt
 ```
 
 ```text

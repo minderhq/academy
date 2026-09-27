@@ -172,7 +172,7 @@ pip install missing-package
 **Solution:** Check Jupyter Lab version
 ```bash
 # Update Jupyter Lab
-pip install --upgrade jupyterlab
+uv pip install --upgrade jupyterlab
 ```
 
 #### Issue: Slow Performance

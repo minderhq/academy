@@ -246,9 +246,9 @@ Use **[PROGRESS-TRACKER.md](PROGRESS-TRACKER.md)** to:
 
 **Issue: Import Errors**
 - Solution 1: Create virtual environment
-- Solution 2: Install dependencies (`pip install -r requirements.txt`)
+- Solution 2: Install dependencies (`uv pip install -r requirements.txt`)
 - Solution 3: Check Python version (3.10+)
-- Solution 4: Update packages (`pip install --upgrade`)
+- Solution 4: Update packages (`uv pip install --upgrade`)
 
 **Issue: Slow Training/Inference**
 - Solution 1: Use GPU instead of CPU

@@ -32,7 +32,7 @@ simple-llm-app/
 
 1. Install dependencies:
 ```bash
-pip install -r requirements.txt
+uv pip install -r requirements.txt
 ```
 
 2. Run the API:

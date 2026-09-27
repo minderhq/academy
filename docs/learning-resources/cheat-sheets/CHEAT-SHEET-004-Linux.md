@@ -1,7 +1,7 @@
 ---
 Document ID: CHEAT-SHEET-004
 Title: "CHEAT SHEET: Linux Commands for AI/ML"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -544,8 +544,8 @@ source .venv/bin/activate
 deactivate
 
 # Install packages
-pip install -r requirements.txt
-pip install torch torchvision
+uv pip install -r requirements.txt
+uv pip install torch torchvision
 ```
 
 ### Model Management
