@@ -186,6 +186,19 @@ python3 --version
 # Should be 3.10 or higher
 ```
 
+**Install uv (if not already installed):**
+
+```bash
+# macOS / Linux
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Windows (PowerShell)
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+
+# Verify
+uv --version
+```
+
 **Create Virtual Environment:**
 
 ```bash
@@ -193,22 +206,26 @@ python3 --version
 mkdir -p ~/ai-engineering-curriculum
 cd ~/ai-engineering-curriculum
 
-# Create virtual environment
-python -m venv venv
-
-# Activate (Windows)
-venv\Scripts\activate
+# Create a virtual environment with Python 3.11
+# (uv downloads the interpreter itself if it is missing)
+uv venv --python 3.11
 
 # Activate (Mac/Linux)
-source venv/bin/activate
+source .venv/bin/activate
+
+# Activate (Windows)
+.venv\Scripts\activate
+
+# Plain `python -m venv .venv` also works — same layout, and
+# `uv pip install` operates inside any active virtualenv
 ```
 
 **Verify Activation:**
 
 ```bash
-# You should see (venv) in your prompt
+# You should see (.venv) in your prompt
 which python
-# Should show: ~/ai-engineering-curriculum/venv/bin/python
+# Should show: ~/ai-engineering-curriculum/.venv/bin/python
 ```
 
 **Install Essential Packages:**
@@ -396,8 +413,8 @@ With your environment ready:
    # Start everything quickly
    #!/bin/bash
    cd ~/ai-engineering-curriculum
-   source venv/bin/activate  # Mac/Linux
-   # venv\Scripts\activate   # Windows
+   source .venv/bin/activate  # Mac/Linux
+   # .venv\Scripts\activate   # Windows
    ollama serve &
    ```
 
