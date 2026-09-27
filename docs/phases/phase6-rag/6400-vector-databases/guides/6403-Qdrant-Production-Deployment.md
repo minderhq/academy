@@ -1,9 +1,12 @@
 ---
 Document ID: 6403
 Title: "6403: Qdrant Production Deployment"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Intermediate
+Tags: ['rag', 'qdrant', 'vector-database', 'deployment']
+Phase: 6
+Module: 6400
 ---
 
 # 6403: Qdrant Production Deployment
@@ -30,17 +33,17 @@ Difficulty: Intermediate
 
 After completing this lesson, you will be able to:
 
-- Apply Deployment Targets
-- Configure and operate Docker Deployment
-- Configure and operate Initial Configuration
-- Measure and evaluate Performance Tuning
-- Explain Backup Strategy
-- Measure and evaluate Monitoring
+- Stand up the pinned `qdrant/qdrant:v1.19.1` compose stack with a local `qdrant-net` bridge, memory limits, and a `/healthz` healthcheck — verifying readiness through `/readyz` once the container is up
+- Size a deployment from host RAM with the sizing table — and enable int8 scalar quantization with `rescore=True` plus `oversampling=2.0` when the 8 GB budget runs out
+- Create the 384-d COSINE `documents` collection with `HnswConfigDiff(m=32, ef_construct=200)` — and tune an existing one through `update_collection`, knowing `m` is create-time-only
+- Snapshot collections with `POST /collections/{name}/snapshots` — and rotate 7-day-old `snapshots_*` sets in `backup.sh`, then recover through the snapshot `upload` endpoint in `restore.sh`
+- Export per-collection `points_count` to Prometheus gauges with a `timeout=10`-guarded poller — and scrape Qdrant's `/metrics` endpoint from `prometheus.yml`
+- Harden the service with `QDRANT__SERVICE__API_KEY` plus optional `JWT_RBAC` — using top-level `QDRANT__TLS__CERT`/`QDRANT__TLS__KEY` with `QDRANT__SERVICE__ENABLE_TLS=true`, or a ports-free internal-network compose
 
 ---
 
 ## Abstract
-Complete guide for deploying Qdrant high-performance vector database on any Docker-capable Linux host, NAS, or VPS for AI Engineering Curriculum RAG and semantic search operations.
+Complete guide for deploying the Qdrant high-performance vector database on any Docker-capable Linux host, NAS, or VPS for RAG and semantic search workloads.
 
 ## Deployment Targets
 
@@ -86,27 +89,25 @@ cat > docker-compose.yml << 'EOF'
 
 services:
   qdrant:
-    image: qdrant/qdrant:latest
-    container_name: ai-engineering-curriculum-qdrant
+    image: qdrant/qdrant:v1.19.1
+    container_name: qdrant
     ports:
-      - "6333:6333"  # REST API
+      - "6333:6333"  # REST API + Web UI (/dashboard)
       - "6334:6334"  # gRPC API
-      - "6335:6335"  # Web UI (optional)
     volumes:
       - ./data:/qdrant/storage
     environment:
-      # Memory settings
+      # Service ports (the Web UI ships on the HTTP port under /dashboard;
+      # 6335 is the internal cluster p2p port and must NOT be exposed here)
       - QDRANT__SERVICE__GRPC_PORT=6334
       - QDRANT__SERVICE__HTTP_PORT=6333
-      - QDRANT__SERVICE__WEB_UI_PORT=6335
 
-      # Performance tuning
-      - QDRANT__STORAGE__OPTIMIZERS__INDEXING_THRESHOLD=20000
+      # Performance tuning (keys per the config reference; Qdrant validates
+      # its config at startup, so a mistyped key aborts boot instead of
+      # silently falling back to a default)
+      - QDRANT__STORAGE__OPTIMIZERS__INDEXING_THRESHOLD_KB=20000
       - QDRANT__STORAGE__PERFORMANCE__MAX_SEARCH_THREADS=4
-      - QDRANT__STORAGE__PERFORMANCE__MAX_OPTIMIZATION_THREADS=2
-
-      # Memory limits
-      - QDRANT__STORAGE__PERFORMANCE__SEARCHER_AWAIT_CACHE_TIMEOUT=30s
+      - QDRANT__STORAGE__PERFORMANCE__OPTIMIZER_CPU_BUDGET=2
 
       # Snapshot settings
       - QDRANT__STORAGE__SNAPSHOTS_PATH=/qdrant/storage/snapshots
@@ -119,23 +120,28 @@ services:
           memory: 512M
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:6333/health"]
+      # The runtime image ships no curl/wget, so probe /healthz over bash's
+      # /dev/tcp (a plain TCP connect would not validate the HTTP response)
+      test: ["CMD-SHELL", "bash -c 'exec 3<>/dev/tcp/localhost/6333; printf \"GET /healthz HTTP/1.1\\r\\nHost: localhost\\r\\nConnection: close\\r\\n\\r\\n\" >&3; grep -q \"200 OK\" <&3'"]
       interval: 30s
       timeout: 10s
       retries: 5
+      start_period: 15s
     networks:
-      - ai-engineering-curriculum-net
+      - qdrant-net
 
 networks:
-  ai-engineering-curriculum-net:
-    external: true
+  # A local bridge Compose creates on demand — an `external: true` network
+  # would abort `up` until you create it by hand
+  qdrant-net:
+    driver: bridge
 EOF
 
 # Start Qdrant
-docker-compose up -d
+docker compose up -d
 
 # Check logs
-docker-compose logs -f qdrant
+docker compose logs -f qdrant
 ```
 
 ### Method 2: Portainer / NAS Container Manager (Web UI)
@@ -151,7 +157,7 @@ docker-compose logs -f qdrant
 ### 1. Access Qdrant Dashboard
 
 ```text
-Web UI: http://localhost:6335/dashboard
+Web UI: http://localhost:6333/dashboard
 REST API: http://localhost:6333
 gRPC API: http://localhost:6334
 ```
@@ -163,8 +169,9 @@ Remote clients should point `QDRANT_URL` at the host address; examples in this g
 ```bash
 export QDRANT_URL=${QDRANT_URL:-http://localhost:6333}
 
-# Check health
-curl $QDRANT_URL/health
+# Liveness + readiness probes (there is no /health path)
+curl $QDRANT_URL/healthz
+curl $QDRANT_URL/readyz
 
 # Check collections
 curl $QDRANT_URL/collections
@@ -231,13 +238,13 @@ hnsw_config_large = HnswConfigDiff(
     full_scan_threshold=30000,
 )
 
-# Apply to collection
-client.create_collection(
+# `m` is create-time-only — on an existing collection update_collection
+# accepts ef_construct and full_scan_threshold, and rejects a new m
+client.update_collection(
     collection_name="documents",
-    vectors_config=VectorParams(
-        size=384,
-        distance=Distance.COSINE,
-        hnsw_config=hnsw_config_medium
+    hnsw_config=HnswConfigDiff(
+        ef_construct=200,
+        full_scan_threshold=20000,
     )
 )
 ```
@@ -248,7 +255,7 @@ Quantization trades a small amount of recall for large memory/storage savings �
 
 ```python
 # Enable scalar int8 quantization on an existing collection
-from qdrant_client.models import ScalarQuantization, ScalarQuantizationConfig, QuantizationSearchParams
+from qdrant_client.models import ScalarQuantization, ScalarQuantizationConfig
 
 client.update_collection(
     collection_name="documents",
@@ -261,16 +268,21 @@ client.update_collection(
     ),
 )
 
-# Search with quantized vectors + rescoring against originals
-results = client.search(
+# Search with quantized vectors + rescoring against originals — the
+# QuantizationSearchParams ride inside SearchParams.quantization
+from qdrant_client.models import QuantizationSearchParams, SearchParams
+
+results = client.query_points(
     collection_name="documents",
-    query_vector=query_vector,
-    search_params=QuantizationSearchParams(
-        rescore=True,       # Re-rank against original vectors
-        oversampling=2.0,   # Fetch 2x candidates before rescore
+    query=query_vector,
+    search_params=SearchParams(
+        quantization=QuantizationSearchParams(
+            rescore=True,       # Re-rank against original vectors
+            oversampling=2.0,   # Fetch 2x candidates before rescore
+        )
     ),
     limit=10,
-)
+).points
 ```
 
 Options at a glance:
@@ -287,15 +299,13 @@ Options at a glance:
 # docker-compose.yml - Memory optimized version
 services:
   qdrant:
-    image: qdrant/qdrant:latest
+    image: qdrant/qdrant:v1.19.1
     environment:
-      # Reduce memory footprint
+      # Reduce memory footprint (only keys that exist in the config
+      # reference — there is no searcher_await_cache_timeout or
+      # segment_size under storage.performance)
       - QDRANT__STORAGE__PERFORMANCE__OPTIMIZER_CPU_BUDGET=2
-      - QDRANT__STORAGE__PERFORMANCE__SEARCHER_AWAIT_CACHE_TIMEOUT=10s
       - QDRANT__STORAGE__PERFORMANCE__MAX_SEARCH_THREADS=2
-
-      # Segment size tuning
-      - QDRANT__STORAGE__PERFORMANCE__SEGMENT_SIZE=1048576  # 1MB
 
     deploy:
       resources:
@@ -312,29 +322,33 @@ services:
 ```bash
 # /srv/qdrant/backup.sh
 #!/bin/bash
+set -euo pipefail
 
 BACKUP_DIR="/srv/backups/qdrant"
 DATE=$(date +%Y%m%d_%H%M%S)
+BASE_URL="${QDRANT_URL:-http://localhost:6333}"
 COLLECTIONS=("documents" "embeddings" "knowledge_graph")
 
-# Create backup directory
-mkdir -p $BACKUP_DIR
+DEST="$BACKUP_DIR/snapshots_$DATE"
+mkdir -p "$DEST"
 
-# Backup each collection
 for collection in "${COLLECTIONS[@]}"; do
     echo "Backing up collection: $collection"
 
-    # Create snapshot
-    curl -X POST "http://localhost:6333/collections/$collection/snapshots" \
-      -H "Content-Type: application/json"
+    # Create a snapshot and read the generated file name from the response
+    response=$(curl -fsS -X POST "$BASE_URL/collections/$collection/snapshots")
+    snapshot=$(printf '%s' "$response" | sed -n 's/.*"name":"\([^"]*\)".*/\1/p')
 
-    # Copy snapshot to backup
-    docker cp ai-engineering-curriculum-qdrant:/qdrant/storage/snapshots \
-      $BACKUP_DIR/snapshots_$DATE/
+    # ./data is bind-mounted at /qdrant/storage, so finished snapshots are
+    # already on the host at data/snapshots/<collection>/ — a plain copy
+    # beats a docker cp of the whole directory (which would duplicate every
+    # previous collection's snapshots on each loop iteration)
+    mkdir -p "$DEST/$collection"
+    cp "/srv/qdrant/data/snapshots/$collection/$snapshot" "$DEST/$collection/"
 done
 
-# Keep only last 7 days of backups
-find $BACKUP_DIR -name "snapshots_*" -mtime +7 -exec rm -rf {} \;
+# Keep only the last 7 days of backup sets
+find "$BACKUP_DIR" -maxdepth 1 -name "snapshots_*" -mtime +7 -exec rm -rf {} \;
 
 echo "Backup completed: $DATE"
 ```
@@ -344,25 +358,35 @@ echo "Backup completed: $DATE"
 ```bash
 # /srv/qdrant/restore.sh
 #!/bin/bash
+set -euo pipefail
 
-BACKUP_DIR="/srv/backups/qdrant/snapshots_$1"
-
-if [ -z "$1" ]; then
+# Validate arguments before using them
+if [ -z "${1:-}" ]; then
     echo "Usage: ./restore.sh <backup_date>"
     echo "Example: ./restore.sh 20240115_143000"
     exit 1
 fi
 
-# Stop Qdrant
+BACKUP_DIR="/srv/backups/qdrant/snapshots_$1"
+BASE_URL="${QDRANT_URL:-http://localhost:6333}"
+
+if [ ! -d "$BACKUP_DIR" ]; then
+    echo "No such backup set: $BACKUP_DIR"
+    exit 1
+fi
+
+# Recovery goes through the API — no stop, no rm -rf of the live data dir
 cd /srv/qdrant
-docker-compose down
+docker compose up -d
 
-# Restore data
-rm -rf ./data/*
-cp -r $BACKUP_DIR/* ./data/
-
-# Start Qdrant
-docker-compose up -d
+# Re-upload every snapshot in the set to its collection
+for file in "$BACKUP_DIR"/*/*.snapshot; do
+    collection=$(basename "$(dirname "$file")")
+    echo "Recovering $collection from $(basename "$file")"
+    curl -fsS -X POST \
+      "$BASE_URL/collections/$collection/snapshots/upload?priority=snapshot" \
+      -F "snapshot=@$file"
+done
 
 echo "Restore completed from: $1"
 ```
@@ -386,35 +410,34 @@ NAS users can schedule the same script through Container Manager / Task Schedule
 ```python
 # qdrant_monitoring.py
 import os
+import time
+
 import requests
 from prometheus_client import Counter, Gauge, start_http_server
-import time
 
 QDRANT_URL = os.getenv("QDRANT_URL", "http://localhost:6333")
 
 # Setup metrics
-qdrant_requests = Counter('qdrant_requests_total', 'Total Qdrant requests')
-qdrant_errors = Counter('qdrant_errors_total', 'Qdrant errors')
-qdrant_vectors = Gauge('qdrant_vectors_total', 'Total vectors', ['collection'])
-qdrant_memory = Gauge('qdrant_memory_bytes', 'Qdrant memory usage')
+qdrant_requests = Counter('qdrant_requests_total', 'Total Qdrant polls')
+qdrant_errors = Counter('qdrant_errors_total', 'Failed Qdrant polls')
+qdrant_points = Gauge('qdrant_points_total', 'Stored points', ['collection'])
+
+def poll_collections():
+    """Read every collection's point count and export it as a gauge."""
+    # The list endpoint returns only names — details need a per-collection GET
+    listing = requests.get(f"{QDRANT_URL}/collections", timeout=10).json()
+    for entry in listing["result"]["collections"]:
+        name = entry["name"]
+        detail = requests.get(f"{QDRANT_URL}/collections/{name}", timeout=10).json()
+        qdrant_points.labels(collection=name).set(detail["result"]["points_count"])
+    qdrant_requests.inc()
 
 def monitor_qdrant():
-    """Monitor Qdrant metrics"""
-
+    """Poll Qdrant once a minute; failures are counted, never fatal."""
     while True:
         try:
-            # Get collection info
-            response = requests.get(f"{QDRANT_URL}/collections")
-            collections = response.json()["result"]["collections"]
-
-            for collection in collections:
-                name = collection["name"]
-                vectors_count = collection["vectors_count"]
-                qdrant_vectors.labels(collection=name).set(vectors_count)
-
-                qdrant_requests.inc()
-
-        except Exception as e:
+            poll_collections()
+        except (requests.RequestException, KeyError) as e:
             qdrant_errors.inc()
             print(f"Error: {e}")
 
@@ -440,6 +463,8 @@ scrape_configs:
     metrics_path: /metrics
 ```
 
+The `qdrant:6333` target resolves only for containers on `qdrant-net` — attach Prometheus to the same network (or scrape the host port).
+
 ## Security Hardening
 
 ### 1. API Key Authentication
@@ -450,8 +475,11 @@ services:
   qdrant:
     environment:
       - QDRANT__SERVICE__API_KEY=your_secure_api_key_here
-      - QDRANT__SERVICE__JWT_RSecret=your_jwt_secret_here
+      # Optional: fine-grained JWT RBAC instead of the static key
+      - QDRANT__SERVICE__JWT_RBAC=true
 ```
+
+The config reference is explicit: an API key sent over an unencrypted channel is insecure — pair it with TLS (next section) or a reverse proxy.
 
 ```python
 # Use API key in Python
@@ -472,7 +500,7 @@ services:
   qdrant:
     # Remove ports section, only use internal network
     networks:
-      - ai-engineering-curriculum-net
+      - qdrant-net
 
     # Access via reverse proxy (Nginx)
 ```
@@ -484,8 +512,10 @@ services:
 services:
   qdrant:
     environment:
-      - QDRANT__SERVICE__TLS_CERT=/certs/cert.pem
-      - QDRANT__SERVICE__TLS_KEY=/certs/key.pem
+      - QDRANT__SERVICE__ENABLE_TLS=true
+      # cert/key live under the top-level tls config group, not service
+      - QDRANT__TLS__CERT=/certs/cert.pem
+      - QDRANT__TLS__KEY=/certs/key.pem
     volumes:
       - ./certs:/certs:ro
 ```
@@ -497,10 +527,11 @@ services:
 ```python
 # rag_ingestion.py
 import os
+import uuid
+
 from sentence_transformers import SentenceTransformer
 from qdrant_client import QdrantClient
 from qdrant_client.models import PointStruct
-import hashlib
 
 class RAGIngestion:
     """RAG document ingestion for Qdrant"""
@@ -512,19 +543,18 @@ class RAGIngestion:
         self.embedder = SentenceTransformer("all-MiniLM-L6-v2")
         self.collection = "documents"
 
+    @staticmethod
+    def doc_id(text: str) -> str:
+        """Deterministic UUID from the text — identical texts collapse to
+        one point on upsert instead of colliding in a truncated hash space."""
+        return str(uuid.uuid5(uuid.NAMESPACE_OID, text))
+
     def ingest_document(self, text: str, metadata: dict = None):
         """Ingest a document into Qdrant"""
 
-        # Generate ID
-        doc_id = int(hashlib.md5(text.encode()).hexdigest(), 16) % 10**8
-
-        # Generate embedding
-        embedding = self.embedder.encode(text).tolist()
-
-        # Create point
         point = PointStruct(
-            id=doc_id,
-            vector=embedding,
+            id=self.doc_id(text),
+            vector=self.embedder.encode(text).tolist(),
             payload={
                 "text": text,
                 **(metadata or {})
@@ -537,24 +567,23 @@ class RAGIngestion:
             points=[point]
         )
 
-        return doc_id
+        return point.id
 
     def ingest_batch(self, documents: list):
-        """Ingest multiple documents"""
+        """Ingest multiple documents in one encode + one upsert"""
 
-        points = []
-        for doc in documents:
-            text = doc.get("text")
-            metadata = doc.get("metadata", {})
+        texts = [doc["text"] for doc in documents]
+        # One batched encode call instead of a model round-trip per document
+        embeddings = self.embedder.encode(texts, show_progress_bar=False)
 
-            doc_id = int(hashlib.md5(text.encode()).hexdigest(), 16) % 10**8
-            embedding = self.embedder.encode(text).tolist()
-
-            points.append(PointStruct(
-                id=doc_id,
-                vector=embedding,
-                payload={"text": text, **metadata}
-            ))
+        points = [
+            PointStruct(
+                id=self.doc_id(doc["text"]),
+                vector=embedding.tolist(),
+                payload={"text": doc["text"], **doc.get("metadata", {})}
+            )
+            for doc, embedding in zip(documents, embeddings)
+        ]
 
         # Batch upsert
         self.client.upsert(
@@ -569,7 +598,7 @@ ingestion = RAGIngestion()
 
 # Ingest single document
 ingestion.ingest_document(
-    "ai-engineering-curriculum is an AI infrastructure project.",
+    "Qdrant stores high-dimensional vectors for fast similarity search.",
     metadata={"source": "README", "category": "project"}
 )
 
@@ -606,12 +635,12 @@ class RAGSearch:
         query_vector = self.embedder.encode(query).tolist()
 
         # Search Qdrant
-        results = self.client.search(
+        results = self.client.query_points(
             collection_name=self.collection,
-            query_vector=query_vector,
+            query=query_vector,
             limit=limit,
             score_threshold=score_threshold
-        )
+        ).points
 
         # Format results
         formatted = []
@@ -659,12 +688,15 @@ On an 8 GB host, also enable scalar quantization (see above) to cut vector memor
 collection_info = client.get_collection("documents")
 print(collection_info.config.params.vectors.hnsw_config)
 
-# Adjust ef_search for faster queries
-results = client.search(
+# Trade accuracy for speed per query via SearchParams.hnsw_ef
+from qdrant_client.models import SearchParams
+
+results = client.query_points(
     collection_name="documents",
-    query_vector=query,
-    hnsw_ef=50,  # Lower = faster, less accurate
-)
+    query=query_vector,
+    search_params=SearchParams(hnsw_ef=50),  # Lower = faster, less accurate
+    limit=5,
+).points
 ```
 
 #### 3. High CPU Usage
@@ -685,7 +717,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: qdrant
-  namespace: ai-engineering-curriculum
+  namespace: vector-db
 spec:
   replicas: 1
   selector:
@@ -698,7 +730,7 @@ spec:
     spec:
       containers:
       - name: qdrant
-        image: qdrant/qdrant:latest
+        image: qdrant/qdrant:v1.19.1
         ports:
         - containerPort: 6333
           name: rest
@@ -709,6 +741,12 @@ spec:
           value: "6334"
         - name: QDRANT__SERVICE__HTTP_PORT
           value: "6333"
+        readinessProbe:
+          httpGet:
+            path: /readyz
+            port: 6333
+          initialDelaySeconds: 5
+          periodSeconds: 10
         resources:
           requests:
             memory: "512Mi"
@@ -728,7 +766,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: qdrant-pvc
-  namespace: ai-engineering-curriculum
+  namespace: vector-db
 spec:
   accessModes:
   - ReadWriteOnce
@@ -741,7 +779,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: qdrant
-  namespace: ai-engineering-curriculum
+  namespace: vector-db
 spec:
   selector:
     app: qdrant
@@ -764,20 +802,13 @@ spec:
 
 - [6401: Qdrant Setup Guide](../6401-Qdrant-Setup.md)
 - [6402: Vector Database Comparison](../6402-Pinecone-vs-Weaviate.md)
+- [6101: HNSW Indexing](../../6100-vector/6101-HNSW-Indexing.md)
+- [6103: HNSW Tuning Guide](../../6100-vector/guides/6103-HNSW-Tuning-Guide.md)
+- [6201: Hybrid Search](../../6200-retrieval/6201-Hybrid-Search.md)
 
 ---
 
 ## Next Steps
 
 - Return to: **[Module README](../README.md)**
-
----
----
-
-**Related:**
-- [6401: Qdrant Setup](../6401-Qdrant-Setup.md)
-- [6101: HNSW Indexing](../../6100-vector/6101-HNSW-Indexing.md)
-- [6103: HNSW Tuning Guide](../../6100-vector/guides/6103-HNSW-Tuning-Guide.md)
-- [6201: Hybrid Search](../../6200-retrieval/6201-Hybrid-Search.md)
-- [EXP_6401: Vector DB](../../../../../experiments/EXP_6401_VECTOR_DB.md)
-
+- Experiment: **[EXP_6401: Vector DB](../../../../../experiments/EXP_6401_VECTOR_DB.md)**
