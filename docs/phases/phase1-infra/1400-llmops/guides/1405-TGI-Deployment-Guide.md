@@ -31,12 +31,12 @@ Difficulty: Intermediate
 
 After completing this lesson, you will be able to:
 
-- Compare TGI vs vLLM Comparison
-- Explain Quick Start
-- Apply Configuration Guide
-- Explain Parameter Reference
-- Apply Deployment Options
-- Explain Client Usage Examples
+- Describe TGI's architecture (Rust router, per-shard Python server, launcher) and its archived 2026 status against vLLM
+- Deploy TGI from the pinned ghcr image (final release 3.3.7) via docker run, Compose, and Kubernetes with a PVC model cache
+- Budget the KV cache from the 128KB/token math and set --max-total-tokens / --max-batch-total-tokens accordingly
+- Call the native /generate and SSE /generate_stream APIs plus the OpenAI-compatible /v1/chat/completions endpoint
+- Use the advanced features: per-request LoRA adapters, n-gram/Medusa speculative decoding, and grammar-constrained output
+- Read the tgi_* Prometheus series and benchmark aggregate throughput with concurrent clients
 
 ---
 
@@ -57,6 +57,12 @@ Versions matter with TGI: the launcher CLI has changed across major versions
 (speculative decoding, prefix-caching flags). Everything here matches TGI 3.x,
 verified against the `huggingface/text-generation-inference` source.
 
+Status (Sep 2026): the TGI repository was archived on GitHub (read-only) in
+March 2026; v3.3.7 was its final release. Everything in this guide remains
+runnable on the archived codebase, but the engine is maintenance-only — treat
+this as legacy-deployment reference and default new production deployments to
+vLLM (see the comparison below and guide 1404).
+
 ## TGI vs vLLM Comparison
 
 | Feature | TGI 3.x | vLLM |
@@ -73,9 +79,11 @@ verified against the `huggingface/text-generation-inference` source.
 | Tool calling | ✅ via `/v1/chat/completions` | ✅ via `/v1/chat/completions` |
 | OpenAI-compatible API | ✅ | ✅ |
 
-Both engines are Apache 2.0. Pick TGI for a Hugging Face-native stack with an
-out-of-the-box router; pick vLLM when you need PagedAttention-level KV tuning or a
-wider community plugin surface (see [1404](1404-vLLM-Production-Deployment.md)).
+Both engines are Apache 2.0. With the TGI repository archived (read-only) in
+March 2026, vLLM is the default for new production deployments; TGI remains a
+valid maintenance choice for existing Hugging Face-native fleets, while vLLM
+additionally offers PagedAttention-level KV tuning and a wider plugin surface
+(see [1404](1404-vLLM-Production-Deployment.md)).
 
 ## Quick Start
 
@@ -89,7 +97,7 @@ docker run -d --gpus all \
   --shm-size 1g \
   -p 8080:80 \
   --name tgi-mistral \
-  ghcr.io/huggingface/text-generation-inference:latest \
+  ghcr.io/huggingface/text-generation-inference:3.3.7 \
   --model-id $model \
   --max-total-tokens 8192 \
   --max-batch-prefill-tokens 4096
@@ -114,7 +122,7 @@ Notes:
 docker run -d --gpus all \
   -p 8080:80 \
   --name tgi-mistral \
-  ghcr.io/huggingface/text-generation-inference:latest \
+  ghcr.io/huggingface/text-generation-inference:3.3.7 \
   --model-id TheBloke/Mistral-7B-Instruct-v0.2-AWQ
 ```
 
@@ -127,7 +135,7 @@ docker run -d --gpus all \
   --shm-size 1g \
   -p 8080:80 \
   --name tgi-mistral \
-  ghcr.io/huggingface/text-generation-inference:latest \
+  ghcr.io/huggingface/text-generation-inference:3.3.7 \
   --model-id TheBloke/Mistral-7B-Instruct-v0.2-AWQ \
   --max-total-tokens 8192 \
   --max-batch-total-tokens 16384 \
@@ -185,7 +193,7 @@ Defaults verified against the TGI 3.x launcher source.
 
 services:
   tgi-mistral:
-    image: ghcr.io/huggingface/text-generation-inference:latest
+    image: ghcr.io/huggingface/text-generation-inference:3.3.7
     container_name: ai-engineering-curriculum-tgi-mistral
     ports:
       - "8080:80"
@@ -255,7 +263,7 @@ spec:
     spec:
       containers:
       - name: tgi
-        image: ghcr.io/huggingface/text-generation-inference:latest
+        image: ghcr.io/huggingface/text-generation-inference:3.3.7
         # args (not command:) — command: would replace the
         # text-generation-launcher entrypoint
         args:
@@ -552,7 +560,7 @@ docker run -d --gpus all \
   -p 8080:80 \
   --name tgi-mistral \
   -v /srv/models/lora:/data/lora:ro \
-  ghcr.io/huggingface/text-generation-inference:latest \
+  ghcr.io/huggingface/text-generation-inference:3.3.7 \
   --model-id TheBloke/Mistral-7B-Instruct-v0.2-AWQ \
   --lora-adapters "lora-chat=/data/lora/chat-adapter,lora-code=/data/lora/code-adapter"
 ```
@@ -580,7 +588,7 @@ docker run -d --gpus all \
   --shm-size 1g \
   -p 8080:80 \
   --name tgi-mistral \
-  ghcr.io/huggingface/text-generation-inference:latest \
+  ghcr.io/huggingface/text-generation-inference:3.3.7 \
   --model-id TheBloke/Mistral-7B-Instruct-v0.2-AWQ \
   --speculate 4
 ```
@@ -748,7 +756,7 @@ prompt prefixes skip prefill KV recomputation. There is no
 docker run -d --gpus all \
   -p 8080:80 \
   -e PREFIX_CACHING=false \
-  ghcr.io/huggingface/text-generation-inference:latest \
+  ghcr.io/huggingface/text-generation-inference:3.3.7 \
   --model-id TheBloke/Mistral-7B-Instruct-v0.2-AWQ
 ```
 
@@ -901,15 +909,15 @@ it does not quantize on the fly. A plain fp16 repo fails.
 ## End-to-End Deployment Walkthrough
 
 ```bash
-# 1. Pull the image (pin a released tag for reproducible deploys)
-docker pull ghcr.io/huggingface/text-generation-inference:latest
+# 1. Pull the pinned final-release image (repo archived Mar 2026)
+docker pull ghcr.io/huggingface/text-generation-inference:3.3.7
 
 # 2. Start TGI with a checkpoint that fits 11GB
 docker run -d --gpus all \
   --shm-size 1g \
   -p 8080:80 \
   --name tgi-mistral \
-  ghcr.io/huggingface/text-generation-inference:latest \
+  ghcr.io/huggingface/text-generation-inference:3.3.7 \
   --model-id TheBloke/Mistral-7B-Instruct-v0.2-AWQ \
   --max-total-tokens 8192
 
@@ -941,7 +949,6 @@ python -c "import requests; print(requests.post('http://localhost:8080/generate'
 
 - Return to: **[Module README](../README.md)**
 
----
 ---
 
 **Related:**
