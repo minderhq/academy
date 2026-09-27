@@ -3,7 +3,7 @@ Document ID: 2202
 Title: TensorFlow XLA and Compiler Optimizations
 Phase: 2
 Module: 2200
-Last Updated: 2026-09-26
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 4 hours
@@ -35,12 +35,12 @@ Tags: ['frameworks', 'pytorch', 'tensorflow', 'cuda']
 
 After completing this lesson, you will be able to:
 
-- Explain What is XLA
-- Explain Enabling XLA
-- Explain Operation Fusion
-- Explain HLO (High-Level Operations) Instructions
-- Explain Memory Optimization
-- Explain GPU Compilation and Tensor Cores
+- Describe the XLA pipeline from framework graph through StableHLO/HLO IR to LLVM device code, and place fusion and buffer allocation within it
+- Enable XLA three ways — `jit_compile=True`, `tf.config.optimizer.set_jit`, `jax.jit` — and explain why JAX needs no opt-in
+- Quantify what fusion saves by contrasting three kernels with six full memory passes against one fused kernel that reads its input once
+- Read compiled IR via `experimental_get_compiler_ir` and recognize `Dot`/`Slice`/`Reduce`/`Broadcast` in an HLO dump
+- Avoid recompilation by keeping shapes static and padding outside the jitted region, and judge when XLA does not pay off (tiny graphs, one-shot calls)
+- Configure GPU memory (growth vs a virtual-device cap) and shape matmuls for Tensor Cores — FP16/BF16 with dimensions divisible by 8
 
 ---
 
