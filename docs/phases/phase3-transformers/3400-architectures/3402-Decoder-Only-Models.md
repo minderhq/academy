@@ -3,7 +3,7 @@ Document ID: 3402
 Title: Decoder-Only Models (GPT, LLaMA, Mistral)
 Phase: 3
 Module: 3400
-Last Updated: 2026-09-24
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 4 hours
@@ -31,11 +31,11 @@ Tags: ['transformers', 'architecture', 'encoder-decoder', 'gpt', 'llama']
 
 After completing this lesson, you will be able to:
 
-- Explain Architecture
-- Explain Model Variants
-- Explain Positional Embeddings
-- Explain Training Objectives
-- Compare Comparison
+- Assemble the decoder-only layer stack — pre-RMSNorm → causal self-attention → residual → pre-RMSNorm → SwiGLU FFN → residual — and implement `LLaMABlock`'s 8/3·d hidden-dim rule rounded to `multiple_of=256` with bias-free projections
+- Read the GPT-3 scaling table (12 layers/768 d_model Small → 96 layers/12288 d_model 175B) and contrast its learned positional embeddings + GeLU against the RoPE + SwiGLU modern stack
+- Implement Mistral 7B's two KV-efficiency mechanisms — Sliding Window Attention over a 4096-token window and Grouped Query Attention with 32 query heads sharing 8 KV heads
+- Justify RoPE as the decoder-only default — relative positions, length extrapolation, zero added parameters — across the LLaMA/Mistral/GPT-NeoX/Falcon variants sharing base frequency 10000
+- Train with autoregressive cross-entropy — flatten `(batch, seq_len, vocab)` logits, apply `F.cross_entropy` with `ignore_index` for padding — then place models on the comparison table (GPT-2 1024 ctx learned-pos → Mixtral 8x7B 32k ctx MoE)
 
 ---
 
