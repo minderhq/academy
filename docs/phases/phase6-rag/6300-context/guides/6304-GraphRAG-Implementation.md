@@ -1,9 +1,15 @@
 ---
 Document ID: 6304
 Title: "6304: GraphRAG Implementation Guide"
-Last Updated: 2026-09-24
+Phase: 6
+Module: 6300
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Advanced
+Estimated Time: 4 hours
+Prerequisites: See module README
+Related: See module README
+Tags: ['rag', 'graphrag', 'knowledge-graph', 'neo4j']
 ---
 
 # 6304: GraphRAG Implementation Guide
@@ -18,6 +24,7 @@ Difficulty: Advanced
 - [Implementation 3: Multi-Hop Reasoning](#implementation-3-multi-hop-reasoning)
 - [Implementation 4: Entity Extraction with LLM](#implementation-4-entity-extraction-with-llm)
 - [Implementation 5: Complete GraphRAG Pipeline](#implementation-5-complete-graphrag-pipeline)
+- [Production Note: Microsoft GraphRAG](#production-note-microsoft-graphrag)
 - [Quick Start](#quick-start)
 - [References](#references)
 
@@ -27,12 +34,12 @@ Difficulty: Advanced
 
 After completing this lesson, you will be able to:
 
-- Explain GraphRAG Architecture
-- Apply Implementation 1: Graph Construction
-- Apply Implementation 2: Hybrid Graph + Vector RAG
-- Apply Implementation 3: Multi-Hop Reasoning
-- Apply Implementation 4: Entity Extraction with LLM
-- Apply Implementation 5: Complete GraphRAG Pipeline
+- Explain the GraphRAG loop — walk the four-stage pipeline (ingestion → query processing → context building → generation) and name what graph traversal adds that pure vector RAG lacks on multi-hop questions
+- Build the knowledge graph — run `KnowledgeGraphBuilder` (`create_constraints`, `add_document` upserting entities, `CONTAINS` links, and `RELATIONSHIP {type}` edges) and justify why traversals read the `RELATIONSHIP` type the write path actually creates
+- Run hybrid graph + vector ranking — `GraphRAGSystem.query` fuses Qdrant `query_points` scores with graph document scores (1/(hop+1), max-aggregated over the traversal) through the `alpha` blend — `alpha=1` vector-only, `alpha=0` graph-only
+- Extract reasoning paths — `MultiHopReasoner.reasoning_paths` returns shortest-first paths (names, relationship types, hop counts) between two entities, and `explain_reasoning` renders each as an `A REL B → …` chain
+- Extract entities with an LLM — `EntityExtractor.extract` prompts with a JSON contract, applies the chat template, slices off the echoed prompt before `json.loads`, and returns empty lists on `JSONDecodeError`
+- Assemble the pipeline — `CompleteGraphRAG` chains ingestion (LLM extraction → graph upsert) and querying (hybrid context → prompt → answer), launched against the pinned `neo4j:2026.09.0` and `qdrant/qdrant:v1.19.1` containers from Quick Start
 
 ---
 
@@ -94,7 +101,7 @@ class KnowledgeGraphBuilder:
     Build knowledge graph from documents
     """
 
-    def __init__(self, uri: str = "bolt://192.168.1.100:7687", user: str = "neo4j", password: str = "your_password"):
+    def __init__(self, uri: str = "bolt://localhost:7687", user: str = "neo4j", password: str = "your_secure_password_here"):
         self.driver = GraphDatabase.driver(uri, auth=(user, password))
 
     def create_constraints(self):
@@ -163,15 +170,20 @@ class KnowledgeGraphBuilder:
     def get_entity_context(self, entity_id: str, max_depth: int = 2) -> List[Dict]:
         """Get context for an entity via graph traversal"""
 
+        # Parameters cannot set variable-length path bounds in Cypher —
+        # *1..{max_depth} is a syntax error. Int-cast then interpolate:
+        # int() rejects anything that isn't a number, closing the injection
+        # door the f-string would otherwise open.
+        hop_bound = max(1, int(max_depth))
+
         with self.driver.session() as session:
             result = session.run(
-                """
-                MATCH path = (e:Entity {id: $entity_id})-[:RELATED_TO*1..{max_depth}]-(related:Entity)
-                RETURN DISTINCT related.id as id, related.name as name, related.type as type
+                f"""
+                MATCH (e:Entity {{id: $entity_id}})-[:RELATIONSHIP*1..{hop_bound}]-(related:Entity)
+                RETURN DISTINCT related.id AS id, related.name AS name, related.type AS type
                 LIMIT 20
                 """,
-                entity_id=entity_id,
-                max_depth=max_depth
+                entity_id=entity_id
             )
 
             return [dict(record) for record in result]
@@ -224,10 +236,10 @@ class GraphRAGSystem:
 
     def __init__(
         self,
-        neo4j_uri: str = "bolt://192.168.1.100:7687",
+        neo4j_uri: str = "bolt://localhost:7687",
         neo4j_user: str = "neo4j",
-        neo4j_password: str = "your_password",
-        qdrant_url: str = "http://192.168.1.100:6333",
+        neo4j_password: str = "your_secure_password_here",
+        qdrant_url: str = "http://localhost:6333",
         collection: str = "documents",
         embedder: str = "all-MiniLM-L6-v2",
     ):
@@ -246,7 +258,7 @@ class GraphRAGSystem:
         query: str,
         top_k: int = 5,
         graph_depth: int = 2,
-        alpha: float = 0.5,  # 0=vector only, 1=graph only
+        alpha: float = 0.5,  # 1=vector only, 0=graph only
     ) -> List[Dict]:
         """
         Hybrid graph + vector search
@@ -255,17 +267,20 @@ class GraphRAGSystem:
             query: User query
             top_k: Number of results
             graph_depth: Graph traversal depth
-            alpha: Weight between vector and graph (0-1)
+            alpha: Vector weight in the blend (1 = vector only,
+                0 = graph only)
         """
 
-        # 1. Vector search (Qdrant)
+        # 1. Vector search (Qdrant). query_points replaced the removed
+        # client.search() — qdrant-client deprecated .search() in 1.10 and
+        # removed it since (see 6103/6201); results live in .points
         query_vector = self.embedder.encode(query).tolist()
 
-        vector_results = self.qdrant.search(
+        vector_results = self.qdrant.query_points(
             collection_name=self.collection,
-            query_vector=query_vector,
+            query=query_vector,
             limit=top_k * 2,
-        )
+        ).points
 
         # 2. Graph search (Neo4j)
         # Extract entities from query
@@ -295,33 +310,42 @@ class GraphRAGSystem:
         return entities[:5]
 
     def _graph_traversal(self, entities: List[str], depth: int = 2) -> Dict[str, float]:
-        """Traverse knowledge graph to find relevant context"""
+        """
+        Traverse the knowledge graph and score DOCUMENTS (not entities):
+        the hybrid blend below joins on doc ids, so graph hits must be
+        keyed by the same ids the vector search returns.
+        """
 
-        entity_scores = {}
+        doc_scores = {}
 
         with self.neo4j.session() as session:
             for entity in entities:
-                # Find matching entities
+                # Parameters can't set variable-length path bounds —
+                # int-cast then interpolate (see get_entity_context)
+                hop_bound = max(1, int(depth))
                 result = session.run(
-                    """
-                    MATCH (e:Entity)
-                    WHERE toLower(e.name) CONTAINS toLower($entity)
-                    CALL {
-                      MATCH (e)-[:RELATED_TO*1..{depth}]-(related:Entity)
-                      RETURN related.id as id, related.name as name, count(*) as distance
-                      } IN TRANSACTIONS
-                    RETURN id, name, distance
+                    f"""
+                    // Direct hit: the document containing a matched entity
+                    MATCH (seed:Entity)<-[:CONTAINS]-(d:Document)
+                    WHERE toLower(seed.name) CONTAINS toLower($entity)
+                    RETURN d.id AS doc_id, 0 AS hop
+                    UNION
+                    // Neighborhood: documents of graph neighbors, nearest first
+                    MATCH path = (seed:Entity)-[:RELATIONSHIP*1..{hop_bound}]-(neighbor:Entity)
+                    WHERE toLower(seed.name) CONTAINS toLower($entity)
+                    MATCH (d:Document)-[:CONTAINS]->(neighbor)
+                    RETURN d.id AS doc_id, min(length(path)) AS hop
                     """,
-                    entity=entity,
-                    depth=depth
+                    entity=entity
                 )
 
                 for record in result:
-                    entity_id = record["id"]
-                    score = 1.0 / (record["distance"] + 1)
-                    entity_scores[entity_id] = max(entity_scores.get(entity_id, 0), score)
+                    score = 1.0 / (record["hop"] + 1)
+                    doc_scores[record["doc_id"]] = max(
+                        doc_scores.get(record["doc_id"], 0.0), score
+                    )
 
-        return entity_scores
+        return doc_scores
 
     def _combine_results(
         self,
@@ -352,12 +376,19 @@ class GraphRAGSystem:
                     "graph_score": 0.0,
                 }
 
-            combined[doc_id]["vector_score"] = vector_score
-
-        # Add graph scores
-        for entity_id, score in graph_context.items():
-            if entity_id in combined:
-                combined[entity_id]["graph_score"] = score / graph_max
+        # Add graph scores — now keyed by doc id (see _graph_traversal),
+        # so graph hits can actually meet their vector twins. A doc the
+        # graph found but the vector store missed is seeded with a zero
+        # vector score instead of being dropped
+        for doc_id, score in graph_context.items():
+            if doc_id not in combined:
+                combined[doc_id] = {
+                    "doc_id": doc_id,
+                    "content": None,  # graph-only hit — no vector payload
+                    "vector_score": 0.0,
+                    "graph_score": 0.0,
+                }
+            combined[doc_id]["graph_score"] = score / graph_max
 
         # Calculate combined score
         for doc_id, result in combined.items():
@@ -391,7 +422,8 @@ def test_graph_rag():
         print(f"  Score: {result['combined_score']:.3f}")
         print(f"  Vector: {result['vector_score']:.3f}")
         print(f"  Graph: {result['graph_score']:.3f}")
-        print(f"  Content: {result['content'][:100]}...")
+        content = result.get("content") or "(graph-only document)"
+        print(f"  Content: {content[:100]}...")
 
     rag.close()
 ```
@@ -408,7 +440,8 @@ class MultiHopReasoner:
     Multi-hop reasoning over knowledge graph
     """
 
-    def __init__(self, uri: str = "bolt://192.168.1.100:7687", password: str = "your_password"):
+    def __init__(self, uri: str = "bolt://localhost:7687",
+                 password: str = "your_secure_password_here"):
         self.driver = GraphDatabase.driver(uri, auth=("neo4j", password))
 
     def reasoning_paths(
@@ -419,19 +452,22 @@ class MultiHopReasoner:
     ) -> List[Dict]:
         """Find reasoning paths between entities"""
 
+        # Parameters can't set variable-length path bounds — int-cast
+        # then interpolate (see get_entity_context in Implementation 1)
+        hop_bound = max(1, int(max_hops))
+
         with self.driver.session() as session:
             result = session.run(
-                """
-                MATCH path = (start:Entity {name: $start})-[:RELATED_TO*1..{max_hops}]-(end:Entity {name: $end})
-                RETURN [node in nodes(path) | node.name] as path_names,
-                       [rel in relationships(path) | type(rel)] as path_types,
-                       length(path) as hops
+                f"""
+                MATCH path = (start:Entity {{name: $start}})-[:RELATIONSHIP*1..{hop_bound}]-(end:Entity {{name: $end}})
+                RETURN [node in nodes(path) | node.name] AS path_names,
+                       [rel in relationships(path) | type(rel)] AS path_types,
+                       length(path) AS hops
                 ORDER BY hops
                 LIMIT 10
                 """,
                 start=start_entity,
-                end=end_entity,
-                max_hops=max_hops
+                end=end_entity
             )
 
             paths = []
@@ -479,9 +515,11 @@ def test_multi_hop():
 
 ```python
 # entity_extraction.py
+import json
+
+import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from typing import List, Dict
-import json
 
 class EntityExtractor:
     """
@@ -511,27 +549,36 @@ Output JSON format:
     "relationships": [
         {{"source": "entity_id_1", "target": "entity_id_2", "type": "RELATIONSHIP_TYPE", "description": "description"}}
     ]
-}}
+}}"""
 
-Output:"""
-
-        inputs = self.tokenizer(prompt, return_tensors="pt").to("cuda")
+        # Chat template turns the instruction into the format the instruct
+        # model was trained on — raw generate() on the bare prompt would
+        # answer an unformatted request
+        inputs = self.tokenizer.apply_chat_template(
+            [{"role": "user", "content": prompt}],
+            return_tensors="pt",
+            add_generation_prompt=True,
+        ).to("cuda")
 
         with torch.no_grad():
             outputs = self.model.generate(
-                **inputs,
+                inputs,
                 max_new_tokens=512,
-                temperature=0.1,
                 do_sample=False,
             )
 
-        response = self.tokenizer.decode(outputs[0], skip_special_tokens=True)
+        # Slice off the echoed prompt: generate() returns prompt plus
+        # continuation, so decoding the whole tensor would re-feed the
+        # instructions to the JSON parser
+        response = self.tokenizer.decode(
+            outputs[0][inputs.shape[1]:], skip_special_tokens=True
+        )
 
-        # Parse JSON
+        # Parse the first {...} block — a bare except would also swallow
+        # KeyboardInterrupt and NameError silently
         try:
-            data = json.loads(response.split("Output:")[-1].strip())
-            return data
-        except:
+            return json.loads(response[response.index("{"):response.rindex("}") + 1])
+        except (json.JSONDecodeError, ValueError):
             return {"entities": [], "relationships": []}
 
 
@@ -562,6 +609,7 @@ def test_extraction():
 
 ```python
 # complete_graph_rag.py
+import torch
 from graph_construction import KnowledgeGraphBuilder
 from graph_rag import GraphRAGSystem
 from entity_extraction import EntityExtractor
@@ -612,7 +660,11 @@ class CompleteGraphRAG:
         context_parts = []
         for i, result in enumerate(results):
             context_parts.append(f"[Source {i+1}]")
-            context_parts.append(result["content"])
+            # Graph-only hits have no vector payload content
+            context_parts.append(
+                result.get("content")
+                or f"(document {result['doc_id']} — reached via the graph, not in the vector store)"
+            )
 
         context = "\n\n".join(context_parts)
 
@@ -622,26 +674,29 @@ class CompleteGraphRAG:
 Context:
 {context}
 
-Question: {query}
+Question: {query}"""
 
-Answer:"""
-
-        inputs = self.tokenizer(prompt, return_tensors="pt").to("cuda")
+        # Chat template + prompt-slicing (see EntityExtractor.extract)
+        inputs = self.tokenizer.apply_chat_template(
+            [{"role": "user", "content": prompt}],
+            return_tensors="pt",
+            add_generation_prompt=True,
+        ).to("cuda")
 
         with torch.no_grad():
             outputs = self.llm.generate(
-                **inputs,
+                inputs,
                 max_new_tokens=512,
                 temperature=0.7,
                 do_sample=True,
             )
 
-        answer = self.tokenizer.decode(outputs[0], skip_special_tokens=True)
+        # Slice off the echoed prompt — only the continuation is the answer
+        answer = self.tokenizer.decode(
+            outputs[0][inputs.shape[1]:], skip_special_tokens=True
+        )
 
-        # Extract answer
-        answer = answer.split("Answer:")[-1].strip()
-
-        return answer
+        return answer.strip()
 
 
 # Usage
@@ -663,27 +718,32 @@ def test_complete_pipeline():
     print(f"Answer: {answer}")
 ```
 
+## Production Note: Microsoft GraphRAG
+
+The pipeline above teaches the mechanics. For corpus-scale deployments, Microsoft's [`graphrag`](https://github.com/microsoft/graphrag) package (v3.2.0, September 2026) industrializes the same ideas: LLM entity/relationship extraction at index time, Leiden community detection with pre-computed community summaries, and three query modes — **local search** (entity-neighborhood answers), **global search** (community-summary answers for corpus-wide, thematic questions), and **DRIFT search** (local expansion seeded by global priors). Reach for it when the corpus outgrows per-query traversal; keep the pipeline above when you need control over schema, storage, and the fusion step itself.
+
 ## Quick Start
 
 ```bash
-# 1. Start Neo4j
+# 1. Start Neo4j — calendar-versioned pin (see 6303). The
+#    ${NEO4J_PASSWORD:?…} guard fails fast instead of shipping a default
 docker run -d --name neo4j \
   -p 7474:7474 -p 7687:7687 \
-  -e NEO4J_AUTH=neo4j/password \
+  -e NEO4J_AUTH=neo4j/"${NEO4J_PASSWORD:?export NEO4J_PASSWORD first}" \
   -v $PWD/neo4j/data:/data \
-  neo4j:5.15-community
+  neo4j:2026.09.0
 
-# 2. Start Qdrant
+# 2. Start Qdrant — pinned tag, aligned with qdrant-client 1.19 (see 6103)
 docker run -d --name qdrant \
   -p 6333:6333 \
   -v $PWD/qdrant/data:/qdrant/storage \
-  qdrant/qdrant:latest
+  qdrant/qdrant:v1.19.1
 
-# 3. Run GraphRAG
-python graph_rag.py
+# 3. Create the schema (Implementation 1)
+python -c "from graph_construction import KnowledgeGraphBuilder; b = KnowledgeGraphBuilder(); b.create_constraints(); b.close(); print('schema ready')"
 
-# 4. Test
-python -c "from complete_graph_rag import CompleteGraphRAG; rag = CompleteGraphRAG(); print(rag.query('What is AI?'))"
+# 4. Run the full pipeline (Implementation 5 — needs the services above + a GPU)
+python complete_graph_rag.py
 ```
 
 
@@ -693,20 +753,15 @@ python -c "from complete_graph_rag import CompleteGraphRAG; rag = CompleteGraphR
 
 ### Related ai-engineering-curriculum Documents
 
+- [6301: Neo4j and Knowledge Graphs](../6301-Neo4j-and-Knowledge-Graphs.md)
+- [6302: CAG - Context Augmented Generation and Long Context Architectures](../6302-CAG-Long-Context-Architectures.md)
 - [6303: Neo4j Deployment Guide](6303-Neo4j-Deployment-Guide.md)
+- [6201: Hybrid Search](../../6200-retrieval/6201-Hybrid-Search.md)
+- [6401: Qdrant Setup](../../6400-vector-databases/6401-Qdrant-Setup.md)
 
 ---
 
 ## Next Steps
 
 - Return to: **[Module README](../README.md)**
-
----
----
-
-**Related:**
-- [6301: Neo4j and Knowledge Graphs](../6301-Neo4j-and-Knowledge-Graphs.md)
-- [6302: CAG Long Context Architectures](../6302-CAG-Long-Context-Architectures.md)
-- [6303: Neo4j Deployment Guide](6303-Neo4j-Deployment-Guide.md)
-- [6201: Hybrid Search](../../6200-retrieval/6201-Hybrid-Search.md)
-- [EXP_6301: Neo4j Knowledge Graph](../../../../../experiments/EXP_6303_NEO4J.md)
+- Experiment: **[EXP_6301: GraphRAG](../../../../../experiments/EXP_6301_GRAPHRAG.md)**
