@@ -34,12 +34,12 @@ Tags: ['transformers', 'embeddings', 'rope', 'tokenization', 'bpe']
 
 After completing this lesson, you will be able to:
 
-- Explain Tokenization Pipeline
-- Explain Byte-Pair Encoding (BPE)
-- Explain SentencePiece (Unigram Language Model)
-- Explain Tiktoken (OpenAI)
-- Compare Tokenizer Comparison
-- Explain Special Tokens
+- Trace the four-stage pipeline — normalization, pre-tokenization, subword model, post-processing — and place BPE, Unigram, and WordPiece at the model stage
+- Execute BPE's most-frequent-pair merge loop on the hug/pug/pun corpus and account for GPT-2's two twists: the regex pre-tokenizer and byte-level unicode mapping for arbitrary text
+- Contrast bottom-up BPE with top-down Unigram pruning (remove the token whose removal raises loss least) and identify ambiguous segmentations like `un|break|able` that only Unigram can score
+- Configure SentencePiece training — `model_type='unigram'`, `character_coverage=0.995`, the `▁` whitespace marker, `user_defined_symbols` — and round-trip text through `SentencePieceProcessor`
+- Count tokens with tiktoken's `cl100k_base` and run the GPT-4-vs-GPT-2 efficiency experiment across English, Chinese, code, and Latin inputs
+- Select a tokenizer from the comparison table (GPT-2 50k vs GPT-4 100k vs T5 32k-250k) and extend a model with `add_special_tokens` + `resize_token_embeddings`
 
 ---
 
