@@ -8,21 +8,21 @@ This module covers vision-language models (CLIP, BLIP, LLaVA) and audio models (
 
 ## Module Documents
 
-| Document | Description | Difficulty | Time |
-|----------|-------------|------------|------|
-| [3501: Vision-Language Models](./3501-Vision-Language-Models.md) | CLIP, BLIP, LLaVA, multimodal RAG | ⭐⭐⭐⭐ | 5 hrs |
-| [3502: Audio Models](./3502-Audio-Models.md) | Whisper, AudioLM, voice assistants | ⭐⭐⭐⭐ | 4 hrs |
+| Document | Description | Time | Difficulty |
+|----------|-------------|------|------------|
+| [3501: Vision-Language Models](./3501-Vision-Language-Models.md) | CLIP, BLIP, LLaVA, multimodal RAG | 5 hrs | Advanced |
+| [3502: Audio Models](./3502-Audio-Models.md) | Whisper, AudioLM, voice assistants | 5 hrs | Advanced |
 
 ---
 
 ## Learning Objectives
 
 After completing this module, you will:
-- ✅ Understand vision-language model architectures
-- ✅ Implement CLIP-style contrastive learning
-- ✅ Build multimodal RAG systems
-- ✅ Understand audio Transformers (Whisper, AudioLM)
-- ✅ Apply multimodal models to real-world tasks
+- Understand vision-language model architectures
+- Implement CLIP-style contrastive learning
+- Build multimodal RAG systems
+- Understand audio Transformers (Whisper, AudioLM)
+- Apply multimodal models to real-world tasks
 
 ---
 
@@ -389,7 +389,7 @@ def multimodal_rag_query(query: str, vector_store, vision_llm):
 
 ---
 
-**Status:** ✅ Complete
+**Status:** Complete
 **Last Updated:** 2026-02-05
-**Module Difficulty:** ⭐⭐⭐⭐ Advanced
-**Estimated Time:** 9 hours total
+**Module Difficulty:** Advanced
+**Estimated Time:** 10 hours total

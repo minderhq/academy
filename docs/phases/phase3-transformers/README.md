@@ -168,8 +168,8 @@ graph TD
 
 | Document | Description | Time | Difficulty |
 |----------|-------------|------|------------|
-| [3101: Self-Attention](./3100-attention/3101-Self-Attention-DeepDive.md) | Multi-head, Masked, Scaled Dot-Product | 3-4h | Intermediate |
-| [3102: Flash Attention](./3100-attention/3102-Flash-Attention.md) | Memory-efficient attention (IO-aware) | 2-3h | Advanced |
+| [3101: Self-Attention](./3100-attention/3101-Self-Attention-DeepDive.md) | Multi-head, Masked, Scaled Dot-Product | 4h | Advanced |
+| [3102: Flash Attention](./3100-attention/3102-Flash-Attention.md) | Memory-efficient attention (IO-aware) | 4h | Advanced |
 
 **What You'll Learn:**
 - Scaled dot-product attention mechanism
@@ -192,8 +192,8 @@ graph TD
 
 | Document | Description | Time | Difficulty |
 |----------|-------------|------|------------|
-| [3201: RoPE](./3200-embeddings/3201-Rotary-Positional-Embeddings-RoPE.md) | Absolute vs Relative positions | 2-3h | Intermediate |
-| [3202: Tokenizer Sciences](./3200-embeddings/3202-Tokenizer-Sciences.md) | BPE, SentencePiece, Tiktoken | 2-3h | Intermediate |
+| [3201: RoPE](./3200-embeddings/3201-Rotary-Positional-Embeddings-RoPE.md) | Absolute vs Relative positions | 3h | Intermediate |
+| [3202: Tokenizer Sciences](./3200-embeddings/3202-Tokenizer-Sciences.md) | BPE, SentencePiece, Tiktoken | 3h | Intermediate |
 
 **What You'll Learn:**
 - Rotary Position Embeddings (RoPE)
@@ -219,9 +219,9 @@ graph TD
 
 | Document | Description | Time | Difficulty |
 |----------|-------------|------|------------|
-| [3301: Activation Functions](./3300-decoding/3301-Activation-Functions.md) | GELU, SwiGLU vs RELU | 2h | Intermediate |
-| [3302: Normalization Layers](./3300-decoding/3302-Normalization-Layers.md) | BatchNorm vs LayerNorm vs RMSNorm | 1-2h | Intermediate |
-| [3303: Activation Comparison](./3300-decoding/guides/3303-Activation-Function-Comparison.md) | Comparative analysis | 1h | Beginner |
+| [3301: Activation Functions](./3300-decoding/3301-Activation-Functions.md) | GELU, SwiGLU vs RELU | 2h | Beginner |
+| [3302: Normalization Layers](./3300-decoding/3302-Normalization-Layers.md) | BatchNorm vs LayerNorm vs RMSNorm | 2h | Beginner |
+| [3303: Activation Comparison](./3300-decoding/guides/3303-Activation-Function-Comparison.md) | Comparative analysis | 1h | Advanced |
 
 **What You'll Learn:**
 - ReLU and its limitations
@@ -243,9 +243,9 @@ graph TD
 
 | Document | Description | Time | Difficulty |
 |----------|-------------|------|------------|
-| [3401: Encoder-Decoder](./3400-architectures/3401-Encoder-Decoder-Architectures.md) | T5, BART architectures | 2h | Intermediate |
-| [3402: Decoder-Only](./3400-architectures/3402-Decoder-Only-Models.md) | GPT, LLaMA architectures | 2h | Intermediate |
-| [3403: Architecture Comparison](./3400-architectures/guides/3403-Model-Architecture-Comparison.md) | Comparative guide | 2h | Beginner |
+| [3401: Encoder-Decoder](./3400-architectures/3401-Encoder-Decoder-Architectures.md) | T5, BART architectures | 4h | Intermediate |
+| [3402: Decoder-Only](./3400-architectures/3402-Decoder-Only-Models.md) | GPT, LLaMA architectures | 4h | Intermediate |
+| [3403: Architecture Comparison](./3400-architectures/guides/3403-Model-Architecture-Comparison.md) | Comparative guide | 2h | Advanced |
 
 **What You'll Learn:**
 - Decoder-only (GPT, LLaMA, Mistral)
@@ -263,6 +263,26 @@ graph TD
 - Analyze attention patterns
 - Choose architecture for specific tasks
 
+### [3500] Multimodal Models
+
+| Document | Description | Time | Difficulty |
+|----------|-------------|------|------------|
+| [3501: Vision-Language Models](./3500-multimodal/3501-Vision-Language-Models.md) | CLIP, BLIP, LLaVA, multimodal RAG | 5h | Advanced |
+| [3502: Audio Models](./3500-multimodal/3502-Audio-Models.md) | Whisper, AudioLM, voice assistants | 5h | Advanced |
+
+**What You'll Learn:**
+- Vision-language architectures (CLIP, BLIP, LLaVA)
+- Contrastive image-text learning
+- Multimodal RAG systems
+- Audio transformers (Whisper, AudioLM)
+- Applying multimodal models to real-world tasks
+
+**Hands-On Practice:**
+- Implement CLIP-style contrastive encoding
+- Build multimodal RAG pipelines
+- Transcribe and analyze audio with Whisper
+- Apply VLMs to real-world tasks
+
 ---
 
 ## Learning Path
@@ -279,28 +299,36 @@ graph TD
     B -->|Build Tokenizer| F[3202: Tokenizer Sciences]
     B -->|Compare Activations| G[3301: Activation Functions]
     B -->|Choose Architecture| H[3401: Model Architectures]
+    B -->|Understand Multimodal| M[3501: Vision-Language Models]
+    B -->|Build Audio Apps| N[3502: Audio Models]
 
     C --> I[EXP_3101: Attention Experiment]
     D --> J[EXP_3102: Flash Attention Experiment]
 
     E --> K[EXP_3201: RoPE Experiment]
     F --> L[EXP_3202: Tokenizer Experiment]
+    M --> O[EXP_3501: Multimodal RAG Experiment]
 
     style C fill:#e1f5fe
     style D fill:#fff3e0
     style E fill:#f3e5f5
     style H fill:#fce4ec
+    style M fill:#e8f5e9
+    style N fill:#fffde7
 ```
 
 ### Time Estimates
 
 | Module | Reading | Practice | Total |
 |--------|---------|----------|-------|
-| 3100: Attention Architectures | 6h | 4-6h | 10-12h |
-| 3200: Embedding Latent Spaces | 5h | 4h | 9h |
-| 3300: The Decoding Block | 4h | 3h | 7h |
-| 3400: Model Architectures | 6h | 4h | 10h |
-| **Total** | **21h** | **15-17h** | **36-38h** |
+| 3100: Attention Architectures | 8h | 4-6h | 12-14h |
+| 3200: Embedding Latent Spaces | 6h | 4h | 10h |
+| 3300: The Decoding Block | 5h | 3h | 8h |
+| 3400: Model Architectures | 10h | 4h | 14h |
+| 3500: Multimodal Models | 10h | — | 10h |
+| **Total** | **39h** | **15-17h** | **54-56h** |
+
+*3500 practice time is not yet estimated in its PRACTICE.md; phase totals cover the estimated modules.*
 
 ---
 
@@ -666,6 +694,11 @@ def profile_model(model, input_ids):
    - Benchmark performance
    - Analyze use cases
 
+6. **[EXP_3501: Multimodal RAG](../../../experiments/EXP_3501_MULTIMODAL_RAG.md)**
+   - Build CLIP-style image-text search
+   - Construct multimodal RAG pipelines
+   - Apply VLMs to real-world tasks
+
 ---
 
 ## Prerequisites
@@ -696,6 +729,7 @@ Validate your knowledge with:
 - **3200: Embeddings** - Position encoding and tokenization
 - **3300: Decoding** - Activation functions and normalization
 - **3400: Architectures** - Model types and comparison
+- **3500: Multimodal** - Vision-language and audio models
 
 ---
 
@@ -718,7 +752,7 @@ After completing this phase:
 ---
 
 **Status:** ✅ Complete & Enriched
-**Module Duration:** 36-38 hours (21 reading + 15-17 practice)
+**Module Duration:** 54-56 hours (39 reading + 15-17 practice)
 **Difficulty:** Intermediate to Advanced
 **Last Updated:** 2026-02-05
 
