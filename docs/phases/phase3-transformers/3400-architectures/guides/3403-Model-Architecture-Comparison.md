@@ -1,7 +1,7 @@
 ---
 Document ID: 3403
 Title: "3403: Model Architecture Comparison Guide"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Advanced
 ---
@@ -31,12 +31,12 @@ Difficulty: Advanced
 
 After completing this lesson, you will be able to:
 
-- Compare Architecture Comparison Matrix
-- Compare Detailed Comparison Table
-- Configure and operate 11GB VRAM GPU Deployment Analysis
-- Measure and evaluate Performance Benchmarks
-- Explain Task-Specific Recommendations
-- Explain Hybrid Approaches
+- Contrast the two architecture families across the eight-aspect table — bidirectional encoder + causal decoder vs causal-only, span corruption vs next-token prediction, two model passes vs one, ~14 GB vs ~7 GB VRAM at 7B
+- Read the 11GB compatibility table by precision — LLaMA-2-7B at 4/7/14 GB (8-bit recommended), FLAN-T5-XL OOM at 16-bit (8-bit only), Phi-2 and Gemma-2B comfortable at 16-bit
+- Rank models from the benchmark tables — 4-bit 7B throughput 25 tok/s batch-1 → 55 batch-8, 22 at 2048 ctx; Mistral-7B MMLU 60.1 / GSM8K 21.3 / HumanEval 30.5 vs LLaMA-2-7B 45.3/10.1/12.8
+- Route tasks through the decision tree — T5-style task prefixes ("translate English to German:", "summarize:") for structured transformation, `apply_chat_template` on decoder-only for chat, code, and instruction following
+- Compose the RAG hybrid — an encoder-only `all-MiniLM-L6-v2` embedder for retrieval joined to a decoder-only Mistral generator
+- Deploy with vLLM AWQ configs (Mistral `--max-model-len 4096`, FLAN-T5 2048), quantify with `BitsAndBytesConfig` NF4 double-quant (7B → ~4 GB, ~7 GB KV headroom), and profile via the pynvml monitor's tokens/sec and VRAM delta
 
 ---
 
