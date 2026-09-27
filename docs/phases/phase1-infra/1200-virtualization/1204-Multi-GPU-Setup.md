@@ -3,7 +3,7 @@ Document ID: 1204
 Title: Multi-GPU Setup
 Phase: 1
 Module: 1200
-Last Updated: 2026-09-25
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -35,12 +35,12 @@ Tags: ['infrastructure', 'virtualization', 'proxmox', 'gpu']
 
 After completing this lesson, you will be able to:
 
-- Explain Starting Point: A Single GPU
-- Explain Multi-GPU Scenarios
-- Configure and operate PyTorch Multi-GPU Setup
-- Explain Model Parallelism (Large Models)
-- Explain Inference with Multi-GPU
-- Explain Fine-Tuning with Multi-GPU
+- Read the VRAM budget of a single 11GB-class card and decide when a workload has outgrown it
+- Classify the multi-GPU topologies (matched cards, mixed VRAM, eGPU) and what each means for sharding
+- Launch DataParallel and torchrun-based DistributedDataParallel training and pick the right one per workload
+- Shard a large model across GPUs with manual layer placement and Accelerate's infer_auto_device_map
+- Serve a sharded model through vLLM tensor parallelism, Ollama's automatic layer split, and TGI num-shard
+- Tune multi-GPU fine-tuning with DeepSpeed ZeRO stage 2 and QLoRA device_map sharding, and diagnose NCCL peer failures
 
 ---
 
@@ -52,7 +52,7 @@ Scaling GPU workloads from a single card to multi-GPU serving and training: devi
 ### Reference Card
 ```text
 GPU:  Any NVIDIA card with 8GB+ VRAM
-      (e.g., RTX 3060 12GB, RTX 4060 Ti 16GB, RTX 4070 12GB)
+      (e.g., RTX 3060 12GB, RTX 4060 Ti 16GB, RTX 5060 Ti 16GB)
 VRAM: 8-16GB is the practical starting range
 Role: Sufficient for 7B models (4-bit quantization), QLoRA fine-tuning,
       and single-stream inference
@@ -90,7 +90,7 @@ Configuration:
 ```yaml
 Configuration:
   - GPU 0: 11GB VRAM card
-  - GPU 1: 24GB VRAM card (e.g., RTX 3090/4090 class)
+  - GPU 1: 24GB+ VRAM card (RTX 3090/4090; RTX 5090 is 32GB)
   - 35GB+ VRAM total
   - Suitable for:
     - 13B models (4-bit) with long context
