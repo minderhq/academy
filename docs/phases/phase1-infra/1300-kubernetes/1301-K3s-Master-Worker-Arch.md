@@ -186,11 +186,17 @@ resolv-conf: "/etc/k3s-resolv.conf"
 
 ### NVIDIA Device Plugin
 ```bash
-# Deploy device plugin
-kubectl apply -f https://raw.githubusercontent.com/NVIDIA/k8s-device-plugin/v0.14.0/nvidia-device-plugin.yml
+# Deploy device plugin (v0.20.x is the current line - older tags like
+# v0.14 predate today's driver/containerd combos)
+kubectl apply -f https://raw.githubusercontent.com/NVIDIA/k8s-device-plugin/v0.20.1/nvidia-device-plugin.yml
 
 # Verify
 kubectl -n kube-system logs ds/nvidia-device-plugin-daemonset
+
+# For full driver + plugin lifecycle management NVIDIA ships the GPU
+# Operator; the standalone plugin above stays fine for a fixed driver
+# setup like this homelab (see 1203's driver DaemonSet for the
+# container equivalent).
 ```
 
 ### Node Labels for GPU
@@ -281,23 +287,24 @@ Cluster Domain:  omega.local
 ```
 
 ### Flannel Configuration
-```yaml
-# ConfigMap for flannel
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: kube-flannel-cfg
-  namespace: kube-system
-data:
-  net-conf.json: |
-    {
-      "Network": "10.42.0.0/16",
-      "Backend": {
-        "Type": "vxlan",
-        "Port": 8472,
-        "MTU": 9000
-      }
-    }
+```bash
+# k3s runs flannel in-process (no kube-flannel DaemonSet), so the
+# upstream flannel ConfigMap does not apply here. Override the net-conf
+# through the documented --flannel-conf flag, set identically on ALL
+# server nodes, then restart k3s:
+cat > /etc/rancher/k3s/flannel-net-conf.json <<'EOF'
+{
+  "Network": "10.42.0.0/16",
+  "Backend": {
+    "Type": "vxlan",
+    "Port": 8472,
+    "MTU": 9000
+  }
+}
+EOF
+# In config.yaml on every server node:
+#   flannel-conf: "/etc/rancher/k3s/flannel-net-conf.json"
+systemctl restart k3s
 ```
 
 ### Ingress Configuration
