@@ -213,7 +213,7 @@ PagedAttention:
 **Quick Start:**
 ```bash
 # Install vLLM
-pip install vllm
+uv pip install vllm
 
 # Start server
 python -m vllm.entrypoints.api_server \

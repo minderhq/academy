@@ -1,7 +1,7 @@
 ---
 Document ID: 1400-PRACTICE
 Title: "1400: LLMOps - Practice"
-Last Updated: 2026-09-25
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -160,7 +160,7 @@ if __name__ == "__main__":
 echo "Installing vLLM..."
 # Quoted: an unquoted >= is a shell redirect - it installs the latest
 # vllm and silently creates a file named "=0.6.0"
-pip install "vllm>=0.6.0"
+uv pip install "vllm>=0.6.0"
 
 # 2. Start vLLM server with optimized settings
 echo "Starting vLLM server..."

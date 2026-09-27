@@ -3,7 +3,7 @@ Document ID: 1402
 Title: vLLM and TGI High-Concurrency Inference
 Phase: 1
 Module: 1400
-Last Updated: 2026-09-25
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -97,13 +97,13 @@ Performance Tuning below).
 ### From Source
 ```bash
 # Recommended: prebuilt wheel (Linux + CUDA)
-pip install vllm
+uv pip install vllm
 
 # From source (development):
 # On GPU VM with CUDA 12.1
 git clone https://github.com/vllm-project/vllm.git
 cd vllm
-pip install -e . --no-build-isolation
+uv pip install -e . --no-build-isolation
 
 # Verify
 python -c "import vllm; print(vllm.__version__)"

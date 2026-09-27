@@ -3,7 +3,7 @@ Document ID: 6401
 Title: Qdrant Setup Guide
 Phase: 6
 Module: 6400
-Last Updated: 2026-09-25
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -135,7 +135,7 @@ If `healthz` responds but a client cannot connect, you are almost certainly hitt
 ### Installation and Connection
 
 ```bash
-pip install "qdrant-client[fastembed]"   # fastembed extra pulls gRPC + local encoders
+uv pip install "qdrant-client[fastembed]"   # fastembed extra pulls gRPC + local encoders
 ```
 
 ```python

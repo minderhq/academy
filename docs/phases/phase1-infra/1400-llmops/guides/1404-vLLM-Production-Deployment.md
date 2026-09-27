@@ -1,7 +1,7 @@
 ---
 Document ID: 1404
 Title: "1404: vLLM Production Deployment Guide"
-Last Updated: 2026-09-25
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -768,7 +768,7 @@ curl http://localhost:8000/v1/chat/completions \
   -d '{"model": "TheBloke/Mistral-7B-Instruct-v0.2-AWQ", "messages": [{"role": "user", "content": "Hello!"}]}'
 
 # 4. Test with Python
-pip install openai
+uv pip install openai
 python -c "from openai import OpenAI; client = OpenAI(base_url='http://localhost:8000/v1', api_key='dummy'); print(client.chat.completions.create(model='TheBloke/Mistral-7B-Instruct-v0.2-AWQ', messages=[{'role': 'user', 'content': 'Hello!'}]).choices[0].message.content)"
 ```
 

@@ -1,7 +1,7 @@
 ---
 Document ID: 1405
 Title: "1405: Text Generation Inference (TGI) Deployment Guide"
-Last Updated: 2026-09-26
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -923,7 +923,7 @@ curl -X POST http://localhost:8080/generate \
   -d '{"inputs": "Hello!", "parameters": {"max_new_tokens": 50}}'
 
 # 5. Test with Python
-pip install requests
+uv pip install requests
 python -c "import requests; print(requests.post('http://localhost:8080/generate', json={'inputs': 'Hello!', 'parameters': {'max_new_tokens': 50}}).json()['generated_text'])"
 ```
 

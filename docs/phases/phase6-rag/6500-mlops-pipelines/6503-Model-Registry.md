@@ -3,7 +3,7 @@ Document ID: 6503
 Title: Model Registry
 Phase: 6
 Module: 6500
-Last Updated: 2026-09-26
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -354,7 +354,7 @@ Two aliases to keep in every production setup: `champion` (the version serving t
 MLflow ships a tracking server plus a model registry on top: training runs log params and metrics, `log_model` registers the artifact as a named model version, and aliases drive promotion. The sketch below is the full loop (this environment has no MLflow installed and no server running, so it is documentation, not a runnable block):
 
 ```text
-# sketch - needs `pip install mlflow` plus a running tracking server
+# sketch - needs `uv pip install mlflow` plus a running tracking server
 import mlflow
 from mlflow.tracking import MlflowClient
 
@@ -385,7 +385,7 @@ A note on older code you will find in the wild: earlier MLflow workflows used na
 W&B splits the job in two: **artifacts** carry the model files and their lineage inside a project run, and the **W&B Registry** is the cross-project central repository they get linked into. The flow is `log_artifact` (attach files to a run) then `link_artifact` (put that version into a registry collection); W&B creates the collection on first link (sketch - `wandb` is not installed in this environment):
 
 ```text
-# sketch - needs `pip install wandb` and an authenticated project
+# sketch - needs `uv pip install wandb` and an authenticated project
 import wandb
 
 run = wandb.init(project="sentiment-analysis", config={"C": 0.5})
