@@ -3,7 +3,7 @@ Document ID: 3302
 Title: Normalization Layers - BatchNorm vs LayerNorm vs RMSNorm
 Phase: 3
 Module: 3300
-Last Updated: 2026-09-24
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 2 hours
@@ -33,12 +33,12 @@ Tags: ['transformers', 'activation', 'gelu', 'swiglu', 'normalization']
 
 After completing this lesson, you will be able to:
 
-- Explain The Normalization Problem
-- Explain BatchNorm
-- Explain LayerNorm
-- Explain RMSNorm
-- Compare Comparison
-- Apply Implementation Tips
+- Justify normalization via the general transform y = γ·((x−μ)/σ)+β and the instabilities it removes — activation-scale drift, vanishing/exploding gradients, forced-tiny learning rates
+- Implement `BatchNorm1d` with `running_mean`/`running_var` EMA buffers and momentum-EMA test-time statistics, then argue why batch+spatial statistics disqualify it for transformers: batch-size dependence, train-vs-test behavior gap, variable sequence lengths
+- Position the norm inside the residual branch — contrast Pre-LN (`x + Sublayer(LayerNorm(x))`, GPT-2/LLaMA) with Post-LN (`LayerNorm(x + Sublayer(x))`, original Transformer) — and explain Pre-LN's gradient-flow advantage against Post-LN's warmup requirement
+- Contrast RMSNorm as LayerNorm minus mean centering — `x / RMS(x)` — and account for the ~10-20% speedup against the ~0.1-0.3% quality drop, reproducing LLaMA's fp32-upcast → `rsqrt` → cast-back pattern
+- Read the selection table (BatchNorm → CNNs, LayerNorm → transformers, RMSNorm → efficient LLMs) with the +10% speed / −0.2% accuracy row to recommend RMSNorm for new models
+- Apply mixed-precision hygiene — fused `nn.LayerNorm` over manual math, `SafeLayerNorm` fp32 statistics casting — then extend to DeepNorm's α=√(2N) residual scaling that stabilizes 100+ layer stacks
 
 ---
 
