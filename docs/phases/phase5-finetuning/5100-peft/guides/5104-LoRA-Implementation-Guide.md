@@ -29,17 +29,17 @@ Difficulty: Advanced
 
 After completing this lesson, you will be able to:
 
-- Explain LoRA Architecture
-- Apply Implementation 1: LoRA from Scratch
-- Apply Implementation 2: LoRA with transformers
-- Apply Implementation 3: QLoRA (4-bit LoRA)
-- Apply Implementation 4: Multi-Adapter LoRA
-- Measure and evaluate Performance Benchmarks
+- Quantify the LoRA architecture — ΔW = BA at rank r ≪ d: at r=8 a 4096×4096 projection carries 65,536 trainable params vs 16,777,216 (256×), with kaiming-A / zero-B init making the adapter start as an exact identity
+- Build `LoRALinear` from scratch — frozen base, A projects down (in→r), B up (r→out), scaling α/r, dropout on the LoRA path's input — and merge it with a `merged` flag, because folding ΔW into W and then re-running the LoRA path emits Wx + 2·ΔWx
+- Fine-tune through PEFT/transformers — `LoraConfig` (r=16, α=32, the 7 Mistral target modules ≈ 42M trainable) + `Trainer` with `bf16=True`; the bf16 7B base needs ~15 GB, so 11GB-class GPUs jump to QLoRA
+- Wire the QLoRA variant — `BitsAndBytesConfig` (NF4 + double quant + bf16 compute) → `prepare_model_for_kbit_training` → `get_peft_model`; attention-only r=16 on Mistral-7B is 13,631,488 trainable and the whole setup fits in ~7 GB
+- Serve N tasks from ONE model — `PeftModel.from_pretrained(..., adapter_name=)` + `load_adapter(adapter_name=)` + `set_adapter()`; re-wrapping the same base N times shares one module tree and each load overwrites the previous adapter's weights
+- Read the benchmark tables — VRAM vs rank vs target-module scope (all-linear ~42M ≈ 0.6% vs attention-only 13.6M ≈ 0.2% at r=16) and pick the configuration that fits the GPU before training
 
 ---
 
 ## Abstract
-Complete implementation guide for LoRA (Low-Rank Adaptation) fine-tuning on an 11GB VRAM GPU. From theory to production deployment.
+Complete implementation guide for LoRA (Low-Rank Adaptation) fine-tuning — from a from-scratch `LoRALinear` through PEFT/QLoRA pipelines to multi-adapter serving, benchmarked for an 11GB-class GPU.
 
 ## LoRA Architecture
 
@@ -125,7 +125,6 @@ class LoRALinear(nn.Module):
         rank: int = 8,
         alpha: float = 16.0,
         dropout: float = 0.0,
-        merge_weights: bool = False,
     ):
         super().__init__()
         self.in_features = in_features
@@ -133,7 +132,7 @@ class LoRALinear(nn.Module):
         self.rank = rank
         self.alpha = alpha
         self.scaling = alpha / rank
-        self.merge_weights = merge_weights
+        self.merged = False
 
         # Freeze original weights
         self.weight = nn.Parameter(torch.randn(out_features, in_features))
@@ -162,34 +161,35 @@ class LoRALinear(nn.Module):
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         """Forward pass"""
+        # Merged: ΔW already lives in self.weight — running the LoRA
+        # path again would apply it twice (Wx + 2·ΔWx, silently wrong)
+        if self.merged:
+            return nn.functional.linear(x, self.weight)
 
         # Original frozen weights
-        if self.merge_weights:
-            # Merge LoRA weights into original (for inference)
-            merged_weight = self.weight + (self.lora_B @ self.lora_A) * self.scaling
-            output = nn.functional.linear(x, merged_weight)
-        else:
-            # Separate computation
-            output = nn.functional.linear(x, self.weight)
+        output = nn.functional.linear(x, self.weight)
 
-            # LoRA adaptation: x @ A.T @ B.T
-            lora_output = nn.functional.linear(
+        # LoRA adaptation: F.linear transposes its weight argument, so
+        # x @ A.T -> (…, r), then @ B.T -> (…, out_features)
+        lora_output = nn.functional.linear(
+            nn.functional.linear(
                 self.dropout(x),
-                self.lora_A.T  # (in_features, rank)
-            )
-            lora_output = nn.functional.linear(
-                lora_output,
-                self.lora_B.T  # (rank, out_features)
-            )
-            output = output + lora_output * self.scaling
+                self.lora_A,
+            ),
+            self.lora_B,
+        )
 
-        return output
+        return output + lora_output * self.scaling
 
     def merge(self):
-        """Merge LoRA weights into original weights"""
+        """Merge LoRA weights into the frozen base — zero adapter
+        overhead afterwards. The merged flag makes forward() skip the
+        LoRA path; without it the folded ΔW would be applied twice."""
+        if self.merged:
+            return
         delta_w = (self.lora_B @ self.lora_A) * self.scaling
         self.weight.data += delta_w
-        self.merge_weights = True
+        self.merged = True
 
 
 class LoRAAttention(nn.Module):
@@ -275,9 +275,9 @@ def test_lora():
     trainable_params = sum(p.numel() for p in lora_layer.parameters() if p.requires_grad)
 
     print(f"\nLayer: LoRALinear(768, 768, rank=8)")
-    print(f"Total parameters: {total_params:,}")
-    print(f"Trainable parameters: {trainable_params:,}")
-    print(f"Parameter reduction: {total_params / trainable_params:.1f}x")
+    print(f"Total parameters: {total_params:,} (frozen weight + adapters)")
+    print(f"Trainable parameters: {trainable_params:,} (A + B only)")
+    print(f"Trainable share: {trainable_params / total_params:.2%}")
 
     # Forward pass
     x = torch.randn(2, 10, 768)
@@ -308,7 +308,7 @@ from transformers import (
     Trainer,
     DataCollatorForLanguageModeling,
 )
-from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
+from peft import LoraConfig, get_peft_model
 from datasets import load_dataset
 import torch
 
@@ -331,19 +331,19 @@ def setup_lora_model(
 
     print(f"Loading model: {model_name}")
 
-    # Load model in 4-bit for efficiency
+    # Plain bf16 LoRA — no quantization (that's Implementation 3)
     model = AutoModelForCausalLM.from_pretrained(
         model_name,
-        torch_dtype=torch.float16,
+        torch_dtype=torch.bfloat16,
         device_map="auto",
-        load_in_4bit=True,
     )
 
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     tokenizer.pad_token = tokenizer.eos_token
 
-    # Prepare model for k-bit training
-    model = prepare_model_for_kbit_training(model)
+    # A 7B bf16 base is ~14-15 GB by itself: this flow fits a
+    # 24GB-class GPU. On the 11GB-class target, use Implementation 3
+    # (QLoRA) — and only there prepare_model_for_kbit_training().
 
     # LoRA configuration
     lora_config = LoraConfig(
@@ -408,13 +408,15 @@ def train_lora(
         per_device_train_batch_size=batch_size,
         gradient_accumulation_steps=gradient_accumulation,
         learning_rate=learning_rate,
-        fp16=True,
+        bf16=True,  # matches the bf16 base — fp16 AMP + grad scaler on
+                    # bf16 weights is a contradiction
         logging_steps=10,
         save_steps=100,
-        eval_steps=100,
         save_total_limit=2,
-        load_best_model_at_end=True,
         report_to="none",
+        # No eval_steps/load_best_model_at_end: the Trainer below has
+        # no eval_dataset, so there is nothing to select a best
+        # checkpoint from
     )
 
     # Data collator
@@ -435,13 +437,11 @@ def train_lora(
     print("\nStarting training...")
     trainer.train()
 
-    # Save
+    # Save — model.save_pretrained writes the adapter weights AND
+    # adapter_config.json; saving lora_config again would duplicate it
     print(f"\nSaving model to: {output_dir}")
     model.save_pretrained(output_dir)
     tokenizer.save_pretrained(output_dir)
-
-    # Save LoRA config
-    lora_config.save_pretrained(output_dir)
 
     return model, tokenizer
 
@@ -483,7 +483,7 @@ if __name__ == "__main__":
 ```python
 # qlora_training.py
 from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
-from peft import LoraConfig, get_peft_model
+from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
 import torch
 
 
@@ -498,7 +498,7 @@ def setup_qlora_model(
     # 4-bit quantization config
     bnb_config = BitsAndBytesConfig(
         load_in_4bit=True,
-        bnb_4bit_compute_dtype=torch.float16,
+        bnb_4bit_compute_dtype=torch.bfloat16,
         bnb_4bit_use_double_quant=True,
         bnb_4bit_quant_type="nf4",
     )
@@ -512,6 +512,10 @@ def setup_qlora_model(
 
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     tokenizer.pad_token = tokenizer.eos_token
+
+    # Required for QLoRA: upcasts norms/lm_head and hooks input
+    # grads — skipping it leaves the 4-bit base unstable to train
+    model = prepare_model_for_kbit_training(model)
 
     # LoRA config
     lora_config = LoraConfig(
@@ -536,11 +540,14 @@ def setup_qlora_model(
 def analyze_memory_usage():
     """Analyze memory usage for different configurations"""
 
+    # Trainable counts, Mistral-7B (GQA: k/v project 4096 -> 1024):
+    # attention-only r=16 = 13,631,488 / r=8 = 6,815,744; all-linear
+    # r=16 = ~42M (~0.6% of the model). VRAM at batch 1, seq 512.
     configs = [
-        {"name": "Full Fine-tuning (7B)", "vram": "28GB", "trainable": "7B"},
-        {"name": "LoRA (r=16)", "vram": "16GB", "trainable": "40M"},
-        {"name": "QLoRA (r=16)", "vram": "10GB", "trainable": "40M"},
-        {"name": "QLoRA (r=8)", "vram": "8GB", "trainable": "20M"},
+        {"name": "Full Fine-tuning (7B)", "vram": "60GB+", "trainable": "7B"},
+        {"name": "LoRA bf16 (r=16, attention)", "vram": "~18GB", "trainable": "13.6M"},
+        {"name": "QLoRA (r=16, attention)", "vram": "~7GB", "trainable": "13.6M"},
+        {"name": "QLoRA (r=8, attention)", "vram": "~6GB", "trainable": "6.8M"},
     ]
 
     print("Memory Usage Comparison")
@@ -560,13 +567,20 @@ if __name__ == "__main__":
 
 ```python
 # multi_adapter_lora.py
-from peft import PeftModel, PeftConfig
+from peft import PeftModel
+from transformers import AutoModelForCausalLM, AutoTokenizer
 import torch
 
 
 class MultiAdapterModel:
     """
-    Multi-adapter LoRA model for task-specific adapters
+    Multi-adapter LoRA model for task-specific adapters.
+
+    ONE PeftModel holds every adapter under its own name. The tempting
+    alternative — PeftModel.from_pretrained(base, path) once per task —
+    injects each new adapter into the SAME module tree under the same
+    "default" name: N wrappers over one model, each load overwriting
+    the previous adapter's weights.
     """
 
     def __init__(
@@ -579,45 +593,45 @@ class MultiAdapterModel:
             base_model_name: Base model name
             adapters: Dict of {task_name: adapter_path}
         """
-
         # Load base model
         self.base_model = AutoModelForCausalLM.from_pretrained(
             base_model_name,
-            torch_dtype=torch.float16,
+            torch_dtype=torch.bfloat16,
             device_map="auto",
         )
 
         self.tokenizer = AutoTokenizer.from_pretrained(base_model_name)
 
-        # Load adapters
-        self.adapters = {}
-        for task_name, adapter_path in adapters.items():
-            print(f"Loading adapter for {task_name}: {adapter_path}")
-            self.adapters[task_name] = PeftModel.from_pretrained(
-                self.base_model,
-                adapter_path,
-            )
+        # First adapter wraps the base; the rest join the SAME
+        # PeftModel via load_adapter
+        task_names = list(adapters)
+        self.model = PeftModel.from_pretrained(
+            self.base_model,
+            adapters[task_names[0]],
+            adapter_name=task_names[0],
+        )
+        for task_name in task_names[1:]:
+            self.model.load_adapter(adapters[task_name], adapter_name=task_name)
 
-        self.current_adapter = None
+        self.current_adapter = task_names[0]
+        self.model.set_adapter(self.current_adapter)
 
     def set_adapter(self, task_name: str):
         """Set active adapter"""
-        if task_name not in self.adapters:
-            raise ValueError(f"Adapter {task_name} not found")
+        if task_name not in self.model.peft_config:
+            raise ValueError(
+                f"Adapter {task_name} not found — loaded: {list(self.model.peft_config)}"
+            )
+        self.model.set_adapter(task_name)
         self.current_adapter = task_name
 
     def generate(self, prompt: str, max_new_tokens: int = 100) -> str:
-        """Generate with current adapter"""
+        """Generate with the current adapter"""
 
-        if self.current_adapter is None:
-            model = self.base_model
-        else:
-            model = self.adapters[self.current_adapter]
-
-        inputs = self.tokenizer(prompt, return_tensors="pt").to(model.device)
+        inputs = self.tokenizer(prompt, return_tensors="pt").to(self.model.device)
 
         with torch.no_grad():
-            outputs = model.generate(
+            outputs = self.model.generate(
                 **inputs,
                 max_new_tokens=max_new_tokens,
                 do_sample=True,
@@ -656,25 +670,29 @@ def example_multi_adapter():
 
 ## Performance Benchmarks
 
-### 11GB-class GPU (11GB VRAM)
+### 11GB-class GPU
 
 | Model | Method | VRAM | Batch Size | Speed |
 |-------|--------|------|------------|-------|
 | Mistral-7B | Full fine-tuning | OOM | - | - |
-| Mistral-7B | LoRA (r=16) | ~14GB | 1 | Slow |
-| Mistral-7B | QLoRA (r=16) | ~8GB | 2 | Fast |
+| Mistral-7B | LoRA bf16 (r=16) | ~18GB | 1 | Won't fit — 24GB-class |
+| Mistral-7B | QLoRA (r=16) | ~7GB | 2 | Fast |
 | Mistral-7B | QLoRA (r=8) | ~6GB | 4 | Faster |
 | Llama-2-13B | QLoRA (r=8) | ~10GB | 1 | Slow |
 
 ### LoRA Rank vs Performance
 
+QLoRA, all-linear targets on Mistral-7B — trainable params scale
+linearly with rank (≈ 2.62M per rank step: r × Σ(in+out) over the
+targeted projections), so the VRAM ladder moves smoothly:
+
 | Rank | Parameters | VRAM | Quality | Training Time |
 |------|-----------|------|---------|---------------|
-| 4 | 10M | 6GB | Lower | Fast |
-| 8 | 20M | 7GB | Good | Medium |
-| 16 | 40M | 8GB | Better | Medium |
-| 32 | 80M | 10GB | Best | Slow |
-| 64 | 160M | OOM | - | - |
+| 4 | 10.5M | ~5.5GB | Lower | Fast |
+| 8 | 21M | ~6GB | Good | Medium |
+| 16 | 42M | ~7GB | Better | Medium |
+| 32 | 84M | ~8GB | Best | Slow |
+| 64 | 168M | ~10GB | Diminishing returns | Slow |
 
 ## Best Practices
 
@@ -695,14 +713,11 @@ target_modules = ["q_proj", "v_proj"]
 ### 2. Rank Selection
 
 ```python
-# Rule of thumb: rank = sqrt(d_model) / 2
-d_model = 4096  # Mistral-7B
-recommended_rank = int(math.sqrt(d_model) / 2)  # = 32
-
-# For memory constraints
-rank = 8   # Minimal
-rank = 16  # Balanced
-rank = 32  # Best quality
+# Capacity ladder (see 5101) — start small, raise on underfitting
+rank = 8   # Default: instruction tuning, style
+rank = 16  # Domain adaptation
+rank = 32  # Significant shift (new language, format)
+# 64+ approaches full fine-tuning capacity; diminishing returns
 ```
 
 ### 3. Alpha Scaling
@@ -790,20 +805,22 @@ target_modules = ["q_proj", "k_proj", "v_proj", "o_proj",
 # 1. Install dependencies
 uv pip install transformers peft bitsandbytes accelerate datasets
 
-# 2. Train with QLoRA
-python lora_finetuning.py \
-    --data_path data.jsonl \
-    --output_dir ./lora-output \
-    --rank 16 \
-    --batch_size 4
+# 2. Train — the script exposes functions, not a CLI; call them:
+python -c "from lora_finetuning import train_lora; train_lora(data_path='data.jsonl', output_dir='./lora-output', rank=16)"
 
-# 3. Merge and export
-python merge_lora.py \
-    --base_model mistralai/Mistral-7B-Instruct-v0.2 \
-    --lora_path ./lora-output \
-    --output_dir ./merged-model
+# 3. Merge and export — inline, no separate merge script:
+python - <<'PY'
+from peft import PeftModel
+from transformers import AutoModelForCausalLM
+import torch
+
+base = AutoModelForCausalLM.from_pretrained(
+    "mistralai/Mistral-7B-Instruct-v0.2", torch_dtype=torch.bfloat16
+)
+PeftModel.from_pretrained(base, "./lora-output").merge_and_unload() \
+    .save_pretrained("./merged-model")
+PY
 ```
-
 
 ---
 
@@ -814,18 +831,11 @@ python merge_lora.py \
 - [5101: LoRA (Low-Rank Adaptation) Logic](../5101-LoRA-Logic.md)
 - [5102: QLoRA Pipelines - 4-bit Fine-Tuning on Consumer Hardware](../5102-QLoRA-Pipelines.md)
 - [5103: Adapters & Parameter-Efficient Adaptation Methods](../5103-Adapters.md)
+- [4101: GGUF Physics](../../../phase4-quantization/4100-low-bit/4101-GGUF-Physics.md)
 
 ---
 
 ## Next Steps
 
 - Return to: **[Module README](../README.md)**
-
----
----
-
-**Related:**
-- [5101: LoRA Logic](../5101-LoRA-Logic.md)
-- [5102: QLoRA Pipelines](../5102-QLoRA-Pipelines.md)
-- [4101: GGUF Physics](../../../phase4-quantization/4100-low-bit/4101-GGUF-Physics.md)
-- [EXP_5101: LoRA](../../../../../experiments/EXP_5101_LORA.md)
+- Experiment: **[EXP_5101: LoRA](../../../../../experiments/EXP_5101_LORA.md)**
