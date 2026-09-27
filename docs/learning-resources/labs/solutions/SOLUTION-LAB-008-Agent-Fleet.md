@@ -1,7 +1,7 @@
 ---
 Document ID: SOLUTION-LAB-008
 Title: "SOLUTION-LAB-008: Agent Fleet"
-Last Updated: 2026-02-07
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -16,7 +16,7 @@ Complete solution for orchestrating multiple specialized AI agents with coordina
 ## Prerequisites
 
 ```bash
-pip install langchain langchain-openai asyncio
+uv pip install langchain langchain-openai asyncio
 ```
 
 ---

@@ -1,7 +1,7 @@
 ---
 Document ID: SOLUTION-LAB-006
 Title: "SOLUTION-LAB-006: Train Model From Scratch"
-Last Updated: 2026-02-07
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -16,7 +16,7 @@ Complete solution for training neural networks from scratch using PyTorch.
 ## Prerequisites
 
 ```bash
-pip install torch torchvision matplotlib numpy tensorboard
+uv pip install torch torchvision matplotlib numpy tensorboard
 ```
 
 ---

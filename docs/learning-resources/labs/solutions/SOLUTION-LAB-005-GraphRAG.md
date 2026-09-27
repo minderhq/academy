@@ -1,7 +1,7 @@
 ---
 Document ID: SOLUTION-LAB-005
 Title: "SOLUTION-LAB-005: GraphRAG"
-Last Updated: 2026-02-07
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -16,7 +16,7 @@ Complete solution for implementing GraphRAG with knowledge graphs and Neo4j.
 ## Prerequisites
 
 ```bash
-pip install neo4j langchain langchain-community sentence-transformers
+uv pip install neo4j langchain langchain-community sentence-transformers
 ```
 
 ## Neo4j Setup

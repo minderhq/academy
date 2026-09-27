@@ -1,7 +1,7 @@
 ---
 Document ID: SOLUTION-LAB-012
 Title: "SOLUTION-LAB-012: Audio AI"
-Last Updated: 2026-02-07
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -16,10 +16,10 @@ Complete solution for audio processing with AI models, including speech-to-text,
 ## Prerequisites
 
 ```bash
-pip install torch torchaudio transformers datasets librosa soundfile pydub
-pip install openai-whisper  # For Whisper
-pip install TTS              # For Coqui TTS
-pip install speechbrain      # For audio classification
+uv pip install torch torchaudio transformers datasets librosa soundfile pydub
+uv pip install openai-whisper  # For Whisper
+uv pip install TTS              # For Coqui TTS
+uv pip install speechbrain      # For audio classification
 ```
 
 ---

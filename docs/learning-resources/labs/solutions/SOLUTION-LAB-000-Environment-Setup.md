@@ -1,7 +1,7 @@
 ---
 Document ID: SOLUTION-LAB-000
 Title: "SOLUTION-LAB-000: Environment Setup"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -51,16 +51,17 @@ Download and install Docker Desktop from https://www.docker.com/products/docker-
 ## Exercise 4: Python Environment
 ### Solution
 ```bash
-# Create venv
-python3 -m venv omega-env
-source omega-env/bin/activate  # Mac/Linux
-omega-env\Scripts\activate     # Windows
+# Create the project environment with uv
+# (uv downloads Python 3.11 itself if it is missing)
+uv venv --python 3.11
+source .venv/bin/activate  # Mac/Linux
+.venv\Scripts\activate     # Windows
 
-# Install packages
-pip install torch torchvision torchaudio
-pip install transformers datasets
-pip install fastapi uvicorn[standard]
-pip install ollama
+# Install packages (uv finds the active .venv automatically)
+uv pip install torch torchvision torchaudio
+uv pip install transformers datasets
+uv pip install fastapi uvicorn[standard]
+uv pip install ollama
 ```
 
 ---
