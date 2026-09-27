@@ -3,7 +3,7 @@ Document ID: 2302
 Title: Model Serving Architectures
 Phase: 2
 Module: 2300
-Last Updated: 2026-09-26
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -588,7 +588,7 @@ At production scale the point is memory: a 4096 x 4096 linear layer is
 ### Production Framework: DeepSpeed
 
 [DeepSpeed](https://www.deepspeed.ai/getting-started/) wraps an ordinary
-training loop and shards the training state across GPUs (`pip install
+training loop and shards the training state across GPUs (`uv pip install
 deepspeed`). The sketch below is the entire integration surface - your
 model and dataloader stay untouched:
 

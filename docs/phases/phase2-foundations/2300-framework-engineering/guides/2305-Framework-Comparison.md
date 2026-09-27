@@ -3,7 +3,7 @@ Document ID: 2305
 Title: Framework Comparison Guide
 Phase: 2
 Module: 2300
-Last Updated: 2026-09-26
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 1.5 hours
@@ -86,7 +86,7 @@ Transformers is the de facto interface to the model ecosystem. Its real product 
 **Minimal usage** — SmolLM2-1.7B-Instruct is an open (Apache-2.0), ungated model, so this runs with no Hugging Face login:
 
 ```python
-# pip install transformers torch
+# uv pip install transformers torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline
 
 # Ungated, Apache-2.0: a deliberate choice for teaching - no HF account needed.
@@ -122,7 +122,7 @@ Lightning organizes your code into a `LightningModule` (the *what*: model, loss,
 **Complete, runnable example** — synthetic data, so nothing needs downloading:
 
 ```python
-# pip install lightning torch
+# uv pip install lightning torch
 # The modern package is `lightning`; the older `pytorch_lightning` import
 # still exists in legacy repos but new code should use the unified package.
 import lightning as L
@@ -206,7 +206,7 @@ LangChain operates at a layer above the model: prompt templates, chat models, re
 **Minimal usage** — requires a local Ollama server (`ollama pull llama3.1` and `ollama pull nomic-embed-text`):
 
 ```python
-# pip install langchain langchain-ollama langchain-community faiss-cpu
+# uv pip install langchain langchain-ollama langchain-community faiss-cpu
 # The classic `from langchain.llms import Ollama` moved into the dedicated
 # integration package: use langchain-ollama's ChatOllama / OllamaLLM, and
 # call .invoke() instead of the old .run().
@@ -319,7 +319,7 @@ The frameworks compose cleanly because they operate at different layers. The mos
 A Transformers model wrapped as a LangChain LLM — one pipeline object shared by both worlds:
 
 ```python
-# pip install "langchain-huggingface[full]" transformers torch
+# uv pip install "langchain-huggingface[full]" transformers torch
 # The [full] extra pulls the local inference dependencies; without it the
 # package installs but cannot run a local pipeline.
 import torch

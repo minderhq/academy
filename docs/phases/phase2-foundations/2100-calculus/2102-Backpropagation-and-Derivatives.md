@@ -3,7 +3,7 @@ Document ID: 2102
 Title: Backpropagation and Automatic Differentiation
 Phase: 2
 Module: 2100
-Last Updated: 2026-09-26
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 4 hours
@@ -327,7 +327,7 @@ output = checkpoint(my_expensive_function, x, use_reentrant=False)
 
 ### Using torchviz
 ```python
-# torchviz is a third-party package: pip install torchviz (requires graphviz)
+# torchviz is a third-party package: uv pip install torchviz (requires graphviz)
 # https://github.com/szagoruyko/pytorchviz
 import torch
 from torchviz import make_dot

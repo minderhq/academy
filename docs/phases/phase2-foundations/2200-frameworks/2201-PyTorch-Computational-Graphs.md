@@ -3,7 +3,7 @@ Document ID: 2201
 Title: PyTorch Computational Graphs and Dynamic Execution
 Phase: 2
 Module: 2200
-Last Updated: 2026-09-26
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 4 hours
@@ -478,7 +478,7 @@ check_gradient_flow(model)
 
 ### Graph Visualization
 ```python
-# torchviz is third-party: pip install torchviz (Graphviz must be on PATH)
+# torchviz is third-party: uv pip install torchviz (Graphviz must be on PATH)
 from torchviz import make_dot
 
 x = torch.randn(3, requires_grad=True)

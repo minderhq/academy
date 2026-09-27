@@ -3,7 +3,7 @@ Document ID: 2300-PRACTICE
 Title: "2300: Framework Engineering - Practice Exercises"
 Phase: 2
 Module: 2300
-Last Updated: 2026-09-26
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 2.5 hours
@@ -42,7 +42,7 @@ Implement a complete model abstraction layer that supports both PyTorch and Tens
 3. Implement `TensorFlowModel`
 4. Write framework-agnostic training loop
 
-> **Prerequisite:** the solution imports both `torch` and `tensorflow`. Install TensorFlow with `pip install tensorflow` if you only have PyTorch.
+> **Prerequisite:** the solution imports both `torch` and `tensorflow`. Install TensorFlow with `uv pip install tensorflow` if you only have PyTorch.
 
 ### Starter Code
 

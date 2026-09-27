@@ -3,7 +3,7 @@ Document ID: 2301
 Title: Framework Design Patterns
 Phase: 2
 Module: 2300
-Last Updated: 2026-09-26
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -1006,7 +1006,7 @@ class VersionManager:
 
 If issues occur, downgrade with:
 ```bash
-pip install ml-framework==1.0.0
+uv pip install ml-framework==1.0.0
 ```
             """,
             ("2.0", "3.0"): """
