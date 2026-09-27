@@ -3,7 +3,7 @@ Document ID: 5202
 Title: Alignment Orchestration - Reward Modeling vs Direct Preference
 Phase: 5
 Module: 5200
-Last Updated: 2026-09-24
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -32,12 +32,12 @@ Tags: ['finetuning', 'alignment', 'dpo', 'rlhf', 'preference']
 
 After completing this lesson, you will be able to:
 
-- Compare Alignment Methods Comparison
-- Explain Reward Modeling (RLHF)
-- Explain Direct Preference Optimization
-- Explain KTO (Kahneman-Tversky Optimization)
-- Explain Practical Alignment Pipeline
-- Measure and evaluate Evaluation
+- Compare the method families by moving parts and failure modes — SFT baseline; PPO adds reward + value + reference models and the largest tuning surface; DPO drops the reward model; KTO drops the pairs; IPO trades a little quality for stability
+- Train a Bradley–Terry reward model — `AutoModelForSequenceClassification` with `num_labels=1`, loss −log σ(R_chosen − R_rejected) — and decide when the PPO detour pays for itself (>100K preferences, reward reused across tasks)
+- Frame DPO (from 5201) as the orchestration default: no reward model, π_ref = the SFT checkpoint (not the base model), `DPOConfig` + `processing_class=tokenizer`
+- Run KTO on unpaired binary feedback — dataset `{prompt, completion, label: bool}` (True = desirable), `KTOConfig` carries beta/desirable_weight, lr kept in 5e-7–5e-6 for β=0.1
+- Assemble the two-stage pipeline — SFT first to learn the format, preference optimization second with lr an order of magnitude lower
+- Evaluate alignment: reward deltas before/after scored by a held-out reward model, plus a side-by-side human protocol (A / B / tie / both-bad)
 
 ---
 
@@ -61,8 +61,8 @@ IPO             | No           | Very High | Medium     | Medium     | Very Good
 ```text
 Start → Have preference pairs?
          ├─ Yes → Use DPO or IPO
-         │        ├─ Want best quality? → IPO
-         │        └─ Want simplicity? → DPO
+         │        ├─ Noisy / overconfident prefs? → IPO
+         │        └─ Default? → DPO
          │
          └─ No → Have binary feedback?
                   ├─ Yes → Use KTO
@@ -88,12 +88,22 @@ Avoid Reward Modeling when:
 
 ### Reward Model Training
 ```python
+import torch
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
 from datasets import load_dataset
 
-# 1. Load dataset
-# Format: {"prompt": str, "chosen": str, "rejected": str}
-dataset = load_dataset("Anthropic/hh-rlhf", split="train")
+# 1. Load dataset — prompt is a string, chosen/rejected are MESSAGE
+# LISTS (assistant turn last): flatten to plain text
+def to_pair(example):
+    return {
+        "prompt": example["prompt"],
+        "chosen": example["chosen"][-1]["content"],
+        "rejected": example["rejected"][-1]["content"],
+    }
+
+dataset = load_dataset(
+    "argilla/ultrafeedback-binarized-preferences-cleaned", split="train"
+).map(to_pair).select(range(256))  # demo slice
 
 # 2. Load reward model (classification head)
 reward_model = AutoModelForSequenceClassification.from_pretrained(
@@ -101,13 +111,15 @@ reward_model = AutoModelForSequenceClassification.from_pretrained(
     num_labels=1,  # Single scalar reward
 )
 tokenizer = AutoTokenizer.from_pretrained("gpt2")
+tokenizer.pad_token = tokenizer.eos_token  # GPT-2 ships no pad token
+SEP = tokenizer.eos_token                 # ...and no sep token — use EOS
 
 # 3. Prepare data
 def prepare_batch(batch):
     """Format: prompt + [SEP] + chosen/rejected"""
-    chosen_texts = [f"{p}{tokenizer.sep_token}{c}"
+    chosen_texts = [f"{p}{SEP}{c}"
                     for p, c in zip(batch["prompt"], batch["chosen"])]
-    rejected_texts = [f"{p}{tokenizer.sep_token}{r}"
+    rejected_texts = [f"{p}{SEP}{r}"
                       for p, r in zip(batch["prompt"], batch["rejected"])]
 
     chosen_inputs = tokenizer(chosen_texts, padding=True, return_tensors="pt")
@@ -158,69 +170,48 @@ for batch in dataset:
 
 ### PPO Training with Reward Model
 ```python
-from trl import PPOTrainer, PPOConfig
-from transformers import AutoModelForCausalLMWithValueHead
+# PPO is the heavyweight path: policy + reference + reward model +
+# value model, four moving parts per step. TRL removed it from the
+# stable surface (v1.x docs have no PPO page) — it now lives in
+# trl.experimental.ppo on main. The lesson's thesis: DPO/KTO give
+# most of the quality for a fraction of this moving-part count.
+from trl.experimental.ppo import PPOConfig, PPOTrainer  # TRL main, experimental
 
-# 1. Load policy model with value head
-policy = AutoModelForCausalLMWithValueHead.from_pretrained("llama-2-7b-sft")
-
-# 2. Load reward model (frozen)
-reward_model = AutoModelForSequenceClassification.from_pretrained("reward-model")
-reward_model.eval()
-
-# 3. PPO config
 ppo_config = PPOConfig(
-    learning_rate=1.41e-5,
-    batch_size=128,
-    mini_batch_size=32,
-    gradient_accumulation_steps=4,
+    output_dir="./ppo_output",
+    learning_rate=3e-6,   # PPO default; hyperparameter-sensitive
+    response_length=64,
 )
 
-# 4. PPO Trainer
+# Plain causal LM models — no value-head wrapper in the modern API
 ppo_trainer = PPOTrainer(
-    config=ppo_config,
-    model=policy,
-    ref_model=None,  # PPOTrainer handles reference model
-    reward_model=reward_model,
-    tokenizer=tokenizer,
+    args=ppo_config,
+    model=sft_model,            # policy
+    ref_model=None,             # None -> trainer copies the policy
+    reward_model=reward_model,  # trained above (num_labels=1)
+    value_model=value_model,    # value head for the advantage estimate
+    train_dataset=prompt_dataset,
+    processing_class=tokenizer,
 )
 
-# 5. Generate responses and optimize
-for batch in dataloader:
-    # Generate responses
-    response_tensors = ppo_trainer.generate(
-        batch["input_ids"],
-        max_new_tokens=64,
-    )
-
-    # Compute rewards
-    rewards = [
-        reward_model(input_ids=r, attention_mask=r.attention_mask).logits.squeeze(-1)
-        for r in response_tensors
-    ]
-
-    # PPO step
-    stats = ppo_trainer.step(
-        batch["input_ids"],
-        response_tensors,
-        rewards,
-    )
+ppo_trainer.train()
 ```
 
 ## Direct Preference Optimization
 
 ### DPO Implementation (Recap)
 ```python
-from trl import DPOTrainer
+from trl import DPOConfig, DPOTrainer
 
-# DPO is simpler: No reward model needed!
+# DPO is simpler: no reward model needed! Full loss walkthrough: 5201
 
 dpo_trainer = DPOTrainer(
     model=policy_model,
-    ref_model=reference_model,  # Can be shared with policy to save memory
+    ref_model=reference_model,  # pi_ref = the SFT policy you started from;
+                                # with LoRA pass ref_model=None instead (5201)
+    args=DPOConfig(output_dir="./dpo_output", beta=0.1),
     train_dataset=preference_dataset,
-    tokenizer=tokenizer,
-    beta=0.1,
+    processing_class=tokenizer,
 )
 
 dpo_trainer.train()
@@ -245,22 +236,33 @@ Cons:
 
 ### KTO for Binary Feedback
 ```python
-from trl import KTOTrainer
+from datasets import load_dataset
+from trl import KTOConfig, KTOTrainer
+from transformers import AutoModelForCausalLM, AutoTokenizer
 
-# KTO works with binary feedback (good/bad)
-# No need for preference pairs!
+# KTO works with binary feedback (desirable/undesirable) — no pairs.
+# Dataset format — label is a BOOLEAN, not 0/1:
+# {"prompt": str, "completion": str, "label": True/False}
 
-# Dataset format:
-# {"prompt": str, "completion": str, "label": 0/1}
-# 0 = rejected, 1 = accepted
+model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen2-0.5B-Instruct")
+tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen2-0.5B-Instruct")
 
+dataset = load_dataset("trl-lib/kto-mix-14k", split="train")
+
+training_args = KTOConfig(
+    output_dir="./kto_output",
+    beta=0.1,
+    learning_rate=1e-6,  # keep in 5e-7..5e-6 for beta=0.1 (TRL guidance)
+    # Imbalanced labels? Upweight the minority via
+    # desirable_weight / undesirable_weight (target ratio 1:1..4:3)
+)
+
+# ref_model=None -> the initial policy becomes the reference
 kto_trainer = KTOTrainer(
     model=model,
-    ref_model=ref_model,
+    args=training_args,
     train_dataset=dataset,
-    tokenizer=tokenizer,
-    beta=0.1,
-    # No preference pairs needed!
+    processing_class=tokenizer,
 )
 
 kto_trainer.train()
@@ -306,8 +308,8 @@ Stage 3: Evaluation
 
 ### Full Pipeline Implementation
 ```python
-from transformers import Trainer, TrainingArguments
-from trl import DPOTrainer, SFTTrainer
+from transformers import AutoModelForCausalLM, Trainer, TrainingArguments
+from trl import DPOConfig, DPOTrainer, SFTTrainer
 
 # Stage 1: SFT
 sft_trainer = SFTTrainer(
@@ -324,22 +326,26 @@ sft_trainer = SFTTrainer(
 )
 
 sft_trainer.train()
+sft_trainer.save_model("./sft-checkpoint")
 sft_model = sft_trainer.model
 
-# Stage 2: DPO
+# Stage 2: DPO — DPOTrainer takes a DPOConfig, not TrainingArguments
+ref_model = AutoModelForCausalLM.from_pretrained("./sft-checkpoint")
+ref_model.eval()  # pi_ref = the SFT policy you are diverging from,
+                  # NOT the pre-SFT base model
+
 dpo_trainer = DPOTrainer(
     model=sft_model,
-    ref_model=base_model,  # Use base as reference
-    train_dataset=preference_dataset,
-    tokenizer=tokenizer,
-    beta=0.1,
-    args=TrainingArguments(
+    ref_model=ref_model,
+    args=DPOConfig(
         output_dir="./dpo-checkpoint",
-        num_train_epochs=1,
-        learning_rate=1e-6,
+        beta=0.1,
+        learning_rate=5e-7,  # an order of magnitude below SFT's 2e-4
         per_device_train_batch_size=4,
         gradient_accumulation_steps=4,
     ),
+    train_dataset=preference_dataset,
+    processing_class=tokenizer,
 )
 
 dpo_trainer.train()
@@ -350,33 +356,33 @@ aligned_model = dpo_trainer.model
 
 ### Reward Model Evaluation
 ```python
-# Use held-out reward model for evaluation
+# Score with a reward model held out from training (in production,
+# train it on a disjoint split — never the RM you optimized against)
 
-eval_reward_model = AutoModelForSequenceClassification.from_pretrained(
-    "separate-reward-model"
-)
+eval_reward_model = reward_model  # placeholder: the RM trained above
 
-def compute_reward(model, prompt, response):
-    """Compute reward for prompt-response pair"""
-    text = f"{prompt}{tokenizer.sep_token}{response}"
+def compute_reward(prompt, response):
+    """Score a prompt-response pair (the RM is fixed — no model arg)"""
+    text = f"{prompt}{SEP}{response}"
     inputs = tokenizer(text, return_tensors="pt")
     with torch.no_grad():
-        reward = eval_reward_model(**inputs).logits.item()
-    return reward
+        return eval_reward_model(**inputs).logits.item()
 
-# Compare before/after alignment
+# Compare before/after alignment — generate() takes tokenized input
 test_prompts = ["Write a poem about AI", "Explain quantum computing"]
 
 for prompt in test_prompts:
-    before_response = sft_model.generate(prompt)
-    after_response = aligned_model.generate(prompt)
-
-    before_reward = compute_reward(sft_model, prompt, before_response)
-    after_reward = compute_reward(aligned_model, prompt, after_response)
+    inputs = tokenizer(prompt, return_tensors="pt")
+    before_response = tokenizer.decode(
+        sft_model.generate(**inputs, max_new_tokens=64)[0]
+    )
+    after_response = tokenizer.decode(
+        aligned_model.generate(**inputs, max_new_tokens=64)[0]
+    )
 
     print(f"Prompt: {prompt}")
-    print(f"Before: {before_reward:.2f}")
-    print(f"After: {after_reward:.2f}")
+    print(f"Before: {compute_reward(prompt, before_response):.2f}")
+    print(f"After: {compute_reward(prompt, after_response):.2f}")
 ```
 
 ### Human Evaluation
@@ -408,7 +414,6 @@ def human_eval(model_a, model_b, test_prompts):
 # Which is better? [A] [B] [Tie] [Both bad]
 ```
 
-
 ---
 
 ## References
@@ -425,13 +430,5 @@ def human_eval(model_a, model_b, test_prompts):
 
 - Continue with: **[5301: Knowledge Distillation](./../5300-synthetic/5301-Knowledge-Distillation.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
-
----
----
-
-**Related Documents:**
-- [5201: DPO Theory](./5201-DPO-Theory.md)
-- [5102: QLoRA Pipelines](../5100-peft/5102-QLoRA-Pipelines.md)
-- [7101: ReAct Loop](../../phase7-agentic/7100-architecture/7101-ReAct-Loop-System.md)
-
-**Experiment Template:** [EXP_5202: Alignment](../../../../experiments/EXP_5202_ALIGNMENT.md)
+- Experiment: **[EXP_5202: Alignment](../../../../experiments/EXP_5202_ALIGNMENT.md)**
+- Practice DPO on top of QLoRA: **[5102: QLoRA Pipelines](../5100-peft/5102-QLoRA-Pipelines.md)**
