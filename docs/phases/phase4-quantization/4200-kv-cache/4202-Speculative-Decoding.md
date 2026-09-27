@@ -3,7 +3,7 @@ Document ID: 4202
 Title: Speculative Decoding - Accelerating Large Models
 Phase: 4
 Module: 4200
-Last Updated: 2026-09-24
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -32,12 +32,12 @@ Tags: ['quantization', 'kv-cache', 'context-window', 'speculative-decoding']
 
 After completing this lesson, you will be able to:
 
-- Explain the reasoning behind The Intuition
-- Explain Algorithm
-- Explain Draft Model Selection
-- Measure and evaluate Performance Analysis
-- Explain Advanced Techniques
-- Apply Implementation Tips
+- Justify speculative decoding's win — the draft predicts N tokens, the target verifies all of them in one pass — turning 1 target-model run into multiple accepted tokens
+- Trace `speculative_decode(speculation_len=8)` — greedy draft chain, single target verification, accept-until-mismatch with the corrected token appended — and `speculative_sampling`'s min(1, p/q) acceptance with residual max(0, p−q) redistribution on rejection
+- Pick draft models from the size table — for a 70B target: TinyLlama-1B (~30x faster, 60-70% acceptance), Llama-2-7B (~8x, 85-90% distilled), Llama-2-13B (~4x, 90-95%) — aiming at the ~10%-of-target sweet spot via KL-divergence distillation at lr=1e-5
+- Compute the speedup formula 1 / (P_accept·T_draft + (1−P_accept)·T_target) — 80% acceptance at 10x draft speed gives 3.57x theoretical, ~2-3x realized — and name the acceptance factors (draft quality, temperature, speculation length, domain match)
+- Contrast the draft-free variants — lookahead self-verification, parallel best-of-4 draft scoring, MedusaHeads' four Linear prediction heads — and what each trades for dropping the separate draft model
+- Tune with `find_optimal_speculation_length` — spec_len 8 → 3.0x at 70% acceptance vs 16 → 2.5x at 45%, optimal 8-12 — and keep the two caches consistent through SpeculativeKVCache.commit_accepted
 
 ---
 
@@ -309,7 +309,7 @@ def lookahead_speculative_decode(
         current_input = generated
 
         with torch.no_grad():
-            for _ in range(range(lookahead_tokens)):
+            for _ in range(lookahead_tokens):
                 logits = target_model(current_input)
                 next_token = logits[:, -1:].argmax(dim=-1)
                 tentative.append(next_token)
@@ -322,7 +322,7 @@ def lookahead_speculative_decode(
 
         # 3. Accept tokens that match
         for i, tentative_token in enumerate(tentative):
-            actual_token = all_logits[:, len(generated) + i, :].argmax(dim=-1, keepdim=True)
+            actual_token = all_logits[:, generated.shape[1] + i, :].argmax(dim=-1, keepdim=True)
 
             if actual_token == tentative_token:
                 generated = torch.cat([generated, actual_token], dim=-1)
@@ -401,9 +401,12 @@ class MedusaHeads(nn.Module):
 
 ### Optimize Speculation Length
 ```python
-def find_optimal_speculation_length(draft_model, target_model, test_prompts):
+def find_optimal_speculation_length(draft_model, target_model, test_prompts, baseline_time):
     """
     Find best speculation length for your setup
+
+    baseline_time: non-speculative generation time for the same
+    test_prompts (the speedup denominator)
     """
     results = {}
 
@@ -444,8 +447,8 @@ class SpeculativeKVCache:
     KV cache optimized for speculative decoding
     """
     def __init__(self):
-        self.draft_cache = None
-        self.target_cache = None
+        self.draft_cache = {}
+        self.target_cache = {}
         self.accepted_positions = []
 
     def update_draft(self, layer, key, value):
@@ -464,6 +467,7 @@ class SpeculativeKVCache:
         Move accepted tokens from draft to target cache
         """
         for layer in self.draft_cache:
+            self.target_cache.setdefault(layer, {'k': [], 'v': []})
             for i in range(accepted_count):
                 self.target_cache[layer]['k'].append(
                     self.draft_cache[layer]['k'][i]
