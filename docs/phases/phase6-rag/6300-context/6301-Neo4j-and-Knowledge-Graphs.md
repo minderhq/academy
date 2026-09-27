@@ -3,7 +3,7 @@ Document ID: 6301
 Title: Neo4j and Knowledge Graphs for Multi-Hop Reasoning
 Phase: 6
 Module: 6300
-Last Updated: 2026-09-24
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -32,12 +32,12 @@ Tags: ['rag', 'context', 'graphrag', 'neo4j', 'knowledge-graphs']
 
 After completing this lesson, you will be able to:
 
-- Explain the reasoning behind Knowledge Graph Fundamentals
-- Configure and operate Neo4j Setup
-- Explain Cypher Query Language
-- Explain Building Knowledge Graphs
-- Explain GraphRAG: Retrieval from Knowledge Graphs
-- Explain Advanced Graph Techniques
+- Model a knowledge graph as typed nodes and relationships — build the AI-corpus example (Model/Company nodes, CREATED and COMPETES_WITH edges) with `KnowledgeGraph.add_node` / `add_edge`, and explain why a 2-hop question is a join chain in tables but a cheap traversal in a graph
+- Stand up Neo4j in Docker — run `neo4j:2026.09.0` (calendar versioning; 5.26 is the LTS maintenance line) with Bolt 7687 + HTTP 7474, `NEO4J_AUTH`, and the APOC plugin, then execute parameterized Cypher through the Python driver session
+- Read and write Cypher — distinguish CREATE (always adds) from MERGE (match-or-create) from MATCH (read-only), bind values with `$parameters`, and trace the two-hop pattern `(c:Company)-[:CREATED]->(m:Model)-[:COMPETES_WITH]->(comp:Model)`
+- Build a KG from text — spaCy NER for entities plus an NLI zero-shot classifier (`facebook/bart-large-mnli` — an embedding model like bge cannot back this pipeline) for relations, and MERGE idempotent `:Entity`/`:Document` nodes with `MENTIONED_IN` edges
+- Retrieve through the graph — walk `graph_retrieval`'s expansion (query entities → their documents → 1-hop neighbors' documents), rank documents by traversal frequency, and generate parameterized multi-hop Cypher with `build_cypher_query`
+- Embed the graph — convert Neo4j to NetworkX, run node2vec walks, and query the embedding space (`model.wv.most_similar`) for entities close to a seed node
 
 ---
 
@@ -112,13 +112,13 @@ docker run -d \
   -e NEO4J_AUTH=neo4j/password \
   -v /srv/neo4j/data:/data \
   -v /srv/neo4j/logs:/logs \
-  neo4j:latest
+  neo4j:2026.09.0
 
 # Or using Docker Compose
 cat > docker-compose.yml << EOF
 services:
   neo4j:
-    image: neo4j:latest
+    image: neo4j:2026.09.0
     container_name: neo4j
     ports:
       - "7474:7474"  # HTTP
@@ -132,7 +132,7 @@ services:
       - ./neo4j/plugins:/plugins
 EOF
 
-docker-compose up -d
+docker compose up -d
 ```
 
 ### Python Driver
@@ -188,8 +188,8 @@ RETURN c.name AS company, comp.name AS competitor_model
 ```python
 def find_competitors(neo4j, company_name):
     """
-    Find companies that compete with given company's competitors
-    (2-hop reasoning)
+    Find companies whose models compete with the given company's models
+    (2-hop: CREATED → COMPETES_WITH ← CREATED)
     """
     query = """
     MATCH (c1:Company {name: $company})-[:CREATED]->(m1:Model)
@@ -219,9 +219,12 @@ class TextToGraph:
     def __init__(self, neo4j_conn):
         self.neo4j = neo4j_conn
         self.nlp = spacy.load("en_core_web_sm")
+        # zero-shot-classification is an NLI task — it needs an entailment
+        # head (MNLI-trained). BAAI/bge-base-en-v1.5 is an EMBEDDING model
+        # and cannot back this pipeline; bge belongs in vector search.
         self.relation_extractor = pipeline(
             "zero-shot-classification",
-            model="BAAI/bge-base-en-v1.5"
+            model="facebook/bart-large-mnli"
         )
 
     def extract_entities(self, text):
@@ -294,8 +297,8 @@ class TextToGraph:
             query = """
             MATCH (e1:Entity {name: $from})
             MATCH (e2:Entity {name: $to})
-            MERGE (e1)-[r:RELATION]->(e2)
-            ON CREATE SET r.type = $relation, r.confidence = $confidence
+            MERGE (e1)-[r:RELATION {type: $relation}]->(e2)
+            ON CREATE SET r.confidence = $confidence
             """
             self.neo4j.query(query, rel)
 
@@ -342,24 +345,25 @@ def build_rag_graph(documents, neo4j_conn):
 
 ### Graph-Based Retrieval
 ```python
-def graph_retrieval(neo4j, query, k=10):
+def graph_retrieval(neo4j, query_entities, k=10):
     """
     Retrieve relevant documents using knowledge graph
 
-    Approach: Expand query through graph relationships
+    Approach: expand through graph relationships
+
+    query_entities: entity names extracted from the question BEFORE this
+    call (spaCy NER as in TextToGraph above, or an LLM — 6304 does that)
     """
-    # 1. Extract entities from query
-    entities = extract_query_entities(query)
 
     # 2. For each entity, find related documents
     doc_scores = {}
 
-    for entity in entities:
+    for entity in query_entities:
         # Find documents mentioning entity or related entities
         cypher = """
         MATCH (e:Entity {name: $entity})
         OPTIONAL MATCH (e)-[:MENTIONED_IN]->(d:Document)
-        OPTIONAL MATCH (e)-[r:RELATION]-(e2:Entity)-[:MENTIONED_IN]->(d2:Document)
+        OPTIONAL MATCH (e)-[:RELATION]-(e2:Entity)-[:MENTIONED_IN]->(d2:Document)
         RETURN DISTINCT d.id AS doc_id, d2.id AS doc_id_2
         """
 
@@ -377,64 +381,59 @@ def graph_retrieval(neo4j, query, k=10):
     # 4. Return top k
     return [doc_id for doc_id, score in sorted_docs[:k]]
 
-# Example
-query = "What companies compete with Meta's models?"
-relevant_docs = graph_retrieval(neo4j, query, k=5)
+# Example — entities come from an extractor, not the raw question string:
+query_entities = ["Meta", "Llama-2"]
+relevant_docs = graph_retrieval(neo4j, query_entities, k=5)
 ```
 
 ### Multi-Hop Question Answering
 ```python
-def multi_hop_qa(neo4j, question):
-    """
-    Answer complex questions requiring multi-hop reasoning
-    """
-    # Parse question to identify entities and relations
-    entities = extract_entities(question)
-    relations = extract_relations(question)
-
-    # Build Cypher query dynamically
-    query = build_cypher_query(entities, relations)
-
-    # Execute
-    results = neo4j.query(query)
-
-    # Format answer
-    answer = format_answer(results)
-
-    return answer
-
 def build_cypher_query(entities, relations, max_hops=3):
     """
-    Build Cypher query for multi-hop reasoning
+    Build a parameterized Cypher query for multi-hop reasoning.
+
+    entities:  entity names extracted from the question (first = anchor)
+    relations: relation `type` property values, one per hop
+
+    Returns (cypher, params). Values are bound with $parameters, never
+    interpolated into the string — an entity name containing quotes or
+    Cypher metacharacters cannot inject the query.
     """
-    # Match starting entity
-    cypher = f"MATCH (e1:Entity {{name: '{entities[0]}'}})"
+    hops = min(len(relations), max_hops)
 
-    # Add hops
-    for i in range(1, min(len(relations)+1, max_hops)):
-        cypher += f"""
-        MATCH (e1)"
-        for j in range(i):
-            cypher += f"-[:RELATION]->(e{j+2}"
+    # Anchor node + one MATCH per hop:
+    # (e1)-[:RELATION]->(e2)-[:RELATION]->(e3)...
+    cypher = "MATCH (e1:Entity {name: $e0})"
+    for i in range(hops):
+        cypher += f"\nMATCH (e{i + 1})-[:RELATION {{type: $r{i}}}]->(e{i + 2})"
 
-        # Add optional relationship filter
-        if i-1 < len(relations):
-            cypher += f" {{RELATION.type = '{relations[i-1]}'}}"
+    # Return every node along the path (nodes are e1..e(hops+1))
+    cypher += "\nRETURN " + ", ".join(f"e{i}" for i in range(1, hops + 2))
 
-    cypher += ")\n"
+    params = {"e0": entities[0]}
+    params.update({f"r{i}": rel for i, rel in enumerate(relations[:hops])})
+    return cypher, params
 
-    # Return results
-    cypher += "RETURN e1"
-    for i in range(2, max_hops+2):
-        cypher += f", e{i}"
+def multi_hop_qa(neo4j, entities, relations, max_hops=3):
+    """
+    Answer multi-hop questions. Entity/relation extraction happens BEFORE
+    this call (spaCy NER as in TextToGraph above, or an LLM — 6304 does
+    exactly that); this runs the parameterized query and returns entity
+    paths as tuples.
+    """
+    cypher, params = build_cypher_query(entities, relations, max_hops=max_hops)
+    rows = neo4j.query(cypher, params)
+    depth = min(len(relations), max_hops) + 1
+    return [tuple(row[f"e{i}"] for i in range(1, depth + 1)) for row in rows]
 
-    return cypher
-
-# Example
-# Question: "Who owns companies that compete with Ford?"
-# Entities: [Ford]
-# Relations: [COMPETES_WITH, OWNS]
-# Result: 2-hop query
+# Example — build the 1-hop query for "Which models compete with Ford?":
+cypher, params = build_cypher_query(["Ford"], ["COMPETES_WITH"])
+print(cypher)
+# MATCH (e1:Entity {name: $e0})
+# MATCH (e1)-[:RELATION {type: $r0}]->(e2)
+# RETURN e1, e2
+print(params)
+# {'e0': 'Ford', 'r0': 'COMPETES_WITH'}
 ```
 
 ## Advanced Graph Techniques
@@ -484,7 +483,9 @@ def train_node2vec(G):
 
     return model
 
-# Use embeddings for similarity search
+# Usage — G comes from create_networkx_graph(neo4j) above
+model = train_node2vec(G)
+
 model.wv['Meta']  # Embedding for Meta node
 model.wv.most_similar('Meta', topn=10)  # Similar entities
 ```
@@ -496,7 +497,9 @@ model.wv.most_similar('Meta', topn=10)  # Similar entities
 
 ### Related ai-engineering-curriculum Documents
 
+- [6201: Hybrid Search](../6200-retrieval/6201-Hybrid-Search.md)
 - [6302: CAG - Context Augmented Generation and Long Context Architectures](6302-CAG-Long-Context-Architectures.md)
+- [7301: Collaborative Tasking](../../phase7-agentic/7300-orchestration/7301-Orchestration.md)
 
 ---
 
@@ -504,13 +507,4 @@ model.wv.most_similar('Meta', topn=10)  # Similar entities
 
 - Continue with: **[6401: Qdrant Setup](./../6400-vector-databases/6401-Qdrant-Setup.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
-
----
----
-
-**Related Documents:**
-- [6201: Hybrid Search](../6200-retrieval/6201-Hybrid-Search.md)
-- [6302: CAG Long Context](./6302-CAG-Long-Context-Architectures.md)
-- [7301: Collaborative Tasking](../../phase7-agentic/7300-orchestration/7301-Orchestration.md)
-
-**Experiment Template:** [EXP_6303: Neo4j](../../../../experiments/EXP_6303_NEO4J.md)
+- Experiment: **[EXP_6303: Neo4j](../../../../experiments/EXP_6303_NEO4J.md)**
