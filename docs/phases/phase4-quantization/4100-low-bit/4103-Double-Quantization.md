@@ -3,7 +3,7 @@ Document ID: 4103
 Title: Double Quantization - BitsAndBytes (bnb) Logic
 Phase: 4
 Module: 4100
-Last Updated: 2026-09-24
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -34,12 +34,12 @@ Tags: ['quantization', 'gguf', 'exl2', 'awq', 'compression']
 
 After completing this lesson, you will be able to:
 
-- Explain The Problem with Standard Quantization
-- Explain Double Quantization Solution
-- Configure and operate BitsAndBytes Implementation
-- Explain Memory Savings
-- Explain Quality Impact
-- Explain Advanced DQ Techniques
+- Compute the standard 4-bit metadata overhead from the group formulas — weights 0.5mn, fp16 scales 2mn/g, int8 zero-points mn/g bytes — landing at 8 MB + 256 KB + 128 KB ≈ 8.4 MB (~5%) for a 4096×4096 matrix at g=128
+- Derive the scales-of-scales scheme — scales re-quantized to 8-bit `round(s/c) + 128` against one per-tensor fp16 constant `c = max(|scales|)/127` — by walking the `double_quantize`/`double_dequantize` round trip and its ~50% scale-storage saving
+- Configure `BitsAndBytesConfig` (`load_in_4bit`, `bnb_4bit_quant_type="nf4"`, `bnb_4bit_use_double_quant=True`, `bnb_4bit_compute_dtype=torch.float16`) and read the 16 NF4 levels as the normal-distribution-matched codebook
+- Quantify DQ's footprint from the model tables — Llama-2-7B scales 0.1 → 0.05 GB plus ~0.001 GB meta (3.6 → 3.55 GB, ~0.5 GB at 70B) — against its <0.5% quality cost (WikiText-2: 7B 5.65 → 5.67, 70B 3.78 → 3.79)
+- Decide when DQ pays off (VRAM-constrained, 70B+, inference) versus skipping it (max quality, ample VRAM, 7B/13B), and reject triple quantization for <0.01 GB more savings at compounding quality loss
+- Wire DQ into QLoRA — `prepare_model_for_kbit_training` plus LoraConfig (r=16, alpha=32, q_proj/v_proj) training ~1% of parameters — and route the OOM / NaN-loss / slow-inference troubleshooting paths
 
 ---
 
@@ -55,15 +55,15 @@ For a weight matrix W ∈ ℝ^(m×n):
 Standard 4-bit:
   - Weights: m × n × 0.5 bytes = 0.5mn bytes
   - Scales: m × n/g × 2 bytes (fp16) = 2mn/g bytes
-  - Zero points: m/g × 1 byte = m/g bytes
+  - Zero points: m × n/g × 1 byte = mn/g bytes
 
-  Total: 0.5mn + 2mn/g + m/g bytes
+  Total: 0.5mn + 2mn/g + mn/g bytes
 
   For g=128 (group size), m=4096, n=4096:
   - Weights: 0.5 × 16M = 8 MB
   - Scales: 2 × 16M / 128 = 256 KB
-  - Zero points: 4096 / 128 = 32 B
-  - Total: ~8.3 MB
+  - Zero points: 16M / 128 = 128 KB
+  - Total: ~8.4 MB
 
 The scales and zero points add overhead!
 ```
@@ -76,9 +76,9 @@ Weight Matrix (4096 × 4096):
 ├─────────────────────────────────────────┤
 │  Scales (fp16): 256 KB                   │  ← Overhead
 ├─────────────────────────────────────────┤
-│  Zero points (8-bit): 32 B               │  ← Overhead
+│  Zero points (8-bit): 128 KB             │  ← Overhead
 └─────────────────────────────────────────┘
-Total: 8.26 MB (~3% overhead for metadata)
+Total: 8.4 MB (~5% overhead for metadata)
 ```
 
 ## Double Quantization Solution
@@ -200,15 +200,18 @@ def nf4_quantize(weights):
     max_val = weights.abs().max()
     weights_norm = weights / max_val
 
-    # NF4 quantization levels (precomputed)
-    # Optimized for normal distribution
+    # NF4 quantization levels (the real bitsandbytes constants)
+    # 16 levels for 4 bits, matched to the normal distribution
     nf4_levels = torch.tensor([
-        -1.0, -0.696, -0.525, -0.394, -0.212, -0.105,
-        0.0, 0.105, 0.212, 0.394, 0.525, 0.696, 1.0
+        -1.0, -0.6962, -0.5251, -0.3949, -0.2844, -0.1848,
+        -0.0911, 0.0, 0.0796, 0.1609, 0.2461, 0.3379,
+        0.4407, 0.5626, 0.7229, 1.0
     ])
 
     # Find closest level
+    # Clamp: |w| = 1.0 would return index 16, one past the last level
     indices = torch.searchsorted(nf4_levels, weights_norm)
+    indices = torch.clamp(indices, 0, len(nf4_levels) - 1)
     quantized = nf4_levels[indices]
 
     # Pack into 4-bit (2 values per byte)
@@ -235,7 +238,7 @@ bnb_config = BitsAndBytesConfig(
     # Compute dtype
     bnb_4bit_compute_dtype=torch.float16,
 
-    # Group size for quantization
+    # Storage dtype for the packed 4-bit values
     bnb_4bit_quant_storage=torch.uint8,
 )
 
