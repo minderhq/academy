@@ -3,7 +3,7 @@ Document ID: 2101
 Title: Tensor Algebra and Linear Algebra for AI
 Phase: 2
 Module: 2100
-Last Updated: 2026-09-26
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 4 hours
@@ -34,12 +34,12 @@ Tags: ['math', 'calculus', 'tensors', 'backpropagation']
 
 After completing this lesson, you will be able to:
 
-- Explain the reasoning behind Tensor Fundamentals
-- Explain Tensor Operations
-- Explain Einstein Summation (einsum)
-- Explain Tensor Manipulations
-- Explain Reduction Operations
-- Explain GPU Tensor Operations
+- Distinguish scalar, vector, matrix, and higher-rank tensors by rank and shape, and read an AI shape such as (B, C, H, W) or (B, H, L, D) into its axes
+- Predict broadcasting results from the right-alignment rules and choose between matmul, bmm, and batched matmul for a given shape
+- Translate matrix multiply, dot product, outer product, transpose, and batched matmul into einsum index notation and read a spec like `ij,jk->ik` back into prose
+- Reshape, permute, and slice tensors while tracking contiguity, and explain when `view` avoids the copy that `reshape` must make
+- Contrast reduction operations (sum, mean, max, top-k) with SVD/PCA dimensionality reduction and project data onto the top-k principal components
+- Move tensors across CPU/CUDA devices, train with `torch.amp` autocast and GradScaler, and size a 7B model's fp16/int8/int4 memory footprint
 
 ---
 
@@ -317,19 +317,22 @@ x = torch.randn(3, 4, device='cuda:0')
 x_cpu = x_gpu.cpu()
 ```
 
-### Tensor Cores (11GB-class GPU)
+### Tensor Cores (Ampere to Blackwell)
 ```yaml
 Tensor Cores specialize in matrix multiplication:
-- FP16 (half precision) input
-- FP32 (full precision) accumulation
-- Up to 8x faster than CUDA cores
+- FP16 (half precision) input, FP32 (full precision) accumulation
+- Up to 8x faster than CUDA cores for the same workload
+
+Newer generations widen the input formats:
+- Hopper (H100): adds FP8 input with FP32 accumulation
+- Blackwell (RTX 50 series, B200): adds FP4/FP6 and doubles FP8 throughput
 
 Core operation (matrix multiply-accumulate):
 - D = A × B + C  —  (M, K) × (K, N) + (M, N) = (M, N)
 
 Requirements:
-- Dimensions must be multiples of 8 (for FP16)
-- Use amp.autocast() for automatic mixed precision
+- Dimensions must be multiples of 8 (for FP16; 16 for FP8)
+- Use torch.amp autocast("cuda") for automatic mixed precision
 ```
 
 ### Mixed Precision Example
