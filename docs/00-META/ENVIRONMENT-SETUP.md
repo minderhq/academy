@@ -130,6 +130,11 @@ docker --version
 > than pip (parallel downloads + a global cache) and manages Python versions,
 > virtual environments, and project dependencies in one tool. Everywhere else
 > in the corpus, a `pip install X` you encounter maps 1:1 to `uv pip install X`.
+>
+> Two deliberate exceptions: inside Dockerfiles, plain `RUN pip install ...`
+> stays valid because uv is not preinstalled in Python base images (LAB-001
+> teaches the official uv image pattern), and inside conda workflows,
+> `pip install` into the active environment remains the standard.
 
 #### Install uv
 
@@ -351,9 +356,10 @@ pyenv install 3.11.7
 pyenv local 3.11.7
 ```
 
-3. **Windows - Use Python Launcher:**
+3. **Windows - Use Python Launcher with uv:**
 ```powershell
-py -3.11 -m pip install package-name
+py -3.11 --version
+uv pip install --python 3.11 package-name
 ```
 
 ---
