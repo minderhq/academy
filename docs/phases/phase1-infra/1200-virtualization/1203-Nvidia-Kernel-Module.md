@@ -3,7 +3,7 @@ Document ID: 1203
 Title: NVIDIA Kernel Module Management
 Phase: 1
 Module: 1200
-Last Updated: 2026-09-25
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -34,12 +34,12 @@ Tags: ['infrastructure', 'virtualization', 'proxmox', 'gpu']
 
 After completing this lesson, you will be able to:
 
-- Explain NVIDIA Driver Architecture
-- Explain Kernel Modules Explained
-- Apply Installation Methods
-- Configure and operate Module Configuration
-- Explain CUDA Memory Management
-- Explain Power Management
+- Sketch the userspace-to-kernel component stack of the NVIDIA driver and name which parts ship as kernel modules
+- Trace the load order of nvidia, nvidia-uvm, nvidia-modeset, nvidia-drm, and nvidia-peermem and state each module's role
+- Install the driver through DKMS, ubuntu-drivers, or the NVIDIA runfile, and verify the loaded version with modinfo
+- Blacklist nouveau, set NVreg parameters in /etc/modprobe.d, and enable driver persistence across reboots
+- Distinguish CUDA unified memory from explicit copies and check the BAR1 aperture that bounds host-to-device transfers
+- Read GPU P-states, temperatures, and power limits with nvidia-smi and cap the draw for thermally constrained enclosures
 
 ---
 
@@ -56,7 +56,7 @@ This document covers NVIDIA driver and kernel module management for an 11GB-clas
 └─────────────────────────────────────────┘
                   ↓
 ┌─────────────────────────────────────────┐
-│         NVIDIA Driver (535.xx.x)        │
+│         NVIDIA Driver (580.xx.x)        │
 │  libnvidia-ml.so (nvidia-smi API)       │
 └─────────────────────────────────────────┘
                   ↓
@@ -67,7 +67,7 @@ This document covers NVIDIA driver and kernel module management for an 11GB-clas
 └─────────────────────────────────────────┘
                   ↓
 ┌─────────────────────────────────────────┐
-│         Hardware (11GB-class GPU)          │
+│         Hardware (11GB-class GPU)       │
 └─────────────────────────────────────────┘
 ```
 
@@ -104,21 +104,19 @@ apt install dkms build-essential linux-headers-$(uname -r)
 
 # Install NVIDIA driver with DKMS - the -dkms package registers the
 # module build with DKMS
-apt install nvidia-driver-535 nvidia-dkms-535
+apt install nvidia-driver-580 nvidia-dkms-580
 
 # DKMS rebuilds module on kernel update automatically
 dkms status
-# nvidia/535.154.05, 6.5.0-14-amd64, x86_64: installed
+# nvidia/580.65.06, 6.8.0-45-amd64, x86_64: installed
 ```
 
 ### Method 2: Package Manager (Ubuntu)
 ```bash
-# Add graphics PPA
-add-apt-repository ppa:graphics-drivers/ppa
-apt update
-
-# Install meta-package (tracks recommended version)
-apt install nvidia-driver-535
+# Ubuntu ships current NVIDIA branches in its own archive - let
+# ubuntu-drivers pick the recommended one for the detected GPU
+ubuntu-drivers devices
+ubuntu-drivers install nvidia:580
 
 # Check loaded modules
 lsmod | grep nvidia
@@ -127,7 +125,7 @@ lsmod | grep nvidia
 ### Method 3: NVIDIA Runfile (For Specific Versions)
 ```bash
 # Download from NVIDIA
-wget https://download.nvidia.com/XFree86/Linux-x86_64/535.154.05/NVIDIA-Linux-x86_64-535.154.05.run
+wget https://download.nvidia.com/XFree86/Linux-x86_64/580.65.06/NVIDIA-Linux-x86_64-580.65.06.run
 
 # Single invocation: point at the matching kernel headers and skip
 # the OpenGL userspace libraries (they conflict with mesa)
@@ -171,34 +169,24 @@ options nvidia NVreg_DynamicPowerManagement=0
 
 # Explanation:
 # EnableGpuFirmware: 0 = legacy firmware path instead of the GSP
-#   (GPU System Processor) firmware
+#   (GPU System Processor) firmware; the open kernel modules require
+#   GSP and the proprietary driver defaults to it on Turing and
+#   newer, so keep the default (1) on modern stacks
 # EnablePageRetirement: Handle bad VRAM pages gracefully
 # UsePageAttributeTable: Improved memory performance
 # EnableStreamMemOPs: Enable CUDA stream operations
-# DynamicPowerManagement: Disable for eGPU stability
+# DynamicPowerManagement: 0 keeps the GPU always initialized
+#   (no runtime D3) - the steady choice for eGPU enclosures
 ```
 
 ### Persistence Mode
 ```bash
-# Enable persistence (keeps driver loaded)
+# Enable persistence (keeps the driver initialized between clients)
 nvidia-smi -pm 1
 
-# Make persistent across reboots
-cat > /etc/systemd/system/nvidia-persistence.service << EOF
-[Unit]
-Description=NVIDIA Persistence Mode
-After=syslog.target
-
-[Service]
-Type=oneshot
-ExecStart=/usr/bin/nvidia-smi -pm 1
-RemainAfterExit=yes
-
-[Install]
-WantedBy=multi-user.target
-EOF
-
-systemctl enable nvidia-persistence.service
+# Persistence across reboots: use the nvidia-persistenced daemon that
+# ships with the driver packages - no hand-rolled unit needed
+systemctl enable --now nvidia-persistenced
 ```
 
 ## CUDA Memory Management
@@ -227,7 +215,7 @@ nvidia-smi -q | grep -A 3 "Bar1 Memory Usage"
 
 ### Power States (P-States)
 ```bash
-# P0:  Maximum performance (all cores active)
+# P0:  Maximum performance state
 # P8:  Idle (minimum power draw); P1-P12 are intermediate
 #      states - which ones a card exposes varies by model
 
@@ -258,7 +246,7 @@ kind: Pod
 spec:
   initContainers:
   - name: nvidia-driver-check
-    image: ubuntu:22.04
+    image: ubuntu:24.04
     command:
     - sh
     - -c
@@ -304,7 +292,7 @@ spec:
       - name: validator
         # Driver containers live on NGC (Docker Hub nvidia/driver is
         # deprecated); the tag embeds driver AND host kernel version
-        image: nvcr.io/nvidia/driver:535-5.15.0-179-generic-ubuntu22.04
+        image: nvcr.io/nvidia/driver:580-6.8.0-45-generic-ubuntu24.04
         securityContext:
           privileged: true
         volumeMounts:
@@ -332,7 +320,7 @@ spec:
 
 | Symptom | Cause | Solution |
 |---------|-------|----------|
-| Code 43 | Version mismatch | Update guest driver |
+| Code 43 | Guest driver rejects the virtual environment (consumer-GPU passthrough is allowed natively since driver 465; older drivers need `hidden=1`, see 1201) | Update the guest driver, or set `hidden=1` in the VM config |
 | Module not loading | Wrong kernel headers | Install `linux-headers-generic` |
 | CUDA OOM | VRAM still held after crashed/killed pods | Stop GPU pods, then `nvidia-smi --gpu-reset` (reset requires the GPU idle) |
 | CUDA app fails: "UVM not available" | nvidia_uvm not loaded | `modprobe nvidia-uvm` |
