@@ -3,7 +3,7 @@ Document ID: 4305
 Title: Quantization Configuration
 Phase: 4
 Module: 4300
-Last Updated: 2026-09-24
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -35,12 +35,12 @@ Tags: ['quantization', 'qat', 'quantization-aware-training']
 
 After completing this lesson, you will be able to:
 
-- Apply Configuration Dimensions
-- Configure and operate Layer-wise Configuration
-- Compare Per-Tensor vs Per-Channel
-- Compare Symmetric vs Asymmetric
-- Compare Dynamic vs Static Scale
-- Explain Selective Quantization
+- Apply the six configuration dimensions — layer choice, per-layer precision, per-tensor/per-channel, symmetric/asymmetric, dynamic/static scale, and the skip-list
+- Configure the transformer QAT_CONFIG layer-wise — 8-bit per-channel Q/K/O, 4-bit per-channel V and both MLP Linears, 8-bit per-tensor embeddings, norm1/norm2 marked quantize: False
+- Contrast per-tensor vs per-channel scales — one scalar against [out_channels, 1] channel scales; activations tolerate per-tensor at 8-bit, weights need per-channel at 4-bit
+- Justify symmetric weights vs asymmetric activations — zero-point-free ranges for centered distributions, learned zero-point (INT8 [-128, 127] with zp=-10) for ReLU-non-negative outputs
+- Weigh dynamic vs static scales — per-batch x.abs().max()/127 computation for varying ranges against calibration-frozen buffers on fixed-point hardware
+- Drive selective quantization by layer size (top-k largest), sensitivity analysis (quantize-one-at-a-time deltas vs baseline), and greedy auto-configuration stepping down until accuracy dips
 
 ---
 
@@ -256,10 +256,17 @@ Example (INT8): [-128, 127] with zp = -10
 Scale determined during calibration/frozen during training:
 
 ```python
+import torch
+import torch.nn as nn
+# fake_quantize is defined in 4301-QAT-Foundations.md — import or paste it
+# here (clamp(round(x/scale)+zero_point) then dequantize back)
+
 class StaticScaleQuantizer(nn.Module):
-    def __init__(self, scale):
+    def __init__(self, scale, zero_point=0):
         super().__init__()
+        # Both qparams frozen at construction: no observer, no updates
         self.register_buffer('scale', torch.tensor(scale))
+        self.register_buffer('zero_point', torch.tensor(zero_point))
 
     def forward(self, x):
         return fake_quantize(x, self.scale, self.zero_point)
@@ -363,9 +370,11 @@ BIT_CONFIG = {
 def apply_layer_config(model, config):
     """Apply layer-specific bit-widths"""
     for pattern, bit_width in config.items():
-        for name in model.state_dict():
-            if name.startswith(pattern):
-                set_bit_width(get_module(model, name), bit_width)
+        # named_modules (not state_dict — those keys are parameter names
+        # like 'layers.0.fc1.weight', not module paths)
+        for name, module in model.named_modules():
+            if name.startswith(pattern) and isinstance(module, FakeQuantize):
+                module.bit_width = bit_width
 ```
 
 ## Configuration Templates
@@ -434,6 +443,7 @@ def auto_configure(model, calib_loader, target_accuracy=0.98):
     acc = evaluate_with_config(model, config, calib_loader)
 
     # Greedily reduce bits until accuracy drops
+    # Rank by sensitivity_analysis() impact: least sensitive layers first
     for layer in sorted(config.keys(), key=impact_on_accuracy):
         if config[layer] > 4:
             config[layer] -= 2  # Try lower precision
