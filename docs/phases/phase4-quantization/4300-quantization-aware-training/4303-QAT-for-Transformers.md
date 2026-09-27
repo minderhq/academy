@@ -3,7 +3,7 @@ Document ID: 4303
 Title: QAT for Transformers
 Phase: 4
 Module: 4300
-Last Updated: 2026-09-24
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -36,12 +36,12 @@ Tags: ['quantization', 'qat', 'quantization-aware-training']
 
 After completing this lesson, you will be able to:
 
-- Explain Transformer Components to Quantize
-- Explain What NOT to Quantize
-- Apply Implementation for Self-Attention
-- Apply Implementation for MLP/Feed-Forward
-- Explain Complete Transformer Block
-- Explain Embedding Layer Quantization
+- Map the quantize/don't boundaries of a transformer block — Q/K/V/O projections and both MLP Linears carry quantized weights and I/O, while GELU, softmax, and both layer norms stay FP32
+- Justify the three FP32 holdouts — layer norm's sensitivity on small values, non-linear activations computed on dequantized inputs, softmax probabilities preserved until `attn_weights @ v`
+- Build `QuantizedAttention` — fused qkv Linear, the permute(2,0,3,1,4) head split to (B,H,N,d), per-mode quantizers (asymmetric input/output, symmetric weights), FP32 softmax over (B,H,N,N) scores
+- Assemble `QuantizedMLP` — input quant, quantized fc1 into the 4x expansion, FP32 GELU, activation quant, quantized fc2 projection back
+- Wire `QuantizedTransformerBlock` — pre-LN norm1/attn and norm2/mlp with residuals, a separate residual quantizer per branch so the two output distributions don't blend in one observer
+- Quantize embeddings as lookup-then-fake-quant with a symmetric int8 weight quantizer, and weigh the production shortcut of INT8-from-start against QAT
 
 ---
 
@@ -119,7 +119,8 @@ attn_output = fake_quantize(attn_weights @ v)
 ```python
 import torch
 import torch.nn as nn
-from previous_module import FakeQuantize
+# FakeQuantize is defined in 4302-Fake-Quantization.md — import or paste it
+# here (constructor: bit_width, symmetric, momentum, per_channel)
 
 class QuantizedAttention(nn.Module):
     """QAT-compatible attention layer"""
@@ -151,10 +152,11 @@ class QuantizedAttention(nn.Module):
         # QKV projection with weight quantization
         qkv = self._quantized_linear(x, self.qkv)
         qkv = qkv.reshape(B, N, 3, self.num_heads, self.head_dim)
-        q, k, v = qkv.unbind(2)
+        qkv = qkv.permute(2, 0, 3, 1, 4)  # (3, B, H, N, d)
+        q, k, v = qkv.unbind(0)
 
         # Attention (keep FP32 for stability)
-        attn = (q @ k.transpose(-2, -1)) * self.scale
+        attn = (q @ k.transpose(-2, -1)) * self.scale  # (B, H, N, N)
         attn = attn.softmax(dim=-1)
         attn = self.dropout(attn)
 
@@ -231,16 +233,19 @@ class QuantizedTransformerBlock(nn.Module):
         self.norm2 = nn.LayerNorm(embed_dim)
         self.mlp = QuantizedMLP(embed_dim, mlp_ratio)
 
-        self.residual_quant = FakeQuantize(bit_width=8, symmetric=False)
+        # Separate quantizers per branch: one shared instance would blend
+        # the attention-output and MLP-output distributions in its observer
+        self.residual_quant_attn = FakeQuantize(bit_width=8, symmetric=False)
+        self.residual_quant_mlp = FakeQuantize(bit_width=8, symmetric=False)
 
     def forward(self, x):
         # Attention block with residual
         x = x + self.attn(self.norm1(x))
-        x = self.residual_quant(x)  # Quantize residual
+        x = self.residual_quant_attn(x)  # Quantize residual
 
         # MLP block with residual
         x = x + self.mlp(self.norm2(x))
-        x = self.residual_quant(x)
+        x = self.residual_quant_mlp(x)
 
         return x
 ```
@@ -361,7 +366,7 @@ if torch.isnan(attn).any():
 
 **Solution:** Increase bit-width for Q/K projections:
 ```python
-self.qkv_quant = FakeQuantize(bit_width=16)  # FP16 instead of INT8
+self.qkv_quant = FakeQuantize(bit_width=16)  # int16 grid (not FP16) relieves Q/K dynamic range
 ```
 
 ### Issue 2: Residual Connection Overflow
@@ -381,7 +386,7 @@ x = x_q + residual_q  # Both in similar range
 
 **Solution:** Keep first layer in FP16:
 ```python
-self.embed_quant = FakeQuantize(bit_width=16)  # FP16
+self.embed_quant = FakeQuantize(bit_width=16)  # wider int16 grid for the fragile first layer
 ```
 
 ## Results Expectations
