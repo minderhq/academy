@@ -3,7 +3,7 @@ Document ID: 7102
 Title: Planning and Task Decomposition
 Phase: 7
 Module: 7100
-Last Updated: 2026-09-24
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -30,10 +30,10 @@ Tags: ['agents', 'react', 'planning', 'autonomy', 'cognition']
 
 After completing this lesson, you will be able to:
 
-- Explain Task Decomposition
-- Explain Planning Algorithms
-- Explain Dynamic Replanning
-- Explain Multi-Agent Planning
+- Decompose a complex task into executable steps — implement LLM-backed sequential and hierarchical decomposition, bounding recursion with max_depth and parsing numbered responses into clean step lists
+- Turn an LLM plan into tool calls — parse `N. Action: tool[param=value]` lines in ForwardPlanner and run BackwardPlanner, whose reversed step list restores forward execution order
+- Recover from failing steps at runtime — splice the regenerated sub-plan into the live plan inside execute_with_replan, keeping the loop index and the max_replans cap consistent
+- Coordinate specialist agents on one task — let CoordinatorAgent decompose and keyword-route subtasks, group multi-subtask assignments per specialist, and integrate the per-agent sub-plans
 
 ---
 
@@ -66,6 +66,10 @@ Each sub-task is clear and actionable
 
 #### Sequential Decomposition
 ```python
+import re
+from typing import List
+
+
 def sequential_decompose(task: str, llm) -> List[str]:
     """
     Break task into sequential steps
@@ -93,13 +97,29 @@ def sequential_decompose(task: str, llm) -> List[str]:
 
     return steps
 
-# Example
-task = "Set up a Llama-2 model on the Homelab"
-steps = sequential_decompose(task, llama_model)
+
+# Example — any client exposing .generate(prompt) -> str works; the stub
+# returns canned steps so the parsing is runnable as-is
+class StubLLM:
+    def generate(self, prompt: str) -> str:
+        return (
+            "1. Install Ollama on the NUC\n"
+            "2. Pull the llama3.2 model\n"
+            "3. Test the model locally\n"
+            "4. Create a Kubernetes deployment\n"
+            "5. Expose the service via Ingress"
+        )
+
+
+steps = sequential_decompose("Set up Llama 3.2 on the homelab", StubLLM())
+print(f"{len(steps)} steps:")
+for i, step in enumerate(steps, 1):
+    print(f"{i}. {step}")
 
 # Output:
+# 5 steps:
 # 1. Install Ollama on the NUC
-# 2. Pull the llama2 model using Ollama
+# 2. Pull the llama3.2 model
 # 3. Test the model locally
 # 4. Create a Kubernetes deployment
 # 5. Expose the service via Ingress
@@ -107,6 +127,20 @@ steps = sequential_decompose(task, llama_model)
 
 #### Hierarchical Decomposition
 ```python
+import re
+from typing import Dict, List
+
+
+def parse_steps(response: str) -> List[str]:
+    """Extract numbered/bulleted steps from an LLM response"""
+    steps = []
+    for line in response.split("\n"):
+        line = line.strip()
+        if line and (line[0].isdigit() or line.startswith("-")):
+            steps.append(re.sub(r"^[\d\-\.\)]+\s*", "", line))
+    return steps
+
+
 def hierarchical_decompose(task: str, llm, max_depth=3) -> Dict:
     """
     Break task into hierarchical sub-tasks
@@ -137,30 +171,43 @@ def hierarchical_decompose(task: str, llm, max_depth=3) -> Dict:
 
     return decompose_recursive(task, 0)
 
-# Example
-task = "Deploy Llama-2 to Homelab"
-tree = hierarchical_decompose(task, llama_model)
+
+def print_tree(node: Dict, indent: int = 0) -> None:
+    print("  " * indent + node["name"])
+    for sub in node["subtasks"]:
+        print_tree(sub, indent + 1)
+
+
+# Example — stub stands in for a real LLM client; max_depth=1 keeps the
+# demo tree shallow (raise it to decompose recursively)
+class StubLLM:
+    def generate(self, prompt: str) -> str:
+        return (
+            "1. Prepare the infrastructure\n"
+            "2. Install the runtime\n"
+            "3. Deploy the model"
+        )
+
+
+tree = hierarchical_decompose("Deploy Llama 3.2 on the homelab", StubLLM(),
+                              max_depth=1)
+print_tree(tree)
 
 # Output:
-# Deploy Llama-2 to Homelab
-# ├─ Prepare infrastructure
-# │  ├─ Check GPU availability
-# │  ├─ Verify network connectivity
-# │  └─ Prepare storage
-# ├─ Install Ollama
-# │  ├─ Install dependencies
-# │  ├─ Download Ollama
-# │  └─ Configure Ollama
-# └─ Deploy model
-#    ├─ Pull Llama-2 model
-#    ├─ Create K8s deployment
-#    └─ Configure ingress
+# Deploy Llama 3.2 on the homelab
+#   Prepare the infrastructure
+#   Install the runtime
+#   Deploy the model
 ```
 
 ## Planning Algorithms
 
 ### Forward Planning
 ```python
+import re
+from typing import Dict, List
+
+
 class ForwardPlanner:
     """
     Plan from initial state to goal state
@@ -196,7 +243,7 @@ class ForwardPlanner:
                 continue
 
             # Expected format: 1. Action: tool_name[param1=value1, ...]
-            match = re.match(r"\d+\. Action: (\w+)\[(.+)\]", line)
+            match = re.match(r"\d+\. Action: (\w+)\[(.*)\]", line)
             if match:
                 tool_name = match.group(1)
                 params_str = match.group(2)
@@ -216,7 +263,8 @@ class ForwardPlanner:
         return steps
 
     def execute_plan(self, plan: List[Dict]) -> List[str]:
-        """Execute plan and return observations"""
+        """Execute plan and return observations — a tool error is an
+        observation for the next planning round, not a crash"""
         observations = []
 
         for step in plan:
@@ -232,10 +280,43 @@ class ForwardPlanner:
                 observations.append(f"Error: {str(e)}")
 
         return observations
+
+
+# Example — stub LLM returns a canned plan so parsing and execution
+# are runnable as-is
+class StubLLM:
+    def generate(self, prompt: str) -> str:
+        return (
+            "1. Action: check_gpu[threshold=0.5]\n"
+            "2. Action: install[package=ollama]"
+        )
+
+
+def check_gpu(threshold):
+    return f"GPU free ratio {1 - float(threshold):.0%}"
+
+
+def install(package):
+    return f"{package} installed"
+
+
+planner = ForwardPlanner(StubLLM(),
+                         {"check_gpu": check_gpu, "install": install})
+plan = planner.plan("bare NUC", "serving llama3.2")
+print(plan)
+print(planner.execute_plan(plan))
+
+# Output:
+# [{'tool': 'check_gpu', 'params': {'threshold': '0.5'}}, {'tool': 'install', 'params': {'package': 'ollama'}}]
+# ['GPU free ratio 50%', 'ollama installed']
 ```
 
 ### Backward Planning
 ```python
+import re
+from typing import Dict, List
+
+
 class BackwardPlanner:
     """
     Plan from goal state back to initial state
@@ -259,17 +340,63 @@ class BackwardPlanner:
         Then what precedes that?
         Continue until you reach the initial state.
 
-        Plan (in reverse order):" ""
+        Plan (in reverse order):"""
 
         response = self.llm.generate(prompt)
 
-        # Parse and reverse
+        # Parse and reverse — the response lists the LAST action first,
+        # so reversing restores forward execution order
         steps = self._parse_plan(response)
         return list(reversed(steps))
+
+    def _parse_plan(self, response: str) -> List[Dict]:
+        """Parse 'N. Action: tool[param=value]' lines into steps"""
+        steps = []
+
+        for line in response.split("\n"):
+            if not line.strip():
+                continue
+
+            match = re.match(r"\d+\. Action: (\w+)\[(.*)\]", line)
+            if match:
+                params = {}
+                for param in match.group(2).split(", "):
+                    if "=" in param:
+                        key, value = param.split("=")
+                        params[key.strip()] = value.strip()
+
+                steps.append({
+                    "tool": match.group(1),
+                    "params": params
+                })
+
+        return steps
+
+
+# Example — the stub answers in reverse order (last action first)
+class StubLLM:
+    def generate(self, prompt: str) -> str:
+        return (
+            "1. Action: expose_service[port=8080]\n"
+            "2. Action: deploy_model[name=llama3.2]\n"
+            "3. Action: install_runtime[tool=ollama]"
+        )
+
+
+planner = BackwardPlanner(StubLLM(), {})
+plan = planner.plan("bare NUC", "serving llama3.2")
+print([step["tool"] for step in plan])
+
+# Output:
+# ['install_runtime', 'deploy_model', 'expose_service']
 ```
 
 ### Task Planning with Dependencies
 ```python
+import re
+from typing import Dict, List
+
+
 class TaskPlanner:
     """
     Plan tasks with dependency resolution
@@ -320,29 +447,39 @@ class TaskPlanner:
             # Depends line
             elif line.startswith("Depends:") and current_task:
                 match = re.search(r"\[(.+)\]", line)
-                if match:
-                    deps_str = match.group(1)
-                    deps = [int(d.strip()) for d in deps_str.split(",")]
+                if match and match.group(1).strip():
+                    deps = [int(d.strip()) for d in match.group(1).split(",")]
                     current_task["dependencies"] = deps
 
         return tasks
 
     def get_execution_order(self, tasks: List[Dict]) -> List[Dict]:
         """
-        Topological sort for execution order
+        Topological sort for execution order.
+        Raises ValueError on unknown dependency references and on
+        dependency cycles (which would otherwise recurse forever).
         """
+        by_id = {task["id"]: task for task in tasks}
         visited = set()
+        in_progress = set()
         order = []
 
         def visit(task):
             if task["id"] in visited:
                 return
+            if task["id"] in in_progress:
+                raise ValueError(f"Circular dependency at task {task['id']}")
+
+            in_progress.add(task["id"])
 
             # Visit dependencies first
             for dep_id in task["dependencies"]:
-                dep = next(t for t in tasks if t["id"] == dep_id)
-                visit(dep)
+                if dep_id not in by_id:
+                    raise ValueError(
+                        f"Task {task['id']} depends on unknown task {dep_id}")
+                visit(by_id[dep_id])
 
+            in_progress.discard(task["id"])
             visited.add(task["id"])
             order.append(task)
 
@@ -350,12 +487,37 @@ class TaskPlanner:
             visit(task)
 
         return order
+
+
+# Example — stub response with an explicit dependency chain
+class StubLLM:
+    def generate(self, prompt: str) -> str:
+        return (
+            "- Task 1: Install the container runtime\n"
+            "  Depends: []\n"
+            "- Task 2: Pull the model image\n"
+            "  Depends: [1]\n"
+            "- Task 3: Serve the model endpoint\n"
+            "  Depends: [2]"
+        )
+
+
+planner = TaskPlanner(StubLLM())
+tasks = planner.plan_with_dependencies("Serve llama3.2 on the homelab")
+print([task["id"] for task in planner.get_execution_order(tasks)])
+
+# Output:
+# [1, 2, 3]
 ```
 
 ## Dynamic Replanning
 
 ### Replanning on Failure
 ```python
+import re
+from typing import Dict, List
+
+
 class Replanner:
     """
     Replan when execution fails
@@ -366,12 +528,18 @@ class Replanner:
 
     def execute_with_replan(self, plan: List[Dict], max_replans=3) -> List[str]:
         """
-        Execute plan, replan if steps fail
+        Execute plan, replan if steps fail.
+        The plan is spliced and walked with an index — mutating the list
+        inside `for i, step in enumerate(plan)` would keep iterating the
+        ORIGINAL list object and never run the replacement steps.
         """
         observations = []
         replan_count = 0
+        i = 0
 
-        for i, step in enumerate(plan):
+        while i < len(plan):
+            step = plan[i]
+
             # Try to execute step
             observation = self._execute_step(step)
             observations.append(observation)
@@ -381,15 +549,18 @@ class Replanner:
                 if replan_count >= max_replans:
                     return observations + ["\nMax replans reached"]
 
-                # Replan from this point
-                remaining_plan = plan[i+1:]
-                new_plan = self._replan(step, observation, remaining_plan)
+                # Replan from this point — the alternative plan replaces
+                # the failed step and everything after it
+                new_plan = self._replan(step, observation, plan[i + 1:])
 
                 if new_plan:
-                    plan = plan[:i+1] + new_plan
+                    plan = plan[:i] + new_plan
                     replan_count += 1
+                    continue
                 else:
                     return observations + ["\nCould not replan"]
+
+            i += 1
 
         return observations
 
@@ -412,8 +583,31 @@ class Replanner:
         response = self.llm.generate(prompt)
         return self._parse_plan(response)
 
+    def _parse_plan(self, response: str) -> List[Dict]:
+        """Parse 'N. Action: tool[param=value]' lines into steps"""
+        steps = []
+
+        for line in response.split("\n"):
+            if not line.strip():
+                continue
+
+            match = re.match(r"\d+\. Action: (\w+)\[(.*)\]", line)
+            if match:
+                params = {}
+                for param in match.group(2).split(", "):
+                    if "=" in param:
+                        key, value = param.split("=")
+                        params[key.strip()] = value.strip()
+
+                steps.append({
+                    "tool": match.group(1),
+                    "params": params
+                })
+
+        return steps
+
     def _execute_step(self, step: Dict) -> str:
-        """Execute a single step"""
+        """Execute a single step — tool errors become observations"""
         tool = self.tools.get(step["tool"])
         if tool is None:
             return f"Error: Unknown tool {step['tool']}"
@@ -423,59 +617,67 @@ class Replanner:
             return str(result)
         except Exception as e:
             return f"Error: {str(e)}"
+
+
+# Example — the model pull fails once; the replan LLM (stubbed) retries
+# it inside the regenerated plan
+class FlakyPull:
+    def __init__(self):
+        self.calls = 0
+
+    def __call__(self):
+        self.calls += 1
+        if self.calls == 1:
+            raise ConnectionError("registry unreachable")
+        return "model pulled"
+
+
+class StubLLM:
+    def generate(self, prompt: str) -> str:
+        return "1. Action: pull_model[]\n2. Action: serve[]"
+
+
+replanner = Replanner(StubLLM(),
+                      {"pull_model": FlakyPull(), "serve": lambda: "endpoint up :8000"})
+for observation in replanner.execute_with_replan(
+        [{"tool": "pull_model", "params": {}},
+         {"tool": "serve", "params": {}}]):
+    print(observation)
+
+# Output:
+# Error: registry unreachable
+# model pulled
+# endpoint up :8000
 ```
 
 ## Multi-Agent Planning
 
 ### Distributed Planning
 ```python
-class DistributedPlanner:
-    """
-    Distribute planning across multiple specialized agents
-    """
-    def __init__(self, agents: Dict[str, ReActAgent]):
-        self.agents = agents
-        self.coordinator = CoordinatorAgent(agents)
+import re
+from typing import Dict, List
 
-    def plan(self, task: str) -> Dict:
-        """
-        Break down task and delegate to specialist agents
-        """
-        # Step 1: Analyze task and identify sub-domains
-        subtasks = self.coordinator.decompose(task)
-
-        # Step 2: Assign subtasks to specialist agents
-        assignments = {}
-        for subtask in subtasks:
-            specialist = self.coordinator.assign_agent(subtask)
-            assignments[specialist] = subtask
-
-        # Step 3: Each specialist creates sub-plan
-        plans = {}
-        for specialist, subtask in assignments.items():
-            agent = self.agents[specialist]
-            plan = agent.plan(subtask)
-            plans[specialist] = plan
-
-        # Step 4: Coordinate and integrate plans
-        integrated_plan = self.coordinator.integrate(plans)
-
-        return integrated_plan
 
 class CoordinatorAgent:
     """
     Coordinates multiple specialist agents
     """
+    def __init__(self, agents: Dict[str, "ReActAgent"], llm):
+        # ReActAgent comes from lesson 7101; the annotation is quoted so
+        # this block stays runnable without importing it
+        self.agents = agents
+        self.llm = llm
+
     def decompose(self, task: str) -> List[str]:
         """Decompose task into domain-specific subtasks"""
         prompt = f"""
         Task: {task}
 
         Available Specialists:
-        - K8s Agent: Kubernetes deployment and management
-        - GPU Agent: GPU monitoring and optimization
-        - Storage Agent: NAS and file system management
-        - Network Agent: Network configuration and troubleshooting
+        - k8s: Kubernetes deployment and management
+        - gpu: GPU monitoring and optimization
+        - storage: NAS and file system management
+        - network: Network configuration and troubleshooting
 
         Decompose the task and assign to appropriate specialists.
         Format: "Specialist: subtask description"
@@ -484,6 +686,18 @@ class CoordinatorAgent:
 
         response = self.llm.generate(prompt)
         return self._parse_decomposition(response)
+
+    def _parse_decomposition(self, response: str) -> List[str]:
+        """Extract 'specialist: subtask' lines; the prefix is kept so
+        keyword routing in assign_agent can see the specialist"""
+        subtasks = []
+
+        for line in response.split("\n"):
+            line = line.strip()
+            if re.match(r"^[a-z][a-z0-9_]*:\s+\S", line, re.IGNORECASE):
+                subtasks.append(line)
+
+        return subtasks
 
     def assign_agent(self, subtask: str) -> str:
         """Assign subtask to appropriate specialist"""
@@ -500,15 +714,87 @@ class CoordinatorAgent:
             return "general"
 
     def integrate(self, plans: Dict[str, List[Dict]]) -> List[Dict]:
-        """Integrate sub-plans into coordinated plan"""
-        # Sort plans by dependencies
+        """Integrate sub-plans into coordinated plan.
+        Simplified concatenation — for dependency-aware ordering, run the
+        result through TaskPlanner.get_execution_order (above)."""
         integrated = []
 
-        # This is simplified - real implementation would resolve dependencies
-        for specialist, plan in plans.items():
+        for plan in plans.values():
             integrated.extend(plan)
 
         return integrated
+
+
+class DistributedPlanner:
+    """
+    Distribute planning across multiple specialized agents
+    """
+    def __init__(self, agents: Dict[str, "ReActAgent"], llm):
+        self.agents = agents
+        self.coordinator = CoordinatorAgent(agents, llm)
+
+    def plan(self, task: str) -> List[Dict]:
+        """
+        Break down task and delegate to specialist agents
+        """
+        # Step 1: Analyze task and identify sub-domains
+        subtasks = self.coordinator.decompose(task)
+
+        # Step 2: Assign subtasks — one specialist may receive several,
+        # so group them (a plain dict would silently keep only the last);
+        # unroutable subtasks fall back to the generalist
+        assignments: Dict[str, List[str]] = {}
+        for subtask in subtasks:
+            specialist = self.coordinator.assign_agent(subtask)
+            if specialist not in self.agents:
+                specialist = "general"
+            assignments.setdefault(specialist, []).append(subtask)
+
+        # Step 3: Each specialist sub-plans its own queue, flattened
+        # into one plan list so integrate can concatenate directly
+        plans = {}
+        for specialist, queue in assignments.items():
+            agent = self.agents[specialist]
+            plans[specialist] = [
+                step for subtask in queue for step in agent.plan(subtask)
+            ]
+
+        # Step 4: Coordinate and integrate plans
+        return self.coordinator.integrate(plans)
+
+
+# Example — stub coordinator LLM and stub specialist agents; two k8s
+# subtasks prove the grouping (the old dict form kept only the last)
+class StubCoordinatorLLM:
+    def generate(self, prompt: str) -> str:
+        return (
+            "k8s: Roll out the deployment\n"
+            "k8s: Verify pod health after the rollout\n"
+            "gpu: Check GPU utilization during the rollout"
+        )
+
+
+class StubAgent:
+    def __init__(self, name):
+        self.name = name
+
+    def plan(self, task: str) -> List[Dict]:
+        return [{"tool": f"{self.name}_plan", "params": {"task": task}}]
+
+
+agents = {
+    "k8s": StubAgent("k8s"),
+    "gpu": StubAgent("gpu"),
+    "general": StubAgent("general"),
+}
+planner = DistributedPlanner(agents, StubCoordinatorLLM())
+for step in planner.plan("Release the new model"):
+    print(step)
+
+# Output:
+# {'tool': 'k8s_plan', 'params': {'task': 'k8s: Roll out the deployment'}}
+# {'tool': 'k8s_plan', 'params': {'task': 'k8s: Verify pod health after the rollout'}}
+# {'tool': 'gpu_plan', 'params': {'task': 'gpu: Check GPU utilization during the rollout'}}
 ```
 
 
@@ -519,20 +805,13 @@ class CoordinatorAgent:
 ### Related ai-engineering-curriculum Documents
 
 - [7101: ReAct (Reasoning + Acting) Loop System](7101-ReAct-Loop-System.md)
+- [7301: Collaborative Tasking](../7300-orchestration/7301-Orchestration.md)
+- [7303: Framework Comparison](../7300-orchestration/guides/7303-Framework-Comparison.md)
 
 ---
 
 ## Next Steps
 
-- Continue with: **[7201-Tool-Calling.md](./../7200-tools/7201-Tool-Calling.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
-
----
----
-
-**Related Documents:**
-- [7101: ReAct Loop](./7101-ReAct-Loop-System.md)
-- [7301: Collaborative Tasking](../7300-orchestration/7301-Orchestration.md)
-- [7303: Framework Comparison](../7300-orchestration/guides/7303-Framework-Comparison.md)
-
-**Experiment Template:** [EXP_7102: Planning](../../../../experiments/EXP_7102_PLANNING.md)
+- Continue with: **[7201: Tool Calling](../7200-tools/7201-Tool-Calling.md)**
+- Assessment: **[QUIZ](./assessment/QUIZ.md)**
+- Experiment: **[EXP_7102: Planning](../../../../experiments/EXP_7102_PLANNING.md)**
