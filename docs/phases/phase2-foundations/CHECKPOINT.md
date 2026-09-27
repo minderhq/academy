@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE2-CHECKPOINT
 Title: "Progress Checkpoint: Phase 2 - Cognitive Science & Frameworks"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -12,29 +12,29 @@ Difficulty: Intermediate
 
 ---
 
-## 📊 Phase 2 Overview
+## Phase 2 Overview
 
 **Phase:** [2000] Cognitive Science & Frameworks
-**Modules:** 3 (2100, 2200, 2400)
+**Modules:** 4 (2100, 2200, 2300, 2400)
 **Estimated Time:** 3-4 weeks
-**Difficulty:** ⭐⭐ Intermediate
+**Difficulty:** Intermediate
 
 ---
 
-## 🎯 Phase Completion Goal
+## Phase Completion Goal
 
 After completing Phase 2, you will:
-- ✅ Understand tensor operations
-- ✅ Implement backpropagation
-- ✅ Know ML framework internals
-- ✅ Understand pre-training fundamentals
-- ✅ Be ready for transformer architecture
+- Understand tensor operations
+- Implement backpropagation
+- Know ML framework internals
+- Understand pre-training fundamentals
+- Be ready for transformer architecture
 
 ---
 
-## 📋 Module Checkpoints
+## Module Checkpoints
 
-### Module 2100: Tensor Algebra (Required)
+### Module 2100: The Calculus of AI (Required)
 
 **Checkpoint Quiz:**
 1. What is a tensor and how does it differ from an array?
@@ -48,7 +48,7 @@ After completing Phase 2, you will:
 
 ---
 
-### Module 2200: Framework Engineering (Required)
+### Module 2200: Deep Learning Frameworks (Required)
 
 **Checkpoint Quiz:**
 1. What is a computational graph?
@@ -62,15 +62,43 @@ After completing Phase 2, you will:
 
 ---
 
-## ✅ Phase 2 Completion Badge
+### Module 2300: Framework Engineering (Required)
 
-**Badge:** 📐 Tensor Master
+**Checkpoint Quiz:**
+1. How does a reverse-mode autograd engine propagate gradients through a computational graph?
+2. What bookkeeping does a Tensor class need to support backward passes?
+3. How do you validate custom operations against PyTorch reference results?
 
-**You've earned it when:**
-- ✅ All modules completed
-- ✅ Can implement backpropagation
-- ✅ Understand framework internals
+**Practical Verification:**
+- [ ] Can implement a minimal autograd engine from scratch
+- [ ] Understand graph construction and topological sort for backward passes
+- [ ] Can validate custom tensor ops against reference outputs
 
 ---
 
-**Last Updated:** 2026-02-04
+### Module 2400: Pre-training (Required)
+
+**Checkpoint Quiz:**
+1. What are the key stages of a pre-training pipeline?
+2. How do data parallel and model parallel sharding differ?
+3. What metrics are used to evaluate a pretrained language model?
+
+**Practical Verification:**
+- [ ] Understand the pre-training data pipeline
+- [ ] Can explain distributed training strategies
+- [ ] Know how to evaluate a pretrained checkpoint
+
+---
+
+## Phase 2 Completion Badge
+
+**Badge:** Tensor Master
+
+**You've earned it when:**
+- All modules completed
+- Can implement backpropagation
+- Understand framework internals
+
+---
+
+**Last Updated:** 2026-09-27
