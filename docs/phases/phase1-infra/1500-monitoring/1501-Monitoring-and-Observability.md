@@ -3,7 +3,7 @@ Document ID: 1501
 Title: Monitoring and Observability
 Phase: 1
 Module: 1500
-Last Updated: 2026-09-26
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -35,12 +35,12 @@ Tags: ['infrastructure', 'monitoring', 'observability', 'prometheus']
 
 After completing this lesson, you will be able to:
 
-- Explain Architecture
-- Measure and evaluate Component 1: Prometheus (Metrics Collection)
-- Explain Component 2: Grafana (Dashboards)
-- Explain Component 3: Loki (Log Aggregation)
-- Explain Component 4: Tempo (Tracing)
-- Explain Component 5: Custom Exporters
+- Map the monitoring stack (Prometheus, Grafana, Loki, Tempo, exporters, K3s) and route each signal type to its store
+- Configure Prometheus scrape jobs, alert rules, and the Alertmanager integration from the compose deployment
+- Build Grafana panels from vLLM rate and histogram series and explain Qdrant's gauge-only /metrics limits
+- Ship container logs through Promtail's docker_sd pipeline and query them in Loki
+- Emit OTLP agent spans to Tempo from Python and instrument a custom prometheus_client exporter
+- Fire the HighErrorRate, AgentDown, QdrantDeadReplicas, and GPUOutOfMemory rules and verify each alert end to end
 
 ---
 
@@ -84,7 +84,7 @@ Complete monitoring stack for tracking infrastructure health, model performance,
 # the top level: networks: { ai-engineering-curriculum-net: {} }
 services:
   prometheus:
-    image: prom/prometheus:latest   # pin a released tag for reproducible deploys
+    image: prom/prometheus:v3.15.0   # pinned release (Sep 2026); check releases for newer
     container_name: ai-engineering-curriculum-prometheus
     ports:
       - "9090:9090"
@@ -106,7 +106,7 @@ services:
       - ai-engineering-curriculum-net
 
   alertmanager:
-    image: prom/alertmanager:latest   # pin a released tag for reproducible deploys
+    image: prom/alertmanager:v0.34.1   # pinned release (Sep 2026); check releases for newer
     container_name: ai-engineering-curriculum-alertmanager
     ports:
       - "9093:9093"
@@ -201,7 +201,7 @@ scrape_configs:
 ```yaml
 services:
   grafana:
-    image: grafana/grafana:latest   # pin a released tag for reproducible deploys
+    image: grafana/grafana:13.2.2   # pinned release (Sep 2026); check releases for newer
     container_name: ai-engineering-curriculum-grafana
     ports:
       - "3000:3000"
@@ -399,7 +399,7 @@ scrape_configs:
 ```yaml
 services:
   tempo:
-    image: grafana/tempo:latest   # pin a released tag for reproducible deploys
+    image: grafana/tempo:3.0.3   # pinned release (Aug 2026); check releases for newer
     container_name: ai-engineering-curriculum-tempo
     ports:
       - "3200:3200"  # HTTP API + TraceQL UI
@@ -543,7 +543,7 @@ default counter set — including `DCGM_FI_DEV_GPU_UTIL` (GPU utilization),
 docker run -d --restart unless-stopped \
   --gpus all --cap-add SYS_ADMIN \
   -p 9400:9400 \
-  nvcr.io/nvidia/k8s/dcgm-exporter:latest   # pin a released tag for reproducible deploys
+  nvcr.io/nvidia/k8s/dcgm-exporter:4.6.1-4.8.4-distroless   # pinned chart-default tag (exporter-dcgm-distroless format); check NGC for newer
 ```
 
 ## K3s Monitoring Stack
