@@ -6,7 +6,7 @@ Module: 2400
 Last Updated: 2026-09-26
 Status: Complete
 Difficulty: Advanced
-Estimated Time: 34-38 hours
+Estimated Time: 35-39 hours
 Prerequisites: See PREREQUISITES.md
 Related: See References
 Tags: pretraining, llm, distributed-training, tokenization, evaluation
@@ -161,12 +161,12 @@ Each lesson is written around runnable code — work through the examples, don't
 |----------|------|
 | Reading (2401) | 4 hours |
 | Experiments (2401) | 4 hours |
-| Reading (2402) | 5 hours |
+| Reading (2402) | 6 hours |
 | Experiments (2402) | 6 hours |
 | Reading (2403) | 3 hours |
 | Experiments (2403) | 4 hours |
 | Practice | 8-12 hours |
-| **Total** | **34-38 hours** |
+| **Total** | **35-39 hours** |
 
 ---
 
@@ -238,7 +238,7 @@ Before starting pretraining:
 
 - This module is the full pretraining arc: [data and objectives](./2401-Pre-training-Fundamentals.md), [distributed execution](./2402-Large-Scale-Training.md), [evaluation](./2403-Evaluation-Frameworks.md) — closed by a [quiz](./assessment/QUIZ.md) and [hands-on practice](./assessment/PRACTICE.md).
 - It is the last module of Phase 2: everything before it builds the tools, everything after it (Phase 3+) assumes a trained model exists.
-- Plan for **34-38 hours** (12 hours reading + 14 hours lesson experiments + 8-12 hours practice); the distributed lessons need multi-GPU access, the rest runs on one GPU.
+- Plan for **35-39 hours** (13 hours reading + 14 hours lesson experiments + 8-12 hours practice); the distributed lessons need multi-GPU access, the rest runs on one GPU.
 - Pretraining cost is dominated by data quality and token budget, not model size — read the Chinchilla scaling laws before you spend GPU-hours.
 
 ---
