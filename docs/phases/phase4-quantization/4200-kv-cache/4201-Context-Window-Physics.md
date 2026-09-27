@@ -3,7 +3,7 @@ Document ID: 4201
 Title: Context Window Physics and OOM Prevention
 Phase: 4
 Module: 4200
-Last Updated: 2026-09-24
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -33,12 +33,12 @@ Tags: ['quantization', 'kv-cache', 'context-window', 'speculative-decoding']
 
 After completing this lesson, you will be able to:
 
-- Explain KV Cache Memory Analysis
-- Explain KV Cache Quantization
-- Explain Multi-Round Attention
-- Explain Context Window Extension
-- Explain OOM Prevention Strategies
-- Explain Memory Optimization Techniques
+- Compute KV-cache footprint with `calculate_kv_cache_memory` — 2 × layers × heads × seq × dim × bytes — landing Llama-2-7B (32/32/128 @ 4096, fp16) at 2.00 GB and the 17 GB total (14 weights + 2 KV + 1 activations) past an 11 GB GPU
+- Configure the two independent knobs — weights via `BitsAndBytesConfig` (8-bit → 7 GB, NF4 → 3.5 GB), cache via `cache_implementation="quantized"` with `nbits`/`backend` (hqq for int8, quanto for 4-bit) — and place the 9 GB / 5 GB totals, knowing fp16 stays faster for short contexts
+- Trade context reach for memory in the multi-round schemes — SlidingWindowKVCache holding a constant window_size × dim × layers × 2 vs chunked_attention's O(chunk²) peak — and state what beyond-window tokens cost
+- Extend context by scaling RoPE — Position Interpolation multiplying `inv_freq` by 2048/8192 vs YaRN's NTK-aware exponent — and pay the 4x KV-cache growth the interpolation note shows
+- Prevent OOM with DynamicKVCache's attention-weight importance eviction (10% ratio) and gradient checkpointing's ~50% activation savings for ~20% training slowdown
+- Monitor generation memory with the KV tracker's peak/current GB reading and reuse prefix work via SharedKVCache ref-counting plus `flash_attn_with_kvcache` single-token passes
 
 ---
 
@@ -76,7 +76,7 @@ def calculate_kv_cache_memory(
 
     K and V are cached separately:
     - Shape: (batch, num_layers, num_heads, seq_len, head_dim)
-    - Memory: 2 × batch × layers × heads × seq_len × dim × bytes
+    - Memory: 2 × layers × heads × seq_len × dim × bytes (per sequence)
     """
     # Per layer
     per_layer = 2 * num_heads * seq_len * head_dim * bytes_per_value
@@ -176,8 +176,6 @@ out = model.generate(
 > every step - with a short context and free VRAM, an fp16 cache is
 > faster. Reach for `cache_implementation="quantized"` when the context
 > length, not compute, is what pushes you into OOM.
-
-## Multi-Round Attention
 
 ## Multi-Round Attention
 
