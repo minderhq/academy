@@ -3,7 +3,7 @@ Document ID: 4304
 Title: Low-bit QAT
 Phase: 4
 Module: 4300
-Last Updated: 2026-09-24
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -34,12 +34,12 @@ Tags: ['quantization', 'qat', 'quantization-aware-training']
 
 After completing this lesson, you will be able to:
 
-- Compare Bit-Width Comparison
-- Explain Challenges at Low Bits
-- Explain Advanced Techniques
-- Explain Training Strategies
-- Explain Practical Results
-- Apply Implementation Checklist
+- Compare the six bit-widths from the size/accuracy table — INT4's [-8, 7] grid at 12.5% size with 1-3% loss, INT3's [-4, 3] at 9.4% with 3-10%, and INT2's >10% loss marking it research-only
+- Diagnose the two low-bit failure modes — dynamic-range growth pushing weights past the [-8, 7] grid, and a single outlier destroying a min-max scale (14.3 vs the 0.999-quantile's 0.46)
+- Build the four low-bit techniques — LearnedClip's learnable clamp, MixedPrecisionQAT's per-layer bit_config (embeddings 8, MLP 3), PowerOfTwoScale via a learnable log2_scale, and LearnedStepSize's clamp(round(x/s), -8, 7)
+- Apply the two training strategies — progressive_qat stepping 8→4→3 across [5, 5, 10] epochs, and knowledge distillation's batchmean KL × T² blended with CE by alpha
+- Contrast the practical results tables — BERT SST-2 holding 93.0 at INT8 QAT but dropping to 91.5/88.2 at INT4/INT3, and GPT perplexity rising 12.4→13.8→16.2
+- Execute the 4-bit checklist — per-channel weight scales, quantile-based clipping, 8-bit embeddings, progressive bit-width reduction, distillation, and activation-range monitoring
 
 ---
 
@@ -65,14 +65,14 @@ Low-bit quantization (4-bit, 3-bit, 2-bit) pushes model compression to the extre
 At 4-bit symmetric: values can only be -8, -7, ..., 7
 
 ```python
-# Problem: Weights often exceed [-8, 8]
+# Problem: Weights can grow past the INT4 grid [-8, 7]
 weight = torch.randn(256, 256)
 print(weight.min(), weight.max())  # -3.2 to 3.5 (OK)
 print(weight[0])  # Might be 2.5 (within range)
 
 # But after gradient updates...
 weight_after_training = weight * 2  # Scale grows
-print(weight_after_training.min(), weight_after_training.max())  # -6.4 to 7.0 (overflow!)
+print(weight_after_training.min(), weight_after_training.max())  # -6.4 to 7.0 (at the grid edge)
 ```
 
 **Solution:** Learned scale clipping
@@ -136,7 +136,9 @@ class MixedPrecisionQAT(nn.Module):
         self.quantizers = nn.ModuleDict()
         for name, _ in model.named_modules():
             if name in bit_config:
-                self.quantizers[name] = FakeQuantize(
+                # ModuleDict keys may not contain "." — sanitize the
+                # dotted module path before registering
+                self.quantizers[name.replace('.', '__')] = FakeQuantize(
                     bit_width=bit_config[name]
                 )
 
@@ -226,7 +228,6 @@ def progressive_qat(model, epochs_per_bit=[5, 5, 10]):
     """Train at 8-bit, then 4-bit, then 3-bit"""
 
     bit_widths = [8, 4, 3]
-    current_bit = 8
 
     epoch = 0
     for bit, num_epochs in zip(bit_widths, epochs_per_bit):
@@ -245,8 +246,14 @@ def set_bit_width(model, bit_width):
     for module in model.modules():
         if isinstance(module, FakeQuantize):
             module.bit_width = bit_width
-            module.qmin = -2 ** (bit_width - 1)
-            module.qmax = 2 ** (bit_width - 1) - 1
+            # Match the range to the quantizer's own symmetry —
+            # symmetric bounds would corrupt asymmetric (0..2^bw-1) ones
+            if module.symmetric:
+                module.qmin = -2 ** (bit_width - 1)
+                module.qmax = 2 ** (bit_width - 1) - 1
+            else:
+                module.qmin = 0
+                module.qmax = 2 ** bit_width - 1
 ```
 
 ### Strategy 2: Knowledge Distillation
