@@ -306,8 +306,8 @@ PROGRESS_TRACKER:
       "1100-network": 85
       "1200-virtualization": 92
     labs_completed:
-      - "LAB-101-Network-Basics"
-      - "LAB-102-Virtualization"
+      - "LAB-000: Environment Setup"
+      - "LAB-001: Docker & LLM Fundamentals"
 
   phase_2_foundations:
     status: "not_started"
