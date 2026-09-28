@@ -923,7 +923,7 @@ tempo              # High-performance tracing
 **Online Courses:**
 - [Prometheus Tutorials](https://prometheus.io/docs/tutorials/)
 - [Grafana Fundamentals](https://grafana.com/tutorials/)
-- [SRE Fundamentals](https://www.cloudskills.google.com/paths/sre)
+- [SRE Fundamentals](https://www.skills.google/paths)
 
 ### Community Resources
 

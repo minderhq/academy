@@ -169,7 +169,7 @@ Difficulty: Beginner
 ### Newsletters
 - **[The Batch](https://www.deeplearning.ai/the-batch)** - DeepLearning.AI weekly
 - **[Machine Learning Mastery](https://machinelearningmastery.com/blog/)** - ML tutorials
-- **[TLDR AI](https://tldr.ai/)** - AI news summary
+- **[TLDR AI](https://tldr.tech/ai)** - AI news summary
 
 ### Research
 - **[Hugging Face Papers](https://huggingface.co/papers/trending)** - ML papers with implementations

@@ -135,7 +135,7 @@ Curated list of videos, courses, and external resources to complement the learni
 
 **Blog Posts:**
 - [How to Generate Text: Decoding Methods](https://huggingface.co/blog/how-to-generate)
-- [Understanding Nucleus Sampling](https://spectrum.library.cornell.edu/taming-the-beam)
+- [Understanding Nucleus Sampling](https://arxiv.org/abs/1904.09751)
 
 ### 3400: Architectures
 **Video Courses:**
@@ -144,7 +144,7 @@ Curated list of videos, courses, and external resources to complement the learni
 
 **Papers:**
 - [BERT: Pre-training of Deep Bidirectional Transformers](https://arxiv.org/abs/1810.04805)
-- [Improving Language Understanding by Generative Pre-Training](https://s3-us-west-2.amazonaws.com/openai-assets/research-covers/languageunsupervised/language_understanding_paper.pdf)
+- [Improving Language Understanding by Generative Pre-Training](https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf)
 
 ### 3500: Multimodal
 **Video:**

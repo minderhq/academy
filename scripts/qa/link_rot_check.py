@@ -18,7 +18,9 @@ Classes:
     OK        2xx final status after redirects
     REDIRECT  final status ok but the URL moved (informational)
     DEAD      404/410 - the rot this tool exists to find
-    DENIED    403/429/999 - usually bot-blocking, not rot; verify by hand
+    DENIED    403/429/999 - bot-walls; retried with a browser UA (httpx,
+              then curl's TLS stack - walls fingerprint TLS, not just the
+              UA); only stays DENIED when every retry is denied too
     SERVER    5xx - server-side trouble, retry later
     ERROR     network/DNS/timeout after one retry
     TEMPLATE  placeholder/example idiom URLs (your-username, your-org,
@@ -42,6 +44,8 @@ from __future__ import annotations
 import argparse
 import os
 import re
+import shutil
+import subprocess
 import sys
 from collections import defaultdict
 from concurrent.futures import ThreadPoolExecutor
@@ -59,6 +63,8 @@ LOCAL_URL = re.compile(
     re.IGNORECASE,
 )
 UA = "PROJECT-OMEGA-link-rot-check/1.0 (curriculum QA; contact: repo owner)"
+BROWSER_UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+              "(KHTML, like Gecko) Chrome/128.0 Safari/537.36")
 PLACEHOLDER_IDIOMS = ("your-username", "your-org", "yourapp.com")
 DEAD = {404, 410}
 DENIED = {401, 403, 429, 999}
@@ -109,6 +115,67 @@ def harvest(root):
     return refs
 
 
+def _curl_probe(url: str) -> int | None:
+    """Last-resort bot-wall check through curl's TLS stack.
+
+    tick-244 measured that httpx with a browser UA still gets 403 where
+    curl with the SAME headers gets 200 (wikipedia, pytorch, realpython):
+    these walls fingerprint the TLS stack, not just the UA. curl ships
+    with Windows 10+ and every dev environment; if it is absent or
+    fails, return None and the URL stays DENIED (report-only - never
+    invents a verdict it cannot measure).
+    """
+    curl = shutil.which("curl")
+    if not curl:
+        return None
+    try:
+        out = subprocess.run(
+            [curl, "-s", "-o", os.devnull, "-w", "%{http_code}",
+             "-A", BROWSER_UA, "-L", "--max-time", "20", url],
+            capture_output=True, timeout=25)
+    except (OSError, subprocess.TimeoutExpired):
+        return None
+    if out.returncode != 0:
+        return None
+    try:
+        return int(out.stdout.decode("ascii", "ignore").strip()[-3:])
+    except ValueError:
+        return None
+
+
+def _denied_second_chance(client: httpx.Client, url: str) -> tuple[str, str] | None:
+    """Bot-wall retry: browser UA over httpx, then curl (İKİNCİ-KANAÇ).
+
+    tick-242 proved pytorch/realpython/docker 403 under the tool UA while
+    the same URLs answered 200 to curl with browser headers - a tool-UA
+    403 is a bot-wall far more often than it is rot, and a reader's
+    browser is the thing the link must work for. Returns (class, note)
+    when a retry changed the verdict, None to keep DENIED.
+    """
+    code, final = None, ""
+    try:
+        timeout = client.timeout.read or 10.0
+        with httpx.Client(headers={"User-Agent": BROWSER_UA},
+                          timeout=timeout, follow_redirects=True) as bc, \
+                bc.stream("GET", url) as r:
+            code, final = r.status_code, str(r.url)
+    except (httpx.TransportError, httpx.HTTPError):
+        pass
+    if code in DEAD:
+        return "DEAD", f"HTTP {code} under browser UA"
+    if code is not None and code < 400:
+        note = f"bot-wall under tool UA; browser-UA HTTP {code}"
+        if final.rstrip("/") != url.rstrip("/"):
+            note += f" (moved to {final})"
+        return "OK", note
+    ccode = _curl_probe(url)
+    if ccode is not None and ccode in DEAD:
+        return "DEAD", f"HTTP {ccode} under curl browser UA"
+    if ccode is not None and ccode < 400:
+        return "OK", f"bot-wall under tool UA; cleared via curl (HTTP {ccode})"
+    return None
+
+
 def probe(client: httpx.Client, url: str) -> tuple[str, str]:
     """Return (class, note) for one URL. GET streamed: status without the body."""
     if any(p in url for p in PLACEHOLDER_IDIOMS):
@@ -123,7 +190,10 @@ def probe(client: httpx.Client, url: str) -> tuple[str, str]:
             if code in DEAD:
                 return "DEAD", ""
             if code in DENIED:
-                return "DENIED", f"HTTP {code}"
+                second = _denied_second_chance(client, url)
+                if second is not None:
+                    return second  # bot-wall cleared (or really dead) under browser UA
+                return "DENIED", f"HTTP {code} (browser-UA retry too)"
             if 500 <= code:
                 if attempt == 1:
                     continue
