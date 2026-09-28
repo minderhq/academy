@@ -1,7 +1,7 @@
 ---
 Document ID: CHEAT-SHEET-005
 Title: "CHEAT SHEET 005: RAG Systems"
-Last Updated: 2026-09-27
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -9,29 +9,48 @@ Difficulty: Intermediate
 # CHEAT SHEET 005: RAG Systems
 ## Retrieval-Augmented Generation Quick Reference
 
-**Version:** 1.1
-**Last Updated:** 2026-09-27
+**Version:** 1.2
+**Last Updated:** 2026-09-28
 
 ---
 
 ## Quick Start
 
 ```python
-# Basic RAG Pipeline
-from langchain_openai import OpenAIEmbeddings, ChatOpenAI
-from langchain_community.vectorstores import Qdrant
-from langchain.chains import RetrievalQA
+# Basic RAG Pipeline - LangChain 1.x composes with LCEL instead
+# of the legacy RetrievalQA wrapper.
+from langchain_core.output_parsers import StrOutputParser
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.runnables import RunnableParallel, RunnablePassthrough
+from langchain_openai import ChatOpenAI, OpenAIEmbeddings
+from langchain_qdrant import QdrantVectorStore
 
 # Setup
 embeddings = OpenAIEmbeddings()
 # docs: a list of LangChain Document objects
-vectorstore = Qdrant.from_documents(docs, embeddings)
+vectorstore = QdrantVectorStore.from_documents(
+    docs, embeddings, url="localhost:6333", collection_name="docs"
+)
 retriever = vectorstore.as_retriever(search_kwargs={"k": 5})
 llm = ChatOpenAI(model="gpt-4")
 
-# Chain
-qa = RetrievalQA.from_chain_type(llm, retriever=retriever)
-result = qa.run("Your question here")
+# Chain (LCEL)
+prompt = ChatPromptTemplate.from_messages([
+    ("system", "Answer using only the provided context."),
+    ("human", "Context:\n{context}\n\nQuestion: {question}"),
+])
+
+def format_docs(docs):
+    return "\n\n".join(d.page_content for d in docs)
+
+qa = (
+    RunnableParallel(
+        context=retriever | format_docs,
+        question=RunnablePassthrough(),
+    )
+    | prompt | llm | StrOutputParser()
+)
+result = qa.invoke("Your question here")
 ```
 
 ---
@@ -140,6 +159,8 @@ def chunk_fixed_size(text, chunk_size=1000, overlap=200):
 from langchain_experimental.text_splitter import SemanticChunker
 from langchain_openai import OpenAIEmbeddings
 
+# NOTE: langchain-experimental is being sunset (no longer maintained)
+# but is still the documented home of SemanticChunker.
 # Embedding-based semantic chunking (breaks at topic shifts)
 splitter = SemanticChunker(OpenAIEmbeddings())
 chunks = splitter.split_text(text)
@@ -306,7 +327,8 @@ def map_reduce_context(docs, query, llm):
     # Map: Summarize each doc
     summaries = []
     for doc in docs:
-        summary = llm.predict(f"Summarize: {doc.page_content}")
+        # LangChain 1.x: .predict is gone - invoke() returns a message
+        summary = llm.invoke(f"Summarize: {doc.page_content}").content
         summaries.append(summary)
 
     # Reduce: Combine summaries
@@ -322,14 +344,15 @@ def refine_context(docs, query, llm):
     context = f"Question: {query}\n\nRelevant Context:\n{docs[0].page_content}"
 
     for doc in docs[1:]:
-        context = llm.predict(f"""
+        # LangChain 1.x: .predict is gone - invoke() returns a message
+        context = llm.invoke(f"""
 Original Question: {query}
 
 Current Context: {context}
 
 New Information: {doc.page_content}
 
-Refined Context:""")
+Refined Context:""").content
 
     return context
 ```
@@ -513,7 +536,7 @@ uv pip install sentence-transformers rank_bm25
 
 # LangChain
 uv pip install langchain langchain-openai langchain-community \
-    langchain-text-splitters langchain-experimental
+    langchain-text-splitters langchain-experimental langchain-qdrant
 
 # Evaluation
 uv pip install rouge-score nltk
