@@ -7,6 +7,9 @@ stand today?" without running each tool by hand.
 
   hard gates (exit 1 on findings, CI contract):
     frontmatter_lint   frontmatter completeness/consistency (FM-01..FM-09)
+    pip_uv_scan        bare pip install only inside documented exceptions
+                       (Docker/container, conda workflows, uv bootstraps,
+                       uv-first fallback blocks)
     assessment_lint    assessment/QUIZ.md + PRACTICE.md coverage (AS-01..AS-09;
                        AS-09 option-shuffle queue is report-mode, shown separately)
     quiz_export        quiz bank parses into complete question records
@@ -45,6 +48,7 @@ PHASE_DIR = re.compile(r"^phase\d+-")
 # (script, label, hard gate?)
 GATES = [
     ("frontmatter_lint.py", "frontmatter_lint", True),
+    ("pip_uv_scan.py", "pip_uv_scan", True),
     ("assessment_lint.py", "assessment_lint", True),
     ("quiz_export.py", "quiz_export", True),
     ("structure_lint.py", "structure_lint", True),
