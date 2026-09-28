@@ -73,7 +73,7 @@ The pattern follows this loop:
 
 ```python
 # ~/lab-004-react/examples/react_basics.py
-from typing import List, Dict, Any, Optional
+from typing import Dict, Any
 import requests
 import json
 
@@ -105,7 +105,7 @@ Thought:"""
 
         return response.json().get("response", "").strip()
 
-    def decide_action(self, query: str, thought: str) -> Dict[str, Any]:
+    def decide_action(self, query: str, thought: str) -> dict[str, Any]:
         """Decide what action to take"""
 
         prompt = f"""Based on your thought, decide what action to take.
@@ -146,7 +146,7 @@ Response:"""
             # If parsing fails, default to answering
             return {"action": "answer", "params": {}}
 
-    def execute_action(self, action: Dict[str, Any]) -> str:
+    def execute_action(self, action: dict[str, Any]) -> str:
         """Execute the chosen action"""
 
         action_name = action.get("action")
@@ -240,7 +240,7 @@ Response:"""
 
         return "Max steps reached without answer"
 
-    def _generate_answer(self, query: str, history: List[Dict]) -> str:
+    def _generate_answer(self, query: str, history: list[Dict]) -> str:
         """Generate final answer based on reasoning"""
 
         context = "\n".join([
@@ -302,7 +302,7 @@ if __name__ == "__main__":
 
 ```python
 # ~/lab-004-react/services/tools/tool_registry.py
-from typing import Dict, Any, Callable, List
+from typing import List
 from abc import ABC, abstractmethod
 import subprocess
 import requests
@@ -439,7 +439,7 @@ class ToolRegistry:
     """Registry for all available tools"""
 
     def __init__(self):
-        self._tools: Dict[str, Tool] = {}
+        self._tools: dict[str, Tool] = {}
         self._register_default_tools()
 
     def _register_default_tools(self):
@@ -464,7 +464,7 @@ class ToolRegistry:
         """Get tool by name"""
         return self._tools.get(name)
 
-    def list_tools(self) -> List[Dict[str, str]]:
+    def list_tools(self) -> list[dict[str, str]]:
         """List all available tools"""
         return [
             {"name": tool.name, "description": tool.description}
@@ -514,7 +514,7 @@ if __name__ == "__main__":
 # ~/lab-004-react/services/agent/react_agent.py
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-from typing import List, Dict, Any, Optional
+from typing import List, Any
 import requests
 import json
 from tool_registry import ToolRegistry
@@ -533,13 +533,13 @@ class Message(BaseModel):
     content: str
 
 class ChatRequest(BaseModel):
-    messages: List[Message]
+    messages: list[Message]
     session_id: str
     max_steps: int = 5
 
 class ToolCall(BaseModel):
     name: str
-    params: Dict[str, Any]
+    params: dict[str, Any]
 
 class ReasoningStep(BaseModel):
     step: int
@@ -549,8 +549,8 @@ class ReasoningStep(BaseModel):
 
 class ChatResponse(BaseModel):
     response: str
-    reasoning_steps: List[ReasoningStep]
-    tools_used: List[str]
+    reasoning_steps: list[ReasoningStep]
+    tools_used: list[str]
 
 class ReActAgent:
     """Production ReAct Agent with memory and tools"""
@@ -559,7 +559,7 @@ class ReActAgent:
         self.memory = {}  # Session memory
         self.tool_registry = tool_registry
 
-    def run(self, messages: List[Message], session_id: str,
+    def run(self, messages: list[Message], session_id: str,
              max_steps: int = MAX_STEPS) -> ChatResponse:
         """Run ReAct loop"""
 
@@ -616,7 +616,7 @@ class ReActAgent:
             tools_used=tools_used
         )
 
-    def _think(self, query: str, previous_steps: List[ReasoningStep]) -> str:
+    def _think(self, query: str, previous_steps: list[ReasoningStep]) -> str:
         """Generate thought about current state"""
 
         context = self._build_context(query, previous_steps)
@@ -636,7 +636,7 @@ Thought:"""
         return response.json().get("response", "").strip()
 
     def _plan_action(self, query: str, thought: str,
-                     previous_steps: List[ReasoningStep]) -> Dict[str, Any]:
+                     previous_steps: list[ReasoningStep]) -> dict[str, Any]:
         """Plan next action"""
 
         tools_list = self.tool_registry.list_tools()
@@ -678,7 +678,7 @@ Response:"""
 
         return action
 
-    def _execute_action(self, action: Dict[str, Any]) -> str:
+    def _execute_action(self, action: dict[str, Any]) -> str:
         """Execute the planned action"""
 
         tool_name = action.get("tool", "answer")
@@ -690,8 +690,8 @@ Response:"""
         return self.tool_registry.execute(tool_name, **params)
 
     def _generate_response(self, query: str,
-                          reasoning_steps: List[ReasoningStep],
-                          history: List[Message]) -> str:
+                          reasoning_steps: list[ReasoningStep],
+                          history: list[Message]) -> str:
         """Generate final response"""
 
         context = "\n".join([
@@ -716,7 +716,7 @@ Provide a clear, helpful answer:"""
         return response.json().get("response", "").strip()
 
     def _build_context(self, query: str,
-                       previous_steps: List[ReasoningStep]) -> str:
+                       previous_steps: list[ReasoningStep]) -> str:
         """Build context for LLM"""
 
         if not previous_steps:
@@ -947,7 +947,7 @@ print_result(result)
 
 ```python
 # ~/lab-004-react/services/agent/advanced_features.py
-from typing import List, Dict, Any, Optional
+from typing import Dict
 import hashlib
 import json
 from datetime import datetime
@@ -960,7 +960,7 @@ class AdvancedReActAgent(ReActAgent):
         self.long_term_memory = {}  # Persistent memory
         self.reflections = {}  # Learned patterns
 
-    def run_with_reflection(self, messages: List[Message], session_id: str,
+    def run_with_reflection(self, messages: list[Message], session_id: str,
                             max_steps: int = MAX_STEPS) -> ChatResponse:
         """Run with self-reflection"""
 
@@ -1000,7 +1000,7 @@ Reflection:"""
 
         return response.json().get("response", "").strip()
 
-    def suggest_improvements(self, session_id: str) -> List[str]:
+    def suggest_improvements(self, session_id: str) -> list[str]:
         """Suggest improvements based on reflections"""
 
         suggestions = []

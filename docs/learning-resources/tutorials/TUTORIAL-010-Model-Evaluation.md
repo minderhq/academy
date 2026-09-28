@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-010
 Title: "TUTORIAL-010: Model Evaluation and Benchmarking"
-Last Updated: 2026-09-27
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -64,9 +64,9 @@ will work; Part 5 pandas + matplotlib. numpy ships with the rest of the stack.
 import torch
 from torch.nn import CrossEntropyLoss
 from transformers import AutoModelForCausalLM, AutoTokenizer
-from typing import List
 
-def calculate_perplexity(model, tokenizer, texts: List[str]) -> float:
+
+def calculate_perplexity(model, tokenizer, texts: list[str]) -> float:
     """
     Calculate perplexity - measures how well model predicts text
 
@@ -132,11 +132,11 @@ print(f"Perplexity: {perplexity:.2f}")
 
 ```python
 from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
-from typing import List
+
 
 def calculate_bleu(
-    predictions: List[str],
-    references: List[List[str]]
+    predictions: list[str],
+    references: list[list[str]]
 ) -> float:
     """
     BLEU score for translation/text generation
@@ -188,12 +188,12 @@ print(f"BLEU Score: {bleu:.4f}")
 
 ```python
 from rouge import Rouge
-from typing import List, Dict
+
 
 def calculate_rouge(
-    predictions: List[str],
-    references: List[str]
-) -> Dict[str, float]:
+    predictions: list[str],
+    references: list[str]
+) -> dict[str, float]:
     """
     ROUGE score for summarization
 
@@ -241,9 +241,9 @@ print(f"ROUGE-L: {rouge_scores['rouge-l']:.4f}")
 
 ```python
 import re
-from typing import List, Dict
+from typing import Dict
 
-def load_mmlu(subject: str = "abstract_algebra") -> List[Dict]:
+def load_mmlu(subject: str = "abstract_algebra") -> list[Dict]:
     """
     Load MMLU benchmark dataset
 
@@ -320,7 +320,7 @@ def evaluate_mmlu(model, tokenizer, subject: str = "abstract_algebra") -> Dict:
 ### GSM8K (Grade School Math)
 
 ```python
-def load_gsm8k() -> List[Dict]:
+def load_gsm8k() -> list[Dict]:
     """Load GSM8K math word problems"""
     from datasets import load_dataset
 
@@ -397,15 +397,15 @@ def evaluate_gsm8k(model, tokenizer) -> Dict:
 
 ```python
 import numpy as np
-from typing import List, Set
+
 
 class RetrievalEvaluator:
     """Evaluate retrieval quality"""
 
     def precision_at_k(
         self,
-        retrieved: List[int],
-        relevant: Set[int],
+        retrieved: list[int],
+        relevant: set[int],
         k: int
     ) -> float:
         """Precision@K: % of retrieved that are relevant"""
@@ -415,8 +415,8 @@ class RetrievalEvaluator:
 
     def recall_at_k(
         self,
-        retrieved: List[int],
-        relevant: Set[int],
+        retrieved: list[int],
+        relevant: set[int],
         k: int
     ) -> float:
         """Recall@K: % of relevant that are retrieved"""
@@ -424,7 +424,7 @@ class RetrievalEvaluator:
         relevant_retrieved = len(set(retrieved_k) & relevant)
         return relevant_retrieved / len(relevant) if relevant else 0
 
-    def mrr(self, retrieved: List[int], relevant: Set[int]) -> float:
+    def mrr(self, retrieved: list[int], relevant: set[int]) -> float:
         """Mean Reciprocal Rank"""
         for i, doc_id in enumerate(retrieved):
             if doc_id in relevant:
@@ -433,8 +433,8 @@ class RetrievalEvaluator:
 
     def ndcg_at_k(
         self,
-        retrieved: List[int],
-        relevant: Set[int],
+        retrieved: list[int],
+        relevant: set[int],
         k: int
     ) -> float:
         """Normalized Discounted Cumulative Gain"""
@@ -506,7 +506,7 @@ class RAGEvaluator:
 
         return similarity
 
-    def context_utilization(self, response: str, contexts: List[str]) -> float:
+    def context_utilization(self, response: str, contexts: list[str]) -> float:
         """
         Measure how much of retrieved context is used
 
@@ -540,14 +540,14 @@ class RAGEvaluator:
 ```python
 from dataclasses import dataclass
 from datetime import datetime
-from typing import Any, Dict
+from typing import Any
 import json
 
 @dataclass
 class EvaluationResult:
     """Container for evaluation results"""
-    metrics: Dict[str, float]
-    metadata: Dict[str, Any]
+    metrics: dict[str, float]
+    metadata: dict[str, Any]
     timestamp: str
 
 class ModelEvaluator:
@@ -593,7 +593,7 @@ class ModelEvaluator:
 
         return result_obj
 
-    def _evaluate_mmlu(self) -> Dict[str, float]:
+    def _evaluate_mmlu(self) -> dict[str, float]:
         """Run MMLU evaluation"""
         subjects = ["abstract_algebra", "computer_networks", "formal_logic"]
 
@@ -605,11 +605,11 @@ class ModelEvaluator:
         results["average_accuracy"] = sum(results.values()) / len(results)
         return results
 
-    def _evaluate_gsm8k(self) -> Dict[str, float]:
+    def _evaluate_gsm8k(self) -> dict[str, float]:
         """Run GSM8K evaluation - delegates to Part 2's function"""
         return evaluate_gsm8k(self.model, self.tokenizer)
 
-    def _evaluate_rag(self) -> Dict[str, float]:
+    def _evaluate_rag(self) -> dict[str, float]:
         """RAG evaluation needs a labeled QA corpus (queries, gold
         answers, retrieved contexts) that this class does not hold -
         assemble one and score it with Part 3's RAGEvaluator, or see

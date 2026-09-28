@@ -139,7 +139,7 @@ class VectorStore:
     def add_memory(
         self,
         content: str,
-        metadata: Optional[Dict] = None,
+        metadata: Dict | None = None,
         importance: float = 0.5
     ) -> str:
         """
@@ -186,7 +186,7 @@ class VectorStore:
         self,
         user_message: str,
         agent_response: str,
-        metadata: Optional[Dict] = None
+        metadata: Dict | None = None
     ) -> str:
         """Store a conversation turn as memory"""
 
@@ -207,8 +207,8 @@ class VectorStore:
         query: str,
         limit: int = 5,
         score_threshold: float = 0.5,
-        filters: Optional[Dict] = None
-    ) -> List[Dict]:
+        filters: Dict | None = None
+    ) -> list[Dict]:
         """
         Retrieve relevant memories by semantic search
 
@@ -261,7 +261,7 @@ class VectorStore:
 
         return memories
 
-    def get_recent(self, limit: int = 10) -> List[Dict]:
+    def get_recent(self, limit: int = 10) -> list[Dict]:
         """Get most recent memories"""
 
         # Scroll through collection
@@ -353,7 +353,7 @@ for r in recent:
 ```python
 # memoria.py
 import psycopg2
-from typing import List, Dict, Optional
+from typing import Dict
 from datetime import datetime
 import json
 
@@ -442,8 +442,8 @@ class Memoria:
         content: str,
         agent_id: str = "default",
         session_id: str = None,
-        context: Optional[Dict] = None,
-        metadata: Optional[Dict] = None,
+        context: Dict | None = None,
+        metadata: Dict | None = None,
         importance: float = 0.5
     ) -> int:
         """
@@ -486,11 +486,11 @@ class Memoria:
     def store_episode_with_embedding(
         self,
         content: str,
-        embedding: List[float],
+        embedding: list[float],
         agent_id: str = "default",
         session_id: str = None,
-        context: Optional[Dict] = None,
-        metadata: Optional[Dict] = None,
+        context: Dict | None = None,
+        metadata: Dict | None = None,
         importance: float = 0.5
     ) -> int:
         """Store episode with embedding for semantic search"""
@@ -518,10 +518,10 @@ class Memoria:
     def retrieve_by_time(
         self,
         agent_id: str = "default",
-        start_time: Optional[datetime] = None,
-        end_time: Optional[datetime] = None,
+        start_time: datetime | None = None,
+        end_time: datetime | None = None,
         limit: int = 10
-    ) -> List[Dict]:
+    ) -> list[Dict]:
         """Retrieve episodes by time range"""
 
         query = """
@@ -561,7 +561,7 @@ class Memoria:
         self,
         session_id: str,
         limit: int = 100
-    ) -> List[Dict]:
+    ) -> list[Dict]:
         """Retrieve all episodes from a session"""
 
         self.cursor.execute("""
@@ -587,10 +587,10 @@ class Memoria:
 
     def retrieve_similar(
         self,
-        embedding: List[float],
+        embedding: list[float],
         limit: int = 5,
         threshold: float = 0.7
-    ) -> List[Dict]:
+    ) -> list[Dict]:
         """Retrieve episodes by semantic similarity"""
 
         self.cursor.execute("""

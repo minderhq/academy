@@ -3,7 +3,7 @@ Document ID: 2301
 Title: Framework Design Patterns
 Phase: 2
 Module: 2300
-Last Updated: 2026-09-27
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -87,7 +87,7 @@ Different ML frameworks (PyTorch, TensorFlow, JAX) have different APIs. An abstr
 
 ```python
 from abc import ABC, abstractmethod
-from typing import Any, Dict, Optional
+from typing import Any
 import torch
 import tensorflow as tf
 
@@ -97,7 +97,7 @@ class BaseModel(ABC):
     This allows framework-agnostic code.
     """
 
-    def __init__(self, config: Dict[str, Any]):
+    def __init__(self, config: dict[str, Any]):
         self.config = config
         self.model = None
 
@@ -107,7 +107,7 @@ class BaseModel(ABC):
         pass
 
     @abstractmethod
-    def train_step(self, batch: Dict[str, Any]) -> Dict[str, float]:
+    def train_step(self, batch: dict[str, Any]) -> dict[str, float]:
         """
         Single training step.
 
@@ -136,7 +136,7 @@ class BaseModel(ABC):
 class PyTorchModel(BaseModel):
     """PyTorch-specific implementation of BaseModel."""
 
-    def __init__(self, config: Dict[str, Any]):
+    def __init__(self, config: dict[str, Any]):
         super().__init__(config)
         # Build PyTorch model
         self.model = self._build_model()
@@ -171,7 +171,7 @@ class PyTorchModel(BaseModel):
         """Forward pass."""
         return self.model(x)
 
-    def train_step(self, batch: Dict[str, Any]) -> Dict[str, float]:
+    def train_step(self, batch: dict[str, Any]) -> dict[str, float]:
         """Single training step."""
         self.model.train()
         self.optimizer.zero_grad()
@@ -214,7 +214,7 @@ class PyTorchModel(BaseModel):
 class TensorFlowModel(BaseModel):
     """TensorFlow-specific implementation of BaseModel."""
 
-    def __init__(self, config: Dict[str, Any]):
+    def __init__(self, config: dict[str, Any]):
         super().__init__(config)
         self.model = self._build_model()
         self.optimizer = tf.keras.optimizers.Adam(learning_rate=0.001)
@@ -241,7 +241,7 @@ class TensorFlowModel(BaseModel):
         """Forward pass."""
         return self.model(x, training=False)
 
-    def train_step(self, batch: Dict[str, Any]) -> Dict[str, float]:
+    def train_step(self, batch: dict[str, Any]) -> dict[str, float]:
         """Single training step (TensorFlow 2.x style)."""
         inputs = batch["inputs"]
         targets = batch["targets"]
@@ -630,7 +630,7 @@ A plugin system allows dynamic loading without modifying core code.
 ### Implementation
 
 ```python
-from typing import Dict, Type, Callable, Any, Optional
+from typing import Type, Any
 import inspect
 from pathlib import Path
 import importlib.util
@@ -649,10 +649,10 @@ class PluginRegistry:
 
     def __init__(self, name: str):
         self.name = name
-        self._plugins: Dict[str, Type] = {}
-        self._metadata: Dict[str, Dict[str, Any]] = {}
+        self._plugins: dict[str, Type] = {}
+        self._metadata: dict[str, dict[str, Any]] = {}
 
-    def register(self, name: Optional[str] = None, **metadata):
+    def register(self, name: str | None = None, **metadata):
         """
         Decorator for registering plugins.
 
@@ -674,7 +674,7 @@ class PluginRegistry:
 
         return decorator
 
-    def get(self, name: str) -> Optional[Type]:
+    def get(self, name: str) -> Type | None:
         """Get plugin by name."""
         return self._plugins.get(name)
 
@@ -689,7 +689,7 @@ class PluginRegistry:
         """List all registered plugins."""
         return list(self._plugins.keys())
 
-    def get_metadata(self, name: str) -> Dict[str, Any]:
+    def get_metadata(self, name: str) -> dict[str, Any]:
         """Get plugin metadata."""
         return self._metadata.get(name, {})
 
@@ -792,7 +792,7 @@ class ModelBuilder:
     Build models using registered plugins.
     """
 
-    def __init__(self, config: Dict[str, Any]):
+    def __init__(self, config: dict[str, Any]):
         self.config = config
 
     def build_layer(self, layer_type: str, **kwargs):

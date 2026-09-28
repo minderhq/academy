@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE7-PRACTICE
 Title: "Phase 7: Agentic Systems - Practice Exercises"
-Last Updated: 2026-09-25
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Advanced
 ---
@@ -48,7 +48,7 @@ Implement a basic ReAct (Reasoning + Acting) loop from scratch.
 ### Solution Template
 
 ```python
-from typing import Any, List, Dict, Optional, Callable
+from typing import Any, Dict, Callable
 import re
 import json
 
@@ -56,7 +56,7 @@ class ReActAgent:
     def __init__(
         self,
         llm_client: Any,
-        tools: Dict[str, Callable],
+        tools: dict[str, Callable],
         max_steps: int = 10
     ):
         """
@@ -72,7 +72,7 @@ class ReActAgent:
         self.max_steps = max_steps
         self.history = []
 
-    def think(self, query: str, observation: Optional[str] = None) -> str:
+    def think(self, query: str, observation: str | None = None) -> str:
         """
         Generate next thought based on query and observation.
 
@@ -117,7 +117,7 @@ class ReActAgent:
         # TODO: Implement action execution
         pass
 
-    def run(self, query: str) -> Dict[str, Any]:
+    def run(self, query: str) -> dict[str, Any]:
         """
         Run ReAct loop.
 
@@ -194,7 +194,7 @@ Implement a robust tool registry with validation, error handling, and permission
 ### Solution Template
 
 ```python
-from typing import Callable, Dict, Any, Optional
+from typing import Callable, Dict, Any
 from functools import wraps
 import time
 from datetime import datetime, timedelta
@@ -205,7 +205,7 @@ class Tool:
         name: str,
         func: Callable,
         description: str,
-        schema: Dict[str, Any],
+        schema: dict[str, Any],
         permissions: list = None,
         rate_limit: int = 10,
         timeout: int = 30
@@ -232,7 +232,7 @@ class Tool:
         self.call_count = []
         self.execution_log = []
 
-    def validate_input(self, params: Dict) -> tuple[bool, Optional[str]]:
+    def validate_input(self, params: Dict) -> tuple[bool, str | None]:
         """Validate input parameters against schema."""
         # TODO: Implement validation
         pass
@@ -256,7 +256,7 @@ class Tool:
 class ToolRegistry:
     def __init__(self):
         """Initialize tool registry."""
-        self.tools: Dict[str, Tool] = {}
+        self.tools: dict[str, Tool] = {}
         self.default_timeout = 30
 
     def register(self, tool: Tool):
@@ -264,7 +264,7 @@ class ToolRegistry:
         # TODO: Implement registration
         pass
 
-    def get_tool(self, name: str) -> Optional[Tool]:
+    def get_tool(self, name: str) -> Tool | None:
         """Get tool by name."""
         return self.tools.get(name)
 
@@ -352,7 +352,7 @@ Implement a multi-agent system with specialized agents and coordination.
 ### Solution Template
 
 ```python
-from typing import List, Dict, Any
+from typing import Dict, Any
 from enum import Enum
 import time
 import uuid
@@ -403,7 +403,7 @@ class Agent:
         self.outbox.append(msg)
         return msg
 
-    def process(self) -> List[Message]:
+    def process(self) -> list[Message]:
         """Process inbox and generate responses."""
         # TODO: Implement message processing
         pass
@@ -417,7 +417,7 @@ class Agent:
 class MultiAgentSystem:
     def __init__(self):
         """Initialize multi-agent system."""
-        self.agents: Dict[str, Agent] = {}
+        self.agents: dict[str, Agent] = {}
         self.message_log = []
 
     def add_agent(self, agent: Agent):
@@ -508,7 +508,7 @@ Implement a hierarchical memory system for agents with short-term, working, and 
 ### Solution Template
 
 ```python
-from typing import List, Dict, Any, Optional
+from typing import Dict, Any
 from datetime import datetime, timedelta
 import numpy as np
 from dataclasses import dataclass
@@ -518,7 +518,7 @@ class Memory:
     id: str
     content: str
     embedding: np.ndarray
-    metadata: Dict[str, Any]
+    metadata: dict[str, Any]
     timestamp: datetime
     importance: float = 0.5
     access_count: int = 0
@@ -527,7 +527,7 @@ class ShortTermMemory:
     """Recent conversation history (episodic memory)."""
 
     def __init__(self, max_memories: int = 100):
-        self.memories: List[Memory] = []
+        self.memories: list[Memory] = []
         self.max_memories = max_memories
 
     def add(self, content: str, embedding: np.ndarray, metadata: Dict = None):
@@ -535,12 +535,12 @@ class ShortTermMemory:
         # TODO: Implement
         pass
 
-    def get_recent(self, k: int = 5) -> List[Memory]:
+    def get_recent(self, k: int = 5) -> list[Memory]:
         """Get k most recent memories."""
         # TODO: Implement
         pass
 
-    def consolidate_to_longterm(self, threshold: float = 0.7) -> List[Memory]:
+    def consolidate_to_longterm(self, threshold: float = 0.7) -> list[Memory]:
         """Get memories ready for long-term storage."""
         # TODO: Implement consolidation logic
         pass
@@ -550,16 +550,16 @@ class WorkingMemory:
     """Current task context (working memory)."""
 
     def __init__(self, max_items: int = 10):
-        self.context: Dict[str, Any] = {}
-        self.stack: List[Dict] = []
+        self.context: dict[str, Any] = {}
+        self.stack: list[Dict] = []
         self.max_items = max_items
 
-    def push_context(self, context: Dict[str, Any]):
+    def push_context(self, context: dict[str, Any]):
         """Push new context onto stack."""
         # TODO: Implement
         pass
 
-    def pop_context(self) -> Dict[str, Any]:
+    def pop_context(self) -> dict[str, Any]:
         """Pop context from stack."""
         # TODO: Implement
         pass
@@ -586,7 +586,7 @@ class LongTermMemory:
     def store(
         self,
         content: str,
-        metadata: Dict[str, Any],
+        metadata: dict[str, Any],
         importance: float = 0.5
     ):
         """Store memory in vector database."""
@@ -597,8 +597,8 @@ class LongTermMemory:
         self,
         query: str,
         top_k: int = 5,
-        filters: Dict[str, Any] = None
-    ) -> List[Memory]:
+        filters: dict[str, Any] = None
+    ) -> list[Memory]:
         """Retrieve relevant memories."""
         # TODO: Implement vector search
         pass
@@ -630,8 +630,8 @@ class AgentMemorySystem:
     def recall(
         self,
         query: str,
-        memory_types: List[str] = None
-    ) -> Dict[str, List[Memory]]:
+        memory_types: list[str] = None
+    ) -> dict[str, list[Memory]]:
         """Retrieve information from memory layers."""
         # TODO: Implement retrieval
         pass
@@ -694,7 +694,7 @@ import subprocess
 import tempfile
 import os
 import resource
-from typing import Dict, Any, Optional
+from typing import Any
 import json
 
 class SandboxConfig:
@@ -735,7 +735,7 @@ class SandboxExecutor:
         self.config = config or SandboxConfig()
         self.temp_dir = tempfile.mkdtemp()
 
-    def validate_code(self, code: str) -> tuple[bool, Optional[str]]:
+    def validate_code(self, code: str) -> tuple[bool, str | None]:
         """
         Validate code for safety.
 
@@ -748,7 +748,7 @@ class SandboxExecutor:
         # 3. Check for malicious code
         pass
 
-    def execute_python(self, code: str, inputs: Dict[str, Any] = None) -> Dict[str, Any]:
+    def execute_python(self, code: str, inputs: dict[str, Any] = None) -> dict[str, Any]:
         """
         Execute Python code in sandbox.
 
@@ -872,7 +872,7 @@ Implement prompt injection detection and defense mechanisms.
 ### Solution Template
 
 ```python
-from typing import List, Tuple, Optional
+from typing import Tuple
 import re
 from datetime import datetime, timedelta
 
@@ -899,7 +899,7 @@ class PromptDefender:
         self.user_request_counts = {}
         self.blocked_users = set()
 
-    def detect_injection(self, prompt: str) -> Tuple[bool, Optional[str]]:
+    def detect_injection(self, prompt: str) -> tuple[bool, str | None]:
         """
         Detect prompt injection attempts.
 
@@ -948,7 +948,7 @@ class PromptDefender:
         # 3. Add output constraints
         pass
 
-    def validate_output(self, output: str, original_task: str) -> Tuple[bool, Optional[str]]:
+    def validate_output(self, output: str, original_task: str) -> tuple[bool, str | None]:
         """
         Validate LLM output for injection leakage.
 
@@ -1030,14 +1030,14 @@ Build a complete, production-ready agent system combining all components.
 ### Architecture
 
 ```python
-from typing import List, Dict, Any, Optional
+from typing import List, Dict, Any
 import logging
 from datetime import datetime
 
 class ProductionAgentSystem:
     """Production-ready agent system."""
 
-    def __init__(self, config: Dict[str, Any]):
+    def __init__(self, config: dict[str, Any]):
         """
         Initialize agent system.
 
@@ -1069,7 +1069,7 @@ class ProductionAgentSystem:
         # TODO: Implement
         pass
 
-    def plan_task(self, task: str) -> List[Dict]:
+    def plan_task(self, task: str) -> list[Dict]:
         """
         Decompose task into subtasks.
 
@@ -1087,7 +1087,7 @@ class ProductionAgentSystem:
         task: str,
         user_id: str = None,
         context: Dict = None
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Execute task with full agent capabilities.
 
@@ -1132,7 +1132,7 @@ class ProductionAgentSystem:
                 "status": "error"
             }
 
-    def get_status(self) -> Dict[str, Any]:
+    def get_status(self) -> dict[str, Any]:
         """Get system status and metrics."""
         # TODO: Implement status reporting
         pass
@@ -1154,8 +1154,8 @@ agent_system = ProductionAgentSystem(config={})
 
 class TaskRequest(BaseModel):
     task: str
-    user_id: Optional[str] = None
-    context: Optional[Dict] = None
+    user_id: str | None = None
+    context: Dict | None = None
 
 @app.post("/api/v1/agent/execute")
 async def execute_task(request: TaskRequest):
@@ -1291,7 +1291,7 @@ class Tool:
 class ReActAgent:
     """Simple ReAct agent implementation"""
 
-    def __init__(self, llm_generate, tools: List[Tool]):
+    def __init__(self, llm_generate, tools: list[Tool]):
         """
         Args:
             llm_generate: Function that generates completions
@@ -1494,7 +1494,7 @@ class ToolRegistry:
         """Get tool by name"""
         return self.tools.get(name)
 
-    def list_tools(self) -> List[Dict]:
+    def list_tools(self) -> list[Dict]:
         """List all available tools"""
         return [
             {
@@ -1564,7 +1564,7 @@ if __name__ == "__main__":
 
 ```python
 from enum import Enum
-from typing import List, Dict, Optional
+from typing import List
 from dataclasses import dataclass
 import uuid
 
@@ -1601,7 +1601,7 @@ class AgentMessage:
 class Agent:
     """Base agent class"""
 
-    def __init__(self, name: str, role: AgentRole, tools: List[str] = None):
+    def __init__(self, name: str, role: AgentRole, tools: list[str] = None):
         self.name = name
         self.role = role
         self.tools = tools or []
@@ -1612,7 +1612,7 @@ class Agent:
         """Receive a message"""
         self.message_queue.append(message)
 
-    def process_messages(self) -> List[AgentMessage]:
+    def process_messages(self) -> list[AgentMessage]:
         """Process all messages in queue"""
         responses = []
         for message in self.message_queue:
@@ -1623,7 +1623,7 @@ class Agent:
         self.message_queue.clear()
         return responses
 
-    def handle_message(self, message: AgentMessage) -> Optional[AgentMessage]:
+    def handle_message(self, message: AgentMessage) -> AgentMessage | None:
         """Handle a single message - override in subclasses"""
         print(f"[{self.name}] Received from {message.sender}: {message.type}")
 
@@ -1641,11 +1641,11 @@ class Agent:
 class OrchestratorAgent(Agent):
     """Orchestrator agent that coordinates other agents"""
 
-    def __init__(self, agents: List[Agent]):
+    def __init__(self, agents: list[Agent]):
         super().__init__("orchestrator", AgentRole.ORCHESTRATOR)
         self.agents = {agent.name: agent for agent in agents}
 
-    def delegate_task(self, task: dict) -> List[AgentMessage]:
+    def delegate_task(self, task: dict) -> list[AgentMessage]:
         """Delegate task to appropriate agents"""
         messages = []
         task_type = task.get("type", "research")
@@ -1687,11 +1687,11 @@ class MultiAgentSystem:
         """Add agent to system"""
         self.agents[agent.name] = agent
 
-    def get_agent(self, name: str) -> Optional[Agent]:
+    def get_agent(self, name: str) -> Agent | None:
         """Get agent by name"""
         return self.agents.get(name)
 
-    def broadcast(self, sender_name: str, message_type: str, content: dict) -> List[AgentMessage]:
+    def broadcast(self, sender_name: str, message_type: str, content: dict) -> list[AgentMessage]:
         """Broadcast message to all agents"""
         messages = []
         sender = self.get_agent(sender_name)
@@ -1711,7 +1711,7 @@ class MultiAgentSystem:
 
         return messages
 
-    def run_cycle(self) -> Dict[str, List]:
+    def run_cycle(self) -> dict[str, List]:
         """Run one communication cycle"""
         results = {"messages": [], "responses": []}
 
@@ -1771,7 +1771,7 @@ if __name__ == "__main__":
 
 ```python
 import numpy as np
-from typing import List
+
 from datetime import datetime, timedelta
 from collections import defaultdict
 
@@ -1810,7 +1810,7 @@ class AgentMemory:
     def __init__(self, embedding_dim: int = 384, max_memories: int = 1000):
         self.embedding_dim = embedding_dim
         self.max_memories = max_memories
-        self.memories: List[MemoryEntry] = []
+        self.memories: list[MemoryEntry] = []
         self.embeddings: np.ndarray = np.zeros((0, embedding_dim))
         self.memory_types = defaultdict(list)
 
@@ -1847,7 +1847,7 @@ class AgentMemory:
         k: int = 5,
         memory_type: str = None,
         min_importance: float = 0.0
-    ) -> List[MemoryEntry]:
+    ) -> list[MemoryEntry]:
         """Retrieve relevant memories"""
         if not self.memories:
             return []
@@ -1909,7 +1909,7 @@ class AgentMemory:
         for memory in self.memories:
             self.memory_types[memory.memory_type].append(memory)
 
-    def get_recent(self, hours: int = 24, k: int = 10) -> List[MemoryEntry]:
+    def get_recent(self, hours: int = 24, k: int = 10) -> list[MemoryEntry]:
         """Get recent memories"""
         cutoff = datetime.now() - timedelta(hours=hours)
         recent = [m for m in self.memories if m.timestamp >= cutoff]
@@ -1983,7 +1983,7 @@ if __name__ == "__main__":
 import subprocess
 import tempfile
 import os
-from typing import Dict, Any
+from typing import Any
 import json
 
 class SandboxedExecutor:
@@ -1992,7 +1992,7 @@ class SandboxedExecutor:
     def __init__(self, timeout: int = 30):
         self.timeout = timeout
 
-    def execute_python(self, code: str) -> Dict[str, Any]:
+    def execute_python(self, code: str) -> dict[str, Any]:
         """
         Execute Python code in a sandboxed environment
 
@@ -2034,7 +2034,7 @@ class SandboxedExecutor:
 
         return result
 
-    def execute_bash(self, command: str) -> Dict[str, Any]:
+    def execute_bash(self, command: str) -> dict[str, Any]:
         """
         Execute bash command with safety restrictions
 
@@ -2075,7 +2075,7 @@ class SandboxedExecutor:
 
         return result
 
-    def validate_code(self, code: str, language: str = "python") -> Dict[str, Any]:
+    def validate_code(self, code: str, language: str = "python") -> dict[str, Any]:
         """Validate code without executing"""
         result = {"valid": False, "errors": []}
 
