@@ -321,18 +321,18 @@ class FraudDetectionSystem:
         embedding = self.embedder.embed(features)
 
         # Find similar known fraud transactions
-        similar_fraud = self.fraud_db.search(
-            query_vector=embedding,
+        similar_fraud = self.fraud_db.query_points(
+            query=embedding,
             limit=5,
             score_threshold=0.85
-        )
+        ).points
 
         # Find similar legitimate transactions
-        similar_legitimate = self.legitimate_db.search(
-            query_vector=embedding,
+        similar_legitimate = self.legitimate_db.query_points(
+            query=embedding,
             limit=5,
             score_threshold=0.85
-        )
+        ).points
 
         # Calculate fraud score
         fraud_score = self._calculate_fraud_score(
@@ -674,20 +674,20 @@ class ComplianceChecker:
         query = self._build_compliance_query(product_feature)
 
         # Search relevant regulations
-        regulations = self.regulations_db.search(
-            query_vector=self.embedder.encode(query),
-            filters={
+        regulations = self.regulations_db.query_points(
+            query=self.embedder.encode(query),
+            query_filter={
                 "jurisdiction": product_feature["jurisdiction"],
                 "effective_date": {"lte": datetime.now()}
             },
             limit=10
-        )
+        ).points
 
         # Search internal policies
-        policies = self.policies_db.search(
-            query_vector=self.embedder.encode(query),
+        policies = self.policies_db.query_points(
+            query=self.embedder.encode(query),
             limit=5
-        )
+        ).points
 
         # Analyze compliance
         compliance_status = self._analyze_compliance(
@@ -1158,11 +1158,11 @@ def hybrid_financial_search(query: str):
     """Search financial documents with hybrid approach"""
 
     # Semantic search (finds by meaning)
-    semantic_results = vector_db.search(
-        query_vector=finance_embedder.encode(query),
-        collection="financial_documents",
+    semantic_results = vector_db.query_points(
+        collection_name="financial_documents",
+        query=finance_embedder.encode(query),
         limit=10
-    )
+    ).points
 
     # Keyword search (finds exact terms like tickers, ratios)
     keyword_results = fulltext_search.search(
@@ -1219,12 +1219,12 @@ class RealTimeFraudDetector:
         embedding = self.embedder.embed(features)
 
         # Search for similar fraud patterns (GPU)
-        similar_fraud = self.vector_db.search(
-            collection="known_fraud",
-            query_vector=embedding,
+        similar_fraud = self.vector_db.query_points(
+            collection_name="known_fraud",
+            query=embedding,
             limit=3,
             score_threshold=0.90
-        )
+        ).points
 
         # Quick decision
         if len(similar_fraud) > 0:
