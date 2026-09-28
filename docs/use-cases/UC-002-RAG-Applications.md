@@ -1,7 +1,7 @@
 ---
 Document ID: UC-002
 Title: "UC-002: RAG (Retrieval-Augmented Generation) Practical Use Cases"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 Related: [6101, 6201, 6302]
@@ -42,10 +42,11 @@ Employees can't find information across thousands of internal documents (policie
 **RAG Solution:**
 
 ```python
-from langchain.embeddings import HuggingFaceEmbeddings
-from langchain.vectorstores import Qdrant
-from langchain.chains import RetrievalQA
-from langchain.llms import HuggingFacePipeline
+from langchain_core.output_parsers import StrOutputParser
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.runnables import RunnableParallel, RunnablePassthrough
+from langchain_huggingface import HuggingFaceEmbeddings, HuggingFacePipeline
+from langchain_qdrant import QdrantVectorStore
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
 
@@ -61,14 +62,17 @@ class EnterpriseKnowledgeAssistant:
         )
 
         # Initialize vector store
-        self.vectorstore = Qdrant(
+        self.vectorstore = QdrantVectorStore(
             client=qdrant_client,
             collection_name="enterprise_kb",
             embeddings=self.embeddings
         )
+        self.retriever = self.vectorstore.as_retriever(
+            search_kwargs={"k": 4}  # Retrieve top 4 documents
+        )
 
         # Initialize LLM
-        model_id = "meta-llama/Llama-2-7b-chat-hf"
+        model_id = "meta-llama/Meta-Llama-3-8B-Instruct"
         tokenizer = AutoTokenizer.from_pretrained(model_id)
         model = AutoModelForCausalLM.from_pretrained(
             model_id,
@@ -86,31 +90,41 @@ class EnterpriseKnowledgeAssistant:
 
         self.llm = HuggingFacePipeline(pipeline=pipe)
 
-        # Create RAG chain
-        self.qa_chain = RetrievalQA.from_chain_type(
-            llm=self.llm,
-            chain_type="stuff",
-            retriever=self.vectorstore.as_retriever(
-                search_kwargs={"k": 4}  # Retrieve top 4 documents
-            ),
-            return_source_documents=True
+        # Create RAG chain - LangChain 1.x composes LCEL steps
+        # instead of the legacy RetrievalQA wrapper.
+        prompt = ChatPromptTemplate.from_messages([
+            ("system", "Answer the question using only the provided "
+                       "context. Cite the documents you used."),
+            ("human", "Context:\n{context}\n\nQuestion: {question}"),
+        ])
+
+        def format_docs(docs):
+            return "\n\n".join(d.page_content for d in docs)
+
+        self.rag_chain = (
+            RunnableParallel(
+                context=self.retriever | format_docs,
+                question=RunnablePassthrough(),
+            )
+            | prompt
+            | self.llm
+            | StrOutputParser()
         )
 
     def query(self, question):
         """Answer question with sources"""
-
-        # Get response with sources
-        result = self.qa_chain({"query": question})
+        docs = self.retriever.invoke(question)
+        answer = self.rag_chain.invoke({"question": question})
 
         return {
-            "answer": result["result"],
+            "answer": answer,
             "sources": [
                 {
                     "document": doc.metadata["title"],
                     "page": doc.metadata["page"],
                     "relevance": doc.metadata["score"]
                 }
-                for doc in result["source_documents"]
+                for doc in docs
             ]
         }
 ```
@@ -281,9 +295,11 @@ Developers struggle to find relevant code examples, API usage patterns, and trou
 **RAG Solution with Code-Aware Retrieval:**
 
 ```python
-from langchain.document_loaders import CodeLoader
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 
+# LangChain 1.x: CodeLoader is gone - load code with
+# GenericLoader + LanguageParser (langchain_community).
 class DocumentationRAG:
     """
     RAG specialized for technical documentation
@@ -369,8 +385,9 @@ class DocumentationRAG:
         Format code blocks with ```language
         """
 
-        response = self.llm.generate(prompt)
-        return response
+        # LangChain 1.x: .invoke replaces the removed .generate
+        response = self.llm.invoke(prompt)
+        return response.content
 
     def _classify_query(self, question):
         """Determine which collection to search"""
