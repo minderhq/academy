@@ -191,7 +191,7 @@ Embedding service for document indexing
 
 from sentence_transformers import SentenceTransformer
 import numpy as np
-from typing import List, Union
+
 import torch
 
 class EmbeddingService:
@@ -208,7 +208,7 @@ class EmbeddingService:
         else:
             print(f"Embedding model running on CPU")
 
-    def encode(self, texts: Union[str, List[str]]) -> np.ndarray:
+    def encode(self, texts: str | list[str]) -> np.ndarray:
         """Encode text(s) to embeddings"""
         embeddings = self.model.encode(
             texts,
@@ -217,7 +217,7 @@ class EmbeddingService:
         )
         return embeddings
 
-    def encode_batch(self, texts: List[str], batch_size=32) -> np.ndarray:
+    def encode_batch(self, texts: list[str], batch_size=32) -> np.ndarray:
         """Encode large batch of texts efficiently"""
         all_embeddings = []
 
@@ -253,7 +253,7 @@ Hybrid search combining vector and keyword search
 
 from qdrant_client import QdrantClient
 from qdrant_client.models import Distance, VectorParams, PointStruct, Filter, FieldCondition, MatchValue
-from typing import List, Dict, Optional, Tuple
+from typing import List, Dict
 import numpy as np
 
 class HybridSearch:
@@ -322,10 +322,10 @@ class HybridSearch:
         self,
         query: str,
         query_embedding: np.ndarray,
-        tenant_id: Optional[str] = None,
-        category: Optional[str] = None,
+        tenant_id: str | None = None,
+        category: str | None = None,
         top_k: int = 10,
-    ) -> List[Dict]:
+    ) -> list[Dict]:
         """
         Perform hybrid search
 
@@ -477,14 +477,14 @@ class BM25Search:
         self.documents = {}
         self.total_docs = 0
 
-    def tokenize(self, text: str) -> List[str]:
+    def tokenize(self, text: str) -> list[str]:
         """Simple tokenization"""
         # Lowercase and extract words
         text = text.lower()
         tokens = re.findall(r'\b\w+\b', text)
         return tokens
 
-    def index_documents(self, documents: List[Dict]):
+    def index_documents(self, documents: list[Dict]):
         """
         Index documents for BM25
 
@@ -521,9 +521,9 @@ class BM25Search:
     def search(
         self,
         query: str,
-        tenant_id: Optional[str] = None,
+        tenant_id: str | None = None,
         top_k: int = 10,
-    ) -> List[Dict]:
+    ) -> list[Dict]:
         """Search using BM25"""
         query_tokens = self.tokenize(query)
 
@@ -609,7 +609,7 @@ Re-ranking service using cross-encoder
 """
 
 from sentence_transformers import CrossEncoder
-from typing import List, Dict
+from typing import Dict
 import torch
 
 class ReRanker:
@@ -629,9 +629,9 @@ class ReRanker:
     def rerank(
         self,
         query: str,
-        results: List[Dict],
+        results: list[Dict],
         top_k: int = 10,
-    ) -> List[Dict]:
+    ) -> list[Dict]:
         """
         Re-rank search results
 
@@ -666,10 +666,10 @@ class ReRanker:
 
     def rerank_batch(
         self,
-        queries: List[str],
-        results_list: List[List[Dict]],
+        queries: list[str],
+        results_list: list[list[Dict]],
         top_k: int = 10,
-    ) -> List[List[Dict]]:
+    ) -> list[list[Dict]]:
         """Re-rank multiple queries (batch processing)"""
         reranked_list = []
 
@@ -714,7 +714,7 @@ if __name__ == "__main__":
 Complete production RAG with hybrid search and re-ranking
 """
 
-from typing import List, Dict, Optional
+from typing import Dict
 import time
 
 class ProductionRAG:
@@ -737,7 +737,7 @@ class ProductionRAG:
         self.keyword_search = BM25Search()
         self.reranker = ReRanker(reranker_model)
 
-    def index_documents(self, documents: List[Dict]):
+    def index_documents(self, documents: list[Dict]):
         """Index documents for both vector and keyword search"""
         # Index in vector database
         for doc in documents:
@@ -756,8 +756,8 @@ class ProductionRAG:
     def search(
         self,
         query: str,
-        tenant_id: Optional[str] = None,
-        category: Optional[str] = None,
+        tenant_id: str | None = None,
+        category: str | None = None,
         alpha: float = 0.5,  # Weight for vector search (0=keyword only, 1=vector only)
         top_k: int = 10,
         use_rerank: bool = True,
@@ -828,11 +828,11 @@ class ProductionRAG:
 
     def _reciprocal_rank_fusion(
         self,
-        vector_results: List[Dict],
-        keyword_results: List[Dict],
+        vector_results: list[Dict],
+        keyword_results: list[Dict],
         alpha: float = 0.5,
         k: int = 60,
-    ) -> List[Dict]:
+    ) -> list[Dict]:
         """Combine vector and keyword results using RRF"""
         scores = {}
 
@@ -939,7 +939,7 @@ FastAPI service for production RAG
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from typing import List, Optional
+
 import time
 from prometheus_client import Counter, Histogram, generate_latest
 from prometheus_client.exposition import CONTENT_TYPE_LATEST
@@ -972,8 +972,8 @@ search_duration = Histogram('rag_search_duration_seconds', 'Search duration')
 # Pydantic models
 class SearchRequest(BaseModel):
     query: str
-    tenant_id: Optional[str] = None
-    category: Optional[str] = None
+    tenant_id: str | None = None
+    category: str | None = None
     alpha: float = Query(default=0.5, ge=0, le=1)
     top_k: int = Query(default=10, ge=1, le=100)
     use_rerank: bool = True
@@ -982,8 +982,8 @@ class Document(BaseModel):
     id: str
     text: str
     tenant_id: str
-    title: Optional[str] = None
-    category: Optional[str] = None
+    title: str | None = None
+    category: str | None = None
 
 class IndexResponse(BaseModel):
     success: bool
@@ -994,10 +994,10 @@ class SearchResult(BaseModel):
     id: str
     score: float
     text: str
-    title: Optional[str] = None
+    title: str | None = None
 
 class SearchResponse(BaseModel):
-    results: List[SearchResult]
+    results: list[SearchResult]
     metrics: dict
 
 # Endpoints
@@ -1013,7 +1013,7 @@ async def metrics():
     return Response(generate_latest(), media_type=CONTENT_TYPE_LATEST)
 
 @app.post("/index", response_model=IndexResponse)
-async def index_documents(documents: List[Document]):
+async def index_documents(documents: list[Document]):
     """Index documents for search"""
     try:
         docs = [doc.model_dump() for doc in documents]  # pydantic v2: .dict() is deprecated

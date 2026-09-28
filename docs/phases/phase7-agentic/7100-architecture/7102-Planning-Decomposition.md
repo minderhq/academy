@@ -3,7 +3,7 @@ Document ID: 7102
 Title: Planning and Task Decomposition
 Phase: 7
 Module: 7100
-Last Updated: 2026-09-27
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -67,10 +67,10 @@ Each sub-task is clear and actionable
 #### Sequential Decomposition
 ```python
 import re
-from typing import List
 
 
-def sequential_decompose(task: str, llm) -> List[str]:
+
+def sequential_decompose(task: str, llm) -> list[str]:
     """
     Break task into sequential steps
     Each step depends on previous completion
@@ -128,10 +128,10 @@ for i, step in enumerate(steps, 1):
 #### Hierarchical Decomposition
 ```python
 import re
-from typing import Dict, List
+from typing import Dict
 
 
-def parse_steps(response: str) -> List[str]:
+def parse_steps(response: str) -> list[str]:
     """Extract numbered/bulleted steps from an LLM response"""
     steps = []
     for line in response.split("\n"):
@@ -205,7 +205,7 @@ print_tree(tree)
 ### Forward Planning
 ```python
 import re
-from typing import Dict, List
+from typing import Dict
 
 
 class ForwardPlanner:
@@ -216,7 +216,7 @@ class ForwardPlanner:
         self.llm = llm
         self.tools = tools
 
-    def plan(self, initial_state: str, goal_state: str) -> List[Dict]:
+    def plan(self, initial_state: str, goal_state: str) -> list[Dict]:
         """
         Generate plan from initial to goal state
         """
@@ -234,7 +234,7 @@ class ForwardPlanner:
         response = self.llm.generate(prompt)
         return self._parse_plan(response)
 
-    def _parse_plan(self, response: str) -> List[Dict]:
+    def _parse_plan(self, response: str) -> list[Dict]:
         """Parse plan into actionable steps"""
         steps = []
 
@@ -262,7 +262,7 @@ class ForwardPlanner:
 
         return steps
 
-    def execute_plan(self, plan: List[Dict]) -> List[str]:
+    def execute_plan(self, plan: list[Dict]) -> list[str]:
         """Execute plan and return observations — a tool error is an
         observation for the next planning round, not a crash"""
         observations = []
@@ -314,7 +314,7 @@ print(planner.execute_plan(plan))
 ### Backward Planning
 ```python
 import re
-from typing import Dict, List
+from typing import Dict
 
 
 class BackwardPlanner:
@@ -326,7 +326,7 @@ class BackwardPlanner:
         self.llm = llm
         self.tools = tools
 
-    def plan(self, initial_state: str, goal_state: str) -> List[Dict]:
+    def plan(self, initial_state: str, goal_state: str) -> list[Dict]:
         """
         Generate plan working backwards from goal
         """
@@ -349,7 +349,7 @@ class BackwardPlanner:
         steps = self._parse_plan(response)
         return list(reversed(steps))
 
-    def _parse_plan(self, response: str) -> List[Dict]:
+    def _parse_plan(self, response: str) -> list[Dict]:
         """Parse 'N. Action: tool[param=value]' lines into steps"""
         steps = []
 
@@ -394,7 +394,7 @@ print([step["tool"] for step in plan])
 ### Task Planning with Dependencies
 ```python
 import re
-from typing import Dict, List
+from typing import Dict
 
 
 class TaskPlanner:
@@ -404,7 +404,7 @@ class TaskPlanner:
     def __init__(self, llm):
         self.llm = llm
 
-    def plan_with_dependencies(self, task: str) -> List[Dict]:
+    def plan_with_dependencies(self, task: str) -> list[Dict]:
         """
         Create plan with explicit dependencies
         """
@@ -423,7 +423,7 @@ class TaskPlanner:
         response = self.llm.generate(prompt)
         return self._parse_dependencies(response)
 
-    def _parse_dependencies(self, response: str) -> List[Dict]:
+    def _parse_dependencies(self, response: str) -> list[Dict]:
         """Parse tasks with dependencies"""
         tasks = []
         current_task = None
@@ -453,7 +453,7 @@ class TaskPlanner:
 
         return tasks
 
-    def get_execution_order(self, tasks: List[Dict]) -> List[Dict]:
+    def get_execution_order(self, tasks: list[Dict]) -> list[Dict]:
         """
         Topological sort for execution order.
         Raises ValueError on unknown dependency references and on
@@ -515,7 +515,7 @@ print([task["id"] for task in planner.get_execution_order(tasks)])
 ### Replanning on Failure
 ```python
 import re
-from typing import Dict, List
+from typing import Dict
 
 
 class Replanner:
@@ -526,7 +526,7 @@ class Replanner:
         self.llm = llm
         self.tools = tools
 
-    def execute_with_replan(self, plan: List[Dict], max_replans=3) -> List[str]:
+    def execute_with_replan(self, plan: list[Dict], max_replans=3) -> list[str]:
         """
         Execute plan, replan if steps fail.
         The plan is spliced and walked with an index — mutating the list
@@ -564,7 +564,7 @@ class Replanner:
 
         return observations
 
-    def _replan(self, failed_step: Dict, error: str, context: List[Dict]) -> List[Dict]:
+    def _replan(self, failed_step: Dict, error: str, context: list[Dict]) -> list[Dict]:
         """
         Generate new plan given failure
         """
@@ -583,7 +583,7 @@ class Replanner:
         response = self.llm.generate(prompt)
         return self._parse_plan(response)
 
-    def _parse_plan(self, response: str) -> List[Dict]:
+    def _parse_plan(self, response: str) -> list[Dict]:
         """Parse 'N. Action: tool[param=value]' lines into steps"""
         steps = []
 
@@ -655,20 +655,20 @@ for observation in replanner.execute_with_replan(
 ### Distributed Planning
 ```python
 import re
-from typing import Dict, List
+from typing import Dict
 
 
 class CoordinatorAgent:
     """
     Coordinates multiple specialist agents
     """
-    def __init__(self, agents: Dict[str, "ReActAgent"], llm):
+    def __init__(self, agents: dict[str, "ReActAgent"], llm):
         # ReActAgent comes from lesson 7101; the annotation is quoted so
         # this block stays runnable without importing it
         self.agents = agents
         self.llm = llm
 
-    def decompose(self, task: str) -> List[str]:
+    def decompose(self, task: str) -> list[str]:
         """Decompose task into domain-specific subtasks"""
         prompt = f"""
         Task: {task}
@@ -687,7 +687,7 @@ class CoordinatorAgent:
         response = self.llm.generate(prompt)
         return self._parse_decomposition(response)
 
-    def _parse_decomposition(self, response: str) -> List[str]:
+    def _parse_decomposition(self, response: str) -> list[str]:
         """Extract 'specialist: subtask' lines; the prefix is kept so
         keyword routing in assign_agent can see the specialist"""
         subtasks = []
@@ -713,7 +713,7 @@ class CoordinatorAgent:
         else:
             return "general"
 
-    def integrate(self, plans: Dict[str, List[Dict]]) -> List[Dict]:
+    def integrate(self, plans: dict[str, list[Dict]]) -> list[Dict]:
         """Integrate sub-plans into coordinated plan.
         Simplified concatenation — for dependency-aware ordering, run the
         result through TaskPlanner.get_execution_order (above)."""
@@ -729,11 +729,11 @@ class DistributedPlanner:
     """
     Distribute planning across multiple specialized agents
     """
-    def __init__(self, agents: Dict[str, "ReActAgent"], llm):
+    def __init__(self, agents: dict[str, "ReActAgent"], llm):
         self.agents = agents
         self.coordinator = CoordinatorAgent(agents, llm)
 
-    def plan(self, task: str) -> List[Dict]:
+    def plan(self, task: str) -> list[Dict]:
         """
         Break down task and delegate to specialist agents
         """
@@ -743,7 +743,7 @@ class DistributedPlanner:
         # Step 2: Assign subtasks — one specialist may receive several,
         # so group them (a plain dict would silently keep only the last);
         # unroutable subtasks fall back to the generalist
-        assignments: Dict[str, List[str]] = {}
+        assignments: dict[str, list[str]] = {}
         for subtask in subtasks:
             specialist = self.coordinator.assign_agent(subtask)
             if specialist not in self.agents:
@@ -778,7 +778,7 @@ class StubAgent:
     def __init__(self, name):
         self.name = name
 
-    def plan(self, task: str) -> List[Dict]:
+    def plan(self, task: str) -> list[Dict]:
         return [{"tool": f"{self.name}_plan", "params": {"task": task}}]
 
 

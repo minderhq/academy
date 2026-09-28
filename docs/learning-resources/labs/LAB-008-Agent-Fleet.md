@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-008
 Title: "LAB-008: Multi-Agent Fleet"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -85,7 +85,7 @@ Define specialized agent types for the fleet
 """
 
 from enum import Enum
-from typing import List, Dict, Optional
+
 from pydantic import BaseModel
 
 class AgentRole(str, Enum):
@@ -111,7 +111,7 @@ class AgentConfig(BaseModel):
     role: AgentRole
     name: str
     model: str
-    capabilities: List[AgentCapability]
+    capabilities: list[AgentCapability]
     max_concurrent: int = 3
     priority: int = 5  # 1-10, higher = more important
 
@@ -197,7 +197,7 @@ Base agent class that all specialized agents inherit from
 """
 
 from abc import ABC, abstractmethod
-from typing import Dict, List, Any, Optional
+from typing import Dict, Any
 from datetime import datetime
 import json
 
@@ -248,11 +248,11 @@ class BaseAgent(ABC):
         if len(self.memory) > 100:
             self.memory = self.memory[-100:]
 
-    def get_memory(self, last_n: int = 10) -> List[Dict]:
+    def get_memory(self, last_n: int = 10) -> list[Dict]:
         """Get recent memory items"""
         return self.memory[-last_n:]
 
-    def create_response(self, status: str, output: Any, metadata: Optional[Dict] = None) -> Dict:
+    def create_response(self, status: str, output: Any, metadata: Dict | None = None) -> Dict:
         """Create a standardized response"""
         response = {
             "task_id": None,  # Will be set by process method
@@ -304,7 +304,7 @@ class MockAgent(BaseAgent):
 Research agent that searches the web and gathers information
 """
 
-from typing import Dict, List
+from typing import Dict
 import requests
 from base_agent import BaseAgent, AgentConfig
 
@@ -358,7 +358,7 @@ class ResearcherAgent(BaseAgent):
 
         return response
 
-    def _web_search(self, query: str, num_results: int = 5) -> List[Dict]:
+    def _web_search(self, query: str, num_results: int = 5) -> list[Dict]:
         """Perform web search"""
         # In production, use real search API (Google, Bing, etc.)
         # For this lab, we'll use a mock implementation
@@ -374,7 +374,7 @@ class ResearcherAgent(BaseAgent):
 
         return mock_results
 
-    def _fact_check(self, claims: List[str]) -> List[Dict]:
+    def _fact_check(self, claims: list[str]) -> list[Dict]:
         """Fact check claims"""
         verified = []
 
@@ -545,7 +545,7 @@ class AnalystAgent(BaseAgent):
 
         return result
 
-    def _compare_items(self, items: List[Dict]) -> Dict:
+    def _compare_items(self, items: list[Dict]) -> Dict:
         """Compare multiple items"""
         comparison = {
             "item_count": len(items),
@@ -601,7 +601,7 @@ class AnalystAgent(BaseAgent):
 Writer agent that generates content
 """
 
-from typing import Dict, List
+from typing import Dict
 from base_agent import BaseAgent, AgentConfig
 
 class WriterAgent(BaseAgent):
@@ -678,7 +678,7 @@ class WriterAgent(BaseAgent):
 
         return summary
 
-    def _write_report(self, sections: List[Dict], report_type: str) -> str:
+    def _write_report(self, sections: list[Dict], report_type: str) -> str:
         """Write a report from sections"""
         report_lines = [
             f"# {report_type.upper()} REPORT",
@@ -742,7 +742,7 @@ class WriterAgent(BaseAgent):
 Orchestrator that manages the agent fleet
 """
 
-from typing import Dict, List, Optional
+from typing import Dict
 from collections import deque
 import threading
 import queue
@@ -754,7 +754,7 @@ from agent_types import AgentConfig, AgentRole
 class Orchestrator(BaseAgent):
     """Orchestrator that manages the agent fleet"""
 
-    def __init__(self, config: AgentConfig, agents: List[BaseAgent]):
+    def __init__(self, config: AgentConfig, agents: list[BaseAgent]):
         super().__init__(config)
         self.agents = {agent.role: agent for agent in agents}
         self.task_queue = queue.PriorityQueue()
@@ -790,7 +790,7 @@ class Orchestrator(BaseAgent):
 
         return response
 
-    def _create_plan(self, task: Dict) -> List[Dict]:
+    def _create_plan(self, task: Dict) -> list[Dict]:
         """Create execution plan for task"""
         task_type = task.get("type", "unknown")
         task_id = task.get("task_id", "unknown")
@@ -825,7 +825,7 @@ class Orchestrator(BaseAgent):
         self.add_to_memory({"task_id": task_id, "plan": plan})
         return plan
 
-    def _execute_plan(self, plan: List[Dict]) -> List[Dict]:
+    def _execute_plan(self, plan: list[Dict]) -> list[Dict]:
         """Execute the plan through agents"""
         results = []
 
@@ -863,7 +863,7 @@ class Orchestrator(BaseAgent):
 
         return results
 
-    def _synthesize_results(self, results: List[Dict]) -> Dict:
+    def _synthesize_results(self, results: list[Dict]) -> Dict:
         """Synthesize results from all agents"""
         synthesis = {
             "total_steps": len(results),
@@ -1024,7 +1024,7 @@ if __name__ == "__main__":
 Shared memory store for all agents
 """
 
-from typing import Dict, List, Optional
+from typing import Dict
 from datetime import datetime, timedelta
 import json
 
@@ -1042,7 +1042,7 @@ class MemoryStore:
         task_id: str,
         memory_type: str,
         content: Dict,
-        ttl_hours: Optional[int] = None,
+        ttl_hours: int | None = None,
     ) -> str:
         """Store a memory"""
         memory_id = f"mem_{self.index}"
@@ -1067,11 +1067,11 @@ class MemoryStore:
 
     def retrieve(
         self,
-        agent_id: Optional[str] = None,
-        task_id: Optional[str] = None,
-        memory_type: Optional[str] = None,
+        agent_id: str | None = None,
+        task_id: str | None = None,
+        memory_type: str | None = None,
         limit: int = 10,
-    ) -> List[Dict]:
+    ) -> list[Dict]:
         """Retrieve memories based on filters"""
         memories = list(self.memories.values())
 
@@ -1097,7 +1097,7 @@ class MemoryStore:
 
         return memories[:limit]
 
-    def search(self, query: str, limit: int = 10) -> List[Dict]:
+    def search(self, query: str, limit: int = 10) -> list[Dict]:
         """Search memories by content"""
         query_lower = query.lower()
 
@@ -1142,7 +1142,7 @@ Base agent with memory support
 """
 
 from memory import MemoryStore
-from typing import Dict, List, Optional
+from typing import Dict
 
 class MemoryEnabledAgent(BaseAgent):
     """Agent with memory capabilities"""
@@ -1162,7 +1162,7 @@ class MemoryEnabledAgent(BaseAgent):
             ttl_hours=24,  # Default TTL
         )
 
-    def recall(self, task_id: str, memory_type: Optional[str] = None) -> List[Dict]:
+    def recall(self, task_id: str, memory_type: str | None = None) -> list[Dict]:
         """Recall memories from a task"""
         return self.memory_store.retrieve(
             agent_id=self.agent_id,
@@ -1170,7 +1170,7 @@ class MemoryEnabledAgent(BaseAgent):
             memory_type=memory_type,
         )
 
-    def search_memory(self, query: str) -> List[Dict]:
+    def search_memory(self, query: str) -> list[Dict]:
         """Search all memories"""
         return self.memory_store.search(query)
 ```

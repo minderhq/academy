@@ -3,7 +3,7 @@ Document ID: 2303
 Title: API Design for ML Systems
 Phase: 2
 Module: 2300
-Last Updated: 2026-09-26
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -100,7 +100,7 @@ ML models in production need well-designed APIs that are fast, reliable, and eas
 ```python
 import time
 from datetime import datetime, timezone
-from typing import Any, Dict, List, Optional
+from typing import Any, List, Optional
 
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field, field_validator
@@ -125,7 +125,7 @@ class LoadedModel:
     """Wraps an inference model plus the metadata the API exposes."""
 
     def __init__(self, model_id: str, version: str, input_size: int,
-                 config: Optional[Dict[str, Any]] = None):
+                 config: dict[str, Any] | None = None):
         self.model_id = model_id
         self.version = version
         self.input_size = input_size   # number of inputs the model expects
@@ -135,11 +135,11 @@ class LoadedModel:
         # deterministic and easy to assert against in tests.
         self.scale = float(self.config.get("scale", 2.0))
 
-    def predict(self, inputs: List[float], **params) -> List[float]:
+    def predict(self, inputs: list[float], **params) -> list[float]:
         # Stub inference: swap this line for the real model call.
         return [x * self.scale for x in inputs]
 
-    def predict_batch(self, batch: List[List[float]], **params) -> List[List[float]]:
+    def predict_batch(self, batch: list[list[float]], **params) -> list[list[float]]:
         return [self.predict(row, **params) for row in batch]
 
     def get_memory_usage(self) -> float:
@@ -147,7 +147,7 @@ class LoadedModel:
         return 512.0
 
 
-loaded_models: Dict[str, LoadedModel] = {
+loaded_models: dict[str, LoadedModel] = {
     name: LoadedModel(model_id=f"{name}@v1", version="1.0.0", input_size=4)
     for name in ["mistral-7b", "llama2-13b", "gpt-j-6b"]
 }
@@ -167,12 +167,12 @@ class PredictRequest(BaseModel):
         # single examples live in json_schema_extra, lists in examples=[...].
         json_schema_extra={"example": "mistral-7b"},
     )
-    inputs: List[float] = Field(
+    inputs: list[float] = Field(
         ...,
         description="Input features for prediction",
         json_schema_extra={"example": [0.5, 0.3, 0.8, 0.1]},
     )
-    parameters: Dict[str, Any] = Field(
+    parameters: dict[str, Any] = Field(
         default_factory=dict,
         description="Additional model parameters",
         json_schema_extra={"example": {"temperature": 0.7, "max_tokens": 100}},
@@ -192,7 +192,7 @@ class PredictRequest(BaseModel):
 class PredictResponse(BaseModel):
     """Response model for predictions."""
 
-    predictions: List[float] = Field(
+    predictions: list[float] = Field(
         ...,
         description="Model predictions"
     )
@@ -222,11 +222,11 @@ class BatchItemResponse(BaseModel):
         ...,
         description="Position in the incoming list; results return in input order"
     )
-    predictions: Optional[List[float]] = None
+    predictions: list[float] | None = None
     model_version: str
     processing_time_ms: float
     model_id: str
-    error: Optional[str] = None
+    error: str | None = None
 
 
 class ModelInfo(BaseModel):
@@ -234,7 +234,7 @@ class ModelInfo(BaseModel):
 
     name: str
     version: str
-    parameters: Dict[str, Any]
+    parameters: dict[str, Any]
     loaded_at: str
     memory_usage_mb: float
 
@@ -244,7 +244,7 @@ class ErrorResponse(BaseModel):
 
     error: str
     code: str
-    details: Optional[Dict[str, Any]] = None
+    details: dict[str, Any] | None = None
     timestamp: str
 
 
@@ -253,7 +253,7 @@ class ErrorResponse(BaseModel):
 # ========================================
 
 # Health Check
-@app.get("/health", response_model=Dict[str, str])
+@app.get("/health", response_model=dict[str, str])
 async def health_check():
     """
     Health check endpoint for load balancers.
@@ -268,7 +268,7 @@ async def health_check():
 
 
 # List Available Models
-@app.get("/models", response_model=List[str])
+@app.get("/models", response_model=list[str])
 async def list_models():
     """List all available models."""
     return list(loaded_models.keys())
@@ -342,8 +342,8 @@ async def predict(request: PredictRequest):
 
 
 # Batch Prediction
-@app.post("/predict/batch", response_model=List[BatchItemResponse])
-async def predict_batch(requests: List[PredictRequest]):
+@app.post("/predict/batch", response_model=list[BatchItemResponse])
+async def predict_batch(requests: list[PredictRequest]):
     """
     Make multiple predictions efficiently.
 
@@ -353,10 +353,10 @@ async def predict_batch(requests: List[PredictRequest]):
     validator - the None branch here is defense in depth.) Results return in
     the caller's original order.
     """
-    results: List[Optional[BatchItemResponse]] = [None] * len(requests)
+    results: list[BatchItemResponse | None] = [None] * len(requests)
 
     # Group by model, remembering each request's original position
-    by_model: Dict[str, List] = {}
+    by_model: dict[str, List] = {}
     for idx, req in enumerate(requests):
         by_model.setdefault(req.model_name, []).append((idx, req))
 
@@ -480,11 +480,11 @@ from typing import Dict
 
 from fastapi import BackgroundTasks
 from pydantic import BaseModel
-from typing import List
+
 
 # In production this store is Redis or a queue; an in-process dict keeps the
 # example runnable.
-results_store: Dict[str, Dict] = {}
+results_store: dict[str, Dict] = {}
 
 
 def process_prediction(request_id: str, request: PredictRequest) -> None:
@@ -584,7 +584,7 @@ async def generate_stream(request: GenerateRequest):
 ### WebSocket for Real-time
 
 ```python
-from typing import Dict
+
 
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 
@@ -599,7 +599,7 @@ async def generate_reply(message: str) -> str:
 
 class ConnectionManager:
     def __init__(self):
-        self.active_connections: Dict[str, WebSocket] = {}
+        self.active_connections: dict[str, WebSocket] = {}
 
     async def connect(self, client_id: str, websocket: WebSocket):
         await websocket.accept()
@@ -664,7 +664,7 @@ async def chat_websocket(websocket: WebSocket, client_id: str):
 
 ```python
 from datetime import datetime, timezone
-from typing import Any, Dict, Optional
+from typing import Any
 
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
@@ -682,7 +682,7 @@ class APIError(Exception):
     status_code: int = 400
 
     def __init__(self, message: str, code: str,
-                 details: Optional[Dict[str, Any]] = None):
+                 details: dict[str, Any] | None = None):
         self.message = message
         self.code = code
         self.details = details or {}
@@ -780,7 +780,7 @@ async def demo_missing_model():
 ## Rate Limiting
 
 ```python
-from typing import List
+
 
 from fastapi import FastAPI, Request, Response
 from fastapi.responses import JSONResponse
@@ -818,7 +818,7 @@ async def rate_limit_exceeded_handler(request: Request, exc: RateLimitExceeded):
 
 
 class PredictRequest(BaseModel):
-    inputs: List[float]
+    inputs: list[float]
 
 
 # Apply rate limiting
@@ -845,7 +845,7 @@ async def generate(request: Request, response: Response, prompt: str = ""):
 import asyncio
 import time
 from collections import defaultdict
-from typing import List
+
 
 from fastapi import FastAPI, HTTPException, Request
 from pydantic import BaseModel
@@ -915,7 +915,7 @@ app = FastAPI()
 
 
 class PredictRequest(BaseModel):
-    inputs: List[float]
+    inputs: list[float]
 
 
 def predict_logic(request: PredictRequest) -> dict:
@@ -945,7 +945,7 @@ import os
 import time
 from collections import deque
 from datetime import datetime, timedelta, timezone
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 import jwt
 from fastapi import Depends, FastAPI, HTTPException
@@ -964,7 +964,7 @@ ALGORITHM = "HS256"
 security = HTTPBearer()
 
 
-def create_token(user_id: str, expires_delta: Optional[timedelta] = None) -> str:
+def create_token(user_id: str, expires_delta: timedelta | None = None) -> str:
     """Create JWT token."""
     if expires_delta is None:
         expires_delta = timedelta(hours=24)
@@ -979,7 +979,7 @@ def create_token(user_id: str, expires_delta: Optional[timedelta] = None) -> str
     return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
 
 
-def verify_token(token: str) -> Dict[str, Any]:
+def verify_token(token: str) -> dict[str, Any]:
     """Verify JWT token."""
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
@@ -996,7 +996,7 @@ def verify_token(token: str) -> Dict[str, Any]:
 
 async def get_current_user(
     credentials: HTTPAuthorizationCredentials = Depends(security)
-) -> Dict[str, Any]:
+) -> dict[str, Any]:
     """Get current user from token."""
     return verify_token(credentials.credentials)
 
@@ -1008,7 +1008,7 @@ class SlidingWindowLimiter:
     def __init__(self, max_requests: int, window_seconds: float):
         self.max_requests = max_requests
         self.window_seconds = window_seconds
-        self.hits: Dict[str, deque] = {}
+        self.hits: dict[str, deque] = {}
 
     def allow(self, key: str) -> bool:
         now = time.monotonic()
@@ -1028,7 +1028,7 @@ app = FastAPI()
 
 
 class PredictRequest(BaseModel):
-    inputs: List[float]
+    inputs: list[float]
 
 
 def predict_logic(request: PredictRequest) -> dict:
@@ -1040,7 +1040,7 @@ def predict_logic(request: PredictRequest) -> dict:
 @app.post("/predict")
 async def protected_predict(
     request: PredictRequest,
-    user: Dict[str, Any] = Depends(get_current_user)
+    user: dict[str, Any] = Depends(get_current_user)
 ):
     """
     Protected prediction endpoint.
@@ -1060,7 +1060,7 @@ async def protected_predict(
 
 ```python
 import time
-from typing import List
+
 
 from fastapi import FastAPI, Response
 from prometheus_client import Counter, Histogram, generate_latest
@@ -1087,7 +1087,7 @@ app = FastAPI()
 
 class PredictRequest(BaseModel):
     model_name: str = "mistral-7b"
-    inputs: List[float]
+    inputs: list[float]
 
 
 def predict_logic(request: PredictRequest) -> dict:
@@ -1150,15 +1150,15 @@ Create a complete ML API with:
 ```python
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-from typing import List
+
 
 app = FastAPI()
 
 class PredictRequest(BaseModel):
-    inputs: List[float]
+    inputs: list[float]
 
 class PredictResponse(BaseModel):
-    predictions: List[float]
+    predictions: list[float]
 
 # TODO: Implement endpoints
 # - POST /predict

@@ -105,7 +105,7 @@ Production systems are configured, not edited. The `Config` class loads one YAML
 # core/config.py
 """YAML-backed configuration with dot-notation access and defaults merging."""
 import copy
-from typing import Any, Dict, Optional
+from typing import Any
 
 import yaml
 
@@ -119,8 +119,8 @@ class Config:
     None-checks through the code.
     """
 
-    def __init__(self, path: Optional[str] = None, overrides: Optional[Dict[str, Any]] = None):
-        self._data: Dict[str, Any] = {}
+    def __init__(self, path: str | None = None, overrides: dict[str, Any] | None = None):
+        self._data: dict[str, Any] = {}
         if path is not None:
             with open(path, "r", encoding="utf-8") as f:
                 self._data = yaml.safe_load(f) or {}
@@ -128,7 +128,7 @@ class Config:
             self._deep_merge(self._data, overrides)
 
     @staticmethod
-    def _deep_merge(base: Dict[str, Any], extra: Dict[str, Any]) -> None:
+    def _deep_merge(base: dict[str, Any], extra: dict[str, Any]) -> None:
         """Merge `extra` into `base` recursively - dict values merge, the rest replace."""
         for key, value in extra.items():
             if isinstance(value, dict) and isinstance(base.get(key), dict):
@@ -146,7 +146,7 @@ class Config:
             node = node[part]
         return node
 
-    def as_dict(self) -> Dict[str, Any]:
+    def as_dict(self) -> dict[str, Any]:
         return copy.deepcopy(self._data)
 
     def __repr__(self) -> str:
@@ -166,7 +166,7 @@ The registry is the framework's extension point. Components register under their
 Components register by class name; config files select them by name, so
 new behavior ships as a NEW file instead of an edited one.
 """
-from typing import Dict, List
+
 
 
 class Registry:
@@ -174,7 +174,7 @@ class Registry:
 
     def __init__(self, name: str):
         self.name = name
-        self._entries: Dict[str, type] = {}
+        self._entries: dict[str, type] = {}
 
     def register(self, cls: type) -> type:
         key = cls.__name__
@@ -190,7 +190,7 @@ class Registry:
             )
         return self._entries[key](*args, **kwargs)
 
-    def list_all(self) -> List[str]:
+    def list_all(self) -> list[str]:
         return sorted(self._entries)
 
     def __contains__(self, key: object) -> bool:
@@ -202,7 +202,7 @@ MODEL_REGISTRY = Registry("models")
 METRIC_REGISTRY = Registry("metrics")
 ```
 
-One honest correction to a common tutorial mistake: the imports at the top must cover everything used in the file. `list_all`'s `List` annotation only works because `typing.List` is imported — forgetting it is a `NameError` at *import time*, before any of your code runs. Import errors from missing annotation imports are the most common first-run failure in framework-style code, and the fix is always the same shape.
+One honest correction to a common tutorial mistake: the imports at the top must cover everything used in the file. `predict_batch`'s `Any` annotation only works because `Any` is imported from `typing` — forgetting it is a `NameError` at *import time*, before any of your code runs. (Built-in generics like `list[str]` are the exception — they need no import on Python 3.9+.) Import errors from missing annotation imports are the most common first-run failure in framework-style code, and the fix is always the same shape.
 
 ### 1.3 Using the Plugin Registry
 
@@ -256,7 +256,7 @@ Run it: `python plugins.py`. Deleting `plugins.py` removes the three metrics; ad
 # models/base.py
 """BaseModel: the contract every registered model fulfills."""
 from abc import ABC, abstractmethod
-from typing import Any, List
+from typing import Any
 
 import torch
 import torch.nn as nn
@@ -284,7 +284,7 @@ class BaseModel(nn.Module, ABC):
         # serving code a correctly-typed call site. Keep the contract uniform.
         return super().eval()
 
-    def predict_batch(self, inputs: List[Any]) -> List[List[float]]:
+    def predict_batch(self, inputs: list[Any]) -> list[list[float]]:
         was_training = self.training
         self.eval()  # no dropout / batchnorm updates during inference
         try:
@@ -335,7 +335,7 @@ The second model overrides `predict_batch` — its input is integer token ids, n
 ```python
 # models/transformer.py
 import math
-from typing import List
+
 
 import torch
 import torch.nn as nn
@@ -387,7 +387,7 @@ class TransformerModel(BaseModel):
             logits.reshape(-1, logits.size(-1)), targets.reshape(-1)
         )
 
-    def predict_batch(self, inputs: List[List[int]]) -> List[List[int]]:
+    def predict_batch(self, inputs: list[list[int]]) -> list[list[int]]:
         """Greedy next-token id per sequence. Override: ids in, one id out."""
         was_training = self.training
         self.eval()
@@ -413,7 +413,7 @@ The batching server collects concurrent requests and runs them as one forward pa
 import threading
 import time
 from dataclasses import dataclass, field
-from typing import Any, List, Optional
+from typing import Any
 
 from models.base import BaseModel  # noqa: F401  (type reference)
 
@@ -426,11 +426,11 @@ class BatchTimeoutError(TimeoutError):
 class BatchItem:
     """One in-flight request. `input` is a LIST of feature rows."""
 
-    input: List[Any]
+    input: list[Any]
     enqueued_at: float = 0.0
     event: threading.Event = field(default_factory=threading.Event)
-    result: List[Any] = field(default_factory=list)
-    error: Optional[Exception] = None
+    result: list[Any] = field(default_factory=list)
+    error: Exception | None = None
 
 
 class BatchingServer:
@@ -446,7 +446,7 @@ class BatchingServer:
         self.model = model
         self.max_batch_size = max_batch_size
         self.timeout_ms = timeout_ms
-        self._queue: List[BatchItem] = []
+        self._queue: list[BatchItem] = []
         self._lock = threading.Lock()
         self.stats = {"requests": 0, "batches": 0, "batch_sizes": []}
 
@@ -457,7 +457,7 @@ class BatchingServer:
             self.stats["requests"] += 1
             self._check_and_process()
 
-    def get_result(self, item: BatchItem, timeout_s: float = 5.0) -> List[Any]:
+    def get_result(self, item: BatchItem, timeout_s: float = 5.0) -> list[Any]:
         deadline = time.monotonic() + timeout_s
         while not item.event.wait(0.05):  # poll in 50ms slices; cheap and simple
             self._check_and_process()  # <- the timeout flush, driven by the waiter
@@ -480,7 +480,7 @@ class BatchingServer:
         batch, self._queue = self._queue[: self.max_batch_size], self._queue[self.max_batch_size :]
         self._process(batch)
 
-    def _process(self, batch: List[BatchItem]) -> None:
+    def _process(self, batch: list[BatchItem]) -> None:
         self.stats["batches"] += 1
         self.stats["batch_sizes"].append(len(batch))
         try:
@@ -507,7 +507,7 @@ Run from the framework/ directory: uvicorn serving.api:app --port 8000
 """
 import os
 import time
-from typing import List
+
 
 import torch
 from fastapi import FastAPI, HTTPException
@@ -540,11 +540,11 @@ app = FastAPI(title="Mini Framework API")
 
 
 class PredictRequest(BaseModel):
-    inputs: List[List[float]]  # rows of feature floats, one inference per row
+    inputs: list[list[float]]  # rows of feature floats, one inference per row
 
 
 class PredictResponse(BaseModel):
-    predictions: List[List[float]]
+    predictions: list[list[float]]
     processing_time_ms: float
 
 

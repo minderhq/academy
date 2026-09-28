@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-013
 Title: "LAB-013: Advanced Function Calling"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -67,7 +67,7 @@ Function calling flow:
 
 import json
 import inspect
-from typing import Callable, Dict, List, Any, Optional, Type
+from typing import Callable, Dict, List, Any, Type
 from dataclasses import dataclass, field
 from pydantic import BaseModel, Field
 from enum import Enum
@@ -88,20 +88,20 @@ class ToolParameter:
     type: str  # string, number, boolean, array, object
     description: str
     required: bool = True
-    enum: Optional[List[Any]] = None
-    default: Optional[Any] = None
-    format: Optional[str] = None  # For additional type info
+    enum: list[Any] | None = None
+    default: Any | None = None
+    format: str | None = None  # For additional type info
 
 @dataclass
 class Tool:
     """Complete tool definition"""
     name: str
     description: str
-    parameters: List[ToolParameter] = field(default_factory=list)
+    parameters: list[ToolParameter] = field(default_factory=list)
     function: Callable = None
     role: ToolRole = ToolRole.API_CALL
-    examples: List[Dict] = field(default_factory=list)
-    rate_limit: Optional[int] = None  # Max calls per minute
+    examples: list[Dict] = field(default_factory=list)
+    rate_limit: int | None = None  # Max calls per minute
     timeout: int = 30  # Timeout in seconds
     async_function: bool = False
 
@@ -190,8 +190,8 @@ class ToolRegistry:
     """
 
     def __init__(self):
-        self.tools: Dict[str, Tool] = {}
-        self.tools_by_role: Dict[ToolRole, List[str]] = {}
+        self.tools: dict[str, Tool] = {}
+        self.tools_by_role: dict[ToolRole, list[str]] = {}
 
     def register(self, tool: Tool) -> None:
         """Register a tool"""
@@ -201,20 +201,20 @@ class ToolRegistry:
             self.tools_by_role[tool.role] = []
         self.tools_by_role[tool.role].append(tool.name)
 
-    def get_tool(self, name: str) -> Optional[Tool]:
+    def get_tool(self, name: str) -> Tool | None:
         """Get tool by name"""
         return self.tools.get(name)
 
-    def get_tools_by_role(self, role: ToolRole) -> List[Tool]:
+    def get_tools_by_role(self, role: ToolRole) -> list[Tool]:
         """Get all tools for a role"""
         names = self.tools_by_role.get(role, [])
         return [self.tools[name] for name in names]
 
-    def list_tools(self) -> List[str]:
+    def list_tools(self) -> list[str]:
         """List all tool names"""
         return list(self.tools.keys())
 
-    def to_openai_schemas(self) -> List[Dict]:
+    def to_openai_schemas(self) -> list[Dict]:
         """Convert all tools to OpenAI schemas"""
         return [tool.to_openai_schema() for tool in self.tools.values()]
 
@@ -245,7 +245,7 @@ class FunctionCallingEngine:
     def chat(
         self,
         user_message: str,
-        available_tools: Optional[List[str]] = None,
+        available_tools: list[str] | None = None,
         max_iterations: int = 10
     ) -> Dict:
         """
@@ -353,7 +353,7 @@ class FunctionCallingEngine:
 def tool(
     name: str,
     description: str,
-    parameters: List[ToolParameter],
+    parameters: list[ToolParameter],
     role: ToolRole = ToolRole.API_CALL
 ):
     """
@@ -531,7 +531,7 @@ import os
 import json
 import hashlib
 import requests
-from typing import Dict, List, Any, Optional
+from typing import Dict, List, Any
 from datetime import datetime, timedelta
 import sqlite3
 from functools import wraps
@@ -600,7 +600,7 @@ class PostgreSQLTool:
 
     @retry(max_attempts=3)
     @rate_limit(max_calls=20, period=60)
-    def query(self, sql: str, params: tuple = None) -> List[Dict]:
+    def query(self, sql: str, params: tuple = None) -> list[Dict]:
         """Execute SQL query"""
         cursor = self.conn.cursor()
         cursor.execute(sql, params or ())
@@ -632,7 +632,7 @@ class RedisTool:
         self.client = redis.Redis(host=host, port=port, db=db, decode_responses=True)
 
     @rate_limit(max_calls=100, period=60)
-    def get(self, key: str) -> Optional[str]:
+    def get(self, key: str) -> str | None:
         """Get value from Redis"""
         return self.client.get(key)
 
@@ -752,7 +752,7 @@ class FileTool:
             "success": True
         }
 
-    def list_dir(self, dirpath: str = ".") -> List[Dict]:
+    def list_dir(self, dirpath: str = ".") -> list[Dict]:
         """List directory contents"""
         full_path = os.path.join(self.base_path, dirpath)
 
@@ -801,7 +801,7 @@ class S3Tool:
             "success": True
         }
 
-    def list_objects(self, prefix: str = "") -> List[Dict]:
+    def list_objects(self, prefix: str = "") -> list[Dict]:
         """List objects in bucket"""
         response = self.s3.list_objects_v2(
             Bucket=self.bucket,
@@ -828,7 +828,7 @@ class WebSearchTool:
         self.engine = engine
 
     @rate_limit(max_calls=10, period=60)
-    def search(self, query: str, num_results: int = 10) -> List[Dict]:
+    def search(self, query: str, num_results: int = 10) -> list[Dict]:
         """Search the web"""
         # Mock implementation - replace with actual API
         return [
@@ -1021,7 +1021,7 @@ Coordinates multiple tools:
 - Result aggregation
 """
 
-from typing import Dict, List, Any, Optional, Callable
+from typing import Dict, List, Any
 from dataclasses import dataclass, field
 from enum import Enum
 import asyncio
@@ -1037,8 +1037,8 @@ class ExecutionStrategy(Enum):
 class ToolCall:
     """Single tool call definition"""
     tool_name: str
-    parameters: Dict[str, Any]
-    depends_on: List[str] = field(default_factory=list)
+    parameters: dict[str, Any]
+    depends_on: list[str] = field(default_factory=list)
     retry_on_failure: bool = True
     continue_on_failure: bool = False
     timeout: int = 30
@@ -1049,7 +1049,7 @@ class ExecutionResult:
     tool_name: str
     success: bool
     result: Any = None
-    error: Optional[str] = None
+    error: str | None = None
     duration: float = 0.0
 
 class ToolOrchestrator:
@@ -1063,9 +1063,9 @@ class ToolOrchestrator:
 
     def execute_plan(
         self,
-        calls: List[ToolCall],
+        calls: list[ToolCall],
         strategy: ExecutionStrategy = ExecutionStrategy.SEQUENTIAL
-    ) -> List[ExecutionResult]:
+    ) -> list[ExecutionResult]:
         """
         Execute a plan of tool calls.
 
@@ -1087,8 +1087,8 @@ class ToolOrchestrator:
 
     def _execute_sequential(
         self,
-        calls: List[ToolCall]
-    ) -> List[ExecutionResult]:
+        calls: list[ToolCall]
+    ) -> list[ExecutionResult]:
         """Execute calls sequentially"""
         results = []
 
@@ -1103,8 +1103,8 @@ class ToolOrchestrator:
 
     def _execute_parallel(
         self,
-        calls: List[ToolCall]
-    ) -> List[ExecutionResult]:
+        calls: list[ToolCall]
+    ) -> list[ExecutionResult]:
         """Execute calls in parallel"""
         futures = {}
         results = {}
@@ -1132,8 +1132,8 @@ class ToolOrchestrator:
 
     def _execute_with_dependencies(
         self,
-        calls: List[ToolCall]
-    ) -> List[ExecutionResult]:
+        calls: list[ToolCall]
+    ) -> list[ExecutionResult]:
         """Execute calls respecting dependencies"""
         # Build dependency graph
         graph = self._build_dependency_graph(calls)
@@ -1202,12 +1202,12 @@ class ToolOrchestrator:
                 duration=duration
             )
 
-    def _build_dependency_graph(self, calls: List[ToolCall]) -> Dict[str, List[str]]:
+    def _build_dependency_graph(self, calls: list[ToolCall]) -> dict[str, list[str]]:
         """Build dependency graph from calls"""
         graph = {call.tool_name: call.depends_on for call in calls}
         return graph
 
-    def _topological_sort(self, graph: Dict[str, List[str]]) -> List[str]:
+    def _topological_sort(self, graph: dict[str, list[str]]) -> list[str]:
         """Topological sort of dependency graph"""
         visited = set()
         result = []
@@ -1240,8 +1240,8 @@ class Workflow:
     def add_step(
         self,
         tool_name: str,
-        parameters: Dict[str, Any],
-        depends_on: List[str] = None,
+        parameters: dict[str, Any],
+        depends_on: list[str] = None,
         store_as: str = None
     ) -> 'Workflow':
         """Add a step to the workflow"""
@@ -1361,7 +1361,7 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-from typing import Dict, List, Any, Optional
+from typing import Dict, List, Any
 import uvicorn
 
 # Global registry and engine
@@ -1391,16 +1391,16 @@ app = FastAPI(title="Tool-Enabled Agent API", lifespan=lifespan)
 
 class ToolCallRequest(BaseModel):
     tool_name: str
-    parameters: Dict[str, Any]
+    parameters: dict[str, Any]
 
 
 class WorkflowRequest(BaseModel):
-    steps: List[Dict]
+    steps: list[Dict]
 
 
 class ChatRequest(BaseModel):
     message: str
-    tools: Optional[List[str]] = None
+    tools: list[str] | None = None
 
 @app.post("/tools/execute")
 async def execute_tool(request: ToolCallRequest) -> Dict:
@@ -1430,7 +1430,7 @@ async def chat(request: ChatRequest) -> Dict:
     return result
 
 @app.get("/tools")
-async def list_tools() -> List[str]:
+async def list_tools() -> list[str]:
     """List available tools"""
     return registry.list_tools()
 

@@ -118,7 +118,7 @@ Implement BM25 (Best Matching 25) ranking algorithm for keyword search.
 ```python
 import math
 from collections import Counter
-from typing import List, Tuple
+from typing import List
 
 class BM25Retriever:
     def __init__(self, k1=1.5, b=0.75):
@@ -132,7 +132,7 @@ class BM25Retriever:
         self.k1 = k1
         self.b = b
 
-    def index(self, documents: List[str]):
+    def index(self, documents: list[str]):
         """
         Build BM25 index from documents.
 
@@ -145,7 +145,7 @@ class BM25Retriever:
         # 3. Calculate average document length
         pass
 
-    def search(self, query: str, k: int = 10) -> List[Tuple[int, float]]:
+    def search(self, query: str, k: int = 10) -> list[tuple[int, float]]:
         """
         Search for relevant documents.
 
@@ -197,11 +197,11 @@ Implement a hybrid search system combining vector and keyword search using Recip
 ### Solution Template
 
 ```python
-from typing import List, Tuple, Dict
+from typing import List
 import numpy as np
 
 class HybridRetriever:
-    def __init__(self, documents: List[str], embedding_model):
+    def __init__(self, documents: list[str], embedding_model):
         """
         Initialize hybrid retriever.
 
@@ -222,7 +222,7 @@ class HybridRetriever:
         alpha: float = 0.5,
         k: int = 60,
         top_k: int = 10
-    ) -> List[Tuple[int, float]]:
+    ) -> list[tuple[int, float]]:
         """
         Hybrid search with RRF fusion.
 
@@ -408,7 +408,7 @@ Implement context building strategies for RAG applications.
 ### Solution Template
 
 ```python
-from typing import List, Dict
+from typing import List
 import tiktoken
 
 class ContextBuilder:
@@ -420,7 +420,7 @@ class ContextBuilder:
         """Count tokens in text."""
         return len(self.tokenizer.encode(text))
 
-    def stuff_context(self, chunks: List[str], query: str) -> str:
+    def stuff_context(self, chunks: list[str], query: str) -> str:
         """
         Stuff all chunks into context.
 
@@ -434,7 +434,7 @@ class ContextBuilder:
         # TODO: Implement with token limit
         pass
 
-    def map_reduce_context(self, chunks: List[str], query: str) -> str:
+    def map_reduce_context(self, chunks: list[str], query: str) -> str:
         """
         Map-reduce strategy for large context.
 
@@ -450,7 +450,7 @@ class ContextBuilder:
         # 2. Combine summaries
         pass
 
-    def refine_context(self, chunks: List[str], query: str) -> str:
+    def refine_context(self, chunks: list[str], query: str) -> str:
         """
         Iteratively refine context.
 
@@ -503,10 +503,10 @@ Build an end-to-end RAG pipeline with all components.
 ```python
 from qdrant_client import QdrantClient
 from transformers import AutoTokenizer, AutoModelForCausalLM
-from typing import List, Dict, Any
+from typing import Dict, Any
 
 class RAGPipeline:
-    def __init__(self, config: Dict[str, Any]):
+    def __init__(self, config: dict[str, Any]):
         """
         Initialize RAG pipeline.
 
@@ -521,7 +521,7 @@ class RAGPipeline:
         self.reranker = None
         self.llm = None
 
-    def ingest_documents(self, documents: List[str], metadata: List[Dict]):
+    def ingest_documents(self, documents: list[str], metadata: list[Dict]):
         """Ingest documents into the pipeline."""
         # TODO: Implement
         # 1. Chunk documents
@@ -530,22 +530,22 @@ class RAGPipeline:
         # 4. Build BM25 index
         pass
 
-    def retrieve(self, query: str, top_k: int = 20) -> List[Dict]:
+    def retrieve(self, query: str, top_k: int = 20) -> list[Dict]:
         """Retrieve relevant documents."""
         # TODO: Implement hybrid retrieval
         pass
 
-    def rerank(self, query: str, documents: List[Dict], top_k: int = 5) -> List[Dict]:
+    def rerank(self, query: str, documents: list[Dict], top_k: int = 5) -> list[Dict]:
         """Re-rank retrieved documents."""
         # TODO: Implement re-ranking
         pass
 
-    def generate(self, query: str, context: List[Dict]) -> str:
+    def generate(self, query: str, context: list[Dict]) -> str:
         """Generate response using LLM."""
         # TODO: Implement generation
         pass
 
-    def query(self, question: str) -> Dict[str, Any]:
+    def query(self, question: str) -> dict[str, Any]:
         """
         End-to-end query processing.
 
@@ -649,7 +649,7 @@ reference implementation is provided for it.
 
 ```python
 import numpy as np
-from typing import List, Tuple
+
 
 class VectorSearch:
     """Simple vector search implementation"""
@@ -670,7 +670,7 @@ class VectorSearch:
         """Calculate cosine similarity"""
         return np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
 
-    def search(self, query: np.ndarray, k: int = 5) -> List[Tuple[dict, float]]:
+    def search(self, query: np.ndarray, k: int = 5) -> list[tuple[dict, float]]:
         """Search for similar vectors"""
         if not self.vectors:
             return []
@@ -723,7 +723,7 @@ if __name__ == "__main__":
 ```python
 from collections import defaultdict
 import math
-from typing import List
+
 
 class BM25:
     """BM25 keyword search implementation"""
@@ -735,7 +735,7 @@ class BM25:
         self.idf = {}
         self.doc_lens = []
 
-    def index(self, documents: List[str]):
+    def index(self, documents: list[str]):
         """Index documents"""
         # Tokenize and count
         self.doc_freqs = []
@@ -783,7 +783,7 @@ class BM25:
 
         return score
 
-    def search(self, query: str, k: int = 5) -> List[tuple]:
+    def search(self, query: str, k: int = 5) -> list[tuple]:
         """Search for relevant documents"""
         scores = [(i, self.score(query, i)) for i in range(len(self.doc_freqs))]
         scores.sort(key=lambda x: x[1], reverse=True)
@@ -827,7 +827,7 @@ if __name__ == "__main__":
 ### Exercise 3: Hybrid Search with Rank Fusion
 
 ```python
-from typing import List, Tuple
+from typing import List
 from collections import defaultdict
 
 class HybridSearch:
@@ -843,9 +843,9 @@ class HybridSearch:
 
     def reciprocal_rank_fusion(
         self,
-        results_list: List[List[Tuple[int, float]]],
+        results_list: list[list[tuple[int, float]]],
         k: int = 60
-    ) -> List[Tuple[int, float]]:
+    ) -> list[tuple[int, float]]:
         """
         Reciprocal Rank Fusion (RRF) algorithm
 
@@ -876,9 +876,9 @@ class HybridSearch:
 
     def weighted_score_fusion(
         self,
-        vector_results: List[Tuple[int, float]],
-        keyword_results: List[Tuple[int, float]]
-    ) -> List[Tuple[int, float]]:
+        vector_results: list[tuple[int, float]],
+        keyword_results: list[tuple[int, float]]
+    ) -> list[tuple[int, float]]:
         """
         Weighted score fusion
 
@@ -1209,7 +1209,7 @@ class ContextBuilder:
 
     def build_context(
         self,
-        retrieved_docs: List[Dict],
+        retrieved_docs: list[Dict],
         query: str,
         include_sources: bool = True
     ) -> str:
@@ -1249,7 +1249,7 @@ class ContextBuilder:
 
         return full_context
 
-    def format_with_citations(self, response: str, sources: List[Dict]) -> str:
+    def format_with_citations(self, response: str, sources: list[Dict]) -> str:
         """
         Add source citations to response
 
@@ -1269,7 +1269,7 @@ class ContextBuilder:
 
         return response + citations
 
-    def deduplicate_context(self, contexts: List[str]) -> List[str]:
+    def deduplicate_context(self, contexts: list[str]) -> list[str]:
         """
         Remove duplicate or very similar contexts
 

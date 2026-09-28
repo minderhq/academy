@@ -1,7 +1,7 @@
 ---
 Document ID: SOLUTION-LAB-008
 Title: "SOLUTION-LAB-008: Agent Fleet"
-Last Updated: 2026-09-27
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -25,7 +25,7 @@ uv pip install langchain langchain-openai asyncio
 
 ```python
 import asyncio
-from typing import Dict, List, Any, Optional, Callable
+from typing import Dict, List, Any, Optional
 from dataclasses import dataclass
 from enum import Enum
 import json
@@ -51,13 +51,13 @@ class Task:
     id: str
     type: str
     description: str
-    input_data: Dict[str, Any]
+    input_data: dict[str, Any]
     priority: int = 5
     status: str = "pending"
-    assigned_to: Optional[str] = None
-    result: Optional[Any] = None
+    assigned_to: str | None = None
+    result: Any | None = None
     created_at: datetime = None
-    completed_at: Optional[datetime] = None
+    completed_at: datetime | None = None
 
     def __post_init__(self):
         if self.id is None:
@@ -71,9 +71,9 @@ class AgentMessage:
     id: str
     from_agent: str
     to_agent: str
-    content: Dict[str, Any]
+    content: dict[str, Any]
     timestamp: datetime
-    reply_to: Optional[str] = None
+    reply_to: str | None = None
 
     def __post_init__(self):
         if self.id is None:
@@ -90,7 +90,7 @@ class BaseAgent:
     Provides common functionality and interface.
     """
 
-    def __init__(self, name: str, role: AgentRole, config: Dict[str, Any] = None):
+    def __init__(self, name: str, role: AgentRole, config: dict[str, Any] = None):
         """
         Initialize base agent.
 
@@ -113,7 +113,7 @@ class BaseAgent:
         """
         raise NotImplementedError(f"{self.name} agent must implement process_task()")
 
-    async def send_message(self, to_agent: str, content: Dict[str, Any], reply_to: str = None):
+    async def send_message(self, to_agent: str, content: dict[str, Any], reply_to: str = None):
         """Send a message to another agent."""
         # This would interface with the fleet's communication system
         pass
@@ -122,7 +122,7 @@ class BaseAgent:
         """Receive a message from another agent."""
         await self.message_queue.put(message)
 
-    async def get_status(self) -> Dict[str, Any]:
+    async def get_status(self) -> dict[str, Any]:
         """Return current agent status."""
         return {
             "name": self.name,
@@ -141,10 +141,10 @@ class ResearchAgent(BaseAgent):
     Agent specialized in web research, document analysis, and information gathering.
     """
 
-    def __init__(self, name: str = "researcher_1", config: Dict[str, Any] = None):
+    def __init__(self, name: str = "researcher_1", config: dict[str, Any] = None):
         super().__init__(name, AgentRole.RESEARCHER, config)
 
-    async def process_task(self, task: Task) -> Dict[str, Any]:
+    async def process_task(self, task: Task) -> dict[str, Any]:
         """
         Process research tasks like:
         - Web scraping for information
@@ -162,7 +162,7 @@ class ResearchAgent(BaseAgent):
         else:
             return {"error": f"Unknown task type: {task_type}"}
 
-    async def _web_search(self, query: str) -> Dict[str, Any]:
+    async def _web_search(self, query: str) -> dict[str, Any]:
         """Perform web search and return results."""
         # Simulated web search - in production, use actual search API
         results = [
@@ -176,7 +176,7 @@ class ResearchAgent(BaseAgent):
             "query": query
         }
 
-    async def _analyze_document(self, document: str) -> Dict[str, Any]:
+    async def _analyze_document(self, document: str) -> dict[str, Any]:
         """Analyze document and extract key information."""
         # Simulated document analysis
         return {
@@ -186,7 +186,7 @@ class ResearchAgent(BaseAgent):
             "word_count": len(document.split())
         }
 
-    async def _collect_data(self, sources: List[str]) -> Dict[str, Any]:
+    async def _collect_data(self, sources: list[str]) -> dict[str, Any]:
         """Collect data from multiple sources."""
         collected = []
         for source in sources:
@@ -203,12 +203,12 @@ class CodeAgent(BaseAgent):
     Agent specialized in code generation, debugging, and code review.
     """
 
-    def __init__(self, name: str = "coder_1", config: Dict[str, Any] = None):
+    def __init__(self, name: str = "coder_1", config: dict[str, Any] = None):
         super().__init__(name, AgentRole.CODER, config)
         self.supported_languages = ["python", "javascript", "java", "cpp"]
         self.code_history = []
 
-    async def process_task(self, task: Task) -> Dict[str, Any]:
+    async def process_task(self, task: Task) -> dict[str, Any]:
         """
         Process coding tasks like:
         - Code generation
@@ -228,7 +228,7 @@ class CodeAgent(BaseAgent):
         else:
             return {"error": f"Unknown task type: {task_type}"}
 
-    async def _generate_code(self, spec: Dict[str, Any]) -> Dict[str, Any]:
+    async def _generate_code(self, spec: dict[str, Any]) -> dict[str, Any]:
         """Generate code based on specification."""
         language = spec.get("language", "python")
         requirements = spec.get("requirements", [])
@@ -255,7 +255,7 @@ class CodeAgent(BaseAgent):
             "lines": len(code.split('\n'))
         }
 
-    async def _debug_code(self, code_info: Dict[str, Any]) -> Dict[str, Any]:
+    async def _debug_code(self, code_info: dict[str, Any]) -> dict[str, Any]:
         """Debug code and identify issues."""
         code = code_info.get("code", "")
         language = code_info.get("language", "python")
@@ -273,7 +273,7 @@ class CodeAgent(BaseAgent):
             "suggestions": ["Suggestion 1", "Suggestion 2"] if issues else ["No issues found"]
         }
 
-    async def _review_code(self, code_info: Dict[str, Any]) -> Dict[str, Any]:
+    async def _review_code(self, code_info: dict[str, Any]) -> dict[str, Any]:
         """Review code for best practices and quality."""
         code = code_info.get("code", "")
         language = code_info.get("language", "python")
@@ -285,7 +285,7 @@ class CodeAgent(BaseAgent):
             "improvements": ["Add docstrings", "Add type hints"]
         }
 
-    async def _optimize_code(self, code_info: Dict[str, Any]) -> Dict[str, Any]:
+    async def _optimize_code(self, code_info: dict[str, Any]) -> dict[str, Any]:
         """Optimize code for better performance."""
         return {
             "status": "completed",
@@ -298,10 +298,10 @@ class AnalystAgent(BaseAgent):
     Agent specialized in data analysis, pattern recognition, and insights generation.
     """
 
-    def __init__(self, name: str = "analyst_1", config: Dict[str, Any] = None):
+    def __init__(self, name: str = "analyst_1", config: dict[str, Any] = None):
         super().__init__(name, AgentRole.ANALYST, config)
 
-    async def process_task(self, task: Task) -> Dict[str, Any]:
+    async def process_task(self, task: Task) -> dict[str, Any]:
         """
         Process analysis tasks like:
         - Data analysis
@@ -322,7 +322,7 @@ class AnalystAgent(BaseAgent):
         else:
             return {"error": f"Unknown task type: {task_type}"}
 
-    async def _analyze_data(self, data: List[Any]) -> Dict[str, Any]:
+    async def _analyze_data(self, data: list[Any]) -> dict[str, Any]:
         """Analyze data and provide summary."""
         return {
             "status": "completed",
@@ -333,7 +333,7 @@ class AnalystAgent(BaseAgent):
             }
         }
 
-    async def _find_patterns(self, data: List[Any]) -> Dict[str, Any]:
+    async def _find_patterns(self, data: list[Any]) -> dict[str, Any]:
         """Find patterns in data."""
         return {
             "status": "completed",
@@ -341,7 +341,7 @@ class AnalystAgent(BaseAgent):
             "confidence": 0.85
         }
 
-    async def _compute_statistics(self, data: List[Any]) -> Dict[str, Any]:
+    async def _compute_statistics(self, data: list[Any]) -> dict[str, Any]:
         """Compute statistical metrics."""
         return {
             "status": "completed",
@@ -349,7 +349,7 @@ class AnalystAgent(BaseAgent):
             "summary": "Statistical analysis complete"
         }
 
-    async def _generate_insights(self, data: List[Any]) -> Dict[str, Any]:
+    async def _generate_insights(self, data: list[Any]) -> dict[str, Any]:
         """Generate actionable insights from data."""
         return {
             "status": "completed",
@@ -369,7 +369,7 @@ class Coordinator:
     Handles task decomposition, agent selection, and result aggregation.
     """
 
-    def __init__(self, agents: Dict[str, BaseAgent] = None):
+    def __init__(self, agents: dict[str, BaseAgent] = None):
         """
         Initialize coordinator.
 
@@ -380,7 +380,7 @@ class Coordinator:
         self.task_history = []
         self.workflow_templates = self._initialize_workflows()
 
-    def _initialize_workflows(self) -> Dict[str, List[Dict]]:
+    def _initialize_workflows(self) -> dict[str, list[Dict]]:
         """Initialize workflow templates for common task types."""
         return {
             "complex_research": [
@@ -400,7 +400,7 @@ class Coordinator:
             ]
         }
 
-    async def coordinate(self, task: Task, available_agents: Dict[str, BaseAgent]) -> Dict[str, Any]:
+    async def coordinate(self, task: Task, available_agents: dict[str, BaseAgent]) -> dict[str, Any]:
         """
         Coordinate task execution across multiple agents.
 
@@ -443,7 +443,7 @@ class Coordinator:
         else:
             return "single_agent"
 
-    def _select_best_agent(self, task: Task, available_agents: Dict[str, BaseAgent]) -> BaseAgent:
+    def _select_best_agent(self, task: Task, available_agents: dict[str, BaseAgent]) -> BaseAgent:
         """Select the best agent for a given task."""
         task_type_to_role = {
             "web_search": AgentRole.RESEARCHER,
@@ -465,7 +465,7 @@ class Coordinator:
         # Fallback to first available agent
         return next(iter(available_agents.values()))
 
-    async def _execute_workflow(self, task: Task, available_agents: Dict[str, BaseAgent]) -> Dict[str, Any]:
+    async def _execute_workflow(self, task: Task, available_agents: dict[str, BaseAgent]) -> dict[str, Any]:
         """Execute a predefined workflow across multiple agents."""
         workflow_name = task.input_data.get("workflow", "complex_research")
         workflow = self.workflow_templates.get(workflow_name, [])
@@ -500,7 +500,7 @@ class Coordinator:
             "results": results
         }
 
-    async def _execute_parallel(self, task: Task, available_agents: Dict[str, BaseAgent]) -> Dict[str, Any]:
+    async def _execute_parallel(self, task: Task, available_agents: dict[str, BaseAgent]) -> dict[str, Any]:
         """Execute task in parallel across multiple agents."""
         # Create tasks for all agents
         tasks = []
@@ -522,7 +522,7 @@ class Coordinator:
             "results": [{"agent": agent.name, "result": result} for agent, result in zip([a for a, _ in tasks], results)]
         }
 
-    async def _handle_complex_task(self, task: Task, available_agents: Dict[str, BaseAgent]) -> Dict[str, Any]:
+    async def _handle_complex_task(self, task: Task, available_agents: dict[str, BaseAgent]) -> dict[str, Any]:
         """Handle complex tasks that don't fit standard patterns."""
         # Decompose task into subtasks
         subtasks = self._decompose_task(task)
@@ -541,7 +541,7 @@ class Coordinator:
             "results": results
         }
 
-    def _decompose_task(self, task: Task) -> List[Task]:
+    def _decompose_task(self, task: Task) -> list[Task]:
         """Decompose complex task into simpler subtasks."""
         # Simplified task decomposition
         subtasks = []
@@ -576,7 +576,7 @@ class AgentFleet:
     Handles task routing, coordination, and inter-agent communication.
     """
 
-    def __init__(self, config: Dict[str, Any] = None):
+    def __init__(self, config: dict[str, Any] = None):
         """
         Initialize agent fleet.
 
@@ -610,7 +610,7 @@ class AgentFleet:
             "total_execution_time": 0
         }
 
-    async def process_task(self, task: Task) -> Dict[str, Any]:
+    async def process_task(self, task: Task) -> dict[str, Any]:
         """
         Process a task through the agent fleet.
 
@@ -681,7 +681,7 @@ class AgentFleet:
         if agent_name in self.metrics["tasks_by_agent"]:
             self.metrics["tasks_by_agent"][agent_name] += 1
 
-    async def broadcast_message(self, message: Dict[str, Any]) -> List[AgentMessage]:
+    async def broadcast_message(self, message: dict[str, Any]) -> list[AgentMessage]:
         """
         Broadcast message to all agents.
 
@@ -701,14 +701,14 @@ class AgentFleet:
             messages.append(msg)
         return messages
 
-    async def get_agent_statuses(self) -> Dict[str, Dict[str, Any]]:
+    async def get_agent_statuses(self) -> dict[str, dict[str, Any]]:
         """Get status of all agents in the fleet."""
         statuses = {}
         for name, agent in self.agents.items():
             statuses[name] = await agent.get_status()
         return statuses
 
-    def get_metrics(self) -> Dict[str, Any]:
+    def get_metrics(self) -> dict[str, Any]:
         """Return fleet metrics."""
         return {
             **self.metrics,
