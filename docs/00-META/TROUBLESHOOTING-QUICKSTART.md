@@ -1,3 +1,11 @@
+---
+Document ID: TROUBLESHOOTING-QUICKSTART
+Title: "Quick Start Troubleshooting Guide"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Beginner
+---
+
 # Quick Start Troubleshooting Guide
 
 **Common Issues & Solutions for Quick Start**
@@ -483,7 +491,3 @@ After troubleshooting, verify:
 
 **Still having issues?** Join our community or check the [complete setup guide](ENVIRONMENT-SETUP.md).
 
----
-
-**Last Updated:** 2026-02-04
-**Version:** 1.0

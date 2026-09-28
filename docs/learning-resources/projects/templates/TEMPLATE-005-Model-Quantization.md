@@ -1,3 +1,11 @@
+---
+Document ID: TEMPLATE-005-Model-Quantization
+Title: "PROJECT TEMPLATE: Model Quantization"
+Last Updated: 2026-09-28
+Status: Complete
+Difficulty: Beginner
+---
+
 # PROJECT TEMPLATE: Model Quantization
 
 Quantize LLMs for efficient deployment.

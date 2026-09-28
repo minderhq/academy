@@ -1,3 +1,11 @@
+---
+Document ID: 6500-MLOPS-PIPELINES-README
+Title: "6500: MLOps Pipelines for RAG"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Beginner
+---
+
 # 6500: MLOps Pipelines for RAG
 
 ## Module Overview
@@ -257,6 +265,3 @@ Development → Staging → Production
 
 **Questions?** Review the [PREREQUISITES.md](./PREREQUISITES.md) or check Phase 6 documentation.
 
----
-
-**Last Updated:** 2026-02-04

@@ -1,3 +1,11 @@
+---
+Document ID: 4100-LOW-BIT-README
+Title: "4100: Low-Bit Quantization"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Beginner
+---
+
 # 4100: Low-Bit Quantization
 
 ## Module Overview
@@ -176,6 +184,3 @@ This module connects to:
 
 **Questions?** Review the [PREREQUISITES.md](./PREREQUISITES.md) or check Phase 4 documentation.
 
----
-
-**Last Updated:** 2026-02-04

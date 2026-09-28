@@ -1,8 +1,13 @@
+---
+Document ID: DOCUMENT-TEMPLATE
+Title: "PROJECT-OMEGA Document Template Standard"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Beginner
+---
+
 # PROJECT-OMEGA Document Template Standard
 
-**Version:** 1.1
-**Last Updated:** 2026-09-24
-**Status:** Active
 
 ---
 

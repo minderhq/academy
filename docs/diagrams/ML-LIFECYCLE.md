@@ -1,3 +1,11 @@
+---
+Document ID: ML-LIFECYCLE
+Title: "ML Lifecycle: From Development to Production"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Beginner
+---
+
 # ML Lifecycle: From Development to Production
 
 **Complete Machine Learning Model Lifecycle**
@@ -265,7 +273,8 @@ graph TD
     EVALUATE --> DEPLOY[Deploy if Better]
 ```
 
----
 
-**Last Updated:** 2026-02-04
-**Related:** [6501-ML-Lifecycle-Management.md](../phases/phase6-rag/6500-mlops-pipelines/6501-ML-Lifecycle-Management.md)
+
+## Related Documents
+
+- [6501-ML-Lifecycle-Management.md](../phases/phase6-rag/6500-mlops-pipelines/6501-ML-Lifecycle-Management.md)

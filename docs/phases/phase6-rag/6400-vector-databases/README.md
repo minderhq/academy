@@ -1,3 +1,11 @@
+---
+Document ID: 6400-VECTOR-DATABASES-README
+Title: "6400: Vector Databases"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Beginner
+---
+
 # 6400: Vector Databases
 
 ## Module Overview
@@ -244,6 +252,3 @@ Before deploying to production:
 
 **Questions?** Review the [PREREQUISITES.md](./PREREQUISITES.md) or check Phase 6 documentation.
 
----
-
-**Last Updated:** 2026-02-04

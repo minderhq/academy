@@ -1,3 +1,11 @@
+---
+Document ID: 4200-KV-CACHE-README
+Title: "4200: KV Cache Optimization"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Beginner
+---
+
 # 4200: KV Cache Optimization
 
 ## Module Overview
@@ -190,6 +198,3 @@ KV Cache Memory = 2 × layers × hidden × context × bytes_per_param
 
 **Questions?** Review the [PREREQUISITES.md](./PREREQUISITES.md) or check Phase 4 documentation.
 
----
-
-**Last Updated:** 2026-02-04

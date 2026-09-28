@@ -1,3 +1,11 @@
+---
+Document ID: QUICK-START
+Title: "QUICK START GUIDE: Get Started in 30 Minutes"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Beginner
+---
+
 # QUICK START GUIDE: Get Started in 30 Minutes
 
 **Fastest path to running your first local LLM**
@@ -427,6 +435,3 @@ Start Here (You are here)
 
 **Questions?** Check [Troubleshooting](../learning-resources/troubleshooting/TROUBLESHOOTING-Common-Issues.md)
 
----
-
-*Last Updated: 2026-02-04*

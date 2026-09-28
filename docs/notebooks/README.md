@@ -1,3 +1,11 @@
+---
+Document ID: NOTEBOOKS-README
+Title: "PROJECT-OMEGA Notebooks"
+Last Updated: 2026-02-08
+Status: Complete
+Difficulty: Beginner
+---
+
 # PROJECT-OMEGA Notebooks
 
 **Interactive Jupyter notebooks for hands-on learning**
@@ -281,6 +289,5 @@ Found an issue with a notebook? Contributions welcome!
 
 ---
 
-**Last Updated:** 2026-02-08
 **Total Notebooks:** 22
 **Difficulty Levels:** Beginner (5), Intermediate (8), Advanced (9)

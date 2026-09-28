@@ -1,3 +1,11 @@
+---
+Document ID: LEARNING-PATHS-DETAILED
+Title: "Detailed Learning Paths"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Beginner
+---
+
 # Detailed Learning Paths
 
 **Choose your adventure - Multiple paths to AI mastery**
@@ -824,7 +832,3 @@ Each path has a completion certificate:
 
 **Remember:** All paths lead to AI expertise. Choose the one that matches your goals and start today!
 
----
-
-**Last Updated:** 2026-02-04
-**Maintainer:** PROJECT-OMEGA Team

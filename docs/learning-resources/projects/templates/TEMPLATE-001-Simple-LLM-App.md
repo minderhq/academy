@@ -1,3 +1,11 @@
+---
+Document ID: TEMPLATE-001-Simple-LLM-App
+Title: "PROJECT TEMPLATE: Simple LLM App"
+Last Updated: 2026-09-28
+Status: Complete
+Difficulty: Beginner
+---
+
 # PROJECT TEMPLATE: Simple LLM App
 
 A simple template for building applications with LLMs.

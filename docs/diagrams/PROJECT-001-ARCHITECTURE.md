@@ -1,3 +1,11 @@
+---
+Document ID: PROJECT-001-ARCHITECTURE
+Title: "PROJECT-001: Architecture Diagram"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Beginner
+---
+
 # PROJECT-001: Architecture Diagram
 
 **Complete AI Assistant System Architecture**
@@ -95,7 +103,3 @@ graph LR
     end
 ```
 
----
-
-**Last Updated:** 2026-02-04
-**Project:** PROJECT-001

@@ -1,3 +1,11 @@
+---
+Document ID: 7200-TOOLS-README
+Title: "7200: Tool Calling and Function Execution"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Beginner
+---
+
 # 7200: Tool Calling and Function Execution
 
 ## Module Overview
@@ -227,6 +235,3 @@ Continue or Finish
 
 **Questions?** Review the [PREREQUISITES.md](./PREREQUISITES.md) or check Phase 7 documentation.
 
----
-
-**Last Updated:** 2026-02-04

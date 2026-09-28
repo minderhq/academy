@@ -1,3 +1,11 @@
+---
+Document ID: INDUSTRY-README
+Title: "Industry-Specific AI Applications"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Beginner
+---
+
 # Industry-Specific AI Applications
 
 This directory contains detailed guides on how AI technologies are applied in different industries.
@@ -73,5 +81,4 @@ Each industry guide covers:
 
 ---
 
-**Last Updated:** 2026-02-04
 **Total Industries:** 2 documents

@@ -1,3 +1,11 @@
+---
+Document ID: REACT-LOOP
+Title: "ReAct Loop: Agent Reasoning Flow"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Beginner
+---
+
 # ReAct Loop: Agent Reasoning Flow
 
 **How AI Agents Plan, Act, and Observe**
@@ -217,7 +225,8 @@ stateDiagram-v2
     Error --> [*]
 ```
 
----
 
-**Last Updated:** 2026-02-04
-**Related:** [7101-ReAct-Loop-System.md](../phases/phase7-agentic/7100-architecture/7101-ReAct-Loop-System.md)
+
+## Related Documents
+
+- [7101-ReAct-Loop-System.md](../phases/phase7-agentic/7100-architecture/7101-ReAct-Loop-System.md)

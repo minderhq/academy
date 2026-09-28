@@ -1,3 +1,11 @@
+---
+Document ID: GLOSSARY
+Title: "PROJECT-OMEGA Glossary"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Beginner
+---
+
 # PROJECT-OMEGA Glossary
 
 **Official Terminology Reference**
@@ -300,9 +308,6 @@ Found an inconsistency? Suggest changes by:
 
 ---
 
-**Last Updated:** 2026-02-04
-**Version:** 1.0
-**Maintained By:** PROJECT-OMEGA Documentation Team
 
 ---
 

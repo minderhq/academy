@@ -1,3 +1,11 @@
+---
+Document ID: 6300-CONTEXT-README
+Title: "6300: Context Management"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Beginner
+---
+
 # 6300: Context Management
 
 ## Module Overview
@@ -254,6 +262,3 @@ Distribution Strategy:
 
 **Questions?** Review the [PREREQUISITES.md](./PREREQUISITES.md) or check Phase 6 documentation.
 
----
-
-**Last Updated:** 2026-02-04

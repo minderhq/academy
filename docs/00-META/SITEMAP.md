@@ -1,3 +1,11 @@
+---
+Document ID: SITEMAP
+Title: "PROJECT-OMEGA - Complete Sitemap"
+Last Updated: 2026-09-26
+Status: Complete
+Difficulty: Beginner
+---
+
 # PROJECT-OMEGA - Complete Sitemap
 
 Auto-generated index of every document in the curriculum. Counts and links
@@ -701,6 +709,3 @@ Comparisons: 3 | Diagrams: 4 | Enterprise solutions: 3
 Industry applications: 4 | Use cases: 4 | Notebooks: 1
 ```
 
----
-
-**Last Updated:** 2026-09-26 (auto-generated)

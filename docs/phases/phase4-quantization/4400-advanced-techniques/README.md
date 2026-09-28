@@ -1,3 +1,11 @@
+---
+Document ID: 4400-ADVANCED-TECHNIQUES-README
+Title: "4400: Advanced Quantization Techniques"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Beginner
+---
+
 # 4400: Advanced Quantization Techniques
 
 ## Module Overview
@@ -69,5 +77,3 @@ After this module, you will be able to:
 
 **Module Duration:** 10-12 hours
 **Difficulty:** Advanced
-
-**Last Updated:** 2026-02-04

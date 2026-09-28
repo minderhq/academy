@@ -1,3 +1,11 @@
+---
+Document ID: 3300-DECODING-README
+Title: "[3300]: The Decoding Block"
+Last Updated: 2026-02-05
+Status: Complete
+Difficulty: Beginner
+---
+
 # [3300]: The Decoding Block
 
 ## Overview
@@ -297,7 +305,5 @@ class RMSNorm(nn.Module):
 
 ---
 
-**Status:** ✅ Complete
-**Last Updated:** 2026-02-05
 **Module Difficulty:** ⭐⭐ Beginner-Intermediate
 **Estimated Time:** 7 hours total

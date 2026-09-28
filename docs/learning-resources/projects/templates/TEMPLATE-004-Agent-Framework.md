@@ -1,3 +1,11 @@
+---
+Document ID: TEMPLATE-004-Agent-Framework
+Title: "PROJECT TEMPLATE: Agent Framework"
+Last Updated: 2026-09-28
+Status: Complete
+Difficulty: Beginner
+---
+
 # PROJECT TEMPLATE: Agent Framework
 
 Build agentic systems with tools and memory.

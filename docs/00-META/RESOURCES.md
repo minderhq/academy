@@ -1,3 +1,11 @@
+---
+Document ID: RESOURCES
+Title: "PROJECT-OMEGA Resources"
+Last Updated: 2026-02-08
+Status: Complete
+Difficulty: Beginner
+---
+
 # PROJECT-OMEGA Resources
 
 **External resources and references for deeper learning**
@@ -288,7 +296,5 @@ git push origin feature-branch
 
 ---
 
-**Last Updated:** 2026-02-08
-**Version:** 1.0
 
 For PROJECT-OMEGA specific documentation, see the main README and SITEMAP.

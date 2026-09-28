@@ -1,3 +1,11 @@
+---
+Document ID: 6100-VECTOR-README
+Title: "6100: Vector Embeddings"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Beginner
+---
+
 # 6100: Vector Embeddings
 
 ## Module Overview
@@ -205,6 +213,3 @@ This module connects to:
 
 **Questions?** Review the [PREREQUISITES.md](./PREREQUISITES.md) or check Phase 6 documentation.
 
----
-
-**Last Updated:** 2026-02-04

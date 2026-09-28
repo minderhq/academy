@@ -1,3 +1,11 @@
+---
+Document ID: ENVIRONMENT-SETUP
+Title: "Environment Setup Guide"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Beginner
+---
+
 # Environment Setup Guide
 
 **Last Updated:** 2026-09-27
@@ -454,7 +462,3 @@ Once your environment is set up:
 
 **Still having issues?** Check [TROUBLESHOOTING-QUICKSTART.md](TROUBLESHOOTING-QUICKSTART.md) for common Quick Start problems.
 
----
-
-**Last Updated:** 2026-02-04
-**Contributors:** PROJECT-OMEGA Team

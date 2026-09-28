@@ -1,3 +1,11 @@
+---
+Document ID: STYLE-GUIDE
+Title: "PROJECT-OMEGA Style Guide"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Beginner
+---
+
 # PROJECT-OMEGA Style Guide
 
 **Official Documentation Standards**
@@ -558,8 +566,3 @@ Improvements welcome! Submit PR with:
 - Reasoning for improvement
 - Examples of before/after
 
----
-
-**Last Updated:** 2026-02-04
-**Version:** 1.0
-**Maintained By:** PROJECT-OMEGA Documentation Team

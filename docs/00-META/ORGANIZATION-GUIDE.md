@@ -1,3 +1,11 @@
+---
+Document ID: ORGANIZATION-GUIDE
+Title: "PROJECT-OMEGA Organization Guide"
+Last Updated: 2026-02-05
+Status: Complete
+Difficulty: Beginner
+---
+
 # PROJECT-OMEGA Organization Guide
 ## Documentation Structure & Maintenance
 
@@ -624,10 +632,4 @@ See [STYLE-GUIDE.md](STYLE-GUIDE.md) for contribution guidelines.
 
 ---
 
-**Organization Guide Version:** 4.1
-**Last Updated:** 2026-02-05
-**Maintained by:** PROJECT-OMEGA Team
 
----
-
-© 2026 PROJECT-OMEGA. All rights reserved.

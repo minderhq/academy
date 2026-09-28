@@ -1,3 +1,11 @@
+---
+Document ID: NAVIGATION-TEMPLATE
+Title: "Navigation Template"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Beginner
+---
+
 # Navigation Template
 
 **Standard Navigation Structure for All Documents**
@@ -297,7 +305,3 @@ Use this checklist for every document:
 - [ ] No broken links
 - [ ] Consistent formatting
 
----
-
-**Last Updated:** 2026-02-04
-**Version:** 1.0

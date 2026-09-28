@@ -1,3 +1,11 @@
+---
+Document ID: 7500-SECURITY-README
+Title: "7500: AI Agent Security"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Beginner
+---
+
 # 7500: AI Agent Security
 
 ## Module Overview
@@ -245,6 +253,3 @@ Output Text
 
 **Questions?** Review the [PREREQUISITES.md](./PREREQUISITES.md) or check Phase 7 documentation.
 
----
-
-**Last Updated:** 2026-02-04

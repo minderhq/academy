@@ -1,3 +1,11 @@
+---
+Document ID: 3100-ATTENTION-README
+Title: "[3100]: Attention Architectures"
+Last Updated: 2026-02-05
+Status: Complete
+Difficulty: Beginner
+---
+
 # [3100]: Attention Architectures
 
 ## Overview
@@ -159,7 +167,5 @@ def scaled_dot_product_attention(Q, K, V, mask=None):
 
 ---
 
-**Status:** ✅ Complete
-**Last Updated:** 2026-02-05
 **Module Difficulty:** ⭐⭐⭐ Intermediate
 **Estimated Time:** 7 hours total

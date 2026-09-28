@@ -1,3 +1,11 @@
+---
+Document ID: PHASE5-FINETUNING-README
+Title: "Phase 5: Fine-Tuning & Alignment [5000]"
+Last Updated: 2026-09-27
+Status: Complete
+Difficulty: Beginner
+---
+
 # Phase 5: Fine-Tuning & Alignment [5000]
 
 ## Table of Contents
@@ -649,9 +657,7 @@ After completing this phase:
 
 ---
 
-**Status:** Complete
 **Module Duration:** 96 hours (56 reading + 40 practice)
 **Difficulty:** Advanced
-**Last Updated:** 2026-09-27
 
 **Ready to fine-tune LLMs?** Start with [5101: LoRA Logic](./5100-peft/5101-LoRA-Logic.md) or [5102: QLoRA Pipelines](./5100-peft/5102-QLoRA-Pipelines.md)

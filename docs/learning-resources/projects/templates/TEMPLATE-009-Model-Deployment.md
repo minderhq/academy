@@ -1,3 +1,11 @@
+---
+Document ID: TEMPLATE-009-Model-Deployment
+Title: "PROJECT TEMPLATE: Model Deployment"
+Last Updated: 2026-09-28
+Status: Complete
+Difficulty: Beginner
+---
+
 # PROJECT TEMPLATE: Model Deployment
 
 Deploy LLMs to production with various serving options.

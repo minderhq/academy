@@ -1,3 +1,11 @@
+---
+Document ID: 1400-LLMOPS-README
+Title: "1400: LLMOps and Model Serving"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Beginner
+---
+
 # 1400: LLMOps and Model Serving
 
 ## Module Overview
@@ -910,6 +918,5 @@ Production Ready:
 
 **Module Duration:** 12-15 hours
 **Difficulty:** Advanced
-**Last Updated:** 2026-02-04
 
 **Ready to proceed?** Continue to [1401: Ollama Enterprise](./1401-Ollama-Enterprise.md)

@@ -1,3 +1,11 @@
+---
+Document ID: CROSS-REFERENCE-GUIDELINES
+Title: "PROJECT-OMEGA Cross-Reference Guidelines"
+Last Updated: 2026-02-05
+Status: Complete
+Difficulty: Beginner
+---
+
 # PROJECT-OMEGA Cross-Reference Guidelines
 
 **Version:** 1.0
@@ -351,8 +359,9 @@ jobs:
 | External | `[Text](https://url)` | `[PyTorch](https://pytorch.org)` |
 | Anchor | `[Text](#section)` | `[Top](#overview)` |
 
----
 
-**Status:** ✅ Complete
-**Last Updated:** 2026-02-05
-**Related:** [DOCUMENT-TEMPLATE.md](DOCUMENT-TEMPLATE.md), [SITEMAP.md](SITEMAP.md)
+
+## Related Documents
+
+- [DOCUMENT-TEMPLATE.md](DOCUMENT-TEMPLATE.md)
+- [SITEMAP.md](SITEMAP.md)

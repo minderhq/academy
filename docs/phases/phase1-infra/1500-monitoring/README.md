@@ -1,3 +1,11 @@
+---
+Document ID: 1500-MONITORING-README
+Title: "1500: Monitoring and Observability for LLM Systems"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Beginner
+---
+
 # 1500: Monitoring and Observability for LLM Systems
 
 ## Module Overview
@@ -974,6 +982,5 @@ Production Ready:
 
 **Module Duration:** 8-10 hours
 **Difficulty:** Intermediate-Advanced
-**Last Updated:** 2026-02-04
 
 **Ready to proceed?** Continue to [1501: Monitoring and Observability](./1501-Monitoring-and-Observability.md)

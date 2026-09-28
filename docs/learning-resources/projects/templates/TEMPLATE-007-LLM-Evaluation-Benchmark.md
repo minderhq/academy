@@ -1,3 +1,11 @@
+---
+Document ID: TEMPLATE-007-LLM-Evaluation-Benchmark
+Title: "PROJECT TEMPLATE: LLM Evaluation Benchmark"
+Last Updated: 2026-09-28
+Status: Complete
+Difficulty: Beginner
+---
+
 # PROJECT TEMPLATE: LLM Evaluation Benchmark
 
 Comprehensive evaluation framework for LLMs.

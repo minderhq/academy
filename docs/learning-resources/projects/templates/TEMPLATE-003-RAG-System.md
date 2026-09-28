@@ -1,3 +1,11 @@
+---
+Document ID: TEMPLATE-003-RAG-System
+Title: "PROJECT TEMPLATE: RAG System"
+Last Updated: 2026-09-28
+Status: Complete
+Difficulty: Beginner
+---
+
 # PROJECT TEMPLATE: RAG System
 
 Build a Retrieval-Augmented Generation system from scratch.

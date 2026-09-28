@@ -1,3 +1,11 @@
+---
+Document ID: 6200-RETRIEVAL-README
+Title: "6200: Retrieval Strategies"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Beginner
+---
+
 # 6200: Retrieval Strategies
 
 ## Module Overview
@@ -226,6 +234,3 @@ Query
 
 **Questions?** Review the [PREREQUISITES.md](./PREREQUISITES.md) or check Phase 6 documentation.
 
----
-
-**Last Updated:** 2026-02-04

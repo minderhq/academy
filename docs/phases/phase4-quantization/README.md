@@ -1,3 +1,11 @@
+---
+Document ID: PHASE4-QUANTIZATION-README
+Title: "Phase 4: Quantization & Compression [4000]"
+Last Updated: 2026-09-27
+Status: Complete
+Difficulty: Beginner
+---
+
 # Phase 4: Quantization & Compression [4000]
 
 ## Table of Contents
@@ -497,9 +505,7 @@ After completing this phase:
 
 ---
 
-**Status:** Complete
 **Module Duration:** 73 hours (43 reading + 30 practice)
 **Difficulty:** Advanced
-**Last Updated:** 2026-09-27
 
 **Ready to maximize your VRAM?** Start with [4101: GGUF Physics](./4100-low-bit/4101-GGUF-Physics.md) or [4102: EXL2 and AWQ](./4100-low-bit/4102-EXL2-and-AWQ.md)

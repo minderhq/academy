@@ -1,3 +1,11 @@
+---
+Document ID: TEMPLATE-002-Fine-Tuning-Pipeline
+Title: "PROJECT TEMPLATE: Fine-tuning Pipeline"
+Last Updated: 2026-09-28
+Status: Complete
+Difficulty: Beginner
+---
+
 # PROJECT TEMPLATE: Fine-tuning Pipeline
 
 A complete template for fine-tuning LLMs with custom data.

@@ -1,3 +1,11 @@
+---
+Document ID: 1200-VIRTUALIZATION-README
+Title: "1200: Virtualization and GPU Passthrough"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Beginner
+---
+
 # 1200: Virtualization and GPU Passthrough
 
 ## Module Overview
@@ -1172,6 +1180,5 @@ Production Ready:
 
 **Module Duration:** 10-12 hours
 **Difficulty:** Intermediate
-**Last Updated:** 2026-02-04
 
 **Ready to proceed?** Continue to [1201: Proxmox Hypervisor SOP](./1201-Proxmox-Hypervisor-SOP.md)

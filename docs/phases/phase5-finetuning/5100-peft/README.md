@@ -1,3 +1,11 @@
+---
+Document ID: 5100-PEFT-README
+Title: "5100: Parameter-Efficient Fine-Tuning (PEFT)"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Beginner
+---
+
 # 5100: Parameter-Efficient Fine-Tuning (PEFT)
 
 ## Module Overview
@@ -183,6 +191,3 @@ This module connects to:
 
 **Questions?** Review the [PREREQUISITES.md](./PREREQUISITES.md) or check Phase 5 documentation.
 
----
-
-**Last Updated:** 2026-02-04

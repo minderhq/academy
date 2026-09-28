@@ -1,3 +1,11 @@
+---
+Document ID: 3400-ARCHITECTURES-README
+Title: "[3400]: Model Architectures"
+Last Updated: 2026-02-05
+Status: Complete
+Difficulty: Beginner
+---
+
 # [3400]: Model Architectures
 
 ## Overview
@@ -348,7 +356,5 @@ class EncoderDecoderBlock(nn.Module):
 
 ---
 
-**Status:** ✅ Complete
-**Last Updated:** 2026-02-05
 **Module Difficulty:** ⭐⭐⭐ Intermediate
 **Estimated Time:** 11 hours total

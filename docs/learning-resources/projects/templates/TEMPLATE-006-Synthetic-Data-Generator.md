@@ -1,3 +1,11 @@
+---
+Document ID: TEMPLATE-006-Synthetic-Data-Generator
+Title: "PROJECT TEMPLATE: Synthetic Data Generator"
+Last Updated: 2026-09-28
+Status: Complete
+Difficulty: Beginner
+---
+
 # PROJECT TEMPLATE: Synthetic Data Generator
 
 Generate training data with LLMs.

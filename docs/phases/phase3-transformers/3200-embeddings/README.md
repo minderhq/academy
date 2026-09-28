@@ -1,3 +1,11 @@
+---
+Document ID: 3200-EMBEDDINGS-README
+Title: "[3200]: Embedding Latent Spaces"
+Last Updated: 2026-02-05
+Status: Complete
+Difficulty: Beginner
+---
+
 # [3200]: Embedding Latent Spaces
 
 ## Overview
@@ -258,7 +266,5 @@ class RotaryPositionalEmbedding(nn.Module):
 
 ---
 
-**Status:** ✅ Complete
-**Last Updated:** 2026-02-05
 **Module Difficulty:** ⭐⭐⭐ Intermediate
 **Estimated Time:** 7 hours total

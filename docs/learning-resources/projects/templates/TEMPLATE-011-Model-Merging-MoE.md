@@ -1,3 +1,11 @@
+---
+Document ID: TEMPLATE-011-Model-Merging-MoE
+Title: "PROJECT TEMPLATE: Model Merging & MoE"
+Last Updated: 2026-09-28
+Status: Complete
+Difficulty: Beginner
+---
+
 # PROJECT TEMPLATE: Model Merging & MoE
 
 Merge and combine LLMs for better performance.

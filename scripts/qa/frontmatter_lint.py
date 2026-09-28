@@ -5,7 +5,7 @@ Scans docs/**/*.md and enforces the corpus frontmatter standard that every
 curriculum document with a frontmatter block already follows (330/330 files
 at introduction time):
 
-  FM-01  lesson-class files must carry a frontmatter block
+  FM-01  every markdown file under docs/ must carry a frontmatter block
   FM-02  frontmatter must close and parse as a YAML mapping
   FM-03  required keys: Document ID, Title, Last Updated, Status, Difficulty
   FM-04  Status is the enum {Complete}
@@ -66,8 +66,7 @@ class Linter:
         lesson = "/phases/" in rel and LESSON_FILE.match(base)
 
         if not text.startswith("---\n"):
-            if lesson:
-                self.report(rel, "FM-01", "lesson file has no frontmatter")
+            self.report(rel, "FM-01", "markdown file has no frontmatter")
             return
         end = text.find("\n---", 3)
         if end < 0:

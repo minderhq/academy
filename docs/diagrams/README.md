@@ -1,3 +1,11 @@
+---
+Document ID: DIAGRAMS-README
+Title: "PROJECT-OMEGA Architecture Diagrams"
+Last Updated: 2026-02-05
+Status: Complete
+Difficulty: Beginner
+---
+
 # PROJECT-OMEGA Architecture Diagrams
 
 **Visual documentation for key AI/ML concepts and system architectures**
@@ -190,5 +198,4 @@ To add new diagrams:
 
 ---
 
-**Last Updated:** 2026-02-05
 **Total Diagrams:** 3 files, 20+ individual diagrams

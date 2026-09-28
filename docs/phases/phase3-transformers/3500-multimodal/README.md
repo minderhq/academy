@@ -1,3 +1,11 @@
+---
+Document ID: 3500-MULTIMODAL-README
+Title: "[3500]: Multimodal Models"
+Last Updated: 2026-02-05
+Status: Complete
+Difficulty: Beginner
+---
+
 # [3500]: Multimodal Models
 
 ## Overview
@@ -389,7 +397,5 @@ def multimodal_rag_query(query: str, vector_store, vision_llm):
 
 ---
 
-**Status:** Complete
-**Last Updated:** 2026-02-05
 **Module Difficulty:** Advanced
 **Estimated Time:** 10 hours total

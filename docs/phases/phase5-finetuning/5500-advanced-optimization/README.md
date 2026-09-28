@@ -1,3 +1,11 @@
+---
+Document ID: 5500-ADVANCED-OPTIMIZATION-README
+Title: "5500: Advanced Optimization"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Beginner
+---
+
 # 5500: Advanced Optimization
 
 ## Module Overview
@@ -40,5 +48,3 @@ After this module, you will be able to:
 
 **Module Duration:** 4-6 hours
 **Difficulty:** Intermediate-Advanced
-
-**Last Updated:** 2026-02-04

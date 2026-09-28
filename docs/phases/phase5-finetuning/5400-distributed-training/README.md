@@ -1,3 +1,11 @@
+---
+Document ID: 5400-DISTRIBUTED-TRAINING-README
+Title: "5400: Distributed Training"
+Last Updated: 2026-02-04
+Status: Complete
+Difficulty: Beginner
+---
+
 # 5400: Distributed Training
 
 ## Module Overview
@@ -42,5 +50,3 @@ After this module, you will be able to:
 
 **Module Duration:** 6-8 hours
 **Difficulty:** Advanced
-
-**Last Updated:** 2026-02-04

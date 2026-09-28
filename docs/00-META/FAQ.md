@@ -1,3 +1,11 @@
+---
+Document ID: FAQ
+Title: "PROJECT-OMEGA FAQ"
+Last Updated: 2026-09-24
+Status: Complete
+Difficulty: Beginner
+---
+
 # PROJECT-OMEGA FAQ
 
 **Frequently Asked Questions about the PROJECT-OMEGA Learning Path**
@@ -510,9 +518,6 @@ PROJECT-OMEGA is an open educational resource. Join the community to:
 
 ---
 
-**Last Updated:** 2026-09-24
-**Version:** 1.0
-**Maintainer:** PROJECT-OMEGA Team
 
 ---
 

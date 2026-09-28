@@ -1,3 +1,11 @@
+---
+Document ID: TEMPLATE-008-Multi-Modal-Application
+Title: "PROJECT TEMPLATE: Multi-Modal Application"
+Last Updated: 2026-09-28
+Status: Complete
+Difficulty: Beginner
+---
+
 # PROJECT TEMPLATE: Multi-Modal Application
 
 Build applications with vision + language models.
