@@ -27,6 +27,8 @@ those are honest-label findings, not NC-01. Report-only: exit 0 always.
     python scripts/qa/fence_namecheck.py --root .
     python scripts/qa/fence_namecheck.py --root . --names   # triage:
         aggregate NC-01 uses by name (epic scoping; skips per-line output)
+    python scripts/qa/fence_namecheck.py --root . --names --name model
+        drill down: per-file distribution of one name's unbound uses
 """
 from __future__ import annotations
 
@@ -141,7 +143,12 @@ def main() -> int:
     parser.add_argument("--names", action="store_true",
                         help="triage: aggregate NC-01 uses by name instead of "
                              "printing per-line findings")
+    parser.add_argument("--name", metavar="NAME",
+                        help="drill-down for --names: per-file distribution "
+                             "of one name's unbound uses")
     args = parser.parse_args()
+    if args.name:
+        args.names = True  # drill-down implies triage mode
     docs = args.root / "docs"
     findings: list[str] = []
     records: list[tuple[str, str]] = []
@@ -152,11 +159,18 @@ def main() -> int:
         except (UnicodeDecodeError, OSError, SyntaxError, ValueError):
             continue
     if args.names:
-        counts = Counter(name for name, _ in records)
-        print(f"fence_namecheck triage: {sum(counts.values())} NC-01 uses of "
-              f"{len(counts)} distinct unbound names (top 60)")
-        for name, n in counts.most_common(60):
-            print(f"  {n:4d}  {name}")
+        if args.name:
+            files = Counter(rel for name, rel in records if name == args.name)
+            print(f"fence_namecheck drill: {sum(files.values())} unbound uses of "
+                  f"'{args.name}' in {len(files)} files")
+            for rel, n in files.most_common(40):
+                print(f"  {n:4d}  {rel}")
+        else:
+            counts = Counter(name for name, _ in records)
+            print(f"fence_namecheck triage: {sum(counts.values())} NC-01 uses of "
+                  f"{len(counts)} distinct unbound names (top 60)")
+            for name, n in counts.most_common(60):
+                print(f"  {n:4d}  {name}")
     for f in ([] if args.names else findings):
         print(f.encode("ascii", "backslashreplace").decode("ascii"))
     n_files = len({f.split(":", 1)[0] for f in findings})
