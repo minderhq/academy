@@ -417,12 +417,12 @@ async def query_rag(query: Query):
     query_vector = embedder.encode(query.question).tolist()
 
     # Search Qdrant
-    search_result = qdrant.search(
+    search_result = qdrant.query_points(
         collection_name=COLLECTION_NAME,
-        query_vector=query_vector,
+        query=query_vector,
         limit=query.top_k,
         query_filter=None  # Add metadata filter if needed
-    )
+    ).points
 
     if not search_result:
         raise HTTPException(status_code=404, detail="No relevant documents found")
@@ -481,11 +481,11 @@ async def vector_search(query: Query):
 
     query_vector = embedder.encode(query.question).tolist()
 
-    search_result = qdrant.search(
+    search_result = qdrant.query_points(
         collection_name=COLLECTION_NAME,
-        query_vector=query_vector,
+        query=query_vector,
         limit=query.top_k
-    )
+    ).points
 
     return {
         "results": [
@@ -923,11 +923,11 @@ async def query_rag_with_reranking(query: Query):
     query_vector = embedder.encode(query.question).tolist()
 
     # Search Qdrant (get more results for reranking)
-    search_result = qdrant.search(
+    search_result = qdrant.query_points(
         collection_name=COLLECTION_NAME,
-        query_vector=query_vector,
+        query=query_vector,
         limit=query.top_k * 2  # Get more for reranking
-    )
+    ).points
 
     if not search_result:
         raise HTTPException(status_code=404, detail="No relevant documents found")

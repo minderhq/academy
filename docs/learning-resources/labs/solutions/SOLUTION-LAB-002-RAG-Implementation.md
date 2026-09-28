@@ -1,7 +1,7 @@
 ---
 Document ID: SOLUTION-LAB-002
 Title: "SOLUTION-LAB-002: RAG Implementation"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -90,11 +90,11 @@ class VectorStore:
 
     def search(self, query_embedding: np.ndarray, top_k: int = 5):
         """Search for similar documents."""
-        results = self.client.search(
+        results = self.client.query_points(
             collection_name=self.collection_name,
-            query_vector=query_embedding.tolist(),
+            query=query_embedding.tolist(),
             limit=top_k
-        )
+        ).points
         return results
 ```
 
