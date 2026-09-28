@@ -45,8 +45,12 @@ def esc(text: str) -> str:
 
 
 def lesson_stats(lines):
-    """Prose words (outside fences) + fence counts, structure_lint model."""
+    """Prose words (outside fences) + in-fence code words + fence counts,
+    structure_lint's CommonMark length-aware model. Code-heavy lessons
+    (a full implementation in one fence) are dense, not thin - so the
+    thin-review queue weighs prose + code together, not prose alone."""
     words = 0
+    code_words = 0
     py = bash = 0
     h2s = 0
     links = 0
@@ -65,12 +69,14 @@ def lesson_stats(lines):
                     bash += 1
             continue
         if state:
+            code_words += len(ln.split())
             continue
         words += len(ln.split())
         if H2.match(ln):
             h2s += 1
         links += len(REL_LINK.findall(ln))
-    return {"words": words, "py": py, "bash": bash, "h2": h2s, "links": links}
+    return {"words": words, "code_words": code_words, "py": py, "bash": bash,
+            "h2": h2s, "links": links}
 
 
 def main() -> int:
@@ -107,17 +113,28 @@ def main() -> int:
                 lessons.append(st)
 
     words = sorted(s["words"] for s in lessons)
-    thin = sorted((s for s in lessons if s["words"] < 300),
-                  key=lambda s: s["words"])
+    content = sorted(s["words"] + s["code_words"] for s in lessons)
+    # A thin lesson is thin on CONTENT (prose + code), not prose alone:
+    # code-heavy lessons put a full implementation in one fence and are
+    # dense. Prose-only flagging was a false positive class (caught live
+    # on 7102/7103, two ~300-prose-word lessons with 400+ lines of code).
+    thin = sorted((s for s in lessons if s["words"] + s["code_words"] < 800),
+                  key=lambda s: s["words"] + s["code_words"])
     qmod = [m for m in modules if m["questions"]]
     print("PROJECT-OMEGA curriculum metrics")
     print("=" * 72)
     print("corpus: %d lessons, %d modules, %d phases"
           % (len(lessons), len(modules),
              len({m["dir"].split("/")[2] for m in modules})))
-    print("lesson prose words: total %d, median %d, mean %d, min %d, max %d"
-          % (sum(words), statistics.median(words),
-             round(statistics.mean(words)), min(words), max(words)))
+    print("lesson content words (prose + code): total %d, median %d, "
+          "mean %d, min %d, max %d"
+          % (sum(content), statistics.median(content),
+             round(statistics.mean(content)), min(content), max(content)))
+    print("prose share: total %d prose / %d code words "
+          "(%.0f%% prose)"
+          % (sum(words), sum(s["code_words"] for s in lessons),
+             100 * sum(words)
+             / max(1, sum(words) + sum(s["code_words"] for s in lessons))))
     print("code density: %d python + %d bash fences across %d lessons "
           "(%.1f fences/lesson)"
           % (sum(s["py"] for s in lessons), sum(s["bash"] for s in lessons),
@@ -132,12 +149,15 @@ def main() -> int:
           % (len(qmod), len(modules), sum(m["questions"] for m in modules),
              sum(m["questions"] for m in modules) / len(modules)))
     print()
-    print("thinnest lessons (<300 prose words; index/README-style files are "
-          "naturally thin - a review queue, not a failure):")
+    print("thinnest lessons (<800 content words incl. code; index/README-"
+          "style files are naturally thin - a review queue, not a failure):")
     for s in thin[:10]:
-        print("  %4d words  %s" % (s["words"], esc(s["path"])))
+        print("  %4d content words  %s"
+              % (s["words"] + s["code_words"], esc(s["path"])))
     if len(thin) > 10:
         print("  ... and %d more" % (len(thin) - 10))
+    if not thin:
+        print("  none - every lesson clears the 800-word content floor")
     sparse = sorted((m for m in modules if m["lessons"] < 3),
                     key=lambda m: m["lessons"])
     print("modules with <3 lessons: %s"

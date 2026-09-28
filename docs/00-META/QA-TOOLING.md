@@ -111,10 +111,12 @@ python scripts/qa/curriculum_metrics.py
 ```
 
 Answers "how good is the teaching material?" with numbers: lesson
-prose-word distribution, python/bash fence density, H2/link structure,
-and quiz coverage per module (33/33, 660 questions). Report only - the
-thinnest-lessons list is a content-pass review queue, not a failure
-(same stance as fm_staleness). Models borrowed for parity: the corpus
+content-word distribution (prose + code - code-heavy lessons that put
+a full implementation in one fence are dense, not thin), python/bash
+fence density, H2/link structure, and quiz coverage per module
+(33/33, 660 questions). Report only - the thinnest-lessons list is a
+content-pass review queue, not a failure (same stance as
+fm_staleness). Models borrowed for parity: the corpus
 classification from quality_report, the fence model from
 structure_lint, quiz counts from quiz_export.
 
