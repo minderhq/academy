@@ -457,6 +457,7 @@ rag_chain = RetrievalQA.from_chain_type(
 **Dynamic retrieval:** Agent decides what to search for
 
 ```python
+from langchain_core.tools import Tool
 # Agent with RAG tools
 tools = [
     Tool(name="search_docs", func=rag_search),
@@ -491,6 +492,7 @@ code_agent = Agent(model="code-llama-7b")
 **Maximum capability:**
 
 ```python
+from langchain_core.tools import Tool
 # Fine-tuned model
 model = load_finetuned_model("domain-specific-7b")
 
@@ -589,6 +591,7 @@ trainer.train()
 ### Agents Quick Start
 
 ```python
+from langchain_core.tools import Tool
 # 1. Define tools
 tools = [Tool(name="tool", func=your_func, description="...")]
 

@@ -759,6 +759,7 @@ class HybridRAG:
 ### GraphRAG (Knowledge Graph + RAG)
 
 ```python
+from qdrant_client import QdrantClient
 class GraphRAG:
     """
     Combine knowledge graph relationships with vector search

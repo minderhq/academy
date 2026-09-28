@@ -455,6 +455,7 @@ Medical coders spend hours translating clinical notes into billing codes (ICD-10
 **Solution: Fine-Tuned LLM + Agent**
 
 ```python
+from langchain_core.tools import Tool
 class MedicalCodingAgent:
     """
     Autonomous agent for medical coding

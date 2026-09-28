@@ -660,6 +660,7 @@ def build_feature(feature_description):
 
 **Sandboxed Execution:**
 ```python
+from langchain_core.tools import Tool
 import subprocess
 import tempfile
 
@@ -713,6 +714,7 @@ class PythonTool(Tool):
 
 **Memory System:**
 ```python
+from qdrant_client import QdrantClient
 from datetime import datetime
 class AgentMemory:
     def __init__(self):
@@ -1285,6 +1287,7 @@ def collect_gpu_metrics():
 
 **Tip:** Clear tool descriptions prevent confusion
 ```python
+from langchain_core.tools import Tool
 # Wrong: Vague descriptions
 tools = [
     Tool(name="search", description="Search the web"),

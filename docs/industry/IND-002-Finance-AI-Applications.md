@@ -1188,6 +1188,7 @@ def hybrid_financial_search(query: str):
 
 **Tip:** Optimize for sub-millisecond response
 ```python
+from qdrant_client import QdrantClient
 import time
 class RealTimeFraudDetector:
     """Sub-100ms fraud detection for high-volume transactions"""
