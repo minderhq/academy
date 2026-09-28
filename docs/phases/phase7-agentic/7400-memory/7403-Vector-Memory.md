@@ -1,7 +1,7 @@
 ---
 Document ID: 7403
 Title: "7403: Vector Memory and Embedding-Based Storage"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Advanced
 ---
@@ -115,12 +115,13 @@ RECALL_TEMPLATE = """Relevant memories about this user/project:
 {memories}
 Use them if relevant; ignore if not."""
 
-def recall(store, embed, query: str, k=5, token_budget=400,
-           filters=None):
-    hits = store.search(
-        vector=embed(query),
+def recall(embed, query: str, k=5, token_budget=400,
+           types=None, entities=None):
+    hits = search(                      # Qdrant layer defined in section 5
+        vec=embed(query),
         k=k,
-        query_filter=filters,           # e.g. {"type": ["semantic", "procedural"]}
+        types=types,                    # e.g. ["semantic", "procedural"]
+        entities=entities,
     )
     lines, used = [], 0
     for h in hits:                       # budgeted: newest-first, stop at cap

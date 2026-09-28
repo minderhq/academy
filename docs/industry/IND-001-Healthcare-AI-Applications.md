@@ -187,32 +187,32 @@ class ClinicalDecisionSupport:
         query = self._build_query(patient_case)
 
         # Search medical literature
-        literature = self.literature_db.search(
+        literature = self.literature_db.query_points(
             collection_name="medical_literature",
-            query_vector=self.embedder.encode(query),
+            query=self.embedder.encode(query),
             limit=5,
             score_threshold=0.75
-        )
+        ).points
 
         # Search clinical guidelines
-        guidelines = self.guidelines_db.search(
+        guidelines = self.guidelines_db.query_points(
             collection_name="clinical_guidelines",
-            query_vector=self.embedder.encode(query),
+            query=self.embedder.encode(query),
             limit=3,
             score_threshold=0.80
-        )
+        ).points
 
         # Find similar cases
-        similar_cases = self.cases_db.search(
+        similar_cases = self.cases_db.query_points(
             collection_name="patient_cases",
-            query_vector=self.embedder.encode(query),
+            query=self.embedder.encode(query),
             limit=10,
-            filter={
+            query_filter={
                 "must": [
                     {"key": "outcomes", "match": {"value": "successful"}}
                 ]
             }
-        )
+        ).points
 
         # Generate summary with citations
         summary = self._generate_summary(
@@ -404,13 +404,13 @@ class MedicalLiteratureSearch:
             query_filter = {"must": conditions}
 
         # Search
-        results = self.client.search(
+        results = self.client.query_points(
             collection_name="medical_literature",
-            query_vector=query_embedding.tolist(),
+            query=query_embedding.tolist(),
             query_filter=query_filter,
             limit=20,
             score_threshold=0.70
-        )
+        ).points
 
         return [
             {
@@ -1067,15 +1067,16 @@ def comprehensive_patient_analysis(patient_data):
     ])
 
     # Search similar cases
-    similar_cases = medical_db.search(
-        query_vector=combined_vector,
+    similar_cases = medical_db.query_points(
+        collection_name="patient_cases",
+        query=combined_vector,
         limit=10,
-        filters={
+        query_filter={
             "must": [
                 {"key": "outcomes", "match": {"value": "successful"}}
             ]
         }
-    )
+    ).points
 
     return similar_cases
 ```

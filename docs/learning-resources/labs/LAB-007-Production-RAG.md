@@ -358,14 +358,13 @@ class HybridSearch:
                 filter_conditions = Filter(must=conditions)
 
         # Vector search
-        search_results = self.client.search(
+        search_results = self.client.query_points(
             collection_name=self.collection_name,
-            query_vector=query_embedding.tolist(),
+            query=query_embedding.tolist(),
             query_filter=filter_conditions,
             limit=top_k * 2,  # Get more for re-ranking
-            with_payload=True,
-            with_score=True,
-        )
+            with_payload=True,  # scores always returned on each point
+        ).points
 
         # Convert to list of dicts
         results = []

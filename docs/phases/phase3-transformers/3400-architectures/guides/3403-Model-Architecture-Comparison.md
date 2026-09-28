@@ -1,7 +1,7 @@
 ---
 Document ID: 3403
 Title: "3403: Model Architecture Comparison Guide"
-Last Updated: 2026-09-27
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Advanced
 ---
@@ -221,7 +221,9 @@ generator = AutoModelForCausalLM.from_pretrained("mistralai/Mistral-7B-Instruct-
 query_embedding = embedder(**tokenizer(query, return_tensors="pt"))
 
 # 2. Retrieve from vector DB
-results = qdrant.search(query_vector=query_embedding, limit=5)
+results = qdrant.query_points(
+    collection_name="documents", query=query_embedding, limit=5
+).points
 
 # 3. Generate with decoder-only
 context = "\n".join([r.payload["text"] for r in results])

@@ -1,7 +1,7 @@
 ---
 Document ID: CP-002
 Title: "CP-002: Vector Database Comparison Guide"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -94,11 +94,11 @@ client.upsert(
 )
 
 # Search
-results = client.search(
+results = client.query_points(
     collection_name="demo",
-    query_vector=[0.1, 0.2, ...],
+    query=[0.1, 0.2, ...],
     limit=5
-)
+).points
 ```
 
 #### Resource Requirements

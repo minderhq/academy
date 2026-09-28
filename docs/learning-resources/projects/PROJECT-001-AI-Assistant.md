@@ -507,11 +507,11 @@ async def query_rag(query: Query):
 
     # 1. Vector Search
     query_vector = embedder.encode(query.question).tolist()
-    vector_results = qdrant.search(
+    vector_results = qdrant.query_points(
         collection_name="knowledge_base",
-        query_vector=query_vector,
+        query=query_vector,
         limit=query.top_k * 2  # Get more for reranking
-    )
+    ).points
 
     # 2. Re-rank
     rerank_input = [(query.question, hit.payload['text']) for hit in vector_results]

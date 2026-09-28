@@ -3,7 +3,7 @@ Document ID: 6402
 Title: Vector Database Comparison
 Phase: 6
 Module: 6400
-Last Updated: 2026-09-24
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -144,16 +144,16 @@ client.upsert(
 )
 
 # Search with filter
-results = client.search(
+results = client.query_points(
     collection_name="documents",
-    query_vector=[0.1] * 384,
+    query=[0.1] * 384,
     limit=5,
     query_filter={
         "must": [
             {"key": "category", "match": {"value": "tech"}}
         ]
     }
-)
+).points
 ```
 
 ---

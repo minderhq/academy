@@ -1,7 +1,7 @@
 ---
 Document ID: USE-CASES-README
 Title: "Use Cases - Real-World AI Applications"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Beginner
 ---
@@ -170,11 +170,11 @@ for doc in documents:
 # Search similar products
 query = "wireless headphones with noise cancellation"
 query_vector = encoder.encode(query)
-results = client.search(
+results = client.query_points(
     collection_name="products",
-    query_vector=query_vector,
+    query=query_vector,
     limit=5
-)
+).points
 ```
 
 ---

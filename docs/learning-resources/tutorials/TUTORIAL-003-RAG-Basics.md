@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-003
 Title: "Tutorial 003: RAG Basics - Give Your LLM Knowledge"
-Last Updated: 2026-09-27
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -203,11 +203,11 @@ class VectorStore:
         query_embedding = self.model.encode(query).tolist()
 
         # Search
-        results = self.client.search(
+        results = self.client.query_points(
             collection_name=self.collection_name,
-            query_vector=query_embedding,
+            query=query_embedding,
             limit=limit
-        )
+        ).points
 
         return results
 
@@ -581,11 +581,11 @@ class SimpleRAG:
     def query(self, question):
         # Retrieve
         emb = self.model.encode(question).tolist()
-        results = self.client.search(
+        results = self.client.query_points(
             collection_name=self.collection,
-            query_vector=emb,
+            query=emb,
             limit=2
-        )
+        ).points
 
         # Augment
         context = "\n".join([r.payload['text'] for r in results])

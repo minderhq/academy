@@ -1,7 +1,7 @@
 ---
 Document ID: PROJECT-006
 Title: "CAPSTONE PROJECT 006: Build Production RAG System"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -460,11 +460,11 @@ class HybridRetriever:
         query_vector = self.embedder.encode(query).tolist()
 
         # Vector search
-        results = self.qdrant.search(
+        results = self.qdrant.query_points(
             collection_name=collection_name,
-            query_vector=query_vector,
+            query=query_vector,
             limit=top_k * 2  # Get more for reranking
-        )
+        ).points
 
         # Rerank
         rerank_input = [(query, hit.payload['text']) for hit in results]

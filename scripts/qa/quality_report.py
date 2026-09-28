@@ -33,8 +33,8 @@ stand today?" without running each tool by hand.
                        (2 known inline-code examples allowlisted)
     kwarg_lint         calls with removed/renamed kwargs on known APIs
                        (KW-01 langchain constructor kwargs, KW-02 removed
-                       qdrant .search kwargs) - report mode while the
-                       query_points migration queue drains
+                       qdrant .search kwargs) - hard gate since the
+                       query_points migration drained (tick-220)
   queue gate (drain in progress; never fails the report unless --fail-on-queue):
     objectives_lint    template-objective artifacts (OL-01/OL-02), phase by phase
     fence_namecheck    names used in a python fence that no fence in the
@@ -82,7 +82,7 @@ GATES = [
     ("anchor_check.py", "anchor_check", True),
     ("objectives_lint.py", "objectives_lint", False),
     ("fence_namecheck.py", "fence_namecheck", False),
-    ("kwarg_lint.py", "kwarg_lint", False),
+    ("kwarg_lint.py", "kwarg_lint", True),
 ]
 
 

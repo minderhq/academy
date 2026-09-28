@@ -1,7 +1,7 @@
 ---
 Document ID: QUICK-REF-VOLUME-6
 Title: "Volume 6: RAG & Data Systems - Quick Reference"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -412,12 +412,12 @@ def search_with_filters(query, filters=None, top_k=10):
     """Search with optional payload filters"""
     query_embedding = model.encode(query)
 
-    results = client.search(
+    results = client.query_points(
         collection_name="documents",
-        query_vector=query_embedding.tolist(),
+        query=query_embedding.tolist(),
         query_filter=filters,  # {"must": [{"key": "category", "match": {"value": "tech"}}]}
         limit=top_k,
-    )
+    ).points
 
     return results
 

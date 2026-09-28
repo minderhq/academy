@@ -277,11 +277,11 @@ for chunk in chunks:
 # 2. Retrieve
 def retrieve(query, top_k=5):
     query_vector = embedder.encode(query)
-    results = client.search(
+    results = client.query_points(
         collection_name="my_docs",
-        query_vector=query_vector,
+        query=query_vector,
         limit=top_k,
-    )
+    ).points
     return [r.payload["text"] for r in results]
 
 # 3. Generate

@@ -715,7 +715,9 @@ class PythonTool(Tool):
 **Memory System:**
 ```python
 from qdrant_client import QdrantClient
+from qdrant_client.models import PointStruct
 from datetime import datetime
+import uuid
 class AgentMemory:
     def __init__(self):
         # Episodic memory (past experiences)
@@ -739,20 +741,23 @@ class AgentMemory:
     def remember_semantic(self, fact):
         """Store general knowledge"""
         embedding = embed(fact)
-        self.semantic.store(
-            collection="semantic_memory",
-            vector=embedding,
-            payload={"fact": fact}
+        self.semantic.upsert(
+            collection_name="semantic_memory",
+            points=[PointStruct(
+                id=str(uuid.uuid4()),
+                vector=embedding,
+                payload={"fact": fact}
+            )]
         )
 
     def recall_semantic(self, query, top_k=5):
         """Recall relevant facts"""
         embedding = embed(query)
-        results = self.semantic.search(
-            collection="semantic_memory",
-            query_vector=embedding,
+        results = self.semantic.query_points(
+            collection_name="semantic_memory",
+            query=embedding,
             limit=top_k
-        )
+        ).points
         return [r.payload["fact"] for r in results]
 
     def summarize_episodic(self):

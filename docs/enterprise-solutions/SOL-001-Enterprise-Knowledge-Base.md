@@ -641,13 +641,13 @@ class KnowledgeRetriever:
 
         # Step 1: Retrieve relevant documents
         query_vector = self.embedder.encode(query).tolist()
-        search_results = self.qdrant.search(
+        search_results = self.qdrant.query_points(
             collection_name="enterprise_docs",
-            query_vector=query_vector,
+            query=query_vector,
             query_filter=filters,
             limit=top_k,
             score_threshold=0.70
-        )
+        ).points
 
         if not search_results:
             return {

@@ -468,11 +468,11 @@ async def query_graphrag(query: Query):
 
     if query.use_vector:
         query_vector = embedder.encode(query.question).tolist()
-        vector_results = qdrant.search(
+        vector_results = qdrant.query_points(
             collection_name="knowledge_base",
-            query_vector=query_vector,
+            query=query_vector,
             limit=query.top_k
-        )
+        ).points
 
         vector_context = "\n\n".join([
             hit.payload['text'] for hit in vector_results

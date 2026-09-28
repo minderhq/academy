@@ -20,10 +20,11 @@ KW-02  a call passing a kwarg a library has removed entirely:
        Verified against the installed stack (qdrant-client 1.19.0):
        .search no longer exists (AttributeError); query_points works.
 
-Report mode (exit 0 always, like fence_namecheck): the corpus is
-mid-migration between the legacy and modern qdrant idioms, so KW-02
-currently reports a drain queue. Once the queue reaches zero the gate
-flips to exit 1 on findings and joins the hard gates.
+Hard gate (exit 1 on findings): the legacy .search(queue) drained to
+zero across ticks 216-220; any new query_vector=/query_filter= on a
+.search attribute call is a runtime AttributeError on the installed
+qdrant-client >= 1.10 stack. fence_namecheck remains the only
+report-mode gate (its NC-01 fragment-idiom queue is accepted).
 
 Run over the whole corpus:
     python scripts/qa/kwarg_lint.py --root .
@@ -186,7 +187,7 @@ def main() -> int:
           f"(KW-01 langchain constructors: {counts['KW-01']}; "
           f"KW-02 removed qdrant .search kwargs: {counts['KW-02']}) "
           f"in {len(n_files)} files across docs/")
-    return 0  # report mode until the KW-02 queue drains
+    return 1 if findings else 0
 
 
 if __name__ == "__main__":
