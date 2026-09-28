@@ -56,6 +56,7 @@ the full installed stack. A partial environment fails loud with
 | kwarg_lint | KW-01/02 | removed/renamed kwargs on known APIs |
 | typing_legacy_scan | TL-01 | legacy typing spellings (PEP 585/604) in python fences |
 | version_alignment_scan | VA-01..04 | code-side python-version drift in any fence: `FROM python:X.Y`, `python3.X` binaries, `--python X.Y` flags, `uv python install/pin` - the corpus standard is 3.13 |
+| feed_parity_check | FP-00..06 | cross-feed contract between the platform feeds: runs manifest_export + quiz_export for real and locks module sets, counts-vs-arrays, hierarchy-vs-documents lessons, quiz-file membership, bank-internal totals, and assessment.quiz flag parity (consistency only - content totals stay the living baseline) |
 
 ## 📋 Report Gates (exit 0 by design)
 
@@ -112,7 +113,10 @@ with quiz_export (the question bank), a platform load step never has to
 re-parse markdown. Extraction models are borrowed, not reinvented
 (quiz_export's frontmatter parser; quality_report's corpus
 classification), so the manifest's lesson count always equals the
-scorecard's corpus line.
+scorecard's corpus line - and that pairing is no longer just
+by-construction: the feed_parity_check hard gate runs both exporters
+and locks their cross-feed invariants, so classification drift in one
+feed cannot ship silently broken JSON to a platform load step.
 
 ## 📊 Curriculum Metrics (report tool)
 

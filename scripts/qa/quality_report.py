@@ -65,6 +65,13 @@ stand today?" without running each tool by hand.
                        tick-257 census that found one production
                        Dockerfile on python3.10 after the 3.13
                        epic was declared done
+    feed_parity_check  cross-feed contract between the platform feeds:
+                       runs manifest_export + quiz_export for real and
+                       locks their invariants (FP-00..FP-06: module
+                       sets, counts vs arrays, hierarchy vs documents
+                       lessons, quiz-file membership, bank-internal
+                       totals, assessment.quiz flags) - consistency
+                       only, content totals stay the living baseline
   queue gate (drain in progress; never fails the report unless --fail-on-queue):
     objectives_lint    template-objective artifacts (OL-01/OL-02), phase by phase
     fence_namecheck    names used in a python fence that no fence in the
@@ -124,6 +131,7 @@ GATES = [
     ("kwarg_lint.py", "kwarg_lint", True),
     ("typing_legacy_scan.py", "typing_legacy_scan", True),
     ("version_alignment_scan.py", "version_alignment_scan", True),
+    ("feed_parity_check.py", "feed_parity_check", True),
 ]
 
 
