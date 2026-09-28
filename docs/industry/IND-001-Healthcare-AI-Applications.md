@@ -456,7 +456,7 @@ Medical coders spend hours translating clinical notes into billing codes (ICD-10
 
 ```python
 from langchain.agents import create_agent
-from langchain_core.tools import Tool
+from langchain_core.tools import tool
 class MedicalCodingAgent:
     """
     Autonomous agent for medical coding
@@ -466,28 +466,13 @@ class MedicalCodingAgent:
         # Fine-tuned model for medical coding
         self.model = self._load_finetuned_model("medical-coder-llama-7b")
 
-        # Tools
+        # Tools - LangChain 1.x: @tool-wrapped bound methods; the
+        # docstring becomes the tool description
         self.tools = [
-            Tool(
-                name="search_icd10",
-                func=self._search_icd10,
-                description="Search ICD-10 codes by description"
-            ),
-            Tool(
-                name="search_cpt",
-                func=self._search_cpt,
-                description="Search CPT codes by description"
-            ),
-            Tool(
-                name="get_guidelines",
-                func=self._get_guidelines,
-                description="Get coding guidelines for specific codes"
-            ),
-            Tool(
-                name="verify_code",
-                func=self._verify_code,
-                description="Verify code is appropriate for diagnosis"
-            )
+            tool(self._search_icd10),
+            tool(self._search_cpt),
+            tool(self._get_guidelines),
+            tool(self._verify_code),
         ]
 
         # Create agent

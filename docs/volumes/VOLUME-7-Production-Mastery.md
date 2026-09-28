@@ -660,7 +660,7 @@ def build_feature(feature_description):
 
 **Sandboxed Execution:**
 ```python
-from langchain_core.tools import Tool
+from langchain_core.tools import tool
 import subprocess
 import tempfile
 
@@ -685,16 +685,17 @@ def safe_execute(code, timeout=30):
         return result.stdout, result.stderr, result.returncode
 
 # Use in agent
-class PythonTool(Tool):
-    def execute(self, code):
-        try:
-            stdout, stderr, returncode = safe_execute(code)
-            if returncode == 0:
-                return {"output": stdout}
-            else:
-                return {"error": stderr}
-        except Exception as e:
-            return {"error": str(e)}
+@tool
+def python_tool(code: str) -> dict:
+    """Execute Python code in an isolated sandbox."""
+    try:
+        stdout, stderr, returncode = safe_execute(code)
+        if returncode == 0:
+            return {"output": stdout}
+        else:
+            return {"error": stderr}
+    except Exception as e:
+        return {"error": str(e)}
 ```
 
 **Checkpoint:** You can implement safe tool execution
@@ -1292,27 +1293,33 @@ def collect_gpu_metrics():
 
 **Tip:** Clear tool descriptions prevent confusion
 ```python
-from langchain_core.tools import Tool
-# Wrong: Vague descriptions
-tools = [
-    Tool(name="search", description="Search the web"),
-    Tool(name="calculate", description="Do math"),
-]
+from langchain_core.tools import tool
+# Wrong: Vague descriptions (the docstring IS the tool description)
+@tool
+def search(query: str) -> str:
+    """Search the web."""
+    ...
+
+@tool
+def calc(expression: str) -> str:
+    """Do math."""
+    ...
 # Result: Agent uses wrong tool
 
 # Right: Detailed descriptions with examples
-tools = [
-    Tool(
-        name="web_search",
-        description="Search the web for current information. Use for: news, facts, data. Examples: 'current stock price', 'latest AI news', 'population of Tokyo'",
-        function=search_web
-    ),
-    Tool(
-        name="calculator",
-        description="Perform mathematical calculations. Use for: arithmetic, statistics, conversions. Examples: '15% of 250', 'sin(45 degrees)', '100 USD to EUR'",
-        function=calculate
-    ),
-]
+@tool
+def web_search(query: str) -> str:
+    """Search the web for current information. Use for: news, facts,
+    data. Examples: 'current stock price', 'latest AI news',
+    'population of Tokyo'."""
+    ...
+
+@tool
+def calculator(expression: str) -> str:
+    """Perform mathematical calculations. Use for: arithmetic,
+    statistics, conversions. Examples: '15% of 250', 'sin(45 degrees)',
+    '100 USD to EUR'."""
+    ...
 ```
 
 ### 💡 Multi-Agent Coordination
