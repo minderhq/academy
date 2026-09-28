@@ -605,7 +605,7 @@ trl>=1.14.0
 scipy>=1.17.1
 sentencepiece>=0.2.1
 protobuf>=7.35.0
-wandb>=0.16.0
+wandb>=0.30.0
 EOF
 
 uv pip install -r ~/lab-003-lora/requirements.txt

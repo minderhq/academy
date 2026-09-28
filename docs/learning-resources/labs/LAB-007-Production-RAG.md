@@ -166,10 +166,10 @@ langchain==1.4.2
 langchain-community==0.4.2
 numpy==2.4.6
 pydantic==2.13.5
-prometheus-client==0.19.0
-opentelemetry-api==1.21.0
-opentelemetry-sdk==1.21.0
-redis==5.0.1
+prometheus-client==0.26.0
+opentelemetry-api==1.45.0
+opentelemetry-sdk==1.45.0
+redis==8.1.0
 EOF
 
 # Install dependencies

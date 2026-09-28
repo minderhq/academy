@@ -164,7 +164,7 @@ uv pip install -r requirements.txt
 qdrant-client==1.19.0
 fastapi==0.141.1
 uvicorn==0.52.1
-python-multipart==0.0.6
+python-multipart==0.0.32
 langchain==1.4.2
 langchain-community==0.4.2
 sentence-transformers==6.1.0
@@ -172,16 +172,16 @@ transformers==5.10.2
 accelerate==1.13.0
 bitsandbytes==0.50.2
 sqlalchemy==2.0.50
-psycopg2-binary==2.9.9
-redis==5.0.1
-python-jose[cryptography]==3.3.0
+psycopg2-binary==2.9.13
+redis==8.1.0
+python-jose[cryptography]==3.5.0
 passlib[bcrypt]==1.7.4
-python-dotenv==1.0.0
-aiofiles==23.2.1
-pypdf==3.17.4
-python-docx==1.1.0
-openpyxl==3.1.2
-python-pptx==0.6.23
+python-dotenv==1.2.3
+aiofiles==25.1.0
+pypdf==6.19.0
+python-docx==1.2.0
+openpyxl==3.1.5
+python-pptx==1.0.2
 ```
 
 ### 2.2 Document Processor

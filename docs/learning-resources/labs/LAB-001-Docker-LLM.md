@@ -618,7 +618,7 @@ def clear_session(session_id: str):
 
 ### Update requirements:
 ```bash
-echo "redis==5.0.1" >> ~/lab-001-docker-llm/services/app/requirements.txt
+echo "redis==8.1.0" >> ~/lab-001-docker-llm/services/app/requirements.txt
 ```
 
 ### Rebuild and test:
