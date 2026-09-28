@@ -29,16 +29,16 @@ from pathlib import Path
 FENCE_RE = re.compile(r"^\s*(```|~~~)\s*([A-Za-z0-9_+-]*)\s*$")
 BARE_PIP_RE = re.compile(r"^\s*(?:python3?\s+-m\s+)?pip\s+install\b(.*)$")
 CONDA_RE = re.compile(r"\bconda\s+(create|activate|env|install|info|run)\b")
-DOCKER_HINT_RE = re.compile(r"\b(docker|container|image)\b", re.IGNORECASE)
+# "image" deliberately absent: it is a CV-domain word (image
+# classification) that whitelisted unrelated teaching fences.
+DOCKER_HINT_RE = re.compile(r"\b(docker|container)\b", re.IGNORECASE)
 RUN_LINE_RE = re.compile(r"^\s*(RUN|COPY|CMD|ENTRYPOINT)\b")
 DOCKER_LANGS = {"dockerfile", "docker"}
-FALLBACK_RE = re.compile(r"\b(fallback|plain pip works too|alternatively)\b", re.IGNORECASE)
 
 
 def classify_block(lines: list[str], pre_context: list[str]) -> str:
     """Decide why a bare pip line may be allowed: return allow reason or ''. """
     lang = ""
-    block_join = "\n".join(lines)
     for l in lines:
         m = FENCE_RE.match(l)
         if m:
@@ -57,10 +57,13 @@ def classify_block(lines: list[str], pre_context: list[str]) -> str:
     # like `pip install uv --index-url ...`.
     if any(re.match(r"^\s*(?:python3?\s+-m\s+)?pip\s+install\s+uv\b", l) for l in lines):
         return "uv bootstrap"
+    # Fallback label alone is NOT an exception: the policy requires the
+    # uv pip install form in the same block (arm above). A standalone
+    # "fallback"-word arm would let any fence mentioning "alternatively"
+    # whitelist a bare pip line - measured 2026-09-28: zero corpus sites
+    # relied on it, so it was removed rather than tightened.
     if any(re.match(r"^\s*uv\s+pip\s+install\b", l) for l in lines):
         return "uv-first block with fallback"
-    if any(FALLBACK_RE.search(l) for l in lines):
-        return "fallback-labeled"
     if any(DOCKER_HINT_RE.search(l) for l in lines[-4:] + pre_context):
         return "docker/container context"
     return ""
