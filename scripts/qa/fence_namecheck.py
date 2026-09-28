@@ -25,6 +25,8 @@ and non-Python content that happens to parse as Python (e.g. nginx
 those are honest-label findings, not NC-01. Report-only: exit 0 always.
 
     python scripts/qa/fence_namecheck.py --root .
+    python scripts/qa/fence_namecheck.py --root . --names   # triage:
+        aggregate NC-01 uses by name (epic scoping; skips per-line output)
 """
 from __future__ import annotations
 
@@ -33,6 +35,7 @@ import ast
 import builtins
 import re
 import sys
+from collections import Counter
 from pathlib import Path
 
 FENCE_RE = re.compile(r"^\s*(```|~~~)\s*([A-Za-z0-9_+-]*)\s*$")
@@ -98,7 +101,9 @@ def python_fences(lines: list[str]) -> list[tuple[int, str]]:
     return fences
 
 
-def check_file(root: Path, path: Path, findings: list[str]) -> None:
+def check_file(root: Path, path: Path, findings: list[str],
+               records: list[tuple[str, str]] | None = None) -> None:
+    """Append NC-01 findings; when `records` is given, also (name, rel) pairs."""
     rel = path.relative_to(root).as_posix()
     lines = path.read_text(encoding="utf-8").split("\n")
 
@@ -122,6 +127,8 @@ def check_file(root: Path, path: Path, findings: list[str]) -> None:
             continue  # opaque: can't know what a wildcard import binds
         for name, ln in sorted(used_names(tree)):
             if (name not in IGNORED and name not in doc_bound):
+                if records is not None:
+                    records.append((name, rel))
                 findings.append(
                     f"{rel}:{start + ln}: NC-01 name "
                     f"'{name}' used but never bound in this document's "
@@ -131,15 +138,26 @@ def check_file(root: Path, path: Path, findings: list[str]) -> None:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parents[2])
+    parser.add_argument("--names", action="store_true",
+                        help="triage: aggregate NC-01 uses by name instead of "
+                             "printing per-line findings")
     args = parser.parse_args()
     docs = args.root / "docs"
     findings: list[str] = []
+    records: list[tuple[str, str]] = []
     for path in sorted(docs.rglob("*.md")):
         try:
-            check_file(args.root, path, findings)
+            check_file(args.root, path, findings,
+                       records if args.names else None)
         except (UnicodeDecodeError, OSError, SyntaxError, ValueError):
             continue
-    for f in findings:
+    if args.names:
+        counts = Counter(name for name, _ in records)
+        print(f"fence_namecheck triage: {sum(counts.values())} NC-01 uses of "
+              f"{len(counts)} distinct unbound names (top 60)")
+        for name, n in counts.most_common(60):
+            print(f"  {n:4d}  {name}")
+    for f in ([] if args.names else findings):
         print(f.encode("ascii", "backslashreplace").decode("ascii"))
     n_files = len({f.split(":", 1)[0] for f in findings})
     print(f"fence_namecheck: {len(findings)} NC-01 findings in {n_files} files "
