@@ -3,7 +3,7 @@ Document ID: 7401
 Title: Long-term Memory for Agents
 Phase: 7
 Module: 7400
-Last Updated: 2026-09-27
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -94,11 +94,11 @@ AI agents need persistent memory across sessions to maintain context, learn from
 ### 2.1 Basic Implementation
 
 ```python
-from langchain.vectorstores import FAISS
-from langchain.embeddings import OpenAIEmbeddings
-from langchain.chains import ConversationChain
-from langchain.memory import VectorStoreMemory
-from langchain.llms import OpenAI
+from langchain_community.vectorstores import FAISS
+from langchain_core.output_parsers import StrOutputParser
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.runnables import RunnableParallel, RunnablePassthrough
+from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 
 # Initialize embeddings and vector store
 embeddings = OpenAIEmbeddings()
@@ -116,24 +116,30 @@ retriever = vectorstore.as_retriever(
     search_kwargs={"k": 3}  # Return top 3 memories
 )
 
-# Initialize memory
-memory = VectorStoreMemory(
-    memory_key="chat_history",
-    retriever=retriever,
-    return_docs=True  # Return retrieved documents
-)
+# LangChain 1.x: ConversationChain and VectorStoreMemory are gone -
+# long-term memory is a retriever wired into the prompt with LCEL.
+def format_memories(memories):
+    return "\n".join(f"- {m.page_content}" for m in memories)
 
-# Create conversation chain
-llm = OpenAI(temperature=0)
-conversation = ConversationChain(
-    llm=llm,
-    memory=memory,
-    verbose=True
+prompt = ChatPromptTemplate.from_messages([
+    ("system", "You are a helpful assistant. Facts you remember "
+               "about the user:\n{memories}"),
+    ("human", "{question}"),
+])
+
+llm = ChatOpenAI(model="gpt-4", temperature=0)
+
+conversation = (
+    RunnableParallel(
+        memories=retriever | format_memories,
+        question=RunnablePassthrough(),
+    )
+    | prompt | llm | StrOutputParser()
 )
 
 # Chat with memory
-response = conversation.predict(
-    input="What programming language do I prefer?"
+response = conversation.invoke(
+    "What programming language do I prefer?"
 )
 # Output: "You prefer Python over JavaScript"
 ```
@@ -141,8 +147,8 @@ response = conversation.predict(
 ### 2.2 Persistent VectorStore
 
 ```python
-from langchain.vectorstores import Chroma
-from langchain.embeddings import OpenAIEmbeddings
+from langchain_community.vectorstores import Chroma
+from langchain_openai import OpenAIEmbeddings
 import chromadb
 
 # Persistent client (saves to disk)
@@ -179,8 +185,8 @@ print(results[0].page_content)  # "User works at Example Corp"
 ### 2.3 Memory with Summarization
 
 ```python
-from langchain.memory import VectorStoreMemory
-from langchain.chains import ConversationalRetrievalChain
+# LangChain 1.x: VectorStoreMemory and ConversationalRetrievalChain are
+# gone - long-term memory is a retriever wired into an LCEL chain (2.1).
 
 # Auto-summarize old memories
 def summarize_old_memories(memories, max_age_hours=24):
@@ -196,7 +202,7 @@ def summarize_old_memories(memories, max_age_hours=24):
     if len(old_memories) > 10:
         # Use LLM to summarize
         summary_prompt = f"Summarize these memories:\n" + "\n".join([m.page_content for m in old_memories])
-        summary = llm.predict(summary_prompt)
+        summary = llm.invoke(summary_prompt).content
 
         # Remove old, add summary
         vectorstore.delete([m.id for m in old_memories])
@@ -205,12 +211,9 @@ def summarize_old_memories(memories, max_age_hours=24):
             metadatas=[{"type": "summary", "memories_count": len(old_memories)}]
         )
 
-# Use in conversation
-memory = VectorStoreMemory(
-    memory_key="chat_history",
-    retriever=vectorstore.as_retriever(search_kwargs={"k": 5}),
-    post_summarization_callback=summarize_old_memories
-)
+# After wiring the retriever into an LCEL chain (see 2.1), run the
+# consolidation job on a schedule, e.g.:
+#   summarize_old_memories(vectorstore.similarity_search("", k=50), 24)
 ```
 
 ---
@@ -540,6 +543,8 @@ cleanup_expired_memories(collection)
 ### 5.1 Multi-Tier Memory Architecture
 
 ```python
+from datetime import datetime
+
 from typing import List, Dict, Optional
 from dataclasses import dataclass
 import chromadb
@@ -677,6 +682,9 @@ class HierarchicalMemory:
 ### 5.2 Memory Importance Scoring
 
 ```python
+from datetime import datetime
+
+
 def calculate_importance(memory: MemoryItem) -> float:
     """Calculate memory importance score (0.0 to 1.0)."""
     score = 0.5  # Base score
@@ -726,6 +734,8 @@ Return tags as comma-separated values."""
 ### 6.1 Complete Agent with Memory
 
 ```python
+from datetime import datetime
+
 from mem0 import Memory
 from openai import OpenAI
 import json
@@ -843,10 +853,13 @@ while True:
 ### 6.2 Memory for RAG Agents
 
 ```python
-from langchain.vectorstores import Chroma
-from langchain.embeddings import OpenAIEmbeddings
-from langchain.chains import RetrievalQA
-from langchain.llms import OpenAI
+from datetime import datetime
+
+from langchain_community.vectorstores import Chroma
+from langchain_core.output_parsers import StrOutputParser
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.runnables import RunnableParallel, RunnablePassthrough
+from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 
 class RAGAgentWithMemory:
     """RAG agent that remembers past queries and answers."""
@@ -865,7 +878,28 @@ class RAGAgentWithMemory:
             collection_name="conversation_history"
         )
 
-        self.llm = OpenAI(temperature=0)
+        self.llm = ChatOpenAI(model="gpt-4", temperature=0)
+
+        # LangChain 1.x: RetrievalQA lives only in langchain_classic -
+        # a RAG chain is plain LCEL.
+        prompt = ChatPromptTemplate.from_messages([
+            ("system", "Answer the question using the provided "
+                       "knowledge base context."),
+            ("human", "Context:\n{context}\n\nQuestion: {question}"),
+        ])
+
+        def format_docs(docs):
+            return "\n".join(f"- {d.page_content}" for d in docs)
+
+        self.qa_chain = (
+            RunnableParallel(
+                context=self.kb_store.as_retriever(
+                    search_kwargs={"k": 5}
+                ) | format_docs,
+                question=RunnablePassthrough(),
+            )
+            | prompt | self.llm | StrOutputParser()
+        )
 
     def query(self, question: str) -> dict:
         """Query with memory-aware retrieval."""
@@ -876,42 +910,29 @@ class RAGAgentWithMemory:
             filter={"interaction_type": "Q&A"}
         )
 
-        # 2. Retrieve relevant knowledge
-        knowledge_docs = self.kb_store.similarity_search(question, k=5)
+        # 2. Generate answer over the knowledge base
+        answer = self.qa_chain.invoke(question)
 
-        # 3. Build enriched context
-        context_parts = ["RELEVANT PAST INTERACTIONS:"]
-        for doc in past_interactions:
-            context_parts.append(f"- {doc.page_content}")
+        # 3. Retrieve the source documents for citations
+        source_docs = self.kb_store.similarity_search(question, k=5)
 
-        context_parts.append("\nKNOWLEDGE BASE:")
-        for doc in knowledge_docs:
-            context_parts.append(f"- {doc.page_content}")
-
-        # 4. Generate answer
-        qa_chain = RetrievalQA.from_chain_type(
-            llm=self.llm,
-            retriever=self.kb_store.as_retriever(search_kwargs={"k": 5}),
-            return_source_documents=True
-        )
-
-        result = qa_chain({"query": question})
-
-        # 5. Store Q&A in memory
+        # 4. Store Q&A in memory
         self.memory_store.add_texts(
-            texts=[
-                f"Q: {question}\nA: {result['result']}"
-            ],
+            texts=[f"Q: {question}\nA: {answer}"],
             metadatas=[{
                 "interaction_type": "Q&A",
                 "timestamp": datetime.now().isoformat(),
-                "sources": [doc.metadata.get("source", "unknown") for doc in result.get("source_documents", [])]
+                "sources": [
+                    d.metadata.get("source", "unknown") for d in source_docs
+                ]
             }]
         )
 
         return {
-            "answer": result["result"],
-            "sources": [doc.metadata.get("source", "unknown") for doc in result.get("source_documents", [])],
+            "answer": answer,
+            "sources": [
+                d.metadata.get("source", "unknown") for d in source_docs
+            ],
             "past_context": [doc.page_content for doc in past_interactions]
         }
 ```
