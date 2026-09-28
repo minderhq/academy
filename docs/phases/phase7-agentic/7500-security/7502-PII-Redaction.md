@@ -3,7 +3,7 @@ Document ID: 7502
 Title: PII Redaction & Privacy Filtering
 Phase: 7
 Module: 7500
-Last Updated: 2026-09-24
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -13,14 +13,6 @@ Tags: ['agents', 'security', 'prompt-injection', 'pii', 'adversarial']
 ---
 
 # 7502: PII Redaction & Privacy Filtering
-
-**Project:** AI Engineering Curriculum
-**Phase:** [7500] Security
-**Last Updated:** 2026-02-04
-**Status:** Complete
-**Estimated Time:** 2 hours
-
----
 
 ## Table of Contents
 
@@ -32,8 +24,8 @@ Tags: ['agents', 'security', 'prompt-injection', 'pii', 'adversarial']
 - [Secure Data Handling](#secure-data-handling)
 - [Production Implementation](#production-implementation)
 - [Testing & Validation](#testing--validation)
-- [Related Resources](#related-resources)
 - [References](#references)
+- [Next Steps](#next-steps)
 
 ---
 
@@ -41,18 +33,18 @@ Tags: ['agents', 'security', 'prompt-injection', 'pii', 'adversarial']
 
 After completing this lesson, you will be able to:
 
-- Explain PII Categories
-- Explain PII Detection
-- Explain PII Redaction
-- Explain Secure Data Handling
-- Configure and operate Production Implementation
-- Explain Testing & Validation
+- Classify a data element as direct identifier, indirect identifier, or sensitive context using the classification matrix
+- Run PIIDetector over a sample document and enumerate every entity type the regex layer catches
+- Redact one document with the partial and placeholder strategies and predict each redacted output
+- Wire PIIPipeline with injected NLP and storage layers so it runs without spaCy or cryptography installed
+- Compute the recall gap that regex-only detection leaves on person names, using the validator's F1 output
+- Execute the GDPR erasure cycle — store, access, delete — and audit the three compliance-log events
 
 ---
 
 ## Abstract
 
-Personally Identifiable Information (PII) redaction is critical for privacy compliance (GDPR, CCPA, HIPAA). This document covers detection, redaction, and secure handling of sensitive data in AI systems.
+Personally Identifiable Information (PII) in prompts, tool outputs, and logs is a compliance exposure (GDPR, CCPA, HIPAA) before it is a security one. This lesson builds the handling stack in layers: a regex detector, an NER-based detector (compile-checked — spaCy), a redactor with pluggable strategies, Presidio as the industry-standard upgrade, Fernet-encrypted storage, and an audit log for the GDPR erasure cycle. Six of the eight code fences execute in this repo with verified output; the two model-backed detectors are compile-checked, and the dependency-injected pipeline runs without them. The final metrics run is honest: regex-only detection misses the person name, and the recall number reports the gap.
 
 ---
 
@@ -92,11 +84,22 @@ Personally Identifiable Information (PII) redaction is critical for privacy comp
 └─────────────────────────────────────────────────────────────────────────┘
 ```
 
+### Modern Context (2026)
+
+Four developments shape current practice; the code in this lesson implements each in minimal form:
+
+- **Presidio is the reference implementation.** Microsoft Presidio (analyzer + anonymizer) is the de-facto open-source PII stack. The regex layer below is a minimal version of its pattern recognizers, and the Presidio section shows the drop-in upgrade path.
+- **Regex is the floor, not the ceiling.** Names, addresses, and free-text identifiers need NER — spaCy, a transformer NER model, or Presidio's transformer recognizers. The validator's recall number at the end of this lesson quantifies exactly this gap on a real document.
+- **Pseudonymization defaults.** GDPR treats properly pseudonymized data as lower risk: hash with SHA-256 (salted/peppered) or replace with tokens. MD5 is legacy; the redactor's hash strategy and the storage layer below follow the SHA-256 rule.
+- **LLM-era boundary.** Redact before the prompt leaves your trust boundary — prompts, tool outputs, and logs are all PII channels. Never log raw prompts (the compliance logger below records event metadata only), and feed the same redaction rules to guardrail or PII-screening models that inspect traffic.
+
 ---
 
 ## PII Detection
 
 ### Pattern-Based Detection
+
+Regex patterns are the deterministic, free first layer — exact for structured identifiers like emails, phones, SSNs, and cards.
 
 ```python
 # pii_detector.py
@@ -106,6 +109,7 @@ from dataclasses import dataclass
 from enum import Enum
 
 class PIIType(Enum):
+    NAME = "name"
     EMAIL = "email"
     PHONE = "phone"
     SSN = "ssn"
@@ -293,14 +297,28 @@ class PIIDetector:
                 filtered.append(entity)
 
         return filtered
+
+
+SAMPLE_TEXT = ("Contact Jane Doe at jane.doe@example.com or 555-123-4567. "
+               "SSN: 123-45-6789")
+
+detector = PIIDetector()
+entities = detector.detect(SAMPLE_TEXT)
+print(len(entities), sorted(e.type.value for e in entities))
+# Output: 3 ['email', 'phone', 'ssn']
 ```
+
+`SAMPLE_TEXT` is the shared corpus for the rest of the lesson — the redactor and the pipeline re-detect the same three entities.
 
 ### NLP-Based Detection
 
+Regex cannot find *names* — the highest-value indirect identifier. Named-entity recognition can. Install once with uv: `uv pip install spacy`, then `python -m spacy download en_core_web_lg`. This fence is compile-checked only: executing it loads a spaCy model.
+
 ```python
 # pii_nlp_detector.py
+# Not executed in this repo: loads a spaCy NER model. Compile-checked only.
 import spacy
-from typing import List, Set
+from typing import List
 
 class NLPPIIDetector:
     """PII detection using NLP models"""
@@ -349,8 +367,8 @@ class NLPPIIDetector:
         """Map spaCy labels to PII types"""
 
         mapping = {
-            'PERSON': PIIType.ADDRESS,  # Use as indirect identifier
-            'ORG': PIIType.ADDRESS,
+            'PERSON': PIIType.NAME,      # names and employers are indirect identifiers
+            'ORG': PIIType.NAME,
             'GPE': PIIType.ADDRESS,
             'DATE': PIIType.DATE_OF_BIRTH,
             'EMAIL': PIIType.EMAIL,
@@ -366,7 +384,6 @@ class NLPPIIDetector:
         base = 0.70
 
         # Adjust based on context
-        # If entity is in quotes or capitalized, higher confidence
         text = ent.text
 
         if text[0].isupper() and text[-1].isupper():
@@ -393,10 +410,13 @@ class NLPPIIDetector:
 
 ### Redaction Strategies
 
+Redaction strength is a policy choice: partial keeps utility for support workflows, placeholder keeps structure for pipelines, full is the compliance default.
+
 ```python
 # pii_redactor.py
-from typing import List, Literal
+from typing import Dict, List, Literal, Optional, Tuple
 import re
+import hashlib
 
 RedactionStrategy = Literal[
     'full',           # Complete redaction: [REDACTED]
@@ -475,23 +495,42 @@ class PIIRedactor:
             return '*' * (len(entity.text) - 4) + entity.text[-4:]
 
         elif strategy == 'hash':
-            import hashlib
-            hash_value = hashlib.md5(entity.text.encode()).hexdigest()[:6]
+            # SHA-256, not MD5: GDPR pseudonymization wants a
+            # collision-resistant digest, and unsalted MD5 is reversible
+            # for low-entropy PII such as emails and phone numbers
+            hash_value = hashlib.sha256(entity.text.encode()).hexdigest()[:6]
             return f"[HASH:{hash_value}]"
 
         elif strategy == 'placeholder':
             return f"[{entity.type.value.upper()}]"
 
         return entity.redacted_text
+
+
+redactor = PIIRedactor(PIIDetector())
+
+partial_text, _ = redactor.redact(SAMPLE_TEXT)
+print(partial_text)
+# Output: Contact Jane Doe at j***@example.com or ********4567. SSN: *******6789
+
+placeholder_text, _ = redactor.redact(SAMPLE_TEXT, strategy="placeholder")
+print(placeholder_text)
+# Output: Contact Jane Doe at [EMAIL] or [PHONE]. SSN: [SSN]
 ```
+
+Both strategies operate on the same three spans the detector found; reversing replacement order keeps earlier offsets valid while later spans are substituted.
 
 ### Presidio Integration
 
+Presidio replaces the homegrown detector + redactor pair with maintained recognizers and operators. Install once with uv: `uv pip install presidio-analyzer presidio-anonymizer` (it reuses the spaCy model from the NLP section). Compile-checked only in this repo.
+
 ```python
 # presidio_redactor.py
+# Not executed in this repo: requires the Presidio packages and the spaCy
+# model above. Compile-checked only.
 from presidio_analyzer import AnalyzerEngine
 from presidio_anonymizer import AnonymizerEngine
-from typing import Dict
+from typing import Dict, Optional
 
 class PresidioPIIRedactor:
     """PII redaction using Microsoft Presidio"""
@@ -507,16 +546,18 @@ class PresidioPIIRedactor:
     ) -> str:
         """Redact PII using Presidio"""
 
-        # Default operators
+        # Default operators — operator keys are Presidio entity labels
+        # (EMAIL_ADDRESS, US_SSN, ...), and Presidio ships these operators:
+        # replace, redact, mask, hash, encrypt, keep, custom
         if operators is None:
             operators = {
-                "EMAIL": "mask",
+                "EMAIL_ADDRESS": "mask",
                 "PHONE_NUMBER": "mask",
-                "SSN": "replace",
+                "US_SSN": "replace",
                 "CREDIT_CARD": "mask",
                 "IP_ADDRESS": "hash",
                 "PERSON": "redact",
-                "LOCATION": "anonymize"
+                "LOCATION": "redact"
             }
 
         # Analyze text
@@ -541,10 +582,13 @@ class PresidioPIIRedactor:
 
 ### Encryption at Rest
 
+When redaction is not enough and the original PII must be kept (support refunds, legal holds), encrypt it and keep only a reference in the working system. Install once with uv: `uv pip install cryptography`.
+
 ```python
 # secure_storage.py
 from cryptography.fernet import Fernet
 from typing import Dict
+import hashlib
 import json
 
 class SecurePIIStorage:
@@ -566,8 +610,9 @@ class SecurePIIStorage:
         pii_json = json.dumps(pii_data)
         encrypted_pii = self.cipher.encrypt(pii_json.encode())
 
-        # Store reference
-        reference_id = f"{user_id}_{hash(encrypted_pii)}"
+        # Deterministic reference id: hash() is process-randomized in
+        # Python and would change across restarts; SHA-256 is stable
+        reference_id = f"{user_id}_{hashlib.sha256(encrypted_pii).hexdigest()[:12]}"
         self.storage[reference_id] = {
             'encrypted_pii': encrypted_pii,
             'redacted_text': redacted_text
@@ -595,9 +640,21 @@ class SecurePIIStorage:
             return True
 
         return False
+
+
+storage = SecurePIIStorage(Fernet.generate_key())
+ref = storage.store("user_42", {"email": "jane@example.com"}, "j***@example.com")
+print(storage.retrieve(ref) == {"email": "jane@example.com"})
+print(storage.delete(ref), storage.delete(ref))
+# Output: True
+# Output: True False
 ```
 
+The round trip decrypts to the original dict, and the second `delete` returns `False` — the erasure is verifiable, which is what a GDPR auditor asks for.
+
 ### Compliance Logging
+
+Every detection, access, and deletion is an auditable event. The log records metadata only — never the raw PII or the raw prompt.
 
 ```python
 # compliance_logger.py
@@ -610,8 +667,10 @@ class ComplianceLogger:
     """Log PII access for compliance"""
 
     def __init__(self, log_file: str = "pii_access.log"):
+        self.log_file = log_file
         self.logger = logging.getLogger("pii_compliance")
         self.logger.setLevel(logging.INFO)
+        self.logger.propagate = False
 
         # File handler
         handler = logging.FileHandler(log_file)
@@ -676,7 +735,26 @@ class ComplianceLogger:
         }
 
         self.logger.info(json.dumps(log_entry))
+
+
+import tempfile
+from pathlib import Path
+
+demo_log = Path(tempfile.gettempdir()) / "pii_compliance_demo.log"
+demo_log.unlink(missing_ok=True)  # fresh file so the readback is deterministic
+
+logger = ComplianceLogger(str(demo_log))
+logger.log_detection([], "user_42", "doc_2026_001")
+logger.log_access("user_42_abc123", "user_42", "support ticket")
+logger.log_deletion("user_42_abc123", "user_42", "GDPR erasure request")
+
+lines = demo_log.read_text(encoding="utf-8").strip().split("\n")
+# Each record is '<asctime> - <json>' — strip the prefix before parsing
+print(len(lines), [json.loads(line.split(" - ", 1)[1])["event"] for line in lines])
+# Output: 3 ['pii_detection', 'pii_access', 'pii_deletion']
 ```
+
+The demo writes to the OS temp directory, not the repo, and reads the log back to prove all three GDPR-cycle events landed in order.
 
 ---
 
@@ -684,18 +762,32 @@ class ComplianceLogger:
 
 ### End-to-End Pipeline
 
+The pipeline composes detection, redaction, storage, and logging. The NLP detector and the encrypted storage are dependency-injected: wire them when spaCy / cryptography are available, and the pipeline still runs on the regex layer without them — the same graceful degradation the 7501 defense layers use.
+
 ```python
 # pii_pipeline.py
+from typing import Dict, List, Optional
+from datetime import datetime
 
 class PIIPipeline:
-    """End-to-end PII handling pipeline"""
+    """End-to-end PII handling pipeline.
 
-    def __init__(self):
+    nlp_detector and storage are dependency-injected (NLPPIIDetector,
+    SecurePIIStorage) so the pipeline executes on stdlib-only pattern
+    detection when spaCy / cryptography are absent.
+    """
+
+    def __init__(
+        self,
+        nlp_detector=None,
+        storage=None,
+        log_file: Optional[str] = None
+    ):
         self.detector = PIIDetector()
-        self.nlp_detector = NLPPIIDetector()
+        self.nlp_detector = nlp_detector
         self.redactor = PIIRedactor(self.detector)
-        self.storage = SecurePIIStorage(Fernet.generate_key())
-        self.logger = ComplianceLogger()
+        self.storage = storage
+        self.logger = ComplianceLogger(log_file or "pii_access.log")
 
     def process_input(
         self,
@@ -707,7 +799,7 @@ class PIIPipeline:
 
         # Detect PII using multiple methods
         pattern_entities = self.detector.detect(text)
-        nlp_entities = self.nlp_detector.detect(text)
+        nlp_entities = self.nlp_detector.detect(text) if self.nlp_detector else []
 
         # Merge results
         all_entities = self._merge_entities(pattern_entities, nlp_entities)
@@ -724,6 +816,8 @@ class PIIPipeline:
 
         # Optionally store encrypted PII
         if store_pii and all_entities:
+            if self.storage is None:
+                raise ValueError("store_pii=True requires an injected SecurePIIStorage")
             pii_data = {e.type.value: e.text for e in all_entities}
             reference_id = self.storage.store(user_id, pii_data, redacted_text)
             result['reference_id'] = reference_id
@@ -759,7 +853,19 @@ class PIIPipeline:
 
         # Remove overlaps
         return self.detector._remove_overlaps(unique)
+
+
+import tempfile
+from pathlib import Path
+
+demo_log = str(Path(tempfile.gettempdir()) / "pii_pipeline_demo.log")
+pipeline = PIIPipeline(log_file=demo_log)
+result = pipeline.process_input(SAMPLE_TEXT, "user_42")
+print(result["pii_count"], result["redacted_text"])
+# Output: 3 Contact Jane Doe at j***@example.com or ********4567. SSN: *******6789
 ```
+
+Without spaCy installed, `nlp_detector` is `None`, the NLP merge contributes nothing, and the pipeline still redacts all three structured entities — and without an injected storage, `store_pii=True` fails loudly instead of silently dropping the data.
 
 ---
 
@@ -767,8 +873,12 @@ class PIIPipeline:
 
 ### Accuracy Metrics
 
+The validator runs a fixed corpus through the pipeline and reports precision, recall, and F1. The metric is a span-count simplification (real evaluation uses span overlap), but the corpus is honest: it includes a `person` entity the regex layer cannot find, and the numbers say so.
+
 ```python
 # pii_validator.py
+import tempfile
+from pathlib import Path
 
 PII_TEST_CASES = [
     {
@@ -826,7 +936,7 @@ class PIIValidator:
     def _calculate_metrics(self, expected, result):
         """Calculate precision, recall, F1"""
 
-        # Simplified metrics
+        # Span-count simplification of the real span-overlap metric
         expected_count = len(expected)
         detected_count = result['pii_count']
 
@@ -857,35 +967,44 @@ class PIIValidator:
         print(f"Precision: {avg_precision:.3f}")
         print(f"Recall: {avg_recall:.3f}")
         print(f"F1 Score: {avg_f1:.3f}")
+
+
+validator_log = str(Path(tempfile.gettempdir()) / "pii_validator_demo.log")
+validator = PIIValidator(PIIPipeline(log_file=validator_log))
+validator.run_all_tests()
+# Output: Test Case 1
+# Output: Precision: 1.00
+# Output: Recall: 0.67
+# Output: F1: 0.80
+# Output: Test Case 2
+# Output: Precision: 1.00
+# Output: Recall: 1.00
+# Output: F1: 1.00
+# Output: ==================================================
+# Output: AVERAGE METRICS
+# Output: ==================================================
+# Output: Precision: 1.000
+# Output: Recall: 0.833
+# Output: F1 Score: 0.900
 ```
 
----
-
-## Related Resources
-
-- **Previous:** [7501: Prompt Injection Defense](./7501-Prompt-Injection-Defense.md)
-- **Next:** [7503: Adversarial Attacks](./7503-Adversarial-Attacks.md)
-- **Experiment:** [EXP_7501: Prompt Injection](../../../../experiments/EXP_7501_PROMPT_INJECTION.md)
-
+Read the recall line: Test Case 1 expects three entities, the regex pipeline finds two — `john.doe@example.com` and `555-123-4567` — and misses `John Doe` entirely. Recall drops to 0.67 and drags F1 to 0.80. That miss is the argument for the NLP layer and Presidio: wire `NLPPIIDetector` into the pipeline and the same corpus closes the gap. Test Case 2 scores 1.00 because both SSN and month-name DOB patterns are exact matches. A PII demo that reports perfect scores with a person name in the corpus is a demo that never counted the miss.
 
 ---
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related Documents
 
 - [7501: Prompt Injection Defense](7501-Prompt-Injection-Defense.md)
 - [7503: Adversarial Attacks & Defense](7503-Adversarial-Attacks.md)
+- [1503: LLM Observability](../../phase1-infra/1500-monitoring/1503-LLM-Observability.md)
+- **Module Experiment:** [EXP_7501: Prompt Injection Experiments](../../../../experiments/EXP_7501_PROMPT_INJECTION.md)
 
 ---
 
 ## Next Steps
 
-- Continue with: **[7503: Next Document](./7503-Adversarial-Attacks.md)**
+- Continue with: **[7503: Adversarial Attacks & Defense](7503-Adversarial-Attacks.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
-
----
----
-
-**Status:** ✅ Complete
-**Next Steps:** Implement adversarial attack defenses
+- Return to: **[Module README](./README.md)**
