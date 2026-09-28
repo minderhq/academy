@@ -26,7 +26,8 @@ import io
 import re
 import sys
 
-SKIP_DIRS = {".git", "node_modules", ".venv", "venv", "__pycache__"}
+SKIP_DIRS = {".git", ".claude", "node_modules", ".venv", "venv",
+            "__pycache__"}
 SKIP_EXT = {".ipynb", ".png", ".jpg", ".jpeg", ".gif", ".ico", ".pdf",
             ".zip", ".gz", ".whl", ".bin"}
 
