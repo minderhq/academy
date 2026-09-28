@@ -57,6 +57,7 @@ the full installed stack. A partial environment fails loud with
 | typing_legacy_scan | TL-01 | legacy typing spellings (PEP 585/604) in python fences |
 | version_alignment_scan | VA-01..04 | code-side python-version drift in any fence: `FROM python:X.Y`, `python3.X` binaries, `--python X.Y` flags, `uv python install/pin` - the corpus standard is 3.13 |
 | feed_parity_check | FP-00..06 | cross-feed contract between the platform feeds: runs manifest_export + quiz_export for real and locks module sets, counts-vs-arrays, hierarchy-vs-documents lessons, quiz-file membership, bank-internal totals, and assessment.quiz flag parity (consistency only - content totals stay the living baseline) |
+| readme_claims_check | RC-00/01 | every measurable number in README.md (badges, resource tables, per-phase document table, footer) vs its disk measurement; regex-matched claims, an unmatched pattern is skipped on purpose (change the README copy -> teach the new pattern, don't let the gate rot) |
 
 ## 📋 Report Gates (exit 0 by design)
 

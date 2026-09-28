@@ -72,6 +72,13 @@ stand today?" without running each tool by hand.
                        lessons, quiz-file membership, bank-internal
                        totals, assessment.quiz flags) - consistency
                        only, content totals stay the living baseline
+    readme_claims_check
+                       every measurable number in README.md (badges,
+                       resource tables, per-phase document table,
+                       footer) vs its disk measurement (RC-01; RC-00
+                       missing README/failed borrow) - born from two
+                       consecutive drift waves (tick-260 "463 files",
+                       tick-261 experiments/labs/phase-table)
   queue gate (drain in progress; never fails the report unless --fail-on-queue):
     objectives_lint    template-objective artifacts (OL-01/OL-02), phase by phase
     fence_namecheck    names used in a python fence that no fence in the
@@ -132,6 +139,7 @@ GATES = [
     ("typing_legacy_scan.py", "typing_legacy_scan", True),
     ("version_alignment_scan.py", "version_alignment_scan", True),
     ("feed_parity_check.py", "feed_parity_check", True),
+    ("readme_claims_check.py", "readme_claims_check", True),
 ]
 
 

@@ -151,7 +151,7 @@ After completing PROJECT-OMEGA, you will be able to:
 | 💸 **AI infrastructure is expensive** | Run production-grade AI on affordable hardware or modest cloud instances |
 | 📚 **Documentation is scattered** | **462 files** in one organized, cross-referenced repository |
 | 🎯 **Learning gaps exist** | Complete curriculum from infrastructure to agentic systems |
-| 📝 **Theory without practice** | **33 PRACTICE files** with runnable solutions, **46 experiments** |
+| 📝 **Theory without practice** | **33 PRACTICE files** with runnable solutions, **47 experiments** |
 | 🗺️ **No clear path forward** | **7 phases**, **3 learning tracks**, progress tracking built-in |
 
 ---
@@ -163,7 +163,7 @@ After completing PROJECT-OMEGA, you will be able to:
 - **33 Technical Modules** with detailed documentation
 - **33 PRACTICE Files** with complete, runnable solutions
 - **33 QUIZ Files** for knowledge verification
-- **46 Experiment Files** for hands-on validation
+- **47 Experiment Files** for hands-on validation
 
 ### 🏗️ Production-Ready Infrastructure
 - Docker Compose reference stack (vLLM inference + Qdrant vector DB)
@@ -172,7 +172,7 @@ After completing PROJECT-OMEGA, you will be able to:
 - Monitoring and observability recipes (Prometheus, Grafana, Loki) in the Phase 1 curriculum
 
 ### 📚 Rich Learning Resources
-- **30 hands-on lab files** with solutions (LAB-001 to LAB-014 system)
+- **15 hands-on lab files** with solutions (LAB-000 setup + LAB-001 to LAB-014 system)
 - **15 tutorials** with step-by-step instructions
 - **22 project files** for capstone projects
 - **13 cheat sheets** for quick reference
@@ -1287,22 +1287,22 @@ docker compose -f configs/docker-compose.yml up -d qdrant
 | **3** | 34 |
 | **4** | 41 |
 | **5** | 40 |
-| **6** | 39 |
-| **7** | 37 |
-| **Phase total** | **262** |
+| **6** | 38 |
+| **7** | 36 |
+| **Phase total** | **260** |
 
 ### Additional Resources
 
 | Resource | Count |
 |----------|------:|
 | Learning Resources (labs, tutorials, projects, cheat sheets) | 88 |
-| Hands-on Labs (LAB-001 to LAB-014 system) | 30 |
-| Experiments | 46 |
+| Hands-on Labs (LAB-000 setup + LAB-001 to LAB-014 system) | 15 |
+| Experiments | 47 |
 | QUIZ Files | 33 |
 | PRACTICE Files | 33 |
-| Use Cases / Comparisons / Industry docs | 13 |
+| Use Cases / Comparisons / Industry docs | 11 |
 | Config Files | 4 |
-| Case Study (original home-lab build) | 6 |
+| Case Study (original home-lab build) | 2 |
 
 ### Topics Covered
 
