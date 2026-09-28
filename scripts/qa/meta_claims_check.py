@@ -3,14 +3,15 @@
 
 After README (tick-261) and SITEMAP (tick-262), the remaining count-
 bearing entry documents are FAQ.md, MASTER-INDEX.md,
-ORGANIZATION-GUIDE.md and VOLUME-GUIDE.md. They had rotted the same
-way while every README wave moved the corpus numbers (FAQ still said
-"463 documents ... 30 hands-on labs ... 46 experiments"; MASTER-INDEX
-claimed 427 total files and a "Module Documents: 256" family that no
-longer matches how the corpus is laid out; VOLUME-GUIDE still said
-"85 files across 7 volumes" with "(6 files)" tutorials and "(28
-files)" experiments). This gate locks all four to disk so the next
-wave cannot rot them again:
+ORGANIZATION-GUIDE.md, VOLUME-GUIDE.md and PROGRESS-TRACKER.md. They
+had rotted the same way while every README wave moved the corpus
+numbers (FAQ still said "463 documents ... 30 hands-on labs ...
+46 experiments"; MASTER-INDEX claimed 427 total files and a "Module
+Documents: 256" family that no longer matches how the corpus is laid
+out; VOLUME-GUIDE still said "85 files across 7 volumes" with
+"(6 files)" tutorials; PROGRESS-TRACKER still targeted "0/97 core
+files" with "(15 files)" on a 39-file volume). This gate locks all
+five to disk so the next wave cannot rot them again:
 
   MC-00  a meta entry file is missing, or a measurement itself failed
   MC-01  a numeric claim disagrees with its measurement
@@ -30,6 +31,10 @@ rather than letting the gate rot):
   VOLUME-GUIDE    the file-tree labels (tutorials, labs 2-way split,
                   cheat sheets, projects, experiments, SITEMAP line),
                   and the Total Documents footer
+  PROGRESS-TRACKER  the per-volume progress bars and "(N files)"
+                  headers (vs phase documents on disk), the Total
+                  bar and Core Documents target (vs docs/), the
+                  SITEMAP line and the stats table targets
 
 Hard gate (exit 1 on findings): baseline 0 on the clean corpus.
 
@@ -81,6 +86,26 @@ VG_PROJECTS = re.compile(r"# Capstone projects \((\d+) files\)")
 VG_EXPERIMENTS = re.compile(r"# Practical experiments \((\d+) files\)")
 VG_TOTAL = re.compile(r"^\*\*Total Documents:\*\* (\d+) files across "
                       r"(\d+) volumes$", re.M)
+
+# PROGRESS-TRACKER: progress bars (percent and filled fraction vary as
+# the learner checks boxes - only the target number is locked),
+# volume headers, SITEMAP line and stats-table targets
+PT_VOLUME_BAR = re.compile(r"^Volume (\d+): [^[\n]*\[[^\]]*\] "
+                           r"\d+% \(\d+/(\d+)\)$", re.M)
+PT_TOTAL_BAR = re.compile(r"^Total: [^[\n]*\[[^\]]*\] "
+                          r"\d+% \(\d+/(\d+) core files\)$", re.M)
+PT_VOLUME_HEADER = re.compile(r"^### Volume (\d+): [^(]+"
+                              r"\((\d+) files\)$", re.M)
+PT_SITEMAP = re.compile(r"Full document list \((\d+) files\)")
+PT_VOLUMES_STAT = re.compile(r"^\| \*\*Volumes Completed\*\* \| (\d+) \|",
+                             re.M)
+PT_CORE_DOCS = re.compile(r"^\| \*\*Core Documents\*\* \| (\d+) \|", re.M)
+PT_LABS_STAT = re.compile(r"^\| \*\*Labs Completed\*\* \| (\d+) \|", re.M)
+PT_EXPERIMENTS_STAT = re.compile(r"^\| \*\*Experiments\*\* \| (\d+) \|",
+                                 re.M)
+PT_TUTORIALS_STAT = re.compile(r"^\| \*\*Tutorials\*\* \| (\d+) \|", re.M)
+PT_CAPSTONE = re.compile(r"^\| \*\*Capstone Projects\*\* \| (\d+)\+? \|",
+                         re.M)
 
 HEADLINE_NUM = re.compile(r"\((\d+)\b")
 
@@ -484,6 +509,53 @@ def main() -> int:
             note(int(match.group(2)) == phases,
                  "VOLUME-GUIDE claims %s volumes but disk measures %d "
                  "phases" % (match.group(2), phases))
+
+    # ---- PROGRESS-TRACKER bars, headers and stats table ----
+    pt = args.root / "docs" / "00-META" / "PROGRESS-TRACKER.md"
+    if not pt.exists():
+        print("MC-00 PROGRESS-TRACKER.md not found under docs/00-META")
+        return 1
+    pt_text = pt.read_text(encoding="utf-8")
+    pt_claims = [
+        (PT_SITEMAP, m_docs_md, "SITEMAP document count"),
+        (PT_VOLUMES_STAT, m_phases, "volumes completed"),
+        (PT_CORE_DOCS, m_docs_md, "core documents"),
+        (PT_LABS_STAT, m_labs, "labs"),
+        (PT_EXPERIMENTS_STAT, m_experiments, "experiments"),
+        (PT_TUTORIALS_STAT, _rel("learning-resources/tutorials"),
+         "tutorials"),
+        (PT_CAPSTONE, m_projects, "capstone projects"),
+    ]
+    for pattern, mfn, label in pt_claims:
+        match = pattern.search(pt_text)
+        if match is None:
+            continue
+        actual = measure("PROGRESS-TRACKER %s" % label, mfn)
+        if actual is None:
+            continue
+        note(int(match.group(1)) == actual,
+             "PROGRESS-TRACKER claims %s=%s but disk measures %d"
+             % (label, match.group(1), actual))
+
+    for kind, pattern in (("bar", PT_VOLUME_BAR),
+                          ("header", PT_VOLUME_HEADER)):
+        for vm in pattern.finditer(pt_text):
+            vol, claimed = int(vm.group(1)), int(vm.group(2))
+            actual = measure("PROGRESS-TRACKER volume %d %s" % (vol, kind),
+                             m_phase_md(vol))
+            if actual is None:
+                continue
+            note(claimed == actual,
+                 "PROGRESS-TRACKER volume %d %s claims %d files but disk "
+                 "measures %d" % (vol, kind, claimed, actual))
+
+    match = PT_TOTAL_BAR.search(pt_text)
+    if match is not None:
+        actual = measure("PROGRESS-TRACKER total bar", m_docs_md)
+        if actual is not None:
+            note(int(match.group(1)) == actual,
+                 "PROGRESS-TRACKER total bar claims %s core files but "
+                 "disk measures %d" % (match.group(1), actual))
 
     for f in findings:
         print(f.encode("ascii", "backslashreplace").decode("ascii"))

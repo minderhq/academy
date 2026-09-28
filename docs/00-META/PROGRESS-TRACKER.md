@@ -15,22 +15,22 @@ Difficulty: Beginner
 ## 📊 Overall Progress
 
 ```text
-Volume 1: Infrastructure Mastery  [░░░░░░░░░░░] 0% (0/15)
-Volume 2: AI Foundations          [░░░░░░░░░░░] 0% (0/17)
-Volume 3: LLM Internals           [░░░░░░░░░░░] 0% (0/12)
-Volume 4: Quantization Mastery    [░░░░░░░░░░░] 0% (0/11)
-Volume 5: Fine-Tuning Expert      [░░░░░░░░░░░] 0% (0/10)
-Volume 6: RAG & Data Systems      [░░░░░░░░░░░] 0% (0/15)
-Volume 7: Production Systems      [░░░░░░░░░░░] 0% (0/17)
+Volume 1: Infrastructure Mastery  [░░░░░░░░░░░] 0% (0/39)
+Volume 2: AI Foundations          [░░░░░░░░░░░] 0% (0/32)
+Volume 3: LLM Internals           [░░░░░░░░░░░] 0% (0/34)
+Volume 4: Quantization Mastery    [░░░░░░░░░░░] 0% (0/41)
+Volume 5: Fine-Tuning Expert      [░░░░░░░░░░░] 0% (0/40)
+Volume 6: RAG & Data Systems      [░░░░░░░░░░░] 0% (0/38)
+Volume 7: Production Systems      [░░░░░░░░░░░] 0% (0/36)
 
-Total: [░░░░░░░░░░░░░░░░░] 0% (0/97 core files)
+Total: [░░░░░░░░░░░░░░░░░] 0% (0/408 core files)
 ```
 
 ---
 
 ## 📚 Volume-Based Progress Tracking
 
-### Volume 1: Infrastructure Mastery (15 files)
+### Volume 1: Infrastructure Mastery (39 files)
 **"Build Your AI Laboratory"** - 75-100 hours | Difficulty: ⭐⭐ Intermediate
 
 **NOTE:** Time estimate includes reading (25h), hands-on practice (35h), labs (15h), and capstone project (15h). Adjust based on your prior experience with networking, Linux, and Docker.
@@ -67,7 +67,7 @@ Total: [░░░░░░░░░░░░░░░░░] 0% (0/97 core files
 
 ---
 
-### Volume 2: AI/ML Foundations (17 files)
+### Volume 2: AI/ML Foundations (32 files)
 **"The Mathematics of Intelligence"** - 100-130 hours | Difficulty: ⭐⭐⭐ Advanced
 
 **NOTE:** Time estimate includes reading (40h), hands-on practice (50h), experiments (20h), and labs (15h). Strong math background (calculus, linear algebra) recommended.
@@ -108,7 +108,7 @@ Total: [░░░░░░░░░░░░░░░░░] 0% (0/97 core files
 
 ---
 
-### Volume 3: LLM Internals (12 files)
+### Volume 3: LLM Internals (34 files)
 **"Transformer Architecture Deep Dive"** - 80-100 hours | Difficulty: ⭐⭐⭐ Advanced
 
 **NOTE:** Time estimate includes reading (35h), hands-on practice (30h), notebooks (15h), and experiments (15h). Requires solid understanding of neural networks and attention mechanisms.
@@ -137,7 +137,7 @@ Total: [░░░░░░░░░░░░░░░░░] 0% (0/97 core files
 
 ---
 
-### Volume 4: Quantization Mastery (11 files)
+### Volume 4: Quantization Mastery (41 files)
 **"Run Models Anywhere"** - 30-35 hours | Difficulty: ⭐⭐⭐ Advanced
 
 - [ ] **VOLUME-4-Quantization.md** - Volume guide (read first!)
@@ -161,7 +161,7 @@ Total: [░░░░░░░░░░░░░░░░░] 0% (0/97 core files
 
 ---
 
-### Volume 5: Fine-Tuning Expert (10 files)
+### Volume 5: Fine-Tuning Expert (40 files)
 **"Adapt Models to Your Needs"** - 35-40 hours | Difficulty: ⭐⭐⭐ Advanced
 
 - [ ] **VOLUME-5-Fine-Tuning.md** - Volume guide (read first!)
@@ -186,7 +186,7 @@ Total: [░░░░░░░░░░░░░░░░░] 0% (0/97 core files
 
 ---
 
-### Volume 6: RAG & Data Systems (15 files)
+### Volume 6: RAG & Data Systems (38 files)
 **"Build Intelligent Data Systems"** - 40-45 hours | Difficulty: ⭐⭐⭐ Advanced
 
 - [ ] **VOLUME-6-Data-Nexus.md** - Volume guide (read first!)
@@ -217,7 +217,7 @@ Total: [░░░░░░░░░░░░░░░░░] 0% (0/97 core files
 
 ---
 
-### Volume 7: Production Systems (17 files)
+### Volume 7: Production Systems (36 files)
 **"Deploy at Scale"** - 45-50 hours | Difficulty: ⭐⭐⭐⭐ Expert
 
 - [ ] **VOLUME-7-Production-Mastery.md** - Volume guide (read first!)
@@ -387,7 +387,7 @@ Notes:
 ### Essential Reading
 - **[VOLUME-GUIDE.md](VOLUME-GUIDE.md)** - Start here! Overview of all 7 volumes
 - **[0000-LEARNING-PATH.md](0000-LEARNING-PATH.md)** - Recommended learning paths
-- **[SITEMAP.md](SITEMAP.md)** - Full document list (97 files)
+- **[SITEMAP.md](SITEMAP.md)** - Full document list (408 files)
 - **[README.md](../../README.md)** - Project overview
 
 ### Troubleshooting
@@ -407,10 +407,10 @@ Notes:
 | Metric | Target | Current | % |
 |--------|--------|---------|---|
 | **Volumes Completed** | 7 | 0 | 0% |
-| **Core Documents** | 97 | 0 | 0% |
-| **Labs Completed** | 14 | 0 | 0% |
-| **Experiments** | 10 | 0 | 0% |
-| **Tutorials** | 6 | 0 | 0% |
+| **Core Documents** | 408 | 0 | 0% |
+| **Labs Completed** | 15 | 0 | 0% |
+| **Experiments** | 47 | 0 | 0% |
+| **Tutorials** | 15 | 0 | 0% |
 | **Capstone Projects** | 7+ | 0 | 0% |
 | **Total Hours** | 300-350 | 0 | 0% |
 
