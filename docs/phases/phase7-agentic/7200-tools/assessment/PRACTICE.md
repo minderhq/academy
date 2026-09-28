@@ -1,7 +1,7 @@
 ---
 Document ID: 7200-PRACTICE
 Title: "7200: Tools & Function Calling - Practice"
-Last Updated: 2026-09-25
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Advanced
 ---
@@ -186,39 +186,32 @@ print(result)
 ### Exercise 3: Build Tool-Using Agent
 
 ```python
-# NOTE: create_openai_functions_agent + AgentExecutor is the legacy
-# LangChain 0.x API (removed in LangChain 1.x); the current path is
-# langchain.agents.create_agent / LangGraph. The flow below still
-# teaches the executor loop correctly.
-from langchain.agents import create_openai_functions_agent, AgentExecutor
+# LangChain 1.x: one factory call builds the whole agent loop.
+# create_agent returns a compiled LangGraph graph - no AgentExecutor
+# and no hub prompt to wire by hand (both removed in 1.x).
+from langchain.agents import create_agent
 from langchain_openai import ChatOpenAI
-from langchain import hub
 
 # SOLUTION: Initialize ChatOpenAI with GPT-4
 llm = ChatOpenAI(model="gpt-4", temperature=0)
 
-# SOLUTION: Pull standard agent prompt from LangChain hub
-prompt = hub.pull("hwchase17/openai-functions-agent")
-
-# SOLUTION: Create OpenAI functions agent
+# SOLUTION: Create the agent loop with one create_agent call
 tools = [calculator, search_web, get_weather]
-agent = create_openai_functions_agent(llm, tools, prompt)
-
-# SOLUTION: Create OpenAI functions agent executor
-agent_executor = AgentExecutor(
-    agent=agent,
-    tools=tools,
-    verbose=True,
-    max_iterations=5,
-    handle_parsing_errors=True,
+agent = create_agent(
+    llm,
+    tools,
+    system_prompt="You are a helpful assistant.",
 )
 
 # SOLUTION: Invoke agent with test query
-result = agent_executor.invoke({
-    "input": "What's the square root of 144, and what's the weather in Tokyo?"
+result = agent.invoke({
+    "messages": [
+        {"role": "user",
+         "content": "What's the square root of 144, and what's the weather in Tokyo?"}
+    ]
 })
 
-print(result["output"])
+print(result["messages"][-1].text)
 ```
 
 ### Exercise 4: Multi-Step Tool Execution

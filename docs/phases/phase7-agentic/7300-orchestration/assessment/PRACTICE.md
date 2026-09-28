@@ -1,7 +1,7 @@
 ---
 Document ID: 7300-PRACTICE
 Title: "7300: Agent Orchestration - Practice"
-Last Updated: 2026-09-25
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Advanced
 ---
@@ -13,14 +13,13 @@ Difficulty: Advanced
 ### Exercise 1: Single Agent with Memory
 
 ```python
-from langchain.agents import AgentExecutor, create_openai_functions_agent
-from langchain.memory import ConversationBufferMemory
+from langchain.agents import create_agent
 from langchain_openai import ChatOpenAI
 from langchain_core.tools import tool
+from langgraph.checkpoint.memory import InMemorySaver
 
-# NOTE: AgentExecutor + ConversationBufferMemory is the legacy
-# LangChain 0.x pattern (removed in LangChain 1.x); the current path
-# is langchain.agents.create_agent / LangGraph with a checkpointer.
+# LangChain 1.x: memory = a checkpointer. The same thread_id shares
+# chat history across invocations (ConversationBufferMemory removed).
 
 # Shared tools - the same @tool definitions as the 7200 Practice
 # file, repeated here so this file runs standalone.
@@ -47,79 +46,85 @@ def get_weather(location: str, unit: str = "celsius") -> str:
 # SOLUTION: Create agent with memory for conversation context
 llm = ChatOpenAI(model="gpt-4", temperature=0)
 
-# SOLUTION: Initialize conversation buffer memory
-memory = ConversationBufferMemory(
-    memory_key="chat_history",
-    return_messages=True,
+agent = create_agent(
+    llm,
+    [calculator, search_web, get_weather],
+    system_prompt="You are a helpful assistant.",
+    checkpointer=InMemorySaver(),
 )
 
-# SOLUTION: Create agent with memory for conversation context
-from langchain import hub
+# SOLUTION: Test conversation with memory - same thread_id, same memory
+config = {"configurable": {"thread_id": "alice-1"}}
 
-prompt = hub.pull("hwchase17/openai-functions-agent")
-agent = create_openai_functions_agent(llm, tools, prompt)
-
-agent_executor = AgentExecutor(
-    agent=agent,
-    tools=tools,
-    memory=memory,
-    verbose=True,
+response1 = agent.invoke(
+    {"messages": [{"role": "user", "content": "Hi, my name is Alice"}]},
+    config=config,
 )
+print(response1["messages"][-1].text)
 
-# SOLUTION: Test conversation with memory
-response1 = agent_executor.invoke({"input": "Hi, my name is Alice"})
-print(response1["output"])
-
-response2 = agent_executor.invoke({"input": "What's my name?"})
-print(response2["output"])
+response2 = agent.invoke(
+    {"messages": [{"role": "user", "content": "What's my name?"}]},
+    config=config,
+)
+print(response2["messages"][-1].text)
 ```
 
 ### Exercise 2: Multi-Agent Collaboration
 
 ```python
-from langchain.agents import AgentExecutor, create_openai_functions_agent
+from langchain.agents import create_agent
 from langchain_openai import ChatOpenAI
+from langchain_core.tools import tool
+
+# Shared tools so this file runs standalone.
+@tool
+def search_web(query: str) -> str:
+    """Search the web for information."""
+    return f"Results for: {query}"
+
+@tool
+def calculator(expression: str) -> str:
+    """Evaluate a mathematical expression."""
+    try:
+        return str(eval(expression))
+    except Exception as e:
+        return f"Error: {e}"
+
+def build_agent(system_prompt: str, tools):
+    """Build a specialized agent with one create_agent call."""
+    llm = ChatOpenAI(model="gpt-4", temperature=0)
+    return create_agent(llm, tools, system_prompt=system_prompt)
 
 class ResearchAgent:
     def __init__(self, topic):
         self.topic = topic
-        self.llm = ChatOpenAI(model="gpt-4")
-
-        # Research-specific tools
-        self.tools = [search_web, calculator]
-
-        prompt = hub.pull("hwchase17/openai-functions-agent")
-        self.agent = create_openai_functions_agent(self.llm, self.tools, prompt)
-        self.executor = AgentExecutor(
-            agent=self.agent,
-            tools=self.tools,
-            verbose=True,
+        self.agent = build_agent(
+            f"You research topics thoroughly. Current topic: {topic}",
+            [search_web, calculator],
         )
 
     def research(self, query):
         """Research a specific query."""
         full_query = f"Research this topic about {self.topic}: {query}"
-        result = self.executor.invoke({"input": full_query})
-        return result["output"]
+        result = self.agent.invoke(
+            {"messages": [{"role": "user", "content": full_query}]}
+        )
+        return result["messages"][-1].text
 
 class WriterAgent:
     def __init__(self):
-        self.llm = ChatOpenAI(model="gpt-4")
-        self.tools = [calculator]  # Writing might need some tools
-
-        prompt = hub.pull("hwchase17/openai-functions-agent")
-        self.agent = create_openai_functions_agent(self.llm, self.tools, prompt)
-        self.executor = AgentExecutor(
-            agent=self.agent,
-            tools=self.tools,
-            verbose=True,
+        self.agent = build_agent(
+            "You are a skilled technical writer.",
+            [calculator],  # Writing might need some tools
         )
 
     def write(self, research_findings):
         """Write content based on research."""
         query = f"Write an article based on these findings: {research_findings}"
-        result = self.executor.invoke({"input": query})
-        return result["output"]
+        result = self.agent.invoke(
+            {"messages": [{"role": "user", "content": query}]}
+        )
+        return result["messages"][-1].text
 
 # SOLUTION: Coordinate multiple agents for task completion
 def create_article(topic):
