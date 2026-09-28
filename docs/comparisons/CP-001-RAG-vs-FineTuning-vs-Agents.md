@@ -457,13 +457,24 @@ rag_chain = RetrievalQA.from_chain_type(
 **Dynamic retrieval:** Agent decides what to search for
 
 ```python
-from langchain_core.tools import Tool
+from langchain_core.tools import tool
 # Agent with RAG tools
-tools = [
-    Tool(name="search_docs", func=rag_search),
-    Tool(name="search_web", func=web_search),
-    Tool(name="query_db", func=database_query)
-]
+@tool
+def search_docs(query: str) -> str:
+    """Search internal documents."""
+    return rag_search(query)
+
+@tool
+def search_web(query: str) -> str:
+    """Search the web."""
+    return web_search(query)
+
+@tool
+def query_db(query: str) -> str:
+    """Query the database."""
+    return database_query(query)
+
+tools = [search_docs, search_web, query_db]
 
 agent = create_agent(tools=tools)
 
@@ -492,23 +503,31 @@ code_agent = Agent(model="code-llama-7b")
 **Maximum capability:**
 
 ```python
-from langchain_core.tools import Tool
+from langchain_core.tools import tool
 # Fine-tuned model
 model = load_finetuned_model("domain-specific-7b")
 
 # RAG for grounding
-rag_tools = [Tool(name="search_docs", func=rag_search)]
+@tool
+def search_docs(query: str) -> str:
+    """Search internal documents."""
+    return rag_search(query)
 
 # Other tools
-other_tools = [
-    Tool(name="api_call", func=call_api),
-    Tool(name="calculator", func=calculate)
-]
+@tool
+def api_call(query: str) -> str:
+    """Call an external API."""
+    return call_api(query)
+
+@tool
+def calculator(expression: str) -> str:
+    """Perform calculations."""
+    return calculate(expression)
 
 # Agent orchestrates everything
 agent = Agent(
     model=model,
-    tools=rag_tools + other_tools
+    tools=[search_docs, api_call, calculator]
 )
 ```
 
@@ -611,9 +630,14 @@ trainer.train()
 ### Agents Quick Start
 
 ```python
-from langchain_core.tools import Tool
+from langchain_core.tools import tool
 # 1. Define tools
-tools = [Tool(name="tool", func=your_func, description="...")]
+@tool
+def your_tool(your_arg: str) -> str:
+    """Describe what this tool does."""
+    return your_func(your_arg)
+
+tools = [your_tool]
 
 # 2. Create agent
 agent = create_agent(llm, tools)
