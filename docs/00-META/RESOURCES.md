@@ -18,14 +18,14 @@ Difficulty: Beginner
 - **[PyTorch Documentation](https://pytorch.org/docs/stable/)** - Deep learning framework
 - **[TensorFlow Documentation](https://www.tensorflow.org/guide)** - Google's ML framework
 - **[Hugging Face Transformers](https://huggingface.co/docs/transformers/)** - Transformer models
-- **[LangChain Documentation](https://python.langchain.com/)** - LLM application framework
+- **[LangChain Documentation](https://docs.langchain.com/oss/python/langchain/overview)** - LLM application framework
 - **[vLLM Documentation](https://docs.vllm.ai/)** - High-throughput LLM serving
 - **[TGI (Text Generation Inference)](https://huggingface.co/docs/text-generation-inference/)** - Production inference
 
 ### Vector Databases
 - **[Qdrant Documentation](https://qdrant.tech/documentation/)** - Vector similarity search
 - **[Pinecone Documentation](https://docs.pinecone.io/)** - Managed vector database
-- **[Weaviate Documentation](https://weaviate.io/developers/weaviate/)** - Open source vector DB
+- **[Weaviate Documentation](https://docs.weaviate.io/weaviate)** - Open source vector DB
 - **[ChromaDB Documentation](https://docs.trychroma.com/)** - Embedded vector database
 
 ### Knowledge Graphs
@@ -72,12 +72,12 @@ Difficulty: Beginner
 ### Foundational
 - **[Fast.ai Practical Deep Learning](https://course.fast.ai/)** - Free, practical deep learning course
 - **[Andrew Ng's ML Specialization (Coursera)](https://www.coursera.org/specializations/machine-learning-introduction)** - Classic ML fundamentals
-- **[CS231n: CNNs for Visual Recognition (Stanford)](http://cs231n.stanford.edu/)** - Computer vision course
+- **[CS231n: CNNs for Visual Recognition (Stanford)](https://cs231n.stanford.edu/)** - Computer vision course
 
 ### Advanced
 - **[Distributed Systems (MIT)](https://pdos.csail.mit.edu/6.824/)** - For understanding distributed ML
 - **[CS224n: NLP with Deep Learning (Stanford)](http://web.stanford.edu/class/cs224n/)** - NLP course
-- **[DeepMind x UCL RL Lecture Series](https://www.davidsilver.uk/teaching/)** - Reinforcement learning
+- **[DeepMind x UCL RL Lecture Series](https://davidstarsilver.wordpress.com/teaching/)** - Reinforcement learning
 
 ### LLM Specific
 - **[LangChain Academy](https://academy.langchain.com/)** - Official LangChain training
@@ -117,12 +117,12 @@ Difficulty: Beginner
 - **[Visual Studio Code](https://code.visualstudio.com/)** - Recommended IDE
 - **[Jupyter Lab](https://jupyter.org/)** - Interactive notebooks
 - **[Git](https://git-scm.com/)** - Version control
-- **[GitHub Desktop](https://desktop.github.com/)** - Git GUI
+- **[GitHub Desktop](https://github.com/apps/desktop)** - Git GUI
 
 ### ML/AI
 - **[Anaconda/Miniconda](https://docs.conda.io/)** - Package management
-- **[CUDA Toolkit](https://developer.nvidia.com/cuda-toolkit)** - GPU computing
-- **[Ollama](https://ollama.ai/)** - Local LLM management
+- **[CUDA Toolkit](https://developer.nvidia.com/cuda/toolkit)** - GPU computing
+- **[Ollama](https://ollama.com/)** - Local LLM management
 - **[LM Studio](https://lmstudio.ai/)** - Local LLM interface
 
 ### Monitoring & Debugging
@@ -167,12 +167,12 @@ Difficulty: Beginner
 ## 📰 News & Updates
 
 ### Newsletters
-- **[The Batch](https://www.deeplearning.ai/thebatch/)** - DeepLearning.AI weekly
+- **[The Batch](https://www.deeplearning.ai/the-batch)** - DeepLearning.AI weekly
 - **[Machine Learning Mastery](https://machinelearningmastery.com/blog/)** - ML tutorials
 - **[TLDR AI](https://tldr.ai/)** - AI news summary
 
 ### Research
-- **[Papers with Code](https://paperswithcode.com/)** - ML papers with implementations
+- **[Hugging Face Papers](https://huggingface.co/papers/trending)** - ML papers with implementations
 - **[Hugging Face Papers](https://huggingface.co/papers)** - Latest research
 - **[arXiv.org](https://arxiv.org/list/cs.AI/recent)** - Recent AI papers
 
@@ -240,9 +240,9 @@ git push origin feature-branch
 ## 🎯 Certification & Credentials
 
 ### Vendor Certifications
-- **[NVIDIA Deep Learning Institute](https://www.nvidia.com/en-us/deep-learning-ai/education/)** - GPU computing
+- **[NVIDIA Deep Learning Institute](https://www.nvidia.com/en-us/training/)** - GPU computing
 - **[AWS Certified Machine Learning Engineer](https://aws.amazon.com/certification/certified-machine-learning-engineer-associate/)** - Cloud ML
-- **[Google ML Engineer](https://cloud.google.com/certifications/machine-learning-engineer)** - GCP ML
+- **[Google ML Engineer](https://cloud.google.com/learn/certification/machine-learning-engineer)** - GCP ML
 
 ### Online Certificates
 - **[Coursera ML Specialization](https://www.coursera.org/specializations/machine-learning-introduction)**
@@ -272,7 +272,7 @@ git push origin feature-branch
 - **EMNLP** (November) - Empirical Methods in NLP
 
 ### Virtual Events
-- **[Hugging Face Events](https://www.huggingface.co/events)**
+- **[Hugging Face Events](https://huggingface.co/Events)**
 - **[ODSC (Open Data Science Conference)](https://odsc.com/)**
 
 ---
@@ -280,7 +280,7 @@ git push origin feature-branch
 ## 📝 Note-Taking & Documentation Tools
 
 - **[Obsidian](https://obsidian.md/)** - Knowledge management
-- **[Notion](https://www.notion.so/)** - All-in-one workspace
+- **[Notion](https://www.notion.com/)** - All-in-one workspace
 - **[Docusaurus](https://docusaurus.io/)** - Documentation site generator
 
 ---

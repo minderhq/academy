@@ -430,7 +430,7 @@ class HierarchicalReActAgent:
 - [1] Yao et al. "ReAct: Synergizing Reasoning and Acting in Language Models". ICLR, 2023.
 
 ### Documentation
-- [LangChain Agents](https://python.langchain.com/docs/modules/agents/) - Agent framework documentation
+- [LangChain Agents](https://docs.langchain.com/oss/python/langchain/overview) - Agent framework documentation
 - [LangGraph](https://langchain-ai.github.io/langgraph/) - Stateful agent framework
 
 ### Related PROJECT-OMEGA Documents
@@ -444,7 +444,7 @@ class HierarchicalReActAgent:
 
 ### External Resources
 - [ReAct Paper](https://arxiv.org/abs/2210.03629) - Original research paper
-- [Agent Protocol](https://python.langchain.com/docs/modules/agents/agent_types/react/) - Implementation guide
+- [LangChain Agents Reference](https://reference.langchain.com/python/langchain/agents) - Implementation guide
 
 ---
 

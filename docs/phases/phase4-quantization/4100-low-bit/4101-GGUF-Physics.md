@@ -375,8 +375,8 @@ see [4202: Speculative Decoding](../4200-kv-cache/4202-Speculative-Decoding.md).
 - [1] Lin et al. "GPTQ: Accurate Post-Training Quantization for Generative Pre-trained Transformers". ICLR, 2023.
 
 ### Documentation
-- [llama.cpp GitHub](https://github.com/ggerganov/llama.cpp) - Source code and documentation
-- [GGUF Format Spec](https://github.com/ggerganov/ggml/blob/master/docs/gguf.md) - Format specification
+- [llama.cpp GitHub](https://github.com/ggml-org/llama.cpp) - Source code and documentation
+- [GGUF Format Spec](https://github.com/ggml-org/ggml/blob/master/docs/gguf.md) - Format specification
 
 ### Related PROJECT-OMEGA Documents
 - [4102: EXL2 and AWQ](./4102-EXL2-and-AWQ.md) - VRAM-only quantization

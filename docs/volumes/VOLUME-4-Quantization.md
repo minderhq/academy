@@ -67,7 +67,7 @@ Trade-off: Lower bits = Faster but less accurate
 **Practice:**
 ```bash
 # Convert model to GGUF
-git clone https://github.com/ggerganov/llama.cpp
+git clone https://github.com/ggml-org/llama.cpp
 cd llama.cpp
 
 # Quantize to different levels
@@ -615,7 +615,7 @@ For more help, see **[TROUBLESHOOTING-Common-Issues.md](../learning-resources/tr
 ---
 
 **Recommended Resources:**
-- **[llama.cpp](https://github.com/ggerganov/llama.cpp)** - GGUF implementation
+- **[llama.cpp](https://github.com/ggml-org/llama.cpp)** - GGUF implementation
 - **[vLLM Docs](https://docs.vllm.ai/)** - vLLM documentation
 - **[TGI Docs](https://huggingface.co/docs/text-generation-inference)** - TGI documentation
 

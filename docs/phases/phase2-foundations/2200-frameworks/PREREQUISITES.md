@@ -428,7 +428,7 @@ If any box stays unchecked, the matching section above has the fix.
 
 - [PyTorch Tutorials](https://docs.pytorch.org/tutorials/) — official tutorials; nn.Module and optimization walkthroughs
 - [CS231n: Backpropagation, Intuitions](https://cs231n.github.io/optimization-2/) — the graph view of the chain rule
-- [PyTorch Internals](http://blog.ezyang.com/2019/05/pytorch-internals/) — Edward Z. Yang on tensors, dispatch, and autograd
+- [PyTorch Internals](https://blog.ezyang.com/2019/05/pytorch-internals/) — Edward Z. Yang on tensors, dispatch, and autograd
 
 ---
 

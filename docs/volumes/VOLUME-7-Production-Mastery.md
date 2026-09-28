@@ -1753,10 +1753,10 @@ You have demonstrated mastery of:
 ---
 
 **Recommended Resources:**
-- **[NVIDIA Deep Learning Institute](https://www.nvidia.com/en-us/deep-learning-ai/education/)** - Advanced courses
+- **[NVIDIA Deep Learning Institute](https://www.nvidia.com/en-us/training/)** - Advanced courses
 - **[Fast.ai](https://www.fast.ai/)** - Practical deep learning
 - **[Hugging Face Courses](https://huggingface.co/learn)** - NLP and transformers
-- **[LangChain Documentation](https://python.langchain.com/)** - Agent frameworks
+- **[LangChain Documentation](https://docs.langchain.com/oss/python/langchain/overview)** - Agent frameworks
 
 ---
 

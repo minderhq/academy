@@ -69,7 +69,7 @@ Repeat: Until satisfied
    - Understand token generation
 
 2. **Function Calling (30 min):**
-   - [OpenAI Function Calling](https://platform.openai.com/docs/guides/function-calling)
+   - [OpenAI Function Calling](https://developers.openai.com/api/docs/guides/function-calling)
    - Understand tool use
 
 3. **Agent Basics (30 min):**

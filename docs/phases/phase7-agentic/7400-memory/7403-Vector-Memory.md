@@ -301,7 +301,7 @@ episode.
 - [3] Zhong et al. "MemoRAG: Boosting Long-Term Memory for LLMs". 2024.
 
 ### Documentation
-- [Qdrant Filtering](https://qdrant.tech/documentation/concepts/filtering/) - payload filters and indexes
+- [Qdrant Filtering](https://qdrant.tech/documentation/search/filtering/) - payload filters and indexes
 
 ### Related PROJECT-OMEGA Documents
 - [7401: Long-term Memory](./7401-Long-term-Memory.md) - memory fundamentals

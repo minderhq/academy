@@ -578,7 +578,7 @@ Best,
 **Know your market value:**
 - [Levels.fyi](https://www.levels.fyi/) - Salary data
 - [Glassdoor](https://www.glassdoor.com/) - Company salaries
-- [Reddit r/cscareerquestions](https://reddit.com/r/cscareerquestions/) - Industry insights
+- [Reddit r/cscareerquestions](https://www.reddit.com/r/cscareerquestions/) - Industry insights
 
 **Total Compensation = Base + Bonus + Equity**
 

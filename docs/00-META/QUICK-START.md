@@ -367,7 +367,7 @@ pip install ollama
 ## 🌐 Resources
 
 ### Official Documentation
-- **Ollama:** https://ollama.com/docs
+- **Ollama:** https://docs.ollama.com
 - **Mistral AI:** https://mistral.ai/news/
 - **Hugging Face:** https://huggingface.co/docs
 

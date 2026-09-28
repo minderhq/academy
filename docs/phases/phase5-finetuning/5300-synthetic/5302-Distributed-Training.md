@@ -370,7 +370,7 @@ spec:
 ```
 
 ### Multi-Node Training Setup
-For multi-node DDP, the [Kubeflow Trainer docs](https://www.kubeflow.org/docs/components/training/) (the Training Operator's successor) cover the `PyTorchJob` kind, which manages the master/worker processes and injects rendezvous env vars (`WORLD_SIZE` = 1 master + 2 workers here):
+For multi-node DDP, the [Kubeflow Trainer docs](https://www.kubeflow.org/docs/components/trainer/) (the Training Operator's successor) cover the `PyTorchJob` kind, which manages the master/worker processes and injects rendezvous env vars (`WORLD_SIZE` = 1 master + 2 workers here):
 
 ```yaml
 # multi-node-training.yaml

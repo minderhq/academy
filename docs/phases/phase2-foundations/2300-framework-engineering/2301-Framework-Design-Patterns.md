@@ -1254,7 +1254,7 @@ See: [2306: Building a Production Framework](./guides/2306-Building-Production-F
 - [PreTrainedModel - HuggingFace Transformers](https://huggingface.co/docs/transformers/main_classes/model)
 - [Trainer and TrainingArguments - HuggingFace Transformers](https://huggingface.co/docs/transformers/main_classes/trainer)
 - [dataclasses - Python documentation](https://docs.python.org/3/library/dataclasses.html)
-- [langchain_core API reference](https://reference.langchain.com/python/langchain_core/)
+- [langchain_core API reference](https://reference.langchain.com/python/langchain-core)
 
 ---
 

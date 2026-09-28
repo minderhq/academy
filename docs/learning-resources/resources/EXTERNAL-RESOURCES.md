@@ -51,12 +51,12 @@ Curated list of videos, courses, and external resources to complement the learni
 
 ### 1400: LLMOps
 **Video Courses:**
-- [LLMOps with LangChain](https://www.deeplearning.ai/short-courses/) - DeepLearning.AI
+- [LLMOps with LangChain](https://www.deeplearning.ai/courses) - DeepLearning.AI
 - [Production LLM Applications](https://www.youtube.com/watch?v=sByO8bDdN24) - Harrison Chase (LangChain)
 
 **Articles:**
-- [LLMOps: A New Paradigm](https://www.anthropic.com/index/claude-2)
-- [LangChain Documentation](https://python.langchain.com/docs/get_started/introduction)
+- [LLMOps: A New Paradigm](https://www.anthropic.com/news/claude-2)
+- [LangChain Documentation](https://docs.langchain.com/oss/python/langchain/quickstart)
 
 ### 1500: Monitoring
 **Video Courses:**
@@ -78,7 +78,7 @@ Curated list of videos, courses, and external resources to complement the learni
 
 **Interactive:**
 - [PyTorch Official Tutorials](https://pytorch.org/tutorials/)
-- [LearnPyT.IO](https://learnpytorch.io/)
+- [LearnPyT.IO](https://www.learnpytorch.io/)
 
 ### 2200: Deep Learning
 **Video Courses:**
@@ -127,7 +127,7 @@ Curated list of videos, courses, and external resources to complement the learni
 
 **Resources:**
 - [Sentence-BERT Paper](https://arxiv.org/abs/1908.10084)
-- [OpenAI Embeddings](https://platform.openai.com/docs/guides/embeddings)
+- [OpenAI Embeddings](https://developers.openai.com/api/docs/guides/embeddings)
 
 ### 3300: Decoding
 **Video:**
@@ -225,8 +225,8 @@ Curated list of videos, courses, and external resources to complement the learni
 - [Advanced RAG Techniques](https://www.youtube.com/watch?v=w0HNaVYQpjE) - DeepLearning.AI
 
 **Articles:**
-- [Seven Failure Modes of RAG](https://www.deeplearning.ai/short-courses/)
-- [Hybrid Search Guide](https://www.pinecone.io/learn/hybrid-search/)
+- [Seven Failure Modes of RAG](https://www.deeplearning.ai/courses)
+- [Hybrid Search Guide](https://www.pinecone.io/blog/hybrid-search/)
 
 ### 6300: Context Optimization
 **Papers:**
@@ -247,8 +247,8 @@ Curated list of videos, courses, and external resources to complement the learni
 - [Production RAG Systems](https://www.youtube.com/watch?v=w0HNaVYQpjE)
 
 **Resources:**
-- [LlamaIndex RAG Guide](https://docs.llamaindex.ai/en/stable/)
-- [LangChain RAG Tutorial](https://python.langchain.com/docs/tutorials/rag)
+- [LlamaIndex RAG Guide](https://developers.llamaindex.ai/python/framework/)
+- [LangChain RAG Tutorial](https://docs.langchain.com/oss/python/deepagents/rag)
 
 ---
 
@@ -269,8 +269,8 @@ Curated list of videos, courses, and external resources to complement the learni
 - [LangChain Tools Tutorial](https://www.youtube.com/watch?v=q-L4ojFOJ7I)
 
 **Documentation:**
-- [OpenAI Function Calling](https://platform.openai.com/docs/guides/function-calling)
-- [LangChain Tools](https://python.langchain.com/docs/modules/tools/)
+- [OpenAI Function Calling](https://developers.openai.com/api/docs/guides/function-calling)
+- [LangChain Tools](https://docs.langchain.com/oss/python/langchain/overview)
 
 ### 7300: Orchestration
 **Video:**
@@ -303,17 +303,17 @@ Curated list of videos, courses, and external resources to complement the learni
 ## Additional Learning Platforms
 
 ### Interactive Courses
-- [DeepLearning.AI Short Courses](https://www.deeplearning.ai/short-courses/) - Free short courses on AI topics
+- [DeepLearning.AI Courses](https://www.deeplearning.ai/courses) - Free courses on AI topics
 - [HuggingFace Courses](https://huggingface.co/learn) - Free courses on NLP and transformers
 - [Fast.ai](https://www.fast.ai/) - Practical deep learning courses
 
 ### Practice Platforms
 - [LeetCode](https://leetcode.com/) - Coding challenges
 - [Kaggle](https://www.kaggle.com/) - ML competitions and datasets
-- [Papers with Code](https://paperswithcode.com/) - Browse ML papers and code
+- [Hugging Face Papers](https://huggingface.co/papers/trending) - Browse ML papers and code
 
 ### Research
-- [Papers with Code](https://paperswithcode.com/)
+- [Hugging Face Papers](https://huggingface.co/papers/trending)
 - [HuggingFace Papers](https://huggingface.co/papers)
 - [arXiv.org](https://arxiv.org/list/cs.AI/recent)
 

@@ -1241,7 +1241,7 @@ Implement a creative system for:
 
 ## Resources
 
-- [LangChain Agents](https://python.langchain.com/docs/modules/agents/)
+- [LangChain Agents](https://docs.langchain.com/oss/python/langchain/overview)
 - [AutoGPT](https://github.com/Significant-Gravitas/AutoGPT)
 - [BabyAGI](https://github.com/yoheinakajima/babyagi)
 - [Agent Protocol](https://agentprotocol.ai/)

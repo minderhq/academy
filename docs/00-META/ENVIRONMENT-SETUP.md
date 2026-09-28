@@ -441,7 +441,7 @@ Once your environment is set up:
 
 ### Software Resources
 - [Docker Documentation](https://docs.docker.com/)
-- [Ollama Documentation](https://ollama.com/docs)
+- [Ollama Documentation](https://docs.ollama.com)
 - [PyTorch Installation](https://pytorch.org/get-started/locally/)
 
 ### Troubleshooting

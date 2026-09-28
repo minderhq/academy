@@ -3,7 +3,7 @@ Document ID: 2400-PREREQUISITES
 Title: "2400: LLM Pretraining - Prerequisites"
 Phase: 2
 Module: 2400
-Last Updated: 2026-09-26
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 30 minutes (quick review) - 9 hours (full review)
@@ -163,7 +163,7 @@ assert decode(encode("the model trains on text")) == "the model trains on text"
 This word-level scheme breaks on real corpora: vocabularies explode, rare words become `<unk>`, and morphology is lost. Real LLMs use **subword** methods — BPE, SentencePiece, Unigram — which Lesson 2401 builds and trains from scratch.
 
 **If you're not familiar:**
-- Review: the [Hugging Face NLP Course](https://huggingface.co/learn/nlp-course) tokenization chapter
+- Review: the [Hugging Face LLM Course](https://huggingface.co/learn/llm-course) tokenization chapter
 - Practice: Add punctuation handling to `tokenize()` so "text." and "text" map to the same token
 - Estimated time: 1.5 hours
 
@@ -531,7 +531,7 @@ Use this checklist to verify you're ready:
 - [Attention Is All You Need](https://arxiv.org/abs/1706.03762) — Vaswani et al.; Section 3.2 is the attention reference (Section 4)
 - [Language Models are Few-Shot Learners](https://arxiv.org/abs/2005.14165) — Brown et al.; the objective from Section 3, at scale
 - [Training Compute-Optimal Large Language Models](https://arxiv.org/abs/2203.15556) — Hoffmann et al.; token budgets worth knowing before you spend GPU-hours
-- [Hugging Face NLP Course](https://huggingface.co/learn/nlp-course) — tokenization chapter (Section 2)
+- [Hugging Face LLM Course](https://huggingface.co/learn/llm-course) — tokenization chapter (Section 2)
 - [Speech and Language Processing](https://web.stanford.edu/~jurafsky/slp3/) — Jurafsky & Martin, 3rd ed. draft; n-gram LMs, perplexity, corpus processing
 
 ---

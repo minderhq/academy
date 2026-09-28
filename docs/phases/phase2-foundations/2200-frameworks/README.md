@@ -169,12 +169,12 @@ Each lesson is written around runnable code — work through the examples, don't
 
 - [PyTorch Tutorials](https://docs.pytorch.org/tutorials/) — official tutorials; the autograd and nn.Module walkthroughs map onto Lesson 2201
 - [TensorFlow Tutorials](https://www.tensorflow.org/tutorials) — official tutorials; XLA integration context for Lesson 2202
-- [CUDA Programming Guide](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html) (NVIDIA) — the reference behind Lesson 2203
+- [CUDA Programming Guide](https://docs.nvidia.com/cuda/cuda-programming-guide/index.html) (NVIDIA) — the reference behind Lesson 2203
 
 **Optional:**
 
 - [XLA: Accelerated Linear Algebra](https://openxla.org/xla) (OpenXLA) — the compiler's own overview, architecture, and backends
-- [PyTorch Internals](http://blog.ezyang.com/2019/05/pytorch-internals/) (Edward Z. Yang) — tensor structure, dispatch, autograd, and the codebase layout
+- [PyTorch Internals](https://blog.ezyang.com/2019/05/pytorch-internals/) (Edward Z. Yang) — tensor structure, dispatch, autograd, and the codebase layout
 
 ---
 
@@ -223,9 +223,9 @@ Each lesson is written around runnable code — work through the examples, don't
 
 - [PyTorch Tutorials](https://docs.pytorch.org/tutorials/) — official PyTorch tutorials
 - [TensorFlow Tutorials](https://www.tensorflow.org/tutorials) — official TensorFlow tutorials
-- [CUDA Programming Guide](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html) — NVIDIA
+- [CUDA Programming Guide](https://docs.nvidia.com/cuda/cuda-programming-guide/index.html) — NVIDIA
 - [XLA: Accelerated Linear Algebra](https://openxla.org/xla) — OpenXLA project
-- [PyTorch Internals](http://blog.ezyang.com/2019/05/pytorch-internals/) — Edward Z. Yang
+- [PyTorch Internals](https://blog.ezyang.com/2019/05/pytorch-internals/) — Edward Z. Yang
 
 ---
 

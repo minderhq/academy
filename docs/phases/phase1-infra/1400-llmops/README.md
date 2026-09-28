@@ -854,7 +854,7 @@ locust             # Python load testing
 **Documentation:**
 - [vLLM Documentation](https://docs.vllm.ai/)
 - [TGI Documentation](https://huggingface.co/docs/text-generation-inference)
-- [Ollama Documentation](https://ollama.ai/)
+- [Ollama Documentation](https://docs.ollama.com)
 
 **Books:**
 - "Designing Machine Learning Systems" by Chip Huyen
@@ -862,8 +862,8 @@ locust             # Python load testing
 - "Building Machine Learning Pipelines" by Hannes Hapke
 
 **Online Courses:**
-- [LLMOps: LLMOps with LangChain](https://www.deeplearning.ai/short-courses/)
-- [Production ML Systems](https://www.fullstackdeeplearning.com/)
+- [LLMOps with LangChain](https://www.deeplearning.ai/courses)
+- [Production ML Systems](https://fullstackdeeplearning.com/)
 
 ### Community Resources
 
@@ -873,9 +873,9 @@ locust             # Python load testing
 - [r/LocalLLaMA on Reddit](https://www.reddit.com/r/LocalLLaMA/)
 
 **Blogs:**
-- [vLLM Blog](https://blog.vllm.ai/)
+- [vLLM Blog](https://vllm.ai/blog)
 - [HuggingFace Blog](https://huggingface.co/blog)
-- [LlamaIndex Blog](https://llamaindex.ai/blog/)
+- [LlamaIndex Blog](https://www.llamaindex.ai/blog)
 
 ## Module Completion Checklist
 

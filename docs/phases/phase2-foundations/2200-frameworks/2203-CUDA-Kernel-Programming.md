@@ -502,7 +502,7 @@ ncu --metrics dram__throughput.avg.pct_of_peak_sustained_elapsed,lts__t_sector_h
 
 ### External References
 
-- [CUDA C++ Programming Guide — NVIDIA](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html)
+- [CUDA C++ Programming Guide — NVIDIA](https://docs.nvidia.com/cuda/cuda-programming-guide/index.html)
 - [NVIDIA Turing Architecture In-Depth — NVIDIA Developer Blog](https://developer.nvidia.com/blog/nvidia-turing-architecture-in-depth/)
 - [torch.utils.cpp_extension — PyTorch 2.14 documentation](https://docs.pytorch.org/docs/2.14/cpp_extension.html)
 - [Nsight Compute Profiling Guide — NVIDIA](https://docs.nvidia.com/nsight-compute/ProfilingGuide/index.html)

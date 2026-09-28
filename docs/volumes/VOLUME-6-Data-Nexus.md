@@ -1218,8 +1218,8 @@ For more help, see **[TROUBLESHOOTING-Common-Issues.md](../learning-resources/tr
 **Recommended Resources:**
 - **[Qdrant Docs](https://qdrant.tech/documentation/)** - Vector database
 - **[Neo4j Docs](https://neo4j.com/docs/)** - Graph database
-- **[LangChain RAG](https://python.langchain.com/docs/use_cases/question_answering/)** - RAG framework
-- **[LlamaIndex](https://docs.llamaindex.ai/)** - RAG framework
+- **[LangChain RAG](https://docs.langchain.com/oss/python/deepagents/rag)** - RAG framework
+- **[LlamaIndex](https://developers.llamaindex.ai/python/framework/)** - RAG framework
 
 ---
 

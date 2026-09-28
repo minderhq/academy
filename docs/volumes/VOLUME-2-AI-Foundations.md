@@ -505,8 +505,8 @@ For more help, see **[TROUBLESHOOTING-Common-Issues.md](../learning-resources/tr
 
 **Recommended Resources:**
 - **[PyTorch Documentation](https://pytorch.org/docs/stable/)**
-- **[CUDA Programming Guide](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html)**
-- **[Einstein Summation](https://rockt.github.io/2018/04/30/einsum)** - Excellent einsum tutorial
+- **[CUDA Programming Guide](https://docs.nvidia.com/cuda/cuda-programming-guide/index.html)**
+- **[Einstein Summation](https://rockt.ai/2018/04/30/einsum)** - Excellent einsum tutorial
 
 ---
 

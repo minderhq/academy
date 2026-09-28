@@ -626,7 +626,7 @@ Create adaptive retrieval system that:
 - [Qdrant Documentation](https://qdrant.tech/documentation/)
 - [Neo4j Cypher Manual](https://neo4j.com/docs/cypher-manual/)
 - [Sentence Transformers](https://www.sbert.net/)
-- [LangChain RAG Tutorial](https://python.langchain.com/docs/use_cases/question_answering/)
+- [LangChain RAG Tutorial](https://docs.langchain.com/oss/python/deepagents/rag)
 
 ---
 

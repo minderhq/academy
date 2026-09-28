@@ -1468,7 +1468,7 @@ See: [2306: Building a Production Framework](./guides/2306-Building-Production-F
 - [Welcome to vLLM - vLLM Documentation](https://docs.vllm.ai/en/latest/)
 - [Efficient Memory Management for Large Language Model Serving with PagedAttention (SOSP 2023)](https://arxiv.org/abs/2309.06180)
 - [DeepSpeed - Getting Started](https://www.deepspeed.ai/getting-started/)
-- [NVIDIA Dynamo-Triton (formerly Triton Inference Server)](https://developer.nvidia.com/triton-inference-server)
+- [NVIDIA Dynamo-Triton (formerly Triton Inference Server)](https://developer.nvidia.com/dynamo-triton)
 
 ---
 

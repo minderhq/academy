@@ -70,7 +70,7 @@ Attention mechanism learns: "it" → "animal" (not "street")
    - Understand RNN limitations
 
 2. **Word Embeddings (30 min):**
-   - [Word2Vec](https://www.tensorflow.org/tutorials/word2vec)
+   - [Word2Vec](https://www.tensorflow.org/text/tutorials/word2vec)
    - Understand semantic meaning in vectors
 
 3. **Matrix Multiplication (15 min):**

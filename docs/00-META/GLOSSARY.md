@@ -290,11 +290,11 @@ docs/transformers/3101-self-attention.md
 ### External Glossaries
 - [Google ML Glossary](https://developers.google.com/machine-learning/glossary)
 - [NVIDIA AI Glossary](https://www.nvidia.com/en-us/glossary/)
-- [OpenAI Glossary](https://platform.openai.com/docs/guides/gpt-best-practices)
+- [OpenAI Prompt Engineering Guide](https://developers.openai.com/api/docs/guides/prompt-engineering)
 
 ### Style Guides
 - [Google Developer Documentation Style Guide](https://developers.google.com/tech-writing)
-- [Microsoft Writing Style Guide](https://docs.microsoft.com/en-us/style-guide/)
+- [Microsoft Writing Style Guide](https://learn.microsoft.com/en-us/style-guide/welcome/)
 
 ---
 

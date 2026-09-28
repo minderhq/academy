@@ -676,7 +676,7 @@ docker compose up -d
 - [dcgm-exporter](https://github.com/NVIDIA/dcgm-exporter)
 - [kube-prometheus-stack](https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack)
 - [Ollama metrics feature request](https://github.com/ollama/ollama/issues/3144)
-- [Qdrant monitoring guide](https://qdrant.tech/documentation/guides/monitoring/)
+- [Qdrant monitoring guide](https://qdrant.tech/documentation/operations/monitoring/)
 
 ---
 

@@ -345,7 +345,7 @@ Test your understanding:
 
 ## 📚 Additional Resources
 
-- **Ollama Documentation:** https://ollama.com/docs
+- **Ollama Documentation:** https://docs.ollama.com
 - **Mistral AI:** https://mistral.ai
 - **Prompt Engineering Guide:** https://www.promptingguide.ai
 

@@ -441,7 +441,7 @@ Operating rules that keep this safe:
 ### External References
 
 - [MLflow Model Registry](https://mlflow.org/docs/latest/ml/model-registry/) — versions, metadata, and aliases with `models:/name@alias` resolution
-- [W&B Registry guide](https://docs.wandb.ai/guides/registry/) — `log_artifact` → `link_artifact` into registry collections
+- [W&B Registry guide](https://docs.wandb.ai/models/registry) — `log_artifact` → `link_artifact` into registry collections
 - [Semantic Versioning 2.0.0](https://semver.org/) — the MAJOR/MINOR/PATCH contract the bump rules borrow from
 
 ---
