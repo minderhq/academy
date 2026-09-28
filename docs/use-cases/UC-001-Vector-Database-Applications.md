@@ -246,6 +246,7 @@ Developers waste time finding code that solves a problem they have, but can't de
 **Vector Database Solution:**
 
 ```python
+import ast
 import os
 class CodeSearch:
     """
