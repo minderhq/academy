@@ -88,6 +88,22 @@ fingerprint the TLS stack, not just the UA); placeholder idioms
 | legacy_ad_scan | classifies remaining old-repo-name mentions by context |
 | legacy_ad_rename | mechanical renames used by the same epic |
 
+## 🧾 Platform Feed (not a gate)
+
+```bash
+python scripts/qa/manifest_export.py             # JSON to stdout
+python scripts/qa/manifest_export.py --out manifest.json
+```
+
+Exports the corpus as one deterministic JSON manifest for the future
+platform: every doc under docs/ with its frontmatter metadata, plus the
+phase/module/lesson hierarchy and per-module assessment flags. Paired
+with quiz_export (the question bank), a platform load step never has to
+re-parse markdown. Extraction models are borrowed, not reinvented
+(quiz_export's frontmatter parser; quality_report's corpus
+classification), so the manifest's lesson count always equals the
+scorecard's corpus line.
+
 ## 📐 Conventions
 
 - All gates share one extraction model: naive fence toggle +
