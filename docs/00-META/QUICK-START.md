@@ -422,7 +422,7 @@ Start Here (You are here)
     │
     ├─► LAB-004: ReAct Agent (4 hours)
     │
-    └─► PROJECT 001: AI Assistant (20+ hours)
+    └─► PROJECT-001: AI Assistant (20+ hours)
 ```
 
 ---

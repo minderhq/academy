@@ -1,12 +1,12 @@
 ---
 Document ID: TUTORIAL-005
-Title: "TUTORIAL 005: Production Deployment with CI/CD"
+Title: "TUTORIAL-005: Production Deployment with CI/CD"
 Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
 
-# TUTORIAL 005: Production Deployment with CI/CD
+# TUTORIAL-005: Production Deployment with CI/CD
 
 **Prerequisites:** Tutorial 001 (Hello LLM), Tutorial 002 (Docker Essentials), Tutorial 004 (Monitoring)
 **Time:** 90 minutes
@@ -683,7 +683,7 @@ curl http://localhost:9090/api/v1/query?query=up
 
 - **[1402: vLLM and TGI](../../phases/phase1-infra/1400-llmops/1402-vLLM-and-TGI.md)** - Production inference
 - **[1405: TGI Deployment Guide](../../phases/phase1-infra/1400-llmops/guides/1405-TGI-Deployment-Guide.md)** - TGI in production
-- **[PROJECT 001: AI Assistant](../projects/PROJECT-001-AI-Assistant.md)** - Complete production system
+- **[PROJECT-001: AI Assistant](../projects/PROJECT-001-AI-Assistant.md)** - Complete production system
 
 ---
 

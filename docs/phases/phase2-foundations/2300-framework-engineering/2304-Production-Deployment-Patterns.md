@@ -1146,6 +1146,6 @@ Implement a complete blue-green deployment system with:
 - Next Module: **[2400: LLM Pretraining](../2400-pretraining/)**
 - Assessment: **[2300: Framework Engineering - Quiz](./assessment/QUIZ.md)**
 
-**Related:** [LAB-009: Production Deployment](../../../learning-resources/labs/LAB-009-Production-Deployment.md), [TUTORIAL 005: Production Deployment with CI/CD](../../../learning-resources/tutorials/TUTORIAL-005-Production-Deployment.md), [1501: Monitoring and Observability](../../phase1-infra/1500-monitoring/1501-Monitoring-and-Observability.md)
+**Related:** [LAB-009: Production Deployment](../../../learning-resources/labs/LAB-009-Production-Deployment.md), [TUTORIAL-005: Production Deployment with CI/CD](../../../learning-resources/tutorials/TUTORIAL-005-Production-Deployment.md), [1501: Monitoring and Observability](../../phase1-infra/1500-monitoring/1501-Monitoring-and-Observability.md)
 
 **Experiment:** [EXP_1501: Monitoring and Observability Experiments](../../../../experiments/EXP_1501_MONITORING.md) (nearest-relevant - no EXP_23xx exists; the canary and rollout sections above live or die on the metrics this experiment wires up)

@@ -1,12 +1,12 @@
 ---
 Document ID: PROJECT-007
-Title: "CAPSTONE PROJECT 007: Deploy Production AI System"
+Title: "CAPSTONE PROJECT-007: Deploy Production AI System"
 Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
 
-# CAPSTONE PROJECT 007: Deploy Production AI System
+# CAPSTONE PROJECT-007: Deploy Production AI System
 
 **Build and deploy a complete AI system at scale**
 

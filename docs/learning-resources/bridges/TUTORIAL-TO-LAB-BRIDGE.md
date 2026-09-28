@@ -363,8 +363,8 @@ Use these checkpoints to verify readiness:
 - [PROGRESS-TRACKER.md](../../00-META/PROGRESS-TRACKER.md)
 
 ### Practice Resources
-- [CHEAT SHEET 001: Docker](../cheat-sheets/CHEAT-SHEET-001-Docker.md)
-- [CHEAT SHEET 002: Python AI](../cheat-sheets/CHEAT-SHEET-002-Python-AI.md)
+- [CHEAT-SHEET-001: Docker](../cheat-sheets/CHEAT-SHEET-001-Docker.md)
+- [CHEAT-SHEET-002: Python AI](../cheat-sheets/CHEAT-SHEET-002-Python-AI.md)
 
 ### Support Resources
 - [Troubleshooting Guide](../troubleshooting/TROUBLESHOOTING-Common-Issues.md)

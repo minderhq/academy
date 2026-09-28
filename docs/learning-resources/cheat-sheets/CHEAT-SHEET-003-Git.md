@@ -612,8 +612,8 @@ wandb/
 ## 🔗 Quick Links
 
 - **[Tutorial 002: Docker Essentials](../tutorials/TUTORIAL-002-Docker-Essentials.md)** - Docker for AI/ML
-- **[CHEAT SHEET 001: Docker](CHEAT-SHEET-001-Docker.md)** - Docker commands
-- **[CHEAT SHEET 002: Python AI](CHEAT-SHEET-002-Python-AI.md)** - Python for AI
+- **[CHEAT-SHEET-001: Docker](CHEAT-SHEET-001-Docker.md)** - Docker commands
+- **[CHEAT-SHEET-002: Python AI](CHEAT-SHEET-002-Python-AI.md)** - Python for AI
 
 ---
 

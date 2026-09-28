@@ -1,12 +1,12 @@
 ---
 Document ID: PROJECT-004
-Title: "CAPSTONE PROJECT 004: Quantize LLM from Scratch"
+Title: "CAPSTONE PROJECT-004: Quantize LLM from Scratch"
 Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
 
-# CAPSTONE PROJECT 004: Quantize LLM from Scratch
+# CAPSTONE PROJECT-004: Quantize LLM from Scratch
 
 **Run large models on limited hardware**
 
@@ -32,7 +32,7 @@ Complete these before starting:
 - ✅ 4101: GGUF Physics
 - ✅ 4102: EXL2 and AWQ
 - ✅ 4201: Context Window Physics
-- ✅ PROJECT 003: Transformer from Scratch
+- ✅ PROJECT-003: Transformer from Scratch
 
 ---
 

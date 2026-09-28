@@ -1,12 +1,12 @@
 ---
 Document ID: PROJECT-003
-Title: "CAPSTONE PROJECT 003: Transformer from Scratch"
+Title: "CAPSTONE PROJECT-003: Transformer from Scratch"
 Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
 
-# CAPSTONE PROJECT 003: Transformer from Scratch
+# CAPSTONE PROJECT-003: Transformer from Scratch
 
 **Build the architecture powering modern LLMs**
 
@@ -34,7 +34,7 @@ Complete these before starting:
 - ✅ 3101: Self-Attention Deep Dive
 - ✅ 3102: Flash Attention
 - ✅ 3201: Rotary Positional Embeddings
-- ✅ PROJECT 002: Train Neural Network
+- ✅ PROJECT-002: Train Neural Network
 
 ---
 

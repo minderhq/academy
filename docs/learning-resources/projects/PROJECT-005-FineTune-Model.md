@@ -1,12 +1,12 @@
 ---
 Document ID: PROJECT-005
-Title: "CAPSTONE PROJECT 005: Fine-Tune Domain Model"
+Title: "CAPSTONE PROJECT-005: Fine-Tune Domain Model"
 Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Intermediate
 ---
 
-# CAPSTONE PROJECT 005: Fine-Tune Domain Model
+# CAPSTONE PROJECT-005: Fine-Tune Domain Model
 
 **Adapt an LLM to your specific use case**
 

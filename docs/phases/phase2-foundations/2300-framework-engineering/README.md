@@ -299,8 +299,8 @@ After completing this module:
    - Apply patterns in Phase 3-7 projects
 
 3. **Build Projects**
-   - [CAPSTONE PROJECT 001: Build Your AI Assistant](../../../learning-resources/projects/PROJECT-001-AI-Assistant.md) (use serving patterns)
-   - [CAPSTONE PROJECT 007: Deploy Production AI System](../../../learning-resources/projects/PROJECT-007-Production-AI-System.md) (end-to-end deployment)
+   - [CAPSTONE PROJECT-001: Build Your AI Assistant](../../../learning-resources/projects/PROJECT-001-AI-Assistant.md) (use serving patterns)
+   - [CAPSTONE PROJECT-007: Deploy Production AI System](../../../learning-resources/projects/PROJECT-007-Production-AI-System.md) (end-to-end deployment)
 
 **Related:** [2200: Deep Learning Frameworks](../2200-frameworks/README.md) · [2400: LLM Pretraining](../2400-pretraining/README.md) · [LAB-009: Production Deployment](../../../learning-resources/labs/LAB-009-Production-Deployment.md)
 

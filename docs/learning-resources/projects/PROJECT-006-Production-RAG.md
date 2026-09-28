@@ -1,12 +1,12 @@
 ---
 Document ID: PROJECT-006
-Title: "CAPSTONE PROJECT 006: Build Production RAG System"
+Title: "CAPSTONE PROJECT-006: Build Production RAG System"
 Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
 
-# CAPSTONE PROJECT 006: Build Production RAG System
+# CAPSTONE PROJECT-006: Build Production RAG System
 
 **Integrate LLMs with your knowledge base**
 
