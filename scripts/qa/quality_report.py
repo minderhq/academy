@@ -62,6 +62,10 @@ stand today?" without running each tool by hand.
                        document binds (NC-01, report mode): catches missing
                        stdlib imports; the residual pseudo-code/notation
                        fragment idiom is accepted noise for now
+    fm_staleness       curriculum freshness map (report mode): Last Updated
+                       age distribution across docs/ - surfaces the oldest
+                       material so modernization passes can target it; a
+                       stale date is a review queue, not a failure
 
 Plus corpus stats (lesson files / modules / phases) so the scorecard doubles
 as a curriculum inventory.
@@ -107,6 +111,7 @@ GATES = [
     ("deprecated_scan.py", "deprecated_scan", True),
     ("objectives_lint.py", "objectives_lint", False),
     ("fence_namecheck.py", "fence_namecheck", False),
+    ("fm_staleness_scan.py", "fm_staleness", False),
     ("kwarg_lint.py", "kwarg_lint", True),
     ("typing_legacy_scan.py", "typing_legacy_scan", True),
 ]
