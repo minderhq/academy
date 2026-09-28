@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE7-AGENTIC-README
 Title: "Phase 7: Agentic Cognition & Autonomy [7000]"
-Last Updated: 2026-09-27
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Beginner
 ---
@@ -684,6 +684,7 @@ After completing this phase, you will be able to:
 **Pitfall:** Agent gets stuck in reasoning loop
 ```python
 # Wrong: No max iterations
+import time
 while not task_complete:
     thought = agent.think()
     action = agent.act()
@@ -907,6 +908,7 @@ retrieved = memory.search(
 
 **Tip:** Structured message protocols
 ```python
+import time
 class AgentMessage:
     def __init__(self, sender, receiver, type, content):
         self.sender = sender  # Agent ID

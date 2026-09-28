@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE3-TRANSFORMERS-README
 Title: "Phase 3: Transformer Physics & LLM Internals [3000]"
-Last Updated: 2026-09-27
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Beginner
 ---
@@ -573,6 +573,7 @@ def forward_with_checkpointing(x):
 
 **Tip:** Analyze token distribution before choosing tokenizer
 ```python
+import numpy as np
 def analyze_tokenizer_efficiency(text, tokenizer):
     tokens = tokenizer.encode(text)
     stats = {

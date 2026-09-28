@@ -1042,6 +1042,7 @@ def clinical_prediction_with_confidence(patient_case):
 
 **Tip:** Combine text, labs, and vitals
 ```python
+import numpy as np
 def comprehensive_patient_analysis(patient_data):
     """Analyze patient using multiple data modalities"""
 

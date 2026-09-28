@@ -294,6 +294,7 @@ Banks need to detect fraudulent transactions in real-time, but rules-based syste
 **Solution: Vector Similarity + Machine Learning**
 
 ```python
+from datetime import datetime
 class FraudDetectionSystem:
     """
     Real-time fraud detection using vector similarity
@@ -647,6 +648,7 @@ Financial institutions must ensure compliance with thousands of regulations (SOX
 **Solution: RAG System with Regulatory Database**
 
 ```python
+from datetime import datetime
 class ComplianceChecker:
     """
     RAG-based regulatory compliance checking system
@@ -913,6 +915,7 @@ class ModelGovernance:
 **Pitfall:** Ignoring financial regulations
 ```python
 # Wrong: Deploying without compliance checks
+from datetime import datetime
 def trading_strategy(market_data):
     signals = ai_model.generate_trades(market_data)
     execute_trades(signals)  # May violate regulations!
@@ -1019,6 +1022,7 @@ def generate_verified_report(company_financials):
 **Pitfall:** Financial models degrade over time
 ```python
 # Wrong: Deploy once and forget
+import time
 def fraud_detection_model():
     model = train_model(historical_data)
     deploy(model)  # Performance degrades over time!
@@ -1183,6 +1187,7 @@ def hybrid_financial_search(query: str):
 
 **Tip:** Optimize for sub-millisecond response
 ```python
+import time
 class RealTimeFraudDetector:
     """Sub-100ms fraud detection for high-volume transactions"""
 
@@ -1253,6 +1258,7 @@ class RealTimeFraudDetector:
 
 **Tip:** Combine sentiment with market data
 ```python
+import numpy as np
 def market_analysis_with_sentiment(ticker: str):
     """Combine financial data with sentiment analysis"""
 
@@ -1303,6 +1309,7 @@ def market_analysis_with_sentiment(ticker: str):
 
 **Tip:** Generate reports that meet regulatory standards
 ```python
+from datetime import datetime
 def generate_regulatory_report(financial_data: dict):
     """Generate SOX-compliant financial report"""
 

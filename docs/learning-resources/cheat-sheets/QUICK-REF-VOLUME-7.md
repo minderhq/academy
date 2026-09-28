@@ -500,6 +500,7 @@ class AgentMemory:
 
 ### Memory Types
 ```python
+import time
 class AgentMemorySystem:
     """Complete memory system for agents"""
 

@@ -1,7 +1,7 @@
 ---
 Document ID: QUICK-REF-VOLUME-2
 Title: "Volume 2: AI/ML Foundations - Quick Reference"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -134,6 +134,7 @@ print(x.grad)  # dz/dx = 1/3 * 2 = 2/3 for each element
 
 ### Autograd from Scratch
 ```python
+import numpy as np
 class Tensor:
     """Simple autograd implementation"""
     def __init__(self, data, requires_grad=False):

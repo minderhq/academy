@@ -33,6 +33,10 @@ stand today?" without running each tool by hand.
                        (2 known inline-code examples allowlisted)
   queue gate (drain in progress; never fails the report unless --fail-on-queue):
     objectives_lint    template-objective artifacts (OL-01/OL-02), phase by phase
+    fence_namecheck    names used in a python fence that no fence in the
+                       document binds (NC-01, report mode): catches missing
+                       stdlib imports; the residual pseudo-code/notation
+                       fragment idiom is accepted noise for now
 
 Plus corpus stats (lesson files / modules / phases) so the scorecard doubles
 as a curriculum inventory.
@@ -73,6 +77,7 @@ GATES = [
     ("casecheck.py", "casecheck", True),
     ("anchor_check.py", "anchor_check", True),
     ("objectives_lint.py", "objectives_lint", False),
+    ("fence_namecheck.py", "fence_namecheck", False),
 ]
 
 

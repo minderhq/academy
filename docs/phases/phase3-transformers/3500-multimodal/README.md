@@ -215,6 +215,7 @@ Generated Audio
 ### CLIP-style Contrastive Learning
 
 ```python
+import numpy as np
 class ContrastiveLearning(nn.Module):
     """
     CLIP-style contrastive learning for image-text pairs.

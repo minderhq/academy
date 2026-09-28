@@ -70,6 +70,7 @@ mask = torch.triu(torch.ones(seq_len, seq_len), diagonal=1).bool()
 **Practice:**
 ```python
 # Implement from scratch:
+import math
 def scaled_dot_product_attention(Q, K, V, mask=None):
     # 1. Compute scores
     scores = torch.matmul(Q, K.transpose(-2, -1)) / math.sqrt(Q.size(-1))

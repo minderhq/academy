@@ -1,7 +1,7 @@
 ---
 Document ID: UC-001
 Title: "UC-001: Vector Database Practical Use Cases"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 Related: [6101, 6401]
@@ -246,6 +246,7 @@ Developers waste time finding code that solves a problem they have, but can't de
 **Vector Database Solution:**
 
 ```python
+import os
 class CodeSearch:
     """
     Search code by functionality, not by name

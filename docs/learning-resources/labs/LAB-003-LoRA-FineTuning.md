@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-003
 Title: "LAB 003: LoRA Fine-Tuning with QLoRA"
-Last Updated: 2026-09-27
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -130,6 +130,7 @@ mkdir -p scripts
 
 ```python
 # ~/lab-003-lora/scripts/understand_lora.py
+import math
 import torch
 import torch.nn as nn
 

@@ -1,7 +1,7 @@
 ---
 Document ID: QUICK-REF-VOLUME-3
 Title: "Volume 3: LLM Internals - Quick Reference"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -319,6 +319,7 @@ class GroupNorm(nn.Module):
 
 ### GELU (Gaussian Error Linear Unit)
 ```python
+import numpy as np
 def gelu(x):
     """GELU activation"""
     # Exact: 0.5 * x * (1 + tanh(sqrt(2/pi) * (x + 0.044715 * x^3)))

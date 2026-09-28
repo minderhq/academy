@@ -35,6 +35,7 @@ Difficulty: Intermediate
 
 ### LoRA Implementation
 ```python
+import math
 class LoRALinear(nn.Module):
     """LoRA linear layer"""
 

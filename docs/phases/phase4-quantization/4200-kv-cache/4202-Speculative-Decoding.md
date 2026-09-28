@@ -3,7 +3,7 @@ Document ID: 4202
 Title: Speculative Decoding - Accelerating Large Models
 Phase: 4
 Module: 4200
-Last Updated: 2026-09-27
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -337,6 +337,7 @@ def lookahead_speculative_decode(
 ### Parallel Speculative Decoding
 ```python
 # Generate multiple draft sequences in parallel
+import numpy as np
 def parallel_speculative_decode(
     draft_model,
     target_model,
@@ -401,6 +402,8 @@ class MedusaHeads(nn.Module):
 
 ### Optimize Speculation Length
 ```python
+import numpy as np
+import time
 def find_optimal_speculation_length(draft_model, target_model, test_prompts, baseline_time):
     """
     Find best speculation length for your setup

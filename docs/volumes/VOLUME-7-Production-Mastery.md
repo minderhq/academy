@@ -713,6 +713,7 @@ class PythonTool(Tool):
 
 **Memory System:**
 ```python
+from datetime import datetime
 class AgentMemory:
     def __init__(self):
         # Episodic memory (past experiences)
@@ -1052,7 +1053,7 @@ services:
 ### ⚠️ SSL Certificate Issues
 
 **Pitfall:** Self-signed certificates rejected by clients
-```python
+```text
 # Wrong: Using self-signed in production
 ssl_certificate /etc/nginx/ssl/selfsigned.crt;
 # Result: Browser warnings, API client failures
@@ -1071,6 +1072,7 @@ ssl_certificate_key /etc/letsencrypt/live/api.example.com/privkey.pem;
 
 **Pitfall:** Agent infinite loops
 ```python
+import time
 # Wrong: No step limit
 def run_agent(query):
     while True:
@@ -1156,6 +1158,7 @@ groups:
 **Pitfall:** Logs don't provide enough context
 ```python
 # Wrong: Generic logging
+import logging
 logging.info("Request processed")
 # Result: Can't debug issues
 
@@ -1308,6 +1311,8 @@ tools = [
 
 **Tip:** Use shared memory for coordination
 ```python
+import threading
+import time
 class SharedMemory:
     """Shared memory for multi-agent coordination."""
 
