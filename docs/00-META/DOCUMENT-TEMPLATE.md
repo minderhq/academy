@@ -1,4 +1,4 @@
-# AI Engineering Curriculum Document Template Standard
+# PROJECT-OMEGA Document Template Standard
 
 **Version:** 1.1
 **Last Updated:** 2026-09-24
@@ -418,4 +418,4 @@ For existing documents, follow these steps:
 
 ---
 
-**This template ensures consistency across all AI Engineering Curriculum documentation.**
+**This template ensures consistency across all PROJECT-OMEGA documentation.**

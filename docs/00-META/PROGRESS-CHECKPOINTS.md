@@ -323,4 +323,4 @@ Total: _____ months
 
 **Last Updated:** 2026-02-04
 **Version:** 1.0
-**Maintained By:** AI Engineering Curriculum Team
+**Maintained By:** PROJECT-OMEGA Team

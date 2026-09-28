@@ -8,7 +8,7 @@ Difficulty: Intermediate
 
 # EXP_1502: Model Drift Experiments
 
-**Project:** AI Engineering Curriculum
+**Project:** PROJECT-OMEGA
 **Phase:** [1500] Monitoring
 **Experiment ID:** EXP_1502_MODEL_DRIFT
 **Date:** 2026-02-04

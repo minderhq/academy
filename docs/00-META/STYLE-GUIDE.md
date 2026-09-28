@@ -1,4 +1,4 @@
-# AI Engineering Curriculum Style Guide
+# PROJECT-OMEGA Style Guide
 
 **Official Documentation Standards**
 
@@ -9,7 +9,7 @@
 
 ## 📖 Purpose
 
-This guide ensures consistency across all AI Engineering Curriculum documentation. Consistent documentation makes learning easier and reduces confusion.
+This guide ensures consistency across all PROJECT-OMEGA documentation. Consistent documentation makes learning easier and reduces confusion.
 
 ---
 
@@ -562,4 +562,4 @@ Improvements welcome! Submit PR with:
 
 **Last Updated:** 2026-02-04
 **Version:** 1.0
-**Maintained By:** AI Engineering Curriculum Documentation Team
+**Maintained By:** PROJECT-OMEGA Documentation Team

@@ -1,12 +1,12 @@
 ---
 Document ID: 0000
-Title: "AI Engineering Curriculum Learning Path"
+Title: "PROJECT-OMEGA Learning Path"
 Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Beginner
 ---
 
-# AI Engineering Curriculum Learning Path
+# PROJECT-OMEGA Learning Path
 
 ## Table of Contents
 
@@ -41,7 +41,7 @@ Difficulty: Beginner
 
 ```text
 ┌─────────────────────────────────────────────────────────────────────────┐
-│                 AI ENGINEERING CURRICULUM LEARNING PATH                 │
+│                       PROJECT-OMEGA LEARNING PATH                       │
 ├─────────────────────────────────────────────────────────────────────────┤
 │                                                                           │
 │  Phase 0: Python Fundamentals (Week 1) :star3: NEW                      │
@@ -775,7 +775,7 @@ Complete all phases to earn:
 - **Level 3: RAG Specialist** (Phase 5)
 - **Level 4: Agentic AI Engineer** (Phase 6)
 - **Level 5: LLMOps Professional** (Phase 7)
-- **Master: AI Engineering Curriculum Architect** (All phases + Capstone)
+- **Master: PROJECT-OMEGA Architect** (All phases + Capstone)
 
 ---
 
@@ -797,4 +797,4 @@ Complete all phases to earn:
 
 **Remember:** This is a marathon, not a sprint. Take your time with each concept and build a strong foundation before moving forward.
 
-Good luck on your AI Engineering Curriculum journey! 🚀
+Good luck on your PROJECT-OMEGA journey! 🚀

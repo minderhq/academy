@@ -34,7 +34,7 @@ After completing this lesson, you will be able to:
 ---
 
 ## Abstract
-Complete implementation guide for building production-ready ReAct (Reasoning + Acting) agents on AI Engineering Curriculum infrastructure.
+Complete implementation guide for building production-ready ReAct (Reasoning + Acting) agents on PROJECT-OMEGA infrastructure.
 
 ## Architecture Overview
 

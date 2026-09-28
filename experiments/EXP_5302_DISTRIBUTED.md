@@ -8,7 +8,7 @@ Difficulty: Advanced
 
 # EXP_5302: Distributed Training Experiment
 
-**Project:** AI Engineering Curriculum
+**Project:** PROJECT-OMEGA
 **Phase:** [5300] Synthetic Data
 **Document ID:** 5302
 **Experiment ID:** EXP_5302_DISTRIBUTED

@@ -8,7 +8,7 @@ Difficulty: Advanced
 
 # EXP_5202: Alignment Orchestration Experiment
 
-**Project:** AI Engineering Curriculum
+**Project:** PROJECT-OMEGA
 **Phase:** [5200] Alignment
 **Document ID:** 5202
 **Experiment ID:** EXP_5202_ALIGNMENT

@@ -1,16 +1,16 @@
-# AI Engineering Curriculum Glossary
+# PROJECT-OMEGA Glossary
 
 **Official Terminology Reference**
 
 **Last Updated:** 2026-02-04
-**Purpose:** Standardize terminology across all AI Engineering Curriculum documentation
+**Purpose:** Standardize terminology across all PROJECT-OMEGA documentation
 
 ---
 
 ## 📖 Usage Guidelines
 
 ### Why This Matters
-Consistent terminology prevents confusion and makes learning easier. When you see a term anywhere in AI Engineering Curriculum, it means the same thing.
+Consistent terminology prevents confusion and makes learning easier. When you see a term anywhere in PROJECT-OMEGA, it means the same thing.
 
 ### How to Use
 1. **Writers:** Use these exact terms in all documentation
@@ -302,7 +302,7 @@ Found an inconsistency? Suggest changes by:
 
 **Last Updated:** 2026-02-04
 **Version:** 1.0
-**Maintained By:** AI Engineering Curriculum Documentation Team
+**Maintained By:** PROJECT-OMEGA Documentation Team
 
 ---
 

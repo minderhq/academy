@@ -1,4 +1,4 @@
-# AI Engineering Curriculum Resources
+# PROJECT-OMEGA Resources
 
 **External resources and references for deeper learning**
 
@@ -279,7 +279,7 @@ git push origin feature-branch
 
 ## 💡 Tips for Using These Resources
 
-1. **Start with AI Engineering Curriculum materials** - Build foundation first
+1. **Start with PROJECT-OMEGA materials** - Build foundation first
 2. **Reference official docs** when implementing specific features
 3. **Read papers** after understanding the basics
 4. **Join communities** for troubleshooting and discussions
@@ -291,4 +291,4 @@ git push origin feature-branch
 **Last Updated:** 2026-02-08
 **Version:** 1.0
 
-For AI Engineering Curriculum specific documentation, see the main README and SITEMAP.
+For PROJECT-OMEGA specific documentation, see the main README and SITEMAP.

@@ -1,8 +1,8 @@
 <div align="center">
 
-![AI Engineering Curriculum Logo](https://img.shields.io/badge/AI--Engineering--Curriculum-Neural--Architect%20Master-blue?style=for-the-badge&logo=ai&logoColor=white)
+![PROJECT-OMEGA Logo](https://img.shields.io/badge/PROJECT--OMEGA-Neural--Architect%20Master-blue?style=for-the-badge&logo=ai&logoColor=white)
 
-# AI Engineering Curriculum
+# PROJECT-OMEGA
 
 ## Neural-Architect Master Documentation
 
@@ -25,7 +25,7 @@
 
 - [Overview](#overview)
 - [Key Takeaways](#key-takeaways)
-- [Why AI Engineering Curriculum](#why-project-omega)
+- [Why PROJECT-OMEGA](#why-project-omega)
 - [Key Features](#key-features)
 - [Architecture](#architecture)
 - [Quick Start](#quick-start)
@@ -78,7 +78,7 @@ graph LR
 
 </div>
 
-**AI Engineering Curriculum** is a **production-grade AI infrastructure and learning platform**. It serves as both:
+**PROJECT-OMEGA** is a **production-grade AI infrastructure and learning platform**. It serves as both:
 
 ### 1. Technical Reference
 Implementation guides for enterprise-grade AI systems on affordable hardware. Learn to deploy, optimize, and scale AI models using practical, battle-tested configurations — locally or in the cloud.
@@ -104,7 +104,7 @@ A structured curriculum taking you from foundations to production mastery. Each 
 
 ### ✅ What You'll Master
 
-After completing AI Engineering Curriculum, you will be able to:
+After completing PROJECT-OMEGA, you will be able to:
 
 1. **Build Production AI Infrastructure**
    - Design a network that sustains AI workloads
@@ -146,7 +146,7 @@ After completing AI Engineering Curriculum, you will be able to:
 
 ## Why PROJECT-OMEGA?
 
-| Challenge | AI Engineering Curriculum Solution |
+| Challenge | PROJECT-OMEGA Solution |
 |:----------:|:----------------------:|
 | 💸 **AI infrastructure is expensive** | Run production-grade AI on affordable hardware or modest cloud instances |
 | 📚 **Documentation is scattered** | **463+ files** in one organized, cross-referenced repository |
@@ -1387,7 +1387,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ```text
 MIT License
 
-Copyright (c) 2026 AI Engineering Curriculum
+Copyright (c) 2026 PROJECT-OMEGA
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -1431,7 +1431,7 @@ SOFTWARE.
 
 ---
 
-**AI Engineering Curriculum**
+**PROJECT-OMEGA**
 
 *Last Updated: 2026-09-24*
 

@@ -61,7 +61,7 @@ Difficulty: Intermediate
 
 ```text
 ┌─────────────────────────────────────────────────────────────────┐
-│                    AI Engineering Curriculum                    │
+│                          PROJECT-OMEGA                          │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                  │
 │  📄 Document Intelligence (RAG)                                  │
@@ -129,7 +129,7 @@ graph TD
 
 ### Key Technologies in Finance
 
-| Technology | Finance Applications | AI Engineering Curriculum Phase |
+| Technology | Finance Applications | PROJECT-OMEGA Phase |
 |------------|---------------------|-------------------|
 | **RAG** | Policy search, Compliance checking, Research analysis | Phase 6 |
 | **Vector DB** | Transaction similarity, Document search | Phase 6 |

@@ -1,9 +1,9 @@
-# AI Engineering Curriculum Organization Guide
+# PROJECT-OMEGA Organization Guide
 ## Documentation Structure & Maintenance
 
 **Version:** 4.1
 **Last Updated:** 2026-02-05
-**Purpose:** Guide for understanding and maintaining the AI Engineering Curriculum documentation structure
+**Purpose:** Guide for understanding and maintaining the PROJECT-OMEGA documentation structure
 
 ---
 
@@ -626,8 +626,8 @@ See [STYLE-GUIDE.md](STYLE-GUIDE.md) for contribution guidelines.
 
 **Organization Guide Version:** 4.1
 **Last Updated:** 2026-02-05
-**Maintained by:** AI Engineering Curriculum Team
+**Maintained by:** PROJECT-OMEGA Team
 
 ---
 
-© 2026 AI Engineering Curriculum. All rights reserved.
+© 2026 PROJECT-OMEGA. All rights reserved.

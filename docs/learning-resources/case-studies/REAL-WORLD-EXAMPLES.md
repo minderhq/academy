@@ -8,7 +8,7 @@ Difficulty: Intermediate
 
 # Real-World Examples & Case Studies
 
-**Project:** AI Engineering Curriculum
+**Project:** PROJECT-OMEGA
 **Category:** Case Studies
 **Last Updated:** 2026-02-04
 **Status:** Complete
@@ -17,7 +17,7 @@ Difficulty: Intermediate
 
 ## Overview
 
-Real-world examples of AI systems in production, illustrating the concepts and techniques covered throughout AI Engineering Curriculum. These case studies demonstrate how leading companies implement LLM applications, RAG systems, multi-agent architectures, and production-grade AI infrastructure.
+Real-world examples of AI systems in production, illustrating the concepts and techniques covered throughout PROJECT-OMEGA. These case studies demonstrate how leading companies implement LLM applications, RAG systems, multi-agent architectures, and production-grade AI infrastructure.
 
 ---
 

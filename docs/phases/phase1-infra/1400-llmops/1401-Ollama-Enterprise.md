@@ -45,7 +45,7 @@ After completing this lesson, you will be able to:
 ---
 
 ## Abstract
-Ollama enables running large language models locally with a simple API. In AI Engineering Curriculum, Ollama serves as the model inference backend across the lab network.
+Ollama enables running large language models locally with a simple API. In PROJECT-OMEGA, Ollama serves as the model inference backend across the lab network.
 
 ## Architecture
 

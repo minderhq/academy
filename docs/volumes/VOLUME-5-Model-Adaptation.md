@@ -687,4 +687,4 @@ For more help, see **[TROUBLESHOOTING-Common-Issues.md](../learning-resources/tr
 ---
 
 **Volume 5 Status:** 🟢 Complete
-**Maintainer:** AI Engineering Curriculum Team
+**Maintainer:** PROJECT-OMEGA Team

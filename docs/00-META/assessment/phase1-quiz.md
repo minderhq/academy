@@ -94,7 +94,7 @@ d) Storage I/O
 
 ---
 
-### 9. Which tool is used for log aggregation in AI Engineering Curriculum?
+### 9. Which tool is used for log aggregation in PROJECT-OMEGA?
 a) Prometheus
 b) Loki
 c) Grafana

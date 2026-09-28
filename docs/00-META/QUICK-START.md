@@ -368,7 +368,7 @@ pip install ollama
 - **r/LocalLLaMA:** https://reddit.com/r/LocalLLaMA
 - **Hugging Face Forums:** https://discuss.huggingface.co
 
-### In AI Engineering Curriculum
+### In PROJECT-OMEGA
 - **[Progress Tracker](PROGRESS-TRACKER.md)** - Track your learning
 - **[Troubleshooting](../learning-resources/troubleshooting/TROUBLESHOOTING-Common-Issues.md)** - Get help
 - **[Cheat Sheets](../learning-resources/cheat-sheets/)** - Quick reference

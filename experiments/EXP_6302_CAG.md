@@ -8,7 +8,7 @@ Difficulty: Advanced
 
 # EXP_6302: Long Context Architecture Experiment
 
-**Project:** AI Engineering Curriculum
+**Project:** PROJECT-OMEGA
 **Phase:** [6300] Context Management
 **Document ID:** 6302
 **Experiment ID:** EXP_6302_CAG

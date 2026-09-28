@@ -8,7 +8,7 @@ Difficulty: Advanced
 
 # EXP_7301: Multi-Agent Collaboration Experiment
 
-**Project:** AI Engineering Curriculum
+**Project:** PROJECT-OMEGA
 **Phase:** [7300] Orchestration
 **Document ID:** 7301
 **Experiment ID:** EXP_7301_COLLABORATION

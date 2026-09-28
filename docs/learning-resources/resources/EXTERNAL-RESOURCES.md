@@ -1,12 +1,12 @@
 ---
 Document ID: EXTERNAL-RESOURCES
-Title: "AI Engineering Curriculum: Video & External Resources"
+Title: "PROJECT-OMEGA: Video & External Resources"
 Last Updated: 2026-02-04
 Status: Complete
 Difficulty: Intermediate
 ---
 
-# AI Engineering Curriculum: Video & External Resources
+# PROJECT-OMEGA: Video & External Resources
 
 Curated list of videos, courses, and external resources to complement the learning path.
 

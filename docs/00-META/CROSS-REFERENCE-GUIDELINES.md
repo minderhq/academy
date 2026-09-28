@@ -1,4 +1,4 @@
-# AI Engineering Curriculum Cross-Reference Guidelines
+# PROJECT-OMEGA Cross-Reference Guidelines
 
 **Version:** 1.0
 **Last Updated:** 2026-02-05
@@ -8,7 +8,7 @@
 
 ## Overview
 
-This document provides guidelines for creating and maintaining cross-references between AI Engineering Curriculum documentation files. Proper cross-referencing improves navigation, discoverability, and learning path coherence.
+This document provides guidelines for creating and maintaining cross-references between PROJECT-OMEGA documentation files. Proper cross-referencing improves navigation, discoverability, and learning path coherence.
 
 ---
 
@@ -16,7 +16,7 @@ This document provides guidelines for creating and maintaining cross-references 
 
 ### 1. Internal Links (Relative)
 
-Use relative paths for links within AI Engineering Curriculum:
+Use relative paths for links within PROJECT-OMEGA:
 
 ```markdown
 # Same directory

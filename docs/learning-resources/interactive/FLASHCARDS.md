@@ -1,12 +1,12 @@
 ---
 Document ID: FLASHCARDS
-Title: "AI Engineering Curriculum: Interactive Learning Components"
+Title: "PROJECT-OMEGA: Interactive Learning Components"
 Last Updated: 2026-02-04
 Status: Complete
 Difficulty: Intermediate
 ---
 
-# AI Engineering Curriculum: Interactive Learning Components
+# PROJECT-OMEGA: Interactive Learning Components
 
 Interactive elements to enhance the learning experience.
 

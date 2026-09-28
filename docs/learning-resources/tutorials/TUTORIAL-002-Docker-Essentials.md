@@ -468,13 +468,13 @@ docker history <image>
 
 ---
 
-## Step 10: AI Engineering Curriculum Context
+## Step 10: PROJECT-OMEGA Context
 
-How Docker fits into AI Engineering Curriculum:
+How Docker fits into PROJECT-OMEGA:
 
 ```text
 ┌─────────────────────────────────────────────────────────────┐
-│               AI Engineering Curriculum Stack               │
+│                     PROJECT-OMEGA Stack                     │
 ├─────────────────────────────────────────────────────────────┤
 │                                                             │
 │  External NAS:                                              │

@@ -1,12 +1,12 @@
-# AI Engineering Curriculum: Volume Guide (Book Structure)
+# PROJECT-OMEGA: Volume Guide (Book Structure)
 
-**Welcome to AI Engineering Curriculum!** This curriculum is organized as a **7-volume book series**, taking you from complete beginner to production-ready AI infrastructure expert.
+**Welcome to PROJECT-OMEGA!** This curriculum is organized as a **7-volume book series**, taking you from complete beginner to production-ready AI infrastructure expert.
 
 ---
 
 ## 📚 How to Use This Guide
 
-### **Are you new to AI Engineering Curriculum?**
+### **Are you new to PROJECT-OMEGA?**
 Start here: **[QUICK-START.md](./QUICK-START.md)** (30 minutes)
 
 ### **Want to track your progress?**

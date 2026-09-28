@@ -8,7 +8,7 @@ Difficulty: Intermediate
 
 # RESUME TEMPLATES & EXAMPLES
 
-**For:** AI Engineering Curriculum graduates seeking AI Engineering roles
+**For:** PROJECT-OMEGA graduates seeking AI Engineering roles
 **Templates Included:** Entry-level, Mid-level, Senior
 **Last Updated:** 2026-02-07
 
@@ -559,4 +559,4 @@ Best,
 2. Practice explaining your projects out loud
 3. Get feedback from 2-3 people in AI
 
-**© 2026 AI Engineering Curriculum. All rights reserved.**
+**© 2026 PROJECT-OMEGA. All rights reserved.**

@@ -9,7 +9,7 @@ Difficulty: Intermediate
 # EXP_6401: Vector Database Performance Experiments
 
 ## Overview
-Practical experiments for comparing vector database performance on AI Engineering Curriculum infrastructure (self-hosted Docker host; optional K3s cluster).
+Practical experiments for comparing vector database performance on PROJECT-OMEGA infrastructure (self-hosted Docker host; optional K3s cluster).
 
 ## Experiment 1: Qdrant Deployment and Baseline
 

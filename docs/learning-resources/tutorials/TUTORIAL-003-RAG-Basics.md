@@ -439,7 +439,7 @@ def rerank(results, query):
 
 ## Step 8: Advanced RAG with GraphRAG
 
-AI Engineering Curriculum also supports **GraphRAG** - combining vector search with knowledge graphs!
+PROJECT-OMEGA also supports **GraphRAG** - combining vector search with knowledge graphs!
 
 ```text
 Vector RAG:              GraphRAG:

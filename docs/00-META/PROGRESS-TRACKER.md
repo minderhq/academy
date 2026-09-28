@@ -1,4 +1,4 @@
-# PROGRESS TRACKER: AI Engineering Curriculum Learning Journey
+# PROGRESS TRACKER: PROJECT-OMEGA Learning Journey
 
 **Track your progress from beginner to expert through a 7-volume book series**
 
@@ -474,4 +474,4 @@ Focus on model adaptation:
 
 **Last Updated:** 2026-02-04
 **Total Files:** 97 core documents + 14 labs + 10 experiments + 6 tutorials + 11 cheat sheets
-**Maintainer:** AI Engineering Curriculum Team
+**Maintainer:** PROJECT-OMEGA Team

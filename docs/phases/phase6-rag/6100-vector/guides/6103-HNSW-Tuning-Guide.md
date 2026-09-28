@@ -38,7 +38,7 @@ After completing this lesson, you will be able to:
 ---
 
 ## Abstract
-Comprehensive guide for tuning HNSW (Hierarchical Navigable Small World) index parameters for optimal vector search performance on AI Engineering Curriculum infrastructure.
+Comprehensive guide for tuning HNSW (Hierarchical Navigable Small World) index parameters for optimal vector search performance on PROJECT-OMEGA infrastructure.
 
 ## HNSW Architecture
 

@@ -26,7 +26,7 @@ Tags: ['agents', 'tool-calling', 'function-calling', 'code-interpreter']
 - [Advanced Tool Calling Patterns](#advanced-tool-calling-patterns)
 - [Tool Calling Security](#tool-calling-security)
 - [Tool Calling vs ReAct](#tool-calling-vs-react)
-- [AI Engineering Curriculum Implementation](#project-omega-implementation)
+- [PROJECT-OMEGA Implementation](#project-omega-implementation)
 - [Experiment](#experiment)
 - [References](#references)
 

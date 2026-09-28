@@ -8,7 +8,7 @@ Difficulty: Intermediate
 
 # INTERVIEW PREPARATION GUIDE
 
-**For:** AI Engineering Curriculum graduates preparing for AI Engineering interviews
+**For:** PROJECT-OMEGA graduates preparing for AI Engineering interviews
 **Read Time:** 30 minutes
 **Last Updated:** 2026-02-07
 
@@ -708,4 +708,4 @@ Perhaps equity, signing bonus, or additional PTO?"
 - [GUIDE-CAREER.md](./GUIDE-CAREER.md) - Career planning
 - [GUIDE-RESUME.md](./GUIDE-RESUME.md) - Resume templates
 
-**© 2026 AI Engineering Curriculum. All rights reserved.**
+**© 2026 PROJECT-OMEGA. All rights reserved.**

@@ -8,7 +8,7 @@
 
 ## Overview
 
-This guide helps you set up a complete AI development environment for AI Engineering Curriculum. Whether you're working on Windows, Mac, or Linux, we'll get you ready to run local LLMs, fine-tune models, and deploy AI systems.
+This guide helps you set up a complete AI development environment for PROJECT-OMEGA. Whether you're working on Windows, Mac, or Linux, we'll get you ready to run local LLMs, fine-tune models, and deploy AI systems.
 
 ---
 
@@ -457,4 +457,4 @@ Once your environment is set up:
 ---
 
 **Last Updated:** 2026-02-04
-**Contributors:** AI Engineering Curriculum Team
+**Contributors:** PROJECT-OMEGA Team

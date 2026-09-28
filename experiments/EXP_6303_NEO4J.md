@@ -9,7 +9,7 @@ Difficulty: Advanced
 # EXP_6303: Neo4j Knowledge Graph Experiments
 
 ## Overview
-Practical experiments for Neo4j knowledge graph implementation on any Docker-capable Linux host, NAS, or VPS for AI Engineering Curriculum.
+Practical experiments for Neo4j knowledge graph implementation on any Docker-capable Linux host, NAS, or VPS for PROJECT-OMEGA.
 
 ## Experiment 1: Neo4j Deployment (Docker)
 

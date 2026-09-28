@@ -8,7 +8,7 @@ Difficulty: Advanced
 
 # EXP_5301: Knowledge Distillation Experiment
 
-**Project:** AI Engineering Curriculum
+**Project:** PROJECT-OMEGA
 **Phase:** [5300] Synthetic Data
 **Document ID:** 5301
 **Experiment ID:** EXP_5301_DISTILLATION

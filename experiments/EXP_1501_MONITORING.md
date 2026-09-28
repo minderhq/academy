@@ -9,7 +9,7 @@ Difficulty: Intermediate
 # EXP_1501: Monitoring and Observability Experiments
 
 ## Overview
-Practical experiments for monitoring LLM infrastructure, model performance, and agent behavior on AI Engineering Curriculum.
+Practical experiments for monitoring LLM infrastructure, model performance, and agent behavior on PROJECT-OMEGA.
 
 ## Experiment 1: Prometheus Metrics Collection
 

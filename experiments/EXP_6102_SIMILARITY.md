@@ -8,7 +8,7 @@ Difficulty: Advanced
 
 # EXP_6102: Semantic Similarity Experiment
 
-**Project:** AI Engineering Curriculum
+**Project:** PROJECT-OMEGA
 **Phase:** [6100] Vector Architectures
 **Document ID:** 6102
 **Experiment ID:** EXP_6102_SIMILARITY

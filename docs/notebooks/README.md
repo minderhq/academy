@@ -1,4 +1,4 @@
-# AI Engineering Curriculum Notebooks
+# PROJECT-OMEGA Notebooks
 
 **Interactive Jupyter notebooks for hands-on learning**
 
@@ -6,7 +6,7 @@
 
 ## 📚 Overview
 
-This directory contains Jupyter notebooks that provide practical, hands-on experience with the concepts covered in AI Engineering Curriculum. Each notebook is designed to be interactive and runnable, allowing you to experiment with code and see results in real-time.
+This directory contains Jupyter notebooks that provide practical, hands-on experience with the concepts covered in PROJECT-OMEGA. Each notebook is designed to be interactive and runnable, allowing you to experiment with code and see results in real-time.
 
 ---
 

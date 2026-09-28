@@ -8,7 +8,7 @@ Difficulty: Advanced
 
 # EXP_4103: Double Quantization Experiment
 
-**Project:** AI Engineering Curriculum
+**Project:** PROJECT-OMEGA
 **Phase:** [4100] Low-Bit Quantization
 **Document ID:** 4103
 **Experiment ID:** EXP_4103_DOUBLE_QUANT
