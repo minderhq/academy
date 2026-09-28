@@ -1,7 +1,7 @@
 ---
 Document ID: SITEMAP
 Title: "PROJECT-OMEGA - Complete Sitemap"
-Last Updated: 2026-09-26
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Beginner
 ---
@@ -25,6 +25,7 @@ below are derived directly from the file tree.
 - [ENVIRONMENT-SETUP](ENVIRONMENT-SETUP.md) - Hardware and software prerequisites
 - [ASSESSMENT-GUIDE](ASSESSMENT-GUIDE.md) - How quizzes and practice sets work
 - [GLOSSARY](GLOSSARY.md) - Terminology reference
+- [QA-TOOLING](QA-TOOLING.md) - The QA gate scorecard and its toolchain
 
 ---
 
