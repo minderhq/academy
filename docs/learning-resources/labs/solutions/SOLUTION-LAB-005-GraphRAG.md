@@ -1,7 +1,7 @@
 ---
 Document ID: SOLUTION-LAB-005
 Title: "SOLUTION-LAB-005: GraphRAG"
-Last Updated: 2026-09-27
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -16,7 +16,7 @@ Complete solution for implementing GraphRAG with knowledge graphs and Neo4j.
 ## Prerequisites
 
 ```bash
-uv pip install neo4j langchain langchain-community sentence-transformers
+uv pip install neo4j langchain-openai sentence-transformers
 ```
 
 ## Neo4j Setup
@@ -36,16 +36,15 @@ docker run -d \
 ## Core Solution
 
 ```python
-import os
 import re
 from typing import List, Dict, Any, Optional
 from neo4j import GraphDatabase
 from sentence_transformers import SentenceTransformer
-from langchain.embeddings import SentenceTransformerEmbeddings
-from langchain.vectorstores.neo4j_vector import Neo4jVector
-from langchain.chains import GraphCypherQAChain
-from langchain.graphs import Neo4jGraph
-from langchain.llms import OpenAI
+from langchain_openai import ChatOpenAI
+
+# NOTE: this implementation talks to Neo4j through the raw neo4j driver.
+# The langchain-integrated alternative lives in the separate
+# langchain-neo4j package (Neo4jVector, Neo4jGraph, GraphCypherQAChain).
 
 class GraphRAG:
     """
@@ -79,7 +78,7 @@ class GraphRAG:
         self._setup_schema()
 
         # Initialize LLM for generation
-        self.llm = OpenAI(temperature=0.7)
+        self.llm = ChatOpenAI(model="gpt-4", temperature=0.7)
 
     def _setup_schema(self):
         """Create Neo4j schema with indexes and constraints."""
@@ -350,7 +349,7 @@ Provide a clear, accurate answer based on the context above. If the context does
 """
 
         try:
-            response = self.llm.predict(prompt)
+            response = self.llm.invoke(prompt).content
             return response.strip()
         except Exception as e:
             return f"Error generating answer: {e}"
