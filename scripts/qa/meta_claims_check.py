@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
 """Meta-entry claims gate for the PROJECT-OMEGA corpus.
 
-After README (tick-261) and SITEMAP (tick-262), the last three count-
-bearing entry documents are FAQ.md, MASTER-INDEX.md and
-ORGANIZATION-GUIDE.md. They had rotted the same way while every README
-wave moved the corpus numbers (FAQ still said "463 documents ... 30
-hands-on labs ... 46 experiments"; MASTER-INDEX claimed 427 total files
-and a "Module Documents: 256" family that no longer matches how the
-corpus is laid out). This gate locks all three to disk so the next
+After README (tick-261) and SITEMAP (tick-262), the remaining count-
+bearing entry documents are FAQ.md, MASTER-INDEX.md,
+ORGANIZATION-GUIDE.md and VOLUME-GUIDE.md. They had rotted the same
+way while every README wave moved the corpus numbers (FAQ still said
+"463 documents ... 30 hands-on labs ... 46 experiments"; MASTER-INDEX
+claimed 427 total files and a "Module Documents: 256" family that no
+longer matches how the corpus is laid out; VOLUME-GUIDE still said
+"85 files across 7 volumes" with "(6 files)" tutorials and "(28
+files)" experiments). This gate locks all four to disk so the next
 wave cannot rot them again:
 
   MC-00  a meta entry file is missing, or a measurement itself failed
@@ -25,6 +27,9 @@ rather than letting the gate rot):
                   sum of its own block, both as written and as
                   measured), and every module-table "N docs" cell
   ORG-GUIDE tree  the "N files" / "N tutorial files" / ... labels
+  VOLUME-GUIDE    the file-tree labels (tutorials, labs 2-way split,
+                  cheat sheets, projects, experiments, SITEMAP line),
+                  and the Total Documents footer
 
 Hard gate (exit 1 on findings): baseline 0 on the clean corpus.
 
@@ -64,6 +69,18 @@ ORG_DOCS = re.compile(r"# All documentation \((\d+) files\)")
 ORG_EXPERIMENTS = re.compile(r"# Experiment files \((\d+)\)")
 ORG_TUTORIALS = re.compile(r"# (\d+) tutorial files")
 ORG_CHEATS = re.compile(r"# (\d+) cheat sheets")
+
+# VOLUME-GUIDE file-tree labels (comment text is part of the pattern;
+# rewording the tree means teaching the new wording here)
+VG_SITEMAP = re.compile(r"# All (\d+) documents")
+VG_TUTORIALS = re.compile(r"# Step-by-step tutorials \((\d+) files\)")
+VG_LABS = re.compile(r"# Hands-on lab exercises \((\d+) labs \+ "
+                     r"(\d+) solutions\)")
+VG_CHEATS = re.compile(r"# Quick reference guides \((\d+) files\)")
+VG_PROJECTS = re.compile(r"# Capstone projects \((\d+) files\)")
+VG_EXPERIMENTS = re.compile(r"# Practical experiments \((\d+) files\)")
+VG_TOTAL = re.compile(r"^\*\*Total Documents:\*\* (\d+) files across "
+                      r"(\d+) volumes$", re.M)
 
 HEADLINE_NUM = re.compile(r"\((\d+)\b")
 
@@ -416,6 +433,57 @@ def main() -> int:
         note(int(match.group(1)) == actual,
              "ORGANIZATION-GUIDE claims %s=%s but disk measures %d"
              % (label, match.group(1), actual))
+
+    # ---- VOLUME-GUIDE tree labels and Total Documents footer ----
+    vg = args.root / "docs" / "00-META" / "VOLUME-GUIDE.md"
+    if not vg.exists():
+        print("MC-00 VOLUME-GUIDE.md not found under docs/00-META")
+        return 1
+    vg_text = vg.read_text(encoding="utf-8")
+    vg_claims = [
+        (VG_SITEMAP, m_docs_md, "SITEMAP document count"),
+        (VG_TUTORIALS, _rel("learning-resources/tutorials"),
+         "tutorial files"),
+        (VG_CHEATS, _rel("learning-resources/cheat-sheets"),
+         "cheat sheet files"),
+        (VG_PROJECTS, m_projects, "capstone project files"),
+        (VG_EXPERIMENTS, m_experiments, "experiment files"),
+    ]
+    for pattern, mfn, label in vg_claims:
+        match = pattern.search(vg_text)
+        if match is None:
+            continue
+        actual = measure("VOLUME-GUIDE %s" % label, mfn)
+        if actual is None:
+            continue
+        note(int(match.group(1)) == actual,
+             "VOLUME-GUIDE claims %s=%s but disk measures %d"
+             % (label, match.group(1), actual))
+
+    match = VG_LABS.search(vg_text)
+    if match is not None:
+        for value, label, mfn in zip(match.groups(),
+                                     ("labs", "lab solutions"),
+                                     (m_labs, m_solutions)):
+            actual = measure("VOLUME-GUIDE labs %s" % label, mfn)
+            if actual is None:
+                continue
+            note(int(value) == actual,
+                 "VOLUME-GUIDE claims %s=%s but disk measures %d"
+                 % (label, value, actual))
+
+    match = VG_TOTAL.search(vg_text)
+    if match is not None:
+        docs = measure("VOLUME-GUIDE total files", m_docs_md)
+        phases = measure("VOLUME-GUIDE volume count", m_phases)
+        if docs is not None:
+            note(int(match.group(1)) == docs,
+                 "VOLUME-GUIDE claims %s total files but disk measures %d"
+                 % (match.group(1), docs))
+        if phases is not None:
+            note(int(match.group(2)) == phases,
+                 "VOLUME-GUIDE claims %s volumes but disk measures %d "
+                 "phases" % (match.group(2), phases))
 
     for f in findings:
         print(f.encode("ascii", "backslashreplace").decode("ascii"))

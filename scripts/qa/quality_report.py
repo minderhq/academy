@@ -94,11 +94,15 @@ stand today?" without running each tool by hand.
                        numbered section headers, lab header 3-way
                        split, File Counts block incl. TOTAL as its
                        own sum, module-table "N docs" cells = lesson
-                       files) and ORGANIZATION-GUIDE.md tree labels
+                       files), ORGANIZATION-GUIDE.md tree labels and
+                       VOLUME-GUIDE.md (tree labels, labs 2-way
+                       split, SITEMAP line, Total Documents footer)
                        (MC-01; MC-00 missing file/failed measure) -
                        born while these docs still said 462/463
                        documents, 427 total files and 256 "Module
-                       Documents" (tick-263)
+                       Documents" (tick-263; VOLUME-GUIDE joined in
+                       tick-264 while it still said "85 files across
+                       7 volumes" with "(6 files)" tutorials)
   queue gate (drain in progress; never fails the report unless --fail-on-queue):
     objectives_lint    template-objective artifacts (OL-01/OL-02), phase by phase
     fence_namecheck    names used in a python fence that no fence in the
