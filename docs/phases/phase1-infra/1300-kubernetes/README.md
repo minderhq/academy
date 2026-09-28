@@ -964,7 +964,7 @@ ab/hey/wrk         # Load testing tools
 - [r/kubernetes on Reddit](https://www.reddit.com/r/kubernetes/)
 
 **GPU-Specific:**
-- [NVIDIA Cloud Native](https://github.com/NVIDIA/cloud-native)
+- [NVIDIA Cloud Native](https://docs.nvidia.com/datacenter/cloud-native/)
 - [GPU Operator](https://github.com/NVIDIA/gpu-operator)
 
 ## Module Completion Checklist

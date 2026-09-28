@@ -731,7 +731,7 @@ node_exporter   # System metrics
 - "Computer Networking: A Top-Down Approach" by Kurose & Ross
 
 **Online Courses:**
-- [Networking Fundamentals](https://www.youtube.com/playlist?list=PLWvMf5qdFxbn6e6TJF0aF372tkI0x9Wx)
+- [Networking Fundamentals - NetworkChuck](https://www.youtube.com/@NetworkChuck)
 - [Practical Networking](https://www.youtube.com/watch?v=1jM4v5iSOD4)
 
 **Community:**

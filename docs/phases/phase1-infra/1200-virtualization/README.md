@@ -1115,7 +1115,7 @@ nvidia-smi         # NVIDIA GPU monitoring
 
 **Online Courses:**
 - [Proxmox VE Full Course](https://www.youtube.com/watch?v=ZEjO9g4l6Ww)
-- [Linux Virtualization](https://www.redhat.com/en/services/training/red-hat-virtualization-rhv)
+- [Linux Virtualization](https://www.redhat.com/en/topics/virtualization)
 
 ### Community Resources
 

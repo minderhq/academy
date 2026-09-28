@@ -288,7 +288,7 @@ docs/transformers/3101-self-attention.md
 ## 📚 Additional Resources
 
 ### External Glossaries
-- [Google AI Glossary](https://ai.google/static/education/glossary/)
+- [Google ML Glossary](https://developers.google.com/machine-learning/glossary)
 - [NVIDIA AI Glossary](https://www.nvidia.com/en-us/glossary/)
 - [OpenAI Glossary](https://platform.openai.com/docs/guides/gpt-best-practices)
 

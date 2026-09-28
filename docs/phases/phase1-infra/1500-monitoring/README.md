@@ -921,7 +921,7 @@ tempo              # High-performance tracing
 - "Observability Engineering" by Charity Majors
 
 **Online Courses:**
-- [Prometheus Training](https://prometheus.io/community/training/)
+- [Prometheus Tutorials](https://prometheus.io/docs/tutorials/)
 - [Grafana Fundamentals](https://grafana.com/tutorials/)
 - [SRE Fundamentals](https://www.cloudskills.google.com/paths/sre)
 

@@ -1,7 +1,7 @@
 ---
 Document ID: VOLUME-2
 Title: "Volume 2: AI/ML Foundations"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -505,7 +505,7 @@ For more help, see **[TROUBLESHOOTING-Common-Issues.md](../learning-resources/tr
 
 **Recommended Resources:**
 - **[PyTorch Documentation](https://pytorch.org/docs/stable/)**
-- **[CUDA Programming Guide](https://docs.nvidia.com/cuda/cuda-c-programming-guide/)**
+- **[CUDA Programming Guide](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html)**
 - **[Einstein Summation](https://rockt.github.io/2018/04/30/einsum)** - Excellent einsum tutorial
 
 ---

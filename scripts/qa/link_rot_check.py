@@ -1,0 +1,175 @@
+#!/usr/bin/env python3
+"""External link rot check for the PROJECT-OMEGA corpus (report-only).
+
+Complements linkcheck.py, which covers relative targets on disk. This tool
+takes the http/https subset of the SAME link model (linkcheck's MD_LINK,
+naive fence toggle, inline-code scrub - the fence-sangham lesson: reuse the
+gates' exact extraction, never an ad-hoc one) and probes each unique URL
+over the network.
+
+Why report-only and NOT registered in quality_report GATES: the scorecard
+is the fast offline answer ("where does the corpus stand today?"); a
+network probe makes it slow and flaky. Run this ad hoc / on a schedule:
+
+    python scripts/qa/link_rot_check.py            # full corpus
+    python scripts/qa/link_rot_check.py --limit 10 # smoke test
+
+Classes:
+    OK        2xx final status after redirects
+    REDIRECT  final status ok but the URL moved (informational)
+    DEAD      404/410 - the rot this tool exists to find
+    DENIED    403/429/999 - usually bot-blocking, not rot; verify by hand
+    SERVER    5xx - server-side trouble, retry later
+    ERROR     network/DNS/timeout after one retry
+    TEMPLATE  your-username placeholder URLs - the README template idiom;
+              they resolve once the repo is published, so not rot
+
+mailto:, anchors and local/example URLs (localhost, 127.0.0.1,
+example.com/org/net, *.test, *.local) are out of scope. Exit 0 always.
+
+Baseline (2026-09-28, first run): see the summary line this prints.
+"""
+from __future__ import annotations
+
+import argparse
+import os
+import re
+import sys
+from collections import defaultdict
+from concurrent.futures import ThreadPoolExecutor
+
+import httpx
+
+SKIP_DIRS = {".git", "node_modules"}
+MD_LINK = re.compile(r"\[[^\]]*\]\(([^)\s]+)(?:\s+\"[^\"]*\")?\)")
+INLINE_CODE = re.compile(r"`[^`]+`")
+FENCE = re.compile(r"^\s*(```|~~~)")
+LOCAL_URL = re.compile(
+    r"(localhost|127\.0\.0\.1|0\.0\.0\.0|example\.(?:com|org|net)|\.test[/:]|\.local[/:])",
+    re.IGNORECASE,
+)
+UA = "PROJECT-OMEGA-link-rot-check/1.0 (curriculum QA; contact: repo owner)"
+DEAD = {404, 410}
+DENIED = {401, 403, 429, 999}
+
+
+def esc(text: str) -> str:
+    return text.encode("ascii", "backslashreplace").decode("ascii")
+
+
+def md_files(root):
+    for dirpath, dirnames, filenames in os.walk(root):
+        dirnames[:] = [d for d in dirnames if d not in SKIP_DIRS]
+        for fn in filenames:
+            if fn.endswith(".md"):
+                yield os.path.join(dirpath, fn)
+
+
+def harvest(root):
+    """url -> [rel:line] using linkcheck's exact extraction model."""
+    refs = defaultdict(list)
+    for src in md_files(root):
+        in_fence = False
+        try:
+            with open(src, encoding="utf-8") as f:
+                for i, line in enumerate(f, 1):
+                    if FENCE.match(line):
+                        in_fence = not in_fence
+                        continue
+                    if in_fence:
+                        continue
+                    for m in MD_LINK.finditer(INLINE_CODE.sub("", line)):
+                        url = m.group(1)
+                        if url.startswith(("http://", "https://")) and not LOCAL_URL.search(url):
+                            rel = os.path.relpath(src, root).replace("\\", "/")
+                            refs[url].append(f"{rel}:{i}")
+        except (OSError, UnicodeDecodeError):
+            continue
+    return refs
+
+
+def probe(client: httpx.Client, url: str) -> tuple[str, str]:
+    """Return (class, note) for one URL. GET streamed: status without the body."""
+    if "your-username" in url:
+        return "TEMPLATE", "placeholder until publishing"
+    for attempt in (1, 2):
+        try:
+            with client.stream("GET", url) as r:
+                code = r.status_code
+                if r.has_redirect_location and r.next_request is None and 300 <= code < 400:
+                    pass
+                final = str(r.url)
+            if code in DEAD:
+                return "DEAD", ""
+            if code in DENIED:
+                return "DENIED", f"HTTP {code}"
+            if 500 <= code:
+                if attempt == 1:
+                    continue
+                return "SERVER", f"HTTP {code}"
+            if code != 200:
+                return "OK", f"HTTP {code}"  # non-200 2xx/3xx terminal: informational
+            if final.rstrip("/") != url.rstrip("/"):
+                return "REDIRECT", final
+            return "OK", ""
+        except (httpx.TransportError, httpx.HTTPError) as e:
+            if attempt == 1:
+                continue
+            reason = type(e).__name__
+            detail = str(e)[:60]
+            return ("TIMEOUT" if isinstance(e, httpx.TimeoutException) else "ERROR",
+                    f"{reason}: {detail}" if detail else reason)
+    return "ERROR", "unreachable"  # pragma: no cover
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser.add_argument("--root", type=str, default=None)
+    parser.add_argument("--timeout", type=float, default=10.0)
+    parser.add_argument("--concurrency", type=int, default=12)
+    parser.add_argument("--limit", type=int, default=0,
+                        help="probe only the first N unique urls (smoke test)")
+    args = parser.parse_args()
+    root = args.root or os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+    refs = harvest(root)
+    urls = sorted(refs, key=lambda u: (-len(refs[u]), u))
+    if args.limit:
+        urls = urls[: args.limit]
+
+    counts = defaultdict(int)
+    notes = {}  # url -> (class, note)
+    with httpx.Client(
+        timeout=httpx.Timeout(args.timeout),
+        follow_redirects=True,
+        headers={"User-Agent": UA, "Accept": "*/*"},
+    ) as client:
+        with ThreadPoolExecutor(max_workers=args.concurrency) as pool:
+            for url, (cls, note) in zip(urls, pool.map(lambda u: probe(client, u), urls)):
+                counts[cls] += 1
+                if cls != "OK":
+                    notes[url] = (cls, note)
+
+    order = ["DEAD", "ERROR", "TIMEOUT", "SERVER", "DENIED", "REDIRECT", "TEMPLATE"]
+    for cls in order:
+        bucket = [(u, notes[u]) for u in urls if notes.get(u, ("", ""))[0] == cls]
+        if not bucket:
+            continue
+        print(f"\n== {cls} ({len(bucket)}) ==")
+        for url, (_, note) in bucket:
+            locs = ", ".join(refs[url][:3]) + (" ..." if len(refs[url]) > 3 else "")
+            print(f"  {url}" + (f"  [{note}]" if note else ""))
+            print(f"      {locs}")
+
+    print(
+        "\nlink_rot_check: %d external urls, %d ok, %d redirect, %d dead, "
+        "%d denied, %d server, %d error, %d timeout, %d template -> REPORT (exit 0)"
+        % (len(urls), counts["OK"], counts["REDIRECT"], counts["DEAD"],
+           counts["DENIED"], counts["SERVER"], counts["ERROR"], counts["TIMEOUT"],
+           counts["TEMPLATE"])
+    )
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

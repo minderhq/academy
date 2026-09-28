@@ -1,7 +1,7 @@
 ---
 Document ID: 6100-PREREQUISITES
 Title: "Prerequisites: Vector Databases"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Advanced
 ---
@@ -72,7 +72,7 @@ Semantic similarity ≈ 0.7-0.9
    - Chapters 1-3
 
 2. **Vector Embeddings (45 min):**
-   - [Vector Search Explained](https://www.pinecone.io/learn/vector-search/)
+   - [Vector Similarity Search Explained](https://www.pinecone.io/learn/vector-similarity/)
    - Understand embedding spaces
 
 3. **Database Indexing (20 min):**

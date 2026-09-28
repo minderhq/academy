@@ -1,7 +1,7 @@
 ---
 Document ID: EXTERNAL-RESOURCES
 Title: "PROJECT-OMEGA: Video & External Resources"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -25,17 +25,16 @@ Curated list of videos, courses, and external resources to complement the learni
 
 ### 1100: Network Fundamentals
 **Video Courses:**
-- [Networking Basics by NetworkChuck](https://www.youtube.com/playlist?list=PLWvMf5qdFxbn6e6TJF0aF372tkI0x9Wx) - Free YouTube series
+- [NetworkChuck (YouTube channel)](https://www.youtube.com/@NetworkChuck) - Free networking series
 - [CompTIA Network+ Full Course](https://www.youtube.com/watch?v=1jM4v5iSOD4) - FreeCodeCamp (10 hours)
 
 **Articles:**
-- [Understanding Fiber Optic Internet](https://www.howtogeek.com/167127/how-fragging-and-throttling-can-affect-your-internet-speed/)
-- [Home Networking Guide](https://www.howtogeek.com/school/home-networking/)
+- [Packet Traveling - Networking Fundamentals Series](https://www.practicalnetworking.net/series/packet-traveling/packet-traveling/)
 
 ### 1200: Virtualization
 **Video Courses:**
 - [Proxmox VE Full Course](https://www.youtube.com/watch?v=ZEjO9g4l6Ww) - Lawrence Systems
-- [KVM/QEMU Virtualization](https://www.youtube.com/playlist?list=PLlM7RIAd_51Yq7d0kqCXs5q_U-gbJeZV)
+- [KVM/QEMU Virtualization - LearnLinuxTV](https://www.youtube.com/@LearnLinuxTV)
 
 **Documentation:**
 - [Proxmox Official Documentation](https://pve.proxmox.com/wiki/Main_Page)
@@ -92,7 +91,7 @@ Curated list of videos, courses, and external resources to complement the learni
 
 ### 2300: NLP
 **Video Courses:**
-- [NLP with Deep Learning](https://www.youtube.com/playlist?list=PLboQXM65rOGl6IhSrHq2lRiF1y5c3hUW) - Stanford CS224N
+- [NLP with Deep Learning](https://www.youtube.com/playlist?list=PLoROMvodv4rMiGQp3WXShtMGgzqpfVfbU) - Stanford CS224N
 - [spaCy NLP Course](https://www.youtube.com/playlist?list=PLBpmvnxV3ZJQN-RbVRhAVeUEsltTcQd-l)
 
 **Resources:**
@@ -135,7 +134,7 @@ Curated list of videos, courses, and external resources to complement the learni
 - [LLM Decoding Strategies](https://www.youtube.com/watch?v=kbc_n8jZ6Xs) - Patrick von Platen
 
 **Blog Posts:**
-- [How to Generate Text: Sampling vs Beam Search](https://towardsdatascience.com/how-to-generate-text-without-teachers-99b3483ecfbd)
+- [How to Generate Text: Decoding Methods](https://huggingface.co/blog/how-to-generate)
 - [Understanding Nucleus Sampling](https://spectrum.library.cornell.edu/taming-the-beam)
 
 ### 3400: Architectures
@@ -205,7 +204,7 @@ Curated list of videos, courses, and external resources to complement the learni
 - [Synthetic Data for LLMs](https://www.youtube.com/watch?v=UfXK_YbEqXM)
 
 **Articles:**
-- [The Synthetic Data Revolution](https://www.anthropic.com/index/constitutional-ai-harmlessness)
+- [Constitutional AI: Harmlessness from AI Feedback](https://arxiv.org/abs/2212.08073)
 - [Microsoft Phi-1: Using Synthetic Data](https://arxiv.org/abs/2306.04326)
 
 ---
@@ -218,7 +217,7 @@ Curated list of videos, courses, and external resources to complement the learni
 - [Embeddings for Search](https://www.youtube.com/watch?v=qRaKqEyodsw)
 
 **Resources:**
-- [Vector Database Comparison](https://www.pinecone.io/learn/vector-database-basics/)
+- [What is a Vector Database?](https://www.pinecone.io/learn/vector-database/)
 - [Sentence Transformers](https://www.sbert.net/)
 
 ### 6200: Advanced Retrieval
@@ -236,7 +235,7 @@ Curated list of videos, courses, and external resources to complement the learni
 
 ### 6400: Vector Databases
 **Video:**
-- [Qdrant Tutorial](https://www.youtube.com/playlist?list=PLx7RjQcW984oKWRmCzC7fLq5jUXBq7y0)
+- [Qdrant YouTube Channel](https://www.youtube.com/@qdrant)
 - [Pinecone Vector Database](https://www.youtube.com/watch?v=tIcf4agfIbw)
 
 **Documentation:**
@@ -321,7 +320,7 @@ Curated list of videos, courses, and external resources to complement the learni
 ### Communities
 - [HuggingFace Forums](https://discuss.huggingface.co/)
 - [r/LocalLLaMA on Reddit](https://www.reddit.com/r/LocalLLaMA/)
-- [MLOps.community](https://mlops.community/slack/)
+- [MLOps.community](https://mlops.community/)
 
 ---
 

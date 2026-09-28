@@ -437,7 +437,7 @@ Once your environment is set up:
 
 ### Hardware Guides
 - [GPU Comparison](https://www.tomshardware.com/best-gpus)
-- [RAM Requirements for LLMs](https://ollama.com/blog/run-llama-3-locally)
+- [Ollama Model Library (model sizes)](https://ollama.com/library)
 
 ### Software Resources
 - [Docker Documentation](https://docs.docker.com/)
@@ -445,7 +445,7 @@ Once your environment is set up:
 - [PyTorch Installation](https://pytorch.org/get-started/locally/)
 
 ### Troubleshooting
-- [Common Docker Issues](https://docs.docker.com/engine/troubleshooting/)
+- [Common Docker Issues](https://docs.docker.com/engine/daemon/troubleshoot/)
 - [WSL2 Troubleshooting](https://learn.microsoft.com/en-us/windows/wsl/troubleshooting)
 
 ---

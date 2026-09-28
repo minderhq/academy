@@ -58,7 +58,7 @@ Difficulty: Beginner
 
 ### LLMs & Transformers
 4. **"Natural Language Processing with Transformers"** by Lewis Tunstall, Leandro von Werra, Thomas Wolf
-   - [Free online version](https://transformersbook.com/)
+   - [Companion code & notebooks](https://github.com/nlp-with-transformers)
 
 5. **"Transformers for Natural Language Processing"** by Denis Rothman
 
@@ -77,7 +77,7 @@ Difficulty: Beginner
 ### Advanced
 - **[Distributed Systems (MIT)](https://pdos.csail.mit.edu/6.824/)** - For understanding distributed ML
 - **[CS224n: NLP with Deep Learning (Stanford)](http://web.stanford.edu/class/cs224n/)** - NLP course
-- **[DeepMind x UCL RL Lecture Series](https://www.youtube.com/playlist?list=PLqYmG7fiTraYDtvbV98TWPP55pfXsSKD)** - Reinforcement learning
+- **[DeepMind x UCL RL Lecture Series](https://www.davidsilver.uk/teaching/)** - Reinforcement learning
 
 ### LLM Specific
 - **[LangChain Academy](https://academy.langchain.com/)** - Official LangChain training
@@ -155,12 +155,12 @@ Difficulty: Beginner
 ### Educational
 - **[3Blue1Brown](https://www.youtube.com/@3blue1brown)** - Math visualizations
 - **[Andrej Karpathy](https://www.youtube.com/@AndrejKarpathy)** - Neural networks from scratch
-- **[StatQuest with Josh Starmer](https://www.youtube.com/@statquestwithjoshstarmer)** - ML explained simply
+- **[StatQuest with Josh Starmer](https://www.youtube.com/@statquest)** - ML explained simply
 
 ### Applied AI
 - **[Rabbit Hole Syndrome](https://www.youtube.com/@RabbitHoleSyndrome)** - AI engineering
 - **[AI Jason](https://www.youtube.com/@AIJason)** - AI coding tutorials
-- **[Sam Witteveen](https://www.youtube.com/@switowski1)** - LLM tutorials
+- **[Sam Witteveen](https://www.youtube.com/@samwitteveenai)** - LLM tutorials
 
 ---
 
@@ -241,7 +241,7 @@ git push origin feature-branch
 
 ### Vendor Certifications
 - **[NVIDIA Deep Learning Institute](https://www.nvidia.com/en-us/deep-learning-ai/education/)** - GPU computing
-- **[AWS Machine Learning](https://aws.amazon.com/certification/certified-machine-learning/)** - Cloud ML
+- **[AWS Certified Machine Learning Engineer](https://aws.amazon.com/certification/certified-machine-learning-engineer-associate/)** - Cloud ML
 - **[Google ML Engineer](https://cloud.google.com/certifications/machine-learning-engineer)** - GCP ML
 
 ### Online Certificates
@@ -253,8 +253,8 @@ git push origin feature-branch
 ## 🚀 Project Templates & Starters
 
 ### LLM Application Templates
-- **[LangChain Templates](https://github.com/langchain-ai/langchain/tree/master/templates)**
-- **[Create LLM App](https://github.com/Nutlope/create-llm-app)**
+- **[LangGraph Examples](https://github.com/langchain-ai/langgraph/tree/main/examples)**
+- **[LlamaCoder](https://github.com/Nutlope/llamacoder)**
 - **[Flowise AI](https://flowiseai.com/)** - Drag-and-drop LLM apps
 
 ### Infrastructure Templates
