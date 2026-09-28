@@ -78,13 +78,13 @@ class ProductSearch:
         """Find semantically similar products"""
         query_vector = self.model.encode(query).tolist()
 
-        search_result = self.client.search(
+        search_result = self.client.query_points(
             collection_name="products",
-            query_vector=query_vector,
+            query=query_vector,
             query_filter=self._build_filter(filters),
             limit=10,
             score_threshold=0.7  # Only return relevant matches
-        )
+        ).points
 
         return [
             {
@@ -180,13 +180,13 @@ class LegalDocumentSearch:
 
         filters = {"jurisdiction": jurisdiction} if jurisdiction else None
 
-        results = self.client.search(
+        results = self.client.query_points(
             collection_name="legal_docs",
-            query_vector=query_vector.tolist(),
+            query=query_vector.tolist(),
             query_filter=self._build_filter(filters),
             limit=20,
             score_threshold=0.75
-        )
+        ).points
 
         return self._rank_by_relevance(results)
 
@@ -197,16 +197,16 @@ class LegalDocumentSearch:
         facts_vector = self.model.encode(case_facts)
 
         # Search for similar fact patterns
-        results = self.client.search(
+        results = self.client.query_points(
             collection_name="legal_docs",
-            query_vector=facts_vector.tolist(),
+            query=facts_vector.tolist(),
             query_filter={
                 "must": [
                     {"key": "doc_type", "match": {"value": "case_law"}}
                 ]
             },
             limit=10
-        )
+        ).points
 
         return results
 ```
@@ -312,12 +312,12 @@ class CodeSearch:
 
         query_vector = self.model.encode(intent_query)
 
-        results = self.client.search(
+        results = self.client.query_points(
             collection_name="code",
-            query_vector=query_vector.tolist(),
+            query=query_vector.tolist(),
             limit=10,
             score_threshold=0.65
-        )
+        ).points
 
         return [
             {
@@ -407,11 +407,11 @@ class SupportRouter:
         ticket_vector = self.model.encode(ticket_text)
 
         # Find closest department
-        results = self.client.search(
+        results = self.client.query_points(
             collection_name="departments",
-            query_vector=ticket_vector.tolist(),
+            query=ticket_vector.tolist(),
             limit=1
-        )
+        ).points
 
         return results[0].payload["department"]
 ```
@@ -482,12 +482,12 @@ class PlagiarismDetector:
             query_vector = self.model.encode(sentence)
 
             # Find similar sentences
-            results = self.client.search(
+            results = self.client.query_points(
                 collection_name="reference",
-                query_vector=query_vector.tolist(),
+                query=query_vector.tolist(),
                 limit=3,
                 score_threshold=0.85  # High similarity threshold
-            )
+            ).points
 
             if results:
                 plagiarized_passages.append({
@@ -576,11 +576,12 @@ class HybridSearch:
         )
 
         # Step 2: Semantic search within filtered set (Qdrant)
-        semantic_results = qdrant.search(
-            query_vector=embed(query),
-            filter={"must": [{"id": filtered_ids}]},
+        semantic_results = qdrant.query_points(
+            collection_name="products",
+            query=embed(query),
+            query_filter={"must": [{"id": filtered_ids}]},
             limit=10
-        )
+        ).points
 
         return semantic_results
 ```
@@ -645,11 +646,11 @@ client.upsert(
 
 # Search
 query = "AI and neural networks"
-results = client.search(
+results = client.query_points(
     collection_name="demo",
-    query_vector=model.encode(query).tolist(),
+    query=model.encode(query).tolist(),
     limit=3
-)
+).points
 
 for hit in results:
     print(f"{hit.payload['text']}: {hit.score:.3f}")
