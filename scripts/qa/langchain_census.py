@@ -33,6 +33,15 @@ IMPORT_RE = re.compile(
     r"^\s*(?:from\s+([\w.]+)\s+import\s+(.+)"
     r"|(?:import)\s+([\w.]+(?:\s*,\s*[\w.]+)*))\s*$")
 
+for _pkg in ("langchain", "langgraph"):
+    try:
+        importlib.import_module(_pkg)
+    except ImportError:  # environment problem, not a doc problem
+        print(f"langchain_census: {_pkg} not importable in this interpreter - "
+              "the census resolves lesson imports against the kurulu-stack; "
+              "run the scorecard with that python (see ENVIRONMENT-SETUP.md)")
+        sys.exit(2)
+
 _verdict_cache: dict[str, str] = {}
 
 

@@ -35,7 +35,7 @@ stand today?" without running each tool by hand.
     anchor_check       in-document anchors vs GitHub-accurate slugger
                        (2 known inline-code examples allowlisted)
     table_lint         ragged GFM tables - header/separator/body lines
-                       with differing cell counts (TL-01); escaped \|
+                       with differing cell counts (TL-01); escaped \\|
                        is a literal pipe, not a separator
     mermaid_lint       mermaid diagram fences: known diagram-type header
                        (MM-01), balanced () [] {} (MM-02), declared

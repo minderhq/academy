@@ -33,7 +33,12 @@ import re
 import sys
 from pathlib import Path
 
-import yaml
+try:
+    import yaml
+except ImportError:  # environment problem, not a doc problem
+    print("frontmatter_lint: PyYAML is required for the frontmatter gate "
+          "(uv add pyyaml / pip install pyyaml)")
+    sys.exit(2)
 
 REQUIRED_KEYS = ("Document ID", "Title", "Last Updated", "Status", "Difficulty")
 STATUS_OK = {"Complete"}

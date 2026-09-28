@@ -22,10 +22,14 @@ Prints the full scorecard: corpus stats (lesson files / modules /
 phases) plus every gate below, then a single `result:` line. Exit 0
 means all hard gates are clean - this is the CI contract.
 
-Environment: `uv sync --group qa` (see [ENVIRONMENT-SETUP](ENVIRONMENT-SETUP.md)
-and the root `pyproject.toml`). The toolchain's only third-party
-dependency is `httpx` (network link checking), declared as the PEP 735
-`qa` dependency group.
+Environment: `uv sync --group qa` installs the offline-gate
+dependencies (PyYAML for the frontmatter/yaml parser gates, httpx for
+the network link tool) as the PEP 735 `qa` dependency group in the
+root `pyproject.toml` (see [ENVIRONMENT-SETUP](ENVIRONMENT-SETUP.md)).
+One exception: langchain_census resolves every lesson import against
+the kurulu-stack, so run the scorecard under an interpreter that has
+the full installed stack. A partial environment fails loud with
+`sys.exit(2)` and a named fix (never silently wrong findings).
 
 ---
 
