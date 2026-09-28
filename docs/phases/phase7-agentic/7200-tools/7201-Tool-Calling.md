@@ -3,7 +3,7 @@ Document ID: 7201
 Title: Tool Calling & Function Execution
 Phase: 7
 Module: 7200
-Last Updated: 2026-09-24
+Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -36,12 +36,12 @@ Tags: ['agents', 'tool-calling', 'function-calling', 'code-interpreter']
 
 After completing this lesson, you will be able to:
 
-- Explain What is Tool Calling
-- Explain Tool Calling Mechanism
-- Explain Tool Types
-- Explain OpenAI Function Calling
-- Explain Tool Calling Best Practices
-- Explain Advanced Tool Calling Patterns
+- Describe how tool calling extends an LLM — walk the request → tool_calls response → JSON arguments → external execution → tool-result message cycle that reaches APIs and live data
+- Declare function schemas — write OpenAI-style tool definitions with type, description, enum and required fields so parameter extraction stays unambiguous
+- Categorize tools by capability — information retrieval, computation and system-interaction tools, each carrying a different risk profile
+- Complete the OpenAI tool-call round trip — inspect message.tool_calls, json.loads the string arguments, execute locally and return the tool result for the final answer
+- Apply tool-calling best practices — explicit parameter schemas over vague catch-alls, structured error statuses from execute_tool, and a ToolRegistry that generates its API schemas from registrations
+- Recognize advanced patterns — multi-step tool chains, parallel tool calls in one response, and streaming deltas assembled by index into complete calls
 
 ---
 
@@ -146,6 +146,9 @@ tools = [
 ### 1. Information Retrieval Tools
 
 ```python
+from typing import Dict, List
+
+
 # Web Search
 def search_web(query: str, num_results: int = 5) -> List[str]:
     """Search the web for current information"""
@@ -157,14 +160,18 @@ def query_database(sql: str) -> List[Dict]:
     pass
 
 # Vector Search
-def vector_search(embedding: List[float], top_k: int = 10) -> List[Doc]:
-    """Search vector database for similar documents"""
+def vector_search(embedding: List[float], top_k: int = 10) -> List[Dict]:
+    """Search vector database for similar documents;
+    each hit is a document payload dict"""
     pass
 ```
 
 ### 2. Computation Tools
 
 ```python
+from typing import Dict, List
+
+
 # Code Execution
 def execute_code(code: str, language: str = "python") -> str:
     """Execute code in sandboxed environment"""
@@ -184,14 +191,17 @@ def process_data(data: List[Dict], operation: str) -> List[Dict]:
 ### 3. System Interaction Tools
 
 ```python
+from typing import Dict
+
+
 # File Operations
 def read_file(path: str) -> str:
     """Read file contents"""
     pass
 
 # API Calls
-def call_api(url: str, method: str, headers: Dict) -> Response:
-    """Make HTTP request to API"""
+def call_api(url: str, method: str, headers: Dict) -> Dict:
+    """Make HTTP request to API; returns the parsed JSON body"""
     pass
 
 # System Commands
@@ -207,9 +217,19 @@ def run_command(command: str) -> str:
 ### Example Implementation
 
 ```python
+import json
+
 import openai
 
+# Any OpenAI-compatible endpoint works — the cloud API or a local server
+# (e.g. Ollama exposes one at base_url="http://localhost:11434/v1")
 client = openai.OpenAI()
+
+
+def get_stock_price(symbol: str) -> dict:
+    """Stand-in for a real market-data API"""
+    return {"symbol": symbol, "price": 227.48, "currency": "USD"}
+
 
 # Define tools
 tools = [
@@ -231,7 +251,7 @@ tools = [
 
 # Make request
 response = client.chat.completions.create(
-    model="gpt-4",
+    model="gpt-4o",
     messages=[
         {"role": "user", "content": "What's the price of AAPL?"}
     ],
@@ -244,12 +264,12 @@ if response.choices[0].message.tool_calls:
     function_name = tool_call.function.name
     arguments = json.loads(tool_call.function.arguments)
 
-    # Execute function
+    # Execute function locally
     result = get_stock_price(arguments["symbol"])
 
-    # Get final response
+    # Send the tool result back for the final answer
     final_response = client.chat.completions.create(
-        model="gpt-4",
+        model="gpt-4o",
         messages=[
             {"role": "user", "content": "What's the price of AAPL?"},
             response.choices[0].message,
@@ -260,6 +280,11 @@ if response.choices[0].message.tool_calls:
             }
         ]
     )
+
+print(final_response.choices[0].message.content)
+
+# Output:
+# AAPL is currently trading at $227.48 USD.
 ```
 
 ---
@@ -291,7 +316,27 @@ if response.choices[0].message.tool_calls:
 ### 2. Error Handling
 
 ```python
+from typing import Any, Dict
+
+
+class ValidationError(Exception):
+    """Raised when arguments fail schema validation"""
+
+
+class ExecutionError(Exception):
+    """Raised when the tool itself fails"""
+
+
+tool_registry = {
+    "get_weather": lambda location, unit="celsius": f"22°C in {location}",
+}
+
+
 def execute_tool(tool_name: str, arguments: Dict) -> Any:
+    # Unknown tools get a structured error, not a KeyError
+    if tool_name not in tool_registry:
+        return {"status": "error", "error": f"Unknown tool: {tool_name}"}
+
     try:
         tool = tool_registry[tool_name]
         result = tool(**arguments)
@@ -302,11 +347,30 @@ def execute_tool(tool_name: str, arguments: Dict) -> Any:
         return {"status": "error", "error": f"Execution failed: {e}"}
     except Exception as e:
         return {"status": "error", "error": f"Unexpected error: {e}"}
+
+
+def _boom(**kwargs):
+    raise ExecutionError("upstream socket closed")
+
+
+tool_registry["boom"] = _boom
+
+print(execute_tool("get_weather", {"location": "Tokyo"}))
+print(execute_tool("nope", {}))
+print(execute_tool("boom", {}))
+
+# Output:
+# {'status': 'success', 'result': '22°C in Tokyo'}
+# {'status': 'error', 'error': 'Unknown tool: nope'}
+# {'status': 'error', 'error': 'Execution failed: upstream socket closed'}
 ```
 
 ### 3. Tool Registry Pattern
 
 ```python
+from typing import Callable, Dict, List
+
+
 class ToolRegistry:
     def __init__(self):
         self.tools = {}
@@ -327,6 +391,29 @@ class ToolRegistry:
             {"type": "function", "function": tool["schema"]}
             for tool in self.tools.values()
         ]
+
+
+registry = ToolRegistry()
+registry.register(
+    "get_weather",
+    lambda location: f"22°C in {location}",
+    {
+        "name": "get_weather",
+        "description": "Get current weather for a location",
+        "parameters": {
+            "type": "object",
+            "properties": {"location": {"type": "string"}},
+            "required": ["location"],
+        },
+    },
+)
+
+print(registry.execute("get_weather", location="Tokyo"))
+print([t["function"]["name"] for t in registry.get_schemas()])
+
+# Output:
+# 22°C in Tokyo
+# ['get_weather']
 ```
 
 ---
@@ -348,36 +435,80 @@ LLM Process:
 ### 2. Parallel Tool Execution
 
 ```python
-# LLM can call multiple tools simultaneously
+weather_tool = {
+    "type": "function",
+    "function": {
+        "name": "get_weather",
+        "description": "Get current weather for a location",
+        "parameters": {
+            "type": "object",
+            "properties": {"location": {"type": "string"}},
+            "required": ["location"],
+        },
+    },
+}
+
+# One request — the model may return multiple tool calls at once
 response = client.chat.completions.create(
-    model="gpt-4",
+    model="gpt-4o",
     messages=[{"role": "user", "content": "Get weather for Tokyo, London, and NYC"}],
     tools=[weather_tool]
 )
 
-# Response includes 3 parallel tool calls
+# Response includes 3 parallel tool calls — execute them concurrently,
+# then send one tool-result message per tool_call_id
 tool_calls = response.choices[0].message.tool_calls
 # [
-#   {"name": "get_weather", "args": {"location": "Tokyo"}},
-#   {"name": "get_weather", "args": {"location": "London"}},
-#   {"name": "get_weather", "args": {"location": "NYC"}}
+#   tool_call.function.name == "get_weather",
+#   json.loads(tool_call.function.arguments) == {"location": "Tokyo"},
+#   ... {"location": "London"}, {"location": "NYC"}
 # ]
 ```
 
 ### 3. Streaming Tool Calls
 
 ```python
+import json
+
+tools = [{
+    "type": "function",
+    "function": {
+        "name": "get_weather",
+        "description": "Get current weather for a location",
+        "parameters": {
+            "type": "object",
+            "properties": {"location": {"type": "string"}},
+            "required": ["location"],
+        },
+    },
+}]
+
 stream = client.chat.completions.create(
-    model="gpt-4",
-    messages=[...],
+    model="gpt-4o",
+    messages=[{"role": "user", "content": "Weather in Tokyo?"}],
     tools=tools,
     stream=True
 )
 
+# Tool-call deltas arrive fragmented — accumulate them by index until
+# each call's arguments form a complete JSON string
+assembled = {}
 for chunk in stream:
-    if chunk.choices[0].delta.tool_calls:
-        # Process tool call incrementally
-        pass
+    for delta in chunk.choices[0].delta.tool_calls or []:
+        slot = assembled.setdefault(delta.index, {"arguments": ""})
+        if delta.id:
+            slot["id"] = delta.id
+        if delta.function and delta.function.name:
+            slot["name"] = delta.function.name
+        if delta.function and delta.function.arguments:
+            slot["arguments"] += delta.function.arguments
+
+calls = [assembled[i] for i in sorted(assembled)]
+for call in calls:
+    print(call["name"], json.loads(call["arguments"]))
+
+# Output:
+# get_weather {'location': 'Tokyo'}
 ```
 
 ---
@@ -387,20 +518,32 @@ for chunk in stream:
 ### 1. Sandboxing
 
 ```python
-# Restricted Python execution
-import RestrictedPython
 from RestrictedPython import compile_restricted
 
-def safe_execute(code: str):
-    """Execute code in restricted environment"""
+
+def safe_execute(code: str) -> dict:
+    """Compile and run model-supplied code with builtins stripped.
+    Builtins-stripping alone is not a hard sandbox — pair it with
+    process-level isolation (containers, no network) for real defense."""
     byte_code = compile_restricted(code, '<string>', 'exec')
-    exec(byte_code, {'__builtins__': {}}, {})
+    namespace: dict = {}
+    exec(byte_code, {'__builtins__': {}}, namespace)
+    return namespace
+
+
+result = safe_execute("answer = 6 * 7")
+print(result["answer"])
+
+# Output:
+# 42
 ```
 
 ### 2. Permission System
 
 ```python
 class ToolPermission:
+    """Deny by default — capabilities must be granted explicitly"""
+
     def __init__(self):
         self.permissions = {
             "file_system": False,
@@ -411,19 +554,56 @@ class ToolPermission:
     def check_permission(self, tool: str) -> bool:
         if tool.startswith("file_"):
             return self.permissions["file_system"]
-        # ... other checks
-        return True
+        if tool.startswith("run_") or tool.startswith("exec_"):
+            return self.permissions["system"]
+        if tool.startswith(("call_api", "search_web", "query_")):
+            return self.permissions["network"]
+        return False  # unknown tools are denied, not waved through
+
+
+perm = ToolPermission()
+print(perm.check_permission("file_read"))      # False — not granted
+perm.permissions["file_system"] = True
+print(perm.check_permission("file_read"))      # True — granted
+print(perm.check_permission("run_command"))    # False
+print(perm.check_permission("mystery_tool"))   # False — deny by default
+
+# Output:
+# False
+# True
+# False
+# False
 ```
 
 ### 3. Input Validation
 
 ```python
+from typing import Dict
+
+
 def validate_tool_input(tool_name: str, arguments: Dict) -> bool:
-    # Validate argument types
-    # Check for malicious input
-    # Sanitize file paths
-    # Limit resource usage
-    pass
+    """Pre-execution validation: name shape, payload size, path safety"""
+    if not tool_name or not tool_name.replace("_", "").isalnum():
+        return False
+    for key, value in arguments.items():
+        if isinstance(value, str) and len(value) > 2000:
+            return False  # resource limit
+        if "path" in key and isinstance(value, str):
+            if ".." in value or value.startswith("/"):
+                return False  # path traversal / absolute escape
+    return True
+
+
+print(validate_tool_input("get_weather", {"location": "Tokyo"}))   # True
+print(validate_tool_input("read_file", {"path": "../etc/passwd"})) # False
+print(validate_tool_input("read_file", {"path": "/etc/passwd"}))   # False
+print(validate_tool_input("bad name!", {}))                        # False
+
+# Output:
+# True
+# False
+# False
+# False
 ```
 
 ---
@@ -450,6 +630,14 @@ ReAct Agent → Uses Tool Calling → Executes Functions → Returns Result
 
 ```python
 # /home/omni/configs/tool_registry.py
+from homelab_tools import (
+    get_gpu_stats,
+    get_disk_space,
+    k8s_list_pods,
+    k8s_get_logs,
+    run_llm_inference,
+    quantize_model,
+)
 
 tools = {
     # System tools
@@ -507,10 +695,12 @@ tools = {
 ### Related ai-engineering-curriculum Documents
 
 - [7200: Tool Calling and Function Execution](README.md)
+- [7202: Code Interpreter](guides/7202-Code-Interpreter.md)
+- [7101: ReAct (Reasoning + Acting) Loop System](../7100-architecture/7101-ReAct-Loop-System.md)
 
 ---
 
 ## Next Steps
 
-- Continue with: **[7301-Orchestration.md](./../7300-orchestration/7301-Orchestration.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Continue with: **[7301: Orchestration](../7300-orchestration/7301-Orchestration.md)**
+- Assessment: **[QUIZ](./assessment/QUIZ.md)**
