@@ -87,6 +87,18 @@ stand today?" without running each tool by hand.
                        - SITEMAP called itself "derived from the file
                        tree" while its Statistics block had rotted
                        (tick-262: 458/407/1 vs measured 462/408/4)
+    meta_claims_check
+                       every measurable number in the remaining entry
+                       docs: FAQ.md intro sentence, MASTER-INDEX.md
+                       (Total Files line, per-phase Status rows,
+                       numbered section headers, lab header 3-way
+                       split, File Counts block incl. TOTAL as its
+                       own sum, module-table "N docs" cells = lesson
+                       files) and ORGANIZATION-GUIDE.md tree labels
+                       (MC-01; MC-00 missing file/failed measure) -
+                       born while these docs still said 462/463
+                       documents, 427 total files and 256 "Module
+                       Documents" (tick-263)
   queue gate (drain in progress; never fails the report unless --fail-on-queue):
     objectives_lint    template-objective artifacts (OL-01/OL-02), phase by phase
     fence_namecheck    names used in a python fence that no fence in the
@@ -149,6 +161,7 @@ GATES = [
     ("feed_parity_check.py", "feed_parity_check", True),
     ("readme_claims_check.py", "readme_claims_check", True),
     ("sitemap_claims_check.py", "sitemap_claims_check", True),
+    ("meta_claims_check.py", "meta_claims_check", True),
 ]
 
 

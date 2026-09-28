@@ -16,7 +16,7 @@ Difficulty: Beginner
 
 ### What is PROJECT-OMEGA?
 
-PROJECT-OMEGA is a comprehensive 7-phase learning path for mastering AI infrastructure, model internals, quantization, fine-tuning, RAG systems, and production deployment. It consists of 463 documents across 7 phases, 30 hands-on labs, 46 experiments, 15 tutorials, and 13 cheat sheets.
+PROJECT-OMEGA is a comprehensive 7-phase learning path for mastering AI infrastructure, model internals, quantization, fine-tuning, RAG systems, and production deployment. It consists of 408 documents across 7 phases, 15 hands-on labs (+15 solutions), 47 experiments, 15 tutorials, and 13 cheat sheets.
 
 ### Who is this for?
 

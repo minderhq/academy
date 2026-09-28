@@ -11,7 +11,7 @@ Difficulty: Beginner
 
 **Version:** 4.4
 **Last Updated:** 2026-02-07
-**Total Files:** 427 markdown files (docs/)
+**Total Files:** 408 markdown files (docs/)
 
 ---
 
@@ -57,7 +57,7 @@ Difficulty: Beginner
 | **[1100](../phases/phase1-infra/1100-network/README.md)** | Network Topology | 3 docs | ✅ |
 | **[1200](../phases/phase1-infra/1200-virtualization/README.md)** | Virtualization | 4 docs | ✅ |
 | **[1300](../phases/phase1-infra/1300-kubernetes/README.md)** | Kubernetes | 3 docs | ✅ |
-| **[1400](../phases/phase1-infra/1400-llmops/README.md)** | LLMOps | 5 docs | ✅ |
+| **[1400](../phases/phase1-infra/1400-llmops/README.md)** | LLMOps | 4 docs | ✅ |
 | **[1500](../phases/phase1-infra/1500-monitoring/README.md)** | Monitoring | 3 docs | ✅ |
 
 **Practice:** [Phase 1 Practice](assessment/phase1-practice.md) | **Quiz:** [Phase 1 Quiz](assessment/phase1-quiz.md)
@@ -72,7 +72,7 @@ Difficulty: Beginner
 |--------|-------|-------|--------|
 | **[2100](../phases/phase2-foundations/2100-calculus/README.md)** | Tensor Algebra | 2 docs | ✅ |
 | **[2200](../phases/phase2-foundations/2200-frameworks/README.md)** | Frameworks | 3 docs | ✅ |
-| **[2300](../phases/phase2-foundations/2300-framework-engineering/README.md)** | Framework Engineering | 4 docs | ✅ |
+| **[2300](../phases/phase2-foundations/2300-framework-engineering/README.md)** | Framework Engineering | 6 docs | ✅ |
 | **[2400](../phases/phase2-foundations/2400-pretraining/README.md)** | Pre-training | 3 docs | ✅ |
 
 **Practice:** [Phase 2 Practice](assessment/phase2-practice.md) | **Quiz:** [Phase 2 Quiz](assessment/phase2-quiz.md)
@@ -103,8 +103,8 @@ Difficulty: Beginner
 |--------|-------|-------|--------|
 | **[4100](../phases/phase4-quantization/4100-low-bit/README.md)** | Low-Bit Quantization | 3 docs | ✅ |
 | **[4200](../phases/phase4-quantization/4200-kv-cache/README.md)** | KV-Cache Engineering | 3 docs | ✅ |
-| **[4300](../phases/phase4-quantization/4300-quantization-aware-training/README.md)** | QAT | 5 docs | ✅ |
-| **[4400](../phases/phase4-quantization/4400-advanced-techniques/README.md)** | Advanced Quantization | 4 docs | ✅ |
+| **[4300](../phases/phase4-quantization/4300-quantization-aware-training/README.md)** | QAT | 8 docs | ✅ |
+| **[4400](../phases/phase4-quantization/4400-advanced-techniques/README.md)** | Advanced Quantization | 9 docs | ✅ |
 
 **Practice:** [Phase 4 Practice](assessment/phase4-practice.md) | **Quiz:** [Phase 4 Quiz](assessment/phase4-quiz.md)
 
@@ -112,15 +112,15 @@ Difficulty: Beginner
 
 ### Phase 5: Fine-Tuning & Alignment [5000]
 
-**Status:** ✅ Complete | **Modules:** 5 | **Documents:** 37
+**Status:** ✅ Complete | **Modules:** 5 | **Documents:** 40
 
 | Module | Topic | Files | Status |
 |--------|-------|-------|--------|
 | **[5100](../phases/phase5-finetuning/5100-peft/README.md)** | PEFT | 4 docs | ✅ |
-| **[5200](../phases/phase5-finetuning/5200-alignment/README.md)** | Alignment | 2 docs | ✅ |
+| **[5200](../phases/phase5-finetuning/5200-alignment/README.md)** | Alignment | 4 docs | ✅ |
 | **[5300](../phases/phase5-finetuning/5300-synthetic/README.md)** | Synthetic Data | 3 docs | ✅ |
-| **[5400](../phases/phase5-finetuning/5400-distributed-training/README.md)** | Distributed Training | 1 doc | ✅ |
-| **[5500](../phases/phase5-finetuning/5500-advanced-optimization/README.md)** | Advanced Optimization | 1 doc | ✅ |
+| **[5400](../phases/phase5-finetuning/5400-distributed-training/README.md)** | Distributed Training | 4 docs | ✅ |
+| **[5500](../phases/phase5-finetuning/5500-advanced-optimization/README.md)** | Advanced Optimization | 3 docs | ✅ |
 
 **Practice:** [Phase 5 Practice](assessment/phase5-practice.md) | **Quiz:** [Phase 5 Quiz](assessment/phase5-quiz.md)
 
@@ -133,7 +133,7 @@ Difficulty: Beginner
 | Module | Topic | Files | Status |
 |--------|-------|-------|--------|
 | **[6100](../phases/phase6-rag/6100-vector/README.md)** | Vector Architectures | 3 docs | ✅ |
-| **[6200](../phases/phase6-rag/6200-retrieval/README.md)** | Retrieval | 2 docs | ✅ |
+| **[6200](../phases/phase6-rag/6200-retrieval/README.md)** | Retrieval | 3 docs | ✅ |
 | **[6300](../phases/phase6-rag/6300-context/README.md)** | Context Management | 4 docs | ✅ |
 | **[6400](../phases/phase6-rag/6400-vector-databases/README.md)** | Vector Databases | 3 docs | ✅ |
 | **[6500](../phases/phase6-rag/6500-mlops-pipelines/README.md)** | MLOps Pipelines | 3 docs | ✅ |
@@ -144,14 +144,14 @@ Difficulty: Beginner
 
 ### Phase 7: Agentic Systems [7000]
 
-**Status:** ✅ Complete | **Modules:** 5 | **Documents:** 35
+**Status:** ✅ Complete | **Modules:** 5 | **Documents:** 36
 
 | Module | Topic | Files | Status |
 |--------|-------|-------|--------|
 | **[7100](../phases/phase7-agentic/7100-architecture/README.md)** | Agent Architecture | 3 docs | ✅ |
 | **[7200](../phases/phase7-agentic/7200-tools/README.md)** | Tool Use | 2 docs | ✅ |
-| **[7300](../phases/phase7-agentic/7300-orchestration/README.md)** | Orchestration | 1 doc | ✅ |
-| **[7400](../phases/phase7-agentic/7400-memory/README.md)** | Agent Memory | 2 docs | ✅ |
+| **[7300](../phases/phase7-agentic/7300-orchestration/README.md)** | Orchestration | 3 docs | ✅ |
+| **[7400](../phases/phase7-agentic/7400-memory/README.md)** | Agent Memory | 3 docs | ✅ |
 | **[7500](../phases/phase7-agentic/7500-security/README.md)** | Security | 3 docs | ✅ |
 
 **Practice:** [Phase 7 Practice](assessment/phase7-practice.md) | **Quiz:** [Phase 7 Quiz](assessment/phase7-quiz.md)
@@ -204,7 +204,7 @@ Difficulty: Beginner
 
 ---
 
-### Cheat Sheets (11 files)
+### Cheat Sheets (13 files)
 
 | ID | Topic | Coverage |
 |----|-------|----------|
@@ -287,39 +287,45 @@ Difficulty: Beginner
 
 ## 📊 Reference Materials
 
-### Comparisons (2 files)
+### Comparisons (3 files)
 
 | Document | Topic |
 |----------|-------|
+| **[README](../comparisons/README.md)** | Comparison index |
 | **[CP-001](../comparisons/CP-001-RAG-vs-FineTuning-vs-Agents.md)** | RAG vs Fine-Tuning vs Agents |
 | **[CP-002](../comparisons/CP-002-Vector-Database-Comparison.md)** | Vector Database Comparison |
 
-### Industry Applications (3 files)
+### Industry Applications (4 files)
 
 | Document | Industry |
 |----------|----------|
+| **[README](../industry/README.md)** | Industry index |
 | **[IND-001](../industry/IND-001-Healthcare-AI-Applications.md)** | Healthcare |
 | **[IND-002](../industry/IND-002-Finance-AI-Applications.md)** | Finance |
 | **[IND-003](../industry/IND-003-Manufacturing-AI.md)** | Manufacturing |
 
-### Use Cases (3 files)
+### Use Cases (4 files)
 
 | Document | Use Case |
 |----------|----------|
+| **[README](../use-cases/README.md)** | Use-case index |
 | **[UC-001](../use-cases/UC-001-Vector-Database-Applications.md)** | Vector Database Applications |
 | **[UC-002](../use-cases/UC-002-RAG-Applications.md)** | RAG Applications |
 | **[UC-003](../use-cases/UC-003-Agent-Applications.md)** | Agent Applications |
 
-### Solutions (1 file)
+### Solutions (3 files)
 
 | Document | Description |
 |----------|-------------|
+| **[README](../enterprise-solutions/README.md)** | Enterprise solutions index |
 | **[SOL-001](../enterprise-solutions/SOL-001-Enterprise-Knowledge-Base.md)** | Enterprise Knowledge Base |
+| **[SOL-002](../enterprise-solutions/SOL-002-Industry-Solution.md)** | Industry Solution |
 
-### Diagrams (3 files)
+### Diagrams (4 files)
 
 | Document | Diagram |
 |----------|---------|
+| **[README](../diagrams/README.md)** | Diagram index |
 | **[ML-LIFECYCLE](../diagrams/ML-LIFECYCLE.md)** | ML Lifecycle |
 | **[PROJECT-001-ARCHITECTURE](../diagrams/PROJECT-001-ARCHITECTURE.md)** | Project Architecture |
 | **[REACT-LOOP](../diagrams/REACT-LOOP.md)** | ReAct Loop |
@@ -346,23 +352,22 @@ Difficulty: Beginner
 |----------|------:|
 | **Phase READMEs** | 7 |
 | **Module READMEs** | 33 |
-| **Module Documents** | 256 |
+| **Phase Documents** | 260 |
 | **Tutorials** | 15 |
 | **Labs** | 15 |
 | **Lab Solutions** | 15 |
 | **Practice Files** | 33 |
 | **Quiz Files** | 33 |
-| **Cheat Sheets** | 11 |
+| **Cheat Sheets** | 13 |
 | **Projects** | 7 |
-| **Experiments** | 44 |
-| **Comparisons** | 2 |
-| **Use Cases** | 3 |
-| **Industry Docs** | 3 |
-| **Solutions** | 1 |
-| **Diagrams** | 3 |
-| **Meta Docs** | 23 |
-| **Print/Publish Docs** | 3 |
-| **TOTAL** | **606** |
+| **Experiments** | 47 |
+| **Comparisons** | 3 |
+| **Use Cases** | 4 |
+| **Industry Docs** | 4 |
+| **Solutions** | 3 |
+| **Diagrams** | 4 |
+| **Meta Docs** | 20 |
+| **TOTAL** | **516** |
 
 ### Content Statistics
 

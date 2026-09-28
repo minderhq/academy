@@ -28,11 +28,11 @@ PROJECT-OMEGA/
 │   ├── docker-compose.yml
 │   ├── .env.example
 │   └── performance-testing/k6/
-├── docs/                              # All documentation (462 files)
+├── docs/                              # All documentation (408 files)
 │   ├── 00-META/                      # Meta documentation
 │   ├── phases/                       # Phase documentation (33 modules)
 │   ├── learning-resources/           # Learning materials
-│   ├── experiments/                  # Experiment files (44)
+│   ├── experiments/                  # Experiment files (47)
 │   ├── comparisons/                  # Comparison docs
 │   ├── use-cases/                    # Use case docs
 │   ├── industry/                     # Industry applications
@@ -161,7 +161,7 @@ docs/phases/
 
 ```text
 docs/learning-resources/
-├── tutorials/                        # 14 tutorial files
+├── tutorials/                        # 15 tutorial files
 │   ├── TUTORIAL-001-Hello-LLM.md
 │   ├── TUTORIAL-002-Docker-Essentials.md
 │   ├── TUTORIAL-003-RAG-Basics.md
@@ -180,7 +180,7 @@ docs/learning-resources/
 │   ├── SOLUTION-LAB-001-Docker-LLM.md
 │   └── ...
 │
-├── cheat-sheets/                     # 11 cheat sheets
+├── cheat-sheets/                     # 13 cheat sheets
 │   ├── CHEAT-SHEET-001-Docker.md
 │   ├── CHEAT-SHEET-002-Python-AI.md
 │   ├── CHEAT-SHEET-003-Git.md
