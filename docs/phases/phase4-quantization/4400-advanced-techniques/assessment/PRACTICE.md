@@ -409,15 +409,15 @@ print("="*60)
 print("""
 1. Dockerfile
 ───────────────────────────────────────────────────────────
-FROM nvidia/cuda:12.1-runtime-ubuntu22.04
+# python:3.13-slim matches the corpus standard; pip-installed torch
+# wheels bundle the CUDA runtime (nvidia-* packages), so a CUDA base
+# image is not needed for inference serving.
+FROM python:3.13-slim
 
-RUN apt-get update && apt-get install -y \\
-    python3.10 \\
-    python3-pip \\
-    && rm -rf /var/lib/apt/lists/*
+WORKDIR /app
 
 COPY requirements.txt .
-RUN pip3 install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 COPY model/ /app/model/
 COPY server.py /app/
