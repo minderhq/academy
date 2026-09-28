@@ -192,7 +192,7 @@ import os
 import hashlib
 from typing import List, Dict
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, timezone
 
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import (
@@ -219,7 +219,7 @@ class DocumentMetadata(Base):
     filename = Column(String, nullable=False)
     file_path = Column(String, nullable=False)
     file_type = Column(String, nullable=False)
-    upload_date = Column(DateTime, default=datetime.utcnow)
+    upload_date = Column(DateTime, default=lambda: datetime.now(timezone.utc))
     file_size = Column(Float)
     chunk_count = Column(Float)
     checksum = Column(String, unique=True)

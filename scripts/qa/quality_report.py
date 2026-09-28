@@ -40,6 +40,10 @@ stand today?" without running each tool by hand.
     mermaid_lint       mermaid diagram fences: known diagram-type header
                        (MM-01), balanced () [] {} (MM-02), declared
                        direction on graph/flowchart (MM-03)
+    deprecated_scan    deprecated API calls in python fences (DA-01:
+                       datetime.utcnow/utcfromtimestamp - Python 3.12+;
+                       use datetime.now(timezone.utc)); comment-only
+                       mentions are not findings
     kwarg_lint         calls with removed/renamed kwargs on known APIs
                        (KW-01 langchain constructor kwargs, KW-02 removed
                        qdrant .search kwargs) - hard gate since the
@@ -92,6 +96,7 @@ GATES = [
     ("anchor_check.py", "anchor_check", True),
     ("table_lint.py", "table_lint", True),
     ("mermaid_lint.py", "mermaid_lint", True),
+    ("deprecated_scan.py", "deprecated_scan", True),
     ("objectives_lint.py", "objectives_lint", False),
     ("fence_namecheck.py", "fence_namecheck", False),
     ("kwarg_lint.py", "kwarg_lint", True),

@@ -1,7 +1,7 @@
 ---
 Document ID: 7500-PRACTICE
 Title: "7500: AI Agent Security - Practice"
-Last Updated: 2026-09-25
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Advanced
 ---
@@ -1522,7 +1522,7 @@ if __name__ == "__main__":
 
 ```python
 import json
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import List, Dict, Any, Optional
 import threading
@@ -1581,7 +1581,7 @@ class AuditLogger:
             ... )
         """
         log_entry = {
-            "timestamp": datetime.utcnow().isoformat() + "Z",
+            "timestamp": datetime.now(timezone.utc).isoformat(),
             "agent_id": agent_id,
             "user_id": user_id,
             "action": action,
@@ -1608,13 +1608,13 @@ class AuditLogger:
 
     def _get_log_file(self) -> Path:
         """Get the current log file path."""
-        date_str = datetime.utcnow().strftime("%Y%m%d")
+        date_str = datetime.now(timezone.utc).strftime("%Y%m%d")
         log_file = self.log_path / f"audit_{date_str}.log"
         return log_file
 
     def _rotate_log(self, log_file: Path):
         """Rotate log file if it exceeds size limit."""
-        timestamp = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
+        timestamp = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
         base_name = log_file.stem.split("_")[0]
         rotated_name = f"{base_name}_{timestamp}.log"
         rotated_path = self.log_path / rotated_name
@@ -1712,7 +1712,7 @@ class AuditLogger:
             List of security events
         """
         security_events = []
-        cutoff_time = datetime.utcnow().timestamp() - (hours * 3600)
+        cutoff_time = datetime.now(timezone.utc).timestamp() - (hours * 3600)
 
         # SOLUTION: Scan recent log files
         log_files = sorted(
@@ -1785,7 +1785,7 @@ class AuditLogger:
                     high_risk_users.add(user_id)
 
         return {
-            "report_time": datetime.utcnow().isoformat() + "Z",
+            "report_time": datetime.now(timezone.utc).isoformat(),
             "time_window_hours": 24,
             "total_security_events": len(security_events),
             "actions_by_type": action_counts,

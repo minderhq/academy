@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-013
 Title: "TUTORIAL-013: AI Security and Safety"
-Last Updated: 2026-09-27
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Advanced
 ---
@@ -410,7 +410,7 @@ print(f"Safe: {is_safe}, Category: {category}")
 ```python
 import hashlib
 import secrets
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from typing import Dict, Optional
 import jwt
 
@@ -576,8 +576,8 @@ class JWTAuth:
         payload = {
             "user_id": user_id,
             "permissions": permissions,
-            "exp": datetime.utcnow() + timedelta(hours=expires_hours),
-            "iat": datetime.utcnow()
+            "exp": datetime.now(timezone.utc) + timedelta(hours=expires_hours),
+            "iat": datetime.now(timezone.utc)
         }
 
         token = jwt.encode(payload, self.secret, algorithm="HS256")
