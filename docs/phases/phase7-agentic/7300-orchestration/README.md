@@ -227,6 +227,8 @@ class SequentialWorkflow:
 ### Implementation (AutoGen)
 
 ```python
+import asyncio
+
 import autogen
 
 async def parallel_analysis(task: str, documents: list[str]):

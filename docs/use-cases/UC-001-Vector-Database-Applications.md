@@ -338,6 +338,8 @@ class CodeSearch:
 query = "parse JSON from HTTP response with error handling"
 
 # Results find:
+import requests
+
 def fetch_json_data(url):
     """Get and parse JSON from API endpoint"""
     try:

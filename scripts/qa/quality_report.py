@@ -111,10 +111,13 @@ stand today?" without running each tool by hand.
                        files")
   queue gate (drain in progress; never fails the report unless --fail-on-queue):
     objectives_lint    template-objective artifacts (OL-01/OL-02), phase by phase
-    fence_namecheck    names used in a python fence that no fence in the
-                       document binds (NC-01, report mode): catches missing
-                       stdlib imports; the residual pseudo-code/notation
-                       fragment idiom is accepted noise for now
+    fence_namecheck    unbound names in python fences (report mode), two
+                       codes: NC-01 module access without import (a known
+                       module used as `name.attr` that no fence in the
+                       document imports - certain NameError) and NC-02
+                       fragment idiom (accepted teaching texture) - the
+                       2026-09-29 triage split 794 flat findings into
+                       4 real module accesses (all fixed) + 790 fragments
     fm_staleness       curriculum freshness map (report mode): Last Updated
                        age distribution across docs/ - surfaces the oldest
                        material so modernization passes can target it; a

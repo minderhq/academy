@@ -909,6 +909,9 @@ retrieved = memory.search(
 **Tip:** Structured message protocols
 ```python
 import time
+import uuid
+
+
 class AgentMessage:
     def __init__(self, sender, receiver, type, content):
         self.sender = sender  # Agent ID

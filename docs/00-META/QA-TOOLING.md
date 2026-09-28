@@ -66,7 +66,7 @@ the full installed stack. A partial environment fails loud with
 | Gate | What it reports |
 | --- | --- |
 | objectives_lint | template-objective artifacts (OL-01/OL-02) - the drain queue |
-| fence_namecheck | names used in a python fence that no fence binds (NC-01); residual fragment idiom is accepted noise |
+| fence_namecheck | unbound names in python fences, two codes: NC-01 module access without import (`name.attr` on a known module no fence imports - certain NameError, the gate's signal) and NC-02 fragment idiom (accepted teaching texture: usage-before-setup sketches, agent-UI placeholders, pseudo-code) |
 | fm_staleness | Last Updated age map (fresh/recent/stale/missing) - a stale date is a review queue, not a failure |
 
 ---
