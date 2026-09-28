@@ -10,6 +10,11 @@ stand today?" without running each tool by hand.
     assessment_lint    assessment/QUIZ.md + PRACTICE.md coverage (AS-01..AS-09;
                        AS-09 option-shuffle queue is report-mode, shown separately)
     quiz_export        quiz bank parses into complete question records
+    structure_lint     fence parity + H1 discipline corpus-wide
+    linkcheck          every relative link target exists on disk
+    casecheck          case-sensitive href/disk match (Windows-invisible breaks)
+    anchor_check       in-document anchors vs GitHub-accurate slugger
+                       (2 known inline-code examples allowlisted)
   queue gate (drain in progress; never fails the report unless --fail-on-queue):
     objectives_lint    template-objective artifacts (OL-01/OL-02), phase by phase
 
@@ -42,6 +47,10 @@ GATES = [
     ("frontmatter_lint.py", "frontmatter_lint", True),
     ("assessment_lint.py", "assessment_lint", True),
     ("quiz_export.py", "quiz_export", True),
+    ("structure_lint.py", "structure_lint", True),
+    ("linkcheck.py", "linkcheck", True),
+    ("casecheck.py", "casecheck", True),
+    ("anchor_check.py", "anchor_check", True),
     ("objectives_lint.py", "objectives_lint", False),
 ]
 
