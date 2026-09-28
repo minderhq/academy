@@ -1,9 +1,15 @@
 ---
 Document ID: 7303
 Title: "7303: Multi-Agent Framework Comparison"
-Last Updated: 2026-09-24
+Phase: 7
+Module: 7300
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Advanced
+Estimated Time: 3 hours
+Prerequisites: See module README
+Related: See module README
+Tags: ['agents', 'orchestration', 'multi-agent', 'autogen', 'langgraph', 'crewai']
 ---
 
 # 7303: Multi-Agent Framework Comparison
@@ -16,7 +22,7 @@ Difficulty: Advanced
 - [AutoGen (Microsoft)](#autogen-microsoft)
 - [LangGraph (LangChain)](#langgraph-langchain)
 - [CrewAI](#crewai)
-- [Recommendation for AI Engineering Curriculum](#recommendation-for-ai-engineering-curriculum)
+- [Recommendation](#recommendation)
 - [Hybrid Approach](#hybrid-approach)
 - [Performance Comparison](#performance-comparison)
 - [References](#references)
@@ -27,17 +33,17 @@ Difficulty: Advanced
 
 After completing this lesson, you will be able to:
 
-- Compare Framework Comparison Matrix
-- Explain AutoGen (Microsoft)
-- Explain LangGraph (LangChain)
-- Explain CrewAI
-- Explain Recommendation for AI Engineering Curriculum
-- Explain Hybrid Approach
+- Fill in a framework comparison matrix from architecture alone, then verify it against the published defaults
+- Read AutoGen conversation code and identify which parts come from its 0.2-style API versus the 0.4+ agentchat rewrite
+- Build a LangGraph state graph with typed state, conditional edges, and checkpoint-backed resume
+- Map a role/goal/backstory trio onto CrewAI's task pipeline and predict its execution order
+- Recommend a framework for a given task shape using an executable decision table rather than preference
+- Structure a hybrid system where LangGraph owns the graph and an AutoGen agent owns each node
 
 ---
 
 ## Abstract
-Comprehensive comparison of multi-agent frameworks for building autonomous AI systems on AI Engineering Curriculum.
+A comparison of the multi-agent frameworks used to build autonomous AI systems — AutoGen, LangGraph, CrewAI, and OpenAI's agent stack — across architecture, model support, state management, and operational maturity. The code in this guide is version-pinned reality: two fences compile against the real framework APIs, one decision table runs on plain Python, and the numbers that cannot be verified honestly are labeled as estimates.
 
 ## Framework Comparison Matrix
 
@@ -51,6 +57,11 @@ Comprehensive comparison of multi-agent frameworks for building autonomous AI sy
 | **Local Models** | Possible | Yes | Yes | No |
 | **Visualization** | Basic | Good | Basic | None |
 | **Maturity** | High | High | Medium | Beta |
+
+Two version-reality notes the matrix cannot show:
+
+- **Swarm is archived.** OpenAI's 2024 experimental teaching framework was superseded by the OpenAI Agents SDK (handoffs + guardrails, GA); treat Swarm columns as historical.
+- **"AutoGen" names two things.** The community continuation of the 0.2-style API ships as **AG2** (`uv pip install pyautogen`); Microsoft's rewrite ships as **autogen-agentchat 0.4+** (`uv pip install autogen-agentchat autogen-core`) with a fundamentally different event-driven runtime. Code below is 0.2-style and labeled as such.
 
 ---
 
@@ -85,7 +96,9 @@ Comprehensive comparison of multi-agent frameworks for building autonomous AI sy
 
 ### Example Code
 ```python
-# autogen_example.py
+# autogen_example.py -- 0.2-style API (pyautogen / AG2)
+# Not executed in this repo: requires the autogen package and an
+# OAI_CONFIG_LIST with live API keys. Compile-checked only.
 from autogen import AssistantAgent, UserProxyAgent, config_list_from_json
 
 # Load config
@@ -129,7 +142,9 @@ user_proxy.initiate_chat(
 )
 ```
 
-### Use Cases for AI Engineering Curriculum
+The `config_list_from_json` + `llm_config` pattern is 0.2-style. The 0.4+ `autogen_agentchat` rewrite replaces it with declarative components and an event-driven `SingleThreadedAgentRuntime` — same roles, different skeleton; port only after the conversation logic is stable.
+
+### Use Cases
 - Code generation and review pipeline
 - Multi-step problem solving
 - Research assistant with different expert agents
@@ -172,10 +187,13 @@ user_proxy.initiate_chat(
 ### Example Code
 ```python
 # langgraph_example.py
-from langgraph.graph import StateGraph, END
-from langchain_openai import ChatOpenAI
-from typing import TypedDict, Annotated, Sequence
+# Not executed in this repo: requires langgraph + langchain_openai and
+# an API key. Compile-checked only.
 import operator
+from typing import Annotated, Sequence, TypedDict
+
+from langgraph.graph import END, START, StateGraph
+from langchain_openai import ChatOpenAI
 
 # Define state
 class AgentState(TypedDict):
@@ -186,20 +204,20 @@ class AgentState(TypedDict):
 # Define nodes
 def research_agent(state: AgentState):
     """Research agent node"""
-    llm = ChatOpenAI(model="gpt-4")
+    llm = ChatOpenAI(model="gpt-4o")
     response = llm.invoke(state["messages"])
     return {"agent_outputs": {"research": response.content}}
 
 def writing_agent(state: AgentState):
     """Writing agent node"""
-    llm = ChatOpenAI(model="gpt-4")
+    llm = ChatOpenAI(model="gpt-4o")
     context = state.get("agent_outputs", {}).get("research", "")
     response = llm.invoke(f"Write based on: {context}")
     return {"agent_outputs": {"writing": response.content}}
 
 def review_agent(state: AgentState):
     """Review agent node"""
-    llm = ChatOpenAI(model="gpt-4")
+    llm = ChatOpenAI(model="gpt-4o")
     content = state.get("agent_outputs", {}).get("writing", "")
     response = llm.invoke(f"Review this: {content}")
     return {"messages": [response.content]}
@@ -218,7 +236,7 @@ workflow.add_node("research", research_agent)
 workflow.add_node("writing", writing_agent)
 workflow.add_node("review", review_agent)
 
-workflow.set_entry_point("research")
+workflow.add_edge(START, "research")
 workflow.add_edge("research", "writing")
 workflow.add_edge("writing", "review")
 workflow.add_conditional_edges("review", should_continue)
@@ -234,7 +252,9 @@ result = app.invoke({
 })
 ```
 
-### Use Cases for AI Engineering Curriculum
+Entry is the `START` pseudo-node (`add_edge(START, "research")`) — `set_entry_point` still works but is the legacy spelling. The `Annotated[..., operator.add]` reducer is what makes fan-in nodes merge lists instead of overwriting them.
+
+### Use Cases
 - Complex multi-step workflows
 - Stateful agent interactions
 - Long-running processes with checkpoints
@@ -253,9 +273,8 @@ result = app.invoke({
 │  │    Agent    │  │    Agent    │  │    Agent    │      │
 │  │  (Research) │  │   (Writer)  │  │  (Editor)   │      │
 │  │              │  │              │  │              │      │
-│  │  Role:       │  │  Role:       │  │  Role:       │      │
-│  │  Goal:       │  │  Goal:       │  │  Goal:       │      │
-│  │  Backstory:  │  │  Backstory:  │  │  Backstory:  │      │
+│  │  Role:       │  │  Role:       │  │  Goal:       │      │
+│  │  Goal:       │  │  Backstory:  │  │  Backstory:  │      │
 │  └──────────────┘  └──────────────┘  └──────────────┘      │
 │         │                  │                  │             │
 │         └──────────────────┴──────────────────┘             │
@@ -282,6 +301,8 @@ result = app.invoke({
 ### Example Code
 ```python
 # crewai_example.py
+# Not executed in this repo: requires the crewai package and an API key.
+# Compile-checked only.
 from crewai import Agent, Task, Crew, Process
 
 # Create agents
@@ -338,7 +359,7 @@ result = crew.kickoff()
 print(result)
 ```
 
-### Use Cases for AI Engineering Curriculum
+### Use Cases
 - Content creation pipeline
 - Research and writing workflows
 - Quality assurance processes
@@ -346,7 +367,7 @@ print(result)
 
 ---
 
-## Recommendation for AI Engineering Curriculum
+## Recommendation
 
 ### Primary Framework: LangGraph
 
@@ -372,50 +393,67 @@ print(result)
 ```python
 # hybrid_framework.py
 """
-Hybrid approach combining LangGraph's state machine
-with AutoGen's conversation model
+Hybrid approach: LangGraph owns the orchestration graph; an AutoGen
+(0.2-style / AG2) agent does the talking inside each node.
 """
+# Not executed in this repo: requires both frameworks plus API keys.
+# Compile-checked only.
+import operator
+from typing import Annotated, Sequence, TypedDict
 
-from langgraph.graph import StateGraph
 from autogen import AssistantAgent
+from langgraph.graph import END, START, StateGraph
+
+
+class AgentState(TypedDict):
+    messages: Annotated[Sequence[str], operator.add]
+    agent_outputs: dict
+
 
 class HybridMultiAgentSystem:
-    """Combine best of both frameworks"""
+    """LangGraph state machine with AutoGen agents as node executors."""
 
-    def __init__(self):
+    def __init__(self, config_list):
         # LangGraph for orchestration
         self.workflow = StateGraph(AgentState)
 
         # AutoGen agents for execution
         self.agents = {
-            "coder": AssistantAgent(name="coder", ...),
-            "reviewer": AssistantAgent(name="reviewer", ...),
-            "tester": AssistantAgent(name="tester", ...),
+            "coder": AssistantAgent(
+                name="coder",
+                llm_config={"config_list": config_list},
+            ),
+            "reviewer": AssistantAgent(
+                name="reviewer",
+                llm_config={"config_list": config_list},
+            ),
         }
 
     def build_workflow(self):
         """Build LangGraph workflow with AutoGen agents"""
 
-        def coding_step(state):
+        def coding_step(state: AgentState) -> dict:
             """Use AutoGen agent in LangGraph node"""
-            agent = self.agents["coder"]
-            response = agent.generate_reply(state["messages"])
-            return {"agent_outputs": {"code": response}}
+            reply = self.agents["coder"].generate_reply(list(state["messages"]))
+            return {"agent_outputs": {"code": reply}}
 
-        def review_step(state):
+        def review_step(state: AgentState) -> dict:
             """Review step"""
-            agent = self.agents["reviewer"]
             code = state["agent_outputs"]["code"]
-            response = agent.generate_reply([f"Review: {code}"])
-            return {"agent_outputs": {"review": response}}
+            reply = self.agents["reviewer"].generate_reply([f"Review: {code}"])
+            return {"agent_outputs": {"review": reply}}
 
         # Build graph
         self.workflow.add_node("code", coding_step)
         self.workflow.add_node("review", review_step)
+        self.workflow.add_edge(START, "code")
         self.workflow.add_edge("code", "review")
+        self.workflow.add_edge("review", END)
 
         return self.workflow.compile()
 ```
+
+The division of labor is the point: the graph owns *what happens next* (edges, conditions, checkpoints); the agent owns *what gets said* (prompts, tools, retries). Both frameworks must be pinned in `pyproject.toml` before this shape ships — their release cadences are independent.
 
 ---
 
@@ -429,6 +467,8 @@ class HybridMultiAgentSystem:
 | LangGraph | ~1.5GB | ~1500 | Low |
 | CrewAI | ~2GB | ~1800 | Medium |
 
+These are order-of-magnitude estimates for a typical two-agent conversation, not benchmarks — conversation length and tool calls dominate both numbers. Measure your own workload before provisioning; the ranking is more stable than the values.
+
 ### Task Complexity Suitability
 
 | Task Complexity | Recommended | Reason |
@@ -440,27 +480,52 @@ class HybridMultiAgentSystem:
 | Stateful | LangGraph | Checkpoints |
 | Parallel | LangGraph | Concurrent nodes |
 
+The suitability table, as executable rules:
+
+```python
+def recommend_framework(steps: int, conversational: bool,
+                        stateful: bool, parallel: bool) -> str:
+    """Decision table as code: conversational work goes to AutoGen,
+    anything stateful/parallel/long goes to LangGraph."""
+    if conversational:
+        return "AutoGen"
+    if stateful or parallel or steps > 2:
+        return "LangGraph"
+    return "AutoGen"
+
+
+for label, kwargs in [
+    ("quick 2-step script", dict(steps=2, conversational=False,
+                                 stateful=False, parallel=False)),
+    ("support chatbot", dict(steps=4, conversational=True,
+                             stateful=False, parallel=False)),
+    ("pipeline with resume", dict(steps=6, conversational=False,
+                                  stateful=True, parallel=False)),
+    ("fan-out analysis", dict(steps=3, conversational=False,
+                              stateful=False, parallel=True)),
+]:
+    print(f"{label}: {recommend_framework(**kwargs)}")
+# Output: quick 2-step script: AutoGen
+# Output: support chatbot: AutoGen
+# Output: pipeline with resume: LangGraph
+# Output: fan-out analysis: LangGraph
+```
+
+CrewAI appears in neither recommendation because its role-based pipeline is an orthogonal choice: pick it when the *team metaphor* fits your domain, not when a task-shape rule fires.
 
 ---
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related Documents
 
 - [7301: Collaborative Tasking - Multi-Agent Synergy](../7301-Orchestration.md)
 - [7302: Multi-Agent Communication Protocols](../7302-Communication-Protocols.md)
+- [7102: Planning and Task Decomposition](../../7100-architecture/7102-Planning-Decomposition.md)
+- [7103: ReAct Agent Implementation Guide](../../7100-architecture/guides/7103-ReAct-Implementation-Guide.md)
 
 ---
 
 ## Next Steps
 
 - Return to: **[Module README](../README.md)**
-
----
----
-
-**Related:**
-- [Related Guides](7303-Framework-Comparison.md)
-- [7301: Collaborative Tasking](../7301-Orchestration.md)
-- [7102: Planning Decomposition](../../7100-architecture/7102-Planning-Decomposition.md)
-- [7103: ReAct Implementation Guide](../../7100-architecture/guides/7103-ReAct-Implementation-Guide.md)
