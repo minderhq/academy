@@ -108,6 +108,7 @@ scorecard's corpus line.
 
 ```bash
 python scripts/qa/curriculum_metrics.py
+python scripts/qa/curriculum_metrics.py --out metrics.json
 ```
 
 Answers "how good is the teaching material?" with numbers: lesson
@@ -118,8 +119,11 @@ fence density, H2/link structure, and quiz coverage per module
 content-pass review queue, not a failure (same stance as
 fm_staleness). The sparse-modules (<3 lessons) line shows unit
 content next to the count - a 2-lesson focused unit can carry a full
-module, so the count alone is never a verdict. Models borrowed for
-parity: the corpus classification from quality_report, the fence
+module, so the count alone is never a verdict. `--out` writes the
+whole report as one JSON snapshot (same feed idiom as manifest_export
+and quiz_export), so content totals and per-lesson stats accumulate
+into a trend instead of scrolling away with stdout. Models borrowed
+for parity: the corpus classification from quality_report, the fence
 model from structure_lint, quiz counts from quiz_export.
 
 ## 📐 Conventions

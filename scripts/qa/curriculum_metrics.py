@@ -22,9 +22,11 @@ Output is ASCII-escaped so it is safe on cp1254 consoles.
 from __future__ import annotations
 
 import argparse
+import json
 import re
 import statistics
 import sys
+from datetime import date
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -84,6 +86,10 @@ def main() -> int:
     default_root = Path(__file__).resolve().parents[2]
     parser.add_argument("--root", type=Path, default=default_root,
                         help="repository root (default: %(default)s)")
+    parser.add_argument("--out", type=Path, default=None,
+                        help="additionally write the report as a JSON snapshot "
+                             "to this file (same feed idiom as manifest_export "
+                             "and quiz_export --out)")
     args = parser.parse_args()
     root = args.root
 
@@ -177,6 +183,42 @@ def main() -> int:
                           mcontent.get(m["dir"], 0))
                        for m in sparse)
              if sparse else "none"))
+    if args.out:
+        # Same feed idiom as manifest_export/quiz_export --out: the whole
+        # report as one JSON snapshot (generated date, tool, distributions,
+        # and per-lesson stats) so content totals accumulate into a trend
+        # across ticks instead of scrolling away in stdout.
+        snapshot = {
+            "generated": date.today().isoformat(),
+            "tool": "curriculum_metrics.py",
+            "corpus": {"lessons": len(lessons), "modules": len(modules),
+                       "phases": len({m["dir"].split("/")[2] for m in modules})},
+            "content_words": {"total": sum(content),
+                              "median": statistics.median(content),
+                              "mean": round(statistics.mean(content)),
+                              "min": min(content), "max": max(content)},
+            "prose_words": sum(words),
+            "code_words": sum(s["code_words"] for s in lessons),
+            "fences": {"python": sum(s["py"] for s in lessons),
+                       "bash": sum(s["bash"] for s in lessons)},
+            "assessments": {"modules_with_quiz": len(qmod),
+                            "questions": sum(m["questions"] for m in modules)},
+            "thin": [{"path": s["path"], "content": s["words"] + s["code_words"]}
+                     for s in thin],
+            "sparse_modules": [{"dir": m["dir"], "lessons": m["lessons"],
+                                "content": mcontent.get(m["dir"], 0)}
+                               for m in sparse],
+            "lessons": [{"path": s["path"], "words": s["words"],
+                         "code_words": s["code_words"],
+                         "content": s["words"] + s["code_words"],
+                         "py": s["py"], "bash": s["bash"],
+                         "h2": s["h2"], "links": s["links"]}
+                        for s in lessons],
+        }
+        args.out.write_text(
+            json.dumps(snapshot, ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8")
+        print("curriculum_metrics: snapshot written to %s" % args.out)
     print("curriculum_metrics: %d lessons analyzed, report only -> PASS" % len(lessons))
     return 0
 
