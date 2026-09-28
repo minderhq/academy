@@ -1,7 +1,7 @@
 ---
 Document ID: 1500-MONITORING-README
 Title: "1500: Monitoring and Observability for LLM Systems"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Beginner
 ---
@@ -201,8 +201,8 @@ With monitoring:
 
 **LLM-Specific Logs:**
 
+Request log:
 ```json
-// Request log
 {
   "timestamp": "2026-02-04T10:30:00Z",
   "level": "info",
@@ -218,8 +218,10 @@ With monitoring:
   "gpu_used": "gpu-0",
   "temperature": 0.7
 }
+```
 
-// Error log
+Error log:
+```json
 {
   "timestamp": "2026-02-04T10:31:00Z",
   "level": "error",

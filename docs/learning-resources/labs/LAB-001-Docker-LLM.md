@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-001
 Title: "LAB 001: Docker & LLM Fundamentals"
-Last Updated: 2026-09-27
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -89,7 +89,7 @@ curl http://localhost:11434/api/generate -d '{
 **Verify:** You should see a JSON response from Mistral
 
 **Expected Output:**
-```json
+```text
 {"model": "mistral", "response": "Hello from Docker!", ...}
 ```
 

@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-009
 Title: "LAB-009: Production Deployment"
-Last Updated: 2026-09-27
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -1171,8 +1171,9 @@ async def metrics():
 
 ### Step 5.3: Grafana Dashboard
 
+File: `grafana-dashboard.json`:
+
 ```json
-// File: grafana-dashboard.json
 {
   "dashboard": {
     "title": "API Production Dashboard",
