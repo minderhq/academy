@@ -188,6 +188,8 @@ Normalization: RMSNorm (pre-norm)
 ### SwiGLU Implementation
 
 ```python
+import torch.nn.functional as F
+import torch.nn as nn
 class SwiGLU(nn.Module):
     """
     SwiGLU activation function.
@@ -225,6 +227,8 @@ class SwiGLU(nn.Module):
 ### RMSNorm Implementation
 
 ```python
+import torch.nn as nn
+import torch
 class RMSNorm(nn.Module):
     """
     Root Mean Square Layer Normalization.

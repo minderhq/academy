@@ -424,6 +424,7 @@ training_args.gradient_accumulation_steps = 8
 ### Issue: Accuracy Drop
 
 ```python
+from torch.ao.quantization import FakeQuantize
 # Use higher bit-width for sensitive layers
 def set_prefix_bit_width(model, prefix, bit_width=8):
     # FakeQuantize is defined in 4302-Fake-Quantization.md

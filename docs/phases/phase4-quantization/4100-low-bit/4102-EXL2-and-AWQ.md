@@ -182,6 +182,7 @@ Key insight: Not all weights are equal!
 
 ### AWQ Algorithm
 ```python
+import torch
 def awq_quantize(layer, calibration_data):
     """
     Activation-aware Weight Quantization
@@ -380,6 +381,7 @@ quant_config = {
 
 ### Dynamic Quantization
 ```python
+import torch
 # Quantize during inference based on statistics
 class DynamicQuantizer:
     def __init__(self, layer):

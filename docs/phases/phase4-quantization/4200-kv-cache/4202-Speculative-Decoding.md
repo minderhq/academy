@@ -71,6 +71,7 @@ Result: 1 target model run → multiple tokens
 
 ### Standard Speculative Decoding
 ```python
+import torch
 def speculative_decode(
     draft_model,
     target_model,
@@ -133,6 +134,7 @@ def speculative_decode(
 
 ### Multinomial Speculative Sampling
 ```python
+import torch
 def speculative_sampling(
     draft_logits,
     target_logits,
@@ -209,6 +211,7 @@ Sweet spot: ~10% of target model size
 
 ### Training Draft Models
 ```python
+import torch
 # Train draft model to match target model
 # Loss: KL divergence between distributions
 
@@ -292,6 +295,7 @@ factors = {
 
 ### Lookahead Decoding
 ```python
+import torch
 def lookahead_speculative_decode(
     target_model,
     input_ids,
@@ -336,6 +340,7 @@ def lookahead_speculative_decode(
 
 ### Parallel Speculative Decoding
 ```python
+import torch
 # Generate multiple draft sequences in parallel
 import numpy as np
 def parallel_speculative_decode(
@@ -369,6 +374,7 @@ def parallel_speculative_decode(
 
 ### Medusa Sampling
 ```python
+import torch.nn as nn
 class MedusaHeads(nn.Module):
     """
     Multiple prediction heads for speculative decoding

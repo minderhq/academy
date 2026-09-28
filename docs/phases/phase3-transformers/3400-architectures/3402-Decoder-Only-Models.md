@@ -60,6 +60,8 @@ Each Layer:
 
 ### LLaMA 2 Architecture
 ```python
+import torch.nn as nn
+import torch
 class LLaMABlock(nn.Module):
     """
     LLaMA 2 transformer block
@@ -114,6 +116,7 @@ gpt3_configs = {
 
 ### Mistral 7B Architecture
 ```python
+import torch.nn as nn
 class MistralBlock(nn.Module):
     """
     Mistral 7B: Sliding Window Attention + GQA
@@ -180,6 +183,7 @@ rope_variants = {
 
 ### Autoregressive Language Modeling
 ```python
+import torch.nn.functional as F
 def autoregressive_loss(logits, targets):
     """
     Standard cross-entropy loss

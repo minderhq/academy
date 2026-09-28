@@ -34,6 +34,7 @@ int4_size = params_7b * 0.5 / 1e9    # 3.5 GB (8x)
 
 ### Quantization Formula
 ```python
+import torch
 def quantize(x, scale, zero_point, qmin=-128, qmax=127):
     """
     Quantize floating point to integer
@@ -166,6 +167,7 @@ COMPARISON = {
 
 ### Concept
 ```python
+import torch.nn.functional as F
 # Standard quantization:
 # Weights are quantized once
 
@@ -220,6 +222,7 @@ class DoubleQuantization:
 
 ### Key Idea
 ```python
+import torch
 # AWQ: Optimize which weights to quantize
 # Keep 1% of weights (salient weights) in higher precision
 
@@ -282,6 +285,7 @@ class AWQQuantization:
 
 ### Overview
 ```python
+import torch
 # GPTQ: Optimize quantization to minimize output error
 # Minimize ||output_full - output_quantized||^2
 
@@ -335,6 +339,7 @@ def optimize_quantization(w, H, bits=4):
 
 ### KV Cache Quantization
 ```python
+import torch
 # KV Cache: Store keys and values for autoregressive generation
 # Grows with sequence length: O(seq_len * hidden_dim * num_layers * num_heads)
 
@@ -407,6 +412,8 @@ class QuantizedKVCache:
 
 ### Concept
 ```python
+import torch.nn.functional as F
+import torch
 # Speculative decoding: Use small model to draft, large model to verify
 # Speedup: 2-3x typical
 

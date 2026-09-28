@@ -65,6 +65,7 @@ Low-bit quantization (4-bit, 3-bit, 2-bit) pushes model compression to the extre
 At 4-bit symmetric: values can only be -8, -7, ..., 7
 
 ```python
+import torch
 # Problem: Weights can grow past the INT4 grid [-8, 7]
 weight = torch.randn(256, 256)
 print(weight.min(), weight.max())  # -3.2 to 3.5 (OK)
@@ -77,6 +78,8 @@ print(weight_after_training.min(), weight_after_training.max())  # -6.4 to 7.0 (
 
 **Solution:** Learned scale clipping
 ```python
+import torch.nn as nn
+import torch
 class LearnedClip(nn.Module):
     """Learn optimal clipping range"""
 
@@ -94,6 +97,7 @@ class LearnedClip(nn.Module):
 Min-max is sensitive to outliers. Use quantiles instead:
 
 ```python
+import torch
 def get_quantile_scale(x, bit_width=4, q=0.999):
     """Use quantile instead of max for scale"""
 
@@ -124,6 +128,8 @@ scale_quantile = get_quantile_scale(weight, q=0.999)
 Different layers use different bit-widths:
 
 ```python
+from torch.ao.quantization import FakeQuantize
+import torch.nn as nn
 class MixedPrecisionQAT(nn.Module):
     """Assign different bit-widths per layer"""
 
@@ -161,6 +167,8 @@ bit_config = {
 Restrict scales to powers of 2 for faster integer arithmetic:
 
 ```python
+import torch.nn as nn
+import torch
 class PowerOfTwoScale(nn.Module):
     """Learn scale as power of 2"""
 
@@ -183,6 +191,7 @@ class PowerOfTwoScale(nn.Module):
 Replace deterministic rounding with stochastic rounding:
 
 ```python
+import torch
 def stochastic_round(x, scale):
     """Stochastic rounding for gradients"""
 
@@ -204,6 +213,8 @@ def stochastic_round(x, scale):
 Learn optimal quantization steps:
 
 ```python
+import torch.nn as nn
+import torch
 class LearnedStepSize(nn.Module):
     """Learn quantization step size"""
 
@@ -224,6 +235,7 @@ class LearnedStepSize(nn.Module):
 Start high, gradually reduce:
 
 ```python
+from torch.ao.quantization import FakeQuantize
 def progressive_qat(model, epochs_per_bit=[5, 5, 10]):
     """Train at 8-bit, then 4-bit, then 3-bit"""
 
@@ -261,6 +273,8 @@ def set_bit_width(model, bit_width):
 Use a larger model as teacher:
 
 ```python
+import torch.nn as nn
+import torch
 def distillation_loss(student_output, teacher_output, labels, alpha=0.5, T=2.0):
     """Combine KD loss with CE loss"""
 

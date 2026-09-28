@@ -212,6 +212,7 @@ Task: ?
 ### Decoder-Only Block (LLaMA-style)
 
 ```python
+import torch.nn as nn
 class DecoderBlock(nn.Module):
     """
     LLaMA-style decoder block with:
@@ -258,6 +259,7 @@ class DecoderBlock(nn.Module):
 ### Encoder-Decoder Block (T5-style)
 
 ```python
+import torch.nn as nn
 class EncoderDecoderBlock(nn.Module):
     """
     T5-style encoder-decoder block.

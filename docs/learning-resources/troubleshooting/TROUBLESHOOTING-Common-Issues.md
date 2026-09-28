@@ -168,6 +168,7 @@ model.gradient_checkpointing_enable()
 
 3. **Use 4-bit quantization:**
 ```python
+from transformers import AutoModelForCausalLM
 from transformers import BitsAndBytesConfig
 
 bnb_config = BitsAndBytesConfig(
@@ -210,6 +211,7 @@ vllm serve model-name --gpu-memory-utilization 0.9
 
 2. **Enable Flash Attention:**
 ```python
+from transformers import AutoModelForCausalLM
 model = AutoModelForCausalLM.from_pretrained(
     model_name,
     attn_implementation="flash_attention_2"
@@ -224,6 +226,7 @@ outputs = model.batch_generate(prompts)
 
 4. **Use CPU offloading for large models:**
 ```python
+from transformers import AutoModelForCausalLM
 model = AutoModelForCausalLM.from_pretrained(
     model_name,
     device_map="auto",
@@ -393,6 +396,7 @@ uv pip install --upgrade peft
 
 3. **Load adapter explicitly:**
 ```python
+from transformers import AutoModelForCausalLM
 from peft import PeftModel
 
 model = AutoModelForCausalLM.from_pretrained(base_model)

@@ -482,6 +482,7 @@ Financial analysts spend hours writing quarterly reports, summarizing the same d
 **Solution: Fine-Tuned LLM for Financial Language**
 
 ```python
+from transformers import AutoModelForCausalLM
 class FinancialReportGenerator:
     """
     Generate financial reports using fine-tuned model

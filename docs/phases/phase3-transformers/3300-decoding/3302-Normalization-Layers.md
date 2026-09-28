@@ -80,6 +80,7 @@ This is: center → scale → rescale → shift
 
 ### Definition
 ```python
+import torch.nn as nn
 class BatchNorm1d(nn.Module):
     def __init__(self, num_features, eps=1e-5, momentum=0.1):
         super().__init__()
@@ -143,6 +144,7 @@ Cons:
 
 ### Definition
 ```python
+import torch.nn as nn
 class LayerNorm(nn.Module):
     def __init__(self, normalized_shape, eps=1e-5):
         super().__init__()
@@ -171,6 +173,7 @@ class LayerNorm(nn.Module):
 
 ### LayerNorm in Transformers
 ```python
+import torch.nn as nn
 # Typical transformer block with LayerNorm
 class TransformerBlock(nn.Module):
     def __init__(self, d_model=512):
@@ -222,6 +225,7 @@ Pre-LN (modern):
 
 ### Definition
 ```python
+import torch.nn as nn
 class RMSNorm(nn.Module):
     """
     Root Mean Square Normalization
@@ -257,6 +261,7 @@ Used in: LLaMA 2, Mistral, Gemma
 
 ### RMSNorm Implementation (LLaMA style)
 ```python
+import torch.nn as nn
 class LlamaRMSNorm(nn.Module):
     def __init__(self, hidden_size, eps=1e-6):
         super().__init__()
@@ -282,6 +287,7 @@ class LlamaRMSNorm(nn.Module):
 
 ### Mathematical Comparison
 ```python
+import torch.nn as nn
 import torch
 import matplotlib.pyplot as plt
 
@@ -348,6 +354,7 @@ Recommendation: RMSNorm for new models
 
 ### Fused Operations
 ```python
+import torch.nn as nn
 # PyTorch has fused implementations
 # Faster and more numerically stable
 
@@ -364,6 +371,7 @@ output = layer_norm(x)
 
 ### Mixed Precision
 ```python
+import torch.nn as nn
 # RMSNorm is more stable in mixed precision
 # LayerNorm can have precision issues with fp16
 
@@ -402,6 +410,7 @@ This stabilizes gradients in very deep networks
 ```
 
 ```python
+import torch.nn as nn
 class DeepNormTransformerBlock(nn.Module):
     """
     DeepNorm: Train 100+ layer transformers

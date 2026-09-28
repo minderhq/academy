@@ -117,6 +117,7 @@ attn_output = fake_quantize(attn_weights @ v)
 ## Implementation for Self-Attention
 
 ```python
+from torch.ao.quantization import FakeQuantize
 import torch
 import torch.nn as nn
 # FakeQuantize is defined in 4302-Fake-Quantization.md — import or paste it
@@ -180,6 +181,7 @@ class QuantizedAttention(nn.Module):
 ## Implementation for MLP/Feed-Forward
 
 ```python
+from torch.ao.quantization import FakeQuantize
 class QuantizedMLP(nn.Module):
     """QAT-compatible feed-forward layer"""
 
@@ -221,6 +223,7 @@ class QuantizedMLP(nn.Module):
 ## Complete Transformer Block
 
 ```python
+from torch.ao.quantization import FakeQuantize
 class QuantizedTransformerBlock(nn.Module):
     """QAT-compatible transformer block"""
 
@@ -255,6 +258,7 @@ class QuantizedTransformerBlock(nn.Module):
 Embeddings are tricky because they're large lookup tables:
 
 ```python
+from torch.ao.quantization import FakeQuantize
 class QuantizedEmbedding(nn.Module):
     """QAT-compatible embedding layer"""
 
@@ -300,6 +304,7 @@ scale = weight.abs().max(dim=1, keepdim=True).values / 127
 ### 1. Gradual QAT Enable
 
 ```python
+from torch.ao.quantization import FakeQuantize
 def train_with_qat(model, epochs, qat_start_epoch=5):
     for epoch in range(epochs):
         if epoch >= qat_start_epoch:
@@ -366,6 +371,7 @@ if torch.isnan(attn).any():
 
 **Solution:** Increase bit-width for Q/K projections:
 ```python
+from torch.ao.quantization import FakeQuantize
 self.qkv_quant = FakeQuantize(bit_width=16)  # int16 grid (not FP16) relieves Q/K dynamic range
 ```
 
@@ -386,6 +392,7 @@ x = x_q + residual_q  # Both in similar range
 
 **Solution:** Keep first layer in FP16:
 ```python
+from torch.ao.quantization import FakeQuantize
 self.embed_quant = FakeQuantize(bit_width=16)  # wider int16 grid for the fragile first layer
 ```
 

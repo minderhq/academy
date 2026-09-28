@@ -16,6 +16,8 @@ Difficulty: Intermediate
 
 ### Standard Attention
 ```python
+import torch.nn.functional as F
+import torch
 def scaled_dot_product_attention(Q, K, V, mask=None):
     """
     Q, K, V: (batch, heads, seq_len, d_k)
@@ -48,6 +50,7 @@ def scaled_dot_product_attention(Q, K, V, mask=None):
 
 ### Multi-Head Attention
 ```python
+import torch.nn as nn
 class MultiHeadAttention(nn.Module):
     def __init__(self, d_model, num_heads):
         super().__init__()
@@ -91,6 +94,8 @@ class MultiHeadAttention(nn.Module):
 
 ### Key Idea: Block-wise Computation
 ```python
+import torch.nn as nn
+import torch
 # Standard attention: O(n²) memory
 # Flash attention: O(n) memory
 
@@ -158,6 +163,8 @@ class FlashAttention(nn.Module):
 
 ### Position Encoding
 ```python
+import torch.nn as nn
+import torch
 def apply_rotary_emb(x, cos, sin):
     """
     Apply rotary embeddings to query and key
@@ -229,6 +236,8 @@ class RotaryAttention(nn.Module):
 
 ### Layer Normalization
 ```python
+import torch.nn as nn
+import torch
 class LayerNorm(nn.Module):
     """Layer Normalization"""
 
@@ -256,6 +265,8 @@ class LayerNorm(nn.Module):
 
 ### RMS Normalization
 ```python
+import torch.nn as nn
+import torch
 class RMSNorm(nn.Module):
     """Root Mean Square Normalization"""
 
@@ -279,6 +290,8 @@ class RMSNorm(nn.Module):
 
 ### Group Normalization
 ```python
+import torch.nn as nn
+import torch
 class GroupNorm(nn.Module):
     """Group Normalization"""
 
@@ -319,6 +332,7 @@ class GroupNorm(nn.Module):
 
 ### GELU (Gaussian Error Linear Unit)
 ```python
+import torch
 import numpy as np
 def gelu(x):
     """GELU activation"""
@@ -336,6 +350,8 @@ def gelu_approx(x):
 
 ### SwiGLU
 ```python
+import torch.nn as nn
+import torch
 class SwiGLU(nn.Module):
     """SwiGLU activation (used in LLaMA)"""
 
@@ -365,6 +381,7 @@ class SwiGLU(nn.Module):
 
 ### GeGLU
 ```python
+import torch.nn as nn
 class GeGLU(nn.Module):
     """GeGLU activation"""
 
@@ -391,6 +408,7 @@ class GeGLU(nn.Module):
 
 ### Decoder-Only Block (GPT-style)
 ```python
+import torch.nn as nn
 class DecoderBlock(nn.Module):
     """Transformer decoder block"""
 
@@ -428,6 +446,7 @@ class DecoderBlock(nn.Module):
 
 ### Encoder-Decoder (T5-style)
 ```python
+import torch.nn as nn
 class EncoderDecoderBlock(nn.Module):
     """Transformer encoder-decoder block"""
 
@@ -475,6 +494,9 @@ class EncoderDecoderBlock(nn.Module):
 
 ### Mixture of Experts (MoE)
 ```python
+import torch.nn.functional as F
+import torch.nn as nn
+import torch
 class MoEBlock(nn.Module):
     """Mixture of Experts block"""
 

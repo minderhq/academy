@@ -343,6 +343,7 @@ class DynamicKVCache:
 
 ### Gradient Checkpointing (for training)
 ```python
+import torch.nn as nn
 # Save memory by recomputing activations
 from torch.utils.checkpoint import checkpoint
 

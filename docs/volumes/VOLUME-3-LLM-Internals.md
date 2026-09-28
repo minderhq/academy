@@ -69,6 +69,8 @@ mask = torch.triu(torch.ones(seq_len, seq_len), diagonal=1).bool()
 
 **Practice:**
 ```python
+import torch.nn.functional as F
+import torch
 # Implement from scratch:
 import math
 def scaled_dot_product_attention(Q, K, V, mask=None):
@@ -139,6 +141,7 @@ Trade-off: Approximate attention for 2-4x speedup
 
 **RoPE Formula:**
 ```python
+import torch
 def rotate_position(x, seq_len, dim):
     # Create rotation matrix
     theta = torch.arange(dim // 2) / (dim // 2)
@@ -215,6 +218,8 @@ Tokenization affects:
 
 **Comparison:**
 ```python
+import torch.nn as nn
+import torch
 # ReLU: Simple but dead neurons
 relu = torch.nn.ReLU()
 

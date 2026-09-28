@@ -384,6 +384,7 @@ After completing this phase, you will be able to:
 
 **Pitfall:** Incorrect attention mask leading to information leakage
 ```python
+import torch
 # Wrong: No causal mask
 def attention(Q, K, V):
     scores = Q @ K.T / sqrt(d)
@@ -407,6 +408,7 @@ causal_mask = torch.tril(torch.ones(seq_len, seq_len))
 
 **Pitfall:** Computing full attention matrix causing OOM
 ```python
+import torch
 # Wrong: Full attention computation
 attention_weights = torch.softmax(
     Q @ K.T / sqrt(d),  # O(N²) memory!
@@ -432,6 +434,8 @@ def chunked_attention(Q, K, V, chunk_size=512):
 
 **Pitfall:** Using absolute positional encoding that doesn't extrapolate
 ```python
+import torch.nn as nn
+import torch
 # Wrong: Learned absolute positions (poor extrapolation)
 class LearnedPositionalEmbedding(nn.Module):
     def __init__(self, max_seq_len, d_model):
@@ -465,6 +469,8 @@ tokenizer = CodeLlamaTokenizer.from_pretrained('codellama/CodeLlama-7b')
 
 **Pitfall:** Using ReLU in transformer (dead neurons)
 ```python
+import torch.nn.functional as F
+import torch.nn as nn
 # Wrong: ReLU causes dead neurons
 activation = nn.ReLU()
 
@@ -486,6 +492,7 @@ class SwiGLU(nn.Module):
 
 **Pitfall:** Post-Norm in deep networks (training instability)
 ```python
+import torch.nn as nn
 # Wrong: Post-Norm (instability in deep networks)
 class TransformerBlock(nn.Module):
     def forward(self, x):
@@ -526,6 +533,7 @@ model = AutoModelForSeq2SeqLM.from_pretrained('t5-base')
 
 **Tip:** Use KV cache for faster autoregressive generation
 ```python
+import torch
 # Standard generation: Recompute attention each token (slow)
 def generate_slow(model, input_ids, max_length=100):
     for _ in range(max_length):

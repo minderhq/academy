@@ -396,6 +396,8 @@ test_metrics = evaluate(model, test_data)
 
 **Pitfall:** Underestimating memory requirements
 ```python
+from transformers import AutoModelForCausalLM
+import torch
 # Wrong: Loading full model on single GPU
 model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-2-70b")
 # Error: CUDA out of memory
@@ -457,6 +459,8 @@ lora_config = {
 
 **Tip:** Maximum memory efficiency with QLoRA
 ```python
+from transformers import AutoModelForCausalLM
+import torch
 from transformers import BitsAndBytesConfig
 
 bnb_config = BitsAndBytesConfig(

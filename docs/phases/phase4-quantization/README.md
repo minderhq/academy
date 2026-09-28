@@ -320,6 +320,7 @@ calibration_data = load_target_domain_samples(n=256, diversity=True)
 
 **Tip:** Use gradient checkpointing during quantization calibration
 ```python
+import torch
 from torch.utils.checkpoint import checkpoint
 
 def calibrate_with_checkpointing(model, data):

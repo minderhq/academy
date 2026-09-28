@@ -96,6 +96,7 @@ Dot product naturally incorporates relative distance!
 ### Mathematical Foundation
 
 ```python
+import torch
 def rotate_positions(x, m, theta):
     """
     Rotate vector x by position m with frequency theta
@@ -173,6 +174,8 @@ Character-level:
 ### RoPE Implementation
 
 ```python
+import torch.nn as nn
+import torch
 class RotaryPositionalEmbedding(nn.Module):
     def __init__(self, d_model, max_seq_len=8192):
         super().__init__()

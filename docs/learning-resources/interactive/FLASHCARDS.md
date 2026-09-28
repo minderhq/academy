@@ -186,6 +186,7 @@ After completing this notebook, you will:
 **Your Task:** Complete the function below to compute attention scores.
 
 ```python
+import torch
 def compute_attention_scores(Q, K):
     """
     Compute attention scores from Q and K.
@@ -210,6 +211,7 @@ def compute_attention_scores(Q, K):
 
 **Test Your Code:**
 ```python
+import torch
 Q = torch.randn(2, 5, 8)
 K = torch.randn(2, 5, 8)
 scores = compute_attention_scores(Q, K)
@@ -226,6 +228,8 @@ print(f"Scores shape: {scores.shape}")
 **Your Task:** Create a heatmap of attention weights.
 
 ```python
+import torch.nn.functional as F
+import torch
 import matplotlib.pyplot as plt
 
 def visualize_attention(attention_weights, tokens):

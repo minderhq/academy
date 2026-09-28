@@ -268,6 +268,7 @@ visualize_rope_rotation()
 
 ### LLaMA-style RoPE
 ```python
+import torch.nn as nn
 class LlamaRotaryEmbedding(nn.Module):
     def __init__(self, dim, max_position_embeddings=2048, base=10000):
         super().__init__()
@@ -326,6 +327,8 @@ def yarn_scaling(dim, max_seq_len, original_max_seq_len=2048):
 
 ### Integration into Attention
 ```python
+import torch.nn.functional as F
+import torch.nn as nn
 class RoPEMultiHeadAttention(nn.Module):
     def __init__(self, d_model=512, num_heads=8, max_seq_len=2048):
         super().__init__()

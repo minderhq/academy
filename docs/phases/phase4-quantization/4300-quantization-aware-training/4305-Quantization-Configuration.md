@@ -187,6 +187,7 @@ Weight [out_channels, in_channels]
 ### Implementation
 
 ```python
+from torch.ao.quantization import FakeQuantize
 def configure_per_tensor(module, bit_width=8):
     """Configure per-tensor quantization"""
     module.quantizer = FakeQuantize(
@@ -351,6 +352,7 @@ def sensitivity_analysis(model, calib_data):
 ### Strategy 3: Layer-wise Bit-width
 
 ```python
+from torch.ao.quantization import FakeQuantize
 BIT_CONFIG = {
     # Earlier layers: higher precision
     'layers.0': 8,

@@ -144,6 +144,7 @@ text = generator.generate("Hello, world!", max_tokens=100)
 
 **Double Quantization:**
 ```python
+import torch
 from transformers import BitsAndBytesConfig
 from transformers import AutoModelForCausalLM
 

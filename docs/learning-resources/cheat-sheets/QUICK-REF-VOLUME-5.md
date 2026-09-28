@@ -35,6 +35,9 @@ Difficulty: Intermediate
 
 ### LoRA Implementation
 ```python
+import torch.nn.functional as F
+import torch.nn as nn
+import torch
 import math
 class LoRALinear(nn.Module):
     """LoRA linear layer"""
@@ -132,6 +135,7 @@ model.print_trainable_parameters()
 
 ### QLoRA Implementation
 ```python
+import torch
 from transformers import BitsAndBytesConfig
 from peft import LoraConfig, get_peft_model
 
@@ -190,6 +194,8 @@ model = get_peft_model(model, lora_config)
 
 ### DPO Algorithm
 ```python
+import torch.nn.functional as F
+import torch
 class DPOTrainer:
     """Direct Preference Optimization trainer"""
 

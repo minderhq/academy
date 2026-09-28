@@ -134,6 +134,7 @@ Example: For sentence "The cat sat on the mat"
 ### 3.2 Multi-Head Architecture
 
 ```python
+import torch.nn as nn
 class MultiHeadAttention(nn.Module):
     def __init__(self, d_model=512, num_heads=8):
         super().__init__()
