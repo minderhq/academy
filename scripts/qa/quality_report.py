@@ -56,6 +56,15 @@ stand today?" without running each tool by hand.
                        585/604 modernization epic drained (typing /3);
                        4-backtick super-fence teaching content is
                        invisible to the fence model by design
+    version_alignment_scan
+                       code-side python-version drift in ANY fence
+                       (VA-01 FROM python:X.Y, VA-02 python3.X
+                       binaries, VA-03 --python X.Y flags, VA-04
+                       uv python install/pin X.Y): everything must
+                       be the corpus standard 3.13 - born from the
+                       tick-257 census that found one production
+                       Dockerfile on python3.10 after the 3.13
+                       epic was declared done
   queue gate (drain in progress; never fails the report unless --fail-on-queue):
     objectives_lint    template-objective artifacts (OL-01/OL-02), phase by phase
     fence_namecheck    names used in a python fence that no fence in the
@@ -114,6 +123,7 @@ GATES = [
     ("fm_staleness_scan.py", "fm_staleness", False),
     ("kwarg_lint.py", "kwarg_lint", True),
     ("typing_legacy_scan.py", "typing_legacy_scan", True),
+    ("version_alignment_scan.py", "version_alignment_scan", True),
 ]
 
 

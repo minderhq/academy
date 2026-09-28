@@ -55,6 +55,7 @@ the full installed stack. A partial environment fails loud with
 | deprecated_scan | DA-01..03 | deprecated API calls in python fences |
 | kwarg_lint | KW-01/02 | removed/renamed kwargs on known APIs |
 | typing_legacy_scan | TL-01 | legacy typing spellings (PEP 585/604) in python fences |
+| version_alignment_scan | VA-01..04 | code-side python-version drift in any fence: `FROM python:X.Y`, `python3.X` binaries, `--python X.Y` flags, `uv python install/pin` - the corpus standard is 3.13 |
 
 ## 📋 Report Gates (exit 0 by design)
 
