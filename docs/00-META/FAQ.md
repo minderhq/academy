@@ -254,7 +254,7 @@ Use **[PROGRESS-TRACKER.md](PROGRESS-TRACKER.md)** to:
 
 **Issue: Import Errors**
 - Solution 1: Create virtual environment
-- Solution 2: Install dependencies (`uv pip install -r requirements.txt`)
+- Solution 2: Recreate the environment per [ENVIRONMENT-SETUP](ENVIRONMENT-SETUP.md) (`uv venv --python 3.13` + `uv pip install` the lesson's dependencies)
 - Solution 3: Check Python version (3.13+)
 - Solution 4: Update packages (`uv pip install --upgrade`)
 
