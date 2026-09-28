@@ -1,7 +1,7 @@
 ---
 Document ID: 6300-QUIZ
 Title: "6300: Context Window Management - Quiz"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 ---
@@ -115,7 +115,7 @@ B) Random order
 C) Alphabetical order
 D) No effect
 
-**15. Maximum context in GPT-4:**
+**15. Typical context window of modern long-context LLMs:**
 
 A) 4K tokens
 B) 8K tokens

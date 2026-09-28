@@ -1,7 +1,7 @@
 ---
 Document ID: COMPARISONS-README
 Title: "Technology Comparisons"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Beginner
 ---
@@ -130,11 +130,11 @@ decision_factors = {
 
 | Model | Size | Use Case | Hardware | Cost |
 |-------|------|----------|----------|------|
-| **Llama-2-7B** | 7B | General purpose | RTX 3060 | Free |
+| **Llama-3-8B** | 8B | General purpose | RTX 3060 | Free |
 | **Mistral-7B** | 7B | Balanced quality | RTX 3060 | Free |
 | **Mixtral-8x7B** | 47B | High quality | 2x RTX 3090 | Free |
-| **GPT-4** | Unknown | Best quality | API | $$ |
-| **Claude-3** | Unknown | Long context | API | $$ |
+| **GPT family (API)** | Unknown | Best quality | API | $$ |
+| **Claude family (API)** | Unknown | Long context | API | $$ |
 
 ---
 

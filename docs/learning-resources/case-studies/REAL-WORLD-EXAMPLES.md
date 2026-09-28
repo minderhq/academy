@@ -1,7 +1,7 @@
 ---
 Document ID: REAL-WORLD-EXAMPLES
 Title: Real-World Examples & Case Studies
-Last Updated: 2026-02-04
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -10,7 +10,7 @@ Difficulty: Intermediate
 
 **Project:** PROJECT-OMEGA
 **Category:** Case Studies
-**Last Updated:** 2026-02-04
+**Last Updated:** 2026-09-29
 **Status:** Complete
 
 ---
@@ -112,7 +112,7 @@ workflow = SequentialWorkflow(
 
 **Industry:** E-commerce
 **Scale:** 1M+ daily queries
-**Tech Stack:** GPT-4, Pinecone, FastAPI, Redis
+**Tech Stack:** GPT API, Pinecone, FastAPI, Redis
 
 ### Challenge
 - 24/7 global customer base
@@ -292,8 +292,8 @@ Query → Embed → Retrieve → Rerank → LLM → Response
 |-------------|-------|------------|---------|
 | Chatbot | Llama-7B-GGUF | 85 | 200ms |
 | RAG System | Mixtral-8x7B | 50 | 400ms |
-| Code Gen | Codex | 30 | 800ms |
-| Research | GPT-4 | 15 | 2000ms |
+| Code Gen | Coding LLM | 30 | 800ms |
+| Research | GPT API | 15 | 2000ms |
 
 ### Cost Breakdown (per 1M queries)
 | Component | Cost | % of Total |
