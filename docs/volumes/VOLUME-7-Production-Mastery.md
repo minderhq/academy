@@ -178,7 +178,7 @@ services:
 **Specialized monitoring for AI systems**
 
 **GPU Metrics:**
-```python
+```text
 # Key GPU metrics to monitor:
 nvidia_gpu_memory_used_bytes        # VRAM usage
 nvidia_gpu_utilization              # GPU compute utilization
@@ -1023,7 +1023,7 @@ Answer: Return result when done
 ### ⚠️ Missing Health Checks
 
 **Pitfall:** No health check means silent failures
-```python
+```yaml
 # Wrong: No health check
 # docker-compose.yml
 services:
@@ -1658,7 +1658,7 @@ For more help, see **[TROUBLESHOOTING-Common-Issues.md](../learning-resources/tr
 
 ### You've Mastered:
 
-```python
+```text
 # You can now:
 ✅ Deploy AI systems in production
 ✅ Set up comprehensive monitoring

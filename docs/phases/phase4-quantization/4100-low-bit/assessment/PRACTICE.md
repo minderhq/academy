@@ -1,7 +1,7 @@
 ---
 Document ID: 4100-PRACTICE
 Title: "4100: Low-Bit Quantization - Practice"
-Last Updated: 2026-09-25
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Advanced
 ---
@@ -350,7 +350,7 @@ print(f"\nGenerated text: {text}")
 
 # Compare memory usage
 def get_model_memory(model):
-    """Get model memory usage in GB."""
+    '''Get model memory usage in GB.'''
     mem = 0
     for param in model.parameters():
         mem += param.numel() * param.element_size()

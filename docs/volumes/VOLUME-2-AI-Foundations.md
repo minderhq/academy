@@ -223,7 +223,7 @@ def matmul_kernel(A, B, C):
    - Infrastructure requirements
 
 **Key Topics:**
-```python
+```text
 # Public datasets for pre-training
 datasets = {
     "Common Crawl": "100+ TB web data",
@@ -478,7 +478,7 @@ For more help, see **[TROUBLESHOOTING-Common-Issues.md](../learning-resources/tr
 
 ### Skills You've Gained:
 
-```python
+```text
 # You can now:
 ✅ Manipulate tensors efficiently
 ✅ Understand automatic differentiation

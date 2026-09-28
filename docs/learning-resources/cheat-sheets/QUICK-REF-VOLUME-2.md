@@ -287,7 +287,7 @@ Slowest
 ```
 
 ### Optimization Tips
-```python
+```text
 # 1. Memory Coalescing
 # Access consecutive memory locations
 # Bad: threads[0, 1, 2, ...] access addresses[0, 1000, 2000, ...]
@@ -312,7 +312,7 @@ def kernel(..., BLOCK_SIZE: tl.constexpr):
 ## 🎓 Pre-training Fundamentals
 
 ### Data Pipeline
-```python
+```text
 # Data collection pipeline
 datasets = {
     "Common Crawl": "100+ TB web data",
@@ -502,7 +502,7 @@ x.argmax(dim=1)              # Index of max
 ```
 
 ### Gradient Management
-```python
+```text
 # Enable/disable gradients
 x.requires_grad = True
 with torch.no_grad():        # Disable temporarily

@@ -1,7 +1,7 @@
 ---
 Document ID: DOCUMENT-TEMPLATE
 Title: "PROJECT-OMEGA Document Template Standard"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Beginner
 ---
@@ -372,7 +372,7 @@ Complete the checkpoint: [CHECKPOINT.md](./CHECKPOINT.md)
 ### Code Blocks
 - Specify language for syntax highlighting:
   ```python
-  code here
+  print("Hello, PROJECT-OMEGA!")
   ```
 
 ### Tables

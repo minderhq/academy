@@ -117,7 +117,7 @@ class EnterpriseKnowledgeAssistant:
 
 **Real-World Usage:**
 
-```python
+```text
 # Employee query
 query = "What's our remote work policy for IT department?"
 
@@ -249,7 +249,7 @@ class CustomerSupportRAG:
 
 **Real-World Scenario:**
 
-```python
+```text
 # Customer query
 query = "My order #12345 is delayed, what can you do?"
 

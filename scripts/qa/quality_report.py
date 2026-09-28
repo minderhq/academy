@@ -10,6 +10,10 @@ stand today?" without running each tool by hand.
     pip_uv_scan        bare pip install only inside documented exceptions
                        (Docker/container, conda workflows, uv bootstraps,
                        uv-first fallback blocks)
+    codeblock_syntax_scan
+                       every ```python fence parses as Python (CB-01);
+                       non-Python content lives in an honest fence label
+                       (text/bash/yaml) instead
     assessment_lint    assessment/QUIZ.md + PRACTICE.md coverage (AS-01..AS-09;
                        AS-09 option-shuffle queue is report-mode, shown separately)
     quiz_export        quiz bank parses into complete question records
@@ -49,6 +53,7 @@ PHASE_DIR = re.compile(r"^phase\d+-")
 GATES = [
     ("frontmatter_lint.py", "frontmatter_lint", True),
     ("pip_uv_scan.py", "pip_uv_scan", True),
+    ("codeblock_syntax_scan.py", "codeblock_syntax_scan", True),
     ("assessment_lint.py", "assessment_lint", True),
     ("quiz_export.py", "quiz_export", True),
     ("structure_lint.py", "structure_lint", True),
@@ -108,7 +113,7 @@ def main() -> int:
             m = QUEUE_SUMMARY.search(summary)
             queued = bool(m and int(m.group(1)) > 0)
             status = "QUEUE" if queued else "PASS"
-        print("%-18s %-6s %s" % (label, status, esc(summary)))
+        print("%-22s %-6s %s" % (label, status, esc(summary)))
 
     print()
     if failed:

@@ -1,7 +1,7 @@
 ---
 Document ID: 5200-PRACTICE
 Title: "5200: LLM Alignment - Practice"
-Last Updated: 2026-09-25
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Advanced
 ---
@@ -92,7 +92,7 @@ print(f"Average chosen length: {sum(len(d['chosen'].split()) for d in dataset) /
 print(f"Average rejected length: {sum(len(d['rejected'].split()) for d in dataset) / len(dataset):.1f} words")
 
 print("\n" + "="*60)
-print("Best Practices for Preference Data:"))
+print("Best Practices for Preference Data:")
 print("="*60)
 print("""
 1. Quality Over Quantity:

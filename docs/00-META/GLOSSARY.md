@@ -1,7 +1,7 @@
 ---
 Document ID: GLOSSARY
 Title: "PROJECT-OMEGA Glossary"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Beginner
 ---
@@ -246,11 +246,11 @@ React agents perform tool-calling to complete tasks."
 
 ### In Code Comments
 ```python
-✅ CORRECT:
+# ✅ CORRECT:
 # Implement LoRA fine-tuning with QLoRA quantization
 # Store embeddings in Vector Database for RAG
 
-❌ INCORRECT:
+# ❌ INCORRECT:
 # Implement lora fine-tuning with qlora
 # Store embeddings in vectorDB for rag
 ```

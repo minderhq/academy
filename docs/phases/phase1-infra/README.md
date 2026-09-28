@@ -518,7 +518,7 @@ kubectl describe node | grep nvidia.com/gpu
 ### vLLM Out of Memory
 
 **Pitfall:** Loading full model without quantization
-```python
+```bash
 # Wrong: Load full model (11GB+)
 vllm serve mistralai/Mistral-7B-Instruct-v0.2
 # Error: CUDA out of memory

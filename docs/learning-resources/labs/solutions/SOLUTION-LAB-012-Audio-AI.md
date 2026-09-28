@@ -1,7 +1,7 @@
 ---
 Document ID: SOLUTION-LAB-012
 Title: "SOLUTION-LAB-012: Audio AI"
-Last Updated: 2026-09-27
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -211,7 +211,7 @@ class CoquiTTS:
 
         return output_path
 
-    def synthesize_with_voice cloning(
+    def synthesize_with_voice_cloning(
         self,
         text,
         reference_audio,

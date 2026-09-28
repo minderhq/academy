@@ -100,7 +100,7 @@ FROM python:3.11-alpine
 - LAB-005: Add knowledge graphs
 
 **Bridge Content:**
-```python
+```text
 # From Tutorial: Simple RAG
 def simple_rag(query):
     docs = search(query)

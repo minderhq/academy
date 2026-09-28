@@ -425,7 +425,7 @@ print(f"Compression: {fp32_size / int8_size:.2f}x")
 
 ### Issue 1: ModuleNotFoundError
 
-```python
+```text
 # Error
 ModuleNotFoundError: No module named 'torch.ao.quantization'
 
@@ -449,7 +449,7 @@ for name, module in model.named_modules():
 
 ### Issue 3: AssertionError on Convert
 
-```python
+```text
 # Error
 AssertionError: No observers found
 

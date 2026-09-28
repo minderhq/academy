@@ -1,7 +1,7 @@
 ---
 Document ID: QUICK-REF-VOLUME-5
 Title: "Volume 5: Fine-Tuning Expert - Quick Reference"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -274,7 +274,7 @@ policy_model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-2-7b-hf")
 ref_model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-2-7b-hf")
 
 # Apply LoRA to policy model only
-policy_model = get_peft_model(policy_model, LoraConfig(r=16, ...))
+policy_model = get_peft_model(policy_model, LoraConfig(..., r=16))
 
 # Train
 trainer = DPOTrainer(policy_model, ref_model, beta=0.1)

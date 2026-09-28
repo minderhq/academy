@@ -171,7 +171,7 @@ Fine-Tuned Model
 #### Real-World Examples
 
 **Example 1: Medical Diagnosis Assistant**
-```python
+```text
 # Scenario: Medical terminology and reasoning
 # Training data: 10,000 doctor-patient conversations
 # Vocabulary: Highly specialized (rare diseases, drugs)
@@ -187,7 +187,7 @@ Model: "Consider congestive heart failure. Check BNP levels,
 ```
 
 **Example 2: Code Generation**
-```python
+```text
 # Scenario: Company-specific coding patterns
 # Training data: 50,000 internal code examples
 # Style: Highly specific (naming, structure, patterns)
@@ -321,7 +321,7 @@ Final Answer
 #### Real-World Examples
 
 **Example 1: DevOps Incident Management**
-```python
+```text
 # Scenario: Server alerts need investigation and resolution
 # Complexity: Multiple steps, different tools needed
 # Decision: Which action to take?
@@ -340,7 +340,7 @@ Result: Autonomous incident resolution
 ```
 
 **Example 2: Travel Planning Agent**
-```python
+```text
 # Scenario: Plan a complex trip
 # Complexity: Multiple bookings, constraints, preferences
 

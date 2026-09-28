@@ -273,7 +273,7 @@ For more help, see **[TROUBLESHOOTING-Common-Issues.md](../learning-resources/tr
 
 ### Skills You've Gained:
 
-```python
+```text
 # You can now:
 ✅ Run LLMs locally
 ✅ Containerize applications

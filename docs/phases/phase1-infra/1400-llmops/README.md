@@ -203,7 +203,7 @@ Savings: 52%!
 - **Open Source:** Apache 2.0 license
 
 **Architecture:**
-```python
+```text
 # vLLM uses PagedAttention (like OS virtual memory)
 
 Traditional approach:

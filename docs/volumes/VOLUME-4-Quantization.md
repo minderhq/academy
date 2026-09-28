@@ -209,7 +209,7 @@ Benefit: Saves ~0.5GB per 7B model
 ```
 
 **Optimization Strategies:**
-```python
+```text
 # 1. Sliding window
 window_size = 4096
 keep only last N tokens
@@ -591,7 +591,7 @@ For more help, see **[TROUBLESHOOTING-Common-Issues.md](../learning-resources/tr
 
 ### Skills You've Gained:
 
-```python
+```text
 # You can now:
 ✅ Quantize models to 4-bit
 ✅ Run 70B on 11GB VRAM

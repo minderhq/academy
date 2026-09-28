@@ -55,7 +55,7 @@ Before fine-tuning, optimizing, or deploying LLMs, you need to understand **how 
    - KV cache optimization
 
 **Key Concepts:**
-```python
+```text
 # Self-attention formula:
 Attention(Q, K, V) = softmax(QK^T / √d_k) V
 
@@ -246,7 +246,7 @@ class SwiGLU(nn.Module):
    - Stability in deep networks
 
 **Key Differences:**
-```python
+```text
 # BatchNorm: Normalize across batch
 BatchNorm: mean/var over batch dimension
 
@@ -516,7 +516,7 @@ For more help, see **[TROUBLESHOOTING-Common-Issues.md](../learning-resources/tr
 
 ### Skills You've Gained:
 
-```python
+```text
 # You can now:
 ✅ Explain transformer architecture
 ✅ Implement attention from scratch

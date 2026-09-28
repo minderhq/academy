@@ -1,7 +1,7 @@
 ---
 Document ID: VOLUME-6
 Title: "Volume 6: Data Nexus - RAG & Memory"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -156,7 +156,7 @@ def euclidean_distance(a, b):
 ```
 
 **Embedding Models:**
-```python
+```text
 # Popular embedding models:
 sentence-transformers/all-MiniLM-L6-v2  # Fast, good quality
 sentence-transformers/all-mpnet-base-v2  # Better, slower
@@ -477,7 +477,7 @@ def store_knowledge_graph(entities, relationships):
                 MATCH (e1:Entity {name: $from})
                 MATCH (e2:Entity {name: $to})
                 MERGE (e1)-[r:RELATIONSHIP {type: $type}]->(e2)
-            """, from=rel.from, to=rel.to, type=rel.type)
+            """, parameters={"from": rel["from"], "to": rel["to"], "type": rel["type"]})
 
 # 3. Graph retrieval
 def graph_retrieval(entities, max_hops=2):
@@ -803,7 +803,7 @@ Use GraphRAG when:
 ### Semantic Search Core Concepts
 
 **Embedding Models:**
-```python
+```text
 # Model selection based on use case:
 all-MiniLM-L6-v2    # Fast, general purpose (384 dims)
 all-mpnet-base-v2   # Better quality (768 dims)
@@ -1193,7 +1193,7 @@ For more help, see **[TROUBLESHOOTING-Common-Issues.md](../learning-resources/tr
 
 ### Skills You've Gained:
 
-```python
+```text
 # You can now:
 ✅ Build production RAG systems
 ✅ Implement hybrid search

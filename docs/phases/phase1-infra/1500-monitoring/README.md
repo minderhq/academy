@@ -67,7 +67,7 @@ With monitoring:
 | **Performance Drift** | Model quality degrades | Accuracy drops from 95% to 80% |
 
 **Detection Example:**
-```python
+```text
 # Monitor input distribution over time
 metrics.track("prompt_length", len(prompt))
 metrics.track("prompt_language", detect_language(prompt))

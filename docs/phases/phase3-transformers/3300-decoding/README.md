@@ -141,12 +141,12 @@ Without normalization:
 ### LayerNorm vs RMSNorm
 
 **LayerNorm:**
-```python
+```text
 output = γ * (x - μ) / √(σ² + ε) + β
 ```
 
 **RMSNorm (simpler, faster):**
-```python
+```text
 output = γ * x / RMS(x)  # No β, no mean centering
 RMS(x) = √(mean(x²) + ε)
 ```

@@ -119,7 +119,7 @@ QUANTIZATION_LEVELS = {
 ## ⚡ EXL2 Format
 
 ### EXL2 Overview
-```python
+```text
 # EXL2: EXLlama 2 format
 # Optimized for fast inference on NVIDIA GPUs
 

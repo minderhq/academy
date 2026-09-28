@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-005
 Title: "LAB 005: GraphRAG Implementation with Neo4j & Qdrant"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -256,9 +256,11 @@ class KnowledgeGraphBuilder:
                         MERGE (e1)-[r:RELATED_TO]->(e2)
                         SET r.context = $context
                         """,
-                        from=rel['from'],
-                        to=rel['to'],
-                        context=rel['context']
+                        parameters={
+                            "from": rel['from'],
+                            "to": rel['to'],
+                            "context": rel['context']
+                        }
                     )
 
                 # Create document node and connect to entities
