@@ -1,7 +1,7 @@
 ---
 Document ID: CHEAT-SHEET-001
 Title: "CHEAT SHEET: Docker Commands"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -50,37 +50,37 @@ docker ps
 docker ps -a
 
 # Inspect container details
-docker inspect <container-id>
+docker inspect ${CONTAINER_ID}
 
 # View container logs
-docker logs <container-id>
+docker logs ${CONTAINER_ID}
 
 # Follow logs in real-time
-docker logs -f <container-id>
+docker logs -f ${CONTAINER_ID}
 
 # Execute command in container
-docker exec -it <container-id> bash
+docker exec -it ${CONTAINER_ID} bash
 
 # View container resource usage
-docker stats <container-id>
+docker stats ${CONTAINER_ID}
 ```
 
 ### Stop & Remove
 ```bash
 # Stop container
-docker stop <container-id>
+docker stop ${CONTAINER_ID}
 
 # Start stopped container
-docker start <container-id>
+docker start ${CONTAINER_ID}
 
 # Restart container
-docker restart <container-id>
+docker restart ${CONTAINER_ID}
 
 # Remove container
-docker rm <container-id>
+docker rm ${CONTAINER_ID}
 
 # Force remove running container
-docker rm -f <container-id>
+docker rm -f ${CONTAINER_ID}
 
 # Remove all stopped containers
 docker container prune
@@ -203,19 +203,19 @@ docker-compose top
 ### Container Issues
 ```bash
 # Container won't start? Check logs
-docker logs <container-id>
+docker logs ${CONTAINER_ID}
 
 # Container keeps restarting?
-docker inspect <container-id> | jq '.[0].State.Restarting'
+docker inspect ${CONTAINER_ID} | jq '.[0].State.Restarting'
 
 # Out of memory?
 docker stats
 
 # Port already in use?
-netstat -tulpn | grep <port>
+netstat -tulpn | grep ${PORT}
 
 # Can't connect to container?
-docker inspect <container-id> | jq '.[0].NetworkSettings.Ports'
+docker inspect ${CONTAINER_ID} | jq '.[0].NetworkSettings.Ports'
 ```
 
 ### Image Issues
@@ -252,7 +252,7 @@ docker run --gpus 2 nvidia/cuda:12.1.0-base
 docker run --gpus all --shm-size=1g nvidia/cuda:12.1.0-base
 
 # Check GPU inside container
-docker exec <container> nvidia-smi
+docker exec ${CONTAINER} nvidia-smi
 ```
 
 ### ML Frameworks
@@ -354,28 +354,28 @@ CMD ["./app"]
 
 ### View Container Processes
 ```bash
-docker exec <container> ps aux
+docker exec ${CONTAINER} ps aux
 ```
 
 ### Access Container Shell
 ```bash
-docker exec -it <container> sh
+docker exec -it ${CONTAINER} sh
 # or
-docker exec -it <container> bash
+docker exec -it ${CONTAINER} bash
 ```
 
 ### Copy Files From/To Container
 ```bash
 # Copy from container to host
-docker cp <container>:/app/file.txt ./file.txt
+docker cp ${CONTAINER}:/app/file.txt ./file.txt
 
 # Copy from host to container
-docker cp ./file.txt <container>:/app/file.txt
+docker cp ./file.txt ${CONTAINER}:/app/file.txt
 ```
 
 ### View Container Environment
 ```bash
-docker exec <container> env
+docker exec ${CONTAINER} env
 ```
 
 ---
@@ -435,7 +435,7 @@ docker exec omega-vllm nvidia-smi
 
 ## ⌨️ Keyboard Shortcuts (in container)
 
-```bash
+```text
 # Exit container
 exit
 # or Ctrl+D
@@ -456,7 +456,7 @@ Ctrl+C
 
 ### Force Kill Container
 ```bash
-docker kill <container-id>
+docker kill ${CONTAINER_ID}
 ```
 
 ### Remove All Containers

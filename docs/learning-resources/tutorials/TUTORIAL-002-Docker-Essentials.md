@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-002
 Title: "Tutorial 002: Docker Essentials for AI"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -396,7 +396,7 @@ CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
 docker images
 
 # Remove image
-docker rmi <image-id>
+docker rmi ${IMAGE_ID}
 
 # Prune unused images
 docker image prune
@@ -411,16 +411,16 @@ docker ps
 docker ps -a
 
 # Stop container
-docker stop <container-id>
+docker stop ${CONTAINER_ID}
 
 # Remove container
-docker rm <container-id>
+docker rm ${CONTAINER_ID}
 
 # View logs
-docker logs <container-id>
+docker logs ${CONTAINER_ID}
 
 # Execute command in running container
-docker exec -it <container-id> bash
+docker exec -it ${CONTAINER_ID} bash
 ```
 
 ### System:
@@ -439,13 +439,13 @@ docker system prune -a
 ### Container won't start?
 ```bash
 # Check logs
-docker logs <container-id>
+docker logs ${CONTAINER_ID}
 
 # Run in foreground to see output
-docker run <image>
+docker run ${IMAGE}
 
 # Check if port is already in use
-netstat -tulpn | grep <port>
+netstat -tulpn | grep ${PORT}
 ```
 
 ### Out of memory?
@@ -454,16 +454,16 @@ netstat -tulpn | grep <port>
 docker stats
 
 # Limit memory
-docker run -m 512m <image>
+docker run -m 512m ${IMAGE}
 ```
 
 ### Need to inspect?
 ```bash
 # View container details
-docker inspect <container-id>
+docker inspect ${CONTAINER_ID}
 
 # View image layers
-docker history <image>
+docker history ${IMAGE}
 ```
 
 ---
@@ -524,11 +524,11 @@ How Docker fits into PROJECT-OMEGA:
 
 ```bash
 # Essential commands
-docker build -t <name> .           # Build image
-docker run -d -p 80:80 <name>      # Run container
+docker build -t ${NAME} .           # Build image
+docker run -d -p 80:80 ${NAME}      # Run container
 docker ps                           # List containers
-docker logs <id>                     # View logs
-docker exec -it <id> bash           # Enter container
+docker logs ${ID}                     # View logs
+docker exec -it ${ID} bash           # Enter container
 docker-compose up -d                # Start services
 docker-compose down                 # Stop services
 ```

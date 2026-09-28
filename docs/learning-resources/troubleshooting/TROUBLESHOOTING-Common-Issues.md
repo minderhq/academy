@@ -1,7 +1,7 @@
 ---
 Document ID: TROUBLESHOOTING-Common-Issues
 Title: "TROUBLESHOOTING: Common Issues & Solutions"
-Last Updated: 2026-09-27
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -41,11 +41,11 @@ sudo systemctl restart docker
 3. **Check if port is already in use:**
 ```bash
 # Linux/Mac
-netstat -tulpn | grep <port>
-lsof -i :<port>
+netstat -tulpn | grep ${PORT}
+lsof -i :${PORT}
 
 # Windows
-netstat -ano | findstr <port>
+netstat -ano | findstr ${PORT}
 ```
 
 **Solution:** Change the port mapping or stop the conflicting service.
@@ -631,7 +631,7 @@ torch.cuda.set_per_process_memory_fraction(0.7)
 nvidia-smi
 
 # Kill specific process
-kill -9 <pid>
+kill -9 ${PID}
 ```
 
 ---
@@ -700,7 +700,7 @@ If you're still stuck:
 
 1. **Check logs:**
 ```bash
-docker logs <container-name>
+docker logs ${CONTAINER_NAME}
 journalctl -u docker
 ```
 

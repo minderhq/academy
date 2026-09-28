@@ -70,7 +70,7 @@ ip link show eno1 | grep mtu
 ```
 
 ### Star Topology Core
-```bash
+```text
 # Core switch configuration
 # All devices connect to central switch
 # Reduces latency and simplifies management
@@ -310,7 +310,7 @@ scrape_configs:
 ```
 
 ### Grafana Dashboards
-```bash
+```text
 # Import GPU monitoring dashboard
 # Dashboard ID: 14531 (NVIDIA GPU Metrics)
 

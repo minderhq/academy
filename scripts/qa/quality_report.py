@@ -14,6 +14,9 @@ stand today?" without running each tool by hand.
                        every ```python fence parses as Python (CB-01);
                        non-Python content lives in an honest fence label
                        (text/bash/yaml) instead
+    bashblock_syntax_scan
+                       every ```bash fence passes bash -n (BB-01); doc
+                       placeholders use runnable ${VAR} form, not <name>
     assessment_lint    assessment/QUIZ.md + PRACTICE.md coverage (AS-01..AS-09;
                        AS-09 option-shuffle queue is report-mode, shown separately)
     quiz_export        quiz bank parses into complete question records
@@ -54,6 +57,7 @@ GATES = [
     ("frontmatter_lint.py", "frontmatter_lint", True),
     ("pip_uv_scan.py", "pip_uv_scan", True),
     ("codeblock_syntax_scan.py", "codeblock_syntax_scan", True),
+    ("bashblock_syntax_scan.py", "bashblock_syntax_scan", True),
     ("assessment_lint.py", "assessment_lint", True),
     ("quiz_export.py", "quiz_export", True),
     ("structure_lint.py", "structure_lint", True),

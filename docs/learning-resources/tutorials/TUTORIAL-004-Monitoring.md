@@ -493,7 +493,7 @@ curl http://localhost:9445/metrics
 
 ### Query GPU metrics in Prometheus:
 
-```bash
+```promql
 # Open http://localhost:9090
 
 # Try these queries:

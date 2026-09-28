@@ -1,7 +1,7 @@
 ---
 Document ID: QUICK-START
 Title: "QUICK START GUIDE: Get Started in 30 Minutes"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Beginner
 ---
@@ -143,7 +143,7 @@ ollama pull mistral:7b      # Explicit 7B version
 **Verify model downloaded successfully:**
 ```bash
 ollama list
-# Should show: mistral    latest    <size>
+# Should show: mistral    latest    ${SIZE}
 ```
 
 ---

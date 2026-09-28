@@ -1,7 +1,7 @@
 ---
 Document ID: 6403
 Title: "6403: Qdrant Production Deployment"
-Last Updated: 2026-09-27
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 Tags: ['rag', 'qdrant', 'vector-database', 'deployment']
@@ -340,7 +340,7 @@ for collection in "${COLLECTIONS[@]}"; do
     snapshot=$(printf '%s' "$response" | sed -n 's/.*"name":"\([^"]*\)".*/\1/p')
 
     # ./data is bind-mounted at /qdrant/storage, so finished snapshots are
-    # already on the host at data/snapshots/<collection>/ — a plain copy
+    # already on the host at data/snapshots/${COLLECTION}/ — a plain copy
     # beats a docker cp of the whole directory (which would duplicate every
     # previous collection's snapshots on each loop iteration)
     mkdir -p "$DEST/$collection"
@@ -362,7 +362,7 @@ set -euo pipefail
 
 # Validate arguments before using them
 if [ -z "${1:-}" ]; then
-    echo "Usage: ./restore.sh <backup_date>"
+    echo "Usage: ./restore.sh ${BACKUP_DATE}"
     echo "Example: ./restore.sh 20240115_143000"
     exit 1
 fi

@@ -3,7 +3,7 @@ Document ID: 2304
 Title: Production Deployment Patterns
 Phase: 2
 Module: 2300
-Last Updated: 2026-09-26
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -205,7 +205,7 @@ GREEN_PORT=8001
 NEW_VERSION=$1
 
 if [ -z "$NEW_VERSION" ]; then
-    echo "Usage: ./deploy-blue-green.sh <version>"
+    echo "Usage: ./deploy-blue-green.sh ${VERSION}"
     exit 1
 fi
 
@@ -635,7 +635,7 @@ IMAGE=$1
 REPLICAS=4
 
 if [ -z "$IMAGE" ]; then
-    echo "Usage: ./rolling-update.sh <image>"
+    echo "Usage: ./rolling-update.sh ${IMAGE}"
     exit 1
 fi
 

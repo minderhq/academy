@@ -3,7 +3,7 @@ Document ID: 1101
 Title: Internet Uplink & Modem Configuration
 Phase: 1
 Module: 1100
-Last Updated: 2026-09-25
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 2 hours
@@ -221,10 +221,10 @@ Many public `iperf3` servers exist (search "public iperf3 servers" for a current
 iperf3 -s
 
 # From your lab (download test, 4 parallel streams):
-iperf3 -c <vps-ip> -P 4 -R -t 30
+iperf3 -c ${VPS_IP} -P 4 -R -t 30
 
 # Upload test:
-iperf3 -c <vps-ip> -P 4 -t 30
+iperf3 -c ${VPS_IP} -P 4 -t 30
 ```
 
 ### 5.3 Interpreting Results
@@ -295,7 +295,7 @@ No firewall ports are opened on your uplink, and the attack surface moves to the
 curl -s ifconfig.me
 
 # Is the WAN interface in bridge mode? (run on router)
-ip -4 addr show | grep -A 2 <wan-iface>
+ip -4 addr show | grep -A 2 ${WAN_IFACE}
 
 # Latency and loss over 60 seconds
 ping -c 60 1.1.1.1 | tail -3

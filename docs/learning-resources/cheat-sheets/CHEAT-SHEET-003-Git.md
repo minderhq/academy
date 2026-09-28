@@ -1,7 +1,7 @@
 ---
 Document ID: CHEAT-SHEET-003
 Title: "CHEAT SHEET: Git & Version Control"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -92,7 +92,7 @@ git commit -m "fix: resolve memory leak in model loader"
 git commit -m "docs: update API documentation"
 git commit -m "refactor: optimize data pipeline"
 
-# Format: <type>(<scope>): <subject>
+# Format: ${TYPE}(${SCOPE}): ${SUBJECT}
 # Types: feat, fix, docs, style, refactor, test, chore
 ```
 
@@ -280,10 +280,10 @@ git reset --hard origin/main
 git revert HEAD
 
 # Revert specific commit
-git revert <commit-hash>
+git revert ${COMMIT_HASH}
 
 # Revert merge
-git revert -m 1 <merge-commit-hash>
+git revert -m 1 ${MERGE_COMMIT_HASH}
 ```
 
 ---
@@ -299,7 +299,7 @@ git tag v1.0.0
 git tag -a v1.0.0 -m "Release version 1.0.0"
 
 # Tag specific commit
-git tag v0.9.0 <commit-hash>
+git tag v0.9.0 ${COMMIT_HASH}
 
 # Show tag info
 git show v1.0.0
@@ -416,13 +416,13 @@ git rebase --abort
 ### Cherry-Pick
 ```bash
 # Pick specific commit
-git cherry-pick <commit-hash>
+git cherry-pick ${COMMIT_HASH}
 
 # Pick multiple commits
-git cherry-pick <hash1> <hash2>
+git cherry-pick ${HASH1} ${HASH2}
 
 # Pick without committing
-git cherry-pick -n <commit-hash>
+git cherry-pick -n ${COMMIT_HASH}
 ```
 
 ---

@@ -1,7 +1,7 @@
 ---
 Document ID: RESOURCES
 Title: "PROJECT-OMEGA Resources"
-Last Updated: 2026-02-08
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Beginner
 ---
@@ -209,7 +209,7 @@ conda install pytorch torchvision pytorch-cuda=12.1 -c pytorch
 ### Git
 ```bash
 # Basic workflow
-git clone <repo>
+git clone ${REPO}
 git branch feature-branch
 git checkout feature-branch
 git add .

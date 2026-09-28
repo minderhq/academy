@@ -1,7 +1,7 @@
 ---
 Document ID: 1300-KUBERNETES-README
 Title: "1300: Kubernetes for LLM Deployment"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Beginner
 ---
@@ -461,7 +461,7 @@ kubectl get pods
 kubectl get svc
 
 # Test
-curl -X POST http://<service-ip>/generate \
+curl -X POST http://${SERVICE_IP}/generate \
   -H "Content-Type: application/json" \
   -d '{"prompt": "Hello, world!"}'
 ```
@@ -741,7 +741,7 @@ spec:
 **Diagnosis:**
 ```bash
 # Check pod status
-kubectl describe pod <pod-name>
+kubectl describe pod ${POD_NAME}
 
 # Look for:
 # Events: 0/4 nodes are available: 4 Insufficient nvidia.com/gpu
@@ -762,7 +762,7 @@ kubectl describe pod <pod-name>
 **Diagnosis:**
 ```bash
 # Check logs
-kubectl logs <pod-name>
+kubectl logs ${POD_NAME}
 
 # Common errors:
 # - "CUDA out of memory"

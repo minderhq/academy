@@ -3,7 +3,7 @@ Document ID: 1303
 Title: Storage Classes for Dynamic Provisioning
 Phase: 1
 Module: 1300
-Last Updated: 2026-09-27
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -94,12 +94,14 @@ mkdir -p /srv/k8s-storage
 ```
 
 ### Configure Export
-```bash
-# Edit /etc/exports
+Edit `/etc/exports`:
+```text
 /srv/k8s-storage \
   192.168.1.0/24(rw,async,no_root_squash,no_subtree_check,fsid=0)
+```
 
-# Apply and verify
+Apply and verify:
+```bash
 exportfs -ra
 exportfs -v
 ```

@@ -1,7 +1,7 @@
 ---
 Document ID: CHEAT-SHEET-004
 Title: "CHEAT SHEET: Linux Commands for AI/ML"
-Last Updated: 2026-09-27
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -215,8 +215,8 @@ pidof python                # PID of command
 ### Control Processes
 ```bash
 # Stop process (Ctrl+C in terminal)
-kill <PID>
-kill -9 <PID>              # Force kill
+kill ${PID}
+kill -9 ${PID}              # Force kill
 
 # Stop by name
 pkill python
@@ -234,7 +234,7 @@ nohup command > output.log 2>&1 &
 
 # Run with lower priority
 nice -n 19 command          # Lowest priority
-renice -n 5 -p <PID>        # Change priority
+renice -n 5 -p ${PID}        # Change priority
 ```
 
 ### GPU Processes
@@ -253,7 +253,7 @@ nvidia-smi qmon
 
 # Kill process on specific GPU
 fuser -v /dev/nvidiaX       # Find processes
-kill <PID>                  # Kill process
+kill ${PID}                  # Kill process
 ```
 
 ---
@@ -418,8 +418,10 @@ nvidia-smi
 # Clear GPU memory
 # Kill process using GPU
 nvidia-smi --gpu-reset       # Not always available
+```
 
-# Python: clear CUDA cache
+Python (clear CUDA cache):
+```python
 import torch
 torch.cuda.empty_cache()
 ```

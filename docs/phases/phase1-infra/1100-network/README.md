@@ -1,7 +1,7 @@
 ---
 Document ID: 1100-NETWORK-README
 Title: "1100: Network Fundamentals for LLM Infrastructure"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Beginner
 ---
@@ -475,8 +475,10 @@ sudo apt install prometheus-node-exporter
 # 5. GPU memory usage
 # 6: Inference latency
 # 7: Tokens per second
+```
 
-# Alert rules
+Alert rules (`prometheus.yml`):
+```yaml
 groups:
   - name: network_alerts
     rules:

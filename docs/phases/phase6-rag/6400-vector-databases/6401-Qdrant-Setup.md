@@ -3,7 +3,7 @@ Document ID: 6401
 Title: Qdrant Setup Guide
 Phase: 6
 Module: 6400
-Last Updated: 2026-09-27
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -299,7 +299,7 @@ curl http://localhost:6333/collections/documents/snapshots | jq .
 
 # Download it (this is your backup artifact)
 curl -o docs.snap \
-  http://localhost:6333/collections/documents/snapshots/<name>
+  http://localhost:6333/collections/documents/snapshots/${NAME}
 ```
 
 Restore on a new host: mount the snapshot directory, then `PUT /collections/{name}/snapshots/upload?priority=snapshot`. Schedule snapshot creation with cron and ship the files off-host — the local `./data` volume alone is not a backup strategy.

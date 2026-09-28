@@ -1,7 +1,7 @@
 ---
 Document ID: 1300-PRACTICE
 Title: "1300: Kubernetes - Practice"
-Last Updated: 2026-09-25
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -87,7 +87,7 @@ kubectl logs -l app=test --tail=20
 
 # Troubleshooting Tips:
 # - If pods are pending: Check node resources with 'kubectl describe nodes'
-# - If pods are crash looping: Check logs with 'kubectl logs <pod-name>'
+# - If pods are crash looping: Check logs with 'kubectl logs ${POD_NAME}'
 # - If image pull errors: Verify image name and registry access
 ```
 

@@ -459,7 +459,7 @@ CUDA_CHECK(cudaMemcpy(d_ptr, h_ptr, size, cudaMemcpyHostToDevice));
 ```
 
 ### CUDA-GDB
-```bash
+```text
 # Compile with debug flags
 nvcc -g -G my_kernel.cu -o my_program
 

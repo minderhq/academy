@@ -3,7 +3,7 @@ Document ID: 1202
 Title: GPU Passthrough (IOMMU/VFIO)
 Phase: 1
 Module: 1200
-Last Updated: 2026-09-25
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -398,7 +398,7 @@ apt install bolt
 
 # Enroll the device once - find its UUID first:
 boltctl list
-boltctl enroll --policy auto <UUID>   # store + auto-authorize on every plug-in
+boltctl enroll --policy auto ${UUID}   # store + auto-authorize on every plug-in
 boltctl list                          # status: authorized, stored: yes
 ```
 
