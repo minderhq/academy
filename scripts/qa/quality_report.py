@@ -10,6 +10,8 @@ stand today?" without running each tool by hand.
     pip_uv_scan        bare pip install only inside documented exceptions
                        (Docker/container, conda workflows, uv bootstraps,
                        uv-first fallback blocks)
+    langchain_census   every langchain/langgraph import in a ```python
+                       fence resolves against the installed stack (LC-01)
     codeblock_syntax_scan
                        every ```python fence parses as Python (CB-01);
                        non-Python content lives in an honest fence label
@@ -60,6 +62,7 @@ PHASE_DIR = re.compile(r"^phase\d+-")
 GATES = [
     ("frontmatter_lint.py", "frontmatter_lint", True),
     ("pip_uv_scan.py", "pip_uv_scan", True),
+    ("langchain_census.py", "langchain_census", True),
     ("codeblock_syntax_scan.py", "codeblock_syntax_scan", True),
     ("bashblock_syntax_scan.py", "bashblock_syntax_scan", True),
     ("datablock_syntax_scan.py", "datablock_syntax_scan", True),
