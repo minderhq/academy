@@ -27,7 +27,7 @@ import re
 import sys
 from collections import defaultdict
 
-SKIP_DIRS = {".git", "node_modules"}
+SKIP_DIRS = {".git", ".claude", "node_modules", "__pycache__", ".venv", "venv"}
 MD_LINK = re.compile(r"\[[^\]]*\]\(([^)\s]+)(?:\s+\"[^\"]*\")?\)")
 INLINE_CODE = re.compile(r"`[^`]+`")
 FENCE = re.compile(r"^\s*(```|~~~)")

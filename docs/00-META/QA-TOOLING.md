@@ -90,6 +90,11 @@ fingerprint the TLS stack, not just the UA); placeholder idioms
   inline-code scrub. The model never changes for one tool - gate
   parity is the contract. Indented (4-space) code blocks are inside
   the model by design; teach content accordingly.
+- Scan scope is corpus files only: the tree walk skips virtualenvs
+  and tool dirs (`.venv`, `venv`, `.claude`, `node_modules`,
+  `__pycache__`, `.git`). A fresh `uv sync` would otherwise leak
+  installed package markdown (LICENSE files) into the link gates
+  and shift the baselines per machine.
 - The scorecard output is the living baseline: any gate going
   non-clean is a regression, and new gates enter through
   `quality_report.py`'s GATES list.

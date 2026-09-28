@@ -45,6 +45,10 @@ CODES = {":star3:": "\U0001F31F", ":star:": "⭐", ":rotating_light:": "\U0001F6
          ":rocket:": "\U0001F680", ":memo:": "\U0001F4DD", ":link:": "\U0001F517",
          ":checkered_flag:": "\U0001F3C1", ":trophy:": "\U0001F3C6", ":book:": "\U0001F4D6"}
 
+# Corpus scope: skip virtualenvs and tool dirs - a fresh `uv sync` would
+# otherwise leak installed package markdown into the gate (casecheck model).
+SKIP_DIRS = {".git", ".claude", "node_modules", "__pycache__", ".venv", "venv"}
+
 # Known-intentional broken anchors (inline-code docs examples, dokunulmaz).
 ALLOWED = {
     ("docs/00-META/CROSS-REFERENCE-GUIDELINES.md", "#section"),
@@ -106,7 +110,7 @@ def main() -> int:
 
     files = []
     for dp, dn, fn in os.walk(root):
-        dn[:] = [d for d in dn if d != ".git"]
+        dn[:] = [d for d in dn if d not in SKIP_DIRS]
         for n in fn:
             if n.endswith(".md"):
                 files.append(os.path.join(dp, n))

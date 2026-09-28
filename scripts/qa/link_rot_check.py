@@ -52,7 +52,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 import httpx
 
-SKIP_DIRS = {".git", "node_modules"}
+SKIP_DIRS = {".git", ".claude", "node_modules", "__pycache__", ".venv", "venv"}
 MD_LINK = re.compile(r"\[[^\]]*\]\(([^)\s]+)(?:\s+\"[^\"]*\")?\)")
 BARE_URL = re.compile(r"https?://[^\s<>()\[\]`\"']+")
 TRAILING_PUNCT = ".,;:!?"
