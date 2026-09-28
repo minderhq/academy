@@ -80,6 +80,15 @@ fingerprint the TLS stack, not just the UA); placeholder idioms
 (`your-username`, `your-org`, `yourapp.com`) are TEMPLATE, not rot;
 `discord.gg` invites time out on some networks.
 
+Measured 2026-09-28 (424 external URLs probed): 391 ok, 20
+redirect, 0 dead, 6 denied, 2 timeout, 5 template - zero dead
+links, and every redirect is a healthy root-to-page redirect (docs
+landing pages), not rot. Cadence decision from that data: monthly,
+plus an on-demand run after major content passes; weekly probes
+would spend 424 network requests per run for no rot signal. The
+denied class (udemy, leetcode, academy.langchain) is course-
+platform bot walls, not dead links.
+
 ## 🗄️ Epic-Archive Tools (not gates)
 
 | Tool | Purpose |
