@@ -120,6 +120,17 @@ stand today?" without running each tool by hand.
                        census (301 labels) that found DPO Alignment
                        credited to LAB-005 twice and "Custom
                        Quantization" invented for LAB-004 three times
+    resource_id_check  numbered-resource id identity across the 43
+                       resources (LAB-000..014, PROJECT-001..007,
+                       TUTORIAL-000..014, CHEAT-SHEET-001..006): every
+                       resource's frontmatter Title and first H1 must
+                       carry the filename's own `FAMILY-0NN:` id, and
+                       the pre-campaign spaced spellings ("LAB 007",
+                       "CHEAT SHEET 004", any case) are banned
+                       corpus-wide - born from the tick-268..271
+                       canonicalization campaign; lab_registry_check
+                       locks what each id points at, this gate locks
+                       the id itself
   queue gate (drain in progress; never fails the report unless --fail-on-queue):
     objectives_lint    template-objective artifacts (OL-01/OL-02), phase by phase
     fence_namecheck    unbound names in python fences (report mode), two
@@ -187,6 +198,7 @@ GATES = [
     ("sitemap_claims_check.py", "sitemap_claims_check", True),
     ("meta_claims_check.py", "meta_claims_check", True),
     ("lab_registry_check.py", "lab_registry_check", True),
+    ("resource_id_check.py", "resource_id_check", True),
 ]
 
 
