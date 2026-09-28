@@ -50,7 +50,12 @@ def classify_block(lines: list[str], pre_context: list[str]) -> str:
         return "dockerfile RUN line"
     if any(CONDA_RE.search(l) for l in lines):
         return "conda workflow"
-    if any(BARE_PIP_RE.match(l) and l.strip().startswith(("uv ", "pip install uv")) for l in lines):
+    # Exact match with a word boundary: `pip install uvicorn` must NOT
+    # satisfy this (a plain startswith("pip install uv") let it slip).
+    # The canonical bare form `pip install uv` never reaches classify_block
+    # (skipped earlier), so this branch only serves trailing-arg variants
+    # like `pip install uv --index-url ...`.
+    if any(re.match(r"^\s*(?:python3?\s+-m\s+)?pip\s+install\s+uv\b", l) for l in lines):
         return "uv bootstrap"
     if any(re.match(r"^\s*uv\s+pip\s+install\b", l) for l in lines):
         return "uv-first block with fallback"

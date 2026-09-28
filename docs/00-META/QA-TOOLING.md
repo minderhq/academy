@@ -38,7 +38,7 @@ the full installed stack. A partial environment fails loud with
 | Gate | Codes | What it checks |
 | --- | --- | --- |
 | frontmatter_lint | FM-01..FM-09 | frontmatter completeness/consistency |
-| pip_uv_scan | - | bare `pip install` only in documented exceptions (Docker, conda, uv bootstraps) |
+| pip_uv_scan | - | bare `pip install` only in documented exceptions (Docker, conda, uv bootstraps, uv-first blocks with a labeled plain-pip fallback) |
 | langchain_census | LC-01 | every langchain/langgraph import resolves against the installed stack |
 | legacy_chain_scan | LC-02 | bare langchain_classic-only name uses (import-less usage) |
 | codeblock_syntax_scan | CB-01 | every python fence parses as Python |
