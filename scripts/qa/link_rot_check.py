@@ -21,11 +21,19 @@ Classes:
     DENIED    403/429/999 - usually bot-blocking, not rot; verify by hand
     SERVER    5xx - server-side trouble, retry later
     ERROR     network/DNS/timeout after one retry
-    TEMPLATE  your-username placeholder URLs - the README template idiom;
-              they resolve once the repo is published, so not rot
+    TEMPLATE  placeholder/example idiom URLs (your-username, your-org,
+              yourapp.com) - they resolve once the repo is published or
+              are deliberate teaching placeholders, so not rot
 
 mailto:, anchors and local/example URLs (localhost, 127.0.0.1,
 example.com/org/net, *.test, *.local) are out of scope. Exit 0 always.
+
+Bare URLs (tick-241 lesson): linkcheck's MD_LINK model only sees
+``[text](url)``; plain URLs in prose are invisible - which is how 3
+stale ollama.com/docs refs survived earlier sweeps. Harvest now also
+takes bare http(s) URLs outside MD_LINK spans (same fence toggle and
+inline-code scrub; fenced code stays out of model, per the gates'
+contract). URL-adjacent trailing punctuation is stripped.
 
 Baseline (2026-09-28, first run): see the summary line this prints.
 """
@@ -42,6 +50,8 @@ import httpx
 
 SKIP_DIRS = {".git", "node_modules"}
 MD_LINK = re.compile(r"\[[^\]]*\]\(([^)\s]+)(?:\s+\"[^\"]*\")?\)")
+BARE_URL = re.compile(r"https?://[^\s<>()\[\]`\"']+")
+TRAILING_PUNCT = ".,;:!?"
 INLINE_CODE = re.compile(r"`[^`]+`")
 FENCE = re.compile(r"^\s*(```|~~~)")
 LOCAL_URL = re.compile(
@@ -49,6 +59,7 @@ LOCAL_URL = re.compile(
     re.IGNORECASE,
 )
 UA = "PROJECT-OMEGA-link-rot-check/1.0 (curriculum QA; contact: repo owner)"
+PLACEHOLDER_IDIOMS = ("your-username", "your-org", "yourapp.com")
 DEAD = {404, 410}
 DENIED = {401, 403, 429, 999}
 
@@ -83,6 +94,16 @@ def harvest(root):
                         if url.startswith(("http://", "https://")) and not LOCAL_URL.search(url):
                             rel = os.path.relpath(src, root).replace("\\", "/")
                             refs[url].append(f"{rel}:{i}")
+                    # bare URLs (tick-241 lesson): skip matches inside MD_LINK spans
+                    scrubbed = INLINE_CODE.sub("", line)
+                    spans = [m.span() for m in MD_LINK.finditer(scrubbed)]
+                    for m in BARE_URL.finditer(scrubbed):
+                        if any(a <= m.start() < b for a, b in spans):
+                            continue
+                        url = m.group(0).rstrip(TRAILING_PUNCT)
+                        if not LOCAL_URL.search(url):
+                            rel = os.path.relpath(src, root).replace("\\", "/")
+                            refs[url].append(f"{rel}:{i}")
         except (OSError, UnicodeDecodeError):
             continue
     return refs
@@ -90,8 +111,8 @@ def harvest(root):
 
 def probe(client: httpx.Client, url: str) -> tuple[str, str]:
     """Return (class, note) for one URL. GET streamed: status without the body."""
-    if "your-username" in url:
-        return "TEMPLATE", "placeholder until publishing"
+    if any(p in url for p in PLACEHOLDER_IDIOMS):
+        return "TEMPLATE", "placeholder/example idiom"
     for attempt in (1, 2):
         try:
             with client.stream("GET", url) as r:

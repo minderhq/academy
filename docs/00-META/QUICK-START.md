@@ -373,7 +373,7 @@ pip install ollama
 
 ### Communities
 - **Ollama Discord:** https://discord.gg/ollama
-- **r/LocalLLaMA:** https://reddit.com/r/LocalLLaMA
+- **r/LocalLLaMA:** https://www.reddit.com/r/LocalLLaMA/
 - **Hugging Face Forums:** https://discuss.huggingface.co
 
 ### In PROJECT-OMEGA
