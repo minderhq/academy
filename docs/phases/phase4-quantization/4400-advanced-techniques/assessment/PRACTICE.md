@@ -1,7 +1,7 @@
 ---
 Document ID: 4400-PRACTICE
 Title: "4400: Advanced Quantization Techniques - Practice"
-Last Updated: 2026-09-27
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Advanced
 ---
@@ -429,7 +429,7 @@ CMD ["python3", "server.py"]
 
 2. requirements.txt
 ───────────────────────────────────────────────────────────
-torch>=2.0.0
+torch>=2.12.0
 transformers>=4.30.0
 accelerate>=0.20.0
 bitsandbytes>=0.41.0
