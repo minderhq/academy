@@ -42,8 +42,10 @@ stand today?" without running each tool by hand.
                        direction on graph/flowchart (MM-03)
     deprecated_scan    deprecated API calls in python fences (DA-01:
                        datetime.utcnow/utcfromtimestamp - Python 3.12+;
-                       use datetime.now(timezone.utc)); comment-only
-                       mentions are not findings
+                       use datetime.now(timezone.utc); DA-02: HF
+                       use_auth_token kwarg - removed in transformers
+                       5.x; use token=); comment-only mentions are
+                       not findings
     kwarg_lint         calls with removed/renamed kwargs on known APIs
                        (KW-01 langchain constructor kwargs, KW-02 removed
                        qdrant .search kwargs) - hard gate since the

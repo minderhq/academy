@@ -200,7 +200,7 @@ class WhisperRecognizer:
             # Load diarization pipeline
             pipeline = Pipeline.from_pretrained(
                 "pyannote/speaker-diarization",
-                use_auth_token=False  # For demo; use HF token in production
+                token=False  # For demo; use HF token in production
             )
 
             # Send to device
