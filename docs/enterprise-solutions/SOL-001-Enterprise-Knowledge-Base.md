@@ -205,24 +205,27 @@ from langchain_community.document_loaders import (
 from sentence_transformers import SentenceTransformer
 from qdrant_client import QdrantClient
 from qdrant_client.models import Distance, VectorParams, PointStruct
-from sqlalchemy import create_engine, Column, String, DateTime, Float
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy import create_engine, String, DateTime, Float, Integer, select
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, sessionmaker
 
-# Database setup
-Base = declarative_base()
+# Database setup — SQLAlchemy 2.0 declarative style
+class Base(DeclarativeBase):
+    pass
 
 class DocumentMetadata(Base):
     __tablename__ = "documents"
 
-    id = Column(String, primary_key=True)
-    filename = Column(String, nullable=False)
-    file_path = Column(String, nullable=False)
-    file_type = Column(String, nullable=False)
-    upload_date = Column(DateTime, default=lambda: datetime.now(timezone.utc))
-    file_size = Column(Float)
-    chunk_count = Column(Float)
-    checksum = Column(String, unique=True)
+    id: Mapped[str] = mapped_column(String, primary_key=True)
+    filename: Mapped[str] = mapped_column(String, nullable=False)
+    file_path: Mapped[str] = mapped_column(String, nullable=False)
+    file_type: Mapped[str] = mapped_column(String, nullable=False)
+    upload_date: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True),  # timestamptz on PostgreSQL — keeps tz info
+        default=lambda: datetime.now(timezone.utc),
+    )
+    file_size: Mapped[float] = mapped_column(Float)
+    chunk_count: Mapped[int] = mapped_column(Integer)
+    checksum: Mapped[str] = mapped_column(String, unique=True)
 
 # Initialize components
 engine = create_engine("postgresql://kb_user:secure_password@localhost:5432/knowledge_base")
@@ -340,9 +343,9 @@ class DocumentProcessor:
 
         # Check if already processed
         session = SessionLocal()
-        existing = session.query(DocumentMetadata).filter_by(
-            checksum=checksum
-        ).first()
+        existing = session.scalar(
+            select(DocumentMetadata).where(DocumentMetadata.checksum == checksum)
+        )
 
         if existing:
             session.close()
@@ -532,11 +535,12 @@ async def upload_document(file: UploadFile = File(...)):
 async def list_documents():
     """List all processed documents"""
 
+    from sqlalchemy import select
     from sqlalchemy.orm import Session
     from ingestion.document_processor import SessionLocal, DocumentMetadata
 
     session = SessionLocal()
-    documents = session.query(DocumentMetadata).all()
+    documents = session.scalars(select(DocumentMetadata)).all()
     session.close()
 
     return {
@@ -564,11 +568,14 @@ async def delete_document(document_id: str):
         )
 
         # Delete from PostgreSQL
+        from sqlalchemy import select
         from sqlalchemy.orm import Session
         from ingestion.document_processor import SessionLocal, DocumentMetadata
 
         session = SessionLocal()
-        doc = session.query(DocumentMetadata).filter_by(id=document_id).first()
+        doc = session.scalar(
+            select(DocumentMetadata).where(DocumentMetadata.id == document_id)
+        )
         if doc:
             session.delete(doc)
             session.commit()
