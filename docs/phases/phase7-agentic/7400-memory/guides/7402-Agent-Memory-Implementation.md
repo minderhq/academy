@@ -1,9 +1,15 @@
 ---
 Document ID: 7402
 Title: "7402: Agent Memory Implementation Guide"
-Last Updated: 2026-09-24
+Phase: 7
+Module: 7400
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Advanced
+Estimated Time: 3 hours
+Prerequisites: See module README
+Related: See module README
+Tags: ['agents', 'memory', 'qdrant', 'postgresql', 'pgvector', 'embeddings']
 ---
 
 # 7402: Agent Memory Implementation Guide
@@ -27,17 +33,17 @@ Difficulty: Advanced
 
 After completing this lesson, you will be able to:
 
-- Explain Memory Architecture
-- Compare Memory Types Comparison
-- Apply Implementation 1: VectorStore (Semantic Memory)
-- Apply Implementation 2: Memoria (Episodic Memory)
-- Apply Implementation 3: Unified Memory System
-- Explain Memory Forgetting Strategy
+- Diagram the three-tier memory architecture and name the storage backing each tier
+- Read the memory-types comparison and pick the tier that satisfies a given duration, size, and retrieval requirement
+- Trace a VectorStore.add_memory call from raw content to a Qdrant point (ID, embedding, payload)
+- Break down how Memoria separates episodes from embeddings and when the pgvector similarity join runs
+- Run the forgetting-curve math on a memory profile and predict whether it survives the forget threshold
+- Decide when to consolidate short-term context into episodic storage instead of keeping it in the rolling window
 
 ---
 
 ## Abstract
-Complete implementation guide for building persistent memory systems for AI agents on AI Engineering Curriculum infrastructure. Covers VectorStore for semantic memory and Memoria for episodic memory.
+Complete implementation guide for building persistent memory systems for AI agents. Covers VectorStore for semantic memory (Qdrant) and Memoria for episodic memory (PostgreSQL + pgvector), a unified three-tier system, and an Ebbinghaus-style forgetting policy — with the forgetting math verified runnable in this repo and the infrastructure-dependent fences compile-checked against their real APIs.
 
 ## Memory Architecture
 
@@ -120,6 +126,15 @@ class VectorStore:
                 )
             )
             print(f"Created collection: {self.collection}")
+
+        # Payload index for get_recent()'s order_by (ordered scroll requires
+        # an indexed field; an unindexed order_by raises at query time).
+        from qdrant_client.models import PayloadSchemaType
+        self.client.create_payload_index(
+            collection_name=self.collection,
+            field_name="timestamp",
+            field_schema=PayloadSchemaType.DATETIME,
+        )
 
     def add_memory(
         self,
@@ -222,18 +237,19 @@ class VectorStore:
             ]
             search_filter = Filter(must=conditions)
 
-        # Search
-        results = self.client.search(
+        # Search (qdrant-client >= 1.10: query_points replaces the
+        # deprecated client.search(query_vector=...))
+        response = self.client.query_points(
             collection_name=self.collection,
-            query_vector=query_vector,
+            query=query_vector,
             limit=limit,
             score_threshold=score_threshold,
-            query_filter=search_filter
+            query_filter=search_filter,
         )
 
         # Format results
         memories = []
-        for result in results:
+        for result in response.points:
             memories.append({
                 "id": str(result.id),
                 "content": result.payload.get("content"),
@@ -279,9 +295,11 @@ class VectorStore:
 
         self.client.delete(
             collection_name=self.collection,
-            points_selector=[int(memory_id)]
+            points=[int(memory_id)]
         )
 ```
+
+VectorStore targets the current `qdrant-client` API (`query_points`, `delete(points=...)`, payload index backing the ordered scroll). Install with `uv pip install qdrant-client sentence-transformers`; the fence compile-checks against the real signatures but needs a live Qdrant to run.
 
 ### Usage Example
 
@@ -300,7 +318,7 @@ memory.add_memory(
 )
 
 memory.add_memory(
-    "ai-engineering-curriculum uses 11GB-class GPU for inference",
+    "The project runs inference on an 11GB-class GPU",
     metadata={"type": "fact", "category": "infrastructure"},
     importance=0.9
 )
@@ -308,7 +326,7 @@ memory.add_memory(
 # Store conversation
 memory.add_conversation(
     user_message="What's your name?",
-    agent_response="I'm an AI assistant for ai-engineering-curriculum.",
+    agent_response="I'm an AI assistant for this project.",
     metadata={"session_id": "session_001"}
 )
 
@@ -631,6 +649,8 @@ class Memoria:
         self.conn.close()
 ```
 
+Memoria needs the pgvector extension (`CREATE EXTENSION vector` above) — plain `postgres:15` ships without it, so the Quick Start below uses the `pgvector/pgvector` image. Install the driver with `uv pip install psycopg2-binary`.
+
 ## Implementation 3: Unified Memory System
 
 ```python
@@ -839,7 +859,7 @@ class MemoryEnabledAgent:
         # Build prompt with memory context
         context = self.memory.get_context_string(user_message)
 
-        prompt = f"""You are a helpful AI assistant for ai-engineering-curriculum.
+        prompt = f"""You are a helpful AI assistant with persistent memory.
 
 {context}
 
@@ -887,8 +907,14 @@ agent.memory.close()
 
 ```python
 # memory_forgetting.py
+from __future__ import annotations
+
 import numpy as np
 from datetime import datetime, timedelta
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from memoria import Memoria  # annotation-only; never imported at runtime
 
 class MemoryForgetting:
     """
@@ -983,24 +1009,43 @@ class MemoryForgetting:
                 # memoria.cursor.execute("DELETE FROM episodes WHERE id = %s", (episode_id,))
 
         memoria.conn.commit()
+
+
+# --- runnable demo: the curve, applied to three memory profiles ---
+for label, profile in [
+    ("fresh, accessed 3x", dict(initial_importance=0.9, age_days=1,
+                                access_count=3, last_access_days=1)),
+    ("old, never accessed", dict(initial_importance=0.5, age_days=90,
+                                 access_count=0, last_access_days=90)),
+    ("aging, accessed 1x", dict(initial_importance=0.7, age_days=30,
+                                access_count=1, last_access_days=20)),
+]:
+    imp = MemoryForgetting.calculate_importance(**profile)
+    print(f"{label}: importance={imp:.3f}, forget={imp < 0.1}")
+# Output: fresh, accessed 3x: importance=1.000, forget=False
+# Output: old, never accessed: importance=0.000, forget=True
+# Output: aging, accessed 1x: importance=0.168, forget=False
 ```
 
 ## Quick Start
 
 ```bash
+# 0. Install dependencies (uv resolves and installs far faster than pip)
+uv pip install qdrant-client sentence-transformers psycopg2-binary numpy
+
 # 1. Start Qdrant
 docker compose -f /srv/qdrant/docker-compose.yml up -d
 
-# 2. Start PostgreSQL (for Memoria)
-docker run -d --name ai-engineering-curriculum-postgres \
+# 2. Start PostgreSQL with pgvector (for Memoria)
+docker run -d --name agent-memory-postgres \
   -e POSTGRES_PASSWORD=your_password \
   -e POSTGRES_DB=agent_memory \
   -p 5432:5432 \
   -v /srv/postgres:/var/lib/postgresql/data \
-  postgres:15
+  pgvector/pgvector:pg15
 
-# 3. Run memory system
-python unified_memory.py
+# 3. Run the memory-enabled agent example
+python agent_with_memory.py
 ```
 
 
@@ -1008,22 +1053,16 @@ python unified_memory.py
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related Documents
 
 - [7401: Long-term Memory for Agents](../7401-Long-term-Memory.md)
 - [7403: Vector Memory and Embedding-Based Storage](../7403-Vector-Memory.md)
+- [6101: HNSW Indexing - Efficient Semantic Search at Scale](../../../phase6-rag/6100-vector/6101-HNSW-Indexing.md)
+- [6403: Qdrant Production Deployment](../../../phase6-rag/6400-vector-databases/guides/6403-Qdrant-Production-Deployment.md)
+- [7101: ReAct (Reasoning + Acting) Loop System](../../7100-architecture/7101-ReAct-Loop-System.md)
 
 ---
 
 ## Next Steps
 
 - Return to: **[Module README](../README.md)**
-
----
----
-
-**Related:**
-- [7401: Long-term Memory](../7401-Long-term-Memory.md)
-- [6101: HNSW Indexing](../../../phase6-rag/6100-vector/6101-HNSW-Indexing.md)
-- [6403: Qdrant Production Deployment](../../../phase6-rag/6400-vector-databases/guides/6403-Qdrant-Production-Deployment.md)
-- [7101: ReAct Loop System](../../7100-architecture/7101-ReAct-Loop-System.md)
