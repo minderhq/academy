@@ -3,7 +3,7 @@ Document ID: 5201
 Title: DPO (Direct Preference Optimization) Theory
 Phase: 5
 Module: 5200
-Last Updated: 2026-09-27
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -47,7 +47,7 @@ DPO (Direct Preference Optimization) is a simpler alternative to RLHF (Reinforce
 ## The Problem with RLHF
 
 ### RLHF Pipeline
-```yaml
+```text
 Traditional RLHF requires:
 1. SFT Model → Collect completions
 2. Human Labeling → Rank completions
@@ -62,7 +62,7 @@ Problems:
 ```
 
 ### RLHF Objective
-```yaml
+```text
 RLHF maximizes (per prompt x):
 
   max_π  E_{y∼π(·|x)}[ R(x, y) ]  −  β · KL( π(·|x) ‖ π_ref(·|x) )
@@ -82,7 +82,7 @@ Requires separate reward model training!
 ## DPO Intuition
 
 ### Key Insight
-```yaml
+```text
 DPO eliminates the reward model:
 
 RLHF: Maximize reward R(x,y) subject to KL constraint

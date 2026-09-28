@@ -1,7 +1,7 @@
 ---
 Document ID: 1200-VIRTUALIZATION-README
 Title: "1200: Virtualization and GPU Passthrough"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Beginner
 ---
@@ -485,7 +485,7 @@ Root Cause:
 ```
 
 **Solution:**
-```yaml
+```text
 # In Proxmox VM GUI:
 1. Identify all GPU functions:
    lspci -nn | grep NVIDIA
@@ -502,7 +502,7 @@ Root Cause:
 ### ❌ Pitfall 3: Memory/PCIe Bus Issues
 
 **Problem:**
-```yaml
+```text
 Symptoms:
 - Random VM crashes
 - GPU disappears from VM
@@ -565,7 +565,7 @@ With Pinning:
 ```
 
 **Configuration (Proxmox GUI):**
-```yaml
+```text
 1. Select VM -> Hardware -> Processors
 2. Set "CPU Type" to "host"
 3. Enable "CPU Pinning"
@@ -893,7 +893,7 @@ sensors
    ```
 
 4. **Don't forget about updates**
-   ```yaml
+   ```text
    Update schedule:
      - Proxmox: Monthly
      - Guest VMs: Monthly
@@ -1130,7 +1130,7 @@ nvidia-smi         # NVIDIA GPU monitoring
 
 ## Module Completion Checklist
 
-```yaml
+```text
 Understanding:
   - [ ] I can explain hypervisor types (Type 1 vs Type 2)
   - [ ] I understand IOMMU and VFIO

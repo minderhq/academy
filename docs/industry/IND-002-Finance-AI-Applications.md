@@ -1,7 +1,7 @@
 ---
 Document ID: IND-002
 Title: "IND-002: Finance AI Applications"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -240,7 +240,7 @@ class FinancialDocumentSearch:
 
 **Real-World Example:**
 
-```yaml
+```text
 QUERY: "What are the key revenue growth drivers and risks for AAPL?"
 
 ANALYSIS:
@@ -417,7 +417,7 @@ class FraudDetectionSystem:
 
 **Real-World Example:**
 
-```yaml
+```text
 TRANSACTION:
 {
     "id": "TXN-2024-01345678",
@@ -558,7 +558,7 @@ class FinancialReportGenerator:
 
 **Real-World Output:**
 
-```yaml
+```text
 INPUT:
 {
     "report_type": "earnings_release",
@@ -736,7 +736,7 @@ class ComplianceChecker:
 
 **Real-World Example:**
 
-```yaml
+```text
 FEATURE TO CHECK:
 {
     "name": "Facial Recognition for Authentication",

@@ -1,7 +1,7 @@
 ---
 Document ID: 3500-MULTIMODAL-README
 Title: "[3500]: Multimodal Models"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Beginner
 ---
@@ -102,7 +102,7 @@ Training: (Image, Text) pairs with contrastive loss
 ```
 
 **Key Formula:**
-```yaml
+```text
 L = -log(exp(sim(z_i, z_j) / τ) / Σ exp(sim(z_i, z_k) / τ))
 
 Where:

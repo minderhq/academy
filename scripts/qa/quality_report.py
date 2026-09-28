@@ -17,6 +17,10 @@ stand today?" without running each tool by hand.
     bashblock_syntax_scan
                        every ```bash fence passes bash -n (BB-01); doc
                        placeholders use runnable ${VAR} form, not <name>
+    datablock_syntax_scan
+                       every ```json fence parses as JSON (DB-01) and
+                       every ```yaml fence parses as a YAML document
+                       stream (DB-02); prose/formulas live in text fences
     assessment_lint    assessment/QUIZ.md + PRACTICE.md coverage (AS-01..AS-09;
                        AS-09 option-shuffle queue is report-mode, shown separately)
     quiz_export        quiz bank parses into complete question records
@@ -58,6 +62,7 @@ GATES = [
     ("pip_uv_scan.py", "pip_uv_scan", True),
     ("codeblock_syntax_scan.py", "codeblock_syntax_scan", True),
     ("bashblock_syntax_scan.py", "bashblock_syntax_scan", True),
+    ("datablock_syntax_scan.py", "datablock_syntax_scan", True),
     ("assessment_lint.py", "assessment_lint", True),
     ("quiz_export.py", "quiz_export", True),
     ("structure_lint.py", "structure_lint", True),

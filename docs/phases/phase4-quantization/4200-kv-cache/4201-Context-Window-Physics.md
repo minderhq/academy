@@ -3,7 +3,7 @@ Document ID: 4201
 Title: Context Window Physics and OOM Prevention
 Phase: 4
 Module: 4200
-Last Updated: 2026-09-27
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -48,7 +48,7 @@ The context window determines how much text the model can "remember" during infe
 ## KV Cache Memory Analysis
 
 ### What is KV Cache?
-```yaml
+```text
 During autoregressive generation, we cache:
 - K (Key): What each position offers
 - V (Value): The actual content at each position

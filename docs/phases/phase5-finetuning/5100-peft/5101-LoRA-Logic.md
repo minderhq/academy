@@ -3,7 +3,7 @@ Document ID: 5101
 Title: LoRA (Low-Rank Adaptation) Logic
 Phase: 5
 Module: 5100
-Last Updated: 2026-09-27
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -231,7 +231,7 @@ Guideline: Start with r=8, increase if underfitting
 ```
 
 ### Alpha (α)
-```yaml
+```text
 Alpha controls the scaling of LoRA weights:
 
 Scaling = α / r

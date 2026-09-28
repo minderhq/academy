@@ -1,7 +1,7 @@
 ---
 Document ID: 3300-DECODING-README
 Title: "[3300]: The Decoding Block"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Beginner
 ---
@@ -96,7 +96,7 @@ Issues:
 
 ### GELU: Smooth Approximation
 
-```yaml
+```text
 GELU(x) = x * Φ(x)
          ≈ 0.5 * x * (1 + tanh(√(2/π) * (x + 0.044715x³)))
 
@@ -111,7 +111,7 @@ Advantages:
 
 ### SwiGLU: Gated Linear Units
 
-```yaml
+```text
 SwiGLU(x) = Swish(xW) ⊗ (xV)
           = (xW * σ(xW)) ⊗ (xV)
 

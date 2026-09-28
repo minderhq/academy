@@ -3,7 +3,7 @@ Document ID: 3101
 Title: Self-Attention Deep Dive
 Phase: 3
 Module: 3100
-Last Updated: 2026-09-24
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -70,7 +70,7 @@ After completing this document, you will:
 
 ### 2.1 Scaled Dot-Product Attention
 
-```yaml
+```text
 The fundamental operation of Transformers:
 
 Attention(Q, K, V) = softmax(QK^T / √d_k) × V
@@ -175,7 +175,7 @@ class MultiHeadAttention(nn.Module):
 
 ### 3.3 Mathematical Formulation
 
-```yaml
+```text
 Given input X (sequence of embeddings):
 
 MultiHead(X) = Concat(head_1, ..., head_h) × W^O

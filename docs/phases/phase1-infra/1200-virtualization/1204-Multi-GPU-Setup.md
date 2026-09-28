@@ -3,7 +3,7 @@ Document ID: 1204
 Title: Multi-GPU Setup
 Phase: 1
 Module: 1200
-Last Updated: 2026-09-27
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -99,7 +99,7 @@ Configuration:
 ```
 
 ### Scenario 3: Multiple Matched GPUs
-```yaml
+```text
 Configuration:
   - 2-4x identical cards on native PCIe
   - Identical VRAM simplifies tensor parallelism and pipeline stages

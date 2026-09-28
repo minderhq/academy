@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-006
 Title: "LAB 006: Train a Small Language Model from Scratch"
-Last Updated: 2026-09-27
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 6-8 hours
@@ -1103,7 +1103,7 @@ Target perplexity: < 7.0
 
 **Task:** Add improvements
 
-```yaml
+```text
 Try these improvements:
   - Replace learned positions with rotary embeddings (RoPE)
   - Add layer normalization at different positions (Pre-LN vs Post-LN)
@@ -1117,7 +1117,7 @@ or you will not know what worked.
 
 **Task:** Scale to multiple GPUs
 
-```yaml
+```text
 Implement:
   - DistributedDataParallel (DDP)
   - Gradient accumulation

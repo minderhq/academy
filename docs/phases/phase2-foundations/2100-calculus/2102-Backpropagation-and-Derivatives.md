@@ -3,7 +3,7 @@ Document ID: 2102
 Title: Backpropagation and Automatic Differentiation
 Phase: 2
 Module: 2100
-Last Updated: 2026-09-27
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 4 hours
@@ -396,7 +396,7 @@ Hessian applications:
 ## Gradient Accumulation
 
 ### Why Accumulate Gradients?
-```yaml
+```text
 When GPU memory is limited:
   - Can't fit large batch
   - Accumulate gradients over smaller batches

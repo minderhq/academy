@@ -1,7 +1,7 @@
 ---
 Document ID: VOLUME-3
 Title: "Volume 3: LLM Internals & Architecture"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -434,7 +434,7 @@ Use this checklist to track your progress:
 ### Attention Mechanism
 
 **Core Formula:**
-```yaml
+```text
 Attention(Q, K, V) = softmax(QK^T / √d_k) V
 
 Where:

@@ -1,7 +1,7 @@
 ---
 Document ID: IND-001
 Title: "IND-001: Healthcare AI Applications"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -264,7 +264,7 @@ class ClinicalDecisionSupport:
 
 **Real-World Example:**
 
-```yaml
+```text
 INPUT PATIENT CASE:
 {
     "age": 54,
@@ -533,7 +533,7 @@ class MedicalCodingAgent:
 
 **Real-World Example:**
 
-```yaml
+```text
 INPUT CLINICAL NOTE:
 "54-year-old male presents with chest pain of 2 hours duration.
 Pain is substernal, radiating to left arm, associated with
@@ -672,7 +672,7 @@ class UrgencyAssessmentAgent:
 
 **Real-World Example:**
 
-```yaml
+```text
 PATIENT INPUT:
 {
     "age": 35,

@@ -293,7 +293,7 @@ If MTU mismatch:
 
 ### ✅ Bandwidth Optimization
 
-```yaml
+```text
 Step 1: Baseline Testing
   command: iperf3 -c server.example.com -t 60
   target:
@@ -316,7 +316,7 @@ Step 3: Optimize TCP Settings
 
 ### ✅ Latency Optimization
 
-```yaml
+```text
 Step 1: Measure Baseline
   command: ping -c 100 target.host | tail -1
   target: <1ms (local), <50ms (regional)
@@ -333,7 +333,7 @@ Step 3: Disable Unnecessary Services
 
 ### ✅ Reliability Optimization
 
-```yaml
+```text
 Step 1: Enable Link Aggregation
   method: LACP (802.3ad)
   benefit: Redundancy + increased bandwidth
@@ -741,7 +741,7 @@ node_exporter   # System metrics
 
 ## Module Completion Checklist
 
-```yaml
+```text
 Understanding:
   - [ ] I can explain bandwidth vs latency
   - [ ] I know when to use jumbo frames

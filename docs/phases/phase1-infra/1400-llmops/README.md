@@ -1,7 +1,7 @@
 ---
 Document ID: 1400-LLMOPS-README
 Title: "1400: LLMOps and Model Serving"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Beginner
 ---
@@ -109,7 +109,7 @@ TGI (HuggingFace):
 | **Business** | Requests/user, model usage | Cost optimization |
 
 **Real-World Alert Example:**
-```yaml
+```text
 Alert: High GPU Memory
   Condition: GPU memory > 95% for 5 minutes
   Impact: Model may crash, users see errors
@@ -480,7 +480,7 @@ User experience: "Why is it slow the first time?"
 ```
 
 **Solution:**
-```yaml
+```bash
 # Method 1: Preload on startup ✅
 # vLLM loads model on server start
 # Keeps model in GPU memory
@@ -652,7 +652,7 @@ spec:
 ```
 
 **Vertical Scaling (Larger GPU):**
-```yaml
+```text
 When to scale:
   - Model doesn't fit in memory
   - Need higher throughput
@@ -668,7 +668,7 @@ Migration path:
 ### 3. Cost Optimization
 
 **Right-Sizing GPUs:**
-```yaml
+```text
 Model Requirements:
   Llama-3-8B (4-bit): 6 GB GPU memory
   Llama-3-70B (4-bit): 40 GB GPU memory
@@ -879,7 +879,7 @@ locust             # Python load testing
 
 ## Module Completion Checklist
 
-```yaml
+```text
 Understanding:
   - [ ] I can explain vLLM vs TGI vs Ollama
   - [ ] I understand PagedAttention

@@ -193,7 +193,7 @@ Automatically consolidates workloads:
 ### K3s (Recommended for Edge/Home Labs)
 
 **Pros:**
-```yaml
+```text
 ✅ Lightweight: <500MB binary
 ✅ Single binary: Easy installation
 ✅ ARM64 support: Run on Raspberry Pi
@@ -564,15 +564,18 @@ Root Cause:
 ```
 
 **Solution:**
-```yaml
+```dockerfile
 # Method 1: Bake into image ✅
 FROM python:3.11-slim
 
 # Download during build
 RUN python -c "from transformers import AutoModel; \
   AutoModel.from_pretrained('meta-llama/Llama-3-70B')"
+```
 
-# Method 2: Use PVC ✅
+Method 2: Use PVC:
+
+```yaml
 volumes:
 - name: model-cache
   persistentVolumeClaim:
@@ -966,7 +969,7 @@ ab/hey/wrk         # Load testing tools
 
 ## Module Completion Checklist
 
-```yaml
+```text
 Understanding:
   - [ ] I can explain Kubernetes architecture
   - [ ] I understand pods, services, deployments

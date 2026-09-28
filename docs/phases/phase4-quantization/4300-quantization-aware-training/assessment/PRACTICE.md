@@ -1,7 +1,7 @@
 ---
 Document ID: 4300-PRACTICE
 Title: "4300: Quantization Aware Training - Practice"
-Last Updated: 2026-09-25
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Advanced
 ---
@@ -483,7 +483,7 @@ print(f"Compression: {size_fp32 / size_int8:.2f}x")
 
 ## Summary: QAT Workflow
 
-```yaml
+```text
 QUANTIZATION AWARE TRAINING STEPS:
 
 1. Model Preparation

@@ -3,7 +3,7 @@ Document ID: 3302
 Title: Normalization Layers - BatchNorm vs LayerNorm vs RMSNorm
 Phase: 3
 Module: 3300
-Last Updated: 2026-09-27
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 2 hours
@@ -63,7 +63,7 @@ With normalization:
 ```
 
 ### General Normalization Formula
-```yaml
+```text
 y = γ × ((x - μ) / σ) + β
 
 Where:

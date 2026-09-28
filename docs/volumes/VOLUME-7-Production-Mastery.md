@@ -1,7 +1,7 @@
 ---
 Document ID: VOLUME-7
 Title: "Volume 7: Production Mastery"
-Last Updated: 2026-09-27
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -804,14 +804,17 @@ docker-compose up -d
 ```
 
 **Scaling Strategies:**
-```yaml
+```bash
 # Horizontal scaling (more instances)
 docker-compose up -d --scale api=5
 
 # Vertical scaling (bigger instances)
 # Update resource limits in docker-compose.yml
+```
 
-# Load balancing (Nginx)
+Load balancing (Nginx):
+
+```nginx
 upstream api_servers {
     least_conn;
     server api1:8000 max_fails=3 fail_timeout=30s;

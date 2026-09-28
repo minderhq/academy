@@ -37,7 +37,7 @@ With monitoring:
 ```
 
 **Real-World Example:**
-```yaml
+```text
 Scenario: Gradual performance degradation
 
 Without monitoring:
@@ -657,7 +657,7 @@ expr: gpu_utilization < avg_over_time(gpu_utilization[7d]) * 0.9
 ### 1. Metric Naming
 
 **Best Practices:**
-```yaml
+```text
 # Good metric names ✅
 llm_requests_total
 llm_request_duration_seconds
@@ -676,7 +676,7 @@ time               # Overloaded term
 ### 2. Label Strategy
 
 **Good Labels:**
-```yaml
+```text
 # Add useful dimensions
 llm_requests_total{
   model="llama-3-70b",
@@ -720,7 +720,7 @@ llm_requests_total{
 ### 4. Alert Strategy
 
 **Alert Tiers:**
-```yaml
+```text
 P1 (Critical):
   - Service down (100% errors)
   - Data loss
@@ -939,7 +939,7 @@ tempo              # High-performance tracing
 
 ## Module Completion Checklist
 
-```yaml
+```text
 Understanding:
   - [ ] I understand the three pillars of observability
   - [ ] I can explain key LLM metrics

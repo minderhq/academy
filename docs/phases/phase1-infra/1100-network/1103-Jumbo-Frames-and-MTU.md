@@ -3,7 +3,7 @@ Document ID: 1103
 Title: Jumbo Frames and MTU Optimization
 Phase: 1
 Module: 1100
-Last Updated: 2026-09-27
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 2 hours
@@ -143,7 +143,9 @@ ifreload -a
 flannel-iface: eno1
 # host MTU 9000  ->  pod network MTU 8950
 # (verify inside a pod: ip link shows the veth MTU)
+```
 
+```bash
 # Cilium auto-detects the host MTU the same way; override the agent only
 # when detection gets it wrong:
 helm install cilium cilium/cilium \

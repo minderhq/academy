@@ -1,7 +1,7 @@
 ---
 Document ID: QUICK-REF-VOLUME-7
 Title: "Volume 7: Production Systems - Quick Reference"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -653,7 +653,7 @@ data:
     rule_files:
     - '/etc/prometheus/rules/*.yml'
 
-# Alert rules
+    # Alert rules
     groups:
     - name: agent_alerts
       rules:
