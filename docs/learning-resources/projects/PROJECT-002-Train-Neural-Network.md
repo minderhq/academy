@@ -1,7 +1,7 @@
 ---
 Document ID: PROJECT-002
 Title: "CAPSTONE PROJECT 002: Train Neural Network from Scratch"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -84,7 +84,7 @@ Custom Tensor Library with Autograd
 """
 
 import numpy as np
-from typing import List, Optional, Callable, Any
+from typing import Optional, Callable
 import functools
 
 class Tensor:
@@ -96,7 +96,7 @@ class Tensor:
                  _children: tuple = None, _op: str = None):
         self.data = np.array(data, dtype=np.float32)
         self.requires_grad = requires_grad
-        self.grad: Optional['Tensor'] = None
+        self.grad: Tensor | None = None
 
         # Computational graph tracking
         self._backward: Callable = lambda: None
@@ -353,7 +353,7 @@ Neural Network Module
 =====================
 """
 
-from typing import List, Tuple, Optional
+
 from tensor import Tensor
 import numpy as np
 
@@ -361,7 +361,7 @@ class Module:
     """Base class for all neural network modules"""
 
     def __init__(self):
-        self.parameters: List[Tensor] = []
+        self.parameters: list[Tensor] = []
         self.training = True
 
     def __call__(self, *args, **kwargs):
@@ -370,7 +370,7 @@ class Module:
     def forward(self, *args, **kwargs):
         raise NotImplementedError
 
-    def parameters(self) -> List[Tensor]:
+    def parameters(self) -> list[Tensor]:
         return []
 
     def zero_grad(self):
@@ -563,7 +563,7 @@ class CrossEntropyLoss(Module):
 class Optimizer:
     """Base optimizer class"""
 
-    def __init__(self, parameters: List[Tensor], lr: float = 0.01):
+    def __init__(self, parameters: list[Tensor], lr: float = 0.01):
         self.parameters = parameters
         self.lr = lr
 
@@ -577,7 +577,7 @@ class Optimizer:
 class SGD(Optimizer):
     """Stochastic Gradient Descent"""
 
-    def __init__(self, parameters: List[Tensor], lr: float = 0.01, momentum: float = 0.0):
+    def __init__(self, parameters: list[Tensor], lr: float = 0.01, momentum: float = 0.0):
         super().__init__(parameters, lr)
         self.momentum = momentum
         self.velocity = [None] * len(parameters)
@@ -601,8 +601,8 @@ class SGD(Optimizer):
 class Adam(Optimizer):
     """Adam optimizer"""
 
-    def __init__(self, parameters: List[Tensor], lr: float = 0.001,
-                 betas: Tuple[float, float] = (0.9, 0.999), eps: float = 1e-8):
+    def __init__(self, parameters: list[Tensor], lr: float = 0.001,
+                 betas: tuple[float, float] = (0.9, 0.999), eps: float = 1e-8):
         super().__init__(parameters, lr)
         self.betas = betas
         self.eps = eps
@@ -657,7 +657,7 @@ Data Loading and Preprocessing
 ===============================
 """
 
-from typing import Tuple, Optional
+
 import numpy as np
 from tensor import Tensor
 
@@ -753,7 +753,7 @@ def train_epoch(model: Module, dataloader: DataLoader,
     return total_loss / n_batches
 
 def evaluate(model: Module, dataloader: DataLoader,
-             criterion: Module) -> Tuple[float, float]:
+             criterion: Module) -> tuple[float, float]:
     """Evaluate model"""
 
     model.eval()

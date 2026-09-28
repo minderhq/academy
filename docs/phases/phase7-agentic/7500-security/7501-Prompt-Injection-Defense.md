@@ -193,7 +193,7 @@ The cheapest layer: a blocklist of known attack patterns, checked before the req
 # input_filter.py
 import re
 import hashlib
-from typing import List, Tuple
+
 
 class InputFilter:
     """Filter and sanitize user inputs"""
@@ -203,7 +203,7 @@ class InputFilter:
         self.max_length = 5000
         self.history = {}
 
-    def _load_blocked_patterns(self) -> List[str]:
+    def _load_blocked_patterns(self) -> list[str]:
         """Load known malicious patterns"""
         return [
             r'ignore\s+(all\s+)?previous\s+instructions',
@@ -221,7 +221,7 @@ class InputFilter:
             r'print\s+your\s+instructions'
         ]
 
-    def validate_input(self, user_input: str, user_id: str) -> Tuple[bool, str]:
+    def validate_input(self, user_input: str, user_id: str) -> tuple[bool, str]:
         """Validate user input"""
 
         # Check length
@@ -412,7 +412,7 @@ Treat model output as untrusted too: scan it for signs the injection landed.
 ```python
 # output_validator.py
 import re
-from typing import List, Optional, Tuple
+
 
 class OutputValidator:
     """Validate LLM outputs for potential injection leaks"""
@@ -420,7 +420,7 @@ class OutputValidator:
     def __init__(self):
         self.suspicious_patterns = self._load_suspicious_patterns()
 
-    def _load_suspicious_patterns(self) -> List[str]:
+    def _load_suspicious_patterns(self) -> list[str]:
         """Patterns that might indicate prompt leak"""
         return [
             r'I am (an )?(unrestricted|uncensored)\s+AI',
@@ -432,7 +432,7 @@ class OutputValidator:
             r'constraints\s+(do\s+)?not\s+apply'
         ]
 
-    def validate_output(self, output: str) -> Tuple[bool, Optional[str]]:
+    def validate_output(self, output: str) -> tuple[bool, str | None]:
         """Validate LLM output"""
 
         # Check for suspicious patterns
@@ -507,7 +507,7 @@ The detector needs the ML stack — install once with uv: `uv pip install torch 
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
 import numpy as np
-from typing import Tuple
+
 
 class PerplexityAnomalyDetector:
     """Detect anomalous inputs using perplexity scoring"""
@@ -541,7 +541,7 @@ class PerplexityAnomalyDetector:
 
         return perplexity
 
-    def is_anomalous(self, user_input: str) -> Tuple[bool, float]:
+    def is_anomalous(self, user_input: str) -> tuple[bool, float]:
         """Check if input is anomalous"""
 
         perplexity = self.compute_perplexity(user_input)
@@ -589,7 +589,7 @@ Order matters: cheap deterministic layers first, expensive model-backed layers l
 
 ```python
 # defense_layers.py
-from typing import Optional, Tuple
+
 
 class MultiLayerDefense:
     """Layer-orchestrated pipeline: filter -> anomaly -> wrap -> validate.
@@ -610,8 +610,8 @@ class MultiLayerDefense:
         self,
         user_input: str,
         user_id: str,
-        context: Optional[str] = None
-    ) -> Tuple[bool, str, Optional[str]]:
+        context: str | None = None
+    ) -> tuple[bool, str, str | None]:
         """Process request through defense layers"""
 
         # Layer 1: Input filtering

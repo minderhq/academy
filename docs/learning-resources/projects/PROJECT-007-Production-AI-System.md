@@ -110,7 +110,7 @@ Multi-Agent Orchestrator
 ========================
 """
 
-from typing import List, Dict, Optional, Any
+from typing import List, Dict, Any
 import asyncio
 from langgraph.graph import StateGraph
 
@@ -156,7 +156,7 @@ class AgentOrchestrator:
 class BaseAgent:
     """Base agent class"""
 
-    def __init__(self, name: str, tools: List[Dict]):
+    def __init__(self, name: str, tools: list[Dict]):
         self.name = name
         self.tools = tools
         self.memory = {}
@@ -178,7 +178,7 @@ class BaseAgent:
 
         return response
 
-    async def _plan(self, query: str, context: Dict) -> List[Dict]:
+    async def _plan(self, query: str, context: Dict) -> list[Dict]:
         """Plan execution steps"""
         raise NotImplementedError
 
@@ -222,7 +222,7 @@ class CoderAgent(BaseAgent):
         ]
         super().__init__('coder', tools)
 
-    async def _plan(self, query: str, context: Dict) -> List[Dict]:
+    async def _plan(self, query: str, context: Dict) -> list[Dict]:
         """Plan coding tasks"""
 
         # Analyze requirements
@@ -249,7 +249,7 @@ class ResearcherAgent(BaseAgent):
         ]
         super().__init__('researcher', tools)
 
-    async def _plan(self, query: str, context: Dict) -> List[Dict]:
+    async def _plan(self, query: str, context: Dict) -> list[Dict]:
         """Plan research tasks"""
 
         # Extract key entities

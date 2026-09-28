@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-006
 Title: "TUTORIAL-006: Real-time AI"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -144,7 +144,7 @@ Real-time Chat with WebSockets
 
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.responses import HTMLResponse
-from typing import List, Dict
+from typing import Dict
 import json
 import uvicorn
 
@@ -156,8 +156,8 @@ class ConnectionManager:
     """
 
     def __init__(self):
-        self.active_connections: List[WebSocket] = []
-        self.client_data: Dict[WebSocket, Dict] = {}
+        self.active_connections: list[WebSocket] = []
+        self.client_data: dict[WebSocket, Dict] = {}
 
     async def connect(self, websocket: WebSocket, client_id: str):
         """Connect new client"""

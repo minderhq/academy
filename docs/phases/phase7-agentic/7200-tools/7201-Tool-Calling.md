@@ -3,7 +3,7 @@ Document ID: 7201
 Title: Tool Calling & Function Execution
 Phase: 7
 Module: 7200
-Last Updated: 2026-09-27
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -146,21 +146,21 @@ tools = [
 ### 1. Information Retrieval Tools
 
 ```python
-from typing import Dict, List
+from typing import Dict
 
 
 # Web Search
-def search_web(query: str, num_results: int = 5) -> List[str]:
+def search_web(query: str, num_results: int = 5) -> list[str]:
     """Search the web for current information"""
     pass
 
 # Database Query
-def query_database(sql: str) -> List[Dict]:
+def query_database(sql: str) -> list[Dict]:
     """Execute SQL query on database"""
     pass
 
 # Vector Search
-def vector_search(embedding: List[float], top_k: int = 10) -> List[Dict]:
+def vector_search(embedding: list[float], top_k: int = 10) -> list[Dict]:
     """Search vector database for similar documents;
     each hit is a document payload dict"""
     pass
@@ -169,7 +169,7 @@ def vector_search(embedding: List[float], top_k: int = 10) -> List[Dict]:
 ### 2. Computation Tools
 
 ```python
-from typing import Dict, List
+from typing import Dict
 
 
 # Code Execution
@@ -183,7 +183,7 @@ def calculate(expression: str) -> float:
     pass
 
 # Data Processing
-def process_data(data: List[Dict], operation: str) -> List[Dict]:
+def process_data(data: list[Dict], operation: str) -> list[Dict]:
     """Process data with specified operation"""
     pass
 ```
@@ -368,7 +368,7 @@ print(execute_tool("boom", {}))
 ### 3. Tool Registry Pattern
 
 ```python
-from typing import Callable, Dict, List
+from typing import Callable, Dict
 
 
 class ToolRegistry:
@@ -386,7 +386,7 @@ class ToolRegistry:
             raise ValueError(f"Tool {name} not found")
         return self.tools[name]["function"](**kwargs)
 
-    def get_schemas(self) -> List[Dict]:
+    def get_schemas(self) -> list[Dict]:
         return [
             {"type": "function", "function": tool["schema"]}
             for tool in self.tools.values()

@@ -1463,21 +1463,21 @@ result = add(5, 3)      # OK
 from typing import List, Dict, Optional, Union
 
 # List type
-def process_numbers(numbers: List[int]) -> List[int]:
+def process_numbers(numbers: list[int]) -> list[int]:
     return [x * 2 for x in numbers]
 
 # Dict type
-def get_config() -> Dict[str, str]:
+def get_config() -> dict[str, str]:
     return {"model": "mistral", "api": "localhost"}
 
 # Optional type
-def find_user(user_id: int) -> Optional[str]:
+def find_user(user_id: int) -> str | None:
     if user_id == 1:
         return "Alice"
     return None
 
 # Union type
-def process(value: Union[int, str]) -> str:
+def process(value: int | str) -> str:
     return str(value)
 ```
 
@@ -1611,7 +1611,7 @@ class User(BaseModel):
     name: str = Field(..., min_length=1, max_length=50)
     age: int = Field(..., ge=0, le=120)  # ge=greater/equal, le=less/equal
     email: EmailStr  # Email validation
-    bio: Optional[str] = None  # Optional field
+    bio: str | None = None  # Optional field
 
 # Valid user
 user = User(name="Bob", age=25, email="bob@example.com")
@@ -1638,7 +1638,7 @@ class Address(BaseModel):
 class Person(BaseModel):
     name: str
     age: int
-    addresses: List[Address]  # List of nested models
+    addresses: list[Address]  # List of nested models
 
 # Create person with addresses
 person = Person(
@@ -1662,7 +1662,7 @@ class Query(BaseModel):
     text: str  # Required field
     use_rag: bool = True  # Default value
     top_k: int = 5  # Default value
-    min_score: Optional[float] = None  # Optional
+    min_score: float | None = None  # Optional
 
 # Create query
 query = Query(text="What is AI?")
@@ -1750,12 +1750,12 @@ def read_item(item_id: int):
 
 ```python
 from fastapi import FastAPI
-from typing import Optional
+
 
 app = FastAPI()
 
 @app.get("/users/{user_id}")
-def get_user(user_id: int, q: Optional[str] = None):
+def get_user(user_id: int, q: str | None = None):
     """
     user_id: Path parameter (required) - /users/123
     q: Query parameter (optional) - /users/123?q=search
@@ -1801,13 +1801,13 @@ def create_user(user: UserRequest):
 ```python
 from fastapi import FastAPI
 from pydantic import BaseModel, Field
-from typing import List, Optional
+
 
 app = FastAPI(title="RAG API")
 
 class Document(BaseModel):
     text: str = Field(..., min_length=1)
-    metadata: Optional[dict] = None
+    metadata: dict | None = None
 
 class QueryRequest(BaseModel):
     question: str
@@ -2045,9 +2045,9 @@ Create a function to load and validate AI model configuration.
 
 ```python
 import json
-from typing import Dict, Any
+from typing import Any
 
-def load_config(config_path: str) -> Dict[str, Any]:
+def load_config(config_path: str) -> dict[str, Any]:
     """Load and validate AI model configuration.
 
     Required keys:
@@ -2077,7 +2077,7 @@ print(config)
 <summary>Solution</summary>
 
 ```python
-def load_config(config_path: str) -> Dict[str, Any]:
+def load_config(config_path: str) -> dict[str, Any]:
     with open(config_path, "r") as f:
         config = json.load(f)
 

@@ -248,9 +248,9 @@ class DPOTrainer:
     def train_step(self, batch):
         """
         batch: {
-            "prompt": List[str],
-            "chosen": List[str],
-            "rejected": List[str],
+            "prompt": list[str],
+            "chosen": list[str],
+            "rejected": list[str],
         }
         """
         # Get policy model outputs

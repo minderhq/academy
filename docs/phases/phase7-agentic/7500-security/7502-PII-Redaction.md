@@ -104,7 +104,7 @@ Regex patterns are the deterministic, free first layer — exact for structured 
 ```python
 # pii_detector.py
 import re
-from typing import List, Tuple, Dict, Optional
+
 from dataclasses import dataclass
 from enum import Enum
 
@@ -137,7 +137,7 @@ class PIIDetector:
     def __init__(self):
         self.patterns = self._load_patterns()
 
-    def _load_patterns(self) -> Dict[PIIType, List[re.Pattern]]:
+    def _load_patterns(self) -> dict[PIIType, list[re.Pattern]]:
         """Load regex patterns for PII detection"""
 
         return {
@@ -189,7 +189,7 @@ class PIIDetector:
             ]
         }
 
-    def detect(self, text: str) -> List[PIIEntity]:
+    def detect(self, text: str) -> list[PIIEntity]:
         """Detect all PII in text"""
 
         entities = []
@@ -274,7 +274,7 @@ class PIIDetector:
         else:
             return "[REDACTED]"
 
-    def _remove_overlaps(self, entities: List[PIIEntity]) -> List[PIIEntity]:
+    def _remove_overlaps(self, entities: list[PIIEntity]) -> list[PIIEntity]:
         """Remove overlapping entities, keep longest"""
 
         if not entities:
@@ -318,7 +318,7 @@ Regex cannot find *names* — the highest-value indirect identifier. Named-entit
 # pii_nlp_detector.py
 # Not executed in this repo: loads a spaCy NER model. Compile-checked only.
 import spacy
-from typing import List
+
 
 class NLPPIIDetector:
     """PII detection using NLP models"""
@@ -339,7 +339,7 @@ class NLPPIIDetector:
             'PHONE',       # Phones (if model supports)
         }
 
-    def detect(self, text: str) -> List[PIIEntity]:
+    def detect(self, text: str) -> list[PIIEntity]:
         """Detect PII using NLP"""
 
         doc = self.nlp(text)
@@ -414,7 +414,7 @@ Redaction strength is a policy choice: partial keeps utility for support workflo
 
 ```python
 # pii_redactor.py
-from typing import Dict, List, Literal, Optional, Tuple
+from typing import Literal
 import re
 import hashlib
 
@@ -440,9 +440,9 @@ class PIIRedactor:
     def redact(
         self,
         text: str,
-        strategy: Optional[RedactionStrategy] = None,
-        custom_placeholders: Optional[Dict[PIIType, str]] = None
-    ) -> Tuple[str, List[PIIEntity]]:
+        strategy: RedactionStrategy | None = None,
+        custom_placeholders: dict[PIIType, str] | None = None
+    ) -> tuple[str, list[PIIEntity]]:
         """Redact PII from text"""
 
         # Detect PII
@@ -478,7 +478,7 @@ class PIIRedactor:
         self,
         entity: PIIEntity,
         strategy: RedactionStrategy,
-        custom_placeholders: Optional[Dict[PIIType, str]]
+        custom_placeholders: dict[PIIType, str] | None
     ) -> str:
 
         if custom_placeholders and entity.type in custom_placeholders:
@@ -530,7 +530,7 @@ Presidio replaces the homegrown detector + redactor pair with maintained recogni
 # model above. Compile-checked only.
 from presidio_analyzer import AnalyzerEngine
 from presidio_anonymizer import AnonymizerEngine
-from typing import Dict, Optional
+
 
 class PresidioPIIRedactor:
     """PII redaction using Microsoft Presidio"""
@@ -542,7 +542,7 @@ class PresidioPIIRedactor:
     def redact(
         self,
         text: str,
-        operators: Optional[Dict[str, str]] = None
+        operators: dict[str, str] | None = None
     ) -> str:
         """Redact PII using Presidio"""
 
@@ -587,7 +587,7 @@ When redaction is not enough and the original PII must be kept (support refunds,
 ```python
 # secure_storage.py
 from cryptography.fernet import Fernet
-from typing import Dict
+
 import hashlib
 import json
 
@@ -601,7 +601,7 @@ class SecurePIIStorage:
     def store(
         self,
         user_id: str,
-        pii_data: Dict[str, str],
+        pii_data: dict[str, str],
         redacted_text: str
     ) -> str:
         """Store encrypted PII"""
@@ -620,7 +620,7 @@ class SecurePIIStorage:
 
         return reference_id
 
-    def retrieve(self, reference_id: str) -> Dict[str, str]:
+    def retrieve(self, reference_id: str) -> dict[str, str]:
         """Retrieve and decrypt PII"""
 
         if reference_id not in self.storage:
@@ -660,7 +660,7 @@ Every detection, access, and deletion is an auditable event. The log records met
 # compliance_logger.py
 import logging
 from datetime import datetime
-from typing import List
+
 import json
 
 class ComplianceLogger:
@@ -681,7 +681,7 @@ class ComplianceLogger:
 
     def log_detection(
         self,
-        pii_entities: List[PIIEntity],
+        pii_entities: list[PIIEntity],
         user_id: str,
         document_id: str
     ):
@@ -766,7 +766,7 @@ The pipeline composes detection, redaction, storage, and logging. The NLP detect
 
 ```python
 # pii_pipeline.py
-from typing import Dict, List, Optional
+from typing import Dict
 from datetime import datetime
 
 class PIIPipeline:
@@ -781,7 +781,7 @@ class PIIPipeline:
         self,
         nlp_detector=None,
         storage=None,
-        log_file: Optional[str] = None
+        log_file: str | None = None
     ):
         self.detector = PIIDetector()
         self.nlp_detector = nlp_detector
@@ -833,9 +833,9 @@ class PIIPipeline:
 
     def _merge_entities(
         self,
-        entities1: List[PIIEntity],
-        entities2: List[PIIEntity]
-    ) -> List[PIIEntity]:
+        entities1: list[PIIEntity],
+        entities2: list[PIIEntity]
+    ) -> list[PIIEntity]:
         """Merge entities from multiple detectors"""
 
         # Combine all entities

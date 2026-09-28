@@ -457,7 +457,7 @@ if __name__ == "__main__":
 from fastapi import FastAPI, HTTPException, UploadFile, File
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
-from typing import List, Optional
+from typing import List
 import uvicorn
 
 from ingestion.document_processor import DocumentProcessor
@@ -475,12 +475,12 @@ retriever = KnowledgeRetriever()
 
 class QueryRequest(BaseModel):
     query: str
-    top_k: Optional[int] = 5
-    filters: Optional[dict] = None
+    top_k: int | None = 5
+    filters: dict | None = None
 
 class QueryResponse(BaseModel):
     answer: str
-    sources: List[dict]
+    sources: list[dict]
     retrieval_time: float
 
 @app.post("/api/v1/query", response_model=QueryResponse)
@@ -717,7 +717,7 @@ ANSWER:"""
 
         return answer
 
-    def _format_sources(self, search_results: List) -> List[Dict]:
+    def _format_sources(self, search_results: List) -> list[Dict]:
         """Format sources for response"""
 
         sources = []

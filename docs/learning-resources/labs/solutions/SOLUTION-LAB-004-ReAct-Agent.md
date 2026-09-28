@@ -1,7 +1,7 @@
 ---
 Document ID: SOLUTION-LAB-004
 Title: "SOLUTION-LAB-004: ReAct Agent"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -16,7 +16,7 @@ Complete solution for building a ReAct (Reasoning + Acting) agent.
 ## Core Solution
 
 ```python
-from typing import List, Dict, Callable
+from typing import Dict, Callable
 import json
 
 class Tool:
@@ -26,7 +26,7 @@ class Tool:
         self.description = description
 
 class ReActAgent:
-    def __init__(self, llm, tools: List[Tool]):
+    def __init__(self, llm, tools: list[Tool]):
         self.llm = llm
         self.tools = {tool.name: tool for tool in tools}
 

@@ -1,7 +1,7 @@
 ---
 Document ID: 1500-PRACTICE
 Title: "1500: Monitoring - Practice"
-Last Updated: 2026-09-25
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -835,7 +835,7 @@ import logging
 import json
 import time
 import traceback
-from typing import Dict, Any, Optional
+from typing import Any
 from contextlib import contextmanager
 
 # Configure structlog
@@ -887,7 +887,7 @@ class LLMLogger:
         prompt: str,
         prompt_tokens: int,
         max_tokens: int,
-        parameters: Dict[str, Any],
+        parameters: dict[str, Any],
         **kwargs
     ):
         """Log incoming request."""
@@ -931,7 +931,7 @@ class LLMLogger:
         request_id: str,
         error_type: str,
         error_message: str,
-        stack_trace: Optional[str] = None,
+        stack_trace: str | None = None,
         **kwargs
     ):
         """Log error."""

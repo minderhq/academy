@@ -363,8 +363,8 @@ async def process_batch(batch):
     return [item * 2 for item in batch]
 
 @app.post("/predict")
-async def predict(items: List[int]):
-    # A typed List[int] body parameter IS the whole request body: POST
+async def predict(items: list[int]):
+    # A typed list[int] body parameter IS the whole request body: POST
     # [1, 2, 3] as a bare JSON array. (A bare `items: list` annotation
     # behaves differently - FastAPI embeds it as {"items": [...]}.)
     results = await process_batch(items)
@@ -438,13 +438,13 @@ with ManagedResource():
 ### Type Hints
 
 ```python
-from typing import List, Dict, Optional, Callable
+from typing import Callable
 
 def process(
-    items: List[int],
-    config: Dict[str, str],
-    callback: Optional[Callable] = None
-) -> List[str]:
+    items: list[int],
+    config: dict[str, str],
+    callback: Callable | None = None
+) -> list[str]:
     return [str(item) for item in items]
 ```
 

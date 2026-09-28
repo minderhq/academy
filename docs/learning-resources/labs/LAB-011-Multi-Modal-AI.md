@@ -717,14 +717,14 @@ from PIL import Image
 import base64
 import io
 import json
-from typing import Optional, List, Dict, Any
+from typing import Optional, List, Any
 from dataclasses import dataclass
 
 @dataclass
 class ImageInput:
     """Image input for the agent"""
     image: Image.Image
-    metadata: Optional[Dict[str, Any]] = None
+    metadata: dict[str, Any] | None = None
 
 class VisionAgent:
     """
@@ -830,7 +830,7 @@ class VisionAgent:
         self,
         query: str,
         top_k: int = 3
-    ) -> List[Dict[str, Any]]:
+    ) -> list[dict[str, Any]]:
         """
         Search memory for images matching query.
 
@@ -1037,7 +1037,7 @@ import torch
 from PIL import Image
 import cv2
 import numpy as np
-from typing import List, Dict, Tuple
+from typing import List, Dict
 import tempfile
 import os
 
@@ -1057,7 +1057,7 @@ class VideoAnalyzer:
         video_path: str,
         num_frames: int = 10,
         method: str = "uniform"
-    ) -> List[Image.Image]:
+    ) -> list[Image.Image]:
         """
         Extract frames from video.
 
@@ -1100,9 +1100,9 @@ class VideoAnalyzer:
     def analyze_video(
         self,
         video_path: str,
-        actions: List[str] = None,
-        scenes: List[str] = None
-    ) -> Dict[str, Any]:
+        actions: list[str] = None,
+        scenes: list[str] = None
+    ) -> dict[str, Any]:
         """
         Analyze video content.
 
@@ -1150,7 +1150,7 @@ class VideoAnalyzer:
             "frames": frame_analyses
         }
 
-    def _summarize_video(self, frame_analyses: List[Dict], total_frames: int) -> str:
+    def _summarize_video(self, frame_analyses: list[Dict], total_frames: int) -> str:
         """Generate text summary of video"""
         # Most common actions
         actions = [f["action"] for f in frame_analyses]
@@ -1219,7 +1219,7 @@ class VideoAnalyzer:
         video_path: str,
         query: str,
         top_k: int = 3
-    ) -> List[Dict]:
+    ) -> list[Dict]:
         """
         Search for frames matching text query in video.
 

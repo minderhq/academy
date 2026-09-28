@@ -111,7 +111,7 @@ curl http://localhost:6333/collections/test_docs
 
 ```python
 # ~/lab-002-rag/services/rag/chunker.py
-from typing import List, Dict
+
 import re
 
 class DocumentChunker:
@@ -127,7 +127,7 @@ class DocumentChunker:
         self.chunk_overlap = chunk_overlap
         self.method = method
 
-    def chunk_text(self, text: str) -> List[Dict[str, any]]:
+    def chunk_text(self, text: str) -> list[dict[str, any]]:
         """Split text into chunks with metadata"""
 
         if self.method == "recursive":
@@ -139,7 +139,7 @@ class DocumentChunker:
         else:
             raise ValueError(f"Unknown method: {self.method}")
 
-    def _recursive_chunk(self, text: str) -> List[Dict[str, any]]:
+    def _recursive_chunk(self, text: str) -> list[dict[str, any]]:
         """Recursive character splitting with multiple separators"""
 
         # Try different separators in order
@@ -176,7 +176,7 @@ class DocumentChunker:
 
         return chunks
 
-    def _fixed_chunk(self, text: str) -> List[Dict[str, any]]:
+    def _fixed_chunk(self, text: str) -> list[dict[str, any]]:
         """Fixed-size character chunks"""
 
         chunks = []
@@ -193,7 +193,7 @@ class DocumentChunker:
 
         return chunks
 
-    def _semantic_chunk(self, text: str) -> List[Dict[str, any]]:
+    def _semantic_chunk(self, text: str) -> list[dict[str, any]]:
         """Sentence-based semantic chunks"""
 
         # Split into sentences
@@ -232,7 +232,7 @@ class DocumentChunker:
 
         return chunks
 
-    def _find_split_pos(self, text: str, separators: List[str]) -> int:
+    def _find_split_pos(self, text: str, separators: list[str]) -> int:
         """Find best position to split text"""
 
         for sep in separators:
@@ -291,7 +291,7 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-from typing import List, Optional, Dict, Any
+from typing import List, Any
 import requests
 from qdrant_client import QdrantClient
 from qdrant_client.models import Distance, VectorParams, PointStruct
@@ -334,16 +334,16 @@ app = FastAPI(title="RAG Service", lifespan=lifespan)
 
 class Document(BaseModel):
     text: str
-    metadata: Optional[Dict[str, Any]] = {}
+    metadata: dict[str, Any] | None = {}
 
 class Query(BaseModel):
     question: str
     top_k: int = 3
-    filter_metadata: Optional[Dict[str, Any]] = None
+    filter_metadata: dict[str, Any] | None = None
 
 class RAGResponse(BaseModel):
     answer: str
-    sources: List[Dict[str, Any]]
+    sources: list[dict[str, Any]]
     query_time: float
 
 @app.get("/")
@@ -851,7 +851,7 @@ for model_name, model_results in results.items():
 
 ```python
 # ~/lab-002-rag/services/rag/reranker.py
-from typing import List, Dict, Any
+from typing import Any
 import numpy as np
 from sentence_transformers import CrossEncoder
 
@@ -868,9 +868,9 @@ class ReRanker:
     def rerank(
         self,
         query: str,
-        results: List[Dict[str, Any]],
+        results: list[dict[str, Any]],
         top_k: int = 5
-    ) -> List[Dict[str, Any]]:
+    ) -> list[dict[str, Any]]:
         """
         Re-rank results using cross-encoder
 

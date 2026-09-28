@@ -1,7 +1,7 @@
 ---
 Document ID: PROJECT-004
 Title: "CAPSTONE PROJECT 004: Quantize LLM from Scratch"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -91,10 +91,10 @@ GPTQ: Post-Training Quantization
 """
 
 import numpy as np
-from typing import Tuple, List
+
 
 def gptq_quantize(weights: np.ndarray, bits: int = 4,
-                  group_size: int = 128) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
+                  group_size: int = 128) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     """
     GPTQ quantization algorithm
 
@@ -173,7 +173,7 @@ AWQ: Activation-aware Quantization
 """
 
 def awq_quantize(weights: np.ndarray, activations: np.ndarray,
-                bits: int = 4) -> Tuple[np.ndarray, np.ndarray]:
+                bits: int = 4) -> tuple[np.ndarray, np.ndarray]:
     """
     AWQ quantization considering activation magnitude
 

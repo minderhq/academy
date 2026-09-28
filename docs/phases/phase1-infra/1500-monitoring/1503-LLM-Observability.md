@@ -3,7 +3,7 @@ Document ID: 1503
 Title: LLM Observability
 Phase: 1
 Module: 1500
-Last Updated: 2026-09-27
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -153,8 +153,8 @@ class LLMMetricsCollector:
         prompt: str,
         response: str,
         start_time: float,
-        first_token_time: Optional[float] = None,
-        end_time: Optional[float] = None,
+        first_token_time: float | None = None,
+        end_time: float | None = None,
         cache_hit_tokens: int = 0
     ) -> LLMRequestMetrics:
         """Record metrics for a request"""
@@ -389,7 +389,7 @@ if __name__ == "__main__":
 # quality_metrics.py
 
 from difflib import SequenceMatcher
-from typing import Optional
+
 
 class LLMQualityMonitor:
     """Monitor LLM response quality"""
@@ -401,7 +401,7 @@ class LLMQualityMonitor:
         self,
         prompt: str,
         response: str,
-        expected_response: Optional[str] = None
+        expected_response: str | None = None
     ) -> dict:
         """Evaluate response quality"""
 

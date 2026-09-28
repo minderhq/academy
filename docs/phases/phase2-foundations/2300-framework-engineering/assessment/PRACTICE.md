@@ -3,7 +3,7 @@ Document ID: 2300-PRACTICE
 Title: "2300: Framework Engineering - Practice Exercises"
 Phase: 2
 Module: 2300
-Last Updated: 2026-09-27
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 2.5 hours
@@ -48,10 +48,10 @@ Implement a complete model abstraction layer that supports both PyTorch and Tens
 
 ```python
 from abc import ABC, abstractmethod
-from typing import Dict, Any
+from typing import Any
 
 class BaseModel(ABC):
-    def __init__(self, config: Dict[str, Any]):
+    def __init__(self, config: dict[str, Any]):
         self.config = config
 
     @abstractmethod
@@ -78,13 +78,13 @@ import torch
 import torch.nn as nn
 import tensorflow as tf
 import numpy as np
-from typing import Dict, Any
+from typing import Any
 
 # Base Model (Complete)
 class BaseModel(ABC):
     """Abstract base class for framework-agnostic models."""
 
-    def __init__(self, config: Dict[str, Any]):
+    def __init__(self, config: dict[str, Any]):
         self.config = config
         self.metrics_history = []
 
@@ -110,7 +110,7 @@ class BaseModel(ABC):
 class PyTorchModel(BaseModel):
     """PyTorch implementation of BaseModel."""
 
-    def __init__(self, config: Dict[str, Any]):
+    def __init__(self, config: dict[str, Any]):
         super().__init__(config)
 
         # Build model
@@ -189,7 +189,7 @@ class PyTorchModel(BaseModel):
 class TensorFlowModel(BaseModel):
     """TensorFlow implementation of BaseModel."""
 
-    def __init__(self, config: Dict[str, Any]):
+    def __init__(self, config: dict[str, Any]):
         super().__init__(config)
 
         # Build model
@@ -342,7 +342,7 @@ Create a plugin system for custom metrics with registration, discovery, and dyna
 ### Solution
 
 ```python
-from typing import Dict, Any, List
+from typing import Any, List
 import importlib.util
 import os
 import json
@@ -392,15 +392,15 @@ class MetricRegistry:
             raise ValueError(f"Metric '{name}' not found")
         return metric_class(**kwargs)
 
-    def list_all(self) -> List[str]:
+    def list_all(self) -> list[str]:
         """List all registered metrics."""
         return list(self._metrics.keys())
 
-    def get_metadata(self, name: str) -> Dict[str, Any]:
+    def get_metadata(self, name: str) -> dict[str, Any]:
         """Get metadata for a metric."""
         return self._metadata.get(name, {})
 
-    def load_from_file(self, filepath: str, metric_names: List[str] = None):
+    def load_from_file(self, filepath: str, metric_names: list[str] = None):
         """
         Dynamically load metrics from a Python file.
 
@@ -694,7 +694,7 @@ Implement a production-ready batching server with dynamic batching, priority sup
 import time
 import threading
 import uuid
-from typing import Dict, Any, List, Optional
+from typing import Any, List
 from queue import PriorityQueue
 from dataclasses import dataclass, field
 from enum import Enum
@@ -740,8 +740,8 @@ class BatchingServer:
 
         # Request queue
         self.queue = PriorityQueue()
-        self.pending_requests: Dict[str, Request] = {}
-        self.results: Dict[str, Any] = {}
+        self.pending_requests: dict[str, Request] = {}
+        self.results: dict[str, Any] = {}
 
         # Statistics
         self.stats = {
@@ -826,7 +826,7 @@ class BatchingServer:
         if batch:
             self._process_batch(batch)
 
-    def _process_batch(self, batch: List[Request]):
+    def _process_batch(self, batch: list[Request]):
         """
         Process a batch of requests.
 
@@ -868,7 +868,7 @@ class BatchingServer:
             self.stats["total_latency"] += latency
             self.stats["avg_latency"] = self.stats["total_latency"] / self.stats["total_batches"]
 
-    def _run_inference(self, batch_inputs: List[Any]) -> List[Any]:
+    def _run_inference(self, batch_inputs: list[Any]) -> list[Any]:
         """
         Run inference on batch (mock implementation).
 
@@ -911,7 +911,7 @@ class BatchingServer:
 
         print(f"Shutdown complete. Processed {self.stats['total_requests']} requests.")
 
-    def get_stats(self) -> Dict[str, Any]:
+    def get_stats(self) -> dict[str, Any]:
         """Get server statistics."""
         with self.lock:
             return self.stats.copy()

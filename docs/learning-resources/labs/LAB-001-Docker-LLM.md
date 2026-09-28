@@ -111,7 +111,7 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import requests
 import json
-from typing import List, Optional
+from typing import List
 
 app = FastAPI(title="LLM API")
 
@@ -123,9 +123,9 @@ class Message(BaseModel):
 
 class ChatRequest(BaseModel):
     model: str = "mistral"
-    messages: List[Message]
+    messages: list[Message]
     stream: bool = False
-    temperature: Optional[float] = 0.7
+    temperature: float | None = 0.7
 
 class ChatResponse(BaseModel):
     message: Message
@@ -514,7 +514,7 @@ from pydantic import BaseModel
 import requests
 import redis
 import json
-from typing import List, Optional
+
 import os
 
 app = FastAPI(title="LLM API with Memory")
@@ -531,10 +531,10 @@ class Message(BaseModel):
 
 class ChatRequest(BaseModel):
     model: str = "mistral"
-    messages: List[Message]
+    messages: list[Message]
     stream: bool = False
-    temperature: Optional[float] = 0.7
-    session_id: Optional[str] = None  # New: session support
+    temperature: float | None = 0.7
+    session_id: str | None = None  # New: session support
 
 @app.post("/v1/chat/completions")
 def chat_completions(request: ChatRequest):

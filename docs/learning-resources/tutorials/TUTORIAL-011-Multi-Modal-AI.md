@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-011
 Title: "TUTORIAL-011: Multi-Modal AI"
-Last Updated: 2026-09-27
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Advanced
 ---
@@ -247,7 +247,7 @@ zero_shot_classification(
 
 ```python
 import numpy as np
-from typing import List, Tuple
+
 
 # CLIPModel/CLIPProcessor/torch/PIL Image come from Part 1's import
 # header (this tutorial's blocks run top-down)
@@ -264,7 +264,7 @@ class MultiModalRetriever:
         self.images = []
         self.captions = []
 
-    def index(self, images: List[str], captions: List[str]):
+    def index(self, images: list[str], captions: list[str]):
         """Index images with captions"""
         for img_path, caption in zip(images, captions):
             image = Image.open(img_path).convert("RGB")
@@ -287,7 +287,7 @@ class MultiModalRetriever:
             self.images.append(image)
             self.captions.append(caption)
 
-    def search_by_text(self, query: str, k: int = 5) -> List[Tuple[str, float]]:
+    def search_by_text(self, query: str, k: int = 5) -> list[tuple[str, float]]:
         """Search images by text query"""
         # Get query embedding
         inputs = self.clip_processor(text=[query], return_tensors="pt", padding=True)
@@ -309,7 +309,7 @@ class MultiModalRetriever:
 
         return [(self.captions[i], similarities[i]) for i in indices]
 
-    def search_by_image(self, image_path: str, k: int = 5) -> List[Tuple[str, float]]:
+    def search_by_image(self, image_path: str, k: int = 5) -> list[tuple[str, float]]:
         """Search captions by image"""
         image = Image.open(image_path).convert("RGB")
 
@@ -557,7 +557,7 @@ class MultiModalRAG:
 
     def index_documents(
         self,
-        documents: List[dict],
+        documents: list[dict],
         id_start: int = 0
     ):
         """Index multimodal documents"""
@@ -593,7 +593,7 @@ class MultiModalRAG:
             points=points
         )
 
-    def search(self, query: str, k: int = 5) -> List[dict]:
+    def search(self, query: str, k: int = 5) -> list[dict]:
         """Search with text query"""
         inputs = self.processor(text=[query], return_tensors="pt")
 
@@ -611,7 +611,7 @@ class MultiModalRAG:
 
         return results
 
-    def search_by_image(self, image_path: str, k: int = 5) -> List[dict]:
+    def search_by_image(self, image_path: str, k: int = 5) -> list[dict]:
         """Search with image query"""
         image = Image.open(image_path).convert("RGB")
 

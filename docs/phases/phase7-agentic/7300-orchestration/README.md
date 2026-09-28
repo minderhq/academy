@@ -1,7 +1,7 @@
 ---
 Document ID: 7300-ORCHESTRATION-README
 Title: "[7300]: Multi-Agent Orchestration"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Beginner
 ---
@@ -122,10 +122,10 @@ See [PREREQUISITES.md](./PREREQUISITES.md) for detailed requirements.
 
 ```python
 from langgraph.graph import StateGraph
-from typing import TypedDict, List
+from typing import TypedDict
 
 class AgentState(TypedDict):
-    messages: List[str]
+    messages: list[str]
     current_step: str
     research_data: dict
     draft_content: str
@@ -229,7 +229,7 @@ class SequentialWorkflow:
 ```python
 import autogen
 
-async def parallel_analysis(task: str, documents: List[str]):
+async def parallel_analysis(task: str, documents: list[str]):
     """Run multiple agents in parallel"""
 
     # Create specialized agents

@@ -193,7 +193,7 @@ The planner's parsed `agent` field is a **roster key**: whatever executes the pl
 
 ```python
 import re
-from typing import Dict, List
+from typing import Dict
 
 
 class StubLLM:
@@ -213,7 +213,7 @@ class DomainPlanner:
     def __init__(self, llm):
         self.llm = llm
 
-    def create_plan(self, task: str) -> List[Dict]:
+    def create_plan(self, task: str) -> list[Dict]:
         """Create plan with agent assignments."""
         prompt = f"""
         Task: {task}
@@ -237,7 +237,7 @@ class DomainPlanner:
         response = self.llm.generate(prompt)
         return self._parse_plan(response)
 
-    def _parse_plan(self, response: str) -> List[Dict]:
+    def _parse_plan(self, response: str) -> list[Dict]:
         """Parse plan into steps with agent assignments."""
         steps = []
 
@@ -431,7 +431,7 @@ Use hierarchy when work decomposes along team boundaries and you want one accoun
 No coordinator: agents bid on subtasks and first-come-first-served negotiation assigns them. The negotiation must handle **overlapping bids** — two specialists claiming the same work — explicitly, or the losing bid vanishes silently:
 
 ```python
-from typing import Dict, List
+from typing import Dict
 
 
 class BiddingAgent:
@@ -456,7 +456,7 @@ class BiddingAgent:
 class PeerSwarm:
     """Peer-to-peer agent collaboration: agents negotiate directly."""
 
-    def __init__(self, agents: Dict[str, BiddingAgent]):
+    def __init__(self, agents: dict[str, BiddingAgent]):
         self.agents = agents
         self.communicator = Communicator()
         for name, agent in agents.items():
@@ -487,10 +487,10 @@ class PeerSwarm:
         # 5. Integrate results
         return self._integrate_results(results)
 
-    def _negotiate_assignments(self, bids: List[Dict]) -> Dict:
+    def _negotiate_assignments(self, bids: list[Dict]) -> Dict:
         """First-come, first-served: a later bid for already-claimed work
         is dropped with a warning instead of overwriting the assignment."""
-        assignments: Dict[str, Dict] = {}
+        assignments: dict[str, Dict] = {}
         dropped = []
 
         for bid in bids:
@@ -505,7 +505,7 @@ class PeerSwarm:
 
         return assignments
 
-    def _integrate_results(self, results: Dict[str, str]) -> str:
+    def _integrate_results(self, results: dict[str, str]) -> str:
         return " ; ".join(f"{agent}: {res}" for agent, res in results.items())
 
 
@@ -584,7 +584,7 @@ class ConflictResolver:
         m = re.search(r"choose\s+(\w+)", response, re.IGNORECASE)
         return m.group(1) if m else None
 
-    def voting(self, proposals: Dict[str, str], voters: List) -> str:
+    def voting(self, proposals: dict[str, str], voters: List) -> str:
         """Deterministic fallback: majority vote over proposal keys.
 
         Ties go to the first key in proposals insertion order — documented,
@@ -622,7 +622,7 @@ class Voter:
     def __init__(self, choice: str):
         self.choice = choice
 
-    def vote(self, proposals: Dict[str, str]) -> str:
+    def vote(self, proposals: dict[str, str]) -> str:
         return self.choice
 
 
@@ -643,7 +643,7 @@ The maintenance loop is **bounded** (`max_cycles`) so demos and tests terminate;
 
 ```python
 import time
-from typing import Dict, List
+from typing import Dict
 
 
 class MonitoringAgent:
@@ -705,7 +705,7 @@ class LabSwarm:
             "deployer": DeploymentAgent(),
         }
 
-    def run_cycle(self) -> List[str]:
+    def run_cycle(self) -> list[str]:
         """One monitor -> analyze -> prioritize -> route pass."""
         status = self.agents["monitor"].check_status()
         issues = self.agents["analyzer"].analyze(status)
@@ -730,7 +730,7 @@ class LabSwarm:
                 break
             time.sleep(interval_s)
 
-    def _prioritize(self, issues: List[Dict]) -> List[Dict]:
+    def _prioritize(self, issues: list[Dict]) -> list[Dict]:
         return sorted(issues, key=lambda x: x["severity"], reverse=True)
 
 

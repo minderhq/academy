@@ -14,7 +14,7 @@ Difficulty: Advanced
 
 ```python
 import re
-from typing import Dict, List, Optional, Any
+from typing import Any
 import time
 
 class InputValidator:
@@ -49,7 +49,7 @@ class InputValidator:
             "eval(", "setTimeout(", "setInterval(",
         ]
 
-    def validate_input(self, user_input: str) -> Dict[str, Any]:
+    def validate_input(self, user_input: str) -> dict[str, Any]:
         """
         Comprehensive input validation with multiple security checks.
 
@@ -153,7 +153,7 @@ class InputValidator:
 
         return sanitized
 
-    def validate_code_input(self, code: str) -> Dict[str, Any]:
+    def validate_code_input(self, code: str) -> dict[str, Any]:
         """
         Validate code execution requests with comprehensive security checks.
 
@@ -301,7 +301,7 @@ if __name__ == "__main__":
 
 ```python
 import re
-from typing import Dict, List, Any
+from typing import Dict, Any
 
 class OutputFilter:
     """
@@ -337,7 +337,7 @@ class OutputFilter:
             "process_id": r"\bPID:\s*\d+",
         }
 
-    def filter_output(self, output: str) -> Dict[str, Any]:
+    def filter_output(self, output: str) -> dict[str, Any]:
         """
         Filter agent output for sensitive information.
 
@@ -419,7 +419,7 @@ class OutputFilter:
 
         return result
 
-    def _count_by_type(self, redactions: List[Dict]) -> Dict[str, int]:
+    def _count_by_type(self, redactions: list[Dict]) -> dict[str, int]:
         """Count redactions by type."""
         counts = {}
         for r in redactions:
@@ -480,7 +480,7 @@ class OutputFilter:
 
         return sanitized
 
-    def check_for_pii(self, text: str) -> Dict[str, Any]:
+    def check_for_pii(self, text: str) -> dict[str, Any]:
         """
         Check text for Personally Identifiable Information (PII).
 
@@ -600,7 +600,7 @@ from RestrictedPython.Eval import default_guarded_getiter
 from RestrictedPython.Guards import guarded_iter_unpack_sequence
 import signal
 import time
-from typing import Dict, Any, List
+from typing import Any
 
 class SandboxExecutor:
     """
@@ -662,7 +662,7 @@ class SandboxExecutor:
             "blocked_executions": 0,
         }
 
-    def execute(self, code: str, timeout: int = 5) -> Dict[str, Any]:
+    def execute(self, code: str, timeout: int = 5) -> dict[str, Any]:
         """
         Execute code in sandboxed environment with timeout.
 
@@ -753,7 +753,7 @@ class SandboxExecutor:
 
         return result
 
-    def is_safe_to_execute(self, code: str) -> Dict[str, Any]:
+    def is_safe_to_execute(self, code: str) -> dict[str, Any]:
         """
         Quick safety check before execution.
 
@@ -847,7 +847,7 @@ class SandboxExecutor:
 
         return safety_result
 
-    def get_stats(self) -> Dict[str, Any]:
+    def get_stats(self) -> dict[str, Any]:
         """Get execution statistics."""
         return {
             **self.execution_stats,
@@ -978,7 +978,7 @@ if __name__ == "__main__":
 
 ```python
 import re
-from typing import Dict, List, Any
+from typing import Any
 
 class PromptInjectionDefender:
     """
@@ -1040,7 +1040,7 @@ class PromptInjectionDefender:
             "mixed_case_injection": r"[A-Z]{3,}[a-z]{3,}[A-Z]{3,}",
         }
 
-    def check_for_injection(self, user_input: str) -> Dict[str, Any]:
+    def check_for_injection(self, user_input: str) -> dict[str, Any]:
         """
         Check for prompt injection attempts with detailed analysis.
 
@@ -1125,7 +1125,7 @@ class PromptInjectionDefender:
 
         return result
 
-    def sanitize_prompt(self, system_prompt: str, user_input: str) -> Dict[str, Any]:
+    def sanitize_prompt(self, system_prompt: str, user_input: str) -> dict[str, Any]:
         """
         Combine system prompt with user input safely.
 
@@ -1324,7 +1324,7 @@ if __name__ == "__main__":
 ```python
 from collections import defaultdict
 import time
-from typing import Dict, Any, List
+from typing import Any
 import threading
 
 class RateLimiter:
@@ -1345,7 +1345,7 @@ class RateLimiter:
         """
         self.max_requests = max_requests
         self.window_seconds = window_seconds
-        self.requests: Dict[str, List[float]] = defaultdict(list)
+        self.requests: dict[str, list[float]] = defaultdict(list)
         self.lock = threading.Lock()
 
         # Statistics
@@ -1356,7 +1356,7 @@ class RateLimiter:
             "users_seen": set(),
         }
 
-    def is_allowed(self, user_id: str) -> Dict[str, Any]:
+    def is_allowed(self, user_id: str) -> dict[str, Any]:
         """
         Check if request is allowed for user with sliding window.
 
@@ -1411,7 +1411,7 @@ class RateLimiter:
 
         return result
 
-    def get_usage_stats(self, user_id: str) -> Dict[str, Any]:
+    def get_usage_stats(self, user_id: str) -> dict[str, Any]:
         """
         Get detailed usage statistics for a specific user.
 
@@ -1438,7 +1438,7 @@ class RateLimiter:
                 "request_times": recent_requests,
             }
 
-    def get_global_stats(self) -> Dict[str, Any]:
+    def get_global_stats(self) -> dict[str, Any]:
         """Get global statistics across all users."""
         with self.lock:
             return {
@@ -1524,7 +1524,7 @@ if __name__ == "__main__":
 import json
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import List, Dict, Any, Optional
+from typing import List, Dict, Any
 import threading
 
 class AuditLogger:
@@ -1557,7 +1557,7 @@ class AuditLogger:
         action: str,
         input_data: str,
         output_data: str,
-        metadata: Optional[Dict] = None,
+        metadata: Dict | None = None,
     ):
         """
         Log an agent action with full context.
@@ -1659,9 +1659,9 @@ class AuditLogger:
     def get_logs_for_user(
         self,
         user_id: str,
-        date: Optional[str] = None,
+        date: str | None = None,
         limit: int = 100
-    ) -> List[Dict]:
+    ) -> list[Dict]:
         """
         Retrieve logs for a specific user.
 
@@ -1701,7 +1701,7 @@ class AuditLogger:
     def get_security_events(
         self,
         hours: int = 24
-    ) -> List[Dict]:
+    ) -> list[Dict]:
         """
         Retrieve security-related events from recent logs.
 
@@ -1755,7 +1755,7 @@ class AuditLogger:
 
         return security_events
 
-    def generate_security_report(self) -> Dict[str, Any]:
+    def generate_security_report(self) -> dict[str, Any]:
         """
         Generate a comprehensive security report from audit logs.
 
@@ -1870,7 +1870,7 @@ if __name__ == "__main__":
 ```python
 from collections import defaultdict
 import time
-from typing import Dict, List, Any, Optional
+from typing import Dict, Any
 import threading
 
 class SecurityMonitor:
@@ -1891,24 +1891,24 @@ class SecurityMonitor:
         }
 
         # Track violations and alerts
-        self.violation_counts: Dict[str, int] = defaultdict(int)
-        self.alerts: List[Dict] = []
+        self.violation_counts: dict[str, int] = defaultdict(int)
+        self.alerts: list[Dict] = []
         self.lock = threading.Lock()
 
         # User risk scores
-        self.user_risk_scores: Dict[str, float] = defaultdict(float)
+        self.user_risk_scores: dict[str, float] = defaultdict(float)
 
         # Security event history
-        self.event_history: List[Dict] = []
+        self.event_history: list[Dict] = []
 
     def monitor_request(
         self,
         user_id: str,
-        injection_check: Optional[Dict] = None,
-        rate_limit_check: Optional[Dict] = None,
-        code_execution_check: Optional[Dict] = None,
-        additional_context: Optional[Dict] = None,
-    ) -> Dict[str, Any]:
+        injection_check: Dict | None = None,
+        rate_limit_check: Dict | None = None,
+        code_execution_check: Dict | None = None,
+        additional_context: Dict | None = None,
+    ) -> dict[str, Any]:
         """
         Monitor a request for security issues.
 
@@ -2032,7 +2032,7 @@ class SecurityMonitor:
             if self.user_risk_scores[user_id] < 1.0:
                 del self.user_risk_scores[user_id]
 
-    def get_security_summary(self) -> Dict[str, Any]:
+    def get_security_summary(self) -> dict[str, Any]:
         """
         Get summary of security status.
 
@@ -2077,7 +2077,7 @@ class SecurityMonitor:
         # Block if more than 10 violations or risk score > 80
         return total_violations > 10 or self.user_risk_scores.get(user_id, 0) > 80
 
-    def get_user_security_profile(self, user_id: str) -> Dict[str, Any]:
+    def get_user_security_profile(self, user_id: str) -> dict[str, Any]:
         """
         Get detailed security profile for a user.
 

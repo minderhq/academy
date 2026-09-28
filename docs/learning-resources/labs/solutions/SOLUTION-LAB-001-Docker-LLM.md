@@ -108,7 +108,7 @@ Create a FastAPI wrapper for Ollama.
 # ~/lab-001-docker-llm/services/app/main.py
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
-from typing import List, Optional
+from typing import List
 import requests
 import json
 import logging
@@ -134,10 +134,10 @@ class Message(BaseModel):
 
 class ChatRequest(BaseModel):
     model: str = Field(default="mistral", description="Model name")
-    messages: List[Message] = Field(..., min_items=1)
+    messages: list[Message] = Field(..., min_items=1)
     stream: bool = Field(default=False)
-    temperature: Optional[float] = Field(default=0.7, ge=0.0, le=2.0)
-    max_tokens: Optional[int] = Field(default=512, ge=1, le=4096)
+    temperature: float | None = Field(default=0.7, ge=0.0, le=2.0)
+    max_tokens: int | None = Field(default=512, ge=1, le=4096)
 
 
 class ChatResponse(BaseModel):
@@ -418,7 +418,7 @@ Implement persistent chat history using file-based storage.
 import json
 import os
 from datetime import datetime, timezone
-from typing import List, Dict
+from typing import Dict
 from pathlib import Path
 
 STORAGE_DIR = Path("/app/data/chats")
@@ -433,7 +433,7 @@ class ChatHistory:
         self.file_path = STORAGE_DIR / f"{session_id}.json"
         self.history = self._load_history()
 
-    def _load_history(self) -> List[Dict]:
+    def _load_history(self) -> list[Dict]:
         """Load history from file."""
         if self.file_path.exists():
             with open(self.file_path, "r") as f:
@@ -454,7 +454,7 @@ class ChatHistory:
         })
         self._save_history()
 
-    def get_history(self, limit: int = 10) -> List[Dict]:
+    def get_history(self, limit: int = 10) -> list[Dict]:
         """Get recent messages."""
         return self.history[-limit:]
 

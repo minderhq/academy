@@ -1118,7 +1118,7 @@ def evaluate_honesty(response: str, reference: str) -> float:
 
     return min(score, 1.0)
 
-def evaluate_instruction_following(query: str, response: str, instructions: List[str]) -> float:
+def evaluate_instruction_following(query: str, response: str, instructions: list[str]) -> float:
     """
     Evaluate if the model followed instructions.
     """

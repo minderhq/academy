@@ -50,6 +50,12 @@ stand today?" without running each tool by hand.
                        (KW-01 langchain constructor kwargs, KW-02 removed
                        qdrant .search kwargs) - hard gate since the
                        query_points migration drained (tick-220)
+    typing_legacy_scan legacy typing spellings in python fences (TL-01:
+                       Optional[ Union[ List[ Dict[ Tuple[ Set[
+                       FrozenSet[ Type[) - hard gate since the PEP
+                       585/604 modernization epic drained (typing /3);
+                       4-backtick super-fence teaching content is
+                       invisible to the fence model by design
   queue gate (drain in progress; never fails the report unless --fail-on-queue):
     objectives_lint    template-objective artifacts (OL-01/OL-02), phase by phase
     fence_namecheck    names used in a python fence that no fence in the
@@ -102,6 +108,7 @@ GATES = [
     ("objectives_lint.py", "objectives_lint", False),
     ("fence_namecheck.py", "fence_namecheck", False),
     ("kwarg_lint.py", "kwarg_lint", True),
+    ("typing_legacy_scan.py", "typing_legacy_scan", True),
 ]
 
 

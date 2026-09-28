@@ -312,12 +312,12 @@ with torch.no_grad():
 
 ### Type Hints
 ```python
-from typing import List, Dict, Optional, Union
+
 
 def process_data(
-    data: List[Dict[str, Union[str, int]]],
-    threshold: Optional[float] = None
-) -> Dict[str, float]:
+    data: list[dict[str, str | int]],
+    threshold: float | None = None
+) -> dict[str, float]:
     """Process data with type hints"""
     if threshold is None:
         threshold = 0.5

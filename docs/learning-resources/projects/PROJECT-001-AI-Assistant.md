@@ -41,7 +41,7 @@ Build a fully-functional AI assistant that can:
 :warning: **This project requires INTERMEDIATE Python skills:**
 - Classes and OOP (`class VectorStore:`, `def __init__`)
 - Async/await (`async def query()`, `await client.search()`)
-- Type hints (`def query(self, text: str) -> List[dict]`)
+- Type hints (`def query(self, text: str) -> list[dict]`)
 - Error handling (`try/except`, custom exceptions)
 - Working with APIs (`requests.post()`, JSON responses)
 
@@ -459,7 +459,7 @@ driver.close()
 # ~/ai-assistant/services/rag/rag_service.py
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-from typing import List, Optional
+
 import requests
 from qdrant_client import QdrantClient
 from neo4j import GraphDatabase
@@ -490,8 +490,8 @@ class Query(BaseModel):
 
 class RAGResponse(BaseModel):
     answer: str
-    vector_sources: List[dict]
-    graph_sources: List[dict]
+    vector_sources: list[dict]
+    graph_sources: list[dict]
     query_time: float
 
 @app.get("/health")
@@ -601,7 +601,7 @@ Answer:"""
         query_time=query_time
     )
 
-def extract_entities(text: str) -> List[str]:
+def extract_entities(text: str) -> list[str]:
     """Extract entity names from text"""
     # Simple keyword extraction
     keywords = ['Docker', 'Kubernetes', 'Python', 'FastAPI', 'Neo4j', 'Qdrant']
@@ -656,7 +656,7 @@ CMD ["uvicorn", "rag_service:app", "--host", "0.0.0.0", "--port", "8001"]
 # ~/ai-assistant/services/agent/agent_service.py
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-from typing import List, Optional, Dict, Any
+from typing import List, Dict, Any
 import requests
 import json
 import re
@@ -677,15 +677,15 @@ class Message(BaseModel):
     content: str
 
 class ChatRequest(BaseModel):
-    messages: List[Message]
+    messages: list[Message]
     session_id: str
     use_rag: bool = True
     use_tools: bool = True
 
 class ChatResponse(BaseModel):
     response: str
-    thought_process: List[Dict[str, Any]]
-    tools_used: List[str]
+    thought_process: list[dict[str, Any]]
+    tools_used: list[str]
 
 class ReActAgent:
     """ReAct: Reasoning + Acting Agent"""
@@ -693,7 +693,7 @@ class ReActAgent:
     def __init__(self):
         self.memory = {}  # In production, use Redis
 
-    async def run(self, messages: List[Message], session_id: str,
+    async def run(self, messages: list[Message], session_id: str,
                   use_rag: bool = True, use_tools: bool = True) -> ChatResponse:
         """Run ReAct loop"""
 
@@ -768,7 +768,7 @@ class ReActAgent:
             tools_used=tools_used
         )
 
-    async def _think(self, query: str, history: List[Dict]) -> str:
+    async def _think(self, query: str, history: list[Dict]) -> str:
         """Initial reasoning about the query"""
 
         prompt = f"""You are an AI assistant. Think about what the user is asking.
@@ -793,7 +793,7 @@ Thought:"""
         question_words = ['what', 'how', 'why', 'explain', 'describe', 'tell me']
         return any(qw in query.lower() for qw in question_words)
 
-    async def _plan(self, query: str, thought: str, knowledge: Optional[str]) -> Dict:
+    async def _plan(self, query: str, thought: str, knowledge: str | None) -> Dict:
         """Plan what actions to take"""
 
         # Check if tools are needed
@@ -828,7 +828,7 @@ Thought:"""
             return {"error": str(e)}
 
     def _build_prompt(self, query: str, thought: str,
-                     knowledge: Optional[str], thought_process: List) -> str:
+                     knowledge: str | None, thought_process: List) -> str:
         """Build final prompt"""
 
         prompt = f"""You are a helpful AI assistant with access to tools and knowledge.
@@ -895,7 +895,7 @@ if __name__ == "__main__":
 # ~/ai-assistant/services/tools/tool_executor.py
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-from typing import Dict, Any
+from typing import Any
 import subprocess
 import docker
 import tempfile
@@ -908,7 +908,7 @@ docker_client = docker.from_env()
 class ToolRequest(BaseModel):
     query: str
 
-def execute_python_code(code: str) -> Dict[str, Any]:
+def execute_python_code(code: str) -> dict[str, Any]:
     """Execute Python code in sandbox"""
 
     with tempfile.NamedTemporaryFile(mode='w', suffix='.py', delete=False) as f:
@@ -937,7 +937,7 @@ def execute_python_code(code: str) -> Dict[str, Any]:
     finally:
         os.unlink(temp_file)
 
-def execute_shell_command(command: str) -> Dict[str, Any]:
+def execute_shell_command(command: str) -> dict[str, Any]:
     """Execute shell command (whitelisted only)"""
 
     # Whitelist of safe commands

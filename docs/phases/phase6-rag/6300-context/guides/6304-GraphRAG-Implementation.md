@@ -3,7 +3,7 @@ Document ID: 6304
 Title: "6304: GraphRAG Implementation Guide"
 Phase: 6
 Module: 6300
-Last Updated: 2026-09-27
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -93,7 +93,7 @@ Complete implementation guide for GraphRAG (Knowledge Graph-enhanced Retrieval A
 ```python
 # graph_construction.py
 from neo4j import GraphDatabase
-from typing import List, Dict, Any
+from typing import Dict, Any
 import json
 
 class KnowledgeGraphBuilder:
@@ -121,8 +121,8 @@ class KnowledgeGraphBuilder:
         doc_id: str,
         title: str,
         content: str,
-        entities: List[Dict[str, Any]],
-        relationships: List[Dict[str, Any]],
+        entities: list[dict[str, Any]],
+        relationships: list[dict[str, Any]],
     ):
         """Add document with entities and relationships to graph"""
 
@@ -167,7 +167,7 @@ class KnowledgeGraphBuilder:
                     description=rel.get("description", "")
                 )
 
-    def get_entity_context(self, entity_id: str, max_depth: int = 2) -> List[Dict]:
+    def get_entity_context(self, entity_id: str, max_depth: int = 2) -> list[Dict]:
         """Get context for an entity via graph traversal"""
 
         # Parameters cannot set variable-length path bounds in Cypher —
@@ -227,7 +227,7 @@ def example_graph_construction():
 from neo4j import GraphDatabase
 from qdrant_client import QdrantClient
 from sentence_transformers import SentenceTransformer
-from typing import List, Dict, Any
+from typing import List, Dict
 
 class GraphRAGSystem:
     """
@@ -259,7 +259,7 @@ class GraphRAGSystem:
         top_k: int = 5,
         graph_depth: int = 2,
         alpha: float = 0.5,  # 1=vector only, 0=graph only
-    ) -> List[Dict]:
+    ) -> list[Dict]:
         """
         Hybrid graph + vector search
 
@@ -299,7 +299,7 @@ class GraphRAGSystem:
 
         return combined_results
 
-    def _extract_entities(self, text: str) -> List[str]:
+    def _extract_entities(self, text: str) -> list[str]:
         """Extract entities from text (simplified)"""
 
         # In production, use NER model
@@ -309,7 +309,7 @@ class GraphRAGSystem:
 
         return entities[:5]
 
-    def _graph_traversal(self, entities: List[str], depth: int = 2) -> Dict[str, float]:
+    def _graph_traversal(self, entities: list[str], depth: int = 2) -> dict[str, float]:
         """
         Traverse the knowledge graph and score DOCUMENTS (not entities):
         the hybrid blend below joins on doc ids, so graph hits must be
@@ -350,10 +350,10 @@ class GraphRAGSystem:
     def _combine_results(
         self,
         vector_results: List,
-        graph_context: Dict[str, float],
+        graph_context: dict[str, float],
         alpha: float,
         top_k: int,
-    ) -> List[Dict]:
+    ) -> list[Dict]:
         """Combine vector and graph results"""
 
         # Normalize scores
@@ -433,7 +433,7 @@ def test_graph_rag():
 ```python
 # multi_hop_reasoning.py
 from neo4j import GraphDatabase
-from typing import List, Dict
+from typing import Dict
 
 class MultiHopReasoner:
     """
@@ -449,7 +449,7 @@ class MultiHopReasoner:
         start_entity: str,
         end_entity: str,
         max_hops: int = 3,
-    ) -> List[Dict]:
+    ) -> list[Dict]:
         """Find reasoning paths between entities"""
 
         # Parameters can't set variable-length path bounds — int-cast
@@ -519,7 +519,7 @@ import json
 
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
-from typing import List, Dict
+from typing import List
 
 class EntityExtractor:
     """
@@ -534,7 +534,7 @@ class EntityExtractor:
             device_map="auto",
         )
 
-    def extract(self, text: str) -> Dict[str, List]:
+    def extract(self, text: str) -> dict[str, List]:
         """Extract entities and relationships from text"""
 
         prompt = f"""Extract entities and relationships from the following text.

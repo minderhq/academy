@@ -1,7 +1,7 @@
 ---
 Document ID: 7103
 Title: "7103: ReAct Agent Implementation Guide"
-Last Updated: 2026-09-27
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Advanced
 ---
@@ -88,7 +88,7 @@ Features:
 
 import json
 import re
-from typing import Dict, List, Optional, Any, Callable
+from typing import Dict, List, Any, Callable
 from dataclasses import dataclass, field
 from enum import Enum
 import torch
@@ -113,9 +113,9 @@ class Thought:
     """A single reasoning step"""
     content: str
     step_number: int
-    action_type: Optional[ActionType] = None
-    action_input: Optional[Dict] = None
-    observation: Optional[str] = None
+    action_type: ActionType | None = None
+    action_input: Dict | None = None
+    observation: str | None = None
     confidence: float = 0.5
 
     def to_dict(self) -> Dict:
@@ -135,7 +135,7 @@ class Tool:
     name: str
     description: str
     function: Callable
-    parameters: Dict[str, Any] = field(default_factory=dict)
+    parameters: dict[str, Any] = field(default_factory=dict)
 
     def validate_input(self, input_data: Dict) -> bool:
         """Validate input against required parameters"""
@@ -161,17 +161,17 @@ class ToolRegistry:
     """Registry of available tools"""
 
     def __init__(self):
-        self.tools: Dict[str, Tool] = {}
+        self.tools: dict[str, Tool] = {}
 
     def register(self, tool: Tool):
         """Register a new tool"""
         self.tools[tool.name] = tool
 
-    def get(self, name: str) -> Optional[Tool]:
+    def get(self, name: str) -> Tool | None:
         """Get a tool by name"""
         return self.tools.get(name)
 
-    def list_tools(self) -> List[str]:
+    def list_tools(self) -> list[str]:
         """List all available tools"""
         return list(self.tools.keys())
 
@@ -189,8 +189,8 @@ class MemorySystem:
     """Memory system for the agent"""
 
     def __init__(self, qdrant_url: str = "http://192.168.1.100:6334"):
-        self.short_term: List[Dict] = []
-        self.episodic: List[Dict] = []
+        self.short_term: list[Dict] = []
+        self.episodic: list[Dict] = []
 
         # Long-term memory
         self.qdrant = QdrantClient(url=qdrant_url)
@@ -227,7 +227,7 @@ class MemorySystem:
         """Add a complete episode to episodic memory"""
         self.episodic.append(episode)
 
-    def search_long_term(self, query: str, k: int = 5) -> List[Dict]:
+    def search_long_term(self, query: str, k: int = 5) -> list[Dict]:
         """Search long-term memory"""
         # This would use embeddings - simplified here
         return []
@@ -270,7 +270,7 @@ class ReActAgent:
         self._register_default_tools()
 
         # Execution trace
-        self.trace: List[Thought] = []
+        self.trace: list[Thought] = []
 
     def _register_default_tools(self):
         """Register default tools"""
@@ -323,7 +323,7 @@ class ReActAgent:
         except Exception as e:
             return f"Error: {str(e)}"
 
-    def _format_prompt(self, query: str, history: List[Thought] = None) -> str:
+    def _format_prompt(self, query: str, history: list[Thought] = None) -> str:
         """Format prompt for the LLM"""
 
         tool_descriptions = self.tools.get_tool_descriptions()

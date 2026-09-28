@@ -229,7 +229,7 @@ Semantic Chunking
 =================
 """
 
-from typing import List, Dict
+from typing import Dict
 import numpy as np
 from sentence_transformers import SentenceTransformer
 
@@ -240,7 +240,7 @@ class SemanticChunker:
         self.model = SentenceTransformer(model_name)
 
     def chunk(self, text: str, max_chunk_size: int = 500,
-             overlap: int = 50) -> List[Dict]:
+             overlap: int = 50) -> list[Dict]:
         """Chunk text semantically"""
 
         # Split into sentences
@@ -278,7 +278,7 @@ class SemanticChunker:
 
         return chunks
 
-    def _split_sentences(self, text: str) -> List[str]:
+    def _split_sentences(self, text: str) -> list[str]:
         """Split text into sentences"""
         # Simple sentence splitting
         import re
@@ -303,7 +303,7 @@ class EntityExtractor:
     def __init__(self):
         self.nlp = spacy.load("en_core_web_sm")
 
-    def extract(self, text: str) -> Dict[str, List]:
+    def extract(self, text: str) -> dict[str, List]:
         """Extract entities from text"""
         doc = self.nlp(text)
 
@@ -345,7 +345,7 @@ Document Indexing
 from qdrant_client import QdrantClient
 from qdrant_client.models import Distance, VectorParams, PointStruct
 from sentence_transformers import SentenceTransformer
-from typing import List, Dict
+from typing import Dict
 import uuid
 
 class DocumentIndexer:
@@ -369,7 +369,7 @@ class DocumentIndexer:
             )
 
     def index_documents(self, collection_name: str,
-                        documents: List[Dict]) -> int:
+                        documents: list[Dict]) -> int:
         """Index documents"""
 
         points = []
@@ -441,7 +441,7 @@ Hybrid Retrieval
 
 from qdrant_client import QdrantClient
 from sentence_transformers import CrossEncoder
-from typing import List, Dict, Optional
+from typing import Dict
 
 class HybridRetriever:
     """Hybrid vector + keyword retrieval"""
@@ -453,7 +453,7 @@ class HybridRetriever:
         self.reranker = CrossEncoder(reranker_model)
 
     def retrieve(self, collection_name: str, query: str,
-                top_k: int = 10) -> List[Dict]:
+                top_k: int = 10) -> list[Dict]:
         """Retrieve documents"""
 
         # Generate query embedding
@@ -484,7 +484,7 @@ class HybridRetriever:
         return reranked[:top_k]
 
     def retrieve_with_graph(self, collection_name: str,
-                           query: str, top_k: int = 10) -> List[Dict]:
+                           query: str, top_k: int = 10) -> list[Dict]:
         """Retrieve with graph enhancement"""
 
         # Standard retrieval
@@ -509,7 +509,7 @@ RAG Generation
 """
 
 from openai import OpenAI
-from typing import List, Dict
+from typing import Dict
 
 class RAGGenerator:
     """Generate responses with RAG"""
@@ -518,7 +518,7 @@ class RAGGenerator:
         self.client = OpenAI()
         self.model = model
 
-    def generate(self, query: str, context: List[Dict],
+    def generate(self, query: str, context: list[Dict],
                 stream: bool = False) -> str:
         """Generate response"""
 
@@ -585,7 +585,7 @@ RAG API Service
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
-from typing import List, Optional
+
 import uvicorn
 
 app = FastAPI(title="Production RAG API")
@@ -602,7 +602,7 @@ class QueryRequest(BaseModel):
 
 class QueryResponse(BaseModel):
     answer: str
-    sources: List[Dict]
+    sources: list[Dict]
     query_time: float
 
 @app.post("/query", response_model=QueryResponse)

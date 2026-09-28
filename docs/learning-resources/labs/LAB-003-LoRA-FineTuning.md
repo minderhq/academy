@@ -204,7 +204,7 @@ compare_params()
 ```python
 # ~/lab-003-lora/scripts/prepare_dataset.py
 import json
-from typing import List, Dict
+
 import random
 
 class DatasetPreparer:
@@ -215,7 +215,7 @@ class DatasetPreparer:
 
     def create_instruction_dataset(
         self,
-        instructions: List[Dict[str, str]],
+        instructions: list[dict[str, str]],
         output_path: str
     ):
         """
@@ -246,7 +246,7 @@ class DatasetPreparer:
 
     def create_chat_dataset(
         self,
-        conversations: List[Dict[str, str]],
+        conversations: list[dict[str, str]],
         output_path: str
     ):
         """

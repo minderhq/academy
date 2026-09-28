@@ -718,7 +718,7 @@ Model A (Control)     Model B (Treatment)
 ```python
 from fastapi import FastAPI
 from pydantic import BaseModel
-from typing import Dict, Any
+from typing import Any
 from enum import Enum
 import hashlib
 import time
@@ -817,7 +817,7 @@ class ABTestDeployment:
         else:
             self.metrics[model_key]["user_feedback"]["negative"] += 1
 
-    def get_summary(self) -> Dict[str, Any]:
+    def get_summary(self) -> dict[str, Any]:
         """Get A/B test summary."""
         summary = {}
 
@@ -841,7 +841,7 @@ class ABTestDeployment:
 
         return summary
 
-    def get_winner(self) -> Dict[str, Any]:
+    def get_winner(self) -> dict[str, Any]:
         """
         Determine leading model based on metrics.
 

@@ -1,7 +1,7 @@
 ---
 Document ID: 4203
 Title: "4203: Context Window Optimization Guide"
-Last Updated: 2026-09-27
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Advanced
 ---
@@ -157,7 +157,7 @@ for model_name, config in models.items():
 # kv_cache_quantization.py
 import torch
 import torch.nn as nn
-from typing import Optional, Tuple
+
 
 class QuantizedKVCache:
     """
@@ -224,8 +224,8 @@ class QuantizedKVCache:
         self,
         layer_idx: int,
         start_pos: int = 0,
-        end_pos: Optional[int] = None,
-    ) -> Tuple[torch.Tensor, torch.Tensor]:
+        end_pos: int | None = None,
+    ) -> tuple[torch.Tensor, torch.Tensor]:
         """Retrieve dequantized KV cache"""
 
         if end_pos is None:
@@ -289,7 +289,7 @@ if __name__ == "__main__":
 import torch
 import torch.nn as nn
 import math
-from typing import Optional, Tuple
+
 
 class SlidingWindowAttention(nn.Module):
     """
@@ -319,8 +319,8 @@ class SlidingWindowAttention(nn.Module):
     def forward(
         self,
         x: torch.Tensor,
-        past_kv: Optional[Tuple[torch.Tensor, torch.Tensor]] = None,
-    ) -> Tuple[torch.Tensor, Tuple[torch.Tensor, torch.Tensor]]:
+        past_kv: tuple[torch.Tensor, torch.Tensor] | None = None,
+    ) -> tuple[torch.Tensor, tuple[torch.Tensor, torch.Tensor]]:
         """
         Forward with sliding window attention
 
@@ -414,7 +414,7 @@ if __name__ == "__main__":
 ```python
 # context_management.py
 import time
-from typing import List, Dict, Optional
+
 from dataclasses import dataclass
 import torch
 
@@ -422,7 +422,7 @@ import torch
 class ContextSegment:
     """A segment of context with metadata"""
     text: str
-    tokens: List[int]
+    tokens: list[int]
     importance: float
     timestamp: float
 
@@ -447,13 +447,13 @@ class ContextManager:
         self.compression_threshold = compression_threshold
         self.summary_ratio = summary_ratio
 
-        self.segments: List[ContextSegment] = []
+        self.segments: list[ContextSegment] = []
         self.current_tokens = 0
 
     def add_segment(
         self,
         text: str,
-        tokens: List[int],
+        tokens: list[int],
         importance: float = 0.5,
     ):
         """Add a new context segment"""
@@ -637,7 +637,7 @@ def test_streaming():
 
 ```python
 # context_chunking.py
-from typing import List, Dict
+from typing import Dict
 import tiktoken
 
 class ContextChunker:
@@ -660,7 +660,7 @@ class ContextChunker:
         self.overlap = overlap
         self.tokenizer = tiktoken.get_encoding(encoding)
 
-    def chunk_text(self, text: str) -> List[str]:
+    def chunk_text(self, text: str) -> list[str]:
         """Chunk text into overlapping segments"""
 
         tokens = self.tokenizer.encode(text)
@@ -681,7 +681,7 @@ class ContextChunker:
 
         return chunks
 
-    def chunk_with_metadata(self, text: str) -> List[Dict]:
+    def chunk_with_metadata(self, text: str) -> list[Dict]:
         """Chunk text with metadata for retrieval"""
 
         tokens = self.tokenizer.encode(text)

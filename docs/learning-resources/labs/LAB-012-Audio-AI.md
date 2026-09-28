@@ -65,7 +65,7 @@ Whisper Architecture:
 import torch
 import torchaudio
 import numpy as np
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List
 from dataclasses import dataclass
 from pathlib import Path
 import warnings
@@ -151,7 +151,7 @@ class WhisperRecognizer:
         self,
         audio_path: str,
         num_speakers: int = None
-    ) -> List[Dict]:
+    ) -> list[Dict]:
         """
         Transcribe audio with speaker diarization.
 
@@ -188,7 +188,7 @@ class WhisperRecognizer:
         self,
         audio_path: str,
         num_speakers: int = None
-    ) -> List[Dict]:
+    ) -> list[Dict]:
         """
         Perform speaker diarization using pyannote.audio.
 
@@ -227,7 +227,7 @@ class WhisperRecognizer:
     def _get_speaker_for_segment(
         self,
         segment: Dict,
-        diarization: List[Dict]
+        diarization: list[Dict]
     ) -> str:
         """Get speaker label for a transcribed segment"""
         segment_center = (segment["start"] + segment["end"]) / 2
@@ -274,9 +274,9 @@ class WhisperRecognizer:
 
     def batch_transcribe(
         self,
-        audio_paths: List[str],
+        audio_paths: list[str],
         batch_size: int = 8
-    ) -> Dict[str, Dict]:
+    ) -> dict[str, Dict]:
         """
         Transcribe multiple audio files.
 
@@ -356,7 +356,7 @@ class AudioPreprocessor:
         self,
         audio_path: str,
         mono: bool = True
-    ) -> Tuple[np.ndarray, int]:
+    ) -> tuple[np.ndarray, int]:
         """
         Load audio file.
 
@@ -585,7 +585,7 @@ Supports multiple TTS engines:
 
 import torch
 import numpy as np
-from typing import Dict, List, Optional
+from typing import List
 from dataclasses import dataclass
 import io
 
@@ -790,7 +790,7 @@ class TTSManager:
 
         return self.engines[engine_name].synthesize(text, **kwargs)
 
-    def list_voices(self, engine: str = None) -> List[str]:
+    def list_voices(self, engine: str = None) -> list[str]:
         """List available voices"""
         # This is engine-specific
         # Implementation depends on the engine
@@ -1302,7 +1302,7 @@ class AudioAnalyzer:
         self,
         audio: np.ndarray,
         sr: int
-    ) -> List[Dict]:
+    ) -> list[Dict]:
         """
         Detect speech segments in audio.
 

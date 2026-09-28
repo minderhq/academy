@@ -60,7 +60,7 @@ middleware.
 ### Understanding Prompt Injection
 
 ```python
-from typing import List, Tuple
+
 import re
 
 class PromptInjectionDetector:
@@ -92,7 +92,7 @@ class PromptInjectionDetector:
             "credential", "private_key", "admin", "bypass"
         ]
 
-    def detect(self, prompt: str) -> Tuple[bool, List[str]]:
+    def detect(self, prompt: str) -> tuple[bool, list[str]]:
         """
         Detect prompt injection attempts
 
@@ -253,7 +253,7 @@ class ContentModerator:
                 for p in patterns
             ]
 
-    def moderate(self, text: str) -> Tuple[bool, Dict]:
+    def moderate(self, text: str) -> tuple[bool, Dict]:
         """
         Moderate content for safety
 
@@ -276,7 +276,7 @@ class ContentModerator:
 
         return is_safe, violations
 
-    def redact(self, text: str, categories: List[str] = None) -> str:
+    def redact(self, text: str, categories: list[str] = None) -> str:
         """Redact content from specified categories"""
         redacted = text
 
@@ -353,7 +353,7 @@ O6: Criminal Planning."""
         self,
         user_prompt: str,
         assistant_response: str
-    ) -> Tuple[bool, str]:
+    ) -> tuple[bool, str]:
         """
         Check if response is safe
 
@@ -411,7 +411,7 @@ print(f"Safe: {is_safe}, Category: {category}")
 import hashlib
 import secrets
 from datetime import datetime, timedelta, timezone
-from typing import Dict, Optional
+from typing import Dict
 import jwt
 
 class APIKeyManager:
@@ -454,7 +454,7 @@ class APIKeyManager:
         # Return full key (shown only once)
         return f"llm_{key_id}_{key_secret}"
 
-    def verify_key(self, api_key: str) -> Optional[Dict]:
+    def verify_key(self, api_key: str) -> Dict | None:
         """Verify API key and return key info"""
         try:
             # Parse key
@@ -583,7 +583,7 @@ class JWTAuth:
         token = jwt.encode(payload, self.secret, algorithm="HS256")
         return token
 
-    def verify_token(self, token: str) -> Optional[Dict]:
+    def verify_token(self, token: str) -> Dict | None:
         """Verify JWT token"""
         try:
             payload = jwt.decode(token, self.secret, algorithms=["HS256"])
@@ -759,7 +759,7 @@ class SafetyMonitor:
             "users_flagged": len(self._get_flagged_users())
         }
 
-    def _get_flagged_users(self) -> List[str]:
+    def _get_flagged_users(self) -> list[str]:
         """Get list of flagged users"""
         return [
             user_id for user_id in self.user_stats
@@ -831,7 +831,7 @@ class AgentGuardrails:
         self,
         tool_name: str,
         arguments: Dict
-    ) -> Tuple[bool, str]:
+    ) -> tuple[bool, str]:
         """Check if tool call is safe"""
         # Check if tool is allowed
         if self.allowed_tools and tool_name not in self.allowed_tools:
@@ -854,7 +854,7 @@ class AgentGuardrails:
 
         return True, "OK"
 
-    def check_url(self, url: str) -> Tuple[bool, str]:
+    def check_url(self, url: str) -> tuple[bool, str]:
         """Check if URL access is safe"""
         parsed = urlparse(url)
         domain = parsed.netloc.lower()
@@ -874,7 +874,7 @@ class AgentGuardrails:
 
         return True, "OK"
 
-    def check_output(self, output: str) -> Tuple[bool, str]:
+    def check_output(self, output: str) -> tuple[bool, str]:
         """Check agent output for safety"""
         # Check for sensitive info leakage
         sensitive_patterns = [

@@ -1,7 +1,7 @@
 ---
 Document ID: PROJECT-003
 Title: "CAPSTONE PROJECT 003: Transformer from Scratch"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -102,16 +102,16 @@ Attention Mechanisms
 """
 
 import numpy as np
-from typing import Optional, Tuple
+
 from tensor import Tensor
 
 def scaled_dot_product_attention(
     query: Tensor,
     key: Tensor,
     value: Tensor,
-    mask: Optional[Tensor] = None,
+    mask: Tensor | None = None,
     dropout: float = 0.0
-) -> Tuple[Tensor, Tensor]:
+) -> tuple[Tensor, Tensor]:
     """
     Scaled Dot-Product Attention
 
@@ -200,7 +200,7 @@ Multi-Head Attention
 ====================
 """
 
-from typing import List
+
 from tensor import Tensor
 import numpy as np
 
@@ -237,7 +237,7 @@ class MultiHeadAttention:
         self.parameters = [self.W_q, self.W_k, self.W_v, self.W_o]
 
     def forward(self, query: Tensor, key: Tensor, value: Tensor,
-                mask: Optional[Tensor] = None) -> Tensor:
+                mask: Tensor | None = None) -> Tensor:
         """
         Forward pass
 
@@ -418,7 +418,7 @@ class RotaryPositionalEncoding:
 
         return Tensor(x_rotated)
 
-    def __call__(self, query: Tensor, key: Tensor) -> Tuple[Tensor, Tensor]:
+    def __call__(self, query: Tensor, key: Tensor) -> tuple[Tensor, Tensor]:
         """
         Apply RoPE to query and key
 
@@ -579,7 +579,7 @@ Transformer Block
 """
 
 from tensor import Tensor
-from typing import Optional
+
 
 class TransformerEncoderLayer:
     """
@@ -619,7 +619,7 @@ class TransformerEncoderLayer:
         self.parameters.extend(self.norm1.parameters)
         self.parameters.extend(self.norm2.parameters)
 
-    def forward(self, x: Tensor, mask: Optional[Tensor] = None) -> Tensor:
+    def forward(self, x: Tensor, mask: Tensor | None = None) -> Tensor:
         """
         Forward pass
 
@@ -670,7 +670,7 @@ class TransformerEncoder:
         for layer in self.layers:
             self.parameters.extend(layer.parameters)
 
-    def forward(self, x: Tensor, mask: Optional[Tensor] = None) -> Tensor:
+    def forward(self, x: Tensor, mask: Tensor | None = None) -> Tensor:
         """
         Forward pass through all layers
 
@@ -709,7 +709,7 @@ Complete Transformer Model
 ===========================
 """
 
-from typing import Optional
+
 from tensor import Tensor
 import numpy as np
 
@@ -770,7 +770,7 @@ class GPTModel:
         self.parameters = [self.token_embeddings, self.lm_head]
         self.parameters.extend(self.transformer.parameters)
 
-    def forward(self, input_ids: Tensor, mask: Optional[Tensor] = None) -> Tensor:
+    def forward(self, input_ids: Tensor, mask: Tensor | None = None) -> Tensor:
         """
         Forward pass
 

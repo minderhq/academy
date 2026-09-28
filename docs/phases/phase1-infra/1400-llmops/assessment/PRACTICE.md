@@ -1,7 +1,7 @@
 ---
 Document ID: 1400-PRACTICE
 Title: "1400: LLMOps - Practice"
-Last Updated: 2026-09-27
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -259,7 +259,7 @@ time curl -X POST http://localhost:8000/v1/completions \
 # vllm_client.py - Complete Python client for vLLM
 import requests
 import json
-from typing import List, Dict, Optional
+from typing import List, Dict
 
 class VLLMClient:
     """Production-ready client for vLLM OpenAI-compatible API."""
@@ -275,7 +275,7 @@ class VLLMClient:
         except requests.exceptions.RequestException:
             return False
 
-    def list_models(self) -> List[str]:
+    def list_models(self) -> list[str]:
         """List available models."""
         response = requests.get(f"{self.base_url}/v1/models")
         response.raise_for_status()
@@ -284,7 +284,7 @@ class VLLMClient:
 
     def chat_completion(
         self,
-        messages: List[Dict[str, str]],
+        messages: list[dict[str, str]],
         model: str = "Qwen/Qwen2.5-7B-Instruct",
         temperature: float = 0.7,
         max_tokens: int = 100,
@@ -716,7 +716,7 @@ docker logs nginx-lb --tail=50 2>&1 | grep -o "upstream=vllm-[0-9]*" | sort | un
 ```python
 # model_drift.py - Complete model drift detection system
 import numpy as np
-from typing import Dict, Tuple, List
+from typing import Dict, Tuple
 from dataclasses import dataclass
 from datetime import datetime
 import json
@@ -745,15 +745,15 @@ class ModelDriftDetector:
         self.baseline_metrics = {}
         self.alerts = []
 
-    def set_baseline(self, metrics: Dict[str, float]):
+    def set_baseline(self, metrics: dict[str, float]):
         """Set baseline metrics from golden dataset."""
         self.baseline_metrics = metrics.copy()
         print(f"Baseline set: {json.dumps(metrics, indent=2)}")
 
     def detect_drift(
         self,
-        current_metrics: Dict[str, float]
-    ) -> Tuple[bool, List[DriftAlert]]:
+        current_metrics: dict[str, float]
+    ) -> tuple[bool, list[DriftAlert]]:
         """
         Detect if model performance has degraded.
 
@@ -841,7 +841,7 @@ class PerformanceMonitor:
         self.window_size = window_size
         self.metrics_history = {}
 
-    def record_metrics(self, metrics: Dict[str, float]):
+    def record_metrics(self, metrics: dict[str, float]):
         """Record metrics for current batch."""
         for metric_name, value in metrics.items():
             if metric_name not in self.metrics_history:
@@ -853,7 +853,7 @@ class PerformanceMonitor:
             if len(self.metrics_history[metric_name]) > self.window_size:
                 self.metrics_history[metric_name].pop(0)
 
-    def get_average_metrics(self) -> Dict[str, float]:
+    def get_average_metrics(self) -> dict[str, float]:
         """Get average metrics over the window."""
         averages = {}
         for metric_name, values in self.metrics_history.items():
@@ -861,7 +861,7 @@ class PerformanceMonitor:
                 averages[metric_name] = np.mean(values)
         return averages
 
-    def get_std_metrics(self) -> Dict[str, float]:
+    def get_std_metrics(self) -> dict[str, float]:
         """Get standard deviation of metrics."""
         stds = {}
         for metric_name, values in self.metrics_history.items():

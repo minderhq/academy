@@ -3,7 +3,7 @@ Document ID: 2302
 Title: Model Serving Architectures
 Phase: 2
 Module: 2300
-Last Updated: 2026-09-27
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -115,7 +115,7 @@ import time
 import threading
 import uuid
 import concurrent.futures
-from typing import Any, Dict, List
+from typing import Any
 from dataclasses import dataclass
 
 
@@ -155,8 +155,8 @@ class BatchingModelServer:
         self.use_priority = use_priority
 
         # Request tracking
-        self.pending: List[Request] = []
-        self.results: Dict[str, Any] = {}
+        self.pending: list[Request] = []
+        self.results: dict[str, Any] = {}
         self.lock = threading.Lock()
 
         # Statistics
@@ -283,7 +283,7 @@ class BatchingModelServer:
             self.stats["batches_processed"]
         )
 
-    def _prepare_batch(self, inputs: List[Any]) -> Any:
+    def _prepare_batch(self, inputs: list[Any]) -> Any:
         """
         Prepare batch input for model.
 
@@ -293,7 +293,7 @@ class BatchingModelServer:
         """
         return inputs
 
-    def get_stats(self) -> Dict[str, Any]:
+    def get_stats(self) -> dict[str, Any]:
         """Get server statistics."""
         with self.lock:
             return {
@@ -665,13 +665,13 @@ state per card.
 #### 1. Round Robin
 
 ```python
-from typing import List
+
 
 
 class RoundRobinBalancer:
     """Distribute requests sequentially across servers."""
 
-    def __init__(self, servers: List[str]):
+    def __init__(self, servers: list[str]):
         self.servers = servers
         self.current = 0
 
@@ -700,13 +700,13 @@ print(picks)
 ```python
 from collections import defaultdict
 import threading
-from typing import List
+
 
 
 class LeastConnectionsBalancer:
     """Route to server with fewest active connections."""
 
-    def __init__(self, servers: List[str]):
+    def __init__(self, servers: list[str]):
         self.servers = servers
         self.connections = defaultdict(int)
         self.lock = threading.Lock()
@@ -755,7 +755,7 @@ routing logic below is exercised identically either way.
 ```python
 import threading
 import time
-from typing import Dict, Tuple
+
 
 
 class GPUMemoryAwareBalancer:
@@ -769,7 +769,7 @@ class GPUMemoryAwareBalancer:
     def __init__(self, servers, probe, ttl_seconds: float = 5.0):
         self.probe = probe                     # callable() -> {(server, gpu): free_mb}
         self.ttl = ttl_seconds
-        self.cache: Dict[Tuple[str, int], int] = {}
+        self.cache: dict[tuple[str, int], int] = {}
         self.last_update = 0.0
         self.lock = threading.Lock()
 
@@ -783,7 +783,7 @@ class GPUMemoryAwareBalancer:
             self.cache = dict(self.probe())
             self.last_update = now
 
-    def next_server(self) -> Tuple[str, int]:
+    def next_server(self) -> tuple[str, int]:
         self._refresh()
         return max(self.cache, key=self.cache.get)
 
@@ -817,7 +817,7 @@ calls.
 ### 1. Response Caching
 
 ```python
-from typing import Any, Dict, Optional
+from typing import Any
 import hashlib
 import json
 import pickle
@@ -848,7 +848,7 @@ class ModelResponseCache:
         self.ttl_seconds = ttl_seconds
 
         # In-memory index
-        self.index: Dict[str, float] = {}
+        self.index: dict[str, float] = {}
 
     def _hash_input(self, input_data: Any) -> str:
         """Generate hash for input data."""
@@ -868,7 +868,7 @@ class ModelResponseCache:
         """Get cache file path for hash."""
         return self.cache_dir / f"{input_hash}.pkl"
 
-    def get(self, input_data: Any) -> Optional[Any]:
+    def get(self, input_data: Any) -> Any | None:
         """Get cached response if available and not expired."""
         input_hash = self._hash_input(input_data)
         cache_path = self._get_cache_path(input_hash)
@@ -967,7 +967,7 @@ shared store when replicas must share the cache.
 ```python
 import hashlib
 from pathlib import Path
-from typing import Any, List
+from typing import Any
 
 import torch
 
@@ -1006,7 +1006,7 @@ class EmbeddingCache:
 
         return embedding
 
-    def embed_batch(self, texts: List[str]) -> Any:
+    def embed_batch(self, texts: list[str]) -> Any:
         """Embed multiple texts with caching."""
         embeddings = []
         uncached_texts = []
@@ -1232,7 +1232,7 @@ Key optimizations:
 4. Speculative decoding - Acceleration via draft models
 """
 
-from typing import List
+
 
 
 class PagedAttention:
@@ -1251,7 +1251,7 @@ class PagedAttention:
         self.free_blocks = list(range(num_blocks))
         self.allocated_blocks = {}
 
-    def allocate(self, request_id: str, num_tokens: int) -> List[int]:
+    def allocate(self, request_id: str, num_tokens: int) -> list[int]:
         """Allocate blocks for request."""
         num_pages = (num_tokens + self.page_size - 1) // self.page_size
 

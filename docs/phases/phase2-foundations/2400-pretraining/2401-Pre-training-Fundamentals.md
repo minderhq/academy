@@ -3,7 +3,7 @@ Document ID: 2401
 Title: "2401: Pre-training Fundamentals"
 Phase: 2
 Module: 2400
-Last Updated: 2026-09-26
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -182,7 +182,7 @@ read the exact API surface each source exposes.
 
 import json
 import os
-from typing import List
+
 
 
 class DataCollector:
@@ -257,13 +257,13 @@ class DataCollector:
                 }) + "\n")
         return out
 
-    def stackexchange_dump_urls(self, sites: List[str] = None) -> List[str]:
+    def stackexchange_dump_urls(self, sites: list[str] = None) -> list[str]:
         """Internet Archive 7z dump URLs for StackExchange sites."""
         if sites is None:
             sites = ["stackoverflow", "superuser", "math"]
         return [f"https://archive.org/stackexchange/{s}.stackexchange.com.7z" for s in sites]
 
-    def _get_warc_list(self, snapshot: str) -> List[str]:
+    def _get_warc_list(self, snapshot: str) -> list[str]:
         """Simplified: a real collector parses the Common Crawl index."""
         return [f"crawl-data/{snapshot}/segments/{i}.warc.gz" for i in range(10)]
 
@@ -426,7 +426,7 @@ the same math runs with zero dependencies.
 """
 
 import hashlib
-from typing import List
+
 
 
 def keyed_hash(seed: int, text: str) -> int:
@@ -483,7 +483,7 @@ class Deduplicator:
         words = text.lower().split()
         return {" ".join(words[i:i + n]) for i in range(len(words) - n + 1)}
 
-    def _create_minhash(self, shingles: set) -> List[int]:
+    def _create_minhash(self, shingles: set) -> list[int]:
         return [min(keyed_hash(i, s) for s in shingles) for i in range(self.num_permutations)]
 
 
@@ -678,14 +678,14 @@ Stage boundaries come from percentages of total steps, so the same
 definition works for a 1k-step smoke test and a 500k-step run.
 """
 
-from typing import Dict, List
+from typing import Dict
 
 
 class TrainingCurriculum:
     """Design training curriculum for better model quality."""
 
     def __init__(self):
-        self.stages: List[Dict] = [
+        self.stages: list[Dict] = [
             {
                 "name": "Foundation",
                 "percent": 30,  # first 30% of steps
@@ -706,7 +706,7 @@ class TrainingCurriculum:
             },
         ]
 
-    def stage_bounds(self, total_steps: int) -> Dict[str, tuple]:
+    def stage_bounds(self, total_steps: int) -> dict[str, tuple]:
         """Map each stage name to its [start, end) step range."""
         bounds = {}
         start = 0
@@ -722,7 +722,7 @@ class TrainingCurriculum:
                 return name
         return self.stages[-1]["name"]
 
-    def mix_ratios(self, stage_name: str) -> Dict[str, float]:
+    def mix_ratios(self, stage_name: str) -> dict[str, float]:
         """Sampling weights for the sources inside one stage."""
         ratios = {
             "Foundation": {"Wikipedia": 0.4, "Books": 0.4, "arXiv": 0.2},

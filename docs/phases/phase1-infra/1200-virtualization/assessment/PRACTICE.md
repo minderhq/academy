@@ -1,7 +1,7 @@
 ---
 Document ID: 1200-PRACTICE
 Title: "1200: Virtualization - Practice"
-Last Updated: 2026-09-25
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Beginner
 ---
@@ -442,7 +442,7 @@ import torch
 import time
 import numpy as np
 from dataclasses import dataclass
-from typing import Dict, List
+
 
 @dataclass
 class BenchmarkResult:
@@ -459,7 +459,7 @@ class GPUBenchmark:
 
     def __init__(self):
         self.device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-        self.results: List[BenchmarkResult] = []
+        self.results: list[BenchmarkResult] = []
 
     def check_gpu_info(self):
         """Print GPU information."""

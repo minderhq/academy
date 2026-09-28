@@ -101,13 +101,13 @@ ReAct:
 ### Basic ReAct Agent
 ```python
 import re
-from typing import List, Dict, Any
+from typing import Dict, Any
 
 class ReActAgent:
     """
     ReAct: Reasoning and Acting agent
     """
-    def __init__(self, llm, tools: Dict[str, callable], max_iterations=10):
+    def __init__(self, llm, tools: dict[str, callable], max_iterations=10):
         self.llm = llm
         self.tools = tools
         self.max_iterations = max_iterations
@@ -154,7 +154,7 @@ class ReActAgent:
 
         return self._generate_final_response(history)
 
-    def _generate_action(self, history: List[Dict]) -> Dict[str, Any]:
+    def _generate_action(self, history: list[Dict]) -> dict[str, Any]:
         """Generate next action based on history"""
         prompt = self._format_prompt(history)
         response = self.llm.generate(prompt)
@@ -162,7 +162,7 @@ class ReActAgent:
         # Parse action from response
         return self._parse_action(response)
 
-    def _execute_action(self, action: Dict[str, Any]) -> str:
+    def _execute_action(self, action: dict[str, Any]) -> str:
         """Execute action and return observation"""
         tool_name = action["tool"]
         tool_input = action["input"]
@@ -183,7 +183,7 @@ class ReActAgent:
 
 ### Tool Interface Design
 ```python
-from typing import Callable, Any
+from typing import Callable
 from pydantic import BaseModel, Field
 
 class ToolSchema(BaseModel):
@@ -207,7 +207,7 @@ class ToolRegistry:
         """Get tool by name"""
         return self.tools.get(name)
 
-    def list_tools(self) -> List[str]:
+    def list_tools(self) -> list[str]:
         """List all available tools"""
         return list(self.tools.keys())
 
@@ -249,7 +249,7 @@ registry.register(ToolSchema(
 ### Agent State
 ```python
 from dataclasses import dataclass
-from typing import List, Optional
+
 from enum import Enum
 
 class AgentStatus(Enum):
@@ -265,12 +265,12 @@ class AgentState:
     query: str
     current_step: int
     max_steps: int
-    thought: Optional[str] = None
-    last_action: Optional[Dict] = None
-    last_observation: Optional[str] = None
-    history: List[Dict] = None
+    thought: str | None = None
+    last_action: Dict | None = None
+    last_observation: str | None = None
+    history: list[Dict] = None
     status: AgentStatus = AgentStatus.IDLE
-    error: Optional[str] = None
+    error: str | None = None
 
     def __post_init__(self):
         if self.history is None:
@@ -300,7 +300,7 @@ class StateManager:
                 setattr(state, key, value)
         return state
 
-    def get_state(self, agent_id: str) -> Optional[AgentState]:
+    def get_state(self, agent_id: str) -> AgentState | None:
         """Get current state"""
         return self.states.get(agent_id)
 ```

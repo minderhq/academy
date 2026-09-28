@@ -105,7 +105,7 @@ class VectorStore:
 ### Complete Solution
 
 ```python
-from typing import List, Dict
+from typing import Dict
 import ollama
 
 class RAGPipeline:
@@ -116,14 +116,14 @@ class RAGPipeline:
         self.embedder = embedder
         self.llm_model = llm_model
 
-    def retrieve(self, query: str, top_k: int = 3) -> List[str]:
+    def retrieve(self, query: str, top_k: int = 3) -> list[str]:
         """Retrieve relevant documents."""
         query_embedding = self.embedder.embed(query)
         results = self.vector_store.search(query_embedding, top_k)
 
         return [hit.payload["text"] for hit in results]
 
-    def generate(self, query: str, context: List[str]) -> str:
+    def generate(self, query: str, context: list[str]) -> str:
         """Generate response using retrieved context."""
         context_str = "\n\n".join(context)
 

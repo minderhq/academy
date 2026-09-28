@@ -545,7 +545,7 @@ cleanup_expired_memories(collection)
 ```python
 from datetime import datetime
 
-from typing import List, Dict, Optional
+from typing import Dict
 from dataclasses import dataclass
 import chromadb
 
@@ -563,7 +563,7 @@ class HierarchicalMemory:
 
     def __init__(self):
         # Hot memory: Frequently accessed (in-memory)
-        self.hot_memory: Dict[str, MemoryItem] = {}
+        self.hot_memory: dict[str, MemoryItem] = {}
         self.hot_capacity = 100
 
         # Warm memory: Occasionally accessed (ChromaDB)
@@ -601,7 +601,7 @@ class HierarchicalMemory:
                 ids=[memory_id]
             )
 
-    def get(self, query: str, top_k: int = 10) -> List[MemoryItem]:
+    def get(self, query: str, top_k: int = 10) -> list[MemoryItem]:
         """Retrieve memories from all tiers."""
         results = []
 
@@ -714,7 +714,7 @@ def calculate_importance(memory: MemoryItem) -> float:
     return min(score, 1.0)
 
 # Auto-tag important memories
-def auto_tag_memory(content: str, llm) -> List[str]:
+def auto_tag_memory(content: str, llm) -> list[str]:
     """Automatically tag memory with categories."""
     prompt = f"""Tag this memory with relevant categories.
 Choose from: preference, identity, goal, task, fact, relationship, project
@@ -955,7 +955,7 @@ class RAGAgentWithMemory:
 
 ```python
 # Batch memory operations for efficiency
-def batch_add_memories(memory: Memory, texts: List[str], batch_size: int = 100):
+def batch_add_memories(memory: Memory, texts: list[str], batch_size: int = 100):
     """Add memories in batches for better performance."""
     for i in range(0, len(texts), batch_size):
         batch = texts[i:i+batch_size]
@@ -987,7 +987,7 @@ async def async_memory_operations():
 ### 7.3 Memory Evaluation
 
 ```python
-def evaluate_memory_quality(memory: Memory, test_queries: List[dict]) -> dict:
+def evaluate_memory_quality(memory: Memory, test_queries: list[dict]) -> dict:
     """Evaluate memory retrieval quality."""
     metrics = {"precision": [], "recall": [], "mrr": []}
 

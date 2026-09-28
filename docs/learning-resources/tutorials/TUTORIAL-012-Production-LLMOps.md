@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-012
 Title: "TUTORIAL-012: Production LLMOps"
-Last Updated: 2026-09-27
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Advanced
 ---
@@ -653,7 +653,7 @@ and quantiles computed over it directly are meaningless.
 
 ```python
 from enum import Enum
-from typing import Dict
+
 import hashlib
 import time
 import numpy as np
@@ -688,7 +688,7 @@ class ModelManager:
 
     def set_traffic_split(
         self,
-        splits: Dict[str, float]
+        splits: dict[str, float]
     ):
         """
         Set traffic split between models

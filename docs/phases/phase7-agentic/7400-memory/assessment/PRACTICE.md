@@ -1,7 +1,7 @@
 ---
 Document ID: 7400-PRACTICE
 Title: "7400: Agent Memory Systems - Practice"
-Last Updated: 2026-09-25
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Advanced
 ---
@@ -13,7 +13,7 @@ Difficulty: Advanced
 ### Exercise 1: Implement Short-Term Memory
 
 ```python
-from typing import List, Dict
+
 from dataclasses import dataclass
 
 @dataclass
@@ -24,7 +24,7 @@ class Message:
 
 class ShortTermMemory:
     def __init__(self, max_messages=20):
-        self.messages: List[Message] = []
+        self.messages: list[Message] = []
         self.max_messages = max_messages
 
     def add_message(self, role: str, content: str):
@@ -52,7 +52,7 @@ class ShortTermMemory:
             num_to_remove = len(self.messages) - self.max_messages
             self.messages = self.messages[num_to_remove:]
 
-    def get_recent(self, n=5) -> List[Message]:
+    def get_recent(self, n=5) -> list[Message]:
         """Get n most recent messages."""
         return self.messages[-n:]
 
@@ -63,7 +63,7 @@ class ShortTermMemory:
             history.append(f"{msg.role}: {msg.content}")
         return "\n".join(history)
 
-    def search(self, keyword: str) -> List[Message]:
+    def search(self, keyword: str) -> list[Message]:
         """Search messages by keyword."""
         return [
             msg for msg in self.messages
@@ -158,7 +158,7 @@ class LongTermMemory:
             # Add to existing index
             self.index.add(embedding.reshape(1, -1))
 
-    def retrieve(self, query: str, top_k=5) -> List[Dict]:
+    def retrieve(self, query: str, top_k=5) -> list[Dict]:
         """
         Retrieve relevant memories using semantic search.
 
@@ -203,7 +203,7 @@ class LongTermMemory:
 
         return results
 
-    def search_metadata(self, key: str, value: any) -> List[Dict]:
+    def search_metadata(self, key: str, value: any) -> list[Dict]:
         """Search memories by metadata."""
         results = []
         for i, meta in enumerate(self.metadata):
@@ -279,14 +279,14 @@ test_long_term_memory()
 ### Exercise 3: Implement Entity Memory
 
 ```python
-from typing import Dict, List
+from typing import Dict
 import re
 
 class EntityMemory:
     def __init__(self):
-        self.entities: Dict[str, Dict] = {}
+        self.entities: dict[str, Dict] = {}
 
-    def extract_entities(self, text: str) -> List[tuple]:
+    def extract_entities(self, text: str) -> list[tuple]:
         """Extract entities and their properties from text."""
 
         # Simplified entity extraction
@@ -343,7 +343,7 @@ class EntityMemory:
         """Get all information about an entity."""
         return self.entities.get(name.capitalize(), {})
 
-    def search_entities(self, keyword: str) -> List[Dict]:
+    def search_entities(self, keyword: str) -> list[Dict]:
         """Search for entities matching keyword."""
         results = []
         for name, data in self.entities.items():
@@ -691,7 +691,7 @@ Reflection:"""
             "timestamp": time.time(),
         })
 
-    def get_insights(self) -> List[str]:
+    def get_insights(self) -> list[str]:
         """Get all insights from reflections."""
         return [r["content"] for r in self.reflections]
 
@@ -790,7 +790,7 @@ class PersistentMemory:
         conn.commit()
         conn.close()
 
-    def load_memories(self, limit: int = 100) -> List[Dict]:
+    def load_memories(self, limit: int = 100) -> list[Dict]:
         """Load memories from database."""
 
         conn = sqlite3.connect(self.db_path)
@@ -815,7 +815,7 @@ class PersistentMemory:
             for row in rows
         ]
 
-    def save_entity(self, name: str, facts: List[Dict]):
+    def save_entity(self, name: str, facts: list[Dict]):
         """Save entity to database."""
 
         conn = sqlite3.connect(self.db_path)

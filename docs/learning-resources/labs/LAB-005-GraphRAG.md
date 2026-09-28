@@ -122,7 +122,7 @@ curl http://localhost:7474
 ```python
 # ~/lab-005-graphrag/scripts/build_graph.py
 from neo4j import GraphDatabase
-from typing import List, Dict
+from typing import Dict
 import re
 
 # Connect to Neo4j
@@ -144,7 +144,7 @@ class KnowledgeGraphBuilder:
             session.run("MATCH (n) DETACH DELETE n")
             print("Graph cleared")
 
-    def extract_entities(self, text: str) -> List[Dict]:
+    def extract_entities(self, text: str) -> list[Dict]:
         """Extract entities from text"""
 
         entities = []
@@ -187,7 +187,7 @@ class KnowledgeGraphBuilder:
 
         return list(unique_entities.values())
 
-    def extract_relationships(self, text: str, entities: List[Dict]) -> List[Dict]:
+    def extract_relationships(self, text: str, entities: list[Dict]) -> list[Dict]:
         """Extract relationships between entities"""
 
         relationships = []
@@ -217,7 +217,7 @@ class KnowledgeGraphBuilder:
 
         return relationships
 
-    def create_graph(self, documents: List[Dict]):
+    def create_graph(self, documents: list[Dict]):
         """Create graph from documents"""
 
         with self.driver.session() as session:
@@ -350,7 +350,7 @@ python scripts/build_graph.py
 # ~/lab-005-graphrag/services/graphrag/graphrag_service.py
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-from typing import List, Optional, Dict, Any
+from typing import List, Dict
 import requests
 from neo4j import GraphDatabase
 from qdrant_client import QdrantClient
@@ -383,12 +383,12 @@ class Query(BaseModel):
 
 class GraphRAGResponse(BaseModel):
     answer: str
-    vector_sources: List[Dict]
-    graph_sources: List[Dict]
-    reasoning: List[str]
+    vector_sources: list[Dict]
+    graph_sources: list[Dict]
+    reasoning: list[str]
     query_time: float
 
-def extract_entities_from_query(query: str) -> List[str]:
+def extract_entities_from_query(query: str) -> list[str]:
     """Extract entities from user query"""
 
     # Simple keyword extraction
@@ -409,7 +409,7 @@ def extract_entities_from_query(query: str) -> List[str]:
 
     return entities
 
-def graph_search(entities: List[str], max_hops: int = 2) -> List[Dict]:
+def graph_search(entities: list[str], max_hops: int = 2) -> list[Dict]:
     """Search knowledge graph with multi-hop reasoning"""
 
     if not entities:

@@ -3,7 +3,7 @@ Document ID: 1502
 Title: Model Drift Detection
 Phase: 1
 Module: 1500
-Last Updated: 2026-09-27
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -405,14 +405,14 @@ class RealTimeDriftMonitor:
 ```python
 # feature_drift.py
 import numpy as np
-from typing import Dict, List
+
 
 from drift_detection import DriftDetector, DriftResult
 
 class FeatureDriftMonitor:
     """Monitor drift for individual features"""
 
-    def __init__(self, feature_names: List[str]):
+    def __init__(self, feature_names: list[str]):
         self.feature_names = feature_names
         self.detectors = {
             name: DriftDetector(threshold=0.01)
@@ -433,7 +433,7 @@ class FeatureDriftMonitor:
     def check_all_features(
         self,
         current_features: np.ndarray
-    ) -> Dict[str, DriftResult]:
+    ) -> dict[str, DriftResult]:
         """Check drift for all features"""
 
         if not self.baseline_set:
@@ -454,7 +454,7 @@ class FeatureDriftMonitor:
     def get_drifted_features(
         self,
         current_features: np.ndarray
-    ) -> List[str]:
+    ) -> list[str]:
         """Get list of features with drift"""
 
         results = self.check_all_features(current_features)
@@ -528,7 +528,7 @@ class EmbeddingDriftDetector:
 # retraining_pipeline.py
 import numpy as np
 from datetime import datetime
-from typing import Tuple, Dict
+from typing import Dict
 
 from drift_monitor import RealTimeDriftMonitor
 
@@ -546,7 +546,7 @@ class RetrainingPipeline:
         self.retraining_threshold = retraining_threshold
         self.retraining_history = []
 
-    def should_retrain(self) -> Tuple[bool, str]:
+    def should_retrain(self) -> tuple[bool, str]:
         """Check if model should be retrained"""
 
         summary = self.drift_monitor.get_drift_summary(window_days=7)
@@ -564,7 +564,7 @@ class RetrainingPipeline:
 
     def trigger_retraining(
         self,
-        new_training_data: Tuple[np.ndarray, np.ndarray],
+        new_training_data: tuple[np.ndarray, np.ndarray],
         validation_split: float = 0.2
     ) -> Dict:
         """Trigger model retraining

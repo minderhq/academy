@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-009
 Title: "TUTORIAL-009: Advanced RAG Techniques"
-Last Updated: 2026-09-27
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Advanced
 ---
@@ -64,12 +64,12 @@ The remaining parts are standard library only.
 ```python
 from rank_bm25 import BM25Okapi
 import numpy as np
-from typing import List, Tuple
+
 
 class HybridRetriever:
     """Hybrid search combining vector and keyword search"""
 
-    def __init__(self, documents: List[str], embedding_model):
+    def __init__(self, documents: list[str], embedding_model):
         self.documents = documents
         self.embedding_model = embedding_model
 
@@ -85,7 +85,7 @@ class HybridRetriever:
         query: str,
         alpha: float = 0.5,
         k: int = 10
-    ) -> List[Tuple[int, float]]:
+    ) -> list[tuple[int, float]]:
         """
         Hybrid search with configurable alpha
 
@@ -131,9 +131,9 @@ class HybridRetriever:
 
 ```python
 def reciprocal_rank_fusion(
-    results_list: List[List[Tuple[int, float]]],
+    results_list: list[list[tuple[int, float]]],
     k: int = 60
-) -> List[Tuple[int, float]]:
+) -> list[tuple[int, float]]:
     """
     Reciprocal Rank Fusion algorithm
 
@@ -176,7 +176,7 @@ print([(doc_id, round(score, 4)) for doc_id, score in fused[:3]])
 
 ```python
 from sentence_transformers import CrossEncoder
-from typing import List, Dict
+from typing import Dict
 
 class ReRanker:
     """Re-rank retrieved documents using cross-encoder"""
@@ -187,9 +187,9 @@ class ReRanker:
     def rerank(
         self,
         query: str,
-        documents: List[str],
+        documents: list[str],
         top_k: int = 10
-    ) -> List[Dict]:
+    ) -> list[Dict]:
         """
         Re-rank documents using cross-encoder
 
@@ -249,7 +249,7 @@ class GraphRAG:
         self.driver = GraphDatabase.driver(uri, auth=(user, password))
         self.nlp = spacy.load("en_core_web_sm")
 
-    def extract_entities(self, text: str) -> List[tuple]:
+    def extract_entities(self, text: str) -> list[tuple]:
         """Extract entities and relationships"""
         doc = self.nlp(text)
 
@@ -269,7 +269,7 @@ class GraphRAG:
 
         return entities, relationships
 
-    def build_graph(self, documents: List[str]):
+    def build_graph(self, documents: list[str]):
         """Build knowledge graph from documents"""
         with self.driver.session() as session:
             for doc_text in documents:
@@ -295,7 +295,7 @@ class GraphRAG:
                         source=source, target=target, rel_type=rel_type
                     )
 
-    def graph_retrieve(self, query: str, k: int = 5) -> List[str]:
+    def graph_retrieve(self, query: str, k: int = 5) -> list[str]:
         """Retrieve using graph traversal"""
         with self.driver.session() as session:
             # Extract entities from query
@@ -336,7 +336,7 @@ class ContextManager:
 
     def build_context(
         self,
-        retrieved_docs: List[Dict],
+        retrieved_docs: list[Dict],
         query: str,
         strategy: str = "stuff"
     ) -> str:
@@ -360,7 +360,7 @@ class ContextManager:
         else:
             raise ValueError(f"Unknown strategy: {strategy}")
 
-    def _stuff_context(self, docs: List[Dict], query: str) -> str:
+    def _stuff_context(self, docs: list[Dict], query: str) -> str:
         """Simple concatenation (if fits in context)"""
         context_parts = [f"Query: {query}\n\nRelevant Context:"]
 
@@ -379,7 +379,7 @@ class ContextManager:
 
         return "\n".join(context_parts)
 
-    def _refine_context(self, docs: List[Dict], query: str) -> str:
+    def _refine_context(self, docs: list[Dict], query: str) -> str:
         """Iteratively refine context"""
         context = f"Query: {query}\n\nContext:"
 
@@ -411,9 +411,9 @@ class RAGEvaluator:
 
     def evaluate(
         self,
-        test_queries: List[str],
-        ground_truth_docs: List[List[int]],
-        ground_truth_answers: List[str]
+        test_queries: list[str],
+        ground_truth_docs: list[list[int]],
+        ground_truth_answers: list[str]
     ) -> Dict:
         """Evaluate retrieval and generation"""
 
