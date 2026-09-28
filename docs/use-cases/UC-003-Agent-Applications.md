@@ -1,7 +1,7 @@
 ---
 Document ID: UC-003
 Title: "UC-003: AI Agent Practical Use Cases"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -41,9 +41,140 @@ DevOps teams spend hours on repetitive tasks: monitoring alerts, diagnosing issu
 **Single Agent Solution (ReAct Pattern):**
 
 ```python
-from langchain.agents import AgentExecutor, create_react_agent
-from langchain.tools import Tool
-from langchain.llms import HuggingFacePipeline
+import os
+
+from langchain.agents import create_agent
+from langchain_core.tools import tool
+from langchain_huggingface import HuggingFacePipeline
+from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline
+
+
+# Tools - @tool infers the input schema from the signature. None of
+# these need agent state, so they live at module level.
+@tool
+def check_pod_status(pod_name: str) -> str:
+    """Check status of Kubernetes pods. Use when investigating deployment issues."""
+    from kubernetes import client, config
+
+    config.load_kube_config()
+    v1 = client.CoreV1Api()
+
+    try:
+        pod = v1.read_namespaced_pod(pod_name, "default")
+        return f"""
+        Pod: {pod_name}
+        Status: {pod.status.phase}
+        Ready: {pod.status.container_statuses[0].ready}
+        Restarts: {pod.status.container_statuses[0].restart_count}
+        Node: {pod.spec.node_name}
+        """
+    except Exception as e:
+        return f"Error checking pod: {str(e)}"
+
+
+@tool
+def get_pod_logs(pod_name: str, lines: int = 100) -> str:
+    """Get logs from a specific pod. Use after checking pod status."""
+    from kubernetes import client, config
+
+    config.load_kube_config()
+    v1 = client.CoreV1Api()
+
+    try:
+        logs = v1.read_namespaced_pod_log(
+            name=pod_name,
+            namespace="default",
+            tail_lines=lines,
+        )
+        return f"Last {lines} lines of logs:\n{logs}"
+    except Exception as e:
+        return f"Error getting logs: {str(e)}"
+
+
+@tool
+def restart_pod(pod_name: str) -> str:
+    """Restart a failing pod. Use when pod is in CrashLoopBackOff."""
+    from kubernetes import client, config
+
+    config.load_kube_config()
+    v1 = client.CoreV1Api()
+
+    try:
+        v1.delete_namespaced_pod(pod_name, "default")
+        return f"Pod {pod_name} restart initiated"
+    except Exception as e:
+        return f"Error restarting pod: {str(e)}"
+
+
+@tool
+def check_gpu_usage() -> str:
+    """Check GPU utilization across the cluster."""
+    import subprocess
+
+    try:
+        result = subprocess.run(
+            ["nvidia-smi",
+             "--query-gpu=index,utilization.gpu,memory.used,memory.total",
+             "--format=csv"],
+            capture_output=True,
+            text=True,
+        )
+        return f"GPU Usage:\n{result.stdout}"
+    except Exception as e:
+        return f"Error checking GPU: {str(e)}"
+
+
+@tool
+def scale_deployment(deployment_name: str, replicas: int) -> str:
+    """Scale a deployment up or down. Use when resource issues detected."""
+    from kubernetes import client, config
+
+    config.load_kube_config()
+    apps_v1 = client.AppsV1Api()
+
+    try:
+        scale = apps_v1.read_namespaced_deployment_scale(
+            deployment_name, "default")
+        scale.spec.replicas = replicas
+        apps_v1.patch_namespaced_deployment_scale(
+            deployment_name, "default", scale)
+        return f"Scaled {deployment_name} to {replicas} replicas"
+    except Exception as e:
+        return f"Error scaling deployment: {str(e)}"
+
+
+@tool
+def get_prometheus_metrics(query: str) -> str:
+    """Query Prometheus metrics. Use for detailed diagnostics."""
+    import requests
+
+    try:
+        response = requests.get(
+            "http://prometheus:9090/api/v1/query",
+            params={"query": query},
+        )
+        return f"Prometheus query result: {response.json()}"
+    except Exception as e:
+        return f"Error querying Prometheus: {str(e)}"
+
+
+@tool
+def create_jira_ticket(summary: str, description: str) -> str:
+    """Create JIRA ticket for unresolved issues. Use as last resort."""
+    from jira import JIRA
+
+    try:
+        jira = JIRA(server=os.getenv("JIRA_SERVER"))
+        issue = jira.create_issue({
+            "project": {"key": "OPS"},
+            "summary": summary,
+            "description": description,
+            "issuetype": {"name": "Incident"},
+        })
+        return f"Created JIRA ticket: {issue.key}"
+    except Exception as e:
+        return f"Error creating ticket: {str(e)}"
+
 
 class DevOpsAgent:
     """
@@ -51,198 +182,58 @@ class DevOpsAgent:
     """
 
     def __init__(self):
-        # Initialize LLM
-        self.llm = HuggingFacePipeline(
-            model_id="meta-llama/Llama-2-7b-chat-hf",
-            load_in_4bit=True
+        # Initialize LLM - langchain_huggingface wraps a transformers
+        # text-generation pipeline (there is no model_id= shortcut).
+        model_id = "meta-llama/Meta-Llama-3-8B-Instruct"
+        tokenizer = AutoTokenizer.from_pretrained(model_id)
+        model = AutoModelForCausalLM.from_pretrained(
+            model_id,
+            device_map="auto",
+            load_in_4bit=True,
         )
+        pipe = pipeline(
+            "text-generation",
+            model=model,
+            tokenizer=tokenizer,
+            max_new_tokens=512,
+        )
+        self.llm = HuggingFacePipeline(pipeline=pipe)
 
-        # Define tools
         self.tools = [
-            Tool(
-                name="check_pod_status",
-                description="Check status of Kubernetes pods. Use when investigating deployment issues.",
-                func=self._check_pod_status
-            ),
-            Tool(
-                name="get_pod_logs",
-                description="Get logs from a specific pod. Use after checking pod status.",
-                func=self._get_pod_logs
-            ),
-            Tool(
-                name="restart_pod",
-                description="Restart a failing pod. Use when pod is in CrashLoopBackOff.",
-                func=self._restart_pod
-            ),
-            Tool(
-                name="check_gpu_usage",
-                description="Check GPU utilization across the cluster.",
-                func=self._check_gpu_usage
-            ),
-            Tool(
-                name="scale_deployment",
-                description="Scale a deployment up or down. Use when resource issues detected.",
-                func=self._scale_deployment
-            ),
-            Tool(
-                name="get_prometheus_metrics",
-                description="Query Prometheus metrics. Use for detailed diagnostics.",
-                func=self._get_prometheus_metrics
-            ),
-            Tool(
-                name="create_jira_ticket",
-                description="Create JIRA ticket for unresolved issues. Use as last resort.",
-                func=self._create_jira_ticket
-            )
+            check_pod_status,
+            get_pod_logs,
+            restart_pod,
+            check_gpu_usage,
+            scale_deployment,
+            get_prometheus_metrics,
+            create_jira_ticket,
         ]
 
-        # Create ReAct agent
-        self.agent = create_react_agent(
-            llm=self.llm,
-            tools=self.tools,
-            prompt=re_act_prompt
-        )
-
-        self.executor = AgentExecutor(
-            agent=self.agent,
-            tools=self.tools,
-            verbose=True,
-            max_iterations=10,
-            early_stopping_method="generate"
+        # LangChain 1.x: create_agent replaces create_react_agent +
+        # AgentExecutor - system_prompt takes the place of the
+        # hand-written ReAct prompt template.
+        self.agent = create_agent(
+            self.llm,
+            self.tools,
+            system_prompt=(
+                "You are an autonomous DevOps incident agent. "
+                "Investigate systematically, identify the root cause, "
+                "attempt an automated fix when possible, document "
+                "findings, and create a JIRA ticket if the issue persists."
+            ),
         )
 
     def handle_incident(self, incident_description):
         """
         Handle DevOps incident autonomously
         """
-
-        # Agent reasoning process
-        result = self.executor.invoke({
-            "input": f"""
-            DevOps Incident: {incident_description}
-
-            Please:
-            1. Investigate the issue systematically
-            2. Identify root cause
-            3. Attempt automated fix if possible
-            4. Document findings
-            5. Create ticket if issue persists
-            """
+        result = self.agent.invoke({
+            "messages": [
+                {"role": "user",
+                 "content": f"DevOps Incident: {incident_description}"},
+            ],
         })
-
-        return result
-
-    # Tool implementations
-    def _check_pod_status(self, pod_name: str) -> str:
-        """Check Kubernetes pod status"""
-        from kubernetes import client, config
-
-        config.load_kube_config()
-        v1 = client.CoreV1Api()
-
-        try:
-            pod = v1.read_namespaced_pod(pod_name, "default")
-            return f"""
-            Pod: {pod_name}
-            Status: {pod.status.phase}
-            Ready: {pod.status.container_statuses[0].ready}
-            Restarts: {pod.status.container_statuses[0].restart_count}
-            Node: {pod.spec.node_name}
-            """
-        except Exception as e:
-            return f"Error checking pod: {str(e)}"
-
-    def _get_pod_logs(self, pod_name: str, lines: int = 100) -> str:
-        """Get pod logs"""
-        from kubernetes import client, config
-
-        config.load_kube_config()
-        v1 = client.CoreV1Api()
-
-        try:
-            logs = v1.read_namespaced_pod_log(
-                name=pod_name,
-                namespace="default",
-                tail_lines=lines
-            )
-            return f"Last {lines} lines of logs:\n{logs}"
-        except Exception as e:
-            return f"Error getting logs: {str(e)}"
-
-    def _restart_pod(self, pod_name: str) -> str:
-        """Restart a pod"""
-        from kubernetes import client, config
-
-        config.load_kube_config()
-        v1 = client.CoreV1Api()
-
-        try:
-            v1.delete_namespaced_pod(pod_name, "default")
-            return f"Pod {pod_name} restart initiated"
-        except Exception as e:
-            return f"Error restarting pod: {str(e)}"
-
-    def _check_gpu_usage(self) -> str:
-        """Check GPU usage"""
-        import subprocess
-
-        try:
-            result = subprocess.run(
-                ["nvidia-smi", "--query-gpu=index,utilization.gpu,memory.used,memory.total", "--format=csv"],
-                capture_output=True,
-                text=True
-            )
-            return f"GPU Usage:\n{result.stdout}"
-        except Exception as e:
-            return f"Error checking GPU: {str(e)}"
-
-    def _scale_deployment(self, deployment_name: str, replicas: int) -> str:
-        """Scale deployment"""
-        from kubernetes import client, config
-
-        config.load_kube_config()
-        apps_v1 = client.AppsV1Api()
-
-        try:
-            scale = apps_v1.read_namespaced_deployment_scale(deployment_name, "default")
-            scale.spec.replicas = replicas
-            apps_v1.patch_namespaced_deployment_scale(
-                deployment_name,
-                "default",
-                scale
-            )
-            return f"Scaled {deployment_name} to {replicas} replicas"
-        except Exception as e:
-            return f"Error scaling deployment: {str(e)}"
-
-    def _get_prometheus_metrics(self, query: str) -> str:
-        """Query Prometheus"""
-        import requests
-
-        try:
-            response = requests.get(
-                f"http://prometheus:9090/api/v1/query",
-                params={"query": query}
-            )
-            return f"Prometheus query result: {response.json()}"
-        except Exception as e:
-            return f"Error querying Prometheus: {str(e)}"
-
-    def _create_jira_ticket(self, summary: str, description: str) -> str:
-        """Create JIRA ticket"""
-        from jira import JIRA
-
-        try:
-            jira = JIRA(server=os.getenv("JIRA_SERVER"))
-            issue = jira.create_issue({
-                'project': {'key': 'OPS'},
-                'summary': summary,
-                'description': description,
-                'issuetype': {'name': 'Incident'}
-            })
-            return f"Created JIRA ticket: {issue.key}"
-        except Exception as e:
-            return f"Error creating ticket: {str(e)}"
+        return result["messages"][-1].text
 ```
 
 **Real-World Incident Handling:**
@@ -309,12 +300,19 @@ Customer queries require different expertise (billing, technical, sales), but ro
 
 ```python
 from typing import Literal
+
+from langchain.agents import create_agent
+from langchain_core.tools import tool
+from langchain_openai import ChatOpenAI, OpenAIEmbeddings
+from langchain_qdrant import QdrantVectorStore
 from pydantic import BaseModel
+
 
 class CustomerQuery(BaseModel):
     query: str
     customer_id: str
     channel: Literal["email", "chat", "phone"]
+
 
 class MultiAgentCustomerService:
     """
@@ -330,7 +328,7 @@ class MultiAgentCustomerService:
             "billing": BillingAgent(),
             "technical": TechnicalAgent(),
             "sales": SalesAgent(),
-            "general": GeneralAgent()
+            "general": GeneralAgent(),
         }
 
     def handle_query(self, customer_query: CustomerQuery) -> str:
@@ -350,6 +348,11 @@ class MultiAgentCustomerService:
             return self._escalate_to_human(customer_query, response)
 
         return response
+
+    def _escalate_to_human(self, customer_query, response):
+        # Implementation would notify the human support queue
+        return f"Escalated to human support: {response}"
+
 
 class RouterAgent:
     """
@@ -393,8 +396,8 @@ class RouterAgent:
         Respond with just the department name.
         """
 
-        response = self.llm.predict(prompt)
-        return response.lower().strip()
+        # LangChain 1.x: .predict is gone - invoke() returns a message
+        return self.llm.invoke(prompt).content.lower().strip()
 
     def approve(self, response: str) -> bool:
         """
@@ -420,6 +423,7 @@ class RouterAgent:
 
         return True
 
+
 class BillingAgent:
     """
     Specialist agent for billing queries
@@ -427,34 +431,42 @@ class BillingAgent:
 
     def __init__(self):
         self.llm = ChatOpenAI(model="gpt-4")
-        self.tools = [
-            Tool(
-                name="get_customer_billing",
-                func=self._get_billing_info,
-                description="Get customer billing information and history"
-            ),
-            Tool(
-                name="process_refund",
-                func=self._process_refund,
-                description="Process refund for specified amount"
-            ),
-            Tool(
-                name="update_payment_method",
-                func=self._update_payment,
-                description="Update customer payment method"
-            ),
-            Tool(
-                name="get_invoice",
-                func=self._get_invoice,
-                description="Retrieve specific invoice"
-            )
-        ]
 
-        self.agent = initialize_agent(
-            tools=self.tools,
-            llm=self.llm,
-            agent=AgentType.OPENAI_FUNCTIONS,
-            verbose=True
+        # LangChain 1.x: @tool replaces the Tool(name=, func=) constructor
+        @tool
+        def get_customer_billing(customer_id: str) -> str:
+            """Get customer billing information and history"""
+            # Implementation would query billing database
+            return f"Customer {customer_id}: Current balance $45.99, Active subscription"
+
+        @tool
+        def process_refund(customer_id: str, amount: float) -> str:
+            """Process refund for specified amount"""
+            # Implementation would call billing API
+            return f"Refund of ${amount} processed for customer {customer_id}"
+
+        @tool
+        def update_payment_method(customer_id: str, payment_token: str) -> str:
+            """Update customer payment method"""
+            # Implementation would call billing API
+            return f"Payment method updated for customer {customer_id}"
+
+        @tool
+        def get_invoice(customer_id: str, invoice_id: str) -> str:
+            """Retrieve specific invoice"""
+            # Implementation would query billing database
+            return f"Invoice {invoice_id} for customer {customer_id}: PDF link sent"
+
+        # LangChain 1.x: initialize_agent(AgentType.OPENAI_FUNCTIONS) is
+        # gone - create_agent builds a tool-calling agent directly.
+        self.agent = create_agent(
+            self.llm,
+            [get_customer_billing, process_refund,
+             update_payment_method, get_invoice],
+            system_prompt=(
+                "You are a billing support specialist. Be empathetic "
+                "and clear about any actions taken."
+            ),
         )
 
     def handle(self, query: CustomerQuery) -> str:
@@ -462,28 +474,19 @@ class BillingAgent:
         Handle billing query with access to billing systems
         """
 
-        # Add customer context to query
         enhanced_query = f"""
         Customer ID: {query.customer_id}
         Query: {query.query}
 
         Please help this customer with their billing inquiry.
         Use the available tools to access their information.
-        Be empathetic and clear about any actions taken.
         """
 
-        response = self.agent.run(enhanced_query)
-        return response
+        result = self.agent.invoke({
+            "messages": [{"role": "user", "content": enhanced_query}],
+        })
+        return result["messages"][-1].text
 
-    def _get_billing_info(self, customer_id: str) -> str:
-        """Retrieve billing information from database"""
-        # Implementation would query billing database
-        return f"Customer {customer_id}: Current balance $45.99, Active subscription"
-
-    def _process_refund(self, customer_id: str, amount: float) -> str:
-        """Process refund in billing system"""
-        # Implementation would call billing API
-        return f"Refund of ${amount} processed for customer {customer_id}"
 
 class TechnicalAgent:
     """
@@ -492,33 +495,41 @@ class TechnicalAgent:
 
     def __init__(self):
         self.llm = ChatOpenAI(model="gpt-4")
-        self.knowledge_base = Qdrant(
+        # langchain_qdrant: QdrantVectorStore replaced the old Qdrant class
+        self.knowledge_base = QdrantVectorStore(
             collection_name="technical_docs",
-            embeddings=OpenAIEmbeddings()
+            embeddings=OpenAIEmbeddings(),
         )
 
-        self.tools = [
-            Tool(
-                name="search_knowledge_base",
-                func=self._search_kb,
-                description="Search technical documentation and troubleshooting guides"
-            ),
-            Tool(
-                name="get_customer_devices",
-                func=self._get_devices,
-                description="Get customer's registered devices and their status"
-            ),
-            Tool(
-                name="check_service_status",
-                func=self._check_status,
-                description="Check if there are ongoing service outages"
-            )
-        ]
+        kb = self.knowledge_base
 
-        self.agent = initialize_agent(
-            tools=self.tools,
-            llm=self.llm,
-            agent=AgentType.OPENAI_FUNCTIONS
+        @tool
+        def search_knowledge_base(query: str) -> str:
+            """Search technical documentation and troubleshooting guides"""
+            docs = kb.similarity_search(query, k=3)
+            return "\n".join(doc.page_content for doc in docs)
+
+        @tool
+        def get_customer_devices(customer_id: str) -> str:
+            """Get customer's registered devices and their status"""
+            # Implementation would query the device registry
+            return (f"Customer {customer_id}: Smart Hub v2 "
+                    "(last seen: 2024-01-10), Status: Offline")
+
+        @tool
+        def check_service_status() -> str:
+            """Check if there are ongoing service outages"""
+            # Implementation would query the status page
+            return "No known outages in customer area"
+
+        self.agent = create_agent(
+            self.llm,
+            [search_knowledge_base, get_customer_devices, check_service_status],
+            system_prompt=(
+                "You are a technical support specialist. Troubleshoot "
+                "step by step, search the knowledge base for relevant "
+                "solutions, and recommend escalation if the issue persists."
+            ),
         )
 
     def handle(self, query: CustomerQuery) -> str:
@@ -531,17 +542,13 @@ class TechnicalAgent:
         Technical Issue: {query.query}
 
         Help troubleshoot this issue step by step.
-        Search the knowledge base for relevant solutions.
-        If issue persists, recommend escalation.
         """
 
-        response = self.agent.run(enhanced_query)
-        return response
+        result = self.agent.invoke({
+            "messages": [{"role": "user", "content": enhanced_query}],
+        })
+        return result["messages"][-1].text
 
-    def _search_kb(self, query: str) -> str:
-        """Search technical knowledge base"""
-        docs = self.knowledge_base.similarity_search(query, k=3)
-        return "\n".join([doc.page_content for doc in docs])
 
 class SalesAgent:
     """
@@ -551,28 +558,32 @@ class SalesAgent:
     def __init__(self):
         self.llm = ChatOpenAI(model="gpt-4")
 
-        self.tools = [
-            Tool(
-                name="get_pricing",
-                func=self._get_pricing,
-                description="Get current pricing for products/services"
-            ),
-            Tool(
-                name="check_eligibility",
-                func=self._check_eligibility,
-                description="Check if customer is eligible for upgrades or discounts"
-            ),
-            Tool(
-                name="create_quote",
-                func=self._create_quote,
-                description="Create a sales quote for the customer"
-            )
-        ]
+        @tool
+        def get_pricing() -> str:
+            """Get current pricing for products/services"""
+            # Implementation would query the pricing service
+            return "Basic $29.99/mo, Pro $59.99/mo, Enterprise: contact sales"
 
-        self.agent = initialize_agent(
-            tools=self.tools,
-            llm=self.llm,
-            agent=AgentType.OPENAI_FUNCTIONS
+        @tool
+        def check_eligibility(customer_id: str) -> str:
+            """Check if customer is eligible for upgrades or discounts"""
+            # Implementation would query the offers service
+            return f"Customer {customer_id}: eligible for 10% loyalty discount"
+
+        @tool
+        def create_quote(customer_id: str, plan: str) -> str:
+            """Create a sales quote for the customer"""
+            # Implementation would call the quoting API
+            return f"Quote created for customer {customer_id}: {plan} plan"
+
+        self.agent = create_agent(
+            self.llm,
+            [get_pricing, check_eligibility, create_quote],
+            system_prompt=(
+                "You are a sales specialist. Highlight relevant features "
+                "and benefits, check for eligible discounts, and create "
+                "a quote if the customer is interested."
+            ),
         )
 
     def handle(self, query: CustomerQuery) -> str:
@@ -585,13 +596,32 @@ class SalesAgent:
         Inquiry: {query.query}
 
         Help this customer with their purchase inquiry.
-        Highlight relevant features and benefits.
-        Check for eligible discounts.
-        Create a quote if they're interested.
         """
 
-        response = self.agent.run(enhanced_query)
-        return response
+        result = self.agent.invoke({
+            "messages": [{"role": "user", "content": enhanced_query}],
+        })
+        return result["messages"][-1].text
+
+
+class GeneralAgent:
+    """
+    Fallback agent for general inquiries
+    """
+
+    def __init__(self):
+        self.llm = ChatOpenAI(model="gpt-4")
+        # A tool-less create_agent is valid - it is a plain chat agent.
+        self.agent = create_agent(
+            self.llm,
+            system_prompt="You are a general customer service agent.",
+        )
+
+    def handle(self, query: CustomerQuery) -> str:
+        result = self.agent.invoke({
+            "messages": [{"role": "user", "content": query.query}],
+        })
+        return result["messages"][-1].text
 ```
 
 **Real-World Multi-Agent Conversation:**
@@ -670,6 +700,74 @@ Researchers spend hours searching, reading, and synthesizing information across 
 **Agentic Solution:**
 
 ```python
+import os
+from datetime import datetime
+
+from langchain.agents import create_agent
+from langchain_core.tools import tool
+from langchain_openai import ChatOpenAI
+
+
+@tool
+def search_web(query: str) -> str:
+    """Search the web for current information"""
+    from tavily import TavilyClient
+
+    tavily = TavilyClient(api_key=os.getenv("TAVILY_API_KEY"))
+    results = tavily.search(query=query, max_results=5)
+
+    return "\n".join(
+        f"- {r['title']}: {r['url']}\n  {r['content']}"
+        for r in results["results"]
+    )
+
+
+@tool
+def search_academic(query: str) -> str:
+    """Search academic databases for papers"""
+    import requests
+
+    response = requests.get(
+        "https://api.semanticscholar.org/graph/v1/paper/search",
+        params={"query": query, "limit": 5,
+                "fields": "title,abstract,authors,year"},
+    )
+
+    papers = response.json()["data"]
+
+    return "\n".join(
+        f"- {p['title']} ({p['year']})\n  {p.get('abstract', 'No abstract')}"
+        for p in papers
+    )
+
+
+@tool
+def read_paper(paper_id: str) -> str:
+    """Read and summarize a research paper"""
+    # PDF extraction + summarization pipeline goes here
+    return f"Summary of paper {paper_id}: [extracted summary]"
+
+
+@tool
+def extract_citations(paper_id: str) -> str:
+    """Extract citations from a paper"""
+    # Citation parsing pipeline goes here
+    return f"Citations of paper {paper_id}: [parsed references]"
+
+
+@tool
+def find_related_work(topic: str) -> str:
+    """Find related research papers"""
+    # Delegates to the academic search tool
+    return search_academic.invoke({"query": topic})
+
+
+@tool
+def synthesize_findings(sources: list[str]) -> str:
+    """Synthesize findings from multiple sources"""
+    return "\n".join(f"- {s}" for s in sources)
+
+
 class ResearchAssistantAgent:
     """
     Autonomous research assistant that can search, read, and synthesize
@@ -678,109 +776,40 @@ class ResearchAssistantAgent:
     def __init__(self):
         self.llm = ChatOpenAI(model="gpt-4")
 
-        self.tools = [
-            Tool(
-                name="search_web",
-                func=self._search_web,
-                description="Search the web for current information"
+        # LangChain 1.x: create_agent replaces initialize_agent +
+        # AgentType.OPENAI_FUNCTIONS with a direct tool-calling agent.
+        self.agent = create_agent(
+            self.llm,
+            [search_web, search_academic, read_paper,
+             extract_citations, find_related_work, synthesize_findings],
+            system_prompt=(
+                "You are a research assistant. Search for recent papers, "
+                "read the key ones, extract citations, find related work, "
+                "and synthesize findings into a coherent report with an "
+                "executive summary, key findings, important papers and "
+                "citations, research gaps, and future work suggestions."
             ),
-            Tool(
-                name="search_academic",
-                func=self._search_academic,
-                description="Search academic databases for papers"
-            ),
-            Tool(
-                name="read_paper",
-                func=self._read_paper,
-                description="Read and summarize a research paper"
-            ),
-            Tool(
-                name="extract_citations",
-                func=self._extract_citations,
-                description="Extract citations from a paper"
-            ),
-            Tool(
-                name="find_related_work",
-                func=self._find_related,
-                description="Find related research papers"
-            ),
-            Tool(
-                name="synthesize_findings",
-                func=self._synthesize,
-                description="Synthesize findings from multiple sources"
-            )
-        ]
-
-        self.agent = initialize_agent(
-            tools=self.tools,
-            llm=self.llm,
-            agent=AgentType.OPENAI_FUNCTIONS,
-            verbose=True
         )
 
     def research(self, topic: str) -> dict:
         """
         Conduct comprehensive research on a topic
         """
-
-        prompt = f"""
-        Research Topic: {topic}
-
-        Please conduct comprehensive research:
-        1. Search for recent academic papers
-        2. Read and summarize key papers
-        3. Extract important citations
-        4. Find related work
-        5. Synthesize findings into a coherent report
-
-        Provide:
-- Executive summary
-- Key findings
-- Important papers and citations
-- Gaps in current research
-- Suggestions for future work
-        """
-
-        result = self.agent.run(prompt)
+        result = self.agent.invoke({
+            "messages": [
+                {"role": "user",
+                 "content": f"Research Topic: {topic}\n\n"
+                            "Conduct comprehensive research: recent papers, "
+                            "summaries, citations, related work, and a "
+                            "synthesized report."},
+            ],
+        })
 
         return {
             "topic": topic,
-            "report": result,
-            "timestamp": datetime.now().isoformat()
+            "report": result["messages"][-1].text,
+            "timestamp": datetime.now().isoformat(),
         }
-
-    def _search_web(self, query: str) -> str:
-        """Search web using Tavily API"""
-        from tavily import TavilyClient
-
-        tavily = TavilyClient(api_key=os.getenv("TAVILY_API_KEY"))
-        results = tavily.search(query=query, max_results=5)
-
-        return "\n".join([
-            f"- {r['title']}: {r['url']}\n  {r['content']}"
-            for r in results["results"]
-        ])
-
-    def _search_academic(self, query: str) -> str:
-        """Search academic databases using Semantic Scholar"""
-        import requests
-
-        response = requests.get(
-            "https://api.semanticscholar.org/graph/v1/paper/search",
-            params={"query": query, "limit": 5, "fields": "title,abstract,authors,year"}
-        )
-
-        papers = response.json()["data"]
-
-        return "\n".join([
-            f"- {p['title']} ({p['year']})\n  {p.get('abstract', 'No abstract')}"
-            for p in papers
-        ])
-
-    def _read_paper(self, paper_id: str) -> str:
-        """Read and summarize a paper"""
-        # Would use PDF extraction + summarization
-        pass
 ```
 
 **Real-World Research Task:**
