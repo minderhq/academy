@@ -2,7 +2,7 @@
 Document ID: SOL-002
 Title: Multi-Modal Industrial Inspection System
 Category: Industry Solution
-Last Updated: 2026-09-25
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 6-8 hours
@@ -430,9 +430,7 @@ Taxonomy first, vectors second
 A tool-calling agent grounded in the knowledge base. Every tool referenced is actually defined — the agent can only know what the tools return:
 
 ```python
-from langchain.agents import AgentExecutor, create_tool_calling_agent
-from langchain_core.prompts import (ChatPromptTemplate,
-                                    MessagesPlaceholder)
+from langchain.agents import create_agent
 from langchain_core.tools import tool
 from langchain_openai import ChatOpenAI
 
@@ -449,16 +447,10 @@ class InspectionReportAgent:
         self.kb = knowledge_base
         self.llm = ChatOpenAI(model="gpt-4o", temperature=0)
         self.tools = self._build_tools()
-
-        prompt = ChatPromptTemplate.from_messages([
-            ("system", SYSTEM_PROMPT),
-            ("human", "{input}"),
-            MessagesPlaceholder("agent_scratchpad"),
-        ])
-        agent = create_tool_calling_agent(
-            self.llm, self.tools, prompt)
-        self.executor = AgentExecutor(
-            agent=agent, tools=self.tools, verbose=False)
+        # LangChain 1.x: system_prompt replaces the hand-wired
+        # ChatPromptTemplate + agent_scratchpad + AgentExecutor.
+        self.agent = create_agent(
+            self.llm, self.tools, system_prompt=SYSTEM_PROMPT)
 
     def _build_tools(self):
         kb = self.kb
@@ -491,12 +483,15 @@ class InspectionReportAgent:
             f"- {d['type']} (confidence {d['confidence']}, "
             f"modalities: {', '.join(d['modalities'])})"
             for d in fused_defects) or "- none detected"
-        result = self.executor.invoke({
-            "input": (f"Draft the inspection report for product "
-                      f"{product_id}. Findings:\n{findings}\n"
-                      f"Use the tools for historical context."),
+        result = self.agent.invoke({
+            "messages": [
+                {"role": "user",
+                 "content": (f"Draft the inspection report for product "
+                             f"{product_id}. Findings:\n{findings}\n"
+                             f"Use the tools for historical context.")},
+            ],
         })
-        return result["output"]
+        return result["messages"][-1].text
 ```
 
 ```text

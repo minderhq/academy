@@ -1,7 +1,7 @@
 ---
 Document ID: PROJECT-007
 Title: "CAPSTONE PROJECT 007: Deploy Production AI System"
-Last Updated: 2026-09-27
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -113,14 +113,15 @@ Multi-Agent Orchestrator
 from typing import List, Dict, Optional, Any
 import asyncio
 from langgraph.graph import StateGraph
-from langgraph.prebuilt import ToolExecutor
 
 class AgentOrchestrator:
     """Orchestrate multiple specialized agents"""
 
     def __init__(self):
         self.agents = {}
-        self.tool_executor = ToolExecutor()
+        # LangChain 1.x: tools are bound inside each agent via
+        # create_agent (or a ToolNode when wiring a StateGraph) -
+        # the 0.x standalone ToolExecutor is removed.
 
     def register_agent(self, name: str, agent: 'BaseAgent'):
         """Register an agent"""
