@@ -241,8 +241,7 @@ Week 1-2: Low-Bit Quantization
 ├── 4102-EXL2-and-AWQ.md
 ├── 4103-Double-Quantization.md
 ├── EXP_4101: GGUF Quantization
-├── EXP_4102: EXL2 vs AWQ
-└── LAB-004: Custom Quantization
+└── EXP_4102: EXL2 vs AWQ
 
 Week 3: KV-Cache Optimization
 ├── 4201-Context-Window-Physics.md
@@ -452,7 +451,6 @@ Week 3-4: DPO & Alignment
 Week 1-2: Quantization for Deployment
 ├── 4101-GGUF-Physics.md
 ├── 4102-EXL2-and-AWQ.md
-├── LAB-004: Custom Quantization (4 hours)
 └── Practice: Quantize fine-tuned model
 
 Week 3-4: Production Fine-Tuning

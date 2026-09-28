@@ -525,7 +525,7 @@ class SpeculativeDecoding:
 
 ## 🚀 Next Steps
 
-1. Complete LAB-004: Custom Quantization
+1. Complete EXP_4101: GGUF Quantization
 2. Read 4201-Context-Window-Physics.md
 3. Read 4202-Speculative-Decoding.md
 4. Practice with EXP experiments

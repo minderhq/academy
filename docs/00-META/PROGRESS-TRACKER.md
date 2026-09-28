@@ -155,7 +155,6 @@ Total: [░░░░░░░░░░░░░░░░░] 0% (0/408 core file
 - [ ] **EXP_4101: GGUF Quantization** (experiment)
 - [ ] **EXP_4102: EXL2 vs AWQ** (experiment)
 - [ ] **EXP_4201: Speculative Decoding** (experiment)
-- [ ] **LAB-004: ReAct Agent** (4 hours)
 
 **Volume 4 Progress:** [ ] 0/11 (0%) | **Capstone:** [ ] Quantize 7B model to 4-bit
 
@@ -180,7 +179,7 @@ Total: [░░░░░░░░░░░░░░░░░] 0% (0/408 core file
 
 **Labs:**
 - [ ] **LAB-003: LoRA Fine-Tuning** (4 hours)
-- [ ] **LAB-005: DPO Alignment** (5-6 hours)
+- [ ] **LAB-010: DPO Alignment** (5-6 hours)
 
 **Volume 5 Progress:** [ ] 0/10 (0%) | **Capstone:** [ ] Fine-tune domain-specific model
 

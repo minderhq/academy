@@ -17,8 +17,8 @@ Difficulty: Intermediate
 **Time:** 8-10 hours
 **Difficulty:** ⭐⭐⭐⭐ Expert
 **Prerequisites:**
-- LAB-001: Core Concepts
-- LAB-002: First RAG System
+- LAB-001: Docker & LLM
+- LAB-002: RAG Implementation
 - LAB-007: Production RAG
 - LAB-008: Agent Fleet
 - Basic knowledge of Docker and Linux

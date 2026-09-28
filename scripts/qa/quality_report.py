@@ -109,6 +109,17 @@ stand today?" without running each tool by hand.
                        7 volumes"; PROGRESS-TRACKER joined in
                        tick-265 while it still targeted "0/97 core
                        files")
+    lab_registry_check every `LAB-0NN: Topic` label corpus-wide vs the
+                       labs' own frontmatter Titles (LB-01 wrong lab
+                       identity - the topic belongs to a different lab
+                       than the one labelled; LB-02 unknown/ambiguous
+                       topic - teach the signal table or fix the label;
+                       LR-01 lab id with no file on disk). Labels carry
+                       identities, not numbers, so the claims gates
+                       cannot see this class - born from the tick-267
+                       census (301 labels) that found DPO Alignment
+                       credited to LAB-005 twice and "Custom
+                       Quantization" invented for LAB-004 three times
   queue gate (drain in progress; never fails the report unless --fail-on-queue):
     objectives_lint    template-objective artifacts (OL-01/OL-02), phase by phase
     fence_namecheck    unbound names in python fences (report mode), two
@@ -175,6 +186,7 @@ GATES = [
     ("readme_claims_check.py", "readme_claims_check", True),
     ("sitemap_claims_check.py", "sitemap_claims_check", True),
     ("meta_claims_check.py", "meta_claims_check", True),
+    ("lab_registry_check.py", "lab_registry_check", True),
 ]
 
 

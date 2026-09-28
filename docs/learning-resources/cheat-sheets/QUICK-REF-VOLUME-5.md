@@ -483,7 +483,7 @@ TRAINING_HYPERPARAMETERS = {
 ## 🚀 Next Steps
 
 1. Complete LAB-003: LoRA Fine-Tuning
-2. Complete LAB-005: DPO Alignment
+2. Complete LAB-010: DPO Alignment
 3. Read 5301-Knowledge-Distillation.md
 4. Practice with different datasets
 
