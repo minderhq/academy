@@ -438,13 +438,24 @@ print(result["messages"][-1].text)
 **Best of both:** Grounded in your documents + speaks your language
 
 ```python
+from langchain_core.output_parsers import StrOutputParser
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.runnables import RunnablePassthrough
+
 # Fine-tune for domain vocabulary
 fine_tuned_model = load_finetuned_model("legal-llama-7b")
 
-# Use RAG for factual retrieval
-rag_chain = RetrievalQA.from_chain_type(
-    llm=fine_tuned_model,
-    retriever=vectorstore.as_retriever()
+# Use RAG for factual retrieval - LangChain 1.x composes LCEL steps
+# instead of the legacy RetrievalQA wrapper (langchain_classic only)
+prompt = ChatPromptTemplate.from_messages([
+    ("system", "Answer using only the provided context."),
+    ("human", "Context:\n{context}\n\nQuestion: {question}"),
+])
+rag_chain = (
+    {"context": vectorstore.as_retriever(), "question": RunnablePassthrough()}
+    | prompt
+    | fine_tuned_model
+    | StrOutputParser()
 )
 
 # Result: Accurate + understands legal terminology
