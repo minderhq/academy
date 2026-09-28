@@ -1833,6 +1833,29 @@ def add_document(doc: Document):
     }
 ```
 
+### Testing Your API (TestClient)
+
+You don't need to run a server to test endpoints — `TestClient` (built on `httpx`) calls the app in-process:
+
+```python
+from fastapi.testclient import TestClient
+
+client = TestClient(app)  # the RAG API above — no server process needed
+
+# Smoke-test the endpoints
+resp = client.post("/query", json={"question": "What is RAG?"})
+assert resp.status_code == 200
+assert resp.json()["top_k"] == 5  # default applied
+
+resp = client.post("/query", json={"question": "What is RAG?", "top_k": 99})
+assert resp.status_code == 422  # le=10 constraint enforced
+
+resp = client.post("/documents", json={"text": ""})
+assert resp.status_code == 422  # min_length=1 constraint enforced
+
+print("All API smoke tests passed")
+```
+
 ### Running FastAPI
 
 ```python
