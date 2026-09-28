@@ -944,7 +944,7 @@ Question: {query}
 
 **Tip:** Use semantic chunking for better retrieval
 ```python
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 # Smart chunking that respects boundaries
 splitter = RecursiveCharacterTextSplitter(

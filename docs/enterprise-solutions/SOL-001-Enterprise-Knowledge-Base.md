@@ -1,7 +1,7 @@
 ---
 Document ID: SOL-001
 Title: "SOL-001: Enterprise Knowledge Base - Complete Implementation"
-Last Updated: 2026-09-27
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -194,7 +194,7 @@ from typing import List, Dict
 from pathlib import Path
 from datetime import datetime
 
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import (
     PyPDFLoader,
     Docx2txtLoader,
