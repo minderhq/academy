@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-000
 Title: "LAB-000: Environment Setup"
-Last Updated: 2026-09-27
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Beginner
 ---
@@ -247,7 +247,7 @@ python -c "import transformers; print('Transformers installed')"
 ```
 
 **✅ Verification:**
-- [ ] Python 3.10+ installed
+- [ ] Python 3.11+ installed
 - [ ] Virtual environment created
 - [ ] Virtual environment activated
 - [ ] PyTorch and Transformers installed
@@ -359,7 +359,7 @@ python test_env.py
 
 ### Software
 - [ ] Docker installed and running
-- [ ] Python 3.10+ installed
+- [ ] Python 3.11+ installed
 - [ ] Virtual environment created
 - [ ] Essential packages installed
 

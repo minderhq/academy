@@ -3,7 +3,7 @@ Document ID: 2300-QUIZ
 Title: "2300: Framework Engineering - Quiz"
 Phase: 2
 Module: 2300
-Last Updated: 2026-09-26
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 30 minutes
@@ -361,7 +361,7 @@ def process_batch(requests, model, batch_size=32):
 **Write a Dockerfile for ML API:**
 
 ```dockerfile
-FROM python:3.10-slim
+FROM python:3.11-slim
 WORKDIR /app
 COPY requirements.txt .
 RUN pip install -r requirements.txt

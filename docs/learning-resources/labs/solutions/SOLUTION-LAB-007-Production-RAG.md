@@ -1,7 +1,7 @@
 ---
 Document ID: SOLUTION-LAB-007
 Title: "SOLUTION-LAB-007: Production RAG"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -67,7 +67,7 @@ class ProductionRAG:
 
 ```dockerfile
 # Dockerfile
-FROM python:3.10
+FROM python:3.11
 WORKDIR /app
 COPY requirements.txt .
 RUN pip install -r requirements.txt

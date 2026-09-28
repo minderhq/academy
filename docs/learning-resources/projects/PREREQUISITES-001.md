@@ -1,7 +1,7 @@
 ---
 Document ID: PREREQUISITES-001
 Title: "PROJECT-001: Prerequisites & Setup Guide"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -71,7 +71,7 @@ PROJECT-001 is a comprehensive AI assistant combining RAG, ReAct agents, and too
 ### Essential Software
 
 1. **Docker & Docker Compose**
-2. **Python 3.10+**
+2. **Python 3.11+**
 3. **Ollama**
 4. **Git**
 

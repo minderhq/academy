@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-012
 Title: "LAB-012: Audio AI"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -1376,7 +1376,7 @@ if __name__ == "__main__":
 
 ```dockerfile
 # File: Dockerfile.voice
-FROM python:3.10-slim
+FROM python:3.11-slim
 
 WORKDIR /app
 

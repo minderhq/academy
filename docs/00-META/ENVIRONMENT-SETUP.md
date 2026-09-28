@@ -1,7 +1,7 @@
 ---
 Document ID: ENVIRONMENT-SETUP
 Title: "Environment Setup Guide"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Beginner
 ---
@@ -161,7 +161,7 @@ Verify:
 uv --version
 ```
 
-> **Prefer pip?** uv is a drop-in replacement, but a system Python 3.10+ with
+> **Prefer pip?** uv is a drop-in replacement, but a system Python 3.11+ with
 > `python -m venv` and plain `pip` still works for every lesson. On Windows,
 > install Python from [python.org](https://www.python.org/downloads/) (check
 > "Add Python to PATH"); on macOS use `brew install python@3.11`; on Linux
@@ -346,7 +346,7 @@ model.to(device)
 1. **Check Python Version:**
 ```bash
 python --version
-# Should be 3.10 or higher
+# Should be 3.11 or higher
 ```
 
 2. **Use uv (recommended) or pyenv:**

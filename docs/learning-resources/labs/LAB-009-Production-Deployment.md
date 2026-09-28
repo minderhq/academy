@@ -469,7 +469,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.10'
+          python-version: '3.11'
 
       - name: Install dependencies
         run: |
@@ -557,7 +557,7 @@ jobs:
 # File: Dockerfile
 
 # Build stage
-FROM python:3.10-slim as builder
+FROM python:3.11-slim as builder
 
 WORKDIR /build
 
@@ -572,7 +572,7 @@ COPY requirements.txt .
 RUN pip install --user --no-cache-dir -r requirements.txt
 
 # Runtime stage
-FROM python:3.10-slim
+FROM python:3.11-slim
 
 WORKDIR /app
 

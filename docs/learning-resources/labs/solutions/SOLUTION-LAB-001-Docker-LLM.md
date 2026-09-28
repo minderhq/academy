@@ -1,7 +1,7 @@
 ---
 Document ID: SOLUTION-LAB-001
 Title: "SOLUTION-LAB-001: Docker & LLM Fundamentals"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -277,7 +277,7 @@ requests==2.31.0
 
 ```dockerfile
 # ~/lab-001-docker-llm/services/app/Dockerfile
-FROM python:3.10-slim
+FROM python:3.11-slim
 
 WORKDIR /app
 

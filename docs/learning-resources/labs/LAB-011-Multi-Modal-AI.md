@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-011
 Title: "LAB-011: Multi-Modal AI"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -1281,7 +1281,7 @@ if __name__ == "__main__":
 
 ```dockerfile
 # File: Dockerfile.multimodal
-FROM python:3.10-slim
+FROM python:3.11-slim
 
 WORKDIR /app
 

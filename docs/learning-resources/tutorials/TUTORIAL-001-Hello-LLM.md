@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-001
 Title: "Tutorial 001: Hello LLM! - Your First AI Model"
-Last Updated: 2026-09-27
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -12,7 +12,7 @@ Difficulty: Intermediate
 **Time:** 30 minutes
 **Prerequisites:**
 - **Basic Python knowledge** (variables, functions, loops)
-- **Python 3.9+ installed**
+- **Python 3.11+ installed**
 
 :information_source: **New to Python?** Start with **[TUTORIAL-000: Python for AI](TUTORIAL-000-Python-for-AI.md)** (15-20 hours) to learn the fundamentals.
 

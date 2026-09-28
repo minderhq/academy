@@ -1,7 +1,7 @@
 ---
 Document ID: FAQ
 Title: "PROJECT-OMEGA FAQ"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Beginner
 ---
@@ -120,7 +120,7 @@ Start here:
 
 **Essential:**
 - Linux (Ubuntu 22.04 recommended) or WSL2 on Windows
-- Python 3.10+
+- Python 3.11+
 - Docker
 - Git
 
