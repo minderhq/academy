@@ -1,7 +1,7 @@
 ---
 Document ID: CP-001
 Title: "CP-001: RAG vs Fine-Tuning vs Agents - Decision Guide"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -99,29 +99,47 @@ query = "Find Force Majeure clauses covering pandemics"
 #### Implementation Template
 
 ```python
-from langchain.vectorstores import Qdrant
-from langchain.chains import RetrievalQA
-from langchain.llms import OpenAI
+from langchain_core.output_parsers import StrOutputParser
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.runnables import RunnableParallel, RunnablePassthrough
+from langchain_openai import ChatOpenAI, OpenAIEmbeddings
+from langchain_qdrant import QdrantVectorStore
 
 # Setup
-vectorstore = Qdrant.from_documents(
+vectorstore = QdrantVectorStore.from_documents(
     documents=your_documents,
     embedding=OpenAIEmbeddings(),
-    url="localhost:6333"
+    url="localhost:6333",
 )
+retriever = vectorstore.as_retriever(search_kwargs={"k": 4})
 
-# Create RAG chain
-qa_chain = RetrievalQA.from_chain_type(
-    llm=OpenAI(),
-    chain_type="stuff",
-    retriever=vectorstore.as_retriever(search_kwargs={"k": 4}),
-    return_source_documents=True
+# Create RAG chain - LangChain 1.x composes LCEL steps instead of
+# the legacy RetrievalQA wrapper.
+llm = ChatOpenAI(model="gpt-4o-mini")
+prompt = ChatPromptTemplate.from_messages([
+    ("system", "Answer the question using only the context. Cite sources."),
+    ("human", "Context:\n{context}\n\nQuestion: {question}"),
+])
+
+def format_docs(docs):
+    return "\n\n".join(
+        f"[{d.metadata.get('source', '?')}]\n{d.page_content}" for d in docs
+    )
+
+rag_chain = (
+    RunnableParallel(
+        context=retriever | format_docs,
+        question=RunnablePassthrough(),
+    )
+    | prompt
+    | llm
+    | StrOutputParser()
 )
 
 # Query
-result = qa_chain({"query": "your question"})
-answer = result["result"]
-sources = [doc.metadata["source"] for doc in result["source_documents"]]
+question = "your question"
+answer = rag_chain.invoke({"question": question})
+sources = [d.metadata["source"] for d in retriever.invoke(question)]
 ```
 
 #### Cost Comparison
@@ -363,38 +381,42 @@ Result: Comprehensive travel plan
 #### Implementation Template
 
 ```python
-from langchain.agents import create_openai_functions_agent, AgentExecutor
-from langchain.tools import Tool
+from langchain.agents import create_agent
+from langchain_core.tools import tool
 from langchain_openai import ChatOpenAI
 
-# Define tools
-tools = [
-    Tool(
-        name="search",
-        func=search_function,
-        description="Search for information"
-    ),
-    Tool(
-        name="calculator",
-        func=calculator_function,
-        description="Perform calculations"
-    ),
-    Tool(
-        name="database",
-        func=database_function,
-        description="Query the database"
-    )
-]
+# Define tools - @tool replaces the legacy Tool(name=, func=) constructor
+@tool
+def search(query: str) -> str:
+    """Search for information."""
+    return search_function(query)
+
+@tool
+def calculator(expression: str) -> str:
+    """Perform calculations."""
+    return calculator_function(expression)
+
+@tool
+def database(query: str) -> str:
+    """Query the database."""
+    return database_function(query)
 
 # Create agent
 llm = ChatOpenAI(model="gpt-4")
-agent = create_openai_functions_agent(llm, tools, prompt)
-executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
+agent = create_agent(
+    llm,
+    [search, calculator, database],
+    system_prompt="You are a helpful assistant with tool access.",
+)
 
 # Run
-result = executor.invoke({
-    "input": "Find the top 3 products by sales and calculate total revenue"
+result = agent.invoke({
+    "messages": [
+        {"role": "user",
+         "content": "Find the top 3 products by sales and calculate total revenue"}
+    ]
 })
+print(result["messages"][-1].text)
 ```
 
 #### Cost Comparison
