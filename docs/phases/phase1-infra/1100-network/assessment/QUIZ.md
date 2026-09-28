@@ -19,65 +19,65 @@ Difficulty: Beginner
 
 **1. The OSI model has how many layers?**
 
-A) 5
-B) 7
-C) 10
-D) 3
+A) 7
+B) 3
+C) 5
+D) 10
 
 **2. TCP is:**
 
-A) Connectionless
+A) Unreliable
 B) Connection-oriented and reliable
-C) Unreliable
-D) Only for UDP
+C) Only for UDP
+D) Connectionless
 
 **3. DNS is used for:**
 
 A) IP address allocation
 B) Name resolution
-C) Routing
-D) Encryption
+C) Encryption
+D) Routing
 
 **4. A load balancer distributes:**
 
-A) Storage
-B) Network traffic across servers
-C) DNS queries
-D) Emails
+A) Network traffic across servers
+B) Emails
+C) Storage
+D) DNS queries
 
 **5. Reverse proxy:**
 
-A) Forwards client requests to servers
-B) Servers directly connect to clients
-C) Is not used
-D) Only for HTTP
+A) Is not used
+B) Forwards client requests to servers
+C) Only for HTTP
+D) Servers directly connect to clients
 
 **6. HTTP typically runs on port:**
 
 A) 22
-B) 80
-C) 443
+B) 443
+C) 80
 D) 8080
 
 **7. HTTPS uses:**
 
-A) No encryption
-B) SSL/TLS encryption
-C) SSH
-D) FTP
+A) FTP
+B) No encryption
+C) SSL/TLS encryption
+D) SSH
 
 **8. A CDN:**
 
 A) Stores databases
-B) Distributes content geographically
+B) Is not useful
 C) Is only for video
-D) Is not useful
+D) Distributes content geographically
 
 **9. Round-robin load balancing:**
 
 A) Sends all to one server
-B) Rotates requests evenly
-C) Sends randomly
+B) Sends randomly
+C) Rotates requests evenly
 D) Is not used
 
 **10. API rate limiting prevents:**
@@ -89,73 +89,73 @@ D) Logging
 
 **11. REST APIs use:**
 
-A) Only POST
-B) HTTP methods (GET, POST, PUT, DELETE)
-C) Only GET
-D) No methods
+A) HTTP methods (GET, POST, PUT, DELETE)
+B) No methods
+C) Only POST
+D) Only GET
 
 **12. JWT is used for:**
 
 A) Database storage
-B) Authentication tokens
-C) Load balancing
-D) DNS
+B) Load balancing
+C) DNS
+D) Authentication tokens
 
 **13. Latency is:**
 
-A) Data transfer speed
-B) Time delay
-C) Bandwidth
-D) Storage
+A) Bandwidth
+B) Storage
+C) Data transfer speed
+D) Time delay
 
 **14. Bandwidth is:**
 
-A) Time delay
-B) Data transfer capacity
-C) Number of users
-D) Server count
+A) Data transfer capacity
+B) Server count
+C) Time delay
+D) Number of users
 
 **15. A VPC is:**
 
 A) Virtual Private Cloud (isolated network)
-B) Public network
-C) Database
-D) Load balancer
+B) Load balancer
+C) Public network
+D) Database
 
 **16. Security groups control:**
 
-A) Network traffic rules
-B) User passwords
-C) Database access
-D) File permissions
+A) Database access
+B) Network traffic rules
+C) File permissions
+D) User passwords
 
 **17. API gateway:**
 
-A) Manages API requests
-B) Is a database
-C) Is a load balancer only
-D) Not useful
+A) Is a database
+B) Not useful
+C) Manages API requests
+D) Is a load balancer only
 
 **18. Circuit breaker pattern:**
 
-A) Prevents cascading failures
+A) Only for databases
 B) Causes failures
 C) Is not used
-D) Only for databases
+D) Prevents cascading failures
 
 **19. Health checks:**
 
-A) Monitor service status
-B) Cause downtime
-C) Are not useful
-D) Only for load balancers
+A) Only for load balancers
+B) Are not useful
+C) Monitor service status
+D) Cause downtime
 
 **20. Microservices communicate via:**
 
-A) Shared memory
-B) Network (APIs, message queues)
-C) Files
-D) Direct variable access
+A) Files
+B) Shared memory
+C) Direct variable access
+D) Network (APIs, message queues)
 
 ---
 
@@ -163,23 +163,23 @@ D) Direct variable access
 
 | # | Answer |
 |---|--------|
-| 1 | B |
+| 1 | A |
 | 2 | B |
 | 3 | B |
-| 4 | B |
-| 5 | A |
-| 6 | B |
-| 7 | B |
-| 8 | B |
-| 9 | B |
+| 4 | A |
+| 5 | B |
+| 6 | C |
+| 7 | C |
+| 8 | D |
+| 9 | C |
 | 10 | B |
-| 11 | B |
-| 12 | B |
-| 13 | B |
-| 14 | B |
+| 11 | A |
+| 12 | D |
+| 13 | D |
+| 14 | A |
 | 15 | A |
-| 16 | A |
-| 17 | A |
-| 18 | A |
-| 19 | A |
-| 20 | B |
+| 16 | B |
+| 17 | C |
+| 18 | D |
+| 19 | C |
+| 20 | D |

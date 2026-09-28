@@ -19,9 +19,9 @@ Difficulty: Advanced
 
 **1. Self-attention allows a model to:**
 
-A) Focus on one word at a time
-B) Weigh the importance of different words relative to each other
-C) Ignore context
+A) Ignore context
+B) Focus on one word at a time
+C) Weigh the importance of different words relative to each other
 D) Process sequentially only
 
 **2. The query (Q), key (K), and value (V) in attention are:**
@@ -34,128 +34,128 @@ D) Fixed constants
 **3. The attention score is computed as:**
 
 A) Q + K
-B) Q × K
-C) softmax(QK^T / √d)
-D) ReLU(QK^T)
+B) softmax(QK^T / √d)
+C) ReLU(QK^T)
+D) Q × K
 
 **4. Multi-head attention:**
 
-A) Runs attention multiple times in parallel
-B) Runs attention sequentially
-C) Is slower than single-head
-D) Reduces model capacity
+A) Runs attention sequentially
+B) Is slower than single-head
+C) Reduces model capacity
+D) Runs attention multiple times in parallel
 
 **5. The √d scaling factor in attention:**
 
-A) Makes training faster
+A) Has no effect
 B) Prevents vanishing gradients in softmax
-C) Increases the attention scores
-D) Has no effect
+C) Makes training faster
+D) Increases the attention scores
 
 **6. Causal masking in decoder attention:**
 
 A) Allows all positions to attend to all others
-B) Prevents positions from attending to future positions
-C) Is only used during inference
-D) Is not needed
+B) Is only used during inference
+C) Is not needed
+D) Prevents positions from attending to future positions
 
 **7. The original attention mechanism (for seq2seq) was introduced in:**
 
-A) "Attention Is All You Need" (2017) - introduced self-attention and Transformers
-B) "BERT: Pre-training of Deep Bidirectional Transformers" (2018)
-C) "Neural Machine Translation by Jointly Learning to Align and Translate" (2015) - introduced attention for NMT
-D) "GPT-3" (2020)
+A) "GPT-3" (2020)
+B) "Attention Is All You Need" (2017) - introduced self-attention and Transformers
+C) "BERT: Pre-training of Deep Bidirectional Transformers" (2018)
+D) "Neural Machine Translation by Jointly Learning to Align and Translate" (2015) - introduced attention for NMT
 
 **8. Cross-attention connects:**
 
-A) Tokens within the same sequence
-B) Two different sequences
+A) Two different sequences
+B) The model to the loss
 C) All sequences to each other
-D) The model to the loss
+D) Tokens within the same sequence
 
 **9. The number of attention heads is typically:**
 
-A) 1
-B) 8-16 for base models
-C) 100+
+A) 100+
+B) 1
+C) 8-16 for base models
 D) Doesn't matter
 
 **10. Attention weights sum to:**
 
-A) 0
-B) 1
-C) The sequence length
+A) 1
+B) The sequence length
+C) 0
 D) Variable amounts
 
 **11. The value of the attention softmax represents:**
 
-A) The importance of each key
-B) The learning rate
-C) The gradient
+A) The gradient
+B) The importance of each key
+C) The learning rate
 D) The loss
 
 **12. Positional encoding is needed because:**
 
-A) Attention has no inherent notion of position
-B) It improves training speed
-C) It reduces memory
-D) It's required by softmax
+A) It's required by softmax
+B) It reduces memory
+C) It improves training speed
+D) Attention has no inherent notion of position
 
 **13. Sinusoidal positional encoding:**
 
-A) Uses learned embeddings
-B) Uses fixed sine and cosine functions
-C) Is not commonly used
-D) Only works for short sequences
+A) Is not commonly used
+B) Only works for short sequences
+C) Uses fixed sine and cosine functions
+D) Uses learned embeddings
 
 **14. Rotary Positional Embeddings (RoPE):**
 
-A) Are the same as sinusoidal
-B) Rotate keys and queries based on position
-C) Don't encode position
-D) Are only used in vision
+A) Rotate keys and queries based on position
+B) Are the same as sinusoidal
+C) Are only used in vision
+D) Don't encode position
 
 **15. The attention complexity for sequence length n is:**
 
-A) O(n)
-B) O(n²)
-C) O(n³)
-D) O(log n)
+A) O(n²)
+B) O(log n)
+C) O(n)
+D) O(n³)
 
 **16. Flash Attention optimizes:**
 
 A) Model accuracy
-B) Memory access patterns for speed
-C) The number of parameters
+B) The number of parameters
+C) Memory access patterns for speed
 D) The learning rate
 
 **17. Grouped Query Attention (GQA):**
 
-A) Uses more heads
-B) Shares key/value projections across heads
+A) Shares key/value projections across heads
+B) Uses more heads
 C) Is slower than standard attention
 D) Reduces accuracy
 
 **18. Sliding window attention:**
 
-A) Attends to all positions
-B) Attends only to nearby positions
-C) Is only for vision
-D) Doesn't work
+A) Doesn't work
+B) Is only for vision
+C) Attends to all positions
+D) Attends only to nearby positions
 
 **19. ALiBi positional encoding:**
 
-A) Uses learned embeddings
-B) Adds a bias based on distance
-C) Uses sinusoidal functions
-D) Doesn't exist
+A) Uses sinusoidal functions
+B) Doesn't exist
+C) Adds a bias based on distance
+D) Uses learned embeddings
 
 **20. In practice, multi-head attention learns:**
 
-A) The same thing in each head
+A) Nothing (it's random)
 B) Different attention patterns in each head
-C) Nothing (it's random)
-D) Only one useful head
+C) Only one useful head
+D) The same thing in each head
 
 ---
 
@@ -163,23 +163,23 @@ D) Only one useful head
 
 | # | Answer |
 |---|--------|
-| 1 | B |
+| 1 | C |
 | 2 | B |
-| 3 | C |
-| 4 | A |
+| 3 | B |
+| 4 | D |
 | 5 | B |
-| 6 | B |
-| 7 | C |
-| 8 | B |
-| 9 | B |
-| 10 | B |
-| 11 | A |
-| 12 | A |
-| 13 | B |
-| 14 | B |
-| 15 | B |
-| 16 | B |
-| 17 | B |
-| 18 | B |
-| 19 | B |
+| 6 | D |
+| 7 | D |
+| 8 | A |
+| 9 | C |
+| 10 | A |
+| 11 | B |
+| 12 | D |
+| 13 | C |
+| 14 | A |
+| 15 | A |
+| 16 | C |
+| 17 | A |
+| 18 | D |
+| 19 | C |
 | 20 | B |

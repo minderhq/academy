@@ -20,142 +20,142 @@ Difficulty: Advanced
 **1. Agent orchestration manages:**
 
 A) Only single agent
-B) Multiple agent execution
-C) No agents
+B) No agents
+C) Multiple agent execution
 D) Only tools
 
 **2. LangGraph is:**
 
-A) A library for agents
-B) An orchestration framework
+A) An orchestration framework
+B) A library for agents
 C) A database
 D) Not related
 
 **3. Sequential execution:**
 
 A) Parallel execution
-B) One step after another
-C) Random order
-D) No execution
+B) Random order
+C) No execution
+D) One step after another
 
 **4. Parallel execution:**
 
 A) One step at a time
-B) Multiple steps simultaneously
-C) No execution
-D) Sequential only
+B) Sequential only
+C) Multiple steps simultaneously
+D) No execution
 
 **5. DAG (Directed Acyclic Graph) in agents:**
 
-A) Has cycles
-B) No cycles, directed
-C) Undirected
-D) No structure
+A) Undirected
+B) No structure
+C) No cycles, directed
+D) Has cycles
 
 **6. State in orchestration:**
 
 A) Not tracked
 B) Shared between agents
-C) Only in one agent
-D) No state
+C) No state
+D) Only in one agent
 
 **7. Conditional routing:**
 
-A) Always same path
-B) Based on state/results
-C) Random routing
-D) No routing
+A) Based on state/results
+B) Always same path
+C) No routing
+D) Random routing
 
 **8. Human-in-the-loop:**
 
-A) No human interaction
+A) Only at end
 B) Human approval for actions
 C) Only at start
-D) Only at end
+D) No human interaction
 
 **9. Agent handoff:**
 
-A) No handoff
+A) Random
 B) Transfer between agents
-C) Only to human
-D) Random
+C) No handoff
+D) Only to human
 
 **10. Subtasks in orchestration:**
 
 A) No subtasks
-B) Decompose complex tasks
-C) Only one task
-D) Random tasks
+B) Only one task
+C) Random tasks
+D) Decompose complex tasks
 
 **11. Error recovery in orchestration:**
 
-A) Crash on error
-B) Retry or alternative paths
+A) Retry or alternative paths
+B) No errors
 C) Ignore errors
-D) No errors
+D) Crash on error
 
 **12. Orchestration patterns include:**
 
-A) Only sequential
-B) Sequential, parallel, hierarchical
+A) Sequential, parallel, hierarchical
+B) Only sequential
 C) Only parallel
 D) No patterns
 
 **13. AutoGen is:**
 
-A) An orchestration framework
-B) An embedding model
+A) An embedding model
+B) Not related
 C) A database
-D) Not related
+D) An orchestration framework
 
 **14. CrewAI is:**
 
-A) An orchestration framework
-B) A training tool
-C) A monitoring tool
-D) Not related
+A) Not related
+B) An orchestration framework
+C) A training tool
+D) A monitoring tool
 
 **15. Event-driven orchestration:**
 
-A) Polling based
-B) Triggered by events
-C) No events
-D) Random
+A) No events
+B) Random
+C) Triggered by events
+D) Polling based
 
 **16. Workflow in agents:**
 
-A) No structure
-B) Defined sequence of operations
-C) Random sequence
+A) Defined sequence of operations
+B) Random sequence
+C) No structure
 D) Only one operation
 
 **17. Coordination between agents:**
 
 A) No coordination
-B) Communication and synchronization
-C) Only competition
-D) Independent only
+B) Only competition
+C) Independent only
+D) Communication and synchronization
 
 **18. Orchestrator agent:**
 
-A) No orchestrator
+A) Same as worker agents
 B) Manages other agents
-C) Same as worker agents
-D) Not needed
+C) Not needed
+D) No orchestrator
 
 **19. Deadlock in orchestration:**
 
-A) Agents waiting forever
-B) Fast execution
+A) Fast execution
+B) Not possible
 C) No waiting
-D) Not possible
+D) Agents waiting forever
 
 **20. Orchestration vs chaining:**
 
-A) Same thing
-B) Orchestration is more flexible
-C) Chaining is more flexible
-D) No difference
+A) Chaining is more flexible
+B) No difference
+C) Orchestration is more flexible
+D) Same thing
 
 ---
 
@@ -163,23 +163,23 @@ D) No difference
 
 | # | Answer |
 |---|--------|
-| 1 | B |
-| 2 | B |
-| 3 | B |
-| 4 | B |
-| 5 | B |
+| 1 | C |
+| 2 | A |
+| 3 | D |
+| 4 | C |
+| 5 | C |
 | 6 | B |
-| 7 | B |
+| 7 | A |
 | 8 | B |
 | 9 | B |
-| 10 | B |
-| 11 | B |
-| 12 | B |
-| 13 | A |
-| 14 | A |
-| 15 | B |
-| 16 | B |
-| 17 | B |
+| 10 | D |
+| 11 | A |
+| 12 | A |
+| 13 | D |
+| 14 | B |
+| 15 | C |
+| 16 | A |
+| 17 | D |
 | 18 | B |
-| 19 | A |
-| 20 | B |
+| 19 | D |
+| 20 | C |

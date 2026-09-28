@@ -20,38 +20,38 @@ Difficulty: Intermediate
 
 **1. What is a derivative?**
 
-A) The area under a curve
-B) The rate of change of a function
-C) The sum of values
+A) The sum of values
+B) The area under a curve
+C) The rate of change of a function
 D) The integral of a function
 
 **2. The chain rule is used to:**
 
 A) Find derivatives of composite functions
-B) Find derivatives of products
-C) Find derivatives of quotients
-D) Find integrals
+B) Find integrals
+C) Find derivatives of products
+D) Find derivatives of quotients
 
 **3. In backpropagation, we use:**
 
-A) First derivatives only
-B) Second derivatives only
-C) Both first and second derivatives
-D) Neither
+A) Both first and second derivatives
+B) Neither
+C) First derivatives only
+D) Second derivatives only
 
 **4. A gradient is:**
 
 A) A single number
-B) A vector of partial derivatives
-C) A matrix
-D) A scalar
+B) A matrix
+C) A scalar
+D) A vector of partial derivatives
 
 **5. The learning rate in gradient descent is analogous to:**
 
-A) The derivative
+A) The function value
 B) The step size
-C) The gradient magnitude
-D) The function value
+C) The derivative
+D) The gradient magnitude
 
 **6. What does the second derivative tell us?**
 
@@ -62,101 +62,101 @@ D) The intercept
 
 **7. Partial derivatives are used when:**
 
-A) A function has one variable
-B) A function has multiple variables
-C) We want to integrate
-D) We want to find the maximum
+A) A function has multiple variables
+B) We want to find the maximum
+C) A function has one variable
+D) We want to integrate
 
 **8. In neural networks, gradients flow:**
 
 A) Forward only
 B) Backward only
-C) Both directions
-D) Neither direction
+C) Neither direction
+D) Both directions
 
 **9. The gradient points in the direction of:**
 
-A) Steepest ascent
+A) Random direction
 B) Steepest descent
-C) No change
-D) Random direction
+C) Steepest ascent
+D) No change
 
 **10. To minimize a loss function, we move:**
 
-A) In the direction of the gradient
-B) Opposite to the gradient
-C) Perpendicular to the gradient
+A) Opposite to the gradient
+B) Perpendicular to the gradient
+C) In the direction of the gradient
 D) Randomly
 
 **11. The product rule is for:**
 
-A) Composite functions
+A) Quotients of functions
 B) Products of functions
-C) Quotients of functions
-D) Sums of functions
+C) Sums of functions
+D) Composite functions
 
 **12. Local minima vs global minima:**
 
-A) Are always the same
-B) Local minima can be worse than global
-C) Global minima don't exist
-D) Local minima are always better
+A) Local minima can be worse than global
+B) Global minima don't exist
+C) Local minima are always better
+D) Are always the same
 
 **13. Saddle points:**
 
 A) Are minima
-B) Are maxima
-C) Are neither minima nor maxima
-D) Don't exist
+B) Don't exist
+C) Are maxima
+D) Are neither minima nor maxima
 
 **14. The Hessian matrix contains:**
 
-A) First derivatives
-B) Second derivatives
-C) Third derivatives
-D) Function values
+A) Function values
+B) Third derivatives
+C) Second derivatives
+D) First derivatives
 
 **15. Convex functions have:**
 
 A) Multiple local minima
-B) Only one global minimum
-C) No minima
-D) Infinite minima
+B) No minima
+C) Infinite minima
+D) Only one global minimum
 
 **16. In optimization, "momentum" helps:**
 
-A) Slow down convergence
+A) Prevent learning
 B) Speed up and smooth convergence
 C) Increase noise
-D) Prevent learning
+D) Slow down convergence
 
 **17. The Jacobian is:**
 
-A) A scalar
-B) A vector
-C) A matrix of first derivatives
-D) A matrix of second derivatives
+A) A matrix of second derivatives
+B) A scalar
+C) A vector
+D) A matrix of first derivatives
 
 **18. Gradient descent can get stuck in:**
 
-A) Global minima
-B) Local minima or saddle points
+A) Local minima or saddle points
+B) Nowhere
 C) Flat regions only
-D) Nowhere
+D) Global minima
 
 **19. Learning rate too high causes:**
 
 A) Slow convergence
-B) Divergence or oscillation
-C) No effect
-D) Better convergence
+B) Better convergence
+C) Divergence or oscillation
+D) No effect
 
 **20. A critical point occurs when:**
 
-A) The gradient is zero
-B) The gradient is maximum
-C) The function is zero
-D) The learning rate is zero
+A) The learning rate is zero
+B) The function is zero
+C) The gradient is maximum
+D) The gradient is zero
 
 ---
 
@@ -164,23 +164,23 @@ D) The learning rate is zero
 
 | # | Answer |
 |---|--------|
-| 1 | B |
+| 1 | C |
 | 2 | A |
-| 3 | A |
-| 4 | B |
+| 3 | C |
+| 4 | D |
 | 5 | B |
 | 6 | B |
-| 7 | B |
+| 7 | A |
 | 8 | B |
-| 9 | A |
-| 10 | B |
+| 9 | C |
+| 10 | A |
 | 11 | B |
-| 12 | B |
-| 13 | C |
-| 14 | B |
-| 15 | B |
+| 12 | A |
+| 13 | D |
+| 14 | C |
+| 15 | D |
 | 16 | B |
-| 17 | C |
-| 18 | B |
-| 19 | B |
-| 20 | A |
+| 17 | D |
+| 18 | A |
+| 19 | C |
+| 20 | D |

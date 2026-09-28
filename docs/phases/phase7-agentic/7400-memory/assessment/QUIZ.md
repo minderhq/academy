@@ -20,142 +20,142 @@ Difficulty: Advanced
 **1. Short-term memory in agents:**
 
 A) Persists forever
-B) Current conversation
-C) Long-term storage
-D) No memory
+B) No memory
+C) Current conversation
+D) Long-term storage
 
 **2. Long-term memory:**
 
-A) Only current conversation
-B) Persistent storage
-C) No storage
-D) Temporary
+A) No storage
+B) Temporary
+C) Only current conversation
+D) Persistent storage
 
 **3. Vector memory stores:**
 
-A) Text directly
-B) Embeddings for retrieval
-C) No storage
-D) Only keywords
+A) Embeddings for retrieval
+B) Text directly
+C) Only keywords
+D) No storage
 
 **4. Key-value memory:**
 
 A) Vector search
 B) Direct lookup by key
-C) No lookup
-D) Sequential only
+C) Sequential only
+D) No lookup
 
 **5. Memory retrieval:**
 
-A) Returns all memories
-B) Returns relevant memories
-C) No retrieval
-D) Random
+A) Returns relevant memories
+B) Random
+C) Returns all memories
+D) No retrieval
 
 **6. Memory importance scoring:**
 
-A) All memories equal
-B) Some memories more important
+A) Some memories more important
+B) Random scoring
 C) No scoring
-D) Random scoring
+D) All memories equal
 
 **7. Memory consolidation:**
 
-A) No consolidation
-B) Moving from short to long-term
-C) Only long-term
-D) Only short-term
+A) Only long-term
+B) No consolidation
+C) Only short-term
+D) Moving from short to long-term
 
 **8. Episodic memory stores:**
 
-A) General knowledge
+A) No events
 B) Specific events/experiences
-C) No events
-D) Only facts
+C) Only facts
+D) General knowledge
 
 **9. Semantic memory stores:**
 
 A) Events
-B) General knowledge/facts
+B) Only current
 C) No knowledge
-D) Only current
+D) General knowledge/facts
 
 **10. Memory window:**
 
-A) All history
+A) No history
 B) Recent tokens only
-C) No history
+C) All history
 D) Random
 
 **11. Retrieval Augmented Generation (RAG) for memory:**
 
-A) No retrieval
-B) Retrieve relevant memories
-C) Retrieve everything
-D) Random retrieval
+A) Retrieve everything
+B) No retrieval
+C) Random retrieval
+D) Retrieve relevant memories
 
 **12. MemGPT:**
 
 A) No memory
-B) Hierarchical memory system
+B) Only long-term
 C) Only short-term
-D) Only long-term
+D) Hierarchical memory system
 
 **13. Memory compression:**
 
-A) Store everything
-B) Summarize/compress old memories
-C) No compression
-D) Random deletion
+A) Summarize/compress old memories
+B) Random deletion
+C) Store everything
+D) No compression
 
 **14. Memory search methods:**
 
 A) Only vector search
-B) Vector, keyword, hybrid
-C) No search
-D) Random
+B) Random
+C) Vector, keyword, hybrid
+D) No search
 
 **15. Reflective memory:**
 
-A) No reflection
-B) Agent reflects on past experiences
-C) Only human reflection
-D) Not useful
+A) Only human reflection
+B) Not useful
+C) Agent reflects on past experiences
+D) No reflection
 
 **16. Working memory:**
 
 A) Long-term storage
-B) Current task information
-C) No memory
+B) No memory
+C) Current task information
 D) Persistent
 
 **17. Episodic buffer:**
 
-A) No buffer
+A) Not used
 B) Temporary storage for processing
-C) Long-term storage
-D) Not used
+C) No buffer
+D) Long-term storage
 
 **18. Memory decay:**
 
 A) All memories persist
-B) Old memories less accessible
-C) No decay
-D) Random decay
+B) Random decay
+C) Old memories less accessible
+D) No decay
 
 **19. Personalization through memory:**
 
 A) No personalization
 B) Remembers user preferences
-C) Only generic
-D) Not useful
+C) Not useful
+D) Only generic
 
 **20. Memory constraints:**
 
-A) Unlimited memory
-B) Limited by context/compute
-C) No limits
-D) Only storage limits
+A) Limited by context/compute
+B) Unlimited memory
+C) Only storage limits
+D) No limits
 
 ---
 
@@ -163,23 +163,23 @@ D) Only storage limits
 
 | # | Answer |
 |---|--------|
-| 1 | B |
-| 2 | B |
-| 3 | B |
+| 1 | C |
+| 2 | D |
+| 3 | A |
 | 4 | B |
-| 5 | B |
-| 6 | B |
-| 7 | B |
+| 5 | A |
+| 6 | A |
+| 7 | D |
 | 8 | B |
-| 9 | B |
+| 9 | D |
 | 10 | B |
-| 11 | B |
-| 12 | B |
-| 13 | B |
-| 14 | B |
-| 15 | B |
-| 16 | B |
+| 11 | D |
+| 12 | D |
+| 13 | A |
+| 14 | C |
+| 15 | C |
+| 16 | C |
 | 17 | B |
-| 18 | B |
+| 18 | C |
 | 19 | B |
-| 20 | B |
+| 20 | A |

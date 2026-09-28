@@ -20,15 +20,15 @@ Difficulty: Intermediate
 **1. K3s is:**
 
 A) Full Kubernetes distribution
-B) Lightweight Kubernetes
-C) Container runtime
-D) Monitoring tool
+B) Monitoring tool
+C) Lightweight Kubernetes
+D) Container runtime
 
 **2. A pod is:**
 
-A) A container
-B) One or more containers
-C) A VM
+A) One or more containers
+B) A VM
+C) A container
 D) A service
 
 **3. GPU in Kubernetes requires:**
@@ -40,100 +40,100 @@ D) Only Nvidia GPUs
 
 **4. A node is:**
 
-A) A container
-B) A worker machine
+A) A worker machine
+B) A container
 C) A pod
 D) A service
 
 **5. GPU scheduler ensures:**
 
-A) Pods are scheduled on GPU nodes
+A) Load balancing
 B) All nodes have GPUs
-C) Load balancing
-D) Autoscaling
+C) Autoscaling
+D) Pods are scheduled on GPU nodes
 
 **6. Storage classes provide:**
 
-A) Dynamic provisioning
+A) Only local storage
 B) Static storage
-C) Only local storage
-D) No storage
+C) No storage
+D) Dynamic provisioning
 
 **7. A service exposes:**
 
-A) Pods externally
-B) Storage
+A) Storage
+B) Pods externally
 C) ConfigMaps
 D) Nodes
 
 **8. K3s uses less memory because:**
 
-A) No components
-B) Removed unnecessary components
-C) Only runs on ARM
-D) Uses SQLite
+A) Removed unnecessary components
+B) No components
+C) Uses SQLite
+D) Only runs on ARM
 
 **9. GPU resource limits are specified:**
 
-A) In container spec
+A) In node spec
 B) In pod spec
-C) In node spec
+C) In container spec
 D) In service spec
 
 **10. Persistent volumes:**
 
-A) Survive pod restarts
-B) Are deleted with pods
-C) Only work with GPUs
-D) Are not supported
+A) Are deleted with pods
+B) Are not supported
+C) Survive pod restarts
+D) Only work with GPUs
 
 **11. Helm is:**
 
-A) A package manager for K8s
-B) A container runtime
-C) A monitoring tool
-D) A storage driver
+A) A monitoring tool
+B) A package manager for K8s
+C) A storage driver
+D) A container runtime
 
 **12. A deployment:**
 
-A) Manages pods
-B) Manages storage
-C) Manages services
-D) Manages nodes
+A) Manages services
+B) Manages nodes
+C) Manages storage
+D) Manages pods
 
 **13. The GPU device plugin runs:**
 
 A) On each node
-B) On master only
-C) In a separate cluster
+B) In a separate cluster
+C) On master only
 D) On demand
 
 **14. K3s master node can also:**
 
-A) Run workloads
-B) Only manage
+A) No workloads
+B) Run workloads
 C) Only schedule
-D) No workloads
+D) Only manage
 
 **15. YAML is used for:**
 
-A) K8s configuration
+A) Storage only
 B) Container images
-C) Storage only
-D) Monitoring
+C) Monitoring
+D) K8s configuration
 
 **16. Namespace provides:**
 
 A) Resource isolation
-B) Security
-C) Both A and B
+B) Both A and B
+C) Security
 D) Neither
 
 **17. A ConfigMap stores:**
 
-A) Configuration data
-B) Secrets
-C) Storage
+A) Storage
+B) Configuration data
+C) Secrets
 D) Pods
 
 **18. For GPU workloads, you need:**
@@ -145,16 +145,16 @@ D) All of the above
 
 **19. Longhorn provides:**
 
-A) Block storage
+A) File storage
 B) Object storage
-C) File storage
+C) Block storage
 D) No storage
 
 **20. Helm charts:**
 
-A) Define K8s resources
+A) Are services
 B) Are containers
-C) Are services
+C) Define K8s resources
 D) Deploy applications
 
 ---
@@ -163,23 +163,23 @@ D) Deploy applications
 
 | # | Answer |
 |---|--------|
-| 1 | B |
-| 2 | B |
+| 1 | C |
+| 2 | A |
 | 3 | A |
-| 4 | B |
-| 5 | A |
-| 6 | A |
-| 7 | A |
-| 8 | B |
-| 9 | A |
-| 10 | A |
-| 11 | A |
-| 12 | A |
+| 4 | A |
+| 5 | D |
+| 6 | D |
+| 7 | B |
+| 8 | A |
+| 9 | C |
+| 10 | C |
+| 11 | B |
+| 12 | D |
 | 13 | A |
-| 14 | A |
-| 15 | A |
-| 16 | C |
-| 17 | A |
+| 14 | B |
+| 15 | D |
+| 16 | B |
+| 17 | B |
 | 18 | D |
-| 19 | A |
-| 20 | A |
+| 19 | C |
+| 20 | C |

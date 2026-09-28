@@ -19,129 +19,129 @@ Difficulty: Advanced
 
 **1. Prompt injection:**
 
-A) Normal prompt
-B) Malicious prompt manipulation
-C) Not a threat
-D) Only theoretical
+A) Not a threat
+B) Normal prompt
+C) Only theoretical
+D) Malicious prompt manipulation
 
 **2. Jailbreaking:**
 
 A) Normal use
 B) Bypassing safety constraints
-C) Following rules
-D) Not possible
+C) Not possible
+D) Following rules
 
 **3. Tool access control:**
 
-A) All tools to everyone
-B) Restricted tool access
-C) No tools
+A) Restricted tool access
+B) No tools
+C) All tools to everyone
 D) Unlimited access
 
 **4. Sandboxing:**
 
-A) No isolation
+A) Not needed
 B) Isolated execution environment
 C) Full system access
-D) Not needed
+D) No isolation
 
 **5. Input validation:**
 
-A) Accept all input
-B) Validate and sanitize
-C) No validation
-D) Optional
+A) Optional
+B) No validation
+C) Accept all input
+D) Validate and sanitize
 
 **6. Output filtering:**
 
-A) No filtering
-B) Check for harmful content
-C) Only filter errors
-D) Not useful
+A) Check for harmful content
+B) Only filter errors
+C) Not useful
+D) No filtering
 
 **7. Rate limiting prevents:**
 
 A) Nothing
 B) Abuse and resource exhaustion
-C) Normal use
-D) Not needed
+C) Not needed
+D) Normal use
 
 **8. Agent impersonation:**
 
-A) Not possible
-B) Pretending to be trusted entity
+A) Pretending to be trusted entity
+B) Not possible
 C) Only by humans
 D) Not a threat
 
 **9. Exfiltration risks:**
 
-A) No data leaks
-B) Data extraction by malicious agents
+A) Not a concern
+B) No data leaks
 C) Only external
-D) Not a concern
+D) Data extraction by malicious agents
 
 **10. Audit logging:**
 
-A) No logging
-B) Track agent actions
-C) Only errors
-D) Optional
+A) Track agent actions
+B) No logging
+C) Optional
+D) Only errors
 
 **11. Red teaming for agents:**
 
 A) No testing
-B) Adversarial testing
-C) Only unit testing
+B) Only unit testing
+C) Adversarial testing
 D) Not needed
 
 **12. Constitutional AI:**
 
-A) No constraints
-B) Self-harm limiting principles
-C) Only external monitoring
-D) Not for agents
+A) Only external monitoring
+B) Not for agents
+C) No constraints
+D) Self-harm limiting principles
 
 **13. Tool output validation:**
 
-A) Accept all outputs
-B) Check tool results
+A) Check tool results
+B) Accept all outputs
 C) Only check errors
 D) Not needed
 
 **14. Context injection:**
 
-A) Normal context
-B) Malicious context manipulation
-C) Not possible
-D) Only internal
+A) Only internal
+B) Normal context
+C) Malicious context manipulation
+D) Not possible
 
 **15. Indirect prompt injection:**
 
 A) Direct attack
-B) Through data/documents
-C) No injection
+B) No injection
+C) Through data/documents
 D) Same as direct
 
 **16. Agent privilege levels:**
 
-A) All same
-B) Different access levels
-C) No levels
-D) Only human
+A) Only human
+B) All same
+C) Different access levels
+D) No levels
 
 **17. Deterministic output:**
 
-A) Random
-B) Predictable for testing
-C) Unpredictable
-D) Not possible
+A) Unpredictable
+B) Random
+C) Not possible
+D) Predictable for testing
 
 **18. Agent monitoring:**
 
-A) No monitoring
-B) Track agent behavior
-C) Only performance
-D) Optional
+A) Optional
+B) Only performance
+C) Track agent behavior
+D) No monitoring
 
 **19. Adversarial robustness:**
 
@@ -152,10 +152,10 @@ D) Not relevant
 
 **20. Security by design:**
 
-A) Afterthought
+A) Only for production
 B) Built-in from start
 C) Not needed
-D) Only for production
+D) Afterthought
 
 ---
 
@@ -163,23 +163,23 @@ D) Only for production
 
 | # | Answer |
 |---|--------|
-| 1 | B |
+| 1 | D |
 | 2 | B |
-| 3 | B |
+| 3 | A |
 | 4 | B |
-| 5 | B |
-| 6 | B |
+| 5 | D |
+| 6 | A |
 | 7 | B |
-| 8 | B |
-| 9 | B |
-| 10 | B |
-| 11 | B |
-| 12 | B |
-| 13 | B |
-| 14 | B |
-| 15 | B |
-| 16 | B |
-| 17 | B |
-| 18 | B |
+| 8 | A |
+| 9 | D |
+| 10 | A |
+| 11 | C |
+| 12 | D |
+| 13 | A |
+| 14 | C |
+| 15 | C |
+| 16 | C |
+| 17 | D |
+| 18 | C |
 | 19 | B |
 | 20 | B |

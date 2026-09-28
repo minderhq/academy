@@ -19,16 +19,16 @@ Difficulty: Advanced
 
 **1. Greedy decoding selects:**
 
-A) The most likely token at each step
-B) Multiple sequences
+A) Multiple sequences
+B) The least likely token
 C) Random tokens
-D) The least likely token
+D) The most likely token at each step
 
 **2. Beam search explores:**
 
-A) All possible sequences
-B) Multiple hypotheses in parallel
-C) Only one sequence
+A) Multiple hypotheses in parallel
+B) Only one sequence
+C) All possible sequences
 D) Random sequences
 
 **3. Top-k sampling keeps:**
@@ -40,79 +40,79 @@ D) Random tokens
 
 **4. Nucleus (top-p) sampling:**
 
-A) Keeps tokens above probability threshold p
-B) Keeps exactly p tokens
-C) Samples uniformly
+A) Keeps exactly p tokens
+B) Samples uniformly
+C) Keeps tokens above probability threshold p
 D) Never samples
 
 **5. Temperature in sampling controls:**
 
-A) The speed of generation
-B) The randomness (lower = more deterministic)
-C) The beam width
-D) The sequence length
+A) The beam width
+B) The speed of generation
+C) The sequence length
+D) The randomness (lower = more deterministic)
 
 **6. A temperature of 1.0 means:**
 
-A) No change to probabilities
-B) More random
-C) Less random
-D) Error
+A) Error
+B) No change to probabilities
+C) More random
+D) Less random
 
 **7. Repetition penalty prevents:**
 
-A) Long sequences
+A) All generation
 B) Repeated phrases
 C) Short sequences
-D) All generation
+D) Long sequences
 
 **8. Length penalty adjusts scores based on:**
 
-A) Sequence length
-B) Token frequency
-C) Model size
-D) Vocabulary size
+A) Vocabulary size
+B) Model size
+C) Token frequency
+D) Sequence length
 
 **9. Sampling vs Greedy:**
 
-A) Sampling is always better
-B) Sampling adds randomness, greedy is deterministic
+A) Sampling adds randomness, greedy is deterministic
+B) Sampling is always better
 C) Greedy adds randomness
 D) No difference
 
 **10. Beam width of 1 is equivalent to:**
 
-A) Top-k sampling
-B) Greedy decoding
+A) Random search
+B) Top-k sampling
 C) Nucleus sampling
-D) Random search
+D) Greedy decoding
 
 **11. Typical beam width is:**
 
 A) 1
-B) 4-10
+B) Doesn't matter
 C) 100+
-D) Doesn't matter
+D) 4-10
 
 **12. The main drawback of beam search is:**
 
-A) Too slow
-B) Can produce repetitive outputs
-C) Doesn't work
-D) Too simple
+A) Doesn't work
+B) Too simple
+C) Can produce repetitive outputs
+D) Too slow
 
 **13. Top-k with k=1 is:**
 
-A) Sampling from all tokens
-B) Greedy decoding
-C) Nucleus sampling
-D) Random sampling
+A) Nucleus sampling
+B) Random sampling
+C) Greedy decoding
+D) Sampling from all tokens
 
 **14. Typical temperature values are:**
 
-A) 0.1 - 0.5
-B) 0.7 - 1.0
-C) 1.5 - 2.0
+A) 0.7 - 1.0
+B) 1.5 - 2.0
+C) 0.1 - 0.5
 D) Any value
 
 **15. Frequency penalty reduces scores based on:**
@@ -124,38 +124,38 @@ D) Vocabulary size
 
 **16. Speculative decoding:**
 
-A) Uses a larger model
+A) Is always slower
 B) Uses a smaller model to propose tokens
 C) Doesn't work
-D) Is always slower
+D) Uses a larger model
 
 **17. KV cache stores:**
 
-A) All previous key and value computations
-B) Only the last token
-C) Nothing
-D) Model parameters
+A) Nothing
+B) Model parameters
+C) All previous key and value computations
+D) Only the last token
 
 **18. With KV cache, each new token:**
 
 A) Requires full sequence recomputation
 B) Only computes new attention
-C) Doesn't use attention
-D) Is slower
+C) Is slower
+D) Doesn't use attention
 
 **19. The main benefit of KV cache is:**
 
-A) Better quality
-B) Faster generation for long sequences
-C) Smaller model
-D) Less memory
+A) Faster generation for long sequences
+B) Less memory
+C) Better quality
+D) Smaller model
 
 **20. Contrastive decoding:**
 
 A) Uses one model
-B) Compares outputs from two models
-C) Is the same as greedy
-D) Doesn't exist
+B) Doesn't exist
+C) Compares outputs from two models
+D) Is the same as greedy
 
 ---
 
@@ -163,23 +163,23 @@ D) Doesn't exist
 
 | # | Answer |
 |---|--------|
-| 1 | A |
-| 2 | B |
+| 1 | D |
+| 2 | A |
 | 3 | B |
-| 4 | A |
-| 5 | B |
-| 6 | A |
+| 4 | C |
+| 5 | D |
+| 6 | B |
 | 7 | B |
-| 8 | A |
-| 9 | B |
-| 10 | B |
-| 11 | B |
-| 12 | B |
-| 13 | B |
-| 14 | B |
+| 8 | D |
+| 9 | A |
+| 10 | D |
+| 11 | D |
+| 12 | C |
+| 13 | C |
+| 14 | A |
 | 15 | A |
 | 16 | B |
-| 17 | A |
+| 17 | C |
 | 18 | B |
-| 19 | B |
-| 20 | B |
+| 19 | A |
+| 20 | C |

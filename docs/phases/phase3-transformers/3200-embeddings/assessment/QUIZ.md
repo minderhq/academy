@@ -19,143 +19,143 @@ Difficulty: Advanced
 
 **1. Word embeddings represent words as:**
 
-A) One-hot vectors
+A) Sparse binary vectors
 B) Dense continuous vectors
-C) Sparse binary vectors
+C) One-hot vectors
 D) Strings
 
 **2. The main idea of word2vec is:**
 
-A) Count word occurrences
-B) Learn distributed representations
+A) Random initialization only
+B) Count word occurrences
 C) Use dictionaries
-D) Random initialization only
+D) Learn distributed representations
 
 **3. Word2Vec has two main training approaches:**
 
-A) CBOW and Skip-gram
-B) RNN and CNN
+A) RNN and CNN
+B) CBOW and Skip-gram
 C) Attention and MLP
 D) BERT and GPT
 
 **4. CBOW predicts:**
 
 A) The context words from the target
-B) The target word from context
+B) The previous word
 C) The next word
-D) The previous word
+D) The target word from context
 
 **5. Skip-gram predicts:**
 
-A) The target word from context
+A) Part of speech tags
 B) The context words from the target
-C) The next sentence
-D) Part of speech tags
+C) The target word from context
+D) The next sentence
 
 **6. GloVe embeddings are based on:**
 
-A) Neural networks
+A) Random initialization
 B) Word co-occurrence statistics
-C) Random initialization
+C) Neural networks
 D) Hand-crafted features
 
 **7. FastText improves on Word2Vec by:**
 
-A) Using subword information
+A) Using attention
 B) Using larger datasets
-C) Using more layers
-D) Using attention
+C) Using subword information
+D) Using more layers
 
 **8. Contextual embeddings (like BERT):**
 
-A) Have one vector per word type
-B) Have different vectors depending on context
-C) Don't use training
+A) Have different vectors depending on context
+B) Don't use training
+C) Have one vector per word type
 D) Are random
 
 **9. Static embeddings have:**
 
 A) One vector per word type regardless of context
-B) Multiple vectors per word
-C) No vectors
+B) No vectors
+C) Multiple vectors per word
 D) Random vectors
 
 **10. BERT uses embeddings for:**
 
-A) Tokens only
-B) Tokens, positions, and segments
-C) Tokens and positions only
-D) Positions only
+A) Tokens, positions, and segments
+B) Tokens only
+C) Positions only
+D) Tokens and positions only
 
 **11. The dimensionality of word embeddings is typically:**
 
 A) 10-50
-B) 100-1000
-C) 10,000+
-D) Doesn't matter
+B) Doesn't matter
+C) 100-1000
+D) 10,000+
 
 **12. Word similarity is measured by:**
 
-A) Euclidean distance
-B) Cosine similarity
-C) Manhattan distance
+A) Manhattan distance
+B) Euclidean distance
+C) Cosine similarity
 D) Dot product only
 
 **13. "King - Man + Woman = Queen" demonstrates:**
 
-A) Word embeddings capture semantic relationships
-B) Random chance
-C) Overfitting
-D) Data leakage
+A) Data leakage
+B) Overfitting
+C) Random chance
+D) Word embeddings capture semantic relationships
 
 **14. Positional embeddings encode:**
 
 A) Word meaning
-B) Position in sequence
-C) Part of speech
-D) Named entities
+B) Part of speech
+C) Named entities
+D) Position in sequence
 
 **15. Rotary Position Embeddings (RoPE):**
 
 A) Add position to embeddings
-B) Rotate queries and keys
-C) Replace positional embeddings
-D) Both B and C
+B) Both B and C
+C) Rotate queries and keys
+D) Replace positional embeddings
 
 **16. ALiBi positional encoding:**
 
-A) Uses sinusoidal functions
-B) Adds a bias based on distance
-C) Is learned
-D) Doesn't work
+A) Adds a bias based on distance
+B) Doesn't work
+C) Uses sinusoidal functions
+D) Is learned
 
 **17. Embedding layer initialization is typically:**
 
 A) All zeros
-B) Random
-C) One-hot
-D) Pre-trained only
+B) Pre-trained only
+C) Random
+D) One-hot
 
 **18. During training, embeddings are:**
 
 A) Fixed (not updated)
-B) Updated along with other parameters
-C) Removed
-D) Ignored
+B) Ignored
+C) Updated along with other parameters
+D) Removed
 
 **19. The vocabulary size affects:**
 
-A) Only training speed
-B) Embedding layer size
-C) Only inference speed
-D) Nothing
+A) Embedding layer size
+B) Only training speed
+C) Nothing
+D) Only inference speed
 
 **20. Subword tokenization (BPE):**
 
-A) Uses whole words only
-B) Splits words into subword units
+A) Doesn't use vocabulary
+B) Uses whole words only
 C) Uses characters only
-D) Doesn't use vocabulary
+D) Splits words into subword units
 
 ---
 
@@ -164,22 +164,22 @@ D) Doesn't use vocabulary
 | # | Answer |
 |---|--------|
 | 1 | B |
-| 2 | B |
-| 3 | A |
-| 4 | B |
+| 2 | D |
+| 3 | B |
+| 4 | D |
 | 5 | B |
 | 6 | B |
-| 7 | A |
-| 8 | B |
+| 7 | C |
+| 8 | A |
 | 9 | A |
-| 10 | B |
-| 11 | B |
-| 12 | B |
-| 13 | A |
-| 14 | B |
-| 15 | D |
-| 16 | B |
-| 17 | B |
-| 18 | B |
-| 19 | B |
-| 20 | B |
+| 10 | A |
+| 11 | C |
+| 12 | C |
+| 13 | D |
+| 14 | D |
+| 15 | B |
+| 16 | A |
+| 17 | C |
+| 18 | C |
+| 19 | A |
+| 20 | D |
