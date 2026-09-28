@@ -158,10 +158,24 @@ def main() -> int:
         print("  ... and %d more" % (len(thin) - 10))
     if not thin:
         print("  none - every lesson clears the 800-word content floor")
+    # Same false-positive lesson as the thin list: a 2-lesson focused unit
+    # (tensor+backprop, tool-calling+code-interpreter) can carry a full
+    # module, so the sparse list shows unit content next to the count -
+    # the count alone is never the verdict (measured live: the five
+    # flagged modules span 2,767-4,442 content words vs a ~3,700
+    # two-lesson corpus expectation).
+    mcontent = {}
+    for s in lessons:
+        mdir = "/".join(s["path"].split("/")[:4])
+        mcontent[mdir] = mcontent.get(mdir, 0) + s["words"] + s["code_words"]
     sparse = sorted((m for m in modules if m["lessons"] < 3),
-                    key=lambda m: m["lessons"])
-    print("modules with <3 lessons: %s"
-          % (", ".join(esc(m["dir"].split("/")[3]) for m in sparse)
+                    key=lambda m: mcontent.get(m["dir"], 0))
+    print("modules with <3 lessons (unit content shown - a 2-lesson "
+          "focused unit can carry a full module): %s"
+          % (", ".join("%s (%d lessons, %d content words)"
+                       % (esc(m["dir"].split("/")[3]), m["lessons"],
+                          mcontent.get(m["dir"], 0))
+                       for m in sparse)
              if sparse else "none"))
     print("curriculum_metrics: %d lessons analyzed, report only -> PASS" % len(lessons))
     return 0

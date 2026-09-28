@@ -116,9 +116,11 @@ a full implementation in one fence are dense, not thin), python/bash
 fence density, H2/link structure, and quiz coverage per module
 (33/33, 660 questions). Report only - the thinnest-lessons list is a
 content-pass review queue, not a failure (same stance as
-fm_staleness). Models borrowed for parity: the corpus
-classification from quality_report, the fence model from
-structure_lint, quiz counts from quiz_export.
+fm_staleness). The sparse-modules (<3 lessons) line shows unit
+content next to the count - a 2-lesson focused unit can carry a full
+module, so the count alone is never a verdict. Models borrowed for
+parity: the corpus classification from quality_report, the fence
+model from structure_lint, quiz counts from quiz_export.
 
 ## 📐 Conventions
 
