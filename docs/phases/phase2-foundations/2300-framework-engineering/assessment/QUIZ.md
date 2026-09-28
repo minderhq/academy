@@ -484,6 +484,6 @@ Each question maps to the lesson that teaches it:
    - [LAB-009: Production Deployment](../../../../learning-resources/labs/LAB-009-Production-Deployment.md)
 3. **Next Module:** [2400: LLM Pretraining](../../2400-pretraining/README.md)
 
-**Related:** [Phase 2: Module 2300 - Framework Engineering](../README.md) · [2304: Production Deployment Patterns](../2304-Production-Deployment-Patterns.md) · [Tutorial 003: RAG Basics - Give Your LLM Knowledge](../../../../learning-resources/tutorials/TUTORIAL-003-RAG-Basics.md)
+**Related:** [Phase 2: Module 2300 - Framework Engineering](../README.md) · [2304: Production Deployment Patterns](../2304-Production-Deployment-Patterns.md) · [TUTORIAL-003: RAG Basics - Give Your LLM Knowledge](../../../../learning-resources/tutorials/TUTORIAL-003-RAG-Basics.md)
 
 **Experiment:** No EXP_23xx exists yet — nearest relevant: [EXP_1403: TGI (Text Generation Inference) Tuning Experiments](../../../../../experiments/EXP_1403_TGI_TUNING.md) (serving-layer performance, matches this module's serving themes).

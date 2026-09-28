@@ -722,8 +722,8 @@ journalctl -u docker
 
 ## 🔗 Quick Links
 
-- **[Tutorial 001: Hello LLM](../tutorials/TUTORIAL-001-Hello-LLM.md)** - Getting started
-- **[Tutorial 002: Docker Essentials](../tutorials/TUTORIAL-002-Docker-Essentials.md)** - Docker basics
+- **[TUTORIAL-001: Hello LLM](../tutorials/TUTORIAL-001-Hello-LLM.md)** - Getting started
+- **[TUTORIAL-002: Docker Essentials](../tutorials/TUTORIAL-002-Docker-Essentials.md)** - Docker basics
 - **[LAB-001: Docker & LLM](../labs/LAB-001-Docker-LLM.md)** - Troubleshooting in practice
 - **[1501: Monitoring Stack](../../phases/phase1-infra/1500-monitoring/1501-Monitoring-and-Observability.md)** - Debug with observability
 

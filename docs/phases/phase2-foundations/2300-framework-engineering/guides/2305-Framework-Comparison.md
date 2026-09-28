@@ -387,6 +387,6 @@ What just happened: LangChain's chain machinery calls `pipe` exactly as the raw 
 - **Practical:** [LAB-007: Production RAG System](../../../../learning-resources/labs/LAB-007-Production-RAG.md) — a LangChain-style retrieval application in production shape.
 - **Assessment:** [2300: Framework Engineering - Quiz](../assessment/QUIZ.md)
 
-**Related:** [1402: vLLM and TGI High-Concurrency Inference](../../../phase1-infra/1400-llmops/1402-vLLM-and-TGI.md) · [Tutorial 003: RAG Basics - Give Your LLM Knowledge](../../../../learning-resources/tutorials/TUTORIAL-003-RAG-Basics.md) · [6101: HNSW Indexing - Efficient Semantic Search at Scale](../../../phase6-rag/6100-vector/6101-HNSW-Indexing.md)
+**Related:** [1402: vLLM and TGI High-Concurrency Inference](../../../phase1-infra/1400-llmops/1402-vLLM-and-TGI.md) · [TUTORIAL-003: RAG Basics - Give Your LLM Knowledge](../../../../learning-resources/tutorials/TUTORIAL-003-RAG-Basics.md) · [6101: HNSW Indexing - Efficient Semantic Search at Scale](../../../phase6-rag/6100-vector/6101-HNSW-Indexing.md)
 
 **Experiment:** [EXP_1403: TGI (Text Generation Inference) Tuning Experiments](../../../../../experiments/EXP_1403_TGI_TUNING.md) — measure what a dedicated inference server buys over naive model serving.

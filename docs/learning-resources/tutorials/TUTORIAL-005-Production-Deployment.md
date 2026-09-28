@@ -8,7 +8,7 @@ Difficulty: Intermediate
 
 # TUTORIAL-005: Production Deployment with CI/CD
 
-**Prerequisites:** Tutorial 001 (Hello LLM), Tutorial 002 (Docker Essentials), Tutorial 004 (Monitoring)
+**Prerequisites:** TUTORIAL-001 (Hello LLM), TUTORIAL-002 (Docker Essentials), TUTORIAL-004 (Monitoring)
 **Time:** 90 minutes
 **Difficulty:** ⭐⭐⭐ Advanced
 

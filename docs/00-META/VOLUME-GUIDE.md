@@ -74,7 +74,7 @@ Follow the volumes below, in order.
 1. [1301: K3s Architecture](../phases/phase1-infra/1300-kubernetes/1301-K3s-Master-Worker-Arch.md)
 2. [1302: GPU Scheduler](../phases/phase1-infra/1300-kubernetes/1302-GPU-Scheduler.md)
 
-### Volume 1 Capstone: Project 001
+### Volume 1 Capstone: PROJECT-001
 - [PROJECT-001: AI Assistant](../learning-resources/projects/PROJECT-001-AI-Assistant.md) - Build your first AI assistant
 
 ### After Volume 1, you can:

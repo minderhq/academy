@@ -57,7 +57,7 @@ After completing this module, you will be able to:
 
 **If you're not familiar:**
 - Review: [2201: PyTorch Computational Graphs and Dynamic Execution](../2200-frameworks/2201-PyTorch-Computational-Graphs.md)
-- Practice: [Tutorial 002: Docker Essentials for AI](../../../learning-resources/tutorials/TUTORIAL-002-Docker-Essentials.md)
+- Practice: [TUTORIAL-002: Docker Essentials for AI](../../../learning-resources/tutorials/TUTORIAL-002-Docker-Essentials.md)
 - Estimated time: 30 minutes
 
 **See:** [PREREQUISITES.md](./PREREQUISITES.md) for the detailed preparation guide.

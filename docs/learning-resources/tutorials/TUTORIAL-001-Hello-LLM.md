@@ -1,12 +1,12 @@
 ---
 Document ID: TUTORIAL-001
-Title: "Tutorial 001: Hello LLM! - Your First AI Model"
+Title: "TUTORIAL-001: Hello LLM! - Your First AI Model"
 Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
 
-# Tutorial 001: Hello LLM! - Your First AI Model
+# TUTORIAL-001: Hello LLM! - Your First AI Model
 
 **Difficulty:** ⭐ Beginner
 **Time:** 30 minutes
@@ -318,8 +318,8 @@ You've just:
 
 ### Continue Your Journey:
 
-1. **[Tutorial 002: Docker Essentials](TUTORIAL-002-Docker-Essentials.md)** - Container basics for AI
-2. **[Tutorial 003: RAG Basics](TUTORIAL-003-RAG-Basics.md)** - Give the model knowledge
+1. **[TUTORIAL-002: Docker Essentials](TUTORIAL-002-Docker-Essentials.md)** - Container basics for AI
+2. **[TUTORIAL-003: RAG Basics](TUTORIAL-003-RAG-Basics.md)** - Give the model knowledge
 3. **[0000-LEARNING-PATH.md](../../00-META/0000-LEARNING-PATH.md)** - Full curriculum roadmap
 
 ---
@@ -353,4 +353,4 @@ Test your understanding:
 
 ## Next Steps
 
-- **[Tutorial 002: Docker Essentials](TUTORIAL-002-Docker-Essentials.md)**
+- **[TUTORIAL-002: Docker Essentials](TUTORIAL-002-Docker-Essentials.md)**

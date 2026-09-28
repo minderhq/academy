@@ -283,12 +283,12 @@ You're now ready for the full learning journey!
 
 ### Immediate Next Steps (Recommended Order)
 
-1. **[Tutorial 001: Hello LLM](../learning-resources/tutorials/TUTORIAL-001-Hello-LLM.md)** (30 min)
+1. **[TUTORIAL-001: Hello LLM](../learning-resources/tutorials/TUTORIAL-001-Hello-LLM.md)** (30 min)
    - Deeper dive into Ollama
    - More model features
    - Prompt engineering basics
 
-2. **[Tutorial 002: Docker Essentials](../learning-resources/tutorials/TUTORIAL-002-Docker-Essentials.md)** (45 min)
+2. **[TUTORIAL-002: Docker Essentials](../learning-resources/tutorials/TUTORIAL-002-Docker-Essentials.md)** (45 min)
    - Containerize your AI
    - Run multiple models
    - Production basics
@@ -300,7 +300,7 @@ You're now ready for the full learning journey!
 
 ### After These Tutorials
 
-4. **[Tutorial 003: RAG Basics](../learning-resources/tutorials/TUTORIAL-003-RAG-Basics.md)** (1 hour)
+4. **[TUTORIAL-003: RAG Basics](../learning-resources/tutorials/TUTORIAL-003-RAG-Basics.md)** (1 hour)
    - Add your own knowledge
    - Build a smart assistant
 
@@ -408,11 +408,11 @@ Start Here (You are here)
     │
     ├─► Quick Start (30 min) ✅ DONE
     │
-    ├─► Tutorial 001: Hello LLM (30 min)
+    ├─► TUTORIAL-001: Hello LLM (30 min)
     │
-    ├─► Tutorial 002: Docker Essentials (45 min)
+    ├─► TUTORIAL-002: Docker Essentials (45 min)
     │
-    ├─► Tutorial 003: RAG Basics (60 min)
+    ├─► TUTORIAL-003: RAG Basics (60 min)
     │
     ├─► LAB-001: Docker & LLM (2 hours)
     │
@@ -431,7 +431,7 @@ Start Here (You are here)
 
 ## Next Steps
 
-- **[Tutorial 001: Hello LLM](../learning-resources/tutorials/TUTORIAL-001-Hello-LLM.md)**
+- **[TUTORIAL-001: Hello LLM](../learning-resources/tutorials/TUTORIAL-001-Hello-LLM.md)**
 
 **Questions?** Check [Troubleshooting](../learning-resources/troubleshooting/TROUBLESHOOTING-Common-Issues.md)
 

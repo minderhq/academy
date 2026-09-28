@@ -8,7 +8,7 @@ Difficulty: Intermediate
 
 # TUTORIAL-004: Monitoring & Observability for AI Systems
 
-**Prerequisites:** Tutorial 001 (Hello LLM), Tutorial 002 (Docker Essentials), LAB-001 (Docker & LLM)
+**Prerequisites:** TUTORIAL-001 (Hello LLM), TUTORIAL-002 (Docker Essentials), LAB-001 (Docker & LLM)
 **Time:** 90 minutes
 **Difficulty:** ⭐⭐ Intermediate
 

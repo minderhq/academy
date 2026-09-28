@@ -335,7 +335,7 @@ services:
 ```
 
 **If you're not familiar:**
-- Review: [Tutorial 002: Docker Essentials for AI](../../../learning-resources/tutorials/TUTORIAL-002-Docker-Essentials.md)
+- Review: [TUTORIAL-002: Docker Essentials for AI](../../../learning-resources/tutorials/TUTORIAL-002-Docker-Essentials.md)
 - Practice: Complete [LAB-001: Docker & LLM Fundamentals](../../../learning-resources/labs/LAB-001-Docker-LLM.md)
 - Estimated time: 2 hours
 
@@ -510,7 +510,7 @@ You're ready to start! Begin with [2301: Framework Design Patterns](./2301-Frame
 **Symptoms:** Don't know how to containerize applications
 
 **Fix:**
-1. Complete Tutorial 002 (1.5 hours)
+1. Complete TUTORIAL-002 (1.5 hours)
 2. Complete LAB-001 (2 hours)
 3. Build your own Dockerfile
 
@@ -565,7 +565,7 @@ Use this checklist to verify you're ready:
 - [Phase 2: Module 2300 - Framework Engineering](./README.md) — module overview and learning path
 - [2201: PyTorch Computational Graphs and Dynamic Execution](../2200-frameworks/2201-PyTorch-Computational-Graphs.md) — deeper PyTorch review (Section 3)
 - [2301: Framework Design Patterns](./2301-Framework-Design-Patterns.md) — where the ABC and Registry patterns pay off
-- [Tutorial 002: Docker Essentials for AI](../../../learning-resources/tutorials/TUTORIAL-002-Docker-Essentials.md) — Docker review (Section 5)
+- [TUTORIAL-002: Docker Essentials for AI](../../../learning-resources/tutorials/TUTORIAL-002-Docker-Essentials.md) — Docker review (Section 5)
 - [LAB-001: Docker & LLM Fundamentals](../../../learning-resources/labs/LAB-001-Docker-LLM.md) — hands-on Docker practice
 - [Quick Start Troubleshooting Guide](../../../00-META/TROUBLESHOOTING-QUICKSTART.md) — when setup problems block you
 
@@ -584,6 +584,6 @@ Use this checklist to verify you're ready:
 2. **Ready?** Start the module with [2301: Framework Design Patterns](./2301-Framework-Design-Patterns.md).
 3. **After the module:** take the [2300: Framework Engineering - Quiz](./assessment/QUIZ.md), then the [2300: Framework Engineering - Practice Exercises](./assessment/PRACTICE.md).
 
-**Related:** [Phase 2: Module 2300 - Framework Engineering](./README.md) · [2301: Framework Design Patterns](./2301-Framework-Design-Patterns.md) · [Tutorial 002: Docker Essentials for AI](../../../learning-resources/tutorials/TUTORIAL-002-Docker-Essentials.md)
+**Related:** [Phase 2: Module 2300 - Framework Engineering](./README.md) · [2301: Framework Design Patterns](./2301-Framework-Design-Patterns.md) · [TUTORIAL-002: Docker Essentials for AI](../../../learning-resources/tutorials/TUTORIAL-002-Docker-Essentials.md)
 
 **Experiment:** No EXP_23xx exists yet — nearest relevant: [EXP_1403: TGI (Text Generation Inference) Tuning Experiments](../../../../experiments/EXP_1403_TGI_TUNING.md) (serving-stack fundamentals, the direction this module prepares you for).

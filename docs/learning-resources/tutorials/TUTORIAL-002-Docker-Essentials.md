@@ -1,12 +1,12 @@
 ---
 Document ID: TUTORIAL-002
-Title: "Tutorial 002: Docker Essentials for AI"
+Title: "TUTORIAL-002: Docker Essentials for AI"
 Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
 
-# Tutorial 002: Docker Essentials for AI
+# TUTORIAL-002: Docker Essentials for AI
 
 **Difficulty:** ⭐ Beginner
 **Time:** 45 minutes
@@ -537,4 +537,4 @@ docker-compose down                 # Stop services
 
 ## Next Steps
 
-- Tutorial 003: [RAG Basics](./TUTORIAL-003-RAG-Basics.md) - the next tutorial in the series
+- TUTORIAL-003: [RAG Basics](./TUTORIAL-003-RAG-Basics.md) - the next tutorial in the series

@@ -151,7 +151,7 @@ Before diving into model internals, fine-tuning, or RAG, you need a solid founda
 
 ---
 
-## 🎯 Volume 1 Capstone: Project 001
+## 🎯 Volume 1 Capstone: PROJECT-001
 
 ### Build Your First AI Assistant
 

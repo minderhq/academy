@@ -1,17 +1,17 @@
 ---
 Document ID: TUTORIAL-003
-Title: "Tutorial 003: RAG Basics - Give Your LLM Knowledge"
+Title: "TUTORIAL-003: RAG Basics - Give Your LLM Knowledge"
 Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
 
-# Tutorial 003: RAG Basics - Give Your LLM Knowledge
+# TUTORIAL-003: RAG Basics - Give Your LLM Knowledge
 
 **Difficulty:** ⭐⭐ Intermediate
 **Time:** 60 minutes
 **Prerequisites:**
-- **[Tutorial 001: Hello LLM](TUTORIAL-001-Hello-LLM.md)** - LLM basics
+- **[TUTORIAL-001: Hello LLM](TUTORIAL-001-Hello-LLM.md)** - LLM basics
 - **[TUTORIAL-000: Python for AI](TUTORIAL-000-Python-for-AI.md)** - Classes, functions, error handling
 
 :information_source: **Not comfortable with Python classes?** Complete **TUTORIAL-000** first (Parts 3-4 cover OOP and practical skills).
@@ -547,7 +547,7 @@ services:
 
 ## 📚 What's Next?
 
-1. **[Tutorial 004: Monitoring](./TUTORIAL-004-Monitoring.md)** - Track model and system health
+1. **[TUTORIAL-004: Monitoring](./TUTORIAL-004-Monitoring.md)** - Track model and system health
 2. **[6201: Hybrid Search](../../phases/phase6-rag/6200-retrieval/6201-Hybrid-Search.md)** - Advanced retrieval
 3. **[6304: GraphRAG Implementation](../../phases/phase6-rag/6300-context/guides/6304-GraphRAG-Implementation.md)** - Production RAG
 
@@ -608,4 +608,4 @@ print(rag.query("What is PROJECT-OMEGA?"))
 
 ## Next Steps
 
-- Tutorial 004: [Monitoring](./TUTORIAL-004-Monitoring.md)
+- TUTORIAL-004: [Monitoring](./TUTORIAL-004-Monitoring.md)

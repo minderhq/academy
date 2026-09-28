@@ -1,6 +1,6 @@
 ---
 Document ID: TUTORIAL-007
-Title: LoRA Basics
+Title: "TUTORIAL-007: LoRA Basics"
 Category: Tutorial
 Last Updated: 2026-09-25
 Status: Complete

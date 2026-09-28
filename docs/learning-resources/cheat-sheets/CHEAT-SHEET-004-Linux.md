@@ -732,7 +732,7 @@ backup() {
 
 ## 🔗 Quick Links
 
-- **[Tutorial 002: Docker Essentials](../tutorials/TUTORIAL-002-Docker-Essentials.md)** - Docker basics
+- **[TUTORIAL-002: Docker Essentials](../tutorials/TUTORIAL-002-Docker-Essentials.md)** - Docker basics
 - **[CHEAT-SHEET-001: Docker](CHEAT-SHEET-001-Docker.md)** - Docker commands
 - **[CHEAT-SHEET-002: Python AI](CHEAT-SHEET-002-Python-AI.md)** - Python for AI/ML
 - **[LAB-001: Docker & LLM](../labs/LAB-001-Docker-LLM.md)** - Hands-on Docker practice

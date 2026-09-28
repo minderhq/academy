@@ -30,9 +30,9 @@ Build a fully-functional AI assistant that can:
 
 ### Required Tutorials & Labs:
 - ✅ **[TUTORIAL-000: Python for AI](../tutorials/TUTORIAL-000-Python-for-AI.md)** - :rotating_light: **MANDATORY**
-- ✅ **[Tutorial 001: Hello LLM](../tutorials/TUTORIAL-001-Hello-LLM.md)** - LLM basics
-- ✅ **[Tutorial 002: Docker Essentials](../tutorials/TUTORIAL-002-Docker-Essentials.md)** - Docker fundamentals
-- ✅ **[Tutorial 003: RAG Basics](../tutorials/TUTORIAL-003-RAG-Basics.md)** - RAG concepts
+- ✅ **[TUTORIAL-001: Hello LLM](../tutorials/TUTORIAL-001-Hello-LLM.md)** - LLM basics
+- ✅ **[TUTORIAL-002: Docker Essentials](../tutorials/TUTORIAL-002-Docker-Essentials.md)** - Docker fundamentals
+- ✅ **[TUTORIAL-003: RAG Basics](../tutorials/TUTORIAL-003-RAG-Basics.md)** - RAG concepts
 - ✅ **[LAB-001: Docker & LLM](../labs/LAB-001-Docker-LLM.md)** - Docker practice
 - ✅ **[LAB-002: RAG Implementation](../labs/LAB-002-RAG-Implementation.md)** - RAG hands-on
 - ✅ **[LAB-003: LoRA Fine-Tuning](../labs/LAB-003-LoRA-FineTuning.md)** - Fine-tuning basics
