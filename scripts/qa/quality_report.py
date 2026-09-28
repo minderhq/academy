@@ -12,6 +12,9 @@ stand today?" without running each tool by hand.
                        uv-first fallback blocks)
     langchain_census   every langchain/langgraph import in a ```python
                        fence resolves against the installed stack (LC-01)
+    legacy_chain_scan  bare Name uses of langchain_classic-only chain/
+                       agent names (LC-02) - catches the import-less
+                       usage that the import-census cannot see (tick-224)
     codeblock_syntax_scan
                        every ```python fence parses as Python (CB-01);
                        non-Python content lives in an honest fence label
@@ -71,6 +74,7 @@ GATES = [
     ("frontmatter_lint.py", "frontmatter_lint", True),
     ("pip_uv_scan.py", "pip_uv_scan", True),
     ("langchain_census.py", "langchain_census", True),
+    ("legacy_chain_scan.py", "legacy_chain_scan", True),
     ("codeblock_syntax_scan.py", "codeblock_syntax_scan", True),
     ("bashblock_syntax_scan.py", "bashblock_syntax_scan", True),
     ("datablock_syntax_scan.py", "datablock_syntax_scan", True),
