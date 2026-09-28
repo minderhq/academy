@@ -37,6 +37,9 @@ stand today?" without running each tool by hand.
     table_lint         ragged GFM tables - header/separator/body lines
                        with differing cell counts (TL-01); escaped \|
                        is a literal pipe, not a separator
+    mermaid_lint       mermaid diagram fences: known diagram-type header
+                       (MM-01), balanced () [] {} (MM-02), declared
+                       direction on graph/flowchart (MM-03)
     kwarg_lint         calls with removed/renamed kwargs on known APIs
                        (KW-01 langchain constructor kwargs, KW-02 removed
                        qdrant .search kwargs) - hard gate since the
@@ -88,6 +91,7 @@ GATES = [
     ("casecheck.py", "casecheck", True),
     ("anchor_check.py", "anchor_check", True),
     ("table_lint.py", "table_lint", True),
+    ("mermaid_lint.py", "mermaid_lint", True),
     ("objectives_lint.py", "objectives_lint", False),
     ("fence_namecheck.py", "fence_namecheck", False),
     ("kwarg_lint.py", "kwarg_lint", True),
