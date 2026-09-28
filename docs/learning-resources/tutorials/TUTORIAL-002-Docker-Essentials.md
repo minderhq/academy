@@ -158,8 +158,8 @@ EOF
 
 # Create requirements.txt
 cat > requirements.txt << 'EOF'
-fastapi==0.109.0
-uvicorn==0.27.0
+fastapi==0.141.1
+uvicorn==0.52.1
 EOF
 ```
 

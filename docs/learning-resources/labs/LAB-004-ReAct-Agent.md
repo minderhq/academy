@@ -788,10 +788,10 @@ CMD ["uvicorn", "react_agent:app", "--host", "0.0.0.0", "--port", "8002"]
 ### Requirements:
 
 ```text
-fastapi==0.109.0
-uvicorn[standard]==0.27.0
-requests==2.31.0
-pydantic==2.5.3
+fastapi==0.141.1
+uvicorn[standard]==0.52.1
+requests==2.34.2
+pydantic==2.13.5
 ```
 
 ### ✅ Checkpoint: Exercise 3

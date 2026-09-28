@@ -267,10 +267,10 @@ if __name__ == "__main__":
 
 ```bash
 # ~/lab-001-docker-llm/services/app/requirements.txt
-fastapi==0.104.1
-uvicorn[standard]==0.24.0
-pydantic==2.5.0
-requests==2.31.0
+fastapi==0.141.1
+uvicorn[standard]==0.52.1
+pydantic==2.13.5
+requests==2.34.2
 ```
 
 ### Dockerfile for API

@@ -430,11 +430,11 @@ CMD ["python3", "server.py"]
 2. requirements.txt
 ───────────────────────────────────────────────────────────
 torch>=2.12.0
-transformers>=4.30.0
-accelerate>=0.20.0
-bitsandbytes>=0.41.0
-fastapi>=0.100.0
-uvicorn>=0.23.0
+transformers>=5.10.2
+accelerate>=1.13.0
+bitsandbytes>=0.50.2
+fastapi>=0.141.1
+uvicorn>=0.52.1
 ───────────────────────────────────────────────────────────
 
 3. server.py (FastAPI)

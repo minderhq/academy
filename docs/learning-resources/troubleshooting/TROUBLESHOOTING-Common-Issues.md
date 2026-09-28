@@ -475,9 +475,9 @@ uv pip install -r requirements.txt
 3. **Pin exact versions:**
 ```text
 # requirements.txt
-transformers==4.36.0
+transformers==5.10.2
 torch==2.12.0
-peft==0.7.1
+peft==0.19.1
 ```
 
 4. **Use conda for better dependency management:**

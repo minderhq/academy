@@ -42,7 +42,7 @@ uv pip install -r requirements.txt
 uv pip install numpy
 
 # Install specific version
-uv pip install numpy==1.24.0
+uv pip install numpy==2.4.6
 
 # Install from GitHub
 uv pip install git+https://github.com/user/repo.git

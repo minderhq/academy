@@ -625,9 +625,9 @@ Dependencies first — the Dockerfile copies this file before the code so the in
 ```text
 # requirements.txt
 torch>=2.12
-fastapi>=0.110
-uvicorn[standard]>=0.29
-pydantic>=2.6
+fastapi>=0.141
+uvicorn[standard]>=0.52
+pydantic>=2.13
 PyYAML>=6.0
 ```
 

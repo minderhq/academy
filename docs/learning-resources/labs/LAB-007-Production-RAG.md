@@ -158,14 +158,14 @@ mkdir -p rag-service/{app,config}
 
 # Create requirements.txt
 cat > rag-service/requirements.txt << 'EOF'
-fastapi==0.109.0
-uvicorn[standard]==0.24.0
-qdrant-client==1.7.0
-sentence-transformers==2.2.2
-langchain==0.1.0
-langchain-community==0.0.10
-numpy==1.24.3
-pydantic==2.5.0
+fastapi==0.141.1
+uvicorn[standard]==0.52.1
+qdrant-client==1.19.0
+sentence-transformers==6.1.0
+langchain==1.4.2
+langchain-community==0.4.2
+numpy==2.4.6
+pydantic==2.13.5
 prometheus-client==0.19.0
 opentelemetry-api==1.21.0
 opentelemetry-sdk==1.21.0

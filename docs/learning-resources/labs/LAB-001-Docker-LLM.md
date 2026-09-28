@@ -224,10 +224,10 @@ if __name__ == "__main__":
 ### Create requirements.txt:
 ```bash
 cat > ~/lab-001-docker-llm/services/app/requirements.txt << 'EOF'
-fastapi==0.109.0
-uvicorn[standard]==0.27.0
-requests==2.31.0
-pydantic==2.5.3
+fastapi==0.141.1
+uvicorn[standard]==0.52.1
+requests==2.34.2
+pydantic==2.13.5
 EOF
 ```
 

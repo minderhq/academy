@@ -161,17 +161,17 @@ uv pip install -r requirements.txt
 
 ```text
 # requirements.txt
-qdrant-client==1.7.0
-fastapi==0.109.0
-uvicorn==0.27.0
+qdrant-client==1.19.0
+fastapi==0.141.1
+uvicorn==0.52.1
 python-multipart==0.0.6
-langchain==0.1.0
-langchain-community==0.0.10
-sentence-transformers==2.3.1
-transformers==4.36.0
-accelerate==0.25.0
-bitsandbytes==0.41.0
-sqlalchemy==2.0.25
+langchain==1.4.2
+langchain-community==0.4.2
+sentence-transformers==6.1.0
+transformers==5.10.2
+accelerate==1.13.0
+bitsandbytes==0.50.2
+sqlalchemy==2.0.50
 psycopg2-binary==2.9.9
 redis==5.0.1
 python-jose[cryptography]==3.3.0

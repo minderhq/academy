@@ -596,15 +596,15 @@ if __name__ == "__main__":
 ```bash
 cat > ~/lab-003-lora/requirements.txt << 'EOF'
 torch>=2.12.0
-transformers>=4.36.0
-peft>=0.7.0
-bitsandbytes>=0.41.0
-accelerate>=0.25.0
-datasets>=2.15.0
-trl>=0.7.0
-scipy>=1.11.0
-sentencepiece>=0.1.99
-protobuf>=3.20.0
+transformers>=5.10.2
+peft>=0.19.1
+bitsandbytes>=0.50.2
+accelerate>=1.13.0
+datasets>=5.0.0
+trl>=1.14.0
+scipy>=1.17.1
+sentencepiece>=0.2.1
+protobuf>=7.35.0
 wandb>=0.16.0
 EOF
 

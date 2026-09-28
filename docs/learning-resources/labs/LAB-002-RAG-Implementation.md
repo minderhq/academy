@@ -547,13 +547,13 @@ if __name__ == "__main__":
 
 ```bash
 cat > ~/lab-002-rag/services/rag/requirements.txt << 'EOF'
-fastapi==0.109.0
-uvicorn[standard]==0.27.0
-requests==2.31.0
-pydantic==2.5.3
-qdrant-client==1.7.0
-sentence-transformers==2.3.1
-numpy==1.26.3
+fastapi==0.141.1
+uvicorn[standard]==0.52.1
+requests==2.34.2
+pydantic==2.13.5
+qdrant-client==1.19.0
+sentence-transformers==6.1.0
+numpy==2.4.6
 EOF
 ```
 
