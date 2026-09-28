@@ -284,9 +284,9 @@ Copy a badge when you complete a volume:
 ### Mastery Levels
 
 ```text
-[ ] 🎓 ai-engineering-curriculum Practitioner - All Labs Complete
-[ ] 🌟 ai-engineering-curriculum Expert - All Volumes Complete
-[ ] 👑 ai-engineering-curriculum Master - All Volumes + All Capstones Complete
+[ ] 🎓 PROJECT-OMEGA Practitioner - All Labs Complete
+[ ] 🌟 PROJECT-OMEGA Expert - All Volumes Complete
+[ ] 👑 PROJECT-OMEGA Master - All Volumes + All Capstones Complete
 ```
 
 ---

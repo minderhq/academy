@@ -354,7 +354,7 @@ Before a version is called `production`:
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [6502: CI/CD for Machine Learning](6502-CI-CD-for-ML.md)
 - [6503: Model Registry](6503-Model-Registry.md)

@@ -802,7 +802,7 @@ for step in planner.plan("Release the new model"):
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [7101: ReAct (Reasoning + Acting) Loop System](7101-ReAct-Loop-System.md)
 - [7301: Collaborative Tasking](../7300-orchestration/7301-Orchestration.md)

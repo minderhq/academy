@@ -428,7 +428,7 @@ Keeping model weights resident in VRAM and batching inference made the penalty n
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [1201: Proxmox Hypervisor Standard Operating Procedures](1201-Proxmox-Hypervisor-SOP.md)
 - [1203: NVIDIA Kernel Module Management](1203-Nvidia-Kernel-Module.md)

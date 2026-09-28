@@ -518,7 +518,7 @@ dim — 1.5 KB at 384-D) and any payloads:
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [6101: HNSW Indexing - Efficient Semantic Search at Scale](../6101-HNSW-Indexing.md)
 - [6102: Semantic Similarity Metrics - Cosine, Dot Product, and Manifold Metrics](../6102-Semantic-Similarity.md)

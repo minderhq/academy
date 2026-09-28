@@ -407,7 +407,7 @@ optimizer = torch.optim.AdamW(layerwise_lr_decay(model, base_lr=5e-5, decay=0.95
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [5501: Optimizer Variants](5501-Optimizer-Variants.md)
 - [5503: Advanced Optimization Techniques](5503-Advanced-Techniques.md)

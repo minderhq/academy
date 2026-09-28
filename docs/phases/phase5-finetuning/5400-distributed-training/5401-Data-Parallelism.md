@@ -319,7 +319,7 @@ Rules of thumb
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [5402: Model Parallelism](5402-Model-Parallelism.md)
 - [5403: Mixed Precision Training](5403-Mixed-Precision.md)

@@ -396,7 +396,7 @@ Operations
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [5301: Knowledge Distillation](5301-Knowledge-Distillation.md)
 - [5302: Distributed Training Orchestration](5302-Distributed-Training.md)

@@ -26,7 +26,7 @@ Tags: ['agents', 'tool-calling', 'function-calling', 'code-interpreter']
 - [Advanced Tool Calling Patterns](#advanced-tool-calling-patterns)
 - [Tool Calling Security](#tool-calling-security)
 - [Tool Calling vs ReAct](#tool-calling-vs-react)
-- [AI Engineering Curriculum Implementation](#ai-engineering-curriculum-implementation)
+- [AI Engineering Curriculum Implementation](#project-omega-implementation)
 - [Experiment](#experiment)
 - [References](#references)
 
@@ -624,7 +624,7 @@ ReAct Agent → Uses Tool Calling → Executes Functions → Returns Result
 
 ---
 
-## AI Engineering Curriculum Implementation
+## PROJECT-OMEGA Implementation
 
 ### Local Tool Registry
 
@@ -692,7 +692,7 @@ tools = {
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [7200: Tool Calling and Function Execution](README.md)
 - [7202: Code Interpreter](guides/7202-Code-Interpreter.md)

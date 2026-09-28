@@ -361,7 +361,7 @@ Use the same activation as the base model:
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [3301: Activation Functions - GELU, SwiGLU, and Beyond](../3301-Activation-Functions.md)
 - [3302: Normalization Layers - BatchNorm vs LayerNorm vs RMSNorm](../3302-Normalization-Layers.md)

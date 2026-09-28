@@ -495,7 +495,7 @@ model.wv.most_similar('Meta', topn=10)  # Similar entities
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [6201: Hybrid Search](../6200-retrieval/6201-Hybrid-Search.md)
 - [6302: CAG - Context Augmented Generation and Long Context Architectures](6302-CAG-Long-Context-Architectures.md)

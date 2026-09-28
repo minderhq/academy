@@ -418,7 +418,7 @@ def human_eval(model_a, model_b, test_prompts):
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [5201: DPO (Direct Preference Optimization) Theory](5201-DPO-Theory.md)
 - [5203: Reinforcement Learning from Human Feedback](5203-RLHF.md)

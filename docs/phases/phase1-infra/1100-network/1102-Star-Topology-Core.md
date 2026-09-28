@@ -360,7 +360,7 @@ The original build ran a 16-port 2.5G managed switch through a small apartment w
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [1103: Jumbo Frames and MTU Optimization](1103-Jumbo-Frames-and-MTU.md)
 - [1201: Proxmox Hypervisor Standard Operating Procedures](../1200-virtualization/1201-Proxmox-Hypervisor-SOP.md)

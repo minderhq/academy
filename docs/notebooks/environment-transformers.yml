@@ -1,9 +1,9 @@
 # Environment Setup for Transformer Notebooks (NB-301, NB-302, NB-303)
 # Create conda environment: conda env create -f environment-transformers.yml
 # Update environment: conda env update -f environment-transformers.yml
-# Activate environment: conda activate ai-engineering-curriculum-transformers
+# Activate environment: conda activate project-omega-transformers
 
-name: ai-engineering-curriculum-transformers
+name: project-omega-transformers
 
 channels:
   - pytorch

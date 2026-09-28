@@ -213,7 +213,7 @@ def autoregressive_loss(logits, targets):
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [3401: Encoder-Decoder Architectures](3401-Encoder-Decoder-Architectures.md)
 

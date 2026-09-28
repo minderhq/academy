@@ -238,7 +238,7 @@ answer = generator.generate(**tokenizer(prompt, return_tensors="pt"))
 services:
   flan-t5:
     image: vllm/vllm-openai:latest
-    container_name: ai-engineering-curriculum-flan-t5
+    container_name: project-omega-flan-t5
     ports:
       - "8001:8000"
     command: >
@@ -258,7 +258,7 @@ services:
               capabilities: [gpu]
     restart: unless-stopped
     networks:
-      - ai-engineering-curriculum-net
+      - project-omega-net
 ```
 
 ### Mistral-7B (Decoder-Only)
@@ -267,7 +267,7 @@ services:
 services:
   mistral:
     image: vllm/vllm-openai:latest
-    container_name: ai-engineering-curriculum-mistral
+    container_name: project-omega-mistral
     ports:
       - "8002:8000"
     command: >
@@ -287,7 +287,7 @@ services:
               capabilities: [gpu]
     restart: unless-stopped
     networks:
-      - ai-engineering-curriculum-net
+      - project-omega-net
 ```
 
 ## Decision Tree
@@ -433,7 +433,7 @@ def monitor_inference(model, inputs, max_new_tokens=100):
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [3401: Encoder-Decoder Architectures](../3401-Encoder-Decoder-Architectures.md)
 - [3402: Decoder-Only Models (GPT, LLaMA, Mistral)](../3402-Decoder-Only-Models.md)

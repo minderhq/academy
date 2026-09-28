@@ -74,7 +74,7 @@ Every technical document should include a References section:
 ### Documentation
 - [PyTorch Documentation](https://pytorch.org/docs) - Official PyTorch docs
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 - [3101: Self-Attention](../../phases/phase3-transformers/3100-attention/3101-Self-Attention-DeepDive.md) - Deep dive into attention
 - [3301: Activation Functions](../../phases/phase3-transformers/3300-decoding/3301-Activation-Functions.md) - GELU, SwiGLU
 
@@ -248,7 +248,7 @@ Before marking a document as Complete, verify:
 
 ```bash
 # Find broken internal links (example script)
-grep -r '\[.*\](' ai-engineering-curriculum/docs/ | while read line; do
+grep -r '\[.*\](' PROJECT-OMEGA/docs/ | while read line; do
     # Extract link path
     link=$(echo "$line" | sed -n 's/.*](\([^)]*\)).*/\1/p')
     # Check if file exists (for relative links)

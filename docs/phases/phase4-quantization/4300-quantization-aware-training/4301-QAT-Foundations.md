@@ -247,7 +247,7 @@ scale = weight.abs().amax(dim=[1, 2], keepdim=True) / 127
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [4302: Fake Quantization](4302-Fake-Quantization.md)
 - [4303: QAT for Transformers](4303-QAT-for-Transformers.md)

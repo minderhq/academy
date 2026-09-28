@@ -121,8 +121,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Infrastructure specifications
 - Experiment templates
 
-[1.1.0]: https://github.com/your-org/ai-engineering-curriculum/releases/tag/v1.1.0
-[1.0.0]: https://github.com/your-org/ai-engineering-curriculum/releases/tag/v1.0.0
+[1.1.0]: https://github.com/your-org/project-omega/releases/tag/v1.1.0
+[1.0.0]: https://github.com/your-org/project-omega/releases/tag/v1.0.0
 
 ---
 

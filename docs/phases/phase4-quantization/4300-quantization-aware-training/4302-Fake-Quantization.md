@@ -409,7 +409,7 @@ scale = scale.clamp(min=1e-5)
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [4301: QAT Foundations](4301-QAT-Foundations.md)
 - [4303: QAT for Transformers](4303-QAT-for-Transformers.md)

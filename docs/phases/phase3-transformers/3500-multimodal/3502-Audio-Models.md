@@ -330,7 +330,7 @@ Where the latency actually goes (typical assistant)
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [3501: Vision-Language Models](3501-Vision-Language-Models.md)
 

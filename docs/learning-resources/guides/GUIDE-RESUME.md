@@ -465,7 +465,7 @@ Bachelor of Arts in English
 Yale University | 2015
 
 AI Training:
-• ai-engineering-curriculum: Complete (Phases 0-7) - 6 months
+• PROJECT-OMEGA: Complete (Phases 0-7) - 6 months
 • DeepLearning.AI: 5 courses completed
 • Hugging Face: 3 courses completed
 

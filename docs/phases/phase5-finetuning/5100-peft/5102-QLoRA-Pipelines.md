@@ -515,7 +515,7 @@ quantized_merged = AutoModelForCausalLM.from_pretrained(
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [5101: LoRA (Low-Rank Adaptation) Logic](5101-LoRA-Logic.md)
 - [5103: Adapters & Parameter-Efficient Adaptation Methods](5103-Adapters.md)

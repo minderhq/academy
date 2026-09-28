@@ -502,7 +502,7 @@ for tokenizer_name in ["gpt2", "cl100k_base", "bert-base-uncased"]:
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [3201: Rotary Positional Embeddings (RoPE)](3201-Rotary-Positional-Embeddings-RoPE.md)
 

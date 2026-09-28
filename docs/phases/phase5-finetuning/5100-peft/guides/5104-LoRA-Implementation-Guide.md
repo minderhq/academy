@@ -454,7 +454,7 @@ def example_training():
     import json
 
     sample_data = [
-        {"text": "ai-engineering-curriculum is an AI infrastructure project for homelab deployment."},
+        {"text": "PROJECT-OMEGA is an AI infrastructure project for homelab deployment."},
         {"text": "LoRA allows efficient fine-tuning by freezing original weights."},
         {"text": "11GB-class GPU has 11GB VRAM, suitable for 7B models with 4-bit quantization."},
     ]
@@ -826,7 +826,7 @@ PY
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [5101: LoRA (Low-Rank Adaptation) Logic](../5101-LoRA-Logic.md)
 - [5102: QLoRA Pipelines - 4-bit Fine-Tuning on Consumer Hardware](../5102-QLoRA-Pipelines.md)

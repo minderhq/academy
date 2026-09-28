@@ -588,7 +588,7 @@ class CachedRetriever:
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [TUTORIAL-003: RAG Basics](TUTORIAL-003-RAG-Basics.md)
 - [LAB-002: RAG Implementation](../labs/LAB-002-RAG-Implementation.md)

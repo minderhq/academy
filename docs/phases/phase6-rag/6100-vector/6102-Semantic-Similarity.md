@@ -463,7 +463,7 @@ for i, label in enumerate(labels):
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [6101: HNSW Indexing - Efficient Semantic Search at Scale](6101-HNSW-Indexing.md)
 

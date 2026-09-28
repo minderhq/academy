@@ -492,7 +492,7 @@ apps.create_namespaced_deployment(namespace="staging", body=canary_spec)
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [6501: ML Model Lifecycle Management](6501-ML-Lifecycle-Management.md)
 - [6503: Model Registry](6503-Model-Registry.md)

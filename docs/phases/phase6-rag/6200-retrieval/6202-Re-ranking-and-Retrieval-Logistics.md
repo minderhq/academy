@@ -431,7 +431,7 @@ def ndcg(retrieved_docs, relevance_scores, k=10):
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [6101: HNSW Indexing - Efficient Semantic Search at Scale](../6100-vector/6101-HNSW-Indexing.md)
 - [6201: Hybrid Search - Combining Keyword and Semantic Search](6201-Hybrid-Search.md)

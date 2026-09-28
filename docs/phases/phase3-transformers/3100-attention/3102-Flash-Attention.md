@@ -387,7 +387,7 @@ Key insight:
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [3101: Self-Attention Deep Dive](3101-Self-Attention-DeepDive.md)
 

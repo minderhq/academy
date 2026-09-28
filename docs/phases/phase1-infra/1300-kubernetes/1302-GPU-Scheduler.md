@@ -466,7 +466,7 @@ spec:
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [1301: K3s Master-Worker Architecture](1301-K3s-Master-Worker-Arch.md)
 - [1303: Storage Classes for Dynamic Provisioning](1303-Storage-Classes.md)

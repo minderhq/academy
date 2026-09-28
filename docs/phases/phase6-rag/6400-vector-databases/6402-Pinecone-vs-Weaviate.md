@@ -1039,7 +1039,7 @@ class VectorDBImporter:
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [6401: Qdrant Setup Guide](6401-Qdrant-Setup.md)
 

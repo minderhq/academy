@@ -716,7 +716,7 @@ class EvaluationTracker:
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [LAB-014: AI Evaluation Safety](../labs/LAB-014-AI-Evaluation-Safety.md)
 - [LAB-006: Train Model From Scratch](../labs/LAB-006-Train-Model-From-Scratch.md)

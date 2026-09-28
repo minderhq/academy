@@ -299,7 +299,7 @@ Production pattern: BOTH, side by side
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [3502: Audio Models](3502-Audio-Models.md)
 - [6401: Qdrant Setup Guide](../../phase6-rag/6400-vector-databases/6401-Qdrant-Setup.md)

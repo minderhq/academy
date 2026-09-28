@@ -444,7 +444,7 @@ for prefix in ['embeddings', 'encoder.layer.0']:
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [4306: PyTorch QAT Guide](4306-PyTorch-QAT.md)
 - [4308: BitBlade QAT Guide](4308-BitBlade-QAT.md)

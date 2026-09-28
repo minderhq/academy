@@ -188,7 +188,7 @@ setting: value
 ### Documentation
 - [Official Docs](URL) - Description
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 - [XXXX: Title](../path/to/document.md) - Relationship
 
 ### External Resources

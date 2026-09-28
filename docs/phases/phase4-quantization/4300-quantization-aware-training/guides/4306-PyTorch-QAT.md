@@ -469,7 +469,7 @@ model = quant.convert(model)
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [4307: Transformers QAT Guide](4307-Transformers-QAT.md)
 - [4308: BitBlade QAT Guide](4308-BitBlade-QAT.md)

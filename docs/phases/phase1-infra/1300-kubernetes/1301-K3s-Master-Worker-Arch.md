@@ -369,7 +369,7 @@ helm install prometheus-node-exporter prometheus-community/prometheus-node-expor
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [1302: GPU Scheduler Configuration](1302-GPU-Scheduler.md)
 - [1303: Storage Classes for Dynamic Provisioning](1303-Storage-Classes.md)

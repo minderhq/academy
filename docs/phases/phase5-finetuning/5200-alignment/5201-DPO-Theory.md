@@ -522,7 +522,7 @@ dpo_trainer = DPOTrainer(
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [5202: Alignment Orchestration - Reward Modeling vs Direct Preference](5202-Alignment-Orchestration.md)
 - [5203: Reinforcement Learning from Human Feedback](5203-RLHF.md)

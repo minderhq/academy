@@ -1149,7 +1149,7 @@ class ProductionAgentSystem:
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 
-app = FastAPI(title="ai-engineering-curriculum Agent API")
+app = FastAPI(title="PROJECT-OMEGA Agent API")
 agent_system = ProductionAgentSystem(config={})
 
 class TaskRequest(BaseModel):

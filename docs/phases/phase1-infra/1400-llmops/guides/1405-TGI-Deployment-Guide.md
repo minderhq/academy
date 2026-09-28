@@ -194,7 +194,7 @@ Defaults verified against the TGI 3.x launcher source.
 services:
   tgi-mistral:
     image: ghcr.io/huggingface/text-generation-inference:3.3.7
-    container_name: ai-engineering-curriculum-tgi-mistral
+    container_name: project-omega-tgi-mistral
     ports:
       - "8080:80"
     shm_size: "1g"
@@ -225,7 +225,7 @@ services:
       retries: 3
       start_period: 300s
     networks:
-      - ai-engineering-curriculum-net
+      - project-omega-net
     volumes:
       - /srv/models/tgi:/data
     logging:
@@ -235,7 +235,7 @@ services:
         max-file: "3"
 
 networks:
-  ai-engineering-curriculum-net:
+  project-omega-net:
     external: true
 ```
 
@@ -250,7 +250,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: tgi-mistral
-  namespace: ai-engineering-curriculum
+  namespace: project-omega
 spec:
   replicas: 1
   selector:
@@ -315,7 +315,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: tgi-mistral
-  namespace: ai-engineering-curriculum
+  namespace: project-omega
 spec:
   selector:
     app: tgi-mistral
@@ -939,7 +939,7 @@ python -c "import requests; print(requests.post('http://localhost:8080/generate'
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [1404: vLLM Production Deployment Guide](1404-vLLM-Production-Deployment.md)
 

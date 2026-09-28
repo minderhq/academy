@@ -81,11 +81,11 @@ Complete monitoring stack for tracking infrastructure health, model performance,
 
 ```yaml
 # Merge into docker-compose.yml. The shared network is declared once at
-# the top level: networks: { ai-engineering-curriculum-net: {} }
+# the top level: networks: { project-omega-net: {} }
 services:
   prometheus:
     image: prom/prometheus:v3.15.0   # pinned release (Sep 2026); check releases for newer
-    container_name: ai-engineering-curriculum-prometheus
+    container_name: project-omega-prometheus
     ports:
       - "9090:9090"
     volumes:
@@ -103,18 +103,18 @@ services:
       - 'host.docker.internal:host-gateway'
     restart: unless-stopped
     networks:
-      - ai-engineering-curriculum-net
+      - project-omega-net
 
   alertmanager:
     image: prom/alertmanager:v0.34.1   # pinned release (Sep 2026); check releases for newer
-    container_name: ai-engineering-curriculum-alertmanager
+    container_name: project-omega-alertmanager
     ports:
       - "9093:9093"
     # The image ships a usable default /etc/alertmanager/alertmanager.yml,
     # so no config mount is required to receive alerts.
     restart: unless-stopped
     networks:
-      - ai-engineering-curriculum-net
+      - project-omega-net
 ```
 
 ### Configuration
@@ -125,7 +125,7 @@ global:
   scrape_interval: 15s
   evaluation_interval: 15s
   external_labels:
-    cluster: 'ai-engineering-curriculum'
+    cluster: 'PROJECT-OMEGA'
     env: 'lab'
 
 # Load the alert rules (evaluated every evaluation_interval)
@@ -202,7 +202,7 @@ scrape_configs:
 services:
   grafana:
     image: grafana/grafana:13.2.2   # pinned release (Sep 2026); check releases for newer
-    container_name: ai-engineering-curriculum-grafana
+    container_name: project-omega-grafana
     ports:
       - "3000:3000"
     environment:
@@ -217,7 +217,7 @@ services:
       - ./monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro
     restart: unless-stopped
     networks:
-      - ai-engineering-curriculum-net
+      - project-omega-net
 ```
 
 ### Dashboard: Model Inference
@@ -305,7 +305,7 @@ it; query-level latency belongs in the application's own instrumentation.
 services:
   loki:
     image: grafana/loki:2.9.8   # pin the LTS; 3.x changed config defaults
-    container_name: ai-engineering-curriculum-loki
+    container_name: project-omega-loki
     ports:
       - "3100:3100"
     volumes:
@@ -314,18 +314,18 @@ services:
       - ./monitoring/loki/local-config.yaml:/etc/loki/local-config.yaml:ro
       - ./monitoring/loki/data:/loki
     networks:
-      - ai-engineering-curriculum-net
+      - project-omega-net
 
   promtail:
     image: grafana/promtail:2.9.8   # match the Loki LTS; Promtail is in LTS maintenance — new deployments use Grafana Alloy
-    container_name: ai-engineering-curriculum-promtail
+    container_name: project-omega-promtail
     volumes:
       - /var/log:/var/log:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro   # docker_sd needs it
       - ./monitoring/promtail/config.yml:/etc/promtail/config.yml:ro
     command: -config.file=/etc/promtail/config.yml
     networks:
-      - ai-engineering-curriculum-net
+      - project-omega-net
 ```
 
 ### Loki Config
@@ -400,7 +400,7 @@ scrape_configs:
 services:
   tempo:
     image: grafana/tempo:3.0.3   # pinned release (Aug 2026); check releases for newer
-    container_name: ai-engineering-curriculum-tempo
+    container_name: project-omega-tempo
     ports:
       - "3200:3200"  # HTTP API + TraceQL UI
       - "4317:4317"  # OTLP gRPC
@@ -412,7 +412,7 @@ services:
       - ./monitoring/tempo/tempo.yaml:/etc/tempo/tempo.yaml:ro
       - ./monitoring/tempo/data:/var/tempo
     networks:
-      - ai-engineering-curriculum-net
+      - project-omega-net
 ```
 
 The receiver endpoints in Tempo's defaults bind to localhost, and inside the
@@ -570,7 +570,7 @@ grafana:
   enabled: true
   ingress:
     enabled: true
-    hosts: ["grafana.ai-engineering-curriculum.local"]
+    hosts: ["grafana.project-omega.local"]
 
 prometheus:
   prometheusSpec:
@@ -663,7 +663,7 @@ docker compose up -d
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [1502: Model Drift Detection](1502-Model-Drift-Detection.md)
 - [1503: LLM Observability](1503-LLM-Observability.md)

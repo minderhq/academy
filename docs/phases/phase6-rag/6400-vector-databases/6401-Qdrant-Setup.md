@@ -337,7 +337,7 @@ Data lost after restart              Volume not mounted; ./data recreated empty.
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [6402: Vector Database Comparison](6402-Pinecone-vs-Weaviate.md)
 

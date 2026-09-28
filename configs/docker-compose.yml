@@ -1,4 +1,4 @@
-# ai-engineering-curriculum Reference Deployment Stack
+# PROJECT-OMEGA Reference Deployment Stack
 #
 # A minimal self-hosted LLM stack: inference server + vector database.
 # Runs on any Docker-capable host (Linux server, workstation, or cloud VM).

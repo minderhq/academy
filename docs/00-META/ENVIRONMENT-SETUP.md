@@ -163,8 +163,8 @@ uv --version
 
 ```bash
 # Create project directory
-mkdir -p ~/ai-engineering-curriculum
-cd ~/ai-engineering-curriculum
+mkdir -p ~/project-omega
+cd ~/project-omega
 
 # Create a virtual environment with Python 3.11
 # (uv downloads the interpreter itself if it is missing)

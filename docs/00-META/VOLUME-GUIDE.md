@@ -407,7 +407,7 @@ Track your progress using: **[PROGRESS-TRACKER.md](PROGRESS-TRACKER.md)**
 ## 📝 Document Structure
 
 ```text
-ai-engineering-curriculum/docs/
+PROJECT-OMEGA/docs/
 ├── 00-META/                     # Meta documentation
 │   ├── VOLUME-GUIDE.md          # This file - volume overview
 │   ├── QUICK-START.md           # 30-minute quick start
@@ -456,7 +456,7 @@ ai-engineering-curriculum/docs/
     ├── VOLUME-6-Data-Nexus.md
     └── VOLUME-7-Production-Mastery.md
 
-ai-engineering-curriculum/
+PROJECT-OMEGA/
 └── experiments/                 # Practical experiments (28 files)
 ```
 

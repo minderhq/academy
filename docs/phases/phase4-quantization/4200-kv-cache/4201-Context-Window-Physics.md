@@ -467,7 +467,7 @@ print(f"Peak KV Cache: {tracker['peak_memory'] / (1024**3):.2f} GB")
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [4202: Speculative Decoding - Accelerating Large Models](4202-Speculative-Decoding.md)
 

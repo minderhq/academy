@@ -358,7 +358,7 @@ sensors
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [1202: GPU Passthrough (IOMMU/VFIO)](1202-TB3-UT3G-Passthrough.md)
 - [1203: NVIDIA Kernel Module Management](1203-Nvidia-Kernel-Module.md)

@@ -482,7 +482,7 @@ dist.init_process_group(backend="gloo", init_method="env://")
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [5401: Data Parallelism](5401-Data-Parallelism.md)
 - [5402: Model Parallelism](5402-Model-Parallelism.md)

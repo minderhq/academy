@@ -62,7 +62,7 @@ Must do:
   - Optimize for cost/latency
   - Wear multiple hats (frontend, backend, DevOps)
 
-Skills from ai-engineering-curriculum:
+Skills from PROJECT-OMEGA:
   - TUTORIAL-003 (RAG) ✅
   - LAB-002 (RAG Implementation) ✅
   - LAB-003 (LoRA Fine-Tuning) ✅
@@ -79,7 +79,7 @@ Must do:
   - Monitor and maintain AI systems
   - Collaborate across teams
 
-Skills from ai-engineering-curriculum:
+Skills from PROJECT-OMEGA:
   - TUTORIAL-004 (Monitoring) ✅
   - TUTORIAL-013 (AI Security) ✅
   - Phase 7 (Agentic Systems) ✅
@@ -95,7 +95,7 @@ Must do:
   - Optimize model architectures
   - Stay current with research
 
-Skills from ai-engineering-curriculum:
+Skills from PROJECT-OMEGA:
   - Phase 2 (Foundations) ✅
   - Phase 3 (Transformer Physics) ✅
   - Phase 5 (Fine-Tuning) ✅

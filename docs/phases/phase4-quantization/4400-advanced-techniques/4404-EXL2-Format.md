@@ -381,7 +381,7 @@ Need CPU inference?
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [4401: GPTQ](4401-GPTQ.md)
 - [4402: AWQ](4402-AWQ.md)

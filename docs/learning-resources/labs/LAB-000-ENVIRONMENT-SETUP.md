@@ -203,8 +203,8 @@ uv --version
 
 ```bash
 # Create project directory
-mkdir -p ~/ai-engineering-curriculum
-cd ~/ai-engineering-curriculum
+mkdir -p ~/project-omega
+cd ~/project-omega
 
 # Create a virtual environment with Python 3.11
 # (uv downloads the interpreter itself if it is missing)
@@ -225,7 +225,7 @@ source .venv/bin/activate
 ```bash
 # You should see (.venv) in your prompt
 which python
-# Should show: ~/ai-engineering-curriculum/.venv/bin/python
+# Should show: ~/project-omega/.venv/bin/python
 ```
 
 **Install Essential Packages:**
@@ -314,7 +314,7 @@ The answer is 4.
 **Create Test Script:**
 
 ```bash
-cd ~/ai-engineering-curriculum
+cd ~/project-omega
 cat > test_env.py << 'EOF'
 import ollama
 import torch
@@ -403,16 +403,16 @@ With your environment ready:
 1. **Document Your Setup:**
    ```bash
    # Save your configuration
-   python --version > ~/ai-engineering-curriculum/setup-info.txt
-   docker --version >> ~/ai-engineering-curriculum/setup-info.txt
-   ollama --version >> ~/ai-engineering-curriculum/setup-info.txt
+   python --version > ~/project-omega/setup-info.txt
+   docker --version >> ~/project-omega/setup-info.txt
+   ollama --version >> ~/project-omega/setup-info.txt
    ```
 
 2. **Create Startup Script:**
    ```bash
    # Start everything quickly
    #!/bin/bash
-   cd ~/ai-engineering-curriculum
+   cd ~/project-omega
    source .venv/bin/activate  # Mac/Linux
    # .venv\Scripts\activate   # Windows
    ollama serve &

@@ -336,7 +336,7 @@ Order of escalation (cheapest complexity first)
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [5401: Data Parallelism](5401-Data-Parallelism.md)
 - [5403: Mixed Precision Training](5403-Mixed-Precision.md)

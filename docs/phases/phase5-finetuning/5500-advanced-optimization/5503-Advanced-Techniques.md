@@ -414,7 +414,7 @@ Reading the curve
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [5501: Optimizer Variants](5501-Optimizer-Variants.md)
 - [5502: Learning Rate Scheduling](5502-Learning-Rate-Scheduling.md)

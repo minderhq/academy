@@ -487,7 +487,7 @@ watch -n 0.1 nvidia-smi
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [1401: Ollama Enterprise Deployment](1401-Ollama-Enterprise.md)
 

@@ -982,7 +982,7 @@ print(f"Budget remaining: ${report['budget_remaining']:.2f}")
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [TUTORIAL-004: Monitoring](TUTORIAL-004-Monitoring.md)
 - [TUTORIAL-005: Production Deployment](TUTORIAL-005-Production-Deployment.md)

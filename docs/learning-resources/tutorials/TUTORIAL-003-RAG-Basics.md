@@ -36,14 +36,14 @@ Think of RAG like an **open-book exam** for AI:
 
 ```text
 Without RAG (Closed Book):
-Question: "What is ai-engineering-curriculum?"
+Question: "What is PROJECT-OMEGA?"
 LLM: "I don't know, my training data cutoff was earlier."
 
 With RAG (Open Book):
-Question: "What is ai-engineering-curriculum?"
+Question: "What is PROJECT-OMEGA?"
 RAG: "Let me search the documents..."
-Found: "ai-engineering-curriculum is an AI infrastructure learning platform"
-LLM: "ai-engineering-curriculum is an AI infrastructure learning platform..."
+Found: "PROJECT-OMEGA is an AI infrastructure learning platform"
+LLM: "PROJECT-OMEGA is an AI infrastructure learning platform..."
 ```
 
 ### RAG Architecture:
@@ -125,7 +125,7 @@ mkdir -p documents
 
 # Add some documents
 cat > documents/doc1.txt << 'EOF'
-ai-engineering-curriculum is a comprehensive learning platform for AI infrastructure.
+PROJECT-OMEGA is a comprehensive learning platform for AI infrastructure.
 It covers topics from basic Docker to advanced agent systems.
 EOF
 
@@ -352,7 +352,7 @@ curl -X POST http://localhost:8000/query \
 ```python
 # Test RAG vs direct query
 queries = [
-    "What is ai-engineering-curriculum?",
+    "What is PROJECT-OMEGA?",
     "How much VRAM does 11GB-class GPU have?",
     "What is Qdrant used for?"
 ]
@@ -600,8 +600,8 @@ class SimpleRAG:
 
 # Use it
 rag = SimpleRAG()
-rag.add("ai-engineering-curriculum is a learning platform for AI infrastructure")
-print(rag.query("What is ai-engineering-curriculum?"))
+rag.add("PROJECT-OMEGA is a learning platform for AI infrastructure")
+print(rag.query("What is PROJECT-OMEGA?"))
 ```
 
 ---

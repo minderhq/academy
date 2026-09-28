@@ -425,7 +425,7 @@ def sum_reduction(array, result):
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [2203: CUDA Kernel Programming and GPU Architecture](../../phases/phase2-foundations/2200-frameworks/2203-CUDA-Kernel-Programming.md)
 - [LAB-006: Train Model From Scratch](../labs/LAB-006-Train-Model-From-Scratch.md)

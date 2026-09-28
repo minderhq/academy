@@ -25,7 +25,7 @@
 
 - [Overview](#overview)
 - [Key Takeaways](#key-takeaways)
-- [Why AI Engineering Curriculum](#why-ai-engineering-curriculum)
+- [Why AI Engineering Curriculum](#why-project-omega)
 - [Key Features](#key-features)
 - [Architecture](#architecture)
 - [Quick Start](#quick-start)
@@ -144,7 +144,7 @@ After completing AI Engineering Curriculum, you will be able to:
 
 ---
 
-## Why AI Engineering Curriculum?
+## Why PROJECT-OMEGA?
 
 | Challenge | AI Engineering Curriculum Solution |
 |:----------:|:----------------------:|
@@ -296,8 +296,8 @@ graph TB
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/your-username/ai-engineering-curriculum.git
-cd ai-engineering-curriculum
+git clone https://github.com/your-username/project-omega.git
+cd project-omega
 
 # 2. Copy environment configuration
 cp configs/.env.example configs/.env
@@ -863,8 +863,8 @@ See the [model sizing table](./configs/README.md#model-sizing) to match GPU VRAM
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/ai-engineering-curriculum.git
-cd ai-engineering-curriculum
+git clone https://github.com/your-username/project-omega.git
+cd project-omega
 
 # Copy environment template
 cp configs/.env.example configs/.env
@@ -1354,8 +1354,8 @@ Contributions are welcome! The fastest way to contribute:
 
 - [FAQ](./docs/00-META/FAQ.md) - Frequently Asked Questions
 - [Troubleshooting Quickstart](./docs/00-META/TROUBLESHOOTING-QUICKSTART.md) - Fast diagnostics
-- [Issues](https://github.com/your-username/ai-engineering-curriculum/issues) - Report bugs
-- [Discussions](https://github.com/your-username/ai-engineering-curriculum/discussions) - Community forum
+- [Issues](https://github.com/your-username/project-omega/issues) - Report bugs
+- [Discussions](https://github.com/your-username/project-omega/discussions) - Community forum
 
 ---
 

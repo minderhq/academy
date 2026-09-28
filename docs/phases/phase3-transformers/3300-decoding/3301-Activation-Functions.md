@@ -409,7 +409,7 @@ Negative perplexity = improvement
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [3302: Normalization Layers - BatchNorm vs LayerNorm vs RMSNorm](3302-Normalization-Layers.md)
 

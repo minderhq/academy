@@ -1043,7 +1043,7 @@ Long-term memory systems enable AI agents to:
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [7403: Vector Memory and Embedding-Based Storage](7403-Vector-Memory.md)
 

@@ -825,7 +825,7 @@ Create the deployment pipeline:
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [TUTORIAL-005: Production Deployment](./TUTORIAL-005-Production-Deployment.md)
 - [TUTORIAL-002: Docker Essentials](./TUTORIAL-002-Docker-Essentials.md)

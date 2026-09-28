@@ -944,7 +944,7 @@ print(f"URL safe: {is_safe}, Reason: {reason}")
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [TUTORIAL-004: Monitoring](TUTORIAL-004-Monitoring.md)
 - [LAB-013: Advanced Function Calling](../labs/LAB-013-Advanced-Function-Calling.md)

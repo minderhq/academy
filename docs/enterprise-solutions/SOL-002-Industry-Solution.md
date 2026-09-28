@@ -666,7 +666,7 @@ lighting with fine-tuned models - they are earned, not assumed.
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [SOL-001: Enterprise Knowledge Base](./SOL-001-Enterprise-Knowledge-Base.md)
 - [IND-003: Manufacturing AI](../industry/IND-003-Manufacturing-AI.md)

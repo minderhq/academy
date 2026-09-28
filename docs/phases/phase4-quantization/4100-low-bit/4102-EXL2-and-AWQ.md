@@ -400,7 +400,7 @@ class DynamicQuantizer:
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [4101: GGUF Physics - CPU/GPU Hybrid Offloading](4101-GGUF-Physics.md)
 - [4103: Double Quantization - BitsAndBytes (bnb) Logic](4103-Double-Quantization.md)

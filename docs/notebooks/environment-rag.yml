@@ -1,9 +1,9 @@
 # Environment Setup for RAG Notebooks (NB-601, NB-602, NB-603)
 # Create conda environment: conda env create -f environment-rag.yml
 # Update environment: conda env update -f environment-rag.yml
-# Activate environment: conda activate ai-engineering-curriculum-rag
+# Activate environment: conda activate project-omega-rag
 
-name: ai-engineering-curriculum-rag
+name: project-omega-rag
 
 channels:
   - pytorch

@@ -503,7 +503,7 @@ def evaluate_hnsw_index(index, test_queries, ground_truth, ef_values):
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [6102: Semantic Similarity Metrics - Cosine, Dot Product, and Manifold Metrics](6102-Semantic-Similarity.md)
 

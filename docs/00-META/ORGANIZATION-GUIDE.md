@@ -12,7 +12,7 @@
 ### Root Level
 
 ```text
-ai-engineering-curriculum/
+PROJECT-OMEGA/
 ├── README.md                          # Main project README
 ├── LICENSE                            # MIT License
 ├── prompt.txt                         # AI assistant prompt

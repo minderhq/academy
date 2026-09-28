@@ -501,7 +501,7 @@ spec:
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [1402: vLLM and TGI High-Concurrency Inference](1402-vLLM-and-TGI.md)
 

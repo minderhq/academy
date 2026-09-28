@@ -338,7 +338,7 @@ def bench(fn, iters=50):
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [5402: Model Parallelism](5402-Model-Parallelism.md)
 - [5404: Distributed Optimization](5404-Distributed-Optimization.md)

@@ -269,7 +269,7 @@ The modern engineering pattern is therefore **triage**: route the bulk traffic o
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [3402: Decoder-Only Models (GPT, LLaMA, Mistral)](3402-Decoder-Only-Models.md)
 - [3101: Self-Attention](../3100-attention/3101-Self-Attention-DeepDive.md)

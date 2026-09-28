@@ -654,7 +654,7 @@ class MultiModalRAG:
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [TUTORIAL-001: Hello LLM](TUTORIAL-001-Hello-LLM.md)
 - [TUTORIAL-003: RAG Basics](TUTORIAL-003-RAG-Basics.md)

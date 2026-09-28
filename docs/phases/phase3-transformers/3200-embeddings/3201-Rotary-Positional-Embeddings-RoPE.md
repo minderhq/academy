@@ -400,7 +400,7 @@ def extend_context_via_interpolation(original_max_len=2048, new_max_len=8192):
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [3202: Tokenizer Sciences - BPE, SentencePiece, and Tiktoken](3202-Tokenizer-Sciences.md)
 

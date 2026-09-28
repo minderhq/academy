@@ -425,7 +425,7 @@ class DeepNormTransformerBlock(nn.Module):
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [3301: Activation Functions - GELU, SwiGLU, and Beyond](3301-Activation-Functions.md)
 

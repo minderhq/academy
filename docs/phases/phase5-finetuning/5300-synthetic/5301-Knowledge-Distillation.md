@@ -521,7 +521,7 @@ Rule of thumb: α = 0.5 (balanced)
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [5302: Distributed Training Orchestration](5302-Distributed-Training.md)
 - [5303: Federated Learning](5303-Federated-Learning.md)

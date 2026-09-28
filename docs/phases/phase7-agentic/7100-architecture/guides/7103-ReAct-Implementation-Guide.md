@@ -76,7 +76,7 @@ Complete implementation guide for building production-ready ReAct (Reasoning + A
 ```python
 # react_agent.py
 """
-Production-ready ReAct Agent for ai-engineering-curriculum
+Production-ready ReAct Agent for project-omega
 
 Features:
 - Tool calling with validation
@@ -614,7 +614,7 @@ class HierarchicalAgent(ReActAgent):
 services:
   react-agent:
     build: ./agent
-    container_name: ai-engineering-curriculum-react-agent
+    container_name: project-omega-react-agent
     ports:
       - "8001:8000"
     environment:
@@ -631,7 +631,7 @@ services:
           memory: 8G
     restart: unless-stopped
     networks:
-      - ai-engineering-curriculum-net
+      - project-omega-net
 ```
 
 ### Kubernetes Deployment
@@ -641,7 +641,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: react-agent
-  namespace: ai-engineering-curriculum
+  namespace: project-omega
 spec:
   replicas: 1
   selector:
@@ -654,7 +654,7 @@ spec:
     spec:
       containers:
       - name: agent
-        image: ai-engineering-curriculum/react-agent:latest
+        image: PROJECT-OMEGA/react-agent:latest
         ports:
         - containerPort: 8000
         env:
@@ -714,7 +714,7 @@ except Exception as e:
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [7101: ReAct (Reasoning + Acting) Loop System](../7101-ReAct-Loop-System.md)
 - [7102: Planning and Task Decomposition](../7102-Planning-Decomposition.md)

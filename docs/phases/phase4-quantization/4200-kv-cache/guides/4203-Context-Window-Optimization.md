@@ -799,7 +799,7 @@ nvidia-smi -l 1
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [4201: Context Window Physics and OOM Prevention](../4201-Context-Window-Physics.md)
 - [4202: Speculative Decoding - Accelerating Large Models](../4202-Speculative-Decoding.md)

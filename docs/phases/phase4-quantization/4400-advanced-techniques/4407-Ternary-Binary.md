@@ -389,7 +389,7 @@ Reading the lineage
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [4405: Sparsity + Quantization](4405-Sparsity-Quantization.md)
 - [4406: 1.58-bit Quantization](4406-1.58-bit-Quantization.md)

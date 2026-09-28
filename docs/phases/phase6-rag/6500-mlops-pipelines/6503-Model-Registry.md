@@ -433,7 +433,7 @@ Operating rules that keep this safe:
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [6501: ML Model Lifecycle Management](6501-ML-Lifecycle-Management.md)
 - [6502: CI/CD for Machine Learning](6502-CI-CD-for-ML.md)

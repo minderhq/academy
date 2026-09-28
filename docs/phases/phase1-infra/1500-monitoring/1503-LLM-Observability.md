@@ -794,7 +794,7 @@ class LLMCostAnalyzer:
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [1501: Monitoring and Observability](./1501-Monitoring-and-Observability.md)
 - [1502: Model Drift Detection](./1502-Model-Drift-Detection.md)

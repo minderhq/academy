@@ -275,7 +275,7 @@ stage only if its metric delta survives on the golden set.
 - [4] Jiang et al. "LLMLingua: Compressing Prompts for Accelerated Inference". EMNLP, 2023.
 - [5] Liu et al. "Lost in the Middle: How Language Models Use Long Contexts". TACL, 2024.
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 - [6201: Hybrid Search](./6201-Hybrid-Search.md) - fusion foundations
 - [6202: Re-ranking and Retrieval Logistics](./6202-Re-ranking-and-Retrieval-Logistics.md) - reranker operations
 - [6301: Neo4j and Knowledge Graphs](../6300-context/6301-Neo4j-and-Knowledge-Graphs.md) - graph-based retrieval

@@ -276,7 +276,7 @@ Video Streaming            1500 (compatible)
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [1101: Internet Uplink & Modem Configuration](1101-Fiber-GPON-Modem.md)
 - [1102: Network Topology Design](1102-Star-Topology-Core.md)

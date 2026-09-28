@@ -468,7 +468,7 @@ firefox http://localhost:3000
 #!/bin/bash
 # validate_infrastructure.sh - Complete Infrastructure Validation
 
-echo "=== ai-engineering-curriculum Infrastructure Validation ==="
+echo "=== PROJECT-OMEGA Infrastructure Validation ==="
 
 # Track results
 PASSED=0

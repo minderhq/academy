@@ -385,4 +385,4 @@ graph TD
 **Last Updated:** 2026-02-05
 **Total Comparisons:** 2 documents
 
-**Need a comparison?** Request one in the ai-engineering-curriculum issues!
+**Need a comparison?** Request one in the PROJECT-OMEGA issues!

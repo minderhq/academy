@@ -544,7 +544,7 @@ def optimize_alpha(corpus, ground_truth):
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [6101: HNSW Indexing - Efficient Semantic Search at Scale](../6100-vector/6101-HNSW-Indexing.md)
 - [6202: Re-ranking and Retrieval Logistics](6202-Re-ranking-and-Retrieval-Logistics.md)

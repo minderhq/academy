@@ -345,7 +345,7 @@ Pitfalls checklist
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [5502: Learning Rate Scheduling](5502-Learning-Rate-Scheduling.md)
 - [5503: Advanced Optimization Techniques](5503-Advanced-Techniques.md)

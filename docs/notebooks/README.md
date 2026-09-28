@@ -19,19 +19,19 @@ Choose the appropriate environment file based on the notebook topic:
 ```bash
 # For PyTorch notebooks (NB-201, NB-202)
 conda env create -f environment-pytorch.yml
-conda activate ai-engineering-curriculum-pytorch
+conda activate project-omega-pytorch
 
 # For Transformer notebooks (NB-301, NB-302, NB-303)
 conda env create -f environment-transformers.yml
-conda activate ai-engineering-curriculum-transformers
+conda activate project-omega-transformers
 
 # For Fine-tuning notebooks (NB-501, NB-502, NB-503)
 conda env create -f environment-finetuning.yml
-conda activate ai-engineering-curriculum-finetuning
+conda activate project-omega-finetuning
 
 # For RAG notebooks (NB-601, NB-602, NB-603)
 conda env create -f environment-rag.yml
-conda activate ai-engineering-curriculum-rag
+conda activate project-omega-rag
 ```
 
 ### 2. Start Jupyter Lab

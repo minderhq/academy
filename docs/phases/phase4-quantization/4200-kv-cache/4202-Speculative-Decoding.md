@@ -485,7 +485,7 @@ class SpeculativeKVCache:
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [4201: Context Window Physics and OOM Prevention](4201-Context-Window-Physics.md)
 

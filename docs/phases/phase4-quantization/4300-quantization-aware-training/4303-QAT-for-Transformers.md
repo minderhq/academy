@@ -403,7 +403,7 @@ For 4-bit QAT:
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [4301: QAT Foundations](4301-QAT-Foundations.md)
 - [4302: Fake Quantization](4302-Fake-Quantization.md)

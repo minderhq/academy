@@ -362,7 +362,7 @@ Out-of-range Rx power shows up as LOS light loss or intermittent drops long befo
 
 ## References
 
-### Related ai-engineering-curriculum Documents
+### Related PROJECT-OMEGA Documents
 
 - [1102: Network Topology Design](1102-Star-Topology-Core.md)
 - [1103: Jumbo Frames and MTU Optimization](1103-Jumbo-Frames-and-MTU.md)
