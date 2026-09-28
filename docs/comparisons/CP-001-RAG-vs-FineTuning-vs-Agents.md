@@ -564,14 +564,34 @@ START: What do you need?
 ### RAG Quick Start
 
 ```python
-# 1. Index documents
-vectorstore = Qdrant.from_documents(docs, embeddings)
+from langchain_core.output_parsers import StrOutputParser
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.runnables import RunnablePassthrough
+from langchain_openai import ChatOpenAI, OpenAIEmbeddings
+from langchain_qdrant import QdrantVectorStore
 
-# 2. Create chain
-qa = RetrievalQA.from_chain_type(llm, retriever=vectorstore.as_retriever())
+# 1. Index documents
+# langchain_qdrant: QdrantVectorStore replaced the old Qdrant class
+vectorstore = QdrantVectorStore.from_documents(
+    docs, OpenAIEmbeddings(), url="http://localhost:6333"
+)
+
+# 2. Create chain - LangChain 1.x composes LCEL steps instead of
+# the legacy RetrievalQA wrapper
+llm = ChatOpenAI(model="gpt-4o-mini")
+prompt = ChatPromptTemplate.from_messages([
+    ("system", "Answer the question using only the context. Cite sources."),
+    ("human", "Context:\n{context}\n\nQuestion: {question}"),
+])
+rag_chain = (
+    {"context": vectorstore.as_retriever(), "question": RunnablePassthrough()}
+    | prompt
+    | llm
+    | StrOutputParser()
+)
 
 # 3. Query
-answer = qa({"query": "your question"})
+answer = rag_chain.invoke({"question": "your question"})
 ```
 
 ### Fine-Tuning Quick Start

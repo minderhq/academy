@@ -306,6 +306,7 @@ from langchain_core.tools import tool
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_qdrant import QdrantVectorStore
 from pydantic import BaseModel
+from qdrant_client import QdrantClient
 
 
 class CustomerQuery(BaseModel):
@@ -495,10 +496,13 @@ class TechnicalAgent:
 
     def __init__(self):
         self.llm = ChatOpenAI(model="gpt-4")
-        # langchain_qdrant: QdrantVectorStore replaced the old Qdrant class
+        # langchain_qdrant: QdrantVectorStore replaced the old Qdrant class;
+        # it takes an explicit client and singular `embedding=`.
+        client = QdrantClient(url="http://localhost:6333")
         self.knowledge_base = QdrantVectorStore(
+            client=client,
             collection_name="technical_docs",
-            embeddings=OpenAIEmbeddings(),
+            embedding=OpenAIEmbeddings(),
         )
 
         kb = self.knowledge_base

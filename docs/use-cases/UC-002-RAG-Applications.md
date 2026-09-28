@@ -47,6 +47,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnableParallel, RunnablePassthrough
 from langchain_huggingface import HuggingFaceEmbeddings, HuggingFacePipeline
 from langchain_qdrant import QdrantVectorStore
+from qdrant_client import QdrantClient
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
 
@@ -62,10 +63,13 @@ class EnterpriseKnowledgeAssistant:
         )
 
         # Initialize vector store
+        # langchain_qdrant: QdrantVectorStore takes an explicit client and
+        # singular `embedding=` (the old Qdrant class defaulted to localhost).
+        qdrant_client = QdrantClient(url="http://localhost:6333")
         self.vectorstore = QdrantVectorStore(
             client=qdrant_client,
             collection_name="enterprise_kb",
-            embeddings=self.embeddings
+            embedding=self.embeddings
         )
         self.retriever = self.vectorstore.as_retriever(
             search_kwargs={"k": 4}  # Retrieve top 4 documents
@@ -170,23 +174,34 @@ Support agents waste time searching for customer information, order history, and
 **RAG Solution:**
 
 ```python
+from langchain_huggingface import HuggingFaceEmbeddings
+from qdrant_client import QdrantClient
+
 class CustomerSupportRAG:
     """
     RAG system that retrieves customer context + product info
     """
 
     def __init__(self):
-        self.customer_store = Qdrant(
+        embeddings = HuggingFaceEmbeddings(
+            model_name="sentence-transformers/all-MiniLM-L6-v2"
+        )
+        # langchain_qdrant: QdrantVectorStore replaced the old Qdrant class
+        client = QdrantClient(url="http://localhost:6333")
+        self.customer_store = QdrantVectorStore(
+            client=client,
             collection_name="customer_history",
-            embeddings=embeddings
+            embedding=embeddings,
         )
-        self.product_store = Qdrant(
+        self.product_store = QdrantVectorStore(
+            client=client,
             collection_name="product_docs",
-            embeddings=embeddings
+            embedding=embeddings,
         )
-        self.policy_store = Qdrant(
+        self.policy_store = QdrantVectorStore(
+            client=client,
             collection_name="support_policies",
-            embeddings=embeddings
+            embedding=embeddings,
         )
 
     def answer_customer_query(self, customer_id, query):
@@ -467,6 +482,8 @@ Lawyers need to analyze contracts for specific clauses, risks, and compliance is
 **RAG Solution with Clause-Level Retrieval:**
 
 ```python
+from qdrant_client import QdrantClient
+
 class LegalContractRAG:
     """
     RAG system for contract analysis
@@ -478,9 +495,11 @@ class LegalContractRAG:
             model_name="nlpaueb/legal-bert-base-uncased"
         )
 
-        self.contract_store = Qdrant(
+        # langchain_qdrant: QdrantVectorStore replaced the old Qdrant class
+        self.contract_store = QdrantVectorStore(
+            client=QdrantClient(url="http://localhost:6333"),
             collection_name="contract_clauses",
-            embeddings=self.embeddings
+            embedding=self.embeddings
         )
 
     def index_contract(self, contract_path):
@@ -590,6 +609,8 @@ Educators need to create customized learning materials, quizzes, and explanation
 **RAG Solution:**
 
 ```python
+from qdrant_client import QdrantClient
+
 class EducationalRAG:
     """
     RAG system for educational content generation
@@ -601,9 +622,23 @@ class EducationalRAG:
         )
 
         # Specialized collections
-        self.curriculum = Qdrant(collection_name="curriculum_standards")
-        self.textbooks = Qdrant(collection_name="textbooks")
-        self.assessments = Qdrant(collection_name="assessments")
+        # langchain_qdrant: QdrantVectorStore replaced the old Qdrant class
+        client = QdrantClient(url="http://localhost:6333")
+        self.curriculum = QdrantVectorStore(
+            client=client,
+            collection_name="curriculum_standards",
+            embedding=self.embeddings,
+        )
+        self.textbooks = QdrantVectorStore(
+            client=client,
+            collection_name="textbooks",
+            embedding=self.embeddings,
+        )
+        self.assessments = QdrantVectorStore(
+            client=client,
+            collection_name="assessments",
+            embedding=self.embeddings,
+        )
 
     def generate_lesson_content(self, topic, grade_level, standards):
         """
@@ -730,6 +765,9 @@ standards = ["NGSS-MS-LS1-6"]
 ### RAG + Fine-Tuning (Best of Both)
 
 ```python
+from langchain_huggingface import HuggingFaceEmbeddings
+from qdrant_client import QdrantClient
+
 class HybridRAG:
     """
     Combine RAG with fine-tuned model for domain-specific language
@@ -740,7 +778,15 @@ class HybridRAG:
         self.llm = self._load_finetuned_model()
 
         # RAG for factual grounding
-        self.retriever = Qdrant(collection_name="domain_docs")
+        # langchain_qdrant: QdrantVectorStore replaced the old Qdrant class
+        self.embeddings = HuggingFaceEmbeddings(
+            model_name="sentence-transformers/all-MiniLM-L6-v2"
+        )
+        self.retriever = QdrantVectorStore(
+            client=QdrantClient(url="http://localhost:6333"),
+            collection_name="domain_docs",
+            embedding=self.embeddings,
+        )
 
     def query(self, question):
         # Retrieve context
