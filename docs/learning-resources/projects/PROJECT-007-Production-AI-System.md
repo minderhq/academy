@@ -35,9 +35,9 @@ Complete these before starting:
 - ✅ 7201: Tool Calling
 - ✅ 7301: Orchestration
 - ✅ 7401: Long-term Memory
-- ✅ LAB 004: ReAct Agent
-- ✅ LAB 008: Agent Fleet
-- ✅ LAB 009: Production Deployment
+- ✅ LAB-004: ReAct Agent
+- ✅ LAB-008: Agent Fleet
+- ✅ LAB-009: Production Deployment
 
 ---
 
@@ -731,7 +731,7 @@ jobs:
 
 - **[7101: ReAct Loop](../../phases/phase7-agentic/7100-architecture/7101-ReAct-Loop-System.md)** - Agent pattern
 - **[7301: Orchestration](../../phases/phase7-agentic/7300-orchestration/7301-Orchestration.md)** - Multi-agent orchestration
-- **[LAB 009: Production Deployment](../labs/LAB-009-Production-Deployment.md)** - Deployment
+- **[LAB-009: Production Deployment](../labs/LAB-009-Production-Deployment.md)** - Deployment
 
 ---
 

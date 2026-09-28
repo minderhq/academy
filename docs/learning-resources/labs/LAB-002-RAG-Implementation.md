@@ -1,18 +1,18 @@
 ---
 Document ID: LAB-002
-Title: "LAB 002: RAG Implementation with Qdrant & Ollama"
+Title: "LAB-002: RAG Implementation with Qdrant & Ollama"
 Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
 
-# LAB 002: RAG Implementation with Qdrant & Ollama
+# LAB-002: RAG Implementation with Qdrant & Ollama
 
 **Prerequisites:**
 - **[Tutorial 001: Hello LLM](../tutorials/TUTORIAL-001-Hello-LLM.md)** - LLM basics
 - **[Tutorial 002: Docker Essentials](../tutorials/TUTORIAL-002-Docker-Essentials.md)** - Docker fundamentals
 - **[Tutorial 003: RAG Basics](../tutorials/TUTORIAL-003-RAG-Basics.md)** - RAG concepts
-- **[LAB 001: Docker & LLM](LAB-001-Docker-LLM.md)** - Docker practice
+- **[LAB-001: Docker & LLM](LAB-001-Docker-LLM.md)** - Docker practice
 - **[TUTORIAL-000: Python for AI](../tutorials/TUTORIAL-000-Python-for-AI.md)** - REQUIRED for RAG code
 
 **Time:** 3 hours
@@ -1125,4 +1125,4 @@ python ~/lab-002-rag/chatbot.py
 
 **Earned:** RAG Implementation Badge 🏅
 
-Next: **[LAB 003: LoRA Fine-Tuning](LAB-003-LoRA-FineTuning.md)**
+Next: **[LAB-003: LoRA Fine-Tuning](LAB-003-LoRA-FineTuning.md)**

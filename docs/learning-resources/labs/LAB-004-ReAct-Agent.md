@@ -1,14 +1,14 @@
 ---
 Document ID: LAB-004
-Title: "LAB 004: Building ReAct Agents"
+Title: "LAB-004: Building ReAct Agents"
 Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
 
-# LAB 004: Building ReAct Agents
+# LAB-004: Building ReAct Agents
 
-**Prerequisites:** Tutorial 001 (Hello LLM), Tutorial 002 (Docker Essentials), LAB 001 (Docker & LLM), LAB 002 (RAG Implementation)
+**Prerequisites:** Tutorial 001 (Hello LLM), Tutorial 002 (Docker Essentials), LAB-001 (Docker & LLM), LAB-002 (RAG Implementation)
 **Time:** 4 hours
 **Difficulty:** ⭐⭐⭐ Advanced
 
@@ -1213,4 +1213,4 @@ if __name__ == "__main__":
 
 **Earned:** ReAct Agent Badge 🏅
 
-Next: **[LAB 005: GraphRAG Implementation](LAB-005-GraphRAG.md)**
+Next: **[LAB-005: GraphRAG Implementation](LAB-005-GraphRAG.md)**

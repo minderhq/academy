@@ -1,12 +1,12 @@
 ---
 Document ID: LAB-001
-Title: "LAB 001: Docker & LLM Fundamentals"
+Title: "LAB-001: Docker & LLM Fundamentals"
 Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
 
-# LAB 001: Docker & LLM Fundamentals
+# LAB-001: Docker & LLM Fundamentals
 
 **Prerequisites:**
 - **[Tutorial 001: Hello LLM](../tutorials/TUTORIAL-001-Hello-LLM.md)** - LLM basics
@@ -768,4 +768,4 @@ You should have a working chat interface with memory!
 
 **Earned:** Docker & LLM Fundamentals Badge 🏅
 
-Next: **[LAB 002: RAG Implementation](LAB-002-RAG-Implementation.md)**
+Next: **[LAB-002: RAG Implementation](LAB-002-RAG-Implementation.md)**

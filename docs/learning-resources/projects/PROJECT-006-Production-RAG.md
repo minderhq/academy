@@ -33,8 +33,8 @@ Complete these before starting:
 - ✅ 6201: Hybrid Search
 - ✅ 6202: Re-ranking
 - ✅ 6301: GraphRAG
-- ✅ LAB 002: RAG Implementation
-- ✅ LAB 007: Production RAG
+- ✅ LAB-002: RAG Implementation
+- ✅ LAB-007: Production RAG
 
 ---
 
@@ -671,7 +671,7 @@ if __name__ == "__main__":
 
 - **[6101: HNSW Indexing](../../phases/phase6-rag/6100-vector/6101-HNSW-Indexing.md)** - Vector search theory
 - **[6201: Hybrid Search](../../phases/phase6-rag/6200-retrieval/6201-Hybrid-Search.md)** - Hybrid retrieval
-- **[LAB 002: RAG Implementation](../labs/LAB-002-RAG-Implementation.md)** - RAG basics
+- **[LAB-002: RAG Implementation](../labs/LAB-002-RAG-Implementation.md)** - RAG basics
 
 ---
 

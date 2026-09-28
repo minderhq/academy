@@ -32,7 +32,7 @@ Complete these before starting:
 - ✅ 5101: LoRA Logic
 - ✅ 5102: QLoRA Pipelines
 - ✅ 5201: DPO Theory
-- ✅ LAB 003: LoRA Fine-Tuning
+- ✅ LAB-003: LoRA Fine-Tuning
 
 ---
 
@@ -531,7 +531,7 @@ echo "Model deployed at http://localhost:8000"
 
 - **[5101: LoRA Logic](../../phases/phase5-finetuning/5100-peft/5101-LoRA-Logic.md)** - LoRA theory
 - **[5102: QLoRA Pipelines](../../phases/phase5-finetuning/5100-peft/5102-QLoRA-Pipelines.md)** - QLoRA techniques
-- **[LAB 003: LoRA Fine-Tuning](../labs/LAB-003-LoRA-FineTuning.md)** - Hands-on fine-tuning
+- **[LAB-003: LoRA Fine-Tuning](../labs/LAB-003-LoRA-FineTuning.md)** - Hands-on fine-tuning
 
 ---
 

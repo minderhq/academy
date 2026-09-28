@@ -1,19 +1,19 @@
 ---
 Document ID: LAB-003
-Title: "LAB 003: LoRA Fine-Tuning with QLoRA"
+Title: "LAB-003: LoRA Fine-Tuning with QLoRA"
 Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
 
-# LAB 003: LoRA Fine-Tuning with QLoRA
+# LAB-003: LoRA Fine-Tuning with QLoRA
 
 **Prerequisites:**
 
 ## Required Knowledge
 - **[Tutorial 001: Hello LLM](../tutorials/TUTORIAL-001-Hello-LLM.md)** - LLM basics
 - **[Tutorial 002: Docker Essentials](../tutorials/TUTORIAL-002-Docker-Essentials.md)** - Docker fundamentals
-- **[LAB 001: Docker & LLM](LAB-001-Docker-LLM.md)** - Docker practice
+- **[LAB-001: Docker & LLM](LAB-001-Docker-LLM.md)** - Docker practice
 - **[TUTORIAL-000: Python for AI](../tutorials/TUTORIAL-000-Python-for-AI.md)** - REQUIRED for training code
 - **Phase 2 (Recommended):** [2100-Calculus](../../phases/phase2-foundations/2100-calculus/) - PyTorch knowledge helpful
 
@@ -28,7 +28,7 @@ Difficulty: Intermediate
 > **⚠️ No GPU?** This lab requires GPU for QLoRA fine-tuning. Alternatives:
 > - Use Google Colab Pro (GPU runtime)
 > - Use cloud GPU services (RunPod, Lambda Labs, AWS)
-> - Skip to [LAB 004: ReAct Agent](LAB-004-ReAct-Agent.md) which can run CPU-only
+> - Skip to [LAB-004: ReAct Agent](LAB-004-ReAct-Agent.md) which can run CPU-only
 
 ### Required Software Setup
 
@@ -1065,4 +1065,4 @@ python ~/lab-003-lora/chatbot.py
 
 **Earned:** LoRA Fine-Tuning Badge 🏅
 
-Next: **[LAB 004: ReAct Agent](LAB-004-ReAct-Agent.md)**
+Next: **[LAB-004: ReAct Agent](LAB-004-ReAct-Agent.md)**

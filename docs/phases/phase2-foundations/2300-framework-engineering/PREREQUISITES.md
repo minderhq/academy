@@ -336,7 +336,7 @@ services:
 
 **If you're not familiar:**
 - Review: [Tutorial 002: Docker Essentials for AI](../../../learning-resources/tutorials/TUTORIAL-002-Docker-Essentials.md)
-- Practice: Complete [LAB 001: Docker & LLM Fundamentals](../../../learning-resources/labs/LAB-001-Docker-LLM.md)
+- Practice: Complete [LAB-001: Docker & LLM Fundamentals](../../../learning-resources/labs/LAB-001-Docker-LLM.md)
 - Estimated time: 2 hours
 
 ---
@@ -511,7 +511,7 @@ You're ready to start! Begin with [2301: Framework Design Patterns](./2301-Frame
 
 **Fix:**
 1. Complete Tutorial 002 (1.5 hours)
-2. Complete LAB 001 (2 hours)
+2. Complete LAB-001 (2 hours)
 3. Build your own Dockerfile
 
 ---
@@ -566,7 +566,7 @@ Use this checklist to verify you're ready:
 - [2201: PyTorch Computational Graphs and Dynamic Execution](../2200-frameworks/2201-PyTorch-Computational-Graphs.md) — deeper PyTorch review (Section 3)
 - [2301: Framework Design Patterns](./2301-Framework-Design-Patterns.md) — where the ABC and Registry patterns pay off
 - [Tutorial 002: Docker Essentials for AI](../../../learning-resources/tutorials/TUTORIAL-002-Docker-Essentials.md) — Docker review (Section 5)
-- [LAB 001: Docker & LLM Fundamentals](../../../learning-resources/labs/LAB-001-Docker-LLM.md) — hands-on Docker practice
+- [LAB-001: Docker & LLM Fundamentals](../../../learning-resources/labs/LAB-001-Docker-LLM.md) — hands-on Docker practice
 - [Quick Start Troubleshooting Guide](../../../00-META/TROUBLESHOOTING-QUICKSTART.md) — when setup problems block you
 
 ### External References

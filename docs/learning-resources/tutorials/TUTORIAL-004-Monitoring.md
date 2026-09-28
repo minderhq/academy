@@ -8,7 +8,7 @@ Difficulty: Intermediate
 
 # TUTORIAL 004: Monitoring & Observability for AI Systems
 
-**Prerequisites:** Tutorial 001 (Hello LLM), Tutorial 002 (Docker Essentials), LAB 001 (Docker & LLM)
+**Prerequisites:** Tutorial 001 (Hello LLM), Tutorial 002 (Docker Essentials), LAB-001 (Docker & LLM)
 **Time:** 90 minutes
 **Difficulty:** ⭐⭐ Intermediate
 
@@ -719,7 +719,7 @@ docker-compose down
 ## 🎯 Next Steps
 
 - **[1501: Monitoring Stack](../../phases/phase1-infra/1500-monitoring/1501-Monitoring-and-Observability.md)** - Deep dive into monitoring
-- **[LAB 001: Docker & LLM](../labs/LAB-001-Docker-LLM.md)** - Add monitoring to LLM apps
+- **[LAB-001: Docker & LLM](../labs/LAB-001-Docker-LLM.md)** - Add monitoring to LLM apps
 - **[TUTORIAL 005: Production Deployment](TUTORIAL-005-Production-Deployment.md)** - Deploy to production
 
 ---

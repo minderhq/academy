@@ -1,14 +1,14 @@
 ---
 Document ID: LAB-005
-Title: "LAB 005: GraphRAG Implementation with Neo4j & Qdrant"
+Title: "LAB-005: GraphRAG Implementation with Neo4j & Qdrant"
 Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
 
-# LAB 005: GraphRAG Implementation with Neo4j & Qdrant
+# LAB-005: GraphRAG Implementation with Neo4j & Qdrant
 
-**Prerequisites:** Tutorial 001 (Hello LLM), Tutorial 002 (Docker Essentials), LAB 001 (Docker & LLM), LAB 002 (RAG Implementation)
+**Prerequisites:** Tutorial 001 (Hello LLM), Tutorial 002 (Docker Essentials), LAB-001 (Docker & LLM), LAB-002 (RAG Implementation)
 **Time:** 5 hours
 **Difficulty:** ⭐⭐⭐⭐ Advanced
 
@@ -46,7 +46,7 @@ mkdir -p scripts
 
 ### Task: Learn the difference between Vector RAG and GraphRAG
 
-**Vector RAG (What you did in LAB 002):**
+**Vector RAG (What you did in LAB-002):**
 ```text
 Query → Embed → Search Vector DB → Retrieve → Generate
 ```
@@ -933,7 +933,7 @@ for test in complex_questions:
 - **[6301: Neo4j and Knowledge Graphs](../../phases/phase6-rag/6300-context/6301-Neo4j-and-Knowledge-Graphs.md)** - Graph database basics
 - **[6302: CAG Long Context](../../phases/phase6-rag/6300-context/6302-CAG-Long-Context-Architectures.md)** - Long context as database
 - **[6304: GraphRAG Implementation](../../phases/phase6-rag/6300-context/guides/6304-GraphRAG-Implementation.md)** - Complete implementation
-- **[LAB 004: ReAct Agent](LAB-004-ReAct-Agent.md)** - Build reasoning agents
+- **[LAB-004: ReAct Agent](LAB-004-ReAct-Agent.md)** - Build reasoning agents
 
 ---
 

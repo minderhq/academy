@@ -8,12 +8,12 @@ Estimated Time: 5-6 hours
 Tags: ['dpo', 'alignment', 'rlhf', 'preference-learning', 'hands-on']
 ---
 
-# LAB 010: DPO Alignment
+# LAB-010: DPO Alignment
 
 **Align language models with human preferences using Direct Preference Optimization**
 
 **Prerequisites:**
-- [LAB 003: LoRA Fine-Tuning](LAB-003-LoRA-FineTuning.md) - adapter-based efficient fine-tuning
+- [LAB-003: LoRA Fine-Tuning](LAB-003-LoRA-FineTuning.md) - adapter-based efficient fine-tuning
 - [5201: DPO Theory](../../phases/phase5-finetuning/5200-alignment/5201-DPO-Theory.md) - the math behind the loss
 - [5202: Alignment Orchestration](../../phases/phase5-finetuning/5200-alignment/5202-Alignment-Orchestration.md)
 - [VOLUME-3: LLM Internals](../../volumes/VOLUME-3-LLM-Internals.md) - log-probabilities and KL divergence
@@ -900,7 +900,7 @@ Use this checklist to track your progress:
 
 - **[5203: RLHF]** - the reward-model + PPO pipeline DPO replaced, and when it still wins ([5203-RLHF.md](../../phases/phase5-finetuning/5200-alignment/5203-RLHF.md))
 - **[5202: Alignment Orchestration]** - combining SFT, DPO, and RLAIF into full alignment pipelines ([5202-Alignment-Orchestration.md](../../phases/phase5-finetuning/5200-alignment/5202-Alignment-Orchestration.md))
-- **[LAB 007: Production RAG]** - a different axis of model quality: grounding ([LAB-007-Production-RAG.md](LAB-007-Production-RAG.md))
+- **[LAB-007: Production RAG]** - a different axis of model quality: grounding ([LAB-007-Production-RAG.md](LAB-007-Production-RAG.md))
 
 Further reading:
 - [DPO Paper: Direct Preference Optimization](https://arxiv.org/abs/2305.18290)

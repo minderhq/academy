@@ -1176,7 +1176,7 @@ What to notice:
   sharding, checkpoint/resume — is module
   [2402: Large-Scale Training for Language Models](./2402-Large-Scale-Training.md),
   and the full hands-on build is
-  [LAB 006: Train a Small Language Model from Scratch](../../../learning-resources/labs/LAB-006-Train-Model-From-Scratch.md).
+  [LAB-006: Train a Small Language Model from Scratch](../../../learning-resources/labs/LAB-006-Train-Model-From-Scratch.md).
 
 ## Summary
 
@@ -1233,7 +1233,7 @@ Key takeaways:
 - [2400: LLM Pretraining - Prerequisites](./PREREQUISITES.md) — self-test review of the calculus, framework, and attention background
 - [2402: Large-Scale Training for Language Models](./2402-Large-Scale-Training.md) — the scale-up of this lesson's loop: multi-GPU, mixed precision, fault tolerance
 - [2403: Evaluation Frameworks for Language Models](./2403-Evaluation-Frameworks.md) — running MMLU/HellaSwag and friends properly
-- [LAB 006: Train a Small Language Model from Scratch](../../../learning-resources/labs/LAB-006-Train-Model-From-Scratch.md) — the hands-on version of Part 8
+- [LAB-006: Train a Small Language Model from Scratch](../../../learning-resources/labs/LAB-006-Train-Model-From-Scratch.md) — the hands-on version of Part 8
 - [3202: Tokenizer Sciences - BPE, SentencePiece, and Tiktoken](../../phase3-transformers/3200-embeddings/3202-Tokenizer-Sciences.md) — deep dive on Part 4's tokenizer
 
 ### External References
@@ -1248,7 +1248,7 @@ Key takeaways:
 ## Next Steps
 
 - **Next Lesson:** [2402: Large-Scale Training for Language Models](./2402-Large-Scale-Training.md) — scale this loop to multi-GPU: data/tensor/pipeline parallelism, mixed precision, and checkpointing
-- **Practical:** [LAB 006: Train a Small Language Model from Scratch](../../../learning-resources/labs/LAB-006-Train-Model-From-Scratch.md) — build and pre-train a small LM yourself, following Part 8's shape
+- **Practical:** [LAB-006: Train a Small Language Model from Scratch](../../../learning-resources/labs/LAB-006-Train-Model-From-Scratch.md) — build and pre-train a small LM yourself, following Part 8's shape
 - **Assessment:** [2400: Pretraining Fundamentals - Quiz](./assessment/QUIZ.md) and [2400: Pre-training - Practice](./assessment/PRACTICE.md)
 
 **Related:** [3202: Tokenizer Sciences - BPE, SentencePiece, and Tiktoken](../../phase3-transformers/3200-embeddings/3202-Tokenizer-Sciences.md)

@@ -293,7 +293,7 @@ You're now ready for the full learning journey!
    - Run multiple models
    - Production basics
 
-3. **[LAB 001: Docker & LLM](../learning-resources/labs/LAB-001-Docker-LLM.md)** (2 hours)
+3. **[LAB-001: Docker & LLM](../learning-resources/labs/LAB-001-Docker-LLM.md)** (2 hours)
    - Hands-on practice
    - Build an AI API server
    - Add chat interface
@@ -304,12 +304,12 @@ You're now ready for the full learning journey!
    - Add your own knowledge
    - Build a smart assistant
 
-5. **[LAB 002: RAG Implementation](../learning-resources/labs/LAB-002-RAG-Implementation.md)** (3 hours)
+5. **[LAB-002: RAG Implementation](../learning-resources/labs/LAB-002-RAG-Implementation.md)** (3 hours)
    - Deploy vector database
    - Create knowledge base
    - Build RAG pipeline
 
-6. **[LAB 003: LoRA Fine-Tuning](../learning-resources/labs/LAB-003-LoRA-FineTuning.md)** (4 hours)
+6. **[LAB-003: LoRA Fine-Tuning](../learning-resources/labs/LAB-003-LoRA-FineTuning.md)** (4 hours)
    - Customize models
    - Train on your data
    - Deploy custom models
@@ -414,13 +414,13 @@ Start Here (You are here)
     │
     ├─► Tutorial 003: RAG Basics (60 min)
     │
-    ├─► LAB 001: Docker & LLM (2 hours)
+    ├─► LAB-001: Docker & LLM (2 hours)
     │
-    ├─► LAB 002: RAG Implementation (3 hours)
+    ├─► LAB-002: RAG Implementation (3 hours)
     │
-    ├─► LAB 003: LoRA Fine-Tuning (4 hours)
+    ├─► LAB-003: LoRA Fine-Tuning (4 hours)
     │
-    ├─► LAB 004: ReAct Agent (4 hours)
+    ├─► LAB-004: ReAct Agent (4 hours)
     │
     └─► PROJECT 001: AI Assistant (20+ hours)
 ```

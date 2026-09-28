@@ -607,9 +607,9 @@ print(MODEL_CONFIG['name'])
 - **[Tutorial 001: Hello LLM](../tutorials/TUTORIAL-001-Hello-LLM.md)** - Your first LLM with Python
 - **[2101: Tensor Algebra](../../phases/phase2-foundations/2100-calculus/2101-Tensor-Algebra.md)** - Math foundations
 - **[2201: PyTorch Graphs](../../phases/phase2-foundations/2200-frameworks/2201-PyTorch-Computational-Graphs.md)** - PyTorch internals
-- **[LAB 001: Docker & LLM](../labs/LAB-001-Docker-LLM.md)** - FastAPI LLM server
-- **[LAB 002: RAG Implementation](../labs/LAB-002-RAG-Implementation.md)** - RAG with Python
-- **[LAB 003: LoRA Fine-Tuning](../labs/LAB-003-LoRA-FineTuning.md)** - Fine-tuning with Python
+- **[LAB-001: Docker & LLM](../labs/LAB-001-Docker-LLM.md)** - FastAPI LLM server
+- **[LAB-002: RAG Implementation](../labs/LAB-002-RAG-Implementation.md)** - RAG with Python
+- **[LAB-003: LoRA Fine-Tuning](../labs/LAB-003-LoRA-FineTuning.md)** - Fine-tuning with Python
 
 ---
 

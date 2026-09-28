@@ -33,9 +33,9 @@ Build a fully-functional AI assistant that can:
 - ✅ **[Tutorial 001: Hello LLM](../tutorials/TUTORIAL-001-Hello-LLM.md)** - LLM basics
 - ✅ **[Tutorial 002: Docker Essentials](../tutorials/TUTORIAL-002-Docker-Essentials.md)** - Docker fundamentals
 - ✅ **[Tutorial 003: RAG Basics](../tutorials/TUTORIAL-003-RAG-Basics.md)** - RAG concepts
-- ✅ **[LAB 001: Docker & LLM](../labs/LAB-001-Docker-LLM.md)** - Docker practice
-- ✅ **[LAB 002: RAG Implementation](../labs/LAB-002-RAG-Implementation.md)** - RAG hands-on
-- ✅ **[LAB 003: LoRA Fine-Tuning](../labs/LAB-003-LoRA-FineTuning.md)** - Fine-tuning basics
+- ✅ **[LAB-001: Docker & LLM](../labs/LAB-001-Docker-LLM.md)** - Docker practice
+- ✅ **[LAB-002: RAG Implementation](../labs/LAB-002-RAG-Implementation.md)** - RAG hands-on
+- ✅ **[LAB-003: LoRA Fine-Tuning](../labs/LAB-003-LoRA-FineTuning.md)** - Fine-tuning basics
 
 ### Required Skills (from TUTORIAL-000):
 :warning: **This project requires INTERMEDIATE Python skills:**
@@ -1181,7 +1181,7 @@ curl -X POST http://localhost:8002/chat \
 ### Advanced Extensions (3-5 hours each):
 1. **Multi-user support** - Add authentication and per-user memory
 2. **Analytics dashboard** - Track usage and popular queries
-3. **Fine-tune on domain** - Add LAB 003 fine-tuning
+3. **Fine-tune on domain** - Add LAB-003 fine-tuning
 4. **Add more tools** - Calculator, weather, web search, etc.
 
 ---
@@ -1206,7 +1206,7 @@ curl -X POST http://localhost:8002/chat \
 - **[7101: ReAct Loop System](../../phases/phase7-agentic/7100-architecture/7101-ReAct-Loop-System.md)** - ReAct pattern theory
 - **[6201: Hybrid Search](../../phases/phase6-rag/6200-retrieval/6201-Hybrid-Search.md)** - Vector + Graph RAG
 - **[1402: vLLM and TGI](../../phases/phase1-infra/1400-llmops/1402-vLLM-and-TGI.md)** - Production inference
-- **[LAB 002: RAG Implementation](../labs/LAB-002-RAG-Implementation.md)** - RAG basics
+- **[LAB-002: RAG Implementation](../labs/LAB-002-RAG-Implementation.md)** - RAG basics
 - **[Volume 1: Infrastructure Fundamentals](../../volumes/VOLUME-1-Infrastructure.md)** - Phase 1 reading guide
 
 ---

@@ -971,7 +971,7 @@ resilience: "atomic writes + rotation + resumability is not optional at scale"
 - [2401: Pre-training Fundamentals](./2401-Pre-training-Fundamentals.md) — the single-process loop this lesson scales out
 - [2403: Evaluation Frameworks for Language Models](./2403-Evaluation-Frameworks.md) — what to run when the long training finally converges
 - [5404: Distributed Optimization](../../phase5-finetuning/5400-distributed-training/5404-Distributed-Optimization.md) — the fine-tuning-side view of the same infrastructure
-- [LAB 006: Train a Small Language Model from Scratch](../../../learning-resources/labs/LAB-006-Train-Model-From-Scratch.md) — the hands-on version of Part 8
+- [LAB-006: Train a Small Language Model from Scratch](../../../learning-resources/labs/LAB-006-Train-Model-From-Scratch.md) — the hands-on version of Part 8
 
 ### External References
 
@@ -986,7 +986,7 @@ resilience: "atomic writes + rotation + resumability is not optional at scale"
 
 **Next Lesson:** [2403: Evaluation Frameworks for Language Models](./2403-Evaluation-Frameworks.md) — the training run converged; now measure whether it is actually good.
 
-**Practical:** [LAB 006: Train a Small Language Model from Scratch](../../../learning-resources/labs/LAB-006-Train-Model-From-Scratch.md) — run the full pipeline end to end on hardware you own.
+**Practical:** [LAB-006: Train a Small Language Model from Scratch](../../../learning-resources/labs/LAB-006-Train-Model-From-Scratch.md) — run the full pipeline end to end on hardware you own.
 
 **Assessment:** [2400: Pretraining Fundamentals - Quiz](./assessment/QUIZ.md) and [2400: Pre-training - Practice](./assessment/PRACTICE.md).
 
