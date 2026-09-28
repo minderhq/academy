@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-008
 Title: "LAB-008: Multi-Agent Fleet"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -131,7 +131,7 @@ AGENT_CONFIGS = [
     AgentConfig(
         role=AgentRole.RESEARCHER,
         name="Web Researcher",
-        model="gpt-3.5-turbo",
+        model="gpt-4o-mini",
         capabilities=[
             AgentCapability.WEB_SEARCH,
             AgentCapability.API_CALL,
@@ -154,7 +154,7 @@ AGENT_CONFIGS = [
     AgentConfig(
         role=AgentRole.WRITER,
         name="Content Writer",
-        model="gpt-3.5-turbo",
+        model="gpt-4o-mini",
         capabilities=[
             AgentCapability.FILE_IO,
             AgentCapability.API_CALL,
@@ -396,7 +396,7 @@ if __name__ == "__main__":
     config = AgentConfig(
         role=AgentRole.RESEARCHER,
         name="Web Researcher",
-        model="gpt-3.5-turbo",
+        model="gpt-4o-mini",
         capabilities=[AgentCapability.WEB_SEARCH, AgentCapability.API_CALL],
     )
 
@@ -913,7 +913,7 @@ class AgentFleet:
             AgentRole.RESEARCHER: AgentConfig(
                 role=AgentRole.RESEARCHER,
                 name="Web Researcher",
-                model="gpt-3.5-turbo",
+                model="gpt-4o-mini",
                 capabilities=[
                     AgentCapability.WEB_SEARCH,
                     AgentCapability.API_CALL,
@@ -933,7 +933,7 @@ class AgentFleet:
             AgentRole.WRITER: AgentConfig(
                 role=AgentRole.WRITER,
                 name="Content Writer",
-                model="gpt-3.5-turbo",
+                model="gpt-4o-mini",
                 capabilities=[
                     AgentCapability.FILE_IO,
                     AgentCapability.API_CALL,

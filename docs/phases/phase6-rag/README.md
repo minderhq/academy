@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE6-RAG-README
 Title: "Phase 6: Data Nexus - RAG, CAG & External Memory [6000]"
-Last Updated: 2026-09-27
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Beginner
 ---
@@ -527,7 +527,7 @@ chunks = splitter.split_text(text)
 **Pitfall:** Using different models for index and query
 ```python
 # Wrong: Different embedding models
-index_embeddings = openai_embed("text-embedding-ada-002", docs)
+index_embeddings = openai_embed("text-embedding-3-small", docs)
 query_embedding = sentence_transformers_embed("all-MiniLM-L6-v2", query)
 # Result: Poor retrieval performance
 

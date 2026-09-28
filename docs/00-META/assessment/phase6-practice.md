@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE6-PRACTICE
 Title: "Phase 6: Data Nexus - Practice Exercises"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 ---
@@ -412,7 +412,7 @@ from typing import List
 import tiktoken
 
 class ContextBuilder:
-    def __init__(self, max_tokens=4000, model="gpt-3.5-turbo"):
+    def __init__(self, max_tokens=4000, model="gpt-4o-mini"):
         self.max_tokens = max_tokens
         self.tokenizer = tiktoken.encoding_for_model(model)
 
@@ -630,7 +630,7 @@ Create adaptive retrieval system that:
 
 ---
 
-**Last Updated:** 2026-09-25
+**Last Updated:** 2026-09-29
 **Phase:** 6 - Data Nexus
 **Status:** Ready for Practice
 

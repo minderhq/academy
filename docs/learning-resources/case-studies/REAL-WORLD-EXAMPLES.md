@@ -128,7 +128,7 @@ workflow = SequentialWorkflow(
 │  ├─ Handles 80% of queries (FAQs, order status)             │
 │  └─ Cost: $0.0002 per query                                 │
 │                                                              │
-│  Tier 2: L2 Agent (GPT-3.5-Turbo)                           │
+│  Tier 2: L2 Agent (GPT-4o-mini)                             │
 │  ├─ Handles 15% (complex issues, refunds)                   │
 │  └─ Cost: $0.002 per query                                  │
 │                                                              │
