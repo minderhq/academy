@@ -596,10 +596,10 @@ from langchain_core.tools import Tool
 tools = [Tool(name="tool", func=your_func, description="...")]
 
 # 2. Create agent
-agent = create_openai_functions_agent(llm, tools, prompt)
+agent = create_agent(llm, tools)
 
 # 3. Execute
-result = executor.invoke({"input": "your task"})
+result = agent.invoke({"messages": [{"role": "user", "content": "your task"}]})
 ```
 
 ---

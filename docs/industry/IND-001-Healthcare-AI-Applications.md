@@ -455,6 +455,7 @@ Medical coders spend hours translating clinical notes into billing codes (ICD-10
 **Solution: Fine-Tuned LLM + Agent**
 
 ```python
+from langchain.agents import create_agent
 from langchain_core.tools import Tool
 class MedicalCodingAgent:
     """
@@ -490,10 +491,10 @@ class MedicalCodingAgent:
         ]
 
         # Create agent
-        self.agent = create_openai_functions_agent(
-            llm=self.model,
-            tools=self.tools,
-            prompt=self._get_coding_prompt()
+        self.agent = create_agent(
+            self.model,
+            self.tools,
+            system_prompt=self._get_coding_prompt()
         )
 
     def code_encounter(self, clinical_note: str) -> dict:
@@ -502,7 +503,7 @@ class MedicalCodingAgent:
         """
 
         result = self.agent.invoke({
-            "input": f"""
+            "messages": [{"role": "user", "content": f"""
             Analyze this clinical note and extract appropriate codes:
 
             {clinical_note}
@@ -516,10 +517,10 @@ class MedicalCodingAgent:
             6. Flag any codes that require additional documentation
 
             Provide final codes with confidence scores and rationale.
-            """
+            """}],
         })
 
-        return self._parse_coding_result(result)
+        return self._parse_coding_result(result["messages"][-1].text)
 
     def _search_icd10(self, description: str) -> list:
         """Search ICD-10 database"""

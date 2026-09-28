@@ -263,18 +263,16 @@ class WorkerAgent:
         self.tools = tools
         self.llm = ChatOpenAI(model="gpt-4")
 
-        prompt = hub.pull("hwchase17/openai-functions-agent")
-        self.agent = create_openai_functions_agent(self.llm, self.tools, prompt)
-        self.executor = AgentExecutor(
-            agent=self.agent,
-            tools=self.tools,
-            verbose=False,
-        )
+        # LangChain 1.x: create_agent replaces create_openai_functions_agent
+        # + AgentExecutor - system_prompt takes the place of the hub prompt.
+        self.agent = create_agent(self.llm, self.tools)
 
     def execute(self, task):
         """Execute a task."""
-        result = self.executor.invoke({"input": task})
-        return f"[{self.name}] {result['output']}"
+        result = self.agent.invoke({
+            "messages": [{"role": "user", "content": task}],
+        })
+        return f"[{self.name}] {result['messages'][-1].text}"
 
 # SOLUTION: Create supervisor and worker agents
 workers = {
@@ -359,12 +357,12 @@ class CommunicatingAgent:
 
     def handle_request(self, content):
         """Handle a request message."""
-        prompt = hub.pull("hwchase17/openai-functions-agent")
-        agent = create_openai_functions_agent(self.llm, self.tools, prompt)
-        executor = AgentExecutor(agent=agent, tools=self.tools)
+        agent = create_agent(self.llm, self.tools)
 
-        result = executor.invoke({"input": content})
-        return result["output"]
+        result = agent.invoke({
+            "messages": [{"role": "user", "content": content}],
+        })
+        return result["messages"][-1].text
 
 # SOLUTION: Initialize agents with communication channels
 import queue
@@ -437,21 +435,21 @@ class TeamAgent:
         context = f"Relevant information from team:\n{relevant_info}\n\n" if relevant_info else ""
 
         # SOLUTION: Execute task with memory context
-        prompt = hub.pull("hwchase17/openai-functions-agent")
-        agent = create_openai_functions_agent(self.llm, self.tools, prompt)
-        executor = AgentExecutor(agent=agent, tools=self.tools)
+        agent = create_agent(self.llm, self.tools)
 
         full_prompt = context + task
-        result = executor.invoke({"input": full_prompt})
+        result = agent.invoke({
+            "messages": [{"role": "user", "content": full_prompt}],
+        })
 
         # SOLUTION: Store result in shared memory
         self.shared_memory.write(
             task.lower(),
-            result["output"],
+            result["messages"][-1].text,
             self.agent_id,
         )
 
-        return result["output"]
+        return result["messages"][-1].text
 
 # SOLUTION: Initialize team with shared memory
 shared_memory = SharedMemory()
