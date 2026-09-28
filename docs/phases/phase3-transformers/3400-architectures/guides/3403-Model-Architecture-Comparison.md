@@ -91,13 +91,13 @@ Comprehensive comparison of Encoder-Decoder (T5, BART) vs Decoder-Only (GPT, LLa
 
 | Model | Parameters | VRAM (4-bit) | VRAM (8-bit) | VRAM (16-bit) | Recommended |
 |-------|-----------|--------------|--------------|---------------|-------------|
-| **Encoder-Decoder** |
+| **Encoder-Decoder** | | | | | |
 | FLAN-T5-Small | 60M | 0.5GB | 0.8GB | 1.2GB | ✅ Excellent |
 | FLAN-T5-Base | 220M | 1GB | 1.5GB | 2.5GB | ✅ Excellent |
 | FLAN-T5-Large | 780M | 3GB | 4.5GB | 8GB | ✅ Good |
 | FLAN-T5-XL | 3B | 7GB | 11GB | OOM | ⚠️ 8-bit only |
 | BART-Large | 400M | 2GB | 3GB | 5GB | ✅ Good |
-| **Decoder-Only** |
+| **Decoder-Only** | | | | | |
 | LLaMA-2-7B | 7B | 4GB | 7GB | 14GB | ✅ 8-bit |
 | Mistral-7B | 7B | 4GB | 7GB | 14GB | ✅ 8-bit |
 | Phi-2 | 2.7B | 1.5GB | 3GB | 5GB | ✅ Excellent |
@@ -134,11 +134,11 @@ Comprehensive comparison of Encoder-Decoder (T5, BART) vs Decoder-Only (GPT, LLa
 
 | Model | MMLU | HellaSwag | TruthfulQA | GSM8K | HumanEval |
 |-------|------|-----------|------------|-------|-----------|
-| **Decoder-Only** |
+| **Decoder-Only** | | | | | |
 | LLaMA-2-7B | 45.3 | 76.2 | 39.2 | 10.1 | 12.8 |
 | Mistral-7B | 60.1 | 85.8 | 49.5 | 21.3 | 30.5 |
 | Phi-2 | 55.7 | 81.3 | 47.8 | 19.2 | 25.3 |
-| **Encoder-Decoder** |
+| **Encoder-Decoder** | | | | | |
 | FLAN-T5-XL | 48.2 | 78.5 | - | 18.5 | - |
 | BART-Large | 35.2 | 65.3 | - | 12.1 | - |
 

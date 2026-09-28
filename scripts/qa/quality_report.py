@@ -34,6 +34,9 @@ stand today?" without running each tool by hand.
     casecheck          case-sensitive href/disk match (Windows-invisible breaks)
     anchor_check       in-document anchors vs GitHub-accurate slugger
                        (2 known inline-code examples allowlisted)
+    table_lint         ragged GFM tables - header/separator/body lines
+                       with differing cell counts (TL-01); escaped \|
+                       is a literal pipe, not a separator
     kwarg_lint         calls with removed/renamed kwargs on known APIs
                        (KW-01 langchain constructor kwargs, KW-02 removed
                        qdrant .search kwargs) - hard gate since the
@@ -84,6 +87,7 @@ GATES = [
     ("linkcheck.py", "linkcheck", True),
     ("casecheck.py", "casecheck", True),
     ("anchor_check.py", "anchor_check", True),
+    ("table_lint.py", "table_lint", True),
     ("objectives_lint.py", "objectives_lint", False),
     ("fence_namecheck.py", "fence_namecheck", False),
     ("kwarg_lint.py", "kwarg_lint", True),

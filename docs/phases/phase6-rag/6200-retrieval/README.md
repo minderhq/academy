@@ -1,7 +1,7 @@
 ---
 Document ID: 6200-RETRIEVAL-README
 Title: "6200: Retrieval Strategies"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Beginner
 ---
@@ -219,7 +219,7 @@ Query
 ## When to Use Each Strategy
 
 | Scenario | Best Approach |
-|-------------------------|
+|-------------------------|------------------------|
 | Exact term matching | BM25 only |
 | Semantic understanding | Vector only |
 | General purpose RAG | Hybrid + Re-rank |
