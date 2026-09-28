@@ -1,12 +1,12 @@
 ---
 Document ID: CHEAT-SHEET-002
-Title: "CHEAT SHEET: Python for AI/ML"
+Title: "CHEAT-SHEET-002: Python for AI/ML"
 Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
 
-# CHEAT SHEET: Python for AI/ML
+# CHEAT-SHEET-002: Python for AI/ML
 
 **Essential Python for AI/ML development**
 
@@ -615,4 +615,4 @@ print(MODEL_CONFIG['name'])
 
 ## Next Steps
 
-- **[CHEAT SHEET: Git & Version Control](CHEAT-SHEET-003-Git.md)**
+- **[CHEAT-SHEET-003: Git & Version Control](CHEAT-SHEET-003-Git.md)**

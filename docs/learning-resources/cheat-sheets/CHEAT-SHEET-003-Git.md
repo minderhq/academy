@@ -1,12 +1,12 @@
 ---
 Document ID: CHEAT-SHEET-003
-Title: "CHEAT SHEET: Git & Version Control"
+Title: "CHEAT-SHEET-003: Git & Version Control"
 Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
 
-# CHEAT SHEET: Git & Version Control
+# CHEAT-SHEET-003: Git & Version Control
 
 **Essential Git commands for AI/ML development**
 
@@ -619,4 +619,4 @@ wandb/
 
 ## Next Steps
 
-- **[CHEAT SHEET: Linux Commands](CHEAT-SHEET-004-Linux.md)**
+- **[CHEAT-SHEET-004: Linux Commands](CHEAT-SHEET-004-Linux.md)**

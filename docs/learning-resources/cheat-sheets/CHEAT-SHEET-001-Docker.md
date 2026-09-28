@@ -1,12 +1,12 @@
 ---
 Document ID: CHEAT-SHEET-001
-Title: "CHEAT SHEET: Docker Commands"
+Title: "CHEAT-SHEET-001: Docker Commands"
 Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
 
-# CHEAT SHEET: Docker Commands
+# CHEAT-SHEET-001: Docker Commands
 
 **Essential Docker commands for AI/ML development**
 
@@ -484,4 +484,4 @@ docker system prune -a --volumes -f
 
 ## Next Steps
 
-- **[CHEAT SHEET: Python for AI](CHEAT-SHEET-002-Python-AI.md)**
+- **[CHEAT-SHEET-002: Python for AI/ML](CHEAT-SHEET-002-Python-AI.md)**
