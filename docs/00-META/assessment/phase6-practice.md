@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE6-PRACTICE
 Title: "Phase 6: Data Nexus - Practice Exercises"
-Last Updated: 2026-09-25
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Advanced
 ---
@@ -1007,22 +1007,26 @@ class QdrantVectorStore:
 
     def search(self, query_vector, limit=5, score_threshold=None):
         """Search for similar vectors"""
-        results = self.client.search(
+        # qdrant-client >= 1.10 removed .search(query_vector=...);
+        # query_points() takes the vector as `query=` and its response
+        # carries the hits in .points (same ScoredPoint shape).
+        results = self.client.query_points(
             collection_name=self.collection_name,
-            query_vector=query_vector.tolist(),
+            query=query_vector.tolist(),
             limit=limit,
             score_threshold=score_threshold
-        )
+        ).points
         return results
 
     def filter_search(self, query_vector, filter_condition, limit=5):
         """Search with metadata filtering"""
-        results = self.client.search(
+        # query_points() also replaces filtered .search() calls.
+        results = self.client.query_points(
             collection_name=self.collection_name,
-            query_vector=query_vector.tolist(),
+            query=query_vector.tolist(),
             query_filter=filter_condition,
             limit=limit
-        )
+        ).points
         return results
 
     def delete_collection(self):
