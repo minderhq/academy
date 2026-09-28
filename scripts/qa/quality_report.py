@@ -79,6 +79,14 @@ stand today?" without running each tool by hand.
                        missing README/failed borrow) - born from two
                        consecutive drift waves (tick-260 "463 files",
                        tick-261 experiments/labs/phase-table)
+    sitemap_claims_check
+                       every measurable number in SITEMAP.md: section
+                       headers vs disk, headers vs their own list
+                       entries, and the fenced Statistics block
+                       (SC-01; SC-00 missing SITEMAP/failed measure)
+                       - SITEMAP called itself "derived from the file
+                       tree" while its Statistics block had rotted
+                       (tick-262: 458/407/1 vs measured 462/408/4)
   queue gate (drain in progress; never fails the report unless --fail-on-queue):
     objectives_lint    template-objective artifacts (OL-01/OL-02), phase by phase
     fence_namecheck    names used in a python fence that no fence in the
@@ -140,6 +148,7 @@ GATES = [
     ("version_alignment_scan.py", "version_alignment_scan", True),
     ("feed_parity_check.py", "feed_parity_check", True),
     ("readme_claims_check.py", "readme_claims_check", True),
+    ("sitemap_claims_check.py", "sitemap_claims_check", True),
 ]
 
 

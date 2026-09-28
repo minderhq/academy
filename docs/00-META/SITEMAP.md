@@ -8,8 +8,8 @@ Difficulty: Beginner
 
 # PROJECT-OMEGA - Complete Sitemap
 
-Auto-generated index of every document in the curriculum. Counts and links
-below are derived directly from the file tree.
+Index of every document in the curriculum. Counts and links are kept in
+lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 
 ---
 
@@ -685,8 +685,8 @@ build's written walkthroughs live inside the lessons themselves - see the
 ## Statistics
 
 ```text
-Total markdown files: 458
-  docs/: 407, experiments/: 48, configs/: 1, repo root: 2
+Total markdown files: 462
+  docs/: 408, experiments/: 48, configs/: 4, repo root: 2
 Phases: 7
 Learning modules (topics): 33
 Phase files (lessons, guides, assessments, topic README/PREREQUISITES): 260
