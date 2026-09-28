@@ -17,13 +17,26 @@ DA-02  a ```python fence must not pass ``use_auth_token=``. The HF
        modern name is ``token=`` - empirically verified against the
        installed package before the rule was written (tick-228).
 
+DA-03  a ```python fence must not call the pydantic v1 API:
+       ``@validator``, ``@root_validator``, ``parse_obj_as()`` or
+       ``.dict()``. All are deprecated in pydantic 2.x (the installed
+       stack is 2.13.5 - empirically verified: ``.dict()`` emits
+       PydanticDeprecatedSince20, ``.model_dump()`` is clean) and are
+       slated for removal in pydantic 3; the modern names are
+       ``.model_dump()`` and ``@field_validator``. The ``.dict()``
+       pattern is only activated when the file imports pydantic -
+       multiprocessing's ``manager.dict()`` shares the shape and is
+       legitimate stdlib, so the shape-only rule would false-positive
+       on it (the unambiguous v1-only names stay unconditional).
+
 Comment-only mentions (a fence teaching that utcnow is deprecated,
 like the 2303 API-design lesson) are not findings: the check looks
 for the pattern position before any ``#`` on the line.
 
 Hard gate (exit 1 on findings): baseline 0 after the tick-227 drain
-(13 call sites across 7 files moved to ``datetime.now(timezone.utc)``)
-and the tick-228 drain (LAB-012 ``use_auth_token=False`` → ``token=``).
+(13 call sites across 7 files moved to ``datetime.now(timezone.utc)``),
+the tick-228 drain (LAB-012 ``use_auth_token=False`` → ``token=``) and
+the tick-235 drain (LAB-007 ``doc.dict()`` → ``doc.model_dump()``).
 
 Run over the whole corpus:
     python scripts/qa/deprecated_scan.py --root .
@@ -45,15 +58,33 @@ RULES = [
     (re.compile(r"\buse_auth_token\s*="),
      "DA-02 HF use_auth_token kwarg (removed in transformers 5.x) - "
      "use token="),
+    (re.compile(r"@validator\b|@root_validator\b|parse_obj_as\("),
+     "DA-03 pydantic v1 validation API (deprecated in 2.x, removed in "
+     "3) - use @field_validator / TypeAdapter"),
 ]
+
+# DA-03 continuation: ``.dict()`` is only flagged in files that import
+# pydantic - multiprocessing's ``manager.dict()`` shares the shape and
+# is legitimate stdlib (tick-235: the only corpus hit would have been
+# a false positive without the file-level activation).
+PYD_RULES = [
+    (re.compile(r"\.dict\(\)"),
+     "DA-03 pydantic v1 serialization API (.dict() deprecated in 2.x, "
+     "removed in 3) - use model_dump()"),
+]
+PYD_IMPORT_RE = re.compile(r"^\s*from pydantic import|\bimport pydantic\b")
 
 
 def scan_file(root: Path, path: Path, findings: list[str]) -> None:
     rel = path.relative_to(root).as_posix()
+    lines = path.read_text(encoding="utf-8").split("\n")
+    rules = list(RULES)
+    if any(PYD_IMPORT_RE.search(line) for line in lines):
+        rules += PYD_RULES
     in_fence = False
     lang = ""
     start = 0
-    for ln, raw in enumerate(path.read_text(encoding="utf-8").split("\n"), 1):
+    for ln, raw in enumerate(lines, 1):
         if FENCE_RE.match(raw):
             in_fence = not in_fence
             lang = "" if not in_fence else FENCE_RE.match(raw).group(2).lower()
@@ -61,7 +92,7 @@ def scan_file(root: Path, path: Path, findings: list[str]) -> None:
             continue
         if in_fence and lang == "python":
             code = raw.split("#", 1)[0]
-            for pat, msg in RULES:
+            for pat, msg in rules:
                 if pat.search(code):
                     findings.append(
                         f"{rel}:{ln}: {msg}; opened at line {start}")
@@ -87,7 +118,8 @@ def main() -> int:
         print(f.encode("ascii", "backslashreplace").decode("ascii"))
     print(f"deprecated_scan: {len(findings)} findings "
           f"(DA-01 datetime.utcnow/utcfromtimestamp, "
-          f"DA-02 use_auth_token) "
+          f"DA-02 use_auth_token, "
+          f"DA-03 pydantic v1 API) "
           f"in {len(n_files)} files across docs/")
     return 1 if findings else 0
 

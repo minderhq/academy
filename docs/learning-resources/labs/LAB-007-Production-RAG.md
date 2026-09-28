@@ -1016,7 +1016,7 @@ async def metrics():
 async def index_documents(documents: List[Document]):
     """Index documents for search"""
     try:
-        docs = [doc.dict() for doc in documents]
+        docs = [doc.model_dump() for doc in documents]  # pydantic v2: .dict() is deprecated
         rag.index_documents(docs)
 
         return IndexResponse(
