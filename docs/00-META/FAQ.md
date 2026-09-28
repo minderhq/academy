@@ -120,7 +120,7 @@ Start here:
 
 **Essential:**
 - Linux (Ubuntu 22.04 recommended) or WSL2 on Windows
-- Python 3.11+
+- Python 3.13+
 - Docker
 - Git
 
@@ -255,7 +255,7 @@ Use **[PROGRESS-TRACKER.md](PROGRESS-TRACKER.md)** to:
 **Issue: Import Errors**
 - Solution 1: Create virtual environment
 - Solution 2: Install dependencies (`uv pip install -r requirements.txt`)
-- Solution 3: Check Python version (3.10+)
+- Solution 3: Check Python version (3.13+)
 - Solution 4: Update packages (`uv pip install --upgrade`)
 
 **Issue: Slow Training/Inference**

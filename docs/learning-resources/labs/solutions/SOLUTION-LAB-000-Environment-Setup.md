@@ -1,7 +1,7 @@
 ---
 Document ID: SOLUTION-LAB-000
 Title: "SOLUTION-LAB-000: Environment Setup"
-Last Updated: 2026-09-27
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -52,8 +52,8 @@ Download and install Docker Desktop from https://www.docker.com/products/docker-
 ### Solution
 ```bash
 # Create the project environment with uv
-# (uv downloads Python 3.11 itself if it is missing)
-uv venv --python 3.11
+# (uv downloads Python 3.13 itself if it is missing)
+uv venv --python 3.13
 source .venv/bin/activate  # Mac/Linux
 .venv\Scripts\activate     # Windows
 

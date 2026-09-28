@@ -566,7 +566,7 @@ Root Cause:
 **Solution:**
 ```dockerfile
 # Method 1: Bake into image ✅
-FROM python:3.11-slim
+FROM python:3.13-slim
 
 # Download during build
 RUN python -c "from transformers import AutoModel; \
@@ -584,7 +584,7 @@ volumes:
 # Init container to download model
 initContainers:
 - name: download-model
-  image: python:3.11-slim
+  image: python:3.13-slim
   command: ["python", "-c", "download model"]
   volumeMounts:
   - name: model-cache

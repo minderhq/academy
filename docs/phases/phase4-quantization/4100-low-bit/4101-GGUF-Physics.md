@@ -3,7 +3,7 @@ Document ID: 4101
 Title: GGUF Physics - CPU/GPU Hybrid Offloading
 Phase: 4
 Module: 4100
-Last Updated: 2026-09-24
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -11,7 +11,7 @@ Prerequisites: Phase 3 completion (transformer architecture), basic C/C++ knowle
 Related: [4102, 4103, 4201]
 Tags: [quantization, gguf, ggml, llama.cpp, cpu-gpu-hybrid, offloading]
 Hardware: [GPU with 11GB+ VRAM recommended, CPU]
-Software: [llama.cpp, Python 3.11+]
+Software: [llama.cpp, Python 3.13+]
 ---
 
 # 4101: GGUF Physics - CPU/GPU Hybrid Offloading

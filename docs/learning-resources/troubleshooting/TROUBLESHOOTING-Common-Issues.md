@@ -422,7 +422,7 @@ python --version
 2. **Install in correct environment:**
 ```bash
 # Create the project environment with uv
-uv venv --python 3.11
+uv venv --python 3.13
 source .venv/bin/activate  # Linux/Mac
 .venv\Scripts\activate     # Windows
 
@@ -478,7 +478,7 @@ peft==0.7.1
 
 4. **Use conda for better dependency management:**
 ```bash
-conda create -n ml-env python=3.11
+conda create -n ml-env python=3.13
 conda activate ml-env
 conda install pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia
 pip install transformers

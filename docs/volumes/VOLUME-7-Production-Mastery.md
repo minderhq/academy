@@ -375,7 +375,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
+          python-version: '3.13'
 
       - name: Install dependencies
         run: |
@@ -1361,7 +1361,7 @@ jobs:
     strategy:
       matrix:
         # Run tests in parallel
-        python-version: ['3.10', '3.11']
+        python-version: ['3.12', '3.13']
         test-suite: ['unit', 'integration', 'e2e']
     runs-on: ubuntu-latest
     steps:

@@ -161,11 +161,11 @@ Verify:
 uv --version
 ```
 
-> **Prefer pip?** uv is a drop-in replacement, but a system Python 3.11+ with
+> **Prefer pip?** uv is a drop-in replacement, but a system Python 3.13+ with
 > `python -m venv` and plain `pip` still works for every lesson. On Windows,
 > install Python from [python.org](https://www.python.org/downloads/) (check
-> "Add Python to PATH"); on macOS use `brew install python@3.11`; on Linux
-> `sudo apt install -y python3.11 python3-pip python3-venv`.
+> "Add Python to PATH"); on macOS use `brew install python@3.13`; on Linux
+> `sudo apt install -y python3.13 python3-pip python3-venv`.
 
 #### Create the Project Environment
 
@@ -174,9 +174,9 @@ uv --version
 mkdir -p ~/project-omega
 cd ~/project-omega
 
-# Create a virtual environment with Python 3.11
+# Create a virtual environment with Python 3.13
 # (uv downloads the interpreter itself if it is missing)
-uv venv --python 3.11
+uv venv --python 3.13
 
 # Activate — optional: uv finds .venv automatically when run
 # inside the project directory
@@ -346,28 +346,28 @@ model.to(device)
 1. **Check Python Version:**
 ```bash
 python --version
-# Should be 3.11 or higher
+# Should be 3.13 or higher
 ```
 
 2. **Use uv (recommended) or pyenv:**
 ```bash
 # uv manages interpreter versions too - simplest path
-uv python install 3.11
-uv venv --python 3.11
+uv python install 3.13
+uv venv --python 3.13
 
 # pyenv alternative (Mac/Linux)
 brew install pyenv  # Mac
 curl https://pyenv.run | bash  # Linux
 
-# Install Python 3.11
-pyenv install 3.11.7
-pyenv local 3.11.7
+# Install Python 3.13
+pyenv install 3.13
+pyenv local 3.13
 ```
 
 3. **Windows - Use Python Launcher with uv:**
 ```powershell
-py -3.11 --version
-uv pip install --python 3.11 package-name
+py -3.13 --version
+uv pip install --python 3.13 package-name
 ```
 
 ---

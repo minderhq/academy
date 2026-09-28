@@ -71,7 +71,7 @@ PROJECT-001 is a comprehensive AI assistant combining RAG, ReAct agents, and too
 ### Essential Software
 
 1. **Docker & Docker Compose**
-2. **Python 3.11+**
+2. **Python 3.13+**
 3. **Ollama**
 4. **Git**
 

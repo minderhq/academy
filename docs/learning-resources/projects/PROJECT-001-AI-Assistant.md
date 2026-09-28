@@ -1,7 +1,7 @@
 ---
 Document ID: PROJECT-001
 Title: "CAPSTONE PROJECT 001: Build Your AI Assistant"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -616,7 +616,7 @@ if __name__ == "__main__":
 
 ```dockerfile
 # ~/ai-assistant/services/rag/Dockerfile
-FROM python:3.11-slim
+FROM python:3.13-slim
 
 WORKDIR /app
 
@@ -918,7 +918,7 @@ def execute_python_code(code: str) -> Dict[str, Any]:
     try:
         # Run in isolated container
         result = docker_client.containers.run(
-            "python:3.11-slim",
+            "python:3.13-slim",
             f"python /app/code.py",
             volumes={os.path.dirname(temp_file): {'bind': '/app', 'mode': 'ro'}},
             mem_limit='512m',

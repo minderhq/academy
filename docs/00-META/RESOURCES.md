@@ -197,7 +197,7 @@ docker system prune -a
 ### Python/Conda
 ```bash
 # Environment management
-conda create -n myenv python=3.11
+conda create -n myenv python=3.13
 conda activate myenv
 conda env export > environment.yml
 

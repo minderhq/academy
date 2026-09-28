@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-005
 Title: "TUTORIAL 005: Production Deployment with CI/CD"
-Last Updated: 2026-09-27
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -517,7 +517,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
+          python-version: '3.13'
 
       - name: Install dependencies
         run: |

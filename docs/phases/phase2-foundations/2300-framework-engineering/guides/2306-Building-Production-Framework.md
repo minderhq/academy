@@ -3,7 +3,7 @@ Document ID: 2306
 Title: Building a Production Framework
 Phase: 2
 Module: 2300
-Last Updated: 2026-09-26
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -635,7 +635,7 @@ The image: pinned slim base, non-root user, one process:
 
 ```dockerfile
 # Dockerfile - build from framework/:  docker build -t mini-framework .
-FROM python:3.12-slim
+FROM python:3.13-slim
 
 WORKDIR /app
 
@@ -669,7 +669,7 @@ services:
     deploy:
       replicas: 2
     healthcheck:
-      # python:3.12-slim has python, not curl
+      # python:3.13-slim has python, not curl
       test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
       interval: 10s
       timeout: 3s

@@ -361,7 +361,7 @@ def process_batch(requests, model, batch_size=32):
 **Write a Dockerfile for ML API:**
 
 ```dockerfile
-FROM python:3.11-slim
+FROM python:3.13-slim
 WORKDIR /app
 COPY requirements.txt .
 RUN pip install -r requirements.txt

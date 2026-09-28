@@ -183,7 +183,7 @@ python --version
 # OR
 python3 --version
 
-# Should be 3.10 or higher
+# Should be 3.13 or higher
 ```
 
 **Install uv (if not already installed):**
@@ -206,9 +206,9 @@ uv --version
 mkdir -p ~/project-omega
 cd ~/project-omega
 
-# Create a virtual environment with Python 3.11
+# Create a virtual environment with Python 3.13
 # (uv downloads the interpreter itself if it is missing)
-uv venv --python 3.11
+uv venv --python 3.13
 
 # Activate (Mac/Linux)
 source .venv/bin/activate
@@ -247,7 +247,7 @@ python -c "import transformers; print('Transformers installed')"
 ```
 
 **✅ Verification:**
-- [ ] Python 3.11+ installed
+- [ ] Python 3.13+ installed
 - [ ] Virtual environment created
 - [ ] Virtual environment activated
 - [ ] PyTorch and Transformers installed
@@ -359,7 +359,7 @@ python test_env.py
 
 ### Software
 - [ ] Docker installed and running
-- [ ] Python 3.11+ installed
+- [ ] Python 3.13+ installed
 - [ ] Virtual environment created
 - [ ] Essential packages installed
 

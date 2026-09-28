@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-004
 Title: "LAB 004: Building ReAct Agents"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -767,7 +767,7 @@ if __name__ == "__main__":
 
 ```dockerfile
 # ~/lab-004-react/services/agent/Dockerfile
-FROM python:3.11-slim
+FROM python:3.13-slim
 
 WORKDIR /app
 

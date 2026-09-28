@@ -291,7 +291,7 @@ docker run -v $(pwd)/data:/app/data --user $(id -u):$(id -g) myapp
 ### Dockerfile Best Practices
 ```dockerfile
 # Use specific version tags
-FROM python:3.11-slim
+FROM python:3.13-slim
 
 # Combine RUN commands
 RUN apt-get update && \

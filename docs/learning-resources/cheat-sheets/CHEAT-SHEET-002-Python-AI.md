@@ -1,7 +1,7 @@
 ---
 Document ID: CHEAT-SHEET-002
 Title: "CHEAT SHEET: Python for AI/ML"
-Last Updated: 2026-09-27
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -17,8 +17,8 @@ Difficulty: Intermediate
 ### Virtual Environments
 ```bash
 # Create project environment with uv (recommended)
-# (uv downloads Python 3.11 itself if it is missing)
-uv venv --python 3.11
+# (uv downloads Python 3.13 itself if it is missing)
+uv venv --python 3.13
 
 # Activate (Linux/Mac)
 source .venv/bin/activate

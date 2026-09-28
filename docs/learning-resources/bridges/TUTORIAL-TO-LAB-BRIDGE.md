@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-TO-LAB-BRIDGE
 Title: Tutorial to Lab Bridge Guide
-Last Updated: 2026-02-04
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -79,9 +79,9 @@ docker run -d -p 11434:11434 ollama/ollama
 # To Lab: Multi-stage build for LLM
 
 # Bridge: Optimizing images
-FROM python:3.11-slim AS builder
+FROM python:3.13-slim AS builder
 # vs
-FROM python:3.11-alpine
+FROM python:3.13-alpine
 ```
 
 ---

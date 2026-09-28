@@ -65,12 +65,12 @@ huggingface-cli login
 
 #### 3. Python Environment
 ```bash
-# Verify Python version (3.10+ required)
-python --version  # Should be 3.10 or 3.11
+# Verify Python version (3.13+ required)
+python --version  # Should be 3.13
 
 # Create the project environment with uv
-# (uv fetches the Python 3.11 interpreter itself if it is missing)
-uv venv --python 3.11
+# (uv fetches the Python 3.13 interpreter itself if it is missing)
+uv venv --python 3.13
 
 # Install PyTorch with CUDA support
 # (cu130 wheels bundle the CUDA runtime - a recent driver is enough)

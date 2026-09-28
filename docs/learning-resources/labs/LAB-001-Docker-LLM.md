@@ -234,7 +234,7 @@ EOF
 ### Create Dockerfile:
 ```bash
 cat > ~/lab-001-docker-llm/services/app/Dockerfile << 'EOF'
-FROM python:3.11-slim
+FROM python:3.13-slim
 
 WORKDIR /app
 

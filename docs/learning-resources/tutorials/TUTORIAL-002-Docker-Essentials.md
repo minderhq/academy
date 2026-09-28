@@ -101,11 +101,11 @@ docker run hello-world
 
 ### Run Python in a Container:
 ```bash
-docker run -it python:3.11 bash
+docker run -it python:3.13 bash
 ```
 
 **What happened?**
-1. Downloaded `python:3.11` image
+1. Downloaded `python:3.13` image
 2. Started container with bash shell
 3. `-it` = interactive + TTY
 
@@ -167,7 +167,7 @@ EOF
 
 ```bash
 cat > Dockerfile << 'EOF'
-FROM python:3.11-slim
+FROM python:3.13-slim
 
 WORKDIR /app
 
@@ -321,7 +321,7 @@ docker run --gpus all -it --rm \
 ```bash
 docker run --gpus all -it --rm \
   -v $(pwd):/workspace \
-  python:3.11-cuda \
+  python:3.13-cuda \
   python -c "import torch; print(f'CUDA available: {torch.cuda.is_available()}')"
 ```
 
@@ -331,7 +331,7 @@ docker run --gpus all -it --rm \
 
 ### ❌ Bad Dockerfile:
 ```dockerfile
-FROM python:3.11
+FROM python:3.13
 
 WORKDIR /app
 
@@ -348,7 +348,7 @@ CMD ["python", "app.py"]
 
 ### ✅ Good Dockerfile:
 ```dockerfile
-FROM python:3.11-slim
+FROM python:3.13-slim
 
 # Install system dependencies
 RUN apt-get update && \

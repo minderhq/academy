@@ -59,7 +59,7 @@ How to read this lab: the **python blocks are runnable and their Output fences w
 
 ```bash
 # Create conda environment
-conda create -n train_model python=3.11 -y
+conda create -n train_model python=3.13 -y
 conda activate train_model
 
 # Core dependencies

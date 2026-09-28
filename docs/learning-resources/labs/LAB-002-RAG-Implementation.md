@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-002
 Title: "LAB 002: RAG Implementation with Qdrant & Ollama"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -561,7 +561,7 @@ EOF
 
 ```bash
 cat > ~/lab-002-rag/services/rag/Dockerfile << 'EOF'
-FROM python:3.11-slim
+FROM python:3.13-slim
 
 WORKDIR /app
 

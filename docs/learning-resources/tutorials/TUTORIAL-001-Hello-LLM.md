@@ -12,7 +12,7 @@ Difficulty: Intermediate
 **Time:** 30 minutes
 **Prerequisites:**
 - **Basic Python knowledge** (variables, functions, loops)
-- **Python 3.11+ installed**
+- **Python 3.13+ installed**
 
 :information_source: **New to Python?** Start with **[TUTORIAL-000: Python for AI](TUTORIAL-000-Python-for-AI.md)** (15-20 hours) to learn the fundamentals.
 

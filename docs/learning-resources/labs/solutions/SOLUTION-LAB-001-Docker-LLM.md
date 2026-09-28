@@ -277,7 +277,7 @@ requests==2.31.0
 
 ```dockerfile
 # ~/lab-001-docker-llm/services/app/Dockerfile
-FROM python:3.11-slim
+FROM python:3.13-slim
 
 WORKDIR /app
 

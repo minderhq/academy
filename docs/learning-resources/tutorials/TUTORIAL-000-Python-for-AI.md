@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-000
 Title: "TUTORIAL-000: Python for AI (Complete Beginner)"
-Last Updated: 2026-09-27
+Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Beginner
 ---
@@ -119,7 +119,7 @@ sudo yum install python3   # CentOS/RHEL
 ### Verify Installation:
 ```bash
 python --version
-# Should show: Python 3.11.x or similar
+# Should show: Python 3.13.x or similar
 ```
 
 ---
@@ -953,8 +953,8 @@ Virtual environments isolate project dependencies.
 
 ### uv (Recommended):
 ```bash
-# Create a project environment (uv downloads Python 3.11 if missing)
-uv venv --python 3.11
+# Create a project environment (uv downloads Python 3.13 if missing)
+uv venv --python 3.13
 
 # Activate (Windows)
 .venv\Scripts\activate

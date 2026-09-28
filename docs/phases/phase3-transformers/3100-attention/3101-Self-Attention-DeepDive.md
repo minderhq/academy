@@ -11,7 +11,7 @@ Prerequisites: Phase 2 completion (tensor algebra, neural network fundamentals)
 Related: [3102, 3201, 3302, 3402]
 Tags: [transformers, attention, self-attention, flash-attention, multi-head]
 Hardware: [GPU recommended for visualization]
-Software: [Python 3.11+, PyTorch 2.0+, matplotlib]
+Software: [Python 3.13+, PyTorch 2.0+, matplotlib]
 ---
 
 # 3101: Self-Attention Deep Dive
