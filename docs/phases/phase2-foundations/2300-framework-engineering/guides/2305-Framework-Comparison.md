@@ -3,7 +3,7 @@ Document ID: 2305
 Title: "2305: Framework Comparison Guide"
 Phase: 2
 Module: 2300
-Last Updated: 2026-09-27
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 1.5 hours
@@ -42,6 +42,10 @@ By the end of this guide, you will be able to:
 - **Score** any framework (including ones not covered here) against the five comparison criteria used in this guide.
 - **Wire frameworks together** — a Transformers model wrapped as a LangChain LLM — and explain why "versus" is usually the wrong frame.
 - **Justify a framework decision in writing** for your own project, naming the trade-off you accepted.
+
+## Abstract
+
+This guide runs a minimal working example of each of the three frameworks — Hugging Face Transformers, PyTorch Lightning, and LangChain — scores all three against five explicit criteria, wires them together (a Transformers model wrapped as a LangChain LLM), and distills the results into a decision guide. They solve different problems: getting a pretrained model and tokenizer into your code in five lines, writing a training loop once and correctly, and composing LLM calls into an application — so “versus” is usually the wrong frame, and most real systems use two or three at once.
 
 ## Why Framework Choice Matters
 

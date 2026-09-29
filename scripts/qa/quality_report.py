@@ -392,7 +392,11 @@ stand today?" without running each tool by hand.
                       in the lesson's Table of Contents (the
                       syllabus card reads the TOC). Born hard in
                       tick-415 - the 3 census sites were drained
-                      in the same tick, baseline 0
+                      in the same tick, baseline 0. LA-03: every
+                      lesson states its Abstract H2. Born hard in
+                      tick-416 - the 2 census sites (2305/2306
+                      guides) were drained in the same tick,
+                      baseline 0
     unfinished_marker_scan unfinished-content markers in prose
                        (UM-01): outside any code fence, inline code
                        scrubbed, a line must not carry "coming soon",

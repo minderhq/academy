@@ -22,6 +22,13 @@ LA-02  canonical H2 present but the canonical TOC bullet
        the baseline is 0 - the 1103 canonical flow lists LO
        first in the Table of Contents.
 
+LA-03  no H2 heading exactly "Abstract" (fence-invisible,
+       trimmed). HARD from birth (tick-416): the 2 census sites
+       (2305-Framework-Comparison, 2306-Building-Production-
+       Framework, both 2300-guides) were drained in the same
+       tick, so the baseline is 0 - the 1103 canonical flow
+       opens its content with the abstract.
+
 Hands-on and quiz sections are deliberately not gated here:
 assessment lives in the separate assessment/QUIZ.md and lab files
 (lesson_id_scan / lab_registry are the identity gates for those),
@@ -66,12 +73,13 @@ def lesson_paths(root: Path) -> list[Path]:
     return out
 
 
-def anatomy(lines: list[str]) -> tuple[bool, bool]:
-    """(canonical H2 present, canonical TOC bullet present),
-    both checked outside code fences."""
+def anatomy(lines: list[str]) -> tuple[bool, bool, bool]:
+    """(canonical LO H2, canonical TOC bullet, Abstract H2), all
+    checked outside code fences."""
     state = 0
     canonical = False
     bullet = False
+    abstract = False
     for raw in lines:
         m = FENCE_RE.match(raw)
         if m:
@@ -84,11 +92,15 @@ def anatomy(lines: list[str]) -> tuple[bool, bool]:
         if state:
             continue
         hm = H2_RE.match(raw)
-        if hm and hm.group(1).strip() == CANON_H2:
-            canonical = True
+        if hm:
+            t = hm.group(1).strip()
+            if t == CANON_H2:
+                canonical = True
+            elif t == "Abstract":
+                abstract = True
         if BULLET_RE.match(raw):
             bullet = True
-    return canonical, bullet
+    return canonical, bullet, abstract
 
 
 def main() -> int:
@@ -100,6 +112,7 @@ def main() -> int:
     n_lessons = 0
     n_canonical = 0
     n_bullet = 0
+    n_abstract = 0
     for path in lesson_paths(args.root):
         try:
             lines = path.read_text(encoding="utf-8",
@@ -108,7 +121,7 @@ def main() -> int:
             continue
         rel = path.relative_to(args.root).as_posix()
         n_lessons += 1
-        canonical, bullet = anatomy(lines)
+        canonical, bullet, abstract = anatomy(lines)
         if canonical:
             n_canonical += 1
         else:
@@ -121,13 +134,22 @@ def main() -> int:
             findings.append(
                 f"{rel}: LA-02 no canonical TOC bullet (the syllabus "
                 f"card reads the lesson's Table of Contents)")
+        if abstract:
+            n_abstract += 1
+        else:
+            findings.append(
+                f"{rel}: LA-03 no canonical 'Abstract' H2 (the "
+                f"lesson must state what it covers before it "
+                f"teaches it)")
     for f in findings:
         print(f.encode("ascii", "backslashreplace").decode("ascii"))
     print(f"lesson_anatomy_census: lessons={n_lessons} "
           f"canonical={n_canonical} LA-01={n_lessons - n_canonical} "
           f"LA-02={n_lessons - n_bullet} "
+          f"LA-03={n_lessons - n_abstract} "
           f"(LA-01 hard since the tick-414 drain; LA-02 hard from "
-          f"birth tick-415 - canonical first TOC bullet)")
+          f"birth tick-415 - canonical first TOC bullet; LA-03 hard "
+          f"from birth tick-416)")
     return 1 if findings else 0
 
 
