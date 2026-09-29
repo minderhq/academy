@@ -1,7 +1,7 @@
 ---
 Document ID: 4203
 Title: "4203: Context Window Optimization Guide"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 ---
@@ -21,6 +21,7 @@ Difficulty: Advanced
 - [Implementation 5: Context Chunking Strategy](#implementation-5-context-chunking-strategy)
 - [Memory Optimization Strategies](#memory-optimization-strategies)
 - [Quick Start](#quick-start)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -795,6 +796,10 @@ nvidia-smi -l 1
 
 
 ---
+
+## Summary
+
+Long context on an 11GB card is a budgeting exercise, and this guide is its workbook: KV cache arithmetic first, then five concrete implementations - quantizing the KV cache, sliding-window attention, multi-round context management, streaming with long context, and context chunking - each trading context reach against VRAM. The memory-optimization strategies section ties them together and the quick start gets a working pipeline running before the theory matters. The through-line: you rarely get more context for free - you choose which of these five taxes to pay, then measure the bill.
 
 ## References
 

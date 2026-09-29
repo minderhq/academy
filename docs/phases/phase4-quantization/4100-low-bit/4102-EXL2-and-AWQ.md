@@ -3,7 +3,7 @@ Document ID: 4102
 Title: "4102: EXL2 and AWQ - Extreme Quantization"
 Phase: 4
 Module: 4100
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -23,6 +23,7 @@ Tags: ['quantization', 'gguf', 'exl2', 'awq', 'compression']
 - [GPTQ (Gradient-based Quantization)](#gptq-gradient-based-quantization)
 - [Comparison](#comparison)
 - [Advanced Techniques](#advanced-techniques)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -399,6 +400,10 @@ class DynamicQuantizer:
 ```
 
 ---
+
+## Summary
+
+EXL2 and AWQ are the GPU-only end of the 4-bit world: both land near-fp16 quality at 4-bit, which is what turns an 11GB-class card into a serious inference machine. This lesson covered each method's mechanics - ExLlamaV2's per-layer mixed bits and AWQ's activation-aware channel scaling - then put them next to GPTQ and each other in the comparison section. The durable rule from it: match the method to the runtime and hardware you actually have, and let measured quality per token decide, not benchmarks borrowed from someone else's GPU.
 
 ## References
 

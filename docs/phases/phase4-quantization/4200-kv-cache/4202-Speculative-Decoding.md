@@ -3,7 +3,7 @@ Document ID: 4202
 Title: "4202: Speculative Decoding - Accelerating Large Models"
 Phase: 4
 Module: 4200
-Last Updated: 2026-09-28
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -24,6 +24,7 @@ Tags: ['quantization', 'kv-cache', 'context-window', 'speculative-decoding']
 - [Performance Analysis](#performance-analysis)
 - [Advanced Techniques](#advanced-techniques)
 - [Implementation Tips](#implementation-tips)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -491,6 +492,10 @@ class SpeculativeKVCache:
 ```
 
 ---
+
+## Summary
+
+Speculative decoding buys speed with a division of labor: a small draft model proposes several tokens at once and the large target model verifies them in parallel, accepting most and paying full price only for the rejects - 2-3x speedup with unchanged output quality, since the target still authors every token. This lesson built the intuition, walked the algorithm and its acceptance mechanics, then the practical levers: choosing a draft model that agrees often and runs cheap, reading the performance analysis honestly, and the implementation tips that separate a demo from a deployable win.
 
 ## References
 

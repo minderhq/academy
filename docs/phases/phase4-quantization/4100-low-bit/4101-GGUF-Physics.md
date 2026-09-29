@@ -34,6 +34,7 @@ GGUF (GPT-Generated Unified Format) is a file format that enables running large 
 - [7. GGUF Conversion](#7-gguf-conversion)
 - [8. Performance Optimization](#8-performance-optimization)
 - [9. Troubleshooting](#9-troubleshooting)
+- [Summary](#summary)
 - [10. References](#10-references)
 
 ---
@@ -368,6 +369,10 @@ see [4202: Speculative Decoding](../4200-kv-cache/4202-Speculative-Decoding.md).
 | Thread contention on hybrid CPUs | Scheduler spreads over E-cores | Pin `-t` to P-cores; benchmark both settings |
 
 ---
+
+## Summary
+
+GGUF is what makes large models runnable on consumer hardware: a single file carrying quantized weights plus metadata, a quantization zoo from legacy Q4_0 through the K-quant family, and a hybrid CPU/GPU offloading scheme that treats VRAM as the scarce resource it is. This lesson walked the format structure, the algorithm behind K-quant blocks, layer-offload strategy, and conversion, then the performance section turned it into practice: pick the quant level your VRAM budget allows, offload the layers that fit, and measure tokens per second - the numbers, not the format name, decide.
 
 ## 10. References
 

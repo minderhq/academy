@@ -3,7 +3,7 @@ Document ID: 4201
 Title: "4201: Context Window Physics and OOM Prevention"
 Phase: 4
 Module: 4200
-Last Updated: 2026-09-28
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -25,6 +25,7 @@ Tags: ['quantization', 'kv-cache', 'context-window', 'speculative-decoding']
 - [OOM Prevention Strategies](#oom-prevention-strategies)
 - [Memory Optimization Techniques](#memory-optimization-techniques)
 - [Monitoring KV Cache](#monitoring-kv-cache)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -465,6 +466,10 @@ print(f"Peak KV Cache: {tracker['peak_memory'] / (1024**3):.2f} GB")
 ```
 
 ---
+
+## Summary
+
+The KV cache is the physics of the context window: memory grows linearly with sequence length and batch, and it - not the weights - is what OOMs a long-context run. This lesson did the memory math first, then attacked the problem from every direction: KV cache quantization, multi-round attention architectures that shrink the cache per token, context-window extension techniques, and monitoring so the failure is seen before it happens. The rule it leaves: budget the cache like a first-class resource, because every 'how long can my context be' question is a KV memory question in disguise.
 
 ## References
 

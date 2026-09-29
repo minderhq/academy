@@ -3,7 +3,7 @@ Document ID: 4103
 Title: "4103: Double Quantization - BitsAndBytes (bnb) Logic"
 Phase: 4
 Module: 4100
-Last Updated: 2026-09-27
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -26,6 +26,7 @@ Tags: ['quantization', 'gguf', 'exl2', 'awq', 'compression']
 - [Advanced DQ Techniques](#advanced-dq-techniques)
 - [BitsAndBytes Training](#bitsandbytes-training)
 - [Troubleshooting](#troubleshooting)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -416,6 +417,10 @@ Solution:
 ```
 
 ---
+
+## Summary
+
+Double quantization squeezes the leftover bytes: the per-block scales that ordinary quantization stores in fp32 get quantized themselves, cutting parameter-adjacent overhead at almost no quality cost. This lesson set up the problem - scales are real memory at scale - walked the bitsandbytes implementation and its measured savings, then the honest parts: quality impact, the advanced DQ techniques, and how DQ interacts with bitsandbytes training. The takeaway is small and durable: when 4-bit runs through bitsandbytes, double quantization is nearly free memory, so the question is rarely whether but how much it buys in your config.
 
 ## References
 
