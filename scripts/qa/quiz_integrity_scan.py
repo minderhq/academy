@@ -39,16 +39,20 @@ QI-09  orphan Answer Key row - a key row whose question number does
        are never checked back), so nothing else sees this class.
        Census: 0 across all 33 modules.
 
-Report inventory (never fails the gate - the accepted texture and
-the drain queues, same contract as duplicate_heading_scan / AS-09):
+Report inventory (never fails the gate - the drain queues, same
+contract as duplicate_heading_scan / AS-09):
 
-QI-06  cross-module duplicate stems (census: 6, all short concept
-       labels like "KV cache stores" reused across overlapping
-       modules - each module tested its own framing with different
-       options; a platform sampling across modules needs the
-       inventory). Drained in tick-343 (6 stem rewords across 5
-       modules, meaning and answer keys preserved) - the queue is
-       now 0; a future collision surfaces here as "QI-06 (accepted)".
+QI-06  cross-module duplicate stem (casefold, whitespace
+       normalized): the same question label reused across two
+       modules - a platform sampling across modules quizzes the
+       learner twice on one stem. Started as a report census (6,
+       all short concept labels like "KV cache stores" reused
+       across modules that tested their own framing with
+       different options), drained in tick-343 (6 stem rewords
+       across 5 modules, meaning and answer keys preserved) and
+       promoted to HARD in tick-345 - the house census->drain->
+       gate pattern (BB-02, TL-01): a new collision now fails
+       the build instead of queueing.
 QI-07  skewed answer keys per module (max letter >= 50% of answered
        mcq, or any of A-D absent; census: 14 modules, corpus-wide
        B=40%, 4100-low-bit at 65% - just under assessment_lint's
@@ -70,8 +74,9 @@ QI-10  answer-length bias per module (report queue): the correct
        no safe mechanical fix - draining needs per-module content
        passes that make distractors parallel in form and length.
 
-Hard gate on QI-01..05 and QI-08/09 (exit 1): baseline 0 at birth
-(tick-284 / tick-285). QI-10 is report inventory at birth
+Hard gate on QI-01..06 and QI-08/09 (exit 1): baseline 0 at birth
+(tick-284 / tick-285); QI-06 joined in tick-345 (baseline 0 since
+the tick-343 drain). QI-10 is report inventory at birth
 (tick-290: 31 modules queued).
 
 Run over the whole corpus:
@@ -250,11 +255,10 @@ def main() -> int:
         else:
             seen[stem] = (rel, n)
 
+    for c in cross_dups:
+        hard.append("QI-06 cross-module stem dup: " + c)
     for f in hard:
         print(f.encode("ascii", "backslashreplace").decode("ascii"))
-    for c in cross_dups:
-        print(("QI-06 (accepted) " + c)
-              .encode("ascii", "backslashreplace").decode("ascii"))
     for s in skew:
         print(("QI-07 (shuffle queue) " + s)
               .encode("ascii", "backslashreplace").decode("ascii"))
@@ -264,9 +268,11 @@ def main() -> int:
     print(f"quiz_integrity_scan: {len(hard)} hard findings "
           f"(QI-01 self-referential option / QI-02 in-module duplicate "
           f"stem / QI-03 duplicate option text / QI-04 option beyond "
-          f"A-D / QI-05 numbering gap / QI-08 duplicate Answer Key row "
+          f"A-D / QI-05 numbering gap / QI-06 cross-module stem dup "
+          f"/ QI-08 duplicate Answer Key row "
           f"/ QI-09 orphan Answer Key row), QI-06 {len(cross_dups)} "
-          f"cross-module stem dups (drained tick-343), QI-07 "
+          f"cross-module stem dups (hard since tick-345; drained "
+          f"tick-343), QI-07 "
           f"{len(skew)} skewed answer keys (option-shuffle queue; "
           f"refines AS-09's 70% tripwire), QI-10 {len(lenbias)} "
           f"length-bias modules (correct-option-longest queue; born "

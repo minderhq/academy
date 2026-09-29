@@ -38,15 +38,15 @@ stand today?" without running each tool by hand.
                        AS-09 option-shuffle queue is report-mode, shown separately)
     quiz_export        quiz bank parses into complete question records
     quiz_integrity_scan
-                       content-level quiz integrity (QI-01..05 +
+                       content-level quiz integrity (QI-01..06 +
                        QI-08/09 hard: self-referential positional
                        option, in-module duplicate stem, duplicate
                        option text, option beyond A-D, numbering
-                       gap, duplicate Answer Key rows, orphan
+                       gap, cross-module stem dup, duplicate
+                       Answer Key rows, orphan
                        Answer Key rows) on top of
-                       quiz_export's parser; QI-06/QI-07/QI-10
-                       are the report inventory (accepted
-                       cross-module stem dups + the
+                       quiz_export's parser; QI-07/QI-10
+                       are the report inventory (the
                        skewed-answer-key shuffle queue that
                        refines AS-09's 70% tripwire + the
                        answer-length-bias queue: the correct
