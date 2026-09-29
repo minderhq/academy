@@ -197,7 +197,7 @@ Base agent class that all specialized agents inherit from
 """
 
 from abc import ABC, abstractmethod
-from typing import Dict, Any
+from typing import Any
 from datetime import datetime
 import json
 
@@ -213,7 +213,7 @@ class BaseAgent(ABC):
         self.current_tasks = 0
 
     @abstractmethod
-    def process(self, task: Dict) -> Dict:
+    def process(self, task: dict) -> dict:
         """
         Process a task
 
@@ -233,13 +233,13 @@ class BaseAgent(ABC):
         """
         pass
 
-    def can_accept_task(self, task: Dict) -> bool:
+    def can_accept_task(self, task: dict) -> bool:
         """Check if agent can accept a new task"""
         if self.current_tasks >= self.config.max_concurrent:
             return False
         return True
 
-    def add_to_memory(self, item: Dict):
+    def add_to_memory(self, item: dict):
         """Add item to agent's memory"""
         item["timestamp"] = datetime.now().isoformat()
         self.memory.append(item)
@@ -248,11 +248,11 @@ class BaseAgent(ABC):
         if len(self.memory) > 100:
             self.memory = self.memory[-100:]
 
-    def get_memory(self, last_n: int = 10) -> list[Dict]:
+    def get_memory(self, last_n: int = 10) -> list[dict]:
         """Get recent memory items"""
         return self.memory[-last_n:]
 
-    def create_response(self, status: str, output: Any, metadata: Dict | None = None) -> Dict:
+    def create_response(self, status: str, output: Any, metadata: dict | None = None) -> dict:
         """Create a standardized response"""
         response = {
             "task_id": None,  # Will be set by process method
@@ -269,7 +269,7 @@ class BaseAgent(ABC):
 class MockAgent(BaseAgent):
     """Mock agent for testing"""
 
-    def process(self, task: Dict) -> Dict:
+    def process(self, task: dict) -> dict:
         """Process a mock task"""
         task_id = task.get("task_id", "unknown")
 
@@ -304,7 +304,6 @@ class MockAgent(BaseAgent):
 Research agent that searches the web and gathers information
 """
 
-from typing import Dict
 import requests
 from base_agent import BaseAgent, AgentConfig
 
@@ -315,7 +314,7 @@ class ResearcherAgent(BaseAgent):
         super().__init__(config)
         self.search_api_key = None  # Set via environment variable
 
-    def process(self, task: Dict) -> Dict:
+    def process(self, task: dict) -> dict:
         """Process research task"""
         task_id = task.get("task_id", "unknown")
         task_type = task.get("type", "unknown")
@@ -358,7 +357,7 @@ class ResearcherAgent(BaseAgent):
 
         return response
 
-    def _web_search(self, query: str, num_results: int = 5) -> list[Dict]:
+    def _web_search(self, query: str, num_results: int = 5) -> list[dict]:
         """Perform web search"""
         # In production, use real search API (Google, Bing, etc.)
         # For this lab, we'll use a mock implementation
@@ -374,7 +373,7 @@ class ResearcherAgent(BaseAgent):
 
         return mock_results
 
-    def _fact_check(self, claims: list[str]) -> list[Dict]:
+    def _fact_check(self, claims: list[str]) -> list[dict]:
         """Fact check claims"""
         verified = []
 
@@ -424,7 +423,6 @@ if __name__ == "__main__":
 Analyst agent that processes data and performs calculations
 """
 
-from typing import Dict, List
 import numpy as np
 import pandas as pd
 from base_agent import BaseAgent, AgentConfig
@@ -435,7 +433,7 @@ class AnalystAgent(BaseAgent):
     def __init__(self, config: AgentConfig):
         super().__init__(config)
 
-    def process(self, task: Dict) -> Dict:
+    def process(self, task: dict) -> dict:
         """Process analysis task"""
         task_id = task.get("task_id", "unknown")
         task_type = task.get("type", "unknown")
@@ -516,7 +514,7 @@ class AnalystAgent(BaseAgent):
         except Exception as e:
             return 0.0
 
-    def _analyze_data(self, data: List, analysis_type: str) -> Dict:
+    def _analyze_data(self, data: list, analysis_type: str) -> dict:
         """Analyze data"""
         if not data:
             return {"error": "No data provided"}
@@ -545,7 +543,7 @@ class AnalystAgent(BaseAgent):
 
         return result
 
-    def _compare_items(self, items: list[Dict]) -> Dict:
+    def _compare_items(self, items: list[dict]) -> dict:
         """Compare multiple items"""
         comparison = {
             "item_count": len(items),
@@ -566,7 +564,7 @@ class AnalystAgent(BaseAgent):
 
         return comparison
 
-    def _compute_difference(self, item1: Dict, item2: Dict) -> Dict:
+    def _compute_difference(self, item1: dict, item2: dict) -> dict:
         """Compute difference between two items"""
         diff = {}
 
@@ -601,7 +599,6 @@ class AnalystAgent(BaseAgent):
 Writer agent that generates content
 """
 
-from typing import Dict
 from base_agent import BaseAgent, AgentConfig
 
 class WriterAgent(BaseAgent):
@@ -610,7 +607,7 @@ class WriterAgent(BaseAgent):
     def __init__(self, config: AgentConfig):
         super().__init__(config)
 
-    def process(self, task: Dict) -> Dict:
+    def process(self, task: dict) -> dict:
         """Process writing task"""
         task_id = task.get("task_id", "unknown")
         task_type = task.get("type", "unknown")
@@ -678,7 +675,7 @@ class WriterAgent(BaseAgent):
 
         return summary
 
-    def _write_report(self, sections: list[Dict], report_type: str) -> str:
+    def _write_report(self, sections: list[dict], report_type: str) -> str:
         """Write a report from sections"""
         report_lines = [
             f"# {report_type.upper()} REPORT",
@@ -742,7 +739,6 @@ class WriterAgent(BaseAgent):
 Orchestrator that manages the agent fleet
 """
 
-from typing import Dict
 from collections import deque
 import threading
 import queue
@@ -762,7 +758,7 @@ class Orchestrator(BaseAgent):
         self.completed_tasks = []
         self.lock = threading.Lock()
 
-    def process(self, task: Dict) -> Dict:
+    def process(self, task: dict) -> dict:
         """Process a task by orchestrating through agents"""
         task_id = task.get("task_id", "unknown")
 
@@ -790,7 +786,7 @@ class Orchestrator(BaseAgent):
 
         return response
 
-    def _create_plan(self, task: Dict) -> list[Dict]:
+    def _create_plan(self, task: dict) -> list[dict]:
         """Create execution plan for task"""
         task_type = task.get("type", "unknown")
         task_id = task.get("task_id", "unknown")
@@ -825,7 +821,7 @@ class Orchestrator(BaseAgent):
         self.add_to_memory({"task_id": task_id, "plan": plan})
         return plan
 
-    def _execute_plan(self, plan: list[Dict]) -> list[Dict]:
+    def _execute_plan(self, plan: list[dict]) -> list[dict]:
         """Execute the plan through agents"""
         results = []
 
@@ -863,7 +859,7 @@ class Orchestrator(BaseAgent):
 
         return results
 
-    def _synthesize_results(self, results: list[Dict]) -> Dict:
+    def _synthesize_results(self, results: list[dict]) -> dict:
         """Synthesize results from all agents"""
         synthesis = {
             "total_steps": len(results),
@@ -883,7 +879,6 @@ class Orchestrator(BaseAgent):
 Complete agent fleet with all specialized agents
 """
 
-from typing import Dict, List
 from agent_types import AgentConfig, AgentRole, AgentCapability
 from base_agent import BaseAgent
 from researcher_agent import ResearcherAgent
@@ -954,7 +949,7 @@ class AgentFleet:
         for role, agent in self.agents.items():
             print(f"  - {role}: {agent.name}")
 
-    def process_task(self, task: Dict) -> Dict:
+    def process_task(self, task: dict) -> dict:
         """Process a task through the fleet"""
         task_id = task.get("task_id", "unknown")
 
@@ -971,7 +966,7 @@ class AgentFleet:
 
         return result
 
-    def get_status(self) -> Dict:
+    def get_status(self) -> dict:
         """Get fleet status"""
         return {
             "total_agents": len(self.agents),
@@ -1024,7 +1019,6 @@ if __name__ == "__main__":
 Shared memory store for all agents
 """
 
-from typing import Dict
 from datetime import datetime, timedelta
 import json
 
@@ -1041,7 +1035,7 @@ class MemoryStore:
         agent_id: str,
         task_id: str,
         memory_type: str,
-        content: Dict,
+        content: dict,
         ttl_hours: int | None = None,
     ) -> str:
         """Store a memory"""
@@ -1071,7 +1065,7 @@ class MemoryStore:
         task_id: str | None = None,
         memory_type: str | None = None,
         limit: int = 10,
-    ) -> list[Dict]:
+    ) -> list[dict]:
         """Retrieve memories based on filters"""
         memories = list(self.memories.values())
 
@@ -1097,7 +1091,7 @@ class MemoryStore:
 
         return memories[:limit]
 
-    def search(self, query: str, limit: int = 10) -> list[Dict]:
+    def search(self, query: str, limit: int = 10) -> list[dict]:
         """Search memories by content"""
         query_lower = query.lower()
 
@@ -1142,7 +1136,6 @@ Base agent with memory support
 """
 
 from memory import MemoryStore
-from typing import Dict
 
 class MemoryEnabledAgent(BaseAgent):
     """Agent with memory capabilities"""
@@ -1152,7 +1145,7 @@ class MemoryEnabledAgent(BaseAgent):
         self.memory_store = memory_store
         self.agent_id = config.name
 
-    def remember(self, task_id: str, memory_type: str, content: Dict):
+    def remember(self, task_id: str, memory_type: str, content: dict):
         """Store a memory"""
         return self.memory_store.store(
             agent_id=self.agent_id,
@@ -1162,7 +1155,7 @@ class MemoryEnabledAgent(BaseAgent):
             ttl_hours=24,  # Default TTL
         )
 
-    def recall(self, task_id: str, memory_type: str | None = None) -> list[Dict]:
+    def recall(self, task_id: str, memory_type: str | None = None) -> list[dict]:
         """Recall memories from a task"""
         return self.memory_store.retrieve(
             agent_id=self.agent_id,
@@ -1170,7 +1163,7 @@ class MemoryEnabledAgent(BaseAgent):
             memory_type=memory_type,
         )
 
-    def search_memory(self, query: str) -> list[Dict]:
+    def search_memory(self, query: str) -> list[dict]:
         """Search all memories"""
         return self.memory_store.search(query)
 ```

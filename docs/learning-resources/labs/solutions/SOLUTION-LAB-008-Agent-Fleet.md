@@ -1,7 +1,7 @@
 ---
 Document ID: SOLUTION-LAB-008
 Title: "SOLUTION-LAB-008: Agent Fleet"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -25,7 +25,7 @@ uv pip install langchain langchain-openai asyncio
 
 ```python
 import asyncio
-from typing import Dict, List, Any, Optional
+from typing import Any
 from dataclasses import dataclass
 from enum import Enum
 import json
@@ -97,7 +97,7 @@ class BaseAgent:
         Args:
             name: Unique agent identifier
             role: Agent's functional role
-            config: Optional configuration dictionary
+config: The configuration dictionary
         """
         self.name = name
         self.role = role
@@ -380,7 +380,7 @@ class Coordinator:
         self.task_history = []
         self.workflow_templates = self._initialize_workflows()
 
-    def _initialize_workflows(self) -> dict[str, list[Dict]]:
+    def _initialize_workflows(self) -> dict[str, list[dict]]:
         """Initialize workflow templates for common task types."""
         return {
             "complex_research": [
