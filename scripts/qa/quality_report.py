@@ -350,6 +350,19 @@ stand today?" without running each tool by hand.
                        hours), hard since the drain; dual-mode
                        "quick/full review" entries are a legal
                        shape, both durations parse
+    prereq_census Prerequisites chain integrity (PQ-01..02, hard):
+                       prerequisites are the learning-path
+                       backbone - a dangling prerequisite is a
+                       lesson that can never be unlocked. PQ-01
+                       dangling machine-parseable token, PQ-02
+                       ambiguous token. Born tick-409 measuring
+                       108 docs / 7 tokens, all resolving exactly
+                       one file - hard from birth (KW-03). Shape
+                       variance (99 free-text "See module README",
+                       3 titled brackets, 2 bare lists, 4 prose)
+                       is inventory: canonical linked shape is
+                       the bracketed bare-token list, PQ-03 shape
+                       class queued mirroring tick-405/406
     unfinished_marker_scan unfinished-content markers in prose
                        (UM-01): outside any code fence, inline code
                        scrubbed, a line must not carry "coming soon",
@@ -546,6 +559,7 @@ GATES = [
     ("tag_vocabulary_census.py", "tag_vocabulary_census", True),
     ("related_census.py", "related_census", True),
     ("estimated_time_census.py", "estimated_time_census", True),
+    ("prereq_census.py", "prereq_census", True),
     ("unfinished_marker_scan.py", "unfinished_marker_scan", True),
     ("empty_section_scan.py", "empty_section_scan", True),
     ("emoji_shortcode_scan.py", "emoji_shortcode_scan", True),
