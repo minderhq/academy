@@ -285,6 +285,18 @@ stand today?" without running each tool by hand.
                        embedded, 12 nginx + 18 dockerfile
                        fences already correct; a future raw
                        paste surfaces here - exit 0 by design
+    term_consistency_scan brand-term consistency census (report,
+                       TC-01/TC-02): one canonical spelling per
+                       brand in prose - bare "HuggingFace" tokens
+                       (identifier continuations like
+                       HuggingFaceEmbeddings/H4/TB excluded by the
+                       predicate) and prose-lowercase "ollama"
+                       (fences, inline code and the ollama.com
+                       domain legal); born from the tick-400
+                       ad-hoc sweep that found the corpus 55/45
+                       split (66 bare HuggingFace vs 54 "Hugging
+                       Face"; TensorFlow/LangChain/PyTorch/OpenAI
+                       already consistent at 0) - exit 0 by design
     unfinished_marker_scan unfinished-content markers in prose
                        (UM-01): outside any code fence, inline code
                        scrubbed, a line must not carry "coming soon",
@@ -476,6 +488,7 @@ GATES = [
     ("uv_install_check.py", "uv_install_check", True),
     ("uv_workflow_census.py", "uv_workflow_census", False),
     ("fence_label_census.py", "fence_label_census", False),
+    ("term_consistency_scan.py", "term_consistency_scan", False),
     ("unfinished_marker_scan.py", "unfinished_marker_scan", True),
     ("empty_section_scan.py", "empty_section_scan", True),
     ("emoji_shortcode_scan.py", "emoji_shortcode_scan", True),
