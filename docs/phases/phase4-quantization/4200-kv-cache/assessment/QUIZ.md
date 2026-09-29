@@ -69,7 +69,7 @@ D) The vocabulary size of the tokenizer
 **8. Which technique allows extending context window beyond training length?**
 
 A) RoPE scaling
-B) Quantization
+B) Quantization, the standard lever for pushing context past the trained horizon
 C) Pruning
 D) Distillation
 
@@ -90,7 +90,7 @@ D) Rotating the context window every few steps
 **11. Grouped-Query Attention (GQA) is:**
 
 A) Sharing KV heads in groups — a compromise between multi-head and multi-query attention
-B) Identical to multi-head attention
+B) Identical to multi-head attention, a claim the KV-head counts of GQA models disprove outright
 C) Removal of the value projection
 D) A training optimizer
 
@@ -99,7 +99,7 @@ D) A training optimizer
 A) Layers × KV heads × head dimension × precision bytes
 B) Vocabulary size only
 C) Batch size only
-D) Context length squared
+D) Context length squared, a scaling law that no KV-cache memory formula in production obeys
 
 **13. In speculative decoding, the draft model:**
 
@@ -110,7 +110,7 @@ D) Quantizes the target weights to 4-bit precision
 
 **14. Speculative decoding preserves output quality because:**
 
-A) The draft model is larger
+A) The draft model is larger, an inversion that would make verification pointless and slower
 B) Sampling temperature is lowered
 C) Tokens are cached between runs
 D) The target model accepts/rejects draft tokens against its own distribution
@@ -120,7 +120,7 @@ D) The target model accepts/rejects draft tokens against its own distribution
 A) Improve accuracy
 B) Increase attention compute
 C) Reduce cache memory footprint (e.g., 8-bit or 4-bit KV)
-D) Extend the vocabulary
+D) Extend the vocabulary, a job the tokenizer owns and quantization never touches
 
 **16. During prefill (processing the prompt), inference is typically:**
 
@@ -131,7 +131,7 @@ D) Network-bound on every single distributed inference deployment
 
 **17. FlashAttention primarily:**
 
-A) Compresses the KV cache
+A) Compresses the KV cache, a side effect that this exact-attention kernel has never produced
 B) Removes attention
 C) Shrinks model weights
 D) Speeds up exact attention via IO-aware tiling that reduces GPU memory traffic
@@ -146,7 +146,7 @@ D) Layer indices for the residual stream
 **19. Extending context beyond training length is commonly done with:**
 
 A) More layers
-B) Larger batch size
+B) Larger batch size, a parallelism knob that leaves the trained horizon untouched
 C) RoPE frequency scaling (e.g., linear or NTK scaling)
 D) A reduced vocabulary
 
