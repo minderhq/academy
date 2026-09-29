@@ -1,7 +1,7 @@
 ---
 Document ID: 4306
 Title: "4306: PyTorch QAT Guide"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 ---
@@ -22,6 +22,7 @@ Difficulty: Advanced
 - [Performance Measurement](#performance-measurement)
 - [Common Issues](#common-issues)
 - [Further Resources](#further-resources)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -462,6 +463,10 @@ model = quant.prepare_qat(model)  # Don't skip this!
 model(dummy_input)  # Calibrate observers
 model = quant.convert(model)
 ```
+
+## Summary
+
+torch.ao.quantization gives you the whole QAT pipeline in three steps: prepare inserts fake-quant modules from a qconfig mapping, training adapts the weights to the simulated precision, and convert swaps fake-quant for real quantized ops. The working pattern from this guide: start from the default config, skip layers that measurably hurt, debug observer and dtype mismatches as they surface, and treat a measured speedup as the exit criterion - quantization that does not benchmark faster did not happen.
 
 ## Further Resources
 

@@ -1,7 +1,7 @@
 ---
 Document ID: 4307
 Title: "4307: Transformers QAT Guide"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 ---
@@ -21,6 +21,7 @@ Difficulty: Advanced
 - [Evaluation](#evaluation)
 - [Best Practices](#best-practices)
 - [Troubleshooting](#troubleshooting)
+- [Summary](#summary)
 - [Further Reading](#further-reading)
 - [References](#references)
 
@@ -435,6 +436,10 @@ def set_prefix_bit_width(model, prefix, bit_width=8):
 for prefix in ['embeddings', 'encoder.layer.0']:
     set_prefix_bit_width(model, prefix)
 ```
+
+## Summary
+
+Hugging Face puts four paths to quantized transformers on the table: bitsandbytes NF4 for instant low-memory loading, AutoGPTQ for optimized 4-bit inference, Optimum for ONNX-quantized export, and true QAT training when the post-training routes cost too much accuracy. The evaluation section is the discipline that ties them together: benchmark each method on your model and workload before committing - the right answer is workload-dependent, and this guide's decision points show where each method wins.
 
 ## Further Reading
 

@@ -3,7 +3,7 @@ Document ID: 4303
 Title: "4303: QAT for Transformers"
 Phase: 4
 Module: 4300
-Last Updated: 2026-09-27
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -28,6 +28,7 @@ Tags: ['quantization', 'qat', 'quantization-aware-training']
 - [Training Considerations](#training-considerations)
 - [Common Issues](#common-issues)
 - [Results Expectations](#results-expectations)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -409,6 +410,10 @@ For 4-bit QAT:
 - **Accuracy loss:** 1-3% vs FP32
 - **Model size:** 8x smaller
 - **Inference speed:** 4-8x faster
+
+## Summary
+
+Transformers tolerate QAT well but not uniformly: the recipe this lesson built quantizes the attention and MLP projections while deliberately protecting layer norms, embeddings, and the softmax path. The QKV projections and feed-forward layers carry most of the win; embeddings and the output layer are where accuracy quietly dies. Per-channel weight quantization with per-tensor activations was the default that held up, and the results expectations gave the accuracy bands to hold your own runs against.
 
 ## References
 

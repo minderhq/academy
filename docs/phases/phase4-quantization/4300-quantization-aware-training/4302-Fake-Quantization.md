@@ -3,7 +3,7 @@ Document ID: 4302
 Title: "4302: Fake Quantization"
 Phase: 4
 Module: 4300
-Last Updated: 2026-09-27
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -25,6 +25,7 @@ Tags: ['quantization', 'qat', 'quantization-aware-training']
 - [Debugging Fake Quantization](#debugging-fake-quantization)
 - [Common Pitfalls](#common-pitfalls)
 - [Performance Tips](#performance-tips)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -407,6 +408,10 @@ scale = scale.clamp(min=1e-5)
 2. **Use Asymmetric for Activations**: Better handles non-centered distributions
 3. **Per-Channel for Weights**: Significantly better accuracy
 4. **Per-Tensor for Activations**: Usually sufficient, faster
+
+## Summary
+
+Fake quantization is the mechanism that makes QAT trainable: quantize in the forward pass, pass gradients straight through in the backward pass with the straight-through estimator. You built the complete fake-quant module - scale and zero-point computation, per-tensor and per-channel variants - and applied it to a real model. The debugging skill matters as much as the mechanism: when QAT diverges, the bug is usually in observer state, STE gradients, or range clipping, and each has a characteristic signature.
 
 ## References
 

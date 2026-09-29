@@ -3,7 +3,7 @@ Document ID: 4301
 Title: "4301: QAT Foundations"
 Phase: 4
 Module: 4300
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -24,6 +24,7 @@ Tags: ['quantization', 'qat', 'quantization-aware-training']
 - [When to Use QAT](#when-to-use-qat)
 - [Common Issues](#common-issues)
 - [Implementation Checklist](#implementation-checklist)
+- [Summary](#summary)
 - [Further Reading](#further-reading)
 - [References](#references)
 
@@ -237,6 +238,10 @@ scale = weight.abs().amax(dim=[1, 2], keepdim=True) / 127
 - [ ] Implement gradual QAT (start after initial training)
 - [ ] Evaluate accuracy vs bit-width
 - [ ] Export final quantized model
+
+## Summary
+
+Quantization Aware Training is the answer to a simple failure mode: post-training quantization costs accuracy because the weights never see quantization during training. QAT inserts fake-quantization ops into the forward pass, so the model adapts its weights to the precision it will actually run at - typically recovering most of the PTQ accuracy gap while keeping the deployment win. The decision rule from this lesson: try PTQ first, and reach for QAT when quantized accuracy misses your target and you have the training data and budget to close it.
 
 ## Further Reading
 

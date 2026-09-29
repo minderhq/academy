@@ -3,7 +3,7 @@ Document ID: 4304
 Title: "4304: Low-bit QAT"
 Phase: 4
 Module: 4300
-Last Updated: 2026-09-27
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -25,6 +25,7 @@ Tags: ['quantization', 'qat', 'quantization-aware-training']
 - [Practical Results](#practical-results)
 - [Implementation Checklist](#implementation-checklist)
 - [When to Use Each Bit-Width](#when-to-use-each-bit-width)
+- [Summary](#summary)
 - [Further Reading](#further-reading)
 - [References](#references)
 
@@ -371,6 +372,10 @@ For successful 4-bit QAT:
 - Requires special techniques
 - Significant accuracy degradation
 - Not production-ready
+
+## Summary
+
+Below 4 bits, quantization stops being a free lunch: 4-bit is the practical floor for most workloads, 3-bit needs careful per-layer allocation, and 2-bit is research territory. The advanced techniques that make low bits survivable - grouping, outlier handling, and quantization-aware training strategies - each buy accuracy back at training cost. The bit-width decision table is the takeaway: match the bit-width to your accuracy budget, not your ambition.
 
 ## Further Reading
 

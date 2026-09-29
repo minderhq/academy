@@ -3,7 +3,7 @@ Document ID: 4305
 Title: "4305: Quantization Configuration"
 Phase: 4
 Module: 4300
-Last Updated: 2026-09-27
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -27,6 +27,7 @@ Tags: ['quantization', 'qat', 'quantization-aware-training']
 - [Configuration Templates](#configuration-templates)
 - [Auto-Configuration](#auto-configuration)
 - [Validation Checklist](#validation-checklist)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -469,6 +470,10 @@ Before finalizing configuration:
 - [ ] Measured inference speedup
 - [ ] Confirmed memory reduction
 - [ ] Tested on target hardware
+
+## Summary
+
+A quantization configuration is a set of per-layer decisions: which layers to quantize, which precision, per-tensor or per-channel scales, symmetric or asymmetric ranges, dynamic or static activation quantization. This lesson walked each dimension and packaged the results into reusable templates, with selective quantization - skipping the sensitive layers - the single highest-leverage knob. Close with the validation checklist: no configuration ships without measured accuracy against the full evaluation set.
 
 ## References
 
