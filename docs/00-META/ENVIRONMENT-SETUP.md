@@ -1,14 +1,14 @@
 ---
 Document ID: ENVIRONMENT-SETUP
 Title: "Environment Setup Guide"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Beginner
 ---
 
 # Environment Setup Guide
 
-**Last Updated:** 2026-09-27
+**Last Updated:** 2026-09-29
 **Reading Time:** 15 minutes
 **Difficulty:** ⭐ Beginner
 
@@ -214,7 +214,7 @@ uv run uvicorn main:app --reload
 
 How the two layers relate:
 - `uv pip install -r requirements.txt` — imperative, like pip;
-  fine for labs and Dockerfiles
+  fine for labs and one-off installs
 - `uv add` / `uv sync` + `uv.lock` — declarative and reproducible
   across machines and CI; the standard for anything you own
 - Migrating an existing `requirements.txt`: `uv add -r
