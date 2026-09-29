@@ -21,7 +21,7 @@ Difficulty: Advanced
 
 A) Faster training
 B) Simpler architecture
-C) Better model accuracy
+C) Better model accuracy, which PEFT never promises over full fine-tuning
 D) Train only a small subset of parameters
 
 **2. What does LoRA stand for?**
@@ -34,14 +34,14 @@ D) None of the above
 **3. How many trainable parameters does LoRA typically add?**
 
 A) 0.1% - 3% of original model
-B) 10% - 20% of original model
+B) 10% - 20% of original model, a share far too large for any practical LoRA adapter
 C) 50% of original model
 D) Same as original model
 
 **4. What is the core idea behind LoRA?**
 
 A) Add low-rank matrices to existing weights
-B) Replace weights with smaller matrices
+B) Replace weights with smaller matrices, discarding the pretrained knowledge they carry
 C) Compress the model
 D) Remove unnecessary layers
 
@@ -61,7 +61,7 @@ D) 256-1024
 
 **7. What happens during LoRA inference?**
 
-A) LoRA weights are used separately
+A) LoRA weights are used separately, so every token pays a second matrix multiply
 B) LoRA weights are merged with base model
 C) LoRA weights are discarded
 D) Model is retrained
@@ -71,13 +71,13 @@ D) Model is retrained
 A) Data loading adapter
 B) Small bottleneck layers added to transformer
 C) Hardware adapter
-D) Training script adapter
+D) Training script adapter, a wrapper around loops that adds no learned layers at all
 
 **9. What is Prefix Tuning?**
 
 A) Tuning the vocabulary prefix
 B) Learning virtual tokens prepended to input
-C) Tuning only first N layers
+C) Tuning only first N layers, a depth-wise scheme prefix tuning never uses
 D) Quick tuning method
 
 **10. Why is PEFT important for LLMs?**
@@ -92,11 +92,11 @@ D) Improves training speed only
 A) The scaling of the low-rank update (ΔW = α/r · BA)
 B) The learning rate
 C) The batch size
-D) The quantization bit-width
+D) The quantization bit-width, which LoRA itself never sets at any point in its lifecycle
 
 **12. LoRA updates are most commonly applied to:**
 
-A) Embedding tables only
+A) Embedding tables only, leaving every attention projection permanently frozen
 B) Layer norms
 C) Attention projection matrices (e.g., q_proj, v_proj)
 D) The LM head only
@@ -110,7 +110,7 @@ D) FP16
 
 **14. Double quantization in QLoRA:**
 
-A) Applies quantization twice for accuracy
+A) Applies quantization twice for accuracy, a double pass that QLoRA never performs
 B) Quantizes the quantization constants themselves to save memory
 C) Duplicates weights across GPUs
 D) Quantizes gradients
@@ -120,11 +120,11 @@ D) Quantizes gradients
 A) Always reduces quality
 B) Has no effect
 C) Increases capacity and the adapter's memory footprint
-D) Reduces training time proportionally
+D) Reduces training time proportionally, though larger ranks usually cost more steps, not fewer
 
 **16. Compared with full fine-tuning, LoRA saves the most memory on:**
 
-A) Activation memory only
+A) Activation memory only, which LoRA actually leaves untouched at equal batch sizes
 B) Optimizer states for the frozen weights
 C) Data loading buffers
 D) Logits storage
@@ -134,13 +134,13 @@ D) Logits storage
 A) Served by swapping adapters without storing full model copies
 B) Merged into the tokenizer
 C) Used only one at a time per datacenter
-D) Trained simultaneously on one GPU at no cost
+D) Trained simultaneously on one GPU at no cost, a claim no real training loop has ever satisfied
 
 **18. Which PEFT method trains only continuous prompt vectors while keeping the model frozen?**
 
 A) Full fine-tuning
 B) Prompt tuning / soft prompting
-C) LoRA on all layers
+C) LoRA on all layers, which still trains weight matrices rather than prompt vectors
 D) Knowledge distillation
 
 **19. Merging LoRA as W' = W + (α/r)BA is valid because:**
@@ -153,7 +153,7 @@ D) B and A are orthogonal by construction
 **20. IA³ / BitFit-style PEFT methods differ from LoRA by:**
 
 A) Rewriting the attention math
-B) Requiring more trainable parameters than full fine-tuning
+B) Requiring more trainable parameters than full fine-tuning, which inverts their actual bargain
 C) Tuning very small vectors/biases instead of low-rank matrices
 D) Only working on encoder models
 
