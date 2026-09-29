@@ -12,15 +12,15 @@ DI-01  Difficulty missing, empty, or a value outside the known
 DI-02  field-name variant (canonical name is exactly
        "Difficulty:"; known alt names "Skill Level", "Level",
        "Complexity", "Difficulty Level" count as variants). HARD.
-DI-03  value outside the canonical 3-level enum
-       (Beginner/Intermediate/Advanced) - the corpus drain list
-       is {"Expert"} (5 sites, report queue for the tick-412
-       drain decision: fold into Advanced or keep a 4th level).
+DI-03  value outside the canonical enum (Beginner/Intermediate/
+       Advanced). HARD - drained tick-412: all 5 "Expert" sites
+       (SOLUTION-LAB-011, 4401-GPTQ, 4402-AWQ, 4403-GGUF,
+       4404-EXL2) canonicalized to Advanced, closing the
+       vocabulary at exactly three levels.
 
-HARD GATE - exit 1 on any DI-01/DI-02 finding, both born at
-zero at tick-411 (KW-03: 408/408 docs clean). DI-03 is a
-report queue until the Expert drain (census -> drain -> gate
-cycle).
+HARD GATE - exit 1 on any finding. DI-01/DI-02 born at zero at
+tick-411 (KW-03: 408/408 docs clean); DI-03 joined after the
+tick-412 Expert drain (census -> drain -> gate cycle).
 
 Run over the whole corpus:
     python scripts/qa/difficulty_census.py --root .
@@ -39,12 +39,6 @@ DIFF_FIELD = re.compile(r"^Difficulty:(.*)$")
 ALT_NAME = re.compile(r"^(?:Skill[-_ ]Level|Level|Complexity|"
                       r"Difficulty[-_ ]Level):")
 CANON = ("Beginner", "Intermediate", "Advanced")
-DRAIN_KNOWN = {"expert"}
-
-
-def norm(value: str) -> str:
-    """Casefolded, whitespace/hyphen/underscore-collapsed form."""
-    return re.sub(r"[\s_-]+", " ", value.strip().casefold())
 
 
 def fm_block(lines: list[str]) -> list[str] | None:
@@ -95,12 +89,11 @@ def main() -> int:
             counts["DI-01"] += 1
         elif val in CANON:
             values[val] += 1
-        elif norm(val) in DRAIN_KNOWN:
-            findings.append(f"{rel}: DI-03 non-canonical Difficulty "
-                            f"{val!r} (canonical enum Beginner/"
-                            f"Intermediate/Advanced; drain queue)")
-            counts["DI-03"] += 1
         else:
+            findings.append(f"{rel}: DI-03 non-canonical Difficulty "
+                            f"{val!r} (canonical enum is Beginner/"
+                            f"Intermediate/Advanced)")
+            counts["DI-03"] += 1
             findings.append(f"{rel}: DI-01 unknown Difficulty value "
                             f"{val!r} (vocabulary is Beginner/"
                             f"Intermediate/Advanced)")
@@ -120,9 +113,9 @@ def main() -> int:
         print(f.encode("ascii", "backslashreplace").decode("ascii"))
     print(f"difficulty_census: docs={n_docs} values={dict(values)} "
           f"DI-01={di01} DI-02={di02} DI-03={di03} "
-          f"(hard DI-01/02; DI-03 report queue - Expert drain "
-          f"tick-412)")
-    return 1 if (di01 or di02) else 0
+          f"(hard gate; DI-03 drained tick-412, canonical enum "
+          f"Beginner/Intermediate/Advanced)")
+    return 1 if findings else 0
 
 
 if __name__ == "__main__":

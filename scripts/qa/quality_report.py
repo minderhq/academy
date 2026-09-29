@@ -374,8 +374,9 @@ stand today?" without running each tool by hand.
                       measured 0 across 408 docs at tick-411
                       (KW-03). DI-03 value outside the canonical
                       Beginner/Intermediate/Advanced enum - the
-                      drain list is {"Expert"} (5 sites, report
-                      queue for the tick-412 drain)
+                      drain list was {"Expert"} - 5 sites drained
+                      tick-412 to Advanced (3-level enum closed),
+                      hard since the drain
     unfinished_marker_scan unfinished-content markers in prose
                        (UM-01): outside any code fence, inline code
                        scrubbed, a line must not carry "coming soon",
