@@ -219,6 +219,16 @@ stand today?" without running each tool by hand.
                        from the tick-335/336 census (697 fences, 22
                        plain -> 38 with braced loads, 5 drained)
                        locked baseline 0 at birth
+    uv_install_check    plain 'pip install' bypassing the uv
+                       standard (UV-01) inside bash/sh/shell/
+                       dockerfile fences; lines using the uv
+                       interface (uv pip install) are never
+                       reported; reasoned (rel, exact-line)
+                       accepts cover the documented fallback,
+                       conda, container, bootstrap and notebooks
+                       classes; born from the tick-337 census
+                       (715 fences, 145 pip-family lines, 30
+                       plain) locked baseline 0 at birth
     unfinished_marker_scan unfinished-content markers in prose
                        (UM-01): outside any code fence, inline code
                        scrubbed, a line must not carry "coming soon",
@@ -405,6 +415,7 @@ GATES = [
     ("fence_variant_check.py", "fence_variant_check", True),
     ("fence_variant_check_module.py", "fence_variant_check_module", True),
     ("bash_vars_check.py", "bash_vars_check", True),
+    ("uv_install_check.py", "uv_install_check", True),
     ("unfinished_marker_scan.py", "unfinished_marker_scan", True),
     ("empty_section_scan.py", "empty_section_scan", True),
     ("emoji_shortcode_scan.py", "emoji_shortcode_scan", True),
