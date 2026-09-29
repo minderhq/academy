@@ -145,7 +145,7 @@ if __name__ == "__main__":
     #  pair of LoRA matrices; 18,512 / 616,016 = 3.00%)
 ```
 
-### Exercise 2: Apply LoRA with HuggingFace
+### Exercise 2: Apply LoRA with Hugging Face
 
 ```python
 from peft import LoraConfig, get_peft_model, TaskType

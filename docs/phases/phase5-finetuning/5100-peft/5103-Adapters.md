@@ -1,7 +1,7 @@
 ---
 Document ID: 5103
 Title: "5103: Adapters & Parameter-Efficient Adaptation Methods"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 ---
@@ -281,7 +281,7 @@ Decision guide:
 └── Researching low-data regimes?        -> Compacter, prefix tuning
 ```
 
-The HuggingFace `peft` library implements all of the above behind one API
+The Hugging Face `peft` library implements all of the above behind one API
 surface — swap `LoraConfig` for `IA3Config` / `PrefixTuningConfig` /
 `PromptTuningConfig` and the training loop is unchanged.
 

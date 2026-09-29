@@ -47,12 +47,12 @@ sudo apt-get -y install cuda-toolkit-12-1
 nvcc --version
 ```
 
-#### 2. HuggingFace Authentication (Required)
+#### 2. Hugging Face Authentication (Required)
 ```bash
-# Install HuggingFace CLI
+# Install Hugging Face CLI
 uv pip install -U "huggingface_hub[cli]"
 
-# Login (you need a HuggingFace account with access to Mistral-7B)
+# Login (you need a Hugging Face account with access to Mistral-7B)
 # Visit https://huggingface.co/settings/tokens to create a token
 huggingface-cli login
 
@@ -61,7 +61,7 @@ huggingface-cli login
 # Click "Agree and access repository" then login to accept
 ```
 
-> **🔑 Important:** You must accept the Mistral-7B license terms on HuggingFace before the lab. The model is gated and requires authentication.
+> **🔑 Important:** You must accept the Mistral-7B license terms on Hugging Face before the lab. The model is gated and requires authentication.
 
 #### 3. Python Environment
 ```bash

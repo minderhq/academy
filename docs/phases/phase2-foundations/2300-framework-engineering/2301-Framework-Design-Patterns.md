@@ -46,7 +46,7 @@ After completing this lesson, you will be able to:
 
 ## Abstract
 
-Machine learning frameworks require careful architectural design to ensure flexibility, maintainability, and scalability. This document covers essential design patterns used in production ML frameworks like HuggingFace Transformers, PyTorch Lightning, and LangChain.
+Machine learning frameworks require careful architectural design to ensure flexibility, maintainability, and scalability. This document covers essential design patterns used in production ML frameworks like Hugging Face Transformers, PyTorch Lightning, and LangChain.
 
 **What you'll learn:**
 - Model abstraction layers for framework-agnostic code
@@ -320,7 +320,7 @@ if __name__ == "__main__":
 3. **Collaboration** - Team members can use different frameworks
 4. **Production** - Easy A/B testing of different implementations
 
-### Real-World Example: HuggingFace
+### Real-World Example: Hugging Face
 
 ```python
 from transformers import PreTrainedModel, BertModel
@@ -591,7 +591,7 @@ if __name__ == "__main__":
 4. **Validate on load** - Catch errors early
 5. **Use meaningful defaults** - Start with sensible values
 
-### Real-World Example: HuggingFace
+### Real-World Example: Hugging Face
 
 ```python
 import json
@@ -1233,7 +1233,7 @@ See: [2306: Building a Production Framework](./guides/2306-Building-Production-F
 4. **Version Handling** - Manage model compatibility
 
 **Real-World Frameworks Using These Patterns:**
-- HuggingFace Transformers (model abstraction + configs)
+- Hugging Face Transformers (model abstraction + configs)
 - PyTorch Lightning (abstraction + plugins)
 - LangChain (plugins + versioning)
 - FastAPI (plugin middlewares)
@@ -1250,8 +1250,8 @@ See: [2306: Building a Production Framework](./guides/2306-Building-Production-F
 
 ### External References
 
-- [PreTrainedModel - HuggingFace Transformers](https://huggingface.co/docs/transformers/main_classes/model)
-- [Trainer and TrainingArguments - HuggingFace Transformers](https://huggingface.co/docs/transformers/main_classes/trainer)
+- [PreTrainedModel - Hugging Face Transformers](https://huggingface.co/docs/transformers/main_classes/model)
+- [Trainer and TrainingArguments - Hugging Face Transformers](https://huggingface.co/docs/transformers/main_classes/trainer)
 - [dataclasses - Python documentation](https://docs.python.org/3/library/dataclasses.html)
 - [langchain_core API reference](https://reference.langchain.com/python/langchain-core)
 

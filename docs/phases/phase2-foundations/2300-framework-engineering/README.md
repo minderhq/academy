@@ -3,7 +3,7 @@ Document ID: 2300-README
 Title: "Phase 2: Module 2300 - Framework Engineering"
 Phase: 2
 Module: 2300
-Last Updated: 2026-09-26
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 28 hours
@@ -79,7 +79,7 @@ After completing this module, you will be able to:
 
 | Document | Topic | Time | Difficulty |
 |----------|-------|------|------------|
-| [2305: Framework Comparison Guide](./guides/2305-Framework-Comparison.md) | Compare HuggingFace, LangChain, custom | 1.5 hrs | Intermediate |
+| [2305: Framework Comparison Guide](./guides/2305-Framework-Comparison.md) | Compare Hugging Face, LangChain, custom | 1.5 hrs | Intermediate |
 | [2306: Building a Production Framework](./guides/2306-Building-Production-Framework.md) | Hands-on framework building | 3 hrs | Advanced |
 
 ---
@@ -116,7 +116,7 @@ START
   - A/B testing
   ↓
 [2305: Framework Comparison] (1.5 hr)
-  - HuggingFace Transformers
+  - Hugging Face Transformers
   - LangChain
   - Custom frameworks
   ↓
@@ -239,7 +239,7 @@ A: Not necessarily. But understanding these patterns helps you:
 **Q: Which framework should I use in production?**
 
 A: Depends on your use case:
-- **HuggingFace:** Pre-trained models, standard NLP/CV
+- **Hugging Face:** Pre-trained models, standard NLP/CV
 - **LangChain:** RAG, agents, LLM apps
 - **PyTorch Lightning:** Training custom models
 - **FastAPI:** Serving models via API

@@ -1,7 +1,7 @@
 ---
 Document ID: 3200-EMBEDDINGS-README
 Title: "[3200]: Embedding Latent Spaces"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Beginner
 ---
@@ -243,7 +243,7 @@ class RotaryPositionalEmbedding(nn.Module):
 |-------|----------|
 | **Tokenizer OOM** | Reduce vocab size or use streaming tokenization |
 | **Poor RoPE extrapolation** | Adjust theta base frequency or use YaRN |
-| **Slow tokenization** | Use Rust-based tokenizers (HuggingFace tokenizers) |
+| **Slow tokenization** | Use Rust-based tokenizers (Hugging Face tokenizers) |
 
 ---
 

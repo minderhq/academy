@@ -1,7 +1,7 @@
 ---
 Document ID: TROUBLESHOOTING-QUICKSTART
 Title: "Quick Start Troubleshooting Guide"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Beginner
 ---
@@ -199,7 +199,7 @@ curl -fsSL https://ollama.com/install.sh | sh
 
 ## 🔌 Connection Issues
 
-### Issue: "Connection refused" when running ollama
+### Issue: "Connection refused" when running Ollama
 
 **Symptoms:**
 - `ollama run mistral` fails

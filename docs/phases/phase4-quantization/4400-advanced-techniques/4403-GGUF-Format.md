@@ -3,7 +3,7 @@ Document ID: 4403
 Title: "4403: GGUF Format"
 Phase: 4
 Module: 4400
-Last Updated: 2026-09-27
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Expert
 Estimated Time: 5 hours
@@ -347,7 +347,7 @@ writer.write_kv_data_to_file()
 writer.write_tensors_to_file()
 writer.close()
 
-# Online alternative: HuggingFace's GGUF-my-repo converts HF repos to
+# Online alternative: Hugging Face's GGUF-my-repo converts HF repos to
 # GGUF and GGUF-editor edits metadata without any local tooling
 ```
 
@@ -433,7 +433,7 @@ llama-cli -m model.gguf -ngl 33  # Offload all layers
 
 ### Finding GGUF Models
 
-- HuggingFace: Search for "gguf" filter
+- Hugging Face: Search for "gguf" filter
 - Official orgs + quality quantizers (bartowski, etc.) — TheBloke is archived; its uploads remain but are frozen
 - Civitai: Community models
 

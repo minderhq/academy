@@ -1,7 +1,7 @@
 ---
 Document ID: 4300-PREREQUISITES
 Title: "4300: Quantization Aware Training - Prerequisites"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 ---
@@ -37,7 +37,7 @@ This module covers Quantization Aware Training for optimizing models for low-pre
 **Review Resources:**
 - "Quantization and Training of Neural Networks for Efficient Integer-Arithmetic-Only Inference" (Jacob et al.)
 - "Post-Training Quantization" (from 4100 module)
-- HuggingFace quantization documentation
+- Hugging Face quantization documentation
 - PyTorch QAT tutorials
 
 **Estimated Review Time:** 3-4 hours

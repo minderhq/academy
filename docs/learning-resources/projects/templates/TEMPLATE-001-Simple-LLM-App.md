@@ -31,7 +31,7 @@ simple-llm-app/
 
 ## Features
 
-- Model loading with HuggingFace
+- Model loading with Hugging Face
 - Text generation interface
 - REST API with FastAPI
 - Configuration management

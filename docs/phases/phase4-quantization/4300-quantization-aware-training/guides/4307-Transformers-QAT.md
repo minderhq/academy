@@ -1,7 +1,7 @@
 ---
 Document ID: 4307
 Title: "4307: Transformers QAT Guide"
-Last Updated: 2026-09-27
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 ---
@@ -12,7 +12,7 @@ Difficulty: Advanced
 
 - [Learning Objectives](#learning-objectives)
 - [Abstract](#abstract)
-- [HuggingFace QAT Tools](#huggingface-qat-tools)
+- [Hugging Face QAT Tools](#hugging-face-qat-tools)
 - [Method 1: bitsandbytes NF4 Quantization](#method-1-bitsandbytes-nf4-quantization)
 - [Method 2: AutoGPTQ](#method-2-autogptq)
 - [Method 3: Optimum for ONNX Quantization](#method-3-optimum-for-onnx-quantization)
@@ -30,7 +30,7 @@ Difficulty: Advanced
 
 After completing this lesson, you will be able to:
 
-- Map the four HuggingFace QAT tools — bitsandbytes for NF4/INT8 loading, optimum for ONNX/Habana export, auto-gptq for GPTQ, and native torch.ao QAT carried through the Trainer
+- Map the four Hugging Face QAT tools — bitsandbytes for NF4/INT8 loading, optimum for ONNX/Habana export, auto-gptq for GPTQ, and native torch.ao QAT carried through the Trainer
 - Load a 4-bit Llama with BitsAndBytesConfig — nf4 quant type, float16 compute dtype, double quant — and read the footprint from get_memory_footprint()
 - Quantize a causal LM with AutoGPTQ — BaseQuantizeConfig (bits=4, group_size=128, damp_percent=0.01), 128 calibration examples through model.quantize(), save_quantized/reload via from_quantized()
 - Export gpt2 to ONNX with ORTModelForCausalLM(export=True) and shrink it via ORTQuantizer + AutoQuantizationConfig.arm64(is_static=False) dynamic quantization
@@ -41,9 +41,9 @@ After completing this lesson, you will be able to:
 
 ## Abstract
 
-HuggingFace Transformers provides built-in support for QAT through the `bitsandbytes` and `optimum` libraries. This guide shows how to quantize transformer models effectively.
+Hugging Face Transformers provides built-in support for QAT through the `bitsandbytes` and `optimum` libraries. This guide shows how to quantize transformer models effectively.
 
-## HuggingFace QAT Tools
+## Hugging Face QAT Tools
 
 ```text
 Transformers QAT Ecosystem
@@ -438,7 +438,7 @@ for prefix in ['embeddings', 'encoder.layer.0']:
 
 ## Further Reading
 
-- **Library:** HuggingFace PEFT documentation
+- **Library:** Hugging Face PEFT documentation
 - **Library:** bitsandbytes GitHub
 - **Paper:** "QLoRA: Efficient Finetuning of Quantized LLMs"
 - **Paper:** "GPTQ: Accurate Post-Training Quantization"

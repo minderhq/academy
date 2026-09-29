@@ -49,7 +49,7 @@ Use full URLs for external resources:
 
 ```markdown
 [OpenAI Documentation](https://platform.openai.com/docs)
-[HuggingFace Transformers](https://huggingface.co/docs/transformers/)
+[Hugging Face Transformers](https://huggingface.co/docs/transformers/)
 ```
 
 ### 3. Anchor Links

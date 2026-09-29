@@ -31,8 +31,18 @@ token entries in front-matter-style tag lists (same convention as
 ollama"), and bare binary-name references (ollama ps). Fence
 detection follows the corpus idiom including list-indented fences
 ("   ```bash" inside numbered steps) and skips inline `code` spans.
-Report mode - exit 0 by design; the census is an inventory for
-batched drains, not a gate.
+
+History: born tick-400 (f9a9575) as report-mode census measuring
+66 TC-01 across the corpus. Drain tick-401: all 66 fixed in 37
+files to canonical "Hugging Face" (per-file expected-count
+asserts; front-matter bumped), plus the 1 real TC-02 prose site
+(TROUBLESHOOTING-QUICKSTART heading) and one bare command
+reference backticked in 1401. TC-01 is now a HARD GATE - exit 1
+if any bare "HuggingFace" token returns, so the 55/45 split can
+never regrow. TC-02 stays report-only: the remaining prose
+lowercase-ollama sites are legal literals (quoted terminal error
+text, tag-list entries like ['infrastructure', 'ollama', 'vllm'],
+and quoted binary-name headings) tracked for audit, not drift.
 
 Run over the whole corpus:
     python scripts/qa/term_consistency_scan.py --root .
@@ -100,9 +110,9 @@ def main() -> int:
         n_files.add(f.split(":", 1)[0])
     print(f"term_consistency_scan: {total[0]} TC-01 bare-HuggingFace "
           f"and {total[1]} TC-02 prose-ollama findings in "
-          f"{len(n_files)} files across docs/ (report mode; canonical "
-          f"'Hugging Face' / 'Ollama')")
-    return 0
+          f"{len(n_files)} files across docs/ (TC-01 hard gate; "
+          f"TC-02 report-only; canonical 'Hugging Face' / 'Ollama')")
+    return 1 if total[0] else 0
 
 
 if __name__ == "__main__":

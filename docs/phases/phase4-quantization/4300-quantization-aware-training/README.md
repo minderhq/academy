@@ -1,7 +1,7 @@
 ---
 Document ID: 4300-QUANTIZATION-AWARE-TRAINING-README
 Title: "4300: Quantization Aware Training (QAT)"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Beginner
 ---
@@ -32,7 +32,7 @@ This module covers Quantization Aware Training (QAT), a technique to train model
 
 ### Practical Guides
 6. **[guides/4306-PyTorch-QAT](./guides/4306-PyTorch-QAT.md)** - QAT with PyTorch native support
-7. **[guides/4307-Transformers-QAT](./guides/4307-Transformers-QAT.md)** - QAT with HuggingFace Transformers
+7. **[guides/4307-Transformers-QAT](./guides/4307-Transformers-QAT.md)** - QAT with Hugging Face Transformers
 8. **[guides/4308-BitBlade-QAT](./guides/4308-BitBlade-QAT.md)** - Advanced QAT with bitsandbytes
 
 ## Prerequisites

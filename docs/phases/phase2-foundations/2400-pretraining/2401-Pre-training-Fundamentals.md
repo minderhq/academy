@@ -39,7 +39,7 @@ After completing this lesson, you will be able to:
 - Catalogue the major public pre-training corpora (Common Crawl, C4, RedPajama, The Pile, SlimPajama) and reason about their size, quality, and access trade-offs
 - Implement a document quality filter that checks length, language, repetition, and blocklists, and order the checks cheapest-first
 - Detect exact and near-duplicate documents using MinHash signatures, and explain why near-duplicate removal matters as much as exact removal
-- Train a real BPE tokenizer with HuggingFace `tokenizers`, use ByteLevel pre-tokenization, and verify encode/decode round-trips
+- Train a real BPE tokenizer with Hugging Face `tokenizers`, use ByteLevel pre-tokenization, and verify encode/decode round-trips
 - Schedule a training curriculum (foundation, web knowledge, annealing) and a warmup-then-decay learning rate schedule with exact LR values
 - Measure perplexity on held-out text with a working evaluator, and articulate what perplexity does and does not tell you
 - Estimate a pre-training run's FLOPs, GPU-hours, wall-clock days, and dollar cost from the 6·N·D rule
@@ -118,7 +118,7 @@ datasets = {
     "SlimPajama": {
         "size": "627B tokens",
         "quality": "High (cleaned RedPajama)",
-        "access": "HuggingFace",
+        "access": "Hugging Face",
         "use_case": "Cleaner RedPajama",
     },
     "GitHub": {
@@ -201,7 +201,7 @@ class DataCollector:
         return base_url
 
     def download_c4_via_huggingface(self):
-        """Stream a small C4 sample through HuggingFace datasets."""
+        """Stream a small C4 sample through Hugging Face datasets."""
         from datasets import load_dataset
 
         dataset = load_dataset("allenai/c4", "en", split="train", streaming=True)
@@ -227,7 +227,7 @@ class DataCollector:
         return out
 
     def download_wikipedia(self, language: str = "en"):
-        """Download a Wikipedia dump through HuggingFace datasets."""
+        """Download a Wikipedia dump through Hugging Face datasets."""
         from datasets import load_dataset
 
         dataset = load_dataset("wikimedia/wikipedia", f"20231101.{language}", split="train")
@@ -242,7 +242,7 @@ class DataCollector:
         return out
 
     def download_arxiv(self):
-        """Download scientific_papers/arxiv through HuggingFace datasets."""
+        """Download scientific_papers/arxiv through Hugging Face datasets."""
         from datasets import load_dataset
 
         dataset = load_dataset("scientific_papers", "arxiv", split="train")
@@ -275,7 +275,7 @@ class DataCollector:
 This block has no output — it only defines the collector. What to notice:
 
 - Each source has a *different* collection mechanism: Common Crawl is raw WARC
-  files from `data.commoncrawl.org`, most others stream through HuggingFace
+  files from `data.commoncrawl.org`, most others stream through Hugging Face
   `datasets`, and StackExchange is 7z archives on archive.org.
 - The network imports (`datasets`) are deferred *inside* the methods. That
   keeps the module importable on a machine with no internet — the same trick
@@ -534,7 +534,7 @@ extra token per document is extra compute per step.
 
 ### Training a real BPE tokenizer
 
-The block below trains a genuine BPE tokenizer with HuggingFace `tokenizers`
+The block below trains a genuine BPE tokenizer with Hugging Face `tokenizers`
 — the same library, model class, and trainer GPT-2-style pipelines use — on a
 tiny corpus so it finishes in milliseconds. Byte pair encoding starts from
 single characters and repeatedly merges the most frequent adjacent pair, so
@@ -548,7 +548,7 @@ the tokenizer's own unit test.
 
 ```python
 """
-Train a real BPE tokenizer with HuggingFace tokenizers - the same
+Train a real BPE tokenizer with Hugging Face tokenizers - the same
 library, model class, and trainer GPT-2-style pipelines use, at toy
 scale so it finishes in milliseconds.
 """
@@ -1168,7 +1168,7 @@ What to notice:
   autoregressive contract: position *t* can attend to positions ≤ *t* only.
   You met the proof of this in module PREREQUISITES; here it silently does
   its job inside the loop.
-- The production path from here — HuggingFace `Trainer`, `accelerate`, FSDP
+- The production path from here — Hugging Face `Trainer`, `accelerate`, FSDP
   sharding, checkpoint/resume — is module
   [2402: Large-Scale Training for Language Models](./2402-Large-Scale-Training.md),
   and the full hands-on build is
@@ -1239,7 +1239,7 @@ Key takeaways:
 - [Neural Machine Translation of Rare Words with Subword Units](https://arxiv.org/abs/1508.07909) — Sennrich et al., 2016; the BPE paper
 - [Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer (T5/C4)](https://arxiv.org/abs/1910.10683) — Raffel et al., 2020; the C4 cleaning heuristics in detail
 - [The Pile: An 800GB Dataset of Diverse Text for Language Modeling](https://arxiv.org/abs/2101.00027) — Gao et al., 2020; a curated-corpus design study
-- [HuggingFace Tokenizers documentation](https://huggingface.co/docs/tokenizers) — the library used in Part 4 (BPE, ByteLevel, trainers)
+- [Hugging Face Tokenizers documentation](https://huggingface.co/docs/tokenizers) — the library used in Part 4 (BPE, ByteLevel, trainers)
 
 ## Next Steps
 

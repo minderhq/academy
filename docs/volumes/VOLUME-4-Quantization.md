@@ -1,7 +1,7 @@
 ---
 Document ID: VOLUME-4
 Title: "Volume 4: Quantization & Optimization"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -341,7 +341,7 @@ docker run --gpus all \
 ---
 
 #### Day 4-5: TGI Deployment
-**Text Generation Inference by HuggingFace**
+**Text Generation Inference by Hugging Face**
 
 1. **[1405: TGI Deployment Guide](../phases/phase1-infra/1400-llmops/guides/1405-TGI-Deployment-Guide.md)** (3-4 hours)
    - TGI architecture

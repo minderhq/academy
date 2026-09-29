@@ -1,7 +1,7 @@
 ---
 Document ID: 1400-LLMOPS-README
 Title: "1400: LLMOps and Model Serving"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Beginner
 ---
@@ -86,7 +86,7 @@ vLLM (PagedAttention):
     - Newer (less stable)
   Best For: High-volume API services
 
-TGI (HuggingFace):
+TGI (Hugging Face):
   Pros:
     - Production hardened
     - Easy setup
@@ -261,7 +261,7 @@ services:
 ### 2. Text Generation Inference (TGI)
 
 **Key Features:**
-- **Production Hardened:** Battle-tested by HuggingFace
+- **Production Hardened:** Battle-tested by Hugging Face
 - **Easy Setup:** One-command deployment
 - **Features:** Quantization, Flash Attention, Streaming
 - **Enterprise Support:** Commercial support available
@@ -869,12 +869,12 @@ locust             # Python load testing
 
 **Forums:**
 - [vLLM Discord](https://discord.gg/vllm)
-- [HuggingFace Forums](https://discuss.huggingface.co/)
+- [Hugging Face Forums](https://discuss.huggingface.co/)
 - [r/LocalLLaMA on Reddit](https://www.reddit.com/r/LocalLLaMA/)
 
 **Blogs:**
 - [vLLM Blog](https://vllm.ai/blog)
-- [HuggingFace Blog](https://huggingface.co/blog)
+- [Hugging Face Blog](https://huggingface.co/blog)
 - [LlamaIndex Blog](https://www.llamaindex.ai/blog)
 
 ## Module Completion Checklist
@@ -904,7 +904,7 @@ Production Ready:
 | Term | Definition |
 |------|------------|
 | **vLLM** | High-performance LLM serving engine with PagedAttention |
-| **TGI** | Text Generation Inference - HuggingFace's serving engine |
+| **TGI** | Text Generation Inference - Hugging Face's serving engine |
 | **PagedAttention** | Memory-efficient attention mechanism (like virtual memory) |
 | **Continuous Batching** | Dynamic batch sizing for better throughput |
 | **Tensor Parallelism** | Split model across multiple GPUs |

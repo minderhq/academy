@@ -3,7 +3,7 @@ Document ID: 1204
 Title: "1204: Multi-GPU Setup"
 Phase: 1
 Module: 1200
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -245,7 +245,7 @@ For automatic micro-batch pipelining, the old
 use `torch.distributed.pipelining` (PyTorch 2.4+) or the device_map-based
 sharding shown in the next section.
 
-### Layer Sharding (HuggingFace Accelerate)
+### Layer Sharding (Hugging Face Accelerate)
 ```python
 from accelerate import infer_auto_device_map, dispatch_model
 

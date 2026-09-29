@@ -3,7 +3,7 @@ Document ID: 3102
 Title: "3102: Flash Attention - IO-Aware Exact Attention"
 Phase: 3
 Module: 3100
-Last Updated: 2026-09-27
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -243,7 +243,7 @@ O = flash_attn_func(Q, K, V, causal=True)
 # Much faster and less memory!
 ```
 
-### In Transformers (HuggingFace)
+### In Transformers (Hugging Face)
 ```python
 from transformers import AutoModelForCausalLM
 

@@ -1,7 +1,7 @@
 ---
 Document ID: 1300-KUBERNETES-README
 Title: "1300: Kubernetes for LLM Deployment"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Beginner
 ---
@@ -560,7 +560,7 @@ Symptoms:
 
 Root Cause:
 - Model not baked into container image
-- Pod downloads from HuggingFace each start
+- Pod downloads from Hugging Face each start
 ```
 
 **Solution:**

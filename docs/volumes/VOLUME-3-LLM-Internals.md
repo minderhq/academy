@@ -1,7 +1,7 @@
 ---
 Document ID: VOLUME-3
 Title: "Volume 3: LLM Internals & Architecture"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -503,7 +503,7 @@ Where:
 - **Solution:** Check CUDA version, try xformers alternative
 
 **Problem:** RoPE implementation complex
-- **Solution:** Use HuggingFace implementation first, then customize
+- **Solution:** Use Hugging Face implementation first, then customize
 
 **Problem:** Tokenizer produces different results
 - **Solution:** Check version, special tokens, preprocessing

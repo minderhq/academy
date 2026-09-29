@@ -1,7 +1,7 @@
 ---
 Document ID: CP-002
 Title: "CP-002: Vector Database Comparison Guide"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -123,7 +123,7 @@ Weaviate is an open-source vector search engine with built-in vectorization of t
 
 - **Vectorization:** Built-in models for text, images, audio
 - **GraphQL:** Native GraphQL API
-- **Modules:** Easy integration with OpenAI, Cohere, HuggingFace
+- **Modules:** Easy integration with OpenAI, Cohere, Hugging Face
 - **Schema:** Strong schema typing
 - **Hybrid:** BM25 + vector search
 

@@ -3,7 +3,7 @@ Document ID: 3202
 Title: "3202: Tokenizer Sciences - BPE, SentencePiece, and Tiktoken"
 Phase: 3
 Module: 3200
-Last Updated: 2026-09-27
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -402,7 +402,7 @@ model.resize_token_embeddings(len(tokenizer))
 
 ## Training Custom Tokenizer
 
-### From Scratch (HuggingFace)
+### From Scratch (Hugging Face)
 ```python
 from tokenizers import Tokenizer
 from tokenizers.models import BPE

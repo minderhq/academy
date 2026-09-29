@@ -3,7 +3,7 @@ Document ID: 7303
 Title: "7303: Multi-Agent Framework Comparison"
 Phase: 7
 Module: 7300
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -50,7 +50,7 @@ A comparison of the multi-agent frameworks used to build autonomous AI systems â
 | Feature | AutoGen | LangGraph | CrewAI | Swarm (OpenAI) |
 |---------|---------|-----------|--------|----------------|
 | **Architecture** | Conversational | State Machine | Role-based | Orchestrated |
-| **LLM Support** | OpenAI, Azure, HuggingFace | Any (via LangChain) | OpenAI, Claude, Local | OpenAI only |
+| **LLM Support** | OpenAI, Azure, Hugging Face | Any (via LangChain) | OpenAI, Claude, Local | OpenAI only |
 | **Memory** | Built-in | Via checkpoint | Built-in | Via context |
 | **Tool Calling** | Yes | Yes | Yes | Yes |
 | **Human-in-Loop** | Yes | Yes | Yes | No |

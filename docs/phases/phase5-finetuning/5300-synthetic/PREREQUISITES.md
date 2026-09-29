@@ -1,7 +1,7 @@
 ---
 Document ID: 5300-PREREQUISITES
 Title: "5300: Synthetic Data - Prerequisites"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 ---
@@ -38,7 +38,7 @@ This module covers synthetic data generation for AI training.
 - "Synthetic Data for Deep Learning" survey papers
 - "Data-centric AI" research (Andrew Ng)
 - "The Synthetic Data Vault" paper
-- HuggingFace datasets documentation
+- Hugging Face datasets documentation
 
 **Estimated Review Time:** 2-3 hours
 

@@ -3,7 +3,7 @@ Document ID: 1402
 Title: "1402: vLLM and TGI High-Concurrency Inference"
 Phase: 1
 Module: 1400
-Last Updated: 2026-09-27
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -55,7 +55,7 @@ vLLM and Text Generation Inference (TGI) are optimized inference engines for LLM
 | Continuous Batching | Yes | Yes |
 | Multi-GPU | Yes | Yes |
 | Open Source | Apache 2.0 | Apache 2.0 |
-| Model Support | HuggingFace | HuggingFace |
+| Model Support | Hugging Face | Hugging Face |
 | Flash Attention | Yes | Yes |
 | Speculative Decoding | Yes | Experimental |
 | Recommended For | Research/Custom + production default | Legacy - existing fleets only |

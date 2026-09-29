@@ -1,7 +1,7 @@
 ---
 Document ID: 4306
 Title: "4306: PyTorch QAT Guide"
-Last Updated: 2026-09-27
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 ---
@@ -480,4 +480,4 @@ model = quant.convert(model)
 
 ## Next Steps
 
-→ **[guides/4307: Transformers QAT](4307-Transformers-QAT.md)** - QAT with HuggingFace
+→ **[guides/4307: Transformers QAT](4307-Transformers-QAT.md)** - QAT with Hugging Face

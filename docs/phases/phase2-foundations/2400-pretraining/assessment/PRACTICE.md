@@ -93,7 +93,7 @@ class PretrainingDataset(Dataset):
         Initialize dataset.
 
         Args:
-            tokenized_data: Tokenized dataset from HuggingFace
+            tokenized_data: Tokenized dataset from Hugging Face
         """
         self.data = tokenized_data
 

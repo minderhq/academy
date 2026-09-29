@@ -3,7 +3,7 @@ Document ID: 4101
 Title: "4101: GGUF Physics - CPU/GPU Hybrid Offloading"
 Phase: 4
 Module: 4100
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -65,7 +65,7 @@ After completing this document, you will:
 - ✅ Understand the GGUF file format structure
 - ✅ Implement Q4_0 and Q4_K quantization algorithms
 - ✅ Configure optimal CPU/GPU offloading strategies
-- ✅ Convert HuggingFace models to GGUF format
+- ✅ Convert Hugging Face models to GGUF format
 - ✅ Optimize inference performance for your hardware
 
 ---
@@ -298,7 +298,7 @@ Illustrative: 7B Q4_K_M, RTX 3060 + DDR4
 ### Two-Step: FP16 Export, Then Quantize
 
 ```bash
-# Step 1: convert HuggingFace weights to (unquantized) GGUF
+# Step 1: convert Hugging Face weights to (unquantized) GGUF
 python convert_hf_to_gguf.py ./my-model-hf \
     --outtype f16 \
     --outfile my-model-f16.gguf

@@ -3,7 +3,7 @@ Document ID: 6402
 Title: "6402: Vector Database Comparison"
 Phase: 6
 Module: 6400
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -175,7 +175,7 @@ results = client.query_points(
 - 🧩 Modular and extensible
 - 🌐 Large and active community
 - 📚 Comprehensive documentation
-- 🔌 Built-in integrations (OpenAI, Cohere, HuggingFace)
+- 🔌 Built-in integrations (OpenAI, Cohere, Hugging Face)
 - 🔄 Automatic vectorization
 
 **Cons:**

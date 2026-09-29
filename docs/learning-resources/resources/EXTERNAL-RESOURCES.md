@@ -1,7 +1,7 @@
 ---
 Document ID: EXTERNAL-RESOURCES
 Title: "PROJECT-OMEGA: Video & External Resources"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -304,7 +304,7 @@ Curated list of videos, courses, and external resources to complement the learni
 
 ### Interactive Courses
 - [DeepLearning.AI Courses](https://www.deeplearning.ai/courses) - Free courses on AI topics
-- [HuggingFace Courses](https://huggingface.co/learn) - Free courses on NLP and transformers
+- [Hugging Face Courses](https://huggingface.co/learn) - Free courses on NLP and transformers
 - [Fast.ai](https://www.fast.ai/) - Practical deep learning courses
 
 ### Practice Platforms
@@ -314,11 +314,11 @@ Curated list of videos, courses, and external resources to complement the learni
 
 ### Research
 - [Hugging Face Papers](https://huggingface.co/papers/trending)
-- [HuggingFace Papers](https://huggingface.co/papers)
+- [Hugging Face Papers](https://huggingface.co/papers)
 - [arXiv.org](https://arxiv.org/list/cs.AI/recent)
 
 ### Communities
-- [HuggingFace Forums](https://discuss.huggingface.co/)
+- [Hugging Face Forums](https://discuss.huggingface.co/)
 - [r/LocalLLaMA on Reddit](https://www.reddit.com/r/LocalLLaMA/)
 - [MLOps.community](https://mlops.community/)
 

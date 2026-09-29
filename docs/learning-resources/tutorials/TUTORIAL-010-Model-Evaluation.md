@@ -248,7 +248,7 @@ def load_mmlu(subject: str = "abstract_algebra") -> list[dict]:
 
     Covers 57 subjects including STEM, humanities, etc.
     """
-    # Download from HuggingFace
+    # Download from Hugging Face
     from datasets import load_dataset
 
     dataset = load_dataset("cais/mmlu", "all", split="test")

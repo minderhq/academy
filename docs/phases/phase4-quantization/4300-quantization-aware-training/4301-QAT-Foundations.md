@@ -3,7 +3,7 @@ Document ID: 4301
 Title: "4301: QAT Foundations"
 Phase: 4
 Module: 4300
-Last Updated: 2026-09-27
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -243,7 +243,7 @@ scale = weight.abs().amax(dim=[1, 2], keepdim=True) / 127
 - **Paper:** "Quantization and Training of Neural Networks" (Jacob et al., 2018)
 - **Paper:** "Training Low-bit Neural Networks" (Zhou et al., 2024)
 - **Tutorial:** PyTorch QAT Documentation
-- **Code:** HuggingFace `bitsandbytes` library
+- **Code:** Hugging Face `bitsandbytes` library
 
 ## References
 

@@ -1,7 +1,7 @@
 ---
 Document ID: 3300-PREREQUISITES
 Title: "3300: Decoding - Prerequisites"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 ---
@@ -34,7 +34,7 @@ This module covers activation functions, normalization, and decoding strategies.
 **Review Resources:**
 - "Deep Learning" book (Goodfellow et al.) - Chapter 6
 - "Vanishing Gradient Problem" Wikipedia
-- HuggingFace Generation documentation
+- Hugging Face Generation documentation
 
 **Estimated Review Time:** 2-3 hours
 

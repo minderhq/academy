@@ -3,7 +3,7 @@ Document ID: 5401
 Title: "5401: Data Parallelism"
 Phase: 5
 Module: 5400
-Last Updated: 2026-09-25
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -214,7 +214,7 @@ from torch.distributed.fsdp import (
 )
 from torch.distributed.fsdp.wrap import transformer_auto_wrap_policy
 
-# for a HuggingFace model, wrap at decoder-layer granularity
+# for a Hugging Face model, wrap at decoder-layer granularity
 import transformers
 from transformers.models.llama.modeling_llama import LlamaDecoderLayer
 
