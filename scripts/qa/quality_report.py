@@ -204,6 +204,21 @@ stand today?" without running each tool by hand.
                        opens; fix direction is Title := H1 verbatim;
                        born from the tick-283 census (89 lesson docs
                        where the id prefix lived only in the H1)
+    fence_class_scan   fence-label classes must be classified (FC-01
+                       unknown label class): fence_label_scan locks
+                       that a label EXISTS, this locks that it is
+                       owned - 5 parser-validated classes (python/
+                       bash/json/yaml/mermaid have syntax judges) +
+                       16 explicitly accepted unvalidated classes
+                       (text/markdown prose, dockerfile/powershell/
+                       nginx/cypher/cuda/promql/cron/gitignore
+                       operational config, html/typescript/tsx/sql/
+                       cpp/c teaching samples); anything else is
+                       invisible code - a ``toml`` fence would skip
+                       every data-block gate and a platform load
+                       step could not tell code from prose; born
+                       from the tick-285 label census (21 labels /
+                       4244 fences), baseline 0 at birth
   queue gate (drain in progress; never fails the report unless --fail-on-queue):
     objectives_lint    template-objective artifacts (OL-01/OL-02), phase by phase
     fence_namecheck    unbound names in python fences (report mode), two
@@ -291,6 +306,7 @@ GATES = [
     ("fence_label_scan.py", "fence_label_scan", True),
     ("setext_scan.py", "setext_scan", True),
     ("title_h1_parity_scan.py", "title_h1_parity_scan", True),
+    ("fence_class_scan.py", "fence_class_scan", True),
 ]
 
 
