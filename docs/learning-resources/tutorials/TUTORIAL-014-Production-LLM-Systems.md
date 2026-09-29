@@ -2,7 +2,7 @@
 Document ID: TUTORIAL-014
 Title: "TUTORIAL-014: Production LLM Systems"
 Category: Tutorial
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -561,18 +561,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.13'
+      - uses: astral-sh/setup-uv@v9
 
       - name: Install dependencies
-        run: |
-          pip install uv
-          uv pip install --system -r requirements.txt
-          uv pip install --system pytest pytest-cov
+        # The repo commits pyproject.toml + uv.lock (uv init --bare + uv add).
+        run: uv sync --locked # dev group installs by default, so pytest rides along
 
       - name: Run tests
-        run: pytest --cov=app tests/
+        run: uv run pytest --cov=app tests/
 
   build:
     needs: test
@@ -614,8 +610,11 @@ jobs:
 
 ```text
 Upgrade notes over the naive workflow
-- checkout@v4 / setup-python@v5: the older majors run on a
-  deprecated Node runtime and warn on every job.
+- checkout@v4: the older majors run on a deprecated Node runtime
+  and warn on every job.
+- setup-uv + uv sync --locked: the test job installs the locked
+  graph from the committed pyproject.toml + uv.lock; pytest rides
+  in the default dev group, so no separate tooling install step.
 - permissions: contents: read - jobs get only what they need;
   write tokens are the default you want to turn OFF.
 - environment: production turns the deploy job into an approval
