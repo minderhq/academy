@@ -1,10 +1,10 @@
 ---
 Document ID: LAB-010
 Title: "LAB-010: DPO Alignment"
-Last Updated: 2026-09-27
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
-Estimated Time: 5-6 hours
+Estimated Time: 6 hours
 Tags: ['dpo', 'alignment', 'rlhf', 'preference-learning', 'hands-on']
 ---
 

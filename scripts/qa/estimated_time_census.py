@@ -13,15 +13,19 @@ ET-01  value matches no duration grammar (unparseable).
 ET-02  field-name variant - anything in the front-matter block
        spelled `Estimated[-_ ]?Time`, `Time Required` or
        `Duration` other than the exact `Estimated Time:`.
-ET-03  range form `X-Y hours` - REPORT queue, drained next tick
-       to single values (midpoint, half-up, integer hours) by an
-       explicit rule; ranges are ambiguous for platform math.
-       Dual-mode entries are a legal shape: two real durations
-       for two study modes, both parseable.
+ET-03  range form `X-Y hours`. HARD - drained tick-408: all 6
+       birth sites resolved to single durations (midpoint,
+       half-up, integer hours: 6-8->7, 5-6->6, 11-12->12,
+       17-19->18, 35-39->37); a range re-appearing fails the
+       gate with the drain rule in the message. Ranges are
+       ambiguous for platform scheduling math. Dual-mode entries
+       are a legal shape: two real durations for two study
+       modes, both parseable.
 
-HARD GATE on ET-01/ET-02 (KW-03 born-at-zero: both measured 0 at
-birth). Exit 1 only on those classes; ET-03 findings report but
-do not fail the run until drained and promoted.
+HARD GATE - exit 1 on any finding. ET-01/ET-02 hard from birth
+(KW-03 born-at-zero: both measured 0 across 111 docs at
+tick-407); ET-03 joined after the tick-408 drain (census ->
+drain -> gate cycle).
 
 Run over the whole corpus:
     python scripts/qa/estimated_time_census.py --root .
@@ -91,8 +95,8 @@ def main() -> int:
         if RANGE.match(value):
             shapes["range"] += 1
             findings.append(f"{rel}: ET-03 range value {value!r} "
-                            f"(drain queue: single value, midpoint "
-                            f"half-up, integer hours)")
+                            f"(drain to single: midpoint half-up, "
+                            f"integer hours)")
         elif SINGLE.match(value):
             shapes["single"] += 1
         else:
@@ -110,8 +114,9 @@ def main() -> int:
     print(f"estimated_time_census: fields={n_field} "
           f"shapes={dict(shapes)} ET-01={et01} ET-02={et02} "
           f"ET-03={et03} "
-          f"(hard gate ET-01/02; ET-03 report queue)")
-    return 1 if (et01 or et02) else 0
+          f"(hard gate; ET-03 drained tick-408, midpoint half-up "
+          f"integer hours)")
+    return 1 if findings else 0
 
 
 if __name__ == "__main__":

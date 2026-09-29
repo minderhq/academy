@@ -337,16 +337,17 @@ stand today?" without running each tool by hand.
                        shape now closed (11 bracketed, free-text
                        "See module README"/"See References" allowed
                        as authoring-stage pointer)
-    estimated_time_census Estimated Time parseability (ET-01..03):
-                       the platform uses Estimated Time for
+    estimated_time_census Estimated Time parseability (ET-01..03,
+                       hard): the platform uses Estimated Time for
                        scheduling math, so every value must parse
                        and the field name must be exact. ET-01
                        unparseable value, ET-02 field-name variant
                        (exact name is "Estimated Time:") - both
                        hard from birth, measured 0 across 111 docs
                        at tick-407 (KW-03). ET-03 range values
-                       ("6-8 hours", 6 sites) are a report queue -
-                       drain to single values next tick; dual-mode
+                       ("6-8 hours") - 6 sites drained tick-408 to
+                       single durations (midpoint half-up, integer
+                       hours), hard since the drain; dual-mode
                        "quick/full review" entries are a legal
                        shape, both durations parse
     unfinished_marker_scan unfinished-content markers in prose
