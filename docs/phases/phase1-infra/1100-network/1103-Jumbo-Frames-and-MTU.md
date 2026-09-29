@@ -26,6 +26,7 @@ Tags: [networking, mtu, jumbo-frames, performance]
 - [Troubleshooting MTU Issues](#troubleshooting-mtu-issues)
 - [MTU by Use Case](#mtu-by-use-case)
 - [Summary Configuration](#summary-configuration)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -275,6 +276,10 @@ Video Streaming            1500 (compatible)
 ```
 
 ---
+
+## Summary
+
+Jumbo frames raise the Ethernet MTU from the standard 1500 bytes to 9000, cutting packet counts by roughly 84% and the CPU overhead that comes with them - on an 11GB model transfer that is the difference between millions of packets and a few hundred thousand. This lesson covered the MTU fundamentals and the math, per-component configuration so every hop agrees, path MTU discovery and the black-hole failures it prevents, performance benchmarks, and the troubleshooting playbook. The use-case table closes it: MTU 9000 is a LAN-wide decision, and every device on the path must carry it or fragmentation quietly eats the win.
 
 ## References
 

@@ -3,7 +3,7 @@ Document ID: 1201
 Title: "1201: Proxmox Hypervisor Standard Operating Procedures"
 Phase: 1
 Module: 1200
-Last Updated: 2026-09-27
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -27,6 +27,7 @@ Tags: ['infrastructure', 'virtualization', 'proxmox', 'gpu']
 - [VM Templates](#vm-templates)
 - [Backup Strategy](#backup-strategy)
 - [Monitoring](#monitoring)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -355,6 +356,10 @@ sensors
 ```
 
 ---
+
+## Summary
+
+Proxmox VE is the virtualization layer at the center of this infrastructure: it hosts the K3s cluster and is the platform for GPU passthrough to a single NVIDIA card. This SOP walked the full build - hardware requirements with IOMMU support (VT-d or AMD-Vi) as the hard gate, post-installation configuration, CPU pinning and NUMA awareness, memory management, storage configuration, GPU passthrough preparation, VM templates, backup strategy, and monitoring. The rule it leaves: a hypervisor built once and documented as an SOP is reproducible; one assembled by memory is not.
 
 ## References
 

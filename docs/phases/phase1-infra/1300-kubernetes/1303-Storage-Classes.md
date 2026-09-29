@@ -3,7 +3,7 @@ Document ID: 1303
 Title: "1303: Storage Classes for Dynamic Provisioning"
 Phase: 1
 Module: 1300
-Last Updated: 2026-09-28
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -27,6 +27,7 @@ Tags: ['infrastructure', 'kubernetes', 'k3s', 'gpu']
 - [Volume Snapshots](#volume-snapshots)
 - [Monitoring](#monitoring)
 - [Best Practices](#best-practices)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -419,6 +420,10 @@ volumeClaimTemplates:
 ```
 
 ---
+
+## Summary
+
+Dynamic provisioning lets a pod ask for storage and get it: a PVC states the need, a StorageClass names the provisioner, and the CSI driver creates the volume on demand. This lesson configured exactly that against NFS - server setup, CSI driver installation, StorageClass definitions, and PVC examples - then the operational layers: performance tuning, volume snapshots, monitoring, and best practices. The rule it leaves: any NFS server becomes cluster storage, and the StorageClass is the single point where speed, reclaim policy, and default-ness are decided.
 
 ## References
 

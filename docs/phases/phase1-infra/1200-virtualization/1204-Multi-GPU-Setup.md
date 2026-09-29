@@ -3,7 +3,7 @@ Document ID: 1204
 Title: "1204: Multi-GPU Setup"
 Phase: 1
 Module: 1200
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -27,6 +27,7 @@ Tags: ['infrastructure', 'virtualization', 'proxmox', 'gpu']
 - [Multi-GPU Benchmarks (Expected)](#multi-gpu-benchmarks-expected)
 - [Monitoring Multi-GPU](#monitoring-multi-gpu)
 - [Troubleshooting](#troubleshooting)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -511,6 +512,10 @@ export NCCL_IB_DISABLE=1   # Disable InfiniBand (no IB hardware present)
 ```
 
 ---
+
+## Summary
+
+Multi-GPU starts from an honest single card - 8 to 16GB of VRAM is enough for 7B models, QLoRA fine-tuning, and single-stream inference - and this lesson maps the path up from there: device selection, the multi-GPU scenarios that justify more cards, data and model parallelism in PyTorch, multi-GPU inference with vLLM, TGI, and Ollama, fine-tuning strategies, and the expected benchmarks that calibrate expectations. Monitoring and troubleshooting close it: scale when a measured bottleneck says so, not because more cards sound faster.
 
 ## References
 

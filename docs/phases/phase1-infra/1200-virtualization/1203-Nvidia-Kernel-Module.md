@@ -3,7 +3,7 @@ Document ID: 1203
 Title: "1203: NVIDIA Kernel Module Management"
 Phase: 1
 Module: 1200
-Last Updated: 2026-09-27
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -26,6 +26,7 @@ Tags: ['infrastructure', 'virtualization', 'proxmox', 'gpu']
 - [Power Management](#power-management)
 - [Driver Orchestration in Kubernetes](#driver-orchestration-in-kubernetes)
 - [Troubleshooting](#troubleshooting)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -360,6 +361,10 @@ cat /var/log/Xorg.0.log | grep -i nvidia
 ```
 
 ---
+
+## Summary
+
+NVIDIA GPU stability across reboots and kernel updates is a kernel-module management problem: the user-space stack (CUDA toolkit, cuDNN, TensorRT) sits on the driver, which sits on the modules the kernel loads. This lesson covered the component architecture, the modules explained, installation methods and module configuration, CUDA memory management, power management, and how the driver is orchestrated inside Kubernetes. Troubleshooting closes it: when the GPU disappears after an update, the module version, the loaded kernel, and the persistence daemon are the first three places to look.
 
 ## References
 

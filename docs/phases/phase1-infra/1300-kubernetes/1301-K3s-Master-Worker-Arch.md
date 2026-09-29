@@ -3,7 +3,7 @@ Document ID: 1301
 Title: "1301: K3s Master-Worker Architecture"
 Phase: 1
 Module: 1300
-Last Updated: 2026-09-27
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -26,6 +26,7 @@ Tags: ['infrastructure', 'kubernetes', 'k3s', 'gpu']
 - [Networking](#networking)
 - [Resource Management](#resource-management)
 - [Monitoring](#monitoring)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -366,6 +367,10 @@ helm install prometheus-node-exporter prometheus-community/prometheus-node-expor
 ```
 
 ---
+
+## Summary
+
+K3s is a lightweight Kubernetes distribution built for edge and homelab scale, and this lesson is its architecture: a control-plane node and a GPU worker node running AI workloads. It walked installation and configuration, GPU node configuration, storage integration, networking, resource management, and monitoring - the pieces that turn two machines into one schedulable cluster. The rule it leaves: K3s gives you real Kubernetes semantics at a fraction of the operational weight, and the architecture page is where that trade is made deliberately.
 
 ## References
 

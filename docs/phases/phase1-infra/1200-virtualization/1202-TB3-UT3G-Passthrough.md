@@ -427,6 +427,10 @@ Keeping model weights resident in VRAM and batching inference made the penalty n
 
 ---
 
+## Summary
+
+GPU passthrough assigns a physical NVIDIA GPU to one virtual machine, giving it near-native CUDA performance while the host keeps running other workloads. This guide walked the chain that makes it work on any x86_64 host: IOMMU prerequisites and kernel enabling, IOMMU group verification, VFIO binding with host driver blacklisting, Proxmox VM configuration, guest GPU verification, NVIDIA-specific quirks, and troubleshooting. The case study grounds it - an RTX 2080 Ti over Thunderbolt 3 - and the closing comparison is honest: when a dedicated GPU is an option, it usually beats the external one.
+
 ## References
 
 ### Related PROJECT-OMEGA Documents

@@ -3,7 +3,7 @@ Document ID: 1302
 Title: "1302: GPU Scheduler Configuration"
 Phase: 1
 Module: 1300
-Last Updated: 2026-09-27
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -26,6 +26,7 @@ Tags: ['infrastructure', 'kubernetes', 'k3s', 'gpu']
 - [Scheduler Behavior](#scheduler-behavior)
 - [Monitoring GPU Usage](#monitoring-gpu-usage)
 - [Common Patterns](#common-patterns)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -463,6 +464,10 @@ spec:
 ```
 
 ---
+
+## Summary
+
+The K3s GPU scheduler turns an 11GB-class card into a schedulable cluster resource: the NVIDIA device plugin advertises nvidia.com/gpu as an integer, exclusive resource, and the time-sliced shared variant serves many pods one GPU in rotation. This lesson covered the resource model, device plugin configuration, scheduling strategies, workload isolation, scheduler behavior, and GPU usage monitoring. The common-patterns section is the practice: exclusive allocation for training runs, shared time-slicing for inference fleets, and the monitoring that shows which one your workloads actually need.
 
 ## References
 
