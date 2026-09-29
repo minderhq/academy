@@ -3,7 +3,7 @@ Document ID: 7502
 Title: "7502: PII Redaction & Privacy Filtering"
 Phase: 7
 Module: 7500
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -24,6 +24,7 @@ Tags: ['agents', 'security', 'prompt-injection', 'pii', 'adversarial']
 - [Secure Data Handling](#secure-data-handling)
 - [Production Implementation](#production-implementation)
 - [Testing & Validation](#testing--validation)
+- [Summary](#summary)
 - [References](#references)
 - [Next Steps](#next-steps)
 
@@ -990,6 +991,10 @@ validator.run_all_tests()
 Read the recall line: Test Case 1 expects three entities, the regex pipeline finds two — `john.doe@example.com` and `555-123-4567` — and misses `John Doe` entirely. Recall drops to 0.67 and drags F1 to 0.80. That miss is the argument for the NLP layer and Presidio: wire `NLPPIIDetector` into the pipeline and the same corpus closes the gap. Test Case 2 scores 1.00 because both SSN and month-name DOB patterns are exact matches. A PII demo that reports perfect scores with a person name in the corpus is a demo that never counted the miss.
 
 ---
+
+## Summary
+
+PII in prompts, tool outputs, and logs is a compliance exposure - GDPR, CCPA, HIPAA - before it is a security one, and this lesson builds the handling stack in layers: a regex detector for the patterns you can name, an NER-based detector for the ones you cannot, a redactor with pluggable policies, and the audit trail that proves the handling happened. The rule it leaves: redaction is a pipeline stage, not a promise - if sensitive data can enter a log, assume it will, and strip it before storage, not after discovery.
 
 ## References
 

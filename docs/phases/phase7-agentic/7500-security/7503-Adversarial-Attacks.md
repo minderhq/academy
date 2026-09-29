@@ -3,7 +3,7 @@ Document ID: 7503
 Title: "7503: Adversarial Attacks & Defense"
 Phase: 7
 Module: 7500
-Last Updated: 2026-09-28
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -23,6 +23,7 @@ Tags: ['agents', 'security', 'prompt-injection', 'pii', 'adversarial']
 - [Defense Strategies](#defense-strategies)
 - [Robustness Evaluation](#robustness-evaluation)
 - [Production Deployment](#production-deployment)
+- [Summary](#summary)
 - [References](#references)
 - [Next Steps](#next-steps)
 
@@ -705,6 +706,10 @@ Look at the middle row without flinching: the defense fired and the prediction i
 - [ ] Model gradient access restricted where the deployment allows (APIs hide gradients)
 
 ---
+
+## Summary
+
+Adversarial attacks move an input a hair's width - bounded by epsilon in the L-infinity norm - along the gradient of the model's own loss until the prediction flips. This lesson runs that story end to end with real torch on a fixed-weight linear classifier: FGSM flips the sample at a measurable epsilon, and the perturbed input looks identical to the original. The rule it leaves: the gradient you use to train is also the gradient an attacker uses to break - robustness is a property you measure, not one you assume.
 
 ## References
 

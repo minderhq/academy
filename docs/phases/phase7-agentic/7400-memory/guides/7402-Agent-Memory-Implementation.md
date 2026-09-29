@@ -3,7 +3,7 @@ Document ID: 7402
 Title: "7402: Agent Memory Implementation Guide"
 Phase: 7
 Module: 7400
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -25,6 +25,7 @@ Tags: ['agents', 'memory', 'qdrant', 'postgresql', 'pgvector', 'embeddings']
 - [Implementation 3: Unified Memory System](#implementation-3-unified-memory-system)
 - [Memory Forgetting Strategy](#memory-forgetting-strategy)
 - [Quick Start](#quick-start)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -1047,6 +1048,10 @@ python agent_with_memory.py
 
 
 ---
+
+## Summary
+
+This guide builds persistent agent memory end to end: a VectorStore for semantic memory on Qdrant, an episodic store on PostgreSQL with pgvector, the unified three-tier system that routes a memory to the right tier, and an Ebbinghaus-style forgetting policy whose decay math is verified, not vibes. The rule it leaves: memory is a system with a write path, a read path, and a garbage collector - an agent that only ever remembers is an agent that eventually drowns in its own context.
 
 ## References
 

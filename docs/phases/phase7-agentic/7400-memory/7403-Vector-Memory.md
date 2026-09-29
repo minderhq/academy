@@ -31,6 +31,7 @@ and a reference long-term memory architecture with token-budgeted recall.
 - [7. Long-Term Memory Architecture](#7-long-term-memory-architecture)
 - [8. Performance & Cost](#8-performance--cost)
 - [9. Troubleshooting](#9-troubleshooting)
+- [Summary](#summary)
 - [10. References](#10-references)
 
 ---
@@ -292,6 +293,10 @@ episode.
 | Vectors nonsense after model upgrade | Mixed vector spaces | Versioned collections + backfill |
 
 ---
+
+## Summary
+
+Agent memory becomes scalable when memories are embeddings: a fuzzy natural-language recall - what did we decide about auth last week - turns into a nearest-neighbor search. This lesson covered the memory taxonomy, the write and read paths of an embedding-backed store, and the Qdrant integration that carries them. The rule it leaves: episodic recall is a retrieval problem once you embed it - design the metadata schema before the first memory is written, because you cannot filter on fields you never stored.
 
 ## 10. References
 

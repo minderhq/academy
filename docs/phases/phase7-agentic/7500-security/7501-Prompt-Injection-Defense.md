@@ -3,7 +3,7 @@ Document ID: 7501
 Title: "7501: Prompt Injection Defense"
 Phase: 7
 Module: 7500
-Last Updated: 2026-09-28
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -24,6 +24,7 @@ Tags: ['agents', 'security', 'prompt-injection', 'pii', 'adversarial']
 - [Defense in Depth](#defense-in-depth)
 - [Testing & Validation](#testing--validation)
 - [Production Checklist](#production-checklist)
+- [Summary](#summary)
 - [References](#references)
 - [Next Steps](#next-steps)
 
@@ -734,6 +735,10 @@ Two payloads breach, and that is the finding. The blocklist is English-only and 
 - Injection attempt trends
 
 ---
+
+## Summary
+
+Prompt injection tricks an LLM into treating untrusted text as instructions, and this lesson builds the four-layer defense - blocklist filtering, perplexity anomaly detection, secure prompt wrapping, output validation - then attacks its own pipeline with seven labeled red-team payloads to show where each layer holds and where it leaks. The rule it leaves: no single layer survives every payload - defense is the composition, and the red-team suite is the regression test that keeps it honest.
 
 ## References
 
