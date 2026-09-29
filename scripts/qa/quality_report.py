@@ -245,6 +245,20 @@ stand today?" without running each tool by hand.
                        numbers are expected to move as the
                        declarative standard spreads - exit 0
                        by design
+    fence_label_census fence-label accuracy census (report,
+                       FLC-01): a raw Dockerfile or nginx config
+                       pasted into a bash/sh/shell fence is a
+                       mislabel (>= 4 Dockerfile directives or
+                       >= 2 nginx markers with no shell tokens);
+                       heredoc-wrapped generation (cat > ...
+                       << 'EOF') is the correct shell idiom and
+                       only counted as embedded; born from the
+                       tick-341 sweep that closed both backlog
+                       relabel items as verified-clean - 699
+                       shell fences, 0 raw / 0 raw, 3 + 4
+                       embedded, 12 nginx + 18 dockerfile
+                       fences already correct; a future raw
+                       paste surfaces here - exit 0 by design
     unfinished_marker_scan unfinished-content markers in prose
                        (UM-01): outside any code fence, inline code
                        scrubbed, a line must not carry "coming soon",
@@ -433,6 +447,7 @@ GATES = [
     ("bash_vars_check.py", "bash_vars_check", True),
     ("uv_install_check.py", "uv_install_check", True),
     ("uv_workflow_census.py", "uv_workflow_census", False),
+    ("fence_label_census.py", "fence_label_census", False),
     ("unfinished_marker_scan.py", "unfinished_marker_scan", True),
     ("empty_section_scan.py", "empty_section_scan", True),
     ("emoji_shortcode_scan.py", "emoji_shortcode_scan", True),
