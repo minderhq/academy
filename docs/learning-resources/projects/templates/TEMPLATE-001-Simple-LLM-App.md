@@ -1,7 +1,7 @@
 ---
 Document ID: TEMPLATE-001-Simple-LLM-App
 Title: "PROJECT TEMPLATE: Simple LLM App"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Beginner
 ---
@@ -15,7 +15,8 @@ A simple template for building applications with LLMs.
 ```text
 simple-llm-app/
 ├── README.md
-├── requirements.txt
+├── pyproject.toml
+├── uv.lock
 ├── config.yaml
 ├── src/
 │   ├── __init__.py
@@ -38,9 +39,11 @@ simple-llm-app/
 
 ## Quick Start
 
-1. Install dependencies:
+1. Sync dependencies:
 ```bash
-uv pip install -r requirements.txt
+# The template ships pyproject.toml + uv.lock - one command
+# creates the project venv with the exact locked dependency graph.
+uv sync
 ```
 
 2. Run the API:

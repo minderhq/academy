@@ -1,7 +1,7 @@
 ---
 Document ID: TEMPLATE-011-Model-Merging-MoE
 Title: "PROJECT TEMPLATE: Model Merging & MoE"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Beginner
 ---
@@ -15,7 +15,8 @@ Merge and combine LLMs for better performance.
 ```text
 model-merging-moe/
 ├── README.md
-├── requirements.txt
+├── pyproject.toml
+├── uv.lock
 ├── config/
 │   ├── merge_config.yaml
 │   └── moe_config.yaml

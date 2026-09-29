@@ -1,7 +1,7 @@
 ---
 Document ID: TEMPLATE-008-Multi-Modal-Application
 Title: "PROJECT TEMPLATE: Multi-Modal Application"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Beginner
 ---
@@ -15,7 +15,8 @@ Build applications with vision + language models.
 ```text
 multimodal-app/
 ├── README.md
-├── requirements.txt
+├── pyproject.toml
+├── uv.lock
 ├── config/
 │   ├── models_config.yaml
 │   └── app_config.yaml

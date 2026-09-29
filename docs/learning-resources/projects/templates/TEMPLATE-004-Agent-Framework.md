@@ -1,7 +1,7 @@
 ---
 Document ID: TEMPLATE-004-Agent-Framework
 Title: "PROJECT TEMPLATE: Agent Framework"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Beginner
 ---
@@ -15,7 +15,8 @@ Build agentic systems with tools and memory.
 ```text
 agent-framework/
 ├── README.md
-├── requirements.txt
+├── pyproject.toml
+├── uv.lock
 ├── config/
 │   ├── agents_config.yaml
 │   ├── tools_config.yaml

@@ -1,7 +1,7 @@
 ---
 Document ID: TEMPLATE-012-End-to-End-LLM-Pipeline
 Title: "PROJECT TEMPLATE: End-to-End LLM Pipeline"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Beginner
 ---
@@ -15,7 +15,8 @@ Complete pipeline from data to deployment.
 ```text
 e2e-llm-pipeline/
 ├── README.md
-├── requirements.txt
+├── pyproject.toml
+├── uv.lock
 ├── config/
 │   ├── pipeline_config.yaml
 │   ├── data_config.yaml

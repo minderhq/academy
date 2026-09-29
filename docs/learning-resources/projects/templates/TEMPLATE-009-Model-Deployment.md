@@ -1,7 +1,7 @@
 ---
 Document ID: TEMPLATE-009-Model-Deployment
 Title: "PROJECT TEMPLATE: Model Deployment"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Beginner
 ---
@@ -15,7 +15,8 @@ Deploy LLMs to production with various serving options.
 ```text
 llm-deployment/
 ├── README.md
-├── requirements.txt
+├── pyproject.toml
+├── uv.lock
 ├── docker/
 │   ├── Dockerfile
 │   ├── docker-compose.yml

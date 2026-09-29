@@ -1,7 +1,7 @@
 ---
 Document ID: TEMPLATE-005-Model-Quantization
 Title: "PROJECT TEMPLATE: Model Quantization"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Beginner
 ---
@@ -15,7 +15,8 @@ Quantize LLMs for efficient deployment.
 ```text
 quantization-project/
 ├── README.md
-├── requirements.txt
+├── pyproject.toml
+├── uv.lock
 ├── config/
 │   ├── quantization_config.yaml
 │   └── models_config.yaml

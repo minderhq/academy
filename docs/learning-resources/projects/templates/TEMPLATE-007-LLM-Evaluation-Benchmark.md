@@ -1,7 +1,7 @@
 ---
 Document ID: TEMPLATE-007-LLM-Evaluation-Benchmark
 Title: "PROJECT TEMPLATE: LLM Evaluation Benchmark"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Beginner
 ---
@@ -15,7 +15,8 @@ Comprehensive evaluation framework for LLMs.
 ```text
 llm-evaluation-benchmark/
 ├── README.md
-├── requirements.txt
+├── pyproject.toml
+├── uv.lock
 ├── config/
 │   ├── models_config.yaml
 │   ├── benchmarks_config.yaml

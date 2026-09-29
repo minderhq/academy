@@ -1,7 +1,7 @@
 ---
 Document ID: TEMPLATE-002-Fine-Tuning-Pipeline
 Title: "PROJECT TEMPLATE: Fine-tuning Pipeline"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Beginner
 ---
@@ -15,7 +15,8 @@ A complete template for fine-tuning LLMs with custom data.
 ```text
 fine-tuning-pipeline/
 ├── README.md
-├── requirements.txt
+├── pyproject.toml
+├── uv.lock
 ├── config/
 │   ├── model_config.yaml
 │   └── training_config.yaml

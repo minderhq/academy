@@ -1,7 +1,7 @@
 ---
 Document ID: TEMPLATE-003-RAG-System
 Title: "PROJECT TEMPLATE: RAG System"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Beginner
 ---
@@ -15,7 +15,8 @@ Build a Retrieval-Augmented Generation system from scratch.
 ```text
 rag-system/
 ├── README.md
-├── requirements.txt
+├── pyproject.toml
+├── uv.lock
 ├── config/
 │   ├── embedding_config.yaml
 │   ├── vectorstore_config.yaml
