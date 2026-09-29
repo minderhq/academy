@@ -1,7 +1,7 @@
 ---
 Document ID: 2100-QUIZ
 Title: "2100: Calculus - Quiz"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -20,7 +20,7 @@ Difficulty: Intermediate
 
 **1. What is a derivative?**
 
-A) The sum of values
+A) The sum of values, an accumulation that integration rather than differentiation produces
 B) The area under a curve
 C) The rate of change of a function
 D) The integral of a function
@@ -28,7 +28,7 @@ D) The integral of a function
 **2. The chain rule is used to:**
 
 A) Find derivatives of composite functions
-B) Find integrals
+B) Find integrals, the reverse operation the chain rule never performs
 C) Find derivatives of products
 D) Find derivatives of quotients
 
@@ -41,7 +41,7 @@ D) Second derivatives only
 
 **4. A gradient is:**
 
-A) A single number
+A) A single number, a description that fits the scalar, not the gradient
 B) A matrix
 C) A scalar
 D) A vector of partial derivatives
@@ -55,7 +55,7 @@ D) The gradient magnitude
 
 **6. What does the second derivative tell us?**
 
-A) The slope
+A) The slope, a first-derivative reading that curvature does not repeat
 B) The curvature (concavity)
 C) The area
 D) The intercept
@@ -99,33 +99,33 @@ D) Composite functions
 
 A) Local minima can be worse than global
 B) Global minima don't exist
-C) Local minima are always better
+C) Local minima are always better, a ranking no loss landscape guarantees
 D) Are always the same
 
 **13. Saddle points:**
 
 A) Are minima
-B) Don't exist
+B) Don't exist, a claim saddle points themselves refute in high dimensions
 C) Are maxima
 D) Are neither minima nor maxima
 
 **14. The Hessian matrix contains:**
 
-A) Function values
+A) Function values, entries the Hessian never stores
 B) Third derivatives
 C) Second derivatives
 D) First derivatives
 
 **15. Convex functions have:**
 
-A) Multiple local minima
+A) Multiple local minima, a landscape feature convexity rules out
 B) No minima
 C) Infinite minima
 D) Only one global minimum
 
 **16. In optimization, "momentum" helps:**
 
-A) Prevent learning
+A) Prevent learning, the opposite of what a momentum term is built for
 B) Speed up and smooth convergence
 C) Increase noise
 D) Slow down convergence
@@ -141,13 +141,13 @@ D) A matrix of first derivatives
 
 A) Local minima or saddle points
 B) Nowhere
-C) Flat regions only
+C) Flat regions only, a claim that ignores minima and saddle points alike
 D) Global minima
 
 **19. Learning rate too high causes:**
 
 A) Slow convergence
-B) Better convergence
+B) Better convergence, an outcome an oversized step rate never delivers
 C) Divergence or oscillation
 D) No effect
 
