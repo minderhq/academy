@@ -16,6 +16,10 @@ tick ENVIRONMENT-SETUP gained its "uv Project Workflow (pyproject.toml
 occurrences; the numbers are expected to move as the declarative
 standard spreads through the corpus.
 
+tick-340: uvx joined the tracked surface when ENVIRONMENT-SETUP's
+tooling section introduced the tool runner (ruff lint/format via
+uvx, uv tool install for daily use).
+
 Report mode - exit 0 by design; the census is an inventory, not a gate.
 
 Run over the whole corpus:
@@ -34,7 +38,7 @@ LABELS = {"bash", "sh", "shell", "dockerfile", "powershell"}
 # uv subcommands in display order; one word-boundary regex each
 SUBCOMMANDS = [
     "uv init", "uv add", "uv remove", "uv sync", "uv lock", "uv run",
-    "uv tool", "uv self", "uv python", "uv venv",
+    "uv tool", "uvx", "uv self", "uv python", "uv venv",
     "uv pip install", "uv pip compile",
 ]
 SUB_RE = {s: re.compile(r"\b" + re.escape(s) + r"\b") for s in SUBCOMMANDS}
