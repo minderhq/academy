@@ -3,7 +3,7 @@ Document ID: 7402
 Title: "7402: Agent Memory Implementation Guide"
 Phase: 7
 Module: 7400
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -84,7 +84,6 @@ Complete implementation guide for building persistent memory systems for AI agen
 # vector_store.py
 from qdrant_client import QdrantClient
 from sentence_transformers import SentenceTransformer
-from typing import List, Dict, Optional
 from datetime import datetime
 import hashlib
 
@@ -139,7 +138,7 @@ class VectorStore:
     def add_memory(
         self,
         content: str,
-        metadata: Dict | None = None,
+        metadata: dict | None = None,
         importance: float = 0.5
     ) -> str:
         """
@@ -147,7 +146,7 @@ class VectorStore:
 
         Args:
             content: Memory content
-            metadata: Optional metadata (source, type, etc.)
+            metadata: Extra metadata (source, type, etc.)
             importance: 0.0-1.0 importance score
 
         Returns:
@@ -186,7 +185,7 @@ class VectorStore:
         self,
         user_message: str,
         agent_response: str,
-        metadata: Dict | None = None
+        metadata: dict | None = None
     ) -> str:
         """Store a conversation turn as memory"""
 
@@ -207,8 +206,8 @@ class VectorStore:
         query: str,
         limit: int = 5,
         score_threshold: float = 0.5,
-        filters: Dict | None = None
-    ) -> list[Dict]:
+        filters: dict | None = None
+    ) -> list[dict]:
         """
         Retrieve relevant memories by semantic search
 
@@ -216,7 +215,7 @@ class VectorStore:
             query: Search query
             limit: Max results
             score_threshold: Minimum similarity score
-            filters: Optional metadata filters
+            filters: Extra metadata filters
 
         Returns:
             List of memories with scores
@@ -261,7 +260,7 @@ class VectorStore:
 
         return memories
 
-    def get_recent(self, limit: int = 10) -> list[Dict]:
+    def get_recent(self, limit: int = 10) -> list[dict]:
         """Get most recent memories"""
 
         # Scroll through collection
@@ -353,7 +352,6 @@ for r in recent:
 ```python
 # memoria.py
 import psycopg2
-from typing import Dict
 from datetime import datetime
 import json
 
@@ -441,9 +439,9 @@ class Memoria:
         self,
         content: str,
         agent_id: str = "default",
-        session_id: str = None,
-        context: Dict | None = None,
-        metadata: Dict | None = None,
+        session_id: str | None = None,
+        context: dict | None = None,
+        metadata: dict | None = None,
         importance: float = 0.5
     ) -> int:
         """
@@ -488,9 +486,9 @@ class Memoria:
         content: str,
         embedding: list[float],
         agent_id: str = "default",
-        session_id: str = None,
-        context: Dict | None = None,
-        metadata: Dict | None = None,
+        session_id: str | None = None,
+        context: dict | None = None,
+        metadata: dict | None = None,
         importance: float = 0.5
     ) -> int:
         """Store episode with embedding for semantic search"""
@@ -521,7 +519,7 @@ class Memoria:
         start_time: datetime | None = None,
         end_time: datetime | None = None,
         limit: int = 10
-    ) -> list[Dict]:
+    ) -> list[dict]:
         """Retrieve episodes by time range"""
 
         query = """
@@ -561,7 +559,7 @@ class Memoria:
         self,
         session_id: str,
         limit: int = 100
-    ) -> list[Dict]:
+    ) -> list[dict]:
         """Retrieve all episodes from a session"""
 
         self.cursor.execute("""
@@ -590,7 +588,7 @@ class Memoria:
         embedding: list[float],
         limit: int = 5,
         threshold: float = 0.7
-    ) -> list[Dict]:
+    ) -> list[dict]:
         """Retrieve episodes by semantic similarity"""
 
         self.cursor.execute("""
@@ -658,7 +656,6 @@ Memoria needs the pgvector extension (`CREATE EXTENSION vector` above) — plain
 from vector_store import VectorStore
 from memoria import Memoria
 from sentence_transformers import SentenceTransformer
-from typing import List, Dict, Optional
 
 class AgentMemorySystem:
     """
@@ -677,7 +674,7 @@ class AgentMemorySystem:
         self,
         user_message: str,
         agent_response: str,
-        session_id: str = None,
+        session_id: str | None = None,
         importance: float = 0.5
     ):
         """Add a conversation turn to memory"""
@@ -722,9 +719,9 @@ class AgentMemorySystem:
     def retrieve_relevant(
         self,
         query: str,
-        session_id: str = None,
+        session_id: str | None = None,
         limit: int = 5
-    ) -> Dict:
+    ) -> dict:
         """
         Retrieve relevant memories from all systems
 
@@ -757,12 +754,12 @@ class AgentMemorySystem:
             "episodic_memory": episodic_results
         }
 
-    def get_context_string(self, query: str = None) -> str:
+    def get_context_string(self, query: str | None = None) -> str:
         """
         Get formatted context string for LLM prompt
 
         Args:
-            query: Optional query to retrieve relevant memories
+            query: The query to retrieve relevant memories
 
         Returns:
             Formatted context string
@@ -847,7 +844,7 @@ class MemoryEnabledAgent:
         )
         self.model = model
 
-    def chat(self, user_message: str, session_id: str = None) -> str:
+    def chat(self, user_message: str, session_id: str | None = None) -> str:
         """Chat with memory-enabled agent"""
 
         # Retrieve relevant memories
