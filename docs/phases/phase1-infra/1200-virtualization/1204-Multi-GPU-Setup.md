@@ -172,7 +172,7 @@ def cleanup():
     """Cleanup distributed training"""
     dist.destroy_process_group()
 
-def train(rank, world_size):
+def train(rank, world_size, epochs=10):
     """Training function for each process"""
     setup(rank, world_size)
 

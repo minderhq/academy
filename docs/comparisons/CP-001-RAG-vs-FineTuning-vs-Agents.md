@@ -533,7 +533,7 @@ def api_call(query: str) -> str:
 @tool
 def calculator(expression: str) -> str:
     """Perform calculations."""
-    return calculate(expression)
+    return calculator_function(expression)
 
 # Agent orchestrates everything
 agent = Agent(

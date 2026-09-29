@@ -150,6 +150,7 @@ def main():
     loader = DataLoader(train_dataset, batch_size=32, sampler=sampler,
                         pin_memory=True, num_workers=4)
 
+    epochs = 3  # demo scale
     for epoch in range(epochs):
         sampler.set_epoch(epoch)          # REQUIRED: reshuffle per epoch
         for step, batch in enumerate(loader):
