@@ -3,7 +3,7 @@ Document ID: 3301
 Title: "3301: Activation Functions - GELU, SwiGLU, and Beyond"
 Phase: 3
 Module: 3300
-Last Updated: 2026-09-27
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 2 hours
@@ -37,8 +37,8 @@ After completing this lesson, you will be able to:
 - Derive exact GELU as x·Φ(x) via `torch.erf`, state the GPT-2 tanh approximation (√(2/π) scaling, 0.044715x³ term), and justify the ≈99.7%-correlation speed/accuracy trade-off
 - Implement the SwiGLU FFN's three bias-free projections (`gate_proj`, `up_proj`, `down_proj`) with `silu(gate) * up` gating, including LLaMA's 8/3·d hidden-dim rule rounded to `multiple_of=256`
 - Reconcile SwiGLU's 1.5x parameter count (3,145,728 vs 2,097,152 at d_model=512, d_ff=2048) against Shazeer's reported 1-2% perplexity gain for equal-compute comparisons
-- Distinguish the gated variants by their gate function and chunking layout — GEGLU (BLOOM, GPT-NeoX), ReGLU, and SMGeLU's router `topk` sparsity
-- Probe activations with the `analyze_activation` autograd-derivative harness (smoothness, monotonicity, sign, boundedness) and read the compute-vs-perplexity table to select per scenario: vanilla → GELU, LLM → SwiGLU, MoE → SMGeLU
+- Distinguish the gated variants by their gate function and chunking layout — GEGLU (BLOOM, GPT-NeoX), ReGLU — and keep them separate from MoE's routing gate: `topk` sparsity picks experts, it is not an activation
+- Probe activations with the `analyze_activation` autograd-derivative harness (smoothness, monotonicity, sign, boundedness) and read the compute-vs-perplexity table to select per scenario: vanilla → GELU, LLM → SwiGLU, MoE → SwiGLU experts behind a top-k router
 
 ---
 
@@ -328,23 +328,50 @@ def reglu(x):
     return a * torch.nn.functional.relu(b)
 ```
 
-### SMGeLU (Google's Switch Transformer)
+### MoE Gating (Shazeer 2017 → Switch → Mixtral)
+
+The MoE "gate" is a different animal from the GLU gates above: it is a
+router that picks which expert FFN processes each token, not an
+elementwise activation. Shazeer et al. (2017) — *Outrageously Large
+Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer* — gave
+each expert a GeLU FFN and sent each token to only its top-k experts
+through a learned gate (their noise term is dropped here for clarity):
+
 ```python
-def smgelu(x, num_experts=4):
-    """
-    Sparsely-Gated Mixture of Experts with GELU
-    """
-    # Router decides which experts to use
-    router_logits = torch.nn.functional.linear(x, router_weight)
-    router_probs = torch.softmax(router_logits, dim=-1)
+import torch
+import torch.nn.functional as F
 
-    # Only top-k experts active
-    topk_probs, topk_indices = torch.topk(router_probs, k=num_experts, dim=-1)
+def sparse_router(x, W_router, k=2):
+    """
+    x:        (batch, seq_len, d_model)  token hidden states
+    W_router: (d_model, num_experts)     learned gate weights
+    Returns per-token top-k expert weights, renormalized to sum to 1.
+    """
+    logits = x @ W_router                    # (batch, seq, num_experts)
+    probs = torch.softmax(logits, dim=-1)
+    topk_probs, topk_idx = torch.topk(probs, k=k, dim=-1)
+    return topk_probs / topk_probs.sum(-1, keepdim=True), topk_idx
 
-    # Gated activation
-    gate = torch.nn.functional.gelu(x)
-    return gate * topk_probs
+x = torch.randn(2, 5, 512)                   # batch 2, seq 5, d_model 512
+W = torch.randn(512, 4)                      # 4 experts
+probs, idx = sparse_router(x, W, k=2)
+print(probs.shape, idx.shape)                # (2, 5, 2) (2, 5, 2)
 ```
+
+The routing gate and the activation gate are two separate mechanisms —
+keep them apart when reading MoE papers. The lineage simplified the
+router while the experts' activation followed the same path as dense
+models:
+
+```text
+2017  Shazeer et al.       sparsely-gated MoE   GeLU experts, noisy top-k gate
+2021  Switch Transformer   (Fedus et al.)       top-1 routing, one expert/token
+2024  Mixtral 8x7B         (Mistral)            SwiGLU experts, top-2 routing
+```
+
+There is no "SMGeLU" activation in the literature — the name conflates
+the two gates. The sparsity lives in the router (softmax + top-k); the
+activation lives inside each expert (GeLU then, SwiGLU now).
 
 ## Activation Function Properties
 
@@ -387,7 +414,7 @@ for name, fn in activations.items():
 ```text
 For vanilla transformer:           GELU or GeLU
 For large language models:         SwiGLU (1.5% gain)
-For MoE models:                    SMGeLU
+For MoE experts:                   SwiGLU + top-k router (Mixtral)
 For limited compute:               ReLU or GELU
 For best performance:              SwiGLU (if compute allows)
 ```
