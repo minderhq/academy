@@ -1,7 +1,7 @@
 ---
 Document ID: PROJECT-007
 Title: "CAPSTONE PROJECT-007: Deploy Production AI System"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -653,20 +653,15 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.13'
+    - name: Install uv
+      uses: astral-sh/setup-uv@v9
 
     - name: Install dependencies
-      run: |
-        pip install uv
-        uv pip install --system -r requirements.txt
-        uv pip install --system -r requirements-dev.txt
+      # The repo commits pyproject.toml + uv.lock (uv init --bare + uv add).
+      run: uv sync --locked # dev group installs by default, so pytest rides along
 
     - name: Run tests
-      run: |
-        pytest tests/ -v --cov=.
+      run: uv run pytest tests/ -v --cov=.
 
     - name: Security scan
       run: |

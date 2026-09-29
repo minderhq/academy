@@ -21,7 +21,7 @@ sees is an audit hole (a ``toml`` fence would silently skip every
 data-block gate), and a platform load step cannot tell executable
 fences from prose without the class being declared. Born from the
 tick-285 label census (21 distinct labels across 4243 open fences;
-5 validated, 16 accepted), baseline 0 at birth.
+5 validated, 17 accepted), baseline 0 at birth.
 
 A new class entering the corpus lands here as a finding: teach a
 parser gate for it or classify it here - the same
@@ -52,6 +52,7 @@ ACCEPTED = {
     "text", "markdown",                       # prose by design
     "dockerfile", "powershell", "nginx",      # operational config, no
     "cypher", "cuda", "promql", "cron",       # stdlib parser available
+    "toml",                                   # operational config (pyproject.toml); stdlib tomllib exists, no parse gate taught yet
     "gitignore",
     "html", "typescript", "tsx", "sql",       # small teaching samples
     "cpp", "c",

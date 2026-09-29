@@ -1,7 +1,7 @@
 ---
 Document ID: PROJECT-001
 Title: "CAPSTONE PROJECT-001: Build Your AI Assistant"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -628,8 +628,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # (https://docs.astral.sh/uv/guides/integration/docker/)
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
 
-COPY requirements.txt .
-RUN uv pip install --system --no-cache -r requirements.txt
+# Dependency layer: only manifest/lockfile changes rebuild this.
+COPY pyproject.toml uv.lock ./
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --locked --no-install-project
 
 # Cache models
 RUN python -c "from sentence_transformers import SentenceTransformer; \
