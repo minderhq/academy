@@ -1,0 +1,190 @@
+#!/usr/bin/env python3
+"""Quiz-bank integrity gate for the PROJECT-OMEGA corpus.
+
+Runs on top of quiz_export's parser (borrowed, not reinvented) and
+locks the content-level classes that a structural parse cannot see:
+
+QI-01  self-referential positional option: "Both A and B" sitting AT
+       position B (or "All of the above" at A) - the option's own
+       letter is inside its reference, so the question is logically
+       unsatisfiable for a test-taker. Born from the tick-284 census:
+       2 real bugs (1300-kubernetes Q16, 3200-embeddings Q15), both
+       fixed by re-pointing the reference to the two true options.
+
+QI-02  duplicate question stem within one module (casefold, whitespace
+       normalized). A module asking the same question twice double-
+       counts it in the bank. Census: 0 in all 33 modules.
+
+QI-03  duplicate option text within one question - two options with
+       the same content make the key ambiguous. Census: 0 in 655 mcq.
+
+QI-04  option letter beyond A-D ("E. ..."): quiz_export's OPTION
+       regex silently drops it, so the rendered question has an
+       option the bank never saw. Census: 0.
+
+QI-05  question numbering gap: quiz_export flags duplicate numbers
+       but not missing ones - a bank that jumps 1..5,7 mis-joins
+       against its own Answer Key rows. Census: all 33 quizzes are
+       contiguous 1..N.
+
+Report inventory (never fails the gate - the accepted texture and
+the drain queue, same contract as duplicate_heading_scan / AS-09):
+
+QI-06  cross-module duplicate stems (census: 6, all short concept
+       labels like "KV cache stores" reused across overlapping
+       modules - each module tests its own framing with different
+       options; a platform sampling across modules needs the
+       inventory).
+QI-07  skewed answer keys per module (max letter >= 50% of answered
+       mcq, or any of A-D absent; census: 14 modules, corpus-wide
+       B=40%, 4100-low-bit at 65% - just under assessment_lint's
+       70% AS-09 tripwire, so the finer baseline is what actually
+       sees the drift). This is the option-shuffle queue: rebalancing
+       needs semantic care because 36 questions carry positional
+       options ("Both A and B" / "All of the above") that cannot
+       move.
+
+Hard gate on QI-01..05 (exit 1): baseline 0 at birth (tick-284).
+
+Run over the whole corpus:
+    python scripts/qa/quiz_integrity_scan.py --root .
+"""
+from __future__ import annotations
+
+import argparse
+import re
+import sys
+from collections import Counter
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from quiz_export import MODULE_DIR, export_quiz, fence_aware  # noqa: E402
+
+MODULES_ROOT = Path("docs") / "phases"
+
+BOTH_RE = re.compile(r"^\s*Both\s+([A-D])\s*(?:and|&|\+)\s*([A-D])\b",
+                     re.IGNORECASE)
+ALL_ABOVE_RE = re.compile(r"^\s*All\s+of\s+the\s+above\b", re.IGNORECASE)
+EXTRA_OPTION_RE = re.compile(r"^\s*[-*]?\s*\*{0,2}([E-Z])[\).]\s+\S")
+SKEW_SHARE = 0.5
+SKEW_MIN_MCQ = 10
+
+
+def norm(s: str) -> str:
+    return re.sub(r"\s+", " ", s).casefold().strip()
+
+
+def scan_module(rel: str, lines: list[str],
+                hard: list[str], cross: list[tuple[str, int, str]],
+                skew: list[str]) -> None:
+    _, questions = export_quiz(rel, lines, [])
+    stems: dict[str, int] = {}
+    for q in questions:
+        stem = norm(q["text"])
+        if stem:
+            if stem in stems:
+                hard.append(
+                    f"{rel}: QI-02 duplicate stem in module: question "
+                    f"{q['n']} repeats question {stems[stem]} '{q['text'][:50]}'")
+            else:
+                stems[stem] = q["n"]
+                cross.append((rel, q["n"], stem))
+        if q["type"] != "mcq":
+            continue
+        seen_opts: set[str] = set()
+        for letter, text in sorted(q["options"].items()):
+            t = norm(text)
+            if t in seen_opts:
+                hard.append(
+                    f"{rel}: QI-03 duplicate option text in question "
+                    f"{q['n']}: '{text[:50]}'")
+            seen_opts.add(t)
+            m = BOTH_RE.match(text)
+            if m and letter in (m.group(1).upper(), m.group(2).upper()):
+                hard.append(
+                    f"{rel}: QI-01 self-referential option in question "
+                    f"{q['n']}: option {letter} says 'Both {m.group(1)} "
+                    f"and {m.group(2)}' - includes itself")
+            elif ALL_ABOVE_RE.match(text) and letter == "A":
+                hard.append(
+                    f"{rel}: QI-01 self-referential option in question "
+                    f"{q['n']}: option A says 'All of the above' - "
+                    f"includes itself")
+        letters = [q["answer"]] if q["answer"] else []
+    nums = [q["n"] for q in questions]
+    if nums != list(range(1, len(nums) + 1)):
+        hard.append(
+            f"{rel}: QI-05 question numbering is not contiguous 1..N "
+            f"(got {nums[:8]}{'...' if len(nums) > 8 else ''})")
+
+    # QI-04 needs a raw fence-aware pass: the parser never sees E+.
+    for line, fence in fence_aware(lines):
+        if fence:
+            continue
+        m = EXTRA_OPTION_RE.match(line)
+        if m:
+            hard.append(
+                f"{rel}: QI-04 option beyond A-D: '{line.strip()[:40]}' "
+                f"- quiz_export silently drops it")
+            break
+
+    answered = [q["answer"] for q in questions
+                if q["type"] == "mcq" and q["answer"]]
+    if len(answered) >= SKEW_MIN_MCQ:
+        c = Counter(answered)
+        top, count = c.most_common(1)[0]
+        missing = sorted(set("ABCD") - set(c))
+        if count >= SKEW_SHARE * len(answered) or missing:
+            skew.append(
+                f"{rel.split('/')[3]}: '{top}' on {count}/{len(answered)}"
+                + (f", missing {''.join(missing)}" if missing else ""))
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parents[2])
+    args = parser.parse_args()
+    hard: list[str] = []
+    stems: list[tuple[str, int, str]] = []
+    skew: list[str] = []
+    n_modules = 0
+    for mod in sorted(p for p in (args.root / MODULES_ROOT).glob("*/*")
+                      if p.is_dir() and MODULE_DIR.match(p.name)):
+        quiz = mod / "assessment" / "QUIZ.md"
+        if not quiz.exists():
+            continue
+        rel = quiz.relative_to(args.root).as_posix()
+        n_modules += 1
+        scan_module(rel, quiz.read_text(encoding="utf-8").split("\n"),
+                    hard, stems, skew)
+
+    seen: dict[str, tuple[str, int]] = {}
+    cross_dups: list[str] = []
+    for rel, n, stem in stems:
+        if stem in seen:
+            cross_dups.append(
+                f"{rel.split('/')[3]} q{n} '{stem[:40]}' duplicates "
+                f"{seen[stem][0].split('/')[3]} q{seen[stem][1]}")
+        else:
+            seen[stem] = (rel, n)
+
+    for f in hard:
+        print(f.encode("ascii", "backslashreplace").decode("ascii"))
+    for c in cross_dups:
+        print(("QI-06 (accepted) " + c)
+              .encode("ascii", "backslashreplace").decode("ascii"))
+    for s in skew:
+        print(("QI-07 (shuffle queue) " + s)
+              .encode("ascii", "backslashreplace").decode("ascii"))
+    print(f"quiz_integrity_scan: {len(hard)} hard findings "
+          f"(QI-01 self-referential option / QI-02 in-module duplicate "
+          f"stem / QI-03 duplicate option text / QI-04 option beyond "
+          f"A-D / QI-05 numbering gap), QI-06 {len(cross_dups)} "
+          f"cross-module stem dups (accepted texture), QI-07 "
+          f"{len(skew)} skewed answer keys (option-shuffle queue; "
+          f"refines AS-09's 70% tripwire) across {n_modules} quizzes")
+    return 1 if hard else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

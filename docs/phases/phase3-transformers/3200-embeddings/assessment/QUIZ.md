@@ -118,7 +118,7 @@ D) Position in sequence
 **15. Rotary Position Embeddings (RoPE):**
 
 A) Add position to embeddings
-B) Both B and C
+B) Both A and C
 C) Rotate queries and keys
 D) Replace positional embeddings
 

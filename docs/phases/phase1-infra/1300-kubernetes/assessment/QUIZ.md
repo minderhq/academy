@@ -125,7 +125,7 @@ D) K8s configuration
 **16. Namespace provides:**
 
 A) Resource isolation
-B) Both A and B
+B) Both A and C
 C) Security
 D) Neither
 

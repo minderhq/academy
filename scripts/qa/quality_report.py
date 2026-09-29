@@ -29,6 +29,17 @@ stand today?" without running each tool by hand.
     assessment_lint    assessment/QUIZ.md + PRACTICE.md coverage (AS-01..AS-09;
                        AS-09 option-shuffle queue is report-mode, shown separately)
     quiz_export        quiz bank parses into complete question records
+    quiz_integrity_scan
+                       content-level quiz integrity (QI-01..05 hard:
+                       self-referential positional option, in-module
+                       duplicate stem, duplicate option text, option
+                       beyond A-D, numbering gap) on top of
+                       quiz_export's parser; QI-06/QI-07 are the
+                       report inventory (accepted cross-module stem
+                       dups + the skewed-answer-key shuffle queue
+                       that refines AS-09's 70% tripwire) - born
+                       from the tick-284 census (2 self-reference
+                       bugs fixed at birth)
     structure_lint     fence parity + H1 discipline corpus-wide
     linkcheck          every relative link target exists on disk
     casecheck          case-sensitive href/disk match (Windows-invisible breaks)
@@ -249,6 +260,7 @@ GATES = [
     ("datablock_syntax_scan.py", "datablock_syntax_scan", True),
     ("assessment_lint.py", "assessment_lint", True),
     ("quiz_export.py", "quiz_export", True),
+    ("quiz_integrity_scan.py", "quiz_integrity_scan", True),
     ("structure_lint.py", "structure_lint", True),
     ("linkcheck.py", "linkcheck", True),
     ("casecheck.py", "casecheck", True),
