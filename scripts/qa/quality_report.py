@@ -69,7 +69,8 @@ stand today?" without running each tool by hand.
                        is a literal pipe, not a separator
     mermaid_lint       mermaid diagram fences: known diagram-type header
                        (MM-01), balanced () [] {} (MM-02), declared
-                       direction on graph/flowchart (MM-03)
+                       direction on graph/flowchart (MM-03), no % outside
+                       double quotes (MM-04 - lexer aborts the render)
     deprecated_scan    deprecated API calls in python fences (DA-01:
                        datetime.utcnow/utcfromtimestamp - Python 3.12+;
                        use datetime.now(timezone.utc); DA-02: HF

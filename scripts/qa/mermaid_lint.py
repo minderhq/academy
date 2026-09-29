@@ -10,12 +10,19 @@ MM-02  the block's ``()``, ``[]``, ``{}`` must be balanced. Mermaid node
 MM-03  ``graph``/``flowchart`` blocks must declare a direction
        (``TD|TB|LR|RL|BT``). A bare ``graph`` is a mermaid syntax error,
        not a default.
+MM-04  a ``%`` outside double quotes aborts the diagram with a lexer
+       "Lexical error ... Unrecognized text" - % is the mermaid comment
+       token. Every label or edge label carrying a % sign must be
+       double-quoted. dateFormat/axisFormat directives are exempt
+       (strptime patterns, parsed fine unquoted).
 
 The corpus carries 56 mermaid diagrams (docs/diagrams/ plus lesson
 embeds) that a training platform renders directly - these checks hold
 the render line without shipping a full mermaid parser. Verified
 baseline 0 in tick-226 (51 graph, 3 stateDiagram-v2, 2 sequenceDiagram,
-all headers, directions and brackets clean).
+all headers, directions and brackets clean). MM-04 added in tick-337
+after a user-facing render abort on three ML-LIFECYCLE diagrams
+(7 unquoted % instances, now quoted).
 
 Hard gate (exit 1 on findings): baseline 0.
 
@@ -63,6 +70,17 @@ def scan_block(rel: str, start: int, chunk: list[str], findings: list[str]) -> N
             findings.append(
                 f"{rel}:{start + 1}: MM-02 unbalanced {a}{b} in mermaid "
                 f"block - {body.count(a)} {a} vs {body.count(b)} {b}")
+    for i, l in enumerate(chunk, 1):
+        if l.strip().startswith("%%"):
+            continue
+        if re.match(r"\s*(dateFormat|axisFormat)\b", l):
+            continue
+        if "%" in re.sub(r'"[^"]*"', "", l):
+            findings.append(
+                f"{rel}:{start + i}: MM-04 unquoted '%' in mermaid block "
+                f"- % is the renderer's comment token, the lexer aborts "
+                f"the diagram (double-quote the label)")
+            break
 
 
 def scan_file(root: Path, path: Path, findings: list[str]) -> None:
@@ -104,7 +122,8 @@ def main() -> int:
     for f in findings:
         print(f.encode("ascii", "backslashreplace").decode("ascii"))
     print(f"mermaid_lint: {len(findings)} findings "
-          f"(MM-01 header / MM-02 brackets / MM-03 direction) "
+          f"(MM-01 header / MM-02 brackets / MM-03 direction / "
+          f"MM-04 unquoted %) "
           f"in {len(n_files)} files across docs/")
     return 1 if findings else 0
 
