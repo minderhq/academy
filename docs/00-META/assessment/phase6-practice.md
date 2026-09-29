@@ -118,7 +118,6 @@ Implement BM25 (Best Matching 25) ranking algorithm for keyword search.
 ```python
 import math
 from collections import Counter
-from typing import List
 
 class BM25Retriever:
     def __init__(self, k1=1.5, b=0.75):
@@ -137,7 +136,7 @@ class BM25Retriever:
         Build BM25 index from documents.
 
         Args:
-            documents: List of document strings
+            documents: The document strings
         """
         # TODO: Implement
         # 1. Tokenize documents
@@ -197,7 +196,6 @@ Implement a hybrid search system combining vector and keyword search using Recip
 ### Solution Template
 
 ```python
-from typing import List
 import numpy as np
 
 class HybridRetriever:
@@ -206,7 +204,7 @@ class HybridRetriever:
         Initialize hybrid retriever.
 
         Args:
-            documents: List of document strings
+            documents: The document strings
             embedding_model: Embedding model for vector search
         """
         self.documents = documents
@@ -408,7 +406,6 @@ Implement context building strategies for RAG applications.
 ### Solution Template
 
 ```python
-from typing import List
 import tiktoken
 
 class ContextBuilder:
@@ -425,7 +422,7 @@ class ContextBuilder:
         Stuff all chunks into context.
 
         Args:
-            chunks: List of text chunks
+            chunks: The text chunks
             query: User query
 
         Returns:
@@ -439,7 +436,7 @@ class ContextBuilder:
         Map-reduce strategy for large context.
 
         Args:
-            chunks: List of text chunks
+            chunks: The text chunks
             query: User query
 
         Returns:
@@ -455,7 +452,7 @@ class ContextBuilder:
         Iteratively refine context.
 
         Args:
-            chunks: List of text chunks
+            chunks: The text chunks
             query: User query
 
         Returns:
@@ -503,7 +500,7 @@ Build an end-to-end RAG pipeline with all components.
 ```python
 from qdrant_client import QdrantClient
 from transformers import AutoTokenizer, AutoModelForCausalLM
-from typing import Dict, Any
+from typing import Any
 
 class RAGPipeline:
     def __init__(self, config: dict[str, Any]):
@@ -521,7 +518,7 @@ class RAGPipeline:
         self.reranker = None
         self.llm = None
 
-    def ingest_documents(self, documents: list[str], metadata: list[Dict]):
+    def ingest_documents(self, documents: list[str], metadata: list[dict]):
         """Ingest documents into the pipeline."""
         # TODO: Implement
         # 1. Chunk documents
@@ -530,17 +527,17 @@ class RAGPipeline:
         # 4. Build BM25 index
         pass
 
-    def retrieve(self, query: str, top_k: int = 20) -> list[Dict]:
+    def retrieve(self, query: str, top_k: int = 20) -> list[dict]:
         """Retrieve relevant documents."""
         # TODO: Implement hybrid retrieval
         pass
 
-    def rerank(self, query: str, documents: list[Dict], top_k: int = 5) -> list[Dict]:
+    def rerank(self, query: str, documents: list[dict], top_k: int = 5) -> list[dict]:
         """Re-rank retrieved documents."""
         # TODO: Implement re-ranking
         pass
 
-    def generate(self, query: str, context: list[Dict]) -> str:
+    def generate(self, query: str, context: list[dict]) -> str:
         """Generate response using LLM."""
         # TODO: Implement generation
         pass
@@ -827,7 +824,6 @@ if __name__ == "__main__":
 ### Exercise 3: Hybrid Search with Rank Fusion
 
 ```python
-from typing import List
 from collections import defaultdict
 
 class HybridSearch:
@@ -853,7 +849,7 @@ class HybridSearch:
         score(d) = sum(1 / (k + rank(d)))
 
         Args:
-            results_list: List of ranked result lists
+            results_list: The ranked result lists
             k: Constant to prevent division by small ranks
 
         Returns:
@@ -886,8 +882,8 @@ class HybridSearch:
         score(d) = alpha * vector_score + (1-alpha) * keyword_score
 
         Args:
-            vector_results: List of (doc_id, score) from vector search
-            keyword_results: List of (doc_id, score) from keyword search
+            vector_results: (doc_id, score) pairs from vector search
+            keyword_results: (doc_id, score) pairs from keyword search
 
         Returns:
             Fused ranked list
@@ -1199,7 +1195,6 @@ if __name__ == "__main__":
 ### Exercise 6: Context Building for RAG
 
 ```python
-from typing import List, Dict
 
 class ContextBuilder:
     """Build context for RAG from retrieved documents"""
@@ -1209,7 +1204,7 @@ class ContextBuilder:
 
     def build_context(
         self,
-        retrieved_docs: list[Dict],
+        retrieved_docs: list[dict],
         query: str,
         include_sources: bool = True
     ) -> str:
@@ -1217,7 +1212,7 @@ class ContextBuilder:
         Build context string from retrieved documents
 
         Args:
-            retrieved_docs: List of retrieved documents with text and metadata
+            retrieved_docs: The retrieved documents with text and metadata
             query: Original user query
             include_sources: Whether to include source citations
 
@@ -1249,7 +1244,7 @@ class ContextBuilder:
 
         return full_context
 
-    def format_with_citations(self, response: str, sources: list[Dict]) -> str:
+    def format_with_citations(self, response: str, sources: list[dict]) -> str:
         """
         Add source citations to response
 
@@ -1274,7 +1269,7 @@ class ContextBuilder:
         Remove duplicate or very similar contexts
 
         Args:
-            contexts: List of context strings
+            contexts: The context strings
 
         Returns:
             Deduplicated contexts
