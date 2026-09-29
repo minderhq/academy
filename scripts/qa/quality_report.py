@@ -377,6 +377,16 @@ stand today?" without running each tool by hand.
                       drain list was {"Expert"} - 5 sites drained
                       tick-412 to Advanced (3-level enum closed),
                       hard since the drain
+    lesson_anatomy_census
+                      Lesson anatomy (LA-01, report): every lesson
+                      doc opens its pedagogy with the canonical
+                      "Learning Objectives" H2 - the platform's
+                      syllabus card and progress model key on it.
+                      Born from the tick-413 census: 104/114
+                      lessons already carry the exact heading; the
+                      10 missing sites are the drain queue, hard
+                      gate follows the drain (same scope as
+                      lesson_id_scan - 114 lesson docs)
     unfinished_marker_scan unfinished-content markers in prose
                        (UM-01): outside any code fence, inline code
                        scrubbed, a line must not carry "coming soon",
@@ -575,6 +585,7 @@ GATES = [
     ("estimated_time_census.py", "estimated_time_census", True),
     ("prereq_census.py", "prereq_census", True),
     ("difficulty_census.py", "difficulty_census", True),
+    ("lesson_anatomy_census.py", "lesson_anatomy_census", False),
     ("unfinished_marker_scan.py", "unfinished_marker_scan", True),
     ("empty_section_scan.py", "empty_section_scan", True),
     ("emoji_shortcode_scan.py", "emoji_shortcode_scan", True),
