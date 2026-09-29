@@ -1,7 +1,7 @@
 ---
 Document ID: ML-LIFECYCLE
 Title: "ML Lifecycle: From Development to Production"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Beginner
 ---
@@ -223,7 +223,7 @@ graph LR
     end
 
     subgraph "Model Registry"
-        REGISTRY[Model Registry]
+        REGISTRY[Registered Models]
         VERSIONS[Version Management]
         STAGES[Staging<br/>Production]
     end
@@ -245,13 +245,13 @@ graph LR
 
 ```mermaid
 graph TD
-    START{Model Performance Drop} --> CHECK[Check Metrics]
+    START{Model Performance Drop?} --> CHECK[Check Metrics]
 
     CHECK --> PSI{PSI > 0.15?}
     CHECK --> ACC{Accuracy Drop > 5%?}
 
-    PSI -->|Yes| RETRAIN_DECISION[Retrain Model]
-    ACC -->|Yes| RETRAIN_DECISION
+    PSI -->|Yes| RETRAIN[Retrain Model]
+    ACC -->|Yes| RETRAIN
 
     PSI -->|No| DATA{Data Distribution Changed?}
     ACC -->|No| PRED{Prediction Drift?}
@@ -262,18 +262,17 @@ graph TD
     INVESTIGATE --> ROOT{Root Cause Found?}
 
     ROOT -->|Yes| FIX[Fix Issue]
-    ROOT -->|No| RETRAIN_DECISION
+    ROOT -->|No| RETRAIN
 
     FIX --> VERIFY{Verify Fix}
     VERIFY -->|Success| CONTINUE[Continue Monitor]
-    VERIFY -->|Failed| RETRAIN_DECISION
+    VERIFY -->|Failed| RETRAIN
 
-    RETRAIN_DECISION --> RETRAIN[Retrain Model]
     RETRAIN --> EVALUATE[Re-evaluate]
     EVALUATE --> DEPLOY[Deploy if Better]
 ```
 
-
+---
 
 ## Related Documents
 

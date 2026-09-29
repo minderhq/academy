@@ -1,7 +1,7 @@
 ---
 Document ID: REACT-LOOP
 Title: "ReAct Loop: Agent Reasoning Flow"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Beginner
 ---
@@ -204,25 +204,25 @@ graph LR
 ## Error Handling in ReAct
 
 ```mermaid
-stateDiagram-v2
-    [*] --> Execute
-    Execute --> Success{Tool Success?}
+graph TD
+    START([Start]) --> EXECUTE[Execute Tool]
+    EXECUTE --> SUCCESS{Tool Success?}
 
-    Success -->|Yes| Observe
-    Success -->|No| Recover
+    SUCCESS -->|Yes| OBSERVE[Observe Result]
+    SUCCESS -->|No| RECOVER[Recovery Attempt]
 
-    Recover --> Thought{Can Recover?}
-    Thought -->|Yes| Alternative[Try alternative tool]
-    Thought -->|No| Error[Return error]
+    RECOVER --> THOUGHT{Can Recover?}
+    THOUGHT -->|Yes| ALT[Try Alternative Tool]
+    THOUGHT -->|No| ERROR[Return Error]
 
-    Alternative --> Execute
-    Observe --> Next{More Info?}
+    ALT --> EXECUTE
+    OBSERVE --> NEXT{More Info Needed?}
 
-    Next -->|Yes| Plan
-    Next -->|No| Final[Generate answer]
+    NEXT -->|Yes| PLAN[Plan Next Step]
+    NEXT -->|No| FINAL[Generate Final Answer]
 
-    Final --> [*]
-    Error --> [*]
+    FINAL --> DONE([Done])
+    ERROR --> DONE
 ```
 
 
