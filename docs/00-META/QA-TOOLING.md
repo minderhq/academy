@@ -1,7 +1,7 @@
 ---
 Document ID: QA-TOOLING
 Title: "PROJECT-OMEGA QA Tooling"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Beginner
 ---
@@ -65,6 +65,7 @@ the full installed stack. A partial environment fails loud with
 | unfinished_marker_scan | UM-01 | unfinished-content markers in prose: `coming soon`, `under construction`, `to be written`, `to be added`, `work in progress`, shouted `TODO`/`TBD`/`FIXME` - checked outside code fences with inline code scrubbed, so fenced starter-code `# TODO:` exercise prompts (the codified notebooks/README.md convention) stay invisible by design and blockquote-prefixed fences still toggle; born from the tick-276 census whose 108 raw matches all landed in legitimate classes (the lock keeps it that way at baseline 0) |
 | empty_section_scan | ES-01 | every heading owns content: a section is empty iff nothing but blanks, HRs, blockquote markers and HTML comments sits between its heading and the next same-or-higher-level heading (or EOF) - a filled child fills its parent, so `## Questions` + `### 1.` containers are legitimate. Fence model is structure_lint's length-aware one (a bare closing fence at least as long as its opening run), so 3-backtick examples inside the 4-backtick super-fences cannot mis-toggle and surface fence-interior heading lookalikes; born from the tick-277 census whose 8 findings were all same-level children under container headings (`## Part 1` + `## 1.1`) - fixed by re-leveling 123 headings across 3 files, baseline 0 |
 | emoji_shortcode_scan | EM-01 | gemoji shortcodes (`:rocket:` form) banned in prose: the corpus idiom is literal emoji (census: literal dominates by orders of magnitude across 173 files) and a platform load step would need a shortcode table while literals render everywhere; inline code is scrubbed, so technical lookalikes (`:memory:` SQLite URI, `:server:` K3s token - both fence-interior anyway) stay invisible; born from the tick-279 census that found 82 shortcodes in 11 files including the invalid `:star3:` rendering as raw text on GitHub - normalized to literal emoji, baseline 0 |
+| fence_label_scan | FL-01/02 | fence info-strings must be lowercase and present: code gates key on the exact lowercase label, so a `Python` case variant or a bare unlabeled open is code every gate silently skips (an audit hole, not a style nit); every fence carries an honest label - `text` is always legitimate for prose dumps; born from the tick-280 census (4243 open fences, 21 distinct labels, already all lowercase and labeled), baseline 0 |
 
 ## 📋 Report Gates (exit 0 by design)
 

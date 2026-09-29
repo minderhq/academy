@@ -157,6 +157,20 @@ stand today?" without running each tool by hand.
                        fixed by re-leveling 123 headings across 3
                        files, fence model length-aware as
                        structure_lint's
+    emoji_shortcode_scan gemoji shortcodes in prose (EM-01): the
+                       corpus idiom is literal emoji - a platform
+                       load step would need a shortcode->emoji
+                       mapping while literals render everywhere
+                       (``:star3:`` even rendered as raw text on
+                       GitHub); inline code is scrubbed, technical
+                       lookalikes (:memory:, :server:) stay invisible
+    fence_label_scan   fence info-strings (FL-01 uppercase label,
+                       FL-02 unlabeled fence): code gates key on the
+                       exact lowercase label, so ``Python`` or a bare
+                       open is code every gate silently skips - an
+                       audit hole, not a style nit; census at birth
+                       (tick-280): 4243 open fences, 21 labels, all
+                       lowercase and labeled
   queue gate (drain in progress; never fails the report unless --fail-on-queue):
     objectives_lint    template-objective artifacts (OL-01/OL-02), phase by phase
     fence_namecheck    unbound names in python fences (report mode), two
@@ -228,6 +242,7 @@ GATES = [
     ("unfinished_marker_scan.py", "unfinished_marker_scan", True),
     ("empty_section_scan.py", "empty_section_scan", True),
     ("emoji_shortcode_scan.py", "emoji_shortcode_scan", True),
+    ("fence_label_scan.py", "fence_label_scan", True),
 ]
 
 
