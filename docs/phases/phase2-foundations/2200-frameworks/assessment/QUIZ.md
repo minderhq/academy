@@ -1,7 +1,7 @@
 ---
 Document ID: 2200-QUIZ
 Title: "2200: Frameworks - Quiz"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -22,11 +22,11 @@ Difficulty: Intermediate
 A) NumPy arrays with GPU support
 B) Python lists
 C) SQL tables
-D) Pandas DataFrames
+D) Pandas DataFrames, built for tabular data with a very different internal memory layout
 
 **2. `requires_grad=True` enables:**
 
-A) GPU acceleration
+A) GPU acceleration, which comes from device placement rather than this flag
 B) Model saving
 C) Automatic gradient computation
 D) Data loading
@@ -41,14 +41,14 @@ D) Loads data
 **4. A DataLoader provides:**
 
 A) Model storage
-B) Gradient computation
+B) Gradient computation, which autograd handles without any loader involvement
 C) Visualization
 D) Batched data iteration
 
 **5. `torch.nn.Module` is the base class for:**
 
 A) All neural network modules
-B) Datasets
+B) Datasets, which follow the torch.utils.data interface instead of this base class
 C) Optimizers
 D) Loss functions
 
@@ -56,12 +56,12 @@ D) Loss functions
 
 A) Loads data
 B) Clears gradients
-C) Computes gradients
+C) Computes gradients, work that happens in backward() before step() ever runs
 D) Updates model parameters
 
 **7. `optimizer.zero_grad()` is used to:**
 
-A) Initialize model
+A) Initialize model, a job for the constructor and its weight setup code
 B) Clear previous gradients
 C) Reset learning rate
 D) Stop training
@@ -82,14 +82,14 @@ D) autograd
 
 **10. CUDA in PyTorch refers to:**
 
-A) A loss function
+A) A loss function, which is a math object with nothing to do with hardware
 B) A dataset format
 C) NVIDIA GPU support
 D) An optimizer
 
 **11. `torch.save()` typically saves:**
 
-A) Only the model architecture
+A) Only the model architecture, which pickled modules lose the code for anyway
 B) Model state dict (parameters)
 C) Training logs
 D) Only the optimizer
@@ -98,7 +98,7 @@ D) Only the optimizer
 
 A) Load tensors
 B) Save tensors
-C) Compute gradients
+C) Compute gradients, which the autograd engine records during the forward pass
 D) Change tensor shape
 
 **13. A neural network layer in PyTorch is:**
@@ -106,11 +106,11 @@ D) Change tensor shape
 A) A list
 B) A function
 C) A class inheriting from nn.Module
-D) A dictionary
+D) A dictionary, which can hold weights but cannot run a forward pass by itself
 
 **14. `.to(device)` is used to:**
 
-A) Save model
+A) Save model, a persistence job that belongs to torch.save() instead
 B) Move tensors/models to GPU or CPU
 C) Compute gradients
 D) Load data
@@ -131,7 +131,7 @@ D) How gradients are computed
 
 **17. `torch.no_grad()` context manager:**
 
-A) Stops model saving
+A) Stops model saving, which torch.no_grad() has no authority over whatsoever
 B) Stops training
 C) Stops data loading
 D) Stops gradient computation
@@ -145,7 +145,7 @@ D) MSELoss
 
 **19. Batch size affects:**
 
-A) Only training time
+A) Only training time, leaving hardware footprint completely untouched somehow
 B) Training time and memory
 C) Only model accuracy
 D) Only memory
