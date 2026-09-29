@@ -302,6 +302,7 @@ model.qconfig = quant.get_default_qat_qconfig('x86')
 model = quant.prepare_qat(model)
 
 # 2. Train as normal
+epochs = 3  # demo scale
 for epoch in range(epochs):
     train_epoch(model, dataloader)
 

@@ -348,6 +348,7 @@ def compute_accuracy(model, dataloader):
     return correct / total
 
 # Track throughout training
+epochs = 3  # demo scale
 for epoch in range(epochs):
     train_epoch(model)
     acc = compute_accuracy(model, val_loader)

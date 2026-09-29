@@ -255,6 +255,7 @@ optimizer = torch.optim.AdamW(
     (p for p in model_mp.parameters() if p.requires_grad), lr=1e-4
 )
 
+epochs = 3  # demo scale
 for epoch in range(epochs):
     for batch in dataloader:
         # Different parts run at different precision
@@ -415,6 +416,7 @@ from bitblade.monitoring import QuantizationMonitor
 monitor = QuantizationMonitor(model_quantized)
 
 # Track quantization statistics during training
+epochs = 3  # demo scale
 for epoch in range(epochs):
     train_epoch(model_quantized)
 

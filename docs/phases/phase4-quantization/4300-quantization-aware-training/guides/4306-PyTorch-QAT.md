@@ -232,6 +232,7 @@ def freeze_observers(model):
                 module.activation_post_process.disable_observer()
 
 # Freeze after initial QAT epochs
+epochs = 15  # demo scale - passes the freeze point
 for epoch in range(epochs):
     train_epoch(model)
     if epoch == 10:
@@ -253,6 +254,7 @@ scheduler = lr_scheduler.MultiStepLR(
     gamma=0.5  # Reduce by half
 )
 
+epochs = 20  # demo scale - passes the milestone
 for epoch in range(epochs):
     train_epoch(model)
     scheduler.step()
