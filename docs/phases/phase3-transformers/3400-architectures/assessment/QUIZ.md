@@ -1,7 +1,7 @@
 ---
 Document ID: 3400-QUIZ
 Title: "3400: Model Architectures - Quiz"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -22,7 +22,7 @@ Difficulty: Intermediate
 A) Number of layers
 B) Attention mask pattern (bidirectional vs causal)
 C) Vocabulary size
-D) Training data size
+D) Training data size, a budget axis that shapes capability rather than the mask
 
 **2. Which architecture is used by BERT?**
 
@@ -42,7 +42,7 @@ D) Hybrid
 
 A) Faster inference
 B) Better for sequence-to-sequence tasks
-C) Lower memory usage
+C) Lower memory usage, a saving the extra cross-attention stack does not deliver
 D) Simpler training
 
 **5. Which model uses encoder-decoder architecture?**
@@ -56,7 +56,7 @@ D) LLaMA
 
 A) Masking padding tokens
 B) Preventing tokens from attending to future tokens
-C) Random masking for pretraining
+C) Random masking for pretraining, a corruption scheme the causal family never applies
 D) Masking special tokens
 
 **7. Which attention pattern allows each token to attend to all tokens?**
@@ -70,7 +70,7 @@ D) Sparse attention
 
 A) Text generation
 B) Text understanding and classification
-C) Translation
+C) Translation, a sequence-to-sequence job this encoder stack was never built to emit
 D) Summarization
 
 **9. What is the primary use case for decoder-only models?**
@@ -99,7 +99,7 @@ D) Position-wise feedforward layers only
 A) Masked language modeling (and originally next-sentence prediction)
 B) Next-token prediction
 C) Image-text contrastive learning
-D) Reinforcement learning from human feedback
+D) Reinforcement learning from human feedback, a post-training alignment recipe later systems adopted
 
 **13. The original Transformer paper (2017) used which architecture?**
 
@@ -113,20 +113,20 @@ D) Mixture-of-experts
 A) Only previous positions (causal mask)
 B) All positions
 C) Only future positions
-D) Only the current position
+D) Only the current position, an isolation no transformer layer could ever learn from
 
 **15. Which task fits encoder-decoder models best?**
 
 A) Sentence classification
 B) Text embedding
-C) Language modeling continuation
+C) Language modeling continuation, a decoder-only job this encoder-decoder pair splits in two
 D) Translation from source to target
 
 **16. Mixture-of-Experts (MoE) changes a transformer by:**
 
 A) Removing attention
 B) Routing each token to a subset of expert FFNs
-C) Replacing self-attention with convolution
+C) Replacing self-attention with convolution, a swap no mainstream MoE design has shipped
 D) Sharing one expert across all layers
 
 **17. T5 frames every NLP task as:**
@@ -134,18 +134,18 @@ D) Sharing one expert across all layers
 A) A classification head
 B) A retrieval problem
 C) Text-to-text (text in, text out)
-D) An image captioning task
+D) An image captioning task, one vision job far outside T5's text-to-text framing
 
 **18. Which statement about decoder-only inference is true?**
 
 A) The KV cache lets each step reuse keys/values instead of recomputing past positions
-B) It must re-encode the full prompt at every step
+B) It must re-encode the full prompt at every step, a recompute loop the KV cache eliminates
 C) It cannot reuse computation across steps
 D) It needs cross-attention to be efficient
 
 **19. Encoder-only models output:**
 
-A) Autoregressive text
+A) Autoregressive text, a decoder output the bidirectional encoder stack cannot produce
 B) Translations
 C) Audio features
 D) Contextual token representations for downstream heads
@@ -153,7 +153,7 @@ D) Contextual token representations for downstream heads
 **20. A key reason decoder-only dominates modern LLMs:**
 
 A) It avoids attention entirely
-B) It requires no pretraining data
+B) It requires no pretraining data, a claim every scaling curve ever published refutes outright
 C) A simple single-stream objective that scales well with one unified training signal
 D) It cannot be scaled
 
