@@ -119,6 +119,7 @@ test_short_term_memory()
 from sentence_transformers import SentenceTransformer
 import faiss
 import numpy as np
+from typing import Any
 
 class LongTermMemory:
     def __init__(self, embedding_model="all-MiniLM-L6-v2"):
@@ -203,7 +204,7 @@ class LongTermMemory:
 
         return results
 
-    def search_metadata(self, key: str, value: any) -> list[dict]:
+    def search_metadata(self, key: str, value: Any) -> list[dict]:
         """Search memories by metadata."""
         results = []
         for i, meta in enumerate(self.metadata):

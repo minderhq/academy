@@ -844,6 +844,7 @@ Combines:
 """
 
 import torch
+from typing import Any
 import numpy as np
 import queue
 import threading
@@ -1106,7 +1107,7 @@ class ConversationManager:
 
         return "\n".join(context_parts)
 
-    def set_context_var(self, key: str, value: any):
+    def set_context_var(self, key: str, value: Any):
         """Set context variable"""
         self.context[key] = value
 
