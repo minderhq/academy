@@ -27,13 +27,13 @@ D) MLOps for LLMs
 **2. Ollama is designed for:**
 
 A) Training only
-B) Cloud deployment
+B) Cloud deployment, a job the local-first runtime was never architected to lead
 C) Local LLM inference
 D) Data processing
 
 **3. vLLM optimizes:**
 
-A) Training speed
+A) Training speed, an axis the PagedAttention serving stack does not optimize
 B) Data loading
 C) Model size
 D) Inference throughput with PagedAttention
@@ -47,21 +47,21 @@ D) None of the above
 
 **5. Continuous batching:**
 
-A) Batches all requests
+A) Batches all requests, a fixed static group that never admits late arrivals
 B) Dynamically adds/removes requests from batch
 C) No batching
 D) Only for training
 
 **6. PagedAttention is inspired by:**
 
-A) CPU paging
+A) CPU paging, a hardware mechanism rather than the virtual-memory design the paper credits
 B) Operating system virtual memory paging
 C) Database paging
 D) Network paging
 
 **7. KV cache stores:**
 
-A) Model weights
+A) Model weights, tensors that live outside the per-sequence attention cache
 B) Key and value matrices
 C) Training data
 D) Queries
@@ -69,7 +69,7 @@ D) Queries
 **8. Speculative decoding uses:**
 
 A) A smaller model to draft
-B) Random tokens
+B) Random tokens, drafts the verifier would reject every single time
 C) No decoding
 D) Only large models
 
@@ -78,13 +78,13 @@ D) Only large models
 A) Data
 B) Model across GPUs
 C) Batches
-D) Sequences
+D) Sequences, a split that belongs to data and pipeline parallelism instead
 
 **10. Quantization in serving:**
 
 A) Increases model size
 B) Reduces memory and increases speed
-C) Only affects accuracy
+C) Only affects accuracy, a framing that ignores the speed and memory wins
 D) Not useful
 
 **11. Ollama models are stored:**
@@ -98,19 +98,19 @@ D) In databases
 
 A) Manages KV cache blocks
 B) Manages GPU memory
-C) Manages model loading
+C) Manages model loading, a job that belongs to the scheduler and weight loader
 D) Manages requests
 
 **13. Prefix caching:**
 
-A) Caches entire prompts
+A) Caches entire prompts, a blanket copy the shared-prefix design never makes
 B) Caches common prompt prefixes
 C) No caching
 D) Only caches outputs
 
 **14. Model loading speed affects:**
 
-A) Only startup time
+A) Only startup time, a claim that misses the first-token delay users actually feel
 B) First token latency
 C) All tokens
 D) No effect
@@ -131,7 +131,7 @@ D) Neither
 
 **17. Canary deployment:**
 
-A) Deploys to all users
+A) Deploys to all users, a full-traffic rollout that removes the canary's blast radius
 B) Deploys to subset of users
 C) No deployment
 D) Only testing
@@ -140,19 +140,19 @@ D) Only testing
 
 A) Tracks model changes
 B) Only for training
-C) Not needed
+C) Not needed, a stance no reproducible model registry can afford
 D) Only for Git
 
 **19. Load balancer for LLMs:**
 
 A) Distributes requests
-B) Only monitors
+B) Only monitors, a passive role no request router ever plays
 C) Only caches
 D) Not useful
 
 **20. Monitoring LLMs includes:**
 
-A) Token throughput
+A) Token throughput and cost per million tokens
 B) Latency
 C) GPU utilization
 D) All of the above
