@@ -916,7 +916,6 @@ curl http://localhost:8002/v1/completions \
 ```python
 # ~/lab-003-lora/chatbot.py
 import requests
-from typing import List
 
 class FineTunedChatbot:
     """Chatbot using fine-tuned model"""

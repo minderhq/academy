@@ -3,7 +3,7 @@ Document ID: 7502
 Title: "7502: PII Redaction & Privacy Filtering"
 Phase: 7
 Module: 7500
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -766,7 +766,6 @@ The pipeline composes detection, redaction, storage, and logging. The NLP detect
 
 ```python
 # pii_pipeline.py
-from typing import Dict
 from datetime import datetime
 
 class PIIPipeline:
@@ -794,7 +793,7 @@ class PIIPipeline:
         text: str,
         user_id: str,
         store_pii: bool = False
-    ) -> Dict:
+    ) -> dict:
         """Process input containing potential PII"""
 
         # Detect PII using multiple methods

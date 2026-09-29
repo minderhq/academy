@@ -573,7 +573,6 @@ def process_in_batches(data, batch_size=32):
 ### Data Loading
 ```python
 from dataclasses import dataclass
-from typing import List
 
 @dataclass
 class TrainingConfig:

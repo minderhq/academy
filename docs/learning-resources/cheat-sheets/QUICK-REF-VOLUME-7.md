@@ -1,7 +1,7 @@
 ---
 Document ID: QUICK-REF-VOLUME-7
 Title: "Volume 7: Production Systems - Quick Reference"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -337,7 +337,7 @@ print(result)  # "The square root of 16 is 4.0"
 
 ### Tool Definition
 ```python
-from typing import Callable, Dict, Any
+from typing import Callable, Any
 import inspect
 
 class Tool:

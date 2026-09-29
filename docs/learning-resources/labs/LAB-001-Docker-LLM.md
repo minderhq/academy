@@ -111,7 +111,6 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import requests
 import json
-from typing import List
 
 app = FastAPI(title="LLM API")
 
