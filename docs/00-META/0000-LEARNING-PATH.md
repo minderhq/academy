@@ -12,7 +12,7 @@ Difficulty: Beginner
 
 - [Complete AI/LLM Infrastructure Curriculum - From Zero to Hero](#complete-aillm-infrastructure-curriculum---from-zero-to-hero)
 - [📚 Curriculum Overview](#-curriculum-overview)
-- [Phase 0: Python Fundamentals (Week 1) :star3: NEW](#phase-0-python-fundamentals-week-1--new)
+- [Phase 0: Python Fundamentals (Week 1) ⭐ NEW](#phase-0-python-fundamentals-week-1--new)
 - [Phase 1: Foundations (Weeks 2-5)](#phase-1-foundations-weeks-2-5)
 - [Phase 2: Infrastructure (Weeks 5-12)](#phase-2-infrastructure-weeks-5-12)
 - [Phase 3: AI/ML Fundamentals (Weeks 13-20)](#phase-3-aiml-fundamentals-weeks-13-20)
@@ -44,7 +44,7 @@ Difficulty: Beginner
 │                       PROJECT-OMEGA LEARNING PATH                       │
 ├─────────────────────────────────────────────────────────────────────────┤
 │                                                                           │
-│  Phase 0: Python Fundamentals (Week 1) :star3: NEW                      │
+│  Phase 0: Python Fundamentals (Week 1)   ⭐    NEW                      │
 │  ├── Python Basics (variables, functions, loops)                        │
 │  ├── Data Structures (lists, dicts, tuples)                             │
 │  ├── OOP Fundamentals (classes, methods)                                │
@@ -96,7 +96,7 @@ Difficulty: Beginner
 
 ---
 
-## Phase 0: Python Fundamentals (Week 1) :star3: NEW
+## Phase 0: Python Fundamentals (Week 1) ⭐ NEW
 
 ### For Complete Beginners
 
@@ -129,7 +129,7 @@ Learning Path:
 - **Self-taught devs** can fill knowledge gaps
 - **Non-technical users** realize if coding is for them
 
-:information_source: **Already know Python?** You can proceed directly to [TUTORIAL-001: Hello LLM](../learning-resources/tutorials/TUTORIAL-001-Hello-LLM.md) or skip to Phase 1 infrastructure topics.
+ℹ️ **Already know Python?** You can proceed directly to [TUTORIAL-001: Hello LLM](../learning-resources/tutorials/TUTORIAL-001-Hello-LLM.md) or skip to Phase 1 infrastructure topics.
 
 ---
 

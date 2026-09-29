@@ -18,7 +18,7 @@ Difficulty: Intermediate
 **Time:** 3 hours
 **Difficulty:** ⭐⭐ Intermediate
 
-:warning: **Python Required:** This lab involves significant Python coding (classes, async, type hints). If you haven't completed **TUTORIAL-000**, start there first.
+⚠️ **Python Required:** This lab involves significant Python coding (classes, async, type hints). If you haven't completed **TUTORIAL-000**, start there first.
 
 ---
 

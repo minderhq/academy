@@ -8,15 +8,15 @@ Difficulty: Beginner
 
 # TUTORIAL-000: Python for AI (Complete Beginner)
 
-**Difficulty:** :star: Absolute Beginner
+**Difficulty:** ⭐ Absolute Beginner
 **Time:** 15-20 hours (spread over 1-2 weeks)
 **Prerequisites:** None! This is where you start.
 
-> :warning: **Realistic Expectation:** If you're new to programming, this will take 15-20 hours to complete properly. Don't rush - solid fundamentals are crucial for success in later tutorials.
+> ⚠️ **Realistic Expectation:** If you're new to programming, this will take 15-20 hours to complete properly. Don't rush - solid fundamentals are crucial for success in later tutorials.
 
 ---
 
-## :rocket: Why This Tutorial?
+## 🚀 Why This Tutorial?
 
 Before you can build AI systems, you need to speak the language of AI: **Python**.
 
@@ -24,7 +24,7 @@ This tutorial is designed for **complete beginners** with zero programming exper
 
 ---
 
-## :memo: What You'll Learn
+## 📝 What You'll Learn
 
 ### Part 1: Python Basics (2 hours)
 - Variables and data types
@@ -59,14 +59,14 @@ This tutorial is designed for **complete beginners** with zero programming exper
 
 ---
 
-## :link: After This Tutorial
+## 🔗 After This Tutorial
 
 You'll be ready for:
-- :white_check_mark: TUTORIAL-001: Hello LLM
-- :white_check_mark: TUTORIAL-002: Docker Essentials
-- :white_check_mark: TUTORIAL-003: RAG Basics
-- :white_check_mark: LAB-001: Docker & LLM
-- :white_check_mark: All other tutorials and labs!
+- ✅ TUTORIAL-001: Hello LLM
+- ✅ TUTORIAL-002: Docker Essentials
+- ✅ TUTORIAL-003: RAG Basics
+- ✅ LAB-001: Docker & LLM
+- ✅ All other tutorials and labs!
 
 ---
 
@@ -1006,7 +1006,7 @@ uv pip install -r requirements.txt
 
 **NumPy** is the foundation of all AI/ML in Python. PyTorch tensors are built on NumPy concepts.
 
-> :warning: **IMPORTANT:** If you skip NumPy, you will STRUGGLE in Phase 2 (tensors, gradients, backprop).
+> ⚠️ **IMPORTANT:** If you skip NumPy, you will STRUGGLE in Phase 2 (tensors, gradients, backprop).
 > Spend extra time here - it pays off!
 
 #### Installation:
@@ -1427,7 +1427,7 @@ Before moving to Phase 2, ensure you understand:
 - [ ] Implementing softmax, ReLU, normalization
 - [ ] Understanding attention mechanism with NumPy
 
-> :rotating_light: **If you're unsure about any of these, REVIEW again!**
+> 🚨 **If you're unsure about any of these, REVIEW again!**
 > Phase 2 assumes 100% fluency with these concepts.
 
 ---
@@ -1923,7 +1923,7 @@ print(response)
 
 ---
 
-## :checkered_flag: Practice Exercises
+## 🏁 Practice Exercises
 
 ### Exercise 1: Calculator (30 minutes)
 
@@ -2102,7 +2102,7 @@ def load_config(config_path: str) -> dict[str, Any]:
 
 ---
 
-## :trophy: Completion Checklist
+## 🏆 Completion Checklist
 
 ```text
 [ ] Part 1: Python Basics (2 hours)
@@ -2149,7 +2149,7 @@ def load_config(config_path: str) -> dict[str, Any]:
 
 ---
 
-## :link: What's Next?
+## 🔗 What's Next?
 
 Congratulations! You now have the Python skills needed for AI development!
 
@@ -2178,7 +2178,7 @@ PROJECT-001: AI Assistant (Complete project)
 
 ---
 
-## :book: Additional Resources
+## 📖 Additional Resources
 
 ### Free Python Tutorials:
 - **Python.org Tutorial**: https://docs.python.org/3/tutorial/
@@ -2200,6 +2200,6 @@ PROJECT-001: AI Assistant (Complete project)
 **Difficulty**: Beginner
 **Prerequisites**: None!
 
-> :information_source: **Time Estimate:** This tutorial has been significantly expanded to include NumPy, Pydantic, and FastAPI fundamentals. Plan for 15-20 hours of focused learning, ideally spread over 1-2 weeks for proper retention.
+> ℹ️ **Time Estimate:** This tutorial has been significantly expanded to include NumPy, Pydantic, and FastAPI fundamentals. Plan for 15-20 hours of focused learning, ideally spread over 1-2 weeks for proper retention.
 
-**Ready to build AI?** Start with [TUTORIAL-001: Hello LLM](TUTORIAL-001-Hello-LLM.md) :rocket:
+**Ready to build AI?** Start with [TUTORIAL-001: Hello LLM](TUTORIAL-001-Hello-LLM.md) 🚀

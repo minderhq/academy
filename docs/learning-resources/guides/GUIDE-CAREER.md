@@ -14,20 +14,20 @@ Difficulty: Intermediate
 
 ---
 
-## :rotating_light: CRITICAL REALITY CHECK
+## 🚨 CRITICAL REALITY CHECK
 
 Before diving into career prep, understand the current AI job market:
 
 ### The Good News
-- :white_check_mark: AI Engineering is one of the fastest-growing fields
-- :white_check_mark: Companies desperately need practical AI skills (RAG, fine-tuning, deployment)
-- :white_check_mark: PROJECT-OMEGA covers in-demand skills (not just theory)
+- ✅ AI Engineering is one of the fastest-growing fields
+- ✅ Companies desperately need practical AI skills (RAG, fine-tuning, deployment)
+- ✅ PROJECT-OMEGA covers in-demand skills (not just theory)
 
 ### The Hard Truth
-- :warning: **Having tutorials ≠ Being job-ready**
-- :warning: **"I studied transformers" is NOT a portfolio project**
-- :warning: **Bootcamp certificates have low signal value**
-- :warning: **Completion rate matters more than enrollment**
+- ⚠️ **Having tutorials ≠ Being job-ready**
+- ⚠️ **"I studied transformers" is NOT a portfolio project**
+- ⚠️ **Bootcamp certificates have low signal value**
+- ⚠️ **Completion rate matters more than enrollment**
 
 ### The Path Forward
 This guide bridges the gap between "completed PROJECT-OMEGA" and "hired as AI Engineer."
@@ -108,7 +108,7 @@ Skills from PROJECT-OMEGA:
 
 ### 2.1 The Golden Rule of Portfolios
 
-:rotating_light: **Deployed projects > GitHub repos > Tutorial completion**
+🚨 **Deployed projects > GitHub repos > Tutorial completion**
 
 A tutorial completion is NOT a portfolio project. Here's the difference:
 
@@ -138,7 +138,7 @@ After completing PROJECT-OMEGA, build **3 portfolio projects**:
 - [x] README with architecture diagram
 
 **Time:** 20-30 hours
-**Difficulty:** :star: :star:
+**Difficulty:** ⭐ ⭐
 
 **Bonus Points:**
 - Add citations (show source chunks)
@@ -159,7 +159,7 @@ After completing PROJECT-OMEGA, build **3 portfolio projects**:
 - [x] Blog post explaining your approach
 
 **Time:** 40-60 hours
-**Difficulty:** :star: :star: :star:
+**Difficulty:** ⭐ ⭐ ⭐
 
 **Bonus Points:**
 - DPO alignment
@@ -180,7 +180,7 @@ After completing PROJECT-OMEGA, build **3 portfolio projects**:
 - [x] Video demo (3-5 minutes)
 
 **Time:** 60-80 hours
-**Difficulty:** :star: :star: :star: :star:
+**Difficulty:** ⭐ ⭐ ⭐ ⭐
 
 **Bonus Points:**
 - Multi-agent collaboration
@@ -191,11 +191,11 @@ After completing PROJECT-OMEGA, build **3 portfolio projects**:
 
 ### 2.3 Portfolio Anti-Patterns (Avoid These!)
 
-:red_square: **Tutorial clones** - "I built RAG following TUTORIAL-003"
-:blue_square: **"Research" projects** - "I read 50 papers about attention"
-:purple_square: **Undeployed code** - "Here's my Jupyter notebook"
-:orange_square: **Over-complicated** - "I built a transformer from scratch in C++"
-:green_square: **No context** - Just a GitHub link with no README
+🟥 **Tutorial clones** - "I built RAG following TUTORIAL-003"
+🟦 **"Research" projects** - "I read 50 papers about attention"
+🟪 **Undeployed code** - "Here's my Jupyter notebook"
+🟧 **Over-complicated** - "I built a transformer from scratch in C++"
+🟩 **No context** - Just a GitHub link with no README
 
 ---
 
@@ -373,7 +373,7 @@ Data: Python, NumPy, Pandas, SQL (PostgreSQL), PostgreSQL + pgvector
 
 ### 5.2 Negotiation Tips
 
-:rotating_light: **Never accept the first offer**
+🚨 **Never accept the first offer**
 
 1. **Research** - Know your market value (Levels.fyi, Glassdoor)
 2. **Pause** - Ask for time to consider (1-2 weeks)
@@ -487,23 +487,23 @@ Data: Python, NumPy, Pandas, SQL (PostgreSQL), PostgreSQL + pgvector
 
 ---
 
-## :star: Final Thoughts
+## ⭐ Final Thoughts
 
 **The AI field moves fast.** What's cutting-edge today will be standard in 6 months.
 
 **Your advantage:** Practical skills + ability to learn quickly.
 
 **PROJECT-OMEGA gives you:**
-- :white_check_mark: Foundational knowledge
-- :white_check_mark: Hands-on experience
-- :white_check_mark: Portfolio-worthy projects
-- :white_check_mark: Community support
+- ✅ Foundational knowledge
+- ✅ Hands-on experience
+- ✅ Portfolio-worthy projects
+- ✅ Community support
 
 **You must add:**
-- :white_check_mark: Unique projects (not tutorials)
-- :white_check_mark: Real deployment (not localhost)
-- :white_check_mark: Networking (not just applying)
-- :white_check_mark: Persistence (most quit!)
+- ✅ Unique projects (not tutorials)
+- ✅ Real deployment (not localhost)
+- ✅ Networking (not just applying)
+- ✅ Persistence (most quit!)
 
 **Good luck! The world needs capable AI engineers.**
 

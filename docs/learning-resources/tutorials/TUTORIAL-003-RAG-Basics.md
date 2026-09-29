@@ -14,7 +14,7 @@ Difficulty: Intermediate
 - **[TUTORIAL-001: Hello LLM](TUTORIAL-001-Hello-LLM.md)** - LLM basics
 - **[TUTORIAL-000: Python for AI](TUTORIAL-000-Python-for-AI.md)** - Classes, functions, error handling
 
-:information_source: **Not comfortable with Python classes?** Complete **TUTORIAL-000** first (Parts 3-4 cover OOP and practical skills).
+ℹ️ **Not comfortable with Python classes?** Complete **TUTORIAL-000** first (Parts 3-4 cover OOP and practical skills).
 
 ---
 

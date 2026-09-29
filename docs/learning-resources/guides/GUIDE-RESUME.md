@@ -14,7 +14,7 @@ Difficulty: Intermediate
 
 ---
 
-## :rotating_light: CRITICAL ADVICE
+## 🚨 CRITICAL ADVICE
 
 ### The 10-Second Rule
 Recruiters spend ~10 seconds on your resume. Make them count:

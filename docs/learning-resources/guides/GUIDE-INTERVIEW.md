@@ -14,14 +14,14 @@ Difficulty: Intermediate
 
 ---
 
-## :rotating_light: REALITY CHECK
+## 🚨 REALITY CHECK
 
 **The Truth About Interviews:**
 
-- :white_check_mark: Technical skills get you the interview
-- :white_check_mark: Communication gets you the job
-- :warning: Most candidates fail on communication, not technical skills
-- :warning: Practice is MORE important than studying
+- ✅ Technical skills get you the interview
+- ✅ Communication gets you the job
+- ⚠️ Most candidates fail on communication, not technical skills
+- ⚠️ Practice is MORE important than studying
 
 **This guide focuses on:**
 1. Technical interview preparation
@@ -183,10 +183,10 @@ def merge_sorted(arr1, arr2):
 4. Trade-offs and discussion (10 min)
 
 **What they're looking for:**
-- :white_check_mark: Logical thinking
-- :white_check_mark: Scalability awareness
-- :white_check_mark: Trade-off analysis
-- :white_check_mark: Practical experience
+- ✅ Logical thinking
+- ✅ Scalability awareness
+- ✅ Trade-off analysis
+- ✅ Practical experience
 
 ---
 
@@ -566,10 +566,10 @@ Best,
 ### 7.1 When to Negotiate
 
 **Best Times:**
-- :white_check_mark: After offer but before accepting
-- :white_check_mark: After they mention salary first
-- :x: Never during initial screening
-- :x: Never before they say "we want you"
+- ✅ After offer but before accepting
+- ✅ After they mention salary first
+- ❌ Never during initial screening
+- ❌ Never before they say "we want you"
 
 ---
 
@@ -686,10 +686,10 @@ Perhaps equity, signing bonus, or additional PTO?"
 ## Conclusion
 
 **Remember:**
-- :white_check_mark: Preparation beats talent
-- :white_check_mark: Practice makes confident
-- :white_check_mark: Authenticity wins over perfection
-- :white_check_mark: Every interview is learning experience
+- ✅ Preparation beats talent
+- ✅ Practice makes confident
+- ✅ Authenticity wins over perfection
+- ✅ Every interview is learning experience
 
 **Final Checklist:**
 - [ ] Complete technical preparation

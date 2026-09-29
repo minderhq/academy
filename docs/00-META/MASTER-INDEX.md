@@ -164,7 +164,7 @@ Difficulty: Beginner
 
 | ID | Tutorial | Duration | Difficulty | Prerequisites |
 |----|----------|----------:|----------:|--------------|
-| **[TUTORIAL-000](../learning-resources/tutorials/TUTORIAL-000-Python-for-AI.md)** | Python for AI | 15-20 hours | Beginner | **None** :star3: |
+| **[TUTORIAL-000](../learning-resources/tutorials/TUTORIAL-000-Python-for-AI.md)** | Python for AI | 15-20 hours | Beginner | **None** ⭐ |
 | **[TUTORIAL-001](../learning-resources/tutorials/TUTORIAL-001-Hello-LLM.md)** | Hello LLM | 30 min | Beginner | Python basics |
 | **[TUTORIAL-002](../learning-resources/tutorials/TUTORIAL-002-Docker-Essentials.md)** | Docker Essentials | 45 min | Beginner | None |
 | **[TUTORIAL-003](../learning-resources/tutorials/TUTORIAL-003-RAG-Basics.md)** | RAG Basics | 60 min | Intermediate | TUT-000, TUT-001 |
@@ -237,7 +237,7 @@ Difficulty: Beginner
 
 ---
 
-### Career Guides (3 files) :star3: NEW
+### Career Guides (3 files) ⭐ NEW
 
 | Guide | Topic | Coverage |
 |-------|-------|----------|

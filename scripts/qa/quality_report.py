@@ -227,6 +227,7 @@ GATES = [
     ("resource_id_check.py", "resource_id_check", True),
     ("unfinished_marker_scan.py", "unfinished_marker_scan", True),
     ("empty_section_scan.py", "empty_section_scan", True),
+    ("emoji_shortcode_scan.py", "emoji_shortcode_scan", True),
 ]
 
 

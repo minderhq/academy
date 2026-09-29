@@ -29,7 +29,7 @@ Build a fully-functional AI assistant that can:
 ## 📋 Prerequisites
 
 ### Required Tutorials & Labs:
-- ✅ **[TUTORIAL-000: Python for AI](../tutorials/TUTORIAL-000-Python-for-AI.md)** - :rotating_light: **MANDATORY**
+- ✅ **[TUTORIAL-000: Python for AI](../tutorials/TUTORIAL-000-Python-for-AI.md)** - 🚨 **MANDATORY**
 - ✅ **[TUTORIAL-001: Hello LLM](../tutorials/TUTORIAL-001-Hello-LLM.md)** - LLM basics
 - ✅ **[TUTORIAL-002: Docker Essentials](../tutorials/TUTORIAL-002-Docker-Essentials.md)** - Docker fundamentals
 - ✅ **[TUTORIAL-003: RAG Basics](../tutorials/TUTORIAL-003-RAG-Basics.md)** - RAG concepts
@@ -38,14 +38,14 @@ Build a fully-functional AI assistant that can:
 - ✅ **[LAB-003: LoRA Fine-Tuning](../labs/LAB-003-LoRA-FineTuning.md)** - Fine-tuning basics
 
 ### Required Skills (from TUTORIAL-000):
-:warning: **This project requires INTERMEDIATE Python skills:**
+⚠️ **This project requires INTERMEDIATE Python skills:**
 - Classes and OOP (`class VectorStore:`, `def __init__`)
 - Async/await (`async def query()`, `await client.search()`)
 - Type hints (`def query(self, text: str) -> list[dict]`)
 - Error handling (`try/except`, custom exceptions)
 - Working with APIs (`requests.post()`, JSON responses)
 
-:information_source: **If you're missing these skills**, complete **TUTORIAL-000** first. It covers all required Python concepts in 6-8 hours.
+ℹ️ **If you're missing these skills**, complete **TUTORIAL-000** first. It covers all required Python concepts in 6-8 hours.
 
 ---
 

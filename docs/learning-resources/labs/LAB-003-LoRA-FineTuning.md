@@ -17,7 +17,7 @@ Difficulty: Intermediate
 - **[TUTORIAL-000: Python for AI](../tutorials/TUTORIAL-000-Python-for-AI.md)** - REQUIRED for training code
 - **Phase 2 (Recommended):** [2100-Calculus](../../phases/phase2-foundations/2100-calculus/) - PyTorch knowledge helpful
 
-:warning: **Strong Python Required:** This lab involves PyTorch, training loops, and model architecture. Complete **TUTORIAL-000** and review **Phase 2** content first.
+⚠️ **Strong Python Required:** This lab involves PyTorch, training loops, and model architecture. Complete **TUTORIAL-000** and review **Phase 2** content first.
 
 ### Required Hardware
 - **GPU:** NVIDIA GPU with 11GB+ VRAM (11GB-class GPU, RTX 3060 12GB, or better)
