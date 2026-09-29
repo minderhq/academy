@@ -1,7 +1,7 @@
 ---
 Document ID: SOLUTION-LAB-001
 Title: "SOLUTION-LAB-001: Docker & LLM Fundamentals"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -263,14 +263,12 @@ if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
 ```
 
-### Requirements
+### Dependencies (project manifest)
 
 ```bash
-# ~/lab-001-docker-llm/services/app/requirements.txt
-fastapi==0.141.1
-uvicorn[standard]==0.52.1
-pydantic==2.13.5
-requests==2.34.2
+# ~/lab-001-docker-llm/services/app - create the manifest
+uv init --bare --python 3.13 .
+uv add fastapi==0.141.1 "uvicorn[standard]==0.52.1" pydantic==2.13.5 requests==2.34.2
 ```
 
 ### Dockerfile for API
@@ -285,9 +283,10 @@ WORKDIR /app
 # (https://docs.astral.sh/uv/guides/integration/docker/)
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
 
-# Install requirements
-COPY requirements.txt .
-RUN uv pip install --system --no-cache -r requirements.txt
+# Dependency layer: only manifest/lockfile changes rebuild this.
+COPY pyproject.toml uv.lock ./
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --locked --no-install-project
 
 # Copy application
 COPY main.py .
@@ -557,7 +556,8 @@ async def clear_history(session_id: str):
 │   └── app/
 │       ├── Dockerfile
 │       ├── main.py
-│       ├── requirements.txt
+│       ├── pyproject.toml
+│       ├── uv.lock
 │       └── storage.py
 └── nginx/
     └── nginx.conf
