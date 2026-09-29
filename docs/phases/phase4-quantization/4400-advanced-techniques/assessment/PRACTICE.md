@@ -1,7 +1,7 @@
 ---
 Document ID: 4400-PRACTICE
 Title: "4400: Advanced Quantization Techniques - Practice"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 ---
@@ -419,8 +419,10 @@ COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
 
 WORKDIR /app
 
-COPY requirements.txt .
-RUN uv pip install --system --no-cache -r requirements.txt
+# Dependency layer: only manifest/lockfile changes rebuild this.
+COPY pyproject.toml uv.lock ./
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --locked --no-install-project
 
 COPY model/ /app/model/
 COPY server.py /app/
@@ -430,14 +432,17 @@ EXPOSE 8000
 CMD ["python3", "server.py"]
 ───────────────────────────────────────────────────────────
 
-2. requirements.txt
+2. pyproject.toml
 ───────────────────────────────────────────────────────────
-torch>=2.12.0
-transformers>=5.10.2
-accelerate>=1.13.0
-bitsandbytes>=0.50.2
-fastapi>=0.141.1
-uvicorn>=0.52.1
+# dependencies recorded by uv add
+dependencies = [
+    "torch>=2.12.0",
+    "transformers>=5.10.2",
+    "accelerate>=1.13.0",
+    "bitsandbytes>=0.50.2",
+    "fastapi>=0.141.1",
+    "uvicorn>=0.52.1",
+]
 ───────────────────────────────────────────────────────────
 
 3. server.py (FastAPI)
@@ -517,7 +522,7 @@ curl -X POST http://localhost:8000/generate \\
 """)
 
 # Expected Output:
-# The four package files (Dockerfile, requirements.txt, server.py,
+# The four package files (Dockerfile, pyproject.toml, server.py,
 # docker-compose.yml) and the build/run/test commands print
 # directly - nothing here executes in the notebook itself
 ```

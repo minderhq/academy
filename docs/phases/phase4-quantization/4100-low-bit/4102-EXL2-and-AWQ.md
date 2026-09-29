@@ -3,7 +3,7 @@ Document ID: 4102
 Title: "4102: EXL2 and AWQ - Extreme Quantization"
 Phase: 4
 Module: 4100
-Last Updated: 2026-09-27
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -95,7 +95,7 @@ EXL2_QUANT_LEVELS = {
 # Install ExLlamaV2
 git clone https://github.com/turboderp/exllamav2
 cd exllamav2
-uv pip install -r requirements.txt
+uv pip install -e .   # editable install of the checkout
 
 # Convert model to EXL2
 python convert.py \
