@@ -258,17 +258,20 @@ stand today?" without running each tool by hand.
                        Overview/Pros/Cons per database), so report
                        mode, not a hard ban
     fence_import_check unresolvable imports in python fences (IC-01,
-                       report mode at birth): every import in every
+                       hard gate since tick-325): every import in every
                        ```python fence resolves against the
                        kurulu-stack - generalizes langchain_census
                        from the langchain family to all third-party
                        packages, so a lesson teaching code that raises
-                       ModuleNotFoundError as written is visible;
+                       ModuleNotFoundError as written fails the gate;
                        ast-based (CB-01 owns fence syntax), 4-backtick
                        super-fence teaching content invisible by the
                        fence_class_scan model, relative imports
-                       skipped; born from the tick-323 census (429
-                       findings / 129 files - classification pending)
+                       skipped; the tick-323/324 census (429 -> 424)
+                       classified into two accepted classes locked in
+                       the gate's ACCEPTED_PREFIXES (alternative/
+                       optional third-party stacks, lesson-local
+                       fragments)
     fm_staleness       curriculum freshness map (report mode): Last Updated
                        age distribution across docs/ - surfaces the oldest
                        material so modernization passes can target it; a
@@ -320,7 +323,7 @@ GATES = [
     ("objectives_lint.py", "objectives_lint", False),
     ("fence_namecheck.py", "fence_namecheck", False),
     ("duplicate_heading_scan.py", "duplicate_heading_scan", False),
-    ("fence_import_check.py", "fence_import_check", False),
+    ("fence_import_check.py", "fence_import_check", True),
     ("fm_staleness_scan.py", "fm_staleness", False),
     ("kwarg_lint.py", "kwarg_lint", True),
     ("typing_legacy_scan.py", "typing_legacy_scan", True),
