@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-012
 Title: "LAB-012: Audio AI"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -65,7 +65,6 @@ Whisper Architecture:
 import torch
 import torchaudio
 import numpy as np
-from typing import Dict, List
 from dataclasses import dataclass
 from pathlib import Path
 import warnings
@@ -79,7 +78,7 @@ class WhisperRecognizer:
     def __init__(
         self,
         model_size: str = "base",
-        device: str = None,
+        device: str | None = None,
         language: str = "english"
     ):
         """
@@ -109,7 +108,7 @@ class WhisperRecognizer:
         beam_size: int = 5,
         best_of: int = 5,
         patience: float = 1.0
-    ) -> Dict:
+    ) -> dict:
         """
         Transcribe audio file.
 
@@ -150,8 +149,8 @@ class WhisperRecognizer:
     def transcribe_with_diarization(
         self,
         audio_path: str,
-        num_speakers: int = None
-    ) -> list[Dict]:
+        num_speakers: int | None = None
+    ) -> list[dict]:
         """
         Transcribe audio with speaker diarization.
 
@@ -160,7 +159,7 @@ class WhisperRecognizer:
             num_speakers: Number of speakers (None = auto-detect)
 
         Returns:
-            List of segments with speaker labels
+            The segments with speaker labels
         """
         # Transcribe first
         result = self.transcribe(audio_path)
@@ -187,8 +186,8 @@ class WhisperRecognizer:
     def _speaker_diarization(
         self,
         audio_path: str,
-        num_speakers: int = None
-    ) -> list[Dict]:
+        num_speakers: int | None = None
+    ) -> list[dict]:
         """
         Perform speaker diarization using pyannote.audio.
 
@@ -226,8 +225,8 @@ class WhisperRecognizer:
 
     def _get_speaker_for_segment(
         self,
-        segment: Dict,
-        diarization: list[Dict]
+        segment: dict,
+        diarization: list[dict]
     ) -> str:
         """Get speaker label for a transcribed segment"""
         segment_center = (segment["start"] + segment["end"]) / 2
@@ -276,12 +275,12 @@ class WhisperRecognizer:
         self,
         audio_paths: list[str],
         batch_size: int = 8
-    ) -> dict[str, Dict]:
+    ) -> dict[str, dict]:
         """
         Transcribe multiple audio files.
 
         Args:
-            audio_paths: List of audio file paths
+            audio_paths: The audio file paths
             batch_size: Batch size for processing
 
         Returns:
@@ -305,8 +304,8 @@ class WhisperRecognizer:
 
     def get_transcript_stats(
         self,
-        transcription: Dict
-    ) -> Dict:
+        transcription: dict
+    ) -> dict:
         """
         Get statistics about transcription.
 
@@ -490,7 +489,7 @@ import threading
 import torch
 import whisper
 import numpy as np
-from typing import Callable
+from collections.abc import Callable
 
 class RealTimeTranscriber:
     """
@@ -585,7 +584,6 @@ Supports multiple TTS engines:
 
 import torch
 import numpy as np
-from typing import List
 from dataclasses import dataclass
 import io
 
@@ -604,7 +602,7 @@ class CoquiTTSEngine(TTSEngine):
     def __init__(
         self,
         model_name: str = "tts_models/en/ljspeech/vits",
-        device: str = None
+        device: str | None = None
     ):
         from TTS.api import TTS
 
@@ -622,8 +620,8 @@ class CoquiTTSEngine(TTSEngine):
     def synthesize(
         self,
         text: str,
-        speaker_idx: str = None,
-        language_idx: str = None
+        speaker_idx: str | None = None,
+        language_idx: str | None = None
     ) -> np.ndarray:
         """
         Synthesize speech from text.
@@ -779,7 +777,7 @@ class TTSManager:
     def synthesize(
         self,
         text: str,
-        engine: str = None,
+        engine: str | None = None,
         **kwargs
     ) -> np.ndarray:
         """Synthesize with specified engine"""
@@ -790,7 +788,7 @@ class TTSManager:
 
         return self.engines[engine_name].synthesize(text, **kwargs)
 
-    def list_voices(self, engine: str = None) -> list[str]:
+    def list_voices(self, engine: str | None = None) -> list[str]:
         """List available voices"""
         # This is engine-specific
         # Implementation depends on the engine
@@ -847,7 +845,6 @@ Combines:
 
 import torch
 import numpy as np
-from typing import Optional, Callable
 import queue
 import threading
 
@@ -900,14 +897,14 @@ class VoiceAssistant:
     def listen_and_respond(
         self,
         audio_path: str,
-        context: str = None
+        context: str | None = None
     ) -> str:
         """
         Complete listening and responding cycle.
 
         Args:
             audio_path: Path to audio file
-            context: Optional conversation context
+            context: The conversation context, or None
 
         Returns:
             Response text
@@ -932,7 +929,7 @@ class VoiceAssistant:
 
         return response
 
-    def _generate_response(self, user_input: str, context: str = None) -> str:
+    def _generate_response(self, user_input: str, context: str | None = None) -> str:
         """Generate response using LLM"""
         if self.llm is None:
             # Simple rule-based responses
@@ -1181,7 +1178,6 @@ Extract:
 import torch
 import numpy as np
 import torchaudio
-from typing import Dict, List
 import librosa
 
 class AudioAnalyzer:
@@ -1192,7 +1188,7 @@ class AudioAnalyzer:
     def __init__(self):
         pass
 
-    def analyze_audio_file(self, audio_path: str) -> Dict:
+    def analyze_audio_file(self, audio_path: str) -> dict:
         """
         Perform complete audio analysis.
 
@@ -1226,7 +1222,7 @@ class AudioAnalyzer:
 
         return results
 
-    def _analyze_quality(self, audio: np.ndarray, sr: int) -> Dict:
+    def _analyze_quality(self, audio: np.ndarray, sr: int) -> dict:
         """Analyze audio quality metrics"""
         # Signal-to-noise ratio (simplified)
         signal_power = np.mean(audio ** 2)
@@ -1256,7 +1252,7 @@ class AudioAnalyzer:
             "noise_level": float(noise_level)
         }
 
-    def _analyze_spectral(self, audio: np.ndarray, sr: int) -> Dict:
+    def _analyze_spectral(self, audio: np.ndarray, sr: int) -> dict:
         """Analyze spectral characteristics"""
         # Compute spectrogram
         spec = librosa.feature.melspectrogram(y=audio, sr=sr)
@@ -1279,7 +1275,7 @@ class AudioAnalyzer:
             "zero_crossing_rate_std": float(np.std(zcr))
         }
 
-    def _analyze_temporal(self, audio: np.ndarray, sr: int) -> Dict:
+    def _analyze_temporal(self, audio: np.ndarray, sr: int) -> dict:
         """Analyze temporal characteristics"""
         # Tempo (BPM)
         tempo, beats = librosa.beat.beat_track(y=audio, sr=sr)
@@ -1302,7 +1298,7 @@ class AudioAnalyzer:
         self,
         audio: np.ndarray,
         sr: int
-    ) -> list[Dict]:
+    ) -> list[dict]:
         """
         Detect speech segments in audio.
 
@@ -1311,7 +1307,7 @@ class AudioAnalyzer:
             sr: Sample rate
 
         Returns:
-            List of (start, end) tuples
+            The (start, end) tuples
         """
         # Use energy-based VAD
         frame_length = int(0.025 * sr)  # 25ms

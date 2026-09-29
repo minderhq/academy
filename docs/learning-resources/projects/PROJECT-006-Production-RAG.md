@@ -1,7 +1,7 @@
 ---
 Document ID: PROJECT-006
 Title: "CAPSTONE PROJECT-006: Build Production RAG System"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -114,7 +114,6 @@ Document Parsers
 """
 
 from pathlib import Path
-from typing import List, Dict
 import pypdf
 from bs4 import BeautifulSoup
 import docx
@@ -123,7 +122,7 @@ import markdown
 class DocumentParser:
     """Parse various document formats"""
 
-    def parse(self, file_path: str) -> Dict:
+    def parse(self, file_path: str) -> dict:
         """Parse document based on extension"""
         path = Path(file_path)
         ext = path.suffix.lower()
@@ -141,7 +140,7 @@ class DocumentParser:
         else:
             raise ValueError(f"Unsupported format: {ext}")
 
-    def _parse_pdf(self, path: str) -> Dict:
+    def _parse_pdf(self, path: str) -> dict:
         """Parse PDF file"""
         reader = pypdf.PdfReader(path)
 
@@ -160,7 +159,7 @@ class DocumentParser:
             'metadata': metadata
         }
 
-    def _parse_html(self, path: str) -> Dict:
+    def _parse_html(self, path: str) -> dict:
         """Parse HTML file"""
         with open(path, 'r') as f:
             html = f.read()
@@ -181,7 +180,7 @@ class DocumentParser:
             }
         }
 
-    def _parse_docx(self, path: str) -> Dict:
+    def _parse_docx(self, path: str) -> dict:
         """Parse DOCX file"""
         doc = docx.Document(path)
 
@@ -195,7 +194,7 @@ class DocumentParser:
             }
         }
 
-    def _parse_markdown(self, path: str) -> Dict:
+    def _parse_markdown(self, path: str) -> dict:
         """Parse Markdown file"""
         with open(path, 'r') as f:
             md = f.read()
@@ -209,7 +208,7 @@ class DocumentParser:
             'metadata': {'source': path}
         }
 
-    def _parse_text(self, path: str) -> Dict:
+    def _parse_text(self, path: str) -> dict:
         """Parse plain text file"""
         with open(path, 'r') as f:
             text = f.read()
@@ -229,7 +228,6 @@ Semantic Chunking
 =================
 """
 
-from typing import Dict
 import numpy as np
 from sentence_transformers import SentenceTransformer
 
@@ -240,7 +238,7 @@ class SemanticChunker:
         self.model = SentenceTransformer(model_name)
 
     def chunk(self, text: str, max_chunk_size: int = 500,
-             overlap: int = 50) -> list[Dict]:
+             overlap: int = 50) -> list[dict]:
         """Chunk text semantically"""
 
         # Split into sentences
@@ -303,7 +301,7 @@ class EntityExtractor:
     def __init__(self):
         self.nlp = spacy.load("en_core_web_sm")
 
-    def extract(self, text: str) -> dict[str, List]:
+    def extract(self, text: str) -> dict[str, list]:
         """Extract entities from text"""
         doc = self.nlp(text)
 
@@ -345,7 +343,6 @@ Document Indexing
 from qdrant_client import QdrantClient
 from qdrant_client.models import Distance, VectorParams, PointStruct
 from sentence_transformers import SentenceTransformer
-from typing import Dict
 import uuid
 
 class DocumentIndexer:
@@ -369,7 +366,7 @@ class DocumentIndexer:
             )
 
     def index_documents(self, collection_name: str,
-                        documents: list[Dict]) -> int:
+                        documents: list[dict]) -> int:
         """Index documents"""
 
         points = []
@@ -399,7 +396,7 @@ class DocumentIndexer:
         return len(points)
 
     def index_graph(self, collection_name: str,
-                    entities: Dict):
+                    entities: dict):
         """Index entities in Neo4j"""
         from neo4j import GraphDatabase
 
@@ -441,7 +438,6 @@ Hybrid Retrieval
 
 from qdrant_client import QdrantClient
 from sentence_transformers import CrossEncoder
-from typing import Dict
 
 class HybridRetriever:
     """Hybrid vector + keyword retrieval"""
@@ -453,7 +449,7 @@ class HybridRetriever:
         self.reranker = CrossEncoder(reranker_model)
 
     def retrieve(self, collection_name: str, query: str,
-                top_k: int = 10) -> list[Dict]:
+                top_k: int = 10) -> list[dict]:
         """Retrieve documents"""
 
         # Generate query embedding
@@ -484,7 +480,7 @@ class HybridRetriever:
         return reranked[:top_k]
 
     def retrieve_with_graph(self, collection_name: str,
-                           query: str, top_k: int = 10) -> list[Dict]:
+                           query: str, top_k: int = 10) -> list[dict]:
         """Retrieve with graph enhancement"""
 
         # Standard retrieval
@@ -509,7 +505,6 @@ RAG Generation
 """
 
 from openai import OpenAI
-from typing import Dict
 
 class RAGGenerator:
     """Generate responses with RAG"""
@@ -518,7 +513,7 @@ class RAGGenerator:
         self.client = OpenAI()
         self.model = model
 
-    def generate(self, query: str, context: list[Dict],
+    def generate(self, query: str, context: list[dict],
                 stream: bool = False) -> str:
         """Generate response"""
 
@@ -602,7 +597,7 @@ class QueryRequest(BaseModel):
 
 class QueryResponse(BaseModel):
     answer: str
-    sources: list[Dict]
+    sources: list[dict]
     query_time: float
 
 @app.post("/query", response_model=QueryResponse)
