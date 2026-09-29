@@ -3,7 +3,7 @@ Document ID: 7301
 Title: "7301: Collaborative Tasking - Multi-Agent Synergy"
 Phase: 7
 Module: 7300
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -24,7 +24,7 @@ Tags: ['agents', 'orchestration', 'multi-agent', 'autogen', 'langgraph']
 - [Collaboration Patterns](#collaboration-patterns)
 - [Conflict Resolution](#conflict-resolution)
 - [Practical Implementation](#practical-implementation)
-- [Related Documents](#related-documents)
+- [References](#references)
 
 ---
 
@@ -741,7 +741,9 @@ Highest severity first: the disk issue (9) outranks the auth spike (8) and GPU s
 
 ---
 
-## Related Documents
+## References
+
+### Related Documents
 
 - [7302: Multi-Agent Communication Protocols](7302-Communication-Protocols.md)
 - [7303: Multi-Agent Framework Comparison](./guides/7303-Framework-Comparison.md)

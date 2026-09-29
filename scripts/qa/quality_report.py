@@ -397,6 +397,25 @@ stand today?" without running each tool by hand.
                       tick-416 - the 2 census sites (2305/2306
                       guides) were drained in the same tick,
                       baseline 0
+    closure_census
+                      Closing blocks (CL-01..03): a lesson closes
+                      the way it opens - Summary-class recap,
+                      References, Next Steps (fence-invisible
+                      H2s, numbered variants allowed). CL-01 no
+                      Summary-class closing H2 (Summary /
+                      Conclusion / Key Takeaways) - REPORT
+                      queue: the tick-417 census found only
+                      14/114 lessons carrying one; the 100-site
+                      queue drains phase-by-phase and the check
+                      hardens at 0 (exit 0 by design, the AS-09
+                      pattern). CL-02 no References-class
+                      closing H2 (References / Further Reading)
+                      - hard from birth tick-417: the single
+                      census site (7301-Orchestration) was
+                      drained the same tick to the sibling-7303
+                      pattern, baseline 0. CL-03 no "Next Steps"
+                      closing H2 - hard from birth, 114/114
+                      already carried one
     unfinished_marker_scan unfinished-content markers in prose
                        (UM-01): outside any code fence, inline code
                        scrubbed, a line must not carry "coming soon",
@@ -596,6 +615,7 @@ GATES = [
     ("prereq_census.py", "prereq_census", True),
     ("difficulty_census.py", "difficulty_census", True),
     ("lesson_anatomy_census.py", "lesson_anatomy_census", True),
+    ("closure_census.py", "closure_census", True),
     ("unfinished_marker_scan.py", "unfinished_marker_scan", True),
     ("empty_section_scan.py", "empty_section_scan", True),
     ("emoji_shortcode_scan.py", "emoji_shortcode_scan", True),
