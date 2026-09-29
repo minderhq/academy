@@ -3,7 +3,7 @@ Document ID: 3301
 Title: "3301: Activation Functions - GELU, SwiGLU, and Beyond"
 Phase: 3
 Module: 3300
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 2 hours
@@ -25,6 +25,7 @@ Tags: ['transformers', 'activation', 'gelu', 'swiglu', 'normalization']
 - [Other Activations](#other-activations)
 - [Activation Function Properties](#activation-function-properties)
 - [Choosing the Right Activation](#choosing-the-right-activation)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -433,6 +434,10 @@ Negative perplexity = improvement
 ```
 
 ---
+
+## Summary
+
+Activation functions are where networks get their non-linearity, and the transformer generation moved on from ReLU: GELU's smooth gating replaced it in BERT and GPT-2, and SwiGLU's gated pairing became the LLM default. This lesson walked the ReLU-to-modern arc, the properties that matter (smoothness, dead-neuron behavior, cost), and where each function earns its place. The rule it leaves: the activation is a measured choice, not a default - GELU and SwiGLU win in transformers for reasons you can read off their curves, and the comparison guide makes those reasons concrete.
 
 ## References
 

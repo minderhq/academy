@@ -3,7 +3,7 @@ Document ID: 3102
 Title: "3102: Flash Attention - IO-Aware Exact Attention"
 Phase: 3
 Module: 3100
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -26,6 +26,7 @@ Tags: ['transformers', 'attention', 'self-attention', 'flash-attention']
 - [Implementation Details](#implementation-details)
 - [Limitations and Considerations](#limitations-and-considerations)
 - [Flash Attention 3](#flash-attention-3)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -395,6 +396,10 @@ Key insight:
 ```
 
 ---
+
+## Summary
+
+Flash Attention reorganizes the attention computation rather than approximating it: tiling plus online softmax keep the working set in fast SRAM, cutting memory IO from quadratic to linear. The result is exact attention that is faster and uses less memory than the standard materialized S = Q@K^T path. This lesson showed why standard attention's memory access pattern is the real bottleneck, then the Flash algorithm and its implementation. The rule it leaves: memory bandwidth, not FLOPs, is usually the attention ceiling - and IO-aware algorithm design is how the ceiling moves.
 
 ## References
 

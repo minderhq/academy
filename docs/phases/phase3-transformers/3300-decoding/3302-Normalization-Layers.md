@@ -3,7 +3,7 @@ Document ID: 3302
 Title: "3302: Normalization Layers - BatchNorm vs LayerNorm vs RMSNorm"
 Phase: 3
 Module: 3300
-Last Updated: 2026-09-28
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 2 hours
@@ -25,6 +25,7 @@ Tags: ['transformers', 'activation', 'gelu', 'swiglu', 'normalization']
 - [Comparison](#comparison)
 - [Implementation Tips](#implementation-tips)
 - [DeepNorm (Stable Deep Networks)](#deepnorm-stable-deep-networks)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -431,6 +432,10 @@ class DeepNormTransformerBlock(nn.Module):
 ```
 
 ---
+
+## Summary
+
+Normalization layers keep training stable by keeping activations in a sane range: without them, activations grow or shrink exponentially and gradients vanish or explode. In transformers the fight is between LayerNorm and RMSNorm - the latter drops mean-centering for speed and pairs with pre-norm placement in modern LLMs - while BatchNorm stays a CNN tool. This lesson covered why normalization is needed, the layer-by-layer mechanics, and the placement decisions. The rule it leaves: RMSNorm pre-norm is the modern LLM default, and the reason is stability per unit of compute.
 
 ## References
 

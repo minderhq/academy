@@ -38,6 +38,7 @@ Self-attention is the core mechanism that powers Transformer models. This docume
 - [6. Attention as a Graph](#6-attention-as-a-graph)
 - [7. Attention Efficiency](#7-attention-efficiency)
 - [8. Attention Variants](#8-attention-variants)
+- [Summary](#summary)
 - [9. References](#9-references)
 - [10. Next Steps](#10-next-steps)
 
@@ -450,6 +451,10 @@ def cross_attention(Q, K, V):
 ```
 
 ---
+
+## Summary
+
+Self-attention is the mechanism the Transformer is built on: the scaled dot-product formula lets every token weigh every other token, multi-head attention runs several such comparisons in parallel subspaces, and causal masking keeps autoregressive training honest. This deep dive covered the formula, multi-head architecture, attention pattern visualization, masked attention, attention as a graph, efficiency, and the variant landscape. The rule it leaves: attention is a learned, differentiable dictionary lookup - once you see it that way, its parallelism, its quadratic cost, and every efficiency fix that follows make sense.
 
 ## 9. References
 

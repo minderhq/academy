@@ -1,7 +1,7 @@
 ---
 Document ID: 3303
 Title: "3303: Activation Function Comparison"
-Last Updated: 2026-09-27
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 ---
@@ -20,6 +20,7 @@ Difficulty: Advanced
 - [Model-Specific Usage](#model-specific-usage)
 - [Recommendations](#recommendations)
 - [Performance on an 11GB-class GPU](#performance-on-an-11gb-class-gpu)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -358,6 +359,10 @@ Use the same activation as the base model:
 
 
 ---
+
+## Summary
+
+This guide is the activation-function decision table: ReLU, GELU, SwiGLU, and friends compared on formula, range, provenance, strengths, and failure modes in one reference grid. Each function gets its own section with derivatives, implementation notes, and the architectures that shipped it - early transformers on ReLU, BERT and GPT-2 on GELU, the modern LLM wave on SwiGLU. The rule it leaves: pick SwiGLU when compute allows, GELU when it does not, and know ReLU's dead-neuron failure well enough to diagnose a legacy model that trips on it.
 
 ## References
 

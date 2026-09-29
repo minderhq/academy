@@ -3,7 +3,7 @@ Document ID: 3202
 Title: "3202: Tokenizer Sciences - BPE, SentencePiece, and Tiktoken"
 Phase: 3
 Module: 3200
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -26,6 +26,7 @@ Tags: ['transformers', 'embeddings', 'rope', 'tokenization', 'bpe']
 - [Special Tokens](#special-tokens)
 - [Training Custom Tokenizer](#training-custom-tokenizer)
 - [Tokenizer Metrics](#tokenizer-metrics)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -499,6 +500,10 @@ for tokenizer_name in ["gpt2", "cl100k_base", "bert-base-uncased"]:
 ```
 
 ---
+
+## Summary
+
+The tokenizer is the model's first and last mile: raw text flows through normalization, pre-tokenization, a BPE or Unigram merge model, and post-processing into the token IDs everything downstream consumes. This lesson walked that pipeline, the trade-offs in vocabulary size and sequence length, the subword algorithms compared, and the multilingual and special-token decisions that ripple through model size and quality. The rule it leaves: tokenizer choice is an architecture decision wearing a preprocessing costume - it sets the cost of every forward pass and the ceiling of every context window.
 
 ## References
 

@@ -3,7 +3,7 @@ Document ID: 3201
 Title: "3201: Rotary Positional Embeddings (RoPE)"
 Phase: 3
 Module: 3200
-Last Updated: 2026-09-27
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -25,6 +25,7 @@ Tags: ['transformers', 'embeddings', 'rope', 'tokenization', 'bpe']
 - [RoPE in Practice](#rope-in-practice)
 - [Extended Context with RoPE](#extended-context-with-rope)
 - [Comparison with Other Methods](#comparison-with-other-methods)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -402,6 +403,10 @@ def extend_context_via_interpolation(original_max_len=2048, new_max_len=8192):
 | RoPE | 0 | ✓ | ✓ | Medium |
 
 ---
+
+## Summary
+
+Transformers are permutation invariant, so position must be injected explicitly - and RoPE does it with rotation: each position rotates queries and keys in 2D subspaces so that attention scores depend only on relative offsets. This lesson covered why positional information is needed, the rotation construction, its relative-position property, and why it became the default in modern LLMs from LLaMA onward. The rule it leaves: RoPE encodes position where attention consumes it, needs no added parameters, and its relative structure is what makes context extensions like NTK scaling possible.
 
 ## References
 
