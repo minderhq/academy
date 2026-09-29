@@ -3,7 +3,7 @@ Document ID: 5202
 Title: "5202: Alignment Orchestration - Reward Modeling vs Direct Preference"
 Phase: 5
 Module: 5200
-Last Updated: 2026-09-27
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -24,6 +24,7 @@ Tags: ['finetuning', 'alignment', 'dpo', 'rlhf', 'preference']
 - [KTO (Kahneman-Tversky Optimization)](#kto-kahneman-tversky-optimization)
 - [Practical Alignment Pipeline](#practical-alignment-pipeline)
 - [Evaluation](#evaluation)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -415,6 +416,10 @@ def human_eval(model_a, model_b, test_prompts):
 ```
 
 ---
+
+## Summary
+
+Alignment is a menu, and this lesson walks the table: reward modeling with RLHF, direct preference optimization, and KTO compared on the same axes - data requirements, training stability, compute cost, and the failure modes each invites. It then assembles the practical alignment pipeline: which method to run at which stage, with evaluation closing the loop so you know whether alignment improved the model or just moved its distribution. The durable takeaway: start with the simplest method your data supports - KTO needs only binary feedback, DPO needs pairs, RLHF needs the most - and let measured evaluation pick the upgrade.
 
 ## References
 

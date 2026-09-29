@@ -3,7 +3,7 @@ Document ID: 5201
 Title: "5201: DPO (Direct Preference Optimization) Theory"
 Phase: 5
 Module: 5200
-Last Updated: 2026-09-28
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -24,6 +24,7 @@ Tags: ['finetuning', 'alignment', 'dpo', 'rlhf', 'preference']
 - [DPO Hyperparameters](#dpo-hyperparameters)
 - [DPO Variants](#dpo-variants)
 - [Using Libraries](#using-libraries)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -519,6 +520,10 @@ dpo_trainer = DPOTrainer(
 
 
 ---
+
+## Summary
+
+DPO's insight is that the reward model RLHF trains is a middleman you can eliminate: from preference pairs alone, the direct preference objective optimizes the policy against a reference model - no reward model, no RL loop. This lesson set up why RLHF is hard, built the DPO intuition from its loss, then the practice: implementation, the hyperparameters that decide stability, the variants that fix its known weaknesses, and the libraries that make it a config change. The rule it leaves: try DPO first, and reach for full RLHF only when DPO's ceiling shows.
 
 ## References
 

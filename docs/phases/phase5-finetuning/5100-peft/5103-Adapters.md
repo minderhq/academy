@@ -31,6 +31,7 @@ mechanics, and gives a decision guide for picking the right method.
 - [7. Adapter Fusion](#7-adapter-fusion)
 - [8. Method Comparison](#8-method-comparison)
 - [9. Choosing a Method](#9-choosing-a-method)
+- [Summary](#summary)
 - [10. References](#10-references)
 
 ---
@@ -286,6 +287,10 @@ surface — swap `LoraConfig` for `IA3Config` / `PrefixTuningConfig` /
 `PromptTuningConfig` and the training loop is unchanged.
 
 ---
+
+## Summary
+
+LoRA dominates the PEFT conversation, but it is one point in a larger design space: bottleneck adapters, soft prompts (prompt and prefix tuning), IA3's activation scaling, and Compacter all adapt a frozen model by training under 1% of its parameters, each with a different cost profile at train and inference time. This lesson mapped the space, implemented the core mechanics, compared the methods, and left a decision guide. The takeaway: pick by deployment constraints - adapter weights merge away for zero-overhead serving, soft prompts cost inference tokens, and the comparison table is where the choice becomes concrete.
 
 ## 10. References
 

@@ -3,7 +3,7 @@ Document ID: 5102
 Title: "5102: QLoRA Pipelines - 4-bit Fine-Tuning on Consumer Hardware"
 Phase: 5
 Module: 5100
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -25,6 +25,7 @@ Tags: ['finetuning', 'peft', 'lora', 'qlora', 'adaptation']
 - [Memory Optimization](#memory-optimization)
 - [QLoRA Troubleshooting](#qlora-troubleshooting)
 - [Merging QLoRA Weights](#merging-qlora-weights)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -512,6 +513,10 @@ quantized_merged = AutoModelForCausalLM.from_pretrained(
 
 
 ---
+
+## Summary
+
+QLoRA combines 4-bit quantization with LoRA to make the headline real: a 65B model fine-tunes on a single 48GB GPU, and on an 11GB card fine-tuning a 7B model becomes practical. This lesson covered the architecture that gets there - NF4 quantized base, LoRA adapters on top - then implementation, hyperparameters, and the training pipeline end to end. The operational sections are where it earns its keep: memory optimization that fits your budget, troubleshooting the failures QLoRA is famous for, and merging the trained weights back so deployment stays clean.
 
 ## References
 

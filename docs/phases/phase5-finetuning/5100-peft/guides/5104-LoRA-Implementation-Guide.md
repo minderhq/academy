@@ -1,7 +1,7 @@
 ---
 Document ID: 5104
 Title: "5104: LoRA Implementation Guide"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 ---
@@ -21,6 +21,7 @@ Difficulty: Advanced
 - [Best Practices](#best-practices)
 - [Troubleshooting](#troubleshooting)
 - [Quick Start](#quick-start)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -823,6 +824,10 @@ PY
 ```
 
 ---
+
+## Summary
+
+This guide is LoRA end to end on an 11GB-class GPU: a from-scratch LoRALinear to expose the mechanics, then the production paths through PEFT and QLoRA, and finally multi-adapter serving where one base model hosts many trained adapters. The benchmarks section grounds the choice in measured memory and speed, best practices and troubleshooting keep the runs reproducible, and the quick start gets a working pipeline before the theory matters. The durable rule: LoRA is cheap to train precisely so you can afford to measure it properly - benchmark on your hardware, not the paper's.
 
 ## References
 

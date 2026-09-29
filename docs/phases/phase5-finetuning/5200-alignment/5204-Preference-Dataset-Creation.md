@@ -31,6 +31,7 @@ dataset sizing, and bootstrapping with synthetic (AI) feedback.
 - [8. How Much Data](#8-how-much-data)
 - [9. Synthetic Preferences](#9-synthetic-preferences)
 - [10. Common Pitfalls](#10-common-pitfalls)
+- [Summary](#summary)
 - [11. References](#11-references)
 
 ---
@@ -268,6 +269,10 @@ def synth_label(judge_model, prompt, a, b, principle):
 | Guideline drift | Agreement degrades over weeks | Re-run gold set + kappa check per batch |
 
 ---
+
+## Summary
+
+DPO and reward models are only as good as the preference data beneath them, and this lesson is the full pipeline for making that data good: sourcing diverse prompts, generating response pairs, writing annotation guidelines that survive real annotators, and formatting in HH-RLHF style. Quality control gets its own sections - inter-annotator agreement as the metric, dataset sizing to know how much is enough, synthetic AI feedback to bootstrap when humans are the bottleneck - and the common pitfalls list collects the ways datasets silently poison alignment. The rule it leaves: annotation quality beats annotation quantity, and agreement statistics are how you know which one you have.
 
 ## 11. References
 

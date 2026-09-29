@@ -3,7 +3,7 @@ Document ID: 5101
 Title: "5101: LoRA (Low-Rank Adaptation) Logic"
 Phase: 5
 Module: 5100
-Last Updated: 2026-09-28
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -24,6 +24,7 @@ Tags: ['finetuning', 'peft', 'lora', 'qlora', 'adaptation']
 - [LoRA Variants](#lora-variants)
 - [Training with LoRA](#training-with-lora)
 - [LoRA for Specific Tasks](#lora-for-specific-tasks)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -513,6 +514,10 @@ lora_config = LoraConfig(
 
 
 ---
+
+## Summary
+
+LoRA's bet is that fine-tuning updates live in a low-rank subspace: freeze the pre-trained weights and train only small rank-decomposition matrices injected alongside them, and you adapt large models with a fraction of the memory. This lesson tested that hypothesis, walked the implementation and the hyperparameters that matter - rank, alpha, dropout - surveyed the variants, and closed with training practice and task-specific recipes. The rule it leaves: start low-rank and scale rank only when quality demands it, because most of the win comes from a tiny fraction of trainable parameters.
 
 ## References
 
