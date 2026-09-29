@@ -9,7 +9,7 @@ Difficulty: Advanced
 Estimated Time: 4 hours
 Prerequisites: See module README
 Related: See module README
-Tags: ['finetuning', 'synthetic-data', 'distillation', 'federated']
+Tags: ['finetuning', 'synthetic-data', 'distillation', 'federated-learning']
 ---
 
 # 5301: Knowledge Distillation - Training Small Models Using Big Model Outputs

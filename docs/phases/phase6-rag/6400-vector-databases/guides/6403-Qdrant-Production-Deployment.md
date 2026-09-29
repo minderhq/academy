@@ -1,10 +1,10 @@
 ---
 Document ID: 6403
 Title: "6403: Qdrant Production Deployment"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
-Tags: ['rag', 'qdrant', 'vector-database', 'deployment']
+Tags: ['rag', 'qdrant', 'vector-db', 'deployment']
 Phase: 6
 Module: 6400
 ---

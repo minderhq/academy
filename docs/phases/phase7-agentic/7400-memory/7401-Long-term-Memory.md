@@ -9,7 +9,7 @@ Difficulty: Advanced
 Estimated Time: 4 hours
 Prerequisites: See module README
 Related: See module README
-Tags: ['agents', 'memory', 'vector-store', 'long-term-memory', 'mem0', 'chromadb']
+Tags: ['agents', 'memory', 'vector-store', 'long-term-memory', 'mem0', 'chroma']
 ---
 
 # 7401: Long-term Memory for Agents

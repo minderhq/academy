@@ -16,15 +16,19 @@ TV-01  tag outside the frozen birth vocabulary (WHITELIST). New
        same commit.
 TV-02  duplicate tag within one document's list.
 TV-03  tag in a known non-canonical variant form; the message
-       names the canonical form. Draining these to the canonical
-       spelling is the next tick's queue; TV-01/TV-02 go hard at
-       birth (both measure 0), TV-03 follows the census -> drain
-       -> gate cycle after the drain lands.
+       names the canonical form. HARD - drained tick-404: all 7
+       birth sites canonicalized (transformer, fine-tuning,
+       benchmarking, federated, knowledge-graph, vector-database,
+       chromadb) and the variant forms removed from WHITELIST,
+       so the birth vocabulary is now 209 single-form tags.
+       VARIANTS is kept as a correcting map: a future variant
+       form gets the pointed TV-03 message (naming the canonical
+       spelling) instead of the generic TV-01 unknown-tag one,
+       and fails the gate either way.
 
-Report mode is only half-true at birth: TV-01 and TV-02 measure 0
-and are hard from day one (KW-03 born-at-zero pattern) - exit 1 if
-either returns. TV-03 exits 0 until the variant queue drains and
-the gate is promoted to cover it.
+HARD GATE - exit 1 on any finding. TV-01/TV-02 were hard from
+day one (KW-03 born-at-zero pattern); TV-03 joined after the
+tick-404 drain (census -> drain -> gate cycle).
 
 Run over the whole corpus:
     python scripts/qa/tag_vocabulary_census.py --root .
@@ -45,19 +49,19 @@ WHITELIST = frozenset([
     'acting', 'activation', 'adamw', 'adaptation', 'advanced', 'adversarial',
     'agents', 'aliases', 'alignment', 'api-design', 'architecture', 'assessment',
     'attention', 'audio', 'autogen', 'autograd', 'autonomy', 'awq',
-    'backpropagation', 'bart', 'benchmarking', 'benchmarks', 'bf16', 'binary',
+    'backpropagation', 'bart', 'benchmarks', 'bf16', 'binary',
     'bitnet', 'bnn', 'bpe', 'bridge-mode', 'cag', 'calculus',
-    'chroma', 'chromadb', 'ci-cd', 'clip', 'code-interpreter', 'cognition',
+    'chroma', 'ci-cd', 'clip', 'code-interpreter', 'cognition',
     'communication', 'compression', 'configuration', 'context', 'context-window', 'cpu-gpu-hybrid',
     'crewai', 'cuda', 'data-curation', 'ddp', 'deepspeed', 'deployment',
     'devops', 'differential-privacy', 'distillation', 'distributed', 'distributed-training', 'docker',
     'dpo', 'dynamic-batching', 'embeddings', 'encoder-decoder', 'evaluation', 'exl2',
-    'extreme-compression', 'fastapi', 'federated', 'federated-learning', 'fine-tuning', 'finetuning',
+    'extreme-compression', 'fastapi', 'federated-learning', 'finetuning',
     'flash-attention', 'fp16', 'framework-comparison', 'framework-engineering', 'framework-selection', 'frameworks',
     'fsdp', 'function-calling', 'gelu', 'ggml', 'gguf', 'gpt',
     'gptq', 'gpu', 'gradient-clipping', 'graphrag', 'hands-on', 'hardware',
     'hnsw', 'hybrid-search', 'inference', 'infrastructure', 'iommu', 'isp',
-    'jumbo-frames', 'k3s', 'knowledge-graph', 'knowledge-graphs', 'kubernetes', 'kv-cache',
+    'jumbo-frames', 'k3s', 'knowledge-graphs', 'kubernetes', 'kv-cache',
     'langchain', 'langgraph', 'learning-rate', 'lifecycle', 'llama', 'llama.cpp',
     'llm', 'llmops', 'long-context', 'long-term-memory', 'lora', 'manufacturing',
     'math', 'mem0', 'memory', 'milvus', 'mixed-precision', 'mlops',
@@ -74,8 +78,8 @@ WHITELIST = frozenset([
     'similarity', 'solution', 'sparsity', 'speculative-decoding', 'star-topology', 'swiglu',
     'switch', 'synthetic-data', 't5', 'tensor-parallelism', 'tensorflow', 'tensors',
     'ternary', 'tgi', 'tokenization', 'tokenizer', 'tool-calling', 'topology',
-    'training', 'transformer', 'transformers', 'tts', 'tutorial', 'uplink',
-    'vector-database', 'vector-db', 'vector-store', 'vectors', 'versioning', 'vfio',
+    'training', 'transformers', 'tts', 'tutorial', 'uplink',
+    'vector-db', 'vector-store', 'vectors', 'versioning', 'vfio',
     'virtualization', 'vision', 'vision-language', 'vlan', 'vllm', 'vlm',
     'wan', 'warmup', 'weaviate', 'whisper', 'xla', 'zero',
 ])
@@ -121,12 +125,12 @@ def check(root: Path, path: Path, findings: list[str]) -> None:
         if t in seen:
             findings.append(f"{rel}: TV-02 duplicate tag {t!r} in one doc")
         seen.add(t)
-        if t not in WHITELIST:
-            findings.append(f"{rel}: TV-01 unknown tag {t!r} "
-                            f"(add to WHITELIST deliberately)")
-        elif t in VARIANTS:
+        if t in VARIANTS:
             findings.append(f"{rel}: TV-03 variant tag {t!r} -> "
                             f"canonical {VARIANTS[t]!r}")
+        elif t not in WHITELIST:
+            findings.append(f"{rel}: TV-01 unknown tag {t!r} "
+                            f"(add to WHITELIST deliberately)")
 
 
 def main() -> int:
@@ -151,10 +155,9 @@ def main() -> int:
         print(f.encode("ascii", "backslashreplace").decode("ascii"))
     print(f"tag_vocabulary_census: TV-01={by_class[0]} TV-02={by_class[1]} "
           f"TV-03={by_class[2]} across {n_docs} docs "
-          f"(TV-01/TV-02 hard; TV-03 report until variant drain; "
-          f"vocabulary frozen at birth: {len(WHITELIST)} tags, "
-          f"{len(VARIANTS)} known variants)")
-    return 1 if (by_class[0] or by_class[1]) else 0
+          f"(hard gate; vocabulary {len(WHITELIST)} single-form tags, "
+          f"{len(VARIANTS)} correcting variants)")
+    return 1 if findings else 0
 
 
 if __name__ == "__main__":

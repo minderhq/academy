@@ -9,7 +9,7 @@ Difficulty: Advanced
 Estimated Time: 4 hours
 Prerequisites: See module README
 Related: See module README
-Tags: ['rag', 'graphrag', 'knowledge-graph', 'neo4j']
+Tags: ['rag', 'graphrag', 'knowledge-graphs', 'neo4j']
 ---
 
 # 6304: GraphRAG Implementation Guide

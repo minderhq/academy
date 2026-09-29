@@ -312,8 +312,8 @@ stand today?" without running each tool by hand.
                        every class, promoted same tick (KW-03
                        pattern) - new enum values must update the
                        script in the same commit
-    tag_vocabulary_census tags vocabulary closure (TV-01/02 hard,
-                       TV-03 report): platform filtering and
+    tag_vocabulary_census tags vocabulary closure (TV-01..03
+                       hard): platform filtering and
                        related-content navigation need a closed,
                        single-form tag vocabulary. WHITELIST frozen
                        at tick-403 birth (111 docs, 216 tags, 0
@@ -321,8 +321,9 @@ stand today?" without running each tool by hand.
                        (new tags are deliberate WHITELIST edits in
                        the same commit), TV-02 duplicate tag within
                        one doc, TV-03 known variant form naming the
-                       canonical spelling (7 birth sites queued for
-                       drain, then gate covers TV-03 too)
+                       canonical spelling; 7 variant sites drained
+                       tick-404, vocabulary now 209 single-form
+                       tags, TV-03 hard since the drain
     unfinished_marker_scan unfinished-content markers in prose
                        (UM-01): outside any code fence, inline code
                        scrubbed, a line must not carry "coming soon",
