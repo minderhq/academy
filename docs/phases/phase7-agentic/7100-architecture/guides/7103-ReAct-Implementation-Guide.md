@@ -1,7 +1,7 @@
 ---
 Document ID: 7103
 Title: "7103: ReAct Agent Implementation Guide"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 ---
@@ -88,7 +88,8 @@ Features:
 
 import json
 import re
-from typing import Dict, List, Any, Callable
+from typing import Any
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from enum import Enum
 import torch
@@ -114,11 +115,11 @@ class Thought:
     content: str
     step_number: int
     action_type: ActionType | None = None
-    action_input: Dict | None = None
+    action_input: dict | None = None
     observation: str | None = None
     confidence: float = 0.5
 
-    def to_dict(self) -> Dict:
+    def to_dict(self) -> dict:
         return {
             "step": self.step_number,
             "thought": self.content,
@@ -137,7 +138,7 @@ class Tool:
     function: Callable
     parameters: dict[str, Any] = field(default_factory=dict)
 
-    def validate_input(self, input_data: Dict) -> bool:
+    def validate_input(self, input_data: dict) -> bool:
         """Validate input against required parameters"""
         required = self.parameters.get("required", [])
         for param in required:
@@ -145,7 +146,7 @@ class Tool:
                 return False
         return True
 
-    def execute(self, input_data: Dict) -> str:
+    def execute(self, input_data: dict) -> str:
         """Execute the tool"""
         if not self.validate_input(input_data):
             return f"Error: Missing required parameters. Need: {self.parameters.get('required', [])}"
@@ -189,8 +190,8 @@ class MemorySystem:
     """Memory system for the agent"""
 
     def __init__(self, qdrant_url: str = "http://192.168.1.100:6334"):
-        self.short_term: list[Dict] = []
-        self.episodic: list[Dict] = []
+        self.short_term: list[dict] = []
+        self.episodic: list[dict] = []
 
         # Long-term memory
         self.qdrant = QdrantClient(url=qdrant_url)
@@ -211,7 +212,7 @@ class MemorySystem:
         except:
             pass  # Collection exists
 
-    def add_short_term(self, content: str, metadata: Dict = None):
+    def add_short_term(self, content: str, metadata: dict | None = None):
         """Add to short-term memory"""
         self.short_term.append({
             "content": content,
@@ -223,11 +224,11 @@ class MemorySystem:
         if len(self.short_term) > 20:
             self.short_term.pop(0)
 
-    def add_episodic(self, episode: Dict):
+    def add_episodic(self, episode: dict):
         """Add a complete episode to episodic memory"""
         self.episodic.append(episode)
 
-    def search_long_term(self, query: str, k: int = 5) -> list[Dict]:
+    def search_long_term(self, query: str, k: int = 5) -> list[dict]:
         """Search long-term memory"""
         # This would use embeddings - simplified here
         return []
@@ -323,7 +324,7 @@ class ReActAgent:
         except Exception as e:
             return f"Error: {str(e)}"
 
-    def _format_prompt(self, query: str, history: list[Thought] = None) -> str:
+    def _format_prompt(self, query: str, history: list[Thought] | None = None) -> str:
         """Format prompt for the LLM"""
 
         tool_descriptions = self.tools.get_tool_descriptions()
@@ -387,7 +388,7 @@ Query: {query}
 
         return thought
 
-    def run(self, query: str) -> Dict:
+    def run(self, query: str) -> dict:
         """
         Run the ReAct agent
 
@@ -518,7 +519,7 @@ if __name__ == "__main__":
 class MultiToolAgent(ReActAgent):
     """Agent that can use multiple tools in sequence"""
 
-    def plan_and_execute(self, query: str) -> Dict:
+    def plan_and_execute(self, query: str) -> dict:
         """Plan multiple steps then execute"""
         # First, create a plan
         plan_prompt = f"""Create a step-by-step plan to answer: {query}
@@ -553,7 +554,7 @@ Plan:"""
 class SelfCorrectingAgent(ReActAgent):
     """Agent that can detect and correct errors"""
 
-    def run(self, query: str) -> Dict:
+    def run(self, query: str) -> dict:
         """Run with self-correction"""
         self.trace = []
         errors = 0
@@ -585,7 +586,7 @@ class SelfCorrectingAgent(ReActAgent):
 class HierarchicalAgent(ReActAgent):
     """Agent with high-level and low-level reasoning"""
 
-    def run(self, query: str) -> Dict:
+    def run(self, query: str) -> dict:
         """Run with hierarchical planning"""
 
         # High-level plan

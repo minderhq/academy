@@ -242,7 +242,6 @@ Hybrid search combining vector and keyword search
 
 from qdrant_client import QdrantClient
 from qdrant_client.models import Distance, VectorParams, PointStruct, Filter, FieldCondition, MatchValue
-from typing import List, Dict
 import numpy as np
 
 class HybridSearch:
@@ -287,7 +286,7 @@ class HybridSearch:
         text: str,
         embedding: np.ndarray,
         tenant_id: str,
-        metadata: Dict,
+        metadata: dict,
     ):
         """Index a single document"""
         point = PointStruct(
@@ -314,7 +313,7 @@ class HybridSearch:
         tenant_id: str | None = None,
         category: str | None = None,
         top_k: int = 10,
-    ) -> list[Dict]:
+    ) -> list[dict]:
         """
         Perform hybrid search
 
@@ -326,7 +325,7 @@ class HybridSearch:
             top_k: Number of results
 
         Returns:
-            List of search results with scores
+            The search results with scores
         """
         # Build filter
         filter_conditions = None
@@ -444,7 +443,6 @@ if __name__ == "__main__":
 Simple BM25 keyword search
 """
 
-from typing import List, Dict
 import math
 from collections import Counter
 import re
@@ -473,12 +471,12 @@ class BM25Search:
         tokens = re.findall(r'\b\w+\b', text)
         return tokens
 
-    def index_documents(self, documents: list[Dict]):
+    def index_documents(self, documents: list[dict]):
         """
         Index documents for BM25
 
         Args:
-            documents: List of {"id": str, "text": str, "tenant_id": str, ...}
+            documents: The document dicts {"id": str, "text": str, "tenant_id": str, ...}
         """
         self.total_docs = len(documents)
 
@@ -512,7 +510,7 @@ class BM25Search:
         query: str,
         tenant_id: str | None = None,
         top_k: int = 10,
-    ) -> list[Dict]:
+    ) -> list[dict]:
         """Search using BM25"""
         query_tokens = self.tokenize(query)
 
@@ -598,7 +596,6 @@ Re-ranking service using cross-encoder
 """
 
 from sentence_transformers import CrossEncoder
-from typing import Dict
 import torch
 
 class ReRanker:
@@ -618,9 +615,9 @@ class ReRanker:
     def rerank(
         self,
         query: str,
-        results: list[Dict],
+        results: list[dict],
         top_k: int = 10,
-    ) -> list[Dict]:
+    ) -> list[dict]:
         """
         Re-rank search results
 
@@ -656,9 +653,9 @@ class ReRanker:
     def rerank_batch(
         self,
         queries: list[str],
-        results_list: list[list[Dict]],
+        results_list: list[list[dict]],
         top_k: int = 10,
-    ) -> list[list[Dict]]:
+    ) -> list[list[dict]]:
         """Re-rank multiple queries (batch processing)"""
         reranked_list = []
 
@@ -703,7 +700,6 @@ if __name__ == "__main__":
 Complete production RAG with hybrid search and re-ranking
 """
 
-from typing import Dict
 import time
 
 class ProductionRAG:
@@ -726,7 +722,7 @@ class ProductionRAG:
         self.keyword_search = BM25Search()
         self.reranker = ReRanker(reranker_model)
 
-    def index_documents(self, documents: list[Dict]):
+    def index_documents(self, documents: list[dict]):
         """Index documents for both vector and keyword search"""
         # Index in vector database
         for doc in documents:
@@ -750,7 +746,7 @@ class ProductionRAG:
         alpha: float = 0.5,  # Weight for vector search (0=keyword only, 1=vector only)
         top_k: int = 10,
         use_rerank: bool = True,
-    ) -> Dict:
+    ) -> dict:
         """
         Complete search pipeline
 
@@ -817,11 +813,11 @@ class ProductionRAG:
 
     def _reciprocal_rank_fusion(
         self,
-        vector_results: list[Dict],
-        keyword_results: list[Dict],
+        vector_results: list[dict],
+        keyword_results: list[dict],
         alpha: float = 0.5,
         k: int = 60,
-    ) -> list[Dict]:
+    ) -> list[dict]:
         """Combine vector and keyword results using RRF"""
         scores = {}
 
