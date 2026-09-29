@@ -22,13 +22,13 @@ Difficulty: Advanced
 A) A model with multiple layers
 B) An ensemble of models
 C) A model that processes multiple data types (text, image, audio)
-D) A model trained on multiple tasks
+D) A model trained on multiple unrelated downstream tasks with no shared parameters
 
 **2. What is CLIP primarily designed for?**
 
 A) Image generation
 B) Video generation
-C) Audio processing
+C) Audio processing and speech synthesis pipelines
 D) Image-text retrieval and understanding
 
 **3. What training objective does CLIP use?**
@@ -36,14 +36,14 @@ D) Image-text retrieval and understanding
 A) Masked language modeling
 B) Next token prediction
 C) Contrastive learning on image-text pairs
-D) Sequence-to-sequence training
+D) Full sequence-to-sequence supervised training on parallel corpora
 
 **4. What is the main advantage of multimodal models?**
 
 A) Faster training
 B) Richer understanding by combining modalities
 C) Smaller model size
-D) Simpler architecture
+D) Simpler architecture with fewer parameters to train and deploy
 
 **5. Which model type is LLaVA?**
 
@@ -54,7 +54,7 @@ D) Video generation model
 
 **6. What is the typical approach for building vision-language models?**
 
-A) Train from scratch on image-text data
+A) Train the entire multimodal stack from scratch on image-text data with no pretrained components
 B) Pretrain vision encoder and language model separately, then connect
 C) Use separate models for each modality
 D) Convert images to text before processing
@@ -63,7 +63,7 @@ D) Convert images to text before processing
 
 A) Image generation
 B) Image-language understanding and generation
-C) Audio classification
+C) Audio classification and speech-to-text transcription
 D) Video understanding
 
 **8. How do most multimodal models handle different modalities?**
@@ -71,11 +71,11 @@ D) Video understanding
 A) Separate processing with late fusion
 B) Project all modalities to shared embedding space
 C) Process text only, ignore other modalities
-D) Convert everything to text
+D) Convert every modality into plain text strings at the input layer
 
 **9. What is a key challenge in multimodal learning?**
 
-A) Model size
+A) Model size alone, with modalities irrelevant to the challenge
 B) Aligning different modalities in shared space
 C) Training speed
 D) All of the above
@@ -89,14 +89,14 @@ D) Unsupervised learning
 
 **11. Which architecture is the typical vision encoder in modern VLMs?**
 
-A) LSTM
+A) LSTM networks with attention over frame features
 B) Vision Transformer (ViT)
 C) U-Net
 D) GAN discriminator
 
 **12. In LLaVA, the projector's job is to:**
 
-A) Generate images
+A) Generate novel images from the text prompt at inference time
 B) Compress video frames
 C) Map vision encoder outputs into the LLM's embedding space
 D) Tokenize text
@@ -106,20 +106,20 @@ D) Tokenize text
 A) Text-to-image generation
 B) Speech recognition (and translation)
 C) Music recommendation
-D) Video captioning
+D) Video captioning with temporal action localization
 
 **14. CLIP enables zero-shot classification by:**
 
 A) Comparing the image embedding to text embeddings of class prompts
 B) Training a softmax head per class
-C) Using k-means on pixels
+C) Running k-means clustering directly on the raw pixel values of every frame
 D) Running OCR on the image
 
 **15. Audio is commonly represented for neural processing as:**
 
 A) Raw bytes
 B) MIDI notes
-C) MP3 file containers
+C) MP3 file containers passed straight to the encoder
 D) Spectrograms (or learned audio tokens)
 
 **16. Images enter a vision-language model as:**
@@ -127,34 +127,34 @@ D) Spectrograms (or learned audio tokens)
 A) Patch embeddings projected into the LLM's input space
 B) Raw pixel matrices appended to the text
 C) File paths resolved at generation time
-D) Base64 strings decoded by the LLM
+D) Base64 strings decoded inline by the LLM tokenizer at runtime
 
 **17. CLIP-style models are trained on:**
 
 A) Labeled ImageNet classes
 B) Synthetic renders only
 C) Hundreds of millions of web image-text pairs
-D) Paired audio transcripts only
+D) Paired audio transcripts only, with no images involved
 
 **18. Automatic speech recognition (ASR) and text-to-speech (TTS) differ in that:**
 
 A) They are the same task with different names
 B) ASR converts audio to text; TTS converts text to audio
 C) ASR converts text to audio; TTS converts audio to text
-D) Both convert text to audio
+D) Both tasks convert text into audio waveforms using exactly the same pipelines
 
 **19. A standard benchmark family for evaluating vision-language models is:**
 
 A) GLUE only
 B) HumanEval only
-C) LibriSpeech only
+C) LibriSpeech only, a speech corpus used for reading comprehension tasks
 D) Visual question answering benchmarks (e.g., VQA)
 
 **20. "Visual instruction tuning" means fine-tuning a VLM on:**
 
 A) Instruction-following data that includes images
 B) Image classification labels only
-C) Contrastive image-text pairs
+C) Contrastive image-text pairs used for pretraining alignment
 D) Audio transcripts
 
 ---
