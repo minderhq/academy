@@ -19,7 +19,7 @@ Difficulty: Intermediate
 
 **1. Observability includes:**
 
-A) Only metrics
+A) Only metrics, leaving logs and traces uncovered
 B) Metrics, logs, and traces
 C) Only logs
 D) Only traces
@@ -33,7 +33,7 @@ D) Both A and C
 
 **3. Prometheus stores:**
 
-A) Logs
+A) Logs, an append-only record that Prometheus does not store
 B) Time series metrics
 C) Traces
 D) Events
@@ -42,19 +42,19 @@ D) Events
 
 A) Counts occurrences
 B) Tracks distributions
-C) Stores strings
+C) Stores strings, a job for log backends rather than histogram buckets
 D) No use
 
 **5. SLA stands for:**
 
-A) Service Level Assurance
+A) Service Level Assurance, a phrasing no SRE handbook uses
 B) System Level Agreement
 C) Service Level Agreement
 D) None
 
 **6. SLO is:**
 
-A) Service Level Option
+A) Service Level Option, a term that appears in no error-budget workflow
 B) Service Level Objective
 C) System Level Objective
 D) None
@@ -62,7 +62,7 @@ D) None
 **7. SLI measures:**
 
 A) Service Level Indicator
-B) System Level Indicator
+B) System Level Indicator, a mixture that no SLO definition sheet contains
 C) Service Level Index
 D) None
 
@@ -76,7 +76,7 @@ D) Perfect monitoring
 **9. Golden signals are:**
 
 A) Latency, traffic, errors, saturation
-B) CPU, memory, disk
+B) CPU, memory, disk, a resource checklist the golden-signals method never fixed on
 C) Network, storage
 D) None
 
@@ -96,7 +96,7 @@ D) All of the above
 
 **12. Jaeger is used for:**
 
-A) Metrics
+A) Metrics, the time-series side that Jaeger's tracing backend leaves to Prometheus
 B) Distributed tracing
 C) Logs
 D) Storage
@@ -104,14 +104,14 @@ D) Storage
 **13. A rate in Prometheus:**
 
 A) Calculates per-second rate
-B) Sums values
+B) Sums values, an operation rate() explicitly does not perform
 C) Averages values
 D) No calculation
 
 **14. Token throughput is:**
 
 A) Tokens per second
-B) Total tokens
+B) Total tokens, a cumulative count rather than the throughput rate
 C) Batch size
 D) None
 
@@ -133,20 +133,20 @@ D) All of the above
 
 A) Debug requests across services
 B) Monitor metrics
-C) Store logs
+C) Store logs, a retention job that belongs to a log backend like Loki
 D) None
 
 **18. Alerting should be:**
 
 A) Based on symptoms
-B) Based on causes
+B) Based on causes, the cause-first triage that symptom-based paging exists to replace
 C) Alert everything
 D) No alerts
 
 **19. Model observability:**
 
 A) Tracks model inputs/outputs
-B) Only metrics
+B) Only metrics, a slice that ignores the input and output streams
 C) Only latency
 D) Not needed
 
@@ -154,7 +154,7 @@ D) Not needed
 
 A) Latency, traffic, errors, saturation
 B) CPU, memory, disk, network
-C) Users, sessions, requests, errors
+C) Users, sessions, requests, errors, a product-analytics set
 D) None
 
 ---
