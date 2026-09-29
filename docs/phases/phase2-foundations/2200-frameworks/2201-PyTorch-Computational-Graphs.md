@@ -3,7 +3,7 @@ Document ID: 2201
 Title: "2201: PyTorch Computational Graphs and Dynamic Execution"
 Phase: 2
 Module: 2200
-Last Updated: 2026-09-27
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 4 hours
@@ -27,6 +27,7 @@ Tags: ['frameworks', 'pytorch', 'tensorflow', 'cuda']
 - [Debugging Computational Graphs](#debugging-computational-graphs)
 - [Memory Management](#memory-management)
 - [Advanced Patterns](#advanced-patterns)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -599,6 +600,10 @@ J = jacobian(y, x)
 ```
 
 ---
+
+## Summary
+
+PyTorch builds its computational graph dynamically - define-by-run - while static frameworks trace a fixed graph ahead of execution with @tf.function. This lesson compared the two models and showed what dynamism buys: intuitive code, ordinary-Python debugging, and dynamic control flow (data-dependent branches and loops) inside models. It walked graph construction, autograd integration, and the places dynamism costs performance and how torch.compile recovers it. The takeaway: the graph is a runtime artifact in PyTorch, and knowing that explains both its ergonomics and its optimization ceiling.
 
 ## References
 

@@ -3,7 +3,7 @@ Document ID: 2101
 Title: "2101: Tensor Algebra and Linear Algebra for AI"
 Phase: 2
 Module: 2100
-Last Updated: 2026-09-27
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 4 hours
@@ -26,6 +26,7 @@ Tags: ['math', 'calculus', 'tensors', 'backpropagation']
 - [GPU Tensor Operations](#gpu-tensor-operations)
 - [Common Patterns in AI](#common-patterns-in-ai)
 - [Memory Considerations](#memory-considerations)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -455,6 +456,10 @@ int4_size = model_size * 0.5 / (1024 ** 3)  # ~3.5 GB
 ```
 
 ---
+
+## Summary
+
+Tensor algebra is the mathematical foundation everything else in deep learning stands on: the rank ladder from scalar through vector and matrix to tensor, the shape and dimension algebra that every operation preserves or transforms, and the Einstein summation convention that expresses complex contractions compactly - and is exactly what einsum compiles on GPU. This lesson covered tensor fundamentals, the operations, broadcasting, and einsum notation. The rule it leaves: you cannot debug a shape error you cannot reason about - tensor algebra is not background math, it is the daily grammar of GPU programming.
 
 ## References
 

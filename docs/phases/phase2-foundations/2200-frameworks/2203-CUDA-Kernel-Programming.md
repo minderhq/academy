@@ -3,7 +3,7 @@ Document ID: 2203
 Title: "2203: CUDA Kernel Programming and GPU Architecture"
 Phase: 2
 Module: 2200
-Last Updated: 2026-09-27
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 4 hours
@@ -26,6 +26,7 @@ Tags: ['frameworks', 'pytorch', 'tensorflow', 'cuda']
 - [Tensor Cores Programming](#tensor-cores-programming)
 - [Optimization Techniques](#optimization-techniques)
 - [Debugging CUDA](#debugging-cuda)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -491,6 +492,10 @@ ncu --metrics dram__throughput.avg.pct_of_peak_sustained_elapsed,lts__t_sector_h
 ```
 
 ---
+
+## Summary
+
+The grid/block/warp model and the memory hierarchy decide how fast a GPU actually runs, and this lesson is the grounding in both: CUDA architecture on the reference card (4352 FP32 cores across SMs, tensor cores beside them), the execution model of threads organized into blocks and grids, global/shared/register memory and its latency ladder, and writing a kernel end to end. The rule it leaves: you do not need to write CUDA daily, but understanding occupancy and memory coalescing explains every profile you will ever read.
 
 ## References
 

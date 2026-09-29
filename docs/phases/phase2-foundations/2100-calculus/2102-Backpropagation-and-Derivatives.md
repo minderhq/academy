@@ -3,7 +3,7 @@ Document ID: 2102
 Title: "2102: Backpropagation and Automatic Differentiation"
 Phase: 2
 Module: 2100
-Last Updated: 2026-09-28
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 4 hours
@@ -28,6 +28,7 @@ Tags: ['math', 'calculus', 'tensors', 'backpropagation']
 - [Second-Order Derivatives (Hessian)](#second-order-derivatives-hessian)
 - [Gradient Accumulation](#gradient-accumulation)
 - [Best Practices](#best-practices)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -504,6 +505,10 @@ class DeepModel(nn.Module):
 ```
 
 ---
+
+## Summary
+
+Backpropagation is the algorithm that makes networks learn: apply the chain rule recursively through the computational graph to get the gradient of the loss with respect to every parameter. This lesson built it from first principles - the single-variable chain rule, then the multivariate tensor form with Jacobians - and walked the mechanics autograd performs behind every .backward() call. The rule it leaves: gradients are not magic, they are bookkeeping; when training misbehaves, the person who can trace the chain rule by hand is the one who finds where it breaks.
 
 ## References
 
