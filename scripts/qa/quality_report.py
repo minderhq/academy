@@ -190,6 +190,22 @@ stand today?" without running each tool by hand.
                        census (tick-330/331: 1857 fences, 7 survivors
                        -> 5 drained, 2 FP classes absorbed by design)
                        locked baseline 0
+    fence_variant_check_module module-level lexical variants in
+                       ```python fences (PY-02): PY-01 v1's declared
+                       out-of-scope region - a bare name loaded at
+                       module level (outside any function/class body)
+                       that is a near-miss of an in-scope name, same
+                       predicate; the region is fragment-densest (296
+                       distinct bare non-variant names accepted by
+                       design) so only the variant class is locked;
+                       birth census (tick-332: 35 hits; tick-333
+                       drain 13 across 7 docs + 1 reclassified FP)
+                       left 16 hits in 6 recorded FP classes - ambient
+                       import classes, wrong/right placeholders, QKV
+                       notation, documented __main__ fragment,
+                       loop-sibling shape, placeholder pipeline
+                       functions - each a reasoned (rel, name) accept;
+                       locked baseline 0 at birth
     unfinished_marker_scan unfinished-content markers in prose
                        (UM-01): outside any code fence, inline code
                        scrubbed, a line must not carry "coming soon",
@@ -374,6 +390,7 @@ GATES = [
     ("resource_id_check.py", "resource_id_check", True),
     ("resource_ref_check.py", "resource_ref_check", True),
     ("fence_variant_check.py", "fence_variant_check", True),
+    ("fence_variant_check_module.py", "fence_variant_check_module", True),
     ("unfinished_marker_scan.py", "unfinished_marker_scan", True),
     ("empty_section_scan.py", "empty_section_scan", True),
     ("emoji_shortcode_scan.py", "emoji_shortcode_scan", True),
