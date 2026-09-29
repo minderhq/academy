@@ -568,8 +568,11 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Python dependencies
+# Official uv-in-Docker pattern: copy the uv binary from the uv image
+# (https://docs.astral.sh/uv/guides/integration/docker/)
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
 COPY requirements.txt .
-RUN pip install --user --no-cache-dir -r requirements.txt
+RUN uv pip install --system --no-cache -r requirements.txt
 
 # Runtime stage
 FROM python:3.13-slim
@@ -581,11 +584,12 @@ RUN apt-get update && apt-get install -y \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy Python packages from builder
-COPY --from=builder /root/.local /root/.local
-
-# Make sure scripts in .local are usable
-ENV PATH=/root/.local/bin:$PATH
+# Copy Python packages from builder (uv --system installs into
+# /usr/local; entry points like uvicorn live in /usr/local/bin,
+# which is already on PATH)
+COPY --from=builder /usr/local/lib/python3.13/site-packages \
+    /usr/local/lib/python3.13/site-packages
+COPY --from=builder /usr/local/bin/uvicorn /usr/local/bin/uvicorn
 
 # Copy application code
 COPY ./api /app/api

@@ -571,9 +571,13 @@ RUN apt-get update && \
     curl && \
     rm -rf /var/lib/apt/lists/*
 
+# Official uv-in-Docker pattern: copy the uv binary from the uv image
+# (https://docs.astral.sh/uv/guides/integration/docker/)
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
+
 # Copy requirements
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN uv pip install --system --no-cache -r requirements.txt
 
 # Download embedding model (cache in image)
 RUN python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('all-MiniLM-L6-v2')"

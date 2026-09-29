@@ -69,8 +69,11 @@ class ProductionRAG:
 # Dockerfile
 FROM python:3.13
 WORKDIR /app
+# Official uv-in-Docker pattern: copy the uv binary from the uv image
+# (https://docs.astral.sh/uv/guides/integration/docker/)
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
 COPY requirements.txt .
-RUN pip install -r requirements.txt
+RUN uv pip install --system --no-cache -r requirements.txt
 COPY . .
 CMD ["uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8000"]
 ```

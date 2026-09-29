@@ -114,8 +114,12 @@ docker run -it python:3.13 bash
 # Check Python version
 python --version
 
+# Install uv (the curriculum's package manager standard)
+curl -LsSf https://astral.sh/uv/install.sh | sh
+source /root/.local/bin/env
+
 # Install a package
-pip install numpy
+uv pip install --system numpy
 
 # Run Python
 python -c "import numpy; print(numpy.__version__)"
@@ -171,8 +175,12 @@ FROM python:3.13-slim
 
 WORKDIR /app
 
+# Official uv-in-Docker pattern: copy the uv binary from the uv image
+# (https://docs.astral.sh/uv/guides/integration/docker/)
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
+
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN uv pip install --system --no-cache -r requirements.txt
 
 COPY . .
 
@@ -345,6 +353,7 @@ CMD ["python", "app.py"]
 **Problems:**
 - Installs dependencies every time (if code changes)
 - No layer caching optimization
+- Uses plain `pip` instead of the uv standard (see the good Dockerfile below)
 
 ### ✅ Good Dockerfile:
 ```dockerfile
@@ -361,7 +370,11 @@ WORKDIR /app
 
 # Copy and install requirements first (better caching)
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+
+# Official uv-in-Docker pattern: copy the uv binary from the uv image
+# (https://docs.astral.sh/uv/guides/integration/docker/)
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
+RUN uv pip install --system --no-cache -r requirements.txt
 
 # Copy application code
 COPY . .

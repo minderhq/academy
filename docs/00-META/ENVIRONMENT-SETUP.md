@@ -139,13 +139,15 @@ docker --version
 > virtual environments, and project dependencies in one tool. Everywhere else
 > in the corpus, a `pip install X` you encounter maps 1:1 to `uv pip install X`.
 >
-> Three deliberate exceptions: inside Dockerfiles, plain `RUN pip install ...`
-> stays valid because uv is not preinstalled in Python base images (LAB-001
-> teaches the official uv image pattern); inside conda workflows,
+> Two deliberate exceptions: inside conda workflows,
 > `pip install` into the active environment remains the standard; and in
 > uv-first blocks that already show `uv pip install` as the recommended
 > form, a labeled plain-pip fallback (QUICK-START's `# plain pip works too`)
-> may stay so first-run readers succeed on any setup.
+> may stay so first-run readers succeed on any setup. Dockerfiles used to be
+> a third exception, but every Dockerfile in the corpus now follows LAB-001's
+> official uv image pattern (uv binary copied from the uv image, then
+> `RUN uv pip install --system`); TUTORIAL-002 keeps one deliberately bad
+> Dockerfile that uses plain pip as a labeled anti-example.
 
 #### Install uv
 

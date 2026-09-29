@@ -641,7 +641,11 @@ WORKDIR /app
 
 # Copy the dependency manifest first so Docker can cache the install layer.
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+
+# Official uv-in-Docker pattern: copy the uv binary from the uv image
+# (https://docs.astral.sh/uv/guides/integration/docker/)
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
+RUN uv pip install --system --no-cache -r requirements.txt
 
 COPY . .
 

@@ -414,10 +414,13 @@ print("""
 # image is not needed for inference serving.
 FROM python:3.13-slim
 
+# Official uv-in-Docker pattern: copy the uv binary from the uv image
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
+
 WORKDIR /app
 
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN uv pip install --system --no-cache -r requirements.txt
 
 COPY model/ /app/model/
 COPY server.py /app/

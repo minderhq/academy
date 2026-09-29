@@ -298,9 +298,13 @@ RUN apt-get update && \
     apt-get install -y gcc && \
     rm -rf /var/lib/apt/lists/*
 
+# Official uv-in-Docker pattern: copy the uv binary from the uv image
+# (https://docs.astral.sh/uv/guides/integration/docker/)
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
+
 # Copy requirements first for caching
 COPY requirements.txt .
-RUN pip install -r requirements.txt
+RUN uv pip install --system --no-cache -r requirements.txt
 
 # Then copy source code
 COPY . .
@@ -402,8 +406,8 @@ export DOCKER_BUILDKIT=1
 # Parallel builds
 docker build --parallel .
 
-# Use cache mount
-docker build --mount=type=cache,target=/root/.cache pip install -r requirements.txt
+# Use a uv cache mount (Dockerfile, BuildKit syntax)
+RUN --mount=type=cache,target=/root/.cache/uv uv pip install --system -r requirements.txt
 ```
 
 ---
