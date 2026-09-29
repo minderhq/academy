@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-004
 Title: "LAB-004: Building ReAct Agents"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -779,23 +779,36 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # (https://docs.astral.sh/uv/guides/integration/docker/)
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
 
-COPY requirements.txt .
-RUN uv pip install --system --no-cache -r requirements.txt
+# Dependency layer: only manifest/lockfile changes rebuild this.
+# uv sync --locked installs exactly what uv.lock pins; --no-install-project
+# skips the project itself (dependencies change rarely - a big time-saver).
+COPY pyproject.toml uv.lock ./
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --locked --no-install-project
 
+# Source layer: app-code changes rebuild only this.
 COPY . .
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --locked
+
+# uv sync creates the project venv at /app/.venv - put it on PATH
+ENV PATH="/app/.venv/bin:$PATH"
 
 EXPOSE 8002
 
 CMD ["uvicorn", "react_agent:app", "--host", "0.0.0.0", "--port", "8002"]
 ```
 
-### Requirements:
+### Create the project manifest (pyproject.toml + uv.lock):
 
-```text
-fastapi==0.141.1
-uvicorn[standard]==0.52.1
-requests==2.34.2
-pydantic==2.13.5
+```bash
+cd ~/lab-004-react/services/agent
+
+# uv-native dependency management: pyproject.toml is the source of truth,
+# uv.lock pins the resolved graph. uv init --bare creates only the manifest;
+# uv add records each pin and writes the lockfile in one step.
+uv init --bare --python 3.13 .
+uv add fastapi==0.141.1 "uvicorn[standard]==0.52.1" requests==2.34.2 pydantic==2.13.5
 ```
 
 ### ✅ Checkpoint: Exercise 3

@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-007
 Title: "LAB-007: Production RAG System"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -156,25 +156,14 @@ curl http://localhost:6337/health
 # Create RAG service directory
 mkdir -p rag-service/{app,config}
 
-# Create requirements.txt
-cat > rag-service/requirements.txt << 'EOF'
-fastapi==0.141.1
-uvicorn[standard]==0.52.1
-qdrant-client==1.19.0
-sentence-transformers==6.1.0
-langchain==1.4.2
-langchain-community==0.4.2
-numpy==2.4.6
-pydantic==2.13.5
-prometheus-client==0.26.0
-opentelemetry-api==1.45.0
-opentelemetry-sdk==1.45.0
-redis==8.1.0
-EOF
-
-# Install dependencies
+# Create the project manifest (pyproject.toml + uv.lock)
 cd rag-service
-uv pip install -r requirements.txt
+
+# uv-native dependency management: pyproject.toml is the source of truth,
+# uv.lock pins the resolved graph. uv init --bare creates only the manifest;
+# uv add records each pin, writes the lockfile and installs the venv.
+uv init --bare --python 3.13 .
+uv add fastapi==0.141.1 "uvicorn[standard]==0.52.1" qdrant-client==1.19.0 sentence-transformers==6.1.0 langchain==1.4.2 langchain-community==0.4.2 numpy==2.4.6 pydantic==2.13.5 prometheus-client==0.26.0 opentelemetry-api==1.45.0 opentelemetry-sdk==1.45.0 redis==8.1.0
 ```
 
 ---
@@ -1110,14 +1099,20 @@ RUN apt-get update && apt-get install -y \
 # (https://docs.astral.sh/uv/guides/integration/docker/)
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
 
-# Copy requirements
-COPY requirements.txt .
+# Dependency layer: only manifest/lockfile changes rebuild this.
+# uv sync --locked installs exactly what uv.lock pins; --no-install-project
+# skips the project itself (dependencies change rarely - a big time-saver).
+COPY pyproject.toml uv.lock ./
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --locked --no-install-project
 
-# Install Python dependencies
-RUN uv pip install --system --no-cache -r requirements.txt
-
-# Copy application
+# Source layer: app-code changes rebuild only this.
 COPY app ./app
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --locked
+
+# uv sync creates the project venv at /app/.venv - put it on PATH
+ENV PATH="/app/.venv/bin:$PATH"
 
 # Expose port
 EXPOSE 8000

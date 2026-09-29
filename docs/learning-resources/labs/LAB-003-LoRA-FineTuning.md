@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-003
 Title: "LAB-003: LoRA Fine-Tuning with QLoRA"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -591,24 +591,18 @@ if __name__ == "__main__":
     train()
 ```
 
-### Create requirements.txt:
+### Create the project manifest (pyproject.toml + uv.lock):
 
 ```bash
-cat > ~/lab-003-lora/requirements.txt << 'EOF'
-torch>=2.12.0
-transformers>=5.10.2
-peft>=0.19.1
-bitsandbytes>=0.50.2
-accelerate>=1.13.0
-datasets>=5.0.0
-trl>=1.14.0
-scipy>=1.17.1
-sentencepiece>=0.2.1
-protobuf>=7.35.0
-wandb>=0.30.0
-EOF
+cd ~/lab-003-lora
 
-uv pip install -r ~/lab-003-lora/requirements.txt
+# uv-native dependency management: pyproject.toml holds the constraints,
+# uv.lock pins the exact resolved versions. uv init --bare creates only
+# the manifest; uv add records each constraint, writes the lockfile and
+# installs into the project venv in one step (replaces uv pip install -r).
+# Constraints with >= are quoted so the shell never sees a redirection.
+uv init --bare --python 3.13 .
+uv add "torch>=2.12.0" "transformers>=5.10.2" "peft>=0.19.1" "bitsandbytes>=0.50.2" "accelerate>=1.13.0" "datasets>=5.0.0" "trl>=1.14.0" "scipy>=1.17.1" "sentencepiece>=0.2.1" "protobuf>=7.35.0" "wandb>=0.30.0"
 ```
 
 ### ✅ Checkpoint: Exercise 3

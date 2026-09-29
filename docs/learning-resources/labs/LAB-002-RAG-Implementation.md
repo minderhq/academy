@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-002
 Title: "LAB-002: RAG Implementation with Qdrant & Ollama"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -543,18 +543,16 @@ if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8001)
 ```
 
-### Create requirements.txt:
+### Create the project manifest (pyproject.toml + uv.lock):
 
 ```bash
-cat > ~/lab-002-rag/services/rag/requirements.txt << 'EOF'
-fastapi==0.141.1
-uvicorn[standard]==0.52.1
-requests==2.34.2
-pydantic==2.13.5
-qdrant-client==1.19.0
-sentence-transformers==6.1.0
-numpy==2.4.6
-EOF
+cd ~/lab-002-rag/services/rag
+
+# uv-native dependency management: pyproject.toml is the source of truth,
+# uv.lock pins the resolved graph. uv init --bare creates only the manifest;
+# uv add records each pin and writes the lockfile in one step.
+uv init --bare --python 3.13 .
+uv add fastapi==0.141.1 "uvicorn[standard]==0.52.1" requests==2.34.2 pydantic==2.13.5 qdrant-client==1.19.0 sentence-transformers==6.1.0 numpy==2.4.6
 ```
 
 ### Create Dockerfile:
@@ -575,15 +573,23 @@ RUN apt-get update && \
 # (https://docs.astral.sh/uv/guides/integration/docker/)
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
 
-# Copy requirements
-COPY requirements.txt .
-RUN uv pip install --system --no-cache -r requirements.txt
+# Dependency layer: only manifest/lockfile changes rebuild this.
+# uv sync --locked installs exactly what uv.lock pins; --no-install-project
+# skips the project itself (dependencies change rarely - a big time-saver).
+COPY pyproject.toml uv.lock ./
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --locked --no-install-project
+
+# uv sync creates the project venv at /app/.venv - put it on PATH
+ENV PATH="/app/.venv/bin:$PATH"
 
 # Download embedding model (cache in image)
 RUN python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('all-MiniLM-L6-v2')"
 
-# Copy application
+# Source layer: app-code changes rebuild only this.
 COPY . .
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --locked
 
 EXPOSE 8001
 
