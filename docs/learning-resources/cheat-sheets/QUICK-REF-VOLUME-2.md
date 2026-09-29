@@ -1,7 +1,7 @@
 ---
 Document ID: QUICK-REF-VOLUME-2
 Title: "Volume 2: AI/ML Foundations - Quick Reference"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -186,7 +186,7 @@ output = checkpoint(custom_forward, input_tensor, model)
 
 ### Mixed Precision Training
 ```python
-from torch.cuda.amp import autocast, GradScaler
+from torch.amp import autocast, GradScaler
 
 scaler = GradScaler()
 
@@ -194,7 +194,7 @@ for batch in dataloader:
     optimizer.zero_grad()
 
     # Forward in FP16
-    with autocast():
+    with autocast("cuda"):
         output = model(batch)
         loss = criterion(output, target)
 

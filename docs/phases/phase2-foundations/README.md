@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE2-FOUNDATIONS-README
 Title: "Phase 2: Cognitive Science & Frameworks [2000]"
-Last Updated: 2026-09-27
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Beginner
 ---
@@ -583,12 +583,12 @@ torch.nn.utils.clip_grad_value_(
 
 **Tip:** Use FP16 for faster training
 ```python
-from torch.cuda.amp import autocast, GradScaler
+from torch.amp import autocast, GradScaler
 
 scaler = GradScaler()
 
 for batch in dataloader:
-    with autocast():  # Use FP16 where safe
+    with autocast("cuda"):  # Use FP16 where safe
         output = model(batch)
         loss = criterion(output, target)
 

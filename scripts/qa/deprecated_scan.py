@@ -29,14 +29,29 @@ DA-03  a ```python fence must not call the pydantic v1 API:
        legitimate stdlib, so the shape-only rule would false-positive
        on it (the unambiguous v1-only names stay unconditional).
 
+DA-04  a ```python fence must not use the ``torch.cuda.amp`` namespace:
+       ``from torch.cuda.amp import autocast, GradScaler`` or
+       ``torch.cuda.amp.autocast()``. Deprecated since PyTorch 2.4 and
+       the corpus teaches the 2.x API surface (its own ``torch.compile``
+       sections ship). The modern home is the ``torch.amp`` namespace -
+       ``from torch.amp import autocast, GradScaler`` with an explicit
+       device on autocast (``autocast("cuda")`` - device_type is a
+       required positional there, unlike the old zero-argument call).
+       Born from the tick-347 census: 3 real call sites across 3
+       files; the other 6 ``torch.cuda.amp`` mentions in the corpus
+       are comment-only deprecation teachings, which the ``#``-split
+       below keeps invisible (same idiom as DA-01).
+
 Comment-only mentions (a fence teaching that utcnow is deprecated,
 like the 2303 API-design lesson) are not findings: the check looks
 for the pattern position before any ``#`` on the line.
 
 Hard gate (exit 1 on findings): baseline 0 after the tick-227 drain
 (13 call sites across 7 files moved to ``datetime.now(timezone.utc)``),
-the tick-228 drain (LAB-012 ``use_auth_token=False`` → ``token=``) and
-the tick-235 drain (LAB-007 ``doc.dict()`` → ``doc.model_dump()``).
+the tick-228 drain (LAB-012 ``use_auth_token=False`` → ``token=``),
+the tick-235 drain (LAB-007 ``doc.dict()`` → ``doc.model_dump()``) and
+the tick-347 drain (3 torch.cuda.amp sites across 3 files moved to
+the torch.amp namespace).
 
 Run over the whole corpus:
     python scripts/qa/deprecated_scan.py --root .
@@ -61,6 +76,9 @@ RULES = [
     (re.compile(r"@validator\b|@root_validator\b|parse_obj_as\("),
      "DA-03 pydantic v1 validation API (deprecated in 2.x, removed in "
      "3) - use @field_validator / TypeAdapter"),
+    (re.compile(r"\btorch\.cuda\.amp\b"),
+     "DA-04 torch.cuda.amp namespace (deprecated since PyTorch 2.4) - "
+     "use the torch.amp namespace (autocast('cuda') / GradScaler)"),
 ]
 
 # DA-03 continuation: ``.dict()`` is only flagged in files that import
@@ -119,7 +137,8 @@ def main() -> int:
     print(f"deprecated_scan: {len(findings)} findings "
           f"(DA-01 datetime.utcnow/utcfromtimestamp, "
           f"DA-02 use_auth_token, "
-          f"DA-03 pydantic v1 API) "
+          f"DA-03 pydantic v1 API, "
+          f"DA-04 torch.cuda.amp namespace) "
           f"in {len(n_files)} files across docs/")
     return 1 if findings else 0
 

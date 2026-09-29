@@ -3,7 +3,7 @@ Document ID: 5302
 Title: "5302: Distributed Training Orchestration"
 Phase: 5
 Module: 5300
-Last Updated: 2026-09-27
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -667,8 +667,8 @@ Mixed precision runs forward/backward in float16 (tensor-core friendly) while we
 """
 Mixed precision: fp16 forward/backward, fp32 master weights and updates.
 GradScaler rescales the loss so small gradients survive fp16 casting.
-(torch.cuda.amp.autocast/GradScaler are the deprecated spellings.)
 """
+# torch.cuda.amp.autocast/GradScaler are the deprecated spellings.
 import torch
 import torch.nn as nn
 

@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE4-QUANTIZATION-README
 Title: "Phase 4: Quantization & Compression [4000]"
-Last Updated: 2026-09-27
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Beginner
 ---
@@ -327,7 +327,7 @@ def calibrate_with_checkpointing(model, data, batch_size=32):
     # Enables larger batch sizes with limited VRAM
     for i in range(0, len(data), batch_size):
         batch = data[i:i+batch_size]
-        with torch.cuda.amp.autocast():
+        with torch.amp.autocast("cuda"):
             _ = model(batch)  # Forward with checkpointing
         torch.cuda.empty_cache()  # Clear cache between batches
 ```

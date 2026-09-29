@@ -53,7 +53,7 @@ the full installed stack. A partial environment fails loud with
 | anchor_check | - | in-document AND cross-file anchors vs a GitHub-accurate slugger |
 | table_lint | TL-01 | ragged GFM tables (differing cell counts) |
 | mermaid_lint | MM-01..03 | diagram headers, balanced brackets, declared direction |
-| deprecated_scan | DA-01..03 | deprecated API calls in python fences |
+| deprecated_scan | DA-01..04 | deprecated API calls in python fences (DA-04: the `torch.cuda.amp` namespace, deprecated since PyTorch 2.4 - the modern home is the `torch.amp` namespace with an explicit device on `autocast`; born tick-347, drained same tick: 3 sites across 3 files) |
 | kwarg_lint | KW-01/02 | removed/renamed kwargs on known APIs |
 | typing_legacy_scan | TL-01 | legacy typing spellings (PEP 585/604) in python fences |
 | version_alignment_scan | VA-01..04 | code-side python-version drift in any fence: `FROM python:X.Y`, `python3.X` binaries, `--python X.Y` flags, `uv python install/pin` - the corpus standard is 3.13 |
