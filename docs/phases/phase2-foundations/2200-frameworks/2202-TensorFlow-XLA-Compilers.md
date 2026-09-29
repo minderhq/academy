@@ -1,6 +1,6 @@
 ---
 Document ID: 2202
-Title: TensorFlow XLA and Compiler Optimizations
+Title: "2202: TensorFlow XLA and Compiler Optimizations"
 Phase: 2
 Module: 2200
 Last Updated: 2026-09-27

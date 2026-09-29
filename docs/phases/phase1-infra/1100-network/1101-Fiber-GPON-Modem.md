@@ -1,6 +1,6 @@
 ---
 Document ID: 1101
-Title: Internet Uplink & Modem Configuration
+Title: "1101: Internet Uplink & Modem Configuration"
 Phase: 1
 Module: 1100
 Last Updated: 2026-09-28

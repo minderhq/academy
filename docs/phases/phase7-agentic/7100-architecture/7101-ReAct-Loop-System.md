@@ -1,6 +1,6 @@
 ---
 Document ID: 7101
-Title: ReAct (Reasoning + Acting) Loop System
+Title: "7101: ReAct (Reasoning + Acting) Loop System"
 Phase: 7
 Module: 7100
 Last Updated: 2026-09-28

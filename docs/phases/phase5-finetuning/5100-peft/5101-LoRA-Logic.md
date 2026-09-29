@@ -1,6 +1,6 @@
 ---
 Document ID: 5101
-Title: LoRA (Low-Rank Adaptation) Logic
+Title: "5101: LoRA (Low-Rank Adaptation) Logic"
 Phase: 5
 Module: 5100
 Last Updated: 2026-09-28

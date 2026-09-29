@@ -1,6 +1,6 @@
 ---
 Document ID: 7102
-Title: Planning and Task Decomposition
+Title: "7102: Planning and Task Decomposition"
 Phase: 7
 Module: 7100
 Last Updated: 2026-09-28

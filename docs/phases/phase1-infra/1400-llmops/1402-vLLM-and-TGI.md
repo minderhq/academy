@@ -1,6 +1,6 @@
 ---
 Document ID: 1402
-Title: vLLM and TGI High-Concurrency Inference
+Title: "1402: vLLM and TGI High-Concurrency Inference"
 Phase: 1
 Module: 1400
 Last Updated: 2026-09-27

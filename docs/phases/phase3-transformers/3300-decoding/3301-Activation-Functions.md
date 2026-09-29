@@ -1,6 +1,6 @@
 ---
 Document ID: 3301
-Title: Activation Functions - GELU, SwiGLU, and Beyond
+Title: "3301: Activation Functions - GELU, SwiGLU, and Beyond"
 Phase: 3
 Module: 3300
 Last Updated: 2026-09-27

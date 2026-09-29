@@ -1,6 +1,6 @@
 ---
 Document ID: 4302
-Title: Fake Quantization
+Title: "4302: Fake Quantization"
 Phase: 4
 Module: 4300
 Last Updated: 2026-09-27

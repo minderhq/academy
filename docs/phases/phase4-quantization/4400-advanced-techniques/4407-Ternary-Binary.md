@@ -1,6 +1,6 @@
 ---
 Document ID: 4407
-Title: Ternary & Binary Networks
+Title: "4407: Ternary & Binary Networks"
 Phase: 4
 Module: 4400
 Last Updated: 2026-09-25

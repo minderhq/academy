@@ -1,6 +1,6 @@
 ---
 Document ID: 6402
-Title: Vector Database Comparison
+Title: "6402: Vector Database Comparison"
 Phase: 6
 Module: 6400
 Last Updated: 2026-09-28

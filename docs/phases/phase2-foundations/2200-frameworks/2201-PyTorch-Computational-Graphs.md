@@ -1,6 +1,6 @@
 ---
 Document ID: 2201
-Title: PyTorch Computational Graphs and Dynamic Execution
+Title: "2201: PyTorch Computational Graphs and Dynamic Execution"
 Phase: 2
 Module: 2200
 Last Updated: 2026-09-27

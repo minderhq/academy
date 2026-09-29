@@ -1,6 +1,6 @@
 ---
 Document ID: 5202
-Title: Alignment Orchestration - Reward Modeling vs Direct Preference
+Title: "5202: Alignment Orchestration - Reward Modeling vs Direct Preference"
 Phase: 5
 Module: 5200
 Last Updated: 2026-09-27

@@ -1,6 +1,6 @@
 ---
 Document ID: 3102
-Title: Flash Attention - IO-Aware Exact Attention
+Title: "3102: Flash Attention - IO-Aware Exact Attention"
 Phase: 3
 Module: 3100
 Last Updated: 2026-09-27

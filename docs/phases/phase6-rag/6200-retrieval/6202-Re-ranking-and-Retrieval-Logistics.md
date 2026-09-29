@@ -1,6 +1,6 @@
 ---
 Document ID: 6202
-Title: Re-ranking and Retrieval Logistics
+Title: "6202: Re-ranking and Retrieval Logistics"
 Phase: 6
 Module: 6200
 Last Updated: 2026-09-27

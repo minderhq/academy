@@ -1,6 +1,6 @@
 ---
 Document ID: 1204
-Title: Multi-GPU Setup
+Title: "1204: Multi-GPU Setup"
 Phase: 1
 Module: 1200
 Last Updated: 2026-09-28

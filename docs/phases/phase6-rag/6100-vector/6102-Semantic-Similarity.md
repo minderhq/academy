@@ -1,6 +1,6 @@
 ---
 Document ID: 6102
-Title: Semantic Similarity Metrics - Cosine, Dot Product, and Manifold Metrics
+Title: "6102: Semantic Similarity Metrics - Cosine, Dot Product, and Manifold Metrics"
 Phase: 6
 Module: 6100
 Last Updated: 2026-09-27

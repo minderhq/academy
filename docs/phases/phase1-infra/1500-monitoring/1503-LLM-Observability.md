@@ -1,6 +1,6 @@
 ---
 Document ID: 1503
-Title: LLM Observability
+Title: "1503: LLM Observability"
 Phase: 1
 Module: 1500
 Last Updated: 2026-09-28

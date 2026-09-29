@@ -1,6 +1,6 @@
 ---
 Document ID: 6502
-Title: CI/CD for Machine Learning
+Title: "6502: CI/CD for Machine Learning"
 Phase: 6
 Module: 6500
 Last Updated: 2026-09-27

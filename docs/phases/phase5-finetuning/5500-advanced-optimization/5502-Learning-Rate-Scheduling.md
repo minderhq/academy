@@ -1,6 +1,6 @@
 ---
 Document ID: 5502
-Title: Learning Rate Scheduling
+Title: "5502: Learning Rate Scheduling"
 Phase: 5
 Module: 5500
 Last Updated: 2026-09-25

@@ -1,6 +1,6 @@
 ---
 Document ID: 6401
-Title: Qdrant Setup Guide
+Title: "6401: Qdrant Setup Guide"
 Phase: 6
 Module: 6400
 Last Updated: 2026-09-28

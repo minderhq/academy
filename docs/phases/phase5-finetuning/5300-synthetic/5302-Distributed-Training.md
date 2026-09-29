@@ -1,6 +1,6 @@
 ---
 Document ID: 5302
-Title: Distributed Training Orchestration
+Title: "5302: Distributed Training Orchestration"
 Phase: 5
 Module: 5300
 Last Updated: 2026-09-27

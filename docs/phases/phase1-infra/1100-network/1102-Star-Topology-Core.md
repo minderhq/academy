@@ -1,6 +1,6 @@
 ---
 Document ID: 1102
-Title: Network Topology Design
+Title: "1102: Network Topology Design"
 Phase: 1
 Module: 1100
 Last Updated: 2026-09-25

@@ -1,6 +1,6 @@
 ---
 Document ID: 4101
-Title: GGUF Physics - CPU/GPU Hybrid Offloading
+Title: "4101: GGUF Physics - CPU/GPU Hybrid Offloading"
 Phase: 4
 Module: 4100
 Last Updated: 2026-09-28

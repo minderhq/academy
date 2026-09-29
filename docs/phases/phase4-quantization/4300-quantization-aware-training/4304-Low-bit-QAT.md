@@ -1,6 +1,6 @@
 ---
 Document ID: 4304
-Title: Low-bit QAT
+Title: "4304: Low-bit QAT"
 Phase: 4
 Module: 4300
 Last Updated: 2026-09-27

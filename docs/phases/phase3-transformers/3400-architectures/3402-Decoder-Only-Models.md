@@ -1,6 +1,6 @@
 ---
 Document ID: 3402
-Title: Decoder-Only Models (GPT, LLaMA, Mistral)
+Title: "3402: Decoder-Only Models (GPT, LLaMA, Mistral)"
 Phase: 3
 Module: 3400
 Last Updated: 2026-09-27

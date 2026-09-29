@@ -1,6 +1,6 @@
 ---
 Document ID: 4301
-Title: QAT Foundations
+Title: "4301: QAT Foundations"
 Phase: 4
 Module: 4300
 Last Updated: 2026-09-27

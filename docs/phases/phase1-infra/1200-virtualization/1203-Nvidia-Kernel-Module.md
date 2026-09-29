@@ -1,6 +1,6 @@
 ---
 Document ID: 1203
-Title: NVIDIA Kernel Module Management
+Title: "1203: NVIDIA Kernel Module Management"
 Phase: 1
 Module: 1200
 Last Updated: 2026-09-27

@@ -1,6 +1,6 @@
 ---
 Document ID: 1303
-Title: Storage Classes for Dynamic Provisioning
+Title: "1303: Storage Classes for Dynamic Provisioning"
 Phase: 1
 Module: 1300
 Last Updated: 2026-09-28

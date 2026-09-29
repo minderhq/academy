@@ -1,6 +1,6 @@
 ---
 Document ID: 3501
-Title: Vision-Language Models
+Title: "3501: Vision-Language Models"
 Phase: 3
 Module: 3500
 Last Updated: 2026-09-25

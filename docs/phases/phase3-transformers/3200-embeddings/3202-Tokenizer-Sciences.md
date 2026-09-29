@@ -1,6 +1,6 @@
 ---
 Document ID: 3202
-Title: Tokenizer Sciences - BPE, SentencePiece, and Tiktoken
+Title: "3202: Tokenizer Sciences - BPE, SentencePiece, and Tiktoken"
 Phase: 3
 Module: 3200
 Last Updated: 2026-09-27

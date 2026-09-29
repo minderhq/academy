@@ -1,6 +1,6 @@
 ---
 Document ID: 6302
-Title: CAG - Context Augmented Generation and Long Context Architectures
+Title: "6302: CAG - Context Augmented Generation and Long Context Architectures"
 Phase: 6
 Module: 6300
 Last Updated: 2026-09-27

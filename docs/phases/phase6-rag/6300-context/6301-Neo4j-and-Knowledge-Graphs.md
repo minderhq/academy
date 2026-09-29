@@ -1,6 +1,6 @@
 ---
 Document ID: 6301
-Title: Neo4j and Knowledge Graphs for Multi-Hop Reasoning
+Title: "6301: Neo4j and Knowledge Graphs for Multi-Hop Reasoning"
 Phase: 6
 Module: 6300
 Last Updated: 2026-09-27

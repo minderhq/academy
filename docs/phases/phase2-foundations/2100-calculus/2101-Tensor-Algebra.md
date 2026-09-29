@@ -1,6 +1,6 @@
 ---
 Document ID: 2101
-Title: Tensor Algebra and Linear Algebra for AI
+Title: "2101: Tensor Algebra and Linear Algebra for AI"
 Phase: 2
 Module: 2100
 Last Updated: 2026-09-27

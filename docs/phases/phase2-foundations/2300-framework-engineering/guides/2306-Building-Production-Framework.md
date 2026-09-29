@@ -1,6 +1,6 @@
 ---
 Document ID: 2306
-Title: Building a Production Framework
+Title: "2306: Building a Production Framework"
 Phase: 2
 Module: 2300
 Last Updated: 2026-09-28

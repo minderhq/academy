@@ -1,6 +1,6 @@
 ---
 Document ID: 2302
-Title: Model Serving Architectures
+Title: "2302: Model Serving Architectures"
 Phase: 2
 Module: 2300
 Last Updated: 2026-09-28

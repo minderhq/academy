@@ -1,6 +1,6 @@
 ---
 Document ID: 1201
-Title: Proxmox Hypervisor Standard Operating Procedures
+Title: "1201: Proxmox Hypervisor Standard Operating Procedures"
 Phase: 1
 Module: 1200
 Last Updated: 2026-09-27

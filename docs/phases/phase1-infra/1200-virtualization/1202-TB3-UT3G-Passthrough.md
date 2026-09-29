@@ -1,6 +1,6 @@
 ---
 Document ID: 1202
-Title: GPU Passthrough (IOMMU/VFIO)
+Title: "1202: GPU Passthrough (IOMMU/VFIO)"
 Phase: 1
 Module: 1200
 Last Updated: 2026-09-28

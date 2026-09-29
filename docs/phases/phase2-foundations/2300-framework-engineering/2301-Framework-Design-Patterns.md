@@ -1,6 +1,6 @@
 ---
 Document ID: 2301
-Title: Framework Design Patterns
+Title: "2301: Framework Design Patterns"
 Phase: 2
 Module: 2300
 Last Updated: 2026-09-28

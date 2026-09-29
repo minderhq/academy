@@ -1,6 +1,6 @@
 ---
 Document ID: 6503
-Title: Model Registry
+Title: "6503: Model Registry"
 Phase: 6
 Module: 6500
 Last Updated: 2026-09-27

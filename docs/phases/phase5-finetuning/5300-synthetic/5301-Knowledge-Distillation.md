@@ -1,6 +1,6 @@
 ---
 Document ID: 5301
-Title: Knowledge Distillation - Training Small Models Using Big Model Outputs
+Title: "5301: Knowledge Distillation - Training Small Models Using Big Model Outputs"
 Phase: 5
 Module: 5300
 Last Updated: 2026-09-27

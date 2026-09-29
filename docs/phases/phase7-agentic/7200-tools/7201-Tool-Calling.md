@@ -1,6 +1,6 @@
 ---
 Document ID: 7201
-Title: Tool Calling & Function Execution
+Title: "7201: Tool Calling & Function Execution"
 Phase: 7
 Module: 7200
 Last Updated: 2026-09-28

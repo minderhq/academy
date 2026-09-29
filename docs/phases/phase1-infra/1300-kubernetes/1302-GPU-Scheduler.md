@@ -1,6 +1,6 @@
 ---
 Document ID: 1302
-Title: GPU Scheduler Configuration
+Title: "1302: GPU Scheduler Configuration"
 Phase: 1
 Module: 1300
 Last Updated: 2026-09-27

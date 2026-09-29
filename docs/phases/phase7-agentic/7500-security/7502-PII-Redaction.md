@@ -1,6 +1,6 @@
 ---
 Document ID: 7502
-Title: PII Redaction & Privacy Filtering
+Title: "7502: PII Redaction & Privacy Filtering"
 Phase: 7
 Module: 7500
 Last Updated: 2026-09-28

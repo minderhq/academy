@@ -1,6 +1,6 @@
 ---
 Document ID: 3401
-Title: Encoder-Decoder Architectures
+Title: "3401: Encoder-Decoder Architectures"
 Phase: 3
 Module: 3400
 Last Updated: 2026-09-25

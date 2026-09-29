@@ -1,6 +1,6 @@
 ---
 Document ID: 1501
-Title: Monitoring and Observability
+Title: "1501: Monitoring and Observability"
 Phase: 1
 Module: 1500
 Last Updated: 2026-09-27

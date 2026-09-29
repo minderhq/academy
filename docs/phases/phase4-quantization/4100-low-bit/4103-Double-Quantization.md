@@ -1,6 +1,6 @@
 ---
 Document ID: 4103
-Title: Double Quantization - BitsAndBytes (bnb) Logic
+Title: "4103: Double Quantization - BitsAndBytes (bnb) Logic"
 Phase: 4
 Module: 4100
 Last Updated: 2026-09-27

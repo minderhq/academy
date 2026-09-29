@@ -1,6 +1,6 @@
 ---
 Document ID: 3302
-Title: Normalization Layers - BatchNorm vs LayerNorm vs RMSNorm
+Title: "3302: Normalization Layers - BatchNorm vs LayerNorm vs RMSNorm"
 Phase: 3
 Module: 3300
 Last Updated: 2026-09-28

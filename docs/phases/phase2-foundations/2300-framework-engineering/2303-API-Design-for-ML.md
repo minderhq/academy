@@ -1,6 +1,6 @@
 ---
 Document ID: 2303
-Title: API Design for ML Systems
+Title: "2303: API Design for ML Systems"
 Phase: 2
 Module: 2300
 Last Updated: 2026-09-28

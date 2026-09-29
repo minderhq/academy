@@ -1,6 +1,6 @@
 ---
 Document ID: 1502
-Title: Model Drift Detection
+Title: "1502: Model Drift Detection"
 Phase: 1
 Module: 1500
 Last Updated: 2026-09-28

@@ -1,6 +1,6 @@
 ---
 Document ID: 1103
-Title: Jumbo Frames and MTU Optimization
+Title: "1103: Jumbo Frames and MTU Optimization"
 Phase: 1
 Module: 1100
 Last Updated: 2026-09-28

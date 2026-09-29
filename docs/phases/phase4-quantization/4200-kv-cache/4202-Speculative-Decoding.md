@@ -1,6 +1,6 @@
 ---
 Document ID: 4202
-Title: Speculative Decoding - Accelerating Large Models
+Title: "4202: Speculative Decoding - Accelerating Large Models"
 Phase: 4
 Module: 4200
 Last Updated: 2026-09-28

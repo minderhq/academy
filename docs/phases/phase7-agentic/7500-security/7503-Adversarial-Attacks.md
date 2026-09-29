@@ -1,6 +1,6 @@
 ---
 Document ID: 7503
-Title: Adversarial Attacks & Defense
+Title: "7503: Adversarial Attacks & Defense"
 Phase: 7
 Module: 7500
 Last Updated: 2026-09-28

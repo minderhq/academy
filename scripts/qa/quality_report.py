@@ -180,6 +180,15 @@ stand today?" without running each tool by hand.
                        above every divider, ATX for headings; born
                        from the tick-281 census (7 doubled dividers,
                        all one footer-nav template artifact)
+    title_h1_parity_scan
+                       frontmatter Title == first ATX H1 (TH-01/02/03):
+                       manifest_export takes the platform nav label
+                       from the Title while the rendered page title
+                       is the first H1, so any drift means the nav
+                       tree names a different page than the one that
+                       opens; fix direction is Title := H1 verbatim;
+                       born from the tick-283 census (89 lesson docs
+                       where the id prefix lived only in the H1)
   queue gate (drain in progress; never fails the report unless --fail-on-queue):
     objectives_lint    template-objective artifacts (OL-01/OL-02), phase by phase
     fence_namecheck    unbound names in python fences (report mode), two
@@ -265,6 +274,7 @@ GATES = [
     ("emoji_shortcode_scan.py", "emoji_shortcode_scan", True),
     ("fence_label_scan.py", "fence_label_scan", True),
     ("setext_scan.py", "setext_scan", True),
+    ("title_h1_parity_scan.py", "title_h1_parity_scan", True),
 ]
 
 

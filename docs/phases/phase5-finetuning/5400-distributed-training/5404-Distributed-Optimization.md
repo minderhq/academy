@@ -1,6 +1,6 @@
 ---
 Document ID: 5404
-Title: Distributed Optimization
+Title: "5404: Distributed Optimization"
 Phase: 5
 Module: 5400
 Last Updated: 2026-09-26

@@ -1,6 +1,6 @@
 ---
 Document ID: 3201
-Title: Rotary Positional Embeddings (RoPE)
+Title: "3201: Rotary Positional Embeddings (RoPE)"
 Phase: 3
 Module: 3200
 Last Updated: 2026-09-27

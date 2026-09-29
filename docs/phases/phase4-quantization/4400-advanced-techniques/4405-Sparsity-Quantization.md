@@ -1,6 +1,6 @@
 ---
 Document ID: 4405
-Title: Sparsity + Quantization
+Title: "4405: Sparsity + Quantization"
 Phase: 4
 Module: 4400
 Last Updated: 2026-09-25

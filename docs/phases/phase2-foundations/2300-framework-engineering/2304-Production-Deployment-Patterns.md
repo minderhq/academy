@@ -1,6 +1,6 @@
 ---
 Document ID: 2304
-Title: Production Deployment Patterns
+Title: "2304: Production Deployment Patterns"
 Phase: 2
 Module: 2300
 Last Updated: 2026-09-28

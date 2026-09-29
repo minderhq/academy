@@ -1,6 +1,6 @@
 ---
 Document ID: 6201
-Title: Hybrid Search - Combining Keyword and Semantic Search
+Title: "6201: Hybrid Search - Combining Keyword and Semantic Search"
 Phase: 6
 Module: 6200
 Last Updated: 2026-09-27

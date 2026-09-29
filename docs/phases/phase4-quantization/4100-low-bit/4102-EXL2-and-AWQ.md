@@ -1,6 +1,6 @@
 ---
 Document ID: 4102
-Title: EXL2 and AWQ - Extreme Quantization
+Title: "4102: EXL2 and AWQ - Extreme Quantization"
 Phase: 4
 Module: 4100
 Last Updated: 2026-09-27

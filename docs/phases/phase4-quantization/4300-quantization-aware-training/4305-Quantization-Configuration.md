@@ -1,6 +1,6 @@
 ---
 Document ID: 4305
-Title: Quantization Configuration
+Title: "4305: Quantization Configuration"
 Phase: 4
 Module: 4300
 Last Updated: 2026-09-27

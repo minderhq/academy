@@ -1,6 +1,6 @@
 ---
 Document ID: 2203
-Title: CUDA Kernel Programming and GPU Architecture
+Title: "2203: CUDA Kernel Programming and GPU Architecture"
 Phase: 2
 Module: 2200
 Last Updated: 2026-09-27

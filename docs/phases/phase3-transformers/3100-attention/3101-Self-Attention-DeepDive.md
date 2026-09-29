@@ -1,6 +1,6 @@
 ---
 Document ID: 3101
-Title: Self-Attention Deep Dive
+Title: "3101: Self-Attention Deep Dive"
 Phase: 3
 Module: 3100
 Last Updated: 2026-09-28

@@ -1,6 +1,6 @@
 ---
 Document ID: 1301
-Title: K3s Master-Worker Architecture
+Title: "1301: K3s Master-Worker Architecture"
 Phase: 1
 Module: 1300
 Last Updated: 2026-09-27

@@ -1,6 +1,6 @@
 ---
 Document ID: 2102
-Title: Backpropagation and Automatic Differentiation
+Title: "2102: Backpropagation and Automatic Differentiation"
 Phase: 2
 Module: 2100
 Last Updated: 2026-09-28

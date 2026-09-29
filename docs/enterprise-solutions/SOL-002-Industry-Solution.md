@@ -1,6 +1,6 @@
 ---
 Document ID: SOL-002
-Title: Multi-Modal Industrial Inspection System
+Title: "SOL-002: Multi-Modal Industrial Inspection System"
 Category: Industry Solution
 Last Updated: 2026-09-28
 Status: Complete

@@ -1,6 +1,6 @@
 ---
 Document ID: 6101
-Title: HNSW Indexing - Efficient Semantic Search at Scale
+Title: "6101: HNSW Indexing - Efficient Semantic Search at Scale"
 Phase: 6
 Module: 6100
 Last Updated: 2026-09-27

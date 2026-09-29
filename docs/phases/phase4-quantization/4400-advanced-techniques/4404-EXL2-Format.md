@@ -1,6 +1,6 @@
 ---
 Document ID: 4404
-Title: EXL2 Format
+Title: "4404: EXL2 Format"
 Phase: 4
 Module: 4400
 Last Updated: 2026-09-27

@@ -1,6 +1,6 @@
 ---
 Document ID: 4201
-Title: Context Window Physics and OOM Prevention
+Title: "4201: Context Window Physics and OOM Prevention"
 Phase: 4
 Module: 4200
 Last Updated: 2026-09-28

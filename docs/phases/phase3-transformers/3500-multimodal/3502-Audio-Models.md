@@ -1,6 +1,6 @@
 ---
 Document ID: 3502
-Title: Audio Models
+Title: "3502: Audio Models"
 Phase: 3
 Module: 3500
 Last Updated: 2026-09-25

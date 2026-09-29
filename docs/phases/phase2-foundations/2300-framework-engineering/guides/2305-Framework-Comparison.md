@@ -1,6 +1,6 @@
 ---
 Document ID: 2305
-Title: Framework Comparison Guide
+Title: "2305: Framework Comparison Guide"
 Phase: 2
 Module: 2300
 Last Updated: 2026-09-27

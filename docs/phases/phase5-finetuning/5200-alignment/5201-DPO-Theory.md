@@ -1,6 +1,6 @@
 ---
 Document ID: 5201
-Title: DPO (Direct Preference Optimization) Theory
+Title: "5201: DPO (Direct Preference Optimization) Theory"
 Phase: 5
 Module: 5200
 Last Updated: 2026-09-28

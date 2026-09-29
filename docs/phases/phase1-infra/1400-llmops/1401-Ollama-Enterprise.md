@@ -1,6 +1,6 @@
 ---
 Document ID: 1401
-Title: Ollama Enterprise Deployment
+Title: "1401: Ollama Enterprise Deployment"
 Phase: 1
 Module: 1400
 Last Updated: 2026-09-27

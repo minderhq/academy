@@ -1,6 +1,6 @@
 ---
 Document ID: 7501
-Title: Prompt Injection Defense
+Title: "7501: Prompt Injection Defense"
 Phase: 7
 Module: 7500
 Last Updated: 2026-09-28

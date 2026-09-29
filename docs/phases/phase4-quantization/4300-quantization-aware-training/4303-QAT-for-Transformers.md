@@ -1,6 +1,6 @@
 ---
 Document ID: 4303
-Title: QAT for Transformers
+Title: "4303: QAT for Transformers"
 Phase: 4
 Module: 4300
 Last Updated: 2026-09-27
