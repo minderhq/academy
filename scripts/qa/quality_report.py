@@ -144,6 +144,19 @@ stand today?" without running each tool by hand.
                        matches, every one in a legitimate class) that
                        turned the census into a permanent lock at
                        baseline 0
+    empty_section_scan every heading must own content (ES-01): a
+                       section is empty iff nothing but blanks/HRs/
+                       blockquotes/HTML-comments sits between its
+                       heading and the next same-or-higher-level
+                       heading; a filled child fills its parent, so
+                       container sections are legitimate. Born from
+                       the tick-277 census (8 findings, all one class:
+                       same-level children under container headings -
+                       "## Part 1" + "## 1.1" - that left every Part
+                       with an empty body and mis-nested the outline);
+                       fixed by re-leveling 123 headings across 3
+                       files, fence model length-aware as
+                       structure_lint's
   queue gate (drain in progress; never fails the report unless --fail-on-queue):
     objectives_lint    template-objective artifacts (OL-01/OL-02), phase by phase
     fence_namecheck    unbound names in python fences (report mode), two
@@ -213,6 +226,7 @@ GATES = [
     ("lab_registry_check.py", "lab_registry_check", True),
     ("resource_id_check.py", "resource_id_check", True),
     ("unfinished_marker_scan.py", "unfinished_marker_scan", True),
+    ("empty_section_scan.py", "empty_section_scan", True),
 ]
 
 

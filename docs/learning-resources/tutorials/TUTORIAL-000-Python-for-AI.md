@@ -72,7 +72,7 @@ You'll be ready for:
 
 ## Part 1: Python Basics
 
-## 1.1 What is Python?
+### 1.1 What is Python?
 
 **Python** is a programming language that:
 - Easy to read and write
@@ -86,9 +86,9 @@ You'll be ready for:
 
 ---
 
-## 1.2 Installing Python
+### 1.2 Installing Python
 
-### Windows:
+#### Windows:
 ```bash
 # Download from python.org
 # https://www.python.org/downloads/
@@ -97,7 +97,7 @@ You'll be ready for:
 CHECK "Add Python to PATH"
 ```
 
-### Mac:
+#### Mac:
 ```bash
 # Install Homebrew first (if needed)
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -106,7 +106,7 @@ CHECK "Add Python to PATH"
 brew install python
 ```
 
-### Linux:
+#### Linux:
 ```bash
 # Usually pre-installed
 python3 --version
@@ -116,7 +116,7 @@ sudo apt install python3  # Ubuntu/Debian
 sudo yum install python3   # CentOS/RHEL
 ```
 
-### Verify Installation:
+#### Verify Installation:
 ```bash
 python --version
 # Should show: Python 3.13.x or similar
@@ -124,14 +124,14 @@ python --version
 
 ---
 
-## 1.3 Your First Python Code
+### 1.3 Your First Python Code
 
-### Interactive Python Shell:
+#### Interactive Python Shell:
 ```bash
 python
 ```
 
-### Try This:
+#### Try This:
 ```python
 # Simple calculator
 2 + 2
@@ -150,9 +150,9 @@ python
 
 ---
 
-## 1.4 Variables and Data Types
+### 1.4 Variables and Data Types
 
-### What is a Variable?
+#### What is a Variable?
 
 A **variable** is a container for storing data.
 
@@ -178,7 +178,7 @@ Alice
 True
 ```
 
-### Python Data Types:
+#### Python Data Types:
 
 | Type | Description | Example |
 |------|-------------|---------|
@@ -189,7 +189,7 @@ True
 | `list` | Collection | `[1, 2, 3]` |
 | `dict` | Key-value | `{"key": "value"}` |
 
-### Type Conversion:
+#### Type Conversion:
 ```python
 # String to int
 age_str = "30"
@@ -209,9 +209,9 @@ print(price_int)  # 9 (rounds down)
 
 ---
 
-## 1.5 Operators
+### 1.5 Operators
 
-### Arithmetic Operators:
+#### Arithmetic Operators:
 ```python
 # Basic math
 x = 10
@@ -226,7 +226,7 @@ print(x % y)   # 1  (remainder/modulo)
 print(x ** y)  # 1000 (exponent)
 ```
 
-### Comparison Operators:
+#### Comparison Operators:
 ```python
 x = 10
 y = 5
@@ -239,7 +239,7 @@ print(x >= y)  # True (greater or equal)
 print(x <= y)  # False (less or equal)
 ```
 
-### Logical Operators:
+#### Logical Operators:
 ```python
 x = True
 y = False
@@ -251,9 +251,9 @@ print(not x)    # False (negation)
 
 ---
 
-## 1.6 Control Flow
+### 1.6 Control Flow
 
-### If/Else Statements:
+#### If/Else Statements:
 ```python
 age = 18
 
@@ -265,7 +265,7 @@ else:
     print("You are a child")
 ```
 
-### Comparison in Action:
+#### Comparison in Action:
 ```python
 score = 85
 
@@ -283,7 +283,7 @@ else:
 print(f"Your grade: {grade}")  # Your grade: B
 ```
 
-### Logical Operators in Conditions:
+#### Logical Operators in Conditions:
 ```python
 age = 25
 has_license = True
@@ -296,9 +296,9 @@ else:
 
 ---
 
-## 1.7 Loops
+### 1.7 Loops
 
-### For Loops:
+#### For Loops:
 ```python
 # Loop through a range
 for i in range(5):
@@ -320,7 +320,7 @@ for i, fruit in enumerate(fruits):
 # 2: cherry
 ```
 
-### While Loops:
+#### While Loops:
 ```python
 count = 0
 while count < 5:
@@ -329,7 +329,7 @@ while count < 5:
 # Output: 0, 1, 2, 3, 4
 ```
 
-### Loop Control:
+#### Loop Control:
 ```python
 # break - exit loop
 for i in range(10):
@@ -348,9 +348,9 @@ for i in range(5):
 
 ---
 
-## 1.8 Functions
+### 1.8 Functions
 
-### What is a Function?
+#### What is a Function?
 
 A **function** is a reusable block of code.
 
@@ -364,7 +364,7 @@ message = greet("Alice")
 print(message)  # Hello, Alice!
 ```
 
-### Function Parameters:
+#### Function Parameters:
 ```python
 # Default parameter
 def greet(name, greeting="Hello"):
@@ -375,7 +375,7 @@ print(greet("Bob", "Hi"))         # Hi, Bob!
 print(greet("Charlie", "Hey"))    # Hey, Charlie!
 ```
 
-### Multiple Return Values:
+#### Multiple Return Values:
 ```python
 def get_user_info():
     name = "Alice"
@@ -390,7 +390,7 @@ print(age)   # 30
 print(city)  # NYC
 ```
 
-### Lambda Functions (Anonymous):
+#### Lambda Functions (Anonymous):
 ```python
 # Regular function
 def add(x, y):
@@ -407,9 +407,9 @@ print(add_lambda(5, 3))  # 8
 
 ## Part 2: Data Structures
 
-## 2.1 Lists
+### 2.1 Lists
 
-### Creating Lists:
+#### Creating Lists:
 ```python
 # Empty list
 empty_list = []
@@ -425,7 +425,7 @@ numbers = list(range(5))
 print(numbers)  # [0, 1, 2, 3, 4]
 ```
 
-### Accessing Elements:
+#### Accessing Elements:
 ```python
 fruits = ["apple", "banana", "cherry"]
 
@@ -440,7 +440,7 @@ print(fruits[1:])   # ['banana', 'cherry']
 print(fruits[:2])   # ['apple', 'banana']
 ```
 
-### Modifying Lists:
+#### Modifying Lists:
 ```python
 fruits = ["apple", "banana", "cherry"]
 
@@ -462,7 +462,7 @@ print(last)    # date
 print(fruits)  # ['apple', 'blueberry', 'cherry']
 ```
 
-### List Methods:
+#### List Methods:
 ```python
 numbers = [3, 1, 4, 1, 5, 9, 2, 6]
 
@@ -483,9 +483,9 @@ print(numbers.index(5))  # 2
 
 ---
 
-## 2.2 Tuples
+### 2.2 Tuples
 
-### What is a Tuple?
+#### What is a Tuple?
 
 A **tuple** is like a list, but **immutable** (cannot be changed).
 
@@ -502,7 +502,7 @@ print(rgb[1])          # 128
 coordinates[0] = 5  # ERROR! Cannot modify tuple
 ```
 
-### When to Use Tuples:
+#### When to Use Tuples:
 ```python
 # Good for fixed data
 DAYS_OF_WEEK = ("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
@@ -517,9 +517,9 @@ print(f"Resolution: {width}x{height}")  # Resolution: 1920x1080
 
 ---
 
-## 2.3 Dictionaries (CRUCIAL for AI!)
+### 2.3 Dictionaries (CRUCIAL for AI!)
 
-### What is a Dictionary?
+#### What is a Dictionary?
 
 A **dictionary** stores key-value pairs. This is the most important data structure for AI!
 
@@ -540,7 +540,7 @@ print(person.get("name"))  # Alice
 print(person.get("job", "Unknown"))  # Unknown (default)
 ```
 
-### Modifying Dictionaries:
+#### Modifying Dictionaries:
 ```python
 person = {"name": "Alice", "age": 30}
 
@@ -556,7 +556,7 @@ del person["city"]
 print(person)  # {'name': 'Alice', 'age': 31}
 ```
 
-### Dictionary Methods:
+#### Dictionary Methods:
 ```python
 person = {"name": "Alice", "age": 30, "city": "NYC"}
 
@@ -578,7 +578,7 @@ for key, value in person.items():
 # city: NYC
 ```
 
-### Nested Dictionaries (Common in AI):
+#### Nested Dictionaries (Common in AI):
 ```python
 # AI model configuration
 config = {
@@ -604,9 +604,9 @@ print(f"Model: {model_name}, Batch: {batch_size}")
 
 ---
 
-## 2.4 Sets
+### 2.4 Sets
 
-### What is a Set?
+#### What is a Set?
 
 A **set** is an unordered collection of unique elements.
 
@@ -625,7 +625,7 @@ print(a & b)  # Intersection: {3}
 print(a - b)  # Difference: {1, 2}
 ```
 
-### Removing Duplicates from List:
+#### Removing Duplicates from List:
 ```python
 # Using set to remove duplicates
 numbers = [1, 2, 2, 3, 3, 3, 4, 5]
@@ -635,9 +635,9 @@ print(unique)  # [1, 2, 3, 4, 5]
 
 ---
 
-## 2.5 List Comprehensions
+### 2.5 List Comprehensions
 
-### Basic List Comprehension:
+#### Basic List Comprehension:
 ```python
 # Traditional way
 squares = []
@@ -650,7 +650,7 @@ squares = [i ** 2 for i in range(5)]
 print(squares)  # [0, 1, 4, 9, 16]
 ```
 
-### With Conditions:
+#### With Conditions:
 ```python
 # Even numbers only
 evens = [x for x in range(10) if x % 2 == 0]
@@ -662,7 +662,7 @@ capitalized = [name.capitalize() for name in names]
 print(capitalized)  # ['Alice', 'Bob', 'Charlie']
 ```
 
-### Nested Comprehension:
+#### Nested Comprehension:
 ```python
 # Matrix flattening
 matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
@@ -674,9 +674,9 @@ print(flattened)  # [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 ## Part 3: Object-Oriented Programming
 
-## 3.1 Classes and Objects
+### 3.1 Classes and Objects
 
-### What is a Class?
+#### What is a Class?
 
 A **class** is a blueprint for creating objects. An **object** is an instance of a class.
 
@@ -701,7 +701,7 @@ print(dog1.bark())       # Buddy says Woof!
 print(dog2.describe())   # Max is 5 years old
 ```
 
-### Class vs Instance Attributes:
+#### Class vs Instance Attributes:
 ```python
 class Dog:
     species = "Canis familiaris"  # Class attribute (shared)
@@ -721,9 +721,9 @@ print(dog2.name)     # Max (different)
 
 ---
 
-## 3.2 Inheritance
+### 3.2 Inheritance
 
-### Base and Derived Classes:
+#### Base and Derived Classes:
 ```python
 # Base class
 class Animal:
@@ -752,9 +752,9 @@ print(cat.speak())  # Whiskers says Meow!
 
 ---
 
-## 3.3 When to Use OOP
+### 3.3 When to Use OOP
 
-### Good Use Cases:
+#### Good Use Cases:
 ```python
 # API client (good for OOP)
 class LLMClient:
@@ -775,7 +775,7 @@ client = LLMClient("http://localhost:11434", "mistral")
 print(client.chat("Hello"))  # Response from mistral
 ```
 
-### When NOT to Use OOP:
+#### When NOT to Use OOP:
 ```python
 # Simple functions are better for simple tasks
 
@@ -793,9 +793,9 @@ def add(a, b):
 
 ## Part 4: Practical Skills
 
-## 4.1 File I/O
+### 4.1 File I/O
 
-### Reading Files:
+#### Reading Files:
 ```python
 # Read entire file
 with open("file.txt", "r") as f:
@@ -813,7 +813,7 @@ with open("file.txt", "r") as f:
     print(lines)
 ```
 
-### Writing Files:
+#### Writing Files:
 ```python
 # Write text
 with open("output.txt", "w") as f:
@@ -825,7 +825,7 @@ with open("output.txt", "a") as f:
     f.write("\nThis is appended.")
 ```
 
-### JSON Files (Important for AI):
+#### JSON Files (Important for AI):
 ```python
 import json
 
@@ -847,9 +847,9 @@ with open("data.json", "r") as f:
 
 ---
 
-## 4.2 Error Handling
+### 4.2 Error Handling
 
-### Try/Except:
+#### Try/Except:
 ```python
 # Basic error handling
 try:
@@ -875,7 +875,7 @@ finally:
     print("Cleanup code here")
 ```
 
-### Raising Exceptions:
+#### Raising Exceptions:
 ```python
 def divide(a, b):
     if b == 0:
@@ -890,9 +890,9 @@ except ValueError as e:
 
 ---
 
-## 4.3 Working with Packages
+### 4.3 Working with Packages
 
-### Installing Packages:
+#### Installing Packages:
 ```bash
 # Using uv (the 2026 curriculum standard - 10-100x faster than pip)
 uv pip install requests
@@ -908,7 +908,7 @@ uv pip install -r requirements.txt
 
 > Every `pip install X` you see online maps 1:1 to `uv pip install X`.
 
-### Importing Modules:
+#### Importing Modules:
 ```python
 # Import module
 import math
@@ -928,7 +928,7 @@ from math import *
 print(sqrt(16))  # 4.0
 ```
 
-### Creating Your Own Module:
+#### Creating Your Own Module:
 ```python
 # mymodule.py
 def greet(name):
@@ -945,13 +945,13 @@ print(mymodule.PI)              # 3.14159
 
 ---
 
-## 4.4 Virtual Environments
+### 4.4 Virtual Environments
 
-### Why Virtual Environments?
+#### Why Virtual Environments?
 
 Virtual environments isolate project dependencies.
 
-### uv (Recommended):
+#### uv (Recommended):
 ```bash
 # Create a project environment (uv downloads Python 3.13 if missing)
 uv venv --python 3.13
@@ -969,7 +969,7 @@ uv pip install requests
 deactivate
 ```
 
-### venv (Built-in fallback):
+#### venv (Built-in fallback):
 ```bash
 # Create virtual environment
 python -m venv myenv
@@ -987,7 +987,7 @@ uv pip install requests
 deactivate
 ```
 
-### requirements.txt:
+#### requirements.txt:
 ```bash
 # Generate requirements.txt from the active environment
 uv pip freeze > requirements.txt
@@ -1000,23 +1000,23 @@ uv pip install -r requirements.txt
 
 ## Part 5: AI-Specific Python
 
-## 5.1 NumPy for AI (CRITICAL for Phase 2!)
+### 5.1 NumPy for AI (CRITICAL for Phase 2!)
 
-### Why NumPy is Essential
+#### Why NumPy is Essential
 
 **NumPy** is the foundation of all AI/ML in Python. PyTorch tensors are built on NumPy concepts.
 
 > :warning: **IMPORTANT:** If you skip NumPy, you will STRUGGLE in Phase 2 (tensors, gradients, backprop).
 > Spend extra time here - it pays off!
 
-### Installation:
+#### Installation:
 ```bash
 uv pip install numpy
 ```
 
 ---
 
-### 5.1.1 Creating Arrays (Tensors)
+#### 5.1.1 Creating Arrays (Tensors)
 
 ```python
 import numpy as np
@@ -1058,7 +1058,7 @@ random_int = np.random.randint(0, 10, (3, 3))  # Random integers
 
 ---
 
-### 5.1.2 Array Shapes and Reshaping (CRITICAL!)
+#### 5.1.2 Array Shapes and Reshaping (CRITICAL!)
 
 ```python
 import numpy as np
@@ -1111,7 +1111,7 @@ print(squeezed.shape)   # (3,)
 
 ---
 
-### 5.1.3 Indexing and Slicing (CRITICAL!)
+#### 5.1.3 Indexing and Slicing (CRITICAL!)
 
 ```python
 import numpy as np
@@ -1162,7 +1162,7 @@ print(arr[indices])   # [10 30 50]
 
 ---
 
-### 5.1.4 Broadcasting (CRITICAL for operations!)
+#### 5.1.4 Broadcasting (CRITICAL for operations!)
 
 ```python
 import numpy as np
@@ -1202,7 +1202,7 @@ print(output.shape)  # (10, 50)
 
 ---
 
-### 5.1.5 Linear Algebra Operations (CRITICAL for Phase 2!)
+#### 5.1.5 Linear Algebra Operations (CRITICAL for Phase 2!)
 
 ```python
 import numpy as np
@@ -1261,7 +1261,7 @@ print(Vt.shape) # (2, 2)
 
 ---
 
-### 5.1.6 Statistical Operations (CRITICAL for normalization!)
+#### 5.1.6 Statistical Operations (CRITICAL for normalization!)
 
 ```python
 import numpy as np
@@ -1303,7 +1303,7 @@ print(np.cumprod(arr)) # [ 1  2  6 24] (cumulative product)
 
 ---
 
-### 5.1.7 Practical AI Examples
+#### 5.1.7 Practical AI Examples
 
 ```python
 import numpy as np
@@ -1379,7 +1379,7 @@ print(output.shape)  # (5, 4)
 
 ---
 
-### 5.1.8 Performance Tips
+#### 5.1.8 Performance Tips
 
 ```python
 import numpy as np
@@ -1413,7 +1413,7 @@ arr = arr * 2  # NOT in-place (creates new array)
 
 ---
 
-### Summary: NumPy Checklist
+#### Summary: NumPy Checklist
 
 Before moving to Phase 2, ensure you understand:
 
@@ -1432,13 +1432,13 @@ Before moving to Phase 2, ensure you understand:
 
 ---
 
-## 5.2 Type Hints
+### 5.2 Type Hints
 
-### What are Type Hints?
+#### What are Type Hints?
 
 **Type hints** specify expected types for variables and function parameters.
 
-### Basic Type Hints:
+#### Basic Type Hints:
 ```python
 # Variable annotations
 name: str = "Alice"
@@ -1458,7 +1458,7 @@ message = greet("Bob")  # OK
 result = add(5, 3)      # OK
 ```
 
-### Complex Types:
+#### Complex Types:
 ```python
 from typing import List, Dict, Optional, Union
 
@@ -1481,7 +1481,7 @@ def process(value: int | str) -> str:
     return str(value)
 ```
 
-### Why Type Hints?
+#### Why Type Hints?
 ```python
 # Better code documentation
 def train_model(
@@ -1507,13 +1507,13 @@ def train_model(
 
 ---
 
-## 5.3 Async/Await (Introduction)
+### 5.3 Async/Await (Introduction)
 
-### What is Async?
+#### What is Async?
 
 **Async** allows concurrent code execution without blocking.
 
-### Basic Async:
+#### Basic Async:
 ```python
 import asyncio
 
@@ -1531,7 +1531,7 @@ async def main():
 asyncio.run(main())
 ```
 
-### Concurrent Tasks:
+#### Concurrent Tasks:
 ```python
 import asyncio
 
@@ -1554,13 +1554,13 @@ asyncio.run(main())
 
 ---
 
-## 5.4 Pydantic Data Models (CRITICAL for TUTORIAL-003)
+### 5.4 Pydantic Data Models (CRITICAL for TUTORIAL-003)
 
-### What is Pydantic?
+#### What is Pydantic?
 
 **Pydantic** is a data validation library that uses Python type annotations. It's ESSENTIAL for modern AI/ML APIs.
 
-### Why Pydantic?
+#### Why Pydantic?
 
 TUTORIAL-003 and beyond use Pydantic extensively:
 ```python
@@ -1574,12 +1574,12 @@ class Query(BaseModel):
 
 **Without Pydantic knowledge, you will get STUCK in TUTORIAL-003!**
 
-### Installation:
+#### Installation:
 ```bash
 uv pip install pydantic
 ```
 
-### Basic Pydantic Models
+#### Basic Pydantic Models
 
 ```python
 from pydantic import BaseModel, Field
@@ -1601,7 +1601,7 @@ print(user.name)   # Alice
 print(user.age)    # 30
 ```
 
-### Field Validation
+#### Field Validation
 
 ```python
 from pydantic import BaseModel, Field, EmailStr
@@ -1624,7 +1624,7 @@ except Exception as e:
     print(f"Validation error: {e}")
 ```
 
-### Nested Models
+#### Nested Models
 
 ```python
 from typing import List
@@ -1652,7 +1652,7 @@ person = Person(
 print(person)
 ```
 
-### Default Values and Required Fields
+#### Default Values and Required Fields
 
 ```python
 from pydantic import BaseModel
@@ -1674,7 +1674,7 @@ query2 = Query(text="What is ML?", use_rag=False, top_k=10)
 print(query2)
 ```
 
-### Pydantic with JSON
+#### Pydantic with JSON
 
 ```python
 import json
@@ -1700,13 +1700,13 @@ print(config)
 
 ---
 
-## 5.5 FastAPI Web Framework (CRITICAL for TUTORIAL-003)
+### 5.5 FastAPI Web Framework (CRITICAL for TUTORIAL-003)
 
-### What is FastAPI?
+#### What is FastAPI?
 
 **FastAPI** is a modern, fast web framework for building APIs with Python. It's the standard for AI/ML services.
 
-### Why FastAPI?
+#### Why FastAPI?
 
 TUTORIAL-003 uses FastAPI extensively:
 ```python
@@ -1725,12 +1725,12 @@ def health():
 
 **Without FastAPI knowledge, you will get STUCK in TUTORIAL-003!**
 
-### Installation:
+#### Installation:
 ```bash
 uv pip install fastapi uvicorn
 ```
 
-### Basic FastAPI App
+#### Basic FastAPI App
 
 ```python
 from fastapi import FastAPI
@@ -1746,7 +1746,7 @@ def read_item(item_id: int):
     return {"item_id": item_id, "name": f"Item {item_id}"}
 ```
 
-### Path Parameters and Query Parameters
+#### Path Parameters and Query Parameters
 
 ```python
 from fastapi import FastAPI
@@ -1767,7 +1767,7 @@ def get_user(user_id: int, q: str | None = None):
 # GET /users/123?q=search → {"user_id": 123, "query": "search"}
 ```
 
-### Request Body (Pydantic Models)
+#### Request Body (Pydantic Models)
 
 ```python
 from fastapi import FastAPI
@@ -1796,7 +1796,7 @@ def create_user(user: UserRequest):
     }
 ```
 
-### Combining Pydantic + FastAPI
+#### Combining Pydantic + FastAPI
 
 ```python
 from fastapi import FastAPI
@@ -1833,7 +1833,7 @@ def add_document(doc: Document):
     }
 ```
 
-### Testing Your API (TestClient)
+#### Testing Your API (TestClient)
 
 You don't need to run a server to test endpoints — `TestClient` (built on `httpx`) calls the app in-process:
 
@@ -1856,7 +1856,7 @@ assert resp.status_code == 422  # min_length=1 constraint enforced
 print("All API smoke tests passed")
 ```
 
-### Running FastAPI
+#### Running FastAPI
 
 ```python
 # Save as main.py
@@ -1877,9 +1877,9 @@ uvicorn main:app --reload
 
 ---
 
-## 5.6 Working with APIs
+### 5.6 Working with APIs
 
-### Making HTTP Requests:
+#### Making HTTP Requests:
 ```python
 import requests
 
@@ -1894,7 +1894,7 @@ response = requests.post("https://httpbin.org/post", json=data)
 print(response.json())
 ```
 
-### Ollama API Example (Preview for TUTORIAL-001):
+#### Ollama API Example (Preview for TUTORIAL-001):
 ```python
 import requests
 
@@ -1925,7 +1925,7 @@ print(response)
 
 ## :checkered_flag: Practice Exercises
 
-## Exercise 1: Calculator (30 minutes)
+### Exercise 1: Calculator (30 minutes)
 
 Create a calculator function that can add, subtract, multiply, and divide.
 
@@ -1972,7 +1972,7 @@ def calculator(a: float, b: float, operation: str) -> float:
 
 ---
 
-## Exercise 2: Todo List Manager (45 minutes)
+### Exercise 2: Todo List Manager (45 minutes)
 
 Create a todo list manager using dictionaries.
 
@@ -2039,7 +2039,7 @@ class TodoManager:
 
 ---
 
-## Exercise 3: JSON Config Loader (30 minutes)
+### Exercise 3: JSON Config Loader (30 minutes)
 
 Create a function to load and validate AI model configuration.
 

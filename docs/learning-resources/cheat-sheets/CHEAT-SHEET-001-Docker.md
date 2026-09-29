@@ -315,7 +315,7 @@ HEALTHCHECK CMD curl -f http://localhost:8000/ || exit 1
 
 ### Common Patterns
 
-### Database + Application
+#### Database + Application
 ```yaml
 # version: is obsolete in the Compose Spec - omit it
 services:
@@ -333,7 +333,7 @@ volumes:
   db_data:
 ```
 
-### Multi-Stage Build
+#### Multi-Stage Build
 ```dockerfile
 # Build stage
 FROM golang:1.21 as builder

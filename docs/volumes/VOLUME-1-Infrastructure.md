@@ -113,7 +113,7 @@ Before diving into model internals, fine-tuning, or RAG, you need a solid founda
 
 ### Week 3: Advanced Infrastructure (Optional)
 
-#### For HomeLab enthusiasts and production deployment
+**For HomeLab enthusiasts and production deployment:**
 
 #### Day 1-2: Virtualization & GPU Passthrough
 1. **[1201: Proxmox Hypervisor SOP](../phases/phase1-infra/1200-virtualization/1201-Proxmox-Hypervisor-SOP.md)**
