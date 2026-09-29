@@ -44,7 +44,9 @@ stand today?" without running each tool by hand.
                        option text, option beyond A-D, numbering
                        gap, cross-module stem dup, duplicate
                        Answer Key rows, orphan
-                       Answer Key rows) on top of
+                       Answer Key rows, QI-11 answer key with
+                       no matching option row or <2-option
+                       mcq; QI-11 born tick-374, baseline 0) on top of
                        quiz_export's parser; QI-07/QI-10
                        are the report inventory (the
                        skewed-answer-key shuffle queue that

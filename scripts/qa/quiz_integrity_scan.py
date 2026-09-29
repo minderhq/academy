@@ -39,6 +39,15 @@ QI-09  orphan Answer Key row - a key row whose question number does
        are never checked back), so nothing else sees this class.
        Census: 0 across all 33 modules.
 
+QI-11  join asymmetry between the Answer Key and the option rows: the
+       key letter quiz_export's join pulled in has no matching option
+       row in the question (stale key, mis-written or parser-dropped
+       option), or an mcq parsed fewer than two options - either way
+       the rendered question is unanswerable. quiz_export trusts both
+       sides of the join and QI-04 only sees the raw-text E+ case.
+       Born from the tick-374 census (660 questions: 0 duplicate
+       stems, 0 MCQ defects) as a lock.
+
 Report inventory (never fails the gate - the drain queues, same
 contract as duplicate_heading_scan / AS-09):
 
@@ -74,10 +83,11 @@ QI-10  answer-length bias per module (report queue): the correct
        no safe mechanical fix - draining needs per-module content
        passes that make distractors parallel in form and length.
 
-Hard gate on QI-01..06 and QI-08/09 (exit 1): baseline 0 at birth
-(tick-284 / tick-285); QI-06 joined in tick-345 (baseline 0 since
-the tick-343 drain). QI-10 is report inventory at birth
-(tick-290: 31 modules queued).
+Hard gate on QI-01..06, QI-08/09 and QI-11 (exit 1): baseline 0 at
+birth (tick-284 / tick-285); QI-06 joined in tick-345 (baseline 0
+since the tick-343 drain); QI-11 joined in tick-374 (born baseline
+0). QI-10 is report inventory at birth (tick-290: 31 modules
+queued).
 
 Run over the whole corpus:
     python scripts/qa/quiz_integrity_scan.py --root .
@@ -146,6 +156,23 @@ def scan_module(rel: str, lines: list[str],
                     f"{rel}: QI-01 self-referential option in question "
                     f"{q['n']}: option A says 'All of the above' - "
                     f"includes itself")
+        # QI-11 join asymmetry: quiz_export trusts both sides of its
+        # key join - the key letter must point at a parsed option and
+        # an mcq needs two options to discriminate at all. QI-04 only
+        # sees the raw-text E+ drop; a stale key letter or a one-
+        # option question passes everything else and renders
+        # unanswerable.
+        ans = (q.get("answer") or "").strip().upper()
+        if ans and ans not in q["options"]:
+            hard.append(
+                f"{rel}: QI-11 answer key {ans} has no option row in "
+                f"question {q['n']} (parsed options "
+                f"{','.join(sorted(q['options']))}) - unanswerable")
+        if len(q["options"]) < 2:
+            hard.append(
+                f"{rel}: QI-11 question {q['n']} parsed only "
+                f"{len(q['options'])} option(s) - an mcq needs at "
+                f"least two to discriminate")
     nums = [q["n"] for q in questions]
     nset = set(nums)
     if nums != list(range(1, len(nums) + 1)):
@@ -270,7 +297,8 @@ def main() -> int:
           f"stem / QI-03 duplicate option text / QI-04 option beyond "
           f"A-D / QI-05 numbering gap / QI-06 cross-module stem dup "
           f"/ QI-08 duplicate Answer Key row "
-          f"/ QI-09 orphan Answer Key row), QI-06 {len(cross_dups)} "
+          f"/ QI-09 orphan Answer Key row / QI-11 key letter with no "
+          f"option row or <2-option mcq), QI-06 {len(cross_dups)} "
           f"cross-module stem dups (hard since tick-345; drained "
           f"tick-343), QI-07 "
           f"{len(skew)} skewed answer keys (option-shuffle queue; "
