@@ -378,15 +378,16 @@ stand today?" without running each tool by hand.
                       tick-412 to Advanced (3-level enum closed),
                       hard since the drain
     lesson_anatomy_census
-                      Lesson anatomy (LA-01, report): every lesson
-                      doc opens its pedagogy with the canonical
+                      Lesson anatomy (LA-01): every lesson doc
+                      opens its pedagogy with the canonical
                       "Learning Objectives" H2 - the platform's
                       syllabus card and progress model key on it.
-                      Born from the tick-413 census: 104/114
-                      lessons already carry the exact heading; the
-                      10 missing sites are the drain queue, hard
-                      gate follows the drain (same scope as
-                      lesson_id_scan - 114 lesson docs)
+                      Born from the tick-413 census (104/114
+                      lessons already carried the exact heading);
+                      the 10 missing sites were drained to the
+                      canonical H2 in tick-414, so the corpus is
+                      114/114 and the gate holds it (same scope
+                      as lesson_id_scan - 114 lesson docs)
     unfinished_marker_scan unfinished-content markers in prose
                        (UM-01): outside any code fence, inline code
                        scrubbed, a line must not carry "coming soon",
@@ -585,7 +586,7 @@ GATES = [
     ("estimated_time_census.py", "estimated_time_census", True),
     ("prereq_census.py", "prereq_census", True),
     ("difficulty_census.py", "difficulty_census", True),
-    ("lesson_anatomy_census.py", "lesson_anatomy_census", False),
+    ("lesson_anatomy_census.py", "lesson_anatomy_census", True),
     ("unfinished_marker_scan.py", "unfinished_marker_scan", True),
     ("empty_section_scan.py", "empty_section_scan", True),
     ("emoji_shortcode_scan.py", "emoji_shortcode_scan", True),

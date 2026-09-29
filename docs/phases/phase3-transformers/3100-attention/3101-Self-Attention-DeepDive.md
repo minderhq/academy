@@ -3,7 +3,7 @@ Document ID: 3101
 Title: "3101: Self-Attention Deep Dive"
 Phase: 3
 Module: 3100
-Last Updated: 2026-09-28
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -25,6 +25,7 @@ Self-attention is the core mechanism that powers Transformer models. This docume
 ## Table of Contents
 
 - [1. Overview](#1-overview)
+- [Learning Objectives](#learning-objectives)
 - [2. The Attention Mechanism](#2-the-attention-mechanism)
   - [2.1 Scaled Dot-Product Attention](#21-scaled-dot-product-attention)
   - [2.2 Step-by-Step Computation](#22-step-by-step-computation)
@@ -54,8 +55,7 @@ This document provides an in-depth exploration of self-attention—the fundament
 - **Programming:** Python, PyTorch tensors
 - **Previous:** [2101: Tensor Algebra](../../phase2-foundations/2100-calculus/2101-Tensor-Algebra.md)
 
-### 1.3 Learning Objectives
-
+## Learning Objectives
 After completing this document, you will:
 - ✅ Understand the scaled dot-product attention formula
 - ✅ Implement attention from scratch in PyTorch

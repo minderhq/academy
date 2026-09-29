@@ -1,7 +1,7 @@
 ---
 Document ID: 5204
 Title: "5204: Preference Dataset Creation"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 ---
@@ -21,6 +21,7 @@ dataset sizing, and bootstrapping with synthetic (AI) feedback.
 ## Table of Contents
 
 - [1. Overview](#1-overview)
+- [Learning Objectives](#learning-objectives)
 - [2. What a Preference Example Is](#2-what-a-preference-example-is)
 - [3. Prompt Sourcing](#3-prompt-sourcing)
 - [4. Response Pair Generation](#4-response-pair-generation)
@@ -42,8 +43,7 @@ dataset sizing, and bootstrapping with synthetic (AI) feedback.
 - [5203: RLHF](./5203-RLHF.md) or equivalent - reward models
 - Familiarity with the Bradley-Terry preference model
 
-### 1.2 Learning Objectives
-
+## Learning Objectives
 After completing this document, you will:
 - ✅ Design a prompt-sourcing strategy with real coverage and diversity
 - ✅ Generate comparable response pairs (the conditions for a *meaningful* preference)

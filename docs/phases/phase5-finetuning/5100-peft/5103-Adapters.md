@@ -1,7 +1,7 @@
 ---
 Document ID: 5103
 Title: "5103: Adapters & Parameter-Efficient Adaptation Methods"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 ---
@@ -22,6 +22,7 @@ mechanics, and gives a decision guide for picking the right method.
 ## Table of Contents
 
 - [1. Overview](#1-overview)
+- [Learning Objectives](#learning-objectives)
 - [2. The PEFT Design Space](#2-the-peft-design-space)
 - [3. Bottleneck Adapters](#3-bottleneck-adapters)
 - [4. Soft Prompts: Prompt & Prefix Tuning](#4-soft-prompts-prompt--prefix-tuning)
@@ -42,8 +43,7 @@ mechanics, and gives a decision guide for picking the right method.
 - [5102: QLoRA Pipelines](./5102-QLoRA-Pipelines.md) — 4-bit base + adapters
 - Transformer architecture ([3402](../../phase3-transformers/3400-architectures/3402-Decoder-Only-Models.md))
 
-### 1.2 Learning Objectives
-
+## Learning Objectives
 After completing this document, you will:
 - ✅ Classify PEFT methods: additive modules vs soft prompts vs activation scaling
 - ✅ Implement bottleneck adapter, prefix tuning, and IA³ from first principles

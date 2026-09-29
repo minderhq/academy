@@ -25,6 +25,7 @@ The physical and logical layout of your network determines how well the AI lab p
 ## Table of Contents
 
 - [1. Overview](#1-overview)
+- [Learning Objectives](#learning-objectives)
 - [2. Why Star Topology](#2-why-star-topology)
 - [3. Switch Selection](#3-switch-selection)
 - [4. VLAN Segmentation for AI Labs](#4-vlan-segmentation-for-ai-labs)
@@ -49,8 +50,7 @@ Before a single VM boots, decide how devices connect and how traffic flows. A de
 - [1101: Internet Uplink & Modem Configuration](./1101-Fiber-GPON-Modem.md) or equivalent
 - Access to at least one managed switch (unmanaged works for a minimal two-node lab, but VLANs require managed)
 
-### 1.3 Learning Objectives
-
+## Learning Objectives
 After completing this document, you will be able to:
 
 - Justify star topology over daisy-chain or mesh-at-home alternatives

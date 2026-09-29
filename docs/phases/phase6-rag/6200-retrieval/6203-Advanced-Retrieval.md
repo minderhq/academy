@@ -1,7 +1,7 @@
 ---
 Document ID: 6203
 Title: "6203: Advanced Retrieval Techniques"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 ---
@@ -21,6 +21,7 @@ measure each stage's contribution with retrieval metrics.
 ## Table of Contents
 
 - [1. Overview](#1-overview)
+- [Learning Objectives](#learning-objectives)
 - [2. Base Pipeline and Where It Fails](#2-base-pipeline-and-where-it-fails)
 - [3. Query Transformation](#3-query-transformation)
 - [4. Cross-Encoder Re-Ranking](#4-cross-encoder-re-ranking)
@@ -41,8 +42,7 @@ measure each stage's contribution with retrieval metrics.
 - [6202: Re-ranking and Retrieval Logistics](./6202-Re-ranking-and-Retrieval-Logistics.md) - reranker basics
 - [6101: HNSW Indexing](../6100-vector/6101-HNSW-Indexing.md) - vector index mechanics
 
-### 1.2 Learning Objectives
-
+## Learning Objectives
 After completing this document, you will:
 - ✅ Diagnose which pipeline stage causes bad retrieval (query vs index vs rank)
 - ✅ Apply query rewriting, multi-query, and HyDE with cost awareness

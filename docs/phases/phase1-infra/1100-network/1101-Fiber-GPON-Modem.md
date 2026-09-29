@@ -3,7 +3,7 @@ Document ID: 1101
 Title: "1101: Internet Uplink & Modem Configuration"
 Phase: 1
 Module: 1100
-Last Updated: 2026-09-28
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 2 hours
@@ -25,6 +25,7 @@ Every AI lab starts with a WAN uplink: the connection between your network and t
 ## Table of Contents
 
 - [1. Overview](#1-overview)
+- [Learning Objectives](#learning-objectives)
 - [2. WAN Uplink Technologies](#2-wan-uplink-technologies)
 - [3. Router Mode vs Bridge Mode](#3-router-mode-vs-bridge-mode)
 - [4. MTU Considerations](#4-mtu-considerations)
@@ -52,8 +53,7 @@ The WAN uplink is the entry point for internet connectivity in your lab. Everyth
 - An active internet subscription of any type
 - An Ethernet cable (Cat5e or better) from the modem to your router
 
-### 1.3 Learning Objectives
-
+## Learning Objectives
 After completing this document, you will be able to:
 
 - Identify which WAN technology you have and its realistic performance ceiling

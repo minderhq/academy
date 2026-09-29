@@ -1,7 +1,7 @@
 ---
 Document ID: 7302
 Title: "7302: Multi-Agent Communication Protocols"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 ---
@@ -22,6 +22,7 @@ that keeps a fleet of LLM agents debuggable in production.
 ## Table of Contents
 
 - [1. Overview](#1-overview)
+- [Learning Objectives](#learning-objectives)
 - [2. Why Structured Messages](#2-why-structured-messages)
 - [3. Message Envelope](#3-message-envelope)
 - [4. Coordination Topologies](#4-coordination-topologies)
@@ -42,8 +43,7 @@ that keeps a fleet of LLM agents debuggable in production.
 - [7101: ReAct Loop System](../7100-architecture/7101-ReAct-Loop-System.md) - single-agent loop
 - [7102: Planning and Decomposition](../7100-architecture/7102-Planning-Decomposition.md) - task graphs
 
-### 1.2 Learning Objectives
-
+## Learning Objectives
 After completing this document, you will:
 - ✅ Design a typed message envelope with correlation IDs
 - ✅ Choose a coordination topology from task structure, not hype

@@ -8,19 +8,19 @@ no machine-visible goal statement. Scope is the lesson_id_scan
 corpus - docs/phases/<phase>/<NNNN-module>/NNNN-*.md, 114 files.
 
 LA-01  no H2 heading exactly "Learning Objectives" (fence-invisible,
-       trimmed). REPORT - born from the tick-413 census: 104/114
-       lessons already carry the exact canonical heading; the 10
-       missing sites are the drain queue, the gate goes hard
-       after that drain (census -> drain -> gate cycle).
+       trimmed). HARD - born from the tick-413 census (104/114
+       lessons already carried the exact canonical heading); the
+       10 missing sites were drained to the canonical H2 in
+       tick-414, so the corpus is 114/114 and the gate holds it
+       (census -> drain -> gate cycle).
 
 Hands-on and quiz sections are deliberately not gated here:
 assessment lives in the separate assessment/QUIZ.md and lab files
 (lesson_id_scan / lab_registry are the identity gates for those),
 so a lesson without an inline quiz section is not a finding.
 
-REPORT GATE - prints findings, mirrors the corpus, exits 1 only
-when findings exist (scorecard counts it as report until the
-drain promotes it).
+GATE - exits 1 on any finding (the scorecard counts it as hard
+since the tick-414 drain).
 
 Run over the whole corpus:
     python scripts/qa/lesson_anatomy_census.py --root .
@@ -101,8 +101,8 @@ def main() -> int:
         print(f.encode("ascii", "backslashreplace").decode("ascii"))
     print(f"lesson_anatomy_census: lessons={n_lessons} "
           f"canonical={n_canonical} LA-01={len(findings)} "
-          f"(report gate; born tick-413, canonical H2 "
-          f"'{CANON_H2}', hard after the drain)")
+          f"(hard since the tick-414 drain, canonical H2 "
+          f"'{CANON_H2}')")
     return 1 if findings else 0
 
 

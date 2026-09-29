@@ -3,7 +3,7 @@ Document ID: 4101
 Title: "4101: GGUF Physics - CPU/GPU Hybrid Offloading"
 Phase: 4
 Module: 4100
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -25,6 +25,7 @@ GGUF (GPT-Generated Unified Format) is a file format that enables running large 
 ## Table of Contents
 
 - [1. Overview](#1-overview)
+- [Learning Objectives](#learning-objectives)
 - [2. GGUF File Format](#2-gguf-file-format)
 - [3. Quantization Types](#3-quantization-types)
 - [4. Quantization Algorithm](#4-quantization-algorithm)
@@ -59,8 +60,7 @@ GGUF enables running 7B-30B parameter models on consumer hardware by:
 - **Programming:** C/C++, Python
 - **Previous:** [3402: Decoder-Only Models](../../phase3-transformers/3400-architectures/3402-Decoder-Only-Models.md)
 
-### 1.3 Learning Objectives
-
+## Learning Objectives
 After completing this document, you will:
 - ✅ Understand the GGUF file format structure
 - ✅ Implement Q4_0 and Q4_K quantization algorithms

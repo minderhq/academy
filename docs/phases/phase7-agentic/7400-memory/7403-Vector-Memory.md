@@ -1,7 +1,7 @@
 ---
 Document ID: 7403
 Title: "7403: Vector Memory and Embedding-Based Storage"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 ---
@@ -22,6 +22,7 @@ and a reference long-term memory architecture with token-budgeted recall.
 ## Table of Contents
 
 - [1. Overview](#1-overview)
+- [Learning Objectives](#learning-objectives)
 - [2. Memory Taxonomy](#2-memory-taxonomy)
 - [3. Write Path: Creating Memories](#3-write-path-creating-memories)
 - [4. Read Path: Semantic Recall](#4-read-path-semantic-recall)
@@ -42,8 +43,7 @@ and a reference long-term memory architecture with token-budgeted recall.
 - [6102: Semantic Similarity](../../phase6-rag/6100-vector/6102-Semantic-Similarity.md) - embeddings
 - [6401: Qdrant Setup](../../phase6-rag/6400-vector-databases/6401-Qdrant-Setup.md) - deployment
 
-### 1.2 Learning Objectives
-
+## Learning Objectives
 After completing this document, you will:
 - ✅ Distinguish episodic, semantic, and procedural memories and store each appropriately
 - ✅ Implement the write path: consolidation → embed → metadata-indexed store
