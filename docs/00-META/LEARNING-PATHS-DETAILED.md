@@ -1,7 +1,7 @@
 ---
 Document ID: LEARNING-PATHS-DETAILED
 Title: "Detailed Learning Paths"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Beginner
 ---
@@ -347,7 +347,7 @@ Checkpoint: Production AI expert
 
 **"Build intelligent data systems"** - Focus on retrieval-augmented generation.
 
-### Month 1: Foundation
+### Month 1: Infrastructure & Embeddings
 
 ```text
 Week 1-2: Quick Infrastructure
@@ -537,7 +537,7 @@ Capstone: Complete AI infrastructure
 
 **"Build autonomous AI systems"** - Focus on agents and agentic workflows.
 
-### Month 1: Foundation
+### Month 1: Quick Start & Model Understanding
 
 ```text
 Week 1-2: Quick Start
