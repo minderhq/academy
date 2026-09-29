@@ -1,7 +1,7 @@
 ---
 Document ID: 4200-PRACTICE
 Title: "4200: KV Cache Optimization - Practice"
-Last Updated: 2026-09-25
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 ---
@@ -156,7 +156,7 @@ class MultiQueryAttentionWithCache(nn.Module):
         """
         Args:
             x: (batch, seq_len, d_model)
-            kv_cache: Optional KVCache instance
+            kv_cache: The KVCache instance, or None
 
         Returns:
             (batch, seq_len, d_model)

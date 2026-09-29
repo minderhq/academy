@@ -1,7 +1,7 @@
 ---
 Document ID: 3100-PRACTICE
 Title: "3100: Attention - Practice"
-Last Updated: 2026-09-25
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 ---
@@ -171,7 +171,7 @@ def visualize_attention(attention_weights, tokens, head_idx=0, layer_idx=0,
     Args:
         attention_weights: Attention weights tensor
                           Can be (seq, seq) or (batch, heads, seq, seq)
-        tokens: List of token strings for labels
+        tokens: The token strings for labels
         head_idx: Which attention head to visualize (if multi-head)
         layer_idx: Layer identifier for title
         figsize: Figure size
@@ -228,7 +228,7 @@ def visualize_multihead_attention(attention_weights, tokens, n_heads=4,
 
     Args:
         attention_weights: (batch, heads, seq, seq) tensor
-        tokens: List of token strings
+        tokens: The token strings
         n_heads: Number of attention heads
         layer_idx: Layer identifier
         figsize: Figure size

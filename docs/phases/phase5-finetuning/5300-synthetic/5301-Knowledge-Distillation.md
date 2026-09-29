@@ -3,7 +3,7 @@ Document ID: 5301
 Title: "5301: Knowledge Distillation - Training Small Models Using Big Model Outputs"
 Phase: 5
 Module: 5300
-Last Updated: 2026-09-27
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -237,7 +237,7 @@ def multi_teacher_distillation(student_logits, teacher_logits_list, weights,
 
     Args:
         student_logits: Student outputs
-        teacher_logits_list: List of teacher outputs (same vocab!)
+        teacher_logits_list: The teacher outputs (same vocab!)
         weights: One weight per teacher, summing to 1 — its length MUST
             match teacher_logits_list
         temperature: Softmax temperature shared across teachers

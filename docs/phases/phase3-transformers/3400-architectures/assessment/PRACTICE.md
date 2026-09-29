@@ -1,7 +1,7 @@
 ---
 Document ID: 3400-PRACTICE
 Title: "3400: Architectures - Practice"
-Last Updated: 2026-09-25
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 ---
@@ -46,7 +46,7 @@ class BERTLayer(nn.Module):
         """
         Args:
             x: (batch, seq_len, d_model)
-            mask: Optional attention mask
+            mask: The attention mask, or None
 
         Returns:
             (batch, seq_len, d_model)

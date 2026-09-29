@@ -3,7 +3,7 @@ Document ID: 5102
 Title: "5102: QLoRA Pipelines - 4-bit Fine-Tuning on Consumer Hardware"
 Phase: 5
 Module: 5100
-Last Updated: 2026-09-27
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -494,7 +494,7 @@ merged_model = model.merge_and_unload()
 # 4. Save the merged 16-bit model
 merged_model.save_pretrained("./merged-model")
 
-# 5. (Optional) Re-quantize to 4-bit for inference
+# 5. (optional) Re-quantize to 4-bit for inference
 from transformers import BitsAndBytesConfig
 
 bnb_config = BitsAndBytesConfig(

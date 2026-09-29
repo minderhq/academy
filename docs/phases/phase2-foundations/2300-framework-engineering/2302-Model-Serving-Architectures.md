@@ -3,7 +3,7 @@ Document ID: 2302
 Title: "2302: Model Serving Architectures"
 Phase: 2
 Module: 2300
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -1367,7 +1367,7 @@ Implement a production-ready model server with:
 ```python
 import time
 import torch
-from typing import Any, Dict, Optional
+from typing import Any
 from collections import defaultdict
 
 class YourModelServer:

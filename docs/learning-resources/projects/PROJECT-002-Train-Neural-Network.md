@@ -1,7 +1,7 @@
 ---
 Document ID: PROJECT-002
 Title: "CAPSTONE PROJECT-002: Train Neural Network from Scratch"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -84,7 +84,7 @@ Custom Tensor Library with Autograd
 """
 
 import numpy as np
-from typing import Optional, Callable
+from typing import Callable
 import functools
 
 class Tensor:
@@ -93,7 +93,7 @@ class Tensor:
     """
 
     def __init__(self, data: np.ndarray, requires_grad: bool = False,
-                 _children: tuple = None, _op: str = None):
+                 _children: tuple | None = None, _op: str | None = None):
         self.data = np.array(data, dtype=np.float32)
         self.requires_grad = requires_grad
         self.grad: Tensor | None = None

@@ -1,7 +1,7 @@
 ---
 Document ID: 5100-PRACTICE
 Title: "5100: PEFT Techniques - Practice"
-Last Updated: 2026-09-25
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 ---
@@ -75,7 +75,7 @@ def apply_lora_to_model(model, target_modules=["c_attn"], rank=8):
 
     Args:
         model: The model to modify
-        target_modules: List of module name patterns to replace
+        target_modules: The module name patterns to replace
         rank: LoRA rank (higher = more parameters but more expressiveness)
 
     Returns:

@@ -1,7 +1,7 @@
 ---
 Document ID: 5104
 Title: "5104: LoRA Implementation Guide"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 ---
@@ -591,7 +591,7 @@ class MultiAdapterModel:
         """
         Args:
             base_model_name: Base model name
-            adapters: Dict of {task_name: adapter_path}
+            adapters: Mapping of {task_name: adapter_path}
         """
         # Load base model
         self.base_model = AutoModelForCausalLM.from_pretrained(

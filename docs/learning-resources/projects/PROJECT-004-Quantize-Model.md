@@ -1,7 +1,7 @@
 ---
 Document ID: PROJECT-004
 Title: "CAPSTONE PROJECT-004: Quantize LLM from Scratch"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -232,7 +232,7 @@ GGUF File Format
 """
 
 import struct
-from typing import Dict, Any
+from typing import Any
 import numpy as np
 
 class GGUFWriter:

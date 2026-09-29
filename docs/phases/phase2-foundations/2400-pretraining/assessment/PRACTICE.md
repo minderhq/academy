@@ -1,7 +1,7 @@
 ---
 Document ID: 2400-PRACTICE
 Title: "2400: Pretraining - Practice"
-Last Updated: 2026-09-25
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -84,7 +84,6 @@ print(f"Tokenized dataset size: {len(tokenized_dataset)}")
 ```python
 import torch
 from torch.utils.data import Dataset, DataLoader
-from typing import Dict
 
 class PretrainingDataset(Dataset):
     """Custom dataset for language model pretraining."""
@@ -170,7 +169,7 @@ print(f"  Total batches per epoch: {len(dataloader)}")
 # Troubleshooting Tips:
 # - If DataLoader is slow: Increase num_workers (but not > CPU cores)
 # - If memory errors: Reduce batch_size
-# - If hanging: Set num_workers=0 to debug
+# - If hanging, set num_workers=0 to debug
 ```
 
 ### Exercise 3: Training Loop

@@ -1,7 +1,7 @@
 ---
 Document ID: 3200-PRACTICE
 Title: "3200: Embeddings - Practice"
-Last Updated: 2026-09-25
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 ---
@@ -482,7 +482,7 @@ def find_most_similar(query, documents, embedder, top_k=3):
 
     Args:
         query: Search query string
-        documents: List of document strings
+        documents: The document strings
         embedder: SentenceTransformer model
         top_k: Number of results to return
 

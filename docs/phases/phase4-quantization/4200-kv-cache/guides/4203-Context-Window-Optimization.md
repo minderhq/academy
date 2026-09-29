@@ -1,7 +1,7 @@
 ---
 Document ID: 4203
 Title: "4203: Context Window Optimization Guide"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 ---
@@ -637,7 +637,6 @@ def test_streaming():
 
 ```python
 # context_chunking.py
-from typing import Dict
 import tiktoken
 
 class ContextChunker:
@@ -681,7 +680,7 @@ class ContextChunker:
 
         return chunks
 
-    def chunk_with_metadata(self, text: str) -> list[Dict]:
+    def chunk_with_metadata(self, text: str) -> list[dict]:
         """Chunk text with metadata for retrieval"""
 
         tokens = self.tokenizer.encode(text)
