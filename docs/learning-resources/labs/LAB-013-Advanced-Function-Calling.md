@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-013
 Title: "LAB-013: Advanced Function Calling"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -67,7 +67,7 @@ Function calling flow:
 
 import json
 import inspect
-from typing import Callable, Dict, List, Any, Type
+from typing import Any, Callable
 from dataclasses import dataclass, field
 from pydantic import BaseModel, Field
 from enum import Enum
@@ -100,12 +100,12 @@ class Tool:
     parameters: list[ToolParameter] = field(default_factory=list)
     function: Callable = None
     role: ToolRole = ToolRole.API_CALL
-    examples: list[Dict] = field(default_factory=list)
+    examples: list[dict] = field(default_factory=list)
     rate_limit: int | None = None  # Max calls per minute
     timeout: int = 30  # Timeout in seconds
     async_function: bool = False
 
-    def to_openai_schema(self) -> Dict:
+    def to_openai_schema(self) -> dict:
         """Convert to OpenAI function calling schema"""
         properties = {}
         required = []
@@ -164,7 +164,7 @@ class Tool:
                 "tool": self.name
             }
 
-    def _validate_parameters(self, params: Dict):
+    def _validate_parameters(self, params: dict):
         """Validate parameters against schema"""
         provided = set(params.keys())
         required = {p.name for p in self.parameters if p.required}
@@ -214,7 +214,7 @@ class ToolRegistry:
         """List all tool names"""
         return list(self.tools.keys())
 
-    def to_openai_schemas(self) -> list[Dict]:
+    def to_openai_schemas(self) -> list[dict]:
         """Convert all tools to OpenAI schemas"""
         return [tool.to_openai_schema() for tool in self.tools.values()]
 
@@ -247,7 +247,7 @@ class FunctionCallingEngine:
         user_message: str,
         available_tools: list[str] | None = None,
         max_iterations: int = 10
-    ) -> Dict:
+    ) -> dict:
         """
         Chat with function calling.
 
@@ -392,7 +392,7 @@ def tool(
     ],
     role=ToolRole.API_CALL
 )
-def get_weather(location: str, unit: str = "celsius") -> Dict:
+def get_weather(location: str, unit: str = "celsius") -> dict:
     """Get weather for location"""
     # Mock implementation
     import random
@@ -419,7 +419,7 @@ def get_weather(location: str, unit: str = "celsius") -> Dict:
     ],
     role=ToolRole.COMPUTATION
 )
-def calculate(expression: str) -> Dict:
+def calculate(expression: str) -> dict:
     """Safely calculate mathematical expression"""
     try:
         # Only allow safe operations
@@ -447,7 +447,7 @@ def calculate(expression: str) -> Dict:
     ],
     role=ToolRole.DATA_ACCESS
 )
-def search_database(table: str, filters: Dict = None, limit: int = 10) -> Dict:
+def search_database(table: str, filters: dict | None = None, limit: int = 10) -> dict:
     """Search database table"""
     # Mock implementation
     return {
@@ -531,7 +531,7 @@ import os
 import json
 import hashlib
 import requests
-from typing import Dict, List, Any
+from typing import Any
 from datetime import datetime, timedelta
 import sqlite3
 from functools import wraps
@@ -600,7 +600,7 @@ class PostgreSQLTool:
 
     @retry(max_attempts=3)
     @rate_limit(max_calls=20, period=60)
-    def query(self, sql: str, params: tuple = None) -> list[Dict]:
+    def query(self, sql: str, params: tuple | None = None) -> list[dict]:
         """Execute SQL query"""
         cursor = self.conn.cursor()
         cursor.execute(sql, params or ())
@@ -613,7 +613,7 @@ class PostgreSQLTool:
 
         return [dict(zip(columns, row)) for row in rows]
 
-    def execute(self, sql: str, params: tuple = None) -> Dict:
+    def execute(self, sql: str, params: tuple | None = None) -> dict:
         """Execute SQL statement"""
         cursor = self.conn.cursor()
         cursor.execute(sql, params or ())
@@ -659,9 +659,9 @@ class HTTPTool:
     def get(
         self,
         endpoint: str,
-        params: Dict = None,
-        headers: Dict = None
-    ) -> Dict:
+        params: dict | None = None,
+        headers: dict | None = None
+    ) -> dict:
         """Make GET request"""
         url = f"{self.base_url}/{endpoint}" if self.base_url else endpoint
 
@@ -683,10 +683,10 @@ class HTTPTool:
     def post(
         self,
         endpoint: str,
-        data: Dict = None,
-        json: Dict = None,
-        headers: Dict = None
-    ) -> Dict:
+        data: dict | None = None,
+        json: dict | None = None,
+        headers: dict | None = None
+    ) -> dict:
         """Make POST request"""
         url = f"{self.base_url}/{endpoint}" if self.base_url else endpoint
 
@@ -715,7 +715,7 @@ class FileTool:
         # Ensure base path exists
         os.makedirs(self.base_path, exist_ok=True)
 
-    def read(self, filepath: str) -> Dict:
+    def read(self, filepath: str) -> dict:
         """Read file content"""
         full_path = os.path.join(self.base_path, filepath)
 
@@ -732,7 +732,7 @@ class FileTool:
             "size": len(content)
         }
 
-    def write(self, filepath: str, content: str) -> Dict:
+    def write(self, filepath: str, content: str) -> dict:
         """Write content to file"""
         full_path = os.path.join(self.base_path, filepath)
 
@@ -752,7 +752,7 @@ class FileTool:
             "success": True
         }
 
-    def list_dir(self, dirpath: str = ".") -> list[Dict]:
+    def list_dir(self, dirpath: str = ".") -> list[dict]:
         """List directory contents"""
         full_path = os.path.join(self.base_path, dirpath)
 
@@ -779,7 +779,7 @@ class S3Tool:
         self.bucket = bucket
 
     @retry(max_attempts=3)
-    def upload(self, key: str, filepath: str) -> Dict:
+    def upload(self, key: str, filepath: str) -> dict:
         """Upload file to S3"""
         self.s3.upload_file(filepath, self.bucket, key)
 
@@ -790,7 +790,7 @@ class S3Tool:
         }
 
     @retry(max_attempts=3)
-    def download(self, key: str, filepath: str) -> Dict:
+    def download(self, key: str, filepath: str) -> dict:
         """Download file from S3"""
         self.s3.download_file(self.bucket, key, filepath)
 
@@ -801,7 +801,7 @@ class S3Tool:
             "success": True
         }
 
-    def list_objects(self, prefix: str = "") -> list[Dict]:
+    def list_objects(self, prefix: str = "") -> list[dict]:
         """List objects in bucket"""
         response = self.s3.list_objects_v2(
             Bucket=self.bucket,
@@ -828,7 +828,7 @@ class WebSearchTool:
         self.engine = engine
 
     @rate_limit(max_calls=10, period=60)
-    def search(self, query: str, num_results: int = 10) -> list[Dict]:
+    def search(self, query: str, num_results: int = 10) -> list[dict]:
         """Search the web"""
         # Mock implementation - replace with actual API
         return [
@@ -848,7 +848,7 @@ class WebScraperTool:
         self.BeautifulSoup = BeautifulSoup
 
     @rate_limit(max_calls=5, period=60)
-    def scrape(self, url: str, selectors: Dict = None) -> Dict:
+    def scrape(self, url: str, selectors: dict | None = None) -> dict:
         """Scrape web page"""
         response = requests.get(url, timeout=30)
         response.raise_for_status()
@@ -874,7 +874,7 @@ class ValidationTool:
     """Data validation utilities"""
 
     @staticmethod
-    def validate_email(email: str) -> Dict:
+    def validate_email(email: str) -> dict:
         """Validate email address"""
         import re
         pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
@@ -887,7 +887,7 @@ class ValidationTool:
         }
 
     @staticmethod
-    def validate_phone(phone: str, country: str = "US") -> Dict:
+    def validate_phone(phone: str, country: str = "US") -> dict:
         """Validate phone number"""
         import phonenumbers
 
@@ -907,7 +907,7 @@ class ValidationTool:
             }
 
     @staticmethod
-    def validate_json(data: str) -> Dict:
+    def validate_json(data: str) -> dict:
         """Validate JSON string"""
         try:
             parsed = json.loads(data)
@@ -927,12 +927,12 @@ class ToolFactory:
     """Factory for creating tool instances"""
 
     @staticmethod
-    def create_tool(tool_type: str, config: Dict = None) -> Any:
+    def create_tool(tool_type: str, config: dict | None = None) -> Any:
         """
         Create tool instance.
 
         Args:
-            tool_type: Type of tool to create
+            tool_type: The kind of tool to create
             config: Configuration dictionary
 
         Returns:
@@ -1021,7 +1021,7 @@ Coordinates multiple tools:
 - Result aggregation
 """
 
-from typing import Dict, List, Any
+from typing import Any
 from dataclasses import dataclass, field
 from enum import Enum
 import asyncio
@@ -1070,11 +1070,11 @@ class ToolOrchestrator:
         Execute a plan of tool calls.
 
         Args:
-            calls: List of tool calls to execute
+            calls: The tool calls to execute
             strategy: Execution strategy
 
         Returns:
-            List of execution results
+            The execution results
         """
         if strategy == ExecutionStrategy.SEQUENTIAL:
             return self._execute_sequential(calls)
@@ -1258,7 +1258,7 @@ class Workflow:
 
         return self
 
-    def execute(self) -> Dict:
+    def execute(self) -> dict:
         """Execute the workflow"""
         results = self.orchestrator.execute_plan(
             self.steps,
@@ -1361,7 +1361,7 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-from typing import Dict, List, Any
+from typing import Any
 import uvicorn
 
 # Global registry and engine
@@ -1395,7 +1395,7 @@ class ToolCallRequest(BaseModel):
 
 
 class WorkflowRequest(BaseModel):
-    steps: list[Dict]
+    steps: list[dict]
 
 
 class ChatRequest(BaseModel):
@@ -1403,7 +1403,7 @@ class ChatRequest(BaseModel):
     tools: list[str] | None = None
 
 @app.post("/tools/execute")
-async def execute_tool(request: ToolCallRequest) -> Dict:
+async def execute_tool(request: ToolCallRequest) -> dict:
     """Execute a single tool"""
     tool = registry.get_tool(request.tool_name)
     if not tool:
@@ -1413,7 +1413,7 @@ async def execute_tool(request: ToolCallRequest) -> Dict:
     return result
 
 @app.post("/tools/workflow")
-async def execute_workflow(request: WorkflowRequest) -> Dict:
+async def execute_workflow(request: WorkflowRequest) -> dict:
     """Execute a workflow"""
     orchestrator = ToolOrchestrator(registry)
     workflow = Workflow(orchestrator)
@@ -1424,7 +1424,7 @@ async def execute_workflow(request: WorkflowRequest) -> Dict:
     return workflow.execute()
 
 @app.post("/chat")
-async def chat(request: ChatRequest) -> Dict:
+async def chat(request: ChatRequest) -> dict:
     """Chat with function calling"""
     result = engine.chat(request.message, request.tools)
     return result
