@@ -70,8 +70,12 @@ stand today?" without running each tool by hand.
                        not findings
     kwarg_lint         calls with removed/renamed kwargs on known APIs
                        (KW-01 langchain constructor kwargs, KW-02 removed
-                       qdrant .search kwargs) - hard gate since the
-                       query_points migration drained (tick-220)
+                       qdrant .search kwargs, KW-03 removed qdrant
+                       .search_batch methods in qdrant-importing docs,
+                       locally defined shadows respected) - hard gate
+                       since the query_points migration drained
+                       (tick-220); KW-03 born from the tick-324
+                       blind-spot note, drained at tick-326
     typing_legacy_scan legacy typing spellings in python fences (TL-01:
                        Optional[ Union[ List[ Dict[ Tuple[ Set[
                        FrozenSet[ Type[) - hard gate since the PEP

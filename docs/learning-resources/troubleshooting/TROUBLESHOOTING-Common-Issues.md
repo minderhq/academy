@@ -276,13 +276,14 @@ reranked = reranker.rank(query, results, top_k=5)
 4. **Use hybrid search (keyword + semantic):**
 ```python
 from qdrant_client import QdrantClient
+from qdrant_client.models import QueryRequest
 
 # Combine BM25 and vector search
-results = qdrant.search_batch(
+results = qdrant.query_batch_points(
     collection_name="docs",
     requests=[
-        SearchRequest(
-            vector=vector,
+        QueryRequest(
+            query=vector,
             limit=10,
             with_payload=True
         )
