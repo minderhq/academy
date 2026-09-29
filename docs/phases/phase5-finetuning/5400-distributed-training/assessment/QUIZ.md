@@ -102,7 +102,7 @@ B) Communication overhead
 C) It's too complex to implement
 D) It doesn't improve accuracy
 
-**13. Tensor parallelism splits:**
+**13. Tensor parallelism partitions:**
 
 A) The data across GPUs
 B) Individual tensor operations across GPUs

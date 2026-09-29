@@ -44,9 +44,11 @@ the drain queues, same contract as duplicate_heading_scan / AS-09):
 
 QI-06  cross-module duplicate stems (census: 6, all short concept
        labels like "KV cache stores" reused across overlapping
-       modules - each module tests its own framing with different
+       modules - each module tested its own framing with different
        options; a platform sampling across modules needs the
-       inventory).
+       inventory). Drained in tick-343 (6 stem rewords across 5
+       modules, meaning and answer keys preserved) - the queue is
+       now 0; a future collision surfaces here as "QI-06 (accepted)".
 QI-07  skewed answer keys per module (max letter >= 50% of answered
        mcq, or any of A-D absent; census: 14 modules, corpus-wide
        B=40%, 4100-low-bit at 65% - just under assessment_lint's
@@ -264,7 +266,7 @@ def main() -> int:
           f"stem / QI-03 duplicate option text / QI-04 option beyond "
           f"A-D / QI-05 numbering gap / QI-08 duplicate Answer Key row "
           f"/ QI-09 orphan Answer Key row), QI-06 {len(cross_dups)} "
-          f"cross-module stem dups (accepted texture), QI-07 "
+          f"cross-module stem dups (drained tick-343), QI-07 "
           f"{len(skew)} skewed answer keys (option-shuffle queue; "
           f"refines AS-09's 70% tripwire), QI-10 {len(lenbias)} "
           f"length-bias modules (correct-option-longest queue; born "

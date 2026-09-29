@@ -90,7 +90,7 @@ D) Lower memory usage
 
 ---
 
-### Question 4: Request Batching
+### Question 4: Throughput via Batching
 
 **What is the main benefit of request batching?**
 
@@ -135,7 +135,7 @@ D) Faster deployment
 
 ---
 
-### Question 7: Canary Deployment
+### Question 7: Canary Rollout Strategy
 
 **What is canary deployment?**
 

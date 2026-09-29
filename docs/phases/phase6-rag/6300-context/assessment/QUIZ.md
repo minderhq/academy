@@ -45,7 +45,7 @@ B) Uses recent tokens only
 C) Uses random tokens
 D) No context
 
-**5. KV cache stores:**
+**5. Tokens in a KV cache:**
 
 A) All tokens
 B) Only recent tokens

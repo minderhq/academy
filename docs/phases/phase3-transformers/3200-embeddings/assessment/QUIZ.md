@@ -122,7 +122,7 @@ B) Both A and C
 C) Rotate queries and keys
 D) Replace positional embeddings
 
-**16. ALiBi positional encoding:**
+**16. ALiBi's attention bias:**
 
 A) Adds a bias based on distance
 B) Doesn't work

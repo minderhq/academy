@@ -129,7 +129,7 @@ B) Uses a smaller model to propose tokens
 C) Doesn't work
 D) Uses a larger model to draft every token before verification
 
-**17. KV cache stores:**
+**17. KV cache in decoding holds:**
 
 A) Nothing
 B) Model parameters
