@@ -1,7 +1,7 @@
 ---
 Document ID: 6403
 Title: "6403: Qdrant Production Deployment"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
 Tags: ['rag', 'qdrant', 'vector-db', 'deployment']
@@ -25,6 +25,7 @@ Module: 6400
 - [RAG Integration](#rag-integration)
 - [Troubleshooting](#troubleshooting)
 - [K3s Deployment (Optional)](#k3s-deployment-optional)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -795,6 +796,10 @@ spec:
 
 
 ---
+
+## Summary
+
+This guide takes Qdrant from first container to production: deployment targets by hardware class (the same stateless container with one storage volume serves all of them), Compose configuration, snapshot-based backup, resource sizing, monitoring hooks, and the hardening checklist. The rule it leaves: vector databases fail like every other stateful service - pin the image, prove the snapshot restores, and size memory before the first index build, not after the first OOM.
 
 ## References
 

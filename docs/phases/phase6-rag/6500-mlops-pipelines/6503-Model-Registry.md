@@ -3,7 +3,7 @@ Document ID: 6503
 Title: "6503: Model Registry"
 Phase: 6
 Module: 6500
-Last Updated: 2026-09-27
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -27,6 +27,7 @@ Tags: ['mlops', 'model-registry', 'versioning', 'aliases', 'lifecycle']
 - [MLflow Integration](#mlflow-integration)
 - [Weights & Biases Integration](#weights--biases-integration)
 - [Production Deployment](#production-deployment)
+- [Summary](#summary)
 - [References](#references)
 - [Next Steps](#next-steps)
 
@@ -430,6 +431,10 @@ Operating rules that keep this safe:
 - **Re-check drift signals against the registry metadata.** When [1502: Model Drift Detection](../../phase1-infra/1500-monitoring/1502-Model-Drift-Detection.md) fires, the registry record tells you exactly which data and parameters produced the serving version.
 
 ---
+
+## Summary
+
+A model registry is the versioned, queryable index between training and serving: it gives every trained model a stable identity (name plus version), attaches the audit metadata - metrics, parameters, data lineage - and owns the promotion mechanism that decides which version production traffic sees. This lesson built the registry concept from first principles and walked the stage transitions it enables. The rule it leaves: if you cannot answer 'which model version is in production and why' in one query, you do not have a registry - you have a folder of hoping.
 
 ## References
 

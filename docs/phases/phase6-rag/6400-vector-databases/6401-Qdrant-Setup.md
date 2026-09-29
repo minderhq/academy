@@ -3,7 +3,7 @@ Document ID: 6401
 Title: "6401: Qdrant Setup Guide"
 Phase: 6
 Module: 6400
-Last Updated: 2026-09-28
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -25,6 +25,7 @@ Tags: ['rag', 'vector-db', 'qdrant', 'docker', 'deployment']
 - [Production Configuration](#production-configuration)
 - [Snapshots and Backup](#snapshots-and-backup)
 - [Troubleshooting](#troubleshooting)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -334,6 +335,10 @@ Data lost after restart              Volume not mounted; ./data recreated empty.
 ```
 
 ---
+
+## Summary
+
+Qdrant is the open-source vector database this curriculum standardizes on: Rust-native ANN search with payload filtering, deployable as a single container on any Docker-capable Linux host. This lesson walked deployment, health verification, and the core operations - collection management, upsert, and filtered search - against the current REST API. The rule it leaves: a vector database is only useful when its filters are - payload filtering is what turns similarity search into production search.
 
 ## References
 

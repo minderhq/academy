@@ -3,7 +3,7 @@ Document ID: 6502
 Title: "6502: CI/CD for Machine Learning"
 Phase: 6
 Module: 6500
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -27,6 +27,7 @@ Tags: ['mlops', 'pipeline', 'ci-cd', 'model-registry', 'lifecycle']
 - [Validation Gates](#validation-gates)
 - [Deployment Strategies](#deployment-strategies)
 - [Best Practices](#best-practices)
+- [Summary](#summary)
 - [References](#references)
 - [Next Steps](#next-steps)
 
@@ -484,6 +485,10 @@ apps.create_namespaced_deployment(namespace="staging", body=canary_spec)
 8. **Watch drift after promotion.** Deployment is not the end: [1502: Model Drift Detection](../../phase1-infra/1500-monitoring/1502-Model-Drift-Detection.md) monitors the serving version and feeds findings back into the next pipeline run.
 
 ---
+
+## Summary
+
+ML CI/CD is a software pipeline with two extra failure modes: the artifact is produced by training and varies run to run, and its quality depends on data that can drift under it. This lesson walked the pipeline end to end - trigger configuration, job dependencies, training, validation gates, progressive delivery - with each stage designed around those two facts. The rule it leaves: test the data and the model, not just the code - a green pipeline on drifted data ships a broken model with a passing badge.
 
 ## References
 

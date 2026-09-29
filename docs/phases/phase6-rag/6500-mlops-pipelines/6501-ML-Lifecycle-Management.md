@@ -3,7 +3,7 @@ Document ID: 6501
 Title: "6501: ML Model Lifecycle Management"
 Phase: 6
 Module: 6500
-Last Updated: 2026-09-27
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -27,6 +27,7 @@ Tags: ['mlops', 'pipeline', 'ci-cd', 'model-registry', 'lifecycle']
 - [Stage 4: Monitoring](#stage-4-monitoring)
 - [Stage 5: Retirement](#stage-5-retirement)
 - [Production Checklist](#production-checklist)
+- [Summary](#summary)
 - [References](#references)
 - [Next Steps](#next-steps)
 
@@ -351,6 +352,10 @@ Before a version is called `production`:
 - [ ] Incident runbook names the alias to repoint and who repoints it
 
 ---
+
+## Summary
+
+A model's life does not end at the first deploy - it begins there, and this lesson models the ML lifecycle as an explicit state machine over five stages: development, validation, deployment, monitoring, retirement. Every transition is a gated, auditable step with runnable decision mechanics instead of an informal habit. The rule it leaves: models are not projects that finish, they are state machines that run - and every untracked transition is a production risk you cannot audit later.
 
 ## References
 
