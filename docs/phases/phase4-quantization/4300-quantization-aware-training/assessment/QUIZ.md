@@ -1,7 +1,7 @@
 ---
 Document ID: 4300-QUIZ
 Title: "4300: Quantization Aware Training - Quiz"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 ---
@@ -25,7 +25,7 @@ Answers are at the bottom of this file. Try to answer all questions before check
 
 **1. What is the key difference between QAT (Quantization Aware Training) and PTQ (Post-Training Quantization)?**
 
-A) QAT is for inference, PTQ is for training
+A) QAT is for inference, PTQ is for training, an inversion of when each actually runs
 B) QAT quantizes before training, PTQ after
 C) QAT simulates quantization during training, PTQ quantizes after training
 D) QAT uses 8-bit, PTQ uses 4-bit
@@ -33,7 +33,7 @@ D) QAT uses 8-bit, PTQ uses 4-bit
 **2. What does STE (Straight-Through Estimator) do in QAT?**
 
 A) Allows gradients to flow through rounding operations
-B) Improves inference speed
+B) Improves inference speed, a benefit STE has never delivered on any pass
 C) Calculates optimal quantization parameters
 D) Compresses the model size
 
@@ -48,12 +48,12 @@ D) Integer values
 
 A) Targeting 4-bit or lower precision
 B) Targeting 8-bit precision
-C) You don't have training data
+C) You don't have training data, the exact regime QAT is famous for thriving in
 D) You need fast deployment
 
 **5. What is a typical accuracy difference between PTQ and QAT at 4-bit?**
 
-A) PTQ is 1-3% better
+A) PTQ is 1-3% better, a direction every 4-bit study refutes
 B) QAT is 1-3% better
 C) QAT is 10% better
 D) No difference
@@ -70,13 +70,13 @@ D) Zero (rounding is not differentiable)
 **7. Per-channel quantization typically refers to quantizing along which dimension for a Linear layer's weights?**
 
 A) Output dimension (channels)
-B) Input dimension
+B) Input dimension, the axis that belongs to activation quantization instead
 C) Sequence dimension
 D) Batch dimension
 
 **8. What happens if scale becomes too small during quantization?**
 
-A) Better accuracy
+A) Better accuracy, a gain shrinking scale has never produced
 B) Faster inference
 C) No effect
 D) Division by zero or extreme values
@@ -109,7 +109,7 @@ D) MLP layers
 A) It's already quantized
 B) It's a probability distribution that needs precision
 C) It would slow down training
-D) It doesn't contain useful information
+D) It doesn't contain useful information, a claim every probability vector disproves
 
 **13. For transformer weights, which is better: per-tensor or per-channel quantization?**
 
@@ -130,7 +130,7 @@ D) 8-bit
 A) Should always be quantized
 B) Should be quantized carefully to avoid overflow
 C) Is not affected by quantization
-D) Should never be quantized
+D) Should never be quantized, a ban no production QAT recipe enforces
 
 ### Section 4: Low-bit QAT (5 questions)
 
@@ -144,7 +144,7 @@ D) -128 to 127
 **17. What is quantile-based quantization used for?**
 
 A) Improving gradient flow
-B) Reducing model size further
+B) Reducing model size further, a goal quantile curves are not designed for
 C) Handling outliers better than min-max
 D) Faster computation
 
@@ -153,7 +153,7 @@ D) Faster computation
 A) Starting at 8-bit and gradually reducing to 4-bit
 B) Quantizing all layers at 2-bit
 C) Using different bits for different layers
-D) Starting at 4-bit and going to 8-bit
+D) Starting at 4-bit and going to 8-bit, a direction no progressive schedule travels
 
 **19. Knowledge distillation in low-bit QAT typically uses:**
 
