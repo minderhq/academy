@@ -1,7 +1,7 @@
 ---
 Document ID: 5300-QUIZ
 Title: "5300: Synthetic Data & Advanced Methods - Quiz"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 ---
@@ -28,12 +28,12 @@ D) All of the above
 
 A) Always higher quality
 B) Cheaper and faster to generate than human data
-C) No bias
+C) No bias whatsoever, since generated text is immune to every bias in its source corpus
 D) Free from hallucinations
 
 **3. What is distillation in LLM context?**
 
-A) Compressing liquid
+A) Compressing liquids in an industrial still, unrelated to machine learning
 B) Training smaller model to mimic larger model
 C) Data compression
 D) Model pruning
@@ -43,7 +43,7 @@ D) Model pruning
 A) Merging training datasets
 B) Combining weights from multiple trained models
 C) Ensemble methods
-D) Multi-task learning
+D) Multi-task learning, which trains one model across several objectives at once
 
 **5. Which method combines weights from fine-tuned models?**
 
@@ -64,14 +64,14 @@ D) All of the above
 A) Model stops working
 B) Model loses diversity and generates degenerate output
 C) Model forgets training
-D) Model overfits
+D) Model overfits, which is the same failure mode as collapse under every definition
 
 **8. What is federated learning?**
 
 A) Training across multiple institutions without sharing data
 B) Federated database training
 C) Distributed training
-D) Cloud training
+D) Cloud training, meaning any run that happens on rented GPU instances anywhere
 
 **9. What is the main challenge of federated learning?**
 
@@ -82,7 +82,7 @@ D) All of the above
 
 **10. What is "self-instruct"?**
 
-A) Self-supervised learning
+A) Self-supervised learning, the pretraining scheme that predicts masked tokens in text
 B) Using LLM to generate its own training instructions
 C) Self-training loop
 D) Instruction following
@@ -92,34 +92,34 @@ D) Instruction following
 A) The teacher's soft probability distribution (with temperature)
 B) Random noise
 C) Only hard labels
-D) The teacher's tokenizer
+D) The teacher's tokenizer, copied wholesale so the student shares its vocabulary forever
 
 **12. The classic distillation loss compares:**
 
 A) Weight norms
 B) Gradient magnitudes
 C) KL divergence between teacher and student output distributions
-D) Embedding L2 distance only
+D) Embedding L2 distance only, ignoring every output probability the teacher produces
 
 **13. Self-instruct starts from:**
 
 A) A small seed set of tasks, then generates and filters new instruction data
 B) Human-written books
 C) Random URLs
-D) Benchmark test sets
+D) Benchmark test sets, which are manually curated evaluation suites kept out of training by policy
 
 **14. Quality control for synthetic data commonly includes:**
 
 A) Deduplication and filtering (e.g., heuristic or reward-model scoring)
 B) Keeping everything generated
 C) Ignoring duplicates
-D) Using only the longest outputs
+D) Using only the longest outputs, a rule that guarantees the noisiest generations survive every filter
 
 **15. FedAvg aggregates client updates by:**
 
 A) Taking the newest client model
 B) Averaging client weights weighted by data size
-C) Selecting the single best client
+C) Selecting the single best client and discarding every other participant's update entirely
 D) Concatenating datasets
 
 **16. Secure aggregation in federated learning:**
@@ -127,25 +127,25 @@ D) Concatenating datasets
 A) Publishes raw client data
 B) Encrypts uploads so the server only sees the sum
 C) Removes all privacy guarantees
-D) Trains on plaintext centrally
+D) Trains on plaintext centrally, collecting every raw record in one unencrypted warehouse
 
 **17. Non-IID data across federated clients causes:**
 
 A) Faster convergence
 B) No effect
 C) Client drift and unstable convergence
-D) Perfect personalization
+D) Perfect personalization, with each client converging to the same optimal weights effortlessly
 
 **18. Alpaca demonstrated that:**
 
 A) Synthetic instruction data from a strong LLM can bootstrap a capable instruct model cheaply
 B) Synthetic data always fails
 C) Human data is unnecessary for reasoning
-D) Smaller models cannot follow instructions
+D) Smaller models cannot follow instructions at any scale, under any known training recipe, ever
 
 **19. Higher sampling temperature in synthetic generation:**
 
-A) Guarantees correctness
+A) Guarantees correctness, since a hotter distribution can never sample a factually wrong token
 B) Removes hallucinations
 C) Increases output diversity (at the cost of more noise)
 D) Reduces token count
@@ -153,7 +153,7 @@ D) Reduces token count
 **20. A sound way to evaluate synthetic data quality is to:**
 
 A) Count the tokens
-B) Ask the generator model to rate itself exclusively
+B) Ask the generator model to rate itself exclusively, with no external evidence of any kind ever gathered
 C) Check the file size
 D) Train a model on it and measure downstream task performance
 
