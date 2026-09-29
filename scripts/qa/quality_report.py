@@ -324,15 +324,19 @@ stand today?" without running each tool by hand.
                        canonical spelling; 7 variant sites drained
                        tick-404, vocabulary now 209 single-form
                        tags, TV-03 hard since the drain
-    related_census Related-field link integrity (RL-01..02, hard):
+    related_census Related-field link integrity (RL-01..03, hard):
                        cross-reference navigation rides on the
                        front-matter Related field; RL-01 dangling
                        token (no file), RL-02 ambiguous token
-                       (multiple files). Born tick-405 measuring
+                       (multiple files), RL-03 machine-parseable
+                       value not in canonical bracketed-list form
+                       (Tags-style). Born tick-405 measuring
                        110 docs / 35 tokens, all resolving exactly
-                       one file - hard from birth (KW-03). Free-text
-                       shapes and bare-vs-bracketed variance are
-                       inventory only, ungated
+                       one file - hard from birth (KW-03); 2 bare
+                       lists drained to bracketed tick-406, linked
+                       shape now closed (11 bracketed, free-text
+                       "See module README"/"See References" allowed
+                       as authoring-stage pointer)
     unfinished_marker_scan unfinished-content markers in prose
                        (UM-01): outside any code fence, inline code
                        scrubbed, a line must not carry "coming soon",

@@ -11,12 +11,18 @@ RL-01  Related token resolves to ZERO files (dangling pointer).
        Tokens are 4-digit lesson IDs (filename prefix), or
        LAB-NNN / TUTORIAL-NNN resource prefixes.
 RL-02  Related token resolves to MULTIPLE files (ambiguous).
+RL-03  machine-parseable Related value not in canonical bracketed
+       form. The canonical linked shape is a literal-eval list -
+       `Related: [1102, 1103]` - matching the Tags field style.
+       Bare comma lists were drained tick-406 (TUTORIAL-007,
+       TUTORIAL-014). Free-text shapes ("See module README",
+       "See References") remain allowed and ungated: they are an
+       authoring-stage pointer, a separate content pass.
 
-HARD GATE - exit 1 on any finding (KW-03 born-at-zero: birth
-inventory tick-405 measured 110 docs / 35 tokens, all resolving
-exactly one file, RL-01=0 RL-02=0). Free-text shapes ("See module
-README", "See References") and bare-vs-bracketed list variance are
-inventory only - a candidate standardization class, not gated.
+HARD GATE - exit 1 on any finding. RL-01/RL-02 hard from birth
+(KW-03 born-at-zero: birth inventory tick-405 measured 110 docs /
+35 tokens, all resolving exactly one file). RL-03 joined after the
+tick-406 shape drain (census -> drain -> gate cycle).
 
 Run over the whole corpus:
     python scripts/qa/related_census.py --root .
@@ -100,6 +106,10 @@ def main() -> int:
             shapes["bracketed"] += 1
         else:
             shapes["bare"] += 1
+            findings.append(f"{rel}: RL-03 non-canonical Related shape "
+                            f"{rel_field!r} (use bracketed list "
+                            f"[tok, tok]; free-text only for "
+                            f"See-module-README / See-References)")
         for tok in TOKEN.findall(rel_field):
             n_tokens += 1
             targets = index.get(tok, [])
@@ -114,6 +124,7 @@ def main() -> int:
 
     rl01 = sum(1 for f in findings if " RL-01 " in f)
     rl02 = sum(1 for f in findings if " RL-02 " in f)
+    rl03 = sum(1 for f in findings if " RL-03 " in f)
     for f in findings:
         print(f.encode("ascii", "backslashreplace").decode("ascii"))
     amb = (f"; ambiguous index keys: "
@@ -122,7 +133,7 @@ def main() -> int:
           f"shapes={dict(shapes)} resolve0={token_targets[0]} "
           f"resolve1={token_targets[1]} "
           f"resolveN={token_targets[2]} "
-          f"RL-01={rl01} RL-02={rl02} "
+          f"RL-01={rl01} RL-02={rl02} RL-03={rl03} "
           f"(hard gate; shapes {dict(shapes)})")
     return 1 if findings else 0
 

@@ -7,7 +7,7 @@ Status: Complete
 Difficulty: Intermediate
 Estimated Time: 1 hour
 Prerequisites: TUTORIAL-001
-Related: LAB-003, 5101, 5102
+Related: [LAB-003, 5101, 5102]
 Tags: ['tutorial', 'lora', 'finetuning', 'peft']
 ---
 
