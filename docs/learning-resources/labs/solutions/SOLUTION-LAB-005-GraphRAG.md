@@ -1,7 +1,7 @@
 ---
 Document ID: SOLUTION-LAB-005
 Title: "SOLUTION-LAB-005: GraphRAG"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -37,7 +37,7 @@ docker run -d \
 
 ```python
 import re
-from typing import List, Dict, Any
+from typing import Any
 from neo4j import GraphDatabase
 from sentence_transformers import SentenceTransformer
 from langchain_openai import ChatOpenAI
@@ -106,7 +106,7 @@ class GraphRAG:
 
             print("✓ Neo4j schema setup complete")
 
-    def extract_entities_and_relationships(self, text: str) -> dict[str, List]:
+    def extract_entities_and_relationships(self, text: str) -> dict[str, list]:
         """
         Extract entities and relationships from text.
 
@@ -174,7 +174,7 @@ class GraphRAG:
         Create knowledge graph from documents.
 
         Args:
-            documents: List of document strings
+            documents: The document strings
             batch_size: Number of documents to process per batch
         """
         print(f"Creating graph from {len(documents)} documents...")
@@ -198,7 +198,7 @@ class GraphRAG:
 
         print(f"✓ Graph created: {len(unique_entities)} entities, {len(unique_relationships)} relationships")
 
-    def _deduplicate_entities(self, entities: list[Dict]) -> list[Dict]:
+    def _deduplicate_entities(self, entities: list[dict]) -> list[dict]:
         """Remove duplicate entities, keeping first occurrence."""
         seen = {}
         for entity in entities:
@@ -207,7 +207,7 @@ class GraphRAG:
                 seen[key] = entity
         return list(seen.values())
 
-    def _deduplicate_relationships(self, relationships: list[Dict]) -> list[Dict]:
+    def _deduplicate_relationships(self, relationships: list[dict]) -> list[dict]:
         """Remove duplicate relationships."""
         seen = set()
         unique = []
@@ -218,7 +218,7 @@ class GraphRAG:
                 unique.append(rel)
         return unique
 
-    def _store_entities(self, entities: list[Dict]):
+    def _store_entities(self, entities: list[dict]):
         """Store entities in Neo4j with embeddings."""
         with self.driver.session() as session:
             for entity in entities:
@@ -234,7 +234,7 @@ class GraphRAG:
                     type=entity["type"], text=text[:500],  # Truncate long text
                     embedding=embedding)
 
-    def _store_relationships(self, relationships: list[Dict]):
+    def _store_relationships(self, relationships: list[dict]):
         """Store relationships in Neo4j."""
         with self.driver.session() as session:
             for rel in relationships:
@@ -293,7 +293,7 @@ class GraphRAG:
             "sources": [e["name"] for e in relevant_entities]
         }
 
-    def _find_relevant_entities(self, query: str, top_k: int = 5) -> list[Dict]:
+    def _find_relevant_entities(self, query: str, top_k: int = 5) -> list[dict]:
         """Find most relevant entities using vector similarity."""
         query_embedding = self.embedder.encode(query).tolist()
 
@@ -311,7 +311,7 @@ class GraphRAG:
 
             return [{"name": r["name"], "type": r["type"], "score": r["score"]} for r in results]
 
-    def _get_neighborhood(self, entity_names: list[str], depth: int = 2) -> list[Dict]:
+    def _get_neighborhood(self, entity_names: list[str], depth: int = 2) -> list[dict]:
         """Get neighboring entities within specified depth."""
         with self.driver.session() as session:
             results = session.run("""
@@ -323,7 +323,7 @@ class GraphRAG:
 
             return [{"name": r["name"], "type": r["type"], "text": r.get("text", "")} for r in results]
 
-    def _build_context(self, subgraph: list[Dict]) -> str:
+    def _build_context(self, subgraph: list[dict]) -> str:
         """Build context string from subgraph."""
         context_parts = []
 
