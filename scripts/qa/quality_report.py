@@ -257,6 +257,18 @@ stand today?" without running each tool by hand.
                        idiom - Task/Requirements per exercise,
                        Overview/Pros/Cons per database), so report
                        mode, not a hard ban
+    fence_import_check unresolvable imports in python fences (IC-01,
+                       report mode at birth): every import in every
+                       ```python fence resolves against the
+                       kurulu-stack - generalizes langchain_census
+                       from the langchain family to all third-party
+                       packages, so a lesson teaching code that raises
+                       ModuleNotFoundError as written is visible;
+                       ast-based (CB-01 owns fence syntax), 4-backtick
+                       super-fence teaching content invisible by the
+                       fence_class_scan model, relative imports
+                       skipped; born from the tick-323 census (429
+                       findings / 129 files - classification pending)
     fm_staleness       curriculum freshness map (report mode): Last Updated
                        age distribution across docs/ - surfaces the oldest
                        material so modernization passes can target it; a
@@ -308,6 +320,7 @@ GATES = [
     ("objectives_lint.py", "objectives_lint", False),
     ("fence_namecheck.py", "fence_namecheck", False),
     ("duplicate_heading_scan.py", "duplicate_heading_scan", False),
+    ("fence_import_check.py", "fence_import_check", False),
     ("fm_staleness_scan.py", "fm_staleness", False),
     ("kwarg_lint.py", "kwarg_lint", True),
     ("typing_legacy_scan.py", "typing_legacy_scan", True),
