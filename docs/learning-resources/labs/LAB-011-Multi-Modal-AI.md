@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-011
 Title: "LAB-011: Multi-Modal AI"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -69,7 +69,6 @@ Key Components:
 
 import torch
 import torch.nn as nn
-from typing import Tuple
 import numpy as np
 
 class PatchEmbedding(nn.Module):
@@ -380,7 +379,7 @@ class CLIPWrapper:
 
         Args:
             image: PIL Image
-            class_labels: List of possible class names
+            class_labels: The possible class names
             template: Prompt template for class names
 
         Returns:
@@ -426,7 +425,7 @@ class CLIPWrapper:
 
         Args:
             query_image: Image to search with
-            candidate_texts: List of candidate text descriptions
+            candidate_texts: The candidate text descriptions
             top_k: Number of top results to return
 
         Returns:
@@ -467,7 +466,7 @@ class CLIPWrapper:
 
         Args:
             query_text: Text query
-            candidate_images: List of PIL Images
+            candidate_images: The PIL images
             top_k: Number of top results to return
 
         Returns:
@@ -518,7 +517,7 @@ class MultiLabelClassifier:
 
         Args:
             image: PIL Image
-            concepts: List of possible concepts/labels
+            concepts: The possible concepts/labels
             threshold: Minimum probability threshold
             template: Prompt template
 
@@ -717,7 +716,7 @@ from PIL import Image
 import base64
 import io
 import json
-from typing import Optional, List, Any
+from typing import Any
 from dataclasses import dataclass
 
 @dataclass
@@ -750,13 +749,13 @@ class VisionAgent:
         self.conversation_history = []
         self.image_memory = {}
 
-    def see(self, image: Image.Image, name: str = None) -> str:
+    def see(self, image: Image.Image, name: str | None = None) -> str:
         """
         Process and remember an image.
 
         Args:
             image: PIL Image
-            name: Optional name to remember the image
+            name: The name to remember the image, or None
 
         Returns:
             Description of what was seen
@@ -796,7 +795,7 @@ class VisionAgent:
     def ask_about_image(
         self,
         question: str,
-        image_name: str = None
+        image_name: str | None = None
     ) -> str:
         """
         Ask a question about a seen image.
@@ -926,7 +925,7 @@ class VisionAgent:
 
         Args:
             message: User message
-            image: Optional image to show
+            image: The image to show, or None
 
         Returns:
             Agent response
@@ -1037,7 +1036,7 @@ import torch
 from PIL import Image
 import cv2
 import numpy as np
-from typing import List, Dict
+from typing import Any
 import tempfile
 import os
 
@@ -1100,16 +1099,16 @@ class VideoAnalyzer:
     def analyze_video(
         self,
         video_path: str,
-        actions: list[str] = None,
-        scenes: list[str] = None
+        actions: list[str] | None = None,
+        scenes: list[str] | None = None
     ) -> dict[str, Any]:
         """
         Analyze video content.
 
         Args:
             video_path: Path to video
-            actions: List of actions to detect
-            scenes: List of scene types to detect
+            actions: The actions to detect
+            scenes: The scene types to detect
 
         Returns:
             Analysis results
@@ -1150,7 +1149,7 @@ class VideoAnalyzer:
             "frames": frame_analyses
         }
 
-    def _summarize_video(self, frame_analyses: list[Dict], total_frames: int) -> str:
+    def _summarize_video(self, frame_analyses: list[dict], total_frames: int) -> str:
         """Generate text summary of video"""
         # Most common actions
         actions = [f["action"] for f in frame_analyses]
@@ -1219,7 +1218,7 @@ class VideoAnalyzer:
         video_path: str,
         query: str,
         top_k: int = 3
-    ) -> list[Dict]:
+    ) -> list[dict]:
         """
         Search for frames matching text query in video.
 
@@ -1337,7 +1336,7 @@ agent = VisionAgent()
 
 class QuestionRequest(BaseModel):
     question: str
-    image_name: str = None
+    image_name: str | None = None
 
 class SearchRequest(BaseModel):
     query: str
@@ -1348,7 +1347,7 @@ async def health():
     return {"status": "healthy"}
 
 @app.post("/see")
-async def see_image(file: UploadFile = File(...), name: str = None):
+async def see_image(file: UploadFile = File(...), name: str | None = None):
     """Process and remember an image"""
     try:
         # Read image

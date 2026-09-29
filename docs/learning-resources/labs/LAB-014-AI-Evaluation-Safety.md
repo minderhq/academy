@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-014
 Title: "LAB-014: AI Evaluation & Safety"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -62,7 +62,8 @@ Evaluates LLMs on:
 
 import torch
 import numpy as np
-from typing import Dict, List, Any, Callable
+from typing import Any
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from enum import Enum
 import time
@@ -337,7 +338,7 @@ class Benchmark:
 
         Args:
             model: Model to evaluate
-            test_data: List of test examples
+            test_data: The test examples
             metrics: Metrics to calculate
 
         Returns:
@@ -446,7 +447,7 @@ class StandardBenchmarks:
     """Standard LLM benchmarks"""
 
     @staticmethod
-    def mmlu_benchmark(model, subjects: list[str] = None) -> Dict:
+    def mmlu_benchmark(model, subjects: list[str] | None = None) -> dict:
         """
         MMLU (Massive Multitask Language Understanding) benchmark.
 
@@ -462,7 +463,7 @@ class StandardBenchmarks:
         }
 
     @staticmethod
-    def hellaswag_benchmark(model) -> Dict:
+    def hellaswag_benchmark(model) -> dict:
         """
         HellaSwag benchmark.
 
@@ -475,7 +476,7 @@ class StandardBenchmarks:
         }
 
     @staticmethod
-    def gsm8k_benchmark(model) -> Dict:
+    def gsm8k_benchmark(model) -> dict:
         """
         GSM8K (Grade School Math) benchmark.
 
@@ -488,7 +489,7 @@ class StandardBenchmarks:
         }
 
     @staticmethod
-    def truthfulqa_benchmark(model) -> Dict:
+    def truthfulqa_benchmark(model) -> dict:
         """
         TruthfulQA benchmark.
 
@@ -563,7 +564,7 @@ Implements:
 
 import re
 import json
-from typing import Dict, Any
+from typing import Any
 from dataclasses import dataclass
 from enum import Enum
 
@@ -580,9 +581,9 @@ class SafetyCheckResult:
     """Result of safety check"""
     is_safe: bool
     level: SafetyLevel
-    issues: list[str] = None
+    issues: list[str] | None = None
     score: float = 0.0
-    details: dict[str, Any] = None
+    details: dict[str, Any] | None = None
 
     def __post_init__(self):
         if self.issues is None:
@@ -609,7 +610,7 @@ class ContentModerator:
             # Add more patterns
         ]
 
-    def _load_pii_patterns(self) -> list[Dict]:
+    def _load_pii_patterns(self) -> list[dict]:
         """Load PII detection patterns"""
         return [
             {"type": "email", "pattern": r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'},
@@ -698,7 +699,7 @@ class ContentModerator:
         score = len(issues) / len(self.toxic_patterns)
         return score, issues
 
-    def _check_pii(self, text: str) -> tuple[bool, Dict]:
+    def _check_pii(self, text: str) -> tuple[bool, dict]:
         """Check for PII"""
         found = {}
         details = {}
@@ -755,7 +756,7 @@ class ContentModerator:
         score = len(issues) / len(jailbreak_patterns)
         return score, issues
 
-    def redact_pii(self, text: str) -> tuple[str, Dict]:
+    def redact_pii(self, text: str) -> tuple[str, dict]:
         """
         Redact PII from text.
 
@@ -988,7 +989,7 @@ Tools for adversarial testing:
 
 import random
 import string
-from typing import List, Any
+from typing import Any
 from dataclasses import dataclass
 
 @dataclass
@@ -1098,7 +1099,7 @@ class RedTeamToolkit:
 
         Args:
             model: Model to test
-            attacks: List of (attack_type, prompt) tuples
+            attacks: The (attack_type, prompt) tuples
             max_attacks: Maximum attacks to test
 
         Returns:

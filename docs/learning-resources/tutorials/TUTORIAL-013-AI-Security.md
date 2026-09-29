@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-013
 Title: "TUTORIAL-013: AI Security and Safety"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 ---
@@ -215,7 +215,7 @@ for prompt in malicious_prompts:
 ### Output Filtering
 
 ```python
-# re, List, Tuple and Dict come from Part 1's import header (this
+# re, tuple and dict names come from Part 1's import header (this
 # tutorial's blocks run top-down)
 
 class ContentModerator:
@@ -253,7 +253,7 @@ class ContentModerator:
                 for p in patterns
             ]
 
-    def moderate(self, text: str) -> tuple[bool, Dict]:
+    def moderate(self, text: str) -> tuple[bool, dict]:
         """
         Moderate content for safety
 
@@ -276,7 +276,7 @@ class ContentModerator:
 
         return is_safe, violations
 
-    def redact(self, text: str, categories: list[str] = None) -> str:
+    def redact(self, text: str, categories: list[str] | None = None) -> str:
         """Redact content from specified categories"""
         redacted = text
 
@@ -411,7 +411,6 @@ print(f"Safe: {is_safe}, Category: {category}")
 import hashlib
 import secrets
 from datetime import datetime, timedelta, timezone
-from typing import Dict
 import jwt
 
 class APIKeyManager:
@@ -454,7 +453,7 @@ class APIKeyManager:
         # Return full key (shown only once)
         return f"llm_{key_id}_{key_secret}"
 
-    def verify_key(self, api_key: str) -> Dict | None:
+    def verify_key(self, api_key: str) -> dict | None:
         """Verify API key and return key info"""
         try:
             # Parse key
@@ -583,7 +582,7 @@ class JWTAuth:
         token = jwt.encode(payload, self.secret, algorithm="HS256")
         return token
 
-    def verify_token(self, token: str) -> Dict | None:
+    def verify_token(self, token: str) -> dict | None:
         """Verify JWT token"""
         try:
             payload = jwt.decode(token, self.secret, algorithms=["HS256"])
@@ -617,7 +616,7 @@ security = HTTPBearer()
 
 async def get_current_user(
     credentials: HTTPAuthorizationCredentials = Depends(security)
-) -> Dict:
+) -> dict:
     """Get current user from JWT token"""
     token = credentials.credentials
 
@@ -630,7 +629,7 @@ async def get_current_user(
 
 async def require_permission(
     permission: str,
-    current_user: Dict = Depends(get_current_user)
+    current_user: dict = Depends(get_current_user)
 ):
     """Require specific permission"""
     if permission not in current_user.get("permissions", []):
@@ -659,7 +658,7 @@ class SafetyEvent:
     user_id: str
     prompt: str
     response: str
-    details: Dict
+    details: dict
     severity: str  # low, medium, high, critical
 
 class SafetyMonitor:
@@ -677,7 +676,7 @@ class SafetyMonitor:
     def record_event(
         self,
         event: SafetyEvent
-    ) -> Dict:
+    ) -> dict:
         """Record a safety event"""
         self.events.append(event)
 
@@ -718,7 +717,7 @@ class SafetyMonitor:
         else:
             return "monitor"
 
-    def get_user_status(self, user_id: str) -> Dict:
+    def get_user_status(self, user_id: str) -> dict:
         """Get user safety status"""
         stats = self.user_stats.get(user_id, {"total": 0})
         total = stats.get("total", 0)
@@ -732,7 +731,7 @@ class SafetyMonitor:
             "statistics": stats
         }
 
-    def get_report(self, hours: int = 24) -> Dict:
+    def get_report(self, hours: int = 24) -> dict:
         """Generate safety report for time period"""
         cutoff = datetime.now() - timedelta(hours=hours)
 
@@ -807,7 +806,7 @@ print(f"Report: {monitor.get_report(hours=24)}")
 import json
 from urllib.parse import urlparse
 
-# re, Tuple and Dict come from the earlier parts' import headers
+# re, tuple and dict come from the earlier parts' import headers
 # (this tutorial's blocks run top-down)
 
 class AgentGuardrails:
@@ -830,7 +829,7 @@ class AgentGuardrails:
     def check_tool_call(
         self,
         tool_name: str,
-        arguments: Dict
+        arguments: dict
     ) -> tuple[bool, str]:
         """Check if tool call is safe"""
         # Check if tool is allowed
