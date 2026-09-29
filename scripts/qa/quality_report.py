@@ -364,6 +364,18 @@ stand today?" without running each tool by hand.
                        bracketed), hard since the drain; free-text
                        and prose entries remain allowed as
                        authoring-stage pointers
+    difficulty_census Difficulty vocabulary closure (DI-01..03,
+                      hard): the platform renders difficulty as
+                      a filter/sequence dimension, so the
+                      vocabulary must be closed and exact. DI-01
+                      missing, empty or unknown value, DI-02
+                      field-name variant (canonical is
+                      "Difficulty:") - both hard from birth,
+                      measured 0 across 408 docs at tick-411
+                      (KW-03). DI-03 value outside the canonical
+                      Beginner/Intermediate/Advanced enum - the
+                      drain list is {"Expert"} (5 sites, report
+                      queue for the tick-412 drain)
     unfinished_marker_scan unfinished-content markers in prose
                        (UM-01): outside any code fence, inline code
                        scrubbed, a line must not carry "coming soon",
@@ -561,6 +573,7 @@ GATES = [
     ("related_census.py", "related_census", True),
     ("estimated_time_census.py", "estimated_time_census", True),
     ("prereq_census.py", "prereq_census", True),
+    ("difficulty_census.py", "difficulty_census", True),
     ("unfinished_marker_scan.py", "unfinished_marker_scan", True),
     ("empty_section_scan.py", "empty_section_scan", True),
     ("emoji_shortcode_scan.py", "emoji_shortcode_scan", True),

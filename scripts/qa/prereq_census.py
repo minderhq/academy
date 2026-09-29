@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Prerequisites field census (PQ-01..PQ-02) for PROJECT-OMEGA.
+"""Prerequisites field census (PQ-01..PQ-03) for PROJECT-OMEGA.
 
 Prerequisites is the curriculum's learning-path backbone: on the
 platform a dangling prerequisite is a lesson that can never be
