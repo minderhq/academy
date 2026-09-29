@@ -118,11 +118,12 @@ stand today?" without running each tool by hand.
                        epic was declared done
     feed_parity_check  cross-feed contract between the platform feeds:
                        runs manifest_export + quiz_export for real and
-                       locks their invariants (FP-00..FP-06: module
+                       locks their invariants (FP-00..FP-07: module
                        sets, counts vs arrays, hierarchy vs documents
                        lessons, quiz-file membership, bank-internal
-                       totals, assessment.quiz flags) - consistency
-                       only, content totals stay the living baseline
+                       totals, assessment.quiz flags, manifest vs the
+                       on-disk docs/*.md tree) - consistency only,
+                       content totals stay the living baseline
     readme_claims_check
                        every measurable number in README.md (badges,
                        resource tables, per-phase document table,

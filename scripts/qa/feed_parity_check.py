@@ -20,6 +20,10 @@ the JSON they wrote, and locks the cross-feed invariants:
   FP-05  quiz bank internal consistency (question_count / per-type
          counts / totals vs the question records)
   FP-06  manifest assessment.quiz flag set == quiz bank module set
+  FP-07  manifest document set == the docs/*.md tree on disk
+         (both directions - the zeroth platform contract: the feed
+         must see every doc and no stale entry may point off-disk;
+         born tick-372 after a census measured 408 == 408 parity)
 
 Content totals (660 questions, 114 lessons) are deliberately NOT
 pinned here - they are the living baseline recorded in memory, and
@@ -66,7 +70,8 @@ def load_feed(root: Path, script: str, out_dir: Path, findings: list[str]):
     return data
 
 
-def check_feeds(manifest: dict, bank: dict, findings: list[str]) -> dict:
+def check_feeds(manifest: dict, bank: dict, findings: list[str],
+                root: Path) -> dict:
     """Cross-feed invariants. Returns a small stats map for the summary."""
     stats = {"phases": 0, "modules": 0, "lessons": 0, "documents": 0,
              "questions": 0}
@@ -131,6 +136,17 @@ def check_feeds(manifest: dict, bank: dict, findings: list[str]) -> dict:
             findings.append("FP-04 quiz-bank file not a manifest document: %s"
                             % m.get("file"))
 
+    # FP-07 manifest document set == the docs/*.md tree on disk (the
+    # zeroth platform contract: the feed must see every doc, and no
+    # stale feed entry may point off-disk)
+    disk_paths = {p.relative_to(root).as_posix()
+                  for p in (root / "docs").rglob("*.md")}
+    for p in sorted(disk_paths - d_paths):
+        findings.append("FP-07 disk doc missing from the manifest feed: %s"
+                        % p)
+    for p in sorted(d_paths - disk_paths):
+        findings.append("FP-07 manifest document not on disk: %s" % p)
+
     # FP-05 bank internal consistency
     totals = {t: 0 for t in Q_TYPES}
     for m in b_modules:
@@ -173,7 +189,7 @@ def main() -> int:
                              findings)
         bank = load_feed(args.root, "quiz_export.py", out_dir, findings)
         if manifest is not None and bank is not None:
-            stats = check_feeds(manifest, bank, findings)
+            stats = check_feeds(manifest, bank, findings, args.root)
 
     for f in findings:
         print(f.encode("ascii", "backslashreplace").decode("ascii"))
