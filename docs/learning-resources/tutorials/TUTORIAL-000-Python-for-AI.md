@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-000
 Title: "TUTORIAL-000: Python for AI (Complete Beginner)"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Beginner
 ---
@@ -995,6 +995,28 @@ uv pip freeze > requirements.txt
 # Install from requirements.txt
 uv pip install -r requirements.txt
 ```
+
+### 4.5 Code Quality: Lint and Format Your Code
+
+Writing code that runs is step one. Code that stays clean and consistent is what makes projects maintainable — and it matters from your very first script, not just in team settings.
+
+The 2026 standard is [ruff](https://docs.astral.sh/ruff/) — one Rust-fast tool that lints (finds bugs and style problems) and formats (makes spacing, quotes and line length consistent). You do not even install it: `uvx` runs it in an ephemeral, cached environment.
+
+```bash
+# Check your code for errors, unused imports and style issues
+uvx ruff check .
+
+# Auto-fix what ruff can fix safely, then format every file
+uvx ruff check --fix .
+uvx ruff format .
+```
+
+What ruff catches for you:
+- **Bugs:** unused variables and imports, undefined names, f-string mistakes
+- **Style:** inconsistent quotes, spacing and import order (no more bikeshedding)
+- **Modernization:** old idioms that have cleaner Python 3.13 replacements
+
+**Make it a habit:** run `uvx ruff check .` after every exercise in this tutorial — catching an unused import yourself is how the habit sticks. The full tooling setup lives in [Environment Setup](../../00-META/ENVIRONMENT-SETUP.md).
 
 ---
 
@@ -2132,6 +2154,7 @@ def load_config(config_path: str) -> dict[str, Any]:
     [ ] 4.2 Error Handling
     [ ] 4.3 Packages
     [ ] 4.4 Virtual Environments
+    [ ] 4.5 Code Quality (ruff)
 
 [ ] Part 5: AI-Specific Python (4-6 hours)
     [ ] 5.1 NumPy Basics
