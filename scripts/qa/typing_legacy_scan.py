@@ -37,11 +37,14 @@ Content inside 4-backtick super-fences is invisible to the line-based
 fence model (deliberate: it is teaching material about the syntax
 itself, e.g. 2301).
 
-Hard gate on TL-01 (exit 1): baseline 0 since the PEP 585/604
-modernization epic drained (typing /1-/3). TL-02 and TL-03 are report
-inventory at birth (tick-376: 139 import lines / 426 bare uses
-corpus-wide) - they print and queue but never fail the gate until
-drained. Run over the whole corpus:
+Hard gate on ALL of TL-01/02/03 (exit 1). TL-01 baseline 0 since
+the PEP 585/604 modernization epic drained (typing /1-/3). TL-02
+and TL-03 were report inventory at birth (tick-376: 139 import
+lines / 426 bare uses corpus-wide), drained per batch under the
+census->drain->gate pattern, and promoted to hard at tick-397
+once the final 7-file sweep (tick-396, 19776b6) took both queues
+to zero. Any regression now fails the gate. Run over the whole
+corpus:
     python scripts/qa/typing_legacy_scan.py
 """
 from __future__ import annotations
@@ -111,11 +114,11 @@ def main() -> int:
         print(f.encode("ascii", "backslashreplace").decode("ascii"))
     n_files = len({f.split(":", 1)[0] for f in findings})
     n01, n02, n03 = total
-    print(f"typing_legacy_scan: {n01} TL-01 hard findings (exit 1), "
-          f"TL-02 {n02} legacy typing import lines and TL-03 {n03} bare "
-          f"legacy generics (report queues, born tick-376) in {n_files} "
-          f"files across docs/ ({sum(total)} python-fence lines matched)")
-    return 1 if n01 else 0
+    print(f"typing_legacy_scan: {n01} TL-01, {n02} TL-02 and {n03} "
+          f"TL-03 hard findings (exit 1; TL-02/03 promoted from report "
+          f"queues at tick-397) in {n_files} files across docs/ "
+          f"({sum(total)} python-fence lines matched)")
+    return 1 if (n01 or n02 or n03) else 0
 
 
 if __name__ == "__main__":
