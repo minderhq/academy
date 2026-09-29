@@ -312,6 +312,17 @@ stand today?" without running each tool by hand.
                        every class, promoted same tick (KW-03
                        pattern) - new enum values must update the
                        script in the same commit
+    tag_vocabulary_census tags vocabulary closure (TV-01/02 hard,
+                       TV-03 report): platform filtering and
+                       related-content navigation need a closed,
+                       single-form tag vocabulary. WHITELIST frozen
+                       at tick-403 birth (111 docs, 216 tags, 0
+                       dups, 0 case clashes); TV-01 unknown tag
+                       (new tags are deliberate WHITELIST edits in
+                       the same commit), TV-02 duplicate tag within
+                       one doc, TV-03 known variant form naming the
+                       canonical spelling (7 birth sites queued for
+                       drain, then gate covers TV-03 too)
     unfinished_marker_scan unfinished-content markers in prose
                        (UM-01): outside any code fence, inline code
                        scrubbed, a line must not carry "coming soon",
@@ -505,6 +516,7 @@ GATES = [
     ("fence_label_census.py", "fence_label_census", False),
     ("term_consistency_scan.py", "term_consistency_scan", True),
     ("front_matter_census.py", "front_matter_census", True),
+    ("tag_vocabulary_census.py", "tag_vocabulary_census", True),
     ("unfinished_marker_scan.py", "unfinished_marker_scan", True),
     ("empty_section_scan.py", "empty_section_scan", True),
     ("emoji_shortcode_scan.py", "emoji_shortcode_scan", True),
