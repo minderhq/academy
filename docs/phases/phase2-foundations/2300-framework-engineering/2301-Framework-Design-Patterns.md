@@ -3,7 +3,7 @@ Document ID: 2301
 Title: "2301: Framework Design Patterns"
 Phase: 2
 Module: 2300
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -630,7 +630,7 @@ A plugin system allows dynamic loading without modifying core code.
 ### Implementation
 
 ```python
-from typing import Type, Any
+from typing import Any
 import inspect
 from pathlib import Path
 import importlib.util
@@ -649,7 +649,7 @@ class PluginRegistry:
 
     def __init__(self, name: str):
         self.name = name
-        self._plugins: dict[str, Type] = {}
+        self._plugins: dict[str, type] = {}
         self._metadata: dict[str, dict[str, Any]] = {}
 
     def register(self, name: str | None = None, **metadata):
@@ -661,7 +661,7 @@ class PluginRegistry:
             class MyPlugin:
                 pass
         """
-        def decorator(plugin_class: Type) -> Type:
+        def decorator(plugin_class: type) -> type:
             plugin_name = name or plugin_class.__name__
 
             if plugin_name in self._plugins:
@@ -674,7 +674,7 @@ class PluginRegistry:
 
         return decorator
 
-    def get(self, name: str) -> Type | None:
+    def get(self, name: str) -> type | None:
         """Get plugin by name."""
         return self._plugins.get(name)
 
@@ -1158,7 +1158,6 @@ Create a mini ML framework with:
 ```python
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
-from typing import Dict, Any
 
 # TODO: Implement BaseModel
 class BaseModel(ABC):

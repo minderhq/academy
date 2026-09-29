@@ -1,7 +1,7 @@
 ---
 Document ID: 5200-PRACTICE
 Title: "5200: LLM Alignment - Practice"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 ---
@@ -21,10 +21,10 @@ def create_preference_dataset(prompts, responses_a, responses_b, preferences):
     Create a preference dataset for RLHF.
 
     Args:
-        prompts: List of input prompts
-        responses_a: List of responses for option A
-        responses_b: List of responses for option B
-        preferences: List of preferences (0=A preferred, 1=B preferred)
+        prompts: The input prompts
+        responses_a: The responses for option A
+        responses_b: The responses for option B
+        preferences: The preferences (0=A preferred, 1=B preferred)
 
     Returns:
         Dataset with 'prompt', 'chosen', and 'rejected' fields
@@ -373,7 +373,7 @@ class PPOTrainer:
         Generate responses from policy model.
 
         Args:
-            prompts: List of prompt strings
+            prompts: The prompt strings
             max_length: Maximum tokens to generate
             temperature: Sampling temperature
 
@@ -491,7 +491,7 @@ class PPOTrainer:
         Single PPO training step.
 
         Args:
-            prompts: List of prompt strings
+            prompts: The prompt strings
 
         Returns:
             Dictionary with metrics
@@ -951,7 +951,6 @@ When to use KTO:
 import re
 
 import numpy as np
-from typing import List
 
 # SOLUTION: Comprehensive Alignment Evaluation
 def evaluate_alignment(model, tokenizer, test_cases, max_length=100):
@@ -961,7 +960,7 @@ def evaluate_alignment(model, tokenizer, test_cases, max_length=100):
     Args:
         model: The model to evaluate
         tokenizer: Tokenizer for the model
-        test_cases: List of test cases with queries and expected behaviors
+        test_cases: The test cases with queries and expected behaviors
         max_length: Maximum generation length
 
     Returns:

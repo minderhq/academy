@@ -3,7 +3,7 @@ Document ID: 2303
 Title: "2303: API Design for ML Systems"
 Phase: 2
 Module: 2300
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -100,7 +100,7 @@ ML models in production need well-designed APIs that are fast, reliable, and eas
 ```python
 import time
 from datetime import datetime, timezone
-from typing import Any, List, Optional
+from typing import Any
 
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field, field_validator
@@ -302,7 +302,7 @@ async def predict(request: PredictRequest):
 
     - **model_name**: Which model to use
     - **inputs**: Input features
-    - **parameters**: Optional model parameters
+    - **parameters**: The model parameters
     """
     start = time.perf_counter()  # monotonic clock: immune to wall-clock jumps
 
@@ -356,7 +356,7 @@ async def predict_batch(requests: list[PredictRequest]):
     results: list[BatchItemResponse | None] = [None] * len(requests)
 
     # Group by model, remembering each request's original position
-    by_model: dict[str, List] = {}
+    by_model: dict[str, list] = {}
     for idx, req in enumerate(requests):
         by_model.setdefault(req.model_name, []).append((idx, req))
 
@@ -476,7 +476,6 @@ class TextGenerationRequest(BaseModel):
 ```python
 import time
 import uuid
-from typing import Dict
 
 from fastapi import BackgroundTasks
 from pydantic import BaseModel
@@ -484,7 +483,7 @@ from pydantic import BaseModel
 
 # In production this store is Redis or a queue; an in-process dict keeps the
 # example runnable.
-results_store: dict[str, Dict] = {}
+results_store: dict[str, dict] = {}
 
 
 def process_prediction(request_id: str, request: PredictRequest) -> None:

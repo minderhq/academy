@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-010
 Title: "TUTORIAL-010: Model Evaluation and Benchmarking"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -241,9 +241,8 @@ print(f"ROUGE-L: {rouge_scores['rouge-l']:.4f}")
 
 ```python
 import re
-from typing import Dict
 
-def load_mmlu(subject: str = "abstract_algebra") -> list[Dict]:
+def load_mmlu(subject: str = "abstract_algebra") -> list[dict]:
     """
     Load MMLU benchmark dataset
 
@@ -267,7 +266,7 @@ def load_mmlu(subject: str = "abstract_algebra") -> list[Dict]:
 
     return subject_data
 
-def evaluate_mmlu(model, tokenizer, subject: str = "abstract_algebra") -> Dict:
+def evaluate_mmlu(model, tokenizer, subject: str = "abstract_algebra") -> dict:
     """Evaluate model on MMLU benchmark"""
     data = load_mmlu(subject)
 
@@ -320,7 +319,7 @@ def evaluate_mmlu(model, tokenizer, subject: str = "abstract_algebra") -> Dict:
 ### GSM8K (Grade School Math)
 
 ```python
-def load_gsm8k() -> list[Dict]:
+def load_gsm8k() -> list[dict]:
     """Load GSM8K math word problems"""
     from datasets import load_dataset
 
@@ -346,7 +345,7 @@ def extract_final_number(text: str):
     numbers = re.findall(r"-?\d+\.?\d*", text.replace(",", ""))
     return float(numbers[-1]) if numbers else None
 
-def evaluate_gsm8k(model, tokenizer) -> Dict:
+def evaluate_gsm8k(model, tokenizer) -> dict:
     """Evaluate model on grade school math"""
     data = load_gsm8k()
 

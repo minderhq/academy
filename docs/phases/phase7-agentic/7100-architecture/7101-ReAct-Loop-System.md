@@ -3,7 +3,7 @@ Document ID: 7101
 Title: "7101: ReAct (Reasoning + Acting) Loop System"
 Phase: 7
 Module: 7100
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -101,7 +101,7 @@ ReAct:
 ### Basic ReAct Agent
 ```python
 import re
-from typing import Dict, Any
+from typing import Any
 
 class ReActAgent:
     """
@@ -154,7 +154,7 @@ class ReActAgent:
 
         return self._generate_final_response(history)
 
-    def _generate_action(self, history: list[Dict]) -> dict[str, Any]:
+    def _generate_action(self, history: list[dict]) -> dict[str, Any]:
         """Generate next action based on history"""
         prompt = self._format_prompt(history)
         response = self.llm.generate(prompt)
@@ -266,9 +266,9 @@ class AgentState:
     current_step: int
     max_steps: int
     thought: str | None = None
-    last_action: Dict | None = None
+    last_action: dict | None = None
     last_observation: str | None = None
-    history: list[Dict] = None
+    history: list[dict] | None = None
     status: AgentStatus = AgentStatus.IDLE
     error: str | None = None
 

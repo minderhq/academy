@@ -3,7 +3,7 @@ Document ID: 7301
 Title: "7301: Collaborative Tasking - Multi-Agent Synergy"
 Phase: 7
 Module: 7300
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -193,7 +193,6 @@ The planner's parsed `agent` field is a **roster key**: whatever executes the pl
 
 ```python
 import re
-from typing import Dict
 
 
 class StubLLM:
@@ -213,7 +212,7 @@ class DomainPlanner:
     def __init__(self, llm):
         self.llm = llm
 
-    def create_plan(self, task: str) -> list[Dict]:
+    def create_plan(self, task: str) -> list[dict]:
         """Create plan with agent assignments."""
         prompt = f"""
         Task: {task}
@@ -237,7 +236,7 @@ class DomainPlanner:
         response = self.llm.generate(prompt)
         return self._parse_plan(response)
 
-    def _parse_plan(self, response: str) -> list[Dict]:
+    def _parse_plan(self, response: str) -> list[dict]:
         """Parse plan into steps with agent assignments."""
         steps = []
 
@@ -431,7 +430,6 @@ Use hierarchy when work decomposes along team boundaries and you want one accoun
 No coordinator: agents bid on subtasks and first-come-first-served negotiation assigns them. The negotiation must handle **overlapping bids** — two specialists claiming the same work — explicitly, or the losing bid vanishes silently:
 
 ```python
-from typing import Dict
 
 
 class BiddingAgent:
@@ -487,10 +485,10 @@ class PeerSwarm:
         # 5. Integrate results
         return self._integrate_results(results)
 
-    def _negotiate_assignments(self, bids: list[Dict]) -> Dict:
+    def _negotiate_assignments(self, bids: list[dict]) -> dict:
         """First-come, first-served: a later bid for already-claimed work
         is dropped with a warning instead of overwriting the assignment."""
-        assignments: dict[str, Dict] = {}
+        assignments: dict[str, dict] = {}
         dropped = []
 
         for bid in bids:
@@ -528,7 +526,6 @@ Two mechanisms, one policy: LLM arbitration for judgment calls, majority voting 
 
 ```python
 import re
-from typing import Dict, List
 
 
 class StubLLM:
@@ -542,7 +539,7 @@ class ConflictResolver:
     def __init__(self, llm):
         self.llm = llm
 
-    def resolve(self, conflict: Dict) -> Dict:
+    def resolve(self, conflict: dict) -> dict:
         """Arbitrate a conflict via LLM.
 
         Conflict format:
@@ -584,7 +581,7 @@ class ConflictResolver:
         m = re.search(r"choose\s+(\w+)", response, re.IGNORECASE)
         return m.group(1) if m else None
 
-    def voting(self, proposals: dict[str, str], voters: List) -> str:
+    def voting(self, proposals: dict[str, str], voters: list) -> str:
         """Deterministic fallback: majority vote over proposal keys.
 
         Ties go to the first key in proposals insertion order — documented,
@@ -643,7 +640,6 @@ The maintenance loop is **bounded** (`max_cycles`) so demos and tests terminate;
 
 ```python
 import time
-from typing import Dict
 
 
 class MonitoringAgent:
@@ -730,7 +726,7 @@ class LabSwarm:
                 break
             time.sleep(interval_s)
 
-    def _prioritize(self, issues: list[Dict]) -> list[Dict]:
+    def _prioritize(self, issues: list[dict]) -> list[dict]:
         return sorted(issues, key=lambda x: x["severity"], reverse=True)
 
 
