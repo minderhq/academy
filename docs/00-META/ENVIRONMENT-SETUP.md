@@ -189,6 +189,37 @@ source .venv/bin/activate    # Mac/Linux
 .venv\Scripts\activate       # Windows
 ```
 
+#### uv Project Workflow (pyproject.toml + uv.lock)
+
+The `uv pip` interface above is the pip-compatible layer. For real
+projects, uv's own workflow is the 2026 standard: dependencies are
+declared in `pyproject.toml` and pinned by a `uv.lock` lockfile, so
+every machine resolves the exact same versions.
+
+```bash
+# Start a project (creates pyproject.toml + .venv automatically)
+uv init --python 3.13
+
+# Declare a dependency (writes it to pyproject.toml and updates
+# uv.lock in one step)
+uv add fastapi uvicorn
+
+# Install exactly what uv.lock pins (run this after cloning)
+uv sync
+
+# Run project commands inside the managed environment
+# (no activate needed - uv picks up .venv by itself)
+uv run uvicorn main:app --reload
+```
+
+How the two layers relate:
+- `uv pip install -r requirements.txt` — imperative, like pip;
+  fine for labs and Dockerfiles
+- `uv add` / `uv sync` + `uv.lock` — declarative and reproducible
+  across machines and CI; the standard for anything you own
+- Migrating an existing `requirements.txt`: `uv add -r
+  requirements.txt` imports it into `pyproject.toml` in one step
+
 ---
 
 ### Step 4: Ollama Installation
