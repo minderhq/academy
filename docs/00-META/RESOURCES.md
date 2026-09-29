@@ -1,7 +1,7 @@
 ---
 Document ID: RESOURCES
 Title: "PROJECT-OMEGA Resources"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Beginner
 ---
@@ -194,15 +194,15 @@ docker-compose logs -f
 docker system prune -a
 ```
 
-### Python/Conda
+### Python/uv/Conda
 ```bash
-# Environment management
+# Project environments: the manifest (pyproject.toml + uv.lock) pins everything
+uv sync --locked
+
+# Conda environments (GPU stacks still use them)
 conda create -n myenv python=3.13
 conda activate myenv
 conda env export > environment.yml
-
-# Package installation
-pip install -r requirements.txt
 conda install pytorch torchvision pytorch-cuda=12.1 -c pytorch
 ```
 

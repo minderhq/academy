@@ -1,7 +1,7 @@
 ---
 Document ID: VOLUME-7
 Title: "Volume 7: Production Mastery"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -370,22 +370,14 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.13'
+      - uses: astral-sh/setup-uv@v9
 
       - name: Install dependencies
-        run: |
-          pip install uv
-          uv pip install --system -r requirements.txt
-          uv pip install --system pytest pytest-cov
+        # The repo commits pyproject.toml + uv.lock (uv init --bare + uv add).
+        run: uv sync --locked # dev group installs by default, so pytest rides along
 
       - name: Run tests
-        run: |
-          pytest tests/ --cov=app --cov-report=xml
+        run: uv run pytest tests/ --cov=app --cov-report=xml
 
       - name: Upload coverage
         uses: codecov/codecov-action@v3
@@ -1382,12 +1374,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      # Cache dependencies
-      - name: Cache pip
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+      # Cache dependencies - setup-uv caches the uv package cache
+      # automatically, so uv sync skips reinstall on unchanged lockfiles
+      - uses: astral-sh/setup-uv@v9
 
       # Cache Docker layers
       - name: Cache Docker layers
