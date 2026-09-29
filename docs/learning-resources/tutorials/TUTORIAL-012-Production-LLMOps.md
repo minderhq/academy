@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-012
 Title: "TUTORIAL-012: Production LLMOps"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 ---
@@ -676,7 +676,7 @@ class ModelManager:
         name: str,
         version: str,
         endpoint: str,
-        metadata: dict = None
+        metadata: dict | None = None
     ):
         """Register a new model version"""
         key = f"{name}:{version}"
@@ -701,7 +701,7 @@ class ModelManager:
 
     def route_request(
         self,
-        user_id: str = None
+        user_id: str | None = None
     ) -> str:
         """Route request to appropriate model"""
         # Deterministic routing based on user_id
@@ -807,7 +807,7 @@ class ABTestFramework:
             "timestamp": time.time()
         })
 
-    def get_results(self, experiment: str) -> Dict:
+    def get_results(self, experiment: str) -> dict:
         """Get A/B test results
 
         Averages every recorded metric - pick_winner can then rank
@@ -928,7 +928,7 @@ class TokenBudget:
 
         return total_cost
 
-    def get_usage_report(self) -> Dict:
+    def get_usage_report(self) -> dict:
         """Generate usage report"""
         total_cost = sum(m["cost"] for m in self.usage.values())
         total_tokens = sum(

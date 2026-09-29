@@ -1490,7 +1490,6 @@ result = add(5, 3)      # OK
 
 #### Complex Types:
 ```python
-from typing import List, Dict, Optional, Union
 
 # List type
 def process_numbers(numbers: list[int]) -> list[int]:
@@ -1613,7 +1612,6 @@ uv pip install pydantic
 
 ```python
 from pydantic import BaseModel, Field
-from typing import Optional
 
 class User(BaseModel):
     """Simple user model"""
@@ -1657,7 +1655,6 @@ except Exception as e:
 #### Nested Models
 
 ```python
-from typing import List
 from pydantic import BaseModel
 
 class Address(BaseModel):

@@ -3,7 +3,7 @@ Document ID: 7401
 Title: "7401: Long-term Memory for Agents"
 Phase: 7
 Module: 7400
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -545,7 +545,6 @@ cleanup_expired_memories(collection)
 ```python
 from datetime import datetime
 
-from typing import Dict
 from dataclasses import dataclass
 import chromadb
 
@@ -553,10 +552,10 @@ import chromadb
 class MemoryItem:
     """A single memory with importance score."""
     content: str
-    metadata: Dict
+    metadata: dict
     importance: float  # 0.0 to 1.0
     access_count: int = 0
-    last_accessed: str = None
+    last_accessed: str | None = None
 
 class HierarchicalMemory:
     """Multi-tier memory system with hot/warm/cold storage."""
@@ -574,7 +573,7 @@ class HierarchicalMemory:
         self.cold_client = chromadb.PersistentClient(path="./db/cold")
         self.cold_collection = self.cold_client.get_or_create_collection("cold_memory")
 
-    def add(self, content: str, metadata: Dict, importance: float = 0.5):
+    def add(self, content: str, metadata: dict, importance: float = 0.5):
         """Add memory with automatic tier placement."""
         memory_id = f"mem_{datetime.now().timestamp()}"
 

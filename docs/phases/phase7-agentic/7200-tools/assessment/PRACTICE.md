@@ -1,7 +1,7 @@
 ---
 Document ID: 7200-PRACTICE
 Title: "7200: Tools & Function Calling - Practice"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 ---
@@ -14,7 +14,6 @@ Difficulty: Advanced
 
 ```python
 from langchain_core.tools import tool
-from typing import Optional
 
 # SOLUTION: Define calculator tool - Complete implementation with error handling
 @tool
@@ -67,7 +66,7 @@ def get_weather(location: str, unit: str = "celsius") -> str:
     # Simplified - in production, use weather API
     return f"Weather in {location}: 22°C, Partly cloudy"
 
-# SOLUTION: List all tools with metadata
+# SOLUTION: list all tools with metadata
 tools = [calculator, search_web, get_weather]
 
 for tool in tools:

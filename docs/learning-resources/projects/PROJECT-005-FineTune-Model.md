@@ -1,7 +1,7 @@
 ---
 Document ID: PROJECT-005
 Title: "CAPSTONE PROJECT-005: Fine-Tune Domain Model"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -109,7 +109,6 @@ Domain Dataset Preparation
 
 import json
 from pathlib import Path
-from typing import List, Dict
 import random
 
 class DatasetPreparator:
@@ -168,7 +167,7 @@ class DatasetPreparator:
         self.samples = formatted
         return formatted
 
-    def _format_alpaca(self, sample: Dict) -> str:
+    def _format_alpaca(self, sample: dict) -> str:
         """Format as Alpaca style"""
         instruction = sample['instruction']
         input_text = sample.get('input', '')

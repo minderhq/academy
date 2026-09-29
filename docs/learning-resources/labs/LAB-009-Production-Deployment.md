@@ -515,7 +515,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      - name: Set up Docker Buildx
+      - name: Configure Docker Buildx
         uses: docker/setup-buildx-action@v3
 
       - name: Login to Container Registry
@@ -1328,7 +1328,6 @@ Cost optimization analysis
 """
 
 from dataclasses import dataclass
-from typing import Dict
 import math
 
 @dataclass
@@ -1377,7 +1376,7 @@ class CostOptimizer:
         instance: InstancePricing,
         instance_count: int,
         cache_hit_rate: float = 0.0,
-    ) -> Dict:
+    ) -> dict:
         """Calculate monthly cost"""
         hours_per_month = 730  # 24 * 30.42
         base_cost = instance.hourly_cost * instance_count * hours_per_month
@@ -1401,7 +1400,7 @@ class CostOptimizer:
         self,
         qps: float,
         cache_hit_rate: float = 0.0,
-    ) -> Dict:
+    ) -> dict:
         """Find optimal configuration for given QPS"""
         results = []
 

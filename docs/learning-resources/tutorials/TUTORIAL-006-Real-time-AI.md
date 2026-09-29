@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-006
 Title: "TUTORIAL-006: Real-time AI"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -47,7 +47,7 @@ Streaming LLM Responses
 """
 
 import asyncio
-from typing import AsyncGenerator, Optional
+from typing import AsyncGenerator
 from openai import AsyncOpenAI
 
 class StreamingLLM:
@@ -55,7 +55,7 @@ class StreamingLLM:
     Streaming LLM client.
     """
 
-    def __init__(self, api_key: str = None):
+    def __init__(self, api_key: str | None = None):
         self.client = AsyncOpenAI(api_key=api_key)
 
     async def stream_completion(
@@ -144,7 +144,6 @@ Real-time Chat with WebSockets
 
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.responses import HTMLResponse
-from typing import Dict
 import json
 import uvicorn
 
@@ -157,7 +156,7 @@ class ConnectionManager:
 
     def __init__(self):
         self.active_connections: list[WebSocket] = []
-        self.client_data: dict[WebSocket, Dict] = {}
+        self.client_data: dict[WebSocket, dict] = {}
 
     async def connect(self, websocket: WebSocket, client_id: str):
         """Connect new client"""

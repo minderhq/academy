@@ -1,7 +1,7 @@
 ---
 Document ID: IND-001
 Title: "IND-001: Healthcare AI Applications"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -91,12 +91,12 @@ Difficulty: Intermediate
 
 ```mermaid
 graph TD
-    Start([Healthcare Use Case]) --> Type{What do you need?}
+    Start([Healthcare Use Case]) --> Need{What do you need?}
 
-    Type -->|Search Records| Search[Vector Database]
-    Type -->|Medical Knowledge| RAG[RAG System]
-    Type -->|Automate Tasks| Agent[Agent System]
-    Type -->|Domain Specific| FT[Fine-Tuning]
+    Need -->|Search Records| Search[Vector Database]
+    Need -->|Medical Knowledge| RAG[RAG System]
+    Need -->|Automate Tasks| Agent[Agent System]
+    Need -->|Domain Specific| FT[Fine-Tuning]
 
     Search --> Search1{Data Type?}
     Search1 -->|Patient Records| Similar[Similar Patient Retrieval]
@@ -337,7 +337,7 @@ class MedicalLiteratureSearch:
         Index medical research papers
 
         Args:
-            papers: List of dicts with 'title', 'abstract', 'authors', 'year'
+            papers: Each paper is a dict with 'title', 'abstract', 'authors', 'year'
         """
 
         for paper in papers:
@@ -372,13 +372,13 @@ class MedicalLiteratureSearch:
                 }]
             )
 
-    def search(self, query: str, filters: dict = None) -> list:
+    def search(self, query: str, filters: dict | None = None) -> list:
         """
         Search medical literature semantically
 
         Args:
             query: Natural language query
-            filters: Optional filters (year_range, journals, etc.)
+            filters: The filters (year_range, journals, etc.)
         """
 
         # Create query embedding
