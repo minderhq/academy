@@ -29,11 +29,9 @@ source .venv/bin/activate
 # Deactivate
 deactivate
 
-# Export requirements
-uv pip freeze > requirements.txt
-
-# Install from requirements
-uv pip install -r requirements.txt
+# Recreate the exact project environment anywhere
+# (manifest: pyproject.toml declares deps, uv.lock pins the graph)
+uv sync --locked
 ```
 
 ### Package Management

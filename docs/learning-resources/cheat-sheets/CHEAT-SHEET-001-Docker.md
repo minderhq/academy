@@ -1,7 +1,7 @@
 ---
 Document ID: CHEAT-SHEET-001
 Title: "CHEAT-SHEET-001: Docker Commands"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -302,9 +302,10 @@ RUN apt-get update && \
 # (https://docs.astral.sh/uv/guides/integration/docker/)
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
 
-# Copy requirements first for caching
-COPY requirements.txt .
-RUN uv pip install --system --no-cache -r requirements.txt
+# Dependency layer: only manifest/lockfile changes rebuild this.
+COPY pyproject.toml uv.lock ./
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --locked --no-install-project --no-dev
 
 # Then copy source code
 COPY . .
@@ -407,7 +408,7 @@ export DOCKER_BUILDKIT=1
 docker build --parallel .
 
 # Use a uv cache mount (Dockerfile, BuildKit syntax)
-RUN --mount=type=cache,target=/root/.cache/uv uv pip install --system -r requirements.txt
+RUN --mount=type=cache,target=/root/.cache/uv uv sync --locked
 ```
 
 ---

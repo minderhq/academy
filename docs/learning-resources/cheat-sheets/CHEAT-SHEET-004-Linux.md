@@ -1,7 +1,7 @@
 ---
 Document ID: CHEAT-SHEET-004
 Title: "CHEAT-SHEET-004: Linux Commands for AI/ML"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -546,7 +546,7 @@ source .venv/bin/activate
 deactivate
 
 # Install packages
-uv pip install -r requirements.txt
+uv sync --locked               # from the project manifest (pyproject.toml + uv.lock)
 uv pip install torch torchvision
 ```
 
