@@ -1,7 +1,7 @@
 ---
 Document ID: 5200-QUIZ
 Title: "5200: Alignment Methods - Quiz"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 ---
@@ -19,7 +19,7 @@ Difficulty: Advanced
 
 **1. What is the primary goal of LLM alignment?**
 
-A) Increase model size
+A) Increase model size while ignoring how the model actually behaves
 B) Align model behavior with human preferences/values
 C) Speed up inference
 D) Reduce training cost
@@ -27,7 +27,7 @@ D) Reduce training cost
 **2. What does RLHF stand for?**
 
 A) Reinforcement Learning from Human Feedback
-B) Recurrent Learning with Hidden Features
+B) Recurrent Learning with Hidden Features, a pretraining trick from RNNs
 C) Rapid Learning via Fine-tuning
 D) None of the above
 
@@ -35,14 +35,14 @@ D) None of the above
 
 A) PPO training
 B) Collect human preference comparisons
-C) Reward model training
+C) Reward model training, which comes after preferences are gathered
 D) Model distillation
 
 **4. What is the reward model in RLHF trained to predict?**
 
 A) Exact response quality score
 B) Human preference between responses
-C) Training loss
+C) The training loss over the next batch of tokens
 D) Model accuracy
 
 **5. What is DPO?**
@@ -55,7 +55,7 @@ D) Deep Prompt Optimization
 **6. What is the main advantage of DPO over RLHF?**
 
 A) No separate reward model needed
-B) Faster training
+B) Faster GPU throughput on the same amount of data
 C) Better accuracy
 D) Simpler architecture
 
@@ -69,7 +69,7 @@ D) None of the above
 **8. What is the purpose of the KL divergence penalty in RLHF?**
 
 A) Prevent model from deviating too far from reference
-B) Speed up training
+B) Speed up training by shrinking every gradient step and skipping evaluation
 C) Improve accuracy
 D) Reduce memory
 
@@ -78,18 +78,18 @@ D) Reduce memory
 A) Labeled classification data
 B) Paired comparisons: which response is better
 C) Translation pairs
-D) Question-answer pairs
+D) Question-answer pairs with a single gold response per question
 
 **10. What is a common issue with RLHF?**
 
 A) Too expensive
 B) Reward hacking
-C) Slow convergence
+C) Slow convergence during the final weeks of pretraining
 D) All of the above
 
 **11. The standard RLHF pipeline order is:**
 
-A) Reward model → SFT → PPO
+A) Reward model → SFT → PPO, which trains the policy before a reward exists
 B) PPO → SFT → reward model
 C) SFT → reward model training → PPO fine-tuning
 D) PPO → reward model → SFT
@@ -98,14 +98,14 @@ D) PPO → reward model → SFT
 
 A) The policy must already follow the response format for preference comparisons to be meaningful
 B) PPO requires GPU warm-up
-C) Reward models cannot be trained otherwise
+C) Reward models cannot be trained on raw unstructured text without an existing formatting step somewhere
 D) The KL penalty needs it
 
 **13. DPO's loss increases:**
 
 A) The reward model's accuracy
 B) The log-probability margin of preferred over rejected responses relative to the reference model
-C) The KL divergence without bound
+C) The KL divergence between the policy and itself, without any bound or clipping mechanism at all
 D) The vocabulary size
 
 **14. "Reward hacking" is when:**
@@ -113,7 +113,7 @@ D) The vocabulary size
 A) The policy exploits reward-model flaws to score high while producing bad outputs
 B) Humans mislabel data
 C) The GPU is overclocked
-D) The reward model is too small
+D) The reward model is too small to fit on a single accelerator during training runs
 
 **15. Preference pairs are typically modeled with:**
 
@@ -126,26 +126,26 @@ D) K-means clustering
 
 A) Faster inference
 B) A KL anchor so the policy does not drift too far
-C) The reward signal
+C) The reward signal that guides every single PPO update step end to end
 D) Data augmentation
 
 **17. RLAIF / Constitutional AI replaces (part of) human labels with:**
 
 A) Random rewards
 B) AI-generated feedback guided by principles
-C) No feedback at all
+C) No feedback signal of any kind during training
 D) Test-time compute only
 
 **18. Typical preference datasets contain:**
 
-A) Only benchmark questions
+A) Only benchmark questions reused from public eval suites
 B) Ten pairs
 C) Tens of thousands to millions of comparison pairs
 D) Only code snippets
 
 **19. A major preference-data quality risk is:**
 
-A) Excessive GPU memory use
+A) Excessive GPU memory use during the annotation collection stage
 B) Inconsistent annotator labels (low inter-annotator agreement)
 C) Slow tokenization
 D) Large disk footprint
@@ -153,7 +153,7 @@ D) Large disk footprint
 **20. Best-of-N sampling with a reward model is:**
 
 A) Inference-time alignment without retraining
-B) A PPO variant
+B) A PPO variant with a different clipping coefficient
 C) A tokenizer upgrade
 D) A distillation method
 
