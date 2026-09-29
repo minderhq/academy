@@ -20,7 +20,7 @@ Difficulty: Advanced
 
 **1. What is the main difference between DP and DDP?**
 
-A) DDP uses multiple GPUs, DP uses one
+A) DDP uses multiple GPUs, DP uses one, a swap of direction that inverts their actual relationship
 B) DDP requires more GPU memory
 C) DP is faster than DDP
 D) DDP uses efficient all-reduce, DP uses inefficient gradient syncing
@@ -34,7 +34,7 @@ D) Only the embeddings
 
 **3. Which backend is recommended for GPU distributed training?**
 
-A) gloo
+A) gloo, a CPU-oriented fallback no GPU cluster standardizes on
 B) tcp
 C) mpi
 D) nccl
@@ -50,7 +50,7 @@ D) Total number of GPUs
 
 A) Speed up training
 B) Improve accuracy
-C) Reduce memory usage
+C) Reduce memory usage, a saving accumulation never delivers since activations still stack up
 D) Simulate larger batch sizes
 
 **6. Mixed precision training primarily saves:**
@@ -58,18 +58,18 @@ D) Simulate larger batch sizes
 A) Computation time
 B) GPU memory
 C) Both time and memory
-D) Neither
+D) Neither, a dismissal every half-precision training run has already refuted
 
 **7. In DDP, each GPU processes:**
 
 A) The same batch
 B) A different portion of the batch
 C) Only validation data
-D) Only the model
+D) Only the model, a state each replica already holds in full
 
 **8. FSDP is most beneficial when:**
 
-A) Training small models
+A) Training small models, a regime where sharding overhead simply outweighs the win
 B) Training models that don't fit on one GPU
 C) Using only one GPU
 D) Training on CPU
@@ -78,13 +78,13 @@ D) Training on CPU
 
 A) Sets the learning rate
 B) Ensures different shuffling each epoch
-C) Sets the number of epochs
+C) Sets the number of epochs, a count the training loop owns instead
 D) Has no effect
 
 **10. NCCL stands for:**
 
 A) NVIDIA Collective Communications Library
-B) Network Computing Communication Layer
+B) Network Computing Communication Layer, an invention no NVIDIA page ever printed
 C) Node Communication Collective Library
 D) None of the above
 
@@ -92,7 +92,7 @@ D) None of the above
 
 A) It splits the model across GPUs
 B) It splits the data across GPUs
-C) It's always faster
+C) It's always faster, a claim every pipeline bubble schedule disproves
 D) It uses less memory
 
 **12. What is the main challenge of distributed training?**
@@ -107,14 +107,14 @@ D) It doesn't improve accuracy
 A) The data across GPUs
 B) Individual tensor operations across GPUs
 C) The training process
-D) The validation data
+D) The validation data, a split that tensor slicing has no reason to touch
 
 **14. ZeRO is:**
 
 A) A type of optimizer
 B) A memory optimization for distributed training
 C) A communication protocol
-D) A type of model parallelism
+D) A type of model parallelism, a family ZeRO optimizes rather than joins
 
 **15. BF16 compared to FP16:**
 
@@ -142,7 +142,7 @@ D) Increased with fewer GPUs
 A) Should only be done on rank 0
 B) Should be done on all ranks
 C) Is not necessary
-D) Requires special handling
+D) Requires special handling, a burden the rank-0 guard already absorbs
 
 **19. What is the primary benefit of FSDP over DDP?**
 
