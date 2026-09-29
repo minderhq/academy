@@ -1,7 +1,7 @@
 ---
 Document ID: 3200-QUIZ
 Title: "3200: Embeddings - Quiz"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 ---
@@ -22,18 +22,18 @@ Difficulty: Advanced
 A) Sparse binary vectors
 B) Dense continuous vectors
 C) One-hot vectors
-D) Strings
+D) Strings, stored and compared character by character with no geometry
 
 **2. The main idea of word2vec is:**
 
-A) Random initialization only
+A) Random initialization only, with no learning signal applied at any point
 B) Count word occurrences
 C) Use dictionaries
 D) Learn distributed representations
 
 **3. Word2Vec has two main training approaches:**
 
-A) RNN and CNN
+A) RNN and CNN, the two recurrent-convolutional heads of the original paper
 B) CBOW and Skip-gram
 C) Attention and MLP
 D) BERT and GPT
@@ -47,7 +47,7 @@ D) The target word from context
 
 **5. Skip-gram predicts:**
 
-A) Part of speech tags
+A) Part of speech tags, predicted through a separate morphological parser
 B) The context words from the target
 C) The target word from context
 D) The next sentence
@@ -57,12 +57,12 @@ D) The next sentence
 A) Random initialization
 B) Word co-occurrence statistics
 C) Neural networks
-D) Hand-crafted features
+D) Hand-crafted features, assembled by linguists for every vocabulary entry
 
 **7. FastText improves on Word2Vec by:**
 
 A) Using attention
-B) Using larger datasets
+B) Using larger datasets, since raw corpus size alone is what fastText changed
 C) Using subword information
 D) Using more layers
 
@@ -70,14 +70,14 @@ D) Using more layers
 
 A) Have different vectors depending on context
 B) Don't use training
-C) Have one vector per word type
+C) Have one vector per word type, identical in every sentence it appears in
 D) Are random
 
 **9. Static embeddings have:**
 
 A) One vector per word type regardless of context
 B) No vectors
-C) Multiple vectors per word
+C) Multiple vectors per word, one fresh vector sampled for every occurrence
 D) Random vectors
 
 **10. BERT uses embeddings for:**
@@ -85,7 +85,7 @@ D) Random vectors
 A) Tokens, positions, and segments
 B) Tokens only
 C) Positions only
-D) Tokens and positions only
+D) Tokens and positions only, with no segment information anywhere in the model
 
 **11. The dimensionality of word embeddings is typically:**
 
@@ -103,14 +103,14 @@ D) Dot product only
 
 **13. "King - Man + Woman = Queen" demonstrates:**
 
-A) Data leakage
+A) Data leakage, caused by copying test answers into the training corpus
 B) Overfitting
 C) Random chance
 D) Word embeddings capture semantic relationships
 
 **14. Positional embeddings encode:**
 
-A) Word meaning
+A) Word meaning, which positional embeddings are never designed to carry
 B) Part of speech
 C) Named entities
 D) Position in sequence
@@ -126,7 +126,7 @@ D) Replace positional embeddings
 
 A) Adds a bias based on distance
 B) Doesn't work
-C) Uses sinusoidal functions
+C) Uses sinusoidal functions, exactly as the original Transformer tables define them
 D) Is learned
 
 **17. Embedding layer initialization is typically:**
@@ -138,7 +138,7 @@ D) One-hot
 
 **18. During training, embeddings are:**
 
-A) Fixed (not updated)
+A) Fixed (not updated), frozen exactly as they were at random initialization
 B) Ignored
 C) Updated along with other parameters
 D) Removed
@@ -148,12 +148,12 @@ D) Removed
 A) Embedding layer size
 B) Only training speed
 C) Nothing
-D) Only inference speed
+D) Only inference speed, with the parameter count somehow staying constant
 
 **20. Subword tokenization (BPE):**
 
 A) Doesn't use vocabulary
-B) Uses whole words only
+B) Uses whole words only, refusing to break rare words into smaller pieces
 C) Uses characters only
 D) Splits words into subword units
 
