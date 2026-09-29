@@ -300,6 +300,18 @@ stand today?" without running each tool by hand.
                        TC-01 promoted to hard gate - exit 1 on any
                        TC-01 return, TC-02 report-only (remaining
                        hits are legal literals)
+    front_matter_census front-matter integrity (FM-01..FM-06,
+                       hard): every doc needs a complete,
+                       terminated YAML front-matter block;
+                       Difficulty within {Beginner, Intermediate,
+                       Advanced, Expert}; Status within {Complete,
+                       In Progress, Draft}; Last Updated
+                       YYYY-MM-DD and never a future date; declared
+                       Phase/Module matching the docs/phases/ path.
+                       Born tick-402 measuring 0 across 408 docs in
+                       every class, promoted same tick (KW-03
+                       pattern) - new enum values must update the
+                       script in the same commit
     unfinished_marker_scan unfinished-content markers in prose
                        (UM-01): outside any code fence, inline code
                        scrubbed, a line must not carry "coming soon",
@@ -492,6 +504,7 @@ GATES = [
     ("uv_workflow_census.py", "uv_workflow_census", False),
     ("fence_label_census.py", "fence_label_census", False),
     ("term_consistency_scan.py", "term_consistency_scan", True),
+    ("front_matter_census.py", "front_matter_census", True),
     ("unfinished_marker_scan.py", "unfinished_marker_scan", True),
     ("empty_section_scan.py", "empty_section_scan", True),
     ("emoji_shortcode_scan.py", "emoji_shortcode_scan", True),
