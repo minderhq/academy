@@ -1,7 +1,7 @@
 ---
 Document ID: 7400-PRACTICE
 Title: "7400: Agent Memory Systems - Practice"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 ---
@@ -127,7 +127,7 @@ class LongTermMemory:
         self.documents = []
         self.metadata = []
 
-    def add_memory(self, content: str, metadata: dict = None):
+    def add_memory(self, content: str, metadata: dict | None = None):
         """
         Add a memory to long-term storage with embedding and indexing.
 
@@ -136,7 +136,7 @@ class LongTermMemory:
 
         Args:
             content: Memory content to store
-            metadata: Optional metadata dictionary for context
+            metadata: The metadata dictionary for context
 
         Example:
             >>> ltm = LongTermMemory()
@@ -158,7 +158,7 @@ class LongTermMemory:
             # Add to existing index
             self.index.add(embedding.reshape(1, -1))
 
-    def retrieve(self, query: str, top_k=5) -> list[Dict]:
+    def retrieve(self, query: str, top_k=5) -> list[dict]:
         """
         Retrieve relevant memories using semantic search.
 
@@ -203,7 +203,7 @@ class LongTermMemory:
 
         return results
 
-    def search_metadata(self, key: str, value: any) -> list[Dict]:
+    def search_metadata(self, key: str, value: any) -> list[dict]:
         """Search memories by metadata."""
         results = []
         for i, meta in enumerate(self.metadata):
@@ -279,12 +279,11 @@ test_long_term_memory()
 ### Exercise 3: Implement Entity Memory
 
 ```python
-from typing import Dict
 import re
 
 class EntityMemory:
     def __init__(self):
-        self.entities: dict[str, Dict] = {}
+        self.entities: dict[str, dict] = {}
 
     def extract_entities(self, text: str) -> list[tuple]:
         """Extract entities and their properties from text."""
@@ -339,11 +338,11 @@ class EntityMemory:
                 "value": value,
             })
 
-    def get_entity(self, name: str) -> Dict:
+    def get_entity(self, name: str) -> dict:
         """Get all information about an entity."""
         return self.entities.get(name.capitalize(), {})
 
-    def search_entities(self, keyword: str) -> list[Dict]:
+    def search_entities(self, keyword: str) -> list[dict]:
         """Search for entities matching keyword."""
         results = []
         for name, data in self.entities.items():
@@ -521,7 +520,7 @@ class HybridMemory:
         self.entity_memory = EntityMemory()
         self.summary_memory = SummaryMemory(max_tokens=40)
 
-    def add(self, role: str, content: str, metadata: dict = None):
+    def add(self, role: str, content: str, metadata: dict | None = None):
         """
         Add to all memory systems with intelligent routing.
 
@@ -695,7 +694,7 @@ Reflection:"""
         """Get all insights from reflections."""
         return [r["content"] for r in self.reflections]
 
-    def retrieve_with_insights(self, query: str) -> Dict:
+    def retrieve_with_insights(self, query: str) -> dict:
         """Retrieve memories with relevant insights."""
 
         # Simple keyword matching
@@ -772,7 +771,7 @@ class PersistentMemory:
         conn.commit()
         conn.close()
 
-    def save_memory(self, content: str, metadata: dict = None):
+    def save_memory(self, content: str, metadata: dict | None = None):
         """Save memory to database."""
 
         conn = sqlite3.connect(self.db_path)
@@ -790,7 +789,7 @@ class PersistentMemory:
         conn.commit()
         conn.close()
 
-    def load_memories(self, limit: int = 100) -> list[Dict]:
+    def load_memories(self, limit: int = 100) -> list[dict]:
         """Load memories from database."""
 
         conn = sqlite3.connect(self.db_path)
@@ -815,7 +814,7 @@ class PersistentMemory:
             for row in rows
         ]
 
-    def save_entity(self, name: str, facts: list[Dict]):
+    def save_entity(self, name: str, facts: list[dict]):
         """Save entity to database."""
 
         conn = sqlite3.connect(self.db_path)
