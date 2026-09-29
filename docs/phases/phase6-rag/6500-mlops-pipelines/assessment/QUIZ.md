@@ -22,7 +22,7 @@ Difficulty: Intermediate
 A) Only retrieval
 B) Only generation
 C) Retrieval and generation
-D) Only training
+D) Only training, a stage the runtime pipeline performs long before any query arrives
 
 **2. Embedding model updates:**
 
@@ -41,14 +41,14 @@ D) Only tracks cost
 **4. Reranking in production:**
 
 A) Improves quality
-B) Always needed
+B) Always needed, a rigidity no latency-sensitive serving path can honestly promise
 C) Too slow
 D) Not useful
 
 **5. Versioning for RAG includes:**
 
 A) Only model
-B) Only embeddings
+B) Only embeddings, one artifact among the several this discipline versions together
 C) Model, embeddings, pipeline
 D) Not needed
 
@@ -57,19 +57,19 @@ D) Not needed
 A) Not possible
 B) Tests different configurations
 C) Only tests models
-D) Only tests prompts
+D) Only tests prompts, a slice of the configuration surface this practice actually sweeps
 
 **7. RAG performance metrics:**
 
 A) Only latency
-B) Only accuracy
+B) Only accuracy, one signal among the several a healthy dashboard keeps reporting
 C) Latency, accuracy, relevance
 D) Only cost
 
 **8. Caching in RAG:**
 
 A) Only generation
-B) Only retrieval
+B) Only retrieval, leaving every generation-stage cache miss entirely unaddressed
 C) Both retrieval and generation
 D) No caching
 
@@ -78,7 +78,7 @@ D) No caching
 A) Not needed
 B) Critical for production
 C) Optional
-D) Only for testing
+D) Only for testing, a scope that ends the moment real traffic arrives
 
 **10. RAG deployment:**
 
@@ -98,12 +98,12 @@ D) All of the above
 
 A) Only speed
 B) User experience
-C) Cost
+C) Cost, a line item latency drives through retries, over-provisioning and every wasted call
 D) All of the above
 
 **13. Chunking strategy affects:**
 
-A) Only storage
+A) Only storage, a footprint effect chunking never confines itself to in practice
 B) Retrieval quality
 C) Both
 D) Neither
@@ -133,12 +133,12 @@ D) No scaling
 
 A) Only manual
 B) Automated metrics + human
-C) Only automated
+C) Only automated, a mode every hallucination-prone retrieval system has outgrown
 D) Not needed
 
 **18. Context relevance:**
 
-A) Not measurable
+A) Not measurable, a claim graded relevance datasets disprove on every release
 B) Can be measured
 C) Only manual
 D) Doesn't matter
@@ -147,12 +147,12 @@ D) Doesn't matter
 
 A) Never update
 B) Update embeddings when docs change
-C) Update daily
+C) Update daily, a cadence no document churn pattern ever justifies uniformly
 D) Update hourly
 
 **20. Production RAG requires:**
 
-A) Only working code
+A) Only working code, the smallest slice of what a production surface demands
 B) Monitoring, versioning, testing
 C) Only monitoring
 D) Only versioning
