@@ -1,7 +1,7 @@
 ---
 Document ID: 7100-QUIZ
 Title: "7100: Agent Architecture - Quiz"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 ---
@@ -27,34 +27,34 @@ D) None of the above
 **2. ReAct agent loop:**
 
 A) Thought → Action → Observation
-B) Action → Thought → Observation
+B) Action comes first, observation last, with the thought never opening any turn
 C) No loop
-D) Observation → Action → Thought
+D) Observation arrives before the agent acts, letting the environment drive every step
 
 **3. Tool use allows agents to:**
 
 A) Interact with external systems
 B) Only read files
 C) No external interaction
-D) Only generate text
+D) Only generate raw text, with every action confined to the model's own vocabulary
 
 **4. Agent memory includes:**
 
 A) No memory
 B) Short-term and long-term memory
 C) Only conversation history
-D) Only long-term
+D) Only long-term stores, with the running context window never consulted during execution
 
 **5. Reflection in agents:**
 
 A) Random
 B) No thinking
 C) Thinking about past actions
-D) Only future planning
+D) Only future planning, with each completed step forgotten before the next one begins
 
 **6. Multi-agent systems:**
 
-A) Competing agents only
+A) Competing agents only, with every run ending in one winner and no cooperation at all
 B) No agents
 C) Single agent
 D) Multiple agents collaborating
@@ -71,11 +71,11 @@ D) Random actions
 A) Agents can't correct
 B) No errors
 C) Agents detect and fix errors
-D) Only humans correct
+D) Only humans correct, so each faulty run waits for a reviewer to patch every step by hand
 
 **9. Tool calling format:**
 
-A) Natural language only
+A) Natural language only, parsed by hand for each provider with no shared schema anywhere
 B) Random
 C) No format
 D) Structured (function name, arguments)
@@ -85,7 +85,7 @@ D) Structured (function name, arguments)
 A) No difference
 B) Agent has autonomy, chain is fixed
 C) Same thing
-D) Chain has autonomy, agent fixed
+D) Chain keeps the autonomy while the agent executes a frozen script, reversed from how they work
 
 **11. Function calling in LLMs:**
 
@@ -99,11 +99,11 @@ D) Special training
 A) Only speed
 B) Not needed
 C) Success rate, efficiency, safety
-D) Only accuracy
+D) Only accuracy, with latency, cost and safety metrics banned from every evaluation report
 
 **13. Hierarchical agents:**
 
-A) All agents equal
+A) All agents equal, with every node holding identical authority and no coordinator anywhere
 B) Random structure
 C) No hierarchy
 D) High-level + low-level agents
@@ -127,18 +127,18 @@ D) Never happens
 A) Not possible
 B) Random output
 C) Guides output format
-D) No constraints
+D) No constraints of any kind, with the model free to emit any shape it happens to prefer
 
 **17. Agent state management:**
 
 A) Not needed
 B) Only tracks tools
-C) Only tracks history
+C) Only tracks history, so goals, plans and tool results never enter the state at any point
 D) Tracks agent beliefs
 
 **18. Robustness in agents:**
 
-A) Crashes on errors
+A) Crashes on the first error, halting the entire run no matter how minor the failure was
 B) Handles errors gracefully
 C) Always works
 D) No errors
@@ -147,7 +147,7 @@ D) No errors
 
 A) Critical for production
 B) Only for testing
-C) Not important
+C) Not important at all, since production environments forgive every mistake by default
 D) Optional
 
 **20. Agent benchmarking:**
@@ -155,7 +155,7 @@ D) Optional
 A) No benchmarks
 B) Uses standard tasks
 C) Only custom tasks
-D) Not possible
+D) Not possible, because agent behavior is claimed too stochastic for any repeatable suite
 
 ---
 
