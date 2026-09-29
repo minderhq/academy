@@ -1,7 +1,7 @@
 ---
 Document ID: SOLUTION-LAB-004
 Title: "SOLUTION-LAB-004: ReAct Agent"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -16,7 +16,7 @@ Complete solution for building a ReAct (Reasoning + Acting) agent.
 ## Core Solution
 
 ```python
-from typing import Dict, Callable
+from typing import Callable
 import json
 
 class Tool:
@@ -52,7 +52,7 @@ class ReActAgent:
                 # Update prompt
                 prompt = f"{prompt}\nThought: {thought}\nObservation: {result}\nThought:"
 
-    def _parse_action(self, thought: str) -> Dict:
+    def _parse_action(self, thought: str) -> dict:
         # Parse "I should use TOOL_NAME..." or "Final answer is..."
         if "final answer" in thought.lower():
             return {"type": "finish", "answer": thought.split("is:")[-1]}

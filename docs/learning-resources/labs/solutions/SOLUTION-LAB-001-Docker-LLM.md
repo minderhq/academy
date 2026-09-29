@@ -108,7 +108,6 @@ Create a FastAPI wrapper for Ollama.
 # ~/lab-001-docker-llm/services/app/main.py
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
-from typing import List
 import requests
 import json
 import logging
@@ -421,7 +420,6 @@ Implement persistent chat history using file-based storage.
 import json
 import os
 from datetime import datetime, timezone
-from typing import Dict
 from pathlib import Path
 
 STORAGE_DIR = Path("/app/data/chats")
@@ -436,7 +434,7 @@ class ChatHistory:
         self.file_path = STORAGE_DIR / f"{session_id}.json"
         self.history = self._load_history()
 
-    def _load_history(self) -> list[Dict]:
+    def _load_history(self) -> list[dict]:
         """Load history from file."""
         if self.file_path.exists():
             with open(self.file_path, "r") as f:
@@ -457,7 +455,7 @@ class ChatHistory:
         })
         self._save_history()
 
-    def get_history(self, limit: int = 10) -> list[Dict]:
+    def get_history(self, limit: int = 10) -> list[dict]:
         """Get recent messages."""
         return self.history[-limit:]
 

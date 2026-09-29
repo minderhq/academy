@@ -1,7 +1,7 @@
 ---
 Document ID: SOLUTION-LAB-002
 Title: "SOLUTION-LAB-002: RAG Implementation"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -105,7 +105,6 @@ class VectorStore:
 ### Complete Solution
 
 ```python
-from typing import Dict
 import ollama
 
 class RAGPipeline:
@@ -139,7 +138,7 @@ Answer:"""
         response = ollama.generate(model=self.llm_model, prompt=prompt)
         return response["response"]
 
-    def query(self, question: str) -> Dict:
+    def query(self, question: str) -> dict:
         """Complete RAG query."""
         # Retrieve
         docs = self.retrieve(question)
