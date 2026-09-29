@@ -3,7 +3,7 @@ Document ID: 6301
 Title: "6301: Neo4j and Knowledge Graphs for Multi-Hop Reasoning"
 Phase: 6
 Module: 6300
-Last Updated: 2026-09-27
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -24,6 +24,7 @@ Tags: ['rag', 'context', 'graphrag', 'neo4j', 'knowledge-graphs']
 - [Building Knowledge Graphs](#building-knowledge-graphs)
 - [GraphRAG: Retrieval from Knowledge Graphs](#graphrag-retrieval-from-knowledge-graphs)
 - [Advanced Graph Techniques](#advanced-graph-techniques)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -492,6 +493,10 @@ model.wv.most_similar('Meta', topn=10)  # Similar entities
 
 
 ---
+
+## Summary
+
+Knowledge graphs represent information as entities and relationships, which is exactly the shape multi-hop reasoning needs and flat vector chunks cannot provide. This lesson walked graph fundamentals against relational tables, Cypher query patterns, and the question classes where Neo4j beats a vector store - chain-of-relationship queries that would need many retrieval rounds in RAG. The rule it leaves: vectors answer 'what is similar', graphs answer 'what connects' - and the second question is the one traditional RAG cannot touch.
 
 ## References
 

@@ -3,7 +3,7 @@ Document ID: 6302
 Title: "6302: CAG - Context Augmented Generation and Long Context Architectures"
 Phase: 6
 Module: 6300
-Last Updated: 2026-09-27
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -23,6 +23,7 @@ Tags: ['rag', 'context', 'cag', 'long-context']
 - [Context Management](#context-management)
 - [Implementation Examples](#implementation-examples)
 - [Context Optimization](#context-optimization)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -562,6 +563,10 @@ def compress_context(context, target_length=50000):
 
 
 ---
+
+## Summary
+
+CAG (Context-Augmented Generation) bets on the growing context window: instead of retrieving chunks into the prompt, load the relevant corpus - or most of it - directly and let attention do the retrieval. This lesson compared the RAG and CAG pipelines, measured where the context window's cost and quality limits bite, and framed CAG as RAG's sibling for small-corpus workloads. The rule it leaves: context window is a database you pay for per token - CAG wins when the corpus fits and stays stable, RAG wins the moment it does not.
 
 ## References
 

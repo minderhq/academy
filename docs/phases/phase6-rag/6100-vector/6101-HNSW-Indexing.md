@@ -3,7 +3,7 @@ Document ID: 6101
 Title: "6101: HNSW Indexing - Efficient Semantic Search at Scale"
 Phase: 6
 Module: 6100
-Last Updated: 2026-09-27
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -24,6 +24,7 @@ Tags: ['rag', 'vectors', 'hnsw', 'embeddings', 'similarity']
 - [HNSW Parameters](#hnsw-parameters)
 - [Integration with Embedding Models](#integration-with-embedding-models)
 - [Evaluation](#evaluation)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -500,6 +501,10 @@ def evaluate_hnsw_index(index, test_queries, ground_truth, ef_values):
 ```
 
 ---
+
+## Summary
+
+HNSW (Hierarchical Navigable Small World) is the index that makes approximate nearest-neighbor search practical in high-dimensional vector spaces: a stack of skip-list-like layers lets a query descend from sparse long-range links to dense short-range ones, reaching the k nearest neighbors in logarithmic hops instead of a brute-force scan. This lesson walked the brute-force baseline, the layered graph structure, and the search and build algorithms. The rule it leaves: ANN search trades a tunable epsilon of recall for orders of magnitude of speed - and the trade is controlled by the graph's construction parameters.
 
 ## References
 

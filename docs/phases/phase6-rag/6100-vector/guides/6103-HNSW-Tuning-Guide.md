@@ -1,7 +1,7 @@
 ---
 Document ID: 6103
 Title: "6103: HNSW Parameter Tuning Guide"
-Last Updated: 2026-09-27
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 ---
@@ -20,6 +20,7 @@ Difficulty: Advanced
 - [Dynamic ef Adjustment](#dynamic-ef-adjustment)
 - [Performance Benchmarks](#performance-benchmarks)
 - [Tuning Checklist](#tuning-checklist)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -515,6 +516,10 @@ dim — 1.5 KB at 384-D) and any payloads:
 
 
 ---
+
+## Summary
+
+This guide is the HNSW decision table: M, ef_construction and ef_search explained as a recall/latency/memory triangle, with benchmark methodology and recommended starting points for PROJECT-OMEGA scale. Each parameter gets its own section with what it buys, what it costs, and how to measure the result. The rule it leaves: tune ef_search first - it is runtime-only and free to revert - then M at build time, and never change two parameters between benchmarks.
 
 ## References
 

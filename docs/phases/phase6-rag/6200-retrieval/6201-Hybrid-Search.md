@@ -3,7 +3,7 @@ Document ID: 6201
 Title: "6201: Hybrid Search - Combining Keyword and Semantic Search"
 Phase: 6
 Module: 6200
-Last Updated: 2026-09-27
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -24,6 +24,7 @@ Tags: ['rag', 'retrieval', 'hybrid-search', 'reranking']
 - [Dense vs Sparse Retrieval](#dense-vs-sparse-retrieval)
 - [Implementation with Qdrant](#implementation-with-qdrant)
 - [Optimizing Alpha](#optimizing-alpha)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -541,6 +542,10 @@ def optimize_alpha(corpus, ground_truth):
 
 
 ---
+
+## Summary
+
+Hybrid search combines BM25 keyword retrieval with semantic vector search so exact term matching and conceptual understanding stop being a trade-off. This lesson implemented BM25 from first principles (TF-IDF saturation and length normalization), compared it with dense retrieval's failure modes - rare terms and exact identifiers for keywords, paraphrase and intent for vectors - and walked the reciprocal rank fusion that merges the two result lists. The rule it leaves: neither retriever dominates the other; fusion beats either alone because their failures are nearly disjoint.
 
 ## References
 

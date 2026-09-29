@@ -3,7 +3,7 @@ Document ID: 6202
 Title: "6202: Re-ranking and Retrieval Logistics"
 Phase: 6
 Module: 6200
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -23,6 +23,7 @@ Tags: ['rag', 'retrieval', 'hybrid-search', 'reranking']
 - [Retrieval Strategies](#retrieval-strategies)
 - [Query Expansion](#query-expansion)
 - [Evaluation](#evaluation)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -428,6 +429,10 @@ def ndcg(retrieved_docs, relevance_scores, k=10):
 
 
 ---
+
+## Summary
+
+Re-ranking improves retrieval quality by separating candidate generation from final ranking: a fast retriever pulls top-100 broadly, a slower but more accurate cross-encoder re-scores that set into the top-k that reaches the generator. This lesson walked the pipeline positions, bi-encoder versus cross-encoder scoring, and the latency budget that decides how deep the first stage must over-fetch. The rule it leaves: retrieval precision at the generator's input is what the LLM actually sees - spend compute where the context is finalized, not where it is gathered.
 
 ## References
 

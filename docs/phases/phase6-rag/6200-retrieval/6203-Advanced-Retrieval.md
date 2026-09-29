@@ -30,6 +30,7 @@ measure each stage's contribution with retrieval metrics.
 - [7. Domain Adaptation](#7-domain-adaptation)
 - [8. Evaluation](#8-evaluation)
 - [9. Troubleshooting](#9-troubleshooting)
+- [Summary](#summary)
 - [10. References](#10-references)
 
 ---
@@ -265,6 +266,10 @@ stage only if its metric delta survives on the golden set.
 | Same near-duplicate chunks flood top-k | Index/dedup | Near-dup filtering at ingest or diversity re-ranking |
 
 ---
+
+## Summary
+
+Single-stage dense retrieval leaves accuracy on the table, and this lesson is the stack that recovers it: query transformation (expansion, multi-query, HyDE), cross-encoder re-ranking, multi-stage pipelines, contextual compression, and domain adaptation - each measured with its own retrieval metrics so every stage justifies its latency. The rule it leaves: build the baseline first, then add stages one at a time with measurement - an unmeasured pipeline stage is a latency tax with no proof of purchase.
 
 ## 10. References
 

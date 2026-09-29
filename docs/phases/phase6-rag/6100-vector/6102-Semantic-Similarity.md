@@ -3,7 +3,7 @@ Document ID: 6102
 Title: "6102: Semantic Similarity Metrics - Cosine, Dot Product, and Manifold Metrics"
 Phase: 6
 Module: 6100
-Last Updated: 2026-09-27
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -25,6 +25,7 @@ Tags: ['rag', 'vectors', 'hnsw', 'embeddings', 'similarity']
 - [Manhattan Distance](#manhattan-distance)
 - [Advanced Metrics](#advanced-metrics)
 - [Similarity in Practice](#similarity-in-practice)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -460,6 +461,10 @@ for i, label in enumerate(labels):
 
 
 ---
+
+## Summary
+
+Semantic similarity metrics quantify how close two embeddings are, and the choice is not cosmetic: distance scales (Euclidean, Manhattan) say lower is closer, similarity scales (cosine, dot product) say higher is closer, and the embedding model's training objective decides which one it expects. This lesson covered the distance-versus-similarity distinction, the metric formulas, and matching metric to embedding space. The rule it leaves: use the metric your embedding model was trained with - the wrong metric quietly scrambles the ranking.
 
 ## References
 
