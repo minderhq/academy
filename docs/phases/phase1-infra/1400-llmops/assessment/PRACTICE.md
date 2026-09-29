@@ -1,7 +1,7 @@
 ---
 Document ID: 1400-PRACTICE
 Title: "1400: LLMOps - Practice"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -259,7 +259,6 @@ time curl -X POST http://localhost:8000/v1/completions \
 # vllm_client.py - Complete Python client for vLLM
 import requests
 import json
-from typing import List, Dict
 
 class VLLMClient:
     """Production-ready client for vLLM OpenAI-compatible API."""
@@ -289,7 +288,7 @@ class VLLMClient:
         temperature: float = 0.7,
         max_tokens: int = 100,
         stream: bool = False
-    ) -> Dict:
+    ) -> dict:
         """Create chat completion."""
         url = f"{self.base_url}/v1/chat/completions"
         payload = {
@@ -310,7 +309,7 @@ class VLLMClient:
         model: str = "Qwen/Qwen2.5-7B-Instruct",
         temperature: float = 0.7,
         max_tokens: int = 100
-    ) -> Dict:
+    ) -> dict:
         """Create text completion."""
         url = f"{self.base_url}/v1/completions"
         payload = {
@@ -359,7 +358,6 @@ from prometheus_client import Counter, Gauge, Histogram, start_http_server
 import time
 import logging
 from functools import wraps
-from typing import Dict
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -716,7 +714,6 @@ docker logs nginx-lb --tail=50 2>&1 | grep -o "upstream=vllm-[0-9]*" | sort | un
 ```python
 # model_drift.py - Complete model drift detection system
 import numpy as np
-from typing import Dict, Tuple
 from dataclasses import dataclass
 from datetime import datetime
 import json
@@ -811,7 +808,7 @@ class ModelDriftDetector:
         else:
             return "low"
 
-    def get_alert_summary(self) -> Dict:
+    def get_alert_summary(self) -> dict:
         """Get summary of all alerts."""
         if not self.alerts:
             return {"total_alerts": 0, "by_severity": {}}

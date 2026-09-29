@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-005
 Title: "LAB-005: GraphRAG Implementation with Neo4j & Qdrant"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -122,7 +122,6 @@ curl http://localhost:7474
 ```python
 # ~/lab-005-graphrag/scripts/build_graph.py
 from neo4j import GraphDatabase
-from typing import Dict
 import re
 
 # Connect to Neo4j
@@ -144,7 +143,7 @@ class KnowledgeGraphBuilder:
             session.run("MATCH (n) DETACH DELETE n")
             print("Graph cleared")
 
-    def extract_entities(self, text: str) -> list[Dict]:
+    def extract_entities(self, text: str) -> list[dict]:
         """Extract entities from text"""
 
         entities = []
@@ -187,7 +186,7 @@ class KnowledgeGraphBuilder:
 
         return list(unique_entities.values())
 
-    def extract_relationships(self, text: str, entities: list[Dict]) -> list[Dict]:
+    def extract_relationships(self, text: str, entities: list[dict]) -> list[dict]:
         """Extract relationships between entities"""
 
         relationships = []
@@ -217,7 +216,7 @@ class KnowledgeGraphBuilder:
 
         return relationships
 
-    def create_graph(self, documents: list[Dict]):
+    def create_graph(self, documents: list[dict]):
         """Create graph from documents"""
 
         with self.driver.session() as session:
@@ -350,7 +349,6 @@ python scripts/build_graph.py
 # ~/lab-005-graphrag/services/graphrag/graphrag_service.py
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-from typing import List, Dict
 import requests
 from neo4j import GraphDatabase
 from qdrant_client import QdrantClient
@@ -383,8 +381,8 @@ class Query(BaseModel):
 
 class GraphRAGResponse(BaseModel):
     answer: str
-    vector_sources: list[Dict]
-    graph_sources: list[Dict]
+    vector_sources: list[dict]
+    graph_sources: list[dict]
     reasoning: list[str]
     query_time: float
 
@@ -409,7 +407,7 @@ def extract_entities_from_query(query: str) -> list[str]:
 
     return entities
 
-def graph_search(entities: list[str], max_hops: int = 2) -> list[Dict]:
+def graph_search(entities: list[str], max_hops: int = 2) -> list[dict]:
     """Search knowledge graph with multi-hop reasoning"""
 
     if not entities:

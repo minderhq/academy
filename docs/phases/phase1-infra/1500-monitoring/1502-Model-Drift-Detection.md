@@ -3,7 +3,7 @@ Document ID: 1502
 Title: "1502: Model Drift Detection"
 Phase: 1
 Module: 1500
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -253,7 +253,6 @@ class DriftDetector:
 # concept_drift.py
 import numpy as np
 from datetime import datetime
-from typing import Dict
 
 class ConceptDriftDetector:
     """Detect concept drift (P(Y|X) changes)"""
@@ -268,7 +267,7 @@ class ConceptDriftDetector:
         self,
         predictions: np.ndarray,
         labels: np.ndarray
-    ) -> Dict:
+    ) -> dict:
         """Update buffers and check for drift"""
 
         # Add to buffers
@@ -317,7 +316,6 @@ class ConceptDriftDetector:
 # drift_monitor.py
 import numpy as np
 from datetime import datetime
-from typing import Dict
 
 from drift_detection import DriftDetector
 
@@ -334,7 +332,7 @@ class RealTimeDriftMonitor:
         self,
         current_data: np.ndarray,
         method: str = "ks"
-    ) -> Dict:
+    ) -> dict:
         """Check for drift in current batch"""
 
         if method == "ks":
@@ -372,7 +370,7 @@ class RealTimeDriftMonitor:
             'alert': alert
         }
 
-    def get_drift_summary(self, window_days: int = 30) -> Dict:
+    def get_drift_summary(self, window_days: int = 30) -> dict:
         """Get drift summary for time window"""
 
         cutoff = datetime.now().timestamp() - (window_days * 24 * 3600)
@@ -472,7 +470,6 @@ class FeatureDriftMonitor:
 ```python
 # embedding_drift.py
 import numpy as np
-from typing import Dict
 
 from sklearn.metrics.pairwise import cosine_similarity
 
@@ -492,7 +489,7 @@ class EmbeddingDriftDetector:
     def detect_drift(
         self,
         current_embeddings: np.ndarray
-    ) -> Dict:
+    ) -> dict:
         """Detect drift in embedding space"""
 
         if self.baseline_embeddings is None:
@@ -528,7 +525,6 @@ class EmbeddingDriftDetector:
 # retraining_pipeline.py
 import numpy as np
 from datetime import datetime
-from typing import Dict
 
 from drift_monitor import RealTimeDriftMonitor
 
@@ -566,7 +562,7 @@ class RetrainingPipeline:
         self,
         new_training_data: tuple[np.ndarray, np.ndarray],
         validation_split: float = 0.2
-    ) -> Dict:
+    ) -> dict:
         """Trigger model retraining
 
         new_training_data is an (X, y) tuple for a scikit-learn-style

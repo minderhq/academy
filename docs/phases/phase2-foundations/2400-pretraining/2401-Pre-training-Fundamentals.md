@@ -3,7 +3,7 @@ Document ID: 2401
 Title: "2401: Pre-training Fundamentals"
 Phase: 2
 Module: 2400
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -257,7 +257,7 @@ class DataCollector:
                 }) + "\n")
         return out
 
-    def stackexchange_dump_urls(self, sites: list[str] = None) -> list[str]:
+    def stackexchange_dump_urls(self, sites: list[str] | None = None) -> list[str]:
         """Internet Archive 7z dump URLs for StackExchange sites."""
         if sites is None:
             sites = ["stackoverflow", "superuser", "math"]
@@ -312,7 +312,6 @@ anywhere - the idea (score text, keep it only if every check passes)
 is the same one production filters implement.
 """
 
-from typing import Dict
 
 ENGLISH_STOPWORDS = {
     "the", "be", "to", "of", "and", "a", "in", "that", "have", "it",
@@ -330,7 +329,7 @@ class DataFilter:
         self.min_stopword_ratio = 0.15
         self.max_repetition_ratio = 0.7  # unique/total words must exceed 30%
 
-    def reject_reason(self, doc: Dict):
+    def reject_reason(self, doc: dict):
         """Return the name of the first failed check, or None if kept."""
         text = doc.get("text", "")
         words = text.lower().split()
@@ -678,14 +677,13 @@ Stage boundaries come from percentages of total steps, so the same
 definition works for a 1k-step smoke test and a 500k-step run.
 """
 
-from typing import Dict
 
 
 class TrainingCurriculum:
     """Design training curriculum for better model quality."""
 
     def __init__(self):
-        self.stages: list[Dict] = [
+        self.stages: list[dict] = [
             {
                 "name": "Foundation",
                 "percent": 30,  # first 30% of steps
@@ -777,7 +775,6 @@ classical alternatives.
 """
 
 import math
-from typing import Dict
 
 
 class LRScheduler:
@@ -813,7 +810,7 @@ class LRScheduler:
     def _inverse_sqrt(self, step: int) -> float:
         return self.max_lr / math.sqrt(step / self.warmup_steps)
 
-    def get_adamw_params(self) -> Dict:
+    def get_adamw_params(self) -> dict:
         """AdamW is the standard pre-training optimizer."""
         return {
             "lr": self.max_lr,
@@ -981,7 +978,6 @@ follows from that one number.
 """
 
 import math
-from typing import Dict
 
 
 class InfrastructurePlanner:
@@ -994,7 +990,7 @@ class InfrastructurePlanner:
     }
 
     def estimate_compute(self, params: int, tokens: int, gpus: int,
-                         hardware: str = "A100", mfu: float = 0.5) -> Dict:
+                         hardware: str = "A100", mfu: float = 0.5) -> dict:
         """
         Args:
             params: model parameter count

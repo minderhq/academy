@@ -3,7 +3,7 @@ Document ID: 2300-PRACTICE
 Title: "2300: Framework Engineering - Practice Exercises"
 Phase: 2
 Module: 2300
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 2.5 hours
@@ -241,7 +241,7 @@ def train_model(model: BaseModel, dataloader, epochs: int, validation_data=None)
         model: BaseModel instance
         dataloader: Data loader
         epochs: Number of training epochs
-        validation_data: Optional validation data
+        validation_data: The validation data, or None
 
     Returns:
         Training history
@@ -342,7 +342,7 @@ Create a plugin system for custom metrics with registration, discovery, and dyna
 ### Solution
 
 ```python
-from typing import Any, List
+from typing import Any
 import importlib.util
 import os
 import json
@@ -358,7 +358,7 @@ class MetricRegistry:
         self._metadata = {}
         self._hooks = {"before_compute": [], "after_compute": []}
 
-    def register(self, name: str = None, **metadata):
+    def register(self, name: str | None = None, **metadata):
         """
         Decorator to register a metric.
 
@@ -400,13 +400,13 @@ class MetricRegistry:
         """Get metadata for a metric."""
         return self._metadata.get(name, {})
 
-    def load_from_file(self, filepath: str, metric_names: list[str] = None):
+    def load_from_file(self, filepath: str, metric_names: list[str] | None = None):
         """
         Dynamically load metrics from a Python file.
 
         Args:
             filepath: Path to Python file
-            metric_names: List of metric names to load (None = all)
+            metric_names: The metric names to load (None = all)
 
         Note:
             Plugins loaded this way enter the registry directly, so they
@@ -694,7 +694,7 @@ Implement a production-ready batching server with dynamic batching, priority sup
 import time
 import threading
 import uuid
-from typing import Any, List
+from typing import Any
 from queue import PriorityQueue
 from dataclasses import dataclass, field
 from enum import Enum
@@ -831,7 +831,7 @@ class BatchingServer:
         Process a batch of requests.
 
         Args:
-            batch: List of requests to process
+            batch: The requests to process
         """
         start_time = time.monotonic()
 
@@ -873,7 +873,7 @@ class BatchingServer:
         Run inference on batch (mock implementation).
 
         Args:
-            batch_inputs: List of inputs
+            batch_inputs: The inputs
 
         Returns:
             List of results

@@ -1,7 +1,7 @@
 ---
 Document ID: QUICK-REF-VOLUME-6
 Title: "Volume 6: RAG & Data Systems - Quick Reference"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -125,7 +125,6 @@ for i in range(len(sentences)):
 
 ### Combining Vector + Keyword
 ```python
-from typing import List, Dict
 import numpy as np
 
 class HybridSearch:
@@ -495,8 +494,8 @@ class RetrievalMetrics:
         """
         Precision@K: % of retrieved docs that are relevant
 
-        retrieved_docs: List of retrieved doc IDs
-        relevant_docs: Set of relevant doc IDs
+        retrieved_docs: The retrieved doc IDs
+        relevant_docs: The relevant doc IDs
         k: Evaluate top-k results
         """
         top_k = retrieved_docs[:k]
@@ -509,8 +508,8 @@ class RetrievalMetrics:
         """
         Recall@K: % of relevant docs retrieved
 
-        retrieved_docs: List of retrieved doc IDs
-        relevant_docs: Set of relevant doc IDs
+        retrieved_docs: The retrieved doc IDs
+        relevant_docs: The relevant doc IDs
         k: Evaluate top-k results
         """
         top_k = retrieved_docs[:k]

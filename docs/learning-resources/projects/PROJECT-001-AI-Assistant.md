@@ -662,7 +662,7 @@ CMD ["uvicorn", "rag_service:app", "--host", "0.0.0.0", "--port", "8001"]
 # ~/ai-assistant/services/agent/agent_service.py
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-from typing import List, Dict, Any
+from typing import Any
 import requests
 import json
 import re
@@ -774,7 +774,7 @@ class ReActAgent:
             tools_used=tools_used
         )
 
-    async def _think(self, query: str, history: list[Dict]) -> str:
+    async def _think(self, query: str, history: list[dict]) -> str:
         """Initial reasoning about the query"""
 
         prompt = f"""You are an AI assistant. Think about what the user is asking.
@@ -799,7 +799,7 @@ Thought:"""
         question_words = ['what', 'how', 'why', 'explain', 'describe', 'tell me']
         return any(qw in query.lower() for qw in question_words)
 
-    async def _plan(self, query: str, thought: str, knowledge: str | None) -> Dict:
+    async def _plan(self, query: str, thought: str, knowledge: str | None) -> dict:
         """Plan what actions to take"""
 
         # Check if tools are needed
@@ -820,7 +820,7 @@ Thought:"""
             'tools': needed_tools
         }
 
-    async def _execute_tool(self, tool: Dict, query: str) -> Any:
+    async def _execute_tool(self, tool: dict, query: str) -> Any:
         """Execute a tool"""
 
         try:
@@ -834,7 +834,7 @@ Thought:"""
             return {"error": str(e)}
 
     def _build_prompt(self, query: str, thought: str,
-                     knowledge: str | None, thought_process: List) -> str:
+                     knowledge: str | None, thought_process: list) -> str:
         """Build final prompt"""
 
         prompt = f"""You are a helpful AI assistant with access to tools and knowledge.
