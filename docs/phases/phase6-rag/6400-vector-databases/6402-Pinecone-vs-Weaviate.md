@@ -608,20 +608,20 @@ Hybrid Search Comparison: Qdrant vs Weaviate
 
 # Qdrant Hybrid Search
 from qdrant_client import QdrantClient
-from qdrant_client.models import Filter, SearchRequest
+from qdrant_client.models import Filter, QueryRequest
 
 qdrant_client = QdrantClient(url="http://localhost:6333")
 
 def qdrant_hybrid_search(query_text, query_vector, top_k=10):
     """Hybrid search combining dense and sparse vectors."""
-    search_result = qdrant_client.search_batch(
+    search_result = qdrant_client.query_batch_points(
         collection_name="documents",
         requests=[
-            SearchRequest(
-                vector=query_vector,
+            QueryRequest(
+                query=query_vector,
                 limit=top_k,
                 with_payload=True,
-                query_filter=Filter(
+                filter=Filter(
                     must=[
                         {"key": "content", "match": {"text": query_text}}
                     ]

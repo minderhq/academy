@@ -16,9 +16,12 @@ Design, inherited from the gates this generalizes:
 - fences are parsed with ast, so multi-line paren imports, semicolon
   one-liners and `as` aliases all resolve - the blind spots
   langchain_census documents away are simply gone here
-- stdlib always resolves; first-party teaching modules and deliberate
-  references to packages outside the stack surface in the census for
-  classification, the same census->classify->lock path every gate took
+- stdlib always resolves; from-import names fall back to importing the
+  dotted submodule (the `from os import path` idiom) before flagging -
+  a bare `import module` has not loaded submodules yet
+- first-party teaching modules and deliberate references to packages
+  outside the stack surface in the census for classification, the same
+  census->classify->lock path every gate took
 - conditional `try: import x / except ImportError:` graceful-degradation
   teaching texture is still found (the import line exists as written)
 - relative imports (from . import x) have no package context inside a
@@ -117,15 +120,25 @@ def scan_file(root: Path, path: Path, findings: list[str], stats: list[int]) -> 
                                     for alias in node.names:
                                         if alias.name == "*":
                                             continue
-                                        if not hasattr(module, alias.name):
-                                            findings.append(
-                                                f"{rel}:{start + node.lineno + 1}: "
-                                                f"IC-01 name absent from module "
-                                                f"[AttributeError: {node.module} "
-                                                f"has no attribute "
-                                                f"'{alias.name}'] - from "
-                                                f"{node.module} import "
-                                                f"{alias.name}")
+                                        if hasattr(module, alias.name):
+                                            continue
+                                        # implicit submodule import
+                                        # (from os import path): the
+                                        # name may be a submodule the
+                                        # bare `import module` has not
+                                        # loaded yet - real Python
+                                        # resolves it, so must the gate
+                                        sub = f"{node.module}.{alias.name}"
+                                        if resolve_module(sub) == "OK":
+                                            continue
+                                        findings.append(
+                                            f"{rel}:{start + node.lineno + 1}: "
+                                            f"IC-01 name absent from module "
+                                            f"[AttributeError: {node.module} "
+                                            f"has no attribute "
+                                            f"'{alias.name}'] - from "
+                                            f"{node.module} import "
+                                            f"{alias.name}")
                 in_fence = False
                 body = []
             else:

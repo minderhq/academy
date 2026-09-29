@@ -215,7 +215,7 @@ from torch.distributed.fsdp.wrap import transformer_auto_wrap_policy
 
 # for a HuggingFace model, wrap at decoder-layer granularity
 import transformers
-from transformers.models.llama import LlamaDecoderLayer
+from transformers.models.llama.modeling_llama import LlamaDecoderLayer
 
 mp_policy = MixedPrecision(
     param_dtype=torch.bfloat16,       # compute dtype for params
