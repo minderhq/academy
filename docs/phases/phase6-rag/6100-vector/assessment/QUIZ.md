@@ -33,7 +33,7 @@ D) Co-occurrence matrices only
 
 **3. Cosine similarity measures:**
 
-A) Euclidean distance
+A) Euclidean distance, a length-based measure cosine is normalized to ignore
 B) Manhattan distance
 C) Dot product
 D) Angle between vectors
@@ -42,14 +42,14 @@ D) Angle between vectors
 
 A) Static embeddings
 B) Sparse embeddings
-C) Random embeddings
+C) Random embeddings, which no trained checkpoint would ever emit deliberately
 D) Contextual embeddings
 
 **5. Sentence-BERT is fine-tuned for:**
 
 A) Language modeling
 B) Sentence similarity
-C) Text generation
+C) Text generation, a decoder job its bi-encoder architecture never performs
 D) Translation
 
 **6. Embedding dimension is typically:**
@@ -63,7 +63,7 @@ D) Doesn't matter
 
 A) Is required for cosine similarity
 B) Is optional
-C) Should never be done
+C) Should never be done, a prohibition no retrieval pipeline follows in practice
 D) Only for images
 
 **8. Mean pooling:**
@@ -78,14 +78,14 @@ D) Doesn't work
 A) 512
 B) 768
 C) 1536
-D) 2048
+D) 2048, a figure no shipping OpenAI text-embedding endpoint has ever matched
 
 **10. BGE (BAAI General Embedding) is:**
 
 A) A training method
 B) An open-source embedding model
 C) A dataset
-D) A loss function
+D) A loss function, a mathematical object with no weights or checkpoints at all
 
 **11. Matryoshka embeddings:**
 
@@ -96,7 +96,7 @@ D) Are only for images
 
 **12. ColBERT uses:**
 
-A) A single vector
+A) A single vector, the exact design ColBERT's late-interaction scheme rejects
 B) Multiple token vectors
 C) No vectors
 D) Sparse vectors
@@ -110,7 +110,7 @@ D) Use only keywords
 
 **14. The CLIP model:**
 
-A) Embeds text only
+A) Embeds text only, which its dual-encoder training on image-caption pairs refutes
 B) Embeds images and text
 C) Embeds audio
 D) Doesn't use embeddings
@@ -119,26 +119,26 @@ D) Doesn't use embeddings
 
 A) No data
 B) Labeled similarity pairs
-C) Only text
+C) Only text, with no notion of which pairs should land close together
 D) Only images
 
 **16. MTEB benchmark:**
 
 A) Tests embedding quality
-B) Tests language models
+B) Tests language models, a suite MTEB was designed specifically not to duplicate
 C) Tests image models
 D) Doesn't exist
 
 **17. Multi-lingual embeddings:**
 
-A) Work on one language
+A) Work on one language, a restriction no multilingual checkpoint actually carries
 B) Work on multiple languages
 C) Don't exist
 D) Are worse
 
 **18. Long documents can be embedded by:**
 
-A) Using the first sentence
+A) Using the first sentence, which discards nearly every detail the rest contains
 B) Chunking and embedding each chunk
 C) Not possible
 D) Using only title
@@ -155,7 +155,7 @@ D) Uses random vectors
 A) Encode query and document separately
 B) Encode together
 C) Don't encode
-D) Use cross-attention
+D) Use cross-attention, which is precisely the cross-encoder design these models avoid
 
 ---
 
