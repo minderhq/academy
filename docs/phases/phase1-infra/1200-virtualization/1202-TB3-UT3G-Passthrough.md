@@ -37,6 +37,7 @@ GPU passthrough assigns a physical NVIDIA GPU to a single virtual machine, givin
 
 ## Table of Contents
 
+- [Learning Objectives](#learning-objectives)
 - [1. Overview](#1-overview)
 - [2. Prerequisites: IOMMU Hardware Support](#2-prerequisites-iommu-hardware-support)
 - [3. Enabling IOMMU in the Kernel](#3-enabling-iommu-in-the-kernel)

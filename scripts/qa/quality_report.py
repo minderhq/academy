@@ -387,7 +387,12 @@ stand today?" without running each tool by hand.
                       the 10 missing sites were drained to the
                       canonical H2 in tick-414, so the corpus is
                       114/114 and the gate holds it (same scope
-                      as lesson_id_scan - 114 lesson docs)
+                      as lesson_id_scan - 114 lesson docs).
+                      LA-02: the canonical H2 must also be listed
+                      in the lesson's Table of Contents (the
+                      syllabus card reads the TOC). Born hard in
+                      tick-415 - the 3 census sites were drained
+                      in the same tick, baseline 0
     unfinished_marker_scan unfinished-content markers in prose
                        (UM-01): outside any code fence, inline code
                        scrubbed, a line must not carry "coming soon",

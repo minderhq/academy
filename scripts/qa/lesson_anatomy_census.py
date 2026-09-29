@@ -14,6 +14,14 @@ LA-01  no H2 heading exactly "Learning Objectives" (fence-invisible,
        tick-414, so the corpus is 114/114 and the gate holds it
        (census -> drain -> gate cycle).
 
+LA-02  canonical H2 present but the canonical TOC bullet
+       "- [Learning Objectives](#learning-objectives)" missing.
+       HARD from birth (tick-415): the 3 census sites
+       (1202-TB3-UT3G-Passthrough, 6402-Pinecone-vs-Weaviate,
+       7401-Long-term-Memory) were drained in the same tick, so
+       the baseline is 0 - the 1103 canonical flow lists LO
+       first in the Table of Contents.
+
 Hands-on and quiz sections are deliberately not gated here:
 assessment lives in the separate assessment/QUIZ.md and lab files
 (lesson_id_scan / lab_registry are the identity gates for those),
@@ -38,6 +46,9 @@ PHASE_DIR = re.compile(r"^phase\d+-")
 MODULE_DIR = re.compile(r"^\d{4}-")
 LESSON_FILE = re.compile(r"^\d{4}-.*\.md$")
 CANON_H2 = "Learning Objectives"
+BULLET_RE = re.compile(
+    r"^- \[Learning Objectives\]\(#learning-objectives\)\s*$",
+    re.MULTILINE)
 
 
 def lesson_paths(root: Path) -> list[Path]:
@@ -55,9 +66,12 @@ def lesson_paths(root: Path) -> list[Path]:
     return out
 
 
-def canonical_objectives(lines: list[str]) -> bool:
-    """True when an unfenced H2 equals the canonical heading."""
+def anatomy(lines: list[str]) -> tuple[bool, bool]:
+    """(canonical H2 present, canonical TOC bullet present),
+    both checked outside code fences."""
     state = 0
+    canonical = False
+    bullet = False
     for raw in lines:
         m = FENCE_RE.match(raw)
         if m:
@@ -71,8 +85,10 @@ def canonical_objectives(lines: list[str]) -> bool:
             continue
         hm = H2_RE.match(raw)
         if hm and hm.group(1).strip() == CANON_H2:
-            return True
-    return False
+            canonical = True
+        if BULLET_RE.match(raw):
+            bullet = True
+    return canonical, bullet
 
 
 def main() -> int:
@@ -83,6 +99,7 @@ def main() -> int:
     findings: list[str] = []
     n_lessons = 0
     n_canonical = 0
+    n_bullet = 0
     for path in lesson_paths(args.root):
         try:
             lines = path.read_text(encoding="utf-8",
@@ -91,18 +108,26 @@ def main() -> int:
             continue
         rel = path.relative_to(args.root).as_posix()
         n_lessons += 1
-        if canonical_objectives(lines):
+        canonical, bullet = anatomy(lines)
+        if canonical:
             n_canonical += 1
         else:
             findings.append(
                 f"{rel}: LA-01 no canonical 'Learning Objectives' H2 "
                 f"(the platform syllabus card keys on this heading)")
+        if bullet:
+            n_bullet += 1
+        else:
+            findings.append(
+                f"{rel}: LA-02 no canonical TOC bullet (the syllabus "
+                f"card reads the lesson's Table of Contents)")
     for f in findings:
         print(f.encode("ascii", "backslashreplace").decode("ascii"))
     print(f"lesson_anatomy_census: lessons={n_lessons} "
-          f"canonical={n_canonical} LA-01={len(findings)} "
-          f"(hard since the tick-414 drain, canonical H2 "
-          f"'{CANON_H2}')")
+          f"canonical={n_canonical} LA-01={n_lessons - n_canonical} "
+          f"LA-02={n_lessons - n_bullet} "
+          f"(LA-01 hard since the tick-414 drain; LA-02 hard from "
+          f"birth tick-415 - canonical first TOC bullet)")
     return 1 if findings else 0
 
 

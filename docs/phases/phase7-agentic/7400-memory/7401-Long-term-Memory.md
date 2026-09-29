@@ -3,7 +3,7 @@ Document ID: 7401
 Title: "7401: Long-term Memory for Agents"
 Phase: 7
 Module: 7400
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -35,6 +35,7 @@ AI agents need persistent memory across sessions to maintain context, learn from
 
 ## Table of Contents
 
+- [Learning Objectives](#learning-objectives)
 - [1. Memory Architectures](#1-memory-architectures)
 - [2. VectorStore Memory (LangChain)](#2-vectorstore-memory-langchain)
 - [3. Mem0: Production Memory System](#3-mem0-production-memory-system)

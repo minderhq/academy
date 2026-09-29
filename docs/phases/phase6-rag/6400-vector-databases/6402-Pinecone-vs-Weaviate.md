@@ -3,7 +3,7 @@ Document ID: 6402
 Title: "6402: Vector Database Comparison"
 Phase: 6
 Module: 6400
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -35,6 +35,7 @@ Choosing the right vector database is crucial for RAG applications. This documen
 
 ## Table of Contents
 
+- [Learning Objectives](#learning-objectives)
 - [1. Feature Comparison Matrix](#1-feature-comparison-matrix)
 - [2. Database Deep Dives](#2-database-deep-dives)
 - [3. Performance Benchmarks](#3-performance-benchmarks)
