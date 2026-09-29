@@ -40,7 +40,7 @@ QI-09  orphan Answer Key row - a key row whose question number does
        Census: 0 across all 33 modules.
 
 Report inventory (never fails the gate - the accepted texture and
-the drain queue, same contract as duplicate_heading_scan / AS-09):
+the drain queues, same contract as duplicate_heading_scan / AS-09):
 
 QI-06  cross-module duplicate stems (census: 6, all short concept
        labels like "KV cache stores" reused across overlapping
@@ -54,10 +54,23 @@ QI-07  skewed answer keys per module (max letter >= 50% of answered
        sees the drift). This is the option-shuffle queue: rebalancing
        needs semantic care because 36 questions carry positional
        options ("Both A and B" / "All of the above") that cannot
-       move.
+       move. Drained in tick-288/289 (34 letter swaps across 14
+       modules) - the queue is now 0.
+
+QI-10  answer-length bias per module (report queue): the correct
+       option is the longest-or-tied option (words AND chars) in
+       >=50% of the module's mcq questions. A learner who always
+       picks the longest option wins ~70% of this bank (chance
+       ~25%), so the assessment measures length, not knowledge.
+       Born from the tick-290 census: 69.8% corpus-wide (457/655),
+       mean correct option 4.3 words vs 2.7 for distractors, 31/33
+       modules at >=50%. Unlike the QI-07 letter shuffle there is
+       no safe mechanical fix - draining needs per-module content
+       passes that make distractors parallel in form and length.
 
 Hard gate on QI-01..05 and QI-08/09 (exit 1): baseline 0 at birth
-(tick-284 / tick-285).
+(tick-284 / tick-285). QI-10 is report inventory at birth
+(tick-290: 31 modules queued).
 
 Run over the whole corpus:
     python scripts/qa/quiz_integrity_scan.py --root .
@@ -82,6 +95,8 @@ ALL_ABOVE_RE = re.compile(r"^\s*All\s+of\s+the\s+above\b", re.IGNORECASE)
 EXTRA_OPTION_RE = re.compile(r"^\s*[-*]?\s*\*{0,2}([E-Z])[\).]\s+\S")
 SKEW_SHARE = 0.5
 SKEW_MIN_MCQ = 10
+LEN_BIAS_SHARE = 0.5
+LEN_BIAS_MIN_MCQ = 10
 
 
 def norm(s: str) -> str:
@@ -90,7 +105,7 @@ def norm(s: str) -> str:
 
 def scan_module(rel: str, lines: list[str],
                 hard: list[str], cross: list[tuple[str, int, str]],
-                skew: list[str]) -> None:
+                skew: list[str], lenbias: list[str]) -> None:
     _, questions = export_quiz(rel, lines, [])
     stems: dict[str, int] = {}
     for q in questions:
@@ -180,6 +195,29 @@ def scan_module(rel: str, lines: list[str],
                 f"{rel.split('/')[3]}: '{top}' on {count}/{len(answered)}"
                 + (f", missing {''.join(missing)}" if missing else ""))
 
+    # QI-10: the pick-the-longest tell. A learner who always picks the
+    # longest option wins ~70% of this bank (chance ~25%), so report
+    # the modules where length gives the answer away. No mechanical
+    # fix: rebalancing means rewriting option text (per-module content
+    # passes), which is why this is a report queue, not a hard gate.
+    mcq = [q for q in questions
+           if q["type"] == "mcq" and q["answer"]
+           and len(q["options"]) >= 4]
+    if len(mcq) >= LEN_BIAS_MIN_MCQ:
+        longest = 0
+        for q in mcq:
+            a = q["answer"]
+            ow = [len(q["options"][k].split())
+                  for k in q["options"] if k != a]
+            oc = [len(q["options"][k]) for k in q["options"] if k != a]
+            if (len(q["options"][a].split()) >= max(ow)
+                    and len(q["options"][a]) >= max(oc)):
+                longest += 1
+        if longest >= LEN_BIAS_SHARE * len(mcq):
+            lenbias.append(
+                f"{rel.split('/')[3]}: {longest}/{len(mcq)} questions "
+                f"have the correct option as longest-or-tied")
+
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
@@ -188,6 +226,7 @@ def main() -> int:
     hard: list[str] = []
     stems: list[tuple[str, int, str]] = []
     skew: list[str] = []
+    lenbias: list[str] = []
     n_modules = 0
     for mod in sorted(p for p in (args.root / MODULES_ROOT).glob("*/*")
                       if p.is_dir() and MODULE_DIR.match(p.name)):
@@ -197,7 +236,7 @@ def main() -> int:
         rel = quiz.relative_to(args.root).as_posix()
         n_modules += 1
         scan_module(rel, quiz.read_text(encoding="utf-8").split("\n"),
-                    hard, stems, skew)
+                    hard, stems, skew, lenbias)
 
     seen: dict[str, tuple[str, int]] = {}
     cross_dups: list[str] = []
@@ -217,6 +256,9 @@ def main() -> int:
     for s in skew:
         print(("QI-07 (shuffle queue) " + s)
               .encode("ascii", "backslashreplace").decode("ascii"))
+    for lb in lenbias:
+        print(("QI-10 (length-bias queue) " + lb)
+              .encode("ascii", "backslashreplace").decode("ascii"))
     print(f"quiz_integrity_scan: {len(hard)} hard findings "
           f"(QI-01 self-referential option / QI-02 in-module duplicate "
           f"stem / QI-03 duplicate option text / QI-04 option beyond "
@@ -224,7 +266,9 @@ def main() -> int:
           f"/ QI-09 orphan Answer Key row), QI-06 {len(cross_dups)} "
           f"cross-module stem dups (accepted texture), QI-07 "
           f"{len(skew)} skewed answer keys (option-shuffle queue; "
-          f"refines AS-09's 70% tripwire) across {n_modules} quizzes")
+          f"refines AS-09's 70% tripwire), QI-10 {len(lenbias)} "
+          f"length-bias modules (correct-option-longest queue; born "
+          f"tick-290) across {n_modules} quizzes")
     return 1 if hard else 0
 
 

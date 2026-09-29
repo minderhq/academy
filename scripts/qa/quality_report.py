@@ -36,10 +36,17 @@ stand today?" without running each tool by hand.
                        option text, option beyond A-D, numbering
                        gap, duplicate Answer Key rows, orphan
                        Answer Key rows) on top of
-                       quiz_export's parser; QI-06/QI-07 are the
-                       report inventory (accepted cross-module stem
-                       dups + the skewed-answer-key shuffle queue
-                       that refines AS-09's 70% tripwire) - born
+                       quiz_export's parser; QI-06/QI-07/QI-10
+                       are the report inventory (accepted
+                       cross-module stem dups + the
+                       skewed-answer-key shuffle queue that
+                       refines AS-09's 70% tripwire + the
+                       answer-length-bias queue: the correct
+                       option is longest-or-tied in >=50% of a
+                       module's questions - born from the
+                       tick-290 census that measured a ~70%
+                       pick-the-longest win rate vs ~25% chance,
+                       31/33 modules queued) - born
                        from the tick-284 census (2 self-reference
                        bugs fixed at birth); QI-08/09 born from the
                        tick-285 census (0/0 - the one-directional
