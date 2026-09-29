@@ -217,6 +217,8 @@ embedder = AutoModel.from_pretrained("sentence-transformers/all-MiniLM-L6-v2")
 # Decoder-only for generation (faster, more fluent)
 generator = AutoModelForCausalLM.from_pretrained("mistralai/Mistral-7B-Instruct-v0.2")
 
+query = "What is the difference between encoder-decoder and decoder-only models?"
+
 # 1. Encode query
 query_embedding = embedder(**tokenizer(query, return_tensors="pt"))
 

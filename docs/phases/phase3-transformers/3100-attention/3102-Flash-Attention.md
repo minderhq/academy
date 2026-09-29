@@ -175,17 +175,28 @@ Flash Attention 2:
 
 ### Algorithm Differences
 ```python
+import torch
+
+Q_blocks = torch.randn(4, 32, 64)  # query tiles: [tiles, block, d]
+K_blocks = torch.randn(4, 32, 64)  # key tiles
+V_blocks = torch.randn(4, 32, 64)  # value tiles
+
+def compute_attention(q, k, v):
+    return torch.softmax(q @ k.T, dim=-1) @ v
+
 # FA1: Loop order (Q, K, V) blocks
 for Q_block in Q_blocks:
     for K_block in K_blocks:
-        compute_attention(Q_block, K_block, V_block)
+        for V_block in V_blocks:
+            compute_attention(Q_block, K_block, V_block)
 
 # FA2: Loop order optimized for GPU
 for K_block in K_blocks:
     for Q_block in Q_blocks:
-        # Better memory access pattern
-        # Maximizes L2 cache reuse
-        compute_attention(Q_block, K_block, V_block)
+        for V_block in V_blocks:
+            # Better memory access pattern
+            # Maximizes L2 cache reuse
+            compute_attention(Q_block, K_block, V_block)
 ```
 
 ## Using Flash Attention

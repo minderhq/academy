@@ -526,6 +526,9 @@ chunks = splitter.split_text(text)
 
 **Pitfall:** Using different models for index and query
 ```python
+docs = ["Qdrant stores dense vectors.", "Chunking preserves context."]
+query = "How do I index documents?"
+
 # Wrong: Different embedding models
 index_embeddings = openai_embed("text-embedding-3-small", docs)
 query_embedding = sentence_transformers_embed("all-MiniLM-L6-v2", query)

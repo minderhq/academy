@@ -470,6 +470,8 @@ bnb_config = BitsAndBytesConfig(
     bnb_4bit_compute_dtype=torch.bfloat16
 )
 
+model_name = "meta-llama/Llama-3.1-8B-Instruct"
+
 model = AutoModelForCausalLM.from_pretrained(
     model_name,
     quantization_config=bnb_config,

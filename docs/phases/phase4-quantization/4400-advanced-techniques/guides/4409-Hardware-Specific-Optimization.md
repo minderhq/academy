@@ -112,6 +112,8 @@ vllm serve meta-llama/Llama-2-7b-hf --quantization fp8
 import torch
 from transformers import AutoModelForCausalLM
 
+model_id = "meta-llama/Llama-3.1-8B-Instruct"
+
 model = AutoModelForCausalLM.from_pretrained(
     model_id,
     torch_dtype=torch.float16,

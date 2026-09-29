@@ -212,6 +212,8 @@ max_seq_len = 4096
 cos, sin = precompute_cos_sin(head_dim, max_seq_len)
 
 # During forward pass
+seq_len = 512
+q, k = torch.randn(2, seq_len, head_dim)  # [seq, head_dim]
 cos_cached = cos[:seq_len]
 sin_cached = sin[:seq_len]
 q_rot, k_rot = apply_rotary_pos_emb(q, k, cos_cached, sin_cached)

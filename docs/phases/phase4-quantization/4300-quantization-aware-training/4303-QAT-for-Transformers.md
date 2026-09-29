@@ -382,6 +382,7 @@ self.qkv_quant = FakeQuantize(bit_width=16)  # int16 grid (not FP16) relieves Q/
 
 **Solution:** Quantize residual separately:
 ```python
+residual = x  # skip path carried around the block
 x_q = self.output_quant(x)
 residual_q = self.residual_quant(residual)
 x = x_q + residual_q  # Both in similar range
