@@ -386,7 +386,7 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v7
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
@@ -1372,7 +1372,7 @@ jobs:
         test-suite: ['unit', 'integration', 'e2e']
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v7
 
       # Cache dependencies - setup-uv caches the uv package cache
       # automatically, so uv sync skips reinstall on unchanged lockfiles

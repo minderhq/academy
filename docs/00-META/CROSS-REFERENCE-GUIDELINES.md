@@ -1,7 +1,7 @@
 ---
 Document ID: CROSS-REFERENCE-GUIDELINES
 Title: "PROJECT-OMEGA Cross-Reference Guidelines"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Beginner
 ---
@@ -337,7 +337,7 @@ jobs:
   link-check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v7
       - name: Link Checker
         uses: gaurav-nelson/github-action-markdown-link-check@v1
         with:

@@ -304,7 +304,7 @@ jobs:
   pipeline:
     runs-on: gpu-server
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v7
       - name: Run Pipeline
         run: |
           python scripts/run_pipeline.py \
