@@ -3,7 +3,7 @@ Document ID: 7102
 Title: "7102: Planning and Task Decomposition"
 Phase: 7
 Module: 7100
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -128,7 +128,6 @@ for i, step in enumerate(steps, 1):
 #### Hierarchical Decomposition
 ```python
 import re
-from typing import Dict
 
 
 def parse_steps(response: str) -> list[str]:
@@ -141,7 +140,7 @@ def parse_steps(response: str) -> list[str]:
     return steps
 
 
-def hierarchical_decompose(task: str, llm, max_depth=3) -> Dict:
+def hierarchical_decompose(task: str, llm, max_depth=3) -> dict:
     """
     Break task into hierarchical sub-tasks
     Creates a tree structure of tasks
@@ -172,7 +171,7 @@ def hierarchical_decompose(task: str, llm, max_depth=3) -> Dict:
     return decompose_recursive(task, 0)
 
 
-def print_tree(node: Dict, indent: int = 0) -> None:
+def print_tree(node: dict, indent: int = 0) -> None:
     print("  " * indent + node["name"])
     for sub in node["subtasks"]:
         print_tree(sub, indent + 1)
@@ -205,7 +204,6 @@ print_tree(tree)
 ### Forward Planning
 ```python
 import re
-from typing import Dict
 
 
 class ForwardPlanner:
@@ -216,7 +214,7 @@ class ForwardPlanner:
         self.llm = llm
         self.tools = tools
 
-    def plan(self, initial_state: str, goal_state: str) -> list[Dict]:
+    def plan(self, initial_state: str, goal_state: str) -> list[dict]:
         """
         Generate plan from initial to goal state
         """
@@ -234,7 +232,7 @@ class ForwardPlanner:
         response = self.llm.generate(prompt)
         return self._parse_plan(response)
 
-    def _parse_plan(self, response: str) -> list[Dict]:
+    def _parse_plan(self, response: str) -> list[dict]:
         """Parse plan into actionable steps"""
         steps = []
 
@@ -262,7 +260,7 @@ class ForwardPlanner:
 
         return steps
 
-    def execute_plan(self, plan: list[Dict]) -> list[str]:
+    def execute_plan(self, plan: list[dict]) -> list[str]:
         """Execute plan and return observations — a tool error is an
         observation for the next planning round, not a crash"""
         observations = []
@@ -314,7 +312,6 @@ print(planner.execute_plan(plan))
 ### Backward Planning
 ```python
 import re
-from typing import Dict
 
 
 class BackwardPlanner:
@@ -326,7 +323,7 @@ class BackwardPlanner:
         self.llm = llm
         self.tools = tools
 
-    def plan(self, initial_state: str, goal_state: str) -> list[Dict]:
+    def plan(self, initial_state: str, goal_state: str) -> list[dict]:
         """
         Generate plan working backwards from goal
         """
@@ -349,7 +346,7 @@ class BackwardPlanner:
         steps = self._parse_plan(response)
         return list(reversed(steps))
 
-    def _parse_plan(self, response: str) -> list[Dict]:
+    def _parse_plan(self, response: str) -> list[dict]:
         """Parse 'N. Action: tool[param=value]' lines into steps"""
         steps = []
 
@@ -394,7 +391,6 @@ print([step["tool"] for step in plan])
 ### Task Planning with Dependencies
 ```python
 import re
-from typing import Dict
 
 
 class TaskPlanner:
@@ -404,7 +400,7 @@ class TaskPlanner:
     def __init__(self, llm):
         self.llm = llm
 
-    def plan_with_dependencies(self, task: str) -> list[Dict]:
+    def plan_with_dependencies(self, task: str) -> list[dict]:
         """
         Create plan with explicit dependencies
         """
@@ -423,7 +419,7 @@ class TaskPlanner:
         response = self.llm.generate(prompt)
         return self._parse_dependencies(response)
 
-    def _parse_dependencies(self, response: str) -> list[Dict]:
+    def _parse_dependencies(self, response: str) -> list[dict]:
         """Parse tasks with dependencies"""
         tasks = []
         current_task = None
@@ -453,7 +449,7 @@ class TaskPlanner:
 
         return tasks
 
-    def get_execution_order(self, tasks: list[Dict]) -> list[Dict]:
+    def get_execution_order(self, tasks: list[dict]) -> list[dict]:
         """
         Topological sort for execution order.
         Raises ValueError on unknown dependency references and on
@@ -515,7 +511,6 @@ print([task["id"] for task in planner.get_execution_order(tasks)])
 ### Replanning on Failure
 ```python
 import re
-from typing import Dict
 
 
 class Replanner:
@@ -526,7 +521,7 @@ class Replanner:
         self.llm = llm
         self.tools = tools
 
-    def execute_with_replan(self, plan: list[Dict], max_replans=3) -> list[str]:
+    def execute_with_replan(self, plan: list[dict], max_replans=3) -> list[str]:
         """
         Execute plan, replan if steps fail.
         The plan is spliced and walked with an index — mutating the list
@@ -564,7 +559,7 @@ class Replanner:
 
         return observations
 
-    def _replan(self, failed_step: Dict, error: str, context: list[Dict]) -> list[Dict]:
+    def _replan(self, failed_step: dict, error: str, context: list[dict]) -> list[dict]:
         """
         Generate new plan given failure
         """
@@ -583,7 +578,7 @@ class Replanner:
         response = self.llm.generate(prompt)
         return self._parse_plan(response)
 
-    def _parse_plan(self, response: str) -> list[Dict]:
+    def _parse_plan(self, response: str) -> list[dict]:
         """Parse 'N. Action: tool[param=value]' lines into steps"""
         steps = []
 
@@ -606,7 +601,7 @@ class Replanner:
 
         return steps
 
-    def _execute_step(self, step: Dict) -> str:
+    def _execute_step(self, step: dict) -> str:
         """Execute a single step — tool errors become observations"""
         tool = self.tools.get(step["tool"])
         if tool is None:
@@ -655,7 +650,6 @@ for observation in replanner.execute_with_replan(
 ### Distributed Planning
 ```python
 import re
-from typing import Dict
 
 
 class CoordinatorAgent:
@@ -713,7 +707,7 @@ class CoordinatorAgent:
         else:
             return "general"
 
-    def integrate(self, plans: dict[str, list[Dict]]) -> list[Dict]:
+    def integrate(self, plans: dict[str, list[dict]]) -> list[dict]:
         """Integrate sub-plans into coordinated plan.
         Simplified concatenation — for dependency-aware ordering, run the
         result through TaskPlanner.get_execution_order (above)."""
@@ -733,7 +727,7 @@ class DistributedPlanner:
         self.agents = agents
         self.coordinator = CoordinatorAgent(agents, llm)
 
-    def plan(self, task: str) -> list[Dict]:
+    def plan(self, task: str) -> list[dict]:
         """
         Break down task and delegate to specialist agents
         """
@@ -778,7 +772,7 @@ class StubAgent:
     def __init__(self, name):
         self.name = name
 
-    def plan(self, task: str) -> list[Dict]:
+    def plan(self, task: str) -> list[dict]:
         return [{"tool": f"{self.name}_plan", "params": {"task": task}}]
 
 

@@ -110,8 +110,12 @@ stand today?" without running each tool by hand.
                        Optional[ Union[ List[ Dict[ Tuple[ Set[
                        FrozenSet[ Type[) - hard gate since the PEP
                        585/604 modernization epic drained (typing /3);
-                       4-backtick super-fence teaching content is
-                       invisible to the fence model by design
+                       TL-02 legacy import lines / TL-03 bare legacy
+                       generics born tick-376 as report queues (census
+                       139 / 426 - the /1-/3 fixer's bracket pattern
+                       missed both); 4-backtick super-fence teaching
+                       content is invisible to the fence model by
+                       design
     version_alignment_scan
                        code-side python-version drift in ANY fence
                        (VA-01 FROM python:X.Y, VA-02 python3.X
