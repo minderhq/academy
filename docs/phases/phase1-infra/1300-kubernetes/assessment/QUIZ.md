@@ -1,7 +1,7 @@
 ---
 Document ID: 1300-QUIZ
 Title: "1300: Kubernetes - Quiz"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -27,7 +27,7 @@ D) Container runtime
 **2. A pod is:**
 
 A) One or more containers
-B) A VM
+B) A VM, a virtual-machine unit Kubernetes does not schedule directly
 C) A container
 D) A service
 
@@ -43,12 +43,12 @@ D) Only Nvidia GPUs
 A) A worker machine
 B) A container
 C) A pod
-D) A service
+D) A service, a stable networking endpoint rather than a machine
 
 **5. GPU scheduler ensures:**
 
 A) Load balancing
-B) All nodes have GPUs
+B) All nodes have GPUs, a homogeneous-fleet condition the scheduler does not demand
 C) Autoscaling
 D) Pods are scheduled on GPU nodes
 
@@ -64,7 +64,7 @@ D) Dynamic provisioning
 A) Storage
 B) Pods externally
 C) ConfigMaps
-D) Nodes
+D) Nodes, machines the Service abstraction does not expose
 
 **8. K3s uses less memory because:**
 
@@ -76,7 +76,7 @@ D) Only runs on ARM
 **9. GPU resource limits are specified:**
 
 A) In node spec
-B) In pod spec
+B) In pod spec, a level the GPU limit field does not live at
 C) In container spec
 D) In service spec
 
@@ -89,7 +89,7 @@ D) Only work with GPUs
 
 **11. Helm is:**
 
-A) A monitoring tool
+A) A monitoring tool, a role that belongs to Prometheus and friends
 B) A package manager for K8s
 C) A storage driver
 D) A container runtime
@@ -113,12 +113,12 @@ D) On demand
 A) No workloads
 B) Run workloads
 C) Only schedule
-D) Only manage
+D) Only manage, a restriction single-node K3s setups routinely disprove
 
 **15. YAML is used for:**
 
 A) Storage only
-B) Container images
+B) Container images, artifacts image registries and build tools own instead
 C) Monitoring
 D) K8s configuration
 
@@ -134,7 +134,7 @@ D) Neither
 A) Storage
 B) Configuration data
 C) Secrets
-D) Pods
+D) Pods, runtime workloads a ConfigMap only feeds data to
 
 **18. For GPU workloads, you need:**
 
@@ -152,7 +152,7 @@ D) No storage
 
 **20. Helm charts:**
 
-A) Are services
+A) Are services, one resource type among those charts can template
 B) Are containers
 C) Define K8s resources
 D) Deploy applications
