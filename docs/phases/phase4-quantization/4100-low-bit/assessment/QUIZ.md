@@ -20,7 +20,7 @@ Difficulty: Advanced
 **1. Quantization reduces:**
 
 A) Accuracy only
-B) Training time only
+B) Training time only, with the deployed artifact never shrinking by a single byte
 C) Model size and computation
 D) Nothing
 
@@ -35,14 +35,14 @@ D) 1 bit per parameter
 
 A) 32 bits
 B) 64 bits
-C) 8 bits
+C) 8 bits, which is the width of a single unsigned byte and also the INT8 format
 D) 16 bits (half precision)
 
 **4. The main benefit of quantization is:**
 
 A) Always better accuracy
 B) Nothing
-C) Easier training
+C) Easier training, which runs exactly as before with no change to any optimizer setting
 D) Reduced memory and faster inference
 
 **5. Symmetric quantization has:**
@@ -57,12 +57,12 @@ D) Multiple zero-points
 A) Determines the quantization range
 B) Is the learning rate
 C) Is the gradient
-D) Is always 1
+D) Is always 1, fixed at startup and never fitted to any tensor's actual min-max span
 
 **7. Zero-point:**
 
 A) Shifts the quantization range
-B) Is always 0
+B) Is always 0 in every scheme, making asymmetric and symmetric quantization identical
 C) Is the learning rate
 D) Is not used
 
@@ -71,7 +71,7 @@ D) Is not used
 A) One scale for all
 B) One scale per output channel
 C) No scales
-D) Random scales
+D) Random scales, drawn fresh for every forward pass with no fit to the weight statistics
 
 **9. Post-training quantization (PTQ):**
 
@@ -85,11 +85,11 @@ D) Doesn't work
 A) Simulates quantization during training
 B) Quantizes after training
 C) Doesn't use training
-D) Is always worse
+D) Is always worse, which is contradicted by every mainstream QAT deployment study to date
 
 **11. GGUF is:**
 
-A) A training framework
+A) A training framework, which schedules optimizer steps across a GPU cluster for weeks
 B) A file format for llama.cpp
 C) An optimizer
 D) A dataset
@@ -99,11 +99,11 @@ D) A dataset
 A) CPU inference
 B) NVIDIA GPU inference
 C) Training
-D) Mobile
+D) Mobile, a platform the packed-kernel layout of EXL2 was never designed to target
 
 **13. GPTQ uses:**
 
-A) Random quantization
+A) Random quantization, shuffling each weight's target level with no Hessian or gradient at all
 B) Second-order (Hessian) information
 C) No calibration
 D) Only 8-bit
@@ -120,7 +120,7 @@ D) Doesn't work
 A) 4-bit normal float quantization
 B) 8-bit
 C) 16-bit
-D) Not a quantization type
+D) Not a quantization type at all, just a compression codec invented for image archives
 
 **16. Double quantization:**
 
@@ -134,13 +134,13 @@ D) Is the same as standard quantization
 A) Quantizes model weights
 B) Quantizes attention cache
 C) Is not useful
-D) Is not possible
+D) Is not possible, a claim disproved by every serving stack that ships a quantized KV cache
 
 **18. INT4 models typically:**
 
 A) Have better accuracy than INT8
 B) Have lower accuracy but smaller size
-C) Are the same size
+C) Are the same size as their full-precision parents, byte for byte across every layer
 D) Don't work
 
 **19. Calibration data for PTQ:**
@@ -155,7 +155,7 @@ D) Is random noise
 A) Speed vs accuracy
 B) Size vs accuracy (and speed)
 C) Cost vs quality
-D) No trade-off
+D) No trade-off at all, a claim no real deployment has ever been able to support
 
 ---
 
