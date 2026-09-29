@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE7-PRACTICE
 Title: "Phase 7: Agentic Systems - Practice Exercises"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 ---
@@ -48,7 +48,7 @@ Implement a basic ReAct (Reasoning + Acting) loop from scratch.
 ### Solution Template
 
 ```python
-from typing import Any, Dict, Callable
+from typing import Any, Callable
 import re
 import json
 
@@ -89,7 +89,7 @@ class ReActAgent:
         # 3. Extract thought
         pass
 
-    def parse_action(self, thought: str) -> tuple[str, Dict]:
+    def parse_action(self, thought: str) -> tuple[str, dict]:
         """
         Parse action from thought.
 
@@ -103,12 +103,12 @@ class ReActAgent:
         # Expected format: "Action: SEARCH[query]"
         pass
 
-    def act(self, action_type: str, params: Dict) -> str:
+    def act(self, action_type: str, params: dict) -> str:
         """
         Execute action.
 
         Args:
-            action_type: Type of action to execute
+            action_type: The kind of action to execute
             params: Action parameters
 
         Returns:
@@ -194,7 +194,7 @@ Implement a robust tool registry with validation, error handling, and permission
 ### Solution Template
 
 ```python
-from typing import Callable, Dict, Any
+from typing import Callable, Any
 from functools import wraps
 import time
 from datetime import datetime, timedelta
@@ -232,7 +232,7 @@ class Tool:
         self.call_count = []
         self.execution_log = []
 
-    def validate_input(self, params: Dict) -> tuple[bool, str | None]:
+    def validate_input(self, params: dict) -> tuple[bool, str | None]:
         """Validate input parameters against schema."""
         # TODO: Implement validation
         pass
@@ -247,7 +247,7 @@ class Tool:
         # TODO: Implement rate limiting
         pass
 
-    def execute(self, params: Dict, user_permissions: list) -> Any:
+    def execute(self, params: dict, user_permissions: list) -> Any:
         """Execute tool with all checks."""
         # TODO: Implement execution with monitoring
         pass
@@ -276,7 +276,7 @@ class ToolRegistry:
     def execute_tool(
         self,
         tool_name: str,
-        params: Dict,
+        params: dict,
         user_permissions: list = None
     ) -> Any:
         """Execute a tool with all safety checks."""
@@ -297,7 +297,7 @@ def read_file(file_path: str) -> str:
         return f.read()
 
 # API tool
-def call_api(endpoint: str, method: str = "GET") -> Dict:
+def call_api(endpoint: str, method: str = "GET") -> dict:
     """Make API call to whitelisted endpoints."""
     ALLOWED_DOMAINS = ["api.example.com"]
     # TODO: Implement
@@ -352,7 +352,7 @@ Implement a multi-agent system with specialized agents and coordination.
 ### Solution Template
 
 ```python
-from typing import Dict, Any
+from typing import Any
 from enum import Enum
 import time
 import uuid
@@ -434,7 +434,7 @@ class MultiAgentSystem:
         # TODO: Implement broadcast
         pass
 
-    def run_task(self, task: str, max_steps: int = 20) -> Dict:
+    def run_task(self, task: str, max_steps: int = 20) -> dict:
         """
         Execute a task using the multi-agent system.
 
@@ -508,7 +508,7 @@ Implement a hierarchical memory system for agents with short-term, working, and 
 ### Solution Template
 
 ```python
-from typing import Dict, Any
+from typing import Any
 from datetime import datetime, timedelta
 import numpy as np
 from dataclasses import dataclass
@@ -530,7 +530,7 @@ class ShortTermMemory:
         self.memories: list[Memory] = []
         self.max_memories = max_memories
 
-    def add(self, content: str, embedding: np.ndarray, metadata: Dict = None):
+    def add(self, content: str, embedding: np.ndarray, metadata: dict | None = None):
         """Add memory to short-term storage."""
         # TODO: Implement
         pass
@@ -551,7 +551,7 @@ class WorkingMemory:
 
     def __init__(self, max_items: int = 10):
         self.context: dict[str, Any] = {}
-        self.stack: list[Dict] = []
+        self.stack: list[dict] = []
         self.max_items = max_items
 
     def push_context(self, context: dict[str, Any]):
@@ -622,7 +622,7 @@ class AgentMemorySystem:
         self.working = WorkingMemory()
         self.long_term = LongTermMemory(embedding_model, vector_db_client)
 
-    def remember(self, content: str, context: str = "", metadata: Dict = None):
+    def remember(self, content: str, context: str = "", metadata: dict | None = None):
         """Store information in appropriate memory layer."""
         # TODO: Implement storage logic
         pass
@@ -872,7 +872,6 @@ Implement prompt injection detection and defense mechanisms.
 ### Solution Template
 
 ```python
-from typing import Tuple
 import re
 from datetime import datetime, timedelta
 
@@ -1030,7 +1029,7 @@ Build a complete, production-ready agent system combining all components.
 ### Architecture
 
 ```python
-from typing import List, Dict, Any
+from typing import Any
 import logging
 from datetime import datetime
 
@@ -1069,7 +1068,7 @@ class ProductionAgentSystem:
         # TODO: Implement
         pass
 
-    def plan_task(self, task: str) -> list[Dict]:
+    def plan_task(self, task: str) -> list[dict]:
         """
         Decompose task into subtasks.
 
@@ -1086,7 +1085,7 @@ class ProductionAgentSystem:
         self,
         task: str,
         user_id: str = None,
-        context: Dict = None
+        context: dict | None = None
     ) -> dict[str, Any]:
         """
         Execute task with full agent capabilities.
@@ -1155,7 +1154,7 @@ agent_system = ProductionAgentSystem(config={})
 class TaskRequest(BaseModel):
     task: str
     user_id: str | None = None
-    context: Dict | None = None
+    context: dict | None = None
 
 @app.post("/api/v1/agent/execute")
 async def execute_task(request: TaskRequest):
@@ -1268,7 +1267,7 @@ Exercise 1-5 components into one system.
 
 ```python
 import json
-from typing import List, Callable
+from typing import Callable
 from dataclasses import dataclass
 
 @dataclass
@@ -1295,7 +1294,7 @@ class ReActAgent:
         """
         Args:
             llm_generate: Function that generates completions
-            tools: List of available tools
+            tools: The available tools
         """
         self.llm_generate = llm_generate
         self.tools = {tool.name: tool for tool in tools}
@@ -1453,7 +1452,7 @@ if __name__ == "__main__":
 
 ```python
 import inspect
-from typing import Any, Dict, List
+from typing import Any
 from functools import wraps
 
 class ToolRegistry:
@@ -1490,11 +1489,11 @@ class ToolRegistry:
 
         return decorator
 
-    def get_tool(self, name: str) -> Dict:
+    def get_tool(self, name: str) -> dict:
         """Get tool by name"""
         return self.tools.get(name)
 
-    def list_tools(self) -> list[Dict]:
+    def list_tools(self) -> list[dict]:
         """List all available tools"""
         return [
             {
@@ -1564,7 +1563,6 @@ if __name__ == "__main__":
 
 ```python
 from enum import Enum
-from typing import List
 from dataclasses import dataclass
 import uuid
 
@@ -1711,7 +1709,7 @@ class MultiAgentSystem:
 
         return messages
 
-    def run_cycle(self) -> dict[str, List]:
+    def run_cycle(self) -> dict[str, list]:
         """Run one communication cycle"""
         results = {"messages": [], "responses": []}
 
@@ -1783,7 +1781,7 @@ class MemoryEntry:
         content: str,
         memory_type: str = "episodic",
         importance: float = 0.5,
-        metadata: dict = None
+        metadata: dict | None = None
     ):
         self.content = content
         self.memory_type = memory_type  # episodic, semantic, procedural
@@ -1819,7 +1817,7 @@ class AgentMemory:
         content: str,
         memory_type: str = "episodic",
         importance: float = 0.5,
-        metadata: dict = None
+        metadata: dict | None = None
     ) -> MemoryEntry:
         """Add a new memory"""
         entry = MemoryEntry(content, memory_type, importance, metadata)
