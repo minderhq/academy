@@ -129,6 +129,10 @@ class MistralBlock(nn.Module):
     def __init__(self, dim=4096, n_heads=32, n_kv_heads=8, window=4096):
         super().__init__()
 
+        # RMSNorm (pre-normalization)
+        self.norm1 = RMSNorm(dim)
+        self.norm2 = RMSNorm(dim)
+
         # Grouped Query Attention
         self.n_heads = n_heads        # 32 query heads
         self.n_kv_heads = n_kv_heads  # 8 key/value heads
@@ -194,7 +198,7 @@ def autoregressive_loss(logits, targets):
     batch, seq_len, vocab = logits.shape
 
     # Flatten
-    logits_flat = logits.view(-1, vocab_size)
+    logits_flat = logits.view(-1, vocab)
     targets_flat = targets.view(-1)
 
     # Cross-entropy
