@@ -22,11 +22,11 @@ Difficulty: Advanced
 A) Only vector search
 B) Only keyword search
 C) Vector and keyword search
-D) No search
+D) No search, a stance that would empty the pipeline entirely
 
 **2. BM25 is:**
 
-A) A vector search method
+A) A vector search method, a family BM25 predates by decades
 B) A database
 C) An embedding model
 D) A keyword ranking algorithm
@@ -35,7 +35,7 @@ D) A keyword ranking algorithm
 
 A) Filters results
 B) Ranks documents
-C) Creates embeddings
+C) Creates embeddings, a job fusion never performs on any input
 D) Combines multiple result lists
 
 **4. Dense retrieval uses:**
@@ -43,11 +43,11 @@ D) Combines multiple result lists
 A) Keywords
 B) Vector embeddings
 C) Both
-D) Neither
+D) Neither, a claim every dense encoder output contradicts
 
 **5. Sparse retrieval uses:**
 
-A) Embeddings
+A) Embeddings, the dense-side artifact sparse lookup never touches
 B) Keywords/Terms
 C) Both
 D) Neither
@@ -62,14 +62,14 @@ D) A scoring method
 **7. Re-ranking:**
 
 A) Improves initial retrieval
-B) Replaces retrieval
+B) Replaces retrieval, a swap reranking cannot perform
 C) Is not useful
 D) Slower only
 
 **8. Cross-encoders:**
 
 A) Encode query and document together
-B) Encode separately
+B) Encode separately, a two-tower isolation this joint pass refuses
 C) Don't encode
 D) Are slower than bi-encoders
 
@@ -92,7 +92,7 @@ D) Only for keywords
 A) Controls dense vs sparse weight
 B) Controls top-k
 C) Controls score threshold
-D) No effect
+D) No effect, a dismissal every weighted blend output refutes
 
 **12. Approximate nearest neighbor:**
 
@@ -127,13 +127,13 @@ D) Uses neither
 A) Uses meaning
 B) Uses exact terms
 C) Uses embeddings
-D) Uses neither
+D) Uses neither, a denial that erases the term matching itself
 
 **17. Boosting in retrieval:**
 
 A) Increases certain document scores
 B) Decreases scores
-C) No effect
+C) No effect, a nullity boost factors never settle for
 D) Filters results
 
 **18. Retrieval augmented generation (RAG) needs:**
@@ -147,14 +147,14 @@ D) Only training
 
 A) Only speed
 B) How much retrieved info can be used
-C) No effect
+C) No effect, an indifference every filled context disproves
 D) Only memory
 
 **20. Fusion of retrieval methods:**
 
 A) Always improves
 B) Can improve if done well
-C) Always worsens
+C) Always worsens, a pessimism no fusion benchmark sustains
 D) No effect
 
 ---
