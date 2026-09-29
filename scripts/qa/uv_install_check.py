@@ -17,11 +17,15 @@ use the uv interface - the remaining 30 all triaged into five
 reasoned (rel, exact-line) accept classes below, zero drained, so
 the gate locked at baseline 0. Accepts are keyed by exact stripped
 line: editing an accepted line (or its indentation) produces a new
-finding that gets re-triaged, which is the point. The known residual
-inconsistency - most Dockerfiles RUN plain pip while LAB-001 already
-uses `RUN uv pip install --system` - is recorded as the container
-class and tracked as a separate uv-in-Docker modernization epic, not
-absorbed silently.
+finding that gets re-triaged, which is the point. The container
+class (most Dockerfiles RUN plain pip while LAB-001 already used
+`RUN uv pip install --system`) drained in tick-338: every Dockerfile
+in the corpus now follows LAB-001's official uv image pattern
+(uv binary copied from the uv image, then `RUN uv pip install
+--system --no-cache`), the ENVIRONMENT-SETUP exception note dropped
+Dockerfiles, and the class was removed. The only plain pip left in
+the container layer is TUTORIAL-002's deliberately bad Dockerfile,
+accepted as the antiexample class.
 
 Out of scope: pip list/freeze/show (read-only), uv argument health,
 Python version pins. Lexical only - no package manager is invoked.
@@ -46,9 +50,8 @@ _FALLBACK = ("documented pip fallback: shown as the explicit non-uv "
              "alternative")
 _CONDA = ("conda ecosystem: pip installs into an active conda "
           "environment that owns the interpreter")
-_CONTAINER = ("container layer: RUN inside a Dockerfile or an "
-              "in-container demo (uv-in-Docker modernization tracked "
-              "as a separate epic)")
+_ANTIEXAMPLE = ("tutorial anti-example: the deliberately bad Dockerfile "
+                "teaches plain pip as one of its labeled problems")
 _BOOTSTRAP = "pip bootstrap: the one legitimate use - installing uv"
 _NOTEBOOKS = ("notebooks boundary: notebooks/ KEEP area pinned to "
               "its own stack")
@@ -61,66 +64,18 @@ _GROUPS: list[tuple[str, str, tuple[str, ...]]] = [
     ("docs/00-META/RESOURCES.md", _CONDA, (
         "pip install -r requirements.txt",
     )),
-    ("docs/enterprise-solutions/SOL-001-Enterprise-Knowledge-Base.md",
-     _CONTAINER, (
-         "RUN pip install --no-cache-dir -r requirements.txt",
-     )),
-    ("docs/learning-resources/cheat-sheets/CHEAT-SHEET-001-Docker.md",
-     _CONTAINER, (
-         "RUN pip install -r requirements.txt",
-         "docker build --mount=type=cache,target=/root/.cache pip "
-         "install -r requirements.txt",
-     )),
-    ("docs/learning-resources/labs/LAB-002-RAG-Implementation.md",
-     _CONTAINER, (
-         "RUN pip install --no-cache-dir -r requirements.txt",
-     )),
-    ("docs/learning-resources/labs/LAB-004-ReAct-Agent.md",
-     _CONTAINER, (
-         "RUN pip install --no-cache-dir -r requirements.txt",
-     )),
     ("docs/learning-resources/labs/LAB-006-Train-Model-From-Scratch.md",
      _CONDA, (
          "pip install torch tqdm",
          "pip install datasets tokenizers",
          "pip install wandb",
      )),
-    ("docs/learning-resources/labs/LAB-007-Production-RAG.md",
-     _CONTAINER, (
-         "RUN pip install --no-cache-dir -r requirements.txt",
-     )),
-    ("docs/learning-resources/labs/LAB-009-Production-Deployment.md",
-     _CONTAINER, (
-         "RUN pip install --user --no-cache-dir -r requirements.txt",
-     )),
-    ("docs/learning-resources/labs/LAB-011-Multi-Modal-AI.md",
-     _CONTAINER, (
-         "RUN pip install --no-cache-dir -r requirements-multimodal.txt",
-     )),
-    ("docs/learning-resources/labs/LAB-012-Audio-AI.md",
-     _CONTAINER, (
-         "RUN pip install --no-cache-dir -r requirements-voice.txt",
-     )),
-    ("docs/learning-resources/labs/solutions/"
-     "SOLUTION-LAB-001-Docker-LLM.md", _CONTAINER, (
-         "RUN pip install -r requirements.txt",
-     )),
-    ("docs/learning-resources/labs/solutions/"
-     "SOLUTION-LAB-007-Production-RAG.md", _CONTAINER, (
-         "RUN pip install -r requirements.txt",
-     )),
-    ("docs/learning-resources/projects/PROJECT-001-AI-Assistant.md",
-     _CONTAINER, (
-         "RUN pip install --no-cache-dir -r requirements.txt",
-     )),
     ("docs/learning-resources/troubleshooting/"
      "TROUBLESHOOTING-Common-Issues.md", _CONDA, (
          "pip install transformers",
      )),
     ("docs/learning-resources/tutorials/TUTORIAL-002-Docker-Essentials.md",
-     _CONTAINER, (
-         "pip install numpy",
-         "RUN pip install --no-cache-dir -r requirements.txt",
+     _ANTIEXAMPLE, (
          "RUN pip install -r requirements.txt",
      )),
     ("docs/learning-resources/tutorials/"
@@ -130,18 +85,6 @@ _GROUPS: list[tuple[str, str, tuple[str, ...]]] = [
     ("docs/notebooks/README.md", _NOTEBOOKS, (
         "pip install missing-package",
     )),
-    ("docs/phases/phase2-foundations/2300-framework-engineering/"
-     "assessment/QUIZ.md", _CONTAINER, (
-         "RUN pip install -r requirements.txt",
-     )),
-    ("docs/phases/phase2-foundations/2300-framework-engineering/"
-     "guides/2306-Building-Production-Framework.md", _CONTAINER, (
-         "RUN pip install --no-cache-dir -r requirements.txt",
-     )),
-    ("docs/phases/phase2-foundations/2300-framework-engineering/"
-     "PREREQUISITES.md", _CONTAINER, (
-         "RUN pip install -r requirements.txt",
-     )),
 ]
 ACCEPTED: dict[tuple[str, str], str] = {
     (rel, line): reason
