@@ -220,6 +220,19 @@ How the two layers relate:
 - Migrating an existing `requirements.txt`: `uv add -r
   requirements.txt` imports it into `pyproject.toml` in one step
 
+#### Code Quality Tooling (ruff, zero-install via uvx)
+
+For linting and formatting, the 2026 standard is [ruff](https://docs.astral.sh/ruff/) — one Rust-fast tool that replaces the old flake8 + black + isort stack. You do not even need to install it: `uvx` runs a tool in an ephemeral, cached environment.
+
+```bash
+# Lint and format the project - no install step at all
+uvx ruff check .
+uvx ruff format .
+
+# Use it daily? Install it once into an isolated tool environment
+uv tool install ruff
+```
+
 ---
 
 ### Step 4: Ollama Installation
