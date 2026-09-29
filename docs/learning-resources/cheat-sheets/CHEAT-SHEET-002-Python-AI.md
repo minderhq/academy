@@ -1,7 +1,7 @@
 ---
 Document ID: CHEAT-SHEET-002
 Title: "CHEAT-SHEET-002: Python for AI/ML"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -448,6 +448,20 @@ def divide(a: float, b: float) -> float:
 
 # Use type: ignore sparingly
 result = complex_function(data)  # type: ignore
+```
+
+### Lint and Format
+```python
+# Lint with ruff (zero-install: uvx runs it without project changes)
+# uvx ruff check .
+
+# Auto-fix safe issues
+# uvx ruff check --fix .
+
+# Format like black, at Rust speed
+# uvx ruff format .
+
+# Habit: lint + format before every commit
 ```
 
 ---
