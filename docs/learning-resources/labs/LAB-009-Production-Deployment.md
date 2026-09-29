@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-009
 Title: "LAB-009: Production Deployment"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -35,6 +35,32 @@ Difficulty: Intermediate
 ---
 
 ## 🎯 Part 1: SSL/TLS Configuration (90 minutes)
+
+### Step 1.0: Project Manifest (pyproject.toml + uv.lock)
+
+**Objective:** Give every later stage - CI, Docker, Kubernetes - one reproducible dependency graph to install from.
+
+The service you deploy is a FastAPI app that talks to the RAG stack over HTTP. Every stage in this lab installs from the manifest below; nothing installs from a hand-typed pip list.
+
+```bash
+# Create the project manifest in the repo root.
+cd ~/lab-009-production
+
+# uv-native dependency management: pyproject.toml is the source of truth,
+# uv.lock pins the resolved graph. uv init --bare creates only the manifest;
+# uv add records each pin and writes the lockfile in one step.
+uv init --bare --python 3.13 .
+uv add fastapi==0.141.1 "uvicorn[standard]==0.52.1" "httpx>=0.28" \
+    prometheus-client==0.26.0 "cryptography>=46"
+
+# Test tooling goes into the default dev group: uv sync installs it
+# locally, and production images opt out with --no-dev.
+uv add --dev "pytest>=8" "pytest-cov>=5"
+```
+
+**Checkpoint:** `uv.lock` exists, and `uv sync --locked` recreates the exact environment from it.
+
+---
 
 ### Step 1.1: Understanding SSL/TLS
 
@@ -466,20 +492,14 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.13'
+      - name: Install uv
+        uses: astral-sh/setup-uv@v9
 
       - name: Install dependencies
-        run: |
-          pip install uv
-          uv pip install --system -r requirements.txt
-          uv pip install --system pytest pytest-cov
+        run: uv sync --locked # dev group installs by default, so pytest rides along
 
       - name: Run tests
-        run: |
-          pytest --cov=api tests/ --cov-report=xml
+        run: uv run pytest --cov=api tests/ --cov-report=xml
 
       - name: Upload coverage
         uses: codecov/codecov-action@v3
@@ -571,8 +591,12 @@ RUN apt-get update && apt-get install -y \
 # Official uv-in-Docker pattern: copy the uv binary from the uv image
 # (https://docs.astral.sh/uv/guides/integration/docker/)
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
-COPY requirements.txt .
-RUN uv pip install --system --no-cache -r requirements.txt
+# Dependency layer: only manifest/lockfile changes rebuild this.
+# uv sync --locked installs exactly what uv.lock pins; --no-install-project
+# skips the project itself; --no-dev keeps test tooling out of the image.
+COPY pyproject.toml uv.lock ./
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --locked --no-install-project --no-dev
 
 # Runtime stage
 FROM python:3.13-slim
@@ -584,12 +608,11 @@ RUN apt-get update && apt-get install -y \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy Python packages from builder (uv --system installs into
-# /usr/local; entry points like uvicorn live in /usr/local/bin,
-# which is already on PATH)
-COPY --from=builder /usr/local/lib/python3.13/site-packages \
-    /usr/local/lib/python3.13/site-packages
-COPY --from=builder /usr/local/bin/uvicorn /usr/local/bin/uvicorn
+# Copy the virtualenv from the builder (same base image, so the
+# venv's /usr/local/bin/python3.13 symlink resolves identically);
+# entry points like uvicorn live in /app/.venv/bin, exposed by PATH
+COPY --from=builder /build/.venv /app/.venv
+ENV PATH="/app/.venv/bin:$PATH"
 
 # Copy application code
 COPY ./api /app/api
