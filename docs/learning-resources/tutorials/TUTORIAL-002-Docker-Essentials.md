@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-002
 Title: "TUTORIAL-002: Docker Essentials for AI"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -160,11 +160,10 @@ def root():
     return {"message": "Hello AI!"}
 EOF
 
-# Create requirements.txt
-cat > requirements.txt << 'EOF'
-fastapi==0.141.1
-uvicorn==0.52.1
-EOF
+# Create the project manifest - pyproject.toml + uv.lock ship with
+# the demo and pin the dependency graph.
+uv init --bare --python 3.13 .
+uv add fastapi==0.141.1 uvicorn==0.52.1
 ```
 
 ### Create Dockerfile:
@@ -179,10 +178,17 @@ WORKDIR /app
 # (https://docs.astral.sh/uv/guides/integration/docker/)
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
 
-COPY requirements.txt .
-RUN uv pip install --system --no-cache -r requirements.txt
+# Dependency layer: only manifest/lockfile changes rebuild this.
+COPY pyproject.toml uv.lock ./
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --locked --no-install-project
 
 COPY . .
+
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --locked
+# uv sync creates the project venv at /app/.venv - put it on PATH
+ENV PATH="/app/.venv/bin:$PATH"
 
 EXPOSE 8000
 
@@ -368,16 +374,21 @@ RUN apt-get update && \
 # Set working directory
 WORKDIR /app
 
-# Copy and install requirements first (better caching)
-COPY requirements.txt .
+# Copy manifest + lockfile first (better caching): only manifest/
+# lockfile changes rebuild the dependency layer.
+COPY pyproject.toml uv.lock ./
 
 # Official uv-in-Docker pattern: copy the uv binary from the uv image
 # (https://docs.astral.sh/uv/guides/integration/docker/)
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
-RUN uv pip install --system --no-cache -r requirements.txt
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --locked --no-install-project
 
 # Copy application code
 COPY . .
+
+# uv sync creates the project venv at /app/.venv - put it on PATH
+ENV PATH="/app/.venv/bin:$PATH"
 
 # Create non-root user
 RUN useradd -m appuser && \
@@ -393,7 +404,7 @@ CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
 ```
 
 **Improvements:**
-- ✅ Separate dependency installation (better caching)
+- ✅ Separate dependency layer (manifest + lockfile first)
 - ✅ Cleanup apt cache
 - ✅ Run as non-root user (security)
 - ✅ Add health check
@@ -520,7 +531,7 @@ How Docker fits into PROJECT-OMEGA:
    - `docker run` = single container
    - `docker-compose up` = multi-container orchestrator
 
-4. **Why do we copy requirements.txt before code in Dockerfile?**
+4. **Why do we copy pyproject.toml + uv.lock before code in Dockerfile?**
    - Better layer caching (dependencies only reinstall when changed)
 
 ---
