@@ -3,7 +3,7 @@ Document ID: 2300-QUIZ
 Title: "2300: Framework Engineering - Quiz"
 Phase: 2
 Module: 2300
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 30 minutes
@@ -64,7 +64,7 @@ D) Smaller model size
 
 **Which pattern allows runtime algorithm selection?**
 
-A) Registry Pattern
+A) Registry Pattern, a lookup that never swaps algorithms at runtime
 B) Strategy Pattern
 C) Factory Pattern
 D) Observer Pattern
@@ -79,7 +79,7 @@ D) Observer Pattern
 
 **Why use dataclasses for configuration?**
 
-A) Faster execution
+A) Faster execution, a speedup dataclasses have never been measured to deliver
 B) Better serialization
 C) Type safety and validation
 D) Lower memory usage
@@ -94,7 +94,7 @@ D) Lower memory usage
 
 **What is the main benefit of request batching?**
 
-A) Smaller models
+A) Smaller models, a size change batching never applies to any weights
 B) Better accuracy
 C) Lower latency
 D) Higher throughput
@@ -109,7 +109,7 @@ D) Higher throughput
 
 **When should you use model parallelism?**
 
-A) For small models
+A) For small models, workloads that fit a single GPU with room to spare
 B) When model doesn't fit on one GPU
 C) Always
 D) For faster training
@@ -139,7 +139,7 @@ D) Faster deployment
 
 **What is canary deployment?**
 
-A) Deploy to production immediately
+A) Deploy to production immediately, a full-traffic jump that skips measurement entirely
 B) Deploy multiple versions simultaneously
 C) Gradual rollout to small percentage of traffic
 D) Automatic deployment
@@ -169,7 +169,7 @@ D) DELETE
 
 **Why implement rate limiting?**
 
-A) To reduce model size
+A) To reduce model size, a footprint rate limiting has no mechanism to touch
 B) To improve accuracy
 C) To prevent abuse and manage load
 D) To speed up requests
@@ -184,7 +184,7 @@ D) To speed up requests
 
 **What problem do plugin registries solve?**
 
-A) Faster model training
+A) Faster model training, a speedup registration machinery has never produced
 B) Reduced memory usage
 C) Better model accuracy
 D) Dynamic component loading
@@ -199,7 +199,7 @@ D) Dynamic component loading
 
 **What is the purpose of A/B testing ML models?**
 
-A) To reduce training time
+A) To reduce training time, a saving traffic splitting cannot deliver on its own
 B) To compare model performance in production
 C) To reduce model size
 D) To improve model accuracy
@@ -230,7 +230,7 @@ D) Only some instances updated
 **What HTTP status code indicates rate limiting?**
 
 A) 429
-B) 404
+B) 404, a code for missing resources rather than exhausted quotas
 C) 400
 D) 500
 
@@ -246,7 +246,7 @@ D) 500
 
 A) Better models
 B) Less memory usage
-C) Faster training
+C) Faster training, a speed gain containerization itself never supplies
 D) Consistent environment
 
 **Answer:** D
@@ -261,7 +261,7 @@ D) Consistent environment
 
 A) For real-time token generation
 B) For data loading
-C) For batch predictions
+C) For batch predictions, a workload where streamed events add overhead, not value
 D) For model training
 
 **Answer:** A
