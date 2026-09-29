@@ -350,19 +350,20 @@ stand today?" without running each tool by hand.
                        hours), hard since the drain; dual-mode
                        "quick/full review" entries are a legal
                        shape, both durations parse
-    prereq_census Prerequisites chain integrity (PQ-01..02, hard):
+    prereq_census Prerequisites chain integrity (PQ-01..03, hard):
                        prerequisites are the learning-path
                        backbone - a dangling prerequisite is a
                        lesson that can never be unlocked. PQ-01
                        dangling machine-parseable token, PQ-02
-                       ambiguous token. Born tick-409 measuring
-                       108 docs / 7 tokens, all resolving exactly
-                       one file - hard from birth (KW-03). Shape
-                       variance (99 free-text "See module README",
-                       3 titled brackets, 2 bare lists, 4 prose)
-                       is inventory: canonical linked shape is
-                       the bracketed bare-token list, PQ-03 shape
-                       class queued mirroring tick-405/406
+                       ambiguous token - both hard from birth,
+                       measured 0 across 108 docs / 7 tokens at
+                       tick-409 (KW-03). PQ-03 machine-parseable
+                       value not in canonical bracketed bare-token
+                       list form - 5 sites drained tick-410 (3
+                       titled brackets stripped, 2 bare lists
+                       bracketed), hard since the drain; free-text
+                       and prose entries remain allowed as
+                       authoring-stage pointers
     unfinished_marker_scan unfinished-content markers in prose
                        (UM-01): outside any code fence, inline code
                        scrubbed, a line must not carry "coming soon",

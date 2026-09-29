@@ -14,12 +14,18 @@ sentences.
 PQ-01  machine-parseable token resolves to ZERO files (dangling).
 PQ-02  machine-parseable token resolves to MULTIPLE files
        (ambiguous).
+PQ-03  machine-parseable value not in canonical bracketed
+       bare-token list form (`[1101, 1102]`, matching the Related
+       field standard). HARD - drained tick-410: all 5 birth
+       sites canonicalized (3 titled brackets stripped of titles,
+       2 bare lists bracketed); free-text ("See module README",
+       "See PREREQUISITES.md") and prose sentences remain allowed
+       as authoring-stage pointers, a separate content pass.
 
-HARD GATE on PQ-01/PQ-02 (KW-03 born-at-zero if measured 0 at
-birth). Shape variance (free-text vs titled vs bare vs prose) is
-inventory only: canonical linked shape is the bracketed bare-token
-list, matching the Related field standard - a drain + PQ-03 shape
-class is the queued next pass, mirroring tick-405/406.
+HARD GATE - exit 1 on any finding. PQ-01/PQ-02 hard from birth
+(KW-03 born-at-zero: 108 docs / 7 tokens, all resolving exactly
+one file at tick-409); PQ-03 joined after the tick-410 shape
+drain (census -> drain -> gate cycle).
 
 Run over the whole corpus:
     python scripts/qa/prereq_census.py --root .
@@ -36,7 +42,8 @@ FM_OPEN = re.compile(r"^---\s*$")
 FM_CLOSE = re.compile(r"^(---|\.\.\.)\s*$")
 PQ_FIELD = re.compile(r"^Prerequisites:(.*)$")
 TOKEN = re.compile(r"\d{4}|\b(?:LAB|TUTORIAL)-\d{3}\b")
-BRACKET_TOK = re.compile(r"\[(\d{4}|(?:LAB|TUTORIAL)-\d{3})\]")
+CANON = re.compile(r"^\[(?:\d{4}|(?:LAB|TUTORIAL)-\d{3})"
+                   r"(?:, (?:\d{4}|(?:LAB|TUTORIAL)-\d{3}))*\]$")
 FREE_TEXT = ("See module README", "See PREREQUISITES.md")
 
 
@@ -95,22 +102,24 @@ def main() -> int:
         toks: list[str] = []
         if any(val.startswith(t) for t in FREE_TEXT):
             shapes["free-text"] += 1
+        elif CANON.match(val):
+            shapes["canonical-bracketed"] += 1
+            toks = TOKEN.findall(val)
         else:
-            btoks = BRACKET_TOK.findall(val)
-            if btoks:
-                shapes["titled-brackets"] += 1
-                toks = btoks
+            ctoks = TOKEN.findall(val)
+            # prose sentences may carry stray digits; treat as
+            # machine-parseable only if every comma item is a
+            # pure token or token list
+            items = [s.strip() for s in val.split(",")]
+            if ctoks and all(TOKEN.fullmatch(s) for s in items):
+                shapes["non-canonical"] += 1
+                toks = ctoks
+                findings.append(f"{rel}: PQ-03 non-canonical Prerequisites "
+                                f"shape {val!r} (use bracketed bare-token "
+                                f"list [tok, tok]; titles belong in the "
+                                f"target doc)")
             else:
-                ctoks = TOKEN.findall(val)
-                # prose sentences may carry stray digits; treat as
-                # machine-parseable only if every comma item is a
-                # pure token or token list
-                items = [s.strip() for s in val.split(",")]
-                if ctoks and all(TOKEN.fullmatch(s) for s in items):
-                    shapes["bare-list"] += 1
-                    toks = ctoks
-                else:
-                    shapes["prose"] += 1
+                shapes["prose"] += 1
         for tok in toks:
             n_tokens += 1
             targets = index.get(tok, [])
@@ -125,14 +134,16 @@ def main() -> int:
 
     pq01 = sum(1 for f in findings if " PQ-01 " in f)
     pq02 = sum(1 for f in findings if " PQ-02 " in f)
+    pq03 = sum(1 for f in findings if " PQ-03 " in f)
     for f in findings:
         print(f.encode("ascii", "backslashreplace").decode("ascii"))
     print(f"prereq_census: docs={n_docs} tokens={n_tokens} "
           f"shapes={dict(shapes)} resolve0={targets_n[0]} "
           f"resolve1={targets_n[1]} resolveN={targets_n[2]} "
-          f"PQ-01={pq01} PQ-02={pq02} "
-          f"(hard gate PQ-01/02; shapes inventory, PQ-03 queued)")
-    return 1 if (pq01 or pq02) else 0
+          f"PQ-01={pq01} PQ-02={pq02} PQ-03={pq03} "
+          f"(hard gate; PQ-03 drained tick-410, Related-standard "
+          f"bracketed form)")
+    return 1 if findings else 0
 
 
 if __name__ == "__main__":

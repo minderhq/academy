@@ -3,11 +3,11 @@ Document ID: 1102
 Title: "1102: Network Topology Design"
 Phase: 1
 Module: 1100
-Last Updated: 2026-09-25
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 2 hours
-Prerequisites: "[1101] Internet Uplink & Modem Configuration"
+Prerequisites: [1101]
 Related: [1103, 1201]
 Tags: [networking, topology, vlan, switch, star-topology]
 Hardware: [Managed Ethernet switch, Cat5e/6/6a cabling, router]

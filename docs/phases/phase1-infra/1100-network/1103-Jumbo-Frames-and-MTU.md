@@ -3,11 +3,11 @@ Document ID: 1103
 Title: "1103: Jumbo Frames and MTU Optimization"
 Phase: 1
 Module: 1100
-Last Updated: 2026-09-28
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 2 hours
-Prerequisites: "[1101] Internet Uplink & Modem Configuration, [1102] Network Topology Design"
+Prerequisites: [1101, 1102]
 Related: [1101, 1102]
 Tags: [networking, mtu, jumbo-frames, performance]
 ---

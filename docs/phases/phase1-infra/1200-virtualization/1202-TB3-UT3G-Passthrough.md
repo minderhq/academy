@@ -3,11 +3,11 @@ Document ID: 1202
 Title: "1202: GPU Passthrough (IOMMU/VFIO)"
 Phase: 1
 Module: 1200
-Last Updated: 2026-09-28
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
-Prerequisites: "[1201] Proxmox Hypervisor SOP"
+Prerequisites: [1201]
 Related: [1201, 1203, 1204]
 Tags: [virtualization, proxmox, gpu, iommu, vfio]
 Hardware: [x86_64 host with VT-d or AMD-Vi, one NVIDIA GPU (8GB+ VRAM)]
