@@ -3,7 +3,7 @@ Document ID: 7201
 Title: "7201: Tool Calling & Function Execution"
 Phase: 7
 Module: 7200
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -146,7 +146,6 @@ tools = [
 ### 1. Information Retrieval Tools
 
 ```python
-from typing import Dict
 
 
 # Web Search
@@ -155,12 +154,12 @@ def search_web(query: str, num_results: int = 5) -> list[str]:
     pass
 
 # Database Query
-def query_database(sql: str) -> list[Dict]:
+def query_database(sql: str) -> list[dict]:
     """Execute SQL query on database"""
     pass
 
 # Vector Search
-def vector_search(embedding: list[float], top_k: int = 10) -> list[Dict]:
+def vector_search(embedding: list[float], top_k: int = 10) -> list[dict]:
     """Search vector database for similar documents;
     each hit is a document payload dict"""
     pass
@@ -169,7 +168,6 @@ def vector_search(embedding: list[float], top_k: int = 10) -> list[Dict]:
 ### 2. Computation Tools
 
 ```python
-from typing import Dict
 
 
 # Code Execution
@@ -183,7 +181,7 @@ def calculate(expression: str) -> float:
     pass
 
 # Data Processing
-def process_data(data: list[Dict], operation: str) -> list[Dict]:
+def process_data(data: list[dict], operation: str) -> list[dict]:
     """Process data with specified operation"""
     pass
 ```
@@ -191,7 +189,6 @@ def process_data(data: list[Dict], operation: str) -> list[Dict]:
 ### 3. System Interaction Tools
 
 ```python
-from typing import Dict
 
 
 # File Operations
@@ -200,7 +197,7 @@ def read_file(path: str) -> str:
     pass
 
 # API Calls
-def call_api(url: str, method: str, headers: Dict) -> Dict:
+def call_api(url: str, method: str, headers: dict) -> dict:
     """Make HTTP request to API; returns the parsed JSON body"""
     pass
 
@@ -316,7 +313,7 @@ print(final_response.choices[0].message.content)
 ### 2. Error Handling
 
 ```python
-from typing import Any, Dict
+from typing import Any
 
 
 class ValidationError(Exception):
@@ -332,7 +329,7 @@ tool_registry = {
 }
 
 
-def execute_tool(tool_name: str, arguments: Dict) -> Any:
+def execute_tool(tool_name: str, arguments: dict) -> Any:
     # Unknown tools get a structured error, not a KeyError
     if tool_name not in tool_registry:
         return {"status": "error", "error": f"Unknown tool: {tool_name}"}
@@ -368,14 +365,14 @@ print(execute_tool("boom", {}))
 ### 3. Tool Registry Pattern
 
 ```python
-from typing import Callable, Dict
+from typing import Callable
 
 
 class ToolRegistry:
     def __init__(self):
         self.tools = {}
 
-    def register(self, name: str, func: Callable, schema: Dict):
+    def register(self, name: str, func: Callable, schema: dict):
         self.tools[name] = {
             "function": func,
             "schema": schema
@@ -386,7 +383,7 @@ class ToolRegistry:
             raise ValueError(f"Tool {name} not found")
         return self.tools[name]["function"](**kwargs)
 
-    def get_schemas(self) -> list[Dict]:
+    def get_schemas(self) -> list[dict]:
         return [
             {"type": "function", "function": tool["schema"]}
             for tool in self.tools.values()
@@ -578,10 +575,9 @@ print(perm.check_permission("mystery_tool"))   # False — deny by default
 ### 3. Input Validation
 
 ```python
-from typing import Dict
 
 
-def validate_tool_input(tool_name: str, arguments: Dict) -> bool:
+def validate_tool_input(tool_name: str, arguments: dict) -> bool:
     """Pre-execution validation: name shape, payload size, path safety"""
     if not tool_name or not tool_name.replace("_", "").isalnum():
         return False
