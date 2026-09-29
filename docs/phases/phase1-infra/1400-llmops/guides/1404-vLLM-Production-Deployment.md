@@ -370,7 +370,7 @@ curl http://192.168.1.100:8000/v1/models
 # Chat completion (Authorization header only needed with --api-key)
 curl -X POST http://192.168.1.100:8000/v1/chat/completions \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $VLLM_API_KEY" \
+  -H "Authorization: Bearer ${VLLM_API_KEY:?export VLLM_API_KEY first}" \
   -d '{
     "model": "TheBloke/Mistral-7B-Instruct-v0.2-AWQ",
     "messages": [

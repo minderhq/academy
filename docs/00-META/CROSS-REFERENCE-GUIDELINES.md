@@ -257,7 +257,8 @@ Before marking a document as Complete, verify:
 ```bash
 # Find broken internal links (example script)
 grep -r '\[.*\](' PROJECT-OMEGA/docs/ | while read line; do
-    # Extract link path
+    # Extract the source file from the grep output and the link path
+    file="${line%%:*}"
     link=$(echo "$line" | sed -n 's/.*](\([^)]*\)).*/\1/p')
     # Check if file exists (for relative links)
     if [[ "$link" == ../* ]] || [[ "$link" == ./* ]]; then
