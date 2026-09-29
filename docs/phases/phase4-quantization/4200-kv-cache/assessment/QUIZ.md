@@ -19,24 +19,24 @@ Difficulty: Advanced
 
 **1. What is the primary purpose of KV cache?**
 
-A) Store model weights
-B) Store training data
+A) Store the frozen weight matrices of the model in HBM
+B) Store the raw training corpus on disk between epochs
 C) Cache Key and Value tensors to avoid recomputation
-D) Compress the model
+D) Compress the model weights into a smaller checkpoint
 
 **2. How much memory does KV cache typically use per token?**
 
-A) Negligible
-B) Depends only on vocabulary size
-C) Same as model weights
+A) Negligible - a few kilobytes for the entire conversation
+B) Depends only on vocabulary size, not on model depth
+C) Exactly the same footprint as the model weights
 D) ~2 bytes per parameter per layer
 
 **3. What is the main bottleneck for long context windows?**
 
-A) Compute time
+A) Compute time for the softmax over the vocabulary
 B) KV cache memory usage
-C) Model size
-D) Training data
+C) The number of transformer layers in the model
+D) The size of the pretraining corpus in terabytes
 
 **4. What happens to memory usage as context length increases?**
 
@@ -47,24 +47,24 @@ D) Decreases
 
 **5. What is PagedAttention used for?**
 
-A) Faster attention computation
+A) Faster attention computation through kernel fusion
 B) Efficient KV cache management
-C) Model compression
-D) Training acceleration
+C) Model compression into fewer bits per weight
+D) Training acceleration via larger batch sizes
 
 **6. What is the main benefit of multi-query attention (MQA) for memory?**
 
-A) Faster computation
+A) Faster computation by skipping the softmax
 B) Shared Key/Value projections across heads
-C) Better accuracy
-D) Simpler architecture
+C) Better accuracy on every downstream benchmark
+D) Simpler architecture by removing attention layers
 
 **7. What is "context window" in LLMs?**
 
-A) Training dataset size
+A) The size of the pretraining dataset in tokens
 B) Maximum sequence length the model can process
-C) Number of layers
-D) Vocabulary size
+C) The number of attention heads per layer
+D) The vocabulary size of the tokenizer
 
 **8. Which technique allows extending context window beyond training length?**
 
@@ -75,17 +75,17 @@ D) Distillation
 
 **9. What is the trade-off with larger context windows?**
 
-A) Faster inference
+A) Faster inference with lower latency per token
 B) Higher memory and compute
-C) Better accuracy
-D) Smaller model size
+C) Better accuracy on every evaluation benchmark
+D) A smaller model that fits on consumer GPUs
 
 **10. What is sliding window attention?**
 
-A) Processing windows sequentially
+A) Processing the whole document again at every step
 B) Each token attends only to nearby tokens
-C) Using multiple windows in parallel
-D) Rotating the context window
+C) Using multiple windows in parallel across GPUs
+D) Rotating the context window every few steps
 
 **11. Grouped-Query Attention (GQA) is:**
 
@@ -103,10 +103,10 @@ D) Context length squared
 
 **13. In speculative decoding, the draft model:**
 
-A) Trains the target model
+A) Trains the target model from scratch on fresh synthetic datasets
 B) Proposes tokens that the target model verifies in parallel
-C) Replaces the target model entirely
-D) Quantizes weights
+C) Replaces the target model entirely once it converges
+D) Quantizes the target weights to 4-bit precision
 
 **14. Speculative decoding preserves output quality because:**
 
@@ -125,9 +125,9 @@ D) Extend the vocabulary
 **16. During prefill (processing the prompt), inference is typically:**
 
 A) Compute-bound; during decode it becomes memory-bandwidth-bound
-B) Memory-bound throughout
-C) Disk-bound
-D) Network-bound
+B) Memory-bound on every single step of prefill and decode
+C) Disk-bound because the weights stream from slow storage
+D) Network-bound on every single distributed inference deployment
 
 **17. FlashAttention primarily:**
 
@@ -138,10 +138,10 @@ D) Speeds up exact attention via IO-aware tiling that reduces GPU memory traffic
 
 **18. RoPE (Rotary Position Embedding) encodes:**
 
-A) Vocabulary IDs
+A) Vocabulary IDs of each token with a one-hot position flag
 B) Token positions as rotations applied to Q/K vectors
-C) Attention dropout rates
-D) Layer indices
+C) Attention dropout rates per transformer layer
+D) Layer indices for the residual stream
 
 **19. Extending context beyond training length is commonly done with:**
 
@@ -153,9 +153,9 @@ D) A reduced vocabulary
 **20. Inference frameworks offload KV cache to CPU/disk in order to:**
 
 A) Serve sequences longer than VRAM allows
-B) Improve accuracy
-C) Reduce model size
-D) Avoid tokenization
+B) Improve numerical accuracy of the attention scores
+C) Reduce the size of the model weights on disk
+D) Avoid tokenization of the input prompt entirely
 
 ---
 
