@@ -902,8 +902,8 @@ uv pip install pandas
 # Multiple packages
 uv pip install requests numpy pandas
 
-# From requirements.txt
-uv pip install -r requirements.txt
+# From a project's lockfile (the standard share format - see 4.4)
+uv sync --locked
 ```
 
 > Every `pip install X` you see online maps 1:1 to `uv pip install X`.
@@ -987,13 +987,21 @@ uv pip install requests
 deactivate
 ```
 
-#### requirements.txt:
-```bash
-# Generate requirements.txt from the active environment
-uv pip freeze > requirements.txt
+#### Project workflow (reproducibility):
 
-# Install from requirements.txt
-uv pip install -r requirements.txt
+For anything you share or deploy, the project manifest is the modern
+standard - `pyproject.toml` declares dependencies, `uv.lock` pins the
+exact graph, and one command recreates it anywhere.
+
+```bash
+# Create the project manifest
+uv init --bare --python 3.13 .
+
+# Add dependencies - writes pyproject.toml and uv.lock
+uv add requests numpy pandas
+
+# Recreate the exact locked environment anywhere
+uv sync --locked
 ```
 
 ### 4.5 Code Quality: Lint and Format Your Code
