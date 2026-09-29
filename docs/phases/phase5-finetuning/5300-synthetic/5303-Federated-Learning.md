@@ -3,7 +3,7 @@ Document ID: 5303
 Title: "5303: Federated Learning"
 Phase: 5
 Module: 5300
-Last Updated: 2026-09-27
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -25,6 +25,7 @@ Tags: ['federated-learning', 'privacy', 'differential-privacy', 'distributed', '
 - [Federated LLM Fine-Tuning](#federated-llm-fine-tuning)
 - [Orchestration with Flower](#orchestration-with-flower)
 - [Production Checklist](#production-checklist)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -393,6 +394,10 @@ Operations
 ```
 
 ---
+
+## Summary
+
+Federated learning trains a shared model across many data holders without the data ever leaving them: participants train locally, only model updates travel, and FedAvg averages the rounds. This lesson faced the two hard problems head-on - statistical heterogeneity, where non-IID client data bends the average, and the privacy illusion, since FedAvg alone leaks and DP noise plus secure aggregation are separate layers. It then covered federated LLM fine-tuning, Flower orchestration, and the production checklist. The rule it leaves: federation is an architecture decision about data residency first and an ML decision second.
 
 ## References
 

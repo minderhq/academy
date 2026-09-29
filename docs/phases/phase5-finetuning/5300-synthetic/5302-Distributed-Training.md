@@ -3,7 +3,7 @@ Document ID: 5302
 Title: "5302: Distributed Training Orchestration"
 Phase: 5
 Module: 5300
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -25,6 +25,7 @@ Tags: ['finetuning', 'synthetic-data', 'distillation', 'distributed']
 - [Monitoring and Logging](#monitoring-and-logging)
 - [Performance Optimization](#performance-optimization)
 - [Expected Performance](#expected-performance)
+- [Summary](#summary)
 - [References](#references)
 - [Next Steps](#next-steps)
 
@@ -770,6 +771,10 @@ Configuration | Target speedup | Implied serial fraction
 The targets are representative for DDP over a 10 GbE-class cluster; the serial-fraction column comes from the Amdahl calculator above. Fit your own two-GPU data point first, then trust its prediction for the next size up.
 
 ---
+
+## Summary
+
+Distributed training in a homelab starts honest: single-GPU constraints first, with every runnable block executing on one machine, and the K3s and Ray scale-out paths marked clearly as reference sketches. This lesson walked the strategies that fit real hardware, the fine-tuning workflows layered on them, Ray orchestration when hardware allows, and the monitoring that makes multi-node runs debuggable. The expected-performance section sets the bar: measure your own cluster, because the numbers only mean something on the silicon you actually own.
 
 ## References
 

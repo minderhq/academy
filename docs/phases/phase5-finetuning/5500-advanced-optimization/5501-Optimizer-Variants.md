@@ -3,7 +3,7 @@ Document ID: 5501
 Title: "5501: Optimizer Variants"
 Phase: 5
 Module: 5500
-Last Updated: 2026-09-27
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -25,6 +25,7 @@ Tags: ['finetuning', 'optimizers', 'adamw', 'memory', 'training']
 - [Sign-Based and Second-Order](#sign-based-and-second-order)
 - [Choosing an Optimizer](#choosing-an-optimizer)
 - [Practical Setup Recipe](#practical-setup-recipe)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -342,6 +343,10 @@ Pitfalls checklist
 ```
 
 ---
+
+## Summary
+
+The optimizer is the quietest but largest consumer of GPU memory at LLM scale: Adam-family optimizers carry two moment buffers per parameter, typically doubling or tripling the model's own footprint. This lesson built the mental model from that memory math outward - what AdamW actually stores, why decoupled weight decay matters, the memory-efficient variants, and the honest status of sign-based and second-order methods. The choosing section is the practice: AdamW until memory forces otherwise, then the variant that buys back the moment buffers cheapest.
 
 ## References
 

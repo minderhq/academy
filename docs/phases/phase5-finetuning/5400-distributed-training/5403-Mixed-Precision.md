@@ -3,7 +3,7 @@ Document ID: 5403
 Title: "5403: Mixed Precision Training"
 Phase: 5
 Module: 5400
-Last Updated: 2026-09-25
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -26,6 +26,7 @@ Tags: ['training', 'mixed-precision', 'bf16', 'fp16', 'gpu']
 - [FP8: The Frontier](#fp8-the-frontier)
 - [Common Failure Modes](#common-failure-modes)
 - [Best Practices](#best-practices)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -335,6 +336,10 @@ def bench(fn, iters=50):
 ```
 
 ---
+
+## Summary
+
+Mixed precision runs most of the training step in 16-bit while keeping the numerically fragile parts - weight updates, norms, reductions - in FP32; it halves weight and activation bytes and unlocks Tensor Core throughput, and it is now the default for every serious run. This lesson toured the precision zoo, showed what autocast actually does, walked loss scaling as the FP16 tax, made the BF16-is-the-default case, and put FP8 on the frontier honestly. The failure-modes and ledger sections are the practice: know where precision is safe to drop and where it silently poisons training.
 
 ## References
 

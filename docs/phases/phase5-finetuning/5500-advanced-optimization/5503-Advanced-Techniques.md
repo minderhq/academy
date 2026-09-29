@@ -3,7 +3,7 @@ Document ID: 5503
 Title: "5503: Advanced Optimization Techniques"
 Phase: 5
 Module: 5500
-Last Updated: 2026-09-25
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -27,6 +27,7 @@ Tags: ['optimization', 'training', 'gradient-clipping', 'sam', 'memory']
 - [Second-Order Optimizers: The Honest Status](#second-order-optimizers-the-honest-status)
 - [Scouting: The LR Range Test](#scouting-the-lr-range-test)
 - [Best Practices](#best-practices)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -411,6 +412,10 @@ Reading the curve
 ```
 
 ---
+
+## Summary
+
+Beyond optimizer and schedule sits a toolbox that fixes specific failures: gradient clipping tames explosions, accumulation and checkpointing buy batch size and depth with different currencies, SAM trades time for flatter minima, and second-order optimizers remain more promise than practice at LLM scale. This lesson mapped the toolbox one technique per screen, added the regularization essentials, and ended with the LR range test as the scouting tool that grounds every other choice in measurement. Best practices is the honest summary: reach for these one at a time, and only when the failure they fix is the one you have.
 
 ## References
 

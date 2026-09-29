@@ -3,7 +3,7 @@ Document ID: 5404
 Title: "5404: Distributed Optimization"
 Phase: 5
 Module: 5400
-Last Updated: 2026-09-26
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -25,6 +25,7 @@ Tags: ['distributed', 'zero', 'deepspeed', 'communication', 'training']
 - [Gradient Compression](#gradient-compression)
 - [Communication Backends](#communication-backends)
 - [Best Practices](#best-practices)
+- [Summary](#summary)
 - [References](#references)
 - [Next Steps](#next-steps)
 
@@ -479,6 +480,10 @@ dist.init_process_group(backend="gloo", init_method="env://")
 ```
 
 ---
+
+## Summary
+
+Under every distributed run sits optimization-side machinery: the all-reduce collective and its bandwidth math, ZeRO's optimizer-state sharding, and the DeepSpeed tooling that packages both. This lesson covered the overlap mechanics that hide communication behind compute, gradient compression when bandwidth is the bottleneck, and the communication backends you choose between in practice. The rule it leaves: distributed speed is a bandwidth story - profile the collective, shard what the memory ledger says, and let overlapped communication make the network bill disappear.
 
 ## References
 

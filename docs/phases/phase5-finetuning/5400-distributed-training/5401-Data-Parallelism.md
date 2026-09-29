@@ -3,7 +3,7 @@ Document ID: 5401
 Title: "5401: Data Parallelism"
 Phase: 5
 Module: 5400
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -25,6 +25,7 @@ Tags: ['distributed', 'ddp', 'fsdp', 'training', 'gpu']
 - [Memory Ledger](#memory-ledger)
 - [When to Use Each](#when-to-use-each)
 - [Best Practices](#best-practices)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -317,6 +318,10 @@ Rules of thumb
 ```
 
 ---
+
+## Summary
+
+Data parallelism is the workhorse of multi-GPU training: replicate the model on every GPU, give each replica a different batch slice, and average the gradients so replicas stay identical. This lesson dissected the communication anatomy, then built the two implementations you actually use - DDP holding the full model per GPU and FSDP sharding it - and closed each with the memory ledger that shows where the bytes go. The decision is mechanical once the ledger is on the table: model fits per-GPU means DDP, it does not fit means FSDP, and best practices keep both honest.
 
 ## References
 

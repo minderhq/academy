@@ -3,7 +3,7 @@ Document ID: 5301
 Title: "5301: Knowledge Distillation - Training Small Models Using Big Model Outputs"
 Phase: 5
 Module: 5300
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -24,6 +24,7 @@ Tags: ['finetuning', 'synthetic-data', 'distillation', 'federated-learning']
 - [Data Generation for Distillation](#data-generation-for-distillation)
 - [Evaluating Distillation](#evaluating-distillation)
 - [Practical Tips](#practical-tips)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -518,6 +519,10 @@ Rule of thumb: α = 0.5 (balanced)
 ```
 
 ---
+
+## Summary
+
+Distillation compresses a large teacher into a small student by training the student on the teacher's softened output distribution - the loss carries dark knowledge plain labels do not. This lesson covered the concept, the distillation loss and its temperature, the advanced techniques, data generation from the teacher, and honest evaluation against the teacher's ceiling. The practical tips close it: distill for deployment efficiency, and measure the student on the metrics that matter to users, not just accuracy.
 
 ## References
 

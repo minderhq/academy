@@ -3,7 +3,7 @@ Document ID: 5402
 Title: "5402: Model Parallelism"
 Phase: 5
 Module: 5400
-Last Updated: 2026-09-25
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -24,6 +24,7 @@ Tags: ['distributed', 'pipeline-parallelism', 'tensor-parallelism', 'training', 
 - [Combining Axes: 3D Parallelism](#combining-axes-3d-parallelism)
 - [Choosing a Scheme](#choosing-a-scheme)
 - [Best Practices](#best-practices)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -333,6 +334,10 @@ Order of escalation (cheapest complexity first)
 ```
 
 ---
+
+## Summary
+
+When the model no longer fits, model parallelism splits it along two axes: pipeline parallelism assigns contiguous layer ranges to different GPUs, and tensor parallelism splits individual weight matrices inside a layer. This lesson built intuition for both, showed how they compose into 3D parallelism for the largest models, and gave the decision guide - pipeline pays bubble cost for memory, tensor pays communication for speed, and the combination is what the largest training runs actually do. Best practices close with the scheme-selection checklist.
 
 ## References
 

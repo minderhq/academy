@@ -3,7 +3,7 @@ Document ID: 5502
 Title: "5502: Learning Rate Scheduling"
 Phase: 5
 Module: 5500
-Last Updated: 2026-09-25
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -26,6 +26,7 @@ Tags: ['optimization', 'learning-rate', 'scheduling', 'warmup', 'training']
 - [Hugging Face Schedulers](#hugging-face-schedulers)
 - [Layer-Wise LR Decay](#layer-wise-lr-decay)
 - [Best Practices](#best-practices)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -404,6 +405,10 @@ optimizer = torch.optim.AdamW(layerwise_lr_decay(model, base_lr=5e-5, decay=0.95
 ```
 
 ---
+
+## Summary
+
+The learning rate is the one hyperparameter that changes meaning mid-run: the value that escapes bad initialization early destroys a nearly converged model later, so scheduling encodes the arc - warm up past the unstable phase, hold or decay into a minimum. This lesson gave the canonical transformer recipe, cataloged the schedulers and when each fits, covered loop-integration ordering rules, Hugging Face scheduler wiring, and layer-wise decay for fine-tuning. The best-practices close: pick cosine or linear unless you have a measured reason not to, and never tune the LR without fixing the schedule.
 
 ## References
 
