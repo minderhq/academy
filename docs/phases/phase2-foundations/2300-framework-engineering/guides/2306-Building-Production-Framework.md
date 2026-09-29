@@ -3,7 +3,7 @@ Document ID: 2306
 Title: "2306: Building a Production Framework"
 Phase: 2
 Module: 2300
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -76,7 +76,8 @@ framework/
 │   └── server.py            # uvicorn entry point
 ├── plugins.py               # worked example: 3 custom metrics as plugins
 ├── config.yaml
-├── requirements.txt
+├── pyproject.toml
+├── uv.lock
 ├── Dockerfile
 ├── docker-compose.yml
 ├── nginx.conf
@@ -620,15 +621,17 @@ if __name__ == "__main__":
 
 ## Step 4: Containerization
 
-Dependencies first — the Dockerfile copies this file before the code so the install layer survives code-only rebuilds:
+Dependencies first — the Dockerfile copies the manifest before the code so the install layer survives code-only rebuilds:
 
-```text
-# requirements.txt
-torch>=2.12
-fastapi>=0.141
-uvicorn[standard]>=0.52
-pydantic>=2.13
-PyYAML>=6.0
+```toml
+# pyproject.toml - dependencies recorded by uv add
+dependencies = [
+    "torch>=2.12",
+    "fastapi>=0.141",
+    "uvicorn[standard]>=0.52",
+    "pydantic>=2.13",
+    "PyYAML>=6.0",
+]
 ```
 
 The image: pinned slim base, non-root user, one process:
@@ -639,13 +642,14 @@ FROM python:3.13-slim
 
 WORKDIR /app
 
-# Copy the dependency manifest first so Docker can cache the install layer.
-COPY requirements.txt .
+# Dependency layer: only manifest/lockfile changes rebuild this.
+COPY pyproject.toml uv.lock ./
 
 # Official uv-in-Docker pattern: copy the uv binary from the uv image
 # (https://docs.astral.sh/uv/guides/integration/docker/)
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
-RUN uv pip install --system --no-cache -r requirements.txt
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --locked --no-install-project
 
 COPY . .
 
@@ -759,7 +763,7 @@ Run it: `bash deploy.sh` (or `bash deploy.sh myregistry/mini-framework:v1` to ta
 
 ## Testing the Framework
 
-pytest is deliberately absent from `requirements.txt` (test dependencies do not belong in the runtime image); install it separately to run these:
+pytest is deliberately absent from the runtime dependencies (test dependencies do not belong in the runtime image); install it separately to run these:
 
 ```python
 # tests/test_api.py
