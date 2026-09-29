@@ -157,6 +157,18 @@ stand today?" without running each tool by hand.
                        canonicalization campaign; lab_registry_check
                        locks what each id points at, this gate locks
                        the id itself
+    resource_ref_check cross-document references to the 43 resources
+                       (RR-01 out-of-range id: "see LAB-016" with no
+                       LAB-016 on disk) - a dead pointer in plain
+                       prose that linkcheck cannot see because it is
+                       not a relative link href; the valid id set is
+                       derived from the same disk glob
+                       resource_id_check uses; lowercase matches
+                       (lab-001) are out of scope by design - the
+                       birth census (tick-327: 1316 uppercase
+                       references, 0 out of range; 101 lowercase,
+                       all filesystem-path idioms) locked baseline 0
+                       at birth
     unfinished_marker_scan unfinished-content markers in prose
                        (UM-01): outside any code fence, inline code
                        scrubbed, a line must not carry "coming soon",
@@ -338,6 +350,7 @@ GATES = [
     ("meta_claims_check.py", "meta_claims_check", True),
     ("lab_registry_check.py", "lab_registry_check", True),
     ("resource_id_check.py", "resource_id_check", True),
+    ("resource_ref_check.py", "resource_ref_check", True),
     ("unfinished_marker_scan.py", "unfinished_marker_scan", True),
     ("empty_section_scan.py", "empty_section_scan", True),
     ("emoji_shortcode_scan.py", "emoji_shortcode_scan", True),
