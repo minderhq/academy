@@ -324,6 +324,15 @@ stand today?" without running each tool by hand.
                        canonical spelling; 7 variant sites drained
                        tick-404, vocabulary now 209 single-form
                        tags, TV-03 hard since the drain
+    related_census Related-field link integrity (RL-01..02, hard):
+                       cross-reference navigation rides on the
+                       front-matter Related field; RL-01 dangling
+                       token (no file), RL-02 ambiguous token
+                       (multiple files). Born tick-405 measuring
+                       110 docs / 35 tokens, all resolving exactly
+                       one file - hard from birth (KW-03). Free-text
+                       shapes and bare-vs-bracketed variance are
+                       inventory only, ungated
     unfinished_marker_scan unfinished-content markers in prose
                        (UM-01): outside any code fence, inline code
                        scrubbed, a line must not carry "coming soon",
@@ -518,6 +527,7 @@ GATES = [
     ("term_consistency_scan.py", "term_consistency_scan", True),
     ("front_matter_census.py", "front_matter_census", True),
     ("tag_vocabulary_census.py", "tag_vocabulary_census", True),
+    ("related_census.py", "related_census", True),
     ("unfinished_marker_scan.py", "unfinished_marker_scan", True),
     ("empty_section_scan.py", "empty_section_scan", True),
     ("emoji_shortcode_scan.py", "emoji_shortcode_scan", True),
