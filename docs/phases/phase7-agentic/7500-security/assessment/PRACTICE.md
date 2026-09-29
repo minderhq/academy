@@ -1,7 +1,7 @@
 ---
 Document ID: 7500-PRACTICE
 Title: "7500: AI Agent Security - Practice"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 ---
@@ -301,7 +301,7 @@ if __name__ == "__main__":
 
 ```python
 import re
-from typing import Dict, Any
+from typing import Any
 
 class OutputFilter:
     """
@@ -419,7 +419,7 @@ class OutputFilter:
 
         return result
 
-    def _count_by_type(self, redactions: list[Dict]) -> dict[str, int]:
+    def _count_by_type(self, redactions: list[dict]) -> dict[str, int]:
         """Count redactions by type."""
         counts = {}
         for r in redactions:
@@ -1524,7 +1524,7 @@ if __name__ == "__main__":
 import json
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import List, Dict, Any
+from typing import Any
 import threading
 
 class AuditLogger:
@@ -1557,7 +1557,7 @@ class AuditLogger:
         action: str,
         input_data: str,
         output_data: str,
-        metadata: Dict | None = None,
+        metadata: dict | None = None,
     ):
         """
         Log an agent action with full context.
@@ -1565,7 +1565,7 @@ class AuditLogger:
         Args:
             agent_id: Identifier for the agent
             user_id: Identifier for the user
-            action: Type of action performed
+            action: The action performed
             input_data: Input provided to agent
             output_data: Output from agent
             metadata: Additional metadata
@@ -1661,7 +1661,7 @@ class AuditLogger:
         user_id: str,
         date: str | None = None,
         limit: int = 100
-    ) -> list[Dict]:
+    ) -> list[dict]:
         """
         Retrieve logs for a specific user.
 
@@ -1701,7 +1701,7 @@ class AuditLogger:
     def get_security_events(
         self,
         hours: int = 24
-    ) -> list[Dict]:
+    ) -> list[dict]:
         """
         Retrieve security-related events from recent logs.
 
@@ -1870,7 +1870,7 @@ if __name__ == "__main__":
 ```python
 from collections import defaultdict
 import time
-from typing import Dict, Any
+from typing import Any
 import threading
 
 class SecurityMonitor:
@@ -1892,22 +1892,22 @@ class SecurityMonitor:
 
         # Track violations and alerts
         self.violation_counts: dict[str, int] = defaultdict(int)
-        self.alerts: list[Dict] = []
+        self.alerts: list[dict] = []
         self.lock = threading.Lock()
 
         # User risk scores
         self.user_risk_scores: dict[str, float] = defaultdict(float)
 
         # Security event history
-        self.event_history: list[Dict] = []
+        self.event_history: list[dict] = []
 
     def monitor_request(
         self,
         user_id: str,
-        injection_check: Dict | None = None,
-        rate_limit_check: Dict | None = None,
-        code_execution_check: Dict | None = None,
-        additional_context: Dict | None = None,
+        injection_check: dict | None = None,
+        rate_limit_check: dict | None = None,
+        code_execution_check: dict | None = None,
+        additional_context: dict | None = None,
     ) -> dict[str, Any]:
         """
         Monitor a request for security issues.
