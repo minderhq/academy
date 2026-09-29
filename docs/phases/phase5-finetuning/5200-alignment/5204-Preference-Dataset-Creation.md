@@ -1,7 +1,7 @@
 ---
 Document ID: 5204
 Title: "5204: Preference Dataset Creation"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 ---
@@ -170,7 +170,7 @@ final assistant turn:
     {"role": "user", "content": "..."},
     {"role": "assistant", "content": "..."},
     {"role": "user", "content": "..."},
-    {"role": "assistant", "content": "..."} 
+    {"role": "assistant", "content": "..."}
   ],
   "chosen_messages": [0, 1, 2, 3],
   "rejected_messages": [0, 1, 2, 3]

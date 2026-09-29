@@ -85,6 +85,14 @@ stand today?" without running each tool by hand.
                        build-push@v6, artifact@v7/v8); comment-only
                        mentions are not findings; born tick-368,
                        baseline 0
+    unicode_ws_hygiene_scan
+                       invisible/control characters (UW-01: ZWSP/
+                       NBSP/mid-file BOM etc - copy-paste debris,
+                       runtime poison inside code fences), real
+                       trailing whitespace (UW-02; the corpus uses
+                       no hard-break double spaces) and mixed line
+                       endings per file (UW-03); CR-normalized;
+                       born tick-371, baseline 0
     kwarg_lint         calls with removed/renamed kwargs on known APIs
                        (KW-01 langchain constructor kwargs, KW-02 removed
                        qdrant .search kwargs, KW-03 removed qdrant
@@ -436,6 +444,7 @@ GATES = [
     ("mermaid_lint.py", "mermaid_lint", True),
     ("deprecated_scan.py", "deprecated_scan", True),
     ("action_version_scan.py", "action_version_scan", True),
+    ("unicode_ws_hygiene_scan.py", "unicode_ws_hygiene_scan", True),
     ("objectives_lint.py", "objectives_lint", False),
     ("fence_namecheck.py", "fence_namecheck", False),
     ("duplicate_heading_scan.py", "duplicate_heading_scan", False),
