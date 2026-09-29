@@ -1,7 +1,7 @@
 ---
 Document ID: 1405
 Title: "1405: Text Generation Inference (TGI) Deployment Guide"
-Last Updated: 2026-09-27
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -23,6 +23,7 @@ Difficulty: Intermediate
 - [Monitoring](#monitoring)
 - [Troubleshooting](#troubleshooting)
 - [End-to-End Deployment Walkthrough](#end-to-end-deployment-walkthrough)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -936,6 +937,10 @@ python -c "import requests; print(requests.post('http://localhost:8080/generate'
 ```
 
 ---
+
+## Summary
+
+TGI is Hugging Face's production serving stack, and its shape matters: a Rust HTTP router handling continuous batching and validation in front of a Python text-generation-server per GPU shard, all started by text-generation-launcher. This guide deployed it on 11GB where fp16 7B does not fit, so quantized checkpoints are the running examples throughout. It compared TGI against vLLM, gave the quick start, the configuration guide and parameter reference, deployment options, client usage, advanced features, performance tuning, monitoring, troubleshooting, and an end-to-end walkthrough. The takeaway: know which process owns which job - router, shard server, launcher - and every TGI failure has an address.
 
 ## References
 

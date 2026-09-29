@@ -3,7 +3,7 @@ Document ID: 1401
 Title: "1401: Ollama Enterprise Deployment"
 Phase: 1
 Module: 1400
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -27,6 +27,7 @@ Tags: ['infrastructure', 'llmops', 'ollama', 'vllm', 'tgi']
 - [Service Mesh Integration](#service-mesh-integration)
 - [Monitoring](#monitoring)
 - [Security](#security)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -498,6 +499,10 @@ spec:
 ```
 
 ---
+
+## Summary
+
+Ollama is the lab's default inference backend: it runs large language models locally behind a simple API, and in PROJECT-OMEGA it serves models across the network as a K3s pod on port 11434. This lesson covered the architecture (client layer to Ollama server), installation, model management, API usage, configuration options, performance optimization, service mesh integration, monitoring, and security. The rule it leaves: Ollama is the right default for convenience and local iteration; specialized engines take over when throughput is the requirement.
 
 ## References
 

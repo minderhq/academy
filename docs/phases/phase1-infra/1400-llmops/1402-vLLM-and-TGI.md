@@ -3,7 +3,7 @@ Document ID: 1402
 Title: "1402: vLLM and TGI High-Concurrency Inference"
 Phase: 1
 Module: 1400
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -27,6 +27,7 @@ Tags: ['infrastructure', 'llmops', 'ollama', 'vllm', 'tgi']
 - [API Usage](#api-usage)
 - [Benchmarking](#benchmarking)
 - [Monitoring](#monitoring)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -484,6 +485,10 @@ watch -n 0.1 nvidia-smi
 ```
 
 ---
+
+## Summary
+
+vLLM and TGI are the optimized inference engines for high-throughput serving, and both live on the same two ideas: continuous batching and managed KV cache. vLLM adds PagedAttention, segmenting the cache into fixed-size pages to eliminate fragmentation. The constraint this lesson repeats on 11GB: fp16 7B weights need ~14GB and do not fit, so every runnable example serves a pre-quantized AWQ checkpoint (~3.5GB). It compared the engines, walked vLLM architecture and installation, TGI installation, configuration, performance tuning, API usage, benchmarking, and monitoring. The takeaway: benchmark both on your workload - the winner is measured, not assumed.
 
 ## References
 

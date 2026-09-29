@@ -3,7 +3,7 @@ Document ID: 1503
 Title: "1503: LLM Observability"
 Phase: 1
 Module: 1500
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -26,6 +26,7 @@ Tags: ['infrastructure', 'monitoring', 'observability', 'prometheus']
 - [Context Window Monitoring](#context-window-monitoring)
 - [Cost Optimization](#cost-optimization)
 - [Production Checklist](#production-checklist)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -790,6 +791,10 @@ class LLMCostAnalyzer:
 - [ ] Low cache hit rate (<50%)
 
 ---
+
+## Summary
+
+LLM systems fail in LLM-specific ways, so they need LLM-specific metrics: token usage, latency percentiles, cost per request, output quality, and context window utilization. This lesson covered those metric families, performance and quality monitoring, context window monitoring, cost optimization, and closed with a production checklist. The takeaway: an LLM endpoint that returns HTTP 200 can still be failing - quality and cost drift are failures too, and the checklist is what turns that observation into monitored fact.
 
 ## References
 

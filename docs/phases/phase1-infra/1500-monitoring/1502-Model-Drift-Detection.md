@@ -3,7 +3,7 @@ Document ID: 1502
 Title: "1502: Model Drift Detection"
 Phase: 1
 Module: 1500
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -23,6 +23,7 @@ Tags: ['infrastructure', 'monitoring', 'observability', 'prometheus']
 - [Feature-Level Monitoring](#feature-level-monitoring)
 - [Remediation Strategies](#remediation-strategies)
 - [Production Deployment](#production-deployment)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -745,6 +746,10 @@ groups:
 ```
 
 ---
+
+## Summary
+
+Models decay silently: as the world's data distribution drifts from training data, performance degrades without a single error being thrown. This lesson covered the types of drift, the detection algorithms that catch them, feature-level monitoring to localize where the input shifted, remediation strategies, and production deployment of the monitors themselves. The rule it leaves: drift detection is not an alert on accuracy - it is a standing comparison between the data a model was trained on and the data it is actually receiving.
 
 ## References
 

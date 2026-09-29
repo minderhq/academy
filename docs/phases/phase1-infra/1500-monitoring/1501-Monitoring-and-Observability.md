@@ -3,7 +3,7 @@ Document ID: 1501
 Title: "1501: Monitoring and Observability"
 Phase: 1
 Module: 1500
-Last Updated: 2026-09-27
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -27,6 +27,7 @@ Tags: ['infrastructure', 'monitoring', 'observability', 'prometheus']
 - [K3s Monitoring Stack](#k3s-monitoring-stack)
 - [Alert Rules](#alert-rules)
 - [Quick Start](#quick-start)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -660,6 +661,10 @@ docker compose up -d
 ```
 
 ---
+
+## Summary
+
+Observability is five components with one job each: Prometheus collects metrics, Grafana draws dashboards, Loki aggregates logs, Tempo traces requests, and custom exporters bridge the gaps - together they track infrastructure health, model performance, and agent behavior in the home lab. This lesson walked the architecture, each component in turn, the K3s monitoring stack deployment, alert rules, and a quick start. The rule it leaves: metrics say something is wrong, logs say what happened, traces say where - a stack missing any of the three answers questions it was never built to answer.
 
 ## References
 
