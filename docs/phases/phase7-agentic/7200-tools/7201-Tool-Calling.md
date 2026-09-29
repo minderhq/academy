@@ -3,7 +3,7 @@ Document ID: 7201
 Title: "7201: Tool Calling & Function Execution"
 Phase: 7
 Module: 7200
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -28,6 +28,7 @@ Tags: ['agents', 'tool-calling', 'function-calling', 'code-interpreter']
 - [Tool Calling vs ReAct](#tool-calling-vs-react)
 - [PROJECT-OMEGA Implementation](#project-omega-implementation)
 - [Experiment](#experiment)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -685,6 +686,10 @@ tools = {
 
 
 ---
+
+## Summary
+
+Tool calling is how an LLM's text becomes action: the model emits a structured request - function name plus arguments - the host executes it, and the result returns as a new message. This lesson covered the request/response contract, schema design that keeps arguments valid, and the execution patterns for external systems beyond text generation. The rule it leaves: the tool schema is an API contract with a probabilistic client - design it so the model cannot be validly wrong, and validate everything anyway.
 
 ## References
 

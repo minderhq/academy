@@ -31,6 +31,7 @@ that keeps a fleet of LLM agents debuggable in production.
 - [7. Interoperability Standards](#7-interoperability-standards)
 - [8. Failure Handling](#8-failure-handling)
 - [9. Troubleshooting](#9-troubleshooting)
+- [Summary](#summary)
 - [10. References](#10-references)
 
 ---
@@ -278,6 +279,10 @@ Fleet-level rules:
 | Fleet cost spikes on one workflow | No budget propagation | Per-task token budgets; enforce at the bus level |
 
 ---
+
+## Summary
+
+A multi-agent system is only as reliable as the contracts between its agents: this lesson defines the message schemas and envelopes, the three coordination topologies (orchestrator-worker, peer-to-peer, hierarchical), consensus and negotiation patterns, and handoff protocols that preserve context when work moves between agents. The rule it leaves: topology is a reliability decision, not a diagram - pick the shape whose failure mode you can actually operate, and put the schema version in every envelope.
 
 ## 10. References
 

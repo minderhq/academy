@@ -24,6 +24,7 @@ Tags: ['agents', 'orchestration', 'multi-agent', 'autogen', 'langgraph']
 - [Collaboration Patterns](#collaboration-patterns)
 - [Conflict Resolution](#conflict-resolution)
 - [Practical Implementation](#practical-implementation)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -740,6 +741,10 @@ swarm.maintain_system(max_cycles=1)  # one full cycle for the demo
 Highest severity first: the disk issue (9) outranks the auth spike (8) and GPU saturation (7). Severity numbers come from the analyzer's rules — tune thresholds to your hardware, and keep the routing table (`ROUTERS`) next to the responder roster so a new issue type cannot ship without an owner.
 
 ---
+
+## Summary
+
+Collaborative multi-agent systems work when each agent is specialized and the coordination is engineered: this lesson builds the orchestration mechanics - specialization by role, LLM-driven decomposition of the goal, structured messaging between agents, and the hierarchy that decides who talks to whom. The rule it leaves: a multi-agent system is only as good as its worst message boundary - specialize the agents, but spend the real engineering on the contracts between them.
 
 ## References
 

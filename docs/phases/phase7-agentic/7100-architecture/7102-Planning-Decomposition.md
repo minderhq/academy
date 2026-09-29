@@ -3,7 +3,7 @@ Document ID: 7102
 Title: "7102: Planning and Task Decomposition"
 Phase: 7
 Module: 7100
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -22,6 +22,7 @@ Tags: ['agents', 'react', 'planning', 'autonomy', 'cognition']
 - [Planning Algorithms](#planning-algorithms)
 - [Dynamic Replanning](#dynamic-replanning)
 - [Multi-Agent Planning](#multi-agent-planning)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -793,6 +794,10 @@ for step in planner.plan("Release the new model"):
 
 
 ---
+
+## Summary
+
+Planning and task decomposition turn one impossible prompt into a tree of executable sub-tasks: break the goal down, order the sub-tasks by dependency, execute them systematically, and re-plan when reality disagrees with the plan. This lesson walked why decomposition works, the dependency handling, and the failure modes of plans that were never executable. The rule it leaves: decompose until each sub-task is one tool call with a checkable result - a plan step you cannot verify is a step you cannot recover from.
 
 ## References
 

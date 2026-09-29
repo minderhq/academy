@@ -1,7 +1,7 @@
 ---
 Document ID: 7202
 Title: "7202: Code Interpreter - Sandbox Execution for Agent Code Testing"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 ---
@@ -16,6 +16,7 @@ Difficulty: Advanced
 - [Resource Management](#resource-management)
 - [Safe Execution for Agents](#safe-execution-for-agents)
 - [Monitoring and Logging](#monitoring-and-logging)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -564,6 +565,10 @@ the subprocess tiers.
 
 
 ---
+
+## Summary
+
+A safe interpreter lets agents execute code without trusting it: this lesson builds the standard isolation ladder from a plain child-process sandbox that runs anywhere, through Docker containers, to in-process restrictions - each rung costing setup but buying containment. The rule it leaves: assume every generated line of code is adversarial until the sandbox says otherwise - the isolation level must match the blast radius of the worst code the model will ever write, not the code you expect.
 
 ## References
 

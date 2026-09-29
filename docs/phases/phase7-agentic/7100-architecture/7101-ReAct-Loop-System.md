@@ -32,6 +32,7 @@ ReAct (Reasoning + Acting) is a foundational pattern for building AI agents that
 - [5. State Management](#5-state-management)
 - [6. Production Considerations](#6-production-considerations)
 - [7. Advanced Patterns](#7-advanced-patterns)
+- [Summary](#summary)
 - [8. References](#8-references)
 
 ---
@@ -423,6 +424,10 @@ class HierarchicalReActAgent:
 ```
 
 ---
+
+## Summary
+
+ReAct (Reasoning + Acting) is the foundational agent loop: the model alternates Thought (reason about what is known and missing), Action (call a tool), and Observation (read the result) until the task resolves. This lesson covered the loop structure, tool-calling implementation patterns, and the state management that keeps the trace coherent across turns. The rule it leaves: an agent is a loop, not a chat - the discipline is in what each turn is allowed to do, and the trace is the agent's only memory of why it acted.
 
 ## 8. References
 
