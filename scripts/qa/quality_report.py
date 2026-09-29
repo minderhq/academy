@@ -77,6 +77,14 @@ stand today?" without running each tool by hand.
                        use_auth_token kwarg - removed in transformers
                        5.x; use token=); comment-only mentions are
                        not findings
+    action_version_scan
+                       uses: pins in docs must match the canonical
+                       action registry (AV-01: current majors -
+                       checkout@v7, setup-uv@v9, cache@v4,
+                       codecov@v5, buildx/login@v3, metadata@v5,
+                       build-push@v6, artifact@v7/v8); comment-only
+                       mentions are not findings; born tick-368,
+                       baseline 0
     kwarg_lint         calls with removed/renamed kwargs on known APIs
                        (KW-01 langchain constructor kwargs, KW-02 removed
                        qdrant .search kwargs, KW-03 removed qdrant
@@ -427,6 +435,7 @@ GATES = [
     ("table_lint.py", "table_lint", True),
     ("mermaid_lint.py", "mermaid_lint", True),
     ("deprecated_scan.py", "deprecated_scan", True),
+    ("action_version_scan.py", "action_version_scan", True),
     ("objectives_lint.py", "objectives_lint", False),
     ("fence_namecheck.py", "fence_namecheck", False),
     ("duplicate_heading_scan.py", "duplicate_heading_scan", False),
