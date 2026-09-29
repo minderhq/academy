@@ -1,7 +1,7 @@
 ---
 Document ID: 7200-QUIZ
 Title: "7200: Tool Calling - Quiz"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -27,9 +27,9 @@ D) All of the above
 **2. What is function calling?**
 
 A) Calling Python functions
-B) Structured output for API/function invocation
+B) Code debugging
 C) Function optimization
-D) Code debugging
+D) Structured output for API/function invocation
 
 **3. What is the typical format for function calling output?**
 
@@ -164,7 +164,7 @@ D) The user, step by step
 | # | Answer |
 |---|--------|
 | 1 | A |
-| 2 | B |
+| 2 | D |
 | 3 | B |
 | 4 | A |
 | 5 | B |

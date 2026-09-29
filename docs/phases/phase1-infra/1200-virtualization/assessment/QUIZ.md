@@ -1,7 +1,7 @@
 ---
 Document ID: 1200-QUIZ
 Title: "1200: Virtualization - Quiz"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Beginner
 ---
@@ -21,8 +21,8 @@ Difficulty: Beginner
 **1. Type 1 hypervisors run:**
 
 A) On top of an operating system
-B) Directly on hardware
-C) Only in containers
+B) Only in containers
+C) Directly on hardware
 D) Only on Windows
 
 **2. GPU passthrough allows:**
@@ -164,7 +164,7 @@ D) Needs special drivers
 
 | # | Answer |
 |---|--------|
-| 1 | B |
+| 1 | C |
 | 2 | B |
 | 3 | A |
 | 4 | B |

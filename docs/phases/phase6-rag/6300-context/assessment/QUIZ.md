@@ -27,9 +27,9 @@ D) Neither
 **2. Longer context windows:**
 
 A) Always better
-B) Trade-off with computation
+B) Only affect memory
 C) No trade-off
-D) Only affect memory
+D) Trade-off with computation
 
 **3. Context compression:**
 
@@ -164,7 +164,7 @@ D) Be everything
 | # | Answer |
 |---|--------|
 | 1 | C |
-| 2 | B |
+| 2 | D |
 | 3 | C |
 | 4 | B |
 | 5 | A |

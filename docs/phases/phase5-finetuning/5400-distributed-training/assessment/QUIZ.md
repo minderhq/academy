@@ -1,7 +1,7 @@
 ---
 Document ID: 5400-QUIZ
 Title: "5400: Distributed Training - Quiz"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 ---
@@ -21,9 +21,9 @@ Difficulty: Advanced
 **1. What is the main difference between DP and DDP?**
 
 A) DDP uses multiple GPUs, DP uses one
-B) DDP uses efficient all-reduce, DP uses inefficient gradient syncing
+B) DDP requires more GPU memory
 C) DP is faster than DDP
-D) DDP requires more GPU memory
+D) DDP uses efficient all-reduce, DP uses inefficient gradient syncing
 
 **2. FSDP shards the model:**
 
@@ -35,23 +35,23 @@ D) Only the embeddings
 **3. Which backend is recommended for GPU distributed training?**
 
 A) gloo
-B) nccl
+B) tcp
 C) mpi
-D) tcp
+D) nccl
 
 **4. What does `world_size` represent in distributed training?**
 
 A) Total number of parameters
-B) Total number of GPUs
+B) Number of epochs
 C) Batch size
-D) Number of epochs
+D) Total number of GPUs
 
 **5. Gradient accumulation is used to:**
 
 A) Speed up training
-B) Simulate larger batch sizes
+B) Improve accuracy
 C) Reduce memory usage
-D) Improve accuracy
+D) Simulate larger batch sizes
 
 **6. Mixed precision training primarily saves:**
 
@@ -164,11 +164,11 @@ D) Data is augmented
 
 | # | Answer |
 |---|--------|
-| 1 | B |
+| 1 | D |
 | 2 | A |
-| 3 | B |
-| 4 | B |
-| 5 | B |
+| 3 | D |
+| 4 | D |
+| 5 | D |
 | 6 | C |
 | 7 | B |
 | 8 | B |

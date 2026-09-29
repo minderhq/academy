@@ -1,7 +1,7 @@
 ---
 Document ID: 6500-QUIZ
 Title: "6500: RAG MLOps - Quiz"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -26,22 +26,22 @@ D) Only training
 
 **2. Embedding model updates:**
 
-A) Never change
-B) May need updates
+A) May need updates
+B) Never change
 C) Always change daily
 D) Not relevant
 
 **3. Retrieval quality monitoring:**
 
-A) Not needed
-B) Tracks relevance
+A) Tracks relevance
+B) Not needed
 C) Only tracks latency
 D) Only tracks cost
 
 **4. Reranking in production:**
 
-A) Always needed
-B) Improves quality
+A) Improves quality
+B) Always needed
 C) Too slow
 D) Not useful
 
@@ -164,9 +164,9 @@ D) Only versioning
 | # | Answer |
 |---|--------|
 | 1 | C |
-| 2 | B |
-| 3 | B |
-| 4 | B |
+| 2 | A |
+| 3 | A |
+| 4 | A |
 | 5 | C |
 | 6 | B |
 | 7 | C |

@@ -1,7 +1,7 @@
 ---
 Document ID: 6100-QUIZ
 Title: "6100: Vector Embeddings - Quiz"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 ---
@@ -34,16 +34,16 @@ D) Co-occurrence matrices only
 **3. Cosine similarity measures:**
 
 A) Euclidean distance
-B) Angle between vectors
+B) Manhattan distance
 C) Dot product
-D) Manhattan distance
+D) Angle between vectors
 
 **4. BERT produces:**
 
 A) Static embeddings
-B) Contextual embeddings
+B) Sparse embeddings
 C) Random embeddings
-D) Sparse embeddings
+D) Contextual embeddings
 
 **5. Sentence-BERT is fine-tuned for:**
 
@@ -165,8 +165,8 @@ D) Use cross-attention
 |---|--------|
 | 1 | A |
 | 2 | A |
-| 3 | B |
-| 4 | B |
+| 3 | D |
+| 4 | D |
 | 5 | B |
 | 6 | B |
 | 7 | A |

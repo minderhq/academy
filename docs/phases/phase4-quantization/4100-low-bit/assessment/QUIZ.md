@@ -1,7 +1,7 @@
 ---
 Document ID: 4100-QUIZ
 Title: "4100: Low-bit Quantization - Quiz"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 ---
@@ -20,30 +20,30 @@ Difficulty: Advanced
 **1. Quantization reduces:**
 
 A) Accuracy only
-B) Model size and computation
-C) Training time only
+B) Training time only
+C) Model size and computation
 D) Nothing
 
 **2. INT8 uses:**
 
 A) 32 bits per parameter
-B) 8 bits per parameter
-C) 16 bits per parameter
+B) 16 bits per parameter
+C) 8 bits per parameter
 D) 1 bit per parameter
 
 **3. FP16 uses:**
 
 A) 32 bits
-B) 16 bits (half precision)
+B) 64 bits
 C) 8 bits
-D) 64 bits
+D) 16 bits (half precision)
 
 **4. The main benefit of quantization is:**
 
 A) Always better accuracy
-B) Reduced memory and faster inference
+B) Nothing
 C) Easier training
-D) Nothing
+D) Reduced memory and faster inference
 
 **5. Symmetric quantization has:**
 
@@ -163,10 +163,10 @@ D) No trade-off
 
 | # | Answer |
 |---|--------|
-| 1 | B |
-| 2 | B |
-| 3 | B |
-| 4 | B |
+| 1 | C |
+| 2 | C |
+| 3 | D |
+| 4 | D |
 | 5 | A |
 | 6 | A |
 | 7 | A |

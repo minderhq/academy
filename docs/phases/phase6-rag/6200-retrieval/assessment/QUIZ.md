@@ -1,7 +1,7 @@
 ---
 Document ID: 6200-QUIZ
 Title: "6200: Retrieval - Quiz"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 ---
@@ -20,23 +20,23 @@ Difficulty: Advanced
 **1. Hybrid search combines:**
 
 A) Only vector search
-B) Vector and keyword search
-C) Only keyword search
+B) Only keyword search
+C) Vector and keyword search
 D) No search
 
 **2. BM25 is:**
 
 A) A vector search method
-B) A keyword ranking algorithm
+B) A database
 C) An embedding model
-D) A database
+D) A keyword ranking algorithm
 
 **3. Reciprocal Rank Fusion (RRF):**
 
-A) Combines multiple result lists
+A) Filters results
 B) Ranks documents
 C) Creates embeddings
-D) Filters results
+D) Combines multiple result lists
 
 **4. Dense retrieval uses:**
 
@@ -163,9 +163,9 @@ D) No effect
 
 | # | Answer |
 |---|--------|
-| 1 | B |
-| 2 | B |
-| 3 | A |
+| 1 | C |
+| 2 | D |
+| 3 | D |
 | 4 | B |
 | 5 | B |
 | 6 | A |

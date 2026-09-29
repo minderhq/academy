@@ -1,7 +1,7 @@
 ---
 Document ID: 5100-QUIZ
 Title: "5100: PEFT Methods - Quiz"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 ---
@@ -20,9 +20,9 @@ Difficulty: Advanced
 **1. What is the primary advantage of PEFT methods?**
 
 A) Faster training
-B) Train only a small subset of parameters
+B) Simpler architecture
 C) Better model accuracy
-D) Simpler architecture
+D) Train only a small subset of parameters
 
 **2. What does LoRA stand for?**
 
@@ -163,7 +163,7 @@ D) Only working on encoder models
 
 | # | Answer |
 |---|--------|
-| 1 | B |
+| 1 | D |
 | 2 | A |
 | 3 | A |
 | 4 | A |
