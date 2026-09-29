@@ -358,7 +358,6 @@ Pitfalls checklist
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 
 ---
----
 
 **Related:**
 - [5102: QLoRA Pipelines](../5100-peft/5102-QLoRA-Pipelines.md)

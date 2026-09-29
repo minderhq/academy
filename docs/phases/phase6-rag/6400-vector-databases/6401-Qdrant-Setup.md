@@ -349,7 +349,6 @@ Data lost after restart              Volume not mounted; ./data recreated empty.
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 
 ---
----
 
 **Related:**
 - [6101: HNSW](../6100-vector/6101-HNSW-Indexing.md)

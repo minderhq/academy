@@ -333,7 +333,6 @@ Rules of thumb
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 
 ---
----
 
 **Related:**
 - [5501: Optimizer Variants](../5500-advanced-optimization/5501-Optimizer-Variants.md)

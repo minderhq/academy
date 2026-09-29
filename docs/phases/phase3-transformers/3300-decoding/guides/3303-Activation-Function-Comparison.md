@@ -373,7 +373,6 @@ Use the same activation as the base model:
 - Return to: **[Module README](../README.md)**
 
 ---
----
 
 **Related:**
 - [3301: Activation Functions](../3301-Activation-Functions.md)

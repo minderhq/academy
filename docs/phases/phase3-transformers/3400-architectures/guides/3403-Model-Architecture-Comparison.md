@@ -447,7 +447,6 @@ def monitor_inference(model, inputs, max_new_tokens=100):
 - Return to: **[Module README](../README.md)**
 
 ---
----
 
 **Related:**
 - [3401: Encoder-Decoder Architectures](../3401-Encoder-Decoder-Architectures.md)

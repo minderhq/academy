@@ -171,6 +171,15 @@ stand today?" without running each tool by hand.
                        audit hole, not a style nit; census at birth
                        (tick-280): 4243 open fences, 21 labels, all
                        lowercase and labeled
+    setext_scan        latent setext headings and divider hygiene
+                       (SE-01 underline run under a non-blank line,
+                       SE-02 bare '===', SE-03 non-'---' thematic
+                       break): a '---' directly under text is a
+                       setext H2 in every renderer - a heading the
+                       ATX-only outline gates cannot see; blank line
+                       above every divider, ATX for headings; born
+                       from the tick-281 census (7 doubled dividers,
+                       all one footer-nav template artifact)
   queue gate (drain in progress; never fails the report unless --fail-on-queue):
     objectives_lint    template-objective artifacts (OL-01/OL-02), phase by phase
     fence_namecheck    unbound names in python fences (report mode), two
@@ -243,6 +252,7 @@ GATES = [
     ("empty_section_scan.py", "empty_section_scan", True),
     ("emoji_shortcode_scan.py", "emoji_shortcode_scan", True),
     ("fence_label_scan.py", "fence_label_scan", True),
+    ("setext_scan.py", "setext_scan", True),
 ]
 
 
