@@ -3,7 +3,7 @@ Document ID: 3402
 Title: "3402: Decoder-Only Models (GPT, LLaMA, Mistral)"
 Phase: 3
 Module: 3400
-Last Updated: 2026-09-27
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 4 hours
@@ -23,6 +23,7 @@ Tags: ['transformers', 'architecture', 'encoder-decoder', 'gpt', 'llama']
 - [Positional Embeddings](#positional-embeddings)
 - [Training Objectives](#training-objectives)
 - [Comparison](#comparison)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -218,6 +219,10 @@ def autoregressive_loss(logits, targets):
 | Mixtral 8x7B | 32 | 32 | 4096 | 32768 | MoE, RoPE, SWA |
 
 ---
+
+## Summary
+
+Decoder-only models generate the entire sequence autoregressively through causally-masked attention, which is what makes generative pre-training on raw unlabeled text possible at scale. This lesson walked the GPT/LLaMA anatomy - embedding, repeated blocks of RMSNorm, causal self-attention and FFN, and the LM head - plus KV-cache inference and why pre-training plus instruction tuning became the dominant recipe. The rule it leaves: scale loves simplicity - one stack, one objective, and the whole modern LLM wave follows from that choice.
 
 ## References
 

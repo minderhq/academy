@@ -1,7 +1,7 @@
 ---
 Document ID: 3403
 Title: "3403: Model Architecture Comparison Guide"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 ---
@@ -23,6 +23,7 @@ Difficulty: Advanced
 - [Quick Start Recommendations](#quick-start-recommendations)
 - [Memory Optimization Strategies](#memory-optimization-strategies)
 - [Monitoring Performance](#monitoring-performance)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -434,6 +435,10 @@ def monitor_inference(model, inputs, max_new_tokens=100):
 
 
 ---
+
+## Summary
+
+This guide is the architecture decision table: encoder-decoder (T5, BART) versus decoder-only (GPT, LLaMA, Mistral) compared across parameter counts, memory footprints, inference costs, and homelab fit in one reference grid. Each architecture gets its own section with strengths, deployment notes, and the workloads it owns - translation and summarization for seq2seq, generation and chat for decoder-only. The rule it leaves: match the architecture to the task shape - a 7B decoder-only model is the homelab default, and encoder-decoder earns its extra complexity only when output must transform a known input.
 
 ## References
 

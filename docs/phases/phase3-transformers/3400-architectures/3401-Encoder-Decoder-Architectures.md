@@ -3,7 +3,7 @@ Document ID: 3401
 Title: "3401: Encoder-Decoder Architectures"
 Phase: 3
 Module: 3400
-Last Updated: 2026-09-25
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 4 hours
@@ -23,6 +23,7 @@ Tags: ['transformers', 'architecture', 'encoder-decoder', 't5', 'bart']
 - [T5 (Text-to-Text Transfer Transformer)](#t5-text-to-text-transfer-transformer)
 - [BART (Denoising Auto-Encoder)](#bart-denoising-auto-encoder)
 - [Encoder-Decoder vs Decoder-Only Today](#encoder-decoder-vs-decoder-only-today)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -266,6 +267,10 @@ Where enc-dec still wins (ship it when)
 The modern engineering pattern is therefore **triage**: route the bulk traffic of a known task to a small encoder-decoder, and escalate the long tail to a frontier decoder-only model.
 
 ---
+
+## Summary
+
+The original transformer was an encoder-decoder: one stack reads the input bidirectionally, another generates the output autoregressively, and cross-attention wires the second to the first. This lesson walked the full T5/BART family anatomy - the encoder stack, the decoder stack, the cross-attention bridge, and why the split still wins for fixed sequence-to-sequence tasks like translation and summarization. The rule it leaves: decoder-only absorbed the spotlight, but when the input is known text and the output is a transformation of it, encoder-decoder remains the strongest fit.
 
 ## References
 

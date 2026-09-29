@@ -3,7 +3,7 @@ Document ID: 3501
 Title: "3501: Vision-Language Models"
 Phase: 3
 Module: 3500
-Last Updated: 2026-09-25
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -23,6 +23,7 @@ Tags: ['transformers', 'multimodal', 'vision-language', 'clip', 'vlm']
 - [LLaVA in Practice](#llava-in-practice)
 - [Multimodal RAG](#multimodal-rag)
 - [Production Considerations](#production-considerations)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -296,6 +297,10 @@ Production pattern: BOTH, side by side
 ```
 
 ---
+
+## Summary
+
+Vision-language models come in two generations: CLIP aligns images and text in one embedding space with a contrastive objective, and LLaVA-style models feed visual features into a language model as tokens, making images first-class citizens of the chat interface. This lesson walked the contrastive pre-training recipe, the projection layer that bridges a vision encoder to an LLM, and the retrieval, zero-shot classification, and multimodal RAG workloads each generation owns. The rule it leaves: CLIP is the index, LLaVA is the conversation - pick by whether the task is finding or explaining.
 
 ## References
 

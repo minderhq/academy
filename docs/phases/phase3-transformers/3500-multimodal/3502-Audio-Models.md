@@ -3,7 +3,7 @@ Document ID: 3502
 Title: "3502: Audio Models"
 Phase: 3
 Module: 3500
-Last Updated: 2026-09-25
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -23,6 +23,7 @@ Tags: ['transformers', 'multimodal', 'audio', 'whisper', 'tts']
 - [Whisper in Production](#whisper-in-production)
 - [Audio and Speech Generation](#audio-and-speech-generation)
 - [Voice Assistant Pipeline](#voice-assistant-pipeline)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -327,6 +328,10 @@ Where the latency actually goes (typical assistant)
 ```
 
 ---
+
+## Summary
+
+Audio became a first-class modality once two representations matured: the mel-spectrogram, compact and visual and perfect for encoder-style perception, and discrete neural codecs that compress audio into token sequences a language-model decoder can generate. This lesson walked Whisper's encoder-decoder speech-to-text recipe (680k hours of training data), the codec-token generation path, and the text-to-speech stack built on both. The rule it leaves: perception wants spectrograms, generation wants tokens - and Whisper is the reference stack for the first half of that split.
 
 ## References
 
