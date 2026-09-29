@@ -1,7 +1,7 @@
 ---
 Document ID: GUIDE-INTERVIEW
 Title: INTERVIEW PREPARATION GUIDE
-Last Updated: 2026-02-07
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -419,7 +419,8 @@ project/
 ├── tests/
 │   └── test_rag.py
 ├── README.md             # Setup + usage
-├── requirements.txt
+├── pyproject.toml        # Project manifest
+├── uv.lock               # Locked dependency graph
 └── docker-compose.yml    # Easy deployment
 ```
 

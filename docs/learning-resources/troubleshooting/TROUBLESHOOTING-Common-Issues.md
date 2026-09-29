@@ -1,7 +1,7 @@
 ---
 Document ID: TROUBLESHOOTING-Common-Issues
 Title: "TROUBLESHOOTING: Common Issues & Solutions"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -431,8 +431,8 @@ uv venv --python 3.13
 source .venv/bin/activate  # Linux/Mac
 .venv\Scripts\activate     # Windows
 
-# Install requirements
-uv pip install -r requirements.txt
+# Install from the project manifest (pyproject.toml + uv.lock)
+uv sync --locked
 ```
 
 3. **Verify installation:**
@@ -468,17 +468,18 @@ uv pip install --reinstall package-name
 
 2. **Create fresh environment:**
 ```bash
-uv venv fresh_env
-source fresh_env/bin/activate
-uv pip install -r requirements.txt
+# Recreate the exact environment from the project lock
+rm -rf .venv && uv sync --locked
 ```
 
 3. **Pin exact versions:**
-```text
-# requirements.txt
-transformers==5.10.2
-torch==2.12.0
-peft==0.19.1
+```toml
+# pyproject.toml - exact pins recorded by uv add
+dependencies = [
+    "transformers==5.10.2",
+    "torch==2.12.0",
+    "peft==0.19.1",
+]
 ```
 
 4. **Use conda for better dependency management:**
