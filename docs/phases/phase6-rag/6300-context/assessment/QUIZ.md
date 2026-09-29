@@ -20,13 +20,13 @@ Difficulty: Advanced
 **1. Context window limits:**
 
 A) Only training
-B) Only inference
+B) Only inference, with every training pass somehow immune to the same limit
 C) Both training and inference
 D) Neither
 
 **2. Longer context windows:**
 
-A) Always better
+A) Always better, regardless of the compute budget or the serving cost
 B) Only affect memory
 C) No trade-off
 D) Trade-off with computation
@@ -40,7 +40,7 @@ D) Not possible
 
 **4. Sliding window context:**
 
-A) Uses all history
+A) Uses all history, which a fixed-size buffer can never physically hold
 B) Uses recent tokens only
 C) Uses random tokens
 D) No context
@@ -62,7 +62,7 @@ D) Not useful
 **7. LongLoRA:**
 
 A) Extends context window
-B) Shortens context
+B) Shortens context, the opposite of what the method was published to do
 C) No effect
 D) Not real
 
@@ -70,12 +70,12 @@ D) Not real
 
 A) Processes sequences in chunks
 B) Processes all at once
-C) Doesn't work
+C) Doesn't work, which its adoption in long-context training runs disproves outright
 D) Only for training
 
 **9. Context overflow causes:**
 
-A) Better results
+A) Better results, the opposite of what every truncation benchmark reports
 B) Loss of early information
 C) No issue
 D) Crashes
@@ -84,12 +84,12 @@ D) Crashes
 
 A) Keeps all tokens
 B) Keeps important tokens
-C) Removes all tokens
+C) Removes all tokens, leaving the model nothing whatsoever to condition on
 D) Random selection
 
 **11. To handle long documents:**
 
-A) Must use full document
+A) Must use full document, cramming every page in no matter how large it grows
 B) Can chunk and retrieve
 C) Can't handle
 D) Use shorter documents
@@ -98,7 +98,7 @@ D) Use shorter documents
 
 A) Only speed
 B) Generation quality
-C) Memory only
+C) Memory only, a claim no context-ablation study has ever supported
 D) No effect
 
 **13. The "lost in the middle" phenomenon:**
@@ -112,7 +112,7 @@ D) Doesn't exist
 
 A) Puts important info first
 B) Random order
-C) Alphabetical order
+C) Alphabetical order, a scheme no retrieval pipeline has any reason to prefer
 D) No effect
 
 **15. Typical context window of modern long-context LLMs:**
@@ -120,11 +120,11 @@ D) No effect
 A) 4K tokens
 B) 8K tokens
 C) 128K tokens
-D) Unlimited
+D) Unlimited, a number no vendor has ever shipped in a real product
 
 **16. RoPE (Rotary Position Embedding):**
 
-A) Extends context to infinity
+A) Extends context to infinity, a claim RoPE's interpolation math itself refutes
 B) Helps with longer sequences
 C) No effect on context
 D) Only for short sequences
@@ -132,7 +132,7 @@ D) Only for short sequences
 **17. YaRN (Yet another RoPE extensioN):**
 
 A) Extends context without fine-tuning
-B) Requires full retraining
+B) Requires full retraining, an expense YaRN was designed specifically to avoid
 C) Doesn't work
 D) Only for training
 
@@ -140,7 +140,7 @@ D) Only for training
 
 A) Fixed size
 B) Adjusts based on input
-C) Random size
+C) Random size, redrawn per request with no reference to the actual content
 D) No context
 
 **19. Context window vs accuracy:**
