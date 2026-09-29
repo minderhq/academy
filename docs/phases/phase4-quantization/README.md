@@ -65,10 +65,10 @@ After 4-bit Quantization:
 
 ```mermaid
 graph LR
-    A[FP32] -->|100% Accuracy| B[INT8]
-    B -->|98% Accuracy| C[INT4]
-    C -->|95% Accuracy| D[Q4_K_M]
-    D -->|92% Accuracy| E[Q4_K_S]
+    A[FP32] -->|"100% Accuracy"| B[INT8]
+    B -->|"98% Accuracy"| C[INT4]
+    C -->|"95% Accuracy"| D[Q4_K_M]
+    D -->|"92% Accuracy"| E[Q4_K_S]
 
     A[FP32] -->|1x Speed| B[INT8]
     B -->|2x Speed| C[INT4]

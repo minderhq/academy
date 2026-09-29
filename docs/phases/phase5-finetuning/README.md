@@ -73,11 +73,11 @@ graph LR
     A[Task: Medical Summarization] --> B{Approach}
 
     B -->|Prompt Engineering| C[Few-shot examples]
-    C --> D[Results: ~70% accuracy]
+    C --> D["Results: ~70% accuracy"]
     D --> E[Issues: Inconsistent, costly]
 
     B -->|Fine-Tuning| F[Train on 10K medical notes]
-    F --> G[Results: ~95% accuracy]
+    F --> G["Results: ~95% accuracy"]
     G --> H[Benefits: Consistent, efficient]
 
     style C fill:#fdd

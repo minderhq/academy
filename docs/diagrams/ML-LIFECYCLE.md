@@ -29,9 +29,9 @@ graph TB
     end
 
     subgraph "Production"
-        CANARY[Canary Deploy<br/>10% Traffic]
+        CANARY["Canary Deploy<br/>10% Traffic"]
         MONITOR[Monitor<br/>Track Metrics]
-        PROMOTE[Promote<br/>100% Traffic]
+        PROMOTE["Promote<br/>100% Traffic"]
     end
 
     subgraph "Maintenance"
@@ -143,8 +143,8 @@ graph TB
     end
 
     subgraph "Model Versions"
-        OLD[Old Model<br/>90% Traffic]
-        NEW[New Model<br/>10% Traffic]
+        OLD["Old Model<br/>90% Traffic"]
+        NEW["New Model<br/>10% Traffic"]
     end
 
     subgraph "Monitoring"
@@ -154,8 +154,8 @@ graph TB
     end
 
     USERS --> LB
-    LB -->|90%| OLD
-    LB -->|10%| NEW
+    LB -->|"90%"| OLD
+    LB -->|"10%"| NEW
 
     OLD --> METRICS
     NEW --> METRICS
@@ -163,7 +163,7 @@ graph TB
     METRICS --> COMPARE
     COMPARE --> DECISION
 
-    DECISION -->|Yes| RAMP[Increase to 50%]
+    DECISION -->|Yes| RAMP["Increase to 50%"]
     DECISION -->|No| ROLLBACK[Rollback change]
 
     RAMP --> DECISION
@@ -248,7 +248,7 @@ graph TD
     START{Model Performance Drop?} --> CHECK[Check Metrics]
 
     CHECK --> PSI{PSI > 0.15?}
-    CHECK --> ACC{Accuracy Drop > 5%?}
+    CHECK --> ACC{"Accuracy Drop > 5%?"}
 
     PSI -->|Yes| RETRAIN[Retrain Model]
     ACC -->|Yes| RETRAIN
