@@ -195,7 +195,7 @@ model.to(device)
 
 ## 📖 How to Use Notebooks
 
-### About TODO Comments
+### About the `# TODO:` Convention
 
 > **📝 Educational Design Note:**
 >

@@ -131,6 +131,19 @@ stand today?" without running each tool by hand.
                        canonicalization campaign; lab_registry_check
                        locks what each id points at, this gate locks
                        the id itself
+    unfinished_marker_scan unfinished-content markers in prose
+                       (UM-01): outside any code fence, inline code
+                       scrubbed, a line must not carry "coming soon",
+                       "under construction", "to be written", "to be
+                       added", "work in progress" or an uppercase
+                       TODO/TBD/FIXME - code fences are invisible by
+                       design (starter-code "# TODO:" exercise prompts
+                       are the codified notebooks/README.md convention)
+                       and fence markers may carry a ">" blockquote
+                       prefix; born from the tick-276 census (108 raw
+                       matches, every one in a legitimate class) that
+                       turned the census into a permanent lock at
+                       baseline 0
   queue gate (drain in progress; never fails the report unless --fail-on-queue):
     objectives_lint    template-objective artifacts (OL-01/OL-02), phase by phase
     fence_namecheck    unbound names in python fences (report mode), two
@@ -199,6 +212,7 @@ GATES = [
     ("meta_claims_check.py", "meta_claims_check", True),
     ("lab_registry_check.py", "lab_registry_check", True),
     ("resource_id_check.py", "resource_id_check", True),
+    ("unfinished_marker_scan.py", "unfinished_marker_scan", True),
 ]
 
 
