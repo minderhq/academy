@@ -192,7 +192,6 @@ dependencies = [
 # ingestion/document_processor.py
 import os
 import hashlib
-from typing import List, Dict
 from pathlib import Path
 from datetime import datetime, timezone
 
@@ -272,7 +271,7 @@ class DocumentProcessor:
             if "already exists" not in str(e):
                 print(f"Error creating collection: {e}")
 
-    def process_directory(self, directory: str) -> Dict:
+    def process_directory(self, directory: str) -> dict:
         """
         Process all documents in a directory
 
@@ -329,7 +328,7 @@ class DocumentProcessor:
 
         return results
 
-    def process_document(self, file_path: str) -> Dict:
+    def process_document(self, file_path: str) -> dict:
         """
         Process a single document
 
@@ -459,7 +458,6 @@ if __name__ == "__main__":
 from fastapi import FastAPI, HTTPException, UploadFile, File
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
-from typing import List
 import uvicorn
 
 from ingestion.document_processor import DocumentProcessor
@@ -597,7 +595,6 @@ if __name__ == "__main__":
 ```python
 # retrieval/retrieever.py
 import time
-from typing import List, Dict
 from sentence_transformers import SentenceTransformer
 from qdrant_client import QdrantClient
 from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
@@ -633,14 +630,14 @@ class KnowledgeRetriever:
             do_sample=True
         )
 
-    def query(self, query: str, top_k: int = 5, filters: dict = None) -> Dict:
+    def query(self, query: str, top_k: int = 5, filters: dict | None = None) -> dict:
         """
         Query knowledge base and generate answer
 
         Args:
             query: User question
             top_k: Number of documents to retrieve
-            filters: Optional filters for retrieval
+            filters: The filters for retrieval
 
         Returns:
             Answer with sources
@@ -681,7 +678,7 @@ class KnowledgeRetriever:
             "retrieval_time": time.time() - start_time
         }
 
-    def _build_context(self, search_results: List) -> str:
+    def _build_context(self, search_results: list) -> str:
         """Build context from retrieved documents"""
 
         context_parts = []
@@ -719,7 +716,7 @@ ANSWER:"""
 
         return answer
 
-    def _format_sources(self, search_results: List) -> list[Dict]:
+    def _format_sources(self, search_results: list) -> list[dict]:
         """Format sources for response"""
 
         sources = []
