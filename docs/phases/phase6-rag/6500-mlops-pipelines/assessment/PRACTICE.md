@@ -205,7 +205,7 @@ jobs:
             --eval-data data/eval_set.json
 
       - name: Upload coverage
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v5
 
 # Expected usage:
 # - Runs on every push/PR

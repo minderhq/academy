@@ -502,7 +502,7 @@ jobs:
         run: uv run pytest --cov=api tests/ --cov-report=xml
 
       - name: Upload coverage
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v5
         with:
           file: ./coverage.xml
 
