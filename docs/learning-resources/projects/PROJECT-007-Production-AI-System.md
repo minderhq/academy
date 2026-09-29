@@ -110,7 +110,7 @@ Multi-Agent Orchestrator
 ========================
 """
 
-from typing import List, Dict, Any
+from typing import Any
 import asyncio
 from langgraph.graph import StateGraph
 
@@ -127,7 +127,7 @@ class AgentOrchestrator:
         """Register an agent"""
         self.agents[name] = agent
 
-    async def route(self, query: str, context: Dict) -> str:
+    async def route(self, query: str, context: dict) -> str:
         """Route query to appropriate agent"""
 
         # Analyze query
@@ -156,12 +156,12 @@ class AgentOrchestrator:
 class BaseAgent:
     """Base agent class"""
 
-    def __init__(self, name: str, tools: list[Dict]):
+    def __init__(self, name: str, tools: list[dict]):
         self.name = name
         self.tools = tools
         self.memory = {}
 
-    async def execute(self, query: str, context: Dict) -> str:
+    async def execute(self, query: str, context: dict) -> str:
         """Execute agent's task"""
 
         # Plan
@@ -178,11 +178,11 @@ class BaseAgent:
 
         return response
 
-    async def _plan(self, query: str, context: Dict) -> list[Dict]:
+    async def _plan(self, query: str, context: dict) -> list[dict]:
         """Plan execution steps"""
         raise NotImplementedError
 
-    async def _execute_tool(self, tool: Dict) -> Any:
+    async def _execute_tool(self, tool: dict) -> Any:
         """Execute a tool"""
         tool_name = tool['name']
         tool_args = tool.get('args', {})
@@ -190,14 +190,14 @@ class BaseAgent:
         # Execute tool (with safety checks)
         return await self._safe_execute(tool_name, tool_args)
 
-    async def _safe_execute(self, tool_name: str, args: Dict) -> Any:
+    async def _safe_execute(self, tool_name: str, args: dict) -> Any:
         """Execute tool with safety checks"""
         # Validate inputs
         # Sandbox execution
         # Timeout handling
         pass
 
-    async def _synthesize(self, query: str, results: List) -> str:
+    async def _synthesize(self, query: str, results: list) -> str:
         """Synthesize results into response"""
         raise NotImplementedError
 ```
@@ -222,7 +222,7 @@ class CoderAgent(BaseAgent):
         ]
         super().__init__('coder', tools)
 
-    async def _plan(self, query: str, context: Dict) -> list[Dict]:
+    async def _plan(self, query: str, context: dict) -> list[dict]:
         """Plan coding tasks"""
 
         # Analyze requirements
@@ -249,7 +249,7 @@ class ResearcherAgent(BaseAgent):
         ]
         super().__init__('researcher', tools)
 
-    async def _plan(self, query: str, context: Dict) -> list[Dict]:
+    async def _plan(self, query: str, context: dict) -> list[dict]:
         """Plan research tasks"""
 
         # Extract key entities

@@ -1,7 +1,7 @@
 ---
 Document ID: 4300-PRACTICE
 Title: "4300: Quantization Aware Training - Practice"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 ---
@@ -366,7 +366,7 @@ Bug 1: FakeQuantize never initializes
 
 Bug 2: Missing scale initialization
   Issue: scale not initialized based on input statistics
-  Fix: Set scale based on input range in first forward pass
+  Fix: set scale based on input range in first forward pass
 
 Bug 3: Quantizing attention scores
   Issue: Applying quantization to attention weights (softmax output)
@@ -426,7 +426,7 @@ print("="*60)
 
 model = SimpleModel()
 
-# Step 1: Set qconfig
+# Step 1: set qconfig
 model.qconfig = quant.get_default_qat_qconfig('fbgemm')
 
 # Step 2: Prepare for QAT

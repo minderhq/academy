@@ -3,7 +3,7 @@ Document ID: 6304
 Title: "6304: GraphRAG Implementation Guide"
 Phase: 6
 Module: 6300
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -93,7 +93,7 @@ Complete implementation guide for GraphRAG (Knowledge Graph-enhanced Retrieval A
 ```python
 # graph_construction.py
 from neo4j import GraphDatabase
-from typing import Dict, Any
+from typing import Any
 import json
 
 class KnowledgeGraphBuilder:
@@ -167,7 +167,7 @@ class KnowledgeGraphBuilder:
                     description=rel.get("description", "")
                 )
 
-    def get_entity_context(self, entity_id: str, max_depth: int = 2) -> list[Dict]:
+    def get_entity_context(self, entity_id: str, max_depth: int = 2) -> list[dict]:
         """Get context for an entity via graph traversal"""
 
         # Parameters cannot set variable-length path bounds in Cypher —
@@ -227,7 +227,6 @@ def example_graph_construction():
 from neo4j import GraphDatabase
 from qdrant_client import QdrantClient
 from sentence_transformers import SentenceTransformer
-from typing import List, Dict
 
 class GraphRAGSystem:
     """
@@ -259,7 +258,7 @@ class GraphRAGSystem:
         top_k: int = 5,
         graph_depth: int = 2,
         alpha: float = 0.5,  # 1=vector only, 0=graph only
-    ) -> list[Dict]:
+    ) -> list[dict]:
         """
         Hybrid graph + vector search
 
@@ -349,11 +348,11 @@ class GraphRAGSystem:
 
     def _combine_results(
         self,
-        vector_results: List,
+        vector_results: list,
         graph_context: dict[str, float],
         alpha: float,
         top_k: int,
-    ) -> list[Dict]:
+    ) -> list[dict]:
         """Combine vector and graph results"""
 
         # Normalize scores
@@ -433,7 +432,6 @@ def test_graph_rag():
 ```python
 # multi_hop_reasoning.py
 from neo4j import GraphDatabase
-from typing import Dict
 
 class MultiHopReasoner:
     """
@@ -449,7 +447,7 @@ class MultiHopReasoner:
         start_entity: str,
         end_entity: str,
         max_hops: int = 3,
-    ) -> list[Dict]:
+    ) -> list[dict]:
         """Find reasoning paths between entities"""
 
         # Parameters can't set variable-length path bounds — int-cast
@@ -480,7 +478,7 @@ class MultiHopReasoner:
 
             return paths
 
-    def explain_reasoning(self, path: Dict) -> str:
+    def explain_reasoning(self, path: dict) -> str:
         """Generate explanation for reasoning path"""
 
         steps = []
@@ -519,7 +517,6 @@ import json
 
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
-from typing import List
 
 class EntityExtractor:
     """
@@ -534,7 +531,7 @@ class EntityExtractor:
             device_map="auto",
         )
 
-    def extract(self, text: str) -> dict[str, List]:
+    def extract(self, text: str) -> dict[str, list]:
         """Extract entities and relationships from text"""
 
         prompt = f"""Extract entities and relationships from the following text.

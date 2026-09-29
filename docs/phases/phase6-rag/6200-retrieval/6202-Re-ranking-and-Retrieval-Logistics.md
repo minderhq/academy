@@ -3,7 +3,7 @@ Document ID: 6202
 Title: "6202: Re-ranking and Retrieval Logistics"
 Phase: 6
 Module: 6200
-Last Updated: 2026-09-27
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -113,7 +113,7 @@ class CrossEncoderReranker:
         """
         Re-rank documents by relevance to query
 
-        Documents: List of text strings
+        Documents: The text strings
         Returns: Top k documents (sorted)
         """
         # Create query-document pairs
@@ -361,8 +361,8 @@ def average_precision(retrieved_docs, relevant_docs):
     """
     Average Precision: Area under precision-recall curve
 
-    retrieved_docs: List of retrieved document indices
-    relevant_docs: Set of relevant document indices
+    retrieved_docs: The retrieved document indices
+    relevant_docs: The relevant document indices
     """
     precision_scores = []
     num_relevant = 0
@@ -404,8 +404,8 @@ def ndcg(retrieved_docs, relevance_scores, k=10):
     """
     NDCG: Accounts for graded relevance
 
-    retrieved_docs: List of retrieved document indices
-    relevance_scores: Dict mapping doc_id → relevance (0-3)
+    retrieved_docs: The retrieved document indices
+    relevance_scores: dict mapping doc_id → relevance (0-3)
     k: Cutoff rank
     """
     # DCG: Discounted Cumulative Gain

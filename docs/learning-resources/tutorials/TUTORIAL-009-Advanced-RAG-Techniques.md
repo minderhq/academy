@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-009
 Title: "TUTORIAL-009: Advanced RAG Techniques"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 ---
@@ -176,7 +176,6 @@ print([(doc_id, round(score, 4)) for doc_id, score in fused[:3]])
 
 ```python
 from sentence_transformers import CrossEncoder
-from typing import Dict
 
 class ReRanker:
     """Re-rank retrieved documents using cross-encoder"""
@@ -189,7 +188,7 @@ class ReRanker:
         query: str,
         documents: list[str],
         top_k: int = 10
-    ) -> list[Dict]:
+    ) -> list[dict]:
         """
         Re-rank documents using cross-encoder
 
@@ -336,7 +335,7 @@ class ContextManager:
 
     def build_context(
         self,
-        retrieved_docs: list[Dict],
+        retrieved_docs: list[dict],
         query: str,
         strategy: str = "stuff"
     ) -> str:
@@ -360,7 +359,7 @@ class ContextManager:
         else:
             raise ValueError(f"Unknown strategy: {strategy}")
 
-    def _stuff_context(self, docs: list[Dict], query: str) -> str:
+    def _stuff_context(self, docs: list[dict], query: str) -> str:
         """Simple concatenation (if fits in context)"""
         context_parts = [f"Query: {query}\n\nRelevant Context:"]
 
@@ -379,7 +378,7 @@ class ContextManager:
 
         return "\n".join(context_parts)
 
-    def _refine_context(self, docs: list[Dict], query: str) -> str:
+    def _refine_context(self, docs: list[dict], query: str) -> str:
         """Iteratively refine context"""
         context = f"Query: {query}\n\nContext:"
 
@@ -414,7 +413,7 @@ class RAGEvaluator:
         test_queries: list[str],
         ground_truth_docs: list[list[int]],
         ground_truth_answers: list[str]
-    ) -> Dict:
+    ) -> dict:
         """Evaluate retrieval and generation"""
 
         retrieval_metrics = {}

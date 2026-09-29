@@ -59,7 +59,7 @@ This module assumes you have knowledge of:
 
 ```python
 from abc import ABC, abstractmethod
-from typing import List, Any
+from typing import Any
 
 class Model(ABC):
     """Abstract base class for models."""
@@ -358,7 +358,6 @@ services:
 
 ```python
 import asyncio
-from typing import List
 from fastapi import FastAPI
 
 app = FastAPI()

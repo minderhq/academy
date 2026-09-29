@@ -73,7 +73,7 @@ The pattern follows this loop:
 
 ```python
 # ~/lab-004-react/examples/react_basics.py
-from typing import Dict, Any
+from typing import Any
 import requests
 import json
 
@@ -240,7 +240,7 @@ Response:"""
 
         return "Max steps reached without answer"
 
-    def _generate_answer(self, query: str, history: list[Dict]) -> str:
+    def _generate_answer(self, query: str, history: list[dict]) -> str:
         """Generate final answer based on reasoning"""
 
         context = "\n".join([
@@ -302,7 +302,6 @@ if __name__ == "__main__":
 
 ```python
 # ~/lab-004-react/services/tools/tool_registry.py
-from typing import List
 from abc import ABC, abstractmethod
 import subprocess
 import requests
@@ -514,7 +513,7 @@ if __name__ == "__main__":
 # ~/lab-004-react/services/agent/react_agent.py
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-from typing import List, Any
+from typing import Any
 import requests
 import json
 from tool_registry import ToolRegistry
@@ -964,7 +963,6 @@ print_result(result)
 
 ```python
 # ~/lab-004-react/services/agent/advanced_features.py
-from typing import Dict
 import hashlib
 import json
 from datetime import datetime
@@ -1028,7 +1026,7 @@ Reflection:"""
 
         return list(set(suggestions))[:5]
 
-    def export_memory(self, session_id: str) -> Dict:
+    def export_memory(self, session_id: str) -> dict:
         """Export session memory"""
 
         return {
@@ -1038,7 +1036,7 @@ Reflection:"""
             "timestamp": datetime.now().isoformat()
         }
 
-    def import_memory(self, memory_data: Dict):
+    def import_memory(self, memory_data: dict):
         """Import session memory"""
 
         session_id = memory_data["session_id"]
@@ -1073,7 +1071,7 @@ async def export_memory(session_id: str):
     return advanced_agent.export_memory(session_id)
 
 @app.post("/memory/import")
-async def import_memory(memory_data: Dict):
+async def import_memory(memory_data: dict):
     """Import session memory"""
     advanced_agent = AdvancedReActAgent()
     advanced_agent.import_memory(memory_data)
@@ -1097,7 +1095,6 @@ async def get_suggestions(session_id: str):
 
 ```python
 # ~/lab-004-react/services/agent/multi_agent.py
-from typing import List, Dict
 import requests
 
 class SpecialistAgent:
