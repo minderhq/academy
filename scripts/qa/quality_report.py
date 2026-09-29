@@ -226,10 +226,25 @@ stand today?" without running each tool by hand.
                        interface (uv pip install) are never
                        reported; reasoned (rel, exact-line)
                        accepts cover the documented fallback,
-                       conda, container, bootstrap and notebooks
+                       conda, antiexample, bootstrap and notebooks
                        classes; born from the tick-337 census
                        (715 fences, 145 pip-family lines, 30
                        plain) locked baseline 0 at birth
+    uv_workflow_census  uv project-workflow adoption census
+                       (report): per-subcommand occurrence
+                       counts inside bash/sh/shell/dockerfile/
+                       powershell fences plus per-doc mention
+                       counts of pyproject.toml, uv.lock and
+                       requirements.txt; born from the tick-339
+                       census - the corpus was fluent in the
+                       imperative layer (uv pip install 135)
+                       but silent on the declarative standard
+                       (uv init/add/sync/run at 0, uv.lock in
+                       0 docs) until ENVIRONMENT-SETUP taught
+                       the pyproject.toml + uv.lock workflow;
+                       numbers are expected to move as the
+                       declarative standard spreads - exit 0
+                       by design
     unfinished_marker_scan unfinished-content markers in prose
                        (UM-01): outside any code fence, inline code
                        scrubbed, a line must not carry "coming soon",
@@ -417,6 +432,7 @@ GATES = [
     ("fence_variant_check_module.py", "fence_variant_check_module", True),
     ("bash_vars_check.py", "bash_vars_check", True),
     ("uv_install_check.py", "uv_install_check", True),
+    ("uv_workflow_census.py", "uv_workflow_census", False),
     ("unfinished_marker_scan.py", "unfinished_marker_scan", True),
     ("empty_section_scan.py", "empty_section_scan", True),
     ("emoji_shortcode_scan.py", "emoji_shortcode_scan", True),
