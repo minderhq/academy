@@ -1,7 +1,7 @@
 ---
 Document ID: 4400-QUIZ
 Title: "4400: Advanced Quantization Techniques - Quiz"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 ---
@@ -27,7 +27,7 @@ Answers are at the bottom.
 
 A) It uses random sampling
 B) It requires retraining
-C) It quantizes activations instead of weights
+C) It quantizes activations instead of the model weights themselves
 D) It uses Hessian information to guide quantization
 
 **2. In GPTQ, the damping parameter prevents:**
@@ -35,13 +35,13 @@ D) It uses Hessian information to guide quantization
 A) Underfitting
 B) Numerical instability in Hessian inversion
 C) Overfitting
-D) Slow inference
+D) Slow inference, since damping has no direct effect on kernel execution speed at all
 
 **3. Group size in GPTQ determines:**
 
 A) The number of quantization bits
 B) How many weights share a scale factor
-C) How many models to quantize together
+C) How many models to quantize together in a single pass of the tool
 D) The batch size for calibration
 
 **4. GPTQ typically requires:**
@@ -76,7 +76,7 @@ D) Gradient magnitude
 
 **8. AWQ vs GPTQ: Which typically has better accuracy at 4-bit?**
 
-A) Depends on the model
+A) Depends on the model, with no single winner across every checkpoint ever tested
 B) GPTQ is always better
 C) They are equivalent
 D) AWQ is slightly better
@@ -86,13 +86,13 @@ D) AWQ is slightly better
 A) Fuses linear + activation for speed
 B) Combines multiple models
 C) Improves accuracy
-D) Reduces model size
+D) Reduces model size, though fusion leaves every parameter bit exactly as it was
 
 **10. AWQ's clip_ratio parameter controls:**
 
 A) How many weights to keep at FP16
 B) The quantization range
-C) How much to clip gradients
+C) How much to clip gradients, a training-time setting AWQ never touches during quantization
 D) The context length
 
 ### Section 3: GGUF Format (5 questions)
@@ -101,7 +101,7 @@ D) The context length
 
 A) CPU and consumer hardware
 B) Mobile devices only
-C) Training large models
+C) Training large models, a workload GGUF was never built to schedule or accelerate
 D) GPU inference only
 
 **12. The recommended GGUF quantization type is:**
@@ -109,18 +109,18 @@ D) GPU inference only
 A) Q4_K_M
 B) Q3_K_M
 C) Q2_K
-D) Q8_0
+D) Q8_0, a near-lossless tier whose large file size defeats the point of low-bit storage
 
 **13. GGUF files store:**
 
 A) Only model weights
 B) Weights + metadata + tokenizer
 C) Training data
-D) Only quantization parameters
+D) Only quantization parameters, with no weights ever embedded inside the container
 
 **14. To run GGUF models on GPU with llama.cpp, you use:**
 
-A) `--cuda`
+A) `--cuda`, a flag llama.cpp's llama-cli binary has never recognized in any release
 B) `--gpu-layers all`
 C) `--n-gpu-layers N`
 D) `--device gpu`
@@ -136,7 +136,7 @@ D) They are equivalent
 
 **16. For production deployment on CPU, which format is recommended?**
 
-A) EXL2
+A) EXL2, an NVIDIA-GPU-only format whose kernels cannot even run on CPU targets
 B) AWQ
 C) GPTQ
 D) GGUF
@@ -150,14 +150,14 @@ D) Skip validation
 
 **18. If accuracy loss is >5% after quantization, you should:**
 
-A) Give up on quantization
+A) Give up on quantization entirely, discarding a deployment that a mid tier could still save
 B) Use a smaller model
 C) Deploy anyway
 D) Try higher bit-width or mixed precision
 
 **19. Docker is useful for deployment because:**
 
-A) It makes models faster
+A) It makes models faster, though containerization adds an overhead layer rather than removing one
 B) It provides reproducible environments
 C) It reduces model size
 D) It improves accuracy
@@ -165,7 +165,7 @@ D) It improves accuracy
 **20. Monitoring quantized models in production helps:**
 
 A) Reduce memory usage
-B) Improve model quality
+B) Improve model quality, which monitoring can only observe and never directly cause
 C) Reduce training time
 D) Track accuracy degradation and performance
 
