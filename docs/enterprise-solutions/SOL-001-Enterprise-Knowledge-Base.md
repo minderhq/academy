@@ -1,7 +1,7 @@
 ---
 Document ID: SOL-001
 Title: "SOL-001: Enterprise Knowledge Base - Complete Implementation"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -155,33 +155,35 @@ source venv/bin/activate  # Linux/Mac
 # or
 venv\Scripts\activate  # Windows
 
-# Install dependencies
-uv pip install -r requirements.txt
+# Install from the project manifest (pyproject.toml + uv.lock)
+uv sync --locked
 ```
 
-```text
-# requirements.txt
-qdrant-client==1.19.0
-fastapi==0.141.1
-uvicorn==0.52.1
-python-multipart==0.0.32
-langchain==1.4.2
-langchain-community==0.4.2
-sentence-transformers==6.1.0
-transformers==5.10.2
-accelerate==1.13.0
-bitsandbytes==0.50.2
-sqlalchemy==2.0.50
-psycopg2-binary==2.9.13
-redis==8.1.0
-python-jose[cryptography]==3.5.0
-passlib[bcrypt]==1.7.4
-python-dotenv==1.2.3
-aiofiles==25.1.0
-pypdf==6.19.0
-python-docx==1.2.0
-openpyxl==3.1.5
-python-pptx==1.0.2
+```toml
+# pyproject.toml - dependencies recorded by uv add
+dependencies = [
+    "qdrant-client==1.19.0",
+    "fastapi==0.141.1",
+    "uvicorn==0.52.1",
+    "python-multipart==0.0.32",
+    "langchain==1.4.2",
+    "langchain-community==0.4.2",
+    "sentence-transformers==6.1.0",
+    "transformers==5.10.2",
+    "accelerate==1.13.0",
+    "bitsandbytes==0.50.2",
+    "sqlalchemy==2.0.50",
+    "psycopg2-binary==2.9.13",
+    "redis==8.1.0",
+    "python-jose[cryptography]==3.5.0",
+    "passlib[bcrypt]==1.7.4",
+    "python-dotenv==1.2.3",
+    "aiofiles==25.1.0",
+    "pypdf==6.19.0",
+    "python-docx==1.2.0",
+    "openpyxl==3.1.5",
+    "python-pptx==1.0.2",
+]
 ```
 
 ### 2.2 Document Processor
@@ -898,9 +900,10 @@ RUN apt-get update && apt-get install -y \
 # (https://docs.astral.sh/uv/guides/integration/docker/)
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
 
-# Copy requirements
-COPY requirements.txt .
-RUN uv pip install --system --no-cache -r requirements.txt
+# Dependency layer: only manifest/lockfile changes rebuild this.
+COPY pyproject.toml uv.lock ./
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --locked --no-install-project
 
 # Copy application
 COPY . .
