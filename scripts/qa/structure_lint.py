@@ -8,10 +8,18 @@ Hard gates (exit 1 on any finding):
     legal (the naive toggle regex once reported 4193 phantom findings).
   - markdown files with more than one H1 outside fences.
   - markdown files with zero H1 outside fences.
+  - heading level jumps outside fences (HJ-01): a heading that skips more
+    than one level deeper than the previous heading (H2 -> H4) breaks the
+    document outline for TOC renderers, screen readers and any platform
+    deriving a navigation tree; going back up is free. Born from the
+    tick-278 census that measured the corpus at 0 jumps right after the
+    tick-277 same-level-children re-level - the lock keeps the outline
+    monotone as content grows.
 
-Baseline (2026-09-28): 461 files scanned, 0 / 0 / 0 findings.
+Baseline (2026-09-29): 462 files scanned, 0 / 0 / 0 / 0 findings.
 Materialized from the formerly repo-external verify_a3_omega.py temp script;
-logic preserved byte-for-byte so historical baselines stay comparable.
+the fence/H1 logic is preserved as materialized, HJ-01 joined in
+tick-278 (2026-09-29).
 
 Usage:
     python scripts/qa/structure_lint.py [--root REPO_ROOT]
@@ -33,6 +41,7 @@ SKIP_EXT = {".ipynb", ".png", ".jpg", ".jpeg", ".gif", ".ico", ".pdf",
 
 FENCE = re.compile(r"^(\s*)(`{3,})([\w+-]*)\s*$")
 H1 = re.compile(r"^# \S")
+HEAD_ALL = re.compile(r"^(#{1,6})\s+\S")
 
 
 def esc(text: str) -> str:
@@ -47,7 +56,7 @@ def main() -> int:
     import os
     root = args.root or os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-    unbalanced, multi_h1, zero_h1 = [], [], []
+    unbalanced, multi_h1, zero_h1, level_jumps = [], [], [], []
     total = 0
 
     for dirpath, dirnames, filenames in os.walk(root):
@@ -78,10 +87,11 @@ def main() -> int:
             if state:
                 unbalanced.append(rel)
 
-            # real H1s outside fences
+            # real H1s outside fences + heading level jumps (HJ-01)
             if fn.lower().endswith((".md", ".markdown", ".mdx")):
                 in_fence = 0
                 h1s = 0
+                prev_level = 0
                 for ln in lines:
                     m = FENCE.match(ln)
                     if m:
@@ -91,14 +101,24 @@ def main() -> int:
                         elif not in_fence:
                             in_fence = ticks
                         continue
-                    if not in_fence and H1.match(ln):
+                    if in_fence:
+                        continue
+                    hm = HEAD_ALL.match(ln)
+                    if hm:
+                        level = len(hm.group(1))
+                        if prev_level and level > prev_level + 1:
+                            level_jumps.append(
+                                (rel, prev_level, level,
+                                 ln.strip().lstrip("#").strip()))
+                        prev_level = level
+                    if H1.match(ln):
                         h1s += 1
                 if h1s > 1:
                     multi_h1.append((rel, h1s))
                 elif h1s == 0:
                     zero_h1.append(rel)
 
-    ok = not (unbalanced or multi_h1 or zero_h1)
+    ok = not (unbalanced or multi_h1 or zero_h1 or level_jumps)
     print(esc("Scanned files: %d" % total))
     print(esc("Unbalanced fences: %d" % len(unbalanced)))
     for x in unbalanced[:10]:
@@ -109,10 +129,13 @@ def main() -> int:
     print(esc("Zero-H1 md files: %d" % len(zero_h1)))
     for x in zero_h1[:10]:
         print("  ", esc(x))
+    print(esc("Heading level jumps: %d" % len(level_jumps)))
+    for rel, prev, level, text in level_jumps[:10]:
+        print(esc("  %s: H%d->H%d %s" % (rel, prev, level, text[:40])))
     print("structure_lint: %d files scanned, %d unbalanced fences, "
-          "%d multi-H1, %d zero-H1 -> %s"
+          "%d multi-H1, %d zero-H1, %d level-jumps -> %s"
           % (total, len(unbalanced), len(multi_h1), len(zero_h1),
-             "PASS" if ok else "FAIL"))
+             len(level_jumps), "PASS" if ok else "FAIL"))
     return 0 if ok else 1
 
 

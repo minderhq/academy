@@ -46,7 +46,7 @@ the full installed stack. A partial environment fails loud with
 | datablock_syntax_scan | DB-01/02 | json fences parse; yaml fences parse as document streams |
 | assessment_lint | AS-01..AS-08 | QUIZ.md + PRACTICE.md coverage per module |
 | quiz_export | - | quiz bank parses into complete question records |
-| structure_lint | - | fence parity + H1 discipline corpus-wide |
+| structure_lint | - | fence parity + H1 discipline + heading level jumps (HJ-01: no heading dives more than one level below the previous one, so the document outline stays monotone for TOC renderers, screen readers and platform nav trees) corpus-wide |
 | linkcheck | - | every relative link target exists on disk |
 | casecheck | - | case-sensitive href/disk match (Windows-invisible breaks) |
 | anchor_check | - | in-document AND cross-file anchors vs a GitHub-accurate slugger |
