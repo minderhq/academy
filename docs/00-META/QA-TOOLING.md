@@ -74,6 +74,7 @@ the full installed stack. A partial environment fails loud with
 | --- | --- |
 | objectives_lint | template-objective artifacts (OL-01/OL-02) - the drain queue |
 | fence_namecheck | unbound names in python fences, two codes: NC-01 module access without import (`name.attr` on a known module no fence imports - certain NameError, the gate's signal) and NC-02 fragment idiom (accepted teaching texture: usage-before-setup sketches, agent-UI placeholders, pseudo-code) |
+| duplicate_heading_scan | duplicate heading texts per file (DH-01) - GitHub suffixes the slugs and binds explicit anchors to the first heading, so a platform TOC/nav generator needs this inventory to suffix deterministically, and a new duplicate outside the accepted idiom lands here as the copy-paste review queue; born from the tick-282 census (69 duplicate classes in 32 files, every one the accepted per-item-sections texture: Task/Requirements per exercise, Overview/Pros/Cons per database, Challenge/Results per case study), so report mode, not a hard ban |
 | fm_staleness | Last Updated age map (fresh/recent/stale/missing) - a stale date is a review queue, not a failure |
 
 ---

@@ -189,6 +189,17 @@ stand today?" without running each tool by hand.
                        fragment idiom (accepted teaching texture) - the
                        2026-09-29 triage split 794 flat findings into
                        4 real module accesses (all fixed) + 790 fragments
+    duplicate_heading_scan
+                       duplicate heading texts per file (DH-01, report
+                       mode): GitHub suffixes the slugs and binds
+                       explicit anchors to the first heading, so a
+                       platform TOC/nav generator needs this inventory
+                       to suffix deterministically; born from the
+                       tick-282 census (69 duplicate classes in 32
+                       files, every one the accepted per-item-sections
+                       idiom - Task/Requirements per exercise,
+                       Overview/Pros/Cons per database), so report
+                       mode, not a hard ban
     fm_staleness       curriculum freshness map (report mode): Last Updated
                        age distribution across docs/ - surfaces the oldest
                        material so modernization passes can target it; a
@@ -238,6 +249,7 @@ GATES = [
     ("deprecated_scan.py", "deprecated_scan", True),
     ("objectives_lint.py", "objectives_lint", False),
     ("fence_namecheck.py", "fence_namecheck", False),
+    ("duplicate_heading_scan.py", "duplicate_heading_scan", False),
     ("fm_staleness_scan.py", "fm_staleness", False),
     ("kwarg_lint.py", "kwarg_lint", True),
     ("typing_legacy_scan.py", "typing_legacy_scan", True),
