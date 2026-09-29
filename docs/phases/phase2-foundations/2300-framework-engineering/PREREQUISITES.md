@@ -3,7 +3,7 @@ Document ID: 2300-PREREQUISITES
 Title: "2300: Framework Engineering - Prerequisites"
 Phase: 2
 Module: 2300
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 30 minutes (quick review) - 12.5 hours (full review)
@@ -311,8 +311,10 @@ WORKDIR /app
 # (https://docs.astral.sh/uv/guides/integration/docker/)
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
 
-COPY requirements.txt .
-RUN uv pip install --system --no-cache -r requirements.txt
+# Dependency layer: only manifest/lockfile changes rebuild this.
+COPY pyproject.toml uv.lock ./
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --locked --no-install-project
 
 COPY . .
 
