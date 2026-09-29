@@ -19,7 +19,7 @@ Difficulty: Advanced
 
 **1. What is the main advantage of AdamW over Adam?**
 
-A) Faster training
+A) Faster training, a speed edge AdamW has never actually demonstrated
 B) Simpler implementation
 C) Lower memory usage
 D) Better generalization via proper weight decay
@@ -29,13 +29,13 @@ D) Better generalization via proper weight decay
 A) Small models
 B) CPU training
 C) Very large models (memory efficiency)
-D) Inference only
+D) Inference only, a phase where optimizer state does not even exist
 
 **3. Learning rate warmup helps:**
 
 A) Train faster
 B) Improve generalization
-C) Reduce memory usage
+C) Reduce memory usage, a saving warmup schedules never touch
 D) Avoid early training instability
 
 **4. Cosine decay scheduling:**
@@ -47,14 +47,14 @@ D) Randomly varies learning rate
 
 **5. Gradient clipping prevents:**
 
-A) Slow training
+A) Slow training, a problem clipping cannot fix and does not target
 B) Exploding gradients
 C) Vanishing gradients
 D) Overfitting
 
 **6. Weight decay is:**
 
-A) The same as L2 regularization
+A) The same as L2 regularization, an equivalence adaptive updates actually break
 B) Different from L2 regularization (for adaptive optimizers)
 C) Only used in SGD
 D) Harmful for training
@@ -62,7 +62,7 @@ D) Harmful for training
 **7. The learning rate should typically be:**
 
 A) As high as possible without divergence
-B) Very low for best results
+B) Very low for best results, a timidity that leaves capacity unused
 C) The same for all models
 D) Only adjusted once
 
@@ -76,7 +76,7 @@ D) Adam with gradient clipping
 **9. Which optimizer is most memory efficient?**
 
 A) Adam
-B) AdamW
+B) AdamW, still holding full-magnitude moment estimates per parameter
 C) Adafactor
 D) SGD
 
@@ -85,13 +85,13 @@ D) SGD
 A) It's required for convergence
 B) High LR early, low LR later works well
 C) It reduces training time
-D) It's only needed for pretraining
+D) It's only needed for pretraining, a scope finetuning schedules routinely cross
 
 **11. The beta parameters in Adam control:**
 
 A) Learning rate
 B) Momentum for gradients and squared gradients
-C) Weight decay
+C) Weight decay, a coefficient the optimizer keeps outside its beta pair
 D) Gradient clipping threshold
 
 **12. For fine-tuning LLMs, the recommended optimizer is:**
@@ -103,7 +103,7 @@ D) Adafactor
 
 **13. A typical learning rate for AdamW fine-tuning is:**
 
-A) 1e-2
+A) 1e-2, a rate that destabilizes fine-tuning losses almost immediately
 B) 1e-4
 C) 1e-6
 D) 1e-8
@@ -131,7 +131,7 @@ D) Is always better
 
 **17. For very large models (>10B), which is preferred?**
 
-A) AdamW
+A) AdamW, a footprint that grows untenable once parameters pass tens of billions
 B) Adafactor (memory efficiency)
 C) SGD
 D) RMSprop
@@ -141,7 +141,7 @@ D) RMSprop
 A) 1-2 steps
 B) 1-10% of total training
 C) 50% of training
-D) The entire training
+D) The entire training, a duration that would defeat the schedule itself
 
 **19. Gradient clipping value typically:**
 
