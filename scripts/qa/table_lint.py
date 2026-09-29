@@ -8,6 +8,14 @@ TL-01  a GFM table (header row + ``|---|`` separator row + body) whose
        destined for a training platform must keep every table
        rectangular.
 
+TL-02  a non-blank line directly after a table block that carries an
+       unescaped pipe but is neither a strict row (leading AND
+       trailing pipe) nor a GFM table-breaker (heading, blockquote,
+       list item, fence): GFM consumes it as one more ragged table
+       row - invisible to TL-01's strict model - so a platform
+       renderer appends a row the author never wrote as a table.
+       Born from the tick-373 census (0 hits) as a lock.
+
 Cell counting follows GFM: ``\\|`` inside a cell is an escaped literal
 pipe, not a column separator. The 1202 passthrough troubleshooting
 table carries ``dmesg \\| grep vfio`` in a cell - a naive split
@@ -32,6 +40,8 @@ from pathlib import Path
 FENCE_RE = re.compile(r"^\s*(```|~~~)\s*([A-Za-z0-9_+-]*)\s*$")
 ROW_RE = re.compile(r"^\s*\|.*\|\s*$")
 SEP_RE = re.compile(r"^\s*\|[\s:|-]+\|\s*$")
+BREAK_RE = re.compile(r"^\s*(?:#|>|(?:[-*+]|\d+[.)])\s)")
+UNESC_PIPE = re.compile(r"(?<!\\)\|")
 
 
 def cell_count(line: str) -> int:
@@ -63,6 +73,16 @@ def scan_file(root: Path, path: Path, findings: list[str]) -> None:
                     f"{rel}:{start + 1}: TL-01 ragged table - cells per "
                     f"line {counts} across {len(block)} lines; pad short "
                     f"rows or split the table")
+            if i < len(lines):
+                nxt = lines[i]
+                if (nxt.strip() and not FENCE_RE.match(nxt)
+                        and not BREAK_RE.match(nxt)
+                        and UNESC_PIPE.search(nxt)
+                        and not ROW_RE.match(nxt)):
+                    findings.append(
+                        f"{rel}:{i + 1}: TL-02 loose table row - an "
+                        f"unescaped-pipe line directly after a table "
+                        f"block; GFM renders it as an extra ragged row")
             continue
         i += 1
 

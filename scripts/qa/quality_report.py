@@ -66,7 +66,10 @@ stand today?" without running each tool by hand.
                        (2 known inline-code examples allowlisted)
     table_lint         ragged GFM tables - header/separator/body lines
                        with differing cell counts (TL-01); escaped \\|
-                       is a literal pipe, not a separator
+                       is a literal pipe, not a separator; loose rows
+                       right after a table (TL-02 - an unescaped-pipe
+                       line GFM swallows as an extra ragged row;
+                       born tick-373, baseline 0)
     mermaid_lint       mermaid diagram fences: known diagram-type header
                        (MM-01), balanced () [] {} (MM-02), declared
                        direction on graph/flowchart (MM-03), no % outside
