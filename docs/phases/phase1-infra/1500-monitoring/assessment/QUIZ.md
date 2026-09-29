@@ -1,7 +1,7 @@
 ---
 Document ID: 1500-QUIZ
 Title: "1500: Monitoring - Quiz"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -47,15 +47,15 @@ D) No use
 
 **5. SLA stands for:**
 
-A) Service Level Agreement
+A) Service Level Assurance
 B) System Level Agreement
-C) Service Level Assurance
+C) Service Level Agreement
 D) None
 
 **6. SLO is:**
 
-A) Service Level Objective
-B) Service Level Option
+A) Service Level Option
+B) Service Level Objective
 C) System Level Objective
 D) None
 
@@ -167,8 +167,8 @@ D) None
 | 2 | D |
 | 3 | B |
 | 4 | B |
-| 5 | A |
-| 6 | A |
+| 5 | C |
+| 6 | B |
 | 7 | A |
 | 8 | A |
 | 9 | A |

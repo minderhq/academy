@@ -1,7 +1,7 @@
 ---
 Document ID: 4200-QUIZ
 Title: "4200: KV Cache & Context Window - Quiz"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 ---
@@ -20,16 +20,16 @@ Difficulty: Advanced
 **1. What is the primary purpose of KV cache?**
 
 A) Store model weights
-B) Cache Key and Value tensors to avoid recomputation
-C) Store training data
+B) Store training data
+C) Cache Key and Value tensors to avoid recomputation
 D) Compress the model
 
 **2. How much memory does KV cache typically use per token?**
 
 A) Negligible
-B) ~2 bytes per parameter per layer
+B) Depends only on vocabulary size
 C) Same as model weights
-D) Depends only on vocabulary size
+D) ~2 bytes per parameter per layer
 
 **3. What is the main bottleneck for long context windows?**
 
@@ -163,8 +163,8 @@ D) Avoid tokenization
 
 | # | Answer |
 |---|--------|
-| 1 | B |
-| 2 | B |
+| 1 | C |
+| 2 | D |
 | 3 | B |
 | 4 | B |
 | 5 | B |

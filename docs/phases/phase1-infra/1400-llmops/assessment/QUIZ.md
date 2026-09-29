@@ -1,7 +1,7 @@
 ---
 Document ID: 1400-QUIZ
 Title: "1400: LLMOps - Quiz"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -20,23 +20,23 @@ Difficulty: Intermediate
 **1. LLMOps is:**
 
 A) Only model training
-B) MLOps for LLMs
+B) Not needed
 C) Infrastructure only
-D) Not needed
+D) MLOps for LLMs
 
 **2. Ollama is designed for:**
 
 A) Training only
-B) Local LLM inference
-C) Cloud deployment
+B) Cloud deployment
+C) Local LLM inference
 D) Data processing
 
 **3. vLLM optimizes:**
 
 A) Training speed
-B) Inference throughput with PagedAttention
+B) Data loading
 C) Model size
-D) Data loading
+D) Inference throughput with PagedAttention
 
 **4. TGI stands for:**
 
@@ -163,9 +163,9 @@ D) All of the above
 
 | # | Answer |
 |---|--------|
-| 1 | B |
-| 2 | B |
-| 3 | B |
+| 1 | D |
+| 2 | C |
+| 3 | D |
 | 4 | A |
 | 5 | B |
 | 6 | B |

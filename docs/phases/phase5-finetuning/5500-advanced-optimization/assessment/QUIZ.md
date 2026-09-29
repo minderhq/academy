@@ -1,7 +1,7 @@
 ---
 Document ID: 5500-QUIZ
 Title: "5500: Advanced Optimization - Quiz"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 ---
@@ -20,29 +20,29 @@ Difficulty: Advanced
 **1. What is the main advantage of AdamW over Adam?**
 
 A) Faster training
-B) Better generalization via proper weight decay
+B) Simpler implementation
 C) Lower memory usage
-D) Simpler implementation
+D) Better generalization via proper weight decay
 
 **2. Adafactor is primarily designed for:**
 
 A) Small models
-B) Very large models (memory efficiency)
-C) CPU training
+B) CPU training
+C) Very large models (memory efficiency)
 D) Inference only
 
 **3. Learning rate warmup helps:**
 
 A) Train faster
-B) Avoid early training instability
+B) Improve generalization
 C) Reduce memory usage
-D) Improve generalization
+D) Avoid early training instability
 
 **4. Cosine decay scheduling:**
 
 A) Increases learning rate over time
-B) Decreases learning rate smoothly
-C) Keeps learning rate constant
+B) Keeps learning rate constant
+C) Decreases learning rate smoothly
 D) Randomly varies learning rate
 
 **5. Gradient clipping prevents:**
@@ -163,10 +163,10 @@ D) Random
 
 | # | Answer |
 |---|--------|
-| 1 | B |
-| 2 | B |
-| 3 | B |
-| 4 | B |
+| 1 | D |
+| 2 | C |
+| 3 | D |
+| 4 | C |
 | 5 | B |
 | 6 | B |
 | 7 | A |

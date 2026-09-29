@@ -1,7 +1,7 @@
 ---
 Document ID: 3500-QUIZ
 Title: "3500: Multimodal Models - Quiz"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 ---
@@ -20,22 +20,22 @@ Difficulty: Advanced
 **1. What is a multimodal model?**
 
 A) A model with multiple layers
-B) A model that processes multiple data types (text, image, audio)
-C) An ensemble of models
+B) An ensemble of models
+C) A model that processes multiple data types (text, image, audio)
 D) A model trained on multiple tasks
 
 **2. What is CLIP primarily designed for?**
 
 A) Image generation
-B) Image-text retrieval and understanding
+B) Video generation
 C) Audio processing
-D) Video generation
+D) Image-text retrieval and understanding
 
 **3. What training objective does CLIP use?**
 
 A) Masked language modeling
-B) Contrastive learning on image-text pairs
-C) Next token prediction
+B) Next token prediction
+C) Contrastive learning on image-text pairs
 D) Sequence-to-sequence training
 
 **4. What is the main advantage of multimodal models?**
@@ -163,9 +163,9 @@ D) Audio transcripts
 
 | # | Answer |
 |---|--------|
-| 1 | B |
-| 2 | B |
-| 3 | B |
+| 1 | C |
+| 2 | D |
+| 3 | C |
 | 4 | B |
 | 5 | B |
 | 6 | B |
