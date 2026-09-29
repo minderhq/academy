@@ -362,7 +362,7 @@ set -euo pipefail
 
 # Validate arguments before using them
 if [ -z "${1:-}" ]; then
-    echo "Usage: ./restore.sh ${BACKUP_DATE}"
+    echo "Usage: ./restore.sh YYYYMMDD_HHMMSS"
     echo "Example: ./restore.sh 20240115_143000"
     exit 1
 fi

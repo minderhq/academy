@@ -206,6 +206,19 @@ stand today?" without running each tool by hand.
                        loop-sibling shape, placeholder pipeline
                        functions - each a reasoned (rel, name) accept;
                        locked baseline 0 at birth
+    bash_vars_check     undefined shell variables in ```bash fences
+                       (BB-02): the shell counterpart of PY-01 - a
+                       plain $VAR or bare-braced ${VAR} load stored
+                       nowhere (fence, same doc, builtins, systemd
+                       Environment= directives, os-release keys after
+                       a source) is reported; guarded ${VAR:-def}
+                       idiom tolerates absence by design, and
+                       template placeholders plus nginx runtime
+                       variables in bash-labeled nginx fragments are
+                       absorbed as reasoned (rel, name) accepts; born
+                       from the tick-335/336 census (697 fences, 22
+                       plain -> 38 with braced loads, 5 drained)
+                       locked baseline 0 at birth
     unfinished_marker_scan unfinished-content markers in prose
                        (UM-01): outside any code fence, inline code
                        scrubbed, a line must not carry "coming soon",
@@ -391,6 +404,7 @@ GATES = [
     ("resource_ref_check.py", "resource_ref_check", True),
     ("fence_variant_check.py", "fence_variant_check", True),
     ("fence_variant_check_module.py", "fence_variant_check_module", True),
+    ("bash_vars_check.py", "bash_vars_check", True),
     ("unfinished_marker_scan.py", "unfinished_marker_scan", True),
     ("empty_section_scan.py", "empty_section_scan", True),
     ("emoji_shortcode_scan.py", "emoji_shortcode_scan", True),

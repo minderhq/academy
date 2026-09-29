@@ -205,7 +205,7 @@ GREEN_PORT=8001
 NEW_VERSION=$1
 
 if [ -z "$NEW_VERSION" ]; then
-    echo "Usage: ./deploy-blue-green.sh ${VERSION}"
+    echo "Usage: ./deploy-blue-green.sh NEW_VERSION"
     exit 1
 fi
 

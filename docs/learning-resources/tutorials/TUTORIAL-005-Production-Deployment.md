@@ -460,7 +460,7 @@ services:
     ports:
       - "3001:3000"
     environment:
-      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD}
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD:?export GRAFANA_PASSWORD first}
     volumes:
       - grafana-data:/var/lib/grafana
     restart: always
