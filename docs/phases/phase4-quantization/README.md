@@ -323,7 +323,7 @@ calibration_data = load_target_domain_samples(n=256, diversity=True)
 import torch
 from torch.utils.checkpoint import checkpoint
 
-def calibrate_with_checkpointing(model, data):
+def calibrate_with_checkpointing(model, data, batch_size=32):
     # Enables larger batch sizes with limited VRAM
     for i in range(0, len(data), batch_size):
         batch = data[i:i+batch_size]

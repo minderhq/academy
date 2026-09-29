@@ -406,7 +406,7 @@ class GenerationRequest(BaseModel):
     temperature: float = 0.7
 
 @app.post("/generate")
-def generate(req: GenerationRequest):
+def _generate_impl(req: GenerationRequest):
     tok = app.state.tokenizer
     model = app.state.model
     ids = tok(req.prompt, return_tensors="pt").to(model.device)

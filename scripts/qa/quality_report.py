@@ -177,6 +177,19 @@ stand today?" without running each tool by hand.
                        references, 0 out of range; 101 lowercase,
                        all filesystem-path idioms) locked baseline 0
                        at birth
+    fence_variant_check undefined lexical variants inside ```python
+                       fences (PY-01): a bare name loaded but defined
+                       nowhere (scope chain, fence module, same doc,
+                       builtins) that is a near-miss of an in-scope
+                       name - vocab_size vs vocab, range(epochs) vs
+                       the epoch loop var, calculate vs
+                       calculator_function; lambda/nested bodies
+                       resolve against the enclosing chain, two
+                       ambient names + CP-001's placeholder-suffix
+                       idiom are allowlisted with reasons; the birth
+                       census (tick-330/331: 1857 fences, 7 survivors
+                       -> 5 drained, 2 FP classes absorbed by design)
+                       locked baseline 0
     unfinished_marker_scan unfinished-content markers in prose
                        (UM-01): outside any code fence, inline code
                        scrubbed, a line must not carry "coming soon",
@@ -360,6 +373,7 @@ GATES = [
     ("lab_registry_check.py", "lab_registry_check", True),
     ("resource_id_check.py", "resource_id_check", True),
     ("resource_ref_check.py", "resource_ref_check", True),
+    ("fence_variant_check.py", "fence_variant_check", True),
     ("unfinished_marker_scan.py", "unfinished_marker_scan", True),
     ("empty_section_scan.py", "empty_section_scan", True),
     ("emoji_shortcode_scan.py", "emoji_shortcode_scan", True),
