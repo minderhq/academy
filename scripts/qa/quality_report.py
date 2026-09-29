@@ -219,6 +219,17 @@ stand today?" without running each tool by hand.
                        step could not tell code from prose; born
                        from the tick-285 label census (21 labels /
                        4244 fences), baseline 0 at birth
+    lesson_id_scan     every lesson doc carries its filename's NNNN
+                       id (LI-01 first H1 prefix / LI-02 Title
+                       prefix): the id is the stable platform join
+                       key across filename, manifest nav label and
+                       rendered page; title_h1_parity_scan already
+                       forces Title := H1 so the prefix lives in
+                       both faces or neither, this locks the prefix
+                       itself - resource_id_check is the same
+                       discipline for the 43 family resources; born
+                       from the tick-287 census (114/114 clean),
+                       baseline 0 at birth
   queue gate (drain in progress; never fails the report unless --fail-on-queue):
     objectives_lint    template-objective artifacts (OL-01/OL-02), phase by phase
     fence_namecheck    unbound names in python fences (report mode), two
@@ -307,6 +318,7 @@ GATES = [
     ("setext_scan.py", "setext_scan", True),
     ("title_h1_parity_scan.py", "title_h1_parity_scan", True),
     ("fence_class_scan.py", "fence_class_scan", True),
+    ("lesson_id_scan.py", "lesson_id_scan", True),
 ]
 
 
