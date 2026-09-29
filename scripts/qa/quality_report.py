@@ -7,6 +7,14 @@ stand today?" without running each tool by hand.
 
   hard gates (exit 1 on findings, CI contract):
     frontmatter_lint   frontmatter completeness/consistency (FM-01..FM-09)
+    doc_id_check       Document ID unique across the corpus (DD-01):
+                       manifest_export copies it into the platform
+                       manifest's primary `id` field, so two docs
+                       sharing one ID collapse the join; FM-03 locks
+                       existence and FM-07 filename-prefix match,
+                       this locks cross-file uniqueness - born from
+                       the tick-328 census (408 files, 408 distinct
+                       IDs, 0 duplicates)
     pip_uv_scan        bare pip install only inside documented exceptions
                        (Docker/container, conda workflows, uv bootstraps,
                        uv-first fallback blocks)
@@ -320,6 +328,7 @@ PHASE_DIR = re.compile(r"^phase\d+-")
 # (script, label, hard gate?)
 GATES = [
     ("frontmatter_lint.py", "frontmatter_lint", True),
+    ("doc_id_check.py", "doc_id_check", True),
     ("pip_uv_scan.py", "pip_uv_scan", True),
     ("langchain_census.py", "langchain_census", True),
     ("legacy_chain_scan.py", "legacy_chain_scan", True),
