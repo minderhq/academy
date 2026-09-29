@@ -27,6 +27,18 @@ QI-05  question numbering gap: quiz_export flags duplicate numbers
        against its own Answer Key rows. Census: all 33 quizzes are
        contiguous 1..N.
 
+QI-08  duplicate Answer Key rows for one question ("| 3 | A |" and
+       "| 3 | C |" in the same table): quiz_export's key dict
+       overwrites, so the last row silently wins and a learner sees
+       whichever row sorts last. Born from the tick-285 census: 0
+       across all 33 modules.
+
+QI-09  orphan Answer Key row - a key row whose question number does
+       not exist ("| 11 | B |" in a 10-question quiz). quiz_export's
+       join is one-directional (questions pull from the key, key rows
+       are never checked back), so nothing else sees this class.
+       Census: 0 across all 33 modules.
+
 Report inventory (never fails the gate - the accepted texture and
 the drain queue, same contract as duplicate_heading_scan / AS-09):
 
@@ -44,7 +56,8 @@ QI-07  skewed answer keys per module (max letter >= 50% of answered
        options ("Both A and B" / "All of the above") that cannot
        move.
 
-Hard gate on QI-01..05 (exit 1): baseline 0 at birth (tick-284).
+Hard gate on QI-01..05 and QI-08/09 (exit 1): baseline 0 at birth
+(tick-284 / tick-285).
 
 Run over the whole corpus:
     python scripts/qa/quiz_integrity_scan.py --root .
@@ -58,7 +71,8 @@ from collections import Counter
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from quiz_export import MODULE_DIR, export_quiz, fence_aware  # noqa: E402
+from quiz_export import (MODULE_DIR, AK_BOLD, AK_HEADING, AK_ROW, HEADING,  # noqa: E402
+                         export_quiz, fence_aware)
 
 MODULES_ROOT = Path("docs") / "phases"
 
@@ -110,12 +124,39 @@ def scan_module(rel: str, lines: list[str],
                     f"{rel}: QI-01 self-referential option in question "
                     f"{q['n']}: option A says 'All of the above' - "
                     f"includes itself")
-        letters = [q["answer"]] if q["answer"] else []
     nums = [q["n"] for q in questions]
+    nset = set(nums)
     if nums != list(range(1, len(nums) + 1)):
         hard.append(
             f"{rel}: QI-05 question numbering is not contiguous 1..N "
             f"(got {nums[:8]}{'...' if len(nums) > 8 else ''})")
+
+    # QI-08/09 need the Answer Key join in reverse: quiz_export only
+    # pulls the key INTO questions and never checks key rows back.
+    key_rows: dict[int, list[str]] = {}
+    in_ak = False
+    for line, fence in fence_aware(lines):
+        if fence:
+            continue
+        if AK_HEADING.match(line):
+            in_ak = True
+            continue
+        if in_ak:
+            if HEADING.match(line):
+                in_ak = False
+                continue
+            m = AK_ROW.match(line) or AK_BOLD.match(line)
+            if m:
+                key_rows.setdefault(int(m.group(1)), []).append(m.group(2))
+    for n, letters in sorted(key_rows.items()):
+        if len(letters) > 1:
+            hard.append(
+                f"{rel}: QI-08 duplicate Answer Key rows for question "
+                f"{n}: {','.join(letters)} - last row silently wins")
+        if n not in nset:
+            hard.append(
+                f"{rel}: QI-09 orphan Answer Key row for question "
+                f"{n} - quiz has {len(nums)} questions")
 
     # QI-04 needs a raw fence-aware pass: the parser never sees E+.
     for line, fence in fence_aware(lines):
@@ -179,7 +220,8 @@ def main() -> int:
     print(f"quiz_integrity_scan: {len(hard)} hard findings "
           f"(QI-01 self-referential option / QI-02 in-module duplicate "
           f"stem / QI-03 duplicate option text / QI-04 option beyond "
-          f"A-D / QI-05 numbering gap), QI-06 {len(cross_dups)} "
+          f"A-D / QI-05 numbering gap / QI-08 duplicate Answer Key row "
+          f"/ QI-09 orphan Answer Key row), QI-06 {len(cross_dups)} "
           f"cross-module stem dups (accepted texture), QI-07 "
           f"{len(skew)} skewed answer keys (option-shuffle queue; "
           f"refines AS-09's 70% tripwire) across {n_modules} quizzes")
