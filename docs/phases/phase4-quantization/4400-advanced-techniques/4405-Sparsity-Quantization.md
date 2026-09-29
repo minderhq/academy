@@ -3,7 +3,7 @@ Document ID: 4405
 Title: "4405: Sparsity + Quantization"
 Phase: 4
 Module: 4400
-Last Updated: 2026-09-25
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -24,6 +24,7 @@ Tags: ['quantization', 'sparsity', 'pruning', 'compression', 'inference']
 - [LLM Pruning Methods That Ship](#llm-pruning-methods-that-ship)
 - [Combining with Quantization, Correctly](#combining-with-quantization-correctly)
 - [Best Practices](#best-practices)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -327,6 +328,10 @@ pruning leaves no time to recover
 ```
 
 ---
+
+## Summary
+
+Sparsity and quantization compose, but not by multiplying savings: sparse formats pay index overhead, low-bit formats shrink the very values an index points into, and the honest accounting can flip the conclusion - unstructured 50% sparsity on top of INT4 is often a net loss. This lesson did the storage math first, then walked the three sparsity regimes, the hardware-support table of which sparse patterns actually accelerate, and the LLM pruning methods that ship. The rule it leaves you with: combine only after measuring both halves separately - the math decides, not the marketing.
 
 ## References
 

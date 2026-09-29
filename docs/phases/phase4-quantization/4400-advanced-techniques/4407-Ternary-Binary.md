@@ -3,7 +3,7 @@ Document ID: 4407
 Title: "4407: Ternary & Binary Networks"
 Phase: 4
 Module: 4400
-Last Updated: 2026-09-25
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -26,6 +26,7 @@ Tags: ['quantization', 'binary', 'ternary', 'bnn', 'hardware']
 - [Hardware: What Actually Executes This](#hardware-what-actually-executes-this)
 - [State of the Art](#state-of-the-art)
 - [Best Practices](#best-practices)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -386,6 +387,10 @@ Reading the lineage
 ```
 
 ---
+
+## Summary
+
+Binary and ternary networks push past bit-grid quantization into codebook-free arithmetic: the XNOR-plus-popcount identity turns a binary matmul into bitwise ops, and the ternary variants TWN and TTQ trade a little precision for trainability. This lesson derived the identity, built a working binary layer, and organized a decade of literature by what is quantized - weights only, or weights and activations together. The hardware section is the reality check: the arithmetic is elegant, but it ships only where kernels exist, so training technique and hardware truth must be read together.
 
 ## References
 

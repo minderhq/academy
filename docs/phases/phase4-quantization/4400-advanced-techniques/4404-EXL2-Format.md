@@ -30,6 +30,7 @@ Tags: ['quantization', 'advanced', 'optimization']
 - [Troubleshooting](#troubleshooting)
 - [Best Practices](#best-practices)
 - [EXL2 vs GGUF Decision Tree](#exl2-vs-gguf-decision-tree)
+- [Summary](#summary)
 - [Further Reading](#further-reading)
 - [References](#references)
 
@@ -372,6 +373,10 @@ Need CPU inference?
     └─ Yes: Use EXL2 (faster)
     └─ No: Use GGUF
 ```
+
+## Summary
+
+EXL2 is ExLlamaV2's answer to one question: what does maximum inference speed on NVIDIA hardware look like? Its trick is per-layer variable bit-width - the converter allocates precision where sensitivity demands it within an average bitrate budget. This lesson covered choosing EXL2 over GGUF and when not to, converting and running models, streaming inference and the low-VRAM mode, and benchmarking honestly. The decision tree is the durable takeaway: GPU-bound single-user inference favors EXL2; most everything else favors GGUF.
 
 ## Further Reading
 

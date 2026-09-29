@@ -3,7 +3,7 @@ Document ID: 4408
 Title: "4408: Quantizing for Production"
 Phase: 4
 Module: 4400
-Last Updated: 2026-09-25
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -28,6 +28,7 @@ Tags: ['quantization', 'production', 'deployment', 'gptq', 'gguf', 'serving']
 - [Production Checklist](#production-checklist)
 - [Common Issues](#common-issues)
 - [Best Practices](#best-practices)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -545,6 +546,10 @@ time penalty, or GGUF (converts from disk, needs no GPU).
 ```
 
 ---
+
+## Summary
+
+Quantizing a model for production is a pipeline, not a one-liner: six steps - model selection, calibration data, method choice, the quantization run, validation gates, deployment - and each can independently turn the win into an incident. This guide walked the 2026 toolchain, where the standalone AutoGPTQ and AutoAWQ packages are unmaintained and GPTQ runs through the transformers-native config. Keep the production checklist pinned: validate perplexity and task metrics before shipping, benchmark on the target hardware, and treat any accuracy gap as a calibration-data smell first.
 
 ## References
 

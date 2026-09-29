@@ -28,6 +28,7 @@ Tags: ['quantization', 'advanced', 'optimization']
 - [Troubleshooting](#troubleshooting)
 - [GGUF Ecosystem](#gguf-ecosystem)
 - [Best Practices](#best-practices)
+- [Summary](#summary)
 - [Further Reading](#further-reading)
 - [References](#references)
 
@@ -444,6 +445,10 @@ llama-cli -m model.gguf -ngl 33  # Offload all layers
 3. **Enable GPU offloading:** Even partial helps
 4. **Use IMatrix for custom models:** Better quantization
 5. **Validate before deploying:** Test on target tasks
+
+## Summary
+
+GGUF is the format that made local inference practical: llama.cpp's container for quantized weights, tokenizer, and metadata in a single file, with a zoo of quantization types trading bits against perplexity from Q4_K_M upward. This lesson covered the format's anatomy, converting models into it, and running them on CPU and consumer hardware, including partial GPU offloading for the layers that benefit. The metadata section closes the loop: a GGUF file is not just weights, and reading its header is often the fastest way to debug a bad convert.
 
 ## Further Reading
 

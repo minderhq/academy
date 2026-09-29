@@ -3,7 +3,7 @@ Document ID: 4409
 Title: "4409: Hardware-Specific Quantization Optimization"
 Phase: 4
 Module: 4400
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -26,6 +26,7 @@ Tags: ['quantization', 'hardware', 'inference', 'deployment', 'benchmarks']
 - [Mobile and NPU: The Reality Check](#mobile-and-npu-the-reality-check)
 - [Benchmarking Across Hardware](#benchmarking-across-hardware)
 - [Best Practices](#best-practices)
+- [Summary](#summary)
 - [References](#references)
 
 ---
@@ -348,6 +349,10 @@ Honest-comparison rules
 ```
 
 ---
+
+## Summary
+
+The same INT4 checkpoint can be fast on one device and unusable on another, because quantization pays only when a kernel exists for that format on that silicon. This guide mapped every major target to the pairing that works in 2026: vLLM with GPTQ/AWQ or FP8 for datacenter NVIDIA, GGUF over Metal for Apple Silicon, llama.cpp for x86 and ARM CPUs, and a blunt reality check for mobile and NPUs. The benchmarking section is the method: measure on the hardware you ship to, because the format-by-hardware map shifts and yesterday's pairing silently stops being the fast one.
 
 ## References
 
