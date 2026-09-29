@@ -3,7 +3,7 @@ Document ID: 6502
 Title: "6502: CI/CD for Machine Learning"
 Phase: 6
 Module: 6500
-Last Updated: 2026-09-27
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -95,15 +95,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - uses: actions/setup-python@v7
-        with:
-          python-version: '3.13'
-      - uses: actions/cache@v6
-        with:
-          path: ~/.cache/pip
-          key: pip-${{ hashFiles('**/requirements.txt') }}
-      - run: pip install uv
-      - run: uv pip install --system -r requirements.txt
+      - uses: astral-sh/setup-uv@v9
+      - name: Install dependencies
+        # The repo commits pyproject.toml + uv.lock (uv init --bare + uv add).
+        run: uv sync --locked
       - run: python scripts/validate_data.py     # data gate: exits non-zero on FAIL
       - run: python scripts/train.py             # training + registration
       - uses: actions/upload-artifact@v7
@@ -482,8 +477,8 @@ apps.create_namespaced_deployment(namespace="staging", body=canary_spec)
 1. **Path filters on triggers.** A docs-only change must not trigger a training run — `on.push.paths` is the cheapest cost control you have.
 2. **Cheapest gates first.** Schema and leakage checks cost milliseconds and prevent the most expensive failures; order the DAG so they run before training.
 3. **Fail the step, not just the log.** A gate that prints a warning but exits 0 protects nobody. Every gate's failure must be visible to `needs`.
-4. **Pin action majors from release pages.** `checkout@v7`, `setup-python@v7`, `upload-artifact@v7`, `cache@v6`, `download-artifact@v8` — verified, not copied from a stale tutorial.
-5. **Cache dependencies and artifacts.** The `cache@v6` step keyed on `hashFiles('**/requirements.txt')` skips reinstall on unchanged lockfiles.
+4. **Pin action majors from release pages.** `checkout@v7`, `astral-sh/setup-uv@v9`, `upload-artifact@v7`, `download-artifact@v8` — verified, not copied from a stale tutorial.
+5. **Cache dependencies and artifacts.** `setup-uv` caches the uv package cache, so `uv sync --locked` skips reinstall on unchanged lockfiles; model artifacts move between jobs via upload/download-artifact.
 6. **Promote through evidence, not hope.** Floor gates admit a challenger; live canary stages promote it. Never wire training accuracy straight to production.
 7. **Rollback is a repoint.** Because [6503: Model Registry](6503-Model-Registry.md) aliases point at versions, undoing a bad promotion is one write — design deployments to exploit that.
 8. **Watch drift after promotion.** Deployment is not the end: [1502: Model Drift Detection](../../phase1-infra/1500-monitoring/1502-Model-Drift-Detection.md) monitors the serving version and feeds findings back into the next pipeline run.

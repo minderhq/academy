@@ -1,7 +1,7 @@
 ---
 Document ID: 6500-PRACTICE
 Title: "6500: RAG MLOps - Practice"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -185,24 +185,17 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.13'
+      - uses: astral-sh/setup-uv@v9
 
       - name: Install dependencies
-        run: |
-          pip install uv
-          uv pip install --system -r requirements.txt
-          uv pip install --system pytest pytest-cov
+        # The repo commits pyproject.toml + uv.lock (uv init --bare + uv add).
+        run: uv sync --locked # dev group installs by default, so pytest rides along
 
       - name: Unit tests
-        run: pytest tests/unit/ --cov=rag_pipeline
+        run: uv run pytest tests/unit/ --cov=rag_pipeline
 
       - name: Integration tests
-        run: pytest tests/integration/
+        run: uv run pytest tests/integration/
 
       - name: RAG evaluation
         run: |
