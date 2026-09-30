@@ -444,6 +444,16 @@ stand today?" without running each tool by hand.
                       README's Assessment section (the drain also
                       fixed the "Phase s Practice" typo in the
                       phase-2/3 READMEs)
+    last_updated_check
+                      Last Updated parseability (LU-01/LU-02,
+                      hard): every doc's Last Updated frontmatter
+                      date must be present and ISO YYYY-MM-DD -
+                      the platform's freshness display and
+                      recently-updated sorting need a machine-
+                      parseable value; prose or locale variants
+                      sort wrong or not at all. Born at zero
+                      (census 2026-09-30: 408/408 docs carry the
+                      field, all ISO-parseable, zero variants)
     tags_coverage_check
                       Tags coverage (TG-01 hard, TG-02/03 report):
                       a numbered in-phase lesson outside guides/
@@ -726,6 +736,7 @@ GATES = [
     ("prereq_free_text_check.py", "prereq_free_text_check", True),
     ("prereq_target_check.py", "prereq_target_check", True),
     ("nav_coverage_check.py", "nav_coverage_check", True),
+    ("last_updated_check.py", "last_updated_check", True),
     ("tags_coverage_check.py", "tags_coverage_check", True),
     ("difficulty_census.py", "difficulty_census", True),
     ("lesson_anatomy_census.py", "lesson_anatomy_census", True),
