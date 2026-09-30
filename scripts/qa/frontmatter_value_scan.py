@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Front-matter VALUE contracts (FV-01..10, HARD) - the platform
+"""Front-matter VALUE contracts (FV-01..11, HARD) - the platform
 ingestion simulation.
 
 FS-01/02 gate the six standard field NAMES; the dup gates check
@@ -55,13 +55,19 @@ FV-10  a string Document ID is a URL-safe key: uppercase-initial
        namespace tokens like LAB-003 with descriptive forms like
        TEMPLATE-001-Simple-LLM-App - both legal, both 1100-
        PRACTICE-style module numbering)
+FV-11  a Related string element in the LAB-<n> or TUTORIAL-<n>
+       namespace resolves to an existing file whose name starts
+       with that id - same broken-card bug as FV-05, string
+       edition; the two namespaces resolve against the
+       learning-resources labs/ and tutorials/ file sets
+       (collected in pass 1), other namespaces stay free-form
+       (census tick-497: 3 refs corpus-wide, all resolve)
 
 Scope: all docs/**/*.md, FM block = first ---...--- (within 40
-lines, FS-01's contract). Related string elements (LAB-003,
-TUTORIAL-002 namespaces) are NOT resolved by FV-05 - they live in
-other registries (labs, learning-resources) with their own gates;
-the integer namespace is the one FV-05 owns. Related is otherwise
-free-form by design.
+lines, FS-01's contract). Related string elements are not
+resolved against Document IDs by FV-05 - the LAB-/TUTORIAL-
+namespaces are FV-11's, resolved against the learning-resources
+file sets; every other string form stays free-form by design.
 
 Census at birth (tick-493): 408/408 yaml-parseable, 408/408
 ISO dates, Tags clean; one real drain ("1 hours" -> "1 hour" in
@@ -76,7 +82,12 @@ PyYAML raising ValueError OUT of safe_load on an impossible
 bare date ("2026-13-45" - the timestamp constructor builds
 dt.date without wrapping), which the platform experiences as an
 ingestion crash; FV-04 therefore catches ValueError/TypeError
-alongside YAMLError. Heading-case was the other tick-496
+alongside YAMLError. FV-11 born tick-497 born-at-zero: the 3
+LAB-/TUTORIAL- Related refs all resolve. A broader
+scaffold-marker census the same tick re-derived the existing
+UM-01 axis (born tick-276, baseline 0) - the QA-TOOLING
+register is the authoritative axis inventory; read it BEFORE
+censusing a new axis. Heading-case was the other tick-496
 candidate and is formally SKIPPED with measurement: of 8795
 H2/H3 headings, 5617 are sentence case, 3158 are sentence case
 with Title-Case topic phrases (Docker Fundamentals, GPU
@@ -109,6 +120,8 @@ TIME_DOUBLE = re.compile(r"^30 minutes \(quick review\) - \d+(\.\d+)? hours \(fu
 ISO_DATE = re.compile(r"^(\d{4})-(\d{2})-(\d{2})$")
 CANON_DIFFICULTY = ("Beginner", "Intermediate", "Advanced")
 DOC_KEY = re.compile(r"^[A-Z0-9][A-Za-z0-9]*(-[A-Za-z0-9]+)*$")
+RES_ID = re.compile(r"^(LAB|TUTORIAL)-\d+")    # filename prefix
+RES_REF = re.compile(r"^(LAB|TUTORIAL)-\d+$")  # Related str element
 
 
 def esc(text: str) -> str:
@@ -164,6 +177,18 @@ def main() -> int:
             doc_ids.add(did)
         elif isinstance(did, str) and did.isdigit():
             doc_ids.add(int(did))
+    # the resource id universe: files under learning-resources carry
+    # their id as a filename prefix (LAB-003-LoRA-FineTuning,
+    # TUTORIAL-002-Docker-Essentials)
+    res_ids: dict[str, set[str]] = {}
+    for sub, ns in (("labs", "LAB"), ("tutorials", "TUTORIAL")):
+        rdir = args.root / "docs" / "learning-resources" / sub
+        ids = res_ids.setdefault(ns, set())
+        if rdir.is_dir():
+            for p in sorted(rdir.glob("*.md")):
+                m = RES_ID.match(p.stem)
+                if m:
+                    ids.add(m.group(0))
     # pass 2: value contracts
     for rel, data in parsed:
         lu = data.get("Last Updated")
@@ -223,6 +248,15 @@ def main() -> int:
                         "which no doc carries - the platform renders "
                         "Related as next-lesson cards; a dangling id is "
                         "a broken card at runtime" % (rel, el))
+                elif isinstance(el, str):
+                    m = RES_REF.match(el)
+                    if m and el not in res_ids.get(m.group(1), ()):
+                        findings.append(
+                            "FV-11 %s: Related references %s, which "
+                            "matches no file under learning-resources - "
+                            "the platform renders Related as next-lesson "
+                            "cards; a dangling resource pointer is a "
+                            "broken card at runtime" % (rel, el))
         diff = data.get("Difficulty")
         if diff is not None and diff not in CANON_DIFFICULTY:
             findings.append(
@@ -266,10 +300,11 @@ def main() -> int:
           "no dangling Related int, FV-06 Related str-or-list, FV-07 "
           "canonical Difficulty tier, FV-08 non-empty Title string, "
           "FV-09 no future-dated Last Updated, FV-10 URL-safe string "
-          "Document ID = the platform ingestion simulation; born "
-          "tick-493 with one drain ('1 hours' -> '1 hour'), Related "
-          "tick-494, tier/title/date tick-495, key-shape tick-496 - all "
-          "born-at-zero; see docstring)"
+          "Document ID, FV-11 resolvable LAB-/TUTORIAL- Related refs = "
+          "the platform ingestion simulation; born tick-493 with one "
+          "drain ('1 hours' -> '1 hour'), Related tick-494, "
+          "tier/title/date tick-495, key-shape tick-496, resource refs "
+          "tick-497 - all born-at-zero; see docstring)"
           % (n_docs, len(findings)))
     return 1 if findings else 0
 

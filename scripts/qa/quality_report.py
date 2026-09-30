@@ -769,7 +769,7 @@ stand today?" without running each tool by hand.
                       at-zero: 597 tracked files
                       censused clean
     frontmatter_value_scan
-                      FM VALUE contracts (FV-01..10,
+                      FM VALUE contracts (FV-01..11,
                       hard) - the platform
                       ingestion simulation: does
                       exactly what the platform
@@ -816,7 +816,15 @@ stand today?" without running each tool by hand.
                       separated alphanumerics,
                       no whitespace/punctuation
                       (canonical key AND URL
-                      slug). The fleet's only
+                      slug). FV-11 a Related
+                      string element in the
+                      LAB-/TUTORIAL- namespaces
+                      resolves to a real file
+                      under learning-resources
+                      (pass-1 filename universe;
+                      same broken-card bug as
+                      FV-05, string edition).
+                      The fleet's only
                       third-party import (PyYAML)
                       - deliberate: the rule
                       under test IS yaml parsing.
@@ -824,7 +832,8 @@ stand today?" without running each tool by hand.
                       ('1 hours' -> '1 hour');
                       Related tick-494, tier/
                       title/date tick-495, key-
-                      shape tick-496, all born-
+                      shape tick-496, resource
+                      refs tick-497, all born-
                       at-zero; heading-case
                       candidate formally SKIPPED
                       with measurement (8795
