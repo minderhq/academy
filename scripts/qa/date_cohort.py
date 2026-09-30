@@ -10,6 +10,13 @@ that field into the freshness work queue the platform will want:
   - --since YYYY-MM: only docs last updated BEFORE that month (the
     stale-list filter; e.g. --since 2026-03 lists the whole
     2026-02-and-older cohort)
+  - repo-wide reconciliation (tick-458): a raw repo grep for
+    "Last Updated: 2026-02" sees MORE than the corpus - the
+    scratch layer (experiments/, root files) carries dates too.
+    The tool now reports that layer as its own section so the
+    grep number and the tool number add up instead of looking
+    like a bug. Scratch files keep their dates until someone
+    really edits them - no fake bumps on the frozen layer.
 
 A date is a freshness signal, not a score: a doc can be old because
 its subject is stable. The queue says WHERE to look, the content
@@ -64,14 +71,26 @@ def main() -> int:
                              "YYYY-MM (strictly older cohorts)")
     args = parser.parse_args()
 
+    SKIP = (".git", ".venv", "node_modules", "__pycache__")
     cohorts: dict[str, list[str]] = defaultdict(list)
+    out_by_dir: dict[str, list[str]] = defaultdict(list)
     n_docs = 0
-    for path in sorted((args.root / "docs").rglob("*.md")):
-        c = cohort_of(path)
-        if c is None:
+    n_out_no_lu = 0
+    for path in sorted(args.root.rglob("*.md")):
+        rel = path.relative_to(args.root)
+        parts = rel.parts
+        if not parts or parts[0] in SKIP:
             continue
-        n_docs += 1
-        cohorts[c].append(path.relative_to(args.root).as_posix())
+        c = cohort_of(path)
+        if parts[0] == "docs":
+            if c is None:
+                continue
+            n_docs += 1
+            cohorts[c].append(rel.as_posix())
+        elif c is None:
+            n_out_no_lu += 1
+        else:
+            out_by_dir[parts[0]].append((rel.as_posix(), c))
 
     order = sorted(cohorts)
     listed = 0
@@ -83,15 +102,39 @@ def main() -> int:
         print(esc("=== %s: %d docs ===" % (c, len(files))))
         for f in files:
             print("  " + esc(f))
+
+    out_stale: list[tuple[str, str, str]] = []
+    for d in sorted(out_by_dir):
+        for rel, c in sorted(out_by_dir[d]):
+            if args.since is None or c < args.since:
+                out_stale.append((d, rel, c))
+    if out_stale:
+        print(esc("--- outside docs/ (scratch/meta layer; dates move "
+                  "only with real edits) ---"))
+        by_dir = defaultdict(list)
+        for d, rel, c in out_stale:
+            by_dir[d].append((rel, c))
+        for d in sorted(by_dir):
+            print(esc("  %s: %d" % (d, len(by_dir[d]))))
+            for rel, c in sorted(by_dir[d]):
+                print(esc("    [%s] %s" % (c, rel)))
+
+    n_out_total = sum(len(v) for v in out_by_dir.values())
     if args.since:
-        print("date_cohort: %d docs last updated before %s "
-              "(of %d dated docs; exit 0 by design - listing tool)"
-              % (listed, args.since, n_docs))
+        print("date_cohort: %d corpus docs last updated before %s "
+              "+ %d outside docs/ = %d repo-wide (grep-reconciled; "
+              "%d corpus + %d outside dated; %d outside md files carry "
+              "no Last Updated; exit 0 by design - listing tool)"
+              % (listed, args.since, len(out_stale),
+                 listed + len(out_stale), n_docs, n_out_total,
+                 n_out_no_lu))
     else:
-        print("date_cohort: %d docs in %d monthly cohorts (oldest %s, "
-              "newest %s; exit 0 by design - listing tool)"
+        print("date_cohort: %d corpus docs in %d monthly cohorts "
+              "(oldest %s, newest %s) + %d dated files outside docs/; "
+              "%d outside md files carry no Last Updated; exit 0 by "
+              "design - listing tool"
               % (n_docs, len(order), order[0] if order else "-",
-                 order[-1] if order else "-"))
+                 order[-1] if order else "-", n_out_total, n_out_no_lu))
     return 0
 
 
