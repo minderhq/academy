@@ -1,3 +1,11 @@
+---
+Document ID: CONFIGS-README
+Title: "Configuration Templates"
+Last Updated: 2026-09-30
+Status: Complete
+Difficulty: Beginner
+---
+
 # Configuration Templates
 
 Reference deployment configuration for the PROJECT-OMEGA course. Everything

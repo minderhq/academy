@@ -1,3 +1,11 @@
+---
+Document ID: CHANGELOG
+Title: "CHANGELOG"
+Last Updated: 2026-09-30
+Status: Complete
+Difficulty: Beginner
+---
+
 # CHANGELOG
 
 All notable changes to PROJECT-OMEGA documentation will be documented in this file.

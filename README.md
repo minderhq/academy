@@ -1,3 +1,11 @@
+---
+Document ID: README
+Title: "PROJECT-OMEGA"
+Last Updated: 2026-09-30
+Status: Complete
+Difficulty: Beginner
+---
+
 <div align="center">
 
 ![PROJECT-OMEGA Logo](https://img.shields.io/badge/PROJECT--OMEGA-Neural--Architect%20Master-blue?style=for-the-badge&logo=ai&logoColor=white)
