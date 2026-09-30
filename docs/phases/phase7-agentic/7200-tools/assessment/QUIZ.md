@@ -165,25 +165,25 @@ D) The user, step by step
 
 ## Answer Key
 
-| # | Answer |
-|---|--------|
-| 1 | A |
-| 2 | D |
-| 3 | B |
-| 4 | A |
-| 5 | B |
-| 6 | A |
-| 7 | A |
-| 8 | B |
-| 9 | B |
-| 10 | B |
-| 11 | B |
-| 12 | C |
-| 13 | A |
-| 14 | B |
-| 15 | A |
-| 16 | C |
-| 17 | C |
-| 18 | B |
-| 19 | A |
-| 20 | A |
+| Question | Answer | Explanation |
+|----------|--------|-------------|
+| 1 | A | Tool calling invokes external APIs based on LLM output |
+| 2 | D | Function calling is structured output for invoking functions |
+| 3 | B | Output is JSON naming the function and its parameters |
+| 4 | A | OpenAI describes callable functions with JSON Schema |
+| 5 | B | A tool is any function or API the agent can call |
+| 6 | A | Definitions need name, description and a parameter schema |
+| 7 | A | Results feed back so the model can reason over them |
+| 8 | B | Parallel calling runs several tools in one request |
+| 9 | B | Code Interpreter runs generated code in a sandbox |
+| 10 | B | Common uses span database queries, APIs and calculations |
+| 11 | B | Validation catches malformed or out-of-range arguments |
+| 12 | C | Failures return as observations the model can recover from |
+| 13 | A | The model picks tools from their descriptions |
+| 14 | B | Sandboxing contains side effects and protects the host |
+| 15 | A | ReAct repeats Reason, Act, Observe until the task ends |
+| 16 | C | Results return as observation messages to reason over |
+| 17 | C | Production needs timeouts, backoff retries and rate limits |
+| 18 | B | Write actions need confirmation or scoped permissions |
+| 19 | A | Enums pin the model to valid values, cutting bad calls |
+| 20 | A | The agent loop chains tool calls until the task completes |

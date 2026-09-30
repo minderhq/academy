@@ -165,25 +165,25 @@ D) Same thing
 
 ## Answer Key
 
-| # | Answer |
-|---|--------|
-| 1 | C |
-| 2 | A |
-| 3 | D |
-| 4 | C |
-| 5 | C |
-| 6 | B |
-| 7 | A |
-| 8 | B |
-| 9 | B |
-| 10 | D |
-| 11 | A |
-| 12 | A |
-| 13 | D |
-| 14 | B |
-| 15 | C |
-| 16 | A |
-| 17 | D |
-| 18 | B |
-| 19 | D |
-| 20 | C |
+| Question | Answer | Explanation |
+|----------|--------|-------------|
+| 1 | C | Orchestration coordinates multiple agents in one system |
+| 2 | A | LangGraph is a graph-based orchestration framework |
+| 3 | D | Sequential runs one step after another |
+| 4 | C | Parallel runs several steps simultaneously |
+| 5 | C | A DAG is directed with no cycles |
+| 6 | B | State is shared between agents in the graph |
+| 7 | A | Routing branches on current state and results |
+| 8 | B | Human-in-the-loop pauses for human approval |
+| 9 | B | Handoff transfers control between agents |
+| 10 | D | Orchestration decomposes complex tasks into subtasks |
+| 11 | A | Recovery retries or takes alternative paths |
+| 12 | A | Patterns span sequential, parallel and hierarchical |
+| 13 | D | AutoGen is a multi-agent orchestration framework |
+| 14 | B | CrewAI is a role-based orchestration framework |
+| 15 | C | Event-driven flows trigger on events, not polling |
+| 16 | A | A workflow is a defined sequence of operations |
+| 17 | D | Coordination mixes communication with synchronization |
+| 18 | B | The orchestrator plans and manages worker agents |
+| 19 | D | Deadlock leaves agents waiting on each other forever |
+| 20 | C | Orchestration adapts dynamically, chains are fixed |
