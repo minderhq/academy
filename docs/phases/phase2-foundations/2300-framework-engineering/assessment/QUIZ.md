@@ -385,23 +385,23 @@ Multiple-choice answers for Questions 1-15. Questions 16-20 are self-graded
 coding questions — score them against the model solution using the
 **Self-Grading** rubric below.
 
-| # | Answer |
-|---|--------|
-| 1 | A |
-| 2 | B |
-| 3 | C |
-| 4 | D |
-| 5 | B |
-| 6 | C |
-| 7 | C |
-| 8 | A |
-| 9 | C |
-| 10 | D |
-| 11 | B |
-| 12 | B |
-| 13 | A |
-| 14 | D |
-| 15 | A |
+| Question | Answer | Explanation |
+|----------|--------|-------------|
+| 1 | A | Abstraction layers swap PyTorch, TensorFlow etc. without app changes |
+| 2 | B | Strategy Pattern selects algorithms at runtime |
+| 3 | C | Dataclasses give type hints, validation and dict serialization |
+| 4 | D | Batching raises GPU utilization and throughput |
+| 5 | B | Split the model across GPUs when it exceeds one GPU |
+| 6 | C | Blue-green keeps blue running while green deploys, instant rollback |
+| 7 | C | Canary ships to a small percentage, grows as metrics hold |
+| 8 | A | POST carries complex prediction payloads |
+| 9 | C | Rate limiting blocks abuse and protects resources |
+| 10 | D | Registries load and discover components dynamically |
+| 11 | B | A/B compares versions on real production traffic |
+| 12 | B | Rolling updates replace instances gradually, keeping availability |
+| 13 | A | 429 Too Many Requests signals rate limiting (RFC 6585) |
+| 14 | D | Docker keeps environments consistent across stages |
+| 15 | A | SSE streams token-by-token generation in real time |
 
 ---
 
