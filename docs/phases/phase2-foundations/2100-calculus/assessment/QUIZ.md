@@ -166,25 +166,25 @@ D) The gradient is zero
 
 ## Answer Key
 
-| # | Answer |
-|---|--------|
-| 1 | C |
-| 2 | A |
-| 3 | C |
-| 4 | D |
-| 5 | B |
-| 6 | B |
-| 7 | A |
-| 8 | B |
-| 9 | C |
-| 10 | A |
-| 11 | B |
-| 12 | A |
-| 13 | D |
-| 14 | C |
-| 15 | D |
-| 16 | B |
-| 17 | D |
-| 18 | A |
-| 19 | C |
-| 20 | D |
+| Question | Answer | Explanation |
+|----------|--------|-------------|
+| 1 | C | A derivative is the rate of change of a function - the instantaneous slope |
+| 2 | A | The chain rule differentiates composite functions: outer function times inner derivative |
+| 3 | C | Backpropagation propagates first derivatives (gradients) only |
+| 4 | D | A gradient is the vector of all partial derivatives |
+| 5 | B | The learning rate is the step size taken along the negative gradient |
+| 6 | B | The second derivative measures curvature (concavity) |
+| 7 | A | Partial derivatives apply when a function has multiple variables |
+| 8 | B | Gradients flow backward through the network during the backward pass |
+| 9 | C | The gradient points in the direction of steepest ascent |
+| 10 | A | Gradient descent moves opposite to the gradient |
+| 11 | B | The product rule differentiates products of functions |
+| 12 | A | A local minimum can be worse than the global one |
+| 13 | D | Saddle points are neither minima nor maxima |
+| 14 | C | The Hessian is the matrix of second derivatives |
+| 15 | D | Convexity guarantees a single global minimum |
+| 16 | B | Momentum speeds up and smooths convergence |
+| 17 | D | The Jacobian is the matrix of first partial derivatives |
+| 18 | A | Plain gradient descent can stall in local minima or on saddle points |
+| 19 | C | A too-high learning rate causes divergence or oscillation |
+| 20 | D | A critical point is where the gradient vanishes |

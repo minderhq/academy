@@ -165,25 +165,25 @@ D) None
 
 ## Answer Key
 
-| # | Answer |
-|---|--------|
-| 1 | B |
-| 2 | D |
-| 3 | B |
-| 4 | B |
-| 5 | C |
-| 6 | B |
-| 7 | A |
-| 8 | A |
-| 9 | A |
-| 10 | C |
-| 11 | D |
-| 12 | B |
-| 13 | A |
-| 14 | A |
-| 15 | D |
-| 16 | D |
-| 17 | A |
-| 18 | A |
-| 19 | A |
-| 20 | A |
+| Question | Answer | Explanation |
+|----------|--------|-------------|
+| 1 | B | Observability is the three pillars together: metrics, logs, traces |
+| 2 | D | Model drift is both: performance degrades as the input data distribution changes over time |
+| 3 | B | Prometheus is a time-series metrics store - logs belong to log backends |
+| 4 | B | Histograms track value distributions through buckets |
+| 5 | C | SLA = Service Level Agreement, the customer-facing contract |
+| 6 | B | SLO = Service Level Objective, the internal reliability target |
+| 7 | A | SLI = Service Level Indicator, the measured quantity an SLO is built on |
+| 8 | A | Alert fatigue comes from too many alerts - responders stop trusting the page |
+| 9 | A | Golden signals (Google SRE): latency, traffic, errors, saturation |
+| 10 | C | Drift detection watches output distributions and input distributions alike |
+| 11 | D | Grafana renders metrics, logs, and traces in one place |
+| 12 | B | Jaeger is a distributed-tracing backend; time series stay with Prometheus |
+| 13 | A | rate() computes the per-second rate of increase of a counter |
+| 14 | A | Token throughput is tokens per second - a rate, not a cumulative count |
+| 15 | D | GPU monitoring covers usage, memory, and temperature together |
+| 16 | D | Structured formats, levels, and context - all three are logging best practices |
+| 17 | A | Distributed tracing follows one request as it crosses services |
+| 18 | A | Page on symptoms users feel; cause-based alerting drowns the on-call |
+| 19 | A | Model observability tracks the model's inputs and outputs - features and predictions |
+| 20 | A | The four golden signals: latency, traffic, errors, saturation |
