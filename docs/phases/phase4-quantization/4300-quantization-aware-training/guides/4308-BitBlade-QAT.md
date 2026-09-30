@@ -4,6 +4,10 @@ Title: "4308: BitBlade QAT Guide"
 Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Advanced
+Estimated Time: 3 hours
+Prerequisites: See module README
+Related: See module README
+Tags: ['quantization', 'qat', 'quantization-aware-training']
 ---
 
 # 4308: BitBlade QAT Guide

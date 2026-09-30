@@ -4,6 +4,10 @@ Title: "4203: Context Window Optimization Guide"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
+Estimated Time: 6 hours
+Prerequisites: See module README
+Related: See module README
+Tags: ['kv-cache', 'context-window', 'speculative-decoding']
 ---
 
 # 4203: Context Window Optimization Guide

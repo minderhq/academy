@@ -4,6 +4,10 @@ Title: "4307: Transformers QAT Guide"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
+Estimated Time: 2 hours
+Prerequisites: See module README
+Related: See module README
+Tags: ['quantization', 'qat', 'quantization-aware-training']
 ---
 
 # 4307: Transformers QAT Guide

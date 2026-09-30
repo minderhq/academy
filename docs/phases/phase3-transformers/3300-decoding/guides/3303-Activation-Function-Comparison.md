@@ -4,6 +4,10 @@ Title: "3303: Activation Function Comparison"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
+Estimated Time: 2 hours
+Prerequisites: See module README
+Related: See module README
+Tags: ['transformers', 'activation', 'gelu', 'swiglu']
 ---
 
 # 3303: Activation Function Comparison

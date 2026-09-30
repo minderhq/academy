@@ -4,6 +4,10 @@ Title: "1405: Text Generation Inference (TGI) Deployment Guide"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Estimated Time: 6 hours
+Prerequisites: See module README
+Related: See module README
+Tags: ['infrastructure', 'llmops', 'tgi']
 ---
 
 # 1405: Text Generation Inference (TGI) Deployment Guide

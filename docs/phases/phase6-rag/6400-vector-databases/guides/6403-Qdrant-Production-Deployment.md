@@ -4,6 +4,9 @@ Title: "6403: Qdrant Production Deployment"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Estimated Time: 5 hours
+Prerequisites: See module README
+Related: See module README
 Tags: ['rag', 'qdrant', 'vector-db', 'deployment']
 Phase: 6
 Module: 6400

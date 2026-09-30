@@ -4,6 +4,10 @@ Title: "3403: Model Architecture Comparison Guide"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
+Estimated Time: 3 hours
+Prerequisites: See module README
+Related: See module README
+Tags: ['transformers', 'architecture', 'encoder-decoder']
 ---
 
 # 3403: Model Architecture Comparison Guide

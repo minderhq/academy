@@ -4,6 +4,10 @@ Title: "7103: ReAct Agent Implementation Guide"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
+Estimated Time: 4 hours
+Prerequisites: See module README
+Related: See module README
+Tags: ['agents', 'react', 'tool-calling']
 ---
 
 # 7103: ReAct Agent Implementation Guide

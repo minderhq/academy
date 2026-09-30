@@ -4,6 +4,10 @@ Title: "1404: vLLM Production Deployment Guide"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Estimated Time: 5 hours
+Prerequisites: See module README
+Related: See module README
+Tags: ['infrastructure', 'llmops', 'vllm']
 ---
 
 # 1404: vLLM Production Deployment Guide
