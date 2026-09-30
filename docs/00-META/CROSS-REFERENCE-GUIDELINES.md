@@ -358,7 +358,7 @@ jobs:
 | Parent directory | `[Text](../file.md)` | `[Up](../parent.md)` |
 | Child directory | `[Text](./dir/file.md)` | `[Guide](./guides/guide.md)` |
 | Root-relative | `[Text](../../path/file.md)` | `[Doc](../../phases/...)` |
-| External | `[Text](https://url)` | `[PyTorch](https://pytorch.org)` |
+| External | `[Text](https://example.com)` | `[PyTorch](https://pytorch.org)` |
 | Anchor | `[Text](#section)` | `[Top](#overview)` |
 
 
