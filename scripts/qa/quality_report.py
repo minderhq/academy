@@ -915,6 +915,14 @@ stand today?" without running each tool by hand.
                        2 (4100, 4200)" - the two-module era - while
                        4300 QAT and 4400 Advanced Techniques (17
                        lessons between them) had joined the phase
+    quiz_claim_scan  Quiz self-claim integrity (QC-01..03, hard):
+                       a QUIZ.md's own promises checked against the
+                       bank quiz_export parses - "**N questions**"
+                       claims vs the parsed count, and the two
+                       passing-score line forms' arithmetic. Born
+                       tick-473 after an all-clean census (33 banks;
+                       the census's first-pass 2300 hit was the
+                       census's own format blindness, not a defect)
 
 Plus corpus stats (lesson files / modules / phases) so the scorecard doubles
 as a curriculum inventory.
@@ -1026,6 +1034,7 @@ GATES = [
     ("whitespace_scan.py", "whitespace_scan", True),
     ("ordered_list_scan.py", "ordered_list_scan", True),
     ("checkpoint_coverage_scan.py", "checkpoint_coverage_scan", True),
+    ("quiz_claim_scan.py", "quiz_claim_scan", True),
 ]
 
 
