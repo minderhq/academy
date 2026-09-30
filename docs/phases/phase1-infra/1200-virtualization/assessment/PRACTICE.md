@@ -4,6 +4,10 @@ Title: "1200: Virtualization - Practice"
 Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Beginner
+Estimated Time: 6 hours
+Prerequisites: See module README
+Related: See module README
+Tags: ['assessment', 'practice', 'infrastructure', 'virtualization']
 ---
 
 # 1200: Virtualization - Practice

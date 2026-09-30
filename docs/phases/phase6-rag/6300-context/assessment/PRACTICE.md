@@ -4,6 +4,10 @@ Title: "6300: Context Window Optimization - Practice"
 Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Advanced
+Estimated Time: 4 hours
+Prerequisites: See module README
+Related: See module README
+Tags: ['assessment', 'practice', 'rag', 'context']
 ---
 
 # 6300: Context Window Optimization - Practice

@@ -4,6 +4,10 @@ Title: "4400: Advanced Quantization Techniques - Quiz"
 Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
+Estimated Time: 30 minutes
+Prerequisites: See module README
+Related: See module README
+Tags: ['assessment', 'quiz', 'quantization', 'advanced']
 ---
 
 # 4400: Advanced Quantization Techniques - Quiz

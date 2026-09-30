@@ -4,6 +4,10 @@ Title: "7300: Agent Orchestration - Practice"
 Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Advanced
+Estimated Time: 3 hours
+Prerequisites: See module README
+Related: See module README
+Tags: ['assessment', 'practice', 'agents', 'orchestration']
 ---
 
 # 7300: Agent Orchestration - Practice

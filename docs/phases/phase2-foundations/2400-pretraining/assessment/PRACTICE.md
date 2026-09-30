@@ -4,6 +4,10 @@ Title: "2400: Pretraining - Practice"
 Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
+Estimated Time: 5 hours
+Prerequisites: See module README
+Related: See module README
+Tags: ['assessment', 'practice', 'training', 'pretraining']
 ---
 
 # 2400: Pretraining - Practice

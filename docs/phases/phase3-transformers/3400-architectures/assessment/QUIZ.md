@@ -4,6 +4,10 @@ Title: "3400: Model Architectures - Quiz"
 Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
+Estimated Time: 30 minutes
+Prerequisites: See module README
+Related: See module README
+Tags: ['assessment', 'quiz', 'transformers', 'architecture']
 ---
 
 # 3400: Model Architectures - Quiz

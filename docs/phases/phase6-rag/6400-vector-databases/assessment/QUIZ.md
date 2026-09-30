@@ -4,6 +4,10 @@ Title: "6400: Vector Databases - Quiz"
 Last Updated: 2026-02-04
 Status: Complete
 Difficulty: Intermediate
+Estimated Time: 30 minutes
+Prerequisites: See module README
+Related: See module README
+Tags: ['assessment', 'quiz', 'rag', 'vector-db']
 ---
 
 # 6400: Vector Databases - Quiz

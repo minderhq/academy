@@ -4,6 +4,10 @@ Title: "1100: Network - Quiz"
 Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Beginner
+Estimated Time: 30 minutes
+Prerequisites: See module README
+Related: See module README
+Tags: ['assessment', 'quiz', 'networking', 'wan']
 ---
 
 # 1100: Network - Quiz

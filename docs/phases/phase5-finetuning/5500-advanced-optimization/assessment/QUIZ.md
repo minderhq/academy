@@ -4,6 +4,10 @@ Title: "5500: Advanced Optimization - Quiz"
 Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
+Estimated Time: 30 minutes
+Prerequisites: See module README
+Related: See module README
+Tags: ['assessment', 'quiz', 'finetuning', 'optimizers']
 ---
 
 # 5500: Advanced Optimization - Quiz

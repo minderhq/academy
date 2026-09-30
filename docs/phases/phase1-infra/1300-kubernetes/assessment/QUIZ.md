@@ -4,6 +4,10 @@ Title: "1300: Kubernetes - Quiz"
 Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
+Estimated Time: 30 minutes
+Prerequisites: See module README
+Related: See module README
+Tags: ['assessment', 'quiz', 'infrastructure', 'kubernetes']
 ---
 
 # 1300: Kubernetes - Quiz

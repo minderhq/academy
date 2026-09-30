@@ -9,7 +9,7 @@ Difficulty: Advanced
 Estimated Time: 30 minutes
 Prerequisites: See module README
 Related: See module README
-Tags: framework-engineering, assessment, quiz
+Tags: ['framework-engineering', 'assessment', 'quiz']
 ---
 
 # 2300: Framework Engineering - Quiz

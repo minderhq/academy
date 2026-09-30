@@ -4,6 +4,10 @@ Title: "4300: Quantization Aware Training - Practice"
 Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
+Estimated Time: 4 hours
+Prerequisites: See module README
+Related: See module README
+Tags: ['assessment', 'practice', 'quantization', 'qat']
 ---
 
 # 4300: Quantization Aware Training - Practice

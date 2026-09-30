@@ -4,6 +4,10 @@ Title: "5100: PEFT Techniques - Practice"
 Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
+Estimated Time: 8 hours
+Prerequisites: See module README
+Related: See module README
+Tags: ['assessment', 'practice', 'finetuning', 'peft']
 ---
 
 # 5100: PEFT Techniques - Practice

@@ -4,6 +4,10 @@ Title: "6100: Vector Embeddings - Practice"
 Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Advanced
+Estimated Time: 2 hours
+Prerequisites: See module README
+Related: See module README
+Tags: ['assessment', 'practice', 'rag', 'vectors']
 ---
 
 # 6100: Vector Embeddings - Practice

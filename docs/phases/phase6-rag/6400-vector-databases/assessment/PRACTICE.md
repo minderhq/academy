@@ -4,6 +4,10 @@ Title: "6400: Vector Databases - Practice"
 Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Intermediate
+Estimated Time: 3 hours
+Prerequisites: See module README
+Related: See module README
+Tags: ['assessment', 'practice', 'rag', 'vector-db']
 ---
 
 # 6400: Vector Databases - Practice

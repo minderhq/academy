@@ -9,7 +9,7 @@ Difficulty: Advanced
 Estimated Time: 2.5 hours
 Prerequisites: See module README
 Related: See module README
-Tags: framework-engineering, assessment, practice, hands-on
+Tags: ['framework-engineering', 'assessment', 'practice', 'hands-on']
 ---
 
 # 2300: Framework Engineering - Practice Exercises

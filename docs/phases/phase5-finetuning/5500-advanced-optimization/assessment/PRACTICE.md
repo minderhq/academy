@@ -4,6 +4,10 @@ Title: "5500: Advanced Optimization - Practice"
 Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Advanced
+Estimated Time: 3 hours
+Prerequisites: See module README
+Related: See module README
+Tags: ['assessment', 'practice', 'finetuning', 'optimizers']
 ---
 
 # 5500: Advanced Optimization - Practice

@@ -4,6 +4,10 @@ Title: "3200: Embeddings - Practice"
 Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
+Estimated Time: 5 hours
+Prerequisites: See module README
+Related: See module README
+Tags: ['assessment', 'practice', 'transformers', 'embeddings']
 ---
 
 # 3200: Embeddings - Practice

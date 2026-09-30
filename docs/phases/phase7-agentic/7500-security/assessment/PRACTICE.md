@@ -4,6 +4,10 @@ Title: "7500: AI Agent Security - Practice"
 Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
+Estimated Time: 13 hours
+Prerequisites: See module README
+Related: See module README
+Tags: ['assessment', 'practice', 'agents', 'security']
 ---
 
 # 7500: AI Agent Security - Practice

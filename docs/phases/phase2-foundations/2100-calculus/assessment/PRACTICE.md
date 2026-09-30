@@ -4,6 +4,10 @@ Title: "2100: Calculus - Practice"
 Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Intermediate
+Estimated Time: 4 hours
+Prerequisites: See module README
+Related: See module README
+Tags: ['assessment', 'practice', 'math', 'calculus']
 ---
 
 # 2100: Calculus - Practice

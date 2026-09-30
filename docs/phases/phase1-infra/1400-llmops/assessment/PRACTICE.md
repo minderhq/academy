@@ -4,6 +4,10 @@ Title: "1400: LLMOps - Practice"
 Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
+Estimated Time: 6 hours
+Prerequisites: See module README
+Related: See module README
+Tags: ['assessment', 'practice', 'infrastructure', 'llmops']
 ---
 
 # 1400: LLMOps - Practice

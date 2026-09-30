@@ -4,6 +4,10 @@ Title: "3500: Multimodal AI - Practice"
 Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Advanced
+Estimated Time: 3 hours
+Prerequisites: See module README
+Related: See module README
+Tags: ['assessment', 'practice', 'transformers', 'multimodal']
 ---
 
 # 3500: Multimodal AI - Practice

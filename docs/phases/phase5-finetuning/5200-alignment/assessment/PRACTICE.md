@@ -4,6 +4,10 @@ Title: "5200: LLM Alignment - Practice"
 Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
+Estimated Time: 10 hours
+Prerequisites: See module README
+Related: See module README
+Tags: ['assessment', 'practice', 'finetuning', 'alignment']
 ---
 
 # 5200: LLM Alignment - Practice

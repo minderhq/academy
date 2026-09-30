@@ -4,6 +4,10 @@ Title: "3100: Attention - Quiz"
 Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
+Estimated Time: 30 minutes
+Prerequisites: See module README
+Related: See module README
+Tags: ['assessment', 'quiz', 'transformers', 'attention']
 ---
 
 # 3100: Attention - Quiz

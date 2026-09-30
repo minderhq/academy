@@ -4,6 +4,10 @@ Title: "7400: Agent Memory Systems - Practice"
 Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
+Estimated Time: 6 hours
+Prerequisites: See module README
+Related: See module README
+Tags: ['assessment', 'practice', 'agents', 'memory']
 ---
 
 # 7400: Agent Memory Systems - Practice

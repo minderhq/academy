@@ -4,6 +4,10 @@ Title: "3100: Attention - Practice"
 Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
+Estimated Time: 3 hours
+Prerequisites: See module README
+Related: See module README
+Tags: ['assessment', 'practice', 'transformers', 'attention']
 ---
 
 # 3100: Attention - Practice

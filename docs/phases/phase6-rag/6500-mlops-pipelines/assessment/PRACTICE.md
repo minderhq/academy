@@ -4,6 +4,10 @@ Title: "6500: RAG MLOps - Practice"
 Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
+Estimated Time: 3 hours
+Prerequisites: See module README
+Related: See module README
+Tags: ['assessment', 'practice', 'mlops', 'pipeline']
 ---
 
 # 6500: RAG MLOps - Practice

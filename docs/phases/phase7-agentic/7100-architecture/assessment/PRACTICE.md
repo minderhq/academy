@@ -4,6 +4,10 @@ Title: "7100: LLM Reasoning - Practice"
 Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Advanced
+Estimated Time: 7 hours
+Prerequisites: See module README
+Related: See module README
+Tags: ['assessment', 'practice', 'agents', 'react']
 ---
 
 # 7100: LLM Reasoning - Practice

@@ -4,6 +4,10 @@ Title: "5400: Distributed Training - Quiz"
 Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
+Estimated Time: 30 minutes
+Prerequisites: See module README
+Related: See module README
+Tags: ['assessment', 'quiz', 'distributed', 'ddp']
 ---
 
 # 5400: Distributed Training - Quiz

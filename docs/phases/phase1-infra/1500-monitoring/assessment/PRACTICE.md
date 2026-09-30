@@ -4,6 +4,10 @@ Title: "1500: Monitoring - Practice"
 Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
+Estimated Time: 7 hours
+Prerequisites: See module README
+Related: See module README
+Tags: ['assessment', 'practice', 'infrastructure', 'monitoring']
 ---
 
 # 1500: Monitoring - Practice

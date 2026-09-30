@@ -4,6 +4,10 @@ Title: "7300: Agent Orchestration - Quiz"
 Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
+Estimated Time: 30 minutes
+Prerequisites: See module README
+Related: See module README
+Tags: ['assessment', 'quiz', 'agents', 'orchestration']
 ---
 
 # 7300: Agent Orchestration - Quiz

@@ -4,6 +4,10 @@ Title: "Module 1100: Network Infrastructure Practice"
 Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Beginner
+Estimated Time: 1 hours
+Prerequisites: See module README
+Related: See module README
+Tags: ['assessment', 'practice', 'networking', 'wan']
 ---
 
 # Module 1100: Network Infrastructure Practice

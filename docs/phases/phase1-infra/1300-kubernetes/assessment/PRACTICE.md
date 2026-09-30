@@ -4,6 +4,10 @@ Title: "1300: Kubernetes - Practice"
 Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Intermediate
+Estimated Time: 3 hours
+Prerequisites: See module README
+Related: See module README
+Tags: ['assessment', 'practice', 'infrastructure', 'kubernetes']
 ---
 
 # 1300: Kubernetes - Practice

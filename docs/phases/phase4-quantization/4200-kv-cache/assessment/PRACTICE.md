@@ -4,6 +4,10 @@ Title: "4200: KV Cache Optimization - Practice"
 Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
+Estimated Time: 3 hours
+Prerequisites: See module README
+Related: See module README
+Tags: ['assessment', 'practice', 'quantization', 'kv-cache']
 ---
 
 # 4200: KV Cache Optimization - Practice

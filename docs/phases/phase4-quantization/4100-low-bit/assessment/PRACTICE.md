@@ -4,6 +4,10 @@ Title: "4100: Low-Bit Quantization - Practice"
 Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Advanced
+Estimated Time: 4 hours
+Prerequisites: See module README
+Related: See module README
+Tags: ['assessment', 'practice', 'quantization', 'gguf']
 ---
 
 # 4100: Low-Bit Quantization - Practice

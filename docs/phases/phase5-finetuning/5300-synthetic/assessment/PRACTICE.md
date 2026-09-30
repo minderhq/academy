@@ -4,6 +4,10 @@ Title: "5300: Synthetic Data Generation - Practice"
 Last Updated: 2026-09-25
 Status: Complete
 Difficulty: Advanced
+Estimated Time: 5 hours
+Prerequisites: See module README
+Related: See module README
+Tags: ['assessment', 'practice', 'finetuning', 'synthetic-data']
 ---
 
 # 5300: Synthetic Data Generation - Practice
