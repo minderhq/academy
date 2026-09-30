@@ -390,6 +390,17 @@ stand today?" without running each tool by hand.
                       unlisted; 1 matcher FP, 21 rows drained
                       same tick, hard since). Presence only -
                       the prose stays hand-written
+    pacing_consistency_census
+                      Estimated Time vs real reading load (PC-01,
+                      report-only census): claimed hours against
+                      lesson_stats words/code at 200/100 wpm,
+                      ratio distribution per doc; birth census
+                      2026-09-30 measured 111 docs, median ratio
+                      4.50 (p10 2.51, p90 8.87) - the labels carry
+                      a hands-on-budget, not reading-time,
+                      semantics corpus-wide, so the naive 2x band
+                      flags 107/111 and hardening is deferred
+                      until the platform picks the semantics
     difficulty_census Difficulty vocabulary closure (DI-01..03,
                       hard): the platform renders difficulty as
                       a filter/sequence dimension, so the
@@ -641,6 +652,7 @@ GATES = [
     ("prereq_census.py", "prereq_census", True),
     ("prereq_ordering_scan.py", "prereq_ordering_scan", True),
     ("qa_tooling_coverage_check.py", "qa_tooling_coverage_check", True),
+    ("pacing_consistency_census.py", "pacing_consistency_census", False),
     ("difficulty_census.py", "difficulty_census", True),
     ("lesson_anatomy_census.py", "lesson_anatomy_census", True),
     ("closure_census.py", "closure_census", True),
