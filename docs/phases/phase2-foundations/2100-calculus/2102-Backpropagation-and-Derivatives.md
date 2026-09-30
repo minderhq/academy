@@ -267,7 +267,7 @@ Example with sigmoid:
   After n layers: (0.25)^n → 0
 ```
 
-### Solutions
+### Vanishing Gradient Solutions
 ```python
 import torch
 import torch.nn as nn
@@ -302,7 +302,7 @@ If gradients grow too large:
 Detection: NaN or Inf in gradients
 ```
 
-### Solutions
+### Exploding Gradient Solutions
 ```python
 import torch
 

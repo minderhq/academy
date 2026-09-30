@@ -26,6 +26,16 @@ gate exists so platform nav generation has its slug inventory and rot
 cannot hide inside it. Hard-gating this class would fight the corpus's
 own teaching texture, like hard-gating NC-02 fragments.
 
+Tick-432 parent-context triage: all findings re-verified with an
+ancestor-context resolver - per-item proof is occurrences sitting
+under DIFFERENT parent headings; 67/68 classes passed. The single
+same-parent pair (2102 'Solutions' x2 under one H2) was a
+teaching-quality ambiguity (indistinguishable TOC slugs), fixed by
+renaming to 'Vanishing Gradient Solutions' / 'Exploding Gradient
+Solutions'. No copy-paste artifacts anywhere in the corpus. A NEW
+same-parent duplicate is the artifact signature to watch for; new
+per-item duplicates stay accepted texture.
+
 Fence model: the shared family idiom - length-aware ticks, ">"
 blockquote prefix, frontmatter skipped. Comparison is case-insensitive
 on the raw heading text (close enough for dup detection; exact GitHub
