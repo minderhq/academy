@@ -4,6 +4,7 @@ Title: "Prerequisites: GGUF & Quantization"
 Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
+Tags: ['prerequisites', 'quantization', 'gguf']
 ---
 
 # Prerequisites: GGUF & Quantization

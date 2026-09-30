@@ -4,6 +4,7 @@ Title: "5400: Distributed Training - Prerequisites"
 Last Updated: 2026-02-04
 Status: Complete
 Difficulty: Advanced
+Tags: ['prerequisites', 'training', 'distributed']
 ---
 
 # 5400: Distributed Training - Prerequisites

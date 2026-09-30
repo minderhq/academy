@@ -4,6 +4,7 @@ Title: "Prerequisites: LoRA & Fine-Tuning"
 Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
+Tags: ['prerequisites', 'finetuning', 'peft']
 ---
 
 # Prerequisites: LoRA & Fine-Tuning

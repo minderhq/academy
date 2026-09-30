@@ -9,7 +9,7 @@ Difficulty: Beginner
 Estimated Time: 2 hours
 Prerequisites: [1101]
 Related: [1103, 1201]
-Tags: [networking, topology, vlan, switch, star-topology]
+Tags: ['networking', 'topology', 'vlan', 'switch', 'star-topology']
 Hardware: [Managed Ethernet switch, Cat5e/6/6a cabling, router]
 Software: [Switch management CLI or web UI]
 ---

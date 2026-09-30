@@ -4,6 +4,7 @@ Title: "1300: Kubernetes - Prerequisites"
 Last Updated: 2026-02-04
 Status: Complete
 Difficulty: Intermediate
+Tags: ['prerequisites', 'infrastructure', 'kubernetes']
 ---
 
 # 1300: Kubernetes - Prerequisites

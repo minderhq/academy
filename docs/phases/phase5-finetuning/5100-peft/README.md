@@ -4,6 +4,7 @@ Title: "5100: Parameter-Efficient Fine-Tuning (PEFT)"
 Last Updated: 2026-02-04
 Status: Complete
 Difficulty: Beginner
+Tags: ['module', 'finetuning', 'peft']
 ---
 
 # 5100: Parameter-Efficient Fine-Tuning (PEFT)

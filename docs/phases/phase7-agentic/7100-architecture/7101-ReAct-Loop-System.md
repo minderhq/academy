@@ -9,7 +9,7 @@ Difficulty: Advanced
 Estimated Time: 4 hours
 Prerequisites: See module README
 Related: [7102, 7201, 7301, 7401]
-Tags: [agents, react, reasoning, acting, tool-calling, autonomy]
+Tags: ['agents', 'react', 'reasoning', 'acting', 'tool-calling', 'autonomy']
 Hardware: [GPU recommended for LLM inference]
 Software: [Python 3.13+, LangChain, LlamaIndex]
 ---

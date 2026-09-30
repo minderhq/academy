@@ -4,6 +4,7 @@ Title: "1400: LLMOps - Prerequisites"
 Last Updated: 2026-02-04
 Status: Complete
 Difficulty: Intermediate
+Tags: ['prerequisites', 'infrastructure', 'llmops']
 ---
 
 # 1400: LLMOps - Prerequisites

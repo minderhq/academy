@@ -4,6 +4,7 @@ Title: "3200: Embeddings - Prerequisites"
 Last Updated: 2026-02-04
 Status: Complete
 Difficulty: Advanced
+Tags: ['prerequisites', 'transformers', 'embeddings']
 ---
 
 # 3200: Embeddings - Prerequisites

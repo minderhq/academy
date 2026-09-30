@@ -4,6 +4,7 @@ Title: "[3100]: Attention Architectures"
 Last Updated: 2026-02-05
 Status: Complete
 Difficulty: Beginner
+Tags: ['module', 'transformers', 'attention']
 ---
 
 # [3100]: Attention Architectures

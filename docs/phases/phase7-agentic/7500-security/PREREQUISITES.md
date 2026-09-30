@@ -4,6 +4,7 @@ Title: "7500: Security - Prerequisites"
 Last Updated: 2026-02-04
 Status: Complete
 Difficulty: Advanced
+Tags: ['prerequisites', 'agents', 'security']
 ---
 
 # 7500: Security - Prerequisites

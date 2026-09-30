@@ -4,6 +4,7 @@ Title: "Phase 4: Quantization & Compression [4000]"
 Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Beginner
+Tags: ['phase', 'quantization', 'qat', 'quantization-aware-training']
 ---
 
 # Phase 4: Quantization & Compression [4000]

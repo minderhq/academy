@@ -9,7 +9,7 @@ Difficulty: Beginner
 Estimated Time: 2 hours
 Prerequisites: See module README
 Related: [1102, 1103, 1201]
-Tags: [networking, wan, uplink, bridge-mode, isp]
+Tags: ['networking', 'wan', 'uplink', 'bridge-mode', 'isp']
 Hardware: [WAN uplink (fiber ONT, cable modem, DSL modem, or fixed-wireless CPE), Ethernet router]
 Software: [Web browser, terminal]
 ---

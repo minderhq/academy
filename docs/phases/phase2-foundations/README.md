@@ -4,6 +4,7 @@ Title: "Phase 2: Cognitive Science & Frameworks [2000]"
 Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Beginner
+Tags: ['phase', 'frameworks', 'architecture', 'api-design']
 ---
 
 # Phase 2: Cognitive Science & Frameworks [2000]

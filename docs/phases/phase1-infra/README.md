@@ -4,6 +4,7 @@ Title: "Phase 1: Infrastructure Fabric [1000]"
 Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Beginner
+Tags: ['phase', 'infrastructure', 'gpu', 'networking']
 ---
 
 # Phase 1: Infrastructure Fabric [1000]

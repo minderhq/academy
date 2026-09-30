@@ -4,6 +4,7 @@ Title: "5500: Advanced Optimization"
 Last Updated: 2026-02-04
 Status: Complete
 Difficulty: Beginner
+Tags: ['module', 'training', 'memory']
 ---
 
 # 5500: Advanced Optimization

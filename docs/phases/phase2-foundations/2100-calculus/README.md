@@ -9,7 +9,7 @@ Difficulty: Intermediate
 Estimated Time: 12 hours
 Prerequisites: See PREREQUISITES.md
 Related: See References
-Tags: math, calculus, tensors, backpropagation, autograd
+Tags: ['math', 'calculus', 'tensors', 'backpropagation', 'autograd']
 ---
 
 # 2100: Calculus for Deep Learning

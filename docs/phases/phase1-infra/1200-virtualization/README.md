@@ -4,6 +4,7 @@ Title: "1200: Virtualization and GPU Passthrough"
 Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Beginner
+Tags: ['module', 'infrastructure', 'virtualization']
 ---
 
 # 1200: Virtualization and GPU Passthrough

@@ -4,6 +4,7 @@ Title: "7100: Agent Architecture"
 Last Updated: 2026-02-04
 Status: Complete
 Difficulty: Beginner
+Tags: ['module', 'agents', 'react']
 ---
 
 # 7100: Agent Architecture

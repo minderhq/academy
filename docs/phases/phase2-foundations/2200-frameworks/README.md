@@ -9,7 +9,7 @@ Difficulty: Intermediate
 Estimated Time: 18 hours
 Prerequisites: See PREREQUISITES.md
 Related: See References
-Tags: frameworks, pytorch, autograd, tensorflow, xla, cuda
+Tags: ['frameworks', 'pytorch', 'autograd', 'tensorflow', 'xla', 'cuda']
 ---
 
 # 2200: Deep Learning Frameworks

@@ -4,6 +4,7 @@ Title: "Prerequisites: AI Agents"
 Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
+Tags: ['prerequisites', 'agents', 'react']
 ---
 
 # Prerequisites: AI Agents

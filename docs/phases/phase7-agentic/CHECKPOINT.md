@@ -4,6 +4,7 @@ Title: "Progress Checkpoint: Phase 7 - Agentic Systems"
 Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Advanced
+Tags: ['checkpoint', 'agents', 'security', 'prompt-injection']
 ---
 
 # Progress Checkpoint: Phase 7 - Agentic Systems

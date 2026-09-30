@@ -4,6 +4,7 @@ Title: "5500: Advanced Optimization - Prerequisites"
 Last Updated: 2026-02-04
 Status: Complete
 Difficulty: Advanced
+Tags: ['prerequisites', 'training', 'memory']
 ---
 
 # 5500: Advanced Optimization - Prerequisites

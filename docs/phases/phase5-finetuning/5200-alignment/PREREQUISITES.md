@@ -4,6 +4,7 @@ Title: "5200: Alignment - Prerequisites"
 Last Updated: 2026-02-04
 Status: Complete
 Difficulty: Advanced
+Tags: ['prerequisites', 'finetuning', 'alignment']
 ---
 
 # 5200: Alignment - Prerequisites

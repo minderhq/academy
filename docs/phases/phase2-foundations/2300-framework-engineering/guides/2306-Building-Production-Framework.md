@@ -9,7 +9,7 @@ Difficulty: Advanced
 Estimated Time: 3 hours
 Prerequisites: See module README
 Related: See module README
-Tags: production-framework, plugin-architecture, configuration, dynamic-batching, fastapi, docker, nginx
+Tags: ['production-framework', 'plugin-architecture', 'configuration', 'dynamic-batching', 'fastapi', 'docker', 'nginx']
 ---
 
 # 2306: Building a Production Framework

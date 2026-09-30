@@ -4,6 +4,7 @@ Title: "Prerequisites: Vector Databases"
 Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Advanced
+Tags: ['prerequisites', 'rag', 'vectors']
 ---
 
 # Prerequisites: Vector Databases

@@ -4,6 +4,7 @@ Title: "7200: Tools - Prerequisites"
 Last Updated: 2026-02-04
 Status: Complete
 Difficulty: Advanced
+Tags: ['prerequisites', 'agents', 'tool-calling']
 ---
 
 # 7200: Tools - Prerequisites

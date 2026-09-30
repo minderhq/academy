@@ -9,7 +9,7 @@ Difficulty: Intermediate
 Estimated Time: 30 minutes (quick review) - 6.5 hours (full review)
 Prerequisites: See module README
 Related: See module README
-Tags: math, prerequisites, preparation
+Tags: ['math', 'prerequisites', 'preparation']
 ---
 
 # 2100: Calculus for Deep Learning - Prerequisites

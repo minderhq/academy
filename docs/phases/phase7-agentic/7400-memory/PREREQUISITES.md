@@ -4,6 +4,7 @@ Title: "7400: Memory - Prerequisites"
 Last Updated: 2026-02-04
 Status: Complete
 Difficulty: Advanced
+Tags: ['prerequisites', 'agents', 'memory']
 ---
 
 # 7400: Memory - Prerequisites

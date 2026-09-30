@@ -4,6 +4,7 @@ Title: "Progress Checkpoint: Phase 5 - Model Adaptation"
 Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Advanced
+Tags: ['checkpoint', 'finetuning', 'training', 'distributed']
 ---
 
 # Progress Checkpoint: Phase 5 - Model Adaptation

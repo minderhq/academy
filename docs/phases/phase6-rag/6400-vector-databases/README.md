@@ -4,6 +4,7 @@ Title: "6400: Vector Databases"
 Last Updated: 2026-02-04
 Status: Complete
 Difficulty: Beginner
+Tags: ['module', 'rag', 'vector-db']
 ---
 
 # 6400: Vector Databases

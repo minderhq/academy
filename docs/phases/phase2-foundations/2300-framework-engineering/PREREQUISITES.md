@@ -9,7 +9,7 @@ Difficulty: Advanced
 Estimated Time: 30 minutes (quick review) - 12.5 hours (full review)
 Prerequisites: See module README
 Related: See module README
-Tags: framework-engineering, prerequisites, preparation
+Tags: ['framework-engineering', 'prerequisites', 'preparation']
 ---
 
 # 2300: Framework Engineering - Prerequisites

@@ -9,7 +9,7 @@ Difficulty: Intermediate
 Estimated Time: 30 minutes (quick review) - 9 hours (full review)
 Prerequisites: See module README
 Related: See module README
-Tags: pretraining, prerequisites, preparation
+Tags: ['pretraining', 'prerequisites', 'preparation']
 ---
 
 # 2400: LLM Pretraining - Prerequisites

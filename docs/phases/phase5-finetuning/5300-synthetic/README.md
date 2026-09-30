@@ -4,6 +4,7 @@ Title: "5300: Synthetic Data & Advanced Training"
 Last Updated: 2026-02-04
 Status: Complete
 Difficulty: Beginner
+Tags: ['module', 'finetuning', 'synthetic-data']
 ---
 
 # 5300: Synthetic Data & Advanced Training

@@ -4,6 +4,7 @@ Title: "[3300]: The Decoding Block"
 Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Beginner
+Tags: ['module', 'transformers', 'activation']
 ---
 
 # [3300]: The Decoding Block

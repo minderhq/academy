@@ -4,6 +4,7 @@ Title: "6400: Vector Databases - Prerequisites"
 Last Updated: 2026-02-04
 Status: Complete
 Difficulty: Intermediate
+Tags: ['prerequisites', 'rag', 'vector-db']
 ---
 
 # 6400: Vector Databases - Prerequisites

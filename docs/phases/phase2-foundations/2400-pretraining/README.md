@@ -9,7 +9,7 @@ Difficulty: Advanced
 Estimated Time: 37 hours
 Prerequisites: See PREREQUISITES.md
 Related: See References
-Tags: pretraining, llm, distributed-training, tokenization, evaluation
+Tags: ['pretraining', 'llm', 'distributed-training', 'tokenization', 'evaluation']
 ---
 
 # 2400: LLM Pretraining

@@ -4,6 +4,7 @@ Title: "[7300]: Multi-Agent Orchestration"
 Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Beginner
+Tags: ['module', 'agents', 'orchestration']
 ---
 
 # [7300]: Multi-Agent Orchestration

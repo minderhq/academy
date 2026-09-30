@@ -4,6 +4,7 @@ Title: "[3500]: Multimodal Models"
 Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Beginner
+Tags: ['module', 'transformers', 'multimodal']
 ---
 
 # [3500]: Multimodal Models

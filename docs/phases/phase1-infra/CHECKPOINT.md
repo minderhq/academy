@@ -4,6 +4,7 @@ Title: "Progress Checkpoints: Phase 1 - Infrastructure Fabric"
 Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Beginner
+Tags: ['checkpoint', 'infrastructure', 'gpu', 'networking']
 ---
 
 # Progress Checkpoints: Phase 1 - Infrastructure Fabric

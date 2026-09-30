@@ -4,6 +4,7 @@ Title: "1200: Virtualization - Prerequisites"
 Last Updated: 2026-02-04
 Status: Complete
 Difficulty: Beginner
+Tags: ['prerequisites', 'infrastructure', 'virtualization']
 ---
 
 # 1200: Virtualization - Prerequisites

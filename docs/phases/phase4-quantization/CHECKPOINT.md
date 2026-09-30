@@ -4,6 +4,7 @@ Title: "Progress Checkpoint: Phase 4 - Quantization & Compression"
 Last Updated: 2026-02-04
 Status: Complete
 Difficulty: Advanced
+Tags: ['checkpoint', 'quantization', 'qat', 'quantization-aware-training']
 ---
 
 # Progress Checkpoint: Phase 4 - Quantization & Compression

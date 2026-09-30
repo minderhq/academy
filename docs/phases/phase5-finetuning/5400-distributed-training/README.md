@@ -4,6 +4,7 @@ Title: "5400: Distributed Training"
 Last Updated: 2026-02-04
 Status: Complete
 Difficulty: Beginner
+Tags: ['module', 'training', 'distributed']
 ---
 
 # 5400: Distributed Training

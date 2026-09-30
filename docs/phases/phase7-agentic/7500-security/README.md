@@ -4,6 +4,7 @@ Title: "7500: AI Agent Security"
 Last Updated: 2026-02-04
 Status: Complete
 Difficulty: Beginner
+Tags: ['module', 'agents', 'security']
 ---
 
 # 7500: AI Agent Security

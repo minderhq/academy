@@ -4,6 +4,7 @@ Title: "1400: LLMOps and Model Serving"
 Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Beginner
+Tags: ['module', 'infrastructure', 'llmops']
 ---
 
 # 1400: LLMOps and Model Serving

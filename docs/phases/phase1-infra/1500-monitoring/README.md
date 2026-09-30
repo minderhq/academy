@@ -4,6 +4,7 @@ Title: "1500: Monitoring and Observability for LLM Systems"
 Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Beginner
+Tags: ['module', 'infrastructure', 'monitoring']
 ---
 
 # 1500: Monitoring and Observability for LLM Systems

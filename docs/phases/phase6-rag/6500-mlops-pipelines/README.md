@@ -4,6 +4,7 @@ Title: "6500: MLOps Pipelines for RAG"
 Last Updated: 2026-02-04
 Status: Complete
 Difficulty: Beginner
+Tags: ['module', 'mlops', 'model-registry']
 ---
 
 # 6500: MLOps Pipelines for RAG

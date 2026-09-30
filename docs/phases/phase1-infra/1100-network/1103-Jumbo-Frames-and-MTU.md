@@ -9,7 +9,7 @@ Difficulty: Beginner
 Estimated Time: 2 hours
 Prerequisites: [1101, 1102]
 Related: [1101, 1102]
-Tags: [networking, mtu, jumbo-frames, performance]
+Tags: ['networking', 'mtu', 'jumbo-frames', 'performance']
 ---
 
 # 1103: Jumbo Frames and MTU Optimization

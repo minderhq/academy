@@ -4,6 +4,7 @@ Title: "6200: Retrieval Strategies"
 Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Beginner
+Tags: ['module', 'rag', 'retrieval']
 ---
 
 # 6200: Retrieval Strategies

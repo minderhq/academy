@@ -4,6 +4,7 @@ Title: "4200: KV Cache Optimization"
 Last Updated: 2026-02-04
 Status: Complete
 Difficulty: Beginner
+Tags: ['module', 'quantization', 'kv-cache']
 ---
 
 # 4200: KV Cache Optimization

@@ -4,6 +4,7 @@ Title: "4100: Low-Bit Quantization"
 Last Updated: 2026-02-04
 Status: Complete
 Difficulty: Beginner
+Tags: ['module', 'quantization', 'gguf']
 ---
 
 # 4100: Low-Bit Quantization

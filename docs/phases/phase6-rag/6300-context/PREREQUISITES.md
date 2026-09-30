@@ -4,6 +4,7 @@ Title: "6300: Context - Prerequisites"
 Last Updated: 2026-02-04
 Status: Complete
 Difficulty: Advanced
+Tags: ['prerequisites', 'rag', 'context']
 ---
 
 # 6300: Context - Prerequisites

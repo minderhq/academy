@@ -4,6 +4,7 @@ Title: "4400: Advanced Quantization Techniques - Prerequisites"
 Last Updated: 2026-02-04
 Status: Complete
 Difficulty: Advanced
+Tags: ['prerequisites', 'quantization', 'advanced']
 ---
 
 # 4400: Advanced Quantization Techniques - Prerequisites

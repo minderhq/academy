@@ -4,6 +4,7 @@ Title: "7400: Agent Memory Systems"
 Last Updated: 2026-02-04
 Status: Complete
 Difficulty: Beginner
+Tags: ['module', 'agents', 'memory']
 ---
 
 # 7400: Agent Memory Systems

@@ -4,6 +4,7 @@ Title: "3400: Architectures - Prerequisites"
 Last Updated: 2026-02-04
 Status: Complete
 Difficulty: Advanced
+Tags: ['prerequisites', 'transformers', 'architecture']
 ---
 
 # 3400: Architectures - Prerequisites

@@ -4,6 +4,7 @@ Title: "1300: Kubernetes for LLM Deployment"
 Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Beginner
+Tags: ['module', 'infrastructure', 'kubernetes']
 ---
 
 # 1300: Kubernetes for LLM Deployment

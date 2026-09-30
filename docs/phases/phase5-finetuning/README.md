@@ -4,6 +4,7 @@ Title: "Phase 5: Fine-Tuning & Alignment [5000]"
 Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Beginner
+Tags: ['phase', 'finetuning', 'training', 'distributed']
 ---
 
 # Phase 5: Fine-Tuning & Alignment [5000]

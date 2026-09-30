@@ -4,6 +4,7 @@ Title: "6500: RAG MLOps - Prerequisites"
 Last Updated: 2026-02-04
 Status: Complete
 Difficulty: Intermediate
+Tags: ['prerequisites', 'mlops', 'model-registry']
 ---
 
 # 6500: RAG MLOps - Prerequisites

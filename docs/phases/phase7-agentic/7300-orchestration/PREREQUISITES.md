@@ -4,6 +4,7 @@ Title: "7300: Orchestration - Prerequisites"
 Last Updated: 2026-02-04
 Status: Complete
 Difficulty: Advanced
+Tags: ['prerequisites', 'agents', 'orchestration']
 ---
 
 # 7300: Orchestration - Prerequisites

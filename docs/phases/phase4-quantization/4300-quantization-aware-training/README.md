@@ -4,6 +4,7 @@ Title: "4300: Quantization Aware Training (QAT)"
 Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Beginner
+Tags: ['module', 'quantization', 'qat']
 ---
 
 # 4300: Quantization Aware Training (QAT)

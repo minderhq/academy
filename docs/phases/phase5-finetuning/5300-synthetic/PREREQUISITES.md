@@ -4,6 +4,7 @@ Title: "5300: Synthetic Data - Prerequisites"
 Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
+Tags: ['prerequisites', 'finetuning', 'synthetic-data']
 ---
 
 # 5300: Synthetic Data - Prerequisites

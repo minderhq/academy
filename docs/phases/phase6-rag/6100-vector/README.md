@@ -4,6 +4,7 @@ Title: "6100: Vector Embeddings"
 Last Updated: 2026-02-04
 Status: Complete
 Difficulty: Beginner
+Tags: ['module', 'rag', 'vectors']
 ---
 
 # 6100: Vector Embeddings

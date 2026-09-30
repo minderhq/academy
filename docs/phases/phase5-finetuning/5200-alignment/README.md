@@ -4,6 +4,7 @@ Title: "5200: LLM Alignment"
 Last Updated: 2026-02-04
 Status: Complete
 Difficulty: Beginner
+Tags: ['module', 'finetuning', 'alignment']
 ---
 
 # 5200: LLM Alignment

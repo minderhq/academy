@@ -4,6 +4,7 @@ Title: "4200: KV Cache - Prerequisites"
 Last Updated: 2026-02-04
 Status: Complete
 Difficulty: Advanced
+Tags: ['prerequisites', 'quantization', 'kv-cache']
 ---
 
 # 4200: KV Cache - Prerequisites

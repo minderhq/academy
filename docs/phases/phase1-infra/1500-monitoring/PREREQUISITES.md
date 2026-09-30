@@ -4,6 +4,7 @@ Title: "1500: Monitoring - Prerequisites"
 Last Updated: 2026-02-04
 Status: Complete
 Difficulty: Intermediate
+Tags: ['prerequisites', 'infrastructure', 'monitoring']
 ---
 
 # 1500: Monitoring - Prerequisites

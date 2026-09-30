@@ -4,6 +4,7 @@ Title: "3500: Multimodal - Prerequisites"
 Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
+Tags: ['prerequisites', 'transformers', 'multimodal']
 ---
 
 # 3500: Multimodal - Prerequisites

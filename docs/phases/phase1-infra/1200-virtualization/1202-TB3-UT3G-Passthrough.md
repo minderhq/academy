@@ -9,7 +9,7 @@ Difficulty: Intermediate
 Estimated Time: 3 hours
 Prerequisites: [1201]
 Related: [1201, 1203, 1204]
-Tags: [virtualization, proxmox, gpu, iommu, vfio]
+Tags: ['virtualization', 'proxmox', 'gpu', 'iommu', 'vfio']
 Hardware: [x86_64 host with VT-d or AMD-Vi, one NVIDIA GPU (8GB+ VRAM)]
 Software: [Proxmox VE, Linux guest with NVIDIA drivers]
 ---

@@ -4,6 +4,7 @@ Title: "[3400]: Model Architectures"
 Last Updated: 2026-02-05
 Status: Complete
 Difficulty: Beginner
+Tags: ['module', 'transformers', 'architecture']
 ---
 
 # [3400]: Model Architectures

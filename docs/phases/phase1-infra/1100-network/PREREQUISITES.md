@@ -4,6 +4,7 @@ Title: "1100: Network - Prerequisites"
 Last Updated: 2026-02-04
 Status: Complete
 Difficulty: Beginner
+Tags: ['prerequisites', 'networking', 'wan']
 ---
 
 # 1100: Network - Prerequisites

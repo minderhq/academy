@@ -9,7 +9,7 @@ Difficulty: Intermediate
 Estimated Time: 30 minutes (quick review) - 4.5 hours (full review)
 Prerequisites: See module README
 Related: See module README
-Tags: frameworks, pytorch, prerequisites, preparation
+Tags: ['frameworks', 'pytorch', 'prerequisites', 'preparation']
 ---
 
 # 2200: Deep Learning Frameworks - Prerequisites

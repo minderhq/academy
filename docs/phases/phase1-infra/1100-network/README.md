@@ -4,6 +4,7 @@ Title: "1100: Network Fundamentals for LLM Infrastructure"
 Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Beginner
+Tags: ['module', 'networking', 'wan']
 ---
 
 # 1100: Network Fundamentals for LLM Infrastructure

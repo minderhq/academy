@@ -4,6 +4,7 @@ Title: "6300: Context Management"
 Last Updated: 2026-02-04
 Status: Complete
 Difficulty: Beginner
+Tags: ['module', 'rag', 'context']
 ---
 
 # 6300: Context Management

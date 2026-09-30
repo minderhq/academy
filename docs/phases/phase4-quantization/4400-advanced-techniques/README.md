@@ -4,6 +4,7 @@ Title: "4400: Advanced Quantization Techniques"
 Last Updated: 2026-02-04
 Status: Complete
 Difficulty: Beginner
+Tags: ['module', 'quantization', 'advanced']
 ---
 
 # 4400: Advanced Quantization Techniques

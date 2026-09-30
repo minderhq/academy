@@ -9,7 +9,7 @@ Difficulty: Intermediate
 Estimated Time: 1.5 hours
 Prerequisites: See module README
 Related: See module README
-Tags: framework-comparison, transformers, pytorch-lightning, langchain, framework-selection
+Tags: ['framework-comparison', 'transformers', 'pytorch-lightning', 'langchain', 'framework-selection']
 ---
 
 # 2305: Framework Comparison Guide

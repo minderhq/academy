@@ -4,6 +4,7 @@ Title: "4300: Quantization Aware Training - Prerequisites"
 Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
+Tags: ['prerequisites', 'quantization', 'qat']
 ---
 
 # 4300: Quantization Aware Training - Prerequisites

@@ -4,6 +4,7 @@ Title: "Phase 6: Data Nexus - RAG, CAG & External Memory [6000]"
 Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Beginner
+Tags: ['phase', 'rag', 'retrieval', 'hybrid-search']
 ---
 
 # Phase 6: Data Nexus - RAG, CAG & External Memory [6000]

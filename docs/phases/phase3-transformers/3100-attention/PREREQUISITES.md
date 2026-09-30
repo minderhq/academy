@@ -4,6 +4,7 @@ Title: "Prerequisites: Attention Mechanisms"
 Last Updated: 2026-09-24
 Status: Complete
 Difficulty: Advanced
+Tags: ['prerequisites', 'transformers', 'attention']
 ---
 
 # Prerequisites: Attention Mechanisms

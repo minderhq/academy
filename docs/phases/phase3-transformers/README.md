@@ -4,6 +4,7 @@ Title: "Phase 3: Transformer Physics & LLM Internals [3000]"
 Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Beginner
+Tags: ['phase', 'transformers', 'embeddings', 'rope']
 ---
 
 # Phase 3: Transformer Physics & LLM Internals [3000]

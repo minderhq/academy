@@ -4,6 +4,7 @@ Title: "Phase 7: Agentic Cognition & Autonomy [7000]"
 Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Beginner
+Tags: ['phase', 'agents', 'security', 'prompt-injection']
 ---
 
 # Phase 7: Agentic Cognition & Autonomy [7000]

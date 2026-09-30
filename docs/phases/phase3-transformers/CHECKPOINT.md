@@ -4,6 +4,7 @@ Title: "Progress Checkpoint: Phase 3 - Transformer Physics"
 Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Advanced
+Tags: ['checkpoint', 'transformers', 'embeddings', 'rope']
 ---
 
 # Progress Checkpoint: Phase 3 - Transformer Physics
