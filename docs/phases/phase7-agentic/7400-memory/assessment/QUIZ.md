@@ -165,25 +165,25 @@ D) No limits
 
 ## Answer Key
 
-| # | Answer |
-|---|--------|
-| 1 | C |
-| 2 | D |
-| 3 | A |
-| 4 | B |
-| 5 | A |
-| 6 | A |
-| 7 | D |
-| 8 | B |
-| 9 | D |
-| 10 | B |
-| 11 | D |
-| 12 | D |
-| 13 | A |
-| 14 | C |
-| 15 | C |
-| 16 | C |
-| 17 | B |
-| 18 | C |
-| 19 | B |
-| 20 | A |
+| Question | Answer | Explanation |
+|----------|--------|-------------|
+| 1 | C | Short-term memory holds the current conversation |
+| 2 | D | Long-term memory persists across sessions |
+| 3 | A | Vector memory embeds records for similarity retrieval |
+| 4 | B | Key-value memory looks entries up directly by key |
+| 5 | A | Retrieval returns the memories relevant to the query |
+| 6 | A | Importance scoring ranks some memories above others |
+| 7 | D | Consolidation moves short-term memories into long-term |
+| 8 | B | Episodic memory keeps specific events and experiences |
+| 9 | D | Semantic memory holds general knowledge and facts |
+| 10 | B | The memory window keeps recent tokens only |
+| 11 | D | RAG retrieves the relevant memories per query |
+| 12 | D | MemGPT layers short and long-term hierarchically |
+| 13 | A | Compression summarizes old memories to save space |
+| 14 | C | Search spans vector, keyword and hybrid methods |
+| 15 | C | Reflective memory reviews past experiences for lessons |
+| 16 | C | Working memory holds current-task information |
+| 17 | B | The episodic buffer is temporary processing storage |
+| 18 | C | Decay makes old memories less accessible over time |
+| 19 | B | Remembering preferences personalizes responses |
+| 20 | A | Memory is bounded by context and compute limits |

@@ -165,25 +165,25 @@ D) Afterthought, bolted on late in shipping once the first incident report has l
 
 ## Answer Key
 
-| # | Answer |
-|---|--------|
-| 1 | D |
-| 2 | B |
-| 3 | A |
-| 4 | B |
-| 5 | D |
-| 6 | A |
-| 7 | B |
-| 8 | A |
-| 9 | D |
-| 10 | A |
-| 11 | C |
-| 12 | D |
-| 13 | A |
-| 14 | C |
-| 15 | C |
-| 16 | C |
-| 17 | D |
-| 18 | C |
-| 19 | B |
-| 20 | B |
+| Question | Answer | Explanation |
+|----------|--------|-------------|
+| 1 | D | Prompt injection manipulates prompts maliciously |
+| 2 | B | Jailbreaking talks the model past its safety rules |
+| 3 | A | Tool access is restricted by role and need |
+| 4 | B | Sandboxing isolates execution from the host |
+| 5 | D | Inputs are validated and sanitized before use |
+| 6 | A | Output filtering screens for harmful content |
+| 7 | B | Rate limits curb abuse and resource exhaustion |
+| 8 | A | Impersonation fakes a trusted agent identity |
+| 9 | D | Exfiltration extracts data through malicious agents |
+| 10 | A | Audit logs track every agent action |
+| 11 | C | Red teaming runs adversarial attacks against the agent |
+| 12 | D | Constitutional AI limits behavior with principles |
+| 13 | A | Tool outputs are validated before use |
+| 14 | C | Context injection steers the model via manipulated context |
+| 15 | C | Indirect injection arrives inside data and documents |
+| 16 | C | Agents hold different privilege levels by role |
+| 17 | D | Deterministic output gives predictable test runs |
+| 18 | C | Monitoring tracks behavior beyond plain performance |
+| 19 | B | Robustness means resisting adversarial attacks |
+| 20 | B | Security is built in from the start, not bolted on |
