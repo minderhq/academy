@@ -869,6 +869,21 @@ stand today?" without running each tool by hand.
                        age distribution across docs/ - surfaces the oldest
                        material so modernization passes can target it; a
                        stale date is a review queue, not a failure
+    ordered_list_scan  Ordered-list integrity (OL-01, hard): a list-marker
+                       line carrying 3+ embedded enumeration markers
+                       ("1. c, 2. b, 3. c, ...") - a comma-separated key
+                       pasted as prose; CommonMark eats the leading marker
+                       as the list marker, so the tick-468 census caught
+                       all 7 phase-quiz Answer Key blocks rendering as one
+                       broken list starting at "c," with every wrapped
+                       line opening a new list at 11, 21, ... Drained by
+                       escaping 19 line-start markers (1. -> 1\.); born
+                       clean across 408 docs. Sibling classes censused the
+                       same tick and left un-gated: HR styles uniform
+                       (3003 dash / 0 others), list delimiters uniform
+                       (2090 dot / 0 paren), task-list syntax clean,
+                       non-1 list starts = 337 deliberate continuation
+                       numbering (CommonMark-legal)
 
 Plus corpus stats (lesson files / modules / phases) so the scorecard doubles
 as a curriculum inventory.
@@ -978,6 +993,7 @@ GATES = [
     ("glossary_scan.py", "glossary_scan", True),
     ("emphasis_scan.py", "emphasis_scan", True),
     ("whitespace_scan.py", "whitespace_scan", True),
+    ("ordered_list_scan.py", "ordered_list_scan", True),
 ]
 
 

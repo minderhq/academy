@@ -217,7 +217,7 @@ d) Stochastic Gradient Descent
 
 ## Answer Key
 
-1. d, 2. c, 3. d, 4. d, 5. a, 6. b, 7. d, 8. c, 9. c, 10. b,
-11. d, 12. d, 13. d, 14. d, 15. d, 16. d, 17. d, 18. d, 19. d, 20. d
+1\. d, 2. c, 3. d, 4. d, 5. a, 6. b, 7. d, 8. c, 9. c, 10. b,
+11\. d, 12. d, 13. d, 14. d, 15. d, 16. d, 17. d, 18. d, 19. d, 20. d
 
 **Passing: 16/20 (80%)**

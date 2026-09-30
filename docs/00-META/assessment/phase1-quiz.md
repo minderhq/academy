@@ -167,7 +167,7 @@ d) Lightweight Kubernetes distribution
 
 ## Answer Key
 
-1. c, 2. d, 3. b, 4. b, 5. c, 6. b, 7. d, 8. c, 9. b, 10. c,
-11. b, 12. d, 13. b, 14. c, 15. d
+1\. c, 2. d, 3. b, 4. b, 5. c, 6. b, 7. d, 8. c, 9. b, 10. c,
+11\. b, 12. d, 13. b, 14. c, 15. d
 
 **Passing: 12/15 (80%)**
