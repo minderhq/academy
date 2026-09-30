@@ -165,25 +165,25 @@ D) Network (APIs, message queues)
 
 ## Answer Key
 
-| # | Answer |
-|---|--------|
-| 1 | A |
-| 2 | B |
-| 3 | B |
-| 4 | A |
-| 5 | B |
-| 6 | C |
-| 7 | C |
-| 8 | D |
-| 9 | C |
-| 10 | B |
-| 11 | A |
-| 12 | D |
-| 13 | D |
-| 14 | A |
-| 15 | A |
-| 16 | B |
-| 17 | C |
-| 18 | D |
-| 19 | C |
-| 20 | D |
+| Question | Answer | Explanation |
+|----------|--------|-------------|
+| 1 | A | OSI has seven layers: Physical through Application |
+| 2 | B | TCP handshakes and retransmits lost segments; UDP is the connectionless alternative |
+| 3 | B | DNS resolves domain names to IP addresses |
+| 4 | A | A load balancer spreads traffic across servers so no node is overwhelmed |
+| 5 | B | A reverse proxy sits in front of servers and forwards client requests to them |
+| 6 | C | 80 is HTTP's default port; 443 is HTTPS, 22 is SSH |
+| 7 | C | HTTPS wraps HTTP in an SSL/TLS encrypted channel |
+| 8 | D | A CDN caches content on geographically distributed edge nodes |
+| 9 | C | Round-robin rotates requests through the server list in order |
+| 10 | B | Rate limiting caps requests per client per window to stop abuse and overload |
+| 11 | A | REST maps intent to HTTP verbs: GET/POST/PUT/DELETE |
+| 12 | D | A JWT is a signed token carrying claims, used for authentication |
+| 13 | D | Latency is time delay; bandwidth (capacity) is a different metric |
+| 14 | A | Bandwidth is the data a link can carry per unit time |
+| 15 | A | A VPC is a logically isolated private network in a cloud account |
+| 16 | B | Security groups are allow/deny firewall rules for network traffic |
+| 17 | C | An API gateway is the managed entry point for API requests |
+| 18 | D | The breaker stops calls to a failing dependency so failures don't cascade |
+| 19 | C | Health checks probe whether a service is up so traffic routes around failures |
+| 20 | D | Separate processes talk over the network: REST/gRPC APIs or message queues |

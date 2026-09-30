@@ -87,7 +87,11 @@ LAB-/TUTORIAL- Related refs all resolve. A broader
 scaffold-marker census the same tick re-derived the existing
 UM-01 axis (born tick-276, baseline 0) - the QA-TOOLING
 register is the authoritative axis inventory; read it BEFORE
-censusing a new axis. Heading-case was the other tick-496
+censusing a new axis. Tick-498: the lesson fired again -
+FV-11's own axis overlaps RL-01 (related_census, tick-405);
+both kept deliberately (different universes: corpus-wide
+filename prefixes vs canonical resource dirs; RL-02 ambiguity
+detection is RL's alone). Heading-case was the other tick-496
 candidate and is formally SKIPPED with measurement: of 8795
 H2/H3 headings, 5617 are sentence case, 3158 are sentence case
 with Title-Case topic phrases (Docker Fundamentals, GPU

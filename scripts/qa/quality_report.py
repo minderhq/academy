@@ -34,8 +34,11 @@ stand today?" without running each tool by hand.
                        every ```json fence parses as JSON (DB-01) and
                        every ```yaml fence parses as a YAML document
                        stream (DB-02); prose/formulas live in text fences
-    assessment_lint    assessment/QUIZ.md + PRACTICE.md coverage (AS-01..AS-09;
-                       AS-09 option-shuffle queue is report-mode, shown separately)
+    assessment_lint    assessment/QUIZ.md + PRACTICE.md coverage (AS-01..AS-10;
+                       AS-09 option-shuffle queue is report-mode, shown
+                       separately; AS-10 option uniformity - a question
+                       carrying options carries exactly A-D, born tick-498
+                       born-at-zero 655/655 four-option mcq)
     quiz_export        quiz bank parses into complete question records
     quiz_integrity_scan
                        content-level quiz integrity (QI-01..06 +

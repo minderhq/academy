@@ -18,6 +18,11 @@ and assessment/PRACTICE.md. The corpus standard these files already meet:
          the answered questions (all-B authoring lets learners ace a
          quiz by pattern-matching instead of reading). Report-mode
          while the option-shuffle queue drains; flip to hard when empty
+  AS-10  a question that carries options carries exactly the four
+         A-D - the platform renders options as radio buttons, so a
+         3/5-option outlier or a duplicated letter breaks the shape
+         (census tick-498: 655/655 mcq are four-option, uniform;
+         born-at-zero)
   AS-05  assessment/PRACTICE.md exists
   AS-06  PRACTICE holds >= 3 exercises ("## / ### Exercise N")
   AS-07  each exercise carries a solution marker (Expected Output,
@@ -52,6 +57,7 @@ AK_SECTION = re.compile(r"^##\s+Answer\s+Key\s*$", re.IGNORECASE)
 AK_ROW = re.compile(r"^\|\s*(\d+)\s*\|\s*([A-D])\b")
 INLINE_ANSWER = re.compile(r"\*\*Answer:\*\*\s*([A-D])\b")
 SCORE_MARKER = re.compile(r"\*\*Score:\*\*\s*__")
+OPT_LINE = re.compile(r"^\s*([A-E])\) ")
 ANSWER_MARKER = re.compile(
     r"expected\s+\w+|solution|success criteria|\*\*answer", re.IGNORECASE)
 MODULE_DIR = re.compile(r"^\d{4}-")
@@ -98,6 +104,26 @@ class Linter:
         if gaps:
             self.report(rel, "AS-03",
                         "question numbering gaps: %s" % gaps)
+
+        # AS-10: option uniformity. Coding questions carry no option
+        # lines and stay out; any question with option lines must have
+        # exactly the set A-D (a duplicated letter shrinks the set, a
+        # 3rd/5th option grows it past A-D or falls short).
+        opts: dict = {}
+        q = None
+        for _, l in nf:
+            m = QUESTION_BOLD.match(l) or QUESTION_H3.match(l)
+            if m:
+                q = int(m.group(1))
+                continue
+            m = OPT_LINE.match(l)
+            if m and q is not None:
+                opts.setdefault(q, set()).add(m.group(1))
+        bad = sorted(n for n, s in opts.items() if s != set("ABCD"))
+        if bad:
+            self.report(rel, "AS-10",
+                        "questions %s do not carry exactly the four "
+                        "options A-D" % bad)
 
         # Answer Key table: rows | N | X | ... until the next H2.
         ak_idx = next((i for i, l in nf if AK_SECTION.match(l)), None)

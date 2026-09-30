@@ -166,28 +166,28 @@ D) Needs special drivers
 
 ## Answer Key
 
-| # | Answer |
-|---|--------|
-| 1 | C |
-| 2 | B |
-| 3 | A |
-| 4 | B |
-| 5 | B |
-| 6 | A |
-| 7 | A |
-| 8 | A |
-| 9 | A |
-| 10 | B |
-| 11 | B |
-| 12 | A |
-| 13 | B |
-| 14 | A |
-| 15 | A |
-| 16 | B |
-| 17 | D |
-| 18 | B |
-| 19 | B |
-| 20 | A |
+| Question | Answer | Explanation |
+|----------|--------|-------------|
+| 1 | C | Type 1 (bare-metal) hypervisors run directly on hardware; Type 2 runs on top of an OS |
+| 2 | B | Passthrough hands the whole GPU to one VM; sharing is SR-IOV/vGPU territory, not passthrough |
+| 3 | A | The GPU sits on PCIe lanes; USB/HDMI/Ethernet are not the bus |
+| 4 | B | IOMMU remaps device DMA so a VM can safely own a device |
+| 5 | B | Proxmox VE is Debian-based |
+| 6 | A | A VM virtualizes hardware and runs a full guest OS; containers share the host kernel |
+| 7 | A | VFIO = Virtual Function I/O, the kernel framework for secure device passthrough |
+| 8 | A | The VGA arbiter decides which side (host or VM) owns VGA output |
+| 9 | A | Each passed device needs a clean IOMMU group; multi-GPU means multiple groups |
+| 10 | B | OVMF is the UEFI firmware build for QEMU/KVM VMs |
+| 11 | B | Nouveau is the open Nvidia driver; blacklisted so the vendor driver can bind to the card |
+| 12 | A | ACS lets the IOMMU isolate devices sharing a bridge, enabling clean passthrough |
+| 13 | B | Looking Glass forwards the VM's GPU framebuffer to the host display near-natively |
+| 14 | A | A shared group passes all-or-nothing; the GPU must be alone in its group |
+| 15 | A | Memory can be overcommitted beyond physical RAM (ballooning, KSM) |
+| 16 | B | vCPUs are scheduled onto physical cores, so they can be overcommitted |
+| 17 | D | The host must give up the card: disable its driver and run the host on integrated graphics |
+| 18 | B | The EFI disk holds UEFI variables so a VM can boot in UEFI mode |
+| 19 | B | Cleanest passthrough is a GPU alone in its own IOMMU group |
+| 20 | A | The card is handed over as physical hardware; the guest installs the vendor driver as on a real machine |
 
 ---
 
