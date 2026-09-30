@@ -109,6 +109,7 @@ After completing Phase 5, you will:
 **Badge:** Fine-Tuning Artist
 
 **You've earned it when:**
+- All required modules completed
 - Can implement LoRA
 - Can apply DPO alignment
 - Have fine-tuned a model

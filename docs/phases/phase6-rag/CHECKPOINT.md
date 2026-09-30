@@ -110,6 +110,7 @@ After completing Phase 6, you will:
 **Badge:** RAG Specialist
 
 **You've earned it when:**
+- All required modules completed
 - Can build RAG systems
 - Can implement GraphRAG
 - Have built production RAG

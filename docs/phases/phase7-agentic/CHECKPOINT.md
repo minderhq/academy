@@ -111,6 +111,7 @@ After completing Phase 7, you will:
 **Badge:** Production Architect
 
 **You've earned it when:**
+- All required modules completed
 - Can build agent systems
 - Can deploy to production
 - Can secure AI systems

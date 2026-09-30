@@ -915,7 +915,7 @@ stand today?" without running each tool by hand.
                        was the only stranded file of 410; drained via
                        a README Community > Resources row + a [1.2.0]
                        entry that brought the changelog current
-    checkpoint_coverage_scan  Phase-checkpoint coverage (CK-00..05,
+    checkpoint_coverage_scan  Phase-checkpoint coverage (CK-00..08,
                        hard): the phase CHECKPOINT.md is the learner's
                        review page for everything above it, so every
                        module group of the phase must appear in its
@@ -929,7 +929,16 @@ stand today?" without running each tool by hand.
                        3-item Checkpoint Quiz and a 3-checkbox
                        hands-on floor (12 modules had no checkbox
                        section, 3 Lab Verification blocks had only
-                       2 lab links; all drained same tick)
+                       2 lab links; all drained same tick).
+                       CK-06/07/08 tick-479: Completion Badge
+                       anatomy - the criteria block must carry the
+                       "All required modules completed" bullet (the
+                       platform-tracked criterion), at least 3 plain
+                       bullets, no decorated prefixes, Badge line
+                       before the criteria (phases 4-7 lacked the
+                       modules bullet, phase 2 said "All modules
+                       completed", phase 1 was emoji-decorated and
+                       Badge-last; all drained same tick)
     quiz_claim_scan  Quiz self-claim integrity (QC-01..04, hard):
                        a QUIZ.md's own promises checked against the
                        bank quiz_export parses - "**N questions**"

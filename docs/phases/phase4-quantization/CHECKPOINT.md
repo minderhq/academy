@@ -92,12 +92,13 @@ After completing Phase 4, you will:
 
 ---
 
-## ✅ Phase 4 Completion Badge
+## Phase 4 Completion Badge
 
 **Badge:** ⚡ Quantization Ninja
 
 **You've earned it when:**
-- ✅ Can quantize models
-- ✅ Can optimize context windows
-- ✅ Can run 70B on 11GB VRAM
-- ✅ Can quantize with GPTQ or AWQ
+- All required modules completed
+- Can quantize models
+- Can optimize context windows
+- Can run 70B on 11GB VRAM
+- Can quantize with GPTQ or AWQ

@@ -96,6 +96,6 @@ After completing Phase 2, you will:
 **Badge:** Tensor Master
 
 **You've earned it when:**
-- All modules completed
+- All required modules completed
 - Can implement backpropagation
 - Understand framework internals

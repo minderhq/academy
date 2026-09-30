@@ -39,9 +39,23 @@ CK-05  a module checkpoint section carries fewer than 3 "- [ ]"
        section at all; drained the same tick (3 skill checkboxes
        each, grounded in the module's quiz and labs).
 
+CK-06  the phase Completion Badge criteria block has no "All required
+       modules completed" bullet - a completion badge that does not
+       require module completion. The badge sits once per checkpoint
+       (phase level, not module level); the bullet may carry the
+       phase-1-style explicit module list "(1400, 1500)". Census
+       tick-479: phases 4-7 listed only skill bullets, phase 2 said
+       "All modules completed" - all drained the same tick.
+CK-07  the badge criteria block carries fewer than 3 bullets
+CK-08  badge-block shape drift: a criterion bullet with a decorated
+       prefix (phase 1/4 carried checkmark-emoji bullets), or the
+       "**Badge:**" line placed after the criteria block (phase 1) -
+       corpus order is Badge, then "You've earned it when:"
+
 HARD GATE - exit 1 on any finding. Born-at-zero after the tick-472
 drain (same census -> drain -> gate cycle as NV-02); CK-04/05 born
-tick-478 after the 12-module Practical Verification drain.
+tick-478 after the 12-module Practical Verification drain; CK-06/07/08
+born tick-479 after the badge-criteria drain.
 
 Run over the whole corpus:
     python scripts/qa/checkpoint_coverage_scan.py --root .
@@ -65,6 +79,11 @@ MODULE_BLOCK = re.compile(r"^###\s+Module\s+(\d{4}):.*?(?=^### |^## |\Z)",
 QUIZ_HEAD = re.compile(r"^\*\*Checkpoint Quiz:\*\*\s*$")
 QUIZ_ITEM = re.compile(r"^\s*(\d+)[\.\)]\s+\S")
 CHECKBOX = re.compile(r"^\s*-\s+\[[ x]\]")
+EARN_HEAD = re.compile(r"^\*\*You've earned it when:\*\*\s*$", re.MULTILINE)
+BADGE_LINE = re.compile(r"^\*\*Badge:\*\*", re.MULTILINE)
+MODULES_DONE = re.compile(
+    r"^- All required modules(?: \(\d{4}(?:, \d{4})*\))? completed$")
+DECOR_BULLET = re.compile(r"^-\s*[^\w\s\-\[]")
 
 
 def esc(text: str) -> str:
@@ -141,14 +160,57 @@ def main() -> int:
                     "items - below the 3-checkbox hands-on floor"
                     % (rel, gid, boxes))
 
+        # CK-06/07/08: phase Completion Badge anatomy. The badge sits
+        # once per checkpoint: the "**Badge:**" line first, then the
+        # "You've earned it when:" criteria block, which must include
+        # the module-completion criterion plus at least two more plain
+        # (undecorated) bullets.
+        badge_m = BADGE_LINE.search(text)
+        earn_m = EARN_HEAD.search(text)
+        if badge_m is None or earn_m is None:
+            findings.append(
+                "CK-06 %s/CHECKPOINT.md: no Completion Badge criteria "
+                "block (**Badge:** + **You've earned it when:**)" % rel)
+        else:
+            bullets = []
+            for ln in text[earn_m.start():].split("\n")[1:]:
+                if ln.startswith("#") or ln.startswith("**") \
+                        or ln.strip() == "---":
+                    break
+                if ln.startswith("- "):
+                    bullets.append(ln)
+            if not any(MODULES_DONE.match(b) for b in bullets):
+                findings.append(
+                    "CK-06 %s/CHECKPOINT.md: badge criteria lack the "
+                    "'- All required modules completed' bullet" % rel)
+            if len(bullets) < 3:
+                findings.append(
+                    "CK-07 %s/CHECKPOINT.md: badge criteria block carries "
+                    "%d bullets - below the 3-criteria floor"
+                    % (rel, len(bullets)))
+            for b in bullets:
+                if DECOR_BULLET.match(b):
+                    findings.append(
+                        "CK-08 %s/CHECKPOINT.md: badge criterion uses a "
+                        "decorated bullet prefix: %s" % (rel, b[:50]))
+                    break
+            if badge_m.start() > earn_m.start():
+                findings.append(
+                    "CK-08 %s/CHECKPOINT.md: Badge line appears after the "
+                    "criteria block - corpus order is Badge, then criteria"
+                    % rel)
+
     for f in findings:
         print("  " + esc(f))
     print("checkpoint_coverage_scan: %d phase checkpoints; %d findings "
           "- all hard (CK-01 group absent / CK-02 overview miscount / "
           "CK-03 section missing / CK-04 quiz not exactly 3 items / "
-          "CK-05 below the 3-checkbox hands-on floor; born tick-472 "
-          "after the phase-4 two-module-era drain, CK-04/05 tick-478 "
-          "after the 12-module Practical Verification drain)"
+          "CK-05 below the 3-checkbox hands-on floor / CK-06 badge "
+          "criteria lack the modules-completion bullet / CK-07 badge "
+          "criteria below the 3-bullet floor / CK-08 badge-block shape "
+          "drift; born tick-472 after the phase-4 two-module-era drain, "
+          "CK-04/05 tick-478 after the 12-module Practical Verification "
+          "drain, CK-06/07/08 tick-479 after the badge-criteria drain)"
           % (n_phases, len(findings)))
     return 1 if findings else 0
 

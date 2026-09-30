@@ -297,15 +297,15 @@ Total Time: _____ hours (Expected: 20-40 hours)
 
 ---
 
-## ✅ Phase 1 Completion Badge
-
-**You've earned it when:**
-- ✅ All required modules (1400, 1500) completed
-- ✅ Labs (TUTORIAL-004, LAB-001) completed
-- ✅ Phase checkpoint passed
-- ✅ Can run LLMs independently
+## Phase 1 Completion Badge
 
 **Badge:** 🏗️ Infrastructure Architect
+
+**You've earned it when:**
+- All required modules (1400, 1500) completed
+- Labs (TUTORIAL-004, LAB-001) completed
+- Phase checkpoint passed
+- Can run LLMs independently
 
 ---
 
