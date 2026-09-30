@@ -4,6 +4,7 @@ Title: "6203: Advanced Retrieval Techniques"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
+Tags: ['rag', 'retrieval', 'hybrid-search', 'reranking']
 ---
 
 # 6203: Advanced Retrieval Techniques

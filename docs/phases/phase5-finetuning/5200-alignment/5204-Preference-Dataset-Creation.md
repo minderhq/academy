@@ -4,6 +4,7 @@ Title: "5204: Preference Dataset Creation"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
+Tags: ['finetuning', 'alignment', 'preference']
 ---
 
 # 5204: Preference Dataset Creation

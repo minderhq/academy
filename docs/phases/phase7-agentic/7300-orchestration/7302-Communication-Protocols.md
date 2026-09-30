@@ -4,6 +4,7 @@ Title: "7302: Multi-Agent Communication Protocols"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
+Tags: ['agents', 'orchestration', 'multi-agent']
 ---
 
 # 7302: Multi-Agent Communication Protocols

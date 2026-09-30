@@ -4,6 +4,7 @@ Title: "5103: Adapters & Parameter-Efficient Adaptation Methods"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
+Tags: ['finetuning', 'peft', 'lora', 'qlora', 'adaptation']
 ---
 
 # 5103: Adapters & Parameter-Efficient Adaptation Methods

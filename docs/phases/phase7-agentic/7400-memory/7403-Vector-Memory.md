@@ -4,6 +4,7 @@ Title: "7403: Vector Memory and Embedding-Based Storage"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
+Tags: ['agents', 'memory', 'vector-store', 'long-term-memory']
 ---
 
 # 7403: Vector Memory and Embedding-Based Storage
