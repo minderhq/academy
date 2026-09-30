@@ -166,28 +166,28 @@ D) Data is augmented
 
 ## Answer Key
 
-| # | Answer |
-|---|--------|
-| 1 | D |
-| 2 | A |
-| 3 | D |
-| 4 | D |
-| 5 | D |
-| 6 | C |
-| 7 | B |
-| 8 | B |
-| 9 | B |
-| 10 | A |
-| 11 | A |
-| 12 | B |
-| 13 | B |
-| 14 | B |
-| 15 | A |
-| 16 | A |
-| 17 | B |
-| 18 | A |
-| 19 | B |
-| 20 | B |
+| Question | Answer | Explanation |
+|----------|--------|-------------|
+| 1 | D | DDP all-reduces gradients efficiently; DP syncs through one process |
+| 2 | A | FSDP shards parameters, gradients and optimizer states across GPUs |
+| 3 | D | NCCL is the standard backend for GPU distributed training |
+| 4 | D | world_size is the total number of GPUs in the job |
+| 5 | D | Accumulation sums micro-batches to simulate a larger batch |
+| 6 | C | Mixed precision saves both compute time and memory |
+| 7 | B | Each DDP replica takes its own shard of the batch |
+| 8 | B | FSDP shines when the model does not fit on one GPU |
+| 9 | B | set_epoch reseeds the sampler's shuffle each epoch |
+| 10 | A | NCCL = NVIDIA Collective Communications Library |
+| 11 | A | Pipeline parallelism splits the model into stages |
+| 12 | B | Communication overhead is the core distributed bottleneck |
+| 13 | B | Tensor parallelism slices individual ops (e.g., matmuls) across GPUs |
+| 14 | B | ZeRO shards optimizer state instead of replicating it |
+| 15 | A | BF16 keeps the FP32-sized exponent - wider dynamic range |
+| 16 | A | Clip before all-reduce so every rank clips identically |
+| 17 | B | Linear scaling rule: LR grows with world size |
+| 18 | A | Rank 0 writes the checkpoint - one writer, no corruption |
+| 19 | B | FSDP's sharding cuts memory below DDP's full replicas |
+| 20 | B | DistributedSampler gives each rank a disjoint shard |
 
 ---
 

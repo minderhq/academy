@@ -165,25 +165,25 @@ D) Random
 
 ## Answer Key
 
-| # | Answer |
-|---|--------|
-| 1 | D |
-| 2 | C |
-| 3 | D |
-| 4 | C |
-| 5 | B |
-| 6 | B |
-| 7 | A |
-| 8 | A |
-| 9 | C |
-| 10 | B |
-| 11 | B |
-| 12 | C |
-| 13 | B |
-| 14 | B |
-| 15 | A |
-| 16 | B |
-| 17 | B |
-| 18 | B |
-| 19 | A |
-| 20 | D |
+| Question | Answer | Explanation |
+|----------|--------|-------------|
+| 1 | D | AdamW decouples weight decay - better generalization |
+| 2 | C | Adafactor factorizes second moments for very large models |
+| 3 | D | Warmup avoids early instability while statistics are still rough |
+| 4 | C | Cosine decay lowers the LR smoothly toward zero |
+| 5 | B | Clipping caps the gradient norm against explosions |
+| 6 | B | For adaptive optimizers, decay differs from true L2 - hence AdamW |
+| 7 | A | Rule of thumb: the highest LR that does not diverge |
+| 8 | A | AdamW = Adam with decoupled weight decay |
+| 9 | C | Adafactor's factorized states win on memory |
+| 10 | B | High LR early explores; low LR late converges |
+| 11 | B | Betas are EMA rates for gradient and squared-gradient moments |
+| 12 | C | AdamW is the fine-tuning default |
+| 13 | B | Around 1e-4 is the typical AdamW fine-tune LR |
+| 14 | B | Polynomial decay, like cosine, eases the LR down on a curve |
+| 15 | A | Epsilon guards the square-root division |
+| 16 | B | 8-bit AdamW quantizes the optimizer states, not the weights |
+| 17 | B | Past ~10B parameters, Adafactor's memory efficiency wins |
+| 18 | B | Warmup commonly spans 1-10% of total training |
+| 19 | A | Gradient-norm clip value 1.0 is the standard |
+| 20 | D | Random is not a schedule - real ones are deterministic curves |
