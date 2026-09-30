@@ -4,6 +4,9 @@ Title: "5204: Preference Dataset Creation"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
+Estimated Time: 4 hours
+Prerequisites: See module README
+Related: See module README
 Tags: ['finetuning', 'alignment', 'preference']
 ---
 

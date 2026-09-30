@@ -4,6 +4,9 @@ Title: "5103: Adapters & Parameter-Efficient Adaptation Methods"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
+Estimated Time: 5 hours
+Prerequisites: See module README
+Related: See module README
 Tags: ['finetuning', 'peft', 'lora', 'qlora', 'adaptation']
 ---
 

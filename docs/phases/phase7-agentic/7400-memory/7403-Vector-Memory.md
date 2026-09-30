@@ -4,6 +4,9 @@ Title: "7403: Vector Memory and Embedding-Based Storage"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
+Estimated Time: 4 hours
+Prerequisites: See module README
+Related: See module README
 Tags: ['agents', 'memory', 'vector-store', 'long-term-memory']
 ---
 
