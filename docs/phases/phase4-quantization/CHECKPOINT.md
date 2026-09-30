@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE4-CHECKPOINT
 Title: "Progress Checkpoint: Phase 4 - Quantization & Compression"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Tags: ['checkpoint', 'quantization', 'qat', 'quantization-aware-training']
@@ -16,8 +16,8 @@ Tags: ['checkpoint', 'quantization', 'qat', 'quantization-aware-training']
 ## 📊 Phase 4 Overview
 
 **Phase:** [4000] Quantization & Compression
-**Modules:** 2 (4100, 4200)
-**Estimated Time:** 4-5 weeks
+**Modules:** 4 (4100, 4200, 4300, 4400)
+**Estimated Time:** 5-7 weeks
 **Difficulty:** ⭐⭐⭐ Advanced
 
 ---
@@ -29,6 +29,8 @@ After completing Phase 4, you will:
 - ✅ Quantize models to 4-bit
 - ✅ Optimize context windows
 - ✅ Run large models on limited hardware
+- ✅ Apply quantization-aware training when PTQ quality is not enough
+- ✅ Choose the right advanced recipe (GPTQ, AWQ, GGUF, EXL2)
 
 ---
 
@@ -57,6 +59,34 @@ After completing Phase 4, you will:
 
 ---
 
+### Module 4300: Quantization-Aware Training (Required)
+
+**Checkpoint Quiz:**
+1. What is fake quantization and how does it simulate low precision?
+2. How does QAT differ from post-training quantization?
+3. When does QAT justify its training cost?
+
+**Practical Verification:**
+- [ ] Can explain the fake-quantization round-trip
+- [ ] Has run a PyTorch or Transformers QAT flow
+- [ ] Can quantize a transformer to low bit-widths with QAT
+
+---
+
+### Module 4400: Advanced Quantization Techniques (Required)
+
+**Checkpoint Quiz:**
+1. How do GPTQ and AWQ differ in how they select weights?
+2. What do GGUF and EXL2 each optimize for?
+3. What does 1.58-bit quantization mean in practice?
+
+**Practical Verification:**
+- [ ] Has quantized a model with GPTQ or AWQ
+- [ ] Can pick a format (GGUF / EXL2) for a deployment target
+- [ ] Knows when sparsity or sub-1-bit methods apply
+
+---
+
 ## ✅ Phase 4 Completion Badge
 
 **Badge:** ⚡ Quantization Ninja
@@ -65,3 +95,4 @@ After completing Phase 4, you will:
 - ✅ Can quantize models
 - ✅ Can optimize context windows
 - ✅ Can run 70B on 11GB VRAM
+- ✅ Can quantize with GPTQ or AWQ

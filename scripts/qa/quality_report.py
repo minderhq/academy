@@ -905,6 +905,16 @@ stand today?" without running each tool by hand.
                        was the only stranded file of 410; drained via
                        a README Community > Resources row + a [1.2.0]
                        entry that brought the changelog current
+    checkpoint_coverage_scan  Phase-checkpoint coverage (CK-00..03,
+                       hard): the phase CHECKPOINT.md is the learner's
+                       review page for everything above it, so every
+                       module group of the phase must appear in its
+                       overview line, its text, and as a "### Module
+                       NNNN:" section. Born tick-472 after the phase-4
+                       drain: the checkpoint still claimed "Modules:
+                       2 (4100, 4200)" - the two-module era - while
+                       4300 QAT and 4400 Advanced Techniques (17
+                       lessons between them) had joined the phase
 
 Plus corpus stats (lesson files / modules / phases) so the scorecard doubles
 as a curriculum inventory.
@@ -1015,6 +1025,7 @@ GATES = [
     ("emphasis_scan.py", "emphasis_scan", True),
     ("whitespace_scan.py", "whitespace_scan", True),
     ("ordered_list_scan.py", "ordered_list_scan", True),
+    ("checkpoint_coverage_scan.py", "checkpoint_coverage_scan", True),
 ]
 
 
