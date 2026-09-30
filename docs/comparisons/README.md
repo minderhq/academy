@@ -20,6 +20,8 @@ This directory contains comprehensive comparison guides to help you choose the r
 - [Available Comparisons](#available-comparisons)
 - [Decision Flowcharts](#decision-flowcharts)
 - [Related Documentation](#related-documentation)
+- [How to Use These Documents](#how-to-use-these-documents)
+- [Quick Reference](#quick-reference)
 
 ---
 

@@ -25,6 +25,7 @@ Tags: ['transformers', 'multimodal', 'vision-language', 'clip', 'vlm']
 - [Production Considerations](#production-considerations)
 - [Summary](#summary)
 - [References](#references)
+- [Related Resources](#related-resources)
 
 ---
 

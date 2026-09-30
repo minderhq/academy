@@ -18,6 +18,7 @@ Difficulty: Advanced
 - [Part 4: Model Management](#part-4-model-management)
 - [Part 5: Cost Optimization](#part-5-cost-optimization)
 - [Exercises](#exercises)
+- [Completion Checklist](#completion-checklist)
 - [References](#references)
 - [Next Steps](#next-steps)
 

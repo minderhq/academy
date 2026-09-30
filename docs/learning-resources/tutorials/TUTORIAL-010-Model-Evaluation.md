@@ -18,6 +18,7 @@ Difficulty: Intermediate
 - [Part 4: Evaluation Framework](#part-4-evaluation-framework)
 - [Part 5: Tracking and Comparison](#part-5-tracking-and-comparison)
 - [Exercises](#exercises)
+- [Completion Checklist](#completion-checklist)
 - [References](#references)
 - [Next Steps](#next-steps)
 

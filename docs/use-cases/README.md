@@ -21,6 +21,7 @@ This directory contains practical use case documentation showing how to apply AI
 - [Decision Matrices](#decision-matrices)
 - [Implementation Patterns](#implementation-patterns)
 - [Related Documentation](#related-documentation)
+- [How to Use These Documents](#how-to-use-these-documents)
 
 ---
 

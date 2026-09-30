@@ -18,6 +18,7 @@ Curated list of videos, courses, and external resources to complement the learni
 - [Phase 5: Fine-tuning](#phase-5-fine-tuning)
 - [Phase 6: RAG](#phase-6-rag)
 - [Phase 7: Agentic](#phase-7-agentic)
+- [Additional Learning Platforms](#additional-learning-platforms)
 
 ---
 

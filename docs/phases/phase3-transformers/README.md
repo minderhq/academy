@@ -12,11 +12,15 @@ Difficulty: Beginner
 
 - [Overview](#overview)
 - [Why Transformer Internals Matter](#why-transformer-internals-matter)
+- [Decoder-Only Transformer Architecture](#decoder-only-transformer-architecture)
+- [Self-Attention Mechanism](#self-attention-mechanism)
+- [Tokenization Pipeline](#tokenization-pipeline)
 - [Module Structure](#module-structure)
 - [Learning Path](#learning-path)
 - [Key Takeaways](#key-takeaways)
 - [Common Pitfalls](#common-pitfalls)
 - [Pro Tips](#pro-tips)
+- [Performance Benchmarks](#performance-benchmarks)
 - [Related Experiments](#related-experiments)
 
 ---

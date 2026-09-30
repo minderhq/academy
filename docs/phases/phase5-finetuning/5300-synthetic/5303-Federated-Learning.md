@@ -27,6 +27,7 @@ Tags: ['federated-learning', 'privacy', 'differential-privacy', 'distributed', '
 - [Production Checklist](#production-checklist)
 - [Summary](#summary)
 - [References](#references)
+- [Related Resources](#related-resources)
 
 ---
 

@@ -19,6 +19,7 @@ Difficulty: Advanced
 - [Part 5: Evaluation](#part-5-evaluation)
 - [Part 6: Performance Optimization](#part-6-performance-optimization)
 - [Exercises](#exercises)
+- [Completion Checklist](#completion-checklist)
 - [References](#references)
 - [Next Steps](#next-steps)
 

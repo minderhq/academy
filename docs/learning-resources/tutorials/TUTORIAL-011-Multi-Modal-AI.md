@@ -19,6 +19,7 @@ Difficulty: Advanced
 - [Part 5: Audio Transcription](#part-5-audio-transcription)
 - [Part 6: Multi-Modal RAG](#part-6-multi-modal-rag)
 - [Exercises](#exercises)
+- [Completion Checklist](#completion-checklist)
 - [References](#references)
 - [Next Steps](#next-steps)
 

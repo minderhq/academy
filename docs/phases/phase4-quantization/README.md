@@ -17,6 +17,7 @@ Difficulty: Beginner
 - [Key Takeaways](#key-takeaways)
 - [Common Pitfalls](#common-pitfalls)
 - [Pro Tips](#pro-tips)
+- [Performance Benchmarks](#performance-benchmarks)
 - [Related Experiments](#related-experiments)
 
 ---

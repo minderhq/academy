@@ -25,6 +25,7 @@ Tags: ['transformers', 'multimodal', 'audio', 'whisper', 'tts']
 - [Voice Assistant Pipeline](#voice-assistant-pipeline)
 - [Summary](#summary)
 - [References](#references)
+- [Related Resources](#related-resources)
 
 ---
 

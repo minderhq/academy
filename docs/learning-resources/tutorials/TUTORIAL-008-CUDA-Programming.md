@@ -19,6 +19,7 @@ Difficulty: Advanced
 - [Part 5: Profiling and Optimization](#part-5-profiling-and-optimization)
 - [Part 6: Common CUDA Patterns](#part-6-common-cuda-patterns)
 - [Exercises](#exercises)
+- [Completion Checklist](#completion-checklist)
 - [References](#references)
 - [Next Steps](#next-steps)
 

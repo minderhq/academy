@@ -18,6 +18,7 @@ Difficulty: Advanced
 - [Part 4: Safety Monitoring](#part-4-safety-monitoring)
 - [Part 5: Guardrails for Agents](#part-5-guardrails-for-agents)
 - [Exercises](#exercises)
+- [Completion Checklist](#completion-checklist)
 - [References](#references)
 - [Next Steps](#next-steps)
 
