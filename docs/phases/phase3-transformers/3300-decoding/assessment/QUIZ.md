@@ -42,7 +42,7 @@ B) The k most likely tokens
 C) All tokens
 D) Random tokens
 
-**4. Nucleus (top-p) sampling:**
+**4. Nucleus (Top-P) sampling:**
 
 A) Keeps exactly p tokens, always rounded up to the nearest whole number
 B) Samples uniformly

@@ -636,6 +636,19 @@ stand today?" without running each tool by hand.
                       LC-01 resolves every internal link path
                       segment-exactly. Born tick-463 at 0
                       across 3015 docs/ links (3325 repo-wide)
+    glossary_scan
+                      Glossary integrity (GS-01..03, hard):
+                      GLOSSARY.md is the platform's
+                      terminology backbone - lookups, tooltips
+                      and search generate from its tables.
+                      GS-01 no Correct/Incorrect row lists its
+                      own canonical term as incorrect (LLMOps
+                      did), GS-02 no dead entries (every term
+                      used corpus-wide; 01.AI removed), GS-03
+                      one row per term (Parameters was
+                      duplicated across two tables, merged).
+                      Born tick-464 after those three drains;
+                      67 terms
     difficulty_distribution_scan
                       Difficulty as a sequence dimension (DX-01,
                       report-only census): per-phase B/I/A
@@ -933,6 +946,7 @@ GATES = [
     ("updated_badge_scan.py", "updated_badge_scan", True),
     ("diagram_scan.py", "diagram_scan", True),
     ("link_case_scan.py", "link_case_scan", True),
+    ("glossary_scan.py", "glossary_scan", True),
 ]
 
 

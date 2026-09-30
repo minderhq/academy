@@ -28,7 +28,7 @@ This module covers activation functions, normalization, and decoding strategies.
 ### Probability
 - Sampling strategies
 - Temperature in softmax
-- Top-k and top-p sampling
+- Top-K and Top-P sampling
 
 ### If you're not familiar:**
 

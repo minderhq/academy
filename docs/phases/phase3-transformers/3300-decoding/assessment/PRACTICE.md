@@ -304,7 +304,7 @@ for top_k in [10, 50, 100]:
 ```python
 def nucleus_sampling(model, input_ids, top_p=0.9, temperature=0.7, max_new_tokens=50, eos_token_id=None):
     """
-    Nucleus (top-p) sampling: Sample from smallest set of tokens with cumulative probability >= top_p.
+    Nucleus (Top-P) sampling: Sample from smallest set of tokens with cumulative probability >= top_p.
 
     Args:
         model: Language model
@@ -368,7 +368,7 @@ def nucleus_sampling(model, input_ids, top_p=0.9, temperature=0.7, max_new_token
     return generated
 
 # Test nucleus sampling
-print("\nTesting Nucleus (Top-p) Sampling")
+print("\nTesting Nucleus (Top-P) Sampling")
 print("="*60)
 
 for top_p in [0.5, 0.9, 0.95]:
@@ -479,7 +479,7 @@ print("""
    - Use when: Want creative but controlled text
    - k values: 10=focused, 50=balanced, 100=diverse
 
-4. NUCLEUS (TOP-p) SAMPLING
+4. NUCLEUS (TOP-P) SAMPLING
    - Pros: Adaptive vocabulary, often best quality
    - Cons: Can be unpredictable at extremes
    - Use when: Want natural, diverse text

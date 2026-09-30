@@ -40,7 +40,7 @@ Consistent terminology prevents confusion and makes learning easier. When you se
 | **Embedding** | Numerical representation of text/data | Vector, Latent space |
 | **Transformer** | Neural network architecture powering modern LLMs | Attention-based model |
 | **Attention** | Mechanism allowing models to focus on relevant parts | Self-attention, Multi-head |
-| **Parameters** | Weights learned during training | Weights, Model size |
+| **Parameters** | Weights learned during training (measured in billions: 7B, 13B, 70B) | Weights, Model size |
 | **Context Window** | Maximum input length a model can process | Input length, Sequence length |
 
 ---
@@ -49,11 +49,11 @@ Consistent terminology prevents confusion and makes learning easier. When you se
 
 | Term | Correct Usage | Incorrect Usage |
 |------|--------------|----------------|
-| **LLMOps** | Large Language Model Operations (one word, capital O) | LLM Ops, LLMOps, llmops |
+| **LLMOps** | Large Language Model Operations (one word, capital O) | LLM Ops, LlmOps, llmops |
 | **Vector Database** | Database optimized for similarity search (two words) | VectorDB, Vector DB, VectorDb |
 | **ReAct** | Reasoning + Acting framework (capital R, capital A) | React, react, REACT |
 | **RAG** | Retrieval-Augmented Generation (always capitalized) | rag, Rag, r.a.g. |
-| **LoRA** | Low-Rank Adaptation (capital L, capital R, capital A) | lora, Lora, lora |
+| **LoRA** | Low-Rank Adaptation (capital L, capital R, capital A) | lora, Lora |
 | **QLoRA** | Quantized LoRA (capital Q, capital L, capital R, capital A) | qlora, Qlora, q-lora |
 | **DPO** | Direct Preference Optimization (always capitalized) | dpo, D.P.O. |
 | **GGUF** | File format for quantized models (always uppercase) | gguf, Gguf |
@@ -65,7 +65,6 @@ Consistent terminology prevents confusion and makes learning easier. When you se
 
 | Term | Definition | Unit |
 |------|------------|------|
-| **Parameters** | Number of weights in model | Billions (7B, 13B, 70B) |
 | **VRAM** | Video RAM required for inference | GB (8GB, 16GB, 24GB) |
 | **Quantization** | Reducing model precision | Bits (4-bit, 8-bit) |
 | **Throughput** | Tokens processed per second | TPS, tokens/s |
@@ -222,13 +221,12 @@ EXP_6501_MLOPS_PIPELINE.md
 
 | Company | Notable Models | Abbreviation |
 |---------|---------------|--------------|
-| **Meta** | LLaMA 2, LLaMA 3 | - |
-| **Mistral AI** | Mistral 7B, Mixtral 8x7B | - |
-| **Google** | Gemini, PaLM, BERT | - |
-| **OpenAI** | GPT-3.5, GPT-4, GPT-4o | - |
-| **Anthropic** | Claude 3, Claude 3.5 | - |
-| **Cohere** | Command R, R+ | - |
-| **01.AI** | Yi-34B, Yi-6B | - |
+| **Meta** | Llama 3.1, Llama 4 (Scout, Maverick) | - |
+| **Mistral AI** | Mistral Large, Mixtral 8x7B | - |
+| **Google** | Gemini 2.5, BERT | - |
+| **OpenAI** | GPT-4o, GPT-5 | - |
+| **Anthropic** | Claude 3.5, Claude 4 | - |
+| **Cohere** | Command R+, Aya | - |
 
 ---
 
