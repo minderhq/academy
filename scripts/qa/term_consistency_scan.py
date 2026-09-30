@@ -14,11 +14,15 @@ TC-01  bare "HuggingFace" token (not an identifier continuation).
        HuggingFaceEmbeddings, HuggingFaceH4/zephyr, HuggingFaceTB
        and friends stay legal. Canonical fix: "Hugging Face".
 
-TC-02  bare lowercase "ollama" in PROSE (outside fences and inline
-       code). Code forms are legal and expected - `ollama pull`,
-       `ollama serve`, FROM ollama/ollama, python module names - so
-       only fence/backtick-free prose hits are findings. Canonical
-       prose fix: "Ollama".
+TC-02  bare lowercase "ollama" in PROSE - outside fences, inline
+       code, frontmatter (tag vocabulary is lowercase by design,
+       TV-01 guards it), and quoted spans ("..." / '...' carry
+       terminal error text like "Command not found: ollama", a CLI
+       literal, not a brand mention). Code forms are legal and
+       expected - `ollama pull`, `ollama serve`, FROM ollama/ollama,
+       python module names. Canonical prose fix: "Ollama". HARD
+       since 2026-09-30: born at zero once the legal-literal classes
+       moved from the audit queue into the predicate.
 
 Census scope note: "TensorFlow", "LangChain", "PyTorch", "OpenAI"
 were swept in the same tick-400 pass and are already consistent (0
@@ -39,10 +43,12 @@ asserts; front-matter bumped), plus the 1 real TC-02 prose site
 (TROUBLESHOOTING-QUICKSTART heading) and one bare command
 reference backticked in 1401. TC-01 is now a HARD GATE - exit 1
 if any bare "HuggingFace" token returns, so the 55/45 split can
-never regrow. TC-02 stays report-only: the remaining prose
-lowercase-ollama sites are legal literals (quoted terminal error
-text, tag-list entries like ['infrastructure', 'ollama', 'vllm'],
-and quoted binary-name headings) tracked for audit, not drift.
+never regrow. TC-02 went hard 2026-09-30: its four report rows
+were all legal-literal classes (quoted terminal error text, FM
+tag-list entries like ['infrastructure', 'ollama', 'vllm'],
+quoted binary-name headings); those moved into the predicate
+(frontmatter skip + quoted-span strip), zero doc edits, and any
+future bare prose "ollama" is a real finding.
 
 Run over the whole corpus:
     python scripts/qa/term_consistency_scan.py --root .
@@ -62,6 +68,8 @@ TC01_RE = re.compile(r"HuggingFace(?![A-Za-z0-9_-])")
 TC02_RE = re.compile(r"(?<![A-Za-z0-9_/.-])ollama(?![A-Za-z0-9_.-])")
 
 INLINE_CODE = re.compile(r"`[^`\n]+`")
+QUOTED = re.compile(r'"[^"\n]*"|\'[^\'\n]*\'')
+FM_CLOSE = re.compile(r"^---\s*$")
 
 
 def scan_file(root: Path, path: Path, findings: list[str],
@@ -69,13 +77,19 @@ def scan_file(root: Path, path: Path, findings: list[str],
     rel = path.relative_to(root).as_posix()
     lines = path.read_text(encoding="utf-8", errors="replace").split("\n")
     in_fence = False
+    in_fm = bool(lines) and lines[0].strip() == "---"
     for i, raw in enumerate(lines, 1):
+        if in_fm:
+            if FM_CLOSE.match(raw):
+                in_fm = False
+            continue
         m = FENCE_OPEN.match(raw)
         if m:
             in_fence = not in_fence
             continue
-        # strip inline code spans so `ollama` in backticks stays legal
-        prose = INLINE_CODE.sub("", raw)
+        # strip inline code spans so `ollama` in backticks stays legal,
+        # then quoted spans so terminal error text stays legal
+        prose = QUOTED.sub("", INLINE_CODE.sub("", raw))
         n01 = len(TC01_RE.findall(prose))
         n02 = 0 if in_fence else len(TC02_RE.findall(prose))
         if n01:
@@ -110,9 +124,10 @@ def main() -> int:
         n_files.add(f.split(":", 1)[0])
     print(f"term_consistency_scan: {total[0]} TC-01 bare-HuggingFace "
           f"and {total[1]} TC-02 prose-ollama findings in "
-          f"{len(n_files)} files across docs/ (TC-01 hard gate; "
-          f"TC-02 report-only; canonical 'Hugging Face' / 'Ollama')")
-    return 1 if total[0] else 0
+          f"{len(n_files)} files across docs/ (both HARD; canonical "
+          f"'Hugging Face' / 'Ollama'; TC-02 outside FM/fences/code/"
+          f"quotes, hard since 2026-09-30)")
+    return 1 if (total[0] or total[1]) else 0
 
 
 if __name__ == "__main__":

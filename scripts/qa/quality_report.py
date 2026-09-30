@@ -288,21 +288,22 @@ stand today?" without running each tool by hand.
                        embedded, 12 nginx + 18 dockerfile
                        fences already correct; a future raw
                        paste surfaces here - exit 0 by design
-    term_consistency_scan brand-term consistency (TC-01 hard,
-                       TC-02 report): one canonical spelling per
-                       brand in prose - bare "HuggingFace" tokens
-                       (identifier continuations like
-                       HuggingFaceEmbeddings/H4/TB excluded by the
-                       predicate) and prose-lowercase "ollama"
-                       (fences, inline code and the ollama.com
-                       domain legal); born from the tick-400
+    term_consistency_scan brand-term consistency (both HARD): one
+                       canonical spelling per brand in prose - bare
+                       "HuggingFace" tokens (identifier continuations
+                       like HuggingFaceEmbeddings/H4/TB excluded by
+                       the predicate) and prose-lowercase "ollama"
+                       (fences, inline code, frontmatter tag
+                       vocabulary and quoted terminal-error spans
+                       legal by predicate); born from the tick-400
                        ad-hoc sweep that found the corpus 55/45
                        split (66 bare HuggingFace vs 54 "Hugging
                        Face"; TensorFlow/LangChain/PyTorch/OpenAI
                        already consistent at 0); drained tick-401,
-                       TC-01 promoted to hard gate - exit 1 on any
-                       TC-01 return, TC-02 report-only (remaining
-                       hits are legal literals)
+                       TC-01 promoted to hard then; TC-02 went hard
+                       2026-09-30 when its four report rows all
+                       proved legal literals - they moved into the
+                       predicate, zero doc edits
     front_matter_census front-matter integrity (FM-01..FM-06,
                        hard): every doc needs a complete,
                        terminated YAML front-matter block;
