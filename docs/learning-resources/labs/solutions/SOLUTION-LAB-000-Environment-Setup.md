@@ -44,7 +44,7 @@ sudo sh get-docker.sh
 ```
 
 ### Solution (Windows)
-Download and install Docker Desktop from https://www.docker.com/products/docker-desktop
+Download and install Docker Desktop from [https://www.docker.com/products/docker-desktop](https://www.docker.com/products/docker-desktop)
 
 ---
 

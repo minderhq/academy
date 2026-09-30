@@ -452,9 +452,9 @@ GGUF is the format that made local inference practical: llama.cpp's container fo
 
 ## Further Reading
 
-- **Documentation:** https://github.com/ggml-org/llama.cpp (quantization workflow in tools/quantize/README.md)
-- **GGUF Spec:** https://github.com/ggml-org/ggml/blob/master/docs/gguf.md
-- **Python Lib:** https://github.com/abetlen/llama-cpp-python
+- **Documentation:** [https://github.com/ggml-org/llama.cpp](https://github.com/ggml-org/llama.cpp) (quantization workflow in tools/quantize/README.md)
+- **GGUF Spec:** [https://github.com/ggml-org/ggml/blob/master/docs/gguf.md](https://github.com/ggml-org/ggml/blob/master/docs/gguf.md)
+- **Python Lib:** [https://github.com/abetlen/llama-cpp-python](https://github.com/abetlen/llama-cpp-python)
 - **See also:** 4402 (AWQ) for the activation-aware idea behind --imatrix
 
 ## References

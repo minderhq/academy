@@ -748,7 +748,7 @@ def chat_ui():
 ```
 
 ### ✅ Final Checkpoint
-**Test:** Open http://localhost:8000/chat in your browser
+**Test:** Open [http://localhost:8000/chat](http://localhost:8000/chat) in your browser
 
 You should have a working chat interface with memory!
 

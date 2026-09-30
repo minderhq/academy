@@ -182,7 +182,7 @@ See individual phase README files for embedded diagrams.
 - Check extension settings
 
 **Local Preview:**
-- Use Mermaid Live Editor: https://mermaid.live
+- Use Mermaid Live Editor: [https://mermaid.live](https://mermaid.live)
 - Copy-paste diagram code
 
 ---

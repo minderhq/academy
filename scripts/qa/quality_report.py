@@ -488,6 +488,30 @@ stand today?" without running each tool by hand.
                       (resolved by the slug rule, zero edits) + 21
                       gaps (19 phase-README tail sections, 2 guide
                       Abstracts - drained), hard since
+    render_hygiene_check
+                      Render hygiene (RH-01..04, hard): no raw HTML
+                      outside code (most platform renderers sanitize
+                      or escape it - GitHub's collapsible <details>
+                      renders as literal text elsewhere), no
+                      heading-level skips (platform TOC trees hang
+                      off the hierarchy), no bare URLs outside
+                      links/code (unwrapped URLs render as plain
+                      text - not clickable), no empty image alt
+                      text. Born 2026-09-30: 12 raw-HTML tags (3
+                      <details> Solution blocks in TUTORIAL-000,
+                      drained to bold labels) + 46 bare URLs over 16
+                      docs (drained to [url](url) self-links);
+                      skips/alts born zero
+    status_vocab_check
+                      Status vocabulary (SV-01, hard): the FM Status
+                      field must be from the closed vocab
+                      {"Complete"} - a free-text status degrades
+                      into variants that filter wrong or not at all
+                      (same argument that closed Difficulty).
+                      Extending the vocab is a deliberate edit to
+                      the script, not a doc-level choice. Born
+                      2026-09-30 at 408/408 'Complete', zero
+                      variants
     tags_coverage_check
                       Tags coverage (TG-01 hard, TG-02/03 report):
                       a numbered in-phase lesson outside guides/
@@ -773,6 +797,8 @@ GATES = [
     ("last_updated_check.py", "last_updated_check", True),
     ("lesson_order_check.py", "lesson_order_check", True),
     ("toc_coverage_check.py", "toc_coverage_check", True),
+    ("render_hygiene_check.py", "render_hygiene_check", True),
+    ("status_vocab_check.py", "status_vocab_check", True),
     ("tags_coverage_check.py", "tags_coverage_check", True),
     ("difficulty_census.py", "difficulty_census", True),
     ("lesson_anatomy_census.py", "lesson_anatomy_census", True),

@@ -146,7 +146,7 @@ docker compose logs -f neo4j
 
 ### Method 2: Portainer / NAS Container Manager (Web UI)
 
-1. Open Portainer or Container Manager: http://localhost:9000
+1. Open Portainer or Container Manager: [http://localhost:9000](http://localhost:9000)
 2. Click "Stacks" → "Add Stack"
 3. Name: `neo4j`
 4. Paste the docker-compose.yml content

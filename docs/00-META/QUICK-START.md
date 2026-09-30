@@ -63,7 +63,7 @@ If you encounter any issues:
 ## 📥 Step 1: Install Ollama (5 minutes)
 
 ### Windows
-1. Download: https://ollama.com/download
+1. Download: [https://ollama.com/download](https://ollama.com/download)
 2. Run the installer
 3. Open PowerShell or Command Prompt
 
@@ -367,14 +367,14 @@ pip install ollama
 ## 🌐 Resources
 
 ### Official Documentation
-- **Ollama:** https://docs.ollama.com
-- **Mistral AI:** https://mistral.ai/news/
-- **Hugging Face:** https://huggingface.co/docs
+- **Ollama:** [https://docs.ollama.com](https://docs.ollama.com)
+- **Mistral AI:** [https://mistral.ai/news/](https://mistral.ai/news/)
+- **Hugging Face:** [https://huggingface.co/docs](https://huggingface.co/docs)
 
 ### Communities
-- **Ollama Discord:** https://discord.gg/ollama
-- **r/LocalLLaMA:** https://www.reddit.com/r/LocalLLaMA/
-- **Hugging Face Forums:** https://discuss.huggingface.co
+- **Ollama Discord:** [https://discord.gg/ollama](https://discord.gg/ollama)
+- **r/LocalLLaMA:** [https://www.reddit.com/r/LocalLLaMA/](https://www.reddit.com/r/LocalLLaMA/)
+- **Hugging Face Forums:** [https://discuss.huggingface.co](https://discuss.huggingface.co)
 
 ### In PROJECT-OMEGA
 - **[Progress Tracker](PROGRESS-TRACKER.md)** - Track your learning

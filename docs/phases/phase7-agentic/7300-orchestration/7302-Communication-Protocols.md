@@ -291,8 +291,8 @@ A multi-agent system is only as reliable as the contracts between its agents: th
 ## 10. References
 
 ### Specifications
-- [1] Anthropic. "Model Context Protocol (MCP)" - https://modelcontextprotocol.io
-- [2] Google. "Agent2Agent (A2A) Protocol" - https://a2a-protocol.org
+- [1] Anthropic. "Model Context Protocol (MCP)" - [https://modelcontextprotocol.io](https://modelcontextprotocol.io)
+- [2] Google. "Agent2Agent (A2A) Protocol" - [https://a2a-protocol.org](https://a2a-protocol.org)
 
 ### Academic Papers
 - [3] Du et al. "Improving Factuality and Reasoning in Language Models through Multiagent Debate". ICML, 2024.

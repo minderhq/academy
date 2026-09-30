@@ -1978,8 +1978,7 @@ print(calculator(10, 5, "multiply"))  # 50.0
 print(calculator(10, 5, "divide"))    # 2.0
 ```
 
-<details>
-<summary>Solution</summary>
+**Solution:**
 
 ```python
 def calculator(a: float, b: float, operation: str) -> float:
@@ -1995,7 +1994,6 @@ def calculator(a: float, b: float, operation: str) -> float:
 
     return operations[operation](a, b)
 ```
-</details>
 
 ---
 
@@ -2031,8 +2029,7 @@ manager.complete(1)
 print(manager.list())
 ```
 
-<details>
-<summary>Solution</summary>
+**Solution:**
 
 ```python
 class TodoManager:
@@ -2062,7 +2059,6 @@ class TodoManager:
             for id, todo in self.todos.items()
         ]
 ```
-</details>
 
 ---
 
@@ -2100,8 +2096,7 @@ config = load_config("config.json")
 print(config)
 ```
 
-<details>
-<summary>Solution</summary>
+**Solution:**
 
 ```python
 def load_config(config_path: str) -> dict[str, Any]:
@@ -2125,7 +2120,6 @@ def load_config(config_path: str) -> dict[str, Any]:
 
     return config
 ```
-</details>
 
 ---
 
@@ -2209,13 +2203,13 @@ PROJECT-001: AI Assistant (Complete project)
 ## 📖 Additional Resources
 
 ### Free Python Tutorials:
-- **Python.org Tutorial**: https://docs.python.org/3/tutorial/
-- **W3Schools Python**: https://www.w3schools.com/python/
-- **Real Python**: https://realpython.com/
+- **Python.org Tutorial**: [https://docs.python.org/3/tutorial/](https://docs.python.org/3/tutorial/)
+- **W3Schools Python**: [https://www.w3schools.com/python/](https://www.w3schools.com/python/)
+- **Real Python**: [https://realpython.com/](https://realpython.com/)
 
 ### Interactive Learning:
-- **Codecademy Python**: https://www.codecademy.com/learn/learn-python-3
-- **Edabit Python Challenges**: https://edabit.com/challenges/python3
+- **Codecademy Python**: [https://www.codecademy.com/learn/learn-python-3](https://www.codecademy.com/learn/learn-python-3)
+- **Edabit Python Challenges**: [https://edabit.com/challenges/python3](https://edabit.com/challenges/python3)
 
 ### Books:
 - **Python Crash Course** by Eric Matthes

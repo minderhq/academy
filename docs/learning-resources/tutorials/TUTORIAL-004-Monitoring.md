@@ -384,7 +384,7 @@ docker-compose ps
 ```
 
 ### ✅ Checkpoint: Part 2
-**Verify:** All 8 services running, Prometheus at http://localhost:9090
+**Verify:** All 8 services running, Prometheus at [http://localhost:9090](http://localhost:9090)
 
 ---
 
@@ -467,7 +467,7 @@ docker-compose restart grafana
 ```
 
 ### Access Grafana:
-- URL: http://localhost:3000
+- URL: [http://localhost:3000](http://localhost:3000)
 - Username: admin
 - Password: admin
 
@@ -513,7 +513,7 @@ nvidia_gpu_power_usage_milliwatts{gpu="0"} / 1000
 
 ### Create GPU dashboard in Grafana:
 
-1. Open Grafana: http://localhost:3000
+1. Open Grafana: [http://localhost:3000](http://localhost:3000)
 2. Click "+" → "New Dashboard"
 3. Add panels with these queries:
 
@@ -665,7 +665,7 @@ curl -X POST http://localhost:8080/generate \
 
 ### View traces in Grafana:
 
-1. Open Grafana: http://localhost:3000
+1. Open Grafana: [http://localhost:3000](http://localhost:3000)
 2. Go to "Explore" → "Tempo"
 3. You should see traces for your requests
 4. Click on a trace to see the timeline:
@@ -683,13 +683,13 @@ curl -X POST http://localhost:8080/generate \
 
 | Component | Purpose | Access |
 |-----------|---------|--------|
-| **Prometheus** | Metrics collection | http://localhost:9090 |
-| **Grafana** | Visualization | http://localhost:3000 |
-| **Loki** | Log aggregation | http://localhost:3100 |
-| **Tempo** | Distributed tracing | http://localhost:3200 |
-| **Node Exporter** | Host metrics | http://localhost:9100/metrics |
-| **cAdvisor** | Container metrics | http://localhost:8080/metrics |
-| **GPU Exporter** | GPU metrics | http://localhost:9445/metrics |
+| **Prometheus** | Metrics collection | [http://localhost:9090](http://localhost:9090) |
+| **Grafana** | Visualization | [http://localhost:3000](http://localhost:3000) |
+| **Loki** | Log aggregation | [http://localhost:3100](http://localhost:3100) |
+| **Tempo** | Distributed tracing | [http://localhost:3200](http://localhost:3200) |
+| **Node Exporter** | Host metrics | [http://localhost:9100/metrics](http://localhost:9100/metrics) |
+| **cAdvisor** | Container metrics | [http://localhost:8080/metrics](http://localhost:8080/metrics) |
+| **GPU Exporter** | GPU metrics | [http://localhost:9445/metrics](http://localhost:9445/metrics) |
 
 ### Key Takeaways
 

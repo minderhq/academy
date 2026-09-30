@@ -474,7 +474,7 @@ torch.ao.quantization gives you the whole QAT pipeline in three steps: prepare i
 
 ## Further Resources
 
-- **Documentation:** https://pytorch.org/docs/stable/quantization.html
+- **Documentation:** [https://pytorch.org/docs/stable/quantization.html](https://pytorch.org/docs/stable/quantization.html)
 - **Tutorial:** "Quantization Aware Training" (PyTorch tutorials)
 - **Examples:** PyTorch GitHub examples/quantization
 

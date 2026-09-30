@@ -62,7 +62,7 @@ curl -fsSL https://ollama.com/install.sh | sh
 ```
 
 ### Windows:
-Download from: https://ollama.com/download
+Download from: [https://ollama.com/download](https://ollama.com/download)
 
 ### Verify Installation:
 ```bash
@@ -345,9 +345,9 @@ Test your understanding:
 
 ## 📚 Additional Resources
 
-- **Ollama Documentation:** https://docs.ollama.com
-- **Mistral AI:** https://mistral.ai
-- **Prompt Engineering Guide:** https://www.promptingguide.ai
+- **Ollama Documentation:** [https://docs.ollama.com](https://docs.ollama.com)
+- **Mistral AI:** [https://mistral.ai](https://mistral.ai)
+- **Prompt Engineering Guide:** [https://www.promptingguide.ai](https://www.promptingguide.ai)
 
 ---
 

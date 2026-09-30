@@ -380,7 +380,7 @@ EXL2 is ExLlamaV2's answer to one question: what does maximum inference speed on
 
 ## Further Reading
 
-- **GitHub:** https://github.com/turboderp-org/exllamav2 (archived — successor: https://github.com/turboderp-org/exllamav3)
+- **GitHub:** [https://github.com/turboderp-org/exllamav2](https://github.com/turboderp-org/exllamav2) (archived — successor: [https://github.com/turboderp-org/exllamav3](https://github.com/turboderp-org/exllamav3))
 - **Conversion docs:** exllamav2 `doc/convert.md` (every convert.py flag)
 - **Generator docs:** exllamav2 `doc/dynamic.md` (DynamicGenerator + job API)
 

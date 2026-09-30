@@ -111,7 +111,7 @@ curl http://localhost:7474
 ```
 
 ### ✅ Checkpoint: Exercise 2
-**Verify:** Neo4j browser opens at http://localhost:7474
+**Verify:** Neo4j browser opens at [http://localhost:7474](http://localhost:7474)
 
 ---
 
