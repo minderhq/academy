@@ -102,7 +102,7 @@ Two more details that matter for quality: zero-shot prompts work best as descrip
 |---|---|
 | `openai/clip-vit-base-patch32` | default here — the **small, fast** one (~150M params, 512-dim embeddings) |
 | `openai/clip-vit-base-patch16` | **larger and more accurate** (16px patches = more tokens per image) — an upgrade, not a downgrade |
-| `openai/clip-vit-large-patch14` | largest of the openai family, 768-dim embeddings — update `VectorParams(size=...)` below if you switch |
+| `openai/clip-vit-large-patch14` | largest of the OpenAI family, 768-dim embeddings — update `VectorParams(size=...)` below if you switch |
 
 If a source tells you patch16 is "smaller", it has the patch-size convention backwards: smaller patches mean more patches per image.
 

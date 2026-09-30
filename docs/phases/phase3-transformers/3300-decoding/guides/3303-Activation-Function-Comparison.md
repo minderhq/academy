@@ -308,7 +308,7 @@ Activation: GeLU (or ReGLU in some versions)
 FFN: GEGLU (Gated)
 ```
 
-### LLaMA / LLaMA 2
+### LLaMA / Llama 2
 ```text
 Activation: SwiGLU
 FFN: SwiGLU with ~2.67x expansion (not 4x)

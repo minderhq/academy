@@ -479,7 +479,7 @@ def evaluate_mmlu(model, tokenizer, subjects="all"):
 # State-of-the-art MMLU scores
 # GPT-4: 86.4%
 # Claude 3: 86.8%
-# LLaMA-3-70B: 82.0%
+# Llama-3-70B: 82.0%
 # Mistral-8x7B: 70.6%
 ```
 

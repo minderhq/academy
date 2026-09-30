@@ -257,7 +257,7 @@ Difference: Remove mean centering (μ)
 Result:     ~0.1-0.3% performance drop
             ~10-20% speedup (no mean computation)
 
-Used in: LLaMA 2, Mistral, Gemma
+Used in: Llama 2, Mistral, Gemma
 ```
 
 ### RMSNorm Implementation (LLaMA style)
@@ -335,7 +335,7 @@ compare_normalizations()
 |---------------|----------|--------|
 | BatchNorm | CNNs, vision | ResNet, EfficientNet |
 | LayerNorm | Transformers, NLP | BERT, GPT, T5 |
-| RMSNorm | Efficient transformers | LLaMA 2, Mistral |
+| RMSNorm | Efficient transformers | Llama 2, Mistral |
 | GroupNorm | Small batch CNNs | Lightweight models |
 | InstanceNorm | Style transfer | StyleGAN |
 

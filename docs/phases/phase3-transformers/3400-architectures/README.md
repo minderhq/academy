@@ -1,7 +1,7 @@
 ---
 Document ID: 3400-ARCHITECTURES-README
 Title: "[3400]: Model Architectures"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
 Tags: ['module', 'transformers', 'architecture']
@@ -153,7 +153,7 @@ Output: "Once upon a time, there was a..."
 | Model | Params | Context | Strengths | Use Case |
 |-------|--------|---------|-----------|----------|
 | **GPT-3** | 175B | 2k | Zero-shot learning | General tasks |
-| **LLaMA 2** | 7B-70B | 4k | Open weights, efficient | Research, production |
+| **Llama 2** | 7B-70B | 4k | Open weights, efficient | Research, production |
 | **Mistral** | 7B | 8k | Fast, efficient | Edge deployment |
 | **Claude** | ? | 100k+ | Large context | Long documents |
 

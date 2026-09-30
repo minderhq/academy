@@ -1,7 +1,7 @@
 ---
 Document ID: 4200-PRACTICE
 Title: "4200: KV Cache Optimization - Practice"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -223,7 +223,7 @@ for i in range(3):
 **Explanation:**
 - Multi-Query Attention (MQA): Single key/value head for all query heads
 - Reduces cache size by factor of num_heads
-- Used in PaLM, LLaMA 2, and other modern LLMs
+- Used in PaLM, Llama 2, and other modern LLMs
 - Trade-off: Slight quality decrease for significant memory savings
 
 **Benefits:**
@@ -403,7 +403,7 @@ OPTIMIZATION TECHNIQUES:
 1. Multi-Query Attention (MQA)
    - Single K/V head for all query heads
    - Reduces cache size by num_heads
-   - Used in LLaMA 2, PaLM
+   - Used in Llama 2, PaLM
 
 2. Grouped-Query Attention (GQA)
    - Intermediate between MHA and MQA

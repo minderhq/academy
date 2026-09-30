@@ -471,6 +471,49 @@ Temperature: 0.7 (dimensionless)
 
 ---
 
+## 🏢 Product & Model Names
+
+Canonical vendor casing for names in prose. The tick-469 census measured
+the corpus split (e.g. Llama 83 / LLaMA 78) and drained the modern-era
+mis-styles; this section locks the rule so the split does not regrow.
+
+### Model Names (era rule)
+
+```markdown
+✅ CORRECT:
+- Llama 2, Llama 3, Llama 3.1, Llama 4  (Meta's vendor spelling, 2023+)
+- LLaMA                                  (the original 2023 model and its
+                                          paper: "The LLaMA Herd of Models")
+- LLaMA-7B                               (original-model physics examples)
+- CodeLlama, Sheared-LLaMA, LLaMA-2-Long (official variant names, as published)
+
+❌ INCORRECT:
+- LLaMA 2, LLaMA-3-70B  (modern-era models in legacy casing)
+- Llama 1               (the 2023 original is "LLaMA", not "Llama 1")
+```
+
+### Product & Library Names
+
+```markdown
+✅ CORRECT:
+- PyTorch, Hugging Face, OpenAI, Ollama, LangChain, vLLM, GGUF, LoRA,
+  RLHF, DPO, PPO, Docker, Mistral
+
+❌ INCORRECT (in prose):
+- pytorch, huggingface, openai, ollama, langchain, vllm, gguf, lora
+```
+
+### Standing Lowercase Exceptions (never "fix" these)
+
+- Package/CLI names: `pip install openai-whisper`, `ollama list`, `vllm serve`
+- Domains: `huggingface.co`, `ollama.com`, `pytorch.org`, `academy.langchain.com`
+- The project name `llama.cpp` (officially lowercase)
+- Anchor slugs `#llama-2-architecture` (auto-generated, must match heading)
+- GLOSSARY.md incorrect-usage columns (they document wrong forms on purpose)
+- Identifiers inside fenced code (`d_model`, `EXP_4101_GGUF`, `num_heads`)
+
+---
+
 ## 🎨 Formatting Priorities
 
 ### Hierarchy of Importance

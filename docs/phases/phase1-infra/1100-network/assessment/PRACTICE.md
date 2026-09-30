@@ -100,7 +100,7 @@ Internet (Fiber 1Gbps)
 
 ### Exercise 4: Bandwidth Calculation
 
-**Task:** Calculate download time for LLaMA-3-70B (Q4_K_M).
+**Task:** Calculate download time for Llama-3-70B (Q4_K_M).
 
 **Given:**
 - Model size: ~42 GB

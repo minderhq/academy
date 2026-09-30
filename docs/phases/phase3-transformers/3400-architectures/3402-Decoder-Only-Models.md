@@ -59,13 +59,13 @@ Each Layer:
   5. Residual Connections
 ```
 
-### LLaMA 2 Architecture
+### Llama 2 Architecture
 ```python
 import torch.nn as nn
 import torch
 class LLaMABlock(nn.Module):
     """
-    LLaMA 2 transformer block
+    Llama 2 transformer block
     """
     def __init__(self, dim=4096, n_heads=32, multiple_of=256):
         super().__init__()
@@ -214,7 +214,7 @@ def autoregressive_loss(logits, targets):
 |-------|--------|-------|---------|---------|----------|
 | GPT-2 | 12/24/36 | 12/16/20 | 768/1024/1280 | 1024 | Learned pos |
 | LLaMA 7B | 32 | 32 | 4096 | 2048 | RoPE, SwiGLU |
-| LLaMA 2 7B | 32 | 32 | 4096 | 4096 | RoPE, SwiGLU, GQA |
+| Llama 2 7B | 32 | 32 | 4096 | 4096 | RoPE, SwiGLU, GQA |
 | Mistral 7B | 32 | 32 | 4096 | 8192 | RoPE, SwiGLU, GQA, SWA |
 | Mixtral 8x7B | 32 | 32 | 4096 | 32768 | MoE, RoPE, SWA |
 

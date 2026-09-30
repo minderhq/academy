@@ -37,8 +37,8 @@ Tags: ['transformers', 'architecture', 'encoder-decoder']
 After completing this lesson, you will be able to:
 
 - Contrast the two architecture families across the eight-aspect table — bidirectional encoder + causal decoder vs causal-only, span corruption vs next-token prediction, two model passes vs one, ~14 GB vs ~7 GB VRAM at 7B
-- Read the 11GB compatibility table by precision — LLaMA-2-7B at 4/7/14 GB (8-bit recommended), FLAN-T5-XL OOM at 16-bit (8-bit only), Phi-2 and Gemma-2B comfortable at 16-bit
-- Rank models from the benchmark tables — 4-bit 7B throughput 25 tok/s batch-1 → 55 batch-8, 22 at 2048 ctx; Mistral-7B MMLU 60.1 / GSM8K 21.3 / HumanEval 30.5 vs LLaMA-2-7B 45.3/10.1/12.8
+- Read the 11GB compatibility table by precision — Llama-2-7B at 4/7/14 GB (8-bit recommended), FLAN-T5-XL OOM at 16-bit (8-bit only), Phi-2 and Gemma-2B comfortable at 16-bit
+- Rank models from the benchmark tables — 4-bit 7B throughput 25 tok/s batch-1 → 55 batch-8, 22 at 2048 ctx; Mistral-7B MMLU 60.1 / GSM8K 21.3 / HumanEval 30.5 vs Llama-2-7B 45.3/10.1/12.8
 - Route tasks through the decision tree — T5-style task prefixes ("translate English to German:", "summarize:") for structured transformation, `apply_chat_template` on decoder-only for chat, code, and instruction following
 - Compose the RAG hybrid — an encoder-only `all-MiniLM-L6-v2` embedder for retrieval joined to a decoder-only Mistral generator
 - Deploy with vLLM AWQ configs (Mistral `--max-model-len 4096`, FLAN-T5 2048), quantify with `BitsAndBytesConfig` NF4 double-quant (7B → ~4 GB, ~7 GB KV headroom), and profile via the pynvml monitor's tokens/sec and VRAM delta
@@ -103,7 +103,7 @@ Comprehensive comparison of Encoder-Decoder (T5, BART) vs Decoder-Only (GPT, LLa
 | FLAN-T5-XL | 3B | 7GB | 11GB | OOM | ⚠️ 8-bit only |
 | BART-Large | 400M | 2GB | 3GB | 5GB | ✅ Good |
 | **Decoder-Only** | | | | | |
-| LLaMA-2-7B | 7B | 4GB | 7GB | 14GB | ✅ 8-bit |
+| Llama-2-7B | 7B | 4GB | 7GB | 14GB | ✅ 8-bit |
 | Mistral-7B | 7B | 4GB | 7GB | 14GB | ✅ 8-bit |
 | Phi-2 | 2.7B | 1.5GB | 3GB | 5GB | ✅ Excellent |
 | Gemma-2B | 2B | 1.2GB | 2.5GB | 4GB | ✅ Excellent |
@@ -140,7 +140,7 @@ Comprehensive comparison of Encoder-Decoder (T5, BART) vs Decoder-Only (GPT, LLa
 | Model | MMLU | HellaSwag | TruthfulQA | GSM8K | HumanEval |
 |-------|------|-----------|------------|-------|-----------|
 | **Decoder-Only** | | | | | |
-| LLaMA-2-7B | 45.3 | 76.2 | 39.2 | 10.1 | 12.8 |
+| Llama-2-7B | 45.3 | 76.2 | 39.2 | 10.1 | 12.8 |
 | Mistral-7B | 60.1 | 85.8 | 49.5 | 21.3 | 30.5 |
 | Phi-2 | 55.7 | 81.3 | 47.8 | 19.2 | 25.3 |
 | **Encoder-Decoder** | | | | | |
