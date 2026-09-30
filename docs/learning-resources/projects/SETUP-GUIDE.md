@@ -10,7 +10,7 @@ Tags: ['project', 'setup', 'docker']
 # PROJECT-001-007: Common Setup Guide
 
 **For:** All PROJECT-XXX capstone projects
-**Last Updated:** 2026-09-29
+**Last Updated:** 2026-09-30
 
 ---
 

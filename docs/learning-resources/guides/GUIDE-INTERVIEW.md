@@ -11,7 +11,7 @@ Tags: ['career', 'guide', 'llm']
 
 **For:** PROJECT-OMEGA graduates preparing for AI Engineering interviews
 **Read Time:** 30 minutes
-**Last Updated:** 2026-02-07
+**Last Updated:** 2026-09-30
 
 ---
 

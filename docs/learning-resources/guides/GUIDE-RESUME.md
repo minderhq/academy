@@ -11,7 +11,7 @@ Tags: ['career', 'guide', 'llm']
 
 **For:** PROJECT-OMEGA graduates seeking AI Engineering roles
 **Templates Included:** Entry-level, Mid-level, Senior
-**Last Updated:** 2026-02-07
+**Last Updated:** 2026-09-30
 
 ---
 

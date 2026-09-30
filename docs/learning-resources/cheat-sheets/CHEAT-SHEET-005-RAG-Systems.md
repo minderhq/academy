@@ -11,7 +11,7 @@ Tags: ['cheatsheet', 'rag', 'retrieval']
 ## Retrieval-Augmented Generation Quick Reference
 
 **Version:** 1.2
-**Last Updated:** 2026-09-28
+**Last Updated:** 2026-09-30
 
 ---
 

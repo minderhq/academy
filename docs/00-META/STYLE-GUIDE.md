@@ -11,7 +11,7 @@ Tags: ['maintenance', 'guide']
 
 **Official Documentation Standards**
 
-**Last Updated:** 2026-02-04
+**Last Updated:** 2026-09-30
 **Version:** 1.0
 
 ---

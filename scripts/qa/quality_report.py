@@ -600,6 +600,17 @@ stand today?" without running each tool by hand.
                       visible defect. Born tick-459: 533
                       tables scanned, one merged separator+row
                       line drained in CP-002 (Indexing Speed)
+    updated_badge_scan
+                      Body Last Updated badge parity (UB-01,
+                      hard): the FM Last Updated field is the
+                      canonical gated freshness value, but ~16
+                      docs also render a display badge in the
+                      header block; where it exists it must
+                      mirror FM exactly. Born tick-461 after
+                      syncing 14 stale badges - 7
+                      February-frozen display badges, 7
+                      late-Sept near-misses - a class invisible
+                      to date_cohort (which reads FM only)
     difficulty_distribution_scan
                       Difficulty as a sequence dimension (DX-01,
                       report-only census): per-phase B/I/A
@@ -894,6 +905,7 @@ GATES = [
     ("lesson_id_scan.py", "lesson_id_scan", True),
     ("heading_scan.py", "heading_scan", True),
     ("table_scan.py", "table_scan", True),
+    ("updated_badge_scan.py", "updated_badge_scan", True),
 ]
 
 
