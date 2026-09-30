@@ -39,7 +39,7 @@ stand today?" without running each tool by hand.
     quiz_export        quiz bank parses into complete question records
     quiz_integrity_scan
                        content-level quiz integrity (QI-01..06 +
-                       QI-08/09 + QI-11/12 hard: self-referential positional
+                       QI-08/09 + QI-11/12/13 hard: self-referential positional
                        option, in-module duplicate stem, duplicate
                        option text, option beyond A-D, numbering
                        gap, cross-module stem dup, duplicate
@@ -47,8 +47,11 @@ stand today?" without running each tool by hand.
                        Answer Key rows, QI-11 answer key with
                        no matching option row or <2-option
                        mcq, QI-12 ungradeable question (neither
-                       mcq options nor a Score points line;
-                       QI-11 born tick-374, QI-12 tick-474,
+                       mcq options nor a Score points line),
+                       QI-13 unparseable Answer Key row ([A-D]-
+                       only row regexes silently drop E+ /
+                       two-letter cells; QI-11 born tick-374,
+                       QI-12 tick-474, QI-13 tick-475,
                        baseline 0) on top of
                        quiz_export's parser; QI-07/QI-10
                        are the report inventory (the

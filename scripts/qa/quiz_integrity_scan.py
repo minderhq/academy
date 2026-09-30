@@ -57,6 +57,15 @@ QI-12  ungradeable question: a parsed question that is neither mcq
        click, nothing to self-grade). Census tick-474: 660
        questions = 655 mcq + 5 coding (2300's Q16-20), 0 open.
 
+QI-13  unparseable Answer Key row: a line inside the Answer Key
+       section shaped like a key row ("| N | X ..." or "**N. X**")
+       that AK_ROW/AK_BOLD cannot parse - an E+ letter, a two-letter
+       cell ("AB") or trailing junk. The [A-D]-only row regexes drop
+       it silently, so unlike QI-09's orphans (rows that DO parse)
+       this row vanishes from every join: no duplicate check, no
+       orphan check, no key pull. Census tick-475: 0 in all 33
+       banks.
+
 Report inventory (never fails the gate - the drain queues, same
 contract as duplicate_heading_scan / AS-09):
 
@@ -119,6 +128,7 @@ BOTH_RE = re.compile(r"^\s*Both\s+([A-D])\s*(?:and|&|\+)\s*([A-D])\b",
                      re.IGNORECASE)
 ALL_ABOVE_RE = re.compile(r"^\s*All\s+of\s+the\s+above\b", re.IGNORECASE)
 EXTRA_OPTION_RE = re.compile(r"^\s*[-*]?\s*\*{0,2}([E-Z])[\).]\s+\S")
+AK_ROWISH = re.compile(r"^\s*\|?\s*\*{0,2}(\d+)\s*[.|]\s*\*{0,2}\s*([A-Za-z]{1,2})[\).|\s*]")
 SKEW_SHARE = 0.5
 SKEW_MIN_MCQ = 10
 LEN_BIAS_SHARE = 0.5
@@ -216,6 +226,13 @@ def scan_module(rel: str, lines: list[str],
             m = AK_ROW.match(line) or AK_BOLD.match(line)
             if m:
                 key_rows.setdefault(int(m.group(1)), []).append(m.group(2))
+            elif AK_ROWISH.match(line):
+                hard.append(
+                    f"{rel}: QI-13 Answer Key row quiz_export cannot "
+                    f"parse: '{line.strip()[:60]}' - the [A-D]-only row "
+                    f"regexes silently drop it (E+ letter, two-letter "
+                    f"cell or trailing junk), so the key row vanishes "
+                    f"from every join")
     for n, letters in sorted(key_rows.items()):
         if len(letters) > 1:
             hard.append(
@@ -318,7 +335,7 @@ def main() -> int:
           f"/ QI-08 duplicate Answer Key row "
           f"/ QI-09 orphan Answer Key row / QI-11 key letter with no "
           f"option row or <2-option mcq / QI-12 ungradeable "
-          f"question), QI-06 {len(cross_dups)} "
+          f"question / QI-13 unparseable key row), QI-06 {len(cross_dups)} "
           f"cross-module stem dups (hard since tick-345; drained "
           f"tick-343), QI-07 "
           f"{len(skew)} skewed answer keys (option-shuffle queue; "
