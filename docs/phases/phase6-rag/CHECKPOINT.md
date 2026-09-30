@@ -105,6 +105,15 @@ After completing Phase 6, you will:
 
 ---
 
+## Common Pitfalls
+
+1. **Chunk-Size Blind Spot:** Chunks too small lose surrounding context, too big dilute the embedding signal - tune per corpus instead of accepting the default
+2. **Embedding Mismatch:** Indexing with one embedding model and querying with another returns plausible-looking garbage - lock the model and version per index
+3. **Hybrid Without Re-Ranking:** Combining BM25 and vector results without a re-ranker yields two noisy lists, not one good one - re-rank before cutting top-k
+4. **Deploy Before Eval:** Shipping a retrieval change without a fixed evaluation set makes every quality claim anecdotal - gate deploys on the harness
+
+---
+
 ## Phase 6 Completion Badge
 
 **Badge:** RAG Specialist

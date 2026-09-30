@@ -106,6 +106,15 @@ After completing Phase 7, you will:
 
 ---
 
+## Common Pitfalls
+
+1. **Unbounded Loops:** An agent without an iteration cap will loop on a failing tool until the budget dies - cap steps and budget tokens explicitly
+2. **Vague Tool Schemas:** Loosely described tools get selected for the wrong jobs - write schemas with explicit parameter types and failure semantics
+3. **Stale Memory:** Agent memory without TTL or refresh re-serves yesterday's facts as today's truth - expire and re-embed deliberately
+4. **Injection via Tool Output:** Prompts are not the only injection surface - untrusted tool results carry instructions too, so validate and sandbox them
+
+---
+
 ## Phase 7 Completion Badge
 
 **Badge:** Production Architect

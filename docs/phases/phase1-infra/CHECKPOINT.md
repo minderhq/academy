@@ -288,12 +288,12 @@ Total Time: _____ hours (Expected: 20-40 hours)
 
 ---
 
-## ⚠️ Common Pitfalls
+## Common Pitfalls
 
-1. **Skipping Prerequisites:** Ensure environment is ready
-2. **Rush Through:** Take time to understand concepts
-3. **Ignore Errors:** Fix issues before moving on
-4. **Forget Practice:** Labs reinforce learning
+1. **MTU Mismatch:** Mixed MTU settings between NIC, bridge and veth pairs cause silent packet fragmentation - verify with `ip link` before blaming the application
+2. **GPU Passthrough Gaps:** Unsplit IOMMU groups leave the VM seeing no GPU at all - check `lspci` inside the guest before installing drivers
+3. **No Rate Limiting:** An LLM endpoint without gateway rate limits melts under the first client retry storm - enforce limits at the ingress, not in the model server
+4. **Wrong Storage Class:** Model weights on a low-IOPS storage class turn every cold start into a full download - pin weights to fast storage or pre-pull them
 
 ---
 

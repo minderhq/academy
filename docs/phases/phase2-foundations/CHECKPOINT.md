@@ -91,6 +91,15 @@ After completing Phase 2, you will:
 
 ---
 
+## Common Pitfalls
+
+1. **Stale Gradients:** Forgetting `optimizer.zero_grad()` between steps silently accumulates gradients across batches and corrupts every update
+2. **Device Mismatch:** Mixing CPU and GPU tensors in one op raises a runtime error only when that branch first executes - move the whole model and batch together
+3. **no_grad Blind Spot:** Running inference without `torch.no_grad()` keeps the autograd graph alive and quietly eats VRAM until OOM
+4. **Leaky Normalization:** Fitting scalers or computing batch statistics on the full dataset leaks test information into training
+
+---
+
 ## Phase 2 Completion Badge
 
 **Badge:** Tensor Master

@@ -915,7 +915,7 @@ stand today?" without running each tool by hand.
                        was the only stranded file of 410; drained via
                        a README Community > Resources row + a [1.2.0]
                        entry that brought the changelog current
-    checkpoint_coverage_scan  Phase-checkpoint coverage (CK-00..08,
+    checkpoint_coverage_scan  Phase-checkpoint coverage (CK-00..09,
                        hard): the phase CHECKPOINT.md is the learner's
                        review page for everything above it, so every
                        module group of the phase must appear in its
@@ -938,7 +938,14 @@ stand today?" without running each tool by hand.
                        before the criteria (phases 4-7 lacked the
                        modules bullet, phase 2 said "All modules
                        completed", phase 1 was emoji-decorated and
-                       Badge-last; all drained same tick)
+                       Badge-last; all drained same tick).
+                       CK-09 tick-480: the review page must carry a
+                       "## Common Pitfalls" section of at least 4
+                       numbered "**Name:**" items grounded in the
+                       phase's own modules (phases 2-7 had none,
+                       phase 1 carried generic filler; drained same
+                       tick, phase 1's items drawn from its own README
+                       pitfalls)
     quiz_claim_scan  Quiz self-claim integrity (QC-01..04, hard):
                        a QUIZ.md's own promises checked against the
                        bank quiz_export parses - "**N questions**"

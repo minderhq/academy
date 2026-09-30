@@ -92,6 +92,15 @@ After completing Phase 4, you will:
 
 ---
 
+## Common Pitfalls
+
+1. **Unrepresentative Calibration:** Quantizing on a handful of random samples misestimates activation ranges - calibrate on data that mirrors real inputs
+2. **Observers Left On:** After QAT, observer modules must be disabled or converted - leaving them on keeps fake-quant noise in the deployed graph
+3. **Optimistic Memory Math:** KV-cache size scales with layers and KV heads, not just sequence length - budget with the full formula before promising context windows
+4. **Mixed-Precision Surprise:** 4-bit weights still pay FP16 activation and embedding costs - measure actual VRAM instead of assuming the weight-bit ratio
+
+---
+
 ## Phase 4 Completion Badge
 
 **Badge:** ⚡ Quantization Ninja

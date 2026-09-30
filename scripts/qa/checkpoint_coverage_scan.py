@@ -51,11 +51,22 @@ CK-08  badge-block shape drift: a criterion bullet with a decorated
        prefix (phase 1/4 carried checkmark-emoji bullets), or the
        "**Badge:**" line placed after the criteria block (phase 1) -
        corpus order is Badge, then "You've earned it when:"
+CK-09  the phase checkpoint has no "## Common Pitfalls" section, or
+       fewer than 4 numbered "**Name:**" items in it. The review page
+       must consolidate the phase's failure modes before the badge
+       (the deep wrong/correct examples live in the module files -
+       the corpus's 29-file rich-pitfalls pattern). Census tick-480:
+       phases 2-7 had no pitfalls section at all and phase 1 carried
+       generic filler ("Rush Through: Take time to understand
+       concepts") - drained the same tick with grounded, module-tied
+       items (phase 1's from its own README pitfalls: MTU mismatch,
+       GPU passthrough, rate limiting, storage class).
 
 HARD GATE - exit 1 on any finding. Born-at-zero after the tick-472
 drain (same census -> drain -> gate cycle as NV-02); CK-04/05 born
 tick-478 after the 12-module Practical Verification drain; CK-06/07/08
-born tick-479 after the badge-criteria drain.
+born tick-479 after the badge-criteria drain; CK-09 tick-480 after
+the grounded pitfalls drain.
 
 Run over the whole corpus:
     python scripts/qa/checkpoint_coverage_scan.py --root .
@@ -84,6 +95,8 @@ BADGE_LINE = re.compile(r"^\*\*Badge:\*\*", re.MULTILINE)
 MODULES_DONE = re.compile(
     r"^- All required modules(?: \(\d{4}(?:, \d{4})*\))? completed$")
 DECOR_BULLET = re.compile(r"^-\s*[^\w\s\-\[]")
+PITFALLS_HEAD = re.compile(r"^##\s+Common Pitfalls\s*$", re.MULTILINE)
+PITFALL_ITEM = re.compile(r"^\d+\.\s+\*\*[^*]+:\*\*")
 
 
 def esc(text: str) -> str:
@@ -200,6 +213,28 @@ def main() -> int:
                     "criteria block - corpus order is Badge, then criteria"
                     % rel)
 
+        # CK-09: the review page must consolidate the phase's failure
+        # modes - a "## Common Pitfalls" section with at least 4
+        # numbered "**Name:**" items (deep wrong/correct examples live
+        # in the module files; the checkpoint carries the grounded list).
+        pm = PITFALLS_HEAD.search(text)
+        if pm is None:
+            findings.append(
+                "CK-09 %s/CHECKPOINT.md: no '## Common Pitfalls' section"
+                % rel)
+        else:
+            n_items = 0
+            for ln in text[pm.end():].split("\n")[1:]:
+                if ln.startswith("#"):
+                    break
+                if PITFALL_ITEM.match(ln):
+                    n_items += 1
+            if n_items < 4:
+                findings.append(
+                    "CK-09 %s/CHECKPOINT.md: Common Pitfalls section "
+                    "carries %d numbered '**Name:**' items - below the "
+                    "4-pitfall floor" % (rel, n_items))
+
     for f in findings:
         print("  " + esc(f))
     print("checkpoint_coverage_scan: %d phase checkpoints; %d findings "
@@ -208,9 +243,12 @@ def main() -> int:
           "CK-05 below the 3-checkbox hands-on floor / CK-06 badge "
           "criteria lack the modules-completion bullet / CK-07 badge "
           "criteria below the 3-bullet floor / CK-08 badge-block shape "
-          "drift; born tick-472 after the phase-4 two-module-era drain, "
-          "CK-04/05 tick-478 after the 12-module Practical Verification "
-          "drain, CK-06/07/08 tick-479 after the badge-criteria drain)"
+          "drift / CK-09 no Common Pitfalls section or below the "
+          "4-pitfall floor; born tick-472 after the phase-4 "
+          "two-module-era drain, CK-04/05 tick-478 after the 12-module "
+          "Practical Verification drain, CK-06/07/08 tick-479 after the "
+          "badge-criteria drain, CK-09 tick-480 after the grounded "
+          "pitfalls drain)"
           % (n_phases, len(findings)))
     return 1 if findings else 0
 

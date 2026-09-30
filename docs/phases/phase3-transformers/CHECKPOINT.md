@@ -104,6 +104,15 @@ After completing Phase 3, you will:
 
 ---
 
+## Common Pitfalls
+
+1. **Missing Scaling:** Omitting the 1/sqrt(d_k) factor lets dot products grow with dimension and pushes softmax into saturated, near-uniform gradients
+2. **Causal Mask Off-By-One:** A mask that lets position i attend to i+1 trains a model that cheats on next-token prediction and fails at generation
+3. **RoPE Cache Offset:** Reusing cached keys with a zero offset replays stale positions and degrades long-context generation quality
+4. **Norm Placement Regret:** Switching Post-Norm to Pre-Norm mid-experiment confounds every stability comparison - fix the placement before tuning LR
+
+---
+
 ## Phase 3 Completion Badge
 
 **Badge:** Transformer Expert

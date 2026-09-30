@@ -104,6 +104,15 @@ After completing Phase 5, you will:
 
 ---
 
+## Common Pitfalls
+
+1. **Rank Too High:** Oversized LoRA ranks recover full fine-tuning costs (memory and overfitting) without a quality gain - start small and scale on evidence
+2. **Reference Drift in DPO:** A stale or wrong reference model silently shifts the implicit reward - pin and version the reference like any checkpoint
+3. **Synthetic Collapse:** Training on unfiltered model-generated data amplifies artifacts every generation - filter and mix real data into each round
+4. **Accumulation Misread:** Gradient accumulation trades throughput for memory but does not change the optimal LR - rescaling LR to the raw batch size hurts convergence
+
+---
+
 ## Phase 5 Completion Badge
 
 **Badge:** Fine-Tuning Artist
