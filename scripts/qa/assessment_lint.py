@@ -28,6 +28,12 @@ and assessment/PRACTICE.md. The corpus standard these files already meet:
          and a bare | N | X | row grades without teaching
          (born tick-514 at zero: the tick-505..513 explanation
          drain left 33/33 banks explained, so hard gate from birth)
+  AS-12  where a quiz carries a "Need to Review?" map, the cited
+         question numbers must all exist in the bank and must cover
+         every question, so no wrong answer strands a learner
+         without a pointer to the lesson that teaches it. Applied
+         only where the section exists; banks without a map join
+         coverage as the review-map drain lands them
   AS-05  assessment/PRACTICE.md exists
   AS-06  PRACTICE holds >= 3 exercises ("## / ### Exercise N")
   AS-07  each exercise carries a solution marker (Expected Output,
@@ -59,6 +65,8 @@ QUESTION_H3 = re.compile(r"^###\s+Question\s+(\d+)\s*[:.]")
 HEADING = re.compile(r"^(#{1,6})\s+(.*?)\s*$")
 EXERCISE_TITLE = re.compile(r"^Exercise\s+(\d+)\b")
 AK_SECTION = re.compile(r"^##\s+Answer\s+Key\s*$", re.IGNORECASE)
+REV_SECTION = re.compile(r"^##\s+Need to Review\??\s*$", re.IGNORECASE)
+REV_ITEM = re.compile(r"^\s*-\s+\*\*Questions?\s+([\d,\s\-]+):\*\*")
 AK_ROW = re.compile(r"^\|\s*(\d+)\s*\|\s*([A-D])\b")
 INLINE_ANSWER = re.compile(r"\*\*Answer:\*\*\s*([A-D])\b")
 SCORE_MARKER = re.compile(r"\*\*Score:\*\*\s*__")
@@ -182,6 +190,41 @@ class Linter:
                 self.report(rel, "AS-08",
                             "question %d: key=%s inline=%s"
                             % (n, key[n], inline[n]))
+
+        # AS-12: review-map consistency. Where a quiz carries a
+        # "Need to Review?" map, the cited question numbers must
+        # (a) all exist in the bank (a stale citation points at
+        # nothing) and (b) cover every question, so a wrong answer
+        # never strands a learner without a lesson pointer.
+        rev_idx = next((i for i, l in nf
+                        if REV_SECTION.match(l)), None)
+        if rev_idx is not None:
+            refs: set = set()
+            for i, l in nf:
+                if i <= rev_idx:
+                    continue
+                h = HEADING.match(l)
+                if h and len(h.group(1)) <= 2:
+                    break
+                m = REV_ITEM.match(l)
+                if m:
+                    for part in m.group(1).split(","):
+                        part = part.strip()
+                        if "-" in part:
+                            a, b = part.split("-", 1)
+                            refs.update(range(int(a), int(b) + 1))
+                        elif part:
+                            refs.add(int(part))
+            stale_ref = sorted(refs - qnums)
+            missing_ref = sorted(qnums - refs)
+            if stale_ref:
+                self.report(rel, "AS-12",
+                            "review map cites nonexistent questions %s"
+                            % stale_ref)
+            if missing_ref:
+                self.report(rel, "AS-12",
+                            "questions %s missing from review map"
+                            % missing_ref)
 
         # AS-09: degenerate answer distribution. One letter dominating
         # the key (all-B authoring) leaks the answer; queued for a
