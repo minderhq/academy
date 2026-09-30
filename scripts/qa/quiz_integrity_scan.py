@@ -48,6 +48,15 @@ QI-11  join asymmetry between the Answer Key and the option rows: the
        Born from the tick-374 census (660 questions: 0 duplicate
        stems, 0 MCQ defects) as a lock.
 
+QI-12  ungradeable question: a parsed question that is neither mcq
+       (option rows) nor coding (a **Score:** points line) - it
+       lands as type "open". quiz_export only flags the empty-text
+       degenerate case, so a real question that lost its option
+       block or its Score line parses clean through every other
+       class and renders unscoreable on the platform (nothing to
+       click, nothing to self-grade). Census tick-474: 660
+       questions = 655 mcq + 5 coding (2300's Q16-20), 0 open.
+
 Report inventory (never fails the gate - the drain queues, same
 contract as duplicate_heading_scan / AS-09):
 
@@ -135,6 +144,16 @@ def scan_module(rel: str, lines: list[str],
             else:
                 stems[stem] = q["n"]
                 cross.append((rel, q["n"], stem))
+        # QI-12 ungradeable: neither mcq (option rows) nor coding
+        # (a Score points line) - quiz_export only flags the
+        # empty-text degenerate case, so a real question that lost
+        # its option block or Score line parses clean everywhere
+        # else and renders unscoreable.
+        if q["type"] == "open":
+            hard.append(
+                f"{rel}: QI-12 question {q['n']} is ungradeable - no "
+                f"option rows and no Score line, parses as neither "
+                f"mcq nor coding")
         if q["type"] != "mcq":
             continue
         seen_opts: set[str] = set()
@@ -298,7 +317,8 @@ def main() -> int:
           f"A-D / QI-05 numbering gap / QI-06 cross-module stem dup "
           f"/ QI-08 duplicate Answer Key row "
           f"/ QI-09 orphan Answer Key row / QI-11 key letter with no "
-          f"option row or <2-option mcq), QI-06 {len(cross_dups)} "
+          f"option row or <2-option mcq / QI-12 ungradeable "
+          f"question), QI-06 {len(cross_dups)} "
           f"cross-module stem dups (hard since tick-345; drained "
           f"tick-343), QI-07 "
           f"{len(skew)} skewed answer keys (option-shuffle queue; "
