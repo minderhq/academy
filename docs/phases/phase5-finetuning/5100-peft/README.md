@@ -30,7 +30,8 @@ After completing this module, you will be able to:
 
 ## Module Contents
 
-### 5101: LoRA Logic
+- [5103: Adapters](./5103-Adapters.md)
+### [5101: LoRA Logic](./5101-LoRA-Logic.md)
 **Low-Rank Adaptation Theory and Practice**
 
 - LoRA mathematical foundation
@@ -45,7 +46,7 @@ After completing this module, you will be able to:
 - Measure quality vs parameter tradeoffs
 - Profile memory and speed
 
-### 5102: QLoRA Pipelines
+### [5102: QLoRA Pipelines](./5102-QLoRA-Pipelines.md)
 **4-bit Quantization + LoRA**
 
 - QLoRA architecture and innovations
@@ -85,6 +86,7 @@ Before starting this module, ensure you have:
 
 ## Assessment
 
+- **Location:** [assessment/QUIZ.md](./assessment/QUIZ.md)
 ### Practice Exercises
 - **Format:** Complete fine-tuning projects
 - **Duration:** 8-12 hours

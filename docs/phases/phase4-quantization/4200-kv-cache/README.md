@@ -30,7 +30,7 @@ After completing this module, you will be able to:
 
 ## Module Contents
 
-### 4201: Context Window Physics
+### [4201: Context Window Physics](./4201-Context-Window-Physics.md)
 **Memory and Computation in Long Contexts**
 
 - KV cache memory calculation
@@ -45,7 +45,7 @@ After completing this module, you will be able to:
 - Test context window limits
 - Benchmark long-context performance
 
-### 4202: Speculative Decoding
+### [4202: Speculative Decoding](./4202-Speculative-Decoding.md)
 **Accelerating Generation with Draft Models**
 
 - Speculative decoding theory
@@ -85,6 +85,7 @@ Before starting this module, ensure you have:
 
 ## Assessment
 
+- **Location:** [assessment/QUIZ.md](./assessment/QUIZ.md)
 ### Practice Exercises
 - **Format:** Advanced optimization projects
 - **Duration:** 6-8 hours

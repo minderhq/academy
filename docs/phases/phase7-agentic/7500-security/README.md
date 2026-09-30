@@ -30,7 +30,7 @@ After completing this module, you will be able to:
 
 ## Module Contents
 
-### 7501: Prompt Injection Defense
+### [7501: Prompt Injection Defense](./7501-Prompt-Injection-Defense.md)
 **Protecting Against Malicious Prompts**
 
 - Prompt injection techniques
@@ -45,7 +45,7 @@ After completing this module, you will be able to:
 - Create output filter
 - Test with adversarial prompts
 
-### 7502: PII Redaction
+### [7502: PII Redaction](./7502-PII-Redaction.md)
 **Sensitive Information Protection**
 
 - PII types and identification
@@ -60,7 +60,7 @@ After completing this module, you will be able to:
 - Create compliance reports
 - Test with real data
 
-### 7503: Adversarial Attacks
+### [7503: Adversarial Attacks](./7503-Adversarial-Attacks.md)
 **Understanding and Defending Against Attacks**
 
 - Attack types (jailbreak, DAN, roleplay)

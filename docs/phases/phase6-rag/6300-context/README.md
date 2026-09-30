@@ -30,7 +30,7 @@ After completing this module, you will be able to:
 
 ## Module Contents
 
-### 6301: Neo4j and Knowledge Graphs
+### [6301: Neo4j and Knowledge Graphs](./6301-Neo4j-and-Knowledge-Graphs.md)
 **Graph-Based Knowledge Representation**
 
 - Graph database fundamentals
@@ -45,7 +45,7 @@ After completing this module, you will be able to:
 - Build knowledge graph
 - Query graph for context
 
-### 6302: CAG and Long-Context Architectures
+### [6302: CAG and Long-Context Architectures](./6302-CAG-Long-Context-Architectures.md)
 **Context Window Optimization**
 
 - Context-Augmented Generation (CAG)

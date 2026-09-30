@@ -30,7 +30,8 @@ After completing this module, you will be able to:
 
 ## Module Contents
 
-### 6201: Hybrid Search
+- [6203: Advanced Retrieval](./6203-Advanced-Retrieval.md)
+### [6201: Hybrid Search](./6201-Hybrid-Search.md)
 **Semantic + Lexical Search Fusion**
 
 - Vector search vs keyword search (BM25)
@@ -45,7 +46,7 @@ After completing this module, you will be able to:
 - Compare fusion strategies
 - Measure quality improvements
 
-### 6202: Re-ranking and Retrieval Logistics
+### [6202: Re-ranking and Retrieval Logistics](./6202-Re-ranking-and-Retrieval-Logistics.md)
 **Two-Stage Retrieval Optimization**
 
 - Re-ranking with cross-encoders

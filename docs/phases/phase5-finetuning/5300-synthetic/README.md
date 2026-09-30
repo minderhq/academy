@@ -30,7 +30,7 @@ After completing this module, you will be able to:
 
 ## Module Contents
 
-### 5301: Knowledge Distillation
+### [5301: Knowledge Distillation](./5301-Knowledge-Distillation.md)
 **Teacher-Student Training Paradigm**
 
 - Distillation theory and objectives
@@ -45,7 +45,7 @@ After completing this module, you will be able to:
 - Compare distillation strategies
 - Measure size vs quality tradeoffs
 
-### 5302: Distributed Training
+### [5302: Distributed Training](./5302-Distributed-Training.md)
 **Multi-GPU and Multi-Node Training**
 
 - Data parallelism (DDP, FSDP)
@@ -60,7 +60,7 @@ After completing this module, you will be able to:
 - Optimize communication overhead
 - Handle training failures
 
-### 5303: Federated Learning
+### [5303: Federated Learning](./5303-Federated-Learning.md)
 **Privacy-Preserving Distributed Training**
 
 - Federated learning fundamentals
@@ -89,6 +89,7 @@ Before starting this module, ensure you have:
 
 ## Assessment
 
+- **Location:** [assessment/QUIZ.md](./assessment/QUIZ.md)
 ### Practice Exercises
 - **Format:** Advanced training projects
 - **Duration:** 10-12 hours

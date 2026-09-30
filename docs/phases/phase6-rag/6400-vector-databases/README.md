@@ -30,7 +30,7 @@ After completing this module, you will be able to:
 
 ## Module Contents
 
-### 6401: Qdrant Setup
+### [6401: Qdrant Setup](./6401-Qdrant-Setup.md)
 **Self-Hosted Vector Database**
 
 - Qdrant architecture and features
@@ -45,7 +45,7 @@ After completing this module, you will be able to:
 - Implement filtered search
 - Benchmark query performance
 
-### 6402: Pinecone vs Weaviate
+### [6402: Pinecone vs Weaviate](./6402-Pinecone-vs-Weaviate.md)
 **Managed vs Self-Hosted Solutions**
 
 - Pinecone: Managed vector database

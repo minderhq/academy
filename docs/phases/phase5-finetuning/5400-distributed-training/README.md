@@ -50,3 +50,9 @@ After this module, you will be able to:
 
 **Module Duration:** 6-8 hours
 **Difficulty:** Advanced
+
+
+## Assessment
+
+- **Location:** [assessment/PRACTICE.md](./assessment/PRACTICE.md)
+- **Location:** [assessment/QUIZ.md](./assessment/QUIZ.md)

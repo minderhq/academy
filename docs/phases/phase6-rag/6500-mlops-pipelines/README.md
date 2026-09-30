@@ -30,7 +30,7 @@ After completing this module, you will be able to:
 
 ## Module Contents
 
-### 6501: ML Lifecycle Management
+### [6501: ML Lifecycle Management](./6501-ML-Lifecycle-Management.md)
 **End-to-End ML Pipeline**
 
 - RAG system lifecycle stages
@@ -45,7 +45,7 @@ After completing this module, you will be able to:
 - Set up model evaluation
 - Deploy and monitor system
 
-### 6502: CI/CD for ML
+### [6502: CI/CD for ML](./6502-CI-CD-for-ML.md)
 **Continuous Integration and Deployment**
 
 - CI/CD fundamentals for ML
@@ -60,7 +60,7 @@ After completing this module, you will be able to:
 - Build deployment pipeline
 - Test rollback procedures
 
-### 6503: Model Registry
+### [6503: Model Registry](./6503-Model-Registry.md)
 **Model Versioning and Governance**
 
 - Model registry concepts

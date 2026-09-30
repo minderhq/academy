@@ -30,7 +30,7 @@ After completing this module, you will be able to:
 
 ## Module Contents
 
-### 6101: HNSW Indexing
+### [6101: HNSW Indexing](./6101-HNSW-Indexing.md)
 **Hierarchical Navigable Small World Graphs**
 
 - HNSW algorithm and architecture
@@ -45,7 +45,7 @@ After completing this module, you will be able to:
 - Tune HNSW parameters
 - Benchmark query performance
 
-### 6102: Semantic Similarity
+### [6102: Semantic Similarity](./6102-Semantic-Similarity.md)
 **Measuring Document Similarity**
 
 - Cosine similarity and distance metrics

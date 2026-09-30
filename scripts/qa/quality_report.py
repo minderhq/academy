@@ -408,6 +408,12 @@ stand today?" without running each tool by hand.
                       strings - lessons "See module README",
                       module READMEs "See PREREQUISITES.md" - so
                       the platform nav generator can classify
+                      every pointer; born 2026-09-30 at 4 prose
+                      variants (a vague assumption + three
+                      "Phase N completion" statements redundant
+                      with spine position), drained same tick,
+                      hard since; bracketed resource tokens stay
+                      PQ-01..02 territory
     prereq_target_check
                       Canonical pointer target integrity (PQ-05,
                       hard): every "See module README" / "See
@@ -416,12 +422,24 @@ stand today?" without running each tool by hand.
                       exists and carries a prerequisites section,
                       the PREREQUISITES.md exists; born at zero
                       (census 2026-09-30: 33/33 module READMEs)
-                      every pointer; born 2026-09-30 at 4 prose
-                      variants (a vague assumption + three
-                      "Phase N completion" statements redundant
-                      with spine position), drained same tick,
-                      hard since; bracketed resource tokens stay
-                      PQ-01..02 territory
+    nav_coverage_check
+                      Module README navigation coverage (NV-01,
+                      hard): every learner-facing doc in a module
+                      - root lessons, guides/, assessment/ - must
+                      be filename-linked from its module README;
+                      a lesson the README never links is invisible
+                      to the platform nav no matter how good the
+                      content. linkcheck proves that links which
+                      exist resolve; NV-01 proves nothing
+                      learner-facing is unlinked. Born 2026-09-30
+                      at 45 orphans over 17 module READMEs (30
+                      prose-described but unlinked lessons, 6
+                      never mentioned, 9 assessments without
+                      Location lines), drained same tick, hard
+                      since. NV-02 report rows keep the 7
+                      phase-level CHECKPOINT.md files visible
+                      (unlinked from phase READMEs, standard
+                      pending)
     tags_coverage_check
                       Tags coverage (TG-01 hard, TG-02/03 report):
                       a numbered in-phase lesson outside guides/
@@ -703,6 +721,7 @@ GATES = [
     ("difficulty_distribution_scan.py", "difficulty_distribution_scan", False),
     ("prereq_free_text_check.py", "prereq_free_text_check", True),
     ("prereq_target_check.py", "prereq_target_check", True),
+    ("nav_coverage_check.py", "nav_coverage_check", True),
     ("tags_coverage_check.py", "tags_coverage_check", True),
     ("difficulty_census.py", "difficulty_census", True),
     ("lesson_anatomy_census.py", "lesson_anatomy_census", True),

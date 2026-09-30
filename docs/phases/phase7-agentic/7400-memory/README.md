@@ -30,7 +30,8 @@ After completing this module, you will be able to:
 
 ## Module Contents
 
-### 7401: Long-term Memory
+- [7403: Vector Memory](./7403-Vector-Memory.md)
+### [7401: Long-term Memory](./7401-Long-term-Memory.md)
 **Persistent Knowledge for Agents**
 
 - Memory types: episodic, semantic, procedural

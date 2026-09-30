@@ -30,7 +30,7 @@ After completing this module, you will be able to:
 
 ## Module Contents
 
-### 7201: Tool Calling
+### [7201: Tool Calling](./7201-Tool-Calling.md)
 **Function Calling with LLMs**
 
 - Tool calling fundamentals
@@ -70,6 +70,7 @@ Before starting this module, ensure you have:
 
 ## Assessment
 
+- **Location:** [assessment/QUIZ.md](./assessment/QUIZ.md)
 ### Practice Exercises
 - **Format:** Tool implementation projects
 - **Duration:** 8-10 hours

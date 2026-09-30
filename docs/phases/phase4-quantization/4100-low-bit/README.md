@@ -30,7 +30,7 @@ After completing this module, you will be able to:
 
 ## Module Contents
 
-### 4101: GGUF Physics
+### [4101: GGUF Physics](./4101-GGUF-Physics.md)
 **Understanding the GGUF Quantization Format**
 
 - GGUF format architecture and design
@@ -45,7 +45,7 @@ After completing this module, you will be able to:
 - Measure quality vs size tradeoffs
 - Benchmark inference speed
 
-### 4102: EXL2 and AWQ
+### [4102: EXL2 and AWQ](./4102-EXL2-and-AWQ.md)
 **Modern Quantization Schemes**
 
 - EXL2 format and mixed-precision quantization
@@ -60,7 +60,7 @@ After completing this module, you will be able to:
 - Compare AWQ vs GPTQ quality
 - Optimize for specific hardware
 
-### 4103: Double Quantization
+### [4103: Double Quantization](./4103-Double-Quantization.md)
 **Nested Quantization for Extreme Compression**
 
 - Double quantization theory and benefits

@@ -30,7 +30,7 @@ After completing this module, you will be able to:
 
 ## Module Contents
 
-### 7101: ReAct Loop System
+### [7101: ReAct Loop System](./7101-ReAct-Loop-System.md)
 **Reasoning and Acting in Cycles**
 
 - ReAct paradigm: Thought → Action → Observation
@@ -45,7 +45,7 @@ After completing this module, you will be able to:
 - Add memory and context
 - Handle failures gracefully
 
-### 7102: Planning and Decomposition
+### [7102: Planning and Decomposition](./7102-Planning-Decomposition.md)
 **Goal-Directed Agent Behavior**
 
 - Task decomposition strategies

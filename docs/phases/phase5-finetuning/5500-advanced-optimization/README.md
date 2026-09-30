@@ -48,3 +48,9 @@ After this module, you will be able to:
 
 **Module Duration:** 4-6 hours
 **Difficulty:** Intermediate-Advanced
+
+
+## Assessment
+
+- **Location:** [assessment/PRACTICE.md](./assessment/PRACTICE.md)
+- **Location:** [assessment/QUIZ.md](./assessment/QUIZ.md)

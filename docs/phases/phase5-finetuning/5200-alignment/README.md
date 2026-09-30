@@ -30,7 +30,9 @@ After completing this module, you will be able to:
 
 ## Module Contents
 
-### 5201: DPO Theory
+- [5203: RLHF](./5203-RLHF.md)
+- [5204: Preference Dataset Creation](./5204-Preference-Dataset-Creation.md)
+### [5201: DPO Theory](./5201-DPO-Theory.md)
 **Direct Preference Optimization**
 
 - RLHF vs DPO comparison
@@ -45,7 +47,7 @@ After completing this module, you will be able to:
 - Compare DPO vs PPO
 - Analyze alignment quality
 
-### 5202: Alignment Orchestration
+### [5202: Alignment Orchestration](./5202-Alignment-Orchestration.md)
 **Production Alignment Systems**
 
 - Multi-stage alignment pipelines
@@ -74,6 +76,7 @@ Before starting this module, ensure you have:
 
 ## Assessment
 
+- **Location:** [assessment/QUIZ.md](./assessment/QUIZ.md)
 ### Practice Exercises
 - **Format:** Alignment projects
 - **Duration:** 8-10 hours
