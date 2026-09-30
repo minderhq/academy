@@ -7,7 +7,7 @@ Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
-Prerequisites: Phase 2 completion (tensor algebra, neural network fundamentals)
+Prerequisites: See module README
 Related: [3102, 3201, 3302, 3402]
 Tags: [transformers, attention, self-attention, flash-attention, multi-head]
 Hardware: [GPU recommended for visualization]

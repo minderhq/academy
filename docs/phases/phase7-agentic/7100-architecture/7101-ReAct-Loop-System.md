@@ -7,7 +7,7 @@ Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
-Prerequisites: Phase 6 completion (RAG systems), Python async/await
+Prerequisites: See module README
 Related: [7102, 7201, 7301, 7401]
 Tags: [agents, react, reasoning, acting, tool-calling, autonomy]
 Hardware: [GPU recommended for LLM inference]

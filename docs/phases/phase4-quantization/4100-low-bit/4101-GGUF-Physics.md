@@ -7,7 +7,7 @@ Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
-Prerequisites: Phase 3 completion (transformer architecture), basic C/C++ knowledge
+Prerequisites: See module README
 Related: [4102, 4103, 4201]
 Tags: [quantization, gguf, ggml, llama.cpp, cpu-gpu-hybrid, offloading]
 Hardware: [GPU with 11GB+ VRAM recommended, CPU]

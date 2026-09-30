@@ -7,7 +7,7 @@ Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 2 hours
-Prerequisites: Basic networking knowledge
+Prerequisites: See module README
 Related: [1102, 1103, 1201]
 Tags: [networking, wan, uplink, bridge-mode, isp]
 Hardware: [WAN uplink (fiber ONT, cable modem, DSL modem, or fixed-wireless CPE), Ethernet router]

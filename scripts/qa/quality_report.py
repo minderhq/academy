@@ -401,6 +401,19 @@ stand today?" without running each tool by hand.
                       semantics corpus-wide, so the naive 2x band
                       flags 107/111 and hardening is deferred
                       until the platform picks the semantics
+    prereq_free_text_check
+                      Prerequisites free-text vocabulary closure
+                      (PQ-04, hard): every non-token value must be
+                      exactly one of the two role-canonical
+                      strings - lessons "See module README",
+                      module READMEs "See PREREQUISITES.md" - so
+                      the platform nav generator can classify
+                      every pointer; born 2026-09-30 at 4 prose
+                      variants (a vague assumption + three
+                      "Phase N completion" statements redundant
+                      with spine position), drained same tick,
+                      hard since; bracketed resource tokens stay
+                      PQ-01..02 territory
     difficulty_distribution_scan
                       Difficulty as a sequence dimension (DX-01,
                       report-only census): per-phase B/I/A
@@ -667,6 +680,7 @@ GATES = [
     ("qa_tooling_coverage_check.py", "qa_tooling_coverage_check", True),
     ("pacing_consistency_census.py", "pacing_consistency_census", False),
     ("difficulty_distribution_scan.py", "difficulty_distribution_scan", False),
+    ("prereq_free_text_check.py", "prereq_free_text_check", True),
     ("difficulty_census.py", "difficulty_census", True),
     ("lesson_anatomy_census.py", "lesson_anatomy_census", True),
     ("closure_census.py", "closure_census", True),
