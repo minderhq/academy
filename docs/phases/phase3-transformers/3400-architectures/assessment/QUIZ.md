@@ -165,25 +165,25 @@ D) It cannot be scaled
 
 ## Answer Key
 
-| # | Answer |
-|---|--------|
-| 1 | B |
-| 2 | B |
-| 3 | A |
-| 4 | B |
-| 5 | C |
-| 6 | B |
-| 7 | B |
-| 8 | B |
-| 9 | B |
-| 10 | D |
-| 11 | B |
-| 12 | A |
-| 13 | C |
-| 14 | A |
-| 15 | D |
-| 16 | B |
-| 17 | C |
-| 18 | A |
-| 19 | D |
-| 20 | C |
+| Question | Answer | Explanation |
+|----------|--------|-------------|
+| 1 | B | Encoder-only attends bidirectionally; decoder-only is causal |
+| 2 | B | BERT is encoder-only |
+| 3 | A | GPT-4 is decoder-only |
+| 4 | B | Cross-attention between encoder and decoder fits sequence-to-sequence |
+| 5 | C | T5 is the canonical encoder-decoder |
+| 6 | B | Causal masking prevents tokens from attending to future tokens |
+| 7 | B | Bidirectional attention lets every token see every token |
+| 8 | B | Encoder-only models shine at understanding and classification |
+| 9 | B | Decoder-only models generate text |
+| 10 | D | Training ease, scaling behavior, and inference efficiency together |
+| 11 | B | The decoder reads the input through cross-attention over encoder states |
+| 12 | A | Masked language modeling (plus originally next-sentence prediction) |
+| 13 | C | The 2017 paper is the full encoder-decoder Transformer |
+| 14 | A | The causal mask restricts each token to previous positions |
+| 15 | D | Source-to-target mapping is the seq2seq sweet spot |
+| 16 | B | MoE routes each token to a small subset of expert FFNs |
+| 17 | C | T5 casts every task as text-to-text |
+| 18 | A | The KV cache reuses past keys/values instead of recomputing |
+| 19 | D | Encoder-only models emit contextual representations for downstream heads |
+| 20 | C | One unified next-token objective that scales cleanly |

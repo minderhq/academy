@@ -165,25 +165,25 @@ D) Is the same as greedy, differing only in the sampling seed
 
 ## Answer Key
 
-| # | Answer |
-|---|--------|
-| 1 | D |
-| 2 | A |
-| 3 | B |
-| 4 | C |
-| 5 | D |
-| 6 | B |
-| 7 | B |
-| 8 | D |
-| 9 | A |
-| 10 | D |
-| 11 | D |
-| 12 | C |
-| 13 | C |
-| 14 | A |
-| 15 | A |
-| 16 | B |
-| 17 | C |
-| 18 | B |
-| 19 | A |
-| 20 | C |
+| Question | Answer | Explanation |
+|----------|--------|-------------|
+| 1 | D | Greedy takes the argmax token at every step |
+| 2 | A | Beam search keeps multiple hypotheses alive in parallel |
+| 3 | B | Top-k restricts sampling to the k highest-probability tokens |
+| 4 | C | Top-p keeps the smallest token set whose cumulative probability covers p |
+| 5 | D | Temperature sharpens (low) or flattens (high) the distribution |
+| 6 | B | T=1.0 leaves the model's probabilities unchanged |
+| 7 | B | Repetition penalty discounts tokens that already appeared, curbing loops |
+| 8 | D | Length penalty rewards or deters longer hypotheses in beam scoring |
+| 9 | A | Sampling draws from a distribution; greedy is deterministic argmax |
+| 10 | D | Beam width 1 keeps a single hypothesis - exactly greedy |
+| 11 | D | Practical beam widths are small: 4-10 |
+| 12 | C | Beam search's likelihood hill-climb drifts toward repetitive, generic text |
+| 13 | C | k=1 keeps only the argmax token - greedy decoding |
+| 14 | A | Production defaults cluster around 0.7-1.0 |
+| 15 | A | Frequency penalty subtracts per prior occurrence of the token |
+| 16 | B | A small draft model proposes; the large model verifies in parallel |
+| 17 | C | The KV cache stores all previous keys and values for reuse |
+| 18 | B | Each step computes only the new token's attention from cached K/V |
+| 19 | A | Skipping recomputation makes long-sequence generation much faster |
+| 20 | C | Contrastive decoding contrasts logits of an expert and an amateur model |
