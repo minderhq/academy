@@ -173,6 +173,21 @@ stand today?" without running each tool by hand.
                        7 volumes"; PROGRESS-TRACKER joined in
                        tick-265 while it still targeted "0/97 core
                        files")
+    volume_checklist_scan
+                       every checklist item in the seven VOLUME-*.md
+                       Core/Advanced sections must resolve to a real
+                       corpus file (VC-01: "NNNN:"/"TUTORIAL-NNN:"/
+                       "LAB-NNN:"/"EXP_NNNN:" IDs; Project A/B/C and
+                       prose goals are curricular choices, skipped)
+                       with a title that matches what the file is
+                       (VC-02: zero keyword overlap vs filename
+                       suffix OR front-matter Title - filenames can
+                       lag, e.g. 7301-Orchestration.md is titled
+                       "Collaborative Tasking"); a dead or mislabeled
+                       checklist entry is a learner-facing platform
+                       bug - born tick-455 from the three mislabeled
+                       V7 items found in tick-454, baseline 0 (81
+                       items parsed)
     lab_registry_check every `LAB-0NN: Topic` label corpus-wide vs the
                        labs' own frontmatter Titles (LB-01 wrong lab
                        identity - the topic belongs to a different lab
@@ -779,6 +794,7 @@ GATES = [
     ("readme_claims_check.py", "readme_claims_check", True),
     ("sitemap_claims_check.py", "sitemap_claims_check", True),
     ("meta_claims_check.py", "meta_claims_check", True),
+    ("volume_checklist_scan.py", "volume_checklist_scan", True),
     ("lab_registry_check.py", "lab_registry_check", True),
     ("resource_id_check.py", "resource_id_check", True),
     ("resource_ref_check.py", "resource_ref_check", True),
