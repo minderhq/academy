@@ -454,6 +454,22 @@ stand today?" without running each tool by hand.
                       sort wrong or not at all. Born at zero
                       (census 2026-09-30: 408/408 docs carry the
                       field, all ISO-parseable, zero variants)
+    lesson_order_check
+                      Module README lesson order (LO-01, hard):
+                      the first-occurrence order of lesson links
+                      in a module README must be strictly
+                      increasing - the platform renders nav in
+                      document order, so README order IS the
+                      learning path, and IDs encode the intended
+                      sequence. First occurrence only: phase-1/2
+                      READMEs legitimately repeat the full list
+                      in a tail summary. Guides/assessments are
+                      genre extras, positions free. Born 2026-09-
+                      30 at 5 stray bullets (5103/5203/5204/6203/
+                      7403, appended by the nav drain before the
+                      first lesson header), drained same tick by
+                      relocating each after its ID-sorted block,
+                      hard since
     tags_coverage_check
                       Tags coverage (TG-01 hard, TG-02/03 report):
                       a numbered in-phase lesson outside guides/
@@ -737,6 +753,7 @@ GATES = [
     ("prereq_target_check.py", "prereq_target_check", True),
     ("nav_coverage_check.py", "nav_coverage_check", True),
     ("last_updated_check.py", "last_updated_check", True),
+    ("lesson_order_check.py", "lesson_order_check", True),
     ("tags_coverage_check.py", "tags_coverage_check", True),
     ("difficulty_census.py", "difficulty_census", True),
     ("lesson_anatomy_census.py", "lesson_anatomy_census", True),

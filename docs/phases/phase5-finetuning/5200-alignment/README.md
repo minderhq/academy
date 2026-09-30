@@ -30,8 +30,6 @@ After completing this module, you will be able to:
 
 ## Module Contents
 
-- [5203: RLHF](./5203-RLHF.md)
-- [5204: Preference Dataset Creation](./5204-Preference-Dataset-Creation.md)
 ### [5201: DPO Theory](./5201-DPO-Theory.md)
 **Direct Preference Optimization**
 
@@ -61,6 +59,8 @@ After completing this module, you will be able to:
 - Create preference datasets
 - Evaluate alignment quality
 - Deploy aligned models
+- [5203: RLHF](./5203-RLHF.md)
+- [5204: Preference Dataset Creation](./5204-Preference-Dataset-Creation.md)
 
 ## Prerequisites
 

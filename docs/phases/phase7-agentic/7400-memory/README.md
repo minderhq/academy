@@ -30,7 +30,6 @@ After completing this module, you will be able to:
 
 ## Module Contents
 
-- [7403: Vector Memory](./7403-Vector-Memory.md)
 ### [7401: Long-term Memory](./7401-Long-term-Memory.md)
 **Persistent Knowledge for Agents**
 
@@ -56,6 +55,7 @@ After completing this module, you will be able to:
 - Privacy and security
 
 **Guide:** [guides/7402-Agent-Memory-Implementation.md](./guides/7402-Agent-Memory-Implementation.md)
+- [7403: Vector Memory](./7403-Vector-Memory.md)
 
 ## Prerequisites
 

@@ -30,7 +30,6 @@ After completing this module, you will be able to:
 
 ## Module Contents
 
-- [5103: Adapters](./5103-Adapters.md)
 ### [5101: LoRA Logic](./5101-LoRA-Logic.md)
 **Low-Rank Adaptation Theory and Practice**
 
@@ -71,6 +70,7 @@ After completing this module, you will be able to:
 - Production deployment strategies
 
 **Guide:** [guides/5104-LoRA-Implementation-Guide.md](./guides/5104-LoRA-Implementation-Guide.md)
+- [5103: Adapters](./5103-Adapters.md)
 
 ## Prerequisites
 

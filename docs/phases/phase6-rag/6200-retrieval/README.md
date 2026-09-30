@@ -30,7 +30,6 @@ After completing this module, you will be able to:
 
 ## Module Contents
 
-- [6203: Advanced Retrieval](./6203-Advanced-Retrieval.md)
 ### [6201: Hybrid Search](./6201-Hybrid-Search.md)
 **Semantic + Lexical Search Fusion**
 
@@ -60,6 +59,7 @@ After completing this module, you will be able to:
 - Compare chunking strategies
 - Optimize retrieval parameters
 - Build evaluation framework
+- [6203: Advanced Retrieval](./6203-Advanced-Retrieval.md)
 
 ## Prerequisites
 
