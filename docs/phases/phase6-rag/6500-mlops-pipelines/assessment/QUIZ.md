@@ -165,25 +165,25 @@ D) Only versioning
 
 ## Answer Key
 
-| # | Answer |
-|---|--------|
-| 1 | C |
-| 2 | A |
-| 3 | A |
-| 4 | A |
-| 5 | C |
-| 6 | B |
-| 7 | C |
-| 8 | C |
-| 9 | B |
-| 10 | B |
-| 11 | D |
-| 12 | D |
-| 13 | B |
-| 14 | C |
-| 15 | B |
-| 16 | C |
-| 17 | B |
-| 18 | B |
-| 19 | B |
-| 20 | B |
+| Question | Answer | Explanation |
+|----------|--------|-------------|
+| 1 | C | RAG pipelines pair a retrieval stage with a generation stage |
+| 2 | A | Embedding models get replaced as better ones ship |
+| 3 | A | Retrieval monitoring tracks how relevant fetched chunks are |
+| 4 | A | Reranking lifts answer quality for a modest latency cost |
+| 5 | C | RAG versioning spans model, embeddings and pipeline together |
+| 6 | B | A/B tests compare full RAG configurations end to end |
+| 7 | C | Dashboards track latency, accuracy and relevance together |
+| 8 | C | Caching helps retrieval results and generated answers alike |
+| 9 | B | Backups are critical once real traffic depends on the store |
+| 10 | B | RAG serving spreads across machines when load demands it |
+| 11 | D | Monitoring covers retrieval, generation and system metrics |
+| 12 | D | Retrieval latency drives speed, experience and cost together |
+| 13 | B | Chunk size and overlap shape retrieval quality first |
+| 14 | C | Git versions pipeline code, MLflow tracks runs and models |
+| 15 | B | Graceful degradation keeps partial value when stages fail |
+| 16 | C | Scaling covers both retrieval and generation stages |
+| 17 | B | Evaluation blends automated metrics with human judgment |
+| 18 | B | Context relevance is measurable with graded datasets and judges |
+| 19 | B | Embeddings refresh when documents change, not on a fixed clock |
+| 20 | B | Production RAG demands monitoring, versioning and testing together |

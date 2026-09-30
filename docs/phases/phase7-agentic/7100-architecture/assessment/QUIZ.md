@@ -165,25 +165,25 @@ D) Not possible, because agent behavior is claimed too stochastic for any repeat
 
 ## Answer Key
 
-| # | Answer |
-|---|--------|
-| 1 | B |
-| 2 | A |
-| 3 | A |
-| 4 | B |
-| 5 | C |
-| 6 | D |
-| 7 | A |
-| 8 | C |
-| 9 | D |
-| 10 | B |
-| 11 | C |
-| 12 | C |
-| 13 | D |
-| 14 | A |
-| 15 | B |
-| 16 | C |
-| 17 | D |
-| 18 | B |
-| 19 | A |
-| 20 | B |
+| Question | Answer | Explanation |
+|----------|--------|-------------|
+| 1 | B | ReAct pairs Reasoning with Acting in interleaved steps |
+| 2 | A | The loop runs Thought, then Action, then Observation |
+| 3 | A | Tools connect agents to external systems and APIs |
+| 4 | B | Agent memory spans short-term context and long-term stores |
+| 5 | C | Reflection means reviewing past actions to improve the next |
+| 6 | D | Multi-agent systems coordinate several collaborating agents |
+| 7 | A | Planning decomposes a task into ordered subtasks |
+| 8 | C | Self-correction detects errors and retries with fixes |
+| 9 | D | Tool calls are structured: function name plus JSON arguments |
+| 10 | B | Agents choose their own steps, chains follow a fixed path |
+| 11 | C | Function calling rests on training plus schema-aware prompting |
+| 12 | C | Agent evaluation covers success rate, efficiency and safety |
+| 13 | D | Hierarchies split high-level planners from low-level executors |
+| 14 | A | Agents talk through message passing between nodes |
+| 15 | B | Agents can hallucinate facts and tool inputs alike |
+| 16 | C | Constrained generation guides output into a required format |
+| 17 | D | State tracks beliefs, goals, plans and tool results |
+| 18 | B | Robustness means handling errors gracefully, not crashing |
+| 19 | A | Safety gates are critical before production traffic |
+| 20 | B | Benchmarks score agents on standard repeatable tasks |
