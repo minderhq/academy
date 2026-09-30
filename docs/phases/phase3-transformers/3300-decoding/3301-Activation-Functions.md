@@ -9,7 +9,7 @@ Difficulty: Beginner
 Estimated Time: 2 hours
 Prerequisites: See module README
 Related: See module README
-Tags: ['transformers', 'activation', 'gelu', 'swiglu', 'normalization']
+Tags: ['transformers', 'activation', 'gelu', 'swiglu']
 ---
 
 # 3301: Activation Functions - GELU, SwiGLU, and Beyond

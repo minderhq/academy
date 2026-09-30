@@ -9,7 +9,7 @@ Difficulty: Beginner
 Estimated Time: 2 hours
 Prerequisites: See module README
 Related: See module README
-Tags: ['transformers', 'activation', 'gelu', 'swiglu', 'normalization']
+Tags: ['transformers', 'normalization']
 ---
 
 # 3302: Normalization Layers - BatchNorm vs LayerNorm vs RMSNorm
