@@ -163,6 +163,15 @@ D) All of the above
 
 ---
 
+## Need to Review?
+
+Each question maps to the closest lesson for review:
+
+- **Questions 1, 2, 11, 14, 16-18:** [1401: Ollama Enterprise Deployment](../1401-Ollama-Enterprise.md) — local-first runtime and rollout practices
+- **Questions 3-10, 12, 13, 15, 19, 20:** [1402: vLLM and TGI High-Concurrency Inference](../1402-vLLM-and-TGI.md) — serving stacks and inference optimization
+
+---
+
 ## Answer Key
 
 | Question | Answer | Explanation |

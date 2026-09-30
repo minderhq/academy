@@ -164,6 +164,14 @@ D) The gradient is zero
 
 ---
 
+## Need to Review?
+
+Each question maps to the closest lesson for review:
+
+- **Questions 1-20:** [2102: Backpropagation and Automatic Differentiation](../2102-Backpropagation-and-Derivatives.md) — derivatives, gradients, and optimization
+
+---
+
 ## Answer Key
 
 | Question | Answer | Explanation |

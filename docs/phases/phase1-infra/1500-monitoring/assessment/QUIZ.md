@@ -163,6 +163,16 @@ D) None
 
 ---
 
+## Need to Review?
+
+Each question maps to the closest lesson for review:
+
+- **Questions 1, 3-9, 11-13, 16-18, 20:** [1501: Monitoring and Observability](../1501-Monitoring-and-Observability.md) — metrics, logs, traces, and SRE practice
+- **Questions 2, 10, 19:** [1502: Model Drift Detection](../1502-Model-Drift-Detection.md) — drift types and detection
+- **Questions 14, 15:** [1503: LLM Observability](../1503-LLM-Observability.md) — LLM-specific metrics and cost
+
+---
+
 ## Answer Key
 
 | Question | Answer | Explanation |
