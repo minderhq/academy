@@ -1,7 +1,7 @@
 ---
 Document ID: 4200-PREREQUISITES
 Title: "4200: KV Cache - Prerequisites"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Tags: ['prerequisites', 'quantization', 'kv-cache']
