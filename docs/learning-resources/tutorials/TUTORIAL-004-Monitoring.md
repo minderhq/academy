@@ -1,9 +1,10 @@
 ---
 Document ID: TUTORIAL-004
 Title: "TUTORIAL-004: Monitoring & Observability for AI Systems"
-Last Updated: 2026-09-27
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Tags: ['tutorial', 'monitoring', 'observability']
 ---
 
 # TUTORIAL-004: Monitoring & Observability for AI Systems

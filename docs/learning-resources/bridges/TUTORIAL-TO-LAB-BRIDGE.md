@@ -1,9 +1,10 @@
 ---
 Document ID: TUTORIAL-TO-LAB-BRIDGE
 Title: Tutorial to Lab Bridge Guide
-Last Updated: 2026-09-28
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Tags: ['bridge', 'tutorial', 'lab', 'hands-on']
 ---
 
 # Tutorial to Lab Bridge Guide

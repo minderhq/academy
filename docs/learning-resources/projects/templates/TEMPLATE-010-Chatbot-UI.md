@@ -1,9 +1,10 @@
 ---
 Document ID: TEMPLATE-010-Chatbot-UI
 Title: "PROJECT TEMPLATE: Chatbot UI"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
+Tags: ['template', 'llm', 'inference']
 ---
 
 # PROJECT TEMPLATE: Chatbot UI

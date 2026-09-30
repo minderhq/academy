@@ -1,9 +1,10 @@
 ---
 Document ID: SOLUTION-LAB-008
 Title: "SOLUTION-LAB-008: Agent Fleet"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Tags: ['solution', 'multi-agent', 'agents']
 ---
 
 # SOLUTION-LAB-008: Agent Fleet

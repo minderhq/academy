@@ -1,9 +1,10 @@
 ---
 Document ID: PHASE7-QUIZ
 Title: "Phase 7: Agentic Systems Quiz"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
+Tags: ['assessment', 'quiz', 'agents']
 ---
 
 # Phase 7: Agentic Systems Quiz

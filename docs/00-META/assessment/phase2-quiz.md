@@ -1,9 +1,10 @@
 ---
 Document ID: PHASE2-QUIZ
 Title: "Phase 2: AI/ML Foundations Quiz"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Tags: ['assessment', 'quiz', 'pytorch']
 ---
 
 # Phase 2: AI/ML Foundations Quiz

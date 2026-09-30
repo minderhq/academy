@@ -4,6 +4,7 @@ Title: "PROJECT-OMEGA Organization Guide"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
+Tags: ['maintenance', 'navigation']
 ---
 
 # PROJECT-OMEGA Organization Guide

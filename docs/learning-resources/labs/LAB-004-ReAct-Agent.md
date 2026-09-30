@@ -1,9 +1,10 @@
 ---
 Document ID: LAB-004
 Title: "LAB-004: Building ReAct Agents"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Tags: ['lab', 'react', 'agents', 'hands-on']
 ---
 
 # LAB-004: Building ReAct Agents

@@ -1,9 +1,10 @@
 ---
 Document ID: VOLUME-GUIDE
 Title: "PROJECT-OMEGA: Volume Guide (Book Structure)"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
+Tags: ['volume', 'roadmap', 'llm']
 ---
 
 # PROJECT-OMEGA: Volume Guide (Book Structure)

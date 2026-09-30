@@ -1,9 +1,10 @@
 ---
 Document ID: FLASHCARDS
 Title: "PROJECT-OMEGA: Interactive Learning Components"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Tags: ['flashcards', 'llm', 'practice']
 ---
 
 # PROJECT-OMEGA: Interactive Learning Components

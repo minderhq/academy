@@ -1,9 +1,10 @@
 ---
 Document ID: TEMPLATE-011-Model-Merging-MoE
 Title: "PROJECT TEMPLATE: Model Merging & MoE"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
+Tags: ['template', 'transformers', 'optimization']
 ---
 
 # PROJECT TEMPLATE: Model Merging & MoE

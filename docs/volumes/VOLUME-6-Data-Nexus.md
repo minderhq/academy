@@ -4,6 +4,7 @@ Title: "Volume 6: Data Nexus - RAG & Memory"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Tags: ['volume', 'rag', 'vector-db', 'graphrag']
 ---
 
 # Volume 6: Data Nexus - RAG & Memory

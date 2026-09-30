@@ -26,6 +26,7 @@ TG-03  module/phase meta docs (README / PREREQUISITES / CHECKPOINT /
        README / CHECKPOINT the phase's top-3 pool tags (phase /
        checkpoint). 72 docs drained, 146/146 since; hard.
 
+
 TS-01  Tags must be written in the canonical syntax:
        Tags: ['tag-one', 'tag-two'] - bracketed, comma-space
        separated, each token single-quoted, non-empty, unique.
@@ -40,7 +41,21 @@ TS-01  Tags must be written in the canonical syntax:
        brackets and read the value as empty). Drained same day,
        hard since.
 
-HARD on all four - exit 1 if any finding.
+TG-04  everything OUTSIDE docs/phases must carry Tags too. The
+       corpus-wide universe (tick-456 measurement): 148 docs across
+       00-META / learning-resources / volumes / comparisons /
+       use-cases / industry / enterprise-solutions / diagrams /
+       notebooks - only 5 carried Tags (3 with a genre facet, 2
+       without). 143 were drained same tick with a genre-first
+       mapping table (one genre tag per directory facet: lab /
+       solution / tutorial / cheatsheet / project / template /
+       volume / assessment / use-case / ... plus 2-3 subject tags
+       from the phase-sibling pools; the 3 genre-less docs got
+       their facet prepended), and the 27 new genre/facet tags
+       joined the TV-01 WHITELIST in the same commit. Hard from
+       birth - the drain landed before the gate did.
+
+HARD on all five - exit 1 if any finding.
 
 Run over the whole corpus:
     python scripts/qa/tags_coverage_check.py --root .
@@ -103,8 +118,9 @@ def main() -> int:
     findings: list[str] = []
     n_guides = n_guides_ok = 0
     n_meta = n_meta_ok = 0
+    n_out = n_out_ok = 0
     n_ts = 0
-    for path in sorted((args.root / "docs" / "phases").rglob("*.md")):
+    for path in sorted((args.root / "docs").rglob("*.md")):
         try:
             lines = path.read_text(encoding="utf-8",
                                    errors="replace").split("\n")
@@ -115,8 +131,9 @@ def main() -> int:
             continue
         tagged, raw = got
         rel = path.relative_to(args.root).as_posix()
+        in_phases = "phases" in path.parts
         in_guides = "guides" in path.parts
-        if LESSON_NUM.match(path.name) and not in_guides:
+        if LESSON_NUM.match(path.name) and in_phases and not in_guides:
             n_lesson += 1
             if tagged:
                 n_lesson_ok += 1
@@ -128,12 +145,18 @@ def main() -> int:
                 n_guides_ok += 1
             else:
                 findings.append("TG-02 guide without Tags: %s" % rel)
-        else:
+        elif in_phases:
             n_meta += 1
             if tagged:
                 n_meta_ok += 1
             else:
                 findings.append("TG-03 meta doc without Tags: %s" % rel)
+        else:
+            n_out += 1
+            if tagged:
+                n_out_ok += 1
+            else:
+                findings.append("TG-04 doc without Tags: %s" % rel)
         if tagged:
             problem = syntax_problems(raw)
             if problem:
@@ -143,14 +166,17 @@ def main() -> int:
                                    ("[" + raw + "]")[:70]))
 
     print("tags_coverage_check: %d/%d lessons, %d/%d guides, %d/%d "
-          "meta docs carry Tags; %d TS-01 syntax findings"
+          "phase meta docs, %d/%d outside-phases docs carry Tags; "
+          "%d TS-01 syntax findings"
           % (n_lesson_ok, n_lesson, n_guides_ok, n_guides,
-             n_meta_ok, n_meta, n_ts))
+             n_meta_ok, n_meta, n_out_ok, n_out, n_ts))
     for f in findings:
         print("  " + esc(f))
     print("tags_coverage_check: %d TG/TS findings - all hard; "
           "coverage and canonical quoted syntax (born 2026-09-30: "
-          "6+12+72 coverage gaps drained, 89 docs normalized)"
+          "6+12+72 coverage gaps drained, 89 docs normalized; "
+          "TG-04 born tick-456: 143 outside-phases gaps + 3 "
+          "genre-less docs drained with a 27-tag genre extension)"
           % len(findings))
     return 1 if findings else 0
 

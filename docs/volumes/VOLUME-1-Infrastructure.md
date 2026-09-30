@@ -1,9 +1,10 @@
 ---
 Document ID: VOLUME-1
 Title: "Volume 1: Infrastructure Fundamentals"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Tags: ['volume', 'infrastructure', 'docker', 'kubernetes']
 ---
 
 # Volume 1: Infrastructure Fundamentals

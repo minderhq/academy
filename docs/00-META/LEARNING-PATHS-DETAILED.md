@@ -1,9 +1,10 @@
 ---
 Document ID: LEARNING-PATHS-DETAILED
 Title: "Detailed Learning Paths"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
+Tags: ['roadmap', 'guide', 'llm']
 ---
 
 # Detailed Learning Paths

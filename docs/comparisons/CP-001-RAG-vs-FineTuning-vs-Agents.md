@@ -1,9 +1,10 @@
 ---
 Document ID: CP-001
 Title: "CP-001: RAG vs Fine-Tuning vs Agents - Decision Guide"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Tags: ['comparison', 'rag', 'finetuning', 'agents']
 ---
 
 # CP-001: RAG vs Fine-Tuning vs Agents - Decision Guide

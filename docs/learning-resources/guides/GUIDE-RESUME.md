@@ -1,9 +1,10 @@
 ---
 Document ID: GUIDE-RESUME
 Title: RESUME TEMPLATES & EXAMPLES
-Last Updated: 2026-02-07
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Tags: ['career', 'guide', 'llm']
 ---
 
 # RESUME TEMPLATES & EXAMPLES

@@ -1,9 +1,10 @@
 ---
 Document ID: TROUBLESHOOTING-QUICKSTART
 Title: "Quick Start Troubleshooting Guide"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
+Tags: ['troubleshooting', 'quickstart', 'llm']
 ---
 
 # Quick Start Troubleshooting Guide

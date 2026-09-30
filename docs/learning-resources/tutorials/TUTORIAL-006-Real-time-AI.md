@@ -1,9 +1,10 @@
 ---
 Document ID: TUTORIAL-006
 Title: "TUTORIAL-006: Real-time AI"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Tags: ['tutorial', 'inference', 'serving']
 ---
 
 # TUTORIAL-006: Real-time AI

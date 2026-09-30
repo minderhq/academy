@@ -1,9 +1,10 @@
 ---
 Document ID: TEMPLATE-004-Agent-Framework
 Title: "PROJECT TEMPLATE: Agent Framework"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
+Tags: ['template', 'agents', 'langchain']
 ---
 
 # PROJECT TEMPLATE: Agent Framework

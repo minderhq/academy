@@ -1,9 +1,10 @@
 ---
 Document ID: SOLUTION-LAB-002
 Title: "SOLUTION-LAB-002: RAG Implementation"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Tags: ['solution', 'rag', 'qdrant']
 ---
 
 # SOLUTION-LAB-002: RAG Implementation

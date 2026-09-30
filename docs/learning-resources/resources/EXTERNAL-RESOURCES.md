@@ -1,9 +1,10 @@
 ---
 Document ID: EXTERNAL-RESOURCES
 Title: "PROJECT-OMEGA: Video & External Resources"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Tags: ['reference', 'llm', 'tutorial']
 ---
 
 # PROJECT-OMEGA: Video & External Resources

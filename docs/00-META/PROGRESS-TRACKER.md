@@ -4,6 +4,7 @@ Title: "PROGRESS TRACKER: PROJECT-OMEGA Learning Journey"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
+Tags: ['roadmap', 'guide', 'practice']
 ---
 
 # PROGRESS TRACKER: PROJECT-OMEGA Learning Journey

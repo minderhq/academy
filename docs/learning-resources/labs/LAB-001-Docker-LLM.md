@@ -1,9 +1,10 @@
 ---
 Document ID: LAB-001
 Title: "LAB-001: Docker & LLM Fundamentals"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Tags: ['lab', 'docker', 'ollama', 'hands-on']
 ---
 
 # LAB-001: Docker & LLM Fundamentals

@@ -4,6 +4,7 @@ Title: "PROJECT-OMEGA Style Guide"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
+Tags: ['maintenance', 'guide']
 ---
 
 # PROJECT-OMEGA Style Guide

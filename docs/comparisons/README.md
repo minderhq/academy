@@ -1,9 +1,10 @@
 ---
 Document ID: COMPARISONS-README
 Title: "Technology Comparisons"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
+Tags: ['comparison', 'frameworks', 'llm']
 ---
 
 # Technology Comparisons

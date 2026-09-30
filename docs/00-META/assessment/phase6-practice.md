@@ -1,9 +1,10 @@
 ---
 Document ID: PHASE6-PRACTICE
 Title: "Phase 6: Data Nexus - Practice Exercises"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
+Tags: ['assessment', 'practice', 'rag']
 ---
 
 # Phase 6: Data Nexus - Practice Exercises

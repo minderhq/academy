@@ -1,9 +1,10 @@
 ---
 Document ID: TEMPLATE-006-Synthetic-Data-Generator
 Title: "PROJECT TEMPLATE: Synthetic Data Generator"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
+Tags: ['template', 'synthetic-data', 'distillation']
 ---
 
 # PROJECT TEMPLATE: Synthetic Data Generator

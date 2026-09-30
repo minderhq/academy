@@ -1,9 +1,10 @@
 ---
 Document ID: TUTORIAL-013
 Title: "TUTORIAL-013: AI Security and Safety"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
+Tags: ['tutorial', 'security', 'prompt-injection']
 ---
 
 # TUTORIAL-013: AI Security and Safety

@@ -4,6 +4,7 @@ Title: "Volume 4: Quantization & Optimization"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Tags: ['volume', 'quantization', 'gguf', 'kv-cache']
 ---
 
 # Volume 4: Quantization & Optimization

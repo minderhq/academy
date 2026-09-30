@@ -1,9 +1,10 @@
 ---
 Document ID: PHASE1-PRACTICE
 Title: "Phase 1: Infrastructure Practice"
-Last Updated: 2026-09-25
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
+Tags: ['assessment', 'practice', 'infrastructure']
 ---
 
 # Phase 1: Infrastructure Practice

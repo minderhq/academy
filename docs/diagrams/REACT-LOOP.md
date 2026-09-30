@@ -1,9 +1,10 @@
 ---
 Document ID: REACT-LOOP
 Title: "ReAct Loop: Agent Reasoning Flow"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
+Tags: ['diagram', 'react', 'agents']
 ---
 
 # ReAct Loop: Agent Reasoning Flow

@@ -1,9 +1,10 @@
 ---
 Document ID: TEMPLATE-003-RAG-System
 Title: "PROJECT TEMPLATE: RAG System"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
+Tags: ['template', 'rag', 'qdrant']
 ---
 
 # PROJECT TEMPLATE: RAG System

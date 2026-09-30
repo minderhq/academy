@@ -1,9 +1,10 @@
 ---
 Document ID: FAQ
 Title: "PROJECT-OMEGA FAQ"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
+Tags: ['faq', 'llm', 'llmops']
 ---
 
 # PROJECT-OMEGA FAQ

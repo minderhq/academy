@@ -1,9 +1,10 @@
 ---
 Document ID: QUICK-REF-VOLUME-4
 Title: "Volume 4: Quantization Mastery - Quick Reference"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Tags: ['cheatsheet', 'quantization', 'gguf']
 ---
 
 # Volume 4: Quantization Mastery - Quick Reference

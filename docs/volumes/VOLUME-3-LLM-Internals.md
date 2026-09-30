@@ -4,6 +4,7 @@ Title: "Volume 3: LLM Internals & Architecture"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Tags: ['volume', 'transformers', 'attention', 'tokenization']
 ---
 
 # Volume 3: LLM Internals & Architecture

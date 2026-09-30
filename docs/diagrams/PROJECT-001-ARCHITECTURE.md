@@ -1,9 +1,10 @@
 ---
 Document ID: PROJECT-001-ARCHITECTURE
 Title: "PROJECT-001: Architecture Diagram"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
+Tags: ['diagram', 'architecture', 'rag']
 ---
 
 # PROJECT-001: Architecture Diagram

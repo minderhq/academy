@@ -1,9 +1,10 @@
 ---
 Document ID: PROJECT-005
 Title: "CAPSTONE PROJECT-005: Fine-Tune Domain Model"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Tags: ['project', 'lora', 'finetuning', 'peft']
 ---
 
 # CAPSTONE PROJECT-005: Fine-Tune Domain Model

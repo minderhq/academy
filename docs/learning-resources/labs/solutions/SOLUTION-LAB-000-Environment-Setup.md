@@ -1,9 +1,10 @@
 ---
 Document ID: SOLUTION-LAB-000
 Title: "SOLUTION-LAB-000: Environment Setup"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Tags: ['solution', 'setup', 'docker']
 ---
 
 # SOLUTION-LAB-000: Environment Setup

@@ -30,6 +30,17 @@ TV-03  tag in a known non-canonical variant form; the message
        standard (phase README / CHECKPOINT are platform pages;
        'module' / 'prerequisites' were already in). Vocabulary
        209 -> 211.
+       Second deliberate extension (tick-456): 27 genre/facet tags
+       for the TG-04 corpus-wide coverage drain ('roadmap',
+       'cheatsheet', 'career', 'flashcards', 'faq', 'glossary',
+       'quickstart', 'setup', 'reference', 'troubleshooting',
+       'diagram', 'comparison', 'use-case', 'enterprise',
+       'notebook', 'case-study', 'bridge', 'lab', 'project',
+       'volume', 'maintenance', 'template', 'navigation', 'guide',
+       'healthcare', 'finance', 'industry') - one filter facet per learner /
+       maintainer directory, so the platform's tag chips can slice
+       the whole corpus, not just the phases. Vocabulary
+       211 -> 238.
 
 HARD GATE - exit 1 on any finding. TV-01/TV-02 were hard from
 day one (KW-03 born-at-zero pattern); TV-03 joined after the
@@ -55,37 +66,39 @@ WHITELIST = frozenset([
     'agents', 'aliases', 'alignment', 'api-design', 'architecture', 'assessment',
     'attention', 'audio', 'autogen', 'autograd', 'autonomy', 'awq',
     'backpropagation', 'bart', 'benchmarks', 'bf16', 'binary',
-    'bitnet', 'bnn', 'bpe', 'bridge-mode', 'cag', 'calculus',
-    'checkpoint', 'chroma', 'ci-cd', 'clip', 'code-interpreter', 'cognition',
+    'bitnet', 'bnn', 'bpe', 'bridge', 'bridge-mode', 'cag', 'calculus',
+    'case-study', 'career', 'cheatsheet', 'checkpoint', 'chroma', 'ci-cd', 'clip', 'code-interpreter', 'cognition',
+    'comparison',
     'communication', 'compression', 'configuration', 'context', 'context-window', 'cpu-gpu-hybrid',
-    'crewai', 'cuda', 'data-curation', 'ddp', 'deepspeed', 'deployment',
+    'crewai', 'cuda', 'data-curation', 'ddp', 'deepspeed', 'deployment', 'diagram',
     'devops', 'differential-privacy', 'distillation', 'distributed', 'distributed-training', 'docker',
-    'dpo', 'dynamic-batching', 'embeddings', 'encoder-decoder', 'evaluation', 'exl2',
-    'extreme-compression', 'fastapi', 'federated-learning', 'finetuning',
-    'flash-attention', 'fp16', 'framework-comparison', 'framework-engineering', 'framework-selection', 'frameworks',
-    'fsdp', 'function-calling', 'gelu', 'ggml', 'gguf', 'gpt',
-    'gptq', 'gpu', 'gradient-clipping', 'graphrag', 'hands-on', 'hardware',
-    'hnsw', 'hybrid-search', 'inference', 'infrastructure', 'iommu', 'isp',
+    'dpo', 'dynamic-batching', 'embeddings', 'encoder-decoder', 'enterprise', 'evaluation', 'exl2',
+    'extreme-compression', 'faq', 'fastapi', 'federated-learning',
+    'finance', 'finetuning',
+    'flash-attention', 'flashcards', 'fp16', 'framework-comparison', 'framework-engineering', 'framework-selection', 'frameworks',
+    'fsdp', 'function-calling', 'gelu', 'ggml', 'gguf', 'glossary', 'gpt',
+    'gptq', 'gpu', 'gradient-clipping', 'graphrag', 'guide', 'hands-on', 'hardware', 'healthcare',
+    'hnsw', 'hybrid-search', 'inference', 'infrastructure', 'industry', 'iommu', 'isp',
     'jumbo-frames', 'k3s', 'knowledge-graphs', 'kubernetes', 'kv-cache',
-    'langchain', 'langgraph', 'learning-rate', 'lifecycle', 'llama', 'llama.cpp',
-    'llm', 'llmops', 'long-context', 'long-term-memory', 'lora', 'manufacturing',
+    'lab', 'langchain', 'langgraph', 'learning-rate', 'lifecycle', 'llama', 'llama.cpp',
+    'llm', 'llmops', 'long-context', 'long-term-memory', 'lora', 'maintenance', 'manufacturing',
     'math', 'mem0', 'memory', 'milvus', 'mixed-precision', 'mlops',
     'model-registry', 'module', 'monitoring', 'mtu', 'multi-agent', 'multi-head',
-    'multimodal', 'neo4j', 'networking', 'nginx', 'normalization', 'observability',
+    'multimodal', 'navigation', 'neo4j', 'networking', 'nginx', 'normalization', 'notebook', 'observability',
     'offloading', 'ollama', 'optimization', 'optimizers', 'orchestration', 'peft',
     'performance', 'pgvector', 'phase', 'pii', 'pinecone', 'pipeline', 'pipeline-parallelism',
     'planning', 'plugin-architecture', 'postgresql', 'practice', 'preference', 'preference-learning',
     'preparation', 'prerequisites', 'pretraining', 'privacy', 'production', 'production-framework',
-    'prometheus', 'prompt-injection', 'proxmox', 'pruning', 'pytorch', 'pytorch-lightning',
-    'qat', 'qdrant', 'qlora', 'quantization', 'quantization-aware-training', 'quiz',
-    'rag', 'react', 'reasoning', 'reranking', 'retrieval', 'rlhf',
-    'rope', 'sam', 'scheduling', 'security', 'self-attention', 'serving',
-    'similarity', 'solution', 'sparsity', 'speculative-decoding', 'star-topology', 'swiglu',
+    'project', 'prometheus', 'prompt-injection', 'proxmox', 'pruning', 'pytorch', 'pytorch-lightning',
+    'qat', 'qdrant', 'qlora', 'quantization', 'quantization-aware-training', 'quickstart', 'quiz',
+    'rag', 'react', 'reasoning', 'reference', 'reranking', 'retrieval', 'rlhf',
+    'roadmap', 'rope', 'sam', 'scheduling', 'security', 'self-attention', 'serving',
+    'setup', 'similarity', 'solution', 'sparsity', 'speculative-decoding', 'star-topology', 'swiglu',
     'switch', 'synthetic-data', 't5', 'tensor-parallelism', 'tensorflow', 'tensors',
-    'ternary', 'tgi', 'tokenization', 'tokenizer', 'tool-calling', 'topology',
-    'training', 'transformers', 'tts', 'tutorial', 'uplink',
+    'ternary', 'tgi', 'template', 'tokenization', 'tokenizer', 'tool-calling', 'topology',
+    'training', 'transformers', 'troubleshooting', 'tts', 'tutorial', 'uplink', 'use-case',
     'vector-db', 'vector-store', 'vectors', 'versioning', 'vfio',
-    'virtualization', 'vision', 'vision-language', 'vlan', 'vllm', 'vlm',
+    'virtualization', 'vision', 'vision-language', 'vlan', 'volume', 'vllm', 'vlm',
     'wan', 'warmup', 'weaviate', 'whisper', 'xla', 'zero',
 ])
 VARIANTS = {

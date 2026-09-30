@@ -1,9 +1,10 @@
 ---
 Document ID: LAB-009
 Title: "LAB-009: Production Deployment"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Tags: ['lab', 'production', 'deployment', 'hands-on']
 ---
 
 # LAB-009: Production Deployment

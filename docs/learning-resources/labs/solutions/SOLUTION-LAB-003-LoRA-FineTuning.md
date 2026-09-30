@@ -1,9 +1,10 @@
 ---
 Document ID: SOLUTION-LAB-003
 Title: "SOLUTION-LAB-003: LoRA Fine-Tuning"
-Last Updated: 2026-09-27
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Tags: ['solution', 'lora', 'qlora']
 ---
 
 # SOLUTION-LAB-003: LoRA Fine-Tuning

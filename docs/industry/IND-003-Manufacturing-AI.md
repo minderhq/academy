@@ -1,10 +1,11 @@
 ---
 Document ID: IND-003
 Title: "IND-003: Manufacturing AI Applications"
-Last Updated: 2026-09-25
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 4 hours
+Tags: ['industry', 'manufacturing', 'llm']
 ---
 
 # IND-003: Manufacturing AI Applications

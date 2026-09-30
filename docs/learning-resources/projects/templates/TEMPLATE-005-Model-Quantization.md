@@ -1,9 +1,10 @@
 ---
 Document ID: TEMPLATE-005-Model-Quantization
 Title: "PROJECT TEMPLATE: Model Quantization"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
+Tags: ['template', 'quantization', 'gguf']
 ---
 
 # PROJECT TEMPLATE: Model Quantization

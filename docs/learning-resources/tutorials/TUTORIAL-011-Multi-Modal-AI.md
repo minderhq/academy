@@ -1,9 +1,10 @@
 ---
 Document ID: TUTORIAL-011
 Title: "TUTORIAL-011: Multi-Modal AI"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
+Tags: ['tutorial', 'multimodal', 'vision']
 ---
 
 # TUTORIAL-011: Multi-Modal AI

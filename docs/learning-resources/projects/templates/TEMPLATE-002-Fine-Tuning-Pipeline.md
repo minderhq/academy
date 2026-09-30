@@ -1,9 +1,10 @@
 ---
 Document ID: TEMPLATE-002-Fine-Tuning-Pipeline
 Title: "PROJECT TEMPLATE: Fine-tuning Pipeline"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
+Tags: ['template', 'finetuning', 'lora']
 ---
 
 # PROJECT TEMPLATE: Fine-tuning Pipeline

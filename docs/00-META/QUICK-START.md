@@ -1,9 +1,10 @@
 ---
 Document ID: QUICK-START
 Title: "QUICK START GUIDE: Get Started in 30 Minutes"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
+Tags: ['quickstart', 'tutorial', 'llm']
 ---
 
 # QUICK START GUIDE: Get Started in 30 Minutes

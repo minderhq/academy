@@ -1,9 +1,10 @@
 ---
 Document ID: SOLUTION-LAB-012
 Title: "SOLUTION-LAB-012: Audio AI"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Tags: ['solution', 'audio', 'whisper']
 ---
 
 # SOLUTION-LAB-012: Audio AI

@@ -1,9 +1,10 @@
 ---
 Document ID: TEMPLATE-009-Model-Deployment
 Title: "PROJECT TEMPLATE: Model Deployment"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
+Tags: ['template', 'deployment', 'serving']
 ---
 
 # PROJECT TEMPLATE: Model Deployment

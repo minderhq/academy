@@ -1,9 +1,10 @@
 ---
 Document ID: PHASE2-PRACTICE
 Title: "Phase 2: AI/ML Foundations Practice"
-Last Updated: 2026-09-25
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Tags: ['assessment', 'practice', 'pytorch']
 ---
 
 # Phase 2: AI/ML Foundations Practice

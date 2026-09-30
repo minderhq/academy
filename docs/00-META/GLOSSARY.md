@@ -1,9 +1,10 @@
 ---
 Document ID: GLOSSARY
 Title: "PROJECT-OMEGA Glossary"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
+Tags: ['glossary', 'llm', 'transformers']
 ---
 
 # PROJECT-OMEGA Glossary

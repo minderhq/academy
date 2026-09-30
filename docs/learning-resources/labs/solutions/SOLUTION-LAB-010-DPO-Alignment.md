@@ -1,9 +1,10 @@
 ---
 Document ID: SOLUTION-LAB-010
 Title: "SOLUTION-LAB-010: DPO Alignment"
-Last Updated: 2026-09-25
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
+Tags: ['solution', 'dpo', 'alignment']
 ---
 
 # SOLUTION-LAB-010: DPO Alignment

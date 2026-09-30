@@ -1,9 +1,10 @@
 ---
 Document ID: NOTEBOOKS-README
 Title: "PROJECT-OMEGA Notebooks"
-Last Updated: 2026-02-08
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
+Tags: ['notebook', 'pytorch', 'training']
 ---
 
 # PROJECT-OMEGA Notebooks

@@ -1,9 +1,10 @@
 ---
 Document ID: 0000
 Title: "PROJECT-OMEGA Learning Path"
-Last Updated: 2026-09-25
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
+Tags: ['roadmap', 'guide', 'llm']
 ---
 
 # PROJECT-OMEGA Learning Path

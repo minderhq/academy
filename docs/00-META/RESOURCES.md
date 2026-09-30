@@ -1,9 +1,10 @@
 ---
 Document ID: RESOURCES
 Title: "PROJECT-OMEGA Resources"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
+Tags: ['reference', 'llm', 'production']
 ---
 
 # PROJECT-OMEGA Resources

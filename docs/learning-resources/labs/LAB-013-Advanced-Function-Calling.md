@@ -1,9 +1,10 @@
 ---
 Document ID: LAB-013
 Title: "LAB-013: Advanced Function Calling"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Tags: ['lab', 'function-calling', 'agents', 'hands-on']
 ---
 
 # LAB-013: Advanced Function Calling

@@ -1,9 +1,10 @@
 ---
 Document ID: PHASE5-QUIZ
 Title: "Phase 5: Fine-Tuning & Alignment Quiz"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
+Tags: ['assessment', 'quiz', 'finetuning']
 ---
 
 # Phase 5: Fine-Tuning & Alignment Quiz

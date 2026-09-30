@@ -1,9 +1,10 @@
 ---
 Document ID: GUIDE-INTERVIEW
 Title: INTERVIEW PREPARATION GUIDE
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Tags: ['career', 'guide', 'llm']
 ---
 
 # INTERVIEW PREPARATION GUIDE

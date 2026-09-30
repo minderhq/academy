@@ -1,9 +1,10 @@
 ---
 Document ID: TEMPLATE-012-End-to-End-LLM-Pipeline
 Title: "PROJECT TEMPLATE: End-to-End LLM Pipeline"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
+Tags: ['template', 'llm', 'production', 'pipeline']
 ---
 
 # PROJECT TEMPLATE: End-to-End LLM Pipeline

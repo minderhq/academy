@@ -1,9 +1,10 @@
 ---
 Document ID: TUTORIAL-003
 Title: "TUTORIAL-003: RAG Basics - Give Your LLM Knowledge"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Tags: ['tutorial', 'rag', 'qdrant', 'hands-on']
 ---
 
 # TUTORIAL-003: RAG Basics - Give Your LLM Knowledge

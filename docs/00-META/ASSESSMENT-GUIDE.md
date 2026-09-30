@@ -1,9 +1,10 @@
 ---
 Document ID: ASSESSMENT-GUIDE
 Title: "Assessment Guide"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
+Tags: ['assessment', 'quiz', 'practice']
 ---
 
 # Assessment Guide

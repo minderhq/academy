@@ -1,9 +1,10 @@
 ---
 Document ID: LAB-003
 Title: "LAB-003: LoRA Fine-Tuning with QLoRA"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Tags: ['lab', 'lora', 'qlora', 'finetuning', 'hands-on']
 ---
 
 # LAB-003: LoRA Fine-Tuning with QLoRA

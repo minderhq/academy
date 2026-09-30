@@ -1,9 +1,10 @@
 ---
 Document ID: CP-002
 Title: "CP-002: Vector Database Comparison Guide"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Tags: ['comparison', 'vector-db', 'qdrant', 'pinecone']
 ---
 
 # CP-002: Vector Database Comparison Guide

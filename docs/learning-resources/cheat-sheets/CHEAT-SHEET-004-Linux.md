@@ -1,9 +1,10 @@
 ---
 Document ID: CHEAT-SHEET-004
 Title: "CHEAT-SHEET-004: Linux Commands for AI/ML"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Tags: ['cheatsheet', 'devops', 'infrastructure']
 ---
 
 # CHEAT-SHEET-004: Linux Commands for AI/ML

@@ -1,9 +1,10 @@
 ---
 Document ID: CHEAT-SHEET-002
 Title: "CHEAT-SHEET-002: Python for AI/ML"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Tags: ['cheatsheet', 'math', 'pytorch']
 ---
 
 # CHEAT-SHEET-002: Python for AI/ML

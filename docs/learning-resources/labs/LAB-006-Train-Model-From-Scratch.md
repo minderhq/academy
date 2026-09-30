@@ -5,7 +5,7 @@ Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 7 hours
-Tags: ['pytorch', 'transformers', 'pretraining', 'tokenizer', 'hands-on']
+Tags: ['lab', 'pytorch', 'transformers', 'pretraining', 'tokenizer', 'hands-on']
 ---
 
 # LAB-006: Train a Small Language Model from Scratch

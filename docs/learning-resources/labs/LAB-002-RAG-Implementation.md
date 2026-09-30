@@ -1,9 +1,10 @@
 ---
 Document ID: LAB-002
 Title: "LAB-002: RAG Implementation with Qdrant & Ollama"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Tags: ['lab', 'rag', 'qdrant', 'ollama', 'hands-on']
 ---
 
 # LAB-002: RAG Implementation with Qdrant & Ollama

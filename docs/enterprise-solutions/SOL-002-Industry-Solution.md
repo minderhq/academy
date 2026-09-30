@@ -8,7 +8,7 @@ Difficulty: Advanced
 Estimated Time: 7 hours
 Prerequisites: See module README
 Related: See module README
-Tags: ['solution', 'manufacturing', 'multimodal', 'vision', 'llm']
+Tags: ['enterprise', 'solution', 'manufacturing', 'multimodal', 'vision', 'llm']
 ---
 
 # SOL-002: Multi-Modal Industrial Inspection System

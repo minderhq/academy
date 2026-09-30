@@ -4,6 +4,7 @@ Title: "Volume 7: Production Mastery"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Tags: ['volume', 'agents', 'production', 'multi-agent']
 ---
 
 # Volume 7: Production Mastery

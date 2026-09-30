@@ -1,9 +1,10 @@
 ---
 Document ID: REAL-WORLD-EXAMPLES
 Title: Real-World Examples & Case Studies
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Tags: ['case-study', 'production', 'llm']
 ---
 
 # Real-World Examples & Case Studies

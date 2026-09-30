@@ -1,9 +1,10 @@
 ---
 Document ID: PROJECT-004
 Title: "CAPSTONE PROJECT-004: Quantize LLM from Scratch"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Tags: ['project', 'quantization', 'gguf']
 ---
 
 # CAPSTONE PROJECT-004: Quantize LLM from Scratch

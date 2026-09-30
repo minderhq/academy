@@ -1,9 +1,10 @@
 ---
 Document ID: LAB-011
 Title: "LAB-011: Multi-Modal AI"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Tags: ['lab', 'multimodal', 'vision', 'hands-on']
 ---
 
 # LAB-011: Multi-Modal AI

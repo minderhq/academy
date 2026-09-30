@@ -1,9 +1,10 @@
 ---
 Document ID: LAB-007
 Title: "LAB-007: Production RAG System"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Tags: ['lab', 'rag', 'production', 'hands-on']
 ---
 
 # LAB-007: Production RAG System

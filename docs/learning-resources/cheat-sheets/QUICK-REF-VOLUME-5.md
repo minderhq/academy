@@ -1,9 +1,10 @@
 ---
 Document ID: QUICK-REF-VOLUME-5
 Title: "Volume 5: Fine-Tuning Expert - Quick Reference"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Tags: ['cheatsheet', 'finetuning', 'lora']
 ---
 
 # Volume 5: Fine-Tuning Expert - Quick Reference

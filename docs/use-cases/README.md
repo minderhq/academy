@@ -1,9 +1,10 @@
 ---
 Document ID: USE-CASES-README
 Title: "Use Cases - Real-World AI Applications"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
+Tags: ['use-case', 'llm', 'rag']
 ---
 
 # Use Cases - Real-World AI Applications

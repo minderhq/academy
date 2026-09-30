@@ -1,9 +1,10 @@
 ---
 Document ID: TEMPLATE-001-Simple-LLM-App
 Title: "PROJECT TEMPLATE: Simple LLM App"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
+Tags: ['template', 'llm', 'fastapi']
 ---
 
 # PROJECT TEMPLATE: Simple LLM App

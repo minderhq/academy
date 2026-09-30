@@ -1,9 +1,10 @@
 ---
 Document ID: PROGRESS-CHECKPOINTS
 Title: "Progress Checkpoints: Complete Curriculum Guide"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
+Tags: ['roadmap', 'guide', 'assessment']
 ---
 
 # Progress Checkpoints: Complete Curriculum Guide

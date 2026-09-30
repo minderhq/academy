@@ -1,9 +1,10 @@
 ---
 Document ID: LAB-005
 Title: "LAB-005: GraphRAG Implementation with Neo4j & Qdrant"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Tags: ['lab', 'graphrag', 'neo4j', 'qdrant', 'hands-on']
 ---
 
 # LAB-005: GraphRAG Implementation with Neo4j & Qdrant

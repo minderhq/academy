@@ -4,6 +4,7 @@ Title: "Volume 5: Model Adaptation"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Tags: ['volume', 'finetuning', 'lora', 'dpo']
 ---
 
 # Volume 5: Model Adaptation

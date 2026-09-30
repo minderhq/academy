@@ -1,9 +1,10 @@
 ---
 Document ID: PHASE1-QUIZ
 Title: "Phase 1: Infrastructure Quiz"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
+Tags: ['assessment', 'quiz', 'infrastructure']
 ---
 
 # Phase 1: Infrastructure Quiz

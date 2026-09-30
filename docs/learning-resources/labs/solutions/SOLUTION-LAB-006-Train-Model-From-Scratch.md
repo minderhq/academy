@@ -1,9 +1,10 @@
 ---
 Document ID: SOLUTION-LAB-006
 Title: "SOLUTION-LAB-006: Train Model From Scratch"
-Last Updated: 2026-09-27
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Tags: ['solution', 'pytorch', 'pretraining']
 ---
 
 # SOLUTION-LAB-006: Train Model From Scratch

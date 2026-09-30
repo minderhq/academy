@@ -1,9 +1,10 @@
 ---
 Document ID: TUTORIAL-000
 Title: "TUTORIAL-000: Python for AI (Complete Beginner)"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
+Tags: ['tutorial', 'math', 'tensors']
 ---
 
 # TUTORIAL-000: Python for AI (Complete Beginner)

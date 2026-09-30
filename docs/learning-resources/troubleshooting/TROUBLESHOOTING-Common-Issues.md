@@ -1,9 +1,10 @@
 ---
 Document ID: TROUBLESHOOTING-Common-Issues
 Title: "TROUBLESHOOTING: Common Issues & Solutions"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Tags: ['troubleshooting', 'docker', 'llm']
 ---
 
 # TROUBLESHOOTING: Common Issues & Solutions

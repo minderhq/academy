@@ -5,7 +5,7 @@ Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 6 hours
-Tags: ['dpo', 'alignment', 'rlhf', 'preference-learning', 'hands-on']
+Tags: ['lab', 'dpo', 'alignment', 'rlhf', 'preference-learning', 'hands-on']
 ---
 
 # LAB-010: DPO Alignment

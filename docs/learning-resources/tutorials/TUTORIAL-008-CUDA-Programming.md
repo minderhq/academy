@@ -1,9 +1,10 @@
 ---
 Document ID: TUTORIAL-008
 Title: "TUTORIAL-008: CUDA Programming for AI"
-Last Updated: 2026-09-27
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
+Tags: ['tutorial', 'cuda', 'gpu']
 ---
 
 # TUTORIAL-008: CUDA Programming for AI

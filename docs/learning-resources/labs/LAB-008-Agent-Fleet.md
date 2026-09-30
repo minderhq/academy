@@ -1,9 +1,10 @@
 ---
 Document ID: LAB-008
 Title: "LAB-008: Multi-Agent Fleet"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Tags: ['lab', 'multi-agent', 'agents', 'hands-on']
 ---
 
 # LAB-008: Multi-Agent Fleet

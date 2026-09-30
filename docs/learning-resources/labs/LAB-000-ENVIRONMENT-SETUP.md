@@ -1,9 +1,10 @@
 ---
 Document ID: LAB-000
 Title: "LAB-000: Environment Setup"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
+Tags: ['lab', 'setup', 'docker', 'hands-on']
 ---
 
 # LAB-000: Environment Setup

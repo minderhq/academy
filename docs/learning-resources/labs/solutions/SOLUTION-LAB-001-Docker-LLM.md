@@ -1,9 +1,10 @@
 ---
 Document ID: SOLUTION-LAB-001
 Title: "SOLUTION-LAB-001: Docker & LLM Fundamentals"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Tags: ['solution', 'docker', 'ollama']
 ---
 
 # SOLUTION-LAB-001: Docker & LLM Fundamentals

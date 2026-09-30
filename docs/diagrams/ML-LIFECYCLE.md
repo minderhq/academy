@@ -1,9 +1,10 @@
 ---
 Document ID: ML-LIFECYCLE
 Title: "ML Lifecycle: From Development to Production"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
+Tags: ['diagram', 'lifecycle', 'mlops']
 ---
 
 # ML Lifecycle: From Development to Production

@@ -1,9 +1,10 @@
 ---
 Document ID: PREREQUISITES-001
 Title: "PROJECT-001: Prerequisites & Setup Guide"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Tags: ['prerequisites', 'project', 'setup']
 ---
 
 # PROJECT-001: Prerequisites & Setup Guide

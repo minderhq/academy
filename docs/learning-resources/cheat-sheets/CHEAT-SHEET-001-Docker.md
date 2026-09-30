@@ -1,9 +1,10 @@
 ---
 Document ID: CHEAT-SHEET-001
 Title: "CHEAT-SHEET-001: Docker Commands"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Tags: ['cheatsheet', 'docker', 'devops']
 ---
 
 # CHEAT-SHEET-001: Docker Commands

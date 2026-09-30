@@ -1,9 +1,10 @@
 ---
 Document ID: TUTORIAL-009
 Title: "TUTORIAL-009: Advanced RAG Techniques"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
+Tags: ['tutorial', 'rag', 'reranking']
 ---
 
 # TUTORIAL-009: Advanced RAG Techniques

@@ -1,9 +1,10 @@
 ---
 Document ID: PHASE3-PRACTICE
 Title: "Phase 3: Transformer Physics Practice"
-Last Updated: 2026-09-25
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
+Tags: ['assessment', 'practice', 'transformers']
 ---
 
 # Phase 3: Transformer Physics Practice

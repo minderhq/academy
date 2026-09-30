@@ -4,6 +4,7 @@ Title: "PROJECT-OMEGA Master Index"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
+Tags: ['maintenance', 'navigation', 'llm']
 ---
 
 # PROJECT-OMEGA Master Index

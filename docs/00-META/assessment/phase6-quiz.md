@@ -1,9 +1,10 @@
 ---
 Document ID: PHASE6-QUIZ
 Title: "Phase 6: Data Nexus (RAG) Quiz"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
+Tags: ['assessment', 'quiz', 'rag']
 ---
 
 # Phase 6: Data Nexus (RAG) Quiz

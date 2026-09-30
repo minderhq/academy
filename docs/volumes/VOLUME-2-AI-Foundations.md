@@ -4,6 +4,7 @@ Title: "Volume 2: AI/ML Foundations"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Tags: ['volume', 'pytorch', 'tensors', 'math']
 ---
 
 # Volume 2: AI/ML Foundations

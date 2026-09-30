@@ -1,9 +1,10 @@
 ---
 Document ID: TEMPLATE-008-Multi-Modal-Application
 Title: "PROJECT TEMPLATE: Multi-Modal Application"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
+Tags: ['template', 'multimodal', 'vision']
 ---
 
 # PROJECT TEMPLATE: Multi-Modal Application
