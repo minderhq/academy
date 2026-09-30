@@ -700,6 +700,32 @@ stand today?" without running each tool by hand.
                       and out of fences - the gate
                       guards the platform era where
                       contributors paste from the web
+    line_ending_scan
+                      Line-ending + final-newline
+                      hygiene (LE-01/02, hard), the
+                      one BYTE-level gate in the
+                      fleet: every other scan reads
+                      with universal newlines, which
+                      silently translates CRLF to LF
+                      - the whole fleet is
+                      structurally blind to this
+                      axis. LE-01 no carriage-return
+                      byte in any doc (no CRLF, no
+                      lone CR); LE-02 every non-
+                      empty doc ends with a newline.
+                      Whole file by design - fences
+                      and FM are irrelevant to line
+                      endings. Committed content was
+                      already 100% LF (measured byte-
+                      exact; .gitattributes eol=lf
+                      normalizes at add time) - the
+                      birth drain renormalized 120
+                      stale-CRLF worktree copies of
+                      clean blobs plus 24 notebooks/
+                      yml, and content-fixed 2 README
+                      blobs missing their final
+                      newline. Born tick-490 born-at-
+                      zero
     glossary_scan
                       Glossary integrity (GS-01..03, hard):
                       GLOSSARY.md is the platform's
@@ -1178,6 +1204,7 @@ GATES = [
     ("link_case_scan.py", "link_case_scan", True),
     ("link_text_scan.py", "link_text_scan", True),
     ("invisible_scan.py", "invisible_scan", True),
+    ("line_ending_scan.py", "line_ending_scan", True),
     ("glossary_scan.py", "glossary_scan", True),
     ("emphasis_scan.py", "emphasis_scan", True),
     ("whitespace_scan.py", "whitespace_scan", True),
