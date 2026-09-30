@@ -769,7 +769,7 @@ stand today?" without running each tool by hand.
                       at-zero: 597 tracked files
                       censused clean
     frontmatter_value_scan
-                      FM VALUE contracts (FV-01..04,
+                      FM VALUE contracts (FV-01..06,
                       hard) - the platform
                       ingestion simulation: does
                       exactly what the platform
@@ -787,12 +787,24 @@ stand today?" without running each tool by hand.
                       two-regime form), FV-03
                       Tags list-of-string, FV-04
                       the whole block parses to a
-                      dict. The fleet's only
-                      third-party import (PyYAML)
-                      - deliberate: the rule
+                      dict. Related arms: FV-05
+                      no dangling integer id
+                      (two-pass cross-file - the
+                      platform renders Related
+                      as next-lesson cards),
+                      FV-06 Related is a prose
+                      pointer or a list of
+                      ids/names, never another
+                      scalar or a mapping. The
+                      fleet's only third-party
+                      import (PyYAML) -
+                      deliberate: the rule
                       under test IS yaml parsing.
                       Born tick-493, one drain
-                      ('1 hours' -> '1 hour')
+                      ('1 hours' -> '1 hour');
+                      Related arms tick-494
+                      born-at-zero: 32 int refs,
+                      0 dangling
     glossary_scan
                       Glossary integrity (GS-01..03, hard):
                       GLOSSARY.md is the platform's

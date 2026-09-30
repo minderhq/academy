@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Front-matter VALUE contracts (FV-01..04, HARD) - the platform
+"""Front-matter VALUE contracts (FV-01..06, HARD) - the platform
 ingestion simulation.
 
 FS-01/02 gate the six standard field NAMES; the dup gates check
@@ -26,17 +26,29 @@ FV-03  Tags parses to a list of strings - the platform's tag
 FV-04  the whole front-matter block yaml.safe_loads to a dict -
        this IS the ingestion call; one unparseable value and the
        platform drops the doc's metadata entirely
+FV-05  an integer inside a Related list must be the Document ID
+       of an existing doc - the platform renders Related as
+       next-lesson cards; a dangling id is a broken card at
+       runtime (two-pass: collect all Document IDs first, then
+       verify - cross-file reference)
+FV-06  Related, when present, is a prose pointer (str) or a list
+       of ids/names - never a number, bool or mapping; the triage
+       census (tick-494) found exactly these forms corpus-wide:
+       178 canonical "See module README", 11 lists, 4 prose
+       variants, 215 absent
 
 Scope: all docs/**/*.md, FM block = first ---...--- (within 40
-lines, FS-01's contract). Related is OUT of value-typing on
-purpose: its canonical values are the prose pointer
-"See module README" and mixed string/int lists, both long-
-established corpus conventions - a separate axis if ever gated.
+lines, FS-01's contract). Related string elements (LAB-003,
+TUTORIAL-002 namespaces) are NOT resolved by FV-05 - they live in
+other registries (labs, learning-resources) with their own gates;
+the integer namespace is the one FV-05 owns. Related is otherwise
+free-form by design.
 
 Census at birth (tick-493): 408/408 yaml-parseable, 408/408
 ISO dates, Tags clean; one real drain ("1 hours" -> "1 hour" in
 phase1 1100 PRACTICE.md) and the two-regime PREREQUISITES form
-canonized as FV-02's second arm.
+canonized as FV-02's second arm. FV-05/06 born tick-494
+born-at-zero: 32 Related integer refs, 0 dangling.
 
 Note: this gate is the fleet's only third-party import (PyYAML) -
 deliberate, because the rule under test is "yaml.safe_load
@@ -83,6 +95,9 @@ def main() -> int:
 
     findings: list[str] = []
     n_docs = 0
+    # pass 1: collect (rel, data) pairs and the Document ID universe
+    parsed: list[tuple[str, dict]] = []
+    doc_ids: set[int] = set()
     for path in sorted((args.root / "docs").rglob("*.md")):
         rel = path.relative_to(args.root).as_posix()
         text = path.read_text(encoding="utf-8")
@@ -100,6 +115,14 @@ def main() -> int:
                 "platform ingests FM with this exact call and drops all "
                 "metadata when it fails (see docstring)" % (rel, str(exc)[:80]))
             continue
+        parsed.append((rel, data))
+        did = data.get("Document ID")
+        if isinstance(did, int):
+            doc_ids.add(did)
+        elif isinstance(did, str) and did.isdigit():
+            doc_ids.add(int(did))
+    # pass 2: value contracts
+    for rel, data in parsed:
         lu = data.get("Last Updated")
         # yaml auto-converts bare ISO dates to datetime.date - that
         # conversion IS the ISO contract (it fails for impossible
@@ -137,13 +160,35 @@ def main() -> int:
                 "the platform's tag filter builds UI from this list; "
                 "bare/comma strings degrade into one giant token"
                 % (rel, tags))
+        relv = data.get("Related")
+        if relv is not None and not isinstance(relv, (str, list)):
+            findings.append(
+                "FV-06 %s: Related %r is neither a prose pointer (str) "
+                "nor a list - numbers, bools and mappings have no "
+                "rendering on the platform (triage census in docstring)"
+                % (rel, relv))
+        if isinstance(relv, list):
+            for el in relv:
+                if isinstance(el, bool) or not isinstance(el, (int, str)):
+                    findings.append(
+                        "FV-06 %s: Related list element %r is neither an "
+                        "id (int) nor a name (str) - the platform renders "
+                        "Related as next-lesson cards" % (rel, el))
+                elif isinstance(el, int) and el not in doc_ids:
+                    findings.append(
+                        "FV-05 %s: Related references Document ID %d, "
+                        "which no doc carries - the platform renders "
+                        "Related as next-lesson cards; a dangling id is "
+                        "a broken card at runtime" % (rel, el))
     for f in findings:
         print("  " + esc(f))
     print("frontmatter_value_scan: %d docs with FM inspected; %d FV "
           "findings - hard (FV-01 ISO dates, FV-02 machine-comparable "
-          "time, FV-03 Tags list-of-string, FV-04 yaml.safe_load = the "
-          "platform ingestion simulation; born tick-493, one drain "
-          "('1 hours' -> '1 hour'); see docstring)"
+          "time, FV-03 Tags list-of-string, FV-04 yaml.safe_load, FV-05 "
+          "no dangling Related int, FV-06 Related str-or-list = the "
+          "platform ingestion simulation; born tick-493 with one drain "
+          "('1 hours' -> '1 hour'), Related arms tick-494 born-at-zero; "
+          "see docstring)"
           % (n_docs, len(findings)))
     return 1 if findings else 0
 
