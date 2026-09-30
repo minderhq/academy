@@ -1,7 +1,7 @@
 ---
 Document ID: MASTER-INDEX
 Title: "PROJECT-OMEGA Master Index"
-Last Updated: 2026-02-07
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
 ---
@@ -9,8 +9,8 @@ Difficulty: Beginner
 # PROJECT-OMEGA Master Index
 ## Complete Documentation Navigation Guide
 
-**Version:** 4.4
-**Last Updated:** 2026-02-07
+**Version:** 4.5
+**Last Updated:** 2026-09-30
 **Total Files:** 408 markdown files (docs/)
 
 ---
@@ -237,7 +237,7 @@ Difficulty: Beginner
 
 ---
 
-### Career Guides (3 files) ⭐ NEW
+### Career Guides (3 files)
 
 | Guide | Topic | Coverage |
 |-------|-------|----------|
@@ -340,6 +340,11 @@ Difficulty: Beginner
 | **[Document Template](DOCUMENT-TEMPLATE.md)** | File template |
 | **[Navigation Template](NAVIGATION-TEMPLATE.md)** | Navigation patterns |
 | **[Cross-Reference Guidelines](CROSS-REFERENCE-GUIDELINES.md)** | Linking standards |
+| **[Organization Guide](ORGANIZATION-GUIDE.md)** | Directory structure & maintenance |
+| **[QA Tooling](QA-TOOLING.md)** | Structural quality gates (71 scripts) |
+| **[Glossary](GLOSSARY.md)** | Terminology reference |
+| **[Resources](RESOURCES.md)** | Curated external resources |
+| **[Sitemap](SITEMAP.md)** | Generated full-corpus index |
 | **[Progress Checkpoints](PROGRESS-CHECKPOINTS.md)** | Milestone tracking |
 
 ---

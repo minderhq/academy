@@ -1,7 +1,7 @@
 ---
 Document ID: PROGRESS-TRACKER
 Title: "PROGRESS TRACKER: PROJECT-OMEGA Learning Journey"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
 ---
@@ -96,7 +96,7 @@ Total: [░░░░░░░░░░░░░░░░░] 0% (0/408 core file
 - [ ] 2203-CUDA-Kernel-Programming.md
 - [ ] **EXP_2203: CUDA Kernels** (experiment)
 
-**Pre-training [2400] (NEW):**
+**Pre-training [2400]:**
 - [ ] 2401-Pre-training-Fundamentals.md
 - [ ] 2402-Large-Scale-Training.md
 - [ ] 2403-Evaluation-Frameworks.md
