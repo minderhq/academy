@@ -401,6 +401,19 @@ stand today?" without running each tool by hand.
                       semantics corpus-wide, so the naive 2x band
                       flags 107/111 and hardening is deferred
                       until the platform picks the semantics
+    difficulty_distribution_scan
+                      Difficulty as a sequence dimension (DX-01,
+                      report-only census): per-phase B/I/A
+                      distribution and per-doc anomalies >=2 bands
+                      from the phase median; birth census
+                      2026-09-30 measured the ramp coherent
+                      (phase-1 Intermediate -> 3/4/5/7 Advanced,
+                      260 in-phase docs) with 25 anomaly
+                      candidates that are almost all entry-point
+                      READMEs by design - only 2 real lesson
+                      candidates (3301/3302 Beginner primers in
+                      the Advanced wall, kept: short reference
+                      primers); README aggregate class is known
     difficulty_census Difficulty vocabulary closure (DI-01..03,
                       hard): the platform renders difficulty as
                       a filter/sequence dimension, so the
@@ -653,6 +666,7 @@ GATES = [
     ("prereq_ordering_scan.py", "prereq_ordering_scan", True),
     ("qa_tooling_coverage_check.py", "qa_tooling_coverage_check", True),
     ("pacing_consistency_census.py", "pacing_consistency_census", False),
+    ("difficulty_distribution_scan.py", "difficulty_distribution_scan", False),
     ("difficulty_census.py", "difficulty_census", True),
     ("lesson_anatomy_census.py", "lesson_anatomy_census", True),
     ("closure_census.py", "closure_census", True),
