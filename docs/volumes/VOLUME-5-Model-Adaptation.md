@@ -1,7 +1,7 @@
 ---
 Document ID: VOLUME-5
 Title: "Volume 5: Model Adaptation"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -557,7 +557,7 @@ Use this checklist to track your progress:
 
 | Metric | Value |
 |--------|-------|
-| **Core Documents** | 6 files |
+| **Core Documents** | 9 files |
 | **Experiments** | 1 experiment |
 | **Labs** | 1 lab |
 | **Capstone Projects** | 3 projects |

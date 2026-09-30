@@ -35,6 +35,14 @@ rather than letting the gate rot):
                   headers (vs phase documents on disk), the Total
                   bar and Core Documents target (vs docs/), the
                   SITEMAP line and the stats table targets
+  docs/volumes   the Statistics-table "Core/Optional Documents" rows
+                  vs the doc's own checklist sections (canonical
+                  semantic 2026-09-30: ALL "- [ ]" items in the
+                  section). Before this family the seven volume docs
+                  mixed five different counting semantics (all-items,
+                  lessons-only, lessons+tutorials, one claim rotted
+                  by a late lesson add) - V1/V7 already used
+                  all-items; V2-V6 were aligned in the same commit.
 
 Hard gate (exit 1 on findings): baseline 0 on the clean corpus.
 
@@ -556,6 +564,44 @@ def main() -> int:
             note(int(match.group(1)) == actual,
                  "PROGRESS-TRACKER total bar claims %s core files but "
                  "disk measures %d" % (match.group(1), actual))
+
+    # ---- docs/volumes statistics tables ----
+    # The Documents rows are locked to the doc's own checklist sections.
+    # Canonical semantic (decided 2026-09-30): "Core Documents" = ALL
+    # "- [ ]" items under "### Core Content (Required)", "Optional
+    # Documents" = all items under "### Advanced Content (Optional)".
+    # Before this gate the seven volume docs mixed five different
+    # counting semantics (all-items / lessons-only / lessons+tutorials /
+    # one rotted by a late lesson add) - V1 and V7 already used
+    # all-items; V2-V6 were aligned to it in the same commit.
+    vol_stats_row = re.compile(r"^\| \*\*(Core Documents|Optional "
+                               r"Documents)\*\* \| (\d+) files? \|$",
+                               re.M)
+    for vol_path in sorted((args.root / "docs" / "volumes")
+                           .glob("VOLUME-*.md")):
+        vt = vol_path.read_text(encoding="utf-8")
+
+        def vol_checklist(title_re: str, _vt: str = vt) -> int:
+            m = re.search(r"^### " + title_re + r"\s*$", _vt, re.M)
+            if m is None:
+                return 0
+            rest = _vt[m.end():]
+            stop = re.search(r"^### |^## ", rest, re.M)
+            body = rest[:stop.start()] if stop else rest
+            return len(re.findall(r"^- \[ \]", body, re.M))
+
+        vol_measures = {
+            "Core Documents":
+                vol_checklist(r"Core Content \(Required\)"),
+            "Optional Documents":
+                vol_checklist(r"Advanced Content \(Optional\)"),
+        }
+        for row_m in vol_stats_row.finditer(vt):
+            label, claimed = row_m.group(1), int(row_m.group(2))
+            actual = vol_measures[label]
+            note(claimed == actual,
+                 "%s claims %s=%d but its own checklist measures %d"
+                 % (vol_path.name, label, claimed, actual))
 
     for f in findings:
         print(f.encode("ascii", "backslashreplace").decode("ascii"))

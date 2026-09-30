@@ -1,7 +1,7 @@
 ---
 Document ID: VOLUME-7
 Title: "Volume 7: Production Mastery"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -589,7 +589,7 @@ def decompose_task(query):
 #### Day 1-3: Multi-Agent Collaboration
 **Agents working together**
 
-1. **[7201: AutoGen vs LangGraph](../phases/phase7-agentic/7300-orchestration/guides/7303-Framework-Comparison.md)** (2-3 hours)
+1. **[7303: Framework Comparison](../phases/phase7-agentic/7300-orchestration/guides/7303-Framework-Comparison.md)** (2-3 hours)
    - Framework comparison
    - Conversation patterns
    - State machine flows
@@ -702,7 +702,7 @@ def python_tool(code: str) -> dict:
 #### Day 1-3: Agent Memory Systems
 **Long-term memory for agents**
 
-1. **[7404: Agent Memory Implementation](../phases/phase7-agentic/7400-memory/guides/7402-Agent-Memory-Implementation.md)** (3-4 hours)
+1. **[7402: Agent Memory Implementation](../phases/phase7-agentic/7400-memory/guides/7402-Agent-Memory-Implementation.md)** (3-4 hours)
    - Memory types (episodic, semantic, procedural)
    - Memory storage (Redis, PostgreSQL, Vector DB)
    - Memory retrieval
@@ -908,10 +908,10 @@ Use this checklist to track your progress:
 - [ ] **7101: ReAct Loop** (3-4 hours)
 - [ ] **LAB-004: ReAct Agent** (4 hours)
 - [ ] **7102: Planning** (2-3 hours)
-- [ ] **7201: AutoGen vs LangGraph** (2-3 hours)
+- [ ] **7303: Framework Comparison** (2-3 hours)
 - [ ] **7301: Collaborative Tasking** (3-4 hours)
-- [ ] **7301: Safe Python Interpreter** (2-3 hours)
-- [ ] **7404: Agent Memory Implementation** (3-4 hours)
+- [ ] **7202: Safe Code Interpreter** (2-3 hours)
+- [ ] **7402: Agent Memory Implementation** (3-4 hours)
 
 **Total Core Time:** ~25-30 hours
 

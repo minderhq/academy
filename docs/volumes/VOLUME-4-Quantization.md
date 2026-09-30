@@ -1,7 +1,7 @@
 ---
 Document ID: VOLUME-4
 Title: "Volume 4: Quantization & Optimization"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -492,7 +492,7 @@ Use this checklist to track your progress:
 
 | Metric | Value |
 |--------|-------|
-| **Core Documents** | 9 files |
+| **Core Documents** | 11 files |
 | **Experiments** | 2 experiments |
 | **Capstone Projects** | 3 projects |
 | **Estimated Time** | 35-40 hours (core) + 4-10 hours (project) |

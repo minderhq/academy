@@ -1,7 +1,7 @@
 ---
 Document ID: VOLUME-6
 Title: "Volume 6: Data Nexus - RAG & Memory"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -743,7 +743,7 @@ Use this checklist to track your progress:
 
 | Metric | Value |
 |--------|-------|
-| **Core Documents** | 8 files |
+| **Core Documents** | 11 files |
 | **Tutorials** | 1 tutorial |
 | **Labs** | 2 labs |
 | **Experiments** | 1 experiment |

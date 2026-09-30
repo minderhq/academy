@@ -1,7 +1,7 @@
 ---
 Document ID: VOLUME-2
 Title: "Volume 2: AI/ML Foundations"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -212,7 +212,7 @@ def matmul_kernel(A, B, C):
 
 ---
 
-#### Day 5-7: Pre-training Fundamentals (NEW)
+#### Day 5-7: Pre-training Fundamentals
 **Understanding the complete training pipeline**
 
 1. **[2401: Pre-training Fundamentals](../phases/phase2-foundations/2400-pretraining/2401-Pre-training-Fundamentals.md)** (4-5 hours)
@@ -349,10 +349,10 @@ Use this checklist to track your progress:
 - [ ] **EXP_2202: XLA Experiment** (1 hour)
 - [ ] **2203: CUDA Kernels** (3-4 hours)
 - [ ] **EXP_2203: CUDA Experiment** (3-4 hours)
-- [ ] **2401: Pre-training Fundamentals** (4-5 hours) (NEW)
-- [ ] **2402: Large-Scale Training** (4-5 hours) (NEW)
-- [ ] **2403: Evaluation Frameworks** (3-4 hours) (NEW)
-- [ ] **LAB-006: Train Model from Scratch** (6-8 hours) (NEW)
+- [ ] **2401: Pre-training Fundamentals** (4-5 hours)
+- [ ] **2402: Large-Scale Training** (4-5 hours)
+- [ ] **2403: Evaluation Frameworks** (3-4 hours)
+- [ ] **LAB-006: Train Model from Scratch** (6-8 hours)
 - [ ] **CHEAT-SHEET-003: Git** (reference)
 - [ ] **CHEAT-SHEET-004: Linux** (reference)
 
@@ -395,7 +395,7 @@ Use this checklist to track your progress:
 
 | Metric | Value |
 |--------|-------|
-| **Core Documents** | 8 files (+3 pre-training guides) |
+| **Core Documents** | 16 files |
 | **Experiments** | 5 experiments |
 | **Labs** | 1 lab (LAB-006) |
 | **Cheat Sheets** | 2 (Git, Linux) |

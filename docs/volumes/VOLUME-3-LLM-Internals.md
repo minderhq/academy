@@ -1,7 +1,7 @@
 ---
 Document ID: VOLUME-3
 Title: "Volume 3: LLM Internals & Architecture"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -427,7 +427,7 @@ Use this checklist to track your progress:
 
 | Metric | Value |
 |--------|-------|
-| **Core Documents** | 8 files |
+| **Core Documents** | 12 files |
 | **Experiments** | 4 experiments |
 | **Capstone Projects** | 3 projects |
 | **Estimated Time** | 30-35 hours (core) + 4-10 hours (project) |
