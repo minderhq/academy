@@ -11,10 +11,13 @@ Hard gates (exit 1 on any finding):
   - case mismatches between href segments and on-disk names
   - missing relative targets (also caught by linkcheck; kept for a
     single-pass complete picture)
-Report-only:
-  - orphan md files (zero inbound relative links). Root README.md and any
-    TEMPLATE.md are exempt by rule; CHANGELOG.md is the known-by-rule
-    orphan (1 at baseline) since changelogs are intentionally unlinked.
+  - orphan md files with zero inbound relative links - since
+    2026-09-30. A content doc no nav link points at is invisible to
+    the platform browse graph: it cannot be reached by clicking, only
+    by search. Exempt by rule: root README.md (the entry doc), any
+    TEMPLATE.md, and CHANGELOG.md (changelogs are intentionally
+    unlinked - the known-by-rule orphan, 1 at baseline). Any NEW
+    orphan must arrive with the link that surfaces it.
 
 Baseline (2026-09-28): 0 case mismatches / 0 missing / 1 known orphan.
 Materialized from the formerly repo-external tick77_casecheck_omega.py
@@ -133,7 +136,7 @@ def main() -> int:
     for s, l, href in missing[:30]:
         print(esc(" - %s:%d  %s" % (s, l, href)))
 
-    # orphan report: md files never targeted by any relative link
+    # orphan gate: md files never targeted by any relative link
     print()
     orphans = []
     for f in md_files_list:
@@ -145,15 +148,18 @@ def main() -> int:
         if rel == "README.md" or base == "TEMPLATE.md":
             continue
         orphans.append(rel)
-    print(esc("=== ORPHAN MD FILES (zero inbound relative links, README/TEMPLATE exempt): %d ===" % len(orphans)))
+    known_orphans = {"CHANGELOG.md"}  # changelogs are intentionally unlinked
+    unexpected = [o for o in orphans if os.path.basename(o) not in known_orphans]
+    print(esc("=== ORPHAN MD FILES (zero inbound relative links, README/TEMPLATE/CHANGELOG exempt): %d (%d unexpected) ===" % (len(orphans), len(unexpected))))
     for o in sorted(orphans):
-        print(" -", esc(o))
+        tag = "" if os.path.basename(o) in known_orphans else "  <- HARD"
+        print(" -", esc(o) + tag)
 
-    ok = not (mismatches or missing)
+    ok = not (mismatches or missing or unexpected)
     print("casecheck: %d relative links, %d case mismatches, %d missing, "
-          "%d orphan (report-only) -> %s"
+          "%d orphan (%d unexpected - hard since 2026-09-30) -> %s"
           % (total_links, len(mismatches), len(missing), len(orphans),
-             "PASS" if ok else "FAIL"))
+             len(unexpected), "PASS" if ok else "FAIL"))
     return 0 if ok else 1
 
 

@@ -63,7 +63,10 @@ stand today?" without running each tool by hand.
                        Answer Key join locked in reverse)
     structure_lint     fence parity + H1 discipline corpus-wide
     linkcheck          every relative link target exists on disk
-    casecheck          case-sensitive href/disk match (Windows-invisible breaks)
+    casecheck          case-sensitive href/disk match (Windows-invisible
+                       breaks) + missing targets + orphan gate (a content
+                       doc with zero inbound links is invisible to the
+                       browse graph; README/TEMPLATE/CHANGELOG exempt)
     anchor_check       in-document anchors vs GitHub-accurate slugger
                        (2 known inline-code examples allowlisted)
     table_lint         ragged GFM tables - header/separator/body lines
