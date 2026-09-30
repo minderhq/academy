@@ -1,7 +1,7 @@
 ---
 Document ID: STYLE-GUIDE
 Title: "PROJECT-OMEGA Style Guide"
-Last Updated: 2026-02-04
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
 ---
@@ -35,9 +35,21 @@ This guide ensures consistency across all PROJECT-OMEGA documentation. Consisten
 
 ### Standard Header
 
-Every document MUST start with:
+Every document MUST start with a YAML front-matter block, then the
+visible H1 header (see the Front Matter Standard in
+`ORGANIZATION-GUIDE.md` for the field rules and the QA gates that
+enforce them):
 
 ```markdown
+---
+Document ID: [STABLE-SLUG]
+Title: "Document Title"
+Last Updated: YYYY-MM-DD
+Status: Complete
+Difficulty: Beginner
+Tags: ['tag-one', 'tag-two']
+---
+
 # Document Title
 
 **Last Updated:** YYYY-MM-DD
@@ -340,6 +352,26 @@ graph LR
 **Updated:** 2026-02-04
 **Deprecated:** Use [new feature](link) instead
 ```
+
+### Frontmatter Tags
+
+The `Tags:` field in the YAML front matter is the machine-readable
+layer the platform's tag filter and related-content navigation read
+- it is separate from the visual badges above. Canonical syntax:
+
+```markdown
+Tags: ['retrieval', 'vector-search', 'chroma']
+```
+
+- bracketed list, comma-space separated, each token single-quoted
+- non-empty, unique tokens, kebab-case lowercase
+- tokens come from the controlled vocabulary in
+  `scripts/qa/tag_vocabulary_census.py` (extending it is a
+  deliberate script edit)
+
+Coverage and syntax are hard-gated (`tags_coverage_check.py`,
+TG-01..03 + TS-01): a doc without Tags is invisible to the platform
+browse graph.
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 Document ID: ORGANIZATION-GUIDE
 Title: "PROJECT-OMEGA Organization Guide"
-Last Updated: 2026-02-05
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
 ---
@@ -9,8 +9,8 @@ Difficulty: Beginner
 # PROJECT-OMEGA Organization Guide
 ## Documentation Structure & Maintenance
 
-**Version:** 4.1
-**Last Updated:** 2026-02-05
+**Version:** 4.2
+**Last Updated:** 2026-09-30
 **Purpose:** Guide for understanding and maintaining the PROJECT-OMEGA documentation structure
 
 ---
@@ -297,7 +297,21 @@ Examples:
 
 ### Module README Template
 
+Every document opens with a YAML front-matter block (see
+[Front Matter Standard](#-quality-standards)). The `Tags:` field is
+mandatory and must follow the canonical quoted-list syntax - both are
+QA-gate-enforced (see `docs/00-META/QA-TOOLING.md`).
+
 ```markdown
+---
+Document ID: [MODULE-ID]
+Title: "[Module Name]"
+Last Updated: YYYY-MM-DD
+Status: Complete
+Difficulty: Beginner
+Tags: ['tag-one', 'tag-two']
+---
+
 # [Module ID]: [Module Name]
 
 ## Overview
@@ -342,6 +356,15 @@ After this module, you will:
 ### Tutorial Template
 
 ```markdown
+---
+Document ID: TUTORIAL-XXX
+Title: "[Tutorial Title]"
+Last Updated: YYYY-MM-DD
+Status: Complete
+Difficulty: Beginner
+Tags: ['tag-one', 'tag-two']
+---
+
 # TUTORIAL-XXX: [Title]
 
 ## Overview
@@ -419,10 +442,32 @@ Every document must include:
    - Next steps/continuation links
    - Back to parent/index
 
-5. **Metadata**
-   - Last updated date
-   - Version number
-   - Author/maintainer
+5. **Metadata** (YAML front matter - see Front Matter Standard below)
+   - Document ID, Title, Last Updated (ISO `YYYY-MM-DD`)
+   - Status, Difficulty, Tags (canonical quoted-list syntax)
+
+### Front Matter Standard
+
+Every document in `docs/` opens with a YAML front-matter block. The
+QA suite hard-gates each field, so a document that skips the block
+does not pass `quality_report.py`:
+
+| Field | Rule | Enforced by |
+|-------|------|-------------|
+| `Document ID` | stable unique slug, matches filename | doc-id / title gates |
+| `Title` | quoted string, unique across corpus | title gate |
+| `Last Updated` | ISO `YYYY-MM-DD`; bump on every real edit | LU-01/LU-02 |
+| `Status` | one of the corpus statuses | status gate |
+| `Difficulty` | Beginner / Intermediate / Advanced | difficulty gate |
+| `Tags` | `Tags: ['tag-one', 'tag-two']` - bracketed, comma-space, single-quoted, non-empty, unique | TG-01..03, TS-01 |
+
+Tag tokens come from the controlled vocabulary maintained by
+`tag_vocabulary_census.py` (TV-01); extending it is a deliberate
+script edit, not a free-form choice. The `Last Updated` field also
+drives the freshness work queue: `python scripts/qa/date_cohort.py
+--root . --since YYYY-MM` lists every doc last touched before that
+month. A date is a freshness signal, not a score - bump it only when
+content actually changed.
 
 ### Style Guidelines
 
@@ -533,14 +578,38 @@ Every document must include:
 
 ## 🚀 Automation Tools
 
-### Link Checker
+### QA Gate Suite
+
+The repo's structural quality is enforced by
+`scripts/qa/quality_report.py`, which runs the registered gate
+scripts (currently 71 - see `docs/00-META/QA-TOOLING.md` for the
+full inventory). Hard gates exit non-zero on findings; the report
+ends with an authoritative `result: PASS/FAIL` line.
 
 ```bash
-# Check for broken internal links
-find docs -name "*.md" -exec grep -l "\[.*\](.*\.md)" {} \; | \
-  xargs grep -o "\[.*\]([^)]*)" | \
-  sort | uniq -c | sort -rn
+# full structural review (all gates)
+python scripts/qa/quality_report.py --root .
+
+# single gate, e.g. relative-link integrity
+python scripts/qa/linkcheck.py --root .
 ```
+
+### Freshness Queue
+
+`scripts/qa/date_cohort.py` groups every dated doc by its `Last
+Updated` month, oldest cohort first - the review surface for "which
+content has not been touched longest":
+
+```bash
+# cohorts overview
+python scripts/qa/date_cohort.py --root .
+
+# docs last updated BEFORE 2026-03
+python scripts/qa/date_cohort.py --root . --since 2026-03
+```
+
+It is a listing tool, not a gate: it says WHERE to look, the
+content gates say WHAT is wrong.
 
 ### File Counter
 
