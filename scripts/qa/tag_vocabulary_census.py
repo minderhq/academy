@@ -25,6 +25,11 @@ TV-03  tag in a known non-canonical variant form; the message
        form gets the pointed TV-03 message (naming the canonical
        spelling) instead of the generic TV-01 unknown-tag one,
        and fails the gate either way.
+       First deliberate extension (tick-449): 'phase' and
+       'checkpoint' genre tags added for the nav-node tagging
+       standard (phase README / CHECKPOINT are platform pages;
+       'module' / 'prerequisites' were already in). Vocabulary
+       209 -> 211.
 
 HARD GATE - exit 1 on any finding. TV-01/TV-02 were hard from
 day one (KW-03 born-at-zero pattern); TV-03 joined after the
@@ -51,7 +56,7 @@ WHITELIST = frozenset([
     'attention', 'audio', 'autogen', 'autograd', 'autonomy', 'awq',
     'backpropagation', 'bart', 'benchmarks', 'bf16', 'binary',
     'bitnet', 'bnn', 'bpe', 'bridge-mode', 'cag', 'calculus',
-    'chroma', 'ci-cd', 'clip', 'code-interpreter', 'cognition',
+    'checkpoint', 'chroma', 'ci-cd', 'clip', 'code-interpreter', 'cognition',
     'communication', 'compression', 'configuration', 'context', 'context-window', 'cpu-gpu-hybrid',
     'crewai', 'cuda', 'data-curation', 'ddp', 'deepspeed', 'deployment',
     'devops', 'differential-privacy', 'distillation', 'distributed', 'distributed-training', 'docker',
@@ -68,7 +73,7 @@ WHITELIST = frozenset([
     'model-registry', 'module', 'monitoring', 'mtu', 'multi-agent', 'multi-head',
     'multimodal', 'neo4j', 'networking', 'nginx', 'normalization', 'observability',
     'offloading', 'ollama', 'optimization', 'optimizers', 'orchestration', 'peft',
-    'performance', 'pgvector', 'pii', 'pinecone', 'pipeline', 'pipeline-parallelism',
+    'performance', 'pgvector', 'phase', 'pii', 'pinecone', 'pipeline', 'pipeline-parallelism',
     'planning', 'plugin-architecture', 'postgresql', 'practice', 'preference', 'preference-learning',
     'preparation', 'prerequisites', 'pretraining', 'privacy', 'production', 'production-framework',
     'prometheus', 'prompt-injection', 'proxmox', 'pruning', 'pytorch', 'pytorch-lightning',
