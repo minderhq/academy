@@ -471,20 +471,23 @@ stand today?" without running each tool by hand.
                       relocating each after its ID-sorted block,
                       hard since
     toc_coverage_check
-                      TOC completeness (TC-01 hard, TC-02 report):
-                      in a TOC-carrying lesson every real content
-                      H2 (outside frontmatter/fences, closing trio
-                      exempt) must appear as a TOC bullet - the
-                      TOC becomes the platform's in-lesson nav
+                      TOC completeness (TC-01, hard): in a TOC-
+                      carrying doc every real content H2 (outside
+                      frontmatter/fences, closing trio exempt)
+                      must appear as a TOC bullet - text match OR
+                      href-slug match (a "Part 1:" prefix or
+                      stripped emoji in the label is house style,
+                      the nav pane needs the link, not the label).
+                      The TOC becomes the platform's in-doc nav
                       pane, so an unlisted section is invisible in
                       navigation. Fence-aware: a naive census saw
                       2 "missing" H2s in 2301 that were literal
                       text inside a python example block. Born
-                      2026-09-30 at zero over 93 lessons; other
-                      genres (volumes/industry/guides/phase
-                      READMEs) report as TC-02 until they adopt a
-                      TOC standard (45 birth rows - 19 phase-
-                      README rows drained same tick = 26 visible)
+                      2026-09-30 whole-corpus (141 TOC-carrying
+                      docs): 45 birth rows = 24 label mismatches
+                      (resolved by the slug rule, zero edits) + 21
+                      gaps (19 phase-README tail sections, 2 guide
+                      Abstracts - drained), hard since
     tags_coverage_check
                       Tags coverage (TG-01 hard, TG-02/03 report):
                       a numbered in-phase lesson outside guides/

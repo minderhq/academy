@@ -19,6 +19,7 @@ Tags: production-framework, plugin-architecture, configuration, dynamic-batching
 ## Table of Contents
 
 - [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
 - [Project Overview](#project-overview)
 - [Step 1: Core Framework Components](#step-1-core-framework-components)
   - [1.1 Configuration Management](#11-configuration-management)

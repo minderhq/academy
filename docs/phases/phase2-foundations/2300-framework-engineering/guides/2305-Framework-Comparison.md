@@ -19,6 +19,7 @@ Tags: framework-comparison, transformers, pytorch-lightning, langchain, framewor
 ## Table of Contents
 
 - [Learning Objectives](#learning-objectives)
+- [Abstract](#abstract)
 - [Why Framework Choice Matters](#why-framework-choice-matters)
 - [Comparison Criteria](#comparison-criteria)
 - [Hugging Face Transformers: The Model Hub Standard](#hugging-face-transformers-the-model-hub-standard)
