@@ -226,8 +226,6 @@ graph TD
     ERROR --> DONE
 ```
 
-
-
 ## Related Documents
 
 - [7101-ReAct-Loop-System.md](../phases/phase7-agentic/7100-architecture/7101-ReAct-Loop-System.md)

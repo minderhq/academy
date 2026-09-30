@@ -426,5 +426,3 @@ find docs/diagrams -name "*.md"
 - [Cross-Reference Guidelines](CROSS-REFERENCE-GUIDELINES.md) - Linking standards
 
 ---
-
-

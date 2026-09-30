@@ -361,8 +361,6 @@ jobs:
 | External | `[Text](https://example.com)` | `[PyTorch](https://pytorch.org)` |
 | Anchor | `[Text](#section)` | `[Top](#overview)` |
 
-
-
 ## Related Documents
 
 - [DOCUMENT-TEMPLATE.md](DOCUMENT-TEMPLATE.md)

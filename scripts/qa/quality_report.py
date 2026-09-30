@@ -660,6 +660,24 @@ stand today?" without running each tool by hand.
                       sibling `**If you're not familiar:**` paragraph
                       template, rendering a literal `**` - drained
                       same tick; born at 0 across 408 docs
+    whitespace_scan
+                      Whitespace hygiene (WS-01..03, hard, all
+                      fence-aware): WS-01 3+ consecutive blank
+                      lines outside fences (markdown collapses
+                      them to one break - authoring residue;
+                      both birth sites sat at EOF after the
+                      final `---` separator), WS-02 trailing
+                      whitespace (2+ trailing spaces are a
+                      CommonMark hard break, 1 is editor
+                      residue), WS-03 mid-line tabs (corpus is
+                      spaces-only). Invisible-character rot
+                      (NBSP/ZWSP/BOM/control) censused the same
+                      tick: zero corpus-wide, un-gated until a
+                      class appears. Born tick-466 after 4
+                      triple-blank drains; the first census's
+                      blank regex was CRLF-blind - the two CRLF
+                      sites surfaced only under the line-based
+                      scanner
     difficulty_distribution_scan
                       Difficulty as a sequence dimension (DX-01,
                       report-only census): per-phase B/I/A
@@ -959,6 +977,7 @@ GATES = [
     ("link_case_scan.py", "link_case_scan", True),
     ("glossary_scan.py", "glossary_scan", True),
     ("emphasis_scan.py", "emphasis_scan", True),
+    ("whitespace_scan.py", "whitespace_scan", True),
 ]
 
 

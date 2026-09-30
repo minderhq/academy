@@ -701,5 +701,3 @@ if __name__ == "__main__":
 See [STYLE-GUIDE.md](STYLE-GUIDE.md) for contribution guidelines.
 
 ---
-
-
