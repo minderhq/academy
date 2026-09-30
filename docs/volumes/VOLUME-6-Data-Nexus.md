@@ -25,7 +25,7 @@ Tags: ['volume', 'rag', 'vector-db', 'graphrag']
 - [Volume 6 Capstone Projects](#volume-6-capstone-projects)
 - [Volume 6 Checklist](#volume-6-checklist)
 - [Cross-References](#cross-references)
-- [📊 Volume 6 Statistics](#volume-6-statistics)
+- [Volume 6 Statistics](#volume-6-statistics)
 - [Key Takeaways](#key-takeaways)
 - [Common Pitfalls](#common-pitfalls)
 - [Pro Tips](#pro-tips)
@@ -33,7 +33,7 @@ Tags: ['volume', 'rag', 'vector-db', 'graphrag']
 - [Hardware Requirements](#hardware-requirements)
 - [Troubleshooting](#troubleshooting)
 - [After Volume 6](#after-volume-6)
-- [🚀 Next Steps](#next-steps)
+- [Next Steps](#next-steps)
 
 ---
 

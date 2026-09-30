@@ -655,6 +655,23 @@ stand today?" without running each tool by hand.
                       LC-01 resolves every internal link path
                       segment-exactly. Born tick-463 at 0
                       across 3015 docs/ links (3325 repo-wide)
+    link_text_scan
+                      Intra-doc link text quality (LT-01,
+                      hard): no emoji in an internal link's
+                      label - internal targets are corpus
+                      headings, which HS-04/05 keep emoji-
+                      free, so an emoji nav label mismatches
+                      what the reader finds at the anchor
+                      (screen readers read the glyph name
+                      aloud; the platform TOC generator
+                      copies labels verbatim). External
+                      links out (brand glyphs legal); vague
+                      link text triaged ACCEPT - corpus
+                      weak-text sites are all deliberate
+                      teaching examples in the style guides.
+                      Born tick-488 born-at-zero after the
+                      12-link drain across 1849 intra-doc
+                      links
     glossary_scan
                       Glossary integrity (GS-01..03, hard):
                       GLOSSARY.md is the platform's
@@ -1131,6 +1148,7 @@ GATES = [
     ("updated_badge_scan.py", "updated_badge_scan", True),
     ("diagram_scan.py", "diagram_scan", True),
     ("link_case_scan.py", "link_case_scan", True),
+    ("link_text_scan.py", "link_text_scan", True),
     ("glossary_scan.py", "glossary_scan", True),
     ("emphasis_scan.py", "emphasis_scan", True),
     ("whitespace_scan.py", "whitespace_scan", True),

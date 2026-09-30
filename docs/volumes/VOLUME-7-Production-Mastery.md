@@ -28,7 +28,7 @@ Tags: ['volume', 'agents', 'production', 'multi-agent']
 - [Volume 7 Capstone Projects](#volume-7-capstone-projects)
 - [Volume 7 Checklist](#volume-7-checklist)
 - [Cross-References](#cross-references)
-- [📊 Volume 7 Statistics](#volume-7-statistics)
+- [Volume 7 Statistics](#volume-7-statistics)
 - [Key Takeaways](#key-takeaways)
 - [Common Pitfalls](#common-pitfalls)
 - [Pro Tips](#pro-tips)
@@ -38,8 +38,8 @@ Tags: ['volume', 'agents', 'production', 'multi-agent']
 - [Cost Analysis](#cost-analysis)
 - [Troubleshooting](#troubleshooting)
 - [After Volume 7](#after-volume-7)
-- [🎓 Completion Certificate](#completion-certificate)
-- [🚀 What's Next?](#whats-next)
+- [Completion Certificate](#completion-certificate)
+- [What's Next?](#whats-next)
 
 ---
 
