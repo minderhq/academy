@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Front-matter VALUE contracts (FV-01..09, HARD) - the platform
+"""Front-matter VALUE contracts (FV-01..10, HARD) - the platform
 ingestion simulation.
 
 FS-01/02 gate the six standard field NAMES; the dup gates check
@@ -47,6 +47,14 @@ FV-08  Title is a non-empty string - it becomes the platform
 FV-09  Last Updated is not in the future - a date the doc cannot
        have been updated on yet poisons "recently updated" sorts
        (census tick-495: 0 of 408)
+FV-10  a string Document ID is a URL-safe key: uppercase-initial
+       or module-numbered, hyphen-separated alphanumerics, no
+       whitespace or other punctuation - the platform uses it as
+       canonical key AND URL slug; anything else needs escaping
+       (census tick-496: 293/293 clean; the corpus mixes pure
+       namespace tokens like LAB-003 with descriptive forms like
+       TEMPLATE-001-Simple-LLM-App - both legal, both 1100-
+       PRACTICE-style module numbering)
 
 Scope: all docs/**/*.md, FM block = first ---...--- (within 40
 lines, FS-01's contract). Related string elements (LAB-003,
@@ -68,7 +76,14 @@ PyYAML raising ValueError OUT of safe_load on an impossible
 bare date ("2026-13-45" - the timestamp constructor builds
 dt.date without wrapping), which the platform experiences as an
 ingestion crash; FV-04 therefore catches ValueError/TypeError
-alongside YAMLError.
+alongside YAMLError. Heading-case was the other tick-496
+candidate and is formally SKIPPED with measurement: of 8795
+H2/H3 headings, 5617 are sentence case, 3158 are sentence case
+with Title-Case topic phrases (Docker Fundamentals, GPU
+Passthrough), 20 all-caps - a mechanical rule would need a
+curated proper-noun/phrase allowlist; recorded as the axis
+tombstone. FV-10 born tick-496 born-at-zero: 293/293 str keys
+clean.
 
 Note: this gate is the fleet's only third-party import (PyYAML) -
 deliberate, because the rule under test is "yaml.safe_load
@@ -93,6 +108,7 @@ TIME_SINGLE = re.compile(r"^\d+(\.\d+)? (hour|minute)s?$")
 TIME_DOUBLE = re.compile(r"^30 minutes \(quick review\) - \d+(\.\d+)? hours \(full review\)$")
 ISO_DATE = re.compile(r"^(\d{4})-(\d{2})-(\d{2})$")
 CANON_DIFFICULTY = ("Beginner", "Intermediate", "Advanced")
+DOC_KEY = re.compile(r"^[A-Z0-9][A-Za-z0-9]*(-[A-Za-z0-9]+)*$")
 
 
 def esc(text: str) -> str:
@@ -234,6 +250,14 @@ def main() -> int:
                 "FV-09 %s: Last Updated %s is in the future - a date the "
                 "doc cannot have been updated on yet poisons "
                 "recently-updated sorts" % (rel, lu_date.isoformat()))
+        did = data.get("Document ID")
+        if isinstance(did, str) and not DOC_KEY.match(did):
+            findings.append(
+                "FV-10 %s: Document ID %r is not a URL-safe key - the "
+                "platform uses it as canonical key AND URL slug; "
+                "whitespace or punctuation needs escaping (convention: "
+                "uppercase-initial or module-numbered, hyphen-separated "
+                "alphanumerics)" % (rel, did))
     for f in findings:
         print("  " + esc(f))
     print("frontmatter_value_scan: %d docs with FM inspected; %d FV "
@@ -241,10 +265,11 @@ def main() -> int:
           "time, FV-03 Tags list-of-string, FV-04 yaml.safe_load, FV-05 "
           "no dangling Related int, FV-06 Related str-or-list, FV-07 "
           "canonical Difficulty tier, FV-08 non-empty Title string, "
-          "FV-09 no future-dated Last Updated = the platform ingestion "
-          "simulation; born tick-493 with one drain ('1 hours' -> "
-          "'1 hour'), Related arms tick-494 and tier/title/date arms "
-          "tick-495 all born-at-zero; see docstring)"
+          "FV-09 no future-dated Last Updated, FV-10 URL-safe string "
+          "Document ID = the platform ingestion simulation; born "
+          "tick-493 with one drain ('1 hours' -> '1 hour'), Related "
+          "tick-494, tier/title/date tick-495, key-shape tick-496 - all "
+          "born-at-zero; see docstring)"
           % (n_docs, len(findings)))
     return 1 if findings else 0
 

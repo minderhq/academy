@@ -769,7 +769,7 @@ stand today?" without running each tool by hand.
                       at-zero: 597 tracked files
                       censused clean
     frontmatter_value_scan
-                      FM VALUE contracts (FV-01..09,
+                      FM VALUE contracts (FV-01..10,
                       hard) - the platform
                       ingestion simulation: does
                       exactly what the platform
@@ -809,15 +809,31 @@ stand today?" without running each tool by hand.
                       card title), FV-09 Last
                       Updated is never in the
                       future (recently-updated
-                      sorts). The fleet's only
+                      sorts), FV-10 a string
+                      Document ID is a URL-safe
+                      key: uppercase-initial or
+                      module-numbered, hyphen-
+                      separated alphanumerics,
+                      no whitespace/punctuation
+                      (canonical key AND URL
+                      slug). The fleet's only
                       third-party import (PyYAML)
                       - deliberate: the rule
                       under test IS yaml parsing.
                       Born tick-493, one drain
                       ('1 hours' -> '1 hour');
-                      Related arms tick-494 and
-                      tier/title/date arms
-                      tick-495, all born-at-zero
+                      Related tick-494, tier/
+                      title/date tick-495, key-
+                      shape tick-496, all born-
+                      at-zero; heading-case
+                      candidate formally SKIPPED
+                      with measurement (8795
+                      H2/H3: 5617 sentence /
+                      3158 sentence+Title-Case
+                      topic phrases / 20 all-
+                      caps - would need a
+                      curated proper-noun
+                      allowlist)
     glossary_scan
                       Glossary integrity (GS-01..03, hard):
                       GLOSSARY.md is the platform's
