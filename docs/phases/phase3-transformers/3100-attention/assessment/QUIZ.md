@@ -163,6 +163,15 @@ D) The same thing in each head, with no specialization at all
 
 ---
 
+## Need to Review?
+
+Each question maps to the closest lesson for review:
+
+- **Questions 1-15, 17-20:** [3101: Self-Attention Deep Dive](../3101-Self-Attention-DeepDive.md) — attention mechanics, heads, masking, and position
+- **Question 16:** [3102: Flash Attention - IO-Aware Exact Attention](../3102-Flash-Attention.md) — IO-aware attention kernels
+
+---
+
 ## Answer Key
 
 | Question | Answer | Explanation |

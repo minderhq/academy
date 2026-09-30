@@ -163,6 +163,15 @@ D) If CUDA is installed
 
 ---
 
+## Need to Review?
+
+Each question maps to the closest lesson for review:
+
+- **Questions 1-9, 11-13, 15-19:** [2201: PyTorch Computational Graphs and Dynamic Execution](../2201-PyTorch-Computational-Graphs.md) — tensors, autograd, and the training loop
+- **Questions 10, 14, 20:** [2203: CUDA Kernel Programming and GPU Architecture](../2203-CUDA-Kernel-Programming.md) — GPU device placement and CUDA
+
+---
+
 ## Answer Key
 
 | Question | Answer | Explanation |

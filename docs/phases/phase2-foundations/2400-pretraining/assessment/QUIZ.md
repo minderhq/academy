@@ -163,6 +163,16 @@ D) Randomized each step
 
 ---
 
+## Need to Review?
+
+Each question maps to the closest lesson for review:
+
+- **Questions 1, 5, 7, 8, 10-14, 16, 20:** [2401: Pre-training Fundamentals](../2401-Pre-training-Fundamentals.md) — data pipeline, tokenization, and schedules
+- **Questions 2-4, 6, 9, 17-19:** [2402: Large-Scale Training for Language Models](../2402-Large-Scale-Training.md) — distributed strategies and memory
+- **Question 15:** [2403: Evaluation Frameworks for Language Models](../2403-Evaluation-Frameworks.md) — perplexity and evaluation metrics
+
+---
+
 ## Answer Key
 
 | Question | Answer | Explanation |
