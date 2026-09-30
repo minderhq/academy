@@ -30,7 +30,7 @@ This module covers KV cache optimization and context window management.
 - Attention pattern in generation
 - How attention scales with sequence length
 
-### If you're not familiar:**
+### If you're not familiar:
 
 **Review Resources:**
 - "KV Cache: Unlocking Efficiency in Large Language Models" (blog posts)

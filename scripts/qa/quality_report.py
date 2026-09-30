@@ -649,6 +649,17 @@ stand today?" without running each tool by hand.
                       duplicated across two tables, merged).
                       Born tick-464 after those three drains;
                       67 terms
+    emphasis_scan
+                      Emphasis parity (EM-01, hard): bold `**`
+                      must pair within one render block - headings
+                      are own blocks, paragraphs span lines, fences
+                      and inline code (double-backtick first) are
+                      skipped. Tick-465 census found 7 PREREQUISITES
+                      headings reading `### If you're not
+                      familiar:**` - a stray `**` leaked from the
+                      sibling `**If you're not familiar:**` paragraph
+                      template, rendering a literal `**` - drained
+                      same tick; born at 0 across 408 docs
     difficulty_distribution_scan
                       Difficulty as a sequence dimension (DX-01,
                       report-only census): per-phase B/I/A
@@ -947,6 +958,7 @@ GATES = [
     ("diagram_scan.py", "diagram_scan", True),
     ("link_case_scan.py", "link_case_scan", True),
     ("glossary_scan.py", "glossary_scan", True),
+    ("emphasis_scan.py", "emphasis_scan", True),
 ]
 
 

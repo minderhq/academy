@@ -31,7 +31,7 @@ This module covers AI alignment using RLHF and DPO.
 - Loss functions
 - Training stability
 
-### If you're not familiar:**
+### If you're not familiar:
 
 **Review Resources:**
 - "Aligning AI with Human Intent" (OpenAI blog)

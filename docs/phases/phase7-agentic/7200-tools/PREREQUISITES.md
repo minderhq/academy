@@ -31,7 +31,7 @@ This module covers tool calling for AI agents.
 - API authentication
 - Error handling
 
-### If you're not familiar:**
+### If you're not familiar:
 
 **Review Resources:**
 - OpenAI Function Calling documentation

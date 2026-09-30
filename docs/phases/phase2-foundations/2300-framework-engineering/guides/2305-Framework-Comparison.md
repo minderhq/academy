@@ -46,7 +46,7 @@ By the end of this guide, you will be able to:
 
 ## Abstract
 
-This guide runs a minimal working example of each of the three frameworks — Hugging Face Transformers, PyTorch Lightning, and LangChain — scores all three against five explicit criteria, wires them together (a Transformers model wrapped as a LangChain LLM), and distills the results into a decision guide. They solve different problems: getting a pretrained model and tokenizer into your code in five lines, writing a training loop once and correctly, and composing LLM calls into an application — so “versus” is usually the wrong frame, and most real systems use two or three at once.
+This guide runs a minimal working example of each of the three frameworks — Hugging Face Transformers, PyTorch Lightning, and LangChain — scores all three against five explicit criteria, wires them together (a Transformers model wrapped as a LangChain LLM), and distills the results into a decision guide. They solve different problems: getting a pretrained model and tokenizer into your code in five lines, writing a training loop once and correctly, and composing LLM calls into an application — so "versus" is usually the wrong frame, and most real systems use two or three at once.
 
 ## Why Framework Choice Matters
 

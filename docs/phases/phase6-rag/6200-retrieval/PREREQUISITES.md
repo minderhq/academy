@@ -31,7 +31,7 @@ This module covers retrieval strategies for RAG systems.
 - Nearest neighbor search
 - HNSW algorithm
 
-### If you're not familiar:**
+### If you're not familiar:
 
 **Review Resources:**
 - "Information Retrieval" (Manning et al.) - Chapters 1-6

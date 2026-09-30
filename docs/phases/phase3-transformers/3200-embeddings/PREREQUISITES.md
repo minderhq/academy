@@ -31,7 +31,7 @@ This module covers word embeddings, positional encodings, and tokenization.
 - Training objectives
 - Backpropagation
 
-### If you're not familiar:**
+### If you're not familiar:
 
 **Review Resources:**
 - "Word2Vec" paper (Mikolov et al.)

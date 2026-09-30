@@ -30,7 +30,7 @@ This module covers encoder-decoder and decoder-only architectures.
 - Decoder (GPT-style)
 - Encoder-decoder (T5-style)
 
-### If you're not familiar:**
+### If you're not familiar:
 
 **Review Resources:**
 - "Attention Is All You Need" (Vaswani et al., 2017)

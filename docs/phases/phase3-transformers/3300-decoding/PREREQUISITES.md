@@ -30,7 +30,7 @@ This module covers activation functions, normalization, and decoding strategies.
 - Temperature in softmax
 - Top-K and Top-P sampling
 
-### If you're not familiar:**
+### If you're not familiar:
 
 **Review Resources:**
 - "Deep Learning" book (Goodfellow et al.) - Chapter 6
