@@ -684,16 +684,19 @@ stand today?" without running each tool by hand.
                        2026-09-29 triage split 794 flat findings into
                        4 real module accesses (all fixed) + 790 fragments
     duplicate_heading_scan
-                       duplicate heading texts per file (DH-01, report
-                       mode): GitHub suffixes the slugs and binds
-                       explicit anchors to the first heading, so a
-                       platform TOC/nav generator needs this inventory
-                       to suffix deterministically; born from the
-                       tick-282 census (69 duplicate classes in 32
-                       files, every one the accepted per-item-sections
-                       idiom - Task/Requirements per exercise,
-                       Overview/Pros/Cons per database), so report
-                       mode, not a hard ban
+                       duplicate headings split by parent context
+                       (DH-01 HARD, DH-02 report): same-parent text
+                       duplicates are the copy-paste artifact
+                       signature - hard, born drained (tick-432
+                       parent-context triage: 67/68 classes
+                       cross-parent texture, the single same-parent
+                       pair 2102 'Solutions' x2 renamed same day);
+                       the H2 nav layer rides inside the rule since
+                       every H2's parent is the doc H1. DH-02 is the
+                       cross-parent per-item texture inventory
+                       (Task/Requirements per exercise, Overview/
+                       Pros/Cons per database) - accepted, platform
+                       TOC generators suffix these slugs
     fence_import_check unresolvable imports in python fences (IC-01,
                        hard gate since tick-325): every import in every
                        ```python fence resolves against the
@@ -762,7 +765,7 @@ GATES = [
     ("unicode_ws_hygiene_scan.py", "unicode_ws_hygiene_scan", True),
     ("objectives_lint.py", "objectives_lint", False),
     ("fence_namecheck.py", "fence_namecheck", False),
-    ("duplicate_heading_scan.py", "duplicate_heading_scan", False),
+    ("duplicate_heading_scan.py", "duplicate_heading_scan", True),
     ("fence_import_check.py", "fence_import_check", True),
     ("fm_staleness_scan.py", "fm_staleness", False),
     ("kwarg_lint.py", "kwarg_lint", True),
