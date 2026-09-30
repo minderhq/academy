@@ -981,6 +981,21 @@ stand today?" without running each tool by hand.
                        pair (corpus had **Problem:** x22 and **Fix:**
                        x3 alongside them; 25 labels canonized across
                        6 files same tick, born-at-zero)
+    label_variance_scan  Bold-label variance (LV-01..02, hard): the
+                       eight canonized callout keys (Estimated Time /
+                       What You'll Learn / Best For / Troubleshooting /
+                       Requirements / Real-World Example / Verification /
+                       Note - all plain Title-case) must use exactly
+                       their fixed surface form, and no other
+                       emoji/space/case-normalized label key may carry
+                       2+ surface forms corpus-wide. Born tick-484
+                       after the same-tick drain: census found 8
+                       multi-surface keys - 34 minority labels across
+                       14 files (lowercase Estimated time x5, What
+                       you'll learn x7, Best for x8, emoji-prefixed
+                       Troubleshooting/Verification x8 in LAB-000,
+                       REQUIREMENTS x2, Real-world example x1, NOTE x3);
+                       all renamed to the vote winners, born-at-zero
     quiz_claim_scan  Quiz self-claim integrity (QC-01..04, hard):
                        a QUIZ.md's own promises checked against the
                        bank quiz_export parses - "**N questions**"
@@ -1106,6 +1121,7 @@ GATES = [
     ("checkpoint_coverage_scan.py", "checkpoint_coverage_scan", True),
     ("lab_anatomy_scan.py", "lab_anatomy_scan", True),
     ("pitfall_shape_scan.py", "pitfall_shape_scan", True),
+    ("label_variance_scan.py", "label_variance_scan", True),
     ("quiz_claim_scan.py", "quiz_claim_scan", True),
 ]
 

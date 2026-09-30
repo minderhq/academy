@@ -34,7 +34,7 @@ Total: [░░░░░░░░░░░░░░░░░] 0% (0/408 core file
 ### Volume 1: Infrastructure Mastery (39 files)
 **"Build Your AI Laboratory"** - 75-100 hours | Difficulty: ⭐⭐ Intermediate
 
-**NOTE:** Time estimate includes reading (25h), hands-on practice (35h), labs (15h), and capstone project (15h). Adjust based on your prior experience with networking, Linux, and Docker.
+**Note:** Time estimate includes reading (25h), hands-on practice (35h), labs (15h), and capstone project (15h). Adjust based on your prior experience with networking, Linux, and Docker.
 
 - [ ] **VOLUME-1-Infrastructure.md** - Volume guide (read first!)
 - [ ] **TUTORIAL-001: Hello LLM** (30 min)
@@ -71,7 +71,7 @@ Total: [░░░░░░░░░░░░░░░░░] 0% (0/408 core file
 ### Volume 2: AI/ML Foundations (32 files)
 **"The Mathematics of Intelligence"** - 100-130 hours | Difficulty: ⭐⭐⭐ Advanced
 
-**NOTE:** Time estimate includes reading (40h), hands-on practice (50h), experiments (20h), and labs (15h). Strong math background (calculus, linear algebra) recommended.
+**Note:** Time estimate includes reading (40h), hands-on practice (50h), experiments (20h), and labs (15h). Strong math background (calculus, linear algebra) recommended.
 
 - [ ] **VOLUME-2-AI-Foundations.md** - Volume guide (read first!)
 - [ ] **CHEAT-SHEET-003: Git** (reference)
@@ -112,7 +112,7 @@ Total: [░░░░░░░░░░░░░░░░░] 0% (0/408 core file
 ### Volume 3: LLM Internals (34 files)
 **"Transformer Architecture Deep Dive"** - 80-100 hours | Difficulty: ⭐⭐⭐ Advanced
 
-**NOTE:** Time estimate includes reading (35h), hands-on practice (30h), notebooks (15h), and experiments (15h). Requires solid understanding of neural networks and attention mechanisms.
+**Note:** Time estimate includes reading (35h), hands-on practice (30h), notebooks (15h), and experiments (15h). Requires solid understanding of neural networks and attention mechanisms.
 
 - [ ] **VOLUME-3-LLM-Internals.md** - Volume guide (read first!)
 - [ ] **TUTORIAL-003: RAG Basics** (60 min)

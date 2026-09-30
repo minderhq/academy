@@ -33,7 +33,7 @@ Tags: ['roadmap', 'guide', 'llm']
 
 **"Get productive quickly"** - For experienced developers who want to build AI applications fast.
 
-**REQUIREMENTS:**
+**Requirements:**
 - 2+ years software development experience
 - Comfortable with Python and command line
 - Basic understanding of ML concepts
@@ -134,7 +134,7 @@ Checkpoint: Fine-tuned domain-specific model
 
 **"Become an AI expert"** - The comprehensive path for complete understanding.
 
-**REQUIREMENTS:**
+**Requirements:**
 - No prior ML experience required
 - Basic programming knowledge helpful
 - Commitment to 10-15 hours/week for 12+ months

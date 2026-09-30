@@ -64,7 +64,7 @@ runs offline — the production-scale counterparts (multi-terabyte crawls,
 hundreds of GPUs) are module [2402: Large-Scale Training for Language Models](./2402-Large-Scale-Training.md)'s subject, and the structure you build here is
 identical.
 
-**What you'll learn:**
+**What You'll Learn:**
 
 - Where pre-training text comes from, and how to compare the major public corpora
 - The cleaning funnel: quality filters, exact dedup, near-duplicate removal

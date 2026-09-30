@@ -89,7 +89,7 @@ Both printed flags are `False`: inside `no_grad` no graph is recorded, so result
 
 - **Review:** Python's documentation on decorators and the context manager protocol, then re-read `nn.Module`'s `__call__` in the PyTorch source
 - **Practice:** Write a timing decorator and a `with`-based timer, then apply them to a small function
-- **Estimated time:** 1 hour
+- **Estimated Time:** 1 hour
 
 ### 2. PyTorch Modules and the Training Loop
 
@@ -167,7 +167,7 @@ Starting from the all-zero model the first loss is about 4.3158 (just the mean o
 
 - **Review:** The official PyTorch tutorials on nn.Module and optimization, plus 2102's autograd sections
 - **Practice:** Re-derive this loop for a quadratic target `y = 0.5x²` (hint: keep the loop, change the data)
-- **Estimated time:** 1.5 hours
+- **Estimated Time:** 1.5 hours
 
 ### 3. Autograd and Computational Graphs
 
@@ -207,7 +207,7 @@ The chain reads `SumBackward0` ← `MulBackward0` ← `AddBackward0`, and `d`'s 
 
 - **Review:** CS231n's "Backpropagation, Intuitions" for the graph view of the chain rule
 - **Practice:** Add a third operation (say, `e = d * d`) to the example and predict the new `grad_fn` chain before printing it
-- **Estimated time:** 1 hour
+- **Estimated Time:** 1 hour
 
 ### 4. Kernel Thinking: Why Launches Matter
 
@@ -248,7 +248,7 @@ Both functions compute 2t + 1, yet the results differ in the last float32 bits �
 
 - **Review:** Your 2101 notes on float32 representation, then skim the XLA overview for what fusion means at scale
 - **Practice:** Count kernel launches for a five-operation expression, then fold it by hand to one launch and compare outputs
-- **Estimated time:** 0.5 hours
+- **Estimated Time:** 0.5 hours
 
 ### 5. GPU and Device Awareness
 
@@ -284,7 +284,7 @@ The first line printed is `selected device: cuda` on a CUDA machine and `cpu` ot
 
 - **Review:** The PyTorch tutorials' device-agnostic training recipe
 - **Practice:** Deliberately create a CPU/CUDA device mismatch in a scratch script and read the error message
-- **Estimated time:** 0.5 hours
+- **Estimated Time:** 0.5 hours
 
 ---
 

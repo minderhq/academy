@@ -51,7 +51,7 @@ After completing this lesson, you will be able to:
 
 ML models in production need well-designed APIs that are fast, reliable, and easy to use. This document covers API design patterns specific to ML systems.
 
-**What you'll learn:**
+**What You'll Learn:**
 - REST vs GraphQL vs gRPC for ML
 - Streaming APIs for real-time inference
 - Error handling and rate limiting

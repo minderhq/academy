@@ -172,7 +172,7 @@ outputs = model.generate(**inputs, max_length=150)
 print(tokenizer.decode(outputs[0]))
 ```
 
-**Best for:**
+**Best For:**
 - Translation (EN→TR, EN→DE, etc.)
 - Document Summarization
 - Question Answering with context
@@ -201,7 +201,7 @@ outputs = model.generate(**inputs, max_new_tokens=512)
 print(tokenizer.decode(outputs[0]))
 ```
 
-**Best for:**
+**Best For:**
 - Chatbots / Assistant applications
 - Code generation
 - Creative writing

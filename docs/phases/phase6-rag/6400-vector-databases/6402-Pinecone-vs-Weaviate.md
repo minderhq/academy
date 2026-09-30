@@ -84,7 +84,7 @@ Choosing the right vector database is crucial for RAG applications. This documen
 
 ### 2.1 Qdrant
 
-**Best for:** Production RAG systems requiring high performance and filtering
+**Best For:** Production RAG systems requiring high performance and filtering
 
 **Key Features:**
 - Written in Rust for performance
@@ -161,7 +161,7 @@ results = client.query_points(
 
 ### 2.2 Weaviate
 
-**Best for:** Feature-rich RAG applications with GraphQL API
+**Best For:** Feature-rich RAG applications with GraphQL API
 
 **Key Features:**
 - GraphQL API for flexible querying
@@ -264,7 +264,7 @@ results = client.query.raw(query)
 
 ### 2.3 Pinecone
 
-**Best for:** Production RAG without infrastructure management
+**Best For:** Production RAG without infrastructure management
 
 **Key Features:**
 - Fully managed service
@@ -343,7 +343,7 @@ for result in results['matches']:
 
 ### 2.4 Milvus
 
-**Best for:** Enterprise-scale vector search with huge datasets
+**Best For:** Enterprise-scale vector search with huge datasets
 
 **Key Features:**
 - Designed for billion-scale vector search
@@ -426,7 +426,7 @@ for result in results[0]:
 
 ### 2.5 Chroma
 
-**Best for:** Prototyping and learning vector databases
+**Best For:** Prototyping and learning vector databases
 
 **Key Features:**
 - Pure Python, easy to install
@@ -494,7 +494,7 @@ for result in results['documents'][0]:
 
 ### 2.6 pgvector
 
-**Best for:** Adding vector search to existing PostgreSQL databases
+**Best For:** Adding vector search to existing PostgreSQL databases
 
 **Key Features:**
 - Extension for PostgreSQL

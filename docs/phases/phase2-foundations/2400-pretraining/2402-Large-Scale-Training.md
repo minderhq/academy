@@ -49,7 +49,7 @@ After completing this lesson, you will be able to:
 
 2401 built the single-process training loop; real pre-training runs that loop across dozens to thousands of GPUs at once. This lesson is the infrastructure layer under that scale: how model state is sharded (ZeRO/FSDP), how DeepSpeed packages the same ideas, what a cluster needs beyond one node, how runs survive the crashes that are a certainty at scale, and what the whole thing costs.
 
-**What you'll learn:**
+**What You'll Learn:**
 
 - Why one GPU cannot hold a 7B model's training state (140 GB) and the sharding ladder that fixes it
 - FSDP (PyTorch) and DeepSpeed (framework) side by side on the same ZeRO-3 math

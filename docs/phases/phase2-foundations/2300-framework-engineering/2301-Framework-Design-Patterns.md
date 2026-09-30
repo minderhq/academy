@@ -48,7 +48,7 @@ After completing this lesson, you will be able to:
 
 Machine learning frameworks require careful architectural design to ensure flexibility, maintainability, and scalability. This document covers essential design patterns used in production ML frameworks like Hugging Face Transformers, PyTorch Lightning, and LangChain.
 
-**What you'll learn:**
+**What You'll Learn:**
 - Model abstraction layers for framework-agnostic code
 - Configuration management for reproducible experiments
 - Plugin architectures for extensible systems

@@ -22,7 +22,7 @@ This module covers networking fundamentals essential for deploying and operating
 - **Medium models (13-34B):** 500 Mbps - 2 Gbps per concurrent user
 - **Large models (70B+):** 2-10 Gbps per concurrent user
 
-**Real-world example:**
+**Real-World Example:**
 ```text
 Serving Llama-3-70B with 4-bit quantization:
 - Model size: ~40 GB

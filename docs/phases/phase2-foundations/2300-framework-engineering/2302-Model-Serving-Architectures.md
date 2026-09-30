@@ -49,7 +49,7 @@ After completing this lesson, you will be able to:
 
 Serving machine learning models in production requires specialized architectural patterns to maximize throughput, minimize latency, and ensure reliability. This document covers the essential serving architectures used in production ML systems like OpenAI, Anthropic, and enterprise ML platforms.
 
-**What you'll learn:**
+**What You'll Learn:**
 - Request batching for GPU optimization
 - Model and data parallelism strategies
 - Load balancing algorithms

@@ -48,7 +48,7 @@ Evaluation is the measurement discipline of language-model work: every training 
 
 Every code block runs offline on toy models with fixed seeds, and every output shown is a measured run — the same discipline a real evaluation harness applies, scaled down to something you can inspect end to end.
 
-**What you'll learn:**
+**What You'll Learn:**
 
 - The metric family that all benchmark scores reduce to: cross-entropy, perplexity, BPC
 - How each major benchmark family actually scores a model (not just what its leaderboard number means)

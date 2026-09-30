@@ -46,7 +46,7 @@ After completing this lesson, you will be able to:
 
 Deploying ML systems to production requires careful planning to ensure zero downtime, easy rollbacks, and reliable updates. This document covers industry-standard deployment patterns.
 
-**What you'll learn:**
+**What You'll Learn:**
 - Blue-green deployment for zero downtime
 - Canary deployment for gradual rollouts
 - Rolling updates for continuous delivery

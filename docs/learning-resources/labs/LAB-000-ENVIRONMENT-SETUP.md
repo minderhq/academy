@@ -73,7 +73,7 @@ cat /etc/os-release
 uname -r
 ```
 
-**✅ Verification:**
+**Verification:**
 - [ ] OS version recorded
 - [ ] Architecture noted (x86_64 vs ARM64)
 - [ ] WSL2 installed (Windows)
@@ -122,7 +122,7 @@ nvidia-smi
 # CPU-only mode works but is slower
 ```
 
-**✅ Verification:**
+**Verification:**
 - [ ] RAM meets minimum (16GB+ ideal)
 - [ ] 100GB+ free storage
 - [ ] GPU detected (if available)
@@ -154,7 +154,7 @@ Hello from Docker!
 This message shows that your installation appears to be working correctly.
 ```
 
-**⚠️ Troubleshooting:**
+**Troubleshooting:**
 
 **"Permission denied" (Linux only):**
 ```bash
@@ -169,7 +169,7 @@ sudo usermod -aG docker $USER
 sudo systemctl start docker
 ```
 
-**✅ Verification:**
+**Verification:**
 - [ ] Docker version displayed
 - [ ] `docker ps` works without error
 - [ ] `hello-world` container ran successfully
@@ -248,7 +248,7 @@ python -c "import torch; print(f'PyTorch {torch.__version__}')"
 python -c "import transformers; print('Transformers installed')"
 ```
 
-**✅ Verification:**
+**Verification:**
 - [ ] Python 3.13+ installed
 - [ ] Virtual environment created
 - [ ] Virtual environment activated
@@ -289,7 +289,7 @@ ollama run phi3 "Hello! What is 2+2?"
 The answer is 4.
 ```
 
-**⚠️ Troubleshooting:**
+**Troubleshooting:**
 
 **"Connection refused":**
 - Make sure `ollama serve` is running
@@ -303,7 +303,7 @@ The answer is 4.
 - Use smaller model: `ollama pull phi3`
 - Close other applications
 
-**✅ Verification:**
+**Verification:**
 - [ ] Ollama installed
 - [ ] Ollama server running
 - [ ] Model downloaded
@@ -345,7 +345,7 @@ python test_env.py
 🎉 Environment setup complete!
 ```
 
-**✅ Verification:**
+**Verification:**
 - [ ] Test script runs without errors
 - [ ] All imports successful
 - [ ] LLM generates response
