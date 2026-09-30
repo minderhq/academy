@@ -165,25 +165,25 @@ D) All of the above
 
 ## Answer Key
 
-| # | Answer |
-|---|--------|
-| 1 | D |
-| 2 | C |
-| 3 | D |
-| 4 | A |
-| 5 | B |
-| 6 | B |
-| 7 | B |
-| 8 | A |
-| 9 | B |
-| 10 | B |
-| 11 | B |
-| 12 | A |
-| 13 | B |
-| 14 | B |
-| 15 | C |
-| 16 | C |
-| 17 | B |
-| 18 | A |
-| 19 | A |
-| 20 | D |
+| Question | Answer | Explanation |
+|----------|--------|-------------|
+| 1 | D | LLMOps is MLOps discipline - deploy, monitor, version - applied to the LLM lifecycle |
+| 2 | C | Ollama is a local-first runtime: run models on your own machine |
+| 3 | D | vLLM's PagedAttention packs far more concurrent requests onto a GPU (serving throughput) |
+| 4 | A | TGI = Text Generation Inference, Hugging Face's serving stack |
+| 5 | B | Continuous batching admits/evicts requests as they arrive and finish, keeping the GPU busy |
+| 6 | B | PagedAttention borrows OS virtual-memory paging: KV cache in fixed pages, no fragmentation |
+| 7 | B | The KV cache holds the per-sequence key/value attention matrices |
+| 8 | A | A small draft model proposes tokens; the large model verifies in parallel - same output, faster |
+| 9 | B | Tensor parallelism shards weight matrices across GPUs; batches/sequences belong to data/pipeline parallelism |
+| 10 | B | Quantized weights cut memory and raise throughput for a small accuracy cost |
+| 11 | B | Ollama stores models as GGUF files in its model directory |
+| 12 | A | The block manager allocates and frees KV cache blocks - PagedAttention's memory layer |
+| 13 | B | Prefix caching reuses the KV of shared prompt prefixes across requests |
+| 14 | B | No token can be produced before weights are loaded - first-token latency absorbs the load |
+| 15 | C | Batching raises throughput, but a request can wait for its batch-mates - both statements hold |
+| 16 | C | A/B testing deploys model versions side by side and compares their behavior on real traffic |
+| 17 | B | A canary rolls the new model to a small user subset before full rollout |
+| 18 | A | Model versioning tracks changes so any deployed artifact is reproducible and rollback-able |
+| 19 | A | The load balancer distributes requests across replicas and GPUs |
+| 20 | D | LLM monitoring spans throughput, cost, latency, and GPU utilization together |

@@ -165,25 +165,25 @@ D) Deploy applications
 
 ## Answer Key
 
-| # | Answer |
-|---|--------|
-| 1 | C |
-| 2 | A |
-| 3 | A |
-| 4 | A |
-| 5 | D |
-| 6 | D |
-| 7 | B |
-| 8 | A |
-| 9 | C |
-| 10 | C |
-| 11 | B |
-| 12 | D |
-| 13 | A |
-| 14 | B |
-| 15 | D |
-| 16 | B |
-| 17 | B |
-| 18 | D |
-| 19 | C |
-| 20 | C |
+| Question | Answer | Explanation |
+|----------|--------|-------------|
+| 1 | C | K3s is the lightweight Kubernetes distribution - single binary, edge/IoT focused |
+| 2 | A | A pod is the smallest schedulable unit, wrapping one or more containers sharing network/storage |
+| 3 | A | GPU exposure runs through device plugins advertising each node's GPU resources |
+| 4 | A | A node is the worker machine (physical or VM) that pods run on |
+| 5 | D | The GPU scheduler's job is placing pods onto nodes that have GPUs |
+| 6 | D | Storage classes enable dynamic provisioning - volumes created on demand |
+| 7 | B | A Service gives pods a stable endpoint and can expose them externally |
+| 8 | A | K3s strips legacy/alpha components and bundles the essentials, cutting memory |
+| 9 | C | GPU limits live at the container level (resources.limits inside the pod's container spec) |
+| 10 | C | PersistentVolumes outlive pods - workloads restart, the data stays |
+| 11 | B | Helm is the Kubernetes package manager; charts are its packages |
+| 12 | D | A Deployment manages pods: replica counts, rollouts, rollbacks |
+| 13 | A | The device plugin runs as a DaemonSet - one instance per node |
+| 14 | B | K3s server nodes are also schedulable, which is how single-box setups run workloads |
+| 15 | D | YAML declares Kubernetes configuration - every resource is a manifest |
+| 16 | B | Namespaces provide both resource isolation (quotas) and security scoping (RBAC) |
+| 17 | B | A ConfigMap stores non-secret configuration data; sensitive values go in Secrets |
+| 18 | D | GPU workloads combine node labels, affinity, and taints/tolerations to land on the right nodes |
+| 19 | C | Longhorn is distributed block storage for Kubernetes |
+| 20 | C | Charts are templated definitions of Kubernetes resources; installing one renders and applies them |
