@@ -165,25 +165,25 @@ D) Avoid tokenization of the input prompt entirely
 
 ## Answer Key
 
-| # | Answer |
-|---|--------|
-| 1 | C |
-| 2 | D |
-| 3 | B |
-| 4 | B |
-| 5 | B |
-| 6 | B |
-| 7 | B |
-| 8 | A |
-| 9 | B |
-| 10 | B |
-| 11 | A |
-| 12 | A |
-| 13 | B |
-| 14 | D |
-| 15 | C |
-| 16 | A |
-| 17 | D |
-| 18 | B |
-| 19 | C |
-| 20 | A |
+| Question | Answer | Explanation |
+|----------|--------|-------------|
+| 1 | C | KV cache stores Key and Value tensors so decoding never recomputes them |
+| 2 | D | Roughly 2 bytes per parameter per layer at FP16 |
+| 3 | B | The KV cache, not compute, is what caps practical context length |
+| 4 | B | The cache grows linearly with sequence length |
+| 5 | B | PagedAttention manages the KV cache in pages, like virtual memory |
+| 6 | B | MQA shares one Key/Value projection across all query heads |
+| 7 | B | The context window is the maximum sequence length the model can process |
+| 8 | A | RoPE scaling stretches positions past the trained horizon |
+| 9 | B | Longer context costs more memory and more attention compute |
+| 10 | B | Each token attends only within a nearby window of tokens |
+| 11 | A | GQA shares KV heads in groups - a middle ground between MHA and MQA |
+| 12 | A | Per token: layers x KV heads x head dimension x precision bytes |
+| 13 | B | The draft model proposes tokens; the target verifies them in parallel |
+| 14 | D | The target accepts/rejects draft tokens against its own distribution |
+| 15 | C | KV quantization shrinks the cache to 8-bit or 4-bit |
+| 16 | A | Prefill is compute-bound; decode is memory-bandwidth-bound |
+| 17 | D | FlashAttention is exact attention with IO-aware tiling |
+| 18 | B | RoPE encodes positions as rotations applied to Q/K vectors |
+| 19 | C | Linear or NTK scaling of RoPE frequencies extends context |
+| 20 | A | Offloading serves sequences longer than VRAM alone allows |

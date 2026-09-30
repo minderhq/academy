@@ -165,25 +165,25 @@ D) Only working on encoder models
 
 ## Answer Key
 
-| # | Answer |
-|---|--------|
-| 1 | D |
-| 2 | A |
-| 3 | A |
-| 4 | A |
-| 5 | A |
-| 6 | B |
-| 7 | B |
-| 8 | B |
-| 9 | B |
-| 10 | B |
-| 11 | A |
-| 12 | C |
-| 13 | B |
-| 14 | B |
-| 15 | C |
-| 16 | B |
-| 17 | A |
-| 18 | B |
-| 19 | A |
-| 20 | C |
+| Question | Answer | Explanation |
+|----------|--------|-------------|
+| 1 | D | PEFT trains only a small subset of parameters |
+| 2 | A | LoRA = Low-Rank Adaptation |
+| 3 | A | LoRA typically adds 0.1%-3% of the original model's parameters |
+| 4 | A | LoRA adds low-rank matrices alongside the frozen weights |
+| 5 | A | QLoRA = Quantized LoRA (4-bit NF4 base) |
+| 6 | B | Typical LoRA ranks sit in the 4-64 range |
+| 7 | B | For deployment the adapter merges into the base weights |
+| 8 | B | Adapters are small bottleneck layers inserted into the transformer |
+| 9 | B | Prefix tuning learns virtual tokens prepended to the input |
+| 10 | B | PEFT makes fine-tuning 70B+ models feasible on modest hardware |
+| 11 | A | Alpha scales the low-rank update (ΔW = α/r · BA) |
+| 12 | C | LoRA targets attention projections such as q_proj and v_proj |
+| 13 | B | QLoRA keeps the frozen base in 4-bit NF4 |
+| 14 | B | Double quantization quantizes the quantization constants themselves |
+| 15 | C | Higher rank adds capacity and adapter memory |
+| 16 | B | LoRA frees the optimizer states of the frozen weights |
+| 17 | A | Adapters swap on one shared base - no full model copies |
+| 18 | B | Prompt tuning trains continuous prompt vectors with the model frozen |
+| 19 | A | BA has the same shape as W, so it adds directly |
+| 20 | C | IA³/BitFit tune small vectors or biases, not low-rank matrices |

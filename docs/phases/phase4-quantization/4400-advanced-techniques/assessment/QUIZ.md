@@ -177,7 +177,7 @@ D) Track accuracy degradation and performance
 
 ## Answer Key
 
-| # | Answer | Explanation |
+| Question | Answer | Explanation |
 |---|--------|-------------|
 | 1 | D | GPTQ uses Hessian (second-order) information |
 | 2 | B | Damping prevents numerical issues in matrix inversion |
