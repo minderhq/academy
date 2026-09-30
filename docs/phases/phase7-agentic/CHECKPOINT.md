@@ -52,7 +52,7 @@ After completing Phase 7, you will:
 ### Module 7200: Tool Use & Function Calling (Required)
 
 **Checkpoint Quiz:**
-1. What is function calling?
+1. What problem does function calling solve?
 2. How do agents use external tools?
 3. What are the tool calling patterns?
 

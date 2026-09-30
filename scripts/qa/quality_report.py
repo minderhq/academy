@@ -50,8 +50,12 @@ stand today?" without running each tool by hand.
                        mcq options nor a Score points line),
                        QI-13 unparseable Answer Key row ([A-D]-
                        only row regexes silently drop E+ /
-                       two-letter cells; QI-11 born tick-374,
-                       QI-12 tick-474, QI-13 tick-475,
+                       two-letter cells), QI-14 checkpoint-quiz
+                       item duplicating a bank stem (verbatim
+                       item in a phase CHECKPOINT.md's 3-item
+                       Checkpoint Quiz re-asks a bank question;
+                       QI-11 born tick-374, QI-12 tick-474,
+                       QI-13 tick-475, QI-14 tick-476,
                        baseline 0) on top of
                        quiz_export's parser; QI-07/QI-10
                        are the report inventory (the

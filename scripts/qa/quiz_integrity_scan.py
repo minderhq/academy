@@ -66,6 +66,18 @@ QI-13  unparseable Answer Key row: a line inside the Answer Key
        orphan check, no key pull. Census tick-475: 0 in all 33
        banks.
 
+QI-14  checkpoint-quiz item duplicating a bank stem: the phase
+       CHECKPOINT.md files carry a 3-item **Checkpoint Quiz:** per
+       module, and a verbatim item re-asks a question the module's
+       own (or a sibling's) QUIZ.md bank already asks - the learner
+       meets the identical stem twice in one module flow. The check
+       reuses the QI-06 stem map: quiz_export never sees checkpoint
+       files and QI-06 only pairs QUIZ.md against QUIZ.md. Census
+       tick-476: 99 checkpoint items across 7 files vs 660 bank
+       stems, 1 verbatim dup (phase7 7200's own bank Q2 "What is
+       function calling?"), drained the same tick by rewording the
+       checkpoint item; 0 numbering gaps (all 33 blocks 1..3).
+
 Report inventory (never fails the gate - the drain queues, same
 contract as duplicate_heading_scan / AS-09):
 
@@ -101,11 +113,12 @@ QI-10  answer-length bias per module (report queue): the correct
        no safe mechanical fix - draining needs per-module content
        passes that make distractors parallel in form and length.
 
-Hard gate on QI-01..06, QI-08/09 and QI-11 (exit 1): baseline 0 at
-birth (tick-284 / tick-285); QI-06 joined in tick-345 (baseline 0
-since the tick-343 drain); QI-11 joined in tick-374 (born baseline
-0). QI-10 is report inventory at birth (tick-290: 31 modules
-queued).
+Hard gate on QI-01..06, QI-08/09 and QI-11..14 (exit 1): baseline 0
+at birth (tick-284 / tick-285); QI-06 joined in tick-345 (baseline
+0 since the tick-343 drain); QI-11 joined in tick-374 (born
+baseline 0); QI-12 tick-474, QI-13 tick-475, QI-14 tick-476 (all
+born-at-zero). QI-10 is report inventory at birth (tick-290: 31
+modules queued).
 
 Run over the whole corpus:
     python scripts/qa/quiz_integrity_scan.py --root .
@@ -318,6 +331,40 @@ def main() -> int:
         else:
             seen[stem] = (rel, n)
 
+    # QI-14: checkpoint-quiz items duplicating a bank stem. The
+    # phase CHECKPOINT.md files carry a 3-item **Checkpoint Quiz:**
+    # per module; a verbatim item re-asks a stem the bank already
+    # asks, so the learner meets the identical question twice in
+    # one module flow. quiz_export never sees checkpoint files and
+    # QI-06 only pairs QUIZ.md against QUIZ.md - this reuses the
+    # stem map QI-06 just built.
+    CP_HEAD = re.compile(r"^\*\*Checkpoint Quiz:\*\*\s*$")
+    CP_ITEM = re.compile(r"^\s*(\d+)[\.\)]\s+(\S.*)$")
+    for cp in sorted((args.root / MODULES_ROOT).glob("phase*/CHECKPOINT.md")):
+        rel = cp.relative_to(args.root).as_posix()
+        raw = cp.read_text(encoding="utf-8", errors="replace")
+        raw = raw.replace("\r\n", "\n").split("\n")
+        in_q = False
+        for line, fence in fence_aware(raw):
+            if fence:
+                continue
+            if CP_HEAD.match(line):
+                in_q = True
+                continue
+            if in_q:
+                if (line.startswith("### ") or line.startswith("## ")
+                        or line.strip() == "---" or line.startswith("**")):
+                    in_q = False
+                    continue
+                m = CP_ITEM.match(line)
+                if m:
+                    stem = norm(m.group(2))
+                    if stem in seen:
+                        hard.append(
+                            f"{rel}: QI-14 checkpoint-quiz item "
+                            f"{m.group(1)} '{m.group(2)[:50]}' duplicates "
+                            f"bank stem {seen[stem][0]} q{seen[stem][1]}")
+
     for c in cross_dups:
         hard.append("QI-06 cross-module stem dup: " + c)
     for f in hard:
@@ -335,7 +382,9 @@ def main() -> int:
           f"/ QI-08 duplicate Answer Key row "
           f"/ QI-09 orphan Answer Key row / QI-11 key letter with no "
           f"option row or <2-option mcq / QI-12 ungradeable "
-          f"question / QI-13 unparseable key row), QI-06 {len(cross_dups)} "
+          f"question / QI-13 unparseable key row / QI-14 "
+          f"checkpoint-quiz item duplicating a bank stem), "
+          f"QI-06 {len(cross_dups)} "
           f"cross-module stem dups (hard since tick-345; drained "
           f"tick-343), QI-07 "
           f"{len(skew)} skewed answer keys (option-shuffle queue; "
