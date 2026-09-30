@@ -13,7 +13,7 @@ Tags: ['tutorial', 'inference', 'serving']
 
 ---
 
-## 📋 Tutorial Overview
+## Tutorial Overview
 
 **Time:** 60 minutes
 **Difficulty:** ⭐⭐ Intermediate
@@ -31,7 +31,7 @@ Tags: ['tutorial', 'inference', 'serving']
 
 ---
 
-## 🌊 Part 1: Streaming LLM Responses (15 minutes)
+## Part 1: Streaming LLM Responses (15 minutes)
 
 ### Understanding Streaming
 
@@ -132,7 +132,7 @@ if __name__ == "__main__":
 
 ---
 
-## 🔌 Part 2: WebSocket Real-Time Chat (20 minutes)
+## Part 2: WebSocket Real-Time Chat (20 minutes)
 
 ### Building WebSocket Interface
 
@@ -285,7 +285,7 @@ if __name__ == "__main__":
 
 ---
 
-## 📡 Part 3: Server-Sent Events (15 minutes)
+## Part 3: Server-Sent Events (15 minutes)
 
 ### SSE Implementation
 
@@ -399,7 +399,7 @@ if __name__ == "__main__":
 
 ---
 
-## 🚀 Part 4: Production Considerations (10 minutes)
+## Part 4: Production Considerations (10 minutes)
 
 ### Deployment Best Practices
 
@@ -460,7 +460,7 @@ services:
 
 ---
 
-## ✅ Tutorial Completion Checklist
+## Tutorial Completion Checklist
 
 - [ ] Part 1: Streaming LLM responses
 - [ ] Part 2: WebSocket chat
@@ -469,7 +469,7 @@ services:
 
 ---
 
-## 🎓 Summary
+## Summary
 
 In this tutorial, you learned:
 
@@ -480,7 +480,7 @@ In this tutorial, you learned:
 
 ---
 
-## 🚀 Next Steps
+## Next Steps
 
 1. **LAB-011: Multi-Modal AI** - Add streaming to vision systems
 2. **LAB-012: Audio AI** - Real-time speech recognition

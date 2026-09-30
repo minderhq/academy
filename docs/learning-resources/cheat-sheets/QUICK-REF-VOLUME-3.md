@@ -13,7 +13,7 @@ Tags: ['cheatsheet', 'transformers', 'attention']
 
 ---
 
-## 📐 Self-Attention
+## Self-Attention
 
 ### Standard Attention
 ```python
@@ -91,7 +91,7 @@ class MultiHeadAttention(nn.Module):
 
 ---
 
-## ⚡ Flash Attention
+## Flash Attention
 
 ### Key Idea: Block-wise Computation
 ```python
@@ -160,7 +160,7 @@ class FlashAttention(nn.Module):
 
 ---
 
-## 🔄 RoPE (Rotary Positional Embeddings)
+## RoPE (Rotary Positional Embeddings)
 
 ### Position Encoding
 ```python
@@ -233,7 +233,7 @@ class RotaryAttention(nn.Module):
 
 ---
 
-## 🧩 Normalization Layers
+## Normalization Layers
 
 ### Layer Normalization
 ```python
@@ -329,7 +329,7 @@ class GroupNorm(nn.Module):
 
 ---
 
-## 🔥 Activation Functions
+## Activation Functions
 
 ### GELU (Gaussian Error Linear Unit)
 ```python
@@ -405,7 +405,7 @@ class GeGLU(nn.Module):
 
 ---
 
-## 🏗️ Model Architectures
+## Model Architectures
 
 ### Decoder-Only Block (GPT-style)
 ```python
@@ -560,7 +560,7 @@ class MoEBlock(nn.Module):
 
 ---
 
-## 🔑 Tokenization
+## Tokenization
 
 ### BPE (Byte Pair Encoding)
 ```python
@@ -636,7 +636,7 @@ text = sp.decode(token_ids)
 
 ---
 
-## 🎯 Volume 3 Checklist
+## Volume 3 Checklist
 
 - [ ] Understand self-attention mechanism
 - [ ] Implement multi-head attention
@@ -651,7 +651,7 @@ text = sp.decode(token_ids)
 
 ---
 
-## 🚀 Next Steps
+## Next Steps
 
 1. Complete LAB-002: RAG Implementation
 2. Read 3102-Flash-Attention.md

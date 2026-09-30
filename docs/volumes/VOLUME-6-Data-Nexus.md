@@ -15,29 +15,29 @@ Tags: ['volume', 'rag', 'vector-db', 'graphrag']
 
 ## Table of Contents
 
-- [Volume Overview](#-volume-overview)
+- [Volume Overview](#volume-overview)
 - [Why This Volume Matters](#why-this-volume-matters)
-- [Learning Path](#-learning-path)
+- [Learning Path](#learning-path)
   - [Week 1: Vector Similarity & Search](#week-1-vector-similarity--search)
   - [Week 2: RAG Fundamentals](#week-2-rag-fundamentals)
   - [Week 3: Knowledge Graphs & GraphRAG](#week-3-knowledge-graphs--graphrag)
   - [Week 4: Long Context & Advanced Topics](#week-4-long-context--advanced-topics)
-- [Volume 6 Capstone Projects](#-volume-6-capstone-projects)
-- [Volume 6 Checklist](#-volume-6-checklist)
-- [Cross-References](#-cross-references)
-- [📊 Volume 6 Statistics](#-volume-6-statistics)
-- [Key Takeaways](#-key-takeaways)
+- [Volume 6 Capstone Projects](#volume-6-capstone-projects)
+- [Volume 6 Checklist](#volume-6-checklist)
+- [Cross-References](#cross-references)
+- [📊 Volume 6 Statistics](#volume-6-statistics)
+- [Key Takeaways](#key-takeaways)
 - [Common Pitfalls](#common-pitfalls)
 - [Pro Tips](#pro-tips)
 - [Performance Benchmarks](#performance-benchmarks)
 - [Hardware Requirements](#hardware-requirements)
-- [Troubleshooting](#-troubleshooting)
-- [After Volume 6](#-after-volume-6)
-- [🚀 Next Steps](#-next-steps)
+- [Troubleshooting](#troubleshooting)
+- [After Volume 6](#after-volume-6)
+- [🚀 Next Steps](#next-steps)
 
 ---
 
-## 📚 Volume Overview
+## Volume Overview
 
 **Difficulty:** ⭐⭐⭐ Advanced
 **Time:** 4-5 weeks (part-time)
@@ -114,7 +114,7 @@ graph LR
 
 ---
 
-## 🗺️ Learning Path
+## Learning Path
 
 ### Week 1: Vector Similarity & Search
 
@@ -631,7 +631,7 @@ def multi_hop_reasoning(query):
 
 ---
 
-## 🎯 Volume 6 Capstone Projects
+## Volume 6 Capstone Projects
 
 ### Project A: Production RAG System
 
@@ -686,7 +686,7 @@ def multi_hop_reasoning(query):
 
 ---
 
-## 📋 Volume 6 Checklist
+## Volume 6 Checklist
 
 Use this checklist to track your progress:
 
@@ -712,7 +712,7 @@ Use this checklist to track your progress:
 
 ---
 
-## 🔗 Cross-References
+## Cross-References
 
 ### How Volume 6 Connects to Other Volumes:
 
@@ -740,7 +740,7 @@ Use this checklist to track your progress:
 
 ---
 
-## 📊 Volume 6 Statistics
+## Volume 6 Statistics
 
 | Metric | Value |
 |--------|-------|
@@ -754,7 +754,7 @@ Use this checklist to track your progress:
 
 ---
 
-## 💡 Key Takeaways
+## Key Takeaways
 
 ### RAG Pipeline
 
@@ -943,7 +943,7 @@ Question: {query}
 
 ## Pro Tips
 
-### 💡 Chunking Strategy
+### Chunking Strategy
 
 **Tip:** Use semantic chunking for better retrieval
 ```python
@@ -961,7 +961,7 @@ chunks = splitter.split_text(document)
 # Result: Chunks that respect sentence/paragraph boundaries
 ```
 
-### 💡 Hybrid Search Weights
+### Hybrid Search Weights
 
 **Tip:** Adjust RRF weights based on query type
 ```python
@@ -989,7 +989,7 @@ exact_query = "Model X-500 specifications"
 # -> alpha=0.3 (favor keyword)
 ```
 
-### 💡 Multi-Hop Query Decomposition
+### Multi-Hop Query Decomposition
 
 **Tip:** Break complex queries automatically
 ```python
@@ -1015,7 +1015,7 @@ def decompose_multi_hop_query(query):
 # 2. Who founded [company from 1]?
 ```
 
-### 💡 GraphRAG Context Fusion
+### GraphRAG Context Fusion
 
 **Tip:** Combine vector and graph results effectively
 ```python
@@ -1037,7 +1037,7 @@ def fuse_graphrag_context(graph_results, vector_results, weights={"graph": 0.3, 
     return graph_texts[:n_graph] + vector_texts[:n_vector]
 ```
 
-### 💡 Evaluation Metrics
+### Evaluation Metrics
 
 **Tip:** Track RAG-specific metrics
 ```python
@@ -1168,7 +1168,7 @@ Network: 10 Gbps
 
 ---
 
-## 🆘 Troubleshooting
+## Troubleshooting
 
 ### Common Issues in Volume 6
 
@@ -1188,7 +1188,7 @@ For more help, see **[TROUBLESHOOTING-Common-Issues.md](../learning-resources/tr
 
 ---
 
-## 🎓 After Volume 6
+## After Volume 6
 
 ### You're Ready For:
 
@@ -1209,7 +1209,7 @@ For more help, see **[TROUBLESHOOTING-Common-Issues.md](../learning-resources/tr
 
 ---
 
-## 🚀 Next Steps
+## Next Steps
 
 1. **Track your progress** in [PROGRESS-TRACKER.md](../00-META/PROGRESS-TRACKER.md)
 2. **Continue to Volume 7** for production deployment and agents

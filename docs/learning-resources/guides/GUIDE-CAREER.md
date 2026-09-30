@@ -15,7 +15,7 @@ Tags: ['career', 'guide', 'roadmap']
 
 ---
 
-## 🚨 CRITICAL REALITY CHECK
+## CRITICAL REALITY CHECK
 
 Before diving into career prep, understand the current AI job market:
 
@@ -488,7 +488,7 @@ Data: Python, NumPy, Pandas, SQL (PostgreSQL), PostgreSQL + pgvector
 
 ---
 
-## ⭐ Final Thoughts
+## Final Thoughts
 
 **The AI field moves fast.** What's cutting-edge today will be standard in 6 months.
 

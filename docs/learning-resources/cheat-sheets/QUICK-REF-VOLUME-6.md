@@ -13,7 +13,7 @@ Tags: ['cheatsheet', 'rag', 'vector-db']
 
 ---
 
-## 🔍 Vector Search
+## Vector Search
 
 ### HNSW Index
 ```python
@@ -122,7 +122,7 @@ for i in range(len(sentences)):
 
 ---
 
-## 🔎 Hybrid Search
+## Hybrid Search
 
 ### Combining Vector + Keyword
 ```python
@@ -229,7 +229,7 @@ class ReRanker:
 
 ---
 
-## 🕸️ GraphRAG
+## GraphRAG
 
 ### Knowledge Graph Construction
 ```python
@@ -359,7 +359,7 @@ class GraphRAGRetriever:
 
 ---
 
-## 🗄️ Vector Databases
+## Vector Databases
 
 ### Qdrant
 ```python
@@ -481,7 +481,7 @@ results = index.query(
 
 ---
 
-## 📊 RAG Evaluation
+## RAG Evaluation
 
 ### Retrieval Metrics
 ```python
@@ -608,7 +608,7 @@ print(result)
 
 ---
 
-## 🎯 Volume 6 Checklist
+## Volume 6 Checklist
 
 - [ ] Understand HNSW indexing
 - [ ] Implement vector search
@@ -622,7 +622,7 @@ print(result)
 
 ---
 
-## 🚀 Next Steps
+## Next Steps
 
 1. Complete LAB-007: Production RAG
 2. Read 6302-CAG-Long-Context-Architectures.md

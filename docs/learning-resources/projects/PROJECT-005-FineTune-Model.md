@@ -13,7 +13,7 @@ Tags: ['project', 'lora', 'finetuning', 'peft']
 
 ---
 
-## 🎯 Project Overview
+## Project Overview
 
 Fine-tune a large language model for a specific domain using modern techniques:
 - LoRA and QLoRA fine-tuning
@@ -27,7 +27,7 @@ Fine-tune a large language model for a specific domain using modern techniques:
 
 ---
 
-## 📋 Prerequisites
+## Prerequisites
 
 Complete these before starting:
 - ✅ 5101: LoRA Logic
@@ -37,7 +37,7 @@ Complete these before starting:
 
 ---
 
-## 🏗️ Project Architecture
+## Project Architecture
 
 ```text
 ┌─────────────────────────────────────────────────────────────┐
@@ -237,7 +237,7 @@ if __name__ == '__main__':
     print("Dataset preparation complete!")
 ```
 
-### ✅ Phase 1 Checklist
+### Phase 1 Checklist
 - [ ] Domain data collected
 - [ ] Data cleaned and filtered
 - [ ] Formatted for training
@@ -372,7 +372,7 @@ tokenizer.save_pretrained(OUTPUT_DIR)
 print("Fine-tuning complete!")
 ```
 
-### ✅ Phase 2 Checklist
+### Phase 2 Checklist
 - [ ] Base model loaded (4-bit)
 - [ ] LoRA adapters applied
 - [ ] Training loop working
@@ -468,7 +468,7 @@ for i in range(3):
     print(f"Reference: {references[i]}")
 ```
 
-### ✅ Phase 3 Checklist
+### Phase 3 Checklist
 - [ ] ROUGE scores calculated
 - [ ] Example outputs reviewed
 - [ ] Quality acceptable
@@ -506,7 +506,7 @@ python -m vllm.entrypoints.api_server \
 echo "Model deployed at http://localhost:8000"
 ```
 
-### ✅ Phase 4 Checklist
+### Phase 4 Checklist
 - [ ] Adapters merged
 - [ ] Model deployed with vLLM
 - [ ] API endpoint accessible
@@ -514,7 +514,7 @@ echo "Model deployed at http://localhost:8000"
 
 ---
 
-## 🏆 Project Completion Checklist
+## Project Completion Checklist
 
 ```text
 [ ] Phase 1: Domain Data Prepared
@@ -527,7 +527,7 @@ echo "Model deployed at http://localhost:8000"
 
 ---
 
-## 📚 Related Resources
+## Related Resources
 
 - **[5101: LoRA Logic](../../phases/phase5-finetuning/5100-peft/5101-LoRA-Logic.md)** - LoRA theory
 - **[5102: QLoRA Pipelines](../../phases/phase5-finetuning/5100-peft/5102-QLoRA-Pipelines.md)** - QLoRA techniques

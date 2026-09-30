@@ -19,7 +19,7 @@ This guide helps you transition from tutorials (watching/reading) to labs (doing
 
 ---
 
-## 📚 Learning Pathway
+## Learning Pathway
 
 ```text
 ENVIRONMENT SETUP
@@ -35,7 +35,7 @@ ENVIRONMENT SETUP
 
 ---
 
-## 🎯 Tutorial → Lab Mappings
+## Tutorial → Lab Mappings
 
 ### Path 1: Local LLMs
 
@@ -152,7 +152,7 @@ model = get_peft_model(base_model, config)
 
 ---
 
-## 🌉 Common Gaps & Bridges
+## Common Gaps & Bridges
 
 ### Gap 1: Environment Differences
 
@@ -194,7 +194,7 @@ except APIError as e:
 
 ---
 
-## 📋 Pre-Lab Checklist
+## Pre-Lab Checklist
 
 Before starting any lab, ensure:
 
@@ -215,7 +215,7 @@ Before starting any lab, ensure:
 
 ---
 
-## 🔧 Lab Preparation Steps
+## Lab Preparation Steps
 
 ### Step 1: Review Tutorial (30 min)
 
@@ -237,7 +237,7 @@ Before starting any lab, ensure:
 
 ---
 
-## 💡 Lab Success Tips
+## Lab Success Tips
 
 ### Start Simple
 1. Run the provided code first
@@ -258,7 +258,7 @@ Before starting any lab, ensure:
 
 ---
 
-## 📊 Progression Difficulty
+## Progression Difficulty
 
 ```text
 TUTORIAL Difficulty:
@@ -275,7 +275,7 @@ PROJECT Difficulty:
 
 ---
 
-## 🚨 When to Ask for Help
+## When to Ask for Help
 
 ### Green Flags (Keep Going)
 - Minor errors you understand
@@ -300,7 +300,7 @@ PROJECT Difficulty:
 
 ---
 
-## ✅ Post-Lab Reflection
+## Post-Lab Reflection
 
 After completing each lab, ask yourself:
 
@@ -311,7 +311,7 @@ After completing each lab, ask yourself:
 
 ---
 
-## 📈 Recommended Sequences
+## Recommended Sequences
 
 ### Beginner Track
 ```text
@@ -335,7 +335,7 @@ Volume 1 → Volume 3 → Volume 5 → Volume 6 → Volume 7
 
 ---
 
-## 🎯 Bridge Checkpoints
+## Bridge Checkpoints
 
 Use these checkpoints to verify readiness:
 
@@ -356,7 +356,7 @@ Use these checkpoints to verify readiness:
 
 ---
 
-## 📚 Additional Resources
+## Additional Resources
 
 ### Learning Resources
 - [ENVIRONMENT-SETUP.md](../../00-META/ENVIRONMENT-SETUP.md)
@@ -374,7 +374,7 @@ Use these checkpoints to verify readiness:
 
 ---
 
-## 🎉 Celebrate Progress
+## Celebrate Progress
 
 Learning AI is challenging! Celebrate milestones:
 

@@ -13,7 +13,7 @@ Tags: ['project', 'pytorch', 'training', 'tensors']
 
 ---
 
-## 🎯 Project Overview
+## Project Overview
 
 Build and train a neural network completely from scratch, implementing:
 - Manual backpropagation with the chain rule
@@ -27,7 +27,7 @@ Build and train a neural network completely from scratch, implementing:
 
 ---
 
-## 📋 Prerequisites
+## Prerequisites
 
 Complete these before starting:
 - ✅ EXP 2101: Tensor Algebra
@@ -37,7 +37,7 @@ Complete these before starting:
 
 ---
 
-## 🏗️ Project Architecture
+## Project Architecture
 
 ```text
 ┌─────────────────────────────────────────────────────────────┐
@@ -333,7 +333,7 @@ class Tensor:
         return self.data
 ```
 
-### ✅ Phase 1 Checklist
+### Phase 1 Checklist
 - [ ] Tensor class implemented
 - [ ] Basic operations working (+, -, *, /)
 - [ ] Matrix multiplication working
@@ -637,7 +637,7 @@ class Adam(Optimizer):
             p.data = p.data - self.lr * m_hat / (np.sqrt(v_hat) + self.eps)
 ```
 
-### ✅ Phase 2 Checklist
+### Phase 2 Checklist
 - [ ] Module base class implemented
 - [ ] Linear layer working
 - [ ] Conv2D layer working
@@ -787,7 +787,7 @@ def evaluate(model: Module, dataloader: DataLoader,
     return avg_loss, accuracy
 ```
 
-### ✅ Phase 3 Checklist
+### Phase 3 Checklist
 - [ ] Dataset class implemented
 - [ ] DataLoader with batching working
 - [ ] Training loop implemented
@@ -988,7 +988,7 @@ print(f"PyTorch final loss: {torch_losses[-1]:.4f}")
 print(f"Difference: {abs(train_losses[-1] - torch_losses[-1]):.4f}")
 ```
 
-### ✅ Phase 4 Checklist
+### Phase 4 Checklist
 - [ ] XOR model trained successfully
 - [ ] Loss decreased over epochs
 - [ ] Test accuracy > 95%
@@ -1087,7 +1087,7 @@ for epoch in range(n_epochs):
     print(f"  Test Accuracy: {accuracy*100:.2f}%")
 ```
 
-### ✅ Phase 5 Checklist
+### Phase 5 Checklist
 - [ ] MNIST model trained
 - [ ] Test accuracy > 90%
 - [ ] Training visualized
@@ -1095,7 +1095,7 @@ for epoch in range(n_epochs):
 
 ---
 
-## 🎓 Bonus Challenges
+## Bonus Challenges
 
 1. **Add more layers** - Deep networks
 2. **Implement dropout** - Regularization
@@ -1106,7 +1106,7 @@ for epoch in range(n_epochs):
 
 ---
 
-## 🏆 Project Completion Checklist
+## Project Completion Checklist
 
 ```text
 [ ] Phase 1: Tensor Library
@@ -1119,7 +1119,7 @@ for epoch in range(n_epochs):
 
 ---
 
-## 📚 Related Resources
+## Related Resources
 
 - **[2101: Tensor Algebra](../../phases/phase2-foundations/2100-calculus/2101-Tensor-Algebra.md)** - Tensor theory
 - **[2102: Backpropagation](../../phases/phase2-foundations/2100-calculus/2102-Backpropagation-and-Derivatives.md)** - Gradient computation

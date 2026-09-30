@@ -13,7 +13,7 @@ Tags: ['cheatsheet', 'agents', 'production']
 
 ---
 
-## 🤖 ReAct Agent
+## ReAct Agent
 
 ### Concept
 ```python
@@ -102,7 +102,7 @@ Action:"""
 
 ---
 
-## 👥 Multi-Agent Systems
+## Multi-Agent Systems
 
 ### AutoGen Pattern
 ```python
@@ -244,7 +244,7 @@ class MultiAgentOrchestrator:
 
 ---
 
-## 🛠️ Tool Calling
+## Tool Calling
 
 ### Safe Python Interpreter
 ```python
@@ -442,7 +442,7 @@ Answer:"""
 
 ---
 
-## 🧠 Agent Memory
+## Agent Memory
 
 ### Long-term Memory
 ```python
@@ -562,7 +562,7 @@ class AgentMemorySystem:
 
 ---
 
-## 🚀 Production Deployment
+## Production Deployment
 
 ### Kubernetes Deployment
 ```yaml
@@ -768,7 +768,7 @@ print(calculate_cost_per_1k_requests())
 
 ---
 
-## 🎯 Volume 7 Checklist
+## Volume 7 Checklist
 
 - [ ] Implement ReAct agent
 - [ ] Build multi-agent system
@@ -782,7 +782,7 @@ print(calculate_cost_per_1k_requests())
 
 ---
 
-## 🚀 Next Steps
+## Next Steps
 
 1. Complete LAB-004: ReAct Agent
 2. Complete LAB-008: Agent Fleet

@@ -530,7 +530,7 @@ services:
 
 ---
 
-## 🎓 Knowledge Check
+## Knowledge Check
 
 1. **What does RAG stand for?**
    - Retrieval-Augmented Generation
@@ -546,7 +546,7 @@ services:
 
 ---
 
-## 📚 What's Next?
+## What's Next?
 
 1. **[TUTORIAL-004: Monitoring](./TUTORIAL-004-Monitoring.md)** - Track model and system health
 2. **[6201: Hybrid Search](../../phases/phase6-rag/6200-retrieval/6201-Hybrid-Search.md)** - Advanced retrieval
@@ -554,7 +554,7 @@ services:
 
 ---
 
-## 🔗 Complete Code Example
+## Complete Code Example
 
 ```python
 # complete_rag.py

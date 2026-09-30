@@ -13,7 +13,7 @@ Tags: ['roadmap', 'guide', 'practice']
 
 ---
 
-## 📊 Overall Progress
+## Overall Progress
 
 ```text
 Volume 1: Infrastructure Mastery  [░░░░░░░░░░░] 0% (0/39)
@@ -29,7 +29,7 @@ Total: [░░░░░░░░░░░░░░░░░] 0% (0/408 core file
 
 ---
 
-## 📚 Volume-Based Progress Tracking
+## Volume-Based Progress Tracking
 
 ### Volume 1: Infrastructure Mastery (39 files)
 **"Build Your AI Laboratory"** - 75-100 hours | Difficulty: ⭐⭐ Intermediate
@@ -254,7 +254,7 @@ Total: [░░░░░░░░░░░░░░░░░] 0% (0/408 core file
 
 ---
 
-## 🏆 Badges & Achievements
+## Badges & Achievements
 
 ### Volume Completion Badges
 
@@ -299,7 +299,7 @@ Copy a badge when you complete a volume:
 
 ---
 
-## 📝 Learning Notes
+## Learning Notes
 
 Use this space for your learning notes:
 
@@ -330,7 +330,7 @@ Next steps:
 
 ---
 
-## 🎯 Milestones
+## Milestones
 
 Track your major achievements:
 
@@ -360,7 +360,7 @@ Track your major achievements:
 
 ---
 
-## 📅 Weekly Goals
+## Weekly Goals
 
 Set weekly learning goals:
 
@@ -382,7 +382,7 @@ Notes:
 
 ---
 
-## 🔗 Quick Links
+## Quick Links
 
 ### Essential Reading
 - **[VOLUME-GUIDE.md](VOLUME-GUIDE.md)** - Start here! Overview of all 7 volumes
@@ -402,7 +402,7 @@ Notes:
 
 ---
 
-## 📊 Progress Statistics
+## Progress Statistics
 
 | Metric | Target | Current | % |
 |--------|--------|---------|---|
@@ -416,7 +416,7 @@ Notes:
 
 ---
 
-## 💡 Learning Tips
+## Learning Tips
 
 1. **Follow the Volume Order** - Each volume builds on the previous one
 2. **Read the Volume Guide First** - Each volume has a guide explaining the learning path
@@ -428,7 +428,7 @@ Notes:
 
 ---
 
-## 🚀 Recommended Learning Paths
+## Recommended Learning Paths
 
 ### Fast Track (3-4 months)
 For experienced developers who want to get productive quickly:

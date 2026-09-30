@@ -13,7 +13,7 @@ Tags: ['roadmap', 'guide', 'assessment']
 
 ---
 
-## 📊 Overall Progress
+## Overall Progress
 
 **Total Phases:** 7
 **Total Modules:** 29
@@ -32,7 +32,7 @@ Phase 7: ☐ Agentic Systems (5-6 weeks)
 
 ---
 
-## 🎯 Beginner Track (Fast Track)
+## Beginner Track (Fast Track)
 
 **Target:** Get to production quickly
 
@@ -52,7 +52,7 @@ Phase 7: ☐ Agentic Systems (5-6 weeks)
 
 ---
 
-## 📚 Deep Learning Track (Comprehensive)
+## Deep Learning Track (Comprehensive)
 
 **Target:** Understand everything
 
@@ -73,7 +73,7 @@ Total: _____ months
 
 ---
 
-## 🏆 Badge System
+## Badge System
 
 **Earn badges by completing phases:**
 
@@ -98,7 +98,7 @@ Total: _____ months
 
 ---
 
-## ✅ Phase Completion Criteria
+## Phase Completion Criteria
 
 ### Phase 1: Infrastructure
 - [ ] Module 1400 (LLMOps) completed
@@ -145,7 +145,7 @@ Total: _____ months
 
 ---
 
-## 🎯 Capstone Readiness
+## Capstone Readiness
 
 ### Before Each Capstone Project
 
@@ -187,7 +187,7 @@ Total: _____ months
 
 ---
 
-## 📈 Progress Visualization
+## Progress Visualization
 
 ### Weekly Check-ins
 
@@ -241,7 +241,7 @@ Total: _____ months
 
 ---
 
-## 🎉 Milestone Celebrations
+## Milestone Celebrations
 
 **Celebrate when you:**
 
@@ -256,7 +256,7 @@ Total: _____ months
 
 ---
 
-## 📞 Support & Accountability
+## Support & Accountability
 
 ### Study Buddy System
 
@@ -276,7 +276,7 @@ Total: _____ months
 
 ---
 
-## 🔄 Getting Back on Track
+## Getting Back on Track
 
 **Fell behind? Here's how to catch up:**
 
@@ -299,7 +299,7 @@ Total: _____ months
 
 ---
 
-## ✅ Final Verification
+## Final Verification
 
 ### Before Claiming Completion
 
@@ -322,7 +322,7 @@ Total: _____ months
 
 ---
 
-## 📚 Additional Resources
+## Additional Resources
 
 - [PROGRESS-TRACKER.md](PROGRESS-TRACKER.md) - Detailed tracking
 - [ASSESSMENT-GUIDE.md](ASSESSMENT-GUIDE.md) - Self-assessment

@@ -13,7 +13,7 @@ Tags: ['cheatsheet', 'pytorch', 'tensors', 'math']
 
 ---
 
-## 🧮 Tensor Operations
+## Tensor Operations
 
 ### Tensor Dimensions
 ```python
@@ -99,7 +99,7 @@ C = A + bias
 
 ---
 
-## 🔄 Backpropagation
+## Backpropagation
 
 ### Chain Rule
 ```text
@@ -167,7 +167,7 @@ class Tensor:
 
 ---
 
-## 🔥 PyTorch Optimization
+## PyTorch Optimization
 
 ### Gradient Checkpointing
 ```python
@@ -222,7 +222,7 @@ model = torch.compile(
 
 ---
 
-## 📊 CUDA Programming
+## CUDA Programming
 
 ### Basic CUDA Kernel (Python)
 ```python
@@ -311,7 +311,7 @@ def kernel(..., BLOCK_SIZE: tl.constexpr):
 
 ---
 
-## 🎓 Pre-training Fundamentals
+## Pre-training Fundamentals
 
 ### Data Pipeline
 ```text
@@ -404,7 +404,7 @@ TOKENIZERS = {
 
 ---
 
-## 📈 Evaluation Metrics
+## Evaluation Metrics
 
 ### Perplexity
 ```python
@@ -485,7 +485,7 @@ def evaluate_mmlu(model, tokenizer, subjects="all"):
 
 ---
 
-## 🔧 Quick Commands
+## Quick Commands
 
 ### Tensor Operations
 ```python
@@ -521,7 +521,7 @@ for name, param in model.named_parameters():
 
 ---
 
-## 🎯 Common Pitfalls
+## Common Pitfalls
 
 ### Pitfall 1: Broadcasting Errors
 ```python
@@ -565,7 +565,7 @@ for i, batch in enumerate(dataloader):
 
 ---
 
-## 📦 Volume 2 Checklist
+## Volume 2 Checklist
 
 - [ ] Understand tensor shapes and dimensions
 - [ ] Master einsum notation
@@ -579,7 +579,7 @@ for i, batch in enumerate(dataloader):
 
 ---
 
-## 🚀 Next Steps
+## Next Steps
 
 1. Complete LAB-006: Train Model from Scratch
 2. Read 2402-Large-Scale-Training.md

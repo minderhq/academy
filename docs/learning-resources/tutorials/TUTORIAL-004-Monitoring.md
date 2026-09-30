@@ -384,7 +384,7 @@ docker-compose ps
 # Should see 8 services running
 ```
 
-### ✅ Checkpoint: Part 2
+### Checkpoint: Part 2
 **Verify:** All 8 services running, Prometheus at [http://localhost:9090](http://localhost:9090)
 
 ---
@@ -472,7 +472,7 @@ docker-compose restart grafana
 - Username: admin
 - Password: admin
 
-### ✅ Checkpoint: Part 3
+### Checkpoint: Part 3
 **Verify:** Grafana accessible, datasources connected, dashboards loaded
 
 ---
@@ -542,7 +542,7 @@ Title: Current Temperature
 Unit: Celsius
 ```
 
-### ✅ Checkpoint: Part 4
+### Checkpoint: Part 4
 **Verify:** GPU metrics visible in Grafana
 
 ---
@@ -673,7 +673,7 @@ curl -X POST http://localhost:8080/generate \
    - generate_text (parent span)
    - ollama_request (child span)
 
-### ✅ Checkpoint: Part 5
+### Checkpoint: Part 5
 **Verify:** Traces visible in Tempo
 
 ---
@@ -717,7 +717,7 @@ docker-compose down
 
 ---
 
-## 🎯 Next Steps
+## Next Steps
 
 - **[1501: Monitoring Stack](../../phases/phase1-infra/1500-monitoring/1501-Monitoring-and-Observability.md)** - Deep dive into monitoring
 - **[LAB-001: Docker & LLM](../labs/LAB-001-Docker-LLM.md)** - Add monitoring to LLM apps

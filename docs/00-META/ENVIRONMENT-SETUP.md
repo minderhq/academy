@@ -21,7 +21,7 @@ This guide helps you set up a complete AI development environment for PROJECT-OM
 
 ---
 
-## 🖥️ Hardware Requirements
+## Hardware Requirements
 
 ### Minimum Specifications (For Learning)
 
@@ -62,7 +62,7 @@ df -h
 
 ---
 
-## 📦 Software Installation
+## Software Installation
 
 ### Step 1: Operating System Preparation
 
@@ -304,7 +304,7 @@ uv pip install requests tqdm
 
 ---
 
-## 🔧 Troubleshooting
+## Troubleshooting
 
 ### Issue 1: Ollama Download Fails
 
@@ -449,7 +449,7 @@ New-NetFirewallRule -DisplayName "WSL" -Direction Inbound -InterfaceAlias "vEthe
 
 ---
 
-## ✅ Verification Checklist
+## Verification Checklist
 
 Before starting tutorials, verify:
 
@@ -473,7 +473,7 @@ Before starting tutorials, verify:
 
 ---
 
-## 🎯 Next Steps
+## Next Steps
 
 Once your environment is set up:
 
@@ -483,7 +483,7 @@ Once your environment is set up:
 
 ---
 
-## 📚 Additional Resources
+## Additional Resources
 
 ### Hardware Guides
 - [GPU Comparison](https://www.tomshardware.com/best-gpus)
@@ -500,7 +500,7 @@ Once your environment is set up:
 
 ---
 
-## 💡 Tips for Success
+## Tips for Success
 
 1. **Start Small:** Begin with 7B models, not 70B
 2. **Use Virtual Environments:** Avoid package conflicts

@@ -13,7 +13,7 @@ Tags: ['cheatsheet', 'finetuning', 'lora']
 
 ---
 
-## 🎯 LoRA (Low-Rank Adaptation)
+## LoRA (Low-Rank Adaptation)
 
 ### Concept
 ```python
@@ -116,7 +116,7 @@ model.print_trainable_parameters()
 
 ---
 
-## 🔧 QLoRA (Quantized LoRA)
+## QLoRA (Quantized LoRA)
 
 ### Concept
 ```python
@@ -175,7 +175,7 @@ model = get_peft_model(model, lora_config)
 
 ---
 
-## 🎓 DPO (Direct Preference Optimization)
+## DPO (Direct Preference Optimization)
 
 ### Concept
 ```python
@@ -294,7 +294,7 @@ for batch in dataloader:
 
 ---
 
-## 📊 Fine-Tuning Data
+## Fine-Tuning Data
 
 ### Instruction Format
 ```python
@@ -388,7 +388,7 @@ def collect_ai_preferences(prompt, responses, judge_model):
 
 ---
 
-## 🔬 Training Hyperparameters
+## Training Hyperparameters
 
 ### LoRA Hyperparameters
 ```python
@@ -467,7 +467,7 @@ TRAINING_HYPERPARAMETERS = {
 
 ---
 
-## 🎯 Volume 5 Checklist
+## Volume 5 Checklist
 
 - [ ] Understand LoRA concept
 - [ ] Implement LoRA layer
@@ -481,7 +481,7 @@ TRAINING_HYPERPARAMETERS = {
 
 ---
 
-## 🚀 Next Steps
+## Next Steps
 
 1. Complete LAB-003: LoRA Fine-Tuning
 2. Complete LAB-010: DPO Alignment

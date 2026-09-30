@@ -13,7 +13,7 @@ Tags: ['cheatsheet', 'devops', 'infrastructure']
 
 ---
 
-## 📁 File & Directory Operations
+## File & Directory Operations
 
 ### Navigation
 ```bash
@@ -83,7 +83,7 @@ df -h                        # Disk space free
 
 ---
 
-## 👀 Viewing Files
+## Viewing Files
 
 ### File Content
 ```bash
@@ -130,7 +130,7 @@ stat file.txt
 
 ---
 
-## 📝 Text Processing
+## Text Processing
 
 ### Editing Files
 ```bash
@@ -196,7 +196,7 @@ grep . file.txt > clean.txt
 
 ---
 
-## 🔍 Process Management
+## Process Management
 
 ### View Processes
 ```bash
@@ -259,7 +259,7 @@ kill ${PID}                  # Kill process
 
 ---
 
-## 🌐 Network Commands
+## Network Commands
 
 ### Network Info
 ```bash
@@ -326,7 +326,7 @@ ssh-copy-id user@host
 
 ---
 
-## 🔒 Permissions
+## Permissions
 
 ### View Permissions
 ```bash
@@ -376,7 +376,7 @@ chgrp group file.txt
 
 ---
 
-## 💾 Disk & Memory
+## Disk & Memory
 
 ### Disk Usage
 ```bash
@@ -429,7 +429,7 @@ torch.cuda.empty_cache()
 
 ---
 
-## 🔧 System Management
+## System Management
 
 ### Package Management (Ubuntu/Debian)
 ```bash
@@ -490,7 +490,7 @@ sudo systemctl restart docker
 
 ---
 
-## 📊 Monitoring
+## Monitoring
 
 ### System Monitoring
 ```bash
@@ -531,7 +531,7 @@ dmesg                       # Kernel messages
 
 ---
 
-## 🎯 AI/ML Specific
+## AI/ML Specific
 
 ### Python Environment
 ```bash
@@ -592,7 +592,7 @@ unzip data.zip
 
 ---
 
-## 🚀 Performance
+## Performance
 
 ### Parallel Processing
 ```bash
@@ -627,7 +627,7 @@ nohup python train.py > train.log 2>&1 &
 
 ---
 
-## 🔍 Troubleshooting
+## Troubleshooting
 
 ### System Issues
 ```bash
@@ -670,7 +670,7 @@ mtr google.com                # Better version
 
 ---
 
-## 📝 Aliases & Functions
+## Aliases & Functions
 
 ### Useful Aliases
 ```bash
@@ -731,7 +731,7 @@ backup() {
 
 ---
 
-## 🔗 Quick Links
+## Quick Links
 
 - **[TUTORIAL-002: Docker Essentials](../tutorials/TUTORIAL-002-Docker-Essentials.md)** - Docker basics
 - **[CHEAT-SHEET-001: Docker](CHEAT-SHEET-001-Docker.md)** - Docker commands

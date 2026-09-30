@@ -21,7 +21,7 @@ This directory contains Mermaid diagrams that illustrate complex concepts from t
 
 ## Available Diagrams
 
-### 📊 ML Lifecycle Diagrams
+### ML Lifecycle Diagrams
 **File:** [ML-LIFECYCLE.md](ML-LIFECYCLE.md)
 
 **Related Documentation:** [6501: ML Lifecycle Management](../phases/phase6-rag/6500-mlops-pipelines/6501-ML-Lifecycle-Management.md)
@@ -39,7 +39,7 @@ This directory contains Mermaid diagrams that illustrate complex concepts from t
 
 ---
 
-### 🤖 ReAct Loop Diagrams
+### ReAct Loop Diagrams
 **File:** [REACT-LOOP.md](REACT-LOOP.md)
 
 **Related Documentation:** [7101: ReAct Loop System](../phases/phase7-agentic/7100-architecture/7101-ReAct-Loop-System.md)
@@ -58,7 +58,7 @@ This directory contains Mermaid diagrams that illustrate complex concepts from t
 
 ---
 
-### 🏗️ Project Architecture Diagrams
+### Project Architecture Diagrams
 **File:** [PROJECT-001-ARCHITECTURE.md](PROJECT-001-ARCHITECTURE.md)
 
 **Related Documentation:** [PROJECT-001: AI Assistant](../learning-resources/projects/PROJECT-001-AI-Assistant.md)

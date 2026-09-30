@@ -16,13 +16,13 @@ Tags: ['maintenance', 'guide']
 
 ---
 
-## 📖 Purpose
+## Purpose
 
 This guide ensures consistency across all PROJECT-OMEGA documentation. Consistent documentation makes learning easier and reduces confusion.
 
 ---
 
-## 🎯 Core Principles
+## Core Principles
 
 1. **Clarity First:** Write for learners, not experts
 2. **Be Specific:** Avoid vague statements
@@ -32,7 +32,7 @@ This guide ensures consistency across all PROJECT-OMEGA documentation. Consisten
 
 ---
 
-## 📝 Document Structure
+## Document Structure
 
 ### Standard Header
 
@@ -114,7 +114,7 @@ Every document SHOULD end with:
 
 ---
 
-## 🔤 Typography
+## Typography
 
 ### Headings
 
@@ -161,7 +161,7 @@ Every document SHOULD end with:
 
 ---
 
-## 💻 Code Blocks
+## Code Blocks
 
 ### Language Specification
 
@@ -225,7 +225,7 @@ Code: "docs/00-META/README.md"
 
 ---
 
-## 📊 Tables
+## Tables
 
 ### Standard Format
 
@@ -244,7 +244,7 @@ Code: "docs/00-META/README.md"
 
 ---
 
-## 🔗 Links & References
+## Links & References
 
 ### Internal Links
 
@@ -275,7 +275,7 @@ See the [setup guide](ENVIRONMENT-SETUP.md)
 
 ---
 
-## 🎯 Diagrams
+## Diagrams
 
 ### Mermaid Diagrams
 
@@ -300,7 +300,7 @@ graph LR
 
 ---
 
-## 📌 Callouts & Alerts
+## Callouts & Alerts
 
 ### Info Callout
 
@@ -336,7 +336,7 @@ graph LR
 
 ---
 
-## 🏷️ Tags & Badges
+## Tags & Badges
 
 ### Status Badges
 
@@ -376,7 +376,7 @@ browse graph.
 
 ---
 
-## 📐 Layout & Spacing
+## Layout & Spacing
 
 ### Section Breaks
 
@@ -407,7 +407,7 @@ Second paragraph.
 
 ---
 
-## 🗣️ Voice & Tone
+## Voice & Tone
 
 ### Guidelines
 
@@ -432,7 +432,7 @@ Second paragraph.
 
 ---
 
-## 🔢 Numbers & Units
+## Numbers & Units
 
 ### Numbers in Text
 
@@ -471,7 +471,7 @@ Temperature: 0.7 (dimensionless)
 
 ---
 
-## 🏢 Product & Model Names
+## Product & Model Names
 
 Canonical vendor casing for names in prose. The tick-469 census measured
 the corpus split (e.g. Llama 83 / LLaMA 78) and drained the modern-era
@@ -537,7 +537,7 @@ concept-definition rows keep the prose form.
 
 ---
 
-## 🎨 Formatting Priorities
+## Formatting Priorities
 
 ### Hierarchy of Importance
 
@@ -557,7 +557,7 @@ Document WHY you broke the rule in comment.
 
 ---
 
-## ✅ Quality Checklist
+## Quality Checklist
 
 Before publishing/committing:
 
@@ -587,7 +587,7 @@ Before publishing/committing:
 
 ---
 
-## 🔄 Review Process
+## Review Process
 
 1. **Self-Review:** Use checklist above
 2. **Peer Review:** Another person reviews
@@ -596,7 +596,7 @@ Before publishing/committing:
 
 ---
 
-## 📚 Templates
+## Templates
 
 ### Tutorial Template
 
@@ -650,7 +650,7 @@ After this tutorial, you will:
 
 ---
 
-## 🆘 Getting Help
+## Getting Help
 
 ### Questions?
 

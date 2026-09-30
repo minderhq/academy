@@ -13,7 +13,7 @@ Tags: ['volume', 'transformers', 'attention', 'tokenization']
 
 ---
 
-## 📚 Volume Overview
+## Volume Overview
 
 **Difficulty:** ⭐⭐⭐ Advanced
 **Time:** 3-4 weeks (part-time)
@@ -41,7 +41,7 @@ Before fine-tuning, optimizing, or deploying LLMs, you need to understand **how 
 
 ---
 
-## 🗺️ Learning Path
+## Learning Path
 
 ### Week 1: Attention Mechanisms
 
@@ -311,7 +311,7 @@ Encoder-only (BERT):
 
 ---
 
-## 🎯 Volume 3 Capstone Projects
+## Volume 3 Capstone Projects
 
 ### Project A: Implement Transformer from Scratch
 
@@ -366,7 +366,7 @@ Encoder-only (BERT):
 
 ---
 
-## 📋 Volume 3 Checklist
+## Volume 3 Checklist
 
 Use this checklist to track your progress:
 
@@ -393,7 +393,7 @@ Use this checklist to track your progress:
 
 ---
 
-## 🔗 Cross-References
+## Cross-References
 
 ### How Volume 3 Connects to Other Volumes:
 
@@ -424,7 +424,7 @@ Use this checklist to track your progress:
 
 ---
 
-## 📊 Volume 3 Statistics
+## Volume 3 Statistics
 
 | Metric | Value |
 |--------|-------|
@@ -436,7 +436,7 @@ Use this checklist to track your progress:
 
 ---
 
-## 💡 Key Takeaways
+## Key Takeaways
 
 ### Attention Mechanism
 
@@ -493,7 +493,7 @@ Where:
 
 ---
 
-## 🆘 Troubleshooting
+## Troubleshooting
 
 ### Common Issues in Volume 3
 
@@ -513,7 +513,7 @@ For more help, see **[TROUBLESHOOTING-Common-Issues.md](../learning-resources/tr
 
 ---
 
-## 🎓 After Volume 3
+## After Volume 3
 
 ### You're Ready For:
 
@@ -536,7 +536,7 @@ For more help, see **[TROUBLESHOOTING-Common-Issues.md](../learning-resources/tr
 
 ---
 
-## 🚀 Next Steps
+## Next Steps
 
 1. **Track your progress** in [PROGRESS-TRACKER.md](../00-META/PROGRESS-TRACKER.md)
 2. **Continue to Volume 4** to learn quantization

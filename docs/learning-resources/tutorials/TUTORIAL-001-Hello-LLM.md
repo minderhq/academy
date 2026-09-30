@@ -325,7 +325,7 @@ You've just:
 
 ---
 
-## 🎓 Knowledge Check
+## Knowledge Check
 
 Test your understanding:
 
@@ -344,7 +344,7 @@ Test your understanding:
 
 ---
 
-## 📚 Additional Resources
+## Additional Resources
 
 - **Ollama Documentation:** [https://docs.ollama.com](https://docs.ollama.com)
 - **Mistral AI:** [https://mistral.ai](https://mistral.ai)

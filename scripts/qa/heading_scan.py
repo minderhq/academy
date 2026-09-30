@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Heading skeleton soundness (HS-01..03, HARD) for PROJECT-OMEGA.
+"""Heading skeleton soundness (HS-01..04, HARD) for PROJECT-OMEGA.
 
 The platform renders a TOC and anchor deep-links from heading
 structure, so the skeleton every doc carries must be sound:
@@ -11,6 +11,12 @@ HS-01  no level skip: a heading may nest at most one level under
 HS-02  no empty heading text (`## ` with nothing to render)
 HS-03  every doc carries at least one H2 - a flat body has no TOC
        tree at all
+HS-04  no emoji-led heading - structure headings are plain text
+       (tick-482 canon; labs drained tick-485, the rest of the
+       corpus tick-486). Typographic arrows (left/right/up/down
+       arrows) are prose, not emoji, and stay legal anywhere in a
+       heading. Mid-heading emoji after a word lead is out of
+       scope (separate axis, undocumented surface count small).
 
 Scan is fence-aware and starts after the front-matter block
 (FS-01 guarantees it closes within 40 lines).
@@ -24,6 +30,12 @@ are hierarchical-correct (each sits under its own item parent),
 anchor slugs dedup deterministically, and every internal link that
 targets one is verified by the anchor gate - renaming would be
 churn against a legitimate pattern.
+HS-04 born tick-486, born-at-zero after the 558-header drain
+(554 in the first pass, 4 in the patch pass after the v1 emoji
+class missed the U+2100-2BFF symbols: keyboard, undo-arrow,
+down-arrow, star; their 40 `#-` anchor links were rewritten in the
+same drain - anchor_check's slugger removes emoji, so `## e Title`
+anchors as `#-title` pre-drain and `#title` post-drain).
 
 Run over the whole corpus:
     python scripts/qa/heading_scan.py --root .
@@ -40,6 +52,15 @@ from pathlib import Path
 FENCE = re.compile(r"^ {0,3}(```|~~~)")  # CommonMark: <=3 leading spaces
 HEADING = re.compile(r"^(#{1,6})(?:\s+(.*))?$")
 FM_CLOSE = re.compile(r"^---\s*$")
+
+# HS-04: emoji-led headings are banned (tick-482 canon, corpus
+# drain tick-486). Class spans U+2100-2BFF (the tick-486 v1 drain
+# missed U+2328 keyboard, U+21A9 undo, U+2B07 down-arrow, U+2B50
+# star), VS16/ZWJ joiners, and U+1F000-1FAFF; U+2600-27BF is
+# subsumed by 2100-2BFF. Typographic arrows U+2190-2195 are prose
+# and stay legal - excluded at the check, not in the class.
+EMOJI = re.compile(r"[\u2100-\u2BFF\uFE0F\u200d\U0001F000-\U0001FAFF]")
+TYPO_ARROWS = "".join(chr(c) for c in range(0x2190, 0x2196))
 
 
 def esc(text: str) -> str:
@@ -89,6 +110,10 @@ def main() -> int:
                 findings.append("HS-02 %s: empty heading (`%s`)"
                                 % (rel, ln.strip()))
                 continue
+            if txt[0] not in TYPO_ARROWS and EMOJI.match(txt):
+                findings.append("HS-04 %s: emoji-led heading `%s` - "
+                                "structure headings are plain text "
+                                "(tick-482 canon)" % (rel, esc(txt[:40])))
             if prev and lvl > prev + 1:
                 findings.append(
                     "HS-01 %s: level skip H%d -> H%d after %r"
@@ -102,8 +127,10 @@ def main() -> int:
         print("  " + esc(f))
     print("heading_scan: %d docs scanned; %d HS findings - all hard "
           "(skeleton soundness: no level skip, no empty heading, "
-          "no flat body; born tick-459 at 0/0/0, KW-03; duplicate-"
-          "heading template repeats triaged ACCEPT - see docstring)"
+          "no flat body, no emoji-led heading; born tick-459 at "
+          "0/0/0, KW-03; HS-04 tick-486 after the 558-header drain; "
+          "duplicate-heading template repeats triaged ACCEPT - see "
+          "docstring)"
           % (n_docs, len(findings)))
     return 1 if findings else 0
 

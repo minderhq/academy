@@ -13,7 +13,7 @@ Tags: ['volume', 'quantization', 'gguf', 'kv-cache']
 
 ---
 
-## 📚 Volume Overview
+## Volume Overview
 
 **Difficulty:** ⭐⭐⭐ Advanced
 **Time:** 4-5 weeks (part-time)
@@ -40,7 +40,7 @@ This volume is **critical for HomeLab enthusiasts** with limited VRAM. You'll le
 
 ---
 
-## 🗺️ Learning Path
+## Learning Path
 
 ### Week 1: Low-Bit Quantization
 
@@ -383,7 +383,7 @@ docker run --gpus all \
 
 ---
 
-## 🎯 Volume 4 Capstone Projects
+## Volume 4 Capstone Projects
 
 ### Project A: Run 70B Model on 11GB VRAM
 
@@ -438,7 +438,7 @@ docker run --gpus all \
 
 ---
 
-## 📋 Volume 4 Checklist
+## Volume 4 Checklist
 
 Use this checklist to track your progress:
 
@@ -464,7 +464,7 @@ Use this checklist to track your progress:
 
 ---
 
-## 🔗 Cross-References
+## Cross-References
 
 ### How Volume 4 Connects to Other Volumes:
 
@@ -489,7 +489,7 @@ Use this checklist to track your progress:
 
 ---
 
-## 📊 Volume 4 Statistics
+## Volume 4 Statistics
 
 | Metric | Value |
 |--------|-------|
@@ -501,7 +501,7 @@ Use this checklist to track your progress:
 
 ---
 
-## 💡 Key Takeaways
+## Key Takeaways
 
 ### Quantization Trade-offs
 
@@ -563,7 +563,7 @@ Solution: Quantize KV cache to INT8 = 50% savings
 
 ---
 
-## 🆘 Troubleshooting
+## Troubleshooting
 
 ### Common Issues in Volume 4
 
@@ -583,7 +583,7 @@ For more help, see **[TROUBLESHOOTING-Common-Issues.md](../learning-resources/tr
 
 ---
 
-## 🎓 After Volume 4
+## After Volume 4
 
 ### You're Ready For:
 
@@ -606,7 +606,7 @@ For more help, see **[TROUBLESHOOTING-Common-Issues.md](../learning-resources/tr
 
 ---
 
-## 🚀 Next Steps
+## Next Steps
 
 1. **Track your progress** in [PROGRESS-TRACKER.md](../00-META/PROGRESS-TRACKER.md)
 2. **Continue to Volume 5** to learn fine-tuning

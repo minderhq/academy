@@ -13,7 +13,7 @@ Tags: ['quickstart', 'tutorial', 'llm']
 
 ---
 
-## ⚡ What You'll Achieve
+## What You'll Achieve
 
 In the next 30 minutes, you will:
 1. ✅ Install Ollama (easiest LLM runner)
@@ -24,7 +24,7 @@ In the next 30 minutes, you will:
 
 ---
 
-## 🎯 Prerequisites
+## Prerequisites
 
 ### Hardware Requirements
 - Computer (Windows, Mac, or Linux)
@@ -36,7 +36,7 @@ In the next 30 minutes, you will:
 - Basic command line knowledge
 - Administrator/sudo access (for installation)
 
-### ⚠️ Before You Start
+### Before You Start
 
 **If you're new to command line:**
 - Windows: Use PowerShell or Terminal
@@ -61,7 +61,7 @@ If you encounter any issues:
 
 ---
 
-## 📥 Step 1: Install Ollama (5 minutes)
+## Step 1: Install Ollama (5 minutes)
 
 ### Windows
 1. Download: [https://ollama.com/download](https://ollama.com/download)
@@ -78,7 +78,7 @@ brew install ollama
 curl -fsSL https://ollama.com/install.sh | sh
 ```
 
-### ✅ Verify Installation
+### Verify Installation
 ```bash
 ollama --version
 ```
@@ -87,7 +87,7 @@ Expected output: `ollama version is 0.1.x` or similar
 
 ---
 
-## 🤖 Step 2: Download a Model (10 minutes)
+## Step 2: Download a Model (10 minutes)
 
 Ollama makes it incredibly easy:
 
@@ -111,7 +111,7 @@ ollama pull codellama       # Coding assistant
 ollama pull phi3            # Small & fast
 ```
 
-### ⚠️ Troubleshooting Model Download
+### Troubleshooting Model Download
 
 **Download stuck or very slow?**
 ```bash
@@ -149,7 +149,7 @@ ollama list
 
 ---
 
-## 💬 Step 3: Chat with Your AI (10 minutes)
+## Step 3: Chat with Your AI (10 minutes)
 
 ### Simple Chat
 ```bash
@@ -169,7 +169,7 @@ Write a Python function to check if a number is prime
 
 ---
 
-## 🐍 Step 4: Use with Python (5 minutes)
+## Step 4: Use with Python (5 minutes)
 
 ### Install the Ollama Python library
 ```bash
@@ -202,12 +202,12 @@ print(response['message']['content'])
 python my_first_ai.py
 ```
 
-### 🎉 Congratulations!
+### Congratulations!
 You just built your first AI application!
 
 ---
 
-## 🚀 Step 5: Build Something Cool (Optional)
+## Step 5: Build Something Cool (Optional)
 
 ### AI Assistant with Memory
 
@@ -267,7 +267,7 @@ python ai_assistant.py
 
 ---
 
-## 📚 What You Just Learned
+## What You Just Learned
 
 | Concept | What It Means |
 |---------|---------------|
@@ -278,7 +278,7 @@ python ai_assistant.py
 
 ---
 
-## 🎯 Next Steps
+## Next Steps
 
 You're now ready for the full learning journey!
 
@@ -317,7 +317,7 @@ You're now ready for the full learning journey!
 
 ---
 
-## 🛠️ Common Issues
+## Common Issues
 
 ### Issue: "Command not found: ollama"
 
@@ -355,7 +355,7 @@ pip install ollama
 
 ---
 
-## 💡 Tips for Success
+## Tips for Success
 
 1. **Start Small** - Don't try to build everything at once
 2. **Experiment** - Try different prompts and models
@@ -365,7 +365,7 @@ pip install ollama
 
 ---
 
-## 🌐 Resources
+## Resources
 
 ### Official Documentation
 - **Ollama:** [https://docs.ollama.com](https://docs.ollama.com)
@@ -384,7 +384,7 @@ pip install ollama
 
 ---
 
-## 🎓 You're On Your Way!
+## You're On Your Way!
 
 You just completed your first step into the world of local AI!
 
@@ -402,7 +402,7 @@ You just completed your first step into the world of local AI!
 
 ---
 
-## 📊 Learning Path Overview
+## Learning Path Overview
 
 ```text
 Start Here (You are here)
@@ -430,7 +430,7 @@ Start Here (You are here)
 
 **🎉 Congratulations on starting your AI journey!**
 
-## Next Steps
+## Your First Tutorial
 
 - **[TUTORIAL-001: Hello LLM](../learning-resources/tutorials/TUTORIAL-001-Hello-LLM.md)**
 

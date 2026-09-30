@@ -13,7 +13,7 @@ Tags: ['checkpoint', 'quantization', 'qat', 'quantization-aware-training']
 
 ---
 
-## 📊 Phase 4 Overview
+## Phase 4 Overview
 
 **Phase:** [4000] Quantization & Compression
 **Modules:** 4 (4100, 4200, 4300, 4400)
@@ -22,7 +22,7 @@ Tags: ['checkpoint', 'quantization', 'qat', 'quantization-aware-training']
 
 ---
 
-## 🎯 Phase Completion Goal
+## Phase Completion Goal
 
 After completing Phase 4, you will:
 - ✅ Understand GGUF format
@@ -34,7 +34,7 @@ After completing Phase 4, you will:
 
 ---
 
-## 📋 Module Checkpoints
+## Module Checkpoints
 
 ### Module 4100: Low-Bit Quantization (Required)
 

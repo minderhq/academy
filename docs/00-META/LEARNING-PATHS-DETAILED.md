@@ -13,7 +13,7 @@ Tags: ['roadmap', 'guide', 'llm']
 
 ---
 
-## 📋 Path Overview
+## Path Overview
 
 | Path | Duration | Difficulty | Target Audience | Outcome |
 |------|----------|------------|-----------------|---------|
@@ -29,7 +29,7 @@ Tags: ['roadmap', 'guide', 'llm']
 
 ---
 
-## 🚀 Path 1: Fast Track (6-8 months)
+## Path 1: Fast Track (6-8 months)
 
 **"Get productive quickly"** - For experienced developers who want to build AI applications fast.
 
@@ -130,7 +130,7 @@ Checkpoint: Fine-tuned domain-specific model
 
 ---
 
-## 📚 Path 2: Complete Mastery (12-18 months)
+## Path 2: Complete Mastery (12-18 months)
 
 **"Become an AI expert"** - The comprehensive path for complete understanding.
 
@@ -344,7 +344,7 @@ Checkpoint: Production AI expert
 
 ---
 
-## 🔍 Path 3: RAG Specialist (2-3 months)
+## Path 3: RAG Specialist (2-3 months)
 
 **"Build intelligent data systems"** - Focus on retrieval-augmented generation.
 
@@ -408,7 +408,7 @@ Capstone: Multi-modal RAG system
 
 ---
 
-## 🎯 Path 4: Fine-Tuning Expert (2-3 months)
+## Path 4: Fine-Tuning Expert (2-3 months)
 
 **"Adapt models to your domain"** - Focus on model fine-tuning and alignment.
 
@@ -472,7 +472,7 @@ Capstone: Domain-specific model pipeline
 
 ---
 
-## 🏗️ Path 5: Infrastructure Engineer (2-3 months)
+## Path 5: Infrastructure Engineer (2-3 months)
 
 **"Build AI infrastructure"** - Focus on hardware, GPU, and deployment.
 
@@ -534,7 +534,7 @@ Capstone: Complete AI infrastructure
 
 ---
 
-## 🤖 Path 6: Agent Builder (3-4 months)
+## Path 6: Agent Builder (3-4 months)
 
 **"Build autonomous AI systems"** - Focus on agents and agentic workflows.
 
@@ -612,7 +612,7 @@ Capstone: Multi-agent system
 
 ---
 
-## 📊 Path 7: Research Path (8-10 months)
+## Path 7: Research Path (8-10 months)
 
 **"Deep understanding for research"** - Academic-style deep dive.
 
@@ -687,7 +687,7 @@ Deliverables:
 
 ---
 
-## 🎯 How to Choose Your Path
+## How to Choose Your Path
 
 ### Questions to Ask Yourself
 
@@ -723,7 +723,7 @@ You can switch paths at any time! Here are common transitions:
 
 ---
 
-## 📊 Path Comparison
+## Path Comparison
 
 | Aspect | Fast Track | Complete | RAG | Fine-Tuning | Infra | Agent | Research |
 |--------|-----------|----------|-----|-------------|-------|-------|----------|
@@ -737,7 +737,7 @@ You can switch paths at any time! Here are common transitions:
 
 ---
 
-## 🏆 Path Completion Certificates
+## Path Completion Certificates
 
 Each path has a completion certificate:
 
@@ -766,7 +766,7 @@ Each path has a completion certificate:
 
 ---
 
-## 💡 Tips for Success
+## Tips for Success
 
 ### General Tips
 1. **Be consistent** - Study every day, even if just 30 minutes
@@ -820,7 +820,7 @@ Each path has a completion certificate:
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 1. **Choose your path** based on your goals and background
 2. **Read the volume guide** for your first volume

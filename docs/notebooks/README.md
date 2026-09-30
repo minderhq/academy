@@ -13,13 +13,13 @@ Tags: ['notebook', 'pytorch', 'training']
 
 ---
 
-## 📚 Overview
+## Overview
 
 This directory contains Jupyter notebooks that provide practical, hands-on experience with the concepts covered in PROJECT-OMEGA. Each notebook is designed to be interactive and runnable, allowing you to experiment with code and see results in real-time.
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Install Required Dependencies
 
@@ -71,7 +71,7 @@ if torch.cuda.is_available():
 
 ---
 
-## 📓 Available Notebooks
+## Available Notebooks
 
 ### Phase 2: AI/ML Foundations
 
@@ -125,7 +125,7 @@ if torch.cuda.is_available():
 
 ---
 
-## 💻 Hardware Requirements
+## Hardware Requirements
 
 ### Minimum Requirements
 - **CPU:** 4+ cores
@@ -153,7 +153,7 @@ if torch.cuda.is_available():
 
 ---
 
-## 🔧 Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 
@@ -194,7 +194,7 @@ model.to(device)
 
 ---
 
-## 📖 How to Use Notebooks
+## How to Use Notebooks
 
 ### About the `# TODO:` Convention
 
@@ -251,7 +251,7 @@ model.to(device)
 
 ---
 
-## 🔄 Keeping Notebooks Updated
+## Keeping Notebooks Updated
 
 Notebooks are regularly updated with:
 - Bug fixes
@@ -270,7 +270,7 @@ conda env update -f environment-[name].yml
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Found an issue with a notebook? Contributions welcome!
 
@@ -281,7 +281,7 @@ Found an issue with a notebook? Contributions welcome!
 
 ---
 
-## 📞 Getting Help
+## Getting Help
 
 - **Documentation:** See corresponding module documentation
 - **Troubleshooting:** Check TROUBLESHOOTING-Common-Issues.md

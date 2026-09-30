@@ -12,7 +12,7 @@ Tags: ['roadmap', 'guide', 'llm']
 ## Table of Contents
 
 - [Complete AI/LLM Infrastructure Curriculum - From Zero to Hero](#complete-aillm-infrastructure-curriculum---from-zero-to-hero)
-- [📚 Curriculum Overview](#-curriculum-overview)
+- [📚 Curriculum Overview](#curriculum-overview)
 - [Phase 0: Python Fundamentals (Week 1) ⭐ NEW](#phase-0-python-fundamentals-week-1--new)
 - [Phase 1: Foundations (Weeks 2-5)](#phase-1-foundations-weeks-2-5)
 - [Phase 2: Infrastructure (Weeks 5-12)](#phase-2-infrastructure-weeks-5-12)
@@ -21,12 +21,12 @@ Tags: ['roadmap', 'guide', 'llm']
 - [Phase 5: RAG & Knowledge (Weeks 29-36)](#phase-5-rag--knowledge-weeks-29-36)
 - [Phase 6: Agentic AI (Weeks 37-44)](#phase-6-agentic-ai-weeks-37-44)
 - [Phase 7: Production (Weeks 45-52)](#phase-7-production-weeks-45-52)
-- [🎯 Capstone Project](#-capstone-project)
-- [📖 Recommended Reading Order (Book Style)](#-recommended-reading-order-book-style)
-- [🧪 Experiments (Hands-on Labs)](#-experiments-hands-on-labs)
-- [📊 Progress Tracker](#-progress-tracker)
-- [🎓 Certification Path](#-certification-path)
-- [📝 Tips for Success](#-tips-for-success)
+- [🎯 Capstone Project](#capstone-project)
+- [📖 Recommended Reading Order (Book Style)](#recommended-reading-order-book-style)
+- [🧪 Experiments (Hands-on Labs)](#experiments-hands-on-labs)
+- [📊 Progress Tracker](#progress-tracker)
+- [🎓 Certification Path](#certification-path)
+- [📝 Tips for Success](#tips-for-success)
 
 ---
 
@@ -38,7 +38,7 @@ Tags: ['roadmap', 'guide', 'llm']
 
 ---
 
-## 📚 Curriculum Overview
+## Curriculum Overview
 
 ```text
 ┌─────────────────────────────────────────────────────────────────────────┐
@@ -634,7 +634,7 @@ Learning Path:
 
 ---
 
-## 🎯 Capstone Project
+## Capstone Project
 
 ### Weeks 52+: Build Your Own AI Application
 
@@ -657,7 +657,7 @@ Learning Path:
 
 ---
 
-## 📖 Recommended Reading Order (Book Style)
+## Recommended Reading Order (Book Style)
 
 ### Volume 1: Infrastructure Foundations
 1. README.md - Start here
@@ -700,7 +700,7 @@ Learning Path:
 
 ---
 
-## 🧪 Experiments (Hands-on Labs)
+## Experiments (Hands-on Labs)
 
 Each experiment corresponds to a documentation topic:
 
@@ -715,7 +715,7 @@ Each experiment corresponds to a documentation topic:
 
 ---
 
-## 📊 Progress Tracker
+## Progress Tracker
 
 Track your learning journey:
 
@@ -767,7 +767,7 @@ Track your learning journey:
 
 ---
 
-## 🎓 Certification Path
+## Certification Path
 
 Complete all phases to earn:
 
@@ -780,7 +780,7 @@ Complete all phases to earn:
 
 ---
 
-## 📝 Tips for Success
+## Tips for Success
 
 1. **Read Sequentially**: Follow the numbered path
 2. **Do the Experiments**: Hands-on practice is essential

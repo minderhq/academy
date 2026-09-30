@@ -807,7 +807,7 @@ sensors
 
 ## Best Practices
 
-### ✅ DO
+### DO
 
 1. **Use separate networks for management and data**
    ```yaml
@@ -859,7 +859,7 @@ sensors
      - Document issues
    ```
 
-### ❌ DON'T
+### DON'T
 
 1. **Don't skip testing in non-production**
    ```yaml

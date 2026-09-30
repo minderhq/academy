@@ -13,7 +13,7 @@ Tags: ['cheatsheet', 'quantization', 'gguf']
 
 ---
 
-## 🗜️ Quantization Fundamentals
+## Quantization Fundamentals
 
 ### Quantization Types
 ```python
@@ -74,7 +74,7 @@ def compute_scale_zero_point(x, qmin=-128, qmax=127):
 
 ---
 
-## 📦 GGUF Format
+## GGUF Format
 
 ### GGUF Structure
 ```python
@@ -118,7 +118,7 @@ QUANTIZATION_LEVELS = {
 
 ---
 
-## ⚡ EXL2 Format
+## EXL2 Format
 
 ### EXL2 Overview
 ```text
@@ -164,7 +164,7 @@ COMPARISON = {
 
 ---
 
-## 🔄 Double Quantization
+## Double Quantization
 
 ### Concept
 ```python
@@ -219,7 +219,7 @@ class DoubleQuantization:
 
 ---
 
-## 🔥 AWQ (Activation-aware Weight Quantization)
+## AWQ (Activation-aware Weight Quantization)
 
 ### Key Idea
 ```python
@@ -282,7 +282,7 @@ class AWQQuantization:
 
 ---
 
-## 🎯 GPTQ (Generative Perceptual Quantization)
+## GPTQ (Generative Perceptual Quantization)
 
 ### Overview
 ```python
@@ -336,7 +336,7 @@ def optimize_quantization(w, H, bits=4):
 
 ---
 
-## 📏 Context Window Optimization
+## Context Window Optimization
 
 ### KV Cache Quantization
 ```python
@@ -409,7 +409,7 @@ class QuantizedKVCache:
 
 ---
 
-## ⚡ Speculative Decoding
+## Speculative Decoding
 
 ### Concept
 ```python
@@ -510,7 +510,7 @@ class SpeculativeDecoding:
 
 ---
 
-## 🎯 Volume 4 Checklist
+## Volume 4 Checklist
 
 - [ ] Understand quantization levels (FP32 to INT4)
 - [ ] Convert model to GGUF
@@ -524,7 +524,7 @@ class SpeculativeDecoding:
 
 ---
 
-## 🚀 Next Steps
+## Next Steps
 
 1. Complete EXP_4101: GGUF Quantization
 2. Read 4201-Context-Window-Physics.md

@@ -13,7 +13,7 @@ Tags: ['project', 'quantization', 'gguf']
 
 ---
 
-## 🎯 Project Overview
+## Project Overview
 
 Implement model quantization from scratch to run large language models efficiently:
 - Manual quantization algorithms (GPTQ, AWQ)
@@ -27,7 +27,7 @@ Implement model quantization from scratch to run large language models efficient
 
 ---
 
-## 📋 Prerequisites
+## Prerequisites
 
 Complete these before starting:
 - ✅ 4101: GGUF Physics
@@ -37,7 +37,7 @@ Complete these before starting:
 
 ---
 
-## 🏗️ Project Architecture
+## Project Architecture
 
 ```text
 ┌─────────────────────────────────────────────────────────────┐
@@ -213,7 +213,7 @@ def awq_quantize(weights: np.ndarray, activations: np.ndarray,
     return qweights, scales
 ```
 
-### ✅ Phase 1 Checklist
+### Phase 1 Checklist
 - [ ] GPTQ quantization implemented
 - [ ] AWQ quantization implemented
 - [ ] Dequantization working
@@ -347,7 +347,7 @@ class GGUFWriter:
             f.write(b'\x00' * (aligned_pos - pos))
 ```
 
-### ✅ Phase 2 Checklist
+### Phase 2 Checklist
 - [ ] GGUF writer implemented
 - [ ] Metadata serialization working
 - [ ] Tensor data packing working
@@ -473,7 +473,7 @@ def quantized_attention(q_proj, k_proj, v_proj, q_scales, k_scales, v_scales,
     return output
 ```
 
-### ✅ Phase 3 Checklist
+### Phase 3 Checklist
 - [ ] Quantized matmul working
 - [ ] Result matches FP16 within tolerance
 - [ ] Quantized attention working
@@ -574,7 +574,7 @@ if __name__ == '__main__':
     quantize_model(input_path, output_path, bits)
 ```
 
-### ✅ Phase 4 Checklist
+### Phase 4 Checklist
 - [ ] Complete pipeline working
 - [ ] Model quantized successfully
 - [ ] GGUF file valid
@@ -582,7 +582,7 @@ if __name__ == '__main__':
 
 ---
 
-## 🏆 Project Completion Checklist
+## Project Completion Checklist
 
 ```text
 [ ] Phase 1: Quantization Algorithms
@@ -596,7 +596,7 @@ if __name__ == '__main__':
 
 ---
 
-## 📚 Related Resources
+## Related Resources
 
 - **[4101: GGUF Physics](../../phases/phase4-quantization/4100-low-bit/4101-GGUF-Physics.md)** - GGUF format theory
 - **[4102: EXL2 and AWQ](../../phases/phase4-quantization/4100-low-bit/4102-EXL2-and-AWQ.md)** - Advanced quantization

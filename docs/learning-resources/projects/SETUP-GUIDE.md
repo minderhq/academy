@@ -14,7 +14,7 @@ Tags: ['project', 'setup', 'docker']
 
 ---
 
-## 🚀 Quick Setup (Common to All Projects)
+## Quick Setup (Common to All Projects)
 
 ### Step 1: Environment Setup
 
@@ -48,7 +48,7 @@ docker compose logs -f
 
 ---
 
-## 📁 Common Project Structure
+## Common Project Structure
 
 ```text
 project-XXX/
@@ -67,7 +67,7 @@ project-XXX/
 
 ---
 
-## 🔧 Common Configuration
+## Common Configuration
 
 ### Docker Compose Pattern
 
@@ -103,7 +103,7 @@ dependencies = [
 
 ---
 
-## ✅ Universal Checklist
+## Universal Checklist
 
 ### Before Starting Any Project
 

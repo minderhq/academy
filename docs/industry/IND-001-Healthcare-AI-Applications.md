@@ -965,7 +965,7 @@ def verify_compliance(system):
 
 ## Pro Tips
 
-### 💡 Use Domain-Specific Embeddings
+### Use Domain-Specific Embeddings
 
 **Tip:** Medical text requires domain-specific models
 ```python
@@ -987,7 +987,7 @@ clinical_embedder = SentenceTransformer('emilyalsentzer/Bio_ClinicalBERT')
 bio_embedder = SentenceTransformer('dmis-lab/biobert-v1.1')
 ```
 
-### 💡 Implement Confidence Thresholds
+### Implement Confidence Thresholds
 
 **Tip:** Always include confidence scores
 ```python
@@ -1026,7 +1026,7 @@ def clinical_prediction_with_confidence(patient_case):
         }
 ```
 
-### 💡 Multi-Modal Clinical Data
+### Multi-Modal Clinical Data
 
 **Tip:** Combine text, labs, and vitals
 ```python
@@ -1067,7 +1067,7 @@ def comprehensive_patient_analysis(patient_data):
     return similar_cases
 ```
 
-### 💡 Continuous Learning Pipeline
+### Continuous Learning Pipeline
 
 **Tip:** Keep models updated with new medical knowledge
 ```python
@@ -1103,7 +1103,7 @@ def continuous_medical_learning():
         deploy_with_rollback(model)
 ```
 
-### 💡 Explainability for Clinicians
+### Explainability for Clinicians
 
 **Tip:** Make AI decisions interpretable
 ```python

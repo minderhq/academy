@@ -13,7 +13,7 @@ Tags: ['cheatsheet', 'ci-cd', 'devops']
 
 ---
 
-## 📝 Basic Commands
+## Basic Commands
 
 ### Initialize & Clone
 ```bash
@@ -47,7 +47,7 @@ git remote -v
 
 ---
 
-## 💾 Staging & Committing
+## Staging & Committing
 
 ### Stage Changes
 ```bash
@@ -99,7 +99,7 @@ git commit -m "refactor: optimize data pipeline"
 
 ---
 
-## 🌳 Branching & Merging
+## Branching & Merging
 
 ### Create & Switch Branches
 ```bash
@@ -160,7 +160,7 @@ git commit
 
 ---
 
-## 🔄 Remote Operations
+## Remote Operations
 
 ### Push & Pull
 ```bash
@@ -203,7 +203,7 @@ git remote show origin
 
 ---
 
-## 📜 History & Logs
+## History & Logs
 
 ### View History
 ```bash
@@ -249,7 +249,7 @@ git diff --staged
 
 ---
 
-## ↩️ Undo Changes
+## Undo Changes
 
 ### Unstage & Discard
 ```bash
@@ -289,7 +289,7 @@ git revert -m 1 ${MERGE_COMMIT_HASH}
 
 ---
 
-## 🏷️ Tagging
+## Tagging
 
 ### Create Tags
 ```bash
@@ -323,7 +323,7 @@ git push origin --delete v1.0.0
 
 ---
 
-## 🔍 Search & Find
+## Search & Find
 
 ### Search Code
 ```bash
@@ -354,7 +354,7 @@ git blame -L 10,20 file.py
 
 ---
 
-## 📦 Stashing
+## Stashing
 
 ### Stash Changes
 ```bash
@@ -394,7 +394,7 @@ git stash list
 
 ---
 
-## 🔄 Rebase & Cherry-Pick
+## Rebase & Cherry-Pick
 
 ### Rebase
 ```bash
@@ -428,7 +428,7 @@ git cherry-pick -n ${COMMIT_HASH}
 
 ---
 
-## 🧹 Maintenance
+## Maintenance
 
 ### Cleanup
 ```bash
@@ -459,7 +459,7 @@ git verify-pack -v .git/objects/pack/*.idx
 
 ---
 
-## 🐳 Git for Large Files (AI/ML)
+## Git for Large Files (AI/ML)
 
 ### Git LFS (Large File Storage)
 ```bash
@@ -502,7 +502,7 @@ git annex drop large_model.bin
 
 ---
 
-## 🤝 Collaboration
+## Collaboration
 
 ### Pull Requests
 ```bash
@@ -533,7 +533,7 @@ gh pr view 123 --comments
 
 ---
 
-## 🎯 AI/ML Specific Workflows
+## AI/ML Specific Workflows
 
 ### Model Versioning
 ```bash
@@ -610,7 +610,7 @@ wandb/
 
 ---
 
-## 🔗 Quick Links
+## Quick Links
 
 - **[TUTORIAL-002: Docker Essentials](../tutorials/TUTORIAL-002-Docker-Essentials.md)** - Docker for AI/ML
 - **[CHEAT-SHEET-001: Docker](CHEAT-SHEET-001-Docker.md)** - Docker commands

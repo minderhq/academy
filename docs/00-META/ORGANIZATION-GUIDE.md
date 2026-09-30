@@ -16,7 +16,7 @@ Tags: ['maintenance', 'navigation']
 
 ---
 
-## 📐 Directory Structure
+## Directory Structure
 
 ### Root Level
 
@@ -45,7 +45,7 @@ PROJECT-OMEGA/
 
 ---
 
-## 📚 Documentation Structure
+## Documentation Structure
 
 ### 00-META: Meta Documentation
 
@@ -206,7 +206,7 @@ docs/learning-resources/
 
 ---
 
-## 🔢 Numbering System
+## Numbering System
 
 ### Module Numbering
 
@@ -232,7 +232,7 @@ Examples:
 
 ---
 
-## 📋 File Naming Conventions
+## File Naming Conventions
 
 ### Standard Naming
 
@@ -258,7 +258,7 @@ Examples:
 
 ---
 
-## 🔄 Cross-Reference System
+## Cross-Reference System
 
 ### Internal Links
 
@@ -294,12 +294,12 @@ Examples:
 
 ---
 
-## 📝 Document Templates
+## Document Templates
 
 ### Module README Template
 
 Every document opens with a YAML front-matter block (see
-[Front Matter Standard](#-quality-standards)). The `Tags:` field is
+[Front Matter Standard](#quality-standards)). The `Tags:` field is
 mandatory and must follow the canonical quoted-list syntax - both are
 QA-gate-enforced (see `docs/00-META/QA-TOOLING.md`).
 
@@ -415,7 +415,7 @@ After this tutorial, you will:
 
 ---
 
-## ✅ Quality Standards
+## Quality Standards
 
 ### Content Requirements
 
@@ -484,7 +484,7 @@ content actually changed.
 
 ---
 
-## 🔧 Maintenance Procedures
+## Maintenance Procedures
 
 ### Adding New Content
 
@@ -547,7 +547,7 @@ content actually changed.
 
 ---
 
-## 📊 File Audit Checklist
+## File Audit Checklist
 
 ### Monthly Audit Tasks
 
@@ -577,7 +577,7 @@ content actually changed.
 
 ---
 
-## 🚀 Automation Tools
+## Automation Tools
 
 ### QA Gate Suite
 
@@ -644,7 +644,7 @@ if __name__ == "__main__":
 
 ---
 
-## 📈 Growth Metrics
+## Growth Metrics
 
 ### Tracking Documentation Growth
 
@@ -665,7 +665,7 @@ if __name__ == "__main__":
 
 ---
 
-## 🎯 Best Practices
+## Best Practices
 
 ### For Writers
 
@@ -687,7 +687,7 @@ if __name__ == "__main__":
 
 ---
 
-## 📞 Support
+## Support
 
 ### Questions?
 

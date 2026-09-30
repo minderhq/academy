@@ -582,21 +582,28 @@ stand today?" without running each tool by hand.
                       badges, phase-hub range badges,
                       'Absolute Beginner')
     heading_scan
-                      Heading skeleton soundness (HS-01..03,
+                      Heading skeleton soundness (HS-01..04,
                       hard): the platform renders a TOC and
                       anchor deep-links from heading structure,
                       so the skeleton must be sound. HS-01 no
                       level skip (child more than one level
                       under its parent), HS-02 no empty heading
                       text, HS-03 every doc carries at least
-                      one H2 (no flat bodies). Born tick-459
-                      at 0/0/0 across 408 docs, KW-03. The
-                      birth census also measured 245 duplicate
-                      heading texts in 30 docs (Task/Pros/Cons
-                      template repeats under per-item parents)
-                      - triaged ACCEPT, deliberately not
-                      gated: hierarchical-correct, slug dedup
-                      is deterministic, links verified by the
+                      one H2 (no flat bodies), HS-04 no
+                      emoji-led heading - structure headings
+                      are plain text (tick-482 canon; labs
+                      drained tick-485, rest of the corpus
+                      tick-486 after the 558-header drain with
+                      its 40 coupled `#-` anchor rewrites;
+                      typographic arrows stay legal). Born
+                      tick-459 at 0/0/0 across 408 docs,
+                      KW-03. The birth census also measured
+                      245 duplicate heading texts in 30 docs
+                      (Task/Pros/Cons template repeats under
+                      per-item parents) - triaged ACCEPT,
+                      deliberately not gated:
+                      hierarchical-correct, slug dedup is
+                      deterministic, links verified by the
                       anchor gate
     table_scan
                       Markdown table integrity (TB-01/02,

@@ -15,7 +15,7 @@ Tags: ['career', 'guide', 'llm']
 
 ---
 
-## 🚨 REALITY CHECK
+## REALITY CHECK
 
 **The Truth About Interviews:**
 

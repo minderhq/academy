@@ -13,7 +13,7 @@ Tags: ['volume', 'finetuning', 'lora', 'dpo']
 
 ---
 
-## 📚 Volume Overview
+## Volume Overview
 
 **Difficulty:** ⭐⭐⭐ Advanced
 **Time:** 4-5 weeks (part-time)
@@ -41,7 +41,7 @@ Pre-trained models are generalists. This volume teaches you to:
 
 ---
 
-## 🗺️ Learning Path
+## Learning Path
 
 ### Week 1: LoRA Fundamentals
 
@@ -452,7 +452,7 @@ merged_model.save_pretrained("./merged-model")
 
 ---
 
-## 🎯 Volume 5 Capstone Projects
+## Volume 5 Capstone Projects
 
 ### Project A: Fine-Tune Domain-Specific Model
 
@@ -508,7 +508,7 @@ merged_model.save_pretrained("./merged-model")
 
 ---
 
-## 📋 Volume 5 Checklist
+## Volume 5 Checklist
 
 Use this checklist to track your progress:
 
@@ -532,7 +532,7 @@ Use this checklist to track your progress:
 
 ---
 
-## 🔗 Cross-References
+## Cross-References
 
 ### How Volume 5 Connects to Other Volumes:
 
@@ -554,7 +554,7 @@ Use this checklist to track your progress:
 
 ---
 
-## 📊 Volume 5 Statistics
+## Volume 5 Statistics
 
 | Metric | Value |
 |--------|-------|
@@ -567,7 +567,7 @@ Use this checklist to track your progress:
 
 ---
 
-## 💡 Key Takeaways
+## Key Takeaways
 
 ### LoRA vs Full Fine-Tuning
 
@@ -627,7 +627,7 @@ Each stage specializes the model further.
 
 ---
 
-## 🆘 Troubleshooting
+## Troubleshooting
 
 ### Common Issues in Volume 5
 
@@ -647,7 +647,7 @@ For more help, see **[TROUBLESHOOTING-Common-Issues.md](../learning-resources/tr
 
 ---
 
-## 🎓 After Volume 5
+## After Volume 5
 
 ### You're Ready For:
 
@@ -669,7 +669,7 @@ For more help, see **[TROUBLESHOOTING-Common-Issues.md](../learning-resources/tr
 
 ---
 
-## 🚀 Next Steps
+## Next Steps
 
 1. **Track your progress** in [PROGRESS-TRACKER.md](../00-META/PROGRESS-TRACKER.md)
 2. **Continue to Volume 6** for RAG and knowledge systems

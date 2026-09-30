@@ -15,7 +15,7 @@ Tags: ['maintenance', 'evaluation']
 
 ---
 
-## 🚀 One Command
+## One Command
 
 ```bash
 python scripts/qa/quality_report.py
@@ -36,7 +36,7 @@ the full installed stack. A partial environment fails loud with
 
 ---
 
-## 🛡️ Hard Gates (exit 1 on findings)
+## Hard Gates (exit 1 on findings)
 
 | Gate | Codes | What it checks |
 | --- | --- | --- |
@@ -90,7 +90,7 @@ the full installed stack. A partial environment fails loud with
 | tags_coverage_check | TG-01..04 + TS-01 | Tags coverage + syntax, all five hard: TG-01 lessons 93/93 (born 2026-09-30 at 6 missing, drained from sibling pools); TG-02 guides 24/24 (12-gap sibling-pool drain); TG-03 meta docs 146/146 (nav-node standard decided same day: module README/PREREQUISITES = genre tag + sibling lessons' top-2 pool tags, phase README/CHECKPOINT = genre tag + phase top-3 pool tags - nav nodes are platform PAGES, the entry points tag search should surface); TS-01 canonical syntax `Tags: ['tag-one', 'tag-two']` - census 242 quoted vs 13 unquoted, 89 docs normalized (79 first pass + 10 BRACKETLESS phase2 lines `Tags: a, b` that the first normalizer could not parse, surfaced by TS-01's own first run); TG-04 born tick-456: everything OUTSIDE docs/phases must carry Tags too - census found 148 docs (00-META / learning-resources / volumes / comparisons / use-cases / industry / enterprise-solutions / diagrams / notebooks) with only 5 tagged; 143 gaps + 3 genre-less docs drained same tick with a genre-first mapping table (genre facet per directory + 2-3 subject tags from phase-sibling pools), 145/145 since, hard from birth (drain landed before the gate) |
 | front_matter_scan | FS-01/02 | front-matter presence + the six-field standard, all hard: FS-01 every `docs/**/*.md` opens `---` at line 0 and closes within 40 lines; FS-02 the block carries all six standard fields (Document ID / Title / Last Updated / Status / Difficulty / Tags - each value-gated elsewhere; a field-NAME variant like `Doc-Title:` passes the canonical name's value gate and dies here). Born tick-457 at 408/408: closes the coverage gates' blind spot - a doc committed without front matter is invisible to TG/TS/TV (fm_tags None -> skip), so presence itself is the contract. KW-03 pattern: birth census falsified the gap hypothesis (third measure-before-repair), gate locks the clean state |
 | difficulty_badge_scan | DB-01 | where a doc renders a `**Difficulty:**` body badge it must mirror the FM Difficulty exactly (canonical 1/2/3 stars + FM band); no badge is fine - FM is the gated data, the badge is optional decoration that must never lie. Born tick-457: census found 87 violating sites in five rot classes - dead-enum badges (4-5 stars / 'Expert' text from the level difficulty_census retired tick-412), band mismatches where mass-added FM defaults contradicted original badge intent (all 12 project templates FM=Beginner, badges Beginner..Advanced), starless correct-text badges, phase-hub range badges ('Intermediate to Advanced'), 'Absolute Beginner' free-text. Drain policy per class: dead-enum -> Advanced; content docs kept badge intent with FM moved to the badge's ceiling band; assessment quiz/practice + 00-META guides kept FM with badge moved. Reading-time census same tick: 0 drift >50% - claimed times honest |
-| heading_scan | HS-01..03 | heading skeleton soundness, all hard: HS-01 no level skip (child more than one level under its parent; first heading exempt - title/H1 parity is title_h1_parity_scan's), HS-02 no empty heading text, HS-03 every doc carries at least one H2 (no flat bodies). Fence-aware, scans the body after the FM block. Born tick-459 at 0/0/0 across 408 docs (KW-03 prophylactic). The birth census also measured 245 duplicate heading texts in 30 docs (Task/Requirements/Pros/Cons template repeats under per-item parents: exercises, database columns, case studies) - triaged ACCEPT, deliberately not gated: hierarchical-correct pattern, deterministic slug dedup, every internal link verified by the anchor gate; renaming would be churn against a legitimate pattern |
+| heading_scan | HS-01..04 | heading skeleton soundness, all hard: HS-01 no level skip (child more than one level under its parent; first heading exempt - title/H1 parity is title_h1_parity_scan's), HS-02 no empty heading text, HS-03 every doc carries at least one H2 (no flat bodies), HS-04 no emoji-led heading - structure headings are plain text (tick-482 canon; labs drained tick-485, the rest of the corpus tick-486: 558 headers, with their 40 `#-` anchor links rewritten in the same drain since the slugger maps the surviving space to a hyphen); typographic arrows (U+2190-2195) are prose and stay legal. Fence-aware, scans the body after the FM block. Born tick-459 at 0/0/0 across 408 docs (KW-03 prophylactic); HS-04 born tick-486 born-at-zero after the drain (the v1 drain's emoji class missed the U+2100-2BFF symbols - keyboard, undo-arrow, down-arrow, star - caught by anchor_check and patched same tick). The birth census also measured 245 duplicate heading texts in 30 docs (Task/Requirements/Pros/Cons template repeats under per-item parents: exercises, database columns, case studies) - triaged ACCEPT, deliberately not gated: hierarchical-correct pattern, deterministic slug dedup, every internal link verified by the anchor gate; renaming would be churn against a legitimate pattern |
 | table_scan | TB-01/02 | markdown table integrity, all hard - the platform renders tables directly, one broken row is a visible defect: TB-01 every row's cell count equals the header's (escape-aware: an escaped pipe inside a cell is the corpus's canonical literal-pipe form, e.g. `dmesg \| grep vfio`, and does not count as a column break), TB-02 the separator is well-formed and matches the header width. Scope: top-level pipe tables (consecutive start+end-pipe lines, >=2) outside fences. Born tick-459: 533 tables scanned, one real defect drained same tick - CP-002's Indexing Speed table had the separator and first data row merged onto one line; the corpus's single escaped-pipe row (1202-TB3) is canonical usage and passes |
 | updated_badge_scan | UB-01 | body Last Updated badge parity, hard: the FM Last Updated field is the canonical gated freshness value (last_updated_check LU-01/02), but some docs also render a display badge in the header block (`**Last Updated:** YYYY-MM-DD`); where that badge exists it must carry the same ISO date as FM - a body badge stuck in February while the doc was edited in September teaches the learner the wrong age. Badge-optional (390/408 docs carry none); scanned outside fences so code examples never trigger it. Born tick-461 after syncing 14 stale badges - 7 February-frozen display badges (GUIDE-*, GLOSSARY, STYLE-GUIDE, 0000-LEARNING-PATH, TROUBLESHOOTING-QUICKSTART, CROSS-REFERENCE-GUIDELINES), 7 late-Sept near-misses (FM moved on a later tick, badge did not) - a class invisible to date_cohort, which reads FM only |
 | diagram_scan | DM-01/02/03 | mermaid diagram integrity, all hard - the platform renders diagram blocks directly, a syntax-broken block is a visible error box (same defect class as table_scan): DM-01 the block's first non-empty line starts with a known diagram-type keyword, DM-02 in graph/flowchart blocks node-label text outside quoted segments contains no `()[]{}` (mermaid requires quoting for those in labels; shape-aware - `[(db)]`, `([stadium])`, `((circle))`, `{{hex}}`, `[/para/]` wrappers are understood, `<br/>`/colons/commas in labels are fine), DM-03 no node opened then closed by an edge operator or end-of-line before its shape close. Scope: 56 blocks / 19 docs at birth (52 graph, 2 stateDiagram-v2, 2 sequenceDiagram - the non-graph families get DM-01 only). Born tick-462 at 0; the first census draft's 25 hits were its own greedy label regex spanning `A[x] --> B[y]` edges - the shipped scanner parses quoted segments and shape delimiters |
@@ -121,7 +121,7 @@ the full installed stack. A partial environment fails loud with
 | closure_census | CL-01..03 | canonical closing trio after the last content section: a Summary-class recap H2, References H2, Next Steps H2 - CL-01 drained phase-by-phase to 114/114 (hardened tick-431), CL-02/CL-03 hard from birth tick-417 |
 | qa_tooling_coverage_check | QT-01 | QA-TOOLING.md locked to the scorecard: every script in quality_report.GATES must be named in this doc by script stem or gate label, so the gate inventory cannot silently drift behind the CI contract again (at the 2026-09-30 birth census this doc listed 22 of 59 gates - prereq_census, hard since tick-410, had no row); hand-written rows stay, the gate enforces presence only; born at 22 findings (1 matcher FP: fm_staleness label form), 21 rows drained same tick, hard since |
 
-## 📋 Report Gates (exit 0 by design)
+## Report Gates (exit 0 by design)
 
 | Gate | What it reports |
 | --- | --- |
@@ -139,7 +139,7 @@ the full installed stack. A partial environment fails loud with
 
 ---
 
-## 🌐 Network Tool (ad hoc, not in the scorecard)
+## Network Tool (ad hoc, not in the scorecard)
 
 ```bash
 python scripts/qa/link_rot_check.py
@@ -162,7 +162,7 @@ would spend 424 network requests per run for no rot signal. The
 denied class (udemy, leetcode, academy.langchain) is course-
 platform bot walls, not dead links.
 
-## 🗄️ Epic-Archive Tools (not gates)
+## Epic-Archive Tools (not gates)
 
 | Tool | Purpose |
 | --- | --- |
@@ -170,7 +170,7 @@ platform bot walls, not dead links.
 | legacy_ad_scan | classifies remaining old-repo-name mentions by context |
 | legacy_ad_rename | mechanical renames used by the same epic |
 
-## 🧾 Platform Feed (not a gate)
+## Platform Feed (not a gate)
 
 ```bash
 python scripts/qa/manifest_export.py             # JSON to stdout
@@ -189,7 +189,7 @@ by-construction: the feed_parity_check hard gate runs both exporters
 and locks their cross-feed invariants, so classification drift in one
 feed cannot ship silently broken JSON to a platform load step.
 
-## 📊 Curriculum Metrics (report tool)
+## Curriculum Metrics (report tool)
 
 ```bash
 python scripts/qa/curriculum_metrics.py
@@ -211,7 +211,7 @@ into a trend instead of scrolling away with stdout. Models borrowed
 for parity: the corpus classification from quality_report, the fence
 model from structure_lint, quiz counts from quiz_export.
 
-## 📐 Conventions
+## Conventions
 
 - All gates share one extraction model: naive fence toggle +
   inline-code scrub. The model never changes for one tool - gate

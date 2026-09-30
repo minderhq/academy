@@ -13,7 +13,7 @@ Tags: ['troubleshooting', 'docker', 'llm']
 
 ---
 
-## 🐳 Docker Issues
+## Docker Issues
 
 ### Issue: Container won't start
 
@@ -110,7 +110,7 @@ nvidia-smi
 
 ---
 
-## 🤗 LLM Issues
+## LLM Issues
 
 ### Issue: Model download fails
 
@@ -237,7 +237,7 @@ model = AutoModelForCausalLM.from_pretrained(
 
 ---
 
-## 🔍 RAG Issues
+## RAG Issues
 
 ### Issue: Poor retrieval quality
 
@@ -330,7 +330,7 @@ curl http://localhost:6333/health
 
 ---
 
-## 🧠 Fine-Tuning Issues
+## Fine-Tuning Issues
 
 ### Issue: Training loss not decreasing
 
@@ -407,7 +407,7 @@ model = PeftModel.from_pretrained(model, adapter_path)
 
 ---
 
-## 📦 Python Environment Issues
+## Python Environment Issues
 
 ### Issue: Import errors
 
@@ -493,7 +493,7 @@ pip install transformers
 
 ---
 
-## 🌐 Network Issues
+## Network Issues
 
 ### Issue: Proxy blocking downloads
 
@@ -553,7 +553,7 @@ git clone https://gitee.com/mirrors/repo.git
 
 ---
 
-## 💾 Storage Issues
+## Storage Issues
 
 ### Issue: Disk space full
 
@@ -602,7 +602,7 @@ rm -rf ~/.ollama/models
 
 ---
 
-## 🔧 Performance Issues
+## Performance Issues
 
 ### Issue: High GPU memory usage
 
@@ -643,7 +643,7 @@ kill -9 ${PID}
 
 ---
 
-## 📊 Monitoring Issues
+## Monitoring Issues
 
 ### Issue: Grafana dashboards not loading
 
@@ -676,7 +676,7 @@ docker restart grafana
 
 ---
 
-## 🆘 Emergency Commands
+## Emergency Commands
 
 ### Force stop all containers:
 ```bash
@@ -701,7 +701,7 @@ sudo reboot
 
 ---
 
-## 📞 Getting Help
+## Getting Help
 
 If you're still stuck:
 
@@ -723,7 +723,7 @@ journalctl -u docker
 
 ---
 
-## 🔗 Quick Links
+## Quick Links
 
 - **[TUTORIAL-001: Hello LLM](../tutorials/TUTORIAL-001-Hello-LLM.md)** - Getting started
 - **[TUTORIAL-002: Docker Essentials](../tutorials/TUTORIAL-002-Docker-Essentials.md)** - Docker basics

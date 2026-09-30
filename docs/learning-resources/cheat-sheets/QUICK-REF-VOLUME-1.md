@@ -13,7 +13,7 @@ Tags: ['cheatsheet', 'infrastructure', 'docker', 'kubernetes']
 
 ---
 
-## 🏗️ Architecture Overview
+## Architecture Overview
 
 ```text
 ┌─────────────────────────────────────────────────────────┐
@@ -50,7 +50,7 @@ Tags: ['cheatsheet', 'infrastructure', 'docker', 'kubernetes']
 
 ---
 
-## 📋 Network Configuration
+## Network Configuration
 
 ### Jumbo Frames Setup
 ```bash
@@ -85,7 +85,7 @@ ip link show eno1 | grep mtu
 
 ---
 
-## 🖥️ Proxmox Commands
+## Proxmox Commands
 
 ### VM Management
 ```bash
@@ -119,7 +119,7 @@ pvesm add nfs nfs-storage --server 192.168.1.100 --export /data
 
 ---
 
-## 🔧 GPU Passthrough
+## GPU Passthrough
 
 ### IOMMU Setup
 ```bash
@@ -155,7 +155,7 @@ update-initramfs -u
 
 ---
 
-## ☸️ K3s Kubernetes
+## K3s Kubernetes
 
 ### Installation
 ```bash
@@ -215,7 +215,7 @@ EOF
 
 ---
 
-## 🚀 LLMOps Stack
+## LLMOps Stack
 
 ### vLLM Deployment
 ```yaml
@@ -288,7 +288,7 @@ spec:
 
 ---
 
-## 📊 Monitoring
+## Monitoring
 
 ### Prometheus Configuration
 ```yaml
@@ -325,7 +325,7 @@ scrape_configs:
 
 ---
 
-## 🔍 Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 
@@ -367,7 +367,7 @@ kubectl get -n longhorn volume
 
 ---
 
-## 📦 Quick Start Checklist
+## Quick Start Checklist
 
 - [ ] Network configured (Jumbo Frames enabled)
 - [ ] Proxmox installed and configured
@@ -382,7 +382,7 @@ kubectl get -n longhorn volume
 
 ---
 
-## 🎯 Next Steps
+## Next Steps
 
 1. Complete LAB-001: Docker & LLM
 2. Read 1401-Ollama-Enterprise.md

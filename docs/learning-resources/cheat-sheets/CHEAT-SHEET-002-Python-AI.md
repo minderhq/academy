@@ -13,7 +13,7 @@ Tags: ['cheatsheet', 'math', 'pytorch']
 
 ---
 
-## 🐍 Python Basics
+## Python Basics
 
 ### Virtual Environments
 ```bash
@@ -61,7 +61,7 @@ uv pip uninstall numpy
 
 ---
 
-## 🔢 NumPy Fundamentals
+## NumPy Fundamentals
 
 ### Array Operations
 ```python
@@ -120,7 +120,7 @@ a + b                          # Shape (1, 3): [[5, 7, 9]]
 
 ---
 
-## 📊 Pandas Essentials
+## Pandas Essentials
 
 ### DataFrame Operations
 ```python
@@ -177,7 +177,7 @@ pd.concat([df1, df2])
 
 ---
 
-## 🤗 Hugging Face Transformers
+## Hugging Face Transformers
 
 ### Load Models
 ```python
@@ -223,7 +223,7 @@ result = fe("Some text to embed")
 
 ---
 
-## 🔥 PyTorch Basics
+## PyTorch Basics
 
 ### Tensors
 ```python
@@ -307,7 +307,7 @@ with torch.no_grad():
 
 ---
 
-## 🐍 Python AI Best Practices
+## Python AI Best Practices
 
 ### Type Hints
 ```python
@@ -371,7 +371,7 @@ with timer("Training"):
 
 ---
 
-## 🚀 Performance Tips
+## Performance Tips
 
 ### List Comprehensions
 ```python
@@ -415,7 +415,7 @@ for value in large_dataset():
 
 ---
 
-## 🔍 Debugging
+## Debugging
 
 ### Print vs Logging
 ```python
@@ -465,7 +465,7 @@ result = complex_function(data)  # type: ignore
 
 ---
 
-## 📦 Common Libraries
+## Common Libraries
 
 ### HTTP Requests
 ```python
@@ -505,7 +505,7 @@ json.dump(data, open('output.json', 'w'))
 
 ---
 
-## 🧪 Testing
+## Testing
 
 ### Unit Tests
 ```python
@@ -538,7 +538,7 @@ def test_division():
 
 ---
 
-## 🎯 AI-Specific Patterns
+## AI-Specific Patterns
 
 ### Model Inference
 ```python
@@ -569,7 +569,7 @@ def process_in_batches(data, batch_size=32):
 
 ---
 
-## 📝 Python Idioms for AI
+## Python Idioms for AI
 
 ### Data Loading
 ```python
@@ -614,7 +614,7 @@ print(MODEL_CONFIG['name'])
 
 ---
 
-## 🔗 Quick Links
+## Quick Links
 
 - **[TUTORIAL-001: Hello LLM](../tutorials/TUTORIAL-001-Hello-LLM.md)** - Your first LLM with Python
 - **[2101: Tensor Algebra](../../phases/phase2-foundations/2100-calculus/2101-Tensor-Algebra.md)** - Math foundations

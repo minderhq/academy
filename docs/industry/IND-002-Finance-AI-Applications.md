@@ -1130,7 +1130,7 @@ def credit_application_explainable(applicant):
 
 ## Pro Tips
 
-### 💡 Use Financial Embeddings
+### Use Financial Embeddings
 
 **Tip:** Domain-specific embeddings improve performance
 ```python
@@ -1151,7 +1151,7 @@ sec_embedder = SentenceTransformer('sec-bert-base-uncased')
 news_embedder = SentenceTransformer('finbert-base-uncased-sentiment')
 ```
 
-### 💡 Hybrid Search for Financial Documents
+### Hybrid Search for Financial Documents
 
 **Tip:** Combine semantic and keyword search
 ```python
@@ -1185,7 +1185,7 @@ def hybrid_financial_search(query: str):
     return filtered
 ```
 
-### 💡 Real-Time Fraud Detection
+### Real-Time Fraud Detection
 
 **Tip:** Optimize for sub-millisecond response
 ```python
@@ -1257,7 +1257,7 @@ class RealTimeFraudDetector:
         return features
 ```
 
-### 💡 Financial News Sentiment Analysis
+### Financial News Sentiment Analysis
 
 **Tip:** Combine sentiment with market data
 ```python
@@ -1308,7 +1308,7 @@ def market_analysis_with_sentiment(ticker: str):
     return analysis
 ```
 
-### 💡 Automated Regulatory Reporting
+### Automated Regulatory Reporting
 
 **Tip:** Generate reports that meet regulatory standards
 ```python

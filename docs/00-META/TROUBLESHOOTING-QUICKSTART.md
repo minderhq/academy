@@ -16,22 +16,22 @@ Tags: ['troubleshooting', 'quickstart', 'llm']
 
 ---
 
-## 🔍 Quick Diagnosis
+## Quick Diagnosis
 
 ### Find Your Issue Fast
 
 | Symptom | Go To Section |
 |---------|--------------|
-| Ollama won't install | [Installation Issues](#-installation-issues) |
-| Model download stuck/fails | [Download Problems](#-download-problems) |
-| "Connection refused" error | [Connection Issues](#-connection-issues) |
-| Out of memory errors | [Memory Issues](#-memory-issues) |
-| Model runs very slow | [Performance Issues](#-performance-issues) |
-| Ollama commands not found | [Command Not Found](#-command-not-found) |
+| Ollama won't install | [Installation Issues](#installation-issues) |
+| Model download stuck/fails | [Download Problems](#download-problems) |
+| "Connection refused" error | [Connection Issues](#connection-issues) |
+| Out of memory errors | [Memory Issues](#memory-issues) |
+| Model runs very slow | [Performance Issues](#performance-issues) |
+| Ollama commands not found | [Command Not Found](#command-not-found) |
 
 ---
 
-## 📥 Installation Issues
+## Installation Issues
 
 ### Issue: "Ollama not found" after installation
 
@@ -96,7 +96,7 @@ curl -fsSL https://ollama.com/install.sh | sh
 
 ---
 
-## ⬇️ Download Problems
+## Download Problems
 
 ### Issue: Model download stuck at 0%
 
@@ -198,7 +198,7 @@ curl -fsSL https://ollama.com/install.sh | sh
 
 ---
 
-## 🔌 Connection Issues
+## Connection Issues
 
 ### Issue: "Connection refused" when running Ollama
 
@@ -269,7 +269,7 @@ curl -fsSL https://ollama.com/install.sh | sh
 
 ---
 
-## 💾 Memory Issues
+## Memory Issues
 
 ### Issue: "Out of memory" error
 
@@ -342,7 +342,7 @@ curl -fsSL https://ollama.com/install.sh | sh
 
 ---
 
-## ⚡ Performance Issues
+## Performance Issues
 
 ### Issue: Model very slow on CPU
 
@@ -390,7 +390,7 @@ curl -fsSL https://ollama.com/install.sh | sh
 
 ---
 
-## ❓ Command Not Found
+## Command Not Found
 
 ### Issue: 'ollama' command not found
 
@@ -421,7 +421,7 @@ curl -fsSL https://ollama.com/install.sh | sh
 
 ---
 
-## 🆘 Still Stuck?
+## Still Stuck?
 
 ### Complete Reset
 
@@ -456,7 +456,7 @@ ollama run phi3 "test"
 
 ---
 
-## 📞 Get Help
+## Get Help
 
 ### Additional Resources
 
@@ -477,7 +477,7 @@ ollama run phi3 "test"
 
 ---
 
-## ✅ Verification Checklist
+## Verification Checklist
 
 After troubleshooting, verify:
 

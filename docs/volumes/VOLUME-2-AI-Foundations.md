@@ -13,7 +13,7 @@ Tags: ['volume', 'pytorch', 'tensors', 'math']
 
 ---
 
-## 📚 Volume Overview
+## Volume Overview
 
 **Difficulty:** ⭐⭐ Intermediate
 **Time:** 3-4 weeks (part-time)
@@ -39,7 +39,7 @@ Before understanding model architectures, fine-tuning, or optimization, you need
 
 ---
 
-## 🗺️ Learning Path
+## Learning Path
 
 ### Week 1: Tensor Algebra & Calculus
 
@@ -278,7 +278,7 @@ Stage 4 (10%): Annealing on highest quality
 
 ---
 
-## 🎯 Volume 2 Capstone Projects
+## Volume 2 Capstone Projects
 
 ### Project A: Implement Autograd from Scratch
 
@@ -335,7 +335,7 @@ Stage 4 (10%): Annealing on highest quality
 
 ---
 
-## 📋 Volume 2 Checklist
+## Volume 2 Checklist
 
 Use this checklist to track your progress:
 
@@ -366,7 +366,7 @@ Use this checklist to track your progress:
 
 ---
 
-## 🔗 Cross-References
+## Cross-References
 
 ### How Volume 2 Connects to Other Volumes:
 
@@ -392,7 +392,7 @@ Use this checklist to track your progress:
 
 ---
 
-## 📊 Volume 2 Statistics
+## Volume 2 Statistics
 
 | Metric | Value |
 |--------|-------|
@@ -406,7 +406,7 @@ Use this checklist to track your progress:
 
 ---
 
-## 💡 Key Takeaways
+## Key Takeaways
 
 ### Mathematical Foundations
 
@@ -449,7 +449,7 @@ Then dL/dx = dL/dy × dy/dx
 
 ---
 
-## 🆘 Troubleshooting
+## Troubleshooting
 
 ### Common Issues in Volume 2
 
@@ -469,7 +469,7 @@ For more help, see **[TROUBLESHOOTING-Common-Issues.md](../learning-resources/tr
 
 ---
 
-## 🎓 After Volume 2
+## After Volume 2
 
 ### You're Ready For:
 
@@ -495,7 +495,7 @@ For more help, see **[TROUBLESHOOTING-Common-Issues.md](../learning-resources/tr
 
 ---
 
-## 🚀 Next Steps
+## Next Steps
 
 1. **Track your progress** in [PROGRESS-TRACKER.md](../00-META/PROGRESS-TRACKER.md)
 2. **Continue to Volume 3** for transformer internals

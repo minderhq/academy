@@ -110,7 +110,7 @@ openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
 cat ssl/certs/selfsigned.crt > ssl/certs/ca-bundle.crt
 ```
 
-### ✅ Checkpoint: Part 2
+### Checkpoint: Part 2
 **Verify:** Certificate files exist
 
 ---
@@ -267,7 +267,7 @@ htpasswd -c nginx/.htpasswd prometheus
 # Enter password when prompted
 ```
 
-### ✅ Checkpoint: Part 3
+### Checkpoint: Part 3
 **Verify:** Nginx configuration valid
 
 ```bash
@@ -485,7 +485,7 @@ volumes:
 EOF
 ```
 
-### ✅ Checkpoint: Part 4
+### Checkpoint: Part 4
 **Verify:** Docker Compose configuration valid
 
 ---
@@ -624,7 +624,7 @@ EOF
    - `SLACK_WEBHOOK`: Slack webhook URL (optional)
    - `GRAFANA_PASSWORD`: Grafana admin password
 
-### ✅ Checkpoint: Part 5
+### Checkpoint: Part 5
 **Verify:** GitHub Actions workflow created
 
 ---
@@ -675,7 +675,7 @@ curl http://localhost:9090/api/v1/query?query=up
 
 ---
 
-## 🎯 Next Steps
+## Next Steps
 
 - **[1402: vLLM and TGI](../../phases/phase1-infra/1400-llmops/1402-vLLM-and-TGI.md)** - Production inference
 - **[1405: TGI Deployment Guide](../../phases/phase1-infra/1400-llmops/guides/1405-TGI-Deployment-Guide.md)** - TGI in production

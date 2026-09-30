@@ -344,7 +344,7 @@ docker run --gpus all -it --rm \
 
 ## Step 7: Dockerfile Best Practices
 
-### ❌ Bad Dockerfile:
+### Bad Dockerfile:
 ```dockerfile
 FROM python:3.13
 
@@ -362,7 +362,7 @@ CMD ["python", "app.py"]
 - No layer caching optimization
 - Uses plain `pip` instead of the uv standard (see the good Dockerfile below)
 
-### ✅ Good Dockerfile:
+### Good Dockerfile:
 ```dockerfile
 FROM python:3.13-slim
 
@@ -520,7 +520,7 @@ How Docker fits into PROJECT-OMEGA:
 
 ---
 
-## 🎓 Knowledge Check
+## Knowledge Check
 
 1. **What is the main benefit of containers over VMs?**
    - More efficient resource usage (shared kernel)
@@ -537,7 +537,7 @@ How Docker fits into PROJECT-OMEGA:
 
 ---
 
-## 📚 What's Next?
+## What's Next?
 
 1. **[1301: K3s Master-Worker Architecture](../../phases/phase1-infra/1300-kubernetes/1301-K3s-Master-Worker-Arch.md)** - Orchestrate containers at cluster scale
 2. **[1405: TGI Deployment Guide](../../phases/phase1-infra/1400-llmops/guides/1405-TGI-Deployment-Guide.md)** - Serve LLMs in GPU containers
@@ -545,7 +545,7 @@ How Docker fits into PROJECT-OMEGA:
 
 ---
 
-## 🔗 Quick Reference
+## Quick Reference
 
 ```bash
 # Essential commands

@@ -292,7 +292,7 @@ If MTU mismatch:
 
 ## Network Optimization Checklist
 
-### ✅ Bandwidth Optimization
+### Bandwidth Optimization
 
 ```text
 Step 1: Baseline Testing
@@ -315,7 +315,7 @@ Step 3: Optimize TCP Settings
     - net.ipv4.tcp_wmem = "4096 65536 67108864"
 ```
 
-### ✅ Latency Optimization
+### Latency Optimization
 
 ```text
 Step 1: Measure Baseline
@@ -332,7 +332,7 @@ Step 3: Disable Unnecessary Services
     - Keep: NTP, SSH, HTTP(S)
 ```
 
-### ✅ Reliability Optimization
+### Reliability Optimization
 
 ```text
 Step 1: Enable Link Aggregation
@@ -498,7 +498,7 @@ groups:
 
 ## Best Practices
 
-### ✅ DO
+### DO
 
 1. **Always use wired connections for GPUs**
    - WiFi is fine for development
@@ -523,7 +523,7 @@ groups:
    - Cable labeling
    - Configuration backups
 
-### ❌ DON'T
+### DON'T
 
 1. **Don't mix WiFi and wired for training**
    - Inconsistent performance

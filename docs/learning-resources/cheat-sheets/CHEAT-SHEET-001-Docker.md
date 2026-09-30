@@ -13,7 +13,7 @@ Tags: ['cheatsheet', 'docker', 'devops']
 
 ---
 
-## 🐳 Container Management
+## Container Management
 
 ### Run Containers
 ```bash
@@ -89,7 +89,7 @@ docker container prune
 
 ---
 
-## 📦 Image Management
+## Image Management
 
 ### Build Images
 ```bash
@@ -156,7 +156,7 @@ docker images myapp:latest
 
 ---
 
-## 📊 Docker Compose
+## Docker Compose
 
 ### Basic Commands
 ```bash
@@ -199,7 +199,7 @@ docker-compose top
 
 ---
 
-## 🔧 Troubleshooting
+## Troubleshooting
 
 ### Container Issues
 ```bash
@@ -236,7 +236,7 @@ docker system prune -a --volumes
 
 ---
 
-## 🎯 AI/ML Specific Commands
+## AI/ML Specific Commands
 
 ### GPU Containers
 ```bash
@@ -287,7 +287,7 @@ docker run -v $(pwd)/data:/app/data --user $(id -u):$(id -g) myapp
 
 ---
 
-## 📝 Quick Reference
+## Quick Reference
 
 ### Dockerfile Best Practices
 ```dockerfile
@@ -356,7 +356,7 @@ CMD ["./app"]
 
 ---
 
-## 🔍 Debug Commands
+## Debug Commands
 
 ### View Container Processes
 ```bash
@@ -386,7 +386,7 @@ docker exec ${CONTAINER} env
 
 ---
 
-## 🚀 Performance Tips
+## Performance Tips
 
 ### Limit Resources
 ```bash
@@ -414,7 +414,7 @@ RUN --mount=type=cache,target=/root/.cache/uv uv sync --locked
 
 ---
 
-## 📚 PROJECT-OMEGA Specific
+## PROJECT-OMEGA Specific
 
 ### Run PROJECT-OMEGA Stack
 ```bash
@@ -439,7 +439,7 @@ docker exec omega-vllm nvidia-smi
 
 ---
 
-## ⌨️ Keyboard Shortcuts (in container)
+## Keyboard Shortcuts (in container)
 
 ```text
 # Exit container
@@ -458,7 +458,7 @@ Ctrl+C
 
 ---
 
-## 🆘 Emergency Commands
+## Emergency Commands
 
 ### Force Kill Container
 ```bash
@@ -478,7 +478,7 @@ docker system prune -a --volumes -f
 
 ---
 
-## 🔗 Quick Links
+## Quick Links
 
 - **[TUTORIAL-002: Docker Essentials](../tutorials/TUTORIAL-002-Docker-Essentials.md)** - Full tutorial
 - **[TUTORIAL-003: RAG Basics](../tutorials/TUTORIAL-003-RAG-Basics.md)** - RAG with Docker
