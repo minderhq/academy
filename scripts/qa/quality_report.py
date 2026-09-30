@@ -925,14 +925,18 @@ stand today?" without running each tool by hand.
                        2 (4100, 4200)" - the two-module era - while
                        4300 QAT and 4400 Advanced Techniques (17
                        lessons between them) had joined the phase
-    quiz_claim_scan  Quiz self-claim integrity (QC-01..03, hard):
+    quiz_claim_scan  Quiz self-claim integrity (QC-01..04, hard):
                        a QUIZ.md's own promises checked against the
                        bank quiz_export parses - "**N questions**"
-                       claims vs the parsed count, and the two
-                       passing-score line forms' arithmetic. Born
-                       tick-473 after an all-clean census (33 banks;
-                       the census's first-pass 2300 hit was the
-                       census's own format blindness, not a defect)
+                       claims vs the parsed count, the two
+                       passing-score line forms' arithmetic, and
+                       points-totals vs the derived sum (explicit
+                       **Score:** points + 1 per question without
+                       one). Born tick-473 after an all-clean census
+                       (33 banks; the census's first-pass 2300 hit
+                       was the census's own format blindness, not a
+                       defect), QC-04 tick-477 (all 33 banks
+                       consistent at birth)
 
 Plus corpus stats (lesson files / modules / phases) so the scorecard doubles
 as a curriculum inventory.
