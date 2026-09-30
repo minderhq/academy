@@ -826,7 +826,7 @@ euclidean_distance  # For spatial/absolute distance
 
 ## Common Pitfalls
 
-### ⚠️ Chunking Strategy Issues
+### Pitfall 1: Chunking Strategy Issues
 
 **Pitfall:** Poor chunking destroys context
 ```python
@@ -843,7 +843,7 @@ chunks = chunk_text(text, chunk_size=512, overlap=50)
 # Result: Complete thoughts with context continuity
 ```
 
-### ⚠️ Embedding Mismatch
+### Pitfall 2: Embedding Mismatch
 
 **Pitfall:** Using different models for index and query
 ```python
@@ -859,7 +859,7 @@ query_embedding = model.encode(query)  # Same model
 # Result: Proper semantic matching
 ```
 
-### ⚠️ HNSW Parameter Tuning
+### Pitfall 3: HNSW Parameter Tuning
 
 **Pitfall:** Default HNSW parameters not optimized
 ```python
@@ -881,7 +881,7 @@ search_params = {
 # Result: Optimized for your use case
 ```
 
-### ⚠️ Re-ranking Bottleneck
+### Pitfall 4: Re-ranking Bottleneck
 
 **Pitfall:** Re-ranking too many candidates
 ```python
@@ -896,7 +896,7 @@ final = reranker.rank(query, candidates, top_k=10)  # Acceptable delay
 # Result: Fast response with better quality
 ```
 
-### ⚠️ Knowledge Graph Entity Extraction
+### Pitfall 5: Knowledge Graph Entity Extraction
 
 **Pitfall:** Inconsistent entity extraction
 ```python
@@ -912,7 +912,7 @@ entities = [normalize_entity(e) for e in ["Elon Musk", "Musk"]]
 # Result: Consistent entity representation
 ```
 
-### ⚠️ Lost in the Middle Problem
+### Pitfall 6: Lost in the Middle Problem
 
 **Pitfall:** Important context buried in middle
 ```python

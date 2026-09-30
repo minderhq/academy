@@ -450,7 +450,7 @@ After completing this phase, you will be able to:
 
 ## Common Pitfalls
 
-### Incorrect Tensor Shapes
+### Pitfall 1: Incorrect Tensor Shapes
 
 **Pitfall:** Shape mismatches causing silent errors
 ```python
@@ -470,7 +470,7 @@ def safe_matmul(A, B):
     return A @ B
 ```
 
-### In-place Operations Breaking Autograd
+### Pitfall 2: In-place Operations Breaking Autograd
 
 **Pitfall:** In-place ops destroying gradients
 ```python
@@ -489,7 +489,7 @@ z.backward()
 # Gradients computed correctly
 ```
 
-### Not Detaching for Inference
+### Pitfall 3: Not Detaching for Inference
 
 **Pitfall:** Building computation graph unnecessarily
 ```python
@@ -507,7 +507,7 @@ with torch.inference_mode():
     output = model(input)
 ```
 
-### CUDA Out of Memory
+### Pitfall 4: CUDA Out of Memory
 
 **Pitfall:** Accumulating gradients in GPU memory
 ```python
@@ -528,7 +528,7 @@ for batch in dataloader:
 optimizer.zero_grad(set_to_none=True)
 ```
 
-### Incorrect Distributed Training
+### Pitfall 5: Incorrect Distributed Training
 
 **Pitfall:** Not syncing gradients across GPUs
 ```python

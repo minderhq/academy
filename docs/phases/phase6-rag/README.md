@@ -507,7 +507,7 @@ After completing this phase, you will be able to:
 
 ## Common Pitfalls
 
-### Poor Chunking Strategy
+### Pitfall 1: Poor Chunking Strategy
 
 **Pitfall:** Chunking documents without context
 ```python
@@ -526,7 +526,7 @@ splitter = TextSplitter(
 chunks = splitter.split_text(text)
 ```
 
-### Ignoring Embedding Model Mismatch
+### Pitfall 2: Ignoring Embedding Model Mismatch
 
 **Pitfall:** Using different models for index and query
 ```python
@@ -544,7 +544,7 @@ index_embeddings = embedding_model.encode(docs)
 query_embedding = embedding_model.encode(query)
 ```
 
-### Not Optimizing HNSW Parameters
+### Pitfall 3: Not Optimizing HNSW Parameters
 
 **Pitfall:** Using default HNSW parameters
 ```python
@@ -561,7 +561,7 @@ index = HNSWIndex(
 )
 ```
 
-### No Re-ranking
+### Pitfall 4: No Re-ranking
 
 **Pitfall:** Trusting initial retrieval blindly
 ```python
@@ -576,7 +576,7 @@ reranked = cross_encoder_rerank(query, initial_results)
 context = reranked[:10]
 ```
 
-### Ignoring Metadata Filtering
+### Pitfall 5: Ignoring Metadata Filtering
 
 **Pitfall:** Not pre-filtering with metadata
 ```python

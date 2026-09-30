@@ -162,11 +162,11 @@ This module connects to:
 
 ## Common Pitfalls
 
-- **Skipping SFT**: Alignment needs a good base model
-- **Poor preference data**: Noisy labels hurt performance
-- **Over-aligning**: Model becomes too cautious or repetitive
-- **Ignoring safety**: Aligned models can still be jailbroken
-- **Not testing diversity**: Check model doesn't lose capabilities
+1. **Skipping SFT:** Alignment needs a good base model
+2. **Poor preference data:** Noisy labels hurt performance
+3. **Over-aligning:** Model becomes too cautious or repetitive
+4. **Ignoring safety:** Aligned models can still be jailbroken
+5. **Not testing diversity:** Check model doesn't lose capabilities
 
 ## Alignment Evaluation Metrics
 

@@ -440,7 +440,7 @@ lspci -nnk | grep -A 3 VGA
 
 ## Common Virtualization Pitfalls
 
-### ❌ Pitfall 1: Wrong IOMMU Configuration
+### Pitfall 1: Wrong IOMMU Configuration
 
 **Problem:**
 ```yaml
@@ -470,7 +470,7 @@ cat /proc/cmdline | grep iommu
 # amd_iommu=on iommu=pt (AMD)
 ```
 
-### ❌ Pitfall 2: GPU Other Resources Not Passed Through
+### Pitfall 2: GPU Other Resources Not Passed Through
 
 **Problem:**
 ```yaml
@@ -500,7 +500,7 @@ Root Cause:
 3. Set to "All Functions" in Proxmox GUI
 ```
 
-### ❌ Pitfall 3: Memory/PCIe Bus Issues
+### Pitfall 3: Memory/PCIe Bus Issues
 
 **Problem:**
 ```text
@@ -526,7 +526,7 @@ echo "options vfio-pci disable_acs_redirection=1" >> /etc/modprobe.d/vfio.conf
 # Alternative: Use motherboard with proper ACS support
 ```
 
-### ❌ Pitfall 4: Driver Conflicts
+### Pitfall 4: Driver Conflicts
 
 **Problem:**
 ```yaml

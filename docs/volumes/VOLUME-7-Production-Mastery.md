@@ -1028,7 +1028,7 @@ Answer: Return result when done
 
 ## Common Pitfalls
 
-### ⚠️ Missing Health Checks
+### Pitfall 1: Missing Health Checks
 
 **Pitfall:** No health check means silent failures
 ```yaml
@@ -1054,7 +1054,7 @@ services:
 # Result: Automatic restart on failure, proper monitoring
 ```
 
-### ⚠️ SSL Certificate Issues
+### Pitfall 2: SSL Certificate Issues
 
 **Pitfall:** Self-signed certificates rejected by clients
 ```text
@@ -1072,7 +1072,7 @@ ssl_certificate_key /etc/letsencrypt/live/api.example.com/privkey.pem;
 # 2. Or use mkcert for locally-trusted certificates
 ```
 
-### ⚠️ Agent Loop Without Limits
+### Pitfall 3: Agent Loop Without Limits
 
 **Pitfall:** Agent infinite loops
 ```python
@@ -1104,7 +1104,7 @@ def run_agent(query, max_steps=10, max_time=300):
     return "Incomplete: exceeded maximum steps"
 ```
 
-### ⚠️ No Resource Limits
+### Pitfall 4: No Resource Limits
 
 **Pitfall:** Container consumes all resources
 ```yaml
@@ -1128,7 +1128,7 @@ services:
           memory: 16G
 ```
 
-### ⚠️ Monitoring Without Alerts
+### Pitfall 5: Monitoring Without Alerts
 
 **Pitfall:** Metrics collected but nobody notified
 ```yaml
@@ -1157,7 +1157,7 @@ groups:
           summary: "GPU temperature critical"
 ```
 
-### ⚠️ Insufficient Logging
+### Pitfall 6: Insufficient Logging
 
 **Pitfall:** Logs don't provide enough context
 ```python
@@ -1179,7 +1179,7 @@ logging.info("Request processed",
 )
 ```
 
-### ⚠️ Backup Testing Missing
+### Pitfall 7: Backup Testing Missing
 
 **Pitfall:** Backups failing silently
 ```bash

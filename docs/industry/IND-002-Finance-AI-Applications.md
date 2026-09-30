@@ -912,7 +912,7 @@ class ModelGovernance:
 
 ## Common Pitfalls
 
-### ⚠️ Regulatory Non-Compliance
+### Pitfall 1: Regulatory Non-Compliance
 
 **Pitfall:** Ignoring financial regulations
 ```python
@@ -947,7 +947,7 @@ def compliant_trading_strategy(market_data):
     execute_trades(signals)
 ```
 
-### ⚠️ Data Quality Issues
+### Pitfall 2: Data Quality Issues
 
 **Pitfall:** Poor data quality leads to poor decisions
 ```python
@@ -985,7 +985,7 @@ def analyze_stock_validated(ticker):
     return prediction
 ```
 
-### ⚠️ Hallucination in Financial Reports
+### Pitfall 3: Hallucination in Financial Reports
 
 **Pitfall:** LLM generates incorrect financial numbers
 ```python
@@ -1019,7 +1019,7 @@ def generate_verified_report(company_financials):
     return verified_report
 ```
 
-### ⚠️ Model Drift in Finance
+### Pitfall 4: Model Drift in Finance
 
 **Pitfall:** Financial models degrade over time
 ```python
@@ -1070,7 +1070,7 @@ def fraud_detection_with_monitoring():
         time.sleep(86400)  # Check daily
 ```
 
-### ⚠️ Explainability Requirements
+### Pitfall 5: Explainability Requirements
 
 **Pitfall:** Unexplainable AI decisions violate regulations
 ```python

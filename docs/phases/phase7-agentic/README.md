@@ -684,7 +684,7 @@ After completing this phase, you will be able to:
 
 ## Common Pitfalls
 
-### Infinite Loops
+### Pitfall 1: Infinite Loops
 
 **Pitfall:** Agent gets stuck in reasoning loop
 ```python
@@ -709,7 +709,7 @@ for i in range(max_iterations):
         break
 ```
 
-### Unsafe Tool Execution
+### Pitfall 2: Unsafe Tool Execution
 
 **Pitfall:** Executing arbitrary code without sandboxing
 ```python
@@ -725,7 +725,7 @@ import subprocess
 result = run_in_sandbox(user_code, timeout=30)
 ```
 
-### Poor Tool Selection
+### Pitfall 3: Poor Tool Selection
 
 **Pitfall:** Agent calls wrong tools repeatedly
 ```python
@@ -745,7 +745,7 @@ tools = [
 ]
 ```
 
-### Missing Error Handling
+### Pitfall 4: Missing Error Handling
 
 **Pitfall:** Agent fails on tool errors
 ```python
@@ -765,7 +765,7 @@ except Exception as e:
     }
 ```
 
-### No Memory Retrieval
+### Pitfall 5: No Memory Retrieval
 
 **Pitfall:** Agent forgets previous interactions
 ```python

@@ -189,11 +189,11 @@ This module connects to:
 
 ## Common Pitfalls
 
-- **Storing everything**: Memory bloat kills performance
-- **Poor retrieval**: Wrong memories retrieved
-- **No consolidation**: Redundant and stale memories
-- **Ignoring privacy**: Memory has sensitive info
-- **Overfitting**: Too much past context
+1. **Storing everything:** Memory bloat kills performance
+2. **Poor retrieval:** Wrong memories retrieved
+3. **No consolidation:** Redundant and stale memories
+4. **Ignoring privacy:** Memory has sensitive info
+5. **Overfitting:** Too much past context
 
 ## Memory Compression
 

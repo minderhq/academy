@@ -529,7 +529,7 @@ route:
 
 ## Common Monitoring Pitfalls
 
-### ❌ Pitfall 1: Monitoring Everything
+### Pitfall 1: Monitoring Everything
 
 **Problem:**
 ```text
@@ -565,7 +565,7 @@ Nice to have (monitor only):
 Rule: If you don't have an alert, do you need the metric?
 ```
 
-### ❌ Pitfall 2: Alerting on Single Data Points
+### Pitfall 2: Alerting on Single Data Points
 
 **Problem:**
 ```yaml
@@ -592,7 +592,7 @@ Result:
 - Engineers trust alerts
 ```
 
-### ❌ Pitfall 3: No Business Metrics
+### Pitfall 3: No Business Metrics
 
 **Problem:**
 ```text
@@ -625,7 +625,7 @@ Usage Patterns:
   - Feature adoption rate
 ```
 
-### ❌ Pitfall 4: No Historical Context
+### Pitfall 4: No Historical Context
 
 **Problem:**
 ```yaml

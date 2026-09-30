@@ -235,7 +235,7 @@ See [PREREQUISITES.md](./PREREQUISITES.md) for detailed requirements.
 
 ## Common Networking Pitfalls
 
-### ❌ Pitfall 1: Neglecting Upload Speed
+### Pitfall 1: Neglecting Upload Speed
 
 **Problem:**
 ```text
@@ -253,7 +253,7 @@ Impact on LLMs:
 - For training, aim for symmetric connections (1:1 ratio)
 - For inference, minimum 100 Mbps upload per 10 concurrent users
 
-### ❌ Pitfall 2: WiFi vs Wired
+### Pitfall 2: WiFi vs Wired
 
 **Problem:**
 ```text
@@ -271,7 +271,7 @@ Impact: Inconsistent latency, packet loss, interference
 - Use WiFi only for development/testing
 - Always use wired connections for GPUs
 
-### ❌ Pitfall 3: Wrong MTU Configuration
+### Pitfall 3: Wrong MTU Configuration
 
 **Problem:**
 ```text

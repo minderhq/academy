@@ -523,7 +523,7 @@ for name, param in model.named_parameters():
 
 ## 🎯 Common Pitfalls
 
-### Broadcasting Errors
+### Pitfall 1: Broadcasting Errors
 ```python
 # Wrong: (3,) + (3,) - shape mismatch
 # Right: (3, 1) + (1, 3) = (3, 3)
@@ -534,7 +534,7 @@ b = torch.randn(3)
 result = a.unsqueeze(1) + b.unsqueeze(0)  # (3, 1) + (1, 3) = (3, 3)
 ```
 
-### In-place Operations
+### Pitfall 2: In-place Operations
 ```python
 # Wrong: Breaks computation graph
 x = x + 1  # Creates new tensor
@@ -544,7 +544,7 @@ x += 1     # In-place, breaks autograd!
 x = x.add(1)
 ```
 
-### CUDA Out of Memory
+### Pitfall 3: CUDA Out of Memory
 ```python
 # Solutions:
 # 1. Reduce batch size

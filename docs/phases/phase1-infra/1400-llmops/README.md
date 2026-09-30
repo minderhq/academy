@@ -470,7 +470,7 @@ panels:
 
 ## Common LLMOps Pitfalls
 
-### ❌ Pitfall 1: Cold Starts
+### Pitfall 1: Cold Starts
 
 **Problem:**
 ```text
@@ -496,7 +496,7 @@ curl -X POST http://localhost:8000/generate \
 # Scale others as needed
 ```
 
-### ❌ Pitfall 2: Memory Fragmentation
+### Pitfall 2: Memory Fragmentation
 
 **Problem:**
 ```text
@@ -519,7 +519,7 @@ python -m vllm.entrypoints.api_server \
 # Systemd: Restart=on-failure
 ```
 
-### ❌ Pitfall 3: No Rate Limiting
+### Pitfall 3: No Rate Limiting
 
 **Problem:**
 ```text
@@ -545,7 +545,7 @@ async def generate(request: Request, prompt: str):
     pass
 ```
 
-### ❌ Pitfall 4: Missing Observability
+### Pitfall 4: Missing Observability
 
 **Problem:**
 ```text

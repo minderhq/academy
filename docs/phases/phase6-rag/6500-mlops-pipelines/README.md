@@ -220,11 +220,11 @@ This module connects to:
 
 ## Common Pitfalls
 
-- **Skipping staging**: Testing in prod is dangerous
-- **No rollback plan**: deployments fail
-- **Ignoring data drift**: Models degrade over time
-- **Poor documentation**: Can't reproduce results
-- **Over-engineering**: Start simple, scale when needed
+1. **Skipping staging:** Testing in prod is dangerous
+2. **No rollback plan:** deployments fail
+3. **Ignoring data drift:** Models degrade over time
+4. **Poor documentation:** Can't reproduce results
+5. **Over-engineering:** Start simple, scale when needed
 
 ## Production Checklist
 

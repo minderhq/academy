@@ -470,7 +470,7 @@ After completing this phase, you will be able to:
 
 ## Common Pitfalls
 
-### MTU Mismatch
+### Pitfall 1: MTU Mismatch
 
 **Pitfall:** Different MTU settings causing packet fragmentation
 ```bash
@@ -486,7 +486,7 @@ ip link set docker0 mtu 9000
 ping -M do -s 8972 192.168.1.1
 ```
 
-### GPU Passthrough Fails
+### Pitfall 2: GPU Passthrough Fails
 
 **Pitfall:** IOMMU not properly configured
 ```bash
@@ -503,7 +503,7 @@ sudo update-grub && sudo reboot
 dmesg | grep -e DMAR -e IOMMU
 ```
 
-### K3s GPU Not Available
+### Pitfall 3: K3s GPU Not Available
 
 **Pitfall:** Nvidia device plugin not installed
 ```bash
@@ -518,7 +518,7 @@ kubectl apply -f https://raw.githubusercontent.com/NVIDIA/k8s-device-plugin/v0.1
 kubectl describe node | grep nvidia.com/gpu
 ```
 
-### vLLM Out of Memory
+### Pitfall 4: vLLM Out of Memory
 
 **Pitfall:** Loading full model without quantization
 ```bash
@@ -533,7 +533,7 @@ vllm serve mistralai/Mistral-7B-Instruct-v0.2 \
   --gpu-memory-utilization 0.9
 ```
 
-### Monitoring Data Loss
+### Pitfall 5: Monitoring Data Loss
 
 **Pitfall:** Prometheus not persisting metrics
 ```yaml

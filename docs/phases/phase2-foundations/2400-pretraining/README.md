@@ -198,11 +198,11 @@ Each lesson is written around runnable code — work through the examples, don't
 
 ## Common Pitfalls
 
-- **Underestimating data quality**: Bad data ruins models
-- **Ignoring compute costs**: Pretraining is expensive
-- **Poor monitoring**: Training failures waste resources
-- **Overlooking tokenization**: It affects model quality significantly
-- **Skipping evaluation**: You can't improve what you don't measure
+1. **Underestimating data quality:** Bad data ruins models
+2. **Ignoring compute costs:** Pretraining is expensive
+3. **Poor monitoring:** Training failures waste resources
+4. **Overlooking tokenization:** It affects model quality significantly
+5. **Skipping evaluation:** You can't improve what you don't measure
 
 ---
 

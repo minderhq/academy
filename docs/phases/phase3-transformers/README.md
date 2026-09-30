@@ -388,7 +388,7 @@ After completing this phase, you will be able to:
 
 ## Common Pitfalls
 
-### Attention Implementation
+### Pitfall 1: Attention Implementation
 
 **Pitfall:** Incorrect attention mask leading to information leakage
 ```python
@@ -412,7 +412,7 @@ def attention(Q, K, V, mask=None):
 causal_mask = torch.tril(torch.ones(seq_len, seq_len))
 ```
 
-### Memory Management
+### Pitfall 2: Memory Management
 
 **Pitfall:** Computing full attention matrix causing OOM
 ```python
@@ -438,7 +438,7 @@ def chunked_attention(Q, K, V, chunk_size=512):
     return torch.cat(outputs, dim=1)
 ```
 
-### Position Encoding
+### Pitfall 3: Position Encoding
 
 **Pitfall:** Using absolute positional encoding that doesn't extrapolate
 ```python
@@ -458,7 +458,7 @@ def rotate_position(x, seq_len, dim):
     return apply_rotary_emb(x, emb)
 ```
 
-### Tokenizer Choice
+### Pitfall 4: Tokenizer Choice
 
 **Pitfall:** Using wrong tokenizer for your domain
 ```python
@@ -473,7 +473,7 @@ tokenizer = CodeLlamaTokenizer.from_pretrained('codellama/CodeLlama-7b')
 # Better: Fine-tune tokenizer on your domain
 ```
 
-### Activation Function
+### Pitfall 5: Activation Function
 
 **Pitfall:** Using ReLU in transformer (dead neurons)
 ```python
@@ -496,7 +496,7 @@ class SwiGLU(nn.Module):
         return self.w2(F.silu(self.w(x)) * self.v(x))
 ```
 
-### Normalization Placement
+### Pitfall 6: Normalization Placement
 
 **Pitfall:** Post-Norm in deep networks (training instability)
 ```python
@@ -516,7 +516,7 @@ class TransformerBlock(nn.Module):
         return x
 ```
 
-### Architecture Selection
+### Pitfall 7: Architecture Selection
 
 **Pitfall:** Using wrong architecture for task
 ```python

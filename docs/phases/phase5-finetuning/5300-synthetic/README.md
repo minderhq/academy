@@ -183,11 +183,11 @@ This module connects to:
 
 ## Common Pitfalls
 
-- **Temperature too low**: Distillation loses teacher knowledge
-- **Student too small**: Cannot capture teacher's knowledge
-- **Ignoring communication**: Network overhead kills performance
-- **Poor synthetic data**: Garbage in, garbage out
-- **Federating naively**: Standard averaging fails with heterogeneous data
+1. **Temperature too low:** Distillation loses teacher knowledge
+2. **Student too small:** Cannot capture teacher's knowledge
+3. **Ignoring communication:** Network overhead kills performance
+4. **Poor synthetic data:** Garbage in, garbage out
+5. **Federating naively:** Standard averaging fails with heterogeneous data
 
 ## Model Compression Pipeline
 

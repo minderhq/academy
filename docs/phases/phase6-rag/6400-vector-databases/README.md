@@ -208,11 +208,11 @@ hnsw_index:
 
 ## Common Pitfalls
 
-- **Wrong index parameters**: HNSW tuning is critical
-- **Ignoring filters**: Payload filtering needs optimization
-- **Under-provisioning**: Vector databases need RAM
-- **No backups**: Data loss is catastrophic
-- **Skipping monitoring**: Performance degrades silently
+1. **Wrong index parameters:** HNSW tuning is critical
+2. **Ignoring filters:** Payload filtering needs optimization
+3. **Under-provisioning:** Vector databases need RAM
+4. **No backups:** Data loss is catastrophic
+5. **Skipping monitoring:** Performance degrades silently
 
 ## When to Choose Each Database
 

@@ -960,6 +960,22 @@ stand today?" without running each tool by hand.
                        code, zero real checkboxes), LAB-006 had no
                        checklist section at all, and 13 labs lacked
                        the Estimated Time line; all drained same tick
+    pitfall_shape_scan  Pitfalls item-shape standardization (PS-01..02,
+                       hard): every non-checkpoint pitfalls section
+                       carries at least 3 structured items in one of
+                       the corpus shapes (numbered "N. **Name:**"
+                       one-liners, canonical "### Pitfall N: Name"
+                       subsections, or the numbered-outline pitfall
+                       table), and every in-section "### " subsection
+                       is canonical - sequential numbering, no emoji
+                       prefix. Fence-aware: bash comment lines inside
+                       code fences are not headers. Born tick-482
+                       after the same-tick drain: subsection headers
+                       in 4 shapes (plain / warning-emoji / x-emoji
+                       "Pitfall N:" / canonical) across 18 rich files,
+                       and 17 module-group READMEs with thin
+                       unnumbered "- **Name**: advice" bullets (83
+                       bullets); all canonized same tick
     quiz_claim_scan  Quiz self-claim integrity (QC-01..04, hard):
                        a QUIZ.md's own promises checked against the
                        bank quiz_export parses - "**N questions**"
@@ -1084,6 +1100,7 @@ GATES = [
     ("ordered_list_scan.py", "ordered_list_scan", True),
     ("checkpoint_coverage_scan.py", "checkpoint_coverage_scan", True),
     ("lab_anatomy_scan.py", "lab_anatomy_scan", True),
+    ("pitfall_shape_scan.py", "pitfall_shape_scan", True),
     ("quiz_claim_scan.py", "quiz_claim_scan", True),
 ]
 

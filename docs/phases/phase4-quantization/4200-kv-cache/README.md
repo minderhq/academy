@@ -173,11 +173,11 @@ KV Cache Memory = 2 × layers × hidden × context × bytes_per_param
 
 ## Common Pitfalls
 
-- **Ignoring memory bandwidth**: Cache is often bandwidth-bound
-- **Over-optimizing**: Speculative decoding has overhead
-- **Wrong cache format**: Some formats don't support all features
-- **Forgetting batch size**: Per-token cache matters for batching
-- **Not measuring**: Profile real workloads, not synthetic benchmarks
+1. **Ignoring memory bandwidth:** Cache is often bandwidth-bound
+2. **Over-optimizing:** Speculative decoding has overhead
+3. **Wrong cache format:** Some formats don't support all features
+4. **Forgetting batch size:** Per-token cache matters for batching
+5. **Not measuring:** Profile real workloads, not synthetic benchmarks
 
 ## Cache Optimization Strategy
 

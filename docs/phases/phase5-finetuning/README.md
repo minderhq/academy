@@ -343,7 +343,7 @@ After completing this phase, you will be able to:
 
 ## Common Pitfalls
 
-### Overfitting to Small Datasets
+### Pitfall 1: Overfitting to Small Datasets
 
 **Pitfall:** Fine-tuning on insufficient data
 ```python
@@ -364,7 +364,7 @@ model = train(
 )
 ```
 
-### Catastrophic Forgetting
+### Pitfall 2: Catastrophic Forgetting
 
 **Pitfall:** Losing pre-trained knowledge during fine-tuning
 ```python
@@ -379,7 +379,7 @@ optimizer = Adam([
 ])
 ```
 
-### Improper Evaluation
+### Pitfall 3: Improper Evaluation
 
 **Pitfall:** Not validating on held-out data
 ```python
@@ -396,7 +396,7 @@ train_loss, val_loss = train(
 test_metrics = evaluate(model, test_data)
 ```
 
-### VRAM Exhaustion
+### Pitfall 4: VRAM Exhaustion
 
 **Pitfall:** Underestimating memory requirements
 ```python
@@ -416,7 +416,7 @@ model = AutoModelForCausalLM.from_pretrained(
 model.gradient_checkpointing_enable()
 ```
 
-### Poor Hyperparameter Choices
+### Pitfall 5: Poor Hyperparameter Choices
 
 **Pitfall:** Using default hyperparameters
 ```python

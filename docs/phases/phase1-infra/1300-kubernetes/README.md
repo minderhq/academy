@@ -519,7 +519,7 @@ kubectl get pods
 
 ## Common Kubernetes Pitfalls
 
-### ❌ Pitfall 1: GPU Resource Not Requested
+### Pitfall 1: GPU Resource Not Requested
 
 **Problem:**
 ```yaml
@@ -550,7 +550,7 @@ resources:
 # Note: For GPUs, requests must equal limits
 ```
 
-### ❌ Pitfall 2: Model Not in Image
+### Pitfall 2: Model Not in Image
 
 **Problem:**
 ```yaml
@@ -592,7 +592,7 @@ initContainers:
     mountPath: /models
 ```
 
-### ❌ Pitfall 3: Memory Limits Too Low
+### Pitfall 3: Memory Limits Too Low
 
 **Problem:**
 ```yaml
@@ -626,7 +626,7 @@ resources:
     memory: "64Gi"   # Leave headroom
 ```
 
-### ❌ Pitfall 4: Wrong Storage Class
+### Pitfall 4: Wrong Storage Class
 
 **Problem:**
 ```yaml

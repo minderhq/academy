@@ -174,11 +174,11 @@ This module connects to:
 
 ## Common Pitfalls
 
-- **Wrong embedding model**: Domain mismatch kills quality
-- **Not normalizing**: Breaks cosine similarity
-- **HNSW overkill**: Small datasets don't need it
-- **Ignoring context**: Sentence vs document embeddings matter
-- **Forgetting updates**: HNSW is expensive to update
+1. **Wrong embedding model:** Domain mismatch kills quality
+2. **Not normalizing:** Breaks cosine similarity
+3. **HNSW overkill:** Small datasets don't need it
+4. **Ignoring context:** Sentence vs document embeddings matter
+5. **Forgetting updates:** HNSW is expensive to update
 
 ## When to Use Vector Search
 

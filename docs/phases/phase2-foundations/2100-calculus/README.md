@@ -184,10 +184,10 @@ Each lesson is written around runnable code — work through the examples, don't
 
 ## Common Pitfalls
 
-- **Getting lost in notation**: Focus on concepts, not just symbols
-- **Ignoring dimensionality**: Always track tensor shapes during operations
-- **Skipping manual implementation**: Using frameworks too early limits understanding
-- **Not checking gradients**: Verify autograd against finite differences when debugging
+1. **Getting lost in notation:** Focus on concepts, not just symbols
+2. **Ignoring dimensionality:** Always track tensor shapes during operations
+3. **Skipping manual implementation:** Using frameworks too early limits understanding
+4. **Not checking gradients:** Verify autograd against finite differences when debugging
 
 ---
 

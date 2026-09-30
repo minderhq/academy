@@ -193,11 +193,11 @@ Continue or Finish
 
 ## Common Pitfalls
 
-- **Poor descriptions**: LLM won't use tools correctly
-- **Too many tools**: Confuses the LLM
-- **Vague parameters**: Leads to wrong tool calls
-- **No error handling**: Agent gets stuck
-- **Ignoring safety**: Tools can cause damage
+1. **Poor descriptions:** LLM won't use tools correctly
+2. **Too many tools:** Confuses the LLM
+3. **Vague parameters:** Leads to wrong tool calls
+4. **No error handling:** Agent gets stuck
+5. **Ignoring safety:** Tools can cause damage
 
 ## Tool vs Function
 

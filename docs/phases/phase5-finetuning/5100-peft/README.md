@@ -159,11 +159,11 @@ This module connects to:
 
 ## Common Pitfalls
 
-- **Rank too low**: Underfits complex tasks
-- **Rank too high**: Wastes memory, may overfit
-- **Wrong target modules**: All linear layers is usually unnecessary
-- **Forgetting alpha**: Scaling factor matters for training dynamics
-- **Not testing base model**: Always establish baseline
+1. **Rank too low:** Underfits complex tasks
+2. **Rank too high:** Wastes memory, may overfit
+3. **Wrong target modules:** All linear layers is usually unnecessary
+4. **Forgetting alpha:** Scaling factor matters for training dynamics
+5. **Not testing base model:** Always establish baseline
 
 ## When to Use PEFT
 

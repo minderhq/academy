@@ -225,11 +225,11 @@ RETURN path
 
 ## Common Pitfalls
 
-- **Over-engineering**: Simple queries don't need graphs
-- **Poor entity extraction**: Garbage in, garbage out
-- **Ignoring structure**: Documents have inherent structure
-- **Context stuffing**: More ≠ better
-- **Skipping optimization**: Raw retrieval needs tuning
+1. **Over-engineering:** Simple queries don't need graphs
+2. **Poor entity extraction:** Garbage in, garbage out
+3. **Ignoring structure:** Documents have inherent structure
+4. **Context stuffing:** More ≠ better
+5. **Skipping optimization:** Raw retrieval needs tuning
 
 ## When to Use Knowledge Graphs
 

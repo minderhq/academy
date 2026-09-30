@@ -190,10 +190,10 @@ Each lesson is written around runnable code — work through the examples, don't
 
 ## Common Pitfalls
 
-- **Memorizing framework APIs instead of the execution model**: APIs change; dispatch, graphs, and kernels persist
-- **Assuming fusion is free**: compilers change numerics slightly (float32 rounding), and not every fusion is profitable
-- **Mixing devices silently**: a CPU tensor next to a CUDA tensor is the most common runtime error in this module
-- **Optimizing without a baseline**: measure first — 2202's profiling sections exist for a reason
+1. **Memorizing framework APIs instead of the execution model:** APIs change; dispatch, graphs, and kernels persist
+2. **Assuming fusion is free:** compilers change numerics slightly (float32 rounding), and not every fusion is profitable
+3. **Mixing devices silently:** a CPU tensor next to a CUDA tensor is the most common runtime error in this module
+4. **Optimizing without a baseline:** measure first — 2202's profiling sections exist for a reason
 
 ---
 

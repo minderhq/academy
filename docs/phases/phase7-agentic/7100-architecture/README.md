@@ -192,11 +192,11 @@ This module connects to:
 
 ## Common Pitfalls
 
-- **Loops that don't terminate**: Always add max iterations
-- **Vague thoughts**: Be specific in reasoning
-- **Too many tools**: Start with essential tools
-- **No error handling**: Tools fail, agents should adapt
-- **Ignoring context**: Agents need memory
+1. **Loops that don't terminate:** Always add max iterations
+2. **Vague thoughts:** Be specific in reasoning
+3. **Too many tools:** Start with essential tools
+4. **No error handling:** Tools fail, agents should adapt
+5. **Ignoring context:** Agents need memory
 
 ## When to Use Each Architecture
 

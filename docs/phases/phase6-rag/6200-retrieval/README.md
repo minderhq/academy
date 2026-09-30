@@ -182,11 +182,11 @@ This module connects to:
 
 ## Common Pitfalls
 
-- **Chunks too small**: Lose context
-- **Chunks too large**: Lose specificity
-- **No overlap**: Miss boundary information
-- **Over-retrieving**: Too much noise in context
-- **Under-retrieving**: Missing relevant information
+1. **Chunks too small:** Lose context
+2. **Chunks too large:** Lose specificity
+3. **No overlap:** Miss boundary information
+4. **Over-retrieving:** Too much noise in context
+5. **Under-retrieving:** Missing relevant information
 
 ## Retrieval Evaluation Metrics
 

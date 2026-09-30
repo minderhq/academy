@@ -162,11 +162,11 @@ This module connects to:
 
 ## Common Pitfalls
 
-- **Over-quantizing**: Going below 3-bit usually hurts quality too much
-- **Wrong calibration**: Poor calibration data leads to bad quantization
-- **Ignoring outliers**: Some layers need higher precision
-- **Forgetting activation quantization**: Weights aren't everything
-- **Not testing end-to-end**: Benchmarks don't always reflect real usage
+1. **Over-quantizing:** Going below 3-bit usually hurts quality too much
+2. **Wrong calibration:** Poor calibration data leads to bad quantization
+3. **Ignoring outliers:** Some layers need higher precision
+4. **Forgetting activation quantization:** Weights aren't everything
+5. **Not testing end-to-end:** Benchmarks don't always reflect real usage
 
 ## Hardware Recommendations
 

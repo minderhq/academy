@@ -259,7 +259,7 @@ After completing this phase, you will be able to:
 
 ## Common Pitfalls
 
-### Memory Issues
+### Pitfall 1: Memory Issues
 
 **Pitfall:** Underestimating VRAM requirements for quantization
 ```bash
@@ -275,7 +275,7 @@ python quantize.py \
   --max-vram 20GB
 ```
 
-### Accuracy Loss
+### Pitfall 2: Accuracy Loss
 
 **Pitfall:** Using too aggressive quantization without validation
 ```python
@@ -292,7 +292,7 @@ model = quantize(
 )
 ```
 
-### Format Compatibility
+### Pitfall 3: Format Compatibility
 
 **Pitfall:** Choosing incompatible format for your hardware
 ```text
@@ -305,7 +305,7 @@ model = quantize(
 + AWQ → Balanced choice
 ```
 
-### Calibration Data Quality
+### Pitfall 4: Calibration Data Quality
 
 **Pitfall:** Using poor calibration data
 ```python

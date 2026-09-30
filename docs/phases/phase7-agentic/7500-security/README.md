@@ -211,11 +211,11 @@ Output Text
 
 ## Common Pitfalls
 
-- **Trusting user input**: Never trust, always validate
-- **Client-side only security**: Easily bypassed
-- **Ignoring logs**: Security events need investigation
-- **Over-blocking**: False positives hurt UX
-- **No incident response**: Plan before you need it
+1. **Trusting user input:** Never trust, always validate
+2. **Client-side only security:** Easily bypassed
+3. **Ignoring logs:** Security events need investigation
+4. **Over-blocking:** False positives hurt UX
+5. **No incident response:** Plan before you need it
 
 ## Attack Indicators
 

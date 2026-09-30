@@ -827,7 +827,7 @@ class ModelValidation:
 
 ## Common Pitfalls
 
-### ⚠️ Data Privacy Violations
+### Pitfall 1: Data Privacy Violations
 
 **Pitfall:** Insufficient PHI protection
 ```python
@@ -843,7 +843,7 @@ anonymized_text = anonymizer.anonymize(f"Patient {patient_name}...")
 # Result: HIPAA compliant, "Patient [PERSON] has [SYMPTOMS]"
 ```
 
-### ⚠️ Lack of Clinical Validation
+### Pitfall 2: Lack of Clinical Validation
 
 **Pitfall:** Deploying without clinical validation
 ```python
@@ -865,7 +865,7 @@ if all_metric_pass(validation_pipeline):
     deploy(model)
 ```
 
-### ⚠️ Missing Source Citations
+### Pitfall 3: Missing Source Citations
 
 **Pitfall:** LLM hallucinations without citations
 ```python
@@ -896,7 +896,7 @@ def answer_question_with_sources(query):
     }
 ```
 
-### ⚠️ No Fallback Mechanism
+### Pitfall 4: No Fallback Mechanism
 
 **Pitfall:** AI system fails without human oversight
 ```python
@@ -928,7 +928,7 @@ def triage_patient_with_review(symptoms):
     return prediction
 ```
 
-### ⚠️ Ignoring Regulatory Requirements
+### Pitfall 5: Ignoring Regulatory Requirements
 
 **Pitfall:** Non-compliant deployment
 ```python
