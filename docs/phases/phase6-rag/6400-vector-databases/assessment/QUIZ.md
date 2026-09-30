@@ -165,25 +165,25 @@ D) Only queries
 
 ## Answer Key
 
-| # | Answer |
-|---|--------|
-| 1 | D |
-| 2 | A |
-| 3 | C |
-| 4 | B |
-| 5 | C |
-| 6 | B |
-| 7 | C |
-| 8 | C |
-| 9 | A |
-| 10 | B |
-| 11 | B |
-| 12 | B |
-| 13 | A |
-| 14 | A |
-| 15 | A |
-| 16 | A |
-| 17 | B |
-| 18 | B |
-| 19 | C |
-| 20 | B |
+| Question | Answer | Explanation |
+|----------|--------|-------------|
+| 1 | D | Vector DBs index embeddings plus their payloads and documents |
+| 2 | A | Qdrant's default index is HNSW |
+| 3 | C | A collection holds vectors and their metadata |
+| 4 | B | Qdrant payloads carry the metadata alongside each vector |
+| 5 | C | Upsert inserts new points or updates existing ones |
+| 6 | B | Vector search returns nearest neighbors, not exact matches |
+| 7 | C | Filtering combines vector similarity with metadata conditions |
+| 8 | C | Hybrid search runs vector and keyword sides together |
+| 9 | A | ef_construct trades build time against graph quality |
+| 10 | B | Vector quantization shrinks memory (with some recall cost) |
+| 11 | B | Cosine measures angular distance between directions |
+| 12 | B | Weaviate supports multiple index types |
+| 13 | A | Milvus is an open-source vector database |
+| 14 | A | Sharding distributes data across nodes |
+| 15 | A | Replication copies data for availability |
+| 16 | A | Consistency levels span strong to eventual |
+| 17 | B | Batch upsert writes many vectors per call |
+| 18 | B | Scroll APIs paginate through large result sets |
+| 19 | C | RAG keeps documents and embeddings in the store |
+| 20 | B | Tuning spans index params, quantization and sharding |

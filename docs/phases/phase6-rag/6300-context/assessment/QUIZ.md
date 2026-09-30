@@ -165,25 +165,25 @@ D) Be everything
 
 ## Answer Key
 
-| # | Answer |
-|---|--------|
-| 1 | C |
-| 2 | D |
-| 3 | C |
-| 4 | B |
-| 5 | A |
-| 6 | C |
-| 7 | A |
-| 8 | A |
-| 9 | B |
-| 10 | B |
-| 11 | B |
-| 12 | B |
-| 13 | A |
-| 14 | A |
-| 15 | C |
-| 16 | B |
-| 17 | A |
-| 18 | B |
-| 19 | B |
-| 20 | B |
+| Question | Answer | Explanation |
+|----------|--------|-------------|
+| 1 | C | The window binds training sequences and inference prompts alike |
+| 2 | D | Longer context costs more compute and attention |
+| 3 | C | Compression trades some information for space |
+| 4 | B | Sliding windows keep only the most recent tokens |
+| 5 | A | The KV cache holds keys/values for all tokens so far |
+| 6 | C | Context distillation compresses context into weights |
+| 7 | A | LongLoRA extends context with efficient fine-tuning |
+| 8 | A | Ring attention processes long sequences in chunks across devices |
+| 9 | B | Overflow pushes early context out - oldest information lost |
+| 10 | B | Selective context keeps the important tokens only |
+| 11 | B | Long documents are chunked and retrieved as needed |
+| 12 | B | Generation quality follows context quality |
+| 13 | A | Lost-in-the-middle: ends draw more attention than the middle |
+| 14 | A | Re-ranking surfaces key info at the attentive positions |
+| 15 | C | Modern long-context models ship around 128K windows |
+| 16 | B | RoPE's rotary encoding scales to longer sequences (with interpolation) |
+| 17 | A | YaRN stretches RoPE without full retraining |
+| 18 | B | Dynamic context adapts its size to the input |
+| 19 | B | Accuracy gains from context show diminishing returns |
+| 20 | B | RAG prompts stay relevant and concise |
