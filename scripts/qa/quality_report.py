@@ -364,6 +364,21 @@ stand today?" without running each tool by hand.
                        bracketed), hard since the drain; free-text
                        and prose entries remain allowed as
                        authoring-stage pointers
+    prereq_ordering_scan
+                      Learning-path order integrity (PO-01/02,
+                      hard, born at zero): corpus numbering is
+                      monotonic along the curriculum, so "earlier
+                      on the path" is exactly "smaller 4-digit
+                      number" - PO-01 forward reference (prereq
+                      token greater than the referrer's own
+                      number) is an unlock deadlock on the
+                      platform, PO-02 self reference. No
+                      false-positive class exists; birth census
+                      2026-09-30 measured the whole
+                      machine-parseable surface clean (95 numbered
+                      docs, 4 tokens, 13 non-numbered docs are
+                      free-text/resource pointers, visible in the
+                      skip line)
     difficulty_census Difficulty vocabulary closure (DI-01..03,
                       hard): the platform renders difficulty as
                       a filter/sequence dimension, so the
@@ -613,6 +628,7 @@ GATES = [
     ("related_census.py", "related_census", True),
     ("estimated_time_census.py", "estimated_time_census", True),
     ("prereq_census.py", "prereq_census", True),
+    ("prereq_ordering_scan.py", "prereq_ordering_scan", True),
     ("difficulty_census.py", "difficulty_census", True),
     ("lesson_anatomy_census.py", "lesson_anatomy_census", True),
     ("closure_census.py", "closure_census", True),
