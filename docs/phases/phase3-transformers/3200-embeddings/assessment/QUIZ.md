@@ -165,25 +165,25 @@ D) Splits words into subword units
 
 ## Answer Key
 
-| # | Answer |
-|---|--------|
-| 1 | B |
-| 2 | D |
-| 3 | B |
-| 4 | D |
-| 5 | B |
-| 6 | B |
-| 7 | C |
-| 8 | A |
-| 9 | A |
-| 10 | A |
-| 11 | C |
-| 12 | C |
-| 13 | D |
-| 14 | D |
-| 15 | B |
-| 16 | A |
-| 17 | C |
-| 18 | C |
-| 19 | A |
-| 20 | D |
+| Question | Answer | Explanation |
+|----------|--------|-------------|
+| 1 | B | Embeddings are dense continuous vectors in a learned geometry |
+| 2 | D | Word2vec learns distributed representations from surrounding context |
+| 3 | B | The two training recipes: CBOW and Skip-gram |
+| 4 | D | CBOW predicts the target word from its context |
+| 5 | B | Skip-gram predicts the context words from the target |
+| 6 | B | GloVe factorizes global word co-occurrence statistics |
+| 7 | C | FastText adds subword (character n-gram) information |
+| 8 | A | Contextual embeddings produce a different vector per context |
+| 9 | A | Static embeddings keep one vector per word type in all contexts |
+| 10 | A | BERT sums token, position, and segment embeddings |
+| 11 | C | Typical embedding dimensions run 100-1000 |
+| 12 | C | Cosine similarity measures the angle, robust to vector magnitude |
+| 13 | D | The analogy shows linear semantic structure in the vector space |
+| 14 | D | Positional embeddings encode where a token sits in the sequence |
+| 15 | B | Rotating queries and keys injects position and replaces positional embeddings - both |
+| 16 | A | ALiBi adds a distance-proportional bias to attention scores |
+| 17 | C | Embedding tables start from random initialization |
+| 18 | C | Embeddings are learned parameters, updated by the optimizer |
+| 19 | A | Vocabulary size x dimension is the embedding layer size |
+| 20 | D | BPE splits rare words into subword units |

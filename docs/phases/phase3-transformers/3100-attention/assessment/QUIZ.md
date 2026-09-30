@@ -165,25 +165,25 @@ D) The same thing in each head, with no specialization at all
 
 ## Answer Key
 
-| # | Answer |
-|---|--------|
-| 1 | C |
-| 2 | B |
-| 3 | B |
-| 4 | D |
-| 5 | B |
-| 6 | D |
-| 7 | D |
-| 8 | A |
-| 9 | C |
-| 10 | A |
-| 11 | B |
-| 12 | D |
-| 13 | C |
-| 14 | A |
-| 15 | A |
-| 16 | C |
-| 17 | A |
-| 18 | D |
-| 19 | C |
-| 20 | B |
+| Question | Answer | Explanation |
+|----------|--------|-------------|
+| 1 | C | Self-attention weighs how much each token matters relative to every other token |
+| 2 | B | Q/K/V are learned linear projections of the same input |
+| 3 | B | Scaled dot-product: softmax(QK^T / sqrt(d)) applied to V |
+| 4 | D | Multi-head attention runs several heads in parallel and concatenates their outputs |
+| 5 | B | The sqrt(d) scaling keeps dot products small so softmax does not saturate |
+| 6 | D | Causal masking hides future positions so autoregressive decoding stays honest |
+| 7 | D | Bahdanau et al. 2015 introduced attention for NMT; the 2017 paper brought self-attention |
+| 8 | A | Cross-attention links two sequences - decoder queries over encoder keys/values |
+| 9 | C | Base models typically use 8-16 heads |
+| 10 | A | Softmax normalizes the scores, so attention weights sum to 1 |
+| 11 | B | The softmax output is the importance weight of each key |
+| 12 | D | Attention is permutation-invariant - position must be injected externally |
+| 13 | C | Sinusoidal encoding uses fixed sine/cosine functions of position |
+| 14 | A | RoPE rotates keys and queries by position-dependent angles |
+| 15 | A | Every token attends to every token: O(n^2) in sequence length |
+| 16 | C | FlashAttention reorders memory access patterns (tiled softmax) for speed and memory |
+| 17 | A | GQA shares key/value projections across query-head groups, shrinking the KV cache |
+| 18 | D | Sliding window restricts attention to a local neighborhood |
+| 19 | C | ALiBi adds a distance-proportional bias to attention scores |
+| 20 | B | Heads specialize - syntax, coreference, and positional patterns differ per head |
