@@ -4,6 +4,7 @@ Title: "LAB-005: GraphRAG Implementation with Neo4j & Qdrant"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
+Estimated Time: 5 hours
 Tags: ['lab', 'graphrag', 'neo4j', 'qdrant', 'hands-on']
 ---
 
@@ -914,16 +915,14 @@ for test in complex_questions:
 
 ## 🎓 Lab Completion Checklist
 
-```text
-[ ] Exercise 1: Understanding GraphRAG
-[ ] Exercise 2: Deploy Neo4j
-[ ] Exercise 3: Build Knowledge Graph
-[ ] Exercise 4: GraphRAG Service
-[ ] Exercise 5: Docker Deployment
-[ ] Exercise 6: Test GraphRAG
-[ ] Exercise 7: Visualize Graph
-[ ] Final Challenge: Multi-Hop Reasoning
-```
+- [ ] Exercise 1: Understanding GraphRAG
+- [ ] Exercise 2: Deploy Neo4j
+- [ ] Exercise 3: Build Knowledge Graph
+- [ ] Exercise 4: GraphRAG Service
+- [ ] Exercise 5: Docker Deployment
+- [ ] Exercise 6: Test GraphRAG
+- [ ] Exercise 7: Visualize Graph
+- [ ] Final Challenge: Multi-Hop Reasoning
 
 ---
 

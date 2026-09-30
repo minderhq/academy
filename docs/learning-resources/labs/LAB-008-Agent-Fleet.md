@@ -4,6 +4,7 @@ Title: "LAB-008: Multi-Agent Fleet"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
+Estimated Time: 6 hours
 Tags: ['lab', 'multi-agent', 'agents', 'hands-on']
 ---
 

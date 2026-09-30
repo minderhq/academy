@@ -4,6 +4,7 @@ Title: "LAB-007: Production RAG System"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
+Estimated Time: 6 hours
 Tags: ['lab', 'rag', 'production', 'hands-on']
 ---
 

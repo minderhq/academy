@@ -4,6 +4,7 @@ Title: "LAB-013: Advanced Function Calling"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
+Estimated Time: 7 hours
 Tags: ['lab', 'function-calling', 'agents', 'hands-on']
 ---
 

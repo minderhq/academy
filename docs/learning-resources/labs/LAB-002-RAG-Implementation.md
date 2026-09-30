@@ -4,6 +4,7 @@ Title: "LAB-002: RAG Implementation with Qdrant & Ollama"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Estimated Time: 4 hours
 Tags: ['lab', 'rag', 'qdrant', 'ollama', 'hands-on']
 ---
 
@@ -1111,16 +1112,14 @@ python ~/lab-002-rag/chatbot.py
 
 ## 🎓 Lab Completion Checklist
 
-```text
-[ ] Exercise 1: Deploy Qdrant Vector Database
-[ ] Exercise 2: Document Chunking Strategies
-[ ] Exercise 3: Build Complete RAG Pipeline
-[ ] Exercise 4: Docker Compose Deployment
-[ ] Exercise 5: Ingest and Query
-[ ] Exercise 6: Compare Embedding Models
-[ ] Exercise 7: Add Re-ranking
-[ ] Final Challenge: RAG Chatbot
-```
+- [ ] Exercise 1: Deploy Qdrant Vector Database
+- [ ] Exercise 2: Document Chunking Strategies
+- [ ] Exercise 3: Build Complete RAG Pipeline
+- [ ] Exercise 4: Docker Compose Deployment
+- [ ] Exercise 5: Ingest and Query
+- [ ] Exercise 6: Compare Embedding Models
+- [ ] Exercise 7: Add Re-ranking
+- [ ] Final Challenge: RAG Chatbot
 
 ---
 

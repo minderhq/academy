@@ -4,6 +4,7 @@ Title: "LAB-001: Docker & LLM Fundamentals"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
+Estimated Time: 2 hours
 Tags: ['lab', 'docker', 'ollama', 'hands-on']
 ---
 
@@ -757,14 +758,12 @@ You should have a working chat interface with memory!
 
 ## 🎓 Lab Completion Checklist
 
-```text
-[ ] Exercise 1: Run Ollama in Docker
-[ ] Exercise 2: Build LLM API Server
-[ ] Exercise 3: Chat Completion Test
-[ ] Exercise 4: Docker Compose Orchestration
-[ ] Exercise 5: Persistent Chat History
-[ ] Final Challenge: Chat UI
-```
+- [ ] Exercise 1: Run Ollama in Docker
+- [ ] Exercise 2: Build LLM API Server
+- [ ] Exercise 3: Chat Completion Test
+- [ ] Exercise 4: Docker Compose Orchestration
+- [ ] Exercise 5: Persistent Chat History
+- [ ] Final Challenge: Chat UI
 
 ---
 

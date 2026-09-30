@@ -4,6 +4,7 @@ Title: "LAB-003: LoRA Fine-Tuning with QLoRA"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
+Estimated Time: 4 hours
 Tags: ['lab', 'lora', 'qlora', 'finetuning', 'hands-on']
 ---
 
@@ -1034,16 +1035,14 @@ python ~/lab-003-lora/chatbot.py
 
 ## 🎓 Lab Completion Checklist
 
-```text
-[ ] Exercise 1: LoRA Theory and Setup
-[ ] Exercise 2: Dataset Preparation
-[ ] Exercise 3: QLoRA Fine-Tuning Setup
-[ ] Exercise 4: Run Fine-Tuning
-[ ] Exercise 5: Evaluate Fine-Tuned Model
-[ ] Exercise 6: Merge and Export
-[ ] Exercise 7: Deploy with vLLM
-[ ] Final Challenge: Build Custom Chatbot
-```
+- [ ] Exercise 1: LoRA Theory and Setup
+- [ ] Exercise 2: Dataset Preparation
+- [ ] Exercise 3: QLoRA Fine-Tuning Setup
+- [ ] Exercise 4: Run Fine-Tuning
+- [ ] Exercise 5: Evaluate Fine-Tuned Model
+- [ ] Exercise 6: Merge and Export
+- [ ] Exercise 7: Deploy with vLLM
+- [ ] Final Challenge: Build Custom Chatbot
 
 ---
 

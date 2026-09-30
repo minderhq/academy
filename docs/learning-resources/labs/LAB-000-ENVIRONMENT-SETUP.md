@@ -4,6 +4,7 @@ Title: "LAB-000: Environment Setup"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
+Estimated Time: 1 hour
 Tags: ['lab', 'setup', 'docker', 'hands-on']
 ---
 

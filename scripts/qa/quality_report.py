@@ -946,6 +946,20 @@ stand today?" without running each tool by hand.
                        phase 1 carried generic filler; drained same
                        tick, phase 1's items drawn from its own README
                        pitfalls)
+    lab_anatomy_scan  Lab-file anatomy (LA-01..03, hard): each
+                       LAB-*.md carries an "Estimated Time:" claim
+                       matching the derived core-path effort
+                       (ceil(part-durations/60), challenge/optional
+                       headers excluded - convention validated against
+                       LAB-006's own 420min -> 7h and LAB-010's
+                       330min -> 6h), and a "## ...Completion
+                       Checklist" section of at least 3 real "- [ ]"
+                       items. Born tick-481 after the same-tick
+                       census: LAB-001..005 kept their checklists
+                       inside fenced ```text blocks (rendered as
+                       code, zero real checkboxes), LAB-006 had no
+                       checklist section at all, and 13 labs lacked
+                       the Estimated Time line; all drained same tick
     quiz_claim_scan  Quiz self-claim integrity (QC-01..04, hard):
                        a QUIZ.md's own promises checked against the
                        bank quiz_export parses - "**N questions**"
@@ -1069,6 +1083,7 @@ GATES = [
     ("whitespace_scan.py", "whitespace_scan", True),
     ("ordered_list_scan.py", "ordered_list_scan", True),
     ("checkpoint_coverage_scan.py", "checkpoint_coverage_scan", True),
+    ("lab_anatomy_scan.py", "lab_anatomy_scan", True),
     ("quiz_claim_scan.py", "quiz_claim_scan", True),
 ]
 

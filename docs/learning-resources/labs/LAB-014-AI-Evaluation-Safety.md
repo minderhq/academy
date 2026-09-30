@@ -4,6 +4,7 @@ Title: "LAB-014: AI Evaluation & Safety"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
+Estimated Time: 6 hours
 Tags: ['lab', 'evaluation', 'security', 'hands-on']
 ---
 

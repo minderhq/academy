@@ -4,6 +4,7 @@ Title: "LAB-004: Building ReAct Agents"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
+Estimated Time: 4 hours
 Tags: ['lab', 'react', 'agents', 'hands-on']
 ---
 
@@ -1203,15 +1204,13 @@ if __name__ == "__main__":
 
 ## 🎓 Lab Completion Checklist
 
-```text
-[ ] Exercise 1: Understanding ReAct Pattern
-[ ] Exercise 2: Tool System
-[ ] Exercise 3: Enhanced ReAct Agent
-[ ] Exercise 4: Docker Deployment
-[ ] Exercise 5: Test the Agent
-[ ] Exercise 6: Advanced Features
-[ ] Final Challenge: Multi-Agent Collaboration
-```
+- [ ] Exercise 1: Understanding ReAct Pattern
+- [ ] Exercise 2: Tool System
+- [ ] Exercise 3: Enhanced ReAct Agent
+- [ ] Exercise 4: Docker Deployment
+- [ ] Exercise 5: Test the Agent
+- [ ] Exercise 6: Advanced Features
+- [ ] Final Challenge: Multi-Agent Collaboration
 
 ---
 

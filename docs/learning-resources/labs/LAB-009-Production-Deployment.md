@@ -4,6 +4,7 @@ Title: "LAB-009: Production Deployment"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
+Estimated Time: 12 hours
 Tags: ['lab', 'production', 'deployment', 'hands-on']
 ---
 
