@@ -624,6 +624,18 @@ stand today?" without running each tool by hand.
                       understood), DM-03 no node opened and
                       closed by an edge operator / EOL. Born
                       tick-462 at 0 across 56 blocks / 19 docs
+    link_case_scan
+                      Link case-sensitivity portability
+                      (LC-01, hard): linkcheck/anchor_check
+                      resolve with os.path.exists - case-
+                      insensitive on the Windows authoring
+                      machine, case-sensitive on the Linux
+                      hosting platform - so `./Guide-Career.md`
+                      vs `GUIDE-CAREER.md` would be invisible
+                      locally and break only in production.
+                      LC-01 resolves every internal link path
+                      segment-exactly. Born tick-463 at 0
+                      across 3015 docs/ links (3325 repo-wide)
     difficulty_distribution_scan
                       Difficulty as a sequence dimension (DX-01,
                       report-only census): per-phase B/I/A
@@ -920,6 +932,7 @@ GATES = [
     ("table_scan.py", "table_scan", True),
     ("updated_badge_scan.py", "updated_badge_scan", True),
     ("diagram_scan.py", "diagram_scan", True),
+    ("link_case_scan.py", "link_case_scan", True),
 ]
 
 
