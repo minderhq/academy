@@ -768,6 +768,31 @@ stand today?" without running each tool by hand.
                       trees. Born tick-492 born-
                       at-zero: 597 tracked files
                       censused clean
+    frontmatter_value_scan
+                      FM VALUE contracts (FV-01..04,
+                      hard) - the platform
+                      ingestion simulation: does
+                      exactly what the platform
+                      will do, yaml.safe_load the
+                      block, then type-check the
+                      metadata-driving fields.
+                      FV-01 Last Updated ISO
+                      YYYY-MM-DD (yaml auto-
+                      converts to a real date -
+                      the conversion IS the
+                      contract), FV-02 Estimated
+                      Time machine-comparable
+                      (single-regime or the
+                      canonical PREREQUISITES
+                      two-regime form), FV-03
+                      Tags list-of-string, FV-04
+                      the whole block parses to a
+                      dict. The fleet's only
+                      third-party import (PyYAML)
+                      - deliberate: the rule
+                      under test IS yaml parsing.
+                      Born tick-493, one drain
+                      ('1 hours' -> '1 hour')
     glossary_scan
                       Glossary integrity (GS-01..03, hard):
                       GLOSSARY.md is the platform's
@@ -1249,6 +1274,7 @@ GATES = [
     ("line_ending_scan.py", "line_ending_scan", True),
     ("script_hygiene_scan.py", "script_hygiene_scan", True),
     ("filename_scan.py", "filename_scan", True),
+    ("frontmatter_value_scan.py", "frontmatter_value_scan", True),
     ("glossary_scan.py", "glossary_scan", True),
     ("emphasis_scan.py", "emphasis_scan", True),
     ("whitespace_scan.py", "whitespace_scan", True),
