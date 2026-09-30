@@ -57,6 +57,11 @@ After completing Phase 4, you will:
 2. How does context window size affect memory?
 3. What is speculative decoding?
 
+**Practical Verification:**
+- [ ] Can explain what the KV-cache stores and why it matters
+- [ ] Can estimate memory growth with context window size
+- [ ] Can describe when speculative decoding pays off
+
 ---
 
 ### Module 4300: Quantization-Aware Training (Required)

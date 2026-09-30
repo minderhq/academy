@@ -46,6 +46,7 @@ After completing Phase 7, you will:
 **Lab Verification:**
 - [ ] Completed [LAB-004: ReAct Agent](../../learning-resources/labs/LAB-004-ReAct-Agent.md)
 - [ ] Completed [LAB-008: Agent Fleet](../../learning-resources/labs/LAB-008-Agent-Fleet.md)
+- [ ] Can trace a ReAct loop end to end and explain each step's role
 
 ---
 
@@ -56,6 +57,11 @@ After completing Phase 7, you will:
 2. How do agents use external tools?
 3. What are the tool calling patterns?
 
+**Practical Verification:**
+- [ ] Can explain what problem function calling solves
+- [ ] Has wired an external tool into an agent loop
+- [ ] Can name the tool calling patterns and when each fits
+
 ---
 
 ### Module 7300: Multi-Agent Orchestration (Required)
@@ -64,6 +70,11 @@ After completing Phase 7, you will:
 1. What are the multi-agent orchestration patterns (hierarchical, sequential, parallel)?
 2. How do agents communicate with each other?
 3. How do AutoGen and LangGraph differ for orchestration?
+
+**Practical Verification:**
+- [ ] Can compare hierarchical, sequential and parallel orchestration
+- [ ] Can design agent-to-agent communication for a workflow
+- [ ] Can pick AutoGen vs LangGraph for an orchestration need
 
 ---
 
@@ -74,6 +85,11 @@ After completing Phase 7, you will:
 2. What is long-term vs short-term memory?
 3. How does vector store memory work?
 
+**Practical Verification:**
+- [ ] Can justify why agents need memory beyond the context window
+- [ ] Can contrast long-term and short-term memory designs
+- [ ] Has implemented vector-store-backed agent memory
+
 ---
 
 ### Module 7500: AI Agent Security (Required)
@@ -82,6 +98,11 @@ After completing Phase 7, you will:
 1. What is prompt injection?
 2. How do you detect and prevent it?
 3. What is PII redaction?
+
+**Practical Verification:**
+- [ ] Can explain a prompt injection attack end to end
+- [ ] Has applied injection detection and prevention measures
+- [ ] Can redact PII from prompts before they reach a model
 
 ---
 

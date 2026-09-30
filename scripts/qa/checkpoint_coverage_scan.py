@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Phase-checkpoint coverage (CK-01..03, HARD) for PROJECT-OMEGA.
+"""Phase-checkpoint coverage and module anatomy (CK-00..05, HARD) for PROJECT-OMEGA.
 
 The phase CHECKPOINT.md is the learner's review page for everything
 above it - the phase-exit self-assessment the platform will render
@@ -23,8 +23,25 @@ CK-02  the "**Modules:**" overview line miscounts or mislists the
        module groups
 CK-03  a module group has no "### Module NNNN:" checkpoint section
 
+CK-04  a module checkpoint section has no Checkpoint Quiz, or its
+       quiz is not exactly 3 items - the corpus-wide shape (33/33
+       at the tick-478 census; the quiz is the module's self-test,
+       and a missing or truncated one breaks the per-module
+       completion ritual the platform renders)
+CK-05  a module checkpoint section carries fewer than 3 "- [ ]"
+       checkboxes - the hands-on verification floor. Vocabulary
+       varies legitimately (Practical Verification in the modern
+       blocks, Lab Verification for lab-completion checks, phase
+       1's richer Knowledge Check / Practical Skills /
+       Troubleshooting trio), so the gate counts the checkbox
+       floor across the whole block rather than freezing one
+       header word. Census tick-478: 12 modules had no checkbox
+       section at all; drained the same tick (3 skill checkboxes
+       each, grounded in the module's quiz and labs).
+
 HARD GATE - exit 1 on any finding. Born-at-zero after the tick-472
-drain (same census -> drain -> gate cycle as NV-02).
+drain (same census -> drain -> gate cycle as NV-02); CK-04/05 born
+tick-478 after the 12-module Practical Verification drain.
 
 Run over the whole corpus:
     python scripts/qa/checkpoint_coverage_scan.py --root .
@@ -43,6 +60,11 @@ GROUP_DIR = re.compile(r"^(\d{4})")
 MODULES_LINE = re.compile(r"^\*\*Modules:\*\*\s*(\d+)\s*\(([^)]*)\)\s*$",
                           re.MULTILINE)
 MODULE_SECTION = re.compile(r"^###\s+Module\s+(\d{4}):", re.MULTILINE)
+MODULE_BLOCK = re.compile(r"^###\s+Module\s+(\d{4}):.*?(?=^### |^## |\Z)",
+                          re.DOTALL | re.MULTILINE)
+QUIZ_HEAD = re.compile(r"^\*\*Checkpoint Quiz:\*\*\s*$")
+QUIZ_ITEM = re.compile(r"^\s*(\d+)[\.\)]\s+\S")
+CHECKBOX = re.compile(r"^\s*-\s+\[[ x]\]")
 
 
 def esc(text: str) -> str:
@@ -90,12 +112,44 @@ def main() -> int:
                 findings.append("CK-03 %s/CHECKPOINT.md: no '### Module %s:' "
                                 "checkpoint section" % (rel, gid))
 
+        # CK-04/05: per-module anatomy. Every module section carries a
+        # 3-item Checkpoint Quiz (the self-test) and at least 3
+        # checkboxes (the hands-on floor, however the block names it).
+        for bm in MODULE_BLOCK.finditer(text):
+            gid = bm.group(1)
+            q_items = 0
+            boxes = 0
+            in_q = False
+            for ln in bm.group(0).split("\n"):
+                if QUIZ_HEAD.match(ln):
+                    in_q = True
+                    continue
+                if in_q and (ln.startswith("**") or ln.startswith("#")
+                             or ln.strip() == "---"):
+                    in_q = False
+                if in_q and QUIZ_ITEM.match(ln):
+                    q_items += 1
+                if CHECKBOX.match(ln):
+                    boxes += 1
+            if q_items != 3:
+                findings.append(
+                    "CK-04 %s/CHECKPOINT.md: module %s Checkpoint Quiz has "
+                    "%d items, corpus standard is 3" % (rel, gid, q_items))
+            if boxes < 3:
+                findings.append(
+                    "CK-05 %s/CHECKPOINT.md: module %s carries %d checkbox "
+                    "items - below the 3-checkbox hands-on floor"
+                    % (rel, gid, boxes))
+
     for f in findings:
         print("  " + esc(f))
     print("checkpoint_coverage_scan: %d phase checkpoints; %d findings "
           "- all hard (CK-01 group absent / CK-02 overview miscount / "
-          "CK-03 section missing; born tick-472 after the phase-4 "
-          "two-module-era drain)" % (n_phases, len(findings)))
+          "CK-03 section missing / CK-04 quiz not exactly 3 items / "
+          "CK-05 below the 3-checkbox hands-on floor; born tick-472 "
+          "after the phase-4 two-module-era drain, CK-04/05 tick-478 "
+          "after the 12-module Practical Verification drain)"
+          % (n_phases, len(findings)))
     return 1 if findings else 0
 
 

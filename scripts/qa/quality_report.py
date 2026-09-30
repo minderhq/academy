@@ -915,7 +915,7 @@ stand today?" without running each tool by hand.
                        was the only stranded file of 410; drained via
                        a README Community > Resources row + a [1.2.0]
                        entry that brought the changelog current
-    checkpoint_coverage_scan  Phase-checkpoint coverage (CK-00..03,
+    checkpoint_coverage_scan  Phase-checkpoint coverage (CK-00..05,
                        hard): the phase CHECKPOINT.md is the learner's
                        review page for everything above it, so every
                        module group of the phase must appear in its
@@ -924,7 +924,12 @@ stand today?" without running each tool by hand.
                        drain: the checkpoint still claimed "Modules:
                        2 (4100, 4200)" - the two-module era - while
                        4300 QAT and 4400 Advanced Techniques (17
-                       lessons between them) had joined the phase
+                       lessons between them) had joined the phase.
+                       CK-04/05 tick-478: per-module anatomy - a
+                       3-item Checkpoint Quiz and a 3-checkbox
+                       hands-on floor (12 modules had no checkbox
+                       section, 3 Lab Verification blocks had only
+                       2 lab links; all drained same tick)
     quiz_claim_scan  Quiz self-claim integrity (QC-01..04, hard):
                        a QUIZ.md's own promises checked against the
                        bank quiz_export parses - "**N questions**"

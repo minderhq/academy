@@ -41,6 +41,11 @@ After completing Phase 3, you will:
 2. Explain query, key, value paradigm
 3. What is multi-head attention?
 
+**Practical Verification:**
+- [ ] Can walk through scaled dot-product attention step by step
+- [ ] Can explain the query, key, value roles with a concrete example
+- [ ] Has traced multi-head attention tensor shapes (d_model, heads, d_k)
+
 ---
 
 ### Module 3200: Embedding Latent Spaces (Required)
@@ -49,6 +54,11 @@ After completing Phase 3, you will:
 1. What is RoPE and why is it used?
 2. How do tokenizers work?
 3. What are positional embeddings?
+
+**Practical Verification:**
+- [ ] Can explain how RoPE encodes position through rotation
+- [ ] Has tokenized text with a BPE tokenizer and inspected the ids
+- [ ] Can compare learned, sinusoidal and RoPE positional schemes
 
 ---
 
@@ -59,6 +69,11 @@ After completing Phase 3, you will:
 2. Why do transformers prefer LayerNorm or RMSNorm over BatchNorm?
 3. How does Pre-Norm vs Post-Norm placement affect training stability?
 
+**Practical Verification:**
+- [ ] Can explain why GELU and SwiGLU beat plain ReLU in transformers
+- [ ] Can justify LayerNorm or RMSNorm over BatchNorm for sequences
+- [ ] Can reason about Pre-Norm vs Post-Norm stability tradeoffs
+
 ---
 
 ### Module 3400: Model Architectures (Required)
@@ -68,6 +83,11 @@ After completing Phase 3, you will:
 2. What makes GPT-style models unique?
 3. When to use each architecture?
 
+**Practical Verification:**
+- [ ] Can classify a model as encoder-only, decoder-only or encoder-decoder
+- [ ] Can explain what makes GPT-style decoder stacks distinctive
+- [ ] Can pick an architecture family for a given task
+
 ---
 
 ### Module 3500: Multimodal Models (Required)
@@ -76,6 +96,11 @@ After completing Phase 3, you will:
 1. How do vision-language models combine visual and text tokens?
 2. What are the building blocks of an audio model pipeline?
 3. When does multimodal RAG outperform text-only RAG?
+
+**Practical Verification:**
+- [ ] Can trace how visual tokens join text tokens in a VLM
+- [ ] Can sketch an audio model pipeline (tokenizer, encoder, decoder)
+- [ ] Can decide when multimodal RAG beats text-only RAG
 
 ---
 

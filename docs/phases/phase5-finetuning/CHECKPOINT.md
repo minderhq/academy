@@ -58,6 +58,7 @@ After completing Phase 5, you will:
 **Lab Verification:**
 - [ ] Completed [LAB-003: LoRA Fine-Tuning](../../learning-resources/labs/LAB-003-LoRA-FineTuning.md)
 - [ ] Completed [LAB-010: DPO Alignment](../../learning-resources/labs/LAB-010-DPO-Alignment.md)
+- [ ] Can explain when LoRA suffices versus full fine-tuning or DPO
 
 ---
 
