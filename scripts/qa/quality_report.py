@@ -746,6 +746,28 @@ stand today?" without running each tool by hand.
                       after a 26-replacement drain
                       across 10 files, every
                       runtime value proven intact
+    filename_scan
+                      Filename hygiene (FN-01..06,
+                      hard) - path segments are
+                      API: git, shells and the
+                      web platform all consume
+                      them. FN-01 case-only
+                      collision in one dir (NTFS
+                      hides it, Linux CI
+                      overwrites silently), FN-02
+                      spaces (URL %20), FN-03
+                      Windows-invalid + URL-
+                      significant chars, FN-04
+                      non-ASCII segments, FN-05
+                      edge-whitespace/trailing-
+                      dot (unrepresentable on
+                      Windows), FN-06 paths over
+                      200 (MAX_PATH headroom).
+                      Whole repo, any-depth
+                      ignore of generated/vendor
+                      trees. Born tick-492 born-
+                      at-zero: 597 tracked files
+                      censused clean
     glossary_scan
                       Glossary integrity (GS-01..03, hard):
                       GLOSSARY.md is the platform's
@@ -1226,6 +1248,7 @@ GATES = [
     ("invisible_scan.py", "invisible_scan", True),
     ("line_ending_scan.py", "line_ending_scan", True),
     ("script_hygiene_scan.py", "script_hygiene_scan", True),
+    ("filename_scan.py", "filename_scan", True),
     ("glossary_scan.py", "glossary_scan", True),
     ("emphasis_scan.py", "emphasis_scan", True),
     ("whitespace_scan.py", "whitespace_scan", True),
