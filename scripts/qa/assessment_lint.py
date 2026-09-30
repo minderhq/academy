@@ -23,6 +23,11 @@ and assessment/PRACTICE.md. The corpus standard these files already meet:
          3/5-option outlier or a duplicated letter breaks the shape
          (census tick-498: 655/655 mcq are four-option, uniform;
          born-at-zero)
+  AS-11  every Answer Key row carries a filled explanation cell -
+         the platform renders it as the per-question review text,
+         and a bare | N | X | row grades without teaching
+         (born tick-514 at zero: the tick-505..513 explanation
+         drain left 33/33 banks explained, so hard gate from birth)
   AS-05  assessment/PRACTICE.md exists
   AS-06  PRACTICE holds >= 3 exercises ("## / ### Exercise N")
   AS-07  each exercise carries a solution marker (Expected Output,
@@ -138,6 +143,15 @@ class Linter:
                 m = AK_ROW.match(l)
                 if m:
                     key[int(m.group(1))] = m.group(2)
+                    # AS-11: the row must carry a filled explanation
+                    # cell (| N | X | text |) - bare two-cell rows or
+                    # an empty third cell grade without teaching.
+                    cells = [c.strip()
+                             for c in l.strip().strip("|").split("|")]
+                    if len(cells) < 3 or not cells[2]:
+                        self.report(rel, "AS-11",
+                                    "question %d answer-key row has no "
+                                    "explanation cell" % int(m.group(1)))
 
         # Inline answers / self-graded coding questions: first
         # **Answer:** X (or **Score:** __) after each question number.
