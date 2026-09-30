@@ -1382,6 +1382,7 @@ Contributions are welcome! The fastest way to contribute:
 | **Sitemap** | [docs/00-META/SITEMAP.md](./docs/00-META/SITEMAP.md) |
 | **FAQ** | [docs/00-META/FAQ.md](./docs/00-META/FAQ.md) |
 | **Resources** | [docs/00-META/RESOURCES.md](./docs/00-META/RESOURCES.md) |
+| **Changelog** | [CHANGELOG.md](./CHANGELOG.md) |
 | **Labs** | [docs/learning-resources/labs/](./docs/learning-resources/labs/) |
 | **Projects** | [docs/learning-resources/projects/](./docs/learning-resources/projects/) |
 | **Case Study** | [EXP_1101_GPON: Fiber GPON Modem Configuration](./experiments/EXP_1101_GPON.md) · [EXP_1102: Star Topology and Network Performance Experiments](./experiments/EXP_1102_STAR_TOPOLOGY.md) |

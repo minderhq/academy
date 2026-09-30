@@ -895,6 +895,16 @@ stand today?" without running each tool by hand.
                        (concept-definition row, Tech Stack
                        enumeration, capstone download target,
                        full-repo-id parenthetical)
+    link_reach_report  Corpus-wide link reachability (report mode):
+                       BFS from the root README over .md links; a doc
+                       no entry point reaches is stranded content -
+                       invisible to browsing and un-crawlable - even
+                       when all its own links resolve. Complements
+                       NV-01 (in-degree from ONE parent) with global
+                       reach. Birth census (tick-471): CHANGELOG.md
+                       was the only stranded file of 410; drained via
+                       a README Community > Resources row + a [1.2.0]
+                       entry that brought the changelog current
 
 Plus corpus stats (lesson files / modules / phases) so the scorecard doubles
 as a curriculum inventory.

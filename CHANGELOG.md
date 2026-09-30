@@ -13,6 +13,34 @@ All notable changes to PROJECT-OMEGA documentation will be documented in this fi
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2026-09-30
+
+### Changed - Curriculum Modernization Era
+- **uv everywhere:** installation, Quick Start, labs and project templates
+  migrated from `pip` to `uv` for faster, lockfile-based workflows;
+  automated checks keep learner install flows on uv
+- **Python 3.13 target** with modern typing across code examples
+  (PEP 585 built-in generics, PEP 604 `X | Y` unions)
+- **LangChain modernization pass** aligned framework teaching to the
+  current API surface
+- **Model-naming standards** codified in the Style Guide: vendor-era
+  casing (Llama 2/3 vs the original LLaMA) and prose-vs-identifier
+  name forms (Mistral 7B in prose, Mistral-7B in spec tables, repo
+  ids exactly as published)
+- **Assessment hardening:** quiz integrity gates, answer-key
+  formatting, and difficulty-badge truthfulness (the rendered badge
+  must mirror the front-matter value)
+
+### Added - Quality Infrastructure
+- **83 hard QA gates** (`scripts/qa/quality_report.py`): structure,
+  links, code fences, front matter, tables, diagrams, tags, lesson
+  IDs, quiz integrity, and navigation coverage - every module doc is
+  linked from its module README, every phase checkpoint from its
+  phase README
+- **Report-only scanners** for judgment-bound conventions: link
+  reachability (this changelog's own discoverability was its first
+  catch), model-name forms, stale front matter, and callout texture
+
 ## [1.1.0] - 2026-02-04
 
 ### Added - Comprehensive Assessment System
@@ -130,6 +158,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Experiment templates
 
 [1.1.0]: https://github.com/your-org/project-omega/releases/tag/v1.1.0
+[1.2.0]: https://github.com/your-org/project-omega/releases/tag/v1.2.0
 [1.0.0]: https://github.com/your-org/project-omega/releases/tag/v1.0.0
 
 ---
@@ -138,5 +167,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 | Version | Date | Changes |
 |---------|------|---------|
+| **1.2.0** | 2026-09-30 | Curriculum modernization (uv, Python 3.13, LangChain), QA infrastructure |
 | **1.1.0** | 2026-02-04 | Assessment system, labs, notebooks, projects, resources |
 | **1.0.0** | 2026-01-XX | Initial release with core documentation |
