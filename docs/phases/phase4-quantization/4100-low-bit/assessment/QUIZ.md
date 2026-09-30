@@ -165,25 +165,25 @@ D) No trade-off at all, a claim no real deployment has ever been able to support
 
 ## Answer Key
 
-| # | Answer |
-|---|--------|
-| 1 | C |
-| 2 | C |
-| 3 | D |
-| 4 | D |
-| 5 | A |
-| 6 | A |
-| 7 | A |
-| 8 | B |
-| 9 | B |
-| 10 | A |
-| 11 | B |
-| 12 | B |
-| 13 | B |
-| 14 | A |
-| 15 | A |
-| 16 | A |
-| 17 | B |
-| 18 | B |
-| 19 | B |
-| 20 | B |
+| Question | Answer | Explanation |
+|----------|--------|-------------|
+| 1 | C | Quantization shrinks the model and cuts compute cost |
+| 2 | C | INT8 stores 8 bits per parameter |
+| 3 | D | FP16 is 16-bit half precision |
+| 4 | D | The wins are reduced memory and faster inference |
+| 5 | A | Symmetric quantization fixes the zero-point at 0 |
+| 6 | A | The scale maps the tensor's range onto the integer grid |
+| 7 | A | The zero-point offsets the quantization range (asymmetric schemes) |
+| 8 | B | Per-channel quantization keeps one scale per output channel |
+| 9 | B | PTQ quantizes a finished model - no retraining |
+| 10 | A | QAT simulates quantization in the forward pass during training |
+| 11 | B | GGUF is llama.cpp's model file format |
+| 12 | B | EXL2 targets NVIDIA GPU inference |
+| 13 | B | GPTQ uses second-order (Hessian) information to quantize |
+| 14 | A | AWQ = activation-aware weight quantization |
+| 15 | A | NF4 is the 4-bit normal float format (QLoRA's base) |
+| 16 | A | Double quantization quantizes the quantization parameters themselves |
+| 17 | B | KV cache quantization compresses the attention cache |
+| 18 | B | INT4 trades accuracy for a much smaller footprint |
+| 19 | B | Calibration data should represent the deployment distribution |
+| 20 | B | The trade-off is size (and speed) vs accuracy |

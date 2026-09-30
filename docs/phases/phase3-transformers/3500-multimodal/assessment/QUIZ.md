@@ -165,25 +165,25 @@ D) Audio transcripts
 
 ## Answer Key
 
-| # | Answer |
-|---|--------|
-| 1 | C |
-| 2 | D |
-| 3 | C |
-| 4 | B |
-| 5 | B |
-| 6 | B |
-| 7 | B |
-| 8 | B |
-| 9 | B |
-| 10 | A |
-| 11 | B |
-| 12 | C |
-| 13 | B |
-| 14 | A |
-| 15 | D |
-| 16 | A |
-| 17 | C |
-| 18 | B |
-| 19 | D |
-| 20 | A |
+| Question | Answer | Explanation |
+|----------|--------|-------------|
+| 1 | C | A multimodal model processes several data types - text, image, audio |
+| 2 | D | CLIP aligns images and text for retrieval and understanding |
+| 3 | C | CLIP trains contrastively - matching image-text pairs pull together |
+| 4 | B | Combining modalities gives richer understanding |
+| 5 | B | LLaVA is a vision-language model |
+| 6 | B | Standard recipe: pretrained ViT plus pretrained LLM, joined by a projector |
+| 7 | B | BLIP covers image-language understanding and generation |
+| 8 | B | Modalities are embedded into a shared space |
+| 9 | B | The core challenge is aligning modalities in one space |
+| 10 | A | Contrastive learning (CLIP-style) is the dominant alignment technique |
+| 11 | B | ViT is the standard vision encoder in modern VLMs |
+| 12 | C | LLaVA's projector maps ViT outputs into the LLM embedding space |
+| 13 | B | Whisper does speech recognition (and translation) |
+| 14 | A | Zero-shot: compare the image embedding to text prompts of class names |
+| 15 | D | Audio enters as spectrograms or learned audio tokens |
+| 16 | A | Images become patch embeddings projected into the LLM input space |
+| 17 | C | CLIP-style training uses hundreds of millions of web image-text pairs |
+| 18 | B | ASR converts audio to text; TTS converts text to audio |
+| 19 | D | VQA-family benchmarks evaluate vision-language models |
+| 20 | A | Visual instruction tuning fine-tunes on instruction data that includes images |
