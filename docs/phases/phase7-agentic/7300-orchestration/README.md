@@ -479,6 +479,6 @@ class MultiAgentOrchestrator:
 **Module Difficulty:** ⭐⭐⭐⭐ Advanced
 **Estimated Time:** 7 hours total
 
+## Module Contents
 
 - [7302: Communication Protocols](./7302-Communication-Protocols.md)
-## Module Contents
