@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Front-matter VALUE contracts (FV-01..06, HARD) - the platform
+"""Front-matter VALUE contracts (FV-01..09, HARD) - the platform
 ingestion simulation.
 
 FS-01/02 gate the six standard field NAMES; the dup gates check
@@ -36,6 +36,17 @@ FV-06  Related, when present, is a prose pointer (str) or a list
        census (tick-494) found exactly these forms corpus-wide:
        178 canonical "See module README", 11 lists, 4 prose
        variants, 215 absent
+FV-07  Difficulty is one of the three canonical tiers
+       Beginner/Intermediate/Advanced - the platform's difficulty
+       filter and sort are closed enums; a fourth value is an
+       invisible filter hole (census tick-495: 71/117/220, zero
+       strays)
+FV-08  Title is a non-empty string - it becomes the platform
+       card title; an empty or non-string Title renders as
+       nothing (census tick-495: 0 bad of 408)
+FV-09  Last Updated is not in the future - a date the doc cannot
+       have been updated on yet poisons "recently updated" sorts
+       (census tick-495: 0 of 408)
 
 Scope: all docs/**/*.md, FM block = first ---...--- (within 40
 lines, FS-01's contract). Related string elements (LAB-003,
@@ -48,7 +59,16 @@ Census at birth (tick-493): 408/408 yaml-parseable, 408/408
 ISO dates, Tags clean; one real drain ("1 hours" -> "1 hour" in
 phase1 1100 PRACTICE.md) and the two-regime PREREQUISITES form
 canonized as FV-02's second arm. FV-05/06 born tick-494
-born-at-zero: 32 Related integer refs, 0 dangling.
+born-at-zero: 32 Related integer refs, 0 dangling. FV-07..09
+born tick-495 born-at-zero: Difficulty 71/117/220 canonical,
+Title 0 bad, future-dated Last Updated 0. Document ID mixed
+typing (115 int + 293 namespace-string) censused as corpus
+convention, deliberately ungated. Negative tests also caught
+PyYAML raising ValueError OUT of safe_load on an impossible
+bare date ("2026-13-45" - the timestamp constructor builds
+dt.date without wrapping), which the platform experiences as an
+ingestion crash; FV-04 therefore catches ValueError/TypeError
+alongside YAMLError.
 
 Note: this gate is the fleet's only third-party import (PyYAML) -
 deliberate, because the rule under test is "yaml.safe_load
@@ -72,6 +92,7 @@ import yaml
 TIME_SINGLE = re.compile(r"^\d+(\.\d+)? (hour|minute)s?$")
 TIME_DOUBLE = re.compile(r"^30 minutes \(quick review\) - \d+(\.\d+)? hours \(full review\)$")
 ISO_DATE = re.compile(r"^(\d{4})-(\d{2})-(\d{2})$")
+CANON_DIFFICULTY = ("Beginner", "Intermediate", "Advanced")
 
 
 def esc(text: str) -> str:
@@ -109,7 +130,13 @@ def main() -> int:
             data = yaml.safe_load(block)
             if not isinstance(data, dict):
                 raise yaml.YAMLError("front matter is not a mapping")
-        except yaml.YAMLError as exc:
+        except (yaml.YAMLError, ValueError, TypeError) as exc:
+            # ValueError/TypeError too: PyYAML's timestamp constructor
+            # builds dt.date(...) bare, so an impossible bare date
+            # ("2026-13-45") raises OUT of safe_load - from the
+            # platform's side that is an ingestion crash, not a parse
+            # miss (tick-495 lesson, negative test caught the gate
+            # itself crashing)
             findings.append(
                 "FV-04 %s: front matter fails yaml.safe_load - %s; the "
                 "platform ingests FM with this exact call and drops all "
@@ -180,15 +207,44 @@ def main() -> int:
                         "which no doc carries - the platform renders "
                         "Related as next-lesson cards; a dangling id is "
                         "a broken card at runtime" % (rel, el))
+        diff = data.get("Difficulty")
+        if diff is not None and diff not in CANON_DIFFICULTY:
+            findings.append(
+                "FV-07 %s: Difficulty %r is not a canonical tier - the "
+                "platform's difficulty filter/sort is the closed enum "
+                "Beginner/Intermediate/Advanced; a fourth value is an "
+                "invisible filter hole" % (rel, diff))
+        title = data.get("Title")
+        if title is not None and not (isinstance(title, str)
+                                      and title.strip()):
+            findings.append(
+                "FV-08 %s: Title %r is not a non-empty string - it "
+                "becomes the platform card title; empty or non-string "
+                "renders as nothing" % (rel, title))
+        lu_date = None
+        if isinstance(lu, dt.date) and not isinstance(lu, dt.datetime):
+            lu_date = lu
+        elif isinstance(lu, str) and ISO_DATE.match(lu):
+            try:
+                lu_date = dt.date(int(lu[:4]), int(lu[5:7]), int(lu[8:10]))
+            except ValueError:
+                pass  # FV-01 already flagged the impossible date
+        if lu_date is not None and lu_date > dt.date.today():
+            findings.append(
+                "FV-09 %s: Last Updated %s is in the future - a date the "
+                "doc cannot have been updated on yet poisons "
+                "recently-updated sorts" % (rel, lu_date.isoformat()))
     for f in findings:
         print("  " + esc(f))
     print("frontmatter_value_scan: %d docs with FM inspected; %d FV "
           "findings - hard (FV-01 ISO dates, FV-02 machine-comparable "
           "time, FV-03 Tags list-of-string, FV-04 yaml.safe_load, FV-05 "
-          "no dangling Related int, FV-06 Related str-or-list = the "
-          "platform ingestion simulation; born tick-493 with one drain "
-          "('1 hours' -> '1 hour'), Related arms tick-494 born-at-zero; "
-          "see docstring)"
+          "no dangling Related int, FV-06 Related str-or-list, FV-07 "
+          "canonical Difficulty tier, FV-08 non-empty Title string, "
+          "FV-09 no future-dated Last Updated = the platform ingestion "
+          "simulation; born tick-493 with one drain ('1 hours' -> "
+          "'1 hour'), Related arms tick-494 and tier/title/date arms "
+          "tick-495 all born-at-zero; see docstring)"
           % (n_docs, len(findings)))
     return 1 if findings else 0
 

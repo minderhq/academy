@@ -769,7 +769,7 @@ stand today?" without running each tool by hand.
                       at-zero: 597 tracked files
                       censused clean
     frontmatter_value_scan
-                      FM VALUE contracts (FV-01..06,
+                      FM VALUE contracts (FV-01..09,
                       hard) - the platform
                       ingestion simulation: does
                       exactly what the platform
@@ -787,7 +787,11 @@ stand today?" without running each tool by hand.
                       two-regime form), FV-03
                       Tags list-of-string, FV-04
                       the whole block parses to a
-                      dict. Related arms: FV-05
+                      dict (catches ValueError
+                      too - PyYAML raises OUT of
+                      safe_load on an impossible
+                      bare date: ingestion
+                      crash). Related arms: FV-05
                       no dangling integer id
                       (two-pass cross-file - the
                       platform renders Related
@@ -795,16 +799,25 @@ stand today?" without running each tool by hand.
                       FV-06 Related is a prose
                       pointer or a list of
                       ids/names, never another
-                      scalar or a mapping. The
-                      fleet's only third-party
-                      import (PyYAML) -
-                      deliberate: the rule
+                      scalar or a mapping. Enum/
+                      display arms: FV-07
+                      Difficulty is one of
+                      Beginner/Intermediate/
+                      Advanced (closed filter
+                      enum), FV-08 Title is a
+                      non-empty string (platform
+                      card title), FV-09 Last
+                      Updated is never in the
+                      future (recently-updated
+                      sorts). The fleet's only
+                      third-party import (PyYAML)
+                      - deliberate: the rule
                       under test IS yaml parsing.
                       Born tick-493, one drain
                       ('1 hours' -> '1 hour');
-                      Related arms tick-494
-                      born-at-zero: 32 int refs,
-                      0 dangling
+                      Related arms tick-494 and
+                      tier/title/date arms
+                      tick-495, all born-at-zero
     glossary_scan
                       Glossary integrity (GS-01..03, hard):
                       GLOSSARY.md is the platform's
