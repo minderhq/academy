@@ -165,25 +165,25 @@ D) A distillation method
 
 ## Answer Key
 
-| # | Answer |
-|---|--------|
-| 1 | B |
-| 2 | A |
-| 3 | B |
-| 4 | B |
-| 5 | A |
-| 6 | A |
-| 7 | A |
-| 8 | A |
-| 9 | B |
-| 10 | D |
-| 11 | C |
-| 12 | A |
-| 13 | B |
-| 14 | A |
-| 15 | A |
-| 16 | B |
-| 17 | B |
-| 18 | C |
-| 19 | B |
-| 20 | A |
+| Question | Answer | Explanation |
+|----------|--------|-------------|
+| 1 | B | Alignment shapes model behavior toward human preferences and values |
+| 2 | A | RLHF = Reinforcement Learning from Human Feedback |
+| 3 | B | RLHF starts by collecting human preference comparisons |
+| 4 | B | The reward model learns to predict which response humans prefer |
+| 5 | A | DPO = Direct Preference Optimization |
+| 6 | A | DPO folds the reward model into the loss - no separate RM needed |
+| 7 | A | PPO = Proximal Policy Optimization |
+| 8 | A | The KL penalty keeps the policy near the reference model |
+| 9 | B | Preferences come as paired comparisons of responses |
+| 10 | D | Cost, reward hacking and slow convergence are all known RLHF issues |
+| 11 | C | Pipeline: SFT -> reward model -> PPO fine-tuning |
+| 12 | A | Preferences are only meaningful once outputs follow a consistent format |
+| 13 | B | DPO widens the log-prob margin of chosen over rejected vs the reference |
+| 14 | A | Reward hacking: high reward-model scores on bad outputs |
+| 15 | A | Preference pairs are modeled with Bradley-Terry |
+| 16 | B | The frozen reference model is the KL anchor |
+| 17 | B | RLAIF/Constitutional AI uses AI feedback guided by principles |
+| 18 | C | Preference datasets span tens of thousands to millions of pairs |
+| 19 | B | Low inter-annotator agreement poisons preference data |
+| 20 | A | Best-of-N aligns at inference time without retraining |

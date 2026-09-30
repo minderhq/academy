@@ -165,25 +165,25 @@ D) Train a model on it and measure downstream task performance
 
 ## Answer Key
 
-| # | Answer |
-|---|--------|
-| 1 | D |
-| 2 | B |
-| 3 | B |
-| 4 | B |
-| 5 | D |
-| 6 | D |
-| 7 | B |
-| 8 | A |
-| 9 | D |
-| 10 | B |
-| 11 | A |
-| 12 | C |
-| 13 | A |
-| 14 | A |
-| 15 | B |
-| 16 | B |
-| 17 | C |
-| 18 | A |
-| 19 | C |
-| 20 | D |
+| Question | Answer | Explanation |
+|----------|--------|-------------|
+| 1 | D | Synthetic data covers benchmark, LLM-generated and artificial data |
+| 2 | B | Generation is cheaper and faster than human annotation |
+| 3 | B | Distillation trains a smaller student to mimic a larger teacher |
+| 4 | B | Merging combines weights from multiple trained models |
+| 5 | D | SWA, linear checkpoint merging and task arithmetic all combine weights |
+| 6 | D | Collapse, bias amplification and quality loss are all risks |
+| 7 | B | Collapse: the model loses diversity and turns degenerate |
+| 8 | A | Federated learning trains across parties without sharing raw data |
+| 9 | D | Communication, privacy and heterogeneity are the federated challenges |
+| 10 | B | Self-instruct has the LLM generate its own instruction data |
+| 11 | A | Students learn from the teacher's soft distribution at temperature |
+| 12 | C | Classic distillation loss is KL between teacher and student distributions |
+| 13 | A | Self-instruct seeds from a small task set, then generates and filters |
+| 14 | A | Dedup plus heuristic or reward-model filtering guards quality |
+| 15 | B | FedAvg averages client weights weighted by data size |
+| 16 | B | Secure aggregation reveals only the sum of client updates |
+| 17 | C | Non-IID shards drive client drift and unstable convergence |
+| 18 | A | Alpaca bootstrapped an instruct model from a strong LLM's synthetic data |
+| 19 | C | Higher temperature raises diversity at the cost of noise |
+| 20 | D | The proof is downstream: train on it and measure task performance |
