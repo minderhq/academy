@@ -13,7 +13,7 @@ Tags: ['roadmap', 'guide', 'llm']
 
 - [Complete AI/LLM Infrastructure Curriculum - From Zero to Hero](#complete-aillm-infrastructure-curriculum---from-zero-to-hero)
 - [📚 Curriculum Overview](#curriculum-overview)
-- [Phase 0: Python Fundamentals (Week 1) ⭐ NEW](#phase-0-python-fundamentals-week-1--new)
+- [Phase 0: Python Fundamentals (Week 1)](#phase-0-python-fundamentals-week-1)
 - [Phase 1: Foundations (Weeks 2-5)](#phase-1-foundations-weeks-2-5)
 - [Phase 2: Infrastructure (Weeks 5-12)](#phase-2-infrastructure-weeks-5-12)
 - [Phase 3: AI/ML Fundamentals (Weeks 13-20)](#phase-3-aiml-fundamentals-weeks-13-20)
@@ -97,7 +97,7 @@ Tags: ['roadmap', 'guide', 'llm']
 
 ---
 
-## Phase 0: Python Fundamentals (Week 1) ⭐ NEW
+## Phase 0: Python Fundamentals (Week 1)
 
 ### For Complete Beginners
 

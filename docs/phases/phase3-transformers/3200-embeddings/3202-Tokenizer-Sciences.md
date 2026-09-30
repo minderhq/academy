@@ -429,7 +429,7 @@ tokenizer.train(files, trainer)
 tokenizer.save("tokenizer.json")
 ```
 
-### Using 🤗 Datasets
+### Using Hugging Face Datasets
 ```python
 from datasets import load_dataset
 from tokenizers import Tokenizer, models, trainers, pre_tokenizers

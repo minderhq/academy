@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Heading skeleton soundness (HS-01..04, HARD) for PROJECT-OMEGA.
+"""Heading skeleton soundness (HS-01..05, HARD) for PROJECT-OMEGA.
 
 The platform renders a TOC and anchor deep-links from heading
 structure, so the skeleton every doc carries must be sound:
@@ -15,8 +15,15 @@ HS-04  no emoji-led heading - structure headings are plain text
        (tick-482 canon; labs drained tick-485, the rest of the
        corpus tick-486). Typographic arrows (left/right/up/down
        arrows) are prose, not emoji, and stay legal anywhere in a
-       heading. Mid-heading emoji after a word lead is out of
-       scope (separate axis, undocumented surface count small).
+       heading.
+HS-05  no emoji anywhere inside a heading (positions after the
+       lead). The tick-487 census measured the non-LED surface at
+       exactly 2 headers - a trailing `* NEW` badge on the
+       LEARNING-PATH Phase 0 row (with its double-hyphen ToC
+       anchor, rewritten in the same drain) and a brand glyph in
+       3202's `Using * Datasets`, renamed to spell the brand out.
+       Emoji inside a fence (diagram boxes, code comments) is body
+       texture, not heading structure, and stays out of scope.
 
 Scan is fence-aware and starts after the front-matter block
 (FS-01 guarantees it closes within 40 lines).
@@ -110,10 +117,17 @@ def main() -> int:
                 findings.append("HS-02 %s: empty heading (`%s`)"
                                 % (rel, ln.strip()))
                 continue
-            if txt[0] not in TYPO_ARROWS and EMOJI.match(txt):
+            hs04 = txt[0] not in TYPO_ARROWS and bool(EMOJI.match(txt))
+            if hs04:
                 findings.append("HS-04 %s: emoji-led heading `%s` - "
                                 "structure headings are plain text "
                                 "(tick-482 canon)" % (rel, esc(txt[:40])))
+            elif EMOJI.search("".join(ch for ch in txt[1:]
+                                      if ch not in TYPO_ARROWS)):
+                findings.append("HS-05 %s: emoji inside heading `%s` - "
+                                "structure headings are plain text "
+                                "(tick-482 canon, drained tick-487)"
+                                % (rel, esc(txt[:40])))
             if prev and lvl > prev + 1:
                 findings.append(
                     "HS-01 %s: level skip H%d -> H%d after %r"
@@ -127,8 +141,9 @@ def main() -> int:
         print("  " + esc(f))
     print("heading_scan: %d docs scanned; %d HS findings - all hard "
           "(skeleton soundness: no level skip, no empty heading, "
-          "no flat body, no emoji-led heading; born tick-459 at "
+          "no flat body, no emoji in heading; born tick-459 at "
           "0/0/0, KW-03; HS-04 tick-486 after the 558-header drain; "
+          "HS-05 tick-487 after the 2-header drain; "
           "duplicate-heading template repeats triaged ACCEPT - see "
           "docstring)"
           % (n_docs, len(findings)))
