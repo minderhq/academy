@@ -497,7 +497,8 @@ LIMIT 5;
 ### Indexing Speed (100K vectors)
 
 | Database | Time |
-|----------|------| Qdrant | ~30 seconds |
+|----------|------|
+| Qdrant | ~30 seconds |
 | Weaviate | ~45 seconds |
 | Pinecone | ~60 seconds |
 | Chroma | ~20 seconds |

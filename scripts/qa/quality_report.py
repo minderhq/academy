@@ -571,6 +571,35 @@ stand today?" without running each tool by hand.
                       contradicted badge intent, starless
                       badges, phase-hub range badges,
                       'Absolute Beginner')
+    heading_scan
+                      Heading skeleton soundness (HS-01..03,
+                      hard): the platform renders a TOC and
+                      anchor deep-links from heading structure,
+                      so the skeleton must be sound. HS-01 no
+                      level skip (child more than one level
+                      under its parent), HS-02 no empty heading
+                      text, HS-03 every doc carries at least
+                      one H2 (no flat bodies). Born tick-459
+                      at 0/0/0 across 408 docs, KW-03. The
+                      birth census also measured 245 duplicate
+                      heading texts in 30 docs (Task/Pros/Cons
+                      template repeats under per-item parents)
+                      - triaged ACCEPT, deliberately not
+                      gated: hierarchical-correct, slug dedup
+                      is deterministic, links verified by the
+                      anchor gate
+    table_scan
+                      Markdown table integrity (TB-01/02,
+                      hard): TB-01 every row's cell count
+                      equals the header's (escape-aware:
+                      literal pipes inside cells are escaped
+                      and not column breaks), TB-02 the
+                      separator row is well-formed and matches
+                      the header width. The platform renders
+                      tables directly - one broken row is a
+                      visible defect. Born tick-459: 533
+                      tables scanned, one merged separator+row
+                      line drained in CP-002 (Indexing Speed)
     difficulty_distribution_scan
                       Difficulty as a sequence dimension (DX-01,
                       report-only census): per-phase B/I/A
@@ -863,6 +892,8 @@ GATES = [
     ("title_h1_parity_scan.py", "title_h1_parity_scan", True),
     ("fence_class_scan.py", "fence_class_scan", True),
     ("lesson_id_scan.py", "lesson_id_scan", True),
+    ("heading_scan.py", "heading_scan", True),
+    ("table_scan.py", "table_scan", True),
 ]
 
 
