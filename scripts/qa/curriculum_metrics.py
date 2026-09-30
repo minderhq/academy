@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Curriculum metrics report for the PROJECT-OMEGA corpus.
 
-Answers the loop question "gerçekten eğitim kalitesi ne seviyede?"
+Answers the loop question "ger\u00e7ekten e\u011fitim kalitesi ne seviyede?"
 with numbers, continuously: lesson length distribution, code density,
 heading structure, and quiz coverage per module. Report-only tool -
 exit 0 by design; a thin lesson is a review queue, not a failure

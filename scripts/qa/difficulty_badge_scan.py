@@ -41,7 +41,7 @@ from pathlib import Path
 FM_DIFF = re.compile(r"^Difficulty:\s*(Beginner|Intermediate|Advanced)\s*$",
                      re.M)
 BADGE = re.compile(r"^\*\*Difficulty:\*\*(.+)$", re.M)
-STARS = {"Beginner": "⭐", "Intermediate": "⭐⭐", "Advanced": "⭐⭐⭐"}
+STARS = {"Beginner": "\u2b50", "Intermediate": "\u2b50\u2b50", "Advanced": "\u2b50\u2b50\u2b50"}
 
 
 def esc(text: str) -> str:

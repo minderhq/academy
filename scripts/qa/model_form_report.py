@@ -50,7 +50,7 @@ from pathlib import Path
 
 FENCE = re.compile(r"^ {0,3}(```|~~~)")  # CommonMark: <=3 leading spaces
 FM_CLOSE = re.compile(r"^---\s*$")
-TABLE = re.compile(r"^\s*[|│]")
+TABLE = re.compile(r"^\s*[|\u2502]")
 INLINE_CODE = re.compile(r"`{2,}[^`]*`{2,}|`[^`]*`")
 QUOTED_ARTIFACT = re.compile(r'^\s*-\s"')
 

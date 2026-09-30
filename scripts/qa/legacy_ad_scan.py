@@ -6,8 +6,8 @@ per-class instead of a blind replace:
 
   github-url   inside a github.com/<owner>/ai-engineering-curriculum URL
   git-op       clone/pip git+https install line
-  path-prefix  used as a path segment (…/ai-engineering-curriculum/…)
-  bare-token   anything else (prose mention, frontmatter, heading…)
+  path-prefix  used as a path segment (.../ai-engineering-curriculum/...)
+  bare-token   anything else (prose mention, frontmatter, heading...)
 
 Exit code is 0 always - this is a survey tool, not a gate.
 """

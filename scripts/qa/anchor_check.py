@@ -41,7 +41,7 @@ HEADING = re.compile(r"^(#{1,6})\s+(.*?)\s*#*\s*$")
 LINK = re.compile(r"!?\[[^\]]*\]\(([^)\s]+)(?:\s+\"[^\"]*\")?\)")
 FM = re.compile(r"^---\s*$")
 SHORT_RE = re.compile(r":([a-z0-9_+\-]+):")
-CODES = {":star3:": "\U0001F31F", ":star:": "⭐", ":rotating_light:": "\U0001F6A8",
+CODES = {":star3:": "\U0001F31F", ":star:": "\u2b50", ":rotating_light:": "\U0001F6A8",
          ":rocket:": "\U0001F680", ":memo:": "\U0001F4DD", ":link:": "\U0001F517",
          ":checkered_flag:": "\U0001F3C1", ":trophy:": "\U0001F3C6", ":book:": "\U0001F4D6"}
 

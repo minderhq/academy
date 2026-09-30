@@ -726,6 +726,26 @@ stand today?" without running each tool by hand.
                       blobs missing their final
                       newline. Born tick-490 born-at-
                       zero
+    script_hygiene_scan
+                      QA-fleet source hygiene
+                      (SH-01/02, hard) - the one
+                      gate that watches the fleet
+                      itself: every .py under
+                      scripts/ (106 at birth).
+                      SH-01 pure-ASCII sources
+                      (tick-488: literal emoji
+                      inserted by a tool survived
+                      until a byte check); SH-02
+                      compile with SyntaxWarning-
+                      as-error (tick-490: a bare
+                      invalid escape warned on
+                      every run, hard error in a
+                      future Python). compile()
+                      never executes the module.
+                      Born tick-491 born-at-zero
+                      after a 26-replacement drain
+                      across 10 files, every
+                      runtime value proven intact
     glossary_scan
                       Glossary integrity (GS-01..03, hard):
                       GLOSSARY.md is the platform's
@@ -967,7 +987,7 @@ stand today?" without running each tool by hand.
                        all 7 phase-quiz Answer Key blocks rendering as one
                        broken list starting at "c," with every wrapped
                        line opening a new list at 11, 21, ... Drained by
-                       escaping 19 line-start markers (1. -> 1\.); born
+                       escaping 19 line-start markers (1. -> 1\\.); born
                        clean across 408 docs. Sibling classes censused the
                        same tick and left un-gated: HR styles uniform
                        (3003 dash / 0 others), list delimiters uniform
@@ -1205,6 +1225,7 @@ GATES = [
     ("link_text_scan.py", "link_text_scan", True),
     ("invisible_scan.py", "invisible_scan", True),
     ("line_ending_scan.py", "line_ending_scan", True),
+    ("script_hygiene_scan.py", "script_hygiene_scan", True),
     ("glossary_scan.py", "glossary_scan", True),
     ("emphasis_scan.py", "emphasis_scan", True),
     ("whitespace_scan.py", "whitespace_scan", True),

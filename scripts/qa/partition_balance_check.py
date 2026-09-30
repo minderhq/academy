@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Partition balance report (RB-01, tick-434): answers the loop
-question "yeniden bölümlendirme gerekebilir?" with numbers, before
+question "yeniden b\u00f6l\u00fcmlendirme gerekebilir?" with numbers, before
 any re-partition is ever attempted.  Per top-level docs/ subtree,
 per phase and per phase-module directory it reports md counts,
 bytes, lesson shares, tree depth and the structural signals a

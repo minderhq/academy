@@ -7,9 +7,9 @@ Case-aware, context-determined mapping (sampled via legacy_ad_scan.py):
   url-segment      preceded by `/` inside a URL            -> project-omega   (conventional)
   compound-id      followed by `-` (docker nets, conda envs,
                    container names)                        -> project-omega   (must be lowercase)
-  hostname         followed by `.` (…curriculum.local)     -> project-omega
-  default          paths (~/…, …/docs) and free text
-                   (titles, banners, comments, FastAPI…)   -> PROJECT-OMEGA
+  hostname         followed by `.` (...curriculum.local)     -> project-omega
+  default          paths (~/..., .../docs) and free text
+                   (titles, banners, comments, FastAPI...)   -> PROJECT-OMEGA
 
 Dry-run by default; `--apply` writes the files. Skips this script and
 legacy_ad_scan.py (the survey tool must keep matching the token).

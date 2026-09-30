@@ -144,7 +144,7 @@ def _curl_probe(url: str) -> int | None:
 
 
 def _denied_second_chance(client: httpx.Client, url: str) -> tuple[str, str] | None:
-    """Bot-wall retry: browser UA over httpx, then curl (İKİNCİ-KANAÇ).
+    """Bot-wall retry: browser UA over httpx, then curl (\u0130K\u0130NC\u0130-KANA\u00c7).
 
     tick-242 proved pytorch/realpython/docker 403 under the tool UA while
     the same URLs answered 200 to curl with browser headers - a tool-UA

@@ -48,8 +48,8 @@ for the pattern position before any ``#`` on the line.
 
 Hard gate (exit 1 on findings): baseline 0 after the tick-227 drain
 (13 call sites across 7 files moved to ``datetime.now(timezone.utc)``),
-the tick-228 drain (LAB-012 ``use_auth_token=False`` → ``token=``),
-the tick-235 drain (LAB-007 ``doc.dict()`` → ``doc.model_dump()``) and
+the tick-228 drain (LAB-012 ``use_auth_token=False`` -> ``token=``),
+the tick-235 drain (LAB-007 ``doc.dict()`` -> ``doc.model_dump()``) and
 the tick-347 drain (3 torch.cuda.amp sites across 3 files moved to
 the torch.amp namespace).
 
