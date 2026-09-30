@@ -165,25 +165,25 @@ D) If CUDA is installed
 
 ## Answer Key
 
-| # | Answer |
-|---|--------|
-| 1 | A |
-| 2 | C |
-| 3 | B |
-| 4 | D |
-| 5 | A |
-| 6 | D |
-| 7 | B |
-| 8 | C |
-| 9 | C |
-| 10 | C |
-| 11 | B |
-| 12 | D |
-| 13 | C |
-| 14 | B |
-| 15 | A |
-| 16 | A |
-| 17 | D |
-| 18 | D |
-| 19 | B |
-| 20 | A |
+| Question | Answer | Explanation |
+|----------|--------|-------------|
+| 1 | A | Tensors are NumPy-like n-dimensional arrays with GPU support and autograd |
+| 2 | C | requires_grad=True tells autograd to track the tensor and compute its gradients |
+| 3 | B | backward() runs backpropagation and fills .grad; step() applies them later |
+| 4 | D | A DataLoader iterates a Dataset in batches, with shuffling and worker processes |
+| 5 | A | nn.Module is the base class for all neural network modules |
+| 6 | D | optimizer.step() applies the gradients to update the parameters |
+| 7 | B | zero_grad() clears the gradients accumulated by the previous backward pass |
+| 8 | C | model.train() enables training behavior - dropout active, batchnorm updating |
+| 9 | C | DataFrames belong to pandas; PyTorch ships nn, tensors, and autograd |
+| 10 | C | CUDA is NVIDIA's GPU compute stack that PyTorch targets for acceleration |
+| 11 | B | torch.save() pickles the state dict - the learned parameters |
+| 12 | D | view()/reshape() change a tensor's shape without copying the data |
+| 13 | C | A layer is a class inheriting from nn.Module that defines forward() |
+| 14 | B | .to(device) moves tensors and models between CPU and GPU |
+| 15 | A | CrossEntropyLoss applies log-softmax internally, so it wants raw logits |
+| 16 | A | forward() defines the computation flow from input to output |
+| 17 | D | no_grad() disables gradient tracking - the context for inference and evaluation |
+| 18 | D | MSELoss is the standard loss for regression |
+| 19 | B | Larger batches raise both memory footprint and per-step time |
+| 20 | A | is_available() checks whether a CUDA-capable GPU is present |

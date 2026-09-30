@@ -165,25 +165,25 @@ D) Randomized each step
 
 ## Answer Key
 
-| # | Answer |
-|---|--------|
-| 1 | B |
-| 2 | D |
-| 3 | B |
-| 4 | B |
-| 5 | C |
-| 6 | B |
-| 7 | B |
-| 8 | C |
-| 9 | B |
-| 10 | B |
-| 11 | A |
-| 12 | C |
-| 13 | B |
-| 14 | D |
-| 15 | C |
-| 16 | A |
-| 17 | B |
-| 18 | C |
-| 19 | D |
-| 20 | C |
+| Question | Answer | Explanation |
+|----------|--------|-------------|
+| 1 | B | Pretraining learns general representations from massive corpora; tasks come later |
+| 2 | D | Checkpointing, FSDP, and mixed precision each make multi-GPU training feasible |
+| 3 | B | FSDP = Fully Sharded Data Parallel |
+| 4 | B | Mixed precision keeps weights in fp16/bf16 - less memory, faster matmuls |
+| 5 | C | AdamW (decoupled weight decay) is the LLM pretraining standard |
+| 6 | B | Accumulation sums micro-batch gradients to simulate a larger batch under tight memory |
+| 7 | B | Schedules adjust the learning rate over training for better convergence |
+| 8 | C | LLM vocabularies are typically 50K-200K tokens (GPT-2 50K, Llama 32K-128K) |
+| 9 | B | The dominant cost of distributed training is communication between devices |
+| 10 | B | Warmup gradually raises the learning rate at the start of training |
+| 11 | A | GPT-style models train on next-token prediction (causal language modeling) |
+| 12 | C | Modern pretraining runs consume hundreds of billions to trillions of tokens |
+| 13 | B | BPE (and variants) is the standard tokenization algorithm |
+| 14 | D | Chinchilla-style scaling laws trade off model size, data, and compute |
+| 15 | C | Held-out perplexity is the pretraining health metric |
+| 16 | A | Decontamination keeps benchmarks out of training data so evals measure generalization |
+| 17 | B | Checkpointing trades extra recomputation for reduced activation memory |
+| 18 | C | Pipeline parallelism assigns different layers to different devices |
+| 19 | D | ZeRO shards optimizer states and gradients across GPUs, cutting per-GPU memory |
+| 20 | C | Standard schedules anneal the learning rate toward a small final value |
