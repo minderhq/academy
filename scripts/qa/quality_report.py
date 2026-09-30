@@ -672,6 +672,34 @@ stand today?" without running each tool by hand.
                       Born tick-488 born-at-zero after the
                       12-link drain across 1849 intra-doc
                       links
+    invisible_scan
+                      Invisible-character hygiene
+                      (IV-01, hard): no zero-width
+                      space/non-joiner/word joiner,
+                      soft hyphen, no-break space
+                      (plain and narrow), BOM/zero-
+                      width no-break space, bidi
+                      control or stray control
+                      character outside fences -
+                      paste-in characters that render
+                      as nothing but break exact-
+                      match search, heading slugs
+                      and copy-out of code samples.
+                      ZWJ/VS16 emoji joiners stay
+                      legal (tick-486 emoji class);
+                      in-fence is code content, out
+                      of scope; CRLF is a different
+                      class (repo is LF-normalized).
+                      Hazard classes are built with
+                      chr() so the script source
+                      stays pure ASCII (tick-488
+                      lesson). Born tick-489 born-at-
+                      zero, KW-03 prophylactic
+                      pattern: the birth census
+                      measured all 408 docs clean in
+                      and out of fences - the gate
+                      guards the platform era where
+                      contributors paste from the web
     glossary_scan
                       Glossary integrity (GS-01..03, hard):
                       GLOSSARY.md is the platform's
@@ -1149,6 +1177,7 @@ GATES = [
     ("diagram_scan.py", "diagram_scan", True),
     ("link_case_scan.py", "link_case_scan", True),
     ("link_text_scan.py", "link_text_scan", True),
+    ("invisible_scan.py", "invisible_scan", True),
     ("glossary_scan.py", "glossary_scan", True),
     ("emphasis_scan.py", "emphasis_scan", True),
     ("whitespace_scan.py", "whitespace_scan", True),
