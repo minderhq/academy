@@ -3,7 +3,7 @@ Document ID: PROJECT-001
 Title: "CAPSTONE PROJECT-001: Build Your AI Assistant"
 Last Updated: 2026-09-30
 Status: Complete
-Difficulty: Intermediate
+Difficulty: Advanced
 Tags: ['project', 'rag', 'llm']
 ---
 
@@ -23,7 +23,7 @@ Build a fully-functional AI assistant that can:
 - Scale to production-ready deployment (LLMOps)
 
 **Estimated Time:** 20-30 hours
-**Difficulty:** ⭐⭐⭐⭐ Advanced
+**Difficulty:** ⭐⭐⭐ Advanced
 
 ---
 

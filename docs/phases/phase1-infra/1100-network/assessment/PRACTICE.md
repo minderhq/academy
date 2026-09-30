@@ -1,7 +1,7 @@
 ---
 Document ID: 1100-PRACTICE
 Title: "Module 1100: Network Infrastructure Practice"
-Last Updated: 2026-09-24
+Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 1 hours
@@ -14,7 +14,7 @@ Tags: ['assessment', 'practice', 'networking', 'wan']
 
 **Module:** Network Infrastructure for AI
 **Document ID:** 1100
-**Difficulty:** Beginner
+**Difficulty:** ⭐ Beginner
 **Time:** 2-3 hours
 
 ---

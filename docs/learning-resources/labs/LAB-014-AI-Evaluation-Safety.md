@@ -3,7 +3,7 @@ Document ID: LAB-014
 Title: "LAB-014: AI Evaluation & Safety"
 Last Updated: 2026-09-30
 Status: Complete
-Difficulty: Intermediate
+Difficulty: Advanced
 Tags: ['lab', 'evaluation', 'security', 'hands-on']
 ---
 

@@ -320,7 +320,7 @@ Tags: ['tag-one', 'tag-two']
 [Brief description of what this module covers]
 
 **Duration:** X hours
-**Difficulty:** Beginner/Intermediate/Advanced
+**Difficulty:** ⭐ Beginner
 **Prerequisites:** [List prerequisites]
 
 ---

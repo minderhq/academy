@@ -3,7 +3,7 @@ Document ID: SOLUTION-LAB-004
 Title: "SOLUTION-LAB-004: ReAct Agent"
 Last Updated: 2026-09-30
 Status: Complete
-Difficulty: Intermediate
+Difficulty: Advanced
 Tags: ['solution', 'react', 'agents']
 ---
 
@@ -78,4 +78,4 @@ result = agent.run("What is 25 * 34 + 10?")
 
 ---
 
-**Difficulty:** ⭐⭐⭐⭐
+**Difficulty:** ⭐⭐⭐ Advanced

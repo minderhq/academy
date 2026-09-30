@@ -23,7 +23,7 @@ This document provides hands-on practice exercises for Phase 6: Data Nexus (RAG 
 
 ## Exercise 1: Vector Similarity from Scratch
 
-**Difficulty:** Beginner
+**Difficulty:** ⭐⭐⭐ Advanced
 **Time:** 30 minutes
 **Module:** 6100 - Vector Architectures
 

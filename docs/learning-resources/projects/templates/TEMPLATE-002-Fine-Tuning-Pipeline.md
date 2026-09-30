@@ -3,7 +3,7 @@ Document ID: TEMPLATE-002-Fine-Tuning-Pipeline
 Title: "PROJECT TEMPLATE: Fine-tuning Pipeline"
 Last Updated: 2026-09-30
 Status: Complete
-Difficulty: Beginner
+Difficulty: Intermediate
 Tags: ['template', 'finetuning', 'lora']
 ---
 
@@ -93,6 +93,6 @@ python scripts/evaluate.py --checkpoint checkpoints/best_model/
 
 ---
 
-**Difficulty:** Intermediate
+**Difficulty:** ⭐⭐ Intermediate
 **Estimated Time:** 4-8 hours
 **Skills:** PyTorch, Transformers, PEFT

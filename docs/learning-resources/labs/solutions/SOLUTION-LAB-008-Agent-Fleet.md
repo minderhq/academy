@@ -3,7 +3,7 @@ Document ID: SOLUTION-LAB-008
 Title: "SOLUTION-LAB-008: Agent Fleet"
 Last Updated: 2026-09-30
 Status: Complete
-Difficulty: Intermediate
+Difficulty: Advanced
 Tags: ['solution', 'multi-agent', 'agents']
 ---
 
@@ -870,5 +870,5 @@ To extend this solution:
 
 ---
 
-**Difficulty:** ⭐⭐⭐⭐⭐
+**Difficulty:** ⭐⭐⭐ Advanced
 **Lines of Code:** ~700

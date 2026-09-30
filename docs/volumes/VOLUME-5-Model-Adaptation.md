@@ -3,7 +3,7 @@ Document ID: VOLUME-5
 Title: "Volume 5: Model Adaptation"
 Last Updated: 2026-09-30
 Status: Complete
-Difficulty: Intermediate
+Difficulty: Advanced
 Tags: ['volume', 'finetuning', 'lora', 'dpo']
 ---
 

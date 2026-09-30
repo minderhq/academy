@@ -3,7 +3,7 @@ Document ID: LAB-012
 Title: "LAB-012: Audio AI"
 Last Updated: 2026-09-30
 Status: Complete
-Difficulty: Intermediate
+Difficulty: Advanced
 Tags: ['lab', 'audio', 'whisper', 'hands-on']
 ---
 

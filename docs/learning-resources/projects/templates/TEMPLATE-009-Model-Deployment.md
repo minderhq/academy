@@ -3,7 +3,7 @@ Document ID: TEMPLATE-009-Model-Deployment
 Title: "PROJECT TEMPLATE: Model Deployment"
 Last Updated: 2026-09-30
 Status: Complete
-Difficulty: Beginner
+Difficulty: Advanced
 Tags: ['template', 'deployment', 'serving']
 ---
 
@@ -247,6 +247,6 @@ spec:
 
 ---
 
-**Difficulty:** Advanced
+**Difficulty:** ⭐⭐⭐ Advanced
 **Estimated Time:** 10-20 hours
 **Skills:** Docker, Kubernetes, GPU serving, Monitoring

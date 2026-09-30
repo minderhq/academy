@@ -3,7 +3,7 @@ Document ID: VOLUME-6
 Title: "Volume 6: Data Nexus - RAG & Memory"
 Last Updated: 2026-09-30
 Status: Complete
-Difficulty: Intermediate
+Difficulty: Advanced
 Tags: ['volume', 'rag', 'vector-db', 'graphrag']
 ---
 

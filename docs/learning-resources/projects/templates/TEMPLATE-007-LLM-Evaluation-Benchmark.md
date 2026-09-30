@@ -3,7 +3,7 @@ Document ID: TEMPLATE-007-LLM-Evaluation-Benchmark
 Title: "PROJECT TEMPLATE: LLM Evaluation Benchmark"
 Last Updated: 2026-09-30
 Status: Complete
-Difficulty: Beginner
+Difficulty: Intermediate
 Tags: ['template', 'evaluation', 'benchmarks']
 ---
 
@@ -178,6 +178,6 @@ comparison.print_leaderboard(leaderboard)
 
 ---
 
-**Difficulty:** Intermediate
+**Difficulty:** ⭐⭐ Intermediate
 **Estimated Time:** 6-10 hours
 **Skills:** Evaluation, Metrics, Benchmarking

@@ -3,7 +3,7 @@ Document ID: TEMPLATE-005-Model-Quantization
 Title: "PROJECT TEMPLATE: Model Quantization"
 Last Updated: 2026-09-30
 Status: Complete
-Difficulty: Beginner
+Difficulty: Intermediate
 Tags: ['template', 'quantization', 'gguf']
 ---
 
@@ -130,6 +130,6 @@ python src/converter.py \
 
 ---
 
-**Difficulty:** Intermediate
+**Difficulty:** ⭐⭐ Intermediate
 **Estimated Time:** 4-8 hours
 **Skills:** Quantization, Benchmarking, Model optimization

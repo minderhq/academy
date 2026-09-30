@@ -3,7 +3,7 @@ Document ID: TEMPLATE-011-Model-Merging-MoE
 Title: "PROJECT TEMPLATE: Model Merging & MoE"
 Last Updated: 2026-09-30
 Status: Complete
-Difficulty: Beginner
+Difficulty: Advanced
 Tags: ['template', 'transformers', 'optimization']
 ---
 
@@ -239,6 +239,6 @@ plot_expert_usage(
 
 ---
 
-**Difficulty:** Advanced
+**Difficulty:** ⭐⭐⭐ Advanced
 **Estimated Time:** 10-15 hours
 **Skills:** Model merging, MoE, Pruning

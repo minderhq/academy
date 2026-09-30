@@ -3,7 +3,7 @@ Document ID: LAB-013
 Title: "LAB-013: Advanced Function Calling"
 Last Updated: 2026-09-30
 Status: Complete
-Difficulty: Intermediate
+Difficulty: Advanced
 Tags: ['lab', 'function-calling', 'agents', 'hands-on']
 ---
 
@@ -16,7 +16,7 @@ Tags: ['lab', 'function-calling', 'agents', 'hands-on']
 ## 📋 Lab Overview
 
 **Time:** 5-6 hours
-**Difficulty:** ⭐⭐⭐⭐ Expert
+**Difficulty:** ⭐⭐⭐ Advanced
 **Prerequisites:**
 - LAB-004: ReAct Agent
 - LAB-008: Agent Fleet

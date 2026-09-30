@@ -3,7 +3,7 @@ Document ID: VOLUME-7
 Title: "Volume 7: Production Mastery"
 Last Updated: 2026-09-30
 Status: Complete
-Difficulty: Intermediate
+Difficulty: Advanced
 Tags: ['volume', 'agents', 'production', 'multi-agent']
 ---
 
@@ -45,7 +45,7 @@ Tags: ['volume', 'agents', 'production', 'multi-agent']
 
 ## 📚 Volume Overview
 
-**Difficulty:** ⭐⭐⭐⭐ Expert
+**Difficulty:** ⭐⭐⭐ Advanced
 **Time:** 5-6 weeks (part-time)
 **Prerequisites:** Volume 6 (RAG & Memory) or equivalent experience
 

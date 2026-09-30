@@ -3,7 +3,7 @@ Document ID: TEMPLATE-004-Agent-Framework
 Title: "PROJECT TEMPLATE: Agent Framework"
 Last Updated: 2026-09-30
 Status: Complete
-Difficulty: Beginner
+Difficulty: Advanced
 Tags: ['template', 'agents', 'langchain']
 ---
 
@@ -126,6 +126,6 @@ result = orchestrator.delegate("Write an article about AI")
 
 ---
 
-**Difficulty:** Advanced
+**Difficulty:** ⭐⭐⭐ Advanced
 **Estimated Time:** 10-15 hours
 **Skills:** Agents, Tools, Memory, Orchestration

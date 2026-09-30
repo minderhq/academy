@@ -1,9 +1,9 @@
 ---
 Document ID: 1100-NETWORK-README
 Title: "1100: Network Fundamentals for LLM Infrastructure"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-30
 Status: Complete
-Difficulty: Beginner
+Difficulty: Intermediate
 Tags: ['module', 'networking', 'wan']
 ---
 
@@ -785,6 +785,6 @@ Production Ready:
 ---
 
 **Module Duration:** 6-8 hours
-**Difficulty:** Beginner-Intermediate
+**Difficulty:** ⭐⭐ Intermediate
 
 **Ready to proceed?** Continue to [1101: Internet Uplink & Modem Configuration](./1101-Fiber-GPON-Modem.md)

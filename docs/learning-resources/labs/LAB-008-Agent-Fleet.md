@@ -3,7 +3,7 @@ Document ID: LAB-008
 Title: "LAB-008: Multi-Agent Fleet"
 Last Updated: 2026-09-30
 Status: Complete
-Difficulty: Intermediate
+Difficulty: Advanced
 Tags: ['lab', 'multi-agent', 'agents', 'hands-on']
 ---
 
@@ -12,7 +12,7 @@ Tags: ['lab', 'multi-agent', 'agents', 'hands-on']
 **Build a fleet of specialized AI agents working collaboratively**
 
 **Time:** 6-8 hours
-**Difficulty:** ⭐⭐⭐⭐ Expert
+**Difficulty:** ⭐⭐⭐ Advanced
 **Prerequisites:**
 - LAB-004: ReAct Agent
 - LAB-007: Production RAG

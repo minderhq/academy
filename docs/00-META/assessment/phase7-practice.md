@@ -23,7 +23,7 @@ This document provides hands-on practice exercises for Phase 7: Agentic Systems.
 
 ## Exercise 1: ReAct Loop from Scratch
 
-**Difficulty:** Beginner
+**Difficulty:** ⭐⭐⭐ Advanced
 **Time:** 45 minutes
 **Module:** 7100 - Agent Architecture
 

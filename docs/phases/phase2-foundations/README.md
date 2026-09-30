@@ -1,9 +1,9 @@
 ---
 Document ID: PHASE2-FOUNDATIONS-README
 Title: "Phase 2: Cognitive Science & Frameworks [2000]"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
-Difficulty: Beginner
+Difficulty: Intermediate
 Tags: ['phase', 'frameworks', 'architecture', 'api-design']
 ---
 
@@ -806,6 +806,6 @@ l2.backward()
 ---
 
 **Module Duration:** 91-98 hours (60.5 reading + 30.5-37.5 practice)
-**Difficulty:** Intermediate
+**Difficulty:** ⭐⭐ Intermediate
 
 **Ready to master AI foundations?** Start with [2101: Tensor Algebra](./2100-calculus/2101-Tensor-Algebra.md) or [2102: Backpropagation](./2100-calculus/2102-Backpropagation-and-Derivatives.md)

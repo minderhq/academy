@@ -3,7 +3,7 @@ Document ID: PROJECT-007
 Title: "CAPSTONE PROJECT-007: Deploy Production AI System"
 Last Updated: 2026-09-30
 Status: Complete
-Difficulty: Intermediate
+Difficulty: Advanced
 Tags: ['project', 'production', 'deployment', 'agents']
 ---
 
@@ -24,7 +24,7 @@ Deploy a complete AI system to production with:
 - Security and safety guardrails
 
 **Estimated Time:** 25-30 hours
-**Difficulty:** ⭐⭐⭐⭐ Expert
+**Difficulty:** ⭐⭐⭐ Advanced
 
 ---
 

@@ -544,6 +544,33 @@ stand today?" without running each tool by hand.
                       the meta docs' phase2-revamp trail (10/146
                       tagged) until a tag-all-or-none standard is
                       decided
+    front_matter_scan
+                      Front-matter presence + standard fields
+                      (FS-01/02, hard): closes the coverage
+                      gates' blind spot - a doc committed
+                      WITHOUT front matter is invisible to
+                      TG/TS/TV (fm_tags None -> skip), so
+                      presence itself is the contract. FS-01
+                      closed FM block in the first 40 lines,
+                      FS-02 all six standard fields (Document
+                      ID / Title / Last Updated / Status /
+                      Difficulty / Tags) - field-NAME variants
+                      pass the value gates of the canonical
+                      name and die here. Born tick-457 at
+                      408/408, KW-03 pattern
+    difficulty_badge_scan
+                      Badge parity (DB-01, hard): where a doc
+                      renders a `**Difficulty:**` body badge it
+                      must mirror the FM Difficulty exactly -
+                      canonical 1/2/3 stars + the FM band; no
+                      badge is fine (FM is the data). Born
+                      tick-457: 87 sites drained across five
+                      rot classes (dead-enum 4-5 star 'Expert'
+                      badges from the retired level, band
+                      mismatches where mass-added FM defaults
+                      contradicted badge intent, starless
+                      badges, phase-hub range badges,
+                      'Absolute Beginner')
     difficulty_distribution_scan
                       Difficulty as a sequence dimension (DX-01,
                       report-only census): per-phase B/I/A
@@ -823,6 +850,8 @@ GATES = [
     ("render_hygiene_check.py", "render_hygiene_check", True),
     ("status_vocab_check.py", "status_vocab_check", True),
     ("tags_coverage_check.py", "tags_coverage_check", True),
+    ("front_matter_scan.py", "front_matter_scan", True),
+    ("difficulty_badge_scan.py", "difficulty_badge_scan", True),
     ("difficulty_census.py", "difficulty_census", True),
     ("lesson_anatomy_census.py", "lesson_anatomy_census", True),
     ("closure_census.py", "closure_census", True),

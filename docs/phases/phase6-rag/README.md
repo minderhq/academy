@@ -1,9 +1,9 @@
 ---
 Document ID: PHASE6-RAG-README
 Title: "Phase 6: Data Nexus - RAG, CAG & External Memory [6000]"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
-Difficulty: Beginner
+Difficulty: Intermediate
 Tags: ['phase', 'rag', 'retrieval', 'hybrid-search']
 ---
 
@@ -805,6 +805,6 @@ After completing this phase:
 ---
 
 **Module Duration:** 78 hours (52 reading + 26 practice)
-**Difficulty:** Intermediate
+**Difficulty:** ⭐⭐ Intermediate
 
 **Ready to augment LLMs with your data?** Start with [6101: RAG Foundations](./6100-vector/6101-HNSW-Indexing.md) or [6201: Hybrid Search](./6200-retrieval/6201-Hybrid-Search.md)

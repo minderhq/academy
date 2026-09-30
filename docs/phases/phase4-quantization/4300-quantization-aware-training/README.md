@@ -1,9 +1,9 @@
 ---
 Document ID: 4300-QUANTIZATION-AWARE-TRAINING-README
 Title: "4300: Quantization Aware Training (QAT)"
-Last Updated: 2026-09-29
+Last Updated: 2026-09-30
 Status: Complete
-Difficulty: Beginner
+Difficulty: Advanced
 Tags: ['module', 'quantization', 'qat']
 ---
 
@@ -76,4 +76,4 @@ After this module, you will be able to:
 ---
 
 **Module Duration:** 8-10 hours
-**Difficulty:** Intermediate-Advanced
+**Difficulty:** ⭐⭐⭐ Advanced

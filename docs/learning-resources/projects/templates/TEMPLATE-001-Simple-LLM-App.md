@@ -76,6 +76,6 @@ Edit `config.yaml` to customize:
 
 ---
 
-**Difficulty:** Beginner
+**Difficulty:** ⭐ Beginner
 **Estimated Time:** 2-4 hours
 **Skills:** Python, FastAPI, Transformers

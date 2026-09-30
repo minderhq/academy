@@ -3,7 +3,7 @@ Document ID: SOLUTION-LAB-003
 Title: "SOLUTION-LAB-003: LoRA Fine-Tuning"
 Last Updated: 2026-09-30
 Status: Complete
-Difficulty: Intermediate
+Difficulty: Advanced
 Tags: ['solution', 'lora', 'qlora']
 ---
 
@@ -644,5 +644,5 @@ def compare_before_after(base_model, lora_model, tokenizer, test_prompts):
 
 ---
 
-**Difficulty:** ⭐⭐⭐⭐
+**Difficulty:** ⭐⭐⭐ Advanced
 **Lines of Code:** ~450

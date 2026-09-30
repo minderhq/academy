@@ -3,7 +3,7 @@ Document ID: TEMPLATE-006-Synthetic-Data-Generator
 Title: "PROJECT TEMPLATE: Synthetic Data Generator"
 Last Updated: 2026-09-30
 Status: Complete
-Difficulty: Beginner
+Difficulty: Intermediate
 Tags: ['template', 'synthetic-data', 'distillation']
 ---
 
@@ -174,6 +174,6 @@ Variables: `{domain}`, `{topic}`, `{difficulty}`, etc.
 
 ---
 
-**Difficulty:** Intermediate
+**Difficulty:** ⭐⭐ Intermediate
 **Estimated Time:** 6-10 hours
 **Skills:** Data generation, LLM prompting, Quality filtering

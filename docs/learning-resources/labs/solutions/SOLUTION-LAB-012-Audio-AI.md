@@ -3,7 +3,7 @@ Document ID: SOLUTION-LAB-012
 Title: "SOLUTION-LAB-012: Audio AI"
 Last Updated: 2026-09-30
 Status: Complete
-Difficulty: Intermediate
+Difficulty: Advanced
 Tags: ['solution', 'audio', 'whisper']
 ---
 
@@ -886,5 +886,5 @@ if __name__ == "__main__":
 
 ---
 
-**Difficulty:** ⭐⭐⭐⭐
+**Difficulty:** ⭐⭐⭐ Advanced
 **Lines of Code:** ~700

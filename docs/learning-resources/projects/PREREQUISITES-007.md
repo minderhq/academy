@@ -3,7 +3,7 @@ Document ID: PREREQUISITES-007
 Title: "PROJECT-007: Prerequisites & Setup Guide"
 Last Updated: 2026-09-30
 Status: Complete
-Difficulty: Intermediate
+Difficulty: Advanced
 Tags: ['prerequisites', 'project', 'setup']
 ---
 

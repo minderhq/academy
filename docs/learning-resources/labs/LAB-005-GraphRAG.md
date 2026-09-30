@@ -3,7 +3,7 @@ Document ID: LAB-005
 Title: "LAB-005: GraphRAG Implementation with Neo4j & Qdrant"
 Last Updated: 2026-09-30
 Status: Complete
-Difficulty: Intermediate
+Difficulty: Advanced
 Tags: ['lab', 'graphrag', 'neo4j', 'qdrant', 'hands-on']
 ---
 
@@ -11,7 +11,7 @@ Tags: ['lab', 'graphrag', 'neo4j', 'qdrant', 'hands-on']
 
 **Prerequisites:** TUTORIAL-001 (Hello LLM), TUTORIAL-002 (Docker Essentials), LAB-001 (Docker & LLM), LAB-002 (RAG Implementation)
 **Time:** 5 hours
-**Difficulty:** ⭐⭐⭐⭐ Advanced
+**Difficulty:** ⭐⭐⭐ Advanced
 
 ---
 

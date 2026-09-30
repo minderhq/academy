@@ -3,7 +3,7 @@ Document ID: PROJECT-006
 Title: "CAPSTONE PROJECT-006: Build Production RAG System"
 Last Updated: 2026-09-30
 Status: Complete
-Difficulty: Intermediate
+Difficulty: Advanced
 Tags: ['project', 'rag', 'production', 'qdrant']
 ---
 

@@ -3,7 +3,7 @@ Document ID: TUTORIAL-001
 Title: "TUTORIAL-001: Hello LLM! - Your First AI Model"
 Last Updated: 2026-09-30
 Status: Complete
-Difficulty: Intermediate
+Difficulty: Beginner
 Tags: ['tutorial', 'llm', 'ollama', 'hands-on']
 ---
 

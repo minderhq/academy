@@ -3,7 +3,7 @@ Document ID: TEMPLATE-008-Multi-Modal-Application
 Title: "PROJECT TEMPLATE: Multi-Modal Application"
 Last Updated: 2026-09-30
 Status: Complete
-Difficulty: Beginner
+Difficulty: Advanced
 Tags: ['template', 'multimodal', 'vision']
 ---
 
@@ -179,6 +179,6 @@ response = rag.query(
 
 ---
 
-**Difficulty:** Advanced
+**Difficulty:** ⭐⭐⭐ Advanced
 **Estimated Time:** 10-15 hours
 **Skills:** Multi-modal models, Computer vision, Audio processing

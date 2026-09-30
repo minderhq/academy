@@ -3,7 +3,7 @@ Document ID: SOLUTION-LAB-013
 Title: "SOLUTION-LAB-013: Advanced Function Calling"
 Last Updated: 2026-09-30
 Status: Complete
-Difficulty: Intermediate
+Difficulty: Advanced
 Tags: ['solution', 'function-calling', 'agents']
 ---
 
@@ -76,4 +76,4 @@ class FunctionCallingAgent:
 
 ---
 
-**Difficulty:** ⭐⭐⭐⭐⭐
+**Difficulty:** ⭐⭐⭐ Advanced

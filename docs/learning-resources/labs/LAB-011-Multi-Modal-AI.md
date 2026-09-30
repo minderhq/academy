@@ -3,7 +3,7 @@ Document ID: LAB-011
 Title: "LAB-011: Multi-Modal AI"
 Last Updated: 2026-09-30
 Status: Complete
-Difficulty: Intermediate
+Difficulty: Advanced
 Tags: ['lab', 'multimodal', 'vision', 'hands-on']
 ---
 
@@ -16,7 +16,7 @@ Tags: ['lab', 'multimodal', 'vision', 'hands-on']
 ## 📋 Lab Overview
 
 **Time:** 6-8 hours
-**Difficulty:** ⭐⭐⭐⭐ Expert
+**Difficulty:** ⭐⭐⭐ Advanced
 **Prerequisites:**
 - LAB-002: RAG Implementation
 - LAB-004: ReAct Agent

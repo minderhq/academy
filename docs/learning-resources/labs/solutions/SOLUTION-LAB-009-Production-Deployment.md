@@ -3,7 +3,7 @@ Document ID: SOLUTION-LAB-009
 Title: "SOLUTION-LAB-009: Production Deployment"
 Last Updated: 2026-09-30
 Status: Complete
-Difficulty: Intermediate
+Difficulty: Advanced
 Tags: ['solution', 'production', 'deployment']
 ---
 
@@ -67,4 +67,4 @@ echo "Deployment successful!"
 
 ---
 
-**Difficulty:** ⭐⭐⭐⭐
+**Difficulty:** ⭐⭐⭐ Advanced

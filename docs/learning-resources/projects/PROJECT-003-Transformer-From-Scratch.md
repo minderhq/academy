@@ -3,7 +3,7 @@ Document ID: PROJECT-003
 Title: "CAPSTONE PROJECT-003: Transformer from Scratch"
 Last Updated: 2026-09-30
 Status: Complete
-Difficulty: Intermediate
+Difficulty: Advanced
 Tags: ['project', 'transformers', 'attention', 'pytorch']
 ---
 

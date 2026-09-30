@@ -3,7 +3,7 @@ Document ID: TUTORIAL-002
 Title: "TUTORIAL-002: Docker Essentials for AI"
 Last Updated: 2026-09-30
 Status: Complete
-Difficulty: Intermediate
+Difficulty: Beginner
 Tags: ['tutorial', 'docker', 'hands-on']
 ---
 

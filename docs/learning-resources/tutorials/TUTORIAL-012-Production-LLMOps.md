@@ -30,7 +30,7 @@ Tags: ['tutorial', 'llmops', 'production']
 This tutorial covers production-grade LLMOps including deployment, scaling, monitoring, and maintenance of LLM systems.
 
 **Duration:** 5 hours
-**Difficulty:** Advanced
+**Difficulty:** ⭐⭐⭐ Advanced
 
 **Prerequisites:**
 - **Required:** TUTORIAL-005 (Production Deployment), TUTORIAL-004 (Monitoring), LAB-009 (Production Deployment)

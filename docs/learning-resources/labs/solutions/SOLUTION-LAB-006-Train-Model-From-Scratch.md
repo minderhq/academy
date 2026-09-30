@@ -3,7 +3,7 @@ Document ID: SOLUTION-LAB-006
 Title: "SOLUTION-LAB-006: Train Model From Scratch"
 Last Updated: 2026-09-30
 Status: Complete
-Difficulty: Intermediate
+Difficulty: Advanced
 Tags: ['solution', 'pytorch', 'pretraining']
 ---
 
@@ -825,5 +825,5 @@ def train_with_checkpointing(model, train_loader, test_loader, epochs=20):
 
 ---
 
-**Difficulty:** ⭐⭐⭐
+**Difficulty:** ⭐⭐⭐ Advanced
 **Lines of Code:** ~550

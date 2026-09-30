@@ -3,7 +3,7 @@ Document ID: TEMPLATE-010-Chatbot-UI
 Title: "PROJECT TEMPLATE: Chatbot UI"
 Last Updated: 2026-09-30
 Status: Complete
-Difficulty: Beginner
+Difficulty: Intermediate
 Tags: ['template', 'llm', 'inference']
 ---
 
@@ -264,6 +264,6 @@ services:
 
 ---
 
-**Difficulty:** Intermediate
+**Difficulty:** ⭐⭐ Intermediate
 **Estimated Time:** 8-12 hours
 **Skills:** React, FastAPI, WebSocket, Docker

@@ -3,7 +3,7 @@ Document ID: LAB-009
 Title: "LAB-009: Production Deployment"
 Last Updated: 2026-09-30
 Status: Complete
-Difficulty: Intermediate
+Difficulty: Advanced
 Tags: ['lab', 'production', 'deployment', 'hands-on']
 ---
 
@@ -16,7 +16,7 @@ Tags: ['lab', 'production', 'deployment', 'hands-on']
 ## 📋 Lab Overview
 
 **Time:** 8-10 hours
-**Difficulty:** ⭐⭐⭐⭐ Expert
+**Difficulty:** ⭐⭐⭐ Advanced
 **Prerequisites:**
 - LAB-001: Docker & LLM
 - LAB-002: RAG Implementation

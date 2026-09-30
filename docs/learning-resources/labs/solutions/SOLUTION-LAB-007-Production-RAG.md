@@ -3,7 +3,7 @@ Document ID: SOLUTION-LAB-007
 Title: "SOLUTION-LAB-007: Production RAG"
 Last Updated: 2026-09-30
 Status: Complete
-Difficulty: Intermediate
+Difficulty: Advanced
 Tags: ['solution', 'rag', 'production']
 ---
 
@@ -83,4 +83,4 @@ CMD ["uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8000"]
 
 ---
 
-**Difficulty:** ⭐⭐⭐⭐
+**Difficulty:** ⭐⭐⭐ Advanced

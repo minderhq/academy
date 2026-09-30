@@ -3,7 +3,7 @@ Document ID: VOLUME-4
 Title: "Volume 4: Quantization & Optimization"
 Last Updated: 2026-09-30
 Status: Complete
-Difficulty: Intermediate
+Difficulty: Advanced
 Tags: ['volume', 'quantization', 'gguf', 'kv-cache']
 ---
 

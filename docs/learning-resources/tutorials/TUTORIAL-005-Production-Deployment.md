@@ -3,7 +3,7 @@ Document ID: TUTORIAL-005
 Title: "TUTORIAL-005: Production Deployment with CI/CD"
 Last Updated: 2026-09-30
 Status: Complete
-Difficulty: Intermediate
+Difficulty: Advanced
 Tags: ['tutorial', 'deployment', 'ci-cd']
 ---
 

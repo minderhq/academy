@@ -1,9 +1,9 @@
 ---
 Document ID: PHASE3-TRANSFORMERS-README
 Title: "Phase 3: Transformer Physics & LLM Internals [3000]"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-30
 Status: Complete
-Difficulty: Beginner
+Difficulty: Advanced
 Tags: ['phase', 'transformers', 'embeddings', 'rope']
 ---
 
@@ -778,6 +778,6 @@ After completing this phase:
 ---
 
 **Module Duration:** 54-56 hours (39 reading + 15-17 practice)
-**Difficulty:** Intermediate to Advanced
+**Difficulty:** ⭐⭐⭐ Advanced
 
 **Ready to understand transformers?** Start with [3101: Self-Attention Deep Dive](./3100-attention/3101-Self-Attention-DeepDive.md) or [3102: Flash Attention](./3100-attention/3102-Flash-Attention.md)

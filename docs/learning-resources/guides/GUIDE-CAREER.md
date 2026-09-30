@@ -139,7 +139,7 @@ After completing PROJECT-OMEGA, build **3 portfolio projects**:
 - [x] README with architecture diagram
 
 **Time:** 20-30 hours
-**Difficulty:** ⭐ ⭐
+**Difficulty:** ⭐⭐ Intermediate
 
 **Bonus Points:**
 - Add citations (show source chunks)

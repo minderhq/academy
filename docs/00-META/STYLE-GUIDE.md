@@ -55,7 +55,7 @@ Tags: ['tag-one', 'tag-two']
 
 **Last Updated:** YYYY-MM-DD
 **Reading Time:** X minutes
-**Difficulty:** ⭐ Beginner/⭐⭐ Intermediate/⭐⭐⭐ Advanced
+**Difficulty:** ⭐ Beginner
 
 ---
 

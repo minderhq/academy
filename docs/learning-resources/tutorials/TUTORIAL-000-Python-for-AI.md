@@ -9,7 +9,7 @@ Tags: ['tutorial', 'math', 'tensors']
 
 # TUTORIAL-000: Python for AI (Complete Beginner)
 
-**Difficulty:** ⭐ Absolute Beginner
+**Difficulty:** ⭐ Beginner
 **Time:** 15-20 hours (spread over 1-2 weeks)
 **Prerequisites:** None! This is where you start.
 

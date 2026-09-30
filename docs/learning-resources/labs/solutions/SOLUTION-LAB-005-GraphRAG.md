@@ -3,7 +3,7 @@ Document ID: SOLUTION-LAB-005
 Title: "SOLUTION-LAB-005: GraphRAG"
 Last Updated: 2026-09-30
 Status: Complete
-Difficulty: Intermediate
+Difficulty: Advanced
 Tags: ['solution', 'graphrag', 'neo4j']
 ---
 
@@ -476,5 +476,5 @@ When running this solution:
 
 ---
 
-**Difficulty:** ⭐⭐⭐⭐
+**Difficulty:** ⭐⭐⭐ Advanced
 **Lines of Code:** ~450

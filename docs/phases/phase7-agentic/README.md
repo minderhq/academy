@@ -1,9 +1,9 @@
 ---
 Document ID: PHASE7-AGENTIC-README
 Title: "Phase 7: Agentic Cognition & Autonomy [7000]"
-Last Updated: 2026-09-28
+Last Updated: 2026-09-30
 Status: Complete
-Difficulty: Beginner
+Difficulty: Advanced
 Tags: ['phase', 'agents', 'security', 'prompt-injection']
 ---
 
@@ -1107,6 +1107,6 @@ Example:
 ---
 
 **Module Duration:** 65 hours (43 reading + 22 practice)
-**Difficulty:** Advanced
+**Difficulty:** ⭐⭐⭐ Advanced
 
 **Ready to build autonomous agents?** Start with [7101: Agent Architecture](./7100-architecture/7101-ReAct-Loop-System.md) or [7201: Tool Calling](./7200-tools/7201-Tool-Calling.md)
