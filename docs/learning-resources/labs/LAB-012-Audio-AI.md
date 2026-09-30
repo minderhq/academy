@@ -14,7 +14,7 @@ Tags: ['lab', 'audio', 'whisper', 'hands-on']
 
 ---
 
-## 📋 Lab Overview
+## Lab Overview
 
 **Time:** 4-5 hours
 **Difficulty:** ⭐⭐⭐ Advanced
@@ -33,7 +33,7 @@ Tags: ['lab', 'audio', 'whisper', 'hands-on']
 
 ---
 
-## 🎯 What You'll Build
+## What You'll Build
 
 By the end of this lab, you will have:
 
@@ -45,7 +45,7 @@ By the end of this lab, you will have:
 
 ---
 
-## 🎤 Part 1: Whisper Speech Recognition (90 minutes)
+## Part 1: Whisper Speech Recognition (90 minutes)
 
 ### Understanding Whisper
 
@@ -568,7 +568,7 @@ if __name__ == "__main__":
 
 ---
 
-## 🔊 Part 2: Text-to-Speech Synthesis (90 minutes)
+## Part 2: Text-to-Speech Synthesis (90 minutes)
 
 ### Building Voice Synthesis
 
@@ -829,7 +829,7 @@ if __name__ == "__main__":
 
 ---
 
-## 🤖 Part 3: Voice Assistant (90 minutes)
+## Part 3: Voice Assistant (90 minutes)
 
 ### Building Conversational Voice AI
 
@@ -1161,7 +1161,7 @@ if __name__ == "__main__":
 
 ---
 
-## 📊 Part 4: Audio Analysis (60 minutes)
+## Part 4: Audio Analysis (60 minutes)
 
 ### Extracting Insights from Audio
 
@@ -1369,7 +1369,7 @@ if __name__ == "__main__":
 
 ---
 
-## 🐳 Part 5: Production Deployment (60 minutes)
+## Part 5: Production Deployment (60 minutes)
 
 ### Dockerizing Voice System
 
@@ -1484,7 +1484,7 @@ if __name__ == "__main__":
 
 ---
 
-## ✅ Lab Completion Checklist
+## Lab Completion Checklist
 
 - [ ] Part 1: Whisper speech recognition
 - [ ] Part 2: Text-to-speech synthesis
@@ -1494,7 +1494,7 @@ if __name__ == "__main__":
 
 ---
 
-## 🎓 Summary
+## Summary
 
 In this lab, you learned:
 
@@ -1506,7 +1506,7 @@ In this lab, you learned:
 
 ---
 
-## 🚀 Next Steps
+## Next Steps
 
 1. **LAB-013: Advanced Function Calling** - Enhance your assistant
 2. **LAB-014: AI Evaluation** - Test your voice system

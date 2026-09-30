@@ -29,7 +29,7 @@ Tags: ['lab', 'dpo', 'alignment', 'rlhf', 'preference-learning', 'hands-on']
 - [Part 3: DPO Training (120 minutes)](#part-3-dpo-training-120-minutes)
 - [Part 4: Evaluate Alignment (60 minutes)](#part-4-evaluate-alignment-60-minutes)
 - [Part 5: Analyze Results (30 minutes)](#part-5-analyze-results-30-minutes)
-- [Completion Checklist](#completion-checklist)
+- [Lab Completion Checklist](#lab-completion-checklist)
 - [Key Learnings](#key-learnings)
 - [You're Now Ready For](#youre-now-ready-for)
 
@@ -832,7 +832,7 @@ Read the two ends. At beta = 0.01 the policy moved **62 log-prob nats** away fro
 
 ---
 
-## Completion Checklist
+## Lab Completion Checklist
 
 Use this checklist to track your progress:
 

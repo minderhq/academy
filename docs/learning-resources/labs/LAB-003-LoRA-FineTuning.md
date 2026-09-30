@@ -194,7 +194,7 @@ def compare_params():
 compare_params()
 ```
 
-### ✅ Checkpoint: Exercise 1
+### Checkpoint: Exercise 1
 **Verify:** Understand LoRA reduces parameters by ~1000x
 
 ---
@@ -379,7 +379,7 @@ preparer.split_dataset(
 )
 ```
 
-### ✅ Checkpoint: Exercise 2
+### Checkpoint: Exercise 2
 **Verify:** Dataset created with train/val split
 
 ---
@@ -607,7 +607,7 @@ uv init --bare --python 3.13 .
 uv add "torch>=2.12.0" "transformers>=5.10.2" "peft>=0.19.1" "bitsandbytes>=0.50.2" "accelerate>=1.13.0" "datasets>=5.0.0" "trl>=1.14.0" "scipy>=1.17.1" "sentencepiece>=0.2.1" "protobuf>=7.35.0" "wandb>=0.30.0"
 ```
 
-### ✅ Checkpoint: Exercise 3
+### Checkpoint: Exercise 3
 **Verify:** All dependencies installed, script ready
 
 ---
@@ -660,7 +660,7 @@ Starting training...
    - Watch for gradient explosions (grad_norm > 10)
    - Check for overfitting on small datasets
 
-### ✅ Checkpoint: Exercise 4
+### Checkpoint: Exercise 4
 **Verify:** Training completes, model checkpoint saved
 
 ---
@@ -780,7 +780,7 @@ if __name__ == "__main__":
 python ~/lab-003-lora/scripts/evaluate_model.py
 ```
 
-### ✅ Checkpoint: Exercise 5
+### Checkpoint: Exercise 5
 **Verify:** Fine-tuned model shows domain-specific improvements
 
 ---
@@ -849,7 +849,7 @@ make
   Q4_K_M
 ```
 
-### ✅ Checkpoint: Exercise 6
+### Checkpoint: Exercise 6
 **Verify:** Merged model and GGUF files created
 
 ---
@@ -906,7 +906,7 @@ curl http://localhost:8002/v1/completions \
   }'
 ```
 
-### ✅ Checkpoint: Exercise 7
+### Checkpoint: Exercise 7
 **Verify:** Fine-tuned model serving via vLLM
 
 ---
@@ -1028,12 +1028,12 @@ python ~/lab-003-lora/chatbot.py
 - "Write a command to scale a deployment"
 - "What's the difference between pods and deployments?"
 
-### ✅ Final Checkpoint
+### Final Checkpoint
 **Test:** Your fine-tuned chatbot answers domain questions accurately
 
 ---
 
-## 🎓 Lab Completion Checklist
+## Lab Completion Checklist
 
 - [ ] Exercise 1: LoRA Theory and Setup
 - [ ] Exercise 2: Dataset Preparation
@@ -1046,7 +1046,7 @@ python ~/lab-003-lora/chatbot.py
 
 ---
 
-## 📚 Post-Lab Reading
+## Post-Lab Reading
 
 - **[5101: LoRA Logic](../../phases/phase5-finetuning/5100-peft/5101-LoRA-Logic.md)** - Deep dive into LoRA
 - **[5102: QLoRA Pipelines](../../phases/phase5-finetuning/5100-peft/5102-QLoRA-Pipelines.md)** - 4-bit fine-tuning
@@ -1054,7 +1054,7 @@ python ~/lab-003-lora/chatbot.py
 
 ---
 
-## 🏆 Lab Badge
+## Lab Badge
 
 **Earned:** LoRA Fine-Tuning Badge 🏅
 

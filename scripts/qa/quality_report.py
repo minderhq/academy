@@ -946,7 +946,7 @@ stand today?" without running each tool by hand.
                        phase 1 carried generic filler; drained same
                        tick, phase 1's items drawn from its own README
                        pitfalls)
-    lab_anatomy_scan  Lab-file anatomy (LA-01..03, hard): each
+    lab_anatomy_scan  Lab-file anatomy (LA-01..06, hard): each
                        LAB-*.md carries an "Estimated Time:" claim
                        matching the derived core-path effort
                        (ceil(part-durations/60), challenge/optional
@@ -959,7 +959,15 @@ stand today?" without running each tool by hand.
                        inside fenced ```text blocks (rendered as
                        code, zero real checkboxes), LAB-006 had no
                        checklist section at all, and 13 labs lacked
-                       the Estimated Time line; all drained same tick
+                       the Estimated Time line; all drained same tick.
+                       LA-04..06 (born tick-485, born-at-zero after the
+                       125-header canonization drain): the checklist
+                       header is exactly "## Lab Completion Checklist",
+                       the overview header exactly "## Lab Overview",
+                       and no H1-H4 header starts with an emoji
+                       (fence-aware - bash comment lines inside code
+                       fences are not headers; LAB-006/010 were already
+                       plain, the corpus vote)
     pitfall_shape_scan  Pitfalls item-shape standardization (PS-01..03,
                        hard): every non-checkpoint pitfalls section
                        carries at least 3 structured items in one of

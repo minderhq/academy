@@ -293,7 +293,7 @@ if __name__ == "__main__":
         agent.run(question)
 ```
 
-### ✅ Checkpoint: Exercise 1
+### Checkpoint: Exercise 1
 **Verify:** You understand the Think → Act → Observe loop
 
 ---
@@ -502,7 +502,7 @@ if __name__ == "__main__":
     print(registry.execute("code_executor", code="print(sum(range(5)))"))
 ```
 
-### ✅ Checkpoint: Exercise 2
+### Checkpoint: Exercise 2
 **Verify:** Tool registry can execute all tools correctly
 
 ---
@@ -812,7 +812,7 @@ uv init --bare --python 3.13 .
 uv add fastapi==0.141.1 "uvicorn[standard]==0.52.1" requests==2.34.2 pydantic==2.13.5
 ```
 
-### ✅ Checkpoint: Exercise 3
+### Checkpoint: Exercise 3
 **Verify:** ReAct agent can reason and use tools
 
 ---
@@ -879,7 +879,7 @@ docker-compose up -d --build
 docker-compose logs -f agent
 ```
 
-### ✅ Checkpoint: Exercise 4
+### Checkpoint: Exercise 4
 **Verify:** Agent service is running and accessible
 
 ---
@@ -954,7 +954,7 @@ result = chat("What is my favorite color?", session_id="memory-test")
 print_result(result)
 ```
 
-### ✅ Checkpoint: Exercise 5
+### Checkpoint: Exercise 5
 **Verify:** Agent handles all test cases correctly
 
 ---
@@ -1086,7 +1086,7 @@ async def get_suggestions(session_id: str):
     return {"suggestions": advanced_agent.suggest_improvements(session_id)}
 ```
 
-### ✅ Checkpoint: Exercise 6
+### Checkpoint: Exercise 6
 **Verify:** Advanced features working correctly
 
 ---
@@ -1197,12 +1197,12 @@ if __name__ == "__main__":
         print(f"Answer: {answer}\n")
 ```
 
-### ✅ Final Checkpoint
+### Final Checkpoint
 **Test:** Multi-agent system routes questions correctly
 
 ---
 
-## 🎓 Lab Completion Checklist
+## Lab Completion Checklist
 
 - [ ] Exercise 1: Understanding ReAct Pattern
 - [ ] Exercise 2: Tool System
@@ -1214,7 +1214,7 @@ if __name__ == "__main__":
 
 ---
 
-## 📚 Post-Lab Reading
+## Post-Lab Reading
 
 - **[7101: ReAct Loop System](../../phases/phase7-agentic/7100-architecture/7101-ReAct-Loop-System.md)** - Deep dive into ReAct
 - **[7102: Planning Decomposition](../../phases/phase7-agentic/7100-architecture/7102-Planning-Decomposition.md)** - Advanced planning
@@ -1223,7 +1223,7 @@ if __name__ == "__main__":
 
 ---
 
-## 🏆 Lab Badge
+## Lab Badge
 
 **Earned:** ReAct Agent Badge 🏅
 

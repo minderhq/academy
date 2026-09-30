@@ -16,7 +16,7 @@ Tags: ['lab', 'setup', 'docker', 'hands-on']
 
 ---
 
-## 🎯 Lab Objectives
+## Lab Objectives
 
 After completing this lab, you will:
 - ✅ Have a working AI development environment
@@ -26,7 +26,7 @@ After completing this lab, you will:
 
 ---
 
-## 📋 Prerequisites Checklist
+## Prerequisites Checklist
 
 Before starting, ensure you have:
 
@@ -40,7 +40,7 @@ Before starting, ensure you have:
 
 ---
 
-## 🚀 Lab Steps
+## Lab Steps
 
 ### Step 1: Operating System Check (5 minutes)
 
@@ -352,7 +352,7 @@ python test_env.py
 
 ---
 
-## 📊 Lab Completion Checklist
+## Lab Completion Checklist
 
 ### Infrastructure
 - [ ] OS verified and compatible
@@ -378,7 +378,7 @@ python test_env.py
 
 ---
 
-## 🎯 Success Criteria
+## Success Criteria
 
 You have successfully completed this lab if:
 
@@ -390,7 +390,7 @@ You have successfully completed this lab if:
 
 ---
 
-## 🚀 Next Steps
+## Next Steps
 
 With your environment ready:
 
@@ -400,7 +400,7 @@ With your environment ready:
 
 ---
 
-## 💡 Tips for Success
+## Tips for Success
 
 1. **Document Your Setup:**
    ```bash
@@ -432,7 +432,7 @@ With your environment ready:
 
 ---
 
-## ❓ Common Questions
+## Common Questions
 
 **Q: Can I use CPU-only?**
 A: Yes! LLMs will run slower but work fine for learning.

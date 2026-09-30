@@ -14,7 +14,7 @@ Tags: ['lab', 'function-calling', 'agents', 'hands-on']
 
 ---
 
-## 📋 Lab Overview
+## Lab Overview
 
 **Time:** 5-6 hours
 **Difficulty:** ⭐⭐⭐ Advanced
@@ -34,7 +34,7 @@ Tags: ['lab', 'function-calling', 'agents', 'hands-on']
 
 ---
 
-## 🎯 What You'll Build
+## What You'll Build
 
 By the end of this lab, you will have:
 
@@ -46,7 +46,7 @@ By the end of this lab, you will have:
 
 ---
 
-## 🛠️ Part 1: OpenAI Function Calling (120 minutes)
+## Part 1: OpenAI Function Calling (120 minutes)
 
 ### Understanding Function Calling
 
@@ -511,7 +511,7 @@ if __name__ == "__main__":
 
 ---
 
-## 🔗 Part 2: Advanced Tool Development (120 minutes)
+## Part 2: Advanced Tool Development (120 minutes)
 
 ### Building Production Tools
 
@@ -1006,7 +1006,7 @@ if __name__ == "__main__":
 
 ---
 
-## 🎯 Part 3: Tool Orchestration (90 minutes)
+## Part 3: Tool Orchestration (90 minutes)
 
 ### Coordinating Multiple Tools
 
@@ -1348,7 +1348,7 @@ if __name__ == "__main__":
 
 ---
 
-## 🐳 Part 4: Production Deployment (60 minutes)
+## Part 4: Production Deployment (60 minutes)
 
 ### Deploying Tool-Enabled Agent
 
@@ -1444,7 +1444,7 @@ if __name__ == "__main__":
 
 ---
 
-## ✅ Lab Completion Checklist
+## Lab Completion Checklist
 
 - [ ] Part 1: OpenAI function calling
 - [ ] Part 2: Production tool suite (15+ tools)
@@ -1453,7 +1453,7 @@ if __name__ == "__main__":
 
 ---
 
-## 🎓 Summary
+## Summary
 
 In this lab, you learned:
 
@@ -1465,7 +1465,7 @@ In this lab, you learned:
 
 ---
 
-## 🚀 Next Steps
+## Next Steps
 
 1. **LAB-014: AI Evaluation & Safety** - Test your tools
 2. **LAB-011: Multi-Modal** - Add vision tools

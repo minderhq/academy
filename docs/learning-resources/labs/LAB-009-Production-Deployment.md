@@ -14,7 +14,7 @@ Tags: ['lab', 'production', 'deployment', 'hands-on']
 
 ---
 
-## 📋 Lab Overview
+## Lab Overview
 
 **Time:** 8-10 hours
 **Difficulty:** ⭐⭐⭐ Advanced
@@ -36,7 +36,7 @@ Tags: ['lab', 'production', 'deployment', 'hands-on']
 
 ---
 
-## 🎯 Part 1: SSL/TLS Configuration (90 minutes)
+## Part 1: SSL/TLS Configuration (90 minutes)
 
 ### Step 1.0: Project Manifest (pyproject.toml + uv.lock)
 
@@ -216,7 +216,7 @@ if __name__ == "__main__":
 
 ---
 
-## 🔧 Part 2: Nginx Reverse Proxy (90 minutes)
+## Part 2: Nginx Reverse Proxy (90 minutes)
 
 ### Step 2.1: Nginx Configuration
 
@@ -470,7 +470,7 @@ volumes:
 
 ---
 
-## 🚀 Part 3: CI/CD Pipeline (120 minutes)
+## Part 3: CI/CD Pipeline (120 minutes)
 
 ### Step 3.1: GitHub Actions Workflow
 
@@ -741,7 +741,7 @@ if __name__ == "__main__":
 
 ---
 
-## ☸️ Part 4: Kubernetes Deployment (120 minutes)
+## Part 4: Kubernetes Deployment (120 minutes)
 
 ### Step 4.1: Kubernetes Deployment Manifests
 
@@ -1037,7 +1037,7 @@ kubectl get services -n production
 
 ---
 
-## 📊 Part 5: Monitoring and Observability (120 minutes)
+## Part 5: Monitoring and Observability (120 minutes)
 
 ### Step 5.1: Prometheus Metrics
 
@@ -1319,7 +1319,7 @@ logger.info("Application started", extra={"request_id": "123"})
 
 ---
 
-## 💰 Part 6: Cost Optimization (90 minutes)
+## Part 6: Cost Optimization (90 minutes)
 
 ### Step 6.1: Cost Analysis Script
 
@@ -1513,7 +1513,7 @@ spec:
 
 ---
 
-## 🐛 Part 7: Production Debugging (60 minutes)
+## Part 7: Production Debugging (60 minutes)
 
 ### Step 7.1: Debug Middleware
 
@@ -1728,7 +1728,7 @@ def diagnose(symptoms: list) -> list:
 
 ---
 
-## ✅ Lab Completion Checklist
+## Lab Completion Checklist
 
 - [ ] SSL/TLS configured with Let's Encrypt
 - [ ] Nginx reverse proxy configured
@@ -1745,7 +1745,7 @@ def diagnose(symptoms: list) -> list:
 
 ---
 
-## 🎓 Summary
+## Summary
 
 In this lab, you learned:
 
@@ -1759,7 +1759,7 @@ In this lab, you learned:
 
 ---
 
-## 🚀 Next Steps
+## Next Steps
 
 1. **LAB-010**: Advanced Topics
 2. Deploy your own production system

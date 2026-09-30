@@ -25,7 +25,7 @@ Tags: ['lab', 'pytorch', 'transformers', 'pretraining', 'tokenizer', 'hands-on']
 - [Part 6: Text Generation (30 minutes)](#part-6-text-generation-30-minutes)
 - [Part 7: Evaluation (30 minutes)](#part-7-evaluation-30-minutes)
 - [Part 8: Challenges (Optional)](#part-8-challenges-optional)
-- [Completion Checklist](#completion-checklist)
+- [Lab Completion Checklist](#lab-completion-checklist)
 - [Summary](#summary)
 - [You're Now Ready For](#youre-now-ready-for)
 
@@ -1129,7 +1129,7 @@ Train on 2+ GPUs simultaneously
 
 ---
 
-## Completion Checklist
+## Lab Completion Checklist
 
 - [ ] Part 1: Environment and repository setup complete
 - [ ] Part 2: Dataset prepared and tokenizer trained

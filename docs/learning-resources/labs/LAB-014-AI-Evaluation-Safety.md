@@ -14,7 +14,7 @@ Tags: ['lab', 'evaluation', 'security', 'hands-on']
 
 ---
 
-## 📋 Lab Overview
+## Lab Overview
 
 **Time:** 4-5 hours
 **Difficulty:** ⭐⭐⭐ Advanced
@@ -33,7 +33,7 @@ Tags: ['lab', 'evaluation', 'security', 'hands-on']
 
 ---
 
-## 🎯 What You'll Build
+## What You'll Build
 
 By the end of this lab, you will have:
 
@@ -45,7 +45,7 @@ By the end of this lab, you will have:
 
 ---
 
-## 📊 Part 1: Model Evaluation Framework (120 minutes)
+## Part 1: Model Evaluation Framework (120 minutes)
 
 ### Building Comprehensive Evaluation System
 
@@ -546,7 +546,7 @@ if __name__ == "__main__":
 
 ---
 
-## 🛡️ Part 2: Safety Guardrails (90 minutes)
+## Part 2: Safety Guardrails (90 minutes)
 
 ### Building Content Moderation and Safety Systems
 
@@ -972,7 +972,7 @@ if __name__ == "__main__":
 
 ---
 
-## 🔴 Part 3: Red Teaming (90 minutes)
+## Part 3: Red Teaming (90 minutes)
 
 ### Adversarial Testing Suite
 
@@ -1269,7 +1269,7 @@ if __name__ == "__main__":
 
 ---
 
-## 🐳 Part 4: Production Deployment (60 minutes)
+## Part 4: Production Deployment (60 minutes)
 
 ### Deploying Evaluation System
 
@@ -1310,7 +1310,7 @@ volumes:
 
 ---
 
-## ✅ Lab Completion Checklist
+## Lab Completion Checklist
 
 - [ ] Part 1: Evaluation framework
 - [ ] Part 2: Safety guardrails
@@ -1319,7 +1319,7 @@ volumes:
 
 ---
 
-## 🎓 Summary
+## Summary
 
 In this lab, you learned:
 
@@ -1331,7 +1331,7 @@ In this lab, you learned:
 
 ---
 
-## 🚀 Next Steps
+## Next Steps
 
 1. **TUTORIAL-006: Real-time AI** - Streaming responses
 2. **PROJECT-002: Complete AI System** - Integrate everything

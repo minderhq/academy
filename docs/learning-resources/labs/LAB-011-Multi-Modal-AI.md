@@ -14,7 +14,7 @@ Tags: ['lab', 'multimodal', 'vision', 'hands-on']
 
 ---
 
-## 📋 Lab Overview
+## Lab Overview
 
 **Time:** 6-8 hours
 **Difficulty:** ⭐⭐⭐ Advanced
@@ -35,7 +35,7 @@ Tags: ['lab', 'multimodal', 'vision', 'hands-on']
 
 ---
 
-## 🎯 What You'll Build
+## What You'll Build
 
 By the end of this lab, you will have:
 
@@ -47,7 +47,7 @@ By the end of this lab, you will have:
 
 ---
 
-## 🏗️ Part 1: Vision Transformers (ViT) Fundamentals (90 minutes)
+## Part 1: Vision Transformers (ViT) Fundamentals (90 minutes)
 
 ### Understanding ViT Architecture
 
@@ -317,7 +317,7 @@ python vit_architecture.py
 
 ---
 
-## 🔗 Part 2: CLIP - Connecting Vision and Language (120 minutes)
+## Part 2: CLIP - Connecting Vision and Language (120 minutes)
 
 ### Understanding CLIP
 
@@ -694,7 +694,7 @@ if __name__ == "__main__":
 
 ---
 
-## 🤖 Part 3: Multi-Modal Agent (120 minutes)
+## Part 3: Multi-Modal Agent (120 minutes)
 
 ### Building a Vision-Enabled Agent
 
@@ -1018,7 +1018,7 @@ if __name__ == "__main__":
 
 ---
 
-## 🎬 Part 4: Video Analysis (90 minutes)
+## Part 4: Video Analysis (90 minutes)
 
 ### Processing Videos with Multi-Modal AI
 
@@ -1276,7 +1276,7 @@ if __name__ == "__main__":
 
 ---
 
-## 🐳 Part 5: Production Deployment (90 minutes)
+## Part 5: Production Deployment (90 minutes)
 
 ### Dockerizing Multi-Modal System
 
@@ -1429,7 +1429,7 @@ services:
 
 ---
 
-## ✅ Lab Completion Checklist
+## Lab Completion Checklist
 
 - [ ] Part 1: Vision Transformer implementation
 - [ ] Part 2: CLIP zero-shot classification
@@ -1440,7 +1440,7 @@ services:
 
 ---
 
-## 🎓 Summary
+## Summary
 
 In this lab, you learned:
 
@@ -1453,7 +1453,7 @@ In this lab, you learned:
 
 ---
 
-## 🚀 Next Steps
+## Next Steps
 
 1. **LAB-012: Audio AI** - Add speech capabilities
 2. **LAB-013: Advanced Function Calling** - Enhance agent tools

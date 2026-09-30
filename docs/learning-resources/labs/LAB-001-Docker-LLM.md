@@ -87,7 +87,7 @@ curl http://localhost:11434/api/generate -d '{
 }'
 ```
 
-### ✅ Checkpoint: Exercise 1
+### Checkpoint: Exercise 1
 **Verify:** You should see a JSON response from Mistral
 
 **Expected Output:**
@@ -283,7 +283,7 @@ curl http://localhost:8000/health
 curl http://localhost:8000/v1/models
 ```
 
-### ✅ Checkpoint: Exercise 2
+### Checkpoint: Exercise 2
 **Verify:** API health check returns `{"status": "healthy", "ollama": true}`
 
 ---
@@ -337,7 +337,7 @@ EOF
 python ~/lab-001-docker-llm/test_chat.py
 ```
 
-### ✅ Checkpoint: Exercise 3
+### Checkpoint: Exercise 3
 **Verify:** You can have a multi-turn conversation with the AI
 
 ---
@@ -445,7 +445,7 @@ docker-compose ps
 docker-compose logs -f api
 ```
 
-### ✅ Checkpoint: Exercise 4
+### Checkpoint: Exercise 4
 **Verify:** All 3 containers are running and healthy
 
 ```bash
@@ -658,7 +658,7 @@ curl -X POST http://localhost:8000/v1/chat/completions \
   }'
 ```
 
-### ✅ Checkpoint: Exercise 5
+### Checkpoint: Exercise 5
 **Verify:** The AI remembers "blue" as the favorite color
 
 ---
@@ -749,14 +749,14 @@ def chat_ui():
     return FileResponse('static/index.html')
 ```
 
-### ✅ Final Checkpoint
+### Final Checkpoint
 **Test:** Open [http://localhost:8000/chat](http://localhost:8000/chat) in your browser
 
 You should have a working chat interface with memory!
 
 ---
 
-## 🎓 Lab Completion Checklist
+## Lab Completion Checklist
 
 - [ ] Exercise 1: Run Ollama in Docker
 - [ ] Exercise 2: Build LLM API Server
@@ -767,7 +767,7 @@ You should have a working chat interface with memory!
 
 ---
 
-## 📚 Post-Lab Reading
+## Post-Lab Reading
 
 - **[1401: Ollama Enterprise](../../phases/phase1-infra/1400-llmops/1401-Ollama-Enterprise.md)** - Production Ollama deployment
 - **[1402: vLLM and TGI](../../phases/phase1-infra/1400-llmops/1402-vLLM-and-TGI.md)** - Advanced inference engines
@@ -775,7 +775,7 @@ You should have a working chat interface with memory!
 
 ---
 
-## 🏆 Lab Badge
+## Lab Badge
 
 **Earned:** Docker & LLM Fundamentals Badge 🏅
 

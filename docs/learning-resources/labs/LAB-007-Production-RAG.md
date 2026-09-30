@@ -23,7 +23,7 @@ Tags: ['lab', 'rag', 'production', 'hands-on']
 
 ---
 
-## 🎯 Lab Objectives
+## Lab Objectives
 
 After completing this lab, you will be able to:
 - ✅ Build hybrid search (vector + keyword)
@@ -34,7 +34,7 @@ After completing this lab, you will be able to:
 
 ---
 
-## 📋 Overview
+## Lab Overview
 
 ### What is Production RAG?
 
@@ -73,7 +73,7 @@ After completing this lab, you will be able to:
 
 ---
 
-## 🏗️ Part 1: Setup Infrastructure (60 min)
+## Part 1: Setup Infrastructure (60 min)
 
 ### Step 1.1: Deploy Qdrant Cluster
 
@@ -170,7 +170,7 @@ uv add fastapi==0.141.1 "uvicorn[standard]==0.52.1" qdrant-client==1.19.0 senten
 
 ---
 
-## 📊 Part 2: Hybrid Search Implementation (120 min)
+## Part 2: Hybrid Search Implementation (120 min)
 
 ### Step 2.1: Create Embedding Service
 
@@ -587,7 +587,7 @@ if __name__ == "__main__":
 
 ---
 
-## 🔄 Part 3: Re-ranking Implementation (90 min)
+## Part 3: Re-ranking Implementation (90 min)
 
 ### Step 3.1: Cross-Encoder Re-ranker
 
@@ -913,7 +913,7 @@ if __name__ == "__main__":
 
 ---
 
-## 🌐 Part 4: FastAPI Service (60 min)
+## Part 4: FastAPI Service (60 min)
 
 ### Step 4.1: Create API Service
 
@@ -1157,7 +1157,7 @@ services:
 
 ---
 
-## ✅ Completion Checklist
+## Lab Completion Checklist
 
 Use this checklist to track your progress:
 
@@ -1190,7 +1190,7 @@ Use this checklist to track your progress:
 
 ---
 
-## 📊 Expected Results
+## Expected Results
 
 ### Performance Metrics
 
@@ -1211,7 +1211,7 @@ Grafana dashboards should show:
 
 ---
 
-## 🚀 Next Steps
+## Next Steps
 
 After completing this lab:
 

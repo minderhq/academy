@@ -24,7 +24,7 @@ Tags: ['lab', 'multi-agent', 'agents', 'hands-on']
 
 ---
 
-## 🎯 Lab Objectives
+## Lab Objectives
 
 After completing this lab, you will be able to:
 - ✅ Design multi-agent systems
@@ -35,7 +35,7 @@ After completing this lab, you will be able to:
 
 ---
 
-## 📋 Overview
+## Lab Overview
 
 ### What is a Multi-Agent Fleet?
 
@@ -76,7 +76,7 @@ After completing this lab, you will be able to:
 
 ---
 
-## 🏗️ Part 1: Design Agent System (60 min)
+## Part 1: Design Agent System (60 min)
 
 ### Step 1.1: Define Agent Roles
 
@@ -296,7 +296,7 @@ class MockAgent(BaseAgent):
 
 ---
 
-## 🔧 Part 2: Implement Specialized Agents (120 min)
+## Part 2: Implement Specialized Agents (120 min)
 
 ### Step 2.1: Researcher Agent
 
@@ -731,7 +731,7 @@ class WriterAgent(BaseAgent):
 
 ---
 
-## 🎯 Part 3: Orchestration System (90 min)
+## Part 3: Orchestration System (90 min)
 
 ### Step 3.1: Create Orchestrator
 
@@ -1011,7 +1011,7 @@ if __name__ == "__main__":
 
 ---
 
-## 🧠 Part 4: Add Memory System (60 min)
+## Part 4: Add Memory System (60 min)
 
 ### Step 4.1: Shared Memory Store
 
@@ -1172,7 +1172,7 @@ class MemoryEnabledAgent(BaseAgent):
 
 ---
 
-## ✅ Completion Checklist
+## Lab Completion Checklist
 
 Use this checklist to track your progress:
 
@@ -1206,7 +1206,7 @@ Use this checklist to track your progress:
 
 ---
 
-## 🚀 Next Steps
+## Next Steps
 
 After completing this lab:
 

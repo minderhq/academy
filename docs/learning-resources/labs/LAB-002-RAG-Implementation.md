@@ -91,7 +91,7 @@ curl -X PUT http://localhost:6333/collections/test_docs \
 curl http://localhost:6333/collections/test_docs
 ```
 
-### ✅ Checkpoint: Exercise 1
+### Checkpoint: Exercise 1
 **Verify:** You should see collection info with vectors configured
 
 **Expected Output:**
@@ -278,7 +278,7 @@ for i, chunk in enumerate(chunks):
     print(chunk['text'][:100] + "...")
 ```
 
-### ✅ Checkpoint: Exercise 2
+### Checkpoint: Exercise 2
 **Verify:** You should see chunks with proper overlap and metadata
 
 ---
@@ -599,7 +599,7 @@ CMD ["uvicorn", "rag_service:app", "--host", "0.0.0.0", "--port", "8001"]
 EOF
 ```
 
-### ✅ Checkpoint: Exercise 3
+### Checkpoint: Exercise 3
 **Verify:** RAG service created with all endpoints
 
 ---
@@ -686,7 +686,7 @@ docker-compose ps
 docker-compose logs -f rag
 ```
 
-### ✅ Checkpoint: Exercise 4
+### Checkpoint: Exercise 4
 **Verify:** All 3 services running and healthy
 
 ---
@@ -775,7 +775,7 @@ curl -X POST http://localhost:8001/search \
   }' | jq
 ```
 
-### ✅ Checkpoint: Exercise 5
+### Checkpoint: Exercise 5
 **Verify:** Queries return relevant answers with sources
 
 ---
@@ -852,7 +852,7 @@ for model_name, model_results in results.items():
     print(f"  Avg embed time: {avg_embed:.4f}s")
 ```
 
-### ✅ Checkpoint: Exercise 6
+### Checkpoint: Exercise 6
 **Verify:** Understand trade-offs between speed and quality
 
 ---
@@ -1013,7 +1013,7 @@ curl -X POST http://localhost:8001/query/reranked \
   }'
 ```
 
-### ✅ Checkpoint: Exercise 7
+### Checkpoint: Exercise 7
 **Verify:** Re-ranked results show better relevance
 
 ---
@@ -1105,12 +1105,12 @@ if __name__ == "__main__":
 python ~/lab-002-rag/chatbot.py
 ```
 
-### ✅ Final Checkpoint
+### Final Checkpoint
 **Test:** Have a conversation with your RAG chatbot
 
 ---
 
-## 🎓 Lab Completion Checklist
+## Lab Completion Checklist
 
 - [ ] Exercise 1: Deploy Qdrant Vector Database
 - [ ] Exercise 2: Document Chunking Strategies
@@ -1123,7 +1123,7 @@ python ~/lab-002-rag/chatbot.py
 
 ---
 
-## 📚 Post-Lab Reading
+## Post-Lab Reading
 
 - **[6101: HNSW Indexing](../../phases/phase6-rag/6100-vector/6101-HNSW-Indexing.md)** - Vector search algorithms
 - **[6201: Hybrid Search](../../phases/phase6-rag/6200-retrieval/6201-Hybrid-Search.md)** - Combine keyword + semantic
@@ -1131,7 +1131,7 @@ python ~/lab-002-rag/chatbot.py
 
 ---
 
-## 🏆 Lab Badge
+## Lab Badge
 
 **Earned:** RAG Implementation Badge 🏅
 

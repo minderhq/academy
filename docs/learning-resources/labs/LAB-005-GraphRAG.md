@@ -112,7 +112,7 @@ curl http://localhost:7474
 # Password: graphrag
 ```
 
-### ✅ Checkpoint: Exercise 2
+### Checkpoint: Exercise 2
 **Verify:** Neo4j browser opens at [http://localhost:7474](http://localhost:7474)
 
 ---
@@ -338,7 +338,7 @@ cd ~/lab-005-graphrag
 python scripts/build_graph.py
 ```
 
-### ✅ Checkpoint: Exercise 3
+### Checkpoint: Exercise 3
 **Verify:** Knowledge graph created with entities and relationships
 
 ---
@@ -593,7 +593,7 @@ if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8004)
 ```
 
-### ✅ Checkpoint: Exercise 4
+### Checkpoint: Exercise 4
 **Verify:** GraphRAG service created with hybrid search
 
 ---
@@ -684,7 +684,7 @@ cd ~/lab-005-graphrag
 docker-compose up -d --build
 ```
 
-### ✅ Checkpoint: Exercise 5
+### Checkpoint: Exercise 5
 **Verify:** All services running
 
 ---
@@ -752,7 +752,7 @@ for query in test_queries:
     test_query(query)
 ```
 
-### ✅ Checkpoint: Exercise 6
+### Checkpoint: Exercise 6
 **Verify:** GraphRAG correctly answers questions
 
 ---
@@ -870,7 +870,7 @@ for e1, e2 in paths_to_find:
 driver.close()
 ```
 
-### ✅ Checkpoint: Exercise 7
+### Checkpoint: Exercise 7
 **Verify:** Graph statistics and paths displayed
 
 ---
@@ -908,12 +908,12 @@ for test in complex_questions:
     print(f"Actual Answer: {result['answer']}\n")
 ```
 
-### ✅ Final Checkpoint
+### Final Checkpoint
 **Test:** Multi-hop reasoning works correctly
 
 ---
 
-## 🎓 Lab Completion Checklist
+## Lab Completion Checklist
 
 - [ ] Exercise 1: Understanding GraphRAG
 - [ ] Exercise 2: Deploy Neo4j
@@ -926,7 +926,7 @@ for test in complex_questions:
 
 ---
 
-## 📚 Post-Lab Reading
+## Post-Lab Reading
 
 - **[6301: Neo4j and Knowledge Graphs](../../phases/phase6-rag/6300-context/6301-Neo4j-and-Knowledge-Graphs.md)** - Graph database basics
 - **[6302: CAG Long Context](../../phases/phase6-rag/6300-context/6302-CAG-Long-Context-Architectures.md)** - Long context as database
@@ -935,7 +935,7 @@ for test in complex_questions:
 
 ---
 
-## 🏆 Lab Badge
+## Lab Badge
 
 **Earned:** GraphRAG Implementation Badge 🏅
 
