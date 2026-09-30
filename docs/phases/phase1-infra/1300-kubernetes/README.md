@@ -521,7 +521,7 @@ kubectl get pods
 
 ### Pitfall 1: GPU Resource Not Requested
 
-**Problem:**
+**Pitfall:**
 ```yaml
 Symptoms:
 - Pod pending with "Insufficient nvidia.com/gpu"
@@ -552,7 +552,7 @@ resources:
 
 ### Pitfall 2: Model Not in Image
 
-**Problem:**
+**Pitfall:**
 ```yaml
 Symptoms:
 - Pod takes forever to start
@@ -594,7 +594,7 @@ initContainers:
 
 ### Pitfall 3: Memory Limits Too Low
 
-**Problem:**
+**Pitfall:**
 ```yaml
 Symptoms:
 - Pod OOMKilled
@@ -628,7 +628,7 @@ resources:
 
 ### Pitfall 4: Wrong Storage Class
 
-**Problem:**
+**Pitfall:**
 ```yaml
 Symptoms:
 - Slow inference (waiting for model loading)

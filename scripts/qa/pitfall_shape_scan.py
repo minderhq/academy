@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Pitfalls item-shape standardization (PS-01..02, HARD) for PROJECT-OMEGA.
+"""Pitfalls item-shape standardization (PS-01..03, HARD) for PROJECT-OMEGA.
 
 Every non-checkpoint doc with a pitfalls section (the "## ...Pitfall..."
 review block in phase READMEs, module-group READMEs, module files,
@@ -13,16 +13,21 @@ items in one of the corpus shapes:
 
 and every "### " subsection inside a pitfalls section must be in the
 canonical "### Pitfall N: Name" form - sequential numbering, no emoji
-prefix. Checkpoints are excluded (CK-09 in checkpoint_coverage_scan
-governs their "N. **Name:**" lists).
+prefix. Inside a pitfalls section, bold paragraph labels ("**X:**" at
+line start) must be the canonical pair **Pitfall:** / **Solution:**
+(PS-03) - the corpus had **Problem:** x22 and **Fix:** x3 alongside
+them, canonized same tick. Checkpoints are excluded (CK-09 in
+checkpoint_coverage_scan governs their "N. **Name:**" lists).
 
 Born tick-482, born-at-zero after the same-tick drain: census found
 subsection headers in 4 shapes (plain "### Name", "### (warning-emoji)
 Name", "(x-emoji) ### Pitfall N: Name", canonical) across 18 rich
 files, and 17 module-group READMEs carrying thin unnumbered
 "- **Name**: advice" bullets (83 bullets) - all canonized same tick.
-Section scanning is fence-aware: bash comment lines inside code
-fences are not headers (the tick-482 census's own first draft broke
+PS-03 born tick-483, born-at-zero after the 25-label drain across 6
+files (19 **Problem:** + 3 **Fix:** + 3 more **Problem:**). Section
+scanning is fence-aware: bash comment lines inside code fences are
+not headers or labels (the tick-482 census's own first draft broke
 on "# Wrong:" fence comments).
 
 Run over the whole corpus:
@@ -49,11 +54,15 @@ def esc(text: str) -> str:
     return text.encode("ascii", "backslashreplace").decode("ascii")
 
 
-def analyze(text: str) -> tuple[int, list[str]]:
-    """One section -> (structured-item count, bad subsection titles)."""
+LABELS = ("Pitfall", "Solution")
+
+
+def analyze(text: str) -> tuple[int, list[str], list[str]]:
+    """One section -> (item count, bad subsections, non-canonical labels)."""
     lines = text.split("\n")
     items = 0
     bad = []
+    bad_lab = []
     n_sub = 0
     in_tab = False
     fence = False
@@ -82,7 +91,10 @@ def analyze(text: str) -> tuple[int, list[str]]:
             items += 1
         elif ln.strip() and not ln.startswith("|"):
             in_tab = False
-    return items, bad
+            lm = re.match(r"^\*\*([A-Za-z][A-Za-z ]*):\*\*", ln)
+            if lm and lm.group(1) not in LABELS:
+                bad_lab.append("**%s:**" % lm.group(1))
+    return items, bad, bad_lab
 
 
 def main() -> int:
@@ -117,7 +129,7 @@ def main() -> int:
                 if h and len(h.group(1)) <= lvl:
                     break
                 body.append(l2)
-            items, bad = analyze("\n".join(body))
+            items, bad, bad_lab = analyze("\n".join(body))
             if items < 3:
                 findings.append(
                     "PS-01 %s: pitfalls section '%s' carries %d structured "
@@ -127,15 +139,20 @@ def main() -> int:
                 findings.append(
                     "PS-02 %s: pitfalls subsection not in canonical "
                     "'### Pitfall N: Name' shape: %s" % (rel, b))
+            for lab in sorted(set(bad_lab)):
+                findings.append(
+                    "PS-03 %s: pitfalls label '%s' not in the canonical "
+                    "set (**Pitfall:** / **Solution:**)" % (rel, lab))
 
     for f in findings:
         print("  " + esc(f))
     print("pitfall_shape_scan: %d pitfalls sections (non-checkpoint); "
           "%d findings - all hard (PS-01 below the 3-structured-item "
           "floor / PS-02 subsection not in canonical '### Pitfall N: "
-          "Name' shape; born tick-482 after the 85-header + 83-bullet "
-          "shape standardization drain across 35 files)" % (n_secs,
-                                                            len(findings)))
+          "Name' shape / PS-03 inner label outside **Pitfall:** / "
+          "**Solution:**; born tick-482 after the 85-header + 83-bullet "
+          "shape drain, PS-03 tick-483 after the 25-label canonization "
+          "drain)" % (n_secs, len(findings)))
     return 1 if findings else 0
 
 

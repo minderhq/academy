@@ -472,7 +472,7 @@ panels:
 
 ### Pitfall 1: Cold Starts
 
-**Problem:**
+**Pitfall:**
 ```text
 First request: 30 seconds (model loading) ❌
 Subsequent: 100ms ✅
@@ -498,7 +498,7 @@ curl -X POST http://localhost:8000/generate \
 
 ### Pitfall 2: Memory Fragmentation
 
-**Problem:**
+**Pitfall:**
 ```text
 After 1000 requests:
 - GPU memory: 95% used
@@ -521,7 +521,7 @@ python -m vllm.entrypoints.api_server \
 
 ### Pitfall 3: No Rate Limiting
 
-**Problem:**
+**Pitfall:**
 ```text
 Normal load: 100 requests/sec ✅
 Attack/Bot: 10,000 requests/sec ❌
@@ -547,7 +547,7 @@ async def generate(request: Request, prompt: str):
 
 ### Pitfall 4: Missing Observability
 
-**Problem:**
+**Pitfall:**
 ```text
 User: "It's slow"
 You: "Let me check... I have no metrics" ❌

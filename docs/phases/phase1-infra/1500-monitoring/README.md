@@ -531,7 +531,7 @@ route:
 
 ### Pitfall 1: Monitoring Everything
 
-**Problem:**
+**Pitfall:**
 ```text
 Monitoring all possible metrics:
 ├── 10,000+ metrics ❌
@@ -567,7 +567,7 @@ Rule: If you don't have an alert, do you need the metric?
 
 ### Pitfall 2: Alerting on Single Data Points
 
-**Problem:**
+**Pitfall:**
 ```yaml
 # Bad: Alert on single data point
 alert: HighLatency
@@ -594,7 +594,7 @@ Result:
 
 ### Pitfall 3: No Business Metrics
 
-**Problem:**
+**Pitfall:**
 ```text
 Monitoring only technical metrics:
 ├── GPU utilization: 80% ✅
@@ -627,7 +627,7 @@ Usage Patterns:
 
 ### Pitfall 4: No Historical Context
 
-**Problem:**
+**Pitfall:**
 ```yaml
 Alert: "GPU utilization is 80%"
 

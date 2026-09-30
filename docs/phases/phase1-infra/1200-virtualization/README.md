@@ -442,7 +442,7 @@ lspci -nnk | grep -A 3 VGA
 
 ### Pitfall 1: Wrong IOMMU Configuration
 
-**Problem:**
+**Pitfall:**
 ```yaml
 Symptoms:
 - VM won't start with GPU
@@ -472,7 +472,7 @@ cat /proc/cmdline | grep iommu
 
 ### Pitfall 2: GPU Other Resources Not Passed Through
 
-**Problem:**
+**Pitfall:**
 ```yaml
 Symptoms:
 - VM boots with GPU
@@ -502,7 +502,7 @@ Root Cause:
 
 ### Pitfall 3: Memory/PCIe Bus Issues
 
-**Problem:**
+**Pitfall:**
 ```text
 Symptoms:
 - Random VM crashes
@@ -528,7 +528,7 @@ echo "options vfio-pci disable_acs_redirection=1" >> /etc/modprobe.d/vfio.conf
 
 ### Pitfall 4: Driver Conflicts
 
-**Problem:**
+**Pitfall:**
 ```yaml
 Symptoms:
 - GPU works on host but not in VM

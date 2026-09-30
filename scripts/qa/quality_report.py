@@ -960,7 +960,7 @@ stand today?" without running each tool by hand.
                        code, zero real checkboxes), LAB-006 had no
                        checklist section at all, and 13 labs lacked
                        the Estimated Time line; all drained same tick
-    pitfall_shape_scan  Pitfalls item-shape standardization (PS-01..02,
+    pitfall_shape_scan  Pitfalls item-shape standardization (PS-01..03,
                        hard): every non-checkpoint pitfalls section
                        carries at least 3 structured items in one of
                        the corpus shapes (numbered "N. **Name:**"
@@ -975,7 +975,12 @@ stand today?" without running each tool by hand.
                        "Pitfall N:" / canonical) across 18 rich files,
                        and 17 module-group READMEs with thin
                        unnumbered "- **Name**: advice" bullets (83
-                       bullets); all canonized same tick
+                       bullets); all canonized same tick. PS-03 born
+                       tick-483: in-section bold paragraph labels must
+                       be the canonical **Pitfall:** / **Solution:**
+                       pair (corpus had **Problem:** x22 and **Fix:**
+                       x3 alongside them; 25 labels canonized across
+                       6 files same tick, born-at-zero)
     quiz_claim_scan  Quiz self-claim integrity (QC-01..04, hard):
                        a QUIZ.md's own promises checked against the
                        bank quiz_export parses - "**N questions**"

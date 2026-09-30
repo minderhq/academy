@@ -368,9 +368,9 @@ def analyze_quantization_error(fp32_tensor, quantized_tensor):
 
 ### Pitfall 1: Forgetting to Disable Observers
 
-**Problem:** Observers keep updating during validation/test.
+**Pitfall:** Observers keep updating during validation/test.
 
-**Fix:**
+**Solution:**
 ```python
 # Set to eval mode to freeze observers
 model.eval()
@@ -382,9 +382,9 @@ for module in model.modules():
 
 ### Pitfall 2: Wrong Reduction Dimensions
 
-**Problem:** Per-channel quantization with wrong shape causes broadcasting errors.
+**Pitfall:** Per-channel quantization with wrong shape causes broadcasting errors.
 
-**Fix:**
+**Solution:**
 ```python
 # For Linear: weight shape [out_features, in_features]
 # One scale per output channel: reduce over in_features (dim=1)
@@ -394,9 +394,9 @@ scale = weight.abs().max(dim=1, keepdim=True).values / 127
 
 ### Pitfall 3: Scale Gets Too Small
 
-**Problem:** Scale → 0 causes division by zero or extreme values.
+**Pitfall:** Scale → 0 causes division by zero or extreme values.
 
-**Fix:**
+**Solution:**
 ```python
 # Add minimum scale clamp
 scale = scale.clamp(min=1e-5)

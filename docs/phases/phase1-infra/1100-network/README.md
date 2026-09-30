@@ -237,7 +237,7 @@ See [PREREQUISITES.md](./PREREQUISITES.md) for detailed requirements.
 
 ### Pitfall 1: Neglecting Upload Speed
 
-**Problem:**
+**Pitfall:**
 ```text
 Most ISPs advertise: "1 Gbps download!"
 Actual: 1 Gbps down / 50 Mbps up ❌
@@ -255,7 +255,7 @@ Impact on LLMs:
 
 ### Pitfall 2: WiFi vs Wired
 
-**Problem:**
+**Pitfall:**
 ```text
 WiFi 6E theoretical: 9.6 Gbps
 WiFi 6E actual (5ft away): 2 Gbps
@@ -273,7 +273,7 @@ Impact: Inconsistent latency, packet loss, interference
 
 ### Pitfall 3: Wrong MTU Configuration
 
-**Problem:**
+**Pitfall:**
 ```text
 Default MTU: 1500 bytes
 Jumbo frames: 9000 bytes
