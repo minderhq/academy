@@ -414,6 +414,19 @@ stand today?" without running each tool by hand.
                       with spine position), drained same tick,
                       hard since; bracketed resource tokens stay
                       PQ-01..02 territory
+    tags_coverage_check
+                      Tags coverage (TG-01 hard, TG-02/03 report):
+                      a numbered in-phase lesson outside guides/
+                      with no Tags field is invisible to the
+                      platform tag filter and related-content
+                      navigation; born 2026-09-30 at 0 after the
+                      6-lesson drain (5103/5203/5204/6203/7302/
+                      7403, all 5-key-minimum docs) - 93/93 carry
+                      Tags. TG-02 keeps the guides/ genre's split
+                      inventory visible (9/21 tagged) and TG-03
+                      the meta docs' phase2-revamp trail (10/146
+                      tagged) until a tag-all-or-none standard is
+                      decided
     difficulty_distribution_scan
                       Difficulty as a sequence dimension (DX-01,
                       report-only census): per-phase B/I/A
@@ -681,6 +694,7 @@ GATES = [
     ("pacing_consistency_census.py", "pacing_consistency_census", False),
     ("difficulty_distribution_scan.py", "difficulty_distribution_scan", False),
     ("prereq_free_text_check.py", "prereq_free_text_check", True),
+    ("tags_coverage_check.py", "tags_coverage_check", True),
     ("difficulty_census.py", "difficulty_census", True),
     ("lesson_anatomy_census.py", "lesson_anatomy_census", True),
     ("closure_census.py", "closure_census", True),
