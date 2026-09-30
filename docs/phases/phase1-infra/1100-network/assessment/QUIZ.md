@@ -163,6 +163,16 @@ D) Network (APIs, message queues)
 
 ---
 
+## Need to Review?
+
+Each question maps to the closest lesson for review:
+
+- **Questions 1-3, 6, 7, 10-12, 20:** [1103: Jumbo Frames and MTU Optimization](../1103-Jumbo-Frames-and-MTU.md) — transport and protocol mechanics
+- **Questions 4, 5, 8, 9, 17-19:** [1102: Network Topology Design](../1102-Star-Topology-Core.md) — topology and traffic distribution
+- **Questions 13-16:** [1101: Internet Uplink & Modem Configuration](../1101-Fiber-GPON-Modem.md) — uplink characteristics and network boundary
+
+---
+
 ## Answer Key
 
 | Question | Answer | Explanation |

@@ -163,6 +163,16 @@ D) Deploy applications
 
 ---
 
+## Need to Review?
+
+Each question maps to the closest lesson for review:
+
+- **Questions 1, 2, 4, 7, 8, 11, 12, 14, 15, 17, 20:** [1301: K3s Master-Worker Architecture](../1301-K3s-Master-Worker-Arch.md) — cluster core: nodes, pods, services, tooling
+- **Questions 3, 5, 9, 13, 16, 18:** [1302: GPU Scheduler Configuration](../1302-GPU-Scheduler.md) — GPU scheduling and workload placement
+- **Questions 6, 10, 19:** [1303: Storage Classes for Dynamic Provisioning](../1303-Storage-Classes.md) — persistent storage and provisioning
+
+---
+
 ## Answer Key
 
 | Question | Answer | Explanation |

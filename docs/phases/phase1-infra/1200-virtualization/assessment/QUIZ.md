@@ -164,6 +164,16 @@ D) Needs special drivers
 
 ---
 
+## Need to Review?
+
+Each question maps to the closest lesson for review:
+
+- **Questions 1, 5, 6, 10, 15, 16, 18:** [1201: Proxmox Hypervisor Standard Operating Procedures](../1201-Proxmox-Hypervisor-SOP.md) — hypervisor platform and VM resources
+- **Questions 2-4, 7-9, 12-14, 19, 20:** [1202: GPU Passthrough (IOMMU/VFIO)](../1202-TB3-UT3G-Passthrough.md) — passthrough mechanics and IOMMU group isolation
+- **Questions 11, 17:** [1203: NVIDIA Kernel Module Management](../1203-Nvidia-Kernel-Module.md) — host-side kernel module handoff
+
+---
+
 ## Answer Key
 
 | Question | Answer | Explanation |
