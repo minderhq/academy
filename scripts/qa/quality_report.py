@@ -436,10 +436,14 @@ stand today?" without running each tool by hand.
                       prose-described but unlinked lessons, 6
                       never mentioned, 9 assessments without
                       Location lines), drained same tick, hard
-                      since. NV-02 report rows keep the 7
-                      phase-level CHECKPOINT.md files visible
-                      (unlinked from phase READMEs, standard
-                      pending)
+                      since. NV-02 (hard since the same-tick
+                      drain): the 7 phase-level CHECKPOINT.md
+                      files must be filename-linked from their
+                      phase READMEs - born unlinked, drained by
+                      adding a checkpoint bullet to each phase
+                      README's Assessment section (the drain also
+                      fixed the "Phase s Practice" typo in the
+                      phase-2/3 READMEs)
     tags_coverage_check
                       Tags coverage (TG-01 hard, TG-02/03 report):
                       a numbered in-phase lesson outside guides/

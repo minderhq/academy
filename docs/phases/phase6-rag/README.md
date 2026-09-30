@@ -756,6 +756,7 @@ See [PREREQUISITES](../../00-META/ENVIRONMENT-SETUP.md) for details.
 
 Validate your knowledge with:
 
+- **[Phase 6 Checkpoint](./CHECKPOINT.md)** - Module-by-module phase-exit review
 - **[Phase 6 Quiz](../../00-META/assessment/phase6-quiz.md)** - Test your understanding (20 questions, 80% to pass)
 - **[Phase 6 Practice](../../00-META/assessment/phase6-practice.md)** - Hands-on exercises
 

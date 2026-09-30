@@ -13,17 +13,25 @@ predicate is filename-link reachability: the doc's path, resolved from
 the README's directory, must appear among the README's relative .md
 link targets.
 
-NV-02 (report): phase-level extras - CHECKPOINT.md and
-PREREQUISITES.md at phase roots, where no module README applies.
-Their standard is pending; the inventory stays visible.
+NV-02 (hard): phase-level extras - CHECKPOINT.md and
+PREREQUISITES.md at phase roots, where no module README applies -
+must be filename-linked from their phase README. The phase-exit
+checkpoint is the learner's review page for everything above it;
+a phase page that never links it strands it. Birth census
+(2026-09-30) measured all 7 phase CHECKPOINT.md unlinked from
+their phase READMEs (no phase-level PREREQUISITES.md exists) -
+drained the same tick by adding a checkpoint bullet to each
+phase README's Assessment section (the drain also surfaced and
+fixed the "Phase s Practice" typo in the phase 2 and phase 3
+READMEs). Zero from then on: HARD gate.
 
-Birth census (2026-09-30) measured 45 in-scope orphans across 17
-module READMEs (30 lessons described in prose but never linked,
-6 lessons with no mention at all, 9 assessments missing from the
-Assessment section) - all drained the same tick by linkifying the
-described headers, appending the unmentioned lessons under
-Module Contents, and inserting the house-style Location lines.
-Zero from then on: HARD gate, born at zero.
+Birth census for NV-01 (same tick) measured 45 in-scope orphans
+across 17 module READMEs (30 lessons described in prose but never
+linked, 6 lessons with no mention at all, 9 assessments missing
+from the Assessment section) - all drained the same tick by
+linkifying the described headers, appending the unmentioned
+lessons under Module Contents, and inserting the house-style
+Location lines. Zero from then on: HARD gate, born at zero.
 
 Run over the whole corpus:
     python scripts/qa/nav_coverage_check.py --root .
@@ -67,7 +75,6 @@ def main() -> int:
     n_modules = 0
     n_docs = 0
     findings: list[str] = []
-    report: list[str] = []
 
     readme_dirs = sorted({p.parent for p in phases.rglob("*.md")
                           if (p.parent / "README.md").exists()})
@@ -102,18 +109,15 @@ def main() -> int:
                 extra = mod / name
                 if extra.exists() and extra.resolve() not in targets:
                     rel = extra.relative_to(args.root).as_posix()
-                    report.append("NV-02 phase-level %s not linked from its "
-                                  "phase README (pending standard)" % rel)
+                    findings.append("NV-02 phase-level %s not linked from "
+                                    "its phase README" % rel)
 
     print("nav_coverage_check: %d modules, %d learner-facing docs checked"
           % (n_modules, n_docs))
     for f in findings:
         print("  " + esc(f))
-    for r in report:
-        print("  " + esc(r))
-    print("nav_coverage_check: %d NV-01 findings (hard, born at zero) - "
-          "%d NV-02 report rows (phase-level, pending standard)"
-          % (len(findings), len(report)))
+    print("nav_coverage_check: %d findings (NV-01 module-level + NV-02 "
+          "phase-level, hard, born at zero)" % len(findings))
     return 1 if findings else 0
 
 
