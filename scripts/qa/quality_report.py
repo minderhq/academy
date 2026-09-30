@@ -470,6 +470,21 @@ stand today?" without running each tool by hand.
                       first lesson header), drained same tick by
                       relocating each after its ID-sorted block,
                       hard since
+    toc_coverage_check
+                      TOC completeness (TC-01 hard, TC-02 report):
+                      in a TOC-carrying lesson every real content
+                      H2 (outside frontmatter/fences, closing trio
+                      exempt) must appear as a TOC bullet - the
+                      TOC becomes the platform's in-lesson nav
+                      pane, so an unlisted section is invisible in
+                      navigation. Fence-aware: a naive census saw
+                      2 "missing" H2s in 2301 that were literal
+                      text inside a python example block. Born
+                      2026-09-30 at zero over 93 lessons; other
+                      genres (volumes/industry/guides/phase
+                      READMEs) report as TC-02 until they adopt a
+                      TOC standard (45 birth rows - 19 phase-
+                      README rows drained same tick = 26 visible)
     tags_coverage_check
                       Tags coverage (TG-01 hard, TG-02/03 report):
                       a numbered in-phase lesson outside guides/
@@ -754,6 +769,7 @@ GATES = [
     ("nav_coverage_check.py", "nav_coverage_check", True),
     ("last_updated_check.py", "last_updated_check", True),
     ("lesson_order_check.py", "lesson_order_check", True),
+    ("toc_coverage_check.py", "toc_coverage_check", True),
     ("tags_coverage_check.py", "tags_coverage_check", True),
     ("difficulty_census.py", "difficulty_census", True),
     ("lesson_anatomy_census.py", "lesson_anatomy_census", True),

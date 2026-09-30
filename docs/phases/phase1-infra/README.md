@@ -25,6 +25,8 @@ Difficulty: Beginner
 - [Pro Tips](#pro-tips)
 - [Performance Benchmarks](#performance-benchmarks)
 - [Related Experiments](#related-experiments)
+- [Assessment](#assessment)
+- [Related Topics](#related-topics)
 
 ---
 

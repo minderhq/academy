@@ -20,6 +20,9 @@ Difficulty: Beginner
 - [Pro Tips](#pro-tips)
 - [Hardware Requirements](#hardware-requirements)
 - [Related Experiments](#related-experiments)
+- [Assessment](#assessment)
+- [Related Topics](#related-topics)
+- [Prerequisites](#prerequisites)
 
 ---
 
