@@ -35,9 +35,9 @@ After completing this lesson, you will be able to:
 
 - Quantify the LoRA hypothesis — ΔW = BAᵀ has rank r ≪ min(d,k): at r=8 a 4096×4096 projection carries 65,536 trainable params vs 16,777,216 (256×), and the kaiming-A / zero-B init makes every adapter start as an exact identity
 - Build a `LoRALinear` and merge it correctly — frozen base, A (r×in) projecting down then B (out×r) up, scaling α/r — with a `merged` flag so folding ΔW into W doesn't double-count it in the forward
-- Pick the three hyperparameters from the tables — the rank 2-4 / 8-16 / 32-64 capacity ladder, α = r or α = 2r scaling, and target-module configs with their real budgets on Llama-2-7B at r=8 (q+v 0.06%, all-attention 0.12%, +FFN ~0.30%)
+- Pick the three hyperparameters from the tables — the rank 2-4 / 8-16 / 32-64 capacity ladder, α = r or α = 2r scaling, and target-module configs with their real budgets on Llama 2 7B at r=8 (q+v 0.06%, all-attention 0.12%, +FFN ~0.30%)
 - Route the variants to their use cases — input-side dropout (the PEFT convention), DoRA's magnitude/direction decomposition (`use_dora=True`), AdaLoRA's adaptive rank (`AdaLoraConfig`)
-- Train through PEFT — `LoraConfig` + `get_peft_model` + `print_trainable_parameters` (4,194,304 / 6,738,415,616 = 0.062% on Llama-2-7B), bf16 + gradient checkpointing, and the ~8 GB 8-bit memory table
+- Train through PEFT — `LoraConfig` + `get_peft_model` + `print_trainable_parameters` (4,194,304 / 6,738,415,616 = 0.062% on Llama 2 7B), bf16 + gradient checkpointing, and the ~8 GB 8-bit memory table
 - Match configs to tasks — instruction tuning (r=8, q+v), domain adaptation (r=16, all-linear), style transfer (r=4) — then `merge_and_unload()` for a zero-overhead deployment model
 
 ---

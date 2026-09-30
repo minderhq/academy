@@ -35,7 +35,7 @@ After completing this lesson, you will be able to:
 
 - Justify speculative decoding's win — the draft predicts N tokens, the target verifies all of them in one pass — turning 1 target-model run into multiple accepted tokens
 - Trace `speculative_decode(speculation_len=8)` — greedy draft chain, single target verification, accept-until-mismatch with the corrected token appended — and `speculative_sampling`'s min(1, p/q) acceptance with residual max(0, p−q) redistribution on rejection
-- Pick draft models from the size table — for a 70B target: TinyLlama-1B (~30x faster, 60-70% acceptance), Llama-2-7B (~8x, 85-90% distilled), Llama-2-13B (~4x, 90-95%) — aiming at the ~10%-of-target sweet spot via KL-divergence distillation at lr=1e-5
+- Pick draft models from the size table — for a 70B target: TinyLlama-1B (~30x faster, 60-70% acceptance), Llama 2 7B (~8x, 85-90% distilled), Llama 2 13B (~4x, 90-95%) — aiming at the ~10%-of-target sweet spot via KL-divergence distillation at lr=1e-5
 - Compute the speedup formula 1 / (P_accept·T_draft + (1−P_accept)·T_target) — 80% acceptance at 10x draft speed gives 3.57x theoretical, ~2-3x realized — and name the acceptance factors (draft quality, temperature, speculation length, domain match)
 - Contrast the draft-free variants — lookahead self-verification, parallel best-of-4 draft scoring, MedusaHeads' four Linear prediction heads — and what each trades for dropping the separate draft model
 - Tune with `find_optimal_speculation_length` — spec_len 8 → 3.0x at 70% acceptance vs 16 → 2.5x at 45%, optimal 8-12 — and keep the two caches consistent through SpeculativeKVCache.commit_accepted

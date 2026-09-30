@@ -466,7 +466,7 @@ Temperature: 0.7 (dimensionless)
 ❌ INCORRECT:
 - 7b model
 - 7B parameters
-- Mistral 7B (inconsistent capitalization)
+- Mistral 7b (size token must be 7B)
 ```
 
 ---
@@ -502,6 +502,29 @@ mis-styles; this section locks the rule so the split does not regrow.
 ❌ INCORRECT (in prose):
 - pytorch, huggingface, openai, ollama, langchain, vllm, gguf, lora
 ```
+
+### Name Forms (prose vs identifiers)
+
+The same model carries a space form in prose and a hyphen form where
+it acts as an identifier - both are correct in their own context:
+
+```markdown
+✅ CORRECT:
+- Prose sentences & family names:  Mistral 7B, Llama 2, Llama 3 8B
+- Repo ids / filenames / configs:  mistralai/Mistral-7B-Instruct-v0.2
+- Spec & benchmark table rows:     | Llama-2-7B |, | Mistral-7B |
+
+❌ INCORRECT (context mismatch):
+- A space-form checkpoint inside a spec/benchmark table row
+- A hyphen form in a flowing prose sentence
+```
+
+The tick-470 census measured the organic split and drained 27
+context mismatches corpus-wide: 11 table rows space-in-table (3402
+spec, phase1 throughput+memory, CP-001 cost), 16 prose and heading
+sites hyphen-in-prose (5104, LAB-003, 3403, the phase-4 KV-cache
+and phase-5 LoRA learning-objective bullets). Family-name rows and
+concept-definition rows keep the prose form.
 
 ### Standing Lowercase Exceptions (never "fix" these)
 

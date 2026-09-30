@@ -214,8 +214,8 @@ def autoregressive_loss(logits, targets):
 |-------|--------|-------|---------|---------|----------|
 | GPT-2 | 12/24/36 | 12/16/20 | 768/1024/1280 | 1024 | Learned pos |
 | LLaMA 7B | 32 | 32 | 4096 | 2048 | RoPE, SwiGLU |
-| Llama 2 7B | 32 | 32 | 4096 | 4096 | RoPE, SwiGLU, GQA |
-| Mistral 7B | 32 | 32 | 4096 | 8192 | RoPE, SwiGLU, GQA, SWA |
+| Llama-2-7B | 32 | 32 | 4096 | 4096 | RoPE, SwiGLU, GQA |
+| Mistral-7B | 32 | 32 | 4096 | 8192 | RoPE, SwiGLU, GQA, SWA |
 | Mixtral 8x7B | 32 | 32 | 4096 | 32768 | MoE, RoPE, SWA |
 
 ---

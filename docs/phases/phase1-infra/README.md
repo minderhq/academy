@@ -646,19 +646,19 @@ global:
 
 | Engine | Model | Quantization | Throughput (req/s) |
 |--------|-------|--------------|-------------------|
-| Ollama | Mistral 7B | Q4_0 | 5-10 |
-| vLLM | Mistral 7B | AWQ | 50-100 |
-| TGI | Mistral 7B | AWQ | 40-80 |
-| vLLM | Llama 3 8B | FP16 | 30-60 |
+| Ollama | Mistral-7B | Q4_0 | 5-10 |
+| vLLM | Mistral-7B | AWQ | 50-100 |
+| TGI | Mistral-7B | AWQ | 40-80 |
+| vLLM | Llama-3-8B | FP16 | 30-60 |
 
 ### Memory Usage
 
 | Model | Precision | VRAM Required |
 |-------|-----------|---------------|
-| Mistral 7B | FP16 | 14 GB |
-| Mistral 7B | 4-bit (AWQ) | 5 GB |
-| Llama 3 8B | FP16 | 16 GB |
-| Llama 3 8B | 4-bit (AWQ) | 6 GB |
+| Mistral-7B | FP16 | 14 GB |
+| Mistral-7B | 4-bit (AWQ) | 5 GB |
+| Llama-3-8B | FP16 | 16 GB |
+| Llama-3-8B | 4-bit (AWQ) | 6 GB |
 
 ---
 

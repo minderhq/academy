@@ -62,7 +62,7 @@ huggingface-cli login
 # Click "Agree and access repository" then login to accept
 ```
 
-> **🔑 Important:** You must accept the Mistral-7B license terms on Hugging Face before the lab. The model is gated and requires authentication.
+> **🔑 Important:** You must accept the Mistral 7B license terms on Hugging Face before the lab. The model is gated and requires authentication.
 
 #### 3. Python Environment
 ```bash
@@ -613,7 +613,7 @@ uv add "torch>=2.12.0" "transformers>=5.10.2" "peft>=0.19.1" "bitsandbytes>=0.50
 
 ## Exercise 4: Run Fine-Tuning (60 minutes)
 
-### Task: Fine-tune Mistral-7B on Docker/K8s dataset
+### Task: Fine-tune Mistral 7B on Docker/K8s dataset
 
 ```bash
 # Start training

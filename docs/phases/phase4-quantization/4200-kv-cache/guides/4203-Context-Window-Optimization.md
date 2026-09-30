@@ -35,7 +35,7 @@ Tags: ['kv-cache', 'context-window', 'speculative-decoding']
 After completing this lesson, you will be able to:
 
 - Place the two context budgets side by side — 4K fp16 7B at ~10 GB (7 weights + 2 KV + 1 activations) vs 32K 4-bit + int8-KV at ~5 GB (3.5 + 0.5 + 1) — and say which knob buys each factor
-- Compute KV-cache memory with `calculate_kv_cache_memory` (2 × heads × head_dim × seq × batch × bytes × layers) and read the model table — Llama-2-7B 2.00 GB at 4K fp16 doubling per context doubling, Phi-2 at 1.25 GB (head_dim 80), Mixtral-8x7B at 0.50 GB via its 8 GQA KV heads
+- Compute KV-cache memory with `calculate_kv_cache_memory` (2 × heads × head_dim × seq × batch × bytes × layers) and read the model table — Llama 2 7B 2.00 GB at 4K fp16 doubling per context doubling, Phi-2 at 1.25 GB (head_dim 80), Mixtral-8x7B at 0.50 GB via its 8 GQA KV heads
 - Build `QuantizedKVCache` — int8 storage (1 byte vs fp16's 2) with per-layer `abs().max()/127` scales, `round().clamp(-128, 127)` quantize and scale-multiply dequantize — halving cache VRAM through independent per-layer write positions
 - Implement `SlidingWindowAttention` at O(n·w) — windowed mask over the recent window_size tokens plus every-128th history anchor, self-inclusive window slices, cache trimmed to max_cache_size — and read the op-savings table from 1024 to 16384 seq len
 - Manage multi-round conversations with `ContextManager` — timestamped, importance-scored `ContextSegment`s compressed at the 0.8 capacity threshold down to summary_ratio 0.3 by keeping the highest-importance segments

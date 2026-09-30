@@ -443,7 +443,7 @@ models:
 ### Hands-on Practice
 
 1. **[EXP_4101: GGUF](../../../experiments/EXP_4101_GGUF.md)**
-   - Convert Llama-2 to GGUF format
+   - Convert Llama 2 to GGUF format
    - Benchmark GGUF vs FP16
    - Optimize GGUF settings
 

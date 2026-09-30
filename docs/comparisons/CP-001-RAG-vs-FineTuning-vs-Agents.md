@@ -289,7 +289,7 @@ trainer.train()
 | Component | Cost | Notes |
 |-----------|------|-------|
 | GPU Training (11GB-class GPU, 3 epochs) | $0 (your hardware) | ~24-48 hours training time |
-| Base Model (Llama 2 7B) | $0 | Open source |
+| Base Model (Llama-2-7B) | $0 | Open source |
 | Electricity | ~$5-10 | Per training run |
 | **Total** | **~$5-10** | One-time cost |
 

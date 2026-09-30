@@ -38,7 +38,7 @@ After completing this lesson, you will be able to:
 - Compute the standard 4-bit metadata overhead from the group formulas — weights 0.5mn, fp16 scales 2mn/g, int8 zero-points mn/g bytes — landing at 8 MB + 256 KB + 128 KB ≈ 8.4 MB (~5%) for a 4096×4096 matrix at g=128
 - Derive the scales-of-scales scheme — scales re-quantized to 8-bit `round(s/c) + 128` against one per-tensor fp16 constant `c = max(|scales|)/127` — by walking the `double_quantize`/`double_dequantize` round trip and its ~50% scale-storage saving
 - Configure `BitsAndBytesConfig` (`load_in_4bit`, `bnb_4bit_quant_type="nf4"`, `bnb_4bit_use_double_quant=True`, `bnb_4bit_compute_dtype=torch.float16`) and read the 16 NF4 levels as the normal-distribution-matched codebook
-- Quantify DQ's footprint from the model tables — Llama-2-7B scales 0.1 → 0.05 GB plus ~0.001 GB meta (3.6 → 3.55 GB, ~0.5 GB at 70B) — against its <0.5% quality cost (WikiText-2: 7B 5.65 → 5.67, 70B 3.78 → 3.79)
+- Quantify DQ's footprint from the model tables — Llama 2 7B scales 0.1 → 0.05 GB plus ~0.001 GB meta (3.6 → 3.55 GB, ~0.5 GB at 70B) — against its <0.5% quality cost (WikiText-2: 7B 5.65 → 5.67, 70B 3.78 → 3.79)
 - Decide when DQ pays off (VRAM-constrained, 70B+, inference) versus skipping it (max quality, ample VRAM, 7B/13B), and reject triple quantization for <0.01 GB more savings at compounding quality loss
 - Wire DQ into QLoRA — `prepare_model_for_kbit_training` plus LoraConfig (r=16, alpha=32, q_proj/v_proj) training ~1% of parameters — and route the OOM / NaN-loss / slow-inference troubleshooting paths
 

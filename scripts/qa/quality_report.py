@@ -884,6 +884,17 @@ stand today?" without running each tool by hand.
                        (2090 dot / 0 paren), task-list syntax clean,
                        non-1 list starts = 337 deliberate continuation
                        numbering (CommonMark-legal)
+    model_form_report  Model-name form consistency (report mode): MF-01
+                       space-form checkpoint inside a table row, MF-02
+                       hyphen form in flowing prose - the vendor
+                       two-form convention (prose "Mistral 7B" vs
+                       repo-id Mistral-7B) applied per context; the
+                       tick-470 census drained the mismatches and the
+                       rule is codified in STYLE-GUIDE Name Forms;
+                       birth hits are documented intended uses
+                       (concept-definition row, Tech Stack
+                       enumeration, capstone download target,
+                       full-repo-id parenthetical)
 
 Plus corpus stats (lesson files / modules / phases) so the scorecard doubles
 as a curriculum inventory.

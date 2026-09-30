@@ -37,7 +37,7 @@ After completing this lesson, you will be able to:
 - Quantify the LoRA architecture — ΔW = BA at rank r ≪ d: at r=8 a 4096×4096 projection carries 65,536 trainable params vs 16,777,216 (256×), with kaiming-A / zero-B init making the adapter start as an exact identity
 - Build `LoRALinear` from scratch — frozen base, A projects down (in→r), B up (r→out), scaling α/r, dropout on the LoRA path's input — and merge it with a `merged` flag, because folding ΔW into W and then re-running the LoRA path emits Wx + 2·ΔWx
 - Fine-tune through PEFT/transformers — `LoraConfig` (r=16, α=32, the 7 Mistral target modules ≈ 42M trainable) + `Trainer` with `bf16=True`; the bf16 7B base needs ~15 GB, so 11GB-class GPUs jump to QLoRA
-- Wire the QLoRA variant — `BitsAndBytesConfig` (NF4 + double quant + bf16 compute) → `prepare_model_for_kbit_training` → `get_peft_model`; attention-only r=16 on Mistral-7B is 13,631,488 trainable and the whole setup fits in ~7 GB
+- Wire the QLoRA variant — `BitsAndBytesConfig` (NF4 + double quant + bf16 compute) → `prepare_model_for_kbit_training` → `get_peft_model`; attention-only r=16 on Mistral 7B is 13,631,488 trainable and the whole setup fits in ~7 GB
 - Serve N tasks from ONE model — `PeftModel.from_pretrained(..., adapter_name=)` + `load_adapter(adapter_name=)` + `set_adapter()`; re-wrapping the same base N times shares one module tree and each load overwrites the previous adapter's weights
 - Read the benchmark tables — VRAM vs rank vs target-module scope (all-linear ~42M ≈ 0.6% vs attention-only 13.6M ≈ 0.2% at r=16) and pick the configuration that fits the GPU before training
 
@@ -302,7 +302,7 @@ if __name__ == "__main__":
 
 ## Implementation 2: LoRA with transformers
 
-### Fine-tuning Mistral-7B with LoRA
+### Fine-tuning Mistral 7B with LoRA
 
 ```python
 # lora_finetuning.py
@@ -687,7 +687,7 @@ def example_multi_adapter():
 
 ### LoRA Rank vs Performance
 
-QLoRA, all-linear targets on Mistral-7B — trainable params scale
+QLoRA, all-linear targets on Mistral 7B — trainable params scale
 linearly with rank (≈ 2.62M per rank step: r × Σ(in+out) over the
 targeted projections), so the VRAM ladder moves smoothly:
 
