@@ -379,6 +379,17 @@ stand today?" without running each tool by hand.
                       docs, 4 tokens, 13 non-numbered docs are
                       free-text/resource pointers, visible in the
                       skip line)
+    qa_tooling_coverage_check
+                      QA-TOOLING doc locked to this inventory
+                      (QT-01, hard, born at zero): every script
+                      in GATES must be named in
+                      docs/00-META/QA-TOOLING.md by script stem
+                      or gate label - the hand-written doc cannot
+                      silently drift behind the CI contract again
+                      (birth census 2026-09-30: 22 of 59 gates
+                      unlisted; 1 matcher FP, 21 rows drained
+                      same tick, hard since). Presence only -
+                      the prose stays hand-written
     difficulty_census Difficulty vocabulary closure (DI-01..03,
                       hard): the platform renders difficulty as
                       a filter/sequence dimension, so the
@@ -629,6 +640,7 @@ GATES = [
     ("estimated_time_census.py", "estimated_time_census", True),
     ("prereq_census.py", "prereq_census", True),
     ("prereq_ordering_scan.py", "prereq_ordering_scan", True),
+    ("qa_tooling_coverage_check.py", "qa_tooling_coverage_check", True),
     ("difficulty_census.py", "difficulty_census", True),
     ("lesson_anatomy_census.py", "lesson_anatomy_census", True),
     ("closure_census.py", "closure_census", True),
