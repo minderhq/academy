@@ -408,6 +408,14 @@ stand today?" without running each tool by hand.
                       strings - lessons "See module README",
                       module READMEs "See PREREQUISITES.md" - so
                       the platform nav generator can classify
+    prereq_target_check
+                      Canonical pointer target integrity (PQ-05,
+                      hard): every "See module README" / "See
+                      PREREQUISITES.md" pointer must land - the
+                      nearest README-bearing ancestor's README
+                      exists and carries a prerequisites section,
+                      the PREREQUISITES.md exists; born at zero
+                      (census 2026-09-30: 33/33 module READMEs)
                       every pointer; born 2026-09-30 at 4 prose
                       variants (a vague assumption + three
                       "Phase N completion" statements redundant
@@ -694,6 +702,7 @@ GATES = [
     ("pacing_consistency_census.py", "pacing_consistency_census", False),
     ("difficulty_distribution_scan.py", "difficulty_distribution_scan", False),
     ("prereq_free_text_check.py", "prereq_free_text_check", True),
+    ("prereq_target_check.py", "prereq_target_check", True),
     ("tags_coverage_check.py", "tags_coverage_check", True),
     ("difficulty_census.py", "difficulty_census", True),
     ("lesson_anatomy_census.py", "lesson_anatomy_census", True),
