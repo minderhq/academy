@@ -611,6 +611,19 @@ stand today?" without running each tool by hand.
                       February-frozen display badges, 7
                       late-Sept near-misses - a class invisible
                       to date_cohort (which reads FM only)
+    diagram_scan
+                      Mermaid diagram integrity (DM-01..03,
+                      hard): the corpus carries 56 mermaid
+                      blocks (52 graph, 2 state, 2 sequence)
+                      that the platform renders directly - a
+                      syntax-broken block is a visible error
+                      box. DM-01 known diagram-type header,
+                      DM-02 no unquoted ()[]{} in graph node
+                      labels (quote- and shape-aware: [(db)]
+                      ([stadium]) ((circle)) {{hex}} [/para/]
+                      understood), DM-03 no node opened and
+                      closed by an edge operator / EOL. Born
+                      tick-462 at 0 across 56 blocks / 19 docs
     difficulty_distribution_scan
                       Difficulty as a sequence dimension (DX-01,
                       report-only census): per-phase B/I/A
@@ -906,6 +919,7 @@ GATES = [
     ("heading_scan.py", "heading_scan", True),
     ("table_scan.py", "table_scan", True),
     ("updated_badge_scan.py", "updated_badge_scan", True),
+    ("diagram_scan.py", "diagram_scan", True),
 ]
 
 
