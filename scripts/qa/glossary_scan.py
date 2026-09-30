@@ -41,7 +41,7 @@ from pathlib import Path
 GLOSSARY = "GLOSSARY.md"
 TERM_ROW = re.compile(r"^\| \*\*(.+?)\*\* \|(.*?)\|\s*$")
 HDR_CELL = re.compile(r"^\|\s*([^|]+?)\s*(?:\|.+)*\|\s*$")
-FENCE = re.compile(r"^(```|~~~)")
+FENCE = re.compile(r"^ {0,3}(```|~~~)")  # CommonMark: <=3 leading spaces
 FM_CLOSE = re.compile(r"^---\s*$")
 
 

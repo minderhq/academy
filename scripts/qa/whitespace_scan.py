@@ -34,7 +34,7 @@ import re
 import sys
 from pathlib import Path
 
-FENCE = re.compile(r"^(```|~~~)")
+FENCE = re.compile(r"^ {0,3}(```|~~~)")  # CommonMark: <=3 leading spaces
 FM_CLOSE = re.compile(r"^---\s*$")
 
 

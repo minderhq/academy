@@ -33,7 +33,7 @@ import re
 import sys
 from pathlib import Path
 
-FENCE = re.compile(r"^(```|~~~)")
+FENCE = re.compile(r"^ {0,3}(```|~~~)")  # CommonMark: <=3 leading spaces
 PIPE_ROW = re.compile(r"^\|.*\|\s*$")
 SEP_ROW = re.compile(r"^\|[\s:\-|]+\|\s*$")
 UNESCAPED_PIPE = re.compile(r"(?<!\\)\|")

@@ -44,7 +44,7 @@ import re
 import sys
 from pathlib import Path
 
-FENCE_OPEN = re.compile(r"^```(\w*)\s*$")
+FENCE_OPEN = re.compile(r"^ {0,3}```(\w*)\s*$")
 
 # assignment/export at a command-delimiter boundary (line start or
 # after ; & |), any indentation - (?!=) keeps == comparisons out
@@ -146,7 +146,7 @@ def fences(path: Path):
         m = FENCE_OPEN.match(line)
         if not in_fence and m:
             in_fence, label, buf, start = True, m.group(1), [], i
-        elif in_fence and line.startswith("```"):
+        elif in_fence and re.match(r"^ {0,3}```", line):
             in_fence = False
             if label == "bash":
                 yield start + 1, "\n".join(buf)

@@ -36,7 +36,7 @@ import sys
 from pathlib import Path
 
 FM_LU = re.compile(r"^Last Updated:\s*(\d{4}-\d{2}-\d{2})\s*$")
-FENCE = re.compile(r"^(```|~~~)")
+FENCE = re.compile(r"^ {0,3}(```|~~~)")  # CommonMark: <=3 leading spaces
 BADGE = re.compile(
     r"^\s*(?:\*\*|__)?Last [Uu]pdated(?:\*\*|__)?\s*:?\s*\**\s*"
     r"(\d{4}-\d{2}-\d{2})\s*$")

@@ -11,6 +11,8 @@ Tags: ['maintenance', 'evaluation']
 
 **The gate system that keeps the curriculum shippable**
 
+> **Fence-detection convention (tick-467):** CommonMark allows 0-3 leading spaces of indentation on a fence line (list-item code blocks are indented fences). All fence-aware scanners match `^ {0,3}(```|~~~)` — earlier line-start-only regexes silently treated the contents of the corpus's 98 indented-fence lines (8 files, mostly TROUBLESHOOTING-QUICKSTART command blocks) as prose. Blockquote fences (`> ``` `) remain a documented blind spot.
+
 ---
 
 ## 🚀 One Command

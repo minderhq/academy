@@ -47,7 +47,7 @@ from collections import Counter, defaultdict
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
-FENCE = re.compile(r"^(```|~~~)")
+FENCE = re.compile(r"^ {0,3}(```|~~~)")  # CommonMark: <=3 leading spaces
 URL = re.compile(r"https?://[^\s\)\]\`>'\"<]+")
 FM_CLOSE = re.compile(r"^---\s*$")
 NOT_CHECKABLE = re.compile(

@@ -44,7 +44,7 @@ import re
 import sys
 from pathlib import Path
 
-FENCE = re.compile(r"^(```|~~~)")
+FENCE = re.compile(r"^ {0,3}(```|~~~)")  # CommonMark: <=3 leading spaces
 MERMAID_OPEN = re.compile(r"^```\s*mermaid\s*$", re.I)
 DIAGRAM_TYPES = (
     "flowchart", "graph", "sequenceDiagram", "classDiagram",

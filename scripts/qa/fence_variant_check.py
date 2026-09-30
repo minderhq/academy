@@ -43,7 +43,7 @@ import re
 import sys
 from pathlib import Path
 
-FENCE_OPEN = re.compile(r"^```(\w*)\s*$")
+FENCE_OPEN = re.compile(r"^ {0,3}```(\w*)\s*$")
 BUILTINS = set(dir(builtins))
 
 # (doc relpath, undefined name) -> accepted ambient idiom, with reason
@@ -130,7 +130,7 @@ def fences(path: Path):
         m = FENCE_OPEN.match(line)
         if not in_fence and m:
             in_fence, label, buf, start = True, m.group(1), [], i
-        elif in_fence and line.startswith("```"):
+        elif in_fence and re.match(r"^ {0,3}```", line):
             in_fence = False
             if label == "python":
                 yield start + 1, "\n".join(buf)
