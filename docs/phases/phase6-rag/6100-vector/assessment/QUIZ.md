@@ -165,25 +165,25 @@ D) Use cross-attention, which is precisely the cross-encoder design these models
 
 ## Answer Key
 
-| # | Answer |
-|---|--------|
-| 1 | A |
-| 2 | A |
-| 3 | D |
-| 4 | D |
-| 5 | B |
-| 6 | B |
-| 7 | A |
-| 8 | A |
-| 9 | C |
-| 10 | B |
-| 11 | A |
-| 12 | B |
-| 13 | A |
-| 14 | B |
-| 15 | B |
-| 16 | A |
-| 17 | B |
-| 18 | B |
-| 19 | B |
-| 20 | A |
+| Question | Answer | Explanation |
+|----------|--------|-------------|
+| 1 | A | Embeddings encode text as dense number vectors |
+| 2 | A | Word2Vec trains small neural networks (CBOW/Skip-gram) |
+| 3 | D | Cosine similarity is the angle between vectors |
+| 4 | D | BERT emits contextual embeddings - per-token, context-dependent |
+| 5 | B | Sentence-BERT is tuned for sentence-level similarity |
+| 6 | B | Typical dimensions run 100-1000 (768, 1024, 1536) |
+| 7 | A | Normalized vectors make dot product equal cosine similarity |
+| 8 | A | Mean pooling averages token embeddings into one vector |
+| 9 | C | OpenAI text-embedding endpoints output 1536-dim vectors |
+| 10 | B | BGE is an open-source embedding model family |
+| 11 | A | Matryoshka embeddings nest coarse-to-fine dimensions |
+| 12 | B | ColBERT keeps one vector per token for late interaction |
+| 13 | A | Retrieval embeddings must capture semantics, not keywords |
+| 14 | B | CLIP embeds images and text in one shared space |
+| 15 | B | Fine-tuning needs labeled similar/dissimilar text pairs |
+| 16 | A | MTEB benchmarks embedding quality across tasks |
+| 17 | B | Multilingual embeddings serve many languages in one space |
+| 18 | B | Long docs are chunked and embedded chunk by chunk |
+| 19 | B | Query and document must share one embedding model |
+| 20 | A | Bi-encoders encode query and document separately |

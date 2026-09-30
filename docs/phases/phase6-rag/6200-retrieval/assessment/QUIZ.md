@@ -165,25 +165,25 @@ D) No effect
 
 ## Answer Key
 
-| # | Answer |
-|---|--------|
-| 1 | C |
-| 2 | D |
-| 3 | D |
-| 4 | B |
-| 5 | B |
-| 6 | A |
-| 7 | A |
-| 8 | A |
-| 9 | A |
-| 10 | A |
-| 11 | A |
-| 12 | B |
-| 13 | A |
-| 14 | B |
-| 15 | A |
-| 16 | B |
-| 17 | A |
-| 18 | B |
-| 19 | B |
-| 20 | B |
+| Question | Answer | Explanation |
+|----------|--------|-------------|
+| 1 | C | Hybrid search blends vector and keyword retrieval |
+| 2 | D | BM25 is a classic keyword ranking function |
+| 3 | D | RRF merges multiple ranked lists into one |
+| 4 | B | Dense retrieval matches vector embeddings |
+| 5 | B | Sparse retrieval matches exact terms (BM25-style) |
+| 6 | A | HNSW is a graph-based approximate vector index |
+| 7 | A | Reranking refines the candidate set from first-stage retrieval |
+| 8 | A | Cross-encoders jointly encode query and document |
+| 9 | A | MMR trades relevance against redundancy for diversity |
+| 10 | A | Query expansion adds terms to raise recall |
+| 11 | A | Alpha weights the dense side against the sparse side |
+| 12 | B | ANN trades exactness for sublinear search speed |
+| 13 | A | IVF partitions the vector space into clusters |
+| 14 | B | RRF scores by rank position, not raw scores |
+| 15 | A | Semantic search retrieves by meaning |
+| 16 | B | Lexical search matches exact terms |
+| 17 | A | Boosting raises scores of favored documents or fields |
+| 18 | B | RAG output quality is bounded by retrieval quality |
+| 19 | B | The context window caps how much retrieved text fits |
+| 20 | B | Fusion helps when tuned - not a guaranteed win |
