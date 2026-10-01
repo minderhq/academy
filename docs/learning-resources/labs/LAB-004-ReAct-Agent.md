@@ -383,23 +383,26 @@ class CodeExecutorTool(Tool):
         return "Execute Python code. Use 'code' parameter. WARNING: Limited functionality."
 
     def execute(self, code: str) -> str:
-        try:
-            # Capture output
-            import io
-            import sys
-            old_stdout = sys.stdout
-            sys.stdout = io.StringIO()
+        # Capture output
+        import io
+        import sys
+        old_stdout = sys.stdout
+        sys.stdout = io.StringIO()
 
+        try:
             # Execute (limited for safety)
-            exec(code, {"__builtins__": {"print": print, "range": range, "len": len}})
+            exec(code, {"__builtins__": {"print": print, "range": range,
+                         "len": len, "sum": sum}})
 
             # Get output
             output = sys.stdout.getvalue()
-            sys.stdout = old_stdout
-
             return output if output else "Code executed successfully (no output)"
         except Exception as e:
             return f"Execution error: {str(e)}"
+        finally:
+            # ALWAYS restore stdout - even when exec() raises, or every
+            # print() after this call is silently swallowed
+            sys.stdout = old_stdout
 
 class FileReadTool(Tool):
     """Read file contents"""

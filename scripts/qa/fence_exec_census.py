@@ -33,6 +33,11 @@ Report-mode census (exit 0 always). Findings classify into:
   CODE-SIGNAL     any other exception (TypeError, ValueError,
   (numbered)      AttributeError, ...) - the gold class: example code
                   that is broken as written
+  RUNNER-CRASH    the runner itself died mid-file (bad rc or non-JSON
+                  stdout); the heartbeat attributes the last fence it
+                  reached - the classic cause is a fence hijacking
+                  sys.stdout and dying inside its own redirect, which
+                  swallows the runner's final JSON print too
 
 The classification pass turns this into the next born-at-zero gate's
 accepted classes; drain the CODE-SIGNAL class first.
@@ -113,7 +118,10 @@ for line_no, src in fences:
     except BaseException as e:
         name = getattr(e, "name", "") or ""
         out.append([line_no, type(e).__name__, str(e)[:200], str(name)])
-print(json.dumps(out))
+# sentinel prefix: a fence printing without a trailing newline (input()
+# prompts do exactly that) glues its output onto this line - the parent
+# must find the marker, not trust the last line
+print("CENSUS_JSON:" + json.dumps(out))
 '''
 
 
@@ -204,10 +212,20 @@ def main() -> int:
                 continue
             rows = []
             try:
-                rows = json.loads((out or "").strip().splitlines()[-1])
-            except (json.JSONDecodeError, IndexError):
+                # the sentinel may sit mid-line: a fence printing an input()
+                # prompt without a trailing newline glues it in front
+                jline = next(l for l in reversed((out or "").splitlines())
+                             if "CENSUS_JSON:" in l)
+                rows = json.loads(jline.split("CENSUS_JSON:", 1)[1])
+            except (StopIteration, json.JSONDecodeError):
                 tally["RUNNER-CRASH"] = tally.get("RUNNER-CRASH", 0) + 1
-                line = f"{rel}: RUNNER-CRASH rc={proc.returncode} {(err or '').strip()[:200]}"
+                # attribute via the heartbeat like TIMEOUT: rc=0 with no JSON
+                # usually means a fence hijacked sys.stdout and died inside
+                # its own redirect (LAB-004's CodeExecutorTool did exactly
+                # that), so the last HB fence swallowed the runner's output
+                hbs = [l for l in (err or "").split("\n") if l.startswith("HB ")]
+                at = f"fence@line{hbs[-1].split()[1]}" if hbs else "fence@?"
+                line = f"{rel}: RUNNER-CRASH rc={proc.returncode} at {at} {(err or '').strip()[:200]}"
                 signal_files.append(line)
                 print(f"[{n}/{len(targets)}] {rel}: RUNNER-CRASH\n  {line}", flush=True)
                 continue

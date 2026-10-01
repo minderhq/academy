@@ -199,8 +199,9 @@ def chunk_document(text, max_length=512, overlap=50):
         # Move start position with overlap
         start = end - overlap
 
-        # Avoid infinite loop
-        if start >= len(words):
+        # Avoid infinite loop: once the tail is consumed, end never
+        # grows again and start would oscillate at len(words) - overlap
+        if end >= len(words):
             break
 
     return chunks
