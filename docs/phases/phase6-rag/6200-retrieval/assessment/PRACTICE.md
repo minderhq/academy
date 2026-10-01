@@ -115,33 +115,39 @@ for query in queries:
 ### Exercise 2: Query Expansion
 
 ```python
-from transformers import pipeline
+from transformers import pipeline, GenerationConfig
 
-# Load query expansion model
+# Load query expansion model - transformers 5.x retired the
+# "text2text-generation" pipeline; prompting an instruction-tuned
+# LLM is the modern replacement
 print("Loading query expansion model...")
-generator = pipeline("text2text-generation", model="t5-base")
+generator = pipeline("text-generation", model="HuggingFaceTB/SmolLM2-1.7B-Instruct")
 
 def expand_query(query, n_expansions=3):
     """Generate query expansions for better retrieval."""
 
-    # Generate expansions using LLM
-    prompt = f"Generate {n_expansions} alternative search queries for: '{query}'"
-    prompt += "\nQueries:"
+    # Generate expansions with an instruction-following LLM
+    messages = [{"role": "user",
+                 "content": f"Generate {n_expansions} alternative search queries "
+                            f"for: '{query}'. Output them as a comma-separated "
+                            f"list only."}]
 
     expansions = generator(
-        prompt,
-        max_length=100,
-        num_return_sequences=n_expansions,
-        temperature=0.8,
-        do_sample=True
+        messages,
+        generation_config=GenerationConfig(
+            max_new_tokens=100,
+            num_return_sequences=n_expansions,
+            temperature=0.8,
+            do_sample=True,
+        ),
     )
 
-    # Parse expansions
+    # Parse expansions - each result ends with the assistant's reply
     expanded_queries = [query]  # Include original
     for exp in expansions:
-        generated_text = exp["generated_text"]
-        # Extract queries from generated text
-        queries = [q.strip() for q in generated_text.split(",") if q.strip()]
+        generated_text = exp["generated_text"][-1]["content"]
+        # Extract queries from generated text (strip list-style quotes)
+        queries = [q.strip(' "\'') for q in generated_text.split(",") if q.strip()]
         expanded_queries.extend(queries)
 
     return list(set(expanded_queries))  # Remove duplicates

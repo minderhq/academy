@@ -117,12 +117,20 @@ print(json.dumps(data[0], indent=2))
 ### Exercise 2: Data Augmentation with Back Translation
 
 ```python
-from transformers import pipeline
+from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 
-# Load translation models
+# transformers 5.x retired the "translation" pipeline alias; the
+# MarianMT checkpoints still load directly as seq2seq models
 print("Loading translation models...")
-translator_en_de = pipeline("translation", model="Helsinki-NLP/opus-mt-en-de")
-translator_de_en = pipeline("translation", model="Helsinki-NLP/opus-mt-de-en")
+tok_en_de = AutoTokenizer.from_pretrained("Helsinki-NLP/opus-mt-en-de")
+mt_en_de = AutoModelForSeq2SeqLM.from_pretrained("Helsinki-NLP/opus-mt-en-de")
+tok_de_en = AutoTokenizer.from_pretrained("Helsinki-NLP/opus-mt-de-en")
+mt_de_en = AutoModelForSeq2SeqLM.from_pretrained("Helsinki-NLP/opus-mt-de-en")
+
+def translate(tokenizer, model, text, **gen_kwargs):
+    inputs = tokenizer(text, return_tensors="pt", max_length=512, truncation=True)
+    output = model.generate(**inputs, **gen_kwargs)
+    return tokenizer.decode(output[0], skip_special_tokens=True)
 
 def back_translate(text, n_variations=3):
     """Generate paraphrases via back-translation."""
@@ -132,17 +140,15 @@ def back_translate(text, n_variations=3):
     for i in range(n_variations):
         print(f"Generating variation {i+1}/{n_variations}...")
 
-        # do_sample=True: greedy (the pipeline default) is deterministic,
-        # so every round-trip returns the identical sentence and the
-        # n_variations loop yields copies of one paraphrase
-        german = translator_en_de(
-            text, max_length=512, do_sample=True, temperature=0.8
-        )[0]["translation_text"]
+        # do_sample=True: greedy decoding is deterministic, so every
+        # round-trip returns the identical sentence and the n_variations
+        # loop yields copies of one paraphrase
+        german = translate(tok_en_de, mt_en_de, text,
+                           max_length=512, do_sample=True, temperature=0.8)
 
         # Translate back to English
-        paraphrase = translator_de_en(
-            german, max_length=512, do_sample=True, temperature=0.8
-        )[0]["translation_text"]
+        paraphrase = translate(tok_de_en, mt_de_en, german,
+                               max_length=512, do_sample=True, temperature=0.8)
 
         variations.append(paraphrase)
 

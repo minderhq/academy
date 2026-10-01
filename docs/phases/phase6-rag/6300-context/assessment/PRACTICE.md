@@ -91,11 +91,20 @@ if __name__ == "__main__":
 ### Exercise 2: Context Compression via Summarization
 
 ```python
-from transformers import pipeline
+from transformers import pipeline, GenerationConfig
 
-# Load summarizer
+# Load an instruct model - transformers 5.x retired the task-specific
+# "summarization" pipeline; prompting an instruction-tuned LLM is the
+# modern replacement (SmolLM2-1.7B-Instruct runs fine on CPU)
 print("Loading summarization model...")
-summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
+summarizer = pipeline("text-generation", model="HuggingFaceTB/SmolLM2-1.7B-Instruct")
+
+def summarize_text(text):
+    """Summarize a passage with an instruction-following LLM."""
+    messages = [{"role": "user",
+                 "content": f"Summarize the following text in 2-3 sentences:\n\n{text}"}]
+    result = summarizer(messages, generation_config=GenerationConfig(max_new_tokens=120))
+    return result[0]["generated_text"][-1]["content"].strip()
 
 def compress_context(long_context, target_length=512):
     """Compress long context by summarizing older parts."""
@@ -123,7 +132,7 @@ def compress_context(long_context, target_length=512):
     for i, chunk in enumerate(chunks):
         if i < num_summarize:
             # Summarize older chunks
-            summary = summarizer(chunk, max_length=100, min_length=30)[0]["summary_text"]
+            summary = summarize_text(chunk)
             compressed += f"[Summary] {summary} "
         else:
             # Keep recent chunks

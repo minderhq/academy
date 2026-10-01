@@ -219,16 +219,18 @@ Rotation+infilling together = the recipe shipped in BART large
 ### Using BART
 
 ```python
-from transformers import pipeline
+from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 
-summarizer = pipeline(
-    "summarization",
-    model="facebook/bart-large-cnn",   # BART large fine-tuned on CNN/DailyMail
-)
+# transformers 5.x retired the "summarization" pipeline alias; the
+# model is still first-class - load and generate directly
+print("Loading BART large...")
+tokenizer = AutoTokenizer.from_pretrained("facebook/bart-large-cnn")
+model = AutoModelForSeq2SeqLM.from_pretrained("facebook/bart-large-cnn")
 
 article = """The transformer architecture eliminated recurrence ..."""
-print(summarizer(article, max_length=130, min_length=30, do_sample=False)
-      [0]["summary_text"])
+inputs = tokenizer(article, return_tensors="pt", max_length=1024, truncation=True)
+summary_ids = model.generate(**inputs, max_length=130, min_length=30, do_sample=False)
+print(tokenizer.decode(summary_ids[0], skip_special_tokens=True))
 ```
 
 `bart-large-cnn` remains a strong, tiny-by-2026-standards (406M) summarization baseline: no prompt engineering, deterministic output, single fixed purpose.
