@@ -573,10 +573,10 @@ def generate_fast(model, input_ids, max_length=100):
 ```python
 from torch.utils.checkpoint import checkpoint
 
-def forward_with_checkpointing(x):
+def forward_with_checkpointing(attention, ffn, x):
     # Enable larger batch sizes with limited VRAM
-    x = checkpoint(self.attention, x)  # Checkpoint attention
-    x = checkpoint(self.ffn, x)         # Checkpoint FFN
+    x = checkpoint(attention, x)  # Checkpoint attention
+    x = checkpoint(ffn, x)         # Checkpoint FFN
     return x
 
 # Benefits:

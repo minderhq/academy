@@ -1270,7 +1270,7 @@ GATES = [
     ("action_version_scan.py", "action_version_scan", True),
     ("unicode_ws_hygiene_scan.py", "unicode_ws_hygiene_scan", True),
     ("objectives_lint.py", "objectives_lint", False),
-    ("fence_namecheck.py", "fence_namecheck", False),
+    ("fence_namecheck.py", "fence_namecheck", True),
     ("duplicate_heading_scan.py", "duplicate_heading_scan", True),
     ("fence_import_check.py", "fence_import_check", True),
     ("fm_staleness_scan.py", "fm_staleness", False),
