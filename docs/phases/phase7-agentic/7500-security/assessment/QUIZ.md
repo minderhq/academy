@@ -1,7 +1,7 @@
 ---
 Document ID: 7500-QUIZ
 Title: "7500: Agent Security - Quiz"
-Last Updated: 2026-09-29
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 30 minutes
@@ -187,3 +187,26 @@ D) Afterthought, bolted on late in shipping once the first incident report has l
 | 18 | C | Monitoring tracks behavior beyond plain performance |
 | 19 | B | Robustness means resisting adversarial attacks |
 | 20 | B | Security is built in from the start, not bolted on |
+
+---
+
+## Need to Review?
+
+Each question maps to the closest lesson for review:
+
+- **Questions 1, 14-15:** [7501: Prompt Injection Defense](../7501-Prompt-Injection-Defense.md) — the taxonomy splitting direct injection, indirect injection and jailbreaks, untrusted text smuggled in as instructions, and the indirect carriers where attacks arrive inside data sources and documents
+- **Question 2:** [7501: Prompt Injection Defense](../7501-Prompt-Injection-Defense.md) — the Jailbreak Techniques section's four bypass templates talking the model past its safety rules
+- **Questions 3, 16:** [7201: Tool Calling & Function Execution](../../7200-tools/7201-Tool-Calling.md) — the Permission System's check_permission gates scoping which tools each caller may reach, cross-module from this module's defense lessons
+- **Question 4:** [7201: Tool Calling & Function Execution](../../7200-tools/7201-Tool-Calling.md) — the Sandboxing section's builtins-stripping isolation between generated code and the host system
+- **Question 5:** [7501: Prompt Injection Defense](../7501-Prompt-Injection-Defense.md) — the Input Filtering and Sanitization layer validating payloads before they reach the model
+- **Questions 6, 13:** [7501: Prompt Injection Defense](../7501-Prompt-Injection-Defense.md) — the Output Validation layer screening what comes back for harm and instruction leakage before any result is used
+- **Question 7:** [7501: Prompt Injection Defense](../7501-Prompt-Injection-Defense.md) — the Production Checklist's rate-limiting-configured gate; sustained abuse-prevention mechanics beyond that checklist item are taught nowhere in the curriculum
+- **Question 8:** [7501: Prompt Injection Defense](../7501-Prompt-Injection-Defense.md) — the System Prompt Engineering section pinning identity and instruction authority in the secure template; agent impersonation as a named attack class is taught nowhere in the curriculum, so Q8 leans on that integrity teaching
+- **Question 9:** [7501: Prompt Injection Defense](../7501-Prompt-Injection-Defense.md) — the indirect-injection carriers as the channel through which a compromised agent's context turns against the system; data exfiltration by malicious agents is taught nowhere in the curriculum as a named threat
+- **Question 10:** [7502: PII Redaction & Privacy Filtering](../7502-PII-Redaction.md) — the GDPR audit trail where every detection, access and deletion is an auditable event recording metadata only
+- **Question 11:** [7501: Prompt Injection Defense](../7501-Prompt-Injection-Defense.md) — the Red Team Testing suite attacking the pipeline with seven labeled payloads as its regression test
+- **Question 12:** [5204: Preference Dataset Creation](../../../phase5-finetuning/5200-alignment/5204-Preference-Dataset-Creation.md) — the synthetic-preferences judge guided by written principles in Constitutional AI style, cross-phase into the alignment module; Constitutional AI itself appears only as that style reference, so Q12 leans on principle-guided RLAIF as its closest teaching
+- **Question 17:** [7501: Prompt Injection Defense](../7501-Prompt-Injection-Defense.md) — the defense pipeline ordering cheap deterministic layers before model-backed ones; temperature-zero deterministic decoding for reproducible test runs is taught nowhere in the lessons, so Q17 leans on that deterministic-first discipline
+- **Question 18:** [1503: LLM Observability](../../../phase1-infra/1500-monitoring/1503-LLM-Observability.md) — latency, token, cost and quality-flag metrics as the monitoring surface, matching this module's checklist gate for logging and monitoring to stay active
+- **Question 19:** [7503: Adversarial Attacks & Defense](../7503-Adversarial-Attacks.md) — adversarial training hardening the model and the secure inference pipeline that flags perturbed inputs at serve time
+- **Question 20:** [7501: Prompt Injection Defense](../7501-Prompt-Injection-Defense.md) — the four-layer design where defense is the composition, with the Production Checklist wiring filtering, validation, guardrails and response into the build from the start
