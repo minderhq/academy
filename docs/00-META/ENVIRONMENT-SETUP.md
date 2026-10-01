@@ -1,7 +1,7 @@
 ---
 Document ID: ENVIRONMENT-SETUP
 Title: "Environment Setup Guide"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Beginner
 Tags: ['setup', 'docker', 'infrastructure']
@@ -9,7 +9,7 @@ Tags: ['setup', 'docker', 'infrastructure']
 
 # Environment Setup Guide
 
-**Last Updated:** 2026-09-30
+**Last Updated:** 2026-10-01
 **Reading Time:** 15 minutes
 **Difficulty:** ⭐ Beginner
 
@@ -234,6 +234,25 @@ uvx ruff format .
 uv tool install ruff
 ```
 
+#### Windows Console Encoding (UTF-8 Mode)
+
+This curriculum's example code prints Unicode symbols (`✓`, `→`, `🚀`). Interactive terminals on Windows already display these, but any output that is **piped or redirected** — `python train.py > log.txt`, CI logs, tool capture — still uses the legacy locale code page (e.g. cp1252) by default, so those prints can raise `UnicodeEncodeError: 'charmap' codec can't encode character ...`.
+
+Enable Python's UTF-8 mode once and every lesson prints cleanly:
+
+```powershell
+# Windows (per-user, permanent)
+setx PYTHONUTF8 1
+# ...then open a NEW terminal so the variable is picked up
+```
+
+```bash
+# macOS / Linux are usually UTF-8 already; setting it is harmless
+export PYTHONUTF8=1
+```
+
+UTF-8 mode (PEP 540) also makes file reads and writes default to UTF-8, and it becomes the default behavior in Python 3.15 (PEP 686) — setting `PYTHONUTF8=1` today is just adopting tomorrow's standard early. `uv run` passes the environment through, so the setting applies to project commands too.
+
 ---
 
 ### Step 4: Ollama Installation
@@ -446,6 +465,30 @@ wsl
 # In PowerShell (admin)
 New-NetFirewallRule -DisplayName "WSL" -Direction Inbound -InterfaceAlias "vEthernet (WSL)" -Action Allow
 ```
+
+---
+
+### Issue 6: UnicodeEncodeError: 'charmap' codec on Windows
+
+**Symptoms:**
+- `UnicodeEncodeError: 'charmap' codec can't encode character '✓'`
+- Example code that prints symbols or emoji (`✓`, `→`, `🚀`) crashes only when the output is piped, redirected to a file, or captured by a tool — the same code works when typed interactively
+
+**Solutions:**
+
+1. **Enable UTF-8 mode (recommended, permanent):**
+```powershell
+setx PYTHONUTF8 1
+# Open a new terminal, then verify:
+python -c "print('✓ unicode ok')"
+```
+
+2. **One-off for a single run:**
+```powershell
+python -X utf8 your_script.py
+```
+
+This is Windows legacy output encoding, not a bug in the lesson code — see the Windows Console Encoding section in Step 3 for the background.
 
 ---
 
