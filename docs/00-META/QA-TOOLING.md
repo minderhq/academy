@@ -220,6 +220,26 @@ into a trend instead of scrolling away with stdout. Models borrowed
 for parity: the corpus classification from quality_report, the fence
 model from structure_lint, quiz counts from quiz_export.
 
+## Lesson Similarity (report tool)
+
+```bash
+python scripts/qa/lesson_similarity_scan.py
+python scripts/qa/lesson_similarity_scan.py --out similarity.json
+```
+
+Answers "do any two lessons say the same thing?" - the copy-paste-clone
+question no structural gate can see: a lesson forked from a sibling
+keeps passing every check while the learner reads near-identical pages
+and fixes land in only one copy (drifted clones). 5-word shingles over
+normalized text (frontmatter stripped), Jaccard over all 6441 pairs;
+pairs at or above --threshold print as CLONE-PAIR review findings and
+the full top table always prints so the threshold stays calibratable
+by eye. Report only (same stance as curriculum_metrics) - born
+tick-545 at 0 findings with a max observed similarity of 0.058, the
+corpus's diversity itself under continuous lock. 4-digit lesson files
+only; assessment PRACTICE/SOLUTION overlap is by design and out of
+scope.
+
 ## Conventions
 
 - All gates share one extraction model: naive fence toggle +
