@@ -1,7 +1,7 @@
 ---
 Document ID: 5300-QUIZ
 Title: "5300: Synthetic Data & Advanced Methods - Quiz"
-Last Updated: 2026-09-29
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 30 minutes
@@ -187,3 +187,14 @@ D) Train a model on it and measure downstream task performance
 | 18 | A | Alpaca bootstrapped an instruct model from a strong LLM's synthetic data |
 | 19 | C | Higher temperature raises diversity at the cost of noise |
 | 20 | D | The proof is downstream: train on it and measure task performance |
+
+---
+
+## Need to Review?
+
+Each question maps to the closest lesson for review:
+
+- **Questions 1-2, 6-7, 10, 13-14, 20:** [5204: Preference Dataset Creation](../../5200-alignment/5204-Preference-Dataset-Creation.md) — the §9 Synthetic Preferences section: AI-generated data from a judge model and the controls that make it usable (held-out human calibration, mix ratios); self-instruct, model collapse and downstream-task evaluation schemes have no lesson anywhere in the curriculum, so these lean on the closest synthetic-data teaching
+- **Questions 3, 11-12, 19:** [5301: Knowledge Distillation - Training Small Models Using Big Model Outputs](../5301-Knowledge-Distillation.md) — the student-mimics-teacher setup, soft targets under temperature's sweep (T=1 nearly hard, T→∞ uniform), and the KL(soft student ‖ soft teacher)·T² combined loss
+- **Questions 4-5, 18:** [5101: LoRA (Low-Rank Adaptation) Logic](../../5100-peft/5101-LoRA-Logic.md) — the merge path that folds learned updates into base weights and Alpaca as the canonical instruction-tuning dataset; checkpoint merging (SWA, linear, task arithmetic) is taught nowhere in the curriculum
+- **Questions 8-9, 15-17:** [5303: Federated Learning](../5303-Federated-Learning.md) — FedAvg's sample-weighted rounds, non-IID client drift and its mitigations, secure aggregation, and the communication/privacy/heterogeneity triangle

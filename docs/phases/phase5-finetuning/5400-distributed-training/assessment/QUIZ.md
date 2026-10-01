@@ -1,7 +1,7 @@
 ---
 Document ID: 5400-QUIZ
 Title: "5400: Distributed Training - Quiz"
-Last Updated: 2026-09-29
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 30 minutes
@@ -188,6 +188,18 @@ D) Data is augmented
 | 18 | A | Rank 0 writes the checkpoint - one writer, no corruption |
 | 19 | B | FSDP's sharding cuts memory below DDP's full replicas |
 | 20 | B | DistributedSampler gives each rank a disjoint shard |
+
+---
+
+## Need to Review?
+
+Each question maps to the closest lesson for review:
+
+- **Questions 1-5, 7-10, 12, 16, 18-20:** [5401: Data Parallelism](../5401-Data-Parallelism.md) — DP's single-process sync vs DDP's all-reduce, FSDP's full state sharding and its checkpoint footgun, the NCCL backend and torchrun launch, DistributedSampler's set_epoch reseeding, and no_sync accumulation with grad clipping
+- **Questions 6, 15:** [5403: Mixed Precision Training](../5403-Mixed-Precision.md) — the time-plus-memory savings of half-precision runs and BF16's FP32-sized exponent
+- **Questions 11, 13:** [5402: Model Parallelism](../5402-Model-Parallelism.md) — pipeline stage splits with their bubble schedules and tensor parallelism's operation-level slicing
+- **Question 14:** [5404: Distributed Optimization](../5404-Distributed-Optimization.md) — ZeRO's staged sharding of optimizer states, gradients and parameters
+- **Question 17:** [5502: Learning Rate Scheduling](../../5500-advanced-optimization/5502-Learning-Rate-Scheduling.md) — warmup past early instability and decay into the minimum; the linear scaling rule itself (LR grows with world size) is stated nowhere in this module, so Q17 leans on the phase's learning-rate lesson
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 Document ID: 5200-QUIZ
 Title: "5200: Alignment Methods - Quiz"
-Last Updated: 2026-09-29
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 30 minutes
@@ -187,3 +187,13 @@ D) A distillation method
 | 18 | C | Preference datasets span tens of thousands to millions of pairs |
 | 19 | B | Low inter-annotator agreement poisons preference data |
 | 20 | A | Best-of-N aligns at inference time without retraining |
+
+---
+
+## Need to Review?
+
+Each question maps to the closest lesson for review:
+
+- **Questions 1-4, 7-8, 10-12, 14, 16, 20:** [5203: Reinforcement Learning from Human Feedback](../5203-RLHF.md) — the three-stage SFT→RM→PPO pipeline, reward models trained on preference comparisons, the KL penalty anchored to the frozen reference, and reward hacking as RLHF's known failure mode; Best-of-N itself has no lesson anywhere in this module, so Q20 leans on the reward-model scoring it would reuse at inference
+- **Questions 5-6, 13, 15:** [5201: DPO (Direct Preference Optimization) Theory](../5201-DPO-Theory.md) — the Bradley-Terry preference model and its derivation into DPO's loss, the no-reward-model advantage, and the log-probability margin of chosen over rejected
+- **Questions 9, 17-19:** [5204: Preference Dataset Creation](../5204-Preference-Dataset-Creation.md) — paired-comparison collection, the 100k–1M+ dataset-scale table, inter-annotator agreement as the data-quality gate, and the RLAIF / Constitutional AI shift to AI-generated feedback
