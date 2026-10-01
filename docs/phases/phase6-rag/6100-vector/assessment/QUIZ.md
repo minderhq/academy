@@ -23,16 +23,16 @@ Tags: ['assessment', 'quiz', 'rag', 'vectors']
 
 **1. Vector embeddings represent:**
 
-A) Text as numbers
+A) Text as strings
 B) Text as one-hot vectors
-C) Text as strings
+C) Text as numbers
 D) Text as categories
 
 **2. Word2Vec uses:**
 
-A) Neural networks
+A) TF-IDF
 B) Count vectors
-C) TF-IDF
+C) Neural networks
 D) Co-occurrence matrices only
 
 **3. Cosine similarity measures:**
@@ -52,22 +52,22 @@ D) Contextual embeddings
 **5. Sentence-BERT is fine-tuned for:**
 
 A) Language modeling
-B) Sentence similarity
-C) Text generation, a decoder job its bi-encoder architecture never performs
+B) Text generation, a decoder job its bi-encoder architecture never performs
+C) Sentence similarity
 D) Translation
 
 **6. Embedding dimension is typically:**
 
 A) 10-50
-B) 100-1000
+B) Doesn't matter
 C) 5000+
-D) Doesn't matter
+D) 100-1000
 
 **7. Normalization of vectors:**
 
-A) Is required for cosine similarity
+A) Should never be done, a prohibition no retrieval pipeline follows in practice
 B) Is optional
-C) Should never be done, a prohibition no retrieval pipeline follows in practice
+C) Is required for cosine similarity
 D) Only for images
 
 **8. Mean pooling:**
@@ -87,9 +87,9 @@ D) 2048, a figure no shipping OpenAI text-embedding endpoint has ever matched
 **10. BGE (BAAI General Embedding) is:**
 
 A) A training method
-B) An open-source embedding model
+B) A loss function, a mathematical object with no weights or checkpoints at all
 C) A dataset
-D) A loss function, a mathematical object with no weights or checkpoints at all
+D) An open-source embedding model
 
 **11. Matryoshka embeddings:**
 
@@ -101,9 +101,9 @@ D) Are only for images
 **12. ColBERT uses:**
 
 A) A single vector, the exact design ColBERT's late-interaction scheme rejects
-B) Multiple token vectors
+B) Sparse vectors
 C) No vectors
-D) Sparse vectors
+D) Multiple token vectors
 
 **13. Embeddings for retrieval should:**
 
@@ -167,18 +167,18 @@ D) Use cross-attention, which is precisely the cross-encoder design these models
 
 | Question | Answer | Explanation |
 |----------|--------|-------------|
-| 1 | A | Embeddings encode text as dense number vectors |
-| 2 | A | Word2Vec trains small neural networks (CBOW/Skip-gram) |
+| 1 | C | Embeddings encode text as dense number vectors |
+| 2 | C | Word2Vec trains small neural networks (CBOW/Skip-gram) |
 | 3 | D | Cosine similarity is the angle between vectors |
 | 4 | D | BERT emits contextual embeddings - per-token, context-dependent |
-| 5 | B | Sentence-BERT is tuned for sentence-level similarity |
-| 6 | B | Typical dimensions run 100-1000 (768, 1024, 1536) |
-| 7 | A | Normalized vectors make dot product equal cosine similarity |
+| 5 | C | Sentence-BERT is tuned for sentence-level similarity |
+| 6 | D | Typical dimensions run 100-1000 (768, 1024, 1536) |
+| 7 | C | Normalized vectors make dot product equal cosine similarity |
 | 8 | A | Mean pooling averages token embeddings into one vector |
 | 9 | C | OpenAI text-embedding endpoints output 1536-dim vectors |
-| 10 | B | BGE is an open-source embedding model family |
+| 10 | D | BGE is an open-source embedding model family |
 | 11 | A | Matryoshka embeddings nest coarse-to-fine dimensions |
-| 12 | B | ColBERT keeps one vector per token for late interaction |
+| 12 | D | ColBERT keeps one vector per token for late interaction |
 | 13 | A | Retrieval embeddings must capture semantics, not keywords |
 | 14 | B | CLIP embeds images and text in one shared space |
 | 15 | B | Fine-tuning needs labeled similar/dissimilar text pairs |

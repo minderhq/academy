@@ -52,22 +52,22 @@ D) None of the above
 **5. Continuous batching:**
 
 A) Batches all requests, a fixed static group that never admits late arrivals
-B) Dynamically adds/removes requests from batch
-C) No batching
+B) No batching
+C) Dynamically adds/removes requests from batch
 D) Only for training
 
 **6. PagedAttention is inspired by:**
 
 A) CPU paging, a hardware mechanism rather than the virtual-memory design the paper credits
-B) Operating system virtual memory paging
+B) Network paging
 C) Database paging
-D) Network paging
+D) Operating system virtual memory paging
 
 **7. KV cache stores:**
 
 A) Model weights, tensors that live outside the per-sequence attention cache
-B) Key and value matrices
-C) Training data
+B) Training data
+C) Key and value matrices
 D) Queries
 
 **8. Speculative decoding uses:**
@@ -80,9 +80,9 @@ D) Only large models
 **9. Tensor parallelism splits:**
 
 A) Data
-B) Model across GPUs
+B) Sequences, a split that belongs to data and pipeline parallelism instead
 C) Batches
-D) Sequences, a split that belongs to data and pipeline parallelism instead
+D) Model across GPUs
 
 **10. Quantization in serving:**
 
@@ -180,11 +180,11 @@ Each question maps to the closest lesson for review:
 | 2 | C | Ollama is a local-first runtime: run models on your own machine |
 | 3 | D | vLLM's PagedAttention packs far more concurrent requests onto a GPU (serving throughput) |
 | 4 | A | TGI = Text Generation Inference, Hugging Face's serving stack |
-| 5 | B | Continuous batching admits/evicts requests as they arrive and finish, keeping the GPU busy |
-| 6 | B | PagedAttention borrows OS virtual-memory paging: KV cache in fixed pages, no fragmentation |
-| 7 | B | The KV cache holds the per-sequence key/value attention matrices |
+| 5 | C | Continuous batching admits/evicts requests as they arrive and finish, keeping the GPU busy |
+| 6 | D | PagedAttention borrows OS virtual-memory paging: KV cache in fixed pages, no fragmentation |
+| 7 | C | The KV cache holds the per-sequence key/value attention matrices |
 | 8 | A | A small draft model proposes tokens; the large model verifies in parallel - same output, faster |
-| 9 | B | Tensor parallelism shards weight matrices across GPUs; batches/sequences belong to data/pipeline parallelism |
+| 9 | D | Tensor parallelism shards weight matrices across GPUs; batches/sequences belong to data/pipeline parallelism |
 | 10 | B | Quantized weights cut memory and raise throughput for a small accuracy cost |
 | 11 | B | Ollama stores models as GGUF files in its model directory |
 | 12 | A | The block manager allocates and frees KV cache blocks - PagedAttention's memory layer |

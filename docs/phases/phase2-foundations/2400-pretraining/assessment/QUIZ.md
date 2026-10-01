@@ -23,8 +23,8 @@ Tags: ['assessment', 'quiz', 'training', 'pretraining']
 
 **1. What is the primary purpose of pretraining?**
 
-A) To adapt a model to a specific task, which is exactly what fine-tuning after pretraining does
-B) To learn general representations from large datasets
+A) To learn general representations from large datasets
+B) To adapt a model to a specific task, which is exactly what fine-tuning after pretraining does
 C) To fine-tune hyperparameters
 D) To reduce model size
 
@@ -44,8 +44,8 @@ D) None of the above
 
 **4. What is the main benefit of mixed precision training?**
 
-A) Improved model accuracy, though precision mixing usually nudges it the other way
-B) Reduced memory usage and faster computation
+A) Reduced memory usage and faster computation
+B) Improved model accuracy, though precision mixing usually nudges it the other way
 C) Better generalization
 D) Simpler code
 
@@ -53,20 +53,20 @@ D) Simpler code
 
 A) SGD
 B) Adam
-C) AdamW
-D) RMSprop, which predates the decoupled weight decay this domain settled on
+C) RMSprop, which predates the decoupled weight decay this domain settled on
+D) AdamW
 
 **6. What is gradient accumulation used for?**
 
 A) Improving model accuracy, an effect accumulation has no direct mechanism to cause
-B) Simulating larger batch sizes with limited memory
+B) Reducing overfitting
 C) Speeding up training
-D) Reducing overfitting
+D) Simulating larger batch sizes with limited memory
 
 **7. What is the purpose of learning rate scheduling?**
 
-A) To prevent overfitting, a regularization job the schedule itself never performs
-B) To adjust learning rate during training for better convergence
+A) To adjust learning rate during training for better convergence
+B) To prevent overfitting, a regularization job the schedule itself never performs
 C) To reduce training time
 D) To increase model capacity
 
@@ -177,13 +177,13 @@ Each question maps to the closest lesson for review:
 
 | Question | Answer | Explanation |
 |----------|--------|-------------|
-| 1 | B | Pretraining learns general representations from massive corpora; tasks come later |
+| 1 | A | Pretraining learns general representations from massive corpora; tasks come later |
 | 2 | D | Checkpointing, FSDP, and mixed precision each make multi-GPU training feasible |
 | 3 | B | FSDP = Fully Sharded Data Parallel |
-| 4 | B | Mixed precision keeps weights in fp16/bf16 - less memory, faster matmuls |
-| 5 | C | AdamW (decoupled weight decay) is the LLM pretraining standard |
-| 6 | B | Accumulation sums micro-batch gradients to simulate a larger batch under tight memory |
-| 7 | B | Schedules adjust the learning rate over training for better convergence |
+| 4 | A | Mixed precision keeps weights in fp16/bf16 - less memory, faster matmuls |
+| 5 | D | AdamW (decoupled weight decay) is the LLM pretraining standard |
+| 6 | D | Accumulation sums micro-batch gradients to simulate a larger batch under tight memory |
+| 7 | A | Schedules adjust the learning rate over training for better convergence |
 | 8 | C | LLM vocabularies are typically 50K-200K tokens (GPT-2 50K, Llama 32K-128K) |
 | 9 | B | The dominant cost of distributed training is communication between devices |
 | 10 | B | Warmup gradually raises the learning rate at the start of training |

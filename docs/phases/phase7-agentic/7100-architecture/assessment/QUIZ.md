@@ -45,9 +45,9 @@ D) Only generate raw text, with every action confined to the model's own vocabul
 **4. Agent memory includes:**
 
 A) No memory
-B) Short-term and long-term memory
+B) Only long-term stores, with the running context window never consulted during execution
 C) Only conversation history
-D) Only long-term stores, with the running context window never consulted during execution
+D) Short-term and long-term memory
 
 **5. Reflection in agents:**
 
@@ -170,7 +170,7 @@ D) Not possible, because agent behavior is claimed too stochastic for any repeat
 | 1 | B | ReAct pairs Reasoning with Acting in interleaved steps |
 | 2 | A | The loop runs Thought, then Action, then Observation |
 | 3 | A | Tools connect agents to external systems and APIs |
-| 4 | B | Agent memory spans short-term context and long-term stores |
+| 4 | D | Agent memory spans short-term context and long-term stores |
 | 5 | C | Reflection means reviewing past actions to improve the next |
 | 6 | D | Multi-agent systems coordinate several collaborating agents |
 | 7 | A | Planning decomposes a task into ordered subtasks |

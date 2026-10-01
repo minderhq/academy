@@ -24,9 +24,9 @@ Tags: ['assessment', 'quiz', 'finetuning', 'alignment']
 **1. What is the primary goal of LLM alignment?**
 
 A) Increase model size while ignoring how the model actually behaves
-B) Align model behavior with human preferences/values
+B) Reduce training cost
 C) Speed up inference
-D) Reduce training cost
+D) Align model behavior with human preferences/values
 
 **2. What does RLHF stand for?**
 
@@ -38,29 +38,29 @@ D) None of the above
 **3. What is the first step in RLHF training?**
 
 A) PPO training
-B) Collect human preference comparisons
+B) Model distillation
 C) Reward model training, which comes after preferences are gathered
-D) Model distillation
+D) Collect human preference comparisons
 
 **4. What is the reward model in RLHF trained to predict?**
 
 A) Exact response quality score
-B) Human preference between responses
+B) Model accuracy
 C) The training loss over the next batch of tokens
-D) Model accuracy
+D) Human preference between responses
 
 **5. What is DPO?**
 
-A) Direct Preference Optimization
+A) Deep Prompt Optimization
 B) Dynamic Parameter Optimization
 C) Distributed Policy Optimization
-D) Deep Prompt Optimization
+D) Direct Preference Optimization
 
 **6. What is the main advantage of DPO over RLHF?**
 
-A) No separate reward model needed
+A) Better accuracy
 B) Faster GPU throughput on the same amount of data
-C) Better accuracy
+C) No separate reward model needed
 D) Simpler architecture
 
 **7. What does PPO stand for in RLHF context?**
@@ -72,9 +72,9 @@ D) None of the above
 
 **8. What is the purpose of the KL divergence penalty in RLHF?**
 
-A) Prevent model from deviating too far from reference
+A) Improve accuracy
 B) Speed up training by shrinking every gradient step and skipping evaluation
-C) Improve accuracy
+C) Prevent model from deviating too far from reference
 D) Reduce memory
 
 **9. What type of data is used for preference collection?**
@@ -100,9 +100,9 @@ D) PPO → reward model → SFT
 
 **12. SFT comes before RLHF because:**
 
-A) The policy must already follow the response format for preference comparisons to be meaningful
+A) Reward models cannot be trained on raw unstructured text without an existing formatting step somewhere
 B) PPO requires GPU warm-up
-C) Reward models cannot be trained on raw unstructured text without an existing formatting step somewhere
+C) The policy must already follow the response format for preference comparisons to be meaningful
 D) The KL penalty needs it
 
 **13. DPO's loss increases:**
@@ -167,18 +167,18 @@ D) A distillation method
 
 | Question | Answer | Explanation |
 |----------|--------|-------------|
-| 1 | B | Alignment shapes model behavior toward human preferences and values |
+| 1 | D | Alignment shapes model behavior toward human preferences and values |
 | 2 | A | RLHF = Reinforcement Learning from Human Feedback |
-| 3 | B | RLHF starts by collecting human preference comparisons |
-| 4 | B | The reward model learns to predict which response humans prefer |
-| 5 | A | DPO = Direct Preference Optimization |
-| 6 | A | DPO folds the reward model into the loss - no separate RM needed |
+| 3 | D | RLHF starts by collecting human preference comparisons |
+| 4 | D | The reward model learns to predict which response humans prefer |
+| 5 | D | DPO = Direct Preference Optimization |
+| 6 | C | DPO folds the reward model into the loss - no separate RM needed |
 | 7 | A | PPO = Proximal Policy Optimization |
-| 8 | A | The KL penalty keeps the policy near the reference model |
+| 8 | C | The KL penalty keeps the policy near the reference model |
 | 9 | B | Preferences come as paired comparisons of responses |
 | 10 | D | Cost, reward hacking and slow convergence are all known RLHF issues |
 | 11 | C | Pipeline: SFT -> reward model -> PPO fine-tuning |
-| 12 | A | Preferences are only meaningful once outputs follow a consistent format |
+| 12 | C | Preferences are only meaningful once outputs follow a consistent format |
 | 13 | B | DPO widens the log-prob margin of chosen over rejected vs the reference |
 | 14 | A | Reward hacking: high reward-model scores on bad outputs |
 | 15 | A | Preference pairs are modeled with Bradley-Terry |

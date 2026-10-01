@@ -45,15 +45,15 @@ D) Not possible
 **4. Sliding window context:**
 
 A) Uses all history, which a fixed-size buffer can never physically hold
-B) Uses recent tokens only
+B) No context
 C) Uses random tokens
-D) No context
+D) Uses recent tokens only
 
 **5. Tokens in a KV cache:**
 
-A) All tokens
+A) Only first token
 B) Only recent tokens
-C) Only first token
+C) All tokens
 D) No tokens
 
 **6. Context distillation:**
@@ -80,23 +80,23 @@ D) Only for training
 **9. Context overflow causes:**
 
 A) Better results, the opposite of what every truncation benchmark reports
-B) Loss of early information
+B) Crashes
 C) No issue
-D) Crashes
+D) Loss of early information
 
 **10. Selective context:**
 
 A) Keeps all tokens
-B) Keeps important tokens
+B) Random selection
 C) Removes all tokens, leaving the model nothing whatsoever to condition on
-D) Random selection
+D) Keeps important tokens
 
 **11. To handle long documents:**
 
 A) Must use full document, cramming every page in no matter how large it grows
-B) Can chunk and retrieve
+B) Use shorter documents
 C) Can't handle
-D) Use shorter documents
+D) Can chunk and retrieve
 
 **12. Context quality affects:**
 
@@ -170,14 +170,14 @@ D) Be everything
 | 1 | C | The window binds training sequences and inference prompts alike |
 | 2 | D | Longer context costs more compute and attention |
 | 3 | C | Compression trades some information for space |
-| 4 | B | Sliding windows keep only the most recent tokens |
-| 5 | A | The KV cache holds keys/values for all tokens so far |
+| 4 | D | Sliding windows keep only the most recent tokens |
+| 5 | C | The KV cache holds keys/values for all tokens so far |
 | 6 | C | Context distillation compresses context into weights |
 | 7 | A | LongLoRA extends context with efficient fine-tuning |
 | 8 | A | Ring attention processes long sequences in chunks across devices |
-| 9 | B | Overflow pushes early context out - oldest information lost |
-| 10 | B | Selective context keeps the important tokens only |
-| 11 | B | Long documents are chunked and retrieved as needed |
+| 9 | D | Overflow pushes early context out - oldest information lost |
+| 10 | D | Selective context keeps the important tokens only |
+| 11 | D | Long documents are chunked and retrieved as needed |
 | 12 | B | Generation quality follows context quality |
 | 13 | A | Lost-in-the-middle: ends draw more attention than the middle |
 | 14 | A | Re-ranking surfaces key info at the attentive positions |

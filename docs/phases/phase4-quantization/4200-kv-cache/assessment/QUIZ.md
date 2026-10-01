@@ -38,30 +38,30 @@ D) ~2 bytes per parameter per layer
 **3. What is the main bottleneck for long context windows?**
 
 A) Compute time for the softmax over the vocabulary
-B) KV cache memory usage
-C) The number of transformer layers in the model
+B) The number of transformer layers in the model
+C) KV cache memory usage
 D) The size of the pretraining corpus in terabytes
 
 **4. What happens to memory usage as context length increases?**
 
 A) Stays constant
-B) Increases linearly O(L)
+B) Decreases
 C) Increases quadratically O(L²)
-D) Decreases
+D) Increases linearly O(L)
 
 **5. What is PagedAttention used for?**
 
 A) Faster attention computation through kernel fusion
-B) Efficient KV cache management
-C) Model compression into fewer bits per weight
+B) Model compression into fewer bits per weight
+C) Efficient KV cache management
 D) Training acceleration via larger batch sizes
 
 **6. What is the main benefit of multi-query attention (MQA) for memory?**
 
 A) Faster computation by skipping the softmax
-B) Shared Key/Value projections across heads
+B) Simpler architecture by removing attention layers
 C) Better accuracy on every downstream benchmark
-D) Simpler architecture by removing attention layers
+D) Shared Key/Value projections across heads
 
 **7. What is "context window" in LLMs?**
 
@@ -169,10 +169,10 @@ D) Avoid tokenization of the input prompt entirely
 |----------|--------|-------------|
 | 1 | C | KV cache stores Key and Value tensors so decoding never recomputes them |
 | 2 | D | Roughly 2 bytes per parameter per layer at FP16 |
-| 3 | B | The KV cache, not compute, is what caps practical context length |
-| 4 | B | The cache grows linearly with sequence length |
-| 5 | B | PagedAttention manages the KV cache in pages, like virtual memory |
-| 6 | B | MQA shares one Key/Value projection across all query heads |
+| 3 | C | The KV cache, not compute, is what caps practical context length |
+| 4 | D | The cache grows linearly with sequence length |
+| 5 | C | PagedAttention manages the KV cache in pages, like virtual memory |
+| 6 | D | MQA shares one Key/Value projection across all query heads |
 | 7 | B | The context window is the maximum sequence length the model can process |
 | 8 | A | RoPE scaling stretches positions past the trained horizon |
 | 9 | B | Longer context costs more memory and more attention compute |

@@ -45,30 +45,30 @@ D) Full sequence-to-sequence supervised training on parallel corpora
 **4. What is the main advantage of multimodal models?**
 
 A) Faster training
-B) Richer understanding by combining modalities
+B) Simpler architecture with fewer parameters to train and deploy
 C) Smaller model size
-D) Simpler architecture with fewer parameters to train and deploy
+D) Richer understanding by combining modalities
 
 **5. Which model type is LLaVA?**
 
-A) Language-only model
-B) Vision-language model
+A) Vision-language model
+B) Language-only model
 C) Audio-language model
 D) Video generation model
 
 **6. What is the typical approach for building vision-language models?**
 
 A) Train the entire multimodal stack from scratch on image-text data with no pretrained components
-B) Pretrain vision encoder and language model separately, then connect
-C) Use separate models for each modality
+B) Use separate models for each modality
+C) Pretrain vision encoder and language model separately, then connect
 D) Convert images to text before processing
 
 **7. What is BLIP designed for?**
 
 A) Image generation
-B) Image-language understanding and generation
+B) Video understanding
 C) Audio classification and speech-to-text transcription
-D) Video understanding
+D) Image-language understanding and generation
 
 **8. How do most multimodal models handle different modalities?**
 
@@ -170,10 +170,10 @@ D) Audio transcripts
 | 1 | C | A multimodal model processes several data types - text, image, audio |
 | 2 | D | CLIP aligns images and text for retrieval and understanding |
 | 3 | C | CLIP trains contrastively - matching image-text pairs pull together |
-| 4 | B | Combining modalities gives richer understanding |
-| 5 | B | LLaVA is a vision-language model |
-| 6 | B | Standard recipe: pretrained ViT plus pretrained LLM, joined by a projector |
-| 7 | B | BLIP covers image-language understanding and generation |
+| 4 | D | Combining modalities gives richer understanding |
+| 5 | A | LLaVA is a vision-language model |
+| 6 | C | Standard recipe: pretrained ViT plus pretrained LLM, joined by a projector |
+| 7 | D | BLIP covers image-language understanding and generation |
 | 8 | B | Modalities are embedded into a shared space |
 | 9 | B | The core challenge is aligning modalities in one space |
 | 10 | A | Contrastive learning (CLIP-style) is the dominant alignment technique |

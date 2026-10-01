@@ -65,23 +65,23 @@ D) None
 
 **7. SLI measures:**
 
-A) Service Level Indicator
+A) Service Level Index
 B) System Level Indicator, a mixture that no SLO definition sheet contains
-C) Service Level Index
+C) Service Level Indicator
 D) None
 
 **8. Alert fatigue occurs when:**
 
-A) Too many alerts
+A) No alerts
 B) Too few alerts
-C) No alerts
+C) Too many alerts
 D) Perfect monitoring
 
 **9. Golden signals are:**
 
-A) Latency, traffic, errors, saturation
+A) Network, storage
 B) CPU, memory, disk, a resource checklist the golden-signals method never fixed on
-C) Network, storage
+C) Latency, traffic, errors, saturation
 D) None
 
 **10. Model drift detection:**
@@ -107,10 +107,10 @@ D) Storage
 
 **13. A rate in Prometheus:**
 
-A) Calculates per-second rate
+A) No calculation
 B) Sums values, an operation rate() explicitly does not perform
 C) Averages values
-D) No calculation
+D) Calculates per-second rate
 
 **14. Token throughput is:**
 
@@ -183,13 +183,13 @@ Each question maps to the closest lesson for review:
 | 4 | B | Histograms track value distributions through buckets |
 | 5 | C | SLA = Service Level Agreement, the customer-facing contract |
 | 6 | B | SLO = Service Level Objective, the internal reliability target |
-| 7 | A | SLI = Service Level Indicator, the measured quantity an SLO is built on |
-| 8 | A | Alert fatigue comes from too many alerts - responders stop trusting the page |
-| 9 | A | Golden signals (Google SRE): latency, traffic, errors, saturation |
+| 7 | C | SLI = Service Level Indicator, the measured quantity an SLO is built on |
+| 8 | C | Alert fatigue comes from too many alerts - responders stop trusting the page |
+| 9 | C | Golden signals (Google SRE): latency, traffic, errors, saturation |
 | 10 | C | Drift detection watches output distributions and input distributions alike |
 | 11 | D | Grafana renders metrics, logs, and traces in one place |
 | 12 | B | Jaeger is a distributed-tracing backend; time series stay with Prometheus |
-| 13 | A | rate() computes the per-second rate of increase of a counter |
+| 13 | D | rate() computes the per-second rate of increase of a counter |
 | 14 | A | Token throughput is tokens per second - a rate, not a cumulative count |
 | 15 | D | GPU monitoring covers usage, memory, and temperature together |
 | 16 | D | Structured formats, levels, and context - all three are logging best practices |

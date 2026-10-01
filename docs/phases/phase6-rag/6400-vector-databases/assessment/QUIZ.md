@@ -59,9 +59,9 @@ D) Deletes
 **6. Vector search returns:**
 
 A) Exact matches
-B) Nearest neighbors
+B) All vectors
 C) Random vectors
-D) All vectors
+D) Nearest neighbors
 
 **7. Filtering in vector DB:**
 
@@ -79,17 +79,17 @@ D) No search
 
 **9. HNSW parameter ef_construct:**
 
-A) Index speed vs accuracy
+A) No effect
 B) Query speed
 C) Memory usage
-D) No effect
+D) Index speed vs accuracy
 
 **10. Quantization in vector DB:**
 
 A) Increases memory
-B) Reduces memory
+B) Increases accuracy
 C) No effect
-D) Increases accuracy
+D) Reduces memory
 
 **11. Distance metric cosine:**
 
@@ -100,10 +100,10 @@ D) Dot product
 
 **12. Weaviate uses:**
 
-A) Only HNSW
+A) Only flat
 B) Multiple index types
 C) No index
-D) Only flat
+D) Only HNSW
 
 **13. Milvus is:**
 
@@ -172,13 +172,13 @@ D) Only queries
 | 3 | C | A collection holds vectors and their metadata |
 | 4 | B | Qdrant payloads carry the metadata alongside each vector |
 | 5 | C | Upsert inserts new points or updates existing ones |
-| 6 | B | Vector search returns nearest neighbors, not exact matches |
+| 6 | D | Vector search returns nearest neighbors, not exact matches |
 | 7 | C | Filtering combines vector similarity with metadata conditions |
 | 8 | C | Hybrid search runs vector and keyword sides together |
-| 9 | A | ef_construct trades build time against graph quality |
-| 10 | B | Vector quantization shrinks memory (with some recall cost) |
+| 9 | D | ef_construct trades build time against graph quality |
+| 10 | D | Vector quantization shrinks memory (with some recall cost) |
 | 11 | B | Cosine measures angular distance between directions |
-| 12 | A | Weaviate uses HNSW; multiple index types are Milvus's strength |
+| 12 | D | Weaviate uses HNSW; multiple index types are Milvus's strength |
 | 13 | A | Milvus is an open-source vector database |
 | 14 | A | Sharding distributes data across nodes |
 | 15 | A | Replication copies data for availability |

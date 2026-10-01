@@ -31,9 +31,9 @@ D) DDP uses efficient all-reduce, DP uses inefficient gradient syncing
 
 **2. FSDP shards the model:**
 
-A) Across all GPUs equally
+A) Only the optimizer states
 B) Only across CPUs
-C) Only the optimizer states
+C) Across all GPUs equally
 D) Only the embeddings
 
 **3. Which backend is recommended for GPU distributed training?**
@@ -67,22 +67,22 @@ D) Neither, a dismissal every half-precision training run has already refuted
 **7. In DDP, each GPU processes:**
 
 A) The same batch
-B) A different portion of the batch
-C) Only validation data
+B) Only validation data
+C) A different portion of the batch
 D) Only the model, a state each replica already holds in full
 
 **8. FSDP is most beneficial when:**
 
 A) Training small models, a regime where sharding overhead simply outweighs the win
-B) Training models that don't fit on one GPU
-C) Using only one GPU
+B) Using only one GPU
+C) Training models that don't fit on one GPU
 D) Training on CPU
 
 **9. The `set_epoch` method in DistributedSampler:**
 
 A) Sets the learning rate
-B) Ensures different shuffling each epoch
-C) Sets the number of epochs, a count the training loop owns instead
+B) Sets the number of epochs, a count the training loop owns instead
+C) Ensures different shuffling each epoch
 D) Has no effect
 
 **10. NCCL stands for:**
@@ -102,9 +102,9 @@ D) It uses less memory
 **12. What is the main challenge of distributed training?**
 
 A) It's too slow
-B) Communication overhead
+B) It doesn't improve accuracy
 C) It's too complex to implement
-D) It doesn't improve accuracy
+D) Communication overhead
 
 **13. Tensor parallelism partitions:**
 
@@ -169,17 +169,17 @@ D) Data is augmented
 | Question | Answer | Explanation |
 |----------|--------|-------------|
 | 1 | D | DDP all-reduces gradients efficiently; DP syncs through one process |
-| 2 | A | FSDP shards parameters, gradients and optimizer states across GPUs |
+| 2 | C | FSDP shards parameters, gradients and optimizer states across GPUs |
 | 3 | D | NCCL is the standard backend for GPU distributed training |
 | 4 | D | world_size is the total number of GPUs in the job |
 | 5 | D | Accumulation sums micro-batches to simulate a larger batch |
 | 6 | C | Mixed precision saves both compute time and memory |
-| 7 | B | Each DDP replica takes its own shard of the batch |
-| 8 | B | FSDP shines when the model does not fit on one GPU |
-| 9 | B | set_epoch reseeds the sampler's shuffle each epoch |
+| 7 | C | Each DDP replica takes its own shard of the batch |
+| 8 | C | FSDP shines when the model does not fit on one GPU |
+| 9 | C | set_epoch reseeds the sampler's shuffle each epoch |
 | 10 | A | NCCL = NVIDIA Collective Communications Library |
 | 11 | A | Pipeline parallelism splits the model into stages |
-| 12 | B | Communication overhead is the core distributed bottleneck |
+| 12 | D | Communication overhead is the core distributed bottleneck |
 | 13 | B | Tensor parallelism slices individual ops (e.g., matmuls) across GPUs |
 | 14 | B | ZeRO shards optimizer state instead of replicating it |
 | 15 | A | BF16 keeps the FP32-sized exponent - wider dynamic range |

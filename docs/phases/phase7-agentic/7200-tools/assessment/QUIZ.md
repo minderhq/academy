@@ -38,44 +38,44 @@ D) Structured output for API/function invocation
 **3. What is the typical format for function calling output?**
 
 A) Plain text with markdown links to the API docs
-B) JSON with function name and parameters
+B) Binary format
 C) XML envelopes defined by the SOAP protocol
-D) Binary format
+D) JSON with function name and parameters
 
 **4. What is OpenAI's function calling format?**
 
-A) JSON Schema
+A) Custom format
 B) Python function signature
 C) OpenAPI specification
-D) Custom format
+D) JSON Schema
 
 **5. What is a "tool" in agent context?**
 
 A) A code editor used by the developers building the agent
-B) Any function/API the agent can use (search, calculator, code)
+B) Training utility
 C) Hardware tool
-D) Training utility
+D) Any function/API the agent can use (search, calculator, code)
 
 **6. What is required for tool definitions?**
 
-A) Function name, description, parameters (schema)
+A) Source code
 B) Just the function name, nothing else required
-C) Source code
+C) Function name, description, parameters (schema)
 D) Documentation link
 
 **7. What happens when an agent calls a tool?**
 
-A) Tool result is fed back to LLM for reasoning
+A) Tool result is ignored
 B) The raw tool result is returned to the user with no further reasoning
-C) Tool result is ignored
+C) Tool result is fed back to LLM for reasoning
 D) Model is retrained
 
 **8. What is "parallel tool calling"?**
 
 A) Calling tools one after another, waiting for each result before the next
-B) Calling multiple tools simultaneously in one request
+B) Concurrent model inference
 C) Running tools on multiple GPUs
-D) Concurrent model inference
+D) Calling multiple tools simultaneously in one request
 
 **9. What is Code Interpreter / Code Execution?**
 
@@ -169,12 +169,12 @@ D) The user, step by step
 |----------|--------|-------------|
 | 1 | A | Tool calling invokes external APIs based on LLM output |
 | 2 | D | Function calling is structured output for invoking functions |
-| 3 | B | Output is JSON naming the function and its parameters |
-| 4 | A | OpenAI describes callable functions with JSON Schema |
-| 5 | B | A tool is any function or API the agent can call |
-| 6 | A | Definitions need name, description and a parameter schema |
-| 7 | A | Results feed back so the model can reason over them |
-| 8 | B | Parallel calling runs several tools in one request |
+| 3 | D | Output is JSON naming the function and its parameters |
+| 4 | D | OpenAI describes callable functions with JSON Schema |
+| 5 | D | A tool is any function or API the agent can call |
+| 6 | C | Definitions need name, description and a parameter schema |
+| 7 | C | Results feed back so the model can reason over them |
+| 8 | D | Parallel calling runs several tools in one request |
 | 9 | B | Code Interpreter runs generated code in a sandbox |
 | 10 | B | Common uses span database queries, APIs and calculations |
 | 11 | B | Validation catches malformed or out-of-range arguments |

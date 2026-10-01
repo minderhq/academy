@@ -52,14 +52,14 @@ D) Randomly varies learning rate
 **5. Gradient clipping prevents:**
 
 A) Slow training, a problem clipping cannot fix and does not target
-B) Exploding gradients
+B) Overfitting
 C) Vanishing gradients
-D) Overfitting
+D) Exploding gradients
 
 **6. Weight decay is:**
 
-A) The same as L2 regularization, an equivalence adaptive updates actually break
-B) Different from L2 regularization (for adaptive optimizers)
+A) Different from L2 regularization (for adaptive optimizers)
+B) The same as L2 regularization, an equivalence adaptive updates actually break
 C) Only used in SGD
 D) Harmful for training
 
@@ -87,16 +87,16 @@ D) SGD
 **10. Learning rate scheduling is important because:**
 
 A) It's required for convergence
-B) High LR early, low LR later works well
-C) It reduces training time
+B) It reduces training time
+C) High LR early, low LR later works well
 D) It's only needed for pretraining, a scope finetuning schedules routinely cross
 
 **11. The beta parameters in Adam control:**
 
 A) Learning rate
-B) Momentum for gradients and squared gradients
+B) Gradient clipping threshold
 C) Weight decay, a coefficient the optimizer keeps outside its beta pair
-D) Gradient clipping threshold
+D) Momentum for gradients and squared gradients
 
 **12. For fine-tuning LLMs, the recommended optimizer is:**
 
@@ -171,13 +171,13 @@ D) Random
 | 2 | C | Adafactor factorizes second moments for very large models |
 | 3 | D | Warmup avoids early instability while statistics are still rough |
 | 4 | C | Cosine decay lowers the LR smoothly toward zero |
-| 5 | B | Clipping caps the gradient norm against explosions |
-| 6 | B | For adaptive optimizers, decay differs from true L2 - hence AdamW |
+| 5 | D | Clipping caps the gradient norm against explosions |
+| 6 | A | For adaptive optimizers, decay differs from true L2 - hence AdamW |
 | 7 | A | Rule of thumb: the highest LR that does not diverge |
 | 8 | A | AdamW = Adam with decoupled weight decay |
 | 9 | C | Adafactor's factorized states win on memory |
-| 10 | B | High LR early explores; low LR late converges |
-| 11 | B | Betas are EMA rates for gradient and squared-gradient moments |
+| 10 | C | High LR early explores; low LR late converges |
+| 11 | D | Betas are EMA rates for gradient and squared-gradient moments |
 | 12 | C | AdamW is the fine-tuning default |
 | 13 | B | Around 1e-4 is the typical AdamW fine-tune LR |
 | 14 | B | Polynomial decay, like cosine, eases the LR down on a curve |

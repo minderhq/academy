@@ -31,15 +31,15 @@ D) All of the above
 **2. What is the primary benefit of synthetic data?**
 
 A) Always higher quality
-B) Cheaper and faster to generate than human data
-C) No bias whatsoever, since generated text is immune to every bias in its source corpus
+B) No bias whatsoever, since generated text is immune to every bias in its source corpus
+C) Cheaper and faster to generate than human data
 D) Free from hallucinations
 
 **3. What is distillation in LLM context?**
 
 A) Compressing liquids in an industrial still, unrelated to machine learning
-B) Training smaller model to mimic larger model
-C) Data compression
+B) Data compression
+C) Training smaller model to mimic larger model
 D) Model pruning
 
 **4. What is model merging?**
@@ -168,8 +168,8 @@ D) Train a model on it and measure downstream task performance
 | Question | Answer | Explanation |
 |----------|--------|-------------|
 | 1 | D | Synthetic data covers benchmark, LLM-generated and artificial data |
-| 2 | B | Generation is cheaper and faster than human annotation |
-| 3 | B | Distillation trains a smaller student to mimic a larger teacher |
+| 2 | C | Generation is cheaper and faster than human annotation |
+| 3 | C | Distillation trains a smaller student to mimic a larger teacher |
 | 4 | B | Merging combines weights from multiple trained models |
 | 5 | D | SWA, linear checkpoint merging and task arithmetic all combine weights |
 | 6 | D | Collapse, bias amplification and quality loss are all risks |

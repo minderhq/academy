@@ -24,9 +24,9 @@ Tags: ['assessment', 'quiz', 'transformers', 'architecture']
 **1. What is the key difference between encoder-only and decoder-only models?**
 
 A) Number of layers
-B) Attention mask pattern (bidirectional vs causal)
+B) Training data size, a budget axis that shapes capability rather than the mask
 C) Vocabulary size
-D) Training data size, a budget axis that shapes capability rather than the mask
+D) Attention mask pattern (bidirectional vs causal)
 
 **2. Which architecture is used by BERT?**
 
@@ -44,8 +44,8 @@ D) Hybrid
 
 **4. What is the main advantage of encoder-decoder models?**
 
-A) Faster inference
-B) Better for sequence-to-sequence tasks
+A) Better for sequence-to-sequence tasks
+B) Faster inference
 C) Lower memory usage, a saving the extra cross-attention stack does not deliver
 D) Simpler training
 
@@ -59,16 +59,16 @@ D) LLaMA
 **6. What is causal masking?**
 
 A) Masking padding tokens
-B) Preventing tokens from attending to future tokens
-C) Random masking for pretraining, a corruption scheme the causal family never applies
+B) Random masking for pretraining, a corruption scheme the causal family never applies
+C) Preventing tokens from attending to future tokens
 D) Masking special tokens
 
 **7. Which attention pattern allows each token to attend to all tokens?**
 
 A) Causal attention
-B) Bidirectional attention
+B) Sparse attention
 C) Sliding window attention
-D) Sparse attention
+D) Bidirectional attention
 
 **8. What is the primary use case for encoder-only models?**
 
@@ -167,13 +167,13 @@ D) It cannot be scaled
 
 | Question | Answer | Explanation |
 |----------|--------|-------------|
-| 1 | B | Encoder-only attends bidirectionally; decoder-only is causal |
+| 1 | D | Encoder-only attends bidirectionally; decoder-only is causal |
 | 2 | B | BERT is encoder-only |
 | 3 | A | GPT-4 is decoder-only |
-| 4 | B | Cross-attention between encoder and decoder fits sequence-to-sequence |
+| 4 | A | Cross-attention between encoder and decoder fits sequence-to-sequence |
 | 5 | C | T5 is the canonical encoder-decoder |
-| 6 | B | Causal masking prevents tokens from attending to future tokens |
-| 7 | B | Bidirectional attention lets every token see every token |
+| 6 | C | Causal masking prevents tokens from attending to future tokens |
+| 7 | D | Bidirectional attention lets every token see every token |
 | 8 | B | Encoder-only models shine at understanding and classification |
 | 9 | B | Decoder-only models generate text |
 | 10 | D | Training ease, scaling behavior, and inference efficiency together |

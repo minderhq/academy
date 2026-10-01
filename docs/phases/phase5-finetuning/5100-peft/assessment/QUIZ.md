@@ -37,16 +37,16 @@ D) None of the above
 
 **3. How many trainable parameters does LoRA typically add?**
 
-A) 0.1% - 3% of original model
+A) 50% of original model
 B) 10% - 20% of original model, a share far too large for any practical LoRA adapter
-C) 50% of original model
+C) 0.1% - 3% of original model
 D) Same as original model
 
 **4. What is the core idea behind LoRA?**
 
-A) Add low-rank matrices to existing weights
+A) Compress the model
 B) Replace weights with smaller matrices, discarding the pretrained knowledge they carry
-C) Compress the model
+C) Add low-rank matrices to existing weights
 D) Remove unnecessary layers
 
 **5. What is QLoRA?**
@@ -59,30 +59,30 @@ D) Query-based LoRA
 **6. What rank is typically used for LoRA?**
 
 A) 1-4
-B) 4-64
+B) 256-1024
 C) 64-256
-D) 256-1024
+D) 4-64
 
 **7. What happens during LoRA inference?**
 
 A) LoRA weights are used separately, so every token pays a second matrix multiply
-B) LoRA weights are merged with base model
+B) Model is retrained
 C) LoRA weights are discarded
-D) Model is retrained
+D) LoRA weights are merged with base model
 
 **8. What is Adapter in PEFT context?**
 
 A) Data loading adapter
-B) Small bottleneck layers added to transformer
+B) Training script adapter, a wrapper around loops that adds no learned layers at all
 C) Hardware adapter
-D) Training script adapter, a wrapper around loops that adds no learned layers at all
+D) Small bottleneck layers added to transformer
 
 **9. What is Prefix Tuning?**
 
 A) Tuning the vocabulary prefix
-B) Learning virtual tokens prepended to input
+B) Quick tuning method
 C) Tuning only first N layers, a depth-wise scheme prefix tuning never uses
-D) Quick tuning method
+D) Learning virtual tokens prepended to input
 
 **10. Why is PEFT important for LLMs?**
 
@@ -169,13 +169,13 @@ D) Only working on encoder models
 |----------|--------|-------------|
 | 1 | D | PEFT trains only a small subset of parameters |
 | 2 | A | LoRA = Low-Rank Adaptation |
-| 3 | A | LoRA typically adds 0.1%-3% of the original model's parameters |
-| 4 | A | LoRA adds low-rank matrices alongside the frozen weights |
+| 3 | C | LoRA typically adds 0.1%-3% of the original model's parameters |
+| 4 | C | LoRA adds low-rank matrices alongside the frozen weights |
 | 5 | A | QLoRA = Quantized LoRA (4-bit NF4 base) |
-| 6 | B | Typical LoRA ranks sit in the 4-64 range |
-| 7 | B | For deployment the adapter merges into the base weights |
-| 8 | B | Adapters are small bottleneck layers inserted into the transformer |
-| 9 | B | Prefix tuning learns virtual tokens prepended to the input |
+| 6 | D | Typical LoRA ranks sit in the 4-64 range |
+| 7 | D | For deployment the adapter merges into the base weights |
+| 8 | D | Adapters are small bottleneck layers inserted into the transformer |
+| 9 | D | Prefix tuning learns virtual tokens prepended to the input |
 | 10 | B | PEFT makes fine-tuning 70B+ models feasible on modest hardware |
 | 11 | A | Alpha scales the low-rank update (ΔW = α/r · BA) |
 | 12 | C | LoRA targets attention projections such as q_proj and v_proj |

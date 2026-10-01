@@ -51,16 +51,16 @@ D) Reduced memory and faster inference
 
 **5. Symmetric quantization has:**
 
-A) Zero-point = 0
+A) No zero-point
 B) Learned zero-point
-C) No zero-point
+C) Zero-point = 0
 D) Multiple zero-points
 
 **6. Scale in quantization:**
 
-A) Determines the quantization range
+A) Is the gradient
 B) Is the learning rate
-C) Is the gradient
+C) Determines the quantization range
 D) Is always 1, fixed at startup and never fitted to any tensor's actual min-max span
 
 **7. Zero-point:**
@@ -73,16 +73,16 @@ D) Is not used
 **8. Per-channel quantization:**
 
 A) One scale for all
-B) One scale per output channel
-C) No scales
+B) No scales
+C) One scale per output channel
 D) Random scales, drawn fresh for every forward pass with no fit to the weight statistics
 
 **9. Post-training quantization (PTQ):**
 
 A) Requires retraining
-B) Quantizes after training
+B) Doesn't work
 C) Is always better than QAT
-D) Doesn't work
+D) Quantizes after training
 
 **10. Quantization aware training (QAT):**
 
@@ -94,16 +94,16 @@ D) Is always worse, which is contradicted by every mainstream QAT deployment stu
 **11. GGUF is:**
 
 A) A training framework, which schedules optimizer steps across a GPU cluster for weeks
-B) A file format for llama.cpp
+B) A dataset
 C) An optimizer
-D) A dataset
+D) A file format for llama.cpp
 
 **12. EXL2 is optimized for:**
 
 A) CPU inference
-B) NVIDIA GPU inference
+B) Mobile, a platform the packed-kernel layout of EXL2 was never designed to target
 C) Training
-D) Mobile, a platform the packed-kernel layout of EXL2 was never designed to target
+D) NVIDIA GPU inference
 
 **13. GPTQ uses:**
 
@@ -171,14 +171,14 @@ D) No trade-off at all, a claim no real deployment has ever been able to support
 | 2 | C | INT8 stores 8 bits per parameter |
 | 3 | D | FP16 is 16-bit half precision |
 | 4 | D | The wins are reduced memory and faster inference |
-| 5 | A | Symmetric quantization fixes the zero-point at 0 |
-| 6 | A | The scale maps the tensor's range onto the integer grid |
+| 5 | C | Symmetric quantization fixes the zero-point at 0 |
+| 6 | C | The scale maps the tensor's range onto the integer grid |
 | 7 | A | The zero-point offsets the quantization range (asymmetric schemes) |
-| 8 | B | Per-channel quantization keeps one scale per output channel |
-| 9 | B | PTQ quantizes a finished model - no retraining |
+| 8 | C | Per-channel quantization keeps one scale per output channel |
+| 9 | D | PTQ quantizes a finished model - no retraining |
 | 10 | A | QAT simulates quantization in the forward pass during training |
-| 11 | B | GGUF is llama.cpp's model file format |
-| 12 | B | EXL2 targets NVIDIA GPU inference |
+| 11 | D | GGUF is llama.cpp's model file format |
+| 12 | D | EXL2 targets NVIDIA GPU inference |
 | 13 | B | GPTQ uses second-order (Hessian) information to quantize |
 | 14 | A | AWQ = activation-aware weight quantization |
 | 15 | A | NF4 is the 4-bit normal float format (QLoRA's base) |

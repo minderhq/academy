@@ -32,36 +32,36 @@ D) Only on Windows
 **2. GPU passthrough allows:**
 
 A) Multiple VMs to share one GPU
-B) A VM to directly access GPU hardware
+B) No GPU access
 C) Only CPU access
-D) No GPU access
+D) A VM to directly access GPU hardware
 
 **3. A GPU passed through to a VM connects to the CPU via:**
 
-A) PCIe lanes
+A) HDMI connection
 B) USB connection
-C) HDMI connection
+C) PCIe lanes
 D) Ethernet
 
 **4. IOMMU is required for:**
 
 A) CPU passthrough
-B) GPU passthrough
+B) Storage passthrough
 C) Network passthrough
-D) Storage passthrough
+D) GPU passthrough
 
 **5. Proxmox is based on:**
 
 A) Red Hat Enterprise Linux
-B) Debian
+B) CentOS
 C) Ubuntu
-D) CentOS
+D) Debian
 
 **6. A virtual machine differs from a container because:**
 
-A) VMs have full OS, containers share kernel
+A) VMs use less memory
 B) Containers are faster
-C) VMs use less memory
+C) VMs have full OS, containers share kernel
 D) No difference
 
 **7. VFIO stands for:**
@@ -73,24 +73,24 @@ D) None of the above
 
 **8. The VGA arbiter controls:**
 
-A) GPU access between host and VM
+A) Storage access
 B) Network access
-C) Storage access
+C) GPU access between host and VM
 D) CPU access
 
 **9. For multi-GPU passthrough, you need:**
 
-A) Multiple IOMMU groups
+A) No IOMMU
 B) One IOMMU group
-C) No IOMMU
+C) Multiple IOMMU groups
 D) Special hardware only
 
 **10. OVMF is:**
 
 A) A type of hypervisor
-B) UEFI firmware for VMs
+B) A container runtime
 C) A GPU driver
-D) A container runtime
+D) UEFI firmware for VMs
 
 **11. Blacklisting Nouveau is necessary because:**
 
@@ -179,15 +179,15 @@ Each question maps to the closest lesson for review:
 | Question | Answer | Explanation |
 |----------|--------|-------------|
 | 1 | C | Type 1 (bare-metal) hypervisors run directly on hardware; Type 2 runs on top of an OS |
-| 2 | B | Passthrough hands the whole GPU to one VM; sharing is SR-IOV/vGPU territory, not passthrough |
-| 3 | A | The GPU sits on PCIe lanes; USB/HDMI/Ethernet are not the bus |
-| 4 | B | IOMMU remaps device DMA so a VM can safely own a device |
-| 5 | B | Proxmox VE is Debian-based |
-| 6 | A | A VM virtualizes hardware and runs a full guest OS; containers share the host kernel |
+| 2 | D | Passthrough hands the whole GPU to one VM; sharing is SR-IOV/vGPU territory, not passthrough |
+| 3 | C | The GPU sits on PCIe lanes; USB/HDMI/Ethernet are not the bus |
+| 4 | D | IOMMU remaps device DMA so a VM can safely own a device |
+| 5 | D | Proxmox VE is Debian-based |
+| 6 | C | A VM virtualizes hardware and runs a full guest OS; containers share the host kernel |
 | 7 | A | VFIO = Virtual Function I/O, the kernel framework for secure device passthrough |
-| 8 | A | The VGA arbiter decides which side (host or VM) owns VGA output |
-| 9 | A | Each passed device needs a clean IOMMU group; multi-GPU means multiple groups |
-| 10 | B | OVMF is the UEFI firmware build for QEMU/KVM VMs |
+| 8 | C | The VGA arbiter decides which side (host or VM) owns VGA output |
+| 9 | C | Each passed device needs a clean IOMMU group; multi-GPU means multiple groups |
+| 10 | D | OVMF is the UEFI firmware build for QEMU/KVM VMs |
 | 11 | B | Nouveau is the open Nvidia driver; blacklisted so the vendor driver can bind to the card |
 | 12 | A | ACS lets the IOMMU isolate devices sharing a bridge, enabling clean passthrough |
 | 13 | B | Looking Glass forwards the VM's GPU framebuffer to the host display near-natively |

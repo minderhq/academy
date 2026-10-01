@@ -58,30 +58,30 @@ D) Neither
 
 **6. HNSW is:**
 
-A) A vector index
+A) A database
 B) A keyword index
-C) A database
+C) A vector index
 D) A scoring method
 
 **7. Re-ranking:**
 
-A) Improves initial retrieval
+A) Is not useful
 B) Replaces retrieval, a swap reranking cannot perform
-C) Is not useful
+C) Improves initial retrieval
 D) Slower only
 
 **8. Cross-encoders:**
 
-A) Encode query and document together
+A) Don't encode
 B) Encode separately, a two-tower isolation this joint pass refuses
-C) Don't encode
+C) Encode query and document together
 D) Are slower than bi-encoders
 
 **9. Maximal Marginal Relevance (MMR):**
 
-A) Diversifies results
+A) Is not used
 B) Only ranks by relevance
-C) Is not used
+C) Diversifies results
 D) Reduces diversity
 
 **10. Query expansion:**
@@ -115,9 +115,9 @@ D) Doesn't scale
 **14. RRF formula uses:**
 
 A) Sum of scores
-B) Rank positions
+B) No formula
 C) Probability
-D) No formula
+D) Rank positions
 
 **15. Semantic search:**
 
@@ -129,9 +129,9 @@ D) Uses neither
 **16. Lexical search:**
 
 A) Uses meaning
-B) Uses exact terms
+B) Uses neither, a denial that erases the term matching itself
 C) Uses embeddings
-D) Uses neither, a denial that erases the term matching itself
+D) Uses exact terms
 
 **17. Boosting in retrieval:**
 
@@ -143,9 +143,9 @@ D) Filters results
 **18. Retrieval augmented generation (RAG) needs:**
 
 A) No retrieval
-B) Good retrieval
+B) Only training
 C) Only generation
-D) Only training
+D) Good retrieval
 
 **19. Context window affects:**
 
@@ -172,19 +172,19 @@ D) No effect
 | 3 | D | RRF merges multiple ranked lists into one |
 | 4 | B | Dense retrieval matches vector embeddings |
 | 5 | B | Sparse retrieval matches exact terms (BM25-style) |
-| 6 | A | HNSW is a graph-based approximate vector index |
-| 7 | A | Reranking refines the candidate set from first-stage retrieval |
-| 8 | A | Cross-encoders jointly encode query and document |
-| 9 | A | MMR trades relevance against redundancy for diversity |
+| 6 | C | HNSW is a graph-based approximate vector index |
+| 7 | C | Reranking refines the candidate set from first-stage retrieval |
+| 8 | C | Cross-encoders jointly encode query and document |
+| 9 | C | MMR trades relevance against redundancy for diversity |
 | 10 | A | Query expansion adds terms to raise recall |
 | 11 | A | Alpha weights the dense side against the sparse side |
 | 12 | B | ANN trades exactness for sublinear search speed |
 | 13 | A | IVF partitions the vector space into clusters |
-| 14 | B | RRF scores by rank position, not raw scores |
+| 14 | D | RRF scores by rank position, not raw scores |
 | 15 | A | Semantic search retrieves by meaning |
-| 16 | B | Lexical search matches exact terms |
+| 16 | D | Lexical search matches exact terms |
 | 17 | A | Boosting raises scores of favored documents or fields |
-| 18 | B | RAG output quality is bounded by retrieval quality |
+| 18 | D | RAG output quality is bounded by retrieval quality |
 | 19 | B | The context window caps how much retrieved text fits |
 | 20 | B | Fusion helps when tuned - not a guaranteed win |
 
