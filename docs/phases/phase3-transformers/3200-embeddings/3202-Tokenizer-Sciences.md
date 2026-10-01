@@ -435,7 +435,11 @@ from datasets import load_dataset
 from tokenizers import Tokenizer, models, trainers, pre_tokenizers
 
 # Load dataset
-dataset = load_dataset("wikitext", "wikitext-103-raw")
+# datasets 5.x: the bare "wikitext" hub alias no longer resolves - use the
+# Salesforce org, and the config names end in -v1. WikiText-2-raw keeps this
+# demo laptop-runnable; WikiText-103 is ~310 MB and trains for minutes with
+# the exact same API.
+dataset = load_dataset("Salesforce/wikitext", "wikitext-2-raw-v1")
 
 def batch_iterator(batch_size=1000):
     for i in range(0, len(dataset["train"]), batch_size):
@@ -452,7 +456,7 @@ tokenizer.pre_tokenizer = pre_tokenizers.Whitespace()
 tokenizer.train_from_iterator(
     batch_iterator(),
     trainer=trainer,
-    len=len(dataset["train"])
+    length=len(dataset["train"])  # optional - only feeds the progress bar
 )
 ```
 

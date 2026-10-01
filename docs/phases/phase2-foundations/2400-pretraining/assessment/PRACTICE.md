@@ -28,7 +28,8 @@ from torch.utils.data import Dataset
 
 # Load dataset
 print("Loading WikiText-2 dataset...")
-dataset = load_dataset("wikitext", "wikitext-2-raw-v1", split="train")
+# datasets 5.x: load by full hub URI - the bare "wikitext" alias no longer resolves
+dataset = load_dataset("Salesforce/wikitext", "wikitext-2-raw-v1", split="train")
 
 # Load tokenizer
 print("Loading GPT-2 tokenizer...")
@@ -489,7 +490,8 @@ def evaluate(model, dataloader, device):
 
 # Create validation dataset
 print("Creating validation dataset...")
-val_dataset = load_dataset("wikitext", "wikitext-2-raw-v1", split="validation")
+# datasets 5.x: full hub URI (the bare "wikitext" alias no longer resolves)
+val_dataset = load_dataset("Salesforce/wikitext", "wikitext-2-raw-v1", split="validation")
 val_tokenized = val_dataset.map(tokenize_function, batched=True, remove_columns=["text"])
 val_dataloader = create_dataloader(val_tokenized, batch_size=4, shuffle=False)
 

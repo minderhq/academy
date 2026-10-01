@@ -322,7 +322,9 @@ from datasets import load_dataset
 
 # Option 1: HH-RLHF (Anthropic's Helpful-Harmless dataset)
 # GATED: you must accept the dataset terms on the Hugging Face page first.
-hh_dataset = load_dataset("Anthropic/hh-rlhf", "harmless-base")
+# datasets 5.x: 'harmless-base' is no longer a named config - data_dir
+# selects the same harmless-only subset.
+hh_dataset = load_dataset("Anthropic/hh-rlhf", data_dir="harmless-base")
 print(hh_dataset)
 
 # Option 2: OpenAssistant (oasst1)

@@ -51,7 +51,8 @@ For a real run, start from an established preference corpus instead of hand-writ
 from datasets import load_dataset
 
 # Anthropic's helpful/harmless pairs (chosen/rejected conversations)
-hh = load_dataset("Anthropic/hh-rlhf", "harmless-base")
+# datasets 5.x: select the harmless subset via data_dir (the named config was retired)
+hh = load_dataset("Anthropic/hh-rlhf", data_dir="harmless-base")
 
 # Binarized UltraFeedback (prompt/chosen/rejected + preference scores)
 uf = load_dataset("argilla/ultrafeedback-binarized-preferences-cleaned")

@@ -6,7 +6,7 @@
    "TIMEOUT"
   ],
   "children": "census subprocesses run with PYTHONUTF8=1 (the learner baseline ENVIRONMENT-SETUP teaches)",
-  "adjudicated": "notes written per accepted row (tick-537); drain-backlog rows are tagged in-place"
+  "adjudicated": "notes written per accepted row (tick-537, carried tick-538); datasets-5.x drain re-blessed 3 files - drain-backlog rows are tagged in-place"
  },
  "files": {
   "docs/00-META/DOCUMENT-TEMPLATE.md": {
@@ -82,7 +82,7 @@
    }
   },
   "docs/00-META/assessment/phase5-practice.md": {
-   "mtime": 1790757197.0745838,
+   "mtime": 1790876346.5506654,
    "size": 5145,
    "bad": {
     "89": "ENV-GAP:Using `bitsandbytes` 4-bit quantization requires bitsandbyte",
@@ -498,8 +498,8 @@
    }
   },
   "docs/learning-resources/labs/LAB-010-DPO-Alignment.md": {
-   "mtime": 1790784081.2634094,
-   "size": 31323,
+   "mtime": 1790877270.3261807,
+   "size": 31444,
    "bad": {}
   },
   "docs/learning-resources/labs/LAB-011-Multi-Modal-AI.md": {
@@ -627,21 +627,19 @@
    "bad": {}
   },
   "docs/learning-resources/labs/solutions/SOLUTION-LAB-010-DPO-Alignment.md": {
-   "mtime": 1790757197.1313033,
-   "size": 11775,
+   "mtime": 1790877270.9311533,
+   "size": 11871,
    "bad": {
     "33": "CODE-SIGNAL:FileNotFoundError",
-    "50": "CODE-SIGNAL:ValueError",
-    "68": "ENV-GAP:trl",
-    "194": "UN-LEAK",
-    "205": "UN-LEAK"
+    "69": "ENV-GAP:trl",
+    "195": "UN-LEAK",
+    "206": "UN-LEAK"
    },
    "notes": {
     "33": "demonstrates the API on a learner-supplied/generated artifact path that does not exist in the census cwd",
-    "50": "datasets 5.x retired the 'harmless-base' BuilderConfig of Anthropic/hh-rlhf - drain backlog",
-    "68": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-    "194": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
-    "205": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically"
+    "69": "optional third-party package (trl) the QA environment does not install; the fence documents the install requirement",
+    "195": "downstream cascade: an upstream fence died on its env-gap before binding this name; fence_namecheck accepts the name statically",
+    "206": "downstream cascade: an upstream fence died on its env-gap before binding this name; fence_namecheck accepts the name statically"
    }
   },
   "docs/learning-resources/labs/solutions/SOLUTION-LAB-011-Multi-Modal-AI.md": {
@@ -1506,21 +1504,13 @@
    "bad": {}
   },
   "docs/phases/phase2-foundations/2400-pretraining/assessment/PRACTICE.md": {
-   "mtime": 1790745763.7134066,
-   "size": 23374,
+   "mtime": 1790877266.05614,
+   "size": 23556,
    "bad": {
-    "23": "CODE-SIGNAL:HfUriError",
-    "88": "UN-LEAK",
-    "185": "UN-LEAK",
-    "305": "UN-LEAK",
-    "445": "CODE-SIGNAL:HfUriError"
+    "186": "TIMEOUT"
    },
    "notes": {
-    "23": "datasets 5.x hub-URI drift (HfUriError); wikitext resolves differently post-script-dataset retirement - drain backlog",
-    "88": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
-    "185": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
-    "305": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
-    "445": "datasets 5.x hub-URI drift (HfUriError) downstream of the wikitext load - drain backlog"
+    "186": "by-design training loop: Exercise 3's pretraining schedule runs epochs over the full wikitext-2 dataloader and exceeds the 90s census budget"
    }
   },
   "docs/phases/phase2-foundations/README.md": {
@@ -1595,21 +1585,19 @@
    }
   },
   "docs/phases/phase3-transformers/3200-embeddings/3202-Tokenizer-Sciences.md": {
-   "mtime": 1790786577.575908,
-   "size": 14471,
+   "mtime": 1790878538.2005672,
+   "size": 14778,
    "bad": {
     "218": "SIDE-EFFECT",
     "251": "SIDE-EFFECT",
     "390": "CODE-SIGNAL:AttributeError",
-    "407": "CODE-SIGNAL:Exception",
-    "433": "CODE-SIGNAL:HfUriError"
+    "407": "CODE-SIGNAL:Exception"
    },
    "notes": {
     "218": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
     "251": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
     "390": "lesson-internal API mismatch: the from-scratch BPETokenizer lacks add_special_tokens the later fence calls - drain backlog",
-    "407": "trains the BPE tokenizer on a corpus file the learner supplies - artifact path",
-    "433": "datasets 5.x: wikitext config name drift (HfUriError) - drain backlog"
+    "407": "trains the BPE tokenizer on a corpus file the learner supplies - artifact path"
    }
   },
   "docs/phases/phase3-transformers/3200-embeddings/README.md": {
