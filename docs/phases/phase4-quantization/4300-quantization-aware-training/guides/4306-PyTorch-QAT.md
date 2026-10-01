@@ -132,28 +132,52 @@ print(model_int8.fc1.weight().dtype)  # torch.qint8
 
 ```python
 import torch.ao.quantization as quant
-from torch.ao.quantization import MinMaxObserver, MovingAverageMinMaxObserver
+from torch.ao.quantization import MinMaxObserver, MovingAverageMinMaxObserver, PerChannelMinMaxObserver
 
-# Custom configuration
+# Custom configuration: per-tensor activations, per-channel symmetric
+# weights. Per-channel needs the PerChannelMinMaxObserver - the plain
+# MinMaxObserver only tracks one scale for the whole tensor.
 my_qconfig = quant.QConfig(
     activation=quant.MinMaxObserver.with_args(
         dtype=torch.quint8,  # Unsigned for activations
         qscheme=torch.per_tensor_affine,
     ),
-    weight=quant.MinMaxObserver.with_args(
+    weight=quant.PerChannelMinMaxObserver.with_args(
         dtype=torch.qint8,  # Signed for weights
         qscheme=torch.per_channel_symmetric,
     )
 )
 
-# Apply to model
+# Apply to a fresh float model: prepare_qat requires a model in training
+# mode, and a model that already ran prepare_qat cannot be prepared again
+model = SimpleModel()
 model.qconfig = my_qconfig
+model.train()
 model = quant.prepare_qat(model)
 ```
 
 ### Per-Layer Configuration
 
 ```python
+# A minimal transformer-shaped stack so the per-layer overrides have real
+# targets (embeddings/attn/mlp). The embedding here is a Linear stand-in -
+# a real nn.Embedding needs the float_qparams weight-only config (4305).
+class DemoTransformer(nn.Module):
+    def __init__(self, dim=64):
+        super().__init__()
+        self.embeddings = nn.Linear(dim, dim)
+        self.norm = nn.LayerNorm(dim)
+        self.attn = nn.Linear(dim, dim)
+        self.mlp = nn.Linear(dim, dim)
+        self.head = nn.Linear(dim, 10)
+
+    def forward(self, x):
+        x = self.embeddings(x)
+        x = self.norm(x)
+        x = nn.functional.relu(self.attn(x))
+        x = nn.functional.relu(self.mlp(x))
+        return self.head(x)
+
 def set_layer_qconfig(model):
     """Configure different layers differently"""
 
@@ -168,11 +192,11 @@ def set_layer_qconfig(model):
         if 'attn' in name:
             module.qconfig = quant.get_default_qat_qconfig('x86')
 
-        # MLP: 4-bit (if supported)
+        # MLP: per-channel symmetric weights
         elif 'mlp' in name:
             module.qconfig = quant.QConfig(
                 activation=MinMaxObserver.with_args(dtype=torch.quint8),
-                weight=MinMaxObserver.with_args(
+                weight=PerChannelMinMaxObserver.with_args(
                     dtype=torch.qint8,
                     qscheme=torch.per_channel_symmetric
                 ),
@@ -180,6 +204,9 @@ def set_layer_qconfig(model):
 
     return model
 
+model = DemoTransformer()
+model.qconfig = quant.get_default_qat_qconfig('x86')  # start from the default
+model.train()
 model = set_layer_qconfig(model)
 model = quant.prepare_qat(model)
 ```
@@ -201,9 +228,16 @@ def skip_layer_quantization(model, layer_types=['LayerNorm', 'Softmax']):
     _set_no_quant(model)
     return model
 
-# Usage
+# Usage: a fresh float model in training mode
+model = DemoTransformer()
+model.qconfig = quant.get_default_qat_qconfig('x86')
+model.train()
 model = skip_layer_quantization(model)
 model = quant.prepare_qat(model)
+
+left_in_float = [n for n, m in model.named_modules()
+                 if isinstance(m, nn.LayerNorm) and not hasattr(m, 'weight_fake_quant')]
+print("Left in float:", left_in_float)  # ['norm']
 ```
 
 ## Training Best Practices

@@ -258,6 +258,7 @@ model = AutoModelForSequenceClassification.from_pretrained(model_name, num_label
 # Prepare for QAT
 import torch.ao.quantization as quant
 model.qconfig = quant.get_default_qat_qconfig('x86')
+model.train()  # prepare_qat requires training mode - from_pretrained loads in eval mode
 model = quant.prepare_qat(model)
 
 # Training arguments
@@ -301,6 +302,7 @@ class QuantizedBertForSequenceClassification(BertPreTrainedModel):
         # Add quantization
         self.quant = torch.ao.quantization.QuantStub()
         self.dequant = torch.ao.quantization.DeQuantStub()
+        self.post_init()  # HF custom models must finish __init__ with post_init()
 
     def forward(self, input_ids, attention_mask=None, labels=None):
         # Caveat: token ids must reach the embedding as Long — quantizing
@@ -330,6 +332,7 @@ class QuantizedBertForSequenceClassification(BertPreTrainedModel):
 # Usage
 model = QuantizedBertForSequenceClassification.from_pretrained("bert-base-uncased")
 model.qconfig = quant.get_default_qat_qconfig('x86')
+model.train()  # prepare_qat requires training mode
 model = quant.prepare_qat(model)
 ```
 
