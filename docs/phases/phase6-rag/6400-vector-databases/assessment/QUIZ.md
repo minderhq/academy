@@ -1,7 +1,7 @@
 ---
 Document ID: 6400-QUIZ
 Title: "6400: Vector Databases - Quiz"
-Last Updated: 2026-02-04
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 30 minutes
@@ -178,7 +178,7 @@ D) Only queries
 | 9 | A | ef_construct trades build time against graph quality |
 | 10 | B | Vector quantization shrinks memory (with some recall cost) |
 | 11 | B | Cosine measures angular distance between directions |
-| 12 | B | Weaviate supports multiple index types |
+| 12 | A | Weaviate uses HNSW; multiple index types are Milvus's strength |
 | 13 | A | Milvus is an open-source vector database |
 | 14 | A | Sharding distributes data across nodes |
 | 15 | A | Replication copies data for availability |
@@ -187,3 +187,13 @@ D) Only queries
 | 18 | B | Scroll APIs paginate through large result sets |
 | 19 | C | RAG keeps documents and embeddings in the store |
 | 20 | B | Tuning spans index params, quantization and sharding |
+
+---
+
+## Need to Review?
+
+Each question maps to the closest lesson for review:
+
+- **Questions 2-7, 9-11, 16:** [6401: Qdrant Setup Guide](../6401-Qdrant-Setup.md) — collections, payloads, upsert, search, filtering, HNSW tuning and consistency
+- **Questions 1, 8, 12-15, 17-19:** [6402: Vector Database Comparison](../6402-Pinecone-vs-Weaviate.md) — feature matrix, hybrid and batch operations, Weaviate and Milvus profiles, sharding and replication
+- **Question 20:** [6403: Qdrant Production Deployment](../guides/6403-Qdrant-Production-Deployment.md) — performance tuning spanning index params, quantization and sharding
