@@ -3,7 +3,8 @@
 
 After README (tick-261) and SITEMAP (tick-262), the remaining count-
 bearing entry documents are FAQ.md, MASTER-INDEX.md,
-ORGANIZATION-GUIDE.md, VOLUME-GUIDE.md and PROGRESS-TRACKER.md. They
+ORGANIZATION-GUIDE.md, VOLUME-GUIDE.md, PROGRESS-TRACKER.md and the
+CHANGELOG. They
 had rotted the same way while every README wave moved the corpus
 numbers (FAQ still said "463 documents ... 30 hands-on labs ...
 46 experiments"; MASTER-INDEX claimed 427 total files and a "Module
@@ -11,7 +12,7 @@ Documents: 256" family that no longer matches how the corpus is laid
 out; VOLUME-GUIDE still said "85 files across 7 volumes" with
 "(6 files)" tutorials; PROGRESS-TRACKER still targeted "0/97 core
 files" with "(15 files)" on a 39-file volume). This gate locks all
-five to disk so the next wave cannot rot them again:
+six to disk so the next wave cannot rot them again:
 
   MC-00  a meta entry file is missing, or a measurement itself failed
   MC-01  a numeric claim disagrees with its measurement
@@ -43,6 +44,13 @@ rather than letting the gate rot):
                   lessons-only, lessons+tutorials, one claim rotted
                   by a late lesson add) - V1/V7 already used
                   all-items; V2-V6 were aligned in the same commit.
+  CHANGELOG      the newest entry's "**N hard QA gates**" claim (and
+                  its optional "(total N)") vs quality_report.GATES
+                  imported for parity - the newest Keep-a-Changelog
+                  entry comes first, so .search() locks the current
+                  count and freezes history (born tick-546: 1.2.0's
+                  "83 hard QA gates" had survived three days of fleet
+                  growth while the fleet reached 97)
 
 Hard gate (exit 1 on findings): baseline 0 on the clean corpus.
 
@@ -55,6 +63,9 @@ import argparse
 import re
 import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from quality_report import GATES  # noqa: E402
 
 PHASE_DIR = re.compile(r"^phase(\d+)-")
 MODULE_DIR = re.compile(r"^\d{4}-")
@@ -108,6 +119,12 @@ PT_SITEMAP = re.compile(r"Full document list \((\d+) files\)")
 PT_VOLUMES_STAT = re.compile(r"^\| \*\*Volumes Completed\*\* \| (\d+) \|",
                              re.M)
 PT_CORE_DOCS = re.compile(r"^\| \*\*Core Documents\*\* \| (\d+) \|", re.M)
+
+# CHANGELOG: the newest entry's QA-fleet count claim (Keep-a-Changelog
+# lists newest first, so .search() sees the current entry and freezes
+# history); the optional "(total N)" parenthetical locks the total too
+CHANGELOG_GATES = re.compile(
+    r"\*\*(\d+) hard QA gates(?: \(total (\d+)\))?\*\*")
 PT_LABS_STAT = re.compile(r"^\| \*\*Labs Completed\*\* \| (\d+) \|", re.M)
 PT_EXPERIMENTS_STAT = re.compile(r"^\| \*\*Experiments\*\* \| (\d+) \|",
                                  re.M)
@@ -126,6 +143,13 @@ def _md_count(p: Path, recursive: bool = False) -> int:
 
 
 # ---- disk measurements ----
+
+def m_hard_gates(root: Path) -> int:
+    """Hard-gate count from quality_report.GATES - the same list the
+    fleet itself runs from, imported for single-source-of-truth parity
+    (qa_tooling_coverage_check's idiom)."""
+    return len([g for g in GATES if g[2]])
+
 
 def m_docs_md(root: Path) -> int:
     return _md_count(root / "docs", recursive=True)
@@ -602,6 +626,32 @@ def main() -> int:
             note(claimed == actual,
                  "%s claims %s=%d but its own checklist measures %d"
                  % (vol_path.name, label, claimed, actual))
+
+    # ---- CHANGELOG: the newest entry's QA-fleet count claim ----
+    # Keep-a-Changelog lists newest entries first, so the FIRST
+    # "**N hard QA gates**" claim must equal the fleet's current hard
+    # count from quality_report.GATES; later (historical) entries are
+    # frozen by design - 1.2.0's "83" was true at its release and is
+    # never re-litigated, the count moves through a NEW entry instead.
+    # Born tick-546 after the 1.2.0-era claim survived three days of
+    # fleet growth (still "83" while the fleet reached 97).
+    changelog = args.root / "CHANGELOG.md"
+    if changelog.exists():
+        match = CHANGELOG_GATES.search(changelog.read_text(encoding="utf-8"))
+        if match is not None:
+            actual_hard = measure("CHANGELOG hard-gate count", m_hard_gates)
+            if actual_hard is not None:
+                note(int(match.group(1)) == actual_hard,
+                     "CHANGELOG's newest entry claims %s hard QA gates but "
+                     "quality_report.GATES has %d hard - record the new "
+                     "count in a NEW changelog entry, do not edit history"
+                     % (match.group(1), actual_hard))
+            if match.group(2) is not None:
+                note(int(match.group(2)) == len(GATES),
+                     "CHANGELOG's newest entry claims %s total gates but "
+                     "quality_report.GATES has %d total - record the new "
+                     "count in a NEW changelog entry"
+                     % (match.group(2), len(GATES)))
 
     for f in findings:
         print(f.encode("ascii", "backslashreplace").decode("ascii"))

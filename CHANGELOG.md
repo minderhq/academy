@@ -13,6 +13,35 @@ All notable changes to PROJECT-OMEGA documentation will be documented in this fi
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.0] - 2026-10-02
+
+### Fixed - Live-Verified Content Corrections
+- **Learner-facing bug chain drained** across the practice and guide
+  corpus, every fix executed against the running stack before landing:
+  the from-scratch autograd exercise's wrong-axis gradient broadcast
+  and backward-hook return contract (phase 2), the transformers 5.x
+  output-API drift (CLIP `pooler_output` at fourteen sites across five
+  files), the torch.ao QAT legacy-API group (`prepare_qat` train-mode
+  requirement, per-channel observer class, HF `post_init` contract,
+  phase 4), the float32-vs-float16 KV-cache matmul dtype trap
+  (phase 4), the DPO/reward loss and GPT-2 Conv1D LoRA projection
+  naming bugs (phase 5), and an offline langgraph agent scaffold that
+  no longer needs API credentials to run (phase 6)
+- **Execution census fully adjudicated:** 582 → 556 accepted rows,
+  every remaining row carrying a verified env-gap / service-needing /
+  by-design-hang / learner-artifact note
+
+### Added - Quality Infrastructure Growth
+- **91 hard QA gates (total 97)**: census_note_gate (CN-01/02) makes
+  the execution census's must-be-adjudicated contract mechanical;
+  meta_claims_check now locks this changelog's newest gate-count claim
+  to quality_report.GATES itself
+- **lesson_similarity_scan** (report tool): 5-word-shingle Jaccard
+  over all 6441 lesson pairs - born at zero clone findings with a max
+  similarity of 0.058, lesson diversity under continuous lock
+- **Repo hygiene verified:** 604 tracked files, zero committed
+  binaries, zero untracked strays
+
 ## [1.2.0] - 2026-09-30
 
 ### Changed - Curriculum Modernization Era
