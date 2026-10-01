@@ -1,0 +1,228 @@
+#!/usr/bin/env python3
+"""Smoke-execution census: actually run every ```python fence, per file.
+
+The fourth rung of content testing - syntax (CB-01) proves a fence
+parses, fence_import_check proves its imports resolve, fence_namecheck
+proves its names resolve - this census asks whether the code RUNS.
+Each markdown file's python fences execute top-to-bottom in one
+namespace (the learner's exact experience), one subprocess per file
+with a hard timeout, cwd a throwaway directory so file-writing fences
+cannot touch the repo.
+
+Report-mode census (exit 0 always). Findings classify into:
+
+  OK              ran clean
+  CENSUS          NameError on a name the file's UN census already
+                  accepts (fragment convention - expected, not signal)
+  UN-LEAK         NameError outside the census (would contradict the
+                  UN gate - investigate before believing)
+  ENV-GAP         ModuleNotFoundError for a module the QA environment
+                  does not install (sentence_transformers, trl, ...)
+  SIDE-EFFECT     network / service / filesystem failures at runtime
+                  (ConnectionError, OSError on real paths, qdrant
+                  refused, ...) - the fence needs a server, not a fix
+  INTERACTIVE     EOFError from input() with stdin closed
+  EXIT-CALL       SystemExit / exit() in fence body
+  TIMEOUT         file exceeded the subprocess timeout (hung fence -
+                  typically an unguarded network call or a training
+                  loop on full data); fences after the hang are unknown
+  CODE-SIGNAL     any other exception (TypeError, ValueError,
+  (numbered)      AttributeError, ...) - the gold class: example code
+                  that is broken as written
+
+The classification pass turns this into the next born-at-zero gate's
+accepted classes; drain the CODE-SIGNAL class first.
+
+Adjudicated over the full corpus (260 files, tick-532): UN-LEAK is
+almost never a gate contradiction - fence_namecheck and runtime agree.
+The UN-LEAKs are downstream cascades of an upstream fence that died on
+a missing optional package or a service call BEFORE binding the name
+the later fence references (the death itself is often swallowed by the
+fence's own try/except or hidden because ENV-GAP is not a signal line).
+SIDE-EFFECT covers both the raw connection family and the service
+exception types (OpenAIError, ResponseError, ResponseHandlingException,
+ServiceUnavailable, NotFoundError, _InactiveRpcError): those fences
+need an API key, an Ollama daemon, a Neo4j/Qdrant server or a GPU -
+they are environment requirements, not code defects. The intentional
+error-teaching demos (einsum/matmul shape traps in phase2's README,
+etc.) land in CODE-SIGNAL and stay there until the drain phase tags
+them; the census cannot read pedagogical intent.
+
+    python scripts/qa/fence_exec_census.py --root .
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import re
+import subprocess
+import sys
+import tempfile
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from fence_namecheck import ACCEPTED  # single source of truth for the UN census
+
+FENCE = re.compile(r"^\s*(```|~~~)\s*([A-Za-z0-9_+-]*)\s*$")
+PYTHON_LANGS = ("python", "py", "python3")
+FILE_TIMEOUT = 90  # seconds; first torch import alone can take 10-20s
+
+RUNNER = r'''
+import json, sys
+path = sys.argv[1]
+FENCE = r"^\s*(```|~~~)\s*([A-Za-z0-9_+-]*)\s*$"
+import re
+lines = open(path, encoding="utf-8").read().split("\n")
+fences = []
+in_fence = False
+lang = ""
+start = 0
+body = []
+for i, raw in enumerate(lines):
+    m = re.match(FENCE, raw)
+    if m:
+        if in_fence:
+            in_fence = False
+            if lang in ("python", "py", "python3"):
+                import textwrap
+                src = textwrap.dedent("\n".join(body))
+                if src.strip():
+                    fences.append((start + 1, src))
+            body = []
+        else:
+            in_fence = True
+            lang = m.group(2).lower()
+            start = i
+            body = []
+        continue
+    if in_fence:
+        body.append(raw)
+ns = {"__name__": "__main__"}
+out = []
+for line_no, src in fences:
+    try:
+        exec(compile(src, f"fence@line{line_no}", "exec"), ns)
+        out.append([line_no, "OK", "", ""])
+    except SystemExit as e:
+        out.append([line_no, "EXIT-CALL", str(e.code), ""])
+    except BaseException as e:
+        name = getattr(e, "name", "") or ""
+        out.append([line_no, type(e).__name__, str(e)[:200], str(name)])
+print(json.dumps(out))
+'''
+
+
+def has_python_fence(path: Path) -> bool:
+    in_fence = False
+    lang = ""
+    for raw in path.read_text(encoding="utf-8", errors="replace").split("\n"):
+        m = FENCE.match(raw)
+        if m:
+            if in_fence:
+                if lang in PYTHON_LANGS:
+                    return True
+                in_fence = False
+            else:
+                in_fence = True
+                lang = m.group(2).lower()
+    return False
+
+
+def classify(exc: str, detail: str, name: str, rel: str) -> str:
+    if exc == "OK":
+        return "OK"
+    if exc == "EXIT-CALL":
+        return "EXIT-CALL"
+    if exc == "ModuleNotFoundError":
+        return f"ENV-GAP:{name or detail}"
+    if exc == "NameError":
+        if name and name in ACCEPTED.get(rel, frozenset()):
+            return "CENSUS"
+        return "UN-LEAK"
+    if exc in ("EOFError",):
+        return "INTERACTIVE"
+    if exc in ("ConnectionError", "TimeoutError", "OSError", "ConnectionRefusedError",
+               "ConnectionAbortedError", "ConnectionResetError", "SocketError",
+               "URLError", "HTTPError", "SSLError",
+               "OpenAIError", "ResponseError", "ResponseHandlingException",
+               "ServiceUnavailable", "NotFoundError", "_InactiveRpcError"):
+        return "SIDE-EFFECT"
+    return f"CODE-SIGNAL:{exc}"
+
+
+def main() -> int:
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parents[2])
+    parser.add_argument("--timeout", type=int, default=FILE_TIMEOUT)
+    parser.add_argument("--from-index", type=int, default=0,
+                        help="skip the first N targets (resume after a killed run)")
+    args = parser.parse_args()
+    args.root = args.root.resolve()  # children run with cwd=tmp: targets must be absolute
+    docs = args.root / "docs"
+    targets = [p for p in sorted(docs.rglob("*.md")) if has_python_fence(p)]
+    print(f"fence_exec_census: executing {len(targets)} files"
+          f" (timeout {args.timeout}s each)", flush=True)
+    tally: dict[str, int] = {}
+    signal_files: list[str] = []
+    with tempfile.TemporaryDirectory(prefix="omega_exec_") as tmp:
+        for n, path in enumerate(targets, 1):
+            if n <= args.from_index:
+                continue
+            rel = path.relative_to(args.root).as_posix()
+            proc = subprocess.Popen(
+                [sys.executable, "-c", RUNNER, str(path)],
+                stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True,
+                encoding="utf-8", errors="replace", cwd=tmp,
+                stdin=subprocess.DEVNULL,
+            )  # env inherited: the learner runs inside their real environment
+            timed_out = False
+            try:
+                out, err = proc.communicate(timeout=args.timeout)
+            except subprocess.TimeoutExpired:
+                # tree-kill: a hung fence may have spawned children holding the
+                # stdout pipe open; killing only the direct child would leave
+                # communicate() blocked forever on Windows
+                subprocess.run(["taskkill", "/F", "/T", "/PID", str(proc.pid)],
+                               capture_output=True)
+                out, err = proc.communicate()
+                timed_out = True
+            if timed_out:
+                tally["TIMEOUT"] = tally.get("TIMEOUT", 0) + 1
+                line = f"{rel}: TIMEOUT after {args.timeout}s"
+                signal_files.append(line)
+                print(f"[{n}/{len(targets)}] {rel}: TIMEOUT\n  {line}", flush=True)
+                continue
+            rows = []
+            try:
+                rows = json.loads((out or "").strip().splitlines()[-1])
+            except (json.JSONDecodeError, IndexError):
+                tally["RUNNER-CRASH"] = tally.get("RUNNER-CRASH", 0) + 1
+                line = f"{rel}: RUNNER-CRASH rc={proc.returncode} {(err or '').strip()[:200]}"
+                signal_files.append(line)
+                print(f"[{n}/{len(targets)}] {rel}: RUNNER-CRASH\n  {line}", flush=True)
+                continue
+            bad = []
+            for line_no, exc, detail, name in rows:
+                cls = classify(exc, detail, name, rel)
+                tally[cls] = tally.get(cls, 0) + 1
+                if cls not in ("OK", "CENSUS") and not cls.startswith("ENV-GAP"):
+                    bad.append(f"  {rel}:{line_no}: {cls} {detail}")
+            if bad:
+                signal_files.extend(bad)
+                print("\n".join(bad), flush=True)
+            print(f"[{n}/{len(targets)}] {rel}: {len(rows)} fences"
+                  f"{' BAD=' + str(len(bad)) if bad else ''}", flush=True)
+    print("--- signals ---")
+    for line in signal_files:
+        print(line)
+    print("--- tally ---")
+    for cls, count in sorted(tally.items(), key=lambda kv: -kv[1]):
+        print(f"{cls}: {count}")
+    print("fence_exec_census: report-mode census (exit 0 by design)")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
