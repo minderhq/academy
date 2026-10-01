@@ -626,9 +626,29 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [UC-002-RAG-Applications](../use-cases/UC-002-RAG-Applications.md)
 - [UC-003-Agent-Applications](../use-cases/UC-003-Agent-Applications.md)
 
-## Notebooks (1)
+## Notebooks (21 files)
 
 - [README](../notebooks/README.md)
+- [NB-201-PyTorch-Basics](../notebooks/NB-201-PyTorch-Basics.ipynb)
+- [NB-202-Deep-Learning-Fundamentals](../notebooks/NB-202-Deep-Learning-Fundamentals.ipynb)
+- [NB-203-NLP-For-LLMs](../notebooks/NB-203-NLP-For-LLMs.ipynb)
+- [NB-204-Data-Loading](../notebooks/NB-204-Data-Loading.ipynb)
+- [NB-205-Evaluation-Metrics](../notebooks/NB-205-Evaluation-Metrics.ipynb)
+- [NB-301-Self-Attention](../notebooks/NB-301-Self-Attention.ipynb)
+- [NB-302-Transformer-Architecture](../notebooks/NB-302-Transformer-Architecture.ipynb)
+- [NB-303-GPT-Implementation](../notebooks/NB-303-GPT-Implementation.ipynb)
+- [NB-401-Quantization](../notebooks/NB-401-Quantization.ipynb)
+- [NB-402-GPTQ-Quantization](../notebooks/NB-402-GPTQ-Quantization.ipynb)
+- [NB-403-KV-Cache-Optimization](../notebooks/NB-403-KV-Cache-Optimization.ipynb)
+- [NB-501-LoRA-Fine-tuning](../notebooks/NB-501-LoRA-Fine-tuning.ipynb)
+- [NB-502-DPO-Alignment](../notebooks/NB-502-DPO-Alignment.ipynb)
+- [NB-503-Synthetic-Data-Generation](../notebooks/NB-503-Synthetic-Data-Generation.ipynb)
+- [NB-601-Building-RAG](../notebooks/NB-601-Building-RAG.ipynb)
+- [NB-602-Advanced-RAG-Techniques](../notebooks/NB-602-Advanced-RAG-Techniques.ipynb)
+- [NB-603-Vector-Databases](../notebooks/NB-603-Vector-Databases.ipynb)
+- [NB-701-Agentic-System](../notebooks/NB-701-Agentic-System.ipynb)
+- [NB-702-Agent-Memory-Systems](../notebooks/NB-702-Agent-Memory-Systems.ipynb)
+- [NB-703-Agent-Security](../notebooks/NB-703-Agent-Security.ipynb)
 
 ## Project Templates (12 files)
 
@@ -708,6 +728,6 @@ Project templates: 12
 Cheat sheets: 13
 Learning guides: 3
 Comparisons: 3 | Diagrams: 4 | Enterprise solutions: 3
-Industry applications: 4 | Use cases: 4 | Notebooks: 1
+Industry applications: 4 | Use cases: 4 | Notebooks: 21
 ```
 

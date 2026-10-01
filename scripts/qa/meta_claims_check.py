@@ -261,12 +261,20 @@ def m_solutions(root: Path) -> int:
                      / "labs" / "solutions")
 
 
+def m_notebooks(root: Path) -> int:
+    """Count the runnable notebook artifacts (.ipynb), not their index
+    README - the md-based _md_count idiom cannot see them."""
+    ndir = root / "docs" / "notebooks"
+    return len(list(ndir.glob("*.ipynb"))) if ndir.exists() else 0
+
+
 # MASTER-INDEX numbered section prefix -> disk measurement. Sections
 # without a natural disk measure (Bridges, topic guides) never match a
 # prefix and are skipped deliberately.
 SECTION_MEASURES = [
     ("Tutorials", _rel("learning-resources/tutorials")),
     ("Labs (", lambda root: m_labs(root) + m_solutions(root)),
+    ("Notebooks", m_notebooks),
     ("Cheat Sheets", _rel("learning-resources/cheat-sheets")),
     ("Projects", m_projects),
     ("Career Guides", _rel("learning-resources/guides")),
@@ -288,6 +296,7 @@ FILE_COUNT_MEASURES = {
     "Tutorials": _rel("learning-resources/tutorials"),
     "Labs": m_labs,
     "Lab Solutions": m_solutions,
+    "Jupyter Notebooks": m_notebooks,
     "Practice Files": m_module_flag("PRACTICE.md"),
     "Quiz Files": m_module_flag("QUIZ.md"),
     "Cheat Sheets": _rel("learning-resources/cheat-sheets"),

@@ -265,6 +265,32 @@ B=9/20 while thirteen banks are perfectly uniform 5/5/5/5), plus
 (A=9 B=9 C=1 D=1). The honest fix is permuting option lines and
 remapping keys - content untouched, presentation order only.
 
+## Notebook Curriculum Discovery (report tool)
+
+`scripts/qa/notebook_discovery_scan.py --root . [--out FILE]`
+
+```text
+NAV-ORPHAN findings (zero curriculum-navigation inbound): 20
+```
+
+Answers "which notebooks can a learner actually find?" - the
+discovery question the markdown link graph cannot see:
+link_reach_report BFS-walks .md links only, so docs/notebooks/*.ipynb
+sit outside its universe, and linkcheck only proves links that exist
+resolve. Counts, per notebook, every inbound md link in the repo,
+split by origin: CURRICULUM (any .md outside docs/notebooks/) vs
+SELF-INDEX (the notebooks directory's own README). Zero curriculum
+inbound prints as NAV-ORPHAN - runnable, tested content invisible to
+the browsing learner and the future platform crawler. Report only
+(same stance as curriculum_metrics) - born tick-549 with the maximal
+finding: **all 20 notebooks NAV-ORPHAN** (each had exactly one
+inbound - its own directory's index README, reached only through
+SITEMAP's collapsed "Notebooks (1)" section, while MASTER-INDEX's
+Learning Resources tables had no notebooks row at all). Drained the
+same tick: a 20-row Notebooks table in MASTER-INDEX, a 21-entry
+SITEMAP section, and the File Counts/TOTAL row, all disk-locked by
+meta_claims_check's new m_notebooks measure.
+
 ## Conventions
 
 - All gates share one extraction model: naive fence toggle +
