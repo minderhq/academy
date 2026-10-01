@@ -1,7 +1,7 @@
 ---
 Document ID: 4400-QUIZ
 Title: "4400: Advanced Quantization Techniques - Quiz"
-Last Updated: 2026-09-29
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 30 minutes
@@ -199,6 +199,19 @@ D) Track accuracy degradation and performance
 | 18 | D | Try higher bit-width or mixed precision configuration |
 | 19 | B | Docker provides reproducible deployment environments |
 | 20 | D | Monitoring helps track performance and catch issues |
+
+---
+
+## Need to Review?
+
+Each question maps to the closest lesson for review:
+
+- **Questions 1-5:** [4401: GPTQ](../4401-GPTQ.md) — Hessian-guided error compensation, the damping-stabilized inversion, group_size/damp_percent levers, c4 calibration, and the ~30-minute 7B quantize
+- **Questions 6-10:** [4402: AWQ](../4402-AWQ.md) — the ~1% salient weights chosen by activation magnitudes, fused kernels, and the clip_ratio protection knob
+- **Questions 11-14:** [4403: GGUF Format](../4403-GGUF-Format.md) — CPU/consumer targets, the Q4_K_M sweet spot, the weights+metadata+tokenizer container, and per-layer GPU offload budgeting
+- **Question 15:** [4404: EXL2 Format](../4404-EXL2-Format.md) — NVIDIA-only ExLlamaV2 quants and the EXL2 vs GGUF decision tree
+- **Questions 16-18, 20:** [4408: Quantizing for Production](../guides/4408-Quantizing-for-Production.md) — the six-step pipeline, the three validation gates on domain data, escalating to higher bit-width when losses exceed budget, and the monitor/rollback discipline
+- **Question 19:** [1404: vLLM Production Deployment Guide](../../../phase1-infra/1400-llmops/guides/1404-vLLM-Production-Deployment.md) — reproducible serving through pinned Docker Compose images
 
 ---
 

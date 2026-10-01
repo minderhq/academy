@@ -1,7 +1,7 @@
 ---
 Document ID: 5100-QUIZ
 Title: "5100: PEFT Methods - Quiz"
-Last Updated: 2026-09-29
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 30 minutes
@@ -187,3 +187,13 @@ D) Only working on encoder models
 | 18 | B | Prompt tuning trains continuous prompt vectors with the model frozen |
 | 19 | A | BA has the same shape as W, so it adds directly |
 | 20 | C | IA³/BitFit tune small vectors or biases, not low-rank matrices |
+
+---
+
+## Need to Review?
+
+Each question maps to the closest lesson for review:
+
+- **Questions 1, 8-10, 18, 20:** [5103: Adapters & Parameter-Efficient Adaptation Methods](../5103-Adapters.md) — the PEFT design space: bottleneck adapters, prompt & prefix tuning's virtual tokens, IA³'s activation scales and BitFit's biases
+- **Questions 2-4, 6-7, 11-12, 15-17, 19:** [5101: LoRA (Low-Rank Adaptation) Logic](../5101-LoRA-Logic.md) — the ΔW = BAᵀ rank hypothesis, α/r scaling and the merge path, the rank/α/target-module tables with their trainable-share budgets, and merge_and_unload deployment
+- **Questions 5, 13-14:** [5102: QLoRA Pipelines - 4-bit Fine-Tuning on Consumer Hardware](../5102-QLoRA-Pipelines.md) — NF4, double-quantized constants and paged optimizers behind the 65B-on-48GB headline

@@ -1,7 +1,7 @@
 ---
 Document ID: 4300-QUIZ
 Title: "4300: Quantization Aware Training - Quiz"
-Last Updated: 2026-09-29
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 30 minutes
@@ -199,6 +199,17 @@ D) >15%
 | 18 | A | Start high (8-bit) and gradually reduce to target (4-bit) |
 | 19 | D | Use larger FP32 or 8-bit model as teacher |
 | 20 | A | 4-bit QAT typically loses 1-3% accuracy vs FP32 |
+
+---
+
+## Need to Review?
+
+Each question maps to the closest lesson for review:
+
+- **Questions 1-5:** [4301: QAT Foundations](../4301-QAT-Foundations.md) — the QAT vs PTQ trade-off table, fake quantization's clamp-round-dequantize loop, the Straight-Through Estimator, and the scenario lists that hand ≤4-bit targets to QAT
+- **Questions 6-10:** [4302: Fake Quantization](../4302-Fake-Quantization.md) — symmetric vs asymmetric ranges, the moving-average observer, per-output-channel scales, and the scale-to-zero pitfall
+- **Questions 11-15:** [4303: QAT for Transformers](../4303-QAT-for-Transformers.md) — the quantize/don't boundaries of a transformer block: LayerNorm and softmax held in FP32, per-channel weights, int8 embeddings, and per-branch residual quantizers
+- **Questions 16-20:** [4304: Low-bit QAT](../4304-Low-bit-QAT.md) — the [-8, 7] 4-bit grid, quantile-based clipping against outliers, progressive 8→4 bit stepping, and knowledge distillation from a larger teacher
 
 ---
 
