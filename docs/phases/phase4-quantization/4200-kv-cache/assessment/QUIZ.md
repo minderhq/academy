@@ -1,7 +1,7 @@
 ---
 Document ID: 4200-QUIZ
 Title: "4200: KV Cache & Context Window - Quiz"
-Last Updated: 2026-09-29
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 30 minutes
@@ -187,3 +187,17 @@ D) Avoid tokenization of the input prompt entirely
 | 18 | B | RoPE encodes positions as rotations applied to Q/K vectors |
 | 19 | C | Linear or NTK scaling of RoPE frequencies extends context |
 | 20 | A | Offloading serves sequences longer than VRAM alone allows |
+
+---
+
+## Need to Review?
+
+Each question maps to the closest lesson for review:
+
+- **Questions 1-4, 7-10, 15, 19-20:** [4201: Context Window Physics and OOM Prevention](../4201-Context-Window-Physics.md) — what the KV cache stores, its per-token memory cost and O(L) growth, RoPE scaling (PI/YaRN) past the trained horizon, the sliding-window cache, KV quantization, and offload as the OOM escape hatch
+- **Question 5:** [1402: vLLM and TGI](../../../phase1-infra/1400-llmops/1402-vLLM-and-TGI.md) — PagedAttention's page-based KV cache management in vLLM
+- **Questions 6, 11-12:** [4203: Context Window Optimization Guide](../guides/4203-Context-Window-Optimization.md) — the KV memory formula (2 × heads × head_dim × seq × batch × bytes × layers) and GQA's grouped KV-head sharing, the family MQA sits at the bottom of
+- **Questions 13-14:** [4202: Speculative Decoding](../4202-Speculative-Decoding.md) — draft-model proposal with target-model accept/reject verification
+- **Question 16:** [4101: GGUF Physics - CPU/GPU Hybrid Offloading](../../4100-low-bit/4101-GGUF-Physics.md) — the prefill-is-compute, decode-is-bandwidth phase table
+- **Question 17:** [3102: Flash Attention - IO-Aware Exact Attention](../../../phase3-transformers/3100-attention/3102-Flash-Attention.md) — exact attention via IO-aware tiling that cuts GPU memory traffic
+- **Question 18:** [3201: Rotary Positional Embeddings (RoPE)](../../../phase3-transformers/3200-embeddings/3201-Rotary-Positional-Embeddings-RoPE.md) — positions encoded as rotations applied to Q/K vectors

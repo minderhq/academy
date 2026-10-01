@@ -1,7 +1,7 @@
 ---
 Document ID: 4100-QUIZ
 Title: "4100: Low-bit Quantization - Quiz"
-Last Updated: 2026-09-29
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 30 minutes
@@ -187,3 +187,15 @@ D) No trade-off at all, a claim no real deployment has ever been able to support
 | 18 | B | INT4 trades accuracy for a much smaller footprint |
 | 19 | B | Calibration data should represent the deployment distribution |
 | 20 | B | The trade-off is size (and speed) vs accuracy |
+
+---
+
+## Need to Review?
+
+Each question maps to the closest lesson for review:
+
+- **Questions 1-8, 11, 18:** [4101: GGUF Physics - CPU/GPU Hybrid Offloading](../4101-GGUF-Physics.md) — scale and zero-point mechanics, symmetric vs asymmetric Q4_K sub-blocks, the GGUF format and its size/quality ladder
+- **Questions 9-10, 12-14, 19-20:** [4102: EXL2 and AWQ - Extreme Quantization](../4102-EXL2-and-AWQ.md) — EXL2's bpw ladder, AWQ's activation-aware salient weights, GPTQ's Hessian-driven post-training quantization and calibration data
+- **Questions 15-16:** [4103: Double Quantization - BitsAndBytes (bnb) Logic](../4103-Double-Quantization.md) — the NF4 codebook and double-quantized scales
+- **Question 17:** [4201: Context Window Physics and OOM Prevention](../../4200-kv-cache/4201-Context-Window-Physics.md) — KV cache quantization
+

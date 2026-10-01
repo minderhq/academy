@@ -1,7 +1,7 @@
 ---
 Document ID: 3500-QUIZ
 Title: "3500: Multimodal Models - Quiz"
-Last Updated: 2026-09-29
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 30 minutes
@@ -187,3 +187,13 @@ D) Audio transcripts
 | 18 | B | ASR converts audio to text; TTS converts text to audio |
 | 19 | D | VQA-family benchmarks evaluate vision-language models |
 | 20 | A | Visual instruction tuning fine-tunes on instruction data that includes images |
+
+---
+
+## Need to Review?
+
+Each question maps to the closest lesson for review:
+
+- **Questions 1-12, 14, 16-17, 19-20:** [3501: Vision-Language Models](../3501-Vision-Language-Models.md) — CLIP's contrastive objective and zero-shot classification, the ViT → projector → LLM recipe behind LLaVA-class models, shared embedding spaces and patch-embedding inputs
+- **Questions 13, 15, 18:** [3502: Audio Models](../3502-Audio-Models.md) — Whisper speech recognition, mel-spectrogram vs codec-token representations, and the ASR/TTS direction split
+
