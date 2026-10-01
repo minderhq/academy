@@ -240,6 +240,31 @@ corpus's diversity itself under continuous lock. 4-digit lesson files
 only; assessment PRACTICE/SOLUTION overlap is by design and out of
 scope.
 
+## Quiz Answer-Position Balance (report tool)
+
+`scripts/qa/quiz_balance_scan.py --root . [--bank-threshold 0.45]
+[--global-threshold 0.30] [--out FILE]`
+
+```text
+GLOBAL: A=186 B=230 C=127 D=112  ->  shares A=28.4% B=35.1% C=19.4% D=17.1%  chi2=54.4  [p<0.01]
+```
+
+Answers "where do the correct answers sit?" - the guessing-odds
+question no structural gate can see: AS-10 checks that four options
+exist and the integrity gate checks keys match inline answers, but the
+POSITION distribution is invisible to both. A learner who notices the
+skew guesses a letter and outperforms a uniform guesser. Parses the
+same 33 banks through quiz_export's own `export_quiz` (one parser, one
+truth), reports per-bank and global letter counts, shares and a
+dep-free chi-square vs uniform (critical value 11.34 at df=3, p=0.01
+marks the table). Report only (same stance as curriculum_metrics) -
+born tick-547 with a real finding: **35.1% of the corpus's 655 correct
+answers sit on B** (chi2 54.4, p<0.01; ten-plus phase 2-6 banks carry
+B=9/20 while thirteen banks are perfectly uniform 5/5/5/5), plus
+1200-virtualization the only bank beating the per-bank critical value
+(A=9 B=9 C=1 D=1). The honest fix is permuting option lines and
+remapping keys - content untouched, presentation order only.
+
 ## Conventions
 
 - All gates share one extraction model: naive fence toggle +
