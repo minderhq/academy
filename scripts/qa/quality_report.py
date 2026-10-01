@@ -1259,6 +1259,7 @@ GATES = [
     ("assessment_lint.py", "assessment_lint", True),
     ("quiz_export.py", "quiz_export", True),
     ("quiz_integrity_scan.py", "quiz_integrity_scan", True),
+    ("review_map_check.py", "review_map_check", True),
     ("structure_lint.py", "structure_lint", True),
     ("linkcheck.py", "linkcheck", True),
     ("casecheck.py", "casecheck", True),
