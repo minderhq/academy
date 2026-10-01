@@ -23,9 +23,13 @@ Report-mode census (exit 0 always). Findings classify into:
                   refused, ...) - the fence needs a server, not a fix
   INTERACTIVE     EOFError from input() with stdin closed
   EXIT-CALL       SystemExit / exit() in fence body
-  TIMEOUT         file exceeded the subprocess timeout (hung fence -
-                  typically an unguarded network call or a training
-                  loop on full data); fences after the hang are unknown
+  TIMEOUT         file exceeded the subprocess timeout; the stderr
+                  heartbeat (RUNNER prints `HB <line>` before every
+                  fence) attributes the hang to the fence that was
+                  mid-execution - typically a by-design server start
+                  (uvicorn.run), a daemon loop (prometheus exporter),
+                  a real multi-GB model load, or plt.show() holding
+                  a GUI window; fences after the hang are unknown
   CODE-SIGNAL     any other exception (TypeError, ValueError,
   (numbered)      AttributeError, ...) - the gold class: example code
                   that is broken as written
@@ -100,6 +104,7 @@ for i, raw in enumerate(lines):
 ns = {"__name__": "__main__"}
 out = []
 for line_no, src in fences:
+    print(f"HB {line_no}", file=sys.stderr, flush=True)
     try:
         exec(compile(src, f"fence@line{line_no}", "exec"), ns)
         out.append([line_no, "OK", "", ""])
@@ -190,9 +195,12 @@ def main() -> int:
                 timed_out = True
             if timed_out:
                 tally["TIMEOUT"] = tally.get("TIMEOUT", 0) + 1
-                line = f"{rel}: TIMEOUT after {args.timeout}s"
+                # the RUNNER's heartbeat shows which fence was mid-execution
+                hbs = [l for l in (err or "").split("\n") if l.startswith("HB ")]
+                at = f"fence@line{hbs[-1].split()[1]}" if hbs else "fence@?"
+                line = f"{rel}: TIMEOUT after {args.timeout}s at {at}"
                 signal_files.append(line)
-                print(f"[{n}/{len(targets)}] {rel}: TIMEOUT\n  {line}", flush=True)
+                print(f"[{n}/{len(targets)}] {rel}: TIMEOUT at {at}\n  {line}", flush=True)
                 continue
             rows = []
             try:
