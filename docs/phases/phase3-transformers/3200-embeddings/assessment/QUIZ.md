@@ -1,7 +1,7 @@
 ---
 Document ID: 3200-QUIZ
 Title: "3200: Embeddings - Quiz"
-Last Updated: 2026-09-29
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 30 minutes
@@ -187,3 +187,14 @@ D) Splits words into subword units
 | 18 | C | Embeddings are learned parameters, updated by the optimizer |
 | 19 | A | Vocabulary size x dimension is the embedding layer size |
 | 20 | D | BPE splits rare words into subword units |
+
+---
+
+## Need to Review?
+
+Each question maps to the closest lesson for review:
+
+- **Questions 1-6, 8-9, 11-13, 17-18:** [6102: Semantic Similarity Metrics](../../../phase6-rag/6100-vector/6102-Semantic-Similarity.md) — word-embedding tradition (Word2Vec, GloVe), static vs contextual context, cosine geometry and the king/queen vector example
+- **Question 7:** [3202: Tokenizer Sciences](../3202-Tokenizer-Sciences.md) — subword units, the idea behind fastText's improvement
+- **Questions 10, 14-16:** [3201: Rotary Positional Embeddings (RoPE)](../3201-Rotary-Positional-Embeddings-RoPE.md) — token-plus-position composition, positional encodings, RoPE and the ALiBi comparison
+- **Questions 19-20:** [3202: Tokenizer Sciences](../3202-Tokenizer-Sciences.md) — vocabulary size effects and BPE

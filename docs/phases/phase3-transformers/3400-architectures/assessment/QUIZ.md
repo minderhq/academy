@@ -1,7 +1,7 @@
 ---
 Document ID: 3400-QUIZ
 Title: "3400: Model Architectures - Quiz"
-Last Updated: 2026-09-29
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 30 minutes
@@ -187,3 +187,14 @@ D) It cannot be scaled
 | 18 | A | The KV cache reuses past keys/values instead of recomputing |
 | 19 | D | Encoder-only models emit contextual representations for downstream heads |
 | 20 | C | One unified next-token objective that scales cleanly |
+
+---
+
+## Need to Review?
+
+Each question maps to the closest lesson for review:
+
+- **Questions 1-2, 4-5, 7-8, 11-13, 15, 17, 19:** [3401: Encoder-Decoder Architectures](../3401-Encoder-Decoder-Architectures.md) — the family taxonomy read from the attention mask, cross-attention, T5's text-to-text framing, span corruption vs BERT-style token masking, and the 2017 encoder-decoder original
+- **Questions 3, 6, 9-10, 14, 18, 20:** [3402: Decoder-Only Models (GPT, LLaMA, Mistral)](../3402-Decoder-Only-Models.md) — causal self-attention, the GPT/LLaMA stack, scale-loves-simplicity and KV-cache inference
+- **Question 16:** [3301: Activation Functions](../../3300-decoding/3301-Activation-Functions.md) — the Mixture-of-Experts router and its top-k gated expert FFNs
+

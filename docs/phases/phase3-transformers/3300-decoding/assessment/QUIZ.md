@@ -1,7 +1,7 @@
 ---
 Document ID: 3300-QUIZ
 Title: "3300: Decoding - Quiz"
-Last Updated: 2026-09-29
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 30 minutes
@@ -187,3 +187,14 @@ D) Is the same as greedy, differing only in the sampling seed
 | 18 | B | Each step computes only the new token's attention from cached K/V |
 | 19 | A | Skipping recomputation makes long-sequence generation much faster |
 | 20 | C | Contrastive decoding contrasts logits of an expert and an amateur model |
+
+---
+
+## Need to Review?
+
+Each question maps to the closest lesson for review:
+
+- **Questions 1-2, 8-12, 20:** [3401: Encoder-Decoder Architectures](../../3400-architectures/3401-Encoder-Decoder-Architectures.md) — greedy vs beam search, beam width, length penalty and decoder strategy trade-offs
+- **Questions 3-7, 13-15:** [1402: vLLM and TGI](../../../phase1-infra/1400-llmops/1402-vLLM-and-TGI.md) — sampling parameters (top-k, top-p, temperature, penalties) in production serving
+- **Question 16:** [4202: Speculative Decoding](../../../phase4-quantization/4200-kv-cache/4202-Speculative-Decoding.md) — draft-model proposal with large-model verification
+- **Questions 17-19:** [4201: Context Window Physics and OOM Prevention](../../../phase4-quantization/4200-kv-cache/4201-Context-Window-Physics.md) — what the KV cache stores and why it speeds generation
