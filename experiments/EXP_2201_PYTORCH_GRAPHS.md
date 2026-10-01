@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_2201
 Title: "EXP-2201: PyTorch Computational Graphs"
-Last Updated: 2026-02-04
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -86,13 +86,21 @@ print(f"\nComputational graph of loss:")
 print(f"  grad_fn: {loss.grad_fn}")
 
 # Inspect graph
-def print_graph(var, level=0):
+def print_graph(node, level=0):
     """Recursively print computation graph"""
-    print("  " * level + f"{var}: {var.grad_fn}")
-    if var.grad_fn:
-        for fn_input in var.grad_fn.next_functions:
+    if isinstance(node, torch.autograd.Function):
+        # The node itself is a backward function
+        print("  " * level + f"fn: {type(node).__name__}")
+        for fn_input in node.next_functions:
             if fn_input[0] is not None:
                 print_graph(fn_input[0], level + 1)
+    else:
+        # A tensor: descend through its grad_fn
+        print("  " * level + f"{node}: {node.grad_fn}")
+        if node.grad_fn:
+            for fn_input in node.grad_fn.next_functions:
+                if fn_input[0] is not None:
+                    print_graph(fn_input[0], level + 1)
 
 print("\nComputation graph structure:")
 print_graph(loss)
@@ -228,7 +236,21 @@ print(f"W.grad shape: {W.grad.shape}")
 
 ## 🔬 Experiment 3: Graph Optimization (20 minutes)
 
-### Step 3.1: TorchScript Compilation
+### Step 3.1: Graph Compilation
+
+TorchScript below is the classic approach and still works everywhere, but on modern
+PyTorch 2.x the default recommendation for eager-mode speedups is `torch.compile`:
+
+```python
+# Modern alternative: torch.compile (PyTorch 2.x)
+model_compiled = torch.compile(model)
+_ = model_compiled(x)  # first call triggers compilation
+```
+
+The TorchScript walkthrough stays useful because it shows exactly what a static
+graph looks like.
+
+#### TorchScript Compilation
 
 ```python
 # File: torchscript.py
@@ -499,7 +521,8 @@ loss.grad → ∂loss/∂b → ∂loss/∂a → ∂loss/∂x
 | Technique | Memory | Speed | Use Case |
 |-----------|--------|-------|----------|
 | Eager mode | High | Slow | Debugging, research |
-| TorchScript | Medium | Fast | Production |
+| torch.compile | Medium | Fast | Production (PyTorch 2.x default) |
+| TorchScript | Medium | Fast | Legacy/edge deployments |
 | gradient_checkpointing | Low | Slower | Large models |
 | no_grad() | Low | Fast | Inference |
 
@@ -533,7 +556,7 @@ loss.grad → ∂loss/∂b → ∂loss/∂a → ∂loss/∂x
 
 ---
 
-**Last Updated:** 2026-02-04
+**Last Updated:** 2026-10-01
 **Experiment:** 2201 - PyTorch Computational Graphs
 **Time Estimate:** 60-75 minutes
 **Difficulty:** ⭐⭐ Intermediate

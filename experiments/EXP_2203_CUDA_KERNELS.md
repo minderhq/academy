@@ -1,9 +1,9 @@
 ---
 Document ID: EXP_2203
 Title: "EXP-2203: CUDA Kernels"
-Last Updated: 2026-02-04
+Last Updated: 2026-10-01
 Status: Complete
-Difficulty: Intermediate
+Difficulty: Advanced
 ---
 
 # EXP-2203: CUDA Kernels
@@ -150,40 +150,35 @@ Custom CUDA Kernel Implementation
 """
 
 import torch
-from torch.utils.cpp_extension import setup, CUDAExtension
-import os
-import subprocess
-import tempfile
 
-# First, let's use torch.jit.script for easier custom kernels
+# TorchScript compiles plain torch code into a static graph that runs as
+# fused GPU kernels; on PyTorch 2.x, torch.compile is the modern equivalent
 def create_custom_kernel():
     """
-    Create a custom kernel using torch operations
+    Create custom kernels from plain torch operations
     that will be compiled efficiently
     """
 
-    # Custom operation: Square each element and sum
-    @torch.jit.script
-    def custom_square_kernel(x: torch.Tensor) -> torch.Tensor:
-        """
-        Custom kernel: Square each element
-        This will be compiled to efficient GPU code
-        """
+    # Custom operation: Square each element
+    def square_op(x: torch.Tensor) -> torch.Tensor:
         return x * x
 
     # Custom reduction: Sum of squares
-    @torch.jit.script
     def sum_of_squares(x: torch.Tensor) -> torch.Tensor:
-        """
-        Compute sum of squares (like L2 norm squared)
-        """
         squared = x * x
         return torch.sum(squared)
 
-    return custom_square_kernel, sum_of_squares
+    # TorchScript path
+    square_kernel = torch.jit.script(square_op)
+    sum_squares_kernel = torch.jit.script(sum_of_squares)
+
+    # torch.compile path (PyTorch 2.x default recommendation)
+    square_kernel_modern = torch.compile(square_op)
+
+    return square_kernel, sum_squares_kernel, square_kernel_modern
 
 # Test custom kernels
-square_kernel, sum_squares_kernel = create_custom_kernel()
+square_kernel, sum_squares_kernel, square_kernel_modern = create_custom_kernel()
 
 # Create test data
 if has_cuda:
@@ -210,6 +205,11 @@ if has_cuda:
     print(f"Custom square kernel (100 iterations): {time_custom*1000:.3f} ms")
     print(f"Result shape: {result.shape}")
     print(f"Sample values: {result[:5]}")
+
+    # Same operation through torch.compile
+    result_modern = square_kernel_modern(data)
+    assert torch.equal(result, result_modern)
+    print("✓ torch.compile output matches TorchScript")
 
     # Test sum of squares
     sos = sum_squares_kernel(data)
@@ -563,7 +563,7 @@ if has_cuda:
 
 ---
 
-**Last Updated:** 2026-02-04
+**Last Updated:** 2026-10-01
 **Experiment:** 2203 - CUDA Kernels
 **Time Estimate:** 60-90 minutes
 **Difficulty:** ⭐⭐⭐ Advanced

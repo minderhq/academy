@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_2202
 Title: "EXP-2202: TensorFlow XLA Optimization"
-Last Updated: 2026-02-04
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -85,9 +85,13 @@ def computation_no_xla(x):
     y = tf.math.reduce_mean(y, axis=1)
     return y
 
+# Build the XLA function once - creating it inside the timing loop
+# would re-trace and re-compile on every iteration
+computation_xla = create_computation()
+
 # Warmup
 _ = computation_no_xla(x)
-_ = create_computation()(x)
+_ = computation_xla(x)
 
 # Benchmark
 start = time.time()
@@ -97,7 +101,7 @@ time_no_xla = time.time() - start
 
 start = time.time()
 for _ in range(100):
-    _ = create_computation()(x)
+    _ = computation_xla(x)
 time_with_xla = time.time() - start
 
 print(f"\n=== Benchmark Results ===")
@@ -121,40 +125,31 @@ Inspect XLA HLO (High Level Optimizer) code
 """
 
 import tensorflow as tf
+import time
 
-# Enable XLA logging
-import os
-os.environ['TF_XLA_FLAGS'] = '--tf_xla_auto_jit=2'
+# Variables must live OUTSIDE the traced function - creating tf.Variable
+# inside a @tf.function raises on the concrete-function call
+w1 = tf.Variable(tf.random.normal([784, 256]))
+b1 = tf.Variable(tf.zeros([256]))
+w2 = tf.Variable(tf.random.normal([256, 10]))
+b2 = tf.Variable(tf.zeros([10]))
 
 @tf.function(jit_compile=True)
 def model_fn(x):
     """Simple model to compile"""
-    w1 = tf.Variable(tf.random.normal([784, 256]))
-    b1 = tf.Variable(tf.zeros([256]))
-    w2 = tf.Variable(tf.random.normal([256, 10]))
-    b2 = tf.Variable(tf.zeros([10]))
-
     y = tf.matmul(x, w1) + b1
     y = tf.nn.relu(y)
     y = tf.matmul(y, w2) + b2
     return y
 
-# Get XLA compilation
+# Get the concrete (compiled) function
 x = tf.random.normal([1, 784])
-log_dir = "logs/xla_ir"
 
-# Create function
-concrete_fn = tf.function(model_fn).get_concrete_function(x)
+concrete_fn = model_fn.get_concrete_function(x)
 
 # Get XLA IR
 print("=== XLA Optimization ===")
-
-try:
-    # Try to get XLA IR (works in newer TensorFlow versions)
-    print("Attempting to extract XLA IR...")
-    print("Note: Full HLO inspection requires TF_XLA_DEBUG")
-except Exception as e:
-    print(f"Note: {e}")
+print("Note: Full HLO inspection requires TF_XLA_DEBUG")
 
 # Benchmark with different sizes
 sizes = [128, 256, 512, 1024]
@@ -162,21 +157,26 @@ results = []
 
 for size in sizes:
     x = tf.random.normal([1, size])
+    W = tf.random.normal([size, size])  # fixed weight per size, not per call
 
     # Without XLA
     @tf.function(jit_compile=False)
     def no_xla(x):
-        return tf.matmul(x, tf.random.normal([size, size]))
+        return tf.matmul(x, W)
+
+    # With XLA
+    @tf.function(jit_compile=True)
+    def with_xla(x):
+        return tf.matmul(x, W)
+
+    # Warmup (compilation happens here, not in the timed loop)
+    _ = no_xla(x)
+    _ = with_xla(x)
 
     start = time.time()
     for _ in range(10):
         _ = no_xla(x)
     time_no_xla = time.time() - start
-
-    # With XLA
-    @tf.function(jit_compile=True)
-    def with_xla(x):
-        return tf.matmul(x, tf.random.normal([size, size]))
 
     start = time.time()
     for _ in range(10):
@@ -224,11 +224,12 @@ model_no_xla = SimpleModel()
 # Compile with XLA
 model_with_xla = SimpleModel()
 
-# Enable XLA for second model
+# Enable XLA for second model - jit_compile=True routes through XLA;
+# run_eagerly=False alone is only graph mode without XLA
 model_with_xla.compile(
     optimizer='adam',
     loss='sparse_categorical_crossentropy',
-    run_eagerly=False  # Enable graph mode
+    jit_compile=True  # Enable XLA compilation
 )
 
 # Prepare data
@@ -320,7 +321,7 @@ print(f"Speedup:     {time_no_xla/time_with_xla:.2f}x")
 
 ---
 
-**Last Updated:** 2026-02-04
+**Last Updated:** 2026-10-01
 **Experiment:** 2202 - TensorFlow XLA
 **Time Estimate:** 45-60 minutes
 **Difficulty:** ⭐⭐ Intermediate

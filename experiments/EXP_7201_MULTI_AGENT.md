@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_7201
 Title: "EXP-7201: Multi-Agent Systems"
-Last Updated: 2026-02-04
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
 ---
@@ -18,7 +18,7 @@ Difficulty: Advanced
 **Difficulty:** ⭐⭐⭐ Advanced
 **Prerequisites:**
 - 7101: ReAct Loop System
-- 7201: AutoGen vs LangGraph
+- 7201: Tool Calling & Function Execution
 - EXP_7101: ReAct Agent
 
 **Learning Objectives:**
@@ -55,7 +55,6 @@ Multi-Agent Framework
 
 from typing import List, Dict, Any, Optional
 from enum import Enum
-import asyncio
 
 class AgentRole(Enum):
     """Agent roles"""
@@ -264,6 +263,9 @@ Specialized Multi-Agent System
 ==============================
 """
 
+from typing import Dict, Any
+from multi_agent import Agent, AgentRole, MultiAgentOrchestrator
+
 class ResearcherAgent(Agent):
     """Agent specialized in information gathering"""
 
@@ -415,6 +417,10 @@ Agent Debate Pattern
 ===================
 """
 
+import numpy as np
+from typing import Dict, Any, List
+from multi_agent import Agent, AgentRole
+
 class DebateAgent(Agent):
     """Agent that can debate with other agents"""
 
@@ -450,11 +456,13 @@ class DebateAgent(Agent):
     def vote(self, all_arguments: List[Dict]) -> Dict[str, Any]:
         """Vote based on debate"""
 
-        # Simulated voting based on argument quality
+        # Simulated voting based on argument quality - confidence
+        # scales with the rounds this agent has argued in
+        rounds_argued = len(self.arguments)
         if self.position == "for":
-            confidence = 0.6 + round_num * 0.05
+            confidence = 0.6 + rounds_argued * 0.05
         else:
-            confidence = 0.4 - round_num * 0.05
+            confidence = 0.4 - rounds_argued * 0.05
 
         return {
             "type": "vote",
@@ -599,11 +607,11 @@ print(f"Against confidence: {debate_result['against_confidence']:.2%}")
 
 1. **LAB-008**: Agent Fleet - Scale to production
 2. **PROJECT-007**: Production AI System - Complete implementation
-3. **7202**: Planning Decomposition - Advanced orchestration
+3. **7102**: Planning and Task Decomposition - Break tasks down before orchestrating
 
 ---
 
-**Last Updated:** 2026-02-04
+**Last Updated:** 2026-10-01
 **Experiment:** 7201 - Multi-Agent Systems
 **Time Estimate:** 75-90 minutes
 **Difficulty:** ⭐⭐⭐ Advanced

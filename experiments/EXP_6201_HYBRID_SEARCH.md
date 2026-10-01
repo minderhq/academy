@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_6201
 Title: "EXP-6201: Hybrid Search"
-Last Updated: 2026-02-04
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
 ---
@@ -184,20 +184,18 @@ class HybridSearch:
         # Combine scores
         combined = {}
 
-        # Normalize scores
-        if sparse_scores:
-            max_sparse = max(sparse_scores.values())
-            min_sparse = min(sparse_scores.values())
-            for doc_id, score in sparse_scores.items():
-                if max_sparse > min_sparse:
-                    sparse_scores[doc_id] = (score - min_sparse) / (max_sparse - min_sparse)
+        # Min-max normalize each score dict to [0, 1] so the two scales
+        # (BM25 unbounded, cosine [-1, 1]) are comparable
+        def normalize(scores: Dict[int, float]) -> Dict[int, float]:
+            if not scores:
+                return {}
+            lo, hi = min(scores.values()), max(scores.values())
+            if hi == lo:
+                return {doc_id: 1.0 for doc_id in scores}
+            return {doc_id: (s - lo) / (hi - lo) for doc_id, s in scores.items()}
 
-        if dense_scores:
-            max_dense = max(dense_scores.values())
-            min_dense = min(dense_scores.values())
-            for doc_id, score in dense_scores.items():
-                if max_dense > min_dense:
-                    dense_scores[doc_id] = (score - min_dense) / (max_dense - min_dense)
+        sparse_scores = normalize(sparse_scores)
+        dense_scores = normalize(dense_scores)
 
         # Fusion
         for doc_id in set(list(sparse_scores.keys()) + list(dense_scores.keys())):
@@ -334,12 +332,13 @@ Benchmark Hybrid Search
 
 import numpy as np
 import time
+from hybrid_search import BM25, DenseRetriever, HybridSearch
 
 # Generate test data
 n_docs = 1000
 documents = [{"title": f"Doc {i}", "text": f"Text content {i}"} for i in range(n_docs)]
 vectors = np.random.randn(n_docs, 768).astype(np.float32)
-queries = ["query"] * 50
+queries = [f"text content {i % 100}" for i in range(50)]
 query_vectors = np.random.randn(50, 768).astype(np.float32)
 
 # Build indexes
@@ -369,7 +368,8 @@ for name, retriever, q_vec in [("Dense", search_dense, query_vectors[0]),
     else:
         for q in queries:
             retriever.search(q)
-    times[name] = time.time()
+    # Store the elapsed time, not the wall-clock timestamp
+    times[name] = time.time() - start
 
 print("=== Benchmark Results ===")
 print(f"{'Method':<10} {'Time (s)':<12} {'Avg (ms)':<12}")
@@ -430,7 +430,7 @@ for name, t in times.items():
 
 ---
 
-**Last Updated:** 2026-02-04
+**Last Updated:** 2026-10-01
 **Experiment:** 6201 - Hybrid Search
 **Time Estimate:** 60-75 minutes
 **Difficulty:** ⭐⭐⭐ Advanced

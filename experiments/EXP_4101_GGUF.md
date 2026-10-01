@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_4101
 Title: "EXP-4101: GGUF Quantization"
-Last Updated: 2026-02-04
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
 ---
@@ -71,14 +71,14 @@ class GGUFReader:
         magic = self.file.read(4)
         assert magic == b'GGUF', "Invalid GGUF file"
 
-        # Version
+        # Version (uint32)
         version = struct.unpack('<I', self.file.read(4))[0]
 
-        # Tensor count
-        tensor_count = struct.unpack('<I', self.file.read(4))[0]
+        # Tensor count (uint64 in the GGUF spec!)
+        tensor_count = struct.unpack('<Q', self.file.read(8))[0]
 
-        # Metadata KV count
-        kv_count = struct.unpack('<I', self.file.read(4))[0]
+        # Metadata KV count (uint64)
+        kv_count = struct.unpack('<Q', self.file.read(8))[0]
 
         return {
             'magic': magic,
@@ -92,15 +92,15 @@ class GGUFReader:
         tensors = []
 
         for _ in range(self.header['tensor_count']):
-            # Tensor name
-            name_len = struct.unpack('<I', self.file.read(4))[0]
+            # Tensor name (uint64 length + bytes)
+            name_len = struct.unpack('<Q', self.file.read(8))[0]
             name = self.file.read(name_len).decode('utf-8')
 
             # Dimensions
             n_dims = struct.unpack('<I', self.file.read(4))[0]
             dims = []
             for _ in range(n_dims):
-                dim = struct.unpack('<I', self.file.read(4))[0]
+                dim = struct.unpack('<Q', self.file.read(8))[0]
                 dims.append(dim)
 
             # Quantization type
@@ -154,17 +154,19 @@ class GGUFReader:
 import numpy as np
 from typing import Tuple
 
-def quantize_q4_0(weights: np.ndarray) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
+def quantize_q4_0(weights: np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
     """
     Quantize weights to 4-bit (Q4_0 format)
+
+    Q4_0 uses symmetric quantization: one FP16 scale per 32-weight block,
+    nibble values 0-15 encode w/scale + 8 (so -7..7 fits in 4 bits).
 
     Args:
         weights: (n, m) FP16 weights
 
     Returns:
-        qweights: Quantized weights (packed)
+        qweights: Quantized weights (packed, 2 nibbles per byte)
         scales: Per-block scales
-        mins: Per-block minimums
     """
     n, m = weights.shape
     block_size = 32
@@ -174,7 +176,6 @@ def quantize_q4_0(weights: np.ndarray) -> Tuple[np.ndarray, np.ndarray, np.ndarr
 
     qweights = np.zeros(n_blocks * block_size // 2, dtype=np.uint8)
     scales = np.zeros(n_blocks, dtype=np.float16)
-    mins = np.zeros(n_blocks, dtype=np.float16)
 
     for i in range(n_blocks):
         start = i * block_size
@@ -183,28 +184,23 @@ def quantize_q4_0(weights: np.ndarray) -> Tuple[np.ndarray, np.ndarray, np.ndarr
         block = weights.flatten()[start:end]
         block = np.concatenate([block, np.zeros(block_size - len(block))])
 
-        # Calculate scale and min
-        w_max = block.max()
-        w_min = block.min()
-
-        scale = (w_max - w_min) / 15.0
-        min_val = w_min
-
+        # Symmetric scale: max abs weight over 7 representable steps
+        amax = np.abs(block).max()
+        scale = amax / 7.0 if amax > 0 else 1.0
         scales[i] = scale
-        mins[i] = min_val
 
-        # Quantize
-        q_block = np.round((block - min_val) / scale).clip(0, 15).astype(np.uint8)
+        # Quantize: center the nibble at 8
+        q_block = (np.round(block / scale) + 8).clip(0, 15).astype(np.uint8)
 
         # Pack 2 values per byte
         for j in range(0, block_size, 2):
             byte = (q_block[j] & 0x0F) | ((q_block[j + 1] & 0x0F) << 4)
             qweights[i * block_size // 2 + j // 2] = byte
 
-    return qweights, scales, mins
+    return qweights, scales
 
 def dequantize_q4_0(qweights: np.ndarray, scales: np.ndarray,
-                    mins: np.ndarray, shape: Tuple[int, int]) -> np.ndarray:
+                    shape: Tuple[int, int]) -> np.ndarray:
     """Dequantize Q4_0 weights"""
 
     n, m = shape
@@ -218,7 +214,6 @@ def dequantize_q4_0(qweights: np.ndarray, scales: np.ndarray,
         end = min(start + block_size, n * m)
 
         scale = scales[i]
-        min_val = mins[i]
 
         # Unpack
         for j in range(block_size):
@@ -228,7 +223,7 @@ def dequantize_q4_0(qweights: np.ndarray, scales: np.ndarray,
             else:
                 q_val = (byte >> 4) & 0x0F
 
-            deq = q_val * scale + min_val
+            deq = (q_val - 8) * scale
             if start + j < n * m:
                 weights[start + j] = deq
 
@@ -236,8 +231,8 @@ def dequantize_q4_0(qweights: np.ndarray, scales: np.ndarray,
 
 # Test
 weights_fp16 = np.random.randn(256, 256).astype(np.float16)
-qweights, scales, mins = quantize_q4_0(weights_fp16)
-weights_dequant = dequantize_q4_0(qweights, scales, mins, weights_fp16.shape)
+qweights, scales = quantize_q4_0(weights_fp16)
+weights_dequant = dequantize_q4_0(qweights, scales, weights_fp16.shape)
 
 # Calculate error
 error = np.abs(weights_fp16 - weights_dequant).mean()
@@ -287,11 +282,11 @@ class GGUFWriter:
         """Write GGUF file"""
 
         with open(self.path, 'wb') as f:
-            # Header
+            # Header (tensor_count and kv_count are uint64 in the GGUF spec)
             f.write(b'GGUF')
             f.write(struct.pack('<I', 3))  # Version
-            f.write(struct.pack('<I', len(self.tensor_info)))  # Tensor count
-            f.write(struct.pack('<I', 5))  # KV count
+            f.write(struct.pack('<Q', len(self.tensor_info)))  # Tensor count
+            f.write(struct.pack('<Q', len(self._metadata())))  # KV count
 
             # Metadata
             self._write_metadata(f)
@@ -302,16 +297,20 @@ class GGUFWriter:
             # Tensor data
             self._write_tensor_data(f)
 
-    def _write_metadata(self, f):
-        """Write metadata key-value pairs"""
-        metadata = {
+    def _metadata(self):
+        """Metadata key-value pairs"""
+        return {
             'general.architecture': 'llama',
-            'general.file_type': 3,  # Q4_0
+            'general.file_type': 2,  # LLAMA_FTYPE: 2 = mostly Q4_0
             'llama.context_length': 2048,
             'llama.embedding_length': 4096,
             'llama.block_count': 32,
             'llama.attention.head_count': 32,
         }
+
+    def _write_metadata(self, f):
+        """Write metadata key-value pairs"""
+        metadata = self._metadata()
 
         for key, value in metadata.items():
             # Key
@@ -323,7 +322,7 @@ class GGUFWriter:
             if isinstance(value, str):
                 f.write(struct.pack('<I', 8))  # String type
                 val_bytes = value.encode('utf-8')
-                f.write(struct.pack('<I', len(val_bytes)))
+                f.write(struct.pack('<Q', len(val_bytes)))  # uint64 length
                 f.write(val_bytes)
             elif isinstance(value, int):
                 f.write(struct.pack('<I', 4))  # Int type
@@ -374,14 +373,13 @@ class GGUFWriter:
 
 # Example: Create a simple GGUF file
 weights = np.random.randn(4096, 4096).astype(np.float16)
-qweights, scales, mins = quantize_q4_0(weights)
+qweights, scales = quantize_q4_0(weights)
 
-# Pack data
-tensor_data = np.concatenate([qweights, scales.astype(np.float16).view(np.uint8),
-                              mins.astype(np.float16).view(np.uint8)])
+# Pack data: nibbles first, then the per-block FP16 scales
+tensor_data = np.concatenate([qweights, scales.astype(np.float16).view(np.uint8)])
 
 writer = GGUFWriter('test_model.gguf', 1)
-writer.add_tensor('output.weight', tensor_data, qtype=3)  # Q4_0
+writer.add_tensor('output.weight', tensor_data, qtype=2)  # GGML_TYPE_Q4_0 = 2
 writer.write()
 
 print("✓ Created test_model.gguf")
@@ -410,7 +408,7 @@ weights_fp16 = np.random.randn(4096, 4096).astype(np.float16)
 input_data = np.random.randn(1, 4096).astype(np.float16)
 
 # Quantize
-qweights, scales, mins = quantize_q4_0(weights_fp16)
+qweights, scales = quantize_q4_0(weights_fp16)
 
 # Benchmark FP16
 start = time.time()
@@ -419,7 +417,7 @@ for _ in range(100):
 time_fp16 = time.time() - start
 
 # Dequantize and benchmark
-weights_dequant = dequantize_q4_0(qweights, scales, mins, weights_fp16.shape)
+weights_dequant = dequantize_q4_0(qweights, scales, weights_fp16.shape)
 start = time.time()
 for _ in range(100):
     output_dequant = input_data @ weights_dequant
@@ -432,7 +430,7 @@ print(f"Overhead: {(time_dequant/time_fp16 - 1)*100:.1f}%")
 
 # Memory usage
 mem_fp16 = weights_fp16.nbytes
-mem_quant = qweights.nbytes + scales.nbytes + mins.nbytes
+mem_quant = qweights.nbytes + scales.nbytes
 
 print(f"\nFP16 Memory: {mem_fp16/1024/1024:.1f} MB")
 print(f"Quantized Memory: {mem_quant/1024/1024:.1f} MB")
@@ -488,12 +486,12 @@ print(f"\nMean Output Difference: {output_diff:.6f}")
 ## 🚀 Next Steps
 
 1. **EXP_4102**: EXL2 vs AWQ - Advanced quantization
-2. **EXP_4201**: Speculative Decoding - Faster generation
-3. **LAB-004**: Custom Quantization - Production implementation
+2. **EXP_4202**: Speculative Decoding - Faster generation
+3. **LAB-009**: Production Deployment - Ship quantized models
 
 ---
 
-**Last Updated:** 2026-02-04
+**Last Updated:** 2026-10-01
 **Experiment:** 4101 - GGUF Quantization
 **Time Estimate:** 60-90 minutes
 **Difficulty:** ⭐⭐⭐ Advanced

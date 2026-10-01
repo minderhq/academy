@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_2102
 Title: "EXP-2102: Backpropagation Experiment"
-Last Updated: 2026-02-04
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -58,7 +58,6 @@ Manual Backpropagation Implementation
 ====================================
 """
 
-import torch
 import numpy as np
 
 class ManualBackpropNN:
@@ -248,13 +247,35 @@ grad_w2_history = []
 # Modified backward to track gradients
 def backward_with_tracking(self, X, y, learning_rate=0.1):
     """Backward with gradient tracking"""
-    # ... (same as before)
+    # Forward
+    y_pred = self.forward(X)
+    batch_size = X.shape[0]
+
+    # Same manual gradients as before
+    dL_dz2 = -(y - y_pred) * self.sigmoid_derivative(self.z2)
+    dL_dW2 = self.a1.T @ dL_dz2 / batch_size
+    dL_db2 = np.sum(dL_dz2, axis=0) / batch_size
+
+    dL_dz1 = (dL_dz2 @ self.W2.T) * self.sigmoid_derivative(self.z1)
+    dL_dW1 = X.T @ dL_dz1 / batch_size
+    dL_db1 = np.sum(dL_dz1, axis=0) / batch_size
+
+    self.W1 -= learning_rate * dL_dW1
+    self.b1 -= learning_rate * dL_db1
+    self.W2 -= learning_rate * dL_dW2
+    self.b2 -= learning_rate * dL_db2
 
     # Store gradient norms
     grad_w1_history.append(np.linalg.norm(dL_dW1))
     grad_w2_history.append(np.linalg.norm(dL_dW2))
 
-    return loss
+    return np.mean(0.5 * (y - y_pred) ** 2)
+
+# Re-train with the tracking variant
+model = ManualBackpropNN(input_size=2, hidden_size=4, output_size=1)
+tracked_losses = []
+for epoch in range(5000):
+    tracked_losses.append(model.backward_with_tracking(X, y, learning_rate=0.5))
 
 # Plot gradient flow
 plt.figure(figsize=(12, 4))
@@ -269,7 +290,7 @@ plt.legend()
 plt.grid(True)
 
 plt.subplot(1, 2, 2)
-plt.plot(losses, label='Training Loss')
+plt.plot(tracked_losses, label='Training Loss')
 plt.xlabel('Epoch')
 plt.ylabel('Loss')
 plt.title('Loss Curve')
@@ -310,7 +331,7 @@ print("✓ Saved visualization to backprop_results.png")
 
 ---
 
-**Last Updated:** 2026-02-04
+**Last Updated:** 2026-10-01
 **Experiment:** 2102 - Backpropagation
 **Time Estimate:** 45-60 minutes
 **Difficulty:** ⭐⭐ Intermediate

@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_6301
 Title: "EXP-6301: GraphRAG"
-Last Updated: 2026-02-04
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
 ---
@@ -55,7 +55,7 @@ Build Knowledge Graph for GraphRAG
 
 import spacy
 from neo4j import GraphDatabase
-from typing import List, Dict, Tuple
+from typing import List, Dict
 import re
 
 class KnowledgeGraphBuilder:
@@ -187,7 +187,8 @@ GraphRAG Retrieval
 """
 
 from neo4j import GraphDatabase
-from typing import List, Dict, Tuple
+from typing import List, Dict
+import spacy
 from sentence_transformers import SentenceTransformer
 
 class GraphRAGRetriever:
@@ -199,6 +200,8 @@ class GraphRAGRetriever:
 
         self.driver = GraphDatabase.driver(neo4j_uri, auth=(username, password))
         self.embedder = SentenceTransformer(embedding_model)
+        # Load the NER model once - reloading it per query dominates latency
+        self.nlp = spacy.load("en_core_web_sm")
 
     def retrieve(self, query: str, top_k: int = 5) -> List[Dict]:
         """Retrieve using GraphRAG"""
@@ -224,9 +227,7 @@ class GraphRAGRetriever:
     def _extract_query_entities(self, query: str) -> List[str]:
         """Extract entities from query"""
 
-        import spacy
-        nlp = spacy.load("en_core_web_sm")
-        doc = nlp(query)
+        doc = self.nlp(query)
 
         entities = [ent.text for ent in doc.ents]
         return entities
@@ -369,6 +370,7 @@ Benchmark GraphRAG vs Vanilla RAG
 
 import numpy as np
 import time
+from typing import List
 
 def simulate_vanilla_rag(queries: List[str]) -> List[dict]:
     """Simulate vanilla RAG (vector only)"""
@@ -433,7 +435,7 @@ print(f"\nImprovement: {(graphrag_relevance/vanilla_relevance - 1)*100:.1f}% rel
 |--------|-------------|----------|-------------|
 | **Relevance** | 0.72 | 0.85 | +18% |
 | **Coverage** | 0.68 | 0.79 | +16% |
-| **Query Time** | 50ms | 120ms | -58% |
+| **Query Time** | 50ms | 120ms | 2.4x slower |
 | **Accuracy** | 0.75 | 0.82 | +9% |
 
 ### When GraphRAG Shines
@@ -472,7 +474,7 @@ print(f"\nImprovement: {(graphrag_relevance/vanilla_relevance - 1)*100:.1f}% rel
 
 ---
 
-**Last Updated:** 2026-02-04
+**Last Updated:** 2026-10-01
 **Experiment:** 6301 - GraphRAG
 **Time Estimate:** 75-90 minutes
 **Difficulty:** ⭐⭐⭐ Advanced

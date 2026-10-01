@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_2101
 Title: "EXP-2101: Tensor Algebra"
-Last Updated: 2026-02-04
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -138,8 +138,8 @@ print(f"\nTranspose:\n{result}")
 A_batch = np.random.randn(10, 3, 4)  # 10 matrices of (3, 4)
 B_batch = np.random.randn(10, 4, 5)  # 10 matrices of (4, 5)
 
-# bij,jkl->bil
-result = np.einsum('bij,jkl->bil', A_batch, B_batch)
+# bij,bjk->bik (batch matrix multiplication)
+result = np.einsum('bij,bjk->bik', A_batch, B_batch)
 print(f"\nBatch matmul result shape: {result.shape}")
 
 # Diagonal extraction
@@ -480,7 +480,9 @@ W_test = Tensor([[5.0, 6.0], [7.0, 8.0]], requires_grad=False)
 def f(x):
     return (x @ W_test).sum()
 
-num_grad = numerical_grad(x_test)
+# Compute gradients both ways for the same function
+f(x_test).backward()
+num_grad = numerical_grad(f, x_test)
 print(f"\nNumerical gradient:\n{num_grad}")
 print(f"Analytical gradient:\n{x_test.grad.data}")
 print(f"Difference: {np.abs(num_grad - x_test.grad.data).max()}")
@@ -539,7 +541,7 @@ print(f"Difference: {np.abs(num_grad - x_test.grad.data).max()}")
 
 ---
 
-**Last Updated:** 2026-02-04
+**Last Updated:** 2026-10-01
 **Experiment:** 2101 - Tensor Algebra
 **Time Estimate:** 45-60 minutes
 **Difficulty:** ⭐⭐ Intermediate

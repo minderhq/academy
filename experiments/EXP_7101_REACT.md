@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_7101
 Title: "EXP-7101: ReAct Agent"
-Last Updated: 2026-02-04
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
 ---
@@ -139,6 +139,10 @@ class ReActAgent:
     def _execute_action(self, action: Dict[str, str]) -> str:
         """Execute action and return observation"""
 
+        # Finish actions carry no tool - their content is the result itself
+        if action["type"] == "finish":
+            return action["content"]
+
         tool_name = action["tool"]
         tool_input = action["content"]
 
@@ -217,10 +221,10 @@ class ReActAgent:
 def calculator(expression: str) -> float:
     """Calculate mathematical expression"""
     try:
-        # Safe evaluation
+        # Sandboxed evaluation - no builtins, no names
         result = eval(expression, {"__builtins__": {}}, {})
         return result
-    except:
+    except Exception:
         return "Error: Invalid expression"
 
 def web_search(query: str) -> str:
@@ -240,7 +244,7 @@ print(f"Query: {query}\n")
 
 answer = agent.run(query)
 
-print("=== ReAgent Trace ===")
+print("=== ReAct Trace ===")
 for step_type, content in agent.history:
     print(f"{step_type}: {content}")
 
@@ -261,6 +265,10 @@ print(f"\nFinal Answer: {answer}")
 Advanced ReAct with Multiple Tools
 ==================================
 """
+
+import re
+from typing import Dict, Optional
+from react_agent import ReActAgent
 
 class AdvancedReActAgent(ReActAgent):
     """ReAct agent with advanced tool selection"""
@@ -315,7 +323,8 @@ class AdvancedReActAgent(ReActAgent):
 def execute_code(code: str) -> str:
     """Execute Python code safely"""
     try:
-        result = eval(code)
+        # Sandboxed like the calculator - no builtins, no names
+        result = eval(code, {"__builtins__": {}}, {})
         return str(result)
     except Exception as e:
         return f"Error: {str(e)}"
@@ -334,7 +343,7 @@ advanced_agent = AdvancedReActAgent({
 })
 
 # Test
-query2 = "What is 15 * 8 plus 20?"
+query2 = "Calculate 15 * 8 + 20"
 print(f"\nQuery: {query2}\n")
 
 answer2 = advanced_agent.run(query2)
@@ -360,6 +369,10 @@ print(f"\nFinal Answer: {answer2}")
 Complex Multi-Step Tasks
 ========================
 """
+
+from typing import Dict, Any, List
+from advanced_react import AdvancedReActAgent
+from react_agent import calculator, web_search
 
 class TaskAgent(AdvancedReActAgent):
     """Agent for complex multi-step tasks"""
@@ -517,7 +530,7 @@ print(f"\n{result['answer']}")
 
 ---
 
-**Last Updated:** 2026-02-04
+**Last Updated:** 2026-10-01
 **Experiment:** 7101 - ReAct Agent
 **Time Estimate:** 60-75 minutes
 **Difficulty:** ⭐⭐⭐ Advanced

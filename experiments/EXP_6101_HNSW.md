@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_6101
 Title: "EXP-6101: HNSW Benchmarking"
-Last Updated: 2026-02-04
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
 ---
@@ -59,7 +59,8 @@ import heapq
 class HNSWNode:
     """Node in HNSW graph"""
 
-    def __init__(self, vector: np.ndarray, level: int):
+    def __init__(self, vector: np.ndarray, level: int, node_id: int):
+        self.id = node_id
         self.vector = vector
         self.level = level
         self.connections = [[] for _ in range(level + 1)]
@@ -84,11 +85,11 @@ class HNSWIndex:
     def add(self, vector: np.ndarray) -> int:
         """Add vector to index"""
 
-        # Choose level for new node
-        level = int(-np.log(np.random.uniform()) * np.log(self.M)) + 1
+        # Geometric level assignment (standard HNSW: mL = 1/ln(M), 0-based)
+        level = int(-np.log(np.random.uniform()) / np.log(self.M))
 
-        node = HNSWNode(vector, level)
         node_id = len(self.nodes)
+        node = HNSWNode(vector, level, node_id)
         self.nodes.append(node)
 
         if self.entry_point is None:
@@ -96,15 +97,13 @@ class HNSWIndex:
             self.max_level = level
             return node_id
 
-        # Find entry point for search
-        curr = self.entry_point
+        # Greedy descent from the top layer down to the new node's level
+        curr = self.entry_point.id
+        for lvl in range(self.max_level, min(level, self.max_level) - 1, -1):
+            curr = self._search_level(curr, vector, lvl, 1)[0][0]
 
-        # Find closest at higher levels
-        for lvl in range(min(level, self.max_level), self.max_level + 1):
-            curr = self._search_level(curr, vector, lvl, 1)[0]
-
-        # Insert at each level
-        for lvl in range(min(level, self.max_level) + 1):
+        # Insert from the node's top level down to 0
+        for lvl in range(min(level, self.max_level), -1, -1):
             # Find ef_construction closest neighbors
             candidates = self._search_level(curr, vector, lvl, self.ef_construction)
 
@@ -117,12 +116,15 @@ class HNSWIndex:
                 neighbor.connections[lvl].append(node_id)
                 node.connections[lvl].append(neighbor_id)
 
+                # The neighbor's list may now exceed M - prune it too
+                self._prune_connections(neighbor, lvl, self.M)
+
             # Prune connections if needed
             self._prune_connections(node, lvl, self.M)
 
-            # Set entry point for next level
+            # Set entry point for the next (lower) level
             if len(neighbors) > 0:
-                curr = self.nodes[neighbors[0]]
+                curr = neighbors[0]
 
         # Update max level
         if level > self.max_level:
@@ -131,17 +133,23 @@ class HNSWIndex:
 
         return node_id
 
-    def _search_level(self, entry: HNSWNode, query: np.ndarray,
+    def _search_level(self, entry_id: int, query: np.ndarray,
                      level: int, ef: int) -> List[Tuple[int, float]]:
-        """Search at specific level"""
+        """Search at specific level
+
+        Args:
+            entry_id: Node id to start the search from
+            ef: Size of the result list
+        """
 
         visited = set()
         candidates = []  # Min-heap of (distance, node_id)
-        w = []  # Result list
+        w = []  # Result list (negated distances -> furthest on top)
 
+        entry = self.nodes[entry_id]
         entry_dist = np.linalg.norm(entry.vector - query)
-        heapq.heappush(candidates, (entry_dist, id(entry)))
-        heapq.heappush(w, (-entry_dist, id(entry)))
+        heapq.heappush(candidates, (entry_dist, entry_id))
+        heapq.heappush(w, (-entry_dist, entry_id))
 
         while len(candidates) > 0:
             dist, current_id = heapq.heappop(candidates)
@@ -194,23 +202,32 @@ class HNSWIndex:
         """Compute distance between nodes"""
         return np.linalg.norm(node1.vector - node2.vector)
 
-    def search(self, query: np.ndarray, K: int = 10) -> List[Tuple[int, float]]:
-        """Search for K nearest neighbors"""
+    def search(self, query: np.ndarray, K: int = 10,
+               ef: int = None) -> List[Tuple[int, float]]:
+        """Search for K nearest neighbors
+
+        Args:
+            ef: Search-time candidate list size; higher = better recall,
+                slower. Defaults to K.
+        """
 
         if self.entry_point is None:
             return []
 
+        if ef is None:
+            ef = K
+        ef = max(ef, K)
+
         # Start from top level
-        curr = self.entry_point
+        curr = self.entry_point.id
 
         for level in range(self.max_level, 0, -1):
-            curr = self._search_level(curr, query, level, 1)[0]
-            curr = self.nodes[curr[0]] if curr else self.entry_point
+            curr = self._search_level(curr, query, level, 1)[0][0]
 
         # Search at level 0
-        results = self._search_level(curr, query, 0, K)
+        results = self._search_level(curr, query, 0, ef)
 
-        return results
+        return sorted(results, key=lambda x: x[1])[:K]
 
 # Test
 index = HNSWIndex(dim=128)
@@ -250,6 +267,10 @@ Benchmark HNSW vs Alternatives
 import numpy as np
 import time
 from hnsw_impl import HNSWIndex
+
+# Note: this pure-Python HNSW trades raw speed for clarity. Production
+# libraries (hnswlib, FAISS) run the same algorithm 100-1000x faster -
+# that C-level speed is where the results-table speedups come from.
 
 def benchmark_hnsw(vectors: np.ndarray, queries: np.ndarray,
                     M: int = 16, ef_construction: int = 200) -> dict:
@@ -323,7 +344,10 @@ Optimize HNSW Parameters
 """
 
 import numpy as np
+import time
 import matplotlib.pyplot as plt
+
+from hnsw_impl import HNSWIndex
 
 def test_parameters(vectors: np.ndarray, queries: np.ndarray,
                      M_values: list, ef_values: list) -> dict:
@@ -437,7 +461,7 @@ print("✓ Saved plot to hnsw_tuning.png")
 
 ---
 
-**Last Updated:** 2026-02-04
+**Last Updated:** 2026-10-01
 **Experiment:** 6101 - HNSW Benchmarking
 **Time Estimate:** 60-75 minutes
 **Difficulty:** ⭐⭐⭐ Advanced

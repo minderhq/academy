@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_4102
 Title: "EXP-4102: EXL2 vs AWQ"
-Last Updated: 2026-02-04
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
 ---
@@ -82,17 +82,18 @@ def quantize_exl2(weights: np.ndarray, bits: int = 4) -> Tuple[np.ndarray, np.nd
     for i in range(m):
         row = weights[i, :]
 
-        # Calculate scale
+        # Calculate scale - the magnitude range is halved because the top
+        # bit of each code carries the sign (7 steps for 4-bit)
         w_max = np.abs(row).max()
-        scale = w_max / q_max
+        scale = w_max / (q_max // 2)
         scales[i] = scale
 
-        # Quantize
-        q_row = np.round(np.abs(row) / scale).clip(0, q_max).astype(np.uint8)
+        # Quantize magnitude only
+        magnitude = np.round(np.abs(row) / scale).clip(0, q_max // 2).astype(np.uint8)
 
         # Store sign bit
         sign = (row < 0).astype(np.uint8)
-        qweights[i, :] = q_row | (sign << (bits - 1))
+        qweights[i, :] = magnitude | (sign << (bits - 1))
 
     return qweights, scales
 
@@ -178,16 +179,26 @@ def quantize_awq(weights: np.ndarray, activations: np.ndarray,
         scale = w_max / q_max
         scales[i] = scale
 
-        # Quantize
-        q_row = np.round(row / scale).clip(-q_max//2, q_max//2)
-        qweights[i, :] = (q_row + q_max//2).astype(np.uint8)
+        # Quantize - clipping at -(q_max//2) keeps every code >= 0 before
+        # the uint8 cast (a -1 would wrap around to 255)
+        q_row = np.round(row / scale).clip(-(q_max // 2), q_max // 2)
+        qweights[i, :] = (q_row + q_max // 2).astype(np.uint8)
 
     return qweights, scales
 
-def dequantize_awq(qweights: np.ndarray, scales: np.ndarray, bits: int) -> np.ndarray:
-    """Dequantize AWQ weights"""
+def dequantize_awq(qweights: np.ndarray, scales: np.ndarray, bits: int,
+                   activations: np.ndarray) -> np.ndarray:
+    """Dequantize AWQ weights
+
+    Stored weights carry the activation-aware scaling, so it is undone
+    here (in the real method the same factors are applied to the input
+    activations at inference instead).
+    """
     out_features, in_features = qweights.shape
     q_max = 2 ** bits - 1
+
+    # Same per-channel factors used at quantize time
+    activation_scale = np.abs(activations).reshape(1, -1)
 
     weights = np.zeros_like(qweights, dtype=np.float16)
 
@@ -195,7 +206,7 @@ def dequantize_awq(qweights: np.ndarray, scales: np.ndarray, bits: int) -> np.nd
         # Dequantize
         q_row = qweights[i, :].astype(np.float32)
         deq = (q_row - q_max // 2) * scales[i]
-        weights[i, :] = deq.astype(np.float16)
+        weights[i, :] = (deq / activation_scale).astype(np.float16)
 
     return weights
 
@@ -204,7 +215,7 @@ weights = np.random.randn(256, 512).astype(np.float16)
 activations = np.random.randn(512)  # From forward pass
 
 qweights_awq, scales_awq = quantize_awq(weights, activations, bits=4)
-weights_awq_recon = dequantize_awq(qweights_awq, scales_awq, bits=4)
+weights_awq_recon = dequantize_awq(qweights_awq, scales_awq, bits=4, activations=activations)
 
 error_awq = np.abs(weights - weights_awq_recon).mean()
 print(f"AWQ quantization error: {error_awq:.6f}")
@@ -239,7 +250,7 @@ q_awq, s_awq = quantize_awq(weights, activations, bits=4)
 
 # Dequantize
 w_exl2 = dequantize_exl2(q_exl2, s_exl2, bits=4)
-w_awq = dequantize_awq(q_awq, s_awq, bits=4)
+w_awq = dequantize_awq(q_awq, s_awq, bits=4, activations=activations)
 
 # Calculate errors
 error_exl2 = np.abs(weights - w_exl2)
@@ -257,6 +268,16 @@ channel_error_awq = error_awq.mean(axis=1)
 
 print(f"\nEXL2 Channel Error Std: {channel_error_exl2.std():.6f}")
 print(f"AWQ Channel Error Std: {channel_error_awq.std():.6f}")
+
+# Output-level error: activations weight each column's contribution,
+# which is exactly what AWQ's calibration protects
+x_test = np.abs(activations).astype(np.float16)
+out_ref = x_test @ weights.T
+out_exl2 = x_test @ w_exl2.T
+out_awq = x_test @ w_awq.T
+
+print(f"\nOutput error EXL2: {np.abs(out_ref - out_exl2).mean():.6f}")
+print(f"Output error AWQ:  {np.abs(out_ref - out_awq).mean():.6f}")
 
 # Plot comparison
 fig, axes = plt.subplots(2, 2, figsize=(12, 10))
@@ -316,18 +337,19 @@ Quantize a Real Model Layer
 import numpy as np
 import time
 
-# Simulated layer weights
+# Simulated layer weights (out_features, in_features) - GQA layout:
+# 4096 hidden size, 8 KV heads x 128 head_dim = 1024 KV width
 layer_weights = {
     'q_proj': np.random.randn(4096, 4096).astype(np.float16),
-    'k_proj': np.random.randn(4096, 1024).astype(np.float16),
+    'k_proj': np.random.randn(1024, 4096).astype(np.float16),
     'v_proj': np.random.randn(1024, 4096).astype(np.float16),
     'o_proj': np.random.randn(4096, 4096).astype(np.float16),
 }
 
-# Simulated activations
+# Simulated activations (in_features per layer)
 layer_activations = {
     'q_proj': np.random.randn(4096),
-    'k_proj': np.random.randn(1024),
+    'k_proj': np.random.randn(4096),
     'v_proj': np.random.randn(4096),
     'o_proj': np.random.randn(4096),
 }
@@ -371,7 +393,7 @@ for name, weights in layer_weights.items():
 
 | Metric | EXL2 | AWQ | Winner |
 |--------|------|-----|--------|
-| **Memory** | 4x | 4x | Tie |
+| **Memory** | 2x measured (4x packed) | 2x measured (4x packed) | Tie |
 | **Speed** | Fast | Fast | Tie |
 | **Accuracy** | Good | Better | AWQ |
 | **Calibration** | None | Activations | AWQ |
@@ -411,13 +433,13 @@ for name, weights in layer_weights.items():
 
 ## 🚀 Next Steps
 
-1. **EXP_4201**: Speculative Decoding - Faster generation
+1. **EXP_4202**: Speculative Decoding - Faster generation
 2. **EXP_6201**: Hybrid Search - Combine methods
-3. **LAB-004**: Custom Quantization - Production deployment
+3. **LAB-009**: Production Deployment - Ship quantized models
 
 ---
 
-**Last Updated:** 2026-02-04
+**Last Updated:** 2026-10-01
 **Experiment:** 4102 - EXL2 vs AWQ
 **Time Estimate:** 75-90 minutes
 **Difficulty:** ⭐⭐⭐ Advanced
