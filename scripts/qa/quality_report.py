@@ -985,6 +985,19 @@ stand today?" without running each tool by hand.
                        in the legitimate comment-prompt class and the
                        one remaining hit NB-703's prompt-injection
                        test string, matched by no rule
+    notebook_catalog_check
+                       the 20-notebook catalog lives twice (the
+                       fleet's own README index and MASTER-INDEX's
+                       Notebooks table - tick-549 mirrored the rows
+                       verbatim, duplicating data across two files
+                       with no lock); NC-01 id-set parity (a row in
+                       one catalog only), NC-02 verbatim field
+                       parity per shared id (title, topics,
+                       difficulty - README's star run stripped to
+                       its word - duration, and the same link
+                       basename); the content-drift class link
+                       checks cannot see, born tick-551 at 20/20
+                       rows and 0 findings
     empty_section_scan every heading must own content (ES-01): a
                        section is empty iff nothing but blanks/HRs/
                        blockquotes/HTML-comments sits between its
@@ -1368,6 +1381,7 @@ GATES = [
     ("fence_exec_gate.py", "fence_exec_gate", True),
     ("census_note_gate.py", "census_note_gate", True),
     ("notebook_unfinished_scan.py", "notebook_unfinished_scan", True),
+    ("notebook_catalog_check.py", "notebook_catalog_check", True),
 ]
 
 
