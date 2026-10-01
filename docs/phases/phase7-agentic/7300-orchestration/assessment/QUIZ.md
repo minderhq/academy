@@ -1,7 +1,7 @@
 ---
 Document ID: 7300-QUIZ
 Title: "7300: Agent Orchestration - Quiz"
-Last Updated: 2026-09-29
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 30 minutes
@@ -187,3 +187,17 @@ D) Same thing
 | 18 | B | The orchestrator plans and manages worker agents |
 | 19 | D | Deadlock leaves agents waiting on each other forever |
 | 20 | C | Orchestration adapts dynamically, chains are fixed |
+
+---
+
+## Need to Review?
+
+Each question maps to the closest lesson for review:
+
+- **Questions 1, 3, 10-12, 16, 20:** [7301: Collaborative Tasking - Multi-Agent Synergy](../7301-Orchestration.md) — specialized agents coordinated in one system, the plan → execute → review → retry → synthesize flow, LLM-driven task decomposition, hierarchical-versus-peer-to-peer patterns, the defined sequence of operations, and the adaptive routing-and-retry that separates orchestration from a fixed chain
+- **Questions 2, 5-6, 13-14:** [7303: Framework Comparison](../guides/7303-Framework-Comparison.md) — AutoGen, LangGraph and CrewAI as the orchestration frameworks, with LangGraph's typed state graph, conditional edges and checkpoint-backed resume; the DAG's no-cycle property as a formal definition appears nowhere in the curriculum, so Q5 leans on the graph teaching
+- **Question 4:** [7201: Tool Calling & Function Execution](../../7200-tools/7201-Tool-Calling.md) — Parallel Tool Execution, the phase's only simultaneous-execution teaching
+- **Questions 7, 15, 18-19:** [7301: Collaborative Tasking - Multi-Agent Synergy](../7301-Orchestration.md) — the ROUTERS table branching on issue type with fail-loud unknown handling, the bounded monitor-triggered maintenance cycle, the coordinator routing whole tasks to team leaders, and max_cycles bounding the loop; event-bus semantics and deadlock analysis are taught nowhere in the curriculum, so Q15 and Q19 lean on the trigger-and-bound mechanics
+- **Question 8:** [7503: Adversarial Attacks & Defense](../../7500-security/7503-Adversarial-Attacks.md) — quarantine and human review as the production human gate; mid-run human-in-the-loop approval is taught nowhere in the curriculum
+- **Question 9:** [7302: Multi-Agent Communication Protocols](../7302-Communication-Protocols.md) — the Handoff Protocol packaging agent-to-agent transfers without losing context
+- **Question 17:** [7302: Multi-Agent Communication Protocols](../7302-Communication-Protocols.md) — consensus and negotiation patterns carrying the communication-and-synchronization mix

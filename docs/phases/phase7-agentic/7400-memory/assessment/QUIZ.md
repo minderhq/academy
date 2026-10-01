@@ -1,7 +1,7 @@
 ---
 Document ID: 7400-QUIZ
 Title: "7400: Memory Systems - Quiz"
-Last Updated: 2026-09-29
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 30 minutes
@@ -187,3 +187,23 @@ D) No limits
 | 18 | C | Decay makes old memories less accessible over time |
 | 19 | B | Remembering preferences personalizes responses |
 | 20 | A | Memory is bounded by context and compute limits |
+
+---
+
+## Need to Review?
+
+Each question maps to the closest lesson for review:
+
+- **Questions 1-2, 5, 10:** [7401: Long-term Memory for Agents](../7401-Long-term-Memory.md) — the architecture diagram's short-term context window beside the long-term stores, persistent memory across sessions opening the lesson, and the operations table's Retrieval row answered by semantic search
+- **Questions 3, 11:** [7403: Vector Memory and Embedding-Based Storage](../7403-Vector-Memory.md) — memories written as embeddings and recalled by semantic similarity through the Write and Read paths, the retrieval-augmented shape the quiz describes
+- **Question 4:** [7403: Vector Memory and Embedding-Based Storage](../7403-Vector-Memory.md) — the memory taxonomy's Working/Episodic/Semantic/Procedural rows with their storage shapes; a dedicated key-value store type is taught nowhere in the curriculum, so Q4 leans on that taxonomy's storage-shape column
+- **Question 6:** [7401: Long-term Memory for Agents](../7401-Long-term-Memory.md) — the multi-tier architecture's MemoryItem dataclass carrying an explicit importance score
+- **Questions 7, 13:** [7401: Long-term Memory for Agents](../7401-Long-term-Memory.md) — the Consolidation operation merging similar memories via clustering plus summarization, and the §2.3 summarize_old_memories job compressing aged entries on a schedule
+- **Questions 8-9:** [7403: Vector Memory and Embedding-Based Storage](../7403-Vector-Memory.md) — the taxonomy's Episodic row, what happened and when as timestamped event records, against its Semantic row of distilled facts and preferences
+- **Question 12:** [7401: Long-term Memory for Agents](../7401-Long-term-Memory.md) — the Memory Hierarchies section's tiered short-term/episodic/semantic stack; MemGPT itself is named nowhere in the curriculum, so Q12 leans on that hierarchy teaching
+- **Question 14:** [7401: Long-term Memory for Agents](../7401-Long-term-Memory.md) — the hybrid search example combining vector and keyword lookup over one collection
+- **Question 15:** [7403: Vector Memory and Embedding-Based Storage](../7403-Vector-Memory.md) — the lifecycle's consolidation step, where an LLM distills past episodes into semantic facts; reflective memory as a named agent pattern is taught nowhere in the curriculum, so Q15 leans on that review-and-distill mechanic
+- **Questions 16-17:** [7403: Vector Memory and Embedding-Based Storage](../7403-Vector-Memory.md) — the taxonomy's Working row holding current conversation context and in-flight task state in the context window; the episodic-buffer term itself appears nowhere, so Q17 leans on that working tier
+- **Question 18:** [7401: Long-term Memory for Agents](../7401-Long-term-Memory.md) — time-based decay with TTL expiry metadata and the cleanup_expired_memories sweeper, matching the operations table's Forgetting row
+- **Question 19:** [7401: Long-term Memory for Agents](../7401-Long-term-Memory.md) — persistent memory existing to power personalized interactions, with the best-practices list directing personalization from user history
+- **Question 20:** [7403: Vector Memory and Embedding-Based Storage](../7403-Vector-Memory.md) — the Performance and Cost table where context cost runs 300-500 tokens per turn as the real currency, beside the embedding, search and storage magnitudes that bound a memory system
