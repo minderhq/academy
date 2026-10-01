@@ -134,7 +134,7 @@ docs/phases/phase4-quantization/4200-kv-cache/4201-Context-Window-Physics.md: in
 docs/phases/phase4-quantization/4200-kv-cache/4202-Speculative-Decoding.md: generate_sequence
 docs/phases/phase4-quantization/4300-quantization-aware-training/4301-QAT-Foundations.md: enable_quantization model num_epochs train_epoch
 docs/phases/phase4-quantization/4300-quantization-aware-training/4302-Fake-Quantization.md: MyModel dataloader inputs scale torch train_epoch weight
-docs/phases/phase4-quantization/4300-quantization-aware-training/4303-QAT-for-Transformers.md: attn dequantize epoch fake_quantize gelu k layer_norm model optimizer q qat_start_epoch scores self softmax train_epoch v val_loader validate weight x
+docs/phases/phase4-quantization/4300-quantization-aware-training/4303-QAT-for-Transformers.md: FakeQuantize attn dequantize epoch fake_quantize gelu k layer_norm model optimizer q qat_start_epoch scores self softmax train_epoch v val_loader validate weight x
 docs/phases/phase4-quantization/4300-quantization-aware-training/4304-Low-bit-QAT.md: dataloader load_student_model load_teacher_model train_epoch
 docs/phases/phase4-quantization/4300-quantization-aware-training/4305-Quantization-Configuration.md: disable_quantization_for_layer enable_quantization_for_layer evaluate evaluate_with_config fake_quantize get_quantizable_layers impact_on_accuracy model
 docs/phases/phase4-quantization/4300-quantization-aware-training/guides/4306-PyTorch-QAT.md: train_epoch train_loader
