@@ -188,20 +188,20 @@ Tags: ['maintenance', 'navigation', 'llm']
 | ID | Lab | Duration | Solution |
 |----|-----|----------:|---------|
 | **[LAB-000](../learning-resources/labs/LAB-000-ENVIRONMENT-SETUP.md)** | Environment Setup | 1 hour | [Solution](../learning-resources/labs/solutions/SOLUTION-LAB-000-Environment-Setup.md) |
-| **[LAB-001](../learning-resources/labs/LAB-001-Docker-LLM.md)** | Docker + LLM | 2 hours | [Solution](../learning-resources/labs/solutions/SOLUTION-LAB-001-Docker-LLM.md) |
-| **[LAB-002](../learning-resources/labs/LAB-002-RAG-Implementation.md)** | RAG Implementation | 3 hours | [Solution](../learning-resources/labs/solutions/SOLUTION-LAB-002-RAG-Implementation.md) |
-| **[LAB-003](../learning-resources/labs/LAB-003-LoRA-FineTuning.md)** | LoRA Fine-tuning | 4 hours | [Solution](../learning-resources/labs/solutions/SOLUTION-LAB-003-LoRA-FineTuning.md) |
-| **[LAB-004](../learning-resources/labs/LAB-004-ReAct-Agent.md)** | ReAct Agent | 3 hours | [Solution](../learning-resources/labs/solutions/SOLUTION-LAB-004-ReAct-Agent.md) |
-| **[LAB-005](../learning-resources/labs/LAB-005-GraphRAG.md)** | GraphRAG | 4 hours | [Solution](../learning-resources/labs/solutions/SOLUTION-LAB-005-GraphRAG.md) |
-| **[LAB-006](../learning-resources/labs/LAB-006-Train-Model-From-Scratch.md)** | Train from Scratch | 5 hours | [Solution](../learning-resources/labs/solutions/SOLUTION-LAB-006-Train-Model-From-Scratch.md) |
-| **[LAB-007](../learning-resources/labs/LAB-007-Production-RAG.md)** | Production RAG | 4 hours | [Solution](../learning-resources/labs/solutions/SOLUTION-LAB-007-Production-RAG.md) |
-| **[LAB-008](../learning-resources/labs/LAB-008-Agent-Fleet.md)** | Agent Fleet | 5 hours | [Solution](../learning-resources/labs/solutions/SOLUTION-LAB-008-Agent-Fleet.md) |
-| **[LAB-009](../learning-resources/labs/LAB-009-Production-Deployment.md)** | Production Deployment | 4 hours | [Solution](../learning-resources/labs/solutions/SOLUTION-LAB-009-Production-Deployment.md) |
-| **[LAB-010](../learning-resources/labs/LAB-010-DPO-Alignment.md)** | DPO Alignment | 3 hours | [Solution](../learning-resources/labs/solutions/SOLUTION-LAB-010-DPO-Alignment.md) |
-| **[LAB-011](../learning-resources/labs/LAB-011-Multi-Modal-AI.md)** | Multi-Modal AI | 4 hours | [Solution](../learning-resources/labs/solutions/SOLUTION-LAB-011-Multi-Modal-AI.md) |
-| **[LAB-012](../learning-resources/labs/LAB-012-Audio-AI.md)** | Audio AI | 3 hours | [Solution](../learning-resources/labs/solutions/SOLUTION-LAB-012-Audio-AI.md) |
-| **[LAB-013](../learning-resources/labs/LAB-013-Advanced-Function-Calling.md)** | Function Calling | 3 hours | [Solution](../learning-resources/labs/solutions/SOLUTION-LAB-013-Advanced-Function-Calling.md) |
-| **[LAB-014](../learning-resources/labs/LAB-014-AI-Evaluation-Safety.md)** | Evaluation & Safety | 4 hours | [Solution](../learning-resources/labs/solutions/SOLUTION-LAB-014-AI-Evaluation-Safety.md) |
+| **[LAB-001](../learning-resources/labs/LAB-001-Docker-LLM.md)** | Docker & LLM Fundamentals | 2 hours | [Solution](../learning-resources/labs/solutions/SOLUTION-LAB-001-Docker-LLM.md) |
+| **[LAB-002](../learning-resources/labs/LAB-002-RAG-Implementation.md)** | RAG Implementation with Qdrant & Ollama | 4 hours | [Solution](../learning-resources/labs/solutions/SOLUTION-LAB-002-RAG-Implementation.md) |
+| **[LAB-003](../learning-resources/labs/LAB-003-LoRA-FineTuning.md)** | LoRA Fine-Tuning with QLoRA | 4 hours | [Solution](../learning-resources/labs/solutions/SOLUTION-LAB-003-LoRA-FineTuning.md) |
+| **[LAB-004](../learning-resources/labs/LAB-004-ReAct-Agent.md)** | Building ReAct Agents | 4 hours | [Solution](../learning-resources/labs/solutions/SOLUTION-LAB-004-ReAct-Agent.md) |
+| **[LAB-005](../learning-resources/labs/LAB-005-GraphRAG.md)** | GraphRAG Implementation with Neo4j & Qdrant | 5 hours | [Solution](../learning-resources/labs/solutions/SOLUTION-LAB-005-GraphRAG.md) |
+| **[LAB-006](../learning-resources/labs/LAB-006-Train-Model-From-Scratch.md)** | Train a Small Language Model from Scratch | 7 hours | [Solution](../learning-resources/labs/solutions/SOLUTION-LAB-006-Train-Model-From-Scratch.md) |
+| **[LAB-007](../learning-resources/labs/LAB-007-Production-RAG.md)** | Production RAG System | 6 hours | [Solution](../learning-resources/labs/solutions/SOLUTION-LAB-007-Production-RAG.md) |
+| **[LAB-008](../learning-resources/labs/LAB-008-Agent-Fleet.md)** | Multi-Agent Fleet | 6 hours | [Solution](../learning-resources/labs/solutions/SOLUTION-LAB-008-Agent-Fleet.md) |
+| **[LAB-009](../learning-resources/labs/LAB-009-Production-Deployment.md)** | Production Deployment | 12 hours | [Solution](../learning-resources/labs/solutions/SOLUTION-LAB-009-Production-Deployment.md) |
+| **[LAB-010](../learning-resources/labs/LAB-010-DPO-Alignment.md)** | DPO Alignment | 6 hours | [Solution](../learning-resources/labs/solutions/SOLUTION-LAB-010-DPO-Alignment.md) |
+| **[LAB-011](../learning-resources/labs/LAB-011-Multi-Modal-AI.md)** | Multi-Modal AI | 9 hours | [Solution](../learning-resources/labs/solutions/SOLUTION-LAB-011-Multi-Modal-AI.md) |
+| **[LAB-012](../learning-resources/labs/LAB-012-Audio-AI.md)** | Audio AI | 7 hours | [Solution](../learning-resources/labs/solutions/SOLUTION-LAB-012-Audio-AI.md) |
+| **[LAB-013](../learning-resources/labs/LAB-013-Advanced-Function-Calling.md)** | Advanced Function Calling | 7 hours | [Solution](../learning-resources/labs/solutions/SOLUTION-LAB-013-Advanced-Function-Calling.md) |
+| **[LAB-014](../learning-resources/labs/LAB-014-AI-Evaluation-Safety.md)** | AI Evaluation & Safety | 6 hours | [Solution](../learning-resources/labs/solutions/SOLUTION-LAB-014-AI-Evaluation-Safety.md) |
 
 ---
 

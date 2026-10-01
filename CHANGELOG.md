@@ -15,6 +15,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.3.0] - 2026-10-02
 
+### Changed - Lab Fleet Transparency
+- **The lab fleet transition is now on record:** the legacy LAB-2xx..7xx fleet was retired from docs/learning-resources/labs/legacy/ on 2026-09-24, before the 1.2.0 release - the 1.1.0 entry below still lists those legacy ids, which was true at that release - while the active fleet is LAB-000 through LAB-014 (15 labs + 15 solutions) and appears in no release entry until now
+- **MASTER-INDEX Labs rows drained to lab truth:** 14 of the 15 index rows carried a drift against the labs' own front matter - 12 Duration cells under-reported the declared Estimated Time (the index summed ~53 hours against ~85 declared, LAB-009 reading 4 hours against 12) and 10 Lab titles abbreviated away the full forms - every row now mirrors the front-matter contract verbatim under the new lab_index_parity_check lock
+
 ### Fixed - Live-Verified Content Corrections
 - **Learner-facing bug chain drained** across the practice and guide
   corpus, every fix executed against the running stack before landing:
@@ -32,7 +36,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   by-design-hang / learner-artifact note
 
 ### Added - Quality Infrastructure Growth
-- **94 hard QA gates (total 100)**: census_note_gate (CN-01/02) makes
+- **95 hard QA gates (total 101)**: census_note_gate (CN-01/02) makes
   the execution census's must-be-adjudicated contract mechanical;
   meta_claims_check now locks this changelog's newest gate-count claim
   to quality_report.GATES itself, notebook_unfinished_scan
@@ -40,7 +44,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   the .md-only extraction cannot see - 108 `# TODO:` exercise prompts
   stay legitimate, notebook prose obeys the same rule as file prose -
   and notebook_catalog_check (NC-01/02) locks the two-table notebook
-  catalog (README index vs MASTER-INDEX) against content drift, and changelog_summary_check (CS-01..05) keeps the changelog's own release index (sections vs Version Summary table vs reference-link definitions) synchronized
+  catalog (README index vs MASTER-INDEX) against content drift, and changelog_summary_check (CS-01..05) keeps the changelog's own release index (sections vs Version Summary table vs reference-link definitions) synchronized, and lab_index_parity_check (LI-01..03) locks MASTER-INDEX's Labs table to every lab's front-matter contract (id set, Estimated Time, title)
 - **lesson_similarity_scan** (report tool): 5-word-shingle Jaccard
   over all 6441 lesson pairs - born at zero clone findings with a max
   similarity of 0.058, lesson diversity under continuous lock

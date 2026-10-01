@@ -1008,6 +1008,17 @@ stand today?" without running each tool by hand.
                        maximal finding - 1.3.0 carried none of its
                        own index surfaces while 1.2.0/1.1.0/1.0.0
                        did, drained in the same tick
+    lab_index_parity_check
+                       MASTER-INDEX's "### Labs" table mirrors every
+                       lab's front-matter contract verbatim (LI-01
+                       id-set parity both directions, LI-02 duration
+                       equals Estimated Time, LI-03 title equals the
+                       Title with its "LAB-NNN: " prefix stripped);
+                       born tick-553 at the maximal finding - 12 of
+                       15 durations drifted (index summed ~53 hours
+                       against a declared ~85, LAB-009 read 4 hours
+                       against 12) and 10 of 15 titles, drained in
+                       the same tick
     empty_section_scan every heading must own content (ES-01): a
                        section is empty iff nothing but blanks/HRs/
                        blockquotes/HTML-comments sits between its
@@ -1393,6 +1404,7 @@ GATES = [
     ("notebook_unfinished_scan.py", "notebook_unfinished_scan", True),
     ("notebook_catalog_check.py", "notebook_catalog_check", True),
     ("changelog_summary_check.py", "changelog_summary_check", True),
+    ("lab_index_parity_check.py", "lab_index_parity_check", True),
 ]
 
 
