@@ -1,7 +1,7 @@
 ---
 Document ID: 5300-SYNTHETIC-README
 Title: "5300: Synthetic Data & Advanced Training"
-Last Updated: 2026-02-04
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Beginner
 Tags: ['module', 'finetuning', 'synthetic-data']
@@ -26,7 +26,7 @@ After completing this module, you will be able to:
 - **Knowledge Distillation**: Train smaller models using larger teacher models
 - **Distributed Training**: Configure multi-GPU and multi-node training
 - **Federated Learning**: Implement privacy-preserving distributed training
-- **Synthetic Data Generation**: Create high-quality training data with LLMs
+- **Synthetic Data**: Generate training data from teacher model outputs
 - **Advanced Optimization**: Apply state-of-the-art training techniques
 
 ## Module Contents
@@ -47,13 +47,13 @@ After completing this module, you will be able to:
 - Measure size vs quality tradeoffs
 
 ### [5302: Distributed Training](./5302-Distributed-Training.md)
-**Multi-GPU and Multi-Node Training**
+**Orchestrating Distributed Training Runs**
 
-- Data parallelism (DDP, FSDP)
-- Model parallelism (tensor, pipeline)
-- ZeRO optimization stages
-- Gradient compression and communication
-- Fault tolerance and checkpointing
+- Distributed training strategies overview
+- K3s cluster training
+- Fine-tuning workflows
+- Orchestration with Ray
+- Monitoring, logging, and performance optimization
 
 **Experiments:**
 - Set up DDP training
@@ -65,10 +65,10 @@ After completing this module, you will be able to:
 **Privacy-Preserving Distributed Training**
 
 - Federated learning fundamentals
-- Client-server architecture
-- Federated averaging and optimization
-- Differential privacy guarantees
-- Challenges in federated settings
+- Federated averaging (FedAvg)
+- The non-IID reality of client data
+- Privacy: what FedAvg does and does not give you
+- Federated LLM fine-tuning and orchestration with Flower
 
 **Experiments:**
 - Implement federated averaging
@@ -80,20 +80,25 @@ After completing this module, you will be able to:
 
 Before starting this module, ensure you have:
 
-- [ ] Module 2100: Calculus (optimization)
-- [ ] Module 2200: Frameworks (PyTorch proficiency)
-- [ ] Module 2400: Pretraining (distributed training basics)
-- [ ] Module 4100: Quantization (for model compression)
+- [ ] Module 2100: [Calculus for Deep Learning](../../phase2-foundations/2100-calculus/README.md) (optimization)
+- [ ] Module 2200: [Deep Learning Frameworks](../../phase2-foundations/2200-frameworks/README.md) (PyTorch proficiency)
+- [ ] Module 2400: [LLM Pretraining](../../phase2-foundations/2400-pretraining/README.md) (distributed training basics)
+- [ ] Module 4100: [Low-Bit Quantization](../../phase4-quantization/4100-low-bit/README.md) (for model compression)
 - [ ] Access to multiple GPUs or compute cluster
 
 **Review:** [PREREQUISITES.md](./PREREQUISITES.md) for detailed requirements.
 
 ## Assessment
 
+### Quiz
+- **Format:** 20 multiple-choice questions
+- **Passing Score:** 80% (16/20)
+- **Topics:** Distillation, distributed orchestration, federated learning
 - **Location:** [assessment/QUIZ.md](./assessment/QUIZ.md)
+
 ### Practice Exercises
 - **Format:** Advanced training projects
-- **Duration:** 10-12 hours
+- **Duration:** 5 hours
 - **Topics:**
   - Implement knowledge distillation
   - Set up distributed training
@@ -104,23 +109,21 @@ Before starting this module, ensure you have:
 ## Related Modules
 
 This module connects to:
-- **2400: Pretraining** (large-scale training)
-- **4100: Quantization** (model compression)
-- **5200: Alignment** (synthetic preference data)
-- **6100: Vector Embeddings** (embedding distillation)
+- **[2400: LLM Pretraining](../../phase2-foundations/2400-pretraining/README.md)** (large-scale training)
+- **[4100: Low-Bit Quantization](../../phase4-quantization/4100-low-bit/README.md)** (model compression)
+- **[5200: LLM Alignment](../5200-alignment/README.md)** (synthetic preference data)
+- **[6100: Vector Embeddings](../../phase6-rag/6100-vector/README.md)** (embedding distillation)
 
 ## Time Commitment
 
 | Activity | Time |
 |----------|------|
-| Reading (5301) | 3 hours |
-| Experiments (5301) | 3 hours |
-| Reading (5302) | 4 hours |
-| Experiments (5302) | 4 hours |
-| Reading (5303) | 3 hours |
-| Experiments (5303) | 3 hours |
-| Practice | 10-12 hours |
-| **Total** | **30-32 hours** |
+| [5301: Knowledge Distillation](./5301-Knowledge-Distillation.md) | 4 hours |
+| [5302: Distributed Training](./5302-Distributed-Training.md) | 4 hours |
+| [5303: Federated Learning](./5303-Federated-Learning.md) | 4 hours |
+| Quiz | 30 minutes |
+| Practice | 5 hours |
+| **Total** | **17.5 hours** |
 
 ## Resources
 

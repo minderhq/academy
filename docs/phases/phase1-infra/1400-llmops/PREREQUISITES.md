@@ -1,7 +1,7 @@
 ---
 Document ID: 1400-PREREQUISITES
 Title: "1400: LLMOps - Prerequisites"
-Last Updated: 2026-02-04
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Intermediate
 Tags: ['prerequisites', 'infrastructure', 'llmops']
@@ -9,9 +9,13 @@ Tags: ['prerequisites', 'infrastructure', 'llmops']
 
 # 1400: LLMOps - Prerequisites
 
+**For:** [1401: Ollama Enterprise](./1401-Ollama-Enterprise.md)
+
+---
+
 ## Before You Start
 
-This module covers MLOps specifically for large language models.
+This module covers LLMOps and model serving, from Ollama enterprise deployment to vLLM and TGI serving stacks.
 
 **Required Knowledge:**
 

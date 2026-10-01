@@ -1,7 +1,7 @@
 ---
 Document ID: 7100-ARCHITECTURE-README
 Title: "7100: Agent Architecture"
-Last Updated: 2026-02-04
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Beginner
 Tags: ['module', 'agents', 'react']
@@ -34,11 +34,11 @@ After completing this module, you will be able to:
 ### [7101: ReAct Loop System](./7101-ReAct-Loop-System.md)
 **Reasoning and Acting in Cycles**
 
-- ReAct paradigm: Thought → Action → Observation
-- Prompt engineering for ReAct
-- Tool selection and execution
-- Error handling and recovery
-- Multi-step reasoning
+- The ReAct pattern: Thought → Action → Observation
+- Implementing the loop
+- Tool calling
+- State management
+- Production use and advanced patterns
 
 **Experiments:**
 - Implement ReAct loop from scratch
@@ -50,10 +50,10 @@ After completing this module, you will be able to:
 **Goal-Directed Agent Behavior**
 
 - Task decomposition strategies
-- Planning algorithms (DFS, BFS, heuristic)
-- Hierarchical planning
-- Replanning and adaptation
-- Multi-agent coordination
+- Forward and backward planning
+- Task planning with dependencies
+- Replanning on failure
+- Distributed planning
 
 **Experiments:**
 - Implement planning agent
@@ -64,11 +64,11 @@ After completing this module, you will be able to:
 ### 7103: ReAct Implementation Guide
 **Production ReAct Agent Workshop** (Guide)
 
-- Complete ReAct implementation
-- Error handling strategies
-- Optimization techniques
-- Production considerations
-- Real-world examples
+- Architecture overview
+- Complete implementation
+- Advanced features
+- Production deployment
+- Best practices
 
 **Guide:** [guides/7103-ReAct-Implementation-Guide.md](./guides/7103-ReAct-Implementation-Guide.md)
 
@@ -76,9 +76,9 @@ After completing this module, you will be able to:
 
 Before starting this module, ensure you have:
 
-- [ ] Module 3100-3400: Transformer architectures
-- [ ] Module 6100-6400: RAG fundamentals
-- [ ] Module 7200: Tools (function calling)
+- [ ] Modules 3100–3400: [Transformer Architectures](../../phase3-transformers/3400-architectures/README.md)
+- [ ] Modules 6100–6400: [RAG fundamentals](../../phase6-rag/6100-vector/README.md)
+- [ ] Module 7200: [Tool Calling and Function Execution](../7200-tools/README.md) (function calling)
 - [ ] Python programming proficiency
 - [ ] Understanding of prompt engineering
 
@@ -94,7 +94,7 @@ Before starting this module, ensure you have:
 
 ### Practice Exercises
 - **Format:** Agent implementation projects
-- **Duration:** 10-12 hours
+- **Duration:** 7 hours
 - **Topics:**
   - Build ReAct agent from scratch
   - Implement planning system
@@ -105,23 +105,21 @@ Before starting this module, ensure you have:
 ## Related Modules
 
 This module connects to:
-- **7200: Tools** (function calling and tools)
-- **7300: Orchestration** (multi-agent workflows)
-- **7400: Memory** (agent memory systems)
-- **7500: Security** (agent safety)
+- **[7200: Tool Calling and Function Execution](../7200-tools/README.md)** (function calling and tools)
+- **[7300: Multi-Agent Orchestration](../7300-orchestration/README.md)** (multi-agent workflows)
+- **[7400: Agent Memory Systems](../7400-memory/README.md)** (agent memory systems)
+- **[7500: AI Agent Security](../7500-security/README.md)** (agent safety)
 
 ## Time Commitment
 
 | Activity | Time |
 |----------|------|
-| Reading (7101) | 4 hours |
-| Experiments (7101) | 4 hours |
-| Reading (7102) | 4 hours |
-| Experiments (7102) | 5 hours |
-| Guide (7103) | 3 hours |
+| [7101: ReAct Loop System](./7101-ReAct-Loop-System.md) | 4 hours |
+| [7102: Planning and Decomposition](./7102-Planning-Decomposition.md) | 4 hours |
+| Guide ([7103](./guides/7103-ReAct-Implementation-Guide.md)) | 4 hours |
 | Quiz | 30 minutes |
-| Practice | 10-12 hours |
-| **Total** | **30-33 hours** |
+| Practice | 7 hours |
+| **Total** | **19.5 hours** |
 
 ## Resources
 
@@ -240,9 +238,9 @@ Thought: Let me think about this...
 
 ---
 
-**Next Module:** [7200: Tools](../7200-tools/README.md)
+**Next Module:** [7200: Tool Calling and Function Execution](../7200-tools/README.md)
 
-**Previous Module:** [6500: MLOps Pipelines](../../phase6-rag/6500-mlops-pipelines/README.md)
+**Previous Module:** [6500: MLOps Pipelines for RAG](../../phase6-rag/6500-mlops-pipelines/README.md)
 
 **Questions?** Review the [PREREQUISITES.md](./PREREQUISITES.md) or check Phase 7 documentation.
 

@@ -1,7 +1,7 @@
 ---
 Document ID: 1100-PREREQUISITES
 Title: "1100: Network - Prerequisites"
-Last Updated: 2026-02-04
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Beginner
 Tags: ['prerequisites', 'networking', 'wan']
@@ -9,9 +9,13 @@ Tags: ['prerequisites', 'networking', 'wan']
 
 # 1100: Network - Prerequisites
 
+**For:** [1101: Internet Uplink & Modem Configuration](./1101-Fiber-GPON-Modem.md)
+
+---
+
 ## Before You Start
 
-This module covers networking fundamentals for LLM infrastructure.
+This module covers network fundamentals for LLM infrastructure, from internet uplink configuration to the connectivity layer beneath serving stacks.
 
 **Required Knowledge:**
 

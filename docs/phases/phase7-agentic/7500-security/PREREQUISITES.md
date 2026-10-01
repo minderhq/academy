@@ -1,7 +1,7 @@
 ---
 Document ID: 7500-PREREQUISITES
 Title: "7500: Security - Prerequisites"
-Last Updated: 2026-02-04
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
 Tags: ['prerequisites', 'agents', 'security']
@@ -9,9 +9,13 @@ Tags: ['prerequisites', 'agents', 'security']
 
 # 7500: Security - Prerequisites
 
+**For:** [7501: Prompt Injection Defense](./7501-Prompt-Injection-Defense.md)
+
+---
+
 ## Before You Start
 
-This module covers security considerations for AI agents and systems.
+This module covers prompt injection defense, PII redaction, and adversarial-attack protection for AI agents.
 
 **Required Knowledge:**
 

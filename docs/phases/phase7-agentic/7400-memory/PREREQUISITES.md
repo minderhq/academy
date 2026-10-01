@@ -1,7 +1,7 @@
 ---
 Document ID: 7400-PREREQUISITES
 Title: "7400: Memory - Prerequisites"
-Last Updated: 2026-02-04
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
 Tags: ['prerequisites', 'agents', 'memory']
@@ -9,9 +9,13 @@ Tags: ['prerequisites', 'agents', 'memory']
 
 # 7400: Memory - Prerequisites
 
+**For:** [7401: Long-term Memory](./7401-Long-term-Memory.md)
+
+---
+
 ## Before You Start
 
-This module covers memory systems for AI agents.
+This module covers long-term and vector-backed memory systems for AI agents, with an implementation guide.
 
 **Required Knowledge:**
 

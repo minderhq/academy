@@ -1,7 +1,7 @@
 ---
 Document ID: 5500-PREREQUISITES
 Title: "5500: Advanced Optimization - Prerequisites"
-Last Updated: 2026-02-04
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
 Tags: ['prerequisites', 'training', 'memory']
@@ -9,9 +9,13 @@ Tags: ['prerequisites', 'training', 'memory']
 
 # 5500: Advanced Optimization - Prerequisites
 
+**For:** [5501: Optimizer Variants](./5501-Optimizer-Variants.md)
+
+---
+
 ## Before You Start
 
-This module covers advanced optimization techniques for LLM training.
+This module covers optimizer variants, learning rate scheduling, and advanced optimization techniques for LLM training. It assumes you can already write and run a standard PyTorch training loop (see [5400: Distributed Training](../5400-distributed-training/README.md) if scaling is your bottleneck).
 
 **Required Knowledge:**
 

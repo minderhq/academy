@@ -1,7 +1,7 @@
 ---
 Document ID: 6100-VECTOR-README
 Title: "6100: Vector Embeddings"
-Last Updated: 2026-02-04
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Beginner
 Tags: ['module', 'rag', 'vectors']
@@ -34,11 +34,11 @@ After completing this module, you will be able to:
 ### [6101: HNSW Indexing](./6101-HNSW-Indexing.md)
 **Hierarchical Navigable Small World Graphs**
 
+- The problem of vector search at scale
 - HNSW algorithm and architecture
-- Graph-based approximate nearest neighbor search
-- Index construction and parameters
-- Query optimization
-- Memory vs accuracy tradeoffs
+- Indexing with FAISS
+- Key parameters: M, ef_construction, ef_search
+- Integration and evaluation
 
 **Experiments:**
 - Implement HNSW from scratch
@@ -49,11 +49,11 @@ After completing this module, you will be able to:
 ### [6102: Semantic Similarity](./6102-Semantic-Similarity.md)
 **Measuring Document Similarity**
 
-- Cosine similarity and distance metrics
-- Embedding model architectures
-- Sentence vs document embeddings
-- Multilingual embeddings
-- Domain-specific embeddings
+- Distance vs similarity: what each measures
+- Cosine similarity and dot product
+- Euclidean and Manhattan distance
+- Advanced metrics and when to use each
+- Hands-on practice with similarity computation
 
 **Experiments:**
 - Generate embeddings for documents
@@ -64,11 +64,11 @@ After completing this module, you will be able to:
 ### 6103: HNSW Tuning Guide
 **Production Vector Index Optimization** (Guide)
 
-- HNSW parameter tuning
-- Index size vs speed optimization
-- Update strategies for dynamic data
-- Distributed indexing
-- Monitoring and maintenance
+- HNSW architecture and parameter deep dive
+- Tuning strategy: build time, memory, recall
+- Production configurations and optimal settings by use case
+- Dynamic ef adjustment
+- Performance benchmarks and tuning checklist
 
 **Guide:** [guides/6103-HNSW-Tuning-Guide.md](./guides/6103-HNSW-Tuning-Guide.md)
 
@@ -76,8 +76,8 @@ After completing this module, you will be able to:
 
 Before starting this module, ensure you have:
 
-- [ ] Module 2100: Calculus (vectors, dot products)
-- [ ] Module 3200: Embeddings (embedding fundamentals)
+- [ ] Module 2100: [Calculus for Deep Learning](../../phase2-foundations/2100-calculus/README.md) (vectors, dot products)
+- [ ] Module 3200: [Embedding Latent Spaces](../../phase3-transformers/3200-embeddings/README.md) (embedding fundamentals)
 - [ ] Python and NumPy proficiency
 - [ ] Basic understanding of neural networks
 - [ ] Familiarity with REST APIs
@@ -94,7 +94,7 @@ Before starting this module, ensure you have:
 
 ### Practice Exercises
 - **Format:** Hands-on vector search projects
-- **Duration:** 6-8 hours
+- **Duration:** 2 hours
 - **Topics:**
   - Generate and compare embeddings
   - Build HNSW index
@@ -105,23 +105,21 @@ Before starting this module, ensure you have:
 ## Related Modules
 
 This module connects to:
-- **3200: Embeddings** (embedding model architectures)
-- **6200: Retrieval** (advanced retrieval techniques)
-- **6400: Vector Databases** (production vector stores)
-- **6300: Context** (knowledge graph integration)
+- **[3200: Embedding Latent Spaces](../../phase3-transformers/3200-embeddings/README.md)** (embedding model architectures)
+- **[6200: Retrieval Strategies](../6200-retrieval/README.md)** (advanced retrieval techniques)
+- **[6400: Vector Databases](../6400-vector-databases/README.md)** (production vector stores)
+- **[6300: Context Management](../6300-context/README.md)** (knowledge graph integration)
 
 ## Time Commitment
 
 | Activity | Time |
 |----------|------|
-| Reading (6101) | 3 hours |
-| Experiments (6101) | 3 hours |
-| Reading (6102) | 2 hours |
-| Experiments (6102) | 2 hours |
-| Guide (6103) | 2 hours |
+| [6101: HNSW Indexing](./6101-HNSW-Indexing.md) | 3 hours |
+| [6102: Semantic Similarity](./6102-Semantic-Similarity.md) | 3 hours |
+| Guide ([6103](./guides/6103-HNSW-Tuning-Guide.md)) | 3 hours |
 | Quiz | 30 minutes |
-| Practice | 6-8 hours |
-| **Total** | **18-20 hours** |
+| Practice | 2 hours |
+| **Total** | **11.5 hours** |
 
 ## Resources
 
@@ -208,7 +206,7 @@ This module connects to:
 
 ---
 
-**Next Module:** [6200: Retrieval](../6200-retrieval/README.md)
+**Next Module:** [6200: Retrieval Strategies](../6200-retrieval/README.md)
 
 **Previous Module:** [5300: Synthetic Data](../../phase5-finetuning/5300-synthetic/README.md)
 

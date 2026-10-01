@@ -1,7 +1,7 @@
 ---
 Document ID: 5200-ALIGNMENT-README
 Title: "5200: LLM Alignment"
-Last Updated: 2026-02-04
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Beginner
 Tags: ['module', 'finetuning', 'alignment']
@@ -47,40 +47,73 @@ After completing this module, you will be able to:
 - Analyze alignment quality
 
 ### [5202: Alignment Orchestration](./5202-Alignment-Orchestration.md)
-**Production Alignment Systems**
+**Reward Modeling vs Direct Preference**
 
-- Multi-stage alignment pipelines
-- Dataset construction for alignment
-- Evaluation metrics for alignment
-- Combining multiple alignment techniques
-- Monitoring alignment drift
+- Alignment methods comparison
+- Reward modeling (RLHF stage 2)
+- Direct Preference Optimization in practice
+- KTO (Kahneman-Tversky Optimization)
+- Practical alignment pipeline and evaluation
 
 **Experiments:**
 - Build end-to-end alignment pipeline
-- Create preference datasets
+- Compare reward modeling vs DPO vs KTO
 - Evaluate alignment quality
 - Deploy aligned models
-- [5203: RLHF](./5203-RLHF.md)
-- [5204: Preference Dataset Creation](./5204-Preference-Dataset-Creation.md)
+
+### [5203: RLHF](./5203-RLHF.md)
+**Reinforcement Learning from Human Feedback**
+
+- The three-stage RLHF pipeline
+- Stage 2: reward model training
+- Stage 3: PPO optimization
+- KL divergence and reward hacking
+- Hands-on: minimal RLHF with TRL
+
+**Experiments:**
+- Train a reward model
+- Run PPO optimization
+- Diagnose reward hacking
+- Compare RLHF vs DPO outcomes
+
+### [5204: Preference Dataset Creation](./5204-Preference-Dataset-Creation.md)
+**Building the Data Alignment Trains On**
+
+- Anatomy of a preference example
+- Prompt sourcing and response pair generation
+- Annotation guidelines
+- Dataset formats and quality control
+- Synthetic preferences and how much data you need
+
+**Experiments:**
+- Collect and annotate preference pairs
+- Apply quality control to a dataset
+- Generate synthetic preferences
+- Size a dataset for a target task
 
 ## Prerequisites
 
 Before starting this module, ensure you have:
 
-- [ ] Module 2100: Calculus (optimization, gradients)
-- [ ] Module 2200: Frameworks (PyTorch proficiency)
-- [ ] Module 2400: Pretraining (training fundamentals)
-- [ ] Module 5100: PEFT (efficient fine-tuning)
+- [ ] Module 2100: [Calculus for Deep Learning](../../phase2-foundations/2100-calculus/README.md) (optimization, gradients)
+- [ ] Module 2200: [Deep Learning Frameworks](../../phase2-foundations/2200-frameworks/README.md) (PyTorch proficiency)
+- [ ] Module 2400: [LLM Pretraining](../../phase2-foundations/2400-pretraining/README.md) (training fundamentals)
+- [ ] Module 5100: [Parameter-Efficient Fine-Tuning (PEFT)](../5100-peft/README.md) (efficient fine-tuning)
 - [ ] Understanding of reinforcement learning basics
 
 **Review:** [PREREQUISITES.md](./PREREQUISITES.md) for detailed requirements.
 
 ## Assessment
 
+### Quiz
+- **Format:** 20 multiple-choice questions
+- **Passing Score:** 80% (16/20)
+- **Topics:** DPO theory, RLHF pipeline, preference datasets
 - **Location:** [assessment/QUIZ.md](./assessment/QUIZ.md)
+
 ### Practice Exercises
 - **Format:** Alignment projects
-- **Duration:** 8-10 hours
+- **Duration:** 10 hours
 - **Topics:**
   - Implement DPO training
   - Build reward models
@@ -91,21 +124,22 @@ Before starting this module, ensure you have:
 ## Related Modules
 
 This module connects to:
-- **5100: PEFT** (efficient alignment training)
-- **5300: Synthetic Data** (generating preference data)
-- **7400: Memory** (long-context alignment)
-- **7500: Security** (safety and guardrails)
+- **[5100: Parameter-Efficient Fine-Tuning (PEFT)](../5100-peft/README.md)** (efficient alignment training)
+- **[5300: Synthetic Data & Advanced Training](../5300-synthetic/README.md)** (generating preference data)
+- **[7400: Agent Memory Systems](../../phase7-agentic/7400-memory/README.md)** (aligning memory-driven agents)
+- **[7500: AI Agent Security](../../phase7-agentic/7500-security/README.md)** (safety and guardrails)
 
 ## Time Commitment
 
 | Activity | Time |
 |----------|------|
-| Reading (5201) | 4 hours |
-| Experiments (5201) | 4 hours |
-| Reading (5202) | 3 hours |
-| Experiments (5202) | 4 hours |
-| Practice | 8-10 hours |
-| **Total** | **23-25 hours** |
+| [5201: DPO Theory](./5201-DPO-Theory.md) | 4 hours |
+| [5202: Alignment Orchestration](./5202-Alignment-Orchestration.md) | 4 hours |
+| [5203: RLHF](./5203-RLHF.md) | 4 hours |
+| [5204: Preference Dataset Creation](./5204-Preference-Dataset-Creation.md) | 4 hours |
+| Quiz | 30 minutes |
+| Practice | 10 hours |
+| **Total** | **26.5 hours** |
 
 ## Resources
 

@@ -1,7 +1,7 @@
 ---
 Document ID: 6300-CONTEXT-README
 Title: "6300: Context Management"
-Last Updated: 2026-02-04
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Beginner
 Tags: ['module', 'rag', 'context']
@@ -34,11 +34,11 @@ After completing this module, you will be able to:
 ### [6301: Neo4j and Knowledge Graphs](./6301-Neo4j-and-Knowledge-Graphs.md)
 **Graph-Based Knowledge Representation**
 
-- Graph database fundamentals
-- Neo4j and Cypher query language
-- Entity and relationship extraction
+- Knowledge graph fundamentals
+- Neo4j setup and the Cypher query language
 - Building knowledge graphs from text
-- Graph traversal and pattern matching
+- GraphRAG: combining graph and vector retrieval
+- Advanced: traversal and pattern matching
 
 **Experiments:**
 - Set up Neo4j database
@@ -49,11 +49,11 @@ After completing this module, you will be able to:
 ### [6302: CAG and Long-Context Architectures](./6302-CAG-Long-Context-Architectures.md)
 **Context Window Optimization**
 
-- Context-Augmented Generation (CAG)
-- Long-context model strategies
-- Context compression techniques
-- Hierarchical context organization
-- Context window management
+- RAG vs CAG: when each wins
+- Long-context models and their limits
+- Context management strategies
+- Hands-on implementation
+- Optimization techniques
 
 **Experiments:**
 - Implement CAG pipeline
@@ -64,10 +64,11 @@ After completing this module, you will be able to:
 ### 6303: Neo4j Deployment Guide
 **Production Knowledge Graph Setup** (Guide)
 
-- Neo4j deployment options
-- Performance optimization
-- Backup and scaling strategies
-- Security considerations
+- Deployment targets and Docker deployment
+- Initial configuration and performance tuning
+- Backup strategy and monitoring
+- Security hardening and troubleshooting
+- Optional K3s deployment
 
 **Guide:** [guides/6303-Neo4j-Deployment-Guide.md](./guides/6303-Neo4j-Deployment-Guide.md)
 
@@ -75,9 +76,10 @@ After completing this module, you will be able to:
 **Knowledge-Graph Enhanced RAG** (Guide)
 
 - GraphRAG architecture
-- Entity-relationship retrieval
-- Hybrid vector-graph queries
-- Graph-based context expansion
+- Implementations 1–2: graph construction, hybrid graph + vector RAG
+- Implementations 3–4: multi-hop reasoning, entity extraction with LLM
+- Implementation 5: complete GraphRAG pipeline
+- Production note: Microsoft GraphRAG
 
 **Guide:** [guides/6304-GraphRAG-Implementation.md](./guides/6304-GraphRAG-Implementation.md)
 
@@ -85,8 +87,8 @@ After completing this module, you will be able to:
 
 Before starting this module, ensure you have:
 
-- [ ] Module 6100: Vector Embeddings (basic retrieval)
-- [ ] Module 6200: Retrieval (advanced retrieval)
+- [ ] Module 6100: [Vector Embeddings](../6100-vector/README.md) (basic retrieval)
+- [ ] Module 6200: [Retrieval Strategies](../6200-retrieval/README.md) (advanced retrieval)
 - [ ] Python programming proficiency
 - [ ] Basic understanding of graph databases
 - [ ] Neo4j installation (or cloud access)
@@ -103,7 +105,7 @@ Before starting this module, ensure you have:
 
 ### Practice Exercises
 - **Format:** Context management projects
-- **Duration:** 8-10 hours
+- **Duration:** 4 hours
 - **Topics:**
   - Build knowledge graph from documents
   - Implement GraphRAG pipeline
@@ -114,23 +116,22 @@ Before starting this module, ensure you have:
 ## Related Modules
 
 This module connects to:
-- **6100: Vector Embeddings** (unstructured retrieval)
-- **6200: Retrieval** (retrieval strategies)
-- **6400: Vector Databases** (data storage)
-- **7400: Memory** (agent memory systems)
+- **[6100: Vector Embeddings](../6100-vector/README.md)** (unstructured retrieval)
+- **[6200: Retrieval Strategies](../6200-retrieval/README.md)** (retrieval strategies)
+- **[6400: Vector Databases](../6400-vector-databases/README.md)** (data storage)
+- **[7400: Agent Memory Systems](../../phase7-agentic/7400-memory/README.md)** (agent memory systems)
 
 ## Time Commitment
 
 | Activity | Time |
 |----------|------|
-| Reading (6301) | 4 hours |
-| Experiments (6301) | 4 hours |
-| Reading (6302) | 3 hours |
-| Experiments (6302) | 4 hours |
-| Guides (6303-6304) | 3 hours |
+| [6301: Neo4j and Knowledge Graphs](./6301-Neo4j-and-Knowledge-Graphs.md) | 5 hours |
+| [6302: CAG and Long-Context Architectures](./6302-CAG-Long-Context-Architectures.md) | 5 hours |
+| Guide ([6303](./guides/6303-Neo4j-Deployment-Guide.md)) | 3 hours |
+| Guide ([6304](./guides/6304-GraphRAG-Implementation.md)) | 4 hours |
 | Quiz | 30 minutes |
-| Practice | 8-10 hours |
-| **Total** | **26-28 hours** |
+| Practice | 4 hours |
+| **Total** | **21.5 hours** |
 
 ## Resources
 
@@ -259,7 +260,7 @@ Distribution Strategy:
 
 **Next Module:** [6400: Vector Databases](../6400-vector-databases/README.md)
 
-**Previous Module:** [6200: Retrieval](../6200-retrieval/README.md)
+**Previous Module:** [6200: Retrieval Strategies](../6200-retrieval/README.md)
 
 **Questions?** Review the [PREREQUISITES.md](./PREREQUISITES.md) or check Phase 6 documentation.
 

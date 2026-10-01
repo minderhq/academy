@@ -1,7 +1,7 @@
 ---
 Document ID: 5400-PREREQUISITES
 Title: "5400: Distributed Training - Prerequisites"
-Last Updated: 2026-02-04
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
 Tags: ['prerequisites', 'training', 'distributed']
@@ -9,9 +9,13 @@ Tags: ['prerequisites', 'training', 'distributed']
 
 # 5400: Distributed Training - Prerequisites
 
+**For:** [5401: Data Parallelism](./5401-Data-Parallelism.md)
+
+---
+
 ## Before You Start
 
-This module covers distributed training for large-scale model training.
+This module covers the parallelism strategies themselves (data, model, pipeline, mixed precision, distributed optimization). For cluster setup and run orchestration on K3s/Ray, see [5302: Distributed Training Orchestration](../5300-synthetic/5302-Distributed-Training.md) first.
 
 **Required Knowledge:**
 
@@ -36,7 +40,7 @@ This module covers distributed training for large-scale model training.
 ### If you're not familiar:
 
 **Review Resources:**
-- PyTorch Distributed Documentation
+- [PyTorch Distributed Documentation](https://pytorch.org/docs/stable/distributed.html)
 - "Distributed Deep Learning" papers
 - NCCL Library documentation
 

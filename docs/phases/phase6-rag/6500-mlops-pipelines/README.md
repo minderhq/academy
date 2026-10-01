@@ -1,7 +1,7 @@
 ---
 Document ID: 6500-MLOPS-PIPELINES-README
 Title: "6500: MLOps Pipelines for RAG"
-Last Updated: 2026-02-04
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Beginner
 Tags: ['module', 'mlops', 'model-registry']
@@ -34,11 +34,11 @@ After completing this module, you will be able to:
 ### [6501: ML Lifecycle Management](./6501-ML-Lifecycle-Management.md)
 **End-to-End ML Pipeline**
 
-- RAG system lifecycle stages
-- Data pipeline management
-- Model training and evaluation
-- Deployment strategies
-- Monitoring and observability
+- The complete ML lifecycle for RAG
+- The five lifecycle stages in depth
+- How data, training, and deployment connect
+- Monitoring and feedback across stages
+- The stage-by-stage checklist
 
 **Experiments:**
 - Build ML pipeline for RAG
@@ -49,11 +49,11 @@ After completing this module, you will be able to:
 ### [6502: CI/CD for ML](./6502-CI-CD-for-ML.md)
 **Continuous Integration and Deployment**
 
-- CI/CD fundamentals for ML
-- Automated testing for models
-- Feature flags and A/B testing
-- Rollback strategies
-- Infrastructure as Code
+- CI/CD architecture for ML
+- Pipeline configuration
+- Job dependencies
+- Automated training
+- Validation gates and deployment
 
 **Experiments:**
 - Set up GitHub Actions for ML
@@ -64,11 +64,11 @@ After completing this module, you will be able to:
 ### [6503: Model Registry](./6503-Model-Registry.md)
 **Model Versioning and Governance**
 
-- Model registry concepts
-- Version control for models
-- Model metadata and lineage
-- Deployment tracking
-- Model promotion workflows
+- Model registry architecture
+- Model versioning
+- Metadata and lineage
+- Aliases and promotion workflows
+- Registries in practice: MLflow and Weights & Biases
 
 **Experiments:**
 - Set up MLflow model registry
@@ -80,9 +80,9 @@ After completing this module, you will be able to:
 
 Before starting this module, ensure you have:
 
-- [ ] Module 1400: LLMOps (MLOps fundamentals)
-- [ ] Module 2400: Pretraining (ML pipelines)
-- [ ] Module 6100-6400: RAG components
+- [ ] Module 1400: [LLMOps and Model Serving](../../phase1-infra/1400-llmops/README.md) (MLOps fundamentals)
+- [ ] Module 2400: [LLM Pretraining](../../phase2-foundations/2400-pretraining/README.md) (ML pipelines)
+- [ ] Modules 6100–6400: [RAG components](../6100-vector/README.md) ([vector](../6100-vector/README.md) → [database](../6400-vector-databases/README.md))
 - [ ] Git and CI/CD fundamentals
 - [ ] Docker and deployment basics
 
@@ -98,8 +98,8 @@ Before starting this module, ensure you have:
 
 ### Practice Exercises
 - **Format:** MLOps pipeline projects
-- **Duration:** 8-10 hours
-| Topics:
+- **Duration:** 3 hours
+- **Topics:**
   - Build complete ML pipeline
   - Set up CI/CD for RAG
   - Implement model registry
@@ -109,24 +109,21 @@ Before starting this module, ensure you have:
 ## Related Modules
 
 This module connects to:
-- **1400: LLMOps** (MLOps fundamentals)
-- **2400: Pretraining** (training pipelines)
-- **6400: Vector Databases** (data infrastructure)
-- **7300: Orchestration** (agent workflows)
+- **[1400: LLMOps and Model Serving](../../phase1-infra/1400-llmops/README.md)** (MLOps fundamentals)
+- **[2400: LLM Pretraining](../../phase2-foundations/2400-pretraining/README.md)** (training pipelines)
+- **[6400: Vector Databases](../6400-vector-databases/README.md)** (data infrastructure)
+- **[7300: Multi-Agent Orchestration](../../phase7-agentic/7300-orchestration/README.md)** (agent workflows)
 
 ## Time Commitment
 
 | Activity | Time |
 |----------|------|
-| Reading (6501) | 3 hours |
-| Experiments (6501) | 3 hours |
-| Reading (6502) | 3 hours |
-| Experiments (6502) | 4 hours |
-| Reading (6503) | 2 hours |
-| Experiments (6503) | 2 hours |
+| [6501: ML Lifecycle Management](./6501-ML-Lifecycle-Management.md) | 4 hours |
+| [6502: CI/CD for ML](./6502-CI-CD-for-ML.md) | 4 hours |
+| [6503: Model Registry](./6503-Model-Registry.md) | 4 hours |
 | Quiz | 30 minutes |
-| Practice | 8-10 hours |
-| **Total** | **25-27 hours** |
+| Practice | 3 hours |
+| **Total** | **15.5 hours** |
 
 ## Resources
 

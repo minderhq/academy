@@ -1,7 +1,7 @@
 ---
 Document ID: 6300-PREREQUISITES
 Title: "6300: Context - Prerequisites"
-Last Updated: 2026-02-04
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
 Tags: ['prerequisites', 'rag', 'context']
@@ -9,9 +9,13 @@ Tags: ['prerequisites', 'rag', 'context']
 
 # 6300: Context - Prerequisites
 
+**For:** [6301: Neo4j and Knowledge Graphs](./6301-Neo4j-and-Knowledge-Graphs.md)
+
+---
+
 ## Before You Start
 
-This module covers context window management and optimization for RAG systems.
+This module covers knowledge graphs with Neo4j, GraphRAG, and long-context management for RAG systems.
 
 **Required Knowledge:**
 

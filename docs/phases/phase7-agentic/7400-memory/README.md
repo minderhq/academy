@@ -1,7 +1,7 @@
 ---
 Document ID: 7400-MEMORY-README
 Title: "7400: Agent Memory Systems"
-Last Updated: 2026-02-04
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Beginner
 Tags: ['module', 'agents', 'memory']
@@ -34,11 +34,11 @@ After completing this module, you will be able to:
 ### [7401: Long-term Memory](./7401-Long-term-Memory.md)
 **Persistent Knowledge for Agents**
 
-- Memory types: episodic, semantic, procedural
-- Vector-based memory storage
-- Memory importance scoring
-- Forgetting and consolidation
-- Personalization through memory
+- Memory architectures
+- VectorStore-backed memory
+- Mem0 and ChromaDB in practice
+- Memory hierarchies
+- Implementations and best practices
 
 **Experiments:**
 - Implement episodic memory
@@ -49,22 +49,30 @@ After completing this module, you will be able to:
 ### 7402: Agent Memory Implementation
 **Production Memory Systems** (Guide)
 
-- Memory architecture design
-- Storage backend options
-- Retrieval optimization
-- Memory compression
-- Privacy and security
+- Memory architecture
+- Memory types comparison
+- VectorStore-backed memory
+- Memoria and unified memory
+- Forgetting and a quick start
 
 **Guide:** [guides/7402-Agent-Memory-Implementation.md](./guides/7402-Agent-Memory-Implementation.md)
-- [7403: Vector Memory](./7403-Vector-Memory.md)
+
+### [7403: Vector Memory](./7403-Vector-Memory.md)
+**Vector-Store-Backed Agent Memory**
+
+- Memory taxonomy
+- Write and read paths
+- Qdrant as the memory backend
+- Memory lifecycle and long-term architecture
+- Performance and troubleshooting
 
 ## Prerequisites
 
 Before starting this module, ensure you have:
 
-- [ ] Module 6100: Vector Embeddings (semantic memory)
-- [ ] Module 6300: Context (context management)
-- [ ] Module 7100: Architecture (agent loops)
+- [ ] Module 6100: [Vector Embeddings](../../phase6-rag/6100-vector/README.md) (semantic memory)
+- [ ] Module 6300: [Context Management](../../phase6-rag/6300-context/README.md) (context management)
+- [ ] Module 7100: [Agent Architecture](../7100-architecture/README.md) (agent loops)
 - [ ] Vector database basics
 - [ ] Python programming proficiency
 
@@ -80,8 +88,8 @@ Before starting this module, ensure you have:
 
 ### Practice Exercises
 - **Format:** Memory system projects
-- **Duration:** 8-10 hours
-| **Topics:**
+- **Duration:** 6 hours
+- **Topics:**
   - Implement multi-tier memory
   - Build memory retrieval system
   - Create personalization
@@ -91,21 +99,21 @@ Before starting this module, ensure you have:
 ## Related Modules
 
 This module connects to:
-- **6100: Vector Embeddings** (semantic memory)
-- **6300: Context** (context window)
-- **7100: Architecture** (agent design)
-- **7200: Tools** (tool result memory)
+- **[6100: Vector Embeddings](../../phase6-rag/6100-vector/README.md)** (semantic memory)
+- **[6300: Context Management](../../phase6-rag/6300-context/README.md)** (context window)
+- **[7100: Agent Architecture](../7100-architecture/README.md)** (agent design)
+- **[7200: Tool Calling and Function Execution](../7200-tools/README.md)** (tool result memory)
 
 ## Time Commitment
 
 | Activity | Time |
 |----------|------|
-| Reading (7401) | 3 hours |
-| Experiments (7401) | 3 hours |
-| Guide (7402) | 2 hours |
+| [7401: Long-term Memory](./7401-Long-term-Memory.md) | 4 hours |
+| [7403: Vector Memory](./7403-Vector-Memory.md) | 4 hours |
+| Guide ([7402: Agent Memory Implementation](./guides/7402-Agent-Memory-Implementation.md)) | 3 hours |
 | Quiz | 30 minutes |
-| Practice | 8-10 hours |
-| **Total** | **16-18 hours** |
+| Practice | 6 hours |
+| **Total** | **17.5 hours** |
 
 ## Resources
 
@@ -224,9 +232,9 @@ This module connects to:
 
 ---
 
-**Next Module:** [7500: Security](../7500-security/README.md)
+**Next Module:** [7500: AI Agent Security](../7500-security/README.md)
 
-**Previous Module:** [7300: Orchestration](../7300-orchestration/README.md)
+**Previous Module:** [7300: Multi-Agent Orchestration](../7300-orchestration/README.md)
 
 **Questions?** Review the [PREREQUISITES.md](./PREREQUISITES.md) or check Phase 7 documentation.
 

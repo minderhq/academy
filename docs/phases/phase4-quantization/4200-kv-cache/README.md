@@ -1,7 +1,7 @@
 ---
 Document ID: 4200-KV-CACHE-README
 Title: "4200: KV Cache Optimization"
-Last Updated: 2026-02-04
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Beginner
 Tags: ['module', 'quantization', 'kv-cache']
@@ -32,13 +32,13 @@ After completing this module, you will be able to:
 ## Module Contents
 
 ### [4201: Context Window Physics](./4201-Context-Window-Physics.md)
-**Memory and Computation in Long Contexts**
+**KV Cache Memory & OOM Prevention**
 
-- KV cache memory calculation
-- Attention complexity analysis
-- PagedAttention and vLLM architecture
-- Context length extrapolation
-- Sliding window and attention sinks
+- KV cache memory calculation and analysis
+- KV cache quantization
+- Multi-round attention
+- Context window extension
+- OOM prevention and memory optimization strategies
 
 **Experiments:**
 - Profile KV cache memory usage
@@ -62,13 +62,13 @@ After completing this module, you will be able to:
 - Optimize verification overhead
 
 ### 4203: Context Window Optimization
-**Advanced Cache Techniques** (Guide)
+**Hands-On Context & Cache Implementations** (Guide)
 
-- Multi-Query Attention (MQA) and Grouped-Query Attention (GQA)
-- KV cache quantization
-- Cache eviction policies
-- Prefix caching and sharing
-- RoPE and ALiBi for long contexts
+- KV cache quantization (implementation)
+- Sliding window attention (implementation)
+- Multi-round context management (implementation)
+- Streaming with long context (implementation)
+- Context chunking strategy (implementation)
 
 **Guide:** [guides/4203-Context-Window-Optimization.md](./guides/4203-Context-Window-Optimization.md)
 
@@ -76,9 +76,9 @@ After completing this module, you will be able to:
 
 Before starting this module, ensure you have:
 
-- [ ] Module 3100: Attention Mechanisms (understanding attention)
-- [ ] Module 3300: Decoding Strategies (autoregressive generation)
-- [ ] Module 3400: Architectures (Transformer variants)
+- [ ] Module 3100: [Attention Architectures](../../phase3-transformers/3100-attention/README.md) (understanding attention)
+- [ ] Module 3300: [The Decoding Block](../../phase3-transformers/3300-decoding/README.md) (autoregressive generation)
+- [ ] Module 3400: [Model Architectures](../../phase3-transformers/3400-architectures/README.md) (Transformer variants)
 - [ ] Strong Python programming skills
 - [ ] GPU access for experimentation
 
@@ -86,10 +86,15 @@ Before starting this module, ensure you have:
 
 ## Assessment
 
+### Quiz
+- **Format:** 20 multiple-choice questions
+- **Passing Score:** 80% (16/20)
+- **Topics:** KV cache memory, cache quantization, context windows, speculative decoding
 - **Location:** [assessment/QUIZ.md](./assessment/QUIZ.md)
+
 ### Practice Exercises
 - **Format:** Advanced optimization projects
-- **Duration:** 6-8 hours
+- **Duration:** 3 hours
 - **Topics:**
   - Implement KV cache profiling
   - Build speculative decoding system
@@ -100,22 +105,21 @@ Before starting this module, ensure you have:
 ## Related Modules
 
 This module connects to:
-- **3100: Attention** (foundational attention mechanisms)
-- **3300: Decoding** (generation strategies)
-- **4100: Low-Bit Quantization** (cache quantization)
-- **6300: Context** (RAG context management)
+- **[3100: Attention Architectures](../../phase3-transformers/3100-attention/README.md)** (foundational attention mechanisms)
+- **[3300: The Decoding Block](../../phase3-transformers/3300-decoding/README.md)** (generation strategies)
+- **[4100: Low-Bit Quantization](../4100-low-bit/README.md)** (cache quantization)
+- **[6300: Context Management](../../phase6-rag/6300-context/README.md)** (RAG context management)
 
 ## Time Commitment
 
 | Activity | Time |
 |----------|------|
-| Reading (4201) | 3 hours |
-| Experiments (4201) | 3 hours |
-| Reading (4202) | 3 hours |
-| Experiments (4202) | 4 hours |
-| Guide (4203) | 2 hours |
-| Practice | 6-8 hours |
-| **Total** | **21-23 hours** |
+| [4201: Context Window Physics](./4201-Context-Window-Physics.md) | 4 hours |
+| [4202: Speculative Decoding](./4202-Speculative-Decoding.md) | 4 hours |
+| Guide ([4203](./guides/4203-Context-Window-Optimization.md)) | 6 hours |
+| Quiz | 30 minutes |
+| Practice | 3 hours |
+| **Total** | **17.5 hours** |
 
 ## Resources
 

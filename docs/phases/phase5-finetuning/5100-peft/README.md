@@ -1,7 +1,7 @@
 ---
 Document ID: 5100-PEFT-README
 Title: "5100: Parameter-Efficient Fine-Tuning (PEFT)"
-Last Updated: 2026-02-04
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Beginner
 Tags: ['module', 'finetuning', 'peft']
@@ -47,13 +47,13 @@ After completing this module, you will be able to:
 - Profile memory and speed
 
 ### [5102: QLoRA Pipelines](./5102-QLoRA-Pipelines.md)
-**4-bit Quantization + LoRA**
+**4-bit Fine-Tuning on Consumer Hardware**
 
 - QLoRA architecture and innovations
 - 4-bit NormalFloat (NF4) quantization
 - Double quantization and paged optimizers
 - Training quantized models
-- Hardware requirements and optimization
+- Merging QLoRA weights back into the base model
 
 **Experiments:**
 - Set up QLoRA training pipeline
@@ -61,36 +61,55 @@ After completing this module, you will be able to:
 - Compare QLoRA vs full fine-tuning
 - Optimize memory usage
 
-### 5104: LoRA Implementation Guide
-**End-to-End LoRA Workshop** (Guide)
+### [5103: Adapters](./5103-Adapters.md)
+**The Full PEFT Design Space Beyond LoRA**
 
-- Complete LoRA implementation walkthrough
-- Hugging Face PEFT library
-- Custom LoRA implementations
-- Advanced techniques (DoRA, IA3, AdapterFusion)
-- Production deployment strategies
+- Bottleneck adapters
+- Soft prompts: prompt and prefix tuning
+- IA³ activation scaling and Compacter
+- Adapter fusion
+- Method comparison and choosing a method
+
+**Experiments:**
+- Compare adapter architectures
+- Apply prompt/prefix tuning
+- Benchmark IA³ vs LoRA
+- Select a method for a task profile
+
+### 5104: LoRA Implementation Guide
+**LoRA Workshops: From Scratch to Multi-Adapter** (Guide)
+
+- LoRA architecture review
+- Implementation 1: LoRA from scratch
+- Implementation 2: LoRA with transformers
+- Implementation 3: QLoRA (4-bit LoRA)
+- Implementation 4: Multi-adapter LoRA
 
 **Guide:** [guides/5104-LoRA-Implementation-Guide.md](./guides/5104-LoRA-Implementation-Guide.md)
-- [5103: Adapters](./5103-Adapters.md)
 
 ## Prerequisites
 
 Before starting this module, ensure you have:
 
-- [ ] Module 2100: Calculus (gradient computation)
-- [ ] Module 2200: Frameworks (PyTorch proficiency)
-- [ ] Module 2400: Pretraining (training fundamentals)
-- [ ] Module 3100-3400: Transformer architectures
+- [ ] Module 2100: [Calculus for Deep Learning](../../phase2-foundations/2100-calculus/README.md) (gradient computation)
+- [ ] Module 2200: [Deep Learning Frameworks](../../phase2-foundations/2200-frameworks/README.md) (PyTorch proficiency)
+- [ ] Module 2400: [LLM Pretraining](../../phase2-foundations/2400-pretraining/README.md) (training fundamentals)
+- [ ] Modules 3100-3400: [Transformer Architectures](../../phase3-transformers/3400-architectures/README.md)
 - [ ] GPU with 12GB+ VRAM (for QLoRA)
 
 **Review:** [PREREQUISITES.md](./PREREQUISITES.md) for detailed requirements.
 
 ## Assessment
 
+### Quiz
+- **Format:** 20 multiple-choice questions
+- **Passing Score:** 80% (16/20)
+- **Topics:** LoRA theory, QLoRA pipelines, adapter methods
 - **Location:** [assessment/QUIZ.md](./assessment/QUIZ.md)
+
 ### Practice Exercises
 - **Format:** Complete fine-tuning projects
-- **Duration:** 8-12 hours
+- **Duration:** 8 hours
 - **Topics:**
   - Implement LoRA from scratch
   - Fine-tune models with QLoRA
@@ -101,22 +120,22 @@ Before starting this module, ensure you have:
 ## Related Modules
 
 This module connects to:
-- **4100: Low-Bit Quantization** (quantization fundamentals)
-- **5200: Alignment** (fine-tuning for alignment)
-- **6100: Vector Embeddings** (embedding adaptation)
-- **7200: Tools** (function calling with PEFT)
+- **[4100: Low-Bit Quantization](../../phase4-quantization/4100-low-bit/README.md)** (quantization fundamentals)
+- **[5200: LLM Alignment](../5200-alignment/README.md)** (fine-tuning for alignment)
+- **[6100: Vector Embeddings](../../phase6-rag/6100-vector/README.md)** (embedding adaptation)
+- **[7200: Tool Calling and Function Execution](../../phase7-agentic/7200-tools/README.md)** (function calling with PEFT)
 
 ## Time Commitment
 
 | Activity | Time |
 |----------|------|
-| Reading (5101) | 3 hours |
-| Experiments (5101) | 3 hours |
-| Reading (5102) | 3 hours |
-| Experiments (5102) | 4 hours |
-| Guide (5104) | 3 hours |
-| Practice | 8-12 hours |
-| **Total** | **24-28 hours** |
+| [5101: LoRA Logic](./5101-LoRA-Logic.md) | 5 hours |
+| [5102: QLoRA Pipelines](./5102-QLoRA-Pipelines.md) | 5 hours |
+| [5103: Adapters](./5103-Adapters.md) | 5 hours |
+| Guide ([5104](./guides/5104-LoRA-Implementation-Guide.md)) | 5 hours |
+| Quiz | 30 minutes |
+| Practice | 8 hours |
+| **Total** | **28.5 hours** |
 
 ## Resources
 

@@ -1,7 +1,7 @@
 ---
 Document ID: 4100-LOW-BIT-README
 Title: "4100: Low-Bit Quantization"
-Last Updated: 2026-02-04
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Beginner
 Tags: ['module', 'quantization', 'gguf']
@@ -32,13 +32,13 @@ After completing this module, you will be able to:
 ## Module Contents
 
 ### [4101: GGUF Physics](./4101-GGUF-Physics.md)
-**Understanding the GGUF Quantization Format**
+**GGUF File Format & CPU/GPU Hybrid Offloading**
 
 - GGUF format architecture and design
 - Quantization grid and block-wise quantization
-- Q2_K through Q6_K quantization methods
-- ggml and gguf ecosystem
-- Loading and running GGUF models
+- Legacy Q4_0/Q8_0, K-quant (Q2_K through Q6_K), and I-quant (IQ codebook + imatrix) families
+- Hybrid CPU/GPU offloading strategies
+- GGUF conversion and performance optimization
 
 **Experiments:**
 - Convert models to GGUF format
@@ -47,13 +47,13 @@ After completing this module, you will be able to:
 - Benchmark inference speed
 
 ### [4102: EXL2 and AWQ](./4102-EXL2-and-AWQ.md)
-**Modern Quantization Schemes**
+**EXL2, AWQ, and GPTQ — Extreme Quantization**
 
 - EXL2 format and mixed-precision quantization
 - AWQ (Activation-aware Weight Quantization)
-- GPTQ and GPTQ-like methods
+- GPTQ gradient-based quantization
 - Calibration dataset selection
-- Quantization parameter tuning
+- Format comparison and hardware fit
 
 **Experiments:**
 - Apply EXL2 quantization to models
@@ -62,13 +62,13 @@ After completing this module, you will be able to:
 - Optimize for specific hardware
 
 ### [4103: Double Quantization](./4103-Double-Quantization.md)
-**Nested Quantization for Extreme Compression**
+**Double Quantization & BitsAndBytes (bnb) Logic**
 
 - Double quantization theory and benefits
 - Quantizing quantization parameters
-- Impact on memory and speed
-- Quality degradation analysis
-- Practical implementation strategies
+- BitsAndBytes implementation details
+- Memory savings and quality impact
+- Training with quantized weights (bnb)
 
 **Experiments:**
 - Implement double quantization
@@ -80,8 +80,8 @@ After completing this module, you will be able to:
 
 Before starting this module, ensure you have:
 
-- [ ] Module 2100: Calculus (understanding precision and error)
-- [ ] Module 3100-3400: Transformer architectures
+- [ ] Module 2100: [Calculus for Deep Learning](../../phase2-foundations/2100-calculus/README.md) (understanding precision and error)
+- [ ] Modules 3100-3400: [Transformer Architectures](../../phase3-transformers/3400-architectures/README.md)
 - [ ] Python and NumPy proficiency
 - [ ] Basic understanding of floating-point representation
 - [ ] GPU access (for experimentation)
@@ -98,7 +98,7 @@ Before starting this module, ensure you have:
 
 ### Practice Exercises
 - **Format:** Hands-on quantization projects
-- **Duration:** 6-8 hours
+- **Duration:** 4 hours
 - **Topics:**
   - Convert models to GGUF format
   - Implement EXL2 quantization
@@ -118,15 +118,12 @@ This module connects to:
 
 | Activity | Time |
 |----------|------|
-| Reading (4101) | 3 hours |
-| Experiments (4101) | 3 hours |
-| Reading (4102) | 3 hours |
-| Experiments (4102) | 3 hours |
-| Reading (4103) | 2 hours |
-| Experiments (4103) | 2 hours |
+| [4101: GGUF Physics](./4101-GGUF-Physics.md) | 4 hours |
+| [4102: EXL2 and AWQ](./4102-EXL2-and-AWQ.md) | 4 hours |
+| [4103: Double Quantization](./4103-Double-Quantization.md) | 4 hours |
 | Quiz | 30 minutes |
-| Practice | 6-8 hours |
-| **Total** | **22-24 hours** |
+| Practice | 4 hours |
+| **Total** | **16.5 hours** |
 
 ## Resources
 

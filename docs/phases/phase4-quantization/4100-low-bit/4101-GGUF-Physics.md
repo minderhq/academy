@@ -3,7 +3,7 @@ Document ID: 4101
 Title: "4101: GGUF Physics - CPU/GPU Hybrid Offloading"
 Phase: 4
 Module: 4100
-Last Updated: 2026-09-30
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -18,7 +18,7 @@ Software: [llama.cpp, Python 3.13+]
 
 ## Abstract
 
-GGUF (GPT-Generated Unified Format) is a file format that enables running large language models on consumer hardware through advanced quantization and hybrid CPU/GPU offloading. This document covers the GGUF file format structure, quantization algorithms (Q4_0, Q4_K, Q5_K), layer offloading strategies, and performance optimization techniques for maximizing inference speed on limited VRAM.
+GGUF (GPT-Generated Unified Format) is a file format that enables running large language models on consumer hardware through advanced quantization and hybrid CPU/GPU offloading. This document covers the GGUF file format structure, the three quantization families — legacy formats (Q4_0, Q5_0, Q8_0), K-quants (Q4_K, Q5_K, Q6_K), and I-quants (the IQ codebook family with imatrix) — plus layer offloading strategies and performance optimization techniques for maximizing inference speed on limited VRAM.
 
 ---
 
@@ -65,6 +65,7 @@ GGUF enables running 7B-30B parameter models on consumer hardware by:
 After completing this document, you will:
 - ✅ Understand the GGUF file format structure
 - ✅ Implement Q4_0 and Q4_K quantization algorithms
+- ✅ Explain when I-quants (IQ formats + imatrix) beat K-quants below 4 bits per weight
 - ✅ Configure optimal CPU/GPU offloading strategies
 - ✅ Convert Hugging Face models to GGUF format
 - ✅ Optimize inference performance for your hardware
@@ -239,7 +240,53 @@ Weight ≈ d_scale[sub] × q4 + d_min[sub]
 > - `Q4_K_M` (medium) is the default recommendation for balanced size/quality
 > - `Q4_K_S` (small) when every 100 MB matters
 > - `Q6_K` when you have the VRAM — near-lossless for most models
+> - `IQ4_XS` (with an imatrix) when you need Q4_K_M-class quality in a slightly smaller file
 > - Legacy `Q4_0`/`Q5_0` remain for tool compatibility, not for quality
+
+### I-Quants: Codebook Quantization Below 4 bpw
+
+K-quants dominate at 4.5 bpw and above, but their linear scale-and-offset
+scheme loses fidelity as you cut bits further. **I-quants** (the llama.cpp
+`IQ` family) take a different route: instead of encoding each weight as a
+linear code, they map small groups of weights to entries in a fixed
+**codebook**, which can store shape information no linear format expresses.
+
+```text
+Linear (Q4_0 / Q4_K):  w ≈ d × q + m     (scale + offset per block)
+Codebook (IQ):         w ≈ CB[ i ]        (index into reference vectors)
+```
+
+**imatrix — the importance matrix.** Quantizing every weight equally wastes
+precision on weights that barely move the output. The `imatrix` tool runs
+calibration text through the model and records, per weight, how much its
+error influences activations. Quantization then weights the error by
+importance, spending fidelity where it matters:
+
+```bash
+# Produce the importance matrix, then quantize with it
+./llama-imatrix -m model-f16.gguf -f calibration.txt -o imatrix.gguf
+./llama-quantize --imatrix imatrix.gguf model-f16.gguf model-iq4_xs.gguf IQ4_XS
+```
+
+Common IQ formats and their bits-per-weight:
+
+| Format | bpw | Typical use |
+|--------|-----|-------------|
+| IQ1_S / IQ1_M | 1.5 / 1.75 | Extreme compression; large models on tiny VRAM, with heavy quality loss |
+| IQ2_XXS / IQ2_XS / IQ2_M | 2.06 / 2.31 / 2.70 | 2-bit territory where K-quants fall apart |
+| IQ3_XXS / IQ3_S | 3.06 / 3.44 | Low-3-bit fallback below Q3_K |
+| IQ4_XS | 4.25 | Q4_K_M-class quality roughly 0.25 bpw smaller |
+
+| Property | Legacy (Q4_0) | K-Quants (Q4_K) | I-Quants (IQ4_XS) |
+|----------|---------------|-----------------|-------------------|
+| Scheme | Linear, 1 scale per 32 | Linear, 8 scales per 256 | Non-linear codebook |
+| Best range | Tool compatibility | 4.5-8 bpw | 1.5-4.25 bpw |
+| imatrix support | Limited | Yes | Essential |
+| CPU speed | Fastest | Fast | Slower (codebook lookup) |
+
+> **📊 I-quant rule of thumb:** I-quants win on quality per byte below ~4 bpw,
+> but run slower on CPU (the codebook lookup) and fit CPU-bound hybrid
+> offloading worse than K-quants. At 4.5 bpw and above, K-quants stay the default.
 
 ---
 

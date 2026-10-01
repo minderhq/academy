@@ -1,7 +1,7 @@
 ---
 Document ID: 7500-SECURITY-README
 Title: "7500: AI Agent Security"
-Last Updated: 2026-02-04
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Beginner
 Tags: ['module', 'agents', 'security']
@@ -34,11 +34,11 @@ After completing this module, you will be able to:
 ### [7501: Prompt Injection Defense](./7501-Prompt-Injection-Defense.md)
 **Protecting Against Malicious Prompts**
 
-- Prompt injection techniques
-- Jailbreak detection and prevention
-- Input validation and sanitization
-- Output filtering and monitoring
-- Red teaming and testing
+- Prompt injection taxonomy
+- Attack vectors
+- Defense strategies and defense in depth
+- Testing
+- The security checklist
 
 **Experiments:**
 - Implement injection detector
@@ -49,11 +49,11 @@ After completing this module, you will be able to:
 ### [7502: PII Redaction](./7502-PII-Redaction.md)
 **Sensitive Information Protection**
 
-- PII types and identification
-- Named Entity Recognition (NER)
-- Redaction strategies
-- Compliance (GDPR, HIPAA)
-- Auditing and logging
+- PII categories
+- Detection
+- Redaction
+- Secure handling
+- Production deployment and testing
 
 **Experiments:**
 - Build PII detector
@@ -64,11 +64,11 @@ After completing this module, you will be able to:
 ### [7503: Adversarial Attacks](./7503-Adversarial-Attacks.md)
 **Understanding and Defending Against Attacks**
 
-- Attack types (jailbreak, DAN, roleplay)
-- Adversarial examples
-- Defense strategies
-- Robustness testing
-- Incident response
+- Attack types
+- Common attack methods
+- Defenses
+- Robustness evaluation
+- Production considerations
 
 **Experiments:**
 - Simulate adversarial attacks
@@ -80,9 +80,9 @@ After completing this module, you will be able to:
 
 Before starting this module, ensure you have:
 
-- [ ] Module 7100: Agent Architecture (agent design)
-- [ ] Module 7200: Tools (tool security)
-- [ ] Module 7400: Memory (data privacy)
+- [ ] Module 7100: [Agent Architecture](../7100-architecture/README.md) (agent design)
+- [ ] Module 7200: [Tool Calling and Function Execution](../7200-tools/README.md) (tool security)
+- [ ] Module 7400: [Agent Memory Systems](../7400-memory/README.md) (data privacy)
 - [ ] Python programming proficiency
 - [ ] Understanding of security basics
 
@@ -98,8 +98,8 @@ Before starting this module, ensure you have:
 
 ### Practice Exercises
 - **Format:** Security implementation projects
-- **Duration:** 8-10 hours
-| **Topics:**
+- **Duration:** 13 hours
+- **Topics:**
   - Build injection detector
   - Implement PII redaction
   - Create adversarial defenses
@@ -109,24 +109,21 @@ Before starting this module, ensure you have:
 ## Related Modules
 
 This module connects to:
-- **7100: Architecture** (secure agent design)
-- **7200: Tools** (tool security)
-- **7400: Memory** (data privacy)
-- **5200: Alignment** (safety alignment)
+- **[7100: Agent Architecture](../7100-architecture/README.md)** (secure agent design)
+- **[7200: Tool Calling and Function Execution](../7200-tools/README.md)** (tool security)
+- **[7400: Agent Memory Systems](../7400-memory/README.md)** (data privacy)
+- **[5200: LLM Alignment](../../phase5-finetuning/5200-alignment/README.md)** (safety alignment)
 
 ## Time Commitment
 
 | Activity | Time |
 |----------|------|
-| Reading (7501) | 3 hours |
-| Experiments (7501) | 3 hours |
-| Reading (7502) | 2 hours |
-| Experiments (7502) | 3 hours |
-| Reading (7503) | 3 hours |
-| Experiments (7503) | 3 hours |
+| [7501: Prompt Injection Defense](./7501-Prompt-Injection-Defense.md) | 3 hours |
+| [7502: PII Redaction](./7502-PII-Redaction.md) | 3 hours |
+| [7503: Adversarial Attacks](./7503-Adversarial-Attacks.md) | 3 hours |
 | Quiz | 30 minutes |
-| Practice | 8-10 hours |
-| **Total** | **25-27 hours** |
+| Practice | 13 hours |
+| **Total** | **22.5 hours** |
 
 ## Resources
 
@@ -250,7 +247,7 @@ Output Text
 
 **Phase 7 Complete!** 🎉
 
-**Previous Module:** [7400: Memory](../7400-memory/README.md)
+**Previous Module:** [7400: Agent Memory Systems](../7400-memory/README.md)
 
 **Questions?** Review the [PREREQUISITES.md](./PREREQUISITES.md) or check Phase 7 documentation.
 

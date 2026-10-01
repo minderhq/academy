@@ -1,7 +1,7 @@
 ---
 Document ID: 7200-TOOLS-README
 Title: "7200: Tool Calling and Function Execution"
-Last Updated: 2026-02-04
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Beginner
 Tags: ['module', 'agents', 'tool-calling']
@@ -34,11 +34,11 @@ After completing this module, you will be able to:
 ### [7201: Tool Calling](./7201-Tool-Calling.md)
 **Function Calling with LLMs**
 
-- Tool calling fundamentals
-- Function schemas and descriptions
-- OpenAI/Anthropic function calling
-- LangChain tool integration
-- Tool selection and routing
+- What tool calling is and why agents need it
+- The tool calling mechanism and tool types
+- OpenAI function calling
+- Best practices and advanced patterns
+- Tool calling security
 
 **Experiments:**
 - Implement tool calling from scratch
@@ -49,11 +49,10 @@ After completing this module, you will be able to:
 ### 7202: Code Interpreter
 **Safe Code Execution for Agents** (Guide)
 
-- Sandbox code execution
-- Python REPL environments
-- Error handling and debugging
-- File system access
-- Code execution best practices
+- Sandbox architecture
+- Resource management
+- Safe execution
+- Monitoring
 
 **Guide:** [guides/7202-Code-Interpreter.md](./guides/7202-Code-Interpreter.md)
 
@@ -61,8 +60,8 @@ After completing this module, you will be able to:
 
 Before starting this module, ensure you have:
 
-- [ ] Module 7100: Agent Architecture (ReAct loops)
-- [ ] Module 3100-3400: Transformer architectures
+- [ ] Module 7100: [Agent Architecture](../7100-architecture/README.md) (ReAct loops)
+- [ ] Modules 3100–3400: [Transformer Architectures](../../phase3-transformers/3400-architectures/README.md)
 - [ ] Python programming proficiency
 - [ ] API integration basics
 - [ ] Understanding of JSON schemas
@@ -71,10 +70,15 @@ Before starting this module, ensure you have:
 
 ## Assessment
 
+### Quiz
+- **Format:** 20 multiple-choice questions
+- **Passing Score:** 80% (16/20)
+- **Topics:** Tool calling, function execution, code interpreters
 - **Location:** [assessment/QUIZ.md](./assessment/QUIZ.md)
+
 ### Practice Exercises
 - **Format:** Tool implementation projects
-- **Duration:** 8-10 hours
+- **Duration:** 3 hours
 - **Topics:**
   - Build custom tools
   - Implement code interpreter
@@ -85,20 +89,20 @@ Before starting this module, ensure you have:
 ## Related Modules
 
 This module connects to:
-- **7100: Architecture** (agent loops)
-- **7300: Orchestration** (multi-agent workflows)
-- **7400: Memory** (tool results storage)
-- **7500: Security** (tool safety)
+- **[7100: Agent Architecture](../7100-architecture/README.md)** (agent loops)
+- **[7300: Multi-Agent Orchestration](../7300-orchestration/README.md)** (multi-agent workflows)
+- **[7400: Agent Memory Systems](../7400-memory/README.md)** (tool results storage)
+- **[7500: AI Agent Security](../7500-security/README.md)** (tool safety)
 
 ## Time Commitment
 
 | Activity | Time |
 |----------|------|
-| Reading (7201) | 3 hours |
-| Experiments (7201) | 4 hours |
-| Guide (7202) | 2 hours |
-| Practice | 8-10 hours |
-| **Total** | **17-19 hours** |
+| [7201: Tool Calling](./7201-Tool-Calling.md) | 3 hours |
+| Guide ([7202: Code Interpreter](./guides/7202-Code-Interpreter.md)) | 5 hours |
+| Quiz | 30 minutes |
+| Practice | 3 hours |
+| **Total** | **11.5 hours** |
 
 ## Resources
 
@@ -231,7 +235,7 @@ Continue or Finish
 
 ---
 
-**Next Module:** [7300: Orchestration](../7300-orchestration/README.md)
+**Next Module:** [7300: Multi-Agent Orchestration](../7300-orchestration/README.md)
 
 **Previous Module:** [7100: Agent Architecture](../7100-architecture/README.md)
 

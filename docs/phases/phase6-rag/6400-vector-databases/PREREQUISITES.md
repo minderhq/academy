@@ -1,7 +1,7 @@
 ---
 Document ID: 6400-PREREQUISITES
 Title: "6400: Vector Databases - Prerequisites"
-Last Updated: 2026-02-04
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Intermediate
 Tags: ['prerequisites', 'rag', 'vector-db']
@@ -9,9 +9,13 @@ Tags: ['prerequisites', 'rag', 'vector-db']
 
 # 6400: Vector Databases - Prerequisites
 
+**For:** [6401: Qdrant Setup](./6401-Qdrant-Setup.md)
+
+---
+
 ## Before You Start
 
-This module covers vector database design and optimization.
+This module covers production vector database deployment: hands-on Qdrant setup, a comparison of managed and self-hosted databases, and a production deployment guide.
 
 **Required Knowledge:**
 

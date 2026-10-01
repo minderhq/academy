@@ -1,7 +1,7 @@
 ---
 Document ID: 6500-PREREQUISITES
 Title: "6500: RAG MLOps - Prerequisites"
-Last Updated: 2026-02-04
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Intermediate
 Tags: ['prerequisites', 'mlops', 'model-registry']
@@ -9,9 +9,13 @@ Tags: ['prerequisites', 'mlops', 'model-registry']
 
 # 6500: RAG MLOps - Prerequisites
 
+**For:** [6501: ML Lifecycle Management](./6501-ML-Lifecycle-Management.md)
+
+---
+
 ## Before You Start
 
-This module covers MLOps specifically for RAG systems.
+This module covers MLOps specifically for RAG systems: lifecycle management, CI/CD, and model registries.
 
 **Required Knowledge:**
 

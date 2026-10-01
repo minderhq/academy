@@ -1,7 +1,7 @@
 ---
 Document ID: 1200-PREREQUISITES
 Title: "1200: Virtualization - Prerequisites"
-Last Updated: 2026-02-04
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Beginner
 Tags: ['prerequisites', 'infrastructure', 'virtualization']
@@ -9,9 +9,13 @@ Tags: ['prerequisites', 'infrastructure', 'virtualization']
 
 # 1200: Virtualization - Prerequisites
 
+**For:** [1201: Proxmox Hypervisor SOP](./1201-Proxmox-Hypervisor-SOP.md)
+
+---
+
 ## Before You Start
 
-This module covers virtualization technologies for ML infrastructure.
+This module covers virtualization and GPU passthrough for ML infrastructure, from hypervisor setup to LLM-ready VM preparation.
 
 **Required Knowledge:**
 

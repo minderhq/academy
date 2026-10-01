@@ -1,7 +1,7 @@
 ---
 Document ID: 1500-PREREQUISITES
 Title: "1500: Monitoring - Prerequisites"
-Last Updated: 2026-02-04
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Intermediate
 Tags: ['prerequisites', 'infrastructure', 'monitoring']
@@ -9,9 +9,13 @@ Tags: ['prerequisites', 'infrastructure', 'monitoring']
 
 # 1500: Monitoring - Prerequisites
 
+**For:** [1501: Monitoring and Observability](./1501-Monitoring-and-Observability.md)
+
+---
+
 ## Before You Start
 
-This module covers monitoring and observability for ML systems.
+This module covers monitoring and observability for LLM systems, from metrics and dashboards to alerting and drift detection.
 
 **Required Knowledge:**
 

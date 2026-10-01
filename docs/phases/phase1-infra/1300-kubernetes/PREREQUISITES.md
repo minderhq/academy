@@ -1,7 +1,7 @@
 ---
 Document ID: 1300-PREREQUISITES
 Title: "1300: Kubernetes - Prerequisites"
-Last Updated: 2026-02-04
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Intermediate
 Tags: ['prerequisites', 'infrastructure', 'kubernetes']
@@ -9,9 +9,13 @@ Tags: ['prerequisites', 'infrastructure', 'kubernetes']
 
 # 1300: Kubernetes - Prerequisites
 
+**For:** [1301: K3s Master-Worker Architecture](./1301-K3s-Master-Worker-Arch.md)
+
+---
+
 ## Before You Start
 
-This module covers Kubernetes for container orchestration.
+This module covers Kubernetes for LLM deployment, from K3s cluster setup to container orchestration for inference workloads.
 
 **Required Knowledge:**
 
