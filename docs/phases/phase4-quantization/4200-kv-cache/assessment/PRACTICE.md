@@ -176,9 +176,11 @@ class MultiQueryAttentionWithCache(nn.Module):
         if kv_cache is not None:
             k, v = kv_cache.update(k, v)
 
-        # Expand K, V to all heads
-        k = k.expand(-1, self.n_heads, -1, -1)
-        v = v.expand(-1, self.n_heads, -1, -1)
+        # Expand K, V to all heads; cast to the query dtype first - the cache
+        # returns float16 slices (KVCache's default dtype) and matmul raises
+        # a dtype mismatch when its operands disagree
+        k = k.expand(-1, self.n_heads, -1, -1).to(q.dtype)
+        v = v.expand(-1, self.n_heads, -1, -1).to(q.dtype)
 
         # Scaled dot-product attention
         scores = torch.matmul(q, k.transpose(-2, -1)) * self.scale

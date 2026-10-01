@@ -1042,6 +1042,14 @@ stand today?" without running each tool by hand.
                        discipline for the 43 family resources; born
                        from the tick-287 census (114/114 clean),
                        baseline 0 at birth
+    census_note_gate   every accepted census row carries its adjudication
+                       note (CN-01 empty or missing) and every note
+                       references an accepted row (CN-02 orphan) - makes
+                       the census _meta "must be adjudicated before
+                       fence_exec_gate runs" contract mechanical instead
+                       of a hand audit; born tick-544 after 3501@162's
+                       TIMEOUT row shipped with an empty note for many
+                       ticks, baseline 0/0 at birth
   queue gate (drain in progress; never fails the report unless --fail-on-queue):
     objectives_lint    template-objective artifacts (OL-01/OL-02), phase by phase
     fence_namecheck    unbound names in python fences (report mode), two
@@ -1344,6 +1352,7 @@ GATES = [
     ("label_variance_scan.py", "label_variance_scan", True),
     ("quiz_claim_scan.py", "quiz_claim_scan", True),
     ("fence_exec_gate.py", "fence_exec_gate", True),
+    ("census_note_gate.py", "census_note_gate", True),
 ]
 
 

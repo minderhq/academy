@@ -1798,14 +1798,9 @@
    "bad": {}
   },
   "docs/phases/phase4-quantization/4200-kv-cache/assessment/PRACTICE.md": {
-   "mtime": 1790767654.6100245,
-   "size": 13059,
-   "bad": {
-    "139": "CODE-SIGNAL:RuntimeError"
-   },
-   "notes": {
-    "139": "mixed-precision dtype trap (float vs Half matmul) in the KV-cache practice; intent verified in the precision-drain pass"
-   }
+   "mtime": 1790889365.3299544,
+   "size": 13257,
+   "bad": {}
   },
   "docs/phases/phase4-quantization/4200-kv-cache/guides/4203-Context-Window-Optimization.md": {
    "mtime": 1790771479.6563642,
