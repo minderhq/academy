@@ -108,7 +108,8 @@ zero_point = 0
 
 # During training, use fake quantized version
 weight_fake_q = fake_quantize(weight, scale, zero_point)
-output = input @ weight_fake_q.T  # Computation
+batch = torch.randn(4, 256)       # a batch of activation vectors
+output = batch @ weight_fake_q.T  # [4, 256] @ [256, 256].T = [4, 256]
 ```
 
 ### 2. Straight-Through Estimator (STE)
@@ -224,8 +225,14 @@ for epoch in range(num_epochs):
 ```python
 # Per-channel quantization (for weights)
 # amax (not max): max() only takes a single int dim, amax takes lists
-scale = weight.abs().amax(dim=[1, 2], keepdim=True) / 127
-# Shape: [out_channels, 1, 1] instead of scalar
+linear_w = torch.randn(128, 64)  # [out_features, in_features]
+scale = linear_w.abs().amax(dim=1, keepdim=True) / 127
+# Shape: [out_features, 1] - one scale per output channel, not a scalar
+
+# Conv weights are 4-D [out_c, in_c, kH, kW]: reduce over dims 1-3
+conv_w = torch.randn(64, 32, 3, 3)
+conv_scale = conv_w.abs().amax(dim=[1, 2, 3], keepdim=True) / 127
+# Shape: [out_channels, 1, 1, 1]
 ```
 
 ## Implementation Checklist

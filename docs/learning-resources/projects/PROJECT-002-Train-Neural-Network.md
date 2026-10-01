@@ -950,7 +950,8 @@ class TorchXORNet(torch_nn.Module):
 
 # Create data
 X_train = torch.randn(800, 2)
-y_train = (X_train[:, 0].xor(X_train[:, 1].long())).float().unsqueeze(1)
+# tensors expose no .xor - XOR the boolean sign masks with ^ instead
+y_train = ((X_train[:, 0] > 0) ^ (X_train[:, 1] > 0)).float().unsqueeze(1)
 
 train_dataset = TensorDataset(X_train, y_train)
 train_loader = TorchDataLoader(train_dataset, batch_size=32, shuffle=True)

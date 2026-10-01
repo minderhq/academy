@@ -388,7 +388,12 @@ special_tokens = {
 
 ### Adding Special Tokens
 ```python
+from transformers import AutoModelForCausalLM, AutoTokenizer
+
 # Add special tokens to tokenizer
+tokenizer = AutoTokenizer.from_pretrained("gpt2")
+model = AutoModelForCausalLM.from_pretrained("gpt2")
+old_vocab = len(tokenizer)
 tokenizer.add_special_tokens({
     'pad_token': '<pad>',
     'eos_token': '<eos>',
@@ -397,8 +402,10 @@ tokenizer.add_special_tokens({
     'mask_token': '<mask>',
 })
 
-# Resize model embeddings
+# Resize model embeddings to make room for the new tokens
 model.resize_token_embeddings(len(tokenizer))
+print(f"vocab {old_vocab} -> {len(tokenizer)}; "
+      f"embeddings {tuple(model.get_input_embeddings().weight.shape)}")
 ```
 
 ## Training Custom Tokenizer

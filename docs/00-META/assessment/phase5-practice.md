@@ -144,6 +144,7 @@ if __name__ == "__main__":
 
 ```python
 import torch
+import torch.nn.functional as F
 
 class DPOTrainer:
     """Direct Preference Optimization trainer"""
@@ -162,7 +163,7 @@ class DPOTrainer:
         ref_lograt = ref_chosen_logps - ref_rejected_logps
 
         # DPO loss
-        losses = -torch.logsigmoid(self.beta * (pi_lograt - ref_lograt))
+        losses = -F.logsigmoid(self.beta * (pi_lograt - ref_lograt))
 
         return losses.mean()
 

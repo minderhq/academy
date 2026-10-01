@@ -162,7 +162,7 @@ lora_config = LoraConfig(
     r=8,  # Rank - higher r = more parameters but better adaptation
     lora_alpha=32,  # Scaling factor (typically 2*r or r)
     lora_dropout=0.1,  # Dropout for LoRA layers (prevents overfitting)
-    target_modules=["q_proj", "k_proj", "v_proj", "o_proj"],  # Which modules to apply LoRA to
+    target_modules=["c_attn"],  # GPT-2 fuses q/k/v into ONE Conv1D named c_attn - target names must match the model's actual modules
     inference_mode=False,  # Training mode
     bias="none",  # Whether to train bias terms
 )
@@ -179,11 +179,11 @@ peft_model = get_peft_model(model, lora_config)
 peft_model.print_trainable_parameters()
 
 # Expected Output:
-# trainable params: 589,824 || all params: 124,439,808 || trainable%: 0.474
+# trainable params: 294,912 || all params: 124,734,720 || trainable%: 0.2364
 #
-# (4 attention projections x 12 layers x 2*768*8 LoRA params)
+# (1 fused projection x 12 layers x (8*768 + 2304*8) LoRA params)
 #
-# Then ~96 trainable-weight lines (12 layers x {q,k,v,o} x
+# Then 24 trainable-weight lines (12 layers x c_attn x
 # {lora_A, lora_B}), the large wrapped-model repr, and the
 # generation test - which returns base-gpt2-style text, since
 # fresh LoRA B matrices start at zero (adapter = identity at init)
@@ -220,7 +220,7 @@ print("Key Insights:")
 print("="*60)
 print("""
 1. LoRA reduces trainable parameters by 100-1000x
-2. Target modules (q_proj, k_proj, v_proj) are the attention projections
+2. Target modules are the model's real attention-projection names (GPT-2: c_attn; LLaMA-style: q/k/v/o_proj)
 3. Rank r controls the trade-off between efficiency and expressiveness
 4. Alpha controls the scaling of the LoRA update
 5. Dropout helps prevent overfitting on small datasets

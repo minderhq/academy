@@ -90,6 +90,7 @@ Avoid Reward Modeling when:
 ### Reward Model Training
 ```python
 import torch
+import torch.nn.functional as F
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
 from datasets import load_dataset
 
@@ -104,7 +105,8 @@ def to_pair(example):
 
 dataset = load_dataset(
     "argilla/ultrafeedback-binarized-preferences-cleaned", split="train"
-).map(to_pair).select(range(256))  # demo slice
+).map(to_pair).select(range(8))  # demo slice: one full optimizer step is all it
+# takes to see the loss mechanics end to end and stays laptop-friendly
 
 # 2. Load reward model (classification head)
 reward_model = AutoModelForSequenceClassification.from_pretrained(
@@ -113,6 +115,7 @@ reward_model = AutoModelForSequenceClassification.from_pretrained(
 )
 tokenizer = AutoTokenizer.from_pretrained("gpt2")
 tokenizer.pad_token = tokenizer.eos_token  # GPT-2 ships no pad token
+reward_model.config.pad_token_id = tokenizer.pad_token_id  # ...and its classification head refuses batched forward without it
 SEP = tokenizer.eos_token                 # ...and no sep token — use EOS
 
 # 3. Prepare data
@@ -123,8 +126,12 @@ def prepare_batch(batch):
     rejected_texts = [f"{p}{SEP}{r}"
                       for p, r in zip(batch["prompt"], batch["rejected"])]
 
-    chosen_inputs = tokenizer(chosen_texts, padding=True, return_tensors="pt")
-    rejected_inputs = tokenizer(rejected_texts, padding=True, return_tensors="pt")
+    # Truncate to GPT-2's 1024-position context: ultrafeedback prompts
+    # + responses overflow it, and wpe has no position 1024
+    chosen_inputs = tokenizer(chosen_texts, padding=True, truncation=True,
+                              max_length=1024, return_tensors="pt")
+    rejected_inputs = tokenizer(rejected_texts, padding=True, truncation=True,
+                                max_length=1024, return_tensors="pt")
 
     return {
         "chosen_input_ids": chosen_inputs["input_ids"],
@@ -141,12 +148,18 @@ def reward_model_loss(chosen_rewards, rejected_rewards):
     We want: R(chosen) > R(rejected)
     Loss: -log σ(R(chosen) - R(rejected))
     """
-    return -torch.logsigmoid(chosen_rewards - rejected_rewards).mean()
+    return -F.logsigmoid(chosen_rewards - rejected_rewards).mean()
 
 # 5. Training loop
+# prepare_batch expects BATCHED dicts (lists of strings) - iterate a
+# DataLoader, not the dataset itself: single examples would make
+# zip(prompt, chosen) pair up individual characters
+from torch.utils.data import DataLoader
+
+loader = DataLoader(dataset, batch_size=8)
 optimizer = torch.optim.AdamW(reward_model.parameters(), lr=1e-5)
 
-for batch in dataset:
+for batch in loader:
     data = prepare_batch(batch)
 
     # Forward pass
