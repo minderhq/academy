@@ -13,7 +13,7 @@ Tags: ['solution', 'multimodal', 'vision']
 
 Reference solution for the core of [LAB-011: Multi-Modal AI](../LAB-011-Multi-Modal-AI.md): CLIP retrieval and zero-shot classification, BLIP captioning, and a multi-modal RAG store that fuses text and image embeddings. Vision-language theory lives in [3501: Vision-Language Models](../../../phases/phase3-transformers/3500-multimodal/3501-Vision-Language-Models.md); the audio half of the lab in [3502: Audio Models](../../../phases/phase3-transformers/3500-multimodal/3502-Audio-Models.md).
 
-Two API notes that will save you debugging time: CLIP's raw features are **not normalized** — every similarity below normalizes explicitly first; and modern `qdrant-client` searches through `query_points` (`search`/`query_vector` are deprecated).
+Two API notes that will save you debugging time: CLIP's raw features are **not normalized** — every similarity below normalizes explicitly first; and modern `qdrant-client` searches through `query_points` (`search`/`query_vector` are deprecated). A third, new since transformers 5.x: `get_image_features`/`get_text_features` return a `BaseModelOutputWithPooling`, and the projected `(1, 512)` features live in its `.pooler_output` slot.
 
 ---
 
@@ -39,13 +39,13 @@ class MultiModalRetriever:
     def encode_image(self, image_path):
         image = Image.open(image_path).convert("RGB")
         inputs = self.processor(images=image, return_tensors="pt")
-        feats = self.model.get_image_features(**inputs)       # (1, 512), unnormalized
+        feats = self.model.get_image_features(**inputs).pooler_output  # (1, 512), unnormalized
         return F.normalize(feats, dim=-1)
 
     @torch.no_grad()
     def encode_text(self, text):
         inputs = self.processor(text=[text], return_tensors="pt")
-        feats = self.model.get_text_features(**inputs)        # (1, 512), unnormalized
+        feats = self.model.get_text_features(**inputs).pooler_output   # (1, 512), unnormalized
         return F.normalize(feats, dim=-1)
 
     def retrieve_images(self, query, image_paths, top_k=5):
@@ -64,7 +64,7 @@ class MultiModalRetriever:
         )
         with torch.no_grad():
             txt = F.normalize(
-                self.model.get_text_features(**inputs), dim=-1  # (C, 512)
+                self.model.get_text_features(**inputs).pooler_output, dim=-1  # (C, 512)
             )
         sims = (img @ txt.T).squeeze(0)                        # (C,)
         idx = sims.argmax().item()

@@ -501,8 +501,8 @@
       "bad": {}
     },
     "docs/learning-resources/labs/LAB-011-Multi-Modal-AI.md": {
-      "mtime": 1790784081.2737086,
-      "size": 40812,
+      "mtime": 1790885499.5584984,
+      "size": 40944,
       "bad": {
         "326": "CODE-SIGNAL:UnidentifiedImageError",
         "611": "CODE-SIGNAL:UnidentifiedImageError",
@@ -641,15 +641,15 @@
       }
     },
     "docs/learning-resources/labs/solutions/SOLUTION-LAB-011-Multi-Modal-AI.md": {
-      "mtime": 1790788811.2985837,
-      "size": 11164,
+      "mtime": 1790885495.384518,
+      "size": 11386,
       "bad": {
-        "76": "CODE-SIGNAL:AttributeError",
+        "76": "CODE-SIGNAL:FileNotFoundError",
         "115": "CODE-SIGNAL:FileNotFoundError"
       },
       "notes": {
-        "76": "transformers 5.x returns BaseModelOutputWithPooling; the solution pools via .norm() on the old shape - drain backlog",
-        "115": "demonstrates the API on a learner-supplied/generated artifact path that does not exist in the census cwd"
+        "115": "demonstrates the API on a learner-supplied/generated artifact path that does not exist in the census cwd",
+        "76": "placeholder-artifact path: the fence opens a sample image that only exists in the learner's own workspace (same family as @115); the transformers 5.x output-API bug that used to fail here is fixed - the CLIP calls now read .pooler_output and the fence's execution reaches the image open cleanly"
       }
     },
     "docs/learning-resources/labs/solutions/SOLUTION-LAB-012-Audio-AI.md": {
@@ -1092,8 +1092,8 @@
       }
     },
     "docs/learning-resources/tutorials/TUTORIAL-011-Multi-Modal-AI.md": {
-      "mtime": 1790788811.305806,
-      "size": 19964,
+      "mtime": 1790885504.8498907,
+      "size": 20110,
       "bad": {
         "66": "CODE-SIGNAL:FileNotFoundError",
         "120": "CODE-SIGNAL:FileNotFoundError",
@@ -1704,15 +1704,10 @@
       }
     },
     "docs/phases/phase3-transformers/3500-multimodal/3501-Vision-Language-Models.md": {
-      "mtime": 1790788811.3280108,
-      "size": 12048,
+      "mtime": 1790885505.5125935,
+      "size": 12138,
       "bad": {
-        "82": "CODE-SIGNAL:FileNotFoundError",
-        "162": "CODE-SIGNAL:RuntimeError"
-      },
-      "notes": {
-        "82": "demonstrates the API on a learner-supplied/generated artifact path that does not exist in the census cwd",
-        "162": "disk-bound family: writer hits the 2.3GB-free disk (os error 112 / channel closed); FLAKY_FAMILY with TIMEOUT"
+        "162": "TIMEOUT"
       }
     },
     "docs/phases/phase3-transformers/3500-multimodal/3502-Audio-Models.md": {
@@ -1733,14 +1728,9 @@
       "bad": {}
     },
     "docs/phases/phase3-transformers/3500-multimodal/assessment/PRACTICE.md": {
-      "mtime": 1790745763.7276905,
-      "size": 15151,
-      "bad": {
-        "19": "CODE-SIGNAL:AttributeError"
-      },
-      "notes": {
-        "19": "transformers 5.x returns BaseModelOutputWithPooling; the practice pools via .norm() on the old shape - drain backlog"
-      }
+      "mtime": 1790885490.703273,
+      "size": 15333,
+      "bad": {}
     },
     "docs/phases/phase3-transformers/README.md": {
       "mtime": 1790856817.5751991,

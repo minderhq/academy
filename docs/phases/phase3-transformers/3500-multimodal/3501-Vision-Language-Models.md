@@ -238,13 +238,13 @@ client = QdrantClient(url="http://localhost:6333")
 @torch.no_grad()
 def embed_image(image) -> list[float]:
     inputs = processor(images=image, return_tensors="pt")
-    feats = clip.get_image_features(**inputs)
+    feats = clip.get_image_features(**inputs).pooler_output  # transformers 5.x: projected features live in pooler_output
     return torch.nn.functional.normalize(feats, dim=-1)[0].tolist()
 
 @torch.no_grad()
 def embed_text(query: str) -> list[float]:
     inputs = processor(text=[query], return_tensors="pt", padding=True)
-    feats = clip.get_text_features(**inputs)
+    feats = clip.get_text_features(**inputs).pooler_output
     return torch.nn.functional.normalize(feats, dim=-1)[0].tolist()
 
 # index

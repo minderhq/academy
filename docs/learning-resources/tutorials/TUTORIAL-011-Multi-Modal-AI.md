@@ -295,7 +295,7 @@ class MultiModalRetriever:
         inputs = self.clip_processor(text=[query], return_tensors="pt", padding=True)
 
         with torch.no_grad():
-            outputs = self.clip_model.get_text_features(**inputs)
+            outputs = self.clip_model.get_text_features(**inputs).pooler_output  # transformers 5.x: projected features live in pooler_output
             query_emb = outputs.cpu()
 
         # Calculate similarities
@@ -318,7 +318,7 @@ class MultiModalRetriever:
         inputs = self.clip_processor(images=image, return_tensors="pt")
 
         with torch.no_grad():
-            outputs = self.clip_model.get_image_features(**inputs)
+            outputs = self.clip_model.get_image_features(**inputs).pooler_output
             query_emb = outputs.cpu()
 
         # Calculate similarities
@@ -574,13 +574,13 @@ class MultiModalRAG:
                 inputs = self.processor(images=image, return_tensors="pt")
 
                 with torch.no_grad():
-                    emb = self.clip.get_image_features(**inputs)
+                    emb = self.clip.get_image_features(**inputs).pooler_output
 
             else:
                 inputs = self.processor(text=doc["text"], return_tensors="pt")
 
                 with torch.no_grad():
-                    emb = self.clip.get_text_features(**inputs)
+                    emb = self.clip.get_text_features(**inputs).pooler_output
 
             points.append(
                 PointStruct(
@@ -600,7 +600,7 @@ class MultiModalRAG:
         inputs = self.processor(text=[query], return_tensors="pt")
 
         with torch.no_grad():
-            query_emb = self.clip.get_text_features(**inputs)
+            query_emb = self.clip.get_text_features(**inputs).pooler_output
 
         # query_points replaces client.search, deprecated since
         # qdrant-client 1.10 - it returns a QueryResponse whose
@@ -620,7 +620,7 @@ class MultiModalRAG:
         inputs = self.processor(images=image, return_tensors="pt")
 
         with torch.no_grad():
-            query_emb = self.clip.get_image_features(**inputs)
+            query_emb = self.clip.get_image_features(**inputs).pooler_output
 
         results = self.client.query_points(
             collection_name="multimodal",

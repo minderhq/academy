@@ -37,10 +37,11 @@ texts = ["a cat", "a dog", "a bird", "a car", "two cats sleeping"]
 # Process inputs
 inputs = processor(text=texts, images=image, return_tensors="pt", padding=True)
 
-# Get embeddings
+# Get embeddings (transformers 5.x: get_*_features returns BaseModelOutputWithPooling -
+# the projected features live in its pooler_output slot, not on the output itself)
 with torch.no_grad():
-    image_features = model.get_image_features(inputs.pixel_values)
-    text_features = model.get_text_features(inputs.input_ids, inputs.attention_mask)
+    image_features = model.get_image_features(inputs.pixel_values).pooler_output
+    text_features = model.get_text_features(inputs.input_ids, inputs.attention_mask).pooler_output
 
 # Normalize features
 image_features = image_features / image_features.norm(dim=-1, keepdim=True)

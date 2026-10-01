@@ -360,14 +360,14 @@ class CLIPWrapper:
         """Encode image to embedding vector"""
         inputs = self.processor(images=image, return_tensors="pt").to(self.device)
         with torch.no_grad():
-            image_features = self.model.get_image_features(**inputs)
+            image_features = self.model.get_image_features(**inputs).pooler_output  # transformers 5.x: projected features live in pooler_output
         return image_features
 
     def encode_text(self, text: str) -> torch.Tensor:
         """Encode text to embedding vector"""
         inputs = self.processor(text=[text], return_tensors="pt", padding=True).to(self.device)
         with torch.no_grad():
-            text_features = self.model.get_text_features(**inputs)
+            text_features = self.model.get_text_features(**inputs).pooler_output
         return text_features
 
     def zero_shot_classification(
@@ -400,8 +400,8 @@ class CLIPWrapper:
 
         # Get features
         with torch.no_grad():
-            image_features = self.model.get_image_features(inputs["pixel_values"])
-            text_features = self.model.get_text_features(inputs["input_ids"], inputs["attention_mask"])
+            image_features = self.model.get_image_features(inputs["pixel_values"]).pooler_output
+            text_features = self.model.get_text_features(inputs["input_ids"], inputs["attention_mask"]).pooler_output
 
         # Calculate similarity
         similarity = (image_features @ text_features.T).squeeze(0)
@@ -542,7 +542,7 @@ class MultiLabelClassifier:
             text_features = self.clip.model.get_text_features(
                 inputs["input_ids"],
                 inputs["attention_mask"]
-            )
+            ).pooler_output
 
         # Calculate similarities
         similarities = (image_features @ text_features.T).squeeze(0)
