@@ -470,7 +470,7 @@ rag_chain = (
 
 ```python
 from langchain_core.tools import tool
-# Agent with RAG tools
+from langchain_core.language_models.fake_chat_models import FakeListChatModel
 @tool
 def search_docs(query: str) -> str:
     """Search internal documents."""
@@ -488,7 +488,7 @@ def query_db(query: str) -> str:
 
 tools = [search_docs, search_web, query_db]
 
-agent = create_agent(tools=tools)
+agent = create_agent(FakeListChatModel(responses=["done"]), tools=tools)  # FakeListChatModel is an offline stand-in; model is create_agent's required first argument - swap in a real chat model in your own environment
 
 # Agent intelligently chooses which tool to use
 ```

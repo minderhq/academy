@@ -77,7 +77,7 @@ def test_cosine_similarity():
     print(f"Similarity (vec1, vec3): {cosine_similarity(vec1, vec3):.4f}")
 
 if __name__ == "__main__":
-    test_cosine_similarity()
+    pass  # implement cosine_similarity above first, then call test_cosine_similarity() here
 ```
 
 ### Success Criteria

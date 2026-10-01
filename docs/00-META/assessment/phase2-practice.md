@@ -275,7 +275,7 @@ class AutogradTensor:
                                 requires_grad=self.requires_grad)
 
         def backward_grad(grad):
-            return torch.ones_like(self.data) * grad
+            return (torch.ones_like(self.data) * grad,)  # one-element tuple: zip(inputs, grads) contract
 
         result._backward_fn = (backward_grad, [self])
         return result
@@ -287,7 +287,7 @@ class AutogradTensor:
                                 requires_grad=self.requires_grad)
 
         def backward_grad(grad):
-            return grad * mask.float()
+            return (grad * mask.float(),)  # one-element tuple: zip(inputs, grads) contract
 
         result._backward_fn = (backward_grad, [self])
         return result
@@ -336,8 +336,8 @@ def test_autograd():
 
     # Verify gradients: d(sum(A @ B))/dA = ones @ B^T (every row of dA is a
     # row-sum of B); dB = A^T @ ones (every column of dB is a column-sum of A)
-    expected_dA = B.data.sum(dim=1, keepdim=True).expand(2, 2)
-    expected_dB = A.data.sum(dim=0, keepdim=True).expand(2, 2)
+    expected_dA = B.data.sum(dim=1).unsqueeze(0).expand(2, 2)  # (2,) row-sums -> each row of dA: [11, 15]
+    expected_dB = A.data.sum(dim=0).unsqueeze(1).expand(2, 2)  # (2,) col-sums -> each col of dB: [4, 6]
     assert torch.allclose(A.grad, expected_dA)
     assert torch.allclose(B.grad, expected_dB)
     print("   ✅ PASS\n")
@@ -361,8 +361,8 @@ def test_autograd():
     x = AutogradTensor([2.0], requires_grad=True)
     y = AutogradTensor([3.0], requires_grad=True)
 
-    # f(x,y) = (x + y) * (x - y)
-    z = (x + y) * (x - y)
+    # f(x,y) = (x + y) * (x - y) (subtraction spelled via __add__/__mul__: no __sub__)
+    z = (x + y) * (x + (y * -1.0))
     z.backward()
 
     # df/dx = (x - y) + (x + y) = 2x = 4
