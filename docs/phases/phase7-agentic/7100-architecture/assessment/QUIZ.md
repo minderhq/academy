@@ -1,7 +1,7 @@
 ---
 Document ID: 7100-QUIZ
 Title: "7100: Agent Architecture - Quiz"
-Last Updated: 2026-09-29
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 30 minutes
@@ -187,3 +187,18 @@ D) Not possible, because agent behavior is claimed too stochastic for any repeat
 | 18 | B | Robustness means handling errors gracefully, not crashing |
 | 19 | A | Safety gates are critical before production traffic |
 | 20 | B | Benchmarks score agents on standard repeatable tasks |
+
+---
+
+## Need to Review?
+
+Each question maps to the closest lesson for review:
+
+- **Questions 1-2, 5, 8, 10, 17-18:** [7101: ReAct Loop System](../7101-ReAct-Loop-System.md) — the Reasoning + Acting pattern with its Thought → Action → Observation loop, the state management that carries goals and tool results across iterations, the Thought steps reviewing each observation, RobustReActAgent's retry-on-failure execution, and the autonomous step-choosing that separates an agent from a fixed chain; named reflection and self-correction patterns are taught nowhere in the curriculum, so Q5 and Q8 lean on the loop's review-and-retry mechanics
+- **Questions 3, 9, 11, 16:** [7201: Tool Calling & Function Execution](../../7200-tools/7201-Tool-Calling.md) — tools connecting agents to external systems, explicit parameter schemas with a ToolRegistry that generates API schemas from registrations, and the structured response formats behind a call; capability-specific training for function calling and constrained or grammar-based generation are taught nowhere in the curriculum, so Q11 and Q16 lean on the schema discipline
+- **Question 4:** [7401: Long-term Memory for Agents](../../7400-memory/7401-Long-term-Memory.md) — working memory as the short-term session context window sitting beside the long-term stores
+- **Questions 6, 13:** [7301: Collaborative Tasking - Multi-Agent Synergy](../../7300-orchestration/7301-Orchestration.md) — specialized agents collaborating toward shared goals, with hierarchical versus peer-to-peer coordination chosen by task coupling
+- **Question 7:** [7102: Planning and Task Decomposition](../7102-Planning-Decomposition.md) — LLM-backed sequential and hierarchical decomposition with max_depth-bounded recursion into ordered step lists
+- **Questions 12, 15, 20:** [1503: LLM Observability](../../../phase1-infra/1500-monitoring/1503-LLM-Observability.md) — latency, token and cost metrics with quality heuristics that flag candidate hallucinations from uncertainty, citation and implausible-number indicators, cross-phase from this module's architecture lessons; agent-specific evaluation suites and standard benchmark batteries are taught nowhere in the curriculum, so Q12 and Q20 lean on the observability measurement discipline
+- **Question 14:** [7302: Multi-Agent Communication Protocols](../../7300-orchestration/7302-Communication-Protocols.md) — typed message schemas and envelopes with correlation IDs as the channel between agent nodes
+- **Question 19:** [7503: Adversarial Attacks & Defense](../../7500-security/7503-Adversarial-Attacks.md) — the production deployment posture of detection, quarantine and human review behind calibrated gates

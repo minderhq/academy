@@ -1,7 +1,7 @@
 ---
 Document ID: 6300-QUIZ
 Title: "6300: Context Window Management - Quiz"
-Last Updated: 2026-09-29
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 30 minutes
@@ -187,3 +187,14 @@ D) Be everything
 | 18 | B | Dynamic context adapts its size to the input |
 | 19 | B | Accuracy gains from context show diminishing returns |
 | 20 | B | RAG prompts stay relevant and concise |
+
+---
+
+## Need to Review?
+
+Each question maps to the closest lesson for review:
+
+- **Questions 1-2, 4-5, 9:** [4201: Context Window Physics and OOM Prevention](../../../phase4-quantization/4200-kv-cache/4201-Context-Window-Physics.md) — the window-reach-versus-memory trade, the KV cache that holds keys and values for the tokens so far, SlidingWindowKVCache's constant recent-token window, and the eviction and interpolation schemes behind overflow
+- **Questions 3, 10-15, 18-20:** [6302: CAG - Context Augmented Generation and Long Context Architectures](../6302-CAG-Long-Context-Architectures.md) — extractive compression that keeps the highest-information sentences, query-relevance pruning and dynamic context sizing, chunking long documents, the lost-in-the-middle ordering effect with its reorder fix, and the 2026 model-window table around 128k+; accuracy's diminishing returns with window size is stated nowhere in the curriculum, so Q19 leans on the lesson's context-curation teaching
+- **Question 6:** [5301: Knowledge Distillation - Training Small Models Using Big Model Outputs](../../../phase5-finetuning/5300-synthetic/5301-Knowledge-Distillation.md) — the distillation family's compress-into-a-smaller-form pattern; context distillation itself is taught nowhere in the curriculum
+- **Questions 7-8, 16-17:** [3201: Rotary Positional Embeddings (RoPE)](../../../phase3-transformers/3200-embeddings/3201-Rotary-Positional-Embeddings-RoPE.md) — rotary encoding and its extension ladder of position interpolation and NTK-aware YaRN base scaling; LongLoRA and ring attention are taught nowhere in the curriculum, so Q7-Q8 lean on the closest context-extension methods

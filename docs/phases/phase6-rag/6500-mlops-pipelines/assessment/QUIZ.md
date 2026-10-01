@@ -1,7 +1,7 @@
 ---
 Document ID: 6500-QUIZ
 Title: "6500: RAG MLOps - Quiz"
-Last Updated: 2026-09-29
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 30 minutes
@@ -187,3 +187,19 @@ D) Only versioning
 | 18 | B | Context relevance is measurable with graded datasets and judges |
 | 19 | B | Embeddings refresh when documents change, not on a fixed clock |
 | 20 | B | Production RAG demands monitoring, versioning and testing together |
+
+---
+
+## Need to Review?
+
+Each question maps to the closest lesson for review:
+
+- **Question 1:** [6304: GraphRAG Implementation](../../6300-context/guides/6304-GraphRAG-Implementation.md) — the four-stage pipeline (ingestion → query processing → context building → generation) assembled end to end, the closest thing the curriculum has to a full RAG pipeline walkthrough
+- **Questions 2, 5, 19:** [6503: Model Registry](../6503-Model-Registry.md) — the registry's identity-lineage-promotion model with version strategy, aliases and one-auditable-write rollback, which is how a refreshed embedding model would ship; the re-embedding policy for a changing corpus is taught nowhere in the curriculum, so Q2 and Q19 lean on versioning the new artifact
+- **Questions 3, 6, 17, 20:** [6501: ML Model Lifecycle Management](../6501-ML-Lifecycle-Management.md) — the five-stage lifecycle's gated transitions, Stage-4 symptom alerting on live traffic (latency, errors, accuracy) with Prometheus metrics, and McNemar's challenger-vs-champion decision; formal A/B testing and human evaluation are taught nowhere in the curriculum, so Q6 and Q17 lean on the paired-comparison discipline as their closest analog
+- **Question 4:** [6202: Re-ranking and Retrieval Logistics](../../6200-retrieval/6202-Re-ranking-and-Retrieval-Logistics.md) — the two-stage pipeline where the fast retriever over-fetches and the slower cross-encoder re-scores, the quality-for-latency trade reranking makes in production
+- **Questions 7-8, 11-12, 18:** [1503: LLM Observability](../../../phase1-infra/1500-monitoring/1503-LLM-Observability.md) — TTFT, TPOT and end-to-end latency histograms, token counters and cost gauges with the prompt/output-limit/model-selection levers, and relevance, repetition and safety quality heuristics, cross-phase from this module's lifecycle lessons; explicit response caching is taught nowhere in the curriculum, so Q8 leans on those prompt-side levers
+- **Questions 9-10, 16:** [6403: Qdrant Production Deployment](../../6400-vector-databases/guides/6403-Qdrant-Production-Deployment.md) — the snapshot backup-and-restore scripts, capacity tiers that trigger sharding/replication for HA, and resource allocation for the retrieval store; generation-stage scaling is taught nowhere in the curriculum
+- **Question 13:** [6302: CAG - Context Augmented Generation and Long Context Architectures](../../6300-context/6302-CAG-Long-Context-Architectures.md) — chunking long documents with overlap, which shapes what retrieval can find and how well it matches
+- **Question 14:** [6502: CI/CD for Machine Learning](../6502-CI-CD-for-ML.md) — GitHub Actions workflows triggered on model-relevant paths with needs-chained jobs, while MLflow's tracking role appears in 6501's development-stage sketch and 6503's integration section
+- **Question 15:** [2301: Framework Design Patterns](../../../phase2-foundations/2300-framework-engineering/2301-Framework-Design-Patterns.md) — the graceful-degradation pattern that keeps partial value when a stage fails, cross-phase from this module's MLOps lessons
