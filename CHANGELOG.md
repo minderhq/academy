@@ -32,10 +32,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   by-design-hang / learner-artifact note
 
 ### Added - Quality Infrastructure Growth
-- **91 hard QA gates (total 97)**: census_note_gate (CN-01/02) makes
+- **92 hard QA gates (total 98)**: census_note_gate (CN-01/02) makes
   the execution census's must-be-adjudicated contract mechanical;
   meta_claims_check now locks this changelog's newest gate-count claim
-  to quality_report.GATES itself
+  to quality_report.GATES itself, and notebook_unfinished_scan
+  (NU-01/02) extends the unfinished-marker lock to the .ipynb universe
+  the .md-only extraction cannot see - 108 `# TODO:` exercise prompts
+  stay legitimate, notebook prose obeys the same rule as file prose
 - **lesson_similarity_scan** (report tool): 5-word-shingle Jaccard
   over all 6441 lesson pairs - born at zero clone findings with a max
   similarity of 0.058, lesson diversity under continuous lock

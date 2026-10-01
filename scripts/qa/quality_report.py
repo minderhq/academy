@@ -971,6 +971,20 @@ stand today?" without running each tool by hand.
                        matches, every one in a legitimate class) that
                        turned the census into a permanent lock at
                        baseline 0
+    notebook_unfinished_scan
+                       the same unfinished-content marker vocabulary
+                       over the .ipynb universe UM-01 structurally
+                       cannot see (NU-01 markdown-cell prose with the
+                       same inline-code scrub; NU-02 a marker in a
+                       code cell at a non-comment position - markers
+                       inside "#" comment segments stay invisible by
+                       design, the notebooks/README.md "# TODO:"
+                       exercise-prompt convention the corpus carries
+                       108 of across all 20 notebooks); born tick-550
+                       born-at-zero: 109 raw marker-shaped hits, 108
+                       in the legitimate comment-prompt class and the
+                       one remaining hit NB-703's prompt-injection
+                       test string, matched by no rule
     empty_section_scan every heading must own content (ES-01): a
                        section is empty iff nothing but blanks/HRs/
                        blockquotes/HTML-comments sits between its
@@ -1353,6 +1367,7 @@ GATES = [
     ("quiz_claim_scan.py", "quiz_claim_scan", True),
     ("fence_exec_gate.py", "fence_exec_gate", True),
     ("census_note_gate.py", "census_note_gate", True),
+    ("notebook_unfinished_scan.py", "notebook_unfinished_scan", True),
 ]
 
 
