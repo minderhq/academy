@@ -1,7 +1,7 @@
 ---
 Document ID: 6100-QUIZ
 Title: "6100: Vector Embeddings - Quiz"
-Last Updated: 2026-09-29
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 30 minutes
@@ -187,3 +187,15 @@ D) Use cross-attention, which is precisely the cross-encoder design these models
 | 18 | B | Long docs are chunked and embedded chunk by chunk |
 | 19 | B | Query and document must share one embedding model |
 | 20 | A | Bi-encoders encode query and document separately |
+
+---
+
+## Need to Review?
+
+Each question maps to the closest lesson for review:
+
+- **Questions 1-4, 6-9, 11, 13, 16-17:** [6102: Semantic Similarity Metrics](../6102-Semantic-Similarity.md) — text as dense numeric vectors, the word-embedding tradition (Word2Vec, GloVe), cosine similarity's angle geometry, normalization onto the unit sphere, and what semantic similarity measures; the contextual-vs-static distinction, typical dimension ranges, mean pooling, matryoshka truncation, MTEB and multilingual embedding spaces are taught nowhere in the curriculum, so these lean on the closest embedding teaching
+- **Questions 5, 12, 19-20:** [6202: Re-ranking and Retrieval Logistics](../../6200-retrieval/6202-Re-ranking-and-Retrieval-Logistics.md) — the bi-encoder-versus-cross-encoder scoring split, ColBERT's late-interaction MaxSim, and the bi-encoder pattern that encodes queries and documents for scoring; the Sentence-BERT name itself appears in no lesson
+- **Questions 10, 15:** [6203: Advanced Retrieval Techniques](../../6200-retrieval/6203-Advanced-Retrieval.md) — BGE as the open-source embedding model family and domain-adaptation fine-tuning of the embedding model on query→relevant-document pairs
+- **Question 14:** [3501: Vision-Language Models](../../../phase3-transformers/3500-multimodal/3501-Vision-Language-Models.md) — CLIP's contrastive objective training image and text into one shared embedding space, cross-phase from this module's vector lessons
+- **Question 18:** [6302: CAG - Context Augmented Generation and Long Context Architectures](../../6300-context/6302-CAG-Long-Context-Architectures.md) — chunking long documents with overlap as the practical answer to embedding them

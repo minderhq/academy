@@ -1,7 +1,7 @@
 ---
 Document ID: 5500-QUIZ
 Title: "5500: Advanced Optimization - Quiz"
-Last Updated: 2026-09-29
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 30 minutes
@@ -187,3 +187,13 @@ D) Random
 | 18 | B | Warmup commonly spans 1-10% of total training |
 | 19 | A | Gradient-norm clip value 1.0 is the standard |
 | 20 | D | Random is not a schedule - real ones are deterministic curves |
+
+---
+
+## Need to Review?
+
+Each question maps to the closest lesson for review:
+
+- **Questions 1-2, 6, 8-9, 11-13, 15-17:** [5501: Optimizer Variants](../5501-Optimizer-Variants.md) — AdamW's decoupled decay and its L2 distinction, Adafactor's factorized second moments for very large models, the beta/eps hyperparameters, and the 8-bit optimizer-state variants around the lr=1e-4 fine-tuning default
+- **Questions 3-4, 7, 10, 14, 18, 20:** [5502: Learning Rate Scheduling](../5502-Learning-Rate-Scheduling.md) — warmup past early instability, the high-early/low-late arc, cosine and polynomial decay curves, and the schedule catalog's when-to-use notes
+- **Questions 5, 19:** [5503: Advanced Optimization Techniques](../5503-Advanced-Techniques.md) — the stability section's norm/value/adaptive clipping split against exploding gradients

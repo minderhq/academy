@@ -1,7 +1,7 @@
 ---
 Document ID: 6200-QUIZ
 Title: "6200: Retrieval - Quiz"
-Last Updated: 2026-09-29
+Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 30 minutes
@@ -187,3 +187,15 @@ D) No effect
 | 18 | B | RAG output quality is bounded by retrieval quality |
 | 19 | B | The context window caps how much retrieved text fits |
 | 20 | B | Fusion helps when tuned - not a guaranteed win |
+
+---
+
+## Need to Review?
+
+Each question maps to the closest lesson for review:
+
+- **Questions 1-5, 11, 14-17, 20:** [6201: Hybrid Search - Combining Keyword and Semantic Search](../6201-Hybrid-Search.md) — BM25's TF-saturation and IDF ranking with lexical matching, the dense-vs-sparse retrieval split, semantic vector search, score-level α blending and rank-based Reciprocal Rank Fusion with the choose-by-failure-mode tuning; document boosting itself is taught nowhere in the curriculum, so Q17 leans on the lesson's weighted-score fusion
+- **Questions 6, 12-13:** [6101: HNSW Indexing - Efficient Semantic Search at Scale](../../6100-vector/6101-HNSW-Indexing.md) — the graph index itself, brute-force versus ANN's bounded-recall speed trade, and IVF's clustered partitions as the sibling ANN method
+- **Questions 7-9, 18:** [6202: Re-ranking and Retrieval Logistics](../6202-Re-ranking-and-Retrieval-Logistics.md) — the two-stage pipeline where a fast retriever over-fetches and a slower cross-encoder re-scores into the top-k the generator actually sees; MMR's relevance-redundancy diversification is taught nowhere in the curriculum, so Q9 leans on the reranking stage it extends
+- **Question 10:** [6203: Advanced Retrieval Techniques](../6203-Advanced-Retrieval.md) — query expansion via pseudo-relevance feedback and multi-query paraphrase to lift recall
+- **Question 19:** [6302: CAG - Context Augmented Generation and Long Context Architectures](../../6300-context/6302-CAG-Long-Context-Architectures.md) — the context window as prompt budget that caps how much retrieved text fits
