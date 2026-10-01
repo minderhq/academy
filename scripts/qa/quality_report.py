@@ -1343,6 +1343,7 @@ GATES = [
     ("pitfall_shape_scan.py", "pitfall_shape_scan", True),
     ("label_variance_scan.py", "label_variance_scan", True),
     ("quiz_claim_scan.py", "quiz_claim_scan", True),
+    ("fence_exec_gate.py", "fence_exec_gate", True),
 ]
 
 
