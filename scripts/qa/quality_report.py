@@ -998,6 +998,16 @@ stand today?" without running each tool by hand.
                        basename); the content-drift class link
                        checks cannot see, born tick-551 at 20/20
                        rows and 0 findings
+    changelog_summary_check
+                       the changelog's three release surfaces stay
+                       synchronized (CS-01/02 every "## [X.Y.Z]"
+                       section has a Version Summary row and every
+                       row a section, CS-03 date parity, CS-04 the
+                       bracketed reference-link definition exists,
+                       CS-05 order parity); born tick-552 at the
+                       maximal finding - 1.3.0 carried none of its
+                       own index surfaces while 1.2.0/1.1.0/1.0.0
+                       did, drained in the same tick
     empty_section_scan every heading must own content (ES-01): a
                        section is empty iff nothing but blanks/HRs/
                        blockquotes/HTML-comments sits between its
@@ -1382,6 +1392,7 @@ GATES = [
     ("census_note_gate.py", "census_note_gate", True),
     ("notebook_unfinished_scan.py", "notebook_unfinished_scan", True),
     ("notebook_catalog_check.py", "notebook_catalog_check", True),
+    ("changelog_summary_check.py", "changelog_summary_check", True),
 ]
 
 

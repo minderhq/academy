@@ -32,7 +32,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   by-design-hang / learner-artifact note
 
 ### Added - Quality Infrastructure Growth
-- **93 hard QA gates (total 99)**: census_note_gate (CN-01/02) makes
+- **94 hard QA gates (total 100)**: census_note_gate (CN-01/02) makes
   the execution census's must-be-adjudicated contract mechanical;
   meta_claims_check now locks this changelog's newest gate-count claim
   to quality_report.GATES itself, notebook_unfinished_scan
@@ -40,7 +40,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   the .md-only extraction cannot see - 108 `# TODO:` exercise prompts
   stay legitimate, notebook prose obeys the same rule as file prose -
   and notebook_catalog_check (NC-01/02) locks the two-table notebook
-  catalog (README index vs MASTER-INDEX) against content drift
+  catalog (README index vs MASTER-INDEX) against content drift, and changelog_summary_check (CS-01..05) keeps the changelog's own release index (sections vs Version Summary table vs reference-link definitions) synchronized
 - **lesson_similarity_scan** (report tool): 5-word-shingle Jaccard
   over all 6441 lesson pairs - born at zero clone findings with a max
   similarity of 0.058, lesson diversity under continuous lock
@@ -191,6 +191,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Infrastructure specifications
 - Experiment templates
 
+[1.3.0]: https://github.com/your-org/project-omega/releases/tag/v1.3.0
 [1.1.0]: https://github.com/your-org/project-omega/releases/tag/v1.1.0
 [1.2.0]: https://github.com/your-org/project-omega/releases/tag/v1.2.0
 [1.0.0]: https://github.com/your-org/project-omega/releases/tag/v1.0.0
@@ -201,6 +202,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 | Version | Date | Changes |
 |---------|------|---------|
+| **1.3.0** | 2026-10-02 | Live-verified content corrections (phases 2-6), execution census adjudication (582 → 556), quality infrastructure growth |
 | **1.2.0** | 2026-09-30 | Curriculum modernization (uv, Python 3.13, LangChain), QA infrastructure |
 | **1.1.0** | 2026-02-04 | Assessment system, labs, notebooks, projects, resources |
 | **1.0.0** | 2026-01-XX | Initial release with core documentation |
