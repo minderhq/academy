@@ -194,6 +194,6 @@ D) Only queries
 
 Each question maps to the closest lesson for review:
 
-- **Questions 2-7, 9-11, 16:** [6401: Qdrant Setup Guide](../6401-Qdrant-Setup.md) — collections, payloads, upsert, search, filtering, HNSW tuning and consistency
 - **Questions 1, 8, 12-15, 17-19:** [6402: Vector Database Comparison](../6402-Pinecone-vs-Weaviate.md) — feature matrix, hybrid and batch operations, Weaviate and Milvus profiles, sharding and replication
+- **Questions 2-7, 9-11, 16:** [6401: Qdrant Setup Guide](../6401-Qdrant-Setup.md) — collections, payloads, upsert, search, filtering, HNSW tuning and consistency
 - **Question 20:** [6403: Qdrant Production Deployment](../guides/6403-Qdrant-Production-Deployment.md) — performance tuning spanning index params, quantization and sharding
