@@ -297,11 +297,11 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 | Phase | Practice | Exercises |
 |-------|----------|----------:|
-| **1** | [Phase 1 Practice](assessment/phase1-practice.md) | 7 exercises |
-| **2** | [Phase 2 Practice](assessment/phase2-practice.md) | 5 exercises |
-| **3** | [Phase 3 Practice](assessment/phase3-practice.md) | 6 exercises |
-| **4** | [Phase 4 Practice](assessment/phase4-practice.md) | 5 exercises |
-| **5** | [Phase 5 Practice](assessment/phase5-practice.md) | 5 exercises |
+| **1** | [Phase 1 Practice](assessment/phase1-practice.md) | 5 exercises |
+| **2** | [Phase 2 Practice](assessment/phase2-practice.md) | 4 exercises |
+| **3** | [Phase 3 Practice](assessment/phase3-practice.md) | 4 exercises |
+| **4** | [Phase 4 Practice](assessment/phase4-practice.md) | 4 exercises |
+| **5** | [Phase 5 Practice](assessment/phase5-practice.md) | 3 exercises |
 | **6** | [Phase 6 Practice](assessment/phase6-practice.md) | 7 exercises |
 | **7** | [Phase 7 Practice](assessment/phase7-practice.md) | 7 exercises |
 

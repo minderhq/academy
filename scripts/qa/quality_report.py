@@ -34,7 +34,7 @@ stand today?" without running each tool by hand.
                        every ```json fence parses as JSON (DB-01) and
                        every ```yaml fence parses as a YAML document
                        stream (DB-02); prose/formulas live in text fences
-    assessment_lint    assessment/QUIZ.md + PRACTICE.md coverage (AS-01..AS-12;
+    assessment_lint    assessment/QUIZ.md + PRACTICE.md coverage (AS-01..AS-13;
                        AS-09 option-shuffle queue is report-mode, shown
                        separately; AS-10 option uniformity - a question
                        carrying options carries exactly A-D, born tick-498
@@ -43,7 +43,15 @@ stand today?" without running each tool by hand.
                        born-at-zero after the 33/33-bank explanation drain;
                        AS-12 review maps must exist-consistently cite and
                        fully cover the bank's questions, applied where the
-                       map exists, coverage grows with the review-map drain)
+                       map exists, coverage grows with the review-map drain;
+                       AS-13 the MASTER-INDEX phase-practice/quiz tables'
+                       per-row count columns against the linked files -
+                       practice rows count Exercise headings outside the
+                       appendix reference-implementations section, quiz
+                       rows count the numbered "### N." headings; born
+                       tick-562 with the MI exercise column drifted on 5
+                       of 7 phases (42 promised vs 34 on disk) and
+                       drained to disk truth first)
     quiz_export        quiz bank parses into complete question records
     quiz_integrity_scan
                        content-level quiz integrity (QI-01..06 +

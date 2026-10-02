@@ -38,6 +38,21 @@ and assessment/PRACTICE.md. The corpus standard these files already meet:
   AS-06  PRACTICE holds >= 3 exercises ("## / ### Exercise N")
   AS-07  each exercise carries a solution marker (Expected Output,
          Success Criteria, Solution, **Answer)
+  AS-13  the MASTER-INDEX "Phase Practice Files" / "Phase Quiz
+         Files" tables are claims a learner plans from: each row's
+         exercise/question count must equal the real count in the
+         linked phase-level file (practice rows count "Exercise N"
+         headings exactly like AS-06 but only outside the
+         "Appendix: Complete Reference Implementations" section -
+         phases 6-7 carry one whose per-exercise reference builds
+         are solutions, not new exercises, and any other H1/H2 ends
+         the appendix; quiz rows count the numbered "### N."
+         question headings this phase-quiz fleet uses; joined
+         tick-562 - the birth census found the quiz column 7/7
+         true but the exercise column drifted on 5 of 7 phases, MI
+         promising 42 exercises against a disk of 34, and the
+         column was drained to disk truth before the lock
+         tightened)
 
 Format-tolerant by design: richer variants (inline-answer quizzes,
 self-graded coding questions, 3-column answer keys) pass as long as
@@ -74,6 +89,19 @@ OPT_LINE = re.compile(r"^\s*([A-E])\) ")
 ANSWER_MARKER = re.compile(
     r"expected\s+\w+|solution|success criteria|\*\*answer", re.IGNORECASE)
 MODULE_DIR = re.compile(r"^\d{4}-")
+
+# AS-13: the MASTER-INDEX phase tables. The MI file lives in
+# docs/00-META, so its "assessment/phaseN-*.md" links resolve from
+# there; the quiz fleet in docs/00-META/assessment numbers its
+# questions as "### N." headings (a different shape from the module
+# banks' "**N." / "### Question N:" forms AS-02 already parses).
+PHASE_PRACTICE_ROW = re.compile(
+    r"^\|\s*\*\*(\d+)\*\*\s*\|\s*\[[^\]]+\]\(([^)]+)\)\s*\|"
+    r"\s*(\d+)\s+exercises\s*\|\s*$")
+PHASE_QUIZ_ROW = re.compile(
+    r"^\|\s*\*\*(\d+)\*\*\s*\|\s*\[[^\]]+\]\(([^)]+)\)\s*\|"
+    r"\s*(\d+)\s+questions\s*\|\s*$")
+PHASE_Q = re.compile(r"^###\s+(\d+)\.\s")
 
 
 def fence_aware(lines):
@@ -281,6 +309,84 @@ class Linter:
         else:
             self.lint_practice(module, prac)
 
+    def lint_index_tables(self, root: Path) -> int:
+        """AS-13: MI phase-practice/quiz count columns vs disk truth.
+
+        Returns the number of claims actually checked (for the
+        summary line). Every phase 1..7 must have a row; each row's
+        count must equal the linked file's real count.
+        """
+        mi = root / "docs" / "00-META" / "MASTER-INDEX.md"
+        rel = "MASTER-INDEX phase tables"
+        lines = mi.read_text(encoding="utf-8").split("\n")
+        nf = [(i, l) for i, (l, f) in enumerate(fence_aware(lines))
+              if not f]
+        n_claims = 0
+        tables = (
+            ("practice", PHASE_PRACTICE_ROW, "exercises",
+             "phase%d-practice.md"),
+            ("quiz", PHASE_QUIZ_ROW, "questions", "phase%d-quiz.md"),
+        )
+        for kind, row_re, count_word, fname in tables:
+            idx = next((i for i, l in nf if re.match(
+                r"^###\s+Phase %s Files" % kind.title(), l)), None)
+            if idx is None:
+                self.report(rel, "AS-13",
+                            "no 'Phase %s Files' section" % kind.title())
+                continue
+            stop = next((i for i, l in nf if i > idx
+                         and re.match(r"^###\s", l)), len(lines))
+            rows: dict = {}
+            for i, l in nf:
+                if idx < i < stop:
+                    m = row_re.match(l)
+                    if m:
+                        rows[int(m.group(1))] = (m.group(2),
+                                                 int(m.group(3)))
+            for phase in range(1, 8):
+                if phase not in rows:
+                    self.report(rel, "AS-13",
+                                "no row for phase %d in the Phase %s "
+                                "Files table" % (phase, kind.title()))
+                    continue
+                link, claimed = rows[phase]
+                path = (mi.parent / link).resolve()
+                if not path.exists():
+                    self.report(rel, "AS-13",
+                                "row for phase %d links %s which does "
+                                "not exist" % (phase, link))
+                    continue
+                plines = path.read_text(encoding="utf-8").split("\n")
+                pnf = [l for l, f in fence_aware(plines) if not f]
+                if kind == "practice":
+                    # Count Exercise headings OUTSIDE the Appendix:
+                    # phases 6-7 carry an "Appendix: Complete
+                    # Reference Implementations" whose per-exercise
+                    # reference builds are solutions, not new
+                    # exercises; any other H1/H2 ends the appendix.
+                    actual = 0
+                    in_appendix = False
+                    for l in pnf:
+                        hm = HEADING.match(l)
+                        if hm:
+                            lvl = len(hm.group(1))
+                            if lvl <= 2:
+                                in_appendix = hm.group(2).lower(
+                                    ).startswith("appendix")
+                        if in_appendix:
+                            continue
+                        if hm and EXERCISE_TITLE.match(hm.group(2)):
+                            actual += 1
+                else:
+                    actual = sum(1 for l in pnf if PHASE_Q.match(l))
+                n_claims += 1
+                if claimed != actual:
+                    self.report(rel, "AS-13",
+                                "phase %d row claims %d %s, %s holds %d"
+                                % (phase, claimed, count_word,
+                                   fname % phase, actual))
+        return n_claims
+
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
@@ -294,12 +400,14 @@ def main() -> int:
     for mod in sorted(p for p in phases.glob("*/*")
                       if p.is_dir() and MODULE_DIR.match(p.name)):
         linter.lint_module(args.root, mod)
+    n_claims = linter.lint_index_tables(args.root)
 
     mods = [p for p in phases.glob("*/*")
             if p.is_dir() and MODULE_DIR.match(p.name)]
     print("assessment_lint: %d findings + %d queued across %d module "
-          "assessments" % (len(linter.findings), len(linter.queued),
-                           len(mods)))
+          "assessments and %d MI phase-table claims"
+          % (len(linter.findings), len(linter.queued), len(mods),
+             n_claims))
     # Report-mode contract: queued items (AS-09 shuffle queue) do not
     # fail the gate until the queue drains, mirroring objectives_lint.
     return 1 if linter.findings else 0
