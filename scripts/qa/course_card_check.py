@@ -604,6 +604,23 @@ enterprise-solutions, use-cases and notebooks
 (READMEs included, non-recursive) on the exact
 6-field entry keyset, 0 no-FM, 0 off-keyset.
 
+CC-31 was born tick-601 as the first
+filename-derivation lock: a doc's Document
+ID must be derivable from its filename -
+stem equals the ID (exact, lowercased, or
+ID+'-' prefix), so a platform resolves IDs
+to paths without a lookup table; the
+tick-601 census read 408 docs carrying FM
+Document IDs and 0 without - 256/256
+non-fixed-name files clean (242 exact, 14
+lowercased phase assessments) while the 152
+deviations decompose exactly into the five
+fixed-name classes (README 46, PRACTICE 33,
+QUIZ 33, PREREQUISITES 33, CHECKPOINT 7)
+that carry path-qualified IDs by convention
+(1100-PRACTICE, PHASE1-PRACTICE,
+COMPARISONS-README) and stay out of scope.
+
 Exit 1 on any finding; prints one line per finding.
 """
 from __future__ import annotations
@@ -702,6 +719,13 @@ SCATTER_ROOTS = (
     "comparisons", "diagrams", "industry",
     "enterprise-solutions", "use-cases", "notebooks",
 )
+
+# the five fixed-name classes carry path-qualified
+# Document IDs by convention (1100-PRACTICE,
+# PHASE1-PRACTICE, COMPARISONS-README) - out of
+# scope for the CC-31 filename-derivation lock
+FIXED_STEMS = {"README", "PRACTICE", "QUIZ",
+               "PREREQUISITES", "CHECKPOINT"}
 FM_DASH = re.compile(r"^---\s*$")
 FM_KEY = re.compile(r"^([A-Za-z][A-Za-z0-9 _-]*):")
 DIFF_FIELD = re.compile(r"^Difficulty:(.*)$")
@@ -1402,6 +1426,44 @@ def main() -> int:
                     f"fields outside the entry keyset - "
                     f"{', '.join(extra)}"
                 )
+
+    # CC-31: a doc's Document ID must be derivable
+    # from its filename - stem equals the ID (exact,
+    # lowercased, or ID+'-' prefix); the five
+    # fixed-name classes are path-qualified by
+    # convention and out of scope
+    for ip in sorted((root / "docs").rglob("*.md")):
+        if ip.stem in FIXED_STEMS:
+            continue
+        irel = ip.relative_to(root).as_posix()
+        try:
+            ilines = ip.read_text(encoding="utf-8").splitlines()
+        except OSError:
+            continue
+        if not ilines or not FM_DASH.match(ilines[0]):
+            continue
+        end_i = None
+        for i in range(1, min(len(ilines), 40)):
+            if FM_DASH.match(ilines[i]):
+                end_i = i
+                break
+        if end_i is None:
+            continue
+        did = None
+        for raw in ilines[1:end_i]:
+            m = FM_KEY.match(raw)
+            if m and m.group(1).strip() == "Document ID":
+                did = raw.split(":", 1)[1].strip().strip('"').strip("'")
+        if did is None:
+            continue
+        stem = ip.stem
+        if not (stem == did or stem == did.lower()
+                or stem.startswith(did + "-")
+                or stem.startswith(did.lower() + "-")):
+            findings.append(
+                f"{irel} CC-31 Document ID not derivable "
+                f"from filename - ID {did!r}, stem {stem!r}"
+            )
 
     for f in findings:
         print(f)

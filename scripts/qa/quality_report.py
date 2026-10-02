@@ -698,7 +698,7 @@ stand today?" without running each tool by hand.
                       badges, phase-hub range badges,
                       'Absolute Beginner')
     course_card_check
-                      Course-card parity (CC-01..30, hard):
+                      Course-card parity (CC-01..31, hard):
                       a module README's front-matter
                       Difficulty is the course card a
                       platform catalog reads and the
@@ -1360,7 +1360,25 @@ stand today?" without running each tool by hand.
                       exactly 1 CC-30 with CC-01..29 kept silent, the same
                       field on a phase CHECKPOINT fires exactly 1 CC-29
                       and 0 CC-30, two scattered files aggregate into
-                      exactly 2 CC-30, post-restore byte-identical.
+                      CC-31 born tick-601 as the first filename-derivation
+                      lock - every docs/ md whose FM carries a Document
+                      ID and whose stem is not one of the five fixed-name
+                      classes (README, PRACTICE, QUIZ, PREREQUISITES,
+                      CHECKPOINT) must have stem == ID (exact, lowercased,
+                      or ID+'-' prefix); census 408 docs with IDs, 0
+                      without - 256/256 non-fixed-name files clean (242
+                      exact, 14 lowercased phase assessments) while the
+                      152 deviations decompose exactly into the five
+                      fixed-name classes carrying path-qualified IDs by
+                      convention (1100-PRACTICE, PHASE1-PRACTICE,
+                      COMPARISONS-README), out of scope; zero-drain, born
+                      at 0 findings, no fence coupling; negatively tested
+                      across five runs - pristine 0, a mutated ID on
+                      UC-003 fires exactly 1 CC-31 with CC-01..30 kept
+                      silent, the same mutation on a fixed-name 1100
+                      PRACTICE fires 0 anywhere, two mutated IDs
+                      aggregate into exactly 2 CC-31, post-restore
+                      byte-identical.
     heading_scan
                       Heading skeleton soundness (HS-01..05,
                       hard): the platform renders a TOC and

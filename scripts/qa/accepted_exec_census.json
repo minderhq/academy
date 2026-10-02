@@ -104,7 +104,7 @@
    }
   },
   "docs/comparisons/CP-001-RAG-vs-FineTuning-vs-Agents.md": {
-   "mtime": 1790971987.188325,
+   "mtime": 1790973135.7700205,
    "size": 17819,
    "bad": {
     "239": "ENV-GAP:trl",
@@ -175,7 +175,7 @@
    }
   },
   "docs/industry/IND-001-Healthcare-AI-Applications.md": {
-   "mtime": 1790971987.188325,
+   "mtime": 1790973135.770551,
    "size": 39352,
    "bad": {
     "151": "ENV-GAP:sentence_transformers",
@@ -2868,7 +2868,7 @@
    "bad": {}
   },
   "docs/use-cases/UC-003-Agent-Applications.md": {
-   "mtime": 1790971986.3300517,
+   "mtime": 1790973134.8490589,
    "size": 31176,
    "bad": {}
   },
