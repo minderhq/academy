@@ -1,7 +1,7 @@
 ---
 Document ID: QA-TOOLING
 Title: "PROJECT-OMEGA QA Tooling"
-Last Updated: 2026-10-01
+Last Updated: 2026-10-02
 Status: Complete
 Difficulty: Beginner
 Tags: ['maintenance', 'evaluation']
@@ -156,6 +156,9 @@ the full installed stack. A partial environment fails loud with
 | stale_fm_report | Edited-but-not-revised queue (report-only, git-dependent): FM Last Updated vs the file's last commit date per docs/*.md - commit newer than FM by >2d is listed STALE (content byte-touched without a date bump), 1-2d skew is recent-tick noise and unlisted; answers the owner's hand-run date filter ("Last Updated: 2026-02") mechanically. Doctrine caveat the tool makes visible: mechanical normalization commits (TS-01 quoted-normalization b8b0aa0 over 89 docs, NV-01/LO-01 link+order drains) byte-touch files without a FM bump by design - dates move only with real content edits - so a STALE row means "not meaningfully revised since the FM date", the review queue the platform refresh passes consume |
 | model_form_report | Model-name form consistency (report-only): MF-01 space-form checkpoint inside a spec/benchmark table row, MF-02 hyphen form in flowing prose - the vendor two-form convention (prose `Mistral 7B` vs repo-id `Mistral-7B`) applied per context; the tick-470 census drained the mismatches (3402 spec rows + phase1 throughput rows space-in-table, 5104 + LAB-003 prose hyphen-in-prose) and codified the rule in STYLE-GUIDE Name Forms; birth hits are documented intended uses (concept-definition row, Tech Stack enumeration, capstone download target) - the identifier-vs-prose boundary needs judgment, so the tool never gates |
 | link_reach_report | Corpus-wide link reachability (report-only): BFS from the root README over .md links; a doc no entry point reaches is stranded content - invisible to browsing, un-crawlable by the platform - even when all its own links resolve. Complements NV-01 (in-degree from ONE parent) with global reach. Birth census tick-471: CHANGELOG.md was the only stranded file of 410 - drained via a README Community > Resources row plus a `[1.2.0]` release entry that brought the changelog itself current - the tool never gates |
+| toc_parity_check | TOC parity (TP-01, tick-433, report-only): for every doc carrying a Table-of-Contents section, every H2 that is neither chrome (next steps, references, abstract, summary) nor already linked must have a TOC bullet; matching is HREF-level via anchor_check's gh_slug, so shortened TOC texts and emoji-prefixed slugs count, and a TOC never links to its own heading; born with 25 missing content bullets across 18 docs, drained same tick to baseline 0 - the missing-entry direction (a bullet pointing at no heading) is anchor_check's job (TP-02); exit 0 by design, a new content gap is a review signal fixed by merge-only-add next to the slug-nearest existing bullet |
+| partition_balance_check | Partition balance (RB-01, tick-434, report-only): per top-level docs/ subtree, per phase and per phase-module directory - md counts, bytes, lesson shares, tree depth, with HEAVY-DIR / DEEP-PATH / KB-IMBALANCE / SINGLETON-LEAF signals so any re-partition decision starts from numbers; tick-434 verdict: phase KB spread 1.4x, 0 signals, and single-file leaf dirs triaged as two accepted deliberate patterns (the NNNN-module/guides/NNNN-guide layout and learning-resources category-seed dirs); baseline 0 - any new signal on a future tick is re-partition review input, never a failure |
+| link_health | External prose-link liveness (report-only, network): http(s) URLs in PROSE (outside fences) under docs/ classified LIVES / LIVES? (odd 5xx-4xx spot-check queue) / DEAD (404/410, the rot queue) / GONE? (DNS/timeout/SSL) / BLOCKED (403/406/429/999 bot walls), obviously non-checkable hosts counted separately; the classified prose-only complement of the ad hoc link_rot_check probe (Network Tool section below); measured 2026-10-02: 426 prose urls (410 unique) - LIVES 393, LIVES? 6 (tensorflow.org transients), DEAD 0, GONE? 2 (discord.gg invites, the bot-block class its docstring flags), BLOCKED 9 (course-platform walls) - zero rot; exit 0 by design, network checks never gate a commit |
 
 ---
 
@@ -180,7 +183,10 @@ landing pages), not rot. Cadence decision from that data: monthly,
 plus an on-demand run after major content passes; weekly probes
 would spend 424 network requests per run for no rot signal. The
 denied class (udemy, leetcode, academy.langchain) is course-
-platform bot walls, not dead links.
+platform bot walls, not dead links. The classified prose-only
+view of the same URL space lives in link_health (Report Gates
+table above): prose urls only, five liveness classes, most
+recently 426 prose urls / 410 unique with 0 DEAD (2026-10-02).
 
 ## Epic-Archive Tools (not gates)
 

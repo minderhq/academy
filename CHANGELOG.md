@@ -49,8 +49,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **lesson_similarity_scan** (report tool): 5-word-shingle Jaccard
   over all 6441 lesson pairs - born at zero clone findings with a max
   similarity of 0.058, lesson diversity under continuous lock
-- **Repo hygiene verified:** 604 tracked files, zero committed
-  binaries, zero untracked strays
+- **Repo hygiene verified:** 618 tracked files, zero committed
+  binaries, zero untracked strays; the script-inventory census
+  registered three report-only tools the QA doc had never named
+  (toc_parity_check TP-01, partition_balance_check RB-01, and
+  link_health) in QA-TOOLING's Report Gates table, and the
+  external prose-link health re-measured 426 urls (410 unique)
+  with 0 DEAD on 2026-10-02
 
 ## [1.2.0] - 2026-09-30
 
