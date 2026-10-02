@@ -1053,6 +1053,29 @@ stand today?" without running each tool by hand.
                        surface learners browse first) alongside 11
                        abbreviated Topic cells, drained in the same
                        tick
+    project_index_parity_check
+                       MASTER-INDEX's "### Projects" table locks
+                       to the 7-file capstone fleet (PJ-01 id-set
+                       parity both directions, PJ-02 project cell
+                       equals the Title minus its "CAPSTONE
+                       PROJECT-NNN: " prefix verbatim, PJ-03 the
+                       header's file count equals the row count,
+                       PJ-04 every row's link names its own file,
+                       PJ-05 every row carries the front-matter
+                       Difficulty verbatim, PJ-06 the Duration
+                       cell is "N weeks" or "N-N weeks" -
+                       projects deliberately carry no Estimated
+                       Time and the weeks form stays an index-side
+                       planning surface, since seeding one would
+                       poison the pacing census's hour/minute
+                       arithmetic); born tick-556 at 13 findings -
+                       6 of 7 Project cells abbreviated away the
+                       front-matter Title and every row lacked
+                       the Difficulty the front matter declares
+                       (the inverse of the tutorial lock: the
+                       front matter is the richer side, so the
+                       index gains the column), drained in the
+                       same tick
     empty_section_scan every heading must own content (ES-01): a
                        section is empty iff nothing but blanks/HRs/
                        blockquotes/HTML-comments sits between its
@@ -1441,6 +1464,7 @@ GATES = [
     ("lab_index_parity_check.py", "lab_index_parity_check", True),
     ("tutorial_index_parity_check.py", "tutorial_index_parity_check", True),
     ("cheatsheet_index_parity_check.py", "cheatsheet_index_parity_check", True),
+    ("project_index_parity_check.py", "project_index_parity_check", True),
 ]
 
 

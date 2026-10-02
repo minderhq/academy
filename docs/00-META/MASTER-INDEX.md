@@ -254,15 +254,15 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 ### Projects (7 files)
 
-| ID | Project | Duration | Skills |
-|----|---------|----------:|--------|
-| **[PROJECT-001](../learning-resources/projects/PROJECT-001-AI-Assistant.md)** | AI Assistant | 2 weeks | LLM, RAG, Agents |
-| **[PROJECT-002](../learning-resources/projects/PROJECT-002-Train-Neural-Network.md)** | Train Neural Network | 2 weeks | PyTorch, Training |
-| **[PROJECT-003](../learning-resources/projects/PROJECT-003-Transformer-From-Scratch.md)** | Transformer from Scratch | 3 weeks | Architecture, Implementation |
-| **[PROJECT-004](../learning-resources/projects/PROJECT-004-Quantize-Model.md)** | Quantize Model | 2 weeks | GGUF, EXL2, AWQ |
-| **[PROJECT-005](../learning-resources/projects/PROJECT-005-FineTune-Model.md)** | Fine-tune Model | 3 weeks | LoRA, QLoRA, DPO |
-| **[PROJECT-006](../learning-resources/projects/PROJECT-006-Production-RAG.md)** | Production RAG | 3 weeks | RAG, Deployment |
-| **[PROJECT-007](../learning-resources/projects/PROJECT-007-Production-AI-System.md)** | Production AI System | 4 weeks | Full Stack |
+| ID | Project | Duration | Skills | Difficulty |
+|----|---------|----------:|--------|------------|
+| **[PROJECT-001](../learning-resources/projects/PROJECT-001-AI-Assistant.md)** | Build Your AI Assistant | 2 weeks | LLM, RAG, Agents | Advanced |
+| **[PROJECT-002](../learning-resources/projects/PROJECT-002-Train-Neural-Network.md)** | Train Neural Network from Scratch | 2 weeks | PyTorch, Training | Intermediate |
+| **[PROJECT-003](../learning-resources/projects/PROJECT-003-Transformer-From-Scratch.md)** | Transformer from Scratch | 3 weeks | Architecture, Implementation | Advanced |
+| **[PROJECT-004](../learning-resources/projects/PROJECT-004-Quantize-Model.md)** | Quantize LLM from Scratch | 2 weeks | GGUF, EXL2, AWQ | Advanced |
+| **[PROJECT-005](../learning-resources/projects/PROJECT-005-FineTune-Model.md)** | Fine-Tune Domain Model | 3 weeks | LoRA, QLoRA, DPO | Advanced |
+| **[PROJECT-006](../learning-resources/projects/PROJECT-006-Production-RAG.md)** | Build Production RAG System | 3 weeks | RAG, Deployment | Advanced |
+| **[PROJECT-007](../learning-resources/projects/PROJECT-007-Production-AI-System.md)** | Deploy Production AI System | 4 weeks | Full Stack | Advanced |
 
 ---
 
