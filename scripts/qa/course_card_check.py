@@ -128,6 +128,14 @@ CC-20  Every assessment bank's FM carries only the 9-field
        every assessment through one schema. Negative-excess
        only: FS owns field presence, this clause owns
        field excess - never double-report.
+CC-21  Every phase README's FM carries only the 6-field
+       phase keyset (the same 6-field entry keyset) - one
+       family for the 7 phase headers, the course-group
+       pages a platform browses by, so a platform parser
+       reads every phase header through the same schema
+       its entry pages live in. Negative-excess only: FS
+       owns field presence, this clause owns field
+       excess - never double-report.
 
 The gate is order-agnostic about table columns (3500-multimodal renders Time
 before Difficulty and both orders pass). Dead row targets are skipped here -
@@ -290,6 +298,17 @@ same class on re-execution (ENV-GAP:tensorflow, UN-LEAK),
 notes carried, the accepted_exec_census _meta recording the
 shift - no fence content changed.
 
+CC-21 was born tick-591 as the sixth FM-keyset surface (entry
+CC-16, card CC-17, lesson CC-18, guide CC-19, assessment
+CC-20, phase header CC-21): the census read the 7 phase
+READMEs born-clean - every one already on the exact 6-field
+keyset, all 7 linked from MASTER-INDEX, and MASTER-INDEX
+itself on the same form - so the lock is a zero-drain one
+in the PQ-06/CC-08/09/11/12/13 shape: the course-group
+browse surface a platform renders above every card froze
+at the family the moment it was named, no drain, no fence
+coupling, nothing to probe.
+
 Exit 1 on any finding; prints one line per finding.
 """
 from __future__ import annotations
@@ -329,6 +348,9 @@ ASSESSMENT_KEYSET = ENTRY_KEYSET | {
     "Prerequisites",
     "Related",
 }
+# the phase header shares the 6-field entry family - one
+# clause each, never double-reported
+PHASE_KEYSET = ENTRY_KEYSET
 FM_DASH = re.compile(r"^---\s*$")
 FM_KEY = re.compile(r"^([A-Za-z][A-Za-z0-9 _-]*):")
 DIFF_FIELD = re.compile(r"^Difficulty:(.*)$")
@@ -801,6 +823,20 @@ def main() -> int:
         if not prm.exists():
             continue
         prel = prm.relative_to(root).as_posix()
+
+        # CC-21: the phase header carries only the entry
+        # FM keyset - the course-group page a platform
+        # browses by reads the same 6-field family the
+        # entry pages live in, not a sixth schema (FS
+        # owns field presence; this clause owns
+        # field excess)
+        extra = sorted(fm_keys(prm) - PHASE_KEYSET)
+        if extra:
+            findings.append(
+                f"{prel} CC-21 phase-header FM carries fields "
+                f"outside the phase keyset - {', '.join(extra)}"
+            )
+
         blob = "\n".join(unfenced_lines(prm.read_text(encoding="utf-8")))
         targets = [
             m.group(1).split("#")[0]

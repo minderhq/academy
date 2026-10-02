@@ -698,7 +698,7 @@ stand today?" without running each tool by hand.
                       badges, phase-hub range badges,
                       'Absolute Beginner')
     course_card_check
-                      Course-card parity (CC-01..20, hard):
+                      Course-card parity (CC-01..21, hard):
                       a module README's front-matter
                       Difficulty is the course card a
                       platform catalog reads and the
@@ -1074,7 +1074,27 @@ stand today?" without running each tool by hand.
                       same field on a guide fires
                       exactly 1 CC-19 and 0 CC-20, two
                       assessments aggregate into
-                      exactly 2 CC-20.    heading_scan
+                      exactly 2 CC-20.
+                      CC-21 the sixth surface of the FM
+                      keyset family: a phase README's FM
+                      carries only the 6-field phase
+                      keyset (the same entry keyset),
+                      negative excess only; the tick-591
+                      census read the 7 phase headers
+                      born-clean - every one on the
+                      exact keyset, all linked from
+                      MASTER-INDEX, MASTER-INDEX itself
+                      on the same form - so the lock is
+                      a zero-drain one: the course-group
+                      browse surface above every card
+                      froze at the family the moment it
+                      was named - an extra FM field on a
+                      phase header fires exactly 1 CC-21
+                      with CC-01..20 kept silent, the
+                      same field on a card fires exactly
+                      1 CC-17 and 0 CC-21, two phase
+                      headers aggregate into
+                      exactly 2 CC-21.    heading_scan
                       Heading skeleton soundness (HS-01..05,
                       hard): the platform renders a TOC and
                       anchor deep-links from heading structure,
