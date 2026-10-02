@@ -698,7 +698,7 @@ stand today?" without running each tool by hand.
                       badges, phase-hub range badges,
                       'Absolute Beginner')
     course_card_check
-                      Course-card parity (CC-01..26, hard):
+                      Course-card parity (CC-01..27, hard):
                       a module README's front-matter
                       Difficulty is the course card a
                       platform catalog reads and the
@@ -1242,6 +1242,42 @@ stand today?" without running each tool by hand.
                       never double-reported), two
                       solutions aggregate into exactly
                       2 CC-26.
+                      CC-27 the twelfth surface of the FM
+                      keyset family: a 00-META meta page's
+                      FM carries only the 6-field entry
+                      keyset, negative excess only; the
+                      tick-597 uncovered-surface census read
+                      the rest beyond CC-16..26 as 53 files
+                      in four families - 49 already on the
+                      exact 6-field entry keyset scattered
+                      across nine roots (00-META 20, volumes
+                      7, phase CHECKPOINTs 7, comparisons 3,
+                      diagrams 4, industry 3,
+                      enterprise-solutions 2, use-cases 2,
+                      notebooks 1) and 4 drift carriers
+                      (UC-001/002 with Related, IND-003 with
+                      Estimated Time, SOL-002 with
+                      Category/Estimated Time/Prerequisites/
+                      Related) - the largest single-root
+                      family, the 20 root-level 00-META docs
+                      (MASTER-INDEX, SITEMAP,
+                      ORGANIZATION-GUIDE, QA-TOOLING and the
+                      rest of the help/navigation/governance
+                      layer), locks first, born-clean: all
+                      20 on the exact keyset, 0 no-FM, 0
+                      off-keyset, heavily cross-linked
+                      (SITEMAP from 7 docs, GLOSSARY from 7,
+                      VOLUME-GUIDE from 12); zero-drain in
+                      the CC-21/22/23 shape, non-recursive
+                      so 00-META/assessment (CC-22) stays
+                      outside - an extra FM field on a meta
+                      page fires exactly 1 CC-27 with
+                      CC-01..26 kept silent, the same field
+                      on a SOLUTION-LAB answer key fires
+                      exactly 1 CC-26 and 0 CC-27 (clause
+                      scoping, never double-reported), two
+                      meta pages aggregate into exactly
+                      2 CC-27.
     heading_scan
                       Heading skeleton soundness (HS-01..05,
                       hard): the platform renders a TOC and

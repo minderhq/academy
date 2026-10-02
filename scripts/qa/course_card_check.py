@@ -191,6 +191,20 @@ CC-26  Every SOLUTION-LAB answer key's FM carries
        excess only: FS owns field presence, this
        clause owns field excess - never
        double-report.
+CC-27  Every 00-META meta page's FM carries
+       only the 6-field entry keyset - one family
+       for the 20 root-level docs under docs/
+       00-META (MASTER-INDEX, SITEMAP, ORGANIZATION-
+       GUIDE, QA-TOOLING and the rest of the meta
+       surface a platform renders as help,
+       navigation and governance beside the
+       catalog), so a platform parser reads the
+       meta layer through the same schema. Non-
+       recursive by design: the phase assessments
+       under 00-META/assessment are CC-22 and stay
+       outside. Negative-excess only: FS owns
+       field presence, this clause owns field
+       excess - never double-report.
 
 The gate is order-agnostic about table columns (3500-multimodal renders Time
 before Difficulty and both orders pass). Dead row targets are skipped here -
@@ -466,6 +480,36 @@ coupling (the 58 accepted fence rows live on
 the LAB docs, not the solutions), nothing to
 probe.
 
+CC-27 was born tick-597 as the twelfth
+FM-keyset surface (entry CC-16, card CC-17,
+lesson CC-18, guide CC-19, assessment CC-20,
+phase header CC-21, phase assessment CC-22,
+reference page CC-23, tutorial CC-24, lab
+CC-25, solution CC-26, meta page CC-27): the
+tick-597 uncovered-surface census read the
+rest beyond CC-16..26 as 53 files in four
+families - 49 already on the exact 6-field
+entry keyset scattered across nine roots
+(00-META 20, volumes 7, phase CHECKPOINTs 7,
+comparisons 3, industry 3, diagrams 4,
+enterprise-solutions 2, use-cases 2,
+notebooks 1) and 4 drift carriers (UC-001/002
+with Related, IND-003 with Estimated Time,
+SOL-002 with Category/Estimated Time/
+Prerequisites/Related) - so the largest
+single-root family, the 20 root-level
+00-META docs, locked first, born-clean: all
+20 already on the exact 6-field entry
+keyset, 0 no-FM, 0 off-keyset, heavily
+cross-linked (SITEMAP from 7 docs, GLOSSARY
+from 7, VOLUME-GUIDE from 12) - a zero-drain
+lock in the CC-21/CC-22/CC-23 shape, non-
+recursive so 00-META/assessment (CC-22)
+stays outside, no drain, no fence coupling,
+nothing to probe; the remaining exact-6
+scatter and the 4 drift carriers park for
+their own clauses.
+
 Exit 1 on any finding; prints one line per finding.
 """
 from __future__ import annotations
@@ -539,6 +583,11 @@ LAB_KEYSET = CARD_KEYSET
 # tick-596 census read them on - sibling half of the labs
 # tree, locked the tick after its LAB counterpart
 SOLUTION_KEYSET = ENTRY_KEYSET
+# the 00-META meta pages froze at the 6-field entry
+# keyset the tick-597 uncovered-surface census read
+# them on - help/navigation/governance layer beside
+# the catalog; non-recursive, assessment/ is CC-22
+META_KEYSET = ENTRY_KEYSET
 FM_DASH = re.compile(r"^---\s*$")
 FM_KEY = re.compile(r"^([A-Za-z][A-Za-z0-9 _-]*):")
 DIFF_FIELD = re.compile(r"^Difficulty:(.*)$")
@@ -1175,6 +1224,22 @@ def main() -> int:
             findings.append(
                 f"{srel} CC-26 solution FM carries fields "
                 f"outside the solution keyset - "
+                f"{', '.join(extra)}"
+            )
+
+    # CC-27: the 00-META meta pages carry only the
+    # 6-field entry keyset - help, navigation and
+    # governance a platform renders beside the
+    # catalog; non-recursive, the phase
+    # assessments under 00-META/assessment are
+    # CC-22 and stay outside this clause
+    for mp in sorted((root / "docs" / "00-META").glob("*.md")):
+        mrel = mp.relative_to(root).as_posix()
+        extra = sorted(fm_keys(mp) - META_KEYSET)
+        if extra:
+            findings.append(
+                f"{mrel} CC-27 meta FM carries fields "
+                f"outside the meta keyset - "
                 f"{', '.join(extra)}"
             )
 
