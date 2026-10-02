@@ -33,7 +33,7 @@ D) Align model behavior with human preferences/values
 A) Reinforcement Learning from Human Feedback
 B) Recurrent Learning with Hidden Features, a pretraining trick from RNNs
 C) Rapid Learning via Fine-tuning
-D) None of the above
+D) A reward-model distillation schedule
 
 **3. What is the first step in RLHF training?**
 
@@ -68,7 +68,7 @@ D) Simpler architecture
 A) Proximal Policy Optimization
 B) Progressive Parameter Optimization
 C) Parallel Policy Optimization
-D) None of the above
+D) A checkpoint pruning policy for policy gradients
 
 **8. What is the purpose of the KL divergence penalty in RLHF?**
 
@@ -89,7 +89,7 @@ D) Question-answer pairs with a single gold response per question
 A) Too expensive
 B) Reward hacking
 C) Slow convergence during the final weeks of pretraining
-D) All of the above
+D) Cost, reward hacking and slow convergence together
 
 **11. The standard RLHF pipeline order is:**
 

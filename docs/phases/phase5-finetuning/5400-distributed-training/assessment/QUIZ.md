@@ -90,7 +90,7 @@ D) Has no effect
 A) NVIDIA Collective Communications Library
 B) Network Computing Communication Layer, an invention no NVIDIA page ever printed
 C) Node Communication Collective Library
-D) None of the above
+D) A CUDA memory allocator shipped in 2023
 
 **11. Pipeline parallelism is different from data parallelism because:**
 

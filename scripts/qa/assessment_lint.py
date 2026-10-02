@@ -85,6 +85,25 @@ the same AS-04/AS-08/AS-09 standards in their own "### N." shape):
          scoring ~83% against the 80% passing line the AS-14
          locks); the flagged distractors were lengthened with
          false-anchoring qualifiers before the ceiling locked
+  AS-16  within-question option hygiene, two rules about what one
+         question shows the learner: (1) no two options carry the
+         same text (casefold + whitespace-collapse exact; punctuation
+         preserved, so "d_model / num_heads" vs "d_model + num_heads"
+         stays distinct - the census false positive that fixed the
+         normalization), since a repeated option makes the key
+         ambiguous for any learner who picks it; (2) no deferred or
+         compound option ("All of the above", "None of these", bare
+         letter-lists), since it hides multi-answer logic in a
+         single-answer bank - it corrupts the letter balance AS-09
+         locks and rewards a learner who reads only the meta-option.
+         Joined tick-569 - born census caught exactly 35 deferred
+         options across 16 module banks, every one on letter B/C/D
+         ("All/None of the above" and "Both A and C" forms alike),
+         22 with the key ON the deferred option (a "pick two"
+         question graded as one), zero true duplicates under the
+         honest normalization; the 22 keyed ones became concrete
+         summaries of their combined options and the 13 distractors
+         became concrete false options before the lock tightened
 
 Format-tolerant by design: richer variants (inline-answer quizzes,
 self-graded coding questions, 3-column answer keys) pass as long as
@@ -146,6 +165,13 @@ OPT_TEXT = re.compile(r"^\s*([A-Ea-e])\)\s+(.+?)\s*$")
 # >= 4-option answered questions, banks under 10 mcq exempt.
 LEN_BIAS_SHARE = 0.5
 LEN_BIAS_MIN_MCQ = 10
+# AS-16: deferred/compound options - a single-answer bank must not
+# hide multi-answer logic in an option slot ("All of the above",
+# "None of these", bare letter-lists like "A and B").
+DEFERRED_OPT = re.compile(
+    r"^(?:all|none)\s+of\s+the\s+(?:above|these|options|listed)\b|"
+    r"^(?:all|none)\s+of\s+these\b|"
+    r"^(?:both\s+)?[a-e](?:\s*(?:and|or|,|&)\s*[a-e])+$", re.I)
 
 
 def fence_aware(lines):
@@ -308,11 +334,16 @@ class Linter:
         # 2.4% corpus rate under the report queue (tick-290), so this
         # is born-at-zero for them - the ceiling exists for the day
         # an edit re-skews a bank.
-        answered = [{"answer": key.get(n) or inline.get(n),
+        answered = [{"num": n,
+                     "answer": key.get(n) or inline.get(n),
                      "options": qopts[n]}
                     for n in sorted(qnums)
                     if (key.get(n) or inline.get(n)) and n in qopts]
         self.check_len_bias(rel, answered)
+        # AS-16: within-question option hygiene, the two rules every
+        # option set owes the learner. Born tick-569 catching the 35
+        # deferred options across 16 module banks, drained same tick.
+        self.check_option_sanity(rel, answered)
 
     def check_len_bias(self, rel: str, answered: list) -> None:
         """AS-15 shared by both quiz shapes: quiz_integrity_scan's
@@ -340,6 +371,39 @@ class Linter:
                         "line 50%% - a learner who always picks the "
                         "longest option passes without reading)"
                         % (tied, len(mcq)))
+
+    def check_option_sanity(self, rel: str, answered: list) -> None:
+        """AS-16 shared by both quiz shapes: within-question option
+        hygiene, two rules about what one question shows the learner.
+        (1) No two options carry the same text (casefold +
+        whitespace-collapse exact - punctuation preserved, so
+        "d_model / num_heads" vs "d_model + num_heads" stays distinct),
+        since a repeated option makes the key ambiguous for any learner
+        who picks it. (2) No deferred or compound option ("All of the
+        above", "None of these", bare letter-lists), since it hides
+        multi-answer logic in a single-answer bank: it corrupts the
+        letter balance AS-09 locks and rewards a learner who reads only
+        the meta-option."""
+        for q in answered:
+            n, opts = q["num"], q["options"]
+            seen = {}
+            for k in sorted(opts):
+                t = " ".join(opts[k].split()).casefold()
+                if t in seen:
+                    self.report(rel, "AS-16",
+                                "duplicate option texts in question %d: "
+                                "%s) and %s) carry the same text - a "
+                                "learner who picks either cannot be "
+                                "graded on the key" % (n, seen[t], k))
+                else:
+                    seen[t] = k
+            for k in sorted(opts):
+                if DEFERRED_OPT.match(opts[k].strip()):
+                    self.report(rel, "AS-16",
+                                "deferred option in question %d: %s) "
+                                "is an all/none-of-the-above-style "
+                                "choice - single-answer grading cannot "
+                                "key it" % (n, k))
 
     def check_balance(self, rel: str, key: dict, qnums: set,
                       inline: dict) -> None:
@@ -450,11 +514,13 @@ class Linter:
         # AS-15: the length cue in the phase-quiz shape too - born
         # tick-568 catching exactly the seven phase quizzes (the
         # module banks were already drained), drained same tick.
-        answered = [{"answer": key.get(n) or inline.get(n),
+        answered = [{"num": n,
+                     "answer": key.get(n) or inline.get(n),
                      "options": qopts[n]}
                     for n in sorted(qnums)
                     if (key.get(n) or inline.get(n)) and n in qopts]
         self.check_len_bias(rel, answered)
+        self.check_option_sanity(rel, answered)
 
     def lint_practice(self, module: str, prac: Path) -> None:
         rel = "%s assessment/PRACTICE.md" % module

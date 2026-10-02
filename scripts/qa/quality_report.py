@@ -34,7 +34,7 @@ stand today?" without running each tool by hand.
                        every ```json fence parses as JSON (DB-01) and
                        every ```yaml fence parses as a YAML document
                        stream (DB-02); prose/formulas live in text fences
-    assessment_lint    assessment/QUIZ.md + PRACTICE.md coverage (AS-01..AS-15;
+    assessment_lint    assessment/QUIZ.md + PRACTICE.md coverage (AS-01..AS-16;
                        AS-09 graduated tick-566 to a hard ceil(N/4) letter
                        ceiling - no letter above a quarter of the bank's
                        answered questions - over the 33 module banks AND
@@ -79,7 +79,22 @@ stand today?" without running each tool by hand.
                        longest-picker scoring ~83% against the 80%
                        passing line) while the module banks had already
                        drained to 2.4% under the report queue, drained
-                       same tick with 75 one-distractor lengthenings)
+                       same tick with 75 one-distractor lengthenings;
+                       AS-16 within-question option hygiene - no two
+                       options of one question may carry the same
+                       text (casefold + whitespace-collapse exact,
+                       punctuation preserved) and no deferred or
+                       compound option ("All of the above", "Both A
+                       and C" letter-lists) may occupy an option
+                       slot, since a repeat makes the key ambiguous
+                       and a compound hides multi-answer logic in a
+                       single-answer bank (corrupting the balance
+                       AS-09 locks); born tick-569 catching exactly
+                       35 deferred options across 16 module banks,
+                       22 with the key ON the compound (a pick-two
+                       question graded as one) and zero true
+                       duplicates, drained same tick to concrete
+                       keyed summaries and concrete false options)
     quiz_export        quiz bank parses into complete question records
     quiz_integrity_scan
                        content-level quiz integrity (QI-01..06 +

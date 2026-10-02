@@ -129,7 +129,7 @@ D) K8s configuration
 **16. Namespace provides:**
 
 A) Resource isolation
-B) Both A and C
+B) Resource isolation and security scoping together
 C) Security
 D) Neither
 
@@ -145,7 +145,7 @@ D) Pods, runtime workloads a ConfigMap only feeds data to
 A) Node labels
 B) Pod affinity
 C) Taints and tolerations
-D) All of the above
+D) Node labels, pod affinity and taints/tolerations together
 
 **19. Longhorn provides:**
 

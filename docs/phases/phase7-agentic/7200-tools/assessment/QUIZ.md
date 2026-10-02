@@ -26,7 +26,7 @@ Tags: ['assessment', 'quiz', 'agents', 'tool-calling']
 A) Calling external APIs based on LLM output
 B) Using external tools during pretraining to improve the model
 C) Tool-assisted generation
-D) All of the above
+D) A fine-tuning objective that ranks model outputs
 
 **2. What is function calling?**
 

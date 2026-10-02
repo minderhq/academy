@@ -96,14 +96,14 @@ D) Can be distributed
 A) Retrieval metrics
 B) Generation metrics
 C) System metrics
-D) All of the above
+D) Retrieval, generation and system metrics together
 
 **12. Retrieval latency affects:**
 
 A) Only speed
 B) User experience
 C) Cost, a line item latency drives through retries, over-provisioning and every wasted call
-D) All of the above
+D) Speed, user experience and cost together
 
 **13. Chunking strategy affects:**
 

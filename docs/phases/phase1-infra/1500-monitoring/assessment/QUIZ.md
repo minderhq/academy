@@ -33,7 +33,7 @@ D) Only traces
 A) Model performance degrades over time
 B) Model improves
 C) Data changes
-D) Both A and C
+D) Performance degrades as the input data distribution changes over time
 
 **3. Prometheus stores:**
 
@@ -88,7 +88,7 @@ D) None
 
 A) Monitors output distribution
 B) Monitors input distribution
-C) Both A and B
+C) Watches output and input distributions alike
 D) Neither
 
 **11. Grafana displays:**
@@ -96,7 +96,7 @@ D) Neither
 A) Metrics dashboards
 B) Logs
 C) Traces
-D) All of the above
+D) Metrics, logs and traces together
 
 **12. Jaeger is used for:**
 
@@ -124,14 +124,14 @@ D) None
 A) Measures GPU usage
 B) Measures memory
 C) Measures temperature
-D) All of the above
+D) GPU usage, memory and temperature together
 
 **16. Logging best practices include:**
 
 A) Structured logs
 B) Log levels
 C) Contextual information
-D) All of the above
+D) Structured formats, log levels and contextual information together
 
 **17. Distributed tracing helps:**
 

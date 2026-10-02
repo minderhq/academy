@@ -82,7 +82,7 @@ D) Convert every modality into plain text strings at the input layer
 A) Model size alone, with modalities irrelevant to the challenge
 B) Aligning different modalities in shared space
 C) Training speed
-D) All of the above
+D) A fixed model-size formula independent of modalities
 
 **10. Which modality alignment technique is most common?**
 

@@ -47,7 +47,7 @@ D) Inference throughput with PagedAttention
 A) Text Generation Inference
 B) Training Gateway Interface
 C) Tensor Gateway Interface
-D) None of the above
+D) A tensor-granular graph interface used by ONNX
 
 **5. Continuous batching:**
 
@@ -123,14 +123,14 @@ D) No effect
 
 A) Always increases throughput
 B) Can increase latency
-C) Both A and B
+C) Raises throughput but adds queueing latency
 D) Neither
 
 **16. A/B testing for models:**
 
 A) Deploys multiple models
 B) Compares model versions
-C) Both A and B
+C) Deploys model variants side by side and compares them on real traffic
 D) Neither
 
 **17. Canary deployment:**
@@ -159,7 +159,7 @@ D) Not useful
 A) Token throughput and cost per million tokens
 B) Latency
 C) GPU utilization
-D) All of the above
+D) Token throughput and cost, latency and GPU utilization together
 
 ---
 

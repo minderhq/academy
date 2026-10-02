@@ -26,7 +26,7 @@ Tags: ['assessment', 'quiz', 'agents', 'react']
 A) React JavaScript framework
 B) Reasoning + Acting
 C) Reactive agents
-D) None of the above
+D) A vector-store indexing scheme for agent memory
 
 **2. ReAct agent loop:**
 

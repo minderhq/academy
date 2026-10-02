@@ -122,9 +122,9 @@ D) Position in sequence
 **15. Rotary Position Embeddings (RoPE):**
 
 A) Add position to embeddings
-B) Both A and C
-C) Rotate queries and keys
-D) Replace positional embeddings
+B) Injects position by rotating queries and keys
+C) Rotate value vectors
+D) Require retrained positional tables
 
 **16. ALiBi's attention bias:**
 
@@ -181,7 +181,7 @@ D) Splits words into subword units
 | 12 | C | Cosine similarity measures the angle, robust to vector magnitude |
 | 13 | D | The analogy shows linear semantic structure in the vector space |
 | 14 | D | Positional embeddings encode where a token sits in the sequence |
-| 15 | B | Rotating queries and keys injects position and replaces positional embeddings - both |
+| 15 | B | Rotating queries and keys injects position with no retrained positional table |
 | 16 | A | ALiBi adds a distance-proportional bias to attention scores |
 | 17 | C | Embedding tables start from random initialization |
 | 18 | C | Embeddings are learned parameters, updated by the optimizer |

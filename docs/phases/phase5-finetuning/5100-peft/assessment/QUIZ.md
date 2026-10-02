@@ -33,7 +33,7 @@ D) Train only a small subset of parameters
 A) Low-Rank Adaptation
 B) Linear Optimization for Recurrent Architectures
 C) Layer-wise Optimization for Rapid Adaptation
-D) None of the above
+D) A quantization format for frozen base weights
 
 **3. How many trainable parameters does LoRA typically add?**
 

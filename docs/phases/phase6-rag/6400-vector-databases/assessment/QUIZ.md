@@ -26,7 +26,7 @@ Tags: ['assessment', 'quiz', 'rag', 'vector-db']
 A) Text documents
 B) Vector embeddings
 C) Images
-D) All of the above
+D) Text documents, vector embeddings and images together
 
 **2. Qdrant uses:**
 

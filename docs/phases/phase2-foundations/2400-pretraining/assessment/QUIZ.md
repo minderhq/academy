@@ -33,14 +33,14 @@ D) To reduce model size
 A) Gradient checkpointing
 B) Fully Sharded Data Parallel (FSDP)
 C) Mixed precision training
-D) All of the above
+D) Gradient checkpointing, FSDP and mixed precision together
 
 **3. What does FSDP stand for?**
 
 A) Fast Sharded Data Processing
 B) Fully Sharded Data Parallel
 C) Federated Sharded Distributed Parallel
-D) None of the above
+D) A PyTorch data-loading API for streaming shards from disk
 
 **4. What is the main benefit of mixed precision training?**
 
@@ -82,14 +82,14 @@ D) 1M+ tokens
 A) Slower computation, an inverse of what distributed training exists to deliver
 B) Communication overhead between devices
 C) Reduced model accuracy
-D) All of the above
+D) A mandatory accuracy drop of ten percent or more
 
 **10. What does "warmup" refer to in learning rate scheduling?**
 
 A) Cooling down the GPU, the exact opposite direction a warmup phase moves in
 B) Gradually increasing learning rate at the start
 C) Preheating the data pipeline
-D) None of the above
+D) Randomizing the data-loader seed between epochs
 
 **11. For GPT-style models, the standard pretraining objective is:**
 

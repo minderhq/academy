@@ -69,7 +69,7 @@ D) No difference
 A) Virtual Function I/O
 B) Video File Input Output
 C) Virtual File System Only
-D) None of the above
+D) A framebuffer compression standard for guest GPUs
 
 **8. The VGA arbiter controls:**
 
@@ -136,10 +136,10 @@ D) Are always slower
 
 **17. When setting up GPU passthrough, you should:**
 
-A) Enable both GPUs in host
+A) Enable both physical GPUs in the host for exclusive host rendering and display
 B) Disable host GPU driver
 C) Use integrated graphics for host
-D) Both B and C
+D) Disabling the host GPU driver and using integrated graphics for the host
 
 **18. The EFI disk in Proxmox:**
 

@@ -33,7 +33,7 @@ D) Attention mask pattern (bidirectional vs causal)
 A) Decoder-only
 B) Encoder-only
 C) Encoder-decoder
-D) None of the above
+D) Retrieval-augmented generation
 
 **3. Which architecture is used by GPT-4?**
 
@@ -89,7 +89,7 @@ D) Sentiment analysis
 A) They're easier to train
 B) Better scaling properties
 C) More efficient inference
-D) All of the above
+D) Training ease, scaling behavior and inference efficiency together
 
 **11. In encoder-decoder models, the decoder accesses the input sequence through:**
 
