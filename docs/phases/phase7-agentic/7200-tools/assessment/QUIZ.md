@@ -23,7 +23,7 @@ Tags: ['assessment', 'quiz', 'agents', 'tool-calling']
 
 **1. What is tool calling in LLM context?**
 
-A) Calling external APIs based on LLM output
+A) Invoking outside APIs from the model's own output
 B) Using external tools during pretraining to improve the model
 C) Tool-assisted generation
 D) A fine-tuning objective that ranks model outputs

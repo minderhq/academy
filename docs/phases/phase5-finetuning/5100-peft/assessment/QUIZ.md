@@ -135,7 +135,7 @@ D) Logits storage
 
 **17. Multiple task-specific LoRA adapters on one base model can be:**
 
-A) Served by swapping adapters without storing full model copies
+A) Swapped at serving time without keeping full weight copies
 B) Merged into the tokenizer
 C) Used only one at a time per datacenter
 D) Trained simultaneously on one GPU at no cost, a claim no real training loop has ever satisfied

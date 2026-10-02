@@ -65,7 +65,7 @@ D) Simulating larger batch sizes with limited memory
 
 **7. What is the purpose of learning rate scheduling?**
 
-A) To adjust learning rate during training for better convergence
+A) To adjust the update step size as training progresses
 B) To prevent overfitting, a regularization job the schedule itself never performs
 C) To reduce training time
 D) To increase model capacity
@@ -87,7 +87,7 @@ D) A mandatory accuracy drop of ten percent or more
 **10. What does "warmup" refer to in learning rate scheduling?**
 
 A) Cooling down the GPU, the exact opposite direction a warmup phase moves in
-B) Gradually increasing learning rate at the start
+B) Gradually raising the update step size at the start of training
 C) Preheating the data pipeline
 D) Randomizing the data-loader seed between epochs
 

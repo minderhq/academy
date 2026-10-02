@@ -120,7 +120,7 @@ D) It doesn't contain useful information, a claim every probability vector dispr
 A) Both are equivalent
 B) Per-tensor (faster)
 C) Neither works for transformers
-D) Per-channel (better accuracy)
+D) Per-channel (higher accuracy at the same bit width)
 
 **14. What bit-width is typically recommended for embedding layers in low-bit QAT?**
 

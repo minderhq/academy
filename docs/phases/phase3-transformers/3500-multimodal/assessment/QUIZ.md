@@ -60,7 +60,7 @@ D) Video generation model
 
 A) Train the entire multimodal stack from scratch on image-text data with no pretrained components
 B) Use separate models for each modality
-C) Pretrain vision encoder and language model separately, then connect
+C) Pretrain each modality's encoder separately, then connect the two
 D) Convert images to text before processing
 
 **7. What is BLIP designed for?**

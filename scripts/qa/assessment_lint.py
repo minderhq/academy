@@ -104,6 +104,24 @@ the same AS-04/AS-08/AS-09 standards in their own "### N." shape):
          honest normalization; the 22 keyed ones became concrete
          summaries of their combined options and the 13 distractors
          became concrete false options before the lock tightened
+  AS-17  stem-echo lock, two rules about what the question stem
+         shows the learner: (1) no keyed option appears verbatim in
+         its own stem (casefold + whitespace-collapse under the
+         number-prefix-stripped stem normalization - the naive norm
+         matched keyed option "1" against the question number
+         "**10.", the census false positive that added the strip);
+         (2) no two-or-more informative tokens (len >= 3, not
+         function words, exact forms - "channel" and "channels" stay
+         distinct) shared by the stem and the keyed option but by no
+         distractor, since a learner matching words picks the key
+         without reading. The corpus line is measured, tick-570:
+         single-token echoes are 63/835 (7.5%) normal vocabulary
+         overlap and stay legal, two-token echoes were exactly 7,
+         three never occur. Joined tick-570 - born census caught
+         exactly those 7 phrase echoes across 7 module banks (the
+         "learning rate" / "vision+language" / "adapters+model" /
+         "calling+llm" class), every one drained same tick by
+         rewording the keyed option off its echoed tokens
 
 Format-tolerant by design: richer variants (inline-answer quizzes,
 self-graded coding questions, 3-column answer keys) pass as long as
@@ -172,6 +190,47 @@ DEFERRED_OPT = re.compile(
     r"^(?:all|none)\s+of\s+the\s+(?:above|these|options|listed)\b|"
     r"^(?:all|none)\s+of\s+these\b|"
     r"^(?:both\s+)?[a-e](?:\s*(?:and|or|,|&)\s*[a-e])+$", re.I)
+# AS-17: the stem-echo corpus line, measured tick-570 over the 835-mcq
+# corpus: a single echoed token is normal vocabulary overlap (63
+# questions, 7.5%), two or more tokens echoed by the keyed option and
+# by no distractor is the phrase-match tell a test-prep guide warns
+# about (exactly 7, all drained same tick), three never occurs.
+ECHO_MIN_TOKENS = 2
+# Informative-token filter for the echo rule: len >= 3, not a function
+# word. Exact tokens - no stemming, so "channel" and "channels" stay
+# distinct (the AS-16 punctuation lesson applied to morphology).
+ECHO_STOP = frozenset("""
+a an the and or of in on for to with that this it its is are was were
+be been being as by at from not no nor but if then than so such can
+could will would should shall may might must do does did done have has
+had using use used uses into over under between within about after
+before during through each every some most more less least only also
+very there their them they you your we our us i me my he she his her
+which what when where who whom whose why how whether list following
+above below question questions answer answers option options none all
+any both either neither true false correct incorrect given shows shown
+show describe describes describing best least called name named term
+refers refer referring mean means meaning
+""".split())
+ECHO_TOK = re.compile(r"[a-z0-9_]+")
+
+
+def echo_tokens(text: str) -> set:
+    """The informative tokens the AS-17 echo rule compares on."""
+    return {w for w in ECHO_TOK.findall(text.casefold())
+            if len(w) >= 3 and w not in ECHO_STOP}
+
+
+def stem_text(line: str) -> str:
+    """The stem body of a question heading line, number prefix and
+    markdown bold stripped - the honest normalization the verbatim
+    rule compares under (the naive norm matched the keyed option "1"
+    against the question number "**10." - the census false positive
+    that added the prefix strip)."""
+    m = QUESTION_BOLD.match(line) or QUESTION_H3.match(line) \
+        or PHASE_Q.match(line)
+    body = line[m.end():] if m else line
+    return body.strip().strip("*").strip()
 
 
 def fence_aware(lines):
@@ -198,10 +257,12 @@ class Linter:
         nf = [(i, l) for i, (l, f) in enumerate(fence_aware(lines)) if not f]
 
         qnums = set()
+        stems = {}
         for _, l in nf:
             m = QUESTION_BOLD.match(l) or QUESTION_H3.match(l)
             if m:
                 qnums.add(int(m.group(1)))
+                stems[int(m.group(1))] = stem_text(l)
         if len(qnums) < 20:
             self.report(rel, "AS-02",
                         "only %d questions found (>= 20 required)" % len(qnums))
@@ -336,7 +397,8 @@ class Linter:
         # an edit re-skews a bank.
         answered = [{"num": n,
                      "answer": key.get(n) or inline.get(n),
-                     "options": qopts[n]}
+                     "options": qopts[n],
+                     "stem": stems.get(n, "")}
                     for n in sorted(qnums)
                     if (key.get(n) or inline.get(n)) and n in qopts]
         self.check_len_bias(rel, answered)
@@ -344,6 +406,10 @@ class Linter:
         # option set owes the learner. Born tick-569 catching the 35
         # deferred options across 16 module banks, drained same tick.
         self.check_option_sanity(rel, answered)
+        # AS-17: the stem must not hand over the answer. Born tick-570
+        # catching exactly 7 stem echoes across 7 module banks, drained
+        # same tick.
+        self.check_stem_echo(rel, answered)
 
     def check_len_bias(self, rel: str, answered: list) -> None:
         """AS-15 shared by both quiz shapes: quiz_integrity_scan's
@@ -405,6 +471,40 @@ class Linter:
                                 "choice - single-answer grading cannot "
                                 "key it" % (n, k))
 
+    def check_stem_echo(self, rel: str, answered: list) -> None:
+        """AS-17 shared by both quiz shapes: the stem must not hand
+        over the answer. (1) Verbatim: the keyed option's normalized
+        text appearing in the normalized stem is the question quoting
+        its own answer. (2) Echo: ECHO_MIN_TOKENS or more informative
+        tokens shared by the stem and the keyed option but by no
+        distractor - a learner matching words picks the key without
+        reading, the tell every test-prep guide warns about."""
+        for q in answered:
+            n, a, opts = q["num"], q["answer"], q["options"]
+            stem = " ".join(q["stem"].split()).casefold()
+            if stem and " ".join(opts[a].split()).casefold() in stem:
+                self.report(rel, "AS-17",
+                            "stem leak in question %d: the keyed option "
+                            "%s) appears verbatim in the stem - the "
+                            "question hands over the answer" % (n, a))
+                continue
+            st = echo_tokens(q["stem"])
+            if not st:
+                continue
+            keyed = echo_tokens(opts[a])
+            distr = set()
+            for k in opts:
+                if k != a:
+                    distr |= echo_tokens(opts[k])
+            echo = (st & keyed) - distr
+            if len(echo) >= ECHO_MIN_TOKENS:
+                self.report(rel, "AS-17",
+                            "stem echo in question %d: %s appear in the "
+                            "stem and in the keyed option %s) but in no "
+                            "distractor - matching words picks the key "
+                            "without reading"
+                            % (n, ", ".join(sorted(echo)), a))
+
     def check_balance(self, rel: str, key: dict, qnums: set,
                       inline: dict) -> None:
         """AS-09 shared by both quiz shapes: no letter above
@@ -434,6 +534,7 @@ class Linter:
         nf = [(i, l) for i, (l, f) in enumerate(fence_aware(lines)) if not f]
 
         qnums: set = set()
+        stems: dict = {}
         last = None
         inline: dict = {}
         qopts: dict = {}
@@ -441,6 +542,7 @@ class Linter:
             m = PHASE_Q.match(l)
             if m:
                 qnums.add(int(m.group(1)))
+                stems[int(m.group(1))] = stem_text(l)
                 last = int(m.group(1))
                 continue
             m = PHASE_INLINE.search(l)
@@ -516,11 +618,13 @@ class Linter:
         # module banks were already drained), drained same tick.
         answered = [{"num": n,
                      "answer": key.get(n) or inline.get(n),
-                     "options": qopts[n]}
+                     "options": qopts[n],
+                     "stem": stems.get(n, "")}
                     for n in sorted(qnums)
                     if (key.get(n) or inline.get(n)) and n in qopts]
         self.check_len_bias(rel, answered)
         self.check_option_sanity(rel, answered)
+        self.check_stem_echo(rel, answered)
 
     def lint_practice(self, module: str, prac: Path) -> None:
         rel = "%s assessment/PRACTICE.md" % module

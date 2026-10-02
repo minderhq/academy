@@ -34,7 +34,7 @@ stand today?" without running each tool by hand.
                        every ```json fence parses as JSON (DB-01) and
                        every ```yaml fence parses as a YAML document
                        stream (DB-02); prose/formulas live in text fences
-    assessment_lint    assessment/QUIZ.md + PRACTICE.md coverage (AS-01..AS-16;
+    assessment_lint    assessment/QUIZ.md + PRACTICE.md coverage (AS-01..AS-17;
                        AS-09 graduated tick-566 to a hard ceil(N/4) letter
                        ceiling - no letter above a quarter of the bank's
                        answered questions - over the 33 module banks AND
@@ -94,7 +94,23 @@ stand today?" without running each tool by hand.
                        22 with the key ON the compound (a pick-two
                        question graded as one) and zero true
                        duplicates, drained same tick to concrete
-                       keyed summaries and concrete false options)
+                       keyed summaries and concrete false options);
+                       AS-17 the stem-echo lock - the stem must
+                       not hand over the answer: the keyed option
+                       may not appear verbatim in the stem, and
+                       >= 2 informative tokens shared by the stem
+                       and the keyed option but by no distractor
+                       is the phrase-match tell (a single echoed
+                       token is normal vocabulary overlap,
+                       measured 63/835 = 7.5% and legal; two or
+                       more was exactly 7, three never occurs);
+                       born tick-570 catching exactly 7 stem
+                       echoes across 7 module banks, drained same
+                       tick by rewording the keyed options off
+                       their echoed tokens (4100-low-bit q8 keeps
+                       its "channel" - the per-channel concept IS
+                       the key - and its distractor gains the
+                       token instead)
     quiz_export        quiz bank parses into complete question records
     quiz_integrity_scan
                        content-level quiz integrity (QI-01..06 +

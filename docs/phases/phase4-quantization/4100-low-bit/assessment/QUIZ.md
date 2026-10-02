@@ -72,7 +72,7 @@ D) Is not used
 
 **8. Per-channel quantization:**
 
-A) One scale for all
+A) One scale shared across every channel
 B) No scales
 C) One scale per output channel
 D) Random scales, drawn fresh for every forward pass with no fit to the weight statistics
