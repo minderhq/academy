@@ -1141,6 +1141,26 @@ stand today?" without running each tool by hand.
                        experiments were listed nowhere
                        on the README surface, drained in
                        the same tick
+    sitemap_listing_parity_check
+                       the SITEMAP's listing identities
+                       lock to disk (SL-01 fleet-section
+                       listing parity both directions
+                       across 19 fleets - every bullet
+                       entry resolves to a member of its
+                       section's documented fleet and
+                       every fleet file is listed exactly
+                       once, so misroutes, duplicates,
+                       orphans and ghosts are findings,
+                       SL-02 every docs/**/*.md plus the
+                       root README is reachable from
+                       SITEMAP.md, SL-03 each phase
+                       module's "N lessons, M guides"
+                       equals its non-boilerplate
+                       entries); born tick-560
+                       census-proven clean at zero -
+                       count parity was already SC-locked,
+                       the identities behind the counts
+                       were not
     empty_section_scan every heading must own content (ES-01): a
                        section is empty iff nothing but blanks/HRs/
                        blockquotes/HTML-comments sits between its
@@ -1533,6 +1553,8 @@ GATES = [
     ("small_index_parity_check.py", "small_index_parity_check", True),
     ("project_prereq_parity_check.py", "project_prereq_parity_check", True),
     ("fleet_count_parity_check.py", "fleet_count_parity_check", True),
+    ("sitemap_listing_parity_check.py", "sitemap_listing_parity_check",
+     True),
 ]
 
 
