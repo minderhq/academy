@@ -6,7 +6,7 @@
    "TIMEOUT"
   ],
   "children": "census subprocesses run with PYTHONUTF8=1 (the learner baseline ENVIRONMENT-SETUP teaches)",
-  "adjudicated": "notes written per accepted row (tick-537, carried tick-538); datasets-5.x drain re-blessed 3 files - drain-backlog rows are tagged in-place; tick-554 tutorial FM edits dirtied 12 tutorial files for their first true re-execution - 25 rows adjudicated (env-gaps, by-design server/model hangs, learner-supplied-file demos, ffmpeg/GPU environment requirements) with per-row notes; tick-588 lesson-FM normalization (CC-18 drain, +2 lines near the top of 6 lesson files) shifted 4 already-accepted rows in 3 files (5203 112->114/260->262, 6203 138->140, 7403 153->155) - same defect classes re-blessed at the shifted lines with their notes carried; no fence content changed; tick-589 guide-FM normalization (CC-19 drain, +2 lines after Title in 12 guide files) shifted all 42 already-accepted rows across 11 of those guides (4203 carries none) - 40 re-blessed same-class at the shifted lines with their notes carried, 2 family-reclassified on re-execution (3403 184->186 RUNNER-CRASH->TIMEOUT, the GPU-required load observed hanging past the timeout instead of dying before it could report; 7103 81->83 CODE-SIGNAL:RuntimeError->TIMEOUT, the recorded FLAKY_FAMILY pair); no fence content changed; tick-590 the CC-20 assessment-keyset drain deleted the legacy Phase/Module FM pair from 2300-framework-engineering's PRACTICE.md and QUIZ.md (-2 lines each; QUIZ.md carries no accepted rows), moving PRACTICE.md's 2 accepted rows 72->70 and 316->314; the re-bless re-blessed both at the shifted lines, same class on re-execution (ENV-GAP:tensorflow, UN-LEAK), with their notes carried; no fence content changed"
+  "adjudicated": "notes written per accepted row (tick-537, carried tick-538); datasets-5.x drain re-blessed 3 files - drain-backlog rows are tagged in-place; tick-554 tutorial FM edits dirtied 12 tutorial files for their first true re-execution - 25 rows adjudicated (env-gaps, by-design server/model hangs, learner-supplied-file demos, ffmpeg/GPU environment requirements) with per-row notes; tick-588 lesson-FM normalization (CC-18 drain, +2 lines near the top of 6 lesson files) shifted 4 already-accepted rows in 3 files (5203 112->114/260->262, 6203 138->140, 7403 153->155) - same defect classes re-blessed at the shifted lines with their notes carried; no fence content changed; tick-589 guide-FM normalization (CC-19 drain, +2 lines after Title in 12 guide files) shifted all 42 already-accepted rows across 11 of those guides (4203 carries none) - 40 re-blessed same-class at the shifted lines with their notes carried, 2 family-reclassified on re-execution (3403 184->186 RUNNER-CRASH->TIMEOUT, the GPU-required load observed hanging past the timeout instead of dying before it could report; 7103 81->83 CODE-SIGNAL:RuntimeError->TIMEOUT, the recorded FLAKY_FAMILY pair); no fence content changed; tick-590 the CC-20 assessment-keyset drain deleted the legacy Phase/Module FM pair from 2300-framework-engineering's PRACTICE.md and QUIZ.md (-2 lines each; QUIZ.md carries no accepted rows), moving PRACTICE.md's 2 accepted rows 72->70 and 316->314; the re-bless re-blessed both at the shifted lines, same class on re-execution (ENV-GAP:tensorflow, UN-LEAK), with their notes carried; no fence content changed; tick-594 the CC-24 tutorial-keyset drain deleted the legacy Category/Related FM pair from TUTORIAL-007-LoRA-Basics.md and TUTORIAL-014-Production-LLM-Systems.md (-2 lines each), moving TUTORIAL-007's 5 accepted rows 164->162, 208->206, 276->274, 327->325 and 389->387 (TUTORIAL-014 carries no accepted rows); the re-bless re-blessed all 5 at the shifted lines, same class on re-execution (SIDE-EFFECT x3, ENV-GAP:trl, UN-LEAK), with their notes carried; no fence content changed"
  },
  "files": {
   "docs/00-META/DOCUMENT-TEMPLATE.md": {
@@ -1016,21 +1016,21 @@
    }
   },
   "docs/learning-resources/tutorials/TUTORIAL-007-LoRA-Basics.md": {
-   "mtime": 1790788811.3032467,
-   "size": 17620,
+   "mtime": 1790967200.039351,
+   "size": 17570,
    "bad": {
-    "164": "SIDE-EFFECT",
-    "208": "ENV-GAP:trl",
-    "276": "SIDE-EFFECT",
-    "327": "SIDE-EFFECT",
-    "389": "UN-LEAK"
+    "162": "SIDE-EFFECT",
+    "206": "ENV-GAP:trl",
+    "274": "SIDE-EFFECT",
+    "325": "SIDE-EFFECT",
+    "387": "UN-LEAK"
    },
    "notes": {
-    "164": "LLM training/inference calls needing a GPU stack and model downloads; environment requirement",
-    "208": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-    "276": "same: model-download/gpu-bound training step",
-    "327": "same: model-download/gpu-bound training step",
-    "389": "UN-LEAK cascade of the upstream trl env-gap death in the same file"
+    "162": "LLM training/inference calls needing a GPU stack and model downloads; environment requirement",
+    "206": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+    "274": "same: model-download/gpu-bound training step",
+    "325": "same: model-download/gpu-bound training step",
+    "387": "UN-LEAK cascade of the upstream trl env-gap death in the same file"
    }
   },
   "docs/learning-resources/tutorials/TUTORIAL-008-CUDA-Programming.md": {
@@ -1105,8 +1105,8 @@
    }
   },
   "docs/learning-resources/tutorials/TUTORIAL-014-Production-LLM-Systems.md": {
-   "mtime": 1790897729.7519357,
-   "size": 29138,
+   "mtime": 1790967200.040351,
+   "size": 29057,
    "bad": {}
   },
   "docs/notebooks/README.md": {

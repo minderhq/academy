@@ -698,7 +698,7 @@ stand today?" without running each tool by hand.
                       badges, phase-hub range badges,
                       'Absolute Beginner')
     course_card_check
-                      Course-card parity (CC-01..23, hard):
+                      Course-card parity (CC-01..24, hard):
                       a module README's front-matter
                       Difficulty is the course card a
                       platform catalog reads and the
@@ -1142,7 +1142,47 @@ stand today?" without running each tool by hand.
                       same field on a tutorial fires 0
                       (out of scope), a cheat-sheet and a
                       project aggregate into
-                      exactly 2 CC-23.    heading_scan
+                      exactly 2 CC-23.
+                      CC-24 the ninth surface of the FM
+                      keyset family: a learning-resources
+                      tutorial's FM carries only the
+                      8-field tutorial keyset (the 6-field
+                      entry keyset + Estimated Time +
+                      Prerequisites), negative excess
+                      only; the tick-593 census parked
+                      tutorials as 13 files on the
+                      8-field core with 2 legacy carriers
+                      widening with Category and Related
+                      (TUTORIAL-007, TUTORIAL-014), so
+                      the tick-594 drain deleted exactly
+                      those 4 FM lines count-asserted
+                      and the family froze at 15/15 -
+                      prereq_census byte-identical
+                      (Related feeds only the related
+                      graph, reported never gated),
+                      related_census honestly at
+                      183 docs / 26 tokens / 9 bracketed
+                      with RL-01..03 still zero,
+                      linkcheck unchanged (bare tokens,
+                      never markdown links), fence
+                      coupling one file small -
+                      TUTORIAL-007 carries 5 accepted
+                      fence rows / 5 notes in
+                      accepted_exec_census (TUTORIAL-
+                      014 none), the -2 shift moved
+                      all 5 and the count-asserted
+                      re-bless re-blessed them at the
+                      shifted lines 164->162, 208->206,
+                      276->274, 327->325, 389->387,
+                      same class on re-execution,
+                      notes carried, no fence content
+                      changed - an extra FM field
+                      on a tutorial fires exactly 1
+                      CC-24 with CC-01..23 kept silent,
+                      the same field on a cheat-sheet
+                      fires exactly 1 CC-23 and 0 CC-24,
+                      two tutorials aggregate into
+                      exactly 2 CC-24.    heading_scan
                       Heading skeleton soundness (HS-01..05,
                       hard): the platform renders a TOC and
                       anchor deep-links from heading structure,

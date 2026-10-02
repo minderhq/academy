@@ -1,13 +1,11 @@
 ---
 Document ID: TUTORIAL-007
 Title: "TUTORIAL-007: LoRA Basics"
-Category: Tutorial
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 1 hour
 Prerequisites: [TUTORIAL-001]
-Related: [LAB-003, 5101, 5102]
 Tags: ['tutorial', 'lora', 'finetuning', 'peft']
 ---
 

@@ -157,6 +157,17 @@ CC-23  Every learning-resources reference page's FM
        same schema its entry pages live in. Negative-
        excess only: FS owns field presence, this
        clause owns field excess - never double-report.
+CC-24  Every learning-resources tutorial's FM carries
+       only the 8-field tutorial keyset (the 6-field
+       entry keyset + Estimated Time + Prerequisites)
+       - one family for the 15 tutorials under
+       learning-resources/tutorials, the hands-on
+       walkthroughs a platform renders beside the
+       curriculum, so a platform parser reads every
+       tutorial through the same schema its entry
+       pages live in. Negative-excess only: FS owns
+       field presence, this clause owns field
+       excess - never double-report.
 
 The gate is order-agnostic about table columns (3500-multimodal renders Time
 before Difficulty and both orders pass). Dead row targets are skipped here -
@@ -359,6 +370,32 @@ enrichment reference surface a platform renders beside
 the curriculum froze at the family the moment it was
 named, no drain, no fence coupling, nothing to probe.
 
+CC-24 was born tick-594 as the ninth FM-keyset surface
+(entry CC-16, card CC-17, lesson CC-18, guide CC-19,
+assessment CC-20, phase header CC-21, phase assessment
+CC-22, reference page CC-23, tutorial CC-24): the
+tick-593 census parked tutorials as 13 files on the
+8-field core with 2 legacy carriers widening with
+Category and Related, so the drain deleted exactly
+those 4 FM lines count-asserted (TUTORIAL-007's
+'Category: Tutorial' - derivable from the directory -
+and its Related list, and the same pair on
+TUTORIAL-014) and the family froze at 15/15, with the
+impact probe showing prereq_census byte-identical
+(Related feeds only the related graph, reported never
+gated), related_census shrinking honestly to 183 docs
+/ 26 tokens / 9 bracketed with RL-01..03 still zero,
+linkcheck unchanged (the Related values were bare
+tokens, never markdown links) and fence coupling one
+file small - TUTORIAL-007 carries 5 accepted
+fence rows / 5 notes in accepted_exec_census
+(TUTORIAL-014 none), the -2 shift moved all 5,
+and the count-asserted re-bless re-blessed them
+at the shifted lines 164->162, 208->206,
+276->274, 327->325, 389->387, same class on
+re-execution, notes carried, no fence content
+changed.
+
 Exit 1 on any finding; prints one line per finding.
 """
 from __future__ import annotations
@@ -419,6 +456,10 @@ REFERENCE_DIRS = (
     "resources",
     "troubleshooting",
 )
+# the tutorials carry Prerequisites but no Related -
+# the 8-field core is the 15-file majority family
+# (Category was pure directory noise, drained tick-594)
+TUTORIAL_KEYSET = ENTRY_KEYSET | {"Estimated Time", "Prerequisites"}
 FM_DASH = re.compile(r"^---\s*$")
 FM_KEY = re.compile(r"^([A-Za-z][A-Za-z0-9 _-]*):")
 DIFF_FIELD = re.compile(r"^Difficulty:(.*)$")
@@ -1003,6 +1044,24 @@ def main() -> int:
                     f"fields outside the reference keyset - "
                     f"{', '.join(extra)}"
                 )
+
+    # CC-24: the learning-resources tutorials carry only
+    # the 8-field tutorial keyset (entry + Estimated
+    # Time + Prerequisites) - the hands-on walkthrough
+    # surface a platform renders beside the curriculum
+    # (labs read other forms and stay outside this
+    # clause)
+    for tp in sorted(
+        (root / "docs" / "learning-resources" / "tutorials").rglob("*.md")
+    ):
+        trel = tp.relative_to(root).as_posix()
+        extra = sorted(fm_keys(tp) - TUTORIAL_KEYSET)
+        if extra:
+            findings.append(
+                f"{trel} CC-24 tutorial FM carries fields "
+                f"outside the tutorial keyset - "
+                f"{', '.join(extra)}"
+            )
 
     for f in findings:
         print(f)
