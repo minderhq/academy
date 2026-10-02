@@ -698,7 +698,7 @@ stand today?" without running each tool by hand.
                       badges, phase-hub range badges,
                       'Absolute Beginner')
     course_card_check
-                      Course-card parity (CC-01..27, hard):
+                      Course-card parity (CC-01..28, hard):
                       a module README's front-matter
                       Difficulty is the course card a
                       platform catalog reads and the
@@ -1278,6 +1278,35 @@ stand today?" without running each tool by hand.
                       scoping, never double-reported), two
                       meta pages aggregate into exactly
                       2 CC-27.
+                      CC-28 the thirteenth surface of
+                      the FM keyset family: a volumes
+                      page's FM carries only the 6-field
+                      entry keyset, negative excess only;
+                      the tick-597 census had parked the
+                      volumes tree among the exact-6
+                      scatter and the tick-598 census
+                      read the class clean - all 7 volume
+                      guides (VOLUME-1 through VOLUME-7,
+                      the book-style spine a platform
+                      renders as the curriculum's table
+                      of contents) already on the exact
+                      6-field keyset, 0 no-FM, 0
+                      off-keyset, all 7 linked (SITEMAP,
+                      VOLUME-GUIDE and PROGRESS-TRACKER
+                      beside projects and peer volumes);
+                      zero-drain in the CC-21/22/23
+                      shape, no fence coupling (the 23
+                      accepted fence rows live on 6 of
+                      the volume docs and zero-drain
+                      moves nothing), non-recursive by
+                      design - an extra FM field on a
+                      volume fires exactly 1 CC-28 with
+                      CC-01..27 kept silent, the same
+                      field on a meta page fires exactly
+                      1 CC-27 and 0 CC-28 (clause
+                      scoping, never double-reported),
+                      two volumes aggregate into exactly
+                      2 CC-28.
     heading_scan
                       Heading skeleton soundness (HS-01..05,
                       hard): the platform renders a TOC and

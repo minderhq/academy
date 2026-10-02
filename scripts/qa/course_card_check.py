@@ -205,6 +205,19 @@ CC-27  Every 00-META meta page's FM carries
        outside. Negative-excess only: FS owns
        field presence, this clause owns field
        excess - never double-report.
+CC-28  Every volumes page's FM carries
+       only the 6-field entry keyset - one family
+       for the 7 volume guides under docs/
+       volumes (VOLUME-1 through VOLUME-7, the
+       book-style spine a platform renders as
+       the curriculum's table of contents
+       beside the catalog), so a platform
+       parser reads the volume layer through
+       the same schema. Non-recursive by
+       design: the volumes root has no
+       subdirectories. Negative-excess only:
+       FS owns field presence, this clause
+       owns field excess - never double-report.
 
 The gate is order-agnostic about table columns (3500-multimodal renders Time
 before Difficulty and both orders pass). Dead row targets are skipped here -
@@ -510,6 +523,31 @@ nothing to probe; the remaining exact-6
 scatter and the 4 drift carriers park for
 their own clauses.
 
+CC-28 was born tick-598 as the thirteenth
+FM-keyset surface (entry CC-16, card CC-17,
+lesson CC-18, guide CC-19, assessment CC-20,
+phase header CC-21, phase assessment CC-22,
+reference page CC-23, tutorial CC-24, lab
+CC-25, solution CC-26, meta page CC-27,
+volume CC-28): the tick-597 uncovered-surface
+census had parked the volumes tree among the
+exact-6 scatter, and the tick-598 census read
+the class clean - all 7 volume guides already
+on the exact 6-field entry keyset (Document
+ID, Title, Last Updated, Status, Difficulty,
+Tags), 0 no-FM, 0 off-keyset, all 7 linked
+(SITEMAP, VOLUME-GUIDE and PROGRESS-TRACKER
+beside projects and peer volumes) - so the
+lock is a zero-drain one in the CC-21/CC-22/
+CC-23 shape: the volume surface froze at the
+family the moment it was named, no drain,
+no fence coupling (the 23 accepted fence
+rows live on 6 of the volume docs and
+zero-drain moves nothing), nothing to probe;
+the phase CHECKPOINTs (7) and the rest of
+the exact-6 scatter and the 4 drift
+carriers park for their own clauses.
+
 Exit 1 on any finding; prints one line per finding.
 """
 from __future__ import annotations
@@ -588,6 +626,11 @@ SOLUTION_KEYSET = ENTRY_KEYSET
 # them on - help/navigation/governance layer beside
 # the catalog; non-recursive, assessment/ is CC-22
 META_KEYSET = ENTRY_KEYSET
+# the volumes pages froze at the 6-field entry
+# keyset the tick-598 census read them on - the
+# book-style spine beside the catalog; the root
+# has no subdirectories, glob is non-recursive
+VOLUME_KEYSET = ENTRY_KEYSET
 FM_DASH = re.compile(r"^---\s*$")
 FM_KEY = re.compile(r"^([A-Za-z][A-Za-z0-9 _-]*):")
 DIFF_FIELD = re.compile(r"^Difficulty:(.*)$")
@@ -1240,6 +1283,22 @@ def main() -> int:
             findings.append(
                 f"{mrel} CC-27 meta FM carries fields "
                 f"outside the meta keyset - "
+                f"{', '.join(extra)}"
+            )
+
+    # CC-28: the volumes pages carry only the
+    # 6-field entry keyset - the book-style
+    # spine a platform renders as the
+    # curriculum's table of contents;
+    # non-recursive, the root has no
+    # subdirectories
+    for vp in sorted((root / "docs" / "volumes").glob("*.md")):
+        vrel = vp.relative_to(root).as_posix()
+        extra = sorted(fm_keys(vp) - VOLUME_KEYSET)
+        if extra:
+            findings.append(
+                f"{vrel} CC-28 volume FM carries fields "
+                f"outside the volume keyset - "
                 f"{', '.join(extra)}"
             )
 
