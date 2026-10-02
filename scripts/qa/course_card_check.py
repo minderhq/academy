@@ -64,6 +64,17 @@ CC-11  A module README's lesson links must first appear in ascending
        order - the course card's lesson order is the unlock order,
        the CC-09 invariant one level down (fence-aware; non-lesson
        targets never enter the order).
+CC-12  The module README must link its own PREREQUISITES.md (any
+       link form, fence-aware, resolved against the module dir) -
+       the card a platform renders must offer the learner its
+       entry door, the CC-10 invariant mirrored inward: the spine
+       phase page -> card -> door -> first lesson is only a spine
+       if every rung is clickable.
+CC-13  Where a PREREQUISITES.md carries an If-YES proceed line,
+       the line must carry at least one internal course link and
+       every link it carries must resolve inside its own module -
+       the proceed line is the learner's 'start here' click, and
+       an exit opening into another course is a trap.
 
 The gate is order-agnostic about table columns (3500-multimodal renders Time
 before Difficulty and both orders pass). Dead row targets are skipped here -
@@ -90,6 +101,16 @@ tick-582 at zero - the third zero-drain lock in the PQ-06/CC-08/CC-09
 shape: all 93 lesson links across the 33 module READMEs first appear in
 ascending order, so the course card's lesson order froze as the unlock
 order.
+CC-12 born tick-583 at zero - the fourth zero-drain lock in the
+PQ-06/CC-08/CC-09/CC-11 shape: all 33 module READMEs already link
+their own PREREQUISITES.md (58 door links, every one the plain
+'./PREREQUISITES.md' form). CC-13 born the same tick at zero: 24
+of 33 entry pages carry an If-YES proceed line, all in the house
+'Start with [NNN1: ...](./NNN1-...)' form, all 24 landing inside
+their own module - the 9 modules consciously shipping none and
+the 26-of-119 / 179-of-534 links that legitimately cross modules
+(cross-course next pointers, EXP_* experiments, labs, tutorials)
+stayed unlocked by honest census.
 
 Exit 1 on any finding; prints one line per finding.
 """
@@ -107,6 +128,7 @@ DIFF_FIELD = re.compile(r"^Difficulty:(.*)$")
 ET_FIELD = re.compile(r"^Estimated Time:(.*)$")
 DUR = re.compile(r"(\d+(?:\.\d+)?)\s*(h|hr|hrs|hour|hours|m|min|mins|minutes?)\b")
 LINK = re.compile(r"\]\(([^)]+)\)")
+YES_LINE = re.compile(r"\bIf YES\b")
 TABLE_HEAD = re.compile(r"^#{1,3} .*Module Documents")
 STAR = "\u2b50"  # U+2B50 - SH-01 keeps sources pure ASCII  # U+2B50, the FF-02 house escape - SH-01 keeps sources pure ASCII
 
@@ -331,6 +353,60 @@ def main() -> int:
                 f"{rel} CC-11 module README lesson links first appear "
                 f"out of unlock order - {lorder}"
             )
+
+        # CC-12: the card must offer its entry door - the README
+        # links its own PREREQUISITES.md (the CC-10 invariant's
+        # mirror: the spine phase page -> card -> door -> lesson
+        # is only a spine if every rung is clickable)
+        if prm.exists():
+            door = any(
+                (mod / m.group(1).split("#")[0]).resolve() == prm.resolve()
+                for m in LINK.finditer("\n".join(lines))
+                if not m.group(1).startswith(
+                    ("http://", "https://", "mailto:")
+                )
+            )
+            if not door:
+                findings.append(
+                    f"{rel} CC-12 module README links its own "
+                    f"PREREQUISITES.md nowhere (the card a platform "
+                    f"renders must offer the learner its entry door)"
+                )
+
+        # CC-13: the If-YES proceed line is the learner's 'start
+        # here' click - where it exists it must carry an internal
+        # course link and every link it carries must land inside
+        # this module (an exit opening into another course is a
+        # trap the entry page must never spring)
+        if prm.exists():
+            pblob = "\n".join(unfenced_lines(prm.read_text(encoding="utf-8")))
+            ygap: list[str] = []
+            yout: list[str] = []
+            for yl in pblob.split("\n"):
+                if not YES_LINE.search(yl):
+                    continue
+                ytg = [
+                    m.group(1).split("#")[0]
+                    for m in LINK.finditer(yl)
+                    if not m.group(1).startswith(
+                        ("http://", "https://", "mailto:")
+                    )
+                ]
+                if not ytg:
+                    ygap.append(yl.strip()[:80])
+                for t in ytg:
+                    if (mod / t).resolve().parent != mod.resolve():
+                        yout.append(t)
+            if ygap:
+                findings.append(
+                    f"{rel} CC-13 If-YES proceed line carries no "
+                    f"internal course link - {ygap}"
+                )
+            if yout:
+                findings.append(
+                    f"{rel} CC-13 If-YES proceed line exits the "
+                    f"module - {yout}"
+                )
 
         # Module Documents table: CC-02/03 per row, CC-05 coverage
         rows, has_time = table_rows(lines)

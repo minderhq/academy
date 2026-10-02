@@ -698,7 +698,7 @@ stand today?" without running each tool by hand.
                       badges, phase-hub range badges,
                       'Absolute Beginner')
     course_card_check
-                      Course-card parity (CC-01..11, hard):
+                      Course-card parity (CC-01..13, hard):
                       a module README's front-matter
                       Difficulty is the course card a
                       platform catalog reads and the
@@ -800,7 +800,37 @@ stand today?" without running each tool by hand.
                       33 module READMEs clean - an
                       out-of-order lesson link pair
                       fires exactly once with
-                      CC-01..10 kept silent.    heading_scan
+                      CC-01..10 kept silent.
+                      CC-12 born tick-583 at zero -
+                      the fourth zero-drain lock in
+                      the PQ-06/CC-08/CC-09/CC-11
+                      shape: a module README must
+                      link its own PREREQUISITES.md
+                      (the card a platform renders
+                      must offer the learner its
+                      entry door, the CC-10 invariant
+                      mirrored inward), census 58
+                      door links across the 33 module
+                      READMEs, every one the plain
+                      './PREREQUISITES.md' form - a
+                      de-linked door fires exactly
+                      once with CC-01..11 kept
+                      silent. CC-13 born the same
+                      tick at zero: where a
+                      PREREQUISITES.md carries an
+                      If-YES proceed line the line
+                      must carry an internal course
+                      link landing inside its own
+                      module (24 of 33 carry one, all
+                      landing home; the 9 shipping
+                      none and the 26-of-119 /
+                      179-of-534 links that
+                      legitimately cross modules
+                      stayed unlocked by honest
+                      census) - a link-less or
+                      module-exiting proceed line
+                      fires exactly once with CC-10
+                      kept silent.    heading_scan
                       Heading skeleton soundness (HS-01..05,
                       hard): the platform renders a TOC and
                       anchor deep-links from heading structure,
