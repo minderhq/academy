@@ -1,13 +1,9 @@
 ---
 Document ID: SOL-002
 Title: "SOL-002: Multi-Modal Industrial Inspection System"
-Category: Industry Solution
 Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
-Estimated Time: 7 hours
-Prerequisites: See module README
-Related: See module README
 Tags: ['enterprise', 'solution', 'manufacturing', 'multimodal', 'vision', 'llm']
 ---
 

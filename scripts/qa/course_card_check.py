@@ -586,6 +586,24 @@ fence rows), nothing to probe; the rest of
 the exact-6 scatter (13 files) and the 4
 drift carriers park for their own clauses.
 
+CC-30 was born tick-600 as the fifteenth
+FM-keyset surface (entry CC-16 through
+checkpoint CC-29): the same tick-597 census
+had read the six scattered enrichment roots
+as 15 clean exact-6 files plus 4 drift
+carriers, and the tick-600 census confirmed
+the split, then drained the drift -
+UC-001/UC-002 lost Related, IND-003 lost
+Estimated Time, SOL-002 lost
+Category/Estimated Time/Prerequisites/Related
+(numeric module references and prose pointers,
+no doc links, no fence rows moved,
+count-asserted) - leaving all 19 files across
+comparisons, diagrams, industry,
+enterprise-solutions, use-cases and notebooks
+(READMEs included, non-recursive) on the exact
+6-field entry keyset, 0 no-FM, 0 off-keyset.
+
 Exit 1 on any finding; prints one line per finding.
 """
 from __future__ import annotations
@@ -673,6 +691,17 @@ VOLUME_KEYSET = ENTRY_KEYSET
 # keyset the tick-599 census read them on - the
 # phase-completion gates between module groups
 CHECKPOINT_KEYSET = ENTRY_KEYSET
+
+# the scattered enrichment roots froze at the
+# 6-field entry keyset after the tick-600
+# drain emptied the four drift carriers -
+# comparisons, diagrams, industry,
+# enterprise-solutions, use-cases, notebooks
+SCATTER_KEYSET = ENTRY_KEYSET
+SCATTER_ROOTS = (
+    "comparisons", "diagrams", "industry",
+    "enterprise-solutions", "use-cases", "notebooks",
+)
 FM_DASH = re.compile(r"^---\s*$")
 FM_KEY = re.compile(r"^([A-Za-z][A-Za-z0-9 _-]*):")
 DIFF_FIELD = re.compile(r"^Difficulty:(.*)$")
@@ -1357,6 +1386,22 @@ def main() -> int:
                 f"outside the checkpoint keyset - "
                 f"{', '.join(extra)}"
             )
+
+    # CC-30: the scattered enrichment roots carry
+    # only the 6-field entry keyset - comparisons,
+    # diagrams, industry, enterprise-solutions,
+    # use-cases, notebooks (READMEs included,
+    # non-recursive)
+    for sroot in SCATTER_ROOTS:
+        for sp in sorted((root / "docs" / sroot).glob("*.md")):
+            srel = sp.relative_to(root).as_posix()
+            extra = sorted(fm_keys(sp) - SCATTER_KEYSET)
+            if extra:
+                findings.append(
+                    f"{srel} CC-30 scattered-root FM carries "
+                    f"fields outside the entry keyset - "
+                    f"{', '.join(extra)}"
+                )
 
     for f in findings:
         print(f)

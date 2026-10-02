@@ -698,7 +698,7 @@ stand today?" without running each tool by hand.
                       badges, phase-hub range badges,
                       'Absolute Beginner')
     course_card_check
-                      Course-card parity (CC-01..29, hard):
+                      Course-card parity (CC-01..30, hard):
                       a module README's front-matter
                       Difficulty is the course card a
                       platform catalog reads and the
@@ -1336,7 +1336,31 @@ stand today?" without running each tool by hand.
                       1 CC-28 and 0 CC-29 (clause
                       scoping, never double-reported),
                       two CHECKPOINTs aggregate into
-                      exactly 2 CC-29.
+                      CC-30 born tick-600 as the fifteenth surface - the six
+                      scattered enrichment roots (comparisons, diagrams,
+                      industry, enterprise-solutions, use-cases, notebooks,
+                      READMEs included, non-recursive) drained of their 4
+                      drift carriers (UC-001/UC-002 Related, IND-003
+                      Estimated Time, SOL-002 Category/Estimated Time/
+                      Prerequisites/Related - numeric references and prose
+                      pointers, no doc links; the drain shifted
+                      the 10 accepted fence rows on the three
+                      row-carrying carriers (SOL-002 5 rows at
+                      -4, IND-003 3 rows at -1, UC-001 2 rows at
+                      -1) and the gate's own --update re-bless
+                      re-blessed them at the shifted lines, same
+                      class on re-execution, notes carried, no
+                      fence content changed, while prereq_census
+                      statement counters moved honestly docs
+                      196->195 / ft 178->177 with edges/tier-edges
+                      untouched) then locked on the exact 6-field
+                      entry keyset across all 19 files, 0 no-FM, 0
+                      off-keyset; negatively tested across five runs -
+                      pristine 0, an extra FM field on UC-003 fires
+                      exactly 1 CC-30 with CC-01..29 kept silent, the same
+                      field on a phase CHECKPOINT fires exactly 1 CC-29
+                      and 0 CC-30, two scattered files aggregate into
+                      exactly 2 CC-30, post-restore byte-identical.
     heading_scan
                       Heading skeleton soundness (HS-01..05,
                       hard): the platform renders a TOC and

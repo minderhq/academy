@@ -4,7 +4,6 @@ Title: "UC-002: RAG (Retrieval-Augmented Generation) Practical Use Cases"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
-Related: [6101, 6201, 6302]
 Tags: ['use-case', 'rag', 'retrieval']
 ---
 
