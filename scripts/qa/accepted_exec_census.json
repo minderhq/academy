@@ -671,13 +671,13 @@
    "bad": {}
   },
   "docs/learning-resources/projects/PROJECT-001-AI-Assistant.md": {
-   "mtime": 1790785289.1843019,
-   "size": 36469,
+   "mtime": 1790904022.084831,
+   "size": 36615,
    "bad": {
-    "662": "TIMEOUT"
+    "664": "TIMEOUT"
    },
    "notes": {
-    "662": "by-design server start: uvicorn.run blocks forever in the project walkthrough"
+    "664": "by-design server start: uvicorn.run blocks forever in the project walkthrough"
    }
   },
   "docs/learning-resources/projects/PROJECT-002-Train-Neural-Network.md": {
@@ -765,8 +765,8 @@
    }
   },
   "docs/learning-resources/projects/PROJECT-007-Production-AI-System.md": {
-   "mtime": 1790785289.1920235,
-   "size": 23950,
+   "mtime": 1790904022.0862865,
+   "size": 24096,
    "bad": {}
   },
   "docs/learning-resources/projects/templates/TEMPLATE-004-Agent-Framework.md": {

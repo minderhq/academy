@@ -264,6 +264,11 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **[PROJECT-006](../learning-resources/projects/PROJECT-006-Production-RAG.md)** | Build Production RAG System | 3 weeks | RAG, Deployment | Advanced |
 | **[PROJECT-007](../learning-resources/projects/PROJECT-007-Production-AI-System.md)** | Deploy Production AI System | 4 weeks | Full Stack | Advanced |
 
+**Supporting guides:**
+- **[PREREQUISITES-001](../learning-resources/projects/PREREQUISITES-001.md)** - PROJECT-001 environment setup walkthrough
+- **[PREREQUISITES-007](../learning-resources/projects/PREREQUISITES-007.md)** - PROJECT-007 environment setup walkthrough
+- **[SETUP-GUIDE](../learning-resources/projects/SETUP-GUIDE.md)** - Common environment setup for all projects
+
 ---
 
 ### Career Guides (3 files)

@@ -1097,6 +1097,27 @@ stand today?" without running each tool by hand.
                        description cells abbreviated away
                        the front-matter Title, drained in
                        the same tick
+    project_prereq_parity_check
+                       the projects fleet's supporting
+                       guides lock to their projects and
+                       their planning surface (PP-01 every
+                       PREREQUISITES-NNN's front-matter
+                       Document ID matches its filename and
+                       its "For:" line links PROJECT-NNN,
+                       resolving to a real project file,
+                       PP-02 the target project body links
+                       back to its walkthrough (navigation
+                       is not one-directional), PP-03 the
+                       MASTER-INDEX Projects section links
+                       every supporting guide in the
+                       directory); born tick-558 at 5
+                       findings - PROJECT-001/007 carried
+                       rich inline prerequisite sections
+                       but never mentioned their own
+                       dedicated walkthroughs, and none of
+                       the three supporting guides had a
+                       MASTER-INDEX row, drained in the
+                       same tick
     empty_section_scan every heading must own content (ES-01): a
                        section is empty iff nothing but blanks/HRs/
                        blockquotes/HTML-comments sits between its
@@ -1487,6 +1508,7 @@ GATES = [
     ("cheatsheet_index_parity_check.py", "cheatsheet_index_parity_check", True),
     ("project_index_parity_check.py", "project_index_parity_check", True),
     ("small_index_parity_check.py", "small_index_parity_check", True),
+    ("project_prereq_parity_check.py", "project_prereq_parity_check", True),
 ]
 
 

@@ -30,6 +30,8 @@ Deploy a complete AI system to production with:
 
 ## Prerequisites
 
+📋 **[PREREQUISITES-007: Prerequisites & Setup Guide](./PREREQUISITES-007.md)** - step-by-step environment setup walkthrough for this project.
+
 Complete these before starting:
 - ✅ 7101: ReAct Loop System
 - ✅ 7102: Planning Decomposition

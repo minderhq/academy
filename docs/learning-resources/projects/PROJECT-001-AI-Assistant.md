@@ -29,6 +29,8 @@ Build a fully-functional AI assistant that can:
 
 ## Prerequisites
 
+📋 **[PREREQUISITES-001: Prerequisites & Setup Guide](./PREREQUISITES-001.md)** - step-by-step environment setup walkthrough for this project.
+
 ### Required Tutorials & Labs:
 - ✅ **[TUTORIAL-000: Python for AI](../tutorials/TUTORIAL-000-Python-for-AI.md)** - 🚨 **MANDATORY**
 - ✅ **[TUTORIAL-001: Hello LLM](../tutorials/TUTORIAL-001-Hello-LLM.md)** - LLM basics
