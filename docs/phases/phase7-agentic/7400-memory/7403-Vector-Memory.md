@@ -1,6 +1,8 @@
 ---
 Document ID: 7403
 Title: "7403: Vector Memory and Embedding-Based Storage"
+Phase: 7
+Module: 7400
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced

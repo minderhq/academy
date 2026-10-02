@@ -1,6 +1,8 @@
 ---
 Document ID: 6203
 Title: "6203: Advanced Retrieval Techniques"
+Phase: 6
+Module: 6200
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced

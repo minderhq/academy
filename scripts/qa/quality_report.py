@@ -698,7 +698,7 @@ stand today?" without running each tool by hand.
                       badges, phase-hub range badges,
                       'Absolute Beginner')
     course_card_check
-                      Course-card parity (CC-01..17, hard):
+                      Course-card parity (CC-01..18, hard):
                       a module README's front-matter
                       Difficulty is the course card a
                       platform catalog reads and the
@@ -991,7 +991,29 @@ stand today?" without running each tool by hand.
                       kept silent, the same field on that module's
                       PREREQUISITES.md fires exactly 1 CC-16 and
                       0 CC-17, two cards aggregate into exactly
-                      2 CC-17.    heading_scan
+                      2 CC-17.
+                      CC-18 the third surface of the FM keyset
+                      family: a lesson's FM carries only the
+                      13-field lesson keyset (card keyset +
+                      Module/Phase + Prerequisites/Related +
+                      the optional Hardware/Software pair),
+                      negative excess only; the tick-588
+                      classifier census split the lesson class
+                      honestly - the direct module-dir surface
+                      is 93 files, 100% linked (tick-587's 159
+                      figure was a recursive-slice over-count;
+                      the extra 87 live in module
+                      subdirectories), three forms read
+                      81 + 6 (+HW/SW) + 6 (-Module/-Phase)
+                      and the 12-line drain wrote the
+                      derivable navigation pair into exactly
+                      those 6 so the surface reads two exact
+                      forms inside the family - an extra FM
+                      field on a lesson fires exactly 1 CC-18
+                      with CC-01..17 kept silent, the same
+                      field on the card fires exactly 1 CC-17
+                      and 0 CC-18, two lessons aggregate into
+                      exactly 2 CC-18.    heading_scan
                       Heading skeleton soundness (HS-01..05,
                       hard): the platform renders a TOC and
                       anchor deep-links from heading structure,

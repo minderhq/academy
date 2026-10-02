@@ -103,6 +103,14 @@ CC-17  A course card's (README.md) FM carries only the 7-field
        every card the same way it reads every entry page
        (CC-16). Negative-excess only: FS owns field presence,
        this clause owns field excess - never double-report.
+CC-18  Every lesson's FM carries only the 13-field lesson keyset
+       (the 7-field card keyset + Module/Phase + Prerequisites/
+       Related + the optional Hardware/Software lab-requirements
+       pair) - one family for the 93-lesson surface, so a
+       platform parser reads every lesson through one schema the
+       same way it reads every entry page (CC-16) and card
+       (CC-17). Negative-excess only: FS owns field presence,
+       this clause owns field excess - never double-report.
 
 The gate is order-agnostic about table columns (3500-multimodal renders Time
 before Difficulty and both orders pass). Dead row targets are skipped here -
@@ -195,6 +203,29 @@ unlinked assessment/EXP/lab support docs - needing a
 classifier split before any lock; meta surfaces
 (learning-resources 4 forms, use-cases / industry /
 enterprise-solutions singles) stay census-only for now.
+CC-18 born tick-588 as the third surface of the FM keyset
+family (entry CC-16, card CC-17, lesson CC-18): the tick-588
+classifier census split the lesson class honestly and killed
+the tick-587 parking hypothesis - the direct module-dir
+surface is 93 files and every one of them is linked from its
+README (0 unlinked; the tick-587 figure of 159 was a
+recursive-slice over-count, recursive reads 180 and the extra
+87 live in module subdirectories - labs/assessments support
+files, a separate class from the lesson surface). The class
+read three forms: 81 on the 11-field core (the 6 universal
++ Estimated Time + Module/Phase + Prerequisites/Related),
+6 widening it with the Hardware/Software lab-requirements
+pair (the hardware-lab lessons: GPON modem, star topology,
+USB passthrough, self-attention deep-dive, GGUF physics,
+ReAct system), and 6 missing the Module/Phase navigation
+pair (5103, 5203, 5204, 6203, 7302, 7403 - phase5/6/7 rot
+from lessons written before the card convention froze).
+The lock freezes the family, negative excess only, and the
+same-tick normalization drain wrote the derivable
+navigation pair into exactly those 6 files (12 lines,
+values read off the module dir) so the surface reads two
+exact forms - 87 on the core and 6 on the core + the
+requirements pair - both inside the declared family.
 
 Exit 1 on any finding; prints one line per finding.
 """
@@ -216,6 +247,14 @@ ENTRY_KEYSET = {
     "Tags",
 }
 CARD_KEYSET = ENTRY_KEYSET | {"Estimated Time"}
+LESSON_KEYSET = CARD_KEYSET | {
+    "Module",
+    "Phase",
+    "Prerequisites",
+    "Related",
+    "Hardware",
+    "Software",
+}
 FM_DASH = re.compile(r"^---\s*$")
 FM_KEY = re.compile(r"^([A-Za-z][A-Za-z0-9 _-]*):")
 DIFF_FIELD = re.compile(r"^Difficulty:(.*)$")
@@ -565,6 +604,23 @@ def main() -> int:
                 f"README.md FM carries fields outside the "
                 f"card keyset - {', '.join(extra)}"
             )
+
+        # CC-18: every lesson carries only the lesson FM
+        # keyset - the card's schema widened by the
+        # Module/Phase navigation pair, the Prerequisites/
+        # Related link pair and the optional Hardware/
+        # Software lab-requirements pair: a platform
+        # parsing 93 lessons expects one family, not
+        # three forms (FS owns field presence; this
+        # clause owns field excess)
+        for p in lessons:
+            extra = sorted(fm_keys(p) - LESSON_KEYSET)
+            if extra:
+                findings.append(
+                    f"{p.relative_to(root).as_posix()} CC-18 "
+                    f"lesson FM carries fields outside the "
+                    f"lesson keyset - {', '.join(extra)}"
+                )
 
         # Module Documents table: CC-02/03 per row, CC-05 coverage
         rows, has_time = table_rows(lines)

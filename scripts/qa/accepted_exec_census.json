@@ -6,7 +6,7 @@
    "TIMEOUT"
   ],
   "children": "census subprocesses run with PYTHONUTF8=1 (the learner baseline ENVIRONMENT-SETUP teaches)",
-  "adjudicated": "notes written per accepted row (tick-537, carried tick-538); datasets-5.x drain re-blessed 3 files - drain-backlog rows are tagged in-place; tick-554 tutorial FM edits dirtied 12 tutorial files for their first true re-execution - 25 rows adjudicated (env-gaps, by-design server/model hangs, learner-supplied-file demos, ffmpeg/GPU environment requirements) with per-row notes"
+  "adjudicated": "notes written per accepted row (tick-537, carried tick-538); datasets-5.x drain re-blessed 3 files - drain-backlog rows are tagged in-place; tick-554 tutorial FM edits dirtied 12 tutorial files for their first true re-execution - 25 rows adjudicated (env-gaps, by-design server/model hangs, learner-supplied-file demos, ffmpeg/GPU environment requirements) with per-row notes; tick-588 lesson-FM normalization (CC-18 drain, +2 lines near the top of 6 lesson files) shifted 4 already-accepted rows in 3 files (5203 112->114/260->262, 6203 138->140, 7403 153->155) - same defect classes re-blessed at the shifted lines with their notes carried; no fence content changed"
  },
  "files": {
   "docs/00-META/DOCUMENT-TEMPLATE.md": {
@@ -1279,8 +1279,8 @@
    }
   },
   "docs/phases/phase2-foundations/2100-calculus/PREREQUISITES.md": {
-   "mtime": 1790750987.1835148,
-   "size": 17002,
+   "mtime": 1790955580.259024,
+   "size": 16852,
    "bad": {}
   },
   "docs/phases/phase2-foundations/2100-calculus/assessment/PRACTICE.md": {
@@ -1353,8 +1353,8 @@
    }
   },
   "docs/phases/phase2-foundations/2200-frameworks/PREREQUISITES.md": {
-   "mtime": 1790782652.3629925,
-   "size": 18374,
+   "mtime": 1790955580.261135,
+   "size": 18224,
    "bad": {}
   },
   "docs/phases/phase2-foundations/2200-frameworks/assessment/PRACTICE.md": {
@@ -1397,8 +1397,8 @@
    "bad": {}
   },
   "docs/phases/phase2-foundations/2300-framework-engineering/PREREQUISITES.md": {
-   "mtime": 1790750987.186405,
-   "size": 16131,
+   "mtime": 1790955580.263722,
+   "size": 15980,
    "bad": {}
   },
   "docs/phases/phase2-foundations/2300-framework-engineering/assessment/PRACTICE.md": {
@@ -1475,8 +1475,8 @@
    "bad": {}
   },
   "docs/phases/phase2-foundations/2400-pretraining/PREREQUISITES.md": {
-   "mtime": 1790750987.1895437,
-   "size": 20206,
+   "mtime": 1790955580.2657807,
+   "size": 20054,
    "bad": {}
   },
   "docs/phases/phase2-foundations/2400-pretraining/assessment/PRACTICE.md": {
@@ -1490,8 +1490,8 @@
    }
   },
   "docs/phases/phase2-foundations/README.md": {
-   "mtime": 1790781121.399449,
-   "size": 24903,
+   "mtime": 1790953007.48884,
+   "size": 24898,
    "bad": {
     "456": "CODE-SIGNAL:RuntimeError",
     "476": "CODE-SIGNAL:RuntimeError",
@@ -2088,8 +2088,8 @@
    }
   },
   "docs/phases/phase5-finetuning/5100-peft/5103-Adapters.md": {
-   "mtime": 1790788811.3432167,
-   "size": 13320,
+   "mtime": 1790958160.6223202,
+   "size": 13342,
    "bad": {}
   },
   "docs/phases/phase5-finetuning/5100-peft/assessment/PRACTICE.md": {
@@ -2145,20 +2145,20 @@
    }
   },
   "docs/phases/phase5-finetuning/5200-alignment/5203-RLHF.md": {
-   "mtime": 1790788811.345054,
-   "size": 15383,
+   "mtime": 1790958160.6223202,
+   "size": 15405,
    "bad": {
-    "112": "ENV-GAP:trl",
-    "260": "ENV-GAP:trl"
+    "114": "ENV-GAP:trl",
+    "262": "ENV-GAP:trl"
    },
    "notes": {
-    "112": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-    "260": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+    "114": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+    "262": "optional third-party package the QA environment does not install; the fence documents the install requirement"
    }
   },
   "docs/phases/phase5-finetuning/5200-alignment/5204-Preference-Dataset-Creation.md": {
-   "mtime": 1790788811.345054,
-   "size": 11508,
+   "mtime": 1790958160.6238282,
+   "size": 11530,
    "bad": {}
   },
   "docs/phases/phase5-finetuning/5200-alignment/README.md": {
@@ -2347,8 +2347,8 @@
    }
   },
   "docs/phases/phase6-rag/6100-vector/PREREQUISITES.md": {
-   "mtime": 1790750681.96969,
-   "size": 2455,
+   "mtime": 1790954154.1060374,
+   "size": 2460,
    "bad": {}
   },
   "docs/phases/phase6-rag/6100-vector/assessment/PRACTICE.md": {
@@ -2402,13 +2402,13 @@
    }
   },
   "docs/phases/phase6-rag/6200-retrieval/6203-Advanced-Retrieval.md": {
-   "mtime": 1790788811.3574781,
-   "size": 12015,
+   "mtime": 1790958160.6243565,
+   "size": 12037,
    "bad": {
-    "138": "ENV-GAP:sentence_transformers"
+    "140": "ENV-GAP:sentence_transformers"
    },
    "notes": {
-    "138": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+    "140": "optional third-party package the QA environment does not install; the fence documents the install requirement"
    }
   },
   "docs/phases/phase6-rag/6200-retrieval/assessment/PRACTICE.md": {
@@ -2594,8 +2594,8 @@
    }
   },
   "docs/phases/phase6-rag/README.md": {
-   "mtime": 1790781121.4032447,
-   "size": 28241,
+   "mtime": 1790953007.4981341,
+   "size": 28236,
    "bad": {
     "664": "UN-LEAK"
    },
@@ -2681,8 +2681,8 @@
    "bad": {}
   },
   "docs/phases/phase7-agentic/7300-orchestration/7302-Communication-Protocols.md": {
-   "mtime": 1790749979.5919578,
-   "size": 12269,
+   "mtime": 1790958160.625421,
+   "size": 12291,
    "bad": {}
   },
   "docs/phases/phase7-agentic/7300-orchestration/README.md": {
@@ -2768,13 +2768,13 @@
    }
   },
   "docs/phases/phase7-agentic/7400-memory/7403-Vector-Memory.md": {
-   "mtime": 1790788811.3686707,
-   "size": 14300,
+   "mtime": 1790958160.6259568,
+   "size": 14322,
    "bad": {
-    "153": "SIDE-EFFECT"
+    "155": "SIDE-EFFECT"
    },
    "notes": {
-    "153": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect"
+    "155": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect"
    }
   },
   "docs/phases/phase7-agentic/7400-memory/assessment/PRACTICE.md": {
