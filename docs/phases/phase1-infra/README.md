@@ -3,7 +3,7 @@ Document ID: PHASE1-INFRA-README
 Title: "Phase 1: Infrastructure Fabric [1000]"
 Last Updated: 2026-09-30
 Status: Complete
-Difficulty: Intermediate
+Difficulty: Advanced
 Tags: ['phase', 'infrastructure', 'gpu', 'networking']
 ---
 
@@ -713,6 +713,6 @@ After completing this phase:
 ---
 
 **Module Duration:** 75 hours (44 reading + 31 practice)
-**Difficulty:** ⭐⭐ Intermediate
+**Difficulty:** ⭐⭐⭐ Advanced
 
 **Ready to build your infrastructure?** Start with [1101: Internet Uplink & Modem Configuration](./1100-network/1101-Fiber-GPON-Modem.md) or [1102: Network Topology Design](./1100-network/1102-Star-Topology-Core.md)

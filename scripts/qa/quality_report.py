@@ -698,7 +698,7 @@ stand today?" without running each tool by hand.
                       badges, phase-hub range badges,
                       'Absolute Beginner')
     course_card_check
-                      Course-card parity (CC-01..13, hard):
+                      Course-card parity (CC-01..14, hard):
                       a module README's front-matter
                       Difficulty is the course card a
                       platform catalog reads and the
@@ -830,6 +830,47 @@ stand today?" without running each tool by hand.
                       census) - a link-less or
                       module-exiting proceed line
                       fires exactly once with CC-10
+                      kept silent. CC-14 born
+                      tick-584 as the family's
+                      first multi-file drift since
+                      576: a phase README's FM
+                      Difficulty equals the max
+                      tier of its module cards
+                      (the CC-01 invariant one
+                      level up - the phase header
+                      is the course group a
+                      platform filters and badges
+                      by, so a group containing
+                      an advanced course filters
+                      as advanced; computed only
+                      when every module card
+                      carries an in-vocabulary
+                      tier, FS owns the missing
+                      name and FV-07 the stray
+                      value - never
+                      double-reported), census 4
+                      of 7 phase headers already
+                      at their modules' max tier
+                      while phase1-infra,
+                      phase2-foundations and
+                      phase6-rag sat a level low
+                      (Intermediate headers over
+                      Advanced-containing course
+                      groups, revamp-zone
+                      residue from modules that
+                      arrived advanced) - the
+                      drain bumped exactly those
+                      3 FM lines to Advanced,
+                      a coupled second drain
+                      bumping the same 3
+                      headers' body badges to
+                      the canonical Advanced
+                      form under the BD-01
+                      badge-mirrors-FM rule
+                      (103/103 canonical
+                      after); a header
+                      downgrade fires exactly
+                      once with CC-01..13
                       kept silent.    heading_scan
                       Heading skeleton soundness (HS-01..05,
                       hard): the platform renders a TOC and

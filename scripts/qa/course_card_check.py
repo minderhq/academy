@@ -75,6 +75,14 @@ CC-13  Where a PREREQUISITES.md carries an If-YES proceed line,
        every link it carries must resolve inside its own module -
        the proceed line is the learner's 'start here' click, and
        an exit opening into another course is a trap.
+CC-14  A phase README's FM Difficulty equals the max tier of its
+       module cards' FM Difficulty - the CC-01 invariant one
+       level up: the phase header is the course group a
+       platform filters and badges by, and a group containing
+       an advanced course filters as advanced. Computed only
+       when every module card under the phase carries an
+       in-vocabulary tier (FS owns the missing name, FV-07 the
+       stray value - never double-report).
 
 The gate is order-agnostic about table columns (3500-multimodal renders Time
 before Difficulty and both orders pass). Dead row targets are skipped here -
@@ -111,6 +119,17 @@ their own module - the 9 modules consciously shipping none and
 the 26-of-119 / 179-of-534 links that legitimately cross modules
 (cross-course next pointers, EXP_* experiments, labs, tutorials)
 stayed unlocked by honest census.
+CC-14 born tick-584 from the family's first multi-file drift since
+576: the census read 4 of 7 phase headers already at their modules'
+max tier while phase1-infra, phase2-foundations and phase6-rag sat a
+level low (Intermediate headers over Advanced-containing course
+groups - revamp-zone residue from modules that arrived advanced),
+so the drain bumped exactly those 3 FM lines to Advanced and the
+equality froze. The lesson-FM hypotheses died at census before they
+became fiction: Tags presence is TG-01..04's, the Difficulty value
+is FV-07's, the six FS names own field presence corpus-wide - and
+Status read 408/408 'Complete' uniform, parked as an FV-12
+candidate rather than a second clause.
 
 Exit 1 on any finding; prints one line per finding.
 """
@@ -514,6 +533,36 @@ def main() -> int:
                 f"unlock order - module links first appear as {order}, "
                 f"want ascending {sorted(order)}"
             )
+
+        # CC-14: the phase page's FM Difficulty equals the max tier of
+        # its module cards - the CC-01 invariant one level up: the
+        # phase header is the course group a platform filters and
+        # badges by, and a group containing an advanced course
+        # filters as advanced (computed only when every module card
+        # carries an in-vocabulary tier - FS/FV own the missing or
+        # stray value, this gate never double-reports)
+        mdirs = [
+            d for d in sorted(ph.iterdir())
+            if d.is_dir() and (d / "README.md").exists()
+        ]
+        ctiers = [
+            TIER_STARS[c]
+            for c in ((fm_fields(d / "README.md") or {}).get("diff")
+                      for d in mdirs)
+            if c in TIER_STARS
+        ]
+        pfm = fm_fields(prm)
+        if (pfm and pfm.get("diff") in TIER_STARS and mdirs
+                and len(ctiers) == len(mdirs)):
+            want = max(ctiers)
+            if TIER_STARS[pfm["diff"]] != want:
+                findings.append(
+                    f"{prel} CC-14 phase page FM Difficulty "
+                    f"'{pfm['diff']}' != max module-card tier "
+                    f"'{[t for t, v in TIER_STARS.items() if v == want][0]}' "
+                    f"(the CC-01 invariant one level up - a group "
+                    f"containing an advanced course filters as advanced)"
+                )
 
     for f in findings:
         print(f)
