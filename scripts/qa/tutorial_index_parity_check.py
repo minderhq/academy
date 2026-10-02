@@ -32,10 +32,18 @@ TI-04  every prerequisite item must normalize (free text like
 TI-05  id-set parity: every TUTORIAL-NNN with front matter has a
        Tutorials row and every row has a tutorial file (either
        direction alone is a finding).
+TI-06  section-header arithmetic: the "### Tutorials (N files)"
+       header is a count claim a learner plans from - N must equal
+       both the MASTER-INDEX table's own row count and the
+       tutorials directory's TUTORIAL-*.md count. Joined tick-564:
+       the numbers were census-proven true (15 = 15 rows = 15
+       files) but unlocked - TI-01..05 read the table rows and
+       never the header.
 
 Hard gate (exit 1 on findings): born tick-554 at the maximal
 finding, drained in the same tick - front matters seeded from the
-evidence-backed values, drifted index cells corrected.
+evidence-backed values, drifted index cells corrected; TI-06
+joined tick-564 at zero.
 
 Run over the whole corpus:
     python scripts/qa/tutorial_index_parity_check.py --root .
@@ -48,6 +56,7 @@ import sys
 from pathlib import Path
 
 MI_SECTION = re.compile(r"^### Tutorials \(", re.M)
+TUTORIALS_HEADER = re.compile(r"^### Tutorials \((\d+) files\)", re.M)
 MI_ROW = re.compile(
     r"^\|\s*\*\*\[(TUTORIAL-\d+)\]\(([^)]+)\)\*\*\s*\|\s*(.+?)\s*\|"
     r"\s*(.+?)\s*\|\s*(.+?)\s*\|\s*(.+?)\s*\|", re.M)
@@ -145,12 +154,30 @@ def main() -> int:
                                 f"MASTER-INDEX {sorted(norm_set(mpre))!r} vs "
                                 f"front matter {sorted(fpre)!r}")
 
+    # --- TI-06: section-header arithmetic ---------------------------------
+    hm = TUTORIALS_HEADER.search(mi_text)
+    if hm is None:
+        findings.append("MASTER-INDEX Tutorials header: TI-06 lost the "
+                        "'(N files)' form")
+    else:
+        n = int(hm.group(1))
+        c_tut = len(list(tut_dir.glob("TUTORIAL-*.md")))
+        if n != len(mi):
+            findings.append(f"MASTER-INDEX Tutorials header: TI-06 header "
+                            f"says {n} files, MASTER-INDEX table holds "
+                            f"{len(mi)} rows")
+        if n != c_tut:
+            findings.append(f"MASTER-INDEX Tutorials header: TI-06 header "
+                            f"says {n} files, disk holds {c_tut} tutorial "
+                            f"files")
+
     for f in findings:
         print(f)
     print(f"tutorial_index_parity_check: {len(findings)} findings "
           f"(TI-01 difficulty, TI-02 estimated time, TI-03 prerequisites, "
-          f"TI-04 normalizable items, TI-05 id-set parity) across "
-          f"{len(fm)} tutorial files / {len(mi)} MASTER-INDEX rows")
+          f"TI-04 normalizable items, TI-05 id-set parity, TI-06 header "
+          f"arithmetic) across {len(fm)} tutorial files / {len(mi)} "
+          f"MASTER-INDEX rows")
     return 1 if findings else 0
 
 

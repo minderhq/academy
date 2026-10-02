@@ -20,9 +20,18 @@ NC-02  field parity per shared id: title, topics, difficulty word
        (README's star run is stripped to its word) and duration must
        be verbatim-equal across both tables, and each side's link
        target basename must name the same notebook file.
+NC-03  section-header arithmetic: the "### Notebooks (N files)"
+       header is a count claim a learner plans from - N must equal
+       the notebooks directory's own *.ipynb count (the header's
+       definition is notebooks only; the directory README is not a
+       notebook - the same divergence the SITEMAP section's 21
+       documents). Joined tick-564: the number was census-proven
+       true (20 = 20) but unlocked - NC-01/02 read the table rows
+       and never the header.
 
 Hard gate (exit 1 on findings): baseline 0 at birth (tick-551) -
-the mirroring was verbatim, the gate keeps it that way.
+the mirroring was verbatim, the gate keeps it that way; NC-03
+joined tick-564 at zero.
 
 Run over the whole corpus:
     python scripts/qa/notebook_catalog_check.py --root .
@@ -35,6 +44,7 @@ import sys
 from pathlib import Path
 
 MI_SECTION = re.compile(r"^### Notebooks \(", re.M)
+NOTEBOOKS_HEADER = re.compile(r"^### Notebooks \((\d+) files\)", re.M)
 # MASTER-INDEX row: | **[NB-201](link)** | Title | Topics | Difficulty | Duration |
 MI_ROW = re.compile(
     r"^\|\s*\*\*\[(NB-\d+)\]\(([^)]+)\)\*\*\s*\|\s*(.+?)\s*\|\s*(.+?)\s*"
@@ -105,11 +115,24 @@ def main() -> int:
             findings.append(
                 f"{nb}: NC-02 link target mismatch - README "
                 f"{r[4]!r} vs MASTER-INDEX {m_[4]!r}")
+    # --- NC-03: section-header arithmetic ---------------------------------
+    hm = NOTEBOOKS_HEADER.search(mi_text)
+    if hm is None:
+        findings.append("MASTER-INDEX Notebooks header: NC-03 lost the "
+                        "'(N files)' form")
+    else:
+        n = int(hm.group(1))
+        c_nb = len(list((args.root / "docs" / "notebooks").glob("*.ipynb")))
+        if n != c_nb:
+            findings.append(f"MASTER-INDEX Notebooks header: NC-03 header "
+                            f"says {n} files, disk holds {c_nb} notebooks")
+
     for f in findings:
         print(f.encode("ascii", "backslashreplace").decode("ascii"))
     print(f"notebook_catalog_check: {len(findings)} findings "
-          f"(NC-01 id-set parity, NC-02 field parity) across "
-          f"{len(rd)} README rows / {len(md)} MASTER-INDEX rows")
+          f"(NC-01 id-set parity, NC-02 field parity, NC-03 header "
+          f"arithmetic) across {len(rd)} README rows / {len(md)} "
+          f"MASTER-INDEX rows")
     return 1 if findings else 0
 
 

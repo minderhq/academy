@@ -19,6 +19,13 @@ LI-02  duration parity: the row's Duration equals the lab's
        Estimated Time verbatim.
 LI-03  title parity: the row's title equals the lab's Title with
        its "LAB-NNN: " prefix stripped, verbatim.
+LI-04  section-header arithmetic: the "### Labs (N files: A labs
+       + B solutions)" header is a claim a learner budgets from -
+       A+B must equal N, A must equal the labs directory's own
+       LAB-*.md count and B the solutions directory's. Joined
+       tick-564: the numbers were census-proven true (30 = 15+15)
+       but unlocked - LI-01..03 read the table rows and never the
+       header.
 
 Hard gate (exit 1 on findings): born tick-553 at 21 findings,
 drained in the same tick - the index rows rewritten to the labs'
@@ -35,6 +42,8 @@ import sys
 from pathlib import Path
 
 MI_SECTION = re.compile(r"^### Labs \(", re.M)
+LABS_HEADER = re.compile(
+    r"^### Labs \((\d+) files: (\d+) labs \+ (\d+) solutions\)", re.M)
 MI_ROW = re.compile(
     r"^\|\s*\*\*\[(LAB-\d+)\]\(([^)]+)\)\*\*\s*\|\s*(.+?)\s*\|\s*(.+?)\s*\|",
     re.M)
@@ -91,12 +100,32 @@ def main() -> int:
                             f"MASTER-INDEX {mi[lab_id][0]!r} vs front "
                             f"matter title {short!r}")
 
+    # --- LI-04: section-header arithmetic ---------------------------------
+    hm = LABS_HEADER.search(mi_text)
+    if hm is None:
+        findings.append("MASTER-INDEX Labs header: LI-04 lost the "
+                        "'(N files: A labs + B solutions)' form")
+    else:
+        n, a, b = (int(hm.group(i)) for i in (1, 2, 3))
+        c_lab = len(list(labs_dir.glob("LAB-*.md")))
+        c_sol = len(list((labs_dir / "solutions").glob("*.md")))
+        if a + b != n:
+            findings.append(f"MASTER-INDEX Labs header: LI-04 header "
+                            f"arithmetic {a}+{b} != {n}")
+        if a != c_lab:
+            findings.append(f"MASTER-INDEX Labs header: LI-04 header "
+                            f"part 1 says {a} labs, disk holds {c_lab}")
+        if b != c_sol:
+            findings.append(f"MASTER-INDEX Labs header: LI-04 header "
+                            f"part 2 says {b} solutions, disk holds "
+                            f"{c_sol}")
+
     for f in findings:
         print(f)
     print(f"lab_index_parity_check: {len(findings)} findings "
           f"(LI-01 id-set parity, LI-02 duration parity, LI-03 title "
-          f"parity) across {len(fm)} lab files / {len(mi)} MASTER-INDEX "
-          f"rows")
+          f"parity, LI-04 header arithmetic) across {len(fm)} lab files "
+          f"/ {len(mi)} MASTER-INDEX rows")
     return 1 if findings else 0
 
 

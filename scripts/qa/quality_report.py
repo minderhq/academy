@@ -1005,7 +1005,12 @@ stand today?" without running each tool by hand.
                        its word - duration, and the same link
                        basename); the content-drift class link
                        checks cannot see, born tick-551 at 20/20
-                       rows and 0 findings
+                       rows and 0 findings; NC-03 joined tick-564
+                       locking the "### Notebooks (N files)" header
+                       to the notebooks directory's own *.ipynb
+                       count (census-proven true but the rows were
+                       the only thing read - the header was
+                       unlocked)
     changelog_summary_check
                        the changelog's three release surfaces stay
                        synchronized (CS-01/02 every "## [X.Y.Z]"
@@ -1026,7 +1031,11 @@ stand today?" without running each tool by hand.
                        15 durations drifted (index summed ~53 hours
                        against a declared ~85, LAB-009 read 4 hours
                        against 12) and 10 of 15 titles, drained in
-                       the same tick
+                       the same tick; LI-04 joined tick-564 locking
+                       the "### Labs (N files: A labs + B solutions)"
+                       header arithmetic to disk - census-proven
+                       true (30 = 15+15) but the header itself was
+                       unlocked
     tutorial_index_parity_check
                        MASTER-INDEX's "### Tutorials" table locks to
                        every tutorial's front matter (TI-01 difficulty
@@ -1043,7 +1052,11 @@ stand today?" without running each tool by hand.
                        mirror follows the evidence-backed richer side
                        per field (the opposite of the lab lock, where
                        the front matter was the contract), drained in
-                       the same tick
+                       the same tick; TI-06 joined tick-564 locking
+                       the "### Tutorials (N files)" header to the
+                       table's row count and the tutorials directory
+                       (census-proven true at 15 = 15 = 15 but the
+                       header itself was unlocked)
     cheatsheet_index_parity_check
                        MASTER-INDEX's "### Cheat Sheets" table locks
                        to the 13-file cheat-sheet fleet (CI-01 id-set
