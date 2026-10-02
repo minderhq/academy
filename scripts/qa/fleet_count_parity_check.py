@@ -16,6 +16,26 @@ class: every link resolved, so linkcheck could not see invisible
 files (the seven group headers, 4+5+6+4+3+6+4=32, matched their own
 blocks - the drift was invisible to any per-surface arithmetic).
 
+FC-07 joined tick-565 born at zero after a definition-discovery
+census: the Statistics tables looked drift-ridden at first glance
+(VOLUME-3 says "4 experiments" while the experiments/ pool holds 6
+EXP_3xxx files; Volumes 2-7 all claim "3 projects" while their
+bodies reference no PROJECT- id at all), but every claim proved
+true under the definition its surface secretly follows - Core
+Documents equal the core checklist bullets (8/16/12/11/9/11/10
+across the seven volumes), VOLUME-1's Optional Documents equal its
+advanced bullets (10), the Experiments/Labs/Tutorials/Cheat Sheets
+rows equal the body's unique id references (5/4/2/1/1 experiments
+for volumes 2-6, volumes 1 and 7 carry no row and reference none),
+and the Projects rows split by form: VOLUME-1's "1 (PROJECT-001)"
+matches its single fleet reference while Volumes 2-7's "3 projects"
+match the three "### Project " headings of their own Capstone
+sections. The definitions had never been written down, so an editor
+counting directories would have silently broken every one of them;
+the census also proved all referenced ids resolve on disk. Checklist
+bullets are counted checked or unchecked - the statistics table
+describes the curriculum inventory, not the learner's progress.
+
 FC-01  MI File Counts: every category row's count equals its disk
        definition (the definition map lives below - Experiments
        counts experiments/EXP_*.md and deliberately excludes
@@ -31,6 +51,18 @@ FC-05  README Experiments section lists every EXP file on disk in
        both directions (an orphan or a ghost link is a finding).
 FC-06  each README group header's "(N)" equals the EXP links under
        that group.
+FC-07  the seven docs/volumes/VOLUME-*.md "## Volume N Statistics"
+       tables equal their own volume's curated path: Core/Optional
+       Documents equal the "### Core Content (Required)" /
+       "### Advanced Content (Optional)" checkbox bullet counts;
+       Experiments/Labs/Tutorials/Cheat Sheets equal the unique
+       EXP_/LAB-/TUTORIAL-/CHEAT-SHEET- ids the volume body
+       references (NOT directory prefixes - phase 3's experiments/
+       pool holds 6 EXP_3xxx files but the volume walks 4 of them);
+       Projects is the fleet id the volume references (Volume 1) or
+       the "### Project " headings of its own Capstone section
+       (Volumes 2-7, the three A/B/C builds); every referenced id
+       must resolve on disk.
 
 Out of scope, recorded: 0000-LEARNING-PATH.md's experiments table
 is a deliberate 6-row per-phase highlight subset, not an inventory;
@@ -61,6 +93,33 @@ SITEMAP_HEADER = re.compile(
 README_SUMMARY = re.compile(r"\U0001F52C (\d+) Experiment Files")
 README_GROUP = re.compile(r"\*\*(.+?) \((\d+)\):\*\*")
 README_LINK = re.compile(r"\./experiments/(EXP_[A-Z_0-9]+)\.md")
+
+# FC-07: the VOLUME-*.md statistics tables and the sections they answer to.
+STAT_ROW = re.compile(r"^\| \*\*(.+?)\*\* \| ([^|]+?) \|$", re.M)
+STATS_HEADER = re.compile(r"^## Volume \d+ Statistics$", re.M)
+CORE_SECTION = re.compile(
+    r"^### Core Content \(Required\)\n(.*?)(?=^### |^## )", re.M | re.S)
+ADV_SECTION = re.compile(
+    r"^### Advanced Content \(Optional\)\n(.*?)(?=^### |^## )", re.M | re.S)
+CAPSTONE_SECTION = re.compile(
+    r"^## Volume \d+ Capstone[^\n]*\n(.*?)(?=^## )", re.M | re.S)
+CAPSTONE_PROJECT = re.compile(r"^### Project ", re.M)
+# fleet-key -> (id-token regex, pool directory glob relative to the root)
+ID_FLEETS = [
+    ("Experiments", r"EXP_\d+", ("experiments",), "EXP_*.md"),
+    ("Labs", r"LAB-\d+",
+     ("docs", "learning-resources", "labs"), "*.md"),
+    ("Tutorials", r"TUTORIAL-\d+",
+     ("docs", "learning-resources", "tutorials"), "*.md"),
+    ("Cheat Sheets", r"CHEAT-SHEET-\d+",
+     ("docs", "learning-resources", "cheat-sheets"), "*.md"),
+]
+PROJECT_REF = r"PROJECT-\d+"
+
+
+def lead_int(cell: str):
+    m = re.match(r"(\d+)", cell)
+    return int(m.group(1)) if m else None
 
 # FC-01 disk definitions: MI File Counts category -> how to count it.
 # Docs-rooted paths are relative to docs/; "root:" prefixes the repo root.
@@ -188,12 +247,124 @@ def main() -> int:
                 findings.append("FC-06 README group '%s' header claims %d, "
                                 "its block links %d" % (name, n, real))
 
+    # --- FC-07: VOLUME-*.md statistics tables vs their own definitions ---
+    vol_files = sorted((args.root / "docs" / "volumes").glob("VOLUME-*.md"))
+    pools: dict[str, str] = {}
+    for key, pat, parts, glob in ID_FLEETS:
+        base = args.root
+        for part in parts:
+            base = base / part
+        pools[key] = " ".join(p.name for p in base.glob(glob))
+    proj_pool = " ".join(p.name for p in (args.root / "docs"
+                                          / "learning-resources"
+                                          / "projects").glob("*.md"))
+    for vf in vol_files:
+        vt = vf.read_text(encoding="utf-8")
+        h = STATS_HEADER.search(vt)
+        if not h:
+            findings.append("FC-07 %s has no '## Volume N Statistics' "
+                            "header" % vf.name)
+            continue
+        sec = vt[h.end():].split("\n## ", 1)[0]
+        rows = {k: c for k, c in STAT_ROW.findall(sec) if k != "Metric"}
+
+        def bullets(pat: re.Pattern[str]):
+            m = pat.search(vt)
+            return None if m is None else len(
+                re.findall(r"^- \[[xX ]\]", m.group(1), re.M))
+
+        # Core Documents row vs the core checklist bullets
+        core = bullets(CORE_SECTION)
+        if "Core Documents" not in rows:
+            findings.append("FC-07 %s statistics lost its 'Core Documents' "
+                            "row" % vf.name)
+        elif core is None:
+            findings.append("FC-07 %s has no '### Core Content (Required)' "
+                            "section for its Core Documents row" % vf.name)
+        else:
+            n = lead_int(rows["Core Documents"])
+            if n != core:
+                findings.append("FC-07 %s Core Documents claims %s, its "
+                                "core checklist holds %d documents"
+                                % (vf.name, rows["Core Documents"], core))
+
+        # Optional Documents row iff the advanced section exists
+        adv = bullets(ADV_SECTION)
+        if ("Optional Documents" in rows) != (adv is not None):
+            findings.append("FC-07 %s Optional Documents row and its "
+                            "'### Advanced Content (Optional)' section "
+                            "disagree on existence" % vf.name)
+        elif adv is not None:
+            n = lead_int(rows["Optional Documents"])
+            if n != adv:
+                findings.append("FC-07 %s Optional Documents claims %s, "
+                                "its advanced checklist holds %d documents"
+                                % (vf.name, rows["Optional Documents"], adv))
+
+        # Experiments/Labs/Tutorials/Cheat Sheets: row iff ids referenced
+        for key, pat, _parts, _glob in ID_FLEETS:
+            refs = sorted(set(re.findall(pat, vt)))
+            if key in rows:
+                n = lead_int(rows[key])
+                if n is None:
+                    findings.append("FC-07 %s %s row lost its leading "
+                                    "count" % (vf.name, key))
+                elif n != len(refs):
+                    findings.append("FC-07 %s %s claims %s, the volume "
+                                    "references %d" % (vf.name, key,
+                                                       rows[key], len(refs)))
+                else:
+                    for i in refs:
+                        if i not in pools[key]:
+                            findings.append("FC-07 %s references %s, no "
+                                            "such fleet file exists"
+                                            % (vf.name, i))
+            elif refs:
+                findings.append("FC-07 %s references %d %s ids but its "
+                                "statistics carry no %s row"
+                                % (vf.name, len(refs), key, key))
+
+        # Projects: fleet-id form (Volume 1) or in-volume capstone form
+        prow = next((k for k in ("Projects", "Capstone Projects")
+                     if k in rows), None)
+        if prow is None:
+            findings.append("FC-07 %s statistics has no Projects row"
+                            % vf.name)
+        else:
+            n = lead_int(rows[prow])
+            proj_refs = sorted(set(re.findall(PROJECT_REF, vt)))
+            if proj_refs:
+                if n != len(proj_refs):
+                    findings.append("FC-07 %s %s claims %s, the volume "
+                                    "references %d PROJECT id%s"
+                                    % (vf.name, prow, rows[prow],
+                                       len(proj_refs),
+                                       "" if len(proj_refs) == 1 else "s"))
+                for i in proj_refs:
+                    if i not in proj_pool:
+                        findings.append("FC-07 %s references %s, no such "
+                                        "fleet file exists" % (vf.name, i))
+            else:
+                cap = CAPSTONE_SECTION.search(vt)
+                heads = (len(CAPSTONE_PROJECT.findall(cap.group(1)))
+                         if cap else None)
+                if cap is None:
+                    findings.append("FC-07 %s %s claims %s but the volume "
+                                    "references no PROJECT id and has no "
+                                    "Capstone section"
+                                    % (vf.name, prow, rows[prow]))
+                elif n != heads:
+                    findings.append("FC-07 %s %s claims %s, its Capstone "
+                                    "section defines %d projects"
+                                    % (vf.name, prow, rows[prow], heads))
+
     for f in findings:
         print(esc(f))
     print("fleet_count_parity_check: %d findings (FC-01/02 MI File Counts, "
-          "FC-03 SITEMAP header, FC-04/05/06 README experiments) over "
-          "%d categories / %d experiments"
-          % (len(findings), len(DEFS), len(exp_files)))
+          "FC-03 SITEMAP header, FC-04/05/06 README experiments, "
+          "FC-07 volume statistics) over %d categories / %d experiments / "
+          "%d volumes"
+          % (len(findings), len(DEFS), len(exp_files), len(vol_files)))
     return 1 if findings else 0
 
 

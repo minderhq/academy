@@ -1156,12 +1156,33 @@ stand today?" without running each tool by hand.
                        Experiments section lists every
                        EXP file in both directions, FC-06
                        each group header equals its own
-                       block); born tick-559 at 16
+                       block, FC-07 the seven VOLUME-*.md
+                       Statistics tables equal their own
+                       volume's curated path (Core/
+                       Optional Documents vs checklist
+                       bullets, Experiments/Labs/
+                       Tutorials/Cheat Sheets vs the
+                       unique id references the volume
+                       body carries, Projects vs the
+                       fleet id referenced or the
+                       Capstone section's Project
+                       headings, every id resolving on
+                       disk); born tick-559 at 16
                        findings - the README summary
                        said 46 against 47 on disk and 15
                        experiments were listed nowhere
                        on the README surface, drained in
-                       the same tick
+                       the same tick; FC-07 joined
+                       tick-565 born at zero after a
+                       definition-discovery census -
+                       every claim proved true under the
+                       undocumented definition its
+                       surface secretly follows
+                       (VOLUME-3's "4 experiments" are its
+                       4 referenced EXP files though the
+                       phase pool holds 6; Volumes 2-7's
+                       "3 projects" are their Capstone
+                       sections' three A/B/C headings)
     sitemap_listing_parity_check
                        the SITEMAP's listing identities
                        lock to disk (SL-01 fleet-section
