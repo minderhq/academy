@@ -640,6 +640,20 @@ tick-602 drain moved to the long form -
 152/152 clean after the drain, 0 external
 references to the old short IDs.
 
+CC-33 was born tick-603 as the Tags
+vocabulary lock: a Tags value must be a
+bracket list whose items are each
+single-quoted kebab-case tokens (lowercase
+letters, digits, hyphens); the tick-603
+census read 408/408 FM docs on the quoted
+bracket-list shape, 238 distinct tags with
+0 near-duplicate pairs, and exactly 1
+charset deviation ('llama.cpp' in
+4101-GGUF-Physics, dot outside the kebab
+charset) which the tick-603 drain moved to
+'llamacpp' - 1507 clean items after the
+drain, 0 raw-quote or shape deviations.
+
 Exit 1 on any finding; prints one line per finding.
 """
 from __future__ import annotations
@@ -1540,6 +1554,54 @@ def main() -> int:
                 f"{irel} CC-32 fixed-stem Document ID not "
                 f"derivable from filename - ID {did!r}, "
                 f"want {want!r}"
+            )
+
+
+    # CC-33: a Tags value must be the vouched
+    # shape - a bracket list whose items are
+    # each single-quoted kebab-case tokens
+    # (lowercase letters, digits, hyphens)
+    for ip in sorted((root / "docs").rglob("*.md")):
+        irel = ip.relative_to(root).as_posix()
+        try:
+            ilines = ip.read_text(encoding="utf-8").splitlines()
+        except OSError:
+            continue
+        if not ilines or not FM_DASH.match(ilines[0]):
+            continue
+        end_i = None
+        for i in range(1, min(len(ilines), 40)):
+            if FM_DASH.match(ilines[i]):
+                end_i = i
+                break
+        if end_i is None:
+            continue
+        tval = None
+        for raw in ilines[1:end_i]:
+            m = FM_KEY.match(raw)
+            if m and m.group(1).strip() == "Tags":
+                tval = raw.split(":", 1)[1].strip()
+        if tval is None:
+            continue
+        if not (tval.startswith("[") and tval.endswith("]")):
+            findings.append(
+                f"{irel} CC-33 Tags value not the bracket "
+                f"list shape - {tval!r}"
+            )
+            continue
+        bad = False
+        for item in tval[1:-1].split(","):
+            item = item.strip()
+            if not item:
+                continue
+            if not (item.startswith("'") and item.endswith("'")
+                    and re.match(r"^[a-z0-9][a-z0-9-]*$",
+                                 item[1:-1])):
+                bad = True
+        if bad:
+            findings.append(
+                f"{irel} CC-33 Tags items must be single-quoted "
+                f"kebab-case tokens - {tval!r}"
             )
 
     for f in findings:

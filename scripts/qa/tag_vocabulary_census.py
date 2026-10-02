@@ -80,7 +80,7 @@ WHITELIST = frozenset([
     'gptq', 'gpu', 'gradient-clipping', 'graphrag', 'guide', 'hands-on', 'hardware', 'healthcare',
     'hnsw', 'hybrid-search', 'inference', 'infrastructure', 'industry', 'iommu', 'isp',
     'jumbo-frames', 'k3s', 'knowledge-graphs', 'kubernetes', 'kv-cache',
-    'lab', 'langchain', 'langgraph', 'learning-rate', 'lifecycle', 'llama', 'llama.cpp',
+    'lab', 'langchain', 'langgraph', 'learning-rate', 'lifecycle', 'llama', 'llamacpp',
     'llm', 'llmops', 'long-context', 'long-term-memory', 'lora', 'maintenance', 'manufacturing',
     'math', 'mem0', 'memory', 'milvus', 'mixed-precision', 'mlops',
     'model-registry', 'module', 'monitoring', 'mtu', 'multi-agent', 'multi-head',
@@ -109,6 +109,7 @@ VARIANTS = {
     'federated': 'federated-learning',
     'benchmarking': 'benchmarks',
     'chromadb': 'chroma',
+    'llama.cpp': 'llamacpp',
 }
 
 

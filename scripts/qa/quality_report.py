@@ -698,7 +698,7 @@ stand today?" without running each tool by hand.
                       badges, phase-hub range badges,
                       'Absolute Beginner')
     course_card_check
-                      Course-card parity (CC-01..32, hard):
+                      Course-card parity (CC-01..33, hard):
                       a module README's front-matter
                       Difficulty is the course card a
                       platform catalog reads and the
@@ -1396,8 +1396,28 @@ stand today?" without running each tool by hand.
                       exactly 1 CC-32 with CC-01..31 kept silent,
                       the same mutation on non-fixed UC-003 fires
                       exactly 1 CC-31 and 0 CC-32, two fixed-stem
-                      mutants aggregate into exactly 2 CC-32,
-                      post-restore byte-identical.
+                      CC-33 born tick-603 as the Tags
+                      vocabulary lock - a Tags value must be
+                      a bracket list whose items are each
+                      single-quoted kebab-case tokens (lowercase
+                      letters, digits, hyphens); census 408/408
+                      FM docs already on the quoted
+                      bracket-list shape, 238 distinct tags with
+                      0 near-duplicate pairs and exactly 1
+                      charset deviation ('llama.cpp' in
+                      4101-GGUF-Physics) drained to 'llamacpp' -
+                      1507 clean items across the tree (the
+                      same-commit TV-01 protocol amend
+                      replaced the WHITELIST entry and VARIANTS
+                      gained the correcting map);
+                      negatively tested across five runs -
+                      pristine 0, an uppercase tag core on
+                      4101-GGUF-Physics fires exactly 1 CC-33
+                      with CC-01..32 kept silent, an extra FM
+                      field on UC-003 fires exactly 1 CC-30 and
+                      0 CC-33, two Tags mutants aggregate into
+                      exactly 2 CC-33, post-restore
+                      byte-identical.
     heading_scan
                       Heading skeleton soundness (HS-01..05,
                       hard): the platform renders a TOC and
