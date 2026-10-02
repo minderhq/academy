@@ -1,5 +1,5 @@
 ---
-Document ID: 2300-README
+Document ID: 2300-FRAMEWORK-ENGINEERING-README
 Title: "Phase 2: Module 2300 - Framework Engineering"
 Last Updated: 2026-09-29
 Status: Complete

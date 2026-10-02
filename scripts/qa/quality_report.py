@@ -698,7 +698,7 @@ stand today?" without running each tool by hand.
                       badges, phase-hub range badges,
                       'Absolute Beginner')
     course_card_check
-                      Course-card parity (CC-01..31, hard):
+                      Course-card parity (CC-01..32, hard):
                       a module README's front-matter
                       Difficulty is the course card a
                       platform catalog reads and the
@@ -1377,8 +1377,27 @@ stand today?" without running each tool by hand.
                       UC-003 fires exactly 1 CC-31 with CC-01..30 kept
                       silent, the same mutation on a fixed-name 1100
                       PRACTICE fires 0 anywhere, two mutated IDs
-                      aggregate into exactly 2 CC-31, post-restore
-                      byte-identical.
+                      CC-32 born tick-602 as the fixed-stem
+                      completion of CC-31 - the five fixed-name
+                      classes now get their own derivation rule:
+                      Document ID must end '-'+stem and the
+                      prefix must be the scope anchor, the full
+                      scope dir uppercased for READMEs and the
+                      anchor segment for the rest (numeric module
+                      codes, PHASEn, or dir.upper()); census
+                      152/152 fixed-stem IDs ending '-'+stem
+                      with exactly 4 short-form README carriers
+                      (2100/2200/2300/2400 in phase2) drained to
+                      the long form - 0 external references to the
+                      old short IDs, no fence coupling, 152/152
+                      clean after the drain; negatively tested
+                      across five runs - pristine 0, a wrong-prefix
+                      ID on a fixed-name 1100 PRACTICE fires
+                      exactly 1 CC-32 with CC-01..31 kept silent,
+                      the same mutation on non-fixed UC-003 fires
+                      exactly 1 CC-31 and 0 CC-32, two fixed-stem
+                      mutants aggregate into exactly 2 CC-32,
+                      post-restore byte-identical.
     heading_scan
                       Heading skeleton soundness (HS-01..05,
                       hard): the platform renders a TOC and

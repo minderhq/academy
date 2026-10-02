@@ -621,6 +621,25 @@ that carry path-qualified IDs by convention
 (1100-PRACTICE, PHASE1-PRACTICE,
 COMPARISONS-README) and stay out of scope.
 
+CC-32 was born tick-602 as the fixed-stem
+completion of CC-31: the five fixed-name
+classes come out of scope and get their own
+derivation rule - Document ID must end
+'-'+stem and the prefix must be the scope
+anchor, the full scope dir uppercased for
+READMEs (1100-NETWORK-README,
+COMPARISONS-README) and the anchor segment
+for the rest (numeric module codes 1100,
+PHASEn, or dir.upper() for PRACTICE, QUIZ,
+PREREQUISITES, CHECKPOINT); the tick-602
+census read 152/152 fixed-stem IDs ending
+'-'+stem and decomposed the prefix drift
+into exactly 4 short-form README carriers
+(2100/2200/2300/2400 in phase2) which the
+tick-602 drain moved to the long form -
+152/152 clean after the drain, 0 external
+references to the old short IDs.
+
 Exit 1 on any finding; prints one line per finding.
 """
 from __future__ import annotations
@@ -1463,6 +1482,64 @@ def main() -> int:
             findings.append(
                 f"{irel} CC-31 Document ID not derivable "
                 f"from filename - ID {did!r}, stem {stem!r}"
+            )
+
+    # CC-32: the five fixed-name classes carry
+    # path-qualified IDs by convention - now a
+    # rule, not a carve-out: ID must end
+    # '-'+stem and the prefix must be the scope
+    # anchor (full scope dir uppercased for
+    # READMEs, anchor segment for the rest)
+    def _anchor_of(d):
+        m = re.match(r"^(\d+)-", d)
+        if m:
+            return m.group(1)
+        m = re.match(r"^phase(\d+)", d)
+        if m:
+            return "PHASE" + m.group(1)
+        return d.upper()
+
+    for ip in sorted((root / "docs").rglob("*.md")):
+        if ip.stem not in FIXED_STEMS:
+            continue
+        irel = ip.relative_to(root).as_posix()
+        try:
+            ilines = ip.read_text(encoding="utf-8").splitlines()
+        except OSError:
+            continue
+        if not ilines or not FM_DASH.match(ilines[0]):
+            continue
+        end_i = None
+        for i in range(1, min(len(ilines), 40)):
+            if FM_DASH.match(ilines[i]):
+                end_i = i
+                break
+        if end_i is None:
+            continue
+        did = None
+        for raw in ilines[1:end_i]:
+            m = FM_KEY.match(raw)
+            if m and m.group(1).strip() == "Document ID":
+                did = raw.split(":", 1)[1].strip().strip('"').strip("'")
+        if did is None:
+            continue
+        stem = ip.stem
+        if not did.endswith("-" + stem):
+            findings.append(
+                f"{irel} CC-32 fixed-stem Document ID not "
+                f"derivable from filename - ID {did!r}, "
+                f"stem {stem!r}"
+            )
+            continue
+        scope = (ip.parent if ip.parent.name != "assessment"
+                 else ip.parent.parent)
+        want = ((scope.name.upper() if stem == "README"
+                 else _anchor_of(scope.name)) + "-" + stem)
+        if did != want:
+            findings.append(
+                f"{irel} CC-32 fixed-stem Document ID not "
+                f"derivable from filename - ID {did!r}, "
+                f"want {want!r}"
             )
 
     for f in findings:
