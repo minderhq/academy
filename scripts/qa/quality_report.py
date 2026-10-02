@@ -682,7 +682,10 @@ stand today?" without running each tool by hand.
                       name and die here. Born tick-457 at
                       408/408, KW-03 pattern
     difficulty_badge_scan
-                      Badge parity (DB-01, hard): where a doc
+                      Badge parity (BD-01, hard,
+                      renamed from DB-01 at tick-577
+                      - the DB- namespace belongs to
+                      datablock_syntax_scan): where a doc
                       renders a `**Difficulty:**` body badge it
                       must mirror the FM Difficulty exactly -
                       canonical 1/2/3 stars + the FM band; no

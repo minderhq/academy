@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Difficulty badge parity (DB-01, HARD) for PROJECT-OMEGA.
+"""Difficulty badge parity (BD-01, HARD) for PROJECT-OMEGA.
 
 The FM Difficulty field is the canonical, gated value
 (difficulty_census DI-01..03); many docs also render a display
@@ -7,7 +7,7 @@ badge in the header block. Where that badge exists it must mirror
 FM exactly - a body badge contradicting the FM teaches the learner
 the wrong level and renders inconsistently on the platform.
 
-DB-01  every `**Difficulty:**` body line must render exactly
+BD-01  every `**Difficulty:**` body line must render exactly
        `**Difficulty:** <stars> <band>` with stars = the canonical
        1/2/3-dot count for the FM band (Beginner/Intermediate/
        Advanced) and band == the FM band. A doc with no body badge
@@ -28,6 +28,11 @@ birth-after-drain.
 
 Run over the whole corpus:
     python scripts/qa/difficulty_badge_scan.py --root .
+
+Renamed tick-577 from DB-01 to BD-01: the DB- namespace belongs to
+datablock_syntax_scan's json/yaml fence census (DB-01/02) - two hard
+gates sharing one code family makes anchored finding filters and
+docstring cross-references ambiguous.
 
 Output is ASCII-escaped so it is safe on cp1254 consoles.
 """
@@ -70,13 +75,13 @@ def main() -> int:
         want = "**Difficulty:** %s %s" % (STARS[fm.group(1)], fm.group(1))
         if bd.group(0).rstrip() != want:
             findings.append(
-                "DB-01 %s: badge %r != canonical %r (FM %s)"
+                "BD-01 %s: badge %r != canonical %r (FM %s)"
                 % (path.relative_to(args.root).as_posix(),
                    bd.group(0)[:60], want, fm.group(1)))
     for f in findings:
         print("  " + esc(f))
     print("difficulty_badge_scan: %d/%d badge-carrying docs canonical; "
-          "%d DB findings - all hard (badge mirrors FM, 1/2/3 stars; "
+          "%d BD findings - all hard (badge mirrors FM, 1/2/3 stars; "
           "born tick-457: 87 sites drained across 5 rot classes, "
           "dead-enum Expert badges included)"
           % (n_badge - len(findings), n_badge, len(findings)))
