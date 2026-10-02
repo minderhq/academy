@@ -180,6 +180,17 @@ CC-25  Every learning-resources lab's FM carries
        course cards live in. Negative-excess
        only: FS owns field presence, this clause
        owns field excess - never double-report.
+CC-26  Every SOLUTION-LAB answer key's FM carries
+       only the 6-field entry keyset - one family
+       for the 15 SOLUTION-LAB-0xx docs under
+       learning-resources/labs/solutions, the
+       sibling half of the labs tree a platform
+       renders as the answer side of every lab,
+       so a platform parser reads the whole labs
+       tree through one vouched schema. Negative-
+       excess only: FS owns field presence, this
+       clause owns field excess - never
+       double-report.
 
 The gate is order-agnostic about table columns (3500-multimodal renders Time
 before Difficulty and both orders pass). Dead row targets are skipped here -
@@ -433,6 +444,28 @@ fence rows in accepted_exec_census but a
 zero-drain lock moves nothing, so nothing to
 re-bless.
 
+CC-26 was born tick-596 as the eleventh
+FM-keyset surface (entry CC-16, card CC-17,
+lesson CC-18, guide CC-19, assessment CC-20,
+phase header CC-21, phase assessment CC-22,
+reference page CC-23, tutorial CC-24, lab
+CC-25, solution CC-26): the tick-595 census
+showed the minimal 15 of the labs tree are
+exactly the 15 SOLUTION-LAB-0xx answer keys
+under labs/solutions, and the tick-596 census
+read the class clean - all 15 already on the
+exact 6-field entry keyset (Document ID,
+Title, Last Updated, Status, Difficulty,
+Tags), 0 no-FM, all 15 linked (MASTER-INDEX
+and SITEMAP; SOLUTION-LAB-000 also from
+ORGANIZATION-GUIDE) - so the lock is a
+zero-drain one in the CC-21/CC-22/CC-23 shape:
+the answer-key surface froze at the family the
+moment it was named, no drain, no fence
+coupling (the 58 accepted fence rows live on
+the LAB docs, not the solutions), nothing to
+probe.
+
 Exit 1 on any finding; prints one line per finding.
 """
 from __future__ import annotations
@@ -500,8 +533,12 @@ TUTORIAL_KEYSET = ENTRY_KEYSET | {"Estimated Time", "Prerequisites"}
 # the labs tree split 15/15 by structure, not by drift - the
 # wide 15 are the LAB docs (7-field card keyset, authored
 # time budgets), the minimal 15 the SOLUTION-LAB answer
-# keys under labs/solutions (6-field entry; own clause later)
+# keys under labs/solutions (6-field entry, locked CC-26)
 LAB_KEYSET = CARD_KEYSET
+# the answer keys froze at the 6-field entry keyset the
+# tick-596 census read them on - sibling half of the labs
+# tree, locked the tick after its LAB counterpart
+SOLUTION_KEYSET = ENTRY_KEYSET
 FM_DASH = re.compile(r"^---\s*$")
 FM_KEY = re.compile(r"^([A-Za-z][A-Za-z0-9 _-]*):")
 DIFF_FIELD = re.compile(r"^Difficulty:(.*)$")
@@ -1110,8 +1147,7 @@ def main() -> int:
     # executable workshops a platform renders beside
     # the curriculum; non-recursive on purpose, the
     # SOLUTION-LAB answer keys under labs/solutions
-    # read the 6-field entry keyset and stay outside
-    # this clause until their own
+    # read the 6-field entry keyset under CC-26
     for lp in sorted(
         (root / "docs" / "learning-resources" / "labs").glob("*.md")
     ):
@@ -1121,6 +1157,24 @@ def main() -> int:
             findings.append(
                 f"{lrel} CC-25 lab FM carries fields "
                 f"outside the lab keyset - "
+                f"{', '.join(extra)}"
+            )
+
+    # CC-26: the SOLUTION-LAB answer keys carry only
+    # the 6-field entry keyset - the sibling half
+    # of the labs tree a platform renders as the
+    # answer side of every lab; zero-drain lock in
+    # the CC-23 shape (the 58 accepted fence rows
+    # live on the LAB docs, not here)
+    for sp in sorted(
+        (root / "docs" / "learning-resources" / "labs" / "solutions").glob("*.md")
+    ):
+        srel = sp.relative_to(root).as_posix()
+        extra = sorted(fm_keys(sp) - SOLUTION_KEYSET)
+        if extra:
+            findings.append(
+                f"{srel} CC-26 solution FM carries fields "
+                f"outside the solution keyset - "
                 f"{', '.join(extra)}"
             )
 

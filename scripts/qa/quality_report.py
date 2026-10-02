@@ -698,7 +698,7 @@ stand today?" without running each tool by hand.
                       badges, phase-hub range badges,
                       'Absolute Beginner')
     course_card_check
-                      Course-card parity (CC-01..25, hard):
+                      Course-card parity (CC-01..26, hard):
                       a module README's front-matter
                       Difficulty is the course card a
                       platform catalog reads and the
@@ -1214,6 +1214,34 @@ stand today?" without running each tool by hand.
                       field on a SOLUTION-LAB answer key
                       fires 0 (out of scope), two labs
                       aggregate into exactly 2 CC-25.
+                      CC-26 the eleventh surface of the FM
+                      keyset family: a SOLUTION-LAB answer
+                      key's FM carries only the 6-field
+                      entry keyset, negative excess only;
+                      the tick-595 census showed the
+                      minimal 15 of the labs tree are
+                      exactly the 15 SOLUTION-LAB-0xx
+                      answer keys under labs/solutions and
+                      the tick-596 census read the class
+                      clean - all 15 already on the exact
+                      6-field entry keyset, 0 no-FM, all
+                      15 linked (MASTER-INDEX and SITEMAP;
+                      SOLUTION-LAB-000 also from
+                      ORGANIZATION-GUIDE) - so the lock is
+                      a zero-drain one in the CC-21/22/23
+                      shape: the answer-key surface froze
+                      at the family the moment it was
+                      named, no drain, no fence coupling
+                      (the 58 accepted fence rows live on
+                      the LAB docs, not the solutions) -
+                      an extra FM field on a solution
+                      fires exactly 1 CC-26 with
+                      CC-01..25 kept silent, the same
+                      field on a LAB doc fires exactly 1
+                      CC-25 and 0 CC-26 (clause scoping,
+                      never double-reported), two
+                      solutions aggregate into exactly
+                      2 CC-26.
     heading_scan
                       Heading skeleton soundness (HS-01..05,
                       hard): the platform renders a TOC and
