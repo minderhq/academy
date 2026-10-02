@@ -1,6 +1,8 @@
 ---
 Document ID: 3403
 Title: "3403: Model Architecture Comparison Guide"
+Phase: 3
+Module: 3400
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced

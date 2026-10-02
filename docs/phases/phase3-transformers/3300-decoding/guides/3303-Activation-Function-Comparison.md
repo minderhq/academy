@@ -1,6 +1,8 @@
 ---
 Document ID: 3303
 Title: "3303: Activation Function Comparison"
+Phase: 3
+Module: 3300
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced

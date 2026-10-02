@@ -698,7 +698,7 @@ stand today?" without running each tool by hand.
                       badges, phase-hub range badges,
                       'Absolute Beginner')
     course_card_check
-                      Course-card parity (CC-01..18, hard):
+                      Course-card parity (CC-01..19, hard):
                       a module README's front-matter
                       Difficulty is the course card a
                       platform catalog reads and the
@@ -1013,7 +1013,36 @@ stand today?" without running each tool by hand.
                       with CC-01..17 kept silent, the same
                       field on the card fires exactly 1 CC-17
                       and 0 CC-18, two lessons aggregate into
-                      exactly 2 CC-18.    heading_scan
+                      exactly 2 CC-18.
+                      CC-19 the fourth surface of the FM keyset
+                      family: a guide's FM carries only the
+                      11-field guide keyset (card keyset +
+                      Module/Phase + Prerequisites/Related,
+                      the lesson core without the optional
+                      Hardware/Software pair), negative
+                      excess only; the tick-589 census read
+                      the 21 module-level guides clean of
+                      excess - all linked, 12 on the 9-field
+                      subset and 9 on the full core - and
+                      the 24-line drain wrote the derivable
+                      navigation pair into exactly those 12
+                      (the +2 FM shift then moved the 42
+                      accepted fence rows the 12 guides
+                      carry - the coupling the same-tick
+                      battery caught - and the count-
+                      asserted re-bless re-blessed them at
+                      +2, 40 same-class and 2 family-
+                      reclassified on re-execution: 3403
+                      RUNNER-CRASH->TIMEOUT, 7103 the
+                      recorded FLAKY_FAMILY pair, notes
+                      carried, no fence content changed) so
+                      the surface reads one exact form - an
+                      extra FM field on a
+                      guide fires exactly 1 CC-19 with
+                      CC-01..18 kept silent, the same field
+                      on a lesson fires exactly 1 CC-18 and
+                      0 CC-19, two guides aggregate into
+                      exactly 2 CC-19.    heading_scan
                       Heading skeleton soundness (HS-01..05,
                       hard): the platform renders a TOC and
                       anchor deep-links from heading structure,

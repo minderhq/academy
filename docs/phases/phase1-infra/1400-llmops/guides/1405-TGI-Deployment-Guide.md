@@ -1,6 +1,8 @@
 ---
 Document ID: 1405
 Title: "1405: Text Generation Inference (TGI) Deployment Guide"
+Phase: 1
+Module: 1400
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate

@@ -1,6 +1,8 @@
 ---
 Document ID: 4203
 Title: "4203: Context Window Optimization Guide"
+Phase: 4
+Module: 4200
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced

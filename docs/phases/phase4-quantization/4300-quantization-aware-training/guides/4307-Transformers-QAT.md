@@ -1,6 +1,8 @@
 ---
 Document ID: 4307
 Title: "4307: Transformers QAT Guide"
+Phase: 4
+Module: 4300
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced

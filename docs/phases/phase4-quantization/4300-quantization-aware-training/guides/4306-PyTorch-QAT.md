@@ -1,6 +1,8 @@
 ---
 Document ID: 4306
 Title: "4306: PyTorch QAT Guide"
+Phase: 4
+Module: 4300
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced

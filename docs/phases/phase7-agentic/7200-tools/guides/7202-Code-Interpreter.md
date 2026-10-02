@@ -1,6 +1,8 @@
 ---
 Document ID: 7202
 Title: "7202: Code Interpreter - Sandbox Execution for Agent Code Testing"
+Phase: 7
+Module: 7200
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced

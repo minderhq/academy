@@ -1,6 +1,8 @@
 ---
 Document ID: 1404
 Title: "1404: vLLM Production Deployment Guide"
+Phase: 1
+Module: 1400
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate

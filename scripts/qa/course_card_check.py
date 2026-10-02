@@ -111,6 +111,14 @@ CC-18  Every lesson's FM carries only the 13-field lesson keyset
        same way it reads every entry page (CC-16) and card
        (CC-17). Negative-excess only: FS owns field presence,
        this clause owns field excess - never double-report.
+CC-19  Every guide's FM carries only the 11-field guide keyset
+       (the 7-field card keyset + Module/Phase + Prerequisites/
+       Related - the lesson core without the optional Hardware/
+       Software pair) - one family for the 21 enrichment guides,
+       so a platform parser reads every guide through the same
+       core the lessons live in. Negative-excess only: FS owns
+       field presence, this clause owns field excess - never
+       double-report.
 
 The gate is order-agnostic about table columns (3500-multimodal renders Time
 before Difficulty and both orders pass). Dead row targets are skipped here -
@@ -226,6 +234,30 @@ navigation pair into exactly those 6 files (12 lines,
 values read off the module dir) so the surface reads two
 exact forms - 87 on the core and 6 on the core + the
 requirements pair - both inside the declared family.
+CC-19 born tick-589 as the fourth surface of the FM keyset
+family (entry CC-16, card CC-17, lesson CC-18, guide CC-19):
+the guides class was already clean - the tick-589 census
+read the 21 module-level guides (docs/phases/*/*/guides/,
+all 21 linked from their module READMEs, 0 unlinked) and
+two forms - 12 on the 9-field subset (the core without the
+Module/Phase navigation pair) and 9 on the full 11-field
+core, 0 out of family and no Hardware/Software anywhere -
+so the lock froze the 11-field core (negative excess only)
+and the same-tick 24-line normalization drain wrote the
+derivable pair (values read off the module/phase dir
+names) into exactly those 12 files, making the surface one
+exact form; the fence coupling the fleet caught at
+tick-588 this time caught by the same-tick battery: the 12
+guides carry 42 accepted fence rows in accepted_exec_census
+(4203 none), the +2 FM shift moved every one, and a
+count-asserted re-bless re-blessed the 42 rows at +2 (40
+same-class, 2 family-reclassified on re-execution: 3403
+RUNNER-CRASH->TIMEOUT, 7103 the recorded
+CODE-SIGNAL:RuntimeError FLAKY_FAMILY pair) with their
+notes carried, the accepted_exec_census _meta recording
+the shift - no fence content changed; the module
+subdirectory class also resolved as assessment 66 + guides
+21 = 87, the count tick-588 parked.
 
 Exit 1 on any finding; prints one line per finding.
 """
@@ -254,6 +286,12 @@ LESSON_KEYSET = CARD_KEYSET | {
     "Related",
     "Hardware",
     "Software",
+}
+GUIDE_KEYSET = CARD_KEYSET | {
+    "Module",
+    "Phase",
+    "Prerequisites",
+    "Related",
 }
 FM_DASH = re.compile(r"^---\s*$")
 FM_KEY = re.compile(r"^([A-Za-z][A-Za-z0-9 _-]*):")
@@ -620,6 +658,22 @@ def main() -> int:
                     f"{p.relative_to(root).as_posix()} CC-18 "
                     f"lesson FM carries fields outside the "
                     f"lesson keyset - {', '.join(extra)}"
+                )
+
+        # CC-19: every guide carries only the guide FM
+        # keyset - the lesson core without the optional
+        # Hardware/Software pair: a platform parsing the
+        # 21 enrichment guides reads the same 11-field
+        # family the lessons live in, not a fourth
+        # schema (FS owns field presence; this clause
+        # owns field excess)
+        for p in sorted(mod.glob("guides/*.md")):
+            extra = sorted(fm_keys(p) - GUIDE_KEYSET)
+            if extra:
+                findings.append(
+                    f"{p.relative_to(root).as_posix()} CC-19 "
+                    f"guide FM carries fields outside the "
+                    f"guide keyset - {', '.join(extra)}"
                 )
 
         # Module Documents table: CC-02/03 per row, CC-05 coverage

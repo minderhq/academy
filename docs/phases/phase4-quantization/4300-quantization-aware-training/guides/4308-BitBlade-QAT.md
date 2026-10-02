@@ -1,6 +1,8 @@
 ---
 Document ID: 4308
 Title: "4308: BitBlade QAT Guide"
+Phase: 4
+Module: 4300
 Last Updated: 2026-09-27
 Status: Complete
 Difficulty: Advanced

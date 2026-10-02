@@ -6,7 +6,7 @@
    "TIMEOUT"
   ],
   "children": "census subprocesses run with PYTHONUTF8=1 (the learner baseline ENVIRONMENT-SETUP teaches)",
-  "adjudicated": "notes written per accepted row (tick-537, carried tick-538); datasets-5.x drain re-blessed 3 files - drain-backlog rows are tagged in-place; tick-554 tutorial FM edits dirtied 12 tutorial files for their first true re-execution - 25 rows adjudicated (env-gaps, by-design server/model hangs, learner-supplied-file demos, ffmpeg/GPU environment requirements) with per-row notes; tick-588 lesson-FM normalization (CC-18 drain, +2 lines near the top of 6 lesson files) shifted 4 already-accepted rows in 3 files (5203 112->114/260->262, 6203 138->140, 7403 153->155) - same defect classes re-blessed at the shifted lines with their notes carried; no fence content changed"
+  "adjudicated": "notes written per accepted row (tick-537, carried tick-538); datasets-5.x drain re-blessed 3 files - drain-backlog rows are tagged in-place; tick-554 tutorial FM edits dirtied 12 tutorial files for their first true re-execution - 25 rows adjudicated (env-gaps, by-design server/model hangs, learner-supplied-file demos, ffmpeg/GPU environment requirements) with per-row notes; tick-588 lesson-FM normalization (CC-18 drain, +2 lines near the top of 6 lesson files) shifted 4 already-accepted rows in 3 files (5203 112->114/260->262, 6203 138->140, 7403 153->155) - same defect classes re-blessed at the shifted lines with their notes carried; no fence content changed; tick-589 guide-FM normalization (CC-19 drain, +2 lines after Title in 12 guide files) shifted all 42 already-accepted rows across 11 of those guides (4203 carries none) - 40 re-blessed same-class at the shifted lines with their notes carried, 2 family-reclassified on re-execution (3403 184->186 RUNNER-CRASH->TIMEOUT, the GPU-required load observed hanging past the timeout instead of dying before it could report; 7103 81->83 CODE-SIGNAL:RuntimeError->TIMEOUT, the recorded FLAKY_FAMILY pair); no fence content changed"
  },
  "files": {
   "docs/00-META/DOCUMENT-TEMPLATE.md": {
@@ -1188,31 +1188,31 @@
    }
   },
   "docs/phases/phase1-infra/1400-llmops/guides/1404-vLLM-Production-Deployment.md": {
-   "mtime": 1790745401.7768402,
-   "size": 28784,
+   "mtime": 1790959388.1323624,
+   "size": 28806,
    "bad": {
-    "328": "CODE-SIGNAL:KeyError",
-    "655": "CODE-SIGNAL:KeyError"
+    "330": "CODE-SIGNAL:KeyError",
+    "657": "CODE-SIGNAL:KeyError"
    },
    "notes": {
-    "328": "intentional credential guard: os.environ['VLLM_API_KEY'] fails fast by design when the key is unset",
-    "655": "intentional credential guard: os.environ['VLLM_API_KEY'] fails fast by design when the key is unset"
+    "330": "intentional credential guard: os.environ['VLLM_API_KEY'] fails fast by design when the key is unset",
+    "657": "intentional credential guard: os.environ['VLLM_API_KEY'] fails fast by design when the key is unset"
    }
   },
   "docs/phases/phase1-infra/1400-llmops/guides/1405-TGI-Deployment-Guide.md": {
-   "mtime": 1790745401.778375,
-   "size": 31338,
+   "mtime": 1790959388.1335063,
+   "size": 31360,
    "bad": {
-    "338": "SIDE-EFFECT",
-    "619": "SIDE-EFFECT",
-    "654": "SIDE-EFFECT",
-    "711": "SIDE-EFFECT"
+    "340": "SIDE-EFFECT",
+    "621": "SIDE-EFFECT",
+    "656": "SIDE-EFFECT",
+    "713": "SIDE-EFFECT"
    },
    "notes": {
-    "338": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
-    "619": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
-    "654": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
-    "711": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect"
+    "340": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
+    "621": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
+    "656": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
+    "713": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect"
    }
   },
   "docs/phases/phase1-infra/1500-monitoring/1501-Monitoring-and-Observability.md": {
@@ -1635,15 +1635,15 @@
    }
   },
   "docs/phases/phase3-transformers/3300-decoding/guides/3303-Activation-Function-Comparison.md": {
-   "mtime": 1790767478.0832655,
-   "size": 10601,
+   "mtime": 1790959388.1355228,
+   "size": 10623,
    "bad": {
-    "165": "CODE-SIGNAL:RuntimeError",
-    "235": "CODE-SIGNAL:FileNotFoundError"
+    "167": "CODE-SIGNAL:RuntimeError",
+    "237": "CODE-SIGNAL:FileNotFoundError"
    },
    "notes": {
-    "165": "disk-bound family: writer hits the 2.3GB-free disk (os error 112 / channel closed); FLAKY_FAMILY with TIMEOUT",
-    "235": "saves/reads under a Linux-only /workspace path that does not exist on Windows - path portability, drain backlog"
+    "167": "disk-bound family: writer hits the 2.3GB-free disk (os error 112 / channel closed); FLAKY_FAMILY with TIMEOUT",
+    "237": "saves/reads under a Linux-only /workspace path that does not exist on Windows - path portability, drain backlog"
    }
   },
   "docs/phases/phase3-transformers/3400-architectures/3401-Encoder-Decoder-Architectures.md": {
@@ -1672,13 +1672,13 @@
    "bad": {}
   },
   "docs/phases/phase3-transformers/3400-architectures/guides/3403-Model-Architecture-Comparison.md": {
-   "mtime": 1790782652.3895383,
-   "size": 19045,
+   "mtime": 1790959388.1360373,
+   "size": 19067,
    "bad": {
-    "184": "RUNNER-CRASH"
+    "186": "TIMEOUT"
    },
    "notes": {
-    "184": "GPU-required 4-bit checkpoint load (Mistral-7B, load_in_4bit) dies in the CPU-only QA environment before the runner can report"
+    "186": "GPU-required 4-bit checkpoint load (Mistral-7B, load_in_4bit) dies in the CPU-only QA environment before the runner can report (tick-589 re-execution reclassified RUNNER-CRASH -> TIMEOUT)"
    }
   },
   "docs/phases/phase3-transformers/3500-multimodal/3501-Vision-Language-Models.md": {
@@ -1793,9 +1793,10 @@
    "bad": {}
   },
   "docs/phases/phase4-quantization/4200-kv-cache/guides/4203-Context-Window-Optimization.md": {
-   "mtime": 1790771479.6563642,
-   "size": 27446,
-   "bad": {}
+   "mtime": 1790959388.136565,
+   "size": 27468,
+   "bad": {},
+   "notes": {}
   },
   "docs/phases/phase4-quantization/4300-quantization-aware-training/4301-QAT-Foundations.md": {
    "mtime": 1790880408.1403346,
@@ -1840,81 +1841,81 @@
    }
   },
   "docs/phases/phase4-quantization/4300-quantization-aware-training/guides/4306-PyTorch-QAT.md": {
-   "mtime": 1790884040.7218332,
-   "size": 14742,
+   "mtime": 1790959388.1380918,
+   "size": 14764,
    "bad": {
-    "327": "UN-LEAK",
-    "378": "SIDE-EFFECT",
-    "389": "ENV-GAP:onnxscript"
+    "329": "UN-LEAK",
+    "380": "SIDE-EFFECT",
+    "391": "ENV-GAP:onnxscript"
    },
    "notes": {
-    "327": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
-    "378": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
-    "389": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+    "329": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
+    "380": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
+    "391": "optional third-party package the QA environment does not install; the fence documents the install requirement"
    }
   },
   "docs/phases/phase4-quantization/4300-quantization-aware-training/guides/4307-Transformers-QAT.md": {
-   "mtime": 1790884048.4011056,
-   "size": 13493,
+   "mtime": 1790959388.1380918,
+   "size": 13515,
    "bad": {
-    "65": "SIDE-EFFECT",
-    "94": "UN-LEAK",
-    "146": "ENV-GAP:auto_gptq",
-    "190": "ENV-GAP:auto_gptq",
-    "204": "ENV-GAP:optimum",
-    "224": "ENV-GAP:optimum",
-    "343": "ENV-GAP:evaluate"
+    "67": "SIDE-EFFECT",
+    "96": "UN-LEAK",
+    "148": "ENV-GAP:auto_gptq",
+    "192": "ENV-GAP:auto_gptq",
+    "206": "ENV-GAP:optimum",
+    "226": "ENV-GAP:optimum",
+    "345": "ENV-GAP:evaluate"
    },
    "notes": {
-    "65": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
-    "94": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
-    "146": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-    "190": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-    "204": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-    "224": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-    "343": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+    "67": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
+    "96": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
+    "148": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+    "192": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+    "206": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+    "226": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+    "345": "optional third-party package the QA environment does not install; the fence documents the install requirement"
    }
   },
   "docs/phases/phase4-quantization/4300-quantization-aware-training/guides/4308-BitBlade-QAT.md": {
-   "mtime": 1790745401.7820337,
-   "size": 13379,
+   "mtime": 1790959388.1390986,
+   "size": 13401,
    "bad": {
-    "88": "ENV-GAP:bitblade",
-    "123": "ENV-GAP:bitblade",
-    "166": "ENV-GAP:bitblade",
-    "196": "ENV-GAP:bitblade",
-    "213": "ENV-GAP:bitblade",
-    "242": "ENV-GAP:bitblade",
-    "273": "ENV-GAP:bitblade",
-    "293": "ENV-GAP:bitblade",
-    "316": "ENV-GAP:bitblade",
-    "342": "ENV-GAP:bitblade",
-    "361": "ENV-GAP:bitblade",
-    "376": "UN-LEAK",
-    "387": "UN-LEAK",
-    "397": "UN-LEAK",
-    "417": "ENV-GAP:bitblade",
-    "441": "ENV-GAP:bitblade",
-    "467": "UN-LEAK"
+    "90": "ENV-GAP:bitblade",
+    "125": "ENV-GAP:bitblade",
+    "168": "ENV-GAP:bitblade",
+    "198": "ENV-GAP:bitblade",
+    "215": "ENV-GAP:bitblade",
+    "244": "ENV-GAP:bitblade",
+    "275": "ENV-GAP:bitblade",
+    "295": "ENV-GAP:bitblade",
+    "318": "ENV-GAP:bitblade",
+    "344": "ENV-GAP:bitblade",
+    "363": "ENV-GAP:bitblade",
+    "378": "UN-LEAK",
+    "389": "UN-LEAK",
+    "399": "UN-LEAK",
+    "419": "ENV-GAP:bitblade",
+    "443": "ENV-GAP:bitblade",
+    "469": "UN-LEAK"
    },
    "notes": {
-    "88": "the teaching library of the BitBlade QAT guide (4308); a fictional framework the lesson builds concepts around",
-    "123": "the teaching library of the BitBlade QAT guide (4308); a fictional framework the lesson builds concepts around",
-    "166": "the teaching library of the BitBlade QAT guide (4308); a fictional framework the lesson builds concepts around",
-    "196": "the teaching library of the BitBlade QAT guide (4308); a fictional framework the lesson builds concepts around",
-    "213": "the teaching library of the BitBlade QAT guide (4308); a fictional framework the lesson builds concepts around",
-    "242": "the teaching library of the BitBlade QAT guide (4308); a fictional framework the lesson builds concepts around",
-    "273": "the teaching library of the BitBlade QAT guide (4308); a fictional framework the lesson builds concepts around",
-    "293": "the teaching library of the BitBlade QAT guide (4308); a fictional framework the lesson builds concepts around",
-    "316": "the teaching library of the BitBlade QAT guide (4308); a fictional framework the lesson builds concepts around",
-    "342": "the teaching library of the BitBlade QAT guide (4308); a fictional framework the lesson builds concepts around",
-    "361": "the teaching library of the BitBlade QAT guide (4308); a fictional framework the lesson builds concepts around",
-    "376": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
-    "387": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
-    "397": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
-    "417": "the teaching library of the BitBlade QAT guide (4308); a fictional framework the lesson builds concepts around",
-    "441": "the teaching library of the BitBlade QAT guide (4308); a fictional framework the lesson builds concepts around",
-    "467": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically"
+    "90": "the teaching library of the BitBlade QAT guide (4308); a fictional framework the lesson builds concepts around",
+    "125": "the teaching library of the BitBlade QAT guide (4308); a fictional framework the lesson builds concepts around",
+    "168": "the teaching library of the BitBlade QAT guide (4308); a fictional framework the lesson builds concepts around",
+    "198": "the teaching library of the BitBlade QAT guide (4308); a fictional framework the lesson builds concepts around",
+    "215": "the teaching library of the BitBlade QAT guide (4308); a fictional framework the lesson builds concepts around",
+    "244": "the teaching library of the BitBlade QAT guide (4308); a fictional framework the lesson builds concepts around",
+    "275": "the teaching library of the BitBlade QAT guide (4308); a fictional framework the lesson builds concepts around",
+    "295": "the teaching library of the BitBlade QAT guide (4308); a fictional framework the lesson builds concepts around",
+    "318": "the teaching library of the BitBlade QAT guide (4308); a fictional framework the lesson builds concepts around",
+    "344": "the teaching library of the BitBlade QAT guide (4308); a fictional framework the lesson builds concepts around",
+    "363": "the teaching library of the BitBlade QAT guide (4308); a fictional framework the lesson builds concepts around",
+    "378": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
+    "389": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
+    "399": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
+    "419": "the teaching library of the BitBlade QAT guide (4308); a fictional framework the lesson builds concepts around",
+    "443": "the teaching library of the BitBlade QAT guide (4308); a fictional framework the lesson builds concepts around",
+    "469": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically"
    }
   },
   "docs/phases/phase4-quantization/4400-advanced-techniques/4401-GPTQ.md": {
@@ -2103,13 +2104,13 @@
    }
   },
   "docs/phases/phase5-finetuning/5100-peft/guides/5104-LoRA-Implementation-Guide.md": {
-   "mtime": 1790768737.2173707,
-   "size": 27202,
+   "mtime": 1790959388.1406782,
+   "size": 27224,
    "bad": {
-    "307": "TIMEOUT"
+    "309": "TIMEOUT"
    },
    "notes": {
-    "307": "by-design training loop: the LoRA demo runs the lesson's full training schedule"
+    "309": "by-design training loop: the LoRA demo runs the lesson's full training schedule"
    }
   },
   "docs/phases/phase5-finetuning/5200-alignment/5201-DPO-Theory.md": {
@@ -2364,15 +2365,15 @@
    }
   },
   "docs/phases/phase6-rag/6100-vector/guides/6103-HNSW-Tuning-Guide.md": {
-   "mtime": 1790745401.7820337,
-   "size": 16271,
+   "mtime": 1790959388.1412442,
+   "size": 16293,
    "bad": {
-    "167": "SIDE-EFFECT",
-    "368": "SIDE-EFFECT"
+    "169": "SIDE-EFFECT",
+    "370": "SIDE-EFFECT"
    },
    "notes": {
-    "167": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
-    "368": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect"
+    "169": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
+    "370": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect"
    }
   },
   "docs/phases/phase6-rag/6200-retrieval/6201-Hybrid-Search.md": {
@@ -2619,13 +2620,13 @@
    "bad": {}
   },
   "docs/phases/phase7-agentic/7100-architecture/guides/7103-ReAct-Implementation-Guide.md": {
-   "mtime": 1790745401.7835877,
-   "size": 23882,
+   "mtime": 1790959388.1417708,
+   "size": 23904,
    "bad": {
-    "81": "CODE-SIGNAL:RuntimeError"
+    "83": "TIMEOUT"
    },
    "notes": {
-    "81": "disk-bound: background file writer dies when the disk fills; FLAKY_FAMILY with TIMEOUT"
+    "83": "disk-bound: background file writer dies when the disk fills; FLAKY_FAMILY with TIMEOUT (tick-589 re-execution reclassified CODE-SIGNAL:RuntimeError -> TIMEOUT)"
    }
   },
   "docs/phases/phase7-agentic/7200-tools/7201-Tool-Calling.md": {
@@ -2664,15 +2665,15 @@
    }
   },
   "docs/phases/phase7-agentic/7200-tools/guides/7202-Code-Interpreter.md": {
-   "mtime": 1790745401.7851498,
-   "size": 23091,
+   "mtime": 1790959388.1417708,
+   "size": 23113,
    "bad": {
-    "264": "ENV-GAP:e2b_code_interpreter",
-    "454": "ENV-GAP:jupyter_client"
+    "266": "ENV-GAP:e2b_code_interpreter",
+    "456": "ENV-GAP:jupyter_client"
    },
    "notes": {
-    "264": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-    "454": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+    "266": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+    "456": "optional third-party package the QA environment does not install; the fence documents the install requirement"
    }
   },
   "docs/phases/phase7-agentic/7300-orchestration/7301-Orchestration.md": {
