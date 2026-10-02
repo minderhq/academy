@@ -270,9 +270,9 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 | Guide | Topic | Coverage |
 |-------|-------|----------|
-| **[GUIDE-CAREER](../learning-resources/guides/GUIDE-CAREER.md)** | Career Path | Job roles, portfolio, networking, salary |
-| **[GUIDE-RESUME](../learning-resources/guides/GUIDE-RESUME.md)** | Resume Templates | Entry, mid, senior, career switcher |
-| **[GUIDE-INTERVIEW](../learning-resources/guides/GUIDE-INTERVIEW.md)** | Interview Prep | Technical, behavioral, system design, negotiation |
+| **[GUIDE-CAREER](../learning-resources/guides/GUIDE-CAREER.md)** | CAREER GUIDE: From Learning to Job-Ready | Job roles, portfolio, networking, salary |
+| **[GUIDE-RESUME](../learning-resources/guides/GUIDE-RESUME.md)** | RESUME TEMPLATES & EXAMPLES | Entry, mid, senior, career switcher |
+| **[GUIDE-INTERVIEW](../learning-resources/guides/GUIDE-INTERVIEW.md)** | INTERVIEW PREPARATION GUIDE | Technical, behavioral, system design, negotiation |
 
 ---
 
@@ -320,44 +320,44 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 | Document | Topic |
 |----------|-------|
-| **[README](../comparisons/README.md)** | Comparison index |
-| **[CP-001](../comparisons/CP-001-RAG-vs-FineTuning-vs-Agents.md)** | RAG vs Fine-Tuning vs Agents |
-| **[CP-002](../comparisons/CP-002-Vector-Database-Comparison.md)** | Vector Database Comparison |
+| **[README](../comparisons/README.md)** | Technology Comparisons |
+| **[CP-001](../comparisons/CP-001-RAG-vs-FineTuning-vs-Agents.md)** | CP-001: RAG vs Fine-Tuning vs Agents - Decision Guide |
+| **[CP-002](../comparisons/CP-002-Vector-Database-Comparison.md)** | CP-002: Vector Database Comparison Guide |
 
 ### Industry Applications (4 files)
 
 | Document | Industry |
 |----------|----------|
-| **[README](../industry/README.md)** | Industry index |
-| **[IND-001](../industry/IND-001-Healthcare-AI-Applications.md)** | Healthcare |
-| **[IND-002](../industry/IND-002-Finance-AI-Applications.md)** | Finance |
-| **[IND-003](../industry/IND-003-Manufacturing-AI.md)** | Manufacturing |
+| **[README](../industry/README.md)** | Industry-Specific AI Applications |
+| **[IND-001](../industry/IND-001-Healthcare-AI-Applications.md)** | IND-001: Healthcare AI Applications |
+| **[IND-002](../industry/IND-002-Finance-AI-Applications.md)** | IND-002: Finance AI Applications |
+| **[IND-003](../industry/IND-003-Manufacturing-AI.md)** | IND-003: Manufacturing AI Applications |
 
 ### Use Cases (4 files)
 
 | Document | Use Case |
 |----------|----------|
-| **[README](../use-cases/README.md)** | Use-case index |
-| **[UC-001](../use-cases/UC-001-Vector-Database-Applications.md)** | Vector Database Applications |
-| **[UC-002](../use-cases/UC-002-RAG-Applications.md)** | RAG Applications |
-| **[UC-003](../use-cases/UC-003-Agent-Applications.md)** | Agent Applications |
+| **[README](../use-cases/README.md)** | Use Cases - Real-World AI Applications |
+| **[UC-001](../use-cases/UC-001-Vector-Database-Applications.md)** | UC-001: Vector Database Practical Use Cases |
+| **[UC-002](../use-cases/UC-002-RAG-Applications.md)** | UC-002: RAG (Retrieval-Augmented Generation) Practical Use Cases |
+| **[UC-003](../use-cases/UC-003-Agent-Applications.md)** | UC-003: AI Agent Practical Use Cases |
 
 ### Solutions (3 files)
 
 | Document | Description |
 |----------|-------------|
-| **[README](../enterprise-solutions/README.md)** | Enterprise solutions index |
-| **[SOL-001](../enterprise-solutions/SOL-001-Enterprise-Knowledge-Base.md)** | Enterprise Knowledge Base |
-| **[SOL-002](../enterprise-solutions/SOL-002-Industry-Solution.md)** | Industry Solution |
+| **[README](../enterprise-solutions/README.md)** | End-to-End Solutions |
+| **[SOL-001](../enterprise-solutions/SOL-001-Enterprise-Knowledge-Base.md)** | SOL-001: Enterprise Knowledge Base - Complete Implementation |
+| **[SOL-002](../enterprise-solutions/SOL-002-Industry-Solution.md)** | SOL-002: Multi-Modal Industrial Inspection System |
 
 ### Diagrams (4 files)
 
 | Document | Diagram |
 |----------|---------|
-| **[README](../diagrams/README.md)** | Diagram index |
-| **[ML-LIFECYCLE](../diagrams/ML-LIFECYCLE.md)** | ML Lifecycle |
-| **[PROJECT-001-ARCHITECTURE](../diagrams/PROJECT-001-ARCHITECTURE.md)** | Project Architecture |
-| **[REACT-LOOP](../diagrams/REACT-LOOP.md)** | ReAct Loop |
+| **[README](../diagrams/README.md)** | PROJECT-OMEGA Architecture Diagrams |
+| **[ML-LIFECYCLE](../diagrams/ML-LIFECYCLE.md)** | ML Lifecycle: From Development to Production |
+| **[PROJECT-001-ARCHITECTURE](../diagrams/PROJECT-001-ARCHITECTURE.md)** | PROJECT-001: Architecture Diagram |
+| **[REACT-LOOP](../diagrams/REACT-LOOP.md)** | ReAct Loop: Agent Reasoning Flow |
 
 ---
 

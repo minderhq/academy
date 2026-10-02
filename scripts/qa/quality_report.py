@@ -1076,6 +1076,27 @@ stand today?" without running each tool by hand.
                        front matter is the richer side, so the
                        index gains the column), drained in the
                        same tick
+    small_index_parity_check
+                       MASTER-INDEX's six small resource tables
+                       (Career Guides, Comparisons, Industry
+                       Applications, Use Cases, Solutions,
+                       Diagrams) lock to their directories'
+                       files (SG-01 id-set parity per table,
+                       SG-02 every row's link text names its
+                       own target, SG-03 the header's file
+                       count equals the row count, SG-04 the
+                       description cell equals the
+                       front-matter Title verbatim - this
+                       fleet's title conventions are
+                       heterogeneous (CP-NNN:/IND-NNN:/
+                       UC-NNN:/SOL-NNN: prefixes and natural
+                       "Title: Subtitle" shapes on the
+                       diagrams), so the mirror is
+                       deliberately prefix-free); born
+                       tick-557 at 21 findings - all 21
+                       description cells abbreviated away
+                       the front-matter Title, drained in
+                       the same tick
     empty_section_scan every heading must own content (ES-01): a
                        section is empty iff nothing but blanks/HRs/
                        blockquotes/HTML-comments sits between its
@@ -1465,6 +1486,7 @@ GATES = [
     ("tutorial_index_parity_check.py", "tutorial_index_parity_check", True),
     ("cheatsheet_index_parity_check.py", "cheatsheet_index_parity_check", True),
     ("project_index_parity_check.py", "project_index_parity_check", True),
+    ("small_index_parity_check.py", "small_index_parity_check", True),
 ]
 
 
