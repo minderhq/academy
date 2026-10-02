@@ -78,6 +78,23 @@ QI-14  checkpoint-quiz item duplicating a bank stem: the phase
        function calling?"), drained the same tick by rewording the
        checkpoint item; 0 numbering gaps (all 33 blocks 1..3).
 
+QI-15  phase-quiz item duplicating a bank or phase-quiz stem (hard
+       since tick-567): the seven phase quizzes quiz the learner
+       across a whole phase's modules, so a verbatim stem re-asked
+       from one of those module banks - or from a sibling phase
+       quiz - means the platform serves the identical question
+       twice in one learning path. Reuses the QI-06 stem map like
+       QI-14, this time against the phase quizzes' "### N. title"
+       headings. Census tick-567: 4 exact normalized dups, all
+       phase5-quiz vs its own phase's banks ("What is QLoRA?" and
+       "What is prefix tuning?" vs 5100-peft q5/q9, "What is DPO?"
+       vs 5200-alignment q5, "What is federated learning?" vs
+       5300-synthetic q8), drained the same tick by rewording the
+       phase items to different angles (acronym expansion, best-
+       description, PEFT-context forms) with answer letters and
+       options untouched; phase-vs-phase and the other six phase
+       quizzes born clean.
+
 Report inventory (never fails the gate - the drain queues, same
 contract as duplicate_heading_scan):
 
@@ -118,7 +135,8 @@ QI-10  answer-length bias per module (report queue): the correct
 Hard gate on QI-01..06, QI-08/09 and QI-11..14 (exit 1): baseline 0
 at birth (tick-284 / tick-285); QI-06 joined in tick-345 (baseline
 0 since the tick-343 drain); QI-11 joined in tick-374 (born
-baseline 0); QI-12 tick-474, QI-13 tick-475, QI-14 tick-476 (all
+baseline 0); QI-12 tick-474, QI-13 tick-475, QI-14 tick-476, QI-15
+tick-567 (all
 born-at-zero). QI-10 is report inventory at birth (tick-290: 31
 modules queued).
 
@@ -367,6 +385,40 @@ def main() -> int:
                             f"{m.group(1)} '{m.group(2)[:50]}' duplicates "
                             f"bank stem {seen[stem][0]} q{seen[stem][1]}")
 
+    # QI-15: phase-quiz items duplicating a bank or phase-quiz stem.
+    # The seven phase quizzes quiz across a whole phase's modules, so
+    # a verbatim stem re-asked from one of those banks - or from a
+    # sibling phase quiz - serves the identical question twice in one
+    # learning path. Reuses the QI-06 stem map like QI-14; born
+    # census tick-567 caught 4 such dups, all phase5-quiz vs its own
+    # phase's banks, drained to distinct stems the same tick.
+    PQ_HEAD = re.compile(r"^###\s+(\d+)\.\s+(.+?)\s*$")
+    seen_phase: dict[str, tuple[str, int]] = {}
+    for pq in sorted((args.root / "docs" / "00-META" / "assessment")
+                     .glob("phase*-quiz.md")):
+        prel = pq.relative_to(args.root).as_posix()
+        prow = (pq.read_text(encoding="utf-8", errors="replace")
+                .replace("\r\n", "\n").split("\n"))
+        for line, fence in fence_aware(prow):
+            if fence:
+                continue
+            m = PQ_HEAD.match(line)
+            if not m:
+                continue
+            stem = norm(m.group(2))
+            if stem in seen:
+                hard.append(
+                    f"{prel}: QI-15 phase-quiz item {m.group(1)} "
+                    f"'{m.group(2)[:50]}' duplicates bank stem "
+                    f"{seen[stem][0]} q{seen[stem][1]}")
+            elif stem in seen_phase:
+                hard.append(
+                    f"{prel}: QI-15 phase-quiz item {m.group(1)} "
+                    f"'{m.group(2)[:50]}' duplicates phase-quiz item "
+                    f"{seen_phase[stem][0]} q{seen_phase[stem][1]}")
+            else:
+                seen_phase[stem] = (prel, int(m.group(1)))
+
     for c in cross_dups:
         hard.append("QI-06 cross-module stem dup: " + c)
     for f in hard:
@@ -385,7 +437,8 @@ def main() -> int:
           f"/ QI-09 orphan Answer Key row / QI-11 key letter with no "
           f"option row or <2-option mcq / QI-12 ungradeable "
           f"question / QI-13 unparseable key row / QI-14 "
-          f"checkpoint-quiz item duplicating a bank stem), "
+          f"checkpoint-quiz item duplicating a bank stem / QI-15 "
+          f"phase-quiz item duplicating a bank or phase-quiz stem), "
           f"QI-06 {len(cross_dups)} "
           f"cross-module stem dups (hard since tick-345; drained "
           f"tick-343), QI-07 "

@@ -34,7 +34,7 @@ stand today?" without running each tool by hand.
                        every ```json fence parses as JSON (DB-01) and
                        every ```yaml fence parses as a YAML document
                        stream (DB-02); prose/formulas live in text fences
-    assessment_lint    assessment/QUIZ.md + PRACTICE.md coverage (AS-01..AS-13;
+    assessment_lint    assessment/QUIZ.md + PRACTICE.md coverage (AS-01..AS-14;
                        AS-09 graduated tick-566 to a hard ceil(N/4) letter
                        ceiling - no letter above a quarter of the bank's
                        answered questions - over the 33 module banks AND
@@ -61,11 +61,17 @@ stand today?" without running each tool by hand.
                        rows count the numbered "### N." headings; born
                        tick-562 with the MI exercise column drifted on 5
                        of 7 phases (42 promised vs 34 on disk) and
-                       drained to disk truth first)
+                       drained to disk truth first; AS-14 each phase
+                       quiz's learner-facing "**Passing: N/M (80%)**"
+                       line - exactly one per quiz, its total equal to
+                       the question count, its percentage the corpus's
+                       80% convention, its threshold the integer ceil
+                       of that percentage - born tick-567
+                       census-proven at zero across all seven quizzes)
     quiz_export        quiz bank parses into complete question records
     quiz_integrity_scan
                        content-level quiz integrity (QI-01..06 +
-                       QI-08/09 + QI-11/12/13 hard: self-referential positional
+                       QI-08/09 + QI-11/12/13/15 hard: self-referential positional
                        option, in-module duplicate stem, duplicate
                        option text, option beyond A-D, numbering
                        gap, cross-module stem dup, duplicate
@@ -81,7 +87,10 @@ stand today?" without running each tool by hand.
                        item in a phase CHECKPOINT.md's 3-item
                        Checkpoint Quiz re-asks a bank question;
                        QI-11 born tick-374, QI-12 tick-474,
-                       QI-13 tick-475, QI-14 tick-476,
+                       QI-13 tick-475, QI-14 tick-476, QI-15
+                       tick-567 phase-quiz item duplicating a bank
+                       or phase-quiz stem - born at 4 (all in
+                       phase5-quiz.md), drained same tick,
                        baseline 0) on top of
                        quiz_export's parser; QI-07/QI-10
                        are the report inventory (the

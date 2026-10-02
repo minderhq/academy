@@ -35,7 +35,7 @@ d) Simpler implementation
 
 ---
 
-### 3. What is QLoRA?
+### 3. What does the Q in QLoRA stand for?
 a) Quick LoRA
 b) Quality LoRA
 c) Quantum LoRA
@@ -55,7 +55,7 @@ d) Data rank
 
 ---
 
-### 5. What is DPO?
+### 5. What does DPO stand for?
 a) Data Processing Optimization
 b) Deep Parameter Optimization
 c) Distributed Parallel Optimization
@@ -185,7 +185,7 @@ d) Faster training
 
 ---
 
-### 18. What is federated learning?
+### 18. What best describes federated learning?
 a) Federated training
 b) Training across distributed data sources
 c) Distributed training
@@ -295,7 +295,7 @@ d) Prompt engineering
 
 ---
 
-### 29. What is prefix tuning?
+### 29. In PEFT, what does prefix tuning train?
 a) Adding prefix to prompts
 b) Prefix optimization
 c) Tuning prefix tokens

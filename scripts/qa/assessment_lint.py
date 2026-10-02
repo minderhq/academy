@@ -61,6 +61,16 @@ the same AS-04/AS-08/AS-09 standards in their own "### N." shape):
          promising 42 exercises against a disk of 34, and the
          column was drained to disk truth before the lock
          tightened)
+  AS-14  a phase quiz's "**Passing: N/M (80%)**" line is a contract
+         the platform surfaces verbatim: M must equal the quiz's
+         question count, N must equal ceil(P/100 * M) for the
+         stated P, and P must stay the corpus's 80% convention
+         (the module banks grade at 80% too). Joined tick-567 -
+         born census-proven at zero across all seven quizzes
+         (12/15, 16/20, 20/25 and 24/30 at exact 80% multiples);
+         the line previously had no reader, so a question-count
+         edit could silently strand the threshold a learner is
+         told to hit
 
 Format-tolerant by design: richer variants (inline-answer quizzes,
 self-graded coding questions, 3-column answer keys) pass as long as
@@ -112,6 +122,8 @@ PHASE_Q = re.compile(r"^###\s+(\d+)\.\s")
 # Key block ("1\. c, 2. b, ...", escaped dots); both tolerate a-d.
 PHASE_INLINE = re.compile(r"\*\*Answer:\*\*\s*([A-Da-d])\b")
 PHASE_KEY_PAIR = re.compile(r"(?<!\d)(\d+)\\?\. ([A-Da-d])\b")
+# the learner-facing pass contract: "**Passing: 12/15 (80%)**"
+PASS_LINE = re.compile(r"\*\*Passing:\s*(\d+)/(\d+)\s*\((\d+)%\)\*\*")
 
 
 def fence_aware(lines):
@@ -334,6 +346,35 @@ class Linter:
                     self.report(rel, "AS-08",
                                 "question %d: key=%s inline=%s"
                                 % (n, key[n], inline[n]))
+
+        # The "**Passing: N/M (80%)**" line is the contract the
+        # platform surfaces verbatim: exactly one per quiz, its
+        # total equal to the question count, and its threshold
+        # the integer ceil of the stated percentage (the corpus
+        # convention is 80%).
+        plines = [(i, l) for i, l in nf if PASS_LINE.search(l)]
+        if len(plines) == 0:
+            self.report(rel, "AS-14",
+                        "no '**Passing: N/M (80%)**' line")
+        elif len(plines) > 1:
+            self.report(rel, "AS-14",
+                        "%d passing lines (expected 1)" % len(plines))
+        else:
+            need, total, pct = (int(g) for g
+                                in PASS_LINE.search(plines[0][1]).groups())
+            if total != len(qnums):
+                self.report(rel, "AS-14",
+                            "passing-line total %d != %d questions"
+                            % (total, len(qnums)))
+            if pct != 80:
+                self.report(rel, "AS-14",
+                            "passing-line pct %d != the 80%% convention"
+                            % pct)
+            want = (pct * total + 99) // 100
+            if need != want:
+                self.report(rel, "AS-14",
+                            "passing threshold %d != ceil(%d%% of %d) = %d"
+                            % (need, pct, total, want))
 
         self.check_balance(rel, key, qnums, inline)
 
