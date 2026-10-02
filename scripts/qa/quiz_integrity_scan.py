@@ -79,7 +79,7 @@ QI-14  checkpoint-quiz item duplicating a bank stem: the phase
        checkpoint item; 0 numbering gaps (all 33 blocks 1..3).
 
 Report inventory (never fails the gate - the drain queues, same
-contract as duplicate_heading_scan / AS-09):
+contract as duplicate_heading_scan):
 
 QI-06  cross-module duplicate stem (casefold, whitespace
        normalized): the same question label reused across two
@@ -94,13 +94,15 @@ QI-06  cross-module duplicate stem (casefold, whitespace
        the build instead of queueing.
 QI-07  skewed answer keys per module (max letter >= 50% of answered
        mcq, or any of A-D absent; census: 14 modules, corpus-wide
-       B=40%, 4100-low-bit at 65% - just under assessment_lint's
-       70% AS-09 tripwire, so the finer baseline is what actually
-       sees the drift). This is the option-shuffle queue: rebalancing
-       needs semantic care because 36 questions carry positional
-       options ("Both A and B" / "All of the above") that cannot
-       move. Drained in tick-288/289 (34 letter swaps across 14
-       modules) - the queue is now 0.
+       B=40%, 4100-low-bit at 65%). Superseded tick-566: AS-09
+       graduated to a hard ceil(N/4) ceiling - strictly finer than
+       this 50% tripwire - over module banks and phase quizzes
+       alike, so any bank passing AS-09 passes this test; kept as
+       a report census only. Rebalancing needs semantic care
+       because 36 questions carry positional options ("Both A and
+       B" / "All of the above") that cannot move. Drained in
+       tick-288/289 (34 letter swaps across 14 modules) - the
+       queue is now 0.
 
 QI-10  answer-length bias per module (report queue): the correct
        option is the longest-or-tied option (words AND chars) in
@@ -387,8 +389,9 @@ def main() -> int:
           f"QI-06 {len(cross_dups)} "
           f"cross-module stem dups (hard since tick-345; drained "
           f"tick-343), QI-07 "
-          f"{len(skew)} skewed answer keys (option-shuffle queue; "
-          f"refines AS-09's 70% tripwire), QI-10 {len(lenbias)} "
+          f"{len(skew)} skewed answer keys (report census; "
+          f"superseded tick-566 by AS-09's ceil(N/4) ceiling), "
+          f"QI-10 {len(lenbias)} "
           f"length-bias modules (correct-option-longest queue; born "
           f"tick-290) across {n_modules} quizzes")
     return 1 if hard else 0

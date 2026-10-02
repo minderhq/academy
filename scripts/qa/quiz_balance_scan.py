@@ -9,8 +9,10 @@ letter instead of knowing the material. Structural gates check that
 four options exist (AS-10) and that keys match inline answers; the
 POSITION distribution is invisible to them.
 
-Parses the same 33 assessment/QUIZ.md banks via quiz_export's own
-export_quiz (one parser, one truth) and reports, per bank and
+Parses the 33 module assessment/QUIZ.md banks via quiz_export's own
+export_quiz (one parser, one truth) plus the 7 phase quizzes
+(docs/00-META/assessment/phaseN-quiz.md) with a local parser for
+their "### N." / lowercase-inline shape, and reports, per bank and
 globally, the letter counts, shares, and a dep-free chi-square against
 uniform. Report-only tool - exit 0 by design (same stance as
 curriculum_metrics and lesson_similarity_scan): a skewed bank is a
@@ -21,7 +23,7 @@ FINDINGS:
                 (default 0.45 - nine of twenty on one letter)
     GLOBAL-SKEW the corpus-wide most common letter exceeds
                 --global-threshold (default 0.30 - uniform is 0.25 and
-                655 mcqs make even a few points of drift significant)
+                835 mcqs make even a few points of drift significant)
 
 The honest fix for a skewed bank is permuting that bank's option lines
 and remapping its key - content untouched, presentation order only.
@@ -37,6 +39,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -46,6 +49,31 @@ from quiz_export import MODULE_DIR, export_quiz  # noqa: E402
 LETTERS = "ABCD"
 # chi-square critical value, df=3, p=0.01 (a 4-letter uniform test)
 CHI2_P01 = 11.34
+
+# phase quizzes answer inline in lowercase under "### N." headings -
+# a shape the module-bank exporter does not cover, parsed locally.
+PHASE_Q = re.compile(r"^###\s+(\d+)\.\s")
+PHASE_INLINE = re.compile(r"\*\*Answer:\*\*\s*([A-Da-d])\b")
+
+
+def parse_phase_quiz(quiz: Path) -> dict:
+    counts = {k: 0 for k in LETTERS}
+    fence = False
+    last = None
+    for line in quiz.read_text(encoding="utf-8").split("\n"):
+        if line.strip().startswith("```"):
+            fence = not fence
+            continue
+        if fence:
+            continue
+        m = PHASE_Q.match(line)
+        if m:
+            last = int(m.group(1))
+            continue
+        m = PHASE_INLINE.search(line)
+        if m and last is not None and m.group(1).upper() in counts:
+            counts[m.group(1).upper()] += 1
+    return counts
 
 
 def esc(text: str) -> str:
@@ -97,6 +125,12 @@ def main() -> int:
             if q["type"] == "mcq" and q["answer"] in counts:
                 counts[q["answer"]] += 1
         banks.append({"module": mod.name, "file": rel, **stats(counts)})
+
+    for quiz in sorted((root / "docs" / "00-META" / "assessment")
+                       .glob("phase*-quiz.md")):
+        banks.append({"module": quiz.stem,
+                      "file": quiz.relative_to(root).as_posix(),
+                      **stats(parse_phase_quiz(quiz))})
 
     total = {k: sum(b["counts"][k] for b in banks) for k in LETTERS}
     glob = stats(total)

@@ -56,12 +56,12 @@ d) Hierarchical Node Search Window
 ---
 
 ### 5. What is Qdrant?
-a) Query database
+a) Vector database for embeddings
 b) Quantum database
 c) Quick data retrieval
-d) Vector database for embeddings
+d) Query database
 
-**Answer:** d
+**Answer:** a
 
 ---
 
@@ -96,22 +96,22 @@ d) Parallel search
 ---
 
 ### 9. What is re-ranking?
-a) Searching again
+a) Reordering retrieved results by relevance
 b) Ranking results
 c) Scoring results
-d) Reordering retrieved results by relevance
+d) Searching again
 
-**Answer:** d
+**Answer:** a
 
 ---
 
 ### 10. What is GraphRAG?
-a) Graph-based RAG
+a) RAG with knowledge graphs
 b) Visual RAG
 c) Network RAG
-d) RAG with knowledge graphs
+d) Graph-based RAG
 
-**Answer:** d
+**Answer:** a
 
 ---
 
@@ -126,22 +126,22 @@ d) Relational database
 ---
 
 ### 12. What is a knowledge graph?
-a) Graph of knowledge
+a) Network of entities and relationships
 b) Knowledge network
 c) Information graph
-d) Network of entities and relationships
+d) Graph of knowledge
 
-**Answer:** d
+**Answer:** a
 
 ---
 
 ### 13. What is chunking in RAG?
-a) Data compression
+a) Splitting documents into smaller pieces
 b) Text segmentation
 c) Document parsing
-d) Splitting documents into smaller pieces
+d) Data compression
 
-**Answer:** d
+**Answer:** a
 
 ---
 
@@ -156,12 +156,12 @@ d) 64-128 tokens
 ---
 
 ### 15. What is the purpose of overlap in chunking?
-a) Increase chunk count
+a) Preserve context across chunks
 b) Reduce chunk size
 c) Improve compression
-d) Preserve context across chunks
+d) Increase chunk count
 
-**Answer:** d
+**Answer:** a
 
 ---
 
@@ -196,12 +196,12 @@ d) Light retrieval
 ---
 
 ### 19. What is context window?
-a) Context storage
+a) Maximum input length for model
 b) Memory window
 c) Attention window
-d) Maximum input length for model
+d) Context storage
 
-**Answer:** d
+**Answer:** a
 
 ---
 
@@ -216,22 +216,22 @@ d) Poor accuracy
 ---
 
 ### 21. What is metadata filtering?
-a) Data cleaning
+a) Filtering results by attributes
 b) Metadata processing
 c) Attribute search
-d) Filtering results by attributes
+d) Data cleaning
 
-**Answer:** d
+**Answer:** a
 
 ---
 
 ### 22. What is multi-vector retrieval?
 a) Multi-modal retrieval
-b) Parallel retrieval
+b) Storing multiple embeddings per document
 c) Multiple queries
-d) Storing multiple embeddings per document
+d) Parallel retrieval
 
-**Answer:** d
+**Answer:** b
 
 ---
 
@@ -317,8 +317,8 @@ d) Simpler implementation
 
 ## Answer Key
 
-1\. c, 2. b, 3. b, 4. c, 5. d, 6. b, 7. c, 8. c, 9. d, 10. d,
-11\. b, 12. d, 13. d, 14. b, 15. d, 16. b, 17. c, 18. c, 19. d, 20. c,
-21\. d, 22. d, 23. d, 24. d, 25. d, 26. d, 27. d, 28. d, 29. d, 30. b
+1\. c, 2. b, 3. b, 4. c, 5. a, 6. b, 7. c, 8. c, 9. a, 10. a,
+11\. b, 12. a, 13. a, 14. b, 15. a, 16. b, 17. c, 18. c, 19. a, 20. c,
+21\. a, 22. b, 23. d, 24. d, 25. d, 26. d, 27. d, 28. d, 29. d, 30. b
 
 **Passing: 24/30 (80%)**

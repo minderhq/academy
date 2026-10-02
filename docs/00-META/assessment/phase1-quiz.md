@@ -16,42 +16,42 @@ Tags: ['assessment', 'quiz', 'infrastructure']
 ## Questions
 
 ### 1. What is the primary purpose of jumbo frames in network configuration?
-a) Increase security
+a) Reduce packet overhead
 b) Improve encryption
-c) Reduce packet overhead
+c) Increase security
 d) Reduce latency
 
-**Answer:** c
+**Answer:** a
 
 ---
 
 ### 2. Which Kubernetes component manages GPU scheduling?
-a) kube-scheduler
+a) device plugin
 b) controller-manager
 c) kubelet
-d) device plugin
+d) kube-scheduler
 
-**Answer:** d
+**Answer:** a
 
 ---
 
 ### 3. What is MTU 9000 used for in this course's infrastructure?
-a) VPN tunneling
-b) Jumbo frames for high-throughput transfers
+a) Jumbo frames for high-throughput transfers
+b) VPN tunneling
 c) Security filtering
 d) Load balancing
 
-**Answer:** b
+**Answer:** a
 
 ---
 
 ### 4. In Proxmox, what is core pinning?
-a) Network configuration
-b) Assigning specific CPU cores to VMs
+a) Assigning specific CPU cores to VMs
+b) Network configuration
 c) Memory allocation
 d) Storage management
 
-**Answer:** b
+**Answer:** a
 
 ---
 
@@ -167,7 +167,7 @@ d) Lightweight Kubernetes distribution
 
 ## Answer Key
 
-1\. c, 2. d, 3. b, 4. b, 5. c, 6. b, 7. d, 8. c, 9. b, 10. c,
+1\. a, 2. a, 3. a, 4. a, 5. c, 6. b, 7. d, 8. c, 9. b, 10. c,
 11\. b, 12. d, 13. b, 14. c, 15. d
 
 **Passing: 12/15 (80%)**

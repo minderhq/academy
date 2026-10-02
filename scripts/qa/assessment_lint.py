@@ -2,7 +2,9 @@
 """Assessment quality linter for the PROJECT-OMEGA curriculum corpus.
 
 Every module directory (docs/phases/*/<NNNN>-*/) carries assessment/QUIZ.md
-and assessment/PRACTICE.md. The corpus standard these files already meet:
+and assessment/PRACTICE.md. The corpus standard these files already meet
+(the seven phase quizzes in docs/00-META/assessment/ are linted under
+the same AS-04/AS-08/AS-09 standards in their own "### N." shape):
 
   AS-01  assessment/QUIZ.md exists
   AS-02  QUIZ holds >= 20 questions (bold-N "**1." or "### Question N:"
@@ -14,10 +16,16 @@ and assessment/PRACTICE.md. The corpus standard these files already meet:
          "**Answer:** X" per question, or a self-graded "**Score:** __"
          blank (coding questions)
   AS-08  where both exist, Answer Key and inline answers agree
-  AS-09  answer key is not degenerate: no single letter on >= 70% of
-         the answered questions (all-B authoring lets learners ace a
-         quiz by pattern-matching instead of reading). Report-mode
-         while the option-shuffle queue drains; flip to hard when empty
+  AS-09  answer-key letter balance: no single letter exceeds
+         ceil(N/4) of the bank's answered questions (all-D authoring
+         lets learners ace a quiz by pattern-matching instead of
+         reading). Hard over the 33 module banks and the 7 phase
+         quizzes alike; graduated tick-566 from the queued 70%
+         tripwire - the birth census caught all seven phase banks
+         skewed (phase 2 answering D on 70% of its questions,
+         phase 5 B on 56.7%), the option positions were permuted
+         and the keys remapped to quarter shares before the
+         ceiling locked
   AS-10  a question that carries options carries exactly the four
          A-D - the platform renders options as radio buttons, so a
          3/5-option outlier or a duplicated letter breaks the shape
@@ -73,8 +81,6 @@ import sys
 from collections import Counter
 from pathlib import Path
 
-DEGENERATE_RATIO = 0.7
-
 QUESTION_BOLD = re.compile(r"^\*\*(\d+)\.")
 QUESTION_H3 = re.compile(r"^###\s+Question\s+(\d+)\s*[:.]")
 HEADING = re.compile(r"^(#{1,6})\s+(.*?)\s*$")
@@ -102,6 +108,10 @@ PHASE_QUIZ_ROW = re.compile(
     r"^\|\s*\*\*(\d+)\*\*\s*\|\s*\[[^\]]+\]\(([^)]+)\)\s*\|"
     r"\s*(\d+)\s+questions\s*\|\s*$")
 PHASE_Q = re.compile(r"^###\s+(\d+)\.\s")
+# phase quizzes answer inline in lowercase and summarize in an Answer
+# Key block ("1\. c, 2. b, ...", escaped dots); both tolerate a-d.
+PHASE_INLINE = re.compile(r"\*\*Answer:\*\*\s*([A-Da-d])\b")
+PHASE_KEY_PAIR = re.compile(r"(?<!\d)(\d+)\\?\. ([A-Da-d])\b")
 
 
 def fence_aware(lines):
@@ -116,15 +126,9 @@ def fence_aware(lines):
 class Linter:
     def __init__(self) -> None:
         self.findings: list[str] = []
-        self.queued: list[str] = []
 
     def report(self, rel: str, rule: str, detail: str) -> None:
         self.findings.append("%s: %s" % (rel, rule))
-        print("%s: %s - %s" % (rel, rule,
-              detail.encode("ascii", "backslashreplace").decode("ascii")))
-
-    def report_queued(self, rel: str, rule: str, detail: str) -> None:
-        self.queued.append("%s: %s" % (rel, rule))
         print("%s: %s - %s" % (rel, rule,
               detail.encode("ascii", "backslashreplace").decode("ascii")))
 
@@ -254,19 +258,84 @@ class Linter:
                             "questions %s missing from review map"
                             % missing_ref)
 
-        # AS-09: degenerate answer distribution. One letter dominating
-        # the key (all-B authoring) leaks the answer; queued for a
-        # position-shuffle pass, report-mode until that queue drains.
+        # AS-09: answer-key letter balance. One letter dominating the
+        # key (all-B authoring) leaks the answer; the corpus convention
+        # is quarter shares, so no letter may exceed ceil(N/4). Hard
+        # since tick-566, when the seven phase banks skewed under the
+        # old queued 70% tripwire drained to quarter shares.
+        self.check_balance(rel, key, qnums, inline)
+
+    def check_balance(self, rel: str, key: dict, qnums: set,
+                      inline: dict) -> None:
+        """AS-09 shared by both quiz shapes: no letter above
+        ceil(N/4) of the bank's answered questions."""
         letters = [key[n] for n in sorted(set(key) & qnums)]
-        letters += [inline[n] for n in sorted(set(inline) & qnums)
+        letters += [inline[n].upper() for n in sorted(set(inline) & qnums)
                     if n not in key]
-        if len(letters) >= 10:
-            top, count = Counter(letters).most_common(1)[0]
-            if count >= DEGENERATE_RATIO * len(letters):
-                self.report_queued(
-                    rel, "AS-09",
-                    "answer key degenerate: '%s' on %d/%d questions "
-                    "(shuffle option positions)" % (top, count, len(letters)))
+        if not letters:
+            return
+        top, count = Counter(letters).most_common(1)[0]
+        ceiling = (len(letters) + 3) // 4
+        if count > ceiling:
+            self.report(rel, "AS-09",
+                        "answer key unbalanced: '%s' on %d/%d questions "
+                        "(ceiling %d - permute option positions and "
+                        "remap the key)" % (top, count, len(letters),
+                                            ceiling))
+
+    def lint_phase_quiz(self, root: Path, quiz: Path) -> None:
+        """The seven phase quizzes (docs/00-META/assessment/phaseN-quiz.md)
+        under the same AS-04/AS-08/AS-09 standards as the module banks,
+        in their own shape: "### N." headings, lowercase a)-d) options,
+        an inline answer per question plus an Answer Key block that
+        mirrors them."""
+        rel = quiz.relative_to(root).as_posix()
+        lines = quiz.read_text(encoding="utf-8").split("\n")
+        nf = [(i, l) for i, (l, f) in enumerate(fence_aware(lines)) if not f]
+
+        qnums: set = set()
+        last = None
+        inline: dict = {}
+        for _, l in nf:
+            m = PHASE_Q.match(l)
+            if m:
+                qnums.add(int(m.group(1)))
+                last = int(m.group(1))
+                continue
+            m = PHASE_INLINE.search(l)
+            if m and last is not None and last not in inline:
+                inline[last] = m.group(1).upper()
+        if qnums != set(range(1, len(qnums) + 1)):
+            self.report(rel, "AS-03",
+                        "question numbering not contiguous 1..%d"
+                        % len(qnums))
+        uncovered = sorted(qnums - set(inline))
+        if uncovered:
+            self.report(rel, "AS-04",
+                        "questions %s carry no inline answer" % uncovered)
+
+        # The Answer Key block mirrors the inline answers: where it
+        # exists it must cite only real questions and agree with them.
+        key: dict = {}
+        ak_idx = next((i for i, l in nf if AK_SECTION.match(l)), None)
+        if ak_idx is None:
+            self.report(rel, "AS-04", "no ## Answer Key section")
+        else:
+            body = "\n".join(l for i, l in nf if i > ak_idx)
+            key = {int(n): L.upper()
+                   for n, L in PHASE_KEY_PAIR.findall(body)}
+            stale = sorted(set(key) - qnums)
+            if stale:
+                self.report(rel, "AS-08",
+                            "answer-key block cites nonexistent "
+                            "questions %s" % stale)
+            for n in sorted(set(key) & set(inline)):
+                if key[n] != inline[n]:
+                    self.report(rel, "AS-08",
+                                "question %d: key=%s inline=%s"
+                                % (n, key[n], inline[n]))
+
+        self.check_balance(rel, key, qnums, inline)
 
     def lint_practice(self, module: str, prac: Path) -> None:
         rel = "%s assessment/PRACTICE.md" % module
@@ -397,19 +466,20 @@ def main() -> int:
 
     linter = Linter()
     phases = args.root / "docs" / "phases"
-    for mod in sorted(p for p in phases.glob("*/*")
-                      if p.is_dir() and MODULE_DIR.match(p.name)):
+    mods = sorted(p for p in phases.glob("*/*")
+                  if p.is_dir() and MODULE_DIR.match(p.name))
+    for mod in mods:
         linter.lint_module(args.root, mod)
+    phase_quizzes = sorted((args.root / "docs" / "00-META" / "assessment")
+                           .glob("phase*-quiz.md"))
+    for pq in phase_quizzes:
+        linter.lint_phase_quiz(args.root, pq)
     n_claims = linter.lint_index_tables(args.root)
 
-    mods = [p for p in phases.glob("*/*")
-            if p.is_dir() and MODULE_DIR.match(p.name)]
-    print("assessment_lint: %d findings + %d queued across %d module "
-          "assessments and %d MI phase-table claims"
-          % (len(linter.findings), len(linter.queued), len(mods),
+    print("assessment_lint: %d findings across %d module assessments, "
+          "%d phase quizzes and %d MI phase-table claims"
+          % (len(linter.findings), len(mods), len(phase_quizzes),
              n_claims))
-    # Report-mode contract: queued items (AS-09 shuffle queue) do not
-    # fail the gate until the queue drains, mirroring objectives_lint.
     return 1 if linter.findings else 0
 
 

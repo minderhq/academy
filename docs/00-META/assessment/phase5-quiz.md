@@ -18,100 +18,100 @@ Tags: ['assessment', 'quiz', 'finetuning']
 ### 1. What is LoRA?
 a) Learning Rate Optimization
 b) Large Model Optimization
-c) Low-Rank Adaptation for efficient fine-tuning
-d) Linear Regression Adaptation
+c) Linear Regression Adaptation
+d) Low-Rank Adaptation for efficient fine-tuning
 
-**Answer:** c
+**Answer:** d
 
 ---
 
 ### 2. What is the main benefit of LoRA over full fine-tuning?
-a) Faster training
-b) Trains fewer parameters
+a) Trains fewer parameters
+b) Faster training
 c) Better accuracy
 d) Simpler implementation
 
-**Answer:** b
+**Answer:** a
 
 ---
 
 ### 3. What is QLoRA?
 a) Quick LoRA
 b) Quality LoRA
-c) Quantization-aware LoRA
-d) Quantum LoRA
+c) Quantum LoRA
+d) Quantization-aware LoRA
 
-**Answer:** c
+**Answer:** d
 
 ---
 
 ### 4. What is the rank parameter in LoRA?
-a) Model rank
-b) Dimension of low-rank matrices
+a) Dimension of low-rank matrices
+b) Model rank
 c) Training rank
 d) Data rank
 
-**Answer:** b
+**Answer:** a
 
 ---
 
 ### 5. What is DPO?
 a) Data Processing Optimization
 b) Deep Parameter Optimization
-c) Direct Preference Optimization
-d) Distributed Parallel Optimization
+c) Distributed Parallel Optimization
+d) Direct Preference Optimization
 
-**Answer:** c
+**Answer:** d
 
 ---
 
 ### 6. What is the difference between DPO and RLHF?
-a) DPO is faster
-b) DPO doesn't require reward model
+a) DPO doesn't require reward model
+b) DPO is faster
 c) DPO is more accurate
 d) DPO uses less data
 
-**Answer:** b
+**Answer:** a
 
 ---
 
 ### 7. What is RLHF?
 a) Rapid Learning from Features
 b) Recursive Learning with Human Feedback
-c) Reinforcement Learning from Human Feedback
-d) Reinforced Learning Heuristic Framework
+c) Reinforced Learning Heuristic Framework
+d) Reinforcement Learning from Human Feedback
 
-**Answer:** c
+**Answer:** d
 
 ---
 
 ### 8. What is a reward model in RLHF?
-a) Model that gives rewards
-b) Model trained to predict human preferences
+a) Model trained to predict human preferences
+b) Model that gives rewards
 c) Bonus model
 d) Scoring model
 
-**Answer:** b
+**Answer:** a
 
 ---
 
 ### 9. What is knowledge distillation?
-a) Compressing knowledge
-b) Training smaller model to mimic larger model
+a) Training smaller model to mimic larger model
+b) Compressing knowledge
 c) Knowledge transfer
 d) Model compression
 
-**Answer:** b
+**Answer:** a
 
 ---
 
 ### 10. What is PEFT?
 a) Partial Effect Fine-Tuning
 b) Performance Enhanced Fine-Tuning
-c) Parameter-Efficient Fine-Tuning
-d) Parallel Efficient Fine-Tuning
+c) Parallel Efficient Fine-Tuning
+d) Parameter-Efficient Fine-Tuning
 
-**Answer:** c
+**Answer:** d
 
 ---
 
@@ -126,42 +126,42 @@ d) 128-256
 ---
 
 ### 12. What is alpha in LoRA?
-a) Learning rate
-b) Scaling factor for LoRA weights
+a) Scaling factor for LoRA weights
+b) Learning rate
 c) Rank parameter
 d) Regularization strength
 
-**Answer:** b
+**Answer:** a
 
 ---
 
 ### 13. What are target modules in LoRA?
-a) Model targets
-b) Which layers to apply LoRA to
+a) Which layers to apply LoRA to
+b) Model targets
 c) Training targets
 d) Loss targets
 
-**Answer:** b
+**Answer:** a
 
 ---
 
 ### 14. What is instruction tuning?
-a) Training instructions
-b) Fine-tuning to follow instructions
+a) Fine-tuning to follow instructions
+b) Training instructions
 c) Prompt tuning
 d) Task tuning
 
-**Answer:** b
+**Answer:** a
 
 ---
 
 ### 15. What is SFT?
 a) Semi-supervised Fine-Tuning
-b) Supervised Fine-Tuning
+b) Sequential Fine-Tuning
 c) Sparse Fine-Tuning
-d) Sequential Fine-Tuning
+d) Supervised Fine-Tuning
 
-**Answer:** b
+**Answer:** d
 
 ---
 
@@ -317,8 +317,8 @@ d) Simpler implementation
 
 ## Answer Key
 
-1\. c, 2. b, 3. c, 4. b, 5. c, 6. b, 7. c, 8. b, 9. b, 10. c,
-11\. c, 12. b, 13. b, 14. b, 15. b, 16. b, 17. c, 18. b, 19. b, 20. c,
+1\. d, 2. a, 3. d, 4. a, 5. d, 6. a, 7. d, 8. a, 9. a, 10. d,
+11\. c, 12. a, 13. a, 14. a, 15. d, 16. b, 17. c, 18. b, 19. b, 20. c,
 21\. b, 22. b, 23. c, 24. c, 25. c, 26. d, 27. b, 28. b, 29. c, 30. b
 
 **Passing: 24/30 (80%)**

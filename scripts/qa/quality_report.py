@@ -35,8 +35,18 @@ stand today?" without running each tool by hand.
                        every ```yaml fence parses as a YAML document
                        stream (DB-02); prose/formulas live in text fences
     assessment_lint    assessment/QUIZ.md + PRACTICE.md coverage (AS-01..AS-13;
-                       AS-09 option-shuffle queue is report-mode, shown
-                       separately; AS-10 option uniformity - a question
+                       AS-09 graduated tick-566 to a hard ceil(N/4) letter
+                       ceiling - no letter above a quarter of the bank's
+                       answered questions - over the 33 module banks AND
+                       the 7 phase quizzes, which joined the gate's scope
+                       the same tick (AS-03 numbering, AS-04 inline
+                       coverage, AS-08 inline-vs-key-block agreement, in
+                       the "### N." / lowercase-inline shape): the birth
+                       census caught all seven phase banks skewed (phase 2
+                       answering D on 70% of its questions, phase 5 B on
+                       56.7%) and the option positions were permuted to
+                       quarter shares (56 swaps, semantics untouched) before
+                       the ceiling locked; AS-10 option uniformity - a question
                        carrying options carries exactly A-D, born tick-498
                        born-at-zero 655/655 four-option mcq; AS-11 answer-key
                        rows carry a filled explanation cell, born tick-514
@@ -75,8 +85,10 @@ stand today?" without running each tool by hand.
                        baseline 0) on top of
                        quiz_export's parser; QI-07/QI-10
                        are the report inventory (the
-                       skewed-answer-key shuffle queue that
-                       refines AS-09's 70% tripwire + the
+                       skewed-answer-key shuffle queue -
+                       superseded tick-566 by AS-09's hard
+                       ceil(N/4) ceiling, which the queue
+                       now merely previews + the
                        answer-length-bias queue: the correct
                        option is longest-or-tied in >=50% of a
                        module's questions - born from the
@@ -957,7 +969,7 @@ stand today?" without running each tool by hand.
                       queue: the tick-417 census found only
                       14/114 lessons carrying one; the 100-site
                       queue drains phase-by-phase and the check
-                      hardens at 0 (exit 0 by design, the AS-09
+                      hardens at 0 (exit 0 by design, the report-queue
                       pattern). CL-02 no References-class
                       closing H2 (References / Further Reading)
                       - hard from birth tick-417: the single
@@ -1662,8 +1674,7 @@ def main() -> int:
         summary = next((l for l in reversed(lines)
                         if l.startswith(label)), "no summary line")
         if hard:
-            # CI contract: the gate itself decides via its exit code
-            # (queued items like AS-09 exit 0 by design).
+            # CI contract: the gate itself decides via its exit code.
             status = "PASS" if proc.returncode == 0 else "FAIL"
             if status == "FAIL":
                 failed = True

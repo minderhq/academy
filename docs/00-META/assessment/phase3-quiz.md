@@ -27,11 +27,11 @@ d) Pooling layers
 
 ### 2. What is the purpose of multi-head attention?
 a) Reduce memory usage
-b) Learn different attention patterns simultaneously
-c) Simplify architecture
+b) Simplify architecture
+c) Learn different attention patterns simultaneously
 d) Increase model speed
 
-**Answer:** b
+**Answer:** c
 
 ---
 
@@ -56,22 +56,22 @@ d) Increase model capacity
 ---
 
 ### 5. What is Flash Attention?
-a) Faster model training
+a) Memory-efficient attention implementation
 b) Improved accuracy
 c) Smaller model size
-d) Memory-efficient attention implementation
+d) Faster model training
 
-**Answer:** d
+**Answer:** a
 
 ---
 
 ### 6. What is the formula for scaled dot-product attention?
-a) softmax(QK)V
+a) softmax(QK^T / √d_k)V
 b) QK^TV
 c) softmax(Q + K) * V
-d) softmax(QK^T / √d_k)V
+d) softmax(QK)V
 
-**Answer:** d
+**Answer:** a
 
 ---
 
@@ -86,12 +86,12 @@ d) Data augmentation
 ---
 
 ### 8. What is BPE (Byte Pair Encoding)?
-a) Binary Pattern Extraction
+a) Subword tokenization algorithm
 b) Batch Processing Engine
 c) Backward Propagation Encoder
-d) Subword tokenization algorithm
+d) Binary Pattern Extraction
 
-**Answer:** d
+**Answer:** a
 
 ---
 
@@ -267,7 +267,7 @@ d) Faster training
 
 ## Answer Key
 
-1\. c, 2. b, 3. c, 4. a, 5. d, 6. d, 7. c, 8. d, 9. b, 10. d,
+1\. c, 2. c, 3. c, 4. a, 5. a, 6. a, 7. c, 8. a, 9. b, 10. d,
 11\. b, 12. d, 13. b, 14. d, 15. b, 16. c, 17. d, 18. b, 19. d, 20. d,
 21\. c, 22. a, 23. b, 24. a, 25. a
 

@@ -16,32 +16,32 @@ Tags: ['assessment', 'quiz', 'agents']
 ## Questions
 
 ### 1. What is an AI agent?
-a) Chatbot with tools
+a) Autonomous system that perceives and acts
 b) Automated script
 c) Virtual assistant
-d) Autonomous system that perceives and acts
+d) Chatbot with tools
 
-**Answer:** d
+**Answer:** a
 
 ---
 
 ### 2. What is the ReAct pattern?
-a) React framework
+a) Reasoning and Acting loop
 b) Recursive acting
-c) Reasoning and Acting loop
+c) React framework
 d) Reactive actions
 
-**Answer:** c
+**Answer:** a
 
 ---
 
 ### 3. What is tool calling in agents?
-a) Calling tools
+a) Agent using external functions/APIs
 b) Using utilities
-c) Agent using external functions/APIs
+c) Calling tools
 d) Function calling
 
-**Answer:** c
+**Answer:** a
 
 ---
 
@@ -66,12 +66,12 @@ d) Storing and retrieving past interactions
 ---
 
 ### 6. What is short-term memory in agents?
-a) Temporary storage
-b) Recent conversation history
+a) Recent conversation history
+b) Temporary storage
 c) Working memory
 d) Active memory
 
-**Answer:** b
+**Answer:** a
 
 ---
 
@@ -86,12 +86,12 @@ d) Durable memory
 ---
 
 ### 8. What is episodic memory in agents?
-a) Episode storage
-b) Memory of specific events/experiences
+a) Memory of specific events/experiences
+b) Episode storage
 c) Event memory
 d) Experience memory
 
-**Answer:** b
+**Answer:** a
 
 ---
 
@@ -116,32 +116,32 @@ d) Agent scheduling
 ---
 
 ### 11. What is a planning agent?
-a) Strategic agent
-b) Agent that decomposes complex tasks
+a) Agent that decomposes complex tasks
+b) Strategic agent
 c) Task planner
 d) Goal-oriented agent
 
-**Answer:** b
+**Answer:** a
 
 ---
 
 ### 12. What is task decomposition?
-a) Task splitting
-b) Breaking complex tasks into subtasks
+a) Breaking complex tasks into subtasks
+b) Task splitting
 c) Goal decomposition
 d) Problem breaking
 
-**Answer:** b
+**Answer:** a
 
 ---
 
 ### 13. What is a code interpreter agent?
-a) Coding assistant
-b) Agent that executes code
+a) Agent that executes code
+b) Coding assistant
 c) Code runner
 d) Execution agent
 
-**Answer:** b
+**Answer:** a
 
 ---
 
@@ -317,8 +317,8 @@ d) Accuracy
 
 ## Answer Key
 
-1\. d, 2. c, 3. c, 4. d, 5. d, 6. b, 7. c, 8. b, 9. c, 10. c,
-11\. b, 12. b, 13. b, 14. b, 15. b, 16. d, 17. c, 18. c, 19. b, 20. b,
+1\. a, 2. a, 3. a, 4. d, 5. d, 6. a, 7. c, 8. a, 9. c, 10. c,
+11\. a, 12. a, 13. a, 14. b, 15. b, 16. d, 17. c, 18. c, 19. b, 20. b,
 21\. d, 22. c, 23. b, 24. d, 25. b, 26. d, 27. c, 28. b, 29. d, 30. b
 
 **Passing: 24/30 (80%)**

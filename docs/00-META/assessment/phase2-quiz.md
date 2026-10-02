@@ -16,12 +16,12 @@ Tags: ['assessment', 'quiz', 'pytorch']
 ## Questions
 
 ### 1. What does the backward pass in neural networks compute?
-a) Forward predictions
+a) Gradients of loss with respect to parameters
 b) Activation values
 c) Learning rate
-d) Gradients of loss with respect to parameters
+d) Forward predictions
 
-**Answer:** d
+**Answer:** a
 
 ---
 
@@ -36,22 +36,22 @@ d) Static memory allocation
 ---
 
 ### 3. What is einsum notation used for?
-a) Network optimization
+a) Tensor operations
 b) Data storage
 c) Model compression
-d) Tensor operations
+d) Network optimization
 
-**Answer:** d
+**Answer:** a
 
 ---
 
 ### 4. What does autograd in PyTorch do?
-a) Automatic optimization
+a) Automatic differentiation
 b) Automatic data loading
 c) Automatic model selection
-d) Automatic differentiation
+d) Automatic optimization
 
-**Answer:** d
+**Answer:** a
 
 ---
 
@@ -76,12 +76,12 @@ d) Execution Layer Abstraction
 ---
 
 ### 7. What is CUDA?
-a) CPU optimization technique
+a) Parallel computing platform for NVIDIA GPUs
 b) Memory management system
 c) Network protocol
-d) Parallel computing platform for NVIDIA GPUs
+d) CPU optimization technique
 
-**Answer:** d
+**Answer:** a
 
 ---
 
@@ -117,51 +117,51 @@ d) Model pruning
 
 ### 11. What is vanishing gradient?
 a) Gradients exploding
-b) Learning rate decay
+b) Gradients becoming too small for learning
 c) Weight decay
-d) Gradients becoming too small for learning
+d) Learning rate decay
 
-**Answer:** d
+**Answer:** b
 
 ---
 
 ### 12. What is a kernel in CUDA?
 a) Memory allocation unit
-b) Data type
+b) Function executed on GPU
 c) Control structure
-d) Function executed on GPU
+d) Data type
 
-**Answer:** d
+**Answer:** b
 
 ---
 
 ### 13. What does JIT compilation stand for?
 a) Java Interface Technology
-b) Joint Integration Test
+b) Just-In-Time
 c) JSON Interchange Tool
-d) Just-In-Time
+d) Joint Integration Test
 
-**Answer:** d
+**Answer:** b
 
 ---
 
 ### 14. What is momentum in optimization?
 a) Learning rate scheduling
 b) Weight initialization
-c) Data augmentation
-d) Accumulating past gradients
+c) Accumulating past gradients
+d) Data augmentation
 
-**Answer:** d
+**Answer:** c
 
 ---
 
 ### 15. What is the purpose of a loss function?
 a) Increase model size
 b) Speed up training
-c) Reduce memory
-d) Measure model error
+c) Measure model error
+d) Reduce memory
 
-**Answer:** d
+**Answer:** c
 
 ---
 
@@ -217,7 +217,7 @@ d) Stochastic Gradient Descent
 
 ## Answer Key
 
-1\. d, 2. c, 3. d, 4. d, 5. a, 6. b, 7. d, 8. c, 9. c, 10. b,
-11\. d, 12. d, 13. d, 14. d, 15. d, 16. d, 17. d, 18. d, 19. d, 20. d
+1\. a, 2. c, 3. a, 4. a, 5. a, 6. b, 7. a, 8. c, 9. c, 10. b,
+11\. b, 12. b, 13. b, 14. c, 15. c, 16. d, 17. d, 18. d, 19. d, 20. d
 
 **Passing: 16/20 (80%)**

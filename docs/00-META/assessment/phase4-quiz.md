@@ -17,11 +17,11 @@ Tags: ['assessment', 'quiz', 'quantization']
 
 ### 1. What is quantization in the context of LLMs?
 a) Reducing model size by removing layers
-b) Compressing model architecture
-c) Reducing precision of model weights
+b) Reducing precision of model weights
+c) Compressing model architecture
 d) Optimizing model speed
 
-**Answer:** c
+**Answer:** b
 
 ---
 
@@ -36,52 +36,52 @@ d) 8x reduction
 ---
 
 ### 3. What is GGUF format?
-a) GPU memory format
+a) Quantized model format for llama.cpp
 b) Graph optimization format
 c) Gradient compression format
-d) Quantized model format for llama.cpp
+d) GPU memory format
 
-**Answer:** d
+**Answer:** a
 
 ---
 
 ### 4. What is EXL2 format?
 a) External library format
-b) Execution layer format
-c) Quantization format optimized for GPU inference
+b) Quantization format optimized for GPU inference
+c) Execution layer format
 d) Extended learning format
 
-**Answer:** c
+**Answer:** b
 
 ---
 
 ### 5. What is AWQ?
-a) Automatic weight quantization
+a) Activation-aware weight quantization
 b) Adaptive width quantization
 c) Accelerated workflow quantization
-d) Activation-aware weight quantization
+d) Automatic weight quantization
 
-**Answer:** d
+**Answer:** a
 
 ---
 
 ### 6. What is GPTQ?
-a) General purpose transformer quantization
+a) Accurate post-training quantization
 b) Gradient-based post-training quantization
 c) Global parameter transformer quantization
-d) Accurate post-training quantization
+d) General purpose transformer quantization
 
-**Answer:** d
+**Answer:** a
 
 ---
 
 ### 7. What is double quantization?
 a) Quantizing twice
-b) Two-stage quantization
-c) Quantizing quantization parameters
+b) Quantizing quantization parameters
+c) Two-stage quantization
 d) Dual precision quantization
 
-**Answer:** c
+**Answer:** b
 
 ---
 
@@ -106,22 +106,22 @@ d) Reduced memory usage for long contexts
 ---
 
 ### 10. What is speculative decoding?
-a) Predicting next tokens
+a) Using draft model for faster generation
 b) Parallel decoding
-c) Using draft model for faster generation
+c) Predicting next tokens
 d) Speculative inference
 
-**Answer:** c
+**Answer:** a
 
 ---
 
 ### 11. What is QAT (Quantization Aware Training)?
-a) Quick model training
+a) Training with simulated quantization
 b) Quality assurance testing
-c) Training with simulated quantization
+c) Quick model training
 d) Quantization after training
 
-**Answer:** c
+**Answer:** a
 
 ---
 
@@ -317,8 +317,8 @@ d) Better accuracy with same bit-width
 
 ## Answer Key
 
-1\. c, 2. b, 3. d, 4. c, 5. d, 6. d, 7. c, 8. d, 9. d, 10. c,
-11\. c, 12. c, 13. a, 14. b, 15. c, 16. c, 17. b, 18. c, 19. c, 20. a,
+1\. b, 2. b, 3. a, 4. b, 5. a, 6. a, 7. b, 8. d, 9. d, 10. a,
+11\. a, 12. c, 13. a, 14. b, 15. c, 16. c, 17. b, 18. c, 19. c, 20. a,
 21\. d, 22. d, 23. a, 24. b, 25. b, 26. c, 27. d, 28. c, 29. d, 30. d
 
 **Passing: 24/30 (80%)**
