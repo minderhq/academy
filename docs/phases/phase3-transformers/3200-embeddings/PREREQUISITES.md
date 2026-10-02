@@ -3,7 +3,7 @@ Document ID: 3200-PREREQUISITES
 Title: "3200: Embeddings - Prerequisites"
 Last Updated: 2026-09-30
 Status: Complete
-Difficulty: Advanced
+Difficulty: Intermediate
 Tags: ['prerequisites', 'transformers', 'embeddings']
 ---
 

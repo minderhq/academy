@@ -3,7 +3,7 @@ Document ID: 6500-PREREQUISITES
 Title: "6500: RAG MLOps - Prerequisites"
 Last Updated: 2026-10-01
 Status: Complete
-Difficulty: Intermediate
+Difficulty: Advanced
 Tags: ['prerequisites', 'mlops', 'model-registry']
 ---
 

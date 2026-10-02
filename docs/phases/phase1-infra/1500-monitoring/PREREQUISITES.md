@@ -3,7 +3,7 @@ Document ID: 1500-PREREQUISITES
 Title: "1500: Monitoring - Prerequisites"
 Last Updated: 2026-10-01
 Status: Complete
-Difficulty: Intermediate
+Difficulty: Advanced
 Tags: ['prerequisites', 'infrastructure', 'monitoring']
 ---
 

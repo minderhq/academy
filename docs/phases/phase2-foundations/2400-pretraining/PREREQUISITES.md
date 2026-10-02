@@ -5,7 +5,7 @@ Phase: 2
 Module: 2400
 Last Updated: 2026-09-28
 Status: Complete
-Difficulty: Intermediate
+Difficulty: Advanced
 Estimated Time: 30 minutes (quick review) - 9 hours (full review)
 Prerequisites: See module README
 Related: See module README

@@ -3,7 +3,7 @@ Document ID: 7200-PREREQUISITES
 Title: "7200: Tools - Prerequisites"
 Last Updated: 2026-09-30
 Status: Complete
-Difficulty: Advanced
+Difficulty: Intermediate
 Tags: ['prerequisites', 'agents', 'tool-calling']
 ---
 

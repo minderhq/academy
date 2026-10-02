@@ -698,7 +698,7 @@ stand today?" without running each tool by hand.
                       badges, phase-hub range badges,
                       'Absolute Beginner')
     course_card_check
-                      Course-card parity (CC-01..14, hard):
+                      Course-card parity (CC-01..15, hard):
                       a module README's front-matter
                       Difficulty is the course card a
                       platform catalog reads and the
@@ -871,7 +871,56 @@ stand today?" without running each tool by hand.
                       after); a header
                       downgrade fires exactly
                       once with CC-01..13
-                      kept silent.    heading_scan
+                      kept silent. CC-15 born
+                      tick-585 as the family's
+                      largest drift since 576:
+                      a module's
+                      PREREQUISITES.md FM
+                      Difficulty equals its
+                      course card's (README.md)
+                      FM Difficulty - the entry
+                      door must not contradict
+                      the card the platform
+                      renders beside it (one
+                      tier per course mirrored
+                      on every surface:
+                      lessons take the max via
+                      CC-01, the phase header
+                      the group max via CC-14,
+                      the entry page the
+                      card's own; computed
+                      only when both pages
+                      carry an in-vocabulary
+                      tier, FS owns the
+                      missing name and FV-07
+                      the stray value - never
+                      double-reported), census
+                      23 of 33 entry pages
+                      already mirroring their
+                      card while 10
+                      contradicted it in two
+                      directions (5 prereq
+                      tiers below the card, 5
+                      above - hand-written
+                      rot, not a systematic
+                      bias) - the drain set
+                      each page's FM
+                      Difficulty to its card's
+                      (5 bumps up, 5 down)
+                      and coupled 6100-vector's
+                      body badge - the lone
+                      entry-page badge still
+                      mirroring its old FM -
+                      to the canonical
+                      Intermediate form (the
+                      tick-584 BD-01 coupling
+                      pre-censused this time
+                      instead of caught by
+                      the fleet); a flipped
+                      prereq tier fires
+                      exactly once with
+                      CC-01..14 kept
+                      silent.    heading_scan
                       Heading skeleton soundness (HS-01..05,
                       hard): the platform renders a TOC and
                       anchor deep-links from heading structure,

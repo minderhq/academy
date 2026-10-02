@@ -83,6 +83,14 @@ CC-14  A phase README's FM Difficulty equals the max tier of its
        when every module card under the phase carries an
        in-vocabulary tier (FS owns the missing name, FV-07 the
        stray value - never double-report).
+CC-15  A module's PREREQUISITES.md FM Difficulty equals the course
+       card's (README.md) FM Difficulty - the entry door must
+       not contradict the card the platform renders beside it
+       (one tier per course, mirrored on every surface: lessons
+       take the max via CC-01, the phase header the group max
+       via CC-14, the entry page the card's own). Computed only
+       when both pages carry an in-vocabulary tier (FS owns the
+       missing name, FV-07 the stray value - never double-report).
 
 The gate is order-agnostic about table columns (3500-multimodal renders Time
 before Difficulty and both orders pass). Dead row targets are skipped here -
@@ -130,6 +138,15 @@ became fiction: Tags presence is TG-01..04's, the Difficulty value
 is FV-07's, the six FS names own field presence corpus-wide - and
 Status read 408/408 'Complete' uniform, parked as an FV-12
 candidate rather than a second clause.
+CC-15 born tick-585 from the family's largest drift since 576:
+the census read 23 of 33 entry pages already mirroring their
+card while 10 contradicted it - two directions (5 prereq tiers
+below the card, 5 above), hand-written rot rather than a
+systematic bias, so the drain set each page's FM Difficulty to
+its card's (5 bumps up, 5 down) and coupled 6100-vector's body
+badge - the lone entry-page badge still mirroring its old FM -
+to the canonical Intermediate form (the tick-584 BD-01 coupling,
+pre-censused this time instead of caught by the fleet).
 
 Exit 1 on any finding; prints one line per finding.
 """
@@ -425,6 +442,26 @@ def main() -> int:
                 findings.append(
                     f"{rel} CC-13 If-YES proceed line exits the "
                     f"module - {yout}"
+                )
+
+        # CC-15: the entry door must not contradict the course
+        # card - the PREREQUISITES.md FM Difficulty mirrors the
+        # card's own (a platform rendering the entry page beside
+        # the card badges the same course twice)
+        if prm.exists():
+            pfm = fm_fields(prm)
+            ctier = rfm.get("diff")
+            ptier = (pfm or {}).get("diff")
+            if (
+                ctier in TIER_STARS
+                and ptier in TIER_STARS
+                and ptier != ctier
+            ):
+                findings.append(
+                    f"{prm.relative_to(root).as_posix()} CC-15 "
+                    f"PREREQUISITES.md FM Difficulty '{ptier}' != "
+                    f"card FM Difficulty '{ctier}' (the entry door "
+                    f"must not contradict the course card)"
                 )
 
         # Module Documents table: CC-02/03 per row, CC-05 coverage
