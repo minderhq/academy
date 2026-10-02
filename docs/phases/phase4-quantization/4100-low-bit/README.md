@@ -4,6 +4,7 @@ Title: "4100: Low-Bit Quantization"
 Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
+Prerequisites: [1500]
 Estimated Time: 12 hours
 Tags: ['module', 'quantization', 'gguf']
 ---

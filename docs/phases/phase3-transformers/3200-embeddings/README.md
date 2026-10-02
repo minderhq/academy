@@ -4,6 +4,7 @@ Title: "[3200]: Embedding Latent Spaces"
 Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
+Prerequisites: []
 Estimated Time: 6 hours
 Tags: ['module', 'transformers', 'embeddings']
 ---

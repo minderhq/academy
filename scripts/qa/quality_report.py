@@ -460,7 +460,7 @@ stand today?" without running each tool by hand.
                        "quick/full review" entries are a legal
                        shape, both durations parse
     prereq_census Prerequisites chain integrity (PQ-01..03 +
-                       PQ-06/07, hard):
+                       PQ-06..08, hard):
                        prerequisites are the learning-path
                        backbone - a dangling prerequisite is a
                        lesson that can never be unlocked. PQ-01
@@ -505,7 +505,55 @@ stand today?" without running each tool by hand.
                        uphill edge is a lesson demanding harder
                        material than itself, wrong opening
                        order; out-of-vocabulary Difficulty skips
-                       the comparison (FV-07 owns the enum)
+                       the comparison (FV-07 owns the enum).
+                       PQ-08 (born tick-607 at zero) the
+                       pointer contract: a doc whose
+                       Prerequisites defers 'See module
+                       README' requires that module README to
+                       carry a canonical machine-parseable
+                       Prerequisites field - the indirection
+                       exists so the README is the module's
+                       single source of prereq truth, and 177
+                       docs (111 lessons + 66 assessments)
+                       resolved it to nothing machine-parseable
+                       until the drain transcribed each
+                       module's own PREREQUISITES.md
+                       cross-module declarations into the
+                       README FM (module-granularity
+                       normalization: a Review/Read bullet
+                       naming another module's lesson
+                       normalizes to that lesson's module) -
+                       33/33 READMEs now carry the canonical
+                       field, `[]` is the canonical 'no
+                       prerequisites, unlock immediately'
+                       (honestly reclassifying
+                       TUTORIAL-000/002 from prose to
+                       canonical: 43 canonical / 8 prose), 9
+                       modules with dependencies / 10
+                       module-level edges (2200->[2100],
+                       2300->[2200], 2400->[2200],
+                       3100->[3200] the one forward edge -
+                       advanced attention reviews the
+                       embeddings module's RoPE lesson, legal
+                       downhill under PQ-07 - 4100->[1500],
+                       4300->[4100], 4400->[4100, 4300],
+                       5100->[4100], 5400->[5300]; every
+                       remaining module `[]`, 5500's 'see
+                       5400 if scaling is your bottleneck'
+                       left out honestly as conditional
+                       advice, not a prerequisite); PQ-08
+                       fires per offending README, aggregating
+                       the pointer docs that defer to it, and
+                       a pointer doc with no resolvable module
+                       dir fires its own finding; the token
+                       index resolves a bare 4-digit module
+                       token to its module README (0 filename
+                       collisions across the 33 codes,
+                       measured before the extension); the
+                       README field's presence+canonicity is
+                       PQ-08's, its keyset allowance
+                       course_card_check CC-17's
+                       (README_KEYSET widened tick-607)
     prereq_ordering_scan
                       Learning-path order integrity (PO-01/02,
                       hard, born at zero): corpus numbering is

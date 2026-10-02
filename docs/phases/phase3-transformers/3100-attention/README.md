@@ -4,6 +4,7 @@ Title: "[3100]: Attention Architectures"
 Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
+Prerequisites: [3200]
 Estimated Time: 8 hours
 Tags: ['module', 'transformers', 'attention']
 ---

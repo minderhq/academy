@@ -4,6 +4,7 @@ Title: "5400: Distributed Training"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
+Prerequisites: [5300]
 Estimated Time: 13 hours
 Tags: ['module', 'training', 'distributed']
 ---

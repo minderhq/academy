@@ -4,6 +4,7 @@ Title: "6200: Retrieval Strategies"
 Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Advanced
+Prerequisites: []
 Estimated Time: 9 hours
 Tags: ['module', 'rag', 'retrieval']
 ---

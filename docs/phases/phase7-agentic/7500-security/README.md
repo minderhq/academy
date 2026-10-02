@@ -4,6 +4,7 @@ Title: "7500: AI Agent Security"
 Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
+Prerequisites: []
 Estimated Time: 9 hours
 Tags: ['module', 'agents', 'security']
 ---

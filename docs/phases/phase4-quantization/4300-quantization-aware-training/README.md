@@ -4,6 +4,7 @@ Title: "4300: Quantization Aware Training (QAT)"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
+Prerequisites: [4100]
 Estimated Time: 20 hours
 Tags: ['module', 'quantization', 'qat']
 ---

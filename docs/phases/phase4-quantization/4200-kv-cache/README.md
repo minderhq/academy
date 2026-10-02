@@ -4,6 +4,7 @@ Title: "4200: KV Cache Optimization"
 Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
+Prerequisites: []
 Estimated Time: 8 hours
 Tags: ['module', 'quantization', 'kv-cache']
 ---

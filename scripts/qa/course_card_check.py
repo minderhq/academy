@@ -674,6 +674,11 @@ ENTRY_KEYSET = {
     "Tags",
 }
 CARD_KEYSET = ENTRY_KEYSET | {"Estimated Time"}
+# the module README widens the card schema by the module-level
+# Prerequisites pointer target - PQ-08 (prereq_census) owns its
+# presence whenever a lesson defers "See module README"; the lab
+# surface stays at the plain card keyset (tick-607)
+README_KEYSET = CARD_KEYSET | {"Prerequisites"}
 LESSON_KEYSET = CARD_KEYSET | {
     "Module",
     "Phase",
@@ -1101,7 +1106,7 @@ def main() -> int:
         # platform parsing 33 cards expects one schema, not
         # 29 minimal cards and 4 legacy extras (FS owns
         # field presence; this clause owns field excess)
-        extra = sorted(fm_keys(rm) - CARD_KEYSET)
+        extra = sorted(fm_keys(rm) - README_KEYSET)
         if extra:
             findings.append(
                 f"{rm.relative_to(root).as_posix()} CC-17 "

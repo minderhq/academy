@@ -4,6 +4,7 @@ Title: "4400: Advanced Quantization Techniques"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
+Prerequisites: [4100, 4300]
 Estimated Time: 31 hours
 Tags: ['module', 'quantization', 'advanced']
 ---

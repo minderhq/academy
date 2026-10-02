@@ -4,6 +4,7 @@ Title: "1200: Virtualization and GPU Passthrough"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Prerequisites: []
 Estimated Time: 12 hours
 Tags: ['module', 'infrastructure', 'virtualization']
 ---

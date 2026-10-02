@@ -4,6 +4,7 @@ Title: "7100: Agent Architecture"
 Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
+Prerequisites: []
 Estimated Time: 8 hours
 Tags: ['module', 'agents', 'react']
 ---

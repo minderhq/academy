@@ -4,6 +4,7 @@ Title: "Phase 2: Module 2300 - Framework Engineering"
 Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
+Prerequisites: [2200]
 Estimated Time: 20 hours
 
 Tags: ['framework-engineering', 'module', 'serving', 'deployment']

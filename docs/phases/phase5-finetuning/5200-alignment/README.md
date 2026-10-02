@@ -4,6 +4,7 @@ Title: "5200: LLM Alignment"
 Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
+Prerequisites: []
 Estimated Time: 16 hours
 Tags: ['module', 'finetuning', 'alignment']
 ---

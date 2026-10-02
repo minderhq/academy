@@ -4,6 +4,7 @@ Title: "2100: Calculus for Deep Learning"
 Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
+Prerequisites: []
 Estimated Time: 8 hours
 
 Tags: ['math', 'calculus', 'tensors', 'backpropagation', 'autograd']

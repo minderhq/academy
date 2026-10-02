@@ -4,6 +4,7 @@ Title: "1400: LLMOps and Model Serving"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
+Prerequisites: []
 Estimated Time: 8 hours
 Tags: ['module', 'infrastructure', 'llmops']
 ---

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Prerequisites field census (PQ-01..03 + PQ-06 + PQ-07) for
+"""Prerequisites field census (PQ-01..03 + PQ-06..08) for
 PROJECT-OMEGA.
 
 Prerequisites is the curriculum's learning-path backbone: on the
@@ -72,11 +72,39 @@ PQ-07  difficulty never climbs the unlock path: on every PQ-06
        TUTORIAL-003, TUTORIAL-014->TUTORIAL-007), 0 inversions,
        0 prereq docs lacking FM Difficulty.
 
+PQ-08  the pointer contract: a doc whose Prerequisites defers
+       "See module README" requires that module README to carry
+       a canonical machine-parseable Prerequisites field - the
+       indirection exists so the README is the module's single
+       source of prereq truth, and 177 docs (111 lessons + 66
+       assessments) resolved it to nothing machine-parseable
+       until tick-607: 33/33 module READMEs carried no
+       Prerequisites field at all. The drain transcribed each
+       module's own PREREQUISITES.md cross-module declarations
+       into the README FM (module-granularity normalization: a
+       Review/Read bullet naming another module's lesson
+       normalizes to that lesson's module), 9 modules with
+       dependencies / 10 edges - 2200->[2100], 2300->[2200],
+       2400->[2200], 3100->[3200] (the one forward edge: advanced
+       attention reviews the embeddings module's RoPE lesson),
+       4100->[1500], 4300->[4100], 4400->[4100, 4300],
+       5100->[4100], 5400->[5300] - every remaining module `[]`,
+       5500's "see 5400 if scaling is your bottleneck" left out
+       honestly (conditional advice, not a prerequisite). PQ-08
+       fires per offending README, aggregating the count of
+       pointer docs that defer to it; a "See module README" doc
+       with no resolvable module dir fires its own finding. The
+       token index now resolves a bare 4-digit module token to
+       its module README (0 filename collisions across the 33
+       codes, measured before the extension). Born tick-607 at
+       zero.
+
 HARD GATE - exit 1 on any finding. PQ-01/PQ-02 hard from birth
 (KW-03 born-at-zero: 108 docs / 7 tokens, all resolving exactly
 one file at tick-409); PQ-03 joined after the tick-410 shape
 drain (census -> drain -> gate cycle); PQ-06 born-at-zero
-tick-574; PQ-07 born-at-zero tick-575.
+tick-574; PQ-07 born-at-zero tick-575; PQ-08 born-at-zero
+tick-607 after the 33-README FM drain it defends.
 
 Run over the whole corpus:
     python scripts/qa/prereq_census.py --root .
@@ -93,9 +121,11 @@ FM_OPEN = re.compile(r"^---\s*$")
 FM_CLOSE = re.compile(r"^(---|\.\.\.)\s*$")
 PQ_FIELD = re.compile(r"^Prerequisites:(.*)$")
 TOKEN = re.compile(r"\d{4}|\b(?:LAB|TUTORIAL)-\d{3}\b")
-CANON = re.compile(r"^\[(?:\d{4}|(?:LAB|TUTORIAL)-\d{3})"
-                   r"(?:, (?:\d{4}|(?:LAB|TUTORIAL)-\d{3}))*\]$")
+CANON = re.compile(r"^(\[\]|"
+                   r"\[(?:\d{4}|(?:LAB|TUTORIAL)-\d{3})"
+                   r"(?:, (?:\d{4}|(?:LAB|TUTORIAL)-\d{3}))*\])$")
 FREE_TEXT = ("See module README", "See PREREQUISITES.md")
+MODULE_DIR = re.compile(r"^(\d{4})-")
 DIFF_FIELD = re.compile(r"^Difficulty:(.*)$")
 TIERS = {"Beginner": 1, "Intermediate": 2, "Advanced": 3}
 TIER_NAME = {v: k for k, v in TIERS.items()}
@@ -112,6 +142,19 @@ def pq_field(lines: list[str]) -> str | None:
                 if m:
                     return m.group(1).strip()
             return None
+    return None
+
+
+def module_readme(path: Path, docs: Path) -> Path | None:
+    """The README.md of the 4-digit module dir this doc belongs to
+    (direct parent, or grandparent for an assessment/ subdir), or
+    None when no module dir resolves above it."""
+    for cand in (path.parent, path.parent.parent):
+        if (MODULE_DIR.match(cand.name)
+                and cand.parent.parent == docs / "phases"):
+            rm = cand / "README.md"
+            if rm.exists():
+                return rm
     return None
 
 
@@ -133,14 +176,22 @@ def difficulty_tier(lines: list[str]) -> int | None:
 
 def build_index(paths: list[Path], root: Path) -> dict[str, list[Path]]:
     """Token -> files, from filename prefixes (4-digit, LAB-NNN,
-    TUTORIAL-NNN); other stems keyed by name."""
+    TUTORIAL-NNN); a module README (stem README.md under a 4-digit
+    module dir) resolves its module's own 4-digit token - the
+    module-level Prerequisites pointer target (tick-607); other
+    stems keyed by name."""
     index: dict[str, list[Path]] = defaultdict(list)
     for p in sorted(paths):
         m = re.match(r"^(\d{4}|(?:LAB|TUTORIAL)-\d{3})-", p.name)
         if m:
             index[m.group(1)].append(p)
         else:
-            index[p.stem].append(p)
+            pm = (re.match(r"^(\d{4})-", p.parent.name)
+                  if p.name == "README.md" else None)
+            if pm:
+                index[pm.group(1)].append(p)
+            else:
+                index[p.stem].append(p)
     return {k: [x.relative_to(root) for x in v] for k, v in index.items()}
 
 
@@ -220,6 +271,12 @@ def main() -> int:
     graph: dict[str, set[str]] = {}
     rgraph: dict[str, set[str]] = {}
     tiers: dict[str, int] = {}
+    # PQ-08 accumulation: docs deferring "See module README" per
+    # module README, and the READMEs whose field breaks the
+    # contract (missing, unreadable, or non-canonical)
+    pointer_n: Counter = Counter()
+    bad_readmes: set[str] = set()
+    rm_cache: dict[Path, str | None] = {}
     for path in paths:
         try:
             lines = path.read_text(encoding="utf-8",
@@ -237,6 +294,30 @@ def main() -> int:
         toks: list[str] = []
         if any(val.startswith(t) for t in FREE_TEXT):
             shapes["free-text"] += 1
+            if val.startswith("See module README"):
+                # PQ-08: the pointer contract - deferring to the
+                # module README only works if that README carries
+                # the canonical machine-parseable field to resolve
+                rm = module_readme(path, docs)
+                if rm is None:
+                    findings.append(
+                        f"{rel}: PQ-08 pointer contract broken "
+                        f"(defers 'See module README' but no 4-digit "
+                        f"module dir resolves above it)")
+                else:
+                    rm_rel = rm.relative_to(args.root).as_posix()
+                    pointer_n[rm_rel] += 1
+                    if rm not in rm_cache:
+                        try:
+                            rm_cache[rm] = pq_field(
+                                rm.read_text(encoding="utf-8",
+                                             errors="replace")
+                                .split("\n"))
+                        except OSError:
+                            rm_cache[rm] = None
+                    rv = rm_cache[rm]
+                    if rv is None or not CANON.match(rv):
+                        bad_readmes.add(rm_rel)
         elif CANON.match(val):
             shapes["canonical-bracketed"] += 1
             toks = TOKEN.findall(val)
@@ -297,6 +378,15 @@ def main() -> int:
                             f"{' -> '.join(scc)} -> {scc[0]}")
     rel_cycles = find_cycles(rgraph)
 
+    # PQ-08 emission: one finding per offending module README,
+    # aggregating the pointer docs that defer to it
+    for rm_rel in sorted(bad_readmes):
+        findings.append(
+            f"{rm_rel}: PQ-08 pointer contract broken "
+            f"({pointer_n[rm_rel]} docs defer 'See module README' "
+            f"here; the README carries no canonical machine-parseable "
+            f"Prerequisites field)")
+
     # PQ-07: difficulty must not climb the unlock path - on every
     # PQ-06 edge, the prerequisite's tier must be <= the doc's own
     # tier (equal-tier and downhill legal; uphill = wrong order).
@@ -322,6 +412,7 @@ def main() -> int:
     pq03 = sum(1 for f in findings if " PQ-03 " in f)
     pq06 = sum(1 for f in findings if " PQ-06 " in f)
     pq07 = sum(1 for f in findings if " PQ-07 " in f)
+    pq08 = sum(1 for f in findings if " PQ-08 " in f)
     for f in findings:
         print(f.encode("ascii", "backslashreplace").decode("ascii"))
     print(f"prereq_census: docs={n_docs} tokens={n_tokens} "
@@ -329,11 +420,12 @@ def main() -> int:
           f"resolve1={targets_n[1]} resolveN={targets_n[2]} "
           f"edges={sum(len(v) for v in graph.values())} "
           f"PQ-01={pq01} PQ-02={pq02} PQ-03={pq03} PQ-06={pq06} "
-          f"PQ-07={pq07} tier-edges={tier_edges} "
+          f"PQ-07={pq07} PQ-08={pq08} tier-edges={tier_edges} "
           f"related-cycles={len(rel_cycles)} "
           f"(hard gate; PQ-03 drained tick-410, PQ-06 born tick-574 "
-          f"at zero, PQ-07 born tick-575 at zero; related cycles are "
-          f"navigation, not unlock - reported, never gated)")
+          f"at zero, PQ-07 born tick-575 at zero, PQ-08 born "
+          f"tick-607 at zero; related cycles are navigation, not "
+          f"unlock - reported, never gated)")
     return 1 if findings else 0
 
 

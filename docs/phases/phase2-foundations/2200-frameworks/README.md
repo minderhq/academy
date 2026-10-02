@@ -4,6 +4,7 @@ Title: "2200: Deep Learning Frameworks"
 Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
+Prerequisites: [2100]
 Estimated Time: 12 hours
 
 Tags: ['frameworks', 'pytorch', 'autograd', 'tensorflow', 'xla', 'cuda']

@@ -4,6 +4,7 @@ Title: "2400: LLM Pretraining"
 Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
+Prerequisites: [2200]
 Estimated Time: 13 hours
 
 Tags: ['pretraining', 'llm', 'distributed-training', 'tokenization', 'evaluation']

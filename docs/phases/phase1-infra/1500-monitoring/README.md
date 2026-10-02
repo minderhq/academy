@@ -4,6 +4,7 @@ Title: "1500: Monitoring and Observability for LLM Systems"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
+Prerequisites: []
 Estimated Time: 9 hours
 Tags: ['module', 'infrastructure', 'monitoring']
 ---
