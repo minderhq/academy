@@ -4,6 +4,8 @@ Title: "TUTORIAL-000: Python for AI (Complete Beginner)"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
+Estimated Time: 20 hours
+Prerequisites: []
 Tags: ['tutorial', 'math', 'tensors']
 ---
 

@@ -4,6 +4,8 @@ Title: "TUTORIAL-008: CUDA Programming for AI"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
+Estimated Time: 4 hours
+Prerequisites: [PHASE-2]
 Tags: ['tutorial', 'cuda', 'gpu']
 ---
 

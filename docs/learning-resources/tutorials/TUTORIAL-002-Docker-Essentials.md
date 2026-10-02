@@ -4,6 +4,8 @@ Title: "TUTORIAL-002: Docker Essentials for AI"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
+Estimated Time: 45 minutes
+Prerequisites: []
 Tags: ['tutorial', 'docker', 'hands-on']
 ---
 

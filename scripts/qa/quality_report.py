@@ -1019,6 +1019,23 @@ stand today?" without running each tool by hand.
                        against a declared ~85, LAB-009 read 4 hours
                        against 12) and 10 of 15 titles, drained in
                        the same tick
+    tutorial_index_parity_check
+                       MASTER-INDEX's "### Tutorials" table locks to
+                       every tutorial's front matter (TI-01 difficulty
+                       parity, TI-02 Estimated Time completeness and
+                       parity, TI-03 Prerequisites completeness and
+                       normalized-set parity, TI-04 every item
+                       normalizes - free-text prerequisites are
+                       findings, TI-05 id-set parity both directions);
+                       born tick-554 at the maximal finding - 13 of 15
+                       front matters carried no Estimated Time and 13
+                       no Prerequisites (the index's columns floated),
+                       TUTORIAL-006's difficulty disagreed with its own
+                       Intermediate body, four durations drifted - the
+                       mirror follows the evidence-backed richer side
+                       per field (the opposite of the lab lock, where
+                       the front matter was the contract), drained in
+                       the same tick
     empty_section_scan every heading must own content (ES-01): a
                        section is empty iff nothing but blanks/HRs/
                        blockquotes/HTML-comments sits between its
@@ -1405,6 +1422,7 @@ GATES = [
     ("notebook_catalog_check.py", "notebook_catalog_check", True),
     ("changelog_summary_check.py", "changelog_summary_check", True),
     ("lab_index_parity_check.py", "lab_index_parity_check", True),
+    ("tutorial_index_parity_check.py", "tutorial_index_parity_check", True),
 ]
 
 

@@ -4,6 +4,8 @@ Title: "TUTORIAL-004: Monitoring & Observability for AI Systems"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Estimated Time: 90 minutes
+Prerequisites: [PHASE-1]
 Tags: ['tutorial', 'monitoring', 'observability']
 ---
 

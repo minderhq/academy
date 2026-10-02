@@ -4,6 +4,8 @@ Title: "TUTORIAL-010: Model Evaluation and Benchmarking"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Estimated Time: 4 hours
+Prerequisites: [PHASE-3]
 Tags: ['tutorial', 'evaluation', 'benchmarks']
 ---
 

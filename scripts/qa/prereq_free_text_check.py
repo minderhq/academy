@@ -25,10 +25,15 @@ encodes phase-order sequencing structurally (phase 3 lessons follow
 phase 2 by spine position), so the prose was redundant - and all
 four module READMEs carry a prerequisites section for the pointer
 to land on. The closed vocabulary from then on: any value that is
-not a 4-digit token, a pure bracket-token list, or one of the two
-canonical strings is a finding - "See module README first",
-"requires X", an empty field, a typo - prose the platform nav
-generator cannot classify.
+not a 4-digit token, a pure bracket-token list, one of the two
+canonical strings, or the explicit empty set "[]" is a finding -
+"See module README first", "requires X", an empty field, a typo -
+prose the platform nav generator cannot classify. The empty set
+joined tick-554: the tutorial fleet's front matter carries the
+Prerequisites field with id tokens, and the entry-point tutorials
+(TUTORIAL-000, TUTORIAL-002) genuinely have none - "[]" is the
+machine representation of that state, distinct from an empty field
+(missing key) which stays a finding.
 
 HARD GATE - exit 1 on any finding; born at 4, drained to zero the
 same tick, hard since (the drain-then-harden cycle).
@@ -74,6 +79,8 @@ def pq_value(lines: list[str]) -> str | None:
 def legal(val: str) -> bool:
     if val in CANONICAL:
         return True
+    if val == "[]":
+        return True  # explicit empty set: entry-point tutorials have none
     if FOUR_DIGIT.search(val):
         return True  # machine-parseable: PQ-01..03 territory
     if BRACKET_TOKEN.fullmatch(val.replace(" ", "").replace(",", "|")):

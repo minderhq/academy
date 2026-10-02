@@ -165,15 +165,15 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 | ID | Tutorial | Duration | Difficulty | Prerequisites |
 |----|----------|----------:|----------:|--------------|
-| **[TUTORIAL-000](../learning-resources/tutorials/TUTORIAL-000-Python-for-AI.md)** | Python for AI | 15-20 hours | Beginner | **None** ⭐ |
-| **[TUTORIAL-001](../learning-resources/tutorials/TUTORIAL-001-Hello-LLM.md)** | Hello LLM | 30 min | Beginner | Python basics |
-| **[TUTORIAL-002](../learning-resources/tutorials/TUTORIAL-002-Docker-Essentials.md)** | Docker Essentials | 45 min | Beginner | None |
-| **[TUTORIAL-003](../learning-resources/tutorials/TUTORIAL-003-RAG-Basics.md)** | RAG Basics | 60 min | Intermediate | TUT-000, TUT-001 |
-| **[TUTORIAL-004](../learning-resources/tutorials/TUTORIAL-004-Monitoring.md)** | Monitoring | 90 min | Intermediate | Phase 1 |
-| **[TUTORIAL-005](../learning-resources/tutorials/TUTORIAL-005-Production-Deployment.md)** | Production Deployment | 90 min | Advanced | Phase 1, TUT-002 |
-| **[TUTORIAL-006](../learning-resources/tutorials/TUTORIAL-006-Real-time-AI.md)** | Real-time AI | 4 hours | Advanced | Phase 4 |
-| **[TUTORIAL-007](../learning-resources/tutorials/TUTORIAL-007-LoRA-Basics.md)** | LoRA Basics | 4 hours | Intermediate | Phase 5 |
-| **[TUTORIAL-008](../learning-resources/tutorials/TUTORIAL-008-CUDA-Programming.md)** | CUDA Programming | 5 hours | Advanced | Phase 2 |
+| **[TUTORIAL-000](../learning-resources/tutorials/TUTORIAL-000-Python-for-AI.md)** | Python for AI | 20 hours | Beginner | **None** ⭐ |
+| **[TUTORIAL-001](../learning-resources/tutorials/TUTORIAL-001-Hello-LLM.md)** | Hello LLM | 30 minutes | Beginner | TUTORIAL-000 |
+| **[TUTORIAL-002](../learning-resources/tutorials/TUTORIAL-002-Docker-Essentials.md)** | Docker Essentials | 45 minutes | Beginner | None |
+| **[TUTORIAL-003](../learning-resources/tutorials/TUTORIAL-003-RAG-Basics.md)** | RAG Basics | 60 minutes | Intermediate | TUTORIAL-000, TUTORIAL-001 |
+| **[TUTORIAL-004](../learning-resources/tutorials/TUTORIAL-004-Monitoring.md)** | Monitoring | 90 minutes | Intermediate | PHASE-1 |
+| **[TUTORIAL-005](../learning-resources/tutorials/TUTORIAL-005-Production-Deployment.md)** | Production Deployment | 90 minutes | Advanced | PHASE-1, TUTORIAL-002 |
+| **[TUTORIAL-006](../learning-resources/tutorials/TUTORIAL-006-Real-time-AI.md)** | Real-time AI | 60 minutes | Intermediate | PHASE-4 |
+| **[TUTORIAL-007](../learning-resources/tutorials/TUTORIAL-007-LoRA-Basics.md)** | LoRA Basics | 1 hour | Intermediate | TUTORIAL-001 |
+| **[TUTORIAL-008](../learning-resources/tutorials/TUTORIAL-008-CUDA-Programming.md)** | CUDA Programming | 4 hours | Advanced | PHASE-2 |
 | **[TUTORIAL-009](../learning-resources/tutorials/TUTORIAL-009-Advanced-RAG-Techniques.md)** | Advanced RAG | 5 hours | Advanced | TUT-003 |
 | **[TUTORIAL-010](../learning-resources/tutorials/TUTORIAL-010-Model-Evaluation.md)** | Model Evaluation | 4 hours | Intermediate | Phase 3 |
 | **[TUTORIAL-011](../learning-resources/tutorials/TUTORIAL-011-Multi-Modal-AI.md)** | Multi-Modal AI | 5 hours | Advanced | Phase 3 |

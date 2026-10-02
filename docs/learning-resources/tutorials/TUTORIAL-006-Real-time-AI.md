@@ -4,6 +4,8 @@ Title: "TUTORIAL-006: Real-time AI"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Estimated Time: 60 minutes
+Prerequisites: [PHASE-4]
 Tags: ['tutorial', 'inference', 'serving']
 ---
 

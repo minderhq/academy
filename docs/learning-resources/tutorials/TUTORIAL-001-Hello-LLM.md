@@ -4,6 +4,8 @@ Title: "TUTORIAL-001: Hello LLM! - Your First AI Model"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
+Estimated Time: 30 minutes
+Prerequisites: [TUTORIAL-000]
 Tags: ['tutorial', 'llm', 'ollama', 'hands-on']
 ---
 

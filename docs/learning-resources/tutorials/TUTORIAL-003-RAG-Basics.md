@@ -4,6 +4,8 @@ Title: "TUTORIAL-003: RAG Basics - Give Your LLM Knowledge"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Estimated Time: 60 minutes
+Prerequisites: [TUTORIAL-000, TUTORIAL-001]
 Tags: ['tutorial', 'rag', 'qdrant', 'hands-on']
 ---
 

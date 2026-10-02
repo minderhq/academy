@@ -6,7 +6,7 @@
    "TIMEOUT"
   ],
   "children": "census subprocesses run with PYTHONUTF8=1 (the learner baseline ENVIRONMENT-SETUP teaches)",
-  "adjudicated": "notes written per accepted row (tick-537, carried tick-538); datasets-5.x drain re-blessed 3 files - drain-backlog rows are tagged in-place"
+  "adjudicated": "notes written per accepted row (tick-537, carried tick-538); datasets-5.x drain re-blessed 3 files - drain-backlog rows are tagged in-place; tick-554 tutorial FM edits dirtied 12 tutorial files for their first true re-execution - 25 rows adjudicated (env-gaps, by-design server/model hangs, learner-supplied-file demos, ffmpeg/GPU environment requirements) with per-row notes"
  },
  "files": {
   "docs/00-META/DOCUMENT-TEMPLATE.md": {
@@ -958,71 +958,61 @@
    }
   },
   "docs/learning-resources/tutorials/TUTORIAL-000-Python-for-AI.md": {
-   "mtime": 1790785289.1975963,
-   "size": 47194,
+   "mtime": 1790898864.492553,
+   "size": 47237,
    "bad": {
-    "493": "CODE-SIGNAL:TypeError",
-    "800": "CODE-SIGNAL:FileNotFoundError",
-    "933": "ENV-GAP:mymodule",
-    "1707": "CODE-SIGNAL:FileNotFoundError",
-    "1889": "EXIT-CALL",
-    "1926": "CODE-SIGNAL:KeyError"
+    "1891": "TIMEOUT"
    },
    "notes": {
-    "493": "intentional error-teaching demo: tuple immutability raises exactly where the comment says ERROR!",
-    "800": "reads file.txt the learner creates in the preceding hands-on step - artifact path",
-    "933": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design",
-    "1707": "demonstrates the API on a learner-supplied/generated artifact path that does not exist in the census cwd",
-    "1889": "intentional sys.exit() demo (CLI path)",
-    "1926": "parses the Ollama chat response; the Ollama daemon is not running in the QA environment"
+    "1891": "uvicorn.run() server start - by-design hang; the fence teaches the run command, not a completable script"
    }
   },
   "docs/learning-resources/tutorials/TUTORIAL-001-Hello-LLM.md": {
-   "mtime": 1790785289.1975963,
-   "size": 6845,
+   "mtime": 1790897729.7390232,
+   "size": 6902,
    "bad": {
-    "183": "INTERACTIVE"
+    "185": "INTERACTIVE"
    },
    "notes": {
-    "183": "input() demo; the census closes stdin by design"
+    "185": "calls the LLM API over the network and prompts for a message at runtime; environment/credential requirement, not a code defect"
    }
   },
   "docs/learning-resources/tutorials/TUTORIAL-003-RAG-Basics.md": {
-   "mtime": 1790785289.2006803,
-   "size": 17242,
+   "mtime": 1790897729.7416186,
+   "size": 17313,
    "bad": {
-    "92": "ENV-GAP:sentence_transformers",
-    "148": "ENV-GAP:sentence_transformers",
-    "258": "ENV-GAP:vector_store",
-    "353": "UN-LEAK",
-    "559": "ENV-GAP:sentence_transformers"
+    "94": "ENV-GAP:sentence_transformers",
+    "150": "ENV-GAP:sentence_transformers",
+    "260": "ENV-GAP:vector_store",
+    "355": "UN-LEAK",
+    "561": "ENV-GAP:sentence_transformers"
    },
    "notes": {
-    "92": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-    "148": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-    "258": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design",
-    "353": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
-    "559": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+    "355": "UN-LEAK cascade of the upstream sentence_transformers env-gap deaths in the same file",
+    "94": "sentence_transformers is an optional package the QA environment does not install; the fence teaches embedding-based retrieval",
+    "150": "same env-gap: sentence_transformers embeddings for the RAG pipeline",
+    "260": "vector_store is an optional package the QA environment does not install; the fence teaches a local vector index",
+    "561": "same env-gap: sentence_transformers re-ranking step"
    }
   },
   "docs/learning-resources/tutorials/TUTORIAL-004-Monitoring.md": {
-   "mtime": 1790785289.2006803,
-   "size": 17251,
+   "mtime": 1790897729.7416186,
+   "size": 17303,
    "bad": {
-    "554": "ENV-GAP:opentelemetry"
+    "556": "ENV-GAP:opentelemetry"
    },
    "notes": {
-    "554": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+    "556": "opentelemetry is an optional package the QA environment does not install; the fence teaches trace instrumentation"
    }
   },
   "docs/learning-resources/tutorials/TUTORIAL-006-Real-time-AI.md": {
-   "mtime": 1790785289.2032037,
-   "size": 12974,
+   "mtime": 1790897729.7443519,
+   "size": 13026,
    "bad": {
-    "292": "TIMEOUT"
+    "141": "TIMEOUT"
    },
    "notes": {
-    "292": "by-design server start: uvicorn.run blocks forever in the tutorial"
+    "141": "websocket server start - by-design hang; the fence teaches the serve loop"
    }
   },
   "docs/learning-resources/tutorials/TUTORIAL-007-LoRA-Basics.md": {
@@ -1036,87 +1026,87 @@
     "389": "UN-LEAK"
    },
    "notes": {
-    "164": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
+    "164": "LLM training/inference calls needing a GPU stack and model downloads; environment requirement",
     "208": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-    "276": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
-    "327": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
-    "389": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically"
+    "276": "same: model-download/gpu-bound training step",
+    "327": "same: model-download/gpu-bound training step",
+    "389": "UN-LEAK cascade of the upstream trl env-gap death in the same file"
    }
   },
   "docs/learning-resources/tutorials/TUTORIAL-008-CUDA-Programming.md": {
-   "mtime": 1790788811.3047986,
-   "size": 12177,
+   "mtime": 1790897729.7443519,
+   "size": 12226,
    "bad": {
-    "96": "CODE-SIGNAL:NvvmSupportError"
+    "98": "CODE-SIGNAL:NvvmSupportError"
    },
    "notes": {
-    "96": "CUDA GPU + driver required (numba); the QA environment is CPU-only"
+    "98": "numba CUDA kernel on the GPU-less QA environment; the prose directly above states an NVIDIA GPU with a recent driver is required"
    }
   },
   "docs/learning-resources/tutorials/TUTORIAL-009-Advanced-RAG-Techniques.md": {
-   "mtime": 1790788811.3047986,
-   "size": 18832,
+   "mtime": 1790897729.7463126,
+   "size": 18886,
    "bad": {
-    "66": "ENV-GAP:rank_bm25",
-    "179": "ENV-GAP:sentence_transformers",
-    "242": "ENV-GAP:spacy"
+    "68": "ENV-GAP:rank_bm25",
+    "181": "ENV-GAP:sentence_transformers",
+    "244": "ENV-GAP:spacy"
    },
    "notes": {
-    "66": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-    "179": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-    "242": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+    "68": "rank_bm25 is an optional package the QA environment does not install; the fence teaches hybrid BM25 retrieval",
+    "181": "sentence_transformers optional package; the fence teaches cross-encoder reranking",
+    "244": "spacy is an optional package the QA environment does not install; the fence teaches NER-based metadata extraction"
    }
   },
   "docs/learning-resources/tutorials/TUTORIAL-010-Model-Evaluation.md": {
-   "mtime": 1790788811.305806,
-   "size": 21190,
+   "mtime": 1790897729.7478757,
+   "size": 21239,
    "bad": {
-    "191": "ENV-GAP:rouge",
-    "475": "ENV-GAP:sentence_transformers"
+    "193": "ENV-GAP:rouge",
+    "477": "ENV-GAP:sentence_transformers"
    },
    "notes": {
-    "191": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-    "475": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+    "193": "rouge is an optional package the QA environment does not install; the fence teaches ROUGE scoring",
+    "477": "sentence_transformers optional package; the fence teaches semantic similarity evaluation"
    }
   },
   "docs/learning-resources/tutorials/TUTORIAL-011-Multi-Modal-AI.md": {
-   "mtime": 1790885504.8498907,
-   "size": 20110,
+   "mtime": 1790897729.7478757,
+   "size": 20159,
    "bad": {
-    "66": "CODE-SIGNAL:FileNotFoundError",
-    "120": "CODE-SIGNAL:FileNotFoundError",
-    "164": "CODE-SIGNAL:FileNotFoundError",
-    "202": "CODE-SIGNAL:FileNotFoundError",
-    "343": "ENV-GAP:cv2",
-    "479": "CODE-SIGNAL:CalledProcessError"
+    "68": "CODE-SIGNAL:FileNotFoundError",
+    "122": "CODE-SIGNAL:FileNotFoundError",
+    "166": "CODE-SIGNAL:FileNotFoundError",
+    "204": "CODE-SIGNAL:FileNotFoundError",
+    "345": "ENV-GAP:cv2",
+    "481": "CODE-SIGNAL:CalledProcessError"
    },
    "notes": {
-    "66": "demonstrates the API on a learner-supplied/generated artifact path that does not exist in the census cwd",
-    "120": "demonstrates the API on a learner-supplied/generated artifact path that does not exist in the census cwd",
-    "164": "demonstrates the API on a learner-supplied/generated artifact path that does not exist in the census cwd",
-    "202": "demonstrates the API on a learner-supplied/generated artifact path that does not exist in the census cwd",
-    "343": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-    "479": "ffmpeg binary not installed in the QA environment; the fence shows the real audio-extraction call"
+    "68": "CLIP demo loads a learner-supplied image (no image ships in the repo); file-bound by design, the prose tells the learner to bring one",
+    "122": "BLIP captioning demo - same learner-supplied image dependency",
+    "166": "VQA demo - same learner-supplied image dependency",
+    "204": "zero-shot classification demo - same learner-supplied image dependency",
+    "481": "shells out to system ffmpeg for audio extraction; the install prose states ffmpeg must be on the PATH",
+    "345": "cv2 (opencv-python) is an optional package the QA environment does not install; the fence teaches frame extraction"
    }
   },
   "docs/learning-resources/tutorials/TUTORIAL-012-Production-LLMOps.md": {
-   "mtime": 1790788811.3068767,
-   "size": 26092,
+   "mtime": 1790897729.7494192,
+   "size": 26141,
    "bad": {}
   },
   "docs/learning-resources/tutorials/TUTORIAL-013-AI-Security.md": {
-   "mtime": 1790788811.3068767,
-   "size": 27988,
+   "mtime": 1790897729.7509315,
+   "size": 28037,
    "bad": {
-    "327": "SIDE-EFFECT"
+    "329": "SIDE-EFFECT"
    },
    "notes": {
-    "327": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect"
+    "329": "Llama Guard checkpoint load - gated/large model download at runtime; environment requirement"
    }
   },
   "docs/learning-resources/tutorials/TUTORIAL-014-Production-LLM-Systems.md": {
-   "mtime": 1790788811.3068767,
-   "size": 29124,
+   "mtime": 1790897729.7519357,
+   "size": 29138,
    "bad": {}
   },
   "docs/notebooks/README.md": {

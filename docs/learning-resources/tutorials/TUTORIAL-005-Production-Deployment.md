@@ -4,6 +4,8 @@ Title: "TUTORIAL-005: Production Deployment with CI/CD"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
+Estimated Time: 90 minutes
+Prerequisites: [PHASE-1, TUTORIAL-002]
 Tags: ['tutorial', 'deployment', 'ci-cd']
 ---
 

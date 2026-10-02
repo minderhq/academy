@@ -6,7 +6,7 @@ Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
-Prerequisites: [TUTORIAL-005, LAB-009]
+Prerequisites: [TUTORIAL-005, TUTORIAL-007, LAB-009]
 Related: [TUTORIAL-002, TUTORIAL-007, 1301, 1405, 1501, 6502]
 Tags: ['tutorial', 'production', 'deployment', 'monitoring', 'devops']
 ---
