@@ -698,7 +698,7 @@ stand today?" without running each tool by hand.
                       badges, phase-hub range badges,
                       'Absolute Beginner')
     course_card_check
-                      Course-card parity (CC-01..28, hard):
+                      Course-card parity (CC-01..29, hard):
                       a module README's front-matter
                       Difficulty is the course card a
                       platform catalog reads and the
@@ -1307,6 +1307,36 @@ stand today?" without running each tool by hand.
                       scoping, never double-reported),
                       two volumes aggregate into exactly
                       2 CC-28.
+                      CC-29 the fourteenth surface of
+                      the FM keyset family: a phase
+                      CHECKPOINT's FM carries only the
+                      6-field entry keyset, negative
+                      excess only; the tick-597 census
+                      had parked the phase CHECKPOINTs
+                      among the exact-6 scatter and the
+                      tick-599 census read the class
+                      clean - all 7 phase-level
+                      completion checkpoints
+                      (docs/phases/phase*/CHECKPOINT.md,
+                      the gate between one phase's
+                      modules and the next) already on
+                      the exact 6-field keyset, 0 no-FM,
+                      0 off-keyset, all 7 linked (each
+                      from its phase README beside
+                      MASTER-INDEX, SITEMAP,
+                      ORGANIZATION-GUIDE and
+                      PROGRESS-CHECKPOINTS); zero-drain
+                      in the CC-21/22/23 shape, no
+                      fence coupling (no CHECKPOINT
+                      carries accepted fence rows) - an
+                      extra FM field on a CHECKPOINT
+                      fires exactly 1 CC-29 with
+                      CC-01..28 kept silent, the same
+                      field on a volume fires exactly
+                      1 CC-28 and 0 CC-29 (clause
+                      scoping, never double-reported),
+                      two CHECKPOINTs aggregate into
+                      exactly 2 CC-29.
     heading_scan
                       Heading skeleton soundness (HS-01..05,
                       hard): the platform renders a TOC and

@@ -218,6 +218,18 @@ CC-28  Every volumes page's FM carries
        subdirectories. Negative-excess only:
        FS owns field presence, this clause
        owns field excess - never double-report.
+CC-29  Every phase CHECKPOINT's FM carries
+       only the 6-field entry keyset - one family
+       for the 7 phase-level completion
+       checkpoints under docs/phases/phase*/
+       CHECKPOINT.md (the gate a platform
+       renders at the boundary between one
+       phase's modules and the next), so a
+       platform parser reads the checkpoint
+       layer through the same schema. Negative-
+       excess only: FS owns field presence,
+       this clause owns field excess - never
+       double-report.
 
 The gate is order-agnostic about table columns (3500-multimodal renders Time
 before Difficulty and both orders pass). Dead row targets are skipped here -
@@ -548,6 +560,32 @@ the phase CHECKPOINTs (7) and the rest of
 the exact-6 scatter and the 4 drift
 carriers park for their own clauses.
 
+CC-29 was born tick-599 as the fourteenth
+FM-keyset surface (entry CC-16, card CC-17,
+lesson CC-18, guide CC-19, assessment CC-20,
+phase header CC-21, phase assessment CC-22,
+reference page CC-23, tutorial CC-24, lab
+CC-25, solution CC-26, meta page CC-27,
+volume CC-28, checkpoint CC-29): the
+tick-597 uncovered-surface census had parked
+the phase CHECKPOINTs among the exact-6
+scatter, and the tick-599 census read the
+class clean - all 7 CHECKPOINT pages already
+on the exact 6-field entry keyset (Document
+ID, Title, Last Updated, Status, Difficulty,
+Tags), 0 no-FM, 0 off-keyset, all 7 linked
+(each from its phase README beside
+MASTER-INDEX, SITEMAP, ORGANIZATION-GUIDE
+and PROGRESS-CHECKPOINTS; linkcheck vouches
+0 broken) - so the lock is a zero-drain one
+in the CC-21/CC-22/CC-23 shape: the
+checkpoint surface froze at the family the
+moment it was named, no drain, no fence
+coupling (no CHECKPOINT carries accepted
+fence rows), nothing to probe; the rest of
+the exact-6 scatter (13 files) and the 4
+drift carriers park for their own clauses.
+
 Exit 1 on any finding; prints one line per finding.
 """
 from __future__ import annotations
@@ -631,6 +669,10 @@ META_KEYSET = ENTRY_KEYSET
 # book-style spine beside the catalog; the root
 # has no subdirectories, glob is non-recursive
 VOLUME_KEYSET = ENTRY_KEYSET
+# the phase CHECKPOINTs froze at the 6-field entry
+# keyset the tick-599 census read them on - the
+# phase-completion gates between module groups
+CHECKPOINT_KEYSET = ENTRY_KEYSET
 FM_DASH = re.compile(r"^---\s*$")
 FM_KEY = re.compile(r"^([A-Za-z][A-Za-z0-9 _-]*):")
 DIFF_FIELD = re.compile(r"^Difficulty:(.*)$")
@@ -1299,6 +1341,20 @@ def main() -> int:
             findings.append(
                 f"{vrel} CC-28 volume FM carries fields "
                 f"outside the volume keyset - "
+                f"{', '.join(extra)}"
+            )
+
+    # CC-29: the phase CHECKPOINTs carry only the
+    # 6-field entry keyset - the phase-completion
+    # gates a platform renders between one
+    # phase's modules and the next
+    for cp in sorted((root / "docs" / "phases").glob("phase*/CHECKPOINT.md")):
+        crel = cp.relative_to(root).as_posix()
+        extra = sorted(fm_keys(cp) - CHECKPOINT_KEYSET)
+        if extra:
+            findings.append(
+                f"{crel} CC-29 checkpoint FM carries fields "
+                f"outside the checkpoint keyset - "
                 f"{', '.join(extra)}"
             )
 
