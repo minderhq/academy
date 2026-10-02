@@ -1,8 +1,6 @@
 ---
 Document ID: 2300-PRACTICE
 Title: "2300: Framework Engineering - Practice Exercises"
-Phase: 2
-Module: 2300
 Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced

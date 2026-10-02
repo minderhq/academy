@@ -119,6 +119,15 @@ CC-19  Every guide's FM carries only the 11-field guide keyset
        core the lessons live in. Negative-excess only: FS owns
        field presence, this clause owns field excess - never
        double-report.
+CC-20  Every assessment bank's FM carries only the 9-field
+       assessment keyset (the 6-field entry keyset +
+       Estimated Time + Prerequisites/Related - the card
+       core without Module/Phase and without the optional
+       Hardware/Software pair) - one family for the 66
+       PRACTICE/QUIZ banks, so a platform parser reads
+       every assessment through one schema. Negative-excess
+       only: FS owns field presence, this clause owns
+       field excess - never double-report.
 
 The gate is order-agnostic about table columns (3500-multimodal renders Time
 before Difficulty and both orders pass). Dead row targets are skipped here -
@@ -259,6 +268,28 @@ the shift - no fence content changed; the module
 subdirectory class also resolved as assessment 66 + guides
 21 = 87, the count tick-588 parked.
 
+CC-20 was born tick-590 as the fifth FM-keyset surface (entry
+CC-16, card CC-17, lesson CC-18, guide CC-19, assessment
+CC-20): the census read 66 banks - every module the
+PRACTICE.md/QUIZ.md pair, all 100% linked from their module
+READMEs, 0 no-FM - splitting two forms, 64 on the 9-field
+assessment keyset (entry 6 + Estimated Time +
+Prerequisites/Related) and 2 phase2 legacy carriers widening
+with Module/Phase (2300-framework-engineering PRACTICE and
+QUIZ), so the drain deleted exactly those 4 FM lines
+count-asserted and the family froze at 66/66, with the
+impact probe showing all four FM-adjacent gates
+byte-identical (FM-05/06 and FM-08 absence-tolerant, prereq
+untouched - no Prerequisites/Related line moved) and the
+fence coupling one file small: only 2300's PRACTICE.md
+carries accepted rows (2 rows / 2 notes - QUIZ none, the
+other 37 assessment census entries a different class), the
+-2 shift moved both, and the count-asserted re-bless
+re-blessed them at their shifted lines 72->70 and 316->314,
+same class on re-execution (ENV-GAP:tensorflow, UN-LEAK),
+notes carried, the accepted_exec_census _meta recording the
+shift - no fence content changed.
+
 Exit 1 on any finding; prints one line per finding.
 """
 from __future__ import annotations
@@ -290,6 +321,11 @@ LESSON_KEYSET = CARD_KEYSET | {
 GUIDE_KEYSET = CARD_KEYSET | {
     "Module",
     "Phase",
+    "Prerequisites",
+    "Related",
+}
+ASSESSMENT_KEYSET = ENTRY_KEYSET | {
+    "Estimated Time",
     "Prerequisites",
     "Related",
 }
@@ -674,6 +710,22 @@ def main() -> int:
                     f"{p.relative_to(root).as_posix()} CC-19 "
                     f"guide FM carries fields outside the "
                     f"guide keyset - {', '.join(extra)}"
+                )
+
+        # CC-20: every assessment bank carries only the
+        # assessment FM keyset - the card core without
+        # Module/Phase and without the optional
+        # Hardware/Software pair: a platform parsing the
+        # 66 PRACTICE/QUIZ banks reads one 9-field family
+        # (FS owns field presence; this clause owns
+        # field excess)
+        for p in sorted(mod.glob("assessment/*.md")):
+            extra = sorted(fm_keys(p) - ASSESSMENT_KEYSET)
+            if extra:
+                findings.append(
+                    f"{p.relative_to(root).as_posix()} CC-20 "
+                    f"assessment FM carries fields outside the "
+                    f"assessment keyset - {', '.join(extra)}"
                 )
 
         # Module Documents table: CC-02/03 per row, CC-05 coverage

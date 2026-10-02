@@ -698,7 +698,7 @@ stand today?" without running each tool by hand.
                       badges, phase-hub range badges,
                       'Absolute Beginner')
     course_card_check
-                      Course-card parity (CC-01..19, hard):
+                      Course-card parity (CC-01..20, hard):
                       a module README's front-matter
                       Difficulty is the course card a
                       platform catalog reads and the
@@ -1042,7 +1042,39 @@ stand today?" without running each tool by hand.
                       CC-01..18 kept silent, the same field
                       on a lesson fires exactly 1 CC-18 and
                       0 CC-19, two guides aggregate into
-                      exactly 2 CC-19.    heading_scan
+                      exactly 2 CC-19.
+                      CC-20 the fifth surface of the FM
+                      keyset family: an assessment bank's
+                      FM carries only the 9-field
+                      assessment keyset (entry keyset +
+                      Estimated Time + Prerequisites/
+                      Related - the card core without
+                      Module/Phase and without the
+                      optional Hardware/Software pair),
+                      negative excess only; the tick-590
+                      census read the 66 PRACTICE/QUIZ
+                      banks clean of excess - every
+                      module the pair, all linked, 64 on
+                      the 9-field keyset and 2 phase2
+                      legacy carriers widening with
+                      Module/Phase (2300-framework-
+                      engineering PRACTICE/QUIZ) - and
+                      the 4-line drain deleted the
+                      legacy pair so the family froze
+                      at 66/66, the fence coupling one
+                      file small: only 2300's PRACTICE
+                      carries accepted rows, the -2
+                      shift moved its 2 and the re-bless
+                      re-blessed them at 72->70 and
+                      316->314 same-class, notes
+                      carried, no fence content changed
+                      - an extra FM field on an
+                      assessment fires exactly 1 CC-20
+                      with CC-01..19 kept silent, the
+                      same field on a guide fires
+                      exactly 1 CC-19 and 0 CC-20, two
+                      assessments aggregate into
+                      exactly 2 CC-20.    heading_scan
                       Heading skeleton soundness (HS-01..05,
                       hard): the platform renders a TOC and
                       anchor deep-links from heading structure,
