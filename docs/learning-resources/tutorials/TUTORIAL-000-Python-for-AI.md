@@ -2221,9 +2221,9 @@ PROJECT-001: AI Assistant (Complete project)
 
 ---
 
-**Duration:** 15-20 hours (spread over 1-2 weeks)
-**Difficulty**: Beginner
-**Prerequisites**: None!
+**Time Estimate:** 20 hours
+**Difficulty:** ⭐ Beginner
+**Prerequisites:** None
 
 > ℹ️ **Time Estimate:** This tutorial has been significantly expanded to include NumPy, Pydantic, and FastAPI fundamentals. Plan for 15-20 hours of focused learning, ideally spread over 1-2 weeks for proper retention.
 

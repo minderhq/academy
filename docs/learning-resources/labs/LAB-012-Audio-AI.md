@@ -1515,5 +1515,5 @@ In this lab, you learned:
 ---
 
 **Lab:** 012 - Audio AI
-**Time Estimate:** 4-5 hours
+**Time Estimate:** 7 hours
 **Difficulty:** ⭐⭐⭐ Advanced

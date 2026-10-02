@@ -1375,6 +1375,34 @@ stand today?" without running each tool by hand.
                        of a hand audit; born tick-544 after 3501@162's
                        TIMEOUT row shipped with an empty note for many
                        ticks, baseline 0/0 at birth
+    footer_fm_parity_check
+                       the EOF metadata footer must not
+                       contradict the front matter it
+                       visually mirrors (FF-01 the
+                       Difficulty word verbatim, FF-02
+                       the star count equal to the tier
+                       index - the corpus FM vocabulary
+                       is exactly Beginner 71 /
+                       Intermediate 117 / Advanced 220,
+                       "Expert" is illegal vocabulary,
+                       FF-03 the Time Estimate verbatim
+                       when the FM carries one - the 12
+                       templates' footer-only time is
+                       the legal sole carrier, FF-04
+                       Prerequisites exactly "None" on
+                       an empty FM list) - conditional
+                       by design, 10/15 labs and 13/15
+                       tutorials and SOLUTION-LAB-010/011
+                       carry no footer at all; born
+                       tick-573 at 14 findings across 6
+                       files (5 lab footers ranged
+                       against LI-06-proven hours, 3
+                       carrying an Expert tier absent
+                       from the corpus, TUTORIAL-000
+                       ranged, starless and flourished),
+                       drained the same tick; body-header
+                       blocks and blockquote callouts
+                       are the elaboration layer, unread
   queue gate (drain in progress; never fails the report unless --fail-on-queue):
     objectives_lint    template-objective artifacts (OL-01/OL-02), phase by phase
     fence_namecheck    unbound names in python fences (report mode), two
@@ -1690,6 +1718,7 @@ GATES = [
     ("fleet_count_parity_check.py", "fleet_count_parity_check", True),
     ("sitemap_listing_parity_check.py", "sitemap_listing_parity_check",
      True),
+    ("footer_fm_parity_check.py", "footer_fm_parity_check", True),
 ]
 
 

@@ -1340,5 +1340,5 @@ In this lab, you learned:
 ---
 
 **Lab:** 014 - AI Evaluation & Safety
-**Time Estimate:** 4-5 hours
+**Time Estimate:** 6 hours
 **Difficulty:** ⭐⭐⭐ Advanced

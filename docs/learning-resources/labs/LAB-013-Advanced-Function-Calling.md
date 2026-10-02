@@ -1474,5 +1474,5 @@ In this lab, you learned:
 ---
 
 **Lab:** 013 - Advanced Function Calling
-**Time Estimate:** 5-6 hours
-**Difficulty:** ⭐⭐⭐⭐ Expert
+**Time Estimate:** 7 hours
+**Difficulty:** ⭐⭐⭐ Advanced
