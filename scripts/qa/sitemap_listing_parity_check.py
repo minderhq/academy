@@ -40,6 +40,20 @@ SL-03  module arithmetic: each phase module header's
        bullet entries (boilerplate = PREREQUISITES, README,
        assessment: PRACTICE, assessment: QUIZ bullets, which the
        lesson/guide split deliberately does not count).
+SL-04  self-explaining count headers: every registered fleet
+       header must keep the "(N files: A x + B y)" decomposition
+       form (Experiments' convention) with A+B == N, A equal to
+       its part-1 disk definition and B equal to its part-2 disk
+       definition.
+
+SL-04 joined tick-561: the MI-vs-SITEMAP census over 14 fleet
+pairs found 4 definitional divergences (Notebooks 20 vs 21,
+Capstone Projects 7 vs 10, Experiments 47 vs 48, Meta Docs 20 vs
+11) where each surface was true under its own definition - the
+cure is self-explanation on the SITEMAP side: the three bare
+headers now decompose themselves and SL-04 locks that
+decomposition to disk, so a future drift cannot hide behind a
+bare count.
 
 Out of scope, recorded: the Meta & Reference (11 mixed-family
 entries across 00-META/bridges/resources), Reference Configuration
@@ -53,7 +67,15 @@ counts *.ipynb only while the SITEMAP Notebooks section counts the
 21 listed files including the directory README - a definitional
 divergence where both surfaces are true under their own definitions;
 cross-surface count comparison is fleet_count_parity_check's
-territory.
+territory. Experiments is deliberately absent from SL-04 - its
+"(48 files: 47 experiments + 1 TEMPLATE)" header is
+fleet_count_parity_check FC-03's territory. The Meta & Reference
+"(11 files: 9 reference docs + 2 companion indexes)" suffix is
+learner-facing prose, not machine scope: its 9+2 split is a
+curated cross-directory set (9 of the 20 00-META top-level docs
+plus one bridge plus one resource) that no glob expresses - the
+11 count stays SC-locked and the section's reachability
+SL-02-locked.
 
 Hard gate (exit 1 on findings): born at zero, kept there by lock.
 
@@ -102,6 +124,21 @@ MODULE = re.compile(r"^### \[([^\]]+)\] \((\d+) lessons?, (\d+) guides?\)$",
                     re.M)
 BOILER = re.compile(
     r"^\s*- \[(PREREQUISITES|README|assessment: (?:PRACTICE|QUIZ))\]", re.M)
+
+# SL-04 registered self-explaining headers: (section name, part-1
+# globs, part-2 globs). The header must read "(N files: A ... + B ...)"
+# with A+B == N, A == the part-1 disk count and B == the part-2 disk
+# count. Experiments is deliberately absent - FC-03's territory.
+SELF_EXPLAINING = [
+    ("Notebooks",
+     ["docs/notebooks/*.ipynb"],
+     ["docs/notebooks/README.md"]),
+    ("Capstone Projects",
+     ["docs/learning-resources/projects/PROJECT-*.md"],
+     ["docs/learning-resources/projects/PREREQUISITES-*.md",
+      "docs/learning-resources/projects/SETUP-GUIDE.md"]),
+]
+EXPLAINED = re.compile(r"\((\d+) files: (\d+) [^)]+ \+ (\d+) [^)]+\)$")
 
 
 def esc(text: str) -> str:
@@ -199,12 +236,38 @@ def main() -> int:
                                 "(%d links incl. %d boilerplate)"
                                 % (mod, nl, ng, nonboil, links, boiler))
 
+    # --- SL-04: self-explaining header arithmetic -------------------------
+    for fname, part1, part2 in SELF_EXPLAINING:
+        hits = [t for t, _ in secs if t.startswith(fname + " ")]
+        if not hits:
+            continue  # SL-01 already reports the missing fleet heading
+        em = EXPLAINED.search(hits[0])
+        if not em:
+            findings.append("SL-04 %s: header '%s' lost the self-explaining "
+                            "'(N files: A ... + B ...)' form"
+                            % (fname, hits[0]))
+            continue
+        n, a, b = int(em.group(1)), int(em.group(2)), int(em.group(3))
+        c1 = sum(len(list(args.root.glob(s))) for s in part1)
+        c2 = sum(len(list(args.root.glob(s))) for s in part2)
+        if a + b != n:
+            findings.append("SL-04 %s: header decomposition %d+%d does not "
+                            "equal the header count %d" % (fname, a, b, n))
+        if a != c1:
+            findings.append("SL-04 %s: header part 1 says %d, its disk "
+                            "definition holds %d" % (fname, a, c1))
+        if b != c2:
+            findings.append("SL-04 %s: header part 2 says %d, its disk "
+                            "definition holds %d" % (fname, b, c2))
+
     for f in findings:
         print(esc(f))
     print("sitemap_listing_parity_check: %d findings (SL-01 listing "
           "identity across %d fleets, SL-02 corpus completeness, SL-03 "
-          "module arithmetic) over %d sections / %d modules"
-          % (len(findings), len(FLEETS), len(secs), n_modules))
+          "module arithmetic, SL-04 self-explaining headers across %d "
+          "registrations) over %d sections / %d modules"
+          % (len(findings), len(FLEETS), len(SELF_EXPLAINING), len(secs),
+             n_modules))
     return 1 if findings else 0
 
 

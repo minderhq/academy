@@ -439,7 +439,7 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 
 ---
 
-## Experiments (48 files: 47 experiments + TEMPLATE)
+## Experiments (48 files: 47 experiments + 1 TEMPLATE)
 
 - [EXP_1302_GPU_SCHEDULER](../../experiments/EXP_1302_GPU_SCHEDULER.md)
 - [EXP_1403_TGI_TUNING](../../experiments/EXP_1403_TGI_TUNING.md)
@@ -546,7 +546,7 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [SOLUTION-LAB-013-Advanced-Function-Calling](../learning-resources/labs/solutions/SOLUTION-LAB-013-Advanced-Function-Calling.md)
 - [SOLUTION-LAB-014-AI-Evaluation-Safety](../learning-resources/labs/solutions/SOLUTION-LAB-014-AI-Evaluation-Safety.md)
 
-## Capstone Projects (10)
+## Capstone Projects (10 files: 7 projects + 3 supporting guides)
 
 - [PREREQUISITES-001](../learning-resources/projects/PREREQUISITES-001.md)
 - [PREREQUISITES-007](../learning-resources/projects/PREREQUISITES-007.md)
@@ -626,7 +626,7 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [UC-002-RAG-Applications](../use-cases/UC-002-RAG-Applications.md)
 - [UC-003-Agent-Applications](../use-cases/UC-003-Agent-Applications.md)
 
-## Notebooks (21 files)
+## Notebooks (21 files: 20 notebooks + 1 README index)
 
 - [README](../notebooks/README.md)
 - [NB-201-PyTorch-Basics](../notebooks/NB-201-PyTorch-Basics.ipynb)
@@ -679,7 +679,7 @@ build's written walkthroughs live inside the lessons themselves - see the
 - [EXP_1101_GPON](../../experiments/EXP_1101_GPON.md)
 - [EXP_1102_STAR_TOPOLOGY](../../experiments/EXP_1102_STAR_TOPOLOGY.md)
 
-## Meta & Reference (11 files)
+## Meta & Reference (11 files: 9 reference docs + 2 companion indexes)
 
 - [ORGANIZATION-GUIDE](../00-META/ORGANIZATION-GUIDE.md)
 - [TUTORIAL-TO-LAB-BRIDGE](../learning-resources/bridges/TUTORIAL-TO-LAB-BRIDGE.md)

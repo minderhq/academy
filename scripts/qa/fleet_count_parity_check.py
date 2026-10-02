@@ -24,7 +24,7 @@ FC-01  MI File Counts: every category row's count equals its disk
        Meta Docs counts docs/00-META top level only, its
        assessment/ subtree is not a doc fleet).
 FC-02  MI TOTAL row equals the sum of the category rows.
-FC-03  SITEMAP "## Experiments (N files: M experiments + TEMPLATE)"
+FC-03  SITEMAP "## Experiments (N files: M experiments + 1 TEMPLATE)"
        header equals disk (N = all experiments/*.md, M = EXP_*.md).
 FC-04  README "N Experiment Files" summary equals disk EXP count.
 FC-05  README Experiments section lists every EXP file on disk in
@@ -56,7 +56,8 @@ from pathlib import Path
 EXPERIMENTS_DIR = "experiments"
 MI_ROW = re.compile(r"^\| \*\*([^*]+)\*\* \| (\*?\*?)(\d+)\2 \|$", re.M)
 SITEMAP_HEADER = re.compile(
-    r"^## Experiments \((\d+) files: (\d+) experiments \+ TEMPLATE\)", re.M)
+    r"^## Experiments \((\d+) files: (\d+) experiments \+ 1 TEMPLATE\)",
+    re.M)
 README_SUMMARY = re.compile(r"\U0001F52C (\d+) Experiment Files")
 README_GROUP = re.compile(r"\*\*(.+?) \((\d+)\):\*\*")
 README_LINK = re.compile(r"\./experiments/(EXP_[A-Z_0-9]+)\.md")
@@ -148,7 +149,7 @@ def main() -> int:
     m_sm = SITEMAP_HEADER.search(sm)
     if not m_sm:
         findings.append("FC-03 SITEMAP has no '## Experiments (N files: M "
-                        "experiments + TEMPLATE)' header")
+                        "experiments + 1 TEMPLATE)' header")
     elif (int(m_sm.group(1)) != n_all
           or int(m_sm.group(2)) != len(exp_files)):
         findings.append("FC-03 SITEMAP header claims %s files / %s "

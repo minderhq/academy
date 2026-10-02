@@ -1156,11 +1156,23 @@ stand today?" without running each tool by hand.
                        SITEMAP.md, SL-03 each phase
                        module's "N lessons, M guides"
                        equals its non-boilerplate
-                       entries); born tick-560
+                       entries, SL-04 registered headers
+                       keep the "(N files: A x + B y)"
+                       decomposition with A+B == N and
+                       each part equal to its own disk
+                       definition); born tick-560
                        census-proven clean at zero -
                        count parity was already SC-locked,
                        the identities behind the counts
-                       were not
+                       were not; SL-04 joined tick-561
+                       after the MI-vs-SITEMAP census
+                       found 4 definitional divergences
+                       (Notebooks 20 vs 21, Capstone
+                       Projects 7 vs 10, Experiments
+                       47 vs 48, Meta Docs 20 vs 11)
+                       and the three bare headers
+                       drained to the self-explaining
+                       form
     empty_section_scan every heading must own content (ES-01): a
                        section is empty iff nothing but blanks/HRs/
                        blockquotes/HTML-comments sits between its
