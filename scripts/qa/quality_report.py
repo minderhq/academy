@@ -2223,6 +2223,32 @@ stand today?" without running each tool by hand.
                        on VOLUME-5, 1 EXP label pointing
                        at another experiment's file);
                        hard from birth
+  fence_lang_scan
+                       fence-language lock (FL-01..03,
+                       hard): a platform renders,
+                       highlights and classifies code
+                       blocks by the fence's language
+                       tag, but linkcheck walks links
+                       and fence_exec_gate executes
+                       python fences while nothing
+                       pinned the one tag every fence
+                       carries - a bare ``` is a block
+                       no renderer can classify and a
+                       typo'd tag (`pyton`) silently
+                       drops highlighting; FL-01 bare
+                       opener, FL-02 tag outside the
+                       accepted 22-language
+                       vocabulary (a new real language
+                       joins by amending LANGS), FL-03
+                       fence unclosed at end of file;
+                       CommonMark width-aware so 4-
+                       backtick templates may embed
+                       ``` fences as literal content;
+                       born tick-606 from a
+                       4258-fence census across 408
+                       docs, zero-drain: zero bare,
+                       zero off-vocabulary, zero
+                       unclosed; hard from birth
   queue gate (drain in progress; never fails the report unless --fail-on-queue):
     objectives_lint    template-objective artifacts (OL-01/OL-02), phase by phase
     fence_namecheck    unbound names in python fences (report mode), two
@@ -2542,6 +2568,7 @@ GATES = [
     ("footer_fm_parity_check.py", "footer_fm_parity_check", True),
     ("module_code_census.py", "module_code_census", True),
     ("label_code_parity_scan.py", "label_code_parity_scan", True),
+    ("fence_lang_scan.py", "fence_lang_scan", True),
 ]
 
 
