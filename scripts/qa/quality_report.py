@@ -698,7 +698,7 @@ stand today?" without running each tool by hand.
                       badges, phase-hub range badges,
                       'Absolute Beginner')
     course_card_check
-                      Course-card parity (CC-01..16, hard):
+                      Course-card parity (CC-01..17, hard):
                       a module README's front-matter
                       Difficulty is the course card a
                       platform catalog reads and the
@@ -970,7 +970,28 @@ stand today?" without running each tool by hand.
                       rule is entry-page
                       scoped), and two
                       pages aggregate into
-                      exactly 2 CC-16.    heading_scan
+                      exactly 2 CC-16.
+                      CC-17 the mirror on the card surface: a course
+                      card's FM carries only the 7-field card keyset
+                      (the 6 universal fields + Estimated Time) - one
+                      schema for 33 cards, the corpus-wide keyset
+                      census reading 29 of 33 already there while the
+                      SAME 4 phase2 modules (2100/2200/2300/2400)
+                      carried 4 legacy extras (Module, Phase,
+                      Prerequisites, Related) - the same rot CC-16
+                      drained from their entry pages one tick
+                      earlier, now on the page a platform renders
+                      per course; the 16-line drain moved only
+                      prereq_census's statement counters (docs
+                      200->196, free-text 182->178) while FM-05/06
+                      and FM-08 stay silent by design (absence-
+                      tolerant) and the entry-page surface keeps
+                      its own CC-16 scoping - an extra FM field on
+                      a card fires exactly 1 CC-17 with CC-01..16
+                      kept silent, the same field on that module's
+                      PREREQUISITES.md fires exactly 1 CC-16 and
+                      0 CC-17, two cards aggregate into exactly
+                      2 CC-17.    heading_scan
                       Heading skeleton soundness (HS-01..05,
                       hard): the platform renders a TOC and
                       anchor deep-links from heading structure,

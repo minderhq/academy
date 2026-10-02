@@ -97,6 +97,12 @@ CC-16  A module's PREREQUISITES.md FM carries only the 6-field
        pages, so a platform parser reads every entry door the
        same way. Negative-excess only: FS owns field presence,
        this clause owns field excess - never double-report.
+CC-17  A course card's (README.md) FM carries only the 7-field
+       card keyset (the 6 universal fields + Estimated Time) -
+       one schema for 33 cards, so a platform parser reads
+       every card the same way it reads every entry page
+       (CC-16). Negative-excess only: FS owns field presence,
+       this clause owns field excess - never double-report.
 
 The gate is order-agnostic about table columns (3500-multimodal renders Time
 before Difficulty and both orders pass). Dead row targets are skipped here -
@@ -167,6 +173,28 @@ guides/ tier parity (17 of 21 guides are Advanced by design -
 depth material, CC-05's display-richness contract) and
 prereq-ET parity (review-of-prerequisites time is not course
 budget - the tick-579 doctrine).
+CC-17 born tick-587 as CC-16's mirror on the card surface:
+the corpus-wide FM keyset census read 29 of 33 cards already
+on the 7-field majority while the SAME 4 phase2 modules
+(2100/2200/2300/2400) carried 4 legacy extras (Module, Phase,
+Prerequisites, Related) - the same rot CC-16 drained from
+their entry pages one tick earlier, now on the page a
+platform renders per course - so the drain deleted exactly
+those 16 FM lines and both surfaces froze at one schema;
+the impact probe moved only prereq_census's statement
+counters (docs 200->196, free-text 182->178) - tokens,
+edges, tier-edges and the related cycle untouched - while
+front_matter_census FM-05/06 and frontmatter_lint FM-08
+stayed silent by design (absence-tolerant: they fire only
+when the field exists and contradicts the path). The census
+honestly parked the remaining heterogeneity before it
+became a rule: guides 12-vs-9 (Module/Phase extras on 9 of
+21) is the lesson-family surface, and the lesson class
+itself reads 159 files - 93 linked lessons plus the
+unlinked assessment/EXP/lab support docs - needing a
+classifier split before any lock; meta surfaces
+(learning-resources 4 forms, use-cases / industry /
+enterprise-solutions singles) stay census-only for now.
 
 Exit 1 on any finding; prints one line per finding.
 """
@@ -187,6 +215,7 @@ ENTRY_KEYSET = {
     "Difficulty",
     "Tags",
 }
+CARD_KEYSET = ENTRY_KEYSET | {"Estimated Time"}
 FM_DASH = re.compile(r"^---\s*$")
 FM_KEY = re.compile(r"^([A-Za-z][A-Za-z0-9 _-]*):")
 DIFF_FIELD = re.compile(r"^Difficulty:(.*)$")
@@ -523,6 +552,19 @@ def main() -> int:
                     f"PREREQUISITES.md FM carries fields outside "
                     f"the entry-page keyset - {', '.join(extra)}"
                 )
+
+        # CC-17: the course card carries only the card FM
+        # keyset - CC-16's mirror on the card surface: a
+        # platform parsing 33 cards expects one schema, not
+        # 29 minimal cards and 4 legacy extras (FS owns
+        # field presence; this clause owns field excess)
+        extra = sorted(fm_keys(rm) - CARD_KEYSET)
+        if extra:
+            findings.append(
+                f"{rm.relative_to(root).as_posix()} CC-17 "
+                f"README.md FM carries fields outside the "
+                f"card keyset - {', '.join(extra)}"
+            )
 
         # Module Documents table: CC-02/03 per row, CC-05 coverage
         rows, has_time = table_rows(lines)
