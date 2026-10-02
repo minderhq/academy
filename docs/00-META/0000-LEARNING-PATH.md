@@ -664,7 +664,7 @@ Learning Path:
 2. **SITEMAP.md** - Complete table of contents
 3. [0000-LEARNING-PATH.md](0000-LEARNING-PATH.md) ← **You are here**
 4. [1101-1103: Network Topology](../phases/phase1-infra/1100-network/)
-5. [1201-1203: Virtualization](../phases/phase1-infra/1200-virtualization/)
+5. [1201-1204: Virtualization](../phases/phase1-infra/1200-virtualization/)
 6. [1301-1303: Kubernetes](../phases/phase1-infra/1300-kubernetes/)
 
 ### Volume 2: AI Fundamentals
@@ -675,27 +675,27 @@ Learning Path:
 
 ### Volume 3: Quantization & Optimization
 11. [4101-4103: Low-Bit Quantization](../phases/phase4-quantization/4100-low-bit/)
-12. [4201-4203: KV-Cache Engineering](../phases/phase4-quantization/4200-kv-cache/)
+12. [4201-4202: KV-Cache Engineering](../phases/phase4-quantization/4200-kv-cache/)
 13. [3303: Activation Function Comparison](../phases/phase3-transformers/3300-decoding/guides/3303-Activation-Function-Comparison.md)
 
 ### Volume 4: Fine-Tuning & Alignment
-14. [5101-5102: PEFT](../phases/phase5-finetuning/5100-peft/)
+14. [5101-5103: PEFT](../phases/phase5-finetuning/5100-peft/)
 15. [5104: LoRA Implementation](../phases/phase5-finetuning/5100-peft/guides/5104-LoRA-Implementation-Guide.md)
-16. [5201-5202: SFT & Preference](../phases/phase5-finetuning/5200-alignment/)
+16. [5201-5204: SFT & Preference](../phases/phase5-finetuning/5200-alignment/)
 
 ### Volume 5: Data Nexus
 17. [6101-6102: Vector Architectures](../phases/phase6-rag/6100-vector/)
-18. [6201-6202: RAG 2.0](../phases/phase6-rag/6200-retrieval/)
-19. [6301-6304: GraphRAG](../phases/phase6-rag/6300-context/)
+18. [6201-6203: RAG 2.0](../phases/phase6-rag/6200-retrieval/)
+19. [6301-6302: GraphRAG](../phases/phase6-rag/6300-context/)
 
 ### Volume 6: Agentic AI
-20. [7101-7103: ReAct](../phases/phase7-agentic/7100-architecture/)
-21. [7201-7202: Tool Calling](../phases/phase7-agentic/7200-tools/)
-22. [7301-7303: Multi-Agent Orchestration](../phases/phase7-agentic/7300-orchestration/)
-23. [7401-7402: Agent Memory](../phases/phase7-agentic/7400-memory/)
+20. [7101-7102: ReAct](../phases/phase7-agentic/7100-architecture/)
+21. [7200: Tool Calling](../phases/phase7-agentic/7200-tools/)
+22. [7301-7302: Multi-Agent Orchestration](../phases/phase7-agentic/7300-orchestration/)
+23. [7401-7403: Agent Memory](../phases/phase7-agentic/7400-memory/)
 
 ### Volume 7: Production
-24. [1501: Monitoring](../phases/phase1-infra/1500-monitoring/)
+24. [1500: Monitoring](../phases/phase1-infra/1500-monitoring/)
 25. [1403-1404: LLMOps](../phases/phase1-infra/1400-llmops/guides/)
 
 ---

@@ -2193,6 +2193,36 @@ stand today?" without running each tool by hand.
                        guide 7402 rides between lessons
                        7401/7403 so the union set is
                        contiguous; hard from birth
+    label_code_parity_scan
+                       label-code parity (LP-01..05, hard):
+                       linkcheck proves a link's target
+                       exists and link_case_scan proves
+                       its casing is portable, but
+                       nothing proved the numeric code a
+                       display label advertises belongs
+                       to the file or module the link
+                       opens - a card reading `5302:
+                       Distributed Training` that opens
+                       5402-Model-Parallelism is a lie
+                       the learner clicks; LP-01 file
+                       stem within the label range, LP-02
+                       stemless file target (README/QUIZ/
+                       PRACTICE/PREREQUISITES) equals the
+                       nearest coded ancestor dir, LP-03
+                       dir labels equal the module prefix
+                       or the exact stem span, LP-04
+                       phase-root links equal phase#*1000,
+                       LP-05 EXP_NNNN labels open the
+                       same-numbered experiment file;
+                       born tick-605 from a
+                       3361-internal-link census, all
+                       clean after a 13-edit
+                       drain (10 stale LEARNING-PATH
+                       module ranges, 1 lesson-code
+                       module label, 1 wrong file target
+                       on VOLUME-5, 1 EXP label pointing
+                       at another experiment's file);
+                       hard from birth
   queue gate (drain in progress; never fails the report unless --fail-on-queue):
     objectives_lint    template-objective artifacts (OL-01/OL-02), phase by phase
     fence_namecheck    unbound names in python fences (report mode), two
@@ -2511,6 +2541,7 @@ GATES = [
      True),
     ("footer_fm_parity_check.py", "footer_fm_parity_check", True),
     ("module_code_census.py", "module_code_census", True),
+    ("label_code_parity_scan.py", "label_code_parity_scan", True),
 ]
 
 

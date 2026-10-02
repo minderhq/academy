@@ -397,7 +397,7 @@ trainer.train()
 # Result: Student model with teacher's knowledge
 ```
 
-2. **[5302: Distributed Training](../phases/phase5-finetuning/5400-distributed-training/5402-Model-Parallelism.md)** (2-3 hours)
+2. **[5302: Distributed Training](../phases/phase5-finetuning/5300-synthetic/5302-Distributed-Training.md)** (2-3 hours)
    - Multi-GPU training
    - FSDP (Fully Sharded Data Parallel)
    - DeepSpeed integration

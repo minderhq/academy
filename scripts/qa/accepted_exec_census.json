@@ -216,7 +216,7 @@
    "bad": {}
   },
   "docs/learning-resources/case-studies/REAL-WORLD-EXAMPLES.md": {
-   "mtime": 1790788811.2902117,
+   "mtime": 1790979862.7011635,
    "size": 12004,
    "bad": {}
   },
@@ -2908,17 +2908,13 @@
    }
   },
   "docs/volumes/VOLUME-5-Model-Adaptation.md": {
-   "mtime": 1790785289.311911,
-   "size": 16809,
+   "mtime": 1790979812.5728712,
+   "size": 16801,
    "bad": {
-    "153": "ENV-GAP:Using `bitsandbytes` 4-bit quantization requires bitsandbyte",
-    "285": "ENV-GAP:trl",
-    "433": "CODE-SIGNAL:RuntimeError"
+    "433": "TIMEOUT"
    },
    "notes": {
-    "153": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-    "285": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-    "433": "disk-bound: datasets writer hits os error 112 (disk full) on the 2.3GB-free machine; FLAKY_FAMILY with TIMEOUT"
+    "433": "disk-bound: the datasets-writer fence crawls on the ~2GB-free machine and hits the runner's 90s wall; its fast-fail sibling outcome (os error 112 disk full, CODE-SIGNAL:RuntimeError) and this TIMEOUT are the same FLAKY_FAMILY - a TIMEOUT row swallows the file's per-fence rows, so the earlier ENV-GAP rows (153 bitsandbytes, 285 trl) are unmeasured on TIMEOUT runs, not resolved"
    }
   },
   "docs/volumes/VOLUME-6-Data-Nexus.md": {

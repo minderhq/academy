@@ -340,7 +340,7 @@ Query → Embed → Retrieve → Rerank → LLM → Response
 
 - **Experiments:**
   - [EXP_6201: Hybrid Search](../../../experiments/EXP_6201_HYBRID_SEARCH.md)
-  - [EXP_7202: Multi-Agent Collaboration](../../../experiments/EXP_7301_COLLABORATION.md)
+  - [EXP_7301: Multi-Agent Collaboration](../../../experiments/EXP_7301_COLLABORATION.md)
 
 ---
 
