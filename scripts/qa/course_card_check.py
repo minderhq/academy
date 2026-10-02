@@ -60,6 +60,10 @@ CC-10  Every module's PREREQUISITES.md carries at least one internal
        course link (a target ending .md) - the entry page a platform
        renders must offer the learner a clickable way into the
        course, not prose alone.
+CC-11  A module README's lesson links must first appear in ascending
+       order - the course card's lesson order is the unlock order,
+       the CC-09 invariant one level down (fence-aware; non-lesson
+       targets never enter the order).
 
 The gate is order-agnostic about table columns (3500-multimodal renders Time
 before Difficulty and both orders pass). Dead row targets are skipped here -
@@ -81,7 +85,11 @@ above the cards is frozen too. CC-09 born tick-581 at zero (7/7 phase pages
 first-appear ascending); CC-10 born tick-581 after a one-line drain -
 3500-multimodal's entry page was the lone PREREQUISITES.md of 33 with no
 clickable way into the course (32 siblings linked their first lesson; the
-drain wrote the house 'If YES: Start with [3501: ...]' form).
+drain wrote the house 'If YES: Start with [3501: ...]' form). CC-11 born
+tick-582 at zero - the third zero-drain lock in the PQ-06/CC-08/CC-09
+shape: all 93 lesson links across the 33 module READMEs first appear in
+ascending order, so the course card's lesson order froze as the unlock
+order.
 
 Exit 1 on any finding; prints one line per finding.
 """
@@ -301,6 +309,27 @@ def main() -> int:
             findings.append(
                 f"{rel} CC-04 lessons on disk but linked nowhere in the "
                 f"README: {missing}"
+            )
+
+        # CC-11: lesson links must first appear in ascending order -
+        # the course card's lesson order is the unlock order (the
+        # CC-09 invariant one level down)
+        lorder: list[str] = []
+        for m in LINK.finditer("\n".join(lines)):
+            tgt = m.group(1).split("#")[0]
+            if tgt.startswith(("http://", "https://", "mailto:")):
+                continue
+            base = PurePosixPath(tgt).name.removesuffix(".md")
+            hit = next(
+                (p.name for p in lessons if p.stem == base), None
+            )
+            if hit and hit not in lorder:
+                lorder.append(hit)
+        lnums = [int(n[:4]) for n in lorder]
+        if lnums != sorted(lnums):
+            findings.append(
+                f"{rel} CC-11 module README lesson links first appear "
+                f"out of unlock order - {lorder}"
             )
 
         # Module Documents table: CC-02/03 per row, CC-05 coverage
