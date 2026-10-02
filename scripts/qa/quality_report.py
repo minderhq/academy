@@ -459,7 +459,8 @@ stand today?" without running each tool by hand.
                        hours), hard since the drain; dual-mode
                        "quick/full review" entries are a legal
                        shape, both durations parse
-    prereq_census Prerequisites chain integrity (PQ-01..03, hard):
+    prereq_census Prerequisites chain integrity (PQ-01..03 + PQ-06,
+                       hard):
                        prerequisites are the learning-path
                        backbone - a dangling prerequisite is a
                        lesson that can never be unlocked. PQ-01
@@ -472,7 +473,25 @@ stand today?" without running each tool by hand.
                        titled brackets stripped, 2 bare lists
                        bracketed), hard since the drain; free-text
                        and prose entries remain allowed as
-                       authoring-stage pointers
+                       authoring-stage pointers. PQ-06 (born
+                       tick-574 at zero) the machine-parseable
+                       Prerequisites subgraph must be ACYCLIC
+                       (Tarjan SCC) - on the platform a prereq
+                       cycle is an unlock deadlock, neither side
+                       ever satisfiable; the live graph is 8
+                       machine-parseable docs / 12 tokens / 12
+                       edges, every edge forward in the lesson
+                       order, and the shared-dependency diamond
+                       (1103 requiring 1101+1102) is a legal DAG
+                       that must stay legal; edges come only
+                       from the gate's own shapes - prose and
+                       the tolerated [PHASE-N] brackets carry
+                       none; Related's one sibling cycle
+                       (1101->1102->1103->1101) is navigation,
+                       printed, never gated; PO-01/02 own the
+                       spine-local half, PQ-06 is the
+                       numbering-free whole-graph half covering
+                       the LAB-/TUTORIAL- edges PO excludes
     prereq_ordering_scan
                       Learning-path order integrity (PO-01/02,
                       hard, born at zero): corpus numbering is
