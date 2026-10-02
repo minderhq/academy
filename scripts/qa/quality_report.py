@@ -698,7 +698,7 @@ stand today?" without running each tool by hand.
                       badges, phase-hub range badges,
                       'Absolute Beginner')
     course_card_check
-                      Course-card parity (CC-01..08, hard):
+                      Course-card parity (CC-01..10, hard):
                       a module README's front-matter
                       Difficulty is the course card a
                       platform catalog reads and the
@@ -769,7 +769,25 @@ stand today?" without running each tool by hand.
                       fence-wrapped lines fire
                       exactly once with CC-01..07
                       kept silent
-    heading_scan
+
+                      CC-09 born tick-581 at zero: a
+                      phase README's module links
+                      must first appear in ascending
+                      curriculum order (browse order
+                      is unlock order), 7/7 phase
+                      pages clean - an out-of-order
+                      module link pair fires exactly
+                      once with CC-01..08 kept
+                      silent. CC-10 born tick-581
+                      after a one-line drain: every
+                      module's PREREQUISITES.md must
+                      carry at least one internal
+                      course link (a target ending
+                      .md), 3500-multimodal's entry
+                      page being the lone dead end of
+                      33 - de-linking or
+                      fence-wrapping the only exit
+                      link fires exactly once.    heading_scan
                       Heading skeleton soundness (HS-01..05,
                       hard): the platform renders a TOC and
                       anchor deep-links from heading structure,

@@ -52,6 +52,14 @@ CC-08  Every module directory is linked from its phase README (any link
        pages are the platform's course browse list, so a module that is
        visible from its own module index (CC-04) but absent from its
        phase page is invisible above the cards.
+CC-09  A phase README's module links must first appear in ascending
+       curriculum order - the browse list order is the unlock order
+       (fence-aware; a link with no module-dir component is a lesson
+       link and does not enter the order).
+CC-10  Every module's PREREQUISITES.md carries at least one internal
+       course link (a target ending .md) - the entry page a platform
+       renders must offer the learner a clickable way into the
+       course, not prose alone.
 
 The gate is order-agnostic about table columns (3500-multimodal renders Time
 before Difficulty and both orders pass). Dead row targets are skipped here -
@@ -69,7 +77,11 @@ the precondition CC-06 leans on is frozen as its own invariant. CC-08 born
 tick-580 as the second zero-drain lock in the same shape: the census read
 all 7 phase READMEs covering all 33 module dirs (the house convention links
 lessons inside each module dir from the phase page), so the browse spine
-above the cards is frozen too.
+above the cards is frozen too. CC-09 born tick-581 at zero (7/7 phase pages
+first-appear ascending); CC-10 born tick-581 after a one-line drain -
+3500-multimodal's entry page was the lone PREREQUISITES.md of 33 with no
+clickable way into the course (32 siblings linked their first lesson; the
+drain wrote the house 'If YES: Start with [3501: ...]' form).
 
 Exit 1 on any finding; prints one line per finding.
 """
@@ -256,6 +268,28 @@ def main() -> int:
                 f"platform renders per lesson): {lgap}"
             )
 
+        # CC-10: PREREQUISITES.md must offer the learner a way into the
+        # course - the entry page a platform renders needs at least one
+        # internal course link, not prose alone
+        prm = mod / "PREREQUISITES.md"
+        if prm.exists():
+            pblob = "\n".join(unfenced_lines(prm.read_text(encoding="utf-8")))
+            exits = [
+                m.group(1)
+                for m in LINK.finditer(pblob)
+                if m.group(1).endswith(".md")
+                and not m.group(1).startswith(
+                    ("http://", "https://", "mailto:")
+                )
+            ]
+            if not exits:
+                findings.append(
+                    f"{prm.relative_to(root).as_posix()} CC-10 "
+                    f"PREREQUISITES.md carries no internal course link "
+                    f"(the entry page must offer the learner a clickable "
+                    f"way into the course)"
+                )
+
         # CC-04: every lesson linked somewhere in the README
         linked = {
             PurePosixPath(m.group(1).split("#")[0]).name
@@ -356,6 +390,24 @@ def main() -> int:
                 f"the phase index (the CC-04 invariant one level up - "
                 f"this page is the platform's course browse list): "
                 f"{ghost}"
+            )
+
+        # CC-09: the phase page's module links must first appear in
+        # ascending curriculum order - the browse list order is the
+        # unlock order (a link with no module-dir component is a
+        # lesson link and does not enter the order)
+        order: list[int] = []
+        for t in targets:
+            dm = re.search(r"(?<!\d)(\d{4})-[a-z0-9-]+(?:/|$)", t)
+            if dm:
+                n = int(dm.group(1))
+                if n not in order:
+                    order.append(n)
+        if order != sorted(order):
+            findings.append(
+                f"{prel} CC-09 phase page browse order is not the "
+                f"unlock order - module links first appear as {order}, "
+                f"want ascending {sorted(order)}"
             )
 
     for f in findings:

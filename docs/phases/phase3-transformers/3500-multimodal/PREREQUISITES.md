@@ -53,6 +53,6 @@ Can you:
 - [ ] Understand contrastive learning?
 - [ ] Design a fusion strategy?
 
-**If YES:** See module README for available content
+**If YES:** Start with [3501: Vision-Language Models](./3501-Vision-Language-Models.md)
 
 **If NO:** Review the resources above first.
