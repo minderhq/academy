@@ -1180,7 +1180,17 @@ stand today?" without running each tool by hand.
                        47 vs 48, Meta Docs 20 vs 11)
                        and the three bare headers
                        drained to the self-explaining
-                       form
+                       form, SL-05 joined tick-563 -
+                       7 of the 29 counted headers
+                       carried the bare "(N)" form
+                       against the corpus convention
+                       SC's docstring documents,
+                       drained to "(N files)"/
+                       "(N file)" and the form
+                       locked (every counted header
+                       opens "(N files", singular
+                       "(N file" at N==1, suffix
+                       free; numbers stay SC-locked)
     empty_section_scan every heading must own content (ES-01): a
                        section is empty iff nothing but blanks/HRs/
                        blockquotes/HTML-comments sits between its

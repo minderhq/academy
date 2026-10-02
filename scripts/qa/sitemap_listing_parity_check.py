@@ -45,6 +45,20 @@ SL-04  self-explaining count headers: every registered fleet
        form (Experiments' convention) with A+B == N, A equal to
        its part-1 disk definition and B equal to its part-2 disk
        definition.
+SL-05  count-header form uniformity: every "##" header that
+       carries a count must open with "(N files" (singular
+       "(N file" at N==1 - canonical grammar); the suffix after
+       it stays free (": decomposition", " in configs/"). SC-01
+       already counts every "(N" header under any form, so the
+       numbers never depended on this - the form a platform
+       parser sees is what was drifting.
+
+SL-05 joined tick-563: the header-form census found 7 of the 29
+counted headers carrying the bare "(N)" form (Tutorials, Labs,
+Lab Solutions, Cheat Sheets, Interactive, Troubleshooting, Case
+Studies) against the corpus convention SC's own docstring
+documents ("## Section (N files)") - drained to "(N files)" /
+"(N file)" in the same tick, born at zero.
 
 SL-04 joined tick-561: the MI-vs-SITEMAP census over 14 fleet
 pairs found 4 definitional divergences (Notebooks 20 vs 21,
@@ -139,6 +153,13 @@ SELF_EXPLAINING = [
       "docs/learning-resources/projects/SETUP-GUIDE.md"]),
 ]
 EXPLAINED = re.compile(r"\((\d+) files: (\d+) [^)]+ \+ (\d+) [^)]+\)$")
+
+# SL-05: counted "##" headers must open with "(N files" (singular
+# "(N file" at N==1); whatever follows the prefix stays free. SC-01's
+# HEADLINE_NUM takes the number from any form, so this locks the FORM
+# only - never a count.
+SL05_COUNTED = re.compile(r"^## .+\(\d+\b")
+SL05_FILES = re.compile(r"^## .+\(\d+ files?\b")
 
 
 def esc(text: str) -> str:
@@ -260,14 +281,29 @@ def main() -> int:
             findings.append("SL-04 %s: header part 2 says %d, its disk "
                             "definition holds %d" % (fname, b, c2))
 
+    # --- SL-05: count-header form uniformity ------------------------------
+    n_forms = 0
+    for line in text.split("\n"):
+        if not SL05_COUNTED.match(line):
+            continue
+        if not SL05_FILES.match(line):
+            findings.append("SL-05 %s: header carries a bare count; the "
+                            "corpus form is '(N files ...)' (the number "
+                            "stays SC-01-locked, the form a platform "
+                            "parser reads must be uniform)"
+                            % line[3:].strip())
+        else:
+            n_forms += 1
+
     for f in findings:
         print(esc(f))
     print("sitemap_listing_parity_check: %d findings (SL-01 listing "
           "identity across %d fleets, SL-02 corpus completeness, SL-03 "
           "module arithmetic, SL-04 self-explaining headers across %d "
-          "registrations) over %d sections / %d modules"
-          % (len(findings), len(FLEETS), len(SELF_EXPLAINING), len(secs),
-             n_modules))
+          "registrations, SL-05 count-header forms across %d headers) "
+          "over %d sections / %d modules"
+          % (len(findings), len(FLEETS), len(SELF_EXPLAINING), n_forms,
+             len(secs), n_modules))
     return 1 if findings else 0
 
 

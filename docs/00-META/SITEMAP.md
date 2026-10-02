@@ -492,7 +492,7 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 
 ---
 
-## Tutorials (15)
+## Tutorials (15 files)
 
 - [TUTORIAL-000-Python-for-AI](../learning-resources/tutorials/TUTORIAL-000-Python-for-AI.md)
 - [TUTORIAL-001-Hello-LLM](../learning-resources/tutorials/TUTORIAL-001-Hello-LLM.md)
@@ -510,7 +510,7 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [TUTORIAL-013-AI-Security](../learning-resources/tutorials/TUTORIAL-013-AI-Security.md)
 - [TUTORIAL-014-Production-LLM-Systems](../learning-resources/tutorials/TUTORIAL-014-Production-LLM-Systems.md)
 
-## Labs (15)
+## Labs (15 files)
 
 - [LAB-000-ENVIRONMENT-SETUP](../learning-resources/labs/LAB-000-ENVIRONMENT-SETUP.md)
 - [LAB-001-Docker-LLM](../learning-resources/labs/LAB-001-Docker-LLM.md)
@@ -528,7 +528,7 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [LAB-013-Advanced-Function-Calling](../learning-resources/labs/LAB-013-Advanced-Function-Calling.md)
 - [LAB-014-AI-Evaluation-Safety](../learning-resources/labs/LAB-014-AI-Evaluation-Safety.md)
 
-## Lab Solutions (15)
+## Lab Solutions (15 files)
 
 - [SOLUTION-LAB-000-Environment-Setup](../learning-resources/labs/solutions/SOLUTION-LAB-000-Environment-Setup.md)
 - [SOLUTION-LAB-001-Docker-LLM](../learning-resources/labs/solutions/SOLUTION-LAB-001-Docker-LLM.md)
@@ -559,7 +559,7 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [PROJECT-007-Production-AI-System](../learning-resources/projects/PROJECT-007-Production-AI-System.md)
 - [SETUP-GUIDE](../learning-resources/projects/SETUP-GUIDE.md)
 
-## Cheat Sheets (13)
+## Cheat Sheets (13 files)
 
 - [CHEAT-SHEET-001-Docker](../learning-resources/cheat-sheets/CHEAT-SHEET-001-Docker.md)
 - [CHEAT-SHEET-002-Python-AI](../learning-resources/cheat-sheets/CHEAT-SHEET-002-Python-AI.md)
@@ -575,15 +575,15 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [QUICK-REF-VOLUME-6](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-6.md)
 - [QUICK-REF-VOLUME-7](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-7.md)
 
-## Interactive (1)
+## Interactive (1 file)
 
 - [FLASHCARDS](../learning-resources/interactive/FLASHCARDS.md)
 
-## Troubleshooting (1)
+## Troubleshooting (1 file)
 
 - [TROUBLESHOOTING-Common-Issues](../learning-resources/troubleshooting/TROUBLESHOOTING-Common-Issues.md)
 
-## Case Studies (1)
+## Case Studies (1 file)
 
 - [REAL-WORLD-EXAMPLES](../learning-resources/case-studies/REAL-WORLD-EXAMPLES.md)
 
