@@ -698,7 +698,7 @@ stand today?" without running each tool by hand.
                       badges, phase-hub range badges,
                       'Absolute Beginner')
     course_card_check
-                      Course-card parity (CC-01..22, hard):
+                      Course-card parity (CC-01..23, hard):
                       a module README's front-matter
                       Difficulty is the course card a
                       platform catalog reads and the
@@ -1118,7 +1118,31 @@ stand today?" without running each tool by hand.
                       header fires exactly 1 CC-21 and
                       0 CC-22, two phase assessments
                       aggregate into
-                      exactly 2 CC-22.    heading_scan
+                      exactly 2 CC-22.
+                      CC-23 the eighth surface of the FM
+                      keyset family: a learning-resources
+                      reference page's FM carries only
+                      the 6-field entry keyset, negative
+                      excess only; the tick-593 census
+                      read the 43 standalone reference
+                      pages born-clean (bridges, case-
+                      studies, cheat-sheets, guides,
+                      interactive, projects, resources,
+                      troubleshooting) while labs (15/15
+                      entry vs entry+ET) and tutorials
+                      (13 core + 2 legacy carriers) read
+                      other forms and stayed unlocked -
+                      so the lock is a zero-drain one in
+                      the CC-21/CC-22 shape: the
+                      enrichment reference surface froze
+                      at the family the moment it was
+                      named - an extra FM field on a
+                      cheat-sheet fires exactly 1 CC-23
+                      with CC-01..22 kept silent, the
+                      same field on a tutorial fires 0
+                      (out of scope), a cheat-sheet and a
+                      project aggregate into
+                      exactly 2 CC-23.    heading_scan
                       Heading skeleton soundness (HS-01..05,
                       hard): the platform renders a TOC and
                       anchor deep-links from heading structure,

@@ -146,6 +146,17 @@ CC-22  Every phase-level assessment page's FM carries only
        pages live in. Negative-excess only: FS owns
        field presence, this clause owns field
        excess - never double-report.
+CC-23  Every learning-resources reference page's FM
+       carries only the 6-field entry keyset - one
+       family for the 43 standalone reference pages
+       (bridges, case-studies, cheat-sheets, guides,
+       interactive, projects, resources,
+       troubleshooting), the enrichment layer a platform
+       renders beside the curriculum, so a platform
+       parser reads every reference page through the
+       same schema its entry pages live in. Negative-
+       excess only: FS owns field presence, this
+       clause owns field excess - never double-report.
 
 The gate is order-agnostic about table columns (3500-multimodal renders Time
 before Difficulty and both orders pass). Dead row targets are skipped here -
@@ -331,6 +342,23 @@ phase-completion checkpoint surface a platform renders
 between course groups froze at the family the moment it
 was named, no drain, no fence coupling, nothing to probe.
 
+CC-23 was born tick-593 as the eighth FM-keyset surface
+(entry CC-16, card CC-17, lesson CC-18, guide CC-19,
+assessment CC-20, phase header CC-21, phase assessment
+CC-22, reference page CC-23): the census read the 43
+learning-resources reference pages born-clean - every one
+of bridges/case-studies/cheat-sheets/guides/interactive/
+projects/resources/troubleshooting already on the exact
+6-field entry keyset - while labs (15/15 split between
+entry and entry+Estimated Time) and tutorials (13 on the
+8-field core, 2 legacy carriers widening with Category
+and Related) read different forms and stayed unlocked
+this tick, each its own census-first surface. So the
+lock is a zero-drain one in the CC-21/CC-22 shape: the
+enrichment reference surface a platform renders beside
+the curriculum froze at the family the moment it was
+named, no drain, no fence coupling, nothing to probe.
+
 Exit 1 on any finding; prints one line per finding.
 """
 from __future__ import annotations
@@ -377,6 +405,20 @@ PHASE_KEYSET = ENTRY_KEYSET
 # too - its module-level CC-20 sibling carries the 9-field
 # bank, but the phase-completion page stays minimal
 PHASE_ASSESSMENT_KEYSET = ENTRY_KEYSET
+# the learning-resources reference pages share the entry
+# family as well - labs and tutorials read other forms
+# and stay outside this clause
+REFERENCE_KEYSET = ENTRY_KEYSET
+REFERENCE_DIRS = (
+    "bridges",
+    "case-studies",
+    "cheat-sheets",
+    "guides",
+    "interactive",
+    "projects",
+    "resources",
+    "troubleshooting",
+)
 FM_DASH = re.compile(r"^---\s*$")
 FM_KEY = re.compile(r"^([A-Za-z][A-Za-z0-9 _-]*):")
 DIFF_FIELD = re.compile(r"^Difficulty:(.*)$")
@@ -943,6 +985,24 @@ def main() -> int:
                 f"outside the phase-assessment keyset - "
                 f"{', '.join(extra)}"
             )
+
+    # CC-23: the learning-resources reference pages carry
+    # only the entry FM keyset - the enrichment layer a
+    # platform renders beside the curriculum reads the
+    # same 6-field family the entry pages live in
+    # (labs and tutorials read other forms and stay
+    # outside this clause)
+    lr_dir = root / "docs" / "learning-resources"
+    for dname in REFERENCE_DIRS:
+        for rp in sorted((lr_dir / dname).rglob("*.md")):
+            rrel = rp.relative_to(root).as_posix()
+            extra = sorted(fm_keys(rp) - REFERENCE_KEYSET)
+            if extra:
+                findings.append(
+                    f"{rrel} CC-23 reference-page FM carries "
+                    f"fields outside the reference keyset - "
+                    f"{', '.join(extra)}"
+                )
 
     for f in findings:
         print(f)
