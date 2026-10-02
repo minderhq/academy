@@ -790,11 +790,13 @@ AI agent implementations:
 Each technical document has an associated experiment file for hands-on validation.
 
 <details>
-<summary><b>🔬 46 Experiment Files</b></summary>
+<summary><b>🔬 47 Experiment Files</b></summary>
 
-**Infrastructure (4):**
-- [EXP_1101: Internet Uplink (case study)](./experiments/EXP_1101_GPON.md) | [EXP_1302: GPU Scheduler](./experiments/EXP_1302_GPU_SCHEDULER.md)
-- [EXP_1501: Monitoring](./experiments/EXP_1501_MONITORING.md) | [EXP_1502: Model Drift](./experiments/EXP_1502_MODEL_DRIFT.md)
+**Infrastructure (8):**
+- [EXP_1101: Internet Uplink (case study)](./experiments/EXP_1101_GPON.md) | [EXP_1102: Star Topology](./experiments/EXP_1102_STAR_TOPOLOGY.md)
+- [EXP_1302: GPU Scheduler](./experiments/EXP_1302_GPU_SCHEDULER.md) | [EXP_1403: TGI Tuning](./experiments/EXP_1403_TGI_TUNING.md)
+- [EXP_1404: vLLM Tuning](./experiments/EXP_1404_VLLM_TUNING.md) | [EXP_1501: Monitoring](./experiments/EXP_1501_MONITORING.md)
+- [EXP_1502: Model Drift](./experiments/EXP_1502_MODEL_DRIFT.md) | [EXP_1503: Drift Detection](./experiments/EXP_1503_DRIFT_DETECTION.md)
 
 **Frameworks (5):**
 - [EXP_2101: Tensor Algebra](./experiments/EXP_2101_TENSOR_ALGEBRA.md) | [EXP_2102: Backpropagation](./experiments/EXP_2102_BACKPROPAGATION.md)
@@ -806,22 +808,29 @@ Each technical document has an associated experiment file for hands-on validatio
 - [EXP_3201: RoPE](./experiments/EXP_3201_ROPE.md) | [EXP_3202: Tokenizer](./experiments/EXP_3202_TOKENIZER.md)
 - [EXP_3401: Encoder-Decoder](./experiments/EXP_3401_ENCODER_DECODER.md) | [EXP_3501: Multimodal RAG](./experiments/EXP_3501_MULTIMODAL_RAG.md)
 
-**Quantization (4):**
+**Quantization (5):**
 - [EXP_4101: GGUF](./experiments/EXP_4101_GGUF.md) | [EXP_4102: EXL2/AWQ](./experiments/EXP_4102_EXL2_AWQ.md)
-- [EXP_4201: Context Window](./experiments/EXP_4201_CONTEXT_WINDOW.md) | [EXP_4202: Speculative Decoding](./experiments/EXP_4202_SPECULATIVE_DECODING.md)
+- [EXP_4103: Double Quant](./experiments/EXP_4103_DOUBLE_QUANT.md) | [EXP_4201: Context Window](./experiments/EXP_4201_CONTEXT_WINDOW.md)
+- [EXP_4202: Speculative Decoding](./experiments/EXP_4202_SPECULATIVE_DECODING.md)
 
-**Fine-Tuning (3):**
-- [EXP_5101: LoRA](./experiments/EXP_5101_LORA.md) | [EXP_5201: DPO](./experiments/EXP_5201_DPO.md)
+**Fine-Tuning (7):**
+- [EXP_5101: LoRA](./experiments/EXP_5101_LORA.md) | [EXP_5102: QLoRA](./experiments/EXP_5102_QLORA.md)
+- [EXP_5201: DPO](./experiments/EXP_5201_DPO.md) | [EXP_5202: Alignment](./experiments/EXP_5202_ALIGNMENT.md)
+- [EXP_5301: Distillation](./experiments/EXP_5301_DISTILLATION.md) | [EXP_5302: Distributed Training](./experiments/EXP_5302_DISTRIBUTED.md)
 - [EXP_5303: Federated Learning](./experiments/EXP_5303_FEDERATED_LEARNING.md)
 
-**RAG (6):**
-- [EXP_6101: HNSW](./experiments/EXP_6101_HNSW.md) | [EXP_6201: Hybrid Search](./experiments/EXP_6201_HYBRID_SEARCH.md)
-- [EXP_6301: GraphRAG](./experiments/EXP_6301_GRAPHRAG.md) | [EXP_6303: Neo4j](./experiments/EXP_6303_NEO4J.md)
-- [EXP_6401: Vector DB](./experiments/EXP_6401_VECTOR_DB.md) | [EXP_6501: MLOps Pipeline](./experiments/EXP_6501_MLOPS_PIPELINE.md)
+**RAG (9):**
+- [EXP_6101: HNSW](./experiments/EXP_6101_HNSW.md) | [EXP_6102: Semantic Similarity](./experiments/EXP_6102_SIMILARITY.md)
+- [EXP_6201: Hybrid Search](./experiments/EXP_6201_HYBRID_SEARCH.md) | [EXP_6202: Re-ranking](./experiments/EXP_6202_RERANK.md)
+- [EXP_6301: GraphRAG](./experiments/EXP_6301_GRAPHRAG.md) | [EXP_6302: Long Context](./experiments/EXP_6302_CAG.md)
+- [EXP_6303: Neo4j](./experiments/EXP_6303_NEO4J.md) | [EXP_6401: Vector DB](./experiments/EXP_6401_VECTOR_DB.md)
+- [EXP_6501: MLOps Pipeline](./experiments/EXP_6501_MLOPS_PIPELINE.md)
 
-**Agents (4):**
-- [EXP_7101: ReAct](./experiments/EXP_7101_REACT.md) | [EXP_7201: Multi-Agent](./experiments/EXP_7201_MULTI_AGENT.md)
-- [EXP_7401: Agent Memory](./experiments/EXP_7401_AGENT_MEMORY.md) | [EXP_7501: Prompt Injection](./experiments/EXP_7501_PROMPT_INJECTION.md)
+**Agents (7):**
+- [EXP_7101: ReAct](./experiments/EXP_7101_REACT.md) | [EXP_7102: Planning & Decomposition](./experiments/EXP_7102_PLANNING.md)
+- [EXP_7201: Multi-Agent](./experiments/EXP_7201_MULTI_AGENT.md) | [EXP_7202: Code Sandbox](./experiments/EXP_7202_SANDBOX.md)
+- [EXP_7301: Multi-Agent Collaboration](./experiments/EXP_7301_COLLABORATION.md) | [EXP_7401: Agent Memory](./experiments/EXP_7401_AGENT_MEMORY.md)
+- [EXP_7501: Prompt Injection](./experiments/EXP_7501_PROMPT_INJECTION.md)
 
 </details>
 

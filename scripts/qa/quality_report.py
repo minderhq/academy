@@ -1118,6 +1118,29 @@ stand today?" without running each tool by hand.
                        the three supporting guides had a
                        MASTER-INDEX row, drained in the
                        same tick
+    fleet_count_parity_check
+                       the count claims a learner plans
+                       from lock to disk (FC-01 every
+                       MASTER-INDEX File Counts row
+                       equals its disk definition -
+                       Experiments counts experiments/
+                       EXP_*.md excluding TEMPLATE,
+                       Phase Documents every .md under
+                       docs/phases, Meta Docs top level
+                       only, FC-02 the TOTAL row equals
+                       the category sum, FC-03 the
+                       SITEMAP Experiments header equals
+                       disk, FC-04 the README summary
+                       equals disk, FC-05 the README
+                       Experiments section lists every
+                       EXP file in both directions, FC-06
+                       each group header equals its own
+                       block); born tick-559 at 16
+                       findings - the README summary
+                       said 46 against 47 on disk and 15
+                       experiments were listed nowhere
+                       on the README surface, drained in
+                       the same tick
     empty_section_scan every heading must own content (ES-01): a
                        section is empty iff nothing but blanks/HRs/
                        blockquotes/HTML-comments sits between its
@@ -1509,6 +1532,7 @@ GATES = [
     ("project_index_parity_check.py", "project_index_parity_check", True),
     ("small_index_parity_check.py", "small_index_parity_check", True),
     ("project_prereq_parity_check.py", "project_prereq_parity_check", True),
+    ("fleet_count_parity_check.py", "fleet_count_parity_check", True),
 ]
 
 
