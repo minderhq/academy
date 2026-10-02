@@ -72,8 +72,8 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [README](../phases/phase1-infra/1400-llmops/README.md)
 - [1401-Ollama-Enterprise](../phases/phase1-infra/1400-llmops/1401-Ollama-Enterprise.md)
 - [1402-vLLM-and-TGI](../phases/phase1-infra/1400-llmops/1402-vLLM-and-TGI.md)
-- [guide: 1404-vLLM-Production-Deployment](../phases/phase1-infra/1400-llmops/guides/1404-vLLM-Production-Deployment.md)
-- [guide: 1405-TGI-Deployment-Guide](../phases/phase1-infra/1400-llmops/guides/1405-TGI-Deployment-Guide.md)
+- [guide: 1403-vLLM-Production-Deployment](../phases/phase1-infra/1400-llmops/guides/1403-vLLM-Production-Deployment.md)
+- [guide: 1404-TGI-Deployment-Guide](../phases/phase1-infra/1400-llmops/guides/1404-TGI-Deployment-Guide.md)
 - [assessment: PRACTICE](../phases/phase1-infra/1400-llmops/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase1-infra/1400-llmops/assessment/QUIZ.md)
 

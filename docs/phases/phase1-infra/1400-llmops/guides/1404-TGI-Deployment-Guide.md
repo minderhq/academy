@@ -1,6 +1,6 @@
 ---
-Document ID: 1405
-Title: "1405: Text Generation Inference (TGI) Deployment Guide"
+Document ID: 1404
+Title: "1404: Text Generation Inference (TGI) Deployment Guide"
 Phase: 1
 Module: 1400
 Last Updated: 2026-09-30
@@ -12,7 +12,7 @@ Related: See module README
 Tags: ['infrastructure', 'llmops', 'tgi']
 ---
 
-# 1405: Text Generation Inference (TGI) Deployment Guide
+# 1404: Text Generation Inference (TGI) Deployment Guide
 
 ## Table of Contents
 
@@ -68,7 +68,7 @@ Status (Sep 2026): the TGI repository was archived on GitHub (read-only) in
 March 2026; v3.3.7 was its final release. Everything in this guide remains
 runnable on the archived codebase, but the engine is maintenance-only — treat
 this as legacy-deployment reference and default new production deployments to
-vLLM (see the comparison below and guide 1404).
+vLLM (see the comparison below and guide 1403).
 
 ## TGI vs vLLM Comparison
 
@@ -90,7 +90,7 @@ Both engines are Apache 2.0. With the TGI repository archived (read-only) in
 March 2026, vLLM is the default for new production deployments; TGI remains a
 valid maintenance choice for existing Hugging Face-native fleets, while vLLM
 additionally offers PagedAttention-level KV tuning and a wider plugin surface
-(see [1404](1404-vLLM-Production-Deployment.md)).
+(see [1403](1403-vLLM-Production-Deployment.md)).
 
 ## Quick Start
 
@@ -952,7 +952,7 @@ TGI is Hugging Face's production serving stack, and its shape matters: a Rust HT
 
 ### Related PROJECT-OMEGA Documents
 
-- [1404: vLLM Production Deployment Guide](1404-vLLM-Production-Deployment.md)
+- [1403: vLLM Production Deployment Guide](1403-vLLM-Production-Deployment.md)
 
 ---
 
@@ -964,7 +964,7 @@ TGI is Hugging Face's production serving stack, and its shape matters: a Rust HT
 
 **Related:**
 - [1402: vLLM and TGI](../1402-vLLM-and-TGI.md)
-- [1404: vLLM Production Deployment](./1404-vLLM-Production-Deployment.md)
+- [1403: vLLM Production Deployment](./1403-vLLM-Production-Deployment.md)
 - [1401: Ollama Enterprise](../1401-Ollama-Enterprise.md)
 - [4201: Context Window Physics](../../../phase4-quantization/4200-kv-cache/4201-Context-Window-Physics.md)
 - [1501: Monitoring and Observability](../../1500-monitoring/1501-Monitoring-and-Observability.md)

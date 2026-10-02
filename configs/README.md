@@ -65,8 +65,8 @@ against the OpenAI-compatible `/v1/chat/completions` endpoint.
 
 ## Related Course Material
 
-- [1404: vLLM Production Deployment](../docs/phases/phase1-infra/1400-llmops/guides/1404-vLLM-Production-Deployment.md)
-- [1405: TGI Deployment Guide](../docs/phases/phase1-infra/1400-llmops/guides/1405-TGI-Deployment-Guide.md)
+- [1403: vLLM Production Deployment](../docs/phases/phase1-infra/1400-llmops/guides/1403-vLLM-Production-Deployment.md)
+- [1404: TGI Deployment Guide](../docs/phases/phase1-infra/1400-llmops/guides/1404-TGI-Deployment-Guide.md)
 - [1501: Monitoring and Observability](../docs/phases/phase1-infra/1500-monitoring/1501-Monitoring-and-Observability.md)
 - [6303: Neo4j Deployment Guide](../docs/phases/phase6-rag/6300-context/guides/6303-Neo4j-Deployment-Guide.md)
 - [6403: Qdrant Production Deployment](../docs/phases/phase6-rag/6400-vector-databases/guides/6403-Qdrant-Production-Deployment.md)

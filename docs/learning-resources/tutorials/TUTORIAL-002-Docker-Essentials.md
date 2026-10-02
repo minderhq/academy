@@ -542,7 +542,7 @@ How Docker fits into PROJECT-OMEGA:
 ## What's Next?
 
 1. **[1301: K3s Master-Worker Architecture](../../phases/phase1-infra/1300-kubernetes/1301-K3s-Master-Worker-Arch.md)** - Orchestrate containers at cluster scale
-2. **[1405: TGI Deployment Guide](../../phases/phase1-infra/1400-llmops/guides/1405-TGI-Deployment-Guide.md)** - Serve LLMs in GPU containers
+2. **[1404: TGI Deployment Guide](../../phases/phase1-infra/1400-llmops/guides/1404-TGI-Deployment-Guide.md)** - Serve LLMs in GPU containers
 3. **[0000-LEARNING-PATH.md](../../00-META/0000-LEARNING-PATH.md)** - Full curriculum
 
 ---

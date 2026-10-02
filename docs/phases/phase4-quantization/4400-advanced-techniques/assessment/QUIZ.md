@@ -211,7 +211,7 @@ Each question maps to the closest lesson for review:
 - **Questions 11-14:** [4403: GGUF Format](../4403-GGUF-Format.md) — CPU/consumer targets, the Q4_K_M sweet spot, the weights+metadata+tokenizer container, and per-layer GPU offload budgeting
 - **Question 15:** [4404: EXL2 Format](../4404-EXL2-Format.md) — NVIDIA-only ExLlamaV2 quants and the EXL2 vs GGUF decision tree
 - **Questions 16-18, 20:** [4408: Quantizing for Production](../guides/4408-Quantizing-for-Production.md) — the six-step pipeline, the three validation gates on domain data, escalating to higher bit-width when losses exceed budget, and the monitor/rollback discipline
-- **Question 19:** [1404: vLLM Production Deployment Guide](../../../phase1-infra/1400-llmops/guides/1404-vLLM-Production-Deployment.md) — reproducible serving through pinned Docker Compose images
+- **Question 19:** [1403: vLLM Production Deployment Guide](../../../phase1-infra/1400-llmops/guides/1403-vLLM-Production-Deployment.md) — reproducible serving through pinned Docker Compose images
 
 ---
 

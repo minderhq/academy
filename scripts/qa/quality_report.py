@@ -2160,6 +2160,39 @@ stand today?" without running each tool by hand.
                        drained the same tick; body-header
                        blocks and blockquote callouts
                        are the elaboration layer, unread
+    module_code_census
+                       module-code continuity (MC-01..03,
+                       hard): the platform renders the
+                       catalog from numeric codes - phase
+                       pages list module dirs in code
+                       order, module pages list lessons
+                       and guides in stem order, the
+                       volume spine paginates by VOLUME-N
+                       - so a skipped code is a hole a
+                       learner falls into; MC-01 module
+                       dirs per phase contiguous +100
+                       from phase#*1000+100, MC-02 the
+                       SET of 4-digit numeric stems
+                       across top-level *.md + guides +
+                       assessment per module contiguous
+                       (dups allowed - a guide may share
+                       its lesson's code), MC-03 volumes
+                       1..N; born tick-604 after the
+                       census read 7 phases / 33 modules
+                       / 7 volumes all clean except one
+                       real hole - 1400-llmops guides
+                       sat at 1404/1405 with 1403 absent
+                       from birth (the only baseline
+                       1403 was experiments/EXP_1403,
+                       outside docs/), drained same tick
+                       by renaming 1404-vLLM to 1403 and
+                       1405-TGI to 1404 (12 referencing
+                       files, 29 stem/display
+                       replacements, 0 residual);
+                       7400-memory needed nothing - its
+                       guide 7402 rides between lessons
+                       7401/7403 so the union set is
+                       contiguous; hard from birth
   queue gate (drain in progress; never fails the report unless --fail-on-queue):
     objectives_lint    template-objective artifacts (OL-01/OL-02), phase by phase
     fence_namecheck    unbound names in python fences (report mode), two
@@ -2477,6 +2510,7 @@ GATES = [
     ("sitemap_listing_parity_check.py", "sitemap_listing_parity_check",
      True),
     ("footer_fm_parity_check.py", "footer_fm_parity_check", True),
+    ("module_code_census.py", "module_code_census", True),
 ]
 
 

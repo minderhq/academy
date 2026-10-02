@@ -206,7 +206,7 @@ What changed from the naive version, and why
   and file paths to clients.
 ```
 
-One honest caveat about this shape: it is a fine reference service, but a single uvicorn process holding a 7B model in bf16 is not how mature systems serve traffic. Part 4's deployment targets a dedicated inference server ([1405: TGI Deployment Guide](../../phases/phase1-infra/1400-llmops/guides/1405-TGI-Deployment-Guide.md) covers the heavy-serving side); what this tutorial adds around any server — load balancing, metrics, alerts, CI/CD, A/B routing, caching — is the part you own either way.
+One honest caveat about this shape: it is a fine reference service, but a single uvicorn process holding a 7B model in bf16 is not how mature systems serve traffic. Part 4's deployment targets a dedicated inference server ([1404: TGI Deployment Guide](../../phases/phase1-infra/1400-llmops/guides/1404-TGI-Deployment-Guide.md) covers the heavy-serving side); what this tutorial adds around any server — load balancing, metrics, alerts, CI/CD, A/B routing, caching — is the part you own either way.
 
 ---
 
@@ -828,7 +828,7 @@ Create the deployment pipeline:
 - [TUTORIAL-002: Docker Essentials](./TUTORIAL-002-Docker-Essentials.md)
 - [LAB-009: Production Deployment](../labs/LAB-009-Production-Deployment.md)
 - [1301: K3s Master-Worker Architecture](../../phases/phase1-infra/1300-kubernetes/1301-K3s-Master-Worker-Arch.md)
-- [1405: TGI Deployment Guide](../../phases/phase1-infra/1400-llmops/guides/1405-TGI-Deployment-Guide.md)
+- [1404: TGI Deployment Guide](../../phases/phase1-infra/1400-llmops/guides/1404-TGI-Deployment-Guide.md)
 - [1501: Monitoring and Observability](../../phases/phase1-infra/1500-monitoring/1501-Monitoring-and-Observability.md)
 - [6502: CI/CD for ML](../../phases/phase6-rag/6500-mlops-pipelines/6502-CI-CD-for-ML.md)
 
@@ -847,5 +847,5 @@ Create the deployment pipeline:
 - Hands-on deployment of this stack: **[LAB-009: Production Deployment](../labs/LAB-009-Production-Deployment.md)**
 - Monitoring deep dive: **[1501: Monitoring and Observability](../../phases/phase1-infra/1500-monitoring/1501-Monitoring-and-Observability.md)**
 - Scale beyond one host: **[1301: K3s Master-Worker Architecture](../../phases/phase1-infra/1300-kubernetes/1301-K3s-Master-Worker-Arch.md)**
-- Dedicated inference serving: **[1405: TGI Deployment Guide](../../phases/phase1-infra/1400-llmops/guides/1405-TGI-Deployment-Guide.md)**
+- Dedicated inference serving: **[1404: TGI Deployment Guide](../../phases/phase1-infra/1400-llmops/guides/1404-TGI-Deployment-Guide.md)**
 - Pipeline automation theory: **[6502: CI/CD for ML](../../phases/phase6-rag/6500-mlops-pipelines/6502-CI-CD-for-ML.md)**

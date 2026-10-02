@@ -190,8 +190,8 @@ Follow the volumes below, in order.
 
 **Step 3: Inference Engines (1 week)**
 1. [1402: vLLM and TGI](../phases/phase1-infra/1400-llmops/1402-vLLM-and-TGI.md)
-2. [1404: vLLM Production Deployment](../phases/phase1-infra/1400-llmops/guides/1404-vLLM-Production-Deployment.md)
-3. [1405: TGI Deployment Guide](../phases/phase1-infra/1400-llmops/guides/1405-TGI-Deployment-Guide.md)
+2. [1403: vLLM Production Deployment](../phases/phase1-infra/1400-llmops/guides/1403-vLLM-Production-Deployment.md)
+3. [1404: TGI Deployment Guide](../phases/phase1-infra/1400-llmops/guides/1404-TGI-Deployment-Guide.md)
 
 ### Volume 4 Experiments
 - [EXP_4201: Context Window](../../experiments/EXP_4201_CONTEXT_WINDOW.md)

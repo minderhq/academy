@@ -1090,7 +1090,7 @@
    }
   },
   "docs/learning-resources/tutorials/TUTORIAL-012-Production-LLMOps.md": {
-   "mtime": 1790897729.7494192,
+   "mtime": 1790976165.26733,
    "size": 26141,
    "bad": {}
   },
@@ -1105,7 +1105,7 @@
    }
   },
   "docs/learning-resources/tutorials/TUTORIAL-014-Production-LLM-Systems.md": {
-   "mtime": 1790967200.040351,
+   "mtime": 1790978403.5174565,
    "size": 29057,
    "bad": {}
   },
@@ -1171,7 +1171,7 @@
    }
   },
   "docs/phases/phase1-infra/1400-llmops/README.md": {
-   "mtime": 1790944076.3777018,
+   "mtime": 1790978403.5174565,
    "size": 24873,
    "bad": {}
   },
@@ -1187,8 +1187,8 @@
     "262": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect"
    }
   },
-  "docs/phases/phase1-infra/1400-llmops/guides/1404-vLLM-Production-Deployment.md": {
-   "mtime": 1790959388.1323624,
+  "docs/phases/phase1-infra/1400-llmops/guides/1403-vLLM-Production-Deployment.md": {
+   "mtime": 1790978403.513943,
    "size": 28806,
    "bad": {
     "330": "CODE-SIGNAL:KeyError",
@@ -1199,8 +1199,8 @@
     "657": "intentional credential guard: os.environ['VLLM_API_KEY'] fails fast by design when the key is unset"
    }
   },
-  "docs/phases/phase1-infra/1400-llmops/guides/1405-TGI-Deployment-Guide.md": {
-   "mtime": 1790959388.1335063,
+  "docs/phases/phase1-infra/1400-llmops/guides/1404-TGI-Deployment-Guide.md": {
+   "mtime": 1790978403.5149477,
    "size": 31360,
    "bad": {
     "340": "SIDE-EFFECT",
@@ -2890,7 +2890,7 @@
    "bad": {}
   },
   "docs/volumes/VOLUME-4-Quantization.md": {
-   "mtime": 1790785289.3113756,
+   "mtime": 1790978403.5149477,
    "size": 15280,
    "bad": {
     "112": "ENV-GAP:exllamav2",

@@ -773,8 +773,8 @@ Lessons Learned:
 2. **[1402: vLLM and TGI](./1402-vLLM-and-TGI.md)** - High-performance serving engines
 
 ### Production Guides
-3. **[guides/1404: vLLM Production Deployment](./guides/1404-vLLM-Production-Deployment.md)** - Complete vLLM setup
-4. **[guides/1405: TGI Deployment Guide](./guides/1405-TGI-Deployment-Guide.md)** - TGI production deployment
+3. **[guides/1403: vLLM Production Deployment](./guides/1403-vLLM-Production-Deployment.md)** - Complete vLLM setup
+4. **[guides/1404: TGI Deployment Guide](./guides/1404-TGI-Deployment-Guide.md)** - TGI production deployment
 
 ## Prerequisites
 

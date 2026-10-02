@@ -299,7 +299,7 @@ outputs = llm.generate(["Hello, world!"])
    - Continuous batching
    - Performance comparison
 
-2. **[1404: vLLM Production Deployment](../phases/phase1-infra/1400-llmops/guides/1404-vLLM-Production-Deployment.md)** (3-4 hours)
+2. **[1403: vLLM Production Deployment](../phases/phase1-infra/1400-llmops/guides/1403-vLLM-Production-Deployment.md)** (3-4 hours)
    - Production setup
    - Docker deployment
    - Kubernetes configuration
@@ -344,7 +344,7 @@ docker run --gpus all \
 #### Day 4-5: TGI Deployment
 **Text Generation Inference by Hugging Face**
 
-1. **[1405: TGI Deployment Guide](../phases/phase1-infra/1400-llmops/guides/1405-TGI-Deployment-Guide.md)** (3-4 hours)
+1. **[1404: TGI Deployment Guide](../phases/phase1-infra/1400-llmops/guides/1404-TGI-Deployment-Guide.md)** (3-4 hours)
    - TGI architecture
    - Deployment strategies
    - Flash Attention integration
@@ -450,8 +450,8 @@ Use this checklist to track your progress:
 - [ ] **4202: Speculative Decoding** (3-4 hours)
 - [ ] **4203: Context Window Optimization** (2-3 hours)
 - [ ] **1402: vLLM and TGI** (2-3 hours)
-- [ ] **1404: vLLM Production Deployment** (3-4 hours)
-- [ ] **1405: TGI Deployment Guide** (3-4 hours)
+- [ ] **1403: vLLM Production Deployment** (3-4 hours)
+- [ ] **1404: TGI Deployment Guide** (3-4 hours)
 - [ ] **EXP_4201: Context Window** (2 hours)
 - [ ] **EXP_4202: Speculative Decoding** (2-3 hours)
 
@@ -483,7 +483,7 @@ Use this checklist to track your progress:
 - Volume 3: Understanding generation
 - Volume 7: Production acceleration
 
-**vLLM/TGI (1402, 1404, 1405) →**
+**vLLM/TGI (1402, 1403, 1404) →**
 - Volume 1: Docker deployment
 - Volume 7: Production monitoring, scaling
 

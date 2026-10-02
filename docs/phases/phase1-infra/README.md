@@ -354,8 +354,8 @@ graph LR
 |----------|-------------|------|------------|
 | [1401: Ollama Enterprise](./1400-llmops/1401-Ollama-Enterprise.md) | Local model APIs | 2h | Beginner |
 | [1402: vLLM and TGI](./1400-llmops/1402-vLLM-and-TGI.md) | High-concurrency engines | 4h | Intermediate |
-| [1404: vLLM Production](./1400-llmops/guides/1404-vLLM-Production-Deployment.md) | Production deployment | 3h | Advanced |
-| [1405: TGI Deployment](./1400-llmops/guides/1405-TGI-Deployment-Guide.md) | TGI setup guide | 3h | Advanced |
+| [1403: vLLM Production](./1400-llmops/guides/1403-vLLM-Production-Deployment.md) | Production deployment | 3h | Advanced |
+| [1404: TGI Deployment](./1400-llmops/guides/1404-TGI-Deployment-Guide.md) | TGI setup guide | 3h | Advanced |
 
 **What You'll Learn:**
 - Ollama for local model serving

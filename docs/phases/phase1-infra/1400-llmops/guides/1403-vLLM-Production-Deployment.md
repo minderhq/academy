@@ -1,6 +1,6 @@
 ---
-Document ID: 1404
-Title: "1404: vLLM Production Deployment Guide"
+Document ID: 1403
+Title: "1403: vLLM Production Deployment Guide"
 Phase: 1
 Module: 1400
 Last Updated: 2026-09-30
@@ -12,7 +12,7 @@ Related: See module README
 Tags: ['infrastructure', 'llmops', 'vllm']
 ---
 
-# 1404: vLLM Production Deployment Guide
+# 1403: vLLM Production Deployment Guide
 
 ## Table of Contents
 
@@ -790,13 +790,13 @@ vLLM in production is PagedAttention plus continuous batching: the KV cache is s
 
 ### Related PROJECT-OMEGA Documents
 
-- [1405: Text Generation Inference (TGI) Deployment Guide](1405-TGI-Deployment-Guide.md)
+- [1404: Text Generation Inference (TGI) Deployment Guide](1404-TGI-Deployment-Guide.md)
 
 ---
 
 ## Next Steps
 
-- Continue with: **[1405-TGI-Deployment-Guide.md](./1405-TGI-Deployment-Guide.md)** — legacy
+- Continue with: **[1404-TGI-Deployment-Guide.md](./1404-TGI-Deployment-Guide.md)** — legacy
   reference only: the TGI repo was archived on GitHub (read-only) in March 2026; new production
   deployments default to vLLM (this guide)
 

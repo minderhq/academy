@@ -572,8 +572,8 @@ graph TB
 ### [1400: LLMOps](./docs/phases/phase1-infra/1400-llmops/README.md)
 - [1401: Ollama Enterprise](./docs/phases/phase1-infra/1400-llmops/1401-Ollama-Enterprise.md)
 - [1402: vLLM and TGI](./docs/phases/phase1-infra/1400-llmops/1402-vLLM-and-TGI.md)
-- [1404: vLLM Production](./docs/phases/phase1-infra/1400-llmops/guides/1404-vLLM-Production-Deployment.md)
-- [1405: TGI Deployment](./docs/phases/phase1-infra/1400-llmops/guides/1405-TGI-Deployment-Guide.md)
+- [1403: vLLM Production](./docs/phases/phase1-infra/1400-llmops/guides/1403-vLLM-Production-Deployment.md)
+- [1404: TGI Deployment](./docs/phases/phase1-infra/1400-llmops/guides/1404-TGI-Deployment-Guide.md)
 
 ### [1500: Monitoring](./docs/phases/phase1-infra/1500-monitoring/README.md)
 - [1501: Monitoring Stack](./docs/phases/phase1-infra/1500-monitoring/1501-Monitoring-and-Observability.md)

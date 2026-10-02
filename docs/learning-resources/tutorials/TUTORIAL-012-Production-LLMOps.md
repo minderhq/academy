@@ -998,5 +998,5 @@ print(f"Budget remaining: ${report['budget_remaining']:.2f}")
 
 ## Next Steps
 
-- Hands-on: **[1404: vLLM Production Deployment](../../phases/phase1-infra/1400-llmops/guides/1404-vLLM-Production-Deployment.md)**
+- Hands-on: **[1403: vLLM Production Deployment](../../phases/phase1-infra/1400-llmops/guides/1403-vLLM-Production-Deployment.md)**
 - Practice: **[LAB-009: Production Deployment](../labs/LAB-009-Production-Deployment.md)**

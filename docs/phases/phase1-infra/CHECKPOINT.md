@@ -128,7 +128,7 @@ After completing Phase 1, you will:
 
 ### Module 1400: LLMOps (Required)
 
-**After completing 1401-1402, 1404-1405, you should:**
+**After completing 1401-1402, 1403-1404, you should:**
 
 **Knowledge Check:**
 - [ ] Understand Ollama architecture

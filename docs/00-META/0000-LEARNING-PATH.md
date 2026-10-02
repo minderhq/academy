@@ -342,8 +342,8 @@ Learning Path:
 ```text
 Learning Path:
 ├── [1402: vLLM and TGI](../phases/phase1-infra/1400-llmops/1402-vLLM-and-TGI.md)
-├── [1404: vLLM Production Deployment](../phases/phase1-infra/1400-llmops/guides/1404-vLLM-Production-Deployment.md)
-├── [1405: TGI Deployment Guide](../phases/phase1-infra/1400-llmops/guides/1405-TGI-Deployment-Guide.md)
+├── [1403: vLLM Production Deployment](../phases/phase1-infra/1400-llmops/guides/1403-vLLM-Production-Deployment.md)
+├── [1404: TGI Deployment Guide](../phases/phase1-infra/1400-llmops/guides/1404-TGI-Deployment-Guide.md)
 └── [1401: Ollama Enterprise](../phases/phase1-infra/1400-llmops/1401-Ollama-Enterprise.md)
 ```
 
@@ -696,7 +696,7 @@ Learning Path:
 
 ### Volume 7: Production
 24. [1501: Monitoring](../phases/phase1-infra/1500-monitoring/)
-25. [1404-1405: LLMOps](../phases/phase1-infra/1400-llmops/guides/)
+25. [1403-1404: LLMOps](../phases/phase1-infra/1400-llmops/guides/)
 
 ---
 
