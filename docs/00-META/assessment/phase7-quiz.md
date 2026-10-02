@@ -19,7 +19,7 @@ Tags: ['assessment', 'quiz', 'agents']
 a) Autonomous system that perceives and acts
 b) Automated script
 c) Virtual assistant
-d) Chatbot with tools
+d) Chatbot with tools replaying scripted customer dialogs
 
 **Answer:** a
 
@@ -38,7 +38,7 @@ d) Reactive actions
 ### 3. What is tool calling in agents?
 a) Agent using external functions/APIs
 b) Using utilities
-c) Calling tools
+c) Calling tools by name without any runtime binding
 d) Function calling
 
 **Answer:** a
@@ -48,7 +48,7 @@ d) Function calling
 ### 4. What is a multi-agent system?
 a) Many agents
 b) Agent swarm
-c) Agent cluster
+c) Agent cluster sharing one rotating session key
 d) Multiple agents working together
 
 **Answer:** d
@@ -58,7 +58,7 @@ d) Multiple agents working together
 ### 5. What is agent memory?
 a) Memory for agents
 b) Agent storage
-c) Context memory
+c) Context memory mirrored from the prompt template defaults
 d) Storing and retrieving past interactions
 
 **Answer:** d
@@ -89,7 +89,7 @@ d) Durable memory
 a) Memory of specific events/experiences
 b) Episode storage
 c) Event memory
-d) Experience memory
+d) Experience memory aggregated from peer agents every cycle
 
 **Answer:** a
 
@@ -119,7 +119,7 @@ d) Agent scheduling
 a) Agent that decomposes complex tasks
 b) Strategic agent
 c) Task planner
-d) Goal-oriented agent
+d) Goal-oriented agent that optimizes a fixed reward curve
 
 **Answer:** a
 
@@ -129,7 +129,7 @@ d) Goal-oriented agent
 a) Breaking complex tasks into subtasks
 b) Task splitting
 c) Goal decomposition
-d) Problem breaking
+d) Problem breaking measured in tickets closed per sprint
 
 **Answer:** a
 
@@ -139,7 +139,7 @@ d) Problem breaking
 a) Agent that executes code
 b) Coding assistant
 c) Code runner
-d) Execution agent
+d) Execution agent forwarding shell transcripts to reviewers
 
 **Answer:** a
 
@@ -159,7 +159,7 @@ d) Input manipulation
 a) Tool checking
 b) Verifying tool calls are safe
 c) Use validation
-d) Function validation
+d) Function validation performed by the model's tokenizer
 
 **Answer:** b
 
@@ -189,7 +189,7 @@ d) Self-governing agent
 a) Reactive agent
 b) Immediate response agent
 c) Agent that reacts to current state
-d) Simple agent
+d) Simple agent restricted to a single hardcoded response
 
 **Answer:** c
 
@@ -199,7 +199,7 @@ d) Simple agent
 a) Practical agent
 b) Agent maximizing utility function
 c) Useful agent
-d) Benefit agent
+d) Benefit agent reporting savings from retired endpoints
 
 **Answer:** b
 
@@ -209,7 +209,7 @@ d) Benefit agent
 a) Agent messaging
 b) Agents exchanging information
 c) Inter-agent communication
-d) Agent dialogue
+d) Agent dialogue streamed through a shared audit log
 
 **Answer:** b
 
@@ -259,7 +259,7 @@ d) Agent reviewing its own actions
 a) Static agent
 b) Agent with defined states and transitions
 c) Status agent
-d) Machine agent
+d) Machine agent wrapping firmware update routines for devices
 
 **Answer:** b
 
@@ -289,7 +289,7 @@ d) Lone agent
 a) Agent crowd
 b) Many simple agents acting collectively
 c) Agent flock
-d) Agent group
+d) Agent group provisioned from one shared config template
 
 **Answer:** b
 
@@ -297,7 +297,7 @@ d) Agent group
 
 ### 29. What is the main security concern with agents?
 a) Data privacy
-b) Model access
+b) Model access throttled by the vendor's fair-use policy
 c) Prompt leakage
 d) Uncontrolled tool execution
 

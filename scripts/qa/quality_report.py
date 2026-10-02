@@ -34,7 +34,7 @@ stand today?" without running each tool by hand.
                        every ```json fence parses as JSON (DB-01) and
                        every ```yaml fence parses as a YAML document
                        stream (DB-02); prose/formulas live in text fences
-    assessment_lint    assessment/QUIZ.md + PRACTICE.md coverage (AS-01..AS-14;
+    assessment_lint    assessment/QUIZ.md + PRACTICE.md coverage (AS-01..AS-15;
                        AS-09 graduated tick-566 to a hard ceil(N/4) letter
                        ceiling - no letter above a quarter of the bank's
                        answered questions - over the 33 module banks AND
@@ -67,7 +67,19 @@ stand today?" without running each tool by hand.
                        the question count, its percentage the corpus's
                        80% convention, its threshold the integer ceil
                        of that percentage - born tick-567
-                       census-proven at zero across all seven quizzes)
+                       census-proven at zero across all seven quizzes;
+                       AS-15 the answer-length cue: the correct option
+                       may be longest-or-tied (words AND characters,
+                       QI-10's exact metric) in at most 50% of a quiz's
+                       >= 4-option answered questions, under 10 such
+                       questions exempt - a learner who always picks the
+                       longest option would pass without reading; born
+                       tick-568 catching exactly the seven phase quizzes
+                       (83.3% corpus tied rate, peak 93.3%, a
+                       longest-picker scoring ~83% against the 80%
+                       passing line) while the module banks had already
+                       drained to 2.4% under the report queue, drained
+                       same tick with 75 one-distractor lengthenings)
     quiz_export        quiz bank parses into complete question records
     quiz_integrity_scan
                        content-level quiz integrity (QI-01..06 +

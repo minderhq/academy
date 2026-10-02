@@ -37,7 +37,7 @@ d) 8x reduction
 
 ### 3. What is GGUF format?
 a) Quantized model format for llama.cpp
-b) Graph optimization format
+b) Graph optimization format with fused decoder branches
 c) Gradient compression format
 d) GPU memory format
 
@@ -49,7 +49,7 @@ d) GPU memory format
 a) External library format
 b) Quantization format optimized for GPU inference
 c) Execution layer format
-d) Extended learning format
+d) Extended learning format carrying auxiliary training heads
 
 **Answer:** b
 
@@ -59,7 +59,7 @@ d) Extended learning format
 a) Activation-aware weight quantization
 b) Adaptive width quantization
 c) Accelerated workflow quantization
-d) Automatic weight quantization
+d) Automatic weight quantization that skips calibration entirely
 
 **Answer:** a
 
@@ -79,7 +79,7 @@ d) General purpose transformer quantization
 a) Quantizing twice
 b) Quantizing quantization parameters
 c) Two-stage quantization
-d) Dual precision quantization
+d) Dual precision quantization alternating scales every second layer
 
 **Answer:** b
 
@@ -88,7 +88,7 @@ d) Dual precision quantization
 ### 8. What is the KV cache?
 a) Key-value store for models
 b) Kernel verification cache
-c) Knowledge verification cache
+c) Knowledge verification cache reused across checkpoints and exported runs
 d) Cached keys and values for faster generation
 
 **Answer:** d
@@ -98,7 +98,7 @@ d) Cached keys and values for faster generation
 ### 9. What is the benefit of quantizing KV cache?
 a) Faster training
 b) Better accuracy
-c) Smaller model size
+c) Smaller model size achieved by pruning cached entries mid-flight
 d) Reduced memory usage for long contexts
 
 **Answer:** d
@@ -117,7 +117,7 @@ d) Speculative inference
 
 ### 11. What is QAT (Quantization Aware Training)?
 a) Training with simulated quantization
-b) Quality assurance testing
+b) Quality assurance testing with mocked inference endpoints
 c) Quick model training
 d) Quantization after training
 
@@ -149,7 +149,7 @@ d) 20-30%
 a) Expanding vocabulary
 b) Increasing maximum sequence length
 c) Adding more context
-d) Extending training
+d) Extending training schedules beyond the announced token budget
 
 **Answer:** b
 
@@ -209,7 +209,7 @@ d) Partial quantization
 a) Memory vs accuracy
 b) Speed vs memory
 c) Accuracy vs speed
-d) Size vs speed
+d) Size vs speed traded against hardware uptime targets
 
 **Answer:** a
 
@@ -237,7 +237,7 @@ d) Removing zero weights before quantization
 
 ### 23. What is the main challenge of quantizing very large models (70B+)?
 a) Calibration data requirements
-b) Speed of quantization
+b) Speed of quantization measured across sharded conversion workers
 c) Memory for calibration
 d) Accuracy loss
 
@@ -308,7 +308,7 @@ d) Different quantization per layer
 ### 30. What is the main advantage of QAT over post-training quantization?
 a) Faster quantization
 b) No calibration needed
-c) Simpler process
+c) Simpler process once calibration curves are pre-baked offline
 d) Better accuracy with same bit-width
 
 **Answer:** d

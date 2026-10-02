@@ -18,7 +18,7 @@ Tags: ['assessment', 'quiz', 'finetuning']
 ### 1. What is LoRA?
 a) Learning Rate Optimization
 b) Large Model Optimization
-c) Linear Regression Adaptation
+c) Linear Regression Adaptation with frozen projection heads
 d) Low-Rank Adaptation for efficient fine-tuning
 
 **Answer:** d
@@ -69,7 +69,7 @@ d) Direct Preference Optimization
 a) DPO doesn't require reward model
 b) DPO is faster
 c) DPO is more accurate
-d) DPO uses less data
+d) DPO uses less data because preference pairs share cached rewards
 
 **Answer:** a
 
@@ -78,7 +78,7 @@ d) DPO uses less data
 ### 7. What is RLHF?
 a) Rapid Learning from Features
 b) Recursive Learning with Human Feedback
-c) Reinforced Learning Heuristic Framework
+c) Reinforced Learning Heuristic Framework from earlier RL papers
 d) Reinforcement Learning from Human Feedback
 
 **Answer:** d
@@ -87,7 +87,7 @@ d) Reinforcement Learning from Human Feedback
 
 ### 8. What is a reward model in RLHF?
 a) Model trained to predict human preferences
-b) Model that gives rewards
+b) Model that gives rewards whenever the policy beats its baseline run
 c) Bonus model
 d) Scoring model
 
@@ -98,7 +98,7 @@ d) Scoring model
 ### 9. What is knowledge distillation?
 a) Training smaller model to mimic larger model
 b) Compressing knowledge
-c) Knowledge transfer
+c) Knowledge transfer sessions scheduled between teacher and student checkpoints
 d) Model compression
 
 **Answer:** a
@@ -138,7 +138,7 @@ d) Regularization strength
 ### 13. What are target modules in LoRA?
 a) Which layers to apply LoRA to
 b) Model targets
-c) Training targets
+c) Training targets tracked by the optimizer's projection buffers
 d) Loss targets
 
 **Answer:** a
@@ -179,7 +179,7 @@ d) Sample generation
 a) Better quality
 b) More diversity
 c) Reduce cost of data collection
-d) Faster training
+d) Faster training enabled by skipping validation splits altogether
 
 **Answer:** c
 
@@ -209,7 +209,7 @@ d) Batch parallelism
 a) Splitting data across GPUs
 b) Parallel models
 c) Splitting model across GPUs
-d) Model replication
+d) Model replication across every rank with synchronized broadcasts
 
 **Answer:** c
 
@@ -256,7 +256,7 @@ d) Learning optimization
 ---
 
 ### 25. What is warmup in training?
-a) Pre-heating GPU
+a) Pre-heating GPU kernels before the first optimizer step
 b) Data preparation
 c) Gradually increasing learning rate
 d) Model initialization
@@ -288,7 +288,7 @@ d) No difference
 ### 28. What is prompt tuning?
 a) Tuning prompts
 b) Learning soft prompts
-c) Prompt optimization
+c) Prompt optimization sweeps over curated instruction templates
 d) Prompt engineering
 
 **Answer:** b

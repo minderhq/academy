@@ -29,7 +29,7 @@ d) Recursive Augmented Generation
 a) Faster generation
 b) Adding external knowledge to LLMs
 c) Smaller models
-d) Better training
+d) Better training without touching the corpus layout
 
 **Answer:** b
 
@@ -38,7 +38,7 @@ d) Better training
 ### 3. What is a vector database?
 a) Database of vectors
 b) Database optimized for similarity search
-c) Mathematical database
+c) Mathematical database storing symbolic proofs alongside embeddings
 d) Embedded database
 
 **Answer:** b
@@ -49,7 +49,7 @@ d) Embedded database
 a) High Network Speed Web
 b) Hash-based Network Search Window
 c) Hierarchical Navigable Small World graph
-d) Hierarchical Node Search Window
+d) Hierarchical Node Search Window with pruned frontier levels
 
 **Answer:** c
 
@@ -58,7 +58,7 @@ d) Hierarchical Node Search Window
 ### 5. What is Qdrant?
 a) Vector database for embeddings
 b) Quantum database
-c) Quick data retrieval
+c) Quick data retrieval over compressed columnar shards
 d) Query database
 
 **Answer:** a
@@ -69,7 +69,7 @@ d) Query database
 a) Word similarity
 b) Measuring meaning similarity between texts
 c) Text matching
-d) Pattern matching
+d) Pattern matching over character n-grams of the raw corpus
 
 **Answer:** b
 
@@ -87,7 +87,7 @@ d) Character encoding
 
 ### 8. What is hybrid search?
 a) Fast search
-b) Mixed search
+b) Mixed search blending cached suggestions into every query
 c) Combining dense and sparse retrieval
 d) Parallel search
 
@@ -109,7 +109,7 @@ d) Searching again
 a) RAG with knowledge graphs
 b) Visual RAG
 c) Network RAG
-d) Graph-based RAG
+d) Graph-based RAG limited to visualization dashboards
 
 **Answer:** a
 
@@ -139,7 +139,7 @@ d) Graph of knowledge
 a) Splitting documents into smaller pieces
 b) Text segmentation
 c) Document parsing
-d) Data compression
+d) Data compression applied before every indexing pass
 
 **Answer:** a
 
@@ -159,7 +159,7 @@ d) 64-128 tokens
 a) Preserve context across chunks
 b) Reduce chunk size
 c) Improve compression
-d) Increase chunk count
+d) Increase chunk count until every chunk fits one sentence
 
 **Answer:** a
 
@@ -199,7 +199,7 @@ d) Light retrieval
 a) Maximum input length for model
 b) Memory window
 c) Attention window
-d) Context storage
+d) Context storage reserved on the serving host per session
 
 **Answer:** a
 
@@ -219,7 +219,7 @@ d) Poor accuracy
 a) Filtering results by attributes
 b) Metadata processing
 c) Attribute search
-d) Data cleaning
+d) Data cleaning of ingested records before embedding
 
 **Answer:** a
 
@@ -246,7 +246,7 @@ d) Storage for original documents
 ---
 
 ### 24. What is the reranking pipeline?
-a) Rank then retrieve
+a) Rank then retrieve with a second scoring sweep appended
 b) Retrieve and rank
 c) Search and score
 d) Retrieve then rerank
@@ -267,7 +267,7 @@ d) Using joint query-document encoding
 
 ### 26. What is query expansion?
 a) Expanding search
-b) Query enhancement
+b) Query enhancement macros rewritten by the serving middleware
 c) Search expansion
 d) Enriching query with related terms
 
@@ -286,7 +286,7 @@ d) Combining multiple retrieval methods
 ---
 
 ### 28. What is parent document retrieval?
-a) Document hierarchy
+a) Document hierarchy snapshots reloaded whenever indexes rebuild
 b) Hierarchical retrieval
 c) Multi-level retrieval
 d) Retrieve small chunks, return parent documents
@@ -298,7 +298,7 @@ d) Retrieve small chunks, return parent documents
 ### 29. What is recursive retrieval?
 a) Repeated retrieval
 b) Recursive search
-c) Nested retrieval
+c) Nested retrieval loops terminated by fixed depth quotas
 d) Hierarchical chunking and retrieval
 
 **Answer:** d

@@ -17,7 +17,7 @@ Tags: ['assessment', 'quiz', 'infrastructure']
 
 ### 1. What is the primary purpose of jumbo frames in network configuration?
 a) Reduce packet overhead
-b) Improve encryption
+b) Improve encryption throughput during transfers
 c) Increase security
 d) Reduce latency
 
@@ -38,7 +38,7 @@ d) kube-scheduler
 ### 3. What is MTU 9000 used for in this course's infrastructure?
 a) Jumbo frames for high-throughput transfers
 b) VPN tunneling
-c) Security filtering
+c) Security filtering of oversized datagrams at the edge
 d) Load balancing
 
 **Answer:** a
@@ -49,7 +49,7 @@ d) Load balancing
 a) Assigning specific CPU cores to VMs
 b) Network configuration
 c) Memory allocation
-d) Storage management
+d) Storage management policies that pin volumes to hosts
 
 **Answer:** a
 
@@ -78,7 +78,7 @@ d) FC
 ### 7. What is the benefit of Ollama Enterprise?
 a) Cloud hosting
 b) GPU clustering
-c) Auto-scaling
+c) Auto-scaling of licensed cloud seats per tenant
 d) Localized model APIs
 
 **Answer:** d
@@ -109,7 +109,7 @@ d) Tempo
 a) Model size increase
 b) Training speed decrease
 c) Model performance degradation over time
-d) Inference latency
+d) Inference latency spikes from hardware contention
 
 **Answer:** c
 

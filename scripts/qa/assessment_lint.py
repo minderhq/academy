@@ -71,6 +71,20 @@ the same AS-04/AS-08/AS-09 standards in their own "### N." shape):
          the line previously had no reader, so a question-count
          edit could silently strand the threshold a learner is
          told to hit
+  AS-15  answer-length cue: the correct option is longest-or-tied
+         (in words AND characters, QI-10's exact metric) in >= 50%
+         of the quiz's >= 4-option answered questions (min 10),
+         because a learner who always picks the longest option
+         passes without reading - the quiz then measures length,
+         not knowledge. The corpus line is quiz_integrity_scan's
+         own QI-10 report threshold (tick-290), applied hard to
+         both quiz shapes. Joined tick-568 - born census caught
+         exactly the seven phase quizzes (the module banks had
+         drained to a 2.4% corpus rate under the report queue:
+         66.7%..93.3% tied per phase quiz, a longest-picker
+         scoring ~83% against the 80% passing line the AS-14
+         locks); the flagged distractors were lengthened with
+         false-anchoring qualifiers before the ceiling locked
 
 Format-tolerant by design: richer variants (inline-answer quizzes,
 self-graded coding questions, 3-column answer keys) pass as long as
@@ -124,6 +138,14 @@ PHASE_INLINE = re.compile(r"\*\*Answer:\*\*\s*([A-Da-d])\b")
 PHASE_KEY_PAIR = re.compile(r"(?<!\d)(\d+)\\?\. ([A-Da-d])\b")
 # the learner-facing pass contract: "**Passing: 12/15 (80%)**"
 PASS_LINE = re.compile(r"\*\*Passing:\s*(\d+)/(\d+)\s*\((\d+)%\)\*\*")
+# AS-15: option text with its letter, both quiz shapes (module banks
+# render "A) text", phase quizzes render lowercase "a) text").
+OPT_TEXT = re.compile(r"^\s*([A-Ea-e])\)\s+(.+?)\s*$")
+# AS-15 shares QI-10's corpus line exactly (quiz_integrity_scan,
+# tick-290): tied-or-longer on both axes in >= 50% of the bank's
+# >= 4-option answered questions, banks under 10 mcq exempt.
+LEN_BIAS_SHARE = 0.5
+LEN_BIAS_MIN_MCQ = 10
 
 
 def fence_aware(lines):
@@ -167,6 +189,7 @@ class Linter:
         # exactly the set A-D (a duplicated letter shrinks the set, a
         # 3rd/5th option grows it past A-D or falls short).
         opts: dict = {}
+        qopts: dict = {}
         q = None
         for _, l in nf:
             m = QUESTION_BOLD.match(l) or QUESTION_H3.match(l)
@@ -176,6 +199,9 @@ class Linter:
             m = OPT_LINE.match(l)
             if m and q is not None:
                 opts.setdefault(q, set()).add(m.group(1))
+            t = OPT_TEXT.match(l)
+            if t and q is not None:
+                qopts.setdefault(q, {})[t.group(1).upper()] = t.group(2)
         bad = sorted(n for n, s in opts.items() if s != set("ABCD"))
         if bad:
             self.report(rel, "AS-10",
@@ -277,6 +303,44 @@ class Linter:
         # old queued 70% tripwire drained to quarter shares.
         self.check_balance(rel, key, qnums, inline)
 
+        # AS-15: the length cue, QI-10's report metric as a hard
+        # line over both quiz shapes. The module banks drained to a
+        # 2.4% corpus rate under the report queue (tick-290), so this
+        # is born-at-zero for them - the ceiling exists for the day
+        # an edit re-skews a bank.
+        answered = [{"answer": key.get(n) or inline.get(n),
+                     "options": qopts[n]}
+                    for n in sorted(qnums)
+                    if (key.get(n) or inline.get(n)) and n in qopts]
+        self.check_len_bias(rel, answered)
+
+    def check_len_bias(self, rel: str, answered: list) -> None:
+        """AS-15 shared by both quiz shapes: quiz_integrity_scan's
+        QI-10 report metric as a hard line - the correct option is
+        longest-or-tied (words AND characters) in >= LEN_BIAS_SHARE
+        of the quiz's >= 4-option answered questions (min
+        LEN_BIAS_MIN_MCQ), so a learner who always picks the longest
+        option passes without reading."""
+        mcq = [q for q in answered if len(q["options"]) >= 4]
+        if len(mcq) < LEN_BIAS_MIN_MCQ:
+            return
+        tied = 0
+        for q in mcq:
+            a = q["answer"]
+            ow = [len(q["options"][k].split()) for k in q["options"]
+                  if k != a]
+            oc = [len(q["options"][k]) for k in q["options"] if k != a]
+            if (len(q["options"][a].split()) >= max(ow)
+                    and len(q["options"][a]) >= max(oc)):
+                tied += 1
+        if tied >= LEN_BIAS_SHARE * len(mcq):
+            self.report(rel, "AS-15",
+                        "length cue: the correct option is "
+                        "longest-or-tied in %d/%d questions (corpus "
+                        "line 50%% - a learner who always picks the "
+                        "longest option passes without reading)"
+                        % (tied, len(mcq)))
+
     def check_balance(self, rel: str, key: dict, qnums: set,
                       inline: dict) -> None:
         """AS-09 shared by both quiz shapes: no letter above
@@ -308,6 +372,7 @@ class Linter:
         qnums: set = set()
         last = None
         inline: dict = {}
+        qopts: dict = {}
         for _, l in nf:
             m = PHASE_Q.match(l)
             if m:
@@ -317,6 +382,10 @@ class Linter:
             m = PHASE_INLINE.search(l)
             if m and last is not None and last not in inline:
                 inline[last] = m.group(1).upper()
+                continue
+            t = OPT_TEXT.match(l)
+            if t and last is not None:
+                qopts.setdefault(last, {})[t.group(1).upper()] = t.group(2)
         if qnums != set(range(1, len(qnums) + 1)):
             self.report(rel, "AS-03",
                         "question numbering not contiguous 1..%d"
@@ -377,6 +446,15 @@ class Linter:
                             % (need, pct, total, want))
 
         self.check_balance(rel, key, qnums, inline)
+
+        # AS-15: the length cue in the phase-quiz shape too - born
+        # tick-568 catching exactly the seven phase quizzes (the
+        # module banks were already drained), drained same tick.
+        answered = [{"answer": key.get(n) or inline.get(n),
+                     "options": qopts[n]}
+                    for n in sorted(qnums)
+                    if (key.get(n) or inline.get(n)) and n in qopts]
+        self.check_len_bias(rel, answered)
 
     def lint_practice(self, module: str, prac: Path) -> None:
         rel = "%s assessment/PRACTICE.md" % module

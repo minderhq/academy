@@ -19,7 +19,7 @@ Tags: ['assessment', 'quiz', 'pytorch']
 a) Gradients of loss with respect to parameters
 b) Activation values
 c) Learning rate
-d) Forward predictions
+d) Forward predictions replayed to refresh validation loss baselines each epoch
 
 **Answer:** a
 
@@ -29,7 +29,7 @@ d) Forward predictions
 a) Network architecture
 b) Data storage structure
 c) Dynamic representation of computations
-d) Static memory allocation
+d) Static memory allocation graphs frozen before each forward pass
 
 **Answer:** c
 
@@ -57,7 +57,7 @@ d) Automatic optimization
 
 ### 5. What is the chain rule used for in backpropagation?
 a) Computing gradients through layered functions
-b) Optimizing learning rate
+b) Optimizing learning rate schedules across successive backward sweeps
 c) Regularizing weights
 d) Normalizing inputs
 
@@ -66,7 +66,7 @@ d) Normalizing inputs
 ---
 
 ### 6. What is XLA in TensorFlow?
-a) External Library Adapter
+a) External Library Adapter exported for custom backend plugins
 b) Accelerated Linear Algebra compiler
 c) Extended Learning Architecture
 d) Execution Layer Abstraction
@@ -79,14 +79,14 @@ d) Execution Layer Abstraction
 a) Parallel computing platform for NVIDIA GPUs
 b) Memory management system
 c) Network protocol
-d) CPU optimization technique
+d) CPU optimization technique for scheduling CUDA-aware kernels on cores
 
 **Answer:** a
 
 ---
 
 ### 8. What is a tensor?
-a) Vector space
+a) Vector space extended with learned basis vectors
 b) Matrix operation
 c) Multi-dimensional array
 d) Data frame
@@ -108,7 +108,7 @@ d) Network communication
 ### 10. What is gradient checkpointing?
 a) Speed optimization
 b) Trading computation for memory
-c) Data compression
+c) Data compression of activations between training steps
 d) Model pruning
 
 **Answer:** b
@@ -157,7 +157,7 @@ d) Data augmentation
 
 ### 15. What is the purpose of a loss function?
 a) Increase model size
-b) Speed up training
+b) Speed up training by shrinking the batch dimension
 c) Measure model error
 d) Reduce memory
 

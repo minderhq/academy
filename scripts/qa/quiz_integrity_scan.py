@@ -131,6 +131,12 @@ QI-10  answer-length bias per module (report queue): the correct
        modules at >=50%. Unlike the QI-07 letter shuffle there is
        no safe mechanical fix - draining needs per-module content
        passes that make distractors parallel in form and length.
+       The module banks drained to a 2.4% corpus rate under this
+       queue (tick-568 census); the 7 phase quizzes never measured
+       until assessment_lint's AS-15 graduated this exact metric to
+       a hard line over both quiz shapes (tick-568, born catching
+       all seven, drained same tick) - this report remains the
+       module-side trend view.
 
 Hard gate on QI-01..06, QI-08/09 and QI-11..14 (exit 1): baseline 0
 at birth (tick-284 / tick-285); QI-06 joined in tick-345 (baseline

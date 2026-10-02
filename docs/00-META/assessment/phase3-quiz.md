@@ -19,7 +19,7 @@ Tags: ['assessment', 'quiz', 'transformers']
 a) Recurrent connections
 b) Convolutional layers
 c) Self-attention mechanism
-d) Pooling layers
+d) Pooling layers stacked to shorten sequences
 
 **Answer:** c
 
@@ -48,7 +48,7 @@ d) Random Parameter Estimation
 ### 4. What is causal masking used for?
 a) Prevent attention to future tokens
 b) Speed up training
-c) Reduce overfitting
+c) Reduce overfitting through masked dropout schedules
 d) Increase model capacity
 
 **Answer:** a
@@ -57,7 +57,7 @@ d) Increase model capacity
 
 ### 5. What is Flash Attention?
 a) Memory-efficient attention implementation
-b) Improved accuracy
+b) Improved accuracy from reordering softmax inputs
 c) Smaller model size
 d) Faster model training
 
@@ -77,7 +77,7 @@ d) softmax(QK)V
 
 ### 7. What is a KV cache used for?
 a) Training acceleration
-b) Model compression
+b) Model compression applied to cached encoder states after every decode step
 c) Storing computed keys and values for faster generation
 d) Data augmentation
 
@@ -88,7 +88,7 @@ d) Data augmentation
 ### 8. What is BPE (Byte Pair Encoding)?
 a) Subword tokenization algorithm
 b) Batch Processing Engine
-c) Backward Propagation Encoder
+c) Backward Propagation Encoder shipped with older tokenizers
 d) Binary Pattern Extraction
 
 **Answer:** a
@@ -106,7 +106,7 @@ d) Gated Excitation Layer Unit
 ---
 
 ### 10. Why is SwiGLU preferred over ReLU in transformers?
-a) Less memory
+a) Less memory consumed by the gating branch during every forward sweep
 b) Simpler implementation
 c) Faster computation
 d) Better gradient flow and no dead neurons
@@ -118,7 +118,7 @@ d) Better gradient flow and no dead neurons
 ### 11. What is LayerNorm?
 a) Normalization across batch
 b) Normalization across features
-c) Normalization across time
+c) Normalization across time steps within each sequence window
 d) Normalization across layers
 
 **Answer:** b
@@ -158,7 +158,7 @@ d) Unigram language model tokenizer
 ### 15. What is TikToken?
 a) Token counting tool
 b) OpenAI's tokenizer for GPT models
-c) Text generation library
+c) Text generation library bundled with token counting utilities
 d) Token encryption method
 
 **Answer:** b
@@ -197,7 +197,7 @@ d) Faster training
 
 ### 19. What is cross-attention used for?
 a) Self-attention within decoder
-b) Attention between heads
+b) Attention between heads sharing cached projections across decoder layers
 c) Attention across layers
 d) Attending to encoder outputs in encoder-decoder models
 
@@ -208,7 +208,7 @@ d) Attending to encoder outputs in encoder-decoder models
 ### 20. What is the key difference between GPT and BERT?
 a) GPT is smaller
 b) BERT generates text
-c) GPT classifies text
+c) GPT classifies text while BERT drafts continuations token by token
 d) GPT is decoder-only, BERT is encoder-only
 
 **Answer:** d
@@ -216,7 +216,7 @@ d) GPT is decoder-only, BERT is encoder-only
 ---
 
 ### 21. What is the attention head dimension?
-a) d_model * num_heads
+a) d_model * num_heads scaled by per-head gains
 b) num_heads / d_model
 c) d_model / num_heads
 d) d_model + num_heads
