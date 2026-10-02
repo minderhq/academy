@@ -41,6 +41,12 @@ CC-06  The card's FM Estimated Time exists and equals ceil(sum of lesson FM
        arithmetic fires. The equality is computed only when every lesson
        carries a parseable FM ET; a lesson-less parse gap is not reported
        here twice.
+CC-07  Every lesson carries a parseable FM Estimated Time ('N hours' or
+       'N minutes') - the invariant that makes CC-06's equality
+       precondition unconditional instead of silently skippable: a
+       lesson-side parse gap silently disabled the course-sum check,
+       so the gap itself is now the finding, listed per module in the
+       CC-04/CC-05 list style.
 
 The gate is order-agnostic about table columns (3500-multimodal renders Time
 before Difficulty and both orders pass). Dead row targets are skipped here -
@@ -52,7 +58,9 @@ CC-06 born tick-578: the census found 29 of 33 cards carrying no FM Estimated
 Time at all and the 4 boilerplate carriers (12/18/28/37 hours, born 775f898)
 overshooting every computable source; the drain wrote the ceil lesson sum
 into all 33 cards (29 insertions, 4 corrections - every sum whole hours) and
-the lock freezes the arithmetic.
+the lock freezes the arithmetic. CC-07 born tick-579 as a zero-drain lock in
+the PQ-06 shape: the lesson-level census read 93/93 module lessons clean, so
+the precondition CC-06 leans on is frozen as its own invariant.
 
 Exit 1 on any finding; prints one line per finding.
 """
@@ -184,14 +192,16 @@ def main() -> int:
         ]
         ltiers = {}
         letm: dict[str, float] = {}
+        lgap: list[str] = []
         for p in lessons:
             f = fm_fields(p)
             if f and f.get("diff") in TIER_STARS:
                 ltiers[p.name] = TIER_STARS[f["diff"]]
-            if f:
-                lm = fm_minutes(f.get("et"))
-                if lm is not None:
-                    letm[p.name] = lm
+            lm = fm_minutes(f.get("et")) if f else None
+            if lm is not None:
+                letm[p.name] = lm
+            else:
+                lgap.append(p.name)
 
         # CC-01: card tier == max lesson tier
         if rfm and rfm.get("diff") in TIER_STARS and ltiers:
@@ -227,6 +237,15 @@ def main() -> int:
                         f"'{card_et}' != ceil lesson sum "
                         f"({sum(letm.values()):g}min -> {want_h}h)"
                     )
+
+        # CC-07: every lesson carries a parseable FM Estimated Time - the
+        # invariant that keeps CC-06's equality precondition unconditional
+        if lgap:
+            findings.append(
+                f"{rel} CC-07 lessons carrying no parseable FM Estimated "
+                f"Time (want 'N hours' or 'N minutes' - the budget the "
+                f"platform renders per lesson): {lgap}"
+            )
 
         # CC-04: every lesson linked somewhere in the README
         linked = {

@@ -698,7 +698,7 @@ stand today?" without running each tool by hand.
                       badges, phase-hub range badges,
                       'Absolute Beginner')
     course_card_check
-                      Course-card parity (CC-01..06, hard):
+                      Course-card parity (CC-01..07, hard):
                       a module README's front-matter
                       Difficulty is the course card a
                       platform catalog reads and the
@@ -741,7 +741,19 @@ stand today?" without running each tool by hand.
                       computable source - the drain wrote
                       the ceil lesson sum into all 33
                       cards, 29 insertions plus 4
-                      corrections
+                      corrections. CC-07 every lesson
+                      carries a parseable FM Estimated
+                      Time ('N hours' or 'N minutes' - the
+                      budget the platform renders per
+                      lesson) so CC-06's equality
+                      precondition is an invariant instead
+                      of a silent skip; the gap itself is
+                      the finding, listed per module.
+                      Born tick-579 as a zero-drain lock
+                      in the PQ-06 shape: 93/93 module
+                      lessons clean, stripped lines and
+                      range forms fire exactly once with
+                      CC-06 kept silent
     heading_scan
                       Heading skeleton soundness (HS-01..05,
                       hard): the platform renders a TOC and
