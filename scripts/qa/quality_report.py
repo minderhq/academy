@@ -698,7 +698,7 @@ stand today?" without running each tool by hand.
                       badges, phase-hub range badges,
                       'Absolute Beginner')
     course_card_check
-                      Course-card parity (CC-01..24, hard):
+                      Course-card parity (CC-01..25, hard):
                       a module README's front-matter
                       Difficulty is the course card a
                       platform catalog reads and the
@@ -1182,7 +1182,39 @@ stand today?" without running each tool by hand.
                       the same field on a cheat-sheet
                       fires exactly 1 CC-23 and 0 CC-24,
                       two tutorials aggregate into
-                      exactly 2 CC-24.    heading_scan
+                      exactly 2 CC-24.
+                      CC-25 the tenth surface of the FM
+                      keyset family: a learning-resources
+                      lab's FM carries only the 7-field
+                      lab keyset (the card keyset: the
+                      6-field entry keyset + Estimated
+                      Time), negative excess only; the
+                      tick-593 park dissolved
+                      structurally - the tick-595 census
+                      read the labs tree as two disjoint
+                      sub-surfaces, the wide 15 exactly
+                      the LAB-0xx lab docs (all on the
+                      exact 7-field card keyset, all
+                      carrying authored 1-12 hour
+                      budgets) and the minimal 15
+                      exactly the SOLUTION-LAB-0xx answer
+                      keys under labs/solutions (all on
+                      the exact 6-field entry keyset),
+                      each born at 100% uniformity, 0
+                      no-FM, 0 unlinked - so no ET
+                      decision exists to make, the lab
+                      half locks zero-drain in the
+                      CC-21/22/23 shape (non-recursive
+                      glob keeps solutions out of scope)
+                      and the solutions half stays parked
+                      for its own clause (CC-26) next
+                      tick - an extra FM field on a lab
+                      fires exactly 1 CC-25 with
+                      CC-01..24 kept silent, the same
+                      field on a SOLUTION-LAB answer key
+                      fires 0 (out of scope), two labs
+                      aggregate into exactly 2 CC-25.
+    heading_scan
                       Heading skeleton soundness (HS-01..05,
                       hard): the platform renders a TOC and
                       anchor deep-links from heading structure,

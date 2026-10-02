@@ -168,6 +168,18 @@ CC-24  Every learning-resources tutorial's FM carries
        pages live in. Negative-excess only: FS owns
        field presence, this clause owns field
        excess - never double-report.
+CC-25  Every learning-resources lab's FM carries
+       only the 7-field lab keyset (the card
+       keyset: the 6-field entry keyset +
+       Estimated Time) - one family for the 15
+       hands-on lab docs under learning-resources/
+       labs, the executable workshops a platform
+       renders beside the curriculum with a time
+       budget per lab, so a platform parser reads
+       every lab through the same schema its
+       course cards live in. Negative-excess
+       only: FS owns field presence, this clause
+       owns field excess - never double-report.
 
 The gate is order-agnostic about table columns (3500-multimodal renders Time
 before Difficulty and both orders pass). Dead row targets are skipped here -
@@ -396,6 +408,31 @@ at the shifted lines 164->162, 208->206,
 re-execution, notes carried, no fence content
 changed.
 
+CC-25 was born tick-595 as the tenth FM-keyset
+surface (entry CC-16, card CC-17, lesson CC-18,
+guide CC-19, assessment CC-20, phase header
+CC-21, phase assessment CC-22, reference page
+CC-23, tutorial CC-24, lab CC-25): the tick-593
+census parked the labs tree as a 15/15 split
+between entry and entry+Estimated Time with no
+majority, and the tick-595 census dissolved the
+park structurally - the wide 15 are exactly the
+15 LAB-0xx lab docs (every one on the exact
+7-field card keyset, every one carrying an
+authored 1-12 hour budget) and the minimal 15
+are exactly the 15 SOLUTION-LAB-0xx answer keys
+under labs/solutions (every one on the exact
+6-field entry keyset) - two disjoint sub-
+surfaces, each born at 100% uniformity, 0
+no-FM, 0 unlinked, so no ET decision exists to
+make and the lab half locks zero-drain in the
+CC-21/CC-22/CC-23 shape while the solutions
+half stays parked for its own clause (CC-26)
+next tick; the labs tree carries 58 accepted
+fence rows in accepted_exec_census but a
+zero-drain lock moves nothing, so nothing to
+re-bless.
+
 Exit 1 on any finding; prints one line per finding.
 """
 from __future__ import annotations
@@ -460,6 +497,11 @@ REFERENCE_DIRS = (
 # the 8-field core is the 15-file majority family
 # (Category was pure directory noise, drained tick-594)
 TUTORIAL_KEYSET = ENTRY_KEYSET | {"Estimated Time", "Prerequisites"}
+# the labs tree split 15/15 by structure, not by drift - the
+# wide 15 are the LAB docs (7-field card keyset, authored
+# time budgets), the minimal 15 the SOLUTION-LAB answer
+# keys under labs/solutions (6-field entry; own clause later)
+LAB_KEYSET = CARD_KEYSET
 FM_DASH = re.compile(r"^---\s*$")
 FM_KEY = re.compile(r"^([A-Za-z][A-Za-z0-9 _-]*):")
 DIFF_FIELD = re.compile(r"^Difficulty:(.*)$")
@@ -1060,6 +1102,25 @@ def main() -> int:
             findings.append(
                 f"{trel} CC-24 tutorial FM carries fields "
                 f"outside the tutorial keyset - "
+                f"{', '.join(extra)}"
+            )
+
+    # CC-25: the learning-resources labs carry only the
+    # 7-field lab keyset (the card keyset) - the
+    # executable workshops a platform renders beside
+    # the curriculum; non-recursive on purpose, the
+    # SOLUTION-LAB answer keys under labs/solutions
+    # read the 6-field entry keyset and stay outside
+    # this clause until their own
+    for lp in sorted(
+        (root / "docs" / "learning-resources" / "labs").glob("*.md")
+    ):
+        lrel = lp.relative_to(root).as_posix()
+        extra = sorted(fm_keys(lp) - LAB_KEYSET)
+        if extra:
+            findings.append(
+                f"{lrel} CC-25 lab FM carries fields "
+                f"outside the lab keyset - "
                 f"{', '.join(extra)}"
             )
 
