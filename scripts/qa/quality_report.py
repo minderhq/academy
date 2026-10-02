@@ -1099,7 +1099,14 @@ stand today?" without running each tool by hand.
                        the "### Labs (N files: A labs + B solutions)"
                        header arithmetic to disk - census-proven
                        true (30 = 15+15) but the header itself was
-                       unlocked
+                       unlocked; LI-05/LI-06 joined tick-572
+                       locking the lab's own time budget (every
+                       Exercise/Part heading carries a duration
+                       unless marked Optional; Estimated Time
+                       equals the ceil of the part sum to the
+                       whole hour, Final Challenge deliberately
+                       outside it) - born at zero findings, the
+                       ceiling held on all 15 labs at birth
     tutorial_index_parity_check
                        MASTER-INDEX's "### Tutorials" table locks to
                        every tutorial's front matter (TI-01 difficulty

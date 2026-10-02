@@ -26,10 +26,31 @@ LI-04  section-header arithmetic: the "### Labs (N files: A labs
        tick-564: the numbers were census-proven true (30 = 15+15)
        but unlocked - LI-01..03 read the table rows and never the
        header.
+LI-05  part-duration presence: every "## Exercise N" / "## Part N"
+       heading carries an "(N minutes)" / "(N hours)" duration -
+       except headings marked "(Optional)" (the born case: LAB-006's
+       "Part 8: Challenges (Optional)" is untimed by design), so a
+       part losing its duration cannot silently undercount the sum
+       LI-06 audits.
+LI-06  estimated-time ceiling: the corpus contract read off the born
+       census - front-matter "Estimated Time: N hours" must equal
+       the ceil of the lab's own Exercise/Part duration sum to the
+       whole hour (LAB-002's 230 minutes of parts -> 4 hours,
+       LAB-009's 690 -> 12), with "Final Challenge" headings
+       deliberately outside the sum (bonus work past the core
+       budget, LAB-001..005 only) and checklist-style labs with no
+       Exercise/Part headings (LAB-000) outside the check entirely.
+       Joined tick-572: the census that first read 10 of 15 labs as
+       mismatching compared the raw sum against the FM hours - all
+       15 labs obey the ceiling exactly, the mismatch was the
+       convention itself, unlocked until now.
 
 Hard gate (exit 1 on findings): born tick-553 at 21 findings,
 drained in the same tick - the index rows rewritten to the labs'
-own contract.
+own contract. LI-05/06 joined tick-572 born at zero findings - the
+ceiling held on all 15 labs at birth; the lock exists so the next
+duration edit cannot silently strand the budget a learner plans
+from.
 
 Run over the whole corpus:
     python scripts/qa/lab_index_parity_check.py --root .
@@ -37,6 +58,7 @@ Run over the whole corpus:
 from __future__ import annotations
 
 import argparse
+import math
 import re
 import sys
 from pathlib import Path
@@ -120,12 +142,63 @@ def main() -> int:
                             f"part 2 says {b} solutions, disk holds "
                             f"{c_sol}")
 
+    # --- LI-05/LI-06: the lab's own time budget -----------------------------
+    part_h2 = re.compile(r"^##\s+(?:Exercise|Part)\s+\d+", re.I)
+    dur = re.compile(r"\((\d+(?:\.\d+)?)\s*(minutes?|mins?|hours?|hrs?)\)",
+                     re.I)
+    fence = re.compile(r"^\s*(?:>\s*)?(`{3,})([\w+-]*)\s*$")
+    et_hours = re.compile(r"^Estimated Time:\s*(\d+)\s*hours?$")
+    for p in sorted(labs_dir.glob("LAB-*.md")):
+        total = 0
+        timed = 0
+        et_val: int | None = None
+        in_fence = False
+        marker = ""
+        for line in p.read_text(encoding="utf-8").splitlines():
+            fm_ = fence.match(line)
+            if fm_:
+                if not in_fence:
+                    in_fence, marker = True, fm_.group(1)
+                elif len(fm_.group(1)) >= len(marker) and fm_.group(2) == "":
+                    in_fence = False
+                continue
+            if in_fence:
+                continue
+            em = et_hours.match(line)
+            if em and et_val is None:
+                et_val = int(em.group(1))
+            if part_h2.match(line):
+                dm = dur.search(line)
+                if dm is None:
+                    if "(optional)" not in line.lower():
+                        findings.append(f"{p.name}: LI-05 untimed part "
+                                        f"heading {line.strip()!r}")
+                else:
+                    val = float(dm.group(1))
+                    total += int(round(val * 60
+                                       if dm.group(2).lower().startswith("h")
+                                       else val))
+                    timed += 1
+        if timed == 0:
+            continue  # checklist-style lab: no internal part budget to audit
+        if et_val is None:
+            findings.append(f"{p.name}: LI-06 Estimated Time is not in the "
+                            f"'N hour(s)' form but the lab carries {timed} "
+                            f"timed parts")
+        else:
+            need = math.ceil(total / 60)
+            if et_val != need:
+                findings.append(f"{p.name}: LI-06 Estimated Time {et_val}h "
+                                f"!= ceil of its own part sum ({total} min "
+                                f"-> {need}h)")
+
     for f in findings:
         print(f)
     print(f"lab_index_parity_check: {len(findings)} findings "
           f"(LI-01 id-set parity, LI-02 duration parity, LI-03 title "
-          f"parity, LI-04 header arithmetic) across {len(fm)} lab files "
-          f"/ {len(mi)} MASTER-INDEX rows")
+          f"parity, LI-04 header arithmetic, LI-05 part-duration "
+          f"presence, LI-06 estimated-time ceiling) across {len(fm)} lab "
+          f"files / {len(mi)} MASTER-INDEX rows")
     return 1 if findings else 0
 
 
