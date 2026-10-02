@@ -1,14 +1,9 @@
 ---
 Document ID: 2200-PREREQUISITES
 Title: "2200: Deep Learning Frameworks - Prerequisites"
-Phase: 2
-Module: 2200
 Last Updated: 2026-09-26
 Status: Complete
 Difficulty: Intermediate
-Estimated Time: 30 minutes (quick review) - 4.5 hours (full review)
-Prerequisites: See module README
-Related: See module README
 Tags: ['frameworks', 'pytorch', 'prerequisites', 'preparation']
 ---
 

@@ -91,6 +91,12 @@ CC-15  A module's PREREQUISITES.md FM Difficulty equals the course
        via CC-14, the entry page the card's own). Computed only
        when both pages carry an in-vocabulary tier (FS owns the
        missing name, FV-07 the stray value - never double-report).
+CC-16  A module's PREREQUISITES.md FM carries only the 6-field
+       entry-page keyset (Document ID, Title, Last Updated,
+       Status, Difficulty, Tags) - one schema for 33 entry
+       pages, so a platform parser reads every entry door the
+       same way. Negative-excess only: FS owns field presence,
+       this clause owns field excess - never double-report.
 
 The gate is order-agnostic about table columns (3500-multimodal renders Time
 before Difficulty and both orders pass). Dead row targets are skipped here -
@@ -147,6 +153,20 @@ its card's (5 bumps up, 5 down) and coupled 6100-vector's body
 badge - the lone entry-page badge still mirroring its old FM -
 to the canonical Intermediate form (the tick-584 BD-01 coupling,
 pre-censused this time instead of caught by the fleet).
+CC-16 born tick-586 after a 20-line drain: the census read 29
+of 33 entry pages already on the minimal 6-field keyset while
+the 4 phase2 pages carried 5 legacy extras (Module, Phase,
+Prerequisites, Related, Estimated Time - a review-range ET and
+self-referential 'See module README' prose), so the drain
+deleted exactly those 20 FM lines and the keyset froze; the
+impact probe moved only prereq_census's statement counters
+(docs 204->200, free-text 186->182) - tokens, edges,
+tier-edges and the related cycle untouched. The census
+honestly killed two hypotheses before they became fiction:
+guides/ tier parity (17 of 21 guides are Advanced by design -
+depth material, CC-05's display-richness contract) and
+prereq-ET parity (review-of-prerequisites time is not course
+budget - the tick-579 doctrine).
 
 Exit 1 on any finding; prints one line per finding.
 """
@@ -159,7 +179,16 @@ import sys
 from pathlib import Path, PurePosixPath
 
 TIER_STARS = {"Beginner": 1, "Intermediate": 2, "Advanced": 3}
+ENTRY_KEYSET = {
+    "Document ID",
+    "Title",
+    "Last Updated",
+    "Status",
+    "Difficulty",
+    "Tags",
+}
 FM_DASH = re.compile(r"^---\s*$")
+FM_KEY = re.compile(r"^([A-Za-z][A-Za-z0-9 _-]*):")
 DIFF_FIELD = re.compile(r"^Difficulty:(.*)$")
 ET_FIELD = re.compile(r"^Estimated Time:(.*)$")
 DUR = re.compile(r"(\d+(?:\.\d+)?)\s*(h|hr|hrs|hour|hours|m|min|mins|minutes?)\b")
@@ -188,6 +217,24 @@ def fm_fields(path: Path) -> dict | None:
                     d["et"] = m.group(1).strip()
             return d
     return None
+
+
+def fm_keys(path: Path) -> set[str]:
+    try:
+        lines = path.read_text(encoding="utf-8").splitlines()
+    except OSError:
+        return set()
+    if not lines or not FM_DASH.match(lines[0]):
+        return set()
+    for i in range(1, min(len(lines), 40)):
+        if FM_DASH.match(lines[i]):
+            keys: set[str] = set()
+            for raw in lines[1:i]:
+                m = FM_KEY.match(raw)
+                if m:
+                    keys.add(m.group(1))
+            return keys
+    return set()
 
 
 def fm_minutes(et: str | None) -> float | None:
@@ -462,6 +509,19 @@ def main() -> int:
                     f"PREREQUISITES.md FM Difficulty '{ptier}' != "
                     f"card FM Difficulty '{ctier}' (the entry door "
                     f"must not contradict the course card)"
+                )
+
+        # CC-16: the entry page carries only the entry-page FM
+        # keyset - a platform parsing 33 entry doors expects one
+        # schema, not 29 minimal pages and 4 legacy extras (FS
+        # owns field presence; this clause owns field excess)
+        if prm.exists():
+            extra = sorted(fm_keys(prm) - ENTRY_KEYSET)
+            if extra:
+                findings.append(
+                    f"{prm.relative_to(root).as_posix()} CC-16 "
+                    f"PREREQUISITES.md FM carries fields outside "
+                    f"the entry-page keyset - {', '.join(extra)}"
                 )
 
         # Module Documents table: CC-02/03 per row, CC-05 coverage

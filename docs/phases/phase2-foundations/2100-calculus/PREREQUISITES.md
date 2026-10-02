@@ -1,14 +1,9 @@
 ---
 Document ID: 2100-PREREQUISITES
 Title: "2100: Calculus for Deep Learning - Prerequisites"
-Phase: 2
-Module: 2100
 Last Updated: 2026-09-26
 Status: Complete
 Difficulty: Intermediate
-Estimated Time: 30 minutes (quick review) - 6.5 hours (full review)
-Prerequisites: See module README
-Related: See module README
 Tags: ['math', 'prerequisites', 'preparation']
 ---
 

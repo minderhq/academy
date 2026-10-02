@@ -1,14 +1,9 @@
 ---
 Document ID: 2300-PREREQUISITES
 Title: "2300: Framework Engineering - Prerequisites"
-Phase: 2
-Module: 2300
 Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
-Estimated Time: 30 minutes (quick review) - 12.5 hours (full review)
-Prerequisites: See module README
-Related: See module README
 Tags: ['framework-engineering', 'prerequisites', 'preparation']
 ---
 

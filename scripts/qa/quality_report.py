@@ -698,7 +698,7 @@ stand today?" without running each tool by hand.
                       badges, phase-hub range badges,
                       'Absolute Beginner')
     course_card_check
-                      Course-card parity (CC-01..15, hard):
+                      Course-card parity (CC-01..16, hard):
                       a module README's front-matter
                       Difficulty is the course card a
                       platform catalog reads and the
@@ -920,7 +920,57 @@ stand today?" without running each tool by hand.
                       prereq tier fires
                       exactly once with
                       CC-01..14 kept
-                      silent.    heading_scan
+                      silent. CC-16 the
+                      entry page's FM
+                      carries only the
+                      6-field keyset
+                      (Document ID, Title,
+                      Last Updated, Status,
+                      Difficulty, Tags) -
+                      one schema for 33
+                      entry pages, so a
+                      platform parser reads
+                      every entry door the
+                      same way (negative
+                      excess only: FS owns
+                      field presence, this
+                      clause owns field
+                      excess - never
+                      double-reported).
+                      Born tick-586 after
+                      a 20-line drain:
+                      the census read 29
+                      of 33 entry pages
+                      already on the
+                      minimal keyset while
+                      the 4 phase2 pages
+                      carried 5 legacy
+                      extras (Module,
+                      Phase, Prerequisites,
+                      Related, Estimated
+                      Time - a review-range
+                      ET and
+                      self-referential
+                      'See module README'
+                      prose) and the
+                      impact probe moved
+                      only prereq_census's
+                      statement counters
+                      (docs 204->200,
+                      free-text 186->182)
+                      with tokens, edges
+                      and tier-edges
+                      untouched; an extra
+                      FM field on a prereq
+                      page fires exactly
+                      once with CC-01..15
+                      kept silent, the
+                      same field on the
+                      card fires 0 (the
+                      rule is entry-page
+                      scoped), and two
+                      pages aggregate into
+                      exactly 2 CC-16.    heading_scan
                       Heading skeleton soundness (HS-01..05,
                       hard): the platform renders a TOC and
                       anchor deep-links from heading structure,
