@@ -459,8 +459,8 @@ stand today?" without running each tool by hand.
                        hours), hard since the drain; dual-mode
                        "quick/full review" entries are a legal
                        shape, both durations parse
-    prereq_census Prerequisites chain integrity (PQ-01..03 + PQ-06,
-                       hard):
+    prereq_census Prerequisites chain integrity (PQ-01..03 +
+                       PQ-06/07, hard):
                        prerequisites are the learning-path
                        backbone - a dangling prerequisite is a
                        lesson that can never be unlocked. PQ-01
@@ -491,7 +491,21 @@ stand today?" without running each tool by hand.
                        printed, never gated; PO-01/02 own the
                        spine-local half, PQ-06 is the
                        numbering-free whole-graph half covering
-                       the LAB-/TUTORIAL- edges PO excludes
+                       the LAB-/TUTORIAL- edges PO excludes.
+                       PQ-07 (born tick-575 at zero) difficulty
+                       never climbs the unlock path: on every
+                       PQ-06 edge where both endpoints carry a
+                       canonical FM Difficulty (Beginner=1 /
+                       Intermediate=2 / Advanced=3, the
+                       TIER_STARS map footer_fm_parity proved)
+                       the prerequisite's tier must be <= the
+                       doc's own tier - equal-tier and downhill
+                       edges are legal pedagogy (the live 12
+                       edges: 6 equal-tier, 6 downhill), an
+                       uphill edge is a lesson demanding harder
+                       material than itself, wrong opening
+                       order; out-of-vocabulary Difficulty skips
+                       the comparison (FV-07 owns the enum)
     prereq_ordering_scan
                       Learning-path order integrity (PO-01/02,
                       hard, born at zero): corpus numbering is

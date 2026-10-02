@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Prerequisites field census (PQ-01..PQ-03) for PROJECT-OMEGA.
+"""Prerequisites field census (PQ-01..03 + PQ-06 + PQ-07) for
+PROJECT-OMEGA.
 
 Prerequisites is the curriculum's learning-path backbone: on the
 platform a dangling prerequisite is a lesson that can never be
@@ -52,11 +53,30 @@ PQ-06  the machine-parseable Prerequisites subgraph is ACYCLIC
        visible here and nowhere else; a 4-digit self-listing
        honestly fires both gates - one defect, two hard locks.
 
+PQ-07  difficulty never climbs the unlock path: on every PQ-06
+       edge where both endpoints carry a canonical FM Difficulty,
+       the prerequisite's tier must be <= the doc's own tier
+       (Beginner=1 / Intermediate=2 / Advanced=3, the TIER_STARS
+       map footer_fm_parity proved). Equal-tier and downhill
+       edges are legal pedagogy - a lesson may require its own
+       tier and must ease you in; an uphill edge is a lesson
+       demanding harder material than itself, the wrong opening
+       order on the platform. An out-of-vocabulary Difficulty on
+       either endpoint skips the comparison (FV-07 owns the
+       enum; PQ-07 never double-reports another gate's finding).
+       Born tick-575 at zero: 12 edges compared, 6 equal-tier
+       (1102->1101, 1103->1101/1102, 1202->1201,
+       TUTORIAL-001->TUTORIAL-000, TUTORIAL-014->TUTORIAL-005
+       and ->LAB-009), 6 downhill (TUTORIAL-003->TUTORIAL-000/
+       001, TUTORIAL-007->TUTORIAL-001, TUTORIAL-009->
+       TUTORIAL-003, TUTORIAL-014->TUTORIAL-007), 0 inversions,
+       0 prereq docs lacking FM Difficulty.
+
 HARD GATE - exit 1 on any finding. PQ-01/PQ-02 hard from birth
 (KW-03 born-at-zero: 108 docs / 7 tokens, all resolving exactly
 one file at tick-409); PQ-03 joined after the tick-410 shape
 drain (census -> drain -> gate cycle); PQ-06 born-at-zero
-tick-574.
+tick-574; PQ-07 born-at-zero tick-575.
 
 Run over the whole corpus:
     python scripts/qa/prereq_census.py --root .
@@ -76,6 +96,9 @@ TOKEN = re.compile(r"\d{4}|\b(?:LAB|TUTORIAL)-\d{3}\b")
 CANON = re.compile(r"^\[(?:\d{4}|(?:LAB|TUTORIAL)-\d{3})"
                    r"(?:, (?:\d{4}|(?:LAB|TUTORIAL)-\d{3}))*\]$")
 FREE_TEXT = ("See module README", "See PREREQUISITES.md")
+DIFF_FIELD = re.compile(r"^Difficulty:(.*)$")
+TIERS = {"Beginner": 1, "Intermediate": 2, "Advanced": 3}
+TIER_NAME = {v: k for k, v in TIERS.items()}
 
 
 def pq_field(lines: list[str]) -> str | None:
@@ -88,6 +111,22 @@ def pq_field(lines: list[str]) -> str | None:
                 m = PQ_FIELD.match(raw)
                 if m:
                     return m.group(1).strip()
+            return None
+    return None
+
+
+def difficulty_tier(lines: list[str]) -> int | None:
+    """Top-level Difficulty tier index of one doc, or None (mirror
+    of pq_field; an out-of-vocabulary value yields None so FV-07
+    stays the sole owner of the enum)."""
+    if not lines or not FM_OPEN.match(lines[0]):
+        return None
+    for i in range(1, min(len(lines), 40)):
+        if FM_CLOSE.match(lines[i]):
+            for raw in lines[1:i]:
+                m = DIFF_FIELD.match(raw)
+                if m:
+                    return TIERS.get(m.group(1).strip())
             return None
     return None
 
@@ -180,16 +219,20 @@ def main() -> int:
     targets_n = Counter()
     graph: dict[str, set[str]] = {}
     rgraph: dict[str, set[str]] = {}
+    tiers: dict[str, int] = {}
     for path in paths:
         try:
             lines = path.read_text(encoding="utf-8",
                                    errors="replace").split("\n")
         except (UnicodeDecodeError, OSError):
             continue
+        rel = path.relative_to(args.root).as_posix()
+        tier = difficulty_tier(lines)
+        if tier is not None:
+            tiers[rel] = tier
         val = pq_field(lines)
         if val is None:
             continue
-        rel = path.relative_to(args.root).as_posix()
         n_docs += 1
         toks: list[str] = []
         if any(val.startswith(t) for t in FREE_TEXT):
@@ -254,10 +297,31 @@ def main() -> int:
                             f"{' -> '.join(scc)} -> {scc[0]}")
     rel_cycles = find_cycles(rgraph)
 
+    # PQ-07: difficulty must not climb the unlock path - on every
+    # PQ-06 edge, the prerequisite's tier must be <= the doc's own
+    # tier (equal-tier and downhill legal; uphill = wrong order).
+    tier_edges = 0
+    for rel in sorted(graph):
+        own = tiers.get(rel)
+        if own is None:
+            continue
+        for tgt in sorted(graph[rel]):
+            tt = tiers.get(tgt)
+            if tt is None:
+                continue  # out-of-vocabulary tier is FV-07's finding
+            tier_edges += 1
+            if tt > own:
+                findings.append(
+                    f"{rel}: PQ-07 Prerequisite difficulty inversion "
+                    f"(this {TIER_NAME[own]} doc requires {tgt} at "
+                    f"{TIER_NAME[tt]}; a lesson must not demand harder "
+                    f"material than itself)")
+
     pq01 = sum(1 for f in findings if " PQ-01 " in f)
     pq02 = sum(1 for f in findings if " PQ-02 " in f)
     pq03 = sum(1 for f in findings if " PQ-03 " in f)
     pq06 = sum(1 for f in findings if " PQ-06 " in f)
+    pq07 = sum(1 for f in findings if " PQ-07 " in f)
     for f in findings:
         print(f.encode("ascii", "backslashreplace").decode("ascii"))
     print(f"prereq_census: docs={n_docs} tokens={n_tokens} "
@@ -265,10 +329,11 @@ def main() -> int:
           f"resolve1={targets_n[1]} resolveN={targets_n[2]} "
           f"edges={sum(len(v) for v in graph.values())} "
           f"PQ-01={pq01} PQ-02={pq02} PQ-03={pq03} PQ-06={pq06} "
+          f"PQ-07={pq07} tier-edges={tier_edges} "
           f"related-cycles={len(rel_cycles)} "
           f"(hard gate; PQ-03 drained tick-410, PQ-06 born tick-574 "
-          f"at zero; related cycles are navigation, not unlock - "
-          f"reported, never gated)")
+          f"at zero, PQ-07 born tick-575 at zero; related cycles are "
+          f"navigation, not unlock - reported, never gated)")
     return 1 if findings else 0
 
 
