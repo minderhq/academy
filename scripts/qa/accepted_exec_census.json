@@ -1171,8 +1171,8 @@
    }
   },
   "docs/phases/phase1-infra/1400-llmops/README.md": {
-   "mtime": 1790781802.899148,
-   "size": 24849,
+   "mtime": 1790944076.3777018,
+   "size": 24873,
    "bad": {}
   },
   "docs/phases/phase1-infra/1400-llmops/assessment/PRACTICE.md": {
@@ -1536,8 +1536,8 @@
    }
   },
   "docs/phases/phase3-transformers/3100-attention/README.md": {
-   "mtime": 1790939558.478866,
-   "size": 5105,
+   "mtime": 1790944076.3797278,
+   "size": 5129,
    "bad": {}
   },
   "docs/phases/phase3-transformers/3100-attention/assessment/PRACTICE.md": {
@@ -1575,8 +1575,8 @@
    }
   },
   "docs/phases/phase3-transformers/3200-embeddings/README.md": {
-   "mtime": 1790939558.4798646,
-   "size": 7632,
+   "mtime": 1790944076.3797278,
+   "size": 7656,
    "bad": {}
   },
   "docs/phases/phase3-transformers/3200-embeddings/assessment/PRACTICE.md": {
@@ -1620,8 +1620,8 @@
    }
   },
   "docs/phases/phase3-transformers/3300-decoding/README.md": {
-   "mtime": 1790939059.85944,
-   "size": 7758,
+   "mtime": 1790944076.3807359,
+   "size": 7782,
    "bad": {}
   },
   "docs/phases/phase3-transformers/3300-decoding/assessment/PRACTICE.md": {
@@ -1662,8 +1662,8 @@
    "bad": {}
   },
   "docs/phases/phase3-transformers/3400-architectures/README.md": {
-   "mtime": 1790939006.2254653,
-   "size": 13185,
+   "mtime": 1790944076.3807359,
+   "size": 13209,
    "bad": {}
   },
   "docs/phases/phase3-transformers/3400-architectures/assessment/PRACTICE.md": {
@@ -1704,8 +1704,8 @@
    }
   },
   "docs/phases/phase3-transformers/3500-multimodal/README.md": {
-   "mtime": 1790939006.2270143,
-   "size": 13659,
+   "mtime": 1790944076.3817368,
+   "size": 13684,
    "bad": {}
   },
   "docs/phases/phase3-transformers/3500-multimodal/assessment/PRACTICE.md": {
@@ -2162,8 +2162,8 @@
    "bad": {}
   },
   "docs/phases/phase5-finetuning/5200-alignment/README.md": {
-   "mtime": 1790939006.2310226,
-   "size": 8057,
+   "mtime": 1790944076.3838067,
+   "size": 8082,
    "bad": {}
   },
   "docs/phases/phase5-finetuning/5200-alignment/assessment/PRACTICE.md": {
@@ -2645,8 +2645,8 @@
    }
   },
   "docs/phases/phase7-agentic/7200-tools/README.md": {
-   "mtime": 1790939006.239117,
-   "size": 6897,
+   "mtime": 1790944076.3868165,
+   "size": 6921,
    "bad": {}
   },
   "docs/phases/phase7-agentic/7200-tools/assessment/PRACTICE.md": {
@@ -2686,13 +2686,13 @@
    "bad": {}
   },
   "docs/phases/phase7-agentic/7300-orchestration/README.md": {
-   "mtime": 1790939558.4798646,
-   "size": 16485,
+   "mtime": 1790944076.3868165,
+   "size": 16509,
    "bad": {
-    "231": "ENV-GAP:autogen"
+    "232": "ENV-GAP:autogen"
    },
    "notes": {
-    "231": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+    "232": "optional third-party package the QA environment does not install; the fence documents the install requirement"
    }
   },
   "docs/phases/phase7-agentic/7300-orchestration/assessment/PRACTICE.md": {

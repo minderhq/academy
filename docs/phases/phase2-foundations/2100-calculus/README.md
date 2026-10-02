@@ -6,7 +6,8 @@ Module: 2100
 Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
-Estimated Time: 12 hours
+Estimated Time: 8 hours
+
 Prerequisites: See PREREQUISITES.md
 Related: See References
 Tags: ['math', 'calculus', 'tensors', 'backpropagation', 'autograd']

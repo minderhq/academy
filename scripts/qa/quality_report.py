@@ -698,7 +698,7 @@ stand today?" without running each tool by hand.
                       badges, phase-hub range badges,
                       'Absolute Beginner')
     course_card_check
-                      Course-card parity (CC-01..05, hard):
+                      Course-card parity (CC-01..06, hard):
                       a module README's front-matter
                       Difficulty is the course card a
                       platform catalog reads and the
@@ -724,7 +724,24 @@ stand today?" without running each tool by hand.
                       cells drifted, 7300 omitted 7302, 2
                       body badges mirrored the drift; the
                       drain obeys the 11 curated cards
-                      already satisfying CC-01
+                      already satisfying CC-01. CC-06 the
+                      card's FM Estimated Time exists
+                      (presence - the platform catalog
+                      reads one time budget per course)
+                      and equals the ceil of its lessons'
+                      FM ET sum to the whole hour (the
+                      LI-06 parts-sum arithmetic at
+                      course scope; an unparseable card
+                      value fires, equality computed only
+                      when every lesson parses). Born
+                      tick-578: 29 of 33 cards carried no
+                      FM ET and the 4 boilerplate
+                      carriers (2100/2200/2300/2400 at
+                      12/18/28/37 hours) overshot every
+                      computable source - the drain wrote
+                      the ceil lesson sum into all 33
+                      cards, 29 insertions plus 4
+                      corrections
     heading_scan
                       Heading skeleton soundness (HS-01..05,
                       hard): the platform renders a TOC and

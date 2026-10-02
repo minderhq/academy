@@ -4,6 +4,7 @@ Title: "1100: Network Fundamentals for LLM Infrastructure"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
+Estimated Time: 6 hours
 Tags: ['module', 'networking', 'wan']
 ---
 

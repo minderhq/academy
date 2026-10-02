@@ -6,7 +6,8 @@ Module: 2400
 Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Advanced
-Estimated Time: 37 hours
+Estimated Time: 13 hours
+
 Prerequisites: See PREREQUISITES.md
 Related: See References
 Tags: ['pretraining', 'llm', 'distributed-training', 'tokenization', 'evaluation']

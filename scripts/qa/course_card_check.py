@@ -33,6 +33,14 @@ CC-04  Every lesson basename is linked somewhere in the README (any link form,
 CC-05  Where a Module Documents table exists, every lesson has a row in it
        (extra rows pointing at guides are tolerated display richness; only
        missing lessons fire). Modules without such a table are CC-04 territory.
+CC-06  The card's FM Estimated Time exists and equals ceil(sum of lesson FM
+       Estimated Time minutes / 60) - the LI-05-proven parts-sum arithmetic
+       lifted to course scope. The platform catalog reads one time budget
+       per course card, so a card with no FM ET fires (presence clause),
+       an unparseable value fires, and a value disagreeing with the
+       arithmetic fires. The equality is computed only when every lesson
+       carries a parseable FM ET; a lesson-less parse gap is not reported
+       here twice.
 
 The gate is order-agnostic about table columns (3500-multimodal renders Time
 before Difficulty and both orders pass). Dead row targets are skipped here -
@@ -40,12 +48,18 @@ linkcheck owns them. Born tick-576 after a 35-finding drain (22 FM cards, 2
 body badges that mirrored the drifted FM, 10 star cells, 2 time cells, 1
 missing table row); the drain obeys the 11-of-33 modules that already satisfy
 CC-01 - the contract is the curated majority's convention, not an invention.
+CC-06 born tick-578: the census found 29 of 33 cards carrying no FM Estimated
+Time at all and the 4 boilerplate carriers (12/18/28/37 hours, born 775f898)
+overshooting every computable source; the drain wrote the ceil lesson sum
+into all 33 cards (29 insertions, 4 corrections - every sum whole hours) and
+the lock freezes the arithmetic.
 
 Exit 1 on any finding; prints one line per finding.
 """
 from __future__ import annotations
 
 import argparse
+import math
 import re
 import sys
 from pathlib import Path, PurePosixPath
@@ -169,10 +183,15 @@ def main() -> int:
             if p.name not in ("README.md", "PREREQUISITES.md")
         ]
         ltiers = {}
+        letm: dict[str, float] = {}
         for p in lessons:
             f = fm_fields(p)
             if f and f.get("diff") in TIER_STARS:
                 ltiers[p.name] = TIER_STARS[f["diff"]]
+            if f:
+                lm = fm_minutes(f.get("et"))
+                if lm is not None:
+                    letm[p.name] = lm
 
         # CC-01: card tier == max lesson tier
         if rfm and rfm.get("diff") in TIER_STARS and ltiers:
@@ -184,6 +203,30 @@ def main() -> int:
                     f"'{[t for t, v in TIER_STARS.items() if v == want][0]}' "
                     f"(lessons: {sorted(ltiers)})"
                 )
+
+        # CC-06: card FM Estimated Time present and == ceil(lesson ET sum)
+        card_et = (rfm or {}).get("et")
+        if card_et is None:
+            findings.append(
+                f"{rel} CC-06 course card carries no FM Estimated Time "
+                f"(the platform catalog reads a time budget per course)"
+            )
+        else:
+            card_m = fm_minutes(card_et)
+            if card_m is None:
+                findings.append(
+                    f"{rel} CC-06 course card FM Estimated Time "
+                    f"'{card_et}' is not a parseable hour/minute budget "
+                    f"(want 'N hours')"
+                )
+            elif lessons and len(letm) == len(lessons):
+                want_h = math.ceil(sum(letm.values()) / 60)
+                if card_m != want_h * 60:
+                    findings.append(
+                        f"{rel} CC-06 course card FM Estimated Time "
+                        f"'{card_et}' != ceil lesson sum "
+                        f"({sum(letm.values()):g}min -> {want_h}h)"
+                    )
 
         # CC-04: every lesson linked somewhere in the README
         linked = {

@@ -4,6 +4,7 @@ Title: "6400: Vector Databases"
 Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Intermediate
+Estimated Time: 6 hours
 Tags: ['module', 'rag', 'vector-db']
 ---
 

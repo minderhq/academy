@@ -4,6 +4,7 @@ Title: "1300: Kubernetes for LLM Deployment"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
+Estimated Time: 9 hours
 Tags: ['module', 'infrastructure', 'kubernetes']
 ---
 

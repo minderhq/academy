@@ -4,6 +4,7 @@ Title: "[3300]: The Decoding Block"
 Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Beginner
+Estimated Time: 4 hours
 Tags: ['module', 'transformers', 'activation']
 ---
 

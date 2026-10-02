@@ -4,6 +4,7 @@ Title: "6300: Context Management"
 Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
+Estimated Time: 10 hours
 Tags: ['module', 'rag', 'context']
 ---
 

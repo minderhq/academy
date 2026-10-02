@@ -4,6 +4,7 @@ Title: "5100: Parameter-Efficient Fine-Tuning (PEFT)"
 Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
+Estimated Time: 15 hours
 Tags: ['module', 'finetuning', 'peft']
 ---
 

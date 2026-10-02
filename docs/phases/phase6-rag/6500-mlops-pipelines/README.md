@@ -4,6 +4,7 @@ Title: "6500: MLOps Pipelines for RAG"
 Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
+Estimated Time: 12 hours
 Tags: ['module', 'mlops', 'model-registry']
 ---
 

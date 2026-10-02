@@ -6,7 +6,8 @@ Module: 2200
 Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
-Estimated Time: 18 hours
+Estimated Time: 12 hours
+
 Prerequisites: See PREREQUISITES.md
 Related: See References
 Tags: ['frameworks', 'pytorch', 'autograd', 'tensorflow', 'xla', 'cuda']

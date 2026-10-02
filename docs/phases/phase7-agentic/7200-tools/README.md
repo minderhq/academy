@@ -4,6 +4,7 @@ Title: "7200: Tool Calling and Function Execution"
 Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Intermediate
+Estimated Time: 3 hours
 Tags: ['module', 'agents', 'tool-calling']
 ---
 

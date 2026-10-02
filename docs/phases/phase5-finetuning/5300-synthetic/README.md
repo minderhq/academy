@@ -4,6 +4,7 @@ Title: "5300: Synthetic Data & Advanced Training"
 Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
+Estimated Time: 12 hours
 Tags: ['module', 'finetuning', 'synthetic-data']
 ---
 
