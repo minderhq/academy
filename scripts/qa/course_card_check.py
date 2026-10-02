@@ -136,6 +136,16 @@ CC-21  Every phase README's FM carries only the 6-field
        its entry pages live in. Negative-excess only: FS
        owns field presence, this clause owns field
        excess - never double-report.
+CC-22  Every phase-level assessment page's FM carries only
+       the 6-field entry keyset - one family for the 14
+       phase-practice/phase-quiz pages under 00-META/
+       assessment, the phase-completion checkpoints a
+       platform renders between one course group and the
+       next, so a platform parser reads every phase
+       assessment through the same schema its entry
+       pages live in. Negative-excess only: FS owns
+       field presence, this clause owns field
+       excess - never double-report.
 
 The gate is order-agnostic about table columns (3500-multimodal renders Time
 before Difficulty and both orders pass). Dead row targets are skipped here -
@@ -309,6 +319,18 @@ browse surface a platform renders above every card froze
 at the family the moment it was named, no drain, no fence
 coupling, nothing to probe.
 
+CC-22 was born tick-592 as the seventh FM-keyset surface
+(entry CC-16, card CC-17, lesson CC-18, guide CC-19,
+assessment CC-20, phase header CC-21, phase assessment
+CC-22): the census read the 14 phase-practice/phase-quiz
+pages under 00-META/assessment born-clean - every one
+already on the exact 6-field entry keyset, all 14 linked
+(from MASTER-INDEX, SITEMAP and their phase READMEs) - so
+the lock is a zero-drain one in the CC-21 shape: the
+phase-completion checkpoint surface a platform renders
+between course groups froze at the family the moment it
+was named, no drain, no fence coupling, nothing to probe.
+
 Exit 1 on any finding; prints one line per finding.
 """
 from __future__ import annotations
@@ -351,6 +373,10 @@ ASSESSMENT_KEYSET = ENTRY_KEYSET | {
 # the phase header shares the 6-field entry family - one
 # clause each, never double-reported
 PHASE_KEYSET = ENTRY_KEYSET
+# the phase-level assessment page shares the entry family
+# too - its module-level CC-20 sibling carries the 9-field
+# bank, but the phase-completion page stays minimal
+PHASE_ASSESSMENT_KEYSET = ENTRY_KEYSET
 FM_DASH = re.compile(r"^---\s*$")
 FM_KEY = re.compile(r"^([A-Za-z][A-Za-z0-9 _-]*):")
 DIFF_FIELD = re.compile(r"^Difficulty:(.*)$")
@@ -900,6 +926,23 @@ def main() -> int:
                     f"(the CC-01 invariant one level up - a group "
                     f"containing an advanced course filters as advanced)"
                 )
+
+    # CC-22: the phase-level assessment pages carry only
+    # the entry FM keyset - the phase-completion
+    # checkpoints a platform renders between course
+    # groups read the same 6-field family the entry
+    # pages live in (their module-level CC-20 siblings
+    # carry the 9-field bank; these pages stay minimal)
+    pa_dir = root / "docs" / "00-META" / "assessment"
+    for pap in sorted(pa_dir.glob("*.md")):
+        prel = pap.relative_to(root).as_posix()
+        extra = sorted(fm_keys(pap) - PHASE_ASSESSMENT_KEYSET)
+        if extra:
+            findings.append(
+                f"{prel} CC-22 phase-assessment FM carries fields "
+                f"outside the phase-assessment keyset - "
+                f"{', '.join(extra)}"
+            )
 
     for f in findings:
         print(f)
