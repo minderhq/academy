@@ -698,7 +698,7 @@ stand today?" without running each tool by hand.
                       badges, phase-hub range badges,
                       'Absolute Beginner')
     course_card_check
-                      Course-card parity (CC-01..07, hard):
+                      Course-card parity (CC-01..08, hard):
                       a module README's front-matter
                       Difficulty is the course card a
                       platform catalog reads and the
@@ -753,7 +753,22 @@ stand today?" without running each tool by hand.
                       in the PQ-06 shape: 93/93 module
                       lessons clean, stripped lines and
                       range forms fire exactly once with
-                      CC-06 kept silent
+                      CC-06 kept silent. CC-08 every
+                      module dir is linked from its
+                      phase README (any link form,
+                      fence-aware) - the CC-04
+                      invariant one level up: phase
+                      pages are the platform's course
+                      browse list, so a module absent
+                      there is invisible above its
+                      own index. Born tick-580 as the
+                      second zero-drain lock in the
+                      same shape: 7/7 phase READMEs
+                      covering all 33 module dirs
+                      clean, killed targets and
+                      fence-wrapped lines fire
+                      exactly once with CC-01..07
+                      kept silent
     heading_scan
                       Heading skeleton soundness (HS-01..05,
                       hard): the platform renders a TOC and

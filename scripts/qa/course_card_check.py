@@ -47,6 +47,11 @@ CC-07  Every lesson carries a parseable FM Estimated Time ('N hours' or
        lesson-side parse gap silently disabled the course-sum check,
        so the gap itself is now the finding, listed per module in the
        CC-04/CC-05 list style.
+CC-08  Every module directory is linked from its phase README (any link
+       form, fence-aware) - the CC-04 invariant one level up: phase
+       pages are the platform's course browse list, so a module that is
+       visible from its own module index (CC-04) but absent from its
+       phase page is invisible above the cards.
 
 The gate is order-agnostic about table columns (3500-multimodal renders Time
 before Difficulty and both orders pass). Dead row targets are skipped here -
@@ -60,7 +65,11 @@ overshooting every computable source; the drain wrote the ceil lesson sum
 into all 33 cards (29 insertions, 4 corrections - every sum whole hours) and
 the lock freezes the arithmetic. CC-07 born tick-579 as a zero-drain lock in
 the PQ-06 shape: the lesson-level census read 93/93 module lessons clean, so
-the precondition CC-06 leans on is frozen as its own invariant.
+the precondition CC-06 leans on is frozen as its own invariant. CC-08 born
+tick-580 as the second zero-drain lock in the same shape: the census read
+all 7 phase READMEs covering all 33 module dirs (the house convention links
+lessons inside each module dir from the phase page), so the browse spine
+above the cards is frozen too.
 
 Exit 1 on any finding; prints one line per finding.
 """
@@ -323,6 +332,30 @@ def main() -> int:
             findings.append(
                 f"{rel} CC-05 Module Documents table exists but misses "
                 f"lessons: {tbl_miss}"
+            )
+
+    # CC-08: every module is linked from its phase README - the CC-04
+    # invariant one level up: a module invisible from its phase page is
+    # invisible from the platform's course browse list
+    for ph in sorted(p for p in phases.glob("phase*") if p.is_dir()):
+        prm = ph / "README.md"
+        if not prm.exists():
+            continue
+        prel = prm.relative_to(root).as_posix()
+        blob = "\n".join(unfenced_lines(prm.read_text(encoding="utf-8")))
+        targets = [
+            m.group(1).split("#")[0]
+            for m in LINK.finditer(blob)
+            if not m.group(1).startswith(("http://", "https://"))
+        ]
+        here = sorted(d.name for d in ph.iterdir() if d.is_dir())
+        ghost = [mn for mn in here if not any(mn in t for t in targets)]
+        if ghost:
+            findings.append(
+                f"{prel} CC-08 modules on disk but linked nowhere in "
+                f"the phase index (the CC-04 invariant one level up - "
+                f"this page is the platform's course browse list): "
+                f"{ghost}"
             )
 
     for f in findings:
