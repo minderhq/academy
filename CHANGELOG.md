@@ -36,7 +36,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   by-design-hang / learner-artifact note
 
 ### Added - Quality Infrastructure Growth
-- **96 hard QA gates (total 102)**: census_note_gate (CN-01/02) makes
+- **97 hard QA gates (total 103)**: census_note_gate (CN-01/02) makes
   the execution census's must-be-adjudicated contract mechanical;
   meta_claims_check now locks this changelog's newest gate-count claim
   to quality_report.GATES itself, notebook_unfinished_scan
@@ -44,7 +44,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   the .md-only extraction cannot see - 108 `# TODO:` exercise prompts
   stay legitimate, notebook prose obeys the same rule as file prose -
   and notebook_catalog_check (NC-01/02) locks the two-table notebook
-  catalog (README index vs MASTER-INDEX) against content drift, and changelog_summary_check (CS-01..05) keeps the changelog's own release index (sections vs Version Summary table vs reference-link definitions) synchronized, and lab_index_parity_check (LI-01..03) locks MASTER-INDEX's Labs table to every lab's front-matter contract (id set, Estimated Time, title), and tutorial_index_parity_check (TI-01..05) locks MASTER-INDEX's Tutorials table to every tutorial's front matter (difficulty, Estimated Time, normalized prerequisite sets - free-text prerequisites are findings, id-set parity both directions; the mirror follows the evidence-backed richer side per field)
+  catalog (README index vs MASTER-INDEX) against content drift, and changelog_summary_check (CS-01..05) keeps the changelog's own release index (sections vs Version Summary table vs reference-link definitions) synchronized, and lab_index_parity_check (LI-01..03) locks MASTER-INDEX's Labs table to every lab's front-matter contract (id set, Estimated Time, title), and tutorial_index_parity_check (TI-01..05) locks MASTER-INDEX's Tutorials table to every tutorial's front matter (difficulty, Estimated Time, normalized prerequisite sets - free-text prerequisites are findings, id-set parity both directions; the mirror follows the evidence-backed richer side per field), and cheatsheet_index_parity_check (CI-01..04) locks MASTER-INDEX's Cheat Sheets table to the 13-file fleet (id-set parity with QUICK-REF id normalization, the topic cell mirroring the front-matter Title verbatim, the header's file count matching the row count, and every row's link naming its own file) - born catching CHEAT-SHEET-006 invisible to the index it was counted in
 - **lesson_similarity_scan** (report tool): 5-word-shingle Jaccard
   over all 6441 lesson pairs - born at zero clone findings with a max
   similarity of 0.058, lesson diversity under continuous lock

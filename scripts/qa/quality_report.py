@@ -1036,6 +1036,23 @@ stand today?" without running each tool by hand.
                        per field (the opposite of the lab lock, where
                        the front matter was the contract), drained in
                        the same tick
+    cheatsheet_index_parity_check
+                       MASTER-INDEX's "### Cheat Sheets" table locks
+                       to the 13-file cheat-sheet fleet (CI-01 id-set
+                       parity both directions with QUICK-REF-VN ->
+                       QUICK-REF-VOLUME-N normalization, CI-02 topic
+                       equals the Title minus its "CHEAT-SHEET-NNN: "
+                       or "Volume N: " prefix verbatim, CI-03 the
+                       header's file count equals the row count,
+                       CI-04 every row's link names its own file);
+                       born tick-555 at the maximal finding -
+                       CHEAT-SHEET-006 existed on disk, in File
+                       Counts (13) and SITEMAP but its row was never
+                       added (12 rows under a "13 files" header, the
+                       newest cheat sheet invisible to the one
+                       surface learners browse first) alongside 11
+                       abbreviated Topic cells, drained in the same
+                       tick
     empty_section_scan every heading must own content (ES-01): a
                        section is empty iff nothing but blanks/HRs/
                        blockquotes/HTML-comments sits between its
@@ -1423,6 +1440,7 @@ GATES = [
     ("changelog_summary_check.py", "changelog_summary_check", True),
     ("lab_index_parity_check.py", "lab_index_parity_check", True),
     ("tutorial_index_parity_check.py", "tutorial_index_parity_check", True),
+    ("cheatsheet_index_parity_check.py", "cheatsheet_index_parity_check", True),
 ]
 
 

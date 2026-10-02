@@ -236,18 +236,19 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 | ID | Topic | Coverage |
 |----|-------|----------|
-| **[CHEAT-SHEET-001](../learning-resources/cheat-sheets/CHEAT-SHEET-001-Docker.md)** | Docker | Commands, Compose, Networking |
-| **[CHEAT-SHEET-002](../learning-resources/cheat-sheets/CHEAT-SHEET-002-Python-AI.md)** | Python AI | NumPy, PyTorch, Transformers |
-| **[CHEAT-SHEET-003](../learning-resources/cheat-sheets/CHEAT-SHEET-003-Git.md)** | Git | Commands, Workflows, Best Practices |
-| **[CHEAT-SHEET-004](../learning-resources/cheat-sheets/CHEAT-SHEET-004-Linux.md)** | Linux | Commands, System Admin, Performance |
+| **[CHEAT-SHEET-001](../learning-resources/cheat-sheets/CHEAT-SHEET-001-Docker.md)** | Docker Commands | Commands, Compose, Networking |
+| **[CHEAT-SHEET-002](../learning-resources/cheat-sheets/CHEAT-SHEET-002-Python-AI.md)** | Python for AI/ML | NumPy, PyTorch, Transformers |
+| **[CHEAT-SHEET-003](../learning-resources/cheat-sheets/CHEAT-SHEET-003-Git.md)** | Git & Version Control | Commands, Workflows, Best Practices |
+| **[CHEAT-SHEET-004](../learning-resources/cheat-sheets/CHEAT-SHEET-004-Linux.md)** | Linux Commands for AI/ML | Commands, System Admin, Performance |
 | **[CHEAT-SHEET-005](../learning-resources/cheat-sheets/CHEAT-SHEET-005-RAG-Systems.md)** | RAG Systems | Embeddings, Vector DB, Evaluation |
-| **[QUICK-REF-V1](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-1.md)** | Volume 1 | Phase 1 Quick Reference |
-| **[QUICK-REF-V2](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-2.md)** | Volume 2 | Phase 2 Quick Reference |
-| **[QUICK-REF-V3](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-3.md)** | Volume 3 | Phase 3 Quick Reference |
-| **[QUICK-REF-V4](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-4.md)** | Volume 4 | Phase 4 Quick Reference |
-| **[QUICK-REF-V5](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-5.md)** | Volume 5 | Phase 5 Quick Reference |
-| **[QUICK-REF-V6](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-6.md)** | Volume 6 | Phase 6 Quick Reference |
-| **[QUICK-REF-V7](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-7.md)** | Volume 7 | Phase 7 Quick Reference |
+| **[CHEAT-SHEET-006](../learning-resources/cheat-sheets/CHEAT-SHEET-006-Kubernetes.md)** | Kubernetes for LLM Deployment | Installation, Deployments, Services, GPU Scheduling, Scaling, Troubleshooting |
+| **[QUICK-REF-V1](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-1.md)** | Infrastructure Mastery - Quick Reference | Phase 1 Quick Reference |
+| **[QUICK-REF-V2](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-2.md)** | AI/ML Foundations - Quick Reference | Phase 2 Quick Reference |
+| **[QUICK-REF-V3](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-3.md)** | LLM Internals - Quick Reference | Phase 3 Quick Reference |
+| **[QUICK-REF-V4](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-4.md)** | Quantization Mastery - Quick Reference | Phase 4 Quick Reference |
+| **[QUICK-REF-V5](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-5.md)** | Fine-Tuning Expert - Quick Reference | Phase 5 Quick Reference |
+| **[QUICK-REF-V6](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-6.md)** | RAG & Data Systems - Quick Reference | Phase 6 Quick Reference |
+| **[QUICK-REF-V7](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-7.md)** | Production Systems - Quick Reference | Phase 7 Quick Reference |
 
 ---
 
