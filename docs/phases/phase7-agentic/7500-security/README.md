@@ -3,7 +3,7 @@ Document ID: 7500-SECURITY-README
 Title: "7500: AI Agent Security"
 Last Updated: 2026-10-01
 Status: Complete
-Difficulty: Beginner
+Difficulty: Advanced
 Tags: ['module', 'agents', 'security']
 ---
 

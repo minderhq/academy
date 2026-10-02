@@ -5,7 +5,7 @@ Phase: 2
 Module: 2300
 Last Updated: 2026-09-29
 Status: Complete
-Difficulty: Intermediate
+Difficulty: Advanced
 Estimated Time: 28 hours
 Prerequisites: See PREREQUISITES.md
 Related: See References

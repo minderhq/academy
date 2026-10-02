@@ -3,7 +3,7 @@ Document ID: 6100-VECTOR-README
 Title: "6100: Vector Embeddings"
 Last Updated: 2026-10-01
 Status: Complete
-Difficulty: Beginner
+Difficulty: Intermediate
 Tags: ['module', 'rag', 'vectors']
 ---
 

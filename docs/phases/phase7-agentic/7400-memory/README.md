@@ -3,7 +3,7 @@ Document ID: 7400-MEMORY-README
 Title: "7400: Agent Memory Systems"
 Last Updated: 2026-10-01
 Status: Complete
-Difficulty: Beginner
+Difficulty: Advanced
 Tags: ['module', 'agents', 'memory']
 ---
 

@@ -694,6 +694,34 @@ stand today?" without running each tool by hand.
                       contradicted badge intent, starless
                       badges, phase-hub range badges,
                       'Absolute Beginner')
+    course_card_check
+                      Course-card parity (CC-01..05, hard):
+                      a module README's front-matter
+                      Difficulty is the course card a
+                      platform catalog reads and the
+                      Module Documents table some READMEs
+                      render is the per-lesson display
+                      layer. CC-01 the card equals the max
+                      tier of the module's lessons (the
+                      FF-02 star map; lessons = module-dir
+                      *.md minus README minus
+                      PREREQUISITES), CC-02/03 the table's
+                      star and time cells mirror each
+                      target's FM tier and Estimated Time
+                      minute-exact (header-conditional
+                      emptiness, the LI-05 class), CC-04
+                      every lesson linked somewhere in the
+                      README, CC-05 every lesson has a row
+                      where the table exists. Born tick-576
+                      at 35 findings: 22 of 33 cards floated
+                      free of their lessons since the
+                      775f898 boilerplate migration (a 3100
+                      card reading Beginner over Advanced
+                      lessons), 10 star cells and 2 time
+                      cells drifted, 7300 omitted 7302, 2
+                      body badges mirrored the drift; the
+                      drain obeys the 11 curated cards
+                      already satisfying CC-01
     heading_scan
                       Heading skeleton soundness (HS-01..05,
                       hard): the platform renders a TOC and
@@ -1742,6 +1770,7 @@ GATES = [
     ("notebook_unfinished_scan.py", "notebook_unfinished_scan", True),
     ("notebook_catalog_check.py", "notebook_catalog_check", True),
     ("changelog_summary_check.py", "changelog_summary_check", True),
+    ("course_card_check.py", "course_card_check", True),
     ("lab_index_parity_check.py", "lab_index_parity_check", True),
     ("tutorial_index_parity_check.py", "tutorial_index_parity_check", True),
     ("cheatsheet_index_parity_check.py", "cheatsheet_index_parity_check", True),

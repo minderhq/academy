@@ -355,7 +355,7 @@
    }
   },
   "docs/learning-resources/labs/LAB-001-Docker-LLM.md": {
-   "mtime": 1790784081.16215,
+   "mtime": 1790926026.463621,
    "size": 19984,
    "bad": {
     "108": "TIMEOUT"
@@ -385,7 +385,7 @@
    }
   },
   "docs/learning-resources/labs/LAB-003-LoRA-FineTuning.md": {
-   "mtime": 1790784081.1806314,
+   "mtime": 1790924545.9245346,
    "size": 29070,
    "bad": {
     "672": "TIMEOUT"
@@ -431,7 +431,7 @@
    }
   },
   "docs/learning-resources/labs/LAB-006-Train-Model-From-Scratch.md": {
-   "mtime": 1790784081.2057831,
+   "mtime": 1790924546.0489566,
    "size": 40615,
    "bad": {}
   },
@@ -474,8 +474,8 @@
    }
   },
   "docs/learning-resources/labs/LAB-009-Production-Deployment.md": {
-   "mtime": 1790784081.2547927,
-   "size": 43474,
+   "mtime": 1790926026.160487,
+   "size": 43471,
    "bad": {
     "171": "TIMEOUT"
    },
@@ -489,8 +489,8 @@
    "bad": {}
   },
   "docs/learning-resources/labs/LAB-011-Multi-Modal-AI.md": {
-   "mtime": 1790885499.5584984,
-   "size": 40944,
+   "mtime": 1790925860.8750076,
+   "size": 40941,
    "bad": {
     "326": "CODE-SIGNAL:UnidentifiedImageError",
     "611": "CODE-SIGNAL:UnidentifiedImageError",
@@ -507,8 +507,8 @@
    }
   },
   "docs/learning-resources/labs/LAB-012-Audio-AI.md": {
-   "mtime": 1790784081.2839427,
-   "size": 39572,
+   "mtime": 1790926026.160487,
+   "size": 39570,
    "bad": {
     "483": "TIMEOUT"
    },
@@ -517,8 +517,8 @@
    }
   },
   "docs/learning-resources/labs/LAB-013-Advanced-Function-Calling.md": {
-   "mtime": 1790784081.2955008,
-   "size": 41330,
+   "mtime": 1790925860.8986123,
+   "size": 41327,
    "bad": {
     "55": "SIDE-EFFECT",
     "1355": "EXIT-CALL"
@@ -529,8 +529,8 @@
    }
   },
   "docs/learning-resources/labs/LAB-014-AI-Evaluation-Safety.md": {
-   "mtime": 1790784081.3043115,
-   "size": 38082,
+   "mtime": 1790925860.912132,
+   "size": 38080,
    "bad": {}
   },
   "docs/learning-resources/labs/solutions/SOLUTION-LAB-000-Environment-Setup.md": {
@@ -958,8 +958,8 @@
    }
   },
   "docs/learning-resources/tutorials/TUTORIAL-000-Python-for-AI.md": {
-   "mtime": 1790898864.492553,
-   "size": 47237,
+   "mtime": 1790926026.160487,
+   "size": 47218,
    "bad": {
     "1891": "TIMEOUT"
    },
@@ -978,7 +978,7 @@
    }
   },
   "docs/learning-resources/tutorials/TUTORIAL-003-RAG-Basics.md": {
-   "mtime": 1790897729.7416186,
+   "mtime": 1790936056.4840848,
    "size": 17313,
    "bad": {
     "94": "ENV-GAP:sentence_transformers",
@@ -1044,7 +1044,7 @@
    }
   },
   "docs/learning-resources/tutorials/TUTORIAL-009-Advanced-RAG-Techniques.md": {
-   "mtime": 1790897729.7463126,
+   "mtime": 1790936055.8161404,
    "size": 18886,
    "bad": {
     "68": "ENV-GAP:rank_bm25",
@@ -1536,8 +1536,8 @@
    }
   },
   "docs/phases/phase3-transformers/3100-attention/README.md": {
-   "mtime": 1790844910.2926338,
-   "size": 5108,
+   "mtime": 1790939558.478866,
+   "size": 5105,
    "bad": {}
   },
   "docs/phases/phase3-transformers/3100-attention/assessment/PRACTICE.md": {
@@ -1575,8 +1575,8 @@
    }
   },
   "docs/phases/phase3-transformers/3200-embeddings/README.md": {
-   "mtime": 1790750681.9380794,
-   "size": 7637,
+   "mtime": 1790939558.4798646,
+   "size": 7632,
    "bad": {}
   },
   "docs/phases/phase3-transformers/3200-embeddings/assessment/PRACTICE.md": {
@@ -1620,8 +1620,8 @@
    }
   },
   "docs/phases/phase3-transformers/3300-decoding/README.md": {
-   "mtime": 1790750681.939588,
-   "size": 7764,
+   "mtime": 1790939059.85944,
+   "size": 7758,
    "bad": {}
   },
   "docs/phases/phase3-transformers/3300-decoding/assessment/PRACTICE.md": {
@@ -1662,8 +1662,8 @@
    "bad": {}
   },
   "docs/phases/phase3-transformers/3400-architectures/README.md": {
-   "mtime": 1790767654.6100245,
-   "size": 13187,
+   "mtime": 1790939006.2254653,
+   "size": 13185,
    "bad": {}
   },
   "docs/phases/phase3-transformers/3400-architectures/assessment/PRACTICE.md": {
@@ -1704,8 +1704,8 @@
    }
   },
   "docs/phases/phase3-transformers/3500-multimodal/README.md": {
-   "mtime": 1790750681.9436486,
-   "size": 13657,
+   "mtime": 1790939006.2270143,
+   "size": 13659,
    "bad": {}
   },
   "docs/phases/phase3-transformers/3500-multimodal/assessment/PRACTICE.md": {
@@ -2162,7 +2162,7 @@
    "bad": {}
   },
   "docs/phases/phase5-finetuning/5200-alignment/README.md": {
-   "mtime": 1790844051.5739748,
+   "mtime": 1790939006.2310226,
    "size": 8057,
    "bad": {}
   },
@@ -2645,8 +2645,8 @@
    }
   },
   "docs/phases/phase7-agentic/7200-tools/README.md": {
-   "mtime": 1790844562.4195442,
-   "size": 6893,
+   "mtime": 1790939006.239117,
+   "size": 6897,
    "bad": {}
   },
   "docs/phases/phase7-agentic/7200-tools/assessment/PRACTICE.md": {
@@ -2686,13 +2686,13 @@
    "bad": {}
   },
   "docs/phases/phase7-agentic/7300-orchestration/README.md": {
-   "mtime": 1790750681.9849224,
-   "size": 16357,
+   "mtime": 1790939558.4798646,
+   "size": 16485,
    "bad": {
-    "230": "ENV-GAP:autogen"
+    "231": "ENV-GAP:autogen"
    },
    "notes": {
-    "230": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+    "231": "optional third-party package the QA environment does not install; the fence documents the install requirement"
    }
   },
   "docs/phases/phase7-agentic/7300-orchestration/assessment/PRACTICE.md": {

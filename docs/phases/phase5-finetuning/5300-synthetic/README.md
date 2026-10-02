@@ -3,7 +3,7 @@ Document ID: 5300-SYNTHETIC-README
 Title: "5300: Synthetic Data & Advanced Training"
 Last Updated: 2026-10-01
 Status: Complete
-Difficulty: Beginner
+Difficulty: Advanced
 Tags: ['module', 'finetuning', 'synthetic-data']
 ---
 

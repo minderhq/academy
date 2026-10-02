@@ -3,7 +3,7 @@ Document ID: 7300-ORCHESTRATION-README
 Title: "[7300]: Multi-Agent Orchestration"
 Last Updated: 2026-09-29
 Status: Complete
-Difficulty: Beginner
+Difficulty: Advanced
 Tags: ['module', 'agents', 'orchestration']
 ---
 
@@ -19,7 +19,8 @@ This module covers frameworks and patterns for orchestrating multiple AI agents 
 
 | Document | Description | Difficulty | Time |
 |----------|-------------|------------|------|
-| [7301: Orchestration](./7301-Orchestration.md) | Multi-agent collaboration patterns | ⭐⭐⭐⭐ | 4 hrs |
+| [7301: Orchestration](./7301-Orchestration.md) | Multi-agent collaboration patterns | ⭐⭐⭐ | 4 hrs |
+| [7302: Communication Protocols](./7302-Communication-Protocols.md) | Agent-to-agent communication patterns | ⭐⭐⭐ | 4 hrs |
 | [7303: Framework Comparison](./guides/7303-Framework-Comparison.md) | AutoGen vs LangGraph vs others | ⭐⭐⭐ | 3 hrs |
 
 ---

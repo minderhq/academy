@@ -3,7 +3,7 @@ Document ID: 3400-ARCHITECTURES-README
 Title: "[3400]: Model Architectures"
 Last Updated: 2026-09-30
 Status: Complete
-Difficulty: Beginner
+Difficulty: Intermediate
 Tags: ['module', 'transformers', 'architecture']
 ---
 
@@ -19,8 +19,8 @@ This module covers the major Transformer architecture families: encoder-decoder 
 
 | Document | Description | Difficulty | Time |
 |----------|-------------|------------|------|
-| [3401: Encoder-Decoder Architectures](./3401-Encoder-Decoder-Architectures.md) | T5, BART, and sequence-to-sequence models | ⭐⭐⭐ | 4 hrs |
-| [3402: Decoder-Only Models](./3402-Decoder-Only-Models.md) | GPT, LLaMA, Mistral architectures | ⭐⭐⭐ | 4 hrs |
+| [3401: Encoder-Decoder Architectures](./3401-Encoder-Decoder-Architectures.md) | T5, BART, and sequence-to-sequence models | ⭐⭐ | 4 hrs |
+| [3402: Decoder-Only Models](./3402-Decoder-Only-Models.md) | GPT, LLaMA, Mistral architectures | ⭐⭐ | 4 hrs |
 | [3403: Model Architecture Comparison](./guides/3403-Model-Architecture-Comparison.md) | Comparative guide with benchmarks | ⭐⭐⭐ | 3 hrs |
 
 ---

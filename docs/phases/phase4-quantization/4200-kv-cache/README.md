@@ -3,7 +3,7 @@ Document ID: 4200-KV-CACHE-README
 Title: "4200: KV Cache Optimization"
 Last Updated: 2026-10-01
 Status: Complete
-Difficulty: Beginner
+Difficulty: Advanced
 Tags: ['module', 'quantization', 'kv-cache']
 ---
 

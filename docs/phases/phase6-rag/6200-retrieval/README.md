@@ -3,7 +3,7 @@ Document ID: 6200-RETRIEVAL-README
 Title: "6200: Retrieval Strategies"
 Last Updated: 2026-09-28
 Status: Complete
-Difficulty: Beginner
+Difficulty: Advanced
 Tags: ['module', 'rag', 'retrieval']
 ---
 

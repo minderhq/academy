@@ -3,7 +3,7 @@ Document ID: 6300-CONTEXT-README
 Title: "6300: Context Management"
 Last Updated: 2026-10-01
 Status: Complete
-Difficulty: Beginner
+Difficulty: Advanced
 Tags: ['module', 'rag', 'context']
 ---
 

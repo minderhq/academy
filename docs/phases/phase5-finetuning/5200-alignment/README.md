@@ -3,7 +3,7 @@ Document ID: 5200-ALIGNMENT-README
 Title: "5200: LLM Alignment"
 Last Updated: 2026-10-01
 Status: Complete
-Difficulty: Beginner
+Difficulty: Advanced
 Tags: ['module', 'finetuning', 'alignment']
 ---
 

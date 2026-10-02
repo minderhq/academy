@@ -3,7 +3,7 @@ Document ID: 3200-EMBEDDINGS-README
 Title: "[3200]: Embedding Latent Spaces"
 Last Updated: 2026-09-29
 Status: Complete
-Difficulty: Beginner
+Difficulty: Intermediate
 Tags: ['module', 'transformers', 'embeddings']
 ---
 
@@ -19,8 +19,8 @@ This module covers how Transformers represent text as continuous vectors - the f
 
 | Document | Description | Difficulty | Time |
 |----------|-------------|------------|------|
-| [3201: RoPE - Rotary Positional Embeddings](./3201-Rotary-Positional-Embeddings-RoPE.md) | Absolute vs Relative positions in sequence modeling | ⭐⭐⭐⭐ | 4 hrs |
-| [3202: Tokenizer Sciences](./3202-Tokenizer-Sciences.md) | BPE, SentencePiece, and Tiktoken algorithms | ⭐⭐⭐ | 3 hrs |
+| [3201: RoPE - Rotary Positional Embeddings](./3201-Rotary-Positional-Embeddings-RoPE.md) | Absolute vs Relative positions in sequence modeling | ⭐⭐ | 3 hrs |
+| [3202: Tokenizer Sciences](./3202-Tokenizer-Sciences.md) | BPE, SentencePiece, and Tiktoken algorithms | ⭐⭐ | 3 hrs |
 
 ---
 

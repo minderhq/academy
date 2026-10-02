@@ -19,9 +19,9 @@ This module covers the feed-forward networks, activation functions, and normaliz
 
 | Document | Description | Difficulty | Time |
 |----------|-------------|------------|------|
-| [3301: Activation Functions](./3301-Activation-Functions.md) | Why GELU and SwiGLU over RELU? | ⭐⭐ | 2 hrs |
-| [3302: Normalization Layers](./3302-Normalization-Layers.md) | BatchNorm vs LayerNorm vs RMSNorm | ⭐⭐ | 2 hrs |
-| [3303: Activation Function Comparison](./guides/3303-Activation-Function-Comparison.md) | Comparative analysis with benchmarks | ⭐⭐⭐ | 3 hrs |
+| [3301: Activation Functions](./3301-Activation-Functions.md) | Why GELU and SwiGLU over RELU? | ⭐ | 2 hrs |
+| [3302: Normalization Layers](./3302-Normalization-Layers.md) | BatchNorm vs LayerNorm vs RMSNorm | ⭐ | 2 hrs |
+| [3303: Activation Function Comparison](./guides/3303-Activation-Function-Comparison.md) | Comparative analysis with benchmarks | ⭐⭐⭐ | 2 hrs |
 
 ---
 

@@ -3,7 +3,7 @@ Document ID: 4100-LOW-BIT-README
 Title: "4100: Low-Bit Quantization"
 Last Updated: 2026-10-01
 Status: Complete
-Difficulty: Beginner
+Difficulty: Advanced
 Tags: ['module', 'quantization', 'gguf']
 ---
 

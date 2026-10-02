@@ -3,7 +3,7 @@ Document ID: 3500-MULTIMODAL-README
 Title: "[3500]: Multimodal Models"
 Last Updated: 2026-09-28
 Status: Complete
-Difficulty: Beginner
+Difficulty: Advanced
 Tags: ['module', 'transformers', 'multimodal']
 ---
 
@@ -19,8 +19,8 @@ This module covers vision-language models (CLIP, BLIP, LLaVA) and audio models (
 
 | Document | Description | Time | Difficulty |
 |----------|-------------|------|------------|
-| [3501: Vision-Language Models](./3501-Vision-Language-Models.md) | CLIP, BLIP, LLaVA, multimodal RAG | 5 hrs | Advanced |
-| [3502: Audio Models](./3502-Audio-Models.md) | Whisper, AudioLM, voice assistants | 5 hrs | Advanced |
+| [3501: Vision-Language Models](./3501-Vision-Language-Models.md) | CLIP, BLIP, LLaVA, multimodal RAG | 5 hrs | ⭐⭐⭐ |
+| [3502: Audio Models](./3502-Audio-Models.md) | Whisper, AudioLM, voice assistants | 5 hrs | ⭐⭐⭐ |
 
 ---
 

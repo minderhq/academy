@@ -3,7 +3,7 @@ Document ID: 1300-KUBERNETES-README
 Title: "1300: Kubernetes for LLM Deployment"
 Last Updated: 2026-09-30
 Status: Complete
-Difficulty: Advanced
+Difficulty: Intermediate
 Tags: ['module', 'infrastructure', 'kubernetes']
 ---
 
@@ -1012,6 +1012,6 @@ Production Ready:
 ---
 
 **Module Duration:** 8-10 hours
-**Difficulty:** ⭐⭐⭐ Advanced
+**Difficulty:** ⭐⭐ Intermediate
 
 **Ready to proceed?** Continue to [1301: K3s Master-Worker Architecture](./1301-K3s-Master-Worker-Arch.md)

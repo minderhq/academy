@@ -3,7 +3,7 @@ Document ID: 3100-ATTENTION-README
 Title: "[3100]: Attention Architectures"
 Last Updated: 2026-10-01
 Status: Complete
-Difficulty: Beginner
+Difficulty: Advanced
 Tags: ['module', 'transformers', 'attention']
 ---
 
@@ -20,7 +20,7 @@ This module covers the attention mechanism - the core innovation behind Transfor
 | Document | Description | Difficulty | Time |
 |----------|-------------|------------|------|
 | [3101: Self-Attention Deep Dive](./3101-Self-Attention-DeepDive.md) | Multi-head, Masked, Scaled Dot-Product Attention | ⭐⭐⭐ | 4 hrs |
-| [3102: Flash Attention](./3102-Flash-Attention.md) | Memory-efficient attention calculation (IO-aware) | ⭐⭐⭐⭐ | 4 hrs |
+| [3102: Flash Attention](./3102-Flash-Attention.md) | Memory-efficient attention calculation (IO-aware) | ⭐⭐⭐ | 4 hrs |
 
 ---
 
