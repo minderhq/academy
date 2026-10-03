@@ -24,6 +24,8 @@ Understood corpus forms (format-tolerant):
     silent overwrite of the earlier entry (tick-619)
   - question numbers must run 1..N contiguously - a numbering gap is a
     finding even when the count still matches (tick-620)
+  - two options of one question sharing the same text is a finding - a
+    duplicated option text is a broken distractor (tick-621)
 
 Usage:
     python scripts/qa/quiz_export.py [--root REPO_ROOT] [--out FILE]
@@ -231,6 +233,21 @@ def export_quiz(rel, lines, findings):
             if missing:
                 findings.append("%s: question %d missing options %s"
                                 % (rel, n, "".join(missing)))
+            seen = {}
+            fired = set()
+            for lt, tx in q["options"].items():
+                if tx in seen and tx not in fired:
+                    # tick-621: two options of one question sharing the
+                    # same text is a broken distractor - the learner
+                    # sees two identical choices while the record loads
+                    # fine (born census: 0 across 660 questions; the
+                    # duplicate LETTER site is tick-619's, this is the
+                    # text site).
+                    findings.append("%s: question %d options %s and %s "
+                                    "share the same text"
+                                    % (rel, n, seen[tx], lt))
+                    fired.add(tx)
+                seen.setdefault(tx, lt)
         elif q["points"] is not None:
             q["type"] = "coding"
         if not q["text"]:
