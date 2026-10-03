@@ -124,7 +124,7 @@ class ImageCaptioner:
     def __init__(self, model_name="Salesforce/blip-image-captioning-base"):
         self.processor = BlipProcessor.from_pretrained(model_name)
         self.model = BlipForConditionalGeneration.from_pretrained(
-            model_name, torch_dtype=torch.bfloat16
+            model_name, dtype=torch.bfloat16
         ).eval()
 
     @torch.no_grad()

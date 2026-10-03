@@ -166,7 +166,7 @@ from transformers import LlavaForConditionalGeneration, AutoProcessor
 
 model_id = "llava-hf/llava-1.5-7b-hf"
 model = LlavaForConditionalGeneration.from_pretrained(
-    model_id, torch_dtype=torch.float16, device_map="auto")
+    model_id, dtype=torch.float16, device_map="auto")
 processor = AutoProcessor.from_pretrained(model_id)
 
 image = Image.open("whiteboard.jpg")

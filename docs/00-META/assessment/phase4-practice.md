@@ -82,7 +82,7 @@ def compare_quantization():
     print("Loading FP16 model...")
     model_fp16 = AutoModelForCausalLM.from_pretrained(
         model_name,
-        torch_dtype=torch.float16,
+        dtype=torch.float16,
         device_map="auto"
     )
     mem_fp16 = model_fp16.get_memory_footprint() / 1e9
@@ -223,7 +223,7 @@ def test_context_window():
     print("Loading model...")
     model = AutoModelForCausalLM.from_pretrained(
         model_name,
-        torch_dtype=torch.float16,
+        dtype=torch.float16,
         device_map="auto",
         low_cpu_mem_usage=True
     )

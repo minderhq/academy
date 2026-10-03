@@ -342,7 +342,7 @@ pipe = pipeline(
     model=model,
     tokenizer=tokenizer,
     max_new_tokens=64,
-    torch_dtype=torch.float32,
+    dtype=torch.float32,
 )
 llm = HuggingFacePipeline(pipeline=pipe)
 print(llm.invoke("Summarize why KV caches matter in one sentence."))

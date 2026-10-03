@@ -528,7 +528,7 @@ class EntityExtractor:
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
         self.model = AutoModelForCausalLM.from_pretrained(
             model_name,
-            torch_dtype=torch.float16,
+            dtype=torch.float16,
             device_map="auto",
         )
 
@@ -627,7 +627,7 @@ class CompleteGraphRAG:
         self.tokenizer = AutoTokenizer.from_pretrained("mistralai/Mistral-7B-Instruct-v0.2")
         self.llm = AutoModelForCausalLM.from_pretrained(
             "mistralai/Mistral-7B-Instruct-v0.2",
-            torch_dtype=torch.float16,
+            dtype=torch.float16,
             device_map="auto",
         )
 

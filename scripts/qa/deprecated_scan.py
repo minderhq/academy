@@ -42,6 +42,30 @@ DA-04  a ```python fence must not use the ``torch.cuda.amp`` namespace:
        are comment-only deprecation teachings, which the ``#``-split
        below keeps invisible (same idiom as DA-01).
 
+DA-05  a ```python fence must not pass ``torch_dtype=``. Deprecated
+       in transformers (the v5 code carries it only as a
+       backward-compatibility shim - ``kwargs.pop("torch_dtype", None)
+       # kept for BC`` feeding ``dtype``) and the installed stack
+       still prints ``torch_dtype`` is deprecated! Use ``dtype``
+       instead! on every load, so a learner running lesson code as
+       written sees the warning today and a hard break when the shim
+       is dropped. The modern name is ``dtype=`` - empirically
+       verified on the installed 5.10.2 stack with a tiny-Llama
+       round-trip: ``from_pretrained(..., dtype=torch.float16)``
+       loads fp16 clean, the string form ``dtype="bfloat16"`` works,
+       and the legacy kwarg loads the same weights only after
+       emitting the deprecation warning. Born from the tick-639
+       census: 42 call sites across 24 files (all ``from_pretrained``
+       continuations, zero comment-only mentions), drained the same
+       tick - plus 5 rider sites outside this gate's universe (4
+       ``text``-fenced LAB-010 sketch lines, 1 bash-heredoc line in
+       5104) moved by hand with the same swap. The internal
+       ``load_gguf_checkpoint(torch_dtype=...)`` signature is a
+       documented non-class: no corpus fence calls it, and its
+       parameter genuinely is named ``torch_dtype`` - if a GGUF
+       teaching fence ever lands, it is a census-accept, not a
+       finding.
+
 Comment-only mentions (a fence teaching that utcnow is deprecated,
 like the 2303 API-design lesson) are not findings: the check looks
 for the pattern position before any ``#`` on the line.
@@ -51,7 +75,9 @@ Hard gate (exit 1 on findings): baseline 0 after the tick-227 drain
 the tick-228 drain (LAB-012 ``use_auth_token=False`` -> ``token=``),
 the tick-235 drain (LAB-007 ``doc.dict()`` -> ``doc.model_dump()``) and
 the tick-347 drain (3 torch.cuda.amp sites across 3 files moved to
-the torch.amp namespace).
+the torch.amp namespace) and the tick-639 drain (42 torch_dtype
+kwarg sites across 24 files moved to dtype=, with 5 rider sites in
+text/bash fences outside this gate's universe).
 
 Run over the whole corpus:
     python scripts/qa/deprecated_scan.py --root .
@@ -79,6 +105,9 @@ RULES = [
     (re.compile(r"\btorch\.cuda\.amp\b"),
      "DA-04 torch.cuda.amp namespace (deprecated since PyTorch 2.4) - "
      "use the torch.amp namespace (autocast('cuda') / GradScaler)"),
+    (re.compile(r"\btorch_dtype\s*="),
+     "DA-05 transformers torch_dtype kwarg (deprecated; the installed "
+     "5.10.2 stack warns on every load) - use dtype="),
 ]
 
 # DA-03 continuation: ``.dict()`` is only flagged in files that import
@@ -138,7 +167,8 @@ def main() -> int:
           f"(DA-01 datetime.utcnow/utcfromtimestamp, "
           f"DA-02 use_auth_token, "
           f"DA-03 pydantic v1 API, "
-          f"DA-04 torch.cuda.amp namespace) "
+          f"DA-04 torch.cuda.amp namespace, "
+          f"DA-05 torch_dtype kwarg) "
           f"in {len(n_files)} files across docs/")
     return 1 if findings else 0
 

@@ -112,7 +112,7 @@ async def lifespan(app: FastAPI):
     state["tokenizer"] = AutoTokenizer.from_pretrained(MODEL_PATH)
     state["model"] = AutoModelForCausalLM.from_pretrained(
         MODEL_PATH,
-        torch_dtype=torch.bfloat16,
+        dtype=torch.bfloat16,
         device_map="auto",
     )
     logger.info("Model loaded")
@@ -657,7 +657,7 @@ class ABTestRouter:
         from transformers import AutoModelForCausalLM
 
         return AutoModelForCausalLM.from_pretrained(
-            path, torch_dtype=torch.bfloat16, device_map="auto"
+            path, dtype=torch.bfloat16, device_map="auto"
         )
 
     def route_request(self, prompt: str, user_id: str):

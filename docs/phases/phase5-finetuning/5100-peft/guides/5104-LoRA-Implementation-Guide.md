@@ -341,7 +341,7 @@ def setup_lora_model(
     # Plain bf16 LoRA — no quantization (that's Implementation 3)
     model = AutoModelForCausalLM.from_pretrained(
         model_name,
-        torch_dtype=torch.bfloat16,
+        dtype=torch.bfloat16,
         device_map="auto",
     )
 
@@ -603,7 +603,7 @@ class MultiAdapterModel:
         # Load base model
         self.base_model = AutoModelForCausalLM.from_pretrained(
             base_model_name,
-            torch_dtype=torch.bfloat16,
+            dtype=torch.bfloat16,
             device_map="auto",
         )
 
@@ -822,7 +822,7 @@ from transformers import AutoModelForCausalLM
 import torch
 
 base = AutoModelForCausalLM.from_pretrained(
-    "mistralai/Mistral-7B-Instruct-v0.2", torch_dtype=torch.bfloat16
+    "mistralai/Mistral-7B-Instruct-v0.2", dtype=torch.bfloat16
 )
 PeftModel.from_pretrained(base, "./lora-output").merge_and_unload() \
     .save_pretrained("./merged-model")

@@ -480,7 +480,7 @@ from datasets import load_dataset
 
 model = AutoModelForCausalLM.from_pretrained(
     "HuggingFaceH4/mistral-7b-sft-beta",
-    torch_dtype=torch.bfloat16,
+    dtype=torch.bfloat16,
     # 11GB-class: add BitsAndBytesConfig 4-bit here (see 5102)
 )
 tokenizer = AutoTokenizer.from_pretrained("HuggingFaceH4/mistral-7b-sft-beta")

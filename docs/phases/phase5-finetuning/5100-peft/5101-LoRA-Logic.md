@@ -452,7 +452,7 @@ from transformers import AutoModelForCausalLM
 
 # Load base model
 base_model = AutoModelForCausalLM.from_pretrained(
-    "meta-llama/Llama-2-7b-hf", torch_dtype=torch.bfloat16
+    "meta-llama/Llama-2-7b-hf", dtype=torch.bfloat16
 )
 
 # Load LoRA adapter

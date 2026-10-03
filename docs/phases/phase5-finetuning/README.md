@@ -411,7 +411,7 @@ model = AutoModelForCausalLM.from_pretrained(
     "meta-llama/Llama-2-70b",
     load_in_4bit=True,
     device_map="auto",
-    torch_dtype=torch.float16
+    dtype=torch.float16
 )
 model.gradient_checkpointing_enable()
 ```

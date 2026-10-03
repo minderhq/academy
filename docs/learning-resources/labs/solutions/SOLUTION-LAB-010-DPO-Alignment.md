@@ -79,7 +79,7 @@ tokenizer.pad_token = tokenizer.eos_token  # collation needs a pad token
 
 model = AutoModelForCausalLM.from_pretrained(
     model_name,
-    torch_dtype=torch.bfloat16,
+    dtype=torch.bfloat16,
     device_map="auto",
 )
 
@@ -194,7 +194,7 @@ For the PEFT setup above, `ref_model` is the base model with adapters disabled â
 
 ```python
 ref_model = AutoModelForCausalLM.from_pretrained(
-    model_name, torch_dtype=torch.bfloat16, device_map="auto"
+    model_name, dtype=torch.bfloat16, device_map="auto"
 )
 
 acc = preference_accuracy(trainer.model, ref_model, tokenizer, split["test"])

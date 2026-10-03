@@ -477,7 +477,7 @@ import torch
 # 1. Load base model (16-bit for merge)
 base_model = AutoModelForCausalLM.from_pretrained(
     "meta-llama/Llama-2-7b-hf",
-    torch_dtype=torch.float16,
+    dtype=torch.float16,
     device_map="auto",
 )
 

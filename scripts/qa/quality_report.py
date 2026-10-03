@@ -286,8 +286,15 @@ stand today?" without running each tool by hand.
                        datetime.utcnow/utcfromtimestamp - Python 3.12+;
                        use datetime.now(timezone.utc); DA-02: HF
                        use_auth_token kwarg - removed in transformers
-                       5.x; use token=); comment-only mentions are
-                       not findings
+                       5.x; use token=; DA-03: pydantic v1 validation
+                       and .dict() API - use @field_validator and
+                       model_dump(); DA-04: torch.cuda.amp namespace -
+                       use torch.amp; DA-05: transformers torch_dtype
+                       kwarg - kept in v5 only as a BC shim, warns on
+                       every load on the installed 5.10.2 stack; use
+                       dtype=, born tick-639, drained same tick: 42
+                       sites across 24 files + 5 text/bash riders);
+                       comment-only mentions are not findings
     action_version_scan
                        uses: pins in docs must match the canonical
                        action registry (AV-01: current majors -

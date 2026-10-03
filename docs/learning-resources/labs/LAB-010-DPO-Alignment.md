@@ -139,7 +139,7 @@ model_name = "microsoft/Phi-3-mini-4k-instruct"  # or your preferred model
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForCausalLM.from_pretrained(
     model_name,
-    torch_dtype=torch.float16,
+    dtype=torch.float16,
     device_map="auto",
 )
 
@@ -528,7 +528,7 @@ tokenizer.pad_token = tokenizer.eos_token
 
 model = AutoModelForCausalLM.from_pretrained(
     model_name,
-    torch_dtype=torch.float16,
+    dtype=torch.float16,
     device_map="auto",
 )
 
@@ -624,14 +624,14 @@ aligned_model_name = "./dpo_final_model"
 base_tokenizer = AutoTokenizer.from_pretrained(base_model_name)
 base_model = AutoModelForCausalLM.from_pretrained(
     base_model_name,
-    torch_dtype=torch.float16,
+    dtype=torch.float16,
     device_map="auto",
 )
 
 aligned_tokenizer = AutoTokenizer.from_pretrained(aligned_model_name)
 aligned_model = AutoModelForCausalLM.from_pretrained(
     aligned_model_name,
-    torch_dtype=torch.float16,
+    dtype=torch.float16,
     device_map="auto",
 )
 

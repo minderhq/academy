@@ -682,7 +682,7 @@ def load_base_model():
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     model = AutoModelForCausalLM.from_pretrained(
         model_name,
-        torch_dtype=torch.float16,
+        dtype=torch.float16,
         device_map="auto"
     )
 
@@ -695,7 +695,7 @@ def load_finetuned_model(base_model_path, lora_path):
     tokenizer = AutoTokenizer.from_pretrained(base_model_path)
     model = AutoModelForCausalLM.from_pretrained(
         base_model_path,
-        torch_dtype=torch.float16,
+        dtype=torch.float16,
         device_map="auto"
     )
 
@@ -806,7 +806,7 @@ def merge_and_export(
     tokenizer = AutoTokenizer.from_pretrained(base_model_path)
     base_model = AutoModelForCausalLM.from_pretrained(
         base_model_path,
-        torch_dtype=torch.float16,
+        dtype=torch.float16,
         device_map="auto"
     )
 

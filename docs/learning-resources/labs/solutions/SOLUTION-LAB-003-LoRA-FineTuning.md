@@ -48,7 +48,7 @@ def setup_lora_finetuning():
     # Load base model
     model = AutoModelForCausalLM.from_pretrained(
         model_name,
-        torch_dtype=torch.float16,
+        dtype=torch.float16,
         device_map="auto"
     )
 
@@ -154,7 +154,7 @@ def merge_and_save(base_model_path, adapter_path, output_path):
     # Load base model
     base_model = AutoModelForCausalLM.from_pretrained(
         base_model_path,
-        torch_dtype=torch.float16,
+        dtype=torch.float16,
         device_map="auto"
     )
 
@@ -175,7 +175,7 @@ def test_inference(model_path, prompt):
     tokenizer = AutoTokenizer.from_pretrained(model_path)
     model = AutoModelForCausalLM.from_pretrained(
         model_path,
-        torch_dtype=torch.float16,
+        dtype=torch.float16,
         device_map="auto"
     )
 
@@ -315,7 +315,7 @@ def compare_memory():
     # Full model
     model_full = AutoModelForCausalLM.from_pretrained(
         model_name,
-        torch_dtype=torch.float16,
+        dtype=torch.float16,
         device_map="auto"
     )
     full_mem = torch.cuda.memory_allocated() / 1024**3
@@ -327,7 +327,7 @@ def compare_memory():
     # LoRA
     model_lora = AutoModelForCausalLM.from_pretrained(
         model_name,
-        torch_dtype=torch.float16,
+        dtype=torch.float16,
         device_map="auto"
     )
     lora_config = LoraConfig(r=16, lora_alpha=32, task_type=TaskType.CAUSAL_LM)
@@ -371,7 +371,7 @@ class MultiLoRAManager:
     def __init__(self, base_model_name):
         self.base_model = AutoModelForCausalLM.from_pretrained(
             base_model_name,
-            torch_dtype=torch.float16,
+            dtype=torch.float16,
             device_map="auto"
         )
         self.tokenizer = AutoTokenizer.from_pretrained(base_model_name)
@@ -436,7 +436,7 @@ def gradient_checkpointing_lora():
 
     model = AutoModelForCausalLM.from_pretrained(
         "mistralai/Mistral-7B-v0.1",
-        torch_dtype=torch.float16,
+        dtype=torch.float16,
         device_map="auto",
     )
 

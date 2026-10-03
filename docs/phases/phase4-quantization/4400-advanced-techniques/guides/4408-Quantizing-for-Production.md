@@ -197,7 +197,7 @@ model = AutoModelForCausalLM.from_pretrained(
     model_id,
     quantization_config=quant_config,
     device_map="auto",
-    torch_dtype=torch.float16,
+    dtype=torch.float16,
 )
 
 out_dir = "./models/llama-2-7b-w4a16-gptq"
@@ -395,7 +395,7 @@ MODEL_DIR = "./models/llama-2-7b-w4a16-gptq"
 async def lifespan(app: FastAPI):
     app.state.tokenizer = AutoTokenizer.from_pretrained(MODEL_DIR)
     app.state.model = AutoModelForCausalLM.from_pretrained(
-        MODEL_DIR, torch_dtype=torch.float16, device_map="cuda")
+        MODEL_DIR, dtype=torch.float16, device_map="cuda")
     app.state.model.eval()
     yield
 

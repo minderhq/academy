@@ -71,12 +71,12 @@
     "70": "TIMEOUT",
     "211": "TIMEOUT"
    },
-   "mtime": 1791006962.3556328,
+   "mtime": 1791032671.5423262,
    "notes": {
     "70": "real multi-GB model load exceeds the 90s census budget by design",
     "211": "real multi-GB model load exceeds the 90s census budget by design"
    },
-   "size": 7506
+   "size": 7494
   },
   "docs/00-META/assessment/phase5-practice.md": {
    "bad": {
@@ -390,11 +390,11 @@
    "bad": {
     "672": "TIMEOUT"
    },
-   "mtime": 1790924545.9245346,
+   "mtime": 1791032671.5518348,
    "notes": {
     "672": "real multi-GB model load exceeds the 90s census budget by design"
    },
-   "size": 29070
+   "size": 29052
   },
   "docs/learning-resources/labs/LAB-004-ReAct-Agent.md": {
    "bad": {
@@ -487,8 +487,8 @@
   },
   "docs/learning-resources/labs/LAB-010-DPO-Alignment.md": {
    "bad": {},
-   "mtime": 1790877270.3261807,
-   "size": 31444
+   "mtime": 1791032671.5524035,
+   "size": 31420
   },
   "docs/learning-resources/labs/LAB-011-Multi-Modal-AI.md": {
    "bad": {
@@ -512,11 +512,11 @@
    "bad": {
     "483": "TIMEOUT"
    },
-   "mtime": 1790926026.160487,
+   "mtime": 1791032671.5619826,
    "notes": {
     "483": "by-design daemon loop: the whisper listen loop runs until interrupted"
    },
-   "size": 39570
+   "size": 39564
   },
   "docs/learning-resources/labs/LAB-013-Advanced-Function-Calling.md": {
    "bad": {
@@ -571,13 +571,15 @@
   },
   "docs/learning-resources/labs/solutions/SOLUTION-LAB-003-LoRA-FineTuning.md": {
    "bad": {
-    "548": "TIMEOUT"
+    "548": "TIMEOUT",
+    "27": "TIMEOUT"
    },
-   "mtime": 1790758480.7445908,
+   "mtime": 1791032671.5711844,
    "notes": {
-    "548": "real multi-GB model load exceeds the 90s census budget by design"
+    "548": "real multi-GB model load exceeds the 90s census budget by design",
+    "27": "real multi-GB Mistral-7B load exceeds the 90s census budget by design - same class as the 548 twin; the file-level budget lands on whichever load the clock is inside (tick-639 adjudication)"
    },
-   "size": 16287
+   "size": 16245
   },
   "docs/learning-resources/labs/solutions/SOLUTION-LAB-004-ReAct-Agent.md": {
    "bad": {},
@@ -621,26 +623,26 @@
     "33": "CODE-SIGNAL:FileNotFoundError",
     "69": "ENV-GAP:trl"
    },
-   "mtime": 1790877270.9311533,
+   "mtime": 1791032671.5733025,
    "notes": {
     "195": "downstream cascade: an upstream fence died on its env-gap before binding this name; fence_namecheck accepts the name statically",
     "206": "downstream cascade: an upstream fence died on its env-gap before binding this name; fence_namecheck accepts the name statically",
     "33": "demonstrates the API on a learner-supplied/generated artifact path that does not exist in the census cwd",
     "69": "optional third-party package (trl) the QA environment does not install; the fence documents the install requirement"
    },
-   "size": 11871
+   "size": 11859
   },
   "docs/learning-resources/labs/solutions/SOLUTION-LAB-011-Multi-Modal-AI.md": {
    "bad": {
     "115": "CODE-SIGNAL:FileNotFoundError",
     "76": "CODE-SIGNAL:FileNotFoundError"
    },
-   "mtime": 1790885495.384518,
+   "mtime": 1791032671.5743089,
    "notes": {
     "115": "demonstrates the API on a learner-supplied/generated artifact path that does not exist in the census cwd",
     "76": "placeholder-artifact path: the fence opens a sample image that only exists in the learner's own workspace (same family as @115); the transformers 5.x output-API bug that used to fail here is fixed - the CLIP calls now read .pooler_output and the fence's execution reaches the image open cleanly"
    },
-   "size": 11386
+   "size": 11380
   },
   "docs/learning-resources/labs/solutions/SOLUTION-LAB-012-Audio-AI.md": {
    "bad": {
@@ -741,12 +743,12 @@
     "252": "ENV-GAP:Using `bitsandbytes` 4-bit quantization requires bitsandbyte",
     "388": "SIDE-EFFECT"
    },
-   "mtime": 1790785289.1889355,
+   "mtime": 1791032671.5753088,
    "notes": {
     "252": "optional third-party package the QA environment does not install; the fence documents the install requirement",
     "388": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect"
    },
-   "size": 17212
+   "size": 17206
   },
   "docs/learning-resources/projects/PROJECT-006-Production-RAG.md": {
    "bad": {
@@ -1025,7 +1027,7 @@
     "325": "SIDE-EFFECT",
     "387": "UN-LEAK"
    },
-   "mtime": 1790967200.039351,
+   "mtime": 1791032671.5753088,
    "notes": {
     "162": "LLM training/inference calls needing a GPU stack and model downloads; environment requirement",
     "206": "optional third-party package the QA environment does not install; the fence documents the install requirement",
@@ -1033,7 +1035,7 @@
     "325": "same: model-download/gpu-bound training step",
     "387": "UN-LEAK cascade of the upstream trl env-gap death in the same file"
    },
-   "size": 17570
+   "size": 17558
   },
   "docs/learning-resources/tutorials/TUTORIAL-008-CUDA-Programming.md": {
    "bad": {
@@ -1108,8 +1110,8 @@
   },
   "docs/learning-resources/tutorials/TUTORIAL-014-Production-LLM-Systems.md": {
    "bad": {},
-   "mtime": 1790978403.5174565,
-   "size": 29057
+   "mtime": 1791032671.576309,
+   "size": 29045
   },
   "docs/notebooks/README.md": {
    "bad": {},
@@ -1425,12 +1427,12 @@
     "129": "ENV-GAP:lightning",
     "213": "SIDE-EFFECT"
    },
-   "mtime": 1790765478.392359,
+   "mtime": 1791032671.5773098,
    "notes": {
     "129": "optional third-party package the QA environment does not install; the fence documents the install requirement",
     "213": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect"
    },
-   "size": 22674
+   "size": 22668
   },
   "docs/phases/phase2-foundations/2300-framework-engineering/guides/2306-Building-Production-Framework.md": {
    "bad": {
@@ -1500,7 +1502,7 @@
     "775": "CODE-SIGNAL:RuntimeError",
     "792": "UN-LEAK"
    },
-   "mtime": 1790953007.48884,
+   "mtime": 1791024952.417087,
    "notes": {
     "456": "disk-bound family: writer hits the 2.3GB-free disk (os error 112 / channel closed); FLAKY_FAMILY with TIMEOUT",
     "476": "disk-bound family: writer hits the 2.3GB-free disk (os error 112 / channel closed); FLAKY_FAMILY with TIMEOUT",
@@ -1528,14 +1530,14 @@
     "248": "SIDE-EFFECT",
     "327": "UN-LEAK"
    },
-   "mtime": 1790788811.3239205,
+   "mtime": 1791032671.5773098,
    "notes": {
     "210": "optional third-party package the QA environment does not install; the fence documents the install requirement",
     "232": "optional third-party package the QA environment does not install; the fence documents the install requirement",
     "248": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
     "327": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically"
    },
-   "size": 12782
+   "size": 12776
   },
   "docs/phases/phase3-transformers/3100-attention/README.md": {
    "bad": {},
@@ -1687,11 +1689,11 @@
    "bad": {
     "162": "TIMEOUT"
    },
-   "mtime": 1790885505.5125935,
+   "mtime": 1791032671.5783088,
    "notes": {
     "162": "real 7B (llava-1.5-7b) multi-GB model load exceeds the 90s census budget by design; also needs a learner-supplied whiteboard.jpg artifact"
    },
-   "size": 12138
+   "size": 12132
   },
   "docs/phases/phase3-transformers/3500-multimodal/3502-Audio-Models.md": {
    "bad": {
@@ -1796,9 +1798,9 @@
   },
   "docs/phases/phase4-quantization/4200-kv-cache/guides/4203-Context-Window-Optimization.md": {
    "bad": {},
-   "mtime": 1790959388.136565,
+   "mtime": 1791032671.579311,
    "notes": {},
-   "size": 27468
+   "size": 27462
   },
   "docs/phases/phase4-quantization/4300-quantization-aware-training/4301-QAT-Foundations.md": {
    "bad": {},
@@ -1898,7 +1900,7 @@
     "469": "UN-LEAK",
     "90": "ENV-GAP:bitblade"
    },
-   "mtime": 1790959388.1390986,
+   "mtime": 1791032671.579311,
    "notes": {
     "125": "the teaching library of the BitBlade QAT guide (4308); a fictional framework the lesson builds concepts around",
     "168": "the teaching library of the BitBlade QAT guide (4308); a fictional framework the lesson builds concepts around",
@@ -1918,7 +1920,7 @@
     "469": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
     "90": "the teaching library of the BitBlade QAT guide (4308); a fictional framework the lesson builds concepts around"
    },
-   "size": 13401
+   "size": 13395
   },
   "docs/phases/phase4-quantization/4400-advanced-techniques/4401-GPTQ.md": {
    "bad": {
@@ -2035,38 +2037,38 @@
     "180": "SIDE-EFFECT",
     "70": "SIDE-EFFECT"
    },
-   "mtime": 1790788811.3406982,
+   "mtime": 1791032671.5803096,
    "notes": {
     "110": "demonstrates the API on a learner-supplied/generated artifact path that does not exist in the census cwd",
     "180": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
     "70": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect"
    },
-   "size": 20530
+   "size": 20518
   },
   "docs/phases/phase4-quantization/4400-advanced-techniques/guides/4409-Hardware-Specific-Optimization.md": {
    "bad": {
     "112": "SIDE-EFFECT"
    },
-   "mtime": 1790788811.3406982,
+   "mtime": 1791032671.5813093,
    "notes": {
     "112": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect"
    },
-   "size": 14977
+   "size": 14971
   },
   "docs/phases/phase4-quantization/README.md": {
    "bad": {},
-   "mtime": 1790781121.4015663,
+   "mtime": 1791024952.417087,
    "size": 17184
   },
   "docs/phases/phase5-finetuning/5100-peft/5101-LoRA-Logic.md": {
    "bad": {
     "447": "SIDE-EFFECT"
    },
-   "mtime": 1790788811.3422108,
+   "mtime": 1791032671.5813093,
    "notes": {
     "447": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect"
    },
-   "size": 17419
+   "size": 17413
   },
   "docs/phases/phase5-finetuning/5100-peft/5102-QLoRA-Pipelines.md": {
    "bad": {
@@ -2078,7 +2080,7 @@
     "473": "SIDE-EFFECT",
     "93": "SIDE-EFFECT"
    },
-   "mtime": 1790788811.3422108,
+   "mtime": 1791032671.5823085,
    "notes": {
     "253": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
     "354": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
@@ -2088,7 +2090,7 @@
     "473": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
     "93": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect"
    },
-   "size": 15494
+   "size": 15488
   },
   "docs/phases/phase5-finetuning/5100-peft/5103-Adapters.md": {
    "bad": {},
@@ -2109,11 +2111,11 @@
    "bad": {
     "309": "TIMEOUT"
    },
-   "mtime": 1790959388.1406782,
+   "mtime": 1791032671.5833092,
    "notes": {
     "309": "by-design training loop: the LoRA demo runs the lesson's full training schedule"
    },
-   "size": 27224
+   "size": 27206
   },
   "docs/phases/phase5-finetuning/5200-alignment/5201-DPO-Theory.md": {
    "bad": {
@@ -2122,14 +2124,14 @@
     "424": "ENV-GAP:trl",
     "474": "ENV-GAP:trl"
    },
-   "mtime": 1790788811.3432167,
+   "mtime": 1791032671.5833092,
    "notes": {
     "200": "disk-bound: datasets writer hits os error 112 (disk full); FLAKY_FAMILY with TIMEOUT",
     "411": "optional third-party package the QA environment does not install; the fence documents the install requirement",
     "424": "optional third-party package the QA environment does not install; the fence documents the install requirement",
     "474": "optional third-party package the QA environment does not install; the fence documents the install requirement"
    },
-   "size": 17522
+   "size": 17516
   },
   "docs/phases/phase5-finetuning/5200-alignment/5202-Alignment-Orchestration.md": {
    "bad": {
@@ -2152,12 +2154,12 @@
     "114": "ENV-GAP:trl",
     "262": "ENV-GAP:trl"
    },
-   "mtime": 1790958160.6223202,
+   "mtime": 1791032671.5853095,
    "notes": {
     "114": "optional third-party package the QA environment does not install; the fence documents the install requirement",
     "262": "optional third-party package the QA environment does not install; the fence documents the install requirement"
    },
-   "size": 15405
+   "size": 15381
   },
   "docs/phases/phase5-finetuning/5200-alignment/5204-Preference-Dataset-Creation.md": {
    "bad": {},
@@ -2316,12 +2318,12 @@
     "402": "SIDE-EFFECT",
     "465": "SIDE-EFFECT"
    },
-   "mtime": 1790781121.4026213,
+   "mtime": 1791032671.5853095,
    "notes": {
     "402": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
     "465": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect"
    },
-   "size": 24556
+   "size": 24550
   },
   "docs/phases/phase6-rag/6100-vector/6101-HNSW-Indexing.md": {
    "bad": {
@@ -2486,12 +2488,12 @@
     "226": "ENV-GAP:sentence_transformers",
     "608": "ENV-GAP:graph_construction"
    },
-   "mtime": 1790788811.3599906,
+   "mtime": 1791032671.5863094,
    "notes": {
     "226": "optional third-party package the QA environment does not install; the fence documents the install requirement",
     "608": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design"
    },
-   "size": 30892
+   "size": 30880
   },
   "docs/phases/phase6-rag/6400-vector-databases/6401-Qdrant-Setup.md": {
    "bad": {
@@ -2600,7 +2602,7 @@
    "bad": {
     "664": "UN-LEAK"
    },
-   "mtime": 1790953007.4981341,
+   "mtime": 1791024952.4185908,
    "notes": {
     "664": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically"
    },
@@ -2625,11 +2627,11 @@
    "bad": {
     "83": "TIMEOUT"
    },
-   "mtime": 1790959388.1417708,
+   "mtime": 1791032671.586815,
    "notes": {
     "83": "disk-bound: background file writer dies when the disk fills; FLAKY_FAMILY with TIMEOUT (tick-589 re-execution reclassified CODE-SIGNAL:RuntimeError -> TIMEOUT)"
    },
-   "size": 23904
+   "size": 23898
   },
   "docs/phases/phase7-agentic/7200-tools/7201-Tool-Calling.md": {
    "bad": {
@@ -2839,7 +2841,7 @@
   },
   "docs/phases/phase7-agentic/README.md": {
    "bad": {},
-   "mtime": 1790781121.404289,
+   "mtime": 1791024952.4185908,
    "size": 35487
   },
   "docs/use-cases/README.md": {
