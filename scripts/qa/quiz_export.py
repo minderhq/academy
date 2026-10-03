@@ -13,6 +13,8 @@ Understood corpus forms (format-tolerant):
     or bold rows "**1. B**")
   - "### Question N: Title" headings answered inline via "**Answer:** X"
   - self-graded coding questions ("**Score:** __/2", answer=null)
+  - option rows / key letters outside the A-D grammar are findings, not
+    silent drops (tick-616)
 
 Usage:
     python scripts/qa/quiz_export.py [--root REPO_ROOT] [--out FILE]
@@ -38,6 +40,9 @@ SCORE = re.compile(r"\*\*Score:\*\*\s*__\s*/\s*(\d+)")
 AK_HEADING = re.compile(r"^#{1,3}\s+Answer\s+Key\b", re.IGNORECASE)
 AK_ROW = re.compile(r"^\|\s*(\d+)\s*\|\s*([A-D])\b")
 AK_BOLD = re.compile(r"^\*\*(\d+)\.\s*\**\s*([A-D])\s*\**\s*$")
+AK_ROW_BEYOND = re.compile(r"^\|\s*(\d+)\s*\|\s*([E-Z])\b")
+AK_BOLD_BEYOND = re.compile(r"^\*\*(\d+)\.\s*\**\s*([E-Z])\s*\**\s*$")
+OPT_BEYOND = re.compile(r"^\s*[-*]?\s*\*{0,2}([E-Z])[\).]")
 HEADING = re.compile(r"^(#{1,6})\s+(.*?)\s*$")
 FM_LINE = re.compile(r"^([A-Za-z][A-Za-z ]*):\s*(.*?)\s*$")
 MODULE_DIR = re.compile(r"^\d{4}-")
@@ -83,6 +88,17 @@ def export_quiz(rel, lines, findings):
             m = AK_ROW.match(l) or AK_BOLD.match(l)
             if m:
                 key[int(m.group(1))] = m.group(2)
+            m = AK_ROW_BEYOND.match(l) or AK_BOLD_BEYOND.match(l)
+            if m:
+                # tick-616: AK_ROW/AK_BOLD capture A-D only, so a key row
+                # whose letter fell outside the grammar dropped silently -
+                # an inline-answered question kept a complete-looking
+                # record with the key entry lost (born census: 0 across
+                # 660 questions; without an inline answer the missing-
+                # answer clause fires instead, this is the silent path).
+                findings.append("%s: answer key row %d letter %s outside "
+                                "A-D (dropped from the key)"
+                                % (rel, int(m.group(1)), m.group(2)))
 
     qs = {}
     order = []
@@ -106,6 +122,18 @@ def export_quiz(rel, lines, findings):
         m = OPTION.match(l)
         if m and last is not None:
             qs[last]["options"][m.group(1)] = m.group(2).strip()
+            continue
+        m = OPT_BEYOND.match(l)
+        if m and last is not None:
+            # tick-616: OPTION captures A-D only, so an option row whose
+            # letter fell outside the grammar dropped silently while the
+            # record stayed complete-looking (A-D full, answer intact) -
+            # the same rendered-complete shape as the blank-stem class
+            # (born census: 0 across 660 questions; a bare A-D letter row
+            # is the missing-options clause's, not this one's).
+            findings.append("%s: question %d option row %s outside the "
+                            "A-D grammar (dropped from the record)"
+                            % (rel, last, m.group(1)))
             continue
         m = INLINE_ANSWER.search(l)
         if m and last is not None and qs[last]["answer"] is None:

@@ -114,7 +114,10 @@ stand today?" without running each tool by hand.
     quiz_export        quiz bank parses into complete question records
                        (blank-stem clause since tick-615: a question
                        whose stem line lost its text parses as a
-                       finding for every type - born 0 across 660)
+                       finding for every type - born 0 across 660;
+                       beyond-D clauses since tick-616: option rows
+                       and key letters outside the A-D grammar parse
+                       as findings - born 0 across 660)
     quiz_integrity_scan
                        content-level quiz integrity (QI-01..06 +
                        QI-08/09 + QI-11/12/13/15 hard: self-referential positional
