@@ -347,6 +347,21 @@ stand today?" without running each tool by hand.
                        and danger-marked fences are out by
                        construction, born tick-646, drained same
                        tick: 11 sites across 7 files)
+    unsafe_shell_scan  unsafe shell execution in python fences
+                       (US-01: subprocess run/call/check_call/
+                       check_output/Popen with shell=True - the
+                       command string goes to /bin/sh, so
+                       metacharacters in interpolated values
+                       defeat any name-level allowlist/blocklist;
+                       US-02: os.system/os.popen, born-at-zero,
+                       7500-security's own scanner regexes name
+                       them; US-03: subprocess.getoutput/
+                       getstatusoutput - shell=True by
+                       construction, born-at-zero; the argv list
+                       form (7202's teaching), shell=False and
+                       danger-marked fences are out by
+                       construction, born tick-647, drained same
+                       tick: 2 sites across 2 files)
     action_version_scan
                        uses: pins in docs must match the canonical
                        action registry (AV-01: current majors -
@@ -2920,6 +2935,7 @@ GATES = [
     ("deprecated_scan.py", "deprecated_scan", True),
     ("unsafe_exec_scan.py", "unsafe_exec_scan", True),
     ("unsafe_deserialize_scan.py", "unsafe_deserialize_scan", True),
+    ("unsafe_shell_scan.py", "unsafe_shell_scan", True),
     ("action_version_scan.py", "action_version_scan", True),
     ("unicode_ws_hygiene_scan.py", "unicode_ws_hygiene_scan", True),
     ("objectives_lint.py", "objectives_lint", False),

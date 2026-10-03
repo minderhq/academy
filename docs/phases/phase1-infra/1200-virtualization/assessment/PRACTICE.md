@@ -255,12 +255,13 @@ GPU Passthrough Diagnostics Tool
 
 import subprocess
 import re
+from pathlib import Path
 
-def run_command(cmd):
-    """Run shell command and return output."""
+def run_command(argv):
+    """Run a command as an argv list - no shell, no injection surface."""
     try:
         result = subprocess.run(
-            cmd, shell=True, capture_output=True, text=True, timeout=10
+            argv, capture_output=True, text=True, timeout=10
         )
         return result.stdout, result.stderr, result.returncode
     except Exception as e:
@@ -277,10 +278,11 @@ def diagnose_gpu_passthrough(vm_name=None):
 
     # 1. Check if VFIO modules are loaded
     print("\n1️⃣  Checking VFIO modules...")
-    stdout, stderr, code = run_command("lsmod | grep vfio")
-    if code == 0 and stdout:
+    stdout, stderr, code = run_command(["lsmod"])
+    vfio_lines = [l for l in stdout.splitlines() if "vfio" in l]
+    if code == 0 and vfio_lines:
         print("   ✅ VFIO modules loaded:")
-        for line in stdout.strip().split('\n'):
+        for line in vfio_lines:
             print(f"      {line}")
     else:
         issues.append("❌ VFIO modules not loaded")
@@ -288,11 +290,12 @@ def diagnose_gpu_passthrough(vm_name=None):
 
     # 2. Verify IOMMU is enabled
     print("\n2️⃣  Checking IOMMU status...")
-    stdout, stderr, code = run_command("dmesg | grep -i iommu")
-    if code == 0 and stdout:
+    stdout, stderr, code = run_command(["dmesg"])
+    iommu_lines = [l for l in stdout.splitlines() if "iommu" in l.lower()]
+    if code == 0 and iommu_lines:
         if "AMD-Vi" in stdout or "Intel-IOMMU" in stdout or "DMAR" in stdout:
             print("   ✅ IOMMU enabled:")
-            for line in stdout.strip().split('\n')[:3]:
+            for line in iommu_lines[:3]:
                 print(f"      {line}")
         else:
             issues.append("❌ IOMMU not enabled in kernel")
@@ -302,22 +305,27 @@ def diagnose_gpu_passthrough(vm_name=None):
 
     # 3. Check GPU IOMMU group
     print("\n3️⃣  Checking GPU IOMMU groups...")
-    stdout, stderr, code = run_command("lspci -nnk | grep -A 3 'VGA'")
-    if stdout:
+    stdout, stderr, code = run_command(["lspci", "-nnk"])
+    gpu_lines = [l for l in stdout.splitlines()
+                 if "VGA" in l or "3D" in l or "Display" in l]
+    if gpu_lines:
         print("   📊 GPU devices found:")
-        gpu_lines = stdout.strip().split('\n')
         for line in gpu_lines:
             print(f"      {line}")
 
         # Check IOMMU groups (list each group's devices via sysfs - no
         # file under iommu_groups is literally named "gpu"/"nvidia",
         # so a -name probe can never match)
-        stdout, _, _ = run_command(
-            "for d in /sys/kernel/iommu_groups/*/devices/*; do "
-            "printf 'IOMMU group %s: %s\\n' \"$(echo \"$d\" | cut -d/ -f5)\" "
-            "\"$(lspci -nns ${d##*/})\"; done | grep -Ei 'vga|3d|nvidia'"
-        )
-        if stdout:
+        group_lines = []
+        for dev in Path("/sys/kernel/iommu_groups").glob("*/*/devices/*"):
+            if ":" not in dev.name:
+                continue
+            dev_out, _, dev_rc = run_command(["lspci", "-nns", dev.name])
+            if dev_rc == 0 and any(
+                    t in dev_out.lower() for t in ("vga", "3d", "nvidia")):
+                group_lines.append(
+                    f"IOMMU group {dev.parts[-4]}: {dev_out.strip()}")
+        if group_lines:
             print("   ✅ GPUs found in IOMMU groups")
         else:
             warnings.append("⚠️  Could not verify GPU IOMMU group membership")
@@ -327,7 +335,7 @@ def diagnose_gpu_passthrough(vm_name=None):
     # 4. Verify VM configuration
     if vm_name:
         print(f"\n4️⃣  Checking VM configuration: {vm_name}")
-        stdout, stderr, code = run_command(f"qm config {vm_name}")
+        stdout, stderr, code = run_command(["qm", "config", vm_name])
         if code == 0:
             print("   ✅ VM configuration:")
             for line in stdout.strip().split('\n'):
@@ -344,15 +352,17 @@ def diagnose_gpu_passthrough(vm_name=None):
 
     # 5. Check for conflicting devices
     print("\n5️⃣  Checking for device conflicts...")
-    stdout, stderr, code = run_command("lspci -vv | grep -E 'VGA|3D|Display'")
-    if stdout:
+    stdout, stderr, code = run_command(["lspci", "-vv"])
+    display_lines = [l for l in stdout.splitlines()
+                     if re.search(r"VGA|3D|Display", l)]
+    if display_lines:
         print("   📊 Display devices:")
-        for line in stdout.strip().split('\n')[:10]:
+        for line in display_lines[:10]:
             print(f"      {line}")
 
         # Check if drivers are attached (same pattern as the display
         # scan above - 3D/Display entries cover headless/secondary GPUs)
-        stdout, _, _ = run_command("lspci -k | grep -E -A 3 'VGA|3D|Display'")
+        stdout, _, _ = run_command(["lspci", "-k"])
         if "nvidia" in stdout.lower() or "nouveau" in stdout.lower():
             issues.append("❌ GPU driver loaded on host - prevents passthrough")
             issues.append("   Blacklist nouveau and unload nvidia driver")
@@ -363,7 +373,7 @@ def diagnose_gpu_passthrough(vm_name=None):
 
     # 6. Check blacklist status
     print("\n6️⃣  Checking driver blacklist...")
-    stdout, _, _ = run_command("cat /etc/modprobe.d/blacklist-nouveau.conf 2>/dev/null")
+    stdout, _, _ = run_command(["cat", "/etc/modprobe.d/blacklist-nouveau.conf"])
     if stdout and "blacklist nouveau" in stdout:
         print("   ✅ Nouveau blacklist configured")
     else:

@@ -947,7 +947,7 @@ def execute_python_code(code: str) -> dict[str, Any]:
         os.unlink(temp_file)
 
 def execute_shell_command(command: str) -> dict[str, Any]:
-    """Execute shell command (whitelisted only)"""
+    """Execute an allowlisted command (argv list - no shell)"""
 
     # Whitelist of safe commands
     allowed_commands = ['ls', 'pwd', 'echo', 'cat', 'grep', 'wc']
@@ -957,9 +957,10 @@ def execute_shell_command(command: str) -> dict[str, Any]:
         return {"success": False, "error": "Command not allowed"}
 
     try:
+        # cmd_parts is the validated argv list - running the list form
+        # keeps shell metacharacters in user input inert (no /bin/sh)
         result = subprocess.run(
-            command,
-            shell=True,
+            cmd_parts,
             capture_output=True,
             text=True,
             timeout=30
