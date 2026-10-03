@@ -155,6 +155,22 @@ QI-16  option letters written out of A,B,C,D order with the set
        exactly 1 mirror (3500-multimodal Q18), 0 punct-only
        neighbors - born at 1, drained same tick.
 
+       QI-20 tick-644 answer-key explanation restating the
+       question stem verbatim - AS-11 vouches the cell's
+       presence, QI-18 the cross-question duplicate, QI-19
+       the keyed-option mirror and AS-17 the stem-to-keyed-
+       option leak, but the explanation-to-STEM mirror was
+       read by nothing: the review UI renders the question
+       a second time labeled as the explanation. The same
+       mnorm() full-mirror equality (quote + trailing-
+       punctuation strip on top of norm) catches the
+       quoted/period cousin; definition-shaped explanations
+       that share words with the stem and partial
+       restatements stay out of the class (full mirror
+       only). Census tick-644: 33 banks / 655 key rows,
+       0 mirrors against 82 partial containments -
+       born-at-zero.
+
 Report inventory (never fails the gate - the drain queues, same
 contract as duplicate_heading_scan):
 
@@ -198,13 +214,15 @@ QI-10  answer-length bias per module (report queue): the correct
        all seven, drained same tick) - this report remains the
        module-side trend view.
 
-Hard gate on QI-01..06, QI-08/09 and QI-11..16 (exit 1): baseline 0
+Hard gate on QI-01..06, QI-08/09 and QI-11..20 (exit 1): baseline 0
 at birth (tick-284 / tick-285); QI-06 joined in tick-345 (baseline
 0 since the tick-343 drain); QI-11 joined in tick-374 (born
 baseline 0); QI-12 tick-474, QI-13 tick-475, QI-14 tick-476, QI-15
 tick-567, QI-16
 tick-629, phase surface tick-630, QI-17
-tick-631 (all born-at-zero). QI-10 is report inventory at birth (tick-290: 31
+tick-631, QI-18 tick-642, QI-19 tick-643, QI-20 tick-644 (all
+born-at-zero; QI-19 born at its single mirror, drained same
+tick). QI-10 is report inventory at birth (tick-290: 31
 modules queued).
 
 Run over the whole corpus:
@@ -406,6 +424,28 @@ def scan_module(rel: str, lines: list[str],
                 f"sentence twice for one question (AS-11 vouches "
                 f"presence, QI-18 the cross-question duplicate - "
                 f"the mirror itself was read by nothing)")
+
+    # QI-20: the explanation cell that merely restates the
+    # question's own stem. AS-11 vouches presence, QI-18 the
+    # cross-question duplicate, QI-19 the keyed-option mirror
+    # and AS-17 the stem-to-keyed-option leak; the explanation-
+    # to-stem mirror was read by nothing - the review UI shows
+    # the question again, labeled as the explanation. Full
+    # mnorm() mirror only - definition-shaped explanations
+    # that share words with the stem (census tick-644: 82 of
+    # 655 rows) and partial restatements stay out.
+    stems = {q["n"]: q.get("text", "") for q in questions}
+    for n, t in expl_rows:
+        s = stems.get(n)
+        if s and mnorm(t) == mnorm(norm(s)):
+            hard.append(
+                f"{rel}: QI-20 answer-key explanation for question "
+                f"{n} restates the question stem verbatim: "
+                f"'{t[:60]}' - the review UI renders the question "
+                f"a second time as the explanation (AS-11 vouches "
+                f"presence, QI-18 the cross-question duplicate, "
+                f"QI-19 the keyed-option mirror - the stem mirror "
+                f"was read by nothing)")
 
     # QI-04 needs a raw fence-aware pass: the parser never sees E+.
     for line, fence in fence_aware(lines):
@@ -706,7 +746,7 @@ def main() -> int:
           f"question / QI-13 unparseable key row / QI-14 "
           f"checkpoint-quiz item duplicating a bank stem / QI-15 "
           f"phase-quiz item duplicating a bank or phase-quiz stem / "
-          f"QI-16 option letters written out of ABCD order - module banks and phase quizzes; QI-17 checkpoint quiz item numbering broken inside the count; QI-18 within-bank duplicate answer-key explanation text; QI-19 answer-key explanation restating the keyed option verbatim), "
+          f"QI-16 option letters written out of ABCD order - module banks and phase quizzes; QI-17 checkpoint quiz item numbering broken inside the count; QI-18 within-bank duplicate answer-key explanation text; QI-19 answer-key explanation restating the keyed option verbatim; QI-20 answer-key explanation restating the question stem verbatim), "
           f"QI-06 {len(cross_dups)} "
           f"cross-module stem dups (hard since tick-345; drained "
           f"tick-343), QI-07 "

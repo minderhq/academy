@@ -211,7 +211,7 @@ stand today?" without running each tool by hand.
                        questions)
     quiz_integrity_scan
                        content-level quiz integrity (QI-01..06 +
-                       QI-08/09 + QI-11/12/13/15/16/17/18/19 hard:
+                       QI-08/09 + QI-11/12/13/15/16/17/18/19/20 hard:
                        self-referential positional
                        option, in-module duplicate stem, duplicate
                        option text, option beyond A-D, numbering
@@ -259,7 +259,19 @@ stand today?" without running each tool by hand.
                        within-question mirror was read by
                        nothing) - born exactly 1
                        (3500-multimodal Q18) across 33 banks /
-                       655 key rows, drained same tick) on top of
+                       655 key rows, drained same tick; QI-20
+                       tick-644 answer-key explanation restating
+                       the question stem verbatim (AS-11 vouches
+                       the cell's presence, QI-18 the
+                       cross-question duplicate, QI-19 the
+                       keyed-option mirror, AS-17 the
+                       stem-to-keyed-option leak - the
+                       explanation-to-stem mirror was read by
+                       nothing; full mnorm() mirror only,
+                       definition-shaped explanations and
+                       partial restatements out) - born 0 mirrors
+                       against 82 partial containments
+                       across 33 banks / 655 key rows) on top of
                        quiz_export's parser; QI-07/QI-10
                        are the report inventory (the
                        skewed-answer-key shuffle queue -
