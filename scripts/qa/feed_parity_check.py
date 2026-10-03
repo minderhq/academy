@@ -24,6 +24,11 @@ the JSON they wrote, and locks the cross-feed invariants:
          (both directions - the zeroth platform contract: the feed
          must see every doc and no stale entry may point off-disk;
          born tick-372 after a census measured 408 == 408 parity)
+  FP-08  manifest experiments set == the experiments/*.md tree on
+         disk minus TEMPLATE.md (FP-07's contract lifted to the
+         second tree, pure path-set parity both ways - values are
+         EC-01/FV-01/FV-12/FV-13's duty; born tick-613 at 47 == 47
+         parity, TEMPLATE is EC-01's name-keyed carve-out)
 
 Content totals (660 questions, 114 lessons) are deliberately NOT
 pinned here - they are the living baseline recorded in memory, and
@@ -74,7 +79,7 @@ def check_feeds(manifest: dict, bank: dict, findings: list[str],
                 root: Path) -> dict:
     """Cross-feed invariants. Returns a small stats map for the summary."""
     stats = {"phases": 0, "modules": 0, "lessons": 0, "documents": 0,
-             "questions": 0}
+             "experiments": 0, "questions": 0}
 
     mcounts = manifest["counts"]
     h_modules: list[str] = []
@@ -91,9 +96,11 @@ def check_feeds(manifest: dict, bank: dict, findings: list[str],
             h_lessons.extend(m["lessons"])
     stats["lessons"] = len(h_lessons)
     stats["documents"] = len(manifest["documents"])
+    stats["experiments"] = len(manifest.get("experiments") or [])
 
     # FP-02 the counts section must match the arrays it summarizes
     for key, actual in (("documents", len(manifest["documents"])),
+                        ("experiments", stats["experiments"]),
                         ("lessons", len(h_lessons)),
                         ("modules", stats["modules"]),
                         ("phases", stats["phases"])):
@@ -147,6 +154,22 @@ def check_feeds(manifest: dict, bank: dict, findings: list[str],
     for p in sorted(d_paths - disk_paths):
         findings.append("FP-07 manifest document not on disk: %s" % p)
 
+    # FP-08 manifest experiments set == the experiments/*.md tree on
+    # disk minus TEMPLATE.md (FP-07's contract lifted to the second
+    # tree - pure path-set parity both ways; the experiment VALUES
+    # are EC-01's identity, FV-01/FV-12/FV-13's to vouch, and
+    # TEMPLATE.md is EC-01's name-keyed carve-out, not catalog
+    # content, so the feed must not carry it either)
+    exp_paths = {e["path"] for e in manifest.get("experiments") or []}
+    disk_exp = {p.relative_to(root).as_posix()
+                for p in (root / "experiments").glob("*.md")
+                if p.name != "TEMPLATE.md"}
+    for p in sorted(disk_exp - exp_paths):
+        findings.append("FP-08 disk experiment missing from the manifest "
+                        "feed: %s" % p)
+    for p in sorted(exp_paths - disk_exp):
+        findings.append("FP-08 manifest experiment not on disk: %s" % p)
+
     # FP-05 bank internal consistency
     totals = {t: 0 for t in Q_TYPES}
     for m in b_modules:
@@ -182,7 +205,7 @@ def main() -> int:
 
     findings: list[str] = []
     stats = {"phases": 0, "modules": 0, "lessons": 0, "documents": 0,
-             "questions": 0}
+             "experiments": 0, "questions": 0}
     with tempfile.TemporaryDirectory(prefix="feed_parity_") as tmp:
         out_dir = Path(tmp)
         manifest = load_feed(args.root, "manifest_export.py", out_dir,
@@ -194,9 +217,11 @@ def main() -> int:
     for f in findings:
         print(f.encode("ascii", "backslashreplace").decode("ascii"))
     print("feed_parity_check: %d findings (%d phases, %d modules, "
-          "%d lessons, %d documents, %d questions cross-checked)"
+          "%d lessons, %d documents, %d experiments, %d questions "
+          "cross-checked)"
           % (len(findings), stats["phases"], stats["modules"],
-             stats["lessons"], stats["documents"], stats["questions"]))
+             stats["lessons"], stats["documents"],
+             stats["experiments"], stats["questions"]))
     return 1 if findings else 0
 
 

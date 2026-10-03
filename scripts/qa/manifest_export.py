@@ -7,6 +7,13 @@ phase/module/lesson hierarchy and counts. Not a gate - report-only
 feed, exits 0 by design. Pairs with quiz_export (the question bank)
 so a platform load step never has to re-parse markdown.
 
+Scope (tick-613): the corpus is two trees and this feed now carries
+both - documents[] walks docs/ (408 FM docs), experiments[] walks
+experiments/*.md (the 5-field EC-01 keyset: id/title/last_updated/
+status/difficulty) minus TEMPLATE.md, EC-01's name-keyed carve-out
+(a template is not catalog content); counts.experiments mirrors the
+array and feed_parity_check FP-08 pins feed == disk both ways.
+
 Extraction models are borrowed, not reinvented: the naive
 frontmatter key/value model comes from quiz_export.parse_frontmatter,
 and the lesson/module/phase classification is the same one
@@ -61,6 +68,23 @@ def doc_entry(root: Path, path: Path) -> dict:
     return entry
 
 
+# The experiments/ keyset (EC-01, tick-608): five fields, no
+# Tags/Estimated Time/Related - mapped with the same names the
+# documents[] entries carry so the platform reads one schema.
+EXP_KEYS = ("Document ID", "Title", "Last Updated", "Status", "Difficulty")
+TEMPLATE_EXEMPT = "TEMPLATE.md"  # EC-01's name-keyed carve-out
+
+
+def exp_entry(root: Path, path: Path) -> dict:
+    rel = path.relative_to(root).as_posix()
+    lines = path.read_text(encoding="utf-8", errors="replace").splitlines()
+    fm = parse_frontmatter(lines)
+    entry = {"path": rel}
+    for src in EXP_KEYS:
+        entry[FM_KEYS[src]] = fm.get(src)
+    return entry
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     default_root = Path(__file__).resolve().parents[2]
@@ -73,6 +97,10 @@ def main() -> int:
 
     docs = sorted((root / "docs").rglob("*.md"))
     documents = [doc_entry(root, p) for p in docs]
+
+    experiments = [exp_entry(root, p)
+                   for p in sorted((root / "experiments").glob("*.md"))
+                   if p.name != TEMPLATE_EXEMPT]
 
     phases = []
     for pdir in sorted(d for d in (root / "docs" / "phases").iterdir()
@@ -98,11 +126,13 @@ def main() -> int:
         "generator": "scripts/qa/manifest_export.py",
         "counts": {
             "documents": len(documents),
+            "experiments": len(experiments),
             "lessons": sum(len(m["lessons"]) for p in phases for m in p["modules"]),
             "modules": sum(len(p["modules"]) for p in phases),
             "phases": len(phases),
         },
         "documents": documents,
+        "experiments": experiments,
         "phases": phases,
     }
     text = json.dumps(manifest, ensure_ascii=False, indent=2)
@@ -110,6 +140,7 @@ def main() -> int:
         args.out.write_text(text + "\n", encoding="utf-8")
         print(f"manifest_export: wrote {args.out} "
               f"({manifest['counts']['documents']} documents, "
+              f"{manifest['counts']['experiments']} experiments, "
               f"{manifest['counts']['lessons']} lessons, "
               f"{manifest['counts']['modules']} modules, "
               f"{manifest['counts']['phases']} phases)")
