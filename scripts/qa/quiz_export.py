@@ -26,6 +26,8 @@ Understood corpus forms (format-tolerant):
     finding even when the count still matches (tick-620)
   - two options of one question sharing the same text is a finding - a
     duplicated option text is a broken distractor (tick-621)
+  - every module quiz carries an Instructions section - its absence is
+    a finding, platform metadata the learner is served (tick-622)
 
 Usage:
     python scripts/qa/quiz_export.py [--root REPO_ROOT] [--out FILE]
@@ -89,19 +91,25 @@ def capture_claim(lines):
 
     tick-617: the claim is platform metadata - tracked as its own pass
     so the key and question passes keep their single purposes.
+    tick-622: the walk also reports whether an Instructions heading was
+    seen at all - the claim pass goes silent when the heading is gone,
+    so section presence is the heading walk's own output.
     """
     in_instr = False
+    saw_instructions = False
     for l, fence in fence_aware(lines):
         if fence:
             continue
         if HEADING.match(l):
             in_instr = "instruction" in l.lower()
+            if in_instr:
+                saw_instructions = True
             continue
         if in_instr:
             m = CLAIM.search(l)
             if m:
-                return int(m.group(1))
-    return None
+                return int(m.group(1)), saw_instructions
+    return None, saw_instructions
 
 
 def capture_pcts(lines):
@@ -124,7 +132,7 @@ def capture_pcts(lines):
 
 def export_quiz(rel, lines, findings):
     fm = parse_frontmatter(lines)
-    claim = capture_claim(lines)
+    claim, instr_seen = capture_claim(lines)
     pcts = capture_pcts(lines)
 
     key = {}
@@ -262,6 +270,14 @@ def export_quiz(rel, lines, findings):
             findings.append("%s: question %d has no stem text (blank "
                             "stem parses clean otherwise)"
                             % (rel, n))
+    if not instr_seen:
+        # tick-622: the Instructions section is platform metadata the
+        # learner is served - a quiz without one ships no instruction
+        # block while the bank loads fine (born census: 33/33 modules
+        # carry the section; the claim comparison above already stays
+        # silent when the heading is gone - this is the absence side).
+        findings.append("%s: no Instructions section (platform metadata "
+                        "absent)" % rel)
     if claim is not None and claim != len(order):
         # tick-617: the Instructions "N questions" claim is platform
         # metadata - a count drifted from the parsed bank lies to the

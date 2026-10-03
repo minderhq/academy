@@ -133,7 +133,9 @@ stand today?" without running each tool by hand.
                        clause since tick-620: question numbers must run
                        1..N contiguously - born 0 gaps across 33 modules; duplicate-text
                        clause since tick-621: two options of one question
-                       sharing the same text - born 0 across 660 questions)
+                       sharing the same text - born 0 across 660 questions; Instructions
+                       section clause since tick-622: every module quiz
+                       carries the section - born 33/33)
     quiz_integrity_scan
                        content-level quiz integrity (QI-01..06 +
                        QI-08/09 + QI-11/12/13/15 hard: self-referential positional
