@@ -211,7 +211,7 @@ stand today?" without running each tool by hand.
                        questions)
     quiz_integrity_scan
                        content-level quiz integrity (QI-01..06 +
-                       QI-08/09 + QI-11/12/13/15/16/17/18 hard:
+                       QI-08/09 + QI-11/12/13/15/16/17/18/19 hard:
                        self-referential positional
                        option, in-module duplicate stem, duplicate
                        option text, option beyond A-D, numbering
@@ -251,7 +251,15 @@ stand today?" without running each tool by hand.
                        row - the text itself was read by
                        nothing; >= 2 distinct question numbers
                        per group) - born 0 duplicate groups
-                       across 33 banks / 655 key rows) on top of
+                       across 33 banks / 655 key rows; QI-19
+                       tick-643 answer-key explanation restating
+                       the keyed option verbatim (AS-11 vouches
+                       the cell's presence, QI-18 the
+                       cross-question duplicate - the
+                       within-question mirror was read by
+                       nothing) - born exactly 1
+                       (3500-multimodal Q18) across 33 banks /
+                       655 key rows, drained same tick) on top of
                        quiz_export's parser; QI-07/QI-10
                        are the report inventory (the
                        skewed-answer-key shuffle queue -

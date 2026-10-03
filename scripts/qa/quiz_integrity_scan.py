@@ -140,6 +140,21 @@ QI-16  option letters written out of A,B,C,D order with the set
        len >= 3 and truthy). Census tick-642: 33 banks /
        655 key rows parsed, 0 duplicate groups, born-at-zero.
 
+       QI-19 tick-643 answer-key explanation restating the
+       keyed option verbatim - AS-11 vouches the cell's
+       presence and QI-18 the cross-question duplicate, but
+       the within-question MIRROR was read by nothing: the
+       review UI renders the same sentence twice for ONE
+       question, the second time as the teaching text. Mirror
+       normalization mnorm() adds surrounding-quote and
+       trailing-punctuation stripping on top of norm(), so
+       an explanation written "X." still mirrors the option
+       X; an echo of a NON-keyed (distractor) option and a
+       partial restatement stay out of the class (full mirror
+       only). Census tick-643: 33 banks / 655 key rows,
+       exactly 1 mirror (3500-multimodal Q18), 0 punct-only
+       neighbors - born at 1, drained same tick.
+
 Report inventory (never fails the gate - the drain queues, same
 contract as duplicate_heading_scan):
 
@@ -223,6 +238,16 @@ LEN_BIAS_MIN_MCQ = 10
 
 def norm(s: str) -> str:
     return re.sub(r"\s+", " ", s).casefold().strip()
+
+
+def mnorm(s: str) -> str:
+    # mirror normalization for QI-19: norm() plus surrounding-
+    # quote and trailing-punctuation stripping, so an explanation
+    # written as "X." or 'X' still mirrors the option X.
+    s = s.strip("\"'`")
+    while s and s[-1] in ".!?:;,":
+        s = s[:-1].rstrip()
+    return s
 
 
 def scan_module(rel: str, lines: list[str],
@@ -357,6 +382,30 @@ def scan_module(rel: str, lines: list[str],
                 f"the same sentence twice (AS-11 vouches presence, "
                 f"QI-08 the duplicate row - the text itself was "
                 f"read by nothing)")
+
+    # QI-19: the explanation cell that merely restates the keyed
+    # option's text. AS-11 vouches the cell's presence and QI-18
+    # the cross-question duplicate; the within-question mirror
+    # was read by nothing - the review UI renders the same
+    # sentence twice for ONE question. mnorm() (quote +
+    # trailing-punctuation strip on top of norm) catches the
+    # "X." cousin; a distractor echo or a partial restatement
+    # stays out of the class (full mirror only).
+    keyed = {q["n"]: q for q in questions
+             if q["type"] == "mcq" and q["answer"]}
+    for n, t in expl_rows:
+        q = keyed.get(n)
+        if not q:
+            continue
+        o = q["options"].get(q["answer"])
+        if o and mnorm(t) == mnorm(norm(o)):
+            hard.append(
+                f"{rel}: QI-19 answer-key explanation for question "
+                f"{n} restates the keyed option verbatim: "
+                f"'{t[:60]}' - the review UI teaches the same "
+                f"sentence twice for one question (AS-11 vouches "
+                f"presence, QI-18 the cross-question duplicate - "
+                f"the mirror itself was read by nothing)")
 
     # QI-04 needs a raw fence-aware pass: the parser never sees E+.
     for line, fence in fence_aware(lines):
@@ -657,7 +706,7 @@ def main() -> int:
           f"question / QI-13 unparseable key row / QI-14 "
           f"checkpoint-quiz item duplicating a bank stem / QI-15 "
           f"phase-quiz item duplicating a bank or phase-quiz stem / "
-          f"QI-16 option letters written out of ABCD order - module banks and phase quizzes; QI-17 checkpoint quiz item numbering broken inside the count; QI-18 within-bank duplicate answer-key explanation text), "
+          f"QI-16 option letters written out of ABCD order - module banks and phase quizzes; QI-17 checkpoint quiz item numbering broken inside the count; QI-18 within-bank duplicate answer-key explanation text; QI-19 answer-key explanation restating the keyed option verbatim), "
           f"QI-06 {len(cross_dups)} "
           f"cross-module stem dups (hard since tick-345; drained "
           f"tick-343), QI-07 "

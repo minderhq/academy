@@ -184,7 +184,7 @@ D) Audio transcripts
 | 15 | D | Audio enters as spectrograms or learned audio tokens |
 | 16 | A | Images become patch embeddings projected into the LLM input space |
 | 17 | C | CLIP-style training uses hundreds of millions of web image-text pairs |
-| 18 | B | ASR converts audio to text; TTS converts text to audio |
+| 18 | B | ASR maps an audio signal to a text transcript, while TTS runs the reverse pipeline from text to a synthesized waveform |
 | 19 | D | VQA-family benchmarks evaluate vision-language models |
 | 20 | A | Visual instruction tuning fine-tunes on instruction data that includes images |
 
