@@ -22,6 +22,8 @@ Understood corpus forms (format-tolerant):
     arithmetic (tick-618)
   - a duplicated option row or duplicated key row is a finding, not a
     silent overwrite of the earlier entry (tick-619)
+  - question numbers must run 1..N contiguously - a numbering gap is a
+    finding even when the count still matches (tick-620)
 
 Usage:
     python scripts/qa/quiz_export.py [--root REPO_ROOT] [--out FILE]
@@ -261,6 +263,17 @@ def export_quiz(rel, lines, findings):
             # the reverse direction, untouched here).
             findings.append("%s: answer key row %d has no matching "
                             "question" % (rel, n))
+    nums = sorted(order)
+    if nums != list(range(1, len(nums) + 1)):
+        # tick-620: a numbering gap means a question was renumbered or
+        # dropped - the count-claim and parenthetical clauses stay
+        # silent when the total still matches, so the numbering itself
+        # is the contract (born census: 0 gaps across 33 modules; the
+        # feed's question records must be 1..N).
+        bad = next(n for n, w in zip(nums, range(1, len(nums) + 1))
+                   if n != w)
+        findings.append("%s: question numbering not 1..%d contiguous "
+                        "(first mismatch %d)" % (rel, len(nums), bad))
     for pct, x, y in pcts:
         if y != len(order):
             # tick-618: the passing-score parenthetical is the count a

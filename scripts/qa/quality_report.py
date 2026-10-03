@@ -129,7 +129,9 @@ stand today?" without running each tool by hand.
                        32 modules carrying the form; duplicate-row
                        clauses since tick-619: a duplicated option row
                        or duplicated key row is a finding, not a
-                       silent overwrite - born 0/0 across 33 modules)
+                       silent overwrite - born 0/0 across 33 modules; numbering
+                       clause since tick-620: question numbers must run
+                       1..N contiguously - born 0 gaps across 33 modules)
     quiz_integrity_scan
                        content-level quiz integrity (QI-01..06 +
                        QI-08/09 + QI-11/12/13/15 hard: self-referential positional
