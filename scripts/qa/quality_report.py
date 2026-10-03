@@ -118,7 +118,16 @@ stand today?" without running each tool by hand.
                        scoped to the seven phase quizzes (the
                        passing line's total is AS-14's), born
                        tick-626 census-zero 7/7 headers present,
-                       0 drift across 180 questions (15/20/25/30/30/30/30)
+                       0 drift across 180 questions (15/20/25/30/30/30/30);
+                       AS-19 the exercise-numbering contract -
+                       inside each phase practice file the
+                       "Exercise N" headings run 1..K with no
+                       gap, repeat or wrong start, per segment
+                       (main body and the phase 6-7 appendix
+                       references each restart at 1), born
+                       tick-627 census-zero 9/9 segments
+                       contiguous (main 5/4/4/4/3/7/7,
+                       appendix 6/5)
     quiz_export        quiz bank parses into complete question records
                        (blank-stem clause since tick-615: a question
                        whose stem line lost its text parses as a

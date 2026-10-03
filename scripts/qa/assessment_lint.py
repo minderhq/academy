@@ -136,6 +136,20 @@ the same AS-04/AS-08/AS-09 standards in their own "### N." shape):
          line intact fires here and only here). Joined tick-626 -
          born census 7/7 headers present, 0 drift across 180
          questions (15/20/25/30/30/30/30)
+  AS-19  the phase-practice exercise numbering - inside each of the
+         seven phase practice files the "Exercise N" headings must
+         run 1..K with no gap, repeat or wrong start, checked per
+         segment: the main body and (phases 6-7) the appendix
+         reference implementations each restart at 1, the same
+         appendix boundary AS-13 counts across. A deleted section
+         or a fat-fingered renumber serves the learner a broken
+         sequence while the heading COUNT stays intact - AS-13's MI
+         rows compare counts, not numbers, so the drift is
+         invisible there. Scoped to the seven phase practice files
+         (the module PRACTICE.md numbering is the same born-zero
+         class, parked for its own tick). Joined tick-627 - born
+         census 9/9 segments contiguous (main 5/4/4/4/3/7/7,
+         appendix 6/5)
 
 Format-tolerant by design: richer variants (inline-answer quizzes,
 self-graded coding questions, 3-column answer keys) pass as long as
@@ -670,6 +684,38 @@ class Linter:
         self.check_option_sanity(rel, answered)
         self.check_stem_echo(rel, answered)
 
+    def lint_phase_practice(self, root: Path, pp: Path) -> None:
+        """AS-19: phase-practice "Exercise N" numbering runs 1..K.
+
+        Checked per segment - the main body and the appendix
+        reference implementations (phases 6-7) each restart at 1,
+        the same appendix boundary AS-13 counts across.
+        """
+        rel = pp.name
+        lines = pp.read_text(encoding="utf-8").split("\n")
+        pnf = [l for l, f in fence_aware(lines) if not f]
+        segs: list = [[]]  # segment 0 = main body, then one per appendix
+        for l in pnf:
+            hm = HEADING.match(l)
+            if hm:
+                lvl = len(hm.group(1))
+                if lvl <= 2 and hm.group(2).lower().startswith("appendix"):
+                    segs.append([])  # solutions, not new exercises
+                    continue
+                em = EXERCISE_TITLE.match(hm.group(2))
+                if em:
+                    segs[-1].append(int(em.group(1)))
+        for si, nums in enumerate(segs):
+            if not nums:
+                continue
+            if nums != list(range(1, len(nums) + 1)):
+                where = "appendix" if si else "main body"
+                self.report(rel, "AS-19",
+                            "exercise numbering in the %s runs %s, "
+                            "expected 1..%d"
+                            % (where, ", ".join(str(n) for n in nums),
+                               len(nums)))
+
     def lint_practice(self, module: str, prac: Path) -> None:
         rel = "%s assessment/PRACTICE.md" % module
         lines = prac.read_text(encoding="utf-8").split("\n")
@@ -807,6 +853,11 @@ def main() -> int:
                            .glob("phase*-quiz.md"))
     for pq in phase_quizzes:
         linter.lint_phase_quiz(args.root, pq)
+    phase_practices = sorted((args.root / "docs" / "00-META"
+                              / "assessment")
+                             .glob("phase*-practice.md"))
+    for pp in phase_practices:
+        linter.lint_phase_practice(args.root, pp)
     n_claims = linter.lint_index_tables(args.root)
 
     print("assessment_lint: %d findings across %d module assessments, "

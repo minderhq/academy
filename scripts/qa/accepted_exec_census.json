@@ -68,10 +68,12 @@
   },
   "docs/00-META/assessment/phase4-practice.md": {
    "bad": {
+    "70": "TIMEOUT",
     "211": "TIMEOUT"
    },
-   "mtime": 1790757197.0745838,
+   "mtime": 1791006962.3556328,
    "notes": {
+    "70": "real multi-GB model load exceeds the 90s census budget by design",
     "211": "real multi-GB model load exceeds the 90s census budget by design"
    },
    "size": 7506
@@ -80,7 +82,7 @@
    "bad": {
     "89": "ENV-GAP:Using `bitsandbytes` 4-bit quantization requires bitsandbyte"
    },
-   "mtime": 1790880395.8523216,
+   "mtime": 1791006962.356175,
    "notes": {
     "89": "optional third-party package the QA environment does not install; the fence documents the install requirement"
    },
@@ -88,7 +90,7 @@
   },
   "docs/00-META/assessment/phase6-practice.md": {
    "bad": {},
-   "mtime": 1790887054.8728342,
+   "mtime": 1791006962.3567057,
    "size": 36425
   },
   "docs/00-META/assessment/phase7-practice.md": {
