@@ -265,7 +265,11 @@ stand today?" without running each tool by hand.
     casecheck          case-sensitive href/disk match (Windows-invisible
                        breaks) + missing targets + orphan gate (a content
                        doc with zero inbound links is invisible to the
-                       browse graph; README/TEMPLATE/CHANGELOG exempt)
+                       browse graph; README/TEMPLATE/CHANGELOG exempt);
+                       crash-proofed tick-637 - a segment the OS path
+                       normalization swallows (Win32 trailing dots/spaces)
+                       lands in MISSING with file/line/href named, never
+                       a bare IndexError
     anchor_check       in-document anchors vs GitHub-accurate slugger
                        (2 known inline-code examples allowlisted)
     table_lint         ragged GFM tables - header/separator/body lines

@@ -10,7 +10,12 @@ segment by segment against os.listdir with a case-sensitive comparison.
 Hard gates (exit 1 on any finding):
   - case mismatches between href segments and on-disk names
   - missing relative targets (also caught by linkcheck; kept for a
-    single-pass complete picture)
+    single-pass complete picture). A segment the OS swallows via path
+    normalization (Win32 strips trailing dots/spaces, so `...` or
+    `name.` exists()-true yet matches no on-disk name) resolves as
+    MISSING, never a crash - hardening tick-637, born from the
+    tick-636 fleet-trap where such a href crashed this resolver with
+    a bare IndexError and no diagnostic.
   - orphan md files with zero inbound relative links - since
     2026-09-30. A content doc no nav link points at is invisible to
     the platform browse graph: it cannot be reached by clicking, only
@@ -109,7 +114,15 @@ def main() -> int:
                     target = os.path.join(cur, seg)
                     if os.path.exists(target):
                         if seg not in os.listdir(cur):
-                            actual = [n for n in os.listdir(cur) if n.lower() == seg.lower()][0]
+                            matches = [n for n in os.listdir(cur) if n.lower() == seg.lower()]
+                            if not matches:
+                                # exists() lied: the OS normalized the segment
+                                # (Win32 strips trailing dots/spaces), so no
+                                # on-disk name resolves it - a broken target,
+                                # not a case variant. Missing, never a crash.
+                                is_missing = True
+                                break
+                            actual = matches[0]
                             if mismatch is None:
                                 rel_cur = os.path.relpath(cur, root)
                                 mismatch = (href, "%s -> disk: %s" % (rel_cur.replace("\\", "/"), actual))
