@@ -1188,16 +1188,16 @@
    "size": 27727
   },
   "docs/phases/phase1-infra/1400-llmops/guides/1403-vLLM-Production-Deployment.md": {
+   "mtime": 1790987763.8702557,
+   "size": 28806,
    "bad": {
     "330": "CODE-SIGNAL:KeyError",
     "657": "CODE-SIGNAL:KeyError"
    },
-   "mtime": 1790978403.513943,
    "notes": {
     "330": "intentional credential guard: os.environ['VLLM_API_KEY'] fails fast by design when the key is unset",
     "657": "intentional credential guard: os.environ['VLLM_API_KEY'] fails fast by design when the key is unset"
-   },
-   "size": 28806
+   }
   },
   "docs/phases/phase1-infra/1400-llmops/guides/1404-TGI-Deployment-Guide.md": {
    "bad": {
@@ -1551,14 +1551,14 @@
    "size": 13692
   },
   "docs/phases/phase3-transformers/3200-embeddings/3201-Rotary-Positional-Embeddings-RoPE.md": {
+   "mtime": 1790987763.8696575,
+   "size": 13598,
    "bad": {
     "243": "TIMEOUT"
    },
-   "mtime": 1790788811.3239205,
    "notes": {
     "243": "GUI hold: plt.show() waits for the learner to close the window"
-   },
-   "size": 13598
+   }
   },
   "docs/phases/phase3-transformers/3200-embeddings/3202-Tokenizer-Sciences.md": {
    "bad": {

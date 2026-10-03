@@ -2336,6 +2336,41 @@ stand today?" without running each tool by hand.
                        duplicates, 0 docs/ collisions,
                        48/48 linked), zero-drain, hard
                        from birth
+  hierarchy_scan
+                       catalog placement lock
+                       (HZ-01..03, hard): the
+                       platform builds its catalog
+                       hierarchy (phase -> module ->
+                       lesson) from the FM Phase /
+                       Module declarations while
+                       the disk layout under
+                       docs/phases/ is the ground
+                       truth they denormalize - a
+                       drifted copy files a lesson
+                       under the wrong phase or
+                       module page with linkcheck
+                       green. HZ-01 FM Phase parses
+                       as an integer equal to the
+                       phaseN directory above the
+                       doc; HZ-02 FM Module is a
+                       bare 4-digit code equal to
+                       the NNNN- module directory;
+                       HZ-03 every module-scoped
+                       content doc (lesson file or
+                       guides/ subtree) carries
+                       BOTH fields, README.md,
+                       PREREQUISITES.md and the
+                       CC-20 assessment/ banks
+                       (whose 9-field keyset admits
+                       no placement fields - a past
+                       drain deleted exactly those 4
+                       lines from 2300's pair) the
+                       by-design exemptions. Born
+                       tick-609 from a 260-doc
+                       census (114 carriers: 93
+                       lessons + 21 guides, uniform
+                       bare-digit grammar, 0 drift),
+                       zero-drain, hard from birth
   queue gate (drain in progress; never fails the report unless --fail-on-queue):
     objectives_lint    template-objective artifacts (OL-01/OL-02), phase by phase
     fence_namecheck    unbound names in python fences (report mode), two
@@ -2657,6 +2692,7 @@ GATES = [
     ("label_code_parity_scan.py", "label_code_parity_scan", True),
     ("fence_lang_scan.py", "fence_lang_scan", True),
     ("experiment_id_scan.py", "experiment_id_scan", True),
+    ("hierarchy_scan.py", "hierarchy_scan", True),
 ]
 
 
