@@ -2576,7 +2576,7 @@ stand today?" without running each tool by hand.
                        was the only stranded file of 410; drained via
                        a README Community > Resources row + a [1.2.0]
                        entry that brought the changelog current
-    checkpoint_coverage_scan  Phase-checkpoint coverage (CK-00..09,
+    checkpoint_coverage_scan  Phase-checkpoint coverage (CK-00..10,
                        hard): the phase CHECKPOINT.md is the learner's
                        review page for everything above it, so every
                        module group of the phase must appear in its
@@ -2606,7 +2606,15 @@ stand today?" without running each tool by hand.
                        phase's own modules (phases 2-7 had none,
                        phase 1 carried generic filler; drained same
                        tick, phase 1's items drawn from its own README
-                       pitfalls)
+                       pitfalls).
+                       CK-10 tick-633: the item numbers inside
+                       CK-09's 4-pitfall count are their own
+                       1..K run - a gap, duplicate or restart
+                       served the review list broken (tick-631
+                       partition shape: the count floor stays
+                       CK-09's, the numbering inside it is
+                       CK-10's; born census 7/7 checkpoints
+                       write exact 1..4, born-at-zero)
     lab_anatomy_scan  Lab-file anatomy (LA-01..06, hard): each
                        LAB-*.md carries an "Estimated Time:" claim
                        matching the derived core-path effort

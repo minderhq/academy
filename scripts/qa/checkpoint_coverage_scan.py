@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Phase-checkpoint coverage and module anatomy (CK-00..05, HARD) for PROJECT-OMEGA.
+"""Phase-checkpoint coverage and module anatomy (CK-00..10, HARD) for PROJECT-OMEGA.
 
 The phase CHECKPOINT.md is the learner's review page for everything
 above it - the phase-exit self-assessment the platform will render
@@ -61,6 +61,15 @@ CK-09  the phase checkpoint has no "## Common Pitfalls" section, or
        concepts") - drained the same tick with grounded, module-tied
        items (phase 1's from its own README pitfalls: MTU mismatch,
        GPU passthrough, rate limiting, storage class).
+
+CK-10  a pitfalls section whose numbered "**Name:**" items are
+       written out of 1..K order - a gap, a duplicate or a restart
+       inside the count serves the learner a broken review list
+       while CK-09's floor (the item count) still passes. The
+       partition is tick-631's shape: a count below the 4-pitfall
+       floor stays CK-09's, the written numbering inside the count
+       is CK-10's. Census tick-633: 7/7 checkpoints carry exactly 4
+       pitfalls items numbered 1..4 - born-at-zero.
 
 HARD GATE - exit 1 on any finding. Born-at-zero after the tick-472
 drain (same census -> drain -> gate cycle as NV-02); CK-04/05 born
@@ -224,16 +233,24 @@ def main() -> int:
                 % rel)
         else:
             n_items = 0
+            nums: list[int] = []
             for ln in text[pm.end():].split("\n")[1:]:
                 if ln.startswith("#"):
                     break
                 if PITFALL_ITEM.match(ln):
                     n_items += 1
+                    nums.append(int(ln.split(".", 1)[0]))
             if n_items < 4:
                 findings.append(
                     "CK-09 %s/CHECKPOINT.md: Common Pitfalls section "
                     "carries %d numbered '**Name:**' items - below the "
                     "4-pitfall floor" % (rel, n_items))
+            elif nums != list(range(1, len(nums) + 1)):
+                findings.append(
+                    "CK-10 %s/CHECKPOINT.md: Common Pitfalls items are "
+                    "numbered %s, expected 1..%d"
+                    % (rel, ", ".join(str(n) for n in nums),
+                       len(nums)))
 
     for f in findings:
         print("  " + esc(f))
@@ -244,11 +261,11 @@ def main() -> int:
           "criteria lack the modules-completion bullet / CK-07 badge "
           "criteria below the 3-bullet floor / CK-08 badge-block shape "
           "drift / CK-09 no Common Pitfalls section or below the "
-          "4-pitfall floor; born tick-472 after the phase-4 "
+          "4-pitfall floor / CK-10 pitfalls items numbered out of 1..K order; born tick-472 after the phase-4 "
           "two-module-era drain, CK-04/05 tick-478 after the 12-module "
           "Practical Verification drain, CK-06/07/08 tick-479 after the "
           "badge-criteria drain, CK-09 tick-480 after the grounded "
-          "pitfalls drain)"
+          "pitfalls drain, CK-10 tick-633 after the all-1..4 census)"
           % (n_phases, len(findings)))
     return 1 if findings else 0
 
