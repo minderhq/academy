@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Front-matter VALUE contracts (FV-01..11, HARD) - the platform
+"""Front-matter VALUE contracts (FV-01..13, HARD) - the platform
 ingestion simulation.
 
 FS-01/02 gate the six standard field NAMES; the dup gates check
@@ -62,6 +62,21 @@ FV-11  a Related string element in the LAB-<n> or TUTORIAL-<n>
        learning-resources labs/ and tutorials/ file sets
        (collected in pass 1), other namespaces stay free-form
        (census tick-497: 3 refs corpus-wide, all resolve)
+FV-12  under experiments/, the keyset fields Title, Status and
+       Difficulty are present - frontmatter_lint's FM-03 walks
+       docs/ only and EC-01 binds the Document ID alone, so the
+       other keyset fields' absence was invisible on the second
+       tree; Last Updated absence needs no clause here because
+       FV-01 already fires on it, which is why the list is
+       exactly three fields (census tick-612: 48/48 carry all
+       five keyset fields)
+FV-13  under experiments/, Status is the FM-04 enum {Complete} -
+       the platform's completion filter is the same closed
+       vocabulary docs/ answers to; any other value is an
+       invisible filter hole, and the field was vouched nowhere
+       on the second tree before this clause (census tick-612:
+       48/48 Complete, TEMPLATE included - no name-keyed
+       exemption, the EC-02 lesson)
 
 Scope: all docs/**/*.md, FM block = first ---...--- (within 40
 lines, FS-01's contract). Related string elements are not
@@ -115,6 +130,16 @@ naive extension fired 47 FV-10s before the grammar learned the
 shape). Born-clean on both trees: 48/48 ISO, 48/48 canonical
 tiers, 48/48 yaml-parses.
 
+Scope (tick-612): the second tree's Status column and keyset
+presence joined the simulation - frontmatter_lint (FM-03
+required keys, FM-04 the Status enum) walks docs/ only, so an
+experiments/ file with a missing Title/Status/Difficulty or a
+non-canonical Status answered to no gate at all. FV-12/FV-13
+are scoped to experiments/ so docs/ stays FM-03/FM-04's alone
+(no double-report); absence of Last Updated stays FV-01's (it
+already fires there). Born-clean at 48/48 five-field keysets,
+48/48 Status Complete.
+
 Note: this gate is the fleet's only third-party import (PyYAML) -
 deliberate, because the rule under test is "yaml.safe_load
 succeeds", and a re-implementation would test something else.
@@ -138,6 +163,7 @@ TIME_SINGLE = re.compile(r"^\d+(\.\d+)? (hour|minute)s?$")
 TIME_DOUBLE = re.compile(r"^30 minutes \(quick review\) - \d+(\.\d+)? hours \(full review\)$")
 ISO_DATE = re.compile(r"^(\d{4})-(\d{2})-(\d{2})$")
 CANON_DIFFICULTY = ("Beginner", "Intermediate", "Advanced")
+STATUS_ENUM = ("Complete",)
 DOC_KEY = re.compile(r"^(?:[A-Z0-9][A-Za-z0-9]*(-[A-Za-z0-9]+)*|EXP_\d{4})$")
 RES_ID = re.compile(r"^(LAB|TUTORIAL)-\d+")    # filename prefix
 RES_REF = re.compile(r"^(LAB|TUTORIAL)-\d+$")  # Related str element
@@ -321,6 +347,28 @@ def main() -> int:
                 "alphanumerics, or the EC-01-canonical EXP_NNNN form - "
                 "underscore is RFC-3986 unreserved, no escaping needed)"
                 % (rel, did))
+        # tick-612: the second tree's Status column and keyset
+        # presence - FM-03/FM-04 walk docs/ only and EC-01 binds the
+        # Document ID alone, so under experiments/ a missing keyset
+        # field or a non-canonical Status answered to no gate;
+        # scoped to experiments/ so docs/ stays FM-03/FM-04's alone
+        if rel.startswith("experiments/"):
+            for key in ("Title", "Status", "Difficulty"):
+                if data.get(key) is None:
+                    findings.append(
+                        "FV-12 %s: keyset field %r is absent - the "
+                        "platform catalogs experiments by the full "
+                        "EC-01 keyset; Document ID presence is EC-01's "
+                        "duty and Last Updated absence fires FV-01 "
+                        "already, so this clause carries exactly the "
+                        "three fields no other gate saw" % (rel, key))
+            st = data.get("Status")
+            if st is not None and st not in STATUS_ENUM:
+                findings.append(
+                    "FV-13 %s: Status %r is not in the FM-04 enum "
+                    "{Complete} - the platform's completion filter is "
+                    "a closed vocabulary; any other value is an "
+                    "invisible filter hole" % (rel, st))
     for f in findings:
         print("  " + esc(f))
     print("frontmatter_value_scan: %d docs with FM inspected; %d FV "
@@ -329,12 +377,16 @@ def main() -> int:
           "no dangling Related int, FV-06 Related str-or-list, FV-07 "
           "canonical Difficulty tier, FV-08 non-empty Title string, "
           "FV-09 no future-dated Last Updated, FV-10 URL-safe string "
-          "Document ID, FV-11 resolvable LAB-/TUTORIAL- Related refs = "
+          "Document ID, FV-11 resolvable LAB-/TUTORIAL- Related refs, "
+          "FV-12 experiments/ keyset presence (Title/Status/"
+          "Difficulty), FV-13 experiments/ Status in the FM-04 enum = "
           "the platform ingestion simulation; scope tick-611 extended "
           "to experiments/ (48 files): FV-01/04/07/08/09 apply there, "
           "FV-03 is presence-required only where the keyset carries "
           "Tags (docs/) and FV-10's key grammar accepts the EC-01-"
           "canonical EXP_NNNN form (underscore is RFC-3986 unreserved); "
+          "scope tick-612: FV-12/FV-13 vouch the second tree's keyset "
+          "presence and Status enum - FM-03/FM-04 walk docs/ only; "
           "born tick-493 with one drain ('1 hours' -> '1 hour'), "
           "Related tick-494, tier/title/date tick-495, key-shape "
           "tick-496, resource refs tick-497 - all born-at-zero; see "

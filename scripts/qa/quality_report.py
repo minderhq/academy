@@ -1654,7 +1654,7 @@ stand today?" without running each tool by hand.
                       at-zero: 597 tracked files
                       censused clean
     frontmatter_value_scan
-                      FM VALUE contracts (FV-01..11,
+                      FM VALUE contracts (FV-01..13,
                       hard) - the platform
                       ingestion simulation: does
                       exactly what the platform
@@ -1727,7 +1727,24 @@ stand today?" without running each tool by hand.
                       topic phrases / 20 all-
                       caps - would need a
                       curated proper-noun
-                      allowlist)
+                      allowlist). Scope tick-611:
+                      the simulation walks both
+                      trees. Scope tick-612:
+                      FV-12 under experiments/
+                      the keyset fields Title/
+                      Status/Difficulty are
+                      present (FM-03 walks docs/
+                      only, EC-01 binds the
+                      Document ID alone; Last
+                      Updated absence is FV-01's,
+                      no double-report), FV-13
+                      Status is the FM-04 enum
+                      {Complete} - before this
+                      the second tree's Status
+                      column answered to no
+                      gate. Born tick-612 born-
+                      at-zero: 48/48 five-field
+                      keysets, 48/48 Complete
     glossary_scan
                       Glossary integrity (GS-01..03, hard):
                       GLOSSARY.md is the platform's
