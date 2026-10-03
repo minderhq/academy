@@ -30,6 +30,9 @@ Understood corpus forms (format-tolerant):
     a finding, platform metadata the learner is served (tick-622)
   - two questions of one module sharing the same stem text is a finding
     - a duplicated stem is a duplicate feed record (tick-623)
+  - every module quiz carries a Document ID and a Title in frontmatter,
+    and Document IDs are unique across the bank - identity metadata the
+    platform keys on (tick-624)
 
 Usage:
     python scripts/qa/quiz_export.py [--root REPO_ROOT] [--out FILE]
@@ -136,6 +139,19 @@ def export_quiz(rel, lines, findings):
     fm = parse_frontmatter(lines)
     claim, instr_seen = capture_claim(lines)
     pcts = capture_pcts(lines)
+    if not fm.get("Document ID", "").strip():
+        # tick-624: the Document ID is the module's platform identity
+        # key - a quiz without one exports an empty doc_id into the
+        # bank while the parse stays clean (born census: 0 across 33
+        # modules).
+        findings.append("%s: no Document ID in frontmatter (platform "
+                        "identity key absent)" % rel)
+    if not fm.get("Title", "").strip():
+        # tick-624: the Title is the display name the platform serves
+        # the learner - a blank one exports an empty title while the
+        # bank loads fine (born census: 0 across 33 modules).
+        findings.append("%s: no Title in frontmatter (platform display "
+                        "name absent)" % rel)
 
     key = {}
     in_ak = False
@@ -383,6 +399,20 @@ def main() -> int:
             "counts": counts,
             "questions": questions,
         })
+
+    seen_ids = {}
+    for m in modules:
+        did = m["doc_id"].strip()
+        if did and did in seen_ids:
+            # tick-624: two modules sharing a Document ID collide on the
+            # platform's identity key - the second silently aliases the
+            # first while every per-module check stays clean (born
+            # census: 33 distinct IDs across 33 modules; a blank ID is
+            # the missing-Document-ID clause's class and skips this
+            # comparison).
+            findings.append("%s: Document ID %s duplicated by %s"
+                            % (m["file"], did, seen_ids[did]))
+        seen_ids.setdefault(did, m["module"])
 
     totals = {t: sum(m["counts"][t] for m in modules)
               for t in ("mcq", "coding", "open")}

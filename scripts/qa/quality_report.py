@@ -137,7 +137,10 @@ stand today?" without running each tool by hand.
                        section clause since tick-622: every module quiz
                        carries the section - born 33/33; duplicate-stem clause
                        since tick-623: two questions of one module
-                       sharing a stem - born 0 across 33 modules)
+                       sharing a stem - born 0 across 33 modules; identity clauses
+                       since tick-624: no Document ID, no Title, and
+                       cross-module ID duplicates - born 0/0/0 across 33
+                       modules)
     quiz_integrity_scan
                        content-level quiz integrity (QI-01..06 +
                        QI-08/09 + QI-11/12/13/15 hard: self-referential positional
