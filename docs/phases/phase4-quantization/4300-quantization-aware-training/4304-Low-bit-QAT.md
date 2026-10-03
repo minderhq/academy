@@ -237,8 +237,10 @@ Start high, gradually reduce:
 
 ```python
 from torch.ao.quantization import FakeQuantize
-def progressive_qat(model, epochs_per_bit=[5, 5, 10]):
+def progressive_qat(model, epochs_per_bit=None):
     """Train at 8-bit, then 4-bit, then 3-bit"""
+    if epochs_per_bit is None:
+        epochs_per_bit = [5, 5, 10]
 
     bit_widths = [8, 4, 3]
 

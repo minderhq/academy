@@ -247,8 +247,10 @@ class FakeQuantize(nn.Module):
 ### Method 1: Module Insertion
 
 ```python
-def insert_fake_quant(model, target_layers=['Linear', 'Conv2d']):
+def insert_fake_quant(model, target_layers=None):
     """Insert fake quantization after target layers"""
+    if target_layers is None:
+        target_layers = ['Linear', 'Conv2d']
 
     class QuantizedWrapper(nn.Module):
         def __init__(self, module):

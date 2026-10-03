@@ -392,6 +392,25 @@ stand today?" without running each tool by hand.
                        one-hop query-variable delivery resolved
                        per-function-scope, born tick-649, drained
                        same tick: 5 sites across 2 files)
+    mutable_default_scan
+                       mutable-default-argument shared state in
+                       python fences (MD-01: a mutable literal
+                       default - []/ {}/ set literal - is created
+                       once at def time and shared across every
+                       call, so any mutation writes into every
+                       other call's view; MD-02: the same class
+                       one step removed, a zero-arg list()/dict()/
+                       set() constructor call as the default;
+                       dataclasses refuses the exact form at
+                       class-creation time - ValueError, use
+                       default_factory - and the corpus teaches
+                       field(default_factory=...) in 15+ places;
+                       the None-sentinel idiom, immutable
+                       literals, call-with-args defaults, lambda/
+                       comprehension defaults, string mentions
+                       and danger-marked fences are out by
+                       construction, born tick-650, drained same
+                       tick: 7 sites across 7 files)
     action_version_scan
                        uses: pins in docs must match the canonical
                        action registry (AV-01: current majors -
@@ -2968,6 +2987,7 @@ GATES = [
     ("unsafe_shell_scan.py", "unsafe_shell_scan", True),
     ("broad_except_scan.py", "broad_except_scan", True),
     ("cypher_interp_scan.py", "cypher_interp_scan", True),
+    ("mutable_default_scan.py", "mutable_default_scan", True),
     ("action_version_scan.py", "action_version_scan", True),
     ("unicode_ws_hygiene_scan.py", "unicode_ws_hygiene_scan", True),
     ("objectives_lint.py", "objectives_lint", False),

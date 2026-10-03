@@ -73,7 +73,7 @@ class LoRALinear(nn.Module):
         return result
 
 # SOLUTION: Replace linear layers in a model
-def apply_lora_to_model(model, target_modules=["c_attn"], rank=8):
+def apply_lora_to_model(model, target_modules=None, rank=8):
     """
     Apply LoRA to specific modules in a model.
 
@@ -85,6 +85,8 @@ def apply_lora_to_model(model, target_modules=["c_attn"], rank=8):
     Returns:
         Modified model with LoRA layers
     """
+    if target_modules is None:
+        target_modules = ["c_attn"]
     def set_module_by_name(model, name, new_module):
         """Helper to set a module by name."""
         parts = name.split('.')

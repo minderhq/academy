@@ -597,13 +597,13 @@
    "size": 16700
   },
   "docs/learning-resources/labs/solutions/SOLUTION-LAB-006-Train-Model-From-Scratch.md": {
-   "mtime": 1791051517.1562297,
-   "size": 22835,
+   "mtime": 1791063231.6350503,
+   "size": 22900,
    "bad": {
-    "367": "ENV-GAP:tensorboard"
+    "369": "ENV-GAP:tensorboard"
    },
    "notes": {
-    "367": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+    "369": "optional third-party package the QA environment does not install; the fence documents the install requirement"
    }
   },
   "docs/learning-resources/labs/solutions/SOLUTION-LAB-007-Production-RAG.md": {
@@ -1808,16 +1808,16 @@
    "size": 10407
   },
   "docs/phases/phase4-quantization/4300-quantization-aware-training/4302-Fake-Quantization.md": {
+   "mtime": 1791063231.6350503,
+   "size": 13473,
    "bad": {
-    "298": "UN-LEAK",
-    "374": "UN-LEAK"
+    "300": "UN-LEAK",
+    "376": "UN-LEAK"
    },
-   "mtime": 1790781802.936605,
    "notes": {
-    "298": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
-    "374": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically"
-   },
-   "size": 13414
+    "300": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
+    "376": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically"
+   }
   },
   "docs/phases/phase4-quantization/4300-quantization-aware-training/4303-QAT-for-Transformers.md": {
    "bad": {},
@@ -1825,9 +1825,9 @@
    "size": 13701
   },
   "docs/phases/phase4-quantization/4300-quantization-aware-training/4304-Low-bit-QAT.md": {
-   "bad": {},
-   "mtime": 1790788811.3343153,
-   "size": 11940
+   "mtime": 1791063231.6360505,
+   "size": 12001,
+   "bad": {}
   },
   "docs/phases/phase4-quantization/4300-quantization-aware-training/4305-Quantization-Configuration.md": {
    "bad": {},
@@ -1845,18 +1845,18 @@
    "size": 15011
   },
   "docs/phases/phase4-quantization/4300-quantization-aware-training/guides/4306-PyTorch-QAT.md": {
+   "mtime": 1791063231.6360505,
+   "size": 14819,
    "bad": {
-    "329": "UN-LEAK",
-    "380": "SIDE-EFFECT",
-    "391": "ENV-GAP:onnxscript"
+    "331": "UN-LEAK",
+    "382": "SIDE-EFFECT",
+    "393": "ENV-GAP:onnxscript"
    },
-   "mtime": 1790959388.1380918,
    "notes": {
-    "329": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
-    "380": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
-    "391": "optional third-party package the QA environment does not install; the fence documents the install requirement"
-   },
-   "size": 14764
+    "331": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
+    "382": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
+    "393": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+   }
   },
   "docs/phases/phase4-quantization/4300-quantization-aware-training/guides/4307-Transformers-QAT.md": {
    "bad": {
@@ -2098,14 +2098,14 @@
    "size": 13342
   },
   "docs/phases/phase5-finetuning/5100-peft/assessment/PRACTICE.md": {
+   "mtime": 1791063231.6370504,
+   "size": 32857,
    "bad": {
-    "232": "SIDE-EFFECT"
+    "234": "SIDE-EFFECT"
    },
-   "mtime": 1790880872.3437364,
    "notes": {
-    "232": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect"
-   },
-   "size": 32796
+    "234": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect"
+   }
   },
   "docs/phases/phase5-finetuning/5100-peft/guides/5104-LoRA-Implementation-Guide.md": {
    "bad": {
@@ -2460,18 +2460,18 @@
    "size": 18848
   },
   "docs/phases/phase6-rag/6300-context/assessment/PRACTICE.md": {
+   "mtime": 1791063231.6380506,
+   "size": 17675,
    "bad": {
     "19": "SIDE-EFFECT",
-    "351": "ENV-GAP:sentence_transformers",
-    "434": "CODE-SIGNAL:RuntimeError"
+    "353": "ENV-GAP:sentence_transformers",
+    "436": "TIMEOUT"
    },
-   "mtime": 1790872411.186738,
    "notes": {
     "19": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
-    "351": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-    "434": "disk-bound: the datasets background writer dies when the disk fills (channel closed); FLAKY_FAMILY with TIMEOUT"
-   },
-   "size": 17628
+    "353": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+    "436": "disk-bound: the datasets background writer dies when the disk fills (channel closed); FLAKY_FAMILY with TIMEOUT"
+   }
   },
   "docs/phases/phase6-rag/6300-context/guides/6303-Neo4j-Deployment-Guide.md": {
    "bad": {
@@ -2922,16 +2922,16 @@
    "size": 16801
   },
   "docs/volumes/VOLUME-6-Data-Nexus.md": {
+   "mtime": 1791063231.63856,
+   "size": 33801,
    "bad": {
     "257": "ENV-GAP:sentence_transformers",
     "356": "ENV-GAP:sentence_transformers"
    },
-   "mtime": 1790787594.7152338,
    "notes": {
     "257": "optional third-party package the QA environment does not install; the fence documents the install requirement",
     "356": "optional third-party package the QA environment does not install; the fence documents the install requirement"
-   },
-   "size": 33754
+   }
   },
   "docs/volumes/VOLUME-7-Production-Mastery.md": {
    "mtime": 1791056444.2829573,

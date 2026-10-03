@@ -1019,11 +1019,13 @@ def decompose_multi_hop_query(query):
 
 **Tip:** Combine vector and graph results effectively
 ```python
-def fuse_graphrag_context(graph_results, vector_results, weights={"graph": 0.3, "vector": 0.7}):
+def fuse_graphrag_context(graph_results, vector_results, weights=None):
     """
     weights.graph: Higher for relationship-heavy queries
     weights.vector: Higher for content-heavy queries
     """
+    if weights is None:
+        weights = {"graph": 0.3, "vector": 0.7}
     # Get actual text from graph paths
     graph_texts = [extract_text_from_path(r) for r in graph_results]
 

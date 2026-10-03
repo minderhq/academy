@@ -36,7 +36,9 @@ import numpy as np
 class SimpleNN(nn.Module):
     """Simple feedforward neural network."""
 
-    def __init__(self, input_size=784, hidden_sizes=[256, 128], num_classes=10):
+    def __init__(self, input_size=784, hidden_sizes=None, num_classes=10):
+        if hidden_sizes is None:
+            hidden_sizes = [256, 128]
         super().__init__()
 
         # Build layers

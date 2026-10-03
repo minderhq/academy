@@ -21,8 +21,10 @@ import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 import matplotlib.pyplot as plt
 
-def benchmark_context_length(model, tokenizer, lengths=[512, 1024, 2048, 4096, 8192]):
+def benchmark_context_length(model, tokenizer, lengths=None):
     """Benchmark model performance at different context lengths."""
+    if lengths is None:
+        lengths = [512, 1024, 2048, 4096, 8192]
 
     results = []
     device = next(model.parameters()).device

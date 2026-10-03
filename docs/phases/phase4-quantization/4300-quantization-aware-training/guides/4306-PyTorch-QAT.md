@@ -218,8 +218,10 @@ model = quant.prepare_qat(model)
 ```python
 from torch.ao.quantization import FakeQuantize
 
-def skip_layer_quantization(model, layer_types=['LayerNorm', 'Softmax']):
+def skip_layer_quantization(model, layer_types=None):
     """Prevent certain layers from being quantized"""
+    if layer_types is None:
+        layer_types = ['LayerNorm', 'Softmax']
 
     def _set_no_quant(module):
         if type(module).__name__ in layer_types:
