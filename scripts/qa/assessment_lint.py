@@ -153,6 +153,21 @@ the same AS-04/AS-08/AS-09 standards in their own "### N." shape):
          surface joined tick-628 - born census 33/33
          single-segment contiguous, 184 exercises (169 H3 +
          15 H2 headings; the H2 shape lives in 2300/4300/4400)
+  AS-20  the phase quiz's answer-key written numbering - the
+         comma-pair entries after "## Answer Key" must run exactly
+         1..N (N = the quiz's question count), no gap, repeat or
+         broken order: the key dict collapses duplicates at
+         capture time and AS-08 compares only the intersection,
+         so a key missing an entry served the learner a review key
+         they cannot look the question up in while every check
+         stayed clean. Partition (the tick-631 shape): a citation
+         outside the question set is a misdirected key and AS-08's
+         stale branch names it - inside the set the written
+         sequence is AS-20's; the module banks' key-table rows are
+         RM-00's (review_map_check). Scoped to the seven phase
+         quizzes. Joined tick-635 - born census 7/7 keys write
+         exact 1..N (15/20/25/30/30/30/30, 180 entries),
+         born-at-zero
 
 Format-tolerant by design: richer variants (inline-answer quizzes,
 self-graded coding questions, 3-column answer keys) pass as long as
@@ -637,6 +652,27 @@ class Linter:
                 self.report(rel, "AS-08",
                             "answer-key block cites nonexistent "
                             "questions %s" % stale)
+            else:
+                # AS-20: the key's WRITTEN numbering inside the
+                # question set. The dict above collapses duplicates
+                # at capture time and the AS-08 loop below compares
+                # only the intersection, so a key whose entries ran
+                # with a gap, a repeat or a broken order served the
+                # learner a review key missing an entry while every
+                # check stayed clean. Partition (tick-631 shape): a
+                # citation outside the question set is a misdirected
+                # key - AS-08's stale branch names it; inside the
+                # set the written sequence must be exactly 1..N.
+                # RM-00 owns the module banks' key-table rows; this
+                # is the phase-quiz comma-pair surface's contract.
+                written = [int(n) for n, _ in
+                           PHASE_KEY_PAIR.findall(body)]
+                if written != list(range(1, len(qnums) + 1)):
+                    self.report(rel, "AS-20",
+                                "answer-key entries are numbered %s, "
+                                "expected 1..%d"
+                                % (", ".join(str(n) for n in written)
+                                   or "nothing", len(qnums)))
             for n in sorted(set(key) & set(inline)):
                 if key[n] != inline[n]:
                     self.report(rel, "AS-08",
