@@ -255,7 +255,7 @@ class FSDPTrainer:
             os.replace(tmp, path)
 
     def load_fsdp_checkpoint(self, path: str):
-        return torch.load(path, map_location="cpu")
+        return torch.load(path, map_location="cpu", weights_only=True)
 
 
 cfg = build_fsdp_config()
@@ -602,7 +602,7 @@ class ResilientTrainer:
         return os.path.join(self.save_dir, f"step_{steps[-1]}.pt")
 
     def load_checkpoint(self, path: str) -> int:
-        ckpt = torch.load(path, map_location="cpu")
+        ckpt = torch.load(path, map_location="cpu", weights_only=True)
         self.model.load_state_dict(ckpt["model"])
         self.optimizer.load_state_dict(ckpt["optimizer"])
         self.current_step = ckpt["step"]

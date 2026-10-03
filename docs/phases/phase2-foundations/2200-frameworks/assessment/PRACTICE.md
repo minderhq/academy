@@ -319,7 +319,7 @@ print(f"\nSaved state dictionary to {state_dict_path}")
 
 # Load state dictionary
 new_model = SimpleNet()
-new_model.load_state_dict(torch.load(state_dict_path))
+new_model.load_state_dict(torch.load(state_dict_path, weights_only=True))
 new_model.eval()
 print("Loaded state dictionary into new model")
 
@@ -335,7 +335,7 @@ torch.save(checkpoint, checkpoint_path)
 print(f"\nSaved checkpoint to {checkpoint_path}")
 
 # Load checkpoint
-loaded_checkpoint = torch.load(checkpoint_path)
+loaded_checkpoint = torch.load(checkpoint_path, weights_only=True)
 print(f"Loaded checkpoint from epoch {loaded_checkpoint['epoch']}")
 print(f"Checkpoint loss: {loaded_checkpoint['loss']:.4f}")
 

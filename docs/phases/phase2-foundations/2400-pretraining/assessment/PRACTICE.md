@@ -367,7 +367,7 @@ def load_checkpoint(model, optimizer, scheduler, checkpoint_dir):
     checkpoint_dir = Path(checkpoint_dir)
 
     # Load training state
-    checkpoint = torch.load(checkpoint_dir / "training_state.pt")
+    checkpoint = torch.load(checkpoint_dir / "training_state.pt", weights_only=True)
 
     # Load states
     model.load_state_dict(checkpoint['model_state_dict'])

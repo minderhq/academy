@@ -820,7 +820,6 @@ calls.
 from typing import Any
 import hashlib
 import json
-import pickle
 from pathlib import Path
 import time
 
@@ -866,7 +865,7 @@ class ModelResponseCache:
 
     def _get_cache_path(self, input_hash: str) -> Path:
         """Get cache file path for hash."""
-        return self.cache_dir / f"{input_hash}.pkl"
+        return self.cache_dir / f"{input_hash}.json"
 
     def get(self, input_data: Any) -> Any | None:
         """Get cached response if available and not expired."""
@@ -886,8 +885,8 @@ class ModelResponseCache:
 
         # Load from cache
         try:
-            with open(cache_path, "rb") as f:
-                return pickle.load(f)
+            with open(cache_path, "r") as f:
+                return json.load(f)
         except Exception:
             return None
 
@@ -902,8 +901,8 @@ class ModelResponseCache:
 
         # Store response
         try:
-            with open(cache_path, "wb") as f:
-                pickle.dump(response, f)
+            with open(cache_path, "w") as f:
+                json.dump(response, f)
 
             self.index[input_hash] = time.time()
 
@@ -957,7 +956,7 @@ print(cache.get(input_data))
 expensive_result for {'prompt': 'hello'}
 ```
 
-The cache persists as pickle files under `./cache/`, so hits survive a
+The cache persists as JSON files under `./cache/`, so hits survive a
 process restart - the TTL check reads each file's mtime, not an in-memory
 index. Production deployments point `cache_dir` at fast local disk, or a
 shared store when replicas must share the cache.
@@ -996,7 +995,7 @@ class EmbeddingCache:
 
         # Check cache
         if cache_path.exists():
-            return torch.load(cache_path)
+            return torch.load(cache_path, weights_only=True)
 
         # Compute embedding
         embedding = self.embed_model.embed(text)
@@ -1017,7 +1016,7 @@ class EmbeddingCache:
             cache_path = self._get_cache_path(text)
 
             if cache_path.exists():
-                embedding = torch.load(cache_path)
+                embedding = torch.load(cache_path, weights_only=True)
                 embeddings.append((i, embedding))
             else:
                 uncached_texts.append(text)

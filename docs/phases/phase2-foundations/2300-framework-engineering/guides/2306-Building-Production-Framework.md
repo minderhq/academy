@@ -533,7 +533,7 @@ MODEL = MODEL_REGISTRY.create(CONFIG.get("serving.model_name", default="SimpleNN
 # Optional: restore trained weights saved by a training script.
 WEIGHTS = os.environ.get("MODEL_PATH")
 if WEIGHTS and os.path.exists(WEIGHTS):
-    MODEL.load_state_dict(torch.load(WEIGHTS, map_location="cpu"))
+    MODEL.load_state_dict(torch.load(WEIGHTS, map_location="cpu", weights_only=True))
 
 MODEL.eval()
 SERVER = BatchingServer(

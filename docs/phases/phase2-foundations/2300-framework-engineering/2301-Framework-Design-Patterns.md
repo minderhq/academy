@@ -200,7 +200,7 @@ class PyTorchModel(BaseModel):
 
     def load(self, path: str):
         """Load model."""
-        checkpoint = torch.load(path)
+        checkpoint = torch.load(path, weights_only=True)
         self.model.load_state_dict(checkpoint["model_state_dict"])
         self.config = checkpoint["config"]
 

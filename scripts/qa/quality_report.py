@@ -333,6 +333,20 @@ stand today?" without running each tool by hand.
                        calls and ast.literal_eval are out by
                        construction, born tick-645, drained same
                        tick: 13 sites across 9 files)
+    unsafe_deserialize_scan
+                       unsafe deserialization in python fences
+                       (UD-01: torch.load() without weights_only -
+                       a checkpoint is a pickle payload and torch
+                       >= 2.6 defaults weights_only=True; UD-02:
+                       pickle-family load/loads - unpickling executes
+                       __reduce__ payloads, 7500-security vouches
+                       serialization as can-execute-code, drain to
+                       JSON; UD-03: yaml.load() without Loader= -
+                       born-at-zero, SafeLoader taught everywhere;
+                       kwarg presence, write-side calls, json.load
+                       and danger-marked fences are out by
+                       construction, born tick-646, drained same
+                       tick: 11 sites across 7 files)
     action_version_scan
                        uses: pins in docs must match the canonical
                        action registry (AV-01: current majors -
@@ -2905,6 +2919,7 @@ GATES = [
     ("mermaid_lint.py", "mermaid_lint", True),
     ("deprecated_scan.py", "deprecated_scan", True),
     ("unsafe_exec_scan.py", "unsafe_exec_scan", True),
+    ("unsafe_deserialize_scan.py", "unsafe_deserialize_scan", True),
     ("action_version_scan.py", "action_version_scan", True),
     ("unicode_ws_hygiene_scan.py", "unicode_ws_hygiene_scan", True),
     ("objectives_lint.py", "objectives_lint", False),
