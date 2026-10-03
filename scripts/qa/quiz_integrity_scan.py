@@ -116,6 +116,14 @@ QI-16  option letters written out of A,B,C,D order with the set
        (letter missing, duplicated, beyond D, or no option
        rows at all). Census tick-630: 180/180 questions
        write exact abcd, born-at-zero.
+       QI-17 tick-631 checkpoint quiz item
+       numbering - the 3-item **Checkpoint Quiz:** per
+       module block must run 1..K contiguous; checkpoint_
+       coverage_scan's CK-04 reads only the item COUNT
+       and QI-14 reads only stems, so a gap, duplicate or
+       restart inside the count was unread. Census
+       tick-631: 33/33 module blocks write exact 1,2,3
+       (99 items across 7 files), born-at-zero.
 
 Report inventory (never fails the gate - the drain queues, same
 contract as duplicate_heading_scan):
@@ -165,8 +173,8 @@ at birth (tick-284 / tick-285); QI-06 joined in tick-345 (baseline
 0 since the tick-343 drain); QI-11 joined in tick-374 (born
 baseline 0); QI-12 tick-474, QI-13 tick-475, QI-14 tick-476, QI-15
 tick-567, QI-16
-tick-629, phase surface tick-630 (all
-born-at-zero). QI-10 is report inventory at birth (tick-290: 31
+tick-629, phase surface tick-630, QI-17
+tick-631 (all born-at-zero). QI-10 is report inventory at birth (tick-290: 31
 modules queued).
 
 Run over the whole corpus:
@@ -442,6 +450,60 @@ def main() -> int:
                             f"{rel}: QI-14 checkpoint-quiz item "
                             f"{m.group(1)} '{m.group(2)[:50]}' duplicates "
                             f"bank stem {seen[stem][0]} q{seen[stem][1]}")
+        MG = re.compile(r"^###\s+Module\s+(\d{4}):")
+        cur_gid = None
+        in_q = False
+        cnums: list[int] = []
+
+        def close_segment():
+            # QI-17: the written item-number run per
+            # Checkpoint Quiz segment. CK-04 reads only the
+            # item COUNT (exactly 3) and QI-14 only the stems,
+            # so a gap, duplicate or restart inside the count
+            # rendered the module self-test as a broken
+            # sequence unread. Partition: a count != 3 stays
+            # CK-04's (it exists here), the numbering inside
+            # the count is ours - one mutation, one finding
+            # fleet-wide. Shape-agnostic 1..K; K = 3 is the
+            # corpus shape CK-04 vouches.
+            if cnums and cnums != list(range(1, len(cnums) + 1)):
+                hard.append(
+                    f"{rel}: QI-17 module {cur_gid} checkpoint quiz "
+                    f"items are numbered "
+                    f"{', '.join(str(x) for x in cnums)}, "
+                    f"expected 1..{len(cnums)} - the module "
+                    f"self-test renders a broken sequence (item "
+                    f"count vouched by CK-04)")
+            cnums.clear()
+
+        for line, fence in fence_aware(raw):
+            if fence:
+                continue
+            mm = MG.match(line)
+            if mm:
+                cur_gid = mm.group(1)
+            if CP_HEAD.match(line):
+                if in_q:
+                    close_segment()
+                in_q = True
+                continue
+            if in_q:
+                if (line.startswith("### ") or line.startswith("## ")
+                        or line.strip() == "---" or line.startswith("**")):
+                    in_q = False
+                    close_segment()
+                    continue
+                m = CP_ITEM.match(line)
+                if m:
+                    cnums.append(int(m.group(1)))
+                    stem = norm(m.group(2))
+                    if stem in seen:
+                        hard.append(
+                            f"{rel}: QI-14 checkpoint-quiz item "
+                            f"{m.group(1)} '{m.group(2)[:50]}' duplicates "
+                            f"bank stem {seen[stem][0]} q{seen[stem][1]}")
+        if in_q:
+            close_segment()
 
     # QI-15: phase-quiz items duplicating a bank or phase-quiz stem.
     # The seven phase quizzes quiz across a whole phase's modules, so
@@ -551,7 +613,7 @@ def main() -> int:
           f"question / QI-13 unparseable key row / QI-14 "
           f"checkpoint-quiz item duplicating a bank stem / QI-15 "
           f"phase-quiz item duplicating a bank or phase-quiz stem / "
-          f"QI-16 option letters written out of ABCD order - module banks and phase quizzes), "
+          f"QI-16 option letters written out of ABCD order - module banks and phase quizzes; QI-17 checkpoint quiz item numbering broken inside the count), "
           f"QI-06 {len(cross_dups)} "
           f"cross-module stem dups (hard since tick-345; drained "
           f"tick-343), QI-07 "

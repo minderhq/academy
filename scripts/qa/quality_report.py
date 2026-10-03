@@ -198,7 +198,11 @@ stand today?" without running each tool by hand.
                        (assessment_lint's letter-keyed dict
                        collapses duplicates and destroys
                        order) - born 180/180 exact abcd
-                       across 180 questions) on top of
+                       across 180 questions; QI-17 tick-631
+                       checkpoint quiz item numbering (CK-04
+                       reads only the item COUNT, QI-14 only
+                       the stems) - born 33/33 module blocks
+                       exact 1,2,3 across 99 items) on top of
                        quiz_export's parser; QI-07/QI-10
                        are the report inventory (the
                        skewed-answer-key shuffle queue -
