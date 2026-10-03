@@ -219,20 +219,27 @@ stand today?" without running each tool by hand.
                        Dockerfile on python3.10 after the 3.13
                        epic was declared done
     feed_parity_check  cross-feed contract between the platform feeds:
-                       runs manifest_export + quiz_export for real and
-                       locks their invariants (FP-00..FP-08: module
-                       sets, counts vs arrays, hierarchy vs documents
-                       lessons, quiz-file membership, bank-internal
-                       totals, assessment.quiz flags, manifest vs the
-                       on-disk docs/*.md tree, experiments vs the
-                       experiments/*.md tree minus TEMPLATE.md) -
-                       consistency only, content totals stay the
-                       living baseline. Scope tick-613: the feed
-                       learned the second tree (manifest_export now
-                       carries experiments[] on the 5-field EC-01
-                       keyset) and FP-08 lifts FP-07's zeroth
-                       platform contract to it, pure path-set parity
-                       both ways - born at 47 == 47.
+                       runs manifest_export + quiz_export +
+                       curriculum_metrics for real and locks their
+                       invariants (FP-00..FP-10: module sets, counts
+                       vs arrays, hierarchy vs documents lessons,
+                       quiz-file membership, bank-internal totals,
+                       assessment.quiz flags, manifest vs the on-disk
+                       docs/*.md tree, experiments vs the
+                       experiments/*.md tree minus TEMPLATE.md,
+                       curriculum corpus vs the hierarchy, metrics
+                       quiz total vs the bank) - consistency only,
+                       content totals stay the living baseline.
+                       Scope tick-613: the feed learned the second
+                       tree (manifest_export now carries
+                       experiments[] on the 5-field EC-01 keyset)
+                       and FP-08 lifts FP-07's zeroth platform
+                       contract to it, pure path-set parity both
+                       ways - born at 47 == 47. Scope tick-614: the
+                       third feed joined - curriculum_metrics runs
+                       for real and FP-09/FP-10 lock its corpus
+                       counts and quiz total to the hierarchy and
+                       the bank - born at 114/33/7 and 660 == 660.
     readme_claims_check
                        every measurable number in README.md (badges,
                        resource tables, per-phase document table,

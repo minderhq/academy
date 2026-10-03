@@ -29,6 +29,17 @@ the JSON they wrote, and locks the cross-feed invariants:
          second tree, pure path-set parity both ways - values are
          EC-01/FV-01/FV-12/FV-13's duty; born tick-613 at 47 == 47
          parity, TEMPLATE is EC-01's name-keyed carve-out)
+  FP-09  curriculum_metrics corpus counts (lessons/modules/phases)
+         == the manifest hierarchy counts (the third feed joined -
+         its lesson classification borrows the same regexes, and if
+         it drifts the platform's metrics snapshot silently
+         describes a different corpus than its catalog; born
+         tick-614 at 114/33/7 == 114/33/7)
+  FP-10  curriculum_metrics assessments.questions total == the quiz
+         bank's question records total (two independent parses of
+         the same QUIZ.md set must agree - the bank is load truth,
+         the metrics snapshot is trend truth; born tick-614 at
+         660 == 660)
 
 Content totals (660 questions, 114 lessons) are deliberately NOT
 pinned here - they are the living baseline recorded in memory, and
@@ -49,7 +60,7 @@ import sys
 import tempfile
 from pathlib import Path
 
-FEEDS = ("manifest_export.py", "quiz_export.py")
+FEEDS = ("manifest_export.py", "quiz_export.py", "curriculum_metrics.py")
 Q_TYPES = ("mcq", "coding", "open")
 
 
@@ -75,11 +86,11 @@ def load_feed(root: Path, script: str, out_dir: Path, findings: list[str]):
     return data
 
 
-def check_feeds(manifest: dict, bank: dict, findings: list[str],
-                root: Path) -> dict:
+def check_feeds(manifest: dict, bank: dict, cur: dict | None,
+                findings: list[str], root: Path) -> dict:
     """Cross-feed invariants. Returns a small stats map for the summary."""
     stats = {"phases": 0, "modules": 0, "lessons": 0, "documents": 0,
-             "experiments": 0, "questions": 0}
+             "experiments": 0, "questions": 0, "cur_lessons": 0}
 
     mcounts = manifest["counts"]
     h_modules: list[str] = []
@@ -194,6 +205,27 @@ def check_feeds(manifest: dict, bank: dict, findings: list[str],
     if {t: btotals.get(t, 0) for t in Q_TYPES} != totals:
         findings.append("FP-05 bank totals %r disagree with the records %r"
                         % ({t: btotals.get(t) for t in Q_TYPES}, totals))
+
+    # FP-09 / FP-10 the third feed joins: curriculum_metrics re-walks
+    # the corpus with borrowed classification and re-parses every
+    # QUIZ.md through quiz_export.export_quiz - if either side drifts
+    # the platform's metrics snapshot silently describes a different
+    # corpus (FP-09) or a different assessment load (FP-10) than its
+    # catalog and bank. Pure agreement, no totals pinned. This block
+    # sits AFTER the FP-05 loop on purpose: FP-10 compares against
+    # stats["questions"], which that loop accumulates.
+    if cur is not None:
+        stats["cur_lessons"] = cur["corpus"]["lessons"]
+        for key in ("lessons", "modules", "phases"):
+            if cur["corpus"][key] != stats[key]:
+                findings.append("FP-09 curriculum corpus.%s=%d but the "
+                                "manifest hierarchy holds %d"
+                                % (key, cur["corpus"][key], stats[key]))
+        if cur["assessments"]["questions"] != stats["questions"]:
+            findings.append("FP-10 curriculum assessments.questions=%d but "
+                            "the quiz bank records hold %d"
+                            % (cur["assessments"]["questions"],
+                               stats["questions"]))
     return stats
 
 
@@ -205,23 +237,26 @@ def main() -> int:
 
     findings: list[str] = []
     stats = {"phases": 0, "modules": 0, "lessons": 0, "documents": 0,
-             "experiments": 0, "questions": 0}
+             "experiments": 0, "questions": 0, "cur_lessons": 0}
     with tempfile.TemporaryDirectory(prefix="feed_parity_") as tmp:
         out_dir = Path(tmp)
         manifest = load_feed(args.root, "manifest_export.py", out_dir,
                              findings)
         bank = load_feed(args.root, "quiz_export.py", out_dir, findings)
+        cur = load_feed(args.root, "curriculum_metrics.py", out_dir,
+                        findings)
         if manifest is not None and bank is not None:
-            stats = check_feeds(manifest, bank, findings, args.root)
+            stats = check_feeds(manifest, bank, cur, findings, args.root)
 
     for f in findings:
         print(f.encode("ascii", "backslashreplace").decode("ascii"))
     print("feed_parity_check: %d findings (%d phases, %d modules, "
-          "%d lessons, %d documents, %d experiments, %d questions "
-          "cross-checked)"
+          "%d lessons, %d documents, %d experiments, %d questions, "
+          "%d curriculum lessons cross-checked)"
           % (len(findings), stats["phases"], stats["modules"],
              stats["lessons"], stats["documents"],
-             stats["experiments"], stats["questions"]))
+             stats["experiments"], stats["questions"],
+             stats["cur_lessons"]))
     return 1 if findings else 0
 
 
