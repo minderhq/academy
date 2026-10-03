@@ -33,6 +33,8 @@ Understood corpus forms (format-tolerant):
   - every module quiz carries a Document ID and a Title in frontmatter,
     and Document IDs are unique across the bank - identity metadata the
     platform keys on (tick-624)
+  - a question graded against 0 points is a finding - the self-grade
+    denominator makes the grading arithmetic undefined (tick-625)
 
 Usage:
     python scripts/qa/quiz_export.py [--root REPO_ROOT] [--out FILE]
@@ -277,6 +279,15 @@ def export_quiz(rel, lines, findings):
                 seen.setdefault(tx, lt)
         elif q["points"] is not None:
             q["type"] = "coding"
+        if q["points"] == 0:
+            # tick-625: a self-graded question's points denominator is
+            # the grading contract - "__/0" makes the self-grade
+            # arithmetic undefined while the record parses complete
+            # (born census: 0 across 660 questions; the five coding
+            # questions carry /2).
+            findings.append("%s: question %d graded against 0 points "
+                            "(self-grade denominator undefined)"
+                            % (rel, n))
         if not q["text"]:
             # tick-615: the stem check sat in the open-type elif chain,
             # so an mcq or coding question whose stem line lost its
