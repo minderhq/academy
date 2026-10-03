@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Quiz self-claim integrity (QC-01..04, HARD) for PROJECT-OMEGA.
+"""Quiz self-claim integrity (QC-01..05, HARD) for PROJECT-OMEGA.
 
 Every QUIZ.md makes promises to the learner about itself - how many
 questions it holds, what score passes. quiz_export parses the real
@@ -36,6 +36,17 @@ QC-04  a points-total does not match the bank's DERIVED total: the
        so a Score-line drift (2 -> 3) silently mis-sums the
        platform grader. Census tick-477: all 33 banks consistent,
        born at zero.
+
+QC-05  a pass line's percentage value is not the corpus 80
+       convention: QC-02/QC-03 vouch the arithmetic and QC-02 the
+       count, quiz_export tick-618 the parenthetical's internal
+       consistency and AS-14 the phase quizzes - but a consistent
+       70% (14/20) line parses clean everywhere and tells the
+       learner 70 passes while every sibling bank, the phase
+       quizzes (AS-14) and the platform grader run 80. Both
+       pass-line forms in scope. Census tick-632: 32 correct-form
+       lines + 2300's points-form line all state exactly 80 -
+       born-at-zero.
 
 HARD GATE - exit 1 on any finding. Born-at-zero after the tick-473
 census (same census -> drain -> gate cycle as checkpoint_coverage).
@@ -113,6 +124,14 @@ def main() -> int:
                     findings.append("QC-02 %s:%d pass (%d/%d correct) but "
                                     "bank holds %d"
                                     % (rel, i, need, tot, n))
+                if pct != 80:
+                    findings.append("QC-05 %s:%d pass line states "
+                                    "%d%% - the corpus passing "
+                                    "convention is 80%% (the "
+                                    "arithmetic and count are "
+                                    "QC-02's; only the percentage "
+                                    "value drifted)"
+                                    % (rel, i, pct))
             for m in PASS_POINTS.finditer(ln):
                 need, tot, pct = int(m.group(1)), int(m.group(2)), int(m.group(3))
                 if need != math.ceil(tot * pct / 100):
@@ -126,6 +145,14 @@ def main() -> int:
                                     "(%d explicit + %d implicit x 1)"
                                     % (rel, i, tot, derived, explicit,
                                        implicit))
+                if pct != 80:
+                    findings.append("QC-05 %s:%d points-form pass "
+                                    "line states %d%% - the corpus "
+                                    "passing convention is 80%% "
+                                    "(arithmetic is QC-03's, the "
+                                    "total QC-04's; only the "
+                                    "percentage value drifted)"
+                                    % (rel, i, pct))
             for m in TOTAL_POINTS.finditer(ln):
                 if int(m.group(1)) != derived:
                     findings.append("QC-04 %s:%d claims **%s points "
@@ -139,8 +166,10 @@ def main() -> int:
     print("quiz_claim_scan: %d quiz banks; %d findings - all hard "
           "(QC-01 count claim / QC-02 correct-form pass line / "
           "QC-03 points-form pass line / QC-04 points-total vs "
-          "derived sum; born tick-473 after the all-clean census, "
-          "QC-04 tick-477 after the all-consistent census)"
+          "derived sum / QC-05 pass pct value vs the 80 "
+          "convention; born tick-473 after the all-clean census, "
+          "QC-04 tick-477 after the all-consistent census, "
+          "QC-05 tick-632 after the all-80 census)"
           % (n_files, len(findings)))
     return 1 if findings else 0
 

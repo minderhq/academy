@@ -2665,7 +2665,7 @@ stand today?" without running each tool by hand.
                        Troubleshooting/Verification x8 in LAB-000,
                        REQUIREMENTS x2, Real-world example x1, NOTE x3);
                        all renamed to the vote winners, born-at-zero
-    quiz_claim_scan  Quiz self-claim integrity (QC-01..04, hard):
+    quiz_claim_scan  Quiz self-claim integrity (QC-01..05, hard):
                        a QUIZ.md's own promises checked against the
                        bank quiz_export parses - "**N questions**"
                        claims vs the parsed count, the two
@@ -2676,7 +2676,13 @@ stand today?" without running each tool by hand.
                        (33 banks; the census's first-pass 2300 hit
                        was the census's own format blindness, not a
                        defect), QC-04 tick-477 (all 33 banks
-                       consistent at birth)
+                       consistent at birth), QC-05 tick-632
+                       (pass-line percentage value vs the
+                       corpus 80 convention - QC-02/03 own the
+                       arithmetic, tick-618 the internal
+                       consistency, AS-14 the phase quizzes;
+                       born 32 correct-form lines + 2300's
+                       points-form line all stating exactly 80)
 
 Plus corpus stats (lesson files / modules / phases) so the scorecard doubles
 as a curriculum inventory.
