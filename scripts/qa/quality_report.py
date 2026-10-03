@@ -110,7 +110,15 @@ stand today?" without running each tool by hand.
                        their echoed tokens (4100-low-bit q8 keeps
                        its "channel" - the per-channel concept IS
                        the key - and its distractor gains the
-                       token instead)
+                       token instead);
+                       AS-18 the header-count-claim contract -
+                       the phase quiz's learner-facing "**N
+                       Questions | ...**" header must exist and
+                       equal the quiz's actual question count,
+                       scoped to the seven phase quizzes (the
+                       passing line's total is AS-14's), born
+                       tick-626 census-zero 7/7 headers present,
+                       0 drift across 180 questions (15/20/25/30/30/30/30)
     quiz_export        quiz bank parses into complete question records
                        (blank-stem clause since tick-615: a question
                        whose stem line lost its text parses as a

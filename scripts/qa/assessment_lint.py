@@ -122,6 +122,20 @@ the same AS-04/AS-08/AS-09 standards in their own "### N." shape):
          "learning rate" / "vision+language" / "adapters+model" /
          "calling+llm" class), every one drained same tick by
          rewording the keyed option off its echoed tokens
+  AS-18  the phase quiz's learner-facing count claim - the header
+         line "**N Questions | Passing Score: 80% | Time: ...**"
+         must carry a number equal to the quiz's actual question
+         count, and the header must exist: a drifted header
+         promises a different bank than the one below it while
+         every per-question check stays clean, and an absent
+         header leaves the platform's count claim unvouched. The
+         claim is read from the first 30 lines outside fences
+         (the header's only home in the shape). Scoped to the
+         seven phase quizzes - the passing line's own total
+         contract is AS-14's (a drifted header with the passing
+         line intact fires here and only here). Joined tick-626 -
+         born census 7/7 headers present, 0 drift across 180
+         questions (15/20/25/30/30/30/30)
 
 Format-tolerant by design: richer variants (inline-answer quizzes,
 self-graded coding questions, 3-column answer keys) pass as long as
@@ -175,6 +189,9 @@ PHASE_INLINE = re.compile(r"\*\*Answer:\*\*\s*([A-Da-d])\b")
 PHASE_KEY_PAIR = re.compile(r"(?<!\d)(\d+)\\?\. ([A-Da-d])\b")
 # the learner-facing pass contract: "**Passing: 12/15 (80%)**"
 PASS_LINE = re.compile(r"\*\*Passing:\s*(\d+)/(\d+)\s*\((\d+)%\)\*\*")
+# AS-18: the phase quiz's learner-facing count claim, the header line
+# "**15 Questions | Passing Score: 80% | Time: 30 minutes**"
+HEADER_QUESTIONS = re.compile(r"\*\*(\d+)\s+Questions?\b")
 # AS-15: option text with its letter, both quiz shapes (module banks
 # render "A) text", phase quizzes render lowercase "a) text").
 OPT_TEXT = re.compile(r"^\s*([A-Ea-e])\)\s+(.+?)\s*$")
@@ -556,6 +573,33 @@ class Linter:
             self.report(rel, "AS-03",
                         "question numbering not contiguous 1..%d"
                         % len(qnums))
+        # AS-18: the learner-facing "**N Questions | ...**" header
+        # claim must exist and equal the quiz's actual question
+        # count - a drifted header promises a different bank than
+        # the one below it while every per-question check stays
+        # clean, and an absent header leaves the platform's count
+        # claim unvouched. Read from the first 30 lines outside
+        # fences (the header's only home in the shape). Scoped to
+        # the phase shape - the passing line's own total contract
+        # is AS-14's, so a passing-line drift fires there and not
+        # here. Born tick-626: census 7/7 headers present, 0 drift
+        # across 180 questions (15/20/25/30/30/30/30).
+        claim = None
+        for i, l in nf:
+            if i >= 30:
+                break
+            m = HEADER_QUESTIONS.search(l)
+            if m:
+                claim = int(m.group(1))
+                break
+        if claim is None:
+            self.report(rel, "AS-18",
+                        "no **N Questions** header claim "
+                        "(platform count claim absent)")
+        elif claim != len(qnums):
+            self.report(rel, "AS-18",
+                        "header claims %d questions, quiz carries %d"
+                        % (claim, len(qnums)))
         uncovered = sorted(qnums - set(inline))
         if uncovered:
             self.report(rel, "AS-04",
