@@ -95,6 +95,17 @@ QI-15  phase-quiz item duplicating a bank or phase-quiz stem (hard
        options untouched; phase-vs-phase and the other six phase
        quizzes born clean.
 
+QI-16  option letters written out of A,B,C,D order with the set
+       complete (hard since tick-629): AS-10 vouches the set,
+       QI-04 the E+ drop and QI-11 the join, but the written
+       order is read by nothing - a bank authored C ... A ...
+       renders scrambled radio buttons while the key still
+       joins. Fires only on a complete 4-letter A-D run so a
+       broken-set question stays AS-10's class and one mutation
+       fires once fleet-wide (a duplicated letter either breaks
+       the set - AS-10 - or duplicates the text - QI-03).
+       Census tick-629: 655/655 mcq write ABCD, born-at-zero.
+
 Report inventory (never fails the gate - the drain queues, same
 contract as duplicate_heading_scan):
 
@@ -138,12 +149,12 @@ QI-10  answer-length bias per module (report queue): the correct
        all seven, drained same tick) - this report remains the
        module-side trend view.
 
-Hard gate on QI-01..06, QI-08/09 and QI-11..14 (exit 1): baseline 0
+Hard gate on QI-01..06, QI-08/09 and QI-11..16 (exit 1): baseline 0
 at birth (tick-284 / tick-285); QI-06 joined in tick-345 (baseline
 0 since the tick-343 drain); QI-11 joined in tick-374 (born
 baseline 0); QI-12 tick-474, QI-13 tick-475, QI-14 tick-476, QI-15
-tick-567 (all
-born-at-zero). QI-10 is report inventory at birth (tick-290: 31
+tick-567, QI-16
+tick-629 (all born-at-zero). QI-10 is report inventory at birth (tick-290: 31
 modules queued).
 
 Run over the whole corpus:
@@ -159,6 +170,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from quiz_export import (MODULE_DIR, AK_BOLD, AK_HEADING, AK_ROW, HEADING,  # noqa: E402
+                         OPTION, QUESTION_BOLD, QUESTION_H3,
                          export_quiz, fence_aware)
 
 MODULES_ROOT = Path("docs") / "phases"
@@ -292,6 +304,34 @@ def scan_module(rel: str, lines: list[str],
                 f"{rel}: QI-04 option beyond A-D: '{line.strip()[:40]}' "
                 f"- quiz_export silently drops it")
             break
+
+    # QI-16: option letters must be WRITTEN in A, B, C, D order
+    # per question. AS-10 vouches the set, QI-04 the E+ drop and
+    # QI-11 the join, but the written order is read by nothing -
+    # a bank authored C ... A ... renders scrambled radio buttons
+    # while the key still joins. The full-4-letter guard keeps
+    # broken-set questions in AS-10's class (one mutation, one
+    # finding fleet-wide).
+    qn = None
+    seqs: dict[int, list[str]] = {}
+    for line, fence in fence_aware(lines):
+        if fence:
+            continue
+        m = QUESTION_BOLD.match(line) or QUESTION_H3.match(line)
+        if m:
+            qn = int(m.group(1))
+            continue
+        m = OPTION.match(line)
+        if m and qn is not None:
+            seqs.setdefault(qn, []).append(m.group(1))
+    for n, seq in sorted(seqs.items()):
+        if len(seq) == 4 and sorted(set(seq)) == ["A", "B", "C", "D"] \
+                and seq != ["A", "B", "C", "D"]:
+            hard.append(
+                f"{rel}: QI-16 question {n} options are written "
+                f"{''.join(seq)}, expected ABCD - the full A-D set "
+                f"renders out of letter order (scrambled radio "
+                f"buttons, key still joins)")
 
     answered = [q["answer"] for q in questions
                 if q["type"] == "mcq" and q["answer"]]
@@ -444,7 +484,8 @@ def main() -> int:
           f"option row or <2-option mcq / QI-12 ungradeable "
           f"question / QI-13 unparseable key row / QI-14 "
           f"checkpoint-quiz item duplicating a bank stem / QI-15 "
-          f"phase-quiz item duplicating a bank or phase-quiz stem), "
+          f"phase-quiz item duplicating a bank or phase-quiz stem / "
+          f"QI-16 option letters written out of ABCD order), "
           f"QI-06 {len(cross_dups)} "
           f"cross-module stem dups (hard since tick-345; drained "
           f"tick-343), QI-07 "

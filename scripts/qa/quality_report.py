@@ -170,7 +170,7 @@ stand today?" without running each tool by hand.
                        questions)
     quiz_integrity_scan
                        content-level quiz integrity (QI-01..06 +
-                       QI-08/09 + QI-11/12/13/15 hard: self-referential positional
+                       QI-08/09 + QI-11/12/13/15/16 hard: self-referential positional
                        option, in-module duplicate stem, duplicate
                        option text, option beyond A-D, numbering
                        gap, cross-module stem dup, duplicate
@@ -190,7 +190,10 @@ stand today?" without running each tool by hand.
                        tick-567 phase-quiz item duplicating a bank
                        or phase-quiz stem - born at 4 (all in
                        phase5-quiz.md), drained same tick,
-                       baseline 0) on top of
+                       baseline 0; QI-16 tick-629 option letters
+                       written out of A-D order with the set
+                       complete - born 655/655 mcq ABCD across
+                       660 questions) on top of
                        quiz_export's parser; QI-07/QI-10
                        are the report inventory (the
                        skewed-answer-key shuffle queue -
