@@ -15,6 +15,8 @@ Understood corpus forms (format-tolerant):
   - self-graded coding questions ("**Score:** __/2", answer=null)
   - option rows / key letters outside the A-D grammar are findings, not
     silent drops (tick-616)
+  - the Instructions "N questions" claim must match the parsed count,
+    and every key row must have its question (tick-617)
 
 Usage:
     python scripts/qa/quiz_export.py [--root REPO_ROOT] [--out FILE]
@@ -43,6 +45,7 @@ AK_BOLD = re.compile(r"^\*\*(\d+)\.\s*\**\s*([A-D])\s*\**\s*$")
 AK_ROW_BEYOND = re.compile(r"^\|\s*(\d+)\s*\|\s*([E-Z])\b")
 AK_BOLD_BEYOND = re.compile(r"^\*\*(\d+)\.\s*\**\s*([E-Z])\s*\**\s*$")
 OPT_BEYOND = re.compile(r"^\s*[-*]?\s*\*{0,2}([E-Z])[\).]")
+CLAIM = re.compile(r"(\d+)\s+questions?\b")
 HEADING = re.compile(r"^(#{1,6})\s+(.*?)\s*$")
 FM_LINE = re.compile(r"^([A-Za-z][A-Za-z ]*):\s*(.*?)\s*$")
 MODULE_DIR = re.compile(r"^\d{4}-")
@@ -70,8 +73,29 @@ def parse_frontmatter(lines):
     return fm
 
 
+def capture_claim(lines):
+    """The Instructions region's "N questions" claim; None when absent.
+
+    tick-617: the claim is platform metadata - tracked as its own pass
+    so the key and question passes keep their single purposes.
+    """
+    in_instr = False
+    for l, fence in fence_aware(lines):
+        if fence:
+            continue
+        if HEADING.match(l):
+            in_instr = "instruction" in l.lower()
+            continue
+        if in_instr:
+            m = CLAIM.search(l)
+            if m:
+                return int(m.group(1))
+    return None
+
+
 def export_quiz(rel, lines, findings):
     fm = parse_frontmatter(lines)
+    claim = capture_claim(lines)
 
     key = {}
     in_ak = False
@@ -173,6 +197,24 @@ def export_quiz(rel, lines, findings):
             findings.append("%s: question %d has no stem text (blank "
                             "stem parses clean otherwise)"
                             % (rel, n))
+    if claim is not None and claim != len(order):
+        # tick-617: the Instructions "N questions" claim is platform
+        # metadata - a count drifted from the parsed bank lies to the
+        # learner while the bank loads fine (born census: 0 mismatches
+        # across 33 modules; no claim, no comparison - 2300's points-
+        # based form carries none).
+        findings.append("%s: instructions claim %d questions but %d "
+                        "parsed" % (rel, claim, len(order)))
+    for n in sorted(key):
+        if n not in qs:
+            # tick-617: a key row whose question no longer exists is a
+            # dangling entry, the dual of the missing-answer class -
+            # the per-question loop never visits key-only numbers, so
+            # nothing else fires (born census: 0 across 33 modules;
+            # 2300's self-graded coding questions carry no key rows,
+            # the reverse direction, untouched here).
+            findings.append("%s: answer key row %d has no matching "
+                            "question" % (rel, n))
     return fm, [qs[n] for n in sorted(order)]
 
 
