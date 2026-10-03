@@ -110,6 +110,45 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **lesson_similarity_scan** (report tool): 5-word-shingle Jaccard
   over all 6441 lesson pairs - born at zero clone findings with a max
   similarity of 0.058, lesson diversity under continuous lock
+- **quiz_length_scan** (report tool): the correct-answer LENGTH axis
+  across all 33 module banks plus all 7 phase quizzes (40 banks, 835
+  mcqs) - the share of questions whose correct answer sits strictly
+  at an option-length extreme, the "the right answer is always the
+  longest one" tell a shape-guesser exploits while every structural
+  check stays clean; single-owned by regime against the two
+  co-measurements - AS-15 (hard) fires only at longest-OR-TIED >= 50%
+  of a bank and quiz_integrity_scan's QI-10 carries that same line as
+  a module-only trend queue, so this tool owns the finer regime
+  neither ever measured: STRICT longest > 40% per bank, the mirrored
+  strict-SHORT axis (the "pick the short one" tell), and global
+  shares > 30% - a bank drifting at 43-45% strict-longest passes both
+  elders while a longest-guesser still beats a uniform guesser; born
+  census fired exactly 7 BANK-LONG-SKEW (6400-vector-databases at
+  9/20 plus phase quizzes 2-7 at 43-45%, all below AS-15's 50% floor
+  with both elders silent throughout - the disjointness proof)
+  against a globally healthy corpus at 17.0% long; drained same tick
+  with option-TEXT-only rebalances across 15 questions / 25 option
+  lines (3 questions in 6400, 2 per firing phase quiz - distractors
+  given plausible elaborations or the correct answer tightened;
+  letters, keys, counts, passing lines and Answer Key tables
+  untouched), landing every firing bank at 0.30-0.367 with real
+  margin instead of edge-sitting at 0.40 and the corpus at 15.2%
+  long / 4.2% short with 0 findings; negatively tested across 6 runs
+  - the born run fires exactly 7, the post-drain control 0, the
+  threshold crossing at --bank-threshold 0.39 fires BANK-LONG-SKEW
+  exactly 1 (1200-virtualization) and BANK-SHORT-SKEW exactly 1
+  (4200-kv-cache) with both banks silent at the default 0.40 strict >
+  (fire-on-cross, boundary-exact, both axes), a hostile empty tree
+  passes the guards clean (gate_robustness_audit's roster grows
+  127 -> 128), a partial tree carrying only docs/ exits rc=0, and
+  --out writes the JSON snapshot in the quiz_balance_scan idiom;
+  orthogonality proven live - permuting option lines flips every
+  quiz_balance_scan verdict and no length verdict (position axis
+  owned there, length axis here); tool NOT gate - the fleet holds at
+  111 hard / 117 total and script_hygiene's inventory grows 135 ->
+  136, the drained state keeping the whole quiz family silent
+  (balance 0, integrity 0 hard, assessment_lint 0, export 33 modules
+  / 660 questions); fleet PASS - all 117 gates clean
 - **Repo hygiene verified:** 619 tracked files, zero committed
   binaries, zero untracked strays; the script-inventory census
   registered three report-only tools the QA doc had never named

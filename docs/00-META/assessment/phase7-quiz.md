@@ -269,7 +269,7 @@ d) Machine agent wrapping firmware update routines for devices
 a) Brain-Design-Implementation
 b) Behavior-Decision-Interaction
 c) Basic-Design-Interface
-d) Belief-Desire-Intention agent model
+d) Belief-Desire-Intention model
 
 **Answer:** d
 
@@ -306,7 +306,7 @@ d) Uncontrolled tool execution
 ---
 
 ### 30. What is the main challenge of multi-agent systems?
-a) Speed
+a) Raw execution speed of individual agents
 b) Coordination and communication
 c) Memory
 d) Accuracy

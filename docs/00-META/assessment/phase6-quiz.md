@@ -147,7 +147,7 @@ d) Data compression applied before every indexing pass
 
 ### 14. What is the optimal chunk size for RAG?
 a) 128-256 tokens
-b) 512-1024 tokens with overlap
+b) 512-1024 tokens
 c) 2048-4096 tokens
 d) 64-128 tokens
 
@@ -206,9 +206,9 @@ d) Context storage reserved on the serving host per session
 ---
 
 ### 20. What is the main challenge of long-context RAG?
-a) Memory usage
+a) Higher memory usage and compute cost
 b) Slow retrieval
-c) Finding relevant information in large context
+c) Finding relevant information
 d) Poor accuracy
 
 **Answer:** c

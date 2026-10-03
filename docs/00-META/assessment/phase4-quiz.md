@@ -166,7 +166,7 @@ d) Page-based attention
 ---
 
 ### 16. What is the main benefit of GGUF format?
-a) Smallest size
+a) Smallest possible file size
 b) Fastest speed
 c) CPU/GPU hybrid inference
 d) Best accuracy
@@ -259,7 +259,7 @@ d) Group quantization
 a) Better accuracy
 b) Reduced memory and compute requirements
 c) Faster training
-d) Easier deployment
+d) Simpler deployment on constrained devices
 
 **Answer:** b
 

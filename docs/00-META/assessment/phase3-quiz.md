@@ -27,8 +27,8 @@ d) Pooling layers stacked to shorten sequences
 
 ### 2. What is the purpose of multi-head attention?
 a) Reduce memory usage
-b) Simplify architecture
-c) Learn different attention patterns simultaneously
+b) Simplifying the overall model architecture
+c) Learning multiple attention patterns
 d) Increase model speed
 
 **Answer:** c
@@ -258,7 +258,7 @@ d) Visualization tool for models
 ### 25. What is the main advantage of decoder-only models for text generation?
 a) Autoregressive generation is natural
 b) Less memory
-c) Simpler architecture
+c) Simpler architecture without an encoder
 d) Faster training
 
 **Answer:** a

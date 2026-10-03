@@ -23,10 +23,10 @@ Tags: ['assessment', 'quiz', 'rag', 'vector-db']
 
 **1. Vector databases store:**
 
-A) Text documents
-B) Vector embeddings
-C) Images
-D) Text documents, vector embeddings and images together
+A) Text documents with metadata
+B) Vector embeddings with payloads
+C) Images with extracted captions
+D) Text, embeddings, and images
 
 **2. Qdrant uses:**
 
@@ -79,9 +79,9 @@ D) No search
 
 **9. HNSW parameter ef_construct:**
 
-A) No effect
-B) Query speed
-C) Memory usage
+A) No measurable effect
+B) Query-time latency alone
+C) Graph memory footprint
 D) Index speed vs accuracy
 
 **10. Quantization in vector DB:**
@@ -156,10 +156,10 @@ D) Neither
 
 **20. Performance tuning:**
 
-A) Not needed
+A) Not needed until queries slow down noticeably
 B) Index parameters, quantization, sharding
-C) Only hardware
-D) Only queries
+C) Only the hardware budget matters
+D) Only the query side needs work
 
 ---
 

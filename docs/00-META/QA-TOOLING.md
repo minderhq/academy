@@ -291,6 +291,39 @@ B=9/20 while thirteen banks are perfectly uniform 5/5/5/5), plus
 (A=9 B=9 C=1 D=1). The honest fix is permuting option lines and
 remapping keys - content untouched, presentation order only.
 
+## Quiz Answer-Length Balance (report tool)
+
+`scripts/qa/quiz_length_scan.py --root . [--bank-threshold 0.40]
+[--global-threshold 0.30] [--out FILE]`
+
+```text
+BANK-LONG-SKEW 0.450 6400-vector-databases (9/20) - the longest option is right too often; a longest-guesser beats a uniform guesser
+```
+
+Answers "how long is the correct answer next to its distractors?" -
+the option-shape tell that sits below every existing length check:
+AS-15 (hard) fires only at longest-OR-TIED >= 50% and QI-10 is that
+same line as a module-only trend queue, so a bank drifting at 43-45%
+strict-longest passes both while a longest-guesser still beats a
+uniform guesser. This tool owns the finer regime - STRICT longest >
+40% per bank - plus the never-measured mirror (strict-shortest > 40%:
+the "pick the short one" tell) and corpus-wide shares at 30%. Same
+parse surface as the position tool (export_quiz for the 33 banks,
+local parser for the 7 phase quizzes' lowercase option rows; the two
+axes are orthogonal by construction - permuting option lines moves
+every balance verdict and no length verdict). Report only, exit 0 by
+design - a skewed bank is a review queue, not a failure. Born
+tick-640 with a real finding no gate could see: **7 banks at 43-45%
+strict-longest (6400-vector-databases at 9/20 plus phase quizzes
+2-7, all below AS-15's 50% floor) while the corpus globally sat
+healthy at 17.0%** - drained same tick by option-TEXT-only rebalances
+(3 questions in 6400, 2 per firing phase quiz; letters, keys, counts
+and meaning untouched), landing every bank at 0.30-0.367 and the
+corpus at 15.2%/4.2%. The honest fix mirrors the position tool's
+inverse: rebalance option text (tighten the correct answer or give
+distractors plausible elaborations) - position order belongs to
+quiz_balance_scan and is not touched here.
+
 ## Notebook Curriculum Discovery (report tool)
 
 `scripts/qa/notebook_discovery_scan.py --root . [--out FILE]`

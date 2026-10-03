@@ -116,8 +116,8 @@ d) Model pruning
 ---
 
 ### 11. What is vanishing gradient?
-a) Gradients exploding
-b) Gradients becoming too small for learning
+a) Gradients grow uncontrollably
+b) Gradients shrink toward zero
 c) Weight decay
 d) Learning rate decay
 
@@ -186,7 +186,7 @@ d) Step size for weight updates
 ---
 
 ### 18. What is overfitting?
-a) Model underfitting
+a) Model underfitting the training set
 b) Model convergence
 c) Model stability
 d) Model memorizing training data

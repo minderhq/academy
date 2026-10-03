@@ -47,7 +47,7 @@ d) Quantization-aware LoRA
 
 ### 4. What is the rank parameter in LoRA?
 a) Dimension of low-rank matrices
-b) Model rank
+b) Overall rank of the frozen base model
 c) Training rank
 d) Data rank
 
@@ -227,7 +227,7 @@ d) Cluster training
 
 ### 22. What is the main challenge of fine-tuning large models?
 a) Training time
-b) Memory requirements
+b) Memory footprint
 c) Data requirements
 d) Overfitting
 
