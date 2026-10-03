@@ -169,6 +169,7 @@ ef_search = 200
 ```python
 # hnsw_benchmark.py
 from qdrant_client import QdrantClient
+from qdrant_client.http.exceptions import UnexpectedResponse
 from qdrant_client.models import (
     Distance,
     HnswConfigDiff,
@@ -212,7 +213,7 @@ def benchmark_hnsw_params():
         # Create collection
         try:
             client.delete_collection(collection)
-        except Exception:
+        except (ValueError, UnexpectedResponse):
             pass
 
         client.create_collection(

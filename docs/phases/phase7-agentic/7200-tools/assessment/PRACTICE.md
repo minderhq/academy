@@ -402,6 +402,8 @@ print(results)
 ### Exercise 7: Dynamic Tool Selection
 
 ```python
+import json
+
 class ToolSelector:
     def __init__(self, tools, llm):
         self.tools = {tool.name: tool for tool in tools}
@@ -433,7 +435,7 @@ Response:"""
             selected = json.loads(response)
             if isinstance(selected, list):
                 return [self.tools[name] for name in selected if name in self.tools]
-        except:
+        except (json.JSONDecodeError, TypeError):
             pass
 
         # Fallback: return all tools

@@ -102,6 +102,7 @@ from enum import Enum
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from qdrant_client import QdrantClient
+from qdrant_client.http.exceptions import UnexpectedResponse
 import inspect
 
 class ActionType(Enum):
@@ -216,7 +217,7 @@ class MemorySystem:
                 collection_name=self.collection,
                 vectors_config=VectorParams(size=384, distance=Distance.COSINE)
             )
-        except:
+        except (ValueError, UnexpectedResponse):
             pass  # Collection exists
 
     def add_short_term(self, content: str, metadata: dict | None = None):

@@ -703,6 +703,7 @@ Complete production RAG with hybrid search and re-ranking
 """
 
 import time
+from qdrant_client.http.exceptions import UnexpectedResponse
 
 class ProductionRAG:
     """Complete RAG system with all components"""
@@ -868,8 +869,8 @@ if __name__ == "__main__":
     # Create collection if needed
     try:
         rag.vector_search.create_collection()
-    except:
-        pass
+    except (ValueError, UnexpectedResponse):
+        pass  # Collection already exists - idempotent bootstrap
 
     # Index documents
     documents = [

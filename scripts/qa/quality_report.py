@@ -362,6 +362,18 @@ stand today?" without running each tool by hand.
                        danger-marked fences are out by
                        construction, born tick-647, drained same
                        tick: 2 sites across 2 files)
+    broad_except_scan  bare/broad except with a pass-only body in
+                       python fences (BE-01: a bare except: whose
+                       body is only pass catches KeyboardInterrupt/
+                       SystemExit/GeneratorExit too and discards all
+                       of them silently - 6304-GraphRAG's own
+                       comment teaches this; BE-02: except Exception/
+                       BaseException, tuple members included; the
+                       corpus-taught narrow forms, handlers whose
+                       body does work, string mentions and
+                       danger-marked fences are out by construction,
+                       born tick-648, drained same tick: 5 sites
+                       across 5 files)
     action_version_scan
                        uses: pins in docs must match the canonical
                        action registry (AV-01: current majors -
@@ -2936,6 +2948,7 @@ GATES = [
     ("unsafe_exec_scan.py", "unsafe_exec_scan", True),
     ("unsafe_deserialize_scan.py", "unsafe_deserialize_scan", True),
     ("unsafe_shell_scan.py", "unsafe_shell_scan", True),
+    ("broad_except_scan.py", "broad_except_scan", True),
     ("action_version_scan.py", "action_version_scan", True),
     ("unicode_ws_hygiene_scan.py", "unicode_ws_hygiene_scan", True),
     ("objectives_lint.py", "objectives_lint", False),

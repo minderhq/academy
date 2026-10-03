@@ -1281,7 +1281,7 @@ def collect_gpu_metrics():
         try:
             power = pynvml.nvmlDeviceGetPowerUsage(handle) / 1000
             gpu_power_usage.labels(gpu=str(i)).set(power)
-        except:
+        except pynvml.NVMLError:
             pass
 ```
 

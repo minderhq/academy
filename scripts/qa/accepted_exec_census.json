@@ -94,16 +94,16 @@
    "size": 36425
   },
   "docs/00-META/assessment/phase7-practice.md": {
+   "mtime": 1791049206.682686,
+   "size": 57759,
    "bad": {
     "693": "ENV-GAP:resource",
     "809": "UN-LEAK"
    },
-   "mtime": 1790788811.2794175,
    "notes": {
     "693": "POSIX-only stdlib module (resource); the QA environment is Windows",
     "809": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically"
-   },
-   "size": 57681
+   }
   },
   "docs/comparisons/CP-001-RAG-vs-FineTuning-vs-Agents.md": {
    "bad": {
@@ -438,22 +438,22 @@
    "size": 40615
   },
   "docs/learning-resources/labs/LAB-007-Production-RAG.md": {
+   "mtime": 1791056444.3171659,
+   "size": 35251,
    "bad": {
     "177": "ENV-GAP:sentence_transformers",
     "239": "ENV-GAP:embeddings",
     "594": "ENV-GAP:sentence_transformers",
     "699": "ENV-GAP:embeddings",
-    "920": "ENV-GAP:production_rag"
+    "921": "ENV-GAP:production_rag"
    },
-   "mtime": 1790784081.2397404,
    "notes": {
     "177": "optional third-party package the QA environment does not install; the fence documents the install requirement",
     "239": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design",
     "594": "optional third-party package the QA environment does not install; the fence documents the install requirement",
     "699": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design",
-    "920": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design"
-   },
-   "size": 35105
+    "921": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design"
+   }
   },
   "docs/learning-resources/labs/LAB-008-Agent-Fleet.md": {
    "bad": {
@@ -519,16 +519,16 @@
    "size": 39564
   },
   "docs/learning-resources/labs/LAB-013-Advanced-Function-Calling.md": {
+   "mtime": 1791049206.683687,
+   "size": 41353,
    "bad": {
-    "1355": "EXIT-CALL",
-    "55": "SIDE-EFFECT"
+    "55": "SIDE-EFFECT",
+    "1355": "EXIT-CALL"
    },
-   "mtime": 1790925860.8986123,
    "notes": {
     "1355": "intentional sys.exit() demo (CLI path)",
     "55": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect"
-   },
-   "size": 41327
+   }
   },
   "docs/learning-resources/labs/LAB-014-AI-Evaluation-Safety.md": {
    "bad": {},
@@ -582,9 +582,9 @@
    "size": 16245
   },
   "docs/learning-resources/labs/solutions/SOLUTION-LAB-004-ReAct-Agent.md": {
-   "bad": {},
-   "mtime": 1790788811.2954109,
-   "size": 2136
+   "mtime": 1791049206.683687,
+   "size": 2162,
+   "bad": {}
   },
   "docs/learning-resources/labs/solutions/SOLUTION-LAB-005-GraphRAG.md": {
    "bad": {
@@ -597,14 +597,14 @@
    "size": 16700
   },
   "docs/learning-resources/labs/solutions/SOLUTION-LAB-006-Train-Model-From-Scratch.md": {
+   "mtime": 1791051517.1562297,
+   "size": 22835,
    "bad": {
     "367": "ENV-GAP:tensorboard"
    },
-   "mtime": 1790758480.7473292,
    "notes": {
     "367": "optional third-party package the QA environment does not install; the fence documents the install requirement"
-   },
-   "size": 22816
+   }
   },
   "docs/learning-resources/labs/solutions/SOLUTION-LAB-007-Production-RAG.md": {
    "bad": {},
@@ -665,9 +665,9 @@
    "size": 24366
   },
   "docs/learning-resources/labs/solutions/SOLUTION-LAB-013-Advanced-Function-Calling.md": {
-   "bad": {},
-   "mtime": 1790758480.753019,
-   "size": 1939
+   "mtime": 1791049206.684755,
+   "size": 1965,
+   "bad": {}
   },
   "docs/learning-resources/labs/solutions/SOLUTION-LAB-014-AI-Evaluation-Safety.md": {
    "bad": {},
@@ -675,14 +675,14 @@
    "size": 2316
   },
   "docs/learning-resources/projects/PROJECT-001-AI-Assistant.md": {
+   "mtime": 1791053448.885177,
+   "size": 36747,
    "bad": {
     "664": "TIMEOUT"
    },
-   "mtime": 1790904022.084831,
    "notes": {
     "664": "by-design server start: uvicorn.run blocks forever in the project walkthrough"
-   },
-   "size": 36615
+   }
   },
   "docs/learning-resources/projects/PROJECT-002-Train-Neural-Network.md": {
    "bad": {
@@ -1131,14 +1131,14 @@
    "size": 15861
   },
   "docs/phases/phase1-infra/1200-virtualization/assessment/PRACTICE.md": {
+   "mtime": 1791053448.9515624,
+   "size": 25273,
    "bad": {
     "250": "EXIT-CALL"
    },
-   "mtime": 1790745763.6794136,
    "notes": {
     "250": "intentional sys.exit() demo (CLI path)"
-   },
-   "size": 24838
+   }
   },
   "docs/phases/phase1-infra/1400-llmops/1401-Ollama-Enterprise.md": {
    "bad": {
@@ -1362,33 +1362,33 @@
    "size": 18224
   },
   "docs/phases/phase2-foundations/2200-frameworks/assessment/PRACTICE.md": {
+   "mtime": 1791051517.163735,
+   "size": 15848,
    "bad": {
     "293": "CODE-SIGNAL:PicklingError",
     "362": "ENV-GAP:seaborn"
    },
-   "mtime": 1790745763.693962,
    "notes": {
     "293": "census-namespace artifact: the class is defined in the exec'd namespace so torch.save's pickle cannot resolve __main__.SimpleNet; works as a standalone learner script",
     "362": "optional third-party package the QA environment does not install; the fence documents the install requirement"
-   },
-   "size": 15810
+   }
   },
   "docs/phases/phase2-foundations/2300-framework-engineering/2301-Framework-Design-Patterns.md": {
+   "mtime": 1791051517.1652887,
+   "size": 37830,
    "bad": {
-    "1205": "CODE-SIGNAL:TypeError",
-    "88": "ENV-GAP:tensorflow"
+    "88": "ENV-GAP:tensorflow",
+    "1205": "CODE-SIGNAL:TypeError"
    },
-   "mtime": 1790782652.3645349,
    "notes": {
     "1205": "exercise expected-output fence: the scaffold above is intentionally empty (solution in 2306); the fence shows the completed exercise the learner builds toward",
     "88": "optional third-party package the QA environment does not install; the fence documents the install requirement"
-   },
-   "size": 37811
+   }
   },
   "docs/phases/phase2-foundations/2300-framework-engineering/2302-Model-Serving-Architectures.md": {
-   "bad": {},
-   "mtime": 1790782652.3660548,
-   "size": 46023
+   "mtime": 1791051561.4535315,
+   "size": 46040,
+   "bad": {}
   },
   "docs/phases/phase2-foundations/2300-framework-engineering/2303-API-Design-for-ML.md": {
    "bad": {},
@@ -1406,16 +1406,16 @@
    "size": 15980
   },
   "docs/phases/phase2-foundations/2300-framework-engineering/assessment/PRACTICE.md": {
+   "mtime": 1791050875.321185,
+   "size": 33829,
    "bad": {
-    "314": "UN-LEAK",
-    "70": "ENV-GAP:tensorflow"
+    "70": "ENV-GAP:tensorflow",
+    "314": "UN-LEAK"
    },
-   "mtime": 1791009688.0858865,
    "notes": {
     "314": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
     "70": "optional third-party package the QA environment does not install; the fence documents the install requirement"
-   },
-   "size": 33829
+   }
   },
   "docs/phases/phase2-foundations/2300-framework-engineering/assessment/QUIZ.md": {
    "mtime": 1791000517.3847792,
@@ -1435,6 +1435,8 @@
    "size": 22668
   },
   "docs/phases/phase2-foundations/2300-framework-engineering/guides/2306-Building-Production-Framework.md": {
+   "mtime": 1791051517.1762943,
+   "size": 35701,
    "bad": {
     "217": "ENV-GAP:core",
     "261": "ENV-GAP:core",
@@ -1445,7 +1447,6 @@
     "611": "ENV-GAP:core",
     "773": "ENV-GAP:serving"
    },
-   "mtime": 1790750987.1879754,
    "notes": {
     "217": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design",
     "261": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design",
@@ -1455,8 +1456,7 @@
     "508": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design",
     "611": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design",
     "773": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design"
-   },
-   "size": 35682
+   }
   },
   "docs/phases/phase2-foundations/2400-pretraining/2401-Pre-training-Fundamentals.md": {
    "bad": {},
@@ -1464,14 +1464,14 @@
    "size": 52371
   },
   "docs/phases/phase2-foundations/2400-pretraining/2402-Large-Scale-Training.md": {
+   "mtime": 1791051517.1877544,
+   "size": 45632,
    "bad": {
     "866": "CODE-SIGNAL:ValueError"
    },
-   "mtime": 1790782652.3753722,
    "notes": {
     "866": "FSDP/NCCL multi-GPU requirement; the QA environment is CPU-only Windows"
-   },
-   "size": 45594
+   }
   },
   "docs/phases/phase2-foundations/2400-pretraining/2403-Evaluation-Frameworks.md": {
    "bad": {},
@@ -1484,14 +1484,14 @@
    "size": 20054
   },
   "docs/phases/phase2-foundations/2400-pretraining/assessment/PRACTICE.md": {
+   "mtime": 1791051517.1877544,
+   "size": 23575,
    "bad": {
     "186": "TIMEOUT"
    },
-   "mtime": 1790877266.05614,
    "notes": {
     "186": "by-design training loop: Exercise 3's pretraining schedule runs epochs over the full wikitext-2 dataloader and exceeds the 90s census budget"
-   },
-   "size": 23556
+   }
   },
   "docs/phases/phase2-foundations/README.md": {
    "bad": {
@@ -2369,16 +2369,16 @@
    "size": 8454
   },
   "docs/phases/phase6-rag/6100-vector/guides/6103-HNSW-Tuning-Guide.md": {
+   "mtime": 1791056444.3409595,
+   "size": 16377,
    "bad": {
     "169": "SIDE-EFFECT",
-    "370": "SIDE-EFFECT"
+    "371": "SIDE-EFFECT"
    },
-   "mtime": 1790959388.1412442,
    "notes": {
     "169": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
-    "370": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect"
-   },
-   "size": 16293
+    "371": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect"
+   }
   },
   "docs/phases/phase6-rag/6200-retrieval/6201-Hybrid-Search.md": {
    "bad": {
@@ -2609,9 +2609,9 @@
    "size": 28236
   },
   "docs/phases/phase7-agentic/7100-architecture/7101-ReAct-Loop-System.md": {
-   "bad": {},
-   "mtime": 1790750681.9791098,
-   "size": 13528
+   "mtime": 1791049206.685757,
+   "size": 13554,
+   "bad": {}
   },
   "docs/phases/phase7-agentic/7100-architecture/7102-Planning-Decomposition.md": {
    "bad": {},
@@ -2619,35 +2619,35 @@
    "size": 24412
   },
   "docs/phases/phase7-agentic/7100-architecture/assessment/PRACTICE.md": {
-   "bad": {},
-   "mtime": 1790745763.7718139,
-   "size": 26590
+   "mtime": 1791049206.685757,
+   "size": 26616,
+   "bad": {}
   },
   "docs/phases/phase7-agentic/7100-architecture/guides/7103-ReAct-Implementation-Guide.md": {
+   "mtime": 1791056444.3338914,
+   "size": 24044,
    "bad": {
     "83": "TIMEOUT"
    },
-   "mtime": 1791032671.586815,
    "notes": {
     "83": "disk-bound: background file writer dies when the disk fills; FLAKY_FAMILY with TIMEOUT (tick-589 re-execution reclassified CODE-SIGNAL:RuntimeError -> TIMEOUT)"
-   },
-   "size": 23898
+   }
   },
   "docs/phases/phase7-agentic/7200-tools/7201-Tool-Calling.md": {
+   "mtime": 1791048951.9151726,
+   "size": 19322,
    "bad": {
     "217": "SIDE-EFFECT",
     "435": "UN-LEAK",
     "468": "UN-LEAK",
     "628": "ENV-GAP:homelab_tools"
    },
-   "mtime": 1790788811.3655903,
    "notes": {
     "217": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
     "435": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
     "468": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
     "628": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design"
-   },
-   "size": 19322
+   }
   },
   "docs/phases/phase7-agentic/7200-tools/README.md": {
    "bad": {},
@@ -2655,18 +2655,18 @@
    "size": 6939
   },
   "docs/phases/phase7-agentic/7200-tools/assessment/PRACTICE.md": {
+   "mtime": 1791056444.3253393,
+   "size": 12815,
    "bad": {
+    "84": "SIDE-EFFECT",
     "191": "SIDE-EFFECT",
-    "404": "UN-LEAK",
-    "84": "SIDE-EFFECT"
+    "404": "UN-LEAK"
    },
-   "mtime": 1790745763.7759533,
    "notes": {
     "191": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
     "404": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
     "84": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect"
-   },
-   "size": 12742
+   }
   },
   "docs/phases/phase7-agentic/7200-tools/guides/7202-Code-Interpreter.md": {
    "bad": {
@@ -2701,16 +2701,17 @@
    "size": 16527
   },
   "docs/phases/phase7-agentic/7300-orchestration/assessment/PRACTICE.md": {
+   "mtime": 1791049206.6878562,
+   "size": 16701,
    "bad": {
-    "163": "SIDE-EFFECT",
     "19": "SIDE-EFFECT",
+    "78": "SIDE-EFFECT",
+    "163": "SIDE-EFFECT",
     "232": "SIDE-EFFECT",
     "316": "SIDE-EFFECT",
     "396": "SIDE-EFFECT",
-    "485": "SIDE-EFFECT",
-    "78": "SIDE-EFFECT"
+    "485": "SIDE-EFFECT"
    },
-   "mtime": 1790745763.7770104,
    "notes": {
     "163": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
     "19": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
@@ -2719,8 +2720,7 @@
     "396": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
     "485": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
     "78": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect"
-   },
-   "size": 16649
+   }
   },
   "docs/phases/phase7-agentic/7300-orchestration/guides/7303-Framework-Comparison.md": {
    "bad": {
@@ -2934,14 +2934,14 @@
    "size": 33754
   },
   "docs/volumes/VOLUME-7-Production-Mastery.md": {
+   "mtime": 1791056444.2829573,
+   "size": 51485,
    "bad": {
     "1247": "ENV-GAP:pynvml"
    },
-   "mtime": 1790787594.7374094,
    "notes": {
     "1247": "optional third-party package the QA environment does not install; the fence documents the install requirement"
-   },
-   "size": 51468
+   }
   }
  }
 }
