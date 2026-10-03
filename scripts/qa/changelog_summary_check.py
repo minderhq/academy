@@ -44,6 +44,9 @@ def main() -> int:
     findings: list[str] = []
 
     path = args.root / "CHANGELOG.md"
+    if not path.exists():
+        print("changelog_summary_check: SKIP - CHANGELOG.md not found, nothing to check")
+        return 0
     text = path.read_text(encoding="utf-8")
 
     sections = [(v, d) for v, d in SECTION.findall(text)]

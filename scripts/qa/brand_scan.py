@@ -13,7 +13,12 @@ from pathlib import Path
 
 sys.stdout.reconfigure(encoding="utf-8")
 
-ROOT = Path(__file__).resolve().parents[2]
+# The robustness audit (tick-638) passes --root <tree>; honor it, else scan
+# this repo (the historical default) - a relocated copy must not rglob the
+# whole parent tree (the NEG finding: a staged copy walked the parent dir).
+_argv = sys.argv[1:]
+ROOT = (Path(_argv[_argv.index("--root") + 1]) if "--root" in _argv
+        else Path(__file__).resolve().parents[2])
 VARIANTS = ["ai-engineering-curriculum", "AI Engineering Curriculum", "AI ENGINEERING CURRICULUM"]
 SKIP_FILES = {"brand_scan.py", "legacy_ad_rename.py", "legacy_ad_scan.py"}
 

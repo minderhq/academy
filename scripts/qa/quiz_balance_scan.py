@@ -83,6 +83,9 @@ def esc(text: str) -> str:
 def stats(counts: dict) -> dict:
     """Letter counts -> counts, shares, chi-square vs uniform."""
     n = sum(counts.values())
+    if not n:
+        return {"counts": counts, "n": 0,
+                "shares": {k: 0.0 for k in counts}, "chi2": 0.0}
     exp = n / len(LETTERS)
     chi2 = sum((c - exp) ** 2 / exp for c in counts.values())
     return {"counts": counts, "n": n,

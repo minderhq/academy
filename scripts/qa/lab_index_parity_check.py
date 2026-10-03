@@ -94,6 +94,9 @@ def main() -> int:
         fm[did.group(1)] = (ti.group(1), et.group(1).strip(), f"{p.name}")
 
     master = args.root / "docs" / "00-META" / "MASTER-INDEX.md"
+    if not master.exists():
+        print("lab_index_parity_check: SKIP - docs/00-META/MASTER-INDEX.md not found, nothing to check")
+        return 0
     mi_text = master.read_text(encoding="utf-8")
     mi: dict[str, tuple[str, str, str]] = {}
     sec = MI_SECTION.search(mi_text)

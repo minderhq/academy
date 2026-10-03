@@ -29,7 +29,11 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parents[2])
     args = parser.parse_args()
-    data = json.loads((args.root / BASELINE).read_text(encoding="utf-8"))
+    baseline = args.root / BASELINE
+    if not baseline.exists():
+        print("census_note_gate: SKIP - scripts/qa/accepted_exec_census.json not found, nothing to check")
+        return 0
+    data = json.loads(baseline.read_text(encoding="utf-8"))
     findings: list[str] = []
     rows = notes = 0
     for rel, entry in sorted(data.get("files", {}).items()):

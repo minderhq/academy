@@ -73,7 +73,9 @@ def main() -> int:
     n_volumes = 0
 
     phases_dir = args.root / "docs" / "phases"
-    for ph in sorted(p for p in phases_dir.iterdir() if p.is_dir()):
+    phase_iter = (sorted(p for p in phases_dir.iterdir() if p.is_dir())
+                  if phases_dir.is_dir() else [])
+    for ph in phase_iter:
         m = PHASE_DIR.match(ph.name)
         if not m:
             continue

@@ -46,6 +46,9 @@ def main() -> int:
                         default=Path(__file__).resolve().parents[2])
     args = parser.parse_args()
     doc_path = args.root / "docs" / "00-META" / "QA-TOOLING.md"
+    if not doc_path.exists():
+        print("qa_tooling_coverage_check: SKIP - docs/00-META/QA-TOOLING.md not found, nothing to check")
+        return 0
     doc = doc_path.read_text(encoding="utf-8", errors="replace")
 
     findings: list[str] = []

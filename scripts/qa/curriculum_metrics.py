@@ -95,8 +95,11 @@ def main() -> int:
 
     lessons = []
     modules = []
-    for pdir in sorted(d for d in (root / "docs" / "phases").iterdir()
-                       if d.is_dir() and PHASE_DIR.match(d.name)):
+    phases_root = root / "docs" / "phases"
+    phase_dirs = (sorted(d for d in phases_root.iterdir()
+                         if d.is_dir() and PHASE_DIR.match(d.name))
+                  if phases_root.is_dir() else [])
+    for pdir in phase_dirs:
         for mdir in sorted(d for d in pdir.iterdir()
                            if d.is_dir() and MODULE_DIR.match(d.name)):
             mod_lessons = sorted(p for p in mdir.rglob("*.md")
@@ -117,6 +120,10 @@ def main() -> int:
                 st = lesson_stats(lines)
                 st["path"] = rel
                 lessons.append(st)
+
+    if not lessons:
+        print("curriculum_metrics: SKIP - no lessons found, nothing to analyze")
+        return 0
 
     words = sorted(s["words"] for s in lessons)
     content = sorted(s["words"] + s["code_words"] for s in lessons)

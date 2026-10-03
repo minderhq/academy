@@ -103,8 +103,11 @@ def main() -> int:
                    if p.name != TEMPLATE_EXEMPT]
 
     phases = []
-    for pdir in sorted(d for d in (root / "docs" / "phases").iterdir()
-                       if d.is_dir() and PHASE_DIR.match(d.name)):
+    phases_root = root / "docs" / "phases"
+    phase_dirs = (sorted(d for d in phases_root.iterdir()
+                         if d.is_dir() and PHASE_DIR.match(d.name))
+                  if phases_root.is_dir() else [])
+    for pdir in phase_dirs:
         modules = []
         for mdir in sorted(d for d in pdir.iterdir()
                            if d.is_dir() and MODULE_DIR.match(d.name)):

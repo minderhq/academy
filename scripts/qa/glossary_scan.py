@@ -70,6 +70,9 @@ def main() -> int:
     args = parser.parse_args()
 
     gpath = args.root / "docs" / "00-META" / GLOSSARY
+    if not gpath.exists():
+        print("glossary_scan: SKIP - docs/00-META/GLOSSARY.md not found, nothing to check")
+        return 0
     text = gpath.read_text(encoding="utf-8", errors="replace")
     lines = body_lines(text)
 

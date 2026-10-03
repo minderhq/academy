@@ -78,6 +78,9 @@ def main() -> int:
                             p.name)
 
     master = args.root / "docs" / "00-META" / "MASTER-INDEX.md"
+    if not master.exists():
+        print("project_index_parity_check: SKIP - docs/00-META/MASTER-INDEX.md not found, nothing to check")
+        return 0
     mi_text = master.read_text(encoding="utf-8")
     sec = MI_SECTION.search(mi_text)
     hdr = MI_HEADER.search(mi_text)

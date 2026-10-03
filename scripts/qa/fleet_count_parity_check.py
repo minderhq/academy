@@ -169,6 +169,14 @@ def main() -> int:
     args = parser.parse_args()
     args.root = args.root.resolve()
     findings: list[str] = []
+    anchors = [args.root / "docs" / "00-META" / "MASTER-INDEX.md",
+               args.root / "docs" / "00-META" / "SITEMAP.md",
+               args.root / "README.md"]
+    missing = [a for a in anchors if not a.exists()]
+    if missing:
+        print("fleet_count_parity_check: SKIP - %s not found, nothing to check"
+              % ", ".join(str(a.relative_to(args.root)) for a in missing))
+        return 0
 
     # --- FC-01 + FC-02: MI File Counts vs disk --------------------------
     mi_text = (args.root / "docs" / "00-META" / "MASTER-INDEX.md"

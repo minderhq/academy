@@ -905,6 +905,9 @@ class Linter:
         """
         mi = root / "docs" / "00-META" / "MASTER-INDEX.md"
         rel = "MASTER-INDEX phase tables"
+        if not mi.exists():
+            print("assessment_lint: SKIP - docs/00-META/MASTER-INDEX.md not found, nothing to check")
+            return 0
         lines = mi.read_text(encoding="utf-8").split("\n")
         nf = [(i, l) for i, (l, f) in enumerate(fence_aware(lines))
               if not f]

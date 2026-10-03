@@ -119,15 +119,23 @@ def main() -> int:
 
     def slugs_for(trel):
         if trel not in cache:
-            with open(os.path.join(root, trel), encoding="utf-8", newline="") as f:
-                cache[trel] = anchor_set(f.read())
+            try:
+                with open(os.path.join(root, trel), encoding="utf-8", newline="") as f:
+                    cache[trel] = anchor_set(f.read())
+            except (OSError, UnicodeDecodeError) as e:
+                print(esc("READ FAIL %s: %s" % (trel, e)))
+                cache[trel] = set()
         return cache[trel]
 
     bad = []
     for p in files:
         rel = os.path.relpath(p, root).replace("\\", "/")
-        with open(p, encoding="utf-8", newline="") as f:
-            lines = f.read().splitlines()
+        try:
+            with open(p, encoding="utf-8", newline="") as f:
+                lines = f.read().splitlines()
+        except (OSError, UnicodeDecodeError) as e:
+            print(esc("READ FAIL %s: %s" % (rel, e)))
+            continue
         in_f = False
         in_fm = bool(lines) and lines[0].strip() == "---"
         fm_n = 0

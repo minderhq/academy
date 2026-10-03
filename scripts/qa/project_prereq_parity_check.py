@@ -108,6 +108,9 @@ def main() -> int:
 
     # PP-03: MASTER-INDEX visibility for every supporting guide
     master = args.root / "docs" / "00-META" / "MASTER-INDEX.md"
+    if not master.exists():
+        print("project_prereq_parity_check: SKIP - docs/00-META/MASTER-INDEX.md not found, nothing to check")
+        return 0
     mi = master.read_text(encoding="utf-8")
     sec = PROJECT_SECTION.search(mi)
     body = ""

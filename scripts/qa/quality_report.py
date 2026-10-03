@@ -2543,6 +2543,75 @@ stand today?" without running each tool by hand.
                        census (456 distinct, 0
                        duplicate groups), zero-
                        drain, hard from birth
+  gate_robustness_audit
+                       no QA gate may die ugly
+                       on hostile input (GRA-01
+                       traceback, GRA-02 hang,
+                       hard from birth,
+                       tick-638): every
+                       scripts/qa/*.py joins
+                       the roster
+                       automatically and runs
+                       against a synthetic
+                       malformed tree (unclosed
+                       fence, ragged table,
+                       invalid UTF-8, absent
+                       corpus anchors,
+                       degenerate empty
+                       corpora); exit 0 or
+                       exit-nonzero-WITH-
+                       diagnostic passes, a
+                       traceback or a hang
+                       fails naming the gate;
+                       7 by-contract
+                       exclusions (the
+                       orchestrator itself,
+                       the spawn child, the
+                       fence executors, the
+                       network gate, the
+                       scripts-dir auditor,
+                       the git-history
+                       report); born census:
+                       20 crash gates in 4
+                       classes, all drained
+                       same tick - 15 absent-
+                       anchor gates SKIP (the
+                       anchor's existence is
+                       linkcheck's single
+                       ownership), the
+                       curriculum_metrics
+                       empty-corpus onion
+                       (median -> mean -> min,
+                       three census runs)
+                       landed as one SKIP
+                       guard, quiz_balance and
+                       bashblock got named
+                       guards; NEG proves
+                       detection both ways
+                       (staged revert -> CRASH
+                       exactly 1, planted hang
+                       -> TIMEOUT exactly 1);
+                       the NEG staging itself
+                       surfaced a 5th class -
+                       the legacy trio
+                       (brand_scan,
+                       legacy_ad_rename,
+                       legacy_ad_scan) anchored
+                       ROOT to __file__ and
+                       ignored --root, so a
+                       relocated copy rglob'd
+                       the parent dir ->
+                       TIMEOUT, drained by
+                       honoring --root (fleet
+                       unchanged - the runner
+                       always passes --root);
+                       the fleet smoke then
+                       caught the auditor in
+                       its own ARGERROR class
+                       (argparse without
+                       --root -> rc=2, no
+                       summary line), fixed by
+                       accepting --root
   queue gate (drain in progress; never fails the report unless --fail-on-queue):
     objectives_lint    template-objective artifacts (OL-01/OL-02), phase by phase
     fence_namecheck    unbound names in python fences (report mode), two
@@ -2888,6 +2957,7 @@ GATES = [
     ("experiment_id_scan.py", "experiment_id_scan", True),
     ("hierarchy_scan.py", "hierarchy_scan", True),
     ("title_uniqueness_scan.py", "title_uniqueness_scan", True),
+    ("gate_robustness_audit.py", "gate_robustness_audit", True),
 ]
 
 

@@ -74,6 +74,9 @@ def main() -> int:
 
     readme = args.root / "docs" / "notebooks" / "README.md"
     master = args.root / "docs" / "00-META" / "MASTER-INDEX.md"
+    if not readme.exists() or not master.exists():
+        print("notebook_catalog_check: SKIP - notebooks/README.md or MASTER-INDEX.md not found, nothing to check")
+        return 0
     rd: dict[str, tuple[str, ...]] = {}
     md: dict[str, tuple[str, ...]] = {}
     for ln, raw in enumerate(readme.read_text(encoding="utf-8").split("\n"), 1):

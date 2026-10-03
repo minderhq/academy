@@ -79,6 +79,9 @@ def main() -> int:
     findings: list[str] = []
 
     master = args.root / "docs" / "00-META" / "MASTER-INDEX.md"
+    if not master.exists():
+        print("small_index_parity_check: SKIP - docs/00-META/MASTER-INDEX.md not found, nothing to check")
+        return 0
     mi = master.read_text(encoding="utf-8")
 
     n_rows = 0

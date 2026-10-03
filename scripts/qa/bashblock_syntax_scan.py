@@ -79,6 +79,9 @@ def main():
                 if in_fence:
                     body.append(raw)
 
+        if not index:
+            print("bashblock_syntax_scan: SKIP - no bash fences, nothing to check")
+            return 0
         (workdir / "index.tsv").write_text(
             "\n".join("%s\t%s\t%d" % r for r in index), encoding="utf-8")
 

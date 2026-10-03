@@ -185,6 +185,9 @@ def main() -> int:
     args.root = args.root.resolve()
     sm_path = args.root / "docs" / "00-META" / "SITEMAP.md"
     sm_dir = sm_path.parent
+    if not sm_path.exists():
+        print("sitemap_listing_parity_check: SKIP - docs/00-META/SITEMAP.md not found, nothing to check")
+        return 0
     text = sm_path.read_text(encoding="utf-8")
     secs = sections(text)
     findings: list[str] = []
