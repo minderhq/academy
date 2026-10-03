@@ -20,6 +20,8 @@ Understood corpus forms (format-tolerant):
   - the passing-score parenthetical must match the parsed count, carry
     a paired percentage, and the percent must be the fraction's
     arithmetic (tick-618)
+  - a duplicated option row or duplicated key row is a finding, not a
+    silent overwrite of the earlier entry (tick-619)
 
 Usage:
     python scripts/qa/quiz_export.py [--root REPO_ROOT] [--out FILE]
@@ -135,6 +137,17 @@ def export_quiz(rel, lines, findings):
                 continue
             m = AK_ROW.match(l) or AK_BOLD.match(l)
             if m:
+                if int(m.group(1)) in key:
+                    # tick-619: the key dict assignment silently
+                    # overwrites the earlier row - a duplicated key
+                    # row kept the table complete-looking while the
+                    # first answer was lost, and when the duplicate
+                    # letter differs the served answer silently
+                    # flips (born census: 0 across 33 modules).
+                    findings.append("%s: answer key row %d duplicated "
+                                    "(letter %s overwrites %s)"
+                                    % (rel, int(m.group(1)), m.group(2),
+                                       key[int(m.group(1))]))
                 key[int(m.group(1))] = m.group(2)
             m = AK_ROW_BEYOND.match(l) or AK_BOLD_BEYOND.match(l)
             if m:
@@ -169,6 +182,15 @@ def export_quiz(rel, lines, findings):
             continue
         m = OPTION.match(l)
         if m and last is not None:
+            if m.group(1) in qs[last]["options"]:
+                # tick-619: the options dict assignment silently
+                # overwrites the earlier row - a duplicated option
+                # letter kept the record complete-looking (A-D full,
+                # answer intact) while the first option's text was
+                # lost (born census: 0 across 660 questions).
+                findings.append("%s: question %d duplicate option row %s "
+                                "(the earlier text is overwritten)"
+                                % (rel, last, m.group(1)))
             qs[last]["options"][m.group(1)] = m.group(2).strip()
             continue
         m = OPT_BEYOND.match(l)

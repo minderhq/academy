@@ -126,7 +126,10 @@ stand today?" without running each tool by hand.
                        the '(X/Y correct)' parenthetical's denominator,
                        percentage pairing and arithmetic are vouched
                        against the parsed bank - born 0/0/0 across the
-                       32 modules carrying the form)
+                       32 modules carrying the form; duplicate-row
+                       clauses since tick-619: a duplicated option row
+                       or duplicated key row is a finding, not a
+                       silent overwrite - born 0/0 across 33 modules)
     quiz_integrity_scan
                        content-level quiz integrity (QI-01..06 +
                        QI-08/09 + QI-11/12/13/15 hard: self-referential positional
