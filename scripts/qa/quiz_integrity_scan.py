@@ -105,6 +105,17 @@ QI-16  option letters written out of A,B,C,D order with the set
        fires once fleet-wide (a duplicated letter either breaks
        the set - AS-10 - or duplicates the text - QI-03).
        Census tick-629: 655/655 mcq write ABCD, born-at-zero.
+       The phase surface joined tick-630: the seven phase
+       quizzes carry their options in lowercase a)-d) and
+       assessment_lint collects them into a letter-keyed
+       dict - duplicate letters collapse at capture and the
+       written order is destroyed - so this surface vouches
+       nothing about the option block and the rule owns both
+       sub-classes here: a complete A-D set in any other
+       order (scrambled radio buttons) and a broken set
+       (letter missing, duplicated, beyond D, or no option
+       rows at all). Census tick-630: 180/180 questions
+       write exact abcd, born-at-zero.
 
 Report inventory (never fails the gate - the drain queues, same
 contract as duplicate_heading_scan):
@@ -154,7 +165,8 @@ at birth (tick-284 / tick-285); QI-06 joined in tick-345 (baseline
 0 since the tick-343 drain); QI-11 joined in tick-374 (born
 baseline 0); QI-12 tick-474, QI-13 tick-475, QI-14 tick-476, QI-15
 tick-567, QI-16
-tick-629 (all born-at-zero). QI-10 is report inventory at birth (tick-290: 31
+tick-629, phase surface tick-630 (all
+born-at-zero). QI-10 is report inventory at birth (tick-290: 31
 modules queued).
 
 Run over the whole corpus:
@@ -439,6 +451,7 @@ def main() -> int:
     # census tick-567 caught 4 such dups, all phase5-quiz vs its own
     # phase's banks, drained to distinct stems the same tick.
     PQ_HEAD = re.compile(r"^###\s+(\d+)\.\s+(.+?)\s*$")
+    PQ_OPT = re.compile(r"^\s*([a-e])\)\s+")
     seen_phase: dict[str, tuple[str, int]] = {}
     for pq in sorted((args.root / "docs" / "00-META" / "assessment")
                      .glob("phase*-quiz.md")):
@@ -465,6 +478,59 @@ def main() -> int:
             else:
                 seen_phase[stem] = (prel, int(m.group(1)))
 
+        # QI-16 phase surface: the written option-letter run
+        # per question. assessment_lint collects phase-quiz
+        # options into a letter-keyed dict - duplicate letters
+        # collapse at capture and the written order is
+        # destroyed - so this surface vouches nothing about the
+        # option block and the rule owns both sub-classes here:
+        # a complete A-D set in any other order is the
+        # scrambled-radio-buttons branch; a broken set (letter
+        # missing, duplicated, beyond D, or no option rows at
+        # all) is the broken-set branch. AS-16 compares texts
+        # across distinct letters only, AS-15 reads texts and
+        # AS-09 counts key letters bank-wide, so none of them
+        # fires here - one mutation, one finding fleet-wide.
+        pnums: set[int] = set()
+        pseqs: dict[int, list[str]] = {}
+        pqn = None
+        for line, fence in fence_aware(prow):
+            if fence:
+                continue
+            m = PQ_HEAD.match(line)
+            if m:
+                pqn = int(m.group(1))
+                pnums.add(pqn)
+                continue
+            m = PQ_OPT.match(line)
+            if m and pqn is not None:
+                pseqs.setdefault(pqn, []).append(
+                    m.group(1).lower())
+        for n in sorted(pnums):
+            seq = pseqs.get(n)
+            if seq == ["a", "b", "c", "d"]:
+                continue
+            if seq and len(seq) == 4 \
+                    and sorted(set(seq)) == ["a", "b", "c", "d"]:
+                hard.append(
+                    f"{prel}: QI-16 question {n} options are "
+                    f"written {''.join(seq).upper()}, expected "
+                    f"ABCD - the full A-D set renders out of "
+                    f"letter order (scrambled radio buttons, "
+                    f"key still joins)")
+            elif seq:
+                hard.append(
+                    f"{prel}: QI-16 question {n} options are "
+                    f"written {''.join(seq).upper()}, expected "
+                    f"ABCD - the phase bank's four-option set "
+                    f"is broken (letter missing, duplicated or "
+                    f"beyond D)")
+            else:
+                hard.append(
+                    f"{prel}: QI-16 question {n} carries no "
+                    f"option rows, expected ABCD - the phase "
+                    f"bank's four-option set is broken")
+
     for c in cross_dups:
         hard.append("QI-06 cross-module stem dup: " + c)
     for f in hard:
@@ -485,7 +551,7 @@ def main() -> int:
           f"question / QI-13 unparseable key row / QI-14 "
           f"checkpoint-quiz item duplicating a bank stem / QI-15 "
           f"phase-quiz item duplicating a bank or phase-quiz stem / "
-          f"QI-16 option letters written out of ABCD order), "
+          f"QI-16 option letters written out of ABCD order - module banks and phase quizzes), "
           f"QI-06 {len(cross_dups)} "
           f"cross-module stem dups (hard since tick-345; drained "
           f"tick-343), QI-07 "

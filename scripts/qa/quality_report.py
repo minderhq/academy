@@ -193,7 +193,12 @@ stand today?" without running each tool by hand.
                        baseline 0; QI-16 tick-629 option letters
                        written out of A-D order with the set
                        complete - born 655/655 mcq ABCD across
-                       660 questions) on top of
+                       660 questions; phase surface tick-630
+                       owns both sub-classes there
+                       (assessment_lint's letter-keyed dict
+                       collapses duplicates and destroys
+                       order) - born 180/180 exact abcd
+                       across 180 questions) on top of
                        quiz_export's parser; QI-07/QI-10
                        are the report inventory (the
                        skewed-answer-key shuffle queue -
