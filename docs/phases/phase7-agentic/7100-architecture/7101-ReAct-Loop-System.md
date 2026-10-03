@@ -221,7 +221,7 @@ def search_web(query: str) -> str:
 def calculate(expression: str) -> str:
     """Calculate mathematical expression"""
     try:
-        result = eval(expression)
+        result = eval(expression, {"__builtins__": {}}, {})
         return str(result)
     except:
         return "Error: Invalid expression"

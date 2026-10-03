@@ -142,7 +142,7 @@ def search_tool(query: str) -> str:
 
 def calculate_tool(expression: str) -> str:
     try:
-        result = eval(expression)
+        result = eval(expression, {"__builtins__": {}}, {})
         return f"Result: {result}"
     except:
         return "Calculation error"
@@ -1416,7 +1416,7 @@ def test_react():
 
     def calculator(expression: str) -> str:
         try:
-            return f"Result: {eval(expression)}"
+            return f"Result: {eval(expression, {"__builtins__": {}}, {})}"
         except:
             return "Invalid expression"
 
@@ -1528,7 +1528,7 @@ def test_tool_registry():
     @registry.register(description="Calculate mathematical expression")
     def calculate(expression: str) -> float:
         """Calculate expression"""
-        return eval(expression)
+        return eval(expression, {"__builtins__": {}}, {})
 
     @registry.register(description="Search the web")
     def web_search(query: str, num_results: int = 5) -> list:

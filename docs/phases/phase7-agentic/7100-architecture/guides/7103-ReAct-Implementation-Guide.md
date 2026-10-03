@@ -314,7 +314,7 @@ class ReActAgent:
             allowed = set("0123456789+-*/(). ")
             if not all(c in allowed for c in expression):
                 return "Error: Invalid characters in expression"
-            return str(eval(expression))
+            return str(eval(expression, {"__builtins__": {}}, {}))
         except Exception as e:
             return f"Error: {str(e)}"
 
@@ -698,7 +698,7 @@ BAD_PROMPT = """Answer: {question}"""
 # Good tool - clear, single purpose
 def calculate(expression: str) -> float:
     """Calculate a mathematical expression"""
-    return eval(expression)
+    return eval(expression, {"__builtins__": {}}, {})
 
 # Bad tool - unclear, multi-purpose
 def do_stuff(input: Any, action: str) -> Any:

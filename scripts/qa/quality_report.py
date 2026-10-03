@@ -323,6 +323,16 @@ stand today?" without running each tool by hand.
                        dtype=, born tick-639, drained same tick: 42
                        sites across 24 files + 5 text/bash riders);
                        comment-only mentions are not findings
+    unsafe_exec_scan   unsafe dynamic execution in python fences
+                       (UE-01: single-argument builtin eval()/exec()
+                       - model output runs with full globals, a
+                       prompt-injection -> code-execution path; use
+                       the two-argument sandbox idiom
+                       eval(expr, {"__builtins__": {}}, {}) or a
+                       danger-marked teaching fence; .eval() method
+                       calls and ast.literal_eval are out by
+                       construction, born tick-645, drained same
+                       tick: 13 sites across 9 files)
     action_version_scan
                        uses: pins in docs must match the canonical
                        action registry (AV-01: current majors -
@@ -2894,6 +2904,7 @@ GATES = [
     ("table_lint.py", "table_lint", True),
     ("mermaid_lint.py", "mermaid_lint", True),
     ("deprecated_scan.py", "deprecated_scan", True),
+    ("unsafe_exec_scan.py", "unsafe_exec_scan", True),
     ("action_version_scan.py", "action_version_scan", True),
     ("unicode_ws_hygiene_scan.py", "unicode_ws_hygiene_scan", True),
     ("objectives_lint.py", "objectives_lint", False),

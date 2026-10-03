@@ -65,7 +65,7 @@ def search_tool(query: str) -> str:
     return f"Search results for: {query}"
 
 def calculator(expression: str) -> str:
-    return str(eval(expression))
+    return str(eval(expression, {"__builtins__": {}}, {}))
 
 # Usage
 agent = ReActAgent(llm, [

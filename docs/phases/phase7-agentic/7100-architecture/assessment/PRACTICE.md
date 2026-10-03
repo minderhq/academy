@@ -478,7 +478,7 @@ class MockTool:
 def calculator_tool(input_str):
     """Simple calculator that evaluates expressions."""
     try:
-        result = eval(input_str)
+        result = eval(input_str, {"__builtins__": {}}, {})
         return f"Result: {result}"
     except:
         return "Error: Invalid expression"

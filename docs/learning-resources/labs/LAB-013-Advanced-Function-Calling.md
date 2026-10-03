@@ -430,7 +430,7 @@ def calculate(expression: str) -> dict:
         if not all(c in allowed_chars or c.isalnum() for c in expression):
             return {"error": "Invalid characters in expression"}
 
-        result = eval(expression)
+        result = eval(expression, {"__builtins__": {}}, {})
 
         return {
             "expression": expression,

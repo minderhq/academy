@@ -31,7 +31,7 @@ from langgraph.checkpoint.memory import InMemorySaver
 def calculator(expression: str) -> str:
     """Evaluate a mathematical expression."""
     try:
-        return str(eval(expression))
+        return str(eval(expression, {"__builtins__": {}}, {}))
     except Exception as e:
         return f"Error: {e}"
 
@@ -90,7 +90,7 @@ def search_web(query: str) -> str:
 def calculator(expression: str) -> str:
     """Evaluate a mathematical expression."""
     try:
-        return str(eval(expression))
+        return str(eval(expression, {"__builtins__": {}}, {}))
     except Exception as e:
         return f"Error: {e}"
 

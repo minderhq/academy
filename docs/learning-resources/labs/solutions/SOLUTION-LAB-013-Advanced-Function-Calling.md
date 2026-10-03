@@ -38,7 +38,7 @@ class CalculatorTool(BaseModel):
 
     def execute(self):
         try:
-            result = eval(self.expression)
+            result = eval(self.expression, {"__builtins__": {}}, {})
             return f"Result: {result}"
         except:
             return "Invalid expression"
