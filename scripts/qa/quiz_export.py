@@ -17,6 +17,9 @@ Understood corpus forms (format-tolerant):
     silent drops (tick-616)
   - the Instructions "N questions" claim must match the parsed count,
     and every key row must have its question (tick-617)
+  - the passing-score parenthetical must match the parsed count, carry
+    a paired percentage, and the percent must be the fraction's
+    arithmetic (tick-618)
 
 Usage:
     python scripts/qa/quiz_export.py [--root REPO_ROOT] [--out FILE]
@@ -46,6 +49,8 @@ AK_ROW_BEYOND = re.compile(r"^\|\s*(\d+)\s*\|\s*([E-Z])\b")
 AK_BOLD_BEYOND = re.compile(r"^\*\*(\d+)\.\s*\**\s*([E-Z])\s*\**\s*$")
 OPT_BEYOND = re.compile(r"^\s*[-*]?\s*\*{0,2}([E-Z])[\).]")
 CLAIM = re.compile(r"(\d+)\s+questions?\b")
+PCT_PAREN = re.compile(r"\((\d+)/(\d+)\s+correct\)")
+PCT_PAIR = re.compile(r"(\d+)%\s*\*{0,2}\s*\((\d+)/(\d+)\s+correct\)")
 HEADING = re.compile(r"^(#{1,6})\s+(.*?)\s*$")
 FM_LINE = re.compile(r"^([A-Za-z][A-Za-z ]*):\s*(.*?)\s*$")
 MODULE_DIR = re.compile(r"^\d{4}-")
@@ -93,9 +98,28 @@ def capture_claim(lines):
     return None
 
 
+def capture_pcts(lines):
+    """Passing-score parentheticals "(X/Y correct)" with their paired
+    percent; pct is None when the percent pairing is absent.
+
+    tick-618: the parenthetical is the platform's passing contract -
+    captured as its own pass beside capture_claim.
+    """
+    out = []
+    for l, fence in fence_aware(lines):
+        if fence:
+            continue
+        for m in PCT_PAREN.finditer(l):
+            mp = PCT_PAIR.search(l)
+            out.append((int(mp.group(1)) if mp else None,
+                        int(m.group(1)), int(m.group(2))))
+    return out
+
+
 def export_quiz(rel, lines, findings):
     fm = parse_frontmatter(lines)
     claim = capture_claim(lines)
+    pcts = capture_pcts(lines)
 
     key = {}
     in_ak = False
@@ -215,6 +239,27 @@ def export_quiz(rel, lines, findings):
             # the reverse direction, untouched here).
             findings.append("%s: answer key row %d has no matching "
                             "question" % (rel, n))
+    for pct, x, y in pcts:
+        if y != len(order):
+            # tick-618: the passing-score parenthetical is the count a
+            # learner is graded against - a denominator drifted from
+            # the parsed bank lies while the bank loads fine (born
+            # census: 0 across the 32 modules carrying the form; 2300's
+            # points-based form carries none).
+            findings.append("%s: passing-score parenthetical %d/%d but %d "
+                            "questions parsed" % (rel, x, y, len(order)))
+        if pct is None:
+            # tick-618: the parenthetical pairs with an "N%" prefix in
+            # every canonical form - a bare parenthetical means the
+            # percent contract is malformed (born census: 0 across the
+            # 32 modules carrying the form).
+            findings.append("%s: passing-score parenthetical %d/%d has no "
+                            "paired percentage" % (rel, x, y))
+        elif round(x / y * 100) != pct:
+            # tick-618: the stated percent must be the fraction's
+            # arithmetic (born census: 0 across the 32 modules).
+            findings.append("%s: passing score %d%% but %d/%d computes "
+                            "%d%%" % (rel, pct, x, y, round(x / y * 100)))
     return fm, [qs[n] for n in sorted(order)]
 
 

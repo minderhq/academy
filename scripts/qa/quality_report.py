@@ -122,7 +122,11 @@ stand today?" without running each tool by hand.
                        the Instructions 'N questions' claim and
                        every key row's question presence are vouched
                        against the parsed bank - born 0/0 across 33
-                       modules)
+                       modules; passing-score clauses since tick-618:
+                       the '(X/Y correct)' parenthetical's denominator,
+                       percentage pairing and arithmetic are vouched
+                       against the parsed bank - born 0/0/0 across the
+                       32 modules carrying the form)
     quiz_integrity_scan
                        content-level quiz integrity (QI-01..06 +
                        QI-08/09 + QI-11/12/13/15 hard: self-referential positional
