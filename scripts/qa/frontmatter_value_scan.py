@@ -100,6 +100,21 @@ curated proper-noun/phrase allowlist; recorded as the axis
 tombstone. FV-10 born tick-496 born-at-zero: 293/293 str keys
 clean.
 
+Scope (tick-611): the corpus is two trees - docs/ (408 FM docs)
+and experiments/ (48 FM files, the 5-field keyset EC-01 locked).
+The ingestion simulation walks BOTH: FV-01/04/07/08/09 apply to
+experiments/ unchanged (ISO dates, yaml parse, Difficulty tiers,
+Title string, no future dates); two contract reconciliations were
+required and are documented here - FV-03's Tags presence duty
+follows the keyset (docs/ requires Tags by convention, the
+experiments/ keyset carries no Tags, so absence there is by
+design and a malformed Tags would still fire), and FV-10's key
+grammar accepts the EC-01-canonical EXP_NNNN form (underscore is
+RFC-3986 unreserved - a URL path needs no escaping for it; the
+naive extension fired 47 FV-10s before the grammar learned the
+shape). Born-clean on both trees: 48/48 ISO, 48/48 canonical
+tiers, 48/48 yaml-parses.
+
 Note: this gate is the fleet's only third-party import (PyYAML) -
 deliberate, because the rule under test is "yaml.safe_load
 succeeds", and a re-implementation would test something else.
@@ -123,7 +138,7 @@ TIME_SINGLE = re.compile(r"^\d+(\.\d+)? (hour|minute)s?$")
 TIME_DOUBLE = re.compile(r"^30 minutes \(quick review\) - \d+(\.\d+)? hours \(full review\)$")
 ISO_DATE = re.compile(r"^(\d{4})-(\d{2})-(\d{2})$")
 CANON_DIFFICULTY = ("Beginner", "Intermediate", "Advanced")
-DOC_KEY = re.compile(r"^[A-Z0-9][A-Za-z0-9]*(-[A-Za-z0-9]+)*$")
+DOC_KEY = re.compile(r"^(?:[A-Z0-9][A-Za-z0-9]*(-[A-Za-z0-9]+)*|EXP_\d{4})$")
 RES_ID = re.compile(r"^(LAB|TUTORIAL)-\d+")    # filename prefix
 RES_REF = re.compile(r"^(LAB|TUTORIAL)-\d+$")  # Related str element
 
@@ -152,7 +167,8 @@ def main() -> int:
     # pass 1: collect (rel, data) pairs and the Document ID universe
     parsed: list[tuple[str, dict]] = []
     doc_ids: set[int] = set()
-    for path in sorted((args.root / "docs").rglob("*.md")):
+    for path in (sorted((args.root / "docs").rglob("*.md"))
+                 + sorted((args.root / "experiments").glob("*.md"))):
         rel = path.relative_to(args.root).as_posix()
         text = path.read_text(encoding="utf-8")
         block = fm_block(text)
@@ -225,7 +241,14 @@ def main() -> int:
                 "time pipeline does arithmetic on this field"
                 % (rel, et))
         tags = data.get("Tags")
-        if not (isinstance(tags, list) and tags
+        # experiments/ keyset (EC-01, tick-608) carries no Tags - the
+        # field is neither required nor checked when absent there; docs/
+        # convention carries Tags on every FM doc, so absence is a
+        # finding on the docs/ side only
+        tags_absent_by_keyset = (rel.startswith("experiments/")
+                                 and tags is None)
+        if not tags_absent_by_keyset and not (
+                isinstance(tags, list) and tags
                 and all(isinstance(t, str) and t for t in tags)):
             findings.append(
                 "FV-03 %s: Tags %r is not a non-empty list of strings - "
@@ -295,7 +318,9 @@ def main() -> int:
                 "platform uses it as canonical key AND URL slug; "
                 "whitespace or punctuation needs escaping (convention: "
                 "uppercase-initial or module-numbered, hyphen-separated "
-                "alphanumerics)" % (rel, did))
+                "alphanumerics, or the EC-01-canonical EXP_NNNN form - "
+                "underscore is RFC-3986 unreserved, no escaping needed)"
+                % (rel, did))
     for f in findings:
         print("  " + esc(f))
     print("frontmatter_value_scan: %d docs with FM inspected; %d FV "
@@ -305,10 +330,15 @@ def main() -> int:
           "canonical Difficulty tier, FV-08 non-empty Title string, "
           "FV-09 no future-dated Last Updated, FV-10 URL-safe string "
           "Document ID, FV-11 resolvable LAB-/TUTORIAL- Related refs = "
-          "the platform ingestion simulation; born tick-493 with one "
-          "drain ('1 hours' -> '1 hour'), Related tick-494, "
-          "tier/title/date tick-495, key-shape tick-496, resource refs "
-          "tick-497 - all born-at-zero; see docstring)"
+          "the platform ingestion simulation; scope tick-611 extended "
+          "to experiments/ (48 files): FV-01/04/07/08/09 apply there, "
+          "FV-03 is presence-required only where the keyset carries "
+          "Tags (docs/) and FV-10's key grammar accepts the EC-01-"
+          "canonical EXP_NNNN form (underscore is RFC-3986 unreserved); "
+          "born tick-493 with one drain ('1 hours' -> '1 hour'), "
+          "Related tick-494, tier/title/date tick-495, key-shape "
+          "tick-496, resource refs tick-497 - all born-at-zero; see "
+          "docstring)"
           % (n_docs, len(findings)))
     return 1 if findings else 0
 
