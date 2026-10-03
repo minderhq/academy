@@ -39,7 +39,7 @@ D) Find derivatives of quotients
 **3. In backpropagation, we use:**
 
 A) Both first and second derivatives
-B) Neither
+B) No derivatives at all
 C) First derivatives only
 D) Second derivatives only
 

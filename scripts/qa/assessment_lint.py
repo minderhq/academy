@@ -188,6 +188,21 @@ the same AS-04/AS-08/AS-09 standards in their own "### N." shape):
          docs/phases/phase*/README.md. Joined tick-636 - born
          census 7/7 carry the line, 1/7 (phase 3) wrote the
          true count, 6 drained same tick - born-at-zero
+  AS-22  the informative-option floor over both quiz shapes - no
+         option may be a bare "Both", "Neither", "All", "None"
+         or "Either" (whole-option text, whitespace-collapse +
+         casefold exact, an optional trailing period tolerated,
+         the \b keeping "nonempty" and friends out): the bare
+         word carries no content a learner can be right or wrong
+         about, so a testwise learner keys it from position
+         priors instead of knowing the material. The compound
+         form ("All of the above", "None of these", bare
+         letter-lists) is AS-16's deferred class - AS-22 owns
+         the disjoint bare single-word remainder. Joined
+         tick-641 - born census 29 rows across 9 module banks
+         (19 on the D slot, 8 on C, 1 on B, 1 on A; at 4 of
+         them the generic was itself the key), phase quizzes
+         born clean, drained same tick - born-at-zero
 
 Format-tolerant by design: richer variants (inline-answer quizzes,
 self-graded coding questions, 3-column answer keys) pass as long as
@@ -266,6 +281,13 @@ DEFERRED_OPT = re.compile(
     r"^(?:all|none)\s+of\s+the\s+(?:above|these|options|listed)\b|"
     r"^(?:all|none)\s+of\s+these\b|"
     r"^(?:both\s+)?[a-e](?:\s*(?:and|or|,|&)\s*[a-e])+$", re.I)
+# AS-22: the bare generic word an option slot must never carry.
+# AS-16's DEFERRED_OPT owns the compound form ("All of the above",
+# letter-lists); this is the disjoint bare single-word remainder.
+# The match runs on the AS-16 duplicate-rule normalization
+# (whitespace-collapse + casefold) and tolerates one trailing
+# period; the \b keeps "nonempty" and friends out.
+GENERIC_OPT = re.compile(r"^(?:both|neither|all|none|either)\b\.?$")
 # AS-17: the stem-echo corpus line, measured tick-570 over the 835-mcq
 # corpus: a single echoed token is normal vocabulary overlap (63
 # questions, 7.5%), two or more tokens echoed by the keyed option and
@@ -482,6 +504,10 @@ class Linter:
         # option set owes the learner. Born tick-569 catching the 35
         # deferred options across 16 module banks, drained same tick.
         self.check_option_sanity(rel, answered)
+        # AS-22: the informative-option floor - no bare
+        # both/neither/all/none word in a slot. Born tick-641
+        # catching 29 across 9 module banks, drained same tick.
+        self.check_generic_opts(rel, answered)
         # AS-17: the stem must not hand over the answer. Born tick-570
         # catching exactly 7 stem echoes across 7 module banks, drained
         # same tick.
@@ -546,6 +572,29 @@ class Linter:
                                 "is an all/none-of-the-above-style "
                                 "choice - single-answer grading cannot "
                                 "key it" % (n, k))
+
+    def check_generic_opts(self, rel: str, answered: list) -> None:
+        """AS-22 shared by both quiz shapes: the informative-option
+        floor. An option that is nothing but "Both", "Neither",
+        "All", "None" or "Either" (an optional trailing period
+        tolerated) carries no content the learner can be right or
+        wrong about - a testwise learner keys it from position
+        priors instead of knowing the material, and the pair it
+        sits against ("Both" next to a split option set) is the
+        giveaway. The compound form ("All of the above", bare
+        letter-lists) is AS-16's deferred class; AS-22 owns the
+        bare single-word remainder."""
+        for q in answered:
+            n, opts = q["num"], q["options"]
+            for k in sorted(opts):
+                t = " ".join(opts[k].split()).casefold()
+                if GENERIC_OPT.match(t):
+                    self.report(rel, "AS-22",
+                                "generic option in question %d: %s) is "
+                                "a bare both/neither/all/none word - a "
+                                "non-informative choice a learner can "
+                                "key without reading the material"
+                                % (n, k))
 
     def check_stem_echo(self, rel: str, answered: list) -> None:
         """AS-17 shared by both quiz shapes: the stem must not hand
@@ -748,6 +797,7 @@ class Linter:
                     if (key.get(n) or inline.get(n)) and n in qopts]
         self.check_len_bias(rel, answered)
         self.check_option_sanity(rel, answered)
+        self.check_generic_opts(rel, answered)
         self.check_stem_echo(rel, answered)
 
     def lint_phase_readme_claims(self, root: Path) -> int:

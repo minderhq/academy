@@ -26,7 +26,7 @@ Tags: ['assessment', 'quiz', 'rag', 'context']
 A) Only training
 B) Only inference, with every training pass somehow immune to the same limit
 C) Both training and inference
-D) Neither
+D) Apply only to multimodal models
 
 **2. Longer context windows:**
 

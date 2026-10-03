@@ -54,21 +54,21 @@ D) No use
 A) Service Level Assurance, a phrasing no SRE handbook uses
 B) System Level Agreement
 C) Service Level Agreement
-D) None
+D) Service Level Invoice
 
 **6. SLO is:**
 
 A) Service Level Option, a term that appears in no error-budget workflow
 B) Service Level Objective
 C) System Level Objective
-D) None
+D) Service Level Intention
 
 **7. SLI measures:**
 
 A) Service Level Index
 B) System Level Indicator, a mixture that no SLO definition sheet contains
 C) Service Level Indicator
-D) None
+D) Service Level Interval
 
 **8. Alert fatigue occurs when:**
 
@@ -82,14 +82,14 @@ D) Perfect monitoring
 A) Network, storage
 B) CPU, memory, disk, a resource checklist the golden-signals method never fixed on
 C) Latency, traffic, errors, saturation
-D) None
+D) Cache hit rate, queue depth
 
 **10. Model drift detection:**
 
 A) Monitors output distribution
 B) Monitors input distribution
 C) Watches output and input distributions alike
-D) Neither
+D) Tracks only serving latency
 
 **11. Grafana displays:**
 
@@ -117,7 +117,7 @@ D) Calculates per-second rate
 A) Tokens per second
 B) Total tokens, a cumulative count rather than the throughput rate
 C) Batch size
-D) None
+D) Tokens per dollar
 
 **15. GPU utilization monitoring:**
 
@@ -138,7 +138,7 @@ D) Structured formats, log levels and contextual information together
 A) Debug requests across services
 B) Monitor metrics
 C) Store logs, a retention job that belongs to a log backend like Loki
-D) None
+D) Replace the log backend
 
 **18. Alerting should be:**
 
@@ -159,7 +159,7 @@ D) Not needed
 A) Latency, traffic, errors, saturation
 B) CPU, memory, disk, network
 C) Users, sessions, requests, errors, a product-analytics set
-D) None
+D) P99, p50, error rate, uptime
 
 ---
 

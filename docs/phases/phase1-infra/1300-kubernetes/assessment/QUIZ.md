@@ -131,7 +131,7 @@ D) K8s configuration
 A) Resource isolation
 B) Resource isolation and security scoping together
 C) Security
-D) Neither
+D) Network policy enforcement
 
 **17. A ConfigMap stores:**
 

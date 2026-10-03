@@ -33,21 +33,21 @@ D) Text, embeddings, and images
 A) HNSW index
 B) IVF index
 C) No index
-D) Both
+D) A fixed hash index
 
 **3. Collection in vector DB:**
 
 A) Stores vectors
 B) Stores metadata
-C) Both
-D) Neither
+C) Both vectors and metadata
+D) Neither vector nor metadata
 
 **4. Payload in Qdrant:**
 
 A) Vector data
 B) Metadata
-C) Both
-D) Neither
+C) Indexing configuration
+D) API keys
 
 **5. Upsert operation:**
 
@@ -151,8 +151,8 @@ D) Only first page
 
 A) Stores documents
 B) Stores embeddings
-C) Both
-D) Neither
+C) Stores documents and embeddings
+D) Stores query logs and cache entries
 
 **20. Performance tuning:**
 

@@ -93,9 +93,9 @@ D) Chain keeps the autonomy while the agent executes a frozen script, reversed f
 
 **11. Function calling in LLMs:**
 
-A) Neither
+A) Retraining the model from scratch for every new tool
 B) Prompt engineering only
-C) Both
+C) Both prompt engineering and special training
 D) Special training
 
 **12. Agent evaluation:**

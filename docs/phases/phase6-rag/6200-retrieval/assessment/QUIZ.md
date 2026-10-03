@@ -46,15 +46,15 @@ D) Combines multiple result lists
 
 A) Keywords
 B) Vector embeddings
-C) Both
+C) Character n-grams
 D) Neither, a claim every dense encoder output contradicts
 
 **5. Sparse retrieval uses:**
 
 A) Embeddings, the dense-side artifact sparse lookup never touches
 B) Keywords/Terms
-C) Both
-D) Neither
+C) Dense vector indexes
+D) Random vectors
 
 **6. HNSW is:**
 

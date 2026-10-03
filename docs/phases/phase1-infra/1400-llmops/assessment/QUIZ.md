@@ -124,14 +124,14 @@ D) No effect
 A) Always increases throughput
 B) Can increase latency
 C) Raises throughput but adds queueing latency
-D) Neither
+D) Reduces model accuracy
 
 **16. A/B testing for models:**
 
 A) Deploys multiple models
 B) Compares model versions
 C) Deploys model variants side by side and compares them on real traffic
-D) Neither
+D) Routes all traffic to one model
 
 **17. Canary deployment:**
 

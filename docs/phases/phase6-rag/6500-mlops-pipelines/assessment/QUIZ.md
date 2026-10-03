@@ -109,15 +109,15 @@ D) Speed, user experience and cost together
 
 A) Only storage, a footprint effect chunking never confines itself to in practice
 B) Retrieval quality
-C) Both
-D) Neither
+C) Token count only
+D) Model weights
 
 **14. RAG pipeline versioning:**
 
 A) Use Git
 B) Use MLflow
-C) Both
-D) Neither
+C) Both Git and MLflow
+D) Version only the prompts
 
 **15. Error handling in RAG:**
 
