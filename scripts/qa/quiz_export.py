@@ -28,6 +28,8 @@ Understood corpus forms (format-tolerant):
     duplicated option text is a broken distractor (tick-621)
   - every module quiz carries an Instructions section - its absence is
     a finding, platform metadata the learner is served (tick-622)
+  - two questions of one module sharing the same stem text is a finding
+    - a duplicated stem is a duplicate feed record (tick-623)
 
 Usage:
     python scripts/qa/quiz_export.py [--root REPO_ROOT] [--out FILE]
@@ -225,6 +227,7 @@ def export_quiz(rel, lines, findings):
         if m and last is not None:
             qs[last]["points"] = int(m.group(1))
 
+    stems_seen = {}
     for n in order:
         q = qs[n]
         if q["answer"] is None and n in key:
@@ -270,6 +273,18 @@ def export_quiz(rel, lines, findings):
             findings.append("%s: question %d has no stem text (blank "
                             "stem parses clean otherwise)"
                             % (rel, n))
+        stem = q["text"].strip().lower()
+        if stem:
+            if stem in stems_seen:
+                # tick-623: two questions of one module sharing the
+                # same stem text are a duplicate feed record - a
+                # copy-paste defect served twice while the bank loads
+                # fine (born census: 0 across 33 modules; blank stems
+                # are tick-615's class and skip this comparison).
+                findings.append("%s: questions %d and %d share the same "
+                                "stem text" % (rel, stems_seen[stem], n))
+            else:
+                stems_seen[stem] = n
     if not instr_seen:
         # tick-622: the Instructions section is platform metadata the
         # learner is served - a quiz without one ships no instruction
