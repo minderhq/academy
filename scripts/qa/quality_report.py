@@ -374,6 +374,24 @@ stand today?" without running each tool by hand.
                        danger-marked fences are out by construction,
                        born tick-648, drained same tick: 5 sites
                        across 5 files)
+    cypher_interp_scan Cypher interpolation into the positions
+                       $parameters cannot fill (CI-01: label/
+                       rel-type position - the f-string literal
+                       before the interpolated value ends with a
+                       colon, (n:{label}/[r:{rel_type}] - 6301
+                       vouches: values are bound with $parameters,
+                       never interpolated into the string; CI-02:
+                       variable-length path bound - literal ends
+                       with ../*, parameters cannot set those
+                       bounds per 6304, so int-cast then
+                       interpolate, hop_bound = max(1, int(depth)));
+                       the parameterized Constant form, colon+space
+                       prompt literals, the LIMIT position,
+                       int-cast bounds (6304 x3) and allowlist-
+                       guarded labels are out by construction,
+                       one-hop query-variable delivery resolved
+                       per-function-scope, born tick-649, drained
+                       same tick: 5 sites across 2 files)
     action_version_scan
                        uses: pins in docs must match the canonical
                        action registry (AV-01: current majors -
@@ -2949,6 +2967,7 @@ GATES = [
     ("unsafe_deserialize_scan.py", "unsafe_deserialize_scan", True),
     ("unsafe_shell_scan.py", "unsafe_shell_scan", True),
     ("broad_except_scan.py", "broad_except_scan", True),
+    ("cypher_interp_scan.py", "cypher_interp_scan", True),
     ("action_version_scan.py", "action_version_scan", True),
     ("unicode_ws_hygiene_scan.py", "unicode_ws_hygiene_scan", True),
     ("objectives_lint.py", "objectives_lint", False),

@@ -415,6 +415,9 @@ def graph_search(entities: list[str], max_hops: int = 2) -> list[dict]:
     if not entities:
         return []
 
+    # $parameters cannot fill Cypher path bounds - int-cast the bound first
+    max_hops = max(1, int(max_hops))
+
     results = []
 
     with neo4j.session() as session:
@@ -563,6 +566,9 @@ async def list_entities():
 @app.get("/graph/explore")
 async def explore_graph(entity: str, max_depth: int = 2):
     """Explore graph from entity"""
+
+    # $parameters cannot fill Cypher path bounds - int-cast the bound first
+    max_depth = max(1, int(max_depth))
 
     with neo4j.session() as session:
         cypher = f"""

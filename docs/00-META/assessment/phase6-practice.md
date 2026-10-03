@@ -1093,6 +1093,11 @@ from neo4j import GraphDatabase
 class KnowledgeGraph:
     """Neo4j knowledge graph operations"""
 
+    # $parameters cannot fill label/rel-type positions - guard schema
+    # names against an allowlist before they reach the query engine
+    ALLOWED_LABELS = {"Person", "Company", "Document", "Chunk"}
+    ALLOWED_REL_TYPES = {"WORKS_AT", "KNOWS", "RELATED_TO", "MENTIONS"}
+
     def __init__(self, uri="bolt://localhost:7687", user="neo4j", password="password"):
         self.driver = GraphDatabase.driver(uri, auth=(user, password))
 
@@ -1101,6 +1106,8 @@ class KnowledgeGraph:
 
     def create_entity(self, label, name, properties=None):
         """Create an entity node"""
+        if label not in self.ALLOWED_LABELS:
+            raise ValueError(f"unknown label: {label}")
         with self.driver.session() as session:
             result = session.run(
                 f"CREATE (n:{label} {{name: $name}}) RETURN n",
@@ -1110,6 +1117,8 @@ class KnowledgeGraph:
 
     def create_relationship(self, entity1, rel_type, entity2, properties=None):
         """Create a relationship between entities"""
+        if rel_type not in self.ALLOWED_REL_TYPES:
+            raise ValueError(f"unknown relationship type: {rel_type}")
         with self.driver.session() as session:
             query = f"""
             MATCH (a {{name: $entity1}})
@@ -1122,6 +1131,8 @@ class KnowledgeGraph:
 
     def find_connections(self, entity_name, max_depth=2):
         """Find all connections within depth"""
+        # $parameters cannot fill Cypher path bounds - int-cast the bound first
+        max_depth = max(1, int(max_depth))
         with self.driver.session() as session:
             query = f"""
             MATCH (start {{name: $name}})-[*1..{max_depth}]-(connected)

@@ -89,9 +89,9 @@
    "size": 5173
   },
   "docs/00-META/assessment/phase6-practice.md": {
-   "bad": {},
-   "mtime": 1791006962.3567057,
-   "size": 36425
+   "mtime": 1791061991.9107912,
+   "size": 37046,
+   "bad": {}
   },
   "docs/00-META/assessment/phase7-practice.md": {
    "mtime": 1791049206.682686,
@@ -415,22 +415,22 @@
    "size": 35262
   },
   "docs/learning-resources/labs/LAB-005-GraphRAG.md": {
+   "mtime": 1791061991.9107912,
+   "size": 26454,
    "bad": {
     "124": "SIDE-EFFECT",
     "350": "ENV-GAP:sentence_transformers",
-    "696": "CODE-SIGNAL:KeyError",
-    "764": "SIDE-EFFECT",
-    "882": "CODE-SIGNAL:KeyError"
+    "702": "SIDE-EFFECT",
+    "770": "SIDE-EFFECT",
+    "888": "SIDE-EFFECT"
    },
-   "mtime": 1790784081.1969554,
    "notes": {
     "124": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
     "350": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-    "696": "parses the response of a localhost GraphRAG server that is not running in the QA environment; service requirement",
-    "764": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
-    "882": "parses the response of a localhost GraphRAG server that is not running in the QA environment; service requirement"
-   },
-   "size": 26224
+    "702": "parses the response of a localhost GraphRAG server that is not running in the QA environment; service requirement",
+    "770": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
+    "888": "parses the response of a localhost GraphRAG server that is not running in the QA environment; service requirement"
+   }
   },
   "docs/learning-resources/labs/LAB-006-Train-Model-From-Scratch.md": {
    "bad": {},
