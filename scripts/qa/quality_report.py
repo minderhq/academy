@@ -2297,6 +2297,45 @@ stand today?" without running each tool by hand.
                        docs, zero-drain: zero bare,
                        zero off-vocabulary, zero
                        unclosed; hard from birth
+  experiment_id_scan
+                       experiments identity lock
+                       (EC-01..03, hard): experiments/
+                       is the one content directory
+                       outside docs/ and the platform
+                       catalogs content by Document ID
+                       while its catalog walks docs/
+                       links, yet doc_id_check scans
+                       docs/ only - experiment
+                       identity was unvouched. EC-01
+                       every experiments/*.md carries a
+                       top-level FM Document ID in the
+                       EXP_NNNN form equal to the
+                       file's own code token (the LP-05
+                       label rule lifted to file
+                       identity; TEMPLATE.md is the one
+                       by-design exemption - a template
+                       cannot honestly carry a real
+                       code, the CC-31 carve-out
+                       shape); EC-02 IDs unique across
+                       experiments/ and disjoint from
+                       the docs/ namespace (the ID
+                       space is global; two files
+                       answering to one ID is an
+                       ambiguous catalog row); EC-03
+                       every experiment referenced from
+                       at least one docs/ file by name
+                       or stem (the CHEAT-SHEET-006
+                       orphan class fleet_count_parity
+                       proved - linkcheck green while
+                       15 of 47 experiments were
+                       invisible from the README front
+                       door). Born tick-608 from a
+                       48-file census (48 FM, 1 keyset
+                       shape, 47 real IDs all matching
+                       their filename codes, 0
+                       duplicates, 0 docs/ collisions,
+                       48/48 linked), zero-drain, hard
+                       from birth
   queue gate (drain in progress; never fails the report unless --fail-on-queue):
     objectives_lint    template-objective artifacts (OL-01/OL-02), phase by phase
     fence_namecheck    unbound names in python fences (report mode), two
@@ -2617,6 +2656,7 @@ GATES = [
     ("module_code_census.py", "module_code_census", True),
     ("label_code_parity_scan.py", "label_code_parity_scan", True),
     ("fence_lang_scan.py", "fence_lang_scan", True),
+    ("experiment_id_scan.py", "experiment_id_scan", True),
 ]
 
 
