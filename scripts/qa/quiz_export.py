@@ -133,8 +133,17 @@ def export_quiz(rel, lines, findings):
                                 % (rel, n, "".join(missing)))
         elif q["points"] is not None:
             q["type"] = "coding"
-        elif not q["text"]:
-            findings.append("%s: unparsable question %d (no text/options)"
+        if not q["text"]:
+            # tick-615: the stem check sat in the open-type elif chain,
+            # so an mcq or coding question whose stem line lost its
+            # text ("**5.**" with options or a Score line intact)
+            # parsed clean into a rendered-blank record - the blank-
+            # stem class now fires for every type, one clause owning
+            # the whole class (born census: 0 across 660 questions;
+            # the gradeable-but-open cousin is QI-12's clause, this is
+            # the blank stem itself).
+            findings.append("%s: question %d has no stem text (blank "
+                            "stem parses clean otherwise)"
                             % (rel, n))
     return fm, [qs[n] for n in sorted(order)]
 
