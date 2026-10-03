@@ -125,6 +125,21 @@ QI-16  option letters written out of A,B,C,D order with the set
        tick-631: 33/33 module blocks write exact 1,2,3
        (99 items across 7 files), born-at-zero.
 
+       QI-18 tick-642 within-bank duplicate answer-key
+       explanation text - AS-11 vouches the cell's PRESENCE
+       and QI-08 the duplicate ROW, but the text itself was
+       read by nothing: two rows of one bank carrying the
+       identical normalized explanation teach the learner the
+       same sentence twice in the per-question review UI.
+       Exact norm() (casefold + whitespace-collapse) inside
+       one bank's Answer Key table; cross-bank repeats are
+       legitimate module-specific framing (the QI-06 stem
+       precedent) and a same-N pair is QI-08's class, so a
+       group fires only on >= 2 distinct question numbers.
+       A bare/empty cell stays AS-11's (the capture guards
+       len >= 3 and truthy). Census tick-642: 33 banks /
+       655 key rows parsed, 0 duplicate groups, born-at-zero.
+
 Report inventory (never fails the gate - the drain queues, same
 contract as duplicate_heading_scan):
 
@@ -283,6 +298,7 @@ def scan_module(rel: str, lines: list[str],
     # QI-08/09 need the Answer Key join in reverse: quiz_export only
     # pulls the key INTO questions and never checks key rows back.
     key_rows: dict[int, list[str]] = {}
+    expl_rows: list[tuple[int, str]] = []
     in_ak = False
     for line, fence in fence_aware(lines):
         if fence:
@@ -294,9 +310,19 @@ def scan_module(rel: str, lines: list[str],
             if HEADING.match(line):
                 in_ak = False
                 continue
-            m = AK_ROW.match(line) or AK_BOLD.match(line)
+            mrow = AK_ROW.match(line)
+            m = mrow or AK_BOLD.match(line)
             if m:
                 key_rows.setdefault(int(m.group(1)), []).append(m.group(2))
+                if mrow:
+                    # QI-18 capture: the explanation cell, the same
+                    # idiom as AS-11. A bare/empty cell is AS-11's
+                    # class - QI-18 stays silent there.
+                    cells = [c.strip()
+                             for c in line.strip().strip("|").split("|")]
+                    if len(cells) >= 3 and cells[2]:
+                        expl_rows.append(
+                            (int(m.group(1)), norm(cells[2])))
             elif AK_ROWISH.match(line):
                 hard.append(
                     f"{rel}: QI-13 Answer Key row quiz_export cannot "
@@ -313,6 +339,24 @@ def scan_module(rel: str, lines: list[str],
             hard.append(
                 f"{rel}: QI-09 orphan Answer Key row for question "
                 f"{n} - quiz has {len(nums)} questions")
+
+    # QI-18: within-bank duplicate answer-key explanation texts.
+    # Groups keyed by the normalized text; a group fires only on
+    # >= 2 DISTINCT question numbers (a same-N pair is QI-08's
+    # class), so one mutation fires once fleet-wide.
+    expl_groups: dict[str, list[int]] = {}
+    for n, t in expl_rows:
+        expl_groups.setdefault(t, []).append(n)
+    for t, ns in sorted(expl_groups.items()):
+        uniq = sorted(set(ns))
+        if len(uniq) >= 2:
+            hard.append(
+                f"{rel}: QI-18 answer-key explanation identical for "
+                f"questions {', '.join(str(n) for n in uniq)}: "
+                f"'{t[:60]}' - the per-question review UI teaches "
+                f"the same sentence twice (AS-11 vouches presence, "
+                f"QI-08 the duplicate row - the text itself was "
+                f"read by nothing)")
 
     # QI-04 needs a raw fence-aware pass: the parser never sees E+.
     for line, fence in fence_aware(lines):
@@ -613,7 +657,7 @@ def main() -> int:
           f"question / QI-13 unparseable key row / QI-14 "
           f"checkpoint-quiz item duplicating a bank stem / QI-15 "
           f"phase-quiz item duplicating a bank or phase-quiz stem / "
-          f"QI-16 option letters written out of ABCD order - module banks and phase quizzes; QI-17 checkpoint quiz item numbering broken inside the count), "
+          f"QI-16 option letters written out of ABCD order - module banks and phase quizzes; QI-17 checkpoint quiz item numbering broken inside the count; QI-18 within-bank duplicate answer-key explanation text), "
           f"QI-06 {len(cross_dups)} "
           f"cross-module stem dups (hard since tick-345; drained "
           f"tick-343), QI-07 "

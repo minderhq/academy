@@ -211,7 +211,8 @@ stand today?" without running each tool by hand.
                        questions)
     quiz_integrity_scan
                        content-level quiz integrity (QI-01..06 +
-                       QI-08/09 + QI-11/12/13/15/16 hard: self-referential positional
+                       QI-08/09 + QI-11/12/13/15/16/17/18 hard:
+                       self-referential positional
                        option, in-module duplicate stem, duplicate
                        option text, option beyond A-D, numbering
                        gap, cross-module stem dup, duplicate
@@ -243,7 +244,14 @@ stand today?" without running each tool by hand.
                        checkpoint quiz item numbering (CK-04
                        reads only the item COUNT, QI-14 only
                        the stems) - born 33/33 module blocks
-                       exact 1,2,3 across 99 items) on top of
+                       exact 1,2,3 across 99 items; QI-18
+                       tick-642 within-bank duplicate answer-key
+                       explanation text (AS-11 vouches the
+                       cell's presence, QI-08 the duplicate
+                       row - the text itself was read by
+                       nothing; >= 2 distinct question numbers
+                       per group) - born 0 duplicate groups
+                       across 33 banks / 655 key rows) on top of
                        quiz_export's parser; QI-07/QI-10
                        are the report inventory (the
                        skewed-answer-key shuffle queue -
