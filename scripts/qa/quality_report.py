@@ -2371,6 +2371,34 @@ stand today?" without running each tool by hand.
                        lessons + 21 guides, uniform
                        bare-digit grammar, 0 drift),
                        zero-drain, hard from birth
+  title_uniqueness_scan
+                       display-title uniqueness
+                       (TU-01, hard): the
+                       display-title space is
+                       global like the Document
+                       ID space - doc_id_check
+                       locks ID uniqueness so two
+                       files can never answer to
+                       one catalog row, this locks
+                       the display side so two
+                       rows can never be
+                       indistinguishable to a
+                       learner listing or
+                       searching by name. One
+                       finding per extra file in a
+                       case-folded duplicate group
+                       across docs/ + experiments/;
+                       Title presence stays
+                       frontmatter_lint FM-03's
+                       duty (never double-
+                       reported) and
+                       experiments/TEMPLATE.md
+                       carries no uniqueness
+                       exemption (EC-02's lesson).
+                       Born tick-610 from a 456-doc
+                       census (456 distinct, 0
+                       duplicate groups), zero-
+                       drain, hard from birth
   queue gate (drain in progress; never fails the report unless --fail-on-queue):
     objectives_lint    template-objective artifacts (OL-01/OL-02), phase by phase
     fence_namecheck    unbound names in python fences (report mode), two
@@ -2693,6 +2721,7 @@ GATES = [
     ("fence_lang_scan.py", "fence_lang_scan", True),
     ("experiment_id_scan.py", "experiment_id_scan", True),
     ("hierarchy_scan.py", "hierarchy_scan", True),
+    ("title_uniqueness_scan.py", "title_uniqueness_scan", True),
 ]
 
 

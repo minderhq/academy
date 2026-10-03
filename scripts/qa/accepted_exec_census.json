@@ -1188,7 +1188,7 @@
    "size": 27727
   },
   "docs/phases/phase1-infra/1400-llmops/guides/1403-vLLM-Production-Deployment.md": {
-   "mtime": 1790987763.8702557,
+   "mtime": 1790988899.3369536,
    "size": 28806,
    "bad": {
     "330": "CODE-SIGNAL:KeyError",
@@ -1561,18 +1561,18 @@
    }
   },
   "docs/phases/phase3-transformers/3200-embeddings/3202-Tokenizer-Sciences.md": {
+   "mtime": 1790988899.7902808,
+   "size": 15123,
    "bad": {
     "218": "SIDE-EFFECT",
     "251": "SIDE-EFFECT",
     "414": "CODE-SIGNAL:Exception"
    },
-   "mtime": 1790880414.2275796,
    "notes": {
     "218": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
     "251": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
     "414": "trains the BPE tokenizer on a corpus file the learner supplies - artifact path"
-   },
-   "size": 15123
+   }
   },
   "docs/phases/phase3-transformers/3200-embeddings/README.md": {
    "mtime": 1790984524.2581768,
