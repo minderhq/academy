@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Pitfalls item-shape standardization (PS-01..03, HARD) for PROJECT-OMEGA.
+"""Pitfalls item-shape standardization (PS-01..04, HARD) for PROJECT-OMEGA.
 
 Every non-checkpoint doc with a pitfalls section (the "## ...Pitfall..."
 review block in phase READMEs, module-group READMEs, module files,
@@ -16,8 +16,15 @@ canonical "### Pitfall N: Name" form - sequential numbering, no emoji
 prefix. Inside a pitfalls section, bold paragraph labels ("**X:**" at
 line start) must be the canonical pair **Pitfall:** / **Solution:**
 (PS-03) - the corpus had **Problem:** x22 and **Fix:** x3 alongside
-them, canonized same tick. Checkpoints are excluded (CK-09 in
-checkpoint_coverage_scan governs their "N. **Name:**" lists).
+them, canonized same tick. PS-04 (tick-634) owns the written
+numbering of the numbered one-liner items: PS-01 reads only the
+item COUNT via ITEM (the number values are dropped at match time),
+so a gap, duplicate or restart inside a run served the learner a
+broken numbered review list while every check stayed clean - the
+tick-631 partition shape, the 3-item floor stays PS-01's, the
+numbering inside the count is PS-04's. Checkpoints are excluded
+(CK-09/CK-10 in checkpoint_coverage_scan govern their "N. **Name:**"
+lists).
 
 Born tick-482, born-at-zero after the same-tick drain: census found
 subsection headers in 4 shapes (plain "### Name", "### (warning-emoji)
@@ -57,15 +64,26 @@ def esc(text: str) -> str:
 LABELS = ("Pitfall", "Solution")
 
 
-def analyze(text: str) -> tuple[int, list[str], list[str]]:
-    """One section -> (item count, bad subsections, non-canonical labels)."""
+def analyze(
+        text: str) -> tuple[int, list[str], list[str], list[str]]:
+    """One section -> (item count, bad subsections, bad one-liner
+    numbering, non-canonical labels)."""
     lines = text.split("\n")
     items = 0
     bad = []
     bad_lab = []
+    bad_num = []
     n_sub = 0
     in_tab = False
     fence = False
+    run: list[int] = []
+
+    def end_run() -> None:
+        if run and run != list(range(1, len(run) + 1)):
+            bad_num.append("items are numbered %s, expected 1..%d" % (
+                ", ".join(str(n) for n in run), len(run)))
+        run.clear()
+
     for ln in lines:
         if FENCE.match(ln.strip()):
             fence = not fence
@@ -73,6 +91,7 @@ def analyze(text: str) -> tuple[int, list[str], list[str]]:
         if fence:
             continue
         if re.match(r"^###\s", ln):
+            end_run()
             m = SUB.match(ln.lstrip("#").strip())
             if m:
                 n_sub += 1
@@ -83,18 +102,22 @@ def analyze(text: str) -> tuple[int, list[str], list[str]]:
                 bad.append(ln.lstrip("#").strip())
             items += 1
         elif ITEM.match(ln):
+            run.append(int(re.match(r"^\s*(\d+)\.", ln).group(1)))
             items += 1
         elif TAB_HEAD.match(ln):
+            end_run()
             in_tab = True
             items += 1
         elif in_tab and ln.startswith("|") and not TAB_SEP.match(ln):
             items += 1
         elif ln.strip() and not ln.startswith("|"):
+            end_run()
             in_tab = False
             lm = re.match(r"^\*\*([A-Za-z][A-Za-z ]*):\*\*", ln)
             if lm and lm.group(1) not in LABELS:
                 bad_lab.append("**%s:**" % lm.group(1))
-    return items, bad, bad_lab
+    end_run()
+    return items, bad, bad_num, bad_lab
 
 
 def main() -> int:
@@ -129,7 +152,7 @@ def main() -> int:
                 if h and len(h.group(1)) <= lvl:
                     break
                 body.append(l2)
-            items, bad, bad_lab = analyze("\n".join(body))
+            items, bad, bad_num, bad_lab = analyze("\n".join(body))
             if items < 3:
                 findings.append(
                     "PS-01 %s: pitfalls section '%s' carries %d structured "
@@ -143,6 +166,10 @@ def main() -> int:
                 findings.append(
                     "PS-03 %s: pitfalls label '%s' not in the canonical "
                     "set (**Pitfall:** / **Solution:**)" % (rel, lab))
+            for bn in bad_num:
+                findings.append(
+                    "PS-04 %s: pitfalls section '%s' one-liner %s"
+                    % (rel, m.group(2).strip(), bn))
 
     for f in findings:
         print("  " + esc(f))
@@ -150,9 +177,11 @@ def main() -> int:
           "%d findings - all hard (PS-01 below the 3-structured-item "
           "floor / PS-02 subsection not in canonical '### Pitfall N: "
           "Name' shape / PS-03 inner label outside **Pitfall:** / "
-          "**Solution:**; born tick-482 after the 85-header + 83-bullet "
+          "**Solution:** / PS-04 one-liner items numbered out of 1..K "
+          "order; born tick-482 after the 85-header + 83-bullet "
           "shape drain, PS-03 tick-483 after the 25-label canonization "
-          "drain)" % (n_secs, len(findings)))
+          "drain, PS-04 tick-634 after the 17-run all-1..K census)"
+          % (n_secs, len(findings)))
     return 1 if findings else 0
 
 

@@ -2637,7 +2637,7 @@ stand today?" without running each tool by hand.
                        (fence-aware - bash comment lines inside code
                        fences are not headers; LAB-006/010 were already
                        plain, the corpus vote)
-    pitfall_shape_scan  Pitfalls item-shape standardization (PS-01..03,
+    pitfall_shape_scan  Pitfalls item-shape standardization (PS-01..04,
                        hard): every non-checkpoint pitfalls section
                        carries at least 3 structured items in one of
                        the corpus shapes (numbered "N. **Name:**"
@@ -2657,7 +2657,15 @@ stand today?" without running each tool by hand.
                        be the canonical **Pitfall:** / **Solution:**
                        pair (corpus had **Problem:** x22 and **Fix:**
                        x3 alongside them; 25 labels canonized across
-                       6 files same tick, born-at-zero)
+                       6 files same tick, born-at-zero). PS-04 born
+                       tick-634: the numbered one-liner items' written
+                       numbering must run contiguous 1..K per run -
+                       PS-01 reads only the item count (number values
+                       dropped at match time), so a gap, duplicate or
+                       restart inside a run served the learner a
+                       broken numbered review list; born census 17/17
+                       one-liner runs across the 36 non-checkpoint
+                       sections already 1..K, born-at-zero
     label_variance_scan  Bold-label variance (LV-01..02, hard): the
                        eight canonized callout keys (Estimated Time /
                        What You'll Learn / Best For / Troubleshooting /
