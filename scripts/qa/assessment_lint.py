@@ -145,11 +145,14 @@ the same AS-04/AS-08/AS-09 standards in their own "### N." shape):
          or a fat-fingered renumber serves the learner a broken
          sequence while the heading COUNT stays intact - AS-13's MI
          rows compare counts, not numbers, so the drift is
-         invisible there. Scoped to the seven phase practice files
-         (the module PRACTICE.md numbering is the same born-zero
-         class, parked for its own tick). Joined tick-627 - born
-         census 9/9 segments contiguous (main 5/4/4/4/3/7/7,
-         appendix 6/5)
+         invisible there. Covers both surfaces: the seven phase
+         practice files per segment (main body and phases 6-7
+         appendix each restart at 1) and the 33 module PRACTICE.md
+         files as one sequence (no module carries an appendix
+         section, so the whole file is a single 1..K run). Module
+         surface joined tick-628 - born census 33/33
+         single-segment contiguous, 184 exercises (169 H3 +
+         15 H2 headings; the H2 shape lives in 2300/4300/4400)
 
 Format-tolerant by design: richer variants (inline-answer quizzes,
 self-graded coding questions, 3-column answer keys) pass as long as
@@ -731,6 +734,14 @@ class Linter:
         if len(exercises) < 3:
             self.report(rel, "AS-06",
                         "only %d exercises (>= 3 required)" % len(exercises))
+
+        # AS-19 (module surface): one 1..K run per file - the same
+        # numbering contract the phase practice files vouch per segment.
+        nums = [num for _, _, num in exercises]
+        if nums != list(range(1, len(nums) + 1)):
+            self.report(rel, "AS-19",
+                        "exercise numbering runs %s, expected 1..%d"
+                        % (", ".join(str(n) for n in nums), len(nums)))
 
         for i, lvl, num in exercises:
             stop = next((h[0] for h in heads if h[0] > i and h[1] <= lvl),

@@ -127,7 +127,15 @@ stand today?" without running each tool by hand.
                        references each restart at 1), born
                        tick-627 census-zero 9/9 segments
                        contiguous (main 5/4/4/4/3/7/7,
-                       appendix 6/5)
+                       appendix 6/5); module surface
+                       joined tick-628 - all 33
+                       PRACTICE.md files vouch one
+                       1..K run per file, born
+                       census 33/33 single-segment
+                       contiguous, 184 exercises
+                       (169 H3 + 15 H2 headings;
+                       the H2 shape lives in
+                       2300/4300/4400)
     quiz_export        quiz bank parses into complete question records
                        (blank-stem clause since tick-615: a question
                        whose stem line lost its text parses as a
