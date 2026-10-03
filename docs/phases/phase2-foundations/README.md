@@ -738,7 +738,7 @@ with torch.profiler.profile(
 Validate your knowledge with:
 
 - **[Phase 2 Checkpoint](./CHECKPOINT.md)** - Module-by-module phase-exit review
-- **[Phase 2 Quiz](../../00-META/assessment/phase2-quiz.md)** - Test your understanding (25 questions, 80% to pass)
+- **[Phase 2 Quiz](../../00-META/assessment/phase2-quiz.md)** - Test your understanding (20 questions, 80% to pass)
 - **[Phase 2 Practice](../../00-META/assessment/phase2-practice.md)** - Hands-on foundations exercises
 
 ---

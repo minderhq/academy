@@ -638,7 +638,7 @@ See [PREREQUISITES](../../00-META/ENVIRONMENT-SETUP.md) for details.
 Validate your knowledge with:
 
 - **[Phase 5 Checkpoint](./CHECKPOINT.md)** - Module-by-module phase-exit review
-- **[Phase 5 Quiz](../../00-META/assessment/phase5-quiz.md)** - Test your understanding (20 questions, 80% to pass)
+- **[Phase 5 Quiz](../../00-META/assessment/phase5-quiz.md)** - Test your understanding (30 questions, 80% to pass)
 - **[Phase 5 Practice](../../00-META/assessment/phase5-practice.md)** - Hands-on exercises
 
 ---

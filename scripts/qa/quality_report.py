@@ -34,7 +34,7 @@ stand today?" without running each tool by hand.
                        every ```json fence parses as JSON (DB-01) and
                        every ```yaml fence parses as a YAML document
                        stream (DB-02); prose/formulas live in text fences
-    assessment_lint    assessment/QUIZ.md + PRACTICE.md coverage (AS-01..AS-20;
+    assessment_lint    assessment/QUIZ.md + PRACTICE.md coverage (AS-01..AS-21;
                        AS-09 graduated tick-566 to a hard ceil(N/4) letter
                        ceiling - no letter above a quarter of the bank's
                        answered questions - over the 33 module banks AND
@@ -155,7 +155,28 @@ stand today?" without running each tool by hand.
                        tick-635 - born census 7/7
                        keys write exact 1..N
                        (15/20/25/30/30/30/30,
-                       180 entries)
+                       180 entries);
+                       AS-21 the phase-README
+                       quiz-claim contract - each
+                       phase README's Assessment
+                       bullet "(NN questions, PP% to
+                       pass)" must exist exactly
+                       once, carry the linked quiz's
+                       true question count and state
+                       the corpus 80% convention
+                       (feed_parity_check totals the
+                       corpus aggregates,
+                       course_card_check walks the
+                       module READMEs - the claim
+                       was vouched by nothing; the
+                       quiz header is AS-18's, the
+                       passing line AS-14's, the MI
+                       rows AS-13's, a broken link
+                       linkcheck's); joined tick-636
+                       - census 7/7 carry the line,
+                       1/7 (phase 3) wrote the true
+                       count, 6 drained same tick -
+                       born-at-zero
     quiz_export        quiz bank parses into complete question records
                        (blank-stem clause since tick-615: a question
                        whose stem line lost its text parses as a

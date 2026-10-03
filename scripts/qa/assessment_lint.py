@@ -168,6 +168,26 @@ the same AS-04/AS-08/AS-09 standards in their own "### N." shape):
          quizzes. Joined tick-635 - born census 7/7 keys write
          exact 1..N (15/20/25/30/30/30/30, 180 entries),
          born-at-zero
+  AS-21  the phase README's learner-facing quiz claim - the
+         Assessment bullet "- **[Phase N Quiz](...)** - Test
+         your understanding (NN questions, PP% to pass)" must
+         exist exactly once per phase README, its question
+         count must equal the phase quiz's actual question
+         count (the same "### N." headings AS-03/AS-18 vouch
+         inside the quiz) and its passing pct must state the
+         corpus 80% convention (AS-14's on the quiz side). A
+         drifted count promised a different bank than the one
+         behind the link while every check stayed clean, and
+         the claim was vouched by nothing - feed_parity_check
+         totals the corpus aggregates and course_card_check
+         walks the module READMEs, so the seven phase READMEs
+         sat outside both. Partition: the quiz file's own
+         header claim is AS-18's, its passing line AS-14's,
+         the MI rows AS-13's, a broken link linkcheck's - the
+         claim line's values are AS-21's alone. Scoped to
+         docs/phases/phase*/README.md. Joined tick-636 - born
+         census 7/7 carry the line, 1/7 (phase 3) wrote the
+         true count, 6 drained same tick - born-at-zero
 
 Format-tolerant by design: richer variants (inline-answer quizzes,
 self-graded coding questions, 3-column answer keys) pass as long as
@@ -224,6 +244,13 @@ PASS_LINE = re.compile(r"\*\*Passing:\s*(\d+)/(\d+)\s*\((\d+)%\)\*\*")
 # AS-18: the phase quiz's learner-facing count claim, the header line
 # "**15 Questions | Passing Score: 80% | Time: 30 minutes**"
 HEADER_QUESTIONS = re.compile(r"\*\*(\d+)\s+Questions?\b")
+# AS-21: the phase README's learner-facing quiz claim, the
+# Assessment-section bullet
+# "- **[Phase N Quiz](...)** - Test your understanding
+# (NN questions, PP% to pass)".
+README_QUIZ_CLAIM = re.compile(
+    r"^- \*\*\[Phase \d+ Quiz\]\([^)]+assessment/phase\d+-quiz\.md\)\*\*"
+    r" - Test your understanding \((\d+) questions, (\d+)% to pass\)\s*$")
 # AS-15: option text with its letter, both quiz shapes (module banks
 # render "A) text", phase quizzes render lowercase "a) text").
 OPT_TEXT = re.compile(r"^\s*([A-Ea-e])\)\s+(.+?)\s*$")
@@ -723,6 +750,71 @@ class Linter:
         self.check_option_sanity(rel, answered)
         self.check_stem_echo(rel, answered)
 
+    def lint_phase_readme_claims(self, root: Path) -> int:
+        """AS-21: the phase README's learner-facing quiz claim.
+
+        Each phase README's Assessment section carries the bullet
+        "- **[Phase N Quiz](...)** - Test your understanding
+        (NN questions, PP% to pass)" - the surface a learner
+        reads before opening the quiz file itself. The bullet
+        must exist exactly once, its question count must equal
+        the phase quiz's actual question count (the same "### N."
+        headings AS-03/AS-18 vouch inside the quiz), and its
+        passing percentage must state the corpus 80% convention
+        (AS-14's convention on the quiz side). A drifted count
+        promised a different bank than the one behind the link
+        while every check stayed clean, and the claim was
+        vouched by nothing - feed_parity_check totals the corpus
+        aggregates and course_card_check walks the module
+        READMEs, so the seven phase READMEs sat outside both.
+        Partition (the tick-631 shape): the quiz file's own
+        header claim is AS-18's, its passing line is AS-14's,
+        the MI phase-table rows are AS-13's, and a broken link
+        is linkcheck's - the claim line's VALUES are AS-21's
+        alone. Scoped to docs/phases/phase*/README.md. Born
+        tick-636: census 7/7 carry the line, 1/7 (phase 3) wrote
+        the true count, 6 drained same tick - born-at-zero.
+        """
+        n = 0
+        for d in sorted((root / "docs" / "phases").glob("phase*")):
+            if not d.is_dir():
+                continue
+            readme = d / "README.md"
+            if not readme.is_file():
+                continue
+            n += 1
+            rel = readme.relative_to(root).as_posix()
+            mdir = re.match(r"^phase(\d+)-", d.name)
+            quiz = (root / "docs" / "00-META" / "assessment"
+                    / ("phase%s-quiz.md" % mdir.group(1)))
+            lines = readme.read_text(encoding="utf-8").split("\n")
+            hits = []
+            for l, f in fence_aware(lines):
+                if f:
+                    continue
+                m = README_QUIZ_CLAIM.match(l)
+                if m:
+                    hits.append(m)
+            if len(hits) != 1:
+                self.report(rel, "AS-21",
+                            "%d quiz claim lines (expected 1)" % len(hits))
+                continue
+            if not quiz.is_file():
+                continue  # broken links are linkcheck's lane
+            qlines = quiz.read_text(encoding="utf-8").split("\n")
+            actual = sum(1 for l, f in fence_aware(qlines)
+                         if not f and PHASE_Q.match(l))
+            count, pct = (int(g) for g in hits[0].groups())
+            if count != actual:
+                self.report(rel, "AS-21",
+                            "claims %d questions, %s carries %d"
+                            % (count, quiz.name, actual))
+            if pct != 80:
+                self.report(rel, "AS-21",
+                            "claims %d%% to pass != the 80%% convention"
+                            % pct)
+        return n
+
     def lint_phase_practice(self, root: Path, pp: Path) -> None:
         """AS-19: phase-practice "Exercise N" numbering runs 1..K.
 
@@ -905,12 +997,14 @@ def main() -> int:
                              .glob("phase*-practice.md"))
     for pp in phase_practices:
         linter.lint_phase_practice(args.root, pp)
+    n_readmes = linter.lint_phase_readme_claims(args.root)
     n_claims = linter.lint_index_tables(args.root)
 
     print("assessment_lint: %d findings across %d module assessments, "
-          "%d phase quizzes and %d MI phase-table claims"
+          "%d phase quizzes, %d phase-README claims and "
+          "%d MI phase-table claims"
           % (len(linter.findings), len(mods), len(phase_quizzes),
-             n_claims))
+             n_readmes, n_claims))
     return 1 if linter.findings else 0
 
 

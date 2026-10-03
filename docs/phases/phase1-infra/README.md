@@ -682,7 +682,7 @@ global:
 Validate your knowledge with:
 
 - **[Phase 1 Checkpoint](./CHECKPOINT.md)** - Module-by-module phase-exit review
-- **[Phase 1 Quiz](../../00-META/assessment/phase1-quiz.md)** - Test your understanding (25 questions, 80% to pass)
+- **[Phase 1 Quiz](../../00-META/assessment/phase1-quiz.md)** - Test your understanding (15 questions, 80% to pass)
 - **[Phase 1 Practice](../../00-META/assessment/phase1-practice.md)** - Hands-on infrastructure exercises
 
 ---
