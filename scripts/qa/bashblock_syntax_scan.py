@@ -15,6 +15,14 @@ Non-shell content (keyboard shortcuts, benefit bullets, debugger sessions,
 Prometheus queries, config file listings) lives in an honest fence label:
 ```text, ```promql, ```yaml, etc.
 
+Fence-aware since tick-679: the parser tracks CommonMark fence length -
+the opener's marker run is captured (f_char, f_len), a closer must repeat
+the opener's character in a run at least as long, and a different fence
+character never closes. A marker line that is not a valid closer is fence
+CONTENT and stays in the block body, so inner 3-backtick examples inside
+4-backtick outer template blocks are never checked as real shell (aligned
+with codeblock_syntax_scan's tick-678 fix).
+
 Implementation: dumps each bash fence to a temp file, runs one `bash -n`
 pass over all of them in a single bash invocation (requires bash on PATH;
 on Windows this means Git Bash), then maps failures back to document
@@ -34,7 +42,7 @@ from pathlib import Path
 
 sys.stdout.reconfigure(encoding="utf-8", errors="backslashreplace")
 
-FENCE = re.compile(r"^\s*(```|~~~)\s*([A-Za-z0-9_+-]*)\s*$")
+FENCE = re.compile(r"^\s*(`{3,}|~{3,})\s*([A-Za-z0-9_+-]*)\s*$")
 
 
 def main():
@@ -53,30 +61,43 @@ def main():
             rel = path.relative_to(docs).as_posix()
             lines = path.read_text(encoding="utf-8").split("\n")
             in_fence = False
+            f_char = ""
+            f_len = 0
             lang = ""
             start = 0
             body = []
             for i, raw in enumerate(lines):
                 m = FENCE.match(raw)
-                if m:
-                    if in_fence:
-                        if lang == "bash":
-                            src = textwrap.dedent("\n".join(body))
-                            if src.strip():
-                                blocks += 1
-                                name = "%05d.sh" % blocks
-                                (workdir / name).write_text(
-                                    src, encoding="utf-8", newline="\n")
-                                index.append((name, rel, start + 1))
-                        in_fence = False
-                        body = []
-                    else:
-                        in_fence = True
-                        lang = m.group(2).lower()
-                        start = i + 1
-                        body = []
+                if m and not in_fence:
+                    run = m.group(1)
+                    in_fence = True
+                    f_char, f_len = run[0], len(run)
+                    lang = m.group(2).lower()
+                    start = i + 1
+                    body = []
                     continue
                 if in_fence:
+                    if m:
+                        run = m.group(1)
+                        ch, n = run[0], len(run)
+                        if ch == f_char and n >= f_len:
+                            # CommonMark: only a same-character run at
+                            # least as long closes the fence
+                            if lang == "bash":
+                                src = textwrap.dedent("\n".join(body))
+                                if src.strip():
+                                    blocks += 1
+                                    name = "%05d.sh" % blocks
+                                    (workdir / name).write_text(
+                                        src, encoding="utf-8", newline="\n")
+                                    index.append((name, rel, start + 1))
+                            in_fence = False
+                            body = []
+                            continue
+                        # a marker line that is not a valid closer is
+                        # fence CONTENT (an inner 3-run inside a 4-outer)
+                        body.append(raw)
+                        continue
                     body.append(raw)
 
         if not index:

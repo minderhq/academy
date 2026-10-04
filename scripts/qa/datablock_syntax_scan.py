@@ -22,6 +22,14 @@ column-0 comment inside a ConfigMap's ``|`` block) fails.
 YAML parsing needs PyYAML (``import yaml``); the gate exits 2 with a clear
 message if it is unavailable rather than passing silently.
 
+Fence-aware since tick-679: the parser tracks CommonMark fence length -
+the opener's marker run is captured (f_char, f_len), a closer must repeat
+the opener's character in a run at least as long, and a different fence
+character never closes.  A marker line that is not a valid closer is
+fence CONTENT and stays in the block body, so inner 3-backtick examples
+inside 4-backtick outer template blocks are never parsed as real data
+(aligned with codeblock_syntax_scan's tick-678 fix).
+
 Output
 ------
   datablock_syntax_scan: N findings across docs/ (M json + K yaml blocks checked)
@@ -48,7 +56,7 @@ import re
 import sys
 from pathlib import Path
 
-FENCE = re.compile(r"^\s*(```|~~~)\s*([A-Za-z0-9_+-]*)\s*$")
+FENCE = re.compile(r"^\s*(`{3,}|~{3,})\s*([A-Za-z0-9_+-]*)\s*$")
 
 try:
     import yaml
@@ -77,42 +85,56 @@ def main() -> int:
         rel = path.relative_to(docs_root).as_posix()
         lines = path.read_text(encoding="utf-8").split("\n")
         in_fence = False
+        f_char = ""
+        f_len = 0
         lang = ""
         start = 0
         body: list[str] = []
         for i, raw in enumerate(lines):
             m = FENCE.match(raw)
-            if m:
-                if in_fence:
-                    src = "\n".join(body)
-                    if lang == "json" and src.strip():
-                        n_json += 1
-                        try:
-                            json.loads(src)
-                        except ValueError as e:
-                            findings.append(
-                                "%s:%d: DB-01 json fence does not parse: %s"
-                                % (rel, start + 1, str(e).split("\n")[0]))
-                    elif lang == "yaml" and src.strip():
-                        n_yaml += 1
-                        try:
-                            list(yaml.safe_load_all(src))
-                        except yaml.YAMLError as e:
-                            detail = " / ".join(part.strip() for part
-                                                in str(e).split("\n")[:3])
-                            findings.append(
-                                "%s:%d: DB-02 yaml fence does not parse: %s"
-                                % (rel, start + 1, detail))
-                    in_fence = False
-                    lang = ""
-                    body = []
-                else:
-                    in_fence = True
-                    lang = m.group(2).lower()
-                    start = i + 1
-                    body = []
+            if m and not in_fence:
+                run = m.group(1)
+                in_fence = True
+                f_char, f_len = run[0], len(run)
+                lang = m.group(2).lower()
+                start = i + 1
+                body = []
                 continue
             if in_fence:
+                if m:
+                    run = m.group(1)
+                    ch, n = run[0], len(run)
+                    if ch == f_char and n >= f_len:
+                        # CommonMark: only a same-character run at
+                        # least as long closes the fence
+                        src = "\n".join(body)
+                        if lang == "json" and src.strip():
+                            n_json += 1
+                            try:
+                                json.loads(src)
+                            except ValueError as e:
+                                findings.append(
+                                    "%s:%d: DB-01 json fence does not parse: %s"
+                                    % (rel, start + 1, str(e).split("\n")[0]))
+                        elif lang == "yaml" and src.strip():
+                            n_yaml += 1
+                            try:
+                                list(yaml.safe_load_all(src))
+                            except yaml.YAMLError as e:
+                                detail = " / ".join(
+                                    part.strip() for part
+                                    in str(e).split("\n")[:3])
+                                findings.append(
+                                    "%s:%d: DB-02 yaml fence does not parse: %s"
+                                    % (rel, start + 1, detail))
+                        in_fence = False
+                        lang = ""
+                        body = []
+                        continue
+                    # a marker line that is not a valid closer is
+                    # fence CONTENT (an inner 3-run inside a 4-outer)
+                    body.append(raw)
+                    continue
                 body.append(raw)
 
     print("datablock_syntax_scan: %d findings across docs/ "

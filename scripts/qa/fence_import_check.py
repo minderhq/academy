@@ -9,10 +9,13 @@ ModuleNotFoundError, i.e. the lesson teaches code that cannot run.
 IC-01  import does not resolve (module missing or name absent)
 
 Design, inherited from the gates this generalizes:
-- the fence universe is codeblock_syntax_scan's exactly (exact ```
-  / ~~~ markers, python/py/python3 labels, textwrap.dedent before
-  parsing), so the two gates always see the same blocks - and CB-01's
-  baseline-0 parse guarantee means ast.parse never fails here
+- the fence universe is codeblock_syntax_scan's exactly (CommonMark
+  fence-length parsing since tick-679: the opener's marker run captured,
+  a closer repeats the opener's character at equal-or-longer length,
+  non-closer marker lines are content; python/py/python3 labels,
+  textwrap.dedent before parsing), so the two gates always see the same
+  blocks - and CB-01's baseline-0 parse guarantee means ast.parse never
+  fails here
 - fences are parsed with ast, so multi-line paren imports, semicolon
   one-liners and `as` aliases all resolve - the blind spots
   langchain_census documents away are simply gone here
@@ -49,7 +52,7 @@ import sys
 import textwrap
 from pathlib import Path
 
-FENCE = re.compile(r"^\s*(```|~~~)\s*([A-Za-z0-9_+-]*)\s*$")
+FENCE = re.compile(r"^\s*(`{3,}|~{3,})\s*([A-Za-z0-9_+-]*)\s*$")
 PYTHON_LANGS = ("python", "py", "python3")
 
 for _pkg in ("torch", "pydantic"):
@@ -136,76 +139,91 @@ def scan_file(
     rel = path.relative_to(root).as_posix()
     lines = path.read_text(encoding="utf-8").split("\n")
     in_fence = False
+    f_char = ""
+    f_len = 0
     lang = ""
     start = 0
     body: list[str] = []
     for i, raw in enumerate(lines):
         m = FENCE.match(raw)
-        if m:
-            if in_fence:
-                if lang in PYTHON_LANGS:
-                    stats[1] += 1
-                    src = textwrap.dedent("\n".join(body))
-                    if src.strip():
-                        try:
-                            tree = ast.parse(src)
-                        except SyntaxError:
-                            continue  # CB-01 owns fence syntax
-                        for node in ast.walk(tree):
-                            if isinstance(node, ast.Import):
-                                for alias in node.names:
-                                    stats[0] += 1
-                                    verdict = resolve_module(alias.name)
-                                    if verdict != "OK":
-                                        findings.append((alias.name,
-                                            f"{rel}:{start + node.lineno + 1}: "
-                                            f"IC-01 import does not resolve "
-                                            f"[{verdict}] - import {alias.name}"))
-                            elif isinstance(node, ast.ImportFrom):
-                                if node.level > 0 or node.module is None:
-                                    stats[3] += 1  # relative: no context
-                                    continue
-                                stats[0] += 1
-                                verdict = resolve_module(node.module)
-                                if verdict != "OK":
-                                    findings.append((node.module,
-                                        f"{rel}:{start + node.lineno + 1}: "
-                                        f"IC-01 import does not resolve "
-                                        f"[{verdict}] - from {node.module} "
-                                        f"import ..."))
-                                else:
-                                    module = importlib.import_module(node.module)
-                                    for alias in node.names:
-                                        if alias.name == "*":
-                                            continue
-                                        if hasattr(module, alias.name):
-                                            continue
-                                        # implicit submodule import
-                                        # (from os import path): the
-                                        # name may be a submodule the
-                                        # bare `import module` has not
-                                        # loaded yet - real Python
-                                        # resolves it, so must the gate
-                                        sub = f"{node.module}.{alias.name}"
-                                        if resolve_module(sub) == "OK":
-                                            continue
-                                        findings.append((node.module,
-                                            f"{rel}:{start + node.lineno + 1}: "
-                                            f"IC-01 name absent from module "
-                                            f"[AttributeError: {node.module} "
-                                            f"has no attribute "
-                                            f"'{alias.name}'] - from "
-                                            f"{node.module} import "
-                                            f"{alias.name}"))
-                in_fence = False
-                body = []
-            else:
-                in_fence = True
-                lang = m.group(2).lower()
-                start = i
-                body = []
+        if m and not in_fence:
+            run = m.group(1)
+            in_fence = True
+            f_char, f_len = run[0], len(run)
+            lang = m.group(2).lower()
+            start = i
+            body = []
             continue
         if in_fence:
+            if m:
+                run = m.group(1)
+                ch, n = run[0], len(run)
+                if ch == f_char and n >= f_len:
+                    # CommonMark: only a same-character run at least
+                    # as long closes the fence
+                    if lang in PYTHON_LANGS:
+                        stats[1] += 1
+                        src = textwrap.dedent("\n".join(body))
+                        if src.strip():
+                            try:
+                                tree = ast.parse(src)
+                            except SyntaxError:
+                                in_fence = False
+                                body = []
+                                continue  # CB-01 owns fence syntax
+                            for node in ast.walk(tree):
+                                if isinstance(node, ast.Import):
+                                    for alias in node.names:
+                                        stats[0] += 1
+                                        verdict = resolve_module(alias.name)
+                                        if verdict != "OK":
+                                            findings.append((alias.name,
+                                                f"{rel}:{start + node.lineno + 1}: "
+                                                f"IC-01 import does not resolve "
+                                                f"[{verdict}] - import {alias.name}"))
+                                elif isinstance(node, ast.ImportFrom):
+                                    if node.level > 0 or node.module is None:
+                                        stats[3] += 1  # relative: no context
+                                        continue
+                                    stats[0] += 1
+                                    verdict = resolve_module(node.module)
+                                    if verdict != "OK":
+                                        findings.append((node.module,
+                                            f"{rel}:{start + node.lineno + 1}: "
+                                            f"IC-01 import does not resolve "
+                                            f"[{verdict}] - from {node.module} "
+                                            f"import ..."))
+                                    else:
+                                        module = importlib.import_module(node.module)
+                                        for alias in node.names:
+                                            if alias.name == "*":
+                                                continue
+                                            if hasattr(module, alias.name):
+                                                continue
+                                            # implicit submodule import
+                                            # (from os import path): the
+                                            # name may be a submodule the
+                                            # bare `import module` has not
+                                            # loaded yet - real Python
+                                            # resolves it, so must the gate
+                                            sub = f"{node.module}.{alias.name}"
+                                            if resolve_module(sub) == "OK":
+                                                continue
+                                            findings.append((node.module,
+                                                f"{rel}:{start + node.lineno + 1}: "
+                                                f"IC-01 name absent from module "
+                                                f"[AttributeError: {node.module} "
+                                                f"has no attribute "
+                                                f"'{alias.name}'] - from "
+                                                f"{node.module} import "
+                                                f"{alias.name}"))
+                    in_fence = False
+                    body = []
+                    continue
+                # a marker line that is not a valid closer is fence
+                # CONTENT (an inner 3-run inside a 4-outer)
+                body.append(raw)
+                continue
             body.append(raw)
 
 
