@@ -460,6 +460,33 @@ stand today?" without running each tool by hand.
                        are out by construction, born tick-652,
                        drained same tick: 42 sites across 15
                        files)
+    sql_interp_scan
+                       SQL value interpolation into execution
+                       calls in python fences (SQ-01: an f-string
+                       carrying SQL text passed to execute/
+                       executemany/executescript/read_sql - the
+                       interpolated value is merged into the query
+                       text client-side, before the driver ever
+                       sees it, so no placeholder can bind it: a
+                       value containing a quote closes the literal
+                       and the rest executes as SQL, direct and
+                       via a query variable both fire; SQ-02: the
+                       same client-side merge through percent-
+                       format, str.format() and concatenation
+                       whose fragments carry no %s/? placeholder;
+                       the corpus's SQL discipline is 36/36
+                       execution calls parameterized - Constant
+                       query text, %s/? placeholders plus a
+                       params second argument, and the
+                       placeholder-carrying builder query +=
+                       " AND x <= %s" with params.append, the
+                       7402-Agent-Memory idiom; constant queries,
+                       the params forms, the builder chain, non-
+                       SQL execute calls, string mentions and
+                       danger-marked fences are out by
+                       construction, born tick-653, zero-drain:
+                       the class froze at the rule the moment it
+                       was named, the EC-03/fence_lang shape)
     action_version_scan
                        uses: pins in docs must match the canonical
                        action registry (AV-01: current majors -
@@ -3039,6 +3066,7 @@ GATES = [
     ("mutable_default_scan.py", "mutable_default_scan", True),
     ("open_encoding_scan.py", "open_encoding_scan", True),
     ("http_timeout_scan.py", "http_timeout_scan", True),
+    ("sql_interp_scan.py", "sql_interp_scan", True),
     ("action_version_scan.py", "action_version_scan", True),
     ("unicode_ws_hygiene_scan.py", "unicode_ws_hygiene_scan", True),
     ("objectives_lint.py", "objectives_lint", False),
