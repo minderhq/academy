@@ -45,7 +45,7 @@ import re
 import sys
 from pathlib import Path
 
-FENCE = re.compile(r"^(```|~~~)")
+FENCE = re.compile(r"^\s*(`{3,}|~{3,})\s*([A-Za-z0-9_+-]*)\s*$")
 LAB = re.compile(r"^((?:-\s+)?\*\*)([^*]+?)(:\*\*)")
 TAB_SEP = re.compile(r"^\|[\s:|-]+\|?\s*$")
 EMO = r"[\U0001F000-\U0001FAFF\u2600-\u27BF\uFE0F\s]+"
@@ -73,11 +73,18 @@ def main() -> int:
     for f in sorted((args.root / "docs").rglob("*.md")):
         rel = os.path.relpath(f, args.root).replace("\\", "/")
         lines = f.read_text(encoding="utf-8", errors="replace").split("\n")
-        fence = False
+        fence, f_char, f_len = False, "", 0
         in_tab = False
         for ln in lines:
-            if FENCE.match(ln.strip()):
-                fence = not fence
+            m = FENCE.match(ln.strip())
+            if m:
+                ch, n = m.group(1)[0], len(m.group(1))
+                if fence:
+                    if ch == f_char and n >= f_len:
+                        fence = False
+                else:
+                    fence = True
+                    f_char, f_len = ch, n
                 continue
             if fence:
                 continue

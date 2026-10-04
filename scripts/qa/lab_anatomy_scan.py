@@ -57,7 +57,7 @@ DUR = re.compile(r"\((\d+)\s*(?:-\s*(\d+)\s*)?(min|minutes?)\)", re.IGNORECASE)
 EST_TIME = re.compile(r"^Estimated Time:\s*(\d+)\s*hour", re.MULTILINE)
 CHECKBOX = re.compile(r"^\s*-\s+\[[ x]\]")
 SKIP_HEADER = re.compile(r"challenge|optional", re.IGNORECASE)
-FENCE = re.compile(r"^(```|~~~)")
+FENCE = re.compile(r"^\s*(`{3,}|~{3,})\s*([A-Za-z0-9_+-]*)\s*$")
 EMOJI = re.compile(r"[\U0001F000-\U0001FAFF\u2600-\u27BF\uFE0F\u200d]")
 
 
@@ -143,10 +143,17 @@ def main() -> int:
 
         # LA-06: no emoji-led H1-H4 header (fence-aware; bash "# "
         # comments inside code fences are not headers)
-        fence = False
+        fence, f_char, f_len = False, "", 0
         for ln in text.split("\n"):
-            if FENCE.match(ln.strip()):
-                fence = not fence
+            m = FENCE.match(ln.strip())
+            if m:
+                ch, n = m.group(1)[0], len(m.group(1))
+                if fence:
+                    if ch == f_char and n >= f_len:
+                        fence = False
+                else:
+                    fence = True
+                    f_char, f_len = ch, n
                 continue
             if fence:
                 continue

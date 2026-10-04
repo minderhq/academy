@@ -47,7 +47,7 @@ from collections import Counter, defaultdict
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
-FENCE = re.compile(r"^ {0,3}(```|~~~)")  # CommonMark: <=3 leading spaces
+FENCE = re.compile(r"^\s*(`{3,}|~{3,})\s*([A-Za-z0-9_+-]*)\s*$")
 URL = re.compile(r"https?://[^\s\)\]\`>'\"<]+")
 FM_CLOSE = re.compile(r"^---\s*$")
 NOT_CHECKABLE = re.compile(
@@ -83,10 +83,17 @@ def collect(root: Path) -> dict[str, tuple[str, int]]:
         except (UnicodeDecodeError, OSError):
             continue
         rel = path.relative_to(root).as_posix()
-        infence = False
+        infence, f_char, f_len = False, "", 0
         for i, ln in enumerate(body_lines(text), 1):
-            if FENCE.match(ln):
-                infence = not infence
+            m = FENCE.match(ln)
+            if m:
+                ch, n = m.group(1)[0], len(m.group(1))
+                if infence:
+                    if ch == f_char and n >= f_len:
+                        infence = False
+                else:
+                    infence = True
+                    f_char, f_len = ch, n
                 continue
             if infence:
                 continue

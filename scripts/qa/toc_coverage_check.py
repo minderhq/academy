@@ -48,7 +48,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from anchor_check import gh_slug  # corpus-trusted slugger
 
-FENCE = re.compile(r"^\s*(```|~~~)")
+FENCE = re.compile(r"^\s*(`{3,}|~{3,})\s*([A-Za-z0-9_+-]*)\s*$")
 FM = re.compile(r"^---\s*$")
 HEADING = re.compile(r"^## (.+?)\s*$")
 TOC_HEAD = re.compile(r"^## Table of Contents\s*$", re.I)
@@ -66,7 +66,7 @@ def norm(text: str) -> str:
 
 def collect(text: str):
     """Yield (is_toc_head, is_h2, line, inside_fence) line facts."""
-    in_f = False
+    in_f, f_char, f_len = False, "", 0
     in_fm = text.startswith("---")
     fm_n = 0
     facts = []
@@ -77,8 +77,15 @@ def collect(text: str):
                 in_fm = fm_n != 2
             facts.append((False, False, "", in_f))
             continue
-        if FENCE.match(ln):
-            in_f = not in_f
+        m = FENCE.match(ln)
+        if m:
+            ch, n = m.group(1)[0], len(m.group(1))
+            if in_f:
+                if ch == f_char and n >= f_len:
+                    in_f = False
+            else:
+                in_f = True
+                f_char, f_len = ch, n
             facts.append((False, False, "", True))
             continue
         facts.append((bool(TOC_HEAD.match(ln)), not in_f and bool(

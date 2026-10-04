@@ -36,7 +36,7 @@ import sys
 from pathlib import Path
 
 FM_LU = re.compile(r"^Last Updated:\s*(\d{4}-\d{2}-\d{2})\s*$")
-FENCE = re.compile(r"^ {0,3}(```|~~~)")  # CommonMark: <=3 leading spaces
+FENCE = re.compile(r"^\s*(`{3,}|~{3,})\s*([A-Za-z0-9_+-]*)\s*$")
 BADGE = re.compile(
     r"^\s*(?:\*\*|__)?Last [Uu]pdated(?:\*\*|__)?\s*:?\s*\**\s*"
     r"(\d{4}-\d{2}-\d{2})\s*$")
@@ -80,10 +80,17 @@ def main() -> int:
         if fm is None:
             continue  # LU-01/02 territory, not this gate's
         n_docs += 1
-        infence = False
+        infence, f_char, f_len = False, "", 0
         for ln in body_lines(text):
-            if FENCE.match(ln):
-                infence = not infence
+            m = FENCE.match(ln)
+            if m:
+                ch, n = m.group(1)[0], len(m.group(1))
+                if infence:
+                    if ch == f_char and n >= f_len:
+                        infence = False
+                else:
+                    infence = True
+                    f_char, f_len = ch, n
                 continue
             if infence:
                 continue

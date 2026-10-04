@@ -43,7 +43,7 @@ import re
 import sys
 from pathlib import Path
 
-FENCE = re.compile(r"^ {0,3}(```|~~~)")
+FENCE = re.compile(r"^\s*(`{3,}|~{3,})\s*([A-Za-z0-9_+-]*)\s*$")
 FM_CLOSE = re.compile(r"^---\s*$")
 INTRA = re.compile(r"\[([^\]]+)\]\(#[^)\s]*\)")
 # Same class as heading_scan's HS-04/HS-05: U+2100-2BFF symbols,
@@ -82,10 +82,17 @@ def main() -> int:
             continue
         rel = path.relative_to(args.root).as_posix()
         n_docs += 1
-        infence = False
+        infence, f_char, f_len = False, "", 0
         for ln in body_lines(text):
-            if FENCE.match(ln):
-                infence = not infence
+            m = FENCE.match(ln)
+            if m:
+                ch, n = m.group(1)[0], len(m.group(1))
+                if infence:
+                    if ch == f_char and n >= f_len:
+                        infence = False
+                else:
+                    infence = True
+                    f_char, f_len = ch, n
                 continue
             if infence:
                 continue

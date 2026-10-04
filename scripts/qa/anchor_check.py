@@ -36,7 +36,7 @@ import re
 import sys
 from collections import Counter
 
-FENCE = re.compile(r"^\s*(```|~~~)")
+FENCE = re.compile(r"^\s*(`{3,}|~{3,})\s*([A-Za-z0-9_+-]*)\s*$")
 HEADING = re.compile(r"^(#{1,6})\s+(.*?)\s*#*\s*$")
 LINK = re.compile(r"!?\[[^\]]*\]\(([^)\s]+)(?:\s+\"[^\"]*\")?\)")
 FM = re.compile(r"^---\s*$")
@@ -72,14 +72,22 @@ def headings_with_slugs(text: str):
     """Yield heading texts outside frontmatter and fences."""
     heads = []
     in_f, in_fm, fm_n = False, text.startswith("---"), 0
+    f_char, f_len = "", 0
     for ln in text.splitlines():
         if in_fm:
             if FM.match(ln):
                 fm_n += 1
                 in_fm = fm_n != 2
             continue
-        if FENCE.match(ln):
-            in_f = not in_f
+        m = FENCE.match(ln)
+        if m:
+            ch, n = m.group(1)[0], len(m.group(1))
+            if in_f:
+                if ch == f_char and n >= f_len:
+                    in_f = False
+            else:
+                in_f = True
+                f_char, f_len = ch, n
             continue
         if in_f:
             continue
@@ -136,7 +144,7 @@ def main() -> int:
         except (OSError, UnicodeDecodeError) as e:
             print(esc("READ FAIL %s: %s" % (rel, e)))
             continue
-        in_f = False
+        in_f, f_char, f_len = False, "", 0
         in_fm = bool(lines) and lines[0].strip() == "---"
         fm_n = 0
         for i, ln in enumerate(lines, 1):
@@ -145,8 +153,15 @@ def main() -> int:
                     fm_n += 1
                     in_fm = fm_n != 2
                 continue
-            if FENCE.match(ln.strip()):
-                in_f = not in_f
+            m = FENCE.match(ln.strip())
+            if m:
+                ch, n = m.group(1)[0], len(m.group(1))
+                if in_f:
+                    if ch == f_char and n >= f_len:
+                        in_f = False
+                else:
+                    in_f = True
+                    f_char, f_len = ch, n
                 continue
             if in_f:
                 continue

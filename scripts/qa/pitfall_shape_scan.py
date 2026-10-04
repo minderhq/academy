@@ -50,7 +50,7 @@ import re
 import sys
 from pathlib import Path
 
-FENCE = re.compile(r"^(```|~~~)")
+FENCE = re.compile(r"^\s*(`{3,}|~{3,})\s*([A-Za-z0-9_+-]*)\s*$")
 SUB = re.compile(r"^Pitfall\s+(\d+):\s*(\S.*)$")
 ITEM = re.compile(r"^\s*\d+\.\s+\*\*[^*]+:\*\*")
 TAB_HEAD = re.compile(r"^\|\s*Pitfall\b", re.IGNORECASE)
@@ -75,7 +75,7 @@ def analyze(
     bad_num = []
     n_sub = 0
     in_tab = False
-    fence = False
+    fence, f_char, f_len = False, "", 0
     run: list[int] = []
 
     def end_run() -> None:
@@ -85,8 +85,15 @@ def analyze(
         run.clear()
 
     for ln in lines:
-        if FENCE.match(ln.strip()):
-            fence = not fence
+        m = FENCE.match(ln.strip())
+        if m:
+            ch, n = m.group(1)[0], len(m.group(1))
+            if fence:
+                if ch == f_char and n >= f_len:
+                    fence = False
+            else:
+                fence = True
+                f_char, f_len = ch, n
             continue
         if fence:
             continue
@@ -141,10 +148,17 @@ def main() -> int:
             n_secs += 1
             lvl = len(m.group(1))
             body: list[str] = []
-            fence = False
+            fence, f_char, f_len = False, "", 0
             for l2 in lines[i + 1:]:
-                if FENCE.match(l2.strip()):
-                    fence = not fence
+                m = FENCE.match(l2.strip())
+                if m:
+                    ch, n = m.group(1)[0], len(m.group(1))
+                    if fence:
+                        if ch == f_char and n >= f_len:
+                            fence = False
+                    else:
+                        fence = True
+                        f_char, f_len = ch, n
                     continue
                 if fence:
                     continue

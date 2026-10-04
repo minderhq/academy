@@ -60,7 +60,7 @@ DIRCODE = re.compile(r"(\d{4})")
 PHASE = re.compile(r"^phase(\d+)-")
 EXP_FILE = re.compile(r"EXP_(\d{4})")
 INLINE_CODE = re.compile(r"`[^`]+`")
-FENCE = re.compile(r"^\s*(```|~~~)")
+FENCE = re.compile(r"^\s*(`{3,}|~{3,})\s*([A-Za-z0-9_+-]*)\s*$")
 FM_CLOSE = re.compile(r"^---\s*$")
 
 
@@ -108,10 +108,17 @@ def main() -> int:
         except (UnicodeDecodeError, OSError):
             continue
         rel = path.relative_to(root).as_posix()
-        infence = False
+        infence, f_char, f_len = False, "", 0
         for i, ln in enumerate(body_lines(text), 1):
-            if FENCE.match(ln.strip()):
-                infence = not infence
+            m = FENCE.match(ln.strip())
+            if m:
+                ch, n = m.group(1)[0], len(m.group(1))
+                if infence:
+                    if ch == f_char and n >= f_len:
+                        infence = False
+                else:
+                    infence = True
+                    f_char, f_len = ch, n
                 continue
             if infence:
                 continue

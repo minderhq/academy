@@ -33,7 +33,7 @@ import re
 import sys
 from pathlib import Path
 
-FENCE = re.compile(r"^ {0,3}(```|~~~)")  # CommonMark: <=3 leading spaces
+FENCE = re.compile(r"^\s*(`{3,}|~{3,})\s*([A-Za-z0-9_+-]*)\s*$")
 PIPE_ROW = re.compile(r"^\|.*\|\s*$")
 SEP_ROW = re.compile(r"^\|[\s:\-|]+\|\s*$")
 UNESCAPED_PIPE = re.compile(r"(?<!\\)\|")
@@ -72,7 +72,7 @@ def main() -> int:
         except (UnicodeDecodeError, OSError):
             continue
         rel = path.relative_to(args.root).as_posix()
-        infence = False
+        infence, f_char, f_len = False, "", 0
         group: list[str] = []
         lines = body_lines(text)
 
@@ -98,9 +98,16 @@ def main() -> int:
             group.clear()
 
         for ln in lines:
-            if FENCE.match(ln):
+            m = FENCE.match(ln)
+            if m:
+                ch, n = m.group(1)[0], len(m.group(1))
+                if infence:
+                    if ch == f_char and n >= f_len:
+                        infence = False
+                else:
+                    infence = True
+                    f_char, f_len = ch, n
                 flush()
-                infence = not infence
                 continue
             if infence:
                 continue

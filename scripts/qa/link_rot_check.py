@@ -57,7 +57,7 @@ MD_LINK = re.compile(r"\[[^\]]*\]\(([^)\s]+)(?:\s+\"[^\"]*\")?\)")
 BARE_URL = re.compile(r"https?://[^\s<>()\[\]`\"']+")
 TRAILING_PUNCT = ".,;:!?"
 INLINE_CODE = re.compile(r"`[^`]+`")
-FENCE = re.compile(r"^\s*(```|~~~)")
+FENCE = re.compile(r"^\s*(`{3,}|~{3,})\s*([A-Za-z0-9_+-]*)\s*$")
 LOCAL_URL = re.compile(
     r"(localhost|127\.0\.0\.1|0\.0\.0\.0|example\.(?:com|org|net)|\.test[/:]|\.local[/:])",
     re.IGNORECASE,
@@ -86,12 +86,19 @@ def harvest(root):
     """url -> [rel:line] using linkcheck's exact extraction model."""
     refs = defaultdict(list)
     for src in md_files(root):
-        in_fence = False
+        in_fence, f_char, f_len = False, "", 0
         try:
             with open(src, encoding="utf-8") as f:
                 for i, line in enumerate(f, 1):
-                    if FENCE.match(line):
-                        in_fence = not in_fence
+                    m = FENCE.match(line)
+                    if m:
+                        ch, n = m.group(1)[0], len(m.group(1))
+                        if in_fence:
+                            if ch == f_char and n >= f_len:
+                                in_fence = False
+                        else:
+                            in_fence = True
+                            f_char, f_len = ch, n
                         continue
                     if in_fence:
                         continue

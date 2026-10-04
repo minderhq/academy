@@ -33,7 +33,7 @@ import re
 import sys
 from pathlib import Path
 
-FENCE = re.compile(r"^ {0,3}(```|~~~)")  # CommonMark: <=3 leading spaces
+FENCE = re.compile(r"^\s*(`{3,}|~{3,})\s*([A-Za-z0-9_+-]*)\s*$")
 HEADING = re.compile(r"^#{1,6}\s")
 LIST = re.compile(r"^\s*(?:[-*+]|\d+[.)])\s")
 TABLE = re.compile(r"^\s*\|")
@@ -73,7 +73,7 @@ def scan_file(path: Path, rel: str, findings: list[str]) -> None:
     lines = body_lines(text)
     block: list[str] = []
     start = 0
-    in_fence = False
+    in_fence, f_char, f_len = False, "", 0
 
     def flush(i: int) -> None:
         nonlocal block, start
@@ -84,9 +84,16 @@ def scan_file(path: Path, rel: str, findings: list[str]) -> None:
 
     for idx, ln in enumerate(lines):
         lineno = idx + 1
-        if FENCE.match(ln):
+        m = FENCE.match(ln)
+        if m:
+            ch, n = m.group(1)[0], len(m.group(1))
+            if in_fence:
+                if ch == f_char and n >= f_len:
+                    in_fence = False
+            else:
+                in_fence = True
+                f_char, f_len = ch, n
             flush(idx)
-            in_fence = not in_fence
             continue
         if in_fence:
             continue

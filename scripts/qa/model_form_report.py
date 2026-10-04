@@ -48,7 +48,7 @@ import re
 import sys
 from pathlib import Path
 
-FENCE = re.compile(r"^ {0,3}(```|~~~)")  # CommonMark: <=3 leading spaces
+FENCE = re.compile(r"^\s*(`{3,}|~{3,})\s*([A-Za-z0-9_+-]*)\s*$")
 FM_CLOSE = re.compile(r"^---\s*$")
 TABLE = re.compile(r"^\s*[|\u2502]")
 INLINE_CODE = re.compile(r"`{2,}[^`]*`{2,}|`[^`]*`")
@@ -89,10 +89,17 @@ def main() -> int:
         rel = os.path.relpath(path, args.root).replace("\\", "/")
         lines = body_lines(path.read_text(encoding="utf-8",
                                           errors="replace"))
-        in_fence = False
+        in_fence, f_char, f_len = False, "", 0
         for i, ln in enumerate(lines, 1):
-            if FENCE.match(ln):
-                in_fence = not in_fence
+            m = FENCE.match(ln)
+            if m:
+                ch, n = m.group(1)[0], len(m.group(1))
+                if in_fence:
+                    if ch == f_char and n >= f_len:
+                        in_fence = False
+                else:
+                    in_fence = True
+                    f_char, f_len = ch, n
                 continue
             if in_fence:
                 continue
