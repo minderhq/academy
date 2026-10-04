@@ -80,25 +80,28 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from fence_namecheck import ACCEPTED  # single source of truth for the UN census
 
-FENCE = re.compile(r"^\s*(```|~~~)\s*([A-Za-z0-9_+-]*)\s*$")
+FENCE = re.compile(r"^\s*(`{3,}|~{3,})\s*([A-Za-z0-9_+-]*)\s*$")
 PYTHON_LANGS = ("python", "py", "python3")
 FILE_TIMEOUT = 90  # seconds; first torch import alone can take 10-20s
 
 RUNNER = r'''
 import json, sys
 path = sys.argv[1]
-FENCE = r"^\s*(```|~~~)\s*([A-Za-z0-9_+-]*)\s*$"
+FENCE = r"^\s*(`{3,}|~{3,})\s*([A-Za-z0-9_+-]*)\s*$"
 import re
 lines = open(path, encoding="utf-8").read().split("\n")
 fences = []
 in_fence = False
+f_char = ""
+f_len = 0
 lang = ""
 start = 0
 body = []
 for i, raw in enumerate(lines):
     m = re.match(FENCE, raw)
     if m:
-        if in_fence:
+        ch, n = m.group(1)[0], len(m.group(1))
+        if in_fence and ch == f_char and n >= f_len:
             in_fence = False
             if lang in ("python", "py", "python3"):
                 import textwrap
@@ -106,12 +109,15 @@ for i, raw in enumerate(lines):
                 if src.strip():
                     fences.append((start + 1, src))
             body = []
-        else:
+            continue
+        if not in_fence:
             in_fence = True
+            f_char, f_len = ch, n
             lang = m.group(2).lower()
             start = i
             body = []
-        continue
+            continue
+        # inner marker of a longer outer: fence CONTENT, falls through
     if in_fence:
         body.append(raw)
 ns = {"__name__": "__main__"}
@@ -135,17 +141,22 @@ print("CENSUS_JSON:" + json.dumps(out))
 
 def has_python_fence(path: Path) -> bool:
     in_fence = False
+    f_char = ""
+    f_len = 0
     lang = ""
     for raw in path.read_text(encoding="utf-8", errors="replace").split("\n"):
         m = FENCE.match(raw)
         if m:
-            if in_fence:
+            ch, n = m.group(1)[0], len(m.group(1))
+            if in_fence and ch == f_char and n >= f_len:
                 if lang in PYTHON_LANGS:
                     return True
                 in_fence = False
-            else:
+            elif not in_fence:
                 in_fence = True
+                f_char, f_len = ch, n
                 lang = m.group(2).lower()
+            # inner marker of a longer outer: fence CONTENT - keep scanning
     return False
 
 
