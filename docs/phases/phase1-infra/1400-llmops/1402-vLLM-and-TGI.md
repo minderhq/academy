@@ -455,7 +455,7 @@ saturates (watch vllm:kv_cache_usage_perc).
 
 import requests
 
-metrics = requests.get("http://localhost:8000/metrics").text
+metrics = requests.get("http://localhost:8000/metrics", timeout=5).text
 
 # Key metrics (vLLM V1 engine):
 # vllm:num_requests_running     gauge — executing now

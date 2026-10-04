@@ -288,7 +288,7 @@ if __name__ == "__main__":
 
     # Load and process image
     url = "http://images.cocodataset.org/val2017/000000039769.jpg"
-    image = Image.open(requests.get(url, stream=True).raw)
+    image = Image.open(requests.get(url, stream=True, timeout=30).raw)
 
     inputs = processor(images=image, return_tensors="pt")
 
@@ -567,7 +567,7 @@ if __name__ == "__main__":
     # Demo 1: Zero-shot classification
     print("=== Zero-Shot Classification ===")
     url = "https://images.unsplash.com/photo-1474511320723-9a56873571b7"
-    image = Image.open(requests.get(url, stream=True).raw)
+    image = Image.open(requests.get(url, stream=True, timeout=30).raw)
 
     classes = ["cat", "dog", "bird", "car", "tree", "person", "beach"]
     results = clip.zero_shot_classification(image, classes)
@@ -672,7 +672,7 @@ if __name__ == "__main__":
 
     # Load image
     url = "https://images.unsplash.com/photo-1474511320723-9a56873571b7"
-    image = Image.open(requests.get(url, stream=True).raw)
+    image = Image.open(requests.get(url, stream=True, timeout=30).raw)
 
     # Ask questions
     questions = [
@@ -993,11 +993,11 @@ if __name__ == "__main__":
     # Show images
     print("=== Showing Images ===")
     url1 = "https://images.unsplash.com/photo-1474511320723-9a56873571b7"
-    image1 = Image.open(requests.get(url1, stream=True).raw)
+    image1 = Image.open(requests.get(url1, stream=True, timeout=30).raw)
     print(agent.see(image1, "cat"))
 
     url2 = "https://images.unsplash.com/photo-1583511655857-d19b40a7a54e"
-    image2 = Image.open(requests.get(url2, stream=True).raw)
+    image2 = Image.open(requests.get(url2, stream=True, timeout=30).raw)
     print(agent.see(image2, "dog"))
 
     # Ask questions

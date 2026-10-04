@@ -506,7 +506,7 @@ async def chat_with_history(session_id: str, request: ChatRequest):
         }
     }
 
-    response = requests.post(f"{OLLAMA_URL}/api/generate", json=ollama_request)
+    response = requests.post(f"{OLLAMA_URL}/api/generate", json=ollama_request, timeout=120)
     response.raise_for_status()
     data = response.json()
 

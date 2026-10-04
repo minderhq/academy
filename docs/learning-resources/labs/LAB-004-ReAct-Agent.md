@@ -634,7 +634,7 @@ Thought:"""
 
         response = requests.post(
             f"{LLM_URL}/api/generate",
-            json={"model": "mistral", "prompt": prompt, "stream": False}
+            json={"model": "mistral", "prompt": prompt, "stream": False}, timeout=120
         )
 
         return response.json().get("response", "").strip()
@@ -667,7 +667,7 @@ Response:"""
 
         response = requests.post(
             f"{LLM_URL}/api/generate",
-            json={"model": "mistral", "prompt": prompt, "stream": False}
+            json={"model": "mistral", "prompt": prompt, "stream": False}, timeout=120
         )
 
         result = response.json().get("response", "").strip()
@@ -714,7 +714,7 @@ Provide a clear, helpful answer:"""
 
         response = requests.post(
             f"{LLM_URL}/api/generate",
-            json={"model": "mistral", "prompt": prompt, "stream": False}
+            json={"model": "mistral", "prompt": prompt, "stream": False}, timeout=120
         )
 
         return response.json().get("response", "").strip()
@@ -907,7 +907,7 @@ def chat(message: str, session_id: str = "test"):
             "messages": [{"role": "user", "content": message}],
             "session_id": session_id,
             "max_steps": 5
-        }
+        }, timeout=120
     )
 
     return response.json()
@@ -1015,7 +1015,7 @@ Reflection:"""
 
         response = requests.post(
             f"{LLM_URL}/api/generate",
-            json={"model": "mistral", "prompt": prompt, "stream": False}
+            json={"model": "mistral", "prompt": prompt, "stream": False}, timeout=120
         )
 
         return response.json().get("response", "").strip()
@@ -1122,7 +1122,7 @@ Provide a helpful answer:"""
 
         response = requests.post(
             f"{LLM_URL}/api/generate",
-            json={"model": "mistral", "prompt": prompt, "stream": False}
+            json={"model": "mistral", "prompt": prompt, "stream": False}, timeout=120
         )
 
         return response.json().get("response", "").strip()
@@ -1167,7 +1167,7 @@ Respond with only the specialist name:"""
 
         response = requests.post(
             f"{LLM_URL}/api/generate",
-            json={"model": "mistral", "prompt": prompt, "stream": False}
+            json={"model": "mistral", "prompt": prompt, "stream": False}, timeout=120
         )
 
         specialist_name = response.json().get("response", "").strip().lower()

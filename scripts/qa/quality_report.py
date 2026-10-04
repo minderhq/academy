@@ -432,6 +432,34 @@ stand today?" without running each tool by hand.
                        danger-marked fences are out by
                        construction, born tick-651, drained same
                        tick: 31 sites across 16 files)
+    http_timeout_scan
+                       unbounded HTTP waits in python fences
+                       (RT-01: a requests get/post/put/delete/
+                       patch/head/options/request call without a
+                       timeout= kwarg - requests sets NO default
+                       timeout, the socket read blocks
+                       indefinitely, so one dead or slow peer
+                       hangs the caller forever: a monitor loop
+                       that stops monitoring, a web worker that
+                       never returns, a batch job stuck mid-
+                       flight; RT-02: the same call carrying
+                       verify=False - TLS certificate
+                       verification disabled, the MITM door
+                       opened, born-at-zero owned preemptively
+                       per the US-02/US-03 precedent; the corpus
+                       teaches timeout= in 30+ places - 5 status
+                       pings, 120 LLM inference, 30 general API
+                       - yet the same corpus signed 42 bare
+                       calls, in one case the vouched 5s form
+                       and the bare form of the very same
+                       endpoint 9 lines apart; timeout= with any
+                       value, httpx (5s default, client-level
+                       timeout at the single corpus site), the
+                       Session form, other-object .get/.post,
+                       string mentions and danger-marked fences
+                       are out by construction, born tick-652,
+                       drained same tick: 42 sites across 15
+                       files)
     action_version_scan
                        uses: pins in docs must match the canonical
                        action registry (AV-01: current majors -
@@ -3010,6 +3038,7 @@ GATES = [
     ("cypher_interp_scan.py", "cypher_interp_scan", True),
     ("mutable_default_scan.py", "mutable_default_scan", True),
     ("open_encoding_scan.py", "open_encoding_scan", True),
+    ("http_timeout_scan.py", "http_timeout_scan", True),
     ("action_version_scan.py", "action_version_scan", True),
     ("unicode_ws_hygiene_scan.py", "unicode_ws_hygiene_scan", True),
     ("objectives_lint.py", "objectives_lint", False),

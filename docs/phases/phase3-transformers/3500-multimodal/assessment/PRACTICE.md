@@ -30,7 +30,7 @@ processor = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32")
 # Prepare image and text
 # Example with a URL image
 url = "http://images.cocodataset.org/val2017/000000039769.jpg"
-image = Image.open(requests.get(url, stream=True).raw)
+image = Image.open(requests.get(url, stream=True, timeout=30).raw)
 
 texts = ["a cat", "a dog", "a bird", "a car", "two cats sleeping"]
 
@@ -92,7 +92,7 @@ model = ViTForImageClassification.from_pretrained("google/vit-base-patch16-224")
 
 # Load and process image
 url = "http://images.cocodataset.org/val2017/000000039769.jpg"
-image = Image.open(requests.get(url, stream=True).raw)
+image = Image.open(requests.get(url, stream=True, timeout=30).raw)
 
 inputs = processor(images=image, return_tensors="pt")
 
@@ -272,7 +272,7 @@ model = BlipForConditionalGeneration.from_pretrained("Salesforce/blip-image-capt
 
 # Load image
 url = "http://images.cocodataset.org/val2017/000000039769.jpg"
-image = Image.open(requests.get(url, stream=True).raw)
+image = Image.open(requests.get(url, stream=True, timeout=30).raw)
 
 # Conditional captioning (with prompt)
 inputs = processor(image, text="a photo of", return_tensors="pt")
@@ -320,7 +320,7 @@ model = ViltForQuestionAnswering.from_pretrained("dandelin/vilt-b32-finetuned-vq
 
 # Load image
 url = "http://images.cocodataset.org/val2017/000000039769.jpg"
-image = Image.open(requests.get(url, stream=True).raw)
+image = Image.open(requests.get(url, stream=True, timeout=30).raw)
 
 # Test questions
 questions = [

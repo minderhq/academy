@@ -25,7 +25,7 @@
    "size": 10540
   },
   "docs/00-META/ORGANIZATION-GUIDE.md": {
-   "mtime": 1791066627.6096544,
+   "mtime": 1791075069.3681734,
    "size": 19530,
    "bad": {}
   },
@@ -223,8 +223,8 @@
    "size": 12004
   },
   "docs/learning-resources/cheat-sheets/CHEAT-SHEET-002-Python-AI.md": {
-   "mtime": 1791066627.6136546,
-   "size": 12054,
+   "mtime": 1791082376.8242269,
+   "size": 12078,
    "bad": {
     "183": "TIMEOUT",
     "204": "TIMEOUT"
@@ -359,14 +359,14 @@
    "size": 10820
   },
   "docs/learning-resources/labs/LAB-001-Docker-LLM.md": {
+   "mtime": 1791082376.825228,
+   "size": 19995,
    "bad": {
     "108": "TIMEOUT"
    },
-   "mtime": 1790926026.463621,
    "notes": {
     "108": "slow-under-census-load: completes inside the budget on a quiet machine (tick-534 probe)"
-   },
-   "size": 19984
+   }
   },
   "docs/learning-resources/labs/LAB-002-RAG-Implementation.md": {
    "bad": {
@@ -389,7 +389,7 @@
    "size": 30557
   },
   "docs/learning-resources/labs/LAB-003-LoRA-FineTuning.md": {
-   "mtime": 1791066627.6186554,
+   "mtime": 1791075069.3713975,
    "size": 29124,
    "bad": {
     "672": "TIMEOUT"
@@ -399,26 +399,26 @@
    }
   },
   "docs/learning-resources/labs/LAB-004-ReAct-Agent.md": {
+   "mtime": 1791082376.8262243,
+   "size": 35353,
    "bad": {
-    "1059": "UN-LEAK",
-    "1101": "UN-LEAK",
     "517": "ENV-GAP:tool_registry",
-    "894": "CODE-SIGNAL:KeyError",
-    "969": "UN-LEAK"
+    "894": "SIDE-EFFECT",
+    "969": "UN-LEAK",
+    "1059": "UN-LEAK",
+    "1101": "UN-LEAK"
    },
-   "mtime": 1790869486.3212352,
    "notes": {
     "1059": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
     "1101": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
     "517": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design",
-    "894": "parses the response of a localhost agent server that is not running in the QA environment; service requirement",
-    "969": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically"
-   },
-   "size": 35262
+    "969": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
+    "894": "parses the response of a localhost agent server that is not running in the QA environment; service requirement"
+   }
   },
   "docs/learning-resources/labs/LAB-005-GraphRAG.md": {
-   "mtime": 1791061991.9107912,
-   "size": 26454,
+   "mtime": 1791082376.8262243,
+   "size": 26467,
    "bad": {
     "124": "SIDE-EFFECT",
     "350": "ENV-GAP:sentence_transformers",
@@ -493,22 +493,22 @@
    "size": 31420
   },
   "docs/learning-resources/labs/LAB-011-Multi-Modal-AI.md": {
+   "mtime": 1791082376.8272245,
+   "size": 41001,
    "bad": {
-    "1025": "ENV-GAP:cv2",
-    "1318": "ENV-GAP:multimodal_agent",
     "326": "CODE-SIGNAL:UnidentifiedImageError",
     "611": "CODE-SIGNAL:UnidentifiedImageError",
-    "703": "CODE-SIGNAL:ImportError"
+    "703": "CODE-SIGNAL:ImportError",
+    "1025": "ENV-GAP:cv2",
+    "1318": "ENV-GAP:multimodal_agent"
    },
-   "mtime": 1790925860.8750076,
    "notes": {
     "1025": "optional third-party package the QA environment does not install; the fence documents the install requirement",
     "1318": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design",
     "326": "triaged: intentional demo or environment requirement per the gate docstring; untagged rows carry a specific drain-backlog note",
     "611": "triaged: intentional demo or environment requirement per the gate docstring; untagged rows carry a specific drain-backlog note",
     "703": "package-layout demonstration (relative imports); the census executes the fence standalone without a parent package"
-   },
-   "size": 40941
+   }
   },
   "docs/learning-resources/labs/LAB-012-Audio-AI.md": {
    "bad": {
@@ -548,8 +548,8 @@
    "size": 1871
   },
   "docs/learning-resources/labs/solutions/SOLUTION-LAB-001-Docker-LLM.md": {
-   "mtime": 1791066627.6206563,
-   "size": 15622,
+   "mtime": 1791082376.8282247,
+   "size": 15635,
    "bad": {
     "108": "TIMEOUT",
     "478": "ENV-GAP:storage"
@@ -677,7 +677,7 @@
    "size": 2316
   },
   "docs/learning-resources/projects/PROJECT-001-AI-Assistant.md": {
-   "mtime": 1791066627.6261117,
+   "mtime": 1791075069.3742657,
    "size": 36765,
    "bad": {
     "664": "TIMEOUT"
@@ -741,7 +741,7 @@
    "size": 19381
   },
   "docs/learning-resources/projects/PROJECT-005-FineTune-Model.md": {
-   "mtime": 1791066627.6287227,
+   "mtime": 1791075069.3753352,
    "size": 17242,
    "bad": {
     "252": "ENV-GAP:Using `bitsandbytes` 4-bit quantization requires bitsandbyte",
@@ -964,8 +964,8 @@
    "size": 13560
   },
   "docs/learning-resources/tutorials/TUTORIAL-000-Python-for-AI.md": {
-   "mtime": 1791066627.6386638,
-   "size": 47272,
+   "mtime": 1791082376.8292239,
+   "size": 47309,
    "bad": {
     "1891": "TIMEOUT"
    },
@@ -974,14 +974,14 @@
    }
   },
   "docs/learning-resources/tutorials/TUTORIAL-001-Hello-LLM.md": {
+   "mtime": 1791082376.8292239,
+   "size": 6915,
    "bad": {
     "185": "INTERACTIVE"
    },
-   "mtime": 1790897729.7390232,
    "notes": {
     "185": "calls the LLM API over the network and prompts for a message at runtime; environment/credential requirement, not a code defect"
-   },
-   "size": 6902
+   }
   },
   "docs/learning-resources/tutorials/TUTORIAL-003-RAG-Basics.md": {
    "bad": {
@@ -1064,7 +1064,7 @@
    "size": 18886
   },
   "docs/learning-resources/tutorials/TUTORIAL-010-Model-Evaluation.md": {
-   "mtime": 1791066627.6431878,
+   "mtime": 1791075069.3785603,
    "size": 21257,
    "bad": {
     "193": "ENV-GAP:rouge",
@@ -1157,6 +1157,8 @@
    "size": 17410
   },
   "docs/phases/phase1-infra/1400-llmops/1402-vLLM-and-TGI.md": {
+   "mtime": 1791082376.8302274,
+   "size": 16332,
    "bad": {
     "179": "ENV-GAP:vllm",
     "288": "UN-LEAK",
@@ -1165,7 +1167,6 @@
     "359": "SIDE-EFFECT",
     "400": "ENV-GAP:vllm"
    },
-   "mtime": 1790788811.314581,
    "notes": {
     "179": "optional third-party package the QA environment does not install; the fence documents the install requirement",
     "288": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
@@ -1173,8 +1174,7 @@
     "327": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
     "359": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
     "400": "optional third-party package the QA environment does not install; the fence documents the install requirement"
-   },
-   "size": 16321
+   }
   },
   "docs/phases/phase1-infra/1400-llmops/README.md": {
    "bad": {},
@@ -1182,16 +1182,16 @@
    "size": 24891
   },
   "docs/phases/phase1-infra/1400-llmops/assessment/PRACTICE.md": {
+   "mtime": 1791082376.8312275,
+   "size": 27812,
    "bad": {
-    "262": "SIDE-EFFECT",
-    "78": "SIDE-EFFECT"
+    "78": "SIDE-EFFECT",
+    "262": "SIDE-EFFECT"
    },
-   "mtime": 1790745763.6855915,
    "notes": {
     "262": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
     "78": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect"
-   },
-   "size": 27727
+   }
   },
   "docs/phases/phase1-infra/1400-llmops/guides/1403-vLLM-Production-Deployment.md": {
    "mtime": 1790988899.3369536,
@@ -1206,20 +1206,20 @@
    }
   },
   "docs/phases/phase1-infra/1400-llmops/guides/1404-TGI-Deployment-Guide.md": {
+   "mtime": 1791082376.8322277,
+   "size": 31425,
    "bad": {
     "340": "SIDE-EFFECT",
     "621": "SIDE-EFFECT",
     "656": "SIDE-EFFECT",
     "713": "SIDE-EFFECT"
    },
-   "mtime": 1790978403.5149477,
    "notes": {
     "340": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
     "621": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
     "656": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
     "713": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect"
-   },
-   "size": 31360
+   }
   },
   "docs/phases/phase1-infra/1500-monitoring/1501-Monitoring-and-Observability.md": {
    "bad": {
@@ -1260,7 +1260,7 @@
    "size": 29440
   },
   "docs/phases/phase1-infra/1500-monitoring/assessment/PRACTICE.md": {
-   "mtime": 1791066627.6475694,
+   "mtime": 1791075069.380148,
    "size": 37349,
    "bad": {
     "835": "ENV-GAP:structlog"
@@ -1376,7 +1376,7 @@
    }
   },
   "docs/phases/phase2-foundations/2300-framework-engineering/2301-Framework-Design-Patterns.md": {
-   "mtime": 1791066627.6513288,
+   "mtime": 1791075069.3818572,
    "size": 37848,
    "bad": {
     "88": "ENV-GAP:tensorflow",
@@ -1388,7 +1388,7 @@
    }
   },
   "docs/phases/phase2-foundations/2300-framework-engineering/2302-Model-Serving-Architectures.md": {
-   "mtime": 1791066627.6594007,
+   "mtime": 1791075069.3829503,
    "size": 46058,
    "bad": {}
   },
@@ -1408,7 +1408,7 @@
    "size": 15980
   },
   "docs/phases/phase2-foundations/2300-framework-engineering/assessment/PRACTICE.md": {
-   "mtime": 1791066627.6669044,
+   "mtime": 1791075069.384624,
    "size": 33865,
    "bad": {
     "70": "ENV-GAP:tensorflow",
@@ -1461,7 +1461,7 @@
    }
   },
   "docs/phases/phase2-foundations/2400-pretraining/2401-Pre-training-Fundamentals.md": {
-   "mtime": 1791066627.6724946,
+   "mtime": 1791075069.386281,
    "size": 52443,
    "bad": {}
   },
@@ -1486,7 +1486,7 @@
    "size": 20054
   },
   "docs/phases/phase2-foundations/2400-pretraining/assessment/PRACTICE.md": {
-   "mtime": 1791066627.6785629,
+   "mtime": 1791075069.3873837,
    "size": 23593,
    "bad": {
     "186": "TIMEOUT"
@@ -1715,9 +1715,9 @@
    "size": 13702
   },
   "docs/phases/phase3-transformers/3500-multimodal/assessment/PRACTICE.md": {
-   "bad": {},
-   "mtime": 1790885490.703273,
-   "size": 15333
+   "mtime": 1791082376.8332274,
+   "size": 15381,
+   "bad": {}
   },
   "docs/phases/phase3-transformers/README.md": {
    "bad": {
@@ -2110,7 +2110,7 @@
    }
   },
   "docs/phases/phase5-finetuning/5100-peft/guides/5104-LoRA-Implementation-Guide.md": {
-   "mtime": 1791066627.683017,
+   "mtime": 1791075069.3890014,
    "size": 27224,
    "bad": {
     "309": "TIMEOUT"
@@ -2215,7 +2215,7 @@
    "size": 16678
   },
   "docs/phases/phase5-finetuning/5300-synthetic/assessment/PRACTICE.md": {
-   "mtime": 1791066627.6872857,
+   "mtime": 1791075069.3906262,
    "size": 20340,
    "bad": {
     "19": "TIMEOUT"
@@ -2857,26 +2857,26 @@
    "size": 27297
   },
   "docs/use-cases/UC-001-Vector-Database-Applications.md": {
+   "mtime": 1791082376.8332274,
+   "size": 20863,
    "bad": {
     "42": "ENV-GAP:sentence_transformers",
     "615": "ENV-GAP:sentence_transformers"
    },
-   "mtime": 1790971908.641558,
    "notes": {
     "42": "optional third-party package the QA environment does not install; the fence documents the install requirement",
     "615": "optional third-party package the QA environment does not install; the fence documents the install requirement"
-   },
-   "size": 20851
+   }
   },
   "docs/use-cases/UC-002-RAG-Applications.md": {
-   "bad": {},
-   "mtime": 1790971908.6425557,
-   "size": 27739
+   "mtime": 1791082376.8342278,
+   "size": 27751,
+   "bad": {}
   },
   "docs/use-cases/UC-003-Agent-Applications.md": {
-   "bad": {},
-   "mtime": 1790973134.8490589,
-   "size": 31176
+   "mtime": 1791082376.8352277,
+   "size": 31200,
+   "bad": {}
   },
   "docs/volumes/VOLUME-2-AI-Foundations.md": {
    "bad": {

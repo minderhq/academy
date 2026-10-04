@@ -152,7 +152,7 @@ def get_prometheus_metrics(query: str) -> str:
     try:
         response = requests.get(
             "http://prometheus:9090/api/v1/query",
-            params={"query": query},
+            params={"query": query}, timeout=30,
         )
         return f"Prometheus query result: {response.json()}"
     except Exception as e:
@@ -735,7 +735,7 @@ def search_academic(query: str) -> str:
     response = requests.get(
         "https://api.semanticscholar.org/graph/v1/paper/search",
         params={"query": query, "limit": 5,
-                "fields": "title,abstract,authors,year"},
+                "fields": "title,abstract,authors,year"}, timeout=30,
     )
 
     papers = response.json()["data"]

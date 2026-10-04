@@ -457,7 +457,7 @@ token_response = requests.post(
         "code": auth_code,
         "client_id": YOUR_CLIENT_ID,
         "client_secret": YOUR_CLIENT_SECRET
-    }
+    }, timeout=30
 )
 
 access_token = token_response.json()["access_token"]

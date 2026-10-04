@@ -717,7 +717,7 @@ def test_query(question: str, use_vector: bool = True, use_graph: bool = True):
             "use_graph": use_graph,
             "top_k": 3,
             "max_hops": 2
-        }
+        }, timeout=120
     )
 
     result = response.json()

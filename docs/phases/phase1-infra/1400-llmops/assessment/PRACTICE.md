@@ -96,7 +96,7 @@ class OllamaClient:
             **kwargs
         }
 
-        response = requests.post(url, json=data)
+        response = requests.post(url, json=data, timeout=120)
         response.raise_for_status()
         return response.json()
 
@@ -110,14 +110,14 @@ class OllamaClient:
             **kwargs
         }
 
-        response = requests.post(url, json=data)
+        response = requests.post(url, json=data, timeout=120)
         response.raise_for_status()
         return response.json()
 
     def list_models(self):
         """List available models."""
         url = f"{self.base_url}/api/tags"
-        response = requests.get(url)
+        response = requests.get(url, timeout=5)
         response.raise_for_status()
         return response.json()
 
@@ -273,14 +273,14 @@ class VLLMClient:
     def health_check(self) -> bool:
         """Check if server is healthy."""
         try:
-            response = requests.get(f"{self.base_url}/health")
+            response = requests.get(f"{self.base_url}/health", timeout=5)
             return response.status_code == 200
         except requests.exceptions.RequestException:
             return False
 
     def list_models(self) -> list[str]:
         """List available models."""
-        response = requests.get(f"{self.base_url}/v1/models")
+        response = requests.get(f"{self.base_url}/v1/models", timeout=5)
         response.raise_for_status()
         data = response.json()
         return [model["id"] for model in data.get("data", [])]
@@ -303,7 +303,7 @@ class VLLMClient:
             "stream": stream
         }
 
-        response = requests.post(url, json=payload)
+        response = requests.post(url, json=payload, timeout=120)
         response.raise_for_status()
         return response.json()
 
@@ -323,7 +323,7 @@ class VLLMClient:
             "max_tokens": max_tokens
         }
 
-        response = requests.post(url, json=payload)
+        response = requests.post(url, json=payload, timeout=120)
         response.raise_for_status()
         return response.json()
 

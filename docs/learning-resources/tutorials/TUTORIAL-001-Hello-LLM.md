@@ -202,7 +202,7 @@ def chat(message):
         "stream": False
     }
 
-    response = requests.post(API_URL, json=payload)
+    response = requests.post(API_URL, json=payload, timeout=120)
     result = response.json()
 
     return result["message"]["content"]

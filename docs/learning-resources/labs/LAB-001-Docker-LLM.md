@@ -157,7 +157,7 @@ def health():
 def list_models():
     """List available models (OpenAI-compatible format)"""
     try:
-        response = requests.get(f"{OLLAMA_URL}/api/tags")
+        response = requests.get(f"{OLLAMA_URL}/api/tags", timeout=5)
         models = response.json()
 
         return {

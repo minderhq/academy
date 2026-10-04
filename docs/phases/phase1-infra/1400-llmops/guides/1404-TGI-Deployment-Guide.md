@@ -367,7 +367,7 @@ class TGIClient:
             },
         }
         # /generate returns an OBJECT: {"generated_text": "...", "details": {...}}
-        response = requests.post(f"{self.base_url}/generate", json=payload)
+        response = requests.post(f"{self.base_url}/generate", json=payload, timeout=120)
         response.raise_for_status()
         return response.json()["generated_text"]
 
@@ -380,7 +380,7 @@ class TGIClient:
         response = requests.post(
             f"{self.base_url}/generate_stream",
             json=payload,
-            stream=True,
+            stream=True, timeout=120,
         )
         response.raise_for_status()
         for line in response.iter_lines(decode_unicode=True):
@@ -407,7 +407,7 @@ class TGIClient:
                 "messages": messages,
                 "max_tokens": max_tokens,
                 "temperature": temperature,
-            },
+            }, timeout=120,
         )
         response.raise_for_status()
         return response.json()["choices"][0]["message"]["content"]
@@ -639,7 +639,7 @@ payload = {
     },
 }
 
-response = requests.post("http://localhost:8080/generate", json=payload)
+response = requests.post("http://localhost:8080/generate", json=payload, timeout=120)
 print(response.json()["generated_text"])
 # Output is constrained to the schema at every generated token — not a
 # post-hoc repair. Long schemas can still stall generation when the grammar
@@ -679,7 +679,7 @@ response = requests.post(
         "tools": tools,
         "tool_choice": "auto",
         "max_tokens": 256,
-    },
+    }, timeout=120,
 )
 message = response.json()["choices"][0]["message"]
 # message["tool_calls"] is populated when the model decides to call a tool

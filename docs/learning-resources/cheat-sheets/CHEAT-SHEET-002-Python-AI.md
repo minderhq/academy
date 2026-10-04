@@ -472,14 +472,14 @@ result = complex_function(data)  # type: ignore
 import requests
 
 # GET
-response = requests.get('https://api.example.com/data')
+response = requests.get('https://api.example.com/data', timeout=30)
 data = response.json()
 
 # POST
 response = requests.post(
     'https://api.example.com/data',
     json={'key': 'value'},
-    headers={'Authorization': 'Bearer token'}
+    headers={'Authorization': 'Bearer token'}, timeout=30
 )
 ```
 

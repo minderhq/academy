@@ -1914,13 +1914,13 @@ uvicorn main:app --reload
 import requests
 
 # GET request
-response = requests.get("https://api.github.com/users/octocat")
+response = requests.get("https://api.github.com/users/octocat", timeout=30)
 print(response.status_code)  # 200
 print(response.json())        # JSON data
 
 # POST request
 data = {"message": "Hello, API!"}
-response = requests.post("https://httpbin.org/post", json=data)
+response = requests.post("https://httpbin.org/post", json=data, timeout=30)
 print(response.json())
 ```
 
@@ -1941,7 +1941,7 @@ def chat(message: str, model: str = "mistral") -> str:
         "stream": False
     }
 
-    response = requests.post(API_URL, json=payload)
+    response = requests.post(API_URL, json=payload, timeout=120)
     result = response.json()
 
     return result["message"]["content"]
