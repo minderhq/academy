@@ -587,6 +587,22 @@ stand today?" without running each tool by hand.
                        by construction, born tick-658, drained
                        in-line the same tick (13 sites), hard
                        from birth)
+    unawaited_coro_scan
+                       a bare-Name call to a fence-local async def
+                       standing alone as a full statement discards
+                       the coroutine object - the work never runs,
+                       only a RuntimeWarning whispers; the corpus
+                       teaches every consumed form itself (await,
+                       gather over comprehensions and
+                       generator-expressions, async for,
+                       StreamingResponse generators, asyncio.run
+                       entry points); consumed
+                       argument/comprehension/assign positions,
+                       sync-only names, shadowed sync+async names,
+                       string mentions, danger-marker fences and
+                       notebooks are out by construction, born
+                       tick-659 at zero across 1861 fences / 197
+                       async defs, hard from birth)
     action_version_scan
                        uses: pins in docs must match the canonical
                        action registry (AV-01: current majors -
@@ -3172,6 +3188,7 @@ GATES = [
     ("cors_wildcard_scan.py", "cors_wildcard_scan", True),
     ("trust_remote_code_scan.py", "trust_remote_code_scan", True),
     ("async_block_scan.py", "async_block_scan", True),
+    ("unawaited_coro_scan.py", "unawaited_coro_scan", True),
     ("action_version_scan.py", "action_version_scan", True),
     ("unicode_ws_hygiene_scan.py", "unicode_ws_hygiene_scan", True),
     ("objectives_lint.py", "objectives_lint", False),
