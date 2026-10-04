@@ -1,7 +1,7 @@
 ---
 Document ID: UC-002
 Title: "UC-002: RAG (Retrieval-Augmented Generation) Practical Use Cases"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-04
 Status: Complete
 Difficulty: Intermediate
 Tags: ['use-case', 'rag', 'retrieval']
@@ -442,16 +442,16 @@ To authenticate with the API using OAuth2:
 import requests
 
 # Step 1: Get authorization URL
-auth_url = "[https://api.example.com/oauth/authorize](https://api.example.com/oauth/authorize)"
+auth_url = "https://api.example.com/oauth/authorize"
 params = {
     "client_id": YOUR_CLIENT_ID,
-    "redirect_uri": "[https://yourapp.com/callback](https://yourapp.com/callback)",
+    "redirect_uri": "https://yourapp.com/callback",
     "response_type": "code"
 }
 
 # Step 2: Exchange code for token
 token_response = requests.post(
-    "[https://api.example.com/oauth/token](https://api.example.com/oauth/token)",
+    "https://api.example.com/oauth/token",
     data={
         "grant_type": "authorization_code",
         "code": auth_code,

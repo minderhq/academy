@@ -644,6 +644,23 @@ stand today?" without running each tool by hand.
                        fences and notebooks are out by
                        construction, born tick-664 at zero across
                        1861 fences, hard from birth)
+    md_link_leak_scan
+                       markdown link syntax inside a quoted string
+                       (ML-01: a quote-delimited string whose entire
+                       visible content is one markdown link is not a
+                       URL - it is link syntax leaked into a string
+                       literal, almost always a fence's URL value;
+                       no gate owned the class - fences compile as
+                       string constants, the AST family reads calls
+                       and kwargs not string contents, and linkcheck
+                       counted the shapes as valid self-resolving
+                       links), fence-agnostic by design (the corpus
+                       nests inner example-fences whose parity flip
+                       blinds fence-walking gates exactly where the
+                       drain lived - UC-002's OAuth example), born
+                       tick-675 at exactly 3 findings, drained the
+                       same tick before the gate landed (wrappers
+                       stripped, zero line shift), hard from birth
     action_version_scan
                        uses: pins in docs must match the canonical
                        action registry (AV-01: current majors -
@@ -3232,6 +3249,7 @@ GATES = [
     ("unawaited_coro_scan.py", "unawaited_coro_scan", True),
     ("bare_except_scan.py", "bare_except_scan", True),
     ("secret_shape_scan.py", "secret_shape_scan", True),
+    ("md_link_leak_scan.py", "md_link_leak_scan", True),
     ("action_version_scan.py", "action_version_scan", True),
     ("unicode_ws_hygiene_scan.py", "unicode_ws_hygiene_scan", True),
     ("objectives_lint.py", "objectives_lint", False),
