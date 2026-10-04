@@ -3,7 +3,7 @@ Document ID: 7302
 Title: "7302: Multi-Agent Communication Protocols"
 Phase: 7
 Module: 7300
-Last Updated: 2026-09-30
+Last Updated: 2026-10-04
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -238,6 +238,33 @@ Two complementary standards matter for agent fleets:
 - Use A2A-style handoffs for the *agent layer*: capability discovery
   ("who can do X?") plus task lifecycle (submitted → working → done)
 - Both reduce the N×M integration problem to N+M
+
+In practice an MCP deployment starts as one config file: every MCP
+client (Claude Desktop, VS Code, an agent harness) reads the same
+`mcpServers` shape — `command` + `args` + `env` launches a stdio
+server as a subprocess, `url` points at a streamable-HTTP one:
+
+```json
+{
+  "mcpServers": {
+    "fetch": {
+      "command": "uvx",
+      "args": ["mcp-server-fetch"]
+    },
+    "weather": {
+      "url": "https://mcp.example.com/mcp"
+    }
+  }
+}
+```
+
+The Python side is symmetric: the `mcp` package opens a `ClientSession`
+over a `stdio_client` transport, `list_tools()` discovers what the
+server exposes, and `call_tool(name, args)` performs the invocation.
+Servers surface three primitives — **tools** (model-invoked actions),
+**resources** (read-only context), **prompts** (reusable templates) —
+and MCP deliberately stops at the tool layer: agent-to-agent discovery
+and task lifecycle stay with A2A.
 
 ---
 
