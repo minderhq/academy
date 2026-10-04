@@ -512,6 +512,29 @@ stand today?" without running each tool by hand.
                        security" comments) are out by construction,
                        born tick-654, zero-drain, owned preemptively
                        per the US-02/US-03 and RT-02 precedent)
+    insecure_temp_scan
+                       insecure temp-file creation in python fences
+                       (TF-01: tempfile.mktemp - the name exists before
+                       the file does, so another process can create the
+                       path first or squat it between the call and the
+                       write, the TOCTOU race class, Bandit B306; the
+                       affirmative atomic forms stay out: mkstemp and
+                       NamedTemporaryFile open the fd at creation time
+                       and TemporaryDirectory hands out a private
+                       directory - the corpus practices mkdtemp x6,
+                       NamedTemporaryFile x7 and TemporaryDirectory
+                       and never teaches mktemp; TF-02: a string
+                       constant starting with /tmp, /var/tmp or
+                       /dev/shm passed DIRECTLY to open, os.open,
+                       os.mkdir, os.makedirs or os.mknod puts content
+                       at a predictable world-writable location on
+                       multi-user hosts, Bandit B108's location class
+                       - composite literals like tmpfs={"/tmp": ...},
+                       list literals like ALLOWED_PATHS and
+                       non-creation calls like tf.profiler's
+                       /tmp/xla_profile are out by construction, born
+                       tick-655, zero-drain, owned preemptively per
+                       the US-02/US-03, RT-02 and CH-01 precedent)
     action_version_scan
                        uses: pins in docs must match the canonical
                        action registry (AV-01: current majors -
@@ -3093,6 +3116,7 @@ GATES = [
     ("http_timeout_scan.py", "http_timeout_scan", True),
     ("sql_interp_scan.py", "sql_interp_scan", True),
     ("crypto_hygiene_scan.py", "crypto_hygiene_scan", True),
+    ("insecure_temp_scan.py", "insecure_temp_scan", True),
     ("action_version_scan.py", "action_version_scan", True),
     ("unicode_ws_hygiene_scan.py", "unicode_ws_hygiene_scan", True),
     ("objectives_lint.py", "objectives_lint", False),
