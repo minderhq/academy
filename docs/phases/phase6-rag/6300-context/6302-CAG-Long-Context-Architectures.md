@@ -3,7 +3,7 @@ Document ID: 6302
 Title: "6302: CAG - Context Augmented Generation and Long Context Architectures"
 Phase: 6
 Module: 6300
-Last Updated: 2026-09-30
+Last Updated: 2026-10-04
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -38,6 +38,9 @@ After completing this lesson, you will be able to:
 - Run an evicting context manager — `ContextManager.add_document`/`_make_room` evicts lowest-priority-then-oldest documents when the token budget is exceeded, with a truthful token ledger
 - Prune context by query relevance — `split_context` into windows, score chunks (`keyword_score` fallback or the 6202 cross-encoder), keep the top `keep_ratio`, and restore reading order
 - Defeat lost-in-the-middle and compress — `optimize_context_order` parks important chunks at the start and end, and `compress_context` extractively keeps high-information sentences within a budget
+- Cache the stable prefix — `cached_system_block`/`turn_messages` order the conversation static-first so provider prompt caching keeps
+  matching the prefix, and the response's cached-token usage field
+  verifies the hit
 
 ---
 
@@ -561,6 +564,61 @@ def compress_context(context, target_length=50000):
     return ". ".join(sentences[i] for i in sorted(kept_idx)) + "."
 ```
 
+
+### Prompt Caching: Stop Re-Paying for the Stable Prefix
+
+The bet has a bill attached. CAG's promise — load the corpus,
+keep it stable — means every turn re-sends the entire stable
+prefix: system prompt, tool schemas, corpus. A 100k-token corpus in a
+50-turn conversation bills 5M input tokens even though 4.9M of them
+are byte-identical to the turn before. **Prompt caching** is the
+provider-side answer: a repeated, byte-identical prefix bills at a
+fraction of base input price (both major APIs discount the cached
+portion steeply — check current pricing), which turns the
+stable corpus from a cost liability back into CAG's whole point.
+
+Cache matching is **exact-prefix**: the stable content must come
+first, and the first volatile byte ends the match. The two API
+shapes agree on the discipline even though the knobs differ —
+Anthropic exposes explicit `cache_control` breakpoints you place on
+a content block; OpenAI caches automatically once a matching prefix
+reaches 1024 tokens. Static first, volatile last:
+
+```python
+def cached_system_block(system: str, corpus: str) -> dict:
+    """The stable prefix as one cacheable system block.
+
+    Anthropic shape: an explicit cache_control breakpoint marks
+    where the cacheable block ends. OpenAI caches automatically
+    once a matching prefix reaches 1024 tokens - the ordering
+    discipline below is what makes either one hit.
+    """
+    return {
+        "role": "system",
+        "content": [
+            {
+                "type": "text",
+                "text": f"{system}\n\n{corpus}",
+                "cache_control": {"type": "ephemeral"},
+            }
+        ],
+    }
+
+
+def turn_messages(stable_block: dict, history: list[dict], user: str) -> list[dict]:
+    """Static first, volatile last - prefix matching is exact."""
+    return [stable_block, *history, {"role": "user", "content": user}]
+```
+
+The invalidation trap is silent: a timestamp footer, a per-request
+UUID, or a reshuffled few-shot example inside the prefix voids the
+match, and the request succeeds at full price — nothing
+raises. Treat the cache as measurable: responses carry cached-token
+usage fields (Anthropic `cache_read_input_tokens`, OpenAI
+`cached_tokens`) — and
+[1503](../../../phases/phase1-infra/1500-monitoring/1503-LLM-Observability.md)
+already gave you the observability loop — watching the hit
+rate is how a broken prefix order announces itself.
 
 ---
 
