@@ -289,6 +289,7 @@ for i, chunk in enumerate(chunks):
 
 ```python
 # ~/lab-002-rag/services/rag/rag_service.py
+import asyncio
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, HTTPException
@@ -453,7 +454,7 @@ Question: {query.question}
 Provide a helpful answer based on the context. If the context doesn't contain enough information, say so."""
 
     try:
-        response = requests.post(
+        response = await asyncio.to_thread(requests.post,
             f"{OLLAMA_URL}/api/generate",
             json={
                 "model": "mistral",
@@ -971,7 +972,7 @@ Question: {query.question}
 Provide a helpful answer based on the context."""
 
     try:
-        response = requests.post(
+        response = await asyncio.to_thread(requests.post,
             f"{OLLAMA_URL}/api/generate",
             json={
                 "model": "mistral",

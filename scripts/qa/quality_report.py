@@ -571,6 +571,22 @@ stand today?" without running each tool by hand.
                        tick-657, drained in-line the same tick
                        (10 sites, zero line shift), hard from
                        the rule's naming)
+    async_block_scan
+                       blocking calls inside async def bodies in
+                       python fences (AB-01: a blocking requests
+                       verb call runs the whole HTTP round-trip
+                       on the event-loop thread and freezes every
+                       other coroutine - wrap with await
+                       asyncio.to_thread(...) or use a native
+                       async client; AB-02: time.sleep parks the
+                       loop's thread - await asyncio.sleep(...);
+                       sync def bodies, the affirmative
+                       to_thread/sleep forms, non-verb attributes,
+                       nested-scope attribution, string mentions,
+                       danger-marker fences and notebooks are out
+                       by construction, born tick-658, drained
+                       in-line the same tick (13 sites), hard
+                       from birth)
     action_version_scan
                        uses: pins in docs must match the canonical
                        action registry (AV-01: current majors -
@@ -3155,6 +3171,7 @@ GATES = [
     ("insecure_temp_scan.py", "insecure_temp_scan", True),
     ("cors_wildcard_scan.py", "cors_wildcard_scan", True),
     ("trust_remote_code_scan.py", "trust_remote_code_scan", True),
+    ("async_block_scan.py", "async_block_scan", True),
     ("action_version_scan.py", "action_version_scan", True),
     ("unicode_ws_hygiene_scan.py", "unicode_ws_hygiene_scan", True),
     ("objectives_lint.py", "objectives_lint", False),

@@ -349,6 +349,7 @@ python scripts/build_graph.py
 
 ```python
 # ~/lab-005-graphrag/services/graphrag/graphrag_service.py
+import asyncio
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import requests
@@ -524,7 +525,7 @@ Question: {query.question}
 Provide a helpful answer:"""
 
     try:
-        response = requests.post(
+        response = await asyncio.to_thread(requests.post,
             f"{VLLM_URL}/api/generate",
             json={
                 "model": "mistral",

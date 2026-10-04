@@ -460,6 +460,7 @@ driver.close()
 
 ```python
 # ~/ai-assistant/services/rag/rag_service.py
+import asyncio
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 
@@ -574,7 +575,7 @@ Question: {query.question}
 Answer:"""
 
     try:
-        response = requests.post(
+        response = await asyncio.to_thread(requests.post,
             f"{VLLM_URL}/v1/completions",
             json={
                 "model": "mistralai/Mistral-7B-Instruct-v0.2",
@@ -663,6 +664,7 @@ CMD ["uvicorn", "rag_service:app", "--host", "0.0.0.0", "--port", "8001"]
 
 ```python
 # ~/ai-assistant/services/agent/agent_service.py
+import asyncio
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from typing import Any
@@ -721,7 +723,7 @@ class ReActAgent:
         if use_rag and self._needs_knowledge(last_message):
             thought_process.append({"step": "retrieval", "content": "Querying knowledge base..."})
 
-            rag_response = requests.post(
+            rag_response = await asyncio.to_thread(requests.post,
                 f"{RAG_URL}/query",
                 json={"question": last_message, "use_graph": True, "top_k": 3},
                 timeout=30
@@ -754,7 +756,7 @@ class ReActAgent:
         # Generate final response
         prompt = self._build_prompt(last_message, thought, knowledge, thought_process)
 
-        response = requests.post(
+        response = await asyncio.to_thread(requests.post,
             f"{VLLM_URL}/v1/completions",
             json={
                 "model": "mistralai/Mistral-7B-Instruct-v0.2",
@@ -787,7 +789,7 @@ User: {query}
 Provide a brief thought about what information you need to answer this question.
 Thought:"""
 
-        response = requests.post(
+        response = await asyncio.to_thread(requests.post,
             f"{VLLM_URL}/v1/completions",
             json={"model": "mistralai/Mistral-7B-Instruct-v0.2", "prompt": prompt, "max_tokens": 256},
             timeout=30
@@ -827,7 +829,7 @@ Thought:"""
         """Execute a tool"""
 
         try:
-            response = requests.post(
+            response = await asyncio.to_thread(requests.post,
                 f"{TOOL_EXECUTOR_URL}/tools/{tool['name']}",
                 json={'query': query},
                 timeout=60

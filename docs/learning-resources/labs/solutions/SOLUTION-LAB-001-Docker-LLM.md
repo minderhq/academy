@@ -107,6 +107,7 @@ Create a FastAPI wrapper for Ollama.
 
 ```python
 # ~/lab-001-docker-llm/services/app/main.py
+import asyncio
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 import requests
@@ -168,7 +169,7 @@ async def root():
 async def health_check():
     """Health check endpoint."""
     try:
-        response = requests.get(f"{OLLAMA_URL}/api/tags", timeout=5)
+        response = await asyncio.to_thread(requests.get, f"{OLLAMA_URL}/api/tags", timeout=5)
         response.raise_for_status()
         return {"status": "healthy", "ollama": "connected"}
     except Exception as e:
@@ -180,7 +181,7 @@ async def health_check():
 async def list_models():
     """List available models."""
     try:
-        response = requests.get(f"{OLLAMA_URL}/api/tags", timeout=5)
+        response = await asyncio.to_thread(requests.get, f"{OLLAMA_URL}/api/tags", timeout=5)
         response.raise_for_status()
         data = response.json()
         return {"models": data.get("models", [])}
@@ -221,7 +222,7 @@ async def chat(request: ChatRequest):
 
         logger.info(f"Sending request to Ollama: {request.model}")
 
-        response = requests.post(
+        response = await asyncio.to_thread(requests.post,
             f"{OLLAMA_URL}/api/generate",
             json=ollama_request,
             timeout=120
@@ -506,7 +507,7 @@ async def chat_with_history(session_id: str, request: ChatRequest):
         }
     }
 
-    response = requests.post(f"{OLLAMA_URL}/api/generate", json=ollama_request, timeout=120)
+    response = await asyncio.to_thread(requests.post, f"{OLLAMA_URL}/api/generate", json=ollama_request, timeout=120)
     response.raise_for_status()
     data = response.json()
 

@@ -555,6 +555,7 @@ Unit: Celsius
 
 ```python
 # ~/monitoring-tutorial/example_llm_with_tracing.py
+import asyncio
 from fastapi import FastAPI
 from opentelemetry import trace
 from opentelemetry import metrics
@@ -616,7 +617,7 @@ async def generate_text(prompt: str):
         # Call Ollama
         try:
             with tracer.start_as_current_span("ollama_request"):
-                response = requests.post(
+                response = await asyncio.to_thread(requests.post,
                     "http://localhost:11434/api/generate",
                     json={
                         "model": "mistral",

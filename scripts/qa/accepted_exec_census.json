@@ -370,23 +370,23 @@
   },
   "docs/learning-resources/labs/LAB-002-RAG-Implementation.md": {
    "bad": {
-    "1025": "INTERACTIVE",
     "254": "ENV-GAP:chunker",
     "290": "ENV-GAP:sentence_transformers",
-    "787": "ENV-GAP:sentence_transformers",
-    "864": "ENV-GAP:sentence_transformers",
-    "919": "ENV-GAP:reranker"
+    "788": "ENV-GAP:sentence_transformers",
+    "865": "ENV-GAP:sentence_transformers",
+    "920": "ENV-GAP:reranker",
+    "1026": "INTERACTIVE"
    },
-   "mtime": 1790784081.1709368,
+   "mtime": 1791091995.7808137,
    "notes": {
-    "1025": "input() demo; the census closes stdin by design",
     "254": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design",
     "290": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-    "787": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-    "864": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-    "919": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design"
+    "788": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+    "865": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+    "920": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design",
+    "1026": "input() demo; the census closes stdin by design"
    },
-   "size": 30557
+   "size": 30620
   },
   "docs/learning-resources/labs/LAB-003-LoRA-FineTuning.md": {
    "mtime": 1791075069.3713975,
@@ -417,21 +417,21 @@
    }
   },
   "docs/learning-resources/labs/LAB-005-GraphRAG.md": {
-   "mtime": 1791082376.8262243,
-   "size": 26467,
+   "mtime": 1791091995.781886,
+   "size": 26506,
    "bad": {
     "124": "SIDE-EFFECT",
     "350": "ENV-GAP:sentence_transformers",
-    "702": "SIDE-EFFECT",
-    "770": "SIDE-EFFECT",
-    "888": "SIDE-EFFECT"
+    "703": "SIDE-EFFECT",
+    "771": "SIDE-EFFECT",
+    "889": "SIDE-EFFECT"
    },
    "notes": {
     "124": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
     "350": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-    "702": "parses the response of a localhost GraphRAG server that is not running in the QA environment; service requirement",
-    "770": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
-    "888": "parses the response of a localhost GraphRAG server that is not running in the QA environment; service requirement"
+    "703": "parses the response of a localhost GraphRAG server that is not running in the QA environment; service requirement",
+    "771": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
+    "889": "parses the response of a localhost GraphRAG server that is not running in the QA environment; service requirement"
    }
   },
   "docs/learning-resources/labs/LAB-006-Train-Model-From-Scratch.md": {
@@ -548,15 +548,15 @@
    "size": 1871
   },
   "docs/learning-resources/labs/solutions/SOLUTION-LAB-001-Docker-LLM.md": {
-   "mtime": 1791082376.8282247,
-   "size": 15635,
+   "mtime": 1791091995.7826219,
+   "size": 15749,
    "bad": {
     "108": "TIMEOUT",
-    "478": "ENV-GAP:storage"
+    "479": "ENV-GAP:storage"
    },
    "notes": {
     "108": "uvicorn.run(app, ...) on the fence's __main__ path starts a live server and blocks past the 90s census budget by design (server-start hang family); adjudicated tick-651 from EXIT-CALL, environmental drift since the old bless - the tail fence's ENV-GAP row at 478 re-verified and kept as the union baseline",
-    "478": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design"
+    "479": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design"
    }
   },
   "docs/learning-resources/labs/solutions/SOLUTION-LAB-002-RAG-Implementation.md": {
@@ -677,13 +677,13 @@
    "size": 2316
   },
   "docs/learning-resources/projects/PROJECT-001-AI-Assistant.md": {
-   "mtime": 1791075069.3742657,
-   "size": 36765,
+   "mtime": 1791091995.7837672,
+   "size": 36915,
    "bad": {
-    "664": "TIMEOUT"
+    "665": "TIMEOUT"
    },
    "notes": {
-    "664": "by-design server start: uvicorn.run blocks forever in the project walkthrough"
+    "665": "by-design server start: uvicorn.run blocks forever in the project walkthrough"
    }
   },
   "docs/learning-resources/projects/PROJECT-002-Train-Neural-Network.md": {
@@ -1005,11 +1005,11 @@
    "bad": {
     "556": "ENV-GAP:opentelemetry"
    },
-   "mtime": 1790897729.7416186,
+   "mtime": 1791091995.7842999,
    "notes": {
     "556": "opentelemetry is an optional package the QA environment does not install; the fence teaches trace instrumentation"
    },
-   "size": 17303
+   "size": 17342
   },
   "docs/learning-resources/tutorials/TUTORIAL-006-Real-time-AI.md": {
    "bad": {
