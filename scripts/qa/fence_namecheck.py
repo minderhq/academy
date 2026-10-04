@@ -26,9 +26,14 @@ UN-01  undefined name - not bound by this fence, any earlier fence in
 UN-02  local referenced before assignment in an enclosing scope
 
 Design, shared with fence_import_check:
-- the fence universe is codeblock_syntax_scan's exactly (exact ```
-  / ~~~ markers, python/py/python3 labels, textwrap.dedent before
-  parsing), so every fence gate sees the same blocks
+- the fence universe is codeblock_syntax_scan's exactly (CommonMark
+  fence-length ``` / ~~~ markers - a closer repeats the opener's
+  character in a run at least as long and a different character never
+  closes, so nested 3-backtick inner examples inside 4-backtick outer
+  blocks stay fenced interior; aligned tick-678 with
+  render_hygiene_check's tick-677 fix; python/py/python3 labels,
+  textwrap.dedent before parsing), so every fence gate sees the same
+  blocks
 - per-fence pyflakes check carries proper Python scoping, so a name
   bound only inside a function is correctly NOT bound for module-level
   code - flagging that use is right, it is a NameError as written
@@ -69,7 +74,7 @@ from pathlib import Path
 
 from pyflakes.api import check
 
-FENCE = re.compile(r"^\s*(```|~~~)\s*([A-Za-z0-9_+-]*)\s*$")
+FENCE = re.compile(r"^\s*(`{3,}|~{3,})\s*([A-Za-z0-9_+-]*)\s*$")
 PYTHON_LANGS = ("python", "py", "python3")
 UNDEFINED_CLASSES = ("UndefinedName", "UndefinedLocal")
 
@@ -93,7 +98,7 @@ docs/learning-resources/cheat-sheets/QUICK-REF-VOLUME-4.md: compute_scales_zero_
 docs/learning-resources/cheat-sheets/QUICK-REF-VOLUME-5.md: AutoModelForCausalLM dataloader format_instruction optimizer
 docs/learning-resources/cheat-sheets/QUICK-REF-VOLUME-7.md: AnalystAgent CriticAgent ResearcherAgent WriterAgent generate_response search_tool
 docs/learning-resources/guides/GUIDE-INTERVIEW.md: softmax
-docs/learning-resources/interactive/FLASHCARDS.md: my_lora_layer
+docs/learning-resources/interactive/FLASHCARDS.md: compute_attention_scores my_lora_layer
 docs/learning-resources/labs/LAB-005-GraphRAG.md: text_lower
 docs/learning-resources/labs/LAB-012-Audio-AI.md: whisper
 docs/learning-resources/labs/solutions/SOLUTION-LAB-002-RAG-Implementation.md: vector_store
@@ -298,6 +303,8 @@ def scan_file(
     rel = path.relative_to(root).as_posix()
     lines = path.read_text(encoding="utf-8").split("\n")
     in_fence = False
+    f_char = ""
+    f_len = 0
     lang = ""
     start = 0
     body: list[str] = []
@@ -305,58 +312,66 @@ def scan_file(
     opaque = False
     for i, raw in enumerate(lines):
         m = FENCE.match(raw)
-        if m:
-            if in_fence:
-                in_fence = False
-                if lang not in PYTHON_LANGS:
-                    body = []
-                    continue
-                stats[0] += 1
-                src = textwrap.dedent("\n".join(body))
-                body = []
-                if not src.strip():
-                    continue
-                try:
-                    tree = ast.parse(src)
-                except SyntaxError:
-                    stats[3] += 1  # CB-01 owns fence syntax
-                    continue
-                own_bounds = module_bound_names(tree)
-                if not opaque:
-                    collector = _Collector()
-                    check(src, rel, collector)
-                    for message in collector.flakes:
-                        cls = type(message).__name__
-                        if cls not in UNDEFINED_CLASSES:
-                            continue
-                        name = message.message_args[0]
-                        if not isinstance(name, str):
-                            continue
-                        if name in prior_bounds or name in own_bounds:
-                            continue  # bound by an earlier fence: lesson flow
-                        if name in accepted.get(rel, _NO_ACCEPTS):
-                            stats[5] += 1
-                            continue  # census-accepted convention, tick-531
-                        code = "UN-01" if cls == "UndefinedName" else "UN-02"
-                        stats[1 if code == "UN-01" else 2] += 1
-                        findings.append((rel, (
-                            f"{rel}:{start + message.lineno + 1}: {code} "
-                            f"undefined name '{name}' - pyflakes "
-                            f"{message.message % message.message_args}, not "
-                            f"bound by this fence or any earlier fence "
-                            f"in the file")))
-                prior_bounds |= own_bounds
-                if has_star_import(tree):
-                    opaque = True
-                    stats[4] += 1
-            else:
-                in_fence = True
-                lang = m.group(2).lower()
-                start = i
-                body = []
+        if m and not in_fence:
+            run = m.group(1)
+            in_fence = True
+            f_char, f_len = run[0], len(run)
+            lang = m.group(2).lower()
+            start = i
+            body = []
             continue
         if in_fence:
+            if m:
+                run = m.group(1)
+                ch, n = run[0], len(run)
+                if ch == f_char and n >= f_len:
+                    in_fence = False
+                    if lang not in PYTHON_LANGS:
+                        body = []
+                        continue
+                    stats[0] += 1
+                    src = textwrap.dedent("\n".join(body))
+                    body = []
+                    if not src.strip():
+                        continue
+                    try:
+                        tree = ast.parse(src)
+                    except SyntaxError:
+                        stats[3] += 1  # CB-01 owns fence syntax
+                        continue
+                    own_bounds = module_bound_names(tree)
+                    if not opaque:
+                        collector = _Collector()
+                        check(src, rel, collector)
+                        for message in collector.flakes:
+                            cls = type(message).__name__
+                            if cls not in UNDEFINED_CLASSES:
+                                continue
+                            name = message.message_args[0]
+                            if not isinstance(name, str):
+                                continue
+                            if name in prior_bounds or name in own_bounds:
+                                continue  # bound by an earlier fence: lesson flow
+                            if name in accepted.get(rel, _NO_ACCEPTS):
+                                stats[5] += 1
+                                continue  # census-accepted convention, tick-531
+                            code = "UN-01" if cls == "UndefinedName" else "UN-02"
+                            stats[1 if code == "UN-01" else 2] += 1
+                            findings.append((rel, (
+                                f"{rel}:{start + message.lineno + 1}: {code} "
+                                f"undefined name '{name}' - pyflakes "
+                                f"{message.message % message.message_args}, not "
+                                f"bound by this fence or any earlier fence "
+                                f"in the file")))
+                    prior_bounds |= own_bounds
+                    if has_star_import(tree):
+                        opaque = True
+                        stats[4] += 1
+                    continue
+            # a marker line that is not a valid closer is fence content
+            # (CommonMark: an inner 3-run inside a 4-run outer), keep it
             body.append(raw)
+            continue
 
 
 def main() -> int:
