@@ -3,7 +3,7 @@ Document ID: 2301
 Title: "2301: Framework Design Patterns"
 Phase: 2
 Module: 2300
-Last Updated: 2026-09-29
+Last Updated: 2026-10-04
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -361,7 +361,7 @@ Reproducible experiments require:
 
 ````python
 from dataclasses import dataclass, field, asdict
-from typing import Optional, List, Dict, Any
+from typing import Any
 import yaml
 import json
 from pathlib import Path
@@ -415,13 +415,13 @@ class ModelConfig:
     label_smoothing: float = 0.0
 
     # Optional parameters
-    seed: Optional[int] = None
+    seed: int | None = None
     mixed_precision: bool = False
-    gradient_clip_value: Optional[float] = None
+    gradient_clip_value: float | None = None
 
     # Metadata
     experiment_name: str = "baseline"
-    tags: List[str] = field(default_factory=list)
+    tags: list[str] = field(default_factory=list)
     notes: str = ""
 
     def __post_init__(self):
@@ -487,7 +487,7 @@ class ModelConfig:
         if isinstance(self.optimizer, OptimizerType):
             data["optimizer"] = self.optimizer.value
 
-        with open(path, "w") as f:
+        with open(path, "w", encoding="utf-8") as f:
             yaml.dump(data, f, default_flow_style=False, sort_keys=False)
 
     @classmethod
@@ -518,10 +518,10 @@ class ModelConfig:
         if isinstance(self.optimizer, OptimizerType):
             data["optimizer"] = self.optimizer.value
 
-        with open(path, "w") as f:
+        with open(path, "w", encoding="utf-8") as f:
             json.dump(data, f, indent=2)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         """Convert to dictionary."""
         data = asdict(self)
         if isinstance(self.activation, ActivationType):
@@ -862,7 +862,6 @@ Model versioning ensures:
 ### Implementation
 
 ````python
-from typing import Dict, List, Optional, Tuple
 from dataclasses import dataclass
 from importlib.metadata import version as get_installed_version
 from packaging import version
@@ -874,10 +873,10 @@ from pathlib import Path
 class ModelVersion:
     """Represents a model version with compatibility info."""
     version: str
-    compatible_frameworks: Dict[str, str]  # framework -> min_version
-    breaking_changes: List[str]
-    features: List[str]
-    deprecation_warnings: Optional[List[str]] = None
+    compatible_frameworks: dict[str, str]  # framework -> min_version
+    breaking_changes: list[str]
+    features: list[str]
+    deprecation_warnings: list[str] | None = None
 
 
 class VersionManager:
@@ -892,7 +891,7 @@ class VersionManager:
     """
 
     def __init__(self):
-        self.versions: Dict[str, ModelVersion] = {}
+        self.versions: dict[str, ModelVersion] = {}
         self._load_versions()
 
     def _load_versions(self):
@@ -937,11 +936,11 @@ class VersionManager:
             ),
         }
 
-    def get_version(self, version: str) -> Optional[ModelVersion]:
+    def get_version(self, version: str) -> ModelVersion | None:
         """Get version info."""
         return self.versions.get(version)
 
-    def check_compatibility(self, model_version: str, framework: str, fw_version: str) -> Tuple[bool, List[str]]:
+    def check_compatibility(self, model_version: str, framework: str, fw_version: str) -> tuple[bool, list[str]]:
         """
         Check if framework version is compatible with model version.
 
@@ -971,7 +970,7 @@ class VersionManager:
 
         return True, issues
 
-    def get_migration_guide(self, from_version: str, to_version: str) -> Optional[str]:
+    def get_migration_guide(self, from_version: str, to_version: str) -> str | None:
         """Get migration guide between versions."""
         # In a real system, this would load from markdown files
         migrations = {
@@ -1055,7 +1054,7 @@ class VersionedModel:
 
     MODEL_VERSION = "3.0"
 
-    def __init__(self, config: Dict, framework: str = "pytorch"):
+    def __init__(self, config: dict, framework: str = "pytorch"):
         self.config = config
         self.framework = framework
         self.version_manager = VersionManager()
@@ -1093,10 +1092,10 @@ class VersionedModel:
         path = Path(path)
         path.parent.mkdir(parents=True, exist_ok=True)
 
-        with open(path, "w") as f:
+        with open(path, "w", encoding="utf-8") as f:
             json.dump(checkpoint, f, indent=2)
 
-    def _get_state(self) -> Dict:
+    def _get_state(self) -> dict:
         """Get model state for saving."""
         # Return model weights, etc.
         return {}
@@ -1117,7 +1116,7 @@ class VersionedModel:
         return cls.from_checkpoint(checkpoint)
 
     @classmethod
-    def from_checkpoint(cls, checkpoint: Dict):
+    def from_checkpoint(cls, checkpoint: dict):
         """Create model from checkpoint."""
         return cls(checkpoint["config"])
 

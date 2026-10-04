@@ -1,7 +1,7 @@
 ---
 Document ID: 5300-PRACTICE
 Title: "5300: Synthetic Data Generation - Practice"
-Last Updated: 2026-09-25
+Last Updated: 2026-10-04
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -446,7 +446,7 @@ code_snippets = [
 print("Generating code explanations...")
 pairs = generate_code_explanations(model, tokenizer, code_snippets)
 
-with open("code_text_pairs.json", "w") as f:
+with open("code_text_pairs.json", "w", encoding="utf-8") as f:
     json.dump(pairs, f, indent=2)
 
 print(f"\nGenerated {len(pairs)} code-text pairs")

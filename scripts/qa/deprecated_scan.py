@@ -89,7 +89,7 @@ import re
 import sys
 from pathlib import Path
 
-FENCE_RE = re.compile(r"^\s*(```|~~~)\s*([A-Za-z0-9_+-]*)\s*$")
+FENCE_RE = re.compile(r"^\s*(`{3,}|~{3,})\s*([A-Za-z0-9_+-]*)\s*$")
 
 # (pattern, message) pairs - each finding reports the first matching rule.
 RULES = [
@@ -129,14 +129,27 @@ def scan_file(root: Path, path: Path, findings: list[str]) -> None:
     if any(PYD_IMPORT_RE.search(line) for line in lines):
         rules += PYD_RULES
     in_fence = False
+    f_char = ""
+    f_len = 0
     lang = ""
     start = 0
     for ln, raw in enumerate(lines, 1):
         if FENCE_RE.match(raw):
-            in_fence = not in_fence
-            lang = "" if not in_fence else FENCE_RE.match(raw).group(2).lower()
-            start = ln if in_fence else 0
-            continue
+            ch = FENCE_RE.match(raw).group(1)[0]
+            n = len(FENCE_RE.match(raw).group(1))
+            if in_fence:
+                # CommonMark fence length (tick-680): only a same-character run at least as long closes
+                if ch == f_char and n >= f_len:
+                    in_fence = False
+                    lang = ""
+                    start = 0
+                    continue
+            else:
+                in_fence = True
+                f_char, f_len = ch, n
+                lang = FENCE_RE.match(raw).group(2).lower()
+                start = ln
+                continue
         if in_fence and lang == "python":
             code = raw.split("#", 1)[0]
             for pat, msg in rules:

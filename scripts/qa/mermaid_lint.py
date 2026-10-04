@@ -36,7 +36,7 @@ import re
 import sys
 from pathlib import Path
 
-FENCE_RE = re.compile(r"^\s*(```|~~~)\s*([A-Za-z0-9_+-]*)\s*$")
+FENCE_RE = re.compile(r"^\s*(`{3,}|~{3,})\s*([A-Za-z0-9_+-]*)\s*$")
 
 DIAGRAM_HEADERS = {
     "flowchart", "graph", "sequenceDiagram", "classDiagram",
@@ -86,18 +86,32 @@ def scan_block(rel: str, start: int, chunk: list[str], findings: list[str]) -> N
 def scan_file(root: Path, path: Path, findings: list[str]) -> None:
     rel = path.relative_to(root).as_posix()
     in_fence = False
+    f_char = ""
+    f_len = 0
     lang = ""
     start = 0
     chunk: list[str] = []
     for ln, raw in enumerate(path.read_text(encoding="utf-8").split("\n"), 1):
         if FENCE_RE.match(raw):
-            if in_fence and lang == "mermaid":
-                scan_block(rel, start, chunk, findings)
-            in_fence = not in_fence
-            lang = "" if not in_fence else FENCE_RE.match(raw).group(2).lower()
-            start = ln if in_fence else 0
-            chunk = []
-            continue
+            ch = FENCE_RE.match(raw).group(1)[0]
+            n = len(FENCE_RE.match(raw).group(1))
+            if in_fence:
+                # CommonMark fence length (tick-680): only a same-character run at least as long closes
+                if ch == f_char and n >= f_len:
+                    if in_fence and lang == "mermaid":
+                        scan_block(rel, start, chunk, findings)
+                    in_fence = False
+                    lang = ""
+                    start = 0
+                    chunk = []
+                    continue
+            else:
+                in_fence = True
+                f_char, f_len = ch, n
+                lang = FENCE_RE.match(raw).group(2).lower()
+                start = ln
+                chunk = []
+                continue
         if in_fence and lang == "mermaid":
             chunk.append(raw)
     if in_fence and lang == "mermaid":

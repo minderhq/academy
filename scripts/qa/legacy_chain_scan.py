@@ -33,7 +33,7 @@ import re
 import sys
 from pathlib import Path
 
-FENCE_RE = re.compile(r"^\s*(```|~~~)\s*([A-Za-z0-9_+-]*)\s*$")
+FENCE_RE = re.compile(r"^\s*(`{3,}|~{3,})\s*([A-Za-z0-9_+-]*)\s*$")
 
 # langchain_classic names verified absent from the installed langchain
 # 1.x surface (tick-224: langchain.chains raises ModuleNotFoundError;
@@ -90,6 +90,8 @@ def scan_file(root: Path, path: Path, findings: list[str],
               counts: dict[str, int]) -> None:
     rel = path.relative_to(root).as_posix()
     in_fence = False
+    f_char = ""
+    f_len = 0
     lang = ""
     chunk: list[str] = []
     chunk_start = 0
@@ -107,13 +109,25 @@ def scan_file(root: Path, path: Path, findings: list[str],
                                  .split("\n"), start=1):
         m = FENCE_RE.match(raw)
         if m:
-            if in_fence and lang == "python":
-                flush()
-            in_fence = not in_fence
-            lang = "" if not in_fence else m.group(2).lower()
-            chunk = []
-            chunk_start = lineno
-            continue
+            ch = m.group(1)[0]
+            n = len(m.group(1))
+            if in_fence:
+                # CommonMark fence length (tick-680): only a same-character run at least as long closes
+                if ch == f_char and n >= f_len:
+                    if in_fence and lang == "python":
+                        flush()
+                    in_fence = False
+                    lang = ""
+                    chunk = []
+                    chunk_start = lineno
+                    continue
+            else:
+                in_fence = True
+                f_char, f_len = ch, n
+                lang = m.group(2).lower()
+                chunk = []
+                chunk_start = lineno
+                continue
         if in_fence and lang == "python":
             if not chunk:
                 chunk_start = lineno

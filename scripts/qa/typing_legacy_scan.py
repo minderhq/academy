@@ -54,7 +54,7 @@ import re
 import sys
 from pathlib import Path
 
-FENCE_RE = re.compile(r"^\s*(```|~~~)\s*([A-Za-z0-9_+-]*)\s*$")
+FENCE_RE = re.compile(r"^\s*(`{3,}|~{3,})\s*([A-Za-z0-9_+-]*)\s*$")
 LEGACY_RE = re.compile(r"\b(Optional|Union|List|Dict|Tuple|Set|FrozenSet|Type)\[")
 TYPE_NAMES = r"(?:Optional|Union|List|Dict|Tuple|Set|FrozenSet|Type)"
 IMPORT_RE = re.compile(rf"^\s*from\s+typing\s+import\s+.*\b{TYPE_NAMES}\b")
@@ -70,13 +70,25 @@ def lint_file(root: Path, path: Path, findings: list[str], total: list[int]) -> 
     rel = path.relative_to(root).as_posix()
     lines = path.read_text(encoding="utf-8").split("\n")
     in_fence = False
+    f_char = ""
+    f_len = 0
     lang = ""
     for i, raw in enumerate(lines):
         m = FENCE_RE.match(raw)
         if m:
-            in_fence = not in_fence
-            lang = "" if not in_fence else m.group(2).lower()
-            continue
+            ch = m.group(1)[0]
+            n = len(m.group(1))
+            if in_fence:
+                # CommonMark fence length (tick-680): only a same-character run at least as long closes
+                if ch == f_char and n >= f_len:
+                    in_fence = False
+                    lang = ""
+                    continue
+            else:
+                in_fence = True
+                f_char, f_len = ch, n
+                lang = m.group(2).lower()
+                continue
         if lang != "python":
             continue
         if IMPORT_RE.search(raw):
