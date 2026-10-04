@@ -1,7 +1,7 @@
 ---
 Document ID: 7200-TOOLS-README
 Title: "7200: Tool Calling and Function Execution"
-Last Updated: 2026-10-01
+Last Updated: 2026-10-04
 Status: Complete
 Difficulty: Intermediate
 Prerequisites: []
@@ -142,6 +142,53 @@ tool_schema = {
     }
 }
 ```
+
+## Authoring Tools: The @tool Decorator
+
+The hand-written dict above is the wire contract, but production code
+rarely writes it by hand. LangChain's `@tool` decorator derives the
+whole schema from the function itself — the name from the
+function name, the description from the docstring, the parameters
+from the type hints. One source of truth: edit the hint and the
+schema follows, so schema drift (hand-maintained dict, drifted
+implementation) cannot happen. The practice exercises build every
+tool this way, and the orchestration module reuses the same
+definitions: [assessment/PRACTICE.md](./assessment/PRACTICE.md).
+
+The decorated function stays a function you can call, and becomes a
+tool object carrying its generated contract:
+
+```python
+from langchain_core.tools import tool
+
+
+@tool
+def search_web(query: str, num_results: int = 5) -> str:
+    """Search the web for information.
+
+    Args:
+        query: The search query.
+        num_results: Number of results to return.
+    """
+    return f"[{num_results} results for {query!r}]"  # stand-in for a real client
+
+
+print(search_web.name)         # search_web - from the function name
+print(search_web.description)  # the docstring - what the model reads
+print(search_web.args)         # parameter schemas - from the type hints
+
+result = search_web.invoke({"query": "llmops", "num_results": 3})
+```
+
+The quality lever is the docstring: it is not documentation for
+humans here, it is the description the model reads when choosing
+among tools — docstring quality is tool-selection quality, the
+same discipline the design principles below call clear descriptions.
+The boundary: hand-written dicts stay right for framework-free
+provider calls where the JSON schema is the entire integration (the
+wire-level face is the tool-calling lesson's round trip); the
+decorator wins wherever the schema and the implementation must move
+together.
 
 ## Common Tool Categories
 
