@@ -44,6 +44,7 @@ the full installed stack. A partial environment fails loud with
 | pip_uv_scan | - | bare `pip install` only in documented exceptions (Docker, conda, uv bootstraps, uv-first blocks with a labeled plain-pip fallback) |
 | langchain_census | LC-01 | every langchain/langgraph import resolves against the installed stack |
 | legacy_chain_scan | LC-02 | bare langchain_classic-only name uses (import-less usage) |
+| legacy_langgraph_scan | LG-01 | legacy LangGraph entry/finish setter calls inside python fences (builder.set_entry_point, builder.set_finish_point) - the modern surface builds the same edge with add_edge(START, node) and the corpus's own 7303 guide calls the setter the legacy spelling, so a fence teaching the setter vouches a form the corpus labels legacy elsewhere (drained born-at-zero tick-677: the 7300 PRACTICE Exercise 3 solution and the VOLUME-7 cheat-sheet fence, both calls now add_edge(START, ...) with the import lines carrying START; paren-less prose mentions are the affirmative teaching form and stay out of the class) |
 | codeblock_syntax_scan | CB-01 | every python fence parses as Python |
 | bashblock_syntax_scan | BB-01 | every bash fence passes `bash -n`; runnable `${VAR}` placeholders |
 | datablock_syntax_scan | DB-01/02 | json fences parse; yaml fences parse as document streams |

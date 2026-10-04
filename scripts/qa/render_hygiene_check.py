@@ -25,6 +25,17 @@ labels same tick), 46 bare URLs across 16 docs (drained to
 [url](url) self-links same tick), 0 heading skips, 0 images / 0
 empty alts - all four hard from birth (KW-03).
 
+Fence tracking (fixed tick-677): the toggle used to flip on every
+3+-run marker line, so a nested 3-backtick inner fence inside a
+4-backtick outer flipped parity mid-doc and the gate scanned the
+inner fence's interior as prose - the tick-675 ML-01 drain left
+UC-002's nested OAuth example carrying plain urls exactly there,
+3 RH-03 findings at HEAD (masked in the tick-675/676 battery
+batches because the loop captured tail's rc, not python's). The
+tracker now follows the CommonMark fence lengths: a closer must
+repeat the opener's character in a run at least as long, and a
+different fence character never closes a backtick fence.
+
 Run over the whole corpus:
     python scripts/qa/render_hygiene_check.py --root .
 
@@ -37,7 +48,7 @@ import re
 import sys
 from pathlib import Path
 
-FENCE = re.compile(r"^\s*(```|~~~)")
+FENCE = re.compile(r"^\s*(`{3,}|~{3,})")
 FM = re.compile(r"^---\s*$")
 HEADING = re.compile(r"^(#{1,6}) (.+?)\s*$")
 CODE_SPAN = re.compile(r"`[^`]*`")
@@ -69,6 +80,7 @@ def main() -> int:
         rel = path.relative_to(args.root).as_posix()
         n_docs += 1
         in_f = False
+        f_char = f_len = 0
         in_fm = text.startswith("---")
         fm_n = 0
         prev_level = 0
@@ -78,8 +90,14 @@ def main() -> int:
                     fm_n += 1
                     in_fm = fm_n != 2
                 continue
-            if FENCE.match(ln):
-                in_f = not in_f
+            fm = FENCE.match(ln)
+            if fm:
+                run = fm.group(1)
+                ch, n = run[0], len(run)
+                if not in_f:
+                    in_f, f_char, f_len = True, ch, n
+                elif ch == f_char and n >= f_len:
+                    in_f = False
                 continue
             if in_f:
                 continue

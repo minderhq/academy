@@ -1,7 +1,7 @@
 ---
 Document ID: 7300-PRACTICE
 Title: "7300: Agent Orchestration - Practice"
-Last Updated: 2026-09-28
+Last Updated: 2026-10-04
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -162,7 +162,7 @@ print(article)
 
 ```python
 from typing import TypedDict, Annotated
-from langgraph.graph import StateGraph, END
+from langgraph.graph import END, START, StateGraph
 
 class AgentState(TypedDict):
     input: str
@@ -218,7 +218,7 @@ workflow.add_edge("research", "analysis")
 workflow.add_edge("analysis", "synthesis")
 workflow.add_edge("synthesis", END)
 
-workflow.set_entry_point("research")
+workflow.add_edge(START, "research")
 
 app = workflow.compile()
 

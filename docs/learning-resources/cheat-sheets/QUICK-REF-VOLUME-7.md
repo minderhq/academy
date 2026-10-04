@@ -1,7 +1,7 @@
 ---
 Document ID: QUICK-REF-VOLUME-7
 Title: "Volume 7: Production Systems - Quick Reference"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-04
 Status: Complete
 Difficulty: Intermediate
 Tags: ['cheatsheet', 'agents', 'production']
@@ -142,7 +142,7 @@ user_proxy.initiate_chat(
 
 ### LangGraph Pattern
 ```python
-from langgraph.graph import StateGraph, END
+from langgraph.graph import END, START, StateGraph
 from typing import TypedDict
 
 class AgentState(TypedDict):
@@ -184,7 +184,7 @@ workflow.add_node("writer", writer_node)
 workflow.add_edge("researcher", "writer")
 workflow.add_edge("writer", END)
 
-workflow.set_entry_point("researcher")
+workflow.add_edge(START, "researcher")
 
 app = workflow.compile()
 

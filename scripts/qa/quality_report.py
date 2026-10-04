@@ -23,6 +23,14 @@ stand today?" without running each tool by hand.
     legacy_chain_scan  bare Name uses of langchain_classic-only chain/
                        agent names (LC-02) - catches the import-less
                        usage that the import-census cannot see (tick-224)
+    legacy_langgraph_scan
+                       legacy LangGraph entry/finish setter calls in
+                       python fences (LG-01) - the modern surface builds
+                       the same edge with add_edge(START, node) and the
+                       corpus's own 7303 guide calls the setter the
+                       legacy spelling; drained born-at-zero the same
+                       tick-677 that landed the gate (the SS-01
+                       zero-drain shape)
     codeblock_syntax_scan
                        every ```python fence parses as Python (CB-01);
                        non-Python content lives in an honest fence label
@@ -3218,6 +3226,7 @@ GATES = [
     ("pip_uv_scan.py", "pip_uv_scan", True),
     ("langchain_census.py", "langchain_census", True),
     ("legacy_chain_scan.py", "legacy_chain_scan", True),
+    ("legacy_langgraph_scan.py", "legacy_langgraph_scan", True),
     ("codeblock_syntax_scan.py", "codeblock_syntax_scan", True),
     ("bashblock_syntax_scan.py", "bashblock_syntax_scan", True),
     ("datablock_syntax_scan.py", "datablock_syntax_scan", True),
