@@ -369,6 +369,60 @@ async def fan_out(calls: list[Callable[[], Awaitable[str]]], limit: int = 8):
     return ok, failed
 ```
 
+### Persistence: Checkpoint the Graph, Resume by thread_id
+
+Every graph in this module was volatile: build the StateGraph,
+invoke, done — the process ends and the state dies with it.
+Long-running fleets cannot afford that. LangChain 1.x made the
+decision explicit: memory is a checkpointer, and a checkpointer
+changes what invoke means — after every super-step (one
+round of node execution) the full state is written to a checkpoint,
+keyed by the config's `thread_id`.
+
+The `thread_id` is the durable join key. Same graph, same
+`thread_id`, same thread: re-invoke with the same config and the
+graph resumes where the checkpoint left off instead of starting
+over — crash recovery and human-in-the-loop approval in one
+mechanism (interrupt the graph for review, resume on approval):
+
+```python
+from typing import TypedDict
+
+from langgraph.checkpoint.memory import InMemorySaver
+from langgraph.graph import END, START, StateGraph
+
+
+class RunState(TypedDict):
+    query: str
+    answer: str
+
+
+def retrieve(state: RunState) -> dict:
+    return {"answer": f"answered: {state['query']}"}
+
+
+builder = StateGraph(RunState)
+builder.add_node("retrieve", retrieve)
+builder.add_edge(START, "retrieve")
+builder.add_edge("retrieve", END)
+graph = builder.compile(checkpointer=InMemorySaver())
+
+config = {"configurable": {"thread_id": "research-run-42"}}
+first = graph.invoke({"query": "transformers"}, config=config)
+# Crash, restart, re-invoke: the same thread_id resumes the same
+# thread instead of starting a new conversation.
+again = graph.invoke({"query": "explain attention"}, config=config)
+```
+
+`InMemorySaver` is the learning shape — it dies with the
+process, which defeats the point in production; the same
+`compile(checkpointer=...)` call takes SqliteSaver or PostgresSaver
+for durability. The
+[practice exercises](./assessment/PRACTICE.md) drive the
+`create_agent` face of the same mechanism — a checkpointer
+plus a `thread_id` config — so the graph API here and the
+agent API there are one discipline, not two.
+
 ---
 
 ## Framework Comparison
