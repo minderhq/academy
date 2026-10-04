@@ -369,6 +369,67 @@ async def fan_out(calls: list[Callable[[], Awaitable[str]]], limit: int = 8):
     return ok, failed
 ```
 
+### Batch the Bulk: Provider Batch APIs for Latency-Tolerant Work
+
+The fan-out you just bounded by hand is for work you need now.
+Bulk work is different: classify 50k documents, generate dataset
+variants, run nightly evals — latency-tolerant,
+cost-dominated. Every major provider ships a **Batch API** for
+exactly this shape: upload a JSONL file of requests, the provider
+runs the whole fleet on its own schedule at roughly half the
+per-token price (check current pricing), and every job completes
+inside a 24-hour window.
+
+The contract to learn is `custom_id` — your join key.
+Each JSONL line carries the id you chose; the results file echoes
+it on every line, one result per input, each holding either the
+response or a per-item error. Never an all-or-nothing exception —
+the same partial-results-plus-failure-list shape as `gather` with
+`return_exceptions=True` above, enforced by the provider instead
+of your partition. You poll for status instead of holding a
+connection open; the terminal states are explicit (`completed`,
+`failed`, `expired`, `cancelled`):
+
+```python
+import json
+import time
+
+
+def batch_line(custom_id: str, model: str, messages: list[dict]) -> str:
+    """One JSONL row of a Batch input file - custom_id is the join key."""
+    return json.dumps(
+        {
+            "custom_id": custom_id,
+            "method": "POST",
+            "url": "/v1/chat/completions",
+            "body": {"model": model, "messages": messages},
+        }
+    )
+
+
+def submit_and_poll(client, input_file_id: str, poll_s: float = 60.0):
+    """Upload out-of-band, then poll - batch is async by design."""
+    batch = client.batches.create(
+        input_file_id=input_file_id,
+        endpoint="/v1/chat/completions",
+        completion_window="24h",
+    )
+    while batch.status not in {"completed", "failed", "expired", "cancelled"}:
+        time.sleep(poll_s)
+        batch = client.batches.retrieve(batch.id)
+    return batch
+```
+
+Anthropic's face of the same discipline: `client.messages.batches`,
+each request carrying `custom_id` plus params, results fetched with
+`.results`. The boundary line is user-visible latency: a human
+waiting on an answer cannot wait 24 hours, so anything in the
+request path stays on the bounded live fan-out; anything the fleet
+can afford to defer moves to batch. The savings are measurable —
+the [1503](../../../phases/phase1-infra/1500-monitoring/1503-LLM-Observability.md)
+observability loop watching cost per document is where the discount
+shows up.
+
 ### Persistence: Checkpoint the Graph, Resume by thread_id
 
 Every graph in this module was volatile: build the StateGraph,
