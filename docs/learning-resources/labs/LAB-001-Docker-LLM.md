@@ -150,7 +150,7 @@ def health():
     try:
         response = requests.get(f"{OLLAMA_URL}/api/tags", timeout=5)
         return {"status": "healthy", "ollama": response.status_code == 200}
-    except:
+    except Exception:
         raise HTTPException(status_code=503, detail="Service unavailable")
 
 @app.get("/v1/models")
@@ -561,7 +561,7 @@ def chat_completions(request: ChatRequest):
                 history = json.loads(saved_history)
             else:
                 history = []
-        except:
+        except Exception:
             history = []
     else:
         history = []

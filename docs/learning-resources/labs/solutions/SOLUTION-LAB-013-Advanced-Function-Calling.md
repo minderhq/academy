@@ -40,7 +40,7 @@ class CalculatorTool(BaseModel):
         try:
             result = eval(self.expression, {"__builtins__": {}}, {})
             return f"Result: {result}"
-        except:
+        except Exception:
             return "Invalid expression"
 
 

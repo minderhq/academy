@@ -144,7 +144,7 @@ Response:"""
             end = result.rfind("}") + 1
             action_dict = json.loads(result[start:end])
             return action_dict
-        except:
+        except Exception:
             # If parsing fails, default to answering
             return {"action": "answer", "params": {}}
 
@@ -174,7 +174,7 @@ Response:"""
         try:
             result = eval(expression)
             return str(result)
-        except:
+        except Exception:
             return "Error in calculation"
 
     def _execute_code(self, code: str) -> str:
@@ -677,7 +677,7 @@ Response:"""
             start = result.find("{")
             end = result.rfind("}") + 1
             action = json.loads(result[start:end])
-        except:
+        except Exception:
             action = {"tool": "answer", "params": {}}
 
         return action

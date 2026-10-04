@@ -803,7 +803,7 @@ if __name__ == "__main__":
     # Initialize TTS
     try:
         tts = CoquiTTSEngine()
-    except:
+    except Exception:
         print("Coqui TTS not available, falling back to Edge TTS")
         tts = EdgeTTSEngine()
 
@@ -882,7 +882,7 @@ class VoiceAssistant:
         if tts_engine == "coqui":
             try:
                 self.tts = CoquiTTSEngine()
-            except:
+            except Exception:
                 print("Coqui TTS unavailable, using Edge TTS")
                 self.tts = EdgeTTSEngine()
         else:

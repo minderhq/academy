@@ -67,7 +67,7 @@ class VectorStore:
 
         try:
             self.client.get_collection(self.collection_name)
-        except:
+        except Exception:
             self.client.create_collection(
                 collection_name=self.collection_name,
                 vectors_config=VectorParams(size=384, distance=Distance.COSINE)

@@ -480,7 +480,7 @@ def calculator_tool(input_str):
     try:
         result = eval(input_str, {"__builtins__": {}}, {})
         return f"Result: {result}"
-    except:
+    except Exception:
         return "Error: Invalid expression"
 
 def search_tool(query):

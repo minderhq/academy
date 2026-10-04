@@ -603,6 +603,27 @@ stand today?" without running each tool by hand.
                        notebooks are out by construction, born
                        tick-659 at zero across 1861 fences / 197
                        async defs, hard from birth)
+    bare_except_scan
+                       a bare ``except:`` handler catches
+                       BaseException - KeyboardInterrupt,
+                       SystemExit and asyncio.CancelledError are
+                       swallowed (Ctrl+C dies silently, task
+                       cancellation no-ops), PEP 8 names it too
+                       broad; the corpus teaches the bounded forms
+                       itself (except Exception x124, specific
+                       types x65 of 206 handlers); every typed
+                       handler (Name / Attribute / Tuple /
+                       Subscript / Call), except* ExceptionGroups,
+                       pass-only bodies (broad_except BE-01's
+                       slice, disjoint by body shape), string
+                       mentions, danger-marker fences,
+                       non-python fences and notebooks are out
+                       by construction, born tick-660 at
+                       exactly 17
+                       bare handlers across 12 files, drained
+                       in-line the same tick (except: ->
+                       except Exception:, zero line shift), hard
+                       from birth)
     action_version_scan
                        uses: pins in docs must match the canonical
                        action registry (AV-01: current majors -
@@ -3189,6 +3210,7 @@ GATES = [
     ("trust_remote_code_scan.py", "trust_remote_code_scan", True),
     ("async_block_scan.py", "async_block_scan", True),
     ("unawaited_coro_scan.py", "unawaited_coro_scan", True),
+    ("bare_except_scan.py", "bare_except_scan", True),
     ("action_version_scan.py", "action_version_scan", True),
     ("unicode_ws_hygiene_scan.py", "unicode_ws_hygiene_scan", True),
     ("objectives_lint.py", "objectives_lint", False),

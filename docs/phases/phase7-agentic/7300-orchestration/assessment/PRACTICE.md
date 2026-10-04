@@ -518,7 +518,7 @@ Respond in JSON format:
         try:
             decision = json.loads(response.content)
             return decision
-        except:
+        except Exception:
             return {"thought": "Parse error", "tool": "none", "input": "", "completed": False}
 
     def execute(self, tool_name, tool_input):

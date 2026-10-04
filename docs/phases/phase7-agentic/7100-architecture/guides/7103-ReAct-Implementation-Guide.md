@@ -391,7 +391,7 @@ Query: {query}
                 # Parse input as JSON or dict
                 try:
                     thought.action_input = json.loads(action_input) if action_input else {}
-                except:
+                except Exception:
                     thought.action_input = {"input": action_input}
 
         return thought

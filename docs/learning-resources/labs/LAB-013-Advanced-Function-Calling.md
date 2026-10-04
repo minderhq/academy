@@ -902,7 +902,7 @@ class ValidationTool:
                 "valid": is_valid,
                 "formatted": phonenumbers.format_number(parsed, phonenumbers.PhoneNumberFormat.INTERNATIONAL) if is_valid else None
             }
-        except:
+        except Exception:
             return {
                 "phone": phone,
                 "valid": False

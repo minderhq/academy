@@ -1748,7 +1748,7 @@ class AuditLogger:
 
                                     if log_time >= cutoff_time:
                                         security_events.append(log_entry)
-                                except:
+                                except Exception:
                                     security_events.append(log_entry)
 
                         except json.JSONDecodeError:

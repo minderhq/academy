@@ -144,7 +144,7 @@ def calculate_tool(expression: str) -> str:
     try:
         result = eval(expression, {"__builtins__": {}}, {})
         return f"Result: {result}"
-    except:
+    except Exception:
         return "Calculation error"
 
 tools = {
@@ -1417,7 +1417,7 @@ def test_react():
     def calculator(expression: str) -> str:
         try:
             return f"Result: {eval(expression, {"__builtins__": {}}, {})}"
-        except:
+        except Exception:
             return "Invalid expression"
 
     tools = [
