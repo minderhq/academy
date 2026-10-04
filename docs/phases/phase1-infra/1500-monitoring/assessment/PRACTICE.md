@@ -274,7 +274,7 @@ dashboard = {
 }
 
 # Save dashboard
-with open('grafana_llm_dashboard.json', 'w') as f:
+with open('grafana_llm_dashboard.json', 'w', encoding="utf-8") as f:
     json.dump(dashboard, f, indent=2)
 
 print("Dashboard configuration saved to grafana_llm_dashboard.json")

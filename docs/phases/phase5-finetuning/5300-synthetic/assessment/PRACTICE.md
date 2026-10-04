@@ -92,7 +92,7 @@ def generate_synthetic_instructions(num_samples=100):
 # Generate and save
 print("Generating synthetic instruction data...")
 data = generate_synthetic_instructions(100)
-with open("synthetic_instructions.json", "w") as f:
+with open("synthetic_instructions.json", "w", encoding="utf-8") as f:
     json.dump(data, f, indent=2)
 
 print(f"\nGenerated {len(data)} instruction-response pairs")
@@ -263,7 +263,7 @@ print("Generating synthetic conversations...")
 convs = generate_conversations(model, tokenizer, num_conversations=20)
 
 # Save conversations
-with open("synthetic_conversations.json", "w") as f:
+with open("synthetic_conversations.json", "w", encoding="utf-8") as f:
     json.dump(convs, f, indent=2)
 
 print(f"\nGenerated {len(convs)} conversations")
@@ -365,7 +365,7 @@ def extract_final_answer(response):
 print("Generating reasoning data...")
 reasoning_data = generate_reasoning_data(model, tokenizer, num_samples=50)
 
-with open("synthetic_reasoning.json", "w") as f:
+with open("synthetic_reasoning.json", "w", encoding="utf-8") as f:
     json.dump(reasoning_data, f, indent=2)
 
 print(f"\nGenerated {len(reasoning_data)} reasoning samples")
@@ -524,7 +524,7 @@ print(f"Filtered samples: {filtered_count}")
 print(f"Kept: {filtered_count/original_count*100:.1f}%")
 
 # Save filtered data
-with open("filtered_synthetic_data.json", "w") as f:
+with open("filtered_synthetic_data.json", "w", encoding="utf-8") as f:
     json.dump(filtered, f, indent=2)
 
 # Show quality distribution
@@ -613,7 +613,7 @@ print(f"Real: {sum(1 for x in mixed if x['_source'] == 'real')}")
 print(f"Synthetic ratio: {sum(1 for x in mixed if x['_source'] == 'synthetic')/len(mixed):.1%}")
 
 # Save mixed dataset
-with open("mixed_training_data.json", "w") as f:
+with open("mixed_training_data.json", "w", encoding="utf-8") as f:
     json.dump(mixed, f, indent=2)
 
 print("\nMixed dataset saved to mixed_training_data.json")

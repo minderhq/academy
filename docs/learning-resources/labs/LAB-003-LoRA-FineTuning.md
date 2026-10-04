@@ -240,7 +240,7 @@ class DatasetPreparer:
             })
 
         # Save as JSONL
-        with open(output_path, 'w') as f:
+        with open(output_path, 'w', encoding="utf-8") as f:
             for example in dataset:
                 f.write(json.dumps(example) + '\n')
 
@@ -269,7 +269,7 @@ class DatasetPreparer:
                 "messages": conv.get("messages", [])
             })
 
-        with open(output_path, 'w') as f:
+        with open(output_path, 'w', encoding="utf-8") as f:
             for example in dataset:
                 f.write(json.dumps(example) + '\n')
 
@@ -299,11 +299,11 @@ class DatasetPreparer:
         val_examples = examples[split_idx:]
 
         # Save
-        with open(train_path, 'w') as f:
+        with open(train_path, 'w', encoding="utf-8") as f:
             for example in train_examples:
                 f.write(json.dumps(example) + '\n')
 
-        with open(val_path, 'w') as f:
+        with open(val_path, 'w', encoding="utf-8") as f:
             for example in val_examples:
                 f.write(json.dumps(example) + '\n')
 

@@ -302,7 +302,7 @@ kb_dir = Path("~/ai-assistant/data/documents").expanduser()
 kb_dir.mkdir(parents=True, exist_ok=True)
 
 for filename, content in docs.items():
-    (kb_dir / filename).write_text(content)
+    (kb_dir / filename).write_text(content, encoding="utf-8")
 
 print(f"Created {len(docs)} documents in {kb_dir}")
 ```

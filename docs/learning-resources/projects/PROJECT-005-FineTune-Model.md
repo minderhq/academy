@@ -207,11 +207,11 @@ class DatasetPreparator:
         """Save prepared datasets"""
         train_data, test_data = self.train_test_split()
 
-        with open(train_path, 'w') as f:
+        with open(train_path, 'w', encoding="utf-8") as f:
             for sample in train_data:
                 f.write(json.dumps(sample) + '\n')
 
-        with open(test_path, 'w') as f:
+        with open(test_path, 'w', encoding="utf-8") as f:
             for sample in test_data:
                 f.write(json.dumps(sample) + '\n')
 

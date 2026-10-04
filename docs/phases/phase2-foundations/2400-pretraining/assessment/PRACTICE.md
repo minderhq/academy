@@ -346,7 +346,7 @@ def save_checkpoint(model, optimizer, scheduler, epoch, loss, config, output_dir
         'timestamp': time.strftime('%Y-%m-%d %H:%M:%S')
     }
 
-    with open(model_dir / "metadata.json", 'w') as f:
+    with open(model_dir / "metadata.json", 'w', encoding="utf-8") as f:
         json.dump(metadata, f, indent=2)
 
     print(f"✓ Checkpoint saved to {model_dir}")

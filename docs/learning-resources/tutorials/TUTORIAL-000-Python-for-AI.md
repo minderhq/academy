@@ -819,12 +819,12 @@ with open("file.txt", "r") as f:
 #### Writing Files:
 ```python
 # Write text
-with open("output.txt", "w") as f:
+with open("output.txt", "w", encoding="utf-8") as f:
     f.write("Hello, World!\n")
     f.write("This is a new line.")
 
 # Append to file
-with open("output.txt", "a") as f:
+with open("output.txt", "a", encoding="utf-8") as f:
     f.write("\nThis is appended.")
 ```
 
@@ -839,7 +839,7 @@ data = {
     "city": "NYC"
 }
 
-with open("data.json", "w") as f:
+with open("data.json", "w", encoding="utf-8") as f:
     json.dump(data, f, indent=2)
 
 # Read JSON

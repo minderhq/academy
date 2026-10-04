@@ -624,7 +624,7 @@ class ModelEvaluator:
     def _save_results(self, result: EvaluationResult):
         """Save results to file"""
         filename = f"eval_{self.name}_{result.timestamp.replace(':', '-')}.json"
-        with open(filename, 'w') as f:
+        with open(filename, 'w', encoding="utf-8") as f:
             json.dump({
                 "metrics": result.metrics,
                 "metadata": result.metadata,

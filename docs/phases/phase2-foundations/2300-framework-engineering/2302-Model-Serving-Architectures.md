@@ -901,7 +901,7 @@ class ModelResponseCache:
 
         # Store response
         try:
-            with open(cache_path, "w") as f:
+            with open(cache_path, "w", encoding="utf-8") as f:
                 json.dump(response, f)
 
             self.index[input_hash] = time.time()

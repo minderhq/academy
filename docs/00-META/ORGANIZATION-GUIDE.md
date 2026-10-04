@@ -632,7 +632,7 @@ def generate_sitemap():
     docs_path = Path("docs")
     markdown_files = docs_path.rglob("*.md")
 
-    with open("SITEMAP.md", "w") as f:
+    with open("SITEMAP.md", "w", encoding="utf-8") as f:
         f.write("# SITEMAP\n\n")
         for file in sorted(markdown_files):
             rel_path = file.relative_to(docs_path)

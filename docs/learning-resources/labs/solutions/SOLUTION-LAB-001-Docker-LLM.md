@@ -444,7 +444,7 @@ class ChatHistory:
 
     def _save_history(self):
         """Save history to file."""
-        with open(self.file_path, "w") as f:
+        with open(self.file_path, "w", encoding="utf-8") as f:
             json.dump(self.history, f, indent=2)
 
     def add_message(self, role: str, content: str):

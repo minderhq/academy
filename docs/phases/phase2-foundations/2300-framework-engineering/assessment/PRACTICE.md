@@ -440,7 +440,7 @@ class MetricRegistry:
                 for name, meta in self._metadata.items()
             }
         }
-        with open(path, 'w') as f:
+        with open(path, 'w', encoding="utf-8") as f:
             json.dump(state, f, indent=2)
 
 # Create registry instance
@@ -639,7 +639,7 @@ class Specificity:
         self.false_positives = 0
 '''
     plugin_path = os.path.join(tempfile.mkdtemp(), "custom_metrics.py")
-    with open(plugin_path, "w") as f:
+    with open(plugin_path, "w", encoding="utf-8") as f:
         f.write(plugin_src)
 
     loaded = METRIC_REGISTRY.load_from_file(plugin_path)

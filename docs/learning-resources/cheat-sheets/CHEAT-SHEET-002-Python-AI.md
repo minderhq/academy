@@ -490,7 +490,7 @@ with open('file.txt', 'r') as f:
     content = f.read()
 
 # Write file
-with open('output.txt', 'w') as f:
+with open('output.txt', 'w', encoding="utf-8") as f:
     f.write('Hello, World!')
 
 # Read lines
@@ -500,7 +500,7 @@ with open('file.txt', 'r') as f:
 # JSON
 import json
 data = json.load(open('data.json'))
-json.dump(data, open('output.json', 'w'))
+json.dump(data, open('output.json', 'w', encoding="utf-8"))
 ```
 
 ---

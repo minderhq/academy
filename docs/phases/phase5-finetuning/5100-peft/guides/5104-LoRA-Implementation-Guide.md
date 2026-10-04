@@ -466,7 +466,7 @@ def example_training():
         {"text": "11GB-class GPU has 11GB VRAM, suitable for 7B models with 4-bit quantization."},
     ]
 
-    with open("sample_data.jsonl", "w") as f:
+    with open("sample_data.jsonl", "w", encoding="utf-8") as f:
         for item in sample_data:
             f.write(json.dumps(item) + "\n")
 

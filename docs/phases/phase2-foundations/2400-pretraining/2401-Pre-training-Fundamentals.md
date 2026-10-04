@@ -206,7 +206,7 @@ class DataCollector:
 
         dataset = load_dataset("allenai/c4", "en", split="train", streaming=True)
         out = os.path.join(self.output_dir, "c4_sample.jsonl")
-        with open(out, "w") as f:
+        with open(out, "w", encoding="utf-8") as f:
             for i, example in enumerate(dataset):
                 if i >= 10000:
                     break
@@ -219,7 +219,7 @@ class DataCollector:
 
         dataset = load_dataset("cerebras/SlimPajama-627B", split="train", streaming=True)
         out = os.path.join(self.output_dir, "slimpajama_sample.jsonl")
-        with open(out, "w") as f:
+        with open(out, "w", encoding="utf-8") as f:
             for i, example in enumerate(dataset):
                 if i >= 10000:
                     break
@@ -232,7 +232,7 @@ class DataCollector:
 
         dataset = load_dataset("wikimedia/wikipedia", f"20231101.{language}", split="train")
         out = os.path.join(self.output_dir, "wikipedia.jsonl")
-        with open(out, "w") as f:
+        with open(out, "w", encoding="utf-8") as f:
             for example in dataset:
                 f.write(json.dumps({
                     "id": example["id"],
@@ -247,7 +247,7 @@ class DataCollector:
 
         dataset = load_dataset("scientific_papers", "arxiv", split="train")
         out = os.path.join(self.output_dir, "arxiv.jsonl")
-        with open(out, "w") as f:
+        with open(out, "w", encoding="utf-8") as f:
             for i, example in enumerate(dataset):
                 if i >= 1000:
                     break

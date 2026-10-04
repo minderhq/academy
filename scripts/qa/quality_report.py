@@ -411,6 +411,27 @@ stand today?" without running each tool by hand.
                        and danger-marked fences are out by
                        construction, born tick-650, drained same
                        tick: 7 sites across 7 files)
+    open_encoding_scan
+                       text-write encoding holes in python
+                       fences (OE-01: a builtin open() in text
+                       write mode - mode carries w/a/x/+ and
+                       never b - without an explicit encoding=
+                       kwarg writes through
+                       locale.getpreferredencoding(False)
+                       (cp1252/cp1254 on Windows, an ASCII-ish
+                       locale on CI), so non-ASCII content
+                       mojibakes or raises UnicodeEncodeError;
+                       OE-02: the same class one step removed,
+                       Path.write_text(data) without encoding=;
+                       PEP 597 warns, PEP 686 flips the default
+                       to UTF-8 only in 3.15; the corpus teaches
+                       encoding="utf-8" in 24 places; encoding=
+                       with any value, binary modes, read-only
+                       opens, non-constant modes, write_bytes,
+                       method .open() calls, string mentions and
+                       danger-marked fences are out by
+                       construction, born tick-651, drained same
+                       tick: 31 sites across 16 files)
     action_version_scan
                        uses: pins in docs must match the canonical
                        action registry (AV-01: current majors -
@@ -2988,6 +3009,7 @@ GATES = [
     ("broad_except_scan.py", "broad_except_scan", True),
     ("cypher_interp_scan.py", "cypher_interp_scan", True),
     ("mutable_default_scan.py", "mutable_default_scan", True),
+    ("open_encoding_scan.py", "open_encoding_scan", True),
     ("action_version_scan.py", "action_version_scan", True),
     ("unicode_ws_hygiene_scan.py", "unicode_ws_hygiene_scan", True),
     ("objectives_lint.py", "objectives_lint", False),

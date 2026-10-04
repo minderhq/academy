@@ -608,7 +608,7 @@ args = TrainingArguments(
 
 # TrainingArguments has no to_json()/from_json() method pair, but it does
 # serialize with to_json_string() - round-trip via the constructor:
-Path("config.json").write_text(args.to_json_string())
+Path("config.json").write_text(args.to_json_string(), encoding="utf-8")
 args = TrainingArguments(**json.loads(Path("config.json").read_text()))
 ```
 

@@ -25,9 +25,9 @@
    "size": 10540
   },
   "docs/00-META/ORGANIZATION-GUIDE.md": {
-   "bad": {},
-   "mtime": 1790785289.139206,
-   "size": 19512
+   "mtime": 1791066627.6096544,
+   "size": 19530,
+   "bad": {}
   },
   "docs/00-META/QUICK-START.md": {
    "bad": {
@@ -223,14 +223,16 @@
    "size": 12004
   },
   "docs/learning-resources/cheat-sheets/CHEAT-SHEET-002-Python-AI.md": {
+   "mtime": 1791066627.6136546,
+   "size": 12054,
    "bad": {
+    "183": "TIMEOUT",
     "204": "TIMEOUT"
    },
-   "mtime": 1790785289.1572351,
    "notes": {
+    "183": "AutoModelForCausalLM.from_pretrained(mistralai/Mistral-7B-Instruct-v0.2) is a multi-GB HF-hub pull exceeding the 90s census budget by design; adjudicated tick-651 - the budget now dies at the earlier of the file's two model fences (sibling 204's note describes the same class)",
     "204": "real multi-GB model load exceeds the 90s census budget by design"
-   },
-   "size": 12018
+   }
   },
   "docs/learning-resources/cheat-sheets/CHEAT-SHEET-004-Linux.md": {
    "bad": {},
@@ -387,14 +389,14 @@
    "size": 30557
   },
   "docs/learning-resources/labs/LAB-003-LoRA-FineTuning.md": {
+   "mtime": 1791066627.6186554,
+   "size": 29124,
    "bad": {
     "672": "TIMEOUT"
    },
-   "mtime": 1791032671.5518348,
    "notes": {
     "672": "real multi-GB model load exceeds the 90s census budget by design"
-   },
-   "size": 29052
+   }
   },
   "docs/learning-resources/labs/LAB-004-ReAct-Agent.md": {
    "bad": {
@@ -546,16 +548,16 @@
    "size": 1871
   },
   "docs/learning-resources/labs/solutions/SOLUTION-LAB-001-Docker-LLM.md": {
+   "mtime": 1791066627.6206563,
+   "size": 15622,
    "bad": {
-    "108": "EXIT-CALL",
+    "108": "TIMEOUT",
     "478": "ENV-GAP:storage"
    },
-   "mtime": 1790788811.2954109,
    "notes": {
-    "108": "intentional sys.exit() demo (CLI path)",
+    "108": "uvicorn.run(app, ...) on the fence's __main__ path starts a live server and blocks past the 90s census budget by design (server-start hang family); adjudicated tick-651 from EXIT-CALL, environmental drift since the old bless - the tail fence's ENV-GAP row at 478 re-verified and kept as the union baseline",
     "478": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design"
-   },
-   "size": 15604
+   }
   },
   "docs/learning-resources/labs/solutions/SOLUTION-LAB-002-RAG-Implementation.md": {
    "bad": {
@@ -675,8 +677,8 @@
    "size": 2316
   },
   "docs/learning-resources/projects/PROJECT-001-AI-Assistant.md": {
-   "mtime": 1791053448.885177,
-   "size": 36747,
+   "mtime": 1791066627.6261117,
+   "size": 36765,
    "bad": {
     "664": "TIMEOUT"
    },
@@ -739,16 +741,16 @@
    "size": 19381
   },
   "docs/learning-resources/projects/PROJECT-005-FineTune-Model.md": {
+   "mtime": 1791066627.6287227,
+   "size": 17242,
    "bad": {
     "252": "ENV-GAP:Using `bitsandbytes` 4-bit quantization requires bitsandbyte",
     "388": "SIDE-EFFECT"
    },
-   "mtime": 1791032671.5753088,
    "notes": {
     "252": "optional third-party package the QA environment does not install; the fence documents the install requirement",
     "388": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect"
-   },
-   "size": 17206
+   }
   },
   "docs/learning-resources/projects/PROJECT-006-Production-RAG.md": {
    "bad": {
@@ -962,14 +964,14 @@
    "size": 13560
   },
   "docs/learning-resources/tutorials/TUTORIAL-000-Python-for-AI.md": {
+   "mtime": 1791066627.6386638,
+   "size": 47272,
    "bad": {
     "1891": "TIMEOUT"
    },
-   "mtime": 1790926026.160487,
    "notes": {
     "1891": "uvicorn.run() server start - by-design hang; the fence teaches the run command, not a completable script"
-   },
-   "size": 47218
+   }
   },
   "docs/learning-resources/tutorials/TUTORIAL-001-Hello-LLM.md": {
    "bad": {
@@ -1062,16 +1064,16 @@
    "size": 18886
   },
   "docs/learning-resources/tutorials/TUTORIAL-010-Model-Evaluation.md": {
+   "mtime": 1791066627.6431878,
+   "size": 21257,
    "bad": {
     "193": "ENV-GAP:rouge",
     "477": "ENV-GAP:sentence_transformers"
    },
-   "mtime": 1790897729.7478757,
    "notes": {
     "193": "rouge is an optional package the QA environment does not install; the fence teaches ROUGE scoring",
     "477": "sentence_transformers optional package; the fence teaches semantic similarity evaluation"
-   },
-   "size": 21239
+   }
   },
   "docs/learning-resources/tutorials/TUTORIAL-011-Multi-Modal-AI.md": {
    "bad": {
@@ -1258,14 +1260,14 @@
    "size": 29440
   },
   "docs/phases/phase1-infra/1500-monitoring/assessment/PRACTICE.md": {
+   "mtime": 1791066627.6475694,
+   "size": 37349,
    "bad": {
     "835": "ENV-GAP:structlog"
    },
-   "mtime": 1790745763.6884103,
    "notes": {
     "835": "optional third-party package the QA environment does not install; the fence documents the install requirement"
-   },
-   "size": 37331
+   }
   },
   "docs/phases/phase2-foundations/2100-calculus/2101-Tensor-Algebra.md": {
    "bad": {},
@@ -1374,8 +1376,8 @@
    }
   },
   "docs/phases/phase2-foundations/2300-framework-engineering/2301-Framework-Design-Patterns.md": {
-   "mtime": 1791051517.1652887,
-   "size": 37830,
+   "mtime": 1791066627.6513288,
+   "size": 37848,
    "bad": {
     "88": "ENV-GAP:tensorflow",
     "1205": "CODE-SIGNAL:TypeError"
@@ -1386,8 +1388,8 @@
    }
   },
   "docs/phases/phase2-foundations/2300-framework-engineering/2302-Model-Serving-Architectures.md": {
-   "mtime": 1791051561.4535315,
-   "size": 46040,
+   "mtime": 1791066627.6594007,
+   "size": 46058,
    "bad": {}
   },
   "docs/phases/phase2-foundations/2300-framework-engineering/2303-API-Design-for-ML.md": {
@@ -1406,8 +1408,8 @@
    "size": 15980
   },
   "docs/phases/phase2-foundations/2300-framework-engineering/assessment/PRACTICE.md": {
-   "mtime": 1791050875.321185,
-   "size": 33829,
+   "mtime": 1791066627.6669044,
+   "size": 33865,
    "bad": {
     "70": "ENV-GAP:tensorflow",
     "314": "UN-LEAK"
@@ -1459,9 +1461,9 @@
    }
   },
   "docs/phases/phase2-foundations/2400-pretraining/2401-Pre-training-Fundamentals.md": {
-   "bad": {},
-   "mtime": 1790782652.3738337,
-   "size": 52371
+   "mtime": 1791066627.6724946,
+   "size": 52443,
+   "bad": {}
   },
   "docs/phases/phase2-foundations/2400-pretraining/2402-Large-Scale-Training.md": {
    "mtime": 1791051517.1877544,
@@ -1484,8 +1486,8 @@
    "size": 20054
   },
   "docs/phases/phase2-foundations/2400-pretraining/assessment/PRACTICE.md": {
-   "mtime": 1791051517.1877544,
-   "size": 23575,
+   "mtime": 1791066627.6785629,
+   "size": 23593,
    "bad": {
     "186": "TIMEOUT"
    },
@@ -1825,7 +1827,7 @@
    "size": 13701
   },
   "docs/phases/phase4-quantization/4300-quantization-aware-training/4304-Low-bit-QAT.md": {
-   "mtime": 1791063231.6360505,
+   "mtime": 1791065350.753599,
    "size": 12001,
    "bad": {}
   },
@@ -2108,14 +2110,14 @@
    }
   },
   "docs/phases/phase5-finetuning/5100-peft/guides/5104-LoRA-Implementation-Guide.md": {
+   "mtime": 1791066627.683017,
+   "size": 27224,
    "bad": {
     "309": "TIMEOUT"
    },
-   "mtime": 1791032671.5833092,
    "notes": {
     "309": "by-design training loop: the LoRA demo runs the lesson's full training schedule"
-   },
-   "size": 27206
+   }
   },
   "docs/phases/phase5-finetuning/5200-alignment/5201-DPO-Theory.md": {
    "bad": {
@@ -2213,14 +2215,14 @@
    "size": 16678
   },
   "docs/phases/phase5-finetuning/5300-synthetic/assessment/PRACTICE.md": {
+   "mtime": 1791066627.6872857,
+   "size": 20340,
    "bad": {
     "19": "TIMEOUT"
    },
-   "mtime": 1790872954.4441237,
    "notes": {
     "19": "by-design generation loop: 100 sampled gpt2 completions exceed the 90s census budget"
-   },
-   "size": 20250
+   }
   },
   "docs/phases/phase5-finetuning/5400-distributed-training/5401-Data-Parallelism.md": {
    "bad": {
