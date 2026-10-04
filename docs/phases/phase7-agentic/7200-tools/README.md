@@ -190,6 +190,57 @@ wire-level face is the tool-calling lesson's round trip); the
 decorator wins wherever the schema and the implementation must move
 together.
 
+## From Tools to Agents: The create_agent Constructor
+
+Every tool above is inert until something drives the loop: the model
+decides, a tool executes, the result feeds back, the model decides
+again. The 7201 lesson built that round trip by hand with raw provider
+calls. In production you do not: LangChain 1.x's `create_agent` wires
+the whole loop in one constructor call — model, tools, and
+system prompt in; a compiled LangGraph graph out. AgentExecutor and
+the hub prompt templates it replaced are gone (the migration is
+annotated in exercise comments across this corpus); this is the
+construct itself:
+
+```python
+from langchain.agents import create_agent
+from langchain_core.tools import tool
+from langchain_openai import ChatOpenAI
+
+
+@tool
+def word_count(text: str) -> int:
+    """Count the words in a text."""
+    return len(text.split())
+
+
+llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
+
+agent = create_agent(
+    llm,
+    [word_count],
+    system_prompt="Use your tools when they answer better than you can.",
+)
+
+result = agent.invoke(
+    {"messages": [{"role": "user", "content": "How many words: hello agent world"}]}
+)
+print(result["messages"][-1].content)  # the loop's final answer
+```
+
+The call is small because the decisions are already made: which tools
+(the decorator-derived contracts above are what the model reads when
+choosing), what persona, which model. What comes back is a graph, not
+a wrapper — the orchestration module builds graphs by hand, and
+its checkpointer face makes the same loop resumable. Invoke with a
+messages dict, read the last message. The boundary: the constructor
+changes the wiring, not the conversation — the
+[tool-calling lesson's](./7201-Tool-Calling.md)
+round trip still happens inside, which is why debugging starts there;
+and when one agent is not enough, the
+[orchestration module](../7300-orchestration/README.md)
+composes these constructors into multi-agent graphs.
+
 ## Common Tool Categories
 
 | Category | Examples | Use Cases |
