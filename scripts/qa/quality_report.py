@@ -535,6 +535,22 @@ stand today?" without running each tool by hand.
                        /tmp/xla_profile are out by construction, born
                        tick-655, zero-drain, owned preemptively per
                        the US-02/US-03, RT-02 and CH-01 precedent)
+    cors_wildcard_scan
+                       CORS wildcard origins combined with
+                       allow_credentials=True in a CORS call (the
+                       Fetch spec forbids the pair: credentialed
+                       cross-origin responses must name the actual
+                       origin - browsers reject the wildcard, or the
+                       middleware reflects it into every-origin
+                       credentialed access); attaches on add_middleware
+                       whose first argument is the CORSMiddleware
+                       class (a bare Name, a constructor Call or a
+                       string) or a direct CORSMiddleware call -
+                       wildcard alone, credentials with explicit
+                       origins, credentials=False and non-constant
+                       origins are out by construction, born tick-656,
+                       drained in-line the same tick (2 sites, zero
+                       line shift), hard from the rule's naming)
     action_version_scan
                        uses: pins in docs must match the canonical
                        action registry (AV-01: current majors -
@@ -3117,6 +3133,7 @@ GATES = [
     ("sql_interp_scan.py", "sql_interp_scan", True),
     ("crypto_hygiene_scan.py", "crypto_hygiene_scan", True),
     ("insecure_temp_scan.py", "insecure_temp_scan", True),
+    ("cors_wildcard_scan.py", "cors_wildcard_scan", True),
     ("action_version_scan.py", "action_version_scan", True),
     ("unicode_ws_hygiene_scan.py", "unicode_ws_hygiene_scan", True),
     ("objectives_lint.py", "objectives_lint", False),
