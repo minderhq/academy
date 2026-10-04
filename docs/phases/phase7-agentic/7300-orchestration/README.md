@@ -1,7 +1,7 @@
 ---
 Document ID: 7300-ORCHESTRATION-README
 Title: "[7300]: Multi-Agent Orchestration"
-Last Updated: 2026-09-29
+Last Updated: 2026-10-04
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
@@ -266,6 +266,64 @@ async def parallel_analysis(task: str, documents: list[str]):
 
     return aggregated
 ```
+
+### Task Discipline: Spawn, Budget, Cancel
+
+`asyncio.gather` is the fan-out-with-a-join tool: every call must
+finish before the function returns. Agent fleets also need three
+disciplines gather does not cover — work with an *independent
+lifetime*, a *wall-clock budget*, and a *shutdown path*.
+
+**Spawn and hold the reference.** `asyncio.create_task` schedules a
+coroutine to run concurrently, but the event loop keeps only a
+*weak* reference to the task: drop every strong reference and the
+garbage collector may collect the task mid-flight, and its work
+silently never completes. Hold tasks in a collection that outlives
+the spawn site and release each one when it finishes:
+
+```python
+import asyncio
+
+background_tasks: set[asyncio.Task] = set()
+
+
+def spawn(runner) -> asyncio.Task:
+    """Independent work: create_task - and hold the reference."""
+    task = asyncio.create_task(runner())
+    background_tasks.add(task)                # strong ref keeps it alive
+    task.add_done_callback(background_tasks.discard)   # finished -> release
+    return task
+
+
+async def with_budget(agent_call, budget_s: float) -> str:
+    """wait_for owns the wall-clock budget and cancels on timeout."""
+    return await asyncio.wait_for(agent_call(), timeout=budget_s)
+
+
+async def poll(stop: asyncio.Event, out: asyncio.Queue) -> None:
+    """Cooperative shutdown: cleanup, then re-raise - never swallow."""
+    while not stop.is_set():
+        try:
+            await asyncio.sleep(0.5)
+        except asyncio.CancelledError:
+            out.put_nowait({"event": "cancelled"})   # observable, never silent
+            raise
+```
+
+**Budget every task.** Awaited work can still hang forever. The fleet
+rule is *timeouts everywhere* ([7302](./7302-Communication-Protocols.md)):
+`asyncio.wait_for` is the async mechanism — it cancels the
+wrapped awaitable itself when the budget expires and raises
+`TimeoutError`. On Python 3.11+ the scoped form
+`async with asyncio.timeout(budget_s):` applies the same budget to a
+whole block.
+
+**Cancel cooperatively.** Shutdown and budget expiry both arrive as
+`task.cancel()`, which raises `asyncio.CancelledError` inside the task
+at its next `await`. The contract: catch it only to clean up —
+flush state, release resources — then re-raise. Swallowing it
+turns cancellation into a silent no-op, the same failure class the
+broad-handler lesson teaches.
 
 ---
 
