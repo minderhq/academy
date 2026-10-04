@@ -286,6 +286,52 @@ def send_with_retry(bus, msg: Message, retries=2, backoff=1.5):
     return None
 ```
 
+### Jitter and Retry-After: Making Backoff Actually Work
+
+The retry loop above backs off exponentially — and so does
+every other client that saw the same failure. When a provider blips,
+N clients all compute the same delays and retry in waves at 0.5s,
+1s, 2s, 4s — each wave re-trips the limiter it was escaping.
+**Jitter** breaks the lockstep: add randomness to every delay so a
+thousand clients spread their retries instead of synchronizing them.
+Production SDKs default to it (the major cloud SDKs jitter by
+default; `tenacity` calls the idiom `wait_random_exponential`), and
+when you use an LLM SDK client you usually configure its built-in
+retry budget (`max_retries`) instead of hand-rolling this loop.
+
+The second half of the discipline: **honor `Retry-After`.**
+[2303](../../../phases/phase2-foundations/2300-framework-engineering/2303-API-Design-for-ML.md) teaches the server half — return 429
+with a `Retry-After` hint. The client half is taking that hint
+seriously: the server knows its own load curve, so its hint beats
+your computed delay, with `max()` as the floor your own budget
+enforces. And in async agents the wait is awaited —
+`time.sleep` inside an event loop blocks every task on it:
+
+```python
+import asyncio
+import random
+
+
+class RateLimited(Exception):
+    """The 429 shape: the server says when to come back."""
+
+    def __init__(self, retry_after_s: float):
+        super().__init__(f"retry after {retry_after_s}s")
+        self.retry_after_s = retry_after_s
+
+
+async def send_with_jitter(bus, msg, retries: int = 4, base_s: float = 0.5):
+    """Exponential backoff + jitter, honoring the server's Retry-After."""
+    for attempt in range(retries + 1):
+        try:
+            return await bus.send(msg, timeout_s=10)
+        except RateLimited as e:
+            if attempt == retries:
+                raise
+            pause = max(e.retry_after_s, base_s * 2**attempt)
+        await asyncio.sleep(pause + random.uniform(0, base_s))
+```
+
 Fleet-level rules:
 - **Timeouts everywhere**: an agent that can hang must not be able to
   hang a pipeline — per-message `ttl_s` plus per-task wall-clock budgets
