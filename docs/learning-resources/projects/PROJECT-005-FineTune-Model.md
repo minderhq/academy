@@ -286,7 +286,7 @@ model = AutoModelForCausalLM.from_pretrained(
     MODEL_NAME,
     quantization_config=bnb_config,
     device_map="auto",
-    trust_remote_code=True
+    # no trust_remote_code - Mistral loads with stock transformers code
 )
 
 print("Loading tokenizer...")

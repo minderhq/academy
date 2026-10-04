@@ -251,7 +251,7 @@ model = AutoModelForCausalLM.from_pretrained(
     "meta-llama/Llama-2-7b-hf",  # Requires access request
     quantization_config=bnb_config,
     device_map="auto",  # Automatically distribute across available GPUs
-    trust_remote_code=True,
+    # no trust_remote_code - Llama-2 loads with stock transformers code
 )
 
 # SOLUTION: Prepare for k-bit training

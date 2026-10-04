@@ -167,7 +167,7 @@ tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoGPTQForCausalLM.from_pretrained(
     model_name,
     quantize_config=quantize_config,
-    trust_remote_code=True,
+    # no trust_remote_code - Llama-2 loads with stock transformers code
 )
 
 # Calibrate with example data

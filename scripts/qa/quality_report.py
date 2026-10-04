@@ -551,6 +551,26 @@ stand today?" without running each tool by hand.
                        origins are out by construction, born tick-656,
                        drained in-line the same tick (2 sites, zero
                        line shift), hard from the rule's naming)
+    trust_remote_code_scan
+                       trust_remote_code=True on any loader call
+                       (from_pretrained, from_quantized, vLLM's
+                       LLM constructor - the flag downloads and
+                       executes the repository's own modeling
+                       Python on the local machine at load time;
+                       HF guidance is default-False, pinned
+                       revision when truly needed); the corpus's
+                       10 sites all load stock-code checkpoints
+                       (Mistral-7B, Llama-2-7b, the Llama-2 AWQ
+                       export, a local GPTQ export, gpt2) whose
+                       code ships inside transformers, and the
+                       same corpus loads the same models
+                       flag-free lines away; the absent kwarg,
+                       False, non-constant values, string
+                       mentions, danger-marker fences and
+                       notebooks are out by construction, born
+                       tick-657, drained in-line the same tick
+                       (10 sites, zero line shift), hard from
+                       the rule's naming)
     action_version_scan
                        uses: pins in docs must match the canonical
                        action registry (AV-01: current majors -
@@ -3134,6 +3154,7 @@ GATES = [
     ("crypto_hygiene_scan.py", "crypto_hygiene_scan", True),
     ("insecure_temp_scan.py", "insecure_temp_scan", True),
     ("cors_wildcard_scan.py", "cors_wildcard_scan", True),
+    ("trust_remote_code_scan.py", "trust_remote_code_scan", True),
     ("action_version_scan.py", "action_version_scan", True),
     ("unicode_ws_hygiene_scan.py", "unicode_ws_hygiene_scan", True),
     ("objectives_lint.py", "objectives_lint", False),

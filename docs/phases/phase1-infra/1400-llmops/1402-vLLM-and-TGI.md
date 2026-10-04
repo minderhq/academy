@@ -201,7 +201,7 @@ llm = LLM(
     # Optimization
     enforce_eager=True,              # Disable CUDA graph (debugging)
     max_num_batched_tokens=4096,     # Max tokens per batch
-    trust_remote_code=True
+    # no trust_remote_code - the AWQ checkpoint loads with stock transformers code
 )
 
 # Sampling parameters

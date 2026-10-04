@@ -111,7 +111,7 @@ def setup_qlora():
         model_name,
         quantization_config=bnb_config,
         device_map="auto",
-        trust_remote_code=True
+        # no trust_remote_code - Mistral loads with stock transformers code
     )
 
     # Prepare for k-bit training

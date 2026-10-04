@@ -460,11 +460,11 @@ def load_model_and_tokenizer():
         MODEL_NAME,
         quantization_config=bnb_config,
         device_map="auto",
-        trust_remote_code=True
+        # no trust_remote_code - Mistral loads with stock transformers code
     )
 
     # Load tokenizer
-    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, trust_remote_code=True)
+    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
 
     # Fix for models without pad token
     if tokenizer.pad_token is None:
