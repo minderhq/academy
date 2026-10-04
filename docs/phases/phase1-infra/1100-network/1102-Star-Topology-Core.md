@@ -176,19 +176,19 @@ Names should encode function, not brand or purchase date:
 ```text
 Pattern:  <role><index>.<domain>
 
-omega-gw1      - gateway/router
-omega-sw1      - switch 1
-omega-hv1      - hypervisor node 1 (example: 192.168.1.10)
-omega-gpu1     - GPU worker node (example: 192.168.1.50)
-omega-nas      - storage server (example: 192.168.1.100)
-omega-ws1      - workstation
+academy-gw1      - gateway/router
+academy-sw1      - switch 1
+academy-hv1      - hypervisor node 1 (example: 192.168.1.10)
+academy-gpu1     - GPU worker node (example: 192.168.1.50)
+academy-nas      - storage server (example: 192.168.1.100)
+academy-ws1      - workstation
 ```
 
 Rules of thumb:
 
 - Lowercase, hyphen-separated, DNS-safe (K3s and NFS both embed hostnames in configs).
 - Role first so tab-completion and `kubectl get nodes` group meaningfully.
-- Keep the search domain short (`omega.local` or your own domain) and use it consistently for cluster-internal DNS.
+- Keep the search domain short (`academy.local` or your own domain) and use it consistently for cluster-internal DNS.
 
 ---
 
@@ -209,7 +209,7 @@ vlan 40
 
 ! 2. Trunk port to the server (carries multiple VLANs, 802.1Q tagged)
 interface gi1/0/2
-  description omega-hv1
+  description academy-hv1
   switchport mode trunk
   switchport trunk allowed vlan 10,20,30,40
   mtu 9216
@@ -360,7 +360,7 @@ The original build ran a 16-port 2.5G managed switch through a small apartment w
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [1103: Jumbo Frames and MTU Optimization](1103-Jumbo-Frames-and-MTU.md)
 - [1201: Proxmox Hypervisor Standard Operating Procedures](../1200-virtualization/1201-Proxmox-Hypervisor-SOP.md)

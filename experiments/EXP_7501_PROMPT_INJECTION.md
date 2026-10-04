@@ -8,7 +8,7 @@ Difficulty: Advanced
 
 # EXP_7501: Prompt Injection Experiments
 
-**Project:** PROJECT-OMEGA
+**Project:** Minder Academy
 **Phase:** [7500] Security
 **Experiment ID:** EXP_7501_PROMPT_INJECTION
 **Date:** 2026-02-04

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""notebook curriculum-discovery scan for PROJECT-OMEGA.
+"""notebook curriculum-discovery scan for Minder Academy.
 
 Answers a platform question the markdown link graph cannot see: which
 of the Jupyter notebooks can a learner actually find? link_reach_report

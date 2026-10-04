@@ -259,7 +259,7 @@ Quantization Aware Training is the answer to a simple failure mode: post-trainin
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [4302: Fake Quantization](4302-Fake-Quantization.md)
 - [4303: QAT for Transformers](4303-QAT-for-Transformers.md)

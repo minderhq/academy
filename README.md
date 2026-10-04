@@ -1,6 +1,6 @@
 ---
 Document ID: README
-Title: "PROJECT-OMEGA"
+Title: "Minder Academy"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
@@ -8,11 +8,11 @@ Difficulty: Beginner
 
 <div align="center">
 
-![PROJECT-OMEGA Logo](https://img.shields.io/badge/PROJECT--OMEGA-Neural--Architect%20Master-blue?style=for-the-badge&logo=ai&logoColor=white)
+![Minder Academy Logo](https://img.shields.io/badge/Minder--Academy-AI%20Engineering%20Education-blue?style=for-the-badge&logo=ai&logoColor=white)
 
-# PROJECT-OMEGA
+# Minder Academy
 
-## Neural-Architect Master Documentation
+## Master Documentation
 
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
 [![Documentation](https://img.shields.io/badge/Docs-408%20Files-orange?style=flat-square)](./docs)
@@ -33,7 +33,7 @@ Difficulty: Beginner
 
 - [Overview](#overview)
 - [Key Takeaways](#key-takeaways)
-- [Why PROJECT-OMEGA](#why-project-omega)
+- [Why Minder Academy](#why-minder-academy)
 - [Key Features](#key-features)
 - [Architecture](#architecture)
 - [Quick Start](#quick-start)
@@ -86,7 +86,7 @@ graph LR
 
 </div>
 
-**PROJECT-OMEGA** is a **production-grade AI infrastructure and learning platform**. It serves as both:
+**Minder Academy** is a **production-grade AI infrastructure and learning platform**. It serves as both:
 
 ### 1. Technical Reference
 Implementation guides for enterprise-grade AI systems on affordable hardware. Learn to deploy, optimize, and scale AI models using practical, battle-tested configurations — locally or in the cloud.
@@ -112,7 +112,7 @@ A structured curriculum taking you from foundations to production mastery. Each 
 
 ### ✅ What You'll Master
 
-After completing PROJECT-OMEGA, you will be able to:
+After completing Minder Academy, you will be able to:
 
 1. **Build Production AI Infrastructure**
    - Design a network that sustains AI workloads
@@ -152,9 +152,9 @@ After completing PROJECT-OMEGA, you will be able to:
 
 ---
 
-## Why PROJECT-OMEGA?
+## Why Minder Academy?
 
-| Challenge | PROJECT-OMEGA Solution |
+| Challenge | Minder Academy Solution |
 |:----------:|:----------------------:|
 | 💸 **AI infrastructure is expensive** | Run production-grade AI on affordable hardware or modest cloud instances |
 | 📚 **Documentation is scattered** | **462 files** in one organized, cross-referenced repository |
@@ -304,8 +304,8 @@ graph TB
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/your-username/project-omega.git
-cd project-omega
+git clone https://github.com/minderhq/academy.git
+cd academy
 
 # 2. Copy environment configuration
 cp configs/.env.example configs/.env
@@ -880,8 +880,8 @@ See the [model sizing table](./configs/README.md#model-sizing) to match GPU VRAM
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/project-omega.git
-cd project-omega
+git clone https://github.com/minderhq/academy.git
+cd academy
 
 # Copy environment template
 cp configs/.env.example configs/.env
@@ -1371,8 +1371,8 @@ Contributions are welcome! The fastest way to contribute:
 
 - [FAQ](./docs/00-META/FAQ.md) - Frequently Asked Questions
 - [Troubleshooting Quickstart](./docs/00-META/TROUBLESHOOTING-QUICKSTART.md) - Fast diagnostics
-- [Issues](https://github.com/your-username/project-omega/issues) - Report bugs
-- [Discussions](https://github.com/your-username/project-omega/discussions) - Community forum
+- [Issues](https://github.com/minderhq/academy/issues) - Report bugs
+- [Discussions](https://github.com/minderhq/academy/discussions) - Community forum
 
 ---
 
@@ -1405,7 +1405,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ```text
 MIT License
 
-Copyright (c) 2026 PROJECT-OMEGA
+Copyright (c) 2026 Minder Academy
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -1449,7 +1449,7 @@ SOFTWARE.
 
 ---
 
-**PROJECT-OMEGA**
+**Minder Academy**
 
 *Last Updated: 2026-09-29*
 

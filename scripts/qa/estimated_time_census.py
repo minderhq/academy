@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Estimated Time field census (ET-01..ET-03) for PROJECT-OMEGA.
+"""Estimated Time field census (ET-01..ET-03) for Minder Academy.
 
 The platform will use Estimated Time for scheduling and progress
 math, so every value must parse and the field name must be exact.

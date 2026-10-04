@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Undefined shell variable gate (BB-02) for the PROJECT-OMEGA
+"""Undefined shell variable gate (BB-02) for the Minder Academy
 corpus.
 
 The shell counterpart of PY-01: a plain $VAR or bare-braced

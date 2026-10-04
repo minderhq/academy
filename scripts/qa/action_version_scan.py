@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Action-version registry gate for the PROJECT-OMEGA corpus.
+"""Action-version registry gate for the Minder Academy corpus.
 
 AV-01  a ``uses: owner/repo@vN`` pin on any line of a docs/*.md file
        must name an action whose MAJOR version matches the registry

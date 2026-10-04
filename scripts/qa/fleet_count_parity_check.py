@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""fleet count parity gate for PROJECT-OMEGA.
+"""fleet count parity gate for Minder Academy.
 
 Count claims are the numbers a learner plans their weeks from: the
 MASTER-INDEX File Counts table (the whole-corpus inventory), the

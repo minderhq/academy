@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Link text quality (LT-01, HARD) for PROJECT-OMEGA.
+"""Link text quality (LT-01, HARD) for Minder Academy.
 
 The platform renders nav links verbatim; an intra-doc link's text
 should match the plain-text canon its target heading already obeys

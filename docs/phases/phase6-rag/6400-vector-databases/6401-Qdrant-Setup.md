@@ -342,7 +342,7 @@ Qdrant is the open-source vector database this curriculum standardizes on: Rust-
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [6402: Vector Database Comparison](6402-Pinecone-vs-Weaviate.md)
 

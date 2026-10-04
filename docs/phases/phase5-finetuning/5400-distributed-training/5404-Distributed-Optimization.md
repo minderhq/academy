@@ -487,7 +487,7 @@ Under every distributed run sits optimization-side machinery: the all-reduce col
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [5401: Data Parallelism](5401-Data-Parallelism.md)
 - [5402: Model Parallelism](5402-Model-Parallelism.md)

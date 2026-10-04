@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""project index parity gate for PROJECT-OMEGA.
+"""project index parity gate for Minder Academy.
 
 MASTER-INDEX.md's "### Projects" table is the planning entry for the
 7-file capstone fleet. Born tick-556 at 13 findings: 6 of 7 Project

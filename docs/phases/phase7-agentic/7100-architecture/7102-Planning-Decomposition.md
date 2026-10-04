@@ -801,7 +801,7 @@ Planning and task decomposition turn one impossible prompt into a tree of execut
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [7101: ReAct (Reasoning + Acting) Loop System](7101-ReAct-Loop-System.md)
 - [7301: Collaborative Tasking](../7300-orchestration/7301-Orchestration.md)

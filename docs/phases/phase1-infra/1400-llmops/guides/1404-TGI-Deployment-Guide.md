@@ -201,7 +201,7 @@ Defaults verified against the TGI 3.x launcher source.
 services:
   tgi-mistral:
     image: ghcr.io/huggingface/text-generation-inference:3.3.7
-    container_name: project-omega-tgi-mistral
+    container_name: academy-tgi-mistral
     ports:
       - "8080:80"
     shm_size: "1g"
@@ -232,7 +232,7 @@ services:
       retries: 3
       start_period: 300s
     networks:
-      - project-omega-net
+      - academy-net
     volumes:
       - /srv/models/tgi:/data
     logging:
@@ -242,7 +242,7 @@ services:
         max-file: "3"
 
 networks:
-  project-omega-net:
+  academy-net:
     external: true
 ```
 
@@ -257,7 +257,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: tgi-mistral
-  namespace: project-omega
+  namespace: academy
 spec:
   replicas: 1
   selector:
@@ -322,7 +322,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: tgi-mistral
-  namespace: project-omega
+  namespace: academy
 spec:
   selector:
     app: tgi-mistral
@@ -950,7 +950,7 @@ TGI is Hugging Face's production serving stack, and its shape matters: a Rust HT
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [1403: vLLM Production Deployment Guide](1403-vLLM-Production-Deployment.md)
 

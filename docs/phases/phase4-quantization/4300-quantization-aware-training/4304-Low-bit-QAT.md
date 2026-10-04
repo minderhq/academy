@@ -388,7 +388,7 @@ Below 4 bits, quantization stops being a free lunch: 4-bit is the practical floo
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [4301: QAT Foundations](4301-QAT-Foundations.md)
 - [4302: Fake Quantization](4302-Fake-Quantization.md)

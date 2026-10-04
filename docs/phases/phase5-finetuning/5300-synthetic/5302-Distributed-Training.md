@@ -628,7 +628,7 @@ keys: ['lr', 'step', 'train_loss']
 # uv pip install wandb  &&  wandb login
 import wandb
 
-wandb.init(project="PROJECT-OMEGA", entity="your-org", config={
+wandb.init(project="Minder Academy", entity="your-org", config={
     "model": "Llama-2-7b", "learning_rate": 1e-4, "batch_size": 32, "epochs": 3,
 })
 for step, batch in enumerate(dataloader):
@@ -778,7 +778,7 @@ Distributed training in a homelab starts honest: single-GPU constraints first, w
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [5301: Knowledge Distillation - Training Small Models Using Big Model Outputs](5301-Knowledge-Distillation.md)
 - [5303: Federated Learning](5303-Federated-Learning.md)

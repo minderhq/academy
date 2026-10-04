@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""emoji-shortcode gate for the PROJECT-OMEGA corpus.
+"""emoji-shortcode gate for the Minder Academy corpus.
 
 EM-01  gemoji shortcodes (``:rocket:`` form) are banned in prose: the
        corpus idiom is literal emoji (tick-279 census: literal forms

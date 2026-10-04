@@ -82,11 +82,11 @@ Complete monitoring stack for tracking infrastructure health, model performance,
 
 ```yaml
 # Merge into docker-compose.yml. The shared network is declared once at
-# the top level: networks: { project-omega-net: {} }
+# the top level: networks: { academy-net: {} }
 services:
   prometheus:
     image: prom/prometheus:v3.15.0   # pinned release (Sep 2026); check releases for newer
-    container_name: project-omega-prometheus
+    container_name: academy-prometheus
     ports:
       - "9090:9090"
     volumes:
@@ -104,18 +104,18 @@ services:
       - 'host.docker.internal:host-gateway'
     restart: unless-stopped
     networks:
-      - project-omega-net
+      - academy-net
 
   alertmanager:
     image: prom/alertmanager:v0.34.1   # pinned release (Sep 2026); check releases for newer
-    container_name: project-omega-alertmanager
+    container_name: academy-alertmanager
     ports:
       - "9093:9093"
     # The image ships a usable default /etc/alertmanager/alertmanager.yml,
     # so no config mount is required to receive alerts.
     restart: unless-stopped
     networks:
-      - project-omega-net
+      - academy-net
 ```
 
 ### Configuration
@@ -126,7 +126,7 @@ global:
   scrape_interval: 15s
   evaluation_interval: 15s
   external_labels:
-    cluster: 'PROJECT-OMEGA'
+    cluster: 'Minder Academy'
     env: 'lab'
 
 # Load the alert rules (evaluated every evaluation_interval)
@@ -203,7 +203,7 @@ scrape_configs:
 services:
   grafana:
     image: grafana/grafana:13.2.2   # pinned release (Sep 2026); check releases for newer
-    container_name: project-omega-grafana
+    container_name: academy-grafana
     ports:
       - "3000:3000"
     environment:
@@ -218,7 +218,7 @@ services:
       - ./monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro
     restart: unless-stopped
     networks:
-      - project-omega-net
+      - academy-net
 ```
 
 ### Dashboard: Model Inference
@@ -306,7 +306,7 @@ it; query-level latency belongs in the application's own instrumentation.
 services:
   loki:
     image: grafana/loki:2.9.8   # pin the LTS; 3.x changed config defaults
-    container_name: project-omega-loki
+    container_name: academy-loki
     ports:
       - "3100:3100"
     volumes:
@@ -315,18 +315,18 @@ services:
       - ./monitoring/loki/local-config.yaml:/etc/loki/local-config.yaml:ro
       - ./monitoring/loki/data:/loki
     networks:
-      - project-omega-net
+      - academy-net
 
   promtail:
     image: grafana/promtail:2.9.8   # match the Loki LTS; Promtail is in LTS maintenance — new deployments use Grafana Alloy
-    container_name: project-omega-promtail
+    container_name: academy-promtail
     volumes:
       - /var/log:/var/log:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro   # docker_sd needs it
       - ./monitoring/promtail/config.yml:/etc/promtail/config.yml:ro
     command: -config.file=/etc/promtail/config.yml
     networks:
-      - project-omega-net
+      - academy-net
 ```
 
 ### Loki Config
@@ -401,7 +401,7 @@ scrape_configs:
 services:
   tempo:
     image: grafana/tempo:3.0.3   # pinned release (Aug 2026); check releases for newer
-    container_name: project-omega-tempo
+    container_name: academy-tempo
     ports:
       - "3200:3200"  # HTTP API + TraceQL UI
       - "4317:4317"  # OTLP gRPC
@@ -413,7 +413,7 @@ services:
       - ./monitoring/tempo/tempo.yaml:/etc/tempo/tempo.yaml:ro
       - ./monitoring/tempo/data:/var/tempo
     networks:
-      - project-omega-net
+      - academy-net
 ```
 
 The receiver endpoints in Tempo's defaults bind to localhost, and inside the
@@ -571,7 +571,7 @@ grafana:
   enabled: true
   ingress:
     enabled: true
-    hosts: ["grafana.project-omega.local"]
+    hosts: ["grafana.academy.local"]
 
 prometheus:
   prometheusSpec:
@@ -668,7 +668,7 @@ Observability is five components with one job each: Prometheus collects metrics,
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [1502: Model Drift Detection](1502-Model-Drift-Detection.md)
 - [1503: LLM Observability](1503-LLM-Observability.md)

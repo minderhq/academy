@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""title-uniqueness gate for the PROJECT-OMEGA corpus.
+"""title-uniqueness gate for the Minder Academy corpus.
 
 TU-01  the display-title space is global, like the Document ID space:
        no two markdown files under docs/ or experiments/ may carry the

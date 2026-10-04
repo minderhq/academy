@@ -8,7 +8,7 @@ Difficulty: Advanced
 
 # EXP_6302: Long Context Architecture Experiment
 
-**Project:** PROJECT-OMEGA
+**Project:** Minder Academy
 **Phase:** [6300] Context Management
 **Document ID:** 6302
 **Experiment ID:** EXP_6302_CAG

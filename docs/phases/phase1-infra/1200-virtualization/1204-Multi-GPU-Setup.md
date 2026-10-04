@@ -519,7 +519,7 @@ Multi-GPU starts from an honest single card - 8 to 16GB of VRAM is enough for 7B
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [1201: Proxmox Hypervisor Standard Operating Procedures](1201-Proxmox-Hypervisor-SOP.md)
 - [1202: GPU Passthrough (IOMMU/VFIO)](1202-TB3-UT3G-Passthrough.md)

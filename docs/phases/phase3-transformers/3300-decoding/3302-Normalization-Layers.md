@@ -439,7 +439,7 @@ Normalization layers keep training stable by keeping activations in a sane range
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [3301: Activation Functions - GELU, SwiGLU, and Beyond](3301-Activation-Functions.md)
 

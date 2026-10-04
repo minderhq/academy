@@ -1,13 +1,13 @@
 ---
 Document ID: STYLE-GUIDE
-Title: "PROJECT-OMEGA Style Guide"
+Title: "Minder Academy Style Guide"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
 Tags: ['maintenance', 'guide']
 ---
 
-# PROJECT-OMEGA Style Guide
+# Minder Academy Style Guide
 
 **Official Documentation Standards**
 
@@ -18,7 +18,7 @@ Tags: ['maintenance', 'guide']
 
 ## Purpose
 
-This guide ensures consistency across all PROJECT-OMEGA documentation. Consistent documentation makes learning easier and reduces confusion.
+This guide ensures consistency across all Minder Academy documentation. Consistent documentation makes learning easier and reduces confusion.
 
 ---
 
@@ -218,7 +218,7 @@ except SpecificError as e:
 ### File Paths
 
 ```markdown
-Absolute: C:\AI-Studio\PROJECT-OMEGA\docs\00-META\README.md
+Absolute: C:\AI-Studio\Minder Academy\docs\00-META\README.md
 Relative: ../00-META/README.md
 Code: "docs/00-META/README.md"
 ```

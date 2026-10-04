@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""table-lint gate for the PROJECT-OMEGA corpus.
+"""table-lint gate for the Minder Academy corpus.
 
 TL-01  a GFM table (header row + ``|---|`` separator row + body) whose
        lines do not all contain the same number of cells. Renderers

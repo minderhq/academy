@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fence-class registry gate for the PROJECT-OMEGA corpus.
+"""Fence-class registry gate for the Minder Academy corpus.
 
 fence_label_scan locks that every open fence CARRIES a lowercase label
 (FL-01/02); this gate locks that every label is CLASSIFIED. A label

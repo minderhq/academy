@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""SITEMAP claims gate for the PROJECT-OMEGA corpus.
+"""SITEMAP claims gate for the Minder Academy corpus.
 
 SITEMAP.md calls itself "derived directly from the file tree" - but it
 is hand-maintained prose, and while the README's headline numbers were

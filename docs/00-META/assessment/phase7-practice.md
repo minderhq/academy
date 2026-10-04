@@ -1149,7 +1149,7 @@ class ProductionAgentSystem:
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 
-app = FastAPI(title="PROJECT-OMEGA Agent API")
+app = FastAPI(title="Minder Academy Agent API")
 agent_system = ProductionAgentSystem(config={})
 
 class TaskRequest(BaseModel):

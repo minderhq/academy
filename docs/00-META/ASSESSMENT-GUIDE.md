@@ -15,7 +15,7 @@ Tags: ['assessment', 'quiz', 'practice']
 
 ## Overview
 
-This guide provides assessment materials for each phase of PROJECT-OMEGA, including quizzes, practical exams, and project evaluation rubrics.
+This guide provides assessment materials for each phase of Minder Academy, including quizzes, practical exams, and project evaluation rubrics.
 
 ## Two-Tier Assessment System
 
@@ -353,7 +353,7 @@ After completing each phase, learners should be able to:
 
 ## Certification Criteria
 
-### PROJECT-OMEGA Certification: Associate
+### Minder Academy Certification: Associate
 
 **Requirements:**
 - Complete all 7 phase quizzes (80%+ passing grade)
@@ -362,7 +362,7 @@ After completing each phase, learners should be able to:
 
 **Time Estimate:** 3-6 months
 
-### PROJECT-OMEGA Certification: Professional
+### Minder Academy Certification: Professional
 
 **Requirements:**
 - Complete all 7 phase quizzes (90%+ passing grade)

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Curriculum metrics report for the PROJECT-OMEGA corpus.
+"""Curriculum metrics report for the Minder Academy corpus.
 
 Answers the loop question "ger\u00e7ekten e\u011fitim kalitesi ne seviyede?"
 with numbers, continuously: lesson length distribution, code density,
@@ -134,7 +134,7 @@ def main() -> int:
     thin = sorted((s for s in lessons if s["words"] + s["code_words"] < 800),
                   key=lambda s: s["words"] + s["code_words"])
     qmod = [m for m in modules if m["questions"]]
-    print("PROJECT-OMEGA curriculum metrics")
+    print("Minder Academy curriculum metrics")
     print("=" * 72)
     print("corpus: %d lessons, %d modules, %d phases"
           % (len(lessons), len(modules),

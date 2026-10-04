@@ -508,7 +508,7 @@ HNSW (Hierarchical Navigable Small World) is the index that makes approximate ne
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [6102: Semantic Similarity Metrics - Cosine, Dot Product, and Manifold Metrics](6102-Semantic-Similarity.md)
 

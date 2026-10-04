@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Assessment quality linter for the PROJECT-OMEGA curriculum corpus.
+"""Assessment quality linter for the Minder Academy curriculum corpus.
 
 Every module directory (docs/phases/*/<NNNN>-*/) carries assessment/QUIZ.md
 and assessment/PRACTICE.md. The corpus standard these files already meet

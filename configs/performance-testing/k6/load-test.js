@@ -1,4 +1,4 @@
-// PROJECT-OMEGA Performance Testing with k6
+// Minder Academy Performance Testing with k6
 // Load testing for LLM inference services (vLLM + Qdrant + Neo4j)
 //
 // Usage:

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Lab-file anatomy (LA-01..06, HARD) for PROJECT-OMEGA.
+"""Lab-file anatomy (LA-01..06, HARD) for Minder Academy.
 
 Each docs/learning-resources/labs/LAB-*.md is a self-contained
 hands-on unit the platform will render with its own metadata card

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fence-language lock (FL-01..03, HARD) for PROJECT-OMEGA.
+"""Fence-language lock (FL-01..03, HARD) for Minder Academy.
 
 Every fenced code block in docs/ must declare its language from the
 accepted vocabulary. A platform renders, highlights and classifies

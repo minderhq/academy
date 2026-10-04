@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""setext/divider gate for the PROJECT-OMEGA corpus.
+"""setext/divider gate for the Minder Academy corpus.
 
 SE-01  a bare ``---``/``===`` run sits directly below a non-blank
        line. Under text that is a setext H2/H1 in every renderer -

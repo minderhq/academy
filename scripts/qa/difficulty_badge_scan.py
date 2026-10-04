@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Difficulty badge parity (BD-01, HARD) for PROJECT-OMEGA.
+"""Difficulty badge parity (BD-01, HARD) for Minder Academy.
 
 The FM Difficulty field is the canonical, gated value
 (difficulty_census DI-01..03); many docs also render a display

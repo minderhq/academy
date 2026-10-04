@@ -500,7 +500,7 @@ Knowledge graphs represent information as entities and relationships, which is e
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [6201: Hybrid Search](../6200-retrieval/6201-Hybrid-Search.md)
 - [6302: CAG - Context Augmented Generation and Long Context Architectures](6302-CAG-Long-Context-Architectures.md)

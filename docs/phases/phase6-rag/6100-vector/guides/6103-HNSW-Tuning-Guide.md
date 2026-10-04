@@ -45,7 +45,7 @@ After completing this lesson, you will be able to:
 ---
 
 ## Abstract
-Comprehensive guide for tuning HNSW (Hierarchical Navigable Small World) index parameters for optimal vector search performance on PROJECT-OMEGA infrastructure.
+Comprehensive guide for tuning HNSW (Hierarchical Navigable Small World) index parameters for optimal vector search performance on Minder Academy infrastructure.
 
 ## HNSW Architecture
 
@@ -526,11 +526,11 @@ dim — 1.5 KB at 384-D) and any payloads:
 
 ## Summary
 
-This guide is the HNSW decision table: M, ef_construction and ef_search explained as a recall/latency/memory triangle, with benchmark methodology and recommended starting points for PROJECT-OMEGA scale. Each parameter gets its own section with what it buys, what it costs, and how to measure the result. The rule it leaves: tune ef_search first - it is runtime-only and free to revert - then M at build time, and never change two parameters between benchmarks.
+This guide is the HNSW decision table: M, ef_construction and ef_search explained as a recall/latency/memory triangle, with benchmark methodology and recommended starting points for Minder Academy scale. Each parameter gets its own section with what it buys, what it costs, and how to measure the result. The rule it leaves: tune ef_search first - it is runtime-only and free to revert - then M at build time, and never change two parameters between benchmarks.
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [6101: HNSW Indexing - Efficient Semantic Search at Scale](../6101-HNSW-Indexing.md)
 - [6102: Semantic Similarity Metrics - Cosine, Dot Product, and Manifold Metrics](../6102-Semantic-Similarity.md)

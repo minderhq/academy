@@ -438,7 +438,7 @@ A model registry is the versioned, queryable index between training and serving:
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [6501: ML Model Lifecycle Management](6501-ML-Lifecycle-Management.md)
 - [6502: CI/CD for Machine Learning](6502-CI-CD-for-ML.md)

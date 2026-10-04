@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Ordered-list integrity (OL-01, HARD) for PROJECT-OMEGA.
+"""Ordered-list integrity (OL-01, HARD) for Minder Academy.
 
 OL-01  an ordered-list-marker line carrying 3+ embedded enumeration
        markers (`1. c, 2. b, 3. c, ...`) - a comma-separated key or

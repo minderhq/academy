@@ -226,7 +226,7 @@ Decoder-only models generate the entire sequence autoregressively through causal
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [3401: Encoder-Decoder Architectures](3401-Encoder-Decoder-Architectures.md)
 

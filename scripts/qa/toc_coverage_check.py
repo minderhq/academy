@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""TOC completeness (TC-01) for PROJECT-OMEGA.
+"""TOC completeness (TC-01) for Minder Academy.
 
 A doc's Table of Contents becomes the platform's in-doc nav pane: a
 real content section absent from the TOC is invisible in the doc's

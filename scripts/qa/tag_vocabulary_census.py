@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""tag vocabulary census (TV-01..TV-03) for PROJECT-OMEGA.
+"""tag vocabulary census (TV-01..TV-03) for Minder Academy.
 
 The platform will drive filtering and related-content navigation
 from the Tags field, so the vocabulary must stay closed and

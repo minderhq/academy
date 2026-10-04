@@ -430,7 +430,7 @@ GGUF is what makes large models runnable on consumer hardware: a single file car
 - [llama.cpp GitHub](https://github.com/ggml-org/llama.cpp) - Source code and documentation
 - [GGUF Format Spec](https://github.com/ggml-org/ggml/blob/master/docs/gguf.md) - Format specification
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 - [4102: EXL2 and AWQ](./4102-EXL2-and-AWQ.md) - VRAM-only quantization
 - [4103: Double Quantization](./4103-Double-Quantization.md) - BitsAndBytes 4-bit
 - [4201: Context Window Physics](../4200-kv-cache/4201-Context-Window-Physics.md) - KV cache optimization

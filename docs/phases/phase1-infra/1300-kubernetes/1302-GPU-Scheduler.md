@@ -151,7 +151,7 @@ kind: Pod
 metadata:
   name: inference-pod
 spec:
-  nodeName: omega-worker-gpu  # Direct to GPU node
+  nodeName: academy-worker-gpu  # Direct to GPU node
   containers:
   - name: inference
     image: vllm/vllm-openai:latest
@@ -471,7 +471,7 @@ The K3s GPU scheduler turns an 11GB-class card into a schedulable cluster resour
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [1301: K3s Master-Worker Architecture](1301-K3s-Master-Worker-Arch.md)
 - [1303: Storage Classes for Dynamic Provisioning](1303-Storage-Classes.md)

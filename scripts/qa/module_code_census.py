@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Module code continuity census (MC-01..03) for PROJECT-OMEGA.
+"""Module code continuity census (MC-01..03) for Minder Academy.
 
 The platform renders the catalog from numeric codes: phase pages
 list module dirs in code order, module pages list lessons and guides

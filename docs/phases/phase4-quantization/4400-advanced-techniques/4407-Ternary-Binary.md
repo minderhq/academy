@@ -394,7 +394,7 @@ Binary and ternary networks push past bit-grid quantization into codebook-free a
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [4405: Sparsity + Quantization](4405-Sparsity-Quantization.md)
 - [4406: 1.58-bit Quantization](4406-1.58-bit-Quantization.md)

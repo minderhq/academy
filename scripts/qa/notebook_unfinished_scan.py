@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""notebook unfinished-content marker gate for the PROJECT-OMEGA corpus.
+"""notebook unfinished-content marker gate for the Minder Academy corpus.
 
 NU-01  a markdown cell must not carry an unfinished-content marker:
        "coming soon", "under construction", "to be written", "to be

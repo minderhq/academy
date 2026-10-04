@@ -262,7 +262,7 @@ def main() -> int:
     tally: dict[str, int] = {}
     signal_files: list[str] = []
     entries: dict[str, dict] = {}
-    with tempfile.TemporaryDirectory(prefix="omega_exec_") as tmp:
+    with tempfile.TemporaryDirectory(prefix="academy_exec_") as tmp:
         for n, path in enumerate(targets, 1):
             rel = path.relative_to(args.root).as_posix()
             entry, report = run_file(path, rel, args.timeout, tmp)

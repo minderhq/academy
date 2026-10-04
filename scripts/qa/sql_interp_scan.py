@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""SQL interpolation gate for the PROJECT-OMEGA corpus.
+"""SQL interpolation gate for the Minder Academy corpus.
 
 SQ-01  a ```python fence must not pass an f-string carrying SQL text to an
        execution call (``execute``/``executemany``/``executescript``/

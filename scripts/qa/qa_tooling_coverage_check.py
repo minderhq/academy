@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""QA-tooling doc coverage (QT-01) for PROJECT-OMEGA.
+"""QA-tooling doc coverage (QT-01) for Minder Academy.
 
 quality_report.py's GATES list is the authoritative gate inventory
 (the CI contract), and docs/00-META/QA-TOOLING.md is its human face.

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Text-write-encoding gate for the PROJECT-OMEGA corpus.
+"""Text-write-encoding gate for the Minder Academy corpus.
 
 OE-01  a ```python fence must not open a file in *text write mode*
        (mode carrying any of ``w`` / ``a`` / ``x`` / ``+`` and no

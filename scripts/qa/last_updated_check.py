@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Last Updated field parseability (LU-01/LU-02) for PROJECT-OMEGA.
+"""Last Updated field parseability (LU-01/LU-02) for Minder Academy.
 
 Every doc carries a Last Updated frontmatter date; the platform uses
 it for freshness display and recently-updated sorting, so the value

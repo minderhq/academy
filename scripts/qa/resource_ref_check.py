@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""resource-reference gate for the PROJECT-OMEGA curriculum corpus.
+"""resource-reference gate for the Minder Academy curriculum corpus.
 
 lab_registry_check locks what each resource id points at, and
 resource_id_check locks the id itself on each resource's own Title/H1 -

@@ -424,7 +424,7 @@ Double quantization squeezes the leftover bytes: the per-block scales that ordin
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [4101: GGUF Physics - CPU/GPU Hybrid Offloading](4101-GGUF-Physics.md)
 - [4102: EXL2 and AWQ - Extreme Quantization](4102-EXL2-and-AWQ.md)

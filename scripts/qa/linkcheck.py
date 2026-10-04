@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Relative-link integrity gate for the PROJECT-OMEGA corpus.
+"""Relative-link integrity gate for the Minder Academy corpus.
 
 Hard gate (exit 1 on any broken link). Scans every .md file repo-wide and
 verifies each relative link target exists on disk. Fenced code blocks and
@@ -13,7 +13,7 @@ baselines (0 broken) are defined against this exact behaviour.
 
 Baseline (2026-09-28): 5529 links scanned, 0 distinct broken targets,
 0 broken instances (count drifts with rewrites; 0-broken is the invariant).
-Materialized from the formerly repo-external linkcheck_omega.py temp script.
+Materialized from a formerly repo-external verification temp script.
 
 Usage:
     python scripts/qa/linkcheck.py [--root REPO_ROOT]

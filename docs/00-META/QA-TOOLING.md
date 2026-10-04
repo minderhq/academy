@@ -1,13 +1,13 @@
 ---
 Document ID: QA-TOOLING
-Title: "PROJECT-OMEGA QA Tooling"
+Title: "Minder Academy QA Tooling"
 Last Updated: 2026-10-02
 Status: Complete
 Difficulty: Beginner
 Tags: ['maintenance', 'evaluation']
 ---
 
-# PROJECT-OMEGA QA Tooling
+# Minder Academy QA Tooling
 
 **The gate system that keeps the curriculum shippable**
 
@@ -217,7 +217,7 @@ recently 426 prose urls / 410 unique with 0 DEAD (2026-10-02).
 
 | Tool | Purpose |
 | --- | --- |
-| brand_scan | verifies the pre-rebrand brand name is fully retired (rebrand epic) |
+| brand_scan | verifies every retired brand name across all rebrand generations is fully gone - written forms included |
 | legacy_ad_scan | classifies remaining old-repo-name mentions by context |
 | legacy_ad_rename | mechanical renames used by the same epic |
 

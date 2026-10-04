@@ -26,7 +26,7 @@ Tags: ['agents', 'tool-calling', 'function-calling', 'code-interpreter']
 - [Advanced Tool Calling Patterns](#advanced-tool-calling-patterns)
 - [Tool Calling Security](#tool-calling-security)
 - [Tool Calling vs ReAct](#tool-calling-vs-react)
-- [PROJECT-OMEGA Implementation](#project-omega-implementation)
+- [Minder Academy Implementation](#minder-academy-implementation)
 - [Experiment](#experiment)
 - [Summary](#summary)
 - [References](#references)
@@ -621,7 +621,7 @@ ReAct Agent → Uses Tool Calling → Executes Functions → Returns Result
 
 ---
 
-## PROJECT-OMEGA Implementation
+## Minder Academy Implementation
 
 ### Local Tool Registry
 
@@ -693,7 +693,7 @@ Tool calling is how an LLM's text becomes action: the model emits a structured r
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [7200: Tool Calling and Function Execution](README.md)
 - [7202: Code Interpreter](guides/7202-Code-Interpreter.md)

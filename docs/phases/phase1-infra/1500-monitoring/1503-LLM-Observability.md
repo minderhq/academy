@@ -798,7 +798,7 @@ LLM systems fail in LLM-specific ways, so they need LLM-specific metrics: token 
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [1501: Monitoring and Observability](./1501-Monitoring-and-Observability.md)
 - [1502: Model Drift Detection](./1502-Model-Drift-Detection.md)

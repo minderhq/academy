@@ -809,7 +809,7 @@ Long context on an 11GB card is a budgeting exercise, and this guide is its work
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [4201: Context Window Physics and OOM Prevention](../4201-Context-Window-Physics.md)
 - [4202: Speculative Decoding - Accelerating Large Models](../4202-Speculative-Decoding.md)

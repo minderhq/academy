@@ -1,13 +1,13 @@
 ---
 Document ID: FLASHCARDS
-Title: "PROJECT-OMEGA: Interactive Learning Components"
+Title: "Minder Academy: Interactive Learning Components"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
 Tags: ['flashcards', 'llm', 'practice']
 ---
 
-# PROJECT-OMEGA: Interactive Learning Components
+# Minder Academy: Interactive Learning Components
 
 Interactive elements to enhance the learning experience.
 

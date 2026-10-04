@@ -549,7 +549,7 @@ Hybrid search combines BM25 keyword retrieval with semantic vector search so exa
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [6101: HNSW Indexing - Efficient Semantic Search at Scale](../6100-vector/6101-HNSW-Indexing.md)
 - [6202: Re-ranking and Retrieval Logistics](6202-Re-ranking-and-Retrieval-Logistics.md)

@@ -71,7 +71,7 @@ wheels = [
 ]
 
 [[package]]
-name = "project-omega"
+name = "minder-academy"
 version = "0.1.0"
 source = { virtual = "." }
 

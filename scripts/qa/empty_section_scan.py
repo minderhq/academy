@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""empty-section gate for the PROJECT-OMEGA corpus.
+"""empty-section gate for the Minder Academy corpus.
 
 ES-01  every heading must own content: a section is empty iff, from its
        heading to the next same-or-higher-level heading (or EOF),

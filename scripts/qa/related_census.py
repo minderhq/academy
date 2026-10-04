@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Related-field link integrity census (RL-01..RL-02) for PROJECT-OMEGA.
+"""Related-field link integrity census (RL-01..RL-02) for Minder Academy.
 
 The platform's cross-reference navigation rides on the front-matter
 Related field. Tick-405 measured the corpus: 110 docs carry Related,

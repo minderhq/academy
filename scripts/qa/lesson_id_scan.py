@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Lesson-id parity gate for the PROJECT-OMEGA corpus.
+"""Lesson-id parity gate for the Minder Academy corpus.
 
 Every lesson document (``docs/phases/<phase>/<NNNN-module>/NNNN-*.md``,
 114 files) carries its filename's own ``NNNN: `` id as the prefix of

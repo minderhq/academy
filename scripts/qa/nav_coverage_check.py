@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Module README navigation coverage (NV-01/NV-02) for PROJECT-OMEGA.
+"""Module README navigation coverage (NV-01/NV-02) for Minder Academy.
 
 linkcheck proves that links which exist resolve; it says nothing about
 docs that no README links at all. A learner opening a module page sees

@@ -986,7 +986,7 @@ print(f"Budget remaining: ${report['budget_remaining']:.2f}")
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [TUTORIAL-004: Monitoring](TUTORIAL-004-Monitoring.md)
 - [TUTORIAL-005: Production Deployment](TUTORIAL-005-Production-Deployment.md)

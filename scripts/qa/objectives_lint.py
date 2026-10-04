@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Learning-objectives template-artifact detector for the PROJECT-OMEGA corpus.
+"""Learning-objectives template-artifact detector for the Minder Academy corpus.
 
 Scans lesson-class files (docs/phases/**/NNNN-*.md, guides/ included) and
 flags Learning Objectives bullets that mechanically echo one of the file's

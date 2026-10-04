@@ -1,13 +1,13 @@
 ---
 Document ID: PROGRESS-TRACKER
-Title: "PROGRESS TRACKER: PROJECT-OMEGA Learning Journey"
+Title: "PROGRESS TRACKER: Minder Academy Learning Journey"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
 Tags: ['roadmap', 'guide', 'practice']
 ---
 
-# PROGRESS TRACKER: PROJECT-OMEGA Learning Journey
+# PROGRESS TRACKER: Minder Academy Learning Journey
 
 **Track your progress from beginner to expert through a 7-volume book series**
 
@@ -292,9 +292,9 @@ Copy a badge when you complete a volume:
 ### Mastery Levels
 
 ```text
-[ ] 🎓 PROJECT-OMEGA Practitioner - All Labs Complete
-[ ] 🌟 PROJECT-OMEGA Expert - All Volumes Complete
-[ ] 👑 PROJECT-OMEGA Master - All Volumes + All Capstones Complete
+[ ] 🎓 Minder Academy Practitioner - All Labs Complete
+[ ] 🌟 Minder Academy Expert - All Volumes Complete
+[ ] 👑 Minder Academy Master - All Volumes + All Capstones Complete
 ```
 
 ---

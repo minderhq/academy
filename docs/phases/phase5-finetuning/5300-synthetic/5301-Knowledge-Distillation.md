@@ -526,7 +526,7 @@ Distillation compresses a large teacher into a small student by training the stu
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [5302: Distributed Training Orchestration](5302-Distributed-Training.md)
 - [5303: Federated Learning](5303-Federated-Learning.md)

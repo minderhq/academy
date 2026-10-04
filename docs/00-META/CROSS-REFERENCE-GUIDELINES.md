@@ -1,13 +1,13 @@
 ---
 Document ID: CROSS-REFERENCE-GUIDELINES
-Title: "PROJECT-OMEGA Cross-Reference Guidelines"
+Title: "Minder Academy Cross-Reference Guidelines"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
 Tags: ['maintenance', 'navigation']
 ---
 
-# PROJECT-OMEGA Cross-Reference Guidelines
+# Minder Academy Cross-Reference Guidelines
 
 **Version:** 1.0
 **Last Updated:** 2026-09-30
@@ -17,7 +17,7 @@ Tags: ['maintenance', 'navigation']
 
 ## Overview
 
-This document provides guidelines for creating and maintaining cross-references between PROJECT-OMEGA documentation files. Proper cross-referencing improves navigation, discoverability, and learning path coherence.
+This document provides guidelines for creating and maintaining cross-references between Minder Academy documentation files. Proper cross-referencing improves navigation, discoverability, and learning path coherence.
 
 ---
 
@@ -25,7 +25,7 @@ This document provides guidelines for creating and maintaining cross-references 
 
 ### 1. Internal Links (Relative)
 
-Use relative paths for links within PROJECT-OMEGA:
+Use relative paths for links within Minder Academy:
 
 ```markdown
 # Same directory
@@ -83,7 +83,7 @@ Every technical document should include a References section:
 ### Documentation
 - [PyTorch Documentation](https://pytorch.org/docs) - Official PyTorch docs
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 - [3101: Self-Attention](../../phases/phase3-transformers/3100-attention/3101-Self-Attention-DeepDive.md) - Deep dive into attention
 - [3301: Activation Functions](../../phases/phase3-transformers/3300-decoding/3301-Activation-Functions.md) - GELU, SwiGLU
 
@@ -257,7 +257,7 @@ Before marking a document as Complete, verify:
 
 ```bash
 # Find broken internal links (example script)
-grep -r '\[.*\](' PROJECT-OMEGA/docs/ | while read line; do
+grep -r '\[.*\](' Minder Academy/docs/ | while read line; do
     # Extract the source file from the grep output and the link path
     file="${line%%:*}"
     link=$(echo "$line" | sed -n 's/.*](\([^)]*\)).*/\1/p')

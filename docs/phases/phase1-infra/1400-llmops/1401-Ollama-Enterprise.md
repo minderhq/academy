@@ -46,7 +46,7 @@ After completing this lesson, you will be able to:
 ---
 
 ## Abstract
-Ollama enables running large language models locally with a simple API. In PROJECT-OMEGA, Ollama serves as the model inference backend across the lab network.
+Ollama enables running large language models locally with a simple API. In Minder Academy, Ollama serves as the model inference backend across the lab network.
 
 ## Architecture
 
@@ -385,7 +385,7 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
 spec:
   rules:
-  - host: ollama.omega.local
+  - host: ollama.academy.local
     http:
       paths:
       - path: /
@@ -502,11 +502,11 @@ spec:
 
 ## Summary
 
-Ollama is the lab's default inference backend: it runs large language models locally behind a simple API, and in PROJECT-OMEGA it serves models across the network as a K3s pod on port 11434. This lesson covered the architecture (client layer to Ollama server), installation, model management, API usage, configuration options, performance optimization, service mesh integration, monitoring, and security. The rule it leaves: Ollama is the right default for convenience and local iteration; specialized engines take over when throughput is the requirement.
+Ollama is the lab's default inference backend: it runs large language models locally behind a simple API, and in Minder Academy it serves models across the network as a K3s pod on port 11434. This lesson covered the architecture (client layer to Ollama server), installation, model management, API usage, configuration options, performance optimization, service mesh integration, monitoring, and security. The rule it leaves: Ollama is the right default for convenience and local iteration; specialized engines take over when throughput is the requirement.
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [1402: vLLM and TGI High-Concurrency Inference](1402-vLLM-and-TGI.md)
 

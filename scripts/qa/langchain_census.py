@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""langchain import-resolution gate for the PROJECT-OMEGA curriculum.
+"""langchain import-resolution gate for the Minder Academy curriculum.
 
 Every langchain/langchain_*/langgraph import line inside a ```python fence
 is resolved against the installed stack (importlib.import_module + getattr

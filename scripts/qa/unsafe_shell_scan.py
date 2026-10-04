@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""unsafe shell-execution gate for the PROJECT-OMEGA corpus.
+"""unsafe shell-execution gate for the Minder Academy corpus.
 
 US-01  a ```python fence must not call subprocess.run / call /
        check_call / check_output / Popen with ``shell=True``. A

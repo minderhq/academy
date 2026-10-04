@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-r"""Markdown table integrity (TB-01/02, HARD) for PROJECT-OMEGA.
+r"""Markdown table integrity (TB-01/02, HARD) for Minder Academy.
 
 The platform renders tables directly - one broken row is a visible
 defect for the learner, not a style nit:

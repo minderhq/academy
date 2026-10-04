@@ -407,7 +407,7 @@ EXL2 and AWQ are the GPU-only end of the 4-bit world: both land near-fp16 qualit
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [4101: GGUF Physics - CPU/GPU Hybrid Offloading](4101-GGUF-Physics.md)
 - [4103: Double Quantization - BitsAndBytes (bnb) Logic](4103-Double-Quantization.md)

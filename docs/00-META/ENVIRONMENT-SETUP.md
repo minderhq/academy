@@ -17,7 +17,7 @@ Tags: ['setup', 'docker', 'infrastructure']
 
 ## Overview
 
-This guide helps you set up a complete AI development environment for PROJECT-OMEGA. Whether you're working on Windows, Mac, or Linux, we'll get you ready to run local LLMs, fine-tune models, and deploy AI systems.
+This guide helps you set up a complete AI development environment for Minder Academy. Whether you're working on Windows, Mac, or Linux, we'll get you ready to run local LLMs, fine-tune models, and deploy AI systems.
 
 ---
 
@@ -177,8 +177,8 @@ uv --version
 
 ```bash
 # Create project directory
-mkdir -p ~/project-omega
-cd ~/project-omega
+mkdir -p ~/academy
+cd ~/academy
 
 # Create a virtual environment with Python 3.13
 # (uv downloads the interpreter itself if it is missing)

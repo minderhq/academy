@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""quiz correct-answer position balance scan for PROJECT-OMEGA.
+"""quiz correct-answer position balance scan for Minder Academy.
 
 Answers a quality question no structural gate can see: where do the
 correct answers sit? A/B/C/D option order is arbitrary, so a

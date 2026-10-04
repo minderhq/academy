@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""unsafe dynamic-execution gate for the PROJECT-OMEGA corpus.
+"""unsafe dynamic-execution gate for the Minder Academy corpus.
 
 UE-01  a ```python fence must not call the builtin ``eval()`` or
        ``exec()`` with a single positional argument (no explicit

@@ -412,7 +412,7 @@ The learning rate is the one hyperparameter that changes meaning mid-run: the va
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [5501: Optimizer Variants](5501-Optimizer-Variants.md)
 - [5503: Advanced Optimization Techniques](5503-Advanced-Techniques.md)

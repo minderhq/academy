@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""duplicate-heading gate (DH-01 HARD, DH-02 report) for PROJECT-OMEGA.
+"""duplicate-heading gate (DH-01 HARD, DH-02 report) for Minder Academy.
 
 GitHub disambiguates duplicate heading slugs (``text``, ``text-1``,
 ``text-2``) and binds an explicit anchor to the FIRST heading, so

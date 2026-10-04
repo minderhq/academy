@@ -402,7 +402,7 @@ Federated learning trains a shared model across many data holders without the da
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [5301: Knowledge Distillation](5301-Knowledge-Distillation.md)
 - [5302: Distributed Training Orchestration](5302-Distributed-Training.md)

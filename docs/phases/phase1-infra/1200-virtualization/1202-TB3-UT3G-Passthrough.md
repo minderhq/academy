@@ -433,7 +433,7 @@ GPU passthrough assigns a physical NVIDIA GPU to one virtual machine, giving it 
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [1201: Proxmox Hypervisor Standard Operating Procedures](1201-Proxmox-Hypervisor-SOP.md)
 - [1203: NVIDIA Kernel Module Management](1203-Nvidia-Kernel-Module.md)

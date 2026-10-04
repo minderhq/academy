@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Corpus manifest feed for the future PROJECT-OMEGA platform.
+"""Corpus manifest feed for the future Minder Academy platform.
 
 Exports the corpus as one machine-readable JSON document: every
 frontmatter-carrying doc under docs/ with its metadata, plus the

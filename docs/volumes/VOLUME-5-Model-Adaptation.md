@@ -688,4 +688,4 @@ For more help, see **[TROUBLESHOOTING-Common-Issues.md](../learning-resources/tr
 ---
 
 **Volume 5 Status:** 🟢 Complete
-**Maintainer:** PROJECT-OMEGA Team
+**Maintainer:** Minder Academy Team

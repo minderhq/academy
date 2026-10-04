@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Prerequisites field census (PQ-01..03 + PQ-06..08) for
-PROJECT-OMEGA.
+Minder Academy.
 
 Prerequisites is the curriculum's learning-path backbone: on the
 platform a dangling prerequisite is a lesson that can never be

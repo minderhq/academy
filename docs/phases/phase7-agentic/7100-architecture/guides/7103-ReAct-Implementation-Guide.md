@@ -41,7 +41,7 @@ After completing this lesson, you will be able to:
 ---
 
 ## Abstract
-Complete implementation guide for building production-ready ReAct (Reasoning + Acting) agents on PROJECT-OMEGA infrastructure.
+Complete implementation guide for building production-ready ReAct (Reasoning + Acting) agents on Minder Academy infrastructure.
 
 ## Architecture Overview
 
@@ -83,7 +83,7 @@ Complete implementation guide for building production-ready ReAct (Reasoning + A
 ```python
 # react_agent.py
 """
-Production-ready ReAct Agent for project-omega
+Production-ready ReAct Agent for academy
 
 Features:
 - Tool calling with validation
@@ -623,7 +623,7 @@ class HierarchicalAgent(ReActAgent):
 services:
   react-agent:
     build: ./agent
-    container_name: project-omega-react-agent
+    container_name: academy-react-agent
     ports:
       - "8001:8000"
     environment:
@@ -640,7 +640,7 @@ services:
           memory: 8G
     restart: unless-stopped
     networks:
-      - project-omega-net
+      - academy-net
 ```
 
 ### Kubernetes Deployment
@@ -650,7 +650,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: react-agent
-  namespace: project-omega
+  namespace: academy
 spec:
   replicas: 1
   selector:
@@ -663,7 +663,7 @@ spec:
     spec:
       containers:
       - name: agent
-        image: PROJECT-OMEGA/react-agent:latest
+        image: Minder Academy/react-agent:latest
         ports:
         - containerPort: 8000
         env:
@@ -723,11 +723,11 @@ except Exception as e:
 
 ## Summary
 
-This guide takes ReAct from pattern to production on PROJECT-OMEGA infrastructure: the full agent architecture, tool registry, error handling that keeps the loop alive, and the observability that shows what the agent actually did. Each section maps the loop's parts onto concrete implementation with failure paths. The rule it leaves: the difference between a demo agent and a production agent is not intelligence - it is the error handling, the trace, and the budget that stop a looped agent from looping forever.
+This guide takes ReAct from pattern to production on Minder Academy infrastructure: the full agent architecture, tool registry, error handling that keeps the loop alive, and the observability that shows what the agent actually did. Each section maps the loop's parts onto concrete implementation with failure paths. The rule it leaves: the difference between a demo agent and a production agent is not intelligence - it is the error handling, the trace, and the budget that stop a looped agent from looping forever.
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [7101: ReAct (Reasoning + Acting) Loop System](../7101-ReAct-Loop-System.md)
 - [7102: Planning and Task Decomposition](../7102-Planning-Decomposition.md)

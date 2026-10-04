@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render hygiene (RH-01..04) for PROJECT-OMEGA.
+"""Render hygiene (RH-01..04) for Minder Academy.
 
 The platform renders every doc's markdown; four constructs render
 poorly or not at all outside GitHub, and all four are deterministic:

@@ -8,7 +8,7 @@ Difficulty: Advanced
 
 # EXP_6202: Re-ranking Experiment
 
-**Project:** PROJECT-OMEGA
+**Project:** Minder Academy
 **Phase:** [6200] Retrieval
 **Document ID:** 6202
 **Experiment ID:** EXP_6202_RERANK

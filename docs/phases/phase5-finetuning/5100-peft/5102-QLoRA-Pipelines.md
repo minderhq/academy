@@ -520,7 +520,7 @@ QLoRA combines 4-bit quantization with LoRA to make the headline real: a 65B mod
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [5101: LoRA (Low-Rank Adaptation) Logic](5101-LoRA-Logic.md)
 - [5103: Adapters & Parameter-Efficient Adaptation Methods](5103-Adapters.md)

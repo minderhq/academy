@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Model-name form consistency (report-only) for PROJECT-OMEGA.
+"""Model-name form consistency (report-only) for Minder Academy.
 
 Vendors ship every model in two forms: the space form in prose and
 paper titles ("Mistral 7B", "Llama 2 7B") and the hyphen form in

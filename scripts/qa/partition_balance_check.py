@@ -139,7 +139,7 @@ def main() -> int:
     imbalanced = [(k, v["kb"]) for k, v in phases.items()
                   if med_kb and v["kb"] > IMBALANCE_RATIO * med_kb]
 
-    print("PROJECT-OMEGA partition balance (RB-01, report-only)")
+    print("Minder Academy partition balance (RB-01, report-only)")
     print("=" * 72)
     print(f"corpus: {total} md files across {len(top)} top-level "
           f"subtrees, {len(phases)} phases")

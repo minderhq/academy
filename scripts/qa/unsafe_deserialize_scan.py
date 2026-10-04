@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""unsafe deserialization gate for the PROJECT-OMEGA corpus.
+"""unsafe deserialization gate for the Minder Academy corpus.
 
 UD-01  a ```python fence must not call ``torch.load()`` without an
        explicit ``weights_only`` keyword. A checkpoint file IS a pickle

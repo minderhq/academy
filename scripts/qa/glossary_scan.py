@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Glossary integrity (GS-01..03, HARD) for PROJECT-OMEGA.
+"""Glossary integrity (GS-01..03, HARD) for Minder Academy.
 
 GLOSSARY.md is the platform's terminology backbone - lookup UIs,
 tooltips and search will be generated from its tables. Three

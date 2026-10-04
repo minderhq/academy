@@ -9,7 +9,7 @@ Difficulty: Advanced
 # EXP_3401: Encoder-Decoder Architecture Experiments
 
 ## Overview
-Practical experiments for testing encoder-decoder models (T5, BART) on PROJECT-OMEGA infrastructure.
+Practical experiments for testing encoder-decoder models (T5, BART) on Minder Academy infrastructure.
 
 ## Experiment 1: T5 Model Benchmarking
 

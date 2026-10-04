@@ -640,7 +640,7 @@ class ResilientTrainer:
                 print(f"Saved checkpoint: {os.path.basename(self.save_checkpoint())}")
 
 
-tmpdir = tempfile.mkdtemp(prefix="omega_ckpts_")
+tmpdir = tempfile.mkdtemp(prefix="academy_ckpts_")
 
 
 def fresh_trainer():

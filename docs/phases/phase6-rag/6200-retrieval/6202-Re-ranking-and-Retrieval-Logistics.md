@@ -436,7 +436,7 @@ Re-ranking improves retrieval quality by separating candidate generation from fi
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [6101: HNSW Indexing - Efficient Semantic Search at Scale](../6100-vector/6101-HNSW-Indexing.md)
 - [6201: Hybrid Search - Combining Keyword and Semantic Search](6201-Hybrid-Search.md)

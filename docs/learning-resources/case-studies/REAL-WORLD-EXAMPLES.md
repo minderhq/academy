@@ -9,7 +9,7 @@ Tags: ['case-study', 'production', 'llm']
 
 # Real-World Examples & Case Studies
 
-**Project:** PROJECT-OMEGA
+**Project:** Minder Academy
 **Category:** Case Studies
 **Last Updated:** 2026-09-30
 **Status:** Complete
@@ -18,7 +18,7 @@ Tags: ['case-study', 'production', 'llm']
 
 ## Overview
 
-Real-world examples of AI systems in production, illustrating the concepts and techniques covered throughout PROJECT-OMEGA. These case studies demonstrate how leading companies implement LLM applications, RAG systems, multi-agent architectures, and production-grade AI infrastructure.
+Real-world examples of AI systems in production, illustrating the concepts and techniques covered throughout Minder Academy. These case studies demonstrate how leading companies implement LLM applications, RAG systems, multi-agent architectures, and production-grade AI infrastructure.
 
 ---
 

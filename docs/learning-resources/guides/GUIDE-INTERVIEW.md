@@ -9,7 +9,7 @@ Tags: ['career', 'guide', 'llm']
 
 # INTERVIEW PREPARATION GUIDE
 
-**For:** PROJECT-OMEGA graduates preparing for AI Engineering interviews
+**For:** Minder Academy graduates preparing for AI Engineering interviews
 **Read Time:** 30 minutes
 **Last Updated:** 2026-09-30
 
@@ -710,4 +710,4 @@ Perhaps equity, signing bonus, or additional PTO?"
 - [GUIDE-CAREER.md](./GUIDE-CAREER.md) - Career planning
 - [GUIDE-RESUME.md](./GUIDE-RESUME.md) - Resume templates
 
-**© 2026 PROJECT-OMEGA. All rights reserved.**
+**© 2026 Minder Academy. All rights reserved.**

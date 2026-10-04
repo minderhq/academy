@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""In-document anchor gate for the PROJECT-OMEGA corpus.
+"""In-document anchor gate for the Minder Academy corpus.
 
 Verifies every same-document (#...) and cross-file (file.md#...) anchor
 against a GitHub-accurate slugger, so anchors that render fine in a local
@@ -18,7 +18,7 @@ If an allowlisted finding disappears, that is reported as a regression
 hint (the example was rewritten) but still exits 0.
 
 Baseline (2026-09-28): 458 files, broken anchors: exactly the 2 allowed.
-Materialized from the formerly repo-external anchor_verify_omega.py
+Materialized from a formerly repo-external verification
 temp script (its one-off trailing-whitespace / heading-jump spot checks
 were dropped as non-gate diagnostics).
 

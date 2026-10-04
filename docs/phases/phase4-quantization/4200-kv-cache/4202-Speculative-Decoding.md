@@ -499,7 +499,7 @@ Speculative decoding buys speed with a division of labor: a small draft model pr
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [4201: Context Window Physics and OOM Prevention](4201-Context-Window-Physics.md)
 

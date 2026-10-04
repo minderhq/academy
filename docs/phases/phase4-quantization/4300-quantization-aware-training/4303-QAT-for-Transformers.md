@@ -417,7 +417,7 @@ Transformers tolerate QAT well but not uniformly: the recipe this lesson built q
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [4301: QAT Foundations](4301-QAT-Foundations.md)
 - [4302: Fake Quantization](4302-Fake-Quantization.md)

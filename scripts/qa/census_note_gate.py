@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""census adjudication-note hygiene gate for the PROJECT-OMEGA curriculum.
+"""census adjudication-note hygiene gate for the Minder Academy curriculum.
 
 The execution census's _meta contract says every non-clean outcome must be
 adjudicated in the baseline before fence_exec_gate runs; this gate makes the

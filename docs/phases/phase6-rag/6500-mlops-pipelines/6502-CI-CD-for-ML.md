@@ -492,7 +492,7 @@ ML CI/CD is a software pipeline with two extra failure modes: the artifact is pr
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [6501: ML Model Lifecycle Management](6501-ML-Lifecycle-Management.md)
 - [6503: Model Registry](6503-Model-Registry.md)

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""bare-except gate for the PROJECT-OMEGA corpus.
+"""bare-except gate for the Minder Academy corpus.
 
 BX-01  a ```python fence must not teach a bare ``except:`` with a real
        body: a handler

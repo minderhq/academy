@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""quiz correct-answer length-balance scan for PROJECT-OMEGA.
+"""quiz correct-answer length-balance scan for Minder Academy.
 
 Answers a quality question no structural gate can see: how long is the
 correct answer next to its distractors? Option length is arbitrary, so

@@ -427,7 +427,7 @@ Dynamic provisioning lets a pod ask for storage and get it: a PVC states the nee
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [1301: K3s Master-Worker Architecture](1301-K3s-Master-Worker-Arch.md)
 - [1302: GPU Scheduler Configuration](1302-GPU-Scheduler.md)

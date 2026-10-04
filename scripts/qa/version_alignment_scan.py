@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""python-version-alignment gate for the PROJECT-OMEGA corpus.
+"""python-version-alignment gate for the Minder Academy corpus.
 
 The corpus standard is Python 3.13 (00-META/ENVIRONMENT-SETUP.md; the
 installed stack runs 3.13). The tick-257 census proved the drift class

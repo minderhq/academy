@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Invisible-character hygiene (IV-01, HARD) for PROJECT-OMEGA.
+"""Invisible-character hygiene (IV-01, HARD) for Minder Academy.
 
 Copy-paste is the classic silent-corruption vector: zero-width
 characters and control characters pasted from web pages or rich

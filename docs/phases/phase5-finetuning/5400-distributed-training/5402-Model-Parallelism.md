@@ -341,7 +341,7 @@ When the model no longer fits, model parallelism splits it along two axes: pipel
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [5401: Data Parallelism](5401-Data-Parallelism.md)
 - [5403: Mixed Precision Training](5403-Mixed-Precision.md)

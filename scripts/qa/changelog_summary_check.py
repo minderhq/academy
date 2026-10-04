@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""changelog release-index parity gate for PROJECT-OMEGA.
+"""changelog release-index parity gate for Minder Academy.
 
 CHANGELOG.md is a Keep-a-Changelog file with three synchronized
 surfaces per release: the "## [X.Y.Z] - DATE" section, the Version

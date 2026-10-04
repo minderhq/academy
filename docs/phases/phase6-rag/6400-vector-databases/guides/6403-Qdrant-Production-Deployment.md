@@ -806,7 +806,7 @@ This guide takes Qdrant from first container to production: deployment targets b
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [6401: Qdrant Setup Guide](../6401-Qdrant-Setup.md)
 - [6402: Vector Database Comparison](../6402-Pinecone-vs-Weaviate.md)

@@ -438,7 +438,7 @@ ReAct (Reasoning + Acting) is the foundational agent loop: the model alternates 
 - [LangChain Agents](https://docs.langchain.com/oss/python/langchain/overview) - Agent framework documentation
 - [LangGraph](https://langchain-ai.github.io/langgraph/) - Stateful agent framework
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 - [7102: Planning and Decomposition](./7102-Planning-Decomposition.md) - Task breakdown strategies
 - [7201: Tool Calling](../7200-tools/7201-Tool-Calling.md) - Tool implementation
 - [7301: Orchestration](../7300-orchestration/7301-Orchestration.md) - Multi-agent coordination

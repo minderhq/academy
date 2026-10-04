@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Emphasis parity (EM-01, HARD) for PROJECT-OMEGA.
+"""Emphasis parity (EM-01, HARD) for Minder Academy.
 
 Bold markers `**` must pair within one render block. The tick-465
 census found 7 PREREQUISITES.md files carrying a heading that read

@@ -527,7 +527,7 @@ DPO's insight is that the reward model RLHF trains is a middleman you can elimin
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [5202: Alignment Orchestration - Reward Modeling vs Direct Preference](5202-Alignment-Orchestration.md)
 - [5203: Reinforcement Learning from Human Feedback](5203-RLHF.md)

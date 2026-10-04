@@ -658,7 +658,7 @@ class MultiModalRAG:
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [TUTORIAL-001: Hello LLM](TUTORIAL-001-Hello-LLM.md)
 - [TUTORIAL-003: RAG Basics](TUTORIAL-003-RAG-Basics.md)

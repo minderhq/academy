@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""deprecated-API gate for the PROJECT-OMEGA corpus.
+"""deprecated-API gate for the Minder Academy corpus.
 
 DA-01  a ```python fence must not call ``datetime.utcnow()`` or
        ``datetime.utcfromtimestamp()``. Both are deprecated since

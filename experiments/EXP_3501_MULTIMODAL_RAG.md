@@ -8,7 +8,7 @@ Difficulty: Advanced
 
 # EXP_3501: Multimodal RAG Experiments
 
-**Project:** PROJECT-OMEGA
+**Project:** Minder Academy
 **Phase:** [3500] Multimodal
 **Experiment ID:** EXP_3501_MULTIMODAL_RAG
 **Date:** 2026-02-04

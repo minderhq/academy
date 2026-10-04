@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Heading skeleton soundness (HS-01..05, HARD) for PROJECT-OMEGA.
+"""Heading skeleton soundness (HS-01..05, HARD) for Minder Academy.
 
 The platform renders a TOC and anchor deep-links from heading
 structure, so the skeleton every doc carries must be sound:

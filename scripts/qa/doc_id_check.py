@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Document-ID uniqueness gate for the PROJECT-OMEGA corpus.
+"""Document-ID uniqueness gate for the Minder Academy corpus.
 
 manifest_export copies each document's frontmatter `Document ID` into
 the platform manifest's primary `id` field - the join key a platform

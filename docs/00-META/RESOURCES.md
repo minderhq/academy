@@ -1,13 +1,13 @@
 ---
 Document ID: RESOURCES
-Title: "PROJECT-OMEGA Resources"
+Title: "Minder Academy Resources"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
 Tags: ['reference', 'llm', 'production']
 ---
 
-# PROJECT-OMEGA Resources
+# Minder Academy Resources
 
 **External resources and references for deeper learning**
 
@@ -288,7 +288,7 @@ git push origin feature-branch
 
 ## Tips for Using These Resources
 
-1. **Start with PROJECT-OMEGA materials** - Build foundation first
+1. **Start with Minder Academy materials** - Build foundation first
 2. **Reference official docs** when implementing specific features
 3. **Read papers** after understanding the basics
 4. **Join communities** for troubleshooting and discussions
@@ -298,4 +298,4 @@ git push origin feature-branch
 ---
 
 
-For PROJECT-OMEGA specific documentation, see the main README and SITEMAP.
+For Minder Academy specific documentation, see the main README and SITEMAP.

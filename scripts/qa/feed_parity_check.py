@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""feed-parity gate for the PROJECT-OMEGA platform feeds.
+"""feed-parity gate for the Minder Academy platform feeds.
 
 The platform load step consumes three JSON feeds - manifest_export
 (corpus map), quiz_export (question bank) - plus curriculum_metrics.

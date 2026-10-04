@@ -301,7 +301,7 @@ A multi-agent system is only as reliable as the contracts between its agents: th
 - [4] Hong et al. "MetaGPT: Meta Programming for a Multi-Agent Collaborative Framework". ICLR, 2024.
 - [5] Wu et al. "AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation". 2023.
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 - [7301: Orchestration](./7301-Orchestration.md) - planning and routing
 - [7101: ReAct Loop System](../7100-architecture/7101-ReAct-Loop-System.md) - single-agent foundation
 - [7200: Tool Calling](../7200-tools/README.md) - MCP tool layer

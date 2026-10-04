@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""README claims gate for the PROJECT-OMEGA corpus.
+"""README claims gate for the Minder Academy corpus.
 
 The README carries the repo's headline numbers - docs files,
 experiments, labs, tutorials, cheat sheets, per-phase document

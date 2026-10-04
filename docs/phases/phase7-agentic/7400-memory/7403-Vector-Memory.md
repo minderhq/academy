@@ -314,7 +314,7 @@ Agent memory becomes scalable when memories are embeddings: a fuzzy natural-lang
 ### Documentation
 - [Qdrant Filtering](https://qdrant.tech/documentation/search/filtering/) - payload filters and indexes
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 - [7401: Long-term Memory](./7401-Long-term-Memory.md) - memory fundamentals
 - [6101: HNSW Indexing](../../phase6-rag/6100-vector/6101-HNSW-Indexing.md) - ANN internals
 - [6102: Semantic Similarity](../../phase6-rag/6100-vector/6102-Semantic-Similarity.md) - embedding fundamentals

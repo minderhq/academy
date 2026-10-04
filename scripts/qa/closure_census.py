@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Closing-block census (CL-01..03) for PROJECT-OMEGA.
+"""Closing-block census (CL-01..03) for Minder Academy.
 
 A lesson closes the way it opens: after the last content section
 the canonical trio of H2s - a Summary-class recap, References,

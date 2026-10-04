@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Prerequisite ordering census (PO-01/PO-02) for PROJECT-OMEGA.
+"""Prerequisite ordering census (PO-01/PO-02) for Minder Academy.
 
 prereq_census (PQ-01..03) locks that every machine-parseable
 prerequisite token resolves to exactly one file in canonical

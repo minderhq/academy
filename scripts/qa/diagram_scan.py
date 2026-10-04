@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-r"""Mermaid diagram integrity (DM-01..03, HARD) for PROJECT-OMEGA.
+r"""Mermaid diagram integrity (DM-01..03, HARD) for Minder Academy.
 
 The corpus carries 56 mermaid blocks in 19 docs (52 graph, 2
 stateDiagram-v2, 2 sequenceDiagram) and the platform renders every

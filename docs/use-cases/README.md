@@ -565,4 +565,4 @@ def multi_agent_collaboration(query, agents):
 
 **Total Use Cases:** 3 comprehensive documents
 
-**Have a use case to share?** Contribute to PROJECT-OMEGA!
+**Have a use case to share?** Contribute to Minder Academy!

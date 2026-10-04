@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""tutorial index parity gate for PROJECT-OMEGA.
+"""tutorial index parity gate for Minder Academy.
 
 MASTER-INDEX.md's "### Tutorials" table is the planning contract for
 the 15-file tutorial fleet; every tutorial's front matter should

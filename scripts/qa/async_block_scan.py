@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""async-block gate for the PROJECT-OMEGA corpus.
+"""async-block gate for the Minder Academy corpus.
 
 AB-01  an ```python fence must not call a blocking ``requests`` verb
        (get/post/put/patch/delete/head/options/request) lexically

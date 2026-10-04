@@ -148,7 +148,7 @@ def main() -> int:
     violations: list[str] = []
     improvements: list[str] = []
     reblessed: dict = {}
-    with tempfile.TemporaryDirectory(prefix="omega_gate_") as tmp:
+    with tempfile.TemporaryDirectory(prefix="academy_gate_") as tmp:
         for rel in dirty:
             path = live[rel]
             old = base.get(rel, {})

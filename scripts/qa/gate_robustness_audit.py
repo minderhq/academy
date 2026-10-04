@@ -250,7 +250,7 @@ def main() -> int:
     findings = []
     roster_names = roster(scripts_dir)
     print(esc("gate_robustness_audit: %d gates on the hostile tree" % len(roster_names)))
-    with tempfile.TemporaryDirectory(prefix="omega_robustness_") as tmp:
+    with tempfile.TemporaryDirectory(prefix="academy_robustness_") as tmp:
         build_tree(tmp)
         for name in roster_names:
             res = audit_gate(scripts_dir, tmp, name, args.timeout)

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""One-command quality scorecard for the PROJECT-OMEGA curriculum corpus.
+"""One-command quality scorecard for the Minder Academy curriculum corpus.
 
 Runs every committed QA gate as a subprocess, harvests its summary line,
 and prints a single scorecard - the fast answer to "where does the corpus
@@ -3336,7 +3336,7 @@ def main() -> int:
     lessons = sorted(p for m in modules for p in m.rglob("*.md")
                      if LESSON_FILE.match(p.name))
 
-    print("PROJECT-OMEGA quality report - %s" % date.today().isoformat())
+    print("Minder Academy quality report - %s" % date.today().isoformat())
     print("=" * 72)
     print("corpus: %d lesson files, %d modules, %d phases"
           % (len(lessons), len(modules), len(phases)))

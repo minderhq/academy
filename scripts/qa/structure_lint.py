@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Structural lint for the PROJECT-OMEGA corpus: fence parity + H1 discipline.
+"""Structural lint for the Minder Academy corpus: fence parity + H1 discipline.
 
 Hard gates (exit 1 on any finding):
   - unbalanced code fences. Counting is CommonMark length-aware: a closing
@@ -17,7 +17,7 @@ Hard gates (exit 1 on any finding):
     monotone as content grows.
 
 Baseline (2026-09-29): 462 files scanned, 0 / 0 / 0 / 0 findings.
-Materialized from the formerly repo-external verify_a3_omega.py temp script;
+Materialized from a formerly repo-external verification temp script;
 the fence/H1 logic is preserved as materialized, HJ-01 joined in
 tick-278 (2026-09-29).
 

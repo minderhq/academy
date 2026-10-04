@@ -1,13 +1,13 @@
 ---
 Document ID: SITEMAP
-Title: "PROJECT-OMEGA - Complete Sitemap"
+Title: "Minder Academy - Complete Sitemap"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
 Tags: ['maintenance', 'navigation']
 ---
 
-# PROJECT-OMEGA - Complete Sitemap
+# Minder Academy - Complete Sitemap
 
 Index of every document in the curriculum. Counts and links are kept in
 lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).

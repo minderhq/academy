@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""legacy typing-idiom gate for the PROJECT-OMEGA curriculum.
+"""legacy typing-idiom gate for the Minder Academy curriculum.
 
 Flags typing-module legacy spellings inside ```python fences - the same
 surface the PEP 585/604 modernization epic drained (typing epic /1-/3).

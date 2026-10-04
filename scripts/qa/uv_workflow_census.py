@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""uv project-workflow adoption census (UV-02) for PROJECT-OMEGA.
+"""uv project-workflow adoption census (UV-02) for Minder Academy.
 
 The uv modernization taught the corpus the imperative layer (uv pip
 install, uv venv); this census tracks its migration to uv's own

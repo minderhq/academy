@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Body Last Updated badge parity (UB-01, HARD) for PROJECT-OMEGA.
+"""Body Last Updated badge parity (UB-01, HARD) for Minder Academy.
 
 The FM Last Updated field is the canonical, gated freshness value
 (last_updated_check LU-01/02); several docs also render a display

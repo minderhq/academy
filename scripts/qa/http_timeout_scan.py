@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""HTTP-timeout gate for the PROJECT-OMEGA corpus.
+"""HTTP-timeout gate for the Minder Academy corpus.
 
 RT-01  a ``requests.<verb>(...)`` call (get / post / put / delete /
        patch / head / options / request) without a ``timeout=`` kwarg.

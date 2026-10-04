@@ -1723,7 +1723,7 @@ You can:
 
 After completing Volume 7 and a capstone project, you have earned:
 
-**🏆 PROJECT-OMEGA Master Certification**
+**🏆 Minder Academy Master Certification**
 
 You have demonstrated mastery of:
 - Infrastructure and deployment
@@ -1754,4 +1754,4 @@ You have demonstrated mastery of:
 ---
 
 **Volume 7 Status:** 🟢 Complete
-**Maintainer:** PROJECT-OMEGA Team
+**Maintainer:** Minder Academy Team

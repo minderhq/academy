@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Quiz self-claim integrity (QC-01..05, HARD) for PROJECT-OMEGA.
+"""Quiz self-claim integrity (QC-01..05, HARD) for Minder Academy.
 
 Every QUIZ.md makes promises to the learner about itself - how many
 questions it holds, what score passes. quiz_export parses the real

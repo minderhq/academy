@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""bare/broad except pure-swallow gate for the PROJECT-OMEGA corpus.
+"""bare/broad except pure-swallow gate for the Minder Academy corpus.
 
 BE-01  a ```python fence must not carry a bare ``except:`` whose body is
        only ``pass``. A bare except catches KeyboardInterrupt, SystemExit

@@ -465,7 +465,7 @@ Self-attention is the mechanism the Transformer is built on: the scaled dot-prod
 ### Documentation
 - [PyTorch nn.MultiheadAttention](https://pytorch.org/docs/stable/generated/torch.nn.MultiheadAttention.html) - Official implementation
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 - [3102: Flash Attention](./3102-Flash-Attention.md) - Memory-efficient attention
 - [3201: RoPE](../3200-embeddings/3201-Rotary-Positional-Embeddings-RoPE.md) - Positional encoding
 - [3302: Normalization Layers](../3300-decoding/3302-Normalization-Layers.md) - LayerNorm, RMSNorm

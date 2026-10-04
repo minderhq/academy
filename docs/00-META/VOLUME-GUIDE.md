@@ -1,21 +1,21 @@
 ---
 Document ID: VOLUME-GUIDE
-Title: "PROJECT-OMEGA: Volume Guide (Book Structure)"
+Title: "Minder Academy: Volume Guide (Book Structure)"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
 Tags: ['volume', 'roadmap', 'llm']
 ---
 
-# PROJECT-OMEGA: Volume Guide (Book Structure)
+# Minder Academy: Volume Guide (Book Structure)
 
-**Welcome to PROJECT-OMEGA!** This curriculum is organized as a **7-volume book series**, taking you from complete beginner to production-ready AI infrastructure expert.
+**Welcome to Minder Academy!** This curriculum is organized as a **7-volume book series**, taking you from complete beginner to production-ready AI infrastructure expert.
 
 ---
 
 ## How to Use This Guide
 
-### **Are you new to PROJECT-OMEGA?**
+### **Are you new to Minder Academy?**
 Start here: **[QUICK-START.md](./QUICK-START.md)** (30 minutes)
 
 ### **Want to track your progress?**
@@ -416,7 +416,7 @@ Track your progress using: **[PROGRESS-TRACKER.md](PROGRESS-TRACKER.md)**
 ## Document Structure
 
 ```text
-PROJECT-OMEGA/docs/
+Minder Academy/docs/
 ├── 00-META/                     # Meta documentation
 │   ├── VOLUME-GUIDE.md          # This file - volume overview
 │   ├── QUICK-START.md           # 30-minute quick start
@@ -471,7 +471,7 @@ PROJECT-OMEGA/docs/
     ├── VOLUME-6-Data-Nexus.md
     └── VOLUME-7-Production-Mastery.md
 
-PROJECT-OMEGA/
+Minder Academy/
 └── experiments/                 # Practical experiments (47 files)
 ```
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Module-level variant near-miss gate (PY-02) for the PROJECT-OMEGA
+"""Module-level variant near-miss gate (PY-02) for the Minder Academy
 corpus.
 
 PY-01 v1's declared out-of-scope region: bare names LOADED at module

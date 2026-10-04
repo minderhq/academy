@@ -372,7 +372,7 @@ This guide is the activation-function decision table: ReLU, GELU, SwiGLU, and fr
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [3301: Activation Functions - GELU, SwiGLU, and Beyond](../3301-Activation-Functions.md)
 - [3302: Normalization Layers - BatchNorm vs LayerNorm vs RMSNorm](../3302-Normalization-Layers.md)

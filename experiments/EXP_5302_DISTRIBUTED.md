@@ -8,7 +8,7 @@ Difficulty: Advanced
 
 # EXP_5302: Distributed Training Experiment
 
-**Project:** PROJECT-OMEGA
+**Project:** Minder Academy
 **Phase:** [5300] Synthetic Data
 **Document ID:** 5302
 **Experiment ID:** EXP_5302_DISTRIBUTED

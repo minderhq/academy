@@ -95,7 +95,7 @@ vLLM is a high-throughput LLM inference engine: PagedAttention segments the KV c
 services:
   vllm-mistral:
     image: vllm/vllm-openai:v0.30.0   # pinned release (Sep 2026); check releases for newer
-    container_name: project-omega-vllm-mistral
+    container_name: academy-vllm-mistral
     ports:
       - "8000:8000"
     # command: overrides CMD — the image ENTRYPOINT (the OpenAI-compatible
@@ -127,7 +127,7 @@ services:
       timeout: 10s
       retries: 3
     networks:
-      - project-omega-net
+      - academy-net
     volumes:
       - /srv/models/vllm:/root/.cache/huggingface
     logging:
@@ -141,7 +141,7 @@ services:
   # ungated and pre-quantized, so it needs no token and fits 11GB.
   vllm-llama:
     image: vllm/vllm-openai:v0.30.0
-    container_name: project-omega-vllm-llama
+    container_name: academy-vllm-llama
     ports:
       - "8001:8000"
     command: >
@@ -164,11 +164,11 @@ services:
               capabilities: [gpu]
     restart: unless-stopped
     networks:
-      - project-omega-net
+      - academy-net
 
 networks:
-  # create once first: docker network create project-omega-net
-  project-omega-net:
+  # create once first: docker network create academy-net
+  academy-net:
     external: true
 ```
 
@@ -180,7 +180,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: vllm-mistral
-  namespace: project-omega
+  namespace: academy
 spec:
   replicas: 1
   selector:
@@ -254,7 +254,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: vllm-mistral
-  namespace: project-omega
+  namespace: academy
 spec:
   selector:
     app: vllm-mistral
@@ -268,7 +268,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: model-cache-pvc
-  namespace: project-omega
+  namespace: academy
 spec:
   accessModes:
   - ReadWriteOnce
@@ -343,7 +343,7 @@ client = OpenAI(
 response = client.chat.completions.create(
     model="TheBloke/Mistral-7B-Instruct-v0.2-AWQ",
     messages=[
-        {"role": "system", "content": "You are a helpful assistant for project-omega."},
+        {"role": "system", "content": "You are a helpful assistant for academy."},
         {"role": "user", "content": "Explain quantum computing in simple terms."},
     ],
     max_tokens=512,
@@ -456,7 +456,7 @@ services:
       - vllm-mistral
       - vllm-phi
     networks:
-      - project-omega-net
+      - academy-net
 
   # One model per service. One 11GB GPU hosts roughly one quantized 7B
   # (weights + KV cache) — put services on different GPUs via
@@ -472,7 +472,7 @@ services:
     environment:
       - CUDA_VISIBLE_DEVICES=0
     networks:
-      - project-omega-net
+      - academy-net
 
   # phi-2 (2.7B, MIT license) runs fp16 in ~5.5GB — small enough alone,
   # max context defaults to its 2048-token ceiling
@@ -487,7 +487,7 @@ services:
     environment:
       - CUDA_VISIBLE_DEVICES=1
     networks:
-      - project-omega-net
+      - academy-net
 ```
 
 ### 2. Load Balancer Configuration (nginx.conf)
@@ -546,7 +546,7 @@ http {
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
     networks:
-      - project-omega-net
+      - academy-net
 ```
 
 ```yaml
@@ -788,7 +788,7 @@ vLLM in production is PagedAttention plus continuous batching: the KV cache is s
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [1404: Text Generation Inference (TGI) Deployment Guide](1404-TGI-Deployment-Guide.md)
 

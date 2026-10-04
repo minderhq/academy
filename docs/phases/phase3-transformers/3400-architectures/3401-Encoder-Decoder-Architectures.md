@@ -276,7 +276,7 @@ The original transformer was an encoder-decoder: one stack reads the input bidir
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [3402: Decoder-Only Models (GPT, LLaMA, Mistral)](3402-Decoder-Only-Models.md)
 - [3101: Self-Attention](../3100-attention/3101-Self-Attention-DeepDive.md)

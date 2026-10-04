@@ -1,27 +1,27 @@
 ---
 Document ID: FAQ
-Title: "PROJECT-OMEGA FAQ"
+Title: "Minder Academy FAQ"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
 Tags: ['faq', 'llm', 'llmops']
 ---
 
-# PROJECT-OMEGA FAQ
+# Minder Academy FAQ
 
-**Frequently Asked Questions about the PROJECT-OMEGA Learning Path**
+**Frequently Asked Questions about the Minder Academy Learning Path**
 
 ---
 
 ## General Questions
 
-### What is PROJECT-OMEGA?
+### What is Minder Academy?
 
-PROJECT-OMEGA is a comprehensive 7-phase learning path for mastering AI infrastructure, model internals, quantization, fine-tuning, RAG systems, and production deployment. It consists of 408 documents across 7 phases, 15 hands-on labs (+15 solutions), 47 experiments, 15 tutorials, and 13 cheat sheets.
+Minder Academy is a comprehensive 7-phase learning path for mastering AI infrastructure, model internals, quantization, fine-tuning, RAG systems, and production deployment. It consists of 408 documents across 7 phases, 15 hands-on labs (+15 solutions), 47 experiments, 15 tutorials, and 13 cheat sheets.
 
 ### Who is this for?
 
-PROJECT-OMEGA is designed for:
+Minder Academy is designed for:
 - **Beginners** who want to learn AI from scratch
 - **Developers** who want to transition into AI/ML
 - **Data Scientists** who want to understand AI infrastructure
@@ -170,7 +170,7 @@ Start here:
 
 ### Can I mix and match paths?
 
-**Yes!** PROJECT-OMEGA is modular. You can:
+**Yes!** Minder Academy is modular. You can:
 - Switch between paths mid-way
 - Focus on specific phases
 - Revisit topics later
@@ -269,7 +269,7 @@ Use **[PROGRESS-TRACKER.md](PROGRESS-TRACKER.md)** to:
 
 ## Cost & Budget
 
-### Is PROJECT-OMEGA free?
+### Is Minder Academy free?
 
 **Yes!** All documentation is free.
 
@@ -323,7 +323,7 @@ Use **[PROGRESS-TRACKER.md](PROGRESS-TRACKER.md)** to:
 
 ## After Completion
 
-### What can I do after completing PROJECT-OMEGA?
+### What can I do after completing Minder Academy?
 
 **Career Opportunities:**
 - ML Engineer
@@ -348,7 +348,7 @@ Use **[PROGRESS-TRACKER.md](PROGRESS-TRACKER.md)** to:
 - Specialized domains (medical AI, legal AI, etc.)
 - Advanced topics (RLHF, constitutional AI, etc.)
 
-### Can I contribute to PROJECT-OMEGA?
+### Can I contribute to Minder Academy?
 
 **Yes!** We welcome contributions:
 - Report typos or errors
@@ -454,7 +454,7 @@ Use **[PROGRESS-TRACKER.md](PROGRESS-TRACKER.md)** to:
 
 ## Updates & Versioning
 
-### How often is PROJECT-OMEGA updated?
+### How often is Minder Academy updated?
 
 **Ongoing:**
 - Bug fixes and typos: As needed
@@ -473,7 +473,7 @@ Check the **Last Updated** date at the bottom of each document.
 
 ### Is there a community?
 
-PROJECT-OMEGA is an open educational resource. Join the community to:
+Minder Academy is an open educational resource. Join the community to:
 - Share your progress
 - Ask questions
 - Get help
@@ -499,9 +499,9 @@ PROJECT-OMEGA is an open educational resource. Join the community to:
 
 **Models:** Depends on the model license (check individual model licenses).
 
-### Can I redistribute PROJECT-OMEGA?
+### Can I redistribute Minder Academy?
 
-**Yes!** PROJECT-OMEGA is free to redistribute for educational purposes.
+**Yes!** Minder Academy is free to redistribute for educational purposes.
 
 **Attribution:** Appreciated but not required.
 

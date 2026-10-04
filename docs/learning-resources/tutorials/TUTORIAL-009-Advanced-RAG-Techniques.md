@@ -591,7 +591,7 @@ class CachedRetriever:
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [TUTORIAL-003: RAG Basics](TUTORIAL-003-RAG-Basics.md)
 - [LAB-002: RAG Implementation](../labs/LAB-002-RAG-Implementation.md)

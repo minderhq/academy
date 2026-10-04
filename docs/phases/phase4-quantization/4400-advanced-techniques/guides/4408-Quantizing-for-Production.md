@@ -553,7 +553,7 @@ Quantizing a model for production is a pipeline, not a one-liner: six steps - mo
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [4401: GPTQ](../4401-GPTQ.md)
 - [4402: AWQ](../4402-AWQ.md)

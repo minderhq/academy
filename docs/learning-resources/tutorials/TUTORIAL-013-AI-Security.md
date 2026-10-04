@@ -947,7 +947,7 @@ print(f"URL safe: {is_safe}, Reason: {reason}")
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [TUTORIAL-004: Monitoring](TUTORIAL-004-Monitoring.md)
 - [LAB-013: Advanced Function Calling](../labs/LAB-013-Advanced-Function-Calling.md)

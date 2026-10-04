@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Label-code parity (LP-01..05, HARD) for PROJECT-OMEGA.
+"""Label-code parity (LP-01..05, HARD) for Minder Academy.
 
 linkcheck proves a link's TARGET exists; link_case_scan proves its
 CASING is portable - but nothing proved that the numeric code a

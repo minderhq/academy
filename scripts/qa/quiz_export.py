@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Quiz JSON exporter for the PROJECT-OMEGA curriculum corpus.
+"""Quiz JSON exporter for the Minder Academy curriculum corpus.
 
 Reads every module's assessment/QUIZ.md (docs/phases/*/<NNNN>-*/) and
 exports a machine-readable quiz bank - the content-as-data layer for the

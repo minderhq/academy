@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""lesson clone-similarity scan for the PROJECT-OMEGA curriculum.
+"""lesson clone-similarity scan for the Minder Academy curriculum.
 
 Answers a quality question the structural gates cannot see: do any two
 lessons say the same thing? Copy-paste lineage is invisible to link,

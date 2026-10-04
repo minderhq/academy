@@ -9,7 +9,7 @@ Difficulty: Intermediate
 # EXP_1403: TGI (Text Generation Inference) Tuning Experiments
 
 ## Overview
-Practical experiments for optimizing TGI (Text Generation Inference) deployment for maximum throughput and minimal latency on PROJECT-OMEGA infrastructure.
+Practical experiments for optimizing TGI (Text Generation Inference) deployment for maximum throughput and minimal latency on Minder Academy infrastructure.
 
 ## Experiment 1: TGI Deployment Configuration
 

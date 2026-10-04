@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Quiz-bank integrity gate for the PROJECT-OMEGA corpus.
+"""Quiz-bank integrity gate for the Minder Academy corpus.
 
 Runs on top of quiz_export's parser (borrowed, not reinvented) and
 locks the content-level classes that a structural parse cannot see:

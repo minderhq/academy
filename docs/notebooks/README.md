@@ -1,13 +1,13 @@
 ---
 Document ID: NOTEBOOKS-README
-Title: "PROJECT-OMEGA Notebooks"
+Title: "Minder Academy Notebooks"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
 Tags: ['notebook', 'pytorch', 'training']
 ---
 
-# PROJECT-OMEGA Notebooks
+# Minder Academy Notebooks
 
 **Interactive Jupyter notebooks for hands-on learning**
 
@@ -15,7 +15,7 @@ Tags: ['notebook', 'pytorch', 'training']
 
 ## Overview
 
-This directory contains Jupyter notebooks that provide practical, hands-on experience with the concepts covered in PROJECT-OMEGA. Each notebook is designed to be interactive and runnable, allowing you to experiment with code and see results in real-time.
+This directory contains Jupyter notebooks that provide practical, hands-on experience with the concepts covered in Minder Academy. Each notebook is designed to be interactive and runnable, allowing you to experiment with code and see results in real-time.
 
 ---
 
@@ -28,19 +28,19 @@ Choose the appropriate environment file based on the notebook topic:
 ```bash
 # For PyTorch notebooks (NB-201, NB-202)
 conda env create -f environment-pytorch.yml
-conda activate project-omega-pytorch
+conda activate academy-pytorch
 
 # For Transformer notebooks (NB-301, NB-302, NB-303)
 conda env create -f environment-transformers.yml
-conda activate project-omega-transformers
+conda activate academy-transformers
 
 # For Fine-tuning notebooks (NB-501, NB-502, NB-503)
 conda env create -f environment-finetuning.yml
-conda activate project-omega-finetuning
+conda activate academy-finetuning
 
 # For RAG notebooks (NB-601, NB-602, NB-603)
 conda env create -f environment-rag.yml
-conda activate project-omega-rag
+conda activate academy-rag
 ```
 
 ### 2. Start Jupyter Lab

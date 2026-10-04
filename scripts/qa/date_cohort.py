@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""date-cohort filter over the Last Updated field for PROJECT-OMEGA.
+"""date-cohort filter over the Last Updated field for Minder Academy.
 
 Every doc carries a machine-readable Last Updated (LU-01/LU-02 hard
 gate guarantees it: ISO YYYY-MM-DD, zero variants) - this tool turns

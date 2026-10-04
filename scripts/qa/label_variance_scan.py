@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Bold-label variance (LV-01..02, HARD) for PROJECT-OMEGA.
+"""Bold-label variance (LV-01..02, HARD) for Minder Academy.
 
 Bold paragraph / list-item labels ("**X:**" at line start, list items
 included) are a content family the platform renders as callout leads.

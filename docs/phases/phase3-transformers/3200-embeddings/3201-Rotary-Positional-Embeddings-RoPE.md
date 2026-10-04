@@ -410,7 +410,7 @@ Transformers are permutation invariant, so position must be injected explicitly 
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [3202: Tokenizer Sciences - BPE, SentencePiece, and Tiktoken](3202-Tokenizer-Sciences.md)
 

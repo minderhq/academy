@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""fence-label accuracy census (FLC-01) for PROJECT-OMEGA.
+"""fence-label accuracy census (FLC-01) for Minder Academy.
 
 A raw Dockerfile or nginx config block pasted into a bash/sh/shell
 fence is a mislabel: the fence renders with shell highlighting and a

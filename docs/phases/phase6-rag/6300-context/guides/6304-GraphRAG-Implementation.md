@@ -45,7 +45,7 @@ After completing this lesson, you will be able to:
 ---
 
 ## Abstract
-Complete implementation guide for GraphRAG (Knowledge Graph-enhanced Retrieval Augmented Generation) on PROJECT-OMEGA infrastructure using Neo4j and vector databases.
+Complete implementation guide for GraphRAG (Knowledge Graph-enhanced Retrieval Augmented Generation) on Minder Academy infrastructure using Neo4j and vector databases.
 
 ## GraphRAG Architecture
 
@@ -753,7 +753,7 @@ GraphRAG is the fusion of both worlds: Neo4j holds the entity-relationship struc
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [6301: Neo4j and Knowledge Graphs](../6301-Neo4j-and-Knowledge-Graphs.md)
 - [6302: CAG - Context Augmented Generation and Long Context Architectures](../6302-CAG-Long-Context-Architectures.md)

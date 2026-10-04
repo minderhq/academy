@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Tags coverage + syntax (TG-01..03, TS-01; all HARD) for PROJECT-OMEGA.
+"""Tags coverage + syntax (TG-01..03, TS-01; all HARD) for Minder Academy.
 
 tag_vocabulary_census (TV-01..03) locks WHAT tags say; this gate
 locks WHO carries them and in what shape. The platform's tag filter

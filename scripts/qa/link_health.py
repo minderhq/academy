@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-r"""External link health for PROJECT-OMEGA (report-only listing tool).
+r"""External link health for Minder Academy (report-only listing tool).
 
 The corpus carries ~640 clickable external URLs in prose (the link
 gates verify only INTERNAL targets: anchor/file resolution). The

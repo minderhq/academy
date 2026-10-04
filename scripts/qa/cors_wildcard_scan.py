@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""CORS wildcard+credentials gate for the PROJECT-OMEGA corpus.
+"""CORS wildcard+credentials gate for the Minder Academy corpus.
 
 COR-01  a ```python fence configuring CORS must not combine a wildcard
         origin list (``allow_origins=["*"]``) with credential support

@@ -468,7 +468,7 @@ Semantic similarity metrics quantify how close two embeddings are, and the choic
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [6101: HNSW Indexing - Efficient Semantic Search at Scale](6101-HNSW-Indexing.md)
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Title/H1 parity gate for the PROJECT-OMEGA corpus.
+"""Title/H1 parity gate for the Minder Academy corpus.
 
 TH-01  frontmatter Title differs from the first ATX H1 (fence-aware).
        The two strings are one fact with two faces: manifest_export

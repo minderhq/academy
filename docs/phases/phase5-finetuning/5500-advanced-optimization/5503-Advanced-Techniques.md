@@ -419,7 +419,7 @@ Beyond optimizer and schedule sits a toolbox that fixes specific failures: gradi
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [5501: Optimizer Variants](5501-Optimizer-Variants.md)
 - [5502: Learning Rate Scheduling](5502-Learning-Rate-Scheduling.md)

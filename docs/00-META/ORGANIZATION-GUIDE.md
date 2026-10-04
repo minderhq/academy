@@ -1,18 +1,18 @@
 ---
 Document ID: ORGANIZATION-GUIDE
-Title: "PROJECT-OMEGA Organization Guide"
+Title: "Minder Academy Organization Guide"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
 Tags: ['maintenance', 'navigation']
 ---
 
-# PROJECT-OMEGA Organization Guide
+# Minder Academy Organization Guide
 ## Documentation Structure & Maintenance
 
 **Version:** 4.2
 **Last Updated:** 2026-09-30
-**Purpose:** Guide for understanding and maintaining the PROJECT-OMEGA documentation structure
+**Purpose:** Guide for understanding and maintaining the Minder Academy documentation structure
 
 ---
 
@@ -21,7 +21,7 @@ Tags: ['maintenance', 'navigation']
 ### Root Level
 
 ```text
-PROJECT-OMEGA/
+Minder Academy/
 ├── README.md                          # Main project README
 ├── LICENSE                            # MIT License
 ├── prompt.txt                         # AI assistant prompt

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""sitemap listing parity gate for PROJECT-OMEGA.
+"""sitemap listing parity gate for Minder Academy.
 
 The SITEMAP is the curriculum's index of record - the surface a
 learner trusts to enumerate what exists. sitemap_claims_check

@@ -325,7 +325,7 @@ Data parallelism is the workhorse of multi-GPU training: replicate the model on 
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [5402: Model Parallelism](5402-Model-Parallelism.md)
 - [5403: Mixed Precision Training](5403-Mixed-Precision.md)

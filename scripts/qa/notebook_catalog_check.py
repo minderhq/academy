@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""notebook catalog parity gate for the PROJECT-OMEGA corpus.
+"""notebook catalog parity gate for the Minder Academy corpus.
 
 The 20-notebook catalog lives twice: docs/notebooks/README.md (the
 fleet's own index, star-rendered difficulty + per-notebook conda

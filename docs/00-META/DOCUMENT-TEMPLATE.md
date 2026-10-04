@@ -1,13 +1,13 @@
 ---
 Document ID: DOCUMENT-TEMPLATE
-Title: "PROJECT-OMEGA Document Template Standard"
+Title: "Minder Academy Document Template Standard"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
 Tags: ['maintenance', 'template']
 ---
 
-# PROJECT-OMEGA Document Template Standard
+# Minder Academy Document Template Standard
 
 
 ---
@@ -194,7 +194,7 @@ setting: value
 ### Documentation
 - [Official Docs](URL) - Description
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 - [XXXX: Title](../path/to/document.md) - Relationship
 
 ### External Resources
@@ -373,7 +373,7 @@ Complete the checkpoint: [CHECKPOINT.md](./CHECKPOINT.md)
 ### Code Blocks
 - Specify language for syntax highlighting:
   ```python
-  print("Hello, PROJECT-OMEGA!")
+  print("Hello, Minder Academy!")
   ```
 
 ### Tables
@@ -424,4 +424,4 @@ For existing documents, follow these steps:
 
 ---
 
-**This template ensures consistency across all PROJECT-OMEGA documentation.**
+**This template ensures consistency across all Minder Academy documentation.**

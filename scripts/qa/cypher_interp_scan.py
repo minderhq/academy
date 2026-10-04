@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Cypher label/rel-type/path-bound interpolation gate for the PROJECT-OMEGA corpus.
+"""Cypher label/rel-type/path-bound interpolation gate for the Minder Academy corpus.
 
 CI-01  a ```python fence must not interpolate a value into a Cypher
        *label or relationship-type position* - the literal part of the

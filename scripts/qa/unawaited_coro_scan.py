@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""un-awaited-coroutine gate for the PROJECT-OMEGA corpus.
+"""un-awaited-coroutine gate for the Minder Academy corpus.
 
 UC-01  a ```python fence must not discard a fence-local coroutine: a
        bare-Name call to an ``async def`` defined in the same fence,

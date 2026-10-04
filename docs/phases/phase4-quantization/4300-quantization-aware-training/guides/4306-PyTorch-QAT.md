@@ -518,7 +518,7 @@ torch.ao.quantization gives you the whole QAT pipeline in three steps: prepare i
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [4307: Transformers QAT Guide](4307-Transformers-QAT.md)
 - [4308: BitBlade QAT Guide](4308-BitBlade-QAT.md)

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Status vocabulary (SV-01) for PROJECT-OMEGA.
+"""Status vocabulary (SV-01) for Minder Academy.
 
 Every doc's frontmatter carries a Status field; the platform reads it
 for the publication pipeline and progress display. A free-text status

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Frontmatter quality linter for the PROJECT-OMEGA curriculum corpus.
+"""Frontmatter quality linter for the Minder Academy curriculum corpus.
 
 Scans docs/**/*.md and enforces the corpus frontmatter standard that every
 curriculum document with a frontmatter block already follows (330/330 files

@@ -8,7 +8,7 @@ Difficulty: Beginner
 
 # Configuration Templates
 
-Reference deployment configuration for the PROJECT-OMEGA course. Everything
+Reference deployment configuration for the Minder Academy course. Everything
 here is hardware-agnostic: it runs on any Docker-capable Linux host — a home
 server, a workstation, a NAS with Container Manager, or a cloud VM.
 

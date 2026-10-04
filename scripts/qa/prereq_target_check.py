@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Canonical Prerequisites pointer target integrity (PQ-05) for PROJECT-OMEGA.
+"""Canonical Prerequisites pointer target integrity (PQ-05) for Minder Academy.
 
 prereq_free_text_check (PQ-04) closed the Prerequisites free-text
 vocabulary at two role-canonical strings. That closure made the

@@ -514,7 +514,7 @@ Use these techniques (via their production homes) when you need:
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [4306: PyTorch QAT Guide](4306-PyTorch-QAT.md)
 - [4307: Transformers QAT Guide](4307-Transformers-QAT.md)

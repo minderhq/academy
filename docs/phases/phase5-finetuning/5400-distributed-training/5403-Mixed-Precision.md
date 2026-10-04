@@ -343,7 +343,7 @@ Mixed precision runs most of the training step in 16-bit while keeping the numer
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [5402: Model Parallelism](5402-Model-Parallelism.md)
 - [5404: Distributed Optimization](5404-Distributed-Optimization.md)

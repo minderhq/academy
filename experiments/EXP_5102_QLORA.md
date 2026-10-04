@@ -8,7 +8,7 @@ Difficulty: Advanced
 
 # EXP_5102: QLoRA Pipelining Experiment
 
-**Project:** PROJECT-OMEGA
+**Project:** Minder Academy
 **Phase:** [5100] PEFT
 **Document ID:** 5102
 **Experiment ID:** EXP_5102_QLORA

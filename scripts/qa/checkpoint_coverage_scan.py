@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Phase-checkpoint coverage and module anatomy (CK-00..10, HARD) for PROJECT-OMEGA.
+"""Phase-checkpoint coverage and module anatomy (CK-00..10, HARD) for Minder Academy.
 
 The phase CHECKPOINT.md is the learner's review page for everything
 above it - the phase-exit self-assessment the platform will render

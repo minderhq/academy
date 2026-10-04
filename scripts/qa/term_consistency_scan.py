@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""brand-term consistency census (TC-01/TC-02) for PROJECT-OMEGA.
+"""brand-term consistency census (TC-01/TC-02) for Minder Academy.
 
 Platform search, TOC quality and prose credibility depend on one
 canonical spelling per brand. The tick-400 ad-hoc sweep found the

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""cheat sheet index parity gate for PROJECT-OMEGA.
+"""cheat sheet index parity gate for Minder Academy.
 
 MASTER-INDEX.md's "### Cheat Sheets" table is the planning entry for
 the 13-file cheat-sheet fleet (5 CHEAT-SHEET-* + 7 QUICK-REF-VOLUME-*).

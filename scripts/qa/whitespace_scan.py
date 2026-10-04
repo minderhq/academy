@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Whitespace hygiene (WS-01..03, HARD) for PROJECT-OMEGA.
+"""Whitespace hygiene (WS-01..03, HARD) for Minder Academy.
 
 Three whitespace rot classes, all fence-aware, all born clean at
 the tick-466 census:

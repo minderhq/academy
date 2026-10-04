@@ -11,7 +11,7 @@ Tags: ['comparison', 'vector-db', 'qdrant', 'pinecone']
 
 ## Overview
 
-This guide compares popular vector databases to help you choose the right one for PROJECT-OMEGA and your use cases.
+This guide compares popular vector databases to help you choose the right one for Minder Academy and your use cases.
 
 ---
 
@@ -30,7 +30,7 @@ This guide compares popular vector databases to help you choose the right one fo
 
 ## Detailed Comparison
 
-### 1. Qdrant (Recommended for PROJECT-OMEGA)
+### 1. Qdrant (Recommended for Minder Academy)
 
 #### Overview
 
@@ -438,7 +438,7 @@ LIMIT 5;
 
 ### Use Qdrant if:
 
-- ✅ Building HomeLab setup (PROJECT-OMEGA)
+- ✅ Building HomeLab setup (Minder Academy)
 - ✅ Want self-hosted with easy setup
 - ✅ Need 1M-10M vectors
 - ✅ Want good performance with limited resources
@@ -522,7 +522,7 @@ LIMIT 5;
 
 ---
 
-## PROJECT-OMEGA Recommendation
+## Minder Academy Recommendation
 
 ### Primary Choice: Qdrant
 

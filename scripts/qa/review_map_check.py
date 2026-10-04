@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Need to Review map integrity gate (RM) for PROJECT-OMEGA.
+"""Need to Review map integrity gate (RM) for Minder Academy.
 
 Every assessment/QUIZ.md ships a "## Need to Review?" map linking each
 question to its closest lesson (the AS-12 review-map drain, ticks ~514-529,

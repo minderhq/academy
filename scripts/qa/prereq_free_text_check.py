@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Prerequisites free-text vocabulary closure (PQ-04) for PROJECT-OMEGA.
+"""Prerequisites free-text vocabulary closure (PQ-04) for Minder Academy.
 
 prereq_census (PQ-01..03) locks the machine-parseable face of the
 Prerequisites field - bracketed 4-digit tokens resolving to exactly

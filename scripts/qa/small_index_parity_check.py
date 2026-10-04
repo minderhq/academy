@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""small index parity gate for PROJECT-OMEGA.
+"""small index parity gate for Minder Academy.
 
 MASTER-INDEX.md carries six small resource tables beside the big
 locked ones (Labs, Tutorials, Notebooks, Cheat Sheets, Projects):

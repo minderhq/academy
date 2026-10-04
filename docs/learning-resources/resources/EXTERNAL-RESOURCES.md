@@ -1,13 +1,13 @@
 ---
 Document ID: EXTERNAL-RESOURCES
-Title: "PROJECT-OMEGA: Video & External Resources"
+Title: "Minder Academy: Video & External Resources"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Intermediate
 Tags: ['reference', 'llm', 'tutorial']
 ---
 
-# PROJECT-OMEGA: Video & External Resources
+# Minder Academy: Video & External Resources
 
 Curated list of videos, courses, and external resources to complement the learning path.
 

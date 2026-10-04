@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""kwarg-lint gate for the PROJECT-OMEGA curriculum corpus.
+"""kwarg-lint gate for the Minder Academy curriculum corpus.
 
 LC-01 (langchain_census) resolves import lines and NC-01
 (fence_namecheck) resolves name bindings - but neither reads the

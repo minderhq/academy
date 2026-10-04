@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""lab index parity gate for PROJECT-OMEGA.
+"""lab index parity gate for Minder Academy.
 
 Every lab declares its own contract in front matter (Document ID,
 Title, Estimated Time), and MASTER-INDEX.md's "### Labs" table

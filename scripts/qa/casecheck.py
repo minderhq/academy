@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Case-sensitive relative-link gate for the PROJECT-OMEGA corpus.
+"""Case-sensitive relative-link gate for the Minder Academy corpus.
 
 The main linkcheck gate resolves paths on the host OS: on Windows that is
 case-insensitive, so a wrong-case href (e.g. `1500-Monitoring/` when the
@@ -25,8 +25,7 @@ Hard gates (exit 1 on any finding):
     orphan must arrive with the link that surfaces it.
 
 Baseline (2026-09-28): 0 case mismatches / 0 missing / 1 known orphan.
-Materialized from the formerly repo-external tick77_casecheck_omega.py
-temp script.
+Materialized from a formerly repo-external verification temp script.
 
 Usage:
     python scripts/qa/casecheck.py [--root REPO_ROOT]

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""project prerequisites parity gate for PROJECT-OMEGA.
+"""project prerequisites parity gate for Minder Academy.
 
 The projects fleet lives in docs/learning-resources/projects: the
 7 PROJECT-NNN files the project index lock (PJ-01..06) already

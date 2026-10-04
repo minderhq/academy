@@ -477,7 +477,7 @@ A quantization configuration is a set of per-layer decisions: which layers to qu
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [4301: QAT Foundations](4301-QAT-Foundations.md)
 - [4302: Fake Quantization](4302-Fake-Quantization.md)

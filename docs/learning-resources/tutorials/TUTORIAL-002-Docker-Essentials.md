@@ -495,13 +495,13 @@ docker history ${IMAGE}
 
 ---
 
-## Step 10: PROJECT-OMEGA Context
+## Step 10: Minder Academy Context
 
-How Docker fits into PROJECT-OMEGA:
+How Docker fits into Minder Academy:
 
 ```text
 ┌─────────────────────────────────────────────────────────────┐
-│                     PROJECT-OMEGA Stack                     │
+│                     Minder Academy Stack                     │
 ├─────────────────────────────────────────────────────────────┤
 │                                                             │
 │  External NAS:                                              │

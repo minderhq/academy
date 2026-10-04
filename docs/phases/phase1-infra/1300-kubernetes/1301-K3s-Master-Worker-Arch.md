@@ -132,7 +132,7 @@ kubectl get nodes
 ### Master Configuration (/etc/rancher/k3s/config.yaml)
 ```yaml
 # Cluster identity
-cluster-domain: "omega.local"
+cluster-domain: "academy.local"
 cluster-dns: "10.43.0.10"
 
 # Networking
@@ -161,7 +161,7 @@ kube-apiserver-arg:
 ### Worker Configuration (/etc/rancher/k3s/config.yaml on the agent)
 ```yaml
 # Node identity
-node-name: "omega-worker-gpu"
+node-name: "academy-worker-gpu"
 node-external-ip: "192.168.1.10"
 
 # GPU support
@@ -203,19 +203,19 @@ kubectl -n kube-system logs ds/nvidia-device-plugin-daemonset
 ### Node Labels for GPU
 ```bash
 # Label GPU node (use values matching YOUR hardware)
-kubectl label node omega-worker-gpu \
+kubectl label node academy-worker-gpu \
   accelerator=nvidia \
   gpu.memory=11GB \
   gpu.count=1
 
 # Verify
-kubectl describe node omega-worker-gpu | grep -A 5 "Labels"
+kubectl describe node academy-worker-gpu | grep -A 5 "Labels"
 ```
 
 ### Taints for GPU-Only Workloads
 ```bash
 # Taint GPU node (optional - only GPU pods can schedule)
-kubectl taint node omega-worker-gpu \
+kubectl taint node academy-worker-gpu \
   nvidia.com/gpu=true:NoSchedule
 
 # Pods need toleration:
@@ -284,7 +284,7 @@ mountOptions:
 ```text
 Pod CIDR:        10.42.0.0/16
 Service CIDR:    10.43.0.0/16
-Cluster Domain:  omega.local
+Cluster Domain:  academy.local
 ```
 
 ### Flannel Configuration
@@ -374,7 +374,7 @@ K3s is a lightweight Kubernetes distribution built for edge and homelab scale, a
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [1302: GPU Scheduler Configuration](1302-GPU-Scheduler.md)
 - [1303: Storage Classes for Dynamic Provisioning](1303-Storage-Classes.md)

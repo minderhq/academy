@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Meta-entry claims gate for the PROJECT-OMEGA corpus.
+"""Meta-entry claims gate for the Minder Academy corpus.
 
 After README (tick-261) and SITEMAP (tick-262), the remaining count-
 bearing entry documents are FAQ.md, MASTER-INDEX.md,

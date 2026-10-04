@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Corpus-wide link reachability (report-only) for PROJECT-OMEGA.
+"""Corpus-wide link reachability (report-only) for Minder Academy.
 
 NV-01 proves every module doc is linked from ITS module README;
 linkcheck proves links that exist resolve. Neither answers the

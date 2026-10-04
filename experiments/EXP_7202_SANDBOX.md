@@ -8,7 +8,7 @@ Difficulty: Advanced
 
 # EXP_7202: Code Sandbox Experiment
 
-**Project:** PROJECT-OMEGA
+**Project:** Minder Academy
 **Phase:** [7200] Tool Use
 **Document ID:** 7202
 **Experiment ID:** EXP_7202_SANDBOX

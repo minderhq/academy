@@ -350,7 +350,7 @@ The optimizer is the quietest but largest consumer of GPU memory at LLM scale: A
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [5502: Learning Rate Scheduling](5502-Learning-Rate-Scheduling.md)
 - [5503: Advanced Optimization Techniques](5503-Advanced-Techniques.md)

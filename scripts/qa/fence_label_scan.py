@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""fence-label gate for the PROJECT-OMEGA corpus.
+"""fence-label gate for the Minder Academy corpus.
 
 FL-01  an open fence's info-string carries an uppercase letter
        (``Python``, ``BASH``): the code gates (codeblock_syntax_scan,

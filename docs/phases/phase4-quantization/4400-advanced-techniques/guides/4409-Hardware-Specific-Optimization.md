@@ -356,7 +356,7 @@ The same INT4 checkpoint can be fast on one device and unusable on another, beca
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [4401: GPTQ](../4401-GPTQ.md)
 - [4403: GGUF Format](../4403-GGUF-Format.md)

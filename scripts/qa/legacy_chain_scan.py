@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""legacy-chain bare-usage gate for the PROJECT-OMEGA corpus.
+"""legacy-chain bare-usage gate for the Minder Academy corpus.
 
 LC-01 (langchain_census) tars import lines - but not1 (tick-205 lesson)
 holds that an UNIMPORTED usage is invisible to it: CP-001 shipped

@@ -441,7 +441,7 @@ Activation functions are where networks get their non-linearity, and the transfo
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [3302: Normalization Layers - BatchNorm vs LayerNorm vs RMSNorm](3302-Normalization-Layers.md)
 

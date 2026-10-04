@@ -386,7 +386,7 @@ EXL2 is ExLlamaV2's answer to one question: what does maximum inference speed on
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [4401: GPTQ](4401-GPTQ.md)
 - [4402: AWQ](4402-AWQ.md)

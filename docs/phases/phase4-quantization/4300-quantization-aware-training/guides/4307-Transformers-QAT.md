@@ -459,7 +459,7 @@ Hugging Face puts four paths to quantized transformers on the table: bitsandbyte
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [4306: PyTorch QAT Guide](4306-PyTorch-QAT.md)
 - [4308: BitBlade QAT Guide](4308-BitBlade-QAT.md)

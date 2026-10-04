@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Module README lesson order (LO-01) for PROJECT-OMEGA.
+"""Module README lesson order (LO-01) for Minder Academy.
 
 The platform renders module navigation in README document order, so
 the order lesson links appear in IS the learning path. Lesson IDs

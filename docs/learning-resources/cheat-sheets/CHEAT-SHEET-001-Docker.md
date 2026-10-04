@@ -414,9 +414,9 @@ RUN --mount=type=cache,target=/root/.cache/uv uv sync --locked
 
 ---
 
-## PROJECT-OMEGA Specific
+## Minder Academy Specific
 
-### Run PROJECT-OMEGA Stack
+### Run Minder Academy Stack
 ```bash
 # From the configs/ directory
 cp .env.example .env
@@ -434,7 +434,7 @@ docker compose logs -f
 nvidia-smi
 
 # Inside the inference container
-docker exec omega-vllm nvidia-smi
+docker exec academy-vllm nvidia-smi
 ```
 
 ---

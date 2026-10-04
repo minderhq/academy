@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Stale front-matter dates (report-only) for PROJECT-OMEGA.
+"""Stale front-matter dates (report-only) for Minder Academy.
 
 Answers the owner question "which files were edited but whose
 Last Updated did not move?" - the date filter the owner runs by

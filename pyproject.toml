@@ -1,4 +1,4 @@
-# PROJECT-OMEGA root manifest (uv-first; repo-manifest /1).
+# Minder Academy root manifest (uv-first; repo-manifest /1).
 #
 # The corpus itself is content, not an installable package - this
 # manifest exists so the QA gate toolchain (scripts/qa/*) is
@@ -11,9 +11,9 @@
 # curriculum standard (3.13) so the repo practices what it teaches.
 
 [project]
-name = "project-omega"
+name = "minder-academy"
 version = "0.1.0"
-description = "PROJECT-OMEGA curriculum corpus and its QA gate toolchain"
+description = "Minder Academy curriculum corpus and its QA gate toolchain"
 requires-python = ">=3.13"
 
 [dependency-groups]

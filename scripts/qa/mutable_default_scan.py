@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Mutable-default-argument gate for the PROJECT-OMEGA corpus.
+"""Mutable-default-argument gate for the Minder Academy corpus.
 
 MD-01  a ```python fence must not sign a function with a *mutable
        literal default* - ``def f(x=[])``, ``def f(x={})``,

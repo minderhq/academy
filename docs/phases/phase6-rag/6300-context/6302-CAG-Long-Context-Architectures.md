@@ -570,7 +570,7 @@ CAG (Context-Augmented Generation) bets on the growing context window: instead o
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [6301: Neo4j and Knowledge Graphs for Multi-Hop Reasoning](6301-Neo4j-and-Knowledge-Graphs.md)
 - [4201: Context Window](../../phase4-quantization/4200-kv-cache/4201-Context-Window-Physics.md)

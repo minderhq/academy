@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""External link rot check for the PROJECT-OMEGA corpus (report-only).
+"""External link rot check for the Minder Academy corpus (report-only).
 
 Complements linkcheck.py, which covers relative targets on disk. This tool
 takes the http/https subset of the SAME link model (linkcheck's MD_LINK,
@@ -62,7 +62,7 @@ LOCAL_URL = re.compile(
     r"(localhost|127\.0\.0\.1|0\.0\.0\.0|example\.(?:com|org|net)|\.test[/:]|\.local[/:])",
     re.IGNORECASE,
 )
-UA = "PROJECT-OMEGA-link-rot-check/1.0 (curriculum QA; contact: repo owner)"
+UA = "Minder Academy-link-rot-check/1.0 (curriculum QA; contact: repo owner)"
 BROWSER_UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
               "(KHTML, like Gecko) Chrome/128.0 Safari/537.36")
 PLACEHOLDER_IDIOMS = ("your-username", "your-org", "yourapp.com")

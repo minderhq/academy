@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Insecure-temp-file gate for the PROJECT-OMEGA corpus.
+"""Insecure-temp-file gate for the Minder Academy corpus.
 
 TF-01  a ```python fence must not call ``tempfile.mktemp()`` - mktemp
        returns a name that does not exist yet: between the call and the

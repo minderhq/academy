@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Experiments identity scan (EC-01..03) for PROJECT-OMEGA.
+"""Experiments identity scan (EC-01..03) for Minder Academy.
 
 experiments/ is the one content directory outside docs/ (48 .md
 files at tick-608), and the platform catalogs content by Document

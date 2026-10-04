@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""mermaid-lint gate for the PROJECT-OMEGA corpus.
+"""mermaid-lint gate for the Minder Academy corpus.
 
 MM-01  a ```` ```mermaid ```` fence must open with a known diagram-type
        keyword. A typo'd header (``graf TD``) makes the renderer emit an

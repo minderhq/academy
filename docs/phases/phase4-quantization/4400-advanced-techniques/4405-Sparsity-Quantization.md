@@ -335,7 +335,7 @@ Sparsity and quantization compose, but not by multiplying savings: sparse format
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [4401: GPTQ](4401-GPTQ.md)
 - [4402: AWQ](4402-AWQ.md)

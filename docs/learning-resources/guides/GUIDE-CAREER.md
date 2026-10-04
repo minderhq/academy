@@ -9,7 +9,7 @@ Tags: ['career', 'guide', 'roadmap']
 
 # CAREER GUIDE: From Learning to Job-Ready
 
-**Target Audience:** PROJECT-OMEGA learners preparing for AI Engineering careers
+**Target Audience:** Minder Academy learners preparing for AI Engineering careers
 **Read Time:** 25 minutes
 **Last Updated:** 2026-09-30
 
@@ -22,7 +22,7 @@ Before diving into career prep, understand the current AI job market:
 ### The Good News
 - ✅ AI Engineering is one of the fastest-growing fields
 - ✅ Companies desperately need practical AI skills (RAG, fine-tuning, deployment)
-- ✅ PROJECT-OMEGA covers in-demand skills (not just theory)
+- ✅ Minder Academy covers in-demand skills (not just theory)
 
 ### The Hard Truth
 - ⚠️ **Having tutorials ≠ Being job-ready**
@@ -31,7 +31,7 @@ Before diving into career prep, understand the current AI job market:
 - ⚠️ **Completion rate matters more than enrollment**
 
 ### The Path Forward
-This guide bridges the gap between "completed PROJECT-OMEGA" and "hired as AI Engineer."
+This guide bridges the gap between "completed Minder Academy" and "hired as AI Engineer."
 
 ---
 
@@ -48,7 +48,7 @@ This guide bridges the gap between "completed PROJECT-OMEGA" and "hired as AI En
 
 *US-based, 2026 estimates. Varies by location/experience.
 
-**You are training for: AI Engineer** (PROJECT-OMEGA's sweet spot)
+**You are training for: AI Engineer** (Minder Academy's sweet spot)
 
 ---
 
@@ -63,7 +63,7 @@ Must do:
   - Optimize for cost/latency
   - Wear multiple hats (frontend, backend, DevOps)
 
-Skills from PROJECT-OMEGA:
+Skills from Minder Academy:
   - TUTORIAL-003 (RAG) ✅
   - LAB-002 (RAG Implementation) ✅
   - LAB-003 (LoRA Fine-Tuning) ✅
@@ -80,7 +80,7 @@ Must do:
   - Monitor and maintain AI systems
   - Collaborate across teams
 
-Skills from PROJECT-OMEGA:
+Skills from Minder Academy:
   - TUTORIAL-004 (Monitoring) ✅
   - TUTORIAL-013 (AI Security) ✅
   - Phase 7 (Agentic Systems) ✅
@@ -96,7 +96,7 @@ Must do:
   - Optimize model architectures
   - Stay current with research
 
-Skills from PROJECT-OMEGA:
+Skills from Minder Academy:
   - Phase 2 (Foundations) ✅
   - Phase 3 (Transformer Physics) ✅
   - Phase 5 (Fine-Tuning) ✅
@@ -125,7 +125,7 @@ A tutorial completion is NOT a portfolio project. Here's the difference:
 
 ### 2.2 Required Portfolio Projects
 
-After completing PROJECT-OMEGA, build **3 portfolio projects**:
+After completing Minder Academy, build **3 portfolio projects**:
 
 #### Project 1: RAG Chatbot (Entry-Level)
 **What:** Chatbot that answers questions from your own documents
@@ -389,7 +389,7 @@ Data: Python, NumPy, Pandas, SQL (PostgreSQL), PostgreSQL + pgvector
 
 ## Part 6: Continuous Learning
 
-### 6.1 Staying Current (Post-PROJECT-OMEGA)
+### 6.1 Staying Current (Post-Minder Academy)
 
 **Daily (15 min):**
 - Skim arXiv papers (cs.CL, cs.LG)
@@ -494,7 +494,7 @@ Data: Python, NumPy, Pandas, SQL (PostgreSQL), PostgreSQL + pgvector
 
 **Your advantage:** Practical skills + ability to learn quickly.
 
-**PROJECT-OMEGA gives you:**
+**Minder Academy gives you:**
 - ✅ Foundational knowledge
 - ✅ Hands-on experience
 - ✅ Portfolio-worthy projects
@@ -515,4 +515,4 @@ Data: Python, NumPy, Pandas, SQL (PostgreSQL), PostgreSQL + pgvector
 2. Read [GUIDE-INTERVIEW.md](./GUIDE-INTERVIEW.md) for interview prep
 3. Start building your portfolio today!
 
-**© 2026 PROJECT-OMEGA. All rights reserved.**
+**© 2026 Minder Academy. All rights reserved.**

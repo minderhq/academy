@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""unfinished-content marker gate for the PROJECT-OMEGA corpus.
+"""unfinished-content marker gate for the Minder Academy corpus.
 
 UM-01  a prose line (outside any code fence, inline code scrubbed)
        must not carry an unfinished-content marker: "coming soon",

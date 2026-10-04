@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Pitfalls item-shape standardization (PS-01..04, HARD) for PROJECT-OMEGA.
+"""Pitfalls item-shape standardization (PS-01..04, HARD) for Minder Academy.
 
 Every non-checkpoint doc with a pitfalls section (the "## ...Pitfall..."
 review block in phase READMEs, module-group READMEs, module files,

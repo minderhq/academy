@@ -359,7 +359,7 @@ A model's life does not end at the first deploy - it begins there, and this less
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [6502: CI/CD for Machine Learning](6502-CI-CD-for-ML.md)
 - [6503: Model Registry](6503-Model-Registry.md)

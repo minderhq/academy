@@ -377,7 +377,7 @@ pip install ollama
 - **r/LocalLLaMA:** [https://www.reddit.com/r/LocalLLaMA/](https://www.reddit.com/r/LocalLLaMA/)
 - **Hugging Face Forums:** [https://discuss.huggingface.co](https://discuss.huggingface.co)
 
-### In PROJECT-OMEGA
+### In Minder Academy
 - **[Progress Tracker](PROGRESS-TRACKER.md)** - Track your learning
 - **[Troubleshooting](../learning-resources/troubleshooting/TROUBLESHOOTING-Common-Issues.md)** - Get help
 - **[Cheat Sheets](../learning-resources/cheat-sheets/)** - Quick reference

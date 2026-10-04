@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Lesson anatomy census (LA-01) for PROJECT-OMEGA.
+"""Lesson anatomy census (LA-01) for Minder Academy.
 
 Every lesson doc opens its pedagogy with the canonical
 "Learning Objectives" H2: the platform's syllabus card and

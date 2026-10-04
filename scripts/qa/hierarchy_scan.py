@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Catalog placement scan (HZ-01..03) for PROJECT-OMEGA.
+"""Catalog placement scan (HZ-01..03) for Minder Academy.
 
 The platform builds its catalog hierarchy (phase -> module ->
 lesson) from the FM Phase / Module declarations, while the disk

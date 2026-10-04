@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""FM-staleness report gate for the PROJECT-OMEGA curriculum corpus.
+"""FM-staleness report gate for the Minder Academy curriculum corpus.
 
 Freshness map: parses ``Last Updated:`` from the frontmatter of every
 docs/**/*.md and reports the age distribution against today. For an

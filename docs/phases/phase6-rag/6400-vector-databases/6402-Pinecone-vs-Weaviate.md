@@ -1040,7 +1040,7 @@ class VectorDBImporter:
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [6401: Qdrant Setup Guide](6401-Qdrant-Setup.md)
 

@@ -95,7 +95,7 @@ d) Storage I/O
 
 ---
 
-### 9. Which tool is used for log aggregation in PROJECT-OMEGA?
+### 9. Which tool is used for log aggregation in Minder Academy?
 a) Prometheus
 b) Loki
 c) Grafana

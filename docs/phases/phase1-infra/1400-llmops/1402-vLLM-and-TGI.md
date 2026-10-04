@@ -492,7 +492,7 @@ vLLM and TGI are the optimized inference engines for high-throughput serving, an
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [1401: Ollama Enterprise Deployment](1401-Ollama-Enterprise.md)
 

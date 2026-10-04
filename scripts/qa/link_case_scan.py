@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Link case-sensitivity portability (LC-01, HARD) for PROJECT-OMEGA.
+"""Link case-sensitivity portability (LC-01, HARD) for Minder Academy.
 
 linkcheck and anchor_check resolve internal link targets with
 os.path.exists, which is CASE-INSENSITIVE on the Windows machine

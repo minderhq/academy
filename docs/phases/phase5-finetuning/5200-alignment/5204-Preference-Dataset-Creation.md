@@ -292,7 +292,7 @@ DPO and reward models are only as good as the preference data beneath them, and 
 ### Datasets
 - [HH-RLHF (H4)](https://huggingface.co/datasets/HuggingFaceH4/hh-rlhf-h4) - reference pairwise format
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 - [5201: DPO Theory](./5201-DPO-Theory.md) - trains on this data
 - [5202: Alignment Orchestration](./5202-Alignment-Orchestration.md) - pipeline integration
 - [5300: Synthetic Data & Advanced Methods](../5300-synthetic/README.md) - synthetic data generation

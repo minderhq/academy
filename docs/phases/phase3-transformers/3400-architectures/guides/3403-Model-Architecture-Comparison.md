@@ -249,7 +249,7 @@ answer = generator.generate(**tokenizer(prompt, return_tensors="pt"))
 services:
   flan-t5:
     image: vllm/vllm-openai:latest
-    container_name: project-omega-flan-t5
+    container_name: academy-flan-t5
     ports:
       - "8001:8000"
     command: >
@@ -269,7 +269,7 @@ services:
               capabilities: [gpu]
     restart: unless-stopped
     networks:
-      - project-omega-net
+      - academy-net
 ```
 
 ### Mistral 7B (Decoder-Only)
@@ -278,7 +278,7 @@ services:
 services:
   mistral:
     image: vllm/vllm-openai:latest
-    container_name: project-omega-mistral
+    container_name: academy-mistral
     ports:
       - "8002:8000"
     command: >
@@ -298,7 +298,7 @@ services:
               capabilities: [gpu]
     restart: unless-stopped
     networks:
-      - project-omega-net
+      - academy-net
 ```
 
 ## Decision Tree
@@ -448,7 +448,7 @@ This guide is the architecture decision table: encoder-decoder (T5, BART) versus
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [3401: Encoder-Decoder Architectures](../3401-Encoder-Decoder-Architectures.md)
 - [3402: Decoder-Only Models (GPT, LLaMA, Mistral)](../3402-Decoder-Only-Models.md)

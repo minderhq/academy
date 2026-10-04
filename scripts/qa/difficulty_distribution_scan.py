@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Difficulty distribution census (DX-01) for PROJECT-OMEGA.
+"""Difficulty distribution census (DX-01) for Minder Academy.
 
 difficulty_census (DI-01..03) locks that every doc carries an exact
 Difficulty value, but not what the values TOGETHER say. The platform

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fence variant near-miss gate for the PROJECT-OMEGA corpus.
+"""Fence variant near-miss gate for the Minder Academy corpus.
 
 Every illustrative ```python fence is parsed as AST. A bare name that
 is LOADED but defined nowhere - not in its innermost function scope,

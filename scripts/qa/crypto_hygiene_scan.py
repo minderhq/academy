@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Crypto-hygiene gate for the PROJECT-OMEGA corpus.
+"""Crypto-hygiene gate for the Minder Academy corpus.
 
 CH-01  a ```python fence must not generate security material with the
        ``random`` module - random is a Mersenne Twister: its output is

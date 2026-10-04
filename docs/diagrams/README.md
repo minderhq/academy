@@ -1,13 +1,13 @@
 ---
 Document ID: DIAGRAMS-README
-Title: "PROJECT-OMEGA Architecture Diagrams"
+Title: "Minder Academy Architecture Diagrams"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
 Tags: ['diagram', 'architecture', 'llm']
 ---
 
-# PROJECT-OMEGA Architecture Diagrams
+# Minder Academy Architecture Diagrams
 
 **Visual documentation for key AI/ML concepts and system architectures**
 
@@ -15,7 +15,7 @@ Tags: ['diagram', 'architecture', 'llm']
 
 ## Overview
 
-This directory contains Mermaid diagrams that illustrate complex concepts from the PROJECT-OMEGA curriculum. These diagrams complement the technical documentation and provide visual learning aids.
+This directory contains Mermaid diagrams that illustrate complex concepts from the Minder Academy curriculum. These diagrams complement the technical documentation and provide visual learning aids.
 
 ---
 

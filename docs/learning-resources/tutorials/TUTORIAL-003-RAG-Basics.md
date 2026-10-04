@@ -39,14 +39,14 @@ Think of RAG like an **open-book exam** for AI:
 
 ```text
 Without RAG (Closed Book):
-Question: "What is PROJECT-OMEGA?"
+Question: "What is Minder Academy?"
 LLM: "I don't know, my training data cutoff was earlier."
 
 With RAG (Open Book):
-Question: "What is PROJECT-OMEGA?"
+Question: "What is Minder Academy?"
 RAG: "Let me search the documents..."
-Found: "PROJECT-OMEGA is an AI infrastructure learning platform"
-LLM: "PROJECT-OMEGA is an AI infrastructure learning platform..."
+Found: "Minder Academy is an AI infrastructure learning platform"
+LLM: "Minder Academy is an AI infrastructure learning platform..."
 ```
 
 ### RAG Architecture:
@@ -128,7 +128,7 @@ mkdir -p documents
 
 # Add some documents
 cat > documents/doc1.txt << 'EOF'
-PROJECT-OMEGA is a comprehensive learning platform for AI infrastructure.
+Minder Academy is a comprehensive learning platform for AI infrastructure.
 It covers topics from basic Docker to advanced agent systems.
 EOF
 
@@ -355,7 +355,7 @@ curl -X POST http://localhost:8000/query \
 ```python
 # Test RAG vs direct query
 queries = [
-    "What is PROJECT-OMEGA?",
+    "What is Minder Academy?",
     "How much VRAM does 11GB-class GPU have?",
     "What is Qdrant used for?"
 ]
@@ -442,7 +442,7 @@ def rerank(results, query):
 
 ## Step 8: Advanced RAG with GraphRAG
 
-PROJECT-OMEGA also supports **GraphRAG** - combining vector search with knowledge graphs!
+Minder Academy also supports **GraphRAG** - combining vector search with knowledge graphs!
 
 ```text
 Vector RAG:              GraphRAG:
@@ -603,8 +603,8 @@ class SimpleRAG:
 
 # Use it
 rag = SimpleRAG()
-rag.add("PROJECT-OMEGA is a learning platform for AI infrastructure")
-print(rag.query("What is PROJECT-OMEGA?"))
+rag.add("Minder Academy is a learning platform for AI infrastructure")
+print(rag.query("What is Minder Academy?"))
 ```
 
 ---

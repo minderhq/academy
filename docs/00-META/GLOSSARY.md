@@ -1,25 +1,25 @@
 ---
 Document ID: GLOSSARY
-Title: "PROJECT-OMEGA Glossary"
+Title: "Minder Academy Glossary"
 Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Beginner
 Tags: ['glossary', 'llm', 'transformers']
 ---
 
-# PROJECT-OMEGA Glossary
+# Minder Academy Glossary
 
 **Official Terminology Reference**
 
 **Last Updated:** 2026-09-30
-**Purpose:** Standardize terminology across all PROJECT-OMEGA documentation
+**Purpose:** Standardize terminology across all Minder Academy documentation
 
 ---
 
 ## Usage Guidelines
 
 ### Why This Matters
-Consistent terminology prevents confusion and makes learning easier. When you see a term anywhere in PROJECT-OMEGA, it means the same thing.
+Consistent terminology prevents confusion and makes learning easier. When you see a term anywhere in Minder Academy, it means the same thing.
 
 ### How to Use
 1. **Writers:** Use these exact terms in all documentation

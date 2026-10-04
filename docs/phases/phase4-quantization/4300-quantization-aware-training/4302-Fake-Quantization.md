@@ -417,7 +417,7 @@ Fake quantization is the mechanism that makes QAT trainable: quantize in the for
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [4301: QAT Foundations](4301-QAT-Foundations.md)
 - [4303: QAT for Transformers](4303-QAT-for-Transformers.md)

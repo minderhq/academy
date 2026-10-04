@@ -1217,4 +1217,4 @@ After completing this lab:
 ---
 
 **Lab Status:** ✅ Complete
-**Maintainer:** PROJECT-OMEGA Team
+**Maintainer:** Minder Academy Team

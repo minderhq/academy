@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Plain-pip gate (UV-01) for the PROJECT-OMEGA corpus.
+"""Plain-pip gate (UV-01) for the Minder Academy corpus.
 
 The 2026 curriculum standard is uv (10-100x faster installs, lockfile
 workflow, built-in venv management) - the uv modernization epic

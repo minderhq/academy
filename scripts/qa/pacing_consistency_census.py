@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Pacing consistency census (PC-01) for PROJECT-OMEGA.
+"""Pacing consistency census (PC-01) for Minder Academy.
 
 estimated_time_census (ET-01..03) locks that every doc's Estimated
 Time parses, but not that the number is TRUE. The platform's

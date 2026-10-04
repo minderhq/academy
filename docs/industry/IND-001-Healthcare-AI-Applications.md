@@ -62,7 +62,7 @@ Tags: ['industry', 'healthcare', 'llm']
 
 ```text
 ┌─────────────────────────────────────────────────────────────────┐
-│                          PROJECT-OMEGA                          │
+│                          Minder Academy                          │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                  │
 │  🔍 Semantic Search (Vector DB)                                  │
@@ -130,7 +130,7 @@ graph TD
 
 ### Key Technologies in Healthcare
 
-| Technology | Healthcare Applications | PROJECT-OMEGA Phase |
+| Technology | Healthcare Applications | Minder Academy Phase |
 |------------|------------------------|-------------------|
 | **RAG** | Medical literature search, Clinical decision support | Phase 6 |
 | **Vector DB** | Similar patient retrieval, Medical record search | Phase 6 |

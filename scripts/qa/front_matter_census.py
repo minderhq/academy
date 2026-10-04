@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""front-matter integrity census (FM-01..FM-06) for PROJECT-OMEGA.
+"""front-matter integrity census (FM-01..FM-06) for Minder Academy.
 
 Platform conversion needs trustworthy structured metadata: every
 doc carries a YAML front-matter block that the platform will use

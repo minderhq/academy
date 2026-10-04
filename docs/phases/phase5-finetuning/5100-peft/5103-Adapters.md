@@ -308,7 +308,7 @@ LoRA dominates the PEFT conversation, but it is one point in a larger design spa
 - [5] Mahabadi et al. "Compacter: Efficient Low-Rank Hypercomplex Adapter Layers". NeurIPS, 2021.
 - [6] Pfeiffer et al. "AdapterFusion: Non-Destructive Task Composition for Transfer Learning". EACL, 2021.
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 - [5101: LoRA Logic](./5101-LoRA-Logic.md) - the default PEFT method
 - [5102: QLoRA Pipelines](./5102-QLoRA-Pipelines.md) - 4-bit base + adapters
 - [5104: LoRA Implementation Guide](./guides/5104-LoRA-Implementation-Guide.md) - practical guide

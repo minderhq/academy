@@ -513,7 +513,7 @@ Read the wiring, not the loop
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [SOL-002: Multi-Modal Industrial Inspection System](../enterprise-solutions/SOL-002-Industry-Solution.md)
 - [SOL-001: Enterprise Knowledge Base](../enterprise-solutions/SOL-001-Enterprise-Knowledge-Base.md)

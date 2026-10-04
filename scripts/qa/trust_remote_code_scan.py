@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""trust_remote_code gate for the PROJECT-OMEGA corpus.
+"""trust_remote_code gate for the Minder Academy corpus.
 
 TRC-01  a ```python fence must not pass ``trust_remote_code=True`` to
         any loader. The flag tells the Hub-side loader to download the

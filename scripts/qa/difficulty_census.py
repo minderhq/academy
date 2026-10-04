@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Difficulty field census (DI-01..DI-03) for PROJECT-OMEGA.
+"""Difficulty field census (DI-01..DI-03) for Minder Academy.
 
 Difficulty renders as a platform filter/sequence dimension, so
 its vocabulary must be closed and its spelling exact. Tick-411

@@ -436,7 +436,7 @@ Alignment is a menu, and this lesson walks the table: reward modeling with RLHF,
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [5201: DPO (Direct Preference Optimization) Theory](5201-DPO-Theory.md)
 - [5203: Reinforcement Learning from Human Feedback](5203-RLHF.md)

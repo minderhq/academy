@@ -403,7 +403,7 @@ Flash Attention reorganizes the attention computation rather than approximating 
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [3101: Self-Attention Deep Dive](3101-Self-Attention-DeepDive.md)
 

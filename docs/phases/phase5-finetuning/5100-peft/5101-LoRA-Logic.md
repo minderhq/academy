@@ -521,7 +521,7 @@ LoRA's bet is that fine-tuning updates live in a low-rank subspace: freeze the p
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [5102: QLoRA Pipelines - 4-bit Fine-Tuning on Consumer Hardware](5102-QLoRA-Pipelines.md)
 - [5103: Adapters & Parameter-Efficient Adaptation Methods](5103-Adapters.md)

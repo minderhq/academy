@@ -459,7 +459,7 @@ GGUF is the format that made local inference practical: llama.cpp's container fo
 
 ## References
 
-### Related PROJECT-OMEGA Documents
+### Related Minder Academy Documents
 
 - [4401: GPTQ](4401-GPTQ.md)
 - [4402: AWQ](4402-AWQ.md)

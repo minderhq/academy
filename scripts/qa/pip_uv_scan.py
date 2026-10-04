@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""pip/uv packaging-consistency gate for the PROJECT-OMEGA curriculum.
+"""pip/uv packaging-consistency gate for the Minder Academy curriculum.
 
 Encodes the documented adjudication policy (00-META/ENVIRONMENT-SETUP.md):
 uv is the default installer; a bare `pip install X` in student-facing
