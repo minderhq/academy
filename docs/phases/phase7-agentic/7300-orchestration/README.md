@@ -325,6 +325,50 @@ flush state, release resources — then re-raise. Swallowing it
 turns cancellation into a silent no-op, the same failure class the
 broad-handler lesson teaches.
 
+### Bound the Fan-Out: Semaphore Caps and gather's Error Contract
+
+`asyncio.gather` schedules every call at once. A fleet that gathers
+500 document calls makes 500 simultaneous provider requests — the
+limiter trips ([7302](./7302-Communication-Protocols.md) teaches the
+429 answer), latency queues, and memory balloons with every in-flight
+task. The missing discipline is bounding the fan-out **before** the
+limiter trips: acquire an `asyncio.Semaphore(limit)` around each
+call, and at most `limit` requests are ever in flight. This is the
+client-side sibling of the server-side rate limiter — the semaphore
+is how you avoid needing the retry loop at all.
+
+The second hole is gather's error contract. By default the first
+exception propagates and the call raises immediately — one bad
+item discards every sibling result the fleet already computed. With
+`return_exceptions=True` the contract changes: failures come back in
+the results list as exception objects, successes as values. That is
+the shape a fan-out over N items actually wants — partial results
+plus a per-item failure list the caller triages (retry, log, or
+dead-letter — observable, never silent):
+
+```python
+import asyncio
+from collections.abc import Awaitable, Callable
+
+
+async def bounded(sem: asyncio.Semaphore, call: Callable[[], Awaitable[str]]) -> str:
+    """One provider call under the concurrency cap."""
+    async with sem:
+        return await call()
+
+
+async def fan_out(calls: list[Callable[[], Awaitable[str]]], limit: int = 8):
+    """Bounded fan-out: at most `limit` in flight, failures never lose the fleet."""
+    sem = asyncio.Semaphore(limit)
+    results = await asyncio.gather(
+        *(bounded(sem, call) for call in calls),
+        return_exceptions=True,   # one bad item must not discard the rest
+    )
+    ok = [r for r in results if not isinstance(r, BaseException)]
+    failed = [r for r in results if isinstance(r, BaseException)]
+    return ok, failed
+```
+
 ---
 
 ## Framework Comparison
