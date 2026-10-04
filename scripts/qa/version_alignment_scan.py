@@ -36,7 +36,7 @@ import re
 import sys
 from pathlib import Path
 
-FENCE_RE = re.compile(r"^\s*(```|~~~)\s*([A-Za-z0-9_+-]*)\s*$")
+FENCE_RE = re.compile(r"^\s*(`{3,}|~{3,})\s*([A-Za-z0-9_+-]*)\s*$")
 
 STANDARD = "3.13"
 
@@ -57,17 +57,23 @@ RULES = [
 def scan_file(root: Path, path: Path, findings: list[str], fences: list[int]) -> None:
     rel = path.relative_to(root).as_posix()
     lines = path.read_text(encoding="utf-8").split("\n")
-    in_fence = False
+    in_fence, f_char, f_len = False, "", 0
     start = 0
     for ln, raw in enumerate(lines, 1):
-        if FENCE_RE.match(raw):
-            if in_fence:
+        m = FENCE_RE.match(raw)
+        if m:
+            ch, n = m.group(1)[0], len(m.group(1))
+            if in_fence and ch == f_char and n >= f_len:
                 in_fence = False
-            else:
+                continue
+            if not in_fence:
                 in_fence = True
+                f_char, f_len = ch, n
                 start = ln
                 fences[0] += 1
-            continue
+                continue
+            # inner marker of a longer outer fence: fence CONTENT, falls
+            # through to the rule scan below (tick-678 semantic)
         if not in_fence:
             continue
         for pat, code in RULES:

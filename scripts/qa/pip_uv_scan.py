@@ -26,7 +26,7 @@ import re
 import sys
 from pathlib import Path
 
-FENCE_RE = re.compile(r"^\s*(```|~~~)\s*([A-Za-z0-9_+-]*)\s*$")
+FENCE_RE = re.compile(r"^\s*(`{3,}|~{3,})\s*([A-Za-z0-9_+-]*)\s*$")
 BARE_PIP_RE = re.compile(r"^\s*(?:python3?\s+-m\s+)?pip\s+install\b(.*)$")
 CONDA_RE = re.compile(r"\bconda\s+(create|activate|env|install|info|run)\b")
 # "image" deliberately absent: it is a CV-domain word (image
@@ -72,18 +72,24 @@ def classify_block(lines: list[str], pre_context: list[str]) -> str:
 def lint_file(root: Path, path: Path, findings: list[str]) -> None:
     rel = path.relative_to(root).as_posix()
     lines = path.read_text(encoding="utf-8").split("\n")
-    in_fence = False
+    in_fence, f_char, f_len = False, "", 0
     fence_lines: list[str] = []
     pre_context: list[str] = []
     for i, raw in enumerate(lines):
-        if FENCE_RE.match(raw):
-            if in_fence:
+        m = FENCE_RE.match(raw)
+        if m:
+            ch, n = m.group(1)[0], len(m.group(1))
+            if in_fence and ch == f_char and n >= f_len:
                 in_fence = False
                 fence_lines = []
-            else:
+                continue
+            if not in_fence:
                 in_fence = True
+                f_char, f_len = ch, n
                 pre_context = [l for l in lines[max(0, i - 4):i]]
-            continue
+                continue
+            # inner marker of a longer outer fence: fence CONTENT, falls
+            # through to the body append below (tick-678 semantic)
         if not in_fence:
             continue
         fence_lines.append(raw)
