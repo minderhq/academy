@@ -21,7 +21,13 @@ pipe, not a column separator. The 1202 passthrough troubleshooting
 table carries ``dmesg \\| grep vfio`` in a cell - a naive split
 miscounts it as a fourth column (tick-225 lesson: the escape must be
 resolved before splitting). Fenced regions are skipped so box-drawing
-tables inside ```text fences are not scanned.
+tables inside ```text fences are not scanned. Fence state follows
+CommonMark (tick-678 canon): the opener captures its marker run, a
+closer repeats the opener's character in a run at least as long, a
+different fence character never closes, and a marker line that is not
+a valid closer is fence content - 4-outer template blocks
+(DOCUMENT-TEMPLATE) are content, their sanctioned placeholder tables
+never reach the scan.
 
 Hard gate (exit 1 on findings): baseline 0 - the two 3403 category
 tables (1-cell divider rows under 6-column headers) and the 6200-
@@ -37,7 +43,7 @@ import re
 import sys
 from pathlib import Path
 
-FENCE_RE = re.compile(r"^\s*(```|~~~)\s*([A-Za-z0-9_+-]*)\s*$")
+FENCE_RE = re.compile(r"^\s*(`{3,}|~{3,})\s*([A-Za-z0-9_+-]*)\s*$")
 ROW_RE = re.compile(r"^\s*\|.*\|\s*$")
 SEP_RE = re.compile(r"^\s*\|[\s:|-]+\|\s*$")
 BREAK_RE = re.compile(r"^\s*(?:#|>|(?:[-*+]|\d+[.)])\s)")
@@ -52,15 +58,21 @@ def cell_count(line: str) -> int:
 
 def scan_file(root: Path, path: Path, findings: list[str]) -> None:
     rel = path.relative_to(root).as_posix()
-    in_fence = False
+    in_fence: tuple[str, int] | None = None
     lines = path.read_text(encoding="utf-8").split("\n")
     i = 0
     while i < len(lines):
-        if FENCE_RE.match(lines[i]):
-            in_fence = not in_fence
+        m = FENCE_RE.match(lines[i])
+        if m:
+            f_char, f_len = m.group(1)[0], len(m.group(1))
+            if in_fence:
+                if f_char == in_fence[0] and f_len >= in_fence[1]:
+                    in_fence = None
+            else:
+                in_fence = (f_char, f_len)
             i += 1
             continue
-        if (not in_fence and i + 1 < len(lines)
+        if (in_fence is None and i + 1 < len(lines)
                 and ROW_RE.match(lines[i]) and SEP_RE.match(lines[i + 1])):
             start = i
             block: list[str] = []
