@@ -475,6 +475,47 @@ first = graph.invoke({"query": "transformers"}, config=config)
 again = graph.invoke({"query": "explain attention"}, config=config)
 ```
 
+The resume face is only half of the checkpointer story—the same mechanism carries approval. `interrupt()` pauses the graph mid-flight for a human decision: call it inside a node when the state reaches a gate the operator must clear, and the graph writes its checkpoint exactly as it does after every super-step and stops without reaching the end. The pause is resumable by the same `thread_id`—re-invoke with `Command(resume=...)` and the resume value arrives as `interrupt()`'s return value inside the node, so the operator's verdict flows back through the graph's own state machine:
+
+```python
+from typing import TypedDict
+
+from langgraph.checkpoint.memory import InMemorySaver
+from langgraph.graph import END, START, StateGraph
+from langgraph.types import Command, interrupt
+
+
+class ReviewState(TypedDict):
+    query: str
+    answer: str
+
+
+def review(state: ReviewState) -> dict:
+    answer = f"draft answer: {state['query']}"
+    verdict = interrupt({"draft": answer})
+    if verdict == "approve":
+        return {"answer": answer}
+    return {"answer": f"{answer} (revised after rejection)"}
+
+
+builder = StateGraph(ReviewState)
+builder.add_node("review", review)
+builder.add_edge(START, "review")
+builder.add_edge("review", END)
+graph = builder.compile(checkpointer=InMemorySaver())
+
+config = {"configurable": {"thread_id": "review-42"}}
+# First invoke pauses inside review: the checkpoint is written and
+# the graph returns without reaching the end.
+paused = graph.invoke({"query": "customer refund"}, config)
+# Same thread_id, resume value in hand: the graph continues past
+# the interrupt and the verdict becomes interrupt()'s return value.
+final = graph.invoke(Command(resume="approve"), config)
+print(final["answer"])
+```
+
+The verdict is ordinary data—approval, revision, or escalation route through the same graph that computed the draft, and every branch is checkpointed like any other.
+
 `InMemorySaver` is the learning shape — it dies with the
 process, which defeats the point in production; the same
 `compile(checkpointer=...)` call takes SqliteSaver or PostgresSaver
