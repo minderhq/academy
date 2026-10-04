@@ -3,7 +3,7 @@ Document ID: 7201
 Title: "7201: Tool Calling & Function Execution"
 Phase: 7
 Module: 7200
-Last Updated: 2026-09-30
+Last Updated: 2026-10-04
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -41,6 +41,7 @@ After completing this lesson, you will be able to:
 - Declare function schemas — write OpenAI-style tool definitions with type, description, enum and required fields so parameter extraction stays unambiguous
 - Categorize tools by capability — information retrieval, computation and system-interaction tools, each carrying a different risk profile
 - Complete the OpenAI tool-call round trip — inspect message.tool_calls, json.loads the string arguments, execute locally and return the tool result for the final answer
+- Constrain model output with structured outputs — pass a strict json_schema response_format so answers arrive schema-valid by construction instead of parse-and-hope
 - Apply tool-calling best practices — explicit parameter schemas over vague catch-alls, structured error statuses from execute_tool, and a ToolRegistry that generates its API schemas from registrations
 - Recognize advanced patterns — multi-step tool chains, parallel tool calls in one response, and streaming deltas assembled by index into complete calls
 
@@ -284,6 +285,79 @@ print(final_response.choices[0].message.content)
 # Output:
 # AAPL is currently trading at $227.48 USD.
 ```
+
+### Structured Outputs: Constrain the Answer Itself
+
+Every tool in this lesson ships a JSON schema, but the model's final
+answer ships none. The `tool_calls` envelope above was the JSON the
+model sends **you**; structured outputs are the reverse face — a
+contract on the JSON the model answers you with. When the answer must
+be data a program consumes next — a triage verdict, an extraction,
+an eval grade — free text buys you a parse-and-hope loop. The same
+schema machinery covers it: `response_format` declaring the shape,
+enforced by the provider. Function calling is structured output for
+invoking functions; this is structured output for the answer.
+
+Two faces exist, and they are not equivalent. `{"type": "json_object"}`
+guarantees valid JSON — any JSON. Shape stays unvalidated, so your
+callers keep validating after the fact (the long-term-memory fences
+later in this phase ship exactly this weak form). The strong form is
+`{"type": "json_schema", "json_schema": {..., "strict": true}}`:
+constrained decoding — the provider cannot emit a token sequence
+that violates your schema, enum values included, and the
+parse-and-retry loop disappears:
+
+```python
+import json
+
+
+def triage_freeform(client, model: str, ticket: str) -> dict:
+    """The weak form: json_object - valid JSON, any shape, unvalidated."""
+    response = client.chat.completions.create(
+        model=model,
+        messages=[{"role": "user", "content": ticket}],
+        response_format={"type": "json_object"},
+    )
+    result = json.loads(response.choices[0].message.content)
+    # json.loads proves syntax; nothing proves shape - callers validate after
+    return result
+
+
+def triage_contract(client, model: str, ticket: str) -> dict:
+    """The strong form: json_schema + strict - the provider enforces shape."""
+    schema = {
+        "type": "object",
+        "properties": {
+            "verdict": {"type": "string", "enum": ["refund", "escalate", "deny"]},
+            "confidence": {"type": "number"},
+            "reason": {"type": "string"},
+        },
+        "required": ["verdict", "confidence", "reason"],
+        "additionalProperties": False,
+    }
+    response = client.chat.completions.create(
+        model=model,
+        messages=[{"role": "user", "content": ticket}],
+        response_format={
+            "type": "json_schema",
+            "json_schema": {"name": "ticket_triage", "strict": True, "schema": schema},
+        },
+    )
+    return json.loads(response.choices[0].message.content)
+```
+
+The strict-mode rules are strict for a reason: every property listed
+under `required` plus `additionalProperties: False` — what the
+provider must guarantee admits no ambiguity. With a typing layer the
+schema stops being a dict you hand-write: define the `pydantic` model,
+pass the class itself as the response format, and a parsed, validated
+object comes back. The boundary line: structured outputs are for
+answers a program consumes next — routing decisions, extraction,
+grading. Prose a human reads gains nothing from a JSON straitjacket.
+One schema machinery, two directions — into the model as tool
+definitions, out of the model as answer contracts; the upgrade path
+from the [7401 long-term-memory lesson's](../7400-memory/7401-Long-term-Memory.md)
+weak `json_object` fences runs exactly through this subsection.
 
 ---
 
