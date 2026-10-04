@@ -487,6 +487,31 @@ stand today?" without running each tool by hand.
                        construction, born tick-653, zero-drain:
                        the class froze at the rule the moment it
                        was named, the EC-03/fence_lang shape)
+    crypto_hygiene_scan
+                       security-material crypto hygiene in python
+                       fences (CH-01: a randomness producer building
+                       security material - random is a Mersenne
+                       Twister predictable from observed output, so
+                       api_key = random.choice(alphabet), token =
+                       random.randbytes(16) or def generate_token()
+                       returning getrandbits is forgeable; fires only
+                       when the vocabulary attaches AT THE CALL
+                       SITE: an enclosing assign target, string-
+                       Constant or Name arguments, keyword names or
+                       the enclosing def name; CH-02: collision-
+                       broken md5/sha1 hashing security material -
+                       a hashed password/token can be swapped, not
+                       just guessed; the affirmative forms the
+                       corpus teaches stay out: secrets.token_hex
+                       (TUTORIAL-013-AI-Security) and
+                       hashlib.sha256 (the 7500-security phase),
+                       non-security randomness (the corpus's 39
+                       random.* calls are dropout, sampling and
+                       canary rolls) and the 15 md5 dedup/bucketing
+                       calls (the corpus's own "BUCKETING, not
+                       security" comments) are out by construction,
+                       born tick-654, zero-drain, owned preemptively
+                       per the US-02/US-03 and RT-02 precedent)
     action_version_scan
                        uses: pins in docs must match the canonical
                        action registry (AV-01: current majors -
@@ -3067,6 +3092,7 @@ GATES = [
     ("open_encoding_scan.py", "open_encoding_scan", True),
     ("http_timeout_scan.py", "http_timeout_scan", True),
     ("sql_interp_scan.py", "sql_interp_scan", True),
+    ("crypto_hygiene_scan.py", "crypto_hygiene_scan", True),
     ("action_version_scan.py", "action_version_scan", True),
     ("unicode_ws_hygiene_scan.py", "unicode_ws_hygiene_scan", True),
     ("objectives_lint.py", "objectives_lint", False),
