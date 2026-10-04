@@ -624,6 +624,26 @@ stand today?" without running each tool by hand.
                        in-line the same tick (except: ->
                        except Exception:, zero line shift), hard
                        from birth)
+    secret_shape_scan
+                       a credentialed-shaped string literal in a
+                       python fence (SS-01: provider key shapes -
+                       sk- + 20+ OpenAI/Anthropic, ghp_/gho_/ghu_/
+                       ghs_/ghr_ + 30+ and github_pat_ + 22+
+                       GitHub, AKIA + 16 AWS, AIza + 35 Google,
+                       xox* Slack) is either a leaked real
+                       credential or a reader template that looks
+                       exactly like one - the repo is publish-bound
+                       and GitHub secret scanning flags these
+                       shapes on push; the affirmative form is the
+                       corpus's own env-var idiom (os.environ /
+                       os.getenv), placeholder literals cannot
+                       satisfy the prefix+tail demands by
+                       construction, the word-boundary anchor keeps
+                       task-specific-style strings silent, env
+                       reads, danger-marker fences, non-python
+                       fences and notebooks are out by
+                       construction, born tick-664 at zero across
+                       1861 fences, hard from birth)
     action_version_scan
                        uses: pins in docs must match the canonical
                        action registry (AV-01: current majors -
@@ -3211,6 +3231,7 @@ GATES = [
     ("async_block_scan.py", "async_block_scan", True),
     ("unawaited_coro_scan.py", "unawaited_coro_scan", True),
     ("bare_except_scan.py", "bare_except_scan", True),
+    ("secret_shape_scan.py", "secret_shape_scan", True),
     ("action_version_scan.py", "action_version_scan", True),
     ("unicode_ws_hygiene_scan.py", "unicode_ws_hygiene_scan", True),
     ("objectives_lint.py", "objectives_lint", False),
