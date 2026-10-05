@@ -174,7 +174,7 @@ curl -fsSL https://ollama.com/install.sh | sh
    df -h
 
    # Windows
-   wmic logicaldisk get size,freespace,caption
+   Get-PSDrive -PSProvider FileSystem  # wmic was removed in Windows 11 24H2
    ```
 
 2. **Free up space:**

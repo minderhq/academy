@@ -141,7 +141,7 @@ This module connects to:
 - Neo4j (graph database)
 - Neo4j Python Driver
 - LangChain GraphCypherQAChain
-- LlamaIndex KnowledgeGraphIndex
+- LlamaIndex PropertyGraphIndex (KnowledgeGraphIndex is deprecated)
 - GraphRAG (Microsoft)
 
 **Essential Papers:**

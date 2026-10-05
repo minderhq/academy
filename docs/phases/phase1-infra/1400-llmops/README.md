@@ -396,8 +396,7 @@ User=llm
 WorkingDirectory=/opt/vllm
 Environment="MODEL_NAME=meta-llama/Llama-3-70B"
 Environment="TENSOR_PARALLEL_SIZE=2"
-ExecStart=/usr/bin/python3 -m vllm.entrypoints.openai.api_server \
-  --model $MODEL_NAME \
+ExecStart=/usr/bin/vllm serve $MODEL_NAME \
   --tensor-parallel-size $TENSOR_PARALLEL_SIZE \
   --gpu-memory-utilization 0.9 \
   --port 8000
@@ -512,7 +511,7 @@ After 1000 requests:
 **Solution:**
 ```yaml
 # Use vLLM with PagedAttention ✅
-python -m vllm.entrypoints.openai.api_server \
+vllm serve $MODEL_NAME \
   --gpu-memory-utilization 0.9 \
   --max-model-len 4096 \
   --block-size 16

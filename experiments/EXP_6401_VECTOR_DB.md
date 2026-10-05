@@ -264,41 +264,40 @@ class VectorDBBenchmark:
     def benchmark_weaviate(self):
         """Benchmark Weaviate"""
         import weaviate
+        import weaviate.classes.config as wc
 
-        client = weaviate.Client("http://localhost:8080")
+        client = weaviate.connect_to_local()
 
         # Setup (skip if Weaviate not deployed)
         try:
-            client.schema.delete_class("Benchmark")
+            client.collections.delete("Benchmark")
         except:
             pass
 
-        client.schema.create_class({
-            "class": "Benchmark",
-            "vectorizer": "none",
-            "properties": [{"name": "text", "dataType": ["string"]}]
-        })
+        benchmark = client.collections.create(
+            name="Benchmark",
+            vectorizer_config=wc.Configure.Vectorizer.none(),
+            properties=[wc.Property(name="text", data_type=wc.DataType.TEXT)],
+        )
 
         # Insert benchmark
         start = time.time()
-        with client.batch() as batch:
+        with benchmark.batch.dynamic() as batch:
             for i, vector in enumerate(self.vectors):
-                batch.add_data_object(
-                    data_object={"text": f"doc_{i}"},
-                    class_name="Benchmark",
-                    vector=vector.tolist()
+                batch.add_object(
+                    properties={"text": f"doc_{i}"},
+                    vector=vector.tolist(),
                 )
         insert_time = time.time() - start
 
         # Search benchmark
         start = time.time()
         for query in self.queries:
-            client.query.get(
-                "Benchmark", ["text"]
-            ).with_near_vector({
-                "vector": query.tolist(),
-                "certainty": 0.7
-            }).with_limit(10).do()
+            benchmark.query.near_vector(
+                near_vector=query.tolist(),
+                certainty=0.7,
+                limit=10,
+            )
         search_time = time.time() - start
 
         return {

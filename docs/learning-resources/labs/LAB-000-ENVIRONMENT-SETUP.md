@@ -103,7 +103,7 @@ free -h
 **Windows:**
 ```powershell
 # Check disk space
-wmic logicaldisk get size,freespace,caption
+Get-PSDrive -PSProvider FileSystem  # wmic was removed in Windows 11 24H2
 ```
 
 **Mac/Linux:**

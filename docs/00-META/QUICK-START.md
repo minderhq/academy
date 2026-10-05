@@ -83,7 +83,7 @@ curl -fsSL https://ollama.com/install.sh | sh
 ollama --version
 ```
 
-Expected output: `ollama version is 0.1.x` or similar
+Expected output: `ollama version is 0.x.y` - any recent build works
 
 ---
 
@@ -100,15 +100,15 @@ ollama pull mistral
 
 ### What's Happening?
 - Mistral 7B is a powerful open-source LLM
-- 4 billion parameters (small but capable)
+- 7 billion parameters (small but capable)
 - Requires ~8GB RAM to run
 - Perfect for learning and experimentation
 
 ### Other Options (for later)
 ```bash
-ollama pull llama2          # Meta's Llama 2
-ollama pull codellama       # Coding assistant
-ollama pull phi3            # Small & fast
+ollama pull llama3.2        # Meta's Llama 3.2
+ollama pull qwen2.5-coder   # Coding assistant
+ollama pull phi4            # Small & fast
 ```
 
 ### Troubleshooting Model Download

@@ -152,31 +152,31 @@ docker run -p 8080:8080 \
 
 ```python
 import weaviate
+import weaviate.classes.config as wc
 
 # Connect
-client = weaviate.Client("http://localhost:8080")
+client = weaviate.connect_to_local()
 
-# Create schema
-client.schema.create_class({
-    "class": "Document",
-    "vectorizer": "text2vec-openai",  # Built-in!
-    "properties": [
-        {"name": "text", "dataType": ["text"]},
-        {"name": "category", "dataType": ["string"]}
-    ]
-})
+# Create collection (v4 renamed classes -> collections)
+documents = client.collections.create(
+    name="Document",
+    vectorizer_config=wc.Configure.Vectorizer.text2vec_openai(),  # built-in
+    properties=[
+        wc.Property(name="text", data_type=wc.DataType.TEXT),
+        wc.Property(name="category", data_type=wc.DataType.TEXT),
+    ],
+)
 
 # Add data (auto-vectorized)
-client.data_object.create({
+documents.data.insert({
     "text": "Hello world",
-    "category": "greeting"
-}, class_name="Document")
+    "category": "greeting",
+})
 
 # Search
-results = client.query.get("Document", ["text", "category"]) \
-    .with_near_text({"concepts": ["greeting"]}) \
-    .with_limit(5) \
-    .do()
+response = documents.query.near_text(query="greeting", limit=5)
+for obj in response.objects:
+    print(obj.properties["text"], obj.properties["category"])
 ```
 
 #### Resource Requirements
@@ -221,12 +221,12 @@ Pinecone is a fully managed vector database service. No setup required, but no s
 #### Quick Start
 
 ```python
-import pinecone
+from pinecone import Pinecone, ServerlessSpec
 
-# Initialize
-pinecone.init(api_key="your-api-key")
-pinecone.create_index("demo", dimension=384, metric="cosine")
-index = pinecone.Index("demo")
+pc = Pinecone(api_key="your-api-key")
+pc.create_index("demo", dimension=384, metric="cosine",
+                spec=ServerlessSpec(cloud="aws", region="us-east-1"))
+index = pc.Index("demo")
 
 # Insert
 index.upsert([

@@ -55,8 +55,8 @@ Choosing the right vector database is crucial for RAG applications. This documen
 | **License** | Apache 2.0 | MIT | Proprietary | Apache 2.0 | Apache 2.0 | PostgreSQL |
 | **Language** | Rust | Go | Python | Go | Python | C |
 | **Deployment** | Self-hosted | Self-hosted | Cloud only | Self-hosted | Self-hosted | Self-hosted |
-| **Cloud Service** | ✅ Yes | ✅ Yes | ✅ Yes | ❌ No | ❌ No | ❌ No |
-| **Index Type** | HNSW, IVF | HNSW | Unknown | HNSW, IVF | HNSW | IVF |
+| **Cloud Service** | ✅ Yes | ✅ Yes | ✅ Yes | ✅ Yes (Zilliz Cloud) | ✅ Yes (Chroma Cloud) | ❌ No |
+| **Index Type** | HNSW, IVF | HNSW | Proprietary (undisclosed) | HNSW, IVF, DiskANN | HNSW | IVF, HNSW |
 | **Hybrid Search** | ✅ Native | ✅ Native | ✅ Yes | ✅ Native | ⚠️ Plugin | ⚠️ Plugin |
 | **Metadata Filter** | ✅ Yes | ✅ Yes | ✅ Yes | ✅ Yes | ✅ Yes | ⚠️ Basic |
 | **Scalability** | High | High | Very High | Very High | Low | Medium |
@@ -161,7 +161,7 @@ results = client.query_points(
 
 ### 2.2 Weaviate
 
-**Best For:** Feature-rich RAG applications with GraphQL API
+**Best For:** Feature-rich RAG applications with built-in vectorization
 
 **Key Features:**
 - GraphQL API for flexible querying
@@ -195,69 +195,41 @@ results = client.query_points(
 **Quick Start:**
 ```python
 import weaviate
+import weaviate.classes.config as wc
+import weaviate.classes.query as wq
 
-# Connect
-client = weaviate.Client("http://localhost:8080")
+# Connect (v4 client; connect_to_custom() for remote clusters)
+client = weaviate.connect_to_local()  # http://localhost:8080
 
-# Create class (collection)
-client.schema.create_class({
-    "class": "Document",
-    "description": "A document in the system",
-    "properties": [
-        {
-            "name": "title",
-            "dataType": ["text"]
-        },
-        {
-            "name": "content",
-            "dataType": ["text"]
-        },
-        {
-            "name": "category",
-            "dataType": ["string"]
-        }
+# Create a collection (v4 renamed classes -> collections)
+documents = client.collections.create(
+    name="Document",
+    description="A document in the system",
+    properties=[
+        wc.Property(name="title", data_type=wc.DataType.TEXT),
+        wc.Property(name="content", data_type=wc.DataType.TEXT),
+        wc.Property(name="category", data_type=wc.DataType.TEXT),
     ],
-    "vectorizer": "text2vec-transformers"  # Auto-vectorize
-})
-
-# Add objects
-data_object = {
-    "title": "First Document",
-    "content": "This is the content",
-    "category": "tech"
-}
-
-client.data_object.create(
-    data_object,
-    class_name="Document"
+    vectorizer_config=wc.Configure.Vectorizer.text2vec_transformers(),  # auto-vectorize
 )
 
-# GraphQL search
-query = """
-{
-  Get {
-    Document(
-      nearText: {
-        concepts: ["search term"],
-        distance: 0.7
-      },
-      where: {
-        path: ["category"],
-        operator: Equal,
-        valueString: "tech"
-      }
-    ) {
-      title
-      content
-      _additional {
-        distance
-      }
-    }
-  }
-}
-"""
+# Add an object
+documents.data.insert({
+    "title": "First Document",
+    "content": "This is the content",
+    "category": "tech",
+})
 
-results = client.query.raw(query)
+# Semantic search + filter (replaces the v3 GraphQL nearText/where block)
+response = documents.query.near_text(
+    query="search term",
+    distance=0.7,
+    filters=wq.Filter.by_property("category").equal("tech"),
+    return_metadata=wq.MetadataQuery(distance=True),
+)
+
+for obj in response.objects:
+    print(obj.properties["title"], obj.metadata.distance)
 ```
 
 ---
@@ -298,28 +270,23 @@ results = client.query.raw(query)
 
 **Quick Start:**
 ```python
-import pinecone
+from pinecone import Pinecone, ServerlessSpec
 
-# Initialize
-pinecone.init(
-    api_key="your-api-key",
-    environment="us-west1-gcp"  # or us-east1-gcp, eu-west1-gcp
-)
+pc = Pinecone(api_key="your-api-key")
 
-# Create index
+# Create a serverless index - capacity is managed by the cloud, so the
+# legacy pods/replicas/pod_type knobs no longer exist; you pick cloud + region
 index_name = "documents"
-if index_name not in pinecone.list_indexes():
-    pinecone.create_index(
+if index_name not in pc.list_indexes().names():
+    pc.create_index(
         name=index_name,
         dimension=384,
         metric="cosine",
-        pods=1,  # Number of pods
-        replicas=1,  # Replicas per pod
-        pod_type="p1.x2"  # pod type
+        spec=ServerlessSpec(cloud="aws", region="us-east-1"),
     )
 
 # Connect to index
-index = pinecone.Index(index_name)
+index = pc.Index(index_name)
 
 # Upsert vectors
 index.upsert([
@@ -351,7 +318,7 @@ for result in results['matches']:
 - Supports GPU acceleration
 - Kubernetes-native
 - Cloud-native architecture
-- Time travel (data versioning)
+- Tunable consistency levels (strong, bounded, session, eventually)
 
 **Pros:**
 - 📊 Scales to billions of vectors
@@ -512,7 +479,7 @@ for result in results['documents'][0]:
 
 **Cons:**
 - 🐌 Slower than specialized databases
-- 🔧 Limited index types (IVF, HNSW in development)
+- 🔧 Limited index types (IVF, HNSW)
 - 📊 Not optimized for billions of vectors
 - 🌐 Limited vector-specific features
 
@@ -544,10 +511,9 @@ VALUES (
     '[0.1, 0.2, ...]'  -- 384 dimensions
 );
 
--- Create index
+-- Create index (HNSW since pgvector 0.5.0; ivfflat also available)
 CREATE INDEX ON documents
-USING ivfflat (embedding vector_cosine_ops)
-WITH (lists = 100);
+USING hnsw (embedding vector_cosine_ops);
 
 -- Query
 SELECT content, category,
@@ -634,32 +600,19 @@ def qdrant_hybrid_search(query_text, query_vector, top_k=10):
 
 # Weaviate Hybrid Search
 import weaviate
+import weaviate.classes.query as wq
 
-weaviate_client = weaviate.Client("http://localhost:8080")
+weaviate_client = weaviate.connect_to_local()
+documents = weaviate_client.collections.get("Document")
 
 def weaviate_hybrid_search(query, alpha=0.7, top_k=10):
     """Hybrid search with BM25 and vector search."""
-    graphql_query = f"""
-    {{
-      Get {{
-        Document(
-          hybrid: {{
-            query: "{query}"
-            alpha: {alpha}
-          }}
-          limit: {top_k}
-        ) {{
-          title
-          content
-          _additional {{
-            score
-            explainScore
-          }}
-        }}
-      }}
-    }}
-    """
-    return weaviate_client.query.raw(graphql_query)
+    return documents.query.hybrid(
+        query=query,
+        alpha=alpha,
+        limit=top_k,
+        return_metadata=wq.MetadataQuery(score=True, explain_score=True),
+    )
 ```
 
 ### 4.2 Batch Operations
@@ -685,31 +638,22 @@ def batch_upsert_qdrant(points_batch):
 
 # Weaviate Batch Import
 import weaviate
-import json
 
-client = weaviate.Client("http://localhost:8080")
+client = weaviate.connect_to_local()
+documents = client.collections.get("Document")
 
 def batch_import_weaviate(objects_batch):
-    """Import objects in batch using GraphQL."""
-    # Prepare GraphQL mutation
-    mutation = """
-    mutation {
-      BatchObjects(
-        objects: %s
-      ) {
-        objects {
-          id
-        }
-      }
-    }
-    """ % json.dumps(objects_batch)
-
-    return client.query.raw(mutation)
+    """Import objects with the v4 dynamic batch queue."""
+    with documents.batch.dynamic() as batch:
+        for obj in objects_batch:
+            batch.add_object(obj)
+    return documents.batch.failed_objects  # empty list = everything landed
 
 # Pinecone Batch Upsert
-import pinecone
+from pinecone import Pinecone
 
-index = pinecone.Index("documents")
+pc = Pinecone(api_key="your-api-key")
+index = pc.Index("documents")
 
 def batch_upsert_pinecone(vectors_batch):
     """Upsert in batches (automatic batching by client)."""
@@ -948,26 +892,20 @@ class VectorDBExporter:
             "metadatas": data['metadatas']
         }
 
-    def export_weaviate(self, class_name):
-        """Export Weaviate objects."""
+    def export_weaviate(self, collection_name):
+        """Export Weaviate objects (v4 iterator, vectors included)."""
         import weaviate
-        client = weaviate.Client("http://localhost:8080")
+        client = weaviate.connect_to_local()
 
-        query = f"""
-        {{
-          Get {{
-            {class_name} {{
-                id
-                _additional {{
-                    id
-                    vector
-                }}
-            }}
-          }}
-        }}
-        """
-        results = client.query.raw(query)
-        return results
+        collection = client.collections.get(collection_name)
+        return [
+            {
+                "id": str(obj.uuid),
+                "vector": obj.vector,
+                "properties": obj.properties,
+            }
+            for obj in collection.iterator(include_vector=True)
+        ]
 
     def export_qdrant(self, collection_name):
         """Export Qdrant points."""

@@ -43,8 +43,7 @@ class VLLMDeployment:
         print(f"Starting vLLM server for {self.model_name}...")
 
         cmd = [
-            "python", "-m", "vllm.entrypoints.openai.api_server",
-            "--model", self.model_name,
+            "vllm", "serve", self.model_name,
             "--quantization", quantization,
             "--tensor-parallel-size", str(tensor_parallel_size),
             "--max-model-len", str(max_model_len),
@@ -56,8 +55,6 @@ class VLLMDeployment:
             "--disable-log-requests",
             "--max-num-seqs", "256",
             "--max-num-batched-tokens", "8192",
-            # Enable OpenAI-compatible API
-            "--chat-template", "tokenizer",
         ]
 
         print("Command:", " ".join(cmd))
@@ -293,7 +290,7 @@ class SpeculativeDecodingSetup:
 
     def start_with_draft_model(self,
                                model: str = "mistralai/Mistral-7B-Instruct-v0.2",
-                               draft_model: str = "tinyllama/tinyllama-1.1b-chat"):
+                               draft_model: str = "TinyLlama/TinyLlama-1.1B-Chat-v1.0"):
         """Start vLLM with speculative decoding"""
 
         print(f"Starting vLLM with speculative decoding...")
@@ -301,13 +298,15 @@ class SpeculativeDecodingSetup:
         print(f"  Draft model: {draft_model}")
 
         cmd = [
-            "python", "-m", "vllm.entrypoints.openai.api_server",
-            "--model", model,
-            "--speculative-model", draft_model,
-            "--num-speculative-tokens", "5",
+            "vllm", "serve", model,
             "--quantization", "awq",
             "--max-model-len", "4096",
             "--gpu-memory-utilization", "0.9",
+            # Speculative decoding is one JSON flag now; the flat
+            # --speculative-model/--num-speculative-tokens flags are gone
+            "--speculative-config",
+            f'{{"method": "draft_model", "model": "{draft_model}", '
+            f'"num_speculative_tokens": 5}}',
         ]
 
         print("Command:", " ".join(cmd))
@@ -570,11 +569,10 @@ if __name__ == "__main__":
 
 ```bash
 # Install vLLM
-pip install vllm
+uv pip install vllm
 
 # Start server
-python -m vllm.entrypoints.openai.api_server \
-  --model mistralai/Mistral-7B-Instruct-v0.2 \
+vllm serve mistralai/Mistral-7B-Instruct-v0.2 \
   --quantization awq \
   --max-model-len 4096 \
   --gpu-memory-utilization 0.9 \

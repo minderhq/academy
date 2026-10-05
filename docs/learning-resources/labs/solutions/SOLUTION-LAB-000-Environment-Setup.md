@@ -24,7 +24,7 @@ No action needed - informational commands show your system specs.
 ### Solution
 ```bash
 # RAM
-# Windows: wmic memorychip get capacity
+# Windows: Get-CimInstance Win32_PhysicalMemory | Select-Object Capacity
 # Mac: sysctl hw.memsize
 # Linux: free -h
 

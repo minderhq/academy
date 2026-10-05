@@ -168,8 +168,7 @@ uv pip install "vllm>=0.6.0"
 
 # 2. Start vLLM server with optimized settings
 echo "Starting vLLM server..."
-python -m vllm.entrypoints.openai.api_server \
-    --model Qwen/Qwen2.5-7B-Instruct \
+vllm serve Qwen/Qwen2.5-7B-Instruct \
     --tensor-parallel-size 1 \
     --dtype half \
     --host 0.0.0.0 \

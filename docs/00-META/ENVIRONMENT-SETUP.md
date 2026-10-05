@@ -43,8 +43,8 @@ systeminfo | findstr /C:"Total Physical Memory"
 # GPU Information (if NVIDIA)
 nvidia-smi
 
-# Storage Check
-wmic diskdrive get size,model
+# Storage Check (wmic was removed in Windows 11 24H2)
+Get-CimInstance Win32_DiskDrive | Select-Object Model,Size
 ```
 
 **Mac/Linux:**

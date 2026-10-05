@@ -515,13 +515,13 @@ After completing this phase, you will be able to:
 chunks = [text[i:i+512] for i in range(0, len(text), 512)]
 # Result: Incomplete sentences, lost context
 
-# Right: Semantic chunking with overlap
-from semantic_text_splitter import TextSplitter
+# Right: Recursive splitting that respects boundaries, with overlap
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 
-splitter = TextSplitter(
-    max_chunk_size=512,
-    overlap=50,  # Maintain context
-    split_on=['\n\n', '\n', '. ']  # Respect boundaries
+splitter = RecursiveCharacterTextSplitter(
+    chunk_size=512,
+    chunk_overlap=50,                     # Maintain context
+    separators=["\n\n", "\n", ". ", " "],  # Respect boundaries
 )
 chunks = splitter.split_text(text)
 ```
@@ -598,19 +598,21 @@ results = vector_db.search(
 
 ### Chunking Strategy
 
-**Tip:** Use semantic chunking with overlap
+**Tip:** Use recursive (boundary-aware) chunking with overlap
 ```python
 # Recommended chunking for RAG:
 # - Size: 512-1024 tokens
 # - Overlap: 10-20%
 # - Boundaries: Respect sentences/paragraphs
 
-chunks = chunk_text(
-    text,
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+
+splitter = RecursiveCharacterTextSplitter(
     chunk_size=768,
     chunk_overlap=128,
-    separator=['\n\n', '\n', '. ', ' ']
+    separators=["\n\n", "\n", ". ", " "],
 )
+chunks = splitter.split_text(text)
 ```
 
 ### Embedding Model Selection

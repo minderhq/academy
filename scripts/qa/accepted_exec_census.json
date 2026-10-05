@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "adjudicated": "notes written per accepted row (tick-537, carried tick-538); datasets-5.x drain re-blessed 3 files - drain-backlog rows are tagged in-place; tick-554 tutorial FM edits dirtied 12 tutorial files for their first true re-execution - 25 rows adjudicated (env-gaps, by-design server/model hangs, learner-supplied-file demos, ffmpeg/GPU environment requirements) with per-row notes; tick-588 lesson-FM normalization (CC-18 drain, +2 lines near the top of 6 lesson files) shifted 4 already-accepted rows in 3 files (5203 112->114/260->262, 6203 138->140, 7403 153->155) - same defect classes re-blessed at the shifted lines with their notes carried; no fence content changed; tick-589 guide-FM normalization (CC-19 drain, +2 lines after Title in 12 guide files) shifted all 42 already-accepted rows across 11 of those guides (4203 carries none) - 40 re-blessed same-class at the shifted lines with their notes carried, 2 family-reclassified on re-execution (3403 184->186 RUNNER-CRASH->TIMEOUT, the GPU-required load observed hanging past the timeout instead of dying before it could report; 7103 81->83 CODE-SIGNAL:RuntimeError->TIMEOUT, the recorded FLAKY_FAMILY pair); no fence content changed; tick-590 the CC-20 assessment-keyset drain deleted the legacy Phase/Module FM pair from 2300-framework-engineering's PRACTICE.md and QUIZ.md (-2 lines each; QUIZ.md carries no accepted rows), moving PRACTICE.md's 2 accepted rows 72->70 and 316->314; the re-bless re-blessed both at the shifted lines, same class on re-execution (ENV-GAP:tensorflow, UN-LEAK), with their notes carried; no fence content changed; tick-594 the CC-24 tutorial-keyset drain deleted the legacy Category/Related FM pair from TUTORIAL-007-LoRA-Basics.md and TUTORIAL-014-Production-LLM-Systems.md (-2 lines each), moving TUTORIAL-007's 5 accepted rows 164->162, 208->206, 276->274, 327->325 and 389->387 (TUTORIAL-014 carries no accepted rows); the re-bless re-blessed all 5 at the shifted lines, same class on re-execution (SIDE-EFFECT x3, ENV-GAP:trl, UN-LEAK), with their notes carried; no fence content changed; tick-711 the API-surface corrections (5203 PPO re-homed onto trl.experimental.ppo, 4102 EXL2/GPTQ realigned to the 4404/4401 blessed surfaces, VOLUME-4 practice block re-aligned the same way) dirtied 3 fence files for true re-execution - 8 rows re-blessed same-class ENV-GAP (exllamav2, awq, auto_gptq x2, trl, bitsandbytes, vllm x2) with the house optional-package note written per row, and the file's 1 UN-LEAK cascade resolved content-side instead (the star-import removal un-masked the speculative-decoding pseudocode fence, now function-bound the 4202 way, so it runs clean and carries no accepted row); no fence was left accepted without a note; tick-712 the integrity drain (4305 QAT helpers bound + the real torch.ao FakeQuantize surface replacing the fictional bit_width/per_channel kwargs, 4103 pack_4bit defined, 5102 Trainer/train_dataset bound via Dataset.from_list, 5202 pipeline/DPO-recap inputs bound, 3102 online-softmax fixed to the unnormalized-accumulate form, VOLUME-4/phase1/phase5/phase3 content edits) dirtied 10 fence files - 30 rows re-blessed benign-class (13 ENV-GAP:bitblade on the declared composite guide, 4 ENV-GAP:trl, 1 ENV-GAP:bitsandbytes, 5 SIDE-EFFECT, 7 UN-LEAK cascades) with class-appropriate notes; 2 CODE-SIGNAL rows never reached the census - fixed content-side instead (the named_modules mutation RecursionError, the instructions.jsonl FileNotFoundError); tick-712 the integrity drain (4305 QAT helpers bound + the real torch.ao FakeQuantize surface replacing the fictional bit_width/per_channel kwargs, 4103 pack_4bit defined, 5102 Trainer/train_dataset bound via Dataset.from_list, 5202 pipeline/DPO-recap inputs bound, 3102 online-softmax fixed to the unnormalized-accumulate form, VOLUME-4/phase1/phase5/phase3 content edits) dirtied 10 fence files - 30 rows re-blessed benign-class (13 ENV-GAP:bitblade on the declared composite guide, 4 ENV-GAP:trl, 1 ENV-GAP:bitsandbytes, 5 SIDE-EFFECT, 7 UN-LEAK cascades) with class-appropriate notes; 2 CODE-SIGNAL rows never reached the census - fixed content-side instead (the named_modules mutation RecursionError, the instructions.jsonl FileNotFoundError)",
+  "adjudicated": "notes written per accepted row (tick-537, carried tick-538); datasets-5.x drain re-blessed 3 files - drain-backlog rows are tagged in-place; tick-554 tutorial FM edits dirtied 12 tutorial files for their first true re-execution - 25 rows adjudicated (env-gaps, by-design server/model hangs, learner-supplied-file demos, ffmpeg/GPU environment requirements) with per-row notes; tick-588 lesson-FM normalization (CC-18 drain, +2 lines near the top of 6 lesson files) shifted 4 already-accepted rows in 3 files (5203 112->114/260->262, 6203 138->140, 7403 153->155) - same defect classes re-blessed at the shifted lines with their notes carried; no fence content changed; tick-589 guide-FM normalization (CC-19 drain, +2 lines after Title in 12 guide files) shifted all 42 already-accepted rows across 11 of those guides (4203 carries none) - 40 re-blessed same-class at the shifted lines with their notes carried, 2 family-reclassified on re-execution (3403 184->186 RUNNER-CRASH->TIMEOUT, the GPU-required load observed hanging past the timeout instead of dying before it could report; 7103 81->83 CODE-SIGNAL:RuntimeError->TIMEOUT, the recorded FLAKY_FAMILY pair); no fence content changed; tick-590 the CC-20 assessment-keyset drain deleted the legacy Phase/Module FM pair from 2300-framework-engineering's PRACTICE.md and QUIZ.md (-2 lines each; QUIZ.md carries no accepted rows), moving PRACTICE.md's 2 accepted rows 72->70 and 316->314; the re-bless re-blessed both at the shifted lines, same class on re-execution (ENV-GAP:tensorflow, UN-LEAK), with their notes carried; no fence content changed; tick-594 the CC-24 tutorial-keyset drain deleted the legacy Category/Related FM pair from TUTORIAL-007-LoRA-Basics.md and TUTORIAL-014-Production-LLM-Systems.md (-2 lines each), moving TUTORIAL-007's 5 accepted rows 164->162, 208->206, 276->274, 327->325 and 389->387 (TUTORIAL-014 carries no accepted rows); the re-bless re-blessed all 5 at the shifted lines, same class on re-execution (SIDE-EFFECT x3, ENV-GAP:trl, UN-LEAK), with their notes carried; no fence content changed; tick-711 the API-surface corrections (5203 PPO re-homed onto trl.experimental.ppo, 4102 EXL2/GPTQ realigned to the 4404/4401 blessed surfaces, VOLUME-4 practice block re-aligned the same way) dirtied 3 fence files for true re-execution - 8 rows re-blessed same-class ENV-GAP (exllamav2, awq, auto_gptq x2, trl, bitsandbytes, vllm x2) with the house optional-package note written per row, and the file's 1 UN-LEAK cascade resolved content-side instead (the star-import removal un-masked the speculative-decoding pseudocode fence, now function-bound the 4202 way, so it runs clean and carries no accepted row); no fence was left accepted without a note; tick-712 the integrity drain (4305 QAT helpers bound + the real torch.ao FakeQuantize surface replacing the fictional bit_width/per_channel kwargs, 4103 pack_4bit defined, 5102 Trainer/train_dataset bound via Dataset.from_list, 5202 pipeline/DPO-recap inputs bound, 3102 online-softmax fixed to the unnormalized-accumulate form, VOLUME-4/phase1/phase5/phase3 content edits) dirtied 10 fence files - 30 rows re-blessed benign-class (13 ENV-GAP:bitblade on the declared composite guide, 4 ENV-GAP:trl, 1 ENV-GAP:bitsandbytes, 5 SIDE-EFFECT, 7 UN-LEAK cascades) with class-appropriate notes; 2 CODE-SIGNAL rows never reached the census - fixed content-side instead (the named_modules mutation RecursionError, the instructions.jsonl FileNotFoundError); tick-712 the integrity drain (4305 QAT helpers bound + the real torch.ao FakeQuantize surface replacing the fictional bit_width/per_channel kwargs, 4103 pack_4bit defined, 5102 Trainer/train_dataset bound via Dataset.from_list, 5202 pipeline/DPO-recap inputs bound, 3102 online-softmax fixed to the unnormalized-accumulate form, VOLUME-4/phase1/phase5/phase3 content edits) dirtied 10 fence files - 30 rows re-blessed benign-class (13 ENV-GAP:bitblade on the declared composite guide, 4 ENV-GAP:trl, 1 ENV-GAP:bitsandbytes, 5 SIDE-EFFECT, 7 UN-LEAK cascades) with class-appropriate notes; 2 CODE-SIGNAL rows never reached the census - fixed content-side instead (the named_modules mutation RecursionError, the instructions.jsonl FileNotFoundError); tick-713 the dead-API drain (Pinecone pod API -> serverless Pinecone/ServerlessSpec, Weaviate v3 Client/schema/data_object -> v4 connect_to_local/collections/data.insert/batch.dynamic across 6402, CP-002, QUICK-REF-V6 and EXP_6401, Milvus time-travel bullet -> the four tunable consistency levels, pgvector HNSW no longer 'in development', the fake phase6 semantic_text_splitter/chunk_text pair -> the real langchain_text_splitters RecursiveCharacterTextSplitter surface, KnowledgeGraphIndex -> PropertyGraphIndex in 6300, wmic x4 -> Get-CimInstance/Get-PSDrive (removed in Windows 11 24H2), QUICK-START's pinned ollama 0.1.x + llama-2 params -> any-recent-build + the modern 7B model roster, EXP_1404 python -m vllm.entrypoints.openai.api_server -> vllm serve with the --speculative-config JSON replacing the fictional --speculative-model/--chat-template tokenizer flags, 1400 README/PRACTICE systemd+yaml blocks -> vllm serve) dirtied 9 fence files - 5 re-executed clean with verdicts and notes unchanged, 9 rows re-blessed benign-class at re-keyed lines (7 ENV-GAP: pinecone, pymilvus, chromadb x2, weaviate x2, ragas; 1 SIDE-EFFECT; 1 UN-LEAK cascade) with class-appropriate notes; zero CODE-SIGNAL - the new fences die at their first import exactly where their v3 predecessors died, and fence_namecheck went 1010->1009 accepted names with 0 new UN-01/UN-02",
   "children": "census subprocesses run with PYTHONUTF8=1 (the learner baseline ENVIRONMENT-SETUP teaches)",
   "contract": "every non-clean execution outcome must be adjudicated here before fence_exec_gate runs; new rows fail",
   "family_equivalence": [
@@ -15,8 +15,8 @@
    "bad": {}
   },
   "docs/00-META/ENVIRONMENT-SETUP.md": {
-   "mtime": 1791109464.063029,
-   "size": 13886,
+   "mtime": 1791219222.900662,
+   "size": 13953,
    "bad": {}
   },
   "docs/00-META/GLOSSARY.md": {
@@ -30,8 +30,8 @@
    "bad": {}
   },
   "docs/00-META/QUICK-START.md": {
-   "mtime": 1791109464.0737717,
-   "size": 10148,
+   "mtime": 1791219257.9004638,
+   "size": 10164,
    "bad": {
     "185": "SIDE-EFFECT",
     "214": "INTERACTIVE"
@@ -120,8 +120,8 @@
    "size": 17819
   },
   "docs/comparisons/CP-002-Vector-Database-Comparison.md": {
-   "mtime": 1791109464.0808096,
-   "size": 13280,
+   "mtime": 1791219555.8916035,
+   "size": 13461,
    "bad": {
     "75": "SIDE-EFFECT",
     "153": "ENV-GAP:weaviate",
@@ -314,22 +314,22 @@
    "size": 14160
   },
   "docs/learning-resources/cheat-sheets/QUICK-REF-VOLUME-6.md": {
+   "mtime": 1791219522.8103864,
+   "size": 16655,
    "bad": {
+    "86": "ENV-GAP:sentence_transformers",
     "190": "ENV-GAP:sentence_transformers",
     "365": "SIDE-EFFECT",
     "432": "ENV-GAP:pinecone",
-    "571": "ENV-GAP:ragas",
-    "86": "ENV-GAP:sentence_transformers"
+    "566": "ENV-GAP:ragas"
    },
-   "mtime": 1790785289.1639123,
    "notes": {
     "190": "optional third-party package the QA environment does not install; the fence documents the install requirement",
     "365": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
     "432": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-    "571": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-    "86": "optional third-party package the QA environment does not install; the fence documents the install requirement"
-   },
-   "size": 16663
+    "86": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+    "566": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+   }
   },
   "docs/learning-resources/cheat-sheets/QUICK-REF-VOLUME-7.md": {
    "mtime": 1791130126.5839024,
@@ -538,14 +538,14 @@
    "size": 38080
   },
   "docs/learning-resources/labs/solutions/SOLUTION-LAB-000-Environment-Setup.md": {
+   "mtime": 1791219257.9004638,
+   "size": 1904,
    "bad": {
     "90": "SIDE-EFFECT"
    },
-   "mtime": 1790758480.7424016,
    "notes": {
     "90": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect"
-   },
-   "size": 1871
+   }
   },
   "docs/learning-resources/labs/solutions/SOLUTION-LAB-001-Docker-LLM.md": {
    "mtime": 1791091995.7826219,
@@ -1175,20 +1175,20 @@
    }
   },
   "docs/phases/phase1-infra/1400-llmops/README.md": {
-   "mtime": 1791216985.650865,
-   "size": 25381,
+   "mtime": 1791219555.8931136,
+   "size": 25312,
    "bad": {}
   },
   "docs/phases/phase1-infra/1400-llmops/assessment/PRACTICE.md": {
-   "mtime": 1791214042.8802693,
-   "size": 27815,
+   "mtime": 1791219555.8931136,
+   "size": 27767,
    "bad": {
     "78": "SIDE-EFFECT",
-    "262": "SIDE-EFFECT"
+    "261": "SIDE-EFFECT"
    },
    "notes": {
-    "262": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
-    "78": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect"
+    "78": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
+    "261": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect"
    }
   },
   "docs/phases/phase1-infra/1400-llmops/guides/1403-vLLM-Production-Deployment.md": {
@@ -2504,27 +2504,27 @@
    }
   },
   "docs/phases/phase6-rag/6400-vector-databases/6402-Pinecone-vs-Weaviate.md": {
-   "mtime": 1791109464.2586665,
-   "size": 28689,
+   "mtime": 1791219176.0638857,
+   "size": 28798,
    "bad": {
     "117": "SIDE-EFFECT",
     "196": "ENV-GAP:weaviate",
-    "300": "ENV-GAP:pinecone",
-    "379": "ENV-GAP:pymilvus",
-    "462": "ENV-GAP:chromadb",
-    "605": "ENV-GAP:weaviate",
-    "667": "ENV-GAP:weaviate",
-    "874": "ENV-GAP:chromadb"
+    "272": "ENV-GAP:pinecone",
+    "346": "ENV-GAP:pymilvus",
+    "429": "ENV-GAP:chromadb",
+    "571": "ENV-GAP:weaviate",
+    "620": "ENV-GAP:weaviate",
+    "818": "ENV-GAP:chromadb"
    },
    "notes": {
     "117": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
     "196": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-    "300": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-    "379": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-    "462": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-    "605": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-    "667": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-    "874": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+    "272": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+    "346": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+    "429": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+    "571": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+    "620": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+    "818": "optional third-party package the QA environment does not install; the fence documents the install requirement"
    }
   },
   "docs/phases/phase6-rag/6400-vector-databases/assessment/PRACTICE.md": {
@@ -2593,14 +2593,14 @@
    "size": 16457
   },
   "docs/phases/phase6-rag/README.md": {
+   "mtime": 1791219182.7257411,
+   "size": 28467,
    "bad": {
-    "664": "UN-LEAK"
+    "666": "UN-LEAK"
    },
-   "mtime": 1791024952.4185908,
    "notes": {
-    "664": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically"
-   },
-   "size": 28236
+    "666": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically"
+   }
   },
   "docs/phases/phase7-agentic/7100-architecture/7101-ReAct-Loop-System.md": {
    "mtime": 1791109464.266848,

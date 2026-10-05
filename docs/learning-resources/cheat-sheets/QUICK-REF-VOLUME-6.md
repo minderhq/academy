@@ -430,26 +430,21 @@ def search_with_filters(query, filters=None, top_k=10):
 
 ### Pinecone
 ```python
-import pinecone
+from pinecone import Pinecone, ServerlessSpec
 
-# Initialize
-pinecone.init(
-    api_key="your-api-key",
-    environment="us-east-1-aws"
-)
+pc = Pinecone(api_key="your-api-key")
 
-# Create index
-pinecone.create_index(
+# Create a serverless index - pods/replicas/pod_type are gone; capacity
+# is managed by the cloud, you pick cloud + region
+pc.create_index(
     name="documents",
     dimension=1536,
     metric="cosine",
-    pods=1,  # Number of pods
-    replicas=1,  # Replicas for high availability
-    pod_type="p1.x1"  # Pod type (p1 = optimized for speed)
+    spec=ServerlessSpec(cloud="aws", region="us-east-1"),
 )
 
 # Connect
-index = pinecone.Index("documents")
+index = pc.Index("documents")
 
 # Upsert
 def upsert_documents(documents):
