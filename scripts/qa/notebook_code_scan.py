@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""notebook code-cell gate (NBC-01..15) for Minder Academy.
+"""notebook code-cell gate (NBC-01..16) for Minder Academy.
 
 The .md AST gate family never sees notebook code: codeblock_syntax_scan
 and fence_import_check walk CommonMark fences in docs/**/*.md, while
@@ -116,6 +116,19 @@ NBC-12..14  the secret/crypto twins (born tick-703): secret_shape_scan
                 identity claim is unchecked and a man-in-the-middle
                 reads everything the cell sends (the requests
                 verbs mirror NBC-11's base).
+        NBC-16  legacy typing spelling (born tick-706): the
+                typing_legacy_scan (TL-01..03) twin - the md gate
+                walks docs/**/*.md python fences only, while the
+                launcher RUNS code cells, so a cell teaching
+                Optional[...] / a from-typing import of the legacy
+                names / a bare -> Dict was invisible to the
+                modernity doctrine. Judged per-line on the joined
+                source (the family's first per-line face,
+                deliberate), first match wins per line in the TL
+                order (import, bracket, bare), and strings and
+                comments are NOT exempted - a legacy spelling
+                inside a docstring also teaches the old idiom, the
+                md twin's documented design.
 
 Structural health (unparseable JSON, malformed cells/sources) is
 NBH-03's jurisdiction - NBC silently skips what NBH flags, and the
@@ -162,9 +175,17 @@ class has no md twin at all - invisible to the whole fleet on both
 surfaces - so the extension locks the convention (certificate
 verification stays on in runnable code).
 
+NBC-16 born tick-706 the drain-and-lock way: the census (the TL
+judgment mirrored exactly) measured 24 real legacy spellings across
+6 notebooks (10 bracket, 4 import, 10 bare) - the docs-fence modernity
+epic had drained the md universe corpus-wide while the notebook layer
+stayed invisible - the drains landed first (builtin generics, PEP 604
+unions, the four import lines removed), and the gate was born over
+the drained corpus, hard-gated so the old idiom can never regrow.
+
 Hard gate (exit 1 on findings): baseline 0 at birth (tick-691 for
 NBC-01..02, tick-702 for NBC-03..11, tick-703 for NBC-12..14,
-tick-704 for NBC-15).
+tick-704 for NBC-15, tick-706 for NBC-16).
 
 Run over the whole corpus:
     python scripts/qa/notebook_code_scan.py --root .
@@ -589,6 +610,48 @@ def scan_tls(tree: ast.AST, rel: str, idx: int,
                         f"default")
 
 
+_TL_TYPE = r"(?:Optional|Union|List|Dict|Tuple|Set|FrozenSet|Type)"
+_TL_IMPORT_RE = re.compile(
+    rf"^\s*from\s+typing\s+import\s+.*\b{_TL_TYPE}\b")
+_TL_BRACKET_RE = re.compile(rf"\b{_TL_TYPE}\[")
+_TL_BARE_RE = re.compile(
+    rf"(->\s*(?:typing\.)?{_TL_TYPE}\b"
+    rf"|:\s*(?:typing\.)?{_TL_TYPE}\b"
+    rf"|[(,]\s*(?:typing\.)?{_TL_TYPE}\b"
+    rf"|\[\s*(?:typing\.)?{_TL_TYPE}\b"
+    rf"|,\s*(?:typing\.)?{_TL_TYPE}\b)")
+
+
+def scan_typing(src: str, rel: str, idx: int,
+                findings: list[str]) -> None:
+    """NBC-16 over one cell's joined source, per line (born tick-706
+    over the drained corpus; the TL judgment mirrored: the import
+    line first so a multi-name import is not double-counted, first
+    match wins per line, docstrings and comments NOT exempted - they
+    also teach the old idiom)."""
+    for ln in src.split("\n"):
+        if _TL_IMPORT_RE.search(ln):
+            findings.append(
+                f"{rel}: NBC-16 legacy typing import in code cell "
+                f"{idx} - the import-based generics are deprecated "
+                f"since the builtin generics (3.9) and the PEP 604 "
+                f"unions (3.10); drop the import and write the "
+                f"builtin spellings")
+            continue
+        if _TL_BRACKET_RE.search(ln):
+            findings.append(
+                f"{rel}: NBC-16 legacy typing spelling in code "
+                f"cell {idx} - {ln.strip()[:60]!r} - write the "
+                f"builtin-generic spelling (list[str], "
+                f"dict[str, int])")
+            continue
+        if _TL_BARE_RE.search(ln):
+            findings.append(
+                f"{rel}: NBC-16 bare legacy generic in code cell "
+                f"{idx} - {ln.strip()[:60]!r} - write the bare "
+                f"builtin (dict, not the capital-D legacy name)")
+
+
 def scan_nb(root: Path, path: Path, findings: list[str],
             stats: list[int]) -> None:
     rel = path.relative_to(root).as_posix()
@@ -618,6 +681,7 @@ def scan_nb(root: Path, path: Path, findings: list[str],
         scan_unsafe(tree, rel, idx, findings)
         scan_security(src, tree, rel, idx, findings)
         scan_tls(tree, rel, idx, findings)
+        scan_typing(src, rel, idx, findings)
         roots: set[str] = set()
         for node in ast.walk(tree):
             if isinstance(node, ast.Import):
@@ -654,11 +718,11 @@ def main() -> int:
         print(f.encode("ascii", "backslashreplace").decode("ascii"))
     print(f"notebook_code_scan: {len(findings)} findings "
           f"(NBC-01 code-cell syntax / NBC-02 unresolvable import root "
-          f"/ NBC-03..15 the unsafe family twin: bare-broad except, "
+          f"/ NBC-03..16 the md twins: bare-broad except, "
           f"unsafe deserialize, eval-exec, empty mutable default, "
           f"shell-out, mktemp, trust_remote_code, open-no-encoding, "
           f"requests-no-timeout, insecure-tls, secret-shape literals, "
-          f"random-for-security, weak-hash-security; "
+          f"random-for-security, weak-hash-security, legacy-typing; "
           f"{stats[4]} import(s) accepted, {stats[3]} relative skipped, "
           f"{stats[2]} cell(s) left to NBH-03) across {stats[0]} "
           f"notebooks / {stats[1]} code cells in docs/notebooks/ "
@@ -669,7 +733,9 @@ def main() -> int:
           f"in-tick; NBC-12..14 born tick-703 at zero - the "
           f"secret/crypto twins closed, the census clean; "
           f"NBC-15 born tick-704 at zero - the TLS-off face "
-          f"closed, the census clean)")
+          f"closed, the census clean; NBC-16 born tick-706 over the "
+          f"drained corpus - the md typing gate's declared blind "
+          f"spot closed, 24 real legacy spellings drained in-tick)")
     return 1 if findings else 0
 
 
