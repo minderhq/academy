@@ -38,7 +38,7 @@ With Virtualization:
 ```yaml
 Setup: 4x RTX 4090, Proxmox host
 VM Configuration:
-  VM-100: Llama-3-70B, CUDA 12.1, 2x GPU
+  VM-100: Llama-3.3-70B, CUDA 12.1, 2x GPU
   VM-101: Stable Diffusion XL, CUDA 11.8, 1x GPU
   VM-102: Whisper Large, CUDA 12.2, 1x GPU
 Benefits:
@@ -103,7 +103,7 @@ Benefits:
 **Hardware Utilization:**
 ```text
 Without Virtualization:
-├── Server 1: Running Llama-3-70B (2x GPU)
+├── Server 1: Running Llama-3.3-70B (2x GPU)
 ├── Server 2: Running training (4x GPU)
 ├── Server 3: Running inference (2x GPU)
 └── Server 4: Idle (wasted) ❌
@@ -111,7 +111,7 @@ Total: 4 servers, 8 GPUs
 
 With Virtualization:
 ├── Host-1 (4x GPU):
-│   ├── VM-100: Llama-3-70B (2x GPU)
+│   ├── VM-100: Llama-3.3-70B (2x GPU)
 │   ├── VM-101: Training (1x GPU)
 │   └── VM-102: Inference (1x GPU)
 └── Host-2 (4x GPU):
@@ -919,14 +919,14 @@ Hardware:
 Configuration:
   Host: Proxmox VE 8.1
 
-  VM-100 (Llama-3-70B Inference):
+  VM-100 (Llama-3.3-70B Inference):
     vCPU: 8
     RAM: 48 GB
     GPU: 1x RTX 4090
     Storage: 500 GB
     OS: Ubuntu 22.04 LTS
     CUDA: 12.1
-    Model: Llama-3-70B (4-bit)
+    Model: Llama-3.3-70B (4-bit)
 
   VM-101 (Stable Diffusion):
     vCPU: 4
@@ -944,7 +944,7 @@ Configuration:
     OS: Ubuntu 22.04 LTS
 
 Performance:
-  - Llama-3-70B: 25 tokens/sec
+  - Llama-3.3-70B: 25 tokens/sec
   - Stable Diffusion: 20 iterations/sec
   - Utilization: 85% avg
 
@@ -973,7 +973,7 @@ Configuration:
       vCPU: 16
       RAM: 128 GB
       GPU: 2x A100
-      Model: Fine-tuned Llama-3-70B
+      Model: Fine-tuned Llama-3.3-70B
 
     VM-101 (Batch Processing):
       vCPU: 16
@@ -986,7 +986,7 @@ Configuration:
       vCPU: 16
       RAM: 128 GB
       GPU: 2x A100
-      Model: Fine-tuned Llama-3-70B
+      Model: Fine-tuned Llama-3.3-70B
 
     VM-201 (Training):
       vCPU: 24

@@ -93,15 +93,15 @@ vLLM is a high-throughput LLM inference engine: PagedAttention segments the KV c
 ```yaml
 # docker-compose.yml
 services:
-  vllm-mistral:
+  vllm-qwen:
     image: vllm/vllm-openai:v0.30.0   # pinned release (Sep 2026); check releases for newer
-    container_name: academy-vllm-mistral
+    container_name: academy-vllm-qwen
     ports:
       - "8000:8000"
     # command: overrides CMD — the image ENTRYPOINT (the OpenAI-compatible
     # API server) is preserved, so these are server arguments:
     command: >
-      --model TheBloke/Mistral-7B-Instruct-v0.2-AWQ
+      --model Qwen/Qwen2.5-7B-Instruct-AWQ
       --tensor-parallel-size 1
       --gpu-memory-utilization 0.9
       --max-model-len 4096
@@ -136,16 +136,17 @@ services:
         max-size: "10m"
         max-file: "3"
 
-  # meta-llama/Llama-2-7b-chat-hf is gated ("manual" on the Hub) and would
-  # need an HF token with accepted license terms. TheBloke/Llama-2-7B-AWQ is
-  # ungated and pre-quantized, so it needs no token and fits 11GB.
+  # The Meta-Llama-3.1 lineage is gated on the Hub (contact info +
+  # license acceptance), and the hugging-quants AWQ mirror keeps that
+  # gate — this service needs an HF token with accepted license terms.
+  # Pre-quantized INT4 weights still fit 11GB.
   vllm-llama:
     image: vllm/vllm-openai:v0.30.0
     container_name: academy-vllm-llama
     ports:
       - "8001:8000"
     command: >
-      --model TheBloke/Llama-2-7B-AWQ
+      --model hugging-quants/Meta-Llama-3.1-8B-Instruct-AWQ-INT4
       --tensor-parallel-size 1
       --gpu-memory-utilization 0.9
       --max-model-len 4096
@@ -153,6 +154,7 @@ services:
       --host 0.0.0.0
       --port 8000
     environment:
+      - HF_TOKEN=${HF_TOKEN:?set HF_TOKEN in .env}   # gated checkpoint
       - CUDA_VISIBLE_DEVICES=1   # second GPU; on a single 11GB GPU run only
                                  # ONE service — two 7B servers don't fit
     deploy:
@@ -179,17 +181,17 @@ networks:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: vllm-mistral
+  name: vllm-qwen
   namespace: academy
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: vllm-mistral
+      app: vllm-qwen
   template:
     metadata:
       labels:
-        app: vllm-mistral
+        app: vllm-qwen
     spec:
       nodeSelector:
         accelerator: nvidia   # must match the GPU node label (see 1301)
@@ -199,7 +201,7 @@ spec:
         # args (not command:) — command: would replace the image ENTRYPOINT
         args:
           - --model
-          - TheBloke/Mistral-7B-Instruct-v0.2-AWQ   # pre-quantized AWQ: fits 11GB
+          - Qwen/Qwen2.5-7B-Instruct-AWQ   # pre-quantized AWQ: fits 11GB
           - --tensor-parallel-size
           - "1"
           - --gpu-memory-utilization
@@ -211,7 +213,7 @@ spec:
         ports:
         - containerPort: 8000
           name: http
-        # Gated checkpoints (e.g. meta-llama/Llama-2-7b-chat-hf) additionally
+        # Gated checkpoints (e.g. meta-llama/Meta-Llama-3.1-8B-Instruct) additionally
         # need the token:
         # env:
         # - name: HF_TOKEN
@@ -253,11 +255,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: vllm-mistral
+  name: vllm-qwen
   namespace: academy
 spec:
   selector:
-    app: vllm-mistral
+    app: vllm-qwen
   ports:
   - port: 8000
     targetPort: 8000
@@ -286,7 +288,7 @@ spec:
 |-----------|---------|-------------|------------------------|
 | `--tensor-parallel-size` | 1 | GPUs used for tensor parallelism | 1 (single GPU) |
 | `--gpu-memory-utilization` | 0.9 | Fraction of total VRAM vLLM may use (weights + KV cache + activations) | 0.9 — lower only when other processes share the GPU |
-| `--max-model-len` | model's `max_position_embeddings` | Max sequence length. Mistral-7B-v0.2's ceiling is 32768 — left at the default it over-runs the 11GB KV budget, so set it explicitly | 4096 |
+| `--max-model-len` | model's `max_position_embeddings` | Max sequence length. Qwen2.5-7B-Instruct's ceiling is 32768 — left at the default it over-runs the 11GB KV budget, so set it explicitly | 4096 |
 | `--dtype` | auto (from checkpoint config) | Compute dtype for activations/KV | `half` for AWQ checkpoints |
 | `--quantization` | auto-detected for pre-quantized checkpoints | awq/gptq — requires a pre-quantized checkpoint repo | pre-quantized AWQ |
 | `--block-size` | 16 | KV cache block size | leave the default |
@@ -296,8 +298,8 @@ spec:
 ### Performance Tuning Configuration
 
 ```bash
-# High Throughput Configuration (pre-quantized AWQ: ~3.5GB weights)
---model TheBloke/Mistral-7B-Instruct-v0.2-AWQ \
+# High Throughput Configuration (pre-quantized AWQ: ~5.5GB weights)
+--model Qwen/Qwen2.5-7B-Instruct-AWQ \
 --gpu-memory-utilization 0.9 \
 --max-model-len 2048 \
 --max-num-seqs 128 \
@@ -305,18 +307,19 @@ spec:
 # prefix caching stays on for shared system prompts
 
 # Long Context Configuration
---model TheBloke/Mistral-7B-Instruct-v0.2-AWQ \
+--model Qwen/Qwen2.5-7B-Instruct-AWQ \
 --gpu-memory-utilization 0.9 \
 --max-model-len 8192 \
 --max-num-seqs 16 \
 --dtype half
-# budget check: 0.9 x 11GB ~ 9.9GB, minus ~3.5GB weights and ~1.5GB
-# activations leaves ~4.9GB for KV. 7B fp16 KV is ~512KB/token
-# (2 x 32 layers x 4096 hidden x 2 bytes), so one 8k-token
-# sequence needs ~4GB — one long sequence dominates the budget.
+# budget check: 0.9 x 11GB ~ 9.9GB, minus ~5.5GB weights and ~1.2GB
+# activations leaves ~3.2GB for KV. Qwen2.5-7B's GQA keeps KV cheap:
+# ~57KB/token fp16 (2 x 28 layers x 512 kv-dim x 2 bytes), so an
+# 8k-token sequence needs ~0.5GB — roughly six fit at once, and
+# concurrency saturates the budget before context length does.
 
 # Balanced Configuration (11GB VRAM)
---model TheBloke/Mistral-7B-Instruct-v0.2-AWQ \
+--model Qwen/Qwen2.5-7B-Instruct-AWQ \
 --gpu-memory-utilization 0.9 \
 --max-model-len 4096 \
 --max-num-seqs 64 \
@@ -341,7 +344,7 @@ client = OpenAI(
 
 # Chat completion
 response = client.chat.completions.create(
-    model="TheBloke/Mistral-7B-Instruct-v0.2-AWQ",
+    model="Qwen/Qwen2.5-7B-Instruct-AWQ",
     messages=[
         {"role": "system", "content": "You are a helpful assistant for academy."},
         {"role": "user", "content": "Explain quantum computing in simple terms."},
@@ -358,7 +361,7 @@ for chunk in response:
 
 # Non-streaming response
 response = client.chat.completions.create(
-    model="TheBloke/Mistral-7B-Instruct-v0.2-AWQ",
+    model="Qwen/Qwen2.5-7B-Instruct-AWQ",
     messages=[{"role": "user", "content": "What is AI?"}],
     max_tokens=100,
 )
@@ -379,7 +382,7 @@ curl -X POST http://192.168.1.100:8000/v1/chat/completions \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer ${VLLM_API_KEY:?export VLLM_API_KEY first}" \
   -d '{
-    "model": "TheBloke/Mistral-7B-Instruct-v0.2-AWQ",
+    "model": "Qwen/Qwen2.5-7B-Instruct-AWQ",
     "messages": [
       {"role": "user", "content": "Hello!"}
     ],
@@ -391,7 +394,7 @@ curl -X POST http://192.168.1.100:8000/v1/chat/completions \
 curl -X POST http://192.168.1.100:8000/v1/completions \
   -H "Content-Type: application/json" \
   -d '{
-    "model": "TheBloke/Mistral-7B-Instruct-v0.2-AWQ",
+    "model": "Qwen/Qwen2.5-7B-Instruct-AWQ",
     "prompt": "The future of AI is",
     "max_tokens": 50
   }'
@@ -410,7 +413,7 @@ const client = new OpenAI({
 
 async function chat() {
   const response = await client.chat.completions.create({
-    model: 'TheBloke/Mistral-7B-Instruct-v0.2-AWQ',
+    model: 'Qwen/Qwen2.5-7B-Instruct-AWQ',
     messages: [
       { role: 'system', content: 'You are a helpful assistant.' },
       { role: 'user', content: 'Explain Docker.' },
@@ -425,7 +428,7 @@ async function chat() {
 // Streaming
 async function chatStream() {
   const stream = await client.chat.completions.create({
-    model: 'TheBloke/Mistral-7B-Instruct-v0.2-AWQ',
+    model: 'Qwen/Qwen2.5-7B-Instruct-AWQ',
     messages: [
       { role: 'user', content: 'Write a short poem.' },
     ],
@@ -453,7 +456,7 @@ services:
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
-      - vllm-mistral
+      - vllm-qwen
       - vllm-phi
     networks:
       - academy-net
@@ -461,13 +464,13 @@ services:
   # One model per service. One 11GB GPU hosts roughly one quantized 7B
   # (weights + KV cache) — put services on different GPUs via
   # CUDA_VISIBLE_DEVICES.
-  vllm-mistral:
+  vllm-qwen:
     image: vllm/vllm-openai:v0.30.0   # pinned release (Sep 2026); check releases for newer
-    container_name: vllm-mistral
+    container_name: vllm-qwen
     ports:
       - "8001:8000"
     command: >
-      --model TheBloke/Mistral-7B-Instruct-v0.2-AWQ
+      --model Qwen/Qwen2.5-7B-Instruct-AWQ
       --gpu-memory-utilization 0.9 --max-model-len 4096 --dtype half
     environment:
       - CUDA_VISIBLE_DEVICES=0
@@ -502,10 +505,10 @@ events {
 }
 
 http {
-    upstream mistral_replicas {
+    upstream qwen_replicas {
         least_conn;
-        server vllm-mistral:8000;
-        # add replicas with: docker compose up --scale vllm-mistral=2
+        server vllm-qwen:8000;
+        # add replicas with: docker compose up --scale vllm-qwen=2
         # (remove container_name from the service first — scaling
         # conflicts with a fixed container name)
     }
@@ -515,7 +518,7 @@ http {
         server_name _;
 
         location /v1 {
-            proxy_pass http://mistral_replicas;
+            proxy_pass http://qwen_replicas;
             proxy_set_header Host $host;
             proxy_set_header X-Real-IP $remote_addr;
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -525,7 +528,7 @@ http {
         }
 
         location /health {
-            proxy_pass http://mistral_replicas/health;
+            proxy_pass http://qwen_replicas/health;
         }
     }
 }
@@ -557,7 +560,7 @@ global:
 scrape_configs:
   - job_name: 'vllm'
     static_configs:
-      - targets: ['vllm-mistral:8000']
+      - targets: ['vllm-qwen:8000']
     metrics_path: /metrics
 ```
 
@@ -589,10 +592,10 @@ app = FastAPI()
 # Route by the full repo name the server was started with — the "model"
 # field in requests carries exactly that name
 VLLM_ENDPOINTS = {
-    "TheBloke/Mistral-7B-Instruct-v0.2-AWQ": "http://vllm-mistral:8000/v1",
-    "TheBloke/Llama-2-7B-AWQ": "http://vllm-llama:8000/v1",
+    "Qwen/Qwen2.5-7B-Instruct-AWQ": "http://vllm-qwen:8000/v1",
+    "hugging-quants/Meta-Llama-3.1-8B-Instruct-AWQ-INT4": "http://vllm-llama:8000/v1",
 }
-DEFAULT_ENDPOINT = VLLM_ENDPOINTS["TheBloke/Mistral-7B-Instruct-v0.2-AWQ"]
+DEFAULT_ENDPOINT = VLLM_ENDPOINTS["Qwen/Qwen2.5-7B-Instruct-AWQ"]
 
 # Drop empty entries: with API_KEYS unset, "".split(",") yields [""] —
 # an empty-key entry would let requests without an Authorization
@@ -641,10 +644,10 @@ your own hardware with the concurrency techniques below.
 
 Model              Quant      Context    Aggregate tok/s
 ──────────────────────────────────────────────────────────
-Mistral-7B         AWQ 4-bit  2048       ~40-80
-Llama-2-7B         AWQ 4-bit  2048       ~40-80
+Qwen2.5-7B         AWQ 4-bit  2048       ~40-80
+Llama-3.1-8B       AWQ 4-bit  2048       ~30-60
 Phi-2              fp16       2048       ~60-100 (2.7B weights)
-Llama-2-7B         fp16       —          does not fit 11GB (~14GB weights)
+Llama-3.1-8B       fp16       —          does not fit 11GB (~16GB weights)
 Mixtral-8x7B       4-bit      —          does not fit 11GB (~26GB weights)
 
 Per-stream latency stays in the single-digit tok/s; continuous batching
@@ -669,7 +672,7 @@ client = AsyncOpenAI(
 
 async def ask(question: str) -> str:
     response = await client.chat.completions.create(
-        model="TheBloke/Mistral-7B-Instruct-v0.2-AWQ",
+        model="Qwen/Qwen2.5-7B-Instruct-AWQ",
         messages=[{"role": "user", "content": question}],
         max_tokens=256,
     )
@@ -698,9 +701,9 @@ Error: CUDA out of memory
 
 **Solutions:**
 ```bash
-# Serve a pre-quantized checkpoint — fp16 7B weights (~14GB) are over
+# Serve a pre-quantized checkpoint — fp16 7B weights (~15GB) are over
 # budget; --quantization awq is auto-detected from the checkpoint config
---model TheBloke/Mistral-7B-Instruct-v0.2-AWQ
+--model Qwen/Qwen2.5-7B-Instruct-AWQ
 
 # Shorter sequences shrink the KV cache
 --max-model-len 2048
@@ -760,23 +763,23 @@ P95 latency > 500ms
 docker pull vllm/vllm-openai:v0.30.0
 
 # 2. Start the server — the pre-quantized AWQ checkpoint fits an 11GB GPU
-#    (fp16 7B weights need ~14GB and would OOM)
+#    (fp16 7B weights need ~15GB and would OOM)
 docker run -d --gpus all \
   -p 8000:8000 \
-  --name vllm-mistral \
+  --name vllm-qwen \
   vllm/vllm-openai:v0.30.0 \
-  --model TheBloke/Mistral-7B-Instruct-v0.2-AWQ \
+  --model Qwen/Qwen2.5-7B-Instruct-AWQ \
   --gpu-memory-utilization 0.9 \
   --max-model-len 4096
 
 # 3. Test with curl (no --api-key above, so no auth is required)
 curl http://localhost:8000/v1/chat/completions \
   -H "Content-Type: application/json" \
-  -d '{"model": "TheBloke/Mistral-7B-Instruct-v0.2-AWQ", "messages": [{"role": "user", "content": "Hello!"}]}'
+  -d '{"model": "Qwen/Qwen2.5-7B-Instruct-AWQ", "messages": [{"role": "user", "content": "Hello!"}]}'
 
 # 4. Test with Python
 uv pip install openai
-python -c "from openai import OpenAI; client = OpenAI(base_url='http://localhost:8000/v1', api_key='dummy'); print(client.chat.completions.create(model='TheBloke/Mistral-7B-Instruct-v0.2-AWQ', messages=[{'role': 'user', 'content': 'Hello!'}]).choices[0].message.content)"
+python -c "from openai import OpenAI; client = OpenAI(base_url='http://localhost:8000/v1', api_key='dummy'); print(client.chat.completions.create(model='Qwen/Qwen2.5-7B-Instruct-AWQ', messages=[{'role': 'user', 'content': 'Hello!'}]).choices[0].message.content)"
 ```
 
 

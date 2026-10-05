@@ -240,7 +240,7 @@ def deploy_vllm():
         "-v", "/srv/models/vllm:/models",
         "vllm/vllm-openai:latest",
         # --quantization awq requires an AWQ-quantized repo, not the fp16 checkpoint
-        "--model", "TheBloke/Mistral-7B-Instruct-v0.2-AWQ",
+        "--model", "Qwen/Qwen2.5-7B-Instruct-AWQ",
         "--quantization", "awq",
         "--max-model-len", "4096",
         "--gpu-memory-utilization", "0.9",
@@ -271,7 +271,7 @@ def deploy_vllm():
             "http://localhost:8000/v1/chat/completions",
             json={
                 # served model name follows --model
-                "model": "TheBloke/Mistral-7B-Instruct-v0.2-AWQ",
+                "model": "Qwen/Qwen2.5-7B-Instruct-AWQ",
                 "messages": [{"role": "user", "content": "Hello!"}],
                 "max_tokens": 50
             },
@@ -315,7 +315,7 @@ nvidia-smi
 for i in {1..10}; do
   curl -X POST http://localhost:8000/v1/chat/completions \
     -H "Content-Type: application/json" \
-    -d '{"model":"TheBloke/Mistral-7B-Instruct-v0.2-AWQ","messages":[{"role":"user","content":"Test"}]}'
+    -d '{"model":"Qwen/Qwen2.5-7B-Instruct-AWQ","messages":[{"role":"user","content":"Test"}]}'
 done
 ```
 

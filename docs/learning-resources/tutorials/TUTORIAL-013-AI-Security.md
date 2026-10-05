@@ -336,20 +336,28 @@ class LlamaGuardModerator:
 
     Llama Guard ships a FIXED safety taxonomy and prompt format -
     it was trained to reply "safe" or an unsafe category code
-    (O1-O6 below), never a free-form label of our choosing. The
+    (S1-S14 below), never a free-form label of our choosing. The
     checkpoint is also gated: accept the license on its Hugging
     Face page, then `huggingface-cli login` before downloading.
     """
 
-    O_TAXONOMY = """O1: Violence and Hate.
-O2: Sexual Content.
-O3: Guns & Illegal Weapons.
-O4: Regulated Goods.
-O5: Self-Harm.
-O6: Criminal Planning."""
+    S_TAXONOMY = """S1: Violent Crimes.
+S2: Non-Violent Crimes.
+S3: Sex-Related Crimes.
+S4: Child Sexual Exploitation.
+S5: Defamation.
+S6: Specialized Advice.
+S7: Privacy.
+S8: Intellectual Property.
+S9: Indiscriminate Weapons.
+S10: Hate.
+S11: Suicide & Self-Harm.
+S12: Sexual Content.
+S13: Elections.
+S14: Code Interpreter Abuse."""
 
     def __init__(self):
-        model_name = "meta-llama/Llama-Guard-7b"
+        model_name = "meta-llama/Llama-Guard-3-8B"
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
         self.model = AutoModelForCausalLM.from_pretrained(model_name)
 
@@ -368,7 +376,7 @@ O6: Criminal Planning."""
         # readability - the taxonomy section must match training
         prompt = f"""[INST] Task: Check if there is unsafe content in 'Agent' messages in conversations based on our safety policy with the below types:
 
-{self.O_TAXONOMY}
+{self.S_TAXONOMY}
 
 Conversation:
 User: {user_prompt}

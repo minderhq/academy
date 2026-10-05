@@ -7,54 +7,48 @@ name: academy-pytorch
 
 channels:
   - pytorch
+  - nvidia
   - conda-forge
-  - defaults
 
 dependencies:
-  # Python version
-  - python=3.11
+  # Python version (3.13 works too; 3.12 has the widest wheel coverage)
+  - python=3.12
 
   # PyTorch ecosystem
-  - pytorch=2.1.0
-  - torchvision=0.16.0
-  - torchaudio=2.1.0
-  - pytorch-cuda=12.1  # Remove if no GPU available
+  - pytorch=2.6.0
+  - torchvision=0.21.0
+  - torchaudio=2.6.0
+  - pytorch-cuda=12.4  # Remove if no GPU available (CUDA runtime + cuDNN ship with these packages)
 
   # Core ML libraries
-  - numpy=1.24.0
-  - scipy=1.11.0
-  - scikit-learn=1.3.0
-  - pandas=2.0.0
+  - numpy=2.1.0
+  - scipy=1.14.1
+  - scikit-learn=1.6.0
+  - pandas=2.2.3
 
   # Visualization
-  - matplotlib=3.7.0
-  - seaborn=0.12.0
-  - plotly=5.17.0
+  - matplotlib=3.9.0
+  - seaborn=0.13.2
+  - plotly=5.24.0
 
   # Jupyter
-  - jupyter=1.0.0
-  - jupyterlab=4.0.0
-  - ipykernel=6.25.0
-  - nbconvert=7.8.0
-  - jupyter_contrib_nbextensions
+  - jupyter=1.1.1
+  - jupyterlab=4.3.0
+  - ipykernel=6.29.5
+  - nbconvert=7.16.0
 
   # Utilities
-  - tqdm=4.66.0
-  - pillow=10.0.0
-  - requests=2.31.0
+  - tqdm=4.67.0
+  - pillow=11.0.0
+  - requests=2.32.0
 
-  # Development
+  # Development — HF ecosystem via pip: the PyPI releases are the
+  # canonical artifacts; conda builds of them lag behind
   - pip
   - pip:
-      - datasets>=2.14.0
-      - transformers>=4.35.0
-      - accelerate>=0.24.0
-
-# Platform-specific dependencies
-# For GPU support (NVIDIA):
-#   - CUDA toolkit 12.1
-#   - cuDNN 8.9
-# Install via: conda install -c nvidia cuda-toolkit=12.1 cudnn=8.9
+      - datasets>=3.2
+      - transformers>=4.48
+      - accelerate>=1.2
 
 # Verification:
 # After activation, verify installation:

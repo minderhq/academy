@@ -185,7 +185,7 @@ class DevOpsAgent:
     def __init__(self):
         # Initialize LLM - langchain_huggingface wraps a transformers
         # text-generation pipeline (there is no model_id= shortcut).
-        model_id = "meta-llama/Meta-Llama-3-8B-Instruct"
+        model_id = "meta-llama/Meta-Llama-3.1-8B-Instruct"
         tokenizer = AutoTokenizer.from_pretrained(model_id)
         model = AutoModelForCausalLM.from_pretrained(
             model_id,

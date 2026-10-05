@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "adjudicated": "notes written per accepted row (tick-537, carried tick-538); datasets-5.x drain re-blessed 3 files - drain-backlog rows are tagged in-place; tick-554 tutorial FM edits dirtied 12 tutorial files for their first true re-execution - 25 rows adjudicated (env-gaps, by-design server/model hangs, learner-supplied-file demos, ffmpeg/GPU environment requirements) with per-row notes; tick-588 lesson-FM normalization (CC-18 drain, +2 lines near the top of 6 lesson files) shifted 4 already-accepted rows in 3 files (5203 112->114/260->262, 6203 138->140, 7403 153->155) - same defect classes re-blessed at the shifted lines with their notes carried; no fence content changed; tick-589 guide-FM normalization (CC-19 drain, +2 lines after Title in 12 guide files) shifted all 42 already-accepted rows across 11 of those guides (4203 carries none) - 40 re-blessed same-class at the shifted lines with their notes carried, 2 family-reclassified on re-execution (3403 184->186 RUNNER-CRASH->TIMEOUT, the GPU-required load observed hanging past the timeout instead of dying before it could report; 7103 81->83 CODE-SIGNAL:RuntimeError->TIMEOUT, the recorded FLAKY_FAMILY pair); no fence content changed; tick-590 the CC-20 assessment-keyset drain deleted the legacy Phase/Module FM pair from 2300-framework-engineering's PRACTICE.md and QUIZ.md (-2 lines each; QUIZ.md carries no accepted rows), moving PRACTICE.md's 2 accepted rows 72->70 and 316->314; the re-bless re-blessed both at the shifted lines, same class on re-execution (ENV-GAP:tensorflow, UN-LEAK), with their notes carried; no fence content changed; tick-594 the CC-24 tutorial-keyset drain deleted the legacy Category/Related FM pair from TUTORIAL-007-LoRA-Basics.md and TUTORIAL-014-Production-LLM-Systems.md (-2 lines each), moving TUTORIAL-007's 5 accepted rows 164->162, 208->206, 276->274, 327->325 and 389->387 (TUTORIAL-014 carries no accepted rows); the re-bless re-blessed all 5 at the shifted lines, same class on re-execution (SIDE-EFFECT x3, ENV-GAP:trl, UN-LEAK), with their notes carried; no fence content changed; tick-711 the API-surface corrections (5203 PPO re-homed onto trl.experimental.ppo, 4102 EXL2/GPTQ realigned to the 4404/4401 blessed surfaces, VOLUME-4 practice block re-aligned the same way) dirtied 3 fence files for true re-execution - 8 rows re-blessed same-class ENV-GAP (exllamav2, awq, auto_gptq x2, trl, bitsandbytes, vllm x2) with the house optional-package note written per row, and the file's 1 UN-LEAK cascade resolved content-side instead (the star-import removal un-masked the speculative-decoding pseudocode fence, now function-bound the 4202 way, so it runs clean and carries no accepted row); no fence was left accepted without a note; tick-712 the integrity drain (4305 QAT helpers bound + the real torch.ao FakeQuantize surface replacing the fictional bit_width/per_channel kwargs, 4103 pack_4bit defined, 5102 Trainer/train_dataset bound via Dataset.from_list, 5202 pipeline/DPO-recap inputs bound, 3102 online-softmax fixed to the unnormalized-accumulate form, VOLUME-4/phase1/phase5/phase3 content edits) dirtied 10 fence files - 30 rows re-blessed benign-class (13 ENV-GAP:bitblade on the declared composite guide, 4 ENV-GAP:trl, 1 ENV-GAP:bitsandbytes, 5 SIDE-EFFECT, 7 UN-LEAK cascades) with class-appropriate notes; 2 CODE-SIGNAL rows never reached the census - fixed content-side instead (the named_modules mutation RecursionError, the instructions.jsonl FileNotFoundError); tick-712 the integrity drain (4305 QAT helpers bound + the real torch.ao FakeQuantize surface replacing the fictional bit_width/per_channel kwargs, 4103 pack_4bit defined, 5102 Trainer/train_dataset bound via Dataset.from_list, 5202 pipeline/DPO-recap inputs bound, 3102 online-softmax fixed to the unnormalized-accumulate form, VOLUME-4/phase1/phase5/phase3 content edits) dirtied 10 fence files - 30 rows re-blessed benign-class (13 ENV-GAP:bitblade on the declared composite guide, 4 ENV-GAP:trl, 1 ENV-GAP:bitsandbytes, 5 SIDE-EFFECT, 7 UN-LEAK cascades) with class-appropriate notes; 2 CODE-SIGNAL rows never reached the census - fixed content-side instead (the named_modules mutation RecursionError, the instructions.jsonl FileNotFoundError); tick-713 the dead-API drain (Pinecone pod API -> serverless Pinecone/ServerlessSpec, Weaviate v3 Client/schema/data_object -> v4 connect_to_local/collections/data.insert/batch.dynamic across 6402, CP-002, QUICK-REF-V6 and EXP_6401, Milvus time-travel bullet -> the four tunable consistency levels, pgvector HNSW no longer 'in development', the fake phase6 semantic_text_splitter/chunk_text pair -> the real langchain_text_splitters RecursiveCharacterTextSplitter surface, KnowledgeGraphIndex -> PropertyGraphIndex in 6300, wmic x4 -> Get-CimInstance/Get-PSDrive (removed in Windows 11 24H2), QUICK-START's pinned ollama 0.1.x + llama-2 params -> any-recent-build + the modern 7B model roster, EXP_1404 python -m vllm.entrypoints.openai.api_server -> vllm serve with the --speculative-config JSON replacing the fictional --speculative-model/--chat-template tokenizer flags, 1400 README/PRACTICE systemd+yaml blocks -> vllm serve) dirtied 9 fence files - 5 re-executed clean with verdicts and notes unchanged, 9 rows re-blessed benign-class at re-keyed lines (7 ENV-GAP: pinecone, pymilvus, chromadb x2, weaviate x2, ragas; 1 SIDE-EFFECT; 1 UN-LEAK cascade) with class-appropriate notes; zero CODE-SIGNAL - the new fences die at their first import exactly where their v3 predecessors died, and fence_namecheck went 1010->1009 accepted names with 0 new UN-01/UN-02",
+  "adjudicated": "notes written per accepted row (tick-537, carried tick-538); datasets-5.x drain re-blessed 3 files - drain-backlog rows are tagged in-place; tick-554 tutorial FM edits dirtied 12 tutorial files for their first true re-execution - 25 rows adjudicated (env-gaps, by-design server/model hangs, learner-supplied-file demos, ffmpeg/GPU environment requirements) with per-row notes; tick-588 lesson-FM normalization (CC-18 drain, +2 lines near the top of 6 lesson files) shifted 4 already-accepted rows in 3 files (5203 112->114/260->262, 6203 138->140, 7403 153->155) - same defect classes re-blessed at the shifted lines with their notes carried; no fence content changed; tick-589 guide-FM normalization (CC-19 drain, +2 lines after Title in 12 guide files) shifted all 42 already-accepted rows across 11 of those guides (4203 carries none) - 40 re-blessed same-class at the shifted lines with their notes carried, 2 family-reclassified on re-execution (3403 184->186 RUNNER-CRASH->TIMEOUT, the GPU-required load observed hanging past the timeout instead of dying before it could report; 7103 81->83 CODE-SIGNAL:RuntimeError->TIMEOUT, the recorded FLAKY_FAMILY pair); no fence content changed; tick-590 the CC-20 assessment-keyset drain deleted the legacy Phase/Module FM pair from 2300-framework-engineering's PRACTICE.md and QUIZ.md (-2 lines each; QUIZ.md carries no accepted rows), moving PRACTICE.md's 2 accepted rows 72->70 and 316->314; the re-bless re-blessed both at the shifted lines, same class on re-execution (ENV-GAP:tensorflow, UN-LEAK), with their notes carried; no fence content changed; tick-594 the CC-24 tutorial-keyset drain deleted the legacy Category/Related FM pair from TUTORIAL-007-LoRA-Basics.md and TUTORIAL-014-Production-LLM-Systems.md (-2 lines each), moving TUTORIAL-007's 5 accepted rows 164->162, 208->206, 276->274, 327->325 and 389->387 (TUTORIAL-014 carries no accepted rows); the re-bless re-blessed all 5 at the shifted lines, same class on re-execution (SIDE-EFFECT x3, ENV-GAP:trl, UN-LEAK), with their notes carried; no fence content changed; tick-711 the API-surface corrections (5203 PPO re-homed onto trl.experimental.ppo, 4102 EXL2/GPTQ realigned to the 4404/4401 blessed surfaces, VOLUME-4 practice block re-aligned the same way) dirtied 3 fence files for true re-execution - 8 rows re-blessed same-class ENV-GAP (exllamav2, awq, auto_gptq x2, trl, bitsandbytes, vllm x2) with the house optional-package note written per row, and the file's 1 UN-LEAK cascade resolved content-side instead (the star-import removal un-masked the speculative-decoding pseudocode fence, now function-bound the 4202 way, so it runs clean and carries no accepted row); no fence was left accepted without a note; tick-712 the integrity drain (4305 QAT helpers bound + the real torch.ao FakeQuantize surface replacing the fictional bit_width/per_channel kwargs, 4103 pack_4bit defined, 5102 Trainer/train_dataset bound via Dataset.from_list, 5202 pipeline/DPO-recap inputs bound, 3102 online-softmax fixed to the unnormalized-accumulate form, VOLUME-4/phase1/phase5/phase3 content edits) dirtied 10 fence files - 30 rows re-blessed benign-class (13 ENV-GAP:bitblade on the declared composite guide, 4 ENV-GAP:trl, 1 ENV-GAP:bitsandbytes, 5 SIDE-EFFECT, 7 UN-LEAK cascades) with class-appropriate notes; 2 CODE-SIGNAL rows never reached the census - fixed content-side instead (the named_modules mutation RecursionError, the instructions.jsonl FileNotFoundError); tick-712 the integrity drain (4305 QAT helpers bound + the real torch.ao FakeQuantize surface replacing the fictional bit_width/per_channel kwargs, 4103 pack_4bit defined, 5102 Trainer/train_dataset bound via Dataset.from_list, 5202 pipeline/DPO-recap inputs bound, 3102 online-softmax fixed to the unnormalized-accumulate form, VOLUME-4/phase1/phase5/phase3 content edits) dirtied 10 fence files - 30 rows re-blessed benign-class (13 ENV-GAP:bitblade on the declared composite guide, 4 ENV-GAP:trl, 1 ENV-GAP:bitsandbytes, 5 SIDE-EFFECT, 7 UN-LEAK cascades) with class-appropriate notes; 2 CODE-SIGNAL rows never reached the census - fixed content-side instead (the named_modules mutation RecursionError, the instructions.jsonl FileNotFoundError); tick-713 the dead-API drain (Pinecone pod API -> serverless Pinecone/ServerlessSpec, Weaviate v3 Client/schema/data_object -> v4 connect_to_local/collections/data.insert/batch.dynamic across 6402, CP-002, QUICK-REF-V6 and EXP_6401, Milvus time-travel bullet -> the four tunable consistency levels, pgvector HNSW no longer 'in development', the fake phase6 semantic_text_splitter/chunk_text pair -> the real langchain_text_splitters RecursiveCharacterTextSplitter surface, KnowledgeGraphIndex -> PropertyGraphIndex in 6300, wmic x4 -> Get-CimInstance/Get-PSDrive (removed in Windows 11 24H2), QUICK-START's pinned ollama 0.1.x + llama-2 params -> any-recent-build + the modern 7B model roster, EXP_1404 python -m vllm.entrypoints.openai.api_server -> vllm serve with the --speculative-config JSON replacing the fictional --speculative-model/--chat-template tokenizer flags, 1400 README/PRACTICE systemd+yaml blocks -> vllm serve) dirtied 9 fence files - 5 re-executed clean with verdicts and notes unchanged, 9 rows re-blessed benign-class at re-keyed lines (7 ENV-GAP: pinecone, pymilvus, chromadb x2, weaviate x2, ragas; 1 SIDE-EFFECT; 1 UN-LEAK cascade) with class-appropriate notes; zero CODE-SIGNAL - the new fences die at their first import exactly where their v3 predecessors died, and fence_namecheck went 1010->1009 accepted names with 0 new UN-01/UN-02; tick-714 carries the census through the model-fleet modernization: the TheBloke retirement and the Llama-2 -> Llama-3.1/3.3-era swaps across fifteen md surfaces re-executed 10 dirty files, shifting 1403's two credential-guard fences 330/657 to 333/660 -- --update re-keyed the bad rows but rewrote the entry noteless, so the intentional-credential-guard notes were restored verbatim (same verdict, same text); 550/550 steady",
   "children": "census subprocesses run with PYTHONUTF8=1 (the learner baseline ENVIRONMENT-SETUP teaches)",
   "contract": "every non-clean execution outcome must be adjudicated here before fence_exec_gate runs; new rows fail",
   "family_equivalence": [
@@ -47,8 +47,8 @@
    "bad": {}
   },
   "docs/00-META/assessment/phase1-practice.md": {
-   "mtime": 1791109464.052218,
-   "size": 14659,
+   "mtime": 1791221096.049374,
+   "size": 14632,
    "bad": {
     "215": "TIMEOUT"
    },
@@ -272,16 +272,16 @@
    "size": 12904
   },
   "docs/learning-resources/cheat-sheets/QUICK-REF-VOLUME-2.md": {
+   "mtime": 1791221853.3209505,
+   "size": 14360,
    "bad": {
     "228": "ENV-GAP:triton",
     "491": "CODE-SIGNAL:RuntimeError"
    },
-   "mtime": 1790785289.1603675,
    "notes": {
     "228": "optional third-party package the QA environment does not install; the fence documents the install requirement",
     "491": "disk-bound family: writer hits the 2.3GB-free disk (os error 112 / channel closed); FLAKY_FAMILY with TIMEOUT"
-   },
-   "size": 14358
+   }
   },
   "docs/learning-resources/cheat-sheets/QUICK-REF-VOLUME-3.md": {
    "bad": {
@@ -1094,13 +1094,13 @@
    }
   },
   "docs/learning-resources/tutorials/TUTORIAL-012-Production-LLMOps.md": {
-   "mtime": 1791109464.1285214,
-   "size": 26142,
+   "mtime": 1791221096.0509377,
+   "size": 26124,
    "bad": {}
   },
   "docs/learning-resources/tutorials/TUTORIAL-013-AI-Security.md": {
-   "mtime": 1791109464.129521,
-   "size": 28038,
+   "mtime": 1791221853.322966,
+   "size": 28221,
    "bad": {
     "329": "SIDE-EFFECT"
    },
@@ -1155,8 +1155,8 @@
    }
   },
   "docs/phases/phase1-infra/1400-llmops/1402-vLLM-and-TGI.md": {
-   "mtime": 1791109464.1531055,
-   "size": 16389,
+   "mtime": 1791221041.334192,
+   "size": 16436,
    "bad": {
     "179": "ENV-GAP:vllm",
     "288": "UN-LEAK",
@@ -1175,8 +1175,8 @@
    }
   },
   "docs/phases/phase1-infra/1400-llmops/README.md": {
-   "mtime": 1791219555.8931136,
-   "size": 25312,
+   "mtime": 1791221853.3194313,
+   "size": 25388,
    "bad": {}
   },
   "docs/phases/phase1-infra/1400-llmops/assessment/PRACTICE.md": {
@@ -1192,15 +1192,15 @@
    }
   },
   "docs/phases/phase1-infra/1400-llmops/guides/1403-vLLM-Production-Deployment.md": {
-   "mtime": 1791109464.155616,
-   "size": 28723,
+   "mtime": 1791220937.1425378,
+   "size": 28749,
    "bad": {
-    "330": "CODE-SIGNAL:KeyError",
-    "657": "CODE-SIGNAL:KeyError"
+    "333": "CODE-SIGNAL:KeyError",
+    "660": "CODE-SIGNAL:KeyError"
    },
    "notes": {
-    "330": "intentional credential guard: os.environ['VLLM_API_KEY'] fails fast by design when the key is unset",
-    "657": "intentional credential guard: os.environ['VLLM_API_KEY'] fails fast by design when the key is unset"
+    "333": "intentional credential guard: os.environ['VLLM_API_KEY'] fails fast by design when the key is unset",
+    "660": "intentional credential guard: os.environ['VLLM_API_KEY'] fails fast by design when the key is unset"
    }
   },
   "docs/phases/phase1-infra/1400-llmops/guides/1404-TGI-Deployment-Guide.md": {
@@ -2866,13 +2866,13 @@
    }
   },
   "docs/use-cases/UC-002-RAG-Applications.md": {
-   "mtime": 1791126117.92621,
-   "size": 27637,
+   "mtime": 1791221853.3219583,
+   "size": 27639,
    "bad": {}
   },
   "docs/use-cases/UC-003-Agent-Applications.md": {
-   "mtime": 1791082376.8352277,
-   "size": 31200,
+   "mtime": 1791221853.3219583,
+   "size": 31202,
    "bad": {}
   },
   "docs/volumes/VOLUME-2-AI-Foundations.md": {
@@ -2919,8 +2919,8 @@
    }
   },
   "docs/volumes/VOLUME-6-Data-Nexus.md": {
-   "mtime": 1791109464.2911065,
-   "size": 33802,
+   "mtime": 1791221853.3219583,
+   "size": 33801,
    "bad": {
     "257": "ENV-GAP:sentence_transformers",
     "356": "ENV-GAP:sentence_transformers"

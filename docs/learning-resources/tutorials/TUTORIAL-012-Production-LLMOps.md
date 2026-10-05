@@ -157,7 +157,7 @@ services:
     # The repo must be the AWQ-quantized checkpoint: --quantization
     # awq on the fp16 repo fails at load time
     command: >
-      --model TheBloke/Mistral-7B-Instruct-v0.2-AWQ
+      --model Qwen/Qwen2.5-7B-Instruct-AWQ
       --quantization awq
       --max-model-len 4096
       --gpu-memory-utilization 0.9
@@ -329,7 +329,7 @@ metadata:
 data:
   # AWQ-quantized checkpoint - --quantization awq on the fp16 repo
   # fails at load time
-  MODEL_NAME: "TheBloke/Mistral-7B-Instruct-v0.2-AWQ"
+  MODEL_NAME: "Qwen/Qwen2.5-7B-Instruct-AWQ"
   QUANTIZATION: "awq"
   MAX_MODEL_LEN: "4096"
 ---

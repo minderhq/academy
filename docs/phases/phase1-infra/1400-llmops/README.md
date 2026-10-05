@@ -228,7 +228,7 @@ uv pip install vllm
 
 # Start server (the OpenAI-compatible surface; the legacy
 # vllm.entrypoints.api_server module is removed)
-vllm serve meta-llama/Llama-3-70B \
+vllm serve meta-llama/Llama-3.3-70B-Instruct \
   --tensor-parallel-size 2 \
   --gpu-memory-utilization 0.9 \
   --max-model-len 4096 \
@@ -237,7 +237,7 @@ vllm serve meta-llama/Llama-3-70B \
 # Test (OpenAI-compatible endpoint)
 curl http://localhost:8000/v1/chat/completions \
   -H "Content-Type: application/json" \
-  -d '{"model": "meta-llama/Llama-3-70B", "messages": [{"role": "user", "content": "Hello, world!"}], "max_tokens": 50}'
+  -d '{"model": "meta-llama/Llama-3.3-70B-Instruct", "messages": [{"role": "user", "content": "Hello, world!"}], "max_tokens": 50}'
 ```
 
 **Docker Deployment:**
@@ -249,7 +249,7 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - MODEL_NAME=meta-llama/Llama-3-70B
+      - MODEL_NAME=meta-llama/Llama-3.3-70B-Instruct
       - TENSOR_PARALLEL_SIZE=2
     deploy:
       resources:
@@ -273,7 +273,7 @@ services:
 **Quick Start:**
 ```bash
 # Launch TGI
-model=meta-llama/Llama-3-70B
+model=meta-llama/Llama-3.3-70B-Instruct
 volume=$PWD/data # share a volume with the Docker container to avoid downloading weights every run
 
 docker run --gpus all --shm-size 1g -p 8080:80 \
@@ -310,7 +310,7 @@ spec:
         image: ghcr.io/huggingface/text-generation-inference:latest
         args:
           - --model-id
-          - meta-llama/Llama-3-70B
+          - meta-llama/Llama-3.3-70B-Instruct
           - --num-shard
           - "2"
           - --quantize
@@ -394,7 +394,7 @@ After=network.target
 Type=simple
 User=llm
 WorkingDirectory=/opt/vllm
-Environment="MODEL_NAME=meta-llama/Llama-3-70B"
+Environment="MODEL_NAME=meta-llama/Llama-3.3-70B-Instruct"
 Environment="TENSOR_PARALLEL_SIZE=2"
 ExecStart=/usr/bin/vllm serve $MODEL_NAME \
   --tensor-parallel-size $TENSOR_PARALLEL_SIZE \
@@ -679,15 +679,15 @@ Migration path:
 ```text
 Model Requirements:
   Llama-3-8B (4-bit): 6 GB GPU memory
-  Llama-3-70B (4-bit): 40 GB GPU memory
+  Llama-3.3-70B (4-bit): 40 GB GPU memory
 
 GPU Selection:
   Llama-3-8B: RTX 3060 (12 GB) ✅ Cost: $300
-  Llama-3-70B: RTX 4090 (24 GB) ❌ Too small
-  Llama-3-70B: A100 (80 GB) ✅ Cost: $15,000
+  Llama-3.3-70B: RTX 4090 (24 GB) ❌ Too small
+  Llama-3.3-70B: A100 (80 GB) ✅ Cost: $15,000
 
 Better option:
-  Llama-3-70B (4-bit): 2x RTX 3090 (24GB each)
+  Llama-3.3-70B (4-bit): 2x RTX 3090 (24GB each)
   - Cost: $1,500 vs $15,000
   - Tensor parallelism: 2 GPUs
   - Performance: Slightly slower (90%)
@@ -718,7 +718,7 @@ Mitigation:
 ```yaml
 Setup:
   Engine: vLLM
-  Model: Llama-3-70B (4-bit)
+  Model: Llama-3.3-70B (4-bit)
   Hardware: 4x A100 (40GB)
   Deployment: Kubernetes (6 replicas)
 

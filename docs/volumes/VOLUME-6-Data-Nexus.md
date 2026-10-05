@@ -163,7 +163,7 @@ def euclidean_distance(a, b):
 # Popular embedding models:
 sentence-transformers/all-MiniLM-L6-v2  # Fast, good quality
 sentence-transformers/all-mpnet-base-v2  # Better, slower
-text-embedding-ada-002                    # OpenAI (paid)
+text-embedding-3-small                   # OpenAI (paid)
 bge-large-en-v1.5                        # State-of-the-art open source
 
 # Generate embeddings:
@@ -1097,7 +1097,7 @@ def evaluate_rag_system(queries, ground_truth):
 | **all-mpnet-base-v2** | 768 | 2,500 | 0.83 | 400MB | Quality, general |
 | **bge-large-en-v1.5** | 1024 | 1,500 | 0.86 | 1.3GB | State-of-the-art |
 | **e5-large-v2** | 1024 | 1,800 | 0.84 | 1.1GB | Instruction-tuned |
-| **text-embedding-ada-002** | 1536 | 3,000 | 0.85 | API | OpenAI users |
+| **text-embedding-3-small** | 1536 | 4,000 | 0.86 | API | OpenAI users |
 
 ### RAG Configuration Performance
 

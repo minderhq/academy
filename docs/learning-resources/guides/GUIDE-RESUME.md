@@ -188,7 +188,7 @@ Led development of enterprise RAG platform used by 50+ companies:
 • Implemented hybrid search with re-ranking, improving relevance by 32%
 • Built custom evaluation framework with RAGAS and custom metrics
 • Reduced inference costs by 60% through INT4 quantization + caching
-• Tech: Llama-3-70B, Qdrant, FastAPI, Kubernetes, AWS, Ray
+• Tech: Llama-3.3-70B, Qdrant, FastAPI, Kubernetes, AWS, Ray
 
 Fine-tuned domain-specific models for 10+ enterprise clients:
 • Fine-tuned models for legal, medical, and financial domains

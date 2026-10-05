@@ -90,8 +90,8 @@ Example deployment:
 Scenario: 4 GPUs, 3 models
 
 Without Kubernetes (static allocation):
-├── GPU 0: Llama-3-70B (underutilized at 20%)
-├── GPU 1: Llama-3-70B (underutilized at 20%)
+├── GPU 0: Llama-3.3-70B (underutilized at 20%)
+├── GPU 1: Llama-3.3-70B (underutilized at 20%)
 ├── GPU 2: Whisper (underutilized at 10%)
 ├── GPU 3: Stable Diffusion (underutilized at 15%)
 └── Total utilization: 16% ❌ (waste of $30k hardware!)
@@ -101,8 +101,8 @@ Without Kubernetes (static allocation):
 ```text
 Kubernetes monitors GPU utilization
 Automatically consolidates workloads:
-├── GPU 0: Llama-3-70B + Whisper (50% utilization)
-├── GPU 1: Llama-3-70B + Stable Diffusion (60%)
+├── GPU 0: Llama-3.3-70B + Whisper (50% utilization)
+├── GPU 1: Llama-3.3-70B + Stable Diffusion (60%)
 ├── GPU 2: Available for burst workloads
 ├── GPU 3: Available for experiments
 └── Total utilization: 55% ✅ (3x efficiency!)
@@ -421,7 +421,7 @@ spec:
             memory: "32Gi"
         env:
         - name: MODEL_NAME
-          value: "meta-llama/Llama-3-70B"
+          value: "meta-llama/Llama-3.3-70B-Instruct"
         - name: QUANTIZATION
           value: "4bit"
         volumeMounts:
@@ -578,7 +578,7 @@ FROM python:3.13-slim
 
 # Download during build
 RUN python -c "from transformers import AutoModel; \
-  AutoModel.from_pretrained('meta-llama/Llama-3-70B')"
+  AutoModel.from_pretrained('meta-llama/Llama-3.3-70B-Instruct')"
 ```
 
 Method 2: Use PVC:
@@ -812,7 +812,7 @@ kubectl top pods
 Setup:
   Hardware: 1x x86_64 host, 2x 24GB GPUs (e.g., RTX 4090)
   Kubernetes: K3s single-node
-  Models: Llama-3-70B, Whisper Large
+  Models: Llama-3.3-70B, Whisper Large
 
 Configuration:
   Deployment: 2 replicas (1 per GPU)

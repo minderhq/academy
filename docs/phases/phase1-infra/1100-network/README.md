@@ -26,7 +26,7 @@ This module covers networking fundamentals essential for deploying and operating
 
 **Real-World Example:**
 ```text
-Serving Llama-3-70B with 4-bit quantization:
+Serving Llama-3.3-70B with 4-bit quantization:
 - Model size: ~40 GB
 - Token throughput: ~50 tokens/sec per GPU
 - Network impact: ~500 Mbps per active inference request
@@ -127,7 +127,7 @@ Pipeline Parallelism across 2 nodes (100GbE):
 **Case 1: Startup with Limited Budget**
 ```text
 Setup: 4x RTX 4090, 25GbE network
-Model: Llama-3-70B (4-bit quantized)
+Model: Llama-3.3-70B (4-bit quantized)
 Result: 15 tokens/sec per user, supports 50 concurrent users
 Cost: $20,000 (hardware) + $500/month (internet)
 ```
@@ -364,7 +364,7 @@ Step 3: Network Monitoring
 Expected: 1 Gbps download
 Actual: 100 Mbps download
 
-Downloading Llama-3-70B:
+Downloading Llama-3.3-70B:
 - Expected time: ~6 minutes
 - Actual time: ~60 minutes ❌
 ```
@@ -585,7 +585,7 @@ Hardware:
   - Switch: Netgear GS105
 
 Results:
-  - Model: Llama-3-70B (4-bit)
+  - Model: Llama-3.3-70B (4-bit)
   - Inference: 25 tokens/sec
   - Concurrent users: 5-10
   - Monthly cost: $100
@@ -606,7 +606,7 @@ Hardware:
   - Switch: Arista 7050 (used)
 
 Results:
-  - Model: Fine-tuned Llama-3-70B
+  - Model: Fine-tuned Llama-3.3-70B
   - Inference: 200 tokens/sec
   - Concurrent users: 200-500
   - Monthly cost: $2,000

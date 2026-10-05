@@ -85,15 +85,15 @@ Analogy: Like virtual memory paging for LLM KV cache
 ```text
 GPU VRAM (11GB, gpu_memory_utilization=0.9 → ~9.9GB usable):
 ┌────────────────────────────────────────────────────┐
-│ Model Weights         ~3.5GB (Llama-2-7B AWQ 4-bit)│
+│ Model Weights         ~5.5GB (Qwen2.5-7B AWQ 4-bit)│
 ├────────────────────────────────────────────────────┤
 │ KV Cache (Paged)      ~4-5GB (dynamic)            │
 ├────────────────────────────────────────────────────┤
 │ Activations + CUDA    ~1-2GB                       │
 └────────────────────────────────────────────────────┘
 
-Note: the same 7B model in fp16 needs ~14GB for weights
-alone (7B params × 2 bytes) — it does not fit 11GB at all.
+Note: the same 7B-class model in fp16 needs ~15GB for weights
+alone (7.6B params × 2 bytes) — it does not fit 11GB at all.
 Quantization is not optional on this hardware (see
 Performance Tuning below).
 ```
@@ -140,7 +140,7 @@ spec:
         # args (not command:) — command: would replace the image ENTRYPOINT
         args:
           - --model
-          - TheBloke/Llama-2-7B-AWQ   # pre-quantized AWQ: ungated, fits 11GB
+          - Qwen/Qwen2.5-7B-Instruct-AWQ   # pre-quantized AWQ: ungated, fits 11GB
           - --tensor-parallel-size
           - "1"
           - --gpu-memory-utilization
@@ -154,7 +154,7 @@ spec:
         env:
         - name: HF_HOME
           value: /models
-        # Gated models (e.g. meta-llama/Llama-2-7b-hf) also need:
+        # Gated models (e.g. meta-llama/Meta-Llama-3.1-8B-Instruct) also need:
         # - name: HF_TOKEN
         #   valueFrom:
         #     secretKeyRef:
@@ -181,7 +181,7 @@ from vllm import LLM, SamplingParams
 
 # Initialize
 llm = LLM(
-    model="TheBloke/Llama-2-7B-AWQ",  # pre-quantized checkpoint (ungated, fits 11GB)
+    model="Qwen/Qwen2.5-7B-Instruct-AWQ",  # pre-quantized checkpoint (ungated, fits 11GB)
 
     # Tensor Parallelism (multi-GPU)
     tensor_parallel_size=1,          # 1 for single 11GB-class GPU
@@ -256,7 +256,7 @@ spec:
         # text-generation-launcher entrypoint
         args:
           - --model-id
-          - TheBloke/Llama-2-7B-AWQ   # pre-quantized AWQ: quantization is
+          - Qwen/Qwen2.5-7B-Instruct-AWQ   # pre-quantized AWQ: quantization is
                                       # auto-detected — no --quantize/--dtype
           - --num-shard
           - "1"
@@ -268,7 +268,7 @@ spec:
         - containerPort: 80
         # Flash attention is auto-enabled when the model and kernels support
         # it — there is no FLASH_ATTENTION environment variable to set.
-        # TheBloke/Llama-2-7B-AWQ is ungated, so no token is needed. For a
+        # Qwen/Qwen2.5-7B-Instruct-AWQ is ungated, so no token is needed. For a
         # gated model, add:
         # env:
         # - name: HF_TOKEN
@@ -287,24 +287,24 @@ spec:
 ### Memory Utilization
 ```python
 # For an 11GB VRAM GPU
-# Llama-2-7B fp16: ~14GB weights alone (doesn't fit!)
+# Qwen2.5-7B fp16: ~15GB weights alone (doesn't fit!)
 # Solution: pre-quantized checkpoints
 
 llm = LLM(
-    model="TheBloke/Llama-2-7B-AWQ",
+    model="Qwen/Qwen2.5-7B-Instruct-AWQ",
     quantization="awq",
     gpu_memory_utilization=0.9,
     max_model_len=8192  # Longer context with quantized weights
 )
 
 # Memory budget: 0.9 × 11GB ≈ 9.9GB (AWQ)
-# Weights:     ~3.5GB (4-bit)
-# KV Cache:    ~4.9GB left for KV + activations
+# Weights:     ~5.5GB (4-bit)
 # Activations: ~1.5GB
+# KV Cache:    ~2.9GB left
 #
-# KV cache math (Llama-2-7B, fp16 KV):
-#   per token = 2 (K+V) × 32 layers × 4096 hidden × 2 bytes = 512KB
-#   one 8k-token sequence: 8192 × 512KB ≈ 4GB  → fits the budget
+# KV cache math (Qwen2.5-7B, fp16 KV, GQA):
+#   per token = 2 (K+V) × 28 layers × 512 kv-dim × 2 bytes ≈ 57KB
+#   one 8k-token sequence: 8192 × 57KB ≈ 0.5GB  → five-plus fit
 ```
 
 ### Batch Size Optimization
@@ -332,15 +332,15 @@ for batch_size in [1, 2, 4, 8, 16, 32]:
 
 # Option 1: Maximize context length
 llm = LLM(
-    model="TheBloke/Llama-2-7B-AWQ",
+    model="Qwen/Qwen2.5-7B-Instruct-AWQ",
     gpu_memory_utilization=0.9,
-    max_model_len=4096,  # Llama-2's ceiling (max_position_embeddings);
-                         # longer contexts need a long-context model family
+    max_model_len=4096,  # a KV-budget-friendly slice; the model's own
+                         # ceiling is 32768 (max_position_embeddings)
 )
 
 # Option 2: Maximize concurrency
 llm = LLM(
-    model="TheBloke/Llama-2-7B-AWQ",
+    model="Qwen/Qwen2.5-7B-Instruct-AWQ",
     gpu_memory_utilization=0.9,
     max_model_len=2048,  # Shorter context → more KV pages per request
 )
@@ -351,7 +351,7 @@ llm = LLM(
 ### vLLM OpenAI-Compatible API
 ```bash
 # Start server — must be a quantized checkpoint to fit 11GB
-vllm serve TheBloke/Llama-2-7B-AWQ \
+vllm serve Qwen/Qwen2.5-7B-Instruct-AWQ \
   --tensor-parallel-size 1 \
   --gpu-memory-utilization 0.9
 ```
@@ -366,7 +366,7 @@ client = OpenAI(
 )
 
 response = client.chat.completions.create(
-    model="TheBloke/Llama-2-7B-AWQ",
+    model="Qwen/Qwen2.5-7B-Instruct-AWQ",
     messages=[{"role": "user", "content": "Hello!"}],
     max_tokens=512
 )
@@ -404,7 +404,7 @@ from vllm import LLM, SamplingParams
 
 def benchmark_vllm():
     llm = LLM(
-        model="TheBloke/Llama-2-7B-AWQ",
+        model="Qwen/Qwen2.5-7B-Instruct-AWQ",
         gpu_memory_utilization=0.9,
         enable_prefix_caching=False,  # identical prompts would all hit the
                                       # prefix cache and skew the numbers
@@ -435,10 +435,10 @@ your own hardware with the script above.
 
 Model          Quant      Context    Aggregate tok/s
 ──────────────────────────────────────────────────────
-Llama-2-7B     AWQ 4-bit  2048       ~40-80
-Llama-2-7B     GPTQ 4-bit 2048       ~40-80
-Mistral-7B     AWQ 4-bit  2048       ~40-80
-Llama-2-7B     fp16       —          does not fit 11GB (~14GB weights)
+Qwen2.5-7B     AWQ 4-bit  2048       ~40-80
+Qwen2.5-7B     GPTQ 4-bit 2048       ~40-80
+Llama-3.1-8B   AWQ 4-bit  2048       ~30-60
+Qwen2.5-7B     fp16       —          does not fit 11GB (~15GB weights)
 Mixtral-8x7B   4-bit      —          does not fit 11GB (~26GB weights)
 
 Per-stream latency is single-digit tok/s; continuous batching multiplies
