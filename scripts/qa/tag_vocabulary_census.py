@@ -82,7 +82,7 @@ WHITELIST = frozenset([
     'jumbo-frames', 'k3s', 'knowledge-graphs', 'kubernetes', 'kv-cache',
     'lab', 'langchain', 'langgraph', 'learning-rate', 'lifecycle', 'llama', 'llamacpp',
     'llm', 'llmops', 'long-context', 'long-term-memory', 'lora', 'maintenance', 'manufacturing',
-    'math', 'mem0', 'memory', 'milvus', 'mixed-precision', 'mlops',
+    'math', 'mcp', 'mem0', 'memory', 'milvus', 'mixed-precision', 'mlops',
     'model-registry', 'module', 'monitoring', 'mtu', 'multi-agent', 'multi-head',
     'multimodal', 'navigation', 'neo4j', 'networking', 'nginx', 'normalization', 'notebook', 'observability',
     'offloading', 'ollama', 'optimization', 'optimizers', 'orchestration', 'peft',

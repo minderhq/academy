@@ -5,7 +5,7 @@ Last Updated: 2026-10-04
 Status: Complete
 Difficulty: Intermediate
 Prerequisites: []
-Estimated Time: 3 hours
+Estimated Time: 7 hours
 Tags: ['module', 'agents', 'tool-calling']
 ---
 
@@ -58,6 +58,23 @@ After completing this module, you will be able to:
 
 **Guide:** [guides/7202-Code-Interpreter.md](./guides/7202-Code-Interpreter.md)
 
+### [7203: MCP Hands-On](./7203-MCP-Hands-On.md)
+**Tool Servers and Clients over the Model Context Protocol**
+
+- Why MCP: the N×M integration problem collapsed to N+M
+- The architecture: host/client/server, JSON-RPC 2.0, stdio and streamable-http transports
+- Server primitives: tools, resources, prompts — and the reverse direction (elicitation)
+- Building an MCPServer tool server with `@mcp.tool()`
+- The client loop: `list_tools()`, `call_tool()`, in-band `is_error` semantics
+- Reading the wire: initialize, tools/list, tools/call as JSON-RPC messages
+- The v1 `FastMCP` to v2 `MCPServer` rename and the `<2` pin for legacy code
+
+**Experiments:**
+- Build an MCP tool server
+- Walk the client loop against it
+- Replay the JSON-RPC wire messages by hand
+- Validate the tool contract before dispatch
+
 ## Prerequisites
 
 Before starting this module, ensure you have:
@@ -101,10 +118,11 @@ This module connects to:
 | Activity | Time |
 |----------|------|
 | [7201: Tool Calling](./7201-Tool-Calling.md) | 3 hours |
+| [7203: MCP Hands-On](./7203-MCP-Hands-On.md) | 4 hours |
 | Guide ([7202: Code Interpreter](./guides/7202-Code-Interpreter.md)) | 5 hours |
 | Quiz | 30 minutes |
 | Practice | 3 hours |
-| **Total** | **11.5 hours** |
+| **Total** | **15.5 hours** |
 
 ## Resources
 

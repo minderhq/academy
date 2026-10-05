@@ -84,7 +84,11 @@ ACCEPTED_PREFIXES = frozenset({
     "e2b_code_interpreter", "evaluate", "exllamav2", "faster_whisper",
     "flash_attn", "flwr", "gensim", "gymnasium", "jax", "jira",
     "jupyter_client", "kubernetes", "librosa", "lightning",
-    "lion_pytorch", "llama_cpp", "mem0", "mlflow", "node2vec", "opacus",
+    "lion_pytorch", "llama_cpp", "mem0",
+    # tick-717 deliberate same-commit extension: the MCP Python SDK joins
+    # the optional-stack class - 7203 teaches server and client fences
+    # against `pip install mcp` (ENV-GAP:mcp in the accepted exec census)
+    "mcp", "mlflow", "node2vec", "opacus",
     "opentelemetry", "optimum", "phonenumbers", "pinecone",
     "presidio_analyzer", "presidio_anonymizer", "pyannote", "pyaudio",
     "pymilvus", "pynvml", "ragas", "rank_bm25", "restrictedpython",

@@ -517,18 +517,21 @@ tools_researcher = {
 |----------|-------------|------|------------|
 | [7201: Tool Calling](./7200-tools/7201-Tool-Calling.md) | OpenAI-style function calling | 3h | Intermediate |
 | [7202: Code Interpreter](./7200-tools/guides/7202-Code-Interpreter.md) | Sandboxed code execution | 3h | Advanced |
+| [7203: MCP Hands-On](./7200-tools/7203-MCP-Hands-On.md) | Tool servers and clients over MCP | 4h | Intermediate |
 
 **What You'll Learn:**
 - Function calling with LLMs
 - Tool schema definition
 - Sandboxed code execution
 - Error handling and recovery
+- MCP tool servers and clients over one standard surface
 
 **Hands-On Practice:**
 - Implement tool calling system
 - Build code interpreter
 - Create custom tools
 - Handle tool failures gracefully
+- Build an MCP server and walk the client loop
 
 ### [7300] Multi-Agent Orchestration
 
@@ -634,7 +637,7 @@ graph TD
 | Module | Reading | Practice | Total |
 |--------|---------|----------|-------|
 | 7100: Architecture | 11h | 6h | 17h |
-| 7200: Tool Use | 6h | 4h | 10h |
+| 7200: Tool Use | 10h | 4h | 14h |
 | 7300: Orchestration | 8h | 6h | 14h |
 | 7400: Memory | 9h | 6h | 15h |
 | 7500: Security | 9h | — | 9h |
