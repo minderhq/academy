@@ -8,7 +8,10 @@
 # outcomes were recorded under that stack (a partial interpreter
 # re-executes them as ENV-GAP verdicts). --skip is the documented CI
 # shape. Action majors mirror the corpus registry in
-# scripts/qa/action_version_scan.py.
+# scripts/qa/action_version_scan.py, with one divergence: the registry
+# teaches astral-sh/setup-uv@v9, the action's newest published major is
+# v7 - the workflow pins what resolves; the registry tick is the corpus's
+# own to land.
 name: QA fleet
 
 on:
@@ -26,7 +29,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      - uses: astral-sh/setup-uv@v9
+      - uses: astral-sh/setup-uv@v7
         with:
           python-version: "3.13"
           enable-cache: true
