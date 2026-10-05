@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""notebook code-cell gate (NBC-01..14) for Minder Academy.
+"""notebook code-cell gate (NBC-01..15) for Minder Academy.
 
 The .md AST gate family never sees notebook code: codeblock_syntax_scan
 and fence_import_check walk CommonMark fences in docs/**/*.md, while
@@ -107,6 +107,15 @@ NBC-12..14  the secret/crypto twins (born tick-703): secret_shape_scan
                 or the assignment target - vocabulary-free
                 dedup/bucketing hashing stays out, the md twin's
                 measured carve.
+        NBC-15  insecure TLS verification (born tick-704): a
+                requests.<verb> call carrying a falsy verify=
+                constant, a .verify attribute assigned False/None,
+                ssl._create_unverified_context(), or a .verify_mode
+                assignment of ssl.CERT_NONE - every face turns
+                certificate validation off, so the endpoint's
+                identity claim is unchecked and a man-in-the-middle
+                reads everything the cell sends (the requests
+                verbs mirror NBC-11's base).
 
 Structural health (unparseable JSON, malformed cells/sources) is
 NBH-03's jurisdiction - NBC silently skips what NBH flags, and the
@@ -145,8 +154,17 @@ nothing to drain - the extension is born at zero to keep the
 convention (credentials from the environment, randomness stays ML
 sampling, sha256 for any real hashing).
 
+NBC-15 born tick-704 the same born-at-zero way: the census measured
+the TLS-off closet clean (0 falsy verify= kwargs, 0 .verify
+assignments, 0 _create_unverified_context calls, 0 CERT_NONE
+assignments across the same 20 notebooks / 102 code cells) and the
+class has no md twin at all - invisible to the whole fleet on both
+surfaces - so the extension locks the convention (certificate
+verification stays on in runnable code).
+
 Hard gate (exit 1 on findings): baseline 0 at birth (tick-691 for
-NBC-01..02, tick-702 for NBC-03..11, tick-703 for NBC-12..14).
+NBC-01..02, tick-702 for NBC-03..11, tick-703 for NBC-12..14,
+tick-704 for NBC-15).
 
 Run over the whole corpus:
     python scripts/qa/notebook_code_scan.py --root .
@@ -268,6 +286,12 @@ def kw_is_true(call: ast.Call, name: str) -> bool:
 def has_splat(call: ast.Call) -> bool:
     """True when the call carries **kwargs (argument surface unknown)."""
     return any(kw.arg is None for kw in call.keywords)
+
+
+def falsy_const(node: ast.expr) -> bool:
+    """True for a constant False/None (TLS verification disabled)."""
+    return (isinstance(node, ast.Constant)
+            and (node.value is False or node.value is None))
 
 
 def broad_handler(exc_type: ast.expr | None) -> str | None:
@@ -515,6 +539,56 @@ def scan_unsafe(tree: ast.AST, rel: str, idx: int,
                     f"launcher cell forever; pass a timeout")
 
 
+def scan_tls(tree: ast.AST, rel: str, idx: int,
+             findings: list[str]) -> None:
+    """NBC-15 over one parsed cell tree (born tick-704 at zero)."""
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Call) and isinstance(node.func,
+                                                     ast.Attribute):
+            base = (node.func.value.id
+                    if isinstance(node.func.value, ast.Name) else None)
+            if base == "requests" and node.func.attr in _HTTP_VERBS:
+                for kw in node.keywords:
+                    if kw.arg == "verify" and falsy_const(kw.value):
+                        findings.append(
+                            f"{rel}: NBC-15 requests."
+                            f"{node.func.attr} with verify="
+                            f"{kw.value.value!r} in code cell {idx} - "
+                            f"certificate validation is off, so the "
+                            f"endpoint's identity claim is unchecked "
+                            f"and a man-in-the-middle reads everything "
+                            f"the cell sends; keep verify=True or point "
+                            f"verify at a real CA bundle")
+            elif (base == "ssl" and node.func.attr
+                    == "_create_unverified_context"):
+                findings.append(
+                    f"{rel}: NBC-15 ssl._create_unverified_context() "
+                    f"in code cell {idx} - a context that accepts any "
+                    f"certificate turns transport encryption into a "
+                    f"costume; use ssl.create_default_context()")
+        elif isinstance(node, (ast.Assign, ast.AnnAssign)):
+            targets = ([node.target] if isinstance(node, ast.AnnAssign)
+                       else node.targets)
+            for t in targets:
+                if not isinstance(t, ast.Attribute):
+                    continue
+                if t.attr == "verify" and falsy_const(node.value):
+                    findings.append(
+                        f"{rel}: NBC-15 .verify set to a falsy "
+                        f"constant in code cell {idx} - session-level "
+                        f"verification off has the same "
+                        f"man-in-the-middle exposure as verify=False "
+                        f"on the call; keep verification on")
+                elif (t.attr == "verify_mode" and node.value is not None
+                        and dotted_name(node.value) == "ssl.CERT_NONE"):
+                    findings.append(
+                        f"{rel}: NBC-15 verify_mode set to "
+                        f"ssl.CERT_NONE in code cell {idx} - the "
+                        f"context accepts any certificate chain; "
+                        f"CERT_REQUIRED is the default and stays the "
+                        f"default")
+
+
 def scan_nb(root: Path, path: Path, findings: list[str],
             stats: list[int]) -> None:
     rel = path.relative_to(root).as_posix()
@@ -543,6 +617,7 @@ def scan_nb(root: Path, path: Path, findings: list[str],
             continue
         scan_unsafe(tree, rel, idx, findings)
         scan_security(src, tree, rel, idx, findings)
+        scan_tls(tree, rel, idx, findings)
         roots: set[str] = set()
         for node in ast.walk(tree):
             if isinstance(node, ast.Import):
@@ -579,10 +654,10 @@ def main() -> int:
         print(f.encode("ascii", "backslashreplace").decode("ascii"))
     print(f"notebook_code_scan: {len(findings)} findings "
           f"(NBC-01 code-cell syntax / NBC-02 unresolvable import root "
-          f"/ NBC-03..14 the unsafe family twin: bare-broad except, "
+          f"/ NBC-03..15 the unsafe family twin: bare-broad except, "
           f"unsafe deserialize, eval-exec, empty mutable default, "
           f"shell-out, mktemp, trust_remote_code, open-no-encoding, "
-          f"requests-no-timeout, secret-shape literals, "
+          f"requests-no-timeout, insecure-tls, secret-shape literals, "
           f"random-for-security, weak-hash-security; "
           f"{stats[4]} import(s) accepted, {stats[3]} relative skipped, "
           f"{stats[2]} cell(s) left to NBH-03) across {stats[0]} "
@@ -592,7 +667,9 @@ def main() -> int:
           f"born tick-702 at zero - the md unsafe family's declared "
           f"blind spot closed, 4 real teaching-code defects drained "
           f"in-tick; NBC-12..14 born tick-703 at zero - the "
-          f"secret/crypto twins closed, the census clean)")
+          f"secret/crypto twins closed, the census clean; "
+          f"NBC-15 born tick-704 at zero - the TLS-off face "
+          f"closed, the census clean)")
     return 1 if findings else 0
 
 
