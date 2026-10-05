@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
 r"""Mermaid diagram integrity (DM-01..03, HARD) for Minder Academy.
 
-The corpus carries 56 mermaid blocks in 19 docs (52 graph, 2
-stateDiagram-v2, 2 sequenceDiagram) and the platform renders every
-one directly - a syntax-broken block renders as a visible error
-box for the learner, the same defect class as a broken markdown
-table (table_scan TB-01/02). Nothing validated them before.
+The corpus carries 54 rendered mermaid blocks in 18 docs and the
+platform renders every one directly - a syntax-broken block renders
+as a visible error box for the learner, the same defect class as a
+broken markdown table (table_scan TB-01/02). Nothing validated them
+before. (The birth census's 56 included the 2 template ```mermaid
+pairs inside the ````markdown template fence of docs/diagrams/
+README.md - retired as retained fence content once the fence state
+went canonical; a template example renders as template text, not as
+a live diagram.)
 
 DM-01  the first non-empty line of a block must start with a known
        diagram-type keyword (graph/flowchart/sequenceDiagram/
@@ -26,6 +30,20 @@ Quoted segments (`"..."`) are skipped wholesale - quoted label
 text may contain anything. stateDiagram/sequenceDiagram blocks get
 DM-01 only (their message/state syntax has no bracket-label class).
 
+Fence state follows CommonMark (tick-678 canon): the opener captures
+its marker run and info string, a true closer repeats the opener's
+character in a run at least as long, a different fence character
+never closes, and a non-closer marker line inside a block is fence
+content. Mermaid blocks are canon openers whose info string is
+mermaid at any run length - 4-outer and tilde mermaid fences render
+as diagrams and are validated like any other, and the state-aware
+block scan means a foreign-character marker line inside a mermaid
+block no longer terminates the scan early (the old bare-marker skip
+silently dropped the block tail from every DM check). Interior
+diagram lines still reach the DM checks by design - diagram content
+is exactly what renders, this is the gate's purpose (the
+skip-content shape of table_lint/glossary_scan does not apply).
+
 Born tick-462: birth census over all 56 blocks found 0 real
 findings; the first census draft's 25 hits were its own greedy
 label regex spanning `A[x] --> B[y]` edges plus the legitimate
@@ -44,8 +62,7 @@ import re
 import sys
 from pathlib import Path
 
-FENCE = re.compile(r"^ {0,3}(```|~~~)")  # CommonMark: <=3 leading spaces
-MERMAID_OPEN = re.compile(r"^```\s*mermaid\s*$", re.I)
+FENCE_RE = re.compile(r"^\s*(`{3,}|~{3,})\s*([A-Za-z0-9_+-]*)\s*$")
 DIAGRAM_TYPES = (
     "flowchart", "graph", "sequenceDiagram", "classDiagram",
     "stateDiagram", "erDiagram", "journey", "gantt", "pie",
@@ -130,30 +147,42 @@ def main() -> int:
             continue
         lines = body_lines(text)
         rel = path.relative_to(args.root).as_posix()
-        i = 0
-        while i < len(lines):
-            if not MERMAID_OPEN.match(lines[i]):
-                i += 1
+        in_fence: tuple[str, int] | None = None
+        mm_hunt = False   # inside a mermaid block, diagram header not seen
+        mm_graph = False  # graph-family header seen, DM-02/03 active
+        loc = ""
+        for ln_no, ln in enumerate(lines, 1):
+            m = FENCE_RE.match(ln)
+            if m:
+                f_char, f_len = m.group(1)[0], len(m.group(1))
+                if in_fence:
+                    if f_char == in_fence[0] and f_len >= in_fence[1]:
+                        in_fence = None  # true closer ends any block
+                        mm_hunt = mm_graph = False
+                    # a non-closer marker line is fence content; the
+                    # mermaid block stays open (a foreign-character
+                    # marker never ends it early) and the marker line
+                    # itself is not diagram text
+                else:
+                    in_fence = (f_char, f_len)
+                    mm_hunt = m.group(2).lower() == "mermaid"
+                    mm_graph = False
                 continue
-            i += 1
-            while i < len(lines) and not lines[i].strip():
-                i += 1
-            if i >= len(lines) or FENCE.match(lines[i]):
-                continue  # empty block; fence pairing owned by fence gates
-            n_blocks += 1
-            loc = "%s:%d" % (rel, i + 1)
-            hdr = lines[i].strip()
-            if not hdr.startswith(DIAGRAM_TYPES):
-                findings.append("DM-01 %s: unknown diagram header `%s`"
-                                % (loc, hdr[:60]))
-            is_graph = hdr.startswith(("graph", "flowchart"))
-            i += 1
-            while i < len(lines) and not FENCE.match(lines[i]):
-                if is_graph and lines[i].strip():
-                    for p in scan_graph_line(lines[i]):
-                        findings.append("DM %s +%d: %s"
-                                        % (loc, i + 1, p))
-                i += 1
+            if mm_hunt:
+                if not ln.strip():
+                    continue
+                loc = "%s:%d" % (rel, ln_no)
+                hdr = ln.strip()
+                n_blocks += 1
+                if not hdr.startswith(DIAGRAM_TYPES):
+                    findings.append("DM-01 %s: unknown diagram header `%s`"
+                                    % (loc, hdr[:60]))
+                mm_graph = hdr.startswith(("graph", "flowchart"))
+                mm_hunt = False
+                continue
+            if mm_graph and ln.strip():
+                for p in scan_graph_line(ln):
+                    findings.append("DM %s +%d: %s" % (loc, ln_no, p))
         n_docs += 1
     for f in findings:
         print("  " + esc(f))
