@@ -16,6 +16,13 @@ UM-01  a prose line (outside any code fence, inline code scrubbed)
        toggle + inline-code scrub is the shared extraction model.
        Fence markers may carry a ">" blockquote prefix - callout-
        embedded code (e.g. "> ```python") is fenced too.
+       Fence state follows CommonMark (tick-678 canon): the opener
+       captures its marker run, a closer repeats the opener's
+       character in a run at least as long, a different fence
+       character never closes, and a marker line that is not a valid
+       closer is fence content - 4-outer template blocks (FLASHCARDS
+       Notebook-Template, DOCUMENT-TEMPLATE) are content, their
+       interiors never reach the prose scan.
        TODO/TBD/FIXME match uppercase only: lowercase "todo" is the
        exercise domain noun ("todo list manager"), the marker idiom is
        always shouted.
@@ -37,7 +44,7 @@ from pathlib import Path
 
 # Fence markers may carry a ">" blockquote prefix - callout-embedded code
 # (e.g. "> ```python") is fenced code and must toggle the fence state too.
-FENCE_RE = re.compile(r"^\s*(?:>\s*)?(```|~~~)\s*([A-Za-z0-9_+-]*)\s*$")
+FENCE_RE = re.compile(r"^\s*(?:>\s*)?(`{3,}|~{3,})\s*([A-Za-z0-9_+-]*)\s*$")
 INLINE_CODE_RE = re.compile(r"`[^`]*`")
 
 # (pattern, label) pairs - each finding reports the first matching rule.
@@ -53,21 +60,26 @@ RULES = [
 
 def scan_file(root: Path, path: Path, findings: list[str]) -> None:
     rel = path.relative_to(root).as_posix()
-    in_fence = False
+    in_fence: tuple[str, int] | None = None
     for ln, raw in enumerate(path.read_text(encoding="utf-8").split("\n"), 1):
-        if FENCE_RE.match(raw):
-            in_fence = not in_fence
+        m = FENCE_RE.match(raw)
+        if m:
+            f_char, f_len = m.group(1)[0], len(m.group(1))
+            if in_fence:
+                if f_char == in_fence[0] and f_len >= in_fence[1]:
+                    in_fence = None
+            else:
+                in_fence = (f_char, f_len)
             continue
-        if in_fence:
-            continue
-        prose = INLINE_CODE_RE.sub("", raw)
-        for pat, label in RULES:
-            if pat.search(prose):
-                findings.append(
-                    f"{rel}:{ln}: UM-01 unfinished-content marker "
-                    f"({label}); prose only - fenced code is invisible "
-                    f"by design")
-                break
+        if in_fence is None:
+            prose = INLINE_CODE_RE.sub("", raw)
+            for pat, label in RULES:
+                if pat.search(prose):
+                    findings.append(
+                        f"{rel}:{ln}: UM-01 unfinished-content marker "
+                        f"({label}); prose only - fenced code is invisible "
+                        f"by design")
+                    break
 
 
 def main() -> int:
