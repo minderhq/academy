@@ -226,10 +226,10 @@ curl -sfL https://get.k3s.io | sh -
 # Verify installation
 kubectl get nodes
 
-# Enable GPU support
-# Edit /etc/rancher/k3s/config.yaml
-echo "kubelet-arg=config=--feature-gates=DevicePlugins=false" >> \
-  /etc/rancher/k3s/config.yaml
+# Enable GPU support: the DevicePlugins feature gate must stay ON
+# (it is on by default). Never add "feature-gates=DevicePlugins=false"
+# on a GPU node - it hides the GPU from the kubelet (see 1301).
+# GPU exposure comes from the NVIDIA device plugin DaemonSet (see 1302)
 
 systemctl restart k3s
 ```
@@ -356,7 +356,7 @@ helm repo update
 
 # Install device plugin
 kubectl create -f https://raw.githubusercontent.com/\
-  NVIDIA/k8s-device-plugin/v0.14.0/deployments/\
+  NVIDIA/k8s-device-plugin/v0.20.1/deployments/\
   static/nvidia-device-plugin.yml
 
 # Verify GPUs

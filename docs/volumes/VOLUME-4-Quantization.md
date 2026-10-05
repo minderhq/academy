@@ -110,21 +110,30 @@ Use EXL2 when:
 
 **Practice:**
 ```python
-# Convert to EXL2
-from exllamav2 import *
-
-# Convert model
-converter = ExLlamaV2Converter('/path/to/model')
-converter.convert('/output/exl2')
+# Conversion is a CLI (see 4404): python convert.py -i ./model -o ./model-exl2 -b 4.5
+from exllamav2 import (
+    ExLlamaV2,
+    ExLlamaV2Config,
+    ExLlamaV2Tokenizer,
+    ExLlamaV2Cache,
+)
+from exllamav2.generator import ExLlamaV2DynamicGenerator, ExLlamaV2Sampler
 
 # Load and run
-model = ExLlamaV2('/output/exl2')
+config = ExLlamaV2Config()
+config.model_dir = "/output/exl2"
+model = ExLlamaV2(config)
 model.load()
-tokenizer = ExLlamaV2Tokenizer(model)
-generator = ExLlamaV2Generator(model, tokenizer)
+tokenizer = ExLlamaV2Tokenizer(config)
+cache = ExLlamaV2Cache(model, max_seq_len=2048, lazy=True)
+generator = ExLlamaV2DynamicGenerator(model=model, cache=cache, tokenizer=tokenizer)
 
 # Generate
-text = generator.generate("Hello, world!", max_tokens=100)
+text = generator.generate(
+    "Hello, world!",
+    gen_settings=ExLlamaV2Sampler.Settings(temperature=0.7),
+    max_new_tokens=100,
+)
 ```
 
 **Checkpoint:** You understand extreme quantization formats
@@ -248,16 +257,19 @@ summarize older context
 
 **How It Works:**
 ```python
-# Speculative decoding process:
+# Speculative decoding process (the serving engine supplies both
+# models - see the real API in the Practice block below and 4202):
+def speculative_decode(draft_model, main_model, prompt, K=10):
+    # 1. Draft model (small, fast) generates K tokens
+    draft_tokens = draft_model.generate(prompt, K=K)
 
-# 1. Draft model (small, fast) generates K tokens
-draft_tokens = draft_model.generate(prompt, K=10)
+    # 2. Main model (large, accurate) verifies in parallel
+    verification = main_model.verify(prompt, draft_tokens)
 
-# 2. Main model (large, accurate) verifies in parallel
-verification = main_model.verify(prompt, draft_tokens)
+    # 3. Accept verified tokens, reject others
+    # 4. Repeat
 
-# 3. Accept verified tokens, reject others
-# 4. Repeat
+    return verification
 
 # Speedup: 2-3x faster for same quality
 ```
@@ -322,6 +334,8 @@ llm = LLM(
 )
 
 # High concurrency (100+ simultaneous requests)
+prompts = ["Hello, world!", "Explain quantization in one sentence."]
+sampling_params = SamplingParams(temperature=0.7, max_tokens=128)
 outputs = llm.generate(prompts, sampling_params)
 ```
 

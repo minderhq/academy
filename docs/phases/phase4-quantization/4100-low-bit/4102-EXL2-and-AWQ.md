@@ -32,11 +32,11 @@ Tags: ['quantization', 'gguf', 'exl2', 'awq', 'compression']
 
 After completing this lesson, you will be able to:
 
-- Configure EXL2 conversions with `convert.py -b` — single 4.5 bpw targets and mixed `-b 4.0,3.5` attention/FFN splits — and read the 2.0-8.0 bpw ladder's VRAM-per-quality step
-- Load EXL2 checkpoints with the ExLlamaV2 stack (Config → ExLlamaV2 → ExLlamaV2Cache → Generator) and attribute the ~2x speedup over GGUF Q4_K (90 vs 45 tok/s at 7B) to its CUDA-tensor-core layout
+- Configure EXL2 conversions with `convert.py -i -o -b` — one AVERAGE-BPW target per run (the converter's measurement pass picks the per-layer mix; there is no comma-separated `-b` list and no per-layer DSL) — and read the 2.0-8.0 bpw ladder's VRAM-per-quality step
+- Load EXL2 checkpoints with the ExLlamaV2 stack (Config → ExLlamaV2 → ExLlamaV2Cache → ExLlamaV2DynamicGenerator) and attribute the ~2x speedup over GGUF Q4_K (90 vs 45 tok/s at 7B) to its CUDA-tensor-core layout
 - Implement AWQ's salient-weight rule — calibration activation scales × weight magnitudes select the top 1% kept in fp16 — and account for its 2-3% perplexity cost against GPTQ's 5-7%
 - Quantize with GPTQ via `optimum-cli export llama --format gptq --bits 4 --group-size 128 --dataset c4`, explaining its Hessian-driven, block-wise, calibration-dependent nature
-- Read the method table to select per scenario — AWQ (+3%) for quality or EXL2 4.5 (+4%) for speed at 7B, EXL2 4.0 for 13B, GGUF Q4_K hybrid for 34B (not recommended on an 11GB-class GPU) — then refine with layer-wise bpw (5-bit attention, 4-bit FFN, 8-bit lm_head)
+- Read the method table to select per scenario — AWQ (+3%) for quality or EXL2 4.5 (+4%) for speed at 7B, EXL2 4.0 for 13B, GGUF Q4_K hybrid for 34B (not recommended on an 11GB-class GPU) — then refine with the two real levers, the average (`-b`) and the head bits (`-hb`)
 
 ---
 
@@ -56,19 +56,17 @@ EXL2 is a custom quantization format for ExLlamaV2:
 - Supports 2-8 bit quantization
 ```
 
-### EXL2 Architecture
+### EXL2 Output Format
 ```text
-EXL2 Format:
-┌─────────────────────────────────────────┐
-│  Header                                 │
-│  - Tensor count                         │
-│  - Tensor info (name, shape, dtype)     │
-├─────────────────────────────────────────┤
-│  Tensor Data (quantized)                │
-│  - Variable bit rate per tensor         │
-│  - Optimized for GPU memory layout      │
-│  - Pre-allocated for fast loading       │
-└─────────────────────────────────────────┘
+An EXL2 "model" is an ordinary HF-style output DIRECTORY —
+there is no .exl2 container file:
+
+llama-2-7b-exl2/
+├── config.json             # Model config (quantization_config notes BPW)
+├── tokenizer.model         # Tokenizer
+├── output.safetensors      # Quantized weights (sharded when large)
+└── measurement.json        # The measurement pass's per-layer
+                            # sensitivity scores (reused on resume)
 ```
 
 ### EXL2 Quantization Levels
@@ -93,22 +91,28 @@ EXL2_QUANT_LEVELS = {
 
 ### Converting to EXL2
 ```bash
-# Install ExLlamaV2
-git clone https://github.com/turboderp/exllamav2
-cd exllamav2
-uv pip install -e .   # editable install of the checkout
+# Install ExLlamaV2 (the v2 repo is archived; development continues
+# on ExLlamaV3 at turboderp-org/exllamav3 — same conversion flow)
+uv pip install exllamav2
 
-# Convert model to EXL2
+# Convert model to EXL2: -i source dir, -o output dir (also the
+# converter's scratch space), -b ONE average-BPW target, -c parquet
+# calibration dataset (omit for the built-in default)
 python convert.py \
   -i /models/llama-2-7b \
   -o /models/llama-2-7b-exl2 \
-  -b 4.5  # Bits per weight
+  -c calibration_data.parquet \
+  -b 4.5  # Bits per weight (average)
 
-# For mixed precision (different bpw per layer)
+# For a different quality/speed point, re-run with a new average and
+# higher head bits — the measurement pass then redistributes the
+# per-layer 2/3/4/5/6/8-bit mix to land on your target
 python convert.py \
   -i /models/mixtral-8x7b \
   -o /models/mixtral-8x7b-exl2 \
-  -b 4.0,3.5  # Attention: 4-bit, FFN: 3.5-bit
+  -b 3.5 -hb 8
+# There is no per-layer CLI: "Attention: 4-bit, FFN: 3.5-bit" is not a
+# thing you steer — no comma-separated -b list exists
 ```
 
 ### Using EXL2 with ExLlamaV2
@@ -119,10 +123,12 @@ from exllamav2 import (
     ExLlamaV2Tokenizer,
     ExLlamaV2Cache,
 )
+from exllamav2.generator import ExLlamaV2DynamicGenerator, ExLlamaV2Sampler
 
 # Load model
 config = ExLlamaV2Config()
 config.model_dir = "/models/llama-2-7b-exl2"
+config.max_seq_len = 4096
 
 model = ExLlamaV2(config)
 model.load()
@@ -130,19 +136,26 @@ model.load()
 # Tokenizer
 tokenizer = ExLlamaV2Tokenizer(config)
 
-# Cache
-cache = ExLlamaV2Cache(model, max_seq_len=4096)
+# Cache (lazy defers allocation until the first token)
+cache = ExLlamaV2Cache(model, max_seq_len=4096, lazy=True)
 
-# Inference
-from exllamav2.generator import ExLlamaV2Generator
-
-generator = ExLlamaV2Generator(model, tokenizer, cache)
-settings = ExLlamaV2Generator.Settings()
+# Inference — keyword args in that order: model, cache, tokenizer
+generator = ExLlamaV2DynamicGenerator(
+    model=model,
+    cache=cache,
+    tokenizer=tokenizer,
+)
+settings = ExLlamaV2Sampler.Settings()
 settings.temperature = 0.7
 settings.top_p = 0.9
 settings.top_k = 40
 
-text = generator.generate("Once upon a time", settings=settings)
+text = generator.generate(
+    "Once upon a time",
+    gen_settings=settings,
+    max_new_tokens=256,
+    add_bos=True,
+)
 print(text)
 ```
 
@@ -289,37 +302,55 @@ GPTQ: Post-Training Quantization with Gradient Information
 ```
 
 ### GPTQ Quantization
-```bash
-# Install GPTQ-for-LLaMa
-uv pip install optimum
+```python
+# uv pip install auto-gptq — the classic API; GPTQModel (ModelCloud) is
+# its maintained successor with the same quantize()/save_quantized() flow
+from auto_gptq import AutoGPTQForCausalLM, BaseQuantizeConfig
+from transformers import AutoTokenizer
 
-# Quantize with GPTQ
-optimum-cli export llama \
-  --model /models/llama-2-7b \
-  --quantize \
-  --format gptq \
-  --bits 4 \
-  --group-size 128 \
-  --dataset c4 \
-  --output /models/llama-2-7b-gptq
+# Quantization config: Hessian-damped, block-wise, calibration-driven
+quantize_config = BaseQuantizeConfig(
+    bits=4,             # 4-bit quantization
+    group_size=128,     # Group size for quantization
+    damp_percent=0.01,  # Damping factor for the Hessian
+    sym=True,           # Symmetric quantization
+    true_sequential=True,
+)
+
+tokenizer = AutoTokenizer.from_pretrained("/models/llama-2-7b")
+model = AutoGPTQForCausalLM.from_pretrained(
+    "/models/llama-2-7b",
+    quantize_config=quantize_config,
+)
+
+# Calibration data (needed for Hessian estimation)
+from datasets import load_dataset
+
+dataset = load_dataset("c4", "en", split="train")
+calibration_data = [
+    tokenizer(example["text"], return_tensors="pt")["input_ids"]
+    for example in dataset.select(range(128))
+]
+
+# Quantize and save
+model.quantize(calibration_data, batch_size=1)
+model.save_quantized("/models/llama-2-7b-gptq")
+tokenizer.save_pretrained("/models/llama-2-7b-gptq")
 ```
 
 ### Using GPTQ Models
 ```python
-from transformers import AutoModelForCausalLM, AutoTokenizer
-from optimum.bettertransformer import BetterTransformer
+from auto_gptq import AutoGPTQForCausalLM
+from transformers import AutoTokenizer
 
-# Load GPTQ model
-model = AutoModelForCausalLM.from_pretrained(
+# Load quantized model — no load_in_4bit kwarg: the checkpoint is
+# already quantized, from_quantized rebuilds the quantized layers
+model = AutoGPTQForCausalLM.from_quantized(
     "/models/llama-2-7b-gptq",
     device_map="auto",
-    quantization_config={"load_in_4bit": True},
+    use_safetensors=True,
 )
-
 tokenizer = AutoTokenizer.from_pretrained("/models/llama-2-7b-gptq")
-
-# Optional: BetterTransformer optimization
-model = BetterTransformer.transform(model, keep_original_model=False)
 
 # Inference
 inputs = tokenizer("Hello, world!", return_tensors="pt").to("cuda")

@@ -226,17 +226,18 @@ PagedAttention:
 # Install vLLM
 uv pip install vllm
 
-# Start server
-python -m vllm.entrypoints.api_server \
-  --model meta-llama/Llama-3-70B \
+# Start server (the OpenAI-compatible surface; the legacy
+# vllm.entrypoints.api_server module is removed)
+vllm serve meta-llama/Llama-3-70B \
   --tensor-parallel-size 2 \
   --gpu-memory-utilization 0.9 \
   --max-model-len 4096 \
   --port 8000
 
-# Test
-curl http://localhost:8000/generate \
-  -d '{"prompt": "Hello, world!", "max_tokens": 50}'
+# Test (OpenAI-compatible endpoint)
+curl http://localhost:8000/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -d '{"model": "meta-llama/Llama-3-70B", "messages": [{"role": "user", "content": "Hello, world!"}], "max_tokens": 50}'
 ```
 
 **Docker Deployment:**
@@ -332,7 +333,7 @@ spec:
 **Quick Start:**
 ```bash
 # Install Ollama
-curl https://ollama.ai/install.sh | sh
+curl -fsSL https://ollama.com/install.sh | sh
 
 # Run model
 ollama run llama3:70b
@@ -395,7 +396,7 @@ User=llm
 WorkingDirectory=/opt/vllm
 Environment="MODEL_NAME=meta-llama/Llama-3-70B"
 Environment="TENSOR_PARALLEL_SIZE=2"
-ExecStart=/usr/bin/python3 -m vllm.entrypoints.api_server \
+ExecStart=/usr/bin/python3 -m vllm.entrypoints.openai.api_server \
   --model $MODEL_NAME \
   --tensor-parallel-size $TENSOR_PARALLEL_SIZE \
   --gpu-memory-utilization 0.9 \
@@ -511,7 +512,7 @@ After 1000 requests:
 **Solution:**
 ```yaml
 # Use vLLM with PagedAttention ✅
-python -m vllm.entrypoints.api_server \
+python -m vllm.entrypoints.openai.api_server \
   --gpu-memory-utilization 0.9 \
   --max-model-len 4096 \
   --block-size 16

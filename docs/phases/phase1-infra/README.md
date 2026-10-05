@@ -214,7 +214,7 @@ graph TB
 |----------|-------------------|-----|
 | **Development** | Ollama | Easy setup, local testing |
 | **High Throughput** | vLLM | PagedAttention, best concurrency |
-| **Production** | TGI or vLLM | Battle-tested, production-ready |
+| **Production** | vLLM | The serving default; TGI is maintenance-mode since its March 2026 archive (see 1403) |
 | **Low Memory** | vLLM + AWQ | Best memory efficiency |
 
 ---
@@ -360,13 +360,13 @@ graph LR
 **What You'll Learn:**
 - Ollama for local model serving
 - vLLM PagedAttention mechanism
-- TGI production deployment
+- TGI deployment (maintenance-mode reference; vLLM is the production default)
 - Model quantization (AWQ, GPTQ)
 
 **Hands-On Practice:**
 - Deploy Ollama on K3s
 - Configure vLLM with quantized model
-- Set up TGI for production
+- Set up vLLM for production (1404's TGI guide kept as a maintenance-mode reference)
 - Benchmark inference throughput
 
 ### [1500] Monitoring & Observability
@@ -456,7 +456,7 @@ After completing this phase, you will be able to:
 
 4. **Run Production Inference**
    - Deploy vLLM with PagedAttention
-   - Configure TGI for production
+   - Configure the OpenAI-compatible endpoint for production
    - Use quantized models (AWQ/GPTQ)
    - Optimize throughput and latency
 
@@ -512,7 +512,7 @@ kubectl get nodes
 # Shows no GPU resources
 
 # Right: Install Nvidia device plugin
-kubectl apply -f https://raw.githubusercontent.com/NVIDIA/k8s-device-plugin/v0.14.0/nvidia-device-plugin.yml
+kubectl apply -f https://raw.githubusercontent.com/NVIDIA/k8s-device-plugin/v0.20.1/nvidia-device-plugin.yml
 
 # Verify GPU is available
 kubectl describe node | grep nvidia.com/gpu

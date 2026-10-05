@@ -600,7 +600,7 @@ server {
 # for practice; pin distinct GPUs with device_ids when more are present
 services:
   vllm-1:
-    image: vllm/vllm-openai:v0.6.0
+    image: vllm/vllm-openai:v0.30.0
     container_name: vllm-1
     ports:
       - "8001:8000"
@@ -620,7 +620,7 @@ services:
       - vllm-network
 
   vllm-2:
-    image: vllm/vllm-openai:v0.6.0
+    image: vllm/vllm-openai:v0.30.0
     container_name: vllm-2
     ports:
       - "8002:8000"
@@ -640,7 +640,7 @@ services:
       - vllm-network
 
   vllm-3:
-    image: vllm/vllm-openai:v0.6.0
+    image: vllm/vllm-openai:v0.30.0
     container_name: vllm-3
     ports:
       - "8003:8000"

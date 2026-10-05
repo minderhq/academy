@@ -122,7 +122,7 @@ spec:
     spec:
       containers:
       - name: vllm
-        image: vllm/vllm-openai:v0.6.0
+        image: vllm/vllm-openai:v0.30.0
         # The vLLM OpenAI server is configured with CLI flags, not
         # env vars - MODEL_NAME-style env settings are silently
         # ignored. The model here is ungated; a gated model (Llama-2
@@ -332,7 +332,7 @@ spec:
     spec:
       containers:
       - name: vllm
-        image: vllm/vllm-openai:v0.6.0
+        image: vllm/vllm-openai:v0.30.0
         # envFrom injects every key of both resources as environment
         # variables - no per-key env entries are needed on top of it
         # (the old MODEL_NAME / HUGGING_FACE_TOKEN entries only

@@ -298,7 +298,7 @@ graph LR
 | **LangGraph** | Multi-Agent | Medium | Complex workflows | Excellent |
 | **AutoGen** | Multi-Agent | Medium | Conversational agents | Good |
 | **CrewAI** | Multi-Agent | Low | Role-playing agents | Medium |
-| **OpenAI Swarm** | Multi-Agent | Low | Simple orchestration | Basic |
+| **OpenAI Agents SDK** | Multi-Agent | Low | Handoffs + guardrails (Swarm's successor) | Growing |
 | **LangChain** | Single/Multi | High | Production systems | Excellent |
 | **LlamaIndex Agents** | Single/Multi | Medium | RAG-enhanced agents | Good |
 
@@ -308,7 +308,7 @@ graph LR
 ┌──────────────────────────────────────────────────────────────┐
 │                    Framework Feature Comparison              │
 ├──────────────────────────────────────────────────────────────┤
-│ Feature          │ LangGraph │ AutoGen │ CrewAI │ Swarm │ LC │
+│ Feature          │ LangGraph │ AutoGen │ CrewAI │Agents │ LC │
 ├──────────────────┼───────────┼─────────┼────────┼───────┼────┤
 │ Visual Builder   │    Y      │   N     │   N    │  N    │  N │
 │ Type Safety      │    Y      │   !     │   N    │  N    │  N │
@@ -330,7 +330,7 @@ graph LR
 | **Complex Workflows** | LangGraph | Visual builder, state management |
 | **Chat Between Agents** | AutoGen | Built-in conversational patterns |
 | **Role-Based Teams** | CrewAI | Simple role definition |
-| **Quick Prototyping** | OpenAI Swarm | Minimal setup, fast iteration |
+| **Quick Prototyping** | OpenAI Agents SDK | Swarm's successor (archived): minimal setup, handoffs + guardrails |
 | **Production Systems** | LangChain | Mature ecosystem, battle-tested |
 | **RAG + Agents** | LlamaIndex | Native RAG integration |
 
@@ -970,7 +970,7 @@ message = AgentMessage(
 | **LangGraph** | Medium | Low | Excellent |
 | **AutoGen** | Low | Medium | Good |
 | **CrewAI** | Low | Medium | Good |
-| **Swarm** | Very Low | Low | Medium |
+| **OpenAI Agents SDK** | Very Low | Low | Medium |
 | **LangChain** | High | Medium | Medium |
 
 ### Cost Analysis (GPT-4)
