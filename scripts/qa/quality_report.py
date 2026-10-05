@@ -3346,6 +3346,7 @@ GATES = [
     ("notebook_execution_scan.py", "notebook_execution_scan", True),
     ("notebook_pip_scan.py", "notebook_pip_scan", True),
     ("notebook_mdcell_scan.py", "notebook_mdcell_scan", True),
+    ("table_health_scan.py", "table_health_scan", True),
     ("changelog_summary_check.py", "changelog_summary_check", True),
     ("course_card_check.py", "course_card_check", True),
     ("lab_index_parity_check.py", "lab_index_parity_check", True),
