@@ -204,6 +204,12 @@ the same AS-04/AS-08/AS-09 standards in their own "### N." shape):
          them the generic was itself the key), phase quizzes
          born clean, drained same tick - born-at-zero
 
+Fence model: the tick-678 CommonMark canon state machine in
+fence_aware() - tick-689 replaced the bare startswith('```') bool
+toggle, which never modeled run length (a 4-run super-fence opened
+and its first inner marker closed it, exposing the inner template
+pair to the question/option model) and never saw a tilde fence.
+
 Format-tolerant by design: richer variants (inline-answer quizzes,
 self-graded coding questions, 3-column answer keys) pass as long as
 coverage is complete and consistent. CI-style exit code; ASCII-safe
@@ -311,6 +317,11 @@ show describe describes describing best least called name named term
 refers refer referring mean means meaning
 """.split())
 ECHO_TOK = re.compile(r"[a-z0-9_]+")
+# the tick-678 CommonMark fence canon (landed tick-689): run-length
+# openers, tilde fences included, a true closer repeats the opener
+# character in a run at least as long, a different fence character
+# never closes, a non-closer marker line is fence content.
+FENCE_OPEN = re.compile(r"^\s*(`{3,}|~{3,})\s*([A-Za-z0-9_+-]*)\s*$")
 
 
 def echo_tokens(text: str) -> set:
@@ -332,12 +343,25 @@ def stem_text(line: str) -> str:
 
 
 def fence_aware(lines):
-    """Yield (line, in_fence); a ``` line toggles for subsequent lines."""
-    fence = False
+    """Yield (line, in_fence) under the tick-678 CommonMark canon; the
+    marker line itself is yielded with the PRE-update state, the opener
+    opens for subsequent lines, a true closer repeats the opener
+    character in a run at least as long, a different fence character
+    never closes, and a non-closer marker line is fence content (the
+    old bare startswith('```') toggle opened a 4-run super-fence and
+    let its first inner marker close it, exposing the inner template
+    pair to the question/option model)."""
+    fence: tuple[str, int] | None = None
     for line in lines:
-        yield line, fence
-        if line.strip().startswith("```"):
-            fence = not fence
+        yield line, fence is not None
+        m = FENCE_OPEN.match(line)
+        if m:
+            ch, run = m.group(1)[0], len(m.group(1))
+            if fence:
+                if ch == fence[0] and run >= fence[1]:
+                    fence = None
+            else:
+                fence = (ch, run)
 
 
 class Linter:

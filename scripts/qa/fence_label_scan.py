@@ -23,8 +23,13 @@ family model below rather than structure_lint's bare one.
 
 Fence model: the shared family idiom (unfinished_marker_scan /
 empty_section_scan / emoji_shortcode_scan) - length-aware ticks, ">"
-blockquote prefix, frontmatter skipped. Interior fence lookalikes
-inside 4-backtick super-fences are invisible by design.
+blockquote prefix, frontmatter skipped. tick-689 lands the tick-678
+CommonMark canon on top: tilde openers join, the state carries
+(fence char, run) so a different fence character never closes, and
+the closer rule stays CommonMark (same character, run at least as
+long, empty info string) - a labeled marker inside an open fence is
+fence content, never a toggle. Interior fence lookalikes inside
+4-backtick super-fences are invisible by design.
 
 Hard gate (exit 1 on findings): baseline 0 at birth (tick-280).
 
@@ -39,7 +44,12 @@ import sys
 from pathlib import Path
 
 # Shared family idiom: length-aware ticks + blockquote prefix.
-FENCE_RE = re.compile(r"^\s*(?:>\s*)?(`{3,})([\w+-]*)\s*$")
+# tick-689 lands the tick-678 CommonMark canon: tilde openers join,
+# the state carries (fence char, run) instead of a bare run, and a
+# true closer repeats the opener CHARACTER in a run at least as long
+# (a different fence character never closes); the blockquote prefix
+# and the CommonMark empty-label closer rule are kept.
+FENCE_RE = re.compile(r"^\s*(?:>\s*)?(`{3,}|~{3,})\s*([A-Za-z0-9_+-]*)\s*$")
 
 
 def scan_file(root: Path, path: Path, findings: list[str]) -> None:
@@ -55,26 +65,32 @@ def scan_file(root: Path, path: Path, findings: list[str]) -> None:
                 start = i + 1
                 break
 
-    state = 0  # backtick run length of the open fence, 0 = none
+    state: tuple[str, int] | None = None  # (fence char, run), None = none
     for ln, raw in enumerate(lines[start:], start + 1):
         m = FENCE_RE.match(raw)
-        if m:
-            ticks, label = len(m.group(1)), m.group(2)
-            if state and not label and ticks >= state:
-                state = 0
-            elif not state:
-                state = ticks
-                if not label:
-                    findings.append(
-                        f"{rel}:{ln}: FL-02 unlabeled code fence; "
-                        f"every fence carries an honest label "
-                        f"('text' is always legitimate)")
-                elif any(c.isupper() for c in label):
-                    findings.append(
-                        f"{rel}:{ln}: FL-01 uppercase in fence label "
-                        f"'{label}'; code gates key on the exact "
-                        f"lowercase label - use '{label.lower()}'")
+        if not m:
             continue
+        marker, label = m.group(1), m.group(2)
+        ch, run = marker[0], len(marker)
+        if state:
+            # true closer: same character, run at least as long, and an
+            # empty info string (CommonMark closing fences carry no
+            # label - the gate's own canon since tick-280); a labeled
+            # marker inside a fence is fence content, never a toggle.
+            if ch == state[0] and run >= state[1] and not label:
+                state = None
+        else:
+            state = (ch, run)
+            if not label:
+                findings.append(
+                    f"{rel}:{ln}: FL-02 unlabeled code fence; "
+                    f"every fence carries an honest label "
+                    f"('text' is always legitimate)")
+            elif any(c.isupper() for c in label):
+                findings.append(
+                    f"{rel}:{ln}: FL-01 uppercase in fence label "
+                    f"'{label}'; code gates key on the exact "
+                    f"lowercase label - use '{label.lower()}'")
 
 
 def main() -> int:

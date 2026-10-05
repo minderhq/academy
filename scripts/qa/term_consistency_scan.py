@@ -48,7 +48,12 @@ were all legal-literal classes (quoted terminal error text, FM
 tag-list entries like ['infrastructure', 'ollama', 'vllm'],
 quoted binary-name headings); those moved into the predicate
 (frontmatter skip + quoted-span strip), zero doc edits, and any
-future bare prose "ollama" is a real finding.
+future bare prose "ollama" is a real finding. tick-689: the fence
+model lands the shared CommonMark canon (tick-678) - the old
+exact-3 toggle never opened a 4-run super-fence and let its inner
+pairs toggle TC-02's gate through the outer interior; TC-01 stays
+fence-independent by design (a bare HuggingFace token is a brand
+violation inside code too).
 
 Run over the whole corpus:
     python scripts/qa/term_consistency_scan.py --root .
@@ -60,7 +65,11 @@ import re
 import sys
 from pathlib import Path
 
-FENCE_OPEN = re.compile(r"^\s*```(\w*)\s*$")
+# tick-678 CommonMark canon (tick-689): run-length openers with
+# char/run capture, tilde fences included; a true closer repeats the
+# opener character in a run at least as long, a different fence
+# character never closes, a non-closer marker line is fence content.
+FENCE_OPEN = re.compile(r"^\s*(`{3,}|~{3,})\s*([A-Za-z0-9_+-]*)\s*$")
 
 # bare token: no identifier continuation (H4, Embeddings, TB, _client);
 # TC-02 also excludes the ollama.com domain spelling
@@ -76,7 +85,7 @@ def scan_file(root: Path, path: Path, findings: list[str],
               total: list[int]) -> None:
     rel = path.relative_to(root).as_posix()
     lines = path.read_text(encoding="utf-8", errors="replace").split("\n")
-    in_fence = False
+    in_fence: tuple[str, int] | None = None
     in_fm = bool(lines) and lines[0].strip() == "---"
     for i, raw in enumerate(lines, 1):
         if in_fm:
@@ -85,7 +94,12 @@ def scan_file(root: Path, path: Path, findings: list[str],
             continue
         m = FENCE_OPEN.match(raw)
         if m:
-            in_fence = not in_fence
+            f_char, f_len = m.group(1)[0], len(m.group(1))
+            if in_fence:
+                if f_char == in_fence[0] and f_len >= in_fence[1]:
+                    in_fence = None  # true closer ends any block
+            else:
+                in_fence = (f_char, f_len)
             continue
         # strip inline code spans so `ollama` in backticks stays legal,
         # then quoted spans so terminal error text stays legal
