@@ -269,7 +269,7 @@ from transformers import BitsAndBytesConfig
 from datasets import load_dataset
 
 # Configuration
-MODEL_NAME = "mistralai/Mistral-7B-Instruct-v0.2"
+MODEL_NAME = "Qwen/Qwen2.5-7B-Instruct"
 DATA_PATH = "medical_train.jsonl"
 OUTPUT_DIR = "./finetuned_model"
 
@@ -286,7 +286,7 @@ model = AutoModelForCausalLM.from_pretrained(
     MODEL_NAME,
     quantization_config=bnb_config,
     device_map="auto",
-    # no trust_remote_code - Mistral loads with stock transformers code
+    # no trust_remote_code - Qwen2.5 loads with stock transformers code
 )
 
 print("Loading tokenizer...")
@@ -490,7 +490,7 @@ MODEL_PATH="./finetuned_model"
 
 # Merge adapters
 python merge_adapters.py \
-    --base_model mistralai/Mistral-7B-Instruct-v0.2 \
+    --base_model Qwen/Qwen2.5-7B-Instruct \
     --adapter_path $MODEL_PATH \
     --output_path ./merged_model
 

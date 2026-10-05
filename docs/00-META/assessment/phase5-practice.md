@@ -96,7 +96,7 @@ def setup_qlora():
 
     print("=== QLoRA Setup ===")
 
-    model_name = "mistralai/Mistral-7B-Instruct-v0.2"
+    model_name = "Qwen/Qwen2.5-7B-Instruct"
 
     # QLoRA configuration
     bnb_config = BitsAndBytesConfig(
@@ -111,7 +111,7 @@ def setup_qlora():
         model_name,
         quantization_config=bnb_config,
         device_map="auto",
-        # no trust_remote_code - Mistral loads with stock transformers code
+        # no trust_remote_code - Qwen2.5 loads with stock transformers code
     )
 
     # Prepare for k-bit training

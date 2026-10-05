@@ -386,7 +386,7 @@ KeyError: 'base_model.model.model.layers'
 1. **Check base model compatibility:**
 ```python
 # Must use same base model as during training
-base_model = "mistralai/Mistral-7B-Instruct-v0.2"
+base_model = "Qwen/Qwen2.5-7B-Instruct"
 ```
 
 2. **Verify PEFT version:**

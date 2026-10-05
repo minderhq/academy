@@ -243,10 +243,10 @@ from trl import SFTTrainer
 
 # Load base model
 model = AutoModelForCausalLM.from_pretrained(
-    "meta-llama/Llama-2-7b-hf",
+    "Qwen/Qwen2.5-7B-Instruct",
     load_in_4bit=True
 )
-tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-2-7b-hf")
+tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen2.5-7B-Instruct")
 
 # Configure LoRA (efficient fine-tuning)
 lora_config = LoraConfig(

@@ -524,7 +524,7 @@ class EntityExtractor:
     Extract entities and relationships using LLM
     """
 
-    def __init__(self, model_name: str = "mistralai/Mistral-7B-Instruct-v0.2"):
+    def __init__(self, model_name: str = "Qwen/Qwen2.5-7B-Instruct"):
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
         self.model = AutoModelForCausalLM.from_pretrained(
             model_name,
@@ -624,9 +624,9 @@ class CompleteGraphRAG:
         self.entity_extractor = EntityExtractor()
 
         # LLM for generation
-        self.tokenizer = AutoTokenizer.from_pretrained("mistralai/Mistral-7B-Instruct-v0.2")
+        self.tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen2.5-7B-Instruct")
         self.llm = AutoModelForCausalLM.from_pretrained(
-            "mistralai/Mistral-7B-Instruct-v0.2",
+            "Qwen/Qwen2.5-7B-Instruct",
             dtype=torch.float16,
             device_map="auto",
         )

@@ -106,7 +106,7 @@ lora_config = LoraConfig(
 )
 
 # Apply to model
-model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-2-7b-hf")
+model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen2.5-7B-Instruct")
 model = get_peft_model(model, lora_config)
 
 # Check trainable parameters
@@ -150,7 +150,7 @@ quantization_config = BitsAndBytesConfig(
 
 # Load model with 4-bit quantization
 model = AutoModelForCausalLM.from_pretrained(
-    "meta-llama/Llama-2-7b-hf",
+    "Qwen/Qwen2.5-7B-Instruct",
     quantization_config=quantization_config,
     device_map="auto",
 )
@@ -278,8 +278,8 @@ from transformers import AutoModelForCausalLM
 from peft import get_peft_model, LoraConfig
 
 # Load models
-policy_model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-2-7b-hf")
-ref_model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-2-7b-hf")
+policy_model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen2.5-7B-Instruct")
+ref_model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen2.5-7B-Instruct")
 
 # Apply LoRA to policy model only
 policy_model = get_peft_model(policy_model, LoraConfig(..., r=16))

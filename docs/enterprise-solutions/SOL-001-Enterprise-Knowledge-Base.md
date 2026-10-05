@@ -48,7 +48,7 @@ End-to-end implementation guide for building an enterprise knowledge base using 
                                                    ▼
                                             ┌──────────────┐
                                             │              │
-                                            │  Llama 2 7B  │
+                                            │  Qwen2.5 7B  │
                                             │  (4-bit)     │
                                             │              │
                                             └──────────────┘
@@ -72,7 +72,7 @@ End-to-end implementation guide for building an enterprise knowledge base using 
 - CPU: a mini-PC or equivalent (4+ cores)
 - RAM: 16GB
 - Storage: 500GB SSD
-- GPU: 11GB VRAM GPU (for Llama 2 7B 4-bit)
+- GPU: 11GB VRAM GPU (for Qwen 2.5 7B 4-bit)
 
 **Recommended:**
 - CPU: 8+ cores
@@ -613,7 +613,7 @@ class KnowledgeRetriever:
         self.qdrant = QdrantClient(url="http://localhost:6333")
 
         # Initialize LLM
-        model_id = "meta-llama/Llama-2-7b-chat-hf"
+        model_id = "Qwen/Qwen2.5-7B-Instruct"
         self.tokenizer = AutoTokenizer.from_pretrained(model_id)
         self.model = AutoModelForCausalLM.from_pretrained(
             model_id,

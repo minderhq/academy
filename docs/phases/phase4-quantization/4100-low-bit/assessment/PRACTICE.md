@@ -325,7 +325,7 @@ bnb_config = BitsAndBytesConfig(
 # Note: This requires a GPU and the transformers library
 # Uncomment to run with actual model:
 """
-model_name = "meta-llama/Llama-2-7b-hf"  # Or "gpt2" for testing
+model_name = "Qwen/Qwen2.5-7B-Instruct"  # Or "gpt2" for testing
 
 # Load model with 4-bit quantization
 print(f"Loading {model_name} with 4-bit quantization...")

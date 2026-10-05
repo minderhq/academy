@@ -285,8 +285,8 @@ model = dispatch_model(model, device_map=device_map)
 # across the cards. `vllm serve` replaces the long-deprecated
 # python -m vllm.entrypoints.api_server entrypoint.
 # Sizing note: Llama-2-13B at fp16 needs ~13GB per shard - too big for
-# two 11GB cards. The 7B below fits (~7GB per shard):
-vllm serve meta-llama/Llama-2-7b-hf \
+# two 11GB cards. The 7B below fits (~8GB per shard):
+vllm serve Qwen/Qwen2.5-7B-Instruct \
     --tensor-parallel-size 2 \
     --gpu-memory-utilization 0.9 \
     --port 8000
@@ -305,9 +305,9 @@ export CUDA_VISIBLE_DEVICES=0
 ### Text Generation Inference (TGI)
 ```bash
 # Multi-GPU inference (num-shard splits the weights; the shard must
-# fit - 7B fp16 = ~7GB per shard across two 11GB cards, while 13B
+# fit - 7B fp16 = ~8GB per shard across two 11GB cards, while 13B
 # needs ~13GB per shard, i.e. 24GB-class cards):
-model=meta-llama/Llama-2-7b-hf
+model=Qwen/Qwen2.5-7B-Instruct
 
 text-generation-launcher \
     --model-id $model \

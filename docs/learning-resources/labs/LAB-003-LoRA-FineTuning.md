@@ -54,16 +54,15 @@ nvcc --version
 # Install Hugging Face CLI
 uv pip install -U "huggingface_hub[cli]"
 
-# Login (you need a Hugging Face account with access to Mistral-7B)
+# huggingface-cli login is OPTIONAL for this lab: Qwen2.5-7B-Instruct
+# is Apache-2.0 and ungated - no license acceptance, no token needed.
+# A token still helps with rate limits, and later labs in the course
+# use gated checkpoints (e.g. Meta-Llama-3.1) that require one:
 # Visit https://huggingface.co/settings/tokens to create a token
 huggingface-cli login
-
-# Accept model license (required for Mistral-7B)
-# Visit: https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2
-# Click "Agree and access repository" then login to accept
 ```
 
-> **🔑 Important:** You must accept the Mistral 7B license terms on Hugging Face before the lab. The model is gated and requires authentication.
+> **🔑 Important:** Qwen2.5-7B-Instruct is ungated (Apache-2.0), so no license acceptance is required. If you swap in a gated checkpoint later, accept its license on the Hub and authenticate with a token first.
 
 #### 3. Python Environment
 ```bash
@@ -421,9 +420,9 @@ from trl import SFTTrainer
 import json
 
 # Configuration
-MODEL_NAME = "mistralai/Mistral-7B-Instruct-v0.2"
+MODEL_NAME = "Qwen/Qwen2.5-7B-Instruct"
 DATA_PATH = "~/lab-003-lora/data/datasets/train.jsonl"
-OUTPUT_DIR = "~/lab-003-lora/data/checkpoints/mistral-7b-docker-k8s-lora"
+OUTPUT_DIR = "~/lab-003-lora/data/checkpoints/qwen2.5-docker-k8s-lora"
 
 # LoRA hyperparameters
 LORA_R = 16          # Rank
@@ -460,7 +459,7 @@ def load_model_and_tokenizer():
         MODEL_NAME,
         quantization_config=bnb_config,
         device_map="auto",
-        # no trust_remote_code - Mistral loads with stock transformers code
+        # no trust_remote_code - Qwen2.5 loads with stock transformers code
     )
 
     # Load tokenizer
@@ -614,7 +613,7 @@ uv add "torch>=2.12.0" "transformers>=5.10.2" "peft>=0.19.1" "bitsandbytes>=0.50
 
 ## Exercise 4: Run Fine-Tuning (60 minutes)
 
-### Task: Fine-tune Mistral 7B on Docker/K8s dataset
+### Task: Fine-tune Qwen2.5 7B on Docker/K8s dataset
 
 ```bash
 # Start training
@@ -676,9 +675,9 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 from peft import PeftModel
 
 def load_base_model():
-    """Load base Mistral model"""
+    """Load base Qwen2.5 model"""
 
-    model_name = "mistralai/Mistral-7B-Instruct-v0.2"
+    model_name = "Qwen/Qwen2.5-7B-Instruct"
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     model = AutoModelForCausalLM.from_pretrained(
         model_name,
@@ -744,8 +743,8 @@ def compare_models():
     # Load models
     base_model, base_tokenizer = load_base_model()
     ft_model, ft_tokenizer = load_finetuned_model(
-        "mistralai/Mistral-7B-Instruct-v0.2",
-        "~/lab-003-lora/data/checkpoints/mistral-7b-docker-k8s-lora"
+        "Qwen/Qwen2.5-7B-Instruct",
+        "~/lab-003-lora/data/checkpoints/qwen2.5-docker-k8s-lora"
     )
 
     # Compare
@@ -754,7 +753,10 @@ def compare_models():
         print(f"Question: {question}")
         print(f"{'='*60}\n")
 
-        prompt = f"[INST] {question} [/INST]"
+        prompt = base_tokenizer.apply_chat_template(
+            [{"role": "user", "content": question}],
+            tokenize=False, add_generation_prompt=True
+        )
 
         # Base model
         print("Base Model:")
@@ -824,9 +826,9 @@ def merge_and_export(
 
 if __name__ == "__main__":
     merge_and_export(
-        base_model_path="mistralai/Mistral-7B-Instruct-v0.2",
-        lora_path="~/lab-003-lora/data/checkpoints/mistral-7b-docker-k8s-lora",
-        output_path="~/lab-003-lora/models/mistral-7b-docker-k8s-merged"
+        base_model_path="Qwen/Qwen2.5-7B-Instruct",
+        lora_path="~/lab-003-lora/data/checkpoints/qwen2.5-docker-k8s-lora",
+        output_path="~/lab-003-lora/models/qwen2.5-docker-k8s-merged"
     )
 ```
 
@@ -839,13 +841,13 @@ cd llama.cpp
 make
 
 # Convert to GGUF
-./convert-hf-to-gguf.py ~/lab-003-lora/models/mistral-7b-docker-k8s-merged \
-  --outfile ~/lab-003-lora/models/mistral-7b-docker-k8s.gguf \
+./convert-hf-to-gguf.py ~/lab-003-lora/models/qwen2.5-docker-k8s-merged \
+  --outfile ~/lab-003-lora/models/qwen2.5-docker-k8s.gguf \
   --outtype q4_k_m
 
 # Quantize to 4-bit
-./quantize ~/lab-003-lora/models/mistral-7b-docker-k8s.gguf \
-  ~/lab-003-lora/models/mistral-7b-docker-k8s-Q4_K_M.gguf \
+./quantize ~/lab-003-lora/models/qwen2.5-docker-k8s.gguf \
+  ~/lab-003-lora/models/qwen2.5-docker-k8s-Q4_K_M.gguf \
   Q4_K_M
 ```
 
@@ -871,7 +873,7 @@ services:
     volumes:
       - ./models:/models
     command: >
-      --model /models/mistral-7b-docker-k8s-merged
+      --model /models/qwen2.5-docker-k8s-merged
       --gpu-memory-utilization 0.9
       --max-model-len 2048
       --port 8000
@@ -900,7 +902,7 @@ curl http://localhost:8002/v1/models
 curl http://localhost:8002/v1/completions \
   -H "Content-Type: application/json" \
   -d '{
-    "model": "/models/mistral-7b-docker-k8s-merged",
+    "model": "/models/qwen2.5-docker-k8s-merged",
     "prompt": "What is Docker?\n\n",
     "max_tokens": 256
   }'
@@ -936,17 +938,17 @@ class FineTunedChatbot:
     def format_prompt(self, user_message: str) -> str:
         """Format prompt for model"""
 
+        # Qwen2.5's ChatML template, built manually: the vLLM
+        # /v1/completions endpoint takes a raw string, not messages
         prompt = ""
 
         # Add conversation history
         for msg in self.conversation_history:
-            if msg["role"] == "user":
-                prompt += f"[INST] {msg['content']} [/INST] "
-            else:
-                prompt += f"{msg['content']} </s>"
+            prompt += f"<|im_start|>{msg['role']}\n{msg['content']}<|im_end|>\n"
 
-        # Add current message
-        prompt += f"[INST] {user_message} [/INST]"
+        # Add current message with the assistant generation prompt
+        prompt += f"<|im_start|>user\n{user_message}<|im_end|>\n"
+        prompt += "<|im_start|>assistant\n"
 
         return prompt
 
@@ -960,7 +962,7 @@ class FineTunedChatbot:
         response = requests.post(
             f"{self.api_url}/v1/completions",
             json={
-                "model": "/models/mistral-7b-docker-k8s-merged",
+                "model": "/models/qwen2.5-docker-k8s-merged",
                 "prompt": prompt,
                 "max_tokens": 512,
                 "temperature": 0.7,

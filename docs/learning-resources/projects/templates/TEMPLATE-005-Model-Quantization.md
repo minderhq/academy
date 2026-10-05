@@ -89,7 +89,7 @@ quantized_model = quantizer.quantize(model)
 
 ```bash
 python scripts/benchmark.py \
-  --model meta-llama/Llama-2-7b-hf \
+  --model Qwen/Qwen2.5-7B-Instruct \
   --quantization gptq \
   --bits 4
 ```
@@ -104,7 +104,7 @@ Compare:
 
 ```bash
 python scripts/evaluate.py \
-  --model ./models/llama-7b-gptq \
+  --model ./models/qwen-7b-gptq \
   --dataset wikitext \
   --metrics perplexity,bleu
 ```
@@ -114,7 +114,7 @@ python scripts/evaluate.py \
 Convert to GGUF for llama.cpp:
 ```bash
 python src/converter.py \
-  --input ./models/llama-7b-gptq \
+  --input ./models/qwen-7b-gptq \
   --output ./models/llama-7b.gguf \
   --format gguf
 ```

@@ -288,7 +288,7 @@ metadata:
   labels:
     app: llm-serving
 data:
-  MODEL_NAME: "meta-llama/Llama-2-7b-hf"
+  MODEL_NAME: "Qwen/Qwen2.5-7B-Instruct"
   MAX_TOKENS: "2048"
   TEMPERATURE: "0.7"
   TOP_P: "0.9"

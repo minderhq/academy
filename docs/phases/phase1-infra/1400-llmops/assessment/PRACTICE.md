@@ -34,9 +34,9 @@ ollama --version
 
 # Expected output: ollama version is 0.1.x or higher
 
-# 2. Pull model (Llama 2 7B)
-echo "Pulling Llama 2 7B model..."
-ollama pull llama2:7b
+# 2. Pull model (Llama 3.1 8B)
+echo "Pulling Llama 3.1 8B model..."
+ollama pull llama3.1:8b
 
 # Expected output: Shows download progress for model files
 
@@ -44,29 +44,29 @@ ollama pull llama2:7b
 echo "Available models:"
 ollama list
 
-# Expected output: Shows llama2:7b in the list
+# Expected output: Shows llama3.1:8b in the list
 
 # 4. Run simple inference
 echo "Running inference test..."
-ollama run llama2:7b "The future of AI is"
+ollama run llama3.1:8b "The future of AI is"
 
 # Expected output: Completes the sentence with generated text
 
 # 5. Interactive mode
 echo "Starting interactive mode (press Ctrl-D to exit)..."
-ollama run llama2:7b
+ollama run llama3.1:8b
 
 # 6. Test with different parameters. The ollama CLI itself takes no
 #    sampling flags (--temperature/--num_predict would be rejected) -
 #    parameters are set in a Modelfile or per-request through the
 #    API's options object, as ollama_client.py below does
-printf 'FROM llama2:7b\nPARAMETER temperature 0.5\nPARAMETER num_predict 100\n' > Modelfile
-ollama create llama2-tuned -f Modelfile
-ollama run llama2-tuned "Explain quantum computing"
+printf 'FROM llama3.1:8b\nPARAMETER temperature 0.5\nPARAMETER num_predict 100\n' > Modelfile
+ollama create llama3.1-tuned -f Modelfile
+ollama run llama3.1-tuned "Explain quantum computing"
 
 # Troubleshooting Tips:
 # - If curl fails: Check internet connection and firewall settings
-# - If model pull fails: Verify disk space (requires ~4GB for llama2:7b)
+# - If model pull fails: Verify disk space (requires ~5GB for llama3.1:8b)
 # - If inference is slow: Check CPU/GPU resources with 'htop' or 'nvidia-smi'
 
 # Expected outputs:
@@ -131,7 +131,7 @@ if __name__ == "__main__":
 
     # Generate text
     result = client.generate(
-        model="llama2:7b",
+        model="llama3.1:8b",
         prompt="The future of AI is",
         temperature=0.7,
         num_predict=150
@@ -141,7 +141,7 @@ if __name__ == "__main__":
 
     # Chat completion
     chat_result = client.chat(
-        model="llama2:7b",
+        model="llama3.1:8b",
         messages=[
             {"role": "user", "content": "What is machine learning?"}
         ]
@@ -452,7 +452,7 @@ class LLMMetricsCollector:
 metrics = LLMMetricsCollector()
 metrics.start_metrics_server()
 
-@metrics.track_request(model="llama2-7b")
+@metrics.track_request(model="llama3.1-8b")
 def generate_with_metrics(prompt: str, max_tokens: int = 100):
     """Simulate LLM generation with metrics."""
     # Simulate inference
@@ -461,7 +461,7 @@ def generate_with_metrics(prompt: str, max_tokens: int = 100):
     # Record tokens (simulated)
     input_tokens = len(prompt.split())
     output_tokens = max_tokens
-    metrics.record_tokens("llama2-7b", input_tokens, output_tokens)
+    metrics.record_tokens("llama3.1-8b", input_tokens, output_tokens)
 
     # Record batch size
     metrics.record_batch_size(1)
@@ -479,7 +479,7 @@ if __name__ == "__main__":
 
     logger.info("Metrics available at http://localhost:8001/metrics")
     # Prometheus exposition format uses double quotes for label values
-    logger.info('Sample output: llm_requests_total{model="llama2-7b",status="success"} 5.0')
+    logger.info('Sample output: llm_requests_total{model="llama3.1-8b",status="success"} 5.0')
 ```
 
 ```yaml

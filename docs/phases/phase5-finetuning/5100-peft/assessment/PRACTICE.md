@@ -248,7 +248,7 @@ bnb_config = BitsAndBytesConfig(
 print("Loading model in 4-bit...")
 # SOLUTION: Load model in 4-bit
 model = AutoModelForCausalLM.from_pretrained(
-    "meta-llama/Llama-2-7b-hf",  # Requires access request
+    "Qwen/Qwen2.5-7B-Instruct",  # ungated
     quantization_config=bnb_config,
     device_map="auto",  # Automatically distribute across available GPUs
     # no trust_remote_code - Llama-2 loads with stock transformers code

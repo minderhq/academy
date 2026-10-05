@@ -76,7 +76,7 @@ def compare_quantization():
 
     print("=== Quantization Method Comparison ===")
 
-    model_name = "mistralai/Mistral-7B-Instruct-v0.2"
+    model_name = "Qwen/Qwen2.5-7B-Instruct"
 
     # FP16 (baseline)
     print("Loading FP16 model...")
@@ -217,7 +217,7 @@ def test_context_window():
 
     print("=== Context Window Extension Test ===")
 
-    model_name = "mistralai/Mistral-7B-Instruct-v0.2"
+    model_name = "Qwen/Qwen2.5-7B-Instruct"
 
     # Load model
     print("Loading model...")

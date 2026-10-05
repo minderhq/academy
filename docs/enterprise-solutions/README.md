@@ -20,14 +20,14 @@ Complete implementation of a RAG-based enterprise knowledge base.
 - Document ingestion pipeline
 - Qdrant vector database setup
 - Semantic search with filtering
-- Llama 2 7B integration (4-bit)
+- Qwen 2.5 7B integration (4-bit)
 - FastAPI REST interface
 - Web UI for querying
 - Docker deployment
 
 **Technologies Used:**
 - Qdrant (vector database)
-- Llama 2 7B (quantized to 4-bit)
+- Qwen 2.5 7B (quantized to 4-bit)
 - PostgreSQL (metadata)
 - FastAPI (REST API)
 - Docker (deployment)

@@ -434,7 +434,7 @@ bnb_config = BitsAndBytesConfig(
     bnb_4bit_quant_type="nf4",
 )
 model = AutoModelForCausalLM.from_pretrained(
-    "meta-llama/Llama-2-7b-hf",        # gated repo: request access first
+    "Qwen/Qwen2.5-7B-Instruct",        # ungated: no HF token needed
     quantization_config=bnb_config,
     device_map={"": 0},                # ONE GPU per process under DDP -
                                        # device_map="auto" sharding is
@@ -629,7 +629,7 @@ keys: ['lr', 'step', 'train_loss']
 import wandb
 
 wandb.init(project="Minder Academy", entity="your-org", config={
-    "model": "Llama-2-7b", "learning_rate": 1e-4, "batch_size": 32, "epochs": 3,
+    "model": "Qwen2.5-7B", "learning_rate": 1e-4, "batch_size": 32, "epochs": 3,
 })
 for step, batch in enumerate(dataloader):
     loss = train_step(batch)

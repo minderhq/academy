@@ -94,7 +94,7 @@ spec:
         - "$(MODEL_NAME)"
         env:
         - name: MODEL_NAME
-          value: "mistralai/Mistral-7B-Instruct-v0.2"
+          value: "Qwen/Qwen2.5-7B-Instruct"
         volumeMounts:
         - name: model-cache
           mountPath: /root/.cache
@@ -228,7 +228,7 @@ metadata:
 data:
   # envFrom maps each key 1:1 to an env var name - use env-style keys
   # (a dotted key cannot be referenced as $model.name in any shell)
-  MODEL_NAME: "mistralai/Mistral-7B-Instruct-v0.2"
+  MODEL_NAME: "Qwen/Qwen2.5-7B-Instruct"
   MAX_TOKENS: "2048"
   API_PORT: "8000"
 ```

@@ -699,7 +699,7 @@ async def check_qdrant():
 async def check_model():
     """Check model availability"""
     from transformers import AutoTokenizer
-    tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-2-7b-hf")
+    tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen2.5-7B-Instruct")
     assert tokenizer.vocab_size > 0
 
 async def cleanup():
@@ -782,7 +782,7 @@ spec:
           protocol: TCP
         env:
         - name: MODEL_NAME
-          value: "meta-llama/Llama-2-7b-hf"
+          value: "Qwen/Qwen2.5-7B-Instruct"
         - name: REDIS_URL
           valueFrom:
             configMapKeyRef:

@@ -62,8 +62,8 @@ def benchmark_context_length(model, tokenizer, lengths=None):
 
 # Run benchmark
 if __name__ == "__main__":
-    model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-2-7b-hf", device_map="auto")
-    tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-2-7b-hf")
+    model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen2.5-7B-Instruct", device_map="auto")
+    tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen2.5-7B-Instruct")
 
     results = benchmark_context_length(model, tokenizer)
 

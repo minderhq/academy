@@ -98,7 +98,7 @@ from pydantic import BaseModel, Field
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-MODEL_PATH = os.getenv("MODEL_PATH", "mistralai/Mistral-7B-Instruct-v0.2")
+MODEL_PATH = os.getenv("MODEL_PATH", "Qwen/Qwen2.5-7B-Instruct")
 
 state = {}  # model/tokenizer live here instead of bare globals
 

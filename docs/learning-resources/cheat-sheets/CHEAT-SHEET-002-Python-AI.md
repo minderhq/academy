@@ -184,7 +184,7 @@ pd.concat([df1, df2])
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 # Load model and tokenizer
-model_name = "mistralai/Mistral-7B-Instruct-v0.2"
+model_name = "Qwen/Qwen2.5-7B-Instruct"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForCausalLM.from_pretrained(model_name)
 

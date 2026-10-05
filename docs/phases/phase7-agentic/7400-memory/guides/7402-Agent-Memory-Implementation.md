@@ -837,7 +837,7 @@ from openai import OpenAI
 class MemoryEnabledAgent:
     """Agent with persistent memory"""
 
-    def __init__(self, model: str = "mistralai/Mistral-7B-Instruct-v0.2"):
+    def __init__(self, model: str = "Qwen/Qwen2.5-7B-Instruct"):
         self.memory = AgentMemorySystem()
         self.client = OpenAI(
             base_url="http://192.168.1.100:8002/v1",
