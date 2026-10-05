@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""notebook code-cell gate (NBC-01..21) for Minder Academy.
+"""notebook code-cell gate (NBC-01..23) for Minder Academy.
 
 The .md AST gate family never sees notebook code: codeblock_syntax_scan
 and fence_import_check walk CommonMark fences in docs/**/*.md, while
@@ -154,6 +154,25 @@ NBC-12..14  the secret/crypto twins (born tick-703): secret_shape_scan
                 pydantic (the md twin's per-file activation
                 mirrored per notebook, so multiprocessing's
                 manager.dict() stays legitimate stdlib).
+        NBC-22..23  the SQL-interpolation twins (born tick-708):
+                the sql_interp_scan (SQ-01/SQ-02) twin - the md
+                gate walks docs/**/*.md python fences only,
+                while the launcher RUNS code cells, so a cell
+                passing an f-string carrying SQL text to an
+                execution call (NBC-22, direct or via a query
+                variable resolved one hop to its nearest
+                preceding assignment, the += fragment chain
+                included), or merging the query client-side by
+                percent-formatting, str.format() or
+                placeholder-free concatenation (NBC-23), was
+                invisible to the whole fleet inside notebooks.
+                The walk enters only when the query expression's
+                string leaves carry SQL vocabulary, carves the
+                Constant query with %s/? placeholders plus a
+                params second argument and the placeholder-
+                carrying builder, and escapes on the danger
+                marker per cell (DANGEROUS / wrong: / unsafe /
+                vulnerab, casefold - the md twins' escape).
 
 Structural health (unparseable JSON, malformed cells/sources) is
 NBH-03's jurisdiction - NBC silently skips what NBH flags, and the
@@ -220,10 +239,21 @@ corpus teaches the 3.12+, transformers-5, pydantic-2 and torch-2.x
 surfaces only) - the launcher RUNS these cells, so a deprecated
 spelling would warn or crash the learner today.
 
+NBC-22..23 born tick-708 at zero the NBM-06 way: the census (the
+SQ judgment mirrored exactly by importing the md gate's own
+functions over the same 20 notebooks / 102 code cells) measured
+the closet CLEAN (SQ-01=0, SQ-02=0; 101 cells walked, 1
+danger-marker skip, and the walk's entry set - execute/
+executemany/executescript/read_sql/read_sql_query calls - absent
+from the notebook universe entirely), so there was nothing to
+drain - the extension locks the convention (bound parameters,
+never string-merged queries, for any future notebook teaching
+persistence).
+
 Hard gate (exit 1 on findings): baseline 0 at birth (tick-691 for
 NBC-01..02, tick-702 for NBC-03..11, tick-703 for NBC-12..14,
 tick-704 for NBC-15, tick-706 for NBC-16, tick-707 for
-NBC-17..21).
+NBC-17..21, tick-708 for NBC-22..23).
 
 Run over the whole corpus:
     python scripts/qa/notebook_code_scan.py --root .
@@ -750,6 +780,204 @@ def scan_deprecated(src: str, rel: str, idx: int, pyd: bool,
                 f"in 3; write model_dump()")
 
 
+# The SQL-interpolation twins (born tick-708), mirrored from
+# sql_interp_scan (SQ-01/SQ-02): _SQ_EXEC_ATTRS is the walk's
+# entry set (run/execute_query belong to cypher_interp_scan,
+# disjoint by attr, single ownership by construction),
+# _SQ_KEYWORD_RE the vocabulary gate, _SQ_PLACEHOLDER_RE the
+# binding carve.
+_SQ_EXEC_ATTRS = frozenset({
+    "execute", "executemany", "executescript",
+    "read_sql", "read_sql_query"})
+_SQ_KEYWORD_RE = re.compile(
+    r"\b(select|insert|update|delete|create|drop|alter|from|where|into"
+    r"|values|order\s+by|group\s+by)\b", re.IGNORECASE)
+_SQ_PLACEHOLDER_RE = re.compile(r"%s|\?")
+
+
+def _has_sql(text: str) -> bool:
+    return bool(_SQ_KEYWORD_RE.search(text))
+
+
+def _constant_leaves(node: ast.expr) -> list[str]:
+    """Every string-Constant leaf of an expression tree (Add chains
+    included)."""
+    out: list[str] = []
+    for n in ast.walk(node):
+        if isinstance(n, ast.Constant) and isinstance(n.value, str):
+            out.append(n.value)
+    return out
+
+
+def _is_add_chain(node: ast.expr) -> bool:
+    return isinstance(node, ast.BinOp) and isinstance(node.op, ast.Add)
+
+
+def _joinedstr_leaves(node: ast.expr) -> list[ast.JoinedStr]:
+    return [n for n in ast.walk(node) if isinstance(n, ast.JoinedStr)]
+
+
+def _is_percent_format(node: ast.expr) -> bool:
+    return isinstance(node, ast.BinOp) and isinstance(node.op, ast.Mod)
+
+
+def _is_format_call(node: ast.expr) -> bool:
+    return (isinstance(node, ast.Call)
+            and isinstance(node.func, ast.Attribute)
+            and node.func.attr == "format")
+
+
+def _classify(expr: ast.expr) -> str | None:
+    """NBC code for a resolved query expression, or None when out of
+    class. NBC-22 wins: an f-string in the chain is the loudest form
+    (the SQ-01 judgment; SQ-02 maps to NBC-23)."""
+    for js in _joinedstr_leaves(expr):
+        if any(_has_sql(p) for p in _constant_leaves(js)):
+            return "NBC-22"
+    if _is_percent_format(expr) or _is_format_call(expr):
+        if any(_has_sql(p) for p in _constant_leaves(expr)):
+            return "NBC-23"
+    if _is_add_chain(expr):
+        leaves = _constant_leaves(expr)
+        has_placeholder = any(_SQ_PLACEHOLDER_RE.search(p) for p in leaves)
+        has_dynamic = any(not isinstance(n, ast.Constant)
+                          for n in ast.walk(expr)
+                          if isinstance(n, (ast.Name, ast.Call,
+                                            ast.JoinedStr,
+                                            ast.FormattedValue)))
+        if not has_placeholder and has_dynamic \
+                and any(_has_sql(p) for p in leaves):
+            return "NBC-23"
+    return None
+
+
+def _collect_assigns(body: list[ast.stmt],
+                     out: list[tuple[int, str, ast.expr]]) -> None:
+    """``name = <expr>`` and ``name += <expr>`` assignments from a
+    statement list, recursing into compound statements but NOT into
+    functions/classes (those own their scopes)."""
+    for node in body:
+        if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef,
+                             ast.ClassDef)):
+            continue
+        if isinstance(node, ast.Assign) and len(node.targets) == 1 \
+                and isinstance(node.targets[0], ast.Name):
+            out.append((node.lineno, node.targets[0].id, node.value))
+        elif (isinstance(node, ast.AnnAssign)
+                and isinstance(node.target, ast.Name)
+                and node.value is not None):
+            out.append((node.lineno, node.target.id, node.value))
+        elif isinstance(node, ast.AugAssign) \
+                and isinstance(node.target, ast.Name):
+            out.append((node.lineno, node.target.id, node.value))
+        for child in ast.iter_child_nodes(node):
+            _collect_assigns([child], out)
+
+
+def _func_assigns(func: ast.AST) -> list[tuple[int, str, ast.expr]]:
+    out: list[tuple[int, str, ast.expr]] = []
+    for node in ast.walk(func):
+        if isinstance(node, ast.Assign) and len(node.targets) == 1 \
+                and isinstance(node.targets[0], ast.Name):
+            out.append((node.lineno, node.targets[0].id, node.value))
+        elif (isinstance(node, ast.AnnAssign)
+                and isinstance(node.target, ast.Name)
+                and node.value is not None):
+            out.append((node.lineno, node.target.id, node.value))
+        elif isinstance(node, ast.AugAssign) \
+                and isinstance(node.target, ast.Name):
+            out.append((node.lineno, node.target.id, node.value))
+    return sorted(out, key=lambda t: t[0])
+
+
+def _builder_chain(
+        name: str, line: int,
+        assigns: list[tuple[int, str, ast.expr]],
+) -> ast.expr | None:
+    """Resolve a query variable backwards through its same-name
+    assignment history (nearest PRECEDING first, then earlier
+    fragments while the value is an Add chain) - a builder that
+    grows SQL across several ``query +=`` fragments is not judged
+    by its last fragment alone."""
+    history = sorted(((ln, v) for ln, an, v in assigns
+                      if an == name and ln < line), key=lambda t: t[0])
+    if not history:
+        return None
+    parts: list[ast.expr] = [history[-1][1]]
+    for _, v in reversed(history[:-1]):
+        if _is_add_chain(v) or isinstance(v, ast.Constant):
+            parts.append(v)
+        else:
+            break
+    node = parts[0]
+    for p in parts[1:]:
+        node = ast.BinOp(left=node, op=ast.Add(), right=p)
+    return node
+
+
+def scan_sqlinterp(src: str, tree: ast.AST, rel: str, idx: int,
+                   findings: list[str]) -> None:
+    """NBC-22..23 over one parsed cell tree (born tick-708 at zero;
+    the sql_interp_scan SQ-01/SQ-02 judgment mirrored per cell:
+    the danger-marker escape first, Constant queries and the
+    placeholder-bound forms carved, one-hop query-variable
+    resolution with the += fragment chain, and one finding per
+    execution call)."""
+    if _DANGER_RE.search(src):
+        return
+    assigns: list[tuple[int, str, ast.expr]] = []
+    _collect_assigns(tree.body, assigns)
+    calls: list[tuple[ast.Call, ast.AST | None]] = []
+
+    class _Collector(ast.NodeVisitor):
+        def __init__(self) -> None:
+            self.func_stack: list[ast.AST] = []
+
+        def visit_FunctionDef(self, node) -> None:  # type: ignore[override]
+            self.func_stack.append(node)
+            self.generic_visit(node)
+            self.func_stack.pop()
+
+        visit_AsyncFunctionDef = visit_FunctionDef
+
+        def visit_Call(self, node: ast.Call) -> None:
+            if isinstance(node.func, ast.Attribute) \
+                    and node.func.attr in _SQ_EXEC_ATTRS and node.args:
+                calls.append((node, self.func_stack[-1]
+                              if self.func_stack else None))
+            self.generic_visit(node)
+
+    _Collector().visit(tree)
+    for call, func in calls:
+        arg0 = call.args[0]
+        code: str | None = None
+        if not isinstance(arg0, ast.Constant):
+            if _classify(arg0) is not None:
+                code = _classify(arg0)
+            elif isinstance(arg0, ast.Name):
+                scope_assigns = (_func_assigns(func) if func is not None
+                                 else assigns)
+                value = _builder_chain(arg0.id, call.lineno, scope_assigns)
+                if value is None and func is not None:
+                    value = _builder_chain(arg0.id, call.lineno, assigns)
+                if value is not None:
+                    code = _classify(value)
+        if code is None:
+            continue  # Constant query / placeholder idiom / non-SQL
+        verb = call.func.attr
+        findings.append(
+            f"{rel}: {code} SQL interpolated into {verb}() in code "
+            f"cell {idx} - the value is merged into the query text "
+            f"client-side, before the driver sees it, so no "
+            f"placeholder can bind it (a value containing a quote "
+            f"closes the literal and the rest executes as SQL); bind "
+            f"values instead: a Constant query with %s/? placeholders "
+            f"plus a params second argument, or the builder idiom "
+            f"(query += \" AND x <= %s\"; params.append(v); "
+            f"execute(query, params))")
+        # one finding per execution call
+
+
 def scan_nb(root: Path, path: Path, findings: list[str],
             stats: list[int]) -> None:
     rel = path.relative_to(root).as_posix()
@@ -785,6 +1013,7 @@ def scan_nb(root: Path, path: Path, findings: list[str],
         scan_tls(tree, rel, idx, findings)
         scan_typing(src, rel, idx, findings)
         scan_deprecated(src, rel, idx, _pyd, findings)
+        scan_sqlinterp(src, tree, rel, idx, findings)
         roots: set[str] = set()
         for node in ast.walk(tree):
             if isinstance(node, ast.Import):
@@ -821,12 +1050,12 @@ def main() -> int:
         print(f.encode("ascii", "backslashreplace").decode("ascii"))
     print(f"notebook_code_scan: {len(findings)} findings "
           f"(NBC-01 code-cell syntax / NBC-02 unresolvable import root "
-          f"/ NBC-03..21 the md twins: bare-broad except, "
+          f"/ NBC-03..23 the md twins: bare-broad except, "
           f"unsafe deserialize, eval-exec, empty mutable default, "
           f"shell-out, mktemp, trust_remote_code, open-no-encoding, "
           f"requests-no-timeout, insecure-tls, secret-shape literals, "
           f"random-for-security, weak-hash-security, legacy-typing, "
-          f"deprecated-API; "
+          f"deprecated-API, sql-interpolation; "
           f"{stats[4]} import(s) accepted, {stats[3]} relative skipped, "
           f"{stats[2]} cell(s) left to NBH-03) across {stats[0]} "
           f"notebooks / {stats[1]} code cells in docs/notebooks/ "
@@ -841,7 +1070,10 @@ def main() -> int:
           f"drained corpus - the md typing gate's declared blind "
           f"spot closed, 24 real legacy spellings drained in-tick; "
           f"NBC-17..21 born tick-707 at zero - the md deprecation "
-          f"gate's declared blind spot closed, the census clean)")
+          f"gate's declared blind spot closed, the census clean; "
+          f"NBC-22..23 born tick-708 at zero - the md SQL-"
+          f"interpolation gate's declared blind spot closed, the "
+          f"census clean)")
     return 1 if findings else 0
 
 
