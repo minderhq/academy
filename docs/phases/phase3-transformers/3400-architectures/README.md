@@ -3,9 +3,9 @@ Document ID: 3400-ARCHITECTURES-README
 Title: "[3400]: Model Architectures"
 Last Updated: 2026-09-30
 Status: Complete
-Difficulty: Intermediate
+Difficulty: Advanced
 Prerequisites: []
-Estimated Time: 8 hours
+Estimated Time: 12 hours
 Tags: ['module', 'transformers', 'architecture']
 ---
 
@@ -23,6 +23,7 @@ This module covers the major Transformer architecture families: encoder-decoder 
 |----------|-------------|------------|------|
 | [3401: Encoder-Decoder Architectures](./3401-Encoder-Decoder-Architectures.md) | T5, BART, and sequence-to-sequence models | ⭐⭐ | 4 hrs |
 | [3402: Decoder-Only Models](./3402-Decoder-Only-Models.md) | GPT, LLaMA, Mistral architectures | ⭐⭐ | 4 hrs |
+| [3404: Beyond Attention — SSMs and MLA](./3404-Beyond-Attention-SSMs-and-MLA.md) | State-space models, Mamba, DeepSeek MLA | ⭐⭐⭐ | 4 hrs |
 | [3403: Model Architecture Comparison](./guides/3403-Model-Architecture-Comparison.md) | Comparative guide with benchmarks | ⭐⭐⭐ | 3 hrs |
 
 ---
@@ -35,6 +36,7 @@ After completing this module, you will:
 - ✅ Choose the right architecture for your task
 - ✅ Understand bidirectional vs causal attention
 - ✅ Implement different Transformer variants
+- ✅ Understand state-space models (Mamba) and multi-head latent attention (MLA)
 
 ---
 

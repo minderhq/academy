@@ -261,6 +261,7 @@ graph TD
 |----------|-------------|------|------------|
 | [3401: Encoder-Decoder](./3400-architectures/3401-Encoder-Decoder-Architectures.md) | T5, BART architectures | 4h | Intermediate |
 | [3402: Decoder-Only](./3400-architectures/3402-Decoder-Only-Models.md) | GPT, LLaMA architectures | 4h | Intermediate |
+| [3404: Beyond Attention — SSMs and MLA](./3400-architectures/3404-Beyond-Attention-SSMs-and-MLA.md) | SSMs, Mamba, and DeepSeek MLA | 4h | Advanced |
 | [3403: Architecture Comparison](./3400-architectures/guides/3403-Model-Architecture-Comparison.md) | Comparative guide | 2h | Advanced |
 
 **What You'll Learn:**
@@ -271,6 +272,7 @@ graph TD
 - Cross-attention mechanisms
 - Bidirectional vs unirectional attention
 - When to use each architecture
+- State-space models (Mamba) and multi-head latent attention (MLA)
 
 **Hands-On Practice:**
 - Load and analyze different architectures
@@ -340,7 +342,7 @@ graph TD
 | 3100: Attention Architectures | 8h | 4-6h | 12-14h |
 | 3200: Embedding Latent Spaces | 6h | 4h | 10h |
 | 3300: The Decoding Block | 5h | 3h | 8h |
-| 3400: Model Architectures | 10h | 4h | 14h |
+| 3400: Model Architectures | 14h | 4h | 18h |
 | 3500: Multimodal Models | 10h | — | 10h |
 | **Total** | **39h** | **15-17h** | **54-56h** |
 

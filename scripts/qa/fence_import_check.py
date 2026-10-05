@@ -84,7 +84,10 @@ ACCEPTED_PREFIXES = frozenset({
     "e2b_code_interpreter", "evaluate", "exllamav2", "faster_whisper",
     "flash_attn", "flwr", "gensim", "gymnasium", "jax", "jira",
     "jupyter_client", "kubernetes", "librosa", "lightning",
-    "lion_pytorch", "llama_cpp", "mem0",
+    "lion_pytorch", "llama_cpp",
+    # tick-718 deliberate same-commit extension: the mamba-ssm CUDA kernel
+    # package (3404 teaches selective_scan_fn; ENV-GAP:mamba_ssm)
+    "mamba_ssm", "mem0",
     # tick-717 deliberate same-commit extension: the MCP Python SDK joins
     # the optional-stack class - 7203 teaches server and client fences
     # against `pip install mcp` (ENV-GAP:mcp in the accepted exec census)

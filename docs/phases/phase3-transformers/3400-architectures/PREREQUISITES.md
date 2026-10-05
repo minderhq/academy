@@ -3,7 +3,7 @@ Document ID: 3400-PREREQUISITES
 Title: "3400: Architectures - Prerequisites"
 Last Updated: 2026-09-30
 Status: Complete
-Difficulty: Intermediate
+Difficulty: Advanced
 Tags: ['prerequisites', 'transformers', 'architecture']
 ---
 

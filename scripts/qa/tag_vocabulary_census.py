@@ -81,8 +81,9 @@ WHITELIST = frozenset([
     'hnsw', 'hybrid-search', 'inference', 'infrastructure', 'industry', 'iommu', 'isp',
     'jumbo-frames', 'k3s', 'knowledge-graphs', 'kubernetes', 'kv-cache',
     'lab', 'langchain', 'langgraph', 'learning-rate', 'lifecycle', 'llama', 'llamacpp',
-    'llm', 'llmops', 'long-context', 'long-term-memory', 'lora', 'maintenance', 'manufacturing',
-    'math', 'mcp', 'mem0', 'memory', 'milvus', 'mixed-precision', 'mlops',
+    'llm', 'llmops', 'long-context', 'long-term-memory', 'lora', 'maintenance',
+    'manufacturing',
+    'math', 'mcp', 'mem0', 'memory', 'milvus', 'mla', 'mixed-precision', 'mlops',
     'model-registry', 'module', 'monitoring', 'mtu', 'multi-agent', 'multi-head',
     'multimodal', 'navigation', 'neo4j', 'networking', 'nginx', 'normalization', 'notebook', 'observability',
     'offloading', 'ollama', 'optimization', 'optimizers', 'orchestration', 'peft',
@@ -93,7 +94,10 @@ WHITELIST = frozenset([
     'qat', 'qdrant', 'qlora', 'quantization', 'quantization-aware-training', 'quickstart', 'quiz',
     'rag', 'react', 'reasoning', 'reference', 'reranking', 'retrieval', 'rlhf',
     'roadmap', 'rope', 'sam', 'scheduling', 'security', 'self-attention', 'serving',
-    'setup', 'similarity', 'solution', 'sparsity', 'speculative-decoding', 'star-topology', 'swiglu',
+    'setup', 'similarity',
+    # tick-718 deliberate same-commit extension: 'ssm' and 'mla' join for
+    # the SSM/MLA lesson (3404) - the tag vocabulary grows with the corpus
+    'ssm', 'solution', 'sparsity', 'speculative-decoding', 'star-topology', 'swiglu',
     'switch', 'synthetic-data', 't5', 'tensor-parallelism', 'tensorflow', 'tensors',
     'ternary', 'tgi', 'template', 'tokenization', 'tokenizer', 'tool-calling', 'topology',
     'training', 'transformers', 'troubleshooting', 'tts', 'tutorial', 'uplink', 'use-case',
