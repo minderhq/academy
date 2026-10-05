@@ -24,6 +24,16 @@ Correct/Incorrect, Definition/Unit, Notable Models) - GS-01
 applies only to tables whose header carries an Incorrect Usage
 column; GS-02/03 apply to every bolded first-cell term.
 
+Fence state follows CommonMark (tick-678 canon): the opener
+captures its marker run, a closer repeats the opener's character
+in a run at least as long, a different fence character never
+closes, and a marker line that is not a valid closer is fence
+content. GLOSSARY.md's example fences (the ```text naming-
+convention blocks) are content - their interior lines never
+reach the term model (no term parses, no pending-header reset),
+so an example block sitting between a Term header and its rows
+cannot silently strip the header and blind GS-01.
+
 Run over the whole corpus:
     python scripts/qa/glossary_scan.py --root .
 
@@ -41,7 +51,8 @@ from pathlib import Path
 GLOSSARY = "GLOSSARY.md"
 TERM_ROW = re.compile(r"^\| \*\*(.+?)\*\* \|(.*?)\|\s*$")
 HDR_CELL = re.compile(r"^\|\s*([^|]+?)\s*(?:\|.+)*\|\s*$")
-FENCE = re.compile(r"^ {0,3}(```|~~~)")  # CommonMark: <=3 leading spaces
+# Fence state follows the tick-678 CommonMark canon (see docstring).
+FENCE_RE = re.compile(r"^\s*(`{3,}|~{3,})\s*([A-Za-z0-9_+-]*)\s*$")
 FM_CLOSE = re.compile(r"^---\s*$")
 
 
@@ -81,23 +92,36 @@ def main() -> int:
     inc_terms: list[str] = []      # rows under an Incorrect Usage header
     header: list[str] = []
     SEP = re.compile(r"^\|[\s:\-|]+\|\s*$")
+    in_fence: tuple[str, int] | None = None
     for ln in lines:
-        if FENCE.match(ln):
+        m = FENCE_RE.match(ln)
+        if m:
+            f_char, f_len = m.group(1)[0], len(m.group(1))
+            if in_fence:
+                if f_char == in_fence[0] and f_len >= in_fence[1]:
+                    in_fence = None
+            else:
+                in_fence = (f_char, f_len)
             continue
-        cs = cells(ln)
-        if ln.strip().startswith("|") and cs and cs[0] == "Term":
-            header = cs
-            continue
-        m = TERM_ROW.match(ln.strip())
-        if not m:
-            if not (ln.strip().startswith("|") and SEP.match(ln.strip())):
-                header = []  # separator keeps the pending header
-            continue
-        term = m.group(1).strip()
-        terms.append(term)
-        if len(header) >= 2 and "Incorrect Usage" in header:
-            inc_terms.append((term, cells(ln.strip())[header.index("Incorrect Usage")]
-                              if len(cs) > header.index("Incorrect Usage") else ""))
+        if in_fence is None:
+            cs = cells(ln)
+            if ln.strip().startswith("|") and cs and cs[0] == "Term":
+                header = cs
+                continue
+            m = TERM_ROW.match(ln.strip())
+            if not m:
+                if not (ln.strip().startswith("|")
+                        and SEP.match(ln.strip())):
+                    header = []  # separator keeps the pending header
+                continue
+            term = m.group(1).strip()
+            terms.append(term)
+            if len(header) >= 2 and "Incorrect Usage" in header:
+                inc_terms.append(
+                    (term,
+                     cells(ln.strip())[header.index("Incorrect Usage")]
+                     if len(cs) > header.index("Incorrect Usage")
+                     else ""))
 
     # GS-01: canonical term listed as its own incorrect variant
     for term, inc in inc_terms:
