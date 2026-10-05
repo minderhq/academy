@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """notebook_mdcell_scan: the MARKDOWN-CELL RENDER-SURFACE dimension
-across a notebook's markdown cells (NBM-01..05, hard).
+across a notebook's markdown cells (NBM-01..06, hard).
 
 A notebook's markdown cells are the lesson's prose ON THE PLATFORM:
 the launcher (and the platform conversion) renders them, while the
@@ -42,6 +42,15 @@ The five rules:
   under a non-blank line renders as an h1/h2 in CommonMark - an
   invisible way to mint a second title; a horizontal rule needs a
   blank line above)
+- NBM-06 a pipe-table row whose pipe-separator count differs from
+  its block's delimiter row (GFM sizes a pipe table by the
+  delimiter row and pads or drops ragged rows silently - the same
+  content-loss class TH-01 polices across docs markdown, and the
+  platform renders the md cells, so the same loss reaches the
+  learner here; inline-code spans are stripped before counting, a
+  backticked pipe renders literally, a backslash-escaped pipe is
+  cell content, and per-block consistency lets adjacent tables of
+  different widths stay legal)
 
 Deliberate scope: markdown cells only - code cells are NBC/NBE's
 jurisdiction (stats-only for NBM, the same split NBL documents);
@@ -50,7 +59,10 @@ NBH-03's - silently skipped here, the designed cross-gate
 agreement NBC/NBL/NBT/NBE/NBP document.
 Born tick-696 at ZERO findings rc=0 (NBM-01..02 over 20 notebooks /
 122 md cells); NBM-03..05 born tick-697 at ZERO over the same
-corpus (142 headings measured).
+corpus (142 headings measured); NBM-06 born tick-701 at ZERO over
+the same corpus (tick-701's census measured 0 pipe-table blocks /
+0 rows in the md cells - the convention 'tables live in docs, not
+notebook prose' is real and this keeps it).
 """
 import argparse
 import json
@@ -64,6 +76,15 @@ INLINE = re.compile(r"`[^`]*`")
 ATX = re.compile(r"^(#{1,6})(?!#)(?:\s+.*)?$")
 SETEXT_EQ = re.compile(r"^=+\s*$")
 SETEXT_DASH = re.compile(r"^-{2,}\s*$")
+DELIM = re.compile(r"^\s*\|?(\s*:?-+:?\s*\|)+\s*:?-+:?\s*\|?\s*$")
+
+
+def separators(line: str) -> int:
+    """Pipe-separator count after inline-code spans are stripped and
+    backslash-escaped pipes removed (a backticked pipe renders
+    literally, an escaped pipe is cell content)."""
+    stripped = INLINE.sub("", line)
+    return stripped.replace("\\|", "").count("|")
 
 
 def cell_source(cell):
@@ -145,6 +166,42 @@ def scan_nb(root, path, findings, stats):
                     "orphaned section breaks its outline"
                     % (where, prev_level, lvl))
             prev_level = lvl
+        # NBM-06: pipe-table structural health in the md cell (the
+        # TH-01 frame; a md-cell fence is already illegal per
+        # NBM-01, and its content must not double-count as table
+        # blocks, so the walk is fence-aware)
+        blocks = []
+        block = []
+        in_fence = False
+        for j, ln in enumerate(src.split("\n"), 1):
+            if FENCE.match(ln):
+                in_fence = not in_fence
+                if len(block) >= 2:
+                    blocks.append(block)
+                block = []
+                continue
+            if in_fence or "|" not in ln:
+                if len(block) >= 2:
+                    blocks.append(block)
+                block = []
+                continue
+            block.append((j, ln))
+        if len(block) >= 2:
+            blocks.append(block)
+        for blk in blocks:
+            if len(blk) < 2 or not DELIM.match(blk[1][1]):
+                continue
+            stats[3] += 1
+            stats[4] += len(blk)
+            width = separators(blk[1][1])
+            for j, ln in blk:
+                n = separators(ln)
+                if n != width:
+                    findings.append(
+                        "%s line %d: NBM-06 row carries %d pipe "
+                        "separators, the delimiter row %d - GFM "
+                        "pads short rows with empty cells and "
+                        "drops long ones" % (where, j, n, width))
 
 
 def main(argv=None):
@@ -155,7 +212,7 @@ def main(argv=None):
     args = ap.parse_args(argv)
     root = args.root
     findings = []
-    stats = [0, 0, 0]  # notebooks, md cells, NBH-03
+    stats = [0, 0, 0, 0, 0]  # notebooks, md cells, NBH-03, blocks, rows
     for path in sorted((root / "docs" / "notebooks").glob("*.ipynb")):
         stats[0] += 1
         scan_nb(root, path, findings, stats)
@@ -167,12 +224,14 @@ def main(argv=None):
          "block in a markdown cell / NBM-02 a raw HTML tag in a "
          "markdown cell / NBM-03 an H1 outside the title position / "
          "NBM-04 a heading-level skip / NBM-05 a setext-style "
-         "heading; %d markdown cells scanned, %d cell(s) left to "
-         "NBH-03) - hard; NBM-01..02 born tick-696, NBM-03..05 born "
-         "tick-697, both at zero over the real corpus (the .md "
-         "render gates never see .ipynb cells - the launcher "
-         "RENDERS them)\n"
-         % (len(findings), stats[1], stats[2]))
+         "heading / NBM-06 a pipe-table row ragged against its "
+         "delimiter row; %d markdown cells scanned, %d table "
+         "block(s) / %d row(s) walked, %d cell(s) left to "
+         "NBH-03) - hard; NBM-01..02 born tick-696, NBM-03..05 "
+         "born tick-697, NBM-06 born tick-701, all at zero over "
+         "the real corpus (the .md render gates never see .ipynb "
+         "cells - the launcher RENDERS them)\n"
+         % (len(findings), stats[1], stats[3], stats[4], stats[2]))
         .encode("utf-8", "backslashreplace"))
     return 1 if findings else 0
 
