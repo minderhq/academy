@@ -80,22 +80,22 @@ if torch.cuda.is_available():
 | **[NB-201: PyTorch Basics](./NB-201-PyTorch-Basics.ipynb)** | Tensors, Autograd, Neural Networks | ⭐ Beginner | 2 hours | `environment-pytorch.yml` |
 | **[NB-202: Deep Learning Fundamentals](./NB-202-Deep-Learning-Fundamentals.ipynb)** | Feed-forward networks, Training loops | ⭐⭐ Intermediate | 3 hours | `environment-pytorch.yml` |
 | **[NB-203: NLP for LLMs](./NB-203-NLP-For-LLMs.ipynb)** | Tokenization, Embeddings, Language Models | ⭐⭐ Intermediate | 3 hours | `environment-pytorch.yml` |
-| **[NB-204: Data Loading](./NB-204-Data-Loading.ipynb)** | Datasets, Dataloaders, Preprocessing | ⭐⭐ Intermediate | 2 hours | `environment-pytorch.yml` |
+| **[NB-204: Data Loading & Processing](./NB-204-Data-Loading.ipynb)** | Datasets, Dataloaders, Preprocessing | ⭐⭐ Intermediate | 2 hours | `environment-pytorch.yml` |
 | **[NB-205: Evaluation Metrics](./NB-205-Evaluation-Metrics.ipynb)** | Accuracy, Loss, Custom Metrics | ⭐⭐ Intermediate | 2 hours | `environment-pytorch.yml` |
 
 ### Phase 3: LLM Internals
 
 | Notebook | Topic | Difficulty | Time | Environment |
 |----------|-------|------------|------|-------------|
-| **[NB-301: Self-Attention](./NB-301-Self-Attention.ipynb)** | Self-Attention from scratch | ⭐⭐⭐ Advanced | 4 hours | `environment-transformers.yml` |
+| **[NB-301: Self-Attention Implementation](./NB-301-Self-Attention.ipynb)** | Self-Attention from scratch | ⭐⭐⭐ Advanced | 4 hours | `environment-transformers.yml` |
 | **[NB-302: Transformer Architecture](./NB-302-Transformer-Architecture.ipynb)** | Encoder-Decoder, Multi-Head | ⭐⭐⭐ Advanced | 4 hours | `environment-transformers.yml` |
-| **[NB-303: GPT Implementation](./NB-303-GPT-Implementation.ipynb)** | Build GPT from scratch | ⭐⭐⭐ Advanced | 6 hours | `environment-transformers.yml` |
+| **[NB-303: GPT-Style Decoder](./NB-303-GPT-Implementation.ipynb)** | Build GPT from scratch | ⭐⭐⭐ Advanced | 6 hours | `environment-transformers.yml` |
 
 ### Phase 4: Quantization
 
 | Notebook | Topic | Difficulty | Time | Environment |
 |----------|-------|------------|------|-------------|
-| **[NB-401: Quantization](./NB-401-Quantization.ipynb)** | INT8, FP16 quantization | ⭐⭐ Intermediate | 3 hours | `environment-transformers.yml` |
+| **[NB-401: Quantization Techniques](./NB-401-Quantization.ipynb)** | INT8, FP16 quantization | ⭐⭐ Intermediate | 3 hours | `environment-transformers.yml` |
 | **[NB-402: GPTQ Quantization](./NB-402-GPTQ-Quantization.ipynb)** | GPTQ algorithm | ⭐⭐⭐ Advanced | 4 hours | `environment-finetuning.yml` |
 | **[NB-403: KV Cache Optimization](./NB-403-KV-Cache-Optimization.ipynb)** | KV Cache, Context Window | ⭐⭐⭐ Advanced | 3 hours | `environment-transformers.yml` |
 
@@ -111,7 +111,7 @@ if torch.cuda.is_available():
 
 | Notebook | Topic | Difficulty | Time | Environment |
 |----------|-------|------------|------|-------------|
-| **[NB-601: Building RAG](./NB-601-Building-RAG.ipynb)** | Basic RAG system | ⭐⭐ Intermediate | 4 hours | `environment-rag.yml` |
+| **[NB-601: Building RAG Pipeline](./NB-601-Building-RAG.ipynb)** | Basic RAG system | ⭐⭐ Intermediate | 4 hours | `environment-rag.yml` |
 | **[NB-602: Advanced RAG Techniques](./NB-602-Advanced-RAG-Techniques.ipynb)** | Hybrid search, Re-ranking | ⭐⭐⭐ Advanced | 5 hours | `environment-rag.yml` |
 | **[NB-603: Vector Databases](./NB-603-Vector-Databases.ipynb)** | Qdrant, Pinecone, Weaviate | ⭐⭐ Intermediate | 3 hours | `environment-rag.yml` |
 
@@ -119,7 +119,7 @@ if torch.cuda.is_available():
 
 | Notebook | Topic | Difficulty | Time | Environment |
 |----------|-------|------------|------|-------------|
-| **[NB-701: Agentic System](./NB-701-Agentic-System.ipynb)** | ReAct Agent | ⭐⭐⭐ Advanced | 5 hours | `environment-rag.yml` |
+| **[NB-701: Building Agentic Systems](./NB-701-Agentic-System.ipynb)** | ReAct Agent | ⭐⭐⭐ Advanced | 5 hours | `environment-rag.yml` |
 | **[NB-702: Agent Memory Systems](./NB-702-Agent-Memory-Systems.ipynb)** | Memory management | ⭐⭐⭐ Advanced | 4 hours | `environment-rag.yml` |
 | **[NB-703: Agent Security](./NB-703-Agent-Security.ipynb)** | Security best practices | ⭐⭐⭐ Advanced | 3 hours | `environment-rag.yml` |
 

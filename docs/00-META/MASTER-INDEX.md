@@ -212,21 +212,21 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **[NB-201](../notebooks/NB-201-PyTorch-Basics.ipynb)** | PyTorch Basics | Tensors, Autograd, Neural Networks | Beginner | 2 hours |
 | **[NB-202](../notebooks/NB-202-Deep-Learning-Fundamentals.ipynb)** | Deep Learning Fundamentals | Feed-forward networks, Training loops | Intermediate | 3 hours |
 | **[NB-203](../notebooks/NB-203-NLP-For-LLMs.ipynb)** | NLP for LLMs | Tokenization, Embeddings, Language Models | Intermediate | 3 hours |
-| **[NB-204](../notebooks/NB-204-Data-Loading.ipynb)** | Data Loading | Datasets, Dataloaders, Preprocessing | Intermediate | 2 hours |
+| **[NB-204](../notebooks/NB-204-Data-Loading.ipynb)** | Data Loading & Processing | Datasets, Dataloaders, Preprocessing | Intermediate | 2 hours |
 | **[NB-205](../notebooks/NB-205-Evaluation-Metrics.ipynb)** | Evaluation Metrics | Accuracy, Loss, Custom Metrics | Intermediate | 2 hours |
-| **[NB-301](../notebooks/NB-301-Self-Attention.ipynb)** | Self-Attention | Self-Attention from scratch | Advanced | 4 hours |
+| **[NB-301](../notebooks/NB-301-Self-Attention.ipynb)** | Self-Attention Implementation | Self-Attention from scratch | Advanced | 4 hours |
 | **[NB-302](../notebooks/NB-302-Transformer-Architecture.ipynb)** | Transformer Architecture | Encoder-Decoder, Multi-Head | Advanced | 4 hours |
-| **[NB-303](../notebooks/NB-303-GPT-Implementation.ipynb)** | GPT Implementation | Build GPT from scratch | Advanced | 6 hours |
-| **[NB-401](../notebooks/NB-401-Quantization.ipynb)** | Quantization | INT8, FP16 quantization | Intermediate | 3 hours |
+| **[NB-303](../notebooks/NB-303-GPT-Implementation.ipynb)** | GPT-Style Decoder | Build GPT from scratch | Advanced | 6 hours |
+| **[NB-401](../notebooks/NB-401-Quantization.ipynb)** | Quantization Techniques | INT8, FP16 quantization | Intermediate | 3 hours |
 | **[NB-402](../notebooks/NB-402-GPTQ-Quantization.ipynb)** | GPTQ Quantization | GPTQ algorithm | Advanced | 4 hours |
 | **[NB-403](../notebooks/NB-403-KV-Cache-Optimization.ipynb)** | KV Cache Optimization | KV Cache, Context Window | Advanced | 3 hours |
 | **[NB-501](../notebooks/NB-501-LoRA-Fine-tuning.ipynb)** | LoRA Fine-tuning | LoRA implementation | Advanced | 4 hours |
 | **[NB-502](../notebooks/NB-502-DPO-Alignment.ipynb)** | DPO Alignment | DPO training | Advanced | 4 hours |
 | **[NB-503](../notebooks/NB-503-Synthetic-Data-Generation.ipynb)** | Synthetic Data Generation | Generate training data | Advanced | 3 hours |
-| **[NB-601](../notebooks/NB-601-Building-RAG.ipynb)** | Building RAG | Basic RAG system | Intermediate | 4 hours |
+| **[NB-601](../notebooks/NB-601-Building-RAG.ipynb)** | Building RAG Pipeline | Basic RAG system | Intermediate | 4 hours |
 | **[NB-602](../notebooks/NB-602-Advanced-RAG-Techniques.ipynb)** | Advanced RAG Techniques | Hybrid search, Re-ranking | Advanced | 5 hours |
 | **[NB-603](../notebooks/NB-603-Vector-Databases.ipynb)** | Vector Databases | Qdrant, Pinecone, Weaviate | Intermediate | 3 hours |
-| **[NB-701](../notebooks/NB-701-Agentic-System.ipynb)** | Agentic System | ReAct Agent | Advanced | 5 hours |
+| **[NB-701](../notebooks/NB-701-Agentic-System.ipynb)** | Building Agentic Systems | ReAct Agent | Advanced | 5 hours |
 | **[NB-702](../notebooks/NB-702-Agent-Memory-Systems.ipynb)** | Agent Memory Systems | Memory management | Advanced | 4 hours |
 | **[NB-703](../notebooks/NB-703-Agent-Security.ipynb)** | Agent Security | Security best practices | Advanced | 3 hours |
 
