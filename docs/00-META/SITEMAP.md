@@ -87,7 +87,7 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [assessment: PRACTICE](../phases/phase1-infra/1500-monitoring/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase1-infra/1500-monitoring/assessment/QUIZ.md)
 
-## Phase 2 - AI & Cognitive Foundations (32 files)
+## Phase 2 - Cognitive Science & Frameworks (32 files)
 
 - [CHECKPOINT](../phases/phase2-foundations/CHECKPOINT.md)
 - [README](../phases/phase2-foundations/README.md)
@@ -356,7 +356,7 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [assessment: PRACTICE](../phases/phase6-rag/6500-mlops-pipelines/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase6-rag/6500-mlops-pipelines/assessment/QUIZ.md)
 
-## Phase 7 - Agentic Cognition & Production (36 files)
+## Phase 7 - Agentic Systems (36 files)
 
 - [CHECKPOINT](../phases/phase7-agentic/CHECKPOINT.md)
 - [README](../phases/phase7-agentic/README.md)
@@ -712,12 +712,12 @@ Phases: 7
 Learning modules (topics): 33
 Phase files (lessons, guides, assessments, topic README/PREREQUISITES): 260
   Phase 1 - Infrastructure Fabric: 39
-  Phase 2 - AI & Cognitive Foundations: 32
-  Phase 3 - Transformer Physics & LLM Internals: 34
+  Phase 2 - Cognitive Science & Frameworks: 32
+  Phase 3 - Transformer Physics: 34
   Phase 4 - Quantization & Compression: 41
-  Phase 5 - Model Adaptation: Fine-Tuning & Alignment: 40
-  Phase 6 - RAG & Data Nexus: 38
-  Phase 7 - Agentic Cognition & Production: 36
+  Phase 5 - Fine-Tuning & Alignment: 40
+  Phase 6 - Data Nexus: 38
+  Phase 7 - Agentic Systems: 36
 Volume guides: 7
 Phase assessment sets: 14 (7 phases x quiz + practice)
 Experiments: 47 (+ TEMPLATE)

@@ -465,7 +465,7 @@ Use **[PROGRESS-TRACKER.md](PROGRESS-TRACKER.md)** to:
 
 Check the **Last Updated** date at the bottom of each document.
 
-**Current Version:** 4.2 (2026-09-24)
+**Current Version:** 4.5 (2026-09-30)
 
 ---
 
@@ -473,11 +473,12 @@ Check the **Last Updated** date at the bottom of each document.
 
 ### Is there a community?
 
-Minder Academy is an open educational resource. Join the community to:
-- Share your progress
-- Ask questions
-- Get help
-- Contribute back
+Minder Academy is an open educational resource. The corpus is designed to be
+self-contained:
+- Work through the volumes at your own pace
+- Use the experiments and labs for hands-on practice
+- Report corrections via this repository's issue tracker
+- Contribute improvements via pull requests
 
 ### How can I help others?
 
@@ -515,7 +516,7 @@ Minder Academy is an open educational resource. Join the community to:
 - **[0000-LEARNING-PATH.md](0000-LEARNING-PATH.md)** - Learning paths
 - **[TROUBLESHOOTING-Common-Issues.md](../learning-resources/troubleshooting/TROUBLESHOOTING-Common-Issues.md)** - Common issues
 
-**Ask:** Join the community and ask your question!
+**Ask:** Open an issue in this repository with your question.
 
 ---
 

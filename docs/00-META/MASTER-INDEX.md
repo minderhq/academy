@@ -450,8 +450,7 @@ find docs/diagrams -name "*.md"
 
 - [FAQ](FAQ.md) - Frequently Asked Questions
 - [Troubleshooting Quick Start](TROUBLESHOOTING-QUICKSTART.md) - Common Issues
-- Community - Join the community
-- Issues - Report bugs
+- Issues - Report bugs via this repository's issue tracker
 
 ### Contributing
 

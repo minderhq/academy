@@ -140,9 +140,9 @@ Checkpoint: Fine-tuned domain-specific model
 - Commitment to 10-15 hours/week for 12+ months
 - Patience to build strong fundamentals
 
-### Phase 1: Infrastructure Foundation (Month 1-3)
+### Phase 1: Infrastructure Fabric (Month 1-3)
 
-**Volume 1: Infrastructure Mastery** (75-100 hours)
+**Volume 1: Infrastructure Fundamentals** (75-100 hours)
 
 ```text
 Week 1-2: Network & Hardware
@@ -170,7 +170,7 @@ Week 5-6: LLMOps & Monitoring
 Checkpoint: Complete AI infrastructure running
 ```
 
-### Phase 2: Mathematical Foundations (Month 3-6)
+### Phase 2: Cognitive Science & Frameworks (Month 3-6)
 
 **Volume 2: AI/ML Foundations** (100-130 hours)
 
@@ -206,9 +206,9 @@ Week 9-10: Pre-training
 Checkpoint: Trained 10M parameter model
 ```
 
-### Phase 3: Transformer Architecture (Month 4-5)
+### Phase 3: Transformer Physics (Month 4-5)
 
-**Volume 3: LLM Internals** (35-40 hours)
+**Volume 3: LLM Internals & Architecture** (35-40 hours)
 
 ```text
 Week 1-2: Attention Mechanisms
@@ -232,9 +232,9 @@ Week 4: Architectures
 Checkpoint: Deep understanding of transformers
 ```
 
-### Phase 4: Quantization (Month 5-6)
+### Phase 4: Quantization & Compression (Month 5-6)
 
-**Volume 4: Quantization Mastery** (30-35 hours)
+**Volume 4: Quantization & Optimization** (30-35 hours)
 
 ```text
 Week 1-2: Low-Bit Quantization
@@ -253,9 +253,9 @@ Week 3: KV-Cache Optimization
 Checkpoint: Optimized model running on consumer hardware
 ```
 
-### Phase 5: Model Adaptation (Month 6-7)
+### Phase 5: Fine-Tuning & Alignment (Month 6-7)
 
-**Volume 5: Fine-Tuning Expert** (35-40 hours)
+**Volume 5: Model Adaptation** (35-40 hours)
 
 ```text
 Week 1-2: PEFT Methods
@@ -278,9 +278,9 @@ Week 5: Advanced Techniques
 Checkpoint: Production fine-tuning workflow
 ```
 
-### Phase 6: Data Systems (Month 7-8)
+### Phase 6: Data Nexus (Month 7-8)
 
-**Volume 6: RAG & Data Systems** (40-45 hours)
+**Volume 6: Data Nexus: RAG & Memory** (40-45 hours)
 
 ```text
 Week 1-2: Vector Search
@@ -305,9 +305,9 @@ Week 5: GraphRAG
 Checkpoint: Enterprise-grade RAG system
 ```
 
-### Phase 7: Production Mastery (Month 8-10)
+### Phase 7: Agentic Systems (Month 8-10)
 
-**Volume 7: Production Systems** (45-50 hours)
+**Volume 7: Production Mastery** (45-50 hours)
 
 ```text
 Week 1-2: Agent Frameworks
@@ -616,7 +616,7 @@ Capstone: Multi-agent system
 
 **"Deep understanding for research"** - Academic-style deep dive.
 
-### Phase 1: Mathematical Foundation (Month 1-3)
+### Stage 1: Mathematical Foundation (Month 1-3)
 
 ```text
 Complete Volume 2 in depth:
@@ -632,7 +632,7 @@ Complete Volume 2 in depth:
 Checkpoint: Deep mathematical understanding
 ```
 
-### Phase 2: Architecture Deep Dive (Month 3-5)
+### Stage 2: Architecture Deep Dive (Month 3-5)
 
 ```text
 Complete Volume 3 in depth:
@@ -649,7 +649,7 @@ Complete Volume 3 in depth:
 Checkpoint: Architecture mastery
 ```
 
-### Phase 3: Advanced Techniques (Month 5-7)
+### Stage 3: Advanced Techniques (Month 5-7)
 
 ```text
 Complete Volumes 4 & 5:
@@ -665,7 +665,7 @@ Complete Volumes 4 & 5:
 Checkpoint: Advanced techniques mastery
 ```
 
-### Phase 4: Research Project (Month 7-10)
+### Stage 4: Research Project (Month 7-10)
 
 ```text
 Choose research focus:

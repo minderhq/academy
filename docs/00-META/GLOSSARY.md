@@ -153,11 +153,11 @@ Consistent terminology prevents confusion and makes learning easier. When you se
 ```text
 Phase 1: [1000] Infrastructure Fabric
 Phase 2: [2000] Cognitive Science & Frameworks
-Phase 3: [3000] Transformer Physics & LLM Internals
+Phase 3: [3000] Transformer Physics
 Phase 4: [4000] Quantization & Compression
-Phase 5: [5000] Model Adaptation: Fine-Tuning & Alignment
-Phase 6: [6000] Data Nexus: RAG & Memory
-Phase 7: [7000] Agentic Cognition & Autonomy
+Phase 5: [5000] Fine-Tuning & Alignment
+Phase 6: [6000] Data Nexus
+Phase 7: [7000] Agentic Systems
 ```
 
 ### Volume Names (consistent usage)
