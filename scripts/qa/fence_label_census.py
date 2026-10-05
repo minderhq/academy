@@ -24,6 +24,11 @@ Report mode - exit 0 by design; the census is an inventory, not a gate.
 
 Run over the whole corpus:
     python scripts/qa/fence_label_census.py --root .
+
+The fence parser is the tick-678 CommonMark canon state machine: the
+opener's marker run is captured (f_char, f_len), a closer must repeat
+the opener's character in a run at least as long, a different fence
+character never closes, a non-closer marker line is fence content.
 """
 from __future__ import annotations
 
@@ -32,7 +37,7 @@ import re
 import sys
 from pathlib import Path
 
-FENCE_OPEN = re.compile(r"^ {0,3}```(\w*)\s*$")
+FENCE_OPEN = re.compile(r"^\s*(`{3,}|~{3,})\s*([A-Za-z0-9_+-]*)\s*$")
 SHELL_LABELS = {"bash", "sh", "shell"}
 
 # any of these means the fence is a runnable shell script, not raw config
@@ -55,16 +60,23 @@ NGINX_RE = [re.compile(re.escape(m)) for m in
 
 def fences(path: Path):
     lines = path.read_text(encoding="utf-8", errors="replace").splitlines()
-    in_fence, label, buf, start = False, "", [], 0
+    in_fence: tuple[str, int] | None = None
+    label, buf, start = "", [], 0
     for i, line in enumerate(lines, 1):
         m = FENCE_OPEN.match(line)
-        if not in_fence and m:
-            in_fence, label, buf, start = True, m.group(1), [], i
-        elif in_fence and re.match(r"^ {0,3}```", line):
-            in_fence = False
-            if label in SHELL_LABELS:
-                yield start, label, buf
-            buf = []
+        if m:
+            f_char, f_len = m.group(1)[0], len(m.group(1))
+            if in_fence:
+                if f_char == in_fence[0] and f_len >= in_fence[1]:
+                    in_fence = None  # true closer ends any block
+                    if label in SHELL_LABELS:
+                        yield start, label, buf
+                    buf = []
+                else:
+                    buf.append(line)  # non-closer marker is content
+            else:
+                in_fence = (f_char, f_len)
+                label, buf, start = m.group(2), [], i
         elif in_fence:
             buf.append(line)
 
