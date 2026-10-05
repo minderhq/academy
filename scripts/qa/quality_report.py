@@ -3344,6 +3344,7 @@ GATES = [
     ("notebook_link_scan.py", "notebook_link_scan", True),
     ("notebook_title_scan.py", "notebook_title_scan", True),
     ("notebook_execution_scan.py", "notebook_execution_scan", True),
+    ("notebook_pip_scan.py", "notebook_pip_scan", True),
     ("changelog_summary_check.py", "changelog_summary_check", True),
     ("course_card_check.py", "course_card_check", True),
     ("lab_index_parity_check.py", "lab_index_parity_check", True),
