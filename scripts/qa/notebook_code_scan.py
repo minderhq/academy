@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""notebook code-cell gate (NBC-01..11) for Minder Academy.
+"""notebook code-cell gate (NBC-01..14) for Minder Academy.
 
 The .md AST gate family never sees notebook code: codeblock_syntax_scan
 and fence_import_check walk CommonMark fences in docs/**/*.md, while
@@ -72,7 +72,41 @@ NBC-03..11  the unsafe family's twin (born tick-702): the .md
                 platform expects utf-8.
         NBC-11  requests without timeout: requests.get/post/put/
                 delete/head/patch with no timeout kwarg (splat
-                silent) - a hung endpoint hangs the launcher cell.
+launcher cell.
+
+NBC-12..14  the secret/crypto twins (born tick-703): secret_shape_scan
+        (SS-01) and crypto_hygiene_scan (CH-01/CH-02) declare
+        ".ipynb are outside the md universe" like the rest of the
+        family - the launcher RUNS code cells, so a leaked key
+        shape, a token built from random.* or a weak hash on
+        security material was invisible inside notebooks. The
+        tick-703 census measured the closet clean (0 provider
+        shapes, 8 random.* producers all ML sampling with no
+        security vocabulary attached, 0 md5/sha1 calls) and the
+        extension is born at zero to keep it; a cell carrying the
+        danger marker (DANGEROUS / wrong: / unsafe / vulnerab,
+        casefold - the md twins' escape) stays silent for these
+        three rules.
+
+        NBC-12  credentialed-shaped string constant: a provider
+                key shape (sk- + 20+, ghp_/gho_/ghu_/ghs_/ghr_ +
+                30+, github_pat_ + 22+, AKIA + 16, AIza + 35, xox-
+                + 10+) - a shape on the page reads as a leaked
+                credential and GitHub secret scanning flags it on
+                push; the tail demands partition placeholders by
+                construction, and environment reads never carry
+                the shape (the walk sees string Constants only).
+        NBC-13  security material from random: a random.<producer>()
+                call (bare random Name base only - np.random is the
+                ML sampling universe) when the security vocabulary
+                attaches at the call site (assignment target,
+                enclosing def name, string-Constant or Name
+                argument, keyword name or Name keyword value).
+        NBC-14  security material weak-hashed: hashlib.md5/sha1
+                when the vocabulary attaches to the digest input
+                or the assignment target - vocabulary-free
+                dedup/bucketing hashing stays out, the md twin's
+                measured carve.
 
 Structural health (unparseable JSON, malformed cells/sources) is
 NBH-03's jurisdiction - NBC silently skips what NBH flags, and the
@@ -104,8 +138,15 @@ or, bare except -> ImportError, eval -> an AST allow-list evaluator),
 and the gate was born at zero over the drained corpus - the NBT
 drain-and-lock order.
 
+NBC-12..14 born tick-703 the NBM-06 way: the census measured the
+closet CLEAN (0 shapes, 8 sampling producers vocab-free, 0 md5/sha1
+calls across the same 20 notebooks / 102 code cells), so there was
+nothing to drain - the extension is born at zero to keep the
+convention (credentials from the environment, randomness stays ML
+sampling, sha256 for any real hashing).
+
 Hard gate (exit 1 on findings): baseline 0 at birth (tick-691 for
-NBC-01..02, tick-702 for NBC-03..11).
+NBC-01..02, tick-702 for NBC-03..11, tick-703 for NBC-12..14).
 
 Run over the whole corpus:
     python scripts/qa/notebook_code_scan.py --root .
@@ -116,6 +157,7 @@ import argparse
 import ast
 import importlib
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -180,6 +222,28 @@ _DESERIALIZE = {
 _YAML_UNSAFE = ("load", "unsafe_load", "full_load")
 _HTTP_VERBS = ("get", "post", "put", "delete", "head", "patch")
 
+# The secret/crypto twins (born tick-703), mirrored from
+# secret_shape_scan (SS-01) and crypto_hygiene_scan (CH-01/CH-02).
+_SECRET_SHAPES = (
+    re.compile(r"\bsk-[A-Za-z0-9_-]{20,}"),
+    re.compile(r"\bgh[pousr]_[A-Za-z0-9]{30,}"),
+    re.compile(r"\bgithub_pat_[A-Za-z0-9_]{22,}"),
+    re.compile(r"\bAKIA[A-Z0-9]{16}"),
+    re.compile(r"\bAIza[0-9A-Za-z_-]{35}"),
+    re.compile(r"\bxox[baprs]-[A-Za-z0-9-]{10,}"),
+)
+_DANGER_RE = re.compile(
+    r"DANGEROUS|wrong:|unsafe|vulnerab", re.IGNORECASE)
+_SEC_VOCAB_RE = re.compile(
+    r"token|secret|password|passwd|pwd|api[_-]?key|otp|nonce|salt"
+    r"|session[_-]?id|credential|auth[_-]?(code|state)|csrf"
+    r"|reset[_-]?code|confirm[_-]?code", re.IGNORECASE)
+_RAND_VERBS = frozenset({
+    "random", "rand", "randint", "randrange", "randbytes",
+    "getrandbits", "uniform", "choice", "choices", "sample",
+    "shuffle",
+})
+
 
 def dotted_name(node: ast.expr) -> str | None:
     """Dotted name of a Name/Attribute chain, else None."""
@@ -230,6 +294,132 @@ def empty_mutable(default: ast.expr) -> bool:
         return (dotted_name(default.func) == "set"
                 and not default.args and not default.keywords)
     return False
+
+
+def sec_vocab(text: str) -> bool:
+    """Security-vocabulary probe (the md crypto twin's attachment)."""
+    return bool(_SEC_VOCAB_RE.search(text))
+
+
+def ch01_attached(call: ast.Call, assign_name: str | None,
+                  func_name: str | None) -> bool:
+    """Vocabulary attached to a random.* call site."""
+    if assign_name is not None and sec_vocab(assign_name):
+        return True
+    if func_name is not None and sec_vocab(func_name):
+        return True
+    for a in call.args:
+        if (isinstance(a, ast.Constant) and isinstance(a.value, str)
+                and sec_vocab(a.value)):
+            return True
+        if isinstance(a, ast.Name) and sec_vocab(a.id):
+            return True
+    for kw in call.keywords:
+        if sec_vocab(kw.arg or ""):
+            return True
+        if isinstance(kw.value, ast.Name) and sec_vocab(kw.value.id):
+            return True
+    return False
+
+
+def ch02_attached(call: ast.Call, assign_name: str | None) -> bool:
+    """Vocabulary attached to a hashlib weak-hash call site."""
+    if assign_name is not None and sec_vocab(assign_name):
+        return True
+    if not call.args:
+        return False
+    arg0 = call.args[0]
+    consts = [n.value for n in ast.walk(arg0)
+              if isinstance(n, ast.Constant) and isinstance(n.value, str)]
+    ids = ([n.id for n in ast.walk(arg0) if isinstance(n, ast.Name)]
+           + [n.attr for n in ast.walk(arg0)
+              if isinstance(n, ast.Attribute)])
+    return (any(sec_vocab(s) for s in consts)
+            or any(sec_vocab(i) for i in ids))
+
+
+def scan_security(src: str, tree: ast.AST, rel: str, idx: int,
+                  findings: list[str]) -> None:
+    """NBC-12..14 over one parsed cell tree (danger-marker escape
+    mirrored from the md twins, per cell)."""
+    if _DANGER_RE.search(src):
+        return
+    for node in ast.walk(tree):
+        if (isinstance(node, ast.Constant)
+                and isinstance(node.value, str)
+                and any(p.search(node.value) for p in _SECRET_SHAPES)):
+            findings.append(
+                f"{rel}: NBC-12 credentialed-shaped string literal in "
+                f"code cell {idx} - a provider key shape on the page "
+                f"reads as a leaked credential and GitHub secret "
+                f"scanning flags it on push; read it from the "
+                f"environment (os.environ / os.getenv)")
+
+    class _Collector(ast.NodeVisitor):
+        def __init__(self) -> None:
+            self.func_name: str | None = None
+            self.assign_name: str | None = None
+
+        def visit_FunctionDef(self, node: ast.FunctionDef) -> None:
+            prev, self.func_name = self.func_name, node.name
+            self.generic_visit(node)
+            self.func_name = prev
+
+        visit_AsyncFunctionDef = visit_FunctionDef
+
+        def _assign(self, target: ast.expr) -> bool:
+            if isinstance(target, ast.Name):
+                self.assign_name = target.id
+                return True
+            return False
+
+        def visit_Assign(self, node: ast.Assign) -> None:
+            prev = self.assign_name
+            if len(node.targets) == 1:
+                self._assign(node.targets[0])
+            self.generic_visit(node)
+            self.assign_name = prev
+
+        def visit_AnnAssign(self, node: ast.AnnAssign) -> None:
+            prev = self.assign_name
+            self._assign(node.target)
+            self.generic_visit(node)
+            self.assign_name = prev
+
+        def visit_AugAssign(self, node: ast.AugAssign) -> None:
+            prev = self.assign_name
+            self._assign(node.target)
+            self.generic_visit(node)
+            self.assign_name = prev
+
+        def visit_Call(self, node: ast.Call) -> None:
+            if isinstance(node.func, ast.Attribute):
+                attr = node.func.attr
+                base_node = node.func.value
+                base = (base_node.id
+                        if isinstance(base_node, ast.Name) else None)
+                if (base == "random" and attr in _RAND_VERBS
+                        and ch01_attached(node, self.assign_name,
+                                          self.func_name)):
+                    findings.append(
+                        f"{rel}: NBC-13 security material built with "
+                        f"random.{attr}() in code cell {idx} - the "
+                        f"Mersenne Twister is predictable from "
+                        f"observed output, so a token/key/salt from "
+                        f"random.* is forgeable; use the secrets "
+                        f"module (token_hex/token_urlsafe/randbelow)")
+                elif (base == "hashlib" and attr in ("md5", "sha1")
+                        and ch02_attached(node, self.assign_name)):
+                    findings.append(
+                        f"{rel}: NBC-14 security material weak-hashed "
+                        f"with hashlib.{attr}() in code cell {idx} - "
+                        f"md5/sha1 are collision-broken, a hashed "
+                        f"password/token can be swapped not just "
+                        f"guessed; hash with hashlib.sha256 and "
+                        f"store passwords under PBKDF2/scrypt/argon2")
+            self.generic_visit(node)
+
+    _Collector().visit(tree)
 
 
 def scan_unsafe(tree: ast.AST, rel: str, idx: int,
@@ -352,6 +542,7 @@ def scan_nb(root: Path, path: Path, findings: list[str],
                 f"{exc.msg}")
             continue
         scan_unsafe(tree, rel, idx, findings)
+        scan_security(src, tree, rel, idx, findings)
         roots: set[str] = set()
         for node in ast.walk(tree):
             if isinstance(node, ast.Import):
@@ -388,10 +579,11 @@ def main() -> int:
         print(f.encode("ascii", "backslashreplace").decode("ascii"))
     print(f"notebook_code_scan: {len(findings)} findings "
           f"(NBC-01 code-cell syntax / NBC-02 unresolvable import root "
-          f"/ NBC-03..11 the unsafe family twin: bare-broad except, "
+          f"/ NBC-03..14 the unsafe family twin: bare-broad except, "
           f"unsafe deserialize, eval-exec, empty mutable default, "
           f"shell-out, mktemp, trust_remote_code, open-no-encoding, "
-          f"requests-no-timeout; "
+          f"requests-no-timeout, secret-shape literals, "
+          f"random-for-security, weak-hash-security; "
           f"{stats[4]} import(s) accepted, {stats[3]} relative skipped, "
           f"{stats[2]} cell(s) left to NBH-03) across {stats[0]} "
           f"notebooks / {stats[1]} code cells in docs/notebooks/ "
@@ -399,7 +591,8 @@ def main() -> int:
           f"drained, 4 unresolvable roots corpus-classified; NBC-03..11 "
           f"born tick-702 at zero - the md unsafe family's declared "
           f"blind spot closed, 4 real teaching-code defects drained "
-          f"in-tick)")
+          f"in-tick; NBC-12..14 born tick-703 at zero - the "
+          f"secret/crypto twins closed, the census clean)")
     return 1 if findings else 0
 
 
