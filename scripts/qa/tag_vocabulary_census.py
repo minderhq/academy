@@ -77,7 +77,7 @@ WHITELIST = frozenset([
     'finance', 'finetuning',
     'flash-attention', 'flashcards', 'fp16', 'framework-comparison', 'framework-engineering', 'framework-selection', 'frameworks',
     'fsdp', 'function-calling', 'gelu', 'ggml', 'gguf', 'glossary', 'gpt',
-    'gptq', 'gpu', 'gradient-clipping', 'graphrag', 'guide', 'hands-on', 'hardware', 'healthcare',
+    'gptq', 'grpo', 'gpu', 'gradient-clipping', 'graphrag', 'guide', 'hands-on', 'hardware', 'healthcare',
     'hnsw', 'hybrid-search', 'inference', 'infrastructure', 'industry', 'iommu', 'isp',
     'jumbo-frames', 'k3s', 'knowledge-graphs', 'kubernetes', 'kv-cache',
     'lab', 'langchain', 'langgraph', 'learning-rate', 'lifecycle', 'llama', 'llamacpp',

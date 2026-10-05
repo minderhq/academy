@@ -242,7 +242,7 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [assessment: PRACTICE](../phases/phase4-quantization/4400-advanced-techniques/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase4-quantization/4400-advanced-techniques/assessment/QUIZ.md)
 
-## Phase 5 - Model Adaptation: Fine-Tuning & Alignment (40 files)
+## Phase 5 - Model Adaptation: Fine-Tuning & Alignment (41 files)
 
 - [CHECKPOINT](../phases/phase5-finetuning/CHECKPOINT.md)
 - [README](../phases/phase5-finetuning/README.md)
@@ -258,7 +258,7 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [assessment: PRACTICE](../phases/phase5-finetuning/5100-peft/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase5-finetuning/5100-peft/assessment/QUIZ.md)
 
-### [5200-alignment] (4 lessons, 0 guides)
+### [5200-alignment] (5 lessons, 0 guides)
 
 - [PREREQUISITES](../phases/phase5-finetuning/5200-alignment/PREREQUISITES.md)
 - [README](../phases/phase5-finetuning/5200-alignment/README.md)
@@ -266,6 +266,7 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [5202-Alignment-Orchestration](../phases/phase5-finetuning/5200-alignment/5202-Alignment-Orchestration.md)
 - [5203-RLHF](../phases/phase5-finetuning/5200-alignment/5203-RLHF.md)
 - [5204-Preference-Dataset-Creation](../phases/phase5-finetuning/5200-alignment/5204-Preference-Dataset-Creation.md)
+- [5205-GRPO-RLVR](../phases/phase5-finetuning/5200-alignment/5205-GRPO-RLVR.md)
 - [assessment: PRACTICE](../phases/phase5-finetuning/5200-alignment/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase5-finetuning/5200-alignment/assessment/QUIZ.md)
 
@@ -706,16 +707,16 @@ build's written walkthroughs live inside the lessons themselves - see the
 ## Statistics
 
 ```text
-Total markdown files: 462
-  docs/: 408, experiments/: 48, configs/: 4, repo root: 2
+Total markdown files: 463
+  docs/: 409, experiments/: 48, configs/: 4, repo root: 2
 Phases: 7
 Learning modules (topics): 33
-Phase files (lessons, guides, assessments, topic README/PREREQUISITES): 260
+Phase files (lessons, guides, assessments, topic README/PREREQUISITES): 261
   Phase 1 - Infrastructure Fabric: 39
   Phase 2 - Cognitive Science & Frameworks: 32
   Phase 3 - Transformer Physics: 34
   Phase 4 - Quantization & Compression: 41
-  Phase 5 - Fine-Tuning & Alignment: 40
+  Phase 5 - Fine-Tuning & Alignment: 41
   Phase 6 - Data Nexus: 38
   Phase 7 - Agentic Systems: 36
 Volume guides: 7

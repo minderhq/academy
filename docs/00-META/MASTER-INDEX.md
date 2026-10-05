@@ -12,7 +12,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 **Version:** 4.5
 **Last Updated:** 2026-09-30
-**Total Files:** 408 markdown files (docs/)
+**Total Files:** 409 markdown files (docs/)
 
 ---
 
@@ -113,12 +113,12 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 ### Phase 5: Fine-Tuning & Alignment [5000]
 
-**Status:** ✅ Complete | **Modules:** 5 | **Documents:** 40
+**Status:** ✅ Complete | **Modules:** 5 | **Documents:** 41
 
 | Module | Topic | Files | Status |
 |--------|-------|-------|--------|
 | **[5100](../phases/phase5-finetuning/5100-peft/README.md)** | PEFT | 4 docs | ✅ |
-| **[5200](../phases/phase5-finetuning/5200-alignment/README.md)** | Alignment | 4 docs | ✅ |
+| **[5200](../phases/phase5-finetuning/5200-alignment/README.md)** | Alignment | 5 docs | ✅ |
 | **[5300](../phases/phase5-finetuning/5300-synthetic/README.md)** | Synthetic Data | 3 docs | ✅ |
 | **[5400](../phases/phase5-finetuning/5400-distributed-training/README.md)** | Distributed Training | 4 docs | ✅ |
 | **[5500](../phases/phase5-finetuning/5500-advanced-optimization/README.md)** | Advanced Optimization | 3 docs | ✅ |
@@ -391,7 +391,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 |----------|------:|
 | **Phase READMEs** | 7 |
 | **Module READMEs** | 33 |
-| **Phase Documents** | 260 |
+| **Phase Documents** | 261 |
 | **Tutorials** | 15 |
 | **Labs** | 15 |
 | **Lab Solutions** | 15 |
@@ -407,7 +407,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **Solutions** | 3 |
 | **Diagrams** | 4 |
 | **Meta Docs** | 20 |
-| **TOTAL** | **536** |
+| **TOTAL** | **537** |
 
 ### Content Statistics
 

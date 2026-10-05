@@ -5,7 +5,7 @@ Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
-Estimated Time: 16 hours
+Estimated Time: 20 hours
 Tags: ['module', 'finetuning', 'alignment']
 ---
 
@@ -93,6 +93,21 @@ After completing this module, you will be able to:
 - Generate synthetic preferences
 - Size a dataset for a target task
 
+### [5205: GRPO and RLVR](./5205-GRPO-RLVR.md)
+**Group Relative Policy Optimization and Verifiable Rewards**
+
+- Verifiable rewards vs the learned reward model
+- The group-relative advantage: no critic, no value head
+- Rule-based reward functions with TRL
+- GRPOTrainer configuration and the DAPO refinements
+- Saturation, entropy collapse, and verifier gaming
+
+**Experiments:**
+- Write verifiable reward functions
+- Run a GRPO stage on a small instruct model
+- Diagnose prompt saturation from training logs
+- Compare GRPO vs PPO vs DPO outcomes
+
 ## Prerequisites
 
 Before starting this module, ensure you have:
@@ -139,9 +154,10 @@ This module connects to:
 | [5202: Alignment Orchestration](./5202-Alignment-Orchestration.md) | 4 hours |
 | [5203: RLHF](./5203-RLHF.md) | 4 hours |
 | [5204: Preference Dataset Creation](./5204-Preference-Dataset-Creation.md) | 4 hours |
+| [5205: GRPO and RLVR](./5205-GRPO-RLVR.md) | 4 hours |
 | Quiz | 30 minutes |
 | Practice | 10 hours |
-| **Total** | **26.5 hours** |
+| **Total** | **30.5 hours** |
 
 ## Resources
 
@@ -163,6 +179,7 @@ This module connects to:
 | Supervised Fine-tuning | Instructions | Low | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
 | RLHF (PPO) | Preferences | High | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ |
 | DPO | Preferences | Medium | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
+| GRPO (RLVR) | Verifiable checkers | Medium-High | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
 | RLAIF | AI Feedback | Medium | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
 | Constitutional AI | Principles | Medium | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
 
