@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""notebook code-cell gate (NBC-01..16) for Minder Academy.
+"""notebook code-cell gate (NBC-01..21) for Minder Academy.
 
 The .md AST gate family never sees notebook code: codeblock_syntax_scan
 and fence_import_check walk CommonMark fences in docs/**/*.md, while
@@ -129,6 +129,31 @@ NBC-12..14  the secret/crypto twins (born tick-703): secret_shape_scan
                 comments are NOT exempted - a legacy spelling
                 inside a docstring also teaches the old idiom, the
                 md twin's documented design.
+        NBC-17..21  deprecated-API spellings (born tick-707):
+                the deprecated_scan (DA-01..05) twin - the md
+                gate walks docs/**/*.md python fences only,
+                while the launcher RUNS code cells, so a cell
+                calling datetime.utcnow() (DA-01, deprecated
+                since 3.12, naive datetimes), passing the
+                removed HF use_auth_token= kwarg (DA-02, gone
+                in transformers 5.x), speaking the pydantic v1
+                API @validator / @root_validator / parse_obj_as
+                or the pydantic-imported .dict() (DA-03),
+                importing the torch.cuda.amp namespace (DA-04,
+                deprecated since PyTorch 2.4) or passing
+                torch_dtype= (DA-05, the transformers shim
+                that warns on every load) was invisible to the
+                whole fleet inside notebooks. Same per-line
+                face as NBC-16 (deliberate: the DA judgment
+                is per-line), first match wins per line in
+                the DA rule order, and the #-split carve
+                comes first - a comment teaching the
+                deprecation stays invisible (the md twin's
+                documented design); the .dict() face
+                activates only when the notebook imports
+                pydantic (the md twin's per-file activation
+                mirrored per notebook, so multiprocessing's
+                manager.dict() stays legitimate stdlib).
 
 Structural health (unparseable JSON, malformed cells/sources) is
 NBH-03's jurisdiction - NBC silently skips what NBH flags, and the
@@ -183,9 +208,22 @@ stayed invisible - the drains landed first (builtin generics, PEP 604
 unions, the four import lines removed), and the gate was born over
 the drained corpus, hard-gated so the old idiom can never regrow.
 
+NBC-17..21 born tick-707 at zero the NBM-06 way: the census (the
+DA judgment mirrored exactly) measured the closet CLEAN (0
+utcnow/utcfromtimestamp faces, 0 use_auth_token kwargs, 0 pydantic
+v1 spellings, 0 torch.cuda.amp imports, 0 torch_dtype kwargs across
+the same 20 notebooks / 102 code cells), so there was nothing to
+drain - the docs-fence modernity epic had already drained the md
+universe (ticks 227, 228, 235, 347, 639) while the notebook layer
+stayed unmeasured, and the extension locks the convention (the
+corpus teaches the 3.12+, transformers-5, pydantic-2 and torch-2.x
+surfaces only) - the launcher RUNS these cells, so a deprecated
+spelling would warn or crash the learner today.
+
 Hard gate (exit 1 on findings): baseline 0 at birth (tick-691 for
 NBC-01..02, tick-702 for NBC-03..11, tick-703 for NBC-12..14,
-tick-704 for NBC-15, tick-706 for NBC-16).
+tick-704 for NBC-15, tick-706 for NBC-16, tick-707 for
+NBC-17..21).
 
 Run over the whole corpus:
     python scripts/qa/notebook_code_scan.py --root .
@@ -652,6 +690,66 @@ def scan_typing(src: str, rel: str, idx: int,
                 f"builtin (dict, not the capital-D legacy name)")
 
 
+_DA_DT_RE = re.compile(
+    r"\bdatetime\.utcnow\b|\bdatetime\.utcfromtimestamp\b")
+_DA_TOKEN_RE = re.compile(r"\buse_auth_token\s*=")
+_DA_V1_RE = re.compile(
+    r"@validator\b|@root_validator\b|parse_obj_as\(")
+_DA_AMP_RE = re.compile(r"\btorch\.cuda\.amp\b")
+_DA_DTYPE_RE = re.compile(r"\btorch_dtype\s*=")
+_DA_DICT_RE = re.compile(r"\.dict\(\)")
+_PYD_IMPORT_RE = re.compile(
+    r"^\s*from pydantic import|\bimport pydantic\b")
+
+
+def scan_deprecated(src: str, rel: str, idx: int, pyd: bool,
+                    findings: list[str]) -> None:
+    """NBC-17..21 over one cell's joined source, per line (born
+    tick-707 at zero; the DA judgment mirrored: per-line first
+    match in rule order, the #-split carve first so a comment
+    teaching the deprecation stays invisible, and the .dict()
+    face activates only when the notebook imports pydantic)."""
+    for ln in src.split("\n"):
+        code = ln.split("#", 1)[0]
+        if _DA_DT_RE.search(code):
+            findings.append(
+                f"{rel}: NBC-17 deprecated datetime API in code "
+                f"cell {idx} - utcnow/utcfromtimestamp are "
+                f"deprecated since 3.12 and return naive "
+                f"datetimes; write datetime.now(timezone.utc)")
+            continue
+        if _DA_TOKEN_RE.search(code):
+            findings.append(
+                f"{rel}: NBC-18 removed HF kwarg use_auth_token= "
+                f"in code cell {idx} - gone in transformers 5.x; "
+                f"write token=")
+            continue
+        if _DA_V1_RE.search(code):
+            findings.append(
+                f"{rel}: NBC-19 pydantic v1 API in code cell "
+                f"{idx} - @validator/@root_validator/"
+                f"parse_obj_as deprecated in 2.x, removed in 3; "
+                f"write @field_validator or TypeAdapter")
+            continue
+        if _DA_AMP_RE.search(code):
+            findings.append(
+                f"{rel}: NBC-20 torch.cuda.amp namespace in code "
+                f"cell {idx} - deprecated since PyTorch 2.4; "
+                f"use the torch.amp namespace")
+            continue
+        if _DA_DTYPE_RE.search(code):
+            findings.append(
+                f"{rel}: NBC-21 transformers torch_dtype kwarg in "
+                f"code cell {idx} - deprecated, the stack warns "
+                f"on every load; write dtype=")
+            continue
+        if pyd and _DA_DICT_RE.search(code):
+            findings.append(
+                f"{rel}: NBC-19 pydantic v1 serialization in code "
+                f"cell {idx} - .dict() deprecated in 2.x, removed "
+                f"in 3; write model_dump()")
+
+
 def scan_nb(root: Path, path: Path, findings: list[str],
             stats: list[int]) -> None:
     rel = path.relative_to(root).as_posix()
@@ -663,6 +761,10 @@ def scan_nb(root: Path, path: Path, findings: list[str],
     if not isinstance(nb, dict) or not isinstance(nb.get("cells"), list):
         stats[2] += 1
         return
+    _pyd = any(
+        _PYD_IMPORT_RE.search(cell_source(c))
+        for c in nb["cells"]
+        if isinstance(c, dict) and c.get("cell_type") == "code")
     for idx, cell in enumerate(nb["cells"]):
         if not isinstance(cell, dict) or cell.get("cell_type") != "code":
             continue
@@ -682,6 +784,7 @@ def scan_nb(root: Path, path: Path, findings: list[str],
         scan_security(src, tree, rel, idx, findings)
         scan_tls(tree, rel, idx, findings)
         scan_typing(src, rel, idx, findings)
+        scan_deprecated(src, rel, idx, _pyd, findings)
         roots: set[str] = set()
         for node in ast.walk(tree):
             if isinstance(node, ast.Import):
@@ -718,11 +821,12 @@ def main() -> int:
         print(f.encode("ascii", "backslashreplace").decode("ascii"))
     print(f"notebook_code_scan: {len(findings)} findings "
           f"(NBC-01 code-cell syntax / NBC-02 unresolvable import root "
-          f"/ NBC-03..16 the md twins: bare-broad except, "
+          f"/ NBC-03..21 the md twins: bare-broad except, "
           f"unsafe deserialize, eval-exec, empty mutable default, "
           f"shell-out, mktemp, trust_remote_code, open-no-encoding, "
           f"requests-no-timeout, insecure-tls, secret-shape literals, "
-          f"random-for-security, weak-hash-security, legacy-typing; "
+          f"random-for-security, weak-hash-security, legacy-typing, "
+          f"deprecated-API; "
           f"{stats[4]} import(s) accepted, {stats[3]} relative skipped, "
           f"{stats[2]} cell(s) left to NBH-03) across {stats[0]} "
           f"notebooks / {stats[1]} code cells in docs/notebooks/ "
@@ -735,7 +839,9 @@ def main() -> int:
           f"NBC-15 born tick-704 at zero - the TLS-off face "
           f"closed, the census clean; NBC-16 born tick-706 over the "
           f"drained corpus - the md typing gate's declared blind "
-          f"spot closed, 24 real legacy spellings drained in-tick)")
+          f"spot closed, 24 real legacy spellings drained in-tick; "
+          f"NBC-17..21 born tick-707 at zero - the md deprecation "
+          f"gate's declared blind spot closed, the census clean)")
     return 1 if findings else 0
 
 
