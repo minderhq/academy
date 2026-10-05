@@ -529,13 +529,13 @@ world_size = model_parallel_size * data_parallel_size  # 8 GPUs
 
 **Tip:** Cosine decay with warmup for LLMs
 ```python
-from transformers import get_cosine_schedule_with_warmup
+from transformers import get_cosine_with_min_lr_schedule_with_warmup
 
 # 3% warmup, then cosine decay to 10% of initial LR
 num_training_steps = len(train_dataset) // batch_size * epochs
 warmup_steps = int(num_training_steps * 0.03)
 
-scheduler = get_cosine_schedule_with_warmup(
+scheduler = get_cosine_with_min_lr_schedule_with_warmup(
     optimizer,
     num_warmup_steps=warmup_steps,
     num_training_steps=num_training_steps,

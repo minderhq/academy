@@ -188,23 +188,40 @@ Weight [out_channels, in_channels]
 ### Implementation
 
 ```python
-from torch.ao.quantization import FakeQuantize
+import torch
+import torch.nn as nn
+from torch.ao.quantization import FakeQuantize, MinMaxObserver, PerChannelMinMaxObserver
+
 def configure_per_tensor(module, bit_width=8):
-    """Configure per-tensor quantization"""
+    """Per-tensor fake-quant: one scale/zero-point for the tensor."""
     module.quantizer = FakeQuantize(
-        bit_width=bit_width,
-        per_channel=False
+        quant_min=0,
+        quant_max=2 ** bit_width - 1,
+        observer=MinMaxObserver,
     )
 
 def configure_per_channel(module, bit_width=8):
-    """Configure per-channel quantization"""
+    """Per-channel fake-quant: one scale/zero-point per output channel."""
     module.quantizer = FakeQuantize(
-        bit_width=bit_width,
-        per_channel=True
+        quant_min=0,
+        quant_max=2 ** bit_width - 1,
+        observer=PerChannelMinMaxObserver,
+        qscheme=torch.per_channel_symmetric,
     )
 
-# Apply to model
-for name, module in model.named_modules():
+# Apply to a model - any nn.Module whose children carry the
+# fc/proj/activation names the filters below match on:
+class ToyNet(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.proj = nn.Linear(64, 64)
+        self.activation = nn.ReLU()
+
+model = ToyNet()
+# Snapshot: configuring MID-WALK would add '.quantizer' children while
+# named_modules() is still descending - 'proj' then matches
+# 'proj.quantizer' and the walk recurses into itself forever
+for name, module in list(model.named_modules()):
     if 'fc' in name or 'proj' in name:
         configure_per_channel(module, bit_width=8)
     elif 'activation' in name:
@@ -260,8 +277,11 @@ Scale determined during calibration/frozen during training:
 ```python
 import torch
 import torch.nn as nn
-# fake_quantize is defined in 4301-QAT-Foundations.md — import or paste it
-# here (clamp(round(x/scale)+zero_point) then dequantize back)
+
+def fake_quantize(x, scale, zero_point):
+    """The 4301 fake-quant core: quantize-round, then dequantize back."""
+    q = torch.clamp(torch.round(x / scale) + zero_point, -128, 127)
+    return (q - zero_point) * scale
 
 class StaticScaleQuantizer(nn.Module):
     def __init__(self, scale, zero_point=0):
@@ -301,6 +321,36 @@ class DynamicScaleQuantizer(nn.Module):
 - Accuracy is critical
 
 ## Selective Quantization
+
+```python
+# The helper surface the strategy sketches below assume (minimal forms):
+import torch
+import torch.nn as nn
+
+def get_quantizable_layers(model):
+    """Candidates: every Linear/Conv the QAT pass can wrap."""
+    return [n for n, m in model.named_modules()
+            if isinstance(m, (nn.Linear, nn.Conv2d))]
+
+def enable_quantization_for_layer(model, name):
+    """Arm the layer's fake-quant pattern (the QAT hook from 4302)."""
+    module = dict(model.named_modules())[name]
+    if hasattr(module, "quantizer"):
+        module.quantizer_enabled = True
+
+def disable_quantization_for_layer(model, name):
+    module = dict(model.named_modules())[name]
+    if hasattr(module, "quantizer"):
+        module.quantizer_enabled = False
+
+def evaluate(model, calib_data):
+    """Eval proxy: mean |model(x) - y| over one calibration batch -
+    swap in your real task metric for production runs."""
+    x, y = calib_data
+    model.eval()
+    with torch.no_grad():
+        return float((model(x) - y).abs().mean())
+```
 
 ### Strategy 1: Quantize Larger Layers First
 
@@ -439,6 +489,10 @@ BALANCED_CONFIG = {
 def auto_configure(model, calib_loader, target_accuracy=0.98):
     """Automatically find optimal configuration"""
 
+    def evaluate_with_config(model, config, calib_loader):
+        apply_layer_config(model, config)  # defined above
+        return evaluate(model, calib_loader)
+
     # Start with all layers at 8-bit
     config = {layer: 8 for layer in get_quantizable_layers(model)}
 
@@ -447,7 +501,8 @@ def auto_configure(model, calib_loader, target_accuracy=0.98):
 
     # Greedily reduce bits until accuracy drops
     # Rank by sensitivity_analysis() impact: least sensitive layers first
-    for layer in sorted(config.keys(), key=impact_on_accuracy):
+    impact = sensitivity_analysis(model, calib_loader)  # {layer: acc drop}
+    for layer in sorted(config.keys(), key=impact.get):
         if config[layer] > 4:
             config[layer] -= 2  # Try lower precision
             new_acc = evaluate_with_config(model, config, calib_loader)

@@ -193,6 +193,13 @@ layer = Linear4bit(
 
 ### NF4 Distribution
 ```python
+def pack_4bit(quantized_values, levels):
+    """Pack nearest-level indices two-per-byte into uint8."""
+    idx = torch.searchsorted(levels, quantized_values)
+    idx = torch.clamp(idx, 0, len(levels) - 1).to(torch.uint8)
+    low, high = idx[0::2], idx[1::2]
+    return low | (high << 4)
+
 def nf4_quantize(weights):
     """
     NF4: Quantized weights follow normal distribution
@@ -216,7 +223,7 @@ def nf4_quantize(weights):
     quantized = nf4_levels[indices]
 
     # Pack into 4-bit (2 values per byte)
-    packed = pack_4bit(quantized)
+    packed = pack_4bit(quantized, nf4_levels)
 
     return packed
 ```

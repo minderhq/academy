@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "adjudicated": "notes written per accepted row (tick-537, carried tick-538); datasets-5.x drain re-blessed 3 files - drain-backlog rows are tagged in-place; tick-554 tutorial FM edits dirtied 12 tutorial files for their first true re-execution - 25 rows adjudicated (env-gaps, by-design server/model hangs, learner-supplied-file demos, ffmpeg/GPU environment requirements) with per-row notes; tick-588 lesson-FM normalization (CC-18 drain, +2 lines near the top of 6 lesson files) shifted 4 already-accepted rows in 3 files (5203 112->114/260->262, 6203 138->140, 7403 153->155) - same defect classes re-blessed at the shifted lines with their notes carried; no fence content changed; tick-589 guide-FM normalization (CC-19 drain, +2 lines after Title in 12 guide files) shifted all 42 already-accepted rows across 11 of those guides (4203 carries none) - 40 re-blessed same-class at the shifted lines with their notes carried, 2 family-reclassified on re-execution (3403 184->186 RUNNER-CRASH->TIMEOUT, the GPU-required load observed hanging past the timeout instead of dying before it could report; 7103 81->83 CODE-SIGNAL:RuntimeError->TIMEOUT, the recorded FLAKY_FAMILY pair); no fence content changed; tick-590 the CC-20 assessment-keyset drain deleted the legacy Phase/Module FM pair from 2300-framework-engineering's PRACTICE.md and QUIZ.md (-2 lines each; QUIZ.md carries no accepted rows), moving PRACTICE.md's 2 accepted rows 72->70 and 316->314; the re-bless re-blessed both at the shifted lines, same class on re-execution (ENV-GAP:tensorflow, UN-LEAK), with their notes carried; no fence content changed; tick-594 the CC-24 tutorial-keyset drain deleted the legacy Category/Related FM pair from TUTORIAL-007-LoRA-Basics.md and TUTORIAL-014-Production-LLM-Systems.md (-2 lines each), moving TUTORIAL-007's 5 accepted rows 164->162, 208->206, 276->274, 327->325 and 389->387 (TUTORIAL-014 carries no accepted rows); the re-bless re-blessed all 5 at the shifted lines, same class on re-execution (SIDE-EFFECT x3, ENV-GAP:trl, UN-LEAK), with their notes carried; no fence content changed; tick-711 the API-surface corrections (5203 PPO re-homed onto trl.experimental.ppo, 4102 EXL2/GPTQ realigned to the 4404/4401 blessed surfaces, VOLUME-4 practice block re-aligned the same way) dirtied 3 fence files for true re-execution - 8 rows re-blessed same-class ENV-GAP (exllamav2, awq, auto_gptq x2, trl, bitsandbytes, vllm x2) with the house optional-package note written per row, and the file's 1 UN-LEAK cascade resolved content-side instead (the star-import removal un-masked the speculative-decoding pseudocode fence, now function-bound the 4202 way, so it runs clean and carries no accepted row); no fence was left accepted without a note",
+  "adjudicated": "notes written per accepted row (tick-537, carried tick-538); datasets-5.x drain re-blessed 3 files - drain-backlog rows are tagged in-place; tick-554 tutorial FM edits dirtied 12 tutorial files for their first true re-execution - 25 rows adjudicated (env-gaps, by-design server/model hangs, learner-supplied-file demos, ffmpeg/GPU environment requirements) with per-row notes; tick-588 lesson-FM normalization (CC-18 drain, +2 lines near the top of 6 lesson files) shifted 4 already-accepted rows in 3 files (5203 112->114/260->262, 6203 138->140, 7403 153->155) - same defect classes re-blessed at the shifted lines with their notes carried; no fence content changed; tick-589 guide-FM normalization (CC-19 drain, +2 lines after Title in 12 guide files) shifted all 42 already-accepted rows across 11 of those guides (4203 carries none) - 40 re-blessed same-class at the shifted lines with their notes carried, 2 family-reclassified on re-execution (3403 184->186 RUNNER-CRASH->TIMEOUT, the GPU-required load observed hanging past the timeout instead of dying before it could report; 7103 81->83 CODE-SIGNAL:RuntimeError->TIMEOUT, the recorded FLAKY_FAMILY pair); no fence content changed; tick-590 the CC-20 assessment-keyset drain deleted the legacy Phase/Module FM pair from 2300-framework-engineering's PRACTICE.md and QUIZ.md (-2 lines each; QUIZ.md carries no accepted rows), moving PRACTICE.md's 2 accepted rows 72->70 and 316->314; the re-bless re-blessed both at the shifted lines, same class on re-execution (ENV-GAP:tensorflow, UN-LEAK), with their notes carried; no fence content changed; tick-594 the CC-24 tutorial-keyset drain deleted the legacy Category/Related FM pair from TUTORIAL-007-LoRA-Basics.md and TUTORIAL-014-Production-LLM-Systems.md (-2 lines each), moving TUTORIAL-007's 5 accepted rows 164->162, 208->206, 276->274, 327->325 and 389->387 (TUTORIAL-014 carries no accepted rows); the re-bless re-blessed all 5 at the shifted lines, same class on re-execution (SIDE-EFFECT x3, ENV-GAP:trl, UN-LEAK), with their notes carried; no fence content changed; tick-711 the API-surface corrections (5203 PPO re-homed onto trl.experimental.ppo, 4102 EXL2/GPTQ realigned to the 4404/4401 blessed surfaces, VOLUME-4 practice block re-aligned the same way) dirtied 3 fence files for true re-execution - 8 rows re-blessed same-class ENV-GAP (exllamav2, awq, auto_gptq x2, trl, bitsandbytes, vllm x2) with the house optional-package note written per row, and the file's 1 UN-LEAK cascade resolved content-side instead (the star-import removal un-masked the speculative-decoding pseudocode fence, now function-bound the 4202 way, so it runs clean and carries no accepted row); no fence was left accepted without a note; tick-712 the integrity drain (4305 QAT helpers bound + the real torch.ao FakeQuantize surface replacing the fictional bit_width/per_channel kwargs, 4103 pack_4bit defined, 5102 Trainer/train_dataset bound via Dataset.from_list, 5202 pipeline/DPO-recap inputs bound, 3102 online-softmax fixed to the unnormalized-accumulate form, VOLUME-4/phase1/phase5/phase3 content edits) dirtied 10 fence files - 30 rows re-blessed benign-class (13 ENV-GAP:bitblade on the declared composite guide, 4 ENV-GAP:trl, 1 ENV-GAP:bitsandbytes, 5 SIDE-EFFECT, 7 UN-LEAK cascades) with class-appropriate notes; 2 CODE-SIGNAL rows never reached the census - fixed content-side instead (the named_modules mutation RecursionError, the instructions.jsonl FileNotFoundError); tick-712 the integrity drain (4305 QAT helpers bound + the real torch.ao FakeQuantize surface replacing the fictional bit_width/per_channel kwargs, 4103 pack_4bit defined, 5102 Trainer/train_dataset bound via Dataset.from_list, 5202 pipeline/DPO-recap inputs bound, 3102 online-softmax fixed to the unnormalized-accumulate form, VOLUME-4/phase1/phase5/phase3 content edits) dirtied 10 fence files - 30 rows re-blessed benign-class (13 ENV-GAP:bitblade on the declared composite guide, 4 ENV-GAP:trl, 1 ENV-GAP:bitsandbytes, 5 SIDE-EFFECT, 7 UN-LEAK cascades) with class-appropriate notes; 2 CODE-SIGNAL rows never reached the census - fixed content-side instead (the named_modules mutation RecursionError, the instructions.jsonl FileNotFoundError)",
   "children": "census subprocesses run with PYTHONUTF8=1 (the learner baseline ENVIRONMENT-SETUP teaches)",
   "contract": "every non-clean execution outcome must be adjudicated here before fence_exec_gate runs; new rows fail",
   "family_equivalence": [
@@ -1175,8 +1175,8 @@
    }
   },
   "docs/phases/phase1-infra/1400-llmops/README.md": {
-   "mtime": 1791214041.5200727,
-   "size": 25113,
+   "mtime": 1791216985.650865,
+   "size": 25381,
    "bad": {}
   },
   "docs/phases/phase1-infra/1400-llmops/assessment/PRACTICE.md": {
@@ -1524,8 +1524,8 @@
    }
   },
   "docs/phases/phase3-transformers/3100-attention/3102-Flash-Attention.md": {
-   "mtime": 1791109464.1744702,
-   "size": 12777,
+   "mtime": 1791216931.0249355,
+   "size": 12836,
    "bad": {
     "210": "ENV-GAP:xformers",
     "232": "ENV-GAP:flash_attn",
@@ -1639,8 +1639,8 @@
    "size": 18750
   },
   "docs/phases/phase3-transformers/3300-decoding/guides/3303-Activation-Function-Comparison.md": {
-   "mtime": 1791109464.181637,
-   "size": 10624,
+   "mtime": 1791216939.8004658,
+   "size": 10663,
    "bad": {
     "167": "CODE-SIGNAL:RuntimeError",
     "237": "CODE-SIGNAL:FileNotFoundError"
@@ -1656,8 +1656,8 @@
    "bad": {}
   },
   "docs/phases/phase3-transformers/3400-architectures/3402-Decoder-Only-Models.md": {
-   "mtime": 1791109464.184638,
-   "size": 7833,
+   "mtime": 1791216959.6389074,
+   "size": 7904,
    "bad": {}
   },
   "docs/phases/phase3-transformers/3400-architectures/README.md": {
@@ -1748,17 +1748,17 @@
    }
   },
   "docs/phases/phase4-quantization/4100-low-bit/4103-Double-Quantization.md": {
-   "mtime": 1791109464.1930163,
-   "size": 13226,
+   "mtime": 1791216300.7802434,
+   "size": 13526,
    "bad": {
     "175": "ENV-GAP:bitsandbytes",
-    "225": "SIDE-EFFECT",
-    "356": "SIDE-EFFECT"
+    "232": "SIDE-EFFECT",
+    "363": "SIDE-EFFECT"
    },
    "notes": {
     "175": "optional quantization backend (bitsandbytes) the QA environment does not install; transformers names it in the ImportError",
-    "225": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
-    "356": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect"
+    "232": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
+    "363": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect"
    }
   },
   "docs/phases/phase4-quantization/4100-low-bit/assessment/PRACTICE.md": {
@@ -1830,8 +1830,8 @@
    "bad": {}
   },
   "docs/phases/phase4-quantization/4300-quantization-aware-training/4305-Quantization-Configuration.md": {
-   "mtime": 1791109464.2032406,
-   "size": 13306,
+   "mtime": 1791217526.419231,
+   "size": 15364,
    "bad": {}
   },
   "docs/phases/phase4-quantization/4300-quantization-aware-training/assessment/PRACTICE.md": {
@@ -1881,45 +1881,45 @@
    }
   },
   "docs/phases/phase4-quantization/4300-quantization-aware-training/guides/4308-BitBlade-QAT.md": {
-   "mtime": 1791109464.2072413,
-   "size": 13396,
+   "mtime": 1791216786.007684,
+   "size": 13598,
    "bad": {
-    "90": "ENV-GAP:bitblade",
-    "125": "ENV-GAP:bitblade",
-    "168": "ENV-GAP:bitblade",
-    "198": "ENV-GAP:bitblade",
-    "215": "ENV-GAP:bitblade",
-    "244": "ENV-GAP:bitblade",
-    "275": "ENV-GAP:bitblade",
-    "295": "ENV-GAP:bitblade",
-    "318": "ENV-GAP:bitblade",
-    "344": "ENV-GAP:bitblade",
-    "363": "ENV-GAP:bitblade",
-    "378": "UN-LEAK",
-    "389": "UN-LEAK",
-    "399": "UN-LEAK",
-    "419": "ENV-GAP:bitblade",
-    "443": "ENV-GAP:bitblade",
-    "469": "UN-LEAK"
+    "96": "ENV-GAP:bitblade",
+    "131": "ENV-GAP:bitblade",
+    "174": "ENV-GAP:bitblade",
+    "204": "ENV-GAP:bitblade",
+    "221": "ENV-GAP:bitblade",
+    "250": "ENV-GAP:bitblade",
+    "281": "ENV-GAP:bitblade",
+    "301": "ENV-GAP:bitblade",
+    "324": "ENV-GAP:bitblade",
+    "350": "ENV-GAP:bitblade",
+    "369": "ENV-GAP:bitblade",
+    "384": "UN-LEAK",
+    "395": "UN-LEAK",
+    "405": "UN-LEAK",
+    "425": "ENV-GAP:bitblade",
+    "449": "ENV-GAP:bitblade",
+    "475": "UN-LEAK"
    },
    "notes": {
-    "125": "the teaching library of the BitBlade QAT guide (4308); a fictional framework the lesson builds concepts around",
-    "168": "the teaching library of the BitBlade QAT guide (4308); a fictional framework the lesson builds concepts around",
-    "198": "the teaching library of the BitBlade QAT guide (4308); a fictional framework the lesson builds concepts around",
-    "215": "the teaching library of the BitBlade QAT guide (4308); a fictional framework the lesson builds concepts around",
-    "244": "the teaching library of the BitBlade QAT guide (4308); a fictional framework the lesson builds concepts around",
-    "275": "the teaching library of the BitBlade QAT guide (4308); a fictional framework the lesson builds concepts around",
-    "295": "the teaching library of the BitBlade QAT guide (4308); a fictional framework the lesson builds concepts around",
-    "318": "the teaching library of the BitBlade QAT guide (4308); a fictional framework the lesson builds concepts around",
-    "344": "the teaching library of the BitBlade QAT guide (4308); a fictional framework the lesson builds concepts around",
-    "363": "the teaching library of the BitBlade QAT guide (4308); a fictional framework the lesson builds concepts around",
-    "378": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
-    "389": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
-    "399": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
-    "419": "the teaching library of the BitBlade QAT guide (4308); a fictional framework the lesson builds concepts around",
-    "443": "the teaching library of the BitBlade QAT guide (4308); a fictional framework the lesson builds concepts around",
-    "469": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
-    "90": "the teaching library of the BitBlade QAT guide (4308); a fictional framework the lesson builds concepts around"
+    "131": "pedagogical composite - no bitblade package exists to install; the guide is explicit about this and its technique-to-library map names the production home (bitsandbytes/torchao/llama.cpp), the fence teaches the API shape only",
+    "174": "pedagogical composite - no bitblade package exists to install; the guide is explicit about this and its technique-to-library map names the production home (bitsandbytes/torchao/llama.cpp), the fence teaches the API shape only",
+    "204": "pedagogical composite - no bitblade package exists to install; the guide is explicit about this and its technique-to-library map names the production home (bitsandbytes/torchao/llama.cpp), the fence teaches the API shape only",
+    "221": "pedagogical composite - no bitblade package exists to install; the guide is explicit about this and its technique-to-library map names the production home (bitsandbytes/torchao/llama.cpp), the fence teaches the API shape only",
+    "250": "pedagogical composite - no bitblade package exists to install; the guide is explicit about this and its technique-to-library map names the production home (bitsandbytes/torchao/llama.cpp), the fence teaches the API shape only",
+    "281": "pedagogical composite - no bitblade package exists to install; the guide is explicit about this and its technique-to-library map names the production home (bitsandbytes/torchao/llama.cpp), the fence teaches the API shape only",
+    "301": "pedagogical composite - no bitblade package exists to install; the guide is explicit about this and its technique-to-library map names the production home (bitsandbytes/torchao/llama.cpp), the fence teaches the API shape only",
+    "324": "pedagogical composite - no bitblade package exists to install; the guide is explicit about this and its technique-to-library map names the production home (bitsandbytes/torchao/llama.cpp), the fence teaches the API shape only",
+    "350": "pedagogical composite - no bitblade package exists to install; the guide is explicit about this and its technique-to-library map names the production home (bitsandbytes/torchao/llama.cpp), the fence teaches the API shape only",
+    "369": "pedagogical composite - no bitblade package exists to install; the guide is explicit about this and its technique-to-library map names the production home (bitsandbytes/torchao/llama.cpp), the fence teaches the API shape only",
+    "384": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
+    "395": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
+    "405": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
+    "425": "pedagogical composite - no bitblade package exists to install; the guide is explicit about this and its technique-to-library map names the production home (bitsandbytes/torchao/llama.cpp), the fence teaches the API shape only",
+    "449": "pedagogical composite - no bitblade package exists to install; the guide is explicit about this and its technique-to-library map names the production home (bitsandbytes/torchao/llama.cpp), the fence teaches the API shape only",
+    "475": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
+    "96": "pedagogical composite - no bitblade package exists to install; the guide is explicit about this and its technique-to-library map names the production home (bitsandbytes/torchao/llama.cpp), the fence teaches the API shape only"
    }
   },
   "docs/phases/phase4-quantization/4400-advanced-techniques/4401-GPTQ.md": {
@@ -2071,25 +2071,27 @@
    }
   },
   "docs/phases/phase5-finetuning/5100-peft/5102-QLoRA-Pipelines.md": {
-   "mtime": 1791109464.2208788,
-   "size": 15489,
+   "mtime": 1791217528.6015806,
+   "size": 15919,
    "bad": {
     "93": "SIDE-EFFECT",
-    "253": "SIDE-EFFECT",
-    "354": "UN-LEAK",
-    "371": "SIDE-EFFECT",
-    "395": "ENV-GAP:bitsandbytes",
-    "449": "UN-LEAK",
-    "473": "SIDE-EFFECT"
+    "135": "UN-LEAK",
+    "262": "SIDE-EFFECT",
+    "363": "UN-LEAK",
+    "380": "SIDE-EFFECT",
+    "404": "ENV-GAP:bitsandbytes",
+    "458": "UN-LEAK",
+    "482": "SIDE-EFFECT"
    },
    "notes": {
-    "253": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
-    "354": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
-    "371": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
-    "395": "optional quantization backend (bitsandbytes) the QA environment does not install; transformers names it in the ImportError",
-    "449": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
-    "473": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
-    "93": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect"
+    "93": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
+    "135": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
+    "262": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
+    "363": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
+    "380": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
+    "404": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+    "458": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
+    "482": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect"
    }
   },
   "docs/phases/phase5-finetuning/5100-peft/5103-Adapters.md": {
@@ -2128,13 +2130,19 @@
    }
   },
   "docs/phases/phase5-finetuning/5200-alignment/5202-Alignment-Orchestration.md": {
-   "mtime": 1791109464.22588,
-   "size": 15423,
+   "mtime": 1791216461.892815,
+   "size": 16483,
    "bad": {
-    "324": "TIMEOUT"
+    "186": "ENV-GAP:trl",
+    "224": "ENV-GAP:trl",
+    "266": "ENV-GAP:trl",
+    "338": "ENV-GAP:trl"
    },
    "notes": {
-    "324": "run-to-run hang: the fence stalls past the census timeout and its kill manifestation varies between TIMEOUT / RUNNER-CRASH / a runtime signal across passes; flaky classification of one hang face, not a content defect"
+    "186": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+    "224": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+    "266": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+    "338": "optional third-party package the QA environment does not install; the fence documents the install requirement"
    }
   },
   "docs/phases/phase5-finetuning/5200-alignment/5203-RLHF.md": {
@@ -2302,16 +2310,16 @@
    "size": 11212
   },
   "docs/phases/phase5-finetuning/README.md": {
+   "mtime": 1791216729.24512,
+   "size": 24574,
    "bad": {
     "402": "SIDE-EFFECT",
     "465": "SIDE-EFFECT"
    },
-   "mtime": 1791032671.5853095,
    "notes": {
     "402": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
     "465": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect"
-   },
-   "size": 24550
+   }
   },
   "docs/phases/phase6-rag/6100-vector/6101-HNSW-Indexing.md": {
    "mtime": 1791109464.2434545,

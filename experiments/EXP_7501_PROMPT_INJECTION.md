@@ -11,8 +11,7 @@ Difficulty: Advanced
 **Project:** Minder Academy
 **Phase:** [7500] Security
 **Experiment ID:** EXP_7501_PROMPT_INJECTION
-**Date:** 2026-02-04
-**Status:** Completed
+**Status:** Blueprint - the numbers below are illustrative targets from the red-teaming literature, not a measured run
 
 ---
 
@@ -29,7 +28,12 @@ Difficulty: Advanced
 
 ---
 
-## Results
+## Expected Results (illustrative targets)
+
+No run of this repository backs these numbers - they are the working
+targets the design below sets out to verify, in line with published
+red-teaming results. Measure your own rates by running the harness
+against your model and logging per-attack outcomes.
 
 ### Attack Success Rate (No Defense)
 
@@ -59,12 +63,12 @@ Difficulty: Advanced
 | 3σ | 68% | 2% | ✅ Balanced |
 | 4σ | 85% | 8% | ⚠️ Misses attacks |
 
-### Key Findings
+### Design Targets
 
-1. ✅ Multi-layer defense blocks 96% of attacks
-2. ✅ Perplexity threshold of 3σ is optimal
-3. ✅ Input filtering catches 68% of attacks
-4. ⚠️ Attackers constantly evolving defenses
+1. Multi-layer defense blocks 95%+ of attacks (the hypothesis)
+2. Perplexity threshold of 3σ balances detection vs false positives
+3. Input filtering as the cheap first layer
+4. Assumption to re-test every run: attackers constantly evolve
 
 ---
 
@@ -87,11 +91,26 @@ Difficulty: Advanced
 ## Defense Code
 
 ```python
-defense = MultiLayerDefense()
-is_safe, message = defense.process_request(user_input, user_id)
+class MultiLayerDefense:
+    """Layered pipeline sketch, stages in 7501 order:
+    input filter -> anomaly detection -> secure prompt -> output
+    validation. Wire the real stage implementations per the lesson."""
 
+    def __init__(self, stages):
+        self.stages = stages
+
+    def process_request(self, user_input, user_id):
+        for stage in self.stages:
+            is_safe, message = stage(user_input, user_id)
+            if not is_safe:
+                return False, message
+        return True, ""
+
+
+defense = MultiLayerDefense(stages=[])  # wire real stages per 7501
+is_safe, message = defense.process_request("ignore previous instructions", "user-42")
 if not is_safe:
-    return "I can't help with that request."
+    print(message)
 ```
 
 ---

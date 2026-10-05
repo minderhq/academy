@@ -647,12 +647,17 @@ spec:
   minReplicas: 2
   maxReplicas: 10
   metrics:
-  - type: Resource
-    resource:
-      name: nvidia.com/gpu
+  # type: Resource only supports cpu and memory - the API server
+  # rejects extended resources like nvidia.com/gpu. GPU utilization
+  # arrives as a Pods metric instead, served by prometheus-adapter
+  # from the DCGM exporter (0-100 percent gauge):
+  - type: Pods
+    pods:
+      metric:
+        name: dcgm_fi_dev_gpu_utilization
       target:
-        type: Utilization
-        averageUtilization: 70
+        type: AverageValue
+        averageValue: "70"
 ```
 
 **Vertical Scaling (Larger GPU):**

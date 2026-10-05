@@ -603,9 +603,11 @@ curl -sfL https://get.k3s.io | \
 **Tip:** Tune block size for throughput
 ```bash
 vllm serve model \
-  --block-size 16 \  # Default, good for most
-  --max-num-seqs 256 \  # Increase for high concurrency
-  --max-num-batched-tokens 8192  # Increase for faster generation
+  --block-size 16 \
+  --max-num-seqs 256 \
+  --max-num-batched-tokens 8192
+# block-size 16 suits most workloads; raise max-num-seqs for high
+# concurrency and max-num-batched-tokens for faster generation.
 ```
 
 ### Prometheus Retention

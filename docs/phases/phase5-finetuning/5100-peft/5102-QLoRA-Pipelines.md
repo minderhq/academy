@@ -133,7 +133,16 @@ model.print_trainable_parameters()
 
 ### Paged Optimizer
 ```python
-from transformers import TrainingArguments
+from transformers import Trainer, TrainingArguments
+from datasets import Dataset
+
+# Instruction data in the QLoRA paper's own chat format - wire your
+# own jsonl here (the paper trains on timdettmers/openassistant-guanaco):
+train_dataset = Dataset.from_list([
+    {"instruction": "Summarize the transformer attention mechanism.",
+     "response": "Attention lets every token attend to every other "
+                 "token's representation and mix their information."},
+])
 
 # Paged optimizers are a TrainingArguments string — no custom class.
 # Subclassing torch.optim.AdamW buys nothing: the paging lives in

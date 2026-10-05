@@ -147,16 +147,16 @@ def flash_attention(Q, K, V, block_size=16):
             new_max = torch.maximum(running_max[:, :, i:i+block_size, :], S_block.max(dim=-1, keepdim=True).values)
 
             old_scale = torch.exp(running_max[:, :, i:i+block_size, :] - new_max)
-            new_scale = torch.exp(S_block - new_max)
+            p = torch.exp(S_block - new_max)  # UNNORMALIZED probabilities
 
-            running_sum[:, :, i:i+block_size, :] = running_sum[:, :, i:i+block_size, :] * old_scale + new_scale.sum(dim=-1, keepdim=True)
+            running_sum[:, :, i:i+block_size, :] = running_sum[:, :, i:i+block_size, :] * old_scale + p.sum(dim=-1, keepdim=True)
             running_max[:, :, i:i+block_size, :] = new_max
 
-            # Update output (in SRAM!)
-            O_block = O[:, :, i:i+block_size, :]
-            O[:, :, i:i+block_size, :] = old_scale * O_block + torch.matmul(new_scale / running_sum[:, :, i:i+block_size, :], V_block)
+            # Update output (in SRAM!) - accumulate UNNORMALIZED weights;
+            # the single division by the final running_sum happens below
+            O[:, :, i:i+block_size, :] = old_scale * O[:, :, i:i+block_size, :] + torch.matmul(p, V_block)
 
-    return O
+    return O / running_sum
 ```
 
 ## Flash Attention 2

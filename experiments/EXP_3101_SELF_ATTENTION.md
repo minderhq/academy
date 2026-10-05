@@ -32,7 +32,13 @@ K = torch.randn(batch_size, num_heads, seq_len, d_model // num_heads)
 V = torch.randn(batch_size, num_heads, seq_len, d_model // num_heads)
 ```
 
-### Results: Attention Patterns
+### Attention Patterns (illustrative)
+
+The random init above cannot show structure: with Q, K and V drawn from
+`torch.randn`, the softmax weights come out near uniform. The maps below
+are the classic illustrative picture of what a TRAINED model's heads
+develop - some specialize locally, others attend globally.
+
 ```text
 Head 0: Local attention pattern
   ┌───────────────────────────────────────────────────┐
@@ -59,12 +65,14 @@ Head 3: Global attention pattern
   └───────────────────────────────────────────────────┘
 ```
 
-## Observations
+## Observations (trained models)
 1. Different heads learn different patterns
 2. Some heads focus on local, others on global
 3. This diversity improves model capacity
 
-## Performance Comparison
+## Performance Comparison (representative figures)
+Order-of-magnitude figures for a 512-token forward pass on one consumer
+GPU - exact numbers depend on hardware, batch size and sequence length.
 ```text
 Implementation           Time (ms)  Memory (MB)
 ───────────────────────────────────────────────────

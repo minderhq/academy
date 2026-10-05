@@ -315,12 +315,13 @@ apt update && apt dist-upgrade -y
 # Enable no-subscription repository (optional)
 nano /etc/apt/sources.list.d/pve-no-subscription.list
 
-# Add GPU passthrough prerequisites
-apt install -y \
-  vfio \
-  iommu=pt \
-  intel_iommu=on \
-  initramfs
+# Add GPU passthrough prerequisites. VFIO itself ships in-kernel as
+# modules - there is no package to install for it; initramfs-tools
+# rebuilds the initramfs after module/parameter changes.
+apt install -y initramfs-tools
+
+# iommu=pt and intel_iommu=on are kernel command-line parameters,
+# not packages - they belong in GRUB (Step 3 below)
 ```
 
 ### Step 3: Enable IOMMU
@@ -509,7 +510,7 @@ Root Cause:
 Symptoms:
 - Random VM crashes
 - GPU disappears from VM
-- "achine Check Exception" errors
+- "Machine Check Exception" errors
 
 Root Cause:
 - PCIe ACS (Access Control Services) issues

@@ -72,15 +72,21 @@ BitBlade combines multiple quantization techniques:
 
 ## Installation
 
+BitBlade itself is a pedagogical composite - there is no package under
+that name to install. Install the production homes its techniques map
+to (see the technique-to-library table above):
+
 ```bash
-# Install BitBlade
-uv pip install bitblade
+# NF4 + double quantization
+uv pip install bitsandbytes
 
-# Install with extras for CUDA support
-uv pip install bitblade[cuda]
+# Layer-wise mixed bits
+uv pip install torchao
 
-# Install development version
-uv pip install git+https://github.com/bitblade-ai/bitblade.git
+# ONNX export
+uv pip install optimum[onnxruntime]
+
+# GGUF export ships with llama.cpp's convert scripts (see 4206)
 ```
 
 ## Basic Usage

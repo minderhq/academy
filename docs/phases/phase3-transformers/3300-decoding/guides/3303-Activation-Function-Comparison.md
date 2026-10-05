@@ -35,7 +35,7 @@ Tags: ['transformers', 'activation', 'gelu', 'swiglu']
 
 After completing this lesson, you will be able to:
 
-- Read the quick-reference table by formula and range — ReLU `[0, ∞)` with dead neurons, GeLU `x·Φ(x)` dipping to −0.17, SwiGLU/SiLU to −0.28 — and place each in BERT/GPT-2 vs LLaMA/Mistral lineages
+- Read the quick-reference table by formula and range — ReLU `[0, ∞)` with dead neurons, GeLU `x·Φ(x)` dipping to −0.17, SiLU to −0.28 (SwiGLU, the gated composite, spans both signs) — and place each in BERT/GPT-2 vs LLaMA/Mistral lineages
 - Distinguish the GLU variant family by gate choice — GLU uses σ, ReGLU ReLU, GeGLU GELU, SwiGLU SiLU — all sharing the `(xW) ⊗ gate(xV)` layout LLaMA instantiates
 - Read the cost/quality tables — GeLU 1.5x forward / 1.6x backward, SwiGLU 2.0x/2.2x plus 1.5x memory for the extra projection — against perplexity gains of 18.5→17.2 (WikiText-103) and 22.1→20.8 (PBXT)
 - Reproduce the `compare_activations` benchmark harness — 10-iteration warmup, 100 timed forward/backward passes, μ/σ/range output statistics — and plot derivatives numerically via `np.gradient`
@@ -55,7 +55,7 @@ Comprehensive comparison of activation functions used in modern transformer mode
 |----------|---------|-------|---------|------|------|
 | ReLU | max(0, x) | [0, ∞) | Early transformers | Simple, fast | Dead neurons |
 | GeLU | xΦ(x) | [-0.17, ∞) | BERT, GPT-2 | Smooth, differentiable | Slower |
-| SwiGLU | swish(x) = xσ(βx) | [-0.28, ∞) | LLaMA, Mistral | Best performance | More compute |
+| SwiGLU | Swish(xW) ⊗ (xV) | (-∞, ∞) | LLaMA, Mistral | Best performance | More compute |
 | SiLU | x / (1 + e^-x) | [-0.28, ∞) | Some newer models | Smooth self-gated | Slower |
 
 ---

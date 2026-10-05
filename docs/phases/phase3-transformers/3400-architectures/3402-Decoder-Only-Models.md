@@ -110,7 +110,8 @@ gpt3_configs = {
 
 # GPT-3 features:
 # - Learned positional embeddings (not RoPE)
-# - Attention with learnable embeddings (ALiBi in later versions)
+# - Standard dense softmax attention - ALiBi never shipped in the
+#   GPT-3 family; it belongs to the BLOOM/MPT line (Press et al. 2022)
 # - Pre-norm (v2 only)
 # - GeLU activation (not SwiGLU)
 ```

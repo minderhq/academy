@@ -190,6 +190,13 @@ for batch in loader:
 # trl.experimental.ppo on main. The lesson's thesis: DPO/KTO give
 # most of the quality for a fraction of this moving-part count.
 from trl.experimental.ppo import PPOConfig, PPOTrainer  # TRL main, experimental
+from transformers import AutoModelForCausalLM
+from datasets import load_dataset
+
+# The two inputs this stage adds; sft_model/reward_model/tokenizer
+# carry from the fences above (the file's toy gpt2 convention):
+value_model = AutoModelForCausalLM.from_pretrained("gpt2")
+prompt_dataset = load_dataset("json", data_files="prompts.jsonl")["train"]
 
 ppo_config = PPOConfig(
     output_dir="./ppo_output",
@@ -216,6 +223,13 @@ ppo_trainer.train()
 ### DPO Implementation (Recap)
 ```python
 from trl import DPOConfig, DPOTrainer
+from transformers import AutoModelForCausalLM
+from datasets import load_dataset
+
+# Standalone recap - bind the three inputs here:
+policy_model = AutoModelForCausalLM.from_pretrained("gpt2")
+reference_model = AutoModelForCausalLM.from_pretrained("gpt2")  # frozen SFT copy
+preference_dataset = load_dataset("json", data_files="preferences.jsonl")["train"]
 
 # DPO is simpler: no reward model needed! Full loss walkthrough: 5201
 
@@ -322,14 +336,21 @@ Stage 3: Evaluation
 
 ### Full Pipeline Implementation
 ```python
-from transformers import AutoModelForCausalLM, Trainer, TrainingArguments
+from transformers import AutoModelForCausalLM, AutoTokenizer, TrainingArguments
 from trl import DPOConfig, DPOTrainer, SFTTrainer
+from datasets import load_dataset
+
+# Inputs you bring to the pipeline (the file's toy gpt2 convention):
+base_model = "gpt2"
+instruction_dataset = load_dataset("json", data_files="instructions.jsonl")["train"]
+preference_dataset = load_dataset("json", data_files="preferences.jsonl")["train"]
+tokenizer = AutoTokenizer.from_pretrained(base_model)
 
 # Stage 1: SFT
 sft_trainer = SFTTrainer(
     model=base_model,
     train_dataset=instruction_dataset,
-    tokenizer=tokenizer,
+    processing_class=tokenizer,
     args=TrainingArguments(
         output_dir="./sft-checkpoint",
         num_train_epochs=1,
