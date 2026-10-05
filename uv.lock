@@ -78,6 +78,7 @@ source = { virtual = "." }
 [package.dev-dependencies]
 qa = [
     { name = "httpx" },
+    { name = "pyflakes" },
     { name = "pyyaml" },
 ]
 
@@ -86,7 +87,17 @@ qa = [
 [package.metadata.requires-dev]
 qa = [
     { name = "httpx", specifier = ">=0.27" },
+    { name = "pyflakes", specifier = ">=3.0" },
     { name = "pyyaml", specifier = ">=6.0" },
+]
+
+[[package]]
+name = "pyflakes"
+version = "4.0.2"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/4c/5e/17305a7708e22df56b332f2f4c202d0a830e9689634da2f727212d806de9/pyflakes-4.0.2.tar.gz", hash = "sha256:dcf9cfcece3d9dacc66b7dd2fa217c1a1b79e3075bf488909c15e0857203fd24", size = 67173, upload-time = "2026-10-03T21:14:01.663Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/b6/a8/7df0a3b4f8166c2fb7fe0195f88a0a643cfb7cd1b0430c19f74bd01771f5/pyflakes-4.0.2-py2.py3-none-any.whl", hash = "sha256:01faee1160feadfd9d58c9631a895126ba2032c2e8748e32a96ab51cbd084c6d", size = 66216, upload-time = "2026-10-03T21:13:59.732Z" },
 ]
 
 [[package]]

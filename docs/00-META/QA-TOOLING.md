@@ -27,12 +27,24 @@ means all hard gates are clean - this is the CI contract.
 
 Environment: `uv sync --group qa` installs the offline-gate
 dependencies (PyYAML for the frontmatter/yaml parser gates, httpx for
-the network link tool) as the PEP 735 `qa` dependency group in the
-root `pyproject.toml` (see [ENVIRONMENT-SETUP](ENVIRONMENT-SETUP.md)).
+the network link tool, pyflakes for the fence-namecheck pair) as the
+PEP 735 `qa` dependency group in the root `pyproject.toml` (see
+[ENVIRONMENT-SETUP](ENVIRONMENT-SETUP.md)).
 One exception: langchain_census resolves every lesson import against
 the kurulu-stack, so run the scorecard under an interpreter that has
 the full installed stack. A partial environment fails loud with
 `sys.exit(2)` and a named fix (never silently wrong findings).
+
+CI runs the scorecard under that partial environment on purpose:
+`.github/workflows/qa.yml` passes `--skip
+langchain_census,fence_import_check,notebook_code_scan,fence_exec_gate`
+so the four kurulu-stack gates print `SKIP` and every other hard gate
+still holds the exit-code contract end to end. The first three resolve
+lesson imports against the stack; fence_exec_gate re-executes
+census-blessed fences whose blessed outcomes were recorded under the
+stack, so a partial interpreter re-executes them as ENV-GAP verdicts.
+`--skip` accepts only labels that exist in GATES - an unknown label is
+an argparse error, so a typo can never widen the skipped set silently.
 
 ---
 

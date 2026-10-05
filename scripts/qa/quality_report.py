@@ -3384,7 +3384,20 @@ def main() -> int:
                         help="repository root (default: %(default)s)")
     parser.add_argument("--fail-on-queue", action="store_true",
                         help="exit 1 while the objectives queue is non-empty")
+    parser.add_argument("--skip", default="",
+                        help="comma-separated gate labels to skip, for "
+                             "interpreters without the kurulu-stack (the "
+                             "stack gates exit 2 or re-execute blessed "
+                             "fences with a partial stack; CI skips "
+                             "langchain_census, fence_import_check, "
+                             "notebook_code_scan, fence_exec_gate)")
     args = parser.parse_args()
+
+    skip = {s.strip() for s in args.skip.split(",") if s.strip()}
+    unknown = skip - {label for _, label, _ in GATES}
+    if unknown:
+        parser.error("--skip: unknown gate label(s): %s"
+                     % ", ".join(sorted(unknown)))
 
     phases = sorted(d for d in (args.root / "docs" / "phases").iterdir()
                     if d.is_dir() and PHASE_DIR.match(d.name))
@@ -3401,7 +3414,14 @@ def main() -> int:
 
     failed = False
     queued = False
+    skipped = 0
     for script, label, hard in GATES:
+        if label in skip:
+            skipped += 1
+            print("%-22s %-6s %s" % (label, "SKIP",
+                                     "skipped via --skip "
+                                     "(kurulu-stack interpreter required)"))
+            continue
         proc = subprocess.run(
             [sys.executable, str(args.root / "scripts" / "qa" / script),
              "--root", str(args.root)],
@@ -3421,15 +3441,18 @@ def main() -> int:
         print("%-22s %-6s %s" % (label, status, esc(summary)))
 
     print()
+    note = " (%d skipped via --skip)" % skipped if skipped else ""
     if failed:
-        print("result: FAIL - a hard gate has findings (see its output above)")
+        print("result: FAIL - a hard gate has findings "
+              "(see its output above)%s" % note)
     elif queued and args.fail_on_queue:
-        print("result: QUEUE - objectives queue still draining (--fail-on-queue)")
+        print("result: QUEUE - objectives queue still draining "
+              "(--fail-on-queue)%s" % note)
     elif queued:
         print("result: PASS - hard gates clean; objectives queue draining "
-              "(run objectives_lint.py for the file list)")
+              "(run objectives_lint.py for the file list)%s" % note)
     else:
-        print("result: PASS - all gates clean")
+        print("result: PASS - all gates clean%s" % note)
     return 1 if (failed or (queued and args.fail_on_queue)) else 0
 
 

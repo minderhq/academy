@@ -1,0 +1,40 @@
+# Minder Academy QA fleet - the CI contract from docs/00-META/QA-TOOLING.md:
+# `python scripts/qa/quality_report.py` exits 0 only while every hard gate
+# is clean. The four kurulu-stack gates are skipped here:
+# langchain_census, fence_import_check and notebook_code_scan resolve
+# lesson imports against the full teaching stack (under a partial
+# environment they fail loud with sys.exit(2) and a named fix), and
+# fence_exec_gate re-executes census-blessed fences whose blessed
+# outcomes were recorded under that stack (a partial interpreter
+# re-executes them as ENV-GAP verdicts). --skip is the documented CI
+# shape. Action majors mirror the corpus registry in
+# scripts/qa/action_version_scan.py.
+name: QA fleet
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  quality-report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: astral-sh/setup-uv@v9
+        with:
+          python-version: "3.13"
+          enable-cache: true
+
+      - name: Install offline-gate dependencies
+        run: uv sync --group qa
+
+      - name: Run the QA fleet
+        run: |
+          uv run --no-sync python scripts/qa/quality_report.py \
+            --skip langchain_census,fence_import_check,notebook_code_scan,fence_exec_gate

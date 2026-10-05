@@ -218,7 +218,7 @@ except SpecificError as e:
 ### File Paths
 
 ```markdown
-Absolute: C:\AI-Studio\Minder Academy\docs\00-META\README.md
+Absolute: C:\Users\[YourUser]\projects\academy\docs\00-META\README.md
 Relative: ../00-META/README.md
 Code: "docs/00-META/README.md"
 ```
