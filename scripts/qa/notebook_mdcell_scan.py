@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """notebook_mdcell_scan: the MARKDOWN-CELL RENDER-SURFACE dimension
-across a notebook's markdown cells (NBM-01..06, hard).
+across a notebook's markdown cells (NBM-01..07, hard).
 
 A notebook's markdown cells are the lesson's prose ON THE PLATFORM:
 the launcher (and the platform conversion) renders them, while the
@@ -18,7 +18,7 @@ and 0 setext underlines. Lesson code lives in CODE cells where
 NBC/NBE prove it, prose stays pure markdown. The gate is born at
 zero to keep the convention.
 
-The five rules:
+The seven rules:
 - NBM-01 a fenced code block in a markdown cell (a backtick or
   tilde fence at line start, up to 3 spaces of indent; a fence
   inside notebook prose renders but no gate proves it parses - the
@@ -51,6 +51,14 @@ The five rules:
   backticked pipe renders literally, a backslash-escaped pipe is
   cell content, and per-block consistency lets adjacent tables of
   different widths stay legal)
+- NBM-07 an HTML comment opener in a markdown cell (a raw comment
+  opens a CommonMark raw-HTML block and everything through its
+  closer renders invisibly - the same class HC-01 polices across
+  docs markdown; NBM-02's tag pattern requires a letter after the
+  angle bracket and cannot match the bang opener, so the comment
+  class was invisible to both universes; inline-code spans are
+  stripped first and 4-space-indented lines are skipped, an
+  indented code block renders literally)
 
 Deliberate scope: markdown cells only - code cells are NBC/NBE's
 jurisdiction (stats-only for NBM, the same split NBL documents);
@@ -62,7 +70,11 @@ Born tick-696 at ZERO findings rc=0 (NBM-01..02 over 20 notebooks /
 corpus (142 headings measured); NBM-06 born tick-701 at ZERO over
 the same corpus (tick-701's census measured 0 pipe-table blocks /
 0 rows in the md cells - the convention 'tables live in docs, not
-notebook prose' is real and this keeps it).
+notebook prose' is real and this keeps it); NBM-07 born tick-705
+at ZERO over the same corpus (the census measured 0 comment-opener
+lines and 0 indented carve-surface lines across the same 20
+notebooks / 122 md cells - notebook prose carries no HTML
+comments, they live inside docs fences where HC-01 polices them).
 """
 import argparse
 import json
@@ -135,6 +147,17 @@ def scan_nb(root, path, findings, stats):
                 "through the markdown-to-HTML conversion and can "
                 "render invisibly on the platform; escape "
                 "placeholders with backticks" % where)
+        for j, ln in enumerate(src.split("\n"), 1):
+            if ln.startswith("    ") and ln.strip():
+                stats[5] += 1
+                continue
+            if "<!--" in INLINE.sub("", ln):
+                findings.append(
+                    "%s line %d: NBM-07 carries an HTML comment "
+                    "opener - a raw comment opens a CommonMark "
+                    "raw-HTML block and everything through its "
+                    "closer renders invisibly on the platform; "
+                    "notes belong in docs fences" % (where, j))
         prev_line = ""
         for ln in src.split("\n"):
             if SETEXT_EQ.match(ln) or SETEXT_DASH.match(ln):
@@ -212,7 +235,7 @@ def main(argv=None):
     args = ap.parse_args(argv)
     root = args.root
     findings = []
-    stats = [0, 0, 0, 0, 0]  # notebooks, md cells, NBH-03, blocks, rows
+    stats = [0, 0, 0, 0, 0, 0]  # nb, md cells, NBH-03, blocks, rows, indented
     for path in sorted((root / "docs" / "notebooks").glob("*.ipynb")):
         stats[0] += 1
         scan_nb(root, path, findings, stats)
@@ -225,13 +248,16 @@ def main(argv=None):
          "markdown cell / NBM-03 an H1 outside the title position / "
          "NBM-04 a heading-level skip / NBM-05 a setext-style "
          "heading / NBM-06 a pipe-table row ragged against its "
-         "delimiter row; %d markdown cells scanned, %d table "
+         "delimiter row / NBM-07 an HTML comment opener in a "
+         "markdown cell; %d markdown cells scanned, %d table "
          "block(s) / %d row(s) walked, %d cell(s) left to "
-         "NBH-03) - hard; NBM-01..02 born tick-696, NBM-03..05 "
-         "born tick-697, NBM-06 born tick-701, all at zero over "
-         "the real corpus (the .md render gates never see .ipynb "
-         "cells - the launcher RENDERS them)\n"
-         % (len(findings), stats[1], stats[3], stats[4], stats[2]))
+         "NBH-03, %d indented line(s) skipped) - hard; "
+         "NBM-01..02 born tick-696, NBM-03..05 born tick-697, "
+         "NBM-06 born tick-701, NBM-07 born tick-705, all at zero "
+         "over the real corpus (the .md render gates never see "
+         ".ipynb cells - the launcher RENDERS them)\n"
+         % (len(findings), stats[1], stats[3], stats[4], stats[2],
+            stats[5]))
         .encode("utf-8", "backslashreplace"))
     return 1 if findings else 0
 
