@@ -211,6 +211,7 @@ Recommended Hardware:
 | [5402: Model Parallelism](./5400-distributed-training/5402-Model-Parallelism.md) | Pipeline and tensor parallelism | 4h | Advanced |
 | [5403: Mixed Precision](./5400-distributed-training/5403-Mixed-Precision.md) | FP16/BF16 training strategies | 2h | Intermediate |
 | [5404: Distributed Optimization](./5400-distributed-training/5404-Distributed-Optimization.md) | Gradient sync and all-reduce | 3h | Advanced |
+| [5405: FSDP2 and torchao](./5400-distributed-training/5405-FSDP2-and-torchao.md) | Composable sharding and quantized training | 4h | Advanced |
 
 **What You'll Learn:**
 - Distributed training fundamentals (DDP, FSDP)
@@ -219,6 +220,7 @@ Recommended Hardware:
 - Tensor parallelism implementation
 - Mixed precision training (FP16, BF16)
 - Gradient compression and communication optimization
+- FSDP2 per-parameter sharding and torchao float8/QAT training
 
 **Hands-On Practice:**
 - Set up multi-GPU training with DDP
@@ -295,9 +297,9 @@ graph TD
 | 5100: PEFT | 11h | 8h | 19h |
 | 5200: Alignment | 17h | 10h | 27h |
 | 5300: Synthetic Data | 7h | 6h | 13h |
-| 5400: Distributed Training | 12h | 8h | 20h |
+| 5400: Distributed Training | 16h | 8h | 24h |
 | 5500: Advanced Optimization | 13h | 8h | 21h |
-| **Total** | **56h** | **40h** | **96h** |
+| **Total** | **60h** | **40h** | **100h** |
 
 ---
 

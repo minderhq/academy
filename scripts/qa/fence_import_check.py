@@ -101,7 +101,11 @@ ACCEPTED_PREFIXES = frozenset({
     # framework (1405 teaches Engine + frontend DSL; ENV-GAP:sglang)
     "sglang", "spacy",
     "speechbrain", "stable_baselines3", "structlog", "tavily",
-    "tensorflow", "torch.utils.tensorboard", "torchviz",
+    "tensorflow", "torch.utils.tensorboard",
+    # tick-721 deliberate same-commit extension: torchao, the PyTorch-native
+    # quantization stack (5405 teaches quantize_ + QATConfig + float8 recipes;
+    # ENV-GAP:torchao in the accepted exec census)
+    "torchao", "torchviz",
     "transformer_engine", "triton", "trl", "vllm", "wandb", "weaviate",
     "xformers",
     # lesson-local fragment modules (defined by the lesson itself)

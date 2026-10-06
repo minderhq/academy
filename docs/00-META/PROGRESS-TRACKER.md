@@ -20,11 +20,11 @@ Volume 1: Infrastructure Mastery  [░░░░░░░░░░░] 0% (0/40)
 Volume 2: AI Foundations          [░░░░░░░░░░░] 0% (0/32)
 Volume 3: LLM Internals           [░░░░░░░░░░░] 0% (0/36)
 Volume 4: Quantization Mastery    [░░░░░░░░░░░] 0% (0/41)
-Volume 5: Fine-Tuning Expert      [░░░░░░░░░░░] 0% (0/41)
+Volume 5: Fine-Tuning Expert      [░░░░░░░░░░░] 0% (0/42)
 Volume 6: RAG & Data Systems      [░░░░░░░░░░░] 0% (0/38)
 Volume 7: Production Systems      [░░░░░░░░░░░] 0% (0/37)
 
-Total: [░░░░░░░░░░░░░░░░░] 0% (0/413 core files)
+Total: [░░░░░░░░░░░░░░░░░] 0% (0/414 core files)
 ```
 
 ---
@@ -161,7 +161,7 @@ Total: [░░░░░░░░░░░░░░░░░] 0% (0/413 core file
 
 ---
 
-### Volume 5: Fine-Tuning Expert (41 files)
+### Volume 5: Fine-Tuning Expert (42 files)
 **"Adapt Models to Your Needs"** - 35-40 hours | Difficulty: ⭐⭐⭐ Advanced
 
 - [ ] **VOLUME-5-Fine-Tuning.md** - Volume guide (read first!)
@@ -387,7 +387,7 @@ Notes:
 ### Essential Reading
 - **[VOLUME-GUIDE.md](VOLUME-GUIDE.md)** - Start here! Overview of all 7 volumes
 - **[0000-LEARNING-PATH.md](0000-LEARNING-PATH.md)** - Recommended learning paths
-- **[SITEMAP.md](SITEMAP.md)** - Full document list (413 files)
+- **[SITEMAP.md](SITEMAP.md)** - Full document list (414 files)
 - **[README.md](../../README.md)** - Project overview
 
 ### Troubleshooting
@@ -407,7 +407,7 @@ Notes:
 | Metric | Target | Current | % |
 |--------|--------|---------|---|
 | **Volumes Completed** | 7 | 0 | 0% |
-| **Core Documents** | 413 | 0 | 0% |
+| **Core Documents** | 414 | 0 | 0% |
 | **Labs Completed** | 15 | 0 | 0% |
 | **Experiments** | 47 | 0 | 0% |
 | **Tutorials** | 15 | 0 | 0% |

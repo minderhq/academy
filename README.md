@@ -15,7 +15,7 @@ Difficulty: Beginner
 ## Master Documentation
 
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
-[![Documentation](https://img.shields.io/badge/Docs-413%20Files-orange?style=flat-square)](./docs)
+[![Documentation](https://img.shields.io/badge/Docs-414%20Files-orange?style=flat-square)](./docs)
 [![Phases](https://img.shields.io/badge/Phases-7-purple?style=flat-square)](#-learning-phases)
 [![Modules](https://img.shields.io/badge/Modules-33-success?style=flat-square)](#-summary-statistics)
 
@@ -157,7 +157,7 @@ After completing Minder Academy, you will be able to:
 | Challenge | Minder Academy Solution |
 |:----------:|:----------------------:|
 | 💸 **AI infrastructure is expensive** | Run production-grade AI on affordable hardware or modest cloud instances |
-| 📚 **Documentation is scattered** | **467 files** in one organized, cross-referenced repository |
+| 📚 **Documentation is scattered** | **468 files** in one organized, cross-referenced repository |
 | 🎯 **Learning gaps exist** | Complete curriculum from infrastructure to agentic systems |
 | 📝 **Theory without practice** | **33 PRACTICE files** with runnable solutions, **47 experiments** |
 | 🗺️ **No clear path forward** | **7 phases**, **3 learning tracks**, progress tracking built-in |
@@ -666,7 +666,7 @@ graph TB
 </details>
 
 <details>
-<summary><b>📁 Phase 5: Fine-Tuning & Alignment [5000]</b> - 10 documents</summary>
+<summary><b>📁 Phase 5: Fine-Tuning & Alignment [5000]</b> - 11 documents</summary>
 
 ### [5100: PEFT](./docs/phases/phase5-finetuning/5100-peft/README.md)
 - [5101: LoRA Logic](./docs/phases/phase5-finetuning/5100-peft/5101-LoRA-Logic.md)
@@ -684,6 +684,7 @@ graph TB
 
 ### [5400: Distributed Training](./docs/phases/phase5-finetuning/5400-distributed-training/README.md)
 - [5401: Data Parallelism](./docs/phases/phase5-finetuning/5400-distributed-training/5401-Data-Parallelism.md)
+- [5405: FSDP2 and torchao](./docs/phases/phase5-finetuning/5400-distributed-training/5405-FSDP2-and-torchao.md)
 
 ### [5500: Advanced Optimization](./docs/phases/phase5-finetuning/5500-advanced-optimization/README.md)
 - [5501: Optimizer Variants](./docs/phases/phase5-finetuning/5500-advanced-optimization/5501-Optimizer-Variants.md)
@@ -1307,10 +1308,10 @@ docker compose -f configs/docker-compose.yml up -d qdrant
 | **2** | 32 |
 | **3** | 36 |
 | **4** | 41 |
-| **5** | 41 |
+| **5** | 42 |
 | **6** | 38 |
 | **7** | 37 |
-| **Phase total** | **265** |
+| **Phase total** | **266** |
 
 ### Additional Resources
 
@@ -1457,7 +1458,7 @@ SOFTWARE.
 
 *Last Updated: 2026-09-29*
 
-*467 Documentation Files | 33 Technical Modules | 7 Learning Phases*
+*468 Documentation Files | 33 Technical Modules | 7 Learning Phases*
 
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
 [![Contact](https://img.shields.io/badge/Contact-FAQ-blue?style=flat-square)](./docs/00-META/FAQ.md)

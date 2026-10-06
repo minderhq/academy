@@ -102,7 +102,9 @@ WHITELIST = frozenset([
     'ssm', 'solution', 'sparsity', 'speculative-decoding', 'star-topology', 'swiglu',
     'switch', 'synthetic-data', 't5', 'tensor-parallelism', 'tensorflow', 'tensors',
     'ternary', 'tgi', 'template', 'tokenization', 'tokenizer', 'tool-calling', 'topology',
-    'training', 'transformers', 'troubleshooting', 'tts', 'tutorial', 'uplink', 'use-case',
+    # tick-721 deliberate same-commit extension: 'torchao' joins for
+    # the FSDP2 + torchao lesson (5405) - the tag vocabulary grows with the corpus
+    'torchao', 'training', 'transformers', 'troubleshooting', 'tts', 'tutorial', 'uplink', 'use-case',
     'vector-db', 'vector-store', 'vectors', 'versioning', 'vfio',
     'virtualization', 'vision', 'vision-language', 'vlan', 'volume', 'vllm', 'vlm',
     'wan', 'warmup', 'weaviate', 'whisper', 'xla', 'zero',
