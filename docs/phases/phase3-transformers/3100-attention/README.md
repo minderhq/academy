@@ -5,7 +5,7 @@ Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
 Prerequisites: [3200]
-Estimated Time: 8 hours
+Estimated Time: 12 hours
 Tags: ['module', 'transformers', 'attention']
 ---
 
@@ -23,6 +23,7 @@ This module covers the attention mechanism - the core innovation behind Transfor
 |----------|-------------|------------|------|
 | [3101: Self-Attention Deep Dive](./3101-Self-Attention-DeepDive.md) | Multi-head, Masked, Scaled Dot-Product Attention | ⭐⭐⭐ | 4 hrs |
 | [3102: Flash Attention](./3102-Flash-Attention.md) | Memory-efficient attention calculation (IO-aware) | ⭐⭐⭐ | 4 hrs |
+| [3103: SDPA and torch.compile](./3103-SDPA-and-torch-compile.md) | Fused attention kernels and compiled execution | ⭐⭐⭐ | 4 hrs |
 
 ---
 
@@ -33,6 +34,7 @@ After completing this module, you will:
 - ✅ Implement multi-head attention from scratch
 - ✅ Explain causal vs bidirectional attention
 - ✅ Optimize attention with Flash Attention for memory efficiency
+- ✅ Call SDPA directly and compile models with torch.compile, reading guards and backend viability
 - ✅ Apply attention mechanisms to real-world NLP tasks
 
 ---
@@ -171,4 +173,4 @@ def scaled_dot_product_attention(Q, K, V, mask=None):
 ---
 
 **Module Difficulty:** ⭐⭐⭐ Intermediate
-**Estimated Time:** 8 hours total
+**Estimated Time:** 12 hours total

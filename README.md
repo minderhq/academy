@@ -15,7 +15,7 @@ Difficulty: Beginner
 ## Master Documentation
 
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
-[![Documentation](https://img.shields.io/badge/Docs-412%20Files-orange?style=flat-square)](./docs)
+[![Documentation](https://img.shields.io/badge/Docs-413%20Files-orange?style=flat-square)](./docs)
 [![Phases](https://img.shields.io/badge/Phases-7-purple?style=flat-square)](#-learning-phases)
 [![Modules](https://img.shields.io/badge/Modules-33-success?style=flat-square)](#-summary-statistics)
 
@@ -157,7 +157,7 @@ After completing Minder Academy, you will be able to:
 | Challenge | Minder Academy Solution |
 |:----------:|:----------------------:|
 | 💸 **AI infrastructure is expensive** | Run production-grade AI on affordable hardware or modest cloud instances |
-| 📚 **Documentation is scattered** | **466 files** in one organized, cross-referenced repository |
+| 📚 **Documentation is scattered** | **467 files** in one organized, cross-referenced repository |
 | 🎯 **Learning gaps exist** | Complete curriculum from infrastructure to agentic systems |
 | 📝 **Theory without practice** | **33 PRACTICE files** with runnable solutions, **47 experiments** |
 | 🗺️ **No clear path forward** | **7 phases**, **3 learning tracks**, progress tracking built-in |
@@ -609,11 +609,12 @@ graph TB
 </details>
 
 <details>
-<summary><b>📁 Phase 3: Transformer Physics [3000]</b> - 13 documents</summary>
+<summary><b>📁 Phase 3: Transformer Physics [3000]</b> - 14 documents</summary>
 
 ### [3100: Attention](./docs/phases/phase3-transformers/3100-attention/README.md)
 - [3101: Self-Attention](./docs/phases/phase3-transformers/3100-attention/3101-Self-Attention-DeepDive.md)
 - [3102: Flash Attention](./docs/phases/phase3-transformers/3100-attention/3102-Flash-Attention.md)
+- [3103: SDPA and torch.compile](./docs/phases/phase3-transformers/3100-attention/3103-SDPA-and-torch-compile.md)
 
 ### [3200: Embeddings](./docs/phases/phase3-transformers/3200-embeddings/README.md)
 - [3201: RoPE](./docs/phases/phase3-transformers/3200-embeddings/3201-Rotary-Positional-Embeddings-RoPE.md)
@@ -1304,12 +1305,12 @@ docker compose -f configs/docker-compose.yml up -d qdrant
 |:-----:|:---------:|
 | **1** | 40 |
 | **2** | 32 |
-| **3** | 35 |
+| **3** | 36 |
 | **4** | 41 |
 | **5** | 41 |
 | **6** | 38 |
 | **7** | 37 |
-| **Phase total** | **264** |
+| **Phase total** | **265** |
 
 ### Additional Resources
 
@@ -1456,7 +1457,7 @@ SOFTWARE.
 
 *Last Updated: 2026-09-29*
 
-*466 Documentation Files | 33 Technical Modules | 7 Learning Phases*
+*467 Documentation Files | 33 Technical Modules | 7 Learning Phases*
 
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
 [![Contact](https://img.shields.io/badge/Contact-FAQ-blue?style=flat-square)](./docs/00-META/FAQ.md)

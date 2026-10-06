@@ -135,17 +135,18 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [assessment: PRACTICE](../phases/phase2-foundations/2400-pretraining/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase2-foundations/2400-pretraining/assessment/QUIZ.md)
 
-## Phase 3 - Transformer Physics & LLM Internals (35 files)
+## Phase 3 - Transformer Physics & LLM Internals (36 files)
 
 - [CHECKPOINT](../phases/phase3-transformers/CHECKPOINT.md)
 - [README](../phases/phase3-transformers/README.md)
 
-### [3100-attention] (2 lessons, 0 guides)
+### [3100-attention] (3 lessons, 0 guides)
 
 - [PREREQUISITES](../phases/phase3-transformers/3100-attention/PREREQUISITES.md)
 - [README](../phases/phase3-transformers/3100-attention/README.md)
 - [3101-Self-Attention-DeepDive](../phases/phase3-transformers/3100-attention/3101-Self-Attention-DeepDive.md)
 - [3102-Flash-Attention](../phases/phase3-transformers/3100-attention/3102-Flash-Attention.md)
+- [3103-SDPA-and-torch-compile](../phases/phase3-transformers/3100-attention/3103-SDPA-and-torch-compile.md)
 - [assessment: PRACTICE](../phases/phase3-transformers/3100-attention/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase3-transformers/3100-attention/assessment/QUIZ.md)
 
@@ -710,14 +711,14 @@ build's written walkthroughs live inside the lessons themselves - see the
 ## Statistics
 
 ```text
-Total markdown files: 466
-  docs/: 412, experiments/: 48, configs/: 4, repo root: 2
+Total markdown files: 467
+  docs/: 413, experiments/: 48, configs/: 4, repo root: 2
 Phases: 7
 Learning modules (topics): 33
-Phase files (lessons, guides, assessments, topic README/PREREQUISITES): 264
+Phase files (lessons, guides, assessments, topic README/PREREQUISITES): 265
   Phase 1 - Infrastructure Fabric: 40
   Phase 2 - Cognitive Science & Frameworks: 32
-  Phase 3 - Transformer Physics: 35
+  Phase 3 - Transformer Physics: 36
   Phase 4 - Quantization & Compression: 41
   Phase 5 - Fine-Tuning & Alignment: 41
   Phase 6 - Data Nexus: 38

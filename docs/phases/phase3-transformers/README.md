@@ -186,6 +186,7 @@ graph TD
 |----------|-------------|------|------------|
 | [3101: Self-Attention](./3100-attention/3101-Self-Attention-DeepDive.md) | Multi-head, Masked, Scaled Dot-Product | 4h | Advanced |
 | [3102: Flash Attention](./3100-attention/3102-Flash-Attention.md) | Memory-efficient attention (IO-aware) | 4h | Advanced |
+| [3103: SDPA and torch.compile](./3100-attention/3103-SDPA-and-torch-compile.md) | Fused kernels and compiled execution | 4h | Advanced |
 
 **What You'll Learn:**
 - Scaled dot-product attention mechanism
@@ -195,6 +196,7 @@ graph TD
 - Flash Attention tiling strategy
 - IO-aware algorithm design
 - Memory optimization techniques
+- SDPA backend dispatch and torch.compile guard behavior
 
 **Hands-On Practice:**
 - Implement self-attention from scratch
@@ -339,7 +341,7 @@ graph TD
 
 | Module | Reading | Practice | Total |
 |--------|---------|----------|-------|
-| 3100: Attention Architectures | 8h | 4-6h | 12-14h |
+| 3100: Attention Architectures | 12h | 4-6h | 16-18h |
 | 3200: Embedding Latent Spaces | 6h | 4h | 10h |
 | 3300: The Decoding Block | 5h | 3h | 8h |
 | 3400: Model Architectures | 14h | 4h | 18h |
