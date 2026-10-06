@@ -1,11 +1,11 @@
 ---
 Document ID: 7200-TOOLS-README
 Title: "7200: Tool Calling and Function Execution"
-Last Updated: 2026-10-04
+Last Updated: 2026-10-06
 Status: Complete
 Difficulty: Intermediate
 Prerequisites: []
-Estimated Time: 7 hours
+Estimated Time: 11 hours
 Tags: ['module', 'agents', 'tool-calling']
 ---
 
@@ -75,6 +75,23 @@ After completing this module, you will be able to:
 - Replay the JSON-RPC wire messages by hand
 - Validate the tool contract before dispatch
 
+### [7204: Timeouts, Retries, and Rate Limits](./7204-Timeouts-Retries-and-Rate-Limits.md)
+**The Client-Side Resilience Triad as Working Code**
+
+- The un-budgeted call: one accepted-then-hung read ends an agent turn forever
+- Timeout budgets: connect versus read, and why only the read budget catches the hang
+- Retry classification and the idempotency key — the naive ledger's double charge
+- Backoff as a fleet behavior: the exponential formula and jitter versus lockstep
+- The caller-side token bucket: pacing into the quota instead of paying the 429 tax
+- The circuit breaker and the composed brownout campaign
+
+**Experiments:**
+- Price the hung read against the bounded one on a fake clock
+- Dedupe a retried charge with an idempotency-key ledger
+- Spread 40 lockstep retries with seeded jitter
+- Pace a 50-call burst under a 10 rps quota
+- Route a breaker around a 7-call brownout
+
 ## Prerequisites
 
 Before starting this module, ensure you have:
@@ -119,10 +136,11 @@ This module connects to:
 |----------|------|
 | [7201: Tool Calling](./7201-Tool-Calling.md) | 3 hours |
 | [7203: MCP Hands-On](./7203-MCP-Hands-On.md) | 4 hours |
+| [7204: Timeouts, Retries, and Rate Limits](./7204-Timeouts-Retries-and-Rate-Limits.md) | 4 hours |
 | Guide ([7202: Code Interpreter](./guides/7202-Code-Interpreter.md)) | 5 hours |
 | Quiz | 30 minutes |
 | Practice | 3 hours |
-| **Total** | **15.5 hours** |
+| **Total** | **19.5 hours** |
 
 ## Resources
 

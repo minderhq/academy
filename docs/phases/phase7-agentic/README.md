@@ -521,6 +521,7 @@ tools_researcher = {
 | [7201: Tool Calling](./7200-tools/7201-Tool-Calling.md) | OpenAI-style function calling | 3h | Intermediate |
 | [7202: Code Interpreter](./7200-tools/guides/7202-Code-Interpreter.md) | Sandboxed code execution | 3h | Advanced |
 | [7203: MCP Hands-On](./7200-tools/7203-MCP-Hands-On.md) | Tool servers and clients over MCP | 4h | Intermediate |
+| [7204: Timeouts, Retries, and Rate Limits](./7200-tools/7204-Timeouts-Retries-and-Rate-Limits.md) | The client-side resilience triad as working code | 4h | Intermediate |
 
 **What You'll Learn:**
 - Function calling with LLMs
@@ -528,6 +529,7 @@ tools_researcher = {
 - Sandboxed code execution
 - Error handling and recovery
 - MCP tool servers and clients over one standard surface
+- Timeout budgets, idempotent retries, jittered backoff, and the caller-side rate-limit bucket
 
 **Hands-On Practice:**
 - Implement tool calling system
@@ -648,11 +650,11 @@ graph TD
 | Module | Reading | Practice | Total |
 |--------|---------|----------|-------|
 | 7100: Architecture | 15h | 6h | 21h |
-| 7200: Tool Use | 10h | 4h | 14h |
+| 7200: Tool Use | 14h | 4h | 18h |
 | 7300: Orchestration | 11h | 6h | 17h |
 | 7400: Memory | 12h | 6h | 18h |
 | 7500: Security | 12h | — | 12h |
-| **Total** | **56h** | **22h** | **78h** |
+| **Total** | **64h** | **22h** | **86h** |
 
 *7500 practice time is not yet estimated in its PRACTICE.md; phase totals cover the estimated modules.*
 

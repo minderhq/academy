@@ -367,7 +367,7 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [assessment: PRACTICE](../phases/phase6-rag/6500-mlops-pipelines/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase6-rag/6500-mlops-pipelines/assessment/QUIZ.md)
 
-## Phase 7 - Agentic Systems (41 files)
+## Phase 7 - Agentic Systems (42 files)
 
 - [CHECKPOINT](../phases/phase7-agentic/CHECKPOINT.md)
 - [README](../phases/phase7-agentic/README.md)
@@ -383,12 +383,13 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [assessment: PRACTICE](../phases/phase7-agentic/7100-architecture/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase7-agentic/7100-architecture/assessment/QUIZ.md)
 
-### [7200-tools] (2 lessons, 1 guides)
+### [7200-tools] (3 lessons, 1 guides)
 
 - [PREREQUISITES](../phases/phase7-agentic/7200-tools/PREREQUISITES.md)
 - [README](../phases/phase7-agentic/7200-tools/README.md)
 - [7201-Tool-Calling](../phases/phase7-agentic/7200-tools/7201-Tool-Calling.md)
 - [7203-MCP-Hands-On](../phases/phase7-agentic/7200-tools/7203-MCP-Hands-On.md)
+- [7204-Timeouts-Retries-and-Rate-Limits](../phases/phase7-agentic/7200-tools/7204-Timeouts-Retries-and-Rate-Limits.md)
 - [guide: 7202-Code-Interpreter](../phases/phase7-agentic/7200-tools/guides/7202-Code-Interpreter.md)
 - [assessment: PRACTICE](../phases/phase7-agentic/7200-tools/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase7-agentic/7200-tools/assessment/QUIZ.md)
@@ -722,18 +723,18 @@ build's written walkthroughs live inside the lessons themselves - see the
 ## Statistics
 
 ```text
-Total markdown files: 478
-  docs/: 424, experiments/: 48, configs/: 4, repo root: 2
+Total markdown files: 479
+  docs/: 425, experiments/: 48, configs/: 4, repo root: 2
 Phases: 7
 Learning modules (topics): 33
-Phase files (lessons, guides, assessments, topic README/PREREQUISITES): 276
+Phase files (lessons, guides, assessments, topic README/PREREQUISITES): 277
   Phase 1 - Infrastructure Fabric: 40
   Phase 2 - Cognitive Science & Frameworks: 32
   Phase 3 - Transformer Physics: 36
   Phase 4 - Quantization & Compression: 42
   Phase 5 - Fine-Tuning & Alignment: 43
   Phase 6 - Data Nexus: 42
-  Phase 7 - Agentic Systems: 41
+  Phase 7 - Agentic Systems: 42
 Volume guides: 7
 Phase assessment sets: 14 (7 phases x quiz + practice)
 Experiments: 47 (+ TEMPLATE)

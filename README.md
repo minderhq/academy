@@ -15,7 +15,7 @@ Difficulty: Beginner
 ## Master Documentation
 
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
-[![Documentation](https://img.shields.io/badge/Docs-424%20Files-orange?style=flat-square)](./docs)
+[![Documentation](https://img.shields.io/badge/Docs-425%20Files-orange?style=flat-square)](./docs)
 [![Phases](https://img.shields.io/badge/Phases-7-purple?style=flat-square)](#-learning-phases)
 [![Modules](https://img.shields.io/badge/Modules-33-success?style=flat-square)](#-summary-statistics)
 
@@ -157,7 +157,7 @@ After completing Minder Academy, you will be able to:
 | Challenge | Minder Academy Solution |
 |:----------:|:----------------------:|
 | 💸 **AI infrastructure is expensive** | Run production-grade AI on affordable hardware or modest cloud instances |
-| 📚 **Documentation is scattered** | **478 files** in one organized, cross-referenced repository |
+| 📚 **Documentation is scattered** | **479 files** in one organized, cross-referenced repository |
 | 🎯 **Learning gaps exist** | Complete curriculum from infrastructure to agentic systems |
 | 📝 **Theory without practice** | **33 PRACTICE files** with runnable solutions, **47 experiments** |
 | 🗺️ **No clear path forward** | **7 phases**, **3 learning tracks**, progress tracking built-in |
@@ -539,7 +539,7 @@ graph TB
 | Module | Topic | Docs | Status |
 |:------:|-------|:----:|:------:|
 | [7100](./docs/phases/phase7-agentic/7100-architecture/README.md) | Agent Architecture | 4 | ✅ |
-| [7200](./docs/phases/phase7-agentic/7200-tools/README.md) | Tool Use | 3 | ✅ |
+| [7200](./docs/phases/phase7-agentic/7200-tools/README.md) | Tool Use | 4 | ✅ |
 | [7300](./docs/phases/phase7-agentic/7300-orchestration/README.md) | Orchestration | 1 | ✅ |
 | [7400](./docs/phases/phase7-agentic/7400-memory/README.md) | Agent Memory | 3 | ✅ |
 | [7500](./docs/phases/phase7-agentic/7500-security/README.md) | Security | 4 | ✅ |
@@ -728,7 +728,7 @@ graph TB
 </details>
 
 <details>
-<summary><b>📁 Phase 7: Agentic Systems [7000]</b> - 17 documents</summary>
+<summary><b>📁 Phase 7: Agentic Systems [7000]</b> - 18 documents</summary>
 
 ### [7100: Architecture](./docs/phases/phase7-agentic/7100-architecture/README.md)
 - [7101: ReAct Loop](./docs/phases/phase7-agentic/7100-architecture/7101-ReAct-Loop-System.md)
@@ -740,6 +740,7 @@ graph TB
 - [7201: Tool Calling](./docs/phases/phase7-agentic/7200-tools/7201-Tool-Calling.md)
 - [7202: Code Interpreter](./docs/phases/phase7-agentic/7200-tools/guides/7202-Code-Interpreter.md)
 - [7203: MCP Hands-On](./docs/phases/phase7-agentic/7200-tools/7203-MCP-Hands-On.md)
+- [7204: Timeouts, Retries, and Rate Limits](./docs/phases/phase7-agentic/7200-tools/7204-Timeouts-Retries-and-Rate-Limits.md)
 
 ### [7300: Orchestration](./docs/phases/phase7-agentic/7300-orchestration/README.md)
 - [7301: Multi-Agent](./docs/phases/phase7-agentic/7300-orchestration/7301-Orchestration.md)
@@ -1320,8 +1321,8 @@ docker compose -f configs/docker-compose.yml up -d qdrant
 | **4** | 42 |
 | **5** | 43 |
 | **6** | 42 |
-| **7** | 41 |
-| **Phase total** | **276** |
+| **7** | 42 |
+| **Phase total** | **277** |
 
 ### Additional Resources
 
@@ -1468,7 +1469,7 @@ SOFTWARE.
 
 *Last Updated: 2026-09-29*
 
-*478 Documentation Files | 33 Technical Modules | 7 Learning Phases*
+*479 Documentation Files | 33 Technical Modules | 7 Learning Phases*
 
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
 [![Contact](https://img.shields.io/badge/Contact-FAQ-blue?style=flat-square)](./docs/00-META/FAQ.md)
