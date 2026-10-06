@@ -5,7 +5,7 @@ Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
-Estimated Time: 20 hours
+Estimated Time: 24 hours
 Tags: ['module', 'finetuning', 'alignment']
 ---
 
@@ -30,6 +30,7 @@ After completing this module, you will be able to:
 - **Reward Modeling**: Build and train reward models for RLHF
 - **PPO Training**: Implement Proximal Policy Optimization for LLMs
 - **Safety Alignment**: Apply guardrails and content filtering
+- **Best-of-N and Rejection Sampling**: Rerank at the endpoint, price the KL rent, and convert picks into weights via RSFT
 
 ## Module Contents
 
@@ -108,6 +109,21 @@ After completing this module, you will be able to:
 - Diagnose prompt saturation from training logs
 - Compare GRPO vs PPO vs DPO outcomes
 
+### [5206: Best-of-N and Rejection Sampling](./5206-Best-of-N-and-Rejection-Sampling.md)
+**Inference-time reranking and rejection-sampling fine-tuning**
+
+- The BoN contract and the exact KL price log N − (N−1)/N
+- The overoptimization curve: proxy monotone up, gold peaking and falling
+- Rejection-sampling fine-tuning: the sample-keep-dedup-SFT loop
+- Renting versus owning: per-request KL against one-time training
+- The campaign ledger: best quality and cheapest row on the same board
+
+**Experiments:**
+- Verify the BoN KL identity against Monte-Carlo
+- Walk the Goodhart curve and locate the peak N
+- Run the RSFT climb and compare raw vs reranked service
+- Price the break-even between renting and owning
+
 ## Prerequisites
 
 Before starting this module, ensure you have:
@@ -155,9 +171,10 @@ This module connects to:
 | [5203: RLHF](./5203-RLHF.md) | 4 hours |
 | [5204: Preference Dataset Creation](./5204-Preference-Dataset-Creation.md) | 4 hours |
 | [5205: GRPO and RLVR](./5205-GRPO-RLVR.md) | 4 hours |
+| [5206: Best-of-N and Rejection Sampling](./5206-Best-of-N-and-Rejection-Sampling.md) | 4 hours |
 | Quiz | 30 minutes |
 | Practice | 10 hours |
-| **Total** | **30.5 hours** |
+| **Total** | **34.5 hours** |
 
 ## Resources
 

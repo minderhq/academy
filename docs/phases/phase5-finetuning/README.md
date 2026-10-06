@@ -169,6 +169,7 @@ Recommended Hardware:
 | [5203: RLHF](./5200-alignment/5203-RLHF.md) | Reinforcement Learning from Human Feedback | 4h | Advanced |
 | [5204: Preference Dataset Creation](./5200-alignment/5204-Preference-Dataset-Creation.md) | Building preference pairs | 2h | Intermediate |
 | [5205: GRPO and RLVR](./5200-alignment/5205-GRPO-RLVR.md) | Group-relative policy optimization with verifiable rewards | 4h | Advanced |
+| [5206: Best-of-N and Rejection Sampling](./5200-alignment/5206-Best-of-N-and-Rejection-Sampling.md) | Inference-time reranking, overoptimization, and RSFT | 4h | Advanced |
 
 **What You'll Learn:**
 - Direct Preference Optimization (DPO) theory
@@ -177,6 +178,7 @@ Recommended Hardware:
 - Preference dataset collection and curation
 - Alignment orchestration strategies
 - GRPO and verifiable-reward RL for reasoning models
+- Best-of-N reranking, the overoptimization curve, and rejection-sampling fine-tuning
 
 **Hands-On Practice:**
 - Implement DPO from scratch
@@ -184,6 +186,7 @@ Recommended Hardware:
 - Build preference datasets
 - Align models with human values
 - Run a GRPO stage with rule-based rewards
+- Locate the BoN peak N and run the RSFT climb in the same world
 
 ### [5300] Synthetic Data Generation
 
@@ -301,11 +304,11 @@ graph TD
 | Module | Reading | Practice | Total |
 |--------|---------|----------|-------|
 | 5100: PEFT | 14h | 8h | 22h |
-| 5200: Alignment | 17h | 10h | 27h |
+| 5200: Alignment | 21h | 10h | 31h |
 | 5300: Synthetic Data | 11h | 6h | 17h |
 | 5400: Distributed Training | 16h | 8h | 24h |
 | 5500: Advanced Optimization | 13h | 8h | 21h |
-| **Total** | **71h** | **40h** | **111h** |
+| **Total** | **75h** | **40h** | **115h** |
 
 ---
 

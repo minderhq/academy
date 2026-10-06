@@ -15,7 +15,7 @@ Difficulty: Beginner
 ## Master Documentation
 
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
-[![Documentation](https://img.shields.io/badge/Docs-429%20Files-orange?style=flat-square)](./docs)
+[![Documentation](https://img.shields.io/badge/Docs-430%20Files-orange?style=flat-square)](./docs)
 [![Phases](https://img.shields.io/badge/Phases-7-purple?style=flat-square)](#-learning-phases)
 [![Modules](https://img.shields.io/badge/Modules-33-success?style=flat-square)](#-summary-statistics)
 
@@ -157,7 +157,7 @@ After completing Minder Academy, you will be able to:
 | Challenge | Minder Academy Solution |
 |:----------:|:----------------------:|
 | 💸 **AI infrastructure is expensive** | Run production-grade AI on affordable hardware or modest cloud instances |
-| 📚 **Documentation is scattered** | **483 files** in one organized, cross-referenced repository |
+| 📚 **Documentation is scattered** | **484 files** in one organized, cross-referenced repository |
 | 🎯 **Learning gaps exist** | Complete curriculum from infrastructure to agentic systems |
 | 📝 **Theory without practice** | **33 PRACTICE files** with runnable solutions, **47 experiments** |
 | 🗺️ **No clear path forward** | **7 phases**, **3 learning tracks**, progress tracking built-in |
@@ -509,7 +509,7 @@ graph TB
 | Module | Topic | Docs | Status |
 |:------:|-------|:----:|:------:|
 | [5100](./docs/phases/phase5-finetuning/5100-peft/README.md) | PEFT | 5 | ✅ |
-| [5200](./docs/phases/phase5-finetuning/5200-alignment/README.md) | Alignment | 2 | ✅ |
+| [5200](./docs/phases/phase5-finetuning/5200-alignment/README.md) | Alignment | 3 | ✅ |
 | [5300](./docs/phases/phase5-finetuning/5300-synthetic/README.md) | Synthetic Data | 4 | ✅ |
 | [5400](./docs/phases/phase5-finetuning/5400-distributed-training/README.md) | Distributed Training | 1 | ✅ |
 | [5500](./docs/phases/phase5-finetuning/5500-advanced-optimization/README.md) | Advanced Optimization | 1 | ✅ |
@@ -667,7 +667,7 @@ graph TB
 </details>
 
 <details>
-<summary><b>📁 Phase 5: Fine-Tuning & Alignment [5000]</b> - 13 documents</summary>
+<summary><b>📁 Phase 5: Fine-Tuning & Alignment [5000]</b> - 14 documents</summary>
 
 ### [5100: PEFT](./docs/phases/phase5-finetuning/5100-peft/README.md)
 - [5101: LoRA Logic](./docs/phases/phase5-finetuning/5100-peft/5101-LoRA-Logic.md)
@@ -678,6 +678,7 @@ graph TB
 ### [5200: Alignment](./docs/phases/phase5-finetuning/5200-alignment/README.md)
 - [5201: DPO Theory](./docs/phases/phase5-finetuning/5200-alignment/5201-DPO-Theory.md)
 - [5202: Alignment Orchestration](./docs/phases/phase5-finetuning/5200-alignment/5202-Alignment-Orchestration.md)
+- [5206: Best-of-N and Rejection Sampling](./docs/phases/phase5-finetuning/5200-alignment/5206-Best-of-N-and-Rejection-Sampling.md)
 
 ### [5300: Synthetic Data](./docs/phases/phase5-finetuning/5300-synthetic/README.md)
 - [5301: Knowledge Distillation](./docs/phases/phase5-finetuning/5300-synthetic/5301-Knowledge-Distillation.md)
@@ -1323,10 +1324,10 @@ docker compose -f configs/docker-compose.yml up -d qdrant
 | **2** | 32 |
 | **3** | 36 |
 | **4** | 42 |
-| **5** | 44 |
+| **5** | 45 |
 | **6** | 44 |
 | **7** | 43 |
-| **Phase total** | **281** |
+| **Phase total** | **282** |
 
 ### Additional Resources
 
@@ -1473,7 +1474,7 @@ SOFTWARE.
 
 *Last Updated: 2026-09-29*
 
-*483 Documentation Files | 33 Technical Modules | 7 Learning Phases*
+*484 Documentation Files | 33 Technical Modules | 7 Learning Phases*
 
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
 [![Contact](https://img.shields.io/badge/Contact-FAQ-blue?style=flat-square)](./docs/00-META/FAQ.md)
