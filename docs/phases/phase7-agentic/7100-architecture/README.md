@@ -5,7 +5,7 @@ Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
-Estimated Time: 12 hours
+Estimated Time: 16 hours
 Tags: ['module', 'agents', 'react']
 ---
 
@@ -30,6 +30,7 @@ After completing this module, you will be able to:
 - **Task Decomposition**: Break complex goals into subtasks
 - **Agent Design**: Choose architectures for specific use cases
 - **Evaluation**: Score trajectories with deterministic scorers, LLM judges, and confidence intervals
+- **Reflection & Self-Correction**: Make the loop grade and improve its own answers
 
 ## Module Contents
 
@@ -90,6 +91,20 @@ After completing this module, you will be able to:
 - Flip a pairwise judge with answer order, then cancel the bias
 - Wire the two-tripwire regression gate into CI
 
+### [7105: Reflection and Self-Correction](./7105-Reflection-and-Self-Correction.md)
+**The Loop That Grades Its Own Work**
+
+- The refine loop (Self-Refine): draft-critique-revise in detect-mode discipline
+- Self-consistency: the plurality amplifier and its K-times decode bill
+- The self-correction boundary: intrinsic rewrites decay, verifier-gated repairs climb
+- The retry split: bare, critique-injected, within-run carryover
+- The campaign ledger: one batch, five policies, five bills
+
+**Experiments:**
+- Run the refine loop and read the accuracy walk as a defect-class ledger
+- Watch the vote converge on the wrong mode when the wrong mode is plural
+- Price intrinsic vs verifier-gated correction on the same batch
+
 ## Prerequisites
 
 Before starting this module, ensure you have:
@@ -135,10 +150,11 @@ This module connects to:
 | [7101: ReAct Loop System](./7101-ReAct-Loop-System.md) | 4 hours |
 | [7102: Planning and Decomposition](./7102-Planning-Decomposition.md) | 4 hours |
 | [7104: Agent Evaluation and Observability](./7104-Agent-Evaluation-and-Observability.md) | 4 hours |
+| [7105: Reflection and Self-Correction](./7105-Reflection-and-Self-Correction.md) | 4 hours |
 | Guide ([7103](./guides/7103-ReAct-Implementation-Guide.md)) | 4 hours |
 | Quiz | 30 minutes |
 | Practice | 7 hours |
-| **Total** | **23.5 hours** |
+| **Total** | **27.5 hours** |
 
 ## Resources
 

@@ -102,8 +102,14 @@ WHITELIST = frozenset([
     'preparation', 'prerequisites', 'pretraining', 'privacy', 'production', 'production-framework',
     'project', 'prometheus', 'prompt-injection', 'proxmox', 'pruning', 'pytorch', 'pytorch-lightning',
     'qat', 'qdrant', 'qlora', 'quantization', 'quantization-aware-training', 'quickstart', 'quiz',
-    'rag', 'react', 'reasoning', 'reference', 'reranking', 'retrieval', 'rlhf',
-    'roadmap', 'rope', 'sam', 'scheduling', 'security', 'self-attention', 'serving',
+    'rag', 'react', 'reasoning', 'reference',
+    # tick-735 deliberate same-commit extension: 'reflection' joins for
+    # the reflection and self-correction lesson (7105) - the tag vocabulary grows with the corpus
+    'reflection', 'reranking', 'retrieval', 'rlhf',
+    'roadmap', 'rope', 'sam', 'scheduling', 'security', 'self-attention',
+    # tick-735 deliberate same-commit extension: 'self-correction' joins for
+    # the reflection and self-correction lesson (7105) - the tag vocabulary grows with the corpus
+    'self-correction', 'serving',
     # tick-719 deliberate same-commit extension: 'sglang' joins for
     # the SGLang serving lesson (1405) - the tag vocabulary grows with the corpus
     'sglang', 'setup', 'similarity',

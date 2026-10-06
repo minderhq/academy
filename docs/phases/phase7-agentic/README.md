@@ -499,6 +499,7 @@ tools_researcher = {
 | [7102: State Machines](./7100-architecture/7102-Planning-Decomposition.md) | Breaking down complex tasks | 4h | Advanced |
 | [7103: ReAct Implementation](./7100-architecture/guides/7103-ReAct-Implementation-Guide.md) | Complete ReAct implementation | 3h | Advanced |
 | [7104: Agent Evaluation and Observability](./7100-architecture/7104-Agent-Evaluation-and-Observability.md) | Score trajectories, judge mechanics, trace budgets, regression gates | 4h | Advanced |
+| [7105: Reflection and Self-Correction](./7100-architecture/7105-Reflection-and-Self-Correction.md) | Refine loops, self-consistency votes, the intrinsic-vs-informed correction boundary | 4h | Advanced |
 
 **What You'll Learn:**
 - ReAct (Reasoning + Acting) pattern
@@ -506,6 +507,7 @@ tools_researcher = {
 - State machines for agent control
 - Cognitive architectures
 - Agent evaluation: scorers, LLM judges, and confidence intervals
+- Reflection and self-correction: refine loops, plurality votes, and the correction boundary
 
 **Hands-On Practice:**
 - Implement ReAct loop from scratch
@@ -513,6 +515,7 @@ tools_researcher = {
 - Create state machine for complex workflows
 - Debug agent reasoning chains
 - Score recorded trajectories and gate CI on regressions
+- Price one batch under five self-improvement policies and pick by the bill
 
 ### [7200] Tool Use & Function Calling
 
@@ -649,12 +652,12 @@ graph TD
 
 | Module | Reading | Practice | Total |
 |--------|---------|----------|-------|
-| 7100: Architecture | 15h | 6h | 21h |
+| 7100: Architecture | 19h | 6h | 25h |
 | 7200: Tool Use | 14h | 4h | 18h |
 | 7300: Orchestration | 11h | 6h | 17h |
 | 7400: Memory | 12h | 6h | 18h |
 | 7500: Security | 12h | — | 12h |
-| **Total** | **64h** | **22h** | **86h** |
+| **Total** | **68h** | **22h** | **90h** |
 
 *7500 practice time is not yet estimated in its PRACTICE.md; phase totals cover the estimated modules.*
 
