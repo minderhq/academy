@@ -3,7 +3,7 @@ Document ID: 6100-PREREQUISITES
 Title: "Prerequisites: Vector Databases"
 Last Updated: 2026-09-28
 Status: Complete
-Difficulty: Intermediate
+Difficulty: Advanced
 Tags: ['prerequisites', 'rag', 'vectors']
 ---
 
@@ -109,4 +109,4 @@ After completing 6101-HNSW-Indexing.md, you'll understand:
 ---
 
 **Estimated Time to Complete:** 2-3 hours
-**Difficulty:** ⭐⭐ Intermediate
+**Difficulty:** ⭐⭐⭐ Advanced

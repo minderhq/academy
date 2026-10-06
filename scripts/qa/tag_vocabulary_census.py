@@ -89,6 +89,9 @@ WHITELIST = frozenset([
     # tick-725 deliberate same-commit extension: 'mergekit' joins for
     # the model merging lesson (5105) - the tag vocabulary grows with the corpus
     'mergekit', 'milvus', 'mla', 'mixed-precision', 'mlops', 'mxfp4',
+    # tick-726 deliberate same-commit extension: 'matryoshka' and 'mteb' join for
+    # the embedding sciences lesson (6104) - the tag vocabulary grows with the corpus
+    'matryoshka', 'mteb',
     'model-registry', 'module', 'monitoring', 'mtu', 'multi-agent', 'multi-head',
     'multimodal', 'navigation', 'neo4j', 'networking', 'nginx', 'normalization', 'notebook', 'nvfp4', 'observability',
     'offloading', 'ollama', 'optimization', 'optimizers', 'orchestration', 'peft',

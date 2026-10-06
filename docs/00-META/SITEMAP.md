@@ -307,17 +307,18 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [assessment: PRACTICE](../phases/phase5-finetuning/5500-advanced-optimization/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase5-finetuning/5500-advanced-optimization/assessment/QUIZ.md)
 
-## Phase 6 - RAG & Data Nexus (39 files)
+## Phase 6 - RAG & Data Nexus (40 files)
 
 - [CHECKPOINT](../phases/phase6-rag/CHECKPOINT.md)
 - [README](../phases/phase6-rag/README.md)
 
-### [6100-vector] (2 lessons, 1 guides)
+### [6100-vector] (3 lessons, 1 guides)
 
 - [PREREQUISITES](../phases/phase6-rag/6100-vector/PREREQUISITES.md)
 - [README](../phases/phase6-rag/6100-vector/README.md)
 - [6101-HNSW-Indexing](../phases/phase6-rag/6100-vector/6101-HNSW-Indexing.md)
 - [6102-Semantic-Similarity](../phases/phase6-rag/6100-vector/6102-Semantic-Similarity.md)
+- [6104-Embedding-Sciences](../phases/phase6-rag/6100-vector/6104-Embedding-Sciences.md)
 - [guide: 6103-HNSW-Tuning-Guide](../phases/phase6-rag/6100-vector/guides/6103-HNSW-Tuning-Guide.md)
 - [assessment: PRACTICE](../phases/phase6-rag/6100-vector/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase6-rag/6100-vector/assessment/QUIZ.md)
@@ -716,17 +717,17 @@ build's written walkthroughs live inside the lessons themselves - see the
 ## Statistics
 
 ```text
-Total markdown files: 472
-  docs/: 418, experiments/: 48, configs/: 4, repo root: 2
+Total markdown files: 473
+  docs/: 419, experiments/: 48, configs/: 4, repo root: 2
 Phases: 7
 Learning modules (topics): 33
-Phase files (lessons, guides, assessments, topic README/PREREQUISITES): 270
+Phase files (lessons, guides, assessments, topic README/PREREQUISITES): 271
   Phase 1 - Infrastructure Fabric: 40
   Phase 2 - Cognitive Science & Frameworks: 32
   Phase 3 - Transformer Physics: 36
   Phase 4 - Quantization & Compression: 42
   Phase 5 - Fine-Tuning & Alignment: 43
-  Phase 6 - Data Nexus: 39
+  Phase 6 - Data Nexus: 40
   Phase 7 - Agentic Systems: 38
 Volume guides: 7
 Phase assessment sets: 14 (7 phases x quiz + practice)

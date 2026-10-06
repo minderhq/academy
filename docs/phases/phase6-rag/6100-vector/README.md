@@ -3,9 +3,9 @@ Document ID: 6100-VECTOR-README
 Title: "6100: Vector Embeddings"
 Last Updated: 2026-10-01
 Status: Complete
-Difficulty: Intermediate
+Difficulty: Advanced
 Prerequisites: []
-Estimated Time: 6 hours
+Estimated Time: 9 hours
 Tags: ['module', 'rag', 'vectors']
 ---
 
@@ -30,6 +30,7 @@ After completing this module, you will be able to:
 - **HNSW Indexing**: Build fast approximate nearest neighbor indexes
 - **Embedding Models**: Choose and use appropriate embedding models
 - **Vector Operations**: Perform efficient similarity search at scale
+- **Embedding Sciences**: Pooling rules, matryoshka truncation, and reading MTEB by task menu
 
 ## Module Contents
 
@@ -73,6 +74,20 @@ After completing this module, you will be able to:
 - Performance benchmarks and tuning checklist
 
 **Guide:** [guides/6103-HNSW-Tuning-Guide.md](./guides/6103-HNSW-Tuning-Guide.md)
+
+### [6104: Embedding Sciences](./6104-Embedding-Sciences.md)
+**Pooling, Matryoshka, and MTEB**
+
+- Pooling rules: CLS readout vs masked mean, the padded-batch trap
+- Matryoshka Representation Learning: trained dimension order, truncation ladders
+- Two-stage adaptive retrieval on truncated prefixes
+- The storage ledger: dimensionality and precision per million documents
+- Reading MTEB: the benchmark mean as a function of the task menu
+
+**Experiments:**
+- Compare CLS vs mean pooling on your own model
+- Truncate and measure recall at 1/4 and 1/16 of the dimensions
+- Price the storage ledger before shipping a fleet
 
 ## Prerequisites
 
@@ -119,9 +134,10 @@ This module connects to:
 | [6101: HNSW Indexing](./6101-HNSW-Indexing.md) | 3 hours |
 | [6102: Semantic Similarity](./6102-Semantic-Similarity.md) | 3 hours |
 | Guide ([6103](./guides/6103-HNSW-Tuning-Guide.md)) | 3 hours |
+| [6104: Embedding Sciences](./6104-Embedding-Sciences.md) | 3 hours |
 | Quiz | 30 minutes |
 | Practice | 2 hours |
-| **Total** | **11.5 hours** |
+| **Total** | **14.5 hours** |
 
 ## Resources
 
