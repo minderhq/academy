@@ -372,7 +372,7 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [assessment: PRACTICE](../phases/phase6-rag/6500-mlops-pipelines/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase6-rag/6500-mlops-pipelines/assessment/QUIZ.md)
 
-## Phase 7 - Agentic Systems (44 files)
+## Phase 7 - Agentic Systems (45 files)
 
 - [CHECKPOINT](../phases/phase7-agentic/CHECKPOINT.md)
 - [README](../phases/phase7-agentic/README.md)
@@ -412,13 +412,14 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [assessment: PRACTICE](../phases/phase7-agentic/7300-orchestration/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase7-agentic/7300-orchestration/assessment/QUIZ.md)
 
-### [7400-memory] (3 lessons, 1 guides)
+### [7400-memory] (4 lessons, 1 guides)
 
 - [PREREQUISITES](../phases/phase7-agentic/7400-memory/PREREQUISITES.md)
 - [README](../phases/phase7-agentic/7400-memory/README.md)
 - [7401-Long-term-Memory](../phases/phase7-agentic/7400-memory/7401-Long-term-Memory.md)
 - [7403-Vector-Memory](../phases/phase7-agentic/7400-memory/7403-Vector-Memory.md)
 - [7404-Reflective-Memory-and-Context-Paging](../phases/phase7-agentic/7400-memory/7404-Reflective-Memory-and-Context-Paging.md)
+- [7405-Key-Value-Memory-and-Checkpoint-Stores](../phases/phase7-agentic/7400-memory/7405-Key-Value-Memory-and-Checkpoint-Stores.md)
 - [guide: 7402-Agent-Memory-Implementation](../phases/phase7-agentic/7400-memory/guides/7402-Agent-Memory-Implementation.md)
 - [assessment: PRACTICE](../phases/phase7-agentic/7400-memory/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase7-agentic/7400-memory/assessment/QUIZ.md)
@@ -730,18 +731,18 @@ build's written walkthroughs live inside the lessons themselves - see the
 ## Statistics
 
 ```text
-Total markdown files: 486
-  docs/: 432, experiments/: 48, configs/: 4, repo root: 2
+Total markdown files: 487
+  docs/: 433, experiments/: 48, configs/: 4, repo root: 2
 Phases: 7
 Learning modules (topics): 33
-Phase files (lessons, guides, assessments, topic README/PREREQUISITES): 283
+Phase files (lessons, guides, assessments, topic README/PREREQUISITES): 284
   Phase 1 - Infrastructure Fabric: 40
   Phase 2 - Cognitive Science & Frameworks: 32
   Phase 3 - Transformer Physics: 36
   Phase 4 - Quantization & Compression: 42
   Phase 5 - Fine-Tuning & Alignment: 45
   Phase 6 - Data Nexus: 44
-  Phase 7 - Agentic Systems: 44
+  Phase 7 - Agentic Systems: 45
 Volume guides: 7
 Phase assessment sets: 14 (7 phases x quiz + practice)
 Experiments: 47 (+ TEMPLATE)

@@ -575,6 +575,7 @@ tools_researcher = {
 | [7402: Memory Implementation](./7400-memory/guides/7402-Agent-Memory-Implementation.md) | Memory architecture guide | 3h | Advanced |
 | [7403: Vector Memory](./7400-memory/7403-Vector-Memory.md) | Embedding-based memory | 2h | Advanced |
 | [7404: Reflective Memory and Context Paging](./7400-memory/7404-Reflective-Memory-and-Context-Paging.md) | Reflection, paging, retrieval blend | 3h | Advanced |
+| [7405: Key-Value Memory and Checkpoint Stores](./7400-memory/7405-Key-Value-Memory-and-Checkpoint-Stores.md) | Exact-key stores, TTL leases, eviction, checkpoints | 3h | Advanced |
 
 **What You'll Learn:**
 - Memory architectures (short-term, long-term, episodic)
@@ -582,12 +583,14 @@ tools_researcher = {
 - Memory retrieval and ranking
 - Persistent storage strategies
 - Rank memories with the recency-importance-relevance blend, distill episodes before pruning, and page a 48-token context without amnesia
+- Read the exact-key store underneath: the address space, TTL lease mechanics, eviction budgets, and the checkpoint contract
 
 **Hands-On Practice:**
 - Implement memory system
 - Build vector memory store
 - Create memory retrieval mechanisms
 - Optimize memory performance
+- Walk a keyspace through passive versus active expiration and price four memory configs on one ledger
 
 ### [7500] AI Agent Security
 
@@ -658,9 +661,9 @@ graph TD
 | 7100: Architecture | 23h | 6h | 29h |
 | 7200: Tool Use | 14h | 4h | 18h |
 | 7300: Orchestration | 11h | 6h | 17h |
-| 7400: Memory | 12h | 6h | 18h |
+| 7400: Memory | 15h | 6h | 21h |
 | 7500: Security | 12h | — | 12h |
-| **Total** | **72h** | **26h** | **94h** |
+| **Total** | **75h** | **22h** | **97h** |
 
 *7500 practice time is not yet estimated in its PRACTICE.md; phase totals cover the estimated modules.*
 

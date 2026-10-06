@@ -25,7 +25,7 @@
       "bad": {}
     },
     "docs/00-META/ORGANIZATION-GUIDE.md": {
-      "mtime": 1791320026.584629,
+      "mtime": 1791323080.7634816,
       "size": 19534,
       "bad": {}
     },
@@ -2910,6 +2910,11 @@
       "size": 32733,
       "bad": {}
     },
+    "docs/phases/phase7-agentic/7400-memory/7405-Key-Value-Memory-and-Checkpoint-Stores.md": {
+      "mtime": 1791322820.0243583,
+      "size": 42818,
+      "bad": {}
+    },
     "docs/phases/phase7-agentic/7400-memory/assessment/PRACTICE.md": {
       "bad": {
         "122": "ENV-GAP:sentence_transformers",
@@ -2973,8 +2978,8 @@
       "bad": {}
     },
     "docs/phases/phase7-agentic/README.md": {
-      "mtime": 1791317573.5924282,
-      "size": 38216,
+      "mtime": 1791323080.7624779,
+      "size": 38627,
       "bad": {}
     },
     "docs/use-cases/README.md": {
