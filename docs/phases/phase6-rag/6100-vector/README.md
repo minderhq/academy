@@ -5,7 +5,7 @@ Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
-Estimated Time: 9 hours
+Estimated Time: 12 hours
 Tags: ['module', 'rag', 'vectors']
 ---
 
@@ -31,6 +31,7 @@ After completing this module, you will be able to:
 - **Embedding Models**: Choose and use appropriate embedding models
 - **Vector Operations**: Perform efficient similarity search at scale
 - **Embedding Sciences**: Pooling rules, matryoshka truncation, and reading MTEB by task menu
+- **Contextual and Multilingual Embeddings**: Static-vs-contextual geometry, anisotropy, and cross-lingual shared spaces
 
 ## Module Contents
 
@@ -89,6 +90,20 @@ After completing this module, you will be able to:
 - Truncate and measure recall at 1/4 and 1/16 of the dimensions
 - Price the storage ledger before shipping a fleet
 
+### [6105: Contextual and Multilingual Embeddings](./6105-Contextual-and-Multilingual-Embeddings.md)
+**Anisotropy, Alignment, and the Shared Space**
+
+- One vector per type vs one vector per use: the 0.707-vs-0.505/0.910 split
+- Anisotropy: the mean-dominated cone, the collapsed margin, and mean-centering
+- Orthogonal Procrustes alignment of two independently trained spaces
+- The language-identity probe: score bands and the linear language probe
+- Three retrieval stacks priced: mono index, translate-then-retrieve, shared space
+
+**Experiments:**
+- Center your raw states and re-measure every threshold policy
+- Fit a Procrustes map on translation pairs and verify orthogonality
+- Probe your multilingual embedder's bands before trusting it
+
 ## Prerequisites
 
 Before starting this module, ensure you have:
@@ -135,9 +150,10 @@ This module connects to:
 | [6102: Semantic Similarity](./6102-Semantic-Similarity.md) | 3 hours |
 | Guide ([6103](./guides/6103-HNSW-Tuning-Guide.md)) | 3 hours |
 | [6104: Embedding Sciences](./6104-Embedding-Sciences.md) | 3 hours |
+| [6105: Contextual and Multilingual Embeddings](./6105-Contextual-and-Multilingual-Embeddings.md) | 3 hours |
 | Quiz | 30 minutes |
 | Practice | 2 hours |
-| **Total** | **14.5 hours** |
+| **Total** | **17.5 hours** |
 
 ## Resources
 

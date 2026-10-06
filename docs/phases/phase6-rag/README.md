@@ -322,6 +322,7 @@ Conclusion: Self-hosted pays for itself within a few months
 | [6102: Embedding Models](./6100-vector/6102-Semantic-Similarity.md) | Cosine, Dot-Product, Manifold metrics | 3h | Intermediate |
 | [6103: HNSW Tuning](./6100-vector/guides/6103-HNSW-Tuning-Guide.md) | HNSW optimization guide | 2h | Advanced |
 | [6104: Embedding Sciences](./6100-vector/6104-Embedding-Sciences.md) | Pooling, matryoshka truncation, MTEB menus | 3h | Advanced |
+| [6105: Contextual and Multilingual Embeddings](./6100-vector/6105-Contextual-and-Multilingual-Embeddings.md) | Anisotropy, Procrustes alignment, shared spaces | 3h | Advanced |
 
 **What You'll Learn:**
 - HNSW (Hierarchical Navigable Small World) indexing
@@ -329,6 +330,7 @@ Conclusion: Self-hosted pays for itself within a few months
 - Semantic similarity metrics (cosine, dot-product)
 - Vector space optimization
 - Pooling, matryoshka truncation, and MTEB task-menu reading
+- Contextual-vs-static embeddings, anisotropy, and multilingual shared spaces
 
 **Hands-On Practice:**
 - Implement HNSW indexing from scratch
@@ -336,6 +338,7 @@ Conclusion: Self-hosted pays for itself within a few months
 - Optimize index parameters
 - Compare similarity metrics
 - Truncate embeddings and price the storage ledger
+- Probe a multilingual space's score bands and price the three retrieval stacks
 
 ### [6200] Retrieval-Augmented Generation (RAG 2.0)
 
@@ -473,12 +476,12 @@ graph TD
 
 | Module | Reading | Practice | Total |
 |--------|---------|----------|-------|
-| 6100: Vector Architectures | 11h | 6h | 17h |
+| 6100: Vector Architectures | 14h | 6h | 20h |
 | 6200: RAG 2.0 | 11h | 6h | 17h |
 | 6300: Context Augmentation | 19h | 10h | 29h |
 | 6400: Vector Databases | 8h | 4h | 12h |
 | 6500: MLOps Pipelines | 15h | — | 15h |
-| **Total** | **64h** | **26h** | **90h** |
+| **Total** | **67h** | **26h** | **93h** |
 
 *6500 practice time is not yet estimated in its PRACTICE.md; phase totals cover the estimated modules.*
 

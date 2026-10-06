@@ -93,7 +93,9 @@ WHITELIST = frozenset([
     # the embedding sciences lesson (6104) - the tag vocabulary grows with the corpus
     'matryoshka', 'mteb',
     'model-registry', 'module', 'monitoring', 'mtu', 'multi-agent', 'multi-head',
-    'multimodal', 'navigation', 'neo4j', 'networking', 'nginx', 'normalization', 'notebook', 'nvfp4', 'observability',
+    # tick-733 deliberate same-commit extension: 'multilingual' joins for
+    # the contextual and multilingual embeddings lesson (6105) - the tag vocabulary grows with the corpus
+    'multilingual', 'multimodal', 'navigation', 'neo4j', 'networking', 'nginx', 'normalization', 'notebook', 'nvfp4', 'observability',
     'offloading', 'ollama', 'optimization', 'optimizers', 'orchestration', 'peft',
     'performance', 'pgvector', 'phase', 'pii', 'pinecone', 'pipeline', 'pipeline-parallelism',
     'planning', 'plugin-architecture', 'postgresql', 'practice', 'preference', 'preference-learning',
