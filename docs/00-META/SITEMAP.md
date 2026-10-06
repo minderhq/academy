@@ -307,7 +307,7 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [assessment: PRACTICE](../phases/phase5-finetuning/5500-advanced-optimization/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase5-finetuning/5500-advanced-optimization/assessment/QUIZ.md)
 
-## Phase 6 - RAG & Data Nexus (43 files)
+## Phase 6 - RAG & Data Nexus (44 files)
 
 - [CHECKPOINT](../phases/phase6-rag/CHECKPOINT.md)
 - [README](../phases/phase6-rag/README.md)
@@ -357,7 +357,7 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [assessment: PRACTICE](../phases/phase6-rag/6400-vector-databases/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase6-rag/6400-vector-databases/assessment/QUIZ.md)
 
-### [6500-mlops-pipelines] (4 lessons, 0 guides)
+### [6500-mlops-pipelines] (5 lessons, 0 guides)
 
 - [PREREQUISITES](../phases/phase6-rag/6500-mlops-pipelines/PREREQUISITES.md)
 - [README](../phases/phase6-rag/6500-mlops-pipelines/README.md)
@@ -365,6 +365,7 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [6502-CI-CD-for-ML](../phases/phase6-rag/6500-mlops-pipelines/6502-CI-CD-for-ML.md)
 - [6503-Model-Registry](../phases/phase6-rag/6500-mlops-pipelines/6503-Model-Registry.md)
 - [6504-Re-Embedding-Policy-and-AB-Testing](../phases/phase6-rag/6500-mlops-pipelines/6504-Re-Embedding-Policy-and-AB-Testing.md)
+- [6505-Response-Caching-and-Stage-Scaling](../phases/phase6-rag/6500-mlops-pipelines/6505-Response-Caching-and-Stage-Scaling.md)
 - [assessment: PRACTICE](../phases/phase6-rag/6500-mlops-pipelines/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase6-rag/6500-mlops-pipelines/assessment/QUIZ.md)
 
@@ -724,17 +725,17 @@ build's written walkthroughs live inside the lessons themselves - see the
 ## Statistics
 
 ```text
-Total markdown files: 480
-  docs/: 426, experiments/: 48, configs/: 4, repo root: 2
+Total markdown files: 481
+  docs/: 427, experiments/: 48, configs/: 4, repo root: 2
 Phases: 7
 Learning modules (topics): 33
-Phase files (lessons, guides, assessments, topic README/PREREQUISITES): 278
+Phase files (lessons, guides, assessments, topic README/PREREQUISITES): 279
   Phase 1 - Infrastructure Fabric: 40
   Phase 2 - Cognitive Science & Frameworks: 32
   Phase 3 - Transformer Physics: 36
   Phase 4 - Quantization & Compression: 42
   Phase 5 - Fine-Tuning & Alignment: 43
-  Phase 6 - Data Nexus: 43
+  Phase 6 - Data Nexus: 44
   Phase 7 - Agentic Systems: 42
 Volume guides: 7
 Phase assessment sets: 14 (7 phases x quiz + practice)

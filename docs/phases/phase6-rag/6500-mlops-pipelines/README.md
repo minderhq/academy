@@ -5,7 +5,7 @@ Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
-Estimated Time: 15 hours
+Estimated Time: 18 hours
 Tags: ['module', 'mlops', 'model-registry']
 ---
 
@@ -29,6 +29,7 @@ After completing this module, you will be able to:
 - **CI/CD for ML**: Build automated testing and deployment
 - **Model Registry**: Track and version models effectively
 - **Re-Embedding Policy**: Separate churn upserts from forced full re-embeds and size the experiments that ship them
+- **Response Caching and Stage Scaling**: Cache at the response boundary and scale each stage on its own signal
 - **Monitoring**: Track model performance and data drift
 - **Production ML**: Deploy and maintain RAG systems
 
@@ -93,6 +94,21 @@ After completing this module, you will be able to:
 - Run the shadow-window gate on a golden set
 - Size an embedder migration before opening the window
 
+### [6505: Response Caching and Stage Scaling](./6505-Response-Caching-and-Stage-Scaling.md)
+**The Fleet-Level Bill: What Not to Recompute, What to Provision**
+
+- The four cache tiers: retrieval-only, raw-key, normalized-key, semantic
+- The threshold that cuts both ways: false hits vs forfeited paraphrases
+- Invalidation: query-only vs TTL vs version-keyed after the re-embedding cutover
+- Per-stage autoscaling: two shortfalls, two signals, two step sizes
+- The prefill/decode split and the production disaggregators
+- One fleet day priced: token bill, search bill, replica bill
+
+**Experiments:**
+- Key a response cache on (query, index_version) and re-run the cutover
+- Tune a semantic threshold on both error types with near-topic negatives
+- Price per-stage autoscaling against peak provisioning on your own traffic curve
+
 ## Prerequisites
 
 Before starting this module, ensure you have:
@@ -139,9 +155,10 @@ This module connects to:
 | [6502: CI/CD for ML](./6502-CI-CD-for-ML.md) | 4 hours |
 | [6503: Model Registry](./6503-Model-Registry.md) | 4 hours |
 | [6504: Re-Embedding Policy and A/B Testing](./6504-Re-Embedding-Policy-and-AB-Testing.md) | 3 hours |
+| [6505: Response Caching and Stage Scaling](./6505-Response-Caching-and-Stage-Scaling.md) | 3 hours |
 | Quiz | 30 minutes |
 | Practice | 3 hours |
-| **Total** | **18.5 hours** |
+| **Total** | **21.5 hours** |
 
 ## Resources
 

@@ -12,7 +12,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 **Version:** 4.5
 **Last Updated:** 2026-09-30
-**Total Files:** 426 markdown files (docs/)
+**Total Files:** 427 markdown files (docs/)
 
 ---
 
@@ -129,7 +129,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 ### Phase 6: Data Nexus [6000]
 
-**Status:** ✅ Complete | **Modules:** 5 | **Documents:** 43
+**Status:** ✅ Complete | **Modules:** 5 | **Documents:** 44
 
 | Module | Topic | Files | Status |
 |--------|-------|-------|--------|
@@ -137,7 +137,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **[6200](../phases/phase6-rag/6200-retrieval/README.md)** | Retrieval | 4 docs | ✅ |
 | **[6300](../phases/phase6-rag/6300-context/README.md)** | Context Management | 5 docs | ✅ |
 | **[6400](../phases/phase6-rag/6400-vector-databases/README.md)** | Vector Databases | 3 docs | ✅ |
-| **[6500](../phases/phase6-rag/6500-mlops-pipelines/README.md)** | MLOps Pipelines | 4 docs | ✅ |
+| **[6500](../phases/phase6-rag/6500-mlops-pipelines/README.md)** | MLOps Pipelines | 5 docs | ✅ |
 
 **Practice:** [Phase 6 Practice](assessment/phase6-practice.md) | **Quiz:** [Phase 6 Quiz](assessment/phase6-quiz.md)
 
@@ -391,7 +391,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 |----------|------:|
 | **Phase READMEs** | 7 |
 | **Module READMEs** | 33 |
-| **Phase Documents** | 278 |
+| **Phase Documents** | 279 |
 | **Tutorials** | 15 |
 | **Labs** | 15 |
 | **Lab Solutions** | 15 |
@@ -407,7 +407,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **Solutions** | 3 |
 | **Diagrams** | 4 |
 | **Meta Docs** | 20 |
-| **TOTAL** | **554** |
+| **TOTAL** | **555** |
 
 ### Content Statistics
 

@@ -418,12 +418,14 @@ Conclusion: Self-hosted pays for itself within a few months
 | [6502: CI/CD for ML](./6500-mlops-pipelines/6502-CI-CD-for-ML.md) | Automated testing and deployment | 4h | Advanced |
 | [6503: Model Registry](./6500-mlops-pipelines/6503-Model-Registry.md) | Versioning and lineage tracking | 4h | Advanced |
 | [6504: Re-Embedding Policy and A/B Testing](./6500-mlops-pipelines/6504-Re-Embedding-Policy-and-AB-Testing.md) | Churn upserts, forced re-embeds, sized A/B gates | 3h | Advanced |
+| [6505: Response Caching and Stage Scaling](./6500-mlops-pipelines/6505-Response-Caching-and-Stage-Scaling.md) | Cache tiers, threshold trade, versioned invalidation, per-stage scaling | 3h | Advanced |
 
 **What You'll Learn:**
 - ML lifecycle management for RAG systems
 - CI/CD pipelines with automated testing
 - Model registries, versioning, and lineage
 - Re-embedding policy and honest A/B gates
+- Response caching tiers and per-stage scaling signals
 - Monitoring and drift detection
 - Production deployment strategies
 
@@ -432,6 +434,7 @@ Conclusion: Self-hosted pays for itself within a few months
 - Set up GitHub Actions for ML
 - Implement automated model testing
 - Price a re-embed and gate a challenger index
+- Key a response cache on index version and tune a semantic threshold
 - Deploy and monitor a RAG system
 
 ---
@@ -480,8 +483,8 @@ graph TD
 | 6200: RAG 2.0 | 11h | 6h | 17h |
 | 6300: Context Augmentation | 19h | 10h | 29h |
 | 6400: Vector Databases | 8h | 4h | 12h |
-| 6500: MLOps Pipelines | 15h | — | 15h |
-| **Total** | **67h** | **26h** | **93h** |
+| 6500: MLOps Pipelines | 18h | — | 18h |
+| **Total** | **70h** | **26h** | **96h** |
 
 *6500 practice time is not yet estimated in its PRACTICE.md; phase totals cover the estimated modules.*
 
