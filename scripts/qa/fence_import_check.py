@@ -106,6 +106,10 @@ ACCEPTED_PREFIXES = frozenset({
     # quantization stack (5405 teaches quantize_ + QATConfig + float8 recipes;
     # ENV-GAP:torchao in the accepted exec census)
     "torchao", "torchviz",
+    # tick-723 deliberate same-commit extension: opentelemetry, the tracing SDK
+    # behind the GenAI semantic conventions (7104 teaches the invoke_agent/chat/
+    # execute_tool span tree; ENV-GAP:opentelemetry in the accepted exec census)
+    "opentelemetry",
     "transformer_engine", "triton", "trl", "vllm", "wandb", "weaviate",
     "xformers",
     # lesson-local fragment modules (defined by the lesson itself)

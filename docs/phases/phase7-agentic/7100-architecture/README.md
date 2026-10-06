@@ -5,7 +5,7 @@ Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
-Estimated Time: 8 hours
+Estimated Time: 12 hours
 Tags: ['module', 'agents', 'react']
 ---
 
@@ -29,7 +29,7 @@ After completing this module, you will be able to:
 - **Planning Systems**: Build goal-directed agents
 - **Task Decomposition**: Break complex goals into subtasks
 - **Agent Design**: Choose architectures for specific use cases
-- **Evaluation**: Measure agent performance and reliability
+- **Evaluation**: Score trajectories with deterministic scorers, LLM judges, and confidence intervals
 
 ## Module Contents
 
@@ -73,6 +73,22 @@ After completing this module, you will be able to:
 - Best practices
 
 **Guide:** [guides/7103-ReAct-Implementation-Guide.md](./guides/7103-ReAct-Implementation-Guide.md)
+
+### [7104: Agent Evaluation and Observability](./7104-Agent-Evaluation-and-Observability.md)
+**Measuring the Loop as Working Code**
+
+- The evaluation ladder: deterministic checks, programmatic scorers, LLM-as-judge
+- Trajectories as JSONL; exact, containment, schema, and tool-sequence scorers
+- Bootstrap confidence intervals on small-sample success rates
+- Pairwise judge position bias, both-orders detection, swap-averaging
+- OpenTelemetry GenAI traces (`invoke_agent`/`chat`/`execute_tool`) and budget rollups
+- Regression gates in CI with an aggregate threshold and a golden set
+
+**Experiments:**
+- Score recorded trajectories at all three ladder rungs
+- Bootstrap a success-rate interval for your own run log
+- Flip a pairwise judge with answer order, then cancel the bias
+- Wire the two-tripwire regression gate into CI
 
 ## Prerequisites
 
@@ -118,10 +134,11 @@ This module connects to:
 |----------|------|
 | [7101: ReAct Loop System](./7101-ReAct-Loop-System.md) | 4 hours |
 | [7102: Planning and Decomposition](./7102-Planning-Decomposition.md) | 4 hours |
+| [7104: Agent Evaluation and Observability](./7104-Agent-Evaluation-and-Observability.md) | 4 hours |
 | Guide ([7103](./guides/7103-ReAct-Implementation-Guide.md)) | 4 hours |
 | Quiz | 30 minutes |
 | Practice | 7 hours |
-| **Total** | **19.5 hours** |
+| **Total** | **23.5 hours** |
 
 ## Resources
 

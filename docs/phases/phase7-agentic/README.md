@@ -498,18 +498,21 @@ tools_researcher = {
 | [7101: Agent Architecture](./7100-architecture/7101-ReAct-Loop-System.md) | Thought, Action, Observation patterns | 4h | Advanced |
 | [7102: State Machines](./7100-architecture/7102-Planning-Decomposition.md) | Breaking down complex tasks | 4h | Advanced |
 | [7103: ReAct Implementation](./7100-architecture/guides/7103-ReAct-Implementation-Guide.md) | Complete ReAct implementation | 3h | Advanced |
+| [7104: Agent Evaluation and Observability](./7100-architecture/7104-Agent-Evaluation-and-Observability.md) | Score trajectories, judge mechanics, trace budgets, regression gates | 4h | Advanced |
 
 **What You'll Learn:**
 - ReAct (Reasoning + Acting) pattern
 - Task decomposition and planning
 - State machines for agent control
 - Cognitive architectures
+- Agent evaluation: scorers, LLM judges, and confidence intervals
 
 **Hands-On Practice:**
 - Implement ReAct loop from scratch
 - Build task planning system
 - Create state machine for complex workflows
 - Debug agent reasoning chains
+- Score recorded trajectories and gate CI on regressions
 
 ### [7200] Tool Use & Function Calling
 
@@ -636,12 +639,12 @@ graph TD
 
 | Module | Reading | Practice | Total |
 |--------|---------|----------|-------|
-| 7100: Architecture | 11h | 6h | 17h |
+| 7100: Architecture | 15h | 6h | 21h |
 | 7200: Tool Use | 10h | 4h | 14h |
 | 7300: Orchestration | 8h | 6h | 14h |
 | 7400: Memory | 9h | 6h | 15h |
 | 7500: Security | 9h | — | 9h |
-| **Total** | **43h** | **22h** | **65h** |
+| **Total** | **47h** | **22h** | **69h** |
 
 *7500 practice time is not yet estimated in its PRACTICE.md; phase totals cover the estimated modules.*
 
@@ -1046,6 +1049,7 @@ Validate your knowledge with:
 - **5100: PEFT** - Fine-tune models for agents
 - **6100: RAG** - Add memory to agents
 - **7500: Security** - Secure deployed agents
+- **1500: Monitoring** - Request-level observability underneath these traces
 - **SOL-001: Enterprise KB** - RAG + Agent solution
 - **Industry Guides:** Domain-specific agents
 
