@@ -5,7 +5,7 @@ Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
-Estimated Time: 12 hours
+Estimated Time: 16 hours
 Tags: ['module', 'finetuning', 'synthetic-data']
 ---
 
@@ -29,6 +29,7 @@ After completing this module, you will be able to:
 - **Distributed Training**: Configure multi-GPU and multi-node training
 - **Federated Learning**: Implement privacy-preserving distributed training
 - **Synthetic Data**: Generate training data from teacher model outputs
+- **Self-Instruct & Collapse**: Grow instruction pools from seeds and price the recursion's collapse tax
 - **Advanced Optimization**: Apply state-of-the-art training techniques
 
 ## Module Contents
@@ -78,6 +79,20 @@ After completing this module, you will be able to:
 - Apply differential privacy
 - Analyze convergence
 
+### [5304: Self-Instruct and Model Collapse](./5304-Self-Instruct-and-Model-Collapse.md)
+**Growing Instruction Data Without Losing the Distribution**
+
+- The self-instruct bootstrap: seed tasks, pool sampling, and the 0.7 similarity keep rule
+- Model collapse: fitting your own output is an absorbing process, tails first
+- The ten-percent real-data anchor and what its budget line flattens
+- Downstream evaluation: train on the mix, measure on a gold holdout
+- The campaign ledger: $1,603 to generate against $524,450 to write
+
+**Experiments:**
+- Run the four-round bootstrap and read the filter-rejection curve
+- Walk the recursion and count the type extinction
+- Price the anchor against the collapse tax
+
 ## Prerequisites
 
 Before starting this module, ensure you have:
@@ -123,9 +138,10 @@ This module connects to:
 | [5301: Knowledge Distillation](./5301-Knowledge-Distillation.md) | 4 hours |
 | [5302: Distributed Training](./5302-Distributed-Training.md) | 4 hours |
 | [5303: Federated Learning](./5303-Federated-Learning.md) | 4 hours |
+| [5304: Self-Instruct and Model Collapse](./5304-Self-Instruct-and-Model-Collapse.md) | 4 hours |
 | Quiz | 30 minutes |
 | Practice | 5 hours |
-| **Total** | **17.5 hours** |
+| **Total** | **21.5 hours** |
 
 ## Resources
 

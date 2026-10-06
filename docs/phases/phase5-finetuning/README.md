@@ -192,6 +192,7 @@ Recommended Hardware:
 | [5301: Knowledge Distillation](./5300-synthetic/5301-Knowledge-Distillation.md) | Small models from big model outputs | 3h | Advanced |
 | [5302: Distributed Training](./5300-synthetic/5302-Distributed-Training.md) | Distributed data generation | 3h | Advanced |
 | [5303: Federated Learning](./5300-synthetic/5303-Federated-Learning.md) | Privacy-preserving training | 3h | Advanced |
+| [5304: Self-Instruct and Model Collapse](./5300-synthetic/5304-Self-Instruct-and-Model-Collapse.md) | Instruction bootstrap and the recursion's collapse tax | 4h | Advanced |
 
 **What You'll Learn:**
 - Knowledge distillation from large to small models
@@ -199,12 +200,14 @@ Recommended Hardware:
 - Data augmentation strategies for LLMs
 - Quality assessment for synthetic data
 - Self-instruct and instruction tuning
+- Model collapse: the recursion tax, the ten-percent anchor, the downstream proof
 
 **Hands-On Practice:**
 - Distill 70B model to 7B
 - Generate synthetic training data
 - Augment small datasets
 - Evaluate synthetic data quality
+- Train on synthetic mixes and read the downstream split
 
 ### [5400] Distributed Training
 
@@ -299,10 +302,10 @@ graph TD
 |--------|---------|----------|-------|
 | 5100: PEFT | 14h | 8h | 22h |
 | 5200: Alignment | 17h | 10h | 27h |
-| 5300: Synthetic Data | 7h | 6h | 13h |
+| 5300: Synthetic Data | 11h | 6h | 17h |
 | 5400: Distributed Training | 16h | 8h | 24h |
 | 5500: Advanced Optimization | 13h | 8h | 21h |
-| **Total** | **63h** | **40h** | **103h** |
+| **Total** | **71h** | **40h** | **111h** |
 
 ---
 
