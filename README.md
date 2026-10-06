@@ -15,7 +15,7 @@ Difficulty: Beginner
 ## Master Documentation
 
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
-[![Documentation](https://img.shields.io/badge/Docs-421%20Files-orange?style=flat-square)](./docs)
+[![Documentation](https://img.shields.io/badge/Docs-422%20Files-orange?style=flat-square)](./docs)
 [![Phases](https://img.shields.io/badge/Phases-7-purple?style=flat-square)](#-learning-phases)
 [![Modules](https://img.shields.io/badge/Modules-33-success?style=flat-square)](#-summary-statistics)
 
@@ -157,7 +157,7 @@ After completing Minder Academy, you will be able to:
 | Challenge | Minder Academy Solution |
 |:----------:|:----------------------:|
 | 💸 **AI infrastructure is expensive** | Run production-grade AI on affordable hardware or modest cloud instances |
-| 📚 **Documentation is scattered** | **475 files** in one organized, cross-referenced repository |
+| 📚 **Documentation is scattered** | **476 files** in one organized, cross-referenced repository |
 | 🎯 **Learning gaps exist** | Complete curriculum from infrastructure to agentic systems |
 | 📝 **Theory without practice** | **33 PRACTICE files** with runnable solutions, **47 experiments** |
 | 🗺️ **No clear path forward** | **7 phases**, **3 learning tracks**, progress tracking built-in |
@@ -727,7 +727,7 @@ graph TB
 </details>
 
 <details>
-<summary><b>📁 Phase 7: Agentic Systems [7000]</b> - 15 documents</summary>
+<summary><b>📁 Phase 7: Agentic Systems [7000]</b> - 16 documents</summary>
 
 ### [7100: Architecture](./docs/phases/phase7-agentic/7100-architecture/README.md)
 - [7101: ReAct Loop](./docs/phases/phase7-agentic/7100-architecture/7101-ReAct-Loop-System.md)
@@ -743,6 +743,7 @@ graph TB
 ### [7300: Orchestration](./docs/phases/phase7-agentic/7300-orchestration/README.md)
 - [7301: Multi-Agent](./docs/phases/phase7-agentic/7300-orchestration/7301-Orchestration.md)
 - [7303: Framework Comparison](./docs/phases/phase7-agentic/7300-orchestration/guides/7303-Framework-Comparison.md)
+- [7304: Event Buses, Deadlocks, and Human Gates](./docs/phases/phase7-agentic/7300-orchestration/7304-Event-Buses-Deadlocks-and-Human-Gates.md)
 
 ### [7400: Memory](./docs/phases/phase7-agentic/7400-memory/README.md)
 - [7401: Long-term Memory](./docs/phases/phase7-agentic/7400-memory/7401-Long-term-Memory.md)
@@ -1317,8 +1318,8 @@ docker compose -f configs/docker-compose.yml up -d qdrant
 | **4** | 42 |
 | **5** | 43 |
 | **6** | 41 |
-| **7** | 39 |
-| **Phase total** | **273** |
+| **7** | 40 |
+| **Phase total** | **274** |
 
 ### Additional Resources
 
@@ -1465,7 +1466,7 @@ SOFTWARE.
 
 *Last Updated: 2026-09-29*
 
-*475 Documentation Files | 33 Technical Modules | 7 Learning Phases*
+*476 Documentation Files | 33 Technical Modules | 7 Learning Phases*
 
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
 [![Contact](https://img.shields.io/badge/Contact-FAQ-blue?style=flat-square)](./docs/00-META/FAQ.md)

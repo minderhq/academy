@@ -366,7 +366,7 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [assessment: PRACTICE](../phases/phase6-rag/6500-mlops-pipelines/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase6-rag/6500-mlops-pipelines/assessment/QUIZ.md)
 
-## Phase 7 - Agentic Systems (39 files)
+## Phase 7 - Agentic Systems (40 files)
 
 - [CHECKPOINT](../phases/phase7-agentic/CHECKPOINT.md)
 - [README](../phases/phase7-agentic/README.md)
@@ -392,13 +392,14 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [assessment: PRACTICE](../phases/phase7-agentic/7200-tools/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase7-agentic/7200-tools/assessment/QUIZ.md)
 
-### [7300-orchestration] (2 lessons, 1 guides)
+### [7300-orchestration] (3 lessons, 1 guides)
 
 - [PREREQUISITES](../phases/phase7-agentic/7300-orchestration/PREREQUISITES.md)
 - [README](../phases/phase7-agentic/7300-orchestration/README.md)
 - [7301-Orchestration](../phases/phase7-agentic/7300-orchestration/7301-Orchestration.md)
 - [7302-Communication-Protocols](../phases/phase7-agentic/7300-orchestration/7302-Communication-Protocols.md)
 - [guide: 7303-Framework-Comparison](../phases/phase7-agentic/7300-orchestration/guides/7303-Framework-Comparison.md)
+- [7304-Event-Buses-Deadlocks-and-Human-Gates](../phases/phase7-agentic/7300-orchestration/7304-Event-Buses-Deadlocks-and-Human-Gates.md)
 - [assessment: PRACTICE](../phases/phase7-agentic/7300-orchestration/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase7-agentic/7300-orchestration/assessment/QUIZ.md)
 
@@ -719,18 +720,18 @@ build's written walkthroughs live inside the lessons themselves - see the
 ## Statistics
 
 ```text
-Total markdown files: 475
-  docs/: 421, experiments/: 48, configs/: 4, repo root: 2
+Total markdown files: 476
+  docs/: 422, experiments/: 48, configs/: 4, repo root: 2
 Phases: 7
 Learning modules (topics): 33
-Phase files (lessons, guides, assessments, topic README/PREREQUISITES): 273
+Phase files (lessons, guides, assessments, topic README/PREREQUISITES): 274
   Phase 1 - Infrastructure Fabric: 40
   Phase 2 - Cognitive Science & Frameworks: 32
   Phase 3 - Transformer Physics: 36
   Phase 4 - Quantization & Compression: 42
   Phase 5 - Fine-Tuning & Alignment: 43
   Phase 6 - Data Nexus: 41
-  Phase 7 - Agentic Systems: 39
+  Phase 7 - Agentic Systems: 40
 Volume guides: 7
 Phase assessment sets: 14 (7 phases x quiz + practice)
 Experiments: 47 (+ TEMPLATE)

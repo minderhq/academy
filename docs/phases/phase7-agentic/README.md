@@ -543,18 +543,21 @@ tools_researcher = {
 | [7301: Orchestration](./7300-orchestration/7301-Orchestration.md) | Multi-agent collaboration | 4h | Advanced |
 | [7302: Communication Protocols](./7300-orchestration/7302-Communication-Protocols.md) | Agent-to-agent messaging | 2h | Advanced |
 | [7303: Framework Comparison](./7300-orchestration/guides/7303-Framework-Comparison.md) | AutoGen vs LangGraph vs others | 2h | Advanced |
+| [7304: Event Buses, Deadlocks, and Human Gates](./7300-orchestration/7304-Event-Buses-Deadlocks-and-Human-Gates.md) | Orchestration runtime mechanics | 3h | Advanced |
 
 **What You'll Learn:**
 - Multi-agent patterns (hierarchical, sequential, parallel)
 - Agent communication protocols
 - Orchestration strategies
 - Framework selection and comparison
+- Delivery semantics, deadlock detection, and mid-run human gates
 
 **Hands-On Practice:**
 - Build multi-agent system
 - Implement agent communication
 - Create specialized agent roles
 - Orchestrate complex workflows
+- Break a three-agent ring with a wait-for graph and fix it with a global lock order
 
 ### [7400] Agent Memory
 
@@ -644,10 +647,10 @@ graph TD
 |--------|---------|----------|-------|
 | 7100: Architecture | 15h | 6h | 21h |
 | 7200: Tool Use | 10h | 4h | 14h |
-| 7300: Orchestration | 8h | 6h | 14h |
+| 7300: Orchestration | 11h | 6h | 17h |
 | 7400: Memory | 9h | 6h | 15h |
 | 7500: Security | 12h | — | 12h |
-| **Total** | **50h** | **22h** | **72h** |
+| **Total** | **53h** | **22h** | **75h** |
 
 *7500 practice time is not yet estimated in its PRACTICE.md; phase totals cover the estimated modules.*
 

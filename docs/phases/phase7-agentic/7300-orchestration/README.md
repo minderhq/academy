@@ -5,7 +5,7 @@ Last Updated: 2026-10-04
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
-Estimated Time: 8 hours
+Estimated Time: 11 hours
 Tags: ['module', 'agents', 'orchestration']
 ---
 
@@ -24,6 +24,7 @@ This module covers frameworks and patterns for orchestrating multiple AI agents 
 | [7301: Orchestration](./7301-Orchestration.md) | Multi-agent collaboration patterns | ⭐⭐⭐ | 4 hrs |
 | [7302: Communication Protocols](./7302-Communication-Protocols.md) | Agent-to-agent communication patterns | ⭐⭐⭐ | 4 hrs |
 | [7303: Framework Comparison](./guides/7303-Framework-Comparison.md) | AutoGen vs LangGraph vs others | ⭐⭐⭐ | 3 hrs |
+| [7304: Event Buses, Deadlocks, and Human Gates](./7304-Event-Buses-Deadlocks-and-Human-Gates.md) | Delivery semantics, deadlocks, human gates | ⭐⭐⭐ | 3 hrs |
 
 ---
 
@@ -36,6 +37,7 @@ After completing this module, you will:
 - ✅ Choose the right framework (AutoGen, LangGraph, CrewAI)
 - ✅ Handle agent communication and coordination
 - ✅ Debug and monitor multi-agent systems
+- ✅ Read a delivery ledger, a wait-for graph, and a mid-run human gate
 
 ---
 
@@ -739,8 +741,9 @@ class MultiAgentOrchestrator:
 ---
 
 **Module Difficulty:** ⭐⭐⭐⭐ Advanced
-**Estimated Time:** 7 hours total
+**Estimated Time:** 10 hours total
 
 ## Module Contents
 
 - [7302: Communication Protocols](./7302-Communication-Protocols.md)
+- [7304: Event Buses, Deadlocks, and Human Gates](./7304-Event-Buses-Deadlocks-and-Human-Gates.md)
