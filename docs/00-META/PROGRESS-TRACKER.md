@@ -24,7 +24,7 @@ Volume 5: Fine-Tuning Expert      [░░░░░░░░░░░] 0% (0/45)
 Volume 6: RAG & Data Systems      [░░░░░░░░░░░] 0% (0/44)
 Volume 7: Production Systems      [░░░░░░░░░░░] 0% (0/44)
 
-Total: [░░░░░░░░░░░░░░░░░] 0% (0/431 core files)
+Total: [░░░░░░░░░░░░░░░░░] 0% (0/432 core files)
 ```
 
 ---
@@ -387,7 +387,7 @@ Notes:
 ### Essential Reading
 - **[VOLUME-GUIDE.md](VOLUME-GUIDE.md)** - Start here! Overview of all 7 volumes
 - **[0000-LEARNING-PATH.md](0000-LEARNING-PATH.md)** - Recommended learning paths
-- **[SITEMAP.md](SITEMAP.md)** - Full document list (431 files)
+- **[SITEMAP.md](SITEMAP.md)** - Full document list (432 files)
 - **[README.md](../../README.md)** - Project overview
 
 ### Troubleshooting
@@ -407,7 +407,7 @@ Notes:
 | Metric | Target | Current | % |
 |--------|--------|---------|---|
 | **Volumes Completed** | 7 | 0 | 0% |
-| **Core Documents** | 431 | 0 | 0% |
+| **Core Documents** | 432 | 0 | 0% |
 | **Labs Completed** | 15 | 0 | 0% |
 | **Experiments** | 47 | 0 | 0% |
 | **Tutorials** | 15 | 0 | 0% |

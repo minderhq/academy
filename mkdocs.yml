@@ -1,0 +1,58 @@
+site_name: Minder Academy
+site_description: A comprehensive, production-grade AI engineering curriculum - 7 phases, 33 modules, from GPU infrastructure to agentic systems.
+site_url: https://minderkhq.github.io/academy/
+repo_url: https://github.com/minderhq/academy
+repo_name: minderkhq/academy
+copyright: Copyright &copy; Minder Academy - MIT License
+
+docs_dir: docs
+site_dir: site
+
+theme:
+  name: material
+  language: en
+  logo: material/school
+  icon:
+    repo: fontawesome/brands/github
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
+  features:
+    - navigation.instant
+    - navigation.sections
+    - navigation.top
+    - navigation.tracking
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+
+# No explicit nav: every doc under docs/ is included automatically, with
+# each directory's README.md serving as its section index page.
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - meta
+  - toc:
+      permalink: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.details

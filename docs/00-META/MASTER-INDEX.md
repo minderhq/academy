@@ -12,7 +12,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 **Version:** 4.5
 **Last Updated:** 2026-09-30
-**Total Files:** 431 markdown files (docs/)
+**Total Files:** 432 markdown files (docs/)
 
 ---
 

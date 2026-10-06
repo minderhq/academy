@@ -17,6 +17,7 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 ## Getting Started
 
 - [README](../../README.md) - Project overview and quick start
+- [index](../index.md) - Documentation site home and landing page
 - [0000-LEARNING-PATH](0000-LEARNING-PATH.md) - Curriculum roadmap and study paths
 - [VOLUME-GUIDE](VOLUME-GUIDE.md) - Phase-by-phase overview and recommended routes
 - [QUICK-START](QUICK-START.md) - Get running in 30 minutes
@@ -729,8 +730,8 @@ build's written walkthroughs live inside the lessons themselves - see the
 ## Statistics
 
 ```text
-Total markdown files: 485
-  docs/: 431, experiments/: 48, configs/: 4, repo root: 2
+Total markdown files: 486
+  docs/: 432, experiments/: 48, configs/: 4, repo root: 2
 Phases: 7
 Learning modules (topics): 33
 Phase files (lessons, guides, assessments, topic README/PREREQUISITES): 283

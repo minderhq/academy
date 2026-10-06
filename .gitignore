@@ -27,3 +27,6 @@ node_modules/
 
 # Local Claude session artifacts
 .claude/
+
+# MkDocs site build output
+site/
