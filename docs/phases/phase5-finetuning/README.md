@@ -144,18 +144,21 @@ Recommended Hardware:
 | [5102: QLoRA Pipelines](./5100-peft/5102-QLoRA-Pipelines.md) | 4-bit fine-tuning on 11GB-class GPU | 3h | Intermediate |
 | [5103: Adapters](./5100-peft/5103-Adapters.md) | Adapter layers and bottleneck | 2h | Intermediate |
 | [5104: LoRA Implementation](./5100-peft/guides/5104-LoRA-Implementation-Guide.md) | Complete implementation guide | 3h | Advanced |
+| [5105: Model Merging](./5100-peft/5105-Model-Merging.md) | Task vectors, TIES, DARE, soups | 3h | Advanced |
 
 **What You'll Learn:**
 - LoRA (Low-Rank Adaptation) theory and implementation
 - QLoRA for 4-bit quantized fine-tuning
 - Adapter layers and bottleneck architectures
 - PEFT methods comparison and selection
+- Model merging: task vectors, TIES sign election, DARE, checkpoint soups
 
 **Hands-On Practice:**
 - Implement LoRA from scratch
 - Fine-tune Llama 2 with QLoRA on RTX 3090
 - Compare LoRA vs full fine-tuning quality
 - Optimize hyperparameters for your dataset
+- Merge two fine-tunes with task arithmetic and TIES and compare the outcomes
 
 ### [5200] Supervised Fine-Tuning & Preference
 
@@ -294,12 +297,12 @@ graph TD
 
 | Module | Reading | Practice | Total |
 |--------|---------|----------|-------|
-| 5100: PEFT | 11h | 8h | 19h |
+| 5100: PEFT | 14h | 8h | 22h |
 | 5200: Alignment | 17h | 10h | 27h |
 | 5300: Synthetic Data | 7h | 6h | 13h |
 | 5400: Distributed Training | 16h | 8h | 24h |
 | 5500: Advanced Optimization | 13h | 8h | 21h |
-| **Total** | **60h** | **40h** | **100h** |
+| **Total** | **63h** | **40h** | **103h** |
 
 ---
 

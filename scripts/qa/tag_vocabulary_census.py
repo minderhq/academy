@@ -85,7 +85,10 @@ WHITELIST = frozenset([
     'manufacturing',
     # tick-722 deliberate same-commit extension: 'mxfp4' and 'nvfp4' join for the
     # microscaling lesson (4104) - the tag vocabulary grows with the corpus
-    'math', 'mcp', 'mem0', 'memory', 'milvus', 'mla', 'mixed-precision', 'mlops', 'mxfp4',
+    'math', 'mcp', 'mem0', 'memory',
+    # tick-725 deliberate same-commit extension: 'mergekit' joins for
+    # the model merging lesson (5105) - the tag vocabulary grows with the corpus
+    'mergekit', 'milvus', 'mla', 'mixed-precision', 'mlops', 'mxfp4',
     'model-registry', 'module', 'monitoring', 'mtu', 'multi-agent', 'multi-head',
     'multimodal', 'navigation', 'neo4j', 'networking', 'nginx', 'normalization', 'notebook', 'nvfp4', 'observability',
     'offloading', 'ollama', 'optimization', 'optimizers', 'orchestration', 'peft',

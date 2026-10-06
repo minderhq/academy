@@ -5,7 +5,7 @@ Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
 Prerequisites: [4100]
-Estimated Time: 15 hours
+Estimated Time: 18 hours
 Tags: ['module', 'finetuning', 'peft']
 ---
 
@@ -29,6 +29,7 @@ After completing this module, you will be able to:
 - **QLoRA Pipelines**: Fine-tune quantized models with 4-bit precision
 - **Hyperparameter Tuning**: Optimize rank, alpha, and dropout for PEFT
 - **Multi-Adapter Systems**: Manage and compose multiple fine-tuned adapters
+- **Model Merging**: Combine fine-tuned models with task vectors, TIES sign election, DARE sparsification, and checkpoint soups
 - **Production PEFT**: Deploy and serve PEFT models efficiently
 
 ## Module Contents
@@ -89,6 +90,21 @@ After completing this module, you will be able to:
 
 **Guide:** [guides/5104-LoRA-Implementation-Guide.md](./guides/5104-LoRA-Implementation-Guide.md)
 
+### [5105: Model Merging](./5105-Model-Merging.md)
+**Task Vectors, TIES, DARE, and Checkpoint Soups**
+
+- Task vectors and the lambda dose
+- Sign conflicts: TIES trim-elect-merge
+- DARE drop-and-rescale
+- SLERP vs linear interpolation
+- Checkpoint soups and the mergekit surface
+
+**Experiments:**
+- Sweep lambda on a two-task merge
+- Break naive addition with sign conflicts
+- Verify DARE's expectation preservation in Monte Carlo
+- Average checkpoint soups and probe the same-task boundary
+
 ## Prerequisites
 
 Before starting this module, ensure you have:
@@ -135,9 +151,10 @@ This module connects to:
 | [5102: QLoRA Pipelines](./5102-QLoRA-Pipelines.md) | 5 hours |
 | [5103: Adapters](./5103-Adapters.md) | 5 hours |
 | Guide ([5104](./guides/5104-LoRA-Implementation-Guide.md)) | 5 hours |
+| [5105: Model Merging](./5105-Model-Merging.md) | 3 hours |
 | Quiz | 30 minutes |
 | Practice | 8 hours |
-| **Total** | **28.5 hours** |
+| **Total** | **31.5 hours** |
 
 ## Resources
 

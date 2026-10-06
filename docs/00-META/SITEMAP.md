@@ -246,12 +246,12 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [assessment: PRACTICE](../phases/phase4-quantization/4400-advanced-techniques/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase4-quantization/4400-advanced-techniques/assessment/QUIZ.md)
 
-## Phase 5 - Model Adaptation: Fine-Tuning & Alignment (42 files)
+## Phase 5 - Model Adaptation: Fine-Tuning & Alignment (43 files)
 
 - [CHECKPOINT](../phases/phase5-finetuning/CHECKPOINT.md)
 - [README](../phases/phase5-finetuning/README.md)
 
-### [5100-peft] (3 lessons, 1 guides)
+### [5100-peft] (4 lessons, 1 guides)
 
 - [PREREQUISITES](../phases/phase5-finetuning/5100-peft/PREREQUISITES.md)
 - [README](../phases/phase5-finetuning/5100-peft/README.md)
@@ -259,6 +259,7 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [5102-QLoRA-Pipelines](../phases/phase5-finetuning/5100-peft/5102-QLoRA-Pipelines.md)
 - [5103-Adapters](../phases/phase5-finetuning/5100-peft/5103-Adapters.md)
 - [guide: 5104-LoRA-Implementation-Guide](../phases/phase5-finetuning/5100-peft/guides/5104-LoRA-Implementation-Guide.md)
+- [5105-Model-Merging](../phases/phase5-finetuning/5100-peft/5105-Model-Merging.md)
 - [assessment: PRACTICE](../phases/phase5-finetuning/5100-peft/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase5-finetuning/5100-peft/assessment/QUIZ.md)
 
@@ -715,16 +716,16 @@ build's written walkthroughs live inside the lessons themselves - see the
 ## Statistics
 
 ```text
-Total markdown files: 471
-  docs/: 417, experiments/: 48, configs/: 4, repo root: 2
+Total markdown files: 472
+  docs/: 418, experiments/: 48, configs/: 4, repo root: 2
 Phases: 7
 Learning modules (topics): 33
-Phase files (lessons, guides, assessments, topic README/PREREQUISITES): 269
+Phase files (lessons, guides, assessments, topic README/PREREQUISITES): 270
   Phase 1 - Infrastructure Fabric: 40
   Phase 2 - Cognitive Science & Frameworks: 32
   Phase 3 - Transformer Physics: 36
   Phase 4 - Quantization & Compression: 42
-  Phase 5 - Fine-Tuning & Alignment: 42
+  Phase 5 - Fine-Tuning & Alignment: 43
   Phase 6 - Data Nexus: 39
   Phase 7 - Agentic Systems: 38
 Volume guides: 7
