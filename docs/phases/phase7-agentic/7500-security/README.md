@@ -5,7 +5,7 @@ Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
-Estimated Time: 9 hours
+Estimated Time: 12 hours
 Tags: ['module', 'agents', 'security']
 ---
 
@@ -28,6 +28,7 @@ After completing this module, you will be able to:
 - **Prompt Injection Defense**: Identify and prevent injection attacks
 - **PII Redaction**: Automatically redact sensitive information
 - **Adversarial Defense**: Protect against malicious inputs
+- **Abuse Prevention**: Throttle, authenticate, and monitor agent traffic
 - **Secure Design**: Build security-first agent systems
 - **Compliance**: Meet privacy and security regulations
 
@@ -78,6 +79,20 @@ After completing this module, you will be able to:
 - Build monitoring system
 - Create response playbook
 
+### [7504: Agent Abuse Prevention and Identity Threats](./7504-Agent-Abuse-Prevention-and-Identity-Threats.md)
+**Sustained Abuse and Identity Threat Mechanics**
+
+- Rate limiting shapes: fixed window vs token bucket
+- Agent identity: signed envelopes and replay protection
+- Egress beacon detection and payload entropy signals
+- Defense in depth on one campaign
+
+**Experiments:**
+- Break a fixed-window limiter at the seam
+- Forge an agent identity on an unsigned bus
+- Detect beacon periodicity with the coefficient of variation
+- Run the composed campaign pipeline
+
 ## Prerequisites
 
 Before starting this module, ensure you have:
@@ -123,9 +138,10 @@ This module connects to:
 | [7501: Prompt Injection Defense](./7501-Prompt-Injection-Defense.md) | 3 hours |
 | [7502: PII Redaction](./7502-PII-Redaction.md) | 3 hours |
 | [7503: Adversarial Attacks](./7503-Adversarial-Attacks.md) | 3 hours |
+| [7504: Agent Abuse Prevention and Identity Threats](./7504-Agent-Abuse-Prevention-and-Identity-Threats.md) | 3 hours |
 | Quiz | 30 minutes |
 | Practice | 13 hours |
-| **Total** | **22.5 hours** |
+| **Total** | **25.5 hours** |
 
 ## Resources
 

@@ -583,6 +583,7 @@ tools_researcher = {
 | [7501: Prompt Injection Defense](./7500-security/7501-Prompt-Injection-Defense.md) | Injection detection and prevention | 3h | Advanced |
 | [7502: PII Redaction](./7500-security/7502-PII-Redaction.md) | Privacy filtering and compliance | 3h | Advanced |
 | [7503: Adversarial Attacks](./7500-security/7503-Adversarial-Attacks.md) | Attack types and defense layers | 3h | Advanced |
+| [7504: Agent Abuse Prevention and Identity Threats](./7500-security/7504-Agent-Abuse-Prevention-and-Identity-Threats.md) | Rate limiting, agent identity, egress monitoring | 3h | Advanced |
 
 **What You'll Learn:**
 - Prompt injection techniques and defense layers
@@ -590,12 +591,14 @@ tools_researcher = {
 - Adversarial attack types (jailbreak, DAN, roleplay)
 - Input validation and output filtering
 - Red teaming agent systems
+- Abuse mechanics: rate limiting, agent identity, egress beacons, payload entropy
 
 **Hands-On Practice:**
 - Build an injection detector
 - Implement a PII redaction system
 - Test agents with adversarial prompts
 - Design a multi-layer defense pipeline
+- Break a rate limiter at the seam and flag an egress beacon
 
 ---
 
@@ -643,8 +646,8 @@ graph TD
 | 7200: Tool Use | 10h | 4h | 14h |
 | 7300: Orchestration | 8h | 6h | 14h |
 | 7400: Memory | 9h | 6h | 15h |
-| 7500: Security | 9h | — | 9h |
-| **Total** | **47h** | **22h** | **69h** |
+| 7500: Security | 12h | — | 12h |
+| **Total** | **50h** | **22h** | **72h** |
 
 *7500 practice time is not yet estimated in its PRACTICE.md; phase totals cover the estimated modules.*
 

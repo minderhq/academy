@@ -22,9 +22,9 @@ Volume 3: LLM Internals           [░░░░░░░░░░░] 0% (0/36)
 Volume 4: Quantization Mastery    [░░░░░░░░░░░] 0% (0/42)
 Volume 5: Fine-Tuning Expert      [░░░░░░░░░░░] 0% (0/43)
 Volume 6: RAG & Data Systems      [░░░░░░░░░░░] 0% (0/41)
-Volume 7: Production Systems      [░░░░░░░░░░░] 0% (0/38)
+Volume 7: Production Systems      [░░░░░░░░░░░] 0% (0/39)
 
-Total: [░░░░░░░░░░░░░░░░░] 0% (0/420 core files)
+Total: [░░░░░░░░░░░░░░░░░] 0% (0/421 core files)
 ```
 
 ---
@@ -217,7 +217,7 @@ Total: [░░░░░░░░░░░░░░░░░] 0% (0/420 core file
 
 ---
 
-### Volume 7: Production Systems (38 files)
+### Volume 7: Production Systems (39 files)
 **"Deploy at Scale"** - 45-50 hours | Difficulty: ⭐⭐⭐⭐ Expert
 
 - [ ] **VOLUME-7-Production-Mastery.md** - Volume guide (read first!)
@@ -387,7 +387,7 @@ Notes:
 ### Essential Reading
 - **[VOLUME-GUIDE.md](VOLUME-GUIDE.md)** - Start here! Overview of all 7 volumes
 - **[0000-LEARNING-PATH.md](0000-LEARNING-PATH.md)** - Recommended learning paths
-- **[SITEMAP.md](SITEMAP.md)** - Full document list (420 files)
+- **[SITEMAP.md](SITEMAP.md)** - Full document list (421 files)
 - **[README.md](../../README.md)** - Project overview
 
 ### Troubleshooting
@@ -407,7 +407,7 @@ Notes:
 | Metric | Target | Current | % |
 |--------|--------|---------|---|
 | **Volumes Completed** | 7 | 0 | 0% |
-| **Core Documents** | 420 | 0 | 0% |
+| **Core Documents** | 421 | 0 | 0% |
 | **Labs Completed** | 15 | 0 | 0% |
 | **Experiments** | 47 | 0 | 0% |
 | **Tutorials** | 15 | 0 | 0% |

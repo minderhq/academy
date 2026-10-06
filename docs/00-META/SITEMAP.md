@@ -366,7 +366,7 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [assessment: PRACTICE](../phases/phase6-rag/6500-mlops-pipelines/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase6-rag/6500-mlops-pipelines/assessment/QUIZ.md)
 
-## Phase 7 - Agentic Systems (38 files)
+## Phase 7 - Agentic Systems (39 files)
 
 - [CHECKPOINT](../phases/phase7-agentic/CHECKPOINT.md)
 - [README](../phases/phase7-agentic/README.md)
@@ -412,13 +412,14 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [assessment: PRACTICE](../phases/phase7-agentic/7400-memory/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase7-agentic/7400-memory/assessment/QUIZ.md)
 
-### [7500-security] (3 lessons, 0 guides)
+### [7500-security] (4 lessons, 0 guides)
 
 - [PREREQUISITES](../phases/phase7-agentic/7500-security/PREREQUISITES.md)
 - [README](../phases/phase7-agentic/7500-security/README.md)
 - [7501-Prompt-Injection-Defense](../phases/phase7-agentic/7500-security/7501-Prompt-Injection-Defense.md)
 - [7502-PII-Redaction](../phases/phase7-agentic/7500-security/7502-PII-Redaction.md)
 - [7503-Adversarial-Attacks](../phases/phase7-agentic/7500-security/7503-Adversarial-Attacks.md)
+- [7504-Agent-Abuse-Prevention-and-Identity-Threats](../phases/phase7-agentic/7500-security/7504-Agent-Abuse-Prevention-and-Identity-Threats.md)
 - [assessment: PRACTICE](../phases/phase7-agentic/7500-security/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase7-agentic/7500-security/assessment/QUIZ.md)
 
@@ -718,18 +719,18 @@ build's written walkthroughs live inside the lessons themselves - see the
 ## Statistics
 
 ```text
-Total markdown files: 474
-  docs/: 420, experiments/: 48, configs/: 4, repo root: 2
+Total markdown files: 475
+  docs/: 421, experiments/: 48, configs/: 4, repo root: 2
 Phases: 7
 Learning modules (topics): 33
-Phase files (lessons, guides, assessments, topic README/PREREQUISITES): 272
+Phase files (lessons, guides, assessments, topic README/PREREQUISITES): 273
   Phase 1 - Infrastructure Fabric: 40
   Phase 2 - Cognitive Science & Frameworks: 32
   Phase 3 - Transformer Physics: 36
   Phase 4 - Quantization & Compression: 42
   Phase 5 - Fine-Tuning & Alignment: 43
   Phase 6 - Data Nexus: 41
-  Phase 7 - Agentic Systems: 38
+  Phase 7 - Agentic Systems: 39
 Volume guides: 7
 Phase assessment sets: 14 (7 phases x quiz + practice)
 Experiments: 47 (+ TEMPLATE)
