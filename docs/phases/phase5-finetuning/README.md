@@ -221,6 +221,7 @@ Recommended Hardware:
 | [5403: Mixed Precision](./5400-distributed-training/5403-Mixed-Precision.md) | FP16/BF16 training strategies | 2h | Intermediate |
 | [5404: Distributed Optimization](./5400-distributed-training/5404-Distributed-Optimization.md) | Gradient sync and all-reduce | 3h | Advanced |
 | [5405: FSDP2 and torchao](./5400-distributed-training/5405-FSDP2-and-torchao.md) | Composable sharding and quantized training | 4h | Advanced |
+| [5406: Distributed LR Scaling](./5400-distributed-training/5406-Distributed-LR-Scaling.md) | Linear rule, stability wall, warmup sizing, critical batch | 4h | Advanced |
 
 **What You'll Learn:**
 - Distributed training fundamentals (DDP, FSDP)
@@ -230,12 +231,14 @@ Recommended Hardware:
 - Mixed precision training (FP16, BF16)
 - Gradient compression and communication optimization
 - FSDP2 per-parameter sharding and torchao float8/QAT training
+- Scale the learning rate across world sizes: the linear rule, its wall, warmup sizing, and the critical batch size
 
 **Hands-On Practice:**
 - Set up multi-GPU training with DDP
 - Implement pipeline parallelism
 - Apply mixed precision training
 - Optimize communication overhead
+- Fit a critical batch size curve and price five scaled-LR configs on one campaign ledger
 
 ### [5500] Advanced Optimization
 
@@ -306,9 +309,9 @@ graph TD
 | 5100: PEFT | 14h | 8h | 22h |
 | 5200: Alignment | 21h | 10h | 31h |
 | 5300: Synthetic Data | 11h | 6h | 17h |
-| 5400: Distributed Training | 16h | 8h | 24h |
+| 5400: Distributed Training | 20h | 8h | 28h |
 | 5500: Advanced Optimization | 13h | 8h | 21h |
-| **Total** | **75h** | **40h** | **115h** |
+| **Total** | **79h** | **40h** | **119h** |
 
 ---
 

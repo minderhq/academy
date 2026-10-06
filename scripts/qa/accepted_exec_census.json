@@ -25,7 +25,7 @@
       "bad": {}
     },
     "docs/00-META/ORGANIZATION-GUIDE.md": {
-      "mtime": 1791323080.7634816,
+      "mtime": 1791326450.0047135,
       "size": 19534,
       "bad": {}
     },
@@ -2313,6 +2313,11 @@
         "271": "optional third-party package the QA environment does not install; the fence documents the install requirement"
       }
     },
+    "docs/phases/phase5-finetuning/5400-distributed-training/5406-Distributed-LR-Scaling.md": {
+      "mtime": 1791326863.1613777,
+      "size": 32751,
+      "bad": {}
+    },
     "docs/phases/phase5-finetuning/5400-distributed-training/assessment/PRACTICE.md": {
       "bad": {
         "201": "CODE-SIGNAL:ValueError",
@@ -2366,15 +2371,15 @@
       "size": 11212
     },
     "docs/phases/phase5-finetuning/README.md": {
-      "mtime": 1791307549.5421152,
-      "size": 25925,
+      "mtime": 1791326450.0027127,
+      "size": 26303,
       "bad": {
-        "416": "SIDE-EFFECT",
-        "479": "SIDE-EFFECT"
+        "419": "SIDE-EFFECT",
+        "482": "SIDE-EFFECT"
       },
       "notes": {
-        "416": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
-        "479": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect"
+        "419": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
+        "482": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect"
       }
     },
     "docs/phases/phase6-rag/6100-vector/6101-HNSW-Indexing.md": {

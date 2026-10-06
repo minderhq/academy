@@ -5,7 +5,7 @@ Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Prerequisites: [5300]
-Estimated Time: 17 hours
+Estimated Time: 21 hours
 Tags: ['module', 'training', 'distributed']
 ---
 
@@ -29,6 +29,7 @@ This module covers distributed training techniques for scaling model training ac
 3. **[5403: Mixed Precision Training](./5403-Mixed-Precision.md)** - FP16, BF16, automatic mixed precision
 4. **[5404: Distributed Optimization](./5404-Distributed-Optimization.md)** - Gradient synchronization, all-reduce
 5. **[5405: FSDP2 and torchao](./5405-FSDP2-and-torchao.md)** - Per-parameter sharding, float8/QAT quantized training
+6. **[5406: Distributed LR Scaling](./5406-Distributed-LR-Scaling.md)** - The linear rule, the stability wall, warmup sizing, the critical batch size
 
 ## Prerequisites
 
@@ -50,6 +51,7 @@ After this module, you will be able to:
 ✅ Use mixed precision training
 ✅ Optimize distributed training performance
 ✅ Shard models with FSDP2's fully_shard and train through torchao quantization
+✅ Scale the learning rate with world size under the linear rule, the wall, and a correctly sized warmup
 
 ---
 

@@ -247,7 +247,7 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [assessment: PRACTICE](../phases/phase4-quantization/4400-advanced-techniques/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase4-quantization/4400-advanced-techniques/assessment/QUIZ.md)
 
-## Phase 5 - Model Adaptation: Fine-Tuning & Alignment (45 files)
+## Phase 5 - Model Adaptation: Fine-Tuning & Alignment (46 files)
 
 - [CHECKPOINT](../phases/phase5-finetuning/CHECKPOINT.md)
 - [README](../phases/phase5-finetuning/README.md)
@@ -288,7 +288,7 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [assessment: PRACTICE](../phases/phase5-finetuning/5300-synthetic/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase5-finetuning/5300-synthetic/assessment/QUIZ.md)
 
-### [5400-distributed-training] (5 lessons, 0 guides)
+### [5400-distributed-training] (6 lessons, 0 guides)
 
 - [PREREQUISITES](../phases/phase5-finetuning/5400-distributed-training/PREREQUISITES.md)
 - [README](../phases/phase5-finetuning/5400-distributed-training/README.md)
@@ -297,6 +297,7 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [5403-Mixed-Precision](../phases/phase5-finetuning/5400-distributed-training/5403-Mixed-Precision.md)
 - [5404-Distributed-Optimization](../phases/phase5-finetuning/5400-distributed-training/5404-Distributed-Optimization.md)
 - [5405-FSDP2-and-torchao](../phases/phase5-finetuning/5400-distributed-training/5405-FSDP2-and-torchao.md)
+- [5406-Distributed-LR-Scaling](../phases/phase5-finetuning/5400-distributed-training/5406-Distributed-LR-Scaling.md)
 - [assessment: PRACTICE](../phases/phase5-finetuning/5400-distributed-training/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase5-finetuning/5400-distributed-training/assessment/QUIZ.md)
 
@@ -731,16 +732,16 @@ build's written walkthroughs live inside the lessons themselves - see the
 ## Statistics
 
 ```text
-Total markdown files: 487
-  docs/: 433, experiments/: 48, configs/: 4, repo root: 2
+Total markdown files: 488
+  docs/: 434, experiments/: 48, configs/: 4, repo root: 2
 Phases: 7
 Learning modules (topics): 33
-Phase files (lessons, guides, assessments, topic README/PREREQUISITES): 284
+Phase files (lessons, guides, assessments, topic README/PREREQUISITES): 285
   Phase 1 - Infrastructure Fabric: 40
   Phase 2 - Cognitive Science & Frameworks: 32
   Phase 3 - Transformer Physics: 36
   Phase 4 - Quantization & Compression: 42
-  Phase 5 - Fine-Tuning & Alignment: 45
+  Phase 5 - Fine-Tuning & Alignment: 46
   Phase 6 - Data Nexus: 44
   Phase 7 - Agentic Systems: 45
 Volume guides: 7

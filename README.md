@@ -15,7 +15,7 @@ Difficulty: Beginner
 ## Master Documentation
 
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
-[![Documentation](https://img.shields.io/badge/Docs-433%20Files-orange?style=flat-square)](./docs)
+[![Documentation](https://img.shields.io/badge/Docs-434%20Files-orange?style=flat-square)](./docs)
 [![Phases](https://img.shields.io/badge/Phases-7-purple?style=flat-square)](#-learning-phases)
 [![Modules](https://img.shields.io/badge/Modules-33-success?style=flat-square)](#-summary-statistics)
 
@@ -157,7 +157,7 @@ After completing Minder Academy, you will be able to:
 | Challenge | Minder Academy Solution |
 |:----------:|:----------------------:|
 | 💸 **AI infrastructure is expensive** | Run production-grade AI on affordable hardware or modest cloud instances |
-| 📚 **Documentation is scattered** | **487 files** in one organized, cross-referenced repository |
+| 📚 **Documentation is scattered** | **488 files** in one organized, cross-referenced repository |
 | 🎯 **Learning gaps exist** | Complete curriculum from infrastructure to agentic systems |
 | 📝 **Theory without practice** | **33 PRACTICE files** with runnable solutions, **47 experiments** |
 | 🗺️ **No clear path forward** | **7 phases**, **3 learning tracks**, progress tracking built-in |
@@ -511,7 +511,7 @@ graph TB
 | [5100](./docs/phases/phase5-finetuning/5100-peft/README.md) | PEFT | 5 | ✅ |
 | [5200](./docs/phases/phase5-finetuning/5200-alignment/README.md) | Alignment | 3 | ✅ |
 | [5300](./docs/phases/phase5-finetuning/5300-synthetic/README.md) | Synthetic Data | 4 | ✅ |
-| [5400](./docs/phases/phase5-finetuning/5400-distributed-training/README.md) | Distributed Training | 1 | ✅ |
+| [5400](./docs/phases/phase5-finetuning/5400-distributed-training/README.md) | Distributed Training | 2 | ✅ |
 | [5500](./docs/phases/phase5-finetuning/5500-advanced-optimization/README.md) | Advanced Optimization | 1 | ✅ |
 
 **Topics:** LoRA, QLoRA, DPO, Knowledge Distillation, Distributed Training, Federated Learning, Data Parallelism, Optimizer Variants
@@ -667,7 +667,7 @@ graph TB
 </details>
 
 <details>
-<summary><b>📁 Phase 5: Fine-Tuning & Alignment [5000]</b> - 14 documents</summary>
+<summary><b>📁 Phase 5: Fine-Tuning & Alignment [5000]</b> - 15 documents</summary>
 
 ### [5100: PEFT](./docs/phases/phase5-finetuning/5100-peft/README.md)
 - [5101: LoRA Logic](./docs/phases/phase5-finetuning/5100-peft/5101-LoRA-Logic.md)
@@ -689,6 +689,7 @@ graph TB
 ### [5400: Distributed Training](./docs/phases/phase5-finetuning/5400-distributed-training/README.md)
 - [5401: Data Parallelism](./docs/phases/phase5-finetuning/5400-distributed-training/5401-Data-Parallelism.md)
 - [5405: FSDP2 and torchao](./docs/phases/phase5-finetuning/5400-distributed-training/5405-FSDP2-and-torchao.md)
+- [5406: Distributed LR Scaling](./docs/phases/phase5-finetuning/5400-distributed-training/5406-Distributed-LR-Scaling.md) - the linear rule, the stability wall, warmup sizing, the critical batch size
 
 ### [5500: Advanced Optimization](./docs/phases/phase5-finetuning/5500-advanced-optimization/README.md)
 - [5501: Optimizer Variants](./docs/phases/phase5-finetuning/5500-advanced-optimization/5501-Optimizer-Variants.md)
@@ -1326,10 +1327,10 @@ docker compose -f configs/docker-compose.yml up -d qdrant
 | **2** | 32 |
 | **3** | 36 |
 | **4** | 42 |
-| **5** | 45 |
+| **5** | 46 |
 | **6** | 44 |
 | **7** | 45 |
-| **Phase total** | **284** |
+| **Phase total** | **285** |
 
 ### Additional Resources
 
@@ -1476,7 +1477,7 @@ SOFTWARE.
 
 *Last Updated: 2026-09-29*
 
-*487 Documentation Files | 33 Technical Modules | 7 Learning Phases*
+*488 Documentation Files | 33 Technical Modules | 7 Learning Phases*
 
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
 [![Contact](https://img.shields.io/badge/Contact-FAQ-blue?style=flat-square)](./docs/00-META/FAQ.md)

@@ -199,7 +199,7 @@ Each question maps to the closest lesson for review:
 - **Questions 6, 15:** [5403: Mixed Precision Training](../5403-Mixed-Precision.md) — the time-plus-memory savings of half-precision runs and BF16's FP32-sized exponent
 - **Questions 11, 13:** [5402: Model Parallelism](../5402-Model-Parallelism.md) — pipeline stage splits with their bubble schedules and tensor parallelism's operation-level slicing
 - **Question 14:** [5404: Distributed Optimization](../5404-Distributed-Optimization.md) — ZeRO's staged sharding of optimizer states, gradients and parameters
-- **Question 17:** [5502: Learning Rate Scheduling](../../5500-advanced-optimization/5502-Learning-Rate-Scheduling.md) — warmup past early instability and decay into the minimum; the linear scaling rule itself (LR grows with world size) is stated nowhere in this module, so Q17 leans on the phase's learning-rate lesson
+- **Question 17:** [5406: Distributed LR Scaling](../5406-Distributed-LR-Scaling.md) — the linear scaling rule itself: the LR grows with batch and world size, the eta_max = 2/lambda_max wall it runs into, and the warmup sized to let the scaled rate survive the sharp early phase
 
 ---
 
