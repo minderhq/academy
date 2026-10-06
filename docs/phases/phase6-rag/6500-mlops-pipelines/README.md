@@ -5,7 +5,7 @@ Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
-Estimated Time: 12 hours
+Estimated Time: 15 hours
 Tags: ['module', 'mlops', 'model-registry']
 ---
 
@@ -28,6 +28,7 @@ After completing this module, you will be able to:
 - **ML Lifecycle**: Manage the complete ML pipeline for RAG
 - **CI/CD for ML**: Build automated testing and deployment
 - **Model Registry**: Track and version models effectively
+- **Re-Embedding Policy**: Separate churn upserts from forced full re-embeds and size the experiments that ship them
 - **Monitoring**: Track model performance and data drift
 - **Production ML**: Deploy and maintain RAG systems
 
@@ -78,6 +79,20 @@ After completing this module, you will be able to:
 - Implement model promotion
 - Build model governance
 
+### [6504: Re-Embedding Policy and A/B Testing](./6504-Re-Embedding-Policy-and-AB-Testing.md)
+**Updating Embeddings and Shipping Them Honestly**
+
+- The churn ledger: incremental upserts vs calendar-cadence rebuilds
+- Cross-space incomparability: why a model change forces the full pass
+- The shadow window: dual-write economics and the cutover gate
+- Sizing on discordant pairs, the peeking trap, and fixed horizons
+- Human evaluation with chance-corrected kappa
+
+**Experiments:**
+- Price a re-embedding cadence for your own corpus churn
+- Run the shadow-window gate on a golden set
+- Size an embedder migration before opening the window
+
 ## Prerequisites
 
 Before starting this module, ensure you have:
@@ -123,9 +138,10 @@ This module connects to:
 | [6501: ML Lifecycle Management](./6501-ML-Lifecycle-Management.md) | 4 hours |
 | [6502: CI/CD for ML](./6502-CI-CD-for-ML.md) | 4 hours |
 | [6503: Model Registry](./6503-Model-Registry.md) | 4 hours |
+| [6504: Re-Embedding Policy and A/B Testing](./6504-Re-Embedding-Policy-and-AB-Testing.md) | 3 hours |
 | Quiz | 30 minutes |
 | Practice | 3 hours |
-| **Total** | **15.5 hours** |
+| **Total** | **18.5 hours** |
 
 ## Resources
 
