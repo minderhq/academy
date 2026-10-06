@@ -189,18 +189,19 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [assessment: PRACTICE](../phases/phase3-transformers/3500-multimodal/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase3-transformers/3500-multimodal/assessment/QUIZ.md)
 
-## Phase 4 - Quantization & Compression (41 files)
+## Phase 4 - Quantization & Compression (42 files)
 
 - [CHECKPOINT](../phases/phase4-quantization/CHECKPOINT.md)
 - [README](../phases/phase4-quantization/README.md)
 
-### [4100-low-bit] (3 lessons, 0 guides)
+### [4100-low-bit] (4 lessons, 0 guides)
 
 - [PREREQUISITES](../phases/phase4-quantization/4100-low-bit/PREREQUISITES.md)
 - [README](../phases/phase4-quantization/4100-low-bit/README.md)
 - [4101-GGUF-Physics](../phases/phase4-quantization/4100-low-bit/4101-GGUF-Physics.md)
 - [4102-EXL2-and-AWQ](../phases/phase4-quantization/4100-low-bit/4102-EXL2-and-AWQ.md)
 - [4103-Double-Quantization](../phases/phase4-quantization/4100-low-bit/4103-Double-Quantization.md)
+- [4104-MXFP4-and-NVFP4](../phases/phase4-quantization/4100-low-bit/4104-MXFP4-and-NVFP4.md)
 - [assessment: PRACTICE](../phases/phase4-quantization/4100-low-bit/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase4-quantization/4100-low-bit/assessment/QUIZ.md)
 
@@ -712,15 +713,15 @@ build's written walkthroughs live inside the lessons themselves - see the
 ## Statistics
 
 ```text
-Total markdown files: 468
-  docs/: 414, experiments/: 48, configs/: 4, repo root: 2
+Total markdown files: 469
+  docs/: 415, experiments/: 48, configs/: 4, repo root: 2
 Phases: 7
 Learning modules (topics): 33
-Phase files (lessons, guides, assessments, topic README/PREREQUISITES): 266
+Phase files (lessons, guides, assessments, topic README/PREREQUISITES): 267
   Phase 1 - Infrastructure Fabric: 40
   Phase 2 - Cognitive Science & Frameworks: 32
   Phase 3 - Transformer Physics: 36
-  Phase 4 - Quantization & Compression: 41
+  Phase 4 - Quantization & Compression: 42
   Phase 5 - Fine-Tuning & Alignment: 42
   Phase 6 - Data Nexus: 38
   Phase 7 - Agentic Systems: 37

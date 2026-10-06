@@ -83,9 +83,11 @@ WHITELIST = frozenset([
     'lab', 'langchain', 'langgraph', 'learning-rate', 'lifecycle', 'llama', 'llamacpp',
     'llm', 'llmops', 'long-context', 'long-term-memory', 'lora', 'maintenance',
     'manufacturing',
-    'math', 'mcp', 'mem0', 'memory', 'milvus', 'mla', 'mixed-precision', 'mlops',
+    # tick-722 deliberate same-commit extension: 'mxfp4' and 'nvfp4' join for the
+    # microscaling lesson (4104) - the tag vocabulary grows with the corpus
+    'math', 'mcp', 'mem0', 'memory', 'milvus', 'mla', 'mixed-precision', 'mlops', 'mxfp4',
     'model-registry', 'module', 'monitoring', 'mtu', 'multi-agent', 'multi-head',
-    'multimodal', 'navigation', 'neo4j', 'networking', 'nginx', 'normalization', 'notebook', 'observability',
+    'multimodal', 'navigation', 'neo4j', 'networking', 'nginx', 'normalization', 'notebook', 'nvfp4', 'observability',
     'offloading', 'ollama', 'optimization', 'optimizers', 'orchestration', 'peft',
     'performance', 'pgvector', 'phase', 'pii', 'pinecone', 'pipeline', 'pipeline-parallelism',
     'planning', 'plugin-architecture', 'postgresql', 'practice', 'preference', 'preference-learning',

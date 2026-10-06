@@ -95,18 +95,21 @@ graph LR
 | [4101: GGUF Physics](./4100-low-bit/4101-GGUF-Physics.md) | CPU/GPU hybrid inference | 2h | Intermediate |
 | [4102: EXL2 and AWQ](./4100-low-bit/4102-EXL2-and-AWQ.md) | Extreme quantization for VRAM-only | 2h | Advanced |
 | [4103: Double Quantization](./4100-low-bit/4103-Double-Quantization.md) | BitsAndBytes 4-bit loading | 1h | Intermediate |
+| [4104: MXFP4 and NVFP4](./4100-low-bit/4104-MXFP4-and-NVFP4.md) | Microscaling 4-bit: the gpt-oss formats | 2h | Advanced |
 
 **What You'll Learn:**
 - GGUF format internals and optimization strategies
 - EXL2 quantile-based quantization for maximum accuracy
 - AWQ activation-aware weight quantization
 - Double quantization for memory efficiency
+- MXFP4 and NVFP4 microscaling formats as working code
 
 **Hands-On Practice:**
 - Convert models to GGUF format
 - Optimize EXL2 calibration datasets
 - Implement AWQ quantization pipelines
 - Apply double quantization to large models
+- Quantize one weight MXFP4 and NVFP4 and compare the error
 
 ### [4200] KV-Cache Engineering
 
@@ -216,11 +219,11 @@ graph TD
 
 | Module | Reading | Practice | Total |
 |--------|---------|----------|-------|
-| 4100: Low-Bit Quantization | 5h | 4h | 9h |
+| 4100: Low-Bit Quantization | 9h | 4h | 13h |
 | 4200: KV-Cache Engineering | 8h | 6h | 14h |
 | 4300: QAT | 12h | 8h | 20h |
 | 4400: Advanced Techniques | 18h | 12h | 30h |
-| **Total** | **43h** | **30h** | **73h** |
+| **Total** | **47h** | **30h** | **77h** |
 
 ---
 
@@ -489,7 +492,7 @@ Validate your knowledge with:
 
 ## Related Topics
 
-- **4100: Low-bit Quantization** - GGUF, EXL2, AWQ basics
+- **4100: Low-bit Quantization** - GGUF, EXL2, AWQ basics; MXFP4/NVFP4 microscaling formats
 - **4200: KV Cache** - Quantizing attention cache
 - **4300: QAT** - Quantization aware training
 - **2300: Framework Engineering** - Building quantization into frameworks

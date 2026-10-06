@@ -15,7 +15,7 @@ Difficulty: Beginner
 ## Master Documentation
 
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
-[![Documentation](https://img.shields.io/badge/Docs-414%20Files-orange?style=flat-square)](./docs)
+[![Documentation](https://img.shields.io/badge/Docs-415%20Files-orange?style=flat-square)](./docs)
 [![Phases](https://img.shields.io/badge/Phases-7-purple?style=flat-square)](#-learning-phases)
 [![Modules](https://img.shields.io/badge/Modules-33-success?style=flat-square)](#-summary-statistics)
 
@@ -157,7 +157,7 @@ After completing Minder Academy, you will be able to:
 | Challenge | Minder Academy Solution |
 |:----------:|:----------------------:|
 | 💸 **AI infrastructure is expensive** | Run production-grade AI on affordable hardware or modest cloud instances |
-| 📚 **Documentation is scattered** | **468 files** in one organized, cross-referenced repository |
+| 📚 **Documentation is scattered** | **469 files** in one organized, cross-referenced repository |
 | 🎯 **Learning gaps exist** | Complete curriculum from infrastructure to agentic systems |
 | 📝 **Theory without practice** | **33 PRACTICE files** with runnable solutions, **47 experiments** |
 | 🗺️ **No clear path forward** | **7 phases**, **3 learning tracks**, progress tracking built-in |
@@ -494,7 +494,7 @@ graph TB
 
 | Module | Topic | Docs | Status |
 |:------:|-------|:----:|:------:|
-| [4100](./docs/phases/phase4-quantization/4100-low-bit/README.md) | Low-Bit Quantization | 3 | ✅ |
+| [4100](./docs/phases/phase4-quantization/4100-low-bit/README.md) | Low-Bit Quantization | 4 | ✅ |
 | [4200](./docs/phases/phase4-quantization/4200-kv-cache/README.md) | KV-Cache Engineering | 3 | ✅ |
 | [4300](./docs/phases/phase4-quantization/4300-quantization-aware-training/README.md) | Quantization Aware Training | 5 | ✅ |
 | [4400](./docs/phases/phase4-quantization/4400-advanced-techniques/README.md) | Advanced Quantization | 4 | ✅ |
@@ -638,12 +638,13 @@ graph TB
 </details>
 
 <details>
-<summary><b>📁 Phase 4: Quantization & Compression [4000]</b> - 15 documents</summary>
+<summary><b>📁 Phase 4: Quantization & Compression [4000]</b> - 16 documents</summary>
 
 ### [4100: Low-Bit Quantization](./docs/phases/phase4-quantization/4100-low-bit/README.md)
 - [4101: GGUF Physics](./docs/phases/phase4-quantization/4100-low-bit/4101-GGUF-Physics.md)
 - [4102: EXL2 and AWQ](./docs/phases/phase4-quantization/4100-low-bit/4102-EXL2-and-AWQ.md)
 - [4103: Double Quantization](./docs/phases/phase4-quantization/4100-low-bit/4103-Double-Quantization.md)
+- [4104: MXFP4 and NVFP4](./docs/phases/phase4-quantization/4100-low-bit/4104-MXFP4-and-NVFP4.md)
 
 ### [4200: KV-Cache](./docs/phases/phase4-quantization/4200-kv-cache/README.md)
 - [4201: Context Window Physics](./docs/phases/phase4-quantization/4200-kv-cache/4201-Context-Window-Physics.md)
@@ -1307,11 +1308,11 @@ docker compose -f configs/docker-compose.yml up -d qdrant
 | **1** | 40 |
 | **2** | 32 |
 | **3** | 36 |
-| **4** | 41 |
+| **4** | 42 |
 | **5** | 42 |
 | **6** | 38 |
 | **7** | 37 |
-| **Phase total** | **266** |
+| **Phase total** | **267** |
 
 ### Additional Resources
 
@@ -1458,7 +1459,7 @@ SOFTWARE.
 
 *Last Updated: 2026-09-29*
 
-*468 Documentation Files | 33 Technical Modules | 7 Learning Phases*
+*469 Documentation Files | 33 Technical Modules | 7 Learning Phases*
 
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
 [![Contact](https://img.shields.io/badge/Contact-FAQ-blue?style=flat-square)](./docs/00-META/FAQ.md)

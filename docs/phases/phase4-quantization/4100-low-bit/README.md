@@ -5,7 +5,7 @@ Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
 Prerequisites: [1500]
-Estimated Time: 12 hours
+Estimated Time: 16 hours
 Tags: ['module', 'quantization', 'gguf']
 ---
 
@@ -29,6 +29,7 @@ After completing this module, you will be able to:
 - **GGUF Format**: Work with the most popular quantization format for local LLMs
 - **EXL2 and AWQ**: Master modern quantization schemes for optimal performance
 - **Double Quantization**: Apply nested quantization for extreme compression
+- **MXFP4 and NVFP4**: Quantize with the microscaling formats behind gpt-oss and Blackwell tensor cores
 - **Quality Preservation**: Balance bit-width with model performance
 
 ## Module Contents
@@ -78,6 +79,21 @@ After completing this module, you will be able to:
 - Analyze quality impact
 - Compare with single quantization
 
+### [4104: MXFP4 and NVFP4](./4104-MXFP4-and-NVFP4.md)
+**Microscaling Formats - the Hardware-Native 4-Bit Generation**
+
+- The shared microscaling recipe: e2m1 elements plus tiny per-block scales
+- MXFP4's power-of-2 e8m0 scale per 32 and the pow2 tax it pays
+- NVFP4's e4m3 scale per 16 plus the fp32 per-tensor second level
+- The gpt-oss-20b selective-quantization config and its memory ledger
+- transformers' Mxfp4Config and torchao's MXTensor surfaces
+
+**Experiments:**
+- Emulate e2m1 round-to-nearest in plain torch
+- Quantize one weight both ways and compare relative error
+- Measure the pow2 tax with per-block scale-use histograms
+- Decode the gpt-oss quantization_config
+
 ## Prerequisites
 
 Before starting this module, ensure you have:
@@ -123,9 +139,10 @@ This module connects to:
 | [4101: GGUF Physics](./4101-GGUF-Physics.md) | 4 hours |
 | [4102: EXL2 and AWQ](./4102-EXL2-and-AWQ.md) | 4 hours |
 | [4103: Double Quantization](./4103-Double-Quantization.md) | 4 hours |
+| [4104: MXFP4 and NVFP4](./4104-MXFP4-and-NVFP4.md) | 4 hours |
 | Quiz | 30 minutes |
 | Practice | 4 hours |
-| **Total** | **16.5 hours** |
+| **Total** | **20.5 hours** |
 
 ## Resources
 
