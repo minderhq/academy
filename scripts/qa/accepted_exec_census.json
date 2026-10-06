@@ -25,7 +25,7 @@
       "bad": {}
     },
     "docs/00-META/ORGANIZATION-GUIDE.md": {
-      "mtime": 1791326450.0047135,
+      "mtime": 1791328890.2146263,
       "size": 19534,
       "bad": {}
     },
@@ -2977,14 +2977,19 @@
       "size": 20023,
       "bad": {}
     },
+    "docs/phases/phase7-agentic/7500-security/7505-Temperature-Zero-and-Deterministic-Security-Testing.md": {
+      "mtime": 1791328317.7667055,
+      "size": 28519,
+      "bad": {}
+    },
     "docs/phases/phase7-agentic/7500-security/assessment/PRACTICE.md": {
       "mtime": 1791096283.2192726,
       "size": 73964,
       "bad": {}
     },
     "docs/phases/phase7-agentic/README.md": {
-      "mtime": 1791323080.7624779,
-      "size": 38627,
+      "mtime": 1791328890.2166243,
+      "size": 38981,
       "bad": {}
     },
     "docs/use-cases/README.md": {

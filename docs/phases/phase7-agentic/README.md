@@ -600,6 +600,7 @@ tools_researcher = {
 | [7502: PII Redaction](./7500-security/7502-PII-Redaction.md) | Privacy filtering and compliance | 3h | Advanced |
 | [7503: Adversarial Attacks](./7500-security/7503-Adversarial-Attacks.md) | Attack types and defense layers | 3h | Advanced |
 | [7504: Agent Abuse Prevention and Identity Threats](./7500-security/7504-Agent-Abuse-Prevention-and-Identity-Threats.md) | Rate limiting, agent identity, egress monitoring | 3h | Advanced |
+| [7505: Temperature Zero and Deterministic Security Testing](./7500-security/7505-Temperature-Zero-and-Deterministic-Security-Testing.md) | Deterministic decoding for reproducible security tests | 3h | Advanced |
 
 **What You'll Learn:**
 - Prompt injection techniques and defense layers
@@ -608,6 +609,7 @@ tools_researcher = {
 - Input validation and output filtering
 - Red teaming agent systems
 - Abuse mechanics: rate limiting, agent identity, egress beacons, payload entropy
+- Deterministic decoding: temperature zero as argmax, seed limits, pass@k
 
 **Hands-On Practice:**
 - Build an injection detector
@@ -615,6 +617,7 @@ tools_researcher = {
 - Test agents with adversarial prompts
 - Design a multi-layer defense pipeline
 - Break a rate limiter at the seam and flag an egress beacon
+- Pin temperature to zero and price a red-team CI gate four ways
 
 ---
 
@@ -662,8 +665,8 @@ graph TD
 | 7200: Tool Use | 14h | 4h | 18h |
 | 7300: Orchestration | 11h | 6h | 17h |
 | 7400: Memory | 15h | 6h | 21h |
-| 7500: Security | 12h | — | 12h |
-| **Total** | **75h** | **22h** | **97h** |
+| 7500: Security | 15h | — | 15h |
+| **Total** | **78h** | **22h** | **100h** |
 
 *7500 practice time is not yet estimated in its PRACTICE.md; phase totals cover the estimated modules.*
 

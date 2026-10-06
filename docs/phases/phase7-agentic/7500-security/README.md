@@ -5,7 +5,7 @@ Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
-Estimated Time: 12 hours
+Estimated Time: 15 hours
 Tags: ['module', 'agents', 'security']
 ---
 
@@ -31,6 +31,7 @@ After completing this module, you will be able to:
 - **Abuse Prevention**: Throttle, authenticate, and monitor agent traffic
 - **Secure Design**: Build security-first agent systems
 - **Compliance**: Meet privacy and security regulations
+- **Deterministic Testing**: Pin decoding for reproducible security tests
 
 ## Module Contents
 
@@ -93,6 +94,21 @@ After completing this module, you will be able to:
 - Detect beacon periodicity with the coefficient of variation
 - Run the composed campaign pipeline
 
+### [7505: Temperature Zero and Deterministic Security Testing](./7505-Temperature-Zero-and-Deterministic-Security-Testing.md)
+**Deterministic Decoding for Reproducible Security Tests**
+
+- The decoding fork: softmax temperature mechanics and the argmax limit at T=0
+- The flapping suite: identical-code runs split 33 red / 17 green at serving temperature
+- What temperature zero does not buy: batch noise and the provider fingerprint bump
+- The pass@k fix: estimator variance and the std x sqrt(k) law
+- One red-team CI gate priced four ways on a month of runs
+
+**Experiments:**
+- Walk the temperature knob from 0.0 to 1.5 on one fixed decision
+- Run the same red-team suite fifty times at T=0.7 and at T=0
+- Flip near-tie greedy decisions with simulated batch noise and a fingerprint bump
+- Price four CI gate configs and defend the T=0-CI plus sampled-nightly stack
+
 ## Prerequisites
 
 Before starting this module, ensure you have:
@@ -139,9 +155,10 @@ This module connects to:
 | [7502: PII Redaction](./7502-PII-Redaction.md) | 3 hours |
 | [7503: Adversarial Attacks](./7503-Adversarial-Attacks.md) | 3 hours |
 | [7504: Agent Abuse Prevention and Identity Threats](./7504-Agent-Abuse-Prevention-and-Identity-Threats.md) | 3 hours |
+| [7505: Temperature Zero and Deterministic Security Testing](./7505-Temperature-Zero-and-Deterministic-Security-Testing.md) | 3 hours |
 | Quiz | 30 minutes |
 | Practice | 13 hours |
-| **Total** | **25.5 hours** |
+| **Total** | **28.5 hours** |
 
 ## Resources
 
