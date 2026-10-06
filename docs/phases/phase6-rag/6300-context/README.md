@@ -5,7 +5,7 @@ Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
-Estimated Time: 10 hours
+Estimated Time: 13 hours
 Tags: ['module', 'rag', 'context']
 ---
 
@@ -62,6 +62,21 @@ After completing this module, you will be able to:
 - Optimize context compression
 - Build hierarchical retrieval
 - Test long-context strategies
+
+### [6305: LongLoRA, Ring Attention, and Context Distillation](./6305-LongLoRA-Ring-Attention-and-Context-Distillation.md)
+**Context Extension Training Methods**
+
+- The scaling wall: attention compute, activation memory, and the prompt tax
+- Shifted sparse attention and the half-group shift's reachability walk
+- Ring attention: exact sequence parallelism with blockwise online softmax
+- The LongLoRA parameter ledger: LoRA plus embedding and norm layers
+- Context distillation: the context moving into the weights
+
+**Experiments:**
+- Simulate S²-Attn reachability with and without the shift
+- Verify ring attention equals full attention exactly
+- Price the LoRA-only vs LoRA+ parameter ledger
+- Train a context-distillation pair to a converged KL
 
 ### 6303: Neo4j Deployment Guide
 **Production Knowledge Graph Setup** (Guide)
@@ -129,11 +144,12 @@ This module connects to:
 |----------|------|
 | [6301: Neo4j and Knowledge Graphs](./6301-Neo4j-and-Knowledge-Graphs.md) | 5 hours |
 | [6302: CAG and Long-Context Architectures](./6302-CAG-Long-Context-Architectures.md) | 5 hours |
+| [6305: LongLoRA, Ring Attention, and Context Distillation](./6305-LongLoRA-Ring-Attention-and-Context-Distillation.md) | 3 hours |
 | Guide ([6303](./guides/6303-Neo4j-Deployment-Guide.md)) | 3 hours |
 | Guide ([6304](./guides/6304-GraphRAG-Implementation.md)) | 4 hours |
 | Quiz | 30 minutes |
 | Practice | 4 hours |
-| **Total** | **21.5 hours** |
+| **Total** | **24.5 hours** |
 
 ## Resources
 
