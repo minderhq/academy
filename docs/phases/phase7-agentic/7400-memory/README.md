@@ -1,11 +1,11 @@
 ---
 Document ID: 7400-MEMORY-README
 Title: "7400: Agent Memory Systems"
-Last Updated: 2026-10-01
+Last Updated: 2026-10-06
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
-Estimated Time: 8 hours
+Estimated Time: 11 hours
 Tags: ['module', 'agents', 'memory']
 ---
 
@@ -30,6 +30,7 @@ After completing this module, you will be able to:
 - **Context Management**: Optimize context window usage
 - **Memory Retrieval**: Find relevant past experiences
 - **Memory Updates**: Add and consolidate memories
+- **Reflective Memory**: Distill episodes into queryable facts before pruning
 
 ## Module Contents
 
@@ -67,6 +68,15 @@ After completing this module, you will be able to:
 - Qdrant as the memory backend
 - Memory lifecycle and long-term architecture
 - Performance and troubleshooting
+
+### [7404: Reflective Memory and Context Paging](./7404-Reflective-Memory-and-Context-Paging.md)
+**The Mechanisms Between the Tiers**
+
+- The tri-component retrieval blend (recency, importance, relevance)
+- Reflection: pruning versus distilling
+- MemGPT-style context paging under a token budget
+- The reflexion loop: verbal rules as episodic memory
+- Pricing memory stacks on a long-horizon agent
 
 ## Prerequisites
 
@@ -112,10 +122,11 @@ This module connects to:
 |----------|------|
 | [7401: Long-term Memory](./7401-Long-term-Memory.md) | 4 hours |
 | [7403: Vector Memory](./7403-Vector-Memory.md) | 4 hours |
+| [7404: Reflective Memory and Context Paging](./7404-Reflective-Memory-and-Context-Paging.md) | 3 hours |
 | Guide ([7402: Agent Memory Implementation](./guides/7402-Agent-Memory-Implementation.md)) | 3 hours |
 | Quiz | 30 minutes |
 | Practice | 6 hours |
-| **Total** | **17.5 hours** |
+| **Total** | **20.5 hours** |
 
 ## Resources
 

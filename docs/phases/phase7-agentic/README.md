@@ -566,12 +566,14 @@ tools_researcher = {
 | [7401: Long-term Memory](./7400-memory/7401-Long-term-Memory.md) | Persistent memory systems | 4h | Advanced |
 | [7402: Memory Implementation](./7400-memory/guides/7402-Agent-Memory-Implementation.md) | Memory architecture guide | 3h | Advanced |
 | [7403: Vector Memory](./7400-memory/7403-Vector-Memory.md) | Embedding-based memory | 2h | Advanced |
+| [7404: Reflective Memory and Context Paging](./7400-memory/7404-Reflective-Memory-and-Context-Paging.md) | Reflection, paging, retrieval blend | 3h | Advanced |
 
 **What You'll Learn:**
 - Memory architectures (short-term, long-term, episodic)
 - Vector-based memory systems
 - Memory retrieval and ranking
 - Persistent storage strategies
+- Rank memories with the recency-importance-relevance blend, distill episodes before pruning, and page a 48-token context without amnesia
 
 **Hands-On Practice:**
 - Implement memory system
@@ -648,9 +650,9 @@ graph TD
 | 7100: Architecture | 15h | 6h | 21h |
 | 7200: Tool Use | 10h | 4h | 14h |
 | 7300: Orchestration | 11h | 6h | 17h |
-| 7400: Memory | 9h | 6h | 15h |
+| 7400: Memory | 12h | 6h | 18h |
 | 7500: Security | 12h | — | 12h |
-| **Total** | **53h** | **22h** | **75h** |
+| **Total** | **56h** | **22h** | **78h** |
 
 *7500 practice time is not yet estimated in its PRACTICE.md; phase totals cover the estimated modules.*
 
