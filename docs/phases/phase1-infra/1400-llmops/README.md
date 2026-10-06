@@ -5,7 +5,7 @@ Last Updated: 2026-09-30
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
-Estimated Time: 8 hours
+Estimated Time: 12 hours
 Tags: ['module', 'infrastructure', 'llmops']
 ---
 
@@ -777,10 +777,11 @@ Lessons Learned:
 ### Core Concepts
 1. **[1401: Ollama Enterprise](./1401-Ollama-Enterprise.md)** - Production Ollama deployment
 2. **[1402: vLLM and TGI](./1402-vLLM-and-TGI.md)** - High-performance serving engines
+3. **[1405: SGLang RadixAttention](./1405-SGLang.md)** - RadixAttention serving engine
 
 ### Production Guides
-3. **[guides/1403: vLLM Production Deployment](./guides/1403-vLLM-Production-Deployment.md)** - Complete vLLM setup
-4. **[guides/1404: TGI Deployment Guide](./guides/1404-TGI-Deployment-Guide.md)** - TGI production deployment
+4. **[guides/1403: vLLM Production Deployment](./guides/1403-vLLM-Production-Deployment.md)** - Complete vLLM setup
+5. **[guides/1404: TGI Deployment Guide](./guides/1404-TGI-Deployment-Guide.md)** - TGI production deployment
 
 ## Prerequisites
 

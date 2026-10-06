@@ -30,7 +30,7 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 
 ---
 
-## Phase 1 - Infrastructure Fabric (39 files)
+## Phase 1 - Infrastructure Fabric (40 files)
 
 - [CHECKPOINT](../phases/phase1-infra/CHECKPOINT.md)
 - [README](../phases/phase1-infra/README.md)
@@ -66,12 +66,13 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [assessment: PRACTICE](../phases/phase1-infra/1300-kubernetes/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase1-infra/1300-kubernetes/assessment/QUIZ.md)
 
-### [1400-llmops] (2 lessons, 2 guides)
+### [1400-llmops] (3 lessons, 2 guides)
 
 - [PREREQUISITES](../phases/phase1-infra/1400-llmops/PREREQUISITES.md)
 - [README](../phases/phase1-infra/1400-llmops/README.md)
 - [1401-Ollama-Enterprise](../phases/phase1-infra/1400-llmops/1401-Ollama-Enterprise.md)
 - [1402-vLLM-and-TGI](../phases/phase1-infra/1400-llmops/1402-vLLM-and-TGI.md)
+- [1405-SGLang](../phases/phase1-infra/1400-llmops/1405-SGLang.md)
 - [guide: 1403-vLLM-Production-Deployment](../phases/phase1-infra/1400-llmops/guides/1403-vLLM-Production-Deployment.md)
 - [guide: 1404-TGI-Deployment-Guide](../phases/phase1-infra/1400-llmops/guides/1404-TGI-Deployment-Guide.md)
 - [assessment: PRACTICE](../phases/phase1-infra/1400-llmops/assessment/PRACTICE.md)
@@ -709,12 +710,12 @@ build's written walkthroughs live inside the lessons themselves - see the
 ## Statistics
 
 ```text
-Total markdown files: 465
-  docs/: 411, experiments/: 48, configs/: 4, repo root: 2
+Total markdown files: 466
+  docs/: 412, experiments/: 48, configs/: 4, repo root: 2
 Phases: 7
 Learning modules (topics): 33
-Phase files (lessons, guides, assessments, topic README/PREREQUISITES): 263
-  Phase 1 - Infrastructure Fabric: 39
+Phase files (lessons, guides, assessments, topic README/PREREQUISITES): 264
+  Phase 1 - Infrastructure Fabric: 40
   Phase 2 - Cognitive Science & Frameworks: 32
   Phase 3 - Transformer Physics: 35
   Phase 4 - Quantization & Compression: 41

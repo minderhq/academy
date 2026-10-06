@@ -94,7 +94,9 @@ WHITELIST = frozenset([
     'qat', 'qdrant', 'qlora', 'quantization', 'quantization-aware-training', 'quickstart', 'quiz',
     'rag', 'react', 'reasoning', 'reference', 'reranking', 'retrieval', 'rlhf',
     'roadmap', 'rope', 'sam', 'scheduling', 'security', 'self-attention', 'serving',
-    'setup', 'similarity',
+    # tick-719 deliberate same-commit extension: 'sglang' joins for
+    # the SGLang serving lesson (1405) - the tag vocabulary grows with the corpus
+    'sglang', 'setup', 'similarity',
     # tick-718 deliberate same-commit extension: 'ssm' and 'mla' join for
     # the SSM/MLA lesson (3404) - the tag vocabulary grows with the corpus
     'ssm', 'solution', 'sparsity', 'speculative-decoding', 'star-topology', 'swiglu',

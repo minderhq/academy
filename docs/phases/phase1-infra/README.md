@@ -354,6 +354,7 @@ graph LR
 |----------|-------------|------|------------|
 | [1401: Ollama Enterprise](./1400-llmops/1401-Ollama-Enterprise.md) | Local model APIs | 2h | Beginner |
 | [1402: vLLM and TGI](./1400-llmops/1402-vLLM-and-TGI.md) | High-concurrency engines | 4h | Intermediate |
+| [1405: SGLang](./1400-llmops/1405-SGLang.md) | RadixAttention serving | 4h | Advanced |
 | [1403: vLLM Production](./1400-llmops/guides/1403-vLLM-Production-Deployment.md) | Production deployment | 3h | Advanced |
 | [1404: TGI Deployment](./1400-llmops/guides/1404-TGI-Deployment-Guide.md) | TGI setup guide | 3h | Advanced |
 
@@ -367,6 +368,7 @@ graph LR
 - Deploy Ollama on K3s
 - Configure vLLM with quantized model
 - Set up vLLM for production (1404's TGI guide kept as a maintenance-mode reference)
+- Deploy SGLang when shared prompt prefixes dominate (RadixAttention serving)
 - Benchmark inference throughput
 
 ### [1500] Monitoring & Observability
@@ -424,7 +426,7 @@ graph TD
 | 1100: Network | 7h | 5h | 12h |
 | 1200: Virtualization | 12h | 8h | 20h |
 | 1300: K3s | 9h | 6h | 15h |
-| 1400: LLMOps | 12h | 8h | 20h |
+| 1400: LLMOps | 16h | 8h | 24h |
 | 1500: Monitoring | 4h | 4h | 8h |
 | **Total** | **44h** | **31h** | **75h** |
 

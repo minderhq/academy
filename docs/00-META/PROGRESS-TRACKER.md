@@ -16,7 +16,7 @@ Tags: ['roadmap', 'guide', 'practice']
 ## Overall Progress
 
 ```text
-Volume 1: Infrastructure Mastery  [░░░░░░░░░░░] 0% (0/39)
+Volume 1: Infrastructure Mastery  [░░░░░░░░░░░] 0% (0/40)
 Volume 2: AI Foundations          [░░░░░░░░░░░] 0% (0/32)
 Volume 3: LLM Internals           [░░░░░░░░░░░] 0% (0/35)
 Volume 4: Quantization Mastery    [░░░░░░░░░░░] 0% (0/41)
@@ -24,14 +24,14 @@ Volume 5: Fine-Tuning Expert      [░░░░░░░░░░░] 0% (0/41)
 Volume 6: RAG & Data Systems      [░░░░░░░░░░░] 0% (0/38)
 Volume 7: Production Systems      [░░░░░░░░░░░] 0% (0/37)
 
-Total: [░░░░░░░░░░░░░░░░░] 0% (0/411 core files)
+Total: [░░░░░░░░░░░░░░░░░] 0% (0/412 core files)
 ```
 
 ---
 
 ## Volume-Based Progress Tracking
 
-### Volume 1: Infrastructure Mastery (39 files)
+### Volume 1: Infrastructure Mastery (40 files)
 **"Build Your AI Laboratory"** - 75-100 hours | Difficulty: ⭐⭐ Intermediate
 
 **Note:** Time estimate includes reading (25h), hands-on practice (35h), labs (15h), and capstone project (15h). Adjust based on your prior experience with networking, Linux, and Docker.
@@ -387,7 +387,7 @@ Notes:
 ### Essential Reading
 - **[VOLUME-GUIDE.md](VOLUME-GUIDE.md)** - Start here! Overview of all 7 volumes
 - **[0000-LEARNING-PATH.md](0000-LEARNING-PATH.md)** - Recommended learning paths
-- **[SITEMAP.md](SITEMAP.md)** - Full document list (411 files)
+- **[SITEMAP.md](SITEMAP.md)** - Full document list (412 files)
 - **[README.md](../../README.md)** - Project overview
 
 ### Troubleshooting
@@ -407,7 +407,7 @@ Notes:
 | Metric | Target | Current | % |
 |--------|--------|---------|---|
 | **Volumes Completed** | 7 | 0 | 0% |
-| **Core Documents** | 411 | 0 | 0% |
+| **Core Documents** | 412 | 0 | 0% |
 | **Labs Completed** | 15 | 0 | 0% |
 | **Experiments** | 47 | 0 | 0% |
 | **Tutorials** | 15 | 0 | 0% |

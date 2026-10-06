@@ -96,7 +96,10 @@ ACCEPTED_PREFIXES = frozenset({
     "presidio_analyzer", "presidio_anonymizer", "pyannote", "pyaudio",
     "pymilvus", "pynvml", "ragas", "rank_bm25", "restrictedpython",
     "resource", "rouge", "rouge_score", "sacrebleu", "seaborn",
-    "segment_anything", "sentence_transformers", "spacy",
+    "segment_anything", "sentence_transformers",
+    # tick-719 deliberate same-commit extension: the SGLang serving
+    # framework (1405 teaches Engine + frontend DSL; ENV-GAP:sglang)
+    "sglang", "spacy",
     "speechbrain", "stable_baselines3", "structlog", "tavily",
     "tensorflow", "torch.utils.tensorboard", "torchviz",
     "transformer_engine", "triton", "trl", "vllm", "wandb", "weaviate",

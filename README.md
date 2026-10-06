@@ -15,7 +15,7 @@ Difficulty: Beginner
 ## Master Documentation
 
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
-[![Documentation](https://img.shields.io/badge/Docs-411%20Files-orange?style=flat-square)](./docs)
+[![Documentation](https://img.shields.io/badge/Docs-412%20Files-orange?style=flat-square)](./docs)
 [![Phases](https://img.shields.io/badge/Phases-7-purple?style=flat-square)](#-learning-phases)
 [![Modules](https://img.shields.io/badge/Modules-33-success?style=flat-square)](#-summary-statistics)
 
@@ -157,7 +157,7 @@ After completing Minder Academy, you will be able to:
 | Challenge | Minder Academy Solution |
 |:----------:|:----------------------:|
 | 💸 **AI infrastructure is expensive** | Run production-grade AI on affordable hardware or modest cloud instances |
-| 📚 **Documentation is scattered** | **465 files** in one organized, cross-referenced repository |
+| 📚 **Documentation is scattered** | **466 files** in one organized, cross-referenced repository |
 | 🎯 **Learning gaps exist** | Complete curriculum from infrastructure to agentic systems |
 | 📝 **Theory without practice** | **33 PRACTICE files** with runnable solutions, **47 experiments** |
 | 🗺️ **No clear path forward** | **7 phases**, **3 learning tracks**, progress tracking built-in |
@@ -453,7 +453,7 @@ graph TB
 | [1100](./docs/phases/phase1-infra/1100-network/README.md) | Network Topology | 3 | ✅ |
 | [1200](./docs/phases/phase1-infra/1200-virtualization/README.md) | Virtualization | 4 | ✅ |
 | [1300](./docs/phases/phase1-infra/1300-kubernetes/README.md) | Kubernetes | 3 | ✅ |
-| [1400](./docs/phases/phase1-infra/1400-llmops/README.md) | LLMOps | 4 | ✅ |
+| [1400](./docs/phases/phase1-infra/1400-llmops/README.md) | LLMOps | 5 | ✅ |
 | [1500](./docs/phases/phase1-infra/1500-monitoring/README.md) | Monitoring | 3 | ✅ |
 
 **Topics:** Network Design, Proxmox, GPU Passthrough, K3s, vLLM, TGI, Observability
@@ -551,7 +551,7 @@ graph TB
 ## Documentation Index
 
 <details>
-<summary><b>📁 Phase 1: Infrastructure Fabric [1000]</b> - 17 documents</summary>
+<summary><b>📁 Phase 1: Infrastructure Fabric [1000]</b> - 18 documents</summary>
 
 ### [1100: Network Topology](./docs/phases/phase1-infra/1100-network/README.md)
 - [1101: Internet Uplink & Modem Configuration](./docs/phases/phase1-infra/1100-network/1101-Fiber-GPON-Modem.md)
@@ -572,6 +572,7 @@ graph TB
 ### [1400: LLMOps](./docs/phases/phase1-infra/1400-llmops/README.md)
 - [1401: Ollama Enterprise](./docs/phases/phase1-infra/1400-llmops/1401-Ollama-Enterprise.md)
 - [1402: vLLM and TGI](./docs/phases/phase1-infra/1400-llmops/1402-vLLM-and-TGI.md)
+- [1405: SGLang RadixAttention Serving](./docs/phases/phase1-infra/1400-llmops/1405-SGLang.md)
 - [1403: vLLM Production](./docs/phases/phase1-infra/1400-llmops/guides/1403-vLLM-Production-Deployment.md)
 - [1404: TGI Deployment](./docs/phases/phase1-infra/1400-llmops/guides/1404-TGI-Deployment-Guide.md)
 
@@ -1301,14 +1302,14 @@ docker compose -f configs/docker-compose.yml up -d qdrant
 
 | Phase | Documents |
 |:-----:|:---------:|
-| **1** | 39 |
+| **1** | 40 |
 | **2** | 32 |
 | **3** | 35 |
 | **4** | 41 |
 | **5** | 41 |
 | **6** | 38 |
 | **7** | 37 |
-| **Phase total** | **263** |
+| **Phase total** | **264** |
 
 ### Additional Resources
 
@@ -1455,7 +1456,7 @@ SOFTWARE.
 
 *Last Updated: 2026-09-29*
 
-*465 Documentation Files | 33 Technical Modules | 7 Learning Phases*
+*466 Documentation Files | 33 Technical Modules | 7 Learning Phases*
 
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
 [![Contact](https://img.shields.io/badge/Contact-FAQ-blue?style=flat-square)](./docs/00-META/FAQ.md)
