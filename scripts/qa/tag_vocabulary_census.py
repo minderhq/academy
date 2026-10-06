@@ -69,7 +69,10 @@ WHITELIST = frozenset([
     'bitnet', 'bnn', 'bpe', 'bridge', 'bridge-mode', 'cag', 'calculus',
     'case-study', 'career', 'cheatsheet', 'checkpoint', 'chroma', 'ci-cd', 'clip', 'code-interpreter', 'cognition',
     'comparison',
-    'communication', 'compression', 'configuration', 'context', 'context-window', 'cpu-gpu-hybrid',
+    'communication', 'compression', 'configuration',
+    # tick-738 deliberate same-commit extension: 'constrained-decoding' joins for
+    # the function-calling training and constrained decoding lesson (7106) - the tag vocabulary grows with the corpus
+    'constrained-decoding', 'context', 'context-window', 'cpu-gpu-hybrid',
     'crewai', 'cuda', 'data-curation', 'ddp', 'deepspeed', 'deployment', 'diagram',
     'devops', 'differential-privacy', 'distillation', 'distributed', 'distributed-training', 'docker',
     'dpo', 'dynamic-batching', 'embeddings', 'encoder-decoder', 'enterprise', 'evaluation', 'exl2',

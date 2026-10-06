@@ -5,7 +5,7 @@ Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
-Estimated Time: 16 hours
+Estimated Time: 20 hours
 Tags: ['module', 'agents', 'react']
 ---
 
@@ -31,6 +31,7 @@ After completing this module, you will be able to:
 - **Agent Design**: Choose architectures for specific use cases
 - **Evaluation**: Score trajectories with deterministic scorers, LLM judges, and confidence intervals
 - **Reflection & Self-Correction**: Make the loop grade and improve its own answers
+- **Function Calling**: Train the tool choice from pairs and guarantee the call syntax with a grammar mask
 
 ## Module Contents
 
@@ -105,6 +106,21 @@ After completing this module, you will be able to:
 - Watch the vote converge on the wrong mode when the wrong mode is plural
 - Price intrinsic vs verifier-gated correction on the same batch
 
+### [7106: Function-Calling Training and Constrained Decoding](./7106-Function-Calling-Training-and-Constrained-Decoding.md)
+**The Grammar Owns the Syntax, the Data Owns the Semantics**
+
+- The grammar-to-mask mechanism: a call grammar compiled to a twelve-state FSM
+- Prompting is not constraining: 0.7940 valid bought with retries against 1.0000 guaranteed
+- Training the call: the Gorilla recipe and the pair walk to the coverage ceiling
+- Syntax guarantees, semantics trains: the 2x2 and its only deployable cell
+- The campaign ledger: four stacks, one-time training bill, per-request mask guarantee
+
+**Experiments:**
+- Compile the call grammar and flip validity with the mask alone
+- Price prompting vs masking on the same request stream
+- Train the tool choice and watch the walk plateau at the vocabulary ceiling
+- Run the four-stack campaign ledger
+
 ## Prerequisites
 
 Before starting this module, ensure you have:
@@ -151,10 +167,11 @@ This module connects to:
 | [7102: Planning and Decomposition](./7102-Planning-Decomposition.md) | 4 hours |
 | [7104: Agent Evaluation and Observability](./7104-Agent-Evaluation-and-Observability.md) | 4 hours |
 | [7105: Reflection and Self-Correction](./7105-Reflection-and-Self-Correction.md) | 4 hours |
+| [7106: Function-Calling Training and Constrained Decoding](./7106-Function-Calling-Training-and-Constrained-Decoding.md) | 4 hours |
 | Guide ([7103](./guides/7103-ReAct-Implementation-Guide.md)) | 4 hours |
 | Quiz | 30 minutes |
 | Practice | 7 hours |
-| **Total** | **27.5 hours** |
+| **Total** | **31.5 hours** |
 
 ## Resources
 
