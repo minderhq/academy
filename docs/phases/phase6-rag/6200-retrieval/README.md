@@ -5,7 +5,7 @@ Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
-Estimated Time: 9 hours
+Estimated Time: 12 hours
 Tags: ['module', 'rag', 'retrieval']
 ---
 
@@ -27,6 +27,7 @@ After completing this module, you will be able to:
 
 - **Hybrid Search**: Combine semantic and keyword search
 - **Re-ranking**: Improve retrieved results with cross-encoders
+- **Diversity & Boosting**: Balance relevance against redundancy with MMR; weight sources with document boosts
 - **Query Expansion**: Enhance queries for better retrieval
 - **Retrieval Logistics**: Optimize chunk size, top-K, and overlap
 - **Evaluation**: Measure retrieval quality with precision/recall
@@ -63,6 +64,22 @@ After completing this module, you will be able to:
 - Optimize retrieval parameters
 - Build evaluation framework
 - [6203: Advanced Retrieval](./6203-Advanced-Retrieval.md)
+
+### [6204: Diversification and Boosting](./6204-Diversification-and-Boosting.md)
+**Selection-Side Retrieval Levers**
+
+- The redundancy failure: one fact five times with every relevance metric green
+- Maximal Marginal Relevance: the greedy λ·rel − (1−λ)·redundancy dial
+- `max_marginal_relevance_search`: the k / fetch_k / lambda_mult contract
+- Document boosting: provenance weights that arbitrate near-ties (0.979 vs 0.988)
+- Boost placement: fused-score vs channel-scoped arithmetic and the effective α
+- Measuring diversity: intra-list similarity and distinct-fact coverage
+
+**Experiments:**
+- Tune MMR lambda until the paraphrase cluster breaks
+- Compute the λ crossover instead of dialing by taste
+- Apply provenance boosts to the fused score and to one channel
+- Add ILS and fact coverage to a retrieval eval
 
 ## Prerequisites
 
@@ -110,9 +127,11 @@ This module connects to:
 | Experiments (6201) | 3 hours |
 | Reading (6202) | 3 hours |
 | Experiments (6202) | 4 hours |
+| Reading (6204) | 3 hours |
+| Experiments (6204) | 2 hours |
 | Quiz | 30 minutes |
 | Practice | 6-8 hours |
-| **Total** | **19-21 hours** |
+| **Total** | **24-26 hours** |
 
 ## Resources
 

@@ -306,7 +306,7 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [assessment: PRACTICE](../phases/phase5-finetuning/5500-advanced-optimization/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase5-finetuning/5500-advanced-optimization/assessment/QUIZ.md)
 
-## Phase 6 - RAG & Data Nexus (38 files)
+## Phase 6 - RAG & Data Nexus (39 files)
 
 - [CHECKPOINT](../phases/phase6-rag/CHECKPOINT.md)
 - [README](../phases/phase6-rag/README.md)
@@ -321,13 +321,14 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [assessment: PRACTICE](../phases/phase6-rag/6100-vector/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase6-rag/6100-vector/assessment/QUIZ.md)
 
-### [6200-retrieval] (3 lessons, 0 guides)
+### [6200-retrieval] (4 lessons, 0 guides)
 
 - [PREREQUISITES](../phases/phase6-rag/6200-retrieval/PREREQUISITES.md)
 - [README](../phases/phase6-rag/6200-retrieval/README.md)
 - [6201-Hybrid-Search](../phases/phase6-rag/6200-retrieval/6201-Hybrid-Search.md)
 - [6202-Re-ranking-and-Retrieval-Logistics](../phases/phase6-rag/6200-retrieval/6202-Re-ranking-and-Retrieval-Logistics.md)
 - [6203-Advanced-Retrieval](../phases/phase6-rag/6200-retrieval/6203-Advanced-Retrieval.md)
+- [6204-Diversification-and-Boosting](../phases/phase6-rag/6200-retrieval/6204-Diversification-and-Boosting.md)
 - [assessment: PRACTICE](../phases/phase6-rag/6200-retrieval/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase6-rag/6200-retrieval/assessment/QUIZ.md)
 
@@ -714,17 +715,17 @@ build's written walkthroughs live inside the lessons themselves - see the
 ## Statistics
 
 ```text
-Total markdown files: 470
-  docs/: 416, experiments/: 48, configs/: 4, repo root: 2
+Total markdown files: 471
+  docs/: 417, experiments/: 48, configs/: 4, repo root: 2
 Phases: 7
 Learning modules (topics): 33
-Phase files (lessons, guides, assessments, topic README/PREREQUISITES): 268
+Phase files (lessons, guides, assessments, topic README/PREREQUISITES): 269
   Phase 1 - Infrastructure Fabric: 40
   Phase 2 - Cognitive Science & Frameworks: 32
   Phase 3 - Transformer Physics: 36
   Phase 4 - Quantization & Compression: 42
   Phase 5 - Fine-Tuning & Alignment: 42
-  Phase 6 - Data Nexus: 38
+  Phase 6 - Data Nexus: 39
   Phase 7 - Agentic Systems: 38
 Volume guides: 7
 Phase assessment sets: 14 (7 phases x quiz + practice)

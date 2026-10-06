@@ -15,7 +15,7 @@ Difficulty: Beginner
 ## Master Documentation
 
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
-[![Documentation](https://img.shields.io/badge/Docs-416%20Files-orange?style=flat-square)](./docs)
+[![Documentation](https://img.shields.io/badge/Docs-417%20Files-orange?style=flat-square)](./docs)
 [![Phases](https://img.shields.io/badge/Phases-7-purple?style=flat-square)](#-learning-phases)
 [![Modules](https://img.shields.io/badge/Modules-33-success?style=flat-square)](#-summary-statistics)
 
@@ -157,7 +157,7 @@ After completing Minder Academy, you will be able to:
 | Challenge | Minder Academy Solution |
 |:----------:|:----------------------:|
 | 💸 **AI infrastructure is expensive** | Run production-grade AI on affordable hardware or modest cloud instances |
-| 📚 **Documentation is scattered** | **470 files** in one organized, cross-referenced repository |
+| 📚 **Documentation is scattered** | **471 files** in one organized, cross-referenced repository |
 | 🎯 **Learning gaps exist** | Complete curriculum from infrastructure to agentic systems |
 | 📝 **Theory without practice** | **33 PRACTICE files** with runnable solutions, **47 experiments** |
 | 🗺️ **No clear path forward** | **7 phases**, **3 learning tracks**, progress tracking built-in |
@@ -524,7 +524,7 @@ graph TB
 | Module | Topic | Docs | Status |
 |:------:|-------|:----:|:------:|
 | [6100](./docs/phases/phase6-rag/6100-vector/README.md) | Vector Architectures | 3 | ✅ |
-| [6200](./docs/phases/phase6-rag/6200-retrieval/README.md) | Retrieval | 2 | ✅ |
+| [6200](./docs/phases/phase6-rag/6200-retrieval/README.md) | Retrieval | 3 | ✅ |
 | [6300](./docs/phases/phase6-rag/6300-context/README.md) | Context Management | 4 | ✅ |
 | [6400](./docs/phases/phase6-rag/6400-vector-databases/README.md) | Vector Databases | 3 | ✅ |
 | [6500](./docs/phases/phase6-rag/6500-mlops-pipelines/README.md) | MLOps Pipelines | 3 | ✅ |
@@ -693,7 +693,7 @@ graph TB
 </details>
 
 <details>
-<summary><b>📁 Phase 6: Data Nexus [6000]</b> - 15 documents</summary>
+<summary><b>📁 Phase 6: Data Nexus [6000]</b> - 16 documents</summary>
 
 ### [6100: Vector](./docs/phases/phase6-rag/6100-vector/README.md)
 - [6101: HNSW Indexing](./docs/phases/phase6-rag/6100-vector/6101-HNSW-Indexing.md)
@@ -703,6 +703,7 @@ graph TB
 ### [6200: Retrieval](./docs/phases/phase6-rag/6200-retrieval/README.md)
 - [6201: Hybrid Search](./docs/phases/phase6-rag/6200-retrieval/6201-Hybrid-Search.md)
 - [6202: Re-ranking](./docs/phases/phase6-rag/6200-retrieval/6202-Re-ranking-and-Retrieval-Logistics.md)
+- [6204: Diversification and Boosting](./docs/phases/phase6-rag/6200-retrieval/6204-Diversification-and-Boosting.md)
 
 ### [6300: Context](./docs/phases/phase6-rag/6300-context/README.md)
 - [6301: Knowledge Graphs](./docs/phases/phase6-rag/6300-context/6301-Neo4j-and-Knowledge-Graphs.md)
@@ -1311,9 +1312,9 @@ docker compose -f configs/docker-compose.yml up -d qdrant
 | **3** | 36 |
 | **4** | 42 |
 | **5** | 42 |
-| **6** | 38 |
+| **6** | 39 |
 | **7** | 38 |
-| **Phase total** | **268** |
+| **Phase total** | **269** |
 
 ### Additional Resources
 
@@ -1460,7 +1461,7 @@ SOFTWARE.
 
 *Last Updated: 2026-09-29*
 
-*470 Documentation Files | 33 Technical Modules | 7 Learning Phases*
+*471 Documentation Files | 33 Technical Modules | 7 Learning Phases*
 
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
 [![Contact](https://img.shields.io/badge/Contact-FAQ-blue?style=flat-square)](./docs/00-META/FAQ.md)

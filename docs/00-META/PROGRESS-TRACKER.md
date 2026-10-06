@@ -21,10 +21,10 @@ Volume 2: AI Foundations          [░░░░░░░░░░░] 0% (0/32)
 Volume 3: LLM Internals           [░░░░░░░░░░░] 0% (0/36)
 Volume 4: Quantization Mastery    [░░░░░░░░░░░] 0% (0/42)
 Volume 5: Fine-Tuning Expert      [░░░░░░░░░░░] 0% (0/42)
-Volume 6: RAG & Data Systems      [░░░░░░░░░░░] 0% (0/38)
+Volume 6: RAG & Data Systems      [░░░░░░░░░░░] 0% (0/39)
 Volume 7: Production Systems      [░░░░░░░░░░░] 0% (0/38)
 
-Total: [░░░░░░░░░░░░░░░░░] 0% (0/416 core files)
+Total: [░░░░░░░░░░░░░░░░░] 0% (0/417 core files)
 ```
 
 ---
@@ -186,7 +186,7 @@ Total: [░░░░░░░░░░░░░░░░░] 0% (0/416 core file
 
 ---
 
-### Volume 6: RAG & Data Systems (38 files)
+### Volume 6: RAG & Data Systems (39 files)
 **"Build Intelligent Data Systems"** - 40-45 hours | Difficulty: ⭐⭐⭐ Advanced
 
 - [ ] **VOLUME-6-Data-Nexus.md** - Volume guide (read first!)
@@ -387,7 +387,7 @@ Notes:
 ### Essential Reading
 - **[VOLUME-GUIDE.md](VOLUME-GUIDE.md)** - Start here! Overview of all 7 volumes
 - **[0000-LEARNING-PATH.md](0000-LEARNING-PATH.md)** - Recommended learning paths
-- **[SITEMAP.md](SITEMAP.md)** - Full document list (416 files)
+- **[SITEMAP.md](SITEMAP.md)** - Full document list (417 files)
 - **[README.md](../../README.md)** - Project overview
 
 ### Troubleshooting
@@ -407,7 +407,7 @@ Notes:
 | Metric | Target | Current | % |
 |--------|--------|---------|---|
 | **Volumes Completed** | 7 | 0 | 0% |
-| **Core Documents** | 416 | 0 | 0% |
+| **Core Documents** | 417 | 0 | 0% |
 | **Labs Completed** | 15 | 0 | 0% |
 | **Experiments** | 47 | 0 | 0% |
 | **Tutorials** | 15 | 0 | 0% |

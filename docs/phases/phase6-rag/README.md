@@ -341,6 +341,7 @@ Conclusion: Self-hosted pays for itself within a few months
 | [6201: Hybrid Search](./6200-retrieval/6201-Hybrid-Search.md) | BM25 + Vector combination | 3h | Intermediate |
 | [6202: Re-ranking](./6200-retrieval/6202-Re-ranking-and-Retrieval-Logistics.md) | Post-search relevance filtering | 3h | Intermediate |
 | [6203: Advanced Retrieval](./6200-retrieval/6203-Advanced-Retrieval.md) | Query expansion, fusion | 2h | Advanced |
+| [6204: Diversification and Boosting](./6200-retrieval/6204-Diversification-and-Boosting.md) | MMR diversification + source boosting | 3h | Advanced |
 
 **What You'll Learn:**
 - Hybrid search (dense + sparse retrieval)
@@ -348,12 +349,14 @@ Conclusion: Self-hosted pays for itself within a few months
 - Re-ranking with cross-encoders
 - Rank fusion strategies
 - Query expansion techniques
+- Diversity-aware retrieval (MMR) and document boosting
 
 **Hands-On Practice:**
 - Build hybrid search pipeline
 - Implement re-ranking layer
 - Optimize retrieval precision/recall
 - A/B test retrieval strategies
+- Tune MMR lambda and source boosts on a redundant corpus
 
 ### [6300] Context Augmentation
 
@@ -462,11 +465,11 @@ graph TD
 | Module | Reading | Practice | Total |
 |--------|---------|----------|-------|
 | 6100: Vector Architectures | 8h | 6h | 14h |
-| 6200: RAG 2.0 | 8h | 6h | 14h |
+| 6200: RAG 2.0 | 11h | 6h | 17h |
 | 6300: Context Augmentation | 16h | 10h | 26h |
 | 6400: Vector Databases | 8h | 4h | 12h |
 | 6500: MLOps Pipelines | 12h | — | 12h |
-| **Total** | **52h** | **26h** | **78h** |
+| **Total** | **55h** | **26h** | **81h** |
 
 *6500 practice time is not yet estimated in its PRACTICE.md; phase totals cover the estimated modules.*
 
