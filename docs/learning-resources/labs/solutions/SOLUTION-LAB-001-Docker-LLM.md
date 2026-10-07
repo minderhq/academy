@@ -1,7 +1,7 @@
 ---
 Document ID: SOLUTION-LAB-001
 Title: "SOLUTION-LAB-001: Docker & LLM Fundamentals"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Beginner
 Tags: ['solution', 'docker', 'ollama']
@@ -649,7 +649,7 @@ docker exec api ping -c 3 ollama
 nvidia-smi
 
 # Use smaller model
-docker exec ollama ollama pull phi3
+docker exec ollama ollama pull phi4-mini
 
 # Increase batch size in code
 ```

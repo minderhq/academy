@@ -1,7 +1,7 @@
 ---
 Document ID: TROUBLESHOOTING-QUICKSTART
 Title: "Quick Start Troubleshooting Guide"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Beginner
 Tags: ['troubleshooting', 'quickstart', 'llm']
@@ -11,7 +11,7 @@ Tags: ['troubleshooting', 'quickstart', 'llm']
 
 **Common Issues & Solutions for Quick Start**
 
-**Last Updated:** 2026-09-30
+**Last Updated:** 2026-10-07
 **Reading Time:** 5 minutes
 
 ---
@@ -150,8 +150,8 @@ curl -fsSL https://ollama.com/install.sh | sh
 
 3. **Use smaller model first:**
    ```bash
-   # Try 2GB model instead of 4GB
-   ollama pull phi3
+   # Try a 2.5GB model instead of 4GB
+   ollama pull phi4-mini
    ```
 
 4. **Check if ISP throttling:**
@@ -292,8 +292,8 @@ curl -fsSL https://ollama.com/install.sh | sh
 2. **Use smaller model:**
    ```bash
    # Instead of mistral (7B)
-   ollama pull phi3      # 3.8B parameters
-   ollama pull gemma:2b  # 2B parameters
+   ollama pull phi4-mini  # 3.8B parameters
+   ollama pull gemma2:2b # 2.6B parameters
    ```
 
 3. **Close other applications:**
@@ -354,13 +354,13 @@ curl -fsSL https://ollama.com/install.sh | sh
 
 1. **Use smaller/faster model:**
    ```bash
-   ollama pull phi3
-   ollama run phi3 "test"
+   ollama pull phi4-mini
+   ollama run phi4-mini "test"
    ```
 
 2. **Reduce context length:**
    ```bash
-   ollama run phi3 --ctx-size 512
+   ollama run phi4-mini --ctx-size 512
    ```
 
 3. **Use quantized model:**
@@ -450,8 +450,8 @@ rm -rf ~/.ollama
 
 **3. Test with smallest model:**
 ```bash
-ollama pull phi3
-ollama run phi3 "test"
+ollama pull phi4-mini
+ollama run phi4-mini "test"
 ```
 
 ---
@@ -484,7 +484,7 @@ After troubleshooting, verify:
 - [ ] `ollama --version` works
 - [ ] `ollama serve` starts without errors
 - [ ] `ollama list` shows installed models
-- [ ] `ollama run phi3 "test"` generates response
+- [ ] `ollama run phi4-mini "test"` generates response
 
 **All checks pass?** You're ready! Continue with [TUTORIAL-001-Hello-LLM.md](../learning-resources/tutorials/TUTORIAL-001-Hello-LLM.md)
 

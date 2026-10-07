@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-001
 Title: "LAB-001: Docker & LLM Fundamentals"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 2 hours
@@ -137,7 +137,7 @@ class ChatResponse(BaseModel):
 def root():
     return {
         "service": "LLM API",
-        "models": ["mistral", "phi3", "llama2"],
+        "models": ["mistral", "phi4-mini", "llama3.2"],
         "endpoints": {
             "/v1/chat/completions": "OpenAI-compatible chat",
             "/models": "List available models",

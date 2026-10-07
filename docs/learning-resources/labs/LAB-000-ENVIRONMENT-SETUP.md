@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-000
 Title: "LAB-000: Environment Setup"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 1 hour
@@ -273,7 +273,7 @@ Refer to [ENVIRONMENT-SETUP.md](../../00-META/ENVIRONMENT-SETUP.md#step-4-ollama
 # Open new terminal (keep ollama serve running)
 
 # Pull a small model for testing
-ollama pull phi3
+ollama pull phi4-mini
 # OR
 ollama pull mistral:7b
 ```
@@ -281,7 +281,7 @@ ollama pull mistral:7b
 **Test Chat:**
 
 ```bash
-ollama run phi3 "Hello! What is 2+2?"
+ollama run phi4-mini "Hello! What is 2+2?"
 ```
 
 **Expected Response:**
@@ -300,7 +300,7 @@ The answer is 4.
 - Try again (Ollama resumes automatically)
 
 **"Out of memory":**
-- Use smaller model: `ollama pull phi3`
+- Use smaller model: `ollama pull phi4-mini`
 - Close other applications
 
 **Verification:**
@@ -324,7 +324,7 @@ print("✅ Ollama imported")
 print(f"✅ PyTorch {torch.__version__}")
 
 # Test Ollama
-response = ollama.generate(model='phi3', prompt='Say hello')
+response = ollama.generate(model='phi4-mini', prompt='Say hello')
 print(f"✅ LLM Response: {response['response'][:50]}...")
 
 print("\n🎉 Environment setup complete!")

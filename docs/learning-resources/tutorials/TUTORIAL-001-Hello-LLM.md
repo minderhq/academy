@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-001
 Title: "TUTORIAL-001: Hello LLM! - Your First AI Model"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 30 minutes
@@ -303,7 +303,7 @@ Now create one for: "Alice, 25, London"
 ### Issue: "Out of memory"
 **Solution:** Try a smaller model:
 ```bash
-ollama pull phi3  # 3B model, very light
+ollama pull phi4-mini  # 3.8B model, very light
 ```
 
 ### Issue: "Slow response"

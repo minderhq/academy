@@ -1,7 +1,7 @@
 ---
 Document ID: QUICK-START
 Title: "QUICK START GUIDE: Get Started in 30 Minutes"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Beginner
 Tags: ['quickstart', 'tutorial', 'llm']
@@ -44,7 +44,7 @@ In the next 30 minutes, you will:
 - Linux: Use your default terminal
 
 **If you have limited resources:**
-- 8GB RAM: Use `mistral:7b` or `phi3`
+- 8GB RAM: Use `mistral:7b` or `phi4-mini`
 - CPU-only: Models will run slower but work
 - Limited disk: Start with one model at a time
 
@@ -137,7 +137,7 @@ ollama pull mistral
 ```bash
 # Your system might not have enough RAM
 # Try a smaller model:
-ollama pull phi3            # Only ~2GB
+ollama pull phi4-mini       # Only ~2.5GB
 ollama pull mistral:7b      # Explicit 7B version
 ```
 
@@ -330,7 +330,7 @@ You're now ready for the full learning journey!
 
 **Solution:**
 - Close other applications
-- Try a smaller model: `ollama pull phi3`
+- Try a smaller model: `ollama pull phi4-mini`
 - Add more RAM to your computer
 
 ### Issue: "Model download is slow"
