@@ -303,10 +303,10 @@ curl -fsSL https://ollama.com/install.sh | sh
 4. **Adjust Ollama memory settings:**
    ```bash
    # Set maximum memory (in GB)
-   ollama run mistral --num-gpu 0  # Force CPU mode
+   CUDA_VISIBLE_DEVICES=-1 ollama run mistral  # Force CPU mode (NVIDIA)
 
    # Limit context length (less memory)
-   ollama run mistral --ctx-size 512  # Instead of default 2048
+   ollama run mistral  # then in REPL: /set parameter num_ctx 512
    ```
 
 ---
@@ -326,18 +326,18 @@ curl -fsSL https://ollama.com/install.sh | sh
 
 2. **Use CPU mode:**
    ```bash
-   ollama run mistral --num-gpu 0
+   CUDA_VISIBLE_DEVICES=-1 ollama run mistral
    ```
 
 3. **Use quantized model:**
    ```bash
    # 4-bit quantization uses less VRAM
-   ollama pull mistral:7b-q4_0
+   ollama pull mistral:7b-instruct-q4_0
    ```
 
 4. **Reduce context size:**
    ```bash
-   ollama run mistral --ctx-size 1024
+   ollama run mistral  # then in REPL: /set parameter num_ctx 1024
    ```
 
 ---
@@ -360,12 +360,12 @@ curl -fsSL https://ollama.com/install.sh | sh
 
 2. **Reduce context length:**
    ```bash
-   ollama run phi4-mini --ctx-size 512
+   ollama run phi4-mini  # then in REPL: /set parameter num_ctx 512
    ```
 
 3. **Use quantized model:**
    ```bash
-   ollama pull mistral:7b-q4_0
+   ollama pull mistral:7b-instruct-q4_0
    ```
 
 4. **Accept slower performance:**
