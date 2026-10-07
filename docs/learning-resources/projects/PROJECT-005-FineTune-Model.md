@@ -1,7 +1,7 @@
 ---
 Document ID: PROJECT-005
 Title: "CAPSTONE PROJECT-005: Fine-Tune Domain Model"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Advanced
 Tags: ['project', 'lora', 'finetuning', 'peft']
@@ -342,7 +342,7 @@ training_args = TrainingArguments(
     lr_scheduler_type="cosine",
     warmup_steps=100,
     weight_decay=0.01,
-    evaluation_strategy="no",
+    eval_strategy="no",
     report_to=["tensorboard"],
 )
 

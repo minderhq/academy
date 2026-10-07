@@ -237,9 +237,9 @@ def calculate_summands(
 #### Implementation Template
 
 ```python
-from transformers import AutoModelForCausalLM, AutoTokenizer, TrainingArguments
+from transformers import AutoModelForCausalLM, AutoTokenizer
 from peft import LoraConfig, get_peft_model
-from trl import SFTTrainer
+from trl import SFTConfig, SFTTrainer
 
 # Load base model
 model = AutoModelForCausalLM.from_pretrained(
@@ -262,7 +262,7 @@ lora_config = LoraConfig(
 model = get_peft_model(model, lora_config)
 
 # Training configuration
-training_args = TrainingArguments(
+training_args = SFTConfig(
     output_dir="./results",
     num_train_epochs=3,
     per_device_train_batch_size=4,
@@ -270,14 +270,14 @@ training_args = TrainingArguments(
     learning_rate=2e-4,
     fp16=True,
     logging_steps=10,
+    dataset_text_field="text",
 )
 
 # Train
 trainer = SFTTrainer(
     model=model,
     train_dataset=your_dataset,
-    dataset_text_field="text",
-    tokenizer=tokenizer,
+    processing_class=tokenizer,
     args=training_args,
 )
 

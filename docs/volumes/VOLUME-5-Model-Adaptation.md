@@ -1,7 +1,7 @@
 ---
 Document ID: VOLUME-5
 Title: "Volume 5: Model Adaptation"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Advanced
 Tags: ['volume', 'finetuning', 'lora', 'dpo']
@@ -283,7 +283,7 @@ completion = "AI is artificial intelligence..."
 
 **DPO Implementation:**
 ```python
-from trl import DPOTrainer
+from trl import DPOConfig, DPOTrainer
 
 # Preference pairs
 {
@@ -293,17 +293,17 @@ from trl import DPOTrainer
 }
 
 # DPO training
-dpo_config = {
-    "beta": 0.1,  # DPO temperature
-    "learning_rate": 5e-5,
-}
+dpo_config = DPOConfig(
+    beta=0.1,  # DPO temperature
+    learning_rate=5e-5,
+)
 
 dpo_trainer = DPOTrainer(
     model=model,
     ref_model=ref_model,
-    beta=dpo_config["beta"],
+    args=dpo_config,
     train_dataset=preference_dataset,
-    tokenizer=tokenizer,
+    processing_class=tokenizer,
 )
 
 dpo_trainer.train()
@@ -336,7 +336,7 @@ dpo_trainer.train()
 
 # Stage 2: SFT (Supervised Fine-Tuning)
 # Train on instruction-response pairs
-trainer = SFTTrainer(model, dataset)
+trainer = SFTTrainer(model, train_dataset=dataset)
 
 # Stage 3: Reward Modeling (optional for DPO)
 # Train reward model on human preferences
@@ -344,7 +344,7 @@ reward_model = train_reward_model(preference_dataset)
 
 # Stage 4: Alignment (DPO or RLHF)
 # Align with human preferences
-dpo_trainer = DPOTrainer(model, preference_dataset)
+dpo_trainer = DPOTrainer(model, train_dataset=preference_dataset)
 
 # Stage 5: Evaluation
 # Test on held-out preferences
@@ -391,7 +391,7 @@ filtered_data = filter_quality(synthetic_data)
 
 # 3. Train student on synthetic data
 student_model = load_model("TinyLlama/TinyLlama-1.1B-Chat-v1.0")
-trainer = SFTTrainer(student_model, filtered_data)
+trainer = SFTTrainer(student_model, train_dataset=filtered_data)
 trainer.train()
 
 # Result: Student model with teacher's knowledge

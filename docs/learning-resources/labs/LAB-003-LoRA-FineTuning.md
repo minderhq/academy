@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-003
 Title: "LAB-003: LoRA Fine-Tuning with QLoRA"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -416,7 +416,7 @@ from transformers import (
     Trainer
 )
 from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
-from trl import SFTTrainer
+from trl import SFTConfig, SFTTrainer
 import json
 
 # Configuration
@@ -547,7 +547,7 @@ def train():
     print(f"Dataset size: {len(dataset)}")
 
     # Training arguments
-    training_args = TrainingArguments(
+    training_args = SFTConfig(
         output_dir=OUTPUT_DIR,
         num_train_epochs=NUM_EPOCHS,
         per_device_train_batch_size=BATCH_SIZE,
@@ -564,19 +564,19 @@ def train():
         lr_scheduler_type="cosine",
         report_to="none",  # Set to "wandb" if using Weights & Biases
         save_strategy="steps",
-        evaluation_strategy="steps",
+        eval_strategy="steps",
         load_best_model_at_end=True,
+        dataset_text_field="text",
+        max_length=MAX_SEQ_LENGTH,
+        packing=False,
     )
 
     # Create trainer
     trainer = SFTTrainer(
         model=model,
-        tokenizer=tokenizer,
+        processing_class=tokenizer,
         args=training_args,
         train_dataset=dataset,
-        dataset_text_field="text",
-        max_seq_length=MAX_SEQ_LENGTH,
-        packing=False,
     )
 
     print("Starting training...")
