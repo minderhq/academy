@@ -8,6 +8,18 @@ copyright: Copyright &copy; Minder Academy - MIT License
 docs_dir: docs
 site_dir: site
 
+hooks:
+  - hooks.py
+
+# Corpus docs link to repo-root companion material (experiments/, configs/,
+# README.md) that lives outside docs/. hooks.py copies it into site/ after
+# the build, so these links resolve on the deployed site; mkdocs itself must
+# not flag them, hence not_found stays at info (the QA fleet's linkcheck and
+# casecheck remain the in-corpus link authority).
+validation:
+  links:
+    not_found: info
+
 theme:
   name: material
   language: en
@@ -39,9 +51,518 @@ theme:
     - search.highlight
     - search.share
     - content.code.copy
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.indexes
+    - navigation.footer
+    - navigation.expand
+    - content.tabs.link
 
-# No explicit nav: every doc under docs/ is included automatically, with
-# each directory's README.md serving as its section index page.
+nav:
+  - Home: index.md
+  - Start Here:
+    - "QUICK-START": 00-META/QUICK-START.md
+    - "0000-LEARNING-PATH": 00-META/0000-LEARNING-PATH.md
+    - "LEARNING-PATHS-DETAILED": 00-META/LEARNING-PATHS-DETAILED.md
+    - "ENVIRONMENT-SETUP": 00-META/ENVIRONMENT-SETUP.md
+    - "PROGRESS-CHECKPOINTS": 00-META/PROGRESS-CHECKPOINTS.md
+    - "FAQ": 00-META/FAQ.md
+    - "GLOSSARY": 00-META/GLOSSARY.md
+    - "TROUBLESHOOTING-QUICKSTART": 00-META/TROUBLESHOOTING-QUICKSTART.md
+    - "RESOURCES": 00-META/RESOURCES.md
+  - "Phase 1 - Infrastructure Fabric":
+    - index_file: phases/phase1-infra/README.md
+    - "CHECKPOINT": phases/phase1-infra/CHECKPOINT.md
+    - "1100-network":
+      - index_file: phases/phase1-infra/1100-network/README.md
+      - "PREREQUISITES": phases/phase1-infra/1100-network/PREREQUISITES.md
+      - "1101-Fiber-GPON-Modem": phases/phase1-infra/1100-network/1101-Fiber-GPON-Modem.md
+      - "1102-Star-Topology-Core": phases/phase1-infra/1100-network/1102-Star-Topology-Core.md
+      - "1103-Jumbo-Frames-and-MTU": phases/phase1-infra/1100-network/1103-Jumbo-Frames-and-MTU.md
+      - "1104-Protocol-Stack-TCP-and-DNS": phases/phase1-infra/1100-network/1104-Protocol-Stack-TCP-and-DNS.md
+      - "PRACTICE": phases/phase1-infra/1100-network/assessment/PRACTICE.md
+      - "QUIZ": phases/phase1-infra/1100-network/assessment/QUIZ.md
+    - "1200-virtualization":
+      - index_file: phases/phase1-infra/1200-virtualization/README.md
+      - "PREREQUISITES": phases/phase1-infra/1200-virtualization/PREREQUISITES.md
+      - "1201-Proxmox-Hypervisor-SOP": phases/phase1-infra/1200-virtualization/1201-Proxmox-Hypervisor-SOP.md
+      - "1202-TB3-UT3G-Passthrough": phases/phase1-infra/1200-virtualization/1202-TB3-UT3G-Passthrough.md
+      - "1203-Nvidia-Kernel-Module": phases/phase1-infra/1200-virtualization/1203-Nvidia-Kernel-Module.md
+      - "1204-Multi-GPU-Setup": phases/phase1-infra/1200-virtualization/1204-Multi-GPU-Setup.md
+      - "PRACTICE": phases/phase1-infra/1200-virtualization/assessment/PRACTICE.md
+      - "QUIZ": phases/phase1-infra/1200-virtualization/assessment/QUIZ.md
+    - "1300-kubernetes":
+      - index_file: phases/phase1-infra/1300-kubernetes/README.md
+      - "PREREQUISITES": phases/phase1-infra/1300-kubernetes/PREREQUISITES.md
+      - "1301-K3s-Master-Worker-Arch": phases/phase1-infra/1300-kubernetes/1301-K3s-Master-Worker-Arch.md
+      - "1302-GPU-Scheduler": phases/phase1-infra/1300-kubernetes/1302-GPU-Scheduler.md
+      - "1303-Storage-Classes": phases/phase1-infra/1300-kubernetes/1303-Storage-Classes.md
+      - "PRACTICE": phases/phase1-infra/1300-kubernetes/assessment/PRACTICE.md
+      - "QUIZ": phases/phase1-infra/1300-kubernetes/assessment/QUIZ.md
+    - "1400-llmops":
+      - index_file: phases/phase1-infra/1400-llmops/README.md
+      - "PREREQUISITES": phases/phase1-infra/1400-llmops/PREREQUISITES.md
+      - "1401-Ollama-Enterprise": phases/phase1-infra/1400-llmops/1401-Ollama-Enterprise.md
+      - "1402-vLLM-and-TGI": phases/phase1-infra/1400-llmops/1402-vLLM-and-TGI.md
+      - "1405-SGLang": phases/phase1-infra/1400-llmops/1405-SGLang.md
+      - "guide: 1403-vLLM-Production-Deployment": phases/phase1-infra/1400-llmops/guides/1403-vLLM-Production-Deployment.md
+      - "guide: 1404-TGI-Deployment-Guide": phases/phase1-infra/1400-llmops/guides/1404-TGI-Deployment-Guide.md
+      - "PRACTICE": phases/phase1-infra/1400-llmops/assessment/PRACTICE.md
+      - "QUIZ": phases/phase1-infra/1400-llmops/assessment/QUIZ.md
+    - "1500-monitoring":
+      - index_file: phases/phase1-infra/1500-monitoring/README.md
+      - "PREREQUISITES": phases/phase1-infra/1500-monitoring/PREREQUISITES.md
+      - "1501-Monitoring-and-Observability": phases/phase1-infra/1500-monitoring/1501-Monitoring-and-Observability.md
+      - "1502-Model-Drift-Detection": phases/phase1-infra/1500-monitoring/1502-Model-Drift-Detection.md
+      - "1503-LLM-Observability": phases/phase1-infra/1500-monitoring/1503-LLM-Observability.md
+      - "PRACTICE": phases/phase1-infra/1500-monitoring/assessment/PRACTICE.md
+      - "QUIZ": phases/phase1-infra/1500-monitoring/assessment/QUIZ.md
+  - "Phase 2 - Cognitive Science & Frameworks":
+    - index_file: phases/phase2-foundations/README.md
+    - "CHECKPOINT": phases/phase2-foundations/CHECKPOINT.md
+    - "2100-calculus":
+      - index_file: phases/phase2-foundations/2100-calculus/README.md
+      - "PREREQUISITES": phases/phase2-foundations/2100-calculus/PREREQUISITES.md
+      - "2101-Tensor-Algebra": phases/phase2-foundations/2100-calculus/2101-Tensor-Algebra.md
+      - "2102-Backpropagation-and-Derivatives": phases/phase2-foundations/2100-calculus/2102-Backpropagation-and-Derivatives.md
+      - "2103-Loss-Landscape-Geometry": phases/phase2-foundations/2100-calculus/2103-Loss-Landscape-Geometry.md
+      - "PRACTICE": phases/phase2-foundations/2100-calculus/assessment/PRACTICE.md
+      - "QUIZ": phases/phase2-foundations/2100-calculus/assessment/QUIZ.md
+    - "2200-frameworks":
+      - index_file: phases/phase2-foundations/2200-frameworks/README.md
+      - "PREREQUISITES": phases/phase2-foundations/2200-frameworks/PREREQUISITES.md
+      - "2201-PyTorch-Computational-Graphs": phases/phase2-foundations/2200-frameworks/2201-PyTorch-Computational-Graphs.md
+      - "2202-TensorFlow-XLA-Compilers": phases/phase2-foundations/2200-frameworks/2202-TensorFlow-XLA-Compilers.md
+      - "2203-CUDA-Kernel-Programming": phases/phase2-foundations/2200-frameworks/2203-CUDA-Kernel-Programming.md
+      - "PRACTICE": phases/phase2-foundations/2200-frameworks/assessment/PRACTICE.md
+      - "QUIZ": phases/phase2-foundations/2200-frameworks/assessment/QUIZ.md
+    - "2300-framework-engineering":
+      - index_file: phases/phase2-foundations/2300-framework-engineering/README.md
+      - "PREREQUISITES": phases/phase2-foundations/2300-framework-engineering/PREREQUISITES.md
+      - "2301-Framework-Design-Patterns": phases/phase2-foundations/2300-framework-engineering/2301-Framework-Design-Patterns.md
+      - "2302-Model-Serving-Architectures": phases/phase2-foundations/2300-framework-engineering/2302-Model-Serving-Architectures.md
+      - "2303-API-Design-for-ML": phases/phase2-foundations/2300-framework-engineering/2303-API-Design-for-ML.md
+      - "2304-Production-Deployment-Patterns": phases/phase2-foundations/2300-framework-engineering/2304-Production-Deployment-Patterns.md
+      - "guide: 2305-Framework-Comparison": phases/phase2-foundations/2300-framework-engineering/guides/2305-Framework-Comparison.md
+      - "guide: 2306-Building-Production-Framework": phases/phase2-foundations/2300-framework-engineering/guides/2306-Building-Production-Framework.md
+      - "PRACTICE": phases/phase2-foundations/2300-framework-engineering/assessment/PRACTICE.md
+      - "QUIZ": phases/phase2-foundations/2300-framework-engineering/assessment/QUIZ.md
+    - "2400-pretraining":
+      - index_file: phases/phase2-foundations/2400-pretraining/README.md
+      - "PREREQUISITES": phases/phase2-foundations/2400-pretraining/PREREQUISITES.md
+      - "2401-Pre-training-Fundamentals": phases/phase2-foundations/2400-pretraining/2401-Pre-training-Fundamentals.md
+      - "2402-Large-Scale-Training": phases/phase2-foundations/2400-pretraining/2402-Large-Scale-Training.md
+      - "2403-Evaluation-Frameworks": phases/phase2-foundations/2400-pretraining/2403-Evaluation-Frameworks.md
+      - "PRACTICE": phases/phase2-foundations/2400-pretraining/assessment/PRACTICE.md
+      - "QUIZ": phases/phase2-foundations/2400-pretraining/assessment/QUIZ.md
+  - "Phase 3 - Transformer Physics & LLM Internals":
+    - index_file: phases/phase3-transformers/README.md
+    - "CHECKPOINT": phases/phase3-transformers/CHECKPOINT.md
+    - "3100-attention":
+      - index_file: phases/phase3-transformers/3100-attention/README.md
+      - "PREREQUISITES": phases/phase3-transformers/3100-attention/PREREQUISITES.md
+      - "3101-Self-Attention-DeepDive": phases/phase3-transformers/3100-attention/3101-Self-Attention-DeepDive.md
+      - "3102-Flash-Attention": phases/phase3-transformers/3100-attention/3102-Flash-Attention.md
+      - "3103-SDPA-and-torch-compile": phases/phase3-transformers/3100-attention/3103-SDPA-and-torch-compile.md
+      - "PRACTICE": phases/phase3-transformers/3100-attention/assessment/PRACTICE.md
+      - "QUIZ": phases/phase3-transformers/3100-attention/assessment/QUIZ.md
+    - "3200-embeddings":
+      - index_file: phases/phase3-transformers/3200-embeddings/README.md
+      - "PREREQUISITES": phases/phase3-transformers/3200-embeddings/PREREQUISITES.md
+      - "3201-Rotary-Positional-Embeddings-RoPE": phases/phase3-transformers/3200-embeddings/3201-Rotary-Positional-Embeddings-RoPE.md
+      - "3202-Tokenizer-Sciences": phases/phase3-transformers/3200-embeddings/3202-Tokenizer-Sciences.md
+      - "3203-Word-Embedding-Tradition": phases/phase3-transformers/3200-embeddings/3203-Word-Embedding-Tradition.md
+      - "PRACTICE": phases/phase3-transformers/3200-embeddings/assessment/PRACTICE.md
+      - "QUIZ": phases/phase3-transformers/3200-embeddings/assessment/QUIZ.md
+    - "3300-decoding":
+      - index_file: phases/phase3-transformers/3300-decoding/README.md
+      - "PREREQUISITES": phases/phase3-transformers/3300-decoding/PREREQUISITES.md
+      - "3301-Activation-Functions": phases/phase3-transformers/3300-decoding/3301-Activation-Functions.md
+      - "3302-Normalization-Layers": phases/phase3-transformers/3300-decoding/3302-Normalization-Layers.md
+      - "3304-Decoding-Sampling-Strategies": phases/phase3-transformers/3300-decoding/3304-Decoding-Sampling-Strategies.md
+      - "guide: 3303-Activation-Function-Comparison": phases/phase3-transformers/3300-decoding/guides/3303-Activation-Function-Comparison.md
+      - "PRACTICE": phases/phase3-transformers/3300-decoding/assessment/PRACTICE.md
+      - "QUIZ": phases/phase3-transformers/3300-decoding/assessment/QUIZ.md
+    - "3400-architectures":
+      - index_file: phases/phase3-transformers/3400-architectures/README.md
+      - "PREREQUISITES": phases/phase3-transformers/3400-architectures/PREREQUISITES.md
+      - "3401-Encoder-Decoder-Architectures": phases/phase3-transformers/3400-architectures/3401-Encoder-Decoder-Architectures.md
+      - "3402-Decoder-Only-Models": phases/phase3-transformers/3400-architectures/3402-Decoder-Only-Models.md
+      - "3404-Beyond-Attention-SSMs-and-MLA": phases/phase3-transformers/3400-architectures/3404-Beyond-Attention-SSMs-and-MLA.md
+      - "guide: 3403-Model-Architecture-Comparison": phases/phase3-transformers/3400-architectures/guides/3403-Model-Architecture-Comparison.md
+      - "PRACTICE": phases/phase3-transformers/3400-architectures/assessment/PRACTICE.md
+      - "QUIZ": phases/phase3-transformers/3400-architectures/assessment/QUIZ.md
+    - "3500-multimodal":
+      - index_file: phases/phase3-transformers/3500-multimodal/README.md
+      - "PREREQUISITES": phases/phase3-transformers/3500-multimodal/PREREQUISITES.md
+      - "3501-Vision-Language-Models": phases/phase3-transformers/3500-multimodal/3501-Vision-Language-Models.md
+      - "3502-Audio-Models": phases/phase3-transformers/3500-multimodal/3502-Audio-Models.md
+      - "PRACTICE": phases/phase3-transformers/3500-multimodal/assessment/PRACTICE.md
+      - "QUIZ": phases/phase3-transformers/3500-multimodal/assessment/QUIZ.md
+  - "Phase 4 - Quantization & Compression":
+    - index_file: phases/phase4-quantization/README.md
+    - "CHECKPOINT": phases/phase4-quantization/CHECKPOINT.md
+    - "4100-low-bit":
+      - index_file: phases/phase4-quantization/4100-low-bit/README.md
+      - "PREREQUISITES": phases/phase4-quantization/4100-low-bit/PREREQUISITES.md
+      - "4101-GGUF-Physics": phases/phase4-quantization/4100-low-bit/4101-GGUF-Physics.md
+      - "4102-EXL2-and-AWQ": phases/phase4-quantization/4100-low-bit/4102-EXL2-and-AWQ.md
+      - "4103-Double-Quantization": phases/phase4-quantization/4100-low-bit/4103-Double-Quantization.md
+      - "4104-MXFP4-and-NVFP4": phases/phase4-quantization/4100-low-bit/4104-MXFP4-and-NVFP4.md
+      - "PRACTICE": phases/phase4-quantization/4100-low-bit/assessment/PRACTICE.md
+      - "QUIZ": phases/phase4-quantization/4100-low-bit/assessment/QUIZ.md
+    - "4200-kv-cache":
+      - index_file: phases/phase4-quantization/4200-kv-cache/README.md
+      - "PREREQUISITES": phases/phase4-quantization/4200-kv-cache/PREREQUISITES.md
+      - "4201-Context-Window-Physics": phases/phase4-quantization/4200-kv-cache/4201-Context-Window-Physics.md
+      - "4202-Speculative-Decoding": phases/phase4-quantization/4200-kv-cache/4202-Speculative-Decoding.md
+      - "4204-KV-Cache-Paging-and-Prefix-Caching": phases/phase4-quantization/4200-kv-cache/4204-KV-Cache-Paging-and-Prefix-Caching.md
+      - "guide: 4203-Context-Window-Optimization": phases/phase4-quantization/4200-kv-cache/guides/4203-Context-Window-Optimization.md
+      - "PRACTICE": phases/phase4-quantization/4200-kv-cache/assessment/PRACTICE.md
+      - "QUIZ": phases/phase4-quantization/4200-kv-cache/assessment/QUIZ.md
+    - "4300-quantization-aware-training":
+      - index_file: phases/phase4-quantization/4300-quantization-aware-training/README.md
+      - "PREREQUISITES": phases/phase4-quantization/4300-quantization-aware-training/PREREQUISITES.md
+      - "4301-QAT-Foundations": phases/phase4-quantization/4300-quantization-aware-training/4301-QAT-Foundations.md
+      - "4302-Fake-Quantization": phases/phase4-quantization/4300-quantization-aware-training/4302-Fake-Quantization.md
+      - "4303-QAT-for-Transformers": phases/phase4-quantization/4300-quantization-aware-training/4303-QAT-for-Transformers.md
+      - "4304-Low-bit-QAT": phases/phase4-quantization/4300-quantization-aware-training/4304-Low-bit-QAT.md
+      - "4305-Quantization-Configuration": phases/phase4-quantization/4300-quantization-aware-training/4305-Quantization-Configuration.md
+      - "guide: 4306-PyTorch-QAT": phases/phase4-quantization/4300-quantization-aware-training/guides/4306-PyTorch-QAT.md
+      - "guide: 4307-Transformers-QAT": phases/phase4-quantization/4300-quantization-aware-training/guides/4307-Transformers-QAT.md
+      - "guide: 4308-BitBlade-QAT": phases/phase4-quantization/4300-quantization-aware-training/guides/4308-BitBlade-QAT.md
+      - "PRACTICE": phases/phase4-quantization/4300-quantization-aware-training/assessment/PRACTICE.md
+      - "QUIZ": phases/phase4-quantization/4300-quantization-aware-training/assessment/QUIZ.md
+    - "4400-advanced-techniques":
+      - index_file: phases/phase4-quantization/4400-advanced-techniques/README.md
+      - "PREREQUISITES": phases/phase4-quantization/4400-advanced-techniques/PREREQUISITES.md
+      - "4401-GPTQ": phases/phase4-quantization/4400-advanced-techniques/4401-GPTQ.md
+      - "4402-AWQ": phases/phase4-quantization/4400-advanced-techniques/4402-AWQ.md
+      - "4403-GGUF-Format": phases/phase4-quantization/4400-advanced-techniques/4403-GGUF-Format.md
+      - "4404-EXL2-Format": phases/phase4-quantization/4400-advanced-techniques/4404-EXL2-Format.md
+      - "4405-Sparsity-Quantization": phases/phase4-quantization/4400-advanced-techniques/4405-Sparsity-Quantization.md
+      - "4406-1.58-bit-Quantization": phases/phase4-quantization/4400-advanced-techniques/4406-1.58-bit-Quantization.md
+      - "4407-Ternary-Binary": phases/phase4-quantization/4400-advanced-techniques/4407-Ternary-Binary.md
+      - "guide: 4408-Quantizing-for-Production": phases/phase4-quantization/4400-advanced-techniques/guides/4408-Quantizing-for-Production.md
+      - "guide: 4409-Hardware-Specific-Optimization": phases/phase4-quantization/4400-advanced-techniques/guides/4409-Hardware-Specific-Optimization.md
+      - "PRACTICE": phases/phase4-quantization/4400-advanced-techniques/assessment/PRACTICE.md
+      - "QUIZ": phases/phase4-quantization/4400-advanced-techniques/assessment/QUIZ.md
+  - "Phase 5 - Model Adaptation: Fine-Tuning & Alignment":
+    - index_file: phases/phase5-finetuning/README.md
+    - "CHECKPOINT": phases/phase5-finetuning/CHECKPOINT.md
+    - "5100-peft":
+      - index_file: phases/phase5-finetuning/5100-peft/README.md
+      - "PREREQUISITES": phases/phase5-finetuning/5100-peft/PREREQUISITES.md
+      - "5101-LoRA-Logic": phases/phase5-finetuning/5100-peft/5101-LoRA-Logic.md
+      - "5102-QLoRA-Pipelines": phases/phase5-finetuning/5100-peft/5102-QLoRA-Pipelines.md
+      - "5103-Adapters": phases/phase5-finetuning/5100-peft/5103-Adapters.md
+      - "5105-Model-Merging": phases/phase5-finetuning/5100-peft/5105-Model-Merging.md
+      - "guide: 5104-LoRA-Implementation-Guide": phases/phase5-finetuning/5100-peft/guides/5104-LoRA-Implementation-Guide.md
+      - "PRACTICE": phases/phase5-finetuning/5100-peft/assessment/PRACTICE.md
+      - "QUIZ": phases/phase5-finetuning/5100-peft/assessment/QUIZ.md
+    - "5200-alignment":
+      - index_file: phases/phase5-finetuning/5200-alignment/README.md
+      - "PREREQUISITES": phases/phase5-finetuning/5200-alignment/PREREQUISITES.md
+      - "5201-DPO-Theory": phases/phase5-finetuning/5200-alignment/5201-DPO-Theory.md
+      - "5202-Alignment-Orchestration": phases/phase5-finetuning/5200-alignment/5202-Alignment-Orchestration.md
+      - "5203-RLHF": phases/phase5-finetuning/5200-alignment/5203-RLHF.md
+      - "5204-Preference-Dataset-Creation": phases/phase5-finetuning/5200-alignment/5204-Preference-Dataset-Creation.md
+      - "5205-GRPO-RLVR": phases/phase5-finetuning/5200-alignment/5205-GRPO-RLVR.md
+      - "5206-Best-of-N-and-Rejection-Sampling": phases/phase5-finetuning/5200-alignment/5206-Best-of-N-and-Rejection-Sampling.md
+      - "PRACTICE": phases/phase5-finetuning/5200-alignment/assessment/PRACTICE.md
+      - "QUIZ": phases/phase5-finetuning/5200-alignment/assessment/QUIZ.md
+    - "5300-synthetic":
+      - index_file: phases/phase5-finetuning/5300-synthetic/README.md
+      - "PREREQUISITES": phases/phase5-finetuning/5300-synthetic/PREREQUISITES.md
+      - "5301-Knowledge-Distillation": phases/phase5-finetuning/5300-synthetic/5301-Knowledge-Distillation.md
+      - "5302-Distributed-Training": phases/phase5-finetuning/5300-synthetic/5302-Distributed-Training.md
+      - "5303-Federated-Learning": phases/phase5-finetuning/5300-synthetic/5303-Federated-Learning.md
+      - "5304-Self-Instruct-and-Model-Collapse": phases/phase5-finetuning/5300-synthetic/5304-Self-Instruct-and-Model-Collapse.md
+      - "PRACTICE": phases/phase5-finetuning/5300-synthetic/assessment/PRACTICE.md
+      - "QUIZ": phases/phase5-finetuning/5300-synthetic/assessment/QUIZ.md
+    - "5400-distributed-training":
+      - index_file: phases/phase5-finetuning/5400-distributed-training/README.md
+      - "PREREQUISITES": phases/phase5-finetuning/5400-distributed-training/PREREQUISITES.md
+      - "5401-Data-Parallelism": phases/phase5-finetuning/5400-distributed-training/5401-Data-Parallelism.md
+      - "5402-Model-Parallelism": phases/phase5-finetuning/5400-distributed-training/5402-Model-Parallelism.md
+      - "5403-Mixed-Precision": phases/phase5-finetuning/5400-distributed-training/5403-Mixed-Precision.md
+      - "5404-Distributed-Optimization": phases/phase5-finetuning/5400-distributed-training/5404-Distributed-Optimization.md
+      - "5405-FSDP2-and-torchao": phases/phase5-finetuning/5400-distributed-training/5405-FSDP2-and-torchao.md
+      - "5406-Distributed-LR-Scaling": phases/phase5-finetuning/5400-distributed-training/5406-Distributed-LR-Scaling.md
+      - "PRACTICE": phases/phase5-finetuning/5400-distributed-training/assessment/PRACTICE.md
+      - "QUIZ": phases/phase5-finetuning/5400-distributed-training/assessment/QUIZ.md
+    - "5500-advanced-optimization":
+      - index_file: phases/phase5-finetuning/5500-advanced-optimization/README.md
+      - "PREREQUISITES": phases/phase5-finetuning/5500-advanced-optimization/PREREQUISITES.md
+      - "5501-Optimizer-Variants": phases/phase5-finetuning/5500-advanced-optimization/5501-Optimizer-Variants.md
+      - "5502-Learning-Rate-Scheduling": phases/phase5-finetuning/5500-advanced-optimization/5502-Learning-Rate-Scheduling.md
+      - "5503-Advanced-Techniques": phases/phase5-finetuning/5500-advanced-optimization/5503-Advanced-Techniques.md
+      - "PRACTICE": phases/phase5-finetuning/5500-advanced-optimization/assessment/PRACTICE.md
+      - "QUIZ": phases/phase5-finetuning/5500-advanced-optimization/assessment/QUIZ.md
+  - "Phase 6 - RAG & Data Nexus":
+    - index_file: phases/phase6-rag/README.md
+    - "CHECKPOINT": phases/phase6-rag/CHECKPOINT.md
+    - "6100-vector":
+      - index_file: phases/phase6-rag/6100-vector/README.md
+      - "PREREQUISITES": phases/phase6-rag/6100-vector/PREREQUISITES.md
+      - "6101-HNSW-Indexing": phases/phase6-rag/6100-vector/6101-HNSW-Indexing.md
+      - "6102-Semantic-Similarity": phases/phase6-rag/6100-vector/6102-Semantic-Similarity.md
+      - "6104-Embedding-Sciences": phases/phase6-rag/6100-vector/6104-Embedding-Sciences.md
+      - "6105-Contextual-and-Multilingual-Embeddings": phases/phase6-rag/6100-vector/6105-Contextual-and-Multilingual-Embeddings.md
+      - "guide: 6103-HNSW-Tuning-Guide": phases/phase6-rag/6100-vector/guides/6103-HNSW-Tuning-Guide.md
+      - "PRACTICE": phases/phase6-rag/6100-vector/assessment/PRACTICE.md
+      - "QUIZ": phases/phase6-rag/6100-vector/assessment/QUIZ.md
+    - "6200-retrieval":
+      - index_file: phases/phase6-rag/6200-retrieval/README.md
+      - "PREREQUISITES": phases/phase6-rag/6200-retrieval/PREREQUISITES.md
+      - "6201-Hybrid-Search": phases/phase6-rag/6200-retrieval/6201-Hybrid-Search.md
+      - "6202-Re-ranking-and-Retrieval-Logistics": phases/phase6-rag/6200-retrieval/6202-Re-ranking-and-Retrieval-Logistics.md
+      - "6203-Advanced-Retrieval": phases/phase6-rag/6200-retrieval/6203-Advanced-Retrieval.md
+      - "6204-Diversification-and-Boosting": phases/phase6-rag/6200-retrieval/6204-Diversification-and-Boosting.md
+      - "PRACTICE": phases/phase6-rag/6200-retrieval/assessment/PRACTICE.md
+      - "QUIZ": phases/phase6-rag/6200-retrieval/assessment/QUIZ.md
+    - "6300-context":
+      - index_file: phases/phase6-rag/6300-context/README.md
+      - "PREREQUISITES": phases/phase6-rag/6300-context/PREREQUISITES.md
+      - "6301-Neo4j-and-Knowledge-Graphs": phases/phase6-rag/6300-context/6301-Neo4j-and-Knowledge-Graphs.md
+      - "6302-CAG-Long-Context-Architectures": phases/phase6-rag/6300-context/6302-CAG-Long-Context-Architectures.md
+      - "6305-LongLoRA-Ring-Attention-and-Context-Distillation": phases/phase6-rag/6300-context/6305-LongLoRA-Ring-Attention-and-Context-Distillation.md
+      - "6306-Context-Window-Economics": phases/phase6-rag/6300-context/6306-Context-Window-Economics.md
+      - "guide: 6303-Neo4j-Deployment-Guide": phases/phase6-rag/6300-context/guides/6303-Neo4j-Deployment-Guide.md
+      - "guide: 6304-GraphRAG-Implementation": phases/phase6-rag/6300-context/guides/6304-GraphRAG-Implementation.md
+      - "PRACTICE": phases/phase6-rag/6300-context/assessment/PRACTICE.md
+      - "QUIZ": phases/phase6-rag/6300-context/assessment/QUIZ.md
+    - "6400-vector-databases":
+      - index_file: phases/phase6-rag/6400-vector-databases/README.md
+      - "PREREQUISITES": phases/phase6-rag/6400-vector-databases/PREREQUISITES.md
+      - "6401-Qdrant-Setup": phases/phase6-rag/6400-vector-databases/6401-Qdrant-Setup.md
+      - "6402-Pinecone-vs-Weaviate": phases/phase6-rag/6400-vector-databases/6402-Pinecone-vs-Weaviate.md
+      - "6404-Vector-Compression-Quantization": phases/phase6-rag/6400-vector-databases/6404-Vector-Compression-Quantization.md
+      - "guide: 6403-Qdrant-Production-Deployment": phases/phase6-rag/6400-vector-databases/guides/6403-Qdrant-Production-Deployment.md
+      - "PRACTICE": phases/phase6-rag/6400-vector-databases/assessment/PRACTICE.md
+      - "QUIZ": phases/phase6-rag/6400-vector-databases/assessment/QUIZ.md
+    - "6500-mlops-pipelines":
+      - index_file: phases/phase6-rag/6500-mlops-pipelines/README.md
+      - "PREREQUISITES": phases/phase6-rag/6500-mlops-pipelines/PREREQUISITES.md
+      - "6501-ML-Lifecycle-Management": phases/phase6-rag/6500-mlops-pipelines/6501-ML-Lifecycle-Management.md
+      - "6502-CI-CD-for-ML": phases/phase6-rag/6500-mlops-pipelines/6502-CI-CD-for-ML.md
+      - "6503-Model-Registry": phases/phase6-rag/6500-mlops-pipelines/6503-Model-Registry.md
+      - "6504-Re-Embedding-Policy-and-AB-Testing": phases/phase6-rag/6500-mlops-pipelines/6504-Re-Embedding-Policy-and-AB-Testing.md
+      - "6505-Response-Caching-and-Stage-Scaling": phases/phase6-rag/6500-mlops-pipelines/6505-Response-Caching-and-Stage-Scaling.md
+      - "PRACTICE": phases/phase6-rag/6500-mlops-pipelines/assessment/PRACTICE.md
+      - "QUIZ": phases/phase6-rag/6500-mlops-pipelines/assessment/QUIZ.md
+  - "Phase 7 - Agentic Systems":
+    - index_file: phases/phase7-agentic/README.md
+    - "CHECKPOINT": phases/phase7-agentic/CHECKPOINT.md
+    - "7100-architecture":
+      - index_file: phases/phase7-agentic/7100-architecture/README.md
+      - "PREREQUISITES": phases/phase7-agentic/7100-architecture/PREREQUISITES.md
+      - "7101-ReAct-Loop-System": phases/phase7-agentic/7100-architecture/7101-ReAct-Loop-System.md
+      - "7102-Planning-Decomposition": phases/phase7-agentic/7100-architecture/7102-Planning-Decomposition.md
+      - "7104-Agent-Evaluation-and-Observability": phases/phase7-agentic/7100-architecture/7104-Agent-Evaluation-and-Observability.md
+      - "7105-Reflection-and-Self-Correction": phases/phase7-agentic/7100-architecture/7105-Reflection-and-Self-Correction.md
+      - "7106-Function-Calling-Training-and-Constrained-Decoding": phases/phase7-agentic/7100-architecture/7106-Function-Calling-Training-and-Constrained-Decoding.md
+      - "guide: 7103-ReAct-Implementation-Guide": phases/phase7-agentic/7100-architecture/guides/7103-ReAct-Implementation-Guide.md
+      - "PRACTICE": phases/phase7-agentic/7100-architecture/assessment/PRACTICE.md
+      - "QUIZ": phases/phase7-agentic/7100-architecture/assessment/QUIZ.md
+    - "7200-tools":
+      - index_file: phases/phase7-agentic/7200-tools/README.md
+      - "PREREQUISITES": phases/phase7-agentic/7200-tools/PREREQUISITES.md
+      - "7201-Tool-Calling": phases/phase7-agentic/7200-tools/7201-Tool-Calling.md
+      - "7203-MCP-Hands-On": phases/phase7-agentic/7200-tools/7203-MCP-Hands-On.md
+      - "7204-Timeouts-Retries-and-Rate-Limits": phases/phase7-agentic/7200-tools/7204-Timeouts-Retries-and-Rate-Limits.md
+      - "guide: 7202-Code-Interpreter": phases/phase7-agentic/7200-tools/guides/7202-Code-Interpreter.md
+      - "PRACTICE": phases/phase7-agentic/7200-tools/assessment/PRACTICE.md
+      - "QUIZ": phases/phase7-agentic/7200-tools/assessment/QUIZ.md
+    - "7300-orchestration":
+      - index_file: phases/phase7-agentic/7300-orchestration/README.md
+      - "PREREQUISITES": phases/phase7-agentic/7300-orchestration/PREREQUISITES.md
+      - "7301-Orchestration": phases/phase7-agentic/7300-orchestration/7301-Orchestration.md
+      - "7302-Communication-Protocols": phases/phase7-agentic/7300-orchestration/7302-Communication-Protocols.md
+      - "7304-Event-Buses-Deadlocks-and-Human-Gates": phases/phase7-agentic/7300-orchestration/7304-Event-Buses-Deadlocks-and-Human-Gates.md
+      - "guide: 7303-Framework-Comparison": phases/phase7-agentic/7300-orchestration/guides/7303-Framework-Comparison.md
+      - "PRACTICE": phases/phase7-agentic/7300-orchestration/assessment/PRACTICE.md
+      - "QUIZ": phases/phase7-agentic/7300-orchestration/assessment/QUIZ.md
+    - "7400-memory":
+      - index_file: phases/phase7-agentic/7400-memory/README.md
+      - "PREREQUISITES": phases/phase7-agentic/7400-memory/PREREQUISITES.md
+      - "7401-Long-term-Memory": phases/phase7-agentic/7400-memory/7401-Long-term-Memory.md
+      - "7403-Vector-Memory": phases/phase7-agentic/7400-memory/7403-Vector-Memory.md
+      - "7404-Reflective-Memory-and-Context-Paging": phases/phase7-agentic/7400-memory/7404-Reflective-Memory-and-Context-Paging.md
+      - "7405-Key-Value-Memory-and-Checkpoint-Stores": phases/phase7-agentic/7400-memory/7405-Key-Value-Memory-and-Checkpoint-Stores.md
+      - "guide: 7402-Agent-Memory-Implementation": phases/phase7-agentic/7400-memory/guides/7402-Agent-Memory-Implementation.md
+      - "PRACTICE": phases/phase7-agentic/7400-memory/assessment/PRACTICE.md
+      - "QUIZ": phases/phase7-agentic/7400-memory/assessment/QUIZ.md
+    - "7500-security":
+      - index_file: phases/phase7-agentic/7500-security/README.md
+      - "PREREQUISITES": phases/phase7-agentic/7500-security/PREREQUISITES.md
+      - "7501-Prompt-Injection-Defense": phases/phase7-agentic/7500-security/7501-Prompt-Injection-Defense.md
+      - "7502-PII-Redaction": phases/phase7-agentic/7500-security/7502-PII-Redaction.md
+      - "7503-Adversarial-Attacks": phases/phase7-agentic/7500-security/7503-Adversarial-Attacks.md
+      - "7504-Agent-Abuse-Prevention-and-Identity-Threats": phases/phase7-agentic/7500-security/7504-Agent-Abuse-Prevention-and-Identity-Threats.md
+      - "7505-Temperature-Zero-and-Deterministic-Security-Testing": phases/phase7-agentic/7500-security/7505-Temperature-Zero-and-Deterministic-Security-Testing.md
+      - "PRACTICE": phases/phase7-agentic/7500-security/assessment/PRACTICE.md
+      - "QUIZ": phases/phase7-agentic/7500-security/assessment/QUIZ.md
+  - Volumes:
+    - "Volume 1-Infrastructure": volumes/VOLUME-1-Infrastructure.md
+    - "Volume 2-AI-Foundations": volumes/VOLUME-2-AI-Foundations.md
+    - "Volume 3-LLM-Internals": volumes/VOLUME-3-LLM-Internals.md
+    - "Volume 4-Quantization": volumes/VOLUME-4-Quantization.md
+    - "Volume 5-Model-Adaptation": volumes/VOLUME-5-Model-Adaptation.md
+    - "Volume 6-Data-Nexus": volumes/VOLUME-6-Data-Nexus.md
+    - "Volume 7-Production-Mastery": volumes/VOLUME-7-Production-Mastery.md
+  - Learning Resources:
+    - "Tutorials":
+      - "TUTORIAL-000-Python-for-AI": learning-resources/tutorials/TUTORIAL-000-Python-for-AI.md
+      - "TUTORIAL-001-Hello-LLM": learning-resources/tutorials/TUTORIAL-001-Hello-LLM.md
+      - "TUTORIAL-002-Docker-Essentials": learning-resources/tutorials/TUTORIAL-002-Docker-Essentials.md
+      - "TUTORIAL-003-RAG-Basics": learning-resources/tutorials/TUTORIAL-003-RAG-Basics.md
+      - "TUTORIAL-004-Monitoring": learning-resources/tutorials/TUTORIAL-004-Monitoring.md
+      - "TUTORIAL-005-Production-Deployment": learning-resources/tutorials/TUTORIAL-005-Production-Deployment.md
+      - "TUTORIAL-006-Real-time-AI": learning-resources/tutorials/TUTORIAL-006-Real-time-AI.md
+      - "TUTORIAL-007-LoRA-Basics": learning-resources/tutorials/TUTORIAL-007-LoRA-Basics.md
+      - "TUTORIAL-008-CUDA-Programming": learning-resources/tutorials/TUTORIAL-008-CUDA-Programming.md
+      - "TUTORIAL-009-Advanced-RAG-Techniques": learning-resources/tutorials/TUTORIAL-009-Advanced-RAG-Techniques.md
+      - "TUTORIAL-010-Model-Evaluation": learning-resources/tutorials/TUTORIAL-010-Model-Evaluation.md
+      - "TUTORIAL-011-Multi-Modal-AI": learning-resources/tutorials/TUTORIAL-011-Multi-Modal-AI.md
+      - "TUTORIAL-012-Production-LLMOps": learning-resources/tutorials/TUTORIAL-012-Production-LLMOps.md
+      - "TUTORIAL-013-AI-Security": learning-resources/tutorials/TUTORIAL-013-AI-Security.md
+      - "TUTORIAL-014-Production-LLM-Systems": learning-resources/tutorials/TUTORIAL-014-Production-LLM-Systems.md
+    - "Guides":
+      - "GUIDE-CAREER": learning-resources/guides/GUIDE-CAREER.md
+      - "GUIDE-INTERVIEW": learning-resources/guides/GUIDE-INTERVIEW.md
+      - "GUIDE-RESUME": learning-resources/guides/GUIDE-RESUME.md
+    - "Cheat-sheets":
+      - "CHEAT-SHEET-001-Docker": learning-resources/cheat-sheets/CHEAT-SHEET-001-Docker.md
+      - "CHEAT-SHEET-002-Python-AI": learning-resources/cheat-sheets/CHEAT-SHEET-002-Python-AI.md
+      - "CHEAT-SHEET-003-Git": learning-resources/cheat-sheets/CHEAT-SHEET-003-Git.md
+      - "CHEAT-SHEET-004-Linux": learning-resources/cheat-sheets/CHEAT-SHEET-004-Linux.md
+      - "CHEAT-SHEET-005-RAG-Systems": learning-resources/cheat-sheets/CHEAT-SHEET-005-RAG-Systems.md
+      - "CHEAT-SHEET-006-Kubernetes": learning-resources/cheat-sheets/CHEAT-SHEET-006-Kubernetes.md
+      - "QUICK-REF-VOLUME-1": learning-resources/cheat-sheets/QUICK-REF-VOLUME-1.md
+      - "QUICK-REF-VOLUME-2": learning-resources/cheat-sheets/QUICK-REF-VOLUME-2.md
+      - "QUICK-REF-VOLUME-3": learning-resources/cheat-sheets/QUICK-REF-VOLUME-3.md
+      - "QUICK-REF-VOLUME-4": learning-resources/cheat-sheets/QUICK-REF-VOLUME-4.md
+      - "QUICK-REF-VOLUME-5": learning-resources/cheat-sheets/QUICK-REF-VOLUME-5.md
+      - "QUICK-REF-VOLUME-6": learning-resources/cheat-sheets/QUICK-REF-VOLUME-6.md
+      - "QUICK-REF-VOLUME-7": learning-resources/cheat-sheets/QUICK-REF-VOLUME-7.md
+    - "Labs":
+      - "LAB-000-ENVIRONMENT-SETUP": learning-resources/labs/LAB-000-ENVIRONMENT-SETUP.md
+      - "LAB-001-Docker-LLM": learning-resources/labs/LAB-001-Docker-LLM.md
+      - "LAB-002-RAG-Implementation": learning-resources/labs/LAB-002-RAG-Implementation.md
+      - "LAB-003-LoRA-FineTuning": learning-resources/labs/LAB-003-LoRA-FineTuning.md
+      - "LAB-004-ReAct-Agent": learning-resources/labs/LAB-004-ReAct-Agent.md
+      - "LAB-005-GraphRAG": learning-resources/labs/LAB-005-GraphRAG.md
+      - "LAB-006-Train-Model-From-Scratch": learning-resources/labs/LAB-006-Train-Model-From-Scratch.md
+      - "LAB-007-Production-RAG": learning-resources/labs/LAB-007-Production-RAG.md
+      - "LAB-008-Agent-Fleet": learning-resources/labs/LAB-008-Agent-Fleet.md
+      - "LAB-009-Production-Deployment": learning-resources/labs/LAB-009-Production-Deployment.md
+      - "LAB-010-DPO-Alignment": learning-resources/labs/LAB-010-DPO-Alignment.md
+      - "LAB-011-Multi-Modal-AI": learning-resources/labs/LAB-011-Multi-Modal-AI.md
+      - "LAB-012-Audio-AI": learning-resources/labs/LAB-012-Audio-AI.md
+      - "LAB-013-Advanced-Function-Calling": learning-resources/labs/LAB-013-Advanced-Function-Calling.md
+      - "LAB-014-AI-Evaluation-Safety": learning-resources/labs/LAB-014-AI-Evaluation-Safety.md
+      - "SOLUTION-LAB-000-Environment-Setup": learning-resources/labs/solutions/SOLUTION-LAB-000-Environment-Setup.md
+      - "SOLUTION-LAB-001-Docker-LLM": learning-resources/labs/solutions/SOLUTION-LAB-001-Docker-LLM.md
+      - "SOLUTION-LAB-002-RAG-Implementation": learning-resources/labs/solutions/SOLUTION-LAB-002-RAG-Implementation.md
+      - "SOLUTION-LAB-003-LoRA-FineTuning": learning-resources/labs/solutions/SOLUTION-LAB-003-LoRA-FineTuning.md
+      - "SOLUTION-LAB-004-ReAct-Agent": learning-resources/labs/solutions/SOLUTION-LAB-004-ReAct-Agent.md
+      - "SOLUTION-LAB-005-GraphRAG": learning-resources/labs/solutions/SOLUTION-LAB-005-GraphRAG.md
+      - "SOLUTION-LAB-006-Train-Model-From-Scratch": learning-resources/labs/solutions/SOLUTION-LAB-006-Train-Model-From-Scratch.md
+      - "SOLUTION-LAB-007-Production-RAG": learning-resources/labs/solutions/SOLUTION-LAB-007-Production-RAG.md
+      - "SOLUTION-LAB-008-Agent-Fleet": learning-resources/labs/solutions/SOLUTION-LAB-008-Agent-Fleet.md
+      - "SOLUTION-LAB-009-Production-Deployment": learning-resources/labs/solutions/SOLUTION-LAB-009-Production-Deployment.md
+      - "SOLUTION-LAB-010-DPO-Alignment": learning-resources/labs/solutions/SOLUTION-LAB-010-DPO-Alignment.md
+      - "SOLUTION-LAB-011-Multi-Modal-AI": learning-resources/labs/solutions/SOLUTION-LAB-011-Multi-Modal-AI.md
+      - "SOLUTION-LAB-012-Audio-AI": learning-resources/labs/solutions/SOLUTION-LAB-012-Audio-AI.md
+      - "SOLUTION-LAB-013-Advanced-Function-Calling": learning-resources/labs/solutions/SOLUTION-LAB-013-Advanced-Function-Calling.md
+      - "SOLUTION-LAB-014-AI-Evaluation-Safety": learning-resources/labs/solutions/SOLUTION-LAB-014-AI-Evaluation-Safety.md
+    - "Projects":
+      - "PREREQUISITES-001": learning-resources/projects/PREREQUISITES-001.md
+      - "PREREQUISITES-007": learning-resources/projects/PREREQUISITES-007.md
+      - "PROJECT-001-AI-Assistant": learning-resources/projects/PROJECT-001-AI-Assistant.md
+      - "PROJECT-002-Train-Neural-Network": learning-resources/projects/PROJECT-002-Train-Neural-Network.md
+      - "PROJECT-003-Transformer-From-Scratch": learning-resources/projects/PROJECT-003-Transformer-From-Scratch.md
+      - "PROJECT-004-Quantize-Model": learning-resources/projects/PROJECT-004-Quantize-Model.md
+      - "PROJECT-005-FineTune-Model": learning-resources/projects/PROJECT-005-FineTune-Model.md
+      - "PROJECT-006-Production-RAG": learning-resources/projects/PROJECT-006-Production-RAG.md
+      - "PROJECT-007-Production-AI-System": learning-resources/projects/PROJECT-007-Production-AI-System.md
+      - "SETUP-GUIDE": learning-resources/projects/SETUP-GUIDE.md
+      - "TEMPLATE-001-Simple-LLM-App": learning-resources/projects/templates/TEMPLATE-001-Simple-LLM-App.md
+      - "TEMPLATE-002-Fine-Tuning-Pipeline": learning-resources/projects/templates/TEMPLATE-002-Fine-Tuning-Pipeline.md
+      - "TEMPLATE-003-RAG-System": learning-resources/projects/templates/TEMPLATE-003-RAG-System.md
+      - "TEMPLATE-004-Agent-Framework": learning-resources/projects/templates/TEMPLATE-004-Agent-Framework.md
+      - "TEMPLATE-005-Model-Quantization": learning-resources/projects/templates/TEMPLATE-005-Model-Quantization.md
+      - "TEMPLATE-006-Synthetic-Data-Generator": learning-resources/projects/templates/TEMPLATE-006-Synthetic-Data-Generator.md
+      - "TEMPLATE-007-LLM-Evaluation-Benchmark": learning-resources/projects/templates/TEMPLATE-007-LLM-Evaluation-Benchmark.md
+      - "TEMPLATE-008-Multi-Modal-Application": learning-resources/projects/templates/TEMPLATE-008-Multi-Modal-Application.md
+      - "TEMPLATE-009-Model-Deployment": learning-resources/projects/templates/TEMPLATE-009-Model-Deployment.md
+      - "TEMPLATE-010-Chatbot-UI": learning-resources/projects/templates/TEMPLATE-010-Chatbot-UI.md
+      - "TEMPLATE-011-Model-Merging-MoE": learning-resources/projects/templates/TEMPLATE-011-Model-Merging-MoE.md
+      - "TEMPLATE-012-End-to-End-LLM-Pipeline": learning-resources/projects/templates/TEMPLATE-012-End-to-End-LLM-Pipeline.md
+    - "Interactive":
+      - "FLASHCARDS": learning-resources/interactive/FLASHCARDS.md
+    - "Troubleshooting":
+      - "TROUBLESHOOTING-Common-Issues": learning-resources/troubleshooting/TROUBLESHOOTING-Common-Issues.md
+    - "Bridges":
+      - "TUTORIAL-TO-LAB-BRIDGE": learning-resources/bridges/TUTORIAL-TO-LAB-BRIDGE.md
+    - "Case-studies":
+      - "REAL-WORLD-EXAMPLES": learning-resources/case-studies/REAL-WORLD-EXAMPLES.md
+    - "Resources":
+      - "EXTERNAL-RESOURCES": learning-resources/resources/EXTERNAL-RESOURCES.md
+  - Case Studies & Solutions:
+    - "Industry":
+      - "IND-001-Healthcare-AI-Applications": industry/IND-001-Healthcare-AI-Applications.md
+      - "IND-002-Finance-AI-Applications": industry/IND-002-Finance-AI-Applications.md
+      - "IND-003-Manufacturing-AI": industry/IND-003-Manufacturing-AI.md
+      - "README": industry/README.md
+    - "Use-cases":
+      - "README": use-cases/README.md
+      - "UC-001-Vector-Database-Applications": use-cases/UC-001-Vector-Database-Applications.md
+      - "UC-002-RAG-Applications": use-cases/UC-002-RAG-Applications.md
+      - "UC-003-Agent-Applications": use-cases/UC-003-Agent-Applications.md
+    - "Comparisons":
+      - "CP-001-RAG-vs-FineTuning-vs-Agents": comparisons/CP-001-RAG-vs-FineTuning-vs-Agents.md
+      - "CP-002-Vector-Database-Comparison": comparisons/CP-002-Vector-Database-Comparison.md
+      - "README": comparisons/README.md
+    - "Enterprise-solutions":
+      - "README": enterprise-solutions/README.md
+      - "SOL-001-Enterprise-Knowledge-Base": enterprise-solutions/SOL-001-Enterprise-Knowledge-Base.md
+      - "SOL-002-Industry-Solution": enterprise-solutions/SOL-002-Industry-Solution.md
+    - "Diagrams":
+      - "ML-LIFECYCLE": diagrams/ML-LIFECYCLE.md
+      - "PROJECT-001-ARCHITECTURE": diagrams/PROJECT-001-ARCHITECTURE.md
+      - "REACT-LOOP": diagrams/REACT-LOOP.md
+      - "README": diagrams/README.md
+    - "Notebooks":
+      - "README": notebooks/README.md
+  - Project Reference:
+    - "MASTER-INDEX": 00-META/MASTER-INDEX.md
+    - "SITEMAP": 00-META/SITEMAP.md
+    - "PROGRESS-TRACKER": 00-META/PROGRESS-TRACKER.md
+    - "ORGANIZATION-GUIDE": 00-META/ORGANIZATION-GUIDE.md
+    - "VOLUME-GUIDE": 00-META/VOLUME-GUIDE.md
+    - "ASSESSMENT-GUIDE": 00-META/ASSESSMENT-GUIDE.md
+    - "QA-TOOLING": 00-META/QA-TOOLING.md
+    - "STYLE-GUIDE": 00-META/STYLE-GUIDE.md
+    - "DOCUMENT-TEMPLATE": 00-META/DOCUMENT-TEMPLATE.md
+    - "NAVIGATION-TEMPLATE": 00-META/NAVIGATION-TEMPLATE.md
+    - "CROSS-REFERENCE-GUIDELINES": 00-META/CROSS-REFERENCE-GUIDELINES.md
+    - Phase Quizzes:
+      - "phase1-practice": 00-META/assessment/phase1-practice.md
+      - "phase1-quiz": 00-META/assessment/phase1-quiz.md
+      - "phase2-practice": 00-META/assessment/phase2-practice.md
+      - "phase2-quiz": 00-META/assessment/phase2-quiz.md
+      - "phase3-practice": 00-META/assessment/phase3-practice.md
+      - "phase3-quiz": 00-META/assessment/phase3-quiz.md
+      - "phase4-practice": 00-META/assessment/phase4-practice.md
+      - "phase4-quiz": 00-META/assessment/phase4-quiz.md
+      - "phase5-practice": 00-META/assessment/phase5-practice.md
+      - "phase5-quiz": 00-META/assessment/phase5-quiz.md
+      - "phase6-practice": 00-META/assessment/phase6-practice.md
+      - "phase6-quiz": 00-META/assessment/phase6-quiz.md
+      - "phase7-practice": 00-META/assessment/phase7-practice.md
+      - "phase7-quiz": 00-META/assessment/phase7-quiz.md
 markdown_extensions:
   - admonition
   - attr_list
