@@ -3,6 +3,9 @@ site_description: A comprehensive, production-grade AI engineering curriculum - 
 site_url: https://minderhq.github.io/academy/
 repo_url: https://github.com/minderhq/academy
 repo_name: minderhq/academy
+# every page gets an "Edit on GitHub" pencil - the curriculum is MIT
+# and readers who spot an error should be one click from a PR
+edit_uri: edit/main/docs/
 copyright: Copyright &copy; Minder Academy - MIT License
 
 docs_dir: docs
@@ -51,6 +54,7 @@ theme:
     - search.highlight
     - search.share
     - content.code.copy
+    - content.action.edit
     - navigation.tabs
     - navigation.tabs.sticky
     - navigation.indexes
