@@ -570,6 +570,7 @@ markdown_extensions:
   - meta
   - toc:
       permalink: true
+      slugify: !!python/name:gh_slugify.slugify
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.inlinehilite

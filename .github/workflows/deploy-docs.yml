@@ -7,6 +7,7 @@ on:
       - "docs/**"
       - "mkdocs.yml"
       - "hooks.py"
+      - "gh_slugify.py"
       - "README.md"
       - ".github/workflows/deploy-docs.yml"
   workflow_dispatch:
@@ -57,6 +58,10 @@ jobs:
         run: pip install "mkdocs-material>=9.6,<10"
 
       - name: Build the site
+        env:
+          # gh_slugify (GitHub-accurate toc slugs) is a repo-local module
+          # resolved by the !!python/name tag in mkdocs.yml
+          PYTHONPATH: ${{ github.workspace }}
         run: mkdocs build --clean
 
       - name: Upload Pages artifact

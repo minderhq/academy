@@ -1,24 +1,34 @@
 ---
 Document ID: INDEX
-Title: "Minder Academy - Documentation Home"
-Last Updated: 2026-10-06
+Title: "Minder Academy"
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Beginner
 Tags: ['maintenance', 'navigation']
 ---
 
-# Minder Academy - Documentation Home
+# Minder Academy
 
 A comprehensive, production-grade AI engineering curriculum: seven phases,
-thirty-three technical modules, from GPU infrastructure and Kubernetes to
+thirty-three technical modules - from GPU infrastructure and Kubernetes to
 transformer internals, quantization, fine-tuning, RAG systems, and agentic
 production stacks. Every lesson teaches with runnable code fences, every
 design claim is priced in real numbers, and the whole corpus is kept honest
 by a fleet of automated quality gates.
 
 This site is the browsable form of the
-[GitHub repository](https://github.com/minderhq/academy). Start anywhere -
-the paths below are ordered the way the curriculum teaches.
+[GitHub repository](https://github.com/minderhq/academy). Read here, run the
+code locally - the paths below are ordered the way the curriculum teaches.
+
+[Get Started in 30 Minutes](00-META/QUICK-START.md){ .md-button .md-button--primary }
+[Follow the Roadmap](00-META/0000-LEARNING-PATH.md){ .md-button }
+
+| Start with | What you get |
+|------------|--------------|
+| **[Get Running in 30 Minutes](00-META/QUICK-START.md)** | Install Ollama, run your first local model, and start chatting - on an 8 GB laptop, no GPU required. |
+| **[Follow the Week-by-Week Roadmap](00-META/0000-LEARNING-PATH.md)** | A 48-week route from Python fundamentals (Phase 0) through all seven phases to production agentic systems. |
+| **[Track Your Progress](00-META/PROGRESS-TRACKER.md)** | Close every module with its practice set and quiz, then log the checkpoint so you always know where you stand. |
+| **[Prepare for the Job Market](learning-resources/guides/GUIDE-CAREER.md)** | Career, interview, and resume guides that map the curriculum onto real AI engineering roles. |
 
 ## Start Here
 
@@ -61,6 +71,8 @@ through its phases:
 3. Close each module with its assessment: the practice set for hands-on work,
    the quiz for retrieval, and the checkpoint to log progress in
    [PROGRESS-TRACKER](00-META/PROGRESS-TRACKER.md).
+
+## Where Everything Lives
 
 The [SITEMAP](00-META/SITEMAP.md) enumerates every document in the corpus,
 and the [MASTER-INDEX](00-META/MASTER-INDEX.md) is the full inventory with
