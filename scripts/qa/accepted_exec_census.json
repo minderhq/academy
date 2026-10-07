@@ -25,7 +25,7 @@
       "bad": {}
     },
     "docs/00-META/ORGANIZATION-GUIDE.md": {
-      "mtime": 1791346513.229375,
+      "mtime": 1791349788.168507,
       "size": 19534,
       "bad": {}
     },
@@ -2634,6 +2634,11 @@
         "818": "optional third-party package the QA environment does not install; the fence documents the install requirement"
       }
     },
+    "docs/phases/phase6-rag/6400-vector-databases/6404-Vector-Compression-Quantization.md": {
+      "mtime": 1791349540.7181726,
+      "size": 34452,
+      "bad": {}
+    },
     "docs/phases/phase6-rag/6400-vector-databases/assessment/PRACTICE.md": {
       "bad": {
         "143": "ENV-GAP:chromadb",
@@ -2710,13 +2715,13 @@
       "size": 16457
     },
     "docs/phases/phase6-rag/README.md": {
-      "mtime": 1791330873.2584007,
-      "size": 30490,
+      "mtime": 1791349788.1708264,
+      "size": 30794,
       "bad": {
-        "687": "UN-LEAK"
+        "690": "UN-LEAK"
       },
       "notes": {
-        "687": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically"
+        "690": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically"
       }
     },
     "docs/phases/phase7-agentic/7100-architecture/7101-ReAct-Loop-System.md": {

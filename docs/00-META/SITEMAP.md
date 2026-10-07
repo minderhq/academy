@@ -316,7 +316,7 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [assessment: PRACTICE](../phases/phase5-finetuning/5500-advanced-optimization/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase5-finetuning/5500-advanced-optimization/assessment/QUIZ.md)
 
-## Phase 6 - RAG & Data Nexus (45 files)
+## Phase 6 - RAG & Data Nexus (46 files)
 
 - [CHECKPOINT](../phases/phase6-rag/CHECKPOINT.md)
 - [README](../phases/phase6-rag/README.md)
@@ -357,12 +357,13 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [assessment: PRACTICE](../phases/phase6-rag/6300-context/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase6-rag/6300-context/assessment/QUIZ.md)
 
-### [6400-vector-databases] (2 lessons, 1 guides)
+### [6400-vector-databases] (3 lessons, 1 guides)
 
 - [PREREQUISITES](../phases/phase6-rag/6400-vector-databases/PREREQUISITES.md)
 - [README](../phases/phase6-rag/6400-vector-databases/README.md)
 - [6401-Qdrant-Setup](../phases/phase6-rag/6400-vector-databases/6401-Qdrant-Setup.md)
 - [6402-Pinecone-vs-Weaviate](../phases/phase6-rag/6400-vector-databases/6402-Pinecone-vs-Weaviate.md)
+- [6404-Vector-Compression-Quantization](../phases/phase6-rag/6400-vector-databases/6404-Vector-Compression-Quantization.md)
 - [guide: 6403-Qdrant-Production-Deployment](../phases/phase6-rag/6400-vector-databases/guides/6403-Qdrant-Production-Deployment.md)
 - [assessment: PRACTICE](../phases/phase6-rag/6400-vector-databases/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase6-rag/6400-vector-databases/assessment/QUIZ.md)
@@ -739,17 +740,17 @@ build's written walkthroughs live inside the lessons themselves - see the
 ## Statistics
 
 ```text
-Total markdown files: 495
-  docs/: 441, experiments/: 48, configs/: 4, repo root: 2
+Total markdown files: 496
+  docs/: 442, experiments/: 48, configs/: 4, repo root: 2
 Phases: 7
 Learning modules (topics): 33
-Phase files (lessons, guides, assessments, topic README/PREREQUISITES): 292
+Phase files (lessons, guides, assessments, topic README/PREREQUISITES): 293
   Phase 1 - Infrastructure Fabric: 41
   Phase 2 - Cognitive Science & Frameworks: 33
   Phase 3 - Transformer Physics: 38
   Phase 4 - Quantization & Compression: 43
   Phase 5 - Fine-Tuning & Alignment: 46
-  Phase 6 - Data Nexus: 45
+  Phase 6 - Data Nexus: 46
   Phase 7 - Agentic Systems: 46
 Volume guides: 7
 Phase assessment sets: 14 (7 phases x quiz + practice)

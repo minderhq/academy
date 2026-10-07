@@ -1,11 +1,11 @@
 ---
 Document ID: 6400-VECTOR-DATABASES-README
 Title: "6400: Vector Databases"
-Last Updated: 2026-10-01
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Intermediate
 Prerequisites: []
-Estimated Time: 6 hours
+Estimated Time: 9 hours
 Tags: ['module', 'rag', 'vector-db']
 ---
 
@@ -13,7 +13,7 @@ Tags: ['module', 'rag', 'vector-db']
 
 ## Module Overview
 
-This module covers production vector database systems for RAG applications. You'll learn to deploy, scale, and optimize vector databases like Qdrant, Pinecone, and Weaviate.
+This module covers production vector database systems for RAG applications. You'll learn to deploy, scale, and optimize vector databases like Qdrant, Pinecone, and Weaviate. Lesson 6404 adds the compression mechanics underneath: scalar, binary, and product quantization with the oversampling and rescore economics that make a lossy index useful.
 
 **Why This Matters:**
 - Vector databases power scalable RAG systems
@@ -30,6 +30,7 @@ After completing this module, you will be able to:
 - **Pinecone vs Weaviate**: Compare managed vs self-hosted solutions
 - **Performance Optimization**: Tune indexes, shards, and replication
 - **Production Deployment**: Build scalable, reliable vector systems
+- **Vector Compression**: Implement scalar, binary, and product quantization and price the oversampling-rescore trade
 
 ## Module Contents
 
@@ -62,6 +63,20 @@ After completing this module, you will be able to:
 - Compare query performance
 - Test scalability
 - Analyze cost vs performance
+
+### [6404: Vector Compression and Quantization](./6404-Vector-Compression-Quantization.md)
+**SQ, Binary, and Product as Working Code**
+
+- The memory ledger: 15.36 GB raw against 3.84/0.48/0.24 GB compressed
+- Scalar quantization: the int8 range and the quantile measurement decision
+- Binary quantization: sign bits, Hamming ranking, and the rescore default
+- Product quantization: the codebook split and ADC lookups
+- The oversampling and rescore campaign
+
+**Experiments:**
+- Re-run product quantization with m=16 instead of 8
+- Run the campaign with limit=5 and check the os=1 no-op row
+- Measure recall on your own collection before choosing quantile bounds
 
 ### 6403: Qdrant Production Deployment
 **Production Vector Database Self-Hosted** (Guide)
@@ -118,10 +133,11 @@ This module connects to:
 |----------|------|
 | [6401: Qdrant Setup](./6401-Qdrant-Setup.md) | 3 hours |
 | [6402: Vector Database Comparison](./6402-Pinecone-vs-Weaviate.md) | 3 hours |
+| [6404: Vector Compression and Quantization](./6404-Vector-Compression-Quantization.md) | 3 hours |
 | Guide ([6403](./guides/6403-Qdrant-Production-Deployment.md)) | 5 hours |
 | Quiz | 30 minutes |
 | Practice | 3 hours |
-| **Total** | **14.5 hours** |
+| **Total** | **17.5 hours** |
 
 ## Resources
 

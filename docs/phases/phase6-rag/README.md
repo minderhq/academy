@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE6-RAG-README
 Title: "Phase 6: Data Nexus - RAG, CAG & External Memory [6000]"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Advanced
 Tags: ['phase', 'rag', 'retrieval', 'hybrid-search']
@@ -398,11 +398,13 @@ Conclusion: Self-hosted pays for itself within a few months
 |----------|-------------|------|------------|
 | [6401: Qdrant Setup](./6400-vector-databases/6401-Qdrant-Setup.md) | Qdrant configuration | 3h | Intermediate |
 | [6402: Pinecone vs Weaviate](./6400-vector-databases/6402-Pinecone-vs-Weaviate.md) | Comparison guide | 3h | Intermediate |
+| [6404: Vector Compression and Quantization](./6400-vector-databases/6404-Vector-Compression-Quantization.md) | SQ, binary, and PQ mechanics | 3h | Intermediate |
 | [6403: Qdrant Production Deployment](./6400-vector-databases/guides/6403-Qdrant-Production-Deployment.md) | Production deployment guide | 2h | Intermediate |
 
 **What You'll Learn:**
 - Qdrant architecture and configuration
 - Vector database comparison
+- Vector compression: scalar, binary, and product quantization
 - Deployment strategies
 - Self-hosted Docker deployment
 - Performance optimization
@@ -410,6 +412,7 @@ Conclusion: Self-hosted pays for itself within a few months
 **Hands-On Practice:**
 - Deploy Qdrant with Docker Compose
 - Configure collections and indexes
+- Run the quantization memory ledger and the oversampling-rescore campaign
 - Benchmark performance
 - Set up replication
 
@@ -485,9 +488,9 @@ graph TD
 | 6100: Vector Architectures | 14h | 6h | 20h |
 | 6200: RAG 2.0 | 11h | 6h | 17h |
 | 6300: Context Augmentation | 22h | 10h | 32h |
-| 6400: Vector Databases | 8h | 4h | 12h |
+| 6400: Vector Databases | 11h | 4h | 15h |
 | 6500: MLOps Pipelines | 18h | — | 18h |
-| **Total** | **73h** | **26h** | **99h** |
+| **Total** | **76h** | **26h** | **102h** |
 
 *6500 practice time is not yet estimated in its PRACTICE.md; phase totals cover the estimated modules.*
 

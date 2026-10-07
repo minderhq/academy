@@ -1,7 +1,7 @@
 ---
 Document ID: 6400-QUIZ
 Title: "6400: Vector Databases - Quiz"
-Last Updated: 2026-10-01
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 30 minutes
@@ -195,5 +195,5 @@ D) Only the query side needs work
 Each question maps to the closest lesson for review:
 
 - **Questions 1, 8, 12-15, 17-19:** [6402: Vector Database Comparison](../6402-Pinecone-vs-Weaviate.md) — feature matrix, hybrid and batch operations, Weaviate and Milvus profiles, sharding and replication
-- **Questions 2-7, 9-11, 16:** [6401: Qdrant Setup Guide](../6401-Qdrant-Setup.md) — collections, payloads, upsert, search, filtering, HNSW tuning and consistency
-- **Question 20:** [6403: Qdrant Production Deployment](../guides/6403-Qdrant-Production-Deployment.md) — performance tuning spanning index params, quantization and sharding
+- **Questions 2-7, 9, 11, 16:** [6401: Qdrant Setup Guide](../6401-Qdrant-Setup.md) — collections, payloads, upsert, search, filtering, HNSW tuning and consistency
+- **Questions 10, 20:** [6404: Vector Compression and Quantization](../6404-Vector-Compression-Quantization.md) — the 4x/32x/64x memory ledger (15.36 to 3.84/0.48/0.24 GB), the 0.9550-versus-0.7650 quantile recall inversion, the 11-versus-29.5 Hamming signal at 32x, and the oversampling-rescore campaign (os=1 rescore is a no-op; 0.3900 to 0.9950)
