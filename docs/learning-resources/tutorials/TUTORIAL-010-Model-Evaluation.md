@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-010
 Title: "TUTORIAL-010: Model Evaluation and Benchmarking"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 4 hours
@@ -327,7 +327,7 @@ def load_gsm8k() -> list[dict]:
     """Load GSM8K math word problems"""
     from datasets import load_dataset
 
-    dataset = load_dataset("gsm8k", "main", split="test")
+    dataset = load_dataset("openai/gsm8k", "main", split="test")
 
     return [
         {

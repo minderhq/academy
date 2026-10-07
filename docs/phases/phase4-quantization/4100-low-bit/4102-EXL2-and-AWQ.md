@@ -3,7 +3,7 @@ Document ID: 4102
 Title: "4102: EXL2 and AWQ - Extreme Quantization"
 Phase: 4
 Module: 4100
-Last Updated: 2026-09-30
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -326,7 +326,7 @@ model = AutoGPTQForCausalLM.from_pretrained(
 # Calibration data (needed for Hessian estimation)
 from datasets import load_dataset
 
-dataset = load_dataset("c4", "en", split="train")
+dataset = load_dataset("allenai/c4", "en", split="train")
 calibration_data = [
     tokenizer(example["text"], return_tensors="pt")["input_ids"]
     for example in dataset.select(range(128))

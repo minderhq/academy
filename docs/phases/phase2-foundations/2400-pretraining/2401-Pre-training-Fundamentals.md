@@ -3,7 +3,7 @@ Document ID: 2401
 Title: "2401: Pre-training Fundamentals"
 Phase: 2
 Module: 2400
-Last Updated: 2026-09-29
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -241,19 +241,19 @@ class DataCollector:
                 }) + "\n")
         return out
 
-    def download_arxiv(self):
-        """Download scientific_papers/arxiv through Hugging Face datasets."""
+    def download_fineweb_edu(self):
+        """Stream a FineWeb-Edu sample through Hugging Face datasets."""
         from datasets import load_dataset
 
-        dataset = load_dataset("scientific_papers", "arxiv", split="train")
-        out = os.path.join(self.output_dir, "arxiv.jsonl")
+        dataset = load_dataset("HuggingFaceFW/fineweb-edu", "sample-10BT", split="train", streaming=True)
+        out = os.path.join(self.output_dir, "fineweb_edu_sample.jsonl")
         with open(out, "w", encoding="utf-8") as f:
             for i, example in enumerate(dataset):
                 if i >= 1000:
                     break
                 f.write(json.dumps({
-                    "abstract": example["abstract"],
-                    "article": example["article"],
+                    "id": example["id"],
+                    "text": example["text"],
                 }) + "\n")
         return out
 

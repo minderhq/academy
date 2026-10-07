@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-006
 Title: "LAB-006: Train a Small Language Model from Scratch"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 7 hours
@@ -134,7 +134,7 @@ Ten thousand Wikipedia articles is a real corpus — large enough that tokenizer
 ```text
 # sketch - prepare_data.py
 # needs network + `uv pip install datasets`; the first run downloads a
-# slice of the wikipedia 20220301.en snapshot (gigabytes - be patient)
+# slice of the wikimedia/wikipedia 20231101.en snapshot (gigabytes - be patient)
 import json
 import os
 import re
@@ -145,7 +145,7 @@ from datasets import load_dataset
 
 def download_wikipedia_sample(output_file: str = "data/wiki_raw.jsonl"):
     """Download the first 10,000 English Wikipedia articles."""
-    dataset = load_dataset("wikipedia", "20220301.en", split="train")
+    dataset = load_dataset("wikimedia/wikipedia", "20231101.en", split="train")
     print(f"Total articles: {len(dataset):,}")
 
     os.makedirs("data", exist_ok=True)
