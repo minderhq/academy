@@ -1,7 +1,7 @@
 ---
 Document ID: 4200-QUIZ
 Title: "4200: KV Cache & Context Window - Quiz"
-Last Updated: 2026-10-01
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 30 minutes
@@ -195,8 +195,7 @@ D) Avoid tokenization of the input prompt entirely
 Each question maps to the closest lesson for review:
 
 - **Questions 1-4, 7-10, 15, 19-20:** [4201: Context Window Physics and OOM Prevention](../4201-Context-Window-Physics.md) — what the KV cache stores, its per-token memory cost and O(L) growth, RoPE scaling (PI/YaRN) past the trained horizon, the sliding-window cache, KV quantization, and offload as the OOM escape hatch
-- **Question 5:** [1402: vLLM and TGI](../../../phase1-infra/1400-llmops/1402-vLLM-and-TGI.md) — PagedAttention's page-based KV cache management in vLLM
-- **Questions 6, 11-12:** [4203: Context Window Optimization Guide](../guides/4203-Context-Window-Optimization.md) — the KV memory formula (2 × heads × head_dim × seq × batch × bytes × layers) and GQA's grouped KV-head sharing, the family MQA sits at the bottom of
+- **Questions 5-6, 11-12:** [4204: KV-Cache Paging and Prefix Caching](../4204-KV-Cache-Paging-and-Prefix-Caching.md) — PagedAttention's block table and free list (40.6 percent contiguous utilization against 99.8 percent paged over the same eight sequences), the KV-head ledger pricing Llama-2-7B MHA at 512 KB per token (128.0 GB at 8k x batch 32, OOM on H100 80GB) against Llama-3-8B GQA-8's 128 KB (32.0 GB), and GQA's grouped KV-head sharing with MQA at the bottom of the family
 - **Questions 13-14:** [4202: Speculative Decoding](../4202-Speculative-Decoding.md) — draft-model proposal with target-model accept/reject verification
 - **Question 16:** [4101: GGUF Physics - CPU/GPU Hybrid Offloading](../../4100-low-bit/4101-GGUF-Physics.md) — the prefill-is-compute, decode-is-bandwidth phase table
 - **Question 17:** [3102: Flash Attention - IO-Aware Exact Attention](../../../phase3-transformers/3100-attention/3102-Flash-Attention.md) — exact attention via IO-aware tiling that cuts GPU memory traffic

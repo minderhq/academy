@@ -1,11 +1,11 @@
 ---
 Document ID: 4200-KV-CACHE-README
 Title: "4200: KV Cache Optimization"
-Last Updated: 2026-10-01
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
-Estimated Time: 8 hours
+Estimated Time: 12 hours
 Tags: ['module', 'quantization', 'kv-cache']
 ---
 
@@ -20,6 +20,7 @@ This module covers advanced techniques for optimizing the Key-Value cache in tra
 - Context window is a key differentiator for LLM applications
 - Efficient caching enables larger batch sizes and longer sequences
 - Speculative decoding can 2-3x generation speed
+- PagedAttention's block tables and prefix caching turn wasted reservation into schedulable memory
 
 ## Learning Objectives
 
@@ -30,6 +31,7 @@ After completing this module, you will be able to:
 - **Speculative Decoding**: Implement draft-target models for faster generation
 - **Cache Compression**: Apply quantization and pruning to KV cache
 - **Multi-Query Attention**: Optimize cache with shared key/value projections
+- **Cache Paging**: Manage KV memory with block tables, prefix caching, and token budgets
 
 ## Module Contents
 
@@ -44,7 +46,6 @@ After completing this module, you will be able to:
 
 **Experiments:**
 - Profile KV cache memory usage
-- Implement PagedAttention
 - Test context window limits
 - Benchmark long-context performance
 
@@ -62,6 +63,21 @@ After completing this module, you will be able to:
 - Compare draft model strategies
 - Measure speedup vs quality
 - Optimize verification overhead
+
+### [4204: KV-Cache Paging and Prefix Caching](./4204-KV-Cache-Paging-and-Prefix-Caching.md)
+**The Page Manager: PagedAttention, Prefix Caching, and the Token Budget**
+
+- The fragmentation ledger: contiguous versus paged reservation
+- Block tables: logical-to-physical mapping and the free list
+- The KV-head sharing ledger: MHA, GQA, MQA cache arithmetic
+- Automatic prefix caching and copy-on-write
+- Chunked prefill and the decode token budget
+
+**Experiments:**
+- Implement PagedAttention
+- Trace a block table across appends into a fourth physical block
+- Price MHA-versus-GQA-versus-MQA cache at an 8k, batch-32 decode
+- Chunk a 2,048-token prefill under a 512-token iteration budget
 
 ### 4203: Context Window Optimization
 **Hands-On Context & Cache Implementations** (Guide)
@@ -118,10 +134,11 @@ This module connects to:
 |----------|------|
 | [4201: Context Window Physics](./4201-Context-Window-Physics.md) | 4 hours |
 | [4202: Speculative Decoding](./4202-Speculative-Decoding.md) | 4 hours |
+| [4204: KV-Cache Paging and Prefix Caching](./4204-KV-Cache-Paging-and-Prefix-Caching.md) | 4 hours |
 | Guide ([4203](./guides/4203-Context-Window-Optimization.md)) | 6 hours |
 | Quiz | 30 minutes |
 | Practice | 3 hours |
-| **Total** | **17.5 hours** |
+| **Total** | **21.5 hours** |
 
 ## Resources
 

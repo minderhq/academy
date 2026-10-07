@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE4-QUANTIZATION-README
 Title: "Phase 4: Quantization & Compression [4000]"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Advanced
 Tags: ['phase', 'quantization', 'qat', 'quantization-aware-training']
@@ -117,6 +117,7 @@ graph LR
 |----------|-------------|------|------------|
 | [4201: Context Window Physics](./4200-kv-cache/4201-Context-Window-Physics.md) | OOM errors in long sequences | 3h | Advanced |
 | [4202: Speculative Decoding](./4200-kv-cache/4202-Speculative-Decoding.md) | Accelerating with draft models | 2h | Advanced |
+| [4204: KV-Cache Paging and Prefix Caching](./4200-kv-cache/4204-KV-Cache-Paging-and-Prefix-Caching.md) | PagedAttention blocks, prefix caching, budgeted prefill | 4h | Advanced |
 | [4203: Context Optimization](./4200-kv-cache/guides/4203-Context-Window-Optimization.md) | KV cache optimization | 2h | Intermediate |
 
 **What You'll Learn:**
@@ -220,10 +221,10 @@ graph TD
 | Module | Reading | Practice | Total |
 |--------|---------|----------|-------|
 | 4100: Low-Bit Quantization | 9h | 4h | 13h |
-| 4200: KV-Cache Engineering | 8h | 6h | 14h |
+| 4200: KV-Cache Engineering | 12h | 6h | 18h |
 | 4300: QAT | 12h | 8h | 20h |
 | 4400: Advanced Techniques | 18h | 12h | 30h |
-| **Total** | **47h** | **30h** | **77h** |
+| **Total** | **51h** | **30h** | **81h** |
 
 ---
 
@@ -247,6 +248,7 @@ After completing this phase, you will be able to:
    - Apply KV cache quantization
    - Implement speculative decoding
    - Use PagedAttention for long sequences
+   - Manage the cache with block tables, prefix caching, and token budgets
 
 4. **Train Quantized Models**
    - Implement quantization-aware training
@@ -464,6 +466,11 @@ models:
    - Implement speculative decoding
    - Benchmark speed improvements
    - Tune draft model quality
+
+5. **[4204: KV-Cache Paging and Prefix Caching](./4200-kv-cache/4204-KV-Cache-Paging-and-Prefix-Caching.md)**
+   - Price contiguous versus paged reservation on eight concurrent sequences
+   - Trace a block table across appends into a fourth physical block
+   - Chunk a 2,048-token prefill under a 512-token iteration budget
 
 ---
 

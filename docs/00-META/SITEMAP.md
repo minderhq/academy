@@ -193,7 +193,7 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [assessment: PRACTICE](../phases/phase3-transformers/3500-multimodal/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase3-transformers/3500-multimodal/assessment/QUIZ.md)
 
-## Phase 4 - Quantization & Compression (42 files)
+## Phase 4 - Quantization & Compression (43 files)
 
 - [CHECKPOINT](../phases/phase4-quantization/CHECKPOINT.md)
 - [README](../phases/phase4-quantization/README.md)
@@ -209,12 +209,13 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [assessment: PRACTICE](../phases/phase4-quantization/4100-low-bit/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase4-quantization/4100-low-bit/assessment/QUIZ.md)
 
-### [4200-kv-cache] (2 lessons, 1 guides)
+### [4200-kv-cache] (3 lessons, 1 guides)
 
 - [PREREQUISITES](../phases/phase4-quantization/4200-kv-cache/PREREQUISITES.md)
 - [README](../phases/phase4-quantization/4200-kv-cache/README.md)
 - [4201-Context-Window-Physics](../phases/phase4-quantization/4200-kv-cache/4201-Context-Window-Physics.md)
 - [4202-Speculative-Decoding](../phases/phase4-quantization/4200-kv-cache/4202-Speculative-Decoding.md)
+- [4204-KV-Cache-Paging-and-Prefix-Caching](../phases/phase4-quantization/4200-kv-cache/4204-KV-Cache-Paging-and-Prefix-Caching.md)
 - [guide: 4203-Context-Window-Optimization](../phases/phase4-quantization/4200-kv-cache/guides/4203-Context-Window-Optimization.md)
 - [assessment: PRACTICE](../phases/phase4-quantization/4200-kv-cache/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase4-quantization/4200-kv-cache/assessment/QUIZ.md)
@@ -737,15 +738,15 @@ build's written walkthroughs live inside the lessons themselves - see the
 ## Statistics
 
 ```text
-Total markdown files: 493
-  docs/: 439, experiments/: 48, configs/: 4, repo root: 2
+Total markdown files: 494
+  docs/: 440, experiments/: 48, configs/: 4, repo root: 2
 Phases: 7
 Learning modules (topics): 33
-Phase files (lessons, guides, assessments, topic README/PREREQUISITES): 290
+Phase files (lessons, guides, assessments, topic README/PREREQUISITES): 291
   Phase 1 - Infrastructure Fabric: 41
   Phase 2 - Cognitive Science & Frameworks: 33
   Phase 3 - Transformer Physics: 37
-  Phase 4 - Quantization & Compression: 42
+  Phase 4 - Quantization & Compression: 43
   Phase 5 - Fine-Tuning & Alignment: 46
   Phase 6 - Data Nexus: 45
   Phase 7 - Agentic Systems: 46
