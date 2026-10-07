@@ -118,7 +118,7 @@
       }
     },
     "docs/comparisons/CP-002-Vector-Database-Comparison.md": {
-      "mtime": 1791219555.8916035,
+      "mtime": 1791393635.2215288,
       "size": 13461,
       "bad": {
         "75": "SIDE-EFFECT",
@@ -143,7 +143,7 @@
       "bad": {}
     },
     "docs/enterprise-solutions/SOL-001-Enterprise-Knowledge-Base.md": {
-      "mtime": 1791391530.2718694,
+      "mtime": 1791393593.2427254,
       "size": 29725,
       "bad": {
         "190": "ENV-GAP:sentence_transformers",
@@ -355,7 +355,7 @@
       }
     },
     "docs/learning-resources/labs/LAB-001-Docker-LLM.md": {
-      "mtime": 1791363236.7432287,
+      "mtime": 1791393593.243723,
       "size": 20022,
       "bad": {
         "108": "TIMEOUT"
@@ -365,6 +365,8 @@
       }
     },
     "docs/learning-resources/labs/LAB-002-RAG-Implementation.md": {
+      "mtime": 1791393635.2230394,
+      "size": 30620,
       "bad": {
         "254": "ENV-GAP:chunker",
         "290": "ENV-GAP:sentence_transformers",
@@ -373,7 +375,6 @@
         "920": "ENV-GAP:reranker",
         "1026": "INTERACTIVE"
       },
-      "mtime": 1791091995.7808137,
       "notes": {
         "254": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design",
         "290": "optional third-party package the QA environment does not install; the fence documents the install requirement",
@@ -381,11 +382,10 @@
         "865": "optional third-party package the QA environment does not install; the fence documents the install requirement",
         "920": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design",
         "1026": "input() demo; the census closes stdin by design"
-      },
-      "size": 30620
+      }
     },
     "docs/learning-resources/labs/LAB-003-LoRA-FineTuning.md": {
-      "mtime": 1791374956.5810454,
+      "mtime": 1791393593.245726,
       "size": 29430,
       "bad": {
         "671": "TIMEOUT"
@@ -395,7 +395,7 @@
       }
     },
     "docs/learning-resources/labs/LAB-004-ReAct-Agent.md": {
-      "mtime": 1791096283.2133863,
+      "mtime": 1791393635.2230394,
       "size": 35383,
       "bad": {
         "517": "ENV-GAP:tool_registry",
@@ -413,7 +413,7 @@
       }
     },
     "docs/learning-resources/labs/LAB-005-GraphRAG.md": {
-      "mtime": 1791091995.781886,
+      "mtime": 1791393635.2245443,
       "size": 26506,
       "bad": {
         "124": "SIDE-EFFECT",
@@ -436,7 +436,7 @@
       "bad": {}
     },
     "docs/learning-resources/labs/LAB-007-Production-RAG.md": {
-      "mtime": 1791109464.1056871,
+      "mtime": 1791393635.2255514,
       "size": 35273,
       "bad": {
         "177": "ENV-GAP:sentence_transformers",
@@ -544,7 +544,7 @@
       }
     },
     "docs/learning-resources/labs/solutions/SOLUTION-LAB-001-Docker-LLM.md": {
-      "mtime": 1791388367.2289376,
+      "mtime": 1791393593.2482393,
       "size": 15755,
       "bad": {
         "108": "TIMEOUT"
@@ -669,7 +669,7 @@
       "size": 2316
     },
     "docs/learning-resources/projects/PROJECT-001-AI-Assistant.md": {
-      "mtime": 1791223830.7903466,
+      "mtime": 1791393635.2275572,
       "size": 36875,
       "bad": {
         "665": "TIMEOUT"
@@ -982,14 +982,14 @@
       }
     },
     "docs/learning-resources/tutorials/TUTORIAL-004-Monitoring.md": {
+      "mtime": 1791393635.2285562,
+      "size": 17342,
       "bad": {
         "556": "ENV-GAP:opentelemetry"
       },
-      "mtime": 1791091995.7842999,
       "notes": {
         "556": "opentelemetry is an optional package the QA environment does not install; the fence teaches trace instrumentation"
-      },
-      "size": 17342
+      }
     },
     "docs/learning-resources/tutorials/TUTORIAL-006-Real-time-AI.md": {
       "mtime": 1791088172.4198954,
@@ -2067,9 +2067,9 @@
       "bad": {}
     },
     "docs/phases/phase4-quantization/4400-advanced-techniques/assessment/PRACTICE.md": {
-      "bad": {},
-      "mtime": 1790745763.7402613,
-      "size": 18981
+      "mtime": 1791393635.2306085,
+      "size": 18981,
+      "bad": {}
     },
     "docs/phases/phase4-quantization/4400-advanced-techniques/guides/4408-Quantizing-for-Production.md": {
       "mtime": 1791109464.216369,
@@ -3113,7 +3113,7 @@
       }
     },
     "docs/volumes/VOLUME-7-Production-Mastery.md": {
-      "mtime": 1791357710.2493374,
+      "mtime": 1791393635.231124,
       "size": 51487,
       "bad": {
         "1247": "ENV-GAP:pynvml"

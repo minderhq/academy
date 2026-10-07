@@ -889,7 +889,7 @@ EOF
 
 # Deploy
 cd ~/lab-003-lora
-docker-compose up -d
+docker compose up -d
 
 # Test
 curl http://localhost:8002/v1/models

@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-002
 Title: "TUTORIAL-002: Docker Essentials for AI"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 45 minutes
@@ -290,13 +290,13 @@ EOF
 
 ```bash
 # Start all services
-docker-compose up -d
+docker compose up -d
 
 # View logs
-docker-compose logs -f
+docker compose logs -f
 
 # Stop all services
-docker-compose down
+docker compose down
 ```
 
 ---
@@ -530,9 +530,9 @@ How Docker fits into Minder Academy:
 2. **How do you persist container data?**
    - Use volumes (bind mounts or named volumes)
 
-3. **What's the difference between `docker run` and `docker-compose up`?**
+3. **What's the difference between `docker run` and `docker compose up`?**
    - `docker run` = single container
-   - `docker-compose up` = multi-container orchestrator
+   - `docker compose up` = multi-container orchestrator
 
 4. **Why do we copy pyproject.toml + uv.lock before code in Dockerfile?**
    - Better layer caching (dependencies only reinstall when changed)
@@ -556,8 +556,8 @@ docker run -d -p 80:80 ${NAME}      # Run container
 docker ps                           # List containers
 docker logs ${ID}                     # View logs
 docker exec -it ${ID} bash           # Enter container
-docker-compose up -d                # Start services
-docker-compose down                 # Stop services
+docker compose up -d                # Start services
+docker compose down                 # Stop services
 ```
 
 ---

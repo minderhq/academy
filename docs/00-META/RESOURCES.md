@@ -1,7 +1,7 @@
 ---
 Document ID: RESOURCES
 Title: "Minder Academy Resources"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Beginner
 Tags: ['reference', 'llm', 'production']
@@ -188,8 +188,8 @@ docker build -t myapp .
 docker run -p 8080:8080 myapp
 
 # Compose
-docker-compose up -d
-docker-compose logs -f
+docker compose up -d
+docker compose logs -f
 
 # Cleanup
 docker system prune -a

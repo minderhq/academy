@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-007
 Title: "LAB-007: Production RAG System"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 6 hours
@@ -81,7 +81,7 @@ After completing this lab, you will be able to:
 # Create Qdrant cluster directory
 mkdir -p qdrant-cluster/{node1,node2,node3}
 
-# Create docker-compose for Qdrant cluster
+# Create docker compose for Qdrant cluster
 cat > qdrant-cluster/docker-compose.yml << 'EOF'
 
 services:
@@ -144,7 +144,7 @@ EOF
 
 # Start cluster
 cd qdrant-cluster
-docker-compose up -d
+docker compose up -d
 
 # Verify
 curl http://localhost:6333/health

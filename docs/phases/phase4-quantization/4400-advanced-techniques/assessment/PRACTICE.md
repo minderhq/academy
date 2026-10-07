@@ -1,7 +1,7 @@
 ---
 Document ID: 4400-PRACTICE
 Title: "4400: Advanced Quantization Techniques - Practice"
-Last Updated: 2026-09-29
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -517,7 +517,7 @@ Deployment Commands:
 docker build -t quantized-llm .
 
 # Run
-docker-compose up -d
+docker compose up -d
 
 # Test
 curl -X POST http://localhost:8000/generate \\

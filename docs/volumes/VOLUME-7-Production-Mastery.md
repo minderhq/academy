@@ -1,7 +1,7 @@
 ---
 Document ID: VOLUME-7
 Title: "Volume 7: Production Mastery"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Advanced
 Tags: ['volume', 'agents', 'production', 'multi-agent']
@@ -78,7 +78,7 @@ This is the **culmination of the curriculum**. You'll learn to:
 ┌─────────────────────────────────────────────────────────────────┐
 │                     Development Environment                      │
 ├─────────────────────────────────────────────────────────────────┤
-│ ✅ Single container (docker-compose up)                         │
+│ ✅ Single container (docker compose up)                         │
 │ ✅ HTTP only (no SSL)                                            │
 │ ✅ Localhost only                                                │
 │ ✅ Manual deployment                                             │
@@ -424,8 +424,8 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd /opt/llm-api
-            docker-compose pull
-            docker-compose up -d
+            docker compose pull
+            docker compose up -d
             docker system prune -f
 
       - name: Health check
@@ -780,7 +780,7 @@ class AgentMemory:
 
 # 2. Diagnose
 # Check logs
-docker-compose logs -f api
+docker compose logs -f api
 
 # Check metrics
 curl http://localhost:9090/api/v1/query?query=up
@@ -790,12 +790,12 @@ curl http://localhost:8000/health
 
 # 3. Mitigate
 # Scale up
-docker-compose up -d --scale api=3
+docker compose up -d --scale api=3
 
 # Rollback if needed
-docker-compose down
+docker compose down
 git checkout previous-stable
-docker-compose up -d
+docker compose up -d
 
 # 4. Resolve
 # Fix the issue
@@ -811,7 +811,7 @@ docker-compose up -d
 **Scaling Strategies:**
 ```bash
 # Horizontal scaling (more instances)
-docker-compose up -d --scale api=5
+docker compose up -d --scale api=5
 
 # Vertical scaling (bigger instances)
 # Update resource limits in docker-compose.yml

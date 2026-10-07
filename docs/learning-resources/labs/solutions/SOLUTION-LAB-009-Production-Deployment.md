@@ -1,7 +1,7 @@
 ---
 Document ID: SOLUTION-LAB-009
 Title: "SOLUTION-LAB-009: Production Deployment"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Advanced
 Tags: ['solution', 'production', 'deployment']
@@ -51,7 +51,7 @@ services:
 # deploy.sh
 
 # Deploy green
-docker-compose up -d app-green
+docker compose up -d app-green
 
 # Wait for health
 ./wait-for-health.sh http://localhost:8001/health

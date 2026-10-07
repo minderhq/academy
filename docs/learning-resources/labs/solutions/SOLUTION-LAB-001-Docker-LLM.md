@@ -573,7 +573,7 @@ mkdir -p services/app data/models data/chat nginx
 # 2. Create all files (copy code from above)
 
 # 3. Start all services
-docker-compose up -d
+docker compose up -d
 
 # 4. Pull model
 docker exec ollama ollama pull mistral
@@ -590,10 +590,10 @@ curl -X POST http://localhost:8000/chat/session123 \
   }'
 
 # 7. View logs
-docker-compose logs -f api
+docker compose logs -f api
 
 # 8. Stop services
-docker-compose down
+docker compose down
 ```
 
 ---

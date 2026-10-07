@@ -136,7 +136,7 @@ cat > docker-compose.yml << 'EOF'
 EOF
 
 # Start services
-docker-compose up -d
+docker compose up -d
 
 # Verify services
 docker ps
@@ -973,13 +973,13 @@ services:
 
 ```bash
 # Build and start
-docker-compose -f docker-compose.prod.yml up -d --build
+docker compose -f docker-compose.prod.yml up -d --build
 
 # Check logs
-docker-compose -f docker-compose.prod.yml logs -f api
+docker compose -f docker-compose.prod.yml logs -f api
 
 # Scale API if needed
-docker-compose -f docker-compose.prod.yml up -d --scale api=3
+docker compose -f docker-compose.prod.yml up -d --scale api=3
 ```
 
 ---

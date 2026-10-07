@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-004
 Title: "LAB-004: Building ReAct Agents"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -876,10 +876,10 @@ docker run --rm -v ~/lab-004-react/data/models:/root/.ollama \
   ollama/ollama ollama pull mistral
 
 # Start services
-docker-compose up -d --build
+docker compose up -d --build
 
 # Check logs
-docker-compose logs -f agent
+docker compose logs -f agent
 ```
 
 ### Checkpoint: Exercise 4

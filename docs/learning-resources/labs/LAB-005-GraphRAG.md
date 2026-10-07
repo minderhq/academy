@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-005
 Title: "LAB-005: GraphRAG Implementation with Neo4j & Qdrant"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -688,7 +688,7 @@ networks:
 ### Deploy:
 ```bash
 cd ~/lab-005-graphrag
-docker-compose up -d --build
+docker compose up -d --build
 ```
 
 ### Checkpoint: Exercise 5

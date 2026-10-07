@@ -1,7 +1,7 @@
 ---
 Document ID: CP-002
 Title: "CP-002: Vector Database Comparison Guide"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Intermediate
 Tags: ['comparison', 'vector-db', 'qdrant', 'pinecone']
@@ -342,7 +342,7 @@ Milvus is a distributed vector database built for scale. Used by large enterpris
 
 ```bash
 # Docker Compose (minimum 3 services)
-docker-compose up -d  # Spins up etcd, MinIO, Milvus
+docker compose up -d  # Spins up etcd, MinIO, Milvus
 ```
 
 ```python

@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-005
 Title: "TUTORIAL-005: Production Deployment with CI/CD"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 90 minutes
@@ -588,8 +588,8 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd /opt/llm-api
-            docker-compose pull
-            docker-compose up -d
+            docker compose pull
+            docker compose up -d
             docker system prune -f
 
       - name: Health check
@@ -657,13 +657,13 @@ EOF
 git push main
 
 # Check deployment
-docker-compose -f docker-compose.prod.yml ps
+docker compose -f docker-compose.prod.yml ps
 
 # View logs
-docker-compose -f docker-compose.prod.yml logs -f api
+docker compose -f docker-compose.prod.yml logs -f api
 
 # Scale API
-docker-compose -f docker-compose.prod.yml up -d --scale api=3
+docker compose -f docker-compose.prod.yml up -d --scale api=3
 
 # Backup data
 docker exec postgres pg_dump -U user llmdb > backup.sql

@@ -1,7 +1,7 @@
 ---
 Document ID: CHEAT-SHEET-001
 Title: "CHEAT-SHEET-001: Docker Commands"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Intermediate
 Tags: ['cheatsheet', 'docker', 'devops']
@@ -161,40 +161,40 @@ docker images myapp:latest
 ### Basic Commands
 ```bash
 # Start services
-docker-compose up -d
+docker compose up -d
 
 # Stop services
-docker-compose down
+docker compose down
 
 # View logs
-docker-compose logs -f
+docker compose logs -f
 
 # View logs for specific service
-docker-compose logs -f api
+docker compose logs -f api
 
 # Restart services
-docker-compose restart
+docker compose restart
 
 # Rebuild and start
-docker-compose up -d --build
+docker compose up -d --build
 
 # Scale services
-docker-compose up -d --scale api=3
+docker compose up -d --scale api=3
 ```
 
 ### Service Management
 ```bash
 # Run one-off command
-docker-compose run web python manage.py migrate
+docker compose run web python manage.py migrate
 
 # Execute command in service
-docker-compose exec web bash
+docker compose exec web bash
 
 # Show running processes
-docker-compose ps
+docker compose ps
 
 # View resource usage
-docker-compose top
+docker compose top
 ```
 
 ---

@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-002
 Title: "LAB-002: RAG Implementation with Qdrant & Ollama"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 4 hours
@@ -677,14 +677,14 @@ docker run --rm -v ~/lab-002-rag/data/models:/root/.ollama \
   ollama/ollama:latest ollama pull mistral
 
 # Build and start
-docker-compose build
-docker-compose up -d
+docker compose build
+docker compose up -d
 
 # Check services
-docker-compose ps
+docker compose ps
 
 # View logs
-docker-compose logs -f rag
+docker compose logs -f rag
 ```
 
 ### Checkpoint: Exercise 4

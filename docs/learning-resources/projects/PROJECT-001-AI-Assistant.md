@@ -1,7 +1,7 @@
 ---
 Document ID: PROJECT-001
 Title: "CAPSTONE PROJECT-001: Build Your AI Assistant"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Advanced
 Tags: ['project', 'rag', 'llm']
@@ -1125,14 +1125,14 @@ if __name__ == "__main__":
 cd ~/ai-assistant
 
 # Build and start all services
-docker-compose build
-docker-compose up -d
+docker compose build
+docker compose up -d
 
 # Check all services are running
-docker-compose ps
+docker compose ps
 
 # View logs
-docker-compose logs -f
+docker compose logs -f
 ```
 
 ### 7.2 Test the System

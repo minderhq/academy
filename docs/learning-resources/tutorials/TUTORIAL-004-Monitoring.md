@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-004
 Title: "TUTORIAL-004: Monitoring & Observability for AI Systems"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 90 minutes
@@ -378,10 +378,10 @@ EOF
 
 ```bash
 # Build and start
-docker-compose up -d
+docker compose up -d
 
 # Check all services are running
-docker-compose ps
+docker compose ps
 
 # Should see 8 services running
 ```
@@ -466,7 +466,7 @@ curl -o grafana/dashboards/docker-dashboard.json \
 ### Restart Grafana to load provisioning:
 
 ```bash
-docker-compose restart grafana
+docker compose restart grafana
 ```
 
 ### Access Grafana:
@@ -706,7 +706,7 @@ curl -X POST http://localhost:8080/generate \
 
 ```bash
 # View logs
-docker-compose logs -f prometheus
+docker compose logs -f prometheus
 
 # Check metrics
 curl http://localhost:9445/metrics | grep gpu
@@ -715,7 +715,7 @@ curl http://localhost:9445/metrics | grep gpu
 curl 'http://localhost:9090/api/v1/query?query=up'
 
 # Stop everything
-docker-compose down
+docker compose down
 ```
 
 ---

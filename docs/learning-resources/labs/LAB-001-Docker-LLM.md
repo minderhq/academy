@@ -435,14 +435,14 @@ EOF
 cd ~/lab-001-docker-llm
 
 # Build and start all services
-docker-compose build
-docker-compose up -d
+docker compose build
+docker compose up -d
 
 # Check all services are running
-docker-compose ps
+docker compose ps
 
 # View logs
-docker-compose logs -f api
+docker compose logs -f api
 ```
 
 ### Checkpoint: Exercise 4
@@ -637,7 +637,7 @@ uv add redis==8.1.0
 ### Rebuild and test:
 ```bash
 cd ~/lab-001-docker-llm
-docker-compose up -d --build
+docker compose up -d --build
 
 # Test persistent chat
 curl -X POST http://localhost:8000/v1/chat/completions \
