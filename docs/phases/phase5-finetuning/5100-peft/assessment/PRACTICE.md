@@ -1,7 +1,7 @@
 ---
 Document ID: 5100-PRACTICE
 Title: "5100: PEFT Techniques - Practice"
-Last Updated: 2026-09-29
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 8 hours
@@ -316,7 +316,7 @@ print("""
 from transformers import TrainingArguments, Trainer
 
 training_args = TrainingArguments(
-    output_dir="./qlora-llama2",
+    output_dir="./qlora-llama3.1",
     num_train_epochs=3,
     per_device_train_batch_size=4,
     gradient_accumulation_steps=4,

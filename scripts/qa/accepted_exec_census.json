@@ -872,16 +872,16 @@
       }
     },
     "docs/learning-resources/projects/templates/TEMPLATE-010-Chatbot-UI.md": {
+      "mtime": 1791397005.5633304,
+      "size": 5905,
       "bad": {
-        "113": "UN-LEAK",
-        "84": "ENV-GAP:src"
+        "84": "ENV-GAP:src",
+        "113": "UN-LEAK"
       },
-      "mtime": 1790758480.7678967,
       "notes": {
         "113": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
         "84": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design"
-      },
-      "size": 5901
+      }
     },
     "docs/learning-resources/projects/templates/TEMPLATE-011-Model-Merging-MoE.md": {
       "bad": {
@@ -1128,8 +1128,8 @@
       }
     },
     "docs/phases/phase1-infra/1400-llmops/1401-Ollama-Enterprise.md": {
-      "mtime": 1791370776.271686,
-      "size": 17441,
+      "mtime": 1791396752.2261078,
+      "size": 17518,
       "bad": {
         "240": "SIDE-EFFECT",
         "323": "SIDE-EFFECT",
@@ -1259,8 +1259,8 @@
       }
     },
     "docs/phases/phase1-infra/1500-monitoring/assessment/PRACTICE.md": {
-      "mtime": 1791075069.380148,
-      "size": 37349,
+      "mtime": 1791397005.5373652,
+      "size": 37377,
       "bad": {
         "835": "ENV-GAP:structlog"
       },
@@ -1397,8 +1397,8 @@
       "bad": {}
     },
     "docs/phases/phase2-foundations/2300-framework-engineering/2303-API-Design-for-ML.md": {
-      "mtime": 1791357710.2358317,
-      "size": 36560,
+      "mtime": 1791397005.557234,
+      "size": 36561,
       "bad": {}
     },
     "docs/phases/phase2-foundations/2300-framework-engineering/2304-Production-Deployment-Patterns.md": {
@@ -2072,8 +2072,8 @@
       "bad": {}
     },
     "docs/phases/phase4-quantization/4400-advanced-techniques/guides/4408-Quantizing-for-Production.md": {
-      "mtime": 1791109464.216369,
-      "size": 20519,
+      "mtime": 1791396974.2773442,
+      "size": 20606,
       "bad": {
         "70": "SIDE-EFFECT",
         "110": "CODE-SIGNAL:FileNotFoundError",
@@ -2145,8 +2145,8 @@
       "bad": {}
     },
     "docs/phases/phase5-finetuning/5100-peft/assessment/PRACTICE.md": {
-      "mtime": 1791223830.7898004,
-      "size": 32885,
+      "mtime": 1791397005.546902,
+      "size": 32887,
       "bad": {
         "234": "ENV-GAP:Using `bitsandbytes` 4-bit quantization requires bitsandbyte"
       },

@@ -293,7 +293,7 @@ curl -fsSL https://ollama.com/install.sh | sh
    ```bash
    # Instead of mistral (7B)
    ollama pull phi4-mini  # 3.8B parameters
-   ollama pull gemma2:2b # 2.6B parameters
+   ollama pull gemma3:1b # 1B parameters
    ```
 
 3. **Close other applications:**

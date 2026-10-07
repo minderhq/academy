@@ -1,7 +1,7 @@
 ---
 Document ID: 1500-PRACTICE
 Title: "1500: Monitoring - Practice"
-Last Updated: 2026-09-28
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 7 hours
@@ -155,7 +155,7 @@ dashboard = {
                 "type": "graph",
                 "targets": [
                     {
-                        "expr": "rate(llm_requests_total{model=\"llama2-7b\"}[1m])",
+                        "expr": "rate(llm_requests_total{model=\"llama3.1-8b\"}[1m])",
                         "legendFormat": "{{status}} requests/sec"
                     }
                 ],
@@ -169,11 +169,11 @@ dashboard = {
                 "type": "graph",
                 "targets": [
                     {
-                        "expr": "rate(llm_tokens_total{model=\"llama2-7b\",type=\"output\"}[1m])",
+                        "expr": "rate(llm_tokens_total{model=\"llama3.1-8b\",type=\"output\"}[1m])",
                         "legendFormat": "Output tokens/sec"
                     },
                     {
-                        "expr": "rate(llm_tokens_total{model=\"llama2-7b\",type=\"input\"}[1m])",
+                        "expr": "rate(llm_tokens_total{model=\"llama3.1-8b\",type=\"input\"}[1m])",
                         "legendFormat": "Input tokens/sec"
                     }
                 ],
@@ -187,7 +187,7 @@ dashboard = {
                 "type": "graph",
                 "targets": [
                     {
-                        "expr": "histogram_quantile(0.95, rate(llm_inference_latency_seconds_bucket{model=\"llama2-7b\"}[5m]))",
+                        "expr": "histogram_quantile(0.95, rate(llm_inference_latency_seconds_bucket{model=\"llama3.1-8b\"}[5m]))",
                         "legendFormat": "P95 Latency"
                     }
                 ],
@@ -525,7 +525,7 @@ metrics = LLMMetrics()
 
 def generate_with_metrics(model, prompt: str, max_tokens: int = 100):
     """Generate text with complete metrics tracking."""
-    model_name = "llama2-7b"
+    model_name = "llama3.1-8b"
 
     # Preprocessing
     preprocess_start = time.time()
@@ -574,7 +574,7 @@ if __name__ == "__main__":
     logger.info("Metrics server started on port 8001")
 
     # Simulate some requests
-    @metrics.track_request(model="llama2-7b", endpoint="chat")
+    @metrics.track_request(model="llama3.1-8b", endpoint="chat")
     def mock_inference(prompt: str):
         time.sleep(0.1)  # Simulate inference
         return "Generated response"
@@ -583,16 +583,16 @@ if __name__ == "__main__":
     logger.info("Generating test metrics...")
     for i in range(10):
         response = mock_inference(f"Test prompt {i}")
-        metrics.record_tokens("llama2-7b", 5, 20)
+        metrics.record_tokens("llama3.1-8b", 5, 20)
         logger.info(f"Request {i+1}: {response}")
 
     logger.info("Metrics available at http://localhost:8001/metrics")
     logger.info("Expected output:")
     # requests_total is a three-label metric - the endpoint label is
     # part of every series it emits
-    logger.info('  - llm_requests_total{endpoint="chat",model="llama2-7b",status="success"} 10.0')
-    logger.info("  - llm_tokens_total{model=\"llama2-7b\",type=\"input\"} 50.0")
-    logger.info("  - llm_tokens_total{model=\"llama2-7b\",type=\"output\"} 200.0")
+    logger.info('  - llm_requests_total{endpoint="chat",model="llama3.1-8b",status="success"} 10.0')
+    logger.info("  - llm_tokens_total{model=\"llama3.1-8b\",type=\"input\"} 50.0")
+    logger.info("  - llm_tokens_total{model=\"llama3.1-8b\",type=\"output\"} 200.0")
 ```
 
 ### Exercise 4: Alert Rules
@@ -990,7 +990,7 @@ logger = LLMLogger()
 
 def process_request(request_id: str, prompt: str):
     """Process request with complete logging."""
-    model = "llama2-7b"
+    model = "llama3.1-8b"
 
     # Log request
     logger.log_request(
@@ -1046,7 +1046,7 @@ if __name__ == "__main__":
     # Log a request
     logger.log_request(
         request_id=request_id,
-        model="llama2-7b",
+        model="llama3.1-8b",
         endpoint="chat",
         prompt="What is AI?",
         prompt_tokens=4,
@@ -1057,7 +1057,7 @@ if __name__ == "__main__":
     # Log a response
     logger.log_response(
         request_id=request_id,
-        model="llama2-7b",
+        model="llama3.1-8b",
         output_text="AI is artificial intelligence.",
         output_tokens=5,
         latency_seconds=0.5
@@ -1084,7 +1084,7 @@ if __name__ == "__main__":
         "event": "llm_request",
         "service": "llm-service",
         "request_id": request_id,
-        "model": "llama2-7b",
+        "model": "llama3.1-8b",
         "prompt_length": 11,
         "timestamp": "2026-02-05T10:30:00.000Z",
         "level": "info"

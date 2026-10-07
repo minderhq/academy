@@ -139,7 +139,7 @@ curl -fsSL https://ollama.com/install.sh | sh
 # Verify GPU support — `ollama --version` prints only the version; GPU
 # detection shows up at server startup and when a model first loads
 journalctl -u ollama --no-pager | grep -i "inference compute"  # lists CUDA devices
-ollama pull llama2:7b
+ollama pull llama3.1:8b
 ollama ps    # PROCESSOR column: "100% GPU" = CUDA active, "100% CPU" = fallback
 
 # Start server
@@ -151,31 +151,31 @@ ollama serve
 ### Pull Models
 ```bash
 # Pull model (auto-downloads)
-ollama pull llama2:7b
+ollama pull llama3.1:8b
 ollama pull codellama:13b
 ollama pull mistral:7b
-ollama pull gemma2:9b
+ollama pull gemma3:12b
 ollama pull mixtral:8x7b   # ~26GB — will not fit an 11GB-class GPU; needs a multi-GPU host
 ```
 
 ### Model Quantization Levels
 
-Sizes below are the published registry sizes for the Llama 2 family
-(`ollama.com/library/llama2/tags`). Note the real tag shape: quantization
-variants combine parameter size and flavor (`7b-chat-q4_K_M`) — bare
+Sizes below are the published registry sizes for the Llama 3.1 family
+(`ollama.com/library/llama3.1/tags`). Note the real tag shape: quantization
+variants combine parameter size and flavor (`8b-instruct-q4_K_M`) — bare
 suffixes like `:q4_K_M` alone are not pullable tags.
 
 ```text
-Tag (pullable)              Size     Parameters   Fits 11GB GPU?
-──────────────────────────────────────────────────────────────────
-llama2:latest (=7b chat)    3.8GB    7B           yes (~6GB VRAM)
-llama2:7b                   3.8GB    7B           yes (~6GB VRAM)
-llama2:13b                  7.4GB    13B          tight (~10-11GB VRAM)
-llama2:7b-chat-q4_K_M       4.1GB    7B           yes (~6GB VRAM)
-llama2:7b-chat-q5_K_M       4.8GB    7B           yes (~7GB VRAM)
-llama2:7b-chat-q8_0         7.2GB    7B           yes (~9GB VRAM)
-codellama:34b               ~19GB    34B          no — 34B is CodeLlama-only,
-                                                  and it exceeds 11GB VRAM
+Tag (pullable)                Size     Parameters   Fits 11GB GPU?
+──────────────────────────────────────────────────────────────────────
+llama3.1:latest (=8b)         4.9GB    8B           yes (~6GB VRAM)
+llama3.1:8b                   4.9GB    8B           yes (~6GB VRAM)
+llama3.1:70b                  43GB     70B          no — 70B exceeds an 11GB card
+llama3.1:8b-instruct-q4_K_M   4.9GB    8B           yes (~6GB VRAM)
+llama3.1:8b-instruct-q5_K_M   5.7GB    8B           yes (~7GB VRAM)
+llama3.1:8b-instruct-q8_0     8.5GB    8B           tight (~10GB VRAM)
+codellama:34b                 ~19GB    34B          no — 34B is CodeLlama-only,
+                                                   and it exceeds 11GB VRAM
 ```
 
 ### Custom Model from GGUF
@@ -209,7 +209,7 @@ ollama run my-model
 ```bash
 # Generate completion
 curl http://localhost:11434/api/generate -d '{
-  "model": "llama2",
+  "model": "llama3.1",
   "prompt": "Write a Python function to calculate fibonacci",
   "stream": false,
   "options": {
@@ -220,7 +220,7 @@ curl http://localhost:11434/api/generate -d '{
 
 # Chat completion
 curl http://localhost:11434/api/chat -d '{
-  "model": "llama2",
+  "model": "llama3.1",
   "messages": [
     {"role": "user", "content": "Hello!"}
   ],
@@ -232,7 +232,7 @@ curl http://localhost:11434/api/tags
 
 # Model info
 curl http://localhost:11434/api/show -d '{
-  "model": "llama2"
+  "model": "llama3.1"
 }'
 ```
 
@@ -241,18 +241,18 @@ curl http://localhost:11434/api/show -d '{
 import ollama
 
 # Simple generation
-response = ollama.generate(model='llama2', prompt='Write a haiku about AI')
+response = ollama.generate(model='llama3.1', prompt='Write a haiku about AI')
 print(response['response'])
 
 # Chat with history
 messages = [
     {'role': 'user', 'content': 'What is Kubernetes?'}
 ]
-response = ollama.chat(model='llama2', messages=messages)
+response = ollama.chat(model='llama3.1', messages=messages)
 print(response['message']['content'])
 
 # Streaming
-for chunk in ollama.generate(model='llama2', prompt='Tell me a story', stream=True):
+for chunk in ollama.generate(model='llama3.1', prompt='Tell me a story', stream=True):
     print(chunk['response'], end='', flush=True)
 ```
 
@@ -312,10 +312,10 @@ OLLAMA_KEEP_ALIVE="-1" ollama serve  # Never unload
 # Preload one model so the first request does not pay the load cost.
 # keep_alive: -1 keeps it resident until explicitly unloaded.
 curl -s http://localhost:11434/api/generate \
-  -d '{"model": "llama2:7b", "keep_alive": -1}' > /dev/null
+  -d '{"model": "llama3.1:8b", "keep_alive": -1}' > /dev/null
 
 # An 11GB GPU holds ONE 7B model comfortably (~6GB VRAM). Preloading
-# llama2 + codellama + mistral together (~15GB of weights) forces Ollama
+# llama3.1 + codellama + mistral together (~16GB of weights) forces Ollama
 # to unload and reload on every model switch — pick a single hot model.
 ```
 
@@ -326,7 +326,7 @@ import concurrent.futures
 def process_batch(prompts):
     with concurrent.futures.ThreadPoolExecutor(max_workers=4) as executor:
         futures = [
-            executor.submit(ollama.generate, model='llama2', prompt=p)
+            executor.submit(ollama.generate, model='llama3.1', prompt=p)
             for p in prompts
         ]
         return [f.result()['response'] for f in futures]
@@ -346,7 +346,7 @@ from functools import lru_cache
 import hashlib
 
 @lru_cache(maxsize=1000)
-def cached_generate(prompt, model="llama2"):
+def cached_generate(prompt, model="llama3.1"):
     return ollama.generate(model=model, prompt=prompt)
 
 # Or use semantic similarity
@@ -357,7 +357,7 @@ encoder = SentenceTransformer('all-MiniLM-L6-v2')
 
 _semantic_cache = []  # list of (embedding, response) tuples
 
-def semantic_cache(prompt, model="llama2:7b", threshold=0.95):
+def semantic_cache(prompt, model="llama3.1:8b", threshold=0.95):
     emb = encoder.encode(prompt, normalize_embeddings=True)
     for cached_emb, cached_response in _semantic_cache:
         if float(np.dot(emb, cached_emb)) >= threshold:

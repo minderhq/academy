@@ -3,7 +3,7 @@ Document ID: 4408
 Title: "4408: Quantizing for Production"
 Phase: 4
 Module: 4400
-Last Updated: 2026-09-30
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -71,12 +71,12 @@ Check architecture support and the license *programmatically* — model configs 
 from huggingface_hub import HfApi
 from transformers import AutoConfig
 
-model_id = "meta-llama/Llama-2-7b-hf"
+model_id = "meta-llama/Llama-3.1-8B-Instruct"
 
 config = AutoConfig.from_pretrained(model_id)
 
 # architectures every major quantization path supports well
-SUPPORTED = {"llama", "mistral", "mixtral", "qwen2", "phi3", "gemma2"}
+SUPPORTED = {"llama", "mistral", "mixtral", "qwen2", "qwen3", "phi3", "gemma2", "gemma3"}
 if config.model_type not in SUPPORTED:
     print(f"Warning: {config.model_type} may lag in kernel support")
 
@@ -95,7 +95,7 @@ print(model_license(model_id))
 ```text
 Selection criteria that matter for quantization
 - parameter count vs your memory budget AT the target bit-width
-  (a 7B at INT4 fits 12GB consumer cards; a 13B does not)
+  (an 8B at INT4 fits 12GB consumer cards; a 13B does not)
 - architecture maturity: quantization kernels land for popular
   archs first; brand-new architectures quantize last
 - if a quantized checkpoint already exists from the publisher
@@ -182,7 +182,7 @@ import torch
 from transformers import (AutoModelForCausalLM, AutoTokenizer,
                           GPTQConfig)
 
-model_id = "meta-llama/Llama-2-7b-hf"
+model_id = "meta-llama/Llama-3.1-8B-Instruct"
 tokenizer = AutoTokenizer.from_pretrained(model_id)
 
 quant_config = GPTQConfig(
@@ -200,7 +200,7 @@ model = AutoModelForCausalLM.from_pretrained(
     dtype=torch.float16,
 )
 
-out_dir = "./models/llama-2-7b-w4a16-gptq"
+out_dir = "./models/llama-3.1-8b-w4a16-gptq"
 model.save_pretrained(out_dir)
 tokenizer.save_pretrained(out_dir)
 
@@ -211,8 +211,8 @@ tokenizer.save_pretrained(out_dir)
 ```text
 Notes
 - quantization RUNS ON GPU: the full-precision model must fit
-  during the pass (7B ~= 14GB FP16 + overhead) - a CPU-only
-  box cannot GPTQ a 7B; use GGUF there instead
+  during the pass (8B ~= 16GB FP16 + overhead) - a CPU-only
+  box cannot GPTQ an 8B; use GGUF there instead
 - requires a maintained GPTQ backend (gptqmodel); the legacy
   auto-gptq/optimum path is deprecated
 - AWQ equivalent exists for loading pre-quantized checkpoints
@@ -224,17 +224,17 @@ Notes
 
 ```bash
 # 1) HF weights -> f16 GGUF (current converter name)
-python convert_hf_to_gguf.py ./Llama-2-7b-hf \
+python convert_hf_to_gguf.py ./Llama-3.1-8B-Instruct \
     --outfile ./models/base-f16.gguf --outtype f16
 
 # 2) quantize with the llama.cpp binary
 ./llama-quantize ./models/base-f16.gguf \
-    ./models/llama-2-7b-Q4_K_M.gguf Q4_K_M
+    ./models/llama-3.1-8b-Q4_K_M.gguf Q4_K_M
 ```
 
 ```bash
 # optional: keep sensitive layers (attention) higher precision
-python convert_hf_to_gguf.py ./Llama-2-7b-hf \
+python convert_hf_to_gguf.py ./Llama-3.1-8B-Instruct \
     --outfile ./models/mixed.gguf --outtype f16 \
     --tensor-type "ffn_=q8_0"
 ./llama-quantize ./models/mixed.gguf ./models/mixed-Q4_K_M.gguf Q4_K_M
@@ -246,8 +246,8 @@ python convert_hf_to_gguf.py ./Llama-2-7b-hf \
 # from the exllamav2 repo; -c is a calibration file (jsonl),
 # -b the target bits-per-weight, -hf writes the HF config/tokenizer
 python convert.py \
-    -i ./Llama-2-7b-hf \
-    -o ./models/llama-2-7b-exl2-4.5bpw \
+    -i ./Llama-3.1-8B-Instruct \
+    -o ./models/llama-3.1-8b-exl2-4.5bpw \
     -c calibration.jsonl \
     -b 4.5 \
     -hf
@@ -261,7 +261,7 @@ serving: near-lossless quality, no calibration set required
 with dynamic scaling, native tensor-core throughput.
 
 Fastest route - let vLLM quantize at load time:
-    vllm serve meta-llama/Llama-2-7b-hf --quantization fp8
+    vllm serve meta-llama/Llama-3.1-8B-Instruct --quantization fp8
 
 For a saved FP8 checkpoint, produce it with llm-compressor
 (vLLM's companion quantization library); its output is a
@@ -362,10 +362,10 @@ stack's benchmark (vLLM benchmark_serving: TTFT + TPOT).
 
 ```bash
 # pre-quantized GPTQ/AWQ checkpoint, served directly
-vllm serve ./models/llama-2-7b-w4a16-gptq --dtype float16
+vllm serve ./models/llama-3.1-8b-w4a16-gptq --dtype float16
 
 # FP8 quantization at load time (Hopper-class)
-vllm serve meta-llama/Llama-2-7b-hf --quantization fp8
+vllm serve meta-llama/Llama-3.1-8B-Instruct --quantization fp8
 ```
 
 ```text
@@ -389,7 +389,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-MODEL_DIR = "./models/llama-2-7b-w4a16-gptq"
+MODEL_DIR = "./models/llama-3.1-8b-w4a16-gptq"
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -520,7 +520,7 @@ Format <-> runtime pairing is strict:
 
 ```text
 GPTQ needs the FP model resident on GPU during the pass
-(7B ~= 14GB+). Options: a bigger GPU, CPU offload with a large
+(8B ~= 16GB+). Options: a bigger GPU, CPU offload with a large
 time penalty, or GGUF (converts from disk, needs no GPU).
 ```
 

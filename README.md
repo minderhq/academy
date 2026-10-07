@@ -1269,9 +1269,9 @@ docker compose logs -f [service]        # View logs
 kubectl get pods -A                     # Check K8s pods
 
 # Model Operations
-ollama pull llama2:7b                   # Download model
-ollama run llama2:7b                    # Run model
-vllm serve llama2:7b --quantization awq # Serve with vLLM
+ollama pull llama3.1:8b                 # Download model
+ollama run llama3.1:8b                  # Run model
+vllm serve llama3.1:8b --quantization awq # Serve with vLLM
 
 # Vector Database
 curl http://localhost:6333/collections   # List collections

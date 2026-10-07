@@ -3,7 +3,7 @@ Document ID: 2303
 Title: "2303: API Design for ML Systems"
 Phase: 2
 Module: 2300
-Last Updated: 2026-09-29
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -149,7 +149,7 @@ class LoadedModel:
 
 loaded_models: dict[str, LoadedModel] = {
     name: LoadedModel(model_id=f"{name}@v1", version="1.0.0", input_size=4)
-    for name in ["mistral-7b", "llama2-13b", "gpt-j-6b"]
+    for name in ["mistral-7b", "llama3.1-8b", "gpt-j-6b"]
 }
 
 
