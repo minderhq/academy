@@ -1,7 +1,7 @@
 ---
 Document ID: 1200-QUIZ
 Title: "1200: Virtualization - Quiz"
-Last Updated: 2026-09-29
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 30 minutes
@@ -14,8 +14,8 @@ Tags: ['assessment', 'quiz', 'infrastructure', 'virtualization']
 
 ## Instructions
 
-- **20 questions**
-- **Passing score: 80%** (16/20 correct)
+- **25 questions**
+- **Passing score: 80%** (20/25 correct)
 - **Time limit:** None
 
 ---
@@ -162,6 +162,41 @@ B) Sees a virtual GPU
 C) Can't use the GPU
 D) Needs special drivers
 
+**21. You need to serve one model while fine-tuning another on the same machine. Per the lesson's single-GPU limits, this is:**
+
+A) Fine on one 11GB card with memory growth enabled
+B) Not practical on one card - add a second accelerator instead
+C) Only possible with nn.DataParallel
+D) Possible if the model is quantized to 4-bit
+
+**22. For production multi-GPU training on one node, the lesson recommends:**
+
+A) nn.DataParallel, which splits each batch automatically
+B) A single GPU with gradient accumulation
+C) DistributedDataParallel, launched with torchrun
+D) Pipeline parallelism for every workload
+
+**23. Launching with `torchrun --nproc_per_node=2 train.py` gives each process:**
+
+A) RANK, WORLD_SIZE, MASTER_ADDR, and MASTER_PORT in its environment
+B) A pre-built DistributedDataParallel model instance
+C) Its own copy of the dataset on local disk
+D) A CUDA graph of the training step
+
+**24. Llama-2-13B at fp16 will not serve on two 11GB cards with vLLM `--tensor-parallel-size 2` because:**
+
+A) Tensor parallelism requires identical GPU models
+B) vLLM only supports 7B-class models
+C) The KV cache alone exceeds 22GB
+D) Each shard needs about 13GB - more than one card holds
+
+**25. Two GPUs sit in different IOMMU groups and cannot peer directly. The lesson's NCCL fix is:**
+
+A) Upgrading to the newest NCCL version
+B) Setting NCCL_P2P_DISABLE=1
+C) Switching the backend to MPI
+D) Moving both GPUs into one VM
+
 ---
 
 ## Need to Review?
@@ -171,6 +206,7 @@ Each question maps to the closest lesson for review:
 - **Questions 1, 5, 6, 10, 15, 16, 18:** [1201: Proxmox Hypervisor Standard Operating Procedures](../1201-Proxmox-Hypervisor-SOP.md) — hypervisor platform and VM resources
 - **Questions 2-4, 7-9, 12-14, 19, 20:** [1202: GPU Passthrough (IOMMU/VFIO)](../1202-TB3-UT3G-Passthrough.md) — passthrough mechanics and IOMMU group isolation
 - **Questions 11, 17:** [1203: NVIDIA Kernel Module Management](../1203-Nvidia-Kernel-Module.md) — host-side kernel module handoff
+- **Questions 21-25:** [1204: Multi-GPU Setup](../1204-Multi-GPU-Setup.md) — single-GPU limits, DataParallel versus DDP, torchrun environment variables, vLLM shard sizing, and the NCCL peer-access fix
 
 ---
 
@@ -198,12 +234,17 @@ Each question maps to the closest lesson for review:
 | 18 | B | The EFI disk holds UEFI variables so a VM can boot in UEFI mode |
 | 19 | B | Cleanest passthrough is a GPU alone in its own IOMMU group |
 | 20 | A | The card is handed over as physical hardware; the guest installs the vendor driver as on a real machine |
+| 21 | B | Serving one model while fine-tuning another competes for the same 11GB; the lesson's answer is a second accelerator, not a memory trick |
+| 22 | C | DDP runs one process per GPU with gradient all-reduce; DataParallel's single-process fan-out is not the production recommendation |
+| 23 | A | torchrun exports RANK, WORLD_SIZE, MASTER_ADDR, and MASTER_PORT so every process can join the rendezvous |
+| 24 | D | 13B at fp16 is ~26GB; two shards still need ~13GB each - more than one 11GB card holds (a 7B at ~8GB per shard fits) |
+| 25 | B | NCCL_P2P_DISABLE=1 routes collectives through shared memory when the peer path across IOMMU groups is blocked |
 
 ---
 
 ## Scoring
 
-- **16-20 correct:** Excellent understanding of virtualization
-- **14-15 correct:** Good, review missed topics
-- **12-13 correct:** Needs more study
-- **<12 correct:** Please review the module materials
+- **20-25 correct:** Excellent understanding of virtualization
+- **18-19 correct:** Good, review missed topics
+- **15-17 correct:** Needs more study
+- **<15 correct:** Please review the module materials

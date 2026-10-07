@@ -1,7 +1,7 @@
 ---
 Document ID: 2200-QUIZ
 Title: "2200: Frameworks - Quiz"
-Last Updated: 2026-09-29
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 30 minutes
@@ -14,8 +14,8 @@ Tags: ['assessment', 'quiz', 'frameworks', 'pytorch']
 
 ## Instructions
 
-- **20 questions**
-- **Passing score: 80%** (16/20 correct)
+- **25 questions**
+- **Passing score: 80%** (20/25 correct)
 
 ---
 
@@ -161,6 +161,41 @@ B) If the model is trained
 C) If data is loaded
 D) If CUDA is installed
 
+**21. XLA is best described as:**
+
+A) A data-loading library for TensorFlow input pipelines
+B) A machine-learning compiler that fuses operations and lowers them through HLO and LLVM to device code
+C) A distributed-training coordinator built into Keras
+D) A profiling visualizer for TensorBoard traces
+
+**22. Three separate kernels computing `(x + 1) * 2` move how much memory traffic compared to one fused kernel?**
+
+A) The same traffic - fusion changes kernel count, not memory
+B) Half the traffic, because intermediates shrink
+C) Six full memory passes against the fused kernel's single read and single write
+D) Zero traffic, since intermediates stay in registers either way
+
+**23. A jitted function compiled for input shape (32, 64) is called with (64, 64). What happens?**
+
+A) The cached executable handles both shapes automatically
+B) XLA recompiles a new executable for the new shape
+C) The call falls back to eager mode permanently
+D) The extra rows are silently dropped
+
+**24. `experimental_get_compiler_ir` raises on your function. The most likely reason:**
+
+A) The function was not compiled with jit_compile=True
+B) The profiler was not running during the call
+C) The function returns a Python float instead of a Tensor
+D) The batch size is not divisible by 8
+
+**25. For Tensor Cores, a matmul should be cast to and shaped as:**
+
+A) FP32 with dimensions divisible by 16
+B) INT8 with per-channel scales
+C) TF32 with any dimension
+D) FP16 or BF16 with dimensions divisible by 8
+
 ---
 
 ## Need to Review?
@@ -169,6 +204,7 @@ Each question maps to the closest lesson for review:
 
 - **Questions 1-9, 11-13, 15-19:** [2201: PyTorch Computational Graphs and Dynamic Execution](../2201-PyTorch-Computational-Graphs.md) — tensors, autograd, and the training loop
 - **Questions 10, 14, 20:** [2203: CUDA Kernel Programming and GPU Architecture](../2203-CUDA-Kernel-Programming.md) — GPU device placement and CUDA
+- **Questions 21-25:** [2202: TensorFlow XLA and Compiler Optimizations](../2202-TensorFlow-XLA-Compilers.md) — the XLA compiler pipeline and kernel fusion, shape-driven recompilation, compiler IR inspection, and Tensor Core alignment
 
 ---
 
@@ -196,3 +232,8 @@ Each question maps to the closest lesson for review:
 | 18 | D | MSELoss is the standard loss for regression |
 | 19 | B | Larger batches raise both memory footprint and per-step time |
 | 20 | A | is_available() checks whether a CUDA-capable GPU is present |
+| 21 | B | XLA is a compiler for linear algebra: it fuses operations, optimizes at the HLO level, and lowers through LLVM to device code |
+| 22 | C | Each unfused kernel reads its inputs and writes its output: 3 kernels = 6 full passes; the fused kernel reads once and writes once |
+| 23 | B | XLA specializes executables to input shapes; a new shape triggers recompilation - pad to fixed shapes outside the jitted region instead |
+| 24 | A | IR inspection needs a compiled executable: the function must run under jit_compile=True with compile-time-known shapes |
+| 25 | D | Tensor Cores accelerate FP16/BF16 matrix multiplies when matrix dimensions are multiples of 8 |
