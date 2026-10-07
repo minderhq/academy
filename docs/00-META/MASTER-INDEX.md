@@ -12,7 +12,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 **Version:** 4.5
 **Last Updated:** 2026-09-30
-**Total Files:** 436 markdown files (docs/)
+**Total Files:** 437 markdown files (docs/)
 
 ---
 
@@ -82,13 +82,13 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 ### Phase 3: Transformer Physics [3000]
 
-**Status:** ✅ Complete | **Modules:** 5 | **Documents:** 36
+**Status:** ✅ Complete | **Modules:** 5 | **Documents:** 37
 
 | Module | Topic | Files | Status |
 |--------|-------|-------|--------|
 | **[3100](../phases/phase3-transformers/3100-attention/README.md)** | Attention | 3 docs | ✅ |
 | **[3200](../phases/phase3-transformers/3200-embeddings/README.md)** | Embeddings | 2 docs | ✅ |
-| **[3300](../phases/phase3-transformers/3300-decoding/README.md)** | Decoding | 3 docs | ✅ |
+| **[3300](../phases/phase3-transformers/3300-decoding/README.md)** | Decoding | 4 docs | ✅ |
 | **[3400](../phases/phase3-transformers/3400-architectures/README.md)** | Architectures | 4 docs | ✅ |
 | **[3500](../phases/phase3-transformers/3500-multimodal/README.md)** | Multimodal | 2 docs | ✅ |
 
@@ -391,7 +391,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 |----------|------:|
 | **Phase READMEs** | 7 |
 | **Module READMEs** | 33 |
-| **Phase Documents** | 287 |
+| **Phase Documents** | 288 |
 | **Tutorials** | 15 |
 | **Labs** | 15 |
 | **Lab Solutions** | 15 |
@@ -407,7 +407,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **Solutions** | 3 |
 | **Diagrams** | 4 |
 | **Meta Docs** | 20 |
-| **TOTAL** | **563** |
+| **TOTAL** | **564** |
 
 ### Content Statistics
 

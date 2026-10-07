@@ -240,6 +240,7 @@ graph TD
 | [3301: Activation Functions](./3300-decoding/3301-Activation-Functions.md) | GELU, SwiGLU vs RELU | 2h | Beginner |
 | [3302: Normalization Layers](./3300-decoding/3302-Normalization-Layers.md) | BatchNorm vs LayerNorm vs RMSNorm | 2h | Beginner |
 | [3303: Activation Comparison](./3300-decoding/guides/3303-Activation-Function-Comparison.md) | Comparative analysis | 1h | Advanced |
+| [3304: Decoding Sampling Strategies](./3300-decoding/3304-Decoding-Sampling-Strategies.md) | Temperature, top-k, nucleus, min-p, typical-p | 2h | Beginner |
 
 **What You'll Learn:**
 - ReLU and its limitations
@@ -249,6 +250,7 @@ graph TD
 - BatchNorm vs LayerNorm vs RMSNorm
 - Pre-Norm vs Post-Norm placement
 - Stability in deep networks
+- Temperature, top-k, nucleus, min-p, and typical-p sampling
 
 **Hands-On Practice:**
 - Compare activation performance
@@ -256,6 +258,7 @@ graph TD
 - Benchmark training speed
 - Implement custom activations
 - Test normalization strategies
+- Walk the sampler stack and compare truncation strategies
 
 ### [3400] Model Architectures
 
@@ -343,10 +346,10 @@ graph TD
 |--------|---------|----------|-------|
 | 3100: Attention Architectures | 12h | 4-6h | 16-18h |
 | 3200: Embedding Latent Spaces | 6h | 4h | 10h |
-| 3300: The Decoding Block | 5h | 3h | 8h |
+| 3300: The Decoding Block | 7h | 3h | 10h |
 | 3400: Model Architectures | 14h | 4h | 18h |
 | 3500: Multimodal Models | 10h | — | 10h |
-| **Total** | **39h** | **15-17h** | **54-56h** |
+| **Total** | **49h** | **15-17h** | **64-66h** |
 
 *3500 practice time is not yet estimated in its PRACTICE.md; phase totals cover the estimated modules.*
 
@@ -757,7 +760,7 @@ Validate your knowledge with:
 
 - **3100: Attention** - Self-attention and Flash Attention
 - **3200: Embeddings** - Position encoding and tokenization
-- **3300: Decoding** - Activation functions and normalization
+- **3300: Decoding** - Activation functions, normalization, and sampling strategies
 - **3400: Architectures** - Model types and comparison
 - **3500: Multimodal** - Vision-language and audio models
 

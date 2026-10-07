@@ -5,7 +5,7 @@ Last Updated: 2026-09-28
 Status: Complete
 Difficulty: Beginner
 Prerequisites: []
-Estimated Time: 4 hours
+Estimated Time: 6 hours
 Tags: ['module', 'transformers', 'activation']
 ---
 
@@ -13,7 +13,7 @@ Tags: ['module', 'transformers', 'activation']
 
 ## Overview
 
-This module covers the feed-forward networks, activation functions, and normalization layers that process the attended representations in Transformers. These components are crucial for model stability, training speed, and final performance.
+This module covers the feed-forward networks, activation functions, and normalization layers that process the attended representations in Transformers. These components are crucial for model stability, training speed, and final performance. The module also covers the sampler stack that turns final logits into tokens: temperature, top-k, nucleus, min-p, and typical-p.
 
 ---
 
@@ -24,6 +24,7 @@ This module covers the feed-forward networks, activation functions, and normaliz
 | [3301: Activation Functions](./3301-Activation-Functions.md) | Why GELU and SwiGLU over RELU? | ⭐ | 2 hrs |
 | [3302: Normalization Layers](./3302-Normalization-Layers.md) | BatchNorm vs LayerNorm vs RMSNorm | ⭐ | 2 hrs |
 | [3303: Activation Function Comparison](./guides/3303-Activation-Function-Comparison.md) | Comparative analysis with benchmarks | ⭐⭐⭐ | 2 hrs |
+| [3304: Decoding Sampling Strategies](./3304-Decoding-Sampling-Strategies.md) | Temperature, top-k, nucleus, min-p, typical-p | ⭐ | 2 hrs |
 
 ---
 
@@ -36,6 +37,7 @@ After completing this module, you will:
 - ✅ Understand normalization strategies and their impact
 - ✅ Compare LayerNorm, RMSNorm, and BatchNorm
 - ✅ Implement efficient activation and normalization layers
+- ✅ Implement temperature, top-k, nucleus, min-p, and typical-p sampling
 
 ---
 
@@ -313,4 +315,4 @@ class RMSNorm(nn.Module):
 ---
 
 **Module Difficulty:** ⭐⭐ Beginner-Intermediate
-**Estimated Time:** 7 hours total
+**Estimated Time:** 9 hours total

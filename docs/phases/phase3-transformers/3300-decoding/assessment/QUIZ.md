@@ -195,6 +195,6 @@ D) Is the same as greedy, differing only in the sampling seed
 Each question maps to the closest lesson for review:
 
 - **Questions 1-2, 8-12, 20:** [3401: Encoder-Decoder Architectures](../../3400-architectures/3401-Encoder-Decoder-Architectures.md) — greedy vs beam search, beam width, length penalty and decoder strategy trade-offs
-- **Questions 3-7, 13-15:** [1402: vLLM and TGI](../../../phase1-infra/1400-llmops/1402-vLLM-and-TGI.md) — sampling parameters (top-k, top-p, temperature, penalties) in production serving
+- **Questions 3-7, 13-15:** [1402: vLLM and TGI](../../../phase1-infra/1400-llmops/1402-vLLM-and-TGI.md) — sampling parameters (top-k, top-p, temperature, penalties) in production serving; the sampler mechanics those parameters drive are [3304: Decoding Sampling Strategies](../3304-Decoding-Sampling-Strategies.md) — temperature's monotone reshape (entropy 0.2128 → 1.8191 nats across T = 0.25 → 2.00, argmax never moving), the truncators' budgets (top-k at k=4 cutting 0.4196 of the mass on a flat distribution where top_p never fires; nucleus at p=0.01 still keeping the single top token because the set never empties), and the stack order that decides which cut wins
 - **Question 16:** [4202: Speculative Decoding](../../../phase4-quantization/4200-kv-cache/4202-Speculative-Decoding.md) — draft-model proposal with large-model verification
 - **Questions 17-19:** [4201: Context Window Physics and OOM Prevention](../../../phase4-quantization/4200-kv-cache/4201-Context-Window-Physics.md) — what the KV cache stores and why it speeds generation

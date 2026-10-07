@@ -18,13 +18,13 @@ Tags: ['roadmap', 'guide', 'practice']
 ```text
 Volume 1: Infrastructure Mastery  [░░░░░░░░░░░] 0% (0/40)
 Volume 2: AI Foundations          [░░░░░░░░░░░] 0% (0/32)
-Volume 3: LLM Internals           [░░░░░░░░░░░] 0% (0/36)
+Volume 3: LLM Internals           [░░░░░░░░░░░] 0% (0/37)
 Volume 4: Quantization Mastery    [░░░░░░░░░░░] 0% (0/42)
 Volume 5: Fine-Tuning Expert      [░░░░░░░░░░░] 0% (0/46)
 Volume 6: RAG & Data Systems      [░░░░░░░░░░░] 0% (0/45)
 Volume 7: Production Systems      [░░░░░░░░░░░] 0% (0/46)
 
-Total: [░░░░░░░░░░░░░░░░░] 0% (0/436 core files)
+Total: [░░░░░░░░░░░░░░░░░] 0% (0/437 core files)
 ```
 
 ---
@@ -109,7 +109,7 @@ Total: [░░░░░░░░░░░░░░░░░] 0% (0/436 core file
 
 ---
 
-### Volume 3: LLM Internals (36 files)
+### Volume 3: LLM Internals (37 files)
 **"Transformer Architecture Deep Dive"** - 80-100 hours | Difficulty: ⭐⭐⭐ Advanced
 
 **Note:** Time estimate includes reading (35h), hands-on practice (30h), notebooks (15h), and experiments (15h). Requires solid understanding of neural networks and attention mechanisms.
@@ -387,7 +387,7 @@ Notes:
 ### Essential Reading
 - **[VOLUME-GUIDE.md](VOLUME-GUIDE.md)** - Start here! Overview of all 7 volumes
 - **[0000-LEARNING-PATH.md](0000-LEARNING-PATH.md)** - Recommended learning paths
-- **[SITEMAP.md](SITEMAP.md)** - Full document list (436 files)
+- **[SITEMAP.md](SITEMAP.md)** - Full document list (437 files)
 - **[README.md](../../README.md)** - Project overview
 
 ### Troubleshooting
@@ -407,7 +407,7 @@ Notes:
 | Metric | Target | Current | % |
 |--------|--------|---------|---|
 | **Volumes Completed** | 7 | 0 | 0% |
-| **Core Documents** | 436 | 0 | 0% |
+| **Core Documents** | 437 | 0 | 0% |
 | **Labs Completed** | 15 | 0 | 0% |
 | **Experiments** | 47 | 0 | 0% |
 | **Tutorials** | 15 | 0 | 0% |

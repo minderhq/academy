@@ -25,7 +25,7 @@
       "bad": {}
     },
     "docs/00-META/ORGANIZATION-GUIDE.md": {
-      "mtime": 1791330873.2568297,
+      "mtime": 1791334273.9246593,
       "size": 19534,
       "bad": {}
     },
@@ -1620,10 +1620,15 @@
         "290": "disk-bound family: writer hits the 2.3GB-free disk (os error 112 / channel closed); FLAKY_FAMILY with TIMEOUT"
       }
     },
+    "docs/phases/phase3-transformers/3300-decoding/3304-Decoding-Sampling-Strategies.md": {
+      "mtime": 1791333409.0706866,
+      "size": 27555,
+      "bad": {}
+    },
     "docs/phases/phase3-transformers/3300-decoding/README.md": {
-      "bad": {},
-      "mtime": 1790984051.5485349,
-      "size": 7800
+      "mtime": 1791334273.9256592,
+      "size": 8147,
+      "bad": {}
     },
     "docs/phases/phase3-transformers/3300-decoding/assessment/PRACTICE.md": {
       "bad": {
@@ -1724,13 +1729,13 @@
       "bad": {}
     },
     "docs/phases/phase3-transformers/README.md": {
-      "mtime": 1791247820.1171818,
-      "size": 24883,
+      "mtime": 1791334273.926659,
+      "size": 25185,
       "bad": {
-        "468": "SIDE-EFFECT"
+        "471": "SIDE-EFFECT"
       },
       "notes": {
-        "468": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect"
+        "471": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect"
       }
     },
     "docs/phases/phase4-quantization/4100-low-bit/4101-GGUF-Physics.md": {

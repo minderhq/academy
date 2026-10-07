@@ -136,7 +136,7 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [assessment: PRACTICE](../phases/phase2-foundations/2400-pretraining/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase2-foundations/2400-pretraining/assessment/QUIZ.md)
 
-## Phase 3 - Transformer Physics & LLM Internals (36 files)
+## Phase 3 - Transformer Physics & LLM Internals (37 files)
 
 - [CHECKPOINT](../phases/phase3-transformers/CHECKPOINT.md)
 - [README](../phases/phase3-transformers/README.md)
@@ -160,12 +160,13 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [assessment: PRACTICE](../phases/phase3-transformers/3200-embeddings/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase3-transformers/3200-embeddings/assessment/QUIZ.md)
 
-### [3300-decoding] (2 lessons, 1 guides)
+### [3300-decoding] (3 lessons, 1 guides)
 
 - [PREREQUISITES](../phases/phase3-transformers/3300-decoding/PREREQUISITES.md)
 - [README](../phases/phase3-transformers/3300-decoding/README.md)
 - [3301-Activation-Functions](../phases/phase3-transformers/3300-decoding/3301-Activation-Functions.md)
 - [3302-Normalization-Layers](../phases/phase3-transformers/3300-decoding/3302-Normalization-Layers.md)
+- [3304-Decoding-Sampling-Strategies](../phases/phase3-transformers/3300-decoding/3304-Decoding-Sampling-Strategies.md)
 - [guide: 3303-Activation-Function-Comparison](../phases/phase3-transformers/3300-decoding/guides/3303-Activation-Function-Comparison.md)
 - [assessment: PRACTICE](../phases/phase3-transformers/3300-decoding/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase3-transformers/3300-decoding/assessment/QUIZ.md)
@@ -734,14 +735,14 @@ build's written walkthroughs live inside the lessons themselves - see the
 ## Statistics
 
 ```text
-Total markdown files: 490
-  docs/: 436, experiments/: 48, configs/: 4, repo root: 2
+Total markdown files: 491
+  docs/: 437, experiments/: 48, configs/: 4, repo root: 2
 Phases: 7
 Learning modules (topics): 33
-Phase files (lessons, guides, assessments, topic README/PREREQUISITES): 287
+Phase files (lessons, guides, assessments, topic README/PREREQUISITES): 288
   Phase 1 - Infrastructure Fabric: 40
   Phase 2 - Cognitive Science & Frameworks: 32
-  Phase 3 - Transformer Physics: 36
+  Phase 3 - Transformer Physics: 37
   Phase 4 - Quantization & Compression: 42
   Phase 5 - Fine-Tuning & Alignment: 46
   Phase 6 - Data Nexus: 45
