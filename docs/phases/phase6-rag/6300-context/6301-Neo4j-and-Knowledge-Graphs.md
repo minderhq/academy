@@ -3,7 +3,7 @@ Document ID: 6301
 Title: "6301: Neo4j and Knowledge Graphs for Multi-Hop Reasoning"
 Phase: 6
 Module: 6300
-Last Updated: 2026-09-30
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -165,11 +165,11 @@ neo4j = Neo4jConnection("bolt://192.168.1.100:7687", "neo4j", "password")
 ```cypher
 -- Create nodes
 CREATE (meta:Company {name: 'Meta', founded: 2004})
-CREATE (llama:Model {name: 'Llama-2', params: '7B'})
+CREATE (llama:Model {name: 'Llama-3.1', params: '8B'})
 
 -- Create relationship
 MATCH (meta:Company {name: 'Meta'})
-MATCH (llama:Model {name: 'Llama-2'})
+MATCH (llama:Model {name: 'Llama-3.1'})
 CREATE (meta)-[:CREATED]->(llama)
 
 -- Query: Find all models
@@ -307,9 +307,9 @@ class TextToGraph:
 text_to_graph = TextToGraph(neo4j)
 
 text = """
-Meta created Llama-2, a 7 billion parameter language model.
-Llama-2 competes with Mistral, which was created by Mistral AI.
-Google created Bard, which also competes with Llama-2.
+Meta created Llama-3.1, an 8 billion parameter language model.
+Llama-3.1 competes with Mistral, which was created by Mistral AI.
+Google created Bard, which also competes with Llama-3.1.
 """
 
 text_to_graph.build_graph(text)
@@ -383,7 +383,7 @@ def graph_retrieval(neo4j, query_entities, k=10):
     return [doc_id for doc_id, score in sorted_docs[:k]]
 
 # Example — entities come from an extractor, not the raw question string:
-query_entities = ["Meta", "Llama-2"]
+query_entities = ["Meta", "Llama-3.1"]
 relevant_docs = graph_retrieval(neo4j, query_entities, k=5)
 ```
 

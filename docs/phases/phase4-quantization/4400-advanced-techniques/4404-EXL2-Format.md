@@ -3,7 +3,7 @@ Document ID: 4404
 Title: "4404: EXL2 Format"
 Phase: 4
 Module: 4400
-Last Updated: 2026-09-30
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -87,8 +87,8 @@ uv pip install exllamav2
 # converter's scratch space), -c parquet calibration dataset (omit for
 # the built-in default), -b SINGLE average-BPW target
 python convert.py \
-    -i ./Llama-2-7b-hf \
-    -o ./Llama-2-7b-exl2 \
+    -i ./Llama-3.1-8B-Instruct \
+    -o ./Llama-3.1-8b-exl2 \
     -c calibration_data.parquet \
     -b 4.0
 # Resume: a non-empty -o dir resumes the conversion unless -nr is passed
@@ -125,7 +125,7 @@ from exllamav2.generator import ExLlamaV2DynamicGenerator, ExLlamaV2Sampler
 
 # Load config
 config = ExLlamaV2Config()
-config.model_dir = "./Llama-2-7b-exl2"
+config.model_dir = "./Llama-3.1-8b-exl2"
 config.max_seq_len = 2048
 config.scale_pos_emb = 1.0
 
@@ -214,7 +214,7 @@ print()
 # NOT disk streaming; EXL2 loads weights to GPU), a shorter max_seq_len
 # (the cache is sized from it), and a small batch_size
 config = ExLlamaV2Config()
-config.model_dir = "./Llama-2-7b-exl2"
+config.model_dir = "./Llama-3.1-8b-exl2"
 config.max_seq_len = 4096
 config.low_mem = True  # Lower memory, faster loading
 
@@ -305,7 +305,7 @@ print(f"Speed: {tps:.2f} tokens/sec")
 ## EXL2 File Structure
 
 ```text
-Llama-2-7b-exl2/            # an ordinary HF-style output DIRECTORY —
+Llama-3.1-8b-exl2/          # an ordinary HF-style output DIRECTORY —
 │                           # there is no .exl2 file, no cache.calibration
 ├── config.json             # Model config (quantization_config notes BPW)
 ├── tokenizer.model         # SentencePiece tokenizer

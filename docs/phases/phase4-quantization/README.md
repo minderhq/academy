@@ -47,9 +47,9 @@ Model Size Comparison (FP16):
 ┌──────────────────────────────────────────────────────┐
 │ Model         │ Parameters │ FP16 Size │ Typical GPU │
 ├───────────────┼────────────┼───────────┼─────────────┤
-│ Llama-2-7B    │ 6.7B       │ 13.4 GB   │ RTX 3060    │
-│ Llama-2-13B   │ 13B        │ 26 GB     │ RTX 3090    │
-│ Llama-2-70B   │ 70B        │ 140 GB    │ A100 40GB   │
+│ Gemma-3-4B    │ 4B         │ 8 GB      │ RTX 3060    │
+│ Gemma-3-12B   │ 12B        │ 24 GB     │ RTX 3090    │
+│ Llama-3.1-70B │ 70B        │ 140 GB    │ A100 40GB   │
 │ CodeLlama-34B │ 34B        │ 68 GB     │ A100 80GB   │
 │ Mixtral-8x7B  │ 46.7B      │ 93.4 GB   │ 2xA100      │
 └──────────────────────────────────────────────────────┘
@@ -58,9 +58,9 @@ After 4-bit Quantization:
 ┌──────────────────────────────────────────────────┐
 │ Model         │ Q4 Size │ Reduction │ Can Run On │
 ├───────────────┼─────────┼───────────┼────────────┤
-│ Llama-2-7B    │ 4.2 GB  │ 3.2x      │ RTX 3060   │
-│ Llama-2-13B   │ 8.5 GB  │ 3.1x      │ RTX 3090   │
-│ Llama-2-70B   │ 42 GB   │ 3.3x      │ RTX 4090   │
+│ Gemma-3-4B    │ 3.3 GB  │ 2.4x      │ RTX 3060   │
+│ Gemma-3-12B   │ 8.1 GB  │ 3.0x      │ RTX 3090   │
+│ Llama-3.1-70B │ 43 GB   │ 3.3x      │ 2× RTX 4090│
 │ CodeLlama-34B │ 21 GB   │ 3.2x      │ RTX 4090   │
 │ Mixtral-8x7B  │ 29 GB   │ 3.2x      │ RTX 6000   │
 └──────────────────────────────────────────────────┘
@@ -269,12 +269,12 @@ After completing this phase, you will be able to:
 **Pitfall:** Underestimating VRAM requirements for quantization
 ```bash
 # Wrong: Not enough VRAM for calibration
-python quantize.py --model meta-llama/Llama-2-70b --calibration
+python quantize.py --model meta-llama/Llama-3.1-70B-Instruct --calibration
 # Error: CUDA out of memory
 
 # Right: Reserve adequate VRAM for calibration
 python quantize.py \
-  --model meta-llama/Llama-2-70b \
+  --model meta-llama/Llama-3.1-70B-Instruct \
   --calibration \
   --max-batch-size 1 \
   --max-vram 20GB
@@ -434,12 +434,12 @@ models:
 
 | Hardware | Best Format | Max Model (4-bit) | Speed |
 |----------|-------------|-------------------|-------|
-| **RTX 3060** (12GB) | GGUF Q4_K_M | Llama-2-13B | 20 t/s |
-| **RTX 3090** (24GB) | EXL2 4-bit | Llama-2-70B | 35 t/s |
-| **RTX 4090** (24GB) | EXL2 4-bit | Llama-2-70B | 45 t/s |
-| **A100 40GB** | EXL2 4-bit | Llama-2-70B | 80 t/s |
-| **A100 80GB** | AWQ 4-bit | Llama-2-70B | 120 t/s |
-| **Apple M2** | GGUF Q4_K_M | Llama-2-13B | 15 t/s |
+| **RTX 3060** (12GB) | GGUF Q4_K_M | Gemma-3-12B | 20 t/s |
+| **RTX 3090** (24GB) | EXL2 4-bit | Llama-3.1-70B | 35 t/s |
+| **RTX 4090** (24GB) | EXL2 4-bit | Llama-3.1-70B | 45 t/s |
+| **A100 40GB** | EXL2 4-bit | Llama-3.1-70B | 80 t/s |
+| **A100 80GB** | AWQ 4-bit | Llama-3.1-70B | 120 t/s |
+| **Apple M2** | GGUF Q4_K_M | Gemma-3-12B | 15 t/s |
 
 ---
 
@@ -448,7 +448,7 @@ models:
 ### Hands-on Practice
 
 1. **[EXP_4101: GGUF](../../../experiments/EXP_4101_GGUF.md)**
-   - Convert Llama 2 to GGUF format
+   - Convert Llama 3.1 to GGUF format
    - Benchmark GGUF vs FP16
    - Optimize GGUF settings
 

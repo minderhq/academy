@@ -284,7 +284,7 @@ model = dispatch_model(model, device_map=device_map)
 # True tensor parallelism: each layer's weight matrices are split
 # across the cards. `vllm serve` replaces the long-deprecated
 # python -m vllm.entrypoints.api_server entrypoint.
-# Sizing note: Llama-2-13B at fp16 needs ~13GB per shard - too big for
+# Sizing note: Gemma-3-27B at fp16 needs ~27GB per shard - too big for
 # two 11GB cards. The 7B below fits (~8GB per shard):
 vllm serve Qwen/Qwen2.5-7B-Instruct \
     --tensor-parallel-size 2 \
@@ -369,12 +369,12 @@ deepspeed --num_gpus=2 train.py --deepspeed ds_config.json
 from transformers import AutoModelForCausalLM, TrainingArguments, Trainer, BitsAndBytesConfig
 from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
 
-# Load the model sharded across both GPUs. Llama-2-13b's top-level
-# modules are model.embed_tokens, model.layers.{0..39} (40 decoder
+# Load the model sharded across both GPUs. Qwen2.5-7B's top-level
+# modules are model.embed_tokens, model.layers.{0..27} (28 decoder
 # layers), model.norm and lm_head - device_map="auto" places them by
-# the per-card budget (a hand-written map would need all 40 keys):
+# the per-card budget (a hand-written map would need all 28 keys):
 model = AutoModelForCausalLM.from_pretrained(
-    "meta-llama/Llama-2-13b-hf",
+    "Qwen/Qwen2.5-7B-Instruct",
     device_map="auto",
     max_memory={0: "9GiB", 1: "9GiB"},
     quantization_config=BitsAndBytesConfig(load_in_4bit=True),
@@ -418,8 +418,8 @@ trainer.train()
 ```text
 Model           | Single GPU | Dual GPU | Speedup |
 ----------------|------------|----------|---------|
-Llama-2-7B (4-bit) | 35 t/s | 60 t/s  | 1.7x |
-Llama-2-13B (4-bit) | 18 t/s | 32 t/s  | 1.8x |
+Llama-3.1-8B (4-bit) | 35 t/s | 60 t/s  | 1.7x |
+Gemma-3-12B (4-bit) | 18 t/s | 32 t/s  | 1.8x |
 Mistral-7B (4-bit)  | 40 t/s | 70 t/s  | 1.75x |
 ```
 

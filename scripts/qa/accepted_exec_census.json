@@ -1106,15 +1106,15 @@
       "bad": {}
     },
     "docs/phases/phase1-infra/1200-virtualization/1204-Multi-GPU-Setup.md": {
-      "mtime": 1791380651.9162512,
+      "mtime": 1791400647.4022706,
       "size": 15962,
       "bad": {
         "250": "UN-LEAK",
-        "368": "SIDE-EFFECT"
+        "368": "ENV-GAP:Using `bitsandbytes` 4-bit quantization requires bitsandbyte"
       },
       "notes": {
         "250": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
-        "368": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect"
+        "368": "optional third-party package the QA environment does not install; the fence documents the install requirement"
       }
     },
     "docs/phases/phase1-infra/1200-virtualization/assessment/PRACTICE.md": {
@@ -1963,8 +1963,8 @@
       }
     },
     "docs/phases/phase4-quantization/4400-advanced-techniques/4401-GPTQ.md": {
-      "mtime": 1791376635.332267,
-      "size": 12703,
+      "mtime": 1791400647.3989751,
+      "size": 12721,
       "bad": {
         "138": "ENV-GAP:auto_gptq",
         "191": "ENV-GAP:auto_gptq",
@@ -1985,8 +1985,8 @@
       }
     },
     "docs/phases/phase4-quantization/4400-advanced-techniques/4402-AWQ.md": {
-      "mtime": 1791376635.333774,
-      "size": 16640,
+      "mtime": 1791400647.4001336,
+      "size": 16652,
       "bad": {
         "191": "ENV-GAP:awq",
         "232": "ENV-GAP:awq",
@@ -2023,8 +2023,8 @@
       }
     },
     "docs/phases/phase4-quantization/4400-advanced-techniques/4404-EXL2-Format.md": {
-      "mtime": 1791109464.2108135,
-      "size": 12870,
+      "mtime": 1791400647.4006703,
+      "size": 12884,
       "bad": {
         "117": "ENV-GAP:exllamav2",
         "166": "ENV-GAP:exllamav2",
@@ -2096,8 +2096,8 @@
       }
     },
     "docs/phases/phase4-quantization/README.md": {
-      "mtime": 1791342205.4905992,
-      "size": 18042,
+      "mtime": 1791400611.6832821,
+      "size": 18075,
       "bad": {}
     },
     "docs/phases/phase5-finetuning/5100-peft/5101-LoRA-Logic.md": {
@@ -2394,8 +2394,8 @@
       "size": 11212
     },
     "docs/phases/phase5-finetuning/README.md": {
-      "mtime": 1791380713.2987635,
-      "size": 26363,
+      "mtime": 1791400647.3978965,
+      "size": 26420,
       "bad": {
         "419": "SIDE-EFFECT",
         "482": "SIDE-EFFECT"
@@ -2532,8 +2532,8 @@
       "size": 19437
     },
     "docs/phases/phase6-rag/6300-context/6301-Neo4j-and-Knowledge-Graphs.md": {
-      "mtime": 1791109464.2515912,
-      "size": 16743,
+      "mtime": 1791400647.4017537,
+      "size": 16756,
       "bad": {
         "189": "SIDE-EFFECT",
         "212": "ENV-GAP:spacy",

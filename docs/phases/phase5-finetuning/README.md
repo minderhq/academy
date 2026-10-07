@@ -47,7 +47,7 @@ This phase covers fine-tuning and alignment techniques to transform general-purp
 ```text
 Pre-trained LLMs are generalists:
 ┌─────────────────────────────────────────────────────────┐
-│ Base Model (e.g., Llama-2-70B)                          │
+│ Base Model (e.g., Llama-3.1-70B)                          │                        │
 ├─────────────────────────────────────────────────────────┤
 │ + General knowledge (Wikipedia, books, web)             │
 │ + Common reasoning patterns                             │
@@ -113,10 +113,10 @@ graph LR
 │ Model Size     │ Full FT │ LoRA  │ QLoRA │ DPO   │ Multi-GPU     │
 ├──────────────────────────────────────────────────────────────────┤
 │ 1B (TinyLlama) │ 8 GB    │ 4 GB  │ 2 GB  │ 6 GB  │ Not needed    │
-│ 7B (Llama-2)   │ 56 GB   │ 16 GB │ 8 GB  │ 18 GB │ 2× RTX 3090   │
-│ 13B (Llama-2)  │ 104 GB  │ 24 GB │ 12 GB │ 28 GB │ 2× RTX 4090   │
+│ 8B (Llama-3.1) │ 64 GB   │ 18 GB │ 9 GB  │ 20 GB │ 2× RTX 3090   │
+│ 12B (Gemma-3)  │ 96 GB   │ 22 GB │ 11 GB │ 26 GB │ 2× RTX 4090   │
 │ 34B (CodeLlama)│ 272 GB  │ 48 GB │ 24 GB │ 52 GB │ 4× A100 40GB  │
-│ 70B (Llama-2)  │ 560 GB  │ 80 GB │ 40 GB │ 96 GB │ 8× A100 80GB  │
+│ 70B (Llama-3.1)│ 560 GB  │ 80 GB │ 40 GB │ 96 GB │ 8× A100 80GB  │
 └──────────────────────────────────────────────────────────────────┘
 
 Recommended Hardware:
@@ -155,7 +155,7 @@ Recommended Hardware:
 
 **Hands-On Practice:**
 - Implement LoRA from scratch
-- Fine-tune Llama 2 with QLoRA on RTX 3090
+- Fine-tune Llama 3.1 with QLoRA on RTX 3090
 - Compare LoRA vs full fine-tuning quality
 - Optimize hyperparameters for your dataset
 - Merge two fine-tunes with task arithmetic and TIES and compare the outcomes
@@ -272,7 +272,7 @@ Recommended Hardware:
 graph TD
     A[Start: Phase 4 Complete] --> B{Your Goal?}
 
-    B -->|Fine-tune Llama 2| C[5100: PEFT]
+    B -->|Fine-tune Llama 3.1| C[5100: PEFT]
     B -->|Align with preferences| D[5200: Alignment]
     B -->|Generate training data| E[5300: Synthetic Data]
     B -->|Train on multi-GPU| F[5400: Distributed]
@@ -420,12 +420,12 @@ test_metrics = evaluate(model, test_data)
 from transformers import AutoModelForCausalLM, BitsAndBytesConfig
 import torch
 # Wrong: Loading full model on single GPU
-model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-2-70b")
+model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-3.1-70B-Instruct")
 # Error: CUDA out of memory
 
 # Right: Use quantization + gradient checkpointing
 model = AutoModelForCausalLM.from_pretrained(
-    "meta-llama/Llama-2-70b",
+    "meta-llama/Llama-3.1-70B-Instruct",
     quantization_config=BitsAndBytesConfig(load_in_4bit=True),
     device_map="auto",
     dtype=torch.float16
@@ -613,7 +613,7 @@ scheduler = get_cosine_with_min_lr_schedule_with_warmup(
 
 1. **[EXP_5101: LoRA](../../../experiments/EXP_5101_LORA.md)**
    - Implement LoRA from scratch
-   - Fine-tune Llama 2 on custom dataset
+   - Fine-tune Llama 3.1 on custom dataset
    - Compare rank configurations
 
 2. **[EXP_5102: QLoRA](../../../experiments/EXP_5102_QLORA.md)**
