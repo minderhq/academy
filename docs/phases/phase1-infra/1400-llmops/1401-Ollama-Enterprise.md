@@ -281,7 +281,7 @@ no `OLLAMA_NUM_THREAD`; CPU thread count is a per-model option
 ### Model Parameters
 
 Sampling options go in the Modelfile (`PARAMETER ...`), per request via the
-API `options` object, or on the CLI (`ollama run --temperature 0.7`). The
+API `options` object, or in the REPL (`/set parameter temperature 0.7`). The
 API examples above use `temperature 0.7`, `num_predict 512`, `seed 42`;
 defaults for reference:
 
@@ -292,12 +292,12 @@ defaults for reference:
 | top_k          | 40      | Sample from the top-k logits          |
 | repeat_penalty | 1.1     | Above 1.0 penalizes repetition        |
 | num_predict    | 128     | Max generated tokens; -1 = unlimited  |
-| num_ctx        | 2048    | Context window; drives KV-cache VRAM  |
+| num_ctx        | 4096    | Context window; drives KV-cache VRAM  |
 | seed           | 0       | 0 = randomize each call               |
 | stop           | []      | Stop sequences                        |
 
-`num_ctx` is commonly 2048 per model, while the server-level default is
-`OLLAMA_CONTEXT_LENGTH` (4096).
+Unset `num_ctx` follows the server-level `OLLAMA_CONTEXT_LENGTH` default
+(4096 on a fresh install; VRAM-scaled on large-GPU hosts).
 
 ## Performance Optimization
 
