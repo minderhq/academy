@@ -1,8 +1,8 @@
 site_name: Minder Academy
 site_description: A comprehensive, production-grade AI engineering curriculum - 7 phases, 33 modules, from GPU infrastructure to agentic systems.
-site_url: https://minderkhq.github.io/academy/
+site_url: https://minderhq.github.io/academy/
 repo_url: https://github.com/minderhq/academy
-repo_name: minderkhq/academy
+repo_name: minderhq/academy
 copyright: Copyright &copy; Minder Academy - MIT License
 
 docs_dir: docs
