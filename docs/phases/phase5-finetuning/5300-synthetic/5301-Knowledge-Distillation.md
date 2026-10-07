@@ -3,7 +3,7 @@ Document ID: 5301
 Title: "5301: Knowledge Distillation - Training Small Models Using Big Model Outputs"
 Phase: 5
 Module: 5300
-Last Updated: 2026-09-30
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -332,16 +332,16 @@ from openai import OpenAI  # openai>=1.0 — ChatCompletion.create is gone
 
 client = OpenAI()  # reads OPENAI_API_KEY from the environment
 
-def generate_teacher_data(prompt, model="gpt-4o", temperature=0.7):
+def generate_teacher_data(prompt, model="gpt-5-mini", variation=0):
     """
-    Generate training data using an API teacher
+    Generate training data using an API teacher. GPT-5 pins sampling
+    (no temperature dial), so diversity comes from varying the ask.
     """
+    ask = f"{prompt}\n\nVariation {variation}: cover this from a different angle."
     response = client.chat.completions.create(
         model=model,
-        messages=[{"role": "user", "content": prompt}],
-        temperature=temperature,  # Sample diverse outputs
+        messages=[{"role": "user", "content": ask}],
     )
-
     return response.choices[0].message.content
 
 def create_distillation_dataset(base_prompts, num_samples_per_prompt=5):
@@ -351,8 +351,8 @@ def create_distillation_dataset(base_prompts, num_samples_per_prompt=5):
     dataset = []
 
     for prompt in base_prompts:
-        for _ in range(num_samples_per_prompt):
-            teacher_output = generate_teacher_data(prompt)
+        for k in range(num_samples_per_prompt):
+            teacher_output = generate_teacher_data(prompt, variation=k)
             dataset.append({
                 "prompt": prompt,
                 "completion": teacher_output,
@@ -394,7 +394,7 @@ def generate_qa_pairs(context, num_pairs=10):
     Format each as Q: [question] A: [answer]
     """
 
-    response = generate_teacher_data(prompt, model="gpt-4o")
+    response = generate_teacher_data(prompt, model="gpt-5-mini")
     return parse_qa_pairs(response)
 
 # Example
