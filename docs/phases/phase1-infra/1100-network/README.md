@@ -1,11 +1,11 @@
 ---
 Document ID: 1100-NETWORK-README
 Title: "1100: Network Fundamentals for LLM Infrastructure"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Beginner
 Prerequisites: []
-Estimated Time: 6 hours
+Estimated Time: 8 hours
 Tags: ['module', 'networking', 'wan']
 ---
 
@@ -13,7 +13,7 @@ Tags: ['module', 'networking', 'wan']
 
 ## Module Overview
 
-This module covers networking fundamentals essential for deploying and operating LLM infrastructure, from hardware setup to network topology optimization. You'll learn how to build a high-performance network that supports model training, inference, and production deployment.
+This module covers networking fundamentals essential for deploying and operating LLM infrastructure, from hardware setup to network topology optimization. You'll learn how to build a high-performance network that supports model training, inference, and production deployment. Lesson 1104 closes the module with the protocol stack itself: the seven layers one request crosses, TCP versus UDP, DNS resolution, and the port and TLS handshake ledger.
 
 ## Why Networking Matters for LLMs
 
@@ -217,14 +217,15 @@ Cabling:
 1. **[1101: Internet Uplink & Modem Configuration](./1101-Fiber-GPON-Modem.md)** - Internet uplink setup
 2. **[1102: Network Topology Design](./1102-Star-Topology-Core.md)** - Network architecture design
 3. **[1103: Jumbo Frames and MTU](./1103-Jumbo-Frames-and-MTU.md)** - Performance optimization
+4. **[1104: The Protocol Stack - OSI Layers, TCP, and DNS](./1104-Protocol-Stack-TCP-and-DNS.md)** - OSI layers, TCP vs UDP, DNS, ports and TLS handshakes
 
 ## Prerequisites
 
 Before starting this module, ensure you understand:
 
 ### Basic Knowledge
-- **TCP/IP Fundamentals:** Packets, ports, protocols (HTTP, HTTPS, SSH)
-- **DNS:** How domain names resolve to IPs
+- **TCP/IP Fundamentals:** Packets, ports, protocols (HTTP, HTTPS, SSH) - covered by [1104](./1104-Protocol-Stack-TCP-and-DNS.md)
+- **DNS:** How domain names resolve to IPs - covered by [1104](./1104-Protocol-Stack-TCP-and-DNS.md)
 - **IP Addressing:** IPv4 vs IPv6, subnets, CIDR notation
 - **Network Hardware:** Difference between routers, switches, modems
 
@@ -786,7 +787,7 @@ Production Ready:
 
 ---
 
-**Module Duration:** 6-8 hours
+**Module Duration:** 8-10 hours
 **Difficulty:** ⭐ Beginner
 
 **Ready to proceed?** Continue to [1101: Internet Uplink & Modem Configuration](./1101-Fiber-GPON-Modem.md)

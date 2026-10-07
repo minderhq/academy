@@ -31,18 +31,19 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 
 ---
 
-## Phase 1 - Infrastructure Fabric (40 files)
+## Phase 1 - Infrastructure Fabric (41 files)
 
 - [CHECKPOINT](../phases/phase1-infra/CHECKPOINT.md)
 - [README](../phases/phase1-infra/README.md)
 
-### [1100-network] (3 lessons, 0 guides)
+### [1100-network] (4 lessons, 0 guides)
 
 - [PREREQUISITES](../phases/phase1-infra/1100-network/PREREQUISITES.md)
 - [README](../phases/phase1-infra/1100-network/README.md)
 - [1101-Fiber-GPON-Modem](../phases/phase1-infra/1100-network/1101-Fiber-GPON-Modem.md)
 - [1102-Star-Topology-Core](../phases/phase1-infra/1100-network/1102-Star-Topology-Core.md)
 - [1103-Jumbo-Frames-and-MTU](../phases/phase1-infra/1100-network/1103-Jumbo-Frames-and-MTU.md)
+- [1104-Protocol-Stack-TCP-and-DNS](../phases/phase1-infra/1100-network/1104-Protocol-Stack-TCP-and-DNS.md)
 - [assessment: PRACTICE](../phases/phase1-infra/1100-network/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase1-infra/1100-network/assessment/QUIZ.md)
 
@@ -736,12 +737,12 @@ build's written walkthroughs live inside the lessons themselves - see the
 ## Statistics
 
 ```text
-Total markdown files: 492
-  docs/: 438, experiments/: 48, configs/: 4, repo root: 2
+Total markdown files: 493
+  docs/: 439, experiments/: 48, configs/: 4, repo root: 2
 Phases: 7
 Learning modules (topics): 33
-Phase files (lessons, guides, assessments, topic README/PREREQUISITES): 289
-  Phase 1 - Infrastructure Fabric: 40
+Phase files (lessons, guides, assessments, topic README/PREREQUISITES): 290
+  Phase 1 - Infrastructure Fabric: 41
   Phase 2 - Cognitive Science & Frameworks: 33
   Phase 3 - Transformer Physics: 37
   Phase 4 - Quantization & Compression: 42

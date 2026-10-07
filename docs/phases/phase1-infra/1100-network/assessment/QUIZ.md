@@ -1,7 +1,7 @@
 ---
 Document ID: 1100-QUIZ
 Title: "1100: Network - Quiz"
-Last Updated: 2026-09-29
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 30 minutes
@@ -167,8 +167,9 @@ D) Network (APIs, message queues)
 
 Each question maps to the closest lesson for review:
 
-- **Questions 1-3, 6, 7, 10-12, 20:** [1103: Jumbo Frames and MTU Optimization](../1103-Jumbo-Frames-and-MTU.md) — transport and protocol mechanics
+- **Questions 1-3, 6, 7:** [1104: The Protocol Stack - OSI Layers, TCP, and DNS](../1104-Protocol-Stack-TCP-and-DNS.md) — the seven layers of one request (Q1), TCP's 1,000/1,000 delivery after 1,054 transmissions against UDP's 50 silent drops (Q2), the 4-RTT cold DNS walk with 90% TTL-cache hits (Q3), the well-known ports :80/:443/:22 (Q6), and the TLS wrap pricing HTTPS at 36 ms over plain HTTP's 24 ms at a 12 ms RTT (Q7)
 - **Questions 4, 5, 8, 9, 17-19:** [1102: Network Topology Design](../1102-Star-Topology-Core.md) — topology and traffic distribution
+- **Questions 10-12, 20:** [1103: Jumbo Frames and MTU Optimization](../1103-Jumbo-Frames-and-MTU.md) — transport and protocol mechanics
 - **Questions 13-16:** [1101: Internet Uplink & Modem Configuration](../1101-Fiber-GPON-Modem.md) — uplink characteristics and network boundary
 
 ---

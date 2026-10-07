@@ -15,7 +15,7 @@ Difficulty: Beginner
 ## Master Documentation
 
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
-[![Documentation](https://img.shields.io/badge/Docs-438%20Files-orange?style=flat-square)](./docs)
+[![Documentation](https://img.shields.io/badge/Docs-439%20Files-orange?style=flat-square)](./docs)
 [![Phases](https://img.shields.io/badge/Phases-7-purple?style=flat-square)](#-learning-phases)
 [![Modules](https://img.shields.io/badge/Modules-33-success?style=flat-square)](#-summary-statistics)
 
@@ -157,7 +157,7 @@ After completing Minder Academy, you will be able to:
 | Challenge | Minder Academy Solution |
 |:----------:|:----------------------:|
 | 💸 **AI infrastructure is expensive** | Run production-grade AI on affordable hardware or modest cloud instances |
-| 📚 **Documentation is scattered** | **492 files** in one organized, cross-referenced repository |
+| 📚 **Documentation is scattered** | **493 files** in one organized, cross-referenced repository |
 | 🎯 **Learning gaps exist** | Complete curriculum from infrastructure to agentic systems |
 | 📝 **Theory without practice** | **33 PRACTICE files** with runnable solutions, **47 experiments** |
 | 🗺️ **No clear path forward** | **7 phases**, **3 learning tracks**, progress tracking built-in |
@@ -450,7 +450,7 @@ graph TB
 
 | Module | Topic | Docs | Status |
 |:------:|-------|:----:|:------:|
-| [1100](./docs/phases/phase1-infra/1100-network/README.md) | Network Topology | 3 | ✅ |
+| [1100](./docs/phases/phase1-infra/1100-network/README.md) | Network Topology | 4 | ✅ |
 | [1200](./docs/phases/phase1-infra/1200-virtualization/README.md) | Virtualization | 4 | ✅ |
 | [1300](./docs/phases/phase1-infra/1300-kubernetes/README.md) | Kubernetes | 3 | ✅ |
 | [1400](./docs/phases/phase1-infra/1400-llmops/README.md) | LLMOps | 5 | ✅ |
@@ -551,12 +551,13 @@ graph TB
 ## Documentation Index
 
 <details>
-<summary><b>📁 Phase 1: Infrastructure Fabric [1000]</b> - 18 documents</summary>
+<summary><b>📁 Phase 1: Infrastructure Fabric [1000]</b> - 19 documents</summary>
 
 ### [1100: Network Topology](./docs/phases/phase1-infra/1100-network/README.md)
 - [1101: Internet Uplink & Modem Configuration](./docs/phases/phase1-infra/1100-network/1101-Fiber-GPON-Modem.md)
 - [1102: Network Topology Design](./docs/phases/phase1-infra/1100-network/1102-Star-Topology-Core.md)
 - [1103: Jumbo Frames and MTU](./docs/phases/phase1-infra/1100-network/1103-Jumbo-Frames-and-MTU.md)
+- [1104: The Protocol Stack - OSI Layers, TCP, and DNS](./docs/phases/phase1-infra/1100-network/1104-Protocol-Stack-TCP-and-DNS.md)
 
 ### [1200: Virtualization](./docs/phases/phase1-infra/1200-virtualization/README.md)
 - [1201: Proxmox Hypervisor SOP](./docs/phases/phase1-infra/1200-virtualization/1201-Proxmox-Hypervisor-SOP.md)
@@ -1327,14 +1328,14 @@ docker compose -f configs/docker-compose.yml up -d qdrant
 
 | Phase | Documents |
 |:-----:|:---------:|
-| **1** | 40 |
+| **1** | 41 |
 | **2** | 33 |
 | **3** | 37 |
 | **4** | 42 |
 | **5** | 46 |
 | **6** | 45 |
 | **7** | 46 |
-| **Phase total** | **289** |
+| **Phase total** | **290** |
 
 ### Additional Resources
 
@@ -1481,7 +1482,7 @@ SOFTWARE.
 
 *Last Updated: 2026-09-29*
 
-*492 Documentation Files | 33 Technical Modules | 7 Learning Phases*
+*493 Documentation Files | 33 Technical Modules | 7 Learning Phases*
 
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
 [![Contact](https://img.shields.io/badge/Contact-FAQ-blue?style=flat-square)](./docs/00-META/FAQ.md)

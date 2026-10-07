@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE1-INFRA-README
 Title: "Phase 1: Infrastructure Fabric [1000]"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Advanced
 Tags: ['phase', 'infrastructure', 'gpu', 'networking']
@@ -294,17 +294,20 @@ graph LR
 | [1101: Internet Uplink & Modem Configuration](./1100-network/1101-Fiber-GPON-Modem.md) | WAN uplink types, bridge mode | 2h | Beginner |
 | [1102: Network Topology Design](./1100-network/1102-Star-Topology-Core.md) | Star topology, VLANs, switch setup | 3h | Intermediate |
 | [1103: Jumbo Frames and MTU](./1100-network/1103-Jumbo-Frames-and-MTU.md) | MTU 9000 optimization | 2h | Intermediate |
+| [1104: The Protocol Stack - OSI Layers, TCP, and DNS](./1100-network/1104-Protocol-Stack-TCP-and-DNS.md) | OSI layers, TCP vs UDP, DNS, ports and TLS handshakes | 2h | Beginner |
 
 **What You'll Learn:**
 - WAN uplink and bridge mode configuration
 - Star topology with a managed switch
 - Jumbo frames (MTU 9000) for throughput optimization
+- The protocol stack: OSI layers, TCP vs UDP, DNS resolution, and ports
 - Network latency optimization
 
 **Hands-On Practice:**
 - Configure the modem in bridge mode
 - Set up star topology network
 - Enable jumbo frames end-to-end
+- Trace one HTTPS inference call through the seven layers
 - Benchmark network throughput
 
 ### [1200] Host Virtualization & PCIE Passthrough
@@ -423,12 +426,12 @@ graph TD
 
 | Module | Reading | Practice | Total |
 |--------|---------|----------|-------|
-| 1100: Network | 7h | 5h | 12h |
+| 1100: Network | 9h | 5h | 14h |
 | 1200: Virtualization | 12h | 8h | 20h |
 | 1300: K3s | 9h | 6h | 15h |
 | 1400: LLMOps | 16h | 8h | 24h |
 | 1500: Monitoring | 4h | 4h | 8h |
-| **Total** | **44h** | **31h** | **75h** |
+| **Total** | **50h** | **31h** | **81h** |
 
 ---
 
