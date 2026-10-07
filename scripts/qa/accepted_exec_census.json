@@ -143,17 +143,17 @@
       "bad": {}
     },
     "docs/enterprise-solutions/SOL-001-Enterprise-Knowledge-Base.md": {
-      "mtime": 1791390620.0329976,
-      "size": 29795,
+      "mtime": 1791391530.2718694,
+      "size": 29725,
       "bad": {
-        "192": "ENV-GAP:sentence_transformers",
-        "457": "ENV-GAP:ingestion",
-        "596": "ENV-GAP:sentence_transformers"
+        "190": "ENV-GAP:sentence_transformers",
+        "455": "ENV-GAP:ingestion",
+        "594": "ENV-GAP:sentence_transformers"
       },
       "notes": {
-        "192": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "457": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design",
-        "596": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "190": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "455": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design",
+        "594": "optional third-party package the QA environment does not install; the fence documents the install requirement"
       }
     },
     "docs/enterprise-solutions/SOL-002-Industry-Solution.md": {
