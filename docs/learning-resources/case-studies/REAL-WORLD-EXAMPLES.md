@@ -1,7 +1,7 @@
 ---
 Document ID: REAL-WORLD-EXAMPLES
 Title: Real-World Examples & Case Studies
-Last Updated: 2026-09-30
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Intermediate
 Tags: ['case-study', 'production', 'llm']
@@ -11,7 +11,7 @@ Tags: ['case-study', 'production', 'llm']
 
 **Project:** Minder Academy
 **Category:** Case Studies
-**Last Updated:** 2026-09-30
+**Last Updated:** 2026-10-07
 **Status:** Complete
 
 ---
@@ -129,7 +129,7 @@ workflow = SequentialWorkflow(
 │  ├─ Handles 80% of queries (FAQs, order status)             │
 │  └─ Cost: $0.0002 per query                                 │
 │                                                              │
-│  Tier 2: L2 Agent (GPT-4o-mini)                             │
+│  Tier 2: L2 Agent (GPT-5-mini)                              │
 │  ├─ Handles 15% (complex issues, refunds)                   │
 │  └─ Cost: $0.002 per query                                  │
 │                                                              │

@@ -1,7 +1,7 @@
 ---
 Document ID: 7200-TOOLS-README
 Title: "7200: Tool Calling and Function Execution"
-Last Updated: 2026-10-06
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Intermediate
 Prerequisites: []
@@ -250,7 +250,7 @@ def word_count(text: str) -> int:
     return len(text.split())
 
 
-llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
+llm = ChatOpenAI(model="gpt-5-mini")
 
 agent = create_agent(
     llm,

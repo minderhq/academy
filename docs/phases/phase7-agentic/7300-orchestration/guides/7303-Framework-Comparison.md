@@ -3,7 +3,7 @@ Document ID: 7303
 Title: "7303: Multi-Agent Framework Comparison"
 Phase: 7
 Module: 7300
-Last Updated: 2026-09-30
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -205,20 +205,20 @@ class AgentState(TypedDict):
 # Define nodes
 def research_agent(state: AgentState):
     """Research agent node"""
-    llm = ChatOpenAI(model="gpt-4o")
+    llm = ChatOpenAI(model="gpt-5")
     response = llm.invoke(state["messages"])
     return {"agent_outputs": {"research": response.content}}
 
 def writing_agent(state: AgentState):
     """Writing agent node"""
-    llm = ChatOpenAI(model="gpt-4o")
+    llm = ChatOpenAI(model="gpt-5")
     context = state.get("agent_outputs", {}).get("research", "")
     response = llm.invoke(f"Write based on: {context}")
     return {"agent_outputs": {"writing": response.content}}
 
 def review_agent(state: AgentState):
     """Review agent node"""
-    llm = ChatOpenAI(model="gpt-4o")
+    llm = ChatOpenAI(model="gpt-5")
     content = state.get("agent_outputs", {}).get("writing", "")
     response = llm.invoke(f"Review this: {content}")
     return {"messages": [response.content]}

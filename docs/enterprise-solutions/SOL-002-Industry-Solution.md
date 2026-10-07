@@ -1,7 +1,7 @@
 ---
 Document ID: SOL-002
 Title: "SOL-002: Multi-Modal Industrial Inspection System"
-Last Updated: 2026-09-29
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Advanced
 Tags: ['enterprise', 'solution', 'manufacturing', 'multimodal', 'vision', 'llm']
@@ -441,7 +441,7 @@ class InspectionReportAgent:
 
     def __init__(self, knowledge_base: DefectKnowledgeBase):
         self.kb = knowledge_base
-        self.llm = ChatOpenAI(model="gpt-4o", temperature=0)
+        self.llm = ChatOpenAI(model="gpt-5")
         self.tools = self._build_tools()
         # LangChain 1.x: system_prompt replaces the hand-wired
         # ChatPromptTemplate + agent_scratchpad + AgentExecutor.
@@ -492,8 +492,8 @@ class InspectionReportAgent:
 
 ```text
 Agent design for production floors
-- temperature=0: reports are not creative writing; identical
-  findings must produce identical drafts
+- sampling pinned (GPT-5 has no temperature dial): reports
+  are not creative writing; identical findings, identical drafts
 - two tools, not ten: every tool is a way to be wrong. Add a
   root-cause tool only when the knowledge base actually holds
   root-cause labels

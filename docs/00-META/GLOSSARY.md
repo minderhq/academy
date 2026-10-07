@@ -1,7 +1,7 @@
 ---
 Document ID: GLOSSARY
 Title: "Minder Academy Glossary"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Beginner
 Tags: ['glossary', 'llm', 'transformers']
@@ -11,7 +11,7 @@ Tags: ['glossary', 'llm', 'transformers']
 
 **Official Terminology Reference**
 
-**Last Updated:** 2026-09-30
+**Last Updated:** 2026-10-07
 **Purpose:** Standardize terminology across all Minder Academy documentation
 
 ---
@@ -224,7 +224,7 @@ EXP_6501_MLOPS_PIPELINE.md
 | **Meta** | Llama 3.1, Llama 4 (Scout, Maverick) | - |
 | **Mistral AI** | Mistral Large, Mixtral 8x7B | - |
 | **Google** | Gemini 2.5, BERT | - |
-| **OpenAI** | GPT-4o, GPT-5 | - |
+| **OpenAI** | GPT-5, GPT-5-mini | - |
 | **Anthropic** | Claude 3.5, Claude 4 | - |
 | **Cohere** | Command R+, Aya | - |
 

@@ -1,7 +1,7 @@
 ---
 Document ID: CP-001
 Title: "CP-001: RAG vs Fine-Tuning vs Agents - Decision Guide"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Intermediate
 Tags: ['comparison', 'rag', 'finetuning', 'agents']
@@ -116,7 +116,7 @@ retriever = vectorstore.as_retriever(search_kwargs={"k": 4})
 
 # Create RAG chain - LangChain 1.x composes LCEL steps instead of
 # the legacy RetrievalQA wrapper.
-llm = ChatOpenAI(model="gpt-4o-mini")
+llm = ChatOpenAI(model="gpt-5-mini")
 prompt = ChatPromptTemplate.from_messages([
     ("system", "Answer the question using only the context. Cite sources."),
     ("human", "Context:\n{context}\n\nQuestion: {question}"),
@@ -609,7 +609,7 @@ vectorstore = QdrantVectorStore.from_documents(
 
 # 2. Create chain - LangChain 1.x composes LCEL steps instead of
 # the legacy RetrievalQA wrapper
-llm = ChatOpenAI(model="gpt-4o-mini")
+llm = ChatOpenAI(model="gpt-5-mini")
 prompt = ChatPromptTemplate.from_messages([
     ("system", "Answer the question using only the context. Cite sources."),
     ("human", "Context:\n{context}\n\nQuestion: {question}"),

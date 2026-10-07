@@ -3,7 +3,7 @@ Document ID: 7201
 Title: "7201: Tool Calling & Function Execution"
 Phase: 7
 Module: 7200
-Last Updated: 2026-10-04
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -250,7 +250,7 @@ tools = [
 
 # Make request
 response = client.chat.completions.create(
-    model="gpt-4o",
+    model="gpt-5",
     messages=[
         {"role": "user", "content": "What's the price of AAPL?"}
     ],
@@ -268,7 +268,7 @@ if response.choices[0].message.tool_calls:
 
     # Send the tool result back for the final answer
     final_response = client.chat.completions.create(
-        model="gpt-4o",
+        model="gpt-5",
         messages=[
             {"role": "user", "content": "What's the price of AAPL?"},
             response.choices[0].message,
@@ -522,7 +522,7 @@ weather_tool = {
 
 # One request — the model may return multiple tool calls at once
 response = client.chat.completions.create(
-    model="gpt-4o",
+    model="gpt-5",
     messages=[{"role": "user", "content": "Get weather for Tokyo, London, and NYC"}],
     tools=[weather_tool]
 )
@@ -556,7 +556,7 @@ tools = [{
 }]
 
 stream = client.chat.completions.create(
-    model="gpt-4o",
+    model="gpt-5",
     messages=[{"role": "user", "content": "Weather in Tokyo?"}],
     tools=tools,
     stream=True

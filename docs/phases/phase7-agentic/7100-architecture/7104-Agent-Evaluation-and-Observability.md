@@ -3,7 +3,7 @@ Document ID: 7104
 Title: "7104: Agent Evaluation and Observability - Measuring the Loop as Working Code"
 Phase: 7
 Module: 7100
-Last Updated: 2026-10-06
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -224,7 +224,7 @@ with tracer.start_as_current_span("invoke_agent", attributes={
     with tracer.start_as_current_span("chat", attributes={
         "gen_ai.operation.name": "chat",
         "gen_ai.provider.name": "openai",
-        "gen_ai.request.model": "gpt-4o-mini",
+        "gen_ai.request.model": "gpt-5-mini",
         "gen_ai.usage.input_tokens": 820,
         "gen_ai.usage.output_tokens": 64,
     }):
