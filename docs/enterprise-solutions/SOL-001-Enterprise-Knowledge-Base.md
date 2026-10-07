@@ -178,7 +178,7 @@ dependencies = [
     "redis==8.1.0",
     "python-jose[cryptography]==3.5.0",
     "passlib[bcrypt]==1.7.4",
-    "python-dotenv==1.2.3",
+    "python-dotenv==1.2.4",
     "aiofiles==25.1.0",
     "pypdf==6.19.0",
     "python-docx==1.2.0",
