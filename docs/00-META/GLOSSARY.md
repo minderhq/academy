@@ -222,10 +222,10 @@ EXP_6501_MLOPS_PIPELINE.md
 | Company | Notable Models | Abbreviation |
 |---------|---------------|--------------|
 | **Meta** | Llama 3.1, Llama 4 (Scout, Maverick) | - |
-| **Mistral AI** | Mistral Large, Mixtral 8x7B | - |
-| **Google** | Gemini 2.5, BERT | - |
+| **Mistral AI** | Mistral Large 4, Mistral Small 4 | - |
+| **Google** | Gemini 3, Gemma 3 | - |
 | **OpenAI** | GPT-5, GPT-5-mini | - |
-| **Anthropic** | Claude 3.5, Claude 4 | - |
+| **Anthropic** | Claude Opus 5.5, Claude Haiku 4.5 | - |
 | **Cohere** | Command R+, Aya | - |
 
 ---

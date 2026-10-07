@@ -125,7 +125,7 @@ workflow = SequentialWorkflow(
 ┌─────────────────────────────────────────────────────────────┐
 │                   Tiered Support Architecture                │
 │                                                              │
-│  Tier 1: L1 Bot (Llama-7B, GGUF quantized)                  │
+│  Tier 1: L1 Bot (Llama-3.2-3B, GGUF quantized)              │
 │  ├─ Handles 80% of queries (FAQs, order status)             │
 │  └─ Cost: $0.0002 per query                                 │
 │                                                              │
@@ -291,8 +291,8 @@ Query → Embed → Retrieve → Rerank → LLM → Response
 ### Response Times (p95)
 | Application | Model | Tokens/sec | Latency |
 |-------------|-------|------------|---------|
-| Chatbot | Llama-7B-GGUF | 85 | 200ms |
-| RAG System | Mixtral-8x7B | 50 | 400ms |
+| Chatbot | Llama-3.2-3B-GGUF | 85 | 200ms |
+| RAG System | Mistral-Small-4 | 50 | 400ms |
 | Code Gen | Coding LLM | 30 | 800ms |
 | Research | GPT API | 15 | 2000ms |
 
