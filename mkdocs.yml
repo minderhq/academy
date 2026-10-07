@@ -73,7 +73,7 @@ nav:
     - "Glossary": 00-META/GLOSSARY.md
     - "Troubleshooting Quickstart": 00-META/TROUBLESHOOTING-QUICKSTART.md
     - "Resources": 00-META/RESOURCES.md
-  - "Phase 1 · Infrastructure":
+  - "1 · Infrastructure":
     - index_file: phases/phase1-infra/README.md
     - "Checkpoint": phases/phase1-infra/CHECKPOINT.md
     - "1100 · Network":
@@ -120,7 +120,7 @@ nav:
       - "LLM Observability": phases/phase1-infra/1500-monitoring/1503-LLM-Observability.md
       - "Practice": phases/phase1-infra/1500-monitoring/assessment/PRACTICE.md
       - "Quiz": phases/phase1-infra/1500-monitoring/assessment/QUIZ.md
-  - "Phase 2 · Foundations":
+  - "2 · Foundations":
     - index_file: phases/phase2-foundations/README.md
     - "Checkpoint": phases/phase2-foundations/CHECKPOINT.md
     - "2100 · Calculus":
@@ -158,7 +158,7 @@ nav:
       - "Evaluation Frameworks": phases/phase2-foundations/2400-pretraining/2403-Evaluation-Frameworks.md
       - "Practice": phases/phase2-foundations/2400-pretraining/assessment/PRACTICE.md
       - "Quiz": phases/phase2-foundations/2400-pretraining/assessment/QUIZ.md
-  - "Phase 3 · Transformers":
+  - "3 · Transformers":
     - index_file: phases/phase3-transformers/README.md
     - "Checkpoint": phases/phase3-transformers/CHECKPOINT.md
     - "3100 · Attention":
@@ -202,7 +202,7 @@ nav:
       - "Audio Models": phases/phase3-transformers/3500-multimodal/3502-Audio-Models.md
       - "Practice": phases/phase3-transformers/3500-multimodal/assessment/PRACTICE.md
       - "Quiz": phases/phase3-transformers/3500-multimodal/assessment/QUIZ.md
-  - "Phase 4 · Quantization":
+  - "4 · Quantization":
     - index_file: phases/phase4-quantization/README.md
     - "Checkpoint": phases/phase4-quantization/CHECKPOINT.md
     - "4100 · Low Bit":
@@ -250,7 +250,7 @@ nav:
       - "Guide · Hardware Specific Optimization": phases/phase4-quantization/4400-advanced-techniques/guides/4409-Hardware-Specific-Optimization.md
       - "Practice": phases/phase4-quantization/4400-advanced-techniques/assessment/PRACTICE.md
       - "Quiz": phases/phase4-quantization/4400-advanced-techniques/assessment/QUIZ.md
-  - "Phase 5 · Fine-Tuning":
+  - "5 · Fine-Tuning":
     - index_file: phases/phase5-finetuning/README.md
     - "Checkpoint": phases/phase5-finetuning/CHECKPOINT.md
     - "5100 · Peft":
@@ -302,7 +302,7 @@ nav:
       - "Advanced Techniques": phases/phase5-finetuning/5500-advanced-optimization/5503-Advanced-Techniques.md
       - "Practice": phases/phase5-finetuning/5500-advanced-optimization/assessment/PRACTICE.md
       - "Quiz": phases/phase5-finetuning/5500-advanced-optimization/assessment/QUIZ.md
-  - "Phase 6 · RAG & Data":
+  - "6 · RAG & Data":
     - index_file: phases/phase6-rag/README.md
     - "Checkpoint": phases/phase6-rag/CHECKPOINT.md
     - "6100 · Vector":
@@ -354,7 +354,7 @@ nav:
       - "Response Caching and Stage Scaling": phases/phase6-rag/6500-mlops-pipelines/6505-Response-Caching-and-Stage-Scaling.md
       - "Practice": phases/phase6-rag/6500-mlops-pipelines/assessment/PRACTICE.md
       - "Quiz": phases/phase6-rag/6500-mlops-pipelines/assessment/QUIZ.md
-  - "Phase 7 · Agentic":
+  - "7 · Agentic":
     - index_file: phases/phase7-agentic/README.md
     - "Checkpoint": phases/phase7-agentic/CHECKPOINT.md
     - "7100 · Architecture":
@@ -406,166 +406,167 @@ nav:
       - "Temperature Zero and Deterministic Security Testing": phases/phase7-agentic/7500-security/7505-Temperature-Zero-and-Deterministic-Security-Testing.md
       - "Practice": phases/phase7-agentic/7500-security/assessment/PRACTICE.md
       - "Quiz": phases/phase7-agentic/7500-security/assessment/QUIZ.md
-  - Volumes:
-    - "Volume 1 · Infrastructure": volumes/VOLUME-1-Infrastructure.md
-    - "Volume 2 · AI Foundations": volumes/VOLUME-2-AI-Foundations.md
-    - "Volume 3 · LLM Internals": volumes/VOLUME-3-LLM-Internals.md
-    - "Volume 4 · Quantization": volumes/VOLUME-4-Quantization.md
-    - "Volume 5 · Model Adaptation": volumes/VOLUME-5-Model-Adaptation.md
-    - "Volume 6 · Data Nexus": volumes/VOLUME-6-Data-Nexus.md
-    - "Volume 7 · Production Mastery": volumes/VOLUME-7-Production-Mastery.md
-  - Resources:
-    - "Tutorials":
-      - "Python for AI": learning-resources/tutorials/TUTORIAL-000-Python-for-AI.md
-      - "Hello LLM": learning-resources/tutorials/TUTORIAL-001-Hello-LLM.md
-      - "Docker Essentials": learning-resources/tutorials/TUTORIAL-002-Docker-Essentials.md
-      - "RAG Basics": learning-resources/tutorials/TUTORIAL-003-RAG-Basics.md
-      - "Monitoring": learning-resources/tutorials/TUTORIAL-004-Monitoring.md
-      - "Production Deployment": learning-resources/tutorials/TUTORIAL-005-Production-Deployment.md
-      - "Real-Time AI": learning-resources/tutorials/TUTORIAL-006-Real-time-AI.md
-      - "LoRA Basics": learning-resources/tutorials/TUTORIAL-007-LoRA-Basics.md
-      - "CUDA Programming": learning-resources/tutorials/TUTORIAL-008-CUDA-Programming.md
-      - "Advanced RAG Techniques": learning-resources/tutorials/TUTORIAL-009-Advanced-RAG-Techniques.md
-      - "Model Evaluation": learning-resources/tutorials/TUTORIAL-010-Model-Evaluation.md
-      - "Multi-Modal AI": learning-resources/tutorials/TUTORIAL-011-Multi-Modal-AI.md
-      - "Production LLMOps": learning-resources/tutorials/TUTORIAL-012-Production-LLMOps.md
-      - "AI Security": learning-resources/tutorials/TUTORIAL-013-AI-Security.md
-      - "Production LLM Systems": learning-resources/tutorials/TUTORIAL-014-Production-LLM-Systems.md
-    - "Guides":
-      - "Career Guide": learning-resources/guides/GUIDE-CAREER.md
-      - "Interview Guide": learning-resources/guides/GUIDE-INTERVIEW.md
-      - "Resume Guide": learning-resources/guides/GUIDE-RESUME.md
-    - "Cheat Sheets":
-      - "Docker": learning-resources/cheat-sheets/CHEAT-SHEET-001-Docker.md
-      - "Python AI": learning-resources/cheat-sheets/CHEAT-SHEET-002-Python-AI.md
-      - "Git": learning-resources/cheat-sheets/CHEAT-SHEET-003-Git.md
-      - "Linux": learning-resources/cheat-sheets/CHEAT-SHEET-004-Linux.md
-      - "RAG Systems": learning-resources/cheat-sheets/CHEAT-SHEET-005-RAG-Systems.md
-      - "Kubernetes": learning-resources/cheat-sheets/CHEAT-SHEET-006-Kubernetes.md
-      - "Quick Ref Volume 1": learning-resources/cheat-sheets/QUICK-REF-VOLUME-1.md
-      - "Quick Ref Volume 2": learning-resources/cheat-sheets/QUICK-REF-VOLUME-2.md
-      - "Quick Ref Volume 3": learning-resources/cheat-sheets/QUICK-REF-VOLUME-3.md
-      - "Quick Ref Volume 4": learning-resources/cheat-sheets/QUICK-REF-VOLUME-4.md
-      - "Quick Ref Volume 5": learning-resources/cheat-sheets/QUICK-REF-VOLUME-5.md
-      - "Quick Ref Volume 6": learning-resources/cheat-sheets/QUICK-REF-VOLUME-6.md
-      - "Quick Ref Volume 7": learning-resources/cheat-sheets/QUICK-REF-VOLUME-7.md
-    - "Labs":
-      - "Environment Setup": learning-resources/labs/LAB-000-ENVIRONMENT-SETUP.md
-      - "Docker LLM": learning-resources/labs/LAB-001-Docker-LLM.md
-      - "RAG Implementation": learning-resources/labs/LAB-002-RAG-Implementation.md
-      - "LoRA FineTuning": learning-resources/labs/LAB-003-LoRA-FineTuning.md
-      - "ReAct Agent": learning-resources/labs/LAB-004-ReAct-Agent.md
-      - "GraphRAG": learning-resources/labs/LAB-005-GraphRAG.md
-      - "Train Model from Scratch": learning-resources/labs/LAB-006-Train-Model-From-Scratch.md
-      - "Production RAG": learning-resources/labs/LAB-007-Production-RAG.md
-      - "Agent Fleet": learning-resources/labs/LAB-008-Agent-Fleet.md
-      - "Production Deployment": learning-resources/labs/LAB-009-Production-Deployment.md
-      - "DPO Alignment": learning-resources/labs/LAB-010-DPO-Alignment.md
-      - "Multi-Modal AI": learning-resources/labs/LAB-011-Multi-Modal-AI.md
-      - "Audio AI": learning-resources/labs/LAB-012-Audio-AI.md
-      - "Advanced Function Calling": learning-resources/labs/LAB-013-Advanced-Function-Calling.md
-      - "AI Evaluation Safety": learning-resources/labs/LAB-014-AI-Evaluation-Safety.md
-      - "Solution · Environment Setup": learning-resources/labs/solutions/SOLUTION-LAB-000-Environment-Setup.md
-      - "Solution · Docker LLM": learning-resources/labs/solutions/SOLUTION-LAB-001-Docker-LLM.md
-      - "Solution · RAG Implementation": learning-resources/labs/solutions/SOLUTION-LAB-002-RAG-Implementation.md
-      - "Solution · LoRA FineTuning": learning-resources/labs/solutions/SOLUTION-LAB-003-LoRA-FineTuning.md
-      - "Solution · ReAct Agent": learning-resources/labs/solutions/SOLUTION-LAB-004-ReAct-Agent.md
-      - "Solution · GraphRAG": learning-resources/labs/solutions/SOLUTION-LAB-005-GraphRAG.md
-      - "Solution · Train Model from Scratch": learning-resources/labs/solutions/SOLUTION-LAB-006-Train-Model-From-Scratch.md
-      - "Solution · Production RAG": learning-resources/labs/solutions/SOLUTION-LAB-007-Production-RAG.md
-      - "Solution · Agent Fleet": learning-resources/labs/solutions/SOLUTION-LAB-008-Agent-Fleet.md
-      - "Solution · Production Deployment": learning-resources/labs/solutions/SOLUTION-LAB-009-Production-Deployment.md
-      - "Solution · DPO Alignment": learning-resources/labs/solutions/SOLUTION-LAB-010-DPO-Alignment.md
-      - "Solution · Multi Modal AI": learning-resources/labs/solutions/SOLUTION-LAB-011-Multi-Modal-AI.md
-      - "Solution · Audio AI": learning-resources/labs/solutions/SOLUTION-LAB-012-Audio-AI.md
-      - "Solution · Advanced Function Calling": learning-resources/labs/solutions/SOLUTION-LAB-013-Advanced-Function-Calling.md
-      - "Solution · AI Evaluation Safety": learning-resources/labs/solutions/SOLUTION-LAB-014-AI-Evaluation-Safety.md
-    - "Projects":
-      - "Prerequisites · Project 001": learning-resources/projects/PREREQUISITES-001.md
-      - "Prerequisites · Project 007": learning-resources/projects/PREREQUISITES-007.md
-      - "AI Assistant": learning-resources/projects/PROJECT-001-AI-Assistant.md
-      - "Train Neural Network": learning-resources/projects/PROJECT-002-Train-Neural-Network.md
-      - "Transformer from Scratch": learning-resources/projects/PROJECT-003-Transformer-From-Scratch.md
-      - "Quantize Model": learning-resources/projects/PROJECT-004-Quantize-Model.md
-      - "FineTune Model": learning-resources/projects/PROJECT-005-FineTune-Model.md
-      - "Production RAG": learning-resources/projects/PROJECT-006-Production-RAG.md
-      - "Production AI System": learning-resources/projects/PROJECT-007-Production-AI-System.md
-      - "Setup Guide": learning-resources/projects/SETUP-GUIDE.md
-      - "Template · Simple LLM App": learning-resources/projects/templates/TEMPLATE-001-Simple-LLM-App.md
-      - "Template · Fine-Tuning Pipeline": learning-resources/projects/templates/TEMPLATE-002-Fine-Tuning-Pipeline.md
-      - "Template · RAG System": learning-resources/projects/templates/TEMPLATE-003-RAG-System.md
-      - "Template · Agent Framework": learning-resources/projects/templates/TEMPLATE-004-Agent-Framework.md
-      - "Template · Model Quantization": learning-resources/projects/templates/TEMPLATE-005-Model-Quantization.md
-      - "Template · Synthetic Data Generator": learning-resources/projects/templates/TEMPLATE-006-Synthetic-Data-Generator.md
-      - "Template · LLM Evaluation Benchmark": learning-resources/projects/templates/TEMPLATE-007-LLM-Evaluation-Benchmark.md
-      - "Template · Multi-Modal Application": learning-resources/projects/templates/TEMPLATE-008-Multi-Modal-Application.md
-      - "Template · Model Deployment": learning-resources/projects/templates/TEMPLATE-009-Model-Deployment.md
-      - "Template · Chatbot UI": learning-resources/projects/templates/TEMPLATE-010-Chatbot-UI.md
-      - "Template · Model Merging MoE": learning-resources/projects/templates/TEMPLATE-011-Model-Merging-MoE.md
-      - "Template · End-to-End LLM Pipeline": learning-resources/projects/templates/TEMPLATE-012-End-to-End-LLM-Pipeline.md
-    - "Interactive":
-      - "Flashcards": learning-resources/interactive/FLASHCARDS.md
-    - "Troubleshooting":
-      - "Troubleshooting Common Issues": learning-resources/troubleshooting/TROUBLESHOOTING-Common-Issues.md
-    - "Bridges":
-      - "Tutorial to Lab Bridge": learning-resources/bridges/TUTORIAL-TO-LAB-BRIDGE.md
-    - "Case Studies":
-      - "Real-World Examples": learning-resources/case-studies/REAL-WORLD-EXAMPLES.md
-    - "Resources":
-      - "External Resources": learning-resources/resources/EXTERNAL-RESOURCES.md
-  - Case Studies:
-    - "Industry":
-      - "Healthcare AI Applications": industry/IND-001-Healthcare-AI-Applications.md
-      - "Finance AI Applications": industry/IND-002-Finance-AI-Applications.md
-      - "Manufacturing AI": industry/IND-003-Manufacturing-AI.md
-      - "Overview": industry/README.md
-    - "Use Cases":
-      - "Overview": use-cases/README.md
-      - "Vector Database Applications": use-cases/UC-001-Vector-Database-Applications.md
-      - "RAG Applications": use-cases/UC-002-RAG-Applications.md
-      - "Agent Applications": use-cases/UC-003-Agent-Applications.md
-    - "Comparisons":
-      - "RAG vs FineTuning vs Agents": comparisons/CP-001-RAG-vs-FineTuning-vs-Agents.md
-      - "Vector Database Comparison": comparisons/CP-002-Vector-Database-Comparison.md
-      - "Overview": comparisons/README.md
-    - "Enterprise Solutions":
-      - "Overview": enterprise-solutions/README.md
-      - "Enterprise Knowledge Base": enterprise-solutions/SOL-001-Enterprise-Knowledge-Base.md
-      - "Industry Solution": enterprise-solutions/SOL-002-Industry-Solution.md
-    - "Diagrams":
-      - "ML Lifecycle": diagrams/ML-LIFECYCLE.md
-      - "Project 001 Architecture": diagrams/PROJECT-001-ARCHITECTURE.md
-      - "ReAct Loop": diagrams/REACT-LOOP.md
-      - "Overview": diagrams/README.md
-    - "Notebooks":
-      - "Overview": notebooks/README.md
-  - Reference:
-    - "Master Index": 00-META/MASTER-INDEX.md
-    - "Sitemap": 00-META/SITEMAP.md
-    - "Progress Tracker": 00-META/PROGRESS-TRACKER.md
-    - "Organization Guide": 00-META/ORGANIZATION-GUIDE.md
-    - "Volume Guide": 00-META/VOLUME-GUIDE.md
-    - "Assessment Guide": 00-META/ASSESSMENT-GUIDE.md
-    - "QA Tooling": 00-META/QA-TOOLING.md
-    - "Style Guide": 00-META/STYLE-GUIDE.md
-    - "Document Template": 00-META/DOCUMENT-TEMPLATE.md
-    - "Navigation Template": 00-META/NAVIGATION-TEMPLATE.md
-    - "Cross Reference Guidelines": 00-META/CROSS-REFERENCE-GUIDELINES.md
-    - Phase Quizzes:
-      - "Phase 1 Practice": 00-META/assessment/phase1-practice.md
-      - "Phase 1 Quiz": 00-META/assessment/phase1-quiz.md
-      - "Phase 2 Practice": 00-META/assessment/phase2-practice.md
-      - "Phase 2 Quiz": 00-META/assessment/phase2-quiz.md
-      - "Phase 3 Practice": 00-META/assessment/phase3-practice.md
-      - "Phase 3 Quiz": 00-META/assessment/phase3-quiz.md
-      - "Phase 4 Practice": 00-META/assessment/phase4-practice.md
-      - "Phase 4 Quiz": 00-META/assessment/phase4-quiz.md
-      - "Phase 5 Practice": 00-META/assessment/phase5-practice.md
-      - "Phase 5 Quiz": 00-META/assessment/phase5-quiz.md
-      - "Phase 6 Practice": 00-META/assessment/phase6-practice.md
-      - "Phase 6 Quiz": 00-META/assessment/phase6-quiz.md
-      - "Phase 7 Practice": 00-META/assessment/phase7-practice.md
-      - "Phase 7 Quiz": 00-META/assessment/phase7-quiz.md
+  - "Library":
+    - Volumes:
+      - "Volume 1 · Infrastructure": volumes/VOLUME-1-Infrastructure.md
+      - "Volume 2 · AI Foundations": volumes/VOLUME-2-AI-Foundations.md
+      - "Volume 3 · LLM Internals": volumes/VOLUME-3-LLM-Internals.md
+      - "Volume 4 · Quantization": volumes/VOLUME-4-Quantization.md
+      - "Volume 5 · Model Adaptation": volumes/VOLUME-5-Model-Adaptation.md
+      - "Volume 6 · Data Nexus": volumes/VOLUME-6-Data-Nexus.md
+      - "Volume 7 · Production Mastery": volumes/VOLUME-7-Production-Mastery.md
+    - Resources:
+      - "Tutorials":
+        - "Python for AI": learning-resources/tutorials/TUTORIAL-000-Python-for-AI.md
+        - "Hello LLM": learning-resources/tutorials/TUTORIAL-001-Hello-LLM.md
+        - "Docker Essentials": learning-resources/tutorials/TUTORIAL-002-Docker-Essentials.md
+        - "RAG Basics": learning-resources/tutorials/TUTORIAL-003-RAG-Basics.md
+        - "Monitoring": learning-resources/tutorials/TUTORIAL-004-Monitoring.md
+        - "Production Deployment": learning-resources/tutorials/TUTORIAL-005-Production-Deployment.md
+        - "Real-Time AI": learning-resources/tutorials/TUTORIAL-006-Real-time-AI.md
+        - "LoRA Basics": learning-resources/tutorials/TUTORIAL-007-LoRA-Basics.md
+        - "CUDA Programming": learning-resources/tutorials/TUTORIAL-008-CUDA-Programming.md
+        - "Advanced RAG Techniques": learning-resources/tutorials/TUTORIAL-009-Advanced-RAG-Techniques.md
+        - "Model Evaluation": learning-resources/tutorials/TUTORIAL-010-Model-Evaluation.md
+        - "Multi-Modal AI": learning-resources/tutorials/TUTORIAL-011-Multi-Modal-AI.md
+        - "Production LLMOps": learning-resources/tutorials/TUTORIAL-012-Production-LLMOps.md
+        - "AI Security": learning-resources/tutorials/TUTORIAL-013-AI-Security.md
+        - "Production LLM Systems": learning-resources/tutorials/TUTORIAL-014-Production-LLM-Systems.md
+      - "Guides":
+        - "Career Guide": learning-resources/guides/GUIDE-CAREER.md
+        - "Interview Guide": learning-resources/guides/GUIDE-INTERVIEW.md
+        - "Resume Guide": learning-resources/guides/GUIDE-RESUME.md
+      - "Cheat Sheets":
+        - "Docker": learning-resources/cheat-sheets/CHEAT-SHEET-001-Docker.md
+        - "Python AI": learning-resources/cheat-sheets/CHEAT-SHEET-002-Python-AI.md
+        - "Git": learning-resources/cheat-sheets/CHEAT-SHEET-003-Git.md
+        - "Linux": learning-resources/cheat-sheets/CHEAT-SHEET-004-Linux.md
+        - "RAG Systems": learning-resources/cheat-sheets/CHEAT-SHEET-005-RAG-Systems.md
+        - "Kubernetes": learning-resources/cheat-sheets/CHEAT-SHEET-006-Kubernetes.md
+        - "Quick Ref Volume 1": learning-resources/cheat-sheets/QUICK-REF-VOLUME-1.md
+        - "Quick Ref Volume 2": learning-resources/cheat-sheets/QUICK-REF-VOLUME-2.md
+        - "Quick Ref Volume 3": learning-resources/cheat-sheets/QUICK-REF-VOLUME-3.md
+        - "Quick Ref Volume 4": learning-resources/cheat-sheets/QUICK-REF-VOLUME-4.md
+        - "Quick Ref Volume 5": learning-resources/cheat-sheets/QUICK-REF-VOLUME-5.md
+        - "Quick Ref Volume 6": learning-resources/cheat-sheets/QUICK-REF-VOLUME-6.md
+        - "Quick Ref Volume 7": learning-resources/cheat-sheets/QUICK-REF-VOLUME-7.md
+      - "Labs":
+        - "Environment Setup": learning-resources/labs/LAB-000-ENVIRONMENT-SETUP.md
+        - "Docker LLM": learning-resources/labs/LAB-001-Docker-LLM.md
+        - "RAG Implementation": learning-resources/labs/LAB-002-RAG-Implementation.md
+        - "LoRA FineTuning": learning-resources/labs/LAB-003-LoRA-FineTuning.md
+        - "ReAct Agent": learning-resources/labs/LAB-004-ReAct-Agent.md
+        - "GraphRAG": learning-resources/labs/LAB-005-GraphRAG.md
+        - "Train Model from Scratch": learning-resources/labs/LAB-006-Train-Model-From-Scratch.md
+        - "Production RAG": learning-resources/labs/LAB-007-Production-RAG.md
+        - "Agent Fleet": learning-resources/labs/LAB-008-Agent-Fleet.md
+        - "Production Deployment": learning-resources/labs/LAB-009-Production-Deployment.md
+        - "DPO Alignment": learning-resources/labs/LAB-010-DPO-Alignment.md
+        - "Multi-Modal AI": learning-resources/labs/LAB-011-Multi-Modal-AI.md
+        - "Audio AI": learning-resources/labs/LAB-012-Audio-AI.md
+        - "Advanced Function Calling": learning-resources/labs/LAB-013-Advanced-Function-Calling.md
+        - "AI Evaluation Safety": learning-resources/labs/LAB-014-AI-Evaluation-Safety.md
+        - "Solution · Environment Setup": learning-resources/labs/solutions/SOLUTION-LAB-000-Environment-Setup.md
+        - "Solution · Docker LLM": learning-resources/labs/solutions/SOLUTION-LAB-001-Docker-LLM.md
+        - "Solution · RAG Implementation": learning-resources/labs/solutions/SOLUTION-LAB-002-RAG-Implementation.md
+        - "Solution · LoRA FineTuning": learning-resources/labs/solutions/SOLUTION-LAB-003-LoRA-FineTuning.md
+        - "Solution · ReAct Agent": learning-resources/labs/solutions/SOLUTION-LAB-004-ReAct-Agent.md
+        - "Solution · GraphRAG": learning-resources/labs/solutions/SOLUTION-LAB-005-GraphRAG.md
+        - "Solution · Train Model from Scratch": learning-resources/labs/solutions/SOLUTION-LAB-006-Train-Model-From-Scratch.md
+        - "Solution · Production RAG": learning-resources/labs/solutions/SOLUTION-LAB-007-Production-RAG.md
+        - "Solution · Agent Fleet": learning-resources/labs/solutions/SOLUTION-LAB-008-Agent-Fleet.md
+        - "Solution · Production Deployment": learning-resources/labs/solutions/SOLUTION-LAB-009-Production-Deployment.md
+        - "Solution · DPO Alignment": learning-resources/labs/solutions/SOLUTION-LAB-010-DPO-Alignment.md
+        - "Solution · Multi Modal AI": learning-resources/labs/solutions/SOLUTION-LAB-011-Multi-Modal-AI.md
+        - "Solution · Audio AI": learning-resources/labs/solutions/SOLUTION-LAB-012-Audio-AI.md
+        - "Solution · Advanced Function Calling": learning-resources/labs/solutions/SOLUTION-LAB-013-Advanced-Function-Calling.md
+        - "Solution · AI Evaluation Safety": learning-resources/labs/solutions/SOLUTION-LAB-014-AI-Evaluation-Safety.md
+      - "Projects":
+        - "Prerequisites · Project 001": learning-resources/projects/PREREQUISITES-001.md
+        - "Prerequisites · Project 007": learning-resources/projects/PREREQUISITES-007.md
+        - "AI Assistant": learning-resources/projects/PROJECT-001-AI-Assistant.md
+        - "Train Neural Network": learning-resources/projects/PROJECT-002-Train-Neural-Network.md
+        - "Transformer from Scratch": learning-resources/projects/PROJECT-003-Transformer-From-Scratch.md
+        - "Quantize Model": learning-resources/projects/PROJECT-004-Quantize-Model.md
+        - "FineTune Model": learning-resources/projects/PROJECT-005-FineTune-Model.md
+        - "Production RAG": learning-resources/projects/PROJECT-006-Production-RAG.md
+        - "Production AI System": learning-resources/projects/PROJECT-007-Production-AI-System.md
+        - "Setup Guide": learning-resources/projects/SETUP-GUIDE.md
+        - "Template · Simple LLM App": learning-resources/projects/templates/TEMPLATE-001-Simple-LLM-App.md
+        - "Template · Fine-Tuning Pipeline": learning-resources/projects/templates/TEMPLATE-002-Fine-Tuning-Pipeline.md
+        - "Template · RAG System": learning-resources/projects/templates/TEMPLATE-003-RAG-System.md
+        - "Template · Agent Framework": learning-resources/projects/templates/TEMPLATE-004-Agent-Framework.md
+        - "Template · Model Quantization": learning-resources/projects/templates/TEMPLATE-005-Model-Quantization.md
+        - "Template · Synthetic Data Generator": learning-resources/projects/templates/TEMPLATE-006-Synthetic-Data-Generator.md
+        - "Template · LLM Evaluation Benchmark": learning-resources/projects/templates/TEMPLATE-007-LLM-Evaluation-Benchmark.md
+        - "Template · Multi-Modal Application": learning-resources/projects/templates/TEMPLATE-008-Multi-Modal-Application.md
+        - "Template · Model Deployment": learning-resources/projects/templates/TEMPLATE-009-Model-Deployment.md
+        - "Template · Chatbot UI": learning-resources/projects/templates/TEMPLATE-010-Chatbot-UI.md
+        - "Template · Model Merging MoE": learning-resources/projects/templates/TEMPLATE-011-Model-Merging-MoE.md
+        - "Template · End-to-End LLM Pipeline": learning-resources/projects/templates/TEMPLATE-012-End-to-End-LLM-Pipeline.md
+      - "Interactive":
+        - "Flashcards": learning-resources/interactive/FLASHCARDS.md
+      - "Troubleshooting":
+        - "Troubleshooting Common Issues": learning-resources/troubleshooting/TROUBLESHOOTING-Common-Issues.md
+      - "Bridges":
+        - "Tutorial to Lab Bridge": learning-resources/bridges/TUTORIAL-TO-LAB-BRIDGE.md
+      - "Case Studies":
+        - "Real-World Examples": learning-resources/case-studies/REAL-WORLD-EXAMPLES.md
+      - "Resources":
+        - "External Resources": learning-resources/resources/EXTERNAL-RESOURCES.md
+    - Case Studies:
+      - "Industry":
+        - "Healthcare AI Applications": industry/IND-001-Healthcare-AI-Applications.md
+        - "Finance AI Applications": industry/IND-002-Finance-AI-Applications.md
+        - "Manufacturing AI": industry/IND-003-Manufacturing-AI.md
+        - "Overview": industry/README.md
+      - "Use Cases":
+        - "Overview": use-cases/README.md
+        - "Vector Database Applications": use-cases/UC-001-Vector-Database-Applications.md
+        - "RAG Applications": use-cases/UC-002-RAG-Applications.md
+        - "Agent Applications": use-cases/UC-003-Agent-Applications.md
+      - "Comparisons":
+        - "RAG vs FineTuning vs Agents": comparisons/CP-001-RAG-vs-FineTuning-vs-Agents.md
+        - "Vector Database Comparison": comparisons/CP-002-Vector-Database-Comparison.md
+        - "Overview": comparisons/README.md
+      - "Enterprise Solutions":
+        - "Overview": enterprise-solutions/README.md
+        - "Enterprise Knowledge Base": enterprise-solutions/SOL-001-Enterprise-Knowledge-Base.md
+        - "Industry Solution": enterprise-solutions/SOL-002-Industry-Solution.md
+      - "Diagrams":
+        - "ML Lifecycle": diagrams/ML-LIFECYCLE.md
+        - "Project 001 Architecture": diagrams/PROJECT-001-ARCHITECTURE.md
+        - "ReAct Loop": diagrams/REACT-LOOP.md
+        - "Overview": diagrams/README.md
+      - "Notebooks":
+        - "Overview": notebooks/README.md
+    - Reference:
+      - "Master Index": 00-META/MASTER-INDEX.md
+      - "Sitemap": 00-META/SITEMAP.md
+      - "Progress Tracker": 00-META/PROGRESS-TRACKER.md
+      - "Organization Guide": 00-META/ORGANIZATION-GUIDE.md
+      - "Volume Guide": 00-META/VOLUME-GUIDE.md
+      - "Assessment Guide": 00-META/ASSESSMENT-GUIDE.md
+      - "QA Tooling": 00-META/QA-TOOLING.md
+      - "Style Guide": 00-META/STYLE-GUIDE.md
+      - "Document Template": 00-META/DOCUMENT-TEMPLATE.md
+      - "Navigation Template": 00-META/NAVIGATION-TEMPLATE.md
+      - "Cross Reference Guidelines": 00-META/CROSS-REFERENCE-GUIDELINES.md
+      - Phase Quizzes:
+        - "Phase 1 Practice": 00-META/assessment/phase1-practice.md
+        - "Phase 1 Quiz": 00-META/assessment/phase1-quiz.md
+        - "Phase 2 Practice": 00-META/assessment/phase2-practice.md
+        - "Phase 2 Quiz": 00-META/assessment/phase2-quiz.md
+        - "Phase 3 Practice": 00-META/assessment/phase3-practice.md
+        - "Phase 3 Quiz": 00-META/assessment/phase3-quiz.md
+        - "Phase 4 Practice": 00-META/assessment/phase4-practice.md
+        - "Phase 4 Quiz": 00-META/assessment/phase4-quiz.md
+        - "Phase 5 Practice": 00-META/assessment/phase5-practice.md
+        - "Phase 5 Quiz": 00-META/assessment/phase5-quiz.md
+        - "Phase 6 Practice": 00-META/assessment/phase6-practice.md
+        - "Phase 6 Quiz": 00-META/assessment/phase6-quiz.md
+        - "Phase 7 Practice": 00-META/assessment/phase7-practice.md
+        - "Phase 7 Quiz": 00-META/assessment/phase7-quiz.md
 markdown_extensions:
   - admonition
   - attr_list
