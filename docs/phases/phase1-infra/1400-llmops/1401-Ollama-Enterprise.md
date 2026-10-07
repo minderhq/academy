@@ -3,7 +3,7 @@ Document ID: 1401
 Title: "1401: Ollama Enterprise Deployment"
 Phase: 1
 Module: 1400
-Last Updated: 2026-09-30
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -154,7 +154,7 @@ ollama serve
 ollama pull llama2:7b
 ollama pull codellama:13b
 ollama pull mistral:7b
-ollama pull neural-chat:7b
+ollama pull gemma2:9b
 ollama pull mixtral:8x7b   # ~26GB — will not fit an 11GB-class GPU; needs a multi-GPU host
 ```
 
@@ -315,7 +315,7 @@ curl -s http://localhost:11434/api/generate \
   -d '{"model": "llama2:7b", "keep_alive": -1}' > /dev/null
 
 # An 11GB GPU holds ONE 7B model comfortably (~6GB VRAM). Preloading
-# llama2 + codellama + mistral together (~12GB of weights) forces Ollama
+# llama2 + codellama + mistral together (~15GB of weights) forces Ollama
 # to unload and reload on every model switch — pick a single hot model.
 ```
 
