@@ -1,7 +1,7 @@
 ---
 Document ID: README
 Title: "Minder Academy"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Beginner
 ---
@@ -21,6 +21,7 @@ Difficulty: Beginner
 
 **A comprehensive, production-grade AI engineering curriculum — run it on your own hardware or in the cloud**
 
+[![Read Online](https://img.shields.io/badge/Read_Online-minderhq.github.io%2Facademy-8A2BE2?style=for-the-badge)](https://minderhq.github.io/academy/)
 [![Quick Start](https://img.shields.io/badge/Quick_Start-Get_Started-green?style=for-the-badge)](#-quick-start)
 [![Learning Path](https://img.shields.io/badge/Learning_Path-Choose_Track-blue?style=for-the-badge)](#-learning-path)
 [![Documentation](https://img.shields.io/badge/Documentation-Browse_Docs-orange?style=for-the-badge)](#-documentation-index)
