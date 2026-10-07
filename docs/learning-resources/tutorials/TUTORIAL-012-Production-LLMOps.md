@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-012
 Title: "TUTORIAL-012: Production LLMOps"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -879,11 +879,11 @@ print(f"Winner: {ab.pick_winner('latency-test')}")
 class TokenBudget:
     """Manage token usage and costs"""
 
-    # Pricing (per 1M tokens as of 2024)
+    # Pricing (per 1M tokens as of 2026)
     PRICING = {
-        "gpt-4": {"input": 30.0, "output": 60.0},
-        "gpt-3.5-turbo": {"input": 0.5, "output": 1.5},
-        "claude-3-opus": {"input": 15.0, "output": 75.0},
+        "gpt-5": {"input": 1.25, "output": 10.0},
+        "gpt-5-mini": {"input": 0.25, "output": 2.0},
+        "claude-opus-5-5": {"input": 4.0, "output": 20.0},
         # Self-hosted - amortized infra cost per 1M tokens, not API pricing
         "mistral-7b": {"input": 0.1, "output": 0.1},
     }
@@ -950,16 +950,16 @@ class TokenBudget:
 # Usage
 budget = TokenBudget(monthly_budget=50.0)
 
-budget.track_usage("gpt-4", input_tokens=100_000, output_tokens=20_000)
-budget.track_usage("gpt-3.5-turbo", input_tokens=500_000, output_tokens=100_000)
+budget.track_usage("gpt-5", input_tokens=100_000, output_tokens=20_000)
+budget.track_usage("gpt-5-mini", input_tokens=500_000, output_tokens=100_000)
 
 report = budget.get_usage_report()
 print(f"Total cost: ${report['total_cost']:.2f}")
 print(f"Budget remaining: ${report['budget_remaining']:.2f}")
 
 # Expected Output:
-# Total cost: $4.60
-# Budget remaining: $45.40
+# Total cost: $0.65
+# Budget remaining: $49.35
 ```
 
 ---
