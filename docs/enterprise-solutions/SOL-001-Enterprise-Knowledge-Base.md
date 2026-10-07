@@ -88,7 +88,7 @@ End-to-end implementation guide for building an enterprise knowledge base using 
 services:
   # Qdrant Vector Database
   qdrant:
-    image: qdrant/qdrant:v1.7.0
+    image: qdrant/qdrant:v1.19.1
     container_name: qdrant
     ports:
       - "6333:6333"  # HTTP API
@@ -115,7 +115,7 @@ services:
 
   # Redis for caching
   redis:
-    image: redis:7-alpine
+    image: redis:8-alpine
     container_name: redis
     ports:
       - "6379:6379"
@@ -930,7 +930,7 @@ services:
     restart: unless-stopped
 
   qdrant:
-    image: qdrant/qdrant:v1.7.0
+    image: qdrant/qdrant:v1.19.1
     ports:
       - "6333:6333"
     volumes:
@@ -950,7 +950,7 @@ services:
     restart: unless-stopped
 
   redis:
-    image: redis:7-alpine
+    image: redis:8-alpine
     ports:
       - "6379:6379"
     volumes:

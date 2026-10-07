@@ -86,7 +86,7 @@ cat > qdrant-cluster/docker-compose.yml << 'EOF'
 
 services:
   qdrant-node1:
-    image: qdrant/qdrant:v1.7.0
+    image: qdrant/qdrant:v1.19.1
     container_name: qdrant-node1
     hostname: qdrant-node1
     ports:
@@ -99,7 +99,7 @@ services:
       - QDRANT__LOG_LEVEL=DEBUG
 
   qdrant-node2:
-    image: qdrant/qdrant:v1.7.0
+    image: qdrant/qdrant:v1.19.1
     container_name: qdrant-node2
     hostname: qdrant-node2
     ports:
@@ -112,7 +112,7 @@ services:
       - QDRANT__LOG_LEVEL=DEBUG
 
   qdrant-node3:
-    image: qdrant/qdrant:v1.7.0
+    image: qdrant/qdrant:v1.19.1
     container_name: qdrant-node3
     hostname: qdrant-node3
     ports:

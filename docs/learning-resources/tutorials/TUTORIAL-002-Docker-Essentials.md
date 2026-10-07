@@ -275,7 +275,7 @@ services:
       - LOG_LEVEL=info
 
   redis:
-    image: redis:7-alpine
+    image: redis:8-alpine
     ports:
       - "6379:6379"
     volumes:
