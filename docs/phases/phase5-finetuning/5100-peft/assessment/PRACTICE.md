@@ -251,7 +251,7 @@ model = AutoModelForCausalLM.from_pretrained(
     "Qwen/Qwen2.5-7B-Instruct",  # ungated
     quantization_config=bnb_config,
     device_map="auto",  # Automatically distribute across available GPUs
-    # no trust_remote_code - Llama-2 loads with stock transformers code
+    # no trust_remote_code - Qwen2.5 loads with stock transformers code
 )
 
 # SOLUTION: Prepare for k-bit training
@@ -280,7 +280,7 @@ print("\n" + "="*60)
 print("Memory Efficiency Comparison:")
 print("="*60)
 print(f"""
-Original Llama-2-7B (FP16): ~13.5 GB VRAM
+Original Qwen2.5-7B (FP16): ~15 GB VRAM
 With 4-bit quantization: ~4.5 GB VRAM
 With LoRA adapters: ~5.5 GB VRAM
 
@@ -316,7 +316,7 @@ print("""
 from transformers import TrainingArguments, Trainer
 
 training_args = TrainingArguments(
-    output_dir="./qlora-llama3.1",
+    output_dir="./qlora-qwen2.5",
     num_train_epochs=3,
     per_device_train_batch_size=4,
     gradient_accumulation_steps=4,
@@ -341,10 +341,10 @@ trainer.train()
 
 # Expected Output:
 # The loading/applying status lines, the trainable-params summary
-# (r=16 on all 7 projections of a 7B: ~29M trainable of ~6.7B
-# total, ~0.4%), then the memory comparison, QLoRA-innovations
+# (r=16 on all 7 projections of a 7B: ~40M trainable of ~7.6B
+# total, ~0.5%), then the memory comparison, QLoRA-innovations
 # and training-config text print directly - the load itself needs
-# a GPU and gated Llama-2 access
+# a GPU and bitsandbytes installed
 ```
 
 ### Exercise 4: Prefix Tuning

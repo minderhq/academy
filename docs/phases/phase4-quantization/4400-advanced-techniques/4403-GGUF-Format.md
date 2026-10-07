@@ -3,7 +3,7 @@ Document ID: 4403
 Title: "4403: GGUF Format"
 Phase: 4
 Module: 4400
-Last Updated: 2026-09-30
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -92,7 +92,7 @@ Q4_K_M:
 - 256-weight super-blocks split into 8×32 sub-blocks
 - Good balance of size and speed
 
-Size: ~4.08 GB for Llama-2-7B
+Size: ~4.9 GB for Llama-3.1-8B
 Speed: Fast on CPU, very fast on GPU
 ```
 
@@ -104,7 +104,7 @@ Q5_K_M:
 - Same 8×32 sub-block structure as Q4_K_M
 - Better accuracy, slightly larger
 
-Size: ~4.78 GB for Llama-2-7B
+Size: ~5.7 GB for Llama-3.1-8B
 Speed: Medium on CPU, fast on GPU
 ```
 
@@ -115,18 +115,18 @@ Q8_0:
 - 8-bit quants, one FP16 scale per 32-weight block
 - Near FP16 accuracy
 
-Size: ~7.16 GB for Llama-2-7B
+Size: ~8.5 GB for Llama-3.1-8B
 Speed: Slower on CPU
 ```
 
 ### Comparison
 
-| Type | Size (Llama-2-7B) | Accuracy | CPU Speed | GPU Support |
+| Type | Size (Llama-3.1-8B) | Accuracy | CPU Speed | GPU Support |
 |------|-------------------|----------|-----------|-------------|
-| **Q4_K_M** | 4.08 GB | Good | Fast | Full |
-| **Q5_K_M** | 4.78 GB | Better | Medium | Full |
-| **Q8_0** | 7.16 GB | Best | Slow | Full |
-| **Q3_K_M** | 3.30 GB | OK | Fast | Full |
+| **Q4_K_M** | 4.9 GB | Good | Fast | Full |
+| **Q5_K_M** | 5.7 GB | Better | Medium | Full |
+| **Q8_0** | 8.5 GB | Best | Slow | Full |
+| **Q3_K_M** | 3.8 GB | OK | Fast | Full |
 
 ## Converting to GGUF
 
@@ -142,19 +142,19 @@ cmake -B build
 cmake --build build --config Release -j
 
 # Download model (in HF format)
-# (Assume already downloaded to ./Llama-2-7b-hf)
+# (Assume already downloaded to ./Llama-3.1-8B-Instruct)
 
 # Step 1: convert to GGUF at a float precision. convert.py was split
 # into convert_hf_to_gguf.py (FP/BF16 output) + the llama-quantize tool
 # (K-quants). --outtype accepts f32/f16/bf16/q8_0/tq1_0/tq2_0/auto —
 # never a K-quant name. A local directory or --remote HF repo id works:
 python convert_hf_to_gguf.py \
-    ../Llama-2-7b-hf \
-    --outfile Llama-2-7b-f16.gguf \
+    ../Llama-3.1-8B-Instruct \
+    --outfile Llama-3.1-8b-f16.gguf \
     --outtype f16
 
 # Step 2: quantize to K-quant
-./build/bin/llama-quantize Llama-2-7b-f16.gguf Llama-2-7b-Q4_K_M.gguf Q4_K_M
+./build/bin/llama-quantize Llama-3.1-8b-f16.gguf Llama-3.1-8b-Q4_K_M.gguf Q4_K_M
 ```
 
 ### Quantization Options
@@ -187,12 +187,12 @@ python convert_hf_to_gguf.py \
 
 ```bash
 # Interactive mode (the old ./main binary is now llama-cli)
-llama-cli -m Llama-2-7b-Q4_K_M.gguf \
+llama-cli -m Llama-3.1-8b-Q4_K_M.gguf \
     --color \
     -p "You are a helpful assistant."
 
 # Generate from a prompt file
-llama-cli -m Llama-2-7b-Q4_K_M.gguf \
+llama-cli -m Llama-3.1-8b-Q4_K_M.gguf \
     -f prompt.txt \
     -n 512
 
@@ -208,7 +208,7 @@ from llama_cpp import Llama
 
 # Load model
 model = Llama(
-    model_path="Llama-2-7b-Q4_K_M.gguf",
+    model_path="Llama-3.1-8b-Q4_K_M.gguf",
     n_ctx=2048,  # Context window
     n_gpu_layers=-1,  # Offload all to GPU (if available)
     verbose=False,
@@ -230,7 +230,7 @@ print(output['choices'][0]['text'])
 ```python
 from llama_cpp import Llama
 
-model = Llama(model_path="Llama-2-7b-Q4_K_M.gguf", n_gpu_layers=-1)
+model = Llama(model_path="Llama-3.1-8b-Q4_K_M.gguf", n_gpu_layers=-1)
 
 messages = [
     {"role": "system", "content": "You are a helpful assistant."},
@@ -259,7 +259,7 @@ import torch
 gpu_memory = torch.cuda.get_device_properties(0).total_memory / (1024**3)  # GB
 
 # Calculate layers to offload
-# Budget ~200 MB per layer for a Q4_K_M 7B: ~140 MB of weights plus
+# Budget ~200 MB per layer for a Q4_K_M 8B: ~150 MB of weights plus
 # KV-cache headroom (1 GB of VRAM buys ~5 layers)
 n_gpu_layers = min(int(gpu_memory * 5), 33)  # Conservative estimate
 
@@ -267,7 +267,7 @@ print(f"GPU Memory: {gpu_memory:.2f} GB")
 print(f"Offloading {n_gpu_layers} layers")
 
 model = Llama(
-    model_path="Llama-2-7b-Q4_K_M.gguf",
+    model_path="Llama-3.1-8b-Q4_K_M.gguf",
     n_gpu_layers=n_gpu_layers,
 )
 ```
@@ -292,11 +292,11 @@ def benchmark(model, prompts):
     return (end - start) / len(prompts)
 
 # CPU-only
-model_cpu = Llama(model_path="Llama-2-7b-Q4_K_M.gguf", n_gpu_layers=0)
+model_cpu = Llama(model_path="Llama-3.1-8b-Q4_K_M.gguf", n_gpu_layers=0)
 cpu_time = benchmark(model_cpu, prompts)
 
 # GPU-accelerated
-model_gpu = Llama(model_path="Llama-2-7b-Q4_K_M.gguf", n_gpu_layers=-1)
+model_gpu = Llama(model_path="Llama-3.1-8b-Q4_K_M.gguf", n_gpu_layers=-1)
 gpu_time = benchmark(model_gpu, prompts)
 
 print(f"CPU: {cpu_time:.2f}s per prompt")
@@ -311,7 +311,7 @@ print(f"Speedup: {cpu_time / gpu_time:.2f}x")
 ```python
 from gguf import GGUFReader, GGUFValueType
 
-reader = GGUFReader("Llama-2-7b-Q4_K_M.gguf")
+reader = GGUFReader("Llama-3.1-8b-Q4_K_M.gguf")
 
 def field_value(field):
     # STRING values live in byte segments: parts[-1] prints the raw
@@ -374,7 +374,7 @@ writer.close()
 # Generate importance matrix from calibration data (run it on the
 # F16 GGUF, before any quantization has been applied)
 ./build/bin/llama-imatrix \
-    -m Llama-2-7b-f16.gguf \
+    -m Llama-3.1-8b-f16.gguf \
     -f calibration_data.txt \
     -o imatrix.dat \
     -n 100
@@ -382,7 +382,7 @@ writer.close()
 # Use IMatrix for better quantization — the llama.cpp analogue of the
 # activation-aware weighting from 4402 (AWQ)
 ./build/bin/llama-quantize \
-    Llama-2-7b-f16.gguf model-imatrix.gguf Q4_K_M \
+    Llama-3.1-8b-f16.gguf model-imatrix.gguf Q4_K_M \
     --imatrix imatrix.dat
 ```
 
@@ -394,7 +394,7 @@ writer.close()
 # Error: unknown or invalid magic number
 
 # Solution: Verify file integrity
-sha256sum Llama-2-7b-Q4_K_M.gguf
+sha256sum Llama-3.1-8b-Q4_K_M.gguf
 
 # Or re-convert/re-quantize
 python convert_hf_to_gguf.py ./model --outfile model-f16.gguf --outtype f16

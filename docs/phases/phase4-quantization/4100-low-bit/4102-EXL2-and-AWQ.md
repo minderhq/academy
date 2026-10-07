@@ -61,7 +61,7 @@ EXL2 is a custom quantization format for ExLlamaV2:
 An EXL2 "model" is an ordinary HF-style output DIRECTORY —
 there is no .exl2 container file:
 
-llama-2-7b-exl2/
+llama-3.1-8b-exl2/
 ├── config.json             # Model config (quantization_config notes BPW)
 ├── tokenizer.model         # Tokenizer
 ├── output.safetensors      # Quantized weights (sharded when large)
@@ -72,19 +72,19 @@ llama-2-7b-exl2/
 ### EXL2 Quantization Levels
 ```python
 EXL2_QUANT_LEVELS = {
-    2.0: {"description": "2-bit", "vram_7b": "~2GB", "quality": "Poor"},
-    3.0: {"description": "3-bit", "vram_7b": "~3GB", "quality": "Fair"},
-    4.0: {"description": "4-bit", "vram_7b": "~4GB", "quality": "Good"},
-    4.125: {"description": "4.125-bit", "vram_7b": "~4.1GB", "quality": "Very Good"},
-    4.5: {"description": "4.5-bit", "vram_7b": "~4.5GB", "quality": "Excellent"},
-    5.0: {"description": "5-bit", "vram_7b": "~5GB", "quality": "Near fp16"},
-    6.0: {"description": "6-bit", "vram_7b": "~6GB", "quality": "Almost fp16"},
-    8.0: {"description": "8-bit", "vram_7b": "~8GB", "quality": "fp16"},
+    2.0: {"description": "2-bit", "vram_8b": "~2GB", "quality": "Poor"},
+    3.0: {"description": "3-bit", "vram_8b": "~3GB", "quality": "Fair"},
+    4.0: {"description": "4-bit", "vram_8b": "~4GB", "quality": "Good"},
+    4.125: {"description": "4.125-bit", "vram_8b": "~4.1GB", "quality": "Very Good"},
+    4.5: {"description": "4.5-bit", "vram_8b": "~4.5GB", "quality": "Excellent"},
+    5.0: {"description": "5-bit", "vram_8b": "~5GB", "quality": "Near fp16"},
+    6.0: {"description": "6-bit", "vram_8b": "~6GB", "quality": "Almost fp16"},
+    8.0: {"description": "8-bit", "vram_8b": "~8GB", "quality": "fp16"},
 }
 
 # Recommended for an 11GB VRAM GPU:
-# - Llama-2-7B: 4.5 or 5.0 bpw
-# - Llama-2-13B: 4.0 bpw
+# - Llama-3.1-8B: 4.5 or 5.0 bpw
+# - Gemma-3-12B: 4.0 bpw
 # - Mistral-7B: 4.5 bpw
 # - Mixtral-8x7B: 3.5 bpw (barely fits)
 ```
@@ -99,8 +99,8 @@ uv pip install exllamav2
 # converter's scratch space), -b ONE average-BPW target, -c parquet
 # calibration dataset (omit for the built-in default)
 python convert.py \
-  -i /models/llama-2-7b \
-  -o /models/llama-2-7b-exl2 \
+  -i /models/llama-3.1-8b \
+  -o /models/llama-3.1-8b-exl2 \
   -c calibration_data.parquet \
   -b 4.5  # Bits per weight (average)
 
@@ -127,7 +127,7 @@ from exllamav2.generator import ExLlamaV2DynamicGenerator, ExLlamaV2Sampler
 
 # Load model
 config = ExLlamaV2Config()
-config.model_dir = "/models/llama-2-7b-exl2"
+config.model_dir = "/models/llama-3.1-8b-exl2"
 config.max_seq_len = 4096
 
 model = ExLlamaV2(config)
@@ -162,13 +162,13 @@ print(text)
 ### EXL2 Performance
 ```text
 11GB-class GPU (11GB VRAM):
-Llama-2-7B @ 4.5 bpw:
-  - Model size: ~4.2 GB
+Llama-3.1-8B @ 4.5 bpw:
+  - Model size: ~4.5 GB
   - Speed: ~80-100 tokens/sec
   - Quality: Perplexity within 5% of fp16
 
-Llama-2-13B @ 4.0 bpw:
-  - Model size: ~7 GB
+Gemma-3-12B @ 4.0 bpw:
+  - Model size: ~6 GB
   - Speed: ~40-50 tokens/sec
   - Quality: Perplexity within 8% of fp16
 
@@ -238,10 +238,10 @@ uv pip install autoawq
 
 # Quantize model
 python -m awq.quantize \
-  --model_path /models/llama-2-7b \
+  --model_path /models/llama-3.1-8b \
   --w_bit 4 \
   --q_group_size 128 \
-  --output_dir /models/llama-2-7b-awq
+  --output_dir /models/llama-3.1-8b-awq
 
 # Parameters:
 # --w_bit: Bit width (4 recommended)
@@ -255,13 +255,13 @@ from transformers import AutoTokenizer
 
 # Load quantized model
 model = AutoAWQForCausalLM.from_quantized(
-    "/models/llama-2-7b-awq",
+    "/models/llama-3.1-8b-awq",
     fuse_layers=True,      # Fuse for speed
     max_new_tokens=512,
     batch_size=1,
 )
 
-tokenizer = AutoTokenizer.from_pretrained("/models/llama-2-7b-awq")
+tokenizer = AutoTokenizer.from_pretrained("/models/llama-3.1-8b-awq")
 
 # Inference
 prompt = "Explain quantum computing:"
@@ -279,10 +279,10 @@ print(tokenizer.decode(output[0]))
 
 ### AWQ Performance
 ```text
-Llama-2-7B AWQ @ 4-bit:
+Llama-3.1-8B AWQ @ 4-bit:
   - VRAM usage: ~4.5 GB
   - Perplexity: Within 2% of fp16
-  - Speed: ~60-70 tokens/sec on an 11GB-class GPU
+  - Speed: ~55-65 tokens/sec on an 11GB-class GPU
 
 Comparison with other 4-bit methods:
   - GPTQ: 5-7% perplexity increase
@@ -317,9 +317,9 @@ quantize_config = BaseQuantizeConfig(
     true_sequential=True,
 )
 
-tokenizer = AutoTokenizer.from_pretrained("/models/llama-2-7b")
+tokenizer = AutoTokenizer.from_pretrained("/models/llama-3.1-8b")
 model = AutoGPTQForCausalLM.from_pretrained(
-    "/models/llama-2-7b",
+    "/models/llama-3.1-8b",
     quantize_config=quantize_config,
 )
 
@@ -334,8 +334,8 @@ calibration_data = [
 
 # Quantize and save
 model.quantize(calibration_data, batch_size=1)
-model.save_quantized("/models/llama-2-7b-gptq")
-tokenizer.save_pretrained("/models/llama-2-7b-gptq")
+model.save_quantized("/models/llama-3.1-8b-gptq")
+tokenizer.save_pretrained("/models/llama-3.1-8b-gptq")
 ```
 
 ### Using GPTQ Models
@@ -346,11 +346,11 @@ from transformers import AutoTokenizer
 # Load quantized model — no load_in_4bit kwarg: the checkpoint is
 # already quantized, from_quantized rebuilds the quantized layers
 model = AutoGPTQForCausalLM.from_quantized(
-    "/models/llama-2-7b-gptq",
+    "/models/llama-3.1-8b-gptq",
     device_map="auto",
     use_safetensors=True,
 )
-tokenizer = AutoTokenizer.from_pretrained("/models/llama-2-7b-gptq")
+tokenizer = AutoTokenizer.from_pretrained("/models/llama-3.1-8b-gptq")
 
 # Inference
 inputs = tokenizer("Hello, world!", return_tensors="pt").to("cuda")

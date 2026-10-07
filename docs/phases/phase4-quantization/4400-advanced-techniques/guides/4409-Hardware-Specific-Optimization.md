@@ -3,7 +3,7 @@ Document ID: 4409
 Title: "4409: Hardware-Specific Quantization Optimization"
 Phase: 4
 Module: 4400
-Last Updated: 2026-09-30
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -87,13 +87,13 @@ The rest of the guide works through the rows that matter most, in that order.
 
 ```bash
 # pre-quantized GPTQ/AWQ checkpoint (made in 4408)
-vllm serve ./models/llama-2-7b-w4a16-gptq --dtype float16
+vllm serve ./models/llama-3.1-8b-w4a16-gptq --dtype float16
 
 # tensor parallel across 4 GPUs for throughput
-vllm serve ./models/llama-2-7b-w4a16-gptq --tensor-parallel-size 4
+vllm serve ./models/llama-3.1-8b-w4a16-gptq --tensor-parallel-size 4
 
 # H100-class: FP8 at load time - near-lossless W8A8, no calibration
-vllm serve meta-llama/Llama-2-7b-hf --quantization fp8
+vllm serve meta-llama/Llama-3.1-8B-Instruct --quantization fp8
 ```
 
 ```text
@@ -164,12 +164,12 @@ cmake -B build
 cmake --build build --config Release
 
 # convert + quantize (converter runs on the Mac fine)
-python convert_hf_to_gguf.py ./Llama-2-7b-hf \
+python convert_hf_to_gguf.py ./Llama-3.1-8B-Instruct \
     --outfile base-f16.gguf --outtype f16
-./build/bin/llama-quantize base-f16.gguf llama-2-7b-Q4_K_M.gguf Q4_K_M
+./build/bin/llama-quantize base-f16.gguf llama-3.1-8b-Q4_K_M.gguf Q4_K_M
 
 # run with full GPU offload
-./build/bin/llama-cli -m llama-2-7b-Q4_K_M.gguf \
+./build/bin/llama-cli -m llama-3.1-8b-Q4_K_M.gguf \
     -ngl 99 -t 8
 ```
 
@@ -208,14 +208,14 @@ cmake -B build && cmake --build build --config Release
 
 # NUMA server: bind memory to the socket running the threads
 numactl --cpunodebind=0 --membind=0 \
-    ./build/bin/llama-server -m llama-2-7b-Q4_K_M.gguf -t 32
+    ./build/bin/llama-server -m llama-3.1-8b-Q4_K_M.gguf -t 32
 
 # memory-constrained box: lock pages, disable swap-out
-./build/bin/llama-cli -m llama-2-7b-Q4_K_M.gguf \
+./build/bin/llama-cli -m llama-3.1-8b-Q4_K_M.gguf \
     -t 16 --mlock
 
 # microbenchmark formats on YOUR cpu (the llama.cpp benchmark tool)
-./build/bin/llama-bench -m llama-2-7b-Q4_K_M.gguf -p 512 -n 128
+./build/bin/llama-bench -m llama-3.1-8b-Q4_K_M.gguf -p 512 -n 128
 ```
 
 ```text

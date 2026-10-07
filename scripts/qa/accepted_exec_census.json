@@ -1757,8 +1757,8 @@
       "bad": {}
     },
     "docs/phases/phase4-quantization/4100-low-bit/4102-EXL2-and-AWQ.md": {
-      "mtime": 1791376635.332267,
-      "size": 14177,
+      "mtime": 1791398984.7510912,
+      "size": 14211,
       "bad": {
         "119": "ENV-GAP:exllamav2",
         "252": "ENV-GAP:awq",
@@ -2005,8 +2005,8 @@
       }
     },
     "docs/phases/phase4-quantization/4400-advanced-techniques/4403-GGUF-Format.md": {
-      "mtime": 1791109464.2108135,
-      "size": 15399,
+      "mtime": 1791398960.0400836,
+      "size": 15444,
       "bad": {
         "206": "ENV-GAP:llama_cpp",
         "230": "ENV-GAP:llama_cpp",
@@ -2086,8 +2086,8 @@
       }
     },
     "docs/phases/phase4-quantization/4400-advanced-techniques/guides/4409-Hardware-Specific-Optimization.md": {
-      "mtime": 1791357710.2398286,
-      "size": 14972,
+      "mtime": 1791398984.7510912,
+      "size": 15002,
       "bad": {
         "112": "SIDE-EFFECT"
       },
@@ -2145,8 +2145,8 @@
       "bad": {}
     },
     "docs/phases/phase5-finetuning/5100-peft/assessment/PRACTICE.md": {
-      "mtime": 1791397005.546902,
-      "size": 32887,
+      "mtime": 1791398984.7510912,
+      "size": 32886,
       "bad": {
         "234": "ENV-GAP:Using `bitsandbytes` 4-bit quantization requires bitsandbyte"
       },
