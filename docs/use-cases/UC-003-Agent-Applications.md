@@ -1,7 +1,7 @@
 ---
 Document ID: UC-003
 Title: "UC-003: AI Agent Practical Use Cases"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Intermediate
 Tags: ['use-case', 'agents', 'function-calling']
@@ -47,7 +47,7 @@ import os
 from langchain.agents import create_agent
 from langchain_core.tools import tool
 from langchain_huggingface import HuggingFacePipeline
-from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline
+from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline, BitsAndBytesConfig
 
 
 # Tools - @tool infers the input schema from the signature. None of
@@ -190,7 +190,7 @@ class DevOpsAgent:
         model = AutoModelForCausalLM.from_pretrained(
             model_id,
             device_map="auto",
-            load_in_4bit=True,
+            quantization_config=BitsAndBytesConfig(load_in_4bit=True),
         )
         pipe = pipeline(
             "text-generation",

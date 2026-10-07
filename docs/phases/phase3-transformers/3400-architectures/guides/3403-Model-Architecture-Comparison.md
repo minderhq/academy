@@ -3,7 +3,7 @@ Document ID: 3403
 Title: "3403: Model Architecture Comparison Guide"
 Phase: 3
 Module: 3400
-Last Updated: 2026-09-30
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -185,11 +185,11 @@ print(tokenizer.decode(outputs[0]))
 
 ```python
 # Chat / Conversational AI
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 
 model = AutoModelForCausalLM.from_pretrained(
     "mistralai/Mistral-7B-Instruct-v0.2",
-    load_in_4bit=True,
+    quantization_config=BitsAndBytesConfig(load_in_4bit=True),
     device_map="auto"
 )
 tokenizer = AutoTokenizer.from_pretrained("mistralai/Mistral-7B-Instruct-v0.2")

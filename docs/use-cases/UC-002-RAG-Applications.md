@@ -1,7 +1,7 @@
 ---
 Document ID: UC-002
 Title: "UC-002: RAG (Retrieval-Augmented Generation) Practical Use Cases"
-Last Updated: 2026-10-04
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Intermediate
 Tags: ['use-case', 'rag', 'retrieval']
@@ -49,7 +49,7 @@ from langchain_huggingface import HuggingFaceEmbeddings, HuggingFacePipeline
 from langchain_qdrant import QdrantVectorStore
 from qdrant_client import QdrantClient
 import torch
-from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
+from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline, BitsAndBytesConfig
 
 class EnterpriseKnowledgeAssistant:
     """
@@ -81,7 +81,7 @@ class EnterpriseKnowledgeAssistant:
         model = AutoModelForCausalLM.from_pretrained(
             model_id,
             device_map="auto",
-            load_in_4bit=True  # Works on any 11GB+ VRAM GPU
+            quantization_config=BitsAndBytesConfig(load_in_4bit=True)  # Works on any 11GB+ VRAM GPU
         )
 
         pipe = pipeline(

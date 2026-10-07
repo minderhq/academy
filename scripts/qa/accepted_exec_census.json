@@ -20,8 +20,8 @@
       "bad": {}
     },
     "docs/00-META/GLOSSARY.md": {
-      "mtime": 1791212813.070143,
-      "size": 10483,
+      "mtime": 1791369850.4043236,
+      "size": 10506,
       "bad": {}
     },
     "docs/00-META/ORGANIZATION-GUIDE.md": {
@@ -30,8 +30,8 @@
       "bad": {}
     },
     "docs/00-META/QUICK-START.md": {
-      "mtime": 1791219257.9004638,
-      "size": 10164,
+      "mtime": 1791363236.7412229,
+      "size": 10176,
       "bad": {
         "185": "SIDE-EFFECT",
         "214": "INTERACTIVE"
@@ -104,8 +104,8 @@
       }
     },
     "docs/comparisons/CP-001-RAG-vs-FineTuning-vs-Agents.md": {
-      "mtime": 1791223830.7840881,
-      "size": 17819,
+      "mtime": 1791380651.9131556,
+      "size": 17868,
       "bad": {
         "239": "ENV-GAP:trl",
         "384": "SIDE-EFFECT",
@@ -143,8 +143,8 @@
       "bad": {}
     },
     "docs/enterprise-solutions/SOL-001-Enterprise-Knowledge-Base.md": {
-      "mtime": 1791223830.7875202,
-      "size": 29735,
+      "mtime": 1791380651.9142506,
+      "size": 29795,
       "bad": {
         "192": "ENV-GAP:sentence_transformers",
         "457": "ENV-GAP:ingestion",
@@ -157,8 +157,8 @@
       }
     },
     "docs/enterprise-solutions/SOL-002-Industry-Solution.md": {
-      "mtime": 1791109464.0853267,
-      "size": 28469,
+      "mtime": 1791365579.9795473,
+      "size": 28475,
       "bad": {
         "103": "ENV-GAP:cv2",
         "173": "ENV-GAP:segment_anything",
@@ -187,8 +187,8 @@
       }
     },
     "docs/industry/IND-002-Finance-AI-Applications.md": {
-      "mtime": 1791109464.0897062,
-      "size": 44666,
+      "mtime": 1791380651.915252,
+      "size": 44726,
       "bad": {
         "1136": "ENV-GAP:sentence_transformers"
       },
@@ -216,8 +216,8 @@
       "size": 8096
     },
     "docs/learning-resources/case-studies/REAL-WORLD-EXAMPLES.md": {
-      "mtime": 1791109464.092955,
-      "size": 12006,
+      "mtime": 1791369850.4053235,
+      "size": 12013,
       "bad": {}
     },
     "docs/learning-resources/cheat-sheets/CHEAT-SHEET-002-Python-AI.md": {
@@ -355,8 +355,8 @@
       }
     },
     "docs/learning-resources/labs/LAB-001-Docker-LLM.md": {
-      "mtime": 1791096283.2127542,
-      "size": 20015,
+      "mtime": 1791363236.7432287,
+      "size": 20022,
       "bad": {
         "108": "TIMEOUT"
       },
@@ -385,7 +385,7 @@
       "size": 30620
     },
     "docs/learning-resources/labs/LAB-003-LoRA-FineTuning.md": {
-      "mtime": 1791228411.6719086,
+      "mtime": 1791374956.5810454,
       "size": 29430,
       "bad": {
         "671": "TIMEOUT"
@@ -431,9 +431,9 @@
       }
     },
     "docs/learning-resources/labs/LAB-006-Train-Model-From-Scratch.md": {
-      "bad": {},
-      "mtime": 1790924546.0489566,
-      "size": 40615
+      "mtime": 1791376635.333774,
+      "size": 40635,
+      "bad": {}
     },
     "docs/learning-resources/labs/LAB-007-Production-RAG.md": {
       "mtime": 1791109464.1056871,
@@ -454,8 +454,8 @@
       }
     },
     "docs/learning-resources/labs/LAB-008-Agent-Fleet.md": {
-      "mtime": 1791109464.1066928,
-      "size": 37061,
+      "mtime": 1791365579.977042,
+      "size": 37056,
       "bad": {
         "303": "ENV-GAP:base_agent",
         "422": "ENV-GAP:base_agent",
@@ -484,9 +484,9 @@
       }
     },
     "docs/learning-resources/labs/LAB-010-DPO-Alignment.md": {
-      "bad": {},
-      "mtime": 1791032671.5524035,
-      "size": 31420
+      "mtime": 1791373065.6783895,
+      "size": 31410,
+      "bad": {}
     },
     "docs/learning-resources/labs/LAB-011-Multi-Modal-AI.md": {
       "mtime": 1791082376.8272245,
@@ -544,15 +544,13 @@
       }
     },
     "docs/learning-resources/labs/solutions/SOLUTION-LAB-001-Docker-LLM.md": {
-      "mtime": 1791091995.7826219,
-      "size": 15749,
+      "mtime": 1791363236.7432287,
+      "size": 15754,
       "bad": {
-        "108": "TIMEOUT",
-        "479": "ENV-GAP:storage"
+        "108": "TIMEOUT"
       },
       "notes": {
-        "108": "uvicorn.run(app, ...) on the fence's __main__ path starts a live server and blocks past the 90s census budget by design (server-start hang family); adjudicated tick-651 from EXIT-CALL, environmental drift since the old bless - the tail fence's ENV-GAP row at 478 re-verified and kept as the union baseline",
-        "479": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design"
+        "108": "uvicorn.run(app, ...) on the fence's __main__ path starts a live server and blocks past the 90s census budget by design (server-start hang family); adjudicated tick-651 from EXIT-CALL, environmental drift since the old bless - the tail fence's ENV-GAP row at 478 re-verified and kept as the union baseline"
       }
     },
     "docs/learning-resources/labs/solutions/SOLUTION-LAB-002-RAG-Implementation.md": {
@@ -613,20 +611,20 @@
       "size": 28959
     },
     "docs/learning-resources/labs/solutions/SOLUTION-LAB-010-DPO-Alignment.md": {
+      "mtime": 1791373101.603354,
+      "size": 11856,
       "bad": {
-        "195": "UN-LEAK",
-        "206": "UN-LEAK",
         "33": "CODE-SIGNAL:FileNotFoundError",
-        "69": "ENV-GAP:trl"
+        "69": "ENV-GAP:trl",
+        "195": "UN-LEAK",
+        "206": "UN-LEAK"
       },
-      "mtime": 1791032671.5733025,
       "notes": {
         "195": "downstream cascade: an upstream fence died on its env-gap before binding this name; fence_namecheck accepts the name statically",
         "206": "downstream cascade: an upstream fence died on its env-gap before binding this name; fence_namecheck accepts the name statically",
         "33": "demonstrates the API on a learner-supplied/generated artifact path that does not exist in the census cwd",
         "69": "optional third-party package (trl) the QA environment does not install; the fence documents the install requirement"
-      },
-      "size": 11859
+      }
     },
     "docs/learning-resources/labs/solutions/SOLUTION-LAB-011-Multi-Modal-AI.md": {
       "bad": {
@@ -735,8 +733,8 @@
       "size": 19381
     },
     "docs/learning-resources/projects/PROJECT-005-FineTune-Model.md": {
-      "mtime": 1791223830.7913582,
-      "size": 17267,
+      "mtime": 1791375000.6871538,
+      "size": 17261,
       "bad": {
         "252": "ENV-GAP:Using `bitsandbytes` 4-bit quantization requires bitsandbyte",
         "388": "SIDE-EFFECT"
@@ -956,8 +954,8 @@
       }
     },
     "docs/learning-resources/tutorials/TUTORIAL-001-Hello-LLM.md": {
-      "mtime": 1791082376.8292239,
-      "size": 6915,
+      "mtime": 1791363236.7422285,
+      "size": 6922,
       "bad": {
         "185": "INTERACTIVE"
       },
@@ -1046,8 +1044,8 @@
       }
     },
     "docs/learning-resources/tutorials/TUTORIAL-010-Model-Evaluation.md": {
-      "mtime": 1791109464.125657,
-      "size": 21258,
+      "mtime": 1791376635.3353386,
+      "size": 21265,
       "bad": {
         "193": "ENV-GAP:rouge",
         "477": "ENV-GAP:sentence_transformers"
@@ -1078,8 +1076,8 @@
       }
     },
     "docs/learning-resources/tutorials/TUTORIAL-012-Production-LLMOps.md": {
-      "mtime": 1791221096.0509377,
-      "size": 26124,
+      "mtime": 1791367301.2459066,
+      "size": 26120,
       "bad": {}
     },
     "docs/learning-resources/tutorials/TUTORIAL-013-AI-Security.md": {
@@ -1108,8 +1106,8 @@
       "bad": {}
     },
     "docs/phases/phase1-infra/1200-virtualization/1204-Multi-GPU-Setup.md": {
-      "mtime": 1791223830.7864344,
-      "size": 15862,
+      "mtime": 1791380651.9162512,
+      "size": 15962,
       "bad": {
         "250": "UN-LEAK",
         "368": "SIDE-EFFECT"
@@ -1130,8 +1128,8 @@
       }
     },
     "docs/phases/phase1-infra/1400-llmops/1401-Ollama-Enterprise.md": {
-      "mtime": 1791109681.0963535,
-      "size": 17415,
+      "mtime": 1791370776.271686,
+      "size": 17441,
       "bad": {
         "240": "SIDE-EFFECT",
         "323": "SIDE-EFFECT",
@@ -1399,9 +1397,9 @@
       "bad": {}
     },
     "docs/phases/phase2-foundations/2300-framework-engineering/2303-API-Design-for-ML.md": {
-      "bad": {},
-      "mtime": 1790782652.3676767,
-      "size": 36560
+      "mtime": 1791357710.2358317,
+      "size": 36560,
+      "bad": {}
     },
     "docs/phases/phase2-foundations/2300-framework-engineering/2304-Production-Deployment-Patterns.md": {
       "bad": {},
@@ -1467,12 +1465,12 @@
       }
     },
     "docs/phases/phase2-foundations/2400-pretraining/2401-Pre-training-Fundamentals.md": {
-      "mtime": 1791075069.386281,
-      "size": 52443,
+      "mtime": 1791376635.3363473,
+      "size": 52469,
       "bad": {}
     },
     "docs/phases/phase2-foundations/2400-pretraining/2402-Large-Scale-Training.md": {
-      "mtime": 1791109681.107182,
+      "mtime": 1791357710.2368314,
       "size": 45634,
       "bad": {
         "866": "CODE-SIGNAL:ValueError"
@@ -1482,9 +1480,9 @@
       }
     },
     "docs/phases/phase2-foundations/2400-pretraining/2403-Evaluation-Frameworks.md": {
-      "bad": {},
-      "mtime": 1790782652.376926,
-      "size": 47913
+      "mtime": 1791357710.2378323,
+      "size": 47913,
+      "bad": {}
     },
     "docs/phases/phase2-foundations/2400-pretraining/PREREQUISITES.md": {
       "bad": {},
@@ -1698,21 +1696,21 @@
       "size": 18117
     },
     "docs/phases/phase3-transformers/3400-architectures/guides/3403-Model-Architecture-Comparison.md": {
-      "mtime": 1791109464.1856365,
-      "size": 19044,
+      "mtime": 1791380691.8448951,
+      "size": 19104,
       "bad": {
-        "186": "CODE-SIGNAL:TypeError",
+        "186": "ENV-GAP:Using `bitsandbytes` 4-bit quantization requires bitsandbyte",
         "388": "ENV-GAP:Using `bitsandbytes` 8-bit quantization requires bitsandbyte",
         "404": "ENV-GAP:pynvml"
       },
       "notes": {
-        "186": "real runtime TypeError (the stale baseline recorded this fence as a TIMEOUT hang); adjudicated content-drift re-anchor at the re-fingerprint - current class is the live truth, and the downstream cascade below now runs",
         "388": "environment requirement (bitsandbytes 8-bit GPU quantization import); absent in the census env by design, not a code defect",
-        "404": "environment requirement (pynvml for GPU telemetry); absent in the census env by design, not a code defect"
+        "404": "environment requirement (pynvml for GPU telemetry); absent in the census env by design, not a code defect",
+        "186": "environment requirement (bitsandbytes 4-bit quantization import); tick-769 migrated this fence's legacy bare load_in_4bit kwarg to quantization_config=BitsAndBytesConfig - modern transformers raises the explicit requirement error where the legacy kwarg produced a silent full-precision load, so the class moved from CODE-SIGNAL:TypeError to this honest ENV-GAP; absent in the census env by design, not a code defect"
       }
     },
     "docs/phases/phase3-transformers/3500-multimodal/3501-Vision-Language-Models.md": {
-      "mtime": 1791109464.1866364,
+      "mtime": 1791357710.238832,
       "size": 12133,
       "bad": {
         "162": "TIMEOUT"
@@ -1759,8 +1757,8 @@
       "bad": {}
     },
     "docs/phases/phase4-quantization/4100-low-bit/4102-EXL2-and-AWQ.md": {
-      "mtime": 1791213812.8758912,
-      "size": 14169,
+      "mtime": 1791376635.332267,
+      "size": 14177,
       "bad": {
         "119": "ENV-GAP:exllamav2",
         "252": "ENV-GAP:awq",
@@ -1965,8 +1963,8 @@
       }
     },
     "docs/phases/phase4-quantization/4400-advanced-techniques/4401-GPTQ.md": {
-      "mtime": 1791109464.2082407,
-      "size": 12695,
+      "mtime": 1791376635.332267,
+      "size": 12703,
       "bad": {
         "138": "ENV-GAP:auto_gptq",
         "191": "ENV-GAP:auto_gptq",
@@ -1987,8 +1985,8 @@
       }
     },
     "docs/phases/phase4-quantization/4400-advanced-techniques/4402-AWQ.md": {
-      "mtime": 1791109464.209309,
-      "size": 16632,
+      "mtime": 1791376635.333774,
+      "size": 16640,
       "bad": {
         "191": "ENV-GAP:awq",
         "232": "ENV-GAP:awq",
@@ -2064,7 +2062,7 @@
       "bad": {}
     },
     "docs/phases/phase4-quantization/4400-advanced-techniques/4407-Ternary-Binary.md": {
-      "mtime": 1791109464.2143679,
+      "mtime": 1791357710.2398286,
       "size": 16722,
       "bad": {}
     },
@@ -2088,7 +2086,7 @@
       }
     },
     "docs/phases/phase4-quantization/4400-advanced-techniques/guides/4409-Hardware-Specific-Optimization.md": {
-      "mtime": 1791109464.2173684,
+      "mtime": 1791357710.2398286,
       "size": 14972,
       "bad": {
         "112": "SIDE-EFFECT"
@@ -2137,7 +2135,7 @@
       }
     },
     "docs/phases/phase5-finetuning/5100-peft/5103-Adapters.md": {
-      "mtime": 1791109464.2208788,
+      "mtime": 1791357710.2408285,
       "size": 13343,
       "bad": {}
     },
@@ -2157,8 +2155,8 @@
       }
     },
     "docs/phases/phase5-finetuning/5100-peft/guides/5104-LoRA-Implementation-Guide.md": {
-      "mtime": 1791109464.2228787,
-      "size": 27226,
+      "mtime": 1791380734.35872,
+      "size": 27266,
       "bad": {
         "309": "TIMEOUT"
       },
@@ -2193,8 +2191,8 @@
       }
     },
     "docs/phases/phase5-finetuning/5200-alignment/5203-RLHF.md": {
-      "mtime": 1791213860.3268864,
-      "size": 15502,
+      "mtime": 1791375000.6861455,
+      "size": 15509,
       "bad": {
         "114": "ENV-GAP:trl",
         "264": "ENV-GAP:trl"
@@ -2240,8 +2238,8 @@
       "size": 38144
     },
     "docs/phases/phase5-finetuning/5300-synthetic/5301-Knowledge-Distillation.md": {
-      "mtime": 1791109464.2297192,
-      "size": 18031,
+      "mtime": 1791371760.4202638,
+      "size": 18157,
       "bad": {
         "330": "SIDE-EFFECT",
         "373": "UN-LEAK"
@@ -2396,8 +2394,8 @@
       "size": 11212
     },
     "docs/phases/phase5-finetuning/README.md": {
-      "mtime": 1791326450.0027127,
-      "size": 26303,
+      "mtime": 1791380713.2987635,
+      "size": 26363,
       "bad": {
         "419": "SIDE-EFFECT",
         "482": "SIDE-EFFECT"
@@ -2585,7 +2583,7 @@
       }
     },
     "docs/phases/phase6-rag/6300-context/guides/6304-GraphRAG-Implementation.md": {
-      "mtime": 1791223830.7918923,
+      "mtime": 1791357710.2418292,
       "size": 30852,
       "bad": {
         "226": "ENV-GAP:sentence_transformers",
@@ -2635,8 +2633,8 @@
       }
     },
     "docs/phases/phase6-rag/6400-vector-databases/6404-Vector-Compression-Quantization.md": {
-      "mtime": 1791349540.7181726,
-      "size": 34452,
+      "mtime": 1791350210.7340703,
+      "size": 34637,
       "bad": {}
     },
     "docs/phases/phase6-rag/6400-vector-databases/assessment/PRACTICE.md": {
@@ -2682,7 +2680,7 @@
       "bad": {}
     },
     "docs/phases/phase6-rag/6500-mlops-pipelines/6503-Model-Registry.md": {
-      "mtime": 1791109464.2638395,
+      "mtime": 1791357710.2428286,
       "size": 21888,
       "bad": {}
     },
@@ -2735,8 +2733,8 @@
       "bad": {}
     },
     "docs/phases/phase7-agentic/7100-architecture/7104-Agent-Evaluation-and-Observability.md": {
-      "mtime": 1791254944.5335317,
-      "size": 24276,
+      "mtime": 1791365579.978042,
+      "size": 24275,
       "bad": {
         "212": "ENV-GAP:opentelemetry"
       },
@@ -2770,8 +2768,8 @@
       }
     },
     "docs/phases/phase7-agentic/7200-tools/7201-Tool-Calling.md": {
-      "mtime": 1791123583.1554282,
-      "size": 22826,
+      "mtime": 1791365579.9760416,
+      "size": 22822,
       "bad": {
         "218": "SIDE-EFFECT",
         "509": "UN-LEAK",
@@ -2803,8 +2801,8 @@
       "bad": {}
     },
     "docs/phases/phase7-agentic/7200-tools/README.md": {
-      "mtime": 1791290911.2019103,
-      "size": 12624,
+      "mtime": 1791365579.9795473,
+      "size": 12608,
       "bad": {
         "241": "SIDE-EFFECT"
       },
@@ -2844,7 +2842,7 @@
       "size": 26583
     },
     "docs/phases/phase7-agentic/7300-orchestration/7302-Communication-Protocols.md": {
-      "mtime": 1791118939.4596956,
+      "mtime": 1791357710.243829,
       "size": 15173,
       "bad": {}
     },
@@ -2886,20 +2884,20 @@
       }
     },
     "docs/phases/phase7-agentic/7300-orchestration/guides/7303-Framework-Comparison.md": {
+      "mtime": 1791365579.977042,
+      "size": 20413,
       "bad": {
+        "99": "ENV-GAP:autogen",
         "189": "SIDE-EFFECT",
         "303": "ENV-GAP:crewai",
-        "394": "ENV-GAP:autogen",
-        "99": "ENV-GAP:autogen"
+        "394": "ENV-GAP:autogen"
       },
-      "mtime": 1790788811.3671257,
       "notes": {
         "189": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
         "303": "optional third-party package the QA environment does not install; the fence documents the install requirement",
         "394": "optional third-party package the QA environment does not install; the fence documents the install requirement",
         "99": "optional third-party package the QA environment does not install; the fence documents the install requirement"
-      },
-      "size": 20416
+      }
     },
     "docs/phases/phase7-agentic/7400-memory/7401-Long-term-Memory.md": {
       "mtime": 1791109464.2778952,
@@ -2936,7 +2934,7 @@
       }
     },
     "docs/phases/phase7-agentic/7400-memory/7403-Vector-Memory.md": {
-      "mtime": 1791109464.2778952,
+      "mtime": 1791357710.2448292,
       "size": 14323,
       "bad": {
         "155": "SIDE-EFFECT"
@@ -2986,21 +2984,21 @@
       }
     },
     "docs/phases/phase7-agentic/7500-security/7501-Prompt-Injection-Defense.md": {
-      "bad": {},
-      "mtime": 1790788811.370299,
-      "size": 29928
+      "mtime": 1791357710.245829,
+      "size": 29928,
+      "bad": {}
     },
     "docs/phases/phase7-agentic/7500-security/7502-PII-Redaction.md": {
+      "mtime": 1791357710.2468293,
+      "size": 37010,
       "bad": {
         "318": "ENV-GAP:spacy",
         "528": "ENV-GAP:presidio_analyzer"
       },
-      "mtime": 1790788811.371307,
       "notes": {
         "318": "optional third-party package the QA environment does not install; the fence documents the install requirement",
         "528": "optional third-party package the QA environment does not install; the fence documents the install requirement"
-      },
-      "size": 37010
+      }
     },
     "docs/phases/phase7-agentic/7500-security/7503-Adversarial-Attacks.md": {
       "bad": {},
@@ -3050,13 +3048,13 @@
       }
     },
     "docs/use-cases/UC-002-RAG-Applications.md": {
-      "mtime": 1791221853.3219583,
-      "size": 27639,
+      "mtime": 1791380713.29977,
+      "size": 27699,
       "bad": {}
     },
     "docs/use-cases/UC-003-Agent-Applications.md": {
-      "mtime": 1791221853.3219583,
-      "size": 31202,
+      "mtime": 1791380713.29977,
+      "size": 31262,
       "bad": {}
     },
     "docs/volumes/VOLUME-2-AI-Foundations.md": {
@@ -3093,8 +3091,8 @@
       }
     },
     "docs/volumes/VOLUME-5-Model-Adaptation.md": {
-      "mtime": 1791109464.2895958,
-      "size": 16802,
+      "mtime": 1791375000.6861455,
+      "size": 16857,
       "bad": {
         "433": "TIMEOUT"
       },
@@ -3103,7 +3101,7 @@
       }
     },
     "docs/volumes/VOLUME-6-Data-Nexus.md": {
-      "mtime": 1791221853.3219583,
+      "mtime": 1791357710.2483325,
       "size": 33801,
       "bad": {
         "257": "ENV-GAP:sentence_transformers",
@@ -3115,7 +3113,7 @@
       }
     },
     "docs/volumes/VOLUME-7-Production-Mastery.md": {
-      "mtime": 1791109464.293615,
+      "mtime": 1791357710.2493374,
       "size": 51487,
       "bad": {
         "1247": "ENV-GAP:pynvml"

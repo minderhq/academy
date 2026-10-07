@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE5-FINETUNING-README
 Title: "Phase 5: Fine-Tuning & Alignment [5000]"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Advanced
 Tags: ['phase', 'finetuning', 'training', 'distributed']
@@ -417,7 +417,7 @@ test_metrics = evaluate(model, test_data)
 
 **Pitfall:** Underestimating memory requirements
 ```python
-from transformers import AutoModelForCausalLM
+from transformers import AutoModelForCausalLM, BitsAndBytesConfig
 import torch
 # Wrong: Loading full model on single GPU
 model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-2-70b")
@@ -426,7 +426,7 @@ model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-2-70b")
 # Right: Use quantization + gradient checkpointing
 model = AutoModelForCausalLM.from_pretrained(
     "meta-llama/Llama-2-70b",
-    load_in_4bit=True,
+    quantization_config=BitsAndBytesConfig(load_in_4bit=True),
     device_map="auto",
     dtype=torch.float16
 )

@@ -1,7 +1,7 @@
 ---
 Document ID: SOL-001
 Title: "SOL-001: Enterprise Knowledge Base - Complete Implementation"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Intermediate
 Tags: ['enterprise', 'solution', 'rag', 'qdrant']
@@ -598,7 +598,7 @@ if __name__ == "__main__":
 import time
 from sentence_transformers import SentenceTransformer
 from qdrant_client import QdrantClient
-from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
+from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline, BitsAndBytesConfig
 
 class KnowledgeRetriever:
     """
@@ -618,7 +618,7 @@ class KnowledgeRetriever:
         self.model = AutoModelForCausalLM.from_pretrained(
             model_id,
             device_map="auto",
-            load_in_4bit=True
+            quantization_config=BitsAndBytesConfig(load_in_4bit=True)
         )
 
         # Create generation pipeline

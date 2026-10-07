@@ -1,7 +1,7 @@
 ---
 Document ID: IND-002
 Title: "IND-002: Finance AI Applications"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Intermediate
 Tags: ['industry', 'finance', 'llm']
@@ -483,7 +483,7 @@ Financial analysts spend hours writing quarterly reports, summarizing the same d
 **Solution: Fine-Tuned LLM for Financial Language**
 
 ```python
-from transformers import AutoModelForCausalLM
+from transformers import AutoModelForCausalLM, BitsAndBytesConfig
 class FinancialReportGenerator:
     """
     Generate financial reports using fine-tuned model
@@ -493,7 +493,7 @@ class FinancialReportGenerator:
         # Fine-tuned model for financial writing
         self.model = AutoModelForCausalLM.from_pretrained(
             "financial-reporter-llama-7b",
-            load_in_4bit=True
+            quantization_config=BitsAndBytesConfig(load_in_4bit=True)
         )
 
         # Templates for different report types

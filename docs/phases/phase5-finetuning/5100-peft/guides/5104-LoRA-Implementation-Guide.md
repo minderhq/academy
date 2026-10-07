@@ -3,7 +3,7 @@ Document ID: 5104
 Title: "5104: LoRA Implementation Guide"
 Phase: 5
 Module: 5100
-Last Updated: 2026-09-30
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -771,7 +771,7 @@ r = 8  # instead of 16
 gradient_checkpointing = True
 
 # - Use 4-bit (QLoRA)
-load_in_4bit = True
+quantization_config = BitsAndBytesConfig(load_in_4bit=True)
 ```
 
 #### 2. Slow Training

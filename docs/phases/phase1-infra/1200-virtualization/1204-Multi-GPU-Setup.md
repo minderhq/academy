@@ -3,7 +3,7 @@ Document ID: 1204
 Title: "1204: Multi-GPU Setup"
 Phase: 1
 Module: 1200
-Last Updated: 2026-09-30
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -366,7 +366,7 @@ deepspeed --num_gpus=2 train.py --deepspeed ds_config.json
 
 ### QLoRA Multi-GPU
 ```python
-from transformers import AutoModelForCausalLM, TrainingArguments, Trainer
+from transformers import AutoModelForCausalLM, TrainingArguments, Trainer, BitsAndBytesConfig
 from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
 
 # Load the model sharded across both GPUs. Llama-2-13b's top-level
@@ -377,7 +377,7 @@ model = AutoModelForCausalLM.from_pretrained(
     "meta-llama/Llama-2-13b-hf",
     device_map="auto",
     max_memory={0: "9GiB", 1: "9GiB"},
-    load_in_4bit=True,
+    quantization_config=BitsAndBytesConfig(load_in_4bit=True),
 )
 
 # QLoRA
@@ -488,7 +488,7 @@ def print_gpu_stats():
 #    gradient_checkpointing=True
 
 # 3. Use 4-bit quantization
-#    load_in_4bit=True
+#    quantization_config=BitsAndBytesConfig(load_in_4bit=True)
 
 # 4. Clear cache
 torch.cuda.empty_cache()
