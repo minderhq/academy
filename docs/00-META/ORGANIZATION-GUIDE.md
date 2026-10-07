@@ -29,7 +29,7 @@ Minder Academy/
 │   ├── docker-compose.yml
 │   ├── .env.example
 │   └── performance-testing/k6/
-├── docs/                              # All documentation (435 files)
+├── docs/                              # All documentation (436 files)
 │   ├── 00-META/                      # Meta documentation
 │   ├── phases/                       # Phase documentation (33 modules)
 │   ├── learning-resources/           # Learning materials

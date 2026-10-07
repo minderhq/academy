@@ -5,7 +5,7 @@ Last Updated: 2026-10-01
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
-Estimated Time: 13 hours
+Estimated Time: 16 hours
 Tags: ['module', 'rag', 'context']
 ---
 
@@ -30,6 +30,7 @@ After completing this module, you will be able to:
 - **Long-Context Architectures**: Manage context windows effectively
 - **CAG (Context-Augmented Generation)**: Optimize context for generation
 - **Context Optimization**: Structure and compress context efficiently
+- **Context Window Economics**: Price the accuracy curve and allocate the window budget per query class
 
 ## Module Contents
 
@@ -77,6 +78,21 @@ After completing this module, you will be able to:
 - Verify ring attention equals full attention exactly
 - Price the LoRA-only vs LoRA+ parameter ledger
 - Train a context-distillation pair to a converged KL
+
+### [6306: Context Window Economics](./6306-Context-Window-Economics.md)
+**The Window as a Priced Allocation**
+
+- The accuracy curve: P(found) x q(w) peaking at 0.3707 and turning negative
+- Effective versus advertised: the 27.6x gap behind the datasheet number
+- Pricing both ledgers: the two-tier dollar card and 4201's 512 KB/token KV
+- Sizing per query class: the routed split beating one-size by +0.1000
+- The month campaign: max-window losing $43,250.00, routed winning
+
+**Experiments:**
+- Walk the marginal-accuracy table and locate the negative tail
+- Fit the NoLiMa decay and derive the effective length at 95 percent of baseline
+- Price the window walk in dollars, KV gigabytes, and accuracy per dollar
+- Re-derive the routed allocation and verify the month ledger's dominance
 
 ### 6303: Neo4j Deployment Guide
 **Production Knowledge Graph Setup** (Guide)
@@ -145,11 +161,12 @@ This module connects to:
 | [6301: Neo4j and Knowledge Graphs](./6301-Neo4j-and-Knowledge-Graphs.md) | 5 hours |
 | [6302: CAG and Long-Context Architectures](./6302-CAG-Long-Context-Architectures.md) | 5 hours |
 | [6305: LongLoRA, Ring Attention, and Context Distillation](./6305-LongLoRA-Ring-Attention-and-Context-Distillation.md) | 3 hours |
+| [6306: Context Window Economics](./6306-Context-Window-Economics.md) | 3 hours |
 | Guide ([6303](./guides/6303-Neo4j-Deployment-Guide.md)) | 3 hours |
 | Guide ([6304](./guides/6304-GraphRAG-Implementation.md)) | 4 hours |
 | Quiz | 30 minutes |
 | Practice | 4 hours |
-| **Total** | **24.5 hours** |
+| **Total** | **27.5 hours** |
 
 ## Resources
 

@@ -25,7 +25,7 @@
       "bad": {}
     },
     "docs/00-META/ORGANIZATION-GUIDE.md": {
-      "mtime": 1791328890.2146263,
+      "mtime": 1791330873.2568297,
       "size": 19534,
       "bad": {}
     },
@@ -2534,6 +2534,11 @@
       "size": 24059,
       "bad": {}
     },
+    "docs/phases/phase6-rag/6300-context/6306-Context-Window-Economics.md": {
+      "mtime": 1791330662.898283,
+      "size": 24078,
+      "bad": {}
+    },
     "docs/phases/phase6-rag/6300-context/assessment/PRACTICE.md": {
       "mtime": 1791223830.7864344,
       "size": 17675,
@@ -2680,13 +2685,13 @@
       "size": 16457
     },
     "docs/phases/phase6-rag/README.md": {
-      "mtime": 1791296834.1144075,
-      "size": 30221,
+      "mtime": 1791330873.2584007,
+      "size": 30490,
       "bad": {
-        "684": "UN-LEAK"
+        "687": "UN-LEAK"
       },
       "notes": {
-        "684": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically"
+        "687": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically"
       }
     },
     "docs/phases/phase7-agentic/7100-architecture/7101-ReAct-Loop-System.md": {

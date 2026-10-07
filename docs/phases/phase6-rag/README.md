@@ -373,6 +373,7 @@ Conclusion: Self-hosted pays for itself within a few months
 | [6303: Neo4j Deployment](./6300-context/guides/6303-Neo4j-Deployment-Guide.md) | Neo4j setup guide | 2h | Advanced |
 | [6304: GraphRAG Implementation](./6300-context/guides/6304-GraphRAG-Implementation.md) | Complete GraphRAG pipeline | 4h | Advanced |
 | [6305: LongLoRA, Ring Attention, and Context Distillation](./6300-context/6305-LongLoRA-Ring-Attention-and-Context-Distillation.md) | Context extension training methods | 3h | Advanced |
+| [6306: Context Window Economics](./6300-context/6306-Context-Window-Economics.md) | The window as a priced allocation | 3h | Advanced |
 
 **What You'll Learn:**
 - Knowledge graph construction
@@ -381,6 +382,7 @@ Conclusion: Self-hosted pays for itself within a few months
 - Long-context architectures (128k+)
 - Graph traversal algorithms
 - Long-context training methods (LongLoRA, ring attention)
+- Context window economics (the accuracy curve, the priced allocation)
 
 **Hands-On Practice:**
 - Build knowledge graph with Neo4j
@@ -388,6 +390,7 @@ Conclusion: Self-hosted pays for itself within a few months
 - Optimize long-context usage
 - Deploy Neo4j with Docker
 - Simulate shifted sparse and ring attention in NumPy
+- Price the window walk and re-derive the routed allocation
 
 ### [6400] Vector Databases
 
@@ -481,10 +484,10 @@ graph TD
 |--------|---------|----------|-------|
 | 6100: Vector Architectures | 14h | 6h | 20h |
 | 6200: RAG 2.0 | 11h | 6h | 17h |
-| 6300: Context Augmentation | 19h | 10h | 29h |
+| 6300: Context Augmentation | 22h | 10h | 32h |
 | 6400: Vector Databases | 8h | 4h | 12h |
 | 6500: MLOps Pipelines | 18h | — | 18h |
-| **Total** | **70h** | **26h** | **96h** |
+| **Total** | **73h** | **26h** | **99h** |
 
 *6500 practice time is not yet estimated in its PRACTICE.md; phase totals cover the estimated modules.*
 

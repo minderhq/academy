@@ -311,7 +311,7 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [assessment: PRACTICE](../phases/phase5-finetuning/5500-advanced-optimization/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase5-finetuning/5500-advanced-optimization/assessment/QUIZ.md)
 
-## Phase 6 - RAG & Data Nexus (44 files)
+## Phase 6 - RAG & Data Nexus (45 files)
 
 - [CHECKPOINT](../phases/phase6-rag/CHECKPOINT.md)
 - [README](../phases/phase6-rag/README.md)
@@ -339,13 +339,14 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [assessment: PRACTICE](../phases/phase6-rag/6200-retrieval/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase6-rag/6200-retrieval/assessment/QUIZ.md)
 
-### [6300-context] (3 lessons, 2 guides)
+### [6300-context] (4 lessons, 2 guides)
 
 - [PREREQUISITES](../phases/phase6-rag/6300-context/PREREQUISITES.md)
 - [README](../phases/phase6-rag/6300-context/README.md)
 - [6301-Neo4j-and-Knowledge-Graphs](../phases/phase6-rag/6300-context/6301-Neo4j-and-Knowledge-Graphs.md)
 - [6302-CAG-Long-Context-Architectures](../phases/phase6-rag/6300-context/6302-CAG-Long-Context-Architectures.md)
 - [6305-LongLoRA-Ring-Attention-and-Context-Distillation](../phases/phase6-rag/6300-context/6305-LongLoRA-Ring-Attention-and-Context-Distillation.md)
+- [6306-Context-Window-Economics](../phases/phase6-rag/6300-context/6306-Context-Window-Economics.md)
 - [guide: 6303-Neo4j-Deployment-Guide](../phases/phase6-rag/6300-context/guides/6303-Neo4j-Deployment-Guide.md)
 - [guide: 6304-GraphRAG-Implementation](../phases/phase6-rag/6300-context/guides/6304-GraphRAG-Implementation.md)
 - [assessment: PRACTICE](../phases/phase6-rag/6300-context/assessment/PRACTICE.md)
@@ -733,17 +734,17 @@ build's written walkthroughs live inside the lessons themselves - see the
 ## Statistics
 
 ```text
-Total markdown files: 489
-  docs/: 435, experiments/: 48, configs/: 4, repo root: 2
+Total markdown files: 490
+  docs/: 436, experiments/: 48, configs/: 4, repo root: 2
 Phases: 7
 Learning modules (topics): 33
-Phase files (lessons, guides, assessments, topic README/PREREQUISITES): 286
+Phase files (lessons, guides, assessments, topic README/PREREQUISITES): 287
   Phase 1 - Infrastructure Fabric: 40
   Phase 2 - Cognitive Science & Frameworks: 32
   Phase 3 - Transformer Physics: 36
   Phase 4 - Quantization & Compression: 42
   Phase 5 - Fine-Tuning & Alignment: 46
-  Phase 6 - Data Nexus: 44
+  Phase 6 - Data Nexus: 45
   Phase 7 - Agentic Systems: 46
 Volume guides: 7
 Phase assessment sets: 14 (7 phases x quiz + practice)
