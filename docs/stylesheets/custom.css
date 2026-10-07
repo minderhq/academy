@@ -1,0 +1,21 @@
+/* tick-760: readable code everywhere - long lines wrap instead of
+   rendering as horizontal scroll strips. ASCII diagrams (```text boxes),
+   long JSON strings and shell one-liners keep their newlines and
+   indentation (pre-wrap) but break at the container edge instead of
+   overflowing; inline code wraps inside table cells too. Purely visual:
+   no content files, no fence line numbers touched. */
+.md-typeset pre > code {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.md-typeset code {
+  overflow-wrap: break-word;
+}
+
+/* Table cells on narrow screens: Material scrolls tables, but long
+   unbreakable inline code made the scroll far wider than the content
+   required. */
+.md-typeset table code {
+  overflow-wrap: anywhere;
+}
