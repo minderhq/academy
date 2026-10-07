@@ -19,3 +19,13 @@
 .md-typeset table code {
   overflow-wrap: anywhere;
 }
+
+/* tick-779: a single over-long token in prose (a deep file path, a long
+   URL) forced whole pages horizontally scrollable on narrow screens.
+   break-word only engages when the token alone exceeds the line, so
+   normal prose is untouched. ASCII box-art blocks are excluded from the
+   pre-wrap above by stylesheets/ascii-fit.js (they fit or scroll with
+   their frame intact instead of wrapping mid-character). */
+.md-typeset {
+  overflow-wrap: break-word;
+}

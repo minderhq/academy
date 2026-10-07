@@ -589,4 +589,5 @@ markdown_extensions:
 extra_css:
   - stylesheets/custom.css
 extra_javascript:
+  - stylesheets/ascii-fit.js
   - https://unpkg.com/mermaid@11/dist/mermaid.min.js
