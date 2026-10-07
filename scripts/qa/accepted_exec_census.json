@@ -544,8 +544,8 @@
       }
     },
     "docs/learning-resources/labs/solutions/SOLUTION-LAB-001-Docker-LLM.md": {
-      "mtime": 1791363236.7432287,
-      "size": 15754,
+      "mtime": 1791388367.2289376,
+      "size": 15755,
       "bad": {
         "108": "TIMEOUT"
       },
@@ -944,8 +944,8 @@
       }
     },
     "docs/learning-resources/tutorials/TUTORIAL-000-Python-for-AI.md": {
-      "mtime": 1791082376.8292239,
-      "size": 47309,
+      "mtime": 1791388367.2304857,
+      "size": 47329,
       "bad": {
         "1891": "TIMEOUT"
       },

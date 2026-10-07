@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-000
 Title: "TUTORIAL-000: Python for AI (Complete Beginner)"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 20 hours
@@ -1718,13 +1718,13 @@ class Config(BaseModel):
 
 # From JSON string
 json_str = '{"model_name": "mistral", "parameters": "7b", "quantization": "4-bit"}'
-config = Config.parse_raw(json_str)
+config = Config.model_validate_json(json_str)
 print(config)
 
 # From JSON file
 # config.json contains: {"model_name": "mistral", ...}
 with open("config.json", "r") as f:
-    config = Config.parse_raw(f.read())
+    config = Config.model_validate_json(f.read())
 print(config)
 ```
 

@@ -135,7 +135,7 @@ class Message(BaseModel):
 
 class ChatRequest(BaseModel):
     model: str = Field(default="mistral", description="Model name")
-    messages: list[Message] = Field(..., min_items=1)
+    messages: list[Message] = Field(..., min_length=1)
     stream: bool = Field(default=False)
     temperature: float | None = Field(default=0.7, ge=0.0, le=2.0)
     max_tokens: int | None = Field(default=512, ge=1, le=4096)
