@@ -1,7 +1,7 @@
 ---
 Document ID: SOLUTION-LAB-010
 Title: "SOLUTION-LAB-010: DPO Alignment"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Advanced
 Tags: ['solution', 'dpo', 'alignment']
@@ -72,7 +72,7 @@ from peft import LoraConfig
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from trl import DPOConfig, DPOTrainer
 
-model_name = "microsoft/Phi-3-mini-4k-instruct"
+model_name = "microsoft/Phi-4-mini-instruct"
 
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 tokenizer.pad_token = tokenizer.eos_token  # collation needs a pad token

@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-010
 Title: "LAB-010: DPO Alignment"
-Last Updated: 2026-09-29
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 6 hours
@@ -97,12 +97,12 @@ uv pip install huggingface_hub
 hf auth login  # only needed for gated models
 
 # We'll use a smaller model for this lab. Good options:
-#   microsoft/Phi-3-mini-4k-instruct (~8 GB in fp16)
+#   microsoft/Phi-4-mini-instruct (~8 GB in fp16)
 #   meta-llama/Llama-3.2-3B-Instruct (gated)
 #   mistralai/Mistral-7B-Instruct-v0.3 (~15 GB in fp16)
 #
 # Training downloads the model automatically. To pre-download:
-# hf download microsoft/Phi-3-mini-4k-instruct --local-dir ./models/phi-3
+# hf download microsoft/Phi-4-mini-instruct --local-dir ./models/phi-4-mini
 ```
 
 ---
@@ -134,7 +134,7 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 import torch
 import json
 
-model_name = "microsoft/Phi-3-mini-4k-instruct"  # or your preferred model
+model_name = "microsoft/Phi-4-mini-instruct"  # or your preferred model
 
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForCausalLM.from_pretrained(
@@ -521,7 +521,7 @@ print(f"Training samples: {len(train_data)}")
 print(f"Validation samples: {len(eval_data)}")
 
 # Load base model
-model_name = "microsoft/Phi-3-mini-4k-instruct"
+model_name = "microsoft/Phi-4-mini-instruct"
 
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 tokenizer.pad_token = tokenizer.eos_token
@@ -618,7 +618,7 @@ Compare base model vs DPO-aligned model.
 from transformers import AutoTokenizer, AutoModelForCausalLM
 import torch
 
-base_model_name = "microsoft/Phi-3-mini-4k-instruct"
+base_model_name = "microsoft/Phi-4-mini-instruct"
 aligned_model_name = "./dpo_final_model"
 
 base_tokenizer = AutoTokenizer.from_pretrained(base_model_name)
