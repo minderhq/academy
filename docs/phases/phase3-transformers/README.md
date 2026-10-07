@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE3-TRANSFORMERS-README
 Title: "Phase 3: Transformer Physics & LLM Internals [3000]"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Advanced
 Tags: ['phase', 'transformers', 'embeddings', 'rope']
@@ -212,6 +212,7 @@ graph TD
 |----------|-------------|------|------------|
 | [3201: RoPE](./3200-embeddings/3201-Rotary-Positional-Embeddings-RoPE.md) | Absolute vs Relative positions | 3h | Intermediate |
 | [3202: Tokenizer Sciences](./3200-embeddings/3202-Tokenizer-Sciences.md) | BPE, SentencePiece, Tiktoken | 3h | Intermediate |
+| [3203: Word-Embedding Tradition](./3200-embeddings/3203-Word-Embedding-Tradition.md) | Skip-gram, negative sampling, CBOW, GloVe | 3h | Intermediate |
 
 **What You'll Learn:**
 - Rotary Position Embeddings (RoPE)
@@ -223,6 +224,7 @@ graph TD
 - SentencePiece (Unigram LM)
 - TikToken algorithm
 - Tokenizer comparison and trade-offs
+- The word-embedding tradition: skip-gram, negative sampling, CBOW, and GloVe's co-occurrence ratio
 
 **Hands-On Practice:**
 - Implement RoPE from scratch
@@ -232,6 +234,7 @@ graph TD
 - Analyze token distributions
 - Test on different languages
 - Measure compression ratio
+- Train skip-gram from scratch on a toy corpus
 
 ### [3300] The Decoding Block
 
@@ -345,11 +348,11 @@ graph TD
 | Module | Reading | Practice | Total |
 |--------|---------|----------|-------|
 | 3100: Attention Architectures | 12h | 4-6h | 16-18h |
-| 3200: Embedding Latent Spaces | 6h | 4h | 10h |
+| 3200: Embedding Latent Spaces | 9h | 4h | 13h |
 | 3300: The Decoding Block | 7h | 3h | 10h |
 | 3400: Model Architectures | 14h | 4h | 18h |
 | 3500: Multimodal Models | 10h | — | 10h |
-| **Total** | **49h** | **15-17h** | **64-66h** |
+| **Total** | **49h** | **15-17h** | **67-69h** |
 
 *3500 practice time is not yet estimated in its PRACTICE.md; phase totals cover the estimated modules.*
 

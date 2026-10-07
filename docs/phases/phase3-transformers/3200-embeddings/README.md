@@ -1,11 +1,11 @@
 ---
 Document ID: 3200-EMBEDDINGS-README
 Title: "[3200]: Embedding Latent Spaces"
-Last Updated: 2026-09-29
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Intermediate
 Prerequisites: []
-Estimated Time: 6 hours
+Estimated Time: 9 hours
 Tags: ['module', 'transformers', 'embeddings']
 ---
 
@@ -13,7 +13,7 @@ Tags: ['module', 'transformers', 'embeddings']
 
 ## Overview
 
-This module covers how Transformers represent text as continuous vectors - the foundation of all modern NLP. You'll learn about positional encoding (RoPE), tokenization algorithms (BPE, SentencePiece), and how these choices affect model performance.
+This module covers how Transformers represent text as continuous vectors - the foundation of all modern NLP. You'll learn about positional encoding (RoPE), tokenization algorithms (BPE, SentencePiece), and how these choices affect model performance. The module's third lesson trains the word-embedding tradition itself - skip-gram with negative sampling, CBOW, and GloVe - the static vectors every modern embedding descends from.
 
 ---
 
@@ -23,6 +23,7 @@ This module covers how Transformers represent text as continuous vectors - the f
 |----------|-------------|------------|------|
 | [3201: RoPE - Rotary Positional Embeddings](./3201-Rotary-Positional-Embeddings-RoPE.md) | Absolute vs Relative positions in sequence modeling | ⭐⭐ | 3 hrs |
 | [3202: Tokenizer Sciences](./3202-Tokenizer-Sciences.md) | BPE, SentencePiece, and Tiktoken algorithms | ⭐⭐ | 3 hrs |
+| [3203: The Word-Embedding Tradition](./3203-Word-Embedding-Tradition.md) | Skip-gram, negative sampling, CBOW, and GloVe as working code | ⭐⭐ | 3 hrs |
 
 ---
 
@@ -35,6 +36,7 @@ After completing this module, you will:
 - ✅ Implement RoPE (Rotary Positional Embeddings)
 - ✅ Understand tokenization algorithms and their trade-offs
 - ✅ Train and use custom tokenizers
+- ✅ Train skip-gram with negative sampling and read the cluster geometry it writes
 
 ---
 
@@ -273,4 +275,4 @@ class RotaryPositionalEmbedding(nn.Module):
 ---
 
 **Module Difficulty:** ⭐⭐⭐ Intermediate
-**Estimated Time:** 7 hours total
+**Estimated Time:** 9 hours total

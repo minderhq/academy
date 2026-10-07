@@ -1,7 +1,7 @@
 ---
 Document ID: 3200-QUIZ
 Title: "3200: Embeddings - Quiz"
-Last Updated: 2026-10-01
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 30 minutes
@@ -194,7 +194,7 @@ D) Splits words into subword units
 
 Each question maps to the closest lesson for review:
 
-- **Questions 1-6, 8-9, 11-13, 17-18:** [6102: Semantic Similarity Metrics](../../../phase6-rag/6100-vector/6102-Semantic-Similarity.md) — word-embedding tradition (Word2Vec, GloVe), static vs contextual context, cosine geometry and the king/queen vector example
+- **Questions 1-6, 8-9, 11-13, 17-18:** [3203: The Word-Embedding Tradition](../3203-Word-Embedding-Tradition.md) — one-hot's 33.3x storage ledger and zero geometry, skip-gram with negative sampling trained from scratch (the 0.9977 cluster against the 0.1674 cross mean), CBOW the mirror objective, GloVe's inf/0.0000 co-occurrence ratios, and the static-limit sense split (0.7071/0.7071 versus 0.1047)
 - **Question 7:** [3202: Tokenizer Sciences](../3202-Tokenizer-Sciences.md) — subword units, the idea behind fastText's improvement
 - **Questions 10, 14-16:** [3201: Rotary Positional Embeddings (RoPE)](../3201-Rotary-Positional-Embeddings-RoPE.md) — token-plus-position composition, positional encodings, RoPE and the ALiBi comparison
 - **Questions 19-20:** [3202: Tokenizer Sciences](../3202-Tokenizer-Sciences.md) — vocabulary size effects and BPE

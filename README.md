@@ -15,7 +15,7 @@ Difficulty: Beginner
 ## Master Documentation
 
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
-[![Documentation](https://img.shields.io/badge/Docs-440%20Files-orange?style=flat-square)](./docs)
+[![Documentation](https://img.shields.io/badge/Docs-441%20Files-orange?style=flat-square)](./docs)
 [![Phases](https://img.shields.io/badge/Phases-7-purple?style=flat-square)](#-learning-phases)
 [![Modules](https://img.shields.io/badge/Modules-33-success?style=flat-square)](#-summary-statistics)
 
@@ -157,7 +157,7 @@ After completing Minder Academy, you will be able to:
 | Challenge | Minder Academy Solution |
 |:----------:|:----------------------:|
 | 💸 **AI infrastructure is expensive** | Run production-grade AI on affordable hardware or modest cloud instances |
-| 📚 **Documentation is scattered** | **494 files** in one organized, cross-referenced repository |
+| 📚 **Documentation is scattered** | **495 files** in one organized, cross-referenced repository |
 | 🎯 **Learning gaps exist** | Complete curriculum from infrastructure to agentic systems |
 | 📝 **Theory without practice** | **33 PRACTICE files** with runnable solutions, **47 experiments** |
 | 🗺️ **No clear path forward** | **7 phases**, **3 learning tracks**, progress tracking built-in |
@@ -480,7 +480,7 @@ graph TB
 | Module | Topic | Docs | Status |
 |:------:|-------|:----:|:------:|
 | [3100](./docs/phases/phase3-transformers/3100-attention/README.md) | Attention | 2 | ✅ |
-| [3200](./docs/phases/phase3-transformers/3200-embeddings/README.md) | Embeddings | 2 | ✅ |
+| [3200](./docs/phases/phase3-transformers/3200-embeddings/README.md) | Embeddings | 3 | ✅ |
 | [3300](./docs/phases/phase3-transformers/3300-decoding/README.md) | Decoding | 4 | ✅ |
 | [3400](./docs/phases/phase3-transformers/3400-architectures/README.md) | Architectures | 4 | ✅ |
 | [3500](./docs/phases/phase3-transformers/3500-multimodal/README.md) | Multimodal | 2 | ✅ |
@@ -611,7 +611,7 @@ graph TB
 </details>
 
 <details>
-<summary><b>📁 Phase 3: Transformer Physics [3000]</b> - 15 documents</summary>
+<summary><b>📁 Phase 3: Transformer Physics [3000]</b> - 16 documents</summary>
 
 ### [3100: Attention](./docs/phases/phase3-transformers/3100-attention/README.md)
 - [3101: Self-Attention](./docs/phases/phase3-transformers/3100-attention/3101-Self-Attention-DeepDive.md)
@@ -621,6 +621,7 @@ graph TB
 ### [3200: Embeddings](./docs/phases/phase3-transformers/3200-embeddings/README.md)
 - [3201: RoPE](./docs/phases/phase3-transformers/3200-embeddings/3201-Rotary-Positional-Embeddings-RoPE.md)
 - [3202: Tokenizer Sciences](./docs/phases/phase3-transformers/3200-embeddings/3202-Tokenizer-Sciences.md)
+- [3203: Word-Embedding Tradition](./docs/phases/phase3-transformers/3200-embeddings/3203-Word-Embedding-Tradition.md)
 
 ### [3300: Decoding](./docs/phases/phase3-transformers/3300-decoding/README.md)
 - [3301: Activation Functions](./docs/phases/phase3-transformers/3300-decoding/3301-Activation-Functions.md)
@@ -1331,12 +1332,12 @@ docker compose -f configs/docker-compose.yml up -d qdrant
 |:-----:|:---------:|
 | **1** | 41 |
 | **2** | 33 |
-| **3** | 37 |
+| **3** | 38 |
 | **4** | 43 |
 | **5** | 46 |
 | **6** | 45 |
 | **7** | 46 |
-| **Phase total** | **291** |
+| **Phase total** | **292** |
 
 ### Additional Resources
 
@@ -1483,7 +1484,7 @@ SOFTWARE.
 
 *Last Updated: 2026-09-29*
 
-*494 Documentation Files | 33 Technical Modules | 7 Learning Phases*
+*495 Documentation Files | 33 Technical Modules | 7 Learning Phases*
 
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
 [![Contact](https://img.shields.io/badge/Contact-FAQ-blue?style=flat-square)](./docs/00-META/FAQ.md)

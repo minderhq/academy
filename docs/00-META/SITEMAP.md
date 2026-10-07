@@ -138,7 +138,7 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [assessment: PRACTICE](../phases/phase2-foundations/2400-pretraining/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase2-foundations/2400-pretraining/assessment/QUIZ.md)
 
-## Phase 3 - Transformer Physics & LLM Internals (37 files)
+## Phase 3 - Transformer Physics & LLM Internals (38 files)
 
 - [CHECKPOINT](../phases/phase3-transformers/CHECKPOINT.md)
 - [README](../phases/phase3-transformers/README.md)
@@ -153,12 +153,13 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [assessment: PRACTICE](../phases/phase3-transformers/3100-attention/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase3-transformers/3100-attention/assessment/QUIZ.md)
 
-### [3200-embeddings] (2 lessons, 0 guides)
+### [3200-embeddings] (3 lessons, 0 guides)
 
 - [PREREQUISITES](../phases/phase3-transformers/3200-embeddings/PREREQUISITES.md)
 - [README](../phases/phase3-transformers/3200-embeddings/README.md)
 - [3201-Rotary-Positional-Embeddings-RoPE](../phases/phase3-transformers/3200-embeddings/3201-Rotary-Positional-Embeddings-RoPE.md)
 - [3202-Tokenizer-Sciences](../phases/phase3-transformers/3200-embeddings/3202-Tokenizer-Sciences.md)
+- [3203-Word-Embedding-Tradition](../phases/phase3-transformers/3200-embeddings/3203-Word-Embedding-Tradition.md)
 - [assessment: PRACTICE](../phases/phase3-transformers/3200-embeddings/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase3-transformers/3200-embeddings/assessment/QUIZ.md)
 
@@ -738,14 +739,14 @@ build's written walkthroughs live inside the lessons themselves - see the
 ## Statistics
 
 ```text
-Total markdown files: 494
-  docs/: 440, experiments/: 48, configs/: 4, repo root: 2
+Total markdown files: 495
+  docs/: 441, experiments/: 48, configs/: 4, repo root: 2
 Phases: 7
 Learning modules (topics): 33
-Phase files (lessons, guides, assessments, topic README/PREREQUISITES): 291
+Phase files (lessons, guides, assessments, topic README/PREREQUISITES): 292
   Phase 1 - Infrastructure Fabric: 41
   Phase 2 - Cognitive Science & Frameworks: 33
-  Phase 3 - Transformer Physics: 37
+  Phase 3 - Transformer Physics: 38
   Phase 4 - Quantization & Compression: 43
   Phase 5 - Fine-Tuning & Alignment: 46
   Phase 6 - Data Nexus: 45
