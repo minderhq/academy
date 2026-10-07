@@ -89,17 +89,18 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [assessment: PRACTICE](../phases/phase1-infra/1500-monitoring/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase1-infra/1500-monitoring/assessment/QUIZ.md)
 
-## Phase 2 - Cognitive Science & Frameworks (32 files)
+## Phase 2 - Cognitive Science & Frameworks (33 files)
 
 - [CHECKPOINT](../phases/phase2-foundations/CHECKPOINT.md)
 - [README](../phases/phase2-foundations/README.md)
 
-### [2100-calculus] (2 lessons, 0 guides)
+### [2100-calculus] (3 lessons, 0 guides)
 
 - [PREREQUISITES](../phases/phase2-foundations/2100-calculus/PREREQUISITES.md)
 - [README](../phases/phase2-foundations/2100-calculus/README.md)
 - [2101-Tensor-Algebra](../phases/phase2-foundations/2100-calculus/2101-Tensor-Algebra.md)
 - [2102-Backpropagation-and-Derivatives](../phases/phase2-foundations/2100-calculus/2102-Backpropagation-and-Derivatives.md)
+- [2103-Loss-Landscape-Geometry](../phases/phase2-foundations/2100-calculus/2103-Loss-Landscape-Geometry.md)
 - [assessment: PRACTICE](../phases/phase2-foundations/2100-calculus/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase2-foundations/2100-calculus/assessment/QUIZ.md)
 
@@ -735,13 +736,13 @@ build's written walkthroughs live inside the lessons themselves - see the
 ## Statistics
 
 ```text
-Total markdown files: 491
-  docs/: 437, experiments/: 48, configs/: 4, repo root: 2
+Total markdown files: 492
+  docs/: 438, experiments/: 48, configs/: 4, repo root: 2
 Phases: 7
 Learning modules (topics): 33
-Phase files (lessons, guides, assessments, topic README/PREREQUISITES): 288
+Phase files (lessons, guides, assessments, topic README/PREREQUISITES): 289
   Phase 1 - Infrastructure Fabric: 40
-  Phase 2 - Cognitive Science & Frameworks: 32
+  Phase 2 - Cognitive Science & Frameworks: 33
   Phase 3 - Transformer Physics: 37
   Phase 4 - Quantization & Compression: 42
   Phase 5 - Fine-Tuning & Alignment: 46

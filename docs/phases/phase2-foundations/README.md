@@ -290,18 +290,21 @@ metrics = {
 |----------|-------------|------|------------|
 | [2101: Tensor Algebra](./2100-calculus/2101-Tensor-Algebra.md) | Dimensions, dot products, einsum | 4h | Intermediate |
 | [2102: Backpropagation](./2100-calculus/2102-Backpropagation-and-Derivatives.md) | Automatic differentiation logic | 4h | Intermediate |
+| [2103: Loss Landscape Geometry](./2100-calculus/2103-Loss-Landscape-Geometry.md) | Curvature, saddles, convexity, momentum | 4h | Intermediate |
 
 **What You'll Learn:**
 - Tensor operations and broadcasting
 - Einstein summation notation
 - Gradient computation and chain rule
 - Automatic differentiation internals
+- Reading curvature, saddles, and convexity off the Hessian's signs
 
 **Hands-On Practice:**
 - Implement einsum from scratch
 - Build autograd engine
 - Visualize gradient flow
 - Debug backpropagation
+- Escape a saddle with GD and Newton, and count the cost
 
 ### [2200] Deep Learning Frameworks
 
@@ -402,11 +405,11 @@ graph TD
 
 | Module | Reading | Practice | Total |
 |--------|---------|----------|-------|
-| 2100: Calculus | 9h | 2-3h | 11-12h |
+| 2100: Calculus | 13h | 2-3h | 15-16h |
 | 2200: Frameworks | 13h | 4-6h | 17-19h |
 | 2300: Framework Engineering | 25.5h | 2.5h | 28h |
 | 2400: Pre-training | 13h | 22-26h | 35-39h |
-| **Total** | **60.5h** | **30.5-37.5h** | **91-98h** |
+| **Total** | **64.5h** | **30.5-37.5h** | **95-102h** |
 
 ---
 

@@ -5,7 +5,7 @@ Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
 Prerequisites: []
-Estimated Time: 8 hours
+Estimated Time: 12 hours
 
 Tags: ['math', 'calculus', 'tensors', 'backpropagation', 'autograd']
 ---
@@ -37,7 +37,7 @@ Build the mathematical engine of deep learning — tensor algebra by hand in PyT
 
 ## Module Overview
 
-This module covers the essential calculus concepts that power modern deep learning systems. From tensor algebra to backpropagation, you'll build the mathematical foundation needed to understand how neural networks learn.
+This module covers the essential calculus concepts that power modern deep learning systems. From tensor algebra through backpropagation to loss-landscape geometry, you'll build the mathematical foundation needed to understand how neural networks learn.
 
 **Why This Matters:**
 
@@ -57,6 +57,7 @@ After completing this module, you will be able to:
 - **Backpropagation**: Derive and implement the backward pass for neural networks
 - **Optimization Intuition**: Understand gradient flow, vanishing/exploding gradients
 - **Chain Rule Mastery**: Apply chain rule to complex computational graphs
+- **Loss Landscape Geometry**: Read curvature, saddles, and convexity off the Hessian
 
 ---
 
@@ -84,6 +85,16 @@ Each lesson is written around runnable code — work through the examples, don't
 - Vanishing and exploding gradients — and the standard fixes
 - Hessians, gradient accumulation, and best practices (zeroing, inference mode, checkpointing)
 
+### Lesson 2103 — Reading the Loss Landscape
+
+[2103: Loss Landscape Geometry](./2103-Loss-Landscape-Geometry.md)
+
+- The Hessian's diagonal entries as curvatures — sign patterns that classify minima, maxima, and saddles
+- The flat-direction trap: GD escapes the saddle in 25 steps while the flat axis needs 1,151 steps to fall to a tenth
+- Why high dimensions are saddle country — the sign-sampling counting argument
+- Convexity, tested pointwise: when any local minimum is the global answer
+- The optimizer campaign: momentum as inertia, carrying 28 of 495 shallow-basin starts into the deep well
+
 ---
 
 ## Learning Path
@@ -91,8 +102,9 @@ Each lesson is written around runnable code — work through the examples, don't
 1. **Verify readiness** with [2100: Calculus for Deep Learning - Prerequisites](./PREREQUISITES.md)
 2. **[2101: Tensor Algebra and Linear Algebra for AI](./2101-Tensor-Algebra.md)** — shapes, broadcasting, einsum, GPU tensors
 3. **[2102: Backpropagation and Automatic Differentiation](./2102-Backpropagation-and-Derivatives.md)** — chain rule, autograd, the backward pass
-4. **Check understanding** with the [2100: Calculus - Quiz](./assessment/QUIZ.md)
-5. **Apply it** with the [2100: Calculus - Practice](./assessment/PRACTICE.md) exercises
+4. **[2103: Loss Landscape Geometry](./2103-Loss-Landscape-Geometry.md)** — curvature, saddles, convexity, momentum
+5. **Check understanding** with the [2100: Calculus - Quiz](./assessment/QUIZ.md)
+6. **Apply it** with the [2100: Calculus - Practice](./assessment/PRACTICE.md) exercises
 
 ---
 
@@ -117,7 +129,7 @@ Each lesson is written around runnable code — work through the examples, don't
 
 ### Knowledge Check
 
-- **[2100: Calculus - Quiz](./assessment/QUIZ.md)** — 20 questions across both lessons, 80% to pass
+- **[2100: Calculus - Quiz](./assessment/QUIZ.md)** — 20 questions across the module's lessons, 80% to pass
 
 ### Practice Exercises
 
@@ -148,9 +160,11 @@ Each lesson is written around runnable code — work through the examples, don't
 | Experiments (2101) | 2 hours |
 | Reading (2102) | 2 hours |
 | Experiments (2102) | 2 hours |
+| Reading (2103) | 2 hours |
+| Experiments (2103) | 2 hours |
 | Quiz | 1 hour |
 | Practice | 2-3 hours |
-| **Total** | **11-12 hours** |
+| **Total** | **15-16 hours** |
 
 ---
 
@@ -193,8 +207,8 @@ Each lesson is written around runnable code — work through the examples, don't
 
 - This module is the mathematical core of Phase 2: [tensor algebra](./2101-Tensor-Algebra.md) first, then [backpropagation](./2102-Backpropagation-and-Derivatives.md) — closed by a [quiz](./assessment/QUIZ.md) and [hands-on practice](./assessment/PRACTICE.md).
 - Everything is runnable: each lesson's examples execute offline on CPU with PyTorch, GPU sections marked and optional.
-- Plan for **11-12 hours** (8 hours lessons + 1 hour quiz + 2-3 hours practice).
-- These two lessons are the prerequisite chain for the rest of Phase 2: 2200 implements what 2101 explains, 2300 engineers what 2102 derives.
+- Plan for **15-16 hours** (12 hours lessons + 1 hour quiz + 2-3 hours practice).
+- These three lessons are the prerequisite chain for the rest of Phase 2: 2200 implements what 2101 explains, 2300 engineers what 2102 derives, and every optimizer they run walks the landscapes 2103 maps.
 
 ---
 
@@ -204,6 +218,7 @@ Each lesson is written around runnable code — work through the examples, don't
 
 - [2101: Tensor Algebra and Linear Algebra for AI](./2101-Tensor-Algebra.md) — shapes, broadcasting, einsum, GPU tensors
 - [2102: Backpropagation and Automatic Differentiation](./2102-Backpropagation-and-Derivatives.md) — chain rule, autograd, gradient patterns
+- [2103: Loss Landscape Geometry](./2103-Loss-Landscape-Geometry.md) — curvature, saddles, convexity, and the optimizer campaign
 - [2100: Calculus for Deep Learning - Prerequisites](./PREREQUISITES.md) — readiness check with runnable self-test examples
 - [EXP-2101: Tensor Algebra](../../../../experiments/EXP_2101_TENSOR_ALGEBRA.md) — hands-on tensor exercises
 - [EXP-2102: Backpropagation Experiment](../../../../experiments/EXP_2102_BACKPROPAGATION.md) — hands-on backprop exercises
@@ -223,10 +238,10 @@ Each lesson is written around runnable code — work through the examples, don't
 ## Next Steps
 
 1. **Not reviewed yet?** Start with [2100: Calculus for Deep Learning - Prerequisites](./PREREQUISITES.md) and run its self-check examples.
-2. **Work the lessons in order:** [2101](./2101-Tensor-Algebra.md) → [2102](./2102-Backpropagation-and-Derivatives.md) — each builds on the previous one.
+2. **Work the lessons in order:** [2101](./2101-Tensor-Algebra.md) → [2102](./2102-Backpropagation-and-Derivatives.md) → [2103](./2103-Loss-Landscape-Geometry.md) — each builds on the previous one.
 3. **Close the loop:** take the [quiz](./assessment/QUIZ.md), then the [practice exercises](./assessment/PRACTICE.md).
 4. **Continue to the next module:** [2200: Deep Learning Frameworks](../2200-frameworks/README.md)
 
-**Related:** [2101: Tensor Algebra and Linear Algebra for AI](./2101-Tensor-Algebra.md) · [2102: Backpropagation and Automatic Differentiation](./2102-Backpropagation-and-Derivatives.md) · [2200: Deep Learning Frameworks](../2200-frameworks/README.md)
+**Related:** [2101: Tensor Algebra and Linear Algebra for AI](./2101-Tensor-Algebra.md) · [2102: Backpropagation and Automatic Differentiation](./2102-Backpropagation-and-Derivatives.md) · [2103: Loss Landscape Geometry](./2103-Loss-Landscape-Geometry.md) · [2200: Deep Learning Frameworks](../2200-frameworks/README.md)
 
 **Experiment:** No EXP_21xx overview exists — start from [EXP-2101: Tensor Algebra](../../../../experiments/EXP_2101_TENSOR_ALGEBRA.md) (the hands-on companion to Lesson 2101).

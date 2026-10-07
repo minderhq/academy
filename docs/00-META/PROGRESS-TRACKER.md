@@ -17,14 +17,14 @@ Tags: ['roadmap', 'guide', 'practice']
 
 ```text
 Volume 1: Infrastructure Mastery  [░░░░░░░░░░░] 0% (0/40)
-Volume 2: AI Foundations          [░░░░░░░░░░░] 0% (0/32)
+Volume 2: AI Foundations          [░░░░░░░░░░░] 0% (0/33)
 Volume 3: LLM Internals           [░░░░░░░░░░░] 0% (0/37)
 Volume 4: Quantization Mastery    [░░░░░░░░░░░] 0% (0/42)
 Volume 5: Fine-Tuning Expert      [░░░░░░░░░░░] 0% (0/46)
 Volume 6: RAG & Data Systems      [░░░░░░░░░░░] 0% (0/45)
 Volume 7: Production Systems      [░░░░░░░░░░░] 0% (0/46)
 
-Total: [░░░░░░░░░░░░░░░░░] 0% (0/437 core files)
+Total: [░░░░░░░░░░░░░░░░░] 0% (0/438 core files)
 ```
 
 ---
@@ -68,7 +68,7 @@ Total: [░░░░░░░░░░░░░░░░░] 0% (0/437 core file
 
 ---
 
-### Volume 2: AI/ML Foundations (32 files)
+### Volume 2: AI/ML Foundations (33 files)
 **"The Mathematics of Intelligence"** - 100-130 hours | Difficulty: ⭐⭐⭐ Advanced
 
 **Note:** Time estimate includes reading (40h), hands-on practice (50h), experiments (20h), and labs (15h). Strong math background (calculus, linear algebra) recommended.
@@ -387,7 +387,7 @@ Notes:
 ### Essential Reading
 - **[VOLUME-GUIDE.md](VOLUME-GUIDE.md)** - Start here! Overview of all 7 volumes
 - **[0000-LEARNING-PATH.md](0000-LEARNING-PATH.md)** - Recommended learning paths
-- **[SITEMAP.md](SITEMAP.md)** - Full document list (437 files)
+- **[SITEMAP.md](SITEMAP.md)** - Full document list (438 files)
 - **[README.md](../../README.md)** - Project overview
 
 ### Troubleshooting
@@ -407,7 +407,7 @@ Notes:
 | Metric | Target | Current | % |
 |--------|--------|---------|---|
 | **Volumes Completed** | 7 | 0 | 0% |
-| **Core Documents** | 437 | 0 | 0% |
+| **Core Documents** | 438 | 0 | 0% |
 | **Labs Completed** | 15 | 0 | 0% |
 | **Experiments** | 47 | 0 | 0% |
 | **Tutorials** | 15 | 0 | 0% |

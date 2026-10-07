@@ -15,7 +15,7 @@ Difficulty: Beginner
 ## Master Documentation
 
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
-[![Documentation](https://img.shields.io/badge/Docs-437%20Files-orange?style=flat-square)](./docs)
+[![Documentation](https://img.shields.io/badge/Docs-438%20Files-orange?style=flat-square)](./docs)
 [![Phases](https://img.shields.io/badge/Phases-7-purple?style=flat-square)](#-learning-phases)
 [![Modules](https://img.shields.io/badge/Modules-33-success?style=flat-square)](#-summary-statistics)
 
@@ -157,7 +157,7 @@ After completing Minder Academy, you will be able to:
 | Challenge | Minder Academy Solution |
 |:----------:|:----------------------:|
 | 💸 **AI infrastructure is expensive** | Run production-grade AI on affordable hardware or modest cloud instances |
-| 📚 **Documentation is scattered** | **491 files** in one organized, cross-referenced repository |
+| 📚 **Documentation is scattered** | **492 files** in one organized, cross-referenced repository |
 | 🎯 **Learning gaps exist** | Complete curriculum from infrastructure to agentic systems |
 | 📝 **Theory without practice** | **33 PRACTICE files** with runnable solutions, **47 experiments** |
 | 🗺️ **No clear path forward** | **7 phases**, **3 learning tracks**, progress tracking built-in |
@@ -465,7 +465,7 @@ graph TB
 
 | Module | Topic | Docs | Status |
 |:------:|-------|:----:|:------:|
-| [2100](./docs/phases/phase2-foundations/2100-calculus/README.md) | Tensor Algebra | 2 | ✅ |
+| [2100](./docs/phases/phase2-foundations/2100-calculus/README.md) | Tensor Algebra | 3 | ✅ |
 | [2200](./docs/phases/phase2-foundations/2200-frameworks/README.md) | Frameworks | 3 | ✅ |
 | [2300](./docs/phases/phase2-foundations/2300-framework-engineering/README.md) | Framework Engineering | 4 | ✅ |
 | [2400](./docs/phases/phase2-foundations/2400-pretraining/README.md) | Pre-training | 3 | ✅ |
@@ -584,11 +584,12 @@ graph TB
 </details>
 
 <details>
-<summary><b>📁 Phase 2: Cognitive Science & Frameworks [2000]</b> - 12 documents</summary>
+<summary><b>📁 Phase 2: Cognitive Science & Frameworks [2000]</b> - 13 documents</summary>
 
 ### [2100: Calculus](./docs/phases/phase2-foundations/2100-calculus/README.md)
 - [2101: Tensor Algebra](./docs/phases/phase2-foundations/2100-calculus/2101-Tensor-Algebra.md)
 - [2102: Backpropagation](./docs/phases/phase2-foundations/2100-calculus/2102-Backpropagation-and-Derivatives.md)
+- [2103: Loss Landscape Geometry](./docs/phases/phase2-foundations/2100-calculus/2103-Loss-Landscape-Geometry.md)
 
 ### [2200: Frameworks](./docs/phases/phase2-foundations/2200-frameworks/README.md)
 - [2201: PyTorch Graphs](./docs/phases/phase2-foundations/2200-frameworks/2201-PyTorch-Computational-Graphs.md)
@@ -1327,13 +1328,13 @@ docker compose -f configs/docker-compose.yml up -d qdrant
 | Phase | Documents |
 |:-----:|:---------:|
 | **1** | 40 |
-| **2** | 32 |
+| **2** | 33 |
 | **3** | 37 |
 | **4** | 42 |
 | **5** | 46 |
 | **6** | 45 |
 | **7** | 46 |
-| **Phase total** | **288** |
+| **Phase total** | **289** |
 
 ### Additional Resources
 
@@ -1480,7 +1481,7 @@ SOFTWARE.
 
 *Last Updated: 2026-09-29*
 
-*491 Documentation Files | 33 Technical Modules | 7 Learning Phases*
+*492 Documentation Files | 33 Technical Modules | 7 Learning Phases*
 
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
 [![Contact](https://img.shields.io/badge/Contact-FAQ-blue?style=flat-square)](./docs/00-META/FAQ.md)

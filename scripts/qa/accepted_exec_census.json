@@ -25,7 +25,7 @@
       "bad": {}
     },
     "docs/00-META/ORGANIZATION-GUIDE.md": {
-      "mtime": 1791334273.9246593,
+      "mtime": 1791336362.5038278,
       "size": 19534,
       "bad": {}
     },
@@ -1280,6 +1280,11 @@
       },
       "size": 15702
     },
+    "docs/phases/phase2-foundations/2100-calculus/2103-Loss-Landscape-Geometry.md": {
+      "mtime": 1791337229.8021667,
+      "size": 20286,
+      "bad": {}
+    },
     "docs/phases/phase2-foundations/2100-calculus/PREREQUISITES.md": {
       "bad": {},
       "mtime": 1790955580.259024,
@@ -1492,24 +1497,24 @@
       }
     },
     "docs/phases/phase2-foundations/README.md": {
+      "mtime": 1791336362.5058777,
+      "size": 25172,
       "bad": {
-        "456": "CODE-SIGNAL:RuntimeError",
-        "476": "CODE-SIGNAL:RuntimeError",
-        "555": "CODE-SIGNAL:RuntimeError",
-        "609": "ENV-GAP:triton",
-        "775": "CODE-SIGNAL:RuntimeError",
-        "792": "UN-LEAK"
+        "459": "CODE-SIGNAL:RuntimeError",
+        "479": "CODE-SIGNAL:RuntimeError",
+        "558": "CODE-SIGNAL:RuntimeError",
+        "612": "ENV-GAP:triton",
+        "778": "CODE-SIGNAL:RuntimeError",
+        "795": "UN-LEAK"
       },
-      "mtime": 1791024952.417087,
       "notes": {
-        "456": "disk-bound family: writer hits the 2.3GB-free disk (os error 112 / channel closed); FLAKY_FAMILY with TIMEOUT",
-        "476": "disk-bound family: writer hits the 2.3GB-free disk (os error 112 / channel closed); FLAKY_FAMILY with TIMEOUT",
-        "555": "disk-bound family: writer hits the 2.3GB-free disk (os error 112 / channel closed); FLAKY_FAMILY with TIMEOUT",
-        "609": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "775": "disk-bound family: writer hits the 2.3GB-free disk (os error 112 / channel closed); FLAKY_FAMILY with TIMEOUT",
-        "792": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically"
-      },
-      "size": 24898
+        "459": "disk-bound family: writer hits the 2.3GB-free disk (os error 112 / channel closed); FLAKY_FAMILY with TIMEOUT",
+        "479": "disk-bound family: writer hits the 2.3GB-free disk (os error 112 / channel closed); FLAKY_FAMILY with TIMEOUT",
+        "558": "disk-bound family: writer hits the 2.3GB-free disk (os error 112 / channel closed); FLAKY_FAMILY with TIMEOUT",
+        "612": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "778": "disk-bound family: writer hits the 2.3GB-free disk (os error 112 / channel closed); FLAKY_FAMILY with TIMEOUT",
+        "795": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically"
+      }
     },
     "docs/phases/phase3-transformers/3100-attention/3101-Self-Attention-DeepDive.md": {
       "mtime": 1791109464.1734707,

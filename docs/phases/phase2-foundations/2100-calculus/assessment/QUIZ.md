@@ -168,7 +168,8 @@ D) The gradient is zero
 
 Each question maps to the closest lesson for review:
 
-- **Questions 1-20:** [2102: Backpropagation and Automatic Differentiation](../2102-Backpropagation-and-Derivatives.md) — derivatives, gradients, and optimization
+- **Questions 1-12, 14, 16-17, 19-20:** [2102: Backpropagation and Automatic Differentiation](../2102-Backpropagation-and-Derivatives.md) — derivatives, gradients, and optimization
+- **Questions 13, 15, 18:** [2103: Loss Landscape Geometry](../2103-Loss-Landscape-Geometry.md) — curvature, saddles, and convexity: the 25-step saddle escape against the 1,151-step flat-axis crawl, Newton's one-step walk to the saddle, and the 769-of-4,001 convexity failure
 
 ---
 
