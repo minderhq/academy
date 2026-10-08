@@ -3,7 +3,7 @@ Document ID: 6304
 Title: "6304: GraphRAG Implementation Guide"
 Phase: 6
 Module: 6300
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -524,7 +524,7 @@ class EntityExtractor:
     Extract entities and relationships using LLM
     """
 
-    def __init__(self, model_name: str = "Qwen/Qwen2.5-7B-Instruct"):
+    def __init__(self, model_name: str = "Qwen/Qwen3-8B"):
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
         self.model = AutoModelForCausalLM.from_pretrained(
             model_name,
@@ -624,9 +624,9 @@ class CompleteGraphRAG:
         self.entity_extractor = EntityExtractor()
 
         # LLM for generation
-        self.tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen2.5-7B-Instruct")
+        self.tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen3-8B")
         self.llm = AutoModelForCausalLM.from_pretrained(
-            "Qwen/Qwen2.5-7B-Instruct",
+            "Qwen/Qwen3-8B",
             dtype=torch.float16,
             device_map="auto",
         )

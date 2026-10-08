@@ -99,7 +99,7 @@ import torch
 from bitblade import quantize_model, NF4Config
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-model_name = "Qwen/Qwen2.5-7B-Instruct"
+model_name = "Qwen/Qwen3-8B"
 
 # Load tokenizer
 tokenizer = AutoTokenizer.from_pretrained(model_name)

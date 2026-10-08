@@ -256,7 +256,7 @@ class ReActAgent:
 
     def __init__(
         self,
-        model_name: str = "Qwen/Qwen2.5-7B-Instruct",
+        model_name: str = "Qwen/Qwen3-8B",
         max_iterations: int = 10,
         verbose: bool = True,
     ):
@@ -483,7 +483,7 @@ def main():
     print("Initializing ReAct Agent...")
 
     agent = ReActAgent(
-        model_name="Qwen/Qwen2.5-7B-Instruct",
+        model_name="Qwen/Qwen3-8B",
         max_iterations=10,
         verbose=True,
     )
@@ -627,7 +627,7 @@ services:
     ports:
       - "8001:8000"
     environment:
-      - MODEL_PATH=/models/qwen2.5-instruct
+      - MODEL_PATH=/models/qwen3-instruct
       - QDRANT_URL=http://qdrant:6334
       - MAX_ITERATIONS=15
       - LOG_LEVEL=INFO
@@ -668,7 +668,7 @@ spec:
         - containerPort: 8000
         env:
         - name: MODEL_PATH
-          value: "/models/qwen2.5-instruct"
+          value: "/models/qwen3-instruct"
         - name: QDRANT_URL
           value: "http://qdrant:6334"
         resources:

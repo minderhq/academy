@@ -96,7 +96,7 @@ docker run -p 8000:80 \
 from src.servers.vllm_server import vLLMServer
 
 server = vLLMServer(
-    model="Qwen/Qwen2.5-7B-Instruct",
+    model="Qwen/Qwen3-8B",
     tensor_parallel_size=2,
     max_model_len=4096,
     quantization="awq"

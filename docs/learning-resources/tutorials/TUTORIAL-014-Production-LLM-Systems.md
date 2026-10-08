@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-014
 Title: "TUTORIAL-014: Production LLM Systems"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -98,7 +98,7 @@ from pydantic import BaseModel, Field
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-MODEL_PATH = os.getenv("MODEL_PATH", "Qwen/Qwen2.5-7B-Instruct")
+MODEL_PATH = os.getenv("MODEL_PATH", "Qwen/Qwen3-8B")
 
 state = {}  # model/tokenizer live here instead of bare globals
 

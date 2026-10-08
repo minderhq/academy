@@ -3,7 +3,7 @@ Document ID: 4307
 Title: "4307: Transformers QAT Guide"
 Phase: 4
 Module: 4300
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 2 hours
@@ -68,7 +68,7 @@ Transformers QAT Ecosystem
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 
-model_name = "Qwen/Qwen2.5-7B-Instruct"
+model_name = "Qwen/Qwen3-8B"
 
 # Canonical 4-bit loading: pass quantization_config (the bare bnb_4bit_*
 # from_pretrained kwargs are legacy shortcuts)
@@ -149,7 +149,7 @@ uv pip install optimum
 from transformers import AutoTokenizer
 from auto_gptq import AutoGPTQForCausalLM, BaseQuantizeConfig
 
-model_name = "Qwen/Qwen2.5-7B-Instruct"
+model_name = "Qwen/Qwen3-8B"
 
 # Quantization configuration
 quantize_config = BaseQuantizeConfig(
@@ -182,7 +182,7 @@ model.quantize(
 )
 
 # Save quantized model
-save_dir = "./qwen2.5-7b-gptq"
+save_dir = "./qwen3-8b-gptq"
 model.save_quantized(save_dir)
 tokenizer.save_pretrained(save_dir)
 ```
@@ -193,7 +193,7 @@ tokenizer.save_pretrained(save_dir)
 from auto_gptq import AutoGPTQForCausalLM
 
 model = AutoGPTQForCausalLM.from_quantized(
-    "./qwen2.5-7b-gptq",
+    "./qwen3-8b-gptq",
     device_map="auto",
     use_safetensors=True,
 )

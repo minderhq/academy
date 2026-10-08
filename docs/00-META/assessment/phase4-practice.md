@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE4-PRACTICE
 Title: "Phase 4: Quantization Practice"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['assessment', 'practice', 'quantization']
@@ -76,7 +76,7 @@ def compare_quantization():
 
     print("=== Quantization Method Comparison ===")
 
-    model_name = "Qwen/Qwen2.5-7B-Instruct"
+    model_name = "Qwen/Qwen3-8B"
 
     # FP16 (baseline)
     print("Loading FP16 model...")
@@ -217,7 +217,7 @@ def test_context_window():
 
     print("=== Context Window Extension Test ===")
 
-    model_name = "Qwen/Qwen2.5-7B-Instruct"
+    model_name = "Qwen/Qwen3-8B"
 
     # Load model
     print("Loading model...")

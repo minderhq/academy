@@ -1,7 +1,7 @@
 ---
 Document ID: 5300-PRACTICE
 Title: "5300: Synthetic Data Generation - Practice"
-Last Updated: 2026-10-04
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -22,7 +22,7 @@ import json
 import random
 
 # Load base model. gpt2 runs anywhere; for production-quality synthetic
-# data swap in a strong instruct model, e.g. Qwen/Qwen2.5-7B-Instruct
+# data swap in a strong instruct model, e.g. Qwen/Qwen3-8B
 # (meta-llama/Llama-2-7b-hf is gated - it needs approved HF access).
 model = AutoModelForCausalLM.from_pretrained("gpt2")
 tokenizer = AutoTokenizer.from_pretrained("gpt2")

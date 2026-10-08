@@ -250,7 +250,7 @@ from transformers import AutoModelForCausalLM
 
 # Models using Flash Attention
 model = AutoModelForCausalLM.from_pretrained(
-    "Qwen/Qwen2.5-7B-Instruct",
+    "Qwen/Qwen3-8B",
     attn_implementation="flash_attention_2",
     dtype=torch.float16,
     device_map="auto"

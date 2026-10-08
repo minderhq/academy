@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE5-PRACTICE
 Title: "Phase 5: Fine-Tuning Practice"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['assessment', 'practice', 'finetuning']
@@ -96,7 +96,7 @@ def setup_qlora():
 
     print("=== QLoRA Setup ===")
 
-    model_name = "Qwen/Qwen2.5-7B-Instruct"
+    model_name = "Qwen/Qwen3-8B"
 
     # QLoRA configuration
     bnb_config = BitsAndBytesConfig(
@@ -111,7 +111,7 @@ def setup_qlora():
         model_name,
         quantization_config=bnb_config,
         device_map="auto",
-        # no trust_remote_code - Qwen2.5 loads with stock transformers code
+        # no trust_remote_code - Qwen3 loads with stock transformers code
     )
 
     # Prepare for k-bit training

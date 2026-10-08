@@ -48,7 +48,7 @@ End-to-end implementation guide for building an enterprise knowledge base using 
                                                    ▼
                                             ┌──────────────┐
                                             │              │
-                                            │  Qwen2.5 7B  │
+                                            │  Qwen3 8B    │
                                             │  (4-bit)     │
                                             │              │
                                             └──────────────┘
@@ -613,7 +613,7 @@ class KnowledgeRetriever:
         self.qdrant = QdrantClient(url="http://localhost:6333")
 
         # Initialize LLM
-        model_id = "Qwen/Qwen2.5-7B-Instruct"
+        model_id = "Qwen/Qwen3-8B"
         self.tokenizer = AutoTokenizer.from_pretrained(model_id)
         self.model = AutoModelForCausalLM.from_pretrained(
             model_id,

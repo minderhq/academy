@@ -160,7 +160,7 @@ services:
     # The repo must be the AWQ-quantized checkpoint: --quantization
     # awq on the fp16 repo fails at load time
     command: >
-      --model Qwen/Qwen2.5-7B-Instruct-AWQ
+      --model Qwen/Qwen3-8B-AWQ
       --quantization awq
       --max-model-len 4096
       --gpu-memory-utilization 0.9
@@ -332,7 +332,7 @@ metadata:
 data:
   # AWQ-quantized checkpoint - --quantization awq on the fp16 repo
   # fails at load time
-  MODEL_NAME: "Qwen/Qwen2.5-7B-Instruct-AWQ"
+  MODEL_NAME: "Qwen/Qwen3-8B-AWQ"
   QUANTIZATION: "awq"
   MAX_MODEL_LEN: "4096"
 ---

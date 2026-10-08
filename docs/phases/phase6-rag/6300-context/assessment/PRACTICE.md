@@ -1,7 +1,7 @@
 ---
 Document ID: 6300-PRACTICE
 Title: "6300: Context Window Optimization - Practice"
-Last Updated: 2026-09-25
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -62,8 +62,8 @@ def benchmark_context_length(model, tokenizer, lengths=None):
 
 # Run benchmark
 if __name__ == "__main__":
-    model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen2.5-7B-Instruct", device_map="auto")
-    tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen2.5-7B-Instruct")
+    model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen3-8B", device_map="auto")
+    tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen3-8B")
 
     results = benchmark_context_length(model, tokenizer)
 

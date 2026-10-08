@@ -3,7 +3,7 @@ Document ID: 5205
 Title: "5205: GRPO and Reinforcement Learning from Verifiable Rewards"
 Phase: 5
 Module: 5200
-Last Updated: 2026-10-05
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -205,7 +205,7 @@ config = GRPOConfig(
 )
 
 trainer = GRPOTrainer(
-    model="Qwen/Qwen2.5-0.5B-Instruct",   # ungated, Apache-2.0
+    model="Qwen/Qwen3-0.6B",   # ungated, Apache-2.0
     reward_funcs=[accuracy_reward, format_reward],
     args=config,
     train_dataset=dataset,

@@ -3,7 +3,7 @@ Document ID: 5301
 Title: "5301: Knowledge Distillation - Training Small Models Using Big Model Outputs"
 Phase: 5
 Module: 5300
-Last Updated: 2026-10-07
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -141,11 +141,11 @@ import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 # 1. Load models — a vocab-compatible pair so the KL over logits is
-# meaningful (the whole Qwen2.5 family shares one 151936-token
+# meaningful (the whole Qwen3 family shares one 151936-token
 # tokenizer). Ungated demo pair; production recipes distill big →
 # tiny (e.g. 70B → 1.1B) the exact same way
-teacher_model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen2.5-1.5B")
-student_model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen2.5-0.5B")
+teacher_model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen3-1.7B")
+student_model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen3-0.6B")
 
 teacher_model.eval()  # Teacher is frozen
 student_model.train()
@@ -258,7 +258,7 @@ def multi_teacher_distillation(student_logits, teacher_logits_list, weights,
 
     return loss
 
-# Example: two LOCAL teachers with a shared tokenizer (Qwen2.5 family).
+# Example: two LOCAL teachers with a shared tokenizer (Qwen3 family).
 # API teachers (GPT-4, Claude) can't join this loss — their logits are
 # never exposed, so distill from them via generated DATA instead
 # (Data Generation section below)

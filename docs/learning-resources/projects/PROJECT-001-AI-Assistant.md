@@ -82,7 +82,7 @@ Build a fully-functional AI assistant that can:
          ▼        ▼                                ▼
 ┌──────────────────┐    ┌──────────────────┐  ┌─────────────┐
 │ Tool Executor    │    │   vLLM Engine    │  │  Neo4j DB   │
-│ - Python Code    │    │  - Qwen2.5-7B    │  │  Knowledge  │
+│ - Python Code    │    │  - Qwen3-8B      │  │  Knowledge  │
 │ - Shell Commands │    │  - Fine-tuned   │  │  Graph      │
 │ - HTTP Requests  │    │  - Quantized     │  │             │
 └──────────────────┘    └──────────────────┘  └─────────────┘
@@ -149,7 +149,7 @@ services:
     volumes:
       - ./data/models:/models
     command: >
-      --model Qwen/Qwen2.5-7B-Instruct
+      --model Qwen/Qwen3-8B
       --gpu-memory-utilization 0.9
       --max-model-len 4096
       --enable-prefix-caching
@@ -581,7 +581,7 @@ Answer:"""
         response = await asyncio.to_thread(requests.post,
             f"{VLLM_URL}/v1/completions",
             json={
-                "model": "Qwen/Qwen2.5-7B-Instruct",
+                "model": "Qwen/Qwen3-8B",
                 "prompt": prompt,
                 "max_tokens": 512
             },
@@ -762,7 +762,7 @@ class ReActAgent:
         response = await asyncio.to_thread(requests.post,
             f"{VLLM_URL}/v1/completions",
             json={
-                "model": "Qwen/Qwen2.5-7B-Instruct",
+                "model": "Qwen/Qwen3-8B",
                 "prompt": prompt,
                 "max_tokens": 768
             },
@@ -794,7 +794,7 @@ Thought:"""
 
         response = await asyncio.to_thread(requests.post,
             f"{VLLM_URL}/v1/completions",
-            json={"model": "Qwen/Qwen2.5-7B-Instruct", "prompt": prompt, "max_tokens": 256},
+            json={"model": "Qwen/Qwen3-8B", "prompt": prompt, "max_tokens": 256},
             timeout=30
         )
 

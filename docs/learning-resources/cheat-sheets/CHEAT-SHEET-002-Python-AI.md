@@ -1,7 +1,7 @@
 ---
 Document ID: CHEAT-SHEET-002
 Title: "CHEAT-SHEET-002: Python for AI/ML"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Tags: ['cheatsheet', 'math', 'pytorch']
@@ -184,7 +184,7 @@ pd.concat([df1, df2])
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 # Load model and tokenizer
-model_name = "Qwen/Qwen2.5-7B-Instruct"
+model_name = "Qwen/Qwen3-8B"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForCausalLM.from_pretrained(model_name)
 

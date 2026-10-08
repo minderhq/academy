@@ -3,7 +3,7 @@ Document ID: 7402
 Title: "7402: Agent Memory Implementation Guide"
 Phase: 7
 Module: 7400
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -837,7 +837,7 @@ from openai import OpenAI
 class MemoryEnabledAgent:
     """Agent with persistent memory"""
 
-    def __init__(self, model: str = "Qwen/Qwen2.5-7B-Instruct"):
+    def __init__(self, model: str = "Qwen/Qwen3-8B"):
         self.memory = AgentMemorySystem()
         self.client = OpenAI(
             base_url="http://192.168.1.100:8002/v1",

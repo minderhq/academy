@@ -89,7 +89,7 @@ quantized_model = quantizer.quantize(model)
 
 ```bash
 python scripts/benchmark.py \
-  --model Qwen/Qwen2.5-7B-Instruct \
+  --model Qwen/Qwen3-8B \
   --quantization gptq \
   --bits 4
 ```

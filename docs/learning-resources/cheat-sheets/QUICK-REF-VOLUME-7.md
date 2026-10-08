@@ -594,7 +594,7 @@ spec:
             nvidia.com/gpu: 1
         env:
         - name: MODEL_NAME
-          value: "Qwen/Qwen2.5-7B-Instruct"
+          value: "Qwen/Qwen3-8B"
         - name: OPENAI_API_KEY
           valueFrom:
             secretKeyRef:

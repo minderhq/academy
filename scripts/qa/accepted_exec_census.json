@@ -59,13 +59,13 @@
       }
     },
     "docs/00-META/assessment/phase1-practice.md": {
-      "mtime": 1791436051.4532754,
-      "size": 14638,
+      "mtime": 1791485459.1361682,
+      "size": 14605,
       "bad": {
-        "220": "ENV-GAP:requests"
+        "220": "TIMEOUT"
       },
       "notes": {
-        "220": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "220": "wrong-interpreter baseline artifact: the baseline-era run died at the requests import in a minimal venv; the kurulu-stack census interpreter has it, so the fence proceeds into real work that exceeds the 90s budget (tick-796 qwen3-migration re-verification)"
       }
     },
     "docs/00-META/assessment/phase2-practice.md": {
@@ -92,8 +92,8 @@
       "size": 9194
     },
     "docs/00-META/assessment/phase4-practice.md": {
-      "mtime": 1791223830.7951427,
-      "size": 7474,
+      "mtime": 1791485459.1376724,
+      "size": 7452,
       "bad": {
         "70": "TIMEOUT"
       },
@@ -102,8 +102,8 @@
       }
     },
     "docs/00-META/assessment/phase5-practice.md": {
-      "mtime": 1791223830.7951427,
-      "size": 5208,
+      "mtime": 1791485459.1376724,
+      "size": 5195,
       "bad": {
         "89": "ENV-GAP:Using `bitsandbytes` 4-bit quantization requires bitsandbyte"
       },
@@ -156,27 +156,17 @@
       }
     },
     "docs/comparisons/CP-001-RAG-vs-FineTuning-vs-Agents.md": {
-      "mtime": 1791441227.28083,
-      "size": 17869,
+      "mtime": 1791485459.1386786,
+      "size": 17847,
       "bad": {
-        "102": "ENV-GAP:langchain_core",
-        "239": "ENV-GAP:transformers",
-        "384": "ENV-GAP:langchain",
-        "441": "ENV-GAP:langchain_core",
-        "471": "ENV-GAP:langchain_core",
-        "517": "ENV-GAP:langchain_core",
-        "597": "ENV-GAP:langchain_core",
-        "644": "ENV-GAP:langchain_core"
+        "239": "ENV-GAP:trl",
+        "384": "SIDE-EFFECT",
+        "644": "UN-LEAK"
       },
       "notes": {
-        "102": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "239": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "384": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "441": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "471": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "517": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "597": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "644": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "239": "wrong-interpreter baseline artifact: the baseline-era run died at the transformers import in a minimal venv; the kurulu-stack census interpreter has it, so the fence proceeds and dies at the next missing module instead (tick-796 env-succession adjudication)",
+        "384": "wrong-interpreter baseline artifact: the baseline-era run died at the langchain import in a minimal venv; the kurulu-stack census interpreter has it, so the fence proceeds and reaches its external service/daemon (tick-796 env-succession adjudication)",
+        "644": "wrong-interpreter baseline artifact: the baseline-era run died at the langchain_core import in a minimal venv; the kurulu-stack census interpreter has it, so the fence proceeds; this fence is a deliberate skeleton (create_agent/your_func/llm placeholders) so the placeholder failure surfaces (tick-796)"
       }
     },
     "docs/comparisons/CP-002-Vector-Database-Comparison.md": {
@@ -205,19 +195,17 @@
       "bad": {}
     },
     "docs/enterprise-solutions/SOL-001-Enterprise-Knowledge-Base.md": {
-      "mtime": 1791440871.7530022,
-      "size": 29730,
+      "mtime": 1791485459.1396785,
+      "size": 29719,
       "bad": {
-        "192": "ENV-GAP:langchain_text_splitters",
-        "457": "ENV-GAP:fastapi",
-        "596": "ENV-GAP:sentence_transformers",
-        "993": "ENV-GAP:fastapi"
+        "192": "ENV-GAP:sentence_transformers",
+        "457": "ENV-GAP:ingestion",
+        "596": "ENV-GAP:sentence_transformers"
       },
       "notes": {
-        "192": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "457": "optional third-party package the QA environment does not install; the fence documents the install requirement",
         "596": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "993": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "192": "wrong-interpreter baseline artifact: the baseline-era run died at the langchain_text_splitters import in a minimal venv; the kurulu-stack census interpreter has it, so the fence proceeds and dies at the next missing module instead (tick-796 env-succession adjudication)",
+        "457": "wrong-interpreter baseline artifact: the baseline-era run died at the fastapi import in a minimal venv; the kurulu-stack census interpreter has it, so the fence proceeds and dies at the next missing module instead (tick-796 env-succession adjudication)"
       }
     },
     "docs/enterprise-solutions/SOL-002-Industry-Solution.md": {
@@ -295,8 +283,8 @@
       "bad": {}
     },
     "docs/learning-resources/cheat-sheets/CHEAT-SHEET-002-Python-AI.md": {
-      "mtime": 1791223830.7946115,
-      "size": 12068,
+      "mtime": 1791485459.1240914,
+      "size": 12057,
       "bad": {
         "183": "TIMEOUT"
       },
@@ -438,19 +426,13 @@
       }
     },
     "docs/learning-resources/cheat-sheets/QUICK-REF-VOLUME-5.md": {
-      "mtime": 1791441227.288423,
-      "size": 14161,
+      "mtime": 1791485459.1255968,
+      "size": 14117,
       "bad": {
-        "38": "ENV-GAP:torch",
-        "87": "ENV-GAP:peft",
-        "138": "ENV-GAP:torch",
-        "197": "ENV-GAP:torch"
+        "197": "TIMEOUT"
       },
       "notes": {
-        "38": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "87": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "138": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "197": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "197": "wrong-interpreter baseline artifact: the baseline-era run died at the torch import in a minimal venv; the kurulu-stack census interpreter has it, so the fence proceeds into real work that exceeds the 90s budget (tick-796 qwen3-migration re-verification)"
       }
     },
     "docs/learning-resources/cheat-sheets/QUICK-REF-VOLUME-6.md": {
@@ -480,16 +462,14 @@
       }
     },
     "docs/learning-resources/cheat-sheets/QUICK-REF-VOLUME-7.md": {
-      "mtime": 1791441227.2894237,
-      "size": 20287,
+      "mtime": 1791485459.1255968,
+      "size": 20276,
       "bad": {
         "108": "ENV-GAP:autogen",
-        "144": "ENV-GAP:langgraph",
         "448": "ENV-GAP:chromadb"
       },
       "notes": {
         "108": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "144": "optional third-party package the QA environment does not install; the fence documents the install requirement",
         "448": "optional third-party package the QA environment does not install; the fence documents the install requirement"
       }
     },
@@ -548,23 +528,13 @@
       }
     },
     "docs/learning-resources/labs/LAB-003-LoRA-FineTuning.md": {
-      "mtime": 1791440871.764505,
-      "size": 29435,
+      "mtime": 1791485459.1281674,
+      "size": 29339,
       "bad": {
-        "136": "ENV-GAP:torch",
-        "209": "CODE-SIGNAL:FileNotFoundError",
-        "410": "ENV-GAP:torch",
-        "675": "ENV-GAP:torch",
-        "798": "ENV-GAP:torch",
-        "924": "ENV-GAP:requests"
+        "675": "TIMEOUT"
       },
       "notes": {
-        "136": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "209": "fence writes into the lab's own workspace layout (lab-003-lora directory tree); the census throwaway cwd does not contain it - learner-environment artifact path by design",
-        "410": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "675": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "798": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "924": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "675": "wrong-interpreter baseline artifact: the baseline-era run died at the torch import in a minimal venv; the kurulu-stack census interpreter has it, so the fence proceeds into real work that exceeds the 90s budget (tick-796 qwen3-migration re-verification)"
       }
     },
     "docs/learning-resources/labs/LAB-004-ReAct-Agent.md": {
@@ -666,23 +636,13 @@
       }
     },
     "docs/learning-resources/labs/LAB-009-Production-Deployment.md": {
-      "mtime": 1791440871.7691033,
-      "size": 43477,
+      "mtime": 1791485459.1291664,
+      "size": 43455,
       "bad": {
-        "75": "ENV-GAP:cryptography",
-        "175": "ENV-GAP:fastapi",
-        "644": "ENV-GAP:fastapi",
-        "1048": "ENV-GAP:prometheus_client",
-        "1166": "ENV-GAP:fastapi",
-        "1524": "ENV-GAP:fastapi"
+        "175": "TIMEOUT"
       },
       "notes": {
-        "75": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "175": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "644": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "1048": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "1166": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "1524": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "175": "wrong-interpreter baseline artifact: the baseline-era run died at the fastapi import in a minimal venv; the kurulu-stack census interpreter has it, so the fence proceeds into real work that exceeds the 90s budget (tick-796 qwen3-migration re-verification)"
       }
     },
     "docs/learning-resources/labs/LAB-010-DPO-Alignment.md": {
@@ -764,13 +724,13 @@
       }
     },
     "docs/learning-resources/labs/solutions/SOLUTION-LAB-000-Environment-Setup.md": {
-      "mtime": 1791483012.8045673,
+      "mtime": 1791483013.8045673,
       "size": 1913,
       "bad": {
-        "90": "ENV-GAP:ollama"
+        "90": "SIDE-EFFECT"
       },
       "notes": {
-        "90": "ollama python client not installed in the QA environment - the fence needs the Ollama runtime; the pre-touch baseline recorded SIDE-EFFECT because the older QA env had the client installed and generate() hit a missing daemon instead. Same environment-requirement class, not a code defect; reclassified on the touch-driven first true re-execution (tick-796 mistral:7b pin)"
+        "90": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect"
       }
     },
     "docs/learning-resources/labs/solutions/SOLUTION-LAB-001-Docker-LLM.md": {
@@ -917,21 +877,13 @@
       "size": 2316
     },
     "docs/learning-resources/projects/PROJECT-001-AI-Assistant.md": {
-      "mtime": 1791440871.7772603,
-      "size": 36879,
+      "mtime": 1791485459.1311667,
+      "size": 36835,
       "bad": {
-        "315": "ENV-GAP:qdrant_client",
-        "370": "ENV-GAP:neo4j",
-        "464": "ENV-GAP:fastapi",
-        "668": "ENV-GAP:fastapi",
-        "908": "ENV-GAP:fastapi"
+        "668": "TIMEOUT"
       },
       "notes": {
-        "315": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "370": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "464": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "668": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "908": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "668": "wrong-interpreter baseline artifact: the baseline-era run died at the fastapi import in a minimal venv; the kurulu-stack census interpreter has it, so the fence proceeds into real work that exceeds the 90s budget (tick-796 qwen3-migration re-verification)"
       }
     },
     "docs/learning-resources/projects/PROJECT-002-Train-Neural-Network.md": {
@@ -999,15 +951,15 @@
       }
     },
     "docs/learning-resources/projects/PROJECT-005-FineTune-Model.md": {
-      "mtime": 1791440871.7802603,
-      "size": 17265,
+      "mtime": 1791485459.1321676,
+      "size": 17241,
       "bad": {
-        "255": "ENV-GAP:torch",
-        "391": "ENV-GAP:torch"
+        "255": "ENV-GAP:Using `bitsandbytes` 4-bit quantization requires bitsandbyte",
+        "391": "SIDE-EFFECT"
       },
       "notes": {
-        "255": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "391": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "255": "wrong-interpreter baseline artifact: the baseline-era run died at the torch import in a minimal venv; the kurulu-stack census interpreter has it, so the fence proceeds and dies at the next missing module instead (tick-796 env-succession adjudication)",
+        "391": "wrong-interpreter baseline artifact: the baseline-era run died at the torch import in a minimal venv; the kurulu-stack census interpreter has it, so the fence proceeds and reaches its external service/daemon (tick-796 env-succession adjudication)"
       }
     },
     "docs/learning-resources/projects/PROJECT-006-Production-RAG.md": {
@@ -1065,8 +1017,8 @@
       }
     },
     "docs/learning-resources/projects/templates/TEMPLATE-005-Model-Quantization.md": {
-      "mtime": 1791440871.7847376,
-      "size": 2961,
+      "mtime": 1791485459.1321676,
+      "size": 2950,
       "bad": {
         "60": "ENV-GAP:src",
         "69": "ENV-GAP:src",
@@ -1131,8 +1083,8 @@
       }
     },
     "docs/learning-resources/projects/templates/TEMPLATE-009-Model-Deployment.md": {
-      "mtime": 1791441227.3081338,
-      "size": 4776,
+      "mtime": 1791485459.133167,
+      "size": 4765,
       "bad": {
         "95": "ENV-GAP:src",
         "110": "ENV-GAP:src",
@@ -1215,39 +1167,13 @@
       }
     },
     "docs/learning-resources/troubleshooting/TROUBLESHOOTING-Common-Issues.md": {
-      "mtime": 1791436051.515843,
-      "size": 13555,
+      "mtime": 1791485459.1341672,
+      "size": 13544,
       "bad": {
-        "132": "ENV-GAP:transformers",
-        "166": "UN-LEAK",
-        "171": "ENV-GAP:transformers",
-        "193": "ENV-GAP:torch",
-        "215": "ENV-GAP:transformers",
-        "224": "UN-LEAK",
-        "230": "ENV-GAP:transformers",
-        "263": "ENV-GAP:sentence_transformers",
-        "272": "ENV-GAP:sentence_transformers",
-        "280": "ENV-GAP:qdrant_client",
-        "359": "UN-LEAK",
-        "403": "ENV-GAP:transformers",
-        "626": "UN-LEAK",
-        "634": "ENV-GAP:torch"
+        "403": "TIMEOUT"
       },
       "notes": {
-        "132": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "166": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
-        "171": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "193": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "215": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "224": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
-        "230": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "263": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "272": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "280": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "359": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
-        "403": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "626": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
-        "634": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "403": "wrong-interpreter baseline artifact: the baseline-era run died at the transformers import in a minimal venv; the kurulu-stack census interpreter has it, so the fence proceeds into real work that exceeds the 90s budget (tick-796 qwen3-migration re-verification)"
       }
     },
     "docs/learning-resources/tutorials/TUTORIAL-000-Python-for-AI.md": {
@@ -1461,18 +1387,9 @@
       }
     },
     "docs/learning-resources/tutorials/TUTORIAL-012-Production-LLMOps.md": {
-      "mtime": 1791440871.7952535,
-      "size": 26123,
-      "bad": {
-        "468": "ENV-GAP:prometheus_client",
-        "661": "ENV-GAP:numpy",
-        "772": "UN-LEAK"
-      },
-      "notes": {
-        "468": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "661": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "772": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically"
-      }
+      "mtime": 1791485459.1351678,
+      "size": 26101,
+      "bad": {}
     },
     "docs/learning-resources/tutorials/TUTORIAL-013-AI-Security.md": {
       "mtime": 1791440871.7962532,
@@ -1489,8 +1406,8 @@
       }
     },
     "docs/learning-resources/tutorials/TUTORIAL-014-Production-LLM-Systems.md": {
-      "mtime": 1791223830.793527,
-      "size": 29036,
+      "mtime": 1791485459.1361682,
+      "size": 29025,
       "bad": {}
     },
     "docs/notebooks/README.md": {
@@ -2206,23 +2123,13 @@
       }
     },
     "docs/phases/phase3-transformers/3100-attention/3102-Flash-Attention.md": {
-      "mtime": 1791436051.574209,
-      "size": 12837,
+      "mtime": 1791485459.1130528,
+      "size": 12826,
       "bad": {
-        "178": "ENV-GAP:torch",
-        "210": "ENV-GAP:torch",
-        "232": "ENV-GAP:flash_attn",
-        "248": "ENV-GAP:transformers",
-        "295": "ENV-GAP:torch",
-        "327": "UN-LEAK"
+        "248": "TIMEOUT"
       },
       "notes": {
-        "178": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "210": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "232": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "248": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "295": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "327": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically"
+        "248": "wrong-interpreter baseline artifact: the baseline-era run died at the transformers import in a minimal venv; the kurulu-stack census interpreter has it, so the fence proceeds into real work that exceeds the 90s budget (tick-796 qwen3-migration re-verification)"
       }
     },
     "docs/phases/phase3-transformers/3100-attention/3103-SDPA-and-torch-compile.md": {
@@ -2658,21 +2565,13 @@
       }
     },
     "docs/phases/phase4-quantization/4100-low-bit/assessment/PRACTICE.md": {
-      "mtime": 1791440871.8119946,
-      "size": 15881,
+      "mtime": 1791485459.1140535,
+      "size": 15870,
       "bad": {
-        "19": "ENV-GAP:torch",
-        "114": "ENV-GAP:torch",
-        "219": "ENV-GAP:torch",
-        "316": "ENV-GAP:torch",
-        "407": "ENV-GAP:torch"
+        "407": "TIMEOUT"
       },
       "notes": {
-        "19": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "114": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "219": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "316": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "407": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "407": "wrong-interpreter baseline artifact: the baseline-era run died at the torch import in a minimal venv; the kurulu-stack census interpreter has it, so the fence proceeds into real work that exceeds the 90s budget (tick-796 qwen3-migration re-verification)"
       }
     },
     "docs/phases/phase4-quantization/4200-kv-cache/4201-Context-Window-Physics.md": {
@@ -2841,8 +2740,8 @@
       }
     },
     "docs/phases/phase4-quantization/4300-quantization-aware-training/guides/4307-Transformers-QAT.md": {
-      "mtime": 1791223830.7886,
-      "size": 13560,
+      "mtime": 1791485459.1150537,
+      "size": 13534,
       "bad": {
         "67": "ENV-GAP:Using `bitsandbytes` 4-bit quantization requires bitsandbyte",
         "96": "UN-LEAK",
@@ -2863,10 +2762,10 @@
       }
     },
     "docs/phases/phase4-quantization/4300-quantization-aware-training/guides/4308-BitBlade-QAT.md": {
-      "mtime": 1791436051.606277,
-      "size": 13600,
+      "mtime": 1791485459.1150537,
+      "size": 13589,
       "bad": {
-        "97": "ENV-GAP:torch",
+        "97": "ENV-GAP:bitblade",
         "132": "ENV-GAP:bitblade",
         "175": "ENV-GAP:bitblade",
         "205": "ENV-GAP:bitblade",
@@ -2885,7 +2784,6 @@
         "476": "UN-LEAK"
       },
       "notes": {
-        "97": "optional third-party package the QA environment does not install; the fence documents the install requirement",
         "132": "optional third-party package the QA environment does not install; the fence documents the install requirement",
         "175": "optional third-party package the QA environment does not install; the fence documents the install requirement",
         "205": "optional third-party package the QA environment does not install; the fence documents the install requirement",
@@ -2901,7 +2799,8 @@
         "406": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
         "426": "optional third-party package the QA environment does not install; the fence documents the install requirement",
         "450": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "476": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically"
+        "476": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
+        "97": "wrong-interpreter baseline artifact: the baseline-era run died at the torch import in a minimal venv; the kurulu-stack census interpreter has it, so the fence proceeds and dies at the next missing module instead (tick-796 env-succession adjudication)"
       }
     },
     "docs/phases/phase4-quantization/4400-advanced-techniques/4401-GPTQ.md": {
@@ -3107,23 +3006,13 @@
       "bad": {}
     },
     "docs/phases/phase5-finetuning/5100-peft/assessment/PRACTICE.md": {
-      "mtime": 1791436051.6152773,
-      "size": 32887,
+      "mtime": 1791485459.116561,
+      "size": 32870,
       "bad": {
-        "19": "ENV-GAP:torch",
-        "156": "ENV-GAP:peft",
-        "234": "ENV-GAP:transformers",
-        "352": "ENV-GAP:peft",
-        "465": "ENV-GAP:peft",
-        "600": "ENV-GAP:torch"
+        "234": "ENV-GAP:Using `bitsandbytes` 4-bit quantization requires bitsandbyte"
       },
       "notes": {
-        "19": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "156": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "234": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "352": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "465": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "600": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "234": "wrong-interpreter baseline artifact: the baseline-era run died at the transformers import in a minimal venv; the kurulu-stack census interpreter has it, so the fence proceeds and dies at the next missing module instead (tick-796 env-succession adjudication)"
       }
     },
     "docs/phases/phase5-finetuning/5100-peft/guides/5104-LoRA-Implementation-Guide.md": {
@@ -3193,8 +3082,8 @@
       }
     },
     "docs/phases/phase5-finetuning/5200-alignment/5205-GRPO-RLVR.md": {
-      "mtime": 1791230299.24189,
-      "size": 18205,
+      "mtime": 1791485459.1175678,
+      "size": 18194,
       "bad": {
         "185": "ENV-GAP:trl"
       },
@@ -3235,8 +3124,8 @@
       }
     },
     "docs/phases/phase5-finetuning/5300-synthetic/5301-Knowledge-Distillation.md": {
-      "mtime": 1791371760.4202638,
-      "size": 18157,
+      "mtime": 1791485459.1185663,
+      "size": 18149,
       "bad": {
         "330": "SIDE-EFFECT",
         "373": "UN-LEAK"
@@ -3247,8 +3136,8 @@
       }
     },
     "docs/phases/phase5-finetuning/5300-synthetic/5302-Distributed-Training.md": {
-      "mtime": 1791223830.785884,
-      "size": 33758,
+      "mtime": 1791485459.1195703,
+      "size": 33745,
       "bad": {}
     },
     "docs/phases/phase5-finetuning/5300-synthetic/5303-Federated-Learning.md": {
@@ -3271,8 +3160,8 @@
       "bad": {}
     },
     "docs/phases/phase5-finetuning/5300-synthetic/assessment/PRACTICE.md": {
-      "mtime": 1791140376.1792388,
-      "size": 20358,
+      "mtime": 1791485459.1200795,
+      "size": 20347,
       "bad": {
         "19": "TIMEOUT"
       },
@@ -3568,8 +3457,8 @@
       "bad": {}
     },
     "docs/phases/phase6-rag/6300-context/assessment/PRACTICE.md": {
-      "mtime": 1791223830.7864344,
-      "size": 17675,
+      "mtime": 1791485459.121085,
+      "size": 17653,
       "bad": {
         "19": "TIMEOUT"
       },
@@ -3588,8 +3477,8 @@
       }
     },
     "docs/phases/phase6-rag/6300-context/guides/6304-GraphRAG-Implementation.md": {
-      "mtime": 1791357710.2418292,
-      "size": 30852,
+      "mtime": 1791485459.1220896,
+      "size": 30819,
       "bad": {
         "226": "ENV-GAP:sentence_transformers",
         "608": "ENV-GAP:graph_construction"
@@ -3778,19 +3667,13 @@
       "bad": {}
     },
     "docs/phases/phase7-agentic/7100-architecture/guides/7103-ReAct-Implementation-Guide.md": {
-      "mtime": 1791436051.655002,
-      "size": 24009,
+      "mtime": 1791485459.1230915,
+      "size": 23983,
       "bad": {
-        "83": "ENV-GAP:torch",
-        "526": "UN-LEAK",
-        "561": "UN-LEAK",
-        "593": "UN-LEAK"
+        "83": "TIMEOUT"
       },
       "notes": {
-        "83": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "526": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
-        "561": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
-        "593": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically"
+        "83": "wrong-interpreter baseline artifact: the baseline-era run died at the torch import in a minimal venv; the kurulu-stack census interpreter has it, so the fence proceeds into real work that exceeds the 90s budget (tick-796 qwen3-migration re-verification)"
       }
     },
     "docs/phases/phase7-agentic/7200-tools/7201-Tool-Calling.md": {
@@ -4014,8 +3897,8 @@
       "size": 27489
     },
     "docs/phases/phase7-agentic/7400-memory/guides/7402-Agent-Memory-Implementation.md": {
-      "mtime": 1791223830.7962563,
-      "size": 34501,
+      "mtime": 1791485459.1240914,
+      "size": 34490,
       "bad": {
         "84": "ENV-GAP:sentence_transformers",
         "306": "ENV-GAP:vector_store",

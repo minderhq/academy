@@ -389,7 +389,7 @@ KeyError: 'base_model.model.model.layers'
 1. **Check base model compatibility:**
 ```python
 # Must use same base model as during training
-base_model = "Qwen/Qwen2.5-7B-Instruct"
+base_model = "Qwen/Qwen3-8B"
 ```
 
 2. **Verify PEFT version:**
