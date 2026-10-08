@@ -432,8 +432,8 @@ Track your progress using: **[PROGRESS-TRACKER.md](PROGRESS-TRACKER.md)**
 
 ### Stuck on a concept?
 - Check the [troubleshooting guide](../learning-resources/troubleshooting/TROUBLESHOOTING-Common-Issues.md)
-- Review the [cheat sheets](../learning-resources/cheat-sheets/)
-- Look at the [experiments](../../experiments/) for practical examples
+- Review the [cheat sheets](MASTER-INDEX.md) (see the Cheat Sheets section)
+- Look at the [hands-on labs](../learning-resources/labs/LAB-000-ENVIRONMENT-SETUP.md) for practical examples
 
 ### Want to learn more?
 - Each document has cross-references to related topics

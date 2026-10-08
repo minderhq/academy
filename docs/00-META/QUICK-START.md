@@ -387,7 +387,7 @@ pip install ollama
 ### In Minder Academy
 - **[Progress Tracker](PROGRESS-TRACKER.md)** - Track your learning
 - **[Troubleshooting](../learning-resources/troubleshooting/TROUBLESHOOTING-Common-Issues.md)** - Get help
-- **[Cheat Sheets](../learning-resources/cheat-sheets/)** - Quick reference
+- **[Cheat Sheets](MASTER-INDEX.md)** - Quick reference (see the Cheat Sheets section)
 
 ---
 

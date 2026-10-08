@@ -288,9 +288,9 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 | Category | Files | Location |
 |----------|------|----------|
-| **Bridges** | Phase transitions | [../learning-resources/bridges/](../learning-resources/bridges/) |
-| **Case Studies** | Real-world examples | [../learning-resources/case-studies/](../learning-resources/case-studies/) |
-| **Troubleshooting** | Issue resolution | [../learning-resources/troubleshooting/](../learning-resources/troubleshooting/) |
+| **Bridges** | Phase transitions | [../learning-resources/bridges/TUTORIAL-TO-LAB-BRIDGE.md](../learning-resources/bridges/TUTORIAL-TO-LAB-BRIDGE.md) |
+| **Case Studies** | Real-world examples | [../learning-resources/case-studies/REAL-WORLD-EXAMPLES.md](../learning-resources/case-studies/REAL-WORLD-EXAMPLES.md) |
+| **Troubleshooting** | Issue resolution | [../learning-resources/troubleshooting/TROUBLESHOOTING-Common-Issues.md](../learning-resources/troubleshooting/TROUBLESHOOTING-Common-Issues.md) |
 
 ---
 
