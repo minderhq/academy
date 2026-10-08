@@ -17,17 +17,20 @@ Tags: ['lab', 'docker', 'ollama', 'hands-on']
 - **[TUTORIAL-000: Python for AI](../tutorials/TUTORIAL-000-Python-for-AI.md)** (recommended) - For custom API code
 
 **Time:** 2 hours
+
 **Difficulty:** ⭐ Beginner
 
 > **⚠️ Educational Code Warning:**
 >
 > This lab contains **educational code examples** for learning purposes. These examples:
+>
 > - Are simplified for clarity and learning
 > - **LACK production-grade security** (no authentication, rate limiting, input validation)
 > - **LACK production-grade reliability** (no error handling, logging, monitoring)
 > - **LACK production-grade scalability** (single-instance, no load balancing)
 >
 > **For production deployment**, see:
+>
 > - **[TUTORIAL-012: Production LLMOps](../tutorials/TUTORIAL-012-Production-LLMOps.md)**
 > - **[LAB-009: Production Deployment](./LAB-009-Production-Deployment.md)**
 > - **[1401: Ollama Enterprise](../../phases/phase1-infra/1400-llmops/1401-Ollama-Enterprise.md)**

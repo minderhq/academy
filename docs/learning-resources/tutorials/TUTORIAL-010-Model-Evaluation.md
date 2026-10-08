@@ -32,7 +32,9 @@ Tags: ['tutorial', 'evaluation', 'benchmarks']
 This tutorial covers comprehensive model evaluation including metrics, benchmarks, and evaluation frameworks for LLMs.
 
 **Duration:** 4 hours
+
 **Difficulty:** ⭐⭐ Intermediate
+
 **Prerequisites:** TUTORIAL-001 (Hello LLM), TUTORIAL-003 (RAG Basics)
 
 ---

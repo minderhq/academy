@@ -132,5 +132,7 @@ python src/converter.py \
 ---
 
 **Difficulty:** ⭐⭐ Intermediate
+
 **Estimated Time:** 4-8 hours
+
 **Skills:** Quantization, Benchmarking, Model optimization

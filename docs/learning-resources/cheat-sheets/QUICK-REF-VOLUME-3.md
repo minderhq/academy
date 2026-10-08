@@ -1,7 +1,7 @@
 ---
 Document ID: QUICK-REF-VOLUME-3
 Title: "Volume 3: LLM Internals - Quick Reference"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Tags: ['cheatsheet', 'transformers', 'attention']
@@ -661,4 +661,5 @@ text = sp.decode(token_ids)
 ---
 
 **Volume:** 3 - LLM Internals
+
 **Estimated Time:** 35-40 hours

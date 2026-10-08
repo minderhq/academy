@@ -814,31 +814,31 @@ Validate your knowledge:
 
 After completing this module, you will be able to:
 
-✅ **Choose the right serving engine**
-   - Ollama for local development
-   - vLLM for high-throughput production
-   - TGI for enterprise deployments
+- ✅ **Choose the right serving engine**
+    - Ollama for local development
+    - vLLM for high-throughput production
+    - TGI for enterprise deployments
 
-✅ **Deploy production-grade LLM services**
-   - Container-based deployments
-   - Load balancing strategies
-   - High availability setups
+- ✅ **Deploy production-grade LLM services**
+    - Container-based deployments
+    - Load balancing strategies
+    - High availability setups
 
-✅ **Implement monitoring and observability**
-   - Performance metrics (latency, throughput)
-   - Resource monitoring (GPU, memory)
-   - Alert configuration
+- ✅ **Implement monitoring and observability**
+    - Performance metrics (latency, throughput)
+    - Resource monitoring (GPU, memory)
+    - Alert configuration
 
-✅ **Optimize serving performance**
-   - PagedAttention for efficiency
-   - Continuous batching
-   - Right-sizing GPU resources
+- ✅ **Optimize serving performance**
+    - PagedAttention for efficiency
+    - Continuous batching
+    - Right-sizing GPU resources
 
-✅ **Handle production operations**
-   - Blue-green deployments
-   - A/B testing models
-   - Auto-scaling strategies
-   - Cost optimization
+- ✅ **Handle production operations**
+    - Blue-green deployments
+    - A/B testing models
+    - Auto-scaling strategies
+    - Cost optimization
 
 ## Additional Resources
 
@@ -934,6 +934,7 @@ Production Ready:
 ---
 
 **Module Duration:** 12-15 hours
+
 **Difficulty:** ⭐⭐⭐ Advanced
 
 **Ready to proceed?** Continue to [1401: Ollama Enterprise](./1401-Ollama-Enterprise.md)

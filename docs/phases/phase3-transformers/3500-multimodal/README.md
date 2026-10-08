@@ -407,4 +407,5 @@ def multimodal_rag_query(query: str, vector_store, vision_llm):
 ---
 
 **Module Difficulty:** Advanced
+
 **Estimated Time:** 10 hours total

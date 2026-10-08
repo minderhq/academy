@@ -11,7 +11,9 @@ Tags: ['lab', 'setup', 'docker', 'hands-on']
 # LAB-000: Environment Setup
 
 **Duration:** 45-60 minutes
+
 **Difficulty:** ⭐ Beginner
+
 **Prerequisites:** None
 
 ---
@@ -270,6 +272,7 @@ Refer to [ENVIRONMENT-SETUP.md](../../00-META/ENVIRONMENT-SETUP.md#step-4-ollama
 **Start Ollama:**
 
 **Windows:** Click Ollama app or run: `ollama serve`
+
 **Mac/Linux:** `ollama serve &`
 
 **Pull a Model:**
@@ -463,7 +466,9 @@ A: 7B model ~4GB, 13B ~8GB, 70B ~40GB. Start with 7B.
 ---
 
 **Lab Duration:** 45-60 minutes
+
 **Completed:** [ ] Yes / [ ] No
+
 **Date:** _____________
 
 **Next Lab:** [LAB-001: Docker & LLM](./LAB-001-Docker-LLM.md)

@@ -33,7 +33,9 @@ Tags: ['roadmap', 'guide', 'llm']
 ## Complete AI/LLM Infrastructure Curriculum - From Zero to Hero
 
 **Last Updated:** 2026-10-08
+
 **Estimated Time:** 6-12 months (part-time) - 48 study weeks + capstone
+
 **Prerequisites:** None! We start from absolute zero.
 
 ---

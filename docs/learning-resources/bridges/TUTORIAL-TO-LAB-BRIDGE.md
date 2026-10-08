@@ -161,6 +161,7 @@ model = get_peft_model(base_model, config)
 ### Gap 1: Environment Differences
 
 **Tutorial:** Simple commands, clean environment
+
 **Lab:** Real-world complexity, multiple tools
 
 **Bridge Strategy:**
@@ -172,6 +173,7 @@ model = get_peft_model(base_model, config)
 ### Gap 2: Code Complexity
 
 **Tutorial:** Minimal working example
+
 **Lab:** Production-ready implementation
 
 **Bridge Strategy:**
@@ -183,6 +185,7 @@ model = get_peft_model(base_model, config)
 ### Gap 3: Error Handling
 
 **Tutorial:** Often omitted for clarity
+
 **Lab:** Essential for real use
 
 **Bridge Strategy:**

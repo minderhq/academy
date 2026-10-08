@@ -28,6 +28,7 @@ Tags: ['lab', 'lora', 'qlora', 'finetuning', 'hands-on']
 - **CPU:** 8+ cores recommended
 
 > **⚠️ No GPU?** This lab requires GPU for QLoRA fine-tuning. Alternatives:
+>
 > - Use Google Colab Pro (GPU runtime)
 > - Use cloud GPU services (RunPod, Lambda Labs, AWS)
 > - Skip to [LAB-004: ReAct Agent](LAB-004-ReAct-Agent.md) which can run CPU-only
@@ -82,6 +83,7 @@ python -c "import torch; print(f'CUDA available: {torch.cuda.is_available()}')"
 ```
 
 **Time:** 4 hours
+
 **Difficulty:** ⭐⭐⭐ Advanced
 
 ---

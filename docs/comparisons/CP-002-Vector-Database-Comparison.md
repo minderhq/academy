@@ -1,7 +1,7 @@
 ---
 Document ID: CP-002
 Title: "CP-002: Vector Database Comparison Guide"
-Last Updated: 2026-10-07
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Tags: ['comparison', 'vector-db', 'qdrant', 'pinecone']
@@ -47,18 +47,18 @@ Qdrant is a high-performance vector database written in Rust. It's the recommend
 
 #### Pros
 
-✅ Lightweight (runs well on consumer hardware)
-✅ Easy Docker deployment
-✅ Excellent documentation
-✅ Built-in dashboard UI
-✅ HNSW indexing for fast search
-✅ Support for quantization (reduces memory)
-✅ Active community and development
+- ✅ Lightweight (runs well on consumer hardware)
+- ✅ Easy Docker deployment
+- ✅ Excellent documentation
+- ✅ Built-in dashboard UI
+- ✅ HNSW indexing for fast search
+- ✅ Support for quantization (reduces memory)
+- ✅ Active community and development
 
 #### Cons
 
-❌ Newer project (less mature than Milvus)
-❌ Cloud offering is relatively new
+- ❌ Newer project (less mature than Milvus)
+- ❌ Cloud offering is relatively new
 
 #### Quick Start
 
@@ -130,17 +130,17 @@ Weaviate is an open-source vector search engine with built-in vectorization of t
 
 #### Pros
 
-✅ Built-in vectorization (no separate embedding step)
-✅ GraphQL API (flexible queries)
-✅ Module ecosystem
-✅ Real-time updates
-✅ Multi-modal support
+- ✅ Built-in vectorization (no separate embedding step)
+- ✅ GraphQL API (flexible queries)
+- ✅ Module ecosystem
+- ✅ Real-time updates
+- ✅ Multi-modal support
 
 #### Cons
 
-❌ Heavier resource usage
-❌ GraphQL learning curve if not familiar
-❌ More complex setup than Qdrant
+- ❌ Heavier resource usage
+- ❌ GraphQL learning curve if not familiar
+- ❌ More complex setup than Qdrant
 
 #### Quick Start
 
@@ -205,18 +205,18 @@ Pinecone is a fully managed vector database service. No setup required, but no s
 
 #### Pros
 
-✅ Zero setup time
-✅ Auto-scaling
-✅ High reliability (99.99% uptime SLA)
-✅ Simple API
-✅ Free tier available
+- ✅ Zero setup time
+- ✅ Auto-scaling
+- ✅ High reliability (99.99% uptime SLA)
+- ✅ Simple API
+- ✅ Free tier available
 
 #### Cons
 
-❌ No self-hosted option
-❌ Vendor lock-in
-❌ Can get expensive at scale
-❌ Limited control over configuration
+- ❌ No self-hosted option
+- ❌ Vendor lock-in
+- ❌ Can get expensive at scale
+- ❌ Limited control over configuration
 
 #### Quick Start
 
@@ -267,16 +267,16 @@ Chroma is a lightweight, open-source embedding database focused on developer exp
 
 #### Pros
 
-✅ Easiest to set up
-✅ Great for development/testing
-✅ Python-native
-✅ Integrates with LangChain
+- ✅ Easiest to set up
+- ✅ Great for development/testing
+- ✅ Python-native
+- ✅ Integrates with LangChain
 
 #### Cons
 
-❌ Not production-ready for large scale
-❌ Limited query capabilities
-❌ Basic filtering
+- ❌ Not production-ready for large scale
+- ❌ Limited query capabilities
+- ❌ Basic filtering
 
 #### Quick Start
 
@@ -326,17 +326,17 @@ Milvus is a distributed vector database built for scale. Used by large enterpris
 
 #### Pros
 
-✅ Most scalable option
-✅ Production-proven at large scale
-✅ Multiple index types (IVF, HNSW, ANNOY)
-✅ Active community
+- ✅ Most scalable option
+- ✅ Production-proven at large scale
+- ✅ Multiple index types (IVF, HNSW, ANNOY)
+- ✅ Active community
 
 #### Cons
 
-❌ Complex setup
-❌ Heavy resource requirements
-❌ Overkill for small projects
-❌ Steep learning curve
+- ❌ Complex setup
+- ❌ Heavy resource requirements
+- ❌ Overkill for small projects
+- ❌ Steep learning curve
 
 #### Quick Start
 
@@ -397,16 +397,16 @@ pgvector adds vector similarity search to PostgreSQL. Best if you already use Po
 
 #### Pros
 
-✅ No new infrastructure
-✅ ACID compliance
-✅ SQL joins with vector search
-✅ Familiar Postgres ecosystem
+- ✅ No new infrastructure
+- ✅ ACID compliance
+- ✅ SQL joins with vector search
+- ✅ Familiar Postgres ecosystem
 
 #### Cons
 
-❌ Slower than dedicated vector DBs
-❌ Postgres extension (not as optimized)
-❌ Limited to Postgres users
+- ❌ Slower than dedicated vector DBs
+- ❌ Postgres extension (not as optimized)
+- ❌ Limited to Postgres users
 
 #### Quick Start
 
@@ -592,4 +592,5 @@ qdrant.upsert(
 ---
 
 **Comparison ID:** CP-002
+
 **Related:** [UC-001: Vector Database Applications](../use-cases/UC-001-Vector-Database-Applications.md), [6401: Qdrant Setup](../phases/phase6-rag/6400-vector-databases/6401-Qdrant-Setup.md), [6101: HNSW Indexing](../phases/phase6-rag/6100-vector/6101-HNSW-Indexing.md)

@@ -99,6 +99,7 @@ print(f"\nGenerated text:\n{text}\n")
 - No exploration of alternative paths
 
 **Pros:** Simple, deterministic, fast
+
 **Cons:** Can get stuck in loops, misses better sequences
 
 ---
@@ -207,6 +208,7 @@ for num_beams in [1, 3, 5]:
 - Length normalization prevents preference for short sequences
 
 **Pros:** Better quality than greedy, still efficient
+
 **Cons:** Can still be repetitive, more compute than greedy
 
 ---

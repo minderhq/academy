@@ -12,7 +12,9 @@ Tags: ['tutorial', 'rag', 'qdrant', 'hands-on']
 # TUTORIAL-003: RAG Basics - Give Your LLM Knowledge
 
 **Difficulty:** ⭐⭐ Intermediate
+
 **Time:** 60 minutes
+
 **Prerequisites:**
 
 - **[TUTORIAL-001: Hello LLM](TUTORIAL-001-Hello-LLM.md)** - LLM basics

@@ -25,6 +25,7 @@ Implement a complete Transformer model from scratch, including:
 - Text generation and inference
 
 **Estimated Time:** 20-25 hours
+
 **Difficulty:** ⭐⭐⭐ Advanced
 
 ---

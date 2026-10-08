@@ -15,23 +15,23 @@
       "bad": {}
     },
     "docs/00-META/ENVIRONMENT-SETUP.md": {
-      "mtime": 1791436530.9842174,
-      "size": 13959,
+      "mtime": 1791440871.7459083,
+      "size": 13961,
       "bad": {
-        "401": "ENV-GAP:torch"
+        "403": "ENV-GAP:torch"
       },
       "notes": {
-        "401": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "403": "optional third-party package the QA environment does not install; the fence documents the install requirement"
       }
     },
     "docs/00-META/GLOSSARY.md": {
-      "mtime": 1791436530.9842174,
-      "size": 10507,
+      "mtime": 1791440871.7474136,
+      "size": 10508,
       "bad": {}
     },
     "docs/00-META/ORGANIZATION-GUIDE.md": {
-      "mtime": 1791349788.168507,
-      "size": 19534,
+      "mtime": 1791441227.2778304,
+      "size": 19536,
       "bad": {}
     },
     "docs/00-META/QUICK-START.md": {
@@ -47,15 +47,15 @@
       }
     },
     "docs/00-META/STYLE-GUIDE.md": {
-      "mtime": 1791436530.9852161,
-      "size": 12659,
+      "mtime": 1791441227.2788324,
+      "size": 12660,
       "bad": {
-        "189": "ENV-GAP:torch",
-        "197": "UN-LEAK"
+        "190": "ENV-GAP:torch",
+        "198": "UN-LEAK"
       },
       "notes": {
-        "189": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "197": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically"
+        "190": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "198": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically"
       }
     },
     "docs/00-META/assessment/phase1-practice.md": {
@@ -112,68 +112,78 @@
       }
     },
     "docs/00-META/assessment/phase6-practice.md": {
-      "mtime": 1791436530.9822183,
-      "size": 37050,
+      "mtime": 1791440871.751003,
+      "size": 37066,
       "bad": {
-        "53": "ENV-GAP:numpy",
-        "200": "ENV-GAP:numpy",
-        "284": "ENV-GAP:qdrant_client",
-        "347": "ENV-GAP:neo4j",
-        "410": "ENV-GAP:tiktoken",
-        "502": "ENV-GAP:qdrant_client",
-        "652": "ENV-GAP:numpy",
-        "969": "ENV-GAP:qdrant_client",
-        "1094": "ENV-GAP:neo4j"
+        "55": "ENV-GAP:numpy",
+        "206": "ENV-GAP:numpy",
+        "292": "ENV-GAP:qdrant_client",
+        "357": "ENV-GAP:neo4j",
+        "422": "ENV-GAP:tiktoken",
+        "516": "ENV-GAP:qdrant_client",
+        "668": "ENV-GAP:numpy",
+        "985": "ENV-GAP:qdrant_client",
+        "1110": "ENV-GAP:neo4j"
       },
       "notes": {
-        "53": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "200": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "284": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "347": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "410": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "502": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "652": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "969": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "1094": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "55": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "206": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "292": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "357": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "422": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "516": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "668": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "985": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "1110": "optional third-party package the QA environment does not install; the fence documents the install requirement"
       }
     },
     "docs/00-META/assessment/phase7-practice.md": {
-      "mtime": 1791436530.9832172,
-      "size": 57784,
+      "mtime": 1791440871.7520003,
+      "size": 57800,
       "bad": {
-        "512": "ENV-GAP:numpy",
-        "694": "ENV-GAP:resource",
-        "810": "UN-LEAK",
-        "1149": "ENV-GAP:fastapi",
-        "1775": "ENV-GAP:numpy"
+        "520": "ENV-GAP:numpy",
+        "704": "ENV-GAP:resource",
+        "820": "UN-LEAK",
+        "1163": "ENV-GAP:fastapi",
+        "1791": "ENV-GAP:numpy"
       },
       "notes": {
-        "512": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "694": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "810": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
-        "1149": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "1775": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "520": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "704": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "820": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
+        "1163": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "1791": "optional third-party package the QA environment does not install; the fence documents the install requirement"
       }
     },
     "docs/comparisons/CP-001-RAG-vs-FineTuning-vs-Agents.md": {
-      "mtime": 1791380651.9131556,
-      "size": 17868,
+      "mtime": 1791441227.28083,
+      "size": 17869,
       "bad": {
-        "239": "ENV-GAP:trl",
-        "384": "SIDE-EFFECT",
-        "644": "UN-LEAK"
+        "102": "ENV-GAP:langchain_core",
+        "239": "ENV-GAP:transformers",
+        "384": "ENV-GAP:langchain",
+        "441": "ENV-GAP:langchain_core",
+        "471": "ENV-GAP:langchain_core",
+        "517": "ENV-GAP:langchain_core",
+        "597": "ENV-GAP:langchain_core",
+        "644": "ENV-GAP:langchain_core"
       },
       "notes": {
+        "102": "optional third-party package the QA environment does not install; the fence documents the install requirement",
         "239": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "384": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
-        "644": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically"
+        "384": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "441": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "471": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "517": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "597": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "644": "optional third-party package the QA environment does not install; the fence documents the install requirement"
       }
     },
     "docs/comparisons/CP-002-Vector-Database-Comparison.md": {
-      "mtime": 1791393635.2215288,
-      "size": 13461,
+      "mtime": 1791441227.2818315,
+      "size": 13558,
       "bad": {
-        "75": "SIDE-EFFECT",
+        "75": "ENV-GAP:qdrant_client",
         "153": "ENV-GAP:weaviate",
         "223": "ENV-GAP:pinecone",
         "283": "ENV-GAP:chromadb",
@@ -181,7 +191,7 @@
         "561": "UN-LEAK"
       },
       "notes": {
-        "75": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
+        "75": "optional third-party package the QA environment does not install; the fence documents the install requirement",
         "153": "optional third-party package the QA environment does not install; the fence documents the install requirement",
         "223": "optional third-party package the QA environment does not install; the fence documents the install requirement",
         "283": "optional third-party package the QA environment does not install; the fence documents the install requirement",
@@ -195,8 +205,8 @@
       "bad": {}
     },
     "docs/enterprise-solutions/SOL-001-Enterprise-Knowledge-Base.md": {
-      "mtime": 1791436051.4747899,
-      "size": 29729,
+      "mtime": 1791440871.7530022,
+      "size": 29730,
       "bad": {
         "192": "ENV-GAP:langchain_text_splitters",
         "457": "ENV-GAP:fastapi",
@@ -229,25 +239,35 @@
       }
     },
     "docs/industry/IND-001-Healthcare-AI-Applications.md": {
-      "mtime": 1791109464.0873253,
-      "size": 39354,
+      "mtime": 1791441227.282832,
+      "size": 39355,
       "bad": {
         "151": "ENV-GAP:sentence_transformers",
-        "971": "ENV-GAP:sentence_transformers"
+        "458": "ENV-GAP:langchain",
+        "971": "ENV-GAP:sentence_transformers",
+        "1032": "ENV-GAP:numpy"
       },
       "notes": {
         "151": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "971": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "458": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "971": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "1032": "optional third-party package the QA environment does not install; the fence documents the install requirement"
       }
     },
     "docs/industry/IND-002-Finance-AI-Applications.md": {
-      "mtime": 1791380651.915252,
-      "size": 44726,
+      "mtime": 1791441227.2843366,
+      "size": 44727,
       "bad": {
-        "1136": "ENV-GAP:sentence_transformers"
+        "485": "ENV-GAP:transformers",
+        "1136": "ENV-GAP:sentence_transformers",
+        "1191": "ENV-GAP:qdrant_client",
+        "1263": "ENV-GAP:numpy"
       },
       "notes": {
-        "1136": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "485": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "1136": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "1191": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "1263": "optional third-party package the QA environment does not install; the fence documents the install requirement"
       }
     },
     "docs/industry/IND-003-Manufacturing-AI.md": {
@@ -265,13 +285,13 @@
       }
     },
     "docs/learning-resources/bridges/TUTORIAL-TO-LAB-BRIDGE.md": {
-      "mtime": 1791436051.47779,
-      "size": 8103,
+      "mtime": 1791440871.7550006,
+      "size": 8106,
       "bad": {}
     },
     "docs/learning-resources/case-studies/REAL-WORLD-EXAMPLES.md": {
-      "mtime": 1791369850.4053235,
-      "size": 12013,
+      "mtime": 1791441227.2843366,
+      "size": 12026,
       "bad": {}
     },
     "docs/learning-resources/cheat-sheets/CHEAT-SHEET-002-Python-AI.md": {
@@ -290,119 +310,197 @@
       "size": 13776
     },
     "docs/learning-resources/cheat-sheets/CHEAT-SHEET-005-RAG-Systems.md": {
-      "mtime": 1791436530.9862185,
-      "size": 12906,
+      "mtime": 1791440871.7560012,
+      "size": 12907,
       "bad": {
-        "20": "ENV-GAP:langchain_core",
-        "72": "ENV-GAP:openai",
-        "94": "ENV-GAP:qdrant_client",
-        "126": "ENV-GAP:pinecone",
-        "159": "ENV-GAP:langchain_experimental",
-        "172": "ENV-GAP:langchain_text_splitters",
-        "191": "UN-LEAK",
-        "197": "UN-LEAK",
-        "207": "UN-LEAK",
-        "221": "ENV-GAP:sentence_transformers",
-        "238": "ENV-GAP:cohere",
-        "256": "ENV-GAP:rank_bm25",
-        "427": "ENV-GAP:rouge_score"
+        "21": "ENV-GAP:langchain_core",
+        "73": "ENV-GAP:openai",
+        "95": "ENV-GAP:qdrant_client",
+        "127": "ENV-GAP:pinecone",
+        "160": "ENV-GAP:langchain_experimental",
+        "173": "ENV-GAP:langchain_text_splitters",
+        "192": "UN-LEAK",
+        "198": "UN-LEAK",
+        "208": "UN-LEAK",
+        "222": "ENV-GAP:sentence_transformers",
+        "239": "ENV-GAP:cohere",
+        "257": "ENV-GAP:rank_bm25",
+        "428": "ENV-GAP:rouge_score"
       },
       "notes": {
-        "20": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "72": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "94": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "126": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "159": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "172": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "191": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
-        "197": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
-        "207": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
-        "221": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "238": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "256": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "427": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "21": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "73": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "95": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "127": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "160": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "173": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "192": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
+        "198": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
+        "208": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
+        "222": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "239": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "257": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "428": "optional third-party package the QA environment does not install; the fence documents the install requirement"
       }
     },
     "docs/learning-resources/cheat-sheets/QUICK-REF-VOLUME-2.md": {
-      "mtime": 1791221853.3209505,
-      "size": 14360,
+      "mtime": 1791441227.2864172,
+      "size": 14361,
       "bad": {
-        "228": "ENV-GAP:triton",
-        "491": "CODE-SIGNAL:RuntimeError"
+        "19": "ENV-GAP:torch",
+        "43": "UN-LEAK",
+        "80": "UN-LEAK",
+        "119": "ENV-GAP:torch",
+        "137": "ENV-GAP:numpy",
+        "173": "ENV-GAP:torch",
+        "189": "ENV-GAP:torch",
+        "211": "UN-LEAK",
+        "228": "ENV-GAP:torch",
+        "376": "ENV-GAP:tokenizers",
+        "491": "UN-LEAK",
+        "527": "UN-LEAK",
+        "538": "UN-LEAK",
+        "548": "UN-LEAK"
       },
       "notes": {
+        "19": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "43": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
+        "80": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
+        "119": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "137": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "173": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "189": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "211": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
         "228": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "491": "disk-bound family: writer hits the 2.3GB-free disk (os error 112 / channel closed); FLAKY_FAMILY with TIMEOUT"
+        "376": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "491": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
+        "527": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
+        "538": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
+        "548": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically"
       }
     },
     "docs/learning-resources/cheat-sheets/QUICK-REF-VOLUME-3.md": {
+      "mtime": 1791441227.2874222,
+      "size": 17713,
       "bad": {
-        "604": "SIDE-EFFECT"
+        "19": "ENV-GAP:torch",
+        "53": "ENV-GAP:torch",
+        "97": "ENV-GAP:torch",
+        "166": "ENV-GAP:torch",
+        "239": "ENV-GAP:torch",
+        "268": "ENV-GAP:torch",
+        "293": "ENV-GAP:torch",
+        "335": "ENV-GAP:torch",
+        "353": "ENV-GAP:torch",
+        "384": "ENV-GAP:torch",
+        "411": "ENV-GAP:torch",
+        "449": "ENV-GAP:torch",
+        "497": "ENV-GAP:torch",
+        "604": "ENV-GAP:sentencepiece"
       },
-      "mtime": 1790785289.1618805,
       "notes": {
-        "604": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect"
-      },
-      "size": 17712
+        "19": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "53": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "97": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "166": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "239": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "268": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "293": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "335": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "353": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "384": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "411": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "449": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "497": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "604": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+      }
     },
     "docs/learning-resources/cheat-sheets/QUICK-REF-VOLUME-4.md": {
+      "mtime": 1791441227.2874222,
+      "size": 15960,
       "bad": {
-        "80": "CODE-SIGNAL:FileNotFoundError"
+        "37": "ENV-GAP:torch",
+        "80": "ENV-GAP:gguf",
+        "170": "ENV-GAP:torch",
+        "225": "ENV-GAP:torch",
+        "288": "ENV-GAP:torch",
+        "342": "ENV-GAP:torch",
+        "415": "ENV-GAP:torch"
       },
-      "mtime": 1790785289.1629071,
       "notes": {
-        "80": "demonstrates the API on a learner-supplied/generated artifact path that does not exist in the census cwd"
-      },
-      "size": 15959
+        "37": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "80": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "170": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "225": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "288": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "342": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "415": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+      }
     },
     "docs/learning-resources/cheat-sheets/QUICK-REF-VOLUME-5.md": {
-      "mtime": 1791223830.7869647,
-      "size": 14160,
+      "mtime": 1791441227.288423,
+      "size": 14161,
       "bad": {
-        "197": "TIMEOUT"
+        "38": "ENV-GAP:torch",
+        "87": "ENV-GAP:peft",
+        "138": "ENV-GAP:torch",
+        "197": "ENV-GAP:torch"
       },
       "notes": {
-        "197": "slow-under-census-load: torch-import-heavy fence flips between SIDE-EFFECT and TIMEOUT across passes; flaky classification of one hang face, not a content defect"
+        "38": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "87": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "138": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "197": "optional third-party package the QA environment does not install; the fence documents the install requirement"
       }
     },
     "docs/learning-resources/cheat-sheets/QUICK-REF-VOLUME-6.md": {
-      "mtime": 1791219522.8103864,
-      "size": 16655,
+      "mtime": 1791441227.288423,
+      "size": 16656,
       "bad": {
+        "19": "ENV-GAP:faiss",
         "86": "ENV-GAP:sentence_transformers",
+        "128": "ENV-GAP:numpy",
         "190": "ENV-GAP:sentence_transformers",
-        "365": "SIDE-EFFECT",
+        "235": "ENV-GAP:neo4j",
+        "365": "ENV-GAP:qdrant_client",
         "432": "ENV-GAP:pinecone",
+        "482": "ENV-GAP:numpy",
         "566": "ENV-GAP:ragas"
       },
       "notes": {
+        "19": "optional third-party package the QA environment does not install; the fence documents the install requirement",
         "86": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "128": "optional third-party package the QA environment does not install; the fence documents the install requirement",
         "190": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "365": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect",
+        "235": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "365": "optional third-party package the QA environment does not install; the fence documents the install requirement",
         "432": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "482": "optional third-party package the QA environment does not install; the fence documents the install requirement",
         "566": "optional third-party package the QA environment does not install; the fence documents the install requirement"
       }
     },
     "docs/learning-resources/cheat-sheets/QUICK-REF-VOLUME-7.md": {
-      "mtime": 1791223941.3062153,
-      "size": 20286,
+      "mtime": 1791441227.2894237,
+      "size": 20287,
       "bad": {
         "108": "ENV-GAP:autogen",
+        "144": "ENV-GAP:langgraph",
         "448": "ENV-GAP:chromadb"
       },
       "notes": {
         "108": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "144": "optional third-party package the QA environment does not install; the fence documents the install requirement",
         "448": "optional third-party package the QA environment does not install; the fence documents the install requirement"
       }
     },
     "docs/learning-resources/guides/GUIDE-INTERVIEW.md": {
-      "mtime": 1791436530.987219,
-      "size": 18132,
+      "mtime": 1791440871.7610004,
+      "size": 18134,
       "bad": {
-        "71": "ENV-GAP:numpy"
+        "73": "ENV-GAP:numpy"
       },
       "notes": {
-        "71": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "73": "optional third-party package the QA environment does not install; the fence documents the install requirement"
       }
     },
     "docs/learning-resources/interactive/FLASHCARDS.md": {
@@ -416,164 +514,175 @@
       }
     },
     "docs/learning-resources/labs/LAB-001-Docker-LLM.md": {
-      "mtime": 1791436051.4867933,
-      "size": 20025,
+      "mtime": 1791440871.763,
+      "size": 20030,
       "bad": {
-        "111": "ENV-GAP:fastapi",
-        "523": "ENV-GAP:fastapi",
-        "742": "ENV-GAP:fastapi"
+        "114": "ENV-GAP:fastapi",
+        "526": "ENV-GAP:fastapi",
+        "745": "ENV-GAP:fastapi"
       },
       "notes": {
-        "111": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "523": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "742": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "114": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "526": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "745": "optional third-party package the QA environment does not install; the fence documents the install requirement"
       }
     },
     "docs/learning-resources/labs/LAB-002-RAG-Implementation.md": {
-      "mtime": 1791436051.487793,
-      "size": 30622,
+      "mtime": 1791440871.763,
+      "size": 30623,
       "bad": {
-        "256": "ENV-GAP:chunker",
-        "292": "ENV-GAP:fastapi",
-        "790": "ENV-GAP:requests",
-        "867": "ENV-GAP:numpy",
-        "922": "ENV-GAP:reranker",
-        "1028": "ENV-GAP:requests"
+        "257": "ENV-GAP:chunker",
+        "293": "ENV-GAP:fastapi",
+        "791": "ENV-GAP:requests",
+        "868": "ENV-GAP:numpy",
+        "923": "ENV-GAP:reranker",
+        "1029": "ENV-GAP:requests"
       },
       "notes": {
-        "256": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "292": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "790": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "867": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "922": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "1028": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "257": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "293": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "791": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "868": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "923": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "1029": "optional third-party package the QA environment does not install; the fence documents the install requirement"
       }
     },
     "docs/learning-resources/labs/LAB-003-LoRA-FineTuning.md": {
-      "mtime": 1791436051.4887938,
-      "size": 29432,
+      "mtime": 1791440871.764505,
+      "size": 29435,
       "bad": {
-        "134": "ENV-GAP:torch",
-        "207": "CODE-SIGNAL:FileNotFoundError",
-        "408": "ENV-GAP:torch",
-        "673": "ENV-GAP:torch",
-        "796": "ENV-GAP:torch",
-        "922": "ENV-GAP:requests"
+        "136": "ENV-GAP:torch",
+        "209": "CODE-SIGNAL:FileNotFoundError",
+        "410": "ENV-GAP:torch",
+        "675": "ENV-GAP:torch",
+        "798": "ENV-GAP:torch",
+        "924": "ENV-GAP:requests"
       },
       "notes": {
-        "134": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "408": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "673": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "796": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "922": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "207": "fence writes into the lab's own workspace layout (lab-003-lora directory tree); the census throwaway cwd does not contain it - learner-environment artifact path by design"
-      }
-    },
-    "docs/learning-resources/labs/LAB-004-ReAct-Agent.md": {
-      "mtime": 1791436051.4897945,
-      "size": 35385,
-      "bad": {
-        "78": "ENV-GAP:requests",
-        "307": "ENV-GAP:requests",
-        "519": "ENV-GAP:fastapi",
-        "896": "ENV-GAP:requests",
-        "971": "UN-LEAK",
-        "1061": "UN-LEAK",
-        "1103": "ENV-GAP:requests"
-      },
-      "notes": {
-        "78": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "307": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "519": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "896": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "971": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
-        "1061": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
-        "1103": "optional third-party package the QA environment does not install; the fence documents the install requirement"
-      }
-    },
-    "docs/learning-resources/labs/LAB-005-GraphRAG.md": {
-      "mtime": 1791436051.4907944,
-      "size": 26507,
-      "bad": {
-        "125": "ENV-GAP:neo4j",
-        "351": "ENV-GAP:fastapi",
-        "704": "ENV-GAP:requests",
-        "772": "ENV-GAP:neo4j",
-        "890": "UN-LEAK"
-      },
-      "notes": {
-        "125": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "351": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "704": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "772": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "890": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically"
-      }
-    },
-    "docs/learning-resources/labs/LAB-006-Train-Model-From-Scratch.md": {
-      "mtime": 1791376635.333774,
-      "size": 40635,
-      "bad": {}
-    },
-    "docs/learning-resources/labs/LAB-007-Production-RAG.md": {
-      "mtime": 1791436051.4917946,
-      "size": 35280,
-      "bad": {
-        "180": "ENV-GAP:sentence_transformers",
-        "242": "ENV-GAP:qdrant_client",
-        "597": "ENV-GAP:sentence_transformers",
-        "702": "ENV-GAP:qdrant_client",
-        "924": "ENV-GAP:fastapi"
-      },
-      "notes": {
-        "180": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "242": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "597": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "702": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "136": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "209": "fence writes into the lab's own workspace layout (lab-003-lora directory tree); the census throwaway cwd does not contain it - learner-environment artifact path by design",
+        "410": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "675": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "798": "optional third-party package the QA environment does not install; the fence documents the install requirement",
         "924": "optional third-party package the QA environment does not install; the fence documents the install requirement"
       }
     },
-    "docs/learning-resources/labs/LAB-008-Agent-Fleet.md": {
-      "mtime": 1791436051.4927945,
-      "size": 37059,
+    "docs/learning-resources/labs/LAB-004-ReAct-Agent.md": {
+      "mtime": 1791440871.764505,
+      "size": 35391,
       "bad": {
-        "86": "ENV-GAP:pydantic",
-        "198": "UN-LEAK",
-        "306": "ENV-GAP:requests",
-        "425": "ENV-GAP:numpy",
-        "601": "ENV-GAP:base_agent",
-        "741": "ENV-GAP:base_agent",
-        "881": "ENV-GAP:agent_types",
-        "1137": "ENV-GAP:memory"
+        "82": "ENV-GAP:requests",
+        "311": "ENV-GAP:requests",
+        "523": "ENV-GAP:fastapi",
+        "900": "ENV-GAP:requests",
+        "975": "UN-LEAK",
+        "1065": "UN-LEAK",
+        "1107": "ENV-GAP:requests"
       },
       "notes": {
-        "86": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "198": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
-        "306": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "425": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "601": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "741": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "881": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "1137": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "82": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "311": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "523": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "900": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "975": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
+        "1065": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
+        "1107": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+      }
+    },
+    "docs/learning-resources/labs/LAB-005-GraphRAG.md": {
+      "mtime": 1791440871.766049,
+      "size": 26509,
+      "bad": {
+        "127": "ENV-GAP:neo4j",
+        "353": "ENV-GAP:fastapi",
+        "706": "ENV-GAP:requests",
+        "774": "ENV-GAP:neo4j",
+        "892": "UN-LEAK"
+      },
+      "notes": {
+        "127": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "353": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "706": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "774": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "892": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically"
+      }
+    },
+    "docs/learning-resources/labs/LAB-006-Train-Model-From-Scratch.md": {
+      "mtime": 1791441227.2934248,
+      "size": 40637,
+      "bad": {
+        "88": "ENV-GAP:torch",
+        "312": "ENV-GAP:tokenizers",
+        "360": "ENV-GAP:torch",
+        "602": "ENV-GAP:torch"
+      },
+      "notes": {
+        "88": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "312": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "360": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "602": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+      }
+    },
+    "docs/learning-resources/labs/LAB-007-Production-RAG.md": {
+      "mtime": 1791440871.7675776,
+      "size": 35283,
+      "bad": {
+        "182": "ENV-GAP:sentence_transformers",
+        "244": "ENV-GAP:qdrant_client",
+        "599": "ENV-GAP:sentence_transformers",
+        "704": "ENV-GAP:qdrant_client",
+        "926": "ENV-GAP:fastapi"
+      },
+      "notes": {
+        "182": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "244": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "599": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "704": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "926": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+      }
+    },
+    "docs/learning-resources/labs/LAB-008-Agent-Fleet.md": {
+      "mtime": 1791440871.7675776,
+      "size": 37062,
+      "bad": {
+        "88": "ENV-GAP:pydantic",
+        "200": "UN-LEAK",
+        "308": "ENV-GAP:requests",
+        "427": "ENV-GAP:numpy",
+        "603": "ENV-GAP:base_agent",
+        "743": "ENV-GAP:base_agent",
+        "883": "ENV-GAP:agent_types",
+        "1139": "ENV-GAP:memory"
+      },
+      "notes": {
+        "88": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "200": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
+        "308": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "427": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "603": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "743": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "883": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "1139": "optional third-party package the QA environment does not install; the fence documents the install requirement"
       }
     },
     "docs/learning-resources/labs/LAB-009-Production-Deployment.md": {
-      "mtime": 1791436051.4937923,
-      "size": 43473,
+      "mtime": 1791440871.7691033,
+      "size": 43477,
       "bad": {
-        "73": "ENV-GAP:cryptography",
-        "173": "ENV-GAP:fastapi",
-        "642": "ENV-GAP:fastapi",
-        "1046": "ENV-GAP:prometheus_client",
-        "1164": "ENV-GAP:fastapi",
-        "1522": "ENV-GAP:fastapi"
+        "75": "ENV-GAP:cryptography",
+        "175": "ENV-GAP:fastapi",
+        "644": "ENV-GAP:fastapi",
+        "1048": "ENV-GAP:prometheus_client",
+        "1166": "ENV-GAP:fastapi",
+        "1524": "ENV-GAP:fastapi"
       },
       "notes": {
-        "73": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "173": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "642": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "1046": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "1164": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "1522": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "75": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "175": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "644": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "1048": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "1166": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "1524": "optional third-party package the QA environment does not install; the fence documents the install requirement"
       }
     },
     "docs/learning-resources/labs/LAB-010-DPO-Alignment.md": {
@@ -589,69 +698,69 @@
       }
     },
     "docs/learning-resources/labs/LAB-011-Multi-Modal-AI.md": {
-      "mtime": 1791436051.4957938,
-      "size": 41003,
+      "mtime": 1791440871.7691033,
+      "size": 41007,
       "bad": {
-        "58": "ENV-GAP:torch",
-        "328": "ENV-GAP:torch",
-        "613": "ENV-GAP:torch",
-        "705": "ENV-GAP:torch",
-        "1027": "ENV-GAP:torch",
-        "1320": "ENV-GAP:fastapi"
+        "60": "ENV-GAP:torch",
+        "330": "ENV-GAP:torch",
+        "615": "ENV-GAP:torch",
+        "707": "ENV-GAP:torch",
+        "1029": "ENV-GAP:torch",
+        "1322": "ENV-GAP:fastapi"
       },
       "notes": {
-        "58": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "328": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "613": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "705": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "1027": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "1320": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "60": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "330": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "615": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "707": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "1029": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "1322": "optional third-party package the QA environment does not install; the fence documents the install requirement"
       }
     },
     "docs/learning-resources/labs/LAB-012-Audio-AI.md": {
-      "mtime": 1791436051.4967923,
-      "size": 39586,
+      "mtime": 1791440871.770109,
+      "size": 39590,
       "bad": {
-        "56": "ENV-GAP:torch",
-        "485": "ENV-GAP:torch",
-        "577": "ENV-GAP:torch",
-        "838": "ENV-GAP:torch",
-        "1170": "ENV-GAP:torch",
-        "1409": "ENV-GAP:fastapi"
+        "58": "ENV-GAP:torch",
+        "487": "ENV-GAP:torch",
+        "579": "ENV-GAP:torch",
+        "840": "ENV-GAP:torch",
+        "1172": "ENV-GAP:torch",
+        "1411": "ENV-GAP:fastapi"
       },
       "notes": {
-        "56": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "485": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "577": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "838": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "1170": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "1409": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "58": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "487": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "579": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "840": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "1172": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "1411": "optional third-party package the QA environment does not install; the fence documents the install requirement"
       }
     },
     "docs/learning-resources/labs/LAB-013-Advanced-Function-Calling.md": {
-      "mtime": 1791436051.4977925,
-      "size": 41365,
+      "mtime": 1791440871.7711093,
+      "size": 41369,
       "bad": {
-        "57": "ENV-GAP:pydantic",
-        "520": "ENV-GAP:requests",
-        "1015": "UN-LEAK",
-        "1357": "ENV-GAP:fastapi"
+        "59": "ENV-GAP:pydantic",
+        "522": "ENV-GAP:requests",
+        "1017": "UN-LEAK",
+        "1359": "ENV-GAP:fastapi"
       },
       "notes": {
-        "57": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "520": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "1015": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
-        "1357": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "59": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "522": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "1017": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
+        "1359": "optional third-party package the QA environment does not install; the fence documents the install requirement"
       }
     },
     "docs/learning-resources/labs/LAB-014-AI-Evaluation-Safety.md": {
-      "mtime": 1791436051.4977925,
-      "size": 38082,
+      "mtime": 1791440871.7717457,
+      "size": 38086,
       "bad": {
-        "54": "ENV-GAP:torch"
+        "56": "ENV-GAP:torch"
       },
       "notes": {
-        "54": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "56": "optional third-party package the QA environment does not install; the fence documents the install requirement"
       }
     },
     "docs/learning-resources/labs/solutions/SOLUTION-LAB-000-Environment-Setup.md": {
@@ -665,8 +774,8 @@
       }
     },
     "docs/learning-resources/labs/solutions/SOLUTION-LAB-001-Docker-LLM.md": {
-      "mtime": 1791436051.4992983,
-      "size": 15759,
+      "mtime": 1791440871.7727506,
+      "size": 15760,
       "bad": {
         "108": "ENV-GAP:fastapi",
         "479": "ENV-GAP:storage"
@@ -691,13 +800,21 @@
       }
     },
     "docs/learning-resources/labs/solutions/SOLUTION-LAB-003-LoRA-FineTuning.md": {
-      "mtime": 1791089331.6829748,
-      "size": 16290,
+      "mtime": 1791441227.297934,
+      "size": 16291,
       "bad": {
-        "27": "TIMEOUT"
+        "27": "ENV-GAP:torch",
+        "212": "ENV-GAP:torch",
+        "364": "ENV-GAP:peft",
+        "463": "ENV-GAP:datasets",
+        "548": "ENV-GAP:evaluate"
       },
       "notes": {
-        "27": "real multi-GB Mistral-7B load exceeds the 90s census budget by design - same class as the 548 twin; the file-level budget lands on whichever load the clock is inside (tick-639 adjudication)"
+        "27": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "212": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "364": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "463": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "548": "optional third-party package the QA environment does not install; the fence documents the install requirement"
       }
     },
     "docs/learning-resources/labs/solutions/SOLUTION-LAB-004-ReAct-Agent.md": {
@@ -706,8 +823,8 @@
       "bad": {}
     },
     "docs/learning-resources/labs/solutions/SOLUTION-LAB-005-GraphRAG.md": {
-      "mtime": 1791436051.501656,
-      "size": 16701,
+      "mtime": 1791440871.7727506,
+      "size": 16702,
       "bad": {
         "39": "ENV-GAP:neo4j"
       },
@@ -716,13 +833,19 @@
       }
     },
     "docs/learning-resources/labs/solutions/SOLUTION-LAB-006-Train-Model-From-Scratch.md": {
-      "mtime": 1791063231.6350503,
-      "size": 22900,
+      "mtime": 1791441227.2989345,
+      "size": 22901,
       "bad": {
-        "369": "ENV-GAP:tensorboard"
+        "27": "ENV-GAP:torch",
+        "218": "ENV-GAP:torch",
+        "369": "ENV-GAP:torch",
+        "493": "ENV-GAP:numpy"
       },
       "notes": {
-        "369": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "27": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "218": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "369": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "493": "optional third-party package the QA environment does not install; the fence documents the install requirement"
       }
     },
     "docs/learning-resources/labs/solutions/SOLUTION-LAB-007-Production-RAG.md": {
@@ -731,8 +854,8 @@
       "size": 2218
     },
     "docs/learning-resources/labs/solutions/SOLUTION-LAB-008-Agent-Fleet.md": {
-      "mtime": 1791436051.503246,
-      "size": 28960,
+      "mtime": 1791440871.7752607,
+      "size": 28961,
       "bad": {}
     },
     "docs/learning-resources/labs/solutions/SOLUTION-LAB-010-DPO-Alignment.md": {
@@ -758,30 +881,30 @@
       },
       "mtime": 1791032671.5743089,
       "notes": {
-        "76": "placeholder-artifact path: the fence opens a sample image that only exists in the learner's own workspace (same family as @115); the transformers 5.x output-API bug that used to fail here is fixed - the CLIP calls now read .pooler_output and the fence's execution reaches the image open cleanly",
-        "115": "demonstrates the API on a learner-supplied/generated artifact path that does not exist in the census cwd"
+        "115": "demonstrates the API on a learner-supplied/generated artifact path that does not exist in the census cwd",
+        "76": "placeholder-artifact path: the fence opens a sample image that only exists in the learner's own workspace (same family as @115); the transformers 5.x output-API bug that used to fail here is fixed - the CLIP calls now read .pooler_output and the fence's execution reaches the image open cleanly"
       },
       "size": 11380
     },
     "docs/learning-resources/labs/solutions/SOLUTION-LAB-012-Audio-AI.md": {
+      "mtime": 1791441227.2999337,
+      "size": 24367,
       "bad": {
+        "30": "ENV-GAP:torch",
         "184": "ENV-GAP:TTS",
-        "30": "ENV-GAP:librosa",
-        "303": "ENV-GAP:speechbrain",
-        "416": "CODE-SIGNAL:ImportError",
+        "303": "ENV-GAP:torch",
+        "416": "ENV-GAP:torch",
         "528": "ENV-GAP:librosa",
         "676": "UN-LEAK"
       },
-      "mtime": 1790788811.2985837,
       "notes": {
         "30": "optional third-party package the QA environment does not install; the fence documents the install requirement",
         "184": "optional third-party package the QA environment does not install; the fence documents the install requirement",
         "303": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "416": "optional torchcodec package the QA environment does not install (same ENV-GAP class, ImportError phrasing)",
+        "416": "optional third-party package the QA environment does not install; the fence documents the install requirement",
         "528": "optional third-party package the QA environment does not install; the fence documents the install requirement",
         "676": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically"
-      },
-      "size": 24366
+      }
     },
     "docs/learning-resources/labs/solutions/SOLUTION-LAB-013-Advanced-Function-Calling.md": {
       "mtime": 1791096283.216057,
@@ -794,156 +917,156 @@
       "size": 2316
     },
     "docs/learning-resources/projects/PROJECT-001-AI-Assistant.md": {
-      "mtime": 1791436051.5064762,
-      "size": 36878,
+      "mtime": 1791440871.7772603,
+      "size": 36879,
       "bad": {
-        "314": "ENV-GAP:qdrant_client",
-        "369": "ENV-GAP:neo4j",
-        "463": "ENV-GAP:fastapi",
-        "667": "ENV-GAP:fastapi",
-        "907": "ENV-GAP:fastapi"
+        "315": "ENV-GAP:qdrant_client",
+        "370": "ENV-GAP:neo4j",
+        "464": "ENV-GAP:fastapi",
+        "668": "ENV-GAP:fastapi",
+        "908": "ENV-GAP:fastapi"
       },
       "notes": {
-        "314": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "369": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "463": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "667": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "907": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "315": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "370": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "464": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "668": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "908": "optional third-party package the QA environment does not install; the fence documents the install requirement"
       }
     },
     "docs/learning-resources/projects/PROJECT-002-Train-Neural-Network.md": {
-      "mtime": 1791436051.5075336,
-      "size": 33696,
+      "mtime": 1791440871.7782607,
+      "size": 33697,
       "bad": {
-        "82": "ENV-GAP:numpy",
-        "352": "ENV-GAP:tensor",
-        "656": "ENV-GAP:numpy",
-        "805": "ENV-GAP:nn",
-        "926": "ENV-GAP:torch",
-        "1007": "ENV-GAP:nn"
+        "83": "ENV-GAP:numpy",
+        "353": "ENV-GAP:tensor",
+        "657": "ENV-GAP:numpy",
+        "806": "ENV-GAP:nn",
+        "927": "ENV-GAP:torch",
+        "1008": "ENV-GAP:nn"
       },
       "notes": {
-        "82": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "352": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "656": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "805": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "926": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "1007": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "83": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "353": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "657": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "806": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "927": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "1008": "optional third-party package the QA environment does not install; the fence documents the install requirement"
       }
     },
     "docs/learning-resources/projects/PROJECT-003-Transformer-From-Scratch.md": {
-      "mtime": 1791436051.508592,
-      "size": 33380,
+      "mtime": 1791440871.7792606,
+      "size": 33381,
       "bad": {
-        "100": "ENV-GAP:numpy",
-        "199": "ENV-GAP:tensor",
-        "309": "ENV-GAP:numpy",
-        "440": "ENV-GAP:tensor",
-        "506": "ENV-GAP:tensor",
-        "577": "ENV-GAP:tensor",
-        "708": "ENV-GAP:tensor",
-        "873": "ENV-GAP:transformer",
-        "999": "UN-LEAK"
+        "101": "ENV-GAP:numpy",
+        "200": "ENV-GAP:tensor",
+        "310": "ENV-GAP:numpy",
+        "441": "ENV-GAP:tensor",
+        "507": "ENV-GAP:tensor",
+        "578": "ENV-GAP:tensor",
+        "709": "ENV-GAP:tensor",
+        "874": "ENV-GAP:transformer",
+        "1000": "UN-LEAK"
       },
       "notes": {
-        "100": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "199": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "309": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "440": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "506": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "577": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "708": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "873": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "999": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically"
+        "101": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "200": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "310": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "441": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "507": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "578": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "709": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "874": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "1000": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically"
       }
     },
     "docs/learning-resources/projects/PROJECT-004-Quantize-Model.md": {
-      "mtime": 1791436051.5091176,
-      "size": 19384,
+      "mtime": 1791440871.7792606,
+      "size": 19385,
       "bad": {
-        "89": "ENV-GAP:numpy",
-        "171": "UN-LEAK",
-        "230": "ENV-GAP:numpy",
-        "364": "ENV-GAP:numpy",
-        "490": "ENV-GAP:numpy"
+        "90": "ENV-GAP:numpy",
+        "172": "UN-LEAK",
+        "231": "ENV-GAP:numpy",
+        "365": "ENV-GAP:numpy",
+        "491": "ENV-GAP:numpy"
       },
       "notes": {
-        "89": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "171": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
-        "230": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "364": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "490": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "90": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "172": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
+        "231": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "365": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "491": "optional third-party package the QA environment does not install; the fence documents the install requirement"
       }
     },
     "docs/learning-resources/projects/PROJECT-005-FineTune-Model.md": {
-      "mtime": 1791436051.5101857,
-      "size": 17264,
+      "mtime": 1791440871.7802603,
+      "size": 17265,
       "bad": {
-        "254": "ENV-GAP:torch",
-        "390": "ENV-GAP:torch"
+        "255": "ENV-GAP:torch",
+        "391": "ENV-GAP:torch"
       },
       "notes": {
-        "254": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "390": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "255": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "391": "optional third-party package the QA environment does not install; the fence documents the install requirement"
       }
     },
     "docs/learning-resources/projects/PROJECT-006-Production-RAG.md": {
-      "mtime": 1791436051.510713,
-      "size": 22464,
+      "mtime": 1791440871.7802603,
+      "size": 22465,
       "bad": {
-        "112": "ENV-GAP:pypdf",
-        "227": "ENV-GAP:numpy",
-        "292": "ENV-GAP:spacy",
-        "339": "ENV-GAP:qdrant_client",
-        "435": "ENV-GAP:qdrant_client",
-        "503": "ENV-GAP:openai",
-        "576": "ENV-GAP:fastapi"
+        "113": "ENV-GAP:pypdf",
+        "228": "ENV-GAP:numpy",
+        "293": "ENV-GAP:spacy",
+        "340": "ENV-GAP:qdrant_client",
+        "436": "ENV-GAP:qdrant_client",
+        "504": "ENV-GAP:openai",
+        "577": "ENV-GAP:fastapi"
       },
       "notes": {
-        "112": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "227": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "292": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "339": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "435": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "503": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "576": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "113": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "228": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "293": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "340": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "436": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "504": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "577": "optional third-party package the QA environment does not install; the fence documents the install requirement"
       }
     },
     "docs/learning-resources/projects/PROJECT-007-Production-AI-System.md": {
-      "mtime": 1791436051.5112433,
-      "size": 24099,
+      "mtime": 1791440871.7812605,
+      "size": 24100,
       "bad": {
-        "111": "ENV-GAP:langgraph",
-        "212": "UN-LEAK",
-        "286": "ENV-GAP:fastapi",
-        "529": "ENV-GAP:prometheus_client"
+        "112": "ENV-GAP:langgraph",
+        "213": "UN-LEAK",
+        "287": "ENV-GAP:fastapi",
+        "530": "ENV-GAP:prometheus_client"
       },
       "notes": {
-        "111": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "212": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
-        "286": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "529": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "112": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "213": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
+        "287": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "530": "optional third-party package the QA environment does not install; the fence documents the install requirement"
       }
     },
     "docs/learning-resources/projects/templates/TEMPLATE-004-Agent-Framework.md": {
+      "mtime": 1791441227.305136,
+      "size": 2955,
       "bad": {
-        "116": "ENV-GAP:src",
         "62": "ENV-GAP:src",
         "76": "ENV-GAP:src",
-        "94": "ENV-GAP:src"
+        "94": "ENV-GAP:src",
+        "116": "ENV-GAP:src"
       },
-      "mtime": 1790758480.763909,
       "notes": {
         "62": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design",
         "76": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design",
         "94": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design",
         "116": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design"
-      },
-      "size": 2953
+      }
     },
     "docs/learning-resources/projects/templates/TEMPLATE-005-Model-Quantization.md": {
-      "mtime": 1791436051.512838,
-      "size": 2959,
+      "mtime": 1791440871.7847376,
+      "size": 2961,
       "bad": {
         "60": "ENV-GAP:src",
         "69": "ENV-GAP:src",
@@ -956,47 +1079,48 @@
       }
     },
     "docs/learning-resources/projects/templates/TEMPLATE-006-Synthetic-Data-Generator.md": {
+      "mtime": 1791441227.3061373,
+      "size": 4013,
       "bad": {
+        "71": "ENV-GAP:src",
+        "87": "ENV-GAP:src",
         "103": "ENV-GAP:src",
         "118": "ENV-GAP:src",
-        "153": "ENV-GAP:src",
-        "71": "ENV-GAP:src",
-        "87": "ENV-GAP:src"
+        "153": "ENV-GAP:src"
       },
-      "mtime": 1790758480.7650766,
       "notes": {
         "71": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design",
         "87": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design",
         "103": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design",
         "118": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design",
         "153": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design"
-      },
-      "size": 4011
+      }
     },
     "docs/learning-resources/projects/templates/TEMPLATE-007-LLM-Evaluation-Benchmark.md": {
+      "mtime": 1791441227.3071356,
+      "size": 3979,
       "bad": {
-        "167": "ENV-GAP:src",
         "77": "ENV-GAP:src",
-        "99": "ENV-GAP:src"
+        "99": "ENV-GAP:src",
+        "167": "ENV-GAP:src"
       },
-      "mtime": 1790758480.7656207,
       "notes": {
         "77": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design",
         "99": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design",
         "167": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design"
-      },
-      "size": 3977
+      }
     },
     "docs/learning-resources/projects/templates/TEMPLATE-008-Multi-Modal-Application.md": {
+      "mtime": 1791441227.3071356,
+      "size": 4201,
       "bad": {
-        "113": "ENV-GAP:src",
-        "142": "ENV-GAP:src",
-        "165": "ENV-GAP:src",
         "73": "ENV-GAP:src",
         "89": "ENV-GAP:src",
-        "99": "ENV-GAP:src"
+        "99": "ENV-GAP:src",
+        "113": "ENV-GAP:src",
+        "142": "ENV-GAP:src",
+        "165": "ENV-GAP:src"
       },
-      "mtime": 1790758480.7666903,
       "notes": {
         "73": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design",
         "89": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design",
@@ -1004,12 +1128,11 @@
         "113": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design",
         "142": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design",
         "165": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design"
-      },
-      "size": 4199
+      }
     },
     "docs/learning-resources/projects/templates/TEMPLATE-009-Model-Deployment.md": {
-      "mtime": 1791223941.3062153,
-      "size": 4774,
+      "mtime": 1791441227.3081338,
+      "size": 4776,
       "bad": {
         "95": "ENV-GAP:src",
         "110": "ENV-GAP:src",
@@ -1030,30 +1153,31 @@
       }
     },
     "docs/learning-resources/projects/templates/TEMPLATE-010-Chatbot-UI.md": {
-      "mtime": 1791397005.5633304,
-      "size": 5905,
+      "mtime": 1791441227.3081338,
+      "size": 5907,
       "bad": {
-        "84": "ENV-GAP:src",
+        "84": "ENV-GAP:fastapi",
         "113": "UN-LEAK"
       },
       "notes": {
-        "84": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design",
+        "84": "optional third-party package the QA environment does not install; the fence documents the install requirement",
         "113": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically"
       }
     },
     "docs/learning-resources/projects/templates/TEMPLATE-011-Model-Merging-MoE.md": {
+      "mtime": 1791441227.309135,
+      "size": 5093,
       "bad": {
+        "80": "ENV-GAP:src",
+        "94": "ENV-GAP:src",
         "111": "ENV-GAP:src",
         "126": "ENV-GAP:src",
         "143": "ENV-GAP:src",
         "159": "ENV-GAP:src",
         "179": "ENV-GAP:src",
         "192": "ENV-GAP:src",
-        "220": "ENV-GAP:src",
-        "80": "ENV-GAP:src",
-        "94": "ENV-GAP:src"
+        "220": "ENV-GAP:src"
       },
-      "mtime": 1790758480.7685359,
       "notes": {
         "80": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design",
         "94": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design",
@@ -1064,10 +1188,11 @@
         "179": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design",
         "192": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design",
         "220": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design"
-      },
-      "size": 5091
+      }
     },
     "docs/learning-resources/projects/templates/TEMPLATE-012-End-to-End-LLM-Pipeline.md": {
+      "mtime": 1791441227.309135,
+      "size": 7343,
       "bad": {
         "147": "ENV-GAP:src",
         "162": "ENV-GAP:src",
@@ -1078,7 +1203,6 @@
         "276": "ENV-GAP:src",
         "322": "ENV-GAP:src"
       },
-      "mtime": 1790758480.7690659,
       "notes": {
         "147": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design",
         "162": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design",
@@ -1088,8 +1212,7 @@
         "251": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design",
         "276": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design",
         "322": "project-local module from the curriculum's from-scratch layout; absent in the census throwaway cwd by design"
-      },
-      "size": 7341
+      }
     },
     "docs/learning-resources/troubleshooting/TROUBLESHOOTING-Common-Issues.md": {
       "mtime": 1791436051.515843,
@@ -1128,117 +1251,117 @@
       }
     },
     "docs/learning-resources/tutorials/TUTORIAL-000-Python-for-AI.md": {
-      "mtime": 1791436051.5168414,
-      "size": 47333,
+      "mtime": 1791440871.7887423,
+      "size": 47337,
       "bad": {
-        "498": "CODE-SIGNAL:TypeError",
-        "805": "CODE-SIGNAL:FileNotFoundError",
-        "918": "ENV-GAP:numpy",
-        "938": "ENV-GAP:mymodule",
-        "1058": "ENV-GAP:numpy",
-        "1100": "ENV-GAP:numpy",
-        "1153": "ENV-GAP:numpy",
-        "1204": "ENV-GAP:numpy",
-        "1244": "ENV-GAP:numpy",
-        "1303": "ENV-GAP:numpy",
-        "1345": "ENV-GAP:numpy",
-        "1421": "ENV-GAP:numpy",
-        "1602": "ENV-GAP:pydantic",
-        "1620": "ENV-GAP:pydantic",
-        "1641": "ENV-GAP:pydantic",
-        "1664": "ENV-GAP:pydantic",
-        "1691": "ENV-GAP:pydantic",
-        "1713": "ENV-GAP:pydantic",
-        "1746": "ENV-GAP:fastapi",
-        "1769": "ENV-GAP:fastapi",
-        "1785": "ENV-GAP:fastapi",
-        "1806": "ENV-GAP:fastapi",
-        "1835": "ENV-GAP:fastapi",
-        "1874": "ENV-GAP:fastapi",
-        "1895": "ENV-GAP:uvicorn",
-        "1917": "ENV-GAP:requests",
-        "1932": "ENV-GAP:requests"
+        "500": "CODE-SIGNAL:TypeError",
+        "807": "CODE-SIGNAL:FileNotFoundError",
+        "920": "ENV-GAP:numpy",
+        "940": "ENV-GAP:mymodule",
+        "1060": "ENV-GAP:numpy",
+        "1102": "ENV-GAP:numpy",
+        "1155": "ENV-GAP:numpy",
+        "1206": "ENV-GAP:numpy",
+        "1246": "ENV-GAP:numpy",
+        "1305": "ENV-GAP:numpy",
+        "1347": "ENV-GAP:numpy",
+        "1423": "ENV-GAP:numpy",
+        "1604": "ENV-GAP:pydantic",
+        "1622": "ENV-GAP:pydantic",
+        "1643": "ENV-GAP:pydantic",
+        "1666": "ENV-GAP:pydantic",
+        "1693": "ENV-GAP:pydantic",
+        "1715": "ENV-GAP:pydantic",
+        "1748": "ENV-GAP:fastapi",
+        "1771": "ENV-GAP:fastapi",
+        "1787": "ENV-GAP:fastapi",
+        "1808": "ENV-GAP:fastapi",
+        "1837": "ENV-GAP:fastapi",
+        "1876": "ENV-GAP:fastapi",
+        "1897": "ENV-GAP:uvicorn",
+        "1919": "ENV-GAP:requests",
+        "1934": "ENV-GAP:requests"
       },
       "notes": {
-        "918": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "938": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "1058": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "1100": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "1153": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "1204": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "1244": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "1303": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "1345": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "1421": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "1602": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "1620": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "1641": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "1664": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "1691": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "1713": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "1746": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "1769": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "1785": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "1806": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "1835": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "1874": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "1895": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "1917": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "1932": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "498": "deliberate immutability demo: coordinates[0] = 5 is the lesson and raises TypeError by design (broken-as-written teaching example)",
-        "805": "reads file.txt, a learner-created exercise artifact the census throwaway cwd does not contain"
+        "500": "deliberate immutability demo: coordinates[0] = 5 is the lesson and raises TypeError by design (broken-as-written teaching example)",
+        "807": "reads file.txt, a learner-created exercise artifact the census throwaway cwd does not contain",
+        "920": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "940": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "1060": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "1102": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "1155": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "1206": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "1246": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "1305": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "1347": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "1423": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "1604": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "1622": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "1643": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "1666": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "1693": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "1715": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "1748": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "1771": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "1787": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "1808": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "1837": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "1876": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "1897": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "1919": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "1934": "optional third-party package the QA environment does not install; the fence documents the install requirement"
       }
     },
     "docs/learning-resources/tutorials/TUTORIAL-001-Hello-LLM.md": {
-      "mtime": 1791436051.5178418,
-      "size": 6927,
+      "mtime": 1791440871.7887423,
+      "size": 6929,
       "bad": {
-        "189": "ENV-GAP:requests"
+        "191": "ENV-GAP:requests"
       },
       "notes": {
-        "189": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "191": "optional third-party package the QA environment does not install; the fence documents the install requirement"
       }
     },
     "docs/learning-resources/tutorials/TUTORIAL-003-RAG-Basics.md": {
-      "mtime": 1791436051.5188427,
-      "size": 17327,
+      "mtime": 1791440871.7902477,
+      "size": 17329,
       "bad": {
-        "96": "ENV-GAP:sentence_transformers",
-        "152": "ENV-GAP:sentence_transformers",
-        "262": "ENV-GAP:fastapi",
-        "357": "UN-LEAK",
-        "566": "ENV-GAP:sentence_transformers"
+        "98": "ENV-GAP:sentence_transformers",
+        "154": "ENV-GAP:sentence_transformers",
+        "264": "ENV-GAP:fastapi",
+        "359": "UN-LEAK",
+        "568": "ENV-GAP:sentence_transformers"
       },
       "notes": {
-        "96": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "152": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "262": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "357": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
-        "566": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "98": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "154": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "264": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "359": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
+        "568": "optional third-party package the QA environment does not install; the fence documents the install requirement"
       }
     },
     "docs/learning-resources/tutorials/TUTORIAL-004-Monitoring.md": {
-      "mtime": 1791436051.5198433,
-      "size": 17346,
+      "mtime": 1791440871.7912533,
+      "size": 17348,
       "bad": {
-        "560": "ENV-GAP:fastapi"
+        "562": "ENV-GAP:fastapi"
       },
       "notes": {
-        "560": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "562": "optional third-party package the QA environment does not install; the fence documents the install requirement"
       }
     },
     "docs/learning-resources/tutorials/TUTORIAL-006-Real-time-AI.md": {
-      "mtime": 1791436051.5208423,
-      "size": 13049,
+      "mtime": 1791440871.7922535,
+      "size": 13053,
       "bad": {
-        "48": "ENV-GAP:openai",
-        "144": "ENV-GAP:fastapi",
-        "297": "ENV-GAP:fastapi"
+        "50": "ENV-GAP:openai",
+        "146": "ENV-GAP:fastapi",
+        "299": "ENV-GAP:fastapi"
       },
       "notes": {
-        "48": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "144": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "297": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "50": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "146": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "299": "optional third-party package the QA environment does not install; the fence documents the install requirement"
       }
     },
     "docs/learning-resources/tutorials/TUTORIAL-007-LoRA-Basics.md": {
@@ -1260,109 +1383,109 @@
       }
     },
     "docs/learning-resources/tutorials/TUTORIAL-008-CUDA-Programming.md": {
-      "mtime": 1791436051.5223458,
-      "size": 12228,
+      "mtime": 1791440871.7922535,
+      "size": 12230,
       "bad": {
-        "99": "ENV-GAP:numba",
-        "157": "UN-LEAK",
-        "214": "UN-LEAK",
-        "271": "UN-LEAK",
-        "366": "UN-LEAK"
+        "101": "ENV-GAP:numba",
+        "159": "UN-LEAK",
+        "216": "UN-LEAK",
+        "273": "UN-LEAK",
+        "368": "UN-LEAK"
       },
       "notes": {
-        "99": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "157": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
-        "214": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
-        "271": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
-        "366": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically"
+        "101": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "159": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
+        "216": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
+        "273": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
+        "368": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically"
       }
     },
     "docs/learning-resources/tutorials/TUTORIAL-009-Advanced-RAG-Techniques.md": {
-      "mtime": 1791436051.5233512,
-      "size": 18888,
+      "mtime": 1791440871.7932534,
+      "size": 18890,
       "bad": {
-        "69": "ENV-GAP:rank_bm25",
-        "182": "ENV-GAP:sentence_transformers",
-        "245": "ENV-GAP:neo4j"
+        "71": "ENV-GAP:rank_bm25",
+        "184": "ENV-GAP:sentence_transformers",
+        "247": "ENV-GAP:neo4j"
       },
       "notes": {
-        "69": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "182": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "245": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "71": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "184": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "247": "optional third-party package the QA environment does not install; the fence documents the install requirement"
       }
     },
     "docs/learning-resources/tutorials/TUTORIAL-010-Model-Evaluation.md": {
-      "mtime": 1791436051.5233512,
-      "size": 21266,
+      "mtime": 1791440871.7942533,
+      "size": 21268,
       "bad": {
-        "68": "ENV-GAP:torch",
-        "138": "ENV-GAP:nltk",
-        "194": "ENV-GAP:rouge",
-        "402": "ENV-GAP:numpy",
-        "478": "ENV-GAP:sentence_transformers",
-        "642": "ENV-GAP:pandas"
+        "70": "ENV-GAP:torch",
+        "140": "ENV-GAP:nltk",
+        "196": "ENV-GAP:rouge",
+        "404": "ENV-GAP:numpy",
+        "480": "ENV-GAP:sentence_transformers",
+        "644": "ENV-GAP:pandas"
       },
       "notes": {
-        "68": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "138": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "194": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "402": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "478": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "642": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "70": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "140": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "196": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "404": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "480": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "644": "optional third-party package the QA environment does not install; the fence documents the install requirement"
       }
     },
     "docs/learning-resources/tutorials/TUTORIAL-011-Multi-Modal-AI.md": {
-      "mtime": 1791436051.5243504,
-      "size": 20161,
+      "mtime": 1791440871.7942533,
+      "size": 20163,
       "bad": {
-        "69": "ENV-GAP:torch",
-        "123": "ENV-GAP:transformers",
-        "167": "ENV-GAP:transformers",
-        "205": "UN-LEAK",
-        "253": "ENV-GAP:numpy",
-        "346": "ENV-GAP:cv2",
-        "405": "ENV-GAP:transformers",
-        "482": "ENV-GAP:torchaudio",
-        "541": "ENV-GAP:transformers"
+        "71": "ENV-GAP:torch",
+        "125": "ENV-GAP:transformers",
+        "169": "ENV-GAP:transformers",
+        "207": "UN-LEAK",
+        "255": "ENV-GAP:numpy",
+        "348": "ENV-GAP:cv2",
+        "407": "ENV-GAP:transformers",
+        "484": "ENV-GAP:torchaudio",
+        "543": "ENV-GAP:transformers"
       },
       "notes": {
-        "69": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "123": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "167": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "205": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
-        "253": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "346": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "405": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "482": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "541": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "71": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "125": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "169": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "207": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
+        "255": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "348": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "407": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "484": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "543": "optional third-party package the QA environment does not install; the fence documents the install requirement"
       }
     },
     "docs/learning-resources/tutorials/TUTORIAL-012-Production-LLMOps.md": {
-      "mtime": 1791436051.5253506,
-      "size": 26122,
+      "mtime": 1791440871.7952535,
+      "size": 26123,
       "bad": {
-        "467": "ENV-GAP:prometheus_client",
-        "660": "ENV-GAP:numpy",
-        "771": "UN-LEAK"
+        "468": "ENV-GAP:prometheus_client",
+        "661": "ENV-GAP:numpy",
+        "772": "UN-LEAK"
       },
       "notes": {
-        "467": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "660": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "771": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically"
+        "468": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "661": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "772": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically"
       }
     },
     "docs/learning-resources/tutorials/TUTORIAL-013-AI-Security.md": {
-      "mtime": 1791436051.5263507,
-      "size": 28222,
+      "mtime": 1791440871.7962532,
+      "size": 28224,
       "bad": {
-        "330": "ENV-GAP:transformers",
-        "423": "ENV-GAP:jwt",
-        "574": "ENV-GAP:fastapi"
+        "332": "ENV-GAP:transformers",
+        "425": "ENV-GAP:jwt",
+        "576": "ENV-GAP:fastapi"
       },
       "notes": {
-        "330": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "423": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "574": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "332": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "425": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "576": "optional third-party package the QA environment does not install; the fence documents the install requirement"
       }
     },
     "docs/learning-resources/tutorials/TUTORIAL-014-Production-LLM-Systems.md": {
@@ -1371,8 +1494,8 @@
       "bad": {}
     },
     "docs/notebooks/README.md": {
-      "mtime": 1791436051.5273502,
-      "size": 10038,
+      "mtime": 1791440871.7962532,
+      "size": 10039,
       "bad": {
         "60": "ENV-GAP:torch",
         "189": "ENV-GAP:torch"
@@ -1421,8 +1544,8 @@
       },
       "notes": {
         "223": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "449": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "251": "diagnostics script calls sys.exit(1 if issues else 0) as its designed CLI contract; the census runner cannot survive the exit"
+        "251": "diagnostics script calls sys.exit(1 if issues else 0) as its designed CLI contract; the census runner cannot survive the exit",
+        "449": "optional third-party package the QA environment does not install; the fence documents the install requirement"
       }
     },
     "docs/phases/phase1-infra/1400-llmops/1401-Ollama-Enterprise.md": {
@@ -1476,8 +1599,8 @@
       }
     },
     "docs/phases/phase1-infra/1400-llmops/README.md": {
-      "mtime": 1791436051.5460882,
-      "size": 25484,
+      "mtime": 1791442052.569415,
+      "size": 25511,
       "bad": {
         "537": "ENV-GAP:fastapi"
       },
@@ -1840,23 +1963,23 @@
       }
     },
     "docs/phases/phase2-foundations/2300-framework-engineering/2302-Model-Serving-Architectures.md": {
-      "mtime": 1791436051.5620947,
-      "size": 46064,
+      "mtime": 1791440871.803478,
+      "size": 46067,
       "bad": {
         "70": "ENV-GAP:torch",
         "447": "ENV-GAP:torch",
         "523": "ENV-GAP:torch",
-        "970": "ENV-GAP:torch",
-        "1097": "ENV-GAP:torch",
-        "1371": "ENV-GAP:torch"
+        "973": "ENV-GAP:torch",
+        "1100": "ENV-GAP:torch",
+        "1374": "ENV-GAP:torch"
       },
       "notes": {
         "70": "optional third-party package the QA environment does not install; the fence documents the install requirement",
         "447": "optional third-party package the QA environment does not install; the fence documents the install requirement",
         "523": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "970": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "1097": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "1371": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "973": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "1100": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "1374": "optional third-party package the QA environment does not install; the fence documents the install requirement"
       }
     },
     "docs/phases/phase2-foundations/2300-framework-engineering/2303-API-Design-for-ML.md": {
@@ -2037,8 +2160,8 @@
       }
     },
     "docs/phases/phase2-foundations/README.md": {
-      "mtime": 1791436051.573208,
-      "size": 25181,
+      "mtime": 1791440871.8044841,
+      "size": 25182,
       "bad": {
         "105": "ENV-GAP:torch",
         "468": "UN-LEAK",
@@ -2108,8 +2231,8 @@
       "bad": {}
     },
     "docs/phases/phase3-transformers/3100-attention/README.md": {
-      "mtime": 1791436051.5762088,
-      "size": 5394,
+      "mtime": 1791440871.8054833,
+      "size": 5395,
       "bad": {
         "99": "ENV-GAP:torch"
       },
@@ -2179,8 +2302,8 @@
       "bad": {}
     },
     "docs/phases/phase3-transformers/3200-embeddings/README.md": {
-      "mtime": 1791436051.5803761,
-      "size": 8098,
+      "mtime": 1791440871.806484,
+      "size": 8099,
       "bad": {
         "104": "ENV-GAP:torch",
         "182": "ENV-GAP:torch"
@@ -2266,8 +2389,8 @@
       "bad": {}
     },
     "docs/phases/phase3-transformers/3300-decoding/README.md": {
-      "mtime": 1791436051.5843785,
-      "size": 8149,
+      "mtime": 1791440871.807483,
+      "size": 8150,
       "bad": {
         "197": "ENV-GAP:torch",
         "236": "ENV-GAP:torch"
@@ -2278,23 +2401,23 @@
       }
     },
     "docs/phases/phase3-transformers/3300-decoding/assessment/PRACTICE.md": {
-      "mtime": 1791436051.5823755,
-      "size": 18757,
+      "mtime": 1791440871.807483,
+      "size": 18759,
       "bad": {
         "19": "ENV-GAP:torch",
-        "108": "UN-LEAK",
-        "216": "UN-LEAK",
-        "308": "UN-LEAK",
-        "414": "UN-LEAK",
-        "513": "UN-LEAK"
+        "109": "UN-LEAK",
+        "218": "UN-LEAK",
+        "310": "UN-LEAK",
+        "416": "UN-LEAK",
+        "515": "UN-LEAK"
       },
       "notes": {
         "19": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "108": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
-        "216": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
-        "308": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
-        "414": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
-        "513": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically"
+        "109": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
+        "218": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
+        "310": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
+        "416": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
+        "515": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically"
       }
     },
     "docs/phases/phase3-transformers/3300-decoding/guides/3303-Activation-Function-Comparison.md": {
@@ -2341,8 +2464,8 @@
       }
     },
     "docs/phases/phase3-transformers/3400-architectures/README.md": {
-      "mtime": 1791436051.5883787,
-      "size": 13456,
+      "mtime": 1791440871.8084838,
+      "size": 13457,
       "bad": {
         "220": "ENV-GAP:torch",
         "267": "ENV-GAP:torch"
@@ -2415,8 +2538,8 @@
       }
     },
     "docs/phases/phase3-transformers/3500-multimodal/README.md": {
-      "mtime": 1791436051.5913768,
-      "size": 13704,
+      "mtime": 1791440871.8084838,
+      "size": 13705,
       "bad": {
         "222": "ENV-GAP:torch"
       },
@@ -2447,8 +2570,8 @@
       }
     },
     "docs/phases/phase3-transformers/README.md": {
-      "mtime": 1791436051.593377,
-      "size": 25496,
+      "mtime": 1791440871.8094838,
+      "size": 25497,
       "bad": {
         "415": "ENV-GAP:torch",
         "439": "ENV-GAP:torch",
@@ -2479,13 +2602,13 @@
       }
     },
     "docs/phases/phase4-quantization/4100-low-bit/4101-GGUF-Physics.md": {
-      "mtime": 1791436051.593377,
-      "size": 17993,
+      "mtime": 1791440871.8109891,
+      "size": 17999,
       "bad": {
-        "184": "ENV-GAP:numpy"
+        "185": "ENV-GAP:numpy"
       },
       "notes": {
-        "184": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "185": "optional third-party package the QA environment does not install; the fence documents the install requirement"
       }
     },
     "docs/phases/phase4-quantization/4100-low-bit/4102-EXL2-and-AWQ.md": {
@@ -2535,21 +2658,21 @@
       }
     },
     "docs/phases/phase4-quantization/4100-low-bit/assessment/PRACTICE.md": {
-      "mtime": 1791436051.595376,
-      "size": 15880,
+      "mtime": 1791440871.8119946,
+      "size": 15881,
       "bad": {
         "19": "ENV-GAP:torch",
-        "113": "ENV-GAP:torch",
-        "218": "ENV-GAP:torch",
-        "315": "ENV-GAP:torch",
-        "406": "ENV-GAP:torch"
+        "114": "ENV-GAP:torch",
+        "219": "ENV-GAP:torch",
+        "316": "ENV-GAP:torch",
+        "407": "ENV-GAP:torch"
       },
       "notes": {
         "19": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "113": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "218": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "315": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "406": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "114": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "219": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "316": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "407": "optional third-party package the QA environment does not install; the fence documents the install requirement"
       }
     },
     "docs/phases/phase4-quantization/4200-kv-cache/4201-Context-Window-Physics.md": {
@@ -2798,11 +2921,11 @@
         "85": "optional third-party package the QA environment does not install; the fence documents the install requirement",
         "138": "optional third-party package the QA environment does not install; the fence documents the install requirement",
         "191": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "274": "measures a quantized-model artifact directory the learner produces; the census throwaway cwd has no such path",
         "317": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
         "351": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
         "364": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
-        "374": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
-        "274": "measures a quantized-model artifact directory the learner produces; the census throwaway cwd has no such path"
+        "374": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically"
       }
     },
     "docs/phases/phase4-quantization/4400-advanced-techniques/4402-AWQ.md": {
@@ -2919,8 +3042,8 @@
       }
     },
     "docs/phases/phase4-quantization/README.md": {
-      "mtime": 1791436051.6132774,
-      "size": 18084,
+      "mtime": 1791440871.8139954,
+      "size": 18085,
       "bad": {
         "341": "ENV-GAP:torch"
       },
@@ -2963,8 +3086,8 @@
       }
     },
     "docs/phases/phase5-finetuning/5100-peft/5103-Adapters.md": {
-      "mtime": 1791436051.6142776,
-      "size": 13347,
+      "mtime": 1791440871.8139954,
+      "size": 13349,
       "bad": {
         "97": "ENV-GAP:torch",
         "140": "UN-LEAK",
@@ -3060,8 +3183,8 @@
       }
     },
     "docs/phases/phase5-finetuning/5200-alignment/5204-Preference-Dataset-Creation.md": {
-      "mtime": 1791436051.6199062,
-      "size": 11534,
+      "mtime": 1791440871.815499,
+      "size": 11536,
       "bad": {
         "215": "ENV-GAP:sklearn"
       },
@@ -3274,8 +3397,8 @@
       "size": 11212
     },
     "docs/phases/phase5-finetuning/README.md": {
-      "mtime": 1791436051.6329188,
-      "size": 26431,
+      "mtime": 1791440871.817509,
+      "size": 26432,
       "bad": {
         "430": "ENV-GAP:transformers",
         "493": "ENV-GAP:transformers",
@@ -3322,8 +3445,8 @@
       "bad": {}
     },
     "docs/phases/phase6-rag/6100-vector/PREREQUISITES.md": {
-      "mtime": 1791436051.6349268,
-      "size": 2458,
+      "mtime": 1791440871.8185093,
+      "size": 2459,
       "bad": {}
     },
     "docs/phases/phase6-rag/6100-vector/assessment/PRACTICE.md": {
@@ -3377,8 +3500,8 @@
       }
     },
     "docs/phases/phase6-rag/6200-retrieval/6203-Advanced-Retrieval.md": {
-      "mtime": 1791436051.637437,
-      "size": 12040,
+      "mtime": 1791440871.8185093,
+      "size": 12042,
       "bad": {
         "141": "ENV-GAP:sentence_transformers"
       },
@@ -3403,8 +3526,8 @@
       },
       "mtime": 1790872416.285651,
       "notes": {
-        "19": "optional third-party package the QA environment does not install; the fence documents the install requirement",
         "117": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
+        "19": "optional third-party package the QA environment does not install; the fence documents the install requirement",
         "201": "optional third-party package the QA environment does not install; the fence documents the install requirement",
         "254": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
         "361": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
@@ -3539,13 +3662,13 @@
       },
       "mtime": 1790745763.7664938,
       "notes": {
-        "19": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "81": "optional third-party package the QA environment does not install; the fence documents the install requirement",
         "143": "optional third-party package the QA environment does not install; the fence documents the install requirement",
         "189": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
+        "19": "optional third-party package the QA environment does not install; the fence documents the install requirement",
         "268": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
         "337": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
-        "410": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically"
+        "410": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
+        "81": "optional third-party package the QA environment does not install; the fence documents the install requirement"
       },
       "size": 13698
     },
@@ -3594,8 +3717,8 @@
       },
       "mtime": 1790745763.7696588,
       "notes": {
-        "19": "optional third-party package the QA environment does not install; the fence documents the install requirement",
         "101": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
+        "19": "optional third-party package the QA environment does not install; the fence documents the install requirement",
         "223": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
         "295": "optional third-party package the QA environment does not install; the fence documents the install requirement",
         "476": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically"
@@ -3603,8 +3726,8 @@
       "size": 16457
     },
     "docs/phases/phase6-rag/README.md": {
-      "mtime": 1791436051.6520023,
-      "size": 30806,
+      "mtime": 1791440871.819509,
+      "size": 30807,
       "bad": {
         "637": "ENV-GAP:langchain_text_splitters",
         "701": "ENV-GAP:numpy"
@@ -3757,8 +3880,8 @@
       "size": 26583
     },
     "docs/phases/phase7-agentic/7300-orchestration/7302-Communication-Protocols.md": {
-      "mtime": 1791436051.6610026,
-      "size": 15177,
+      "mtime": 1791440871.8205092,
+      "size": 15179,
       "bad": {}
     },
     "docs/phases/phase7-agentic/7300-orchestration/7304-Event-Buses-Deadlocks-and-Human-Gates.md": {
@@ -3767,8 +3890,8 @@
       "bad": {}
     },
     "docs/phases/phase7-agentic/7300-orchestration/README.md": {
-      "mtime": 1791436051.6630027,
-      "size": 27648,
+      "mtime": 1791440871.8215091,
+      "size": 27649,
       "bad": {
         "130": "ENV-GAP:langgraph",
         "236": "ENV-GAP:autogen",
@@ -3857,8 +3980,8 @@
       }
     },
     "docs/phases/phase7-agentic/7400-memory/7403-Vector-Memory.md": {
-      "mtime": 1791436051.664507,
-      "size": 14327,
+      "mtime": 1791440871.8215091,
+      "size": 14329,
       "bad": {
         "159": "ENV-GAP:qdrant_client"
       },
@@ -3944,8 +4067,8 @@
       "bad": {}
     },
     "docs/phases/phase7-agentic/README.md": {
-      "mtime": 1791436051.6740742,
-      "size": 38994,
+      "mtime": 1791440871.8235455,
+      "size": 38995,
       "bad": {}
     },
     "docs/use-cases/README.md": {
@@ -3973,8 +4096,8 @@
       }
     },
     "docs/use-cases/UC-002-RAG-Applications.md": {
-      "mtime": 1791436051.6760738,
-      "size": 27702,
+      "mtime": 1791440871.8235455,
+      "size": 27732,
       "bad": {
         "44": "ENV-GAP:langchain_core",
         "178": "ENV-GAP:langchain_huggingface",
@@ -3995,8 +4118,8 @@
       }
     },
     "docs/use-cases/UC-003-Agent-Applications.md": {
-      "mtime": 1791436051.6770763,
-      "size": 31264,
+      "mtime": 1791440871.8245513,
+      "size": 31265,
       "bad": {
         "44": "ENV-GAP:langchain",
         "303": "ENV-GAP:langchain",
@@ -4009,101 +4132,101 @@
       }
     },
     "docs/volumes/VOLUME-2-AI-Foundations.md": {
-      "mtime": 1791436051.6780744,
-      "size": 14065,
+      "mtime": 1791440871.8255515,
+      "size": 14073,
       "bad": {
-        "58": "ENV-GAP:torch",
-        "122": "ENV-GAP:torchviz",
-        "188": "ENV-GAP:torch"
+        "60": "ENV-GAP:torch",
+        "124": "ENV-GAP:torchviz",
+        "190": "ENV-GAP:torch"
       },
       "notes": {
-        "58": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "122": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "188": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "60": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "124": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "190": "optional third-party package the QA environment does not install; the fence documents the install requirement"
       }
     },
     "docs/volumes/VOLUME-3-LLM-Internals.md": {
-      "mtime": 1791436051.6790738,
-      "size": 14625,
+      "mtime": 1791440871.826552,
+      "size": 14633,
       "bad": {
-        "73": "ENV-GAP:torch",
-        "145": "ENV-GAP:torch",
-        "222": "ENV-GAP:torch"
+        "75": "ENV-GAP:torch",
+        "147": "ENV-GAP:torch",
+        "224": "ENV-GAP:torch"
       },
       "notes": {
-        "73": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "145": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "222": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "75": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "147": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "224": "optional third-party package the QA environment does not install; the fence documents the install requirement"
       }
     },
     "docs/volumes/VOLUME-4-Quantization.md": {
-      "mtime": 1791436051.6800756,
-      "size": 15993,
+      "mtime": 1791440871.826552,
+      "size": 16001,
       "bad": {
-        "113": "ENV-GAP:exllamav2",
-        "157": "ENV-GAP:torch",
-        "279": "ENV-GAP:vllm",
-        "323": "ENV-GAP:vllm"
+        "115": "ENV-GAP:exllamav2",
+        "159": "ENV-GAP:torch",
+        "281": "ENV-GAP:vllm",
+        "325": "ENV-GAP:vllm"
       },
       "notes": {
-        "113": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "157": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "279": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "323": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "115": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "159": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "281": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "325": "optional third-party package the QA environment does not install; the fence documents the install requirement"
       }
     },
     "docs/volumes/VOLUME-5-Model-Adaptation.md": {
-      "mtime": 1791436051.6810758,
-      "size": 16873,
+      "mtime": 1791440871.8275516,
+      "size": 16880,
       "bad": {
-        "102": "ENV-GAP:torch",
-        "154": "ENV-GAP:transformers",
-        "287": "ENV-GAP:trl",
-        "435": "ENV-GAP:peft"
+        "104": "ENV-GAP:torch",
+        "156": "ENV-GAP:transformers",
+        "289": "ENV-GAP:trl",
+        "437": "ENV-GAP:peft"
       },
       "notes": {
-        "102": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "154": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "287": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "435": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "104": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "156": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "289": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "437": "optional third-party package the QA environment does not install; the fence documents the install requirement"
       }
     },
     "docs/volumes/VOLUME-6-Data-Nexus.md": {
-      "mtime": 1791436051.6820776,
-      "size": 33818,
+      "mtime": 1791440871.8275516,
+      "size": 33824,
       "bad": {
-        "133": "ENV-GAP:numpy",
-        "258": "ENV-GAP:qdrant_client",
-        "357": "ENV-GAP:sentence_transformers",
-        "454": "ENV-GAP:neo4j",
-        "830": "UN-LEAK",
-        "961": "ENV-GAP:langchain_text_splitters"
+        "135": "ENV-GAP:numpy",
+        "260": "ENV-GAP:qdrant_client",
+        "359": "ENV-GAP:sentence_transformers",
+        "456": "ENV-GAP:neo4j",
+        "835": "UN-LEAK",
+        "966": "ENV-GAP:langchain_text_splitters"
       },
       "notes": {
-        "133": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "258": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "357": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "454": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "830": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
-        "961": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "135": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "260": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "359": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "456": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "835": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
+        "966": "optional third-party package the QA environment does not install; the fence documents the install requirement"
       }
     },
     "docs/volumes/VOLUME-7-Production-Mastery.md": {
-      "mtime": 1791436051.683084,
-      "size": 51506,
+      "mtime": 1791440871.829551,
+      "size": 51512,
       "bad": {
-        "206": "ENV-GAP:prometheus_client",
-        "659": "ENV-GAP:langchain_core",
-        "714": "ENV-GAP:qdrant_client",
-        "1258": "ENV-GAP:prometheus_client",
-        "1302": "ENV-GAP:langchain_core"
+        "208": "ENV-GAP:prometheus_client",
+        "661": "ENV-GAP:langchain_core",
+        "716": "ENV-GAP:qdrant_client",
+        "1263": "ENV-GAP:prometheus_client",
+        "1307": "ENV-GAP:langchain_core"
       },
       "notes": {
-        "206": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "659": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "714": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "1258": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "1302": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "208": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "661": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "716": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "1263": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "1307": "optional third-party package the QA environment does not install; the fence documents the install requirement"
       }
     }
   }

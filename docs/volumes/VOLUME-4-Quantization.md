@@ -16,7 +16,9 @@ Tags: ['volume', 'quantization', 'gguf', 'kv-cache']
 ## Volume Overview
 
 **Difficulty:** ⭐⭐⭐ Advanced
+
 **Time:** 4-5 weeks (part-time)
+
 **Prerequisites:** Volume 3 (LLM Internals), NVIDIA GPU recommended
 
 ### What You'll Learn
@@ -403,6 +405,7 @@ docker run --gpus all \
 ### Project A: Run 70B Model on 11GB VRAM
 
 **Time:** 6-8 hours
+
 **Difficulty:** ⭐⭐⭐⭐
 
 **Tasks:**
@@ -422,6 +425,7 @@ docker run --gpus all \
 ### Project B: Optimize for Long Context
 
 **Time:** 4-6 hours
+
 **Difficulty:** ⭐⭐⭐
 
 **Tasks:**
@@ -441,6 +445,7 @@ docker run --gpus all \
 ### Project C: Deploy vLLM/TGI Cluster
 
 **Time:** 8-10 hours
+
 **Difficulty:** ⭐⭐⭐⭐⭐
 
 **Tasks:**
@@ -617,7 +622,9 @@ For more help, see **[TROUBLESHOOTING-Common-Issues.md](../learning-resources/tr
 ### You're Ready For:
 
 **Volume 5: Fine-Tuning** - Adapt quantized models to your domain
+
 **Volume 6: RAG** - Build retrieval systems with optimized models
+
 **Volume 7: Production** - Deploy optimized inference at scale
 
 ### Skills You've Gained:
@@ -653,4 +660,5 @@ For more help, see **[TROUBLESHOOTING-Common-Issues.md](../learning-resources/tr
 ---
 
 **Volume 4 Status:** 🟢 Complete
+
 **Maintainer:** Minder Academy Team

@@ -12,7 +12,9 @@ Tags: ['tutorial', 'math', 'tensors']
 # TUTORIAL-000: Python for AI (Complete Beginner)
 
 **Difficulty:** ⭐ Beginner
+
 **Time:** 15-20 hours (spread over 1-2 weeks)
+
 **Prerequisites:** None! This is where you start.
 
 > ⚠️ **Realistic Expectation:** If you're new to programming, this will take 15-20 hours to complete properly. Don't rush - solid fundamentals are crucial for success in later tutorials.
@@ -2226,7 +2228,9 @@ PROJECT-001: AI Assistant (Complete project)
 ---
 
 **Time Estimate:** 20 hours
+
 **Difficulty:** ⭐ Beginner
+
 **Prerequisites:** None
 
 > ℹ️ **Time Estimate:** This tutorial has been significantly expanded to include NumPy, Pydantic, and FastAPI fundamentals. Plan for 15-20 hours of focused learning, ideally spread over 1-2 weeks for proper retention.

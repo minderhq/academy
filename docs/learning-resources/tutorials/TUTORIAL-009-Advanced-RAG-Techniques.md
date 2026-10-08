@@ -33,7 +33,9 @@ Tags: ['tutorial', 'rag', 'reranking']
 This tutorial covers advanced Retrieval-Augmented Generation techniques including hybrid search, re-ranking, and GraphRAG.
 
 **Duration:** 5 hours
+
 **Difficulty:** ⭐⭐⭐ Advanced
+
 **Prerequisites:** TUTORIAL-003 (RAG Basics), LAB-002 (RAG Implementation)
 
 ---

@@ -10,7 +10,9 @@ Tags: ['career', 'guide', 'llm']
 # RESUME TEMPLATES & EXAMPLES
 
 **For:** Minder Academy graduates seeking AI Engineering roles
+
 **Templates Included:** Entry-level, Mid-level, Senior
+
 **Last Updated:** 2026-10-08
 
 ---
@@ -516,14 +518,17 @@ AWARDS & RECOGNITION
 
 ### For Startup AI Engineer
 **Emphasize:** Speed, full-stack, autonomy, scrappiness
+
 **Add:** "Built MVP in 2 weeks", "Wore multiple hats"
 
 ### For Enterprise AI Engineer
 **Emphasize:** Scale, security, collaboration, process
+
 **Add:** "SOC 2 compliance", "Cross-functional collaboration"
 
 ### For AI Research Engineer
 **Emphasize:** Papers, math, experimentation, publications
+
 **Add:** "Published at NeurIPS", "Reproduced paper results"
 
 ---

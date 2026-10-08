@@ -24,6 +24,7 @@ Build and train a neural network completely from scratch, implementing:
 - Comparison with framework implementations
 
 **Estimated Time:** 15-20 hours
+
 **Difficulty:** ⭐⭐ Intermediate
 
 ---

@@ -1,7 +1,7 @@
 ---
 Document ID: 5400-DISTRIBUTED-TRAINING-README
 Title: "5400: Distributed Training"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Prerequisites: [5300]
@@ -45,17 +45,18 @@ See [PREREQUISITES.md](./PREREQUISITES.md) for details.
 
 After this module, you will be able to:
 
-✅ Implement data parallel training with DDP
-✅ Use FSDP for sharding large models
-✅ Apply model parallelism techniques
-✅ Use mixed precision training
-✅ Optimize distributed training performance
-✅ Shard models with FSDP2's fully_shard and train through torchao quantization
-✅ Scale the learning rate with world size under the linear rule, the wall, and a correctly sized warmup
+- ✅ Implement data parallel training with DDP
+- ✅ Use FSDP for sharding large models
+- ✅ Apply model parallelism techniques
+- ✅ Use mixed precision training
+- ✅ Optimize distributed training performance
+- ✅ Shard models with FSDP2's fully_shard and train through torchao quantization
+- ✅ Scale the learning rate with world size under the linear rule, the wall, and a correctly sized warmup
 
 ---
 
 **Module Duration:** 10-12 hours
+
 **Difficulty:** ⭐⭐⭐ Advanced
 
 

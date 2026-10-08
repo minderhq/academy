@@ -13,7 +13,9 @@ Tags: ['lab', 'rag', 'production', 'hands-on']
 **Build enterprise-grade RAG with hybrid search, re-ranking, and monitoring**
 
 **Time:** 6-8 hours
+
 **Difficulty:** ⭐⭐⭐ Advanced
+
 **Prerequisites:**
 
 - LAB-002: RAG Implementation
@@ -1227,4 +1229,5 @@ After completing this lab:
 ---
 
 **Lab Status:** ✅ Complete
+
 **Maintainer:** Minder Academy Team

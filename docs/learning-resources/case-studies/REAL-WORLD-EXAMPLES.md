@@ -1,7 +1,7 @@
 ---
 Document ID: REAL-WORLD-EXAMPLES
 Title: Real-World Examples & Case Studies
-Last Updated: 2026-10-07
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Tags: ['case-study', 'production', 'llm']
@@ -10,8 +10,11 @@ Tags: ['case-study', 'production', 'llm']
 # Real-World Examples & Case Studies
 
 **Project:** Minder Academy
+
 **Category:** Case Studies
-**Last Updated:** 2026-10-07
+
+**Last Updated:** 2026-10-08
+
 **Status:** Complete
 
 ---
@@ -25,7 +28,9 @@ Real-world examples of AI systems in production, illustrating the concepts and t
 ## Case Study 1: Enterprise Knowledge Assistant
 
 **Industry:** Professional Services
+
 **Scale:** 10,000+ employees
+
 **Tech Stack:** Llama-2-70B, Qdrant, LangChain, Kubernetes
 
 ### Challenge
@@ -71,7 +76,9 @@ Real-world examples of AI systems in production, illustrating the concepts and t
 ## Case Study 2: Code Generation & Review System
 
 **Industry:** Software Development
+
 **Scale:** 500+ developers
+
 **Tech Stack:** Codex, AutoGen, Docker, PostgreSQL
 
 ### Challenge
@@ -112,7 +119,9 @@ workflow = SequentialWorkflow(
 ## Case Study 3: Customer Support Automation
 
 **Industry:** E-commerce
+
 **Scale:** 1M+ daily queries
+
 **Tech Stack:** GPT API, Pinecone, FastAPI, Redis
 
 ### Challenge
@@ -156,7 +165,9 @@ workflow = SequentialWorkflow(
 ## Case Study 4: Financial Research Analyst
 
 **Industry:** Investment Management
+
 **Scale:** $50B AUM
+
 **Tech Stack:** Claude-3, GraphRAG, Neo4j, Custom Tools
 
 ### Challenge
@@ -200,7 +211,9 @@ agent = GraphRAGAgent(
 ## Case Study 5: Medical Diagnostic Assistant
 
 **Industry:** Healthcare
+
 **Scale:** 50+ clinics
+
 **Tech Stack:** Med-PaLM 2, Custom RAG, FHIR Integration
 
 ### Challenge

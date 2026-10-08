@@ -46,7 +46,9 @@ Tags: ['volume', 'agents', 'production', 'multi-agent']
 ## Volume Overview
 
 **Difficulty:** ⭐⭐⭐ Advanced
+
 **Time:** 5-6 weeks (part-time)
+
 **Prerequisites:** Volume 6 (RAG & Memory) or equivalent experience
 
 ### What You'll Learn
@@ -838,6 +840,7 @@ upstream api_servers {
 ### Project A: Production AI Service
 
 **Time:** 15-20 hours
+
 **Difficulty:** ⭐⭐⭐⭐⭐
 
 **Tasks:**
@@ -859,6 +862,7 @@ upstream api_servers {
 ### Project B: Multi-Agent System
 
 **Time:** 20-25 hours
+
 **Difficulty:** ⭐⭐⭐⭐⭐
 
 **Tasks:**
@@ -880,6 +884,7 @@ upstream api_servers {
 ### Project C: Complete AI Platform
 
 **Time:** 25-30 hours
+
 **Difficulty:** ⭐⭐⭐⭐⭐ (Ultimate Challenge)
 
 **Tasks:**
@@ -1773,4 +1778,5 @@ You have demonstrated mastery of:
 ---
 
 **Volume 7 Status:** 🟢 Complete
+
 **Maintainer:** Minder Academy Team

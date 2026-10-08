@@ -859,35 +859,35 @@ Validate your knowledge:
 
 After completing this module, you will be able to:
 
-✅ **Set up comprehensive monitoring for LLM systems**
-   - Deploy Prometheus + Grafana stack
-   - Configure GPU monitoring with DCGM
-   - Collect application-specific metrics
+- ✅ **Set up comprehensive monitoring for LLM systems**
+    - Deploy Prometheus + Grafana stack
+    - Configure GPU monitoring with DCGM
+    - Collect application-specific metrics
 
-✅ **Implement the three pillars of observability**
-   - Metrics: What happened (Prometheus)
-   - Logs: Why it happened (Loki)
-   - Traces: Where it happened (Jaeger)
+- ✅ **Implement the three pillars of observability**
+    - Metrics: What happened (Prometheus)
+    - Logs: Why it happened (Loki)
+    - Traces: Where it happened (Jaeger)
 
-✅ **Detect and diagnose model drift**
-   - Monitor input distribution changes
-   - Track model quality metrics
-   - Alert on performance degradation
+- ✅ **Detect and diagnose model drift**
+    - Monitor input distribution changes
+    - Track model quality metrics
+    - Alert on performance degradation
 
-✅ **Configure effective alerts**
-   - Set up alert thresholds
-   - Configure alert routing
-   - Avoid alert fatigue
+- ✅ **Configure effective alerts**
+    - Set up alert thresholds
+    - Configure alert routing
+    - Avoid alert fatigue
 
-✅ **Create meaningful dashboards**
-   - Executive dashboards (high-level)
-   - Operational dashboards (real-time)
-   - Debugging dashboards (detailed)
+- ✅ **Create meaningful dashboards**
+    - Executive dashboards (high-level)
+    - Operational dashboards (real-time)
+    - Debugging dashboards (detailed)
 
-✅ **Optimize based on monitoring data**
-   - Right-size GPU resources
-   - Identify performance bottlenecks
-   - Track cost efficiency
+- ✅ **Optimize based on monitoring data**
+    - Right-size GPU resources
+    - Identify performance bottlenecks
+    - Track cost efficiency
 
 ## Additional Resources
 
@@ -994,6 +994,7 @@ Production Ready:
 ---
 
 **Module Duration:** 8-10 hours
+
 **Difficulty:** ⭐⭐⭐ Advanced
 
 **Ready to proceed?** Continue to [1501: Monitoring and Observability](./1501-Monitoring-and-Observability.md)

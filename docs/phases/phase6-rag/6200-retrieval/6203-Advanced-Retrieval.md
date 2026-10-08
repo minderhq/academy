@@ -305,5 +305,7 @@ Single-stage dense retrieval leaves accuracy on the table, and this lesson is th
 ---
 
 **Document ID:** 6203
+
 **Status:** Complete
+
 **Related Documents:** [6201, 6202, 6301, 6302]

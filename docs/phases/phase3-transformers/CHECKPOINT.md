@@ -16,8 +16,11 @@ Tags: ['checkpoint', 'transformers', 'embeddings', 'rope']
 ## Phase 3 Overview
 
 **Phase:** [3000] Transformer Physics & LLM Internals
+
 **Modules:** 5 (3100, 3200, 3300, 3400, 3500)
+
 **Estimated Time:** 3-4 weeks
+
 **Difficulty:** ⭐⭐⭐ Advanced
 
 ---

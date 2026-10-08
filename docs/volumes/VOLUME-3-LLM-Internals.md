@@ -16,7 +16,9 @@ Tags: ['volume', 'transformers', 'attention', 'tokenization']
 ## Volume Overview
 
 **Difficulty:** ⭐⭐⭐ Advanced
+
 **Time:** 3-4 weeks (part-time)
+
 **Prerequisites:** Volume 2 (or strong understanding of tensors and backpropagation)
 
 ### What You'll Learn
@@ -318,6 +320,7 @@ Encoder-only (BERT):
 ### Project A: Implement Transformer from Scratch
 
 **Time:** 8-10 hours
+
 **Difficulty:** ⭐⭐⭐⭐
 
 **Tasks:**
@@ -337,6 +340,7 @@ Encoder-only (BERT):
 ### Project B: Analyze Attention Patterns
 
 **Time:** 4-6 hours
+
 **Difficulty:** ⭐⭐⭐
 
 **Tasks:**
@@ -356,6 +360,7 @@ Encoder-only (BERT):
 ### Project C: Implement Custom Tokenizer
 
 **Time:** 6-8 hours
+
 **Difficulty:** ⭐⭐⭐
 
 **Tasks:**
@@ -542,7 +547,9 @@ For more help, see **[TROUBLESHOOTING-Common-Issues.md](../learning-resources/tr
 ### You're Ready For:
 
 **Volume 4: Quantization** - Optimize models for your hardware
+
 **Volume 5: Fine-Tuning** - Adapt models to your domain
+
 **Volume 6: RAG** - Add external knowledge to models
 
 ### Skills You've Gained:
@@ -578,4 +585,5 @@ For more help, see **[TROUBLESHOOTING-Common-Issues.md](../learning-resources/tr
 ---
 
 **Volume 3 Status:** 🟢 Complete
+
 **Maintainer:** Minder Academy Team

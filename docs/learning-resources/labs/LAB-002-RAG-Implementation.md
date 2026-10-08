@@ -19,6 +19,7 @@ Tags: ['lab', 'rag', 'qdrant', 'ollama', 'hands-on']
 - **[TUTORIAL-000: Python for AI](../tutorials/TUTORIAL-000-Python-for-AI.md)** - REQUIRED for RAG code
 
 **Time:** 3 hours
+
 **Difficulty:** ⭐⭐ Intermediate
 
 ⚠️ **Python Required:** This lab involves significant Python coding (classes, async, type hints). If you haven't completed **TUTORIAL-000**, start there first.

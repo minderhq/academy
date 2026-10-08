@@ -877,27 +877,27 @@ for doc in retrieved_docs:
 
 ### Use RAG When:
 
-✅ You have documents that need to be referenced
-✅ Information changes frequently
-✅ You need source citations
-✅ Accuracy is critical
-✅ You have limited training data
-✅ Quick implementation is needed
+- ✅ You have documents that need to be referenced
+- ✅ Information changes frequently
+- ✅ You need source citations
+- ✅ Accuracy is critical
+- ✅ You have limited training data
+- ✅ Quick implementation is needed
 
 ### Use Fine-Tuning When:
 
-✅ You need specific response format/style
-✅ Domain has unique vocabulary
-✅ You have lots of domain-specific training data
-✅ Knowledge is relatively stable
-✅ You want domain-specialized model
+- ✅ You need specific response format/style
+- ✅ Domain has unique vocabulary
+- ✅ You have lots of domain-specific training data
+- ✅ Knowledge is relatively stable
+- ✅ You want domain-specialized model
 
 ### Use Pure LLM When:
 
-✅ Questions are general knowledge
-✅ Creativity is more important than accuracy
-✅ No specific documents need to be referenced
-✅ Cost must be minimized
+- ✅ Questions are general knowledge
+- ✅ Creativity is more important than accuracy
+- ✅ No specific documents need to be referenced
+- ✅ Cost must be minimized
 
 ---
 

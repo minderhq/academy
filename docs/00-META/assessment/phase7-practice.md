@@ -25,7 +25,9 @@ This document provides hands-on practice exercises for Phase 7: Agentic Systems.
 ## Exercise 1: ReAct Loop from Scratch
 
 **Difficulty:** ⭐⭐⭐ Advanced
+
 **Time:** 45 minutes
+
 **Module:** 7100 - Agent Architecture
 
 ### Task
@@ -171,7 +173,9 @@ print(result["answer"])
 ## Exercise 2: Tool Registry System
 
 **Difficulty:** Intermediate
+
 **Time:** 60 minutes
+
 **Module:** 7200 - Tool Use
 
 ### Task
@@ -330,7 +334,9 @@ registry.register(Tool(
 ## Exercise 3: Multi-Agent System
 
 **Difficulty:** Advanced
+
 **Time:** 90 minutes
+
 **Module:** 7300 - Orchestration
 
 ### Task
@@ -485,7 +491,9 @@ print(result)
 ## Exercise 4: Agent Memory System
 
 **Difficulty:** Intermediate
+
 **Time:** 60 minutes
+
 **Module:** 7400 - Agent Memory
 
 ### Task
@@ -662,7 +670,9 @@ class AgentMemorySystem:
 ## Exercise 5: Sandboxed Code Execution
 
 **Difficulty:** Advanced
+
 **Time:** 75 minutes
+
 **Module:** 7200 - Tool Use (Security)
 
 ### Task
@@ -844,7 +854,9 @@ print(result)  # 1256.637...
 ## Exercise 6: Prompt Injection Defense
 
 **Difficulty:** Advanced
+
 **Time:** 60 minutes
+
 **Module:** 7500 - Agent Security
 
 ### Task
@@ -1004,7 +1016,9 @@ class PromptDefender:
 ## Exercise 7: Complete Agent System
 
 **Difficulty:** Expert
+
 **Time:** 120 minutes
+
 **Module:** 7100-7500 (Comprehensive)
 
 ### Task
@@ -1253,7 +1267,9 @@ Implement a creative system for:
 ---
 
 **Last Updated:** 2026-10-08
+
 **Phase:** 7 - Agentic Systems
+
 **Status:** Ready for Practice
 
 ---

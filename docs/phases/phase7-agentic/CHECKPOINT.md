@@ -16,8 +16,11 @@ Tags: ['checkpoint', 'agents', 'security', 'prompt-injection']
 ## Phase 7 Overview
 
 **Phase:** [7000] Agentic Cognition & Autonomy
+
 **Modules:** 5 (7100, 7200, 7300, 7400, 7500)
+
 **Estimated Time:** 5-6 weeks
+
 **Difficulty:** ⭐⭐⭐ Advanced
 
 ---

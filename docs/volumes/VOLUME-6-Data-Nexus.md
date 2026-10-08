@@ -40,7 +40,9 @@ Tags: ['volume', 'rag', 'vector-db', 'graphrag']
 ## Volume Overview
 
 **Difficulty:** ⭐⭐⭐ Advanced
+
 **Time:** 4-5 weeks (part-time)
+
 **Prerequisites:** Volume 5 (Fine-Tuning) or Volume 3 (LLM Internals)
 
 ### What You'll Learn
@@ -637,6 +639,7 @@ def multi_hop_reasoning(query):
 ### Project A: Production RAG System
 
 **Time:** 10-12 hours
+
 **Difficulty:** ⭐⭐⭐⭐
 
 **Tasks:**
@@ -656,6 +659,7 @@ def multi_hop_reasoning(query):
 ### Project B: GraphRAG Knowledge System
 
 **Time:** 12-15 hours
+
 **Difficulty:** ⭐⭐⭐⭐⭐
 
 **Tasks:**
@@ -675,6 +679,7 @@ def multi_hop_reasoning(query):
 ### Project C: Domain-Specific RAG
 
 **Time:** 8-10 hours
+
 **Difficulty:** ⭐⭐⭐⭐
 
 **Tasks:**
@@ -1246,4 +1251,5 @@ For more help, see **[TROUBLESHOOTING-Common-Issues.md](../learning-resources/tr
 ---
 
 **Volume 6 Status:** 🟢 Complete
+
 **Maintainer:** Minder Academy Team

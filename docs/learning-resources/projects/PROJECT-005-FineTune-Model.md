@@ -24,6 +24,7 @@ Fine-tune a large language model for a specific domain using modern techniques:
 - Production deployment
 
 **Estimated Time:** 15-20 hours
+
 **Difficulty:** ⭐⭐⭐ Advanced
 
 ---

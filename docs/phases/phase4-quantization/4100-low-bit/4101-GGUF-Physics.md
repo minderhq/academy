@@ -50,6 +50,7 @@ GGUF enables running 7B-30B parameter models on consumer hardware by:
 - Using memory-mapped file loading
 
 > **⚠️ Hardware Reality Check:**
+>
 > - **7B-13B models**: Run well on 8-12GB VRAM GPUs (e.g., RTX 3060, RTX 4060 Ti)
 > - **30B-34B models**: Require 20-24GB VRAM (e.g., RTX 3090, RTX 4090) OR hybrid CPU/GPU offloading
 > - **70B models**: Require 40GB+ VRAM (e.g., A100) OR very slow CPU-only inference
@@ -240,6 +241,7 @@ Weight ≈ d_scale[sub] × q4 + d_min[sub]
 | Bits per weight | 4.5 | 4.5 |
 
 > **📊 Rule of Thumb:**
+>
 > - `Q4_K_M` (medium) is the default recommendation for balanced size/quality
 > - `Q4_K_S` (small) when every 100 MB matters
 > - `Q6_K` when you have the VRAM — near-lossless for most models
@@ -456,5 +458,7 @@ GGUF is what makes large models runnable on consumer hardware: a single file car
 ---
 
 **Document ID:** 4101
+
 **Status:** Complete
+
 **Related Documents:** [4102, 4103, 4201]

@@ -12,7 +12,9 @@ Tags: ['tutorial', 'deployment', 'ci-cd']
 # TUTORIAL-005: Production Deployment with CI/CD
 
 **Prerequisites:** TUTORIAL-001 (Hello LLM), TUTORIAL-002 (Docker Essentials), TUTORIAL-004 (Monitoring)
+
 **Time:** 90 minutes
+
 **Difficulty:** ⭐⭐⭐ Advanced
 
 ---

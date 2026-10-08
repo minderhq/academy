@@ -104,6 +104,7 @@ print(f"Compression ratio: {compression:.2f}x")
 - Simple but can introduce accuracy loss
 
 **Pros:** Fast, no retraining needed
+
 **Cons:** Can lose accuracy at low bit-widths
 
 ---

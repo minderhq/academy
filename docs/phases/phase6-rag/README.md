@@ -843,6 +843,7 @@ After completing this phase:
 ---
 
 **Module Duration:** 78 hours (52 reading + 26 practice)
+
 **Difficulty:** ⭐⭐⭐ Advanced
 
 **Ready to augment LLMs with your data?** Start with [6101: RAG Foundations](./6100-vector/6101-HNSW-Indexing.md) or [6201: Hybrid Search](./6200-retrieval/6201-Hybrid-Search.md)

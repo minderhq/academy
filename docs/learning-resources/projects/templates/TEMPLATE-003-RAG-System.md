@@ -1,7 +1,7 @@
 ---
 Document ID: TEMPLATE-003-RAG-System
 Title: "PROJECT TEMPLATE: RAG System"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Tags: ['template', 'rag', 'qdrant']
@@ -110,5 +110,7 @@ curl -X POST "http://localhost:8000/query" \
 ---
 
 **Difficulty:** ⭐⭐ Intermediate
+
 **Estimated Time:** 6-10 hours
+
 **Skills:** Vector databases, Embeddings, RAG

@@ -697,6 +697,7 @@ After completing this phase:
 ---
 
 **Module Duration:** 96 hours (56 reading + 40 practice)
+
 **Difficulty:** ⭐⭐⭐ Advanced
 
 **Ready to fine-tune LLMs?** Start with [5101: LoRA Logic](./5100-peft/5101-LoRA-Logic.md) or [5102: QLoRA Pipelines](./5100-peft/5102-QLoRA-Pipelines.md)

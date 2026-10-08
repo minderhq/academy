@@ -109,4 +109,5 @@ After completing 7101-ReAct-Loop-System.md, you'll understand:
 ---
 
 **Estimated Time to Complete:** 3-4 hours
+
 **Difficulty:** ⭐⭐⭐ Advanced

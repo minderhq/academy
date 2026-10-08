@@ -33,7 +33,9 @@ Tags: ['tutorial', 'cuda', 'gpu']
 This tutorial teaches you how to write custom CUDA kernels to accelerate AI workloads on NVIDIA GPUs.
 
 **Duration:** 4 hours
+
 **Difficulty:** ⭐⭐⭐ Advanced
+
 **Prerequisites:** TUTORIAL-001, Python proficiency
 
 ---

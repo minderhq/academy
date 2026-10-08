@@ -532,6 +532,7 @@ After completing this phase:
 ---
 
 **Module Duration:** 73 hours (43 reading + 30 practice)
+
 **Difficulty:** ⭐⭐⭐ Advanced
 
 **Ready to maximize your VRAM?** Start with [4101: GGUF Physics](./4100-low-bit/4101-GGUF-Physics.md) or [4102: EXL2 and AWQ](./4100-low-bit/4102-EXL2-and-AWQ.md)

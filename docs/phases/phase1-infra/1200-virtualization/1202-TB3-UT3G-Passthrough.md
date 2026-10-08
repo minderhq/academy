@@ -457,5 +457,7 @@ GPU passthrough assigns a physical NVIDIA GPU to one virtual machine, giving it 
 ---
 
 **Document ID:** 1202
+
 **Status:** Complete
+
 **Related Documents:** [1201, 1203, 1204]

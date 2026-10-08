@@ -175,4 +175,5 @@ def scaled_dot_product_attention(Q, K, V, mask=None):
 ---
 
 **Module Difficulty:** ⭐⭐⭐ Intermediate
+
 **Estimated Time:** 12 hours total

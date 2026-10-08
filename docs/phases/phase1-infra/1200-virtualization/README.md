@@ -1061,35 +1061,35 @@ Validate your knowledge:
 
 After completing this module, you will be able to:
 
-✅ **Understand virtualization fundamentals for LLMs**
-   - Hypervisor types and when to use each
-   - Resource isolation benefits
-   - Cost optimization strategies
+- ✅ **Understand virtualization fundamentals for LLMs**
+    - Hypervisor types and when to use each
+    - Resource isolation benefits
+    - Cost optimization strategies
 
-✅ **Deploy Proxmox VE for LLM workloads**
-   - Installation and configuration
-   - Network setup
-   - Storage configuration
+- ✅ **Deploy Proxmox VE for LLM workloads**
+    - Installation and configuration
+    - Network setup
+    - Storage configuration
 
-✅ **Configure GPU passthrough**
-   - IOMMU setup
-   - VFIO configuration
-   - Multi-GPU setups
+- ✅ **Configure GPU passthrough**
+    - IOMMU setup
+    - VFIO configuration
+    - Multi-GPU setups
 
-✅ **Optimize VM performance for LLMs**
-   - CPU pinning for consistency
-   - Huge pages for memory performance
-   - Storage and network optimization
+- ✅ **Optimize VM performance for LLMs**
+    - CPU pinning for consistency
+    - Huge pages for memory performance
+    - Storage and network optimization
 
-✅ **Troubleshoot virtualization issues**
-   - IOMMU problems
-   - GPU passthrough failures
-   - Performance bottlenecks
+- ✅ **Troubleshoot virtualization issues**
+    - IOMMU problems
+    - GPU passthrough failures
+    - Performance bottlenecks
 
-✅ **Implement best practices**
-   - Backup strategies
-   - Monitoring setup
-   - Disaster recovery
+- ✅ **Implement best practices**
+    - Backup strategies
+    - Monitoring setup
+    - Disaster recovery
 
 ## Additional Resources
 
@@ -1196,6 +1196,7 @@ Production Ready:
 ---
 
 **Module Duration:** 10-12 hours
+
 **Difficulty:** ⭐⭐ Intermediate
 
 **Ready to proceed?** Continue to [1201: Proxmox Hypervisor SOP](./1201-Proxmox-Hypervisor-SOP.md)

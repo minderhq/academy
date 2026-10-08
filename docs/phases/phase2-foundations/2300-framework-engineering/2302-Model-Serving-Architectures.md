@@ -697,6 +697,7 @@ print(picks)
 ```
 
 **Pros:** Simple, fair distribution
+
 **Cons:** Doesn't account for server load or capacity
 
 #### 2. Least Connections
@@ -746,6 +747,7 @@ after one release, next is: gpu-0
 ```
 
 **Pros:** Accounts for current load
+
 **Cons:** Doesn't predict future load
 
 #### 3. GPU Memory Aware
@@ -812,6 +814,7 @@ probe sweep per window instead of stampeding the fleet with nvidia-smi
 calls.
 
 **Pros:** Optimizes for GPU constraints
+
 **Cons:** Requires GPU access, higher latency
 
 ---

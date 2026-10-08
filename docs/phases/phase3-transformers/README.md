@@ -799,6 +799,7 @@ After completing this phase:
 ---
 
 **Module Duration:** 54-56 hours (39 reading + 15-17 practice)
+
 **Difficulty:** ⭐⭐⭐ Advanced
 
 **Ready to understand transformers?** Start with [3101: Self-Attention Deep Dive](./3100-attention/3101-Self-Attention-DeepDive.md) or [3102: Flash Attention](./3100-attention/3102-Flash-Attention.md)

@@ -16,8 +16,11 @@ Tags: ['checkpoint', 'rag', 'retrieval', 'hybrid-search']
 ## Phase 6 Overview
 
 **Phase:** [6000] Data Nexus: RAG & Memory
+
 **Modules:** 5 (6100, 6200, 6300, 6400, 6500)
+
 **Estimated Time:** 4-5 weeks
+
 **Difficulty:** ⭐⭐ Intermediate
 
 ---

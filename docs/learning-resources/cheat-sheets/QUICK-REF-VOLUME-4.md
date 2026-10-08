@@ -1,7 +1,7 @@
 ---
 Document ID: QUICK-REF-VOLUME-4
 Title: "Volume 4: Quantization Mastery - Quick Reference"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Tags: ['cheatsheet', 'quantization', 'gguf']
@@ -534,4 +534,5 @@ class SpeculativeDecoding:
 ---
 
 **Volume:** 4 - Quantization Mastery
+
 **Estimated Time:** 30-35 hours

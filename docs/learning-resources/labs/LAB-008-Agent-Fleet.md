@@ -13,7 +13,9 @@ Tags: ['lab', 'multi-agent', 'agents', 'hands-on']
 **Build a fleet of specialized AI agents working collaboratively**
 
 **Time:** 6-8 hours
+
 **Difficulty:** ⭐⭐⭐ Advanced
+
 **Prerequisites:**
 
 - LAB-004: ReAct Agent
@@ -1220,4 +1222,5 @@ After completing this lab:
 ---
 
 **Lab Status:** ✅ Complete
+
 **Maintainer:** Minder Academy Team

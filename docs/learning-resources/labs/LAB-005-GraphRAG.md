@@ -11,7 +11,9 @@ Tags: ['lab', 'graphrag', 'neo4j', 'qdrant', 'hands-on']
 # LAB-005: GraphRAG Implementation with Neo4j & Qdrant
 
 **Prerequisites:** TUTORIAL-001 (Hello LLM), TUTORIAL-002 (Docker Essentials), LAB-001 (Docker & LLM), LAB-002 (RAG Implementation)
+
 **Time:** 5 hours
+
 **Difficulty:** ⭐⭐⭐ Advanced
 
 ---

@@ -10,7 +10,9 @@ Tags: ['career', 'guide', 'roadmap']
 # CAREER GUIDE: From Learning to Job-Ready
 
 **Target Audience:** Minder Academy learners preparing for AI Engineering careers
+
 **Read Time:** 25 minutes
+
 **Last Updated:** 2026-10-08
 
 ---
@@ -140,6 +142,7 @@ After completing Minder Academy, build **3 portfolio projects**:
 - [x] README with architecture diagram
 
 **Time:** 20-30 hours
+
 **Difficulty:** ⭐⭐ Intermediate
 
 **Bonus Points:**
@@ -163,6 +166,7 @@ After completing Minder Academy, build **3 portfolio projects**:
 - [x] Blog post explaining your approach
 
 **Time:** 40-60 hours
+
 **Difficulty:** ⭐ ⭐ ⭐
 
 **Bonus Points:**
@@ -186,6 +190,7 @@ After completing Minder Academy, build **3 portfolio projects**:
 - [x] Video demo (3-5 minutes)
 
 **Time:** 60-80 hours
+
 **Difficulty:** ⭐ ⭐ ⭐ ⭐
 
 **Bonus Points:**
@@ -211,6 +216,7 @@ After completing Minder Academy, build **3 portfolio projects**:
 ### 3.1 The AI Engineer Resume Formula
 
 **Length:** 1 page (max 2 if 5+ years experience)
+
 **Format:** Clean, readable, ATS-friendly
 
 #### Section Order
@@ -226,6 +232,7 @@ After completing Minder Academy, build **3 portfolio projects**:
 ### 3.2 Writing Effective Bullet Points
 
 **Bad:** "Built RAG system with Python"
+
 **Good:** "Built and deployed RAG chatbot for technical documentation, achieving 85% answer accuracy and reducing support tickets by 40%"
 
 Use the **XYZ formula**:
@@ -323,6 +330,7 @@ Data: Python, NumPy, Pandas, SQL (PostgreSQL), PostgreSQL + pgvector
 
 #### Technical Screening (1-2 calls)
 **Format:** Coding + AI concepts
+
 **Duration:** 45-60 minutes
 
 **Common Questions:**
@@ -338,6 +346,7 @@ Data: Python, NumPy, Pandas, SQL (PostgreSQL), PostgreSQL + pgvector
 
 #### Technical Deep-Dive (2-4 hours)
 **Format:** System design + coding
+
 **Duration:** 2-4 hours
 
 **Example Prompt:**
@@ -355,6 +364,7 @@ Data: Python, NumPy, Pandas, SQL (PostgreSQL), PostgreSQL + pgvector
 
 #### Onsite (Full Day)
 **Format:** Multiple interviews + lunch
+
 **Duration:** 4-6 hours
 
 **Interviews:**

@@ -1,7 +1,7 @@
 ---
 Document ID: 4400-ADVANCED-TECHNIQUES-README
 Title: "4400: Advanced Quantization Techniques"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Prerequisites: [4100, 4300]
@@ -68,15 +68,16 @@ Validate your knowledge with:
 
 After this module, you will be able to:
 
-✅ Apply GPTQ for accurate post-training quantization
-✅ Use AWQ for activation-aware quantization
-✅ Convert models to GGUF format
-✅ Optimize models for EXL2 inference
-✅ Combine sparsity with quantization
-✅ Understand 1.58-bit quantization limits
-✅ Deploy quantized models to production
+- ✅ Apply GPTQ for accurate post-training quantization
+- ✅ Use AWQ for activation-aware quantization
+- ✅ Convert models to GGUF format
+- ✅ Optimize models for EXL2 inference
+- ✅ Combine sparsity with quantization
+- ✅ Understand 1.58-bit quantization limits
+- ✅ Deploy quantized models to production
 
 ---
 
 **Module Duration:** 10-12 hours
+
 **Difficulty:** ⭐⭐⭐ Advanced

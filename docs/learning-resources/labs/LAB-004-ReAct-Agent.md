@@ -11,12 +11,15 @@ Tags: ['lab', 'react', 'agents', 'hands-on']
 # LAB-004: Building ReAct Agents
 
 **Prerequisites:** TUTORIAL-001 (Hello LLM), TUTORIAL-002 (Docker Essentials), LAB-001 (Docker & LLM), LAB-002 (RAG Implementation)
+
 **Time:** 4 hours
+
 **Difficulty:** ⭐⭐⭐ Advanced
 
 > **⚠️ EDUCATIONAL CODE - SECURITY WARNING:**
 >
 > This lab builds AI agents that can **execute code and make API calls**. These are **educational examples** that:
+>
 > - **LACK sandboxing** - code execution can access your system
 > - **LACK authentication** - anyone can call your agent
 > - **LACK input sanitization** - prompt injection is possible
@@ -25,6 +28,7 @@ Tags: ['lab', 'react', 'agents', 'hands-on']
 > **🚨 NEVER deploy these examples to public internet without security hardening!**
 >
 > **For production agents**, see:
+>
 > - **[7501: Prompt Injection Defense](../../phases/phase7-agentic/7500-security/7501-Prompt-Injection-Defense.md)**
 > - **[7502: PII Redaction](../../phases/phase7-agentic/7500-security/7502-PII-Redaction.md)**
 > - **[7503: Adversarial Attacks](../../phases/phase7-agentic/7500-security/7503-Adversarial-Attacks.md)**

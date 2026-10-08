@@ -18,7 +18,9 @@ Tags: ['tutorial', 'inference', 'serving']
 ## Tutorial Overview
 
 **Time:** 60 minutes
+
 **Difficulty:** ⭐⭐ Intermediate
+
 **Prerequisites:**
 
 - LAB-002: RAG Implementation
@@ -494,5 +496,7 @@ In this tutorial, you learned:
 ---
 
 **Tutorial:** 006 - Real-time AI
+
 **Time Estimate:** 60 minutes
+
 **Difficulty:** ⭐⭐ Intermediate

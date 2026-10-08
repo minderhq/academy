@@ -13,8 +13,11 @@ Tags: ['assessment', 'practice', 'networking', 'wan']
 # Module 1100: Network Infrastructure Practice
 
 **Module:** Network Infrastructure for AI
+
 **Document ID:** 1100
+
 **Difficulty:** ⭐ Beginner
+
 **Time:** 2-3 hours
 
 ---
@@ -175,6 +178,7 @@ Internet (Fiber 1Gbps)
 ---
 
 **Completed:** ___ / 5 exercises
+
 **Project:** ___ / 3 steps
 
 ## Next Steps

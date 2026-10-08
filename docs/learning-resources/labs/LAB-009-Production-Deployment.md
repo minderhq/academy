@@ -17,7 +17,9 @@ Tags: ['lab', 'production', 'deployment', 'hands-on']
 ## Lab Overview
 
 **Time:** 8-10 hours
+
 **Difficulty:** ⭐⭐⭐ Advanced
+
 **Prerequisites:**
 
 - LAB-001: Docker & LLM
@@ -1771,5 +1773,7 @@ In this lab, you learned:
 ---
 
 **Lab:** 009 - Production Deployment
+
 **Time Estimate:** 12 hours
+
 **Difficulty:** ⭐⭐⭐ Advanced

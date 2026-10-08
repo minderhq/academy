@@ -24,6 +24,7 @@ Build a fully-functional AI assistant that can:
 - Scale to production-ready deployment (LLMOps)
 
 **Estimated Time:** 20-30 hours
+
 **Difficulty:** ⭐⭐⭐ Advanced
 
 ---

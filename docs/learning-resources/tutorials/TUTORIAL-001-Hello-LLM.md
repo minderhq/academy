@@ -12,7 +12,9 @@ Tags: ['tutorial', 'llm', 'ollama', 'hands-on']
 # TUTORIAL-001: Hello LLM! - Your First AI Model
 
 **Difficulty:** ⭐ Beginner
+
 **Time:** 30 minutes
+
 **Prerequisites:**
 
 - **Basic Python knowledge** (variables, functions, loops)

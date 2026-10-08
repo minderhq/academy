@@ -17,7 +17,9 @@ Tags: ['lab', 'evaluation', 'security', 'hands-on']
 ## Lab Overview
 
 **Time:** 4-5 hours
+
 **Difficulty:** ⭐⭐⭐ Advanced
+
 **Prerequisites:**
 
 - LAB-002: RAG Implementation
@@ -1342,5 +1344,7 @@ In this lab, you learned:
 ---
 
 **Lab:** 014 - AI Evaluation & Safety
+
 **Time Estimate:** 6 hours
+
 **Difficulty:** ⭐⭐⭐ Advanced

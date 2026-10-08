@@ -112,4 +112,5 @@ After completing 6101-HNSW-Indexing.md, you'll understand:
 ---
 
 **Estimated Time to Complete:** 2-3 hours
+
 **Difficulty:** ⭐⭐⭐ Advanced

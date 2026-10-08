@@ -681,40 +681,40 @@ Validate your knowledge:
 
 After completing this module, you will understand:
 
-✅ **Network requirements for different LLM workloads**
-   - Small models (1-7B): 1 Gbps sufficient
-   - Medium models (13-34B): 10 Gbps recommended
-   - Large models (70B+): 25-100 Gbps required
+- ✅ **Network requirements for different LLM workloads**
+    - Small models (1-7B): 1 Gbps sufficient
+    - Medium models (13-34B): 10 Gbps recommended
+    - Large models (70B+): 25-100 Gbps required
 
-✅ **How to set up a high-speed internet uplink**
-   - Uplink technology differences (GPON, EPON, DOCSIS)
-   - Modem configuration
-   - Router setup
+- ✅ **How to set up a high-speed internet uplink**
+    - Uplink technology differences (GPON, EPON, DOCSIS)
+    - Modem configuration
+    - Router setup
 
-✅ **Network topology design for AI workloads**
-   - Star topology advantages
-   - Redundancy planning
-   - Hardware selection
+- ✅ **Network topology design for AI workloads**
+    - Star topology advantages
+    - Redundancy planning
+    - Hardware selection
 
-✅ **MTU and jumbo frames optimization**
-   - When to use jumbo frames
-   - Configuration steps
-   - Troubleshooting MTU issues
+- ✅ **MTU and jumbo frames optimization**
+    - When to use jumbo frames
+    - Configuration steps
+    - Troubleshooting MTU issues
 
-✅ **Network troubleshooting for LLM infrastructure**
-   - Bandwidth bottlenecks
-   - Latency issues
-   - Packet loss diagnosis
+- ✅ **Network troubleshooting for LLM infrastructure**
+    - Bandwidth bottlenecks
+    - Latency issues
+    - Packet loss diagnosis
 
-✅ **Performance monitoring and optimization**
-   - Key metrics to track
-   - Tools for monitoring
-   - Alert configuration
+- ✅ **Performance monitoring and optimization**
+    - Key metrics to track
+    - Tools for monitoring
+    - Alert configuration
 
-✅ **Cost optimization strategies**
-   - Budget-friendly alternatives
-   - When to invest
-   - ROI considerations
+- ✅ **Cost optimization strategies**
+    - Budget-friendly alternatives
+    - When to invest
+    - ROI considerations
 
 ## Additional Resources
 
@@ -803,6 +803,7 @@ Production Ready:
 ---
 
 **Module Duration:** 8-10 hours
+
 **Difficulty:** ⭐ Beginner
 
 **Ready to proceed?** Continue to [1101: Internet Uplink & Modem Configuration](./1101-Fiber-GPON-Modem.md)

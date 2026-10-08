@@ -32,7 +32,9 @@ Tags: ['tutorial', 'security', 'prompt-injection']
 This tutorial covers AI security including prompt injection protection, output sanitization, access controls, and safety monitoring.
 
 **Duration:** 4 hours
+
 **Difficulty:** ⭐⭐⭐ Advanced
+
 **Prerequisites:** TUTORIAL-004 (Monitoring), LAB-013 (Advanced Function Calling)
 
 ---

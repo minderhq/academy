@@ -10,7 +10,9 @@ Tags: ['setup', 'docker', 'infrastructure']
 # Environment Setup Guide
 
 **Last Updated:** 2026-10-08
+
 **Reading Time:** 15 minutes
+
 **Difficulty:** ⭐ Beginner
 
 ---

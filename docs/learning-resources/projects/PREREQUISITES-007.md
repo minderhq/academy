@@ -10,7 +10,9 @@ Tags: ['prerequisites', 'project', 'setup']
 # PROJECT-007: Prerequisites & Setup Guide
 
 **For:** [PROJECT-007: Production AI System](./PROJECT-007-Production-AI-System.md)
+
 **Estimated Setup Time:** 3-4 hours
+
 **Difficulty:** ⭐⭐⭐ Advanced
 
 ---

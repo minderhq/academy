@@ -12,7 +12,9 @@ Tags: ['tutorial', 'docker', 'hands-on']
 # TUTORIAL-002: Docker Essentials for AI
 
 **Difficulty:** ⭐ Beginner
+
 **Time:** 45 minutes
+
 **Prerequisites:** Basic Linux command line
 
 ---

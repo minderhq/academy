@@ -16,7 +16,9 @@ Tags: ['volume', 'finetuning', 'lora', 'dpo']
 ## Volume Overview
 
 **Difficulty:** ⭐⭐⭐ Advanced
+
 **Time:** 4-5 weeks (part-time)
+
 **Prerequisites:** Volume 4 (Quantization), GPU with 8GB+ VRAM recommended
 
 ### What You'll Learn
@@ -459,6 +461,7 @@ merged_model.save_pretrained("./merged-model")
 ### Project A: Fine-Tune Domain-Specific Model
 
 **Time:** 8-10 hours
+
 **Difficulty:** ⭐⭐⭐⭐
 
 **Tasks:**
@@ -479,6 +482,7 @@ merged_model.save_pretrained("./merged-model")
 ### Project B: Implement LoRA from Scratch
 
 **Time:** 6-8 hours
+
 **Difficulty:** ⭐⭐⭐⭐
 
 **Tasks:**
@@ -498,6 +502,7 @@ merged_model.save_pretrained("./merged-model")
 ### Project C: DPO Alignment Pipeline
 
 **Time:** 10-12 hours
+
 **Difficulty:** ⭐⭐⭐⭐⭐
 
 **Tasks:**
@@ -667,6 +672,7 @@ For more help, see **[TROUBLESHOOTING-Common-Issues.md](../learning-resources/tr
 ### You're Ready For:
 
 **Volume 6: Data Nexus** - Build RAG systems with fine-tuned models
+
 **Volume 7: Production** - Deploy fine-tuned models at scale
 
 ### Skills You've Gained:
@@ -704,4 +710,5 @@ For more help, see **[TROUBLESHOOTING-Common-Issues.md](../learning-resources/tr
 ---
 
 **Volume 5 Status:** 🟢 Complete
+
 **Maintainer:** Minder Academy Team

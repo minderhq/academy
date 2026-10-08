@@ -16,7 +16,9 @@ Tags: ['volume', 'infrastructure', 'docker', 'kubernetes']
 ## Volume Overview
 
 **Difficulty:** ⭐ Beginner
+
 **Time:** 2-3 weeks (part-time)
+
 **Prerequisites:** Basic computer literacy, 8GB+ RAM
 
 ### What You'll Learn
@@ -280,6 +282,7 @@ For more help, see **[TROUBLESHOOTING-Common-Issues.md](../learning-resources/tr
 ### You're Ready For:
 
 **Volume 2: AI/ML Foundations** - Deep dive into the math and theory
+
 **OR**
 
 **Volume 3: LLM Internals** - Skip directly to understanding how transformers work
@@ -308,4 +311,5 @@ For more help, see **[TROUBLESHOOTING-Common-Issues.md](../learning-resources/tr
 ---
 
 **Volume 1 Status:** 🟢 Complete
+
 **Maintainer:** Minder Academy Team

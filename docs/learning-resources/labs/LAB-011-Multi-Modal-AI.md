@@ -17,7 +17,9 @@ Tags: ['lab', 'multimodal', 'vision', 'hands-on']
 ## Lab Overview
 
 **Time:** 6-8 hours
+
 **Difficulty:** ⭐⭐⭐ Advanced
+
 **Prerequisites:**
 
 - LAB-002: RAG Implementation
@@ -1464,5 +1466,7 @@ In this lab, you learned:
 ---
 
 **Lab:** 011 - Multi-Modal AI
+
 **Time Estimate:** 9 hours
+
 **Difficulty:** ⭐⭐⭐ Advanced

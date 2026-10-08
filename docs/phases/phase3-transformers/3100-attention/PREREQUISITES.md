@@ -112,4 +112,5 @@ After completing 3101-Self-Attention-DeepDive.md, you'll understand:
 ---
 
 **Estimated Time to Complete:** 3-4 hours
+
 **Difficulty:** ⭐⭐⭐ Advanced

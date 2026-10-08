@@ -16,8 +16,11 @@ Tags: ['checkpoint', 'frameworks', 'architecture', 'api-design']
 ## Phase 2 Overview
 
 **Phase:** [2000] Cognitive Science & Frameworks
+
 **Modules:** 4 (2100, 2200, 2300, 2400)
+
 **Estimated Time:** 3-4 weeks
+
 **Difficulty:** ⭐⭐ Intermediate
 
 ---

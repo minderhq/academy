@@ -12,6 +12,7 @@ Tags: ['glossary', 'llm', 'transformers']
 **Official Terminology Reference**
 
 **Last Updated:** 2026-10-08
+
 **Purpose:** Standardize terminology across all Minder Academy documentation
 
 ---

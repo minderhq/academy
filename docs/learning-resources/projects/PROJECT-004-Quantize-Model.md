@@ -24,6 +24,7 @@ Implement model quantization from scratch to run large language models efficient
 - Performance benchmarking and comparison
 
 **Estimated Time:** 15-20 hours
+
 **Difficulty:** ⭐⭐⭐ Advanced
 
 ---

@@ -24,6 +24,7 @@ Build a production-ready Retrieval-Augmented Generation system:
 - Real-time API deployment
 
 **Estimated Time:** 20-25 hours
+
 **Difficulty:** ⭐⭐⭐ Advanced
 
 ---

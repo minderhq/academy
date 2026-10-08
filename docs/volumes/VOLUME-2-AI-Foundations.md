@@ -16,7 +16,9 @@ Tags: ['volume', 'pytorch', 'tensors', 'math']
 ## Volume Overview
 
 **Difficulty:** ⭐⭐ Intermediate
+
 **Time:** 3-4 weeks (part-time)
+
 **Prerequisites:** Volume 1, high school math (algebra, basic calculus), Python programming
 
 ### What You'll Learn
@@ -284,6 +286,7 @@ Stage 4 (10%): Annealing on highest quality
 ### Project A: Implement Autograd from Scratch
 
 **Time:** 4-6 hours
+
 **Difficulty:** ⭐⭐⭐
 
 **Tasks:**
@@ -303,6 +306,7 @@ Stage 4 (10%): Annealing on highest quality
 ### Project B: Optimize PyTorch Model
 
 **Time:** 3-4 hours
+
 **Difficulty:** ⭐⭐
 
 **Tasks:**
@@ -324,6 +328,7 @@ Stage 4 (10%): Annealing on highest quality
 ### Project C: CUDA Kernel for Custom Operation
 
 **Time:** 6-8 hours
+
 **Difficulty:** ⭐⭐⭐⭐
 
 **Tasks:**
@@ -491,7 +496,9 @@ For more help, see **[TROUBLESHOOTING-Common-Issues.md](../learning-resources/tr
 ### You're Ready For:
 
 **Volume 3: LLM Internals** - Understand transformer architecture
+
 **Volume 4: Quantization** - Optimize model arithmetic
+
 **Volume 5: Fine-Tuning** - Understand gradient-based adaptation
 
 ### Skills You've Gained:
@@ -530,4 +537,5 @@ For more help, see **[TROUBLESHOOTING-Common-Issues.md](../learning-resources/tr
 ---
 
 **Volume 2 Status:** 🟢 Complete
+
 **Maintainer:** Minder Academy Team

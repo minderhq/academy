@@ -1,7 +1,7 @@
 ---
 Document ID: 4300-QUANTIZATION-AWARE-TRAINING-README
 Title: "4300: Quantization Aware Training (QAT)"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Prerequisites: [4100]
@@ -67,15 +67,16 @@ Validate your knowledge with:
 
 After this module, you will be able to:
 
-✅ Explain how QAT differs from PTQ
-✅ Implement fake quantization with STE
-✅ Apply QAT to transformer models
-✅ Configure per-layer quantization schemes
-✅ Train models for 4-bit inference
-✅ Evaluate quantized model accuracy
-✅ Debug common QAT issues
+- ✅ Explain how QAT differs from PTQ
+- ✅ Implement fake quantization with STE
+- ✅ Apply QAT to transformer models
+- ✅ Configure per-layer quantization schemes
+- ✅ Train models for 4-bit inference
+- ✅ Evaluate quantized model accuracy
+- ✅ Debug common QAT issues
 
 ---
 
 **Module Duration:** 8-10 hours
+
 **Difficulty:** ⭐⭐⭐ Advanced

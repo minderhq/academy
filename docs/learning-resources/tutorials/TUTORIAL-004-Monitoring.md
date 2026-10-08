@@ -12,7 +12,9 @@ Tags: ['tutorial', 'monitoring', 'observability']
 # TUTORIAL-004: Monitoring & Observability for AI Systems
 
 **Prerequisites:** TUTORIAL-001 (Hello LLM), TUTORIAL-002 (Docker Essentials), LAB-001 (Docker & LLM)
+
 **Time:** 90 minutes
+
 **Difficulty:** ⭐⭐ Intermediate
 
 ---

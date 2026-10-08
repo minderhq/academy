@@ -1028,4 +1028,5 @@ async def health_check():
 ---
 
 **Solution ID:** SOL-001
+
 **Related:** [UC-002: RAG Applications](../use-cases/UC-002-RAG-Applications.md), [6201: Hybrid Search](../phases/phase6-rag/6200-retrieval/6201-Hybrid-Search.md), [6401: Qdrant Setup](../phases/phase6-rag/6400-vector-databases/6401-Qdrant-Setup.md)

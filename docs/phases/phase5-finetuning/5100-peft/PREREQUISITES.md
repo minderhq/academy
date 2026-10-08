@@ -121,4 +121,5 @@ After completing 5101-LoRA-Logic.md, you'll understand:
 ---
 
 **Estimated Time to Complete:** 2-3 hours
+
 **Difficulty:** ⭐⭐⭐ Advanced

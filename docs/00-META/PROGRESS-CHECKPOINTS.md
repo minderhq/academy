@@ -16,7 +16,9 @@ Tags: ['roadmap', 'guide', 'assessment']
 ## Overall Progress
 
 **Total Phases:** 7
+
 **Total Modules:** 29
+
 **Estimated Time:** 6-12 months
 
 **Your Progress:**

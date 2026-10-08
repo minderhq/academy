@@ -33,7 +33,9 @@ Tags: ['tutorial', 'multimodal', 'vision']
 This tutorial covers multi-modal AI systems that can understand and generate content across text, images, audio, and video.
 
 **Duration:** 5 hours
+
 **Difficulty:** ⭐⭐⭐ Advanced
+
 **Prerequisites:** TUTORIAL-001 (Hello LLM), TUTORIAL-003 (RAG Basics)
 
 ---

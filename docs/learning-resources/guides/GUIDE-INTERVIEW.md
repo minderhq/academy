@@ -10,7 +10,9 @@ Tags: ['career', 'guide', 'llm']
 # INTERVIEW PREPARATION GUIDE
 
 **For:** Minder Academy graduates preparing for AI Engineering interviews
+
 **Read Time:** 30 minutes
+
 **Last Updated:** 2026-10-08
 
 ---

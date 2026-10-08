@@ -295,4 +295,5 @@ Found an issue with a notebook? Contributions welcome!
 ---
 
 **Total Notebooks:** 22
+
 **Difficulty Levels:** Beginner (5), Intermediate (8), Advanced (9)

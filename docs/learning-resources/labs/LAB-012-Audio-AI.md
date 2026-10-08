@@ -17,7 +17,9 @@ Tags: ['lab', 'audio', 'whisper', 'hands-on']
 ## Lab Overview
 
 **Time:** 4-5 hours
+
 **Difficulty:** ⭐⭐⭐ Advanced
+
 **Prerequisites:**
 
 - LAB-002: RAG Implementation
@@ -1517,5 +1519,7 @@ In this lab, you learned:
 ---
 
 **Lab:** 012 - Audio AI
+
 **Time Estimate:** 7 hours
+
 **Difficulty:** ⭐⭐⭐ Advanced

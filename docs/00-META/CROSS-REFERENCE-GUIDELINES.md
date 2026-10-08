@@ -10,7 +10,9 @@ Tags: ['maintenance', 'navigation']
 # Minder Academy Cross-Reference Guidelines
 
 **Version:** 1.0
+
 **Last Updated:** 2026-10-08
+
 **Status:** Active
 
 ---
@@ -201,13 +203,13 @@ Link to related experiments:
 
 ### 1. Use Descriptive Link Text
 
-❌ **Bad:** `[Click here](./document.md)`
-✅ **Good:** `[See Self-Attention Deep Dive](./3101-Self-Attention-DeepDive.md)`
+- ❌ **Bad:** `[Click here](./document.md)`
+- ✅ **Good:** `[See Self-Attention Deep Dive](./3101-Self-Attention-DeepDive.md)`
 
 ### 2. Include Document IDs in Link Text
 
-❌ **Bad:** `[See the attention guide](./3101-Self-Attention-DeepDive.md)`
-✅ **Good:** `[3101: Self-Attention Deep Dive](./3101-Self-Attention-DeepDive.md)`
+- ❌ **Bad:** `[See the attention guide](./3101-Self-Attention-DeepDive.md)`
+- ✅ **Good:** `[3101: Self-Attention Deep Dive](./3101-Self-Attention-DeepDive.md)`
 
 ### 3. Group Related Links
 
@@ -225,8 +227,8 @@ Link to related experiments:
 
 ### 4. Provide Context for External Links
 
-❌ **Bad:** [More info](https://pytorch.org/docs)
-✅ **Good:** [PyTorch Documentation](https://pytorch.org/docs) - Official PyTorch API reference
+- ❌ **Bad:** [More info](https://pytorch.org/docs)
+- ✅ **Good:** [PyTorch Documentation](https://pytorch.org/docs) - Official PyTorch API reference
 
 ### 5. Use Tables for Multiple Links
 

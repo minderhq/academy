@@ -17,7 +17,9 @@ Tags: ['lab', 'function-calling', 'agents', 'hands-on']
 ## Lab Overview
 
 **Time:** 5-6 hours
+
 **Difficulty:** ⭐⭐⭐ Advanced
+
 **Prerequisites:**
 
 - LAB-004: ReAct Agent
@@ -1476,5 +1478,7 @@ In this lab, you learned:
 ---
 
 **Lab:** 013 - Advanced Function Calling
+
 **Time Estimate:** 7 hours
+
 **Difficulty:** ⭐⭐⭐ Advanced

@@ -25,7 +25,9 @@ This document provides hands-on practice exercises for Phase 6: Data Nexus (RAG 
 ## Exercise 1: Vector Similarity from Scratch
 
 **Difficulty:** ⭐⭐⭐ Advanced
+
 **Time:** 30 minutes
+
 **Module:** 6100 - Vector Architectures
 
 ### Task
@@ -93,7 +95,9 @@ if __name__ == "__main__":
 ## Exercise 2: BM25 Search Implementation
 
 **Difficulty:** Intermediate
+
 **Time:** 45 minutes
+
 **Module:** 6200 - Retrieval
 
 ### Task
@@ -173,7 +177,9 @@ class BM25Retriever:
 ## Exercise 3: Hybrid Search with Rank Fusion
 
 **Difficulty:** Intermediate
+
 **Time:** 60 minutes
+
 **Module:** 6200 - Retrieval
 
 ### Task
@@ -254,7 +260,9 @@ class HybridRetriever:
 ## Exercise 4: Qdrant Operations
 
 **Difficulty:** Beginner
+
 **Time:** 30 minutes
+
 **Module:** 6400 - Vector Databases
 
 ### Task
@@ -319,7 +327,9 @@ sample_docs = [
 ## Exercise 5: Neo4j Knowledge Graph
 
 **Difficulty:** Intermediate
+
 **Time:** 45 minutes
+
 **Module:** 6300 - Context Management
 
 ### Task
@@ -387,7 +397,9 @@ class KnowledgeGraph:
 ## Exercise 6: Context Building for RAG
 
 **Difficulty:** Advanced
+
 **Time:** 60 minutes
+
 **Module:** 6300 - Context Management
 
 ### Task
@@ -478,7 +490,9 @@ class ContextBuilder:
 ## Exercise 7: Complete RAG Pipeline
 
 **Difficulty:** Advanced
+
 **Time:** 90 minutes
+
 **Module:** 6100-6500 (Comprehensive)
 
 ### Task
@@ -633,7 +647,9 @@ Create adaptive retrieval system that:
 ---
 
 **Last Updated:** 2026-10-08
+
 **Phase:** 6 - Data Nexus
+
 **Status:** Ready for Practice
 
 ---

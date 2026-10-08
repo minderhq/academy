@@ -54,7 +54,9 @@ FP16: 7,000,000,000 × 2 bytes = 14 GB
 ### Why Quantize?
 
 **Problem:** Large models don't fit in GPU memory
+
 **Solution:** Reduce precision (quantization)
+
 **Tradeoff:** Slight accuracy loss for huge memory savings
 
 ---
@@ -104,4 +106,5 @@ After completing 4101-GGUF-Physics.md, you'll understand:
 ---
 
 **Estimated Time to Complete:** 2-3 hours
+
 **Difficulty:** ⭐⭐⭐ Advanced

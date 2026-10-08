@@ -904,35 +904,35 @@ Validate your knowledge:
 
 After completing this module, you will be able to:
 
-✅ **Choose the right Kubernetes distribution**
-   - K3s for edge/home labs
-   - kubeadm for production on-premise
-   - EKS/GKE/AKS for cloud deployments
+- ✅ **Choose the right Kubernetes distribution**
+    - K3s for edge/home labs
+    - kubeadm for production on-premise
+    - EKS/GKE/AKS for cloud deployments
 
-✅ **Deploy GPU-enabled Kubernetes clusters**
-   - Install K3s with GPU support
-   - Configure NVIDIA device plugin
-   - Verify GPU allocation
+- ✅ **Deploy GPU-enabled Kubernetes clusters**
+    - Install K3s with GPU support
+    - Configure NVIDIA device plugin
+    - Verify GPU allocation
 
-✅ **Deploy LLM inference services**
-   - Create deployments with GPU requests
-   - Configure services and ingress
-   - Implement rolling updates
+- ✅ **Deploy LLM inference services**
+    - Create deployments with GPU requests
+    - Configure services and ingress
+    - Implement rolling updates
 
-✅ **Implement auto-scaling**
-   - Horizontal Pod Autoscaler (HPA)
-   - GPU-based metrics
-   - Scaling policies
+- ✅ **Implement auto-scaling**
+    - Horizontal Pod Autoscaler (HPA)
+    - GPU-based metrics
+    - Scaling policies
 
-✅ **Manage storage for models**
-   - Persistent Volume Claims
-   - Storage classes (local, NFS, Ceph)
-   - Model caching strategies
+- ✅ **Manage storage for models**
+    - Persistent Volume Claims
+    - Storage classes (local, NFS, Ceph)
+    - Model caching strategies
 
-✅ **Troubleshoot Kubernetes issues**
-   - Pod scheduling problems
-   - GPU allocation failures
-   - Performance bottlenecks
+- ✅ **Troubleshoot Kubernetes issues**
+    - Pod scheduling problems
+    - GPU allocation failures
+    - Performance bottlenecks
 
 ## Additional Resources
 
@@ -1031,6 +1031,7 @@ Production Ready:
 ---
 
 **Module Duration:** 8-10 hours
+
 **Difficulty:** ⭐⭐ Intermediate
 
 **Ready to proceed?** Continue to [1301: K3s Master-Worker Architecture](./1301-K3s-Master-Worker-Arch.md)

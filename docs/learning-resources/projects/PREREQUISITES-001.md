@@ -10,7 +10,9 @@ Tags: ['prerequisites', 'project', 'setup']
 # PROJECT-001: Prerequisites & Setup Guide
 
 **For:** [PROJECT-001: Build Your AI Assistant](./PROJECT-001-AI-Assistant.md)
+
 **Estimated Setup Time:** 2-3 hours
+
 **Difficulty:** ⭐⭐ Intermediate
 
 ---
@@ -33,6 +35,7 @@ PROJECT-001 is a comprehensive AI assistant combining RAG, ReAct agents, and too
 - Docker deployment
 
 **Estimated Duration:** 15-25 hours
+
 **Team Size:** 1-2 developers
 
 ---
@@ -157,5 +160,7 @@ Before starting PROJECT-001:
 ---
 
 **Setup Duration:** 2-3 hours
+
 **Completed:** [ ] Yes / [ ] No
+
 **Date:** _____________

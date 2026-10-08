@@ -818,6 +818,7 @@ l2.backward()
 ---
 
 **Module Duration:** 91-98 hours (60.5 reading + 30.5-37.5 practice)
+
 **Difficulty:** ⭐⭐⭐ Advanced
 
 **Ready to master AI foundations?** Start with [2101: Tensor Algebra](./2100-calculus/2101-Tensor-Algebra.md) or [2102: Backpropagation](./2100-calculus/2102-Backpropagation-and-Derivatives.md)
