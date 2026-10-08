@@ -316,6 +316,6 @@ class RMSNorm(nn.Module):
 
 ---
 
-**Module Difficulty:** ⭐⭐ Beginner-Intermediate
+**Module Difficulty:** ⭐⭐⭐ Intermediate
 
 **Estimated Time:** 9 hours total
