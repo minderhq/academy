@@ -60,6 +60,9 @@ theme:
     - navigation.indexes
     - navigation.footer
     - content.tabs.link
+    - navigation.path
+    - header.autohide
+    - content.code.select
 
 nav:
   - Home: index.md
@@ -586,8 +589,15 @@ markdown_extensions:
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.details
+  # real checkboxes for the corpus's - [ ] progress/checkpoint lists
+  # (PROGRESS-TRACKER alone carries 109 of them)
+  - pymdownx.tasklist:
+      custom_checkbox: true
 extra_css:
   - stylesheets/custom.css
+# mermaid is Material's native integration on theme >= 9.6: the
+# superfences custom_fences above is the entire setup - the theme loads
+# and initializes mermaid itself, instant navigation included. A separate
+# CDN <script> here would double-initialize every diagram.
 extra_javascript:
   - stylesheets/ascii-fit.js
-  - https://unpkg.com/mermaid@11/dist/mermaid.min.js

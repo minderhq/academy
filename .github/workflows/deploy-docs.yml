@@ -24,7 +24,10 @@ concurrency:
 jobs:
   # GitHub Pages needs a public repository on the free plan. While the repo
   # is private this guard keeps the workflow green with the site deploy
-  # skipped; once the visibility flips, every docs/ push deploys the site.
+  # skipped - unless a Pages site is already configured, which is the
+  # paid-plan private case where deploys work and skipping would just
+  # leave the live site stale. The live site's own Pages resource is the
+  # source of truth: GET /pages 200 => deploy, 404 => the free-plan skip.
   guard:
     runs-on: ubuntu-latest
     timeout-minutes: 5
@@ -37,9 +40,12 @@ jobs:
         run: |
           if [ "$(gh api "repos/${{ github.repository }}" --jq .private)" = "false" ]; then
             echo "deployable=true" >> "$GITHUB_OUTPUT"
+          elif gh api "repos/${{ github.repository }}/pages" --jq .status >/dev/null 2>&1; then
+            echo "deployable=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::Repo is private but a Pages site is already configured - deploying."
           else
             echo "deployable=false" >> "$GITHUB_OUTPUT"
-            echo "::notice::Repo is private - GitHub Pages requires public visibility on the free plan. Site deploy skipped until the flip."
+            echo "::notice::Repo is private and has no Pages site - GitHub Pages requires public visibility on the free plan. Site deploy skipped until the flip."
           fi
 
   build:
