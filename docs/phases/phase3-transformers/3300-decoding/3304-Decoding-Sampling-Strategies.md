@@ -5,7 +5,7 @@ Phase: 3
 Module: 3300
 Last Updated: 2026-10-07
 Status: Complete
-Difficulty: Beginner
+Difficulty: Intermediate
 Estimated Time: 2 hours
 Prerequisites: See module README
 Related: See module README

@@ -653,8 +653,8 @@
       }
     },
     "docs/learning-resources/labs/LAB-011-Multi-Modal-AI.md": {
-      "mtime": 1791499632.7303283,
-      "size": 41188,
+      "mtime": 1791500301.0432947,
+      "size": 41213,
       "bad": {
         "707": "ENV-GAP:clip_model",
         "1029": "ENV-GAP:cv2",
@@ -2192,71 +2192,34 @@
       }
     },
     "docs/phases/phase3-transformers/3300-decoding/3301-Activation-Functions.md": {
-      "mtime": 1791436051.581376,
-      "size": 14055,
+      "mtime": 1791500523.6614838,
+      "size": 14059,
       "bad": {
-        "52": "ENV-GAP:torch",
-        "95": "ENV-GAP:torch",
-        "138": "ENV-GAP:matplotlib",
-        "209": "UN-LEAK",
-        "268": "UN-LEAK",
-        "300": "UN-LEAK",
-        "341": "ENV-GAP:torch",
-        "380": "UN-LEAK"
+        "138": "TIMEOUT"
       },
       "notes": {
-        "52": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "95": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "138": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "209": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
-        "268": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
-        "300": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
-        "341": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "380": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically"
+        "138": "TIMEOUT - matplotlib resolves the TkAgg GUI backend on this system and plt.show() blocks the headless exec past the 90s ceiling; the fence is correct for an interactive session"
       }
     },
     "docs/phases/phase3-transformers/3300-decoding/3302-Normalization-Layers.md": {
-      "mtime": 1791436051.581376,
-      "size": 14371,
+      "mtime": 1791501492.9504533,
+      "size": 14553,
       "bad": {
-        "83": "ENV-GAP:torch",
-        "147": "ENV-GAP:torch",
-        "176": "ENV-GAP:torch",
-        "228": "ENV-GAP:torch",
-        "264": "ENV-GAP:torch",
-        "290": "ENV-GAP:torch",
-        "357": "ENV-GAP:torch",
-        "374": "ENV-GAP:torch",
-        "413": "ENV-GAP:torch"
+        "290": "TIMEOUT"
       },
       "notes": {
-        "83": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "147": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "176": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "228": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "264": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "290": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "357": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "374": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "413": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "290": "TIMEOUT - the earlier RuntimeError was the fence feeding (batch, seq, hidden) to the lesson BatchNorm that expects (batch, channels, length), fixed with a transpose plus a keepdim view on the learnable scale/shift; plt.show() then blocks headless exec past the ceiling"
       }
     },
     "docs/phases/phase3-transformers/3300-decoding/3304-Decoding-Sampling-Strategies.md": {
-      "mtime": 1791333409.0706866,
-      "size": 27555,
+      "mtime": 1791500523.6629572,
+      "size": 27559,
       "bad": {}
     },
     "docs/phases/phase3-transformers/3300-decoding/README.md": {
-      "mtime": 1791440871.807483,
-      "size": 8150,
-      "bad": {
-        "197": "ENV-GAP:torch",
-        "236": "ENV-GAP:torch"
-      },
-      "notes": {
-        "197": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "236": "optional third-party package the QA environment does not install; the fence documents the install requirement"
-      }
+      "mtime": 1791500523.6609542,
+      "size": 8163,
+      "bad": {}
     },
     "docs/phases/phase3-transformers/3300-decoding/assessment/PRACTICE.md": {
       "mtime": 1791440871.807483,
@@ -2422,35 +2385,13 @@
       }
     },
     "docs/phases/phase3-transformers/README.md": {
-      "mtime": 1791440871.8094838,
-      "size": 25497,
+      "mtime": 1791500523.676476,
+      "size": 25509,
       "bad": {
-        "415": "ENV-GAP:torch",
-        "439": "ENV-GAP:torch",
-        "465": "ENV-GAP:torch",
-        "485": "ENV-GAP:transformers",
-        "500": "ENV-GAP:torch",
-        "523": "ENV-GAP:torch",
-        "543": "ENV-GAP:transformers",
-        "564": "ENV-GAP:torch",
-        "594": "ENV-GAP:torch",
-        "612": "ENV-GAP:numpy",
-        "635": "ENV-GAP:matplotlib",
-        "659": "ENV-GAP:torch"
+        "485": "SIDE-EFFECT"
       },
       "notes": {
-        "415": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "439": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "465": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "485": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "500": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "523": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "543": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "564": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "594": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "612": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "635": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "659": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "485": "SIDE-EFFECT - from_pretrained performs a live Hugging Face hub download of the gpt2 and CodeLlama tokenizer files during exec; that is the fence's teaching point"
       }
     },
     "docs/phases/phase4-quantization/4100-low-bit/4101-GGUF-Physics.md": {

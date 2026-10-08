@@ -5,7 +5,7 @@ Phase: 3
 Module: 3300
 Last Updated: 2026-10-08
 Status: Complete
-Difficulty: Beginner
+Difficulty: Intermediate
 Estimated Time: 2 hours
 Prerequisites: See module README
 Related: See module README
@@ -120,8 +120,8 @@ class BatchNorm1d(nn.Module):
         # Normalize
         x_norm = (x - mean) / torch.sqrt(var + self.eps)
 
-        # Scale and shift
-        return self.gamma * x_norm + self.beta
+        # Scale and shift (view keeps the channel dim aligned for broadcasting)
+        return self.gamma.view(1, -1, *([1] * (x.ndim - 2))) * x_norm + self.beta.view(1, -1, *([1] * (x.ndim - 2)))
 ```
 
 ### BatchNorm Properties
@@ -299,7 +299,7 @@ def compare_normalizations():
     x = torch.randn(1, 100, 128)  # Batch, seq, hidden
 
     # Apply different normalizations
-    bn_out = BatchNorm1d(128)(x)
+    bn_out = BatchNorm1d(128)(x.transpose(1, 2))  # BN wants (batch, channels, length)
     ln_out = nn.LayerNorm(128)(x)
     rms_out = RMSNorm(128)(x)
 

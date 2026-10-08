@@ -3,7 +3,7 @@ Document ID: 3300-PREREQUISITES
 Title: "3300: Decoding - Prerequisites"
 Last Updated: 2026-10-08
 Status: Complete
-Difficulty: Beginner
+Difficulty: Intermediate
 Tags: ['prerequisites', 'transformers', 'activation']
 ---
 

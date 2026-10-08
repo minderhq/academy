@@ -245,10 +245,10 @@ graph TD
 
 | Document | Description | Time | Difficulty |
 |----------|-------------|------|------------|
-| [3301: Activation Functions](./3300-decoding/3301-Activation-Functions.md) | GELU, SwiGLU vs RELU | 2h | Beginner |
-| [3302: Normalization Layers](./3300-decoding/3302-Normalization-Layers.md) | BatchNorm vs LayerNorm vs RMSNorm | 2h | Beginner |
+| [3301: Activation Functions](./3300-decoding/3301-Activation-Functions.md) | GELU, SwiGLU vs RELU | 2h | Intermediate |
+| [3302: Normalization Layers](./3300-decoding/3302-Normalization-Layers.md) | BatchNorm vs LayerNorm vs RMSNorm | 2h | Intermediate |
 | [3303: Activation Comparison](./3300-decoding/guides/3303-Activation-Function-Comparison.md) | Comparative analysis | 1h | Advanced |
-| [3304: Decoding Sampling Strategies](./3300-decoding/3304-Decoding-Sampling-Strategies.md) | Temperature, top-k, nucleus, min-p, typical-p | 2h | Beginner |
+| [3304: Decoding Sampling Strategies](./3300-decoding/3304-Decoding-Sampling-Strategies.md) | Temperature, top-k, nucleus, min-p, typical-p | 2h | Intermediate |
 
 **What You'll Learn:**
 

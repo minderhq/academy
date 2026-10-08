@@ -996,7 +996,7 @@ if __name__ == "__main__":
 
     # Show images
     print("=== Showing Images ===")
-    url1 = "https://images.unsplash.com/photo-1474511320723-9a56873571b7"
+    url1 = "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/cat.png"
     image1 = Image.open(requests.get(url1, stream=True, timeout=30).raw)
     print(agent.see(image1, "cat"))
 
