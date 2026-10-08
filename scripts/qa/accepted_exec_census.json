@@ -15,14 +15,9 @@
       "bad": {}
     },
     "docs/00-META/ENVIRONMENT-SETUP.md": {
-      "mtime": 1791483012.7958946,
-      "size": 13973,
-      "bad": {
-        "403": "ENV-GAP:torch"
-      },
-      "notes": {
-        "403": "optional third-party package the QA environment does not install; the fence documents the install requirement"
-      }
+      "mtime": 1791498566.0657866,
+      "size": 14020,
+      "bad": {}
     },
     "docs/00-META/GLOSSARY.md": {
       "mtime": 1791440871.7474136,
@@ -658,23 +653,17 @@
       }
     },
     "docs/learning-resources/labs/LAB-011-Multi-Modal-AI.md": {
-      "mtime": 1791440871.7691033,
-      "size": 41007,
+      "mtime": 1791499632.7303283,
+      "size": 41188,
       "bad": {
-        "60": "ENV-GAP:torch",
-        "330": "ENV-GAP:torch",
-        "615": "ENV-GAP:torch",
-        "707": "ENV-GAP:torch",
-        "1029": "ENV-GAP:torch",
-        "1322": "ENV-GAP:fastapi"
+        "707": "ENV-GAP:clip_model",
+        "1029": "ENV-GAP:cv2",
+        "1322": "ENV-GAP:multimodal_agent"
       },
       "notes": {
-        "60": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "330": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "615": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "707": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "1029": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "1322": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "707": "ENV-GAP:clip_model - lesson-local module built in Step 2 (the previous fence is saved as clip_model.py); each fence executes standalone so the import cannot resolve",
+        "1029": "ENV-GAP:cv2 - opencv-python is an optional third-party package the QA environment does not install",
+        "1322": "ENV-GAP:multimodal_agent - learner's own final-exercise module assembled in the lab workspace, not an installable package"
       }
     },
     "docs/learning-resources/labs/LAB-012-Audio-AI.md": {

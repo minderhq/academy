@@ -542,7 +542,7 @@ class MultiLabelClassifier:
         ).to(self.clip.device)
 
         with torch.no_grad():
-            image_features = self.clip.model.get_image_features(**inputs)
+            image_features = self.clip.model.get_image_features(inputs["pixel_values"]).pooler_output  # explicit pixel_values only - a kwargs spread would leak input_ids/attention_mask into the vision branch
             text_features = self.clip.model.get_text_features(
                 inputs["input_ids"],
                 inputs["attention_mask"]
@@ -570,7 +570,7 @@ if __name__ == "__main__":
 
     # Demo 1: Zero-shot classification
     print("=== Zero-Shot Classification ===")
-    url = "https://images.unsplash.com/photo-1474511320723-9a56873571b7"
+    url = "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/cat.png"
     image = Image.open(requests.get(url, stream=True, timeout=30).raw)
 
     classes = ["cat", "dog", "bird", "car", "tree", "person", "beach"]
@@ -675,7 +675,7 @@ if __name__ == "__main__":
     vqa = VisualQASystem()
 
     # Load image
-    url = "https://images.unsplash.com/photo-1474511320723-9a56873571b7"
+    url = "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/cat.png"
     image = Image.open(requests.get(url, stream=True, timeout=30).raw)
 
     # Ask questions
@@ -742,8 +742,8 @@ class VisionAgent:
         model_name: str = "openai/clip-vit-base-patch32",
         vqa_model: str = "Salesforce/blip-vqa-base"
     ):
-        from .clip_model import CLIPWrapper
-        from .visual_qa import VisualQASystem
+        from clip_model import CLIPWrapper
+        from visual_qa import VisualQASystem
 
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
 
@@ -1052,7 +1052,7 @@ class VideoAnalyzer:
     """
 
     def __init__(self):
-        from .clip_model import CLIPWrapper
+        from clip_model import CLIPWrapper
 
         self.clip = CLIPWrapper()
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -1203,7 +1203,7 @@ class VideoAnalyzer:
         frames = self.extract_frames(video_path, num_frames=max_frames)
 
         # Generate descriptions for each frame
-        from .visual_qa import VisualQASystem
+        from visual_qa import VisualQASystem
         vqa = VisualQASystem()
 
         descriptions = []

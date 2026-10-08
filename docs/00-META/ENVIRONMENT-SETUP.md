@@ -353,10 +353,10 @@ nslookup ollama.com
 export OLLAMA_HOST=https://ollama.com
 ```
 
-3. **Manual Download:**
+3. **Pull the model via the CLI:**
 ```bash
-# Download model manually
-wget https://ollama.com/download/mistral
+# Pull the model with the ollama CLI (page: https://ollama.com/library/mistral)
+ollama pull mistral:7b
 
 # Place in Ollama models directory
 # ~/.ollama/models/ on Linux/Mac

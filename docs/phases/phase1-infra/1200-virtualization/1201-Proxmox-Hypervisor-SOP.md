@@ -68,7 +68,8 @@ Virtualization extensions to confirm in BIOS/UEFI before installing: **VT-x** (I
 ```bash
 # Download the latest ISO from https://www.proxmox.com/en/downloads
 # (the filename changes with each release, e.g. proxmox-ve_9.1-1.iso)
-wget https://download.proxmox.com/iso/proxmox-ve_9.1-1.iso
+# (grab the ISO in a browser from the page above - direct wget on this
+# host currently fails strict TLS cert checks, then name it proxmox-ve.iso)
 
 # Create bootable USB
 dd if=proxmox-ve.iso of=/dev/sdX bs=4M status=progress
