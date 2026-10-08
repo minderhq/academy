@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_7102
 Title: "EXP_7102: Planning & Decomposition Experiment"
-Last Updated: 2026-09-24
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 ---
@@ -9,10 +9,15 @@ Difficulty: Advanced
 # EXP_7102: Planning & Decomposition Experiment
 
 **Project:** Minder Academy
+
 **Phase:** [7100] Agent Architecture
+
 **Document ID:** 7102
+
 **Experiment ID:** EXP_7102_PLANNING
+
 **Date:** 2026-02-04
+
 **Status:** Completed
 
 ---
@@ -33,7 +38,7 @@ Difficulty: Advanced
 ## Infrastructure Used
 
 ```text
-Model: Llama-2-7B-Chat
+Model: Llama-3.1-8B-Instruct
 Framework: LangChain Agent
 Tasks: Multi-step reasoning problems
 ```
@@ -60,6 +65,7 @@ Tasks: Multi-step reasoning problems
 ## Recommendations
 
 **Best Practices:**
+
 1. Always use planning for 3+ step tasks
 2. Use simple ReAct for 1-2 step tasks
 3. Adjust planning depth based on task

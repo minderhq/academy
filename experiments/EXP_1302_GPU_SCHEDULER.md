@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_1302
 Title: "EXP_1302_GPU_SCHEDULER: GPU Scheduler Configuration"
-Last Updated: 2026-09-24
+Last Updated: 2026-10-07
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -10,7 +10,7 @@ Difficulty: Intermediate
 
 ## Experiment Information
 - **Infrastructure Used:** Kubernetes cluster with a GPU worker node
-- **Model:** Llama-2-7B running in K3s pod
+- **Model:** Llama-3.1-8B running in K3s pod
 - **Framework:** vLLM with tensor-parallel-size=1
 
 ## Experiment Setup
@@ -40,11 +40,11 @@ nvidia-smi dmon:
   0     95     82      0      0      0      0      0      0
 
 GPU: Any NVIDIA GPU with 11GB+ VRAM
-Model: Llama-2-7B @ 4-bit quantization
-Weights: ~3.5 GB
-KV Cache: ~4 GB @ 4096 context
+Model: Llama-3.1-8B @ 4-bit quantization
+Weights: ~4.5 GB
+KV Cache: ~0.6 GB @ 4096 context (GQA)
 Activations: ~1 GB
-Total: ~8.5 GB (fits with room to spare)
+Total: ~6.1 GB (fits with room to spare)
 ```
 
 ### Throughput

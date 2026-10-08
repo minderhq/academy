@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_7202
 Title: "EXP_7202: Code Sandbox Experiment"
-Last Updated: 2026-09-24
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 ---
@@ -9,10 +9,15 @@ Difficulty: Advanced
 # EXP_7202: Code Sandbox Experiment
 
 **Project:** Minder Academy
+
 **Phase:** [7200] Tool Use
+
 **Document ID:** 7202
+
 **Experiment ID:** EXP_7202_SANDBOX
+
 **Date:** 2026-02-04
+
 **Status:** Completed
 
 ---
@@ -34,7 +39,7 @@ Difficulty: Advanced
 
 ```text
 Sandbox: RestrictedPython + Docker
-Agent: Llama-2-7B with tool access
+Agent: Llama-3.1-8B with tool access
 Test Cases: Safe, unsafe, malicious code
 ```
 

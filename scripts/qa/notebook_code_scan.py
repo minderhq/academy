@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""notebook code-cell gate (NBC-01..23) for Minder Academy.
+"""notebook code-cell gate (NBC-01..24) for Minder Academy.
 
 The .md AST gate family never sees notebook code: codeblock_syntax_scan
 and fence_import_check walk CommonMark fences in docs/**/*.md, while
@@ -173,6 +173,24 @@ NBC-12..14  the secret/crypto twins (born tick-703): secret_shape_scan
                 carrying builder, and escapes on the danger
                 marker per cell (DANGEROUS / wrong: / unsafe /
                 vulnerab, casefold - the md twins' escape).
+        NBC-24  the Cypher-interpolation twin (born tick-709):
+                the cypher_interp_scan (CI-01/CI-02) twin - the md
+                gate walks docs/**/*.md python fences only, while
+                the launcher RUNS code cells, so a cell passing an
+                f-string to a run()/execute_query() call whose
+                literal part ends at ":" (a label/rel-type
+                position, the md twin's CI-01) or at ".."/"*" (a
+                variable-length path bound, CI-02) was invisible
+                to the whole fleet inside notebooks. $parameters
+                bind values, never schema names (6301-Neo4j), and
+                cannot set variable-length path bounds
+                (6304-GraphRAG), so the interpolated value
+                reaches the query engine raw. Escapes per
+                interpolant: the int-cast (max(1, int(x))), the
+                allowlist membership guard on the interpolated
+                name, a one-hop Name resolving to a cast-shaped
+                value; the danger marker escapes per cell (the
+                md twins' escape).
 
 Structural health (unparseable JSON, malformed cells/sources) is
 NBH-03's jurisdiction - NBC silently skips what NBH flags, and the
@@ -250,10 +268,23 @@ drain - the extension locks the convention (bound parameters,
 never string-merged queries, for any future notebook teaching
 persistence).
 
+NBC-24 born tick-709 at zero the same born-at-zero way: the
+census (the CI judgment mirrored exactly by importing the md
+gate's own functions over the same 20 notebooks / 102 code
+cells) measured the closet CLEAN (CI-01=0, CI-02=0; 101 cells
+walked, 1 danger-marker skip; the walk's entry set - run()/
+execute_query() calls - present at exactly 3 faces, all NB-701
+agent-task .run() calls whose Name targets resolve to
+non-JoinedStr values, out of class), so there was nothing to
+drain - the extension locks the convention ($parameters bind
+values, never schema names, and cannot set path bounds, for
+any future notebook teaching graph queries) and completes the
+notebook query-injection pair (NBC-22..23 SQL, NBC-24 Cypher).
+
 Hard gate (exit 1 on findings): baseline 0 at birth (tick-691 for
 NBC-01..02, tick-702 for NBC-03..11, tick-703 for NBC-12..14,
 tick-704 for NBC-15, tick-706 for NBC-16, tick-707 for
-NBC-17..21, tick-708 for NBC-22..23).
+NBC-17..21, tick-708 for NBC-22..23, tick-709 for NBC-24).
 
 Run over the whole corpus:
     python scripts/qa/notebook_code_scan.py --root .
@@ -978,6 +1009,229 @@ def scan_sqlinterp(src: str, tree: ast.AST, rel: str, idx: int,
         # one finding per execution call
 
 
+# The Cypher-interpolation twin (born tick-709), mirrored from
+# cypher_interp_scan (CI-01/CI-02): _CI_RUN_ATTRS is the walk's
+# entry set (execute/executemany/executescript/read_sql/
+# read_sql_query belong to the SQL twin above, disjoint by attr,
+# single ownership by construction); a literal part ending at ":"
+# arms a label/rel-type position (CI-01), at ".."/"*" a
+# variable-length path bound (CI-02). The resolution helpers
+# carry the _ci_ prefix because the SQL twin above owns the
+# +=-fragment names (the CI judgment has no AugAssign branch -
+# a += fragment is not a fresh query).
+_CI_RUN_ATTRS = frozenset({"run", "execute_query"})
+
+
+def _ci_collect_assigns(
+        body: list[ast.stmt],
+        out: list[tuple[int, str, ast.expr]]) -> None:
+    """``name = <expr>`` assignments from a statement list,
+    recursing into compound statements but NOT into
+    functions/classes (those own their scopes) - the CI twin's
+    face: Assign/AnnAssign only, no AugAssign branch."""
+    for node in body:
+        if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef,
+                             ast.ClassDef)):
+            continue
+        if isinstance(node, ast.Assign) and len(node.targets) == 1 \
+                and isinstance(node.targets[0], ast.Name):
+            out.append((node.lineno, node.targets[0].id, node.value))
+        elif (isinstance(node, ast.AnnAssign)
+                and isinstance(node.target, ast.Name)
+                and node.value is not None):
+            out.append((node.lineno, node.target.id, node.value))
+        for child in ast.iter_child_nodes(node):
+            _ci_collect_assigns([child], out)
+
+
+class _CallCollector(ast.NodeVisitor):
+    """Collect run()/execute_query() calls together with their
+    enclosing function (for per-function-scope one-hop
+    resolution)."""
+
+    def __init__(self) -> None:
+        self.calls: list[tuple[ast.Call, ast.AST | None]] = []
+        self.func_stack: list[ast.AST] = []
+
+    def visit_FunctionDef(self, node) -> None:  # type: ignore[override]
+        self.func_stack.append(node)
+        self.generic_visit(node)
+        self.func_stack.pop()
+
+    visit_AsyncFunctionDef = visit_FunctionDef
+
+    def visit_Call(self, node: ast.Call) -> None:
+        if isinstance(node.func, ast.Attribute) \
+                and node.func.attr in _CI_RUN_ATTRS and node.args:
+            self.calls.append((node, self.func_stack[-1]
+                              if self.func_stack else None))
+        self.generic_visit(node)
+
+
+def _ci_func_assigns(
+        func: ast.AST) -> list[tuple[int, str, ast.expr]]:
+    out: list[tuple[int, str, ast.expr]] = []
+    for node in ast.walk(func):
+        if isinstance(node, ast.Assign) and len(node.targets) == 1 \
+                and isinstance(node.targets[0], ast.Name):
+            out.append((node.lineno, node.targets[0].id, node.value))
+        elif (isinstance(node, ast.AnnAssign)
+                and isinstance(node.target, ast.Name)
+                and node.value is not None):
+            out.append((node.lineno, node.target.id, node.value))
+    return sorted(out, key=lambda t: t[0])
+
+
+def _ci_nearest_assign(
+        name: str, line: int,
+        scope_assigns: list[tuple[int, str, ast.expr]],
+) -> ast.expr | None:
+    """Nearest PRECEDING assignment of ``name`` in the scope (the
+    per-function scope is the twin's tick-649 design lesson - a
+    flat per-fence dict let a second assignment overwrite the
+    first and hide a site)."""
+    best: ast.expr | None = None
+    best_line = -1
+    for lineno, aname, value in scope_assigns:
+        if aname == name and best_line < lineno < line:
+            best, best_line = value, lineno
+    return best
+
+
+def _is_cast_shaped(node: ast.expr) -> bool:
+    """The 6304 mitigation shape: ``int(x)`` or ``max(1, int(x))``
+    - a value that cannot smuggle Cypher metacharacters or
+    unbounded hops."""
+    if isinstance(node, ast.Call) and isinstance(node.func,
+                                                 ast.Name):
+        if node.func.id == "int":
+            return True
+        if node.func.id in ("max", "min"):
+            return any(_is_cast_shaped(a) for a in node.args)
+    return False
+
+
+def _has_membership_guard(scope: ast.AST | None,
+                          name: str) -> bool:
+    """True if the enclosing scope tests ``name`` against a
+    container (``if label not in ALLOWED_LABELS:``) - the
+    allowlist idiom for a position no $parameter can fill."""
+    if scope is None:
+        return False
+    for node in ast.walk(scope):
+        if isinstance(node, ast.Compare) and any(
+                isinstance(op, (ast.In, ast.NotIn))
+                for op in node.ops):
+            for operand in [node.left, *node.comparators]:
+                if isinstance(operand, ast.Name) \
+                        and operand.id == name:
+                    return True
+    return False
+
+
+def _position_interpolants(js: ast.JoinedStr,
+                           want: str) -> list[ast.expr]:
+    """FormattedValues immediately following a literal part ending
+    with the class marker: ``:`` for label/rel-type positions,
+    ``..``/``*`` for variable-length path bounds."""
+    out: list[ast.expr] = []
+    armed = False
+    for v in js.values:
+        if isinstance(v, ast.Constant) and isinstance(v.value, str):
+            if want == ":":
+                armed = v.value.endswith(":")
+            else:
+                armed = (v.value.endswith("..")
+                         or v.value.endswith("*"))
+        elif isinstance(v, ast.FormattedValue) and armed:
+            out.append(v.value)
+            armed = False
+    return out
+
+
+def scan_cypherinterp(src: str, tree: ast.AST, rel: str, idx: int,
+                      findings: list[str]) -> None:
+    """NBC-24 over one parsed cell tree (born tick-709 at zero; the
+    cypher_interp_scan CI-01/CI-02 judgment mirrored per cell: the
+    danger-marker escape first, the ":" / ".." / "*" position
+    arming on the query's literal parts, the int-cast and
+    allowlist-guard escapes, one-hop Name resolution, and one
+    finding per execution call)."""
+    if _DANGER_RE.search(src):
+        return
+    assigns: list[tuple[int, str, ast.expr]] = []
+    _ci_collect_assigns(tree.body, assigns)
+    collector = _CallCollector()
+    collector.visit(tree)
+    for call, func in collector.calls:
+        target = call.args[0]
+        js: ast.JoinedStr | None = None
+        if isinstance(target, ast.JoinedStr):
+            js = target
+        elif isinstance(target, ast.Name):
+            scope_assigns = (_ci_func_assigns(func)
+                             if func is not None else assigns)
+            value = _ci_nearest_assign(target.id, call.lineno,
+                                       scope_assigns)
+            if value is None and func is not None:
+                value = _ci_nearest_assign(target.id, call.lineno,
+                                           assigns)
+            if isinstance(value, ast.JoinedStr):
+                js = value
+        if js is None:
+            continue  # Constant = the parameterized affirmative form
+        str_parts = [v.value for v in js.values
+                     if isinstance(v, ast.Constant)
+                     and isinstance(v.value, str)]
+        if any(p.endswith(":") for p in str_parts):
+            want, code = ":", "CI-01"
+        elif any(p.endswith("..") or p.endswith("*")
+                 for p in str_parts):
+            want, code = "..", "CI-02"
+        else:
+            continue
+        scope: ast.AST | None = func
+        scope_assigns = (_ci_func_assigns(func)
+                         if func is not None else assigns)
+        for interp in _position_interpolants(js, want):
+            if code == "CI-01":
+                if _is_cast_shaped(interp):
+                    continue
+                if isinstance(interp, ast.Name) \
+                        and _has_membership_guard(scope, interp.id):
+                    continue
+                kind = ("label/rel-type position interpolation "
+                        "without an allowlist guard")
+            else:
+                if _is_cast_shaped(interp):
+                    continue
+                if isinstance(interp, ast.Name):
+                    value = _ci_nearest_assign(
+                        interp.id, call.lineno, scope_assigns)
+                    if value is None and func is not None:
+                        value = _ci_nearest_assign(
+                            interp.id, call.lineno, assigns)
+                    if value is not None \
+                            and _is_cast_shaped(value):
+                        continue
+                kind = ("variable-length path-bound "
+                        "interpolation without the int-cast")
+            remedy = ("an allowlist membership guard"
+                      if code == "CI-01" else
+                      "the int-cast (hop_bound = max(1, int(x)))")
+            verb = call.func.attr
+            findings.append(
+                f"{rel}: NBC-24 Cypher {kind} in {verb}() in "
+                f"code cell {idx} - $parameters cannot fill this "
+                f"position (6301: values are bound with "
+                f"$parameters, never interpolated into the "
+                f"string; 6304: parameters cannot set "
+                f"variable-length path bounds), so the "
+                f"interpolated value reaches the query engine "
+                f"raw; guard it with {remedy}, the corpus-taught "
+                f"idiom")
+            break  # one finding per execution call
+
 def scan_nb(root: Path, path: Path, findings: list[str],
             stats: list[int]) -> None:
     rel = path.relative_to(root).as_posix()
@@ -1014,6 +1268,7 @@ def scan_nb(root: Path, path: Path, findings: list[str],
         scan_typing(src, rel, idx, findings)
         scan_deprecated(src, rel, idx, _pyd, findings)
         scan_sqlinterp(src, tree, rel, idx, findings)
+        scan_cypherinterp(src, tree, rel, idx, findings)
         roots: set[str] = set()
         for node in ast.walk(tree):
             if isinstance(node, ast.Import):
@@ -1050,12 +1305,12 @@ def main() -> int:
         print(f.encode("ascii", "backslashreplace").decode("ascii"))
     print(f"notebook_code_scan: {len(findings)} findings "
           f"(NBC-01 code-cell syntax / NBC-02 unresolvable import root "
-          f"/ NBC-03..23 the md twins: bare-broad except, "
+          f"/ NBC-03..24 the md twins: bare-broad except, "
           f"unsafe deserialize, eval-exec, empty mutable default, "
           f"shell-out, mktemp, trust_remote_code, open-no-encoding, "
           f"requests-no-timeout, insecure-tls, secret-shape literals, "
           f"random-for-security, weak-hash-security, legacy-typing, "
-          f"deprecated-API, sql-interpolation; "
+          f"deprecated-API, sql-interpolation, cypher-interpolation; "
           f"{stats[4]} import(s) accepted, {stats[3]} relative skipped, "
           f"{stats[2]} cell(s) left to NBH-03) across {stats[0]} "
           f"notebooks / {stats[1]} code cells in docs/notebooks/ "
@@ -1073,7 +1328,10 @@ def main() -> int:
           f"gate's declared blind spot closed, the census clean; "
           f"NBC-22..23 born tick-708 at zero - the md SQL-"
           f"interpolation gate's declared blind spot closed, the "
-          f"census clean)")
+          f"census clean; NBC-24 born tick-709 at zero - the md "
+          f"Cypher-interpolation gate's declared blind spot "
+          f"closed, the census clean, the query-injection pair "
+          f"complete)")
     return 1 if findings else 0
 
 

@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_5301
 Title: "EXP_5301: Knowledge Distillation Experiment"
-Last Updated: 2026-09-24
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 ---
@@ -9,10 +9,15 @@ Difficulty: Advanced
 # EXP_5301: Knowledge Distillation Experiment
 
 **Project:** Minder Academy
+
 **Phase:** [5300] Synthetic Data
+
 **Document ID:** 5301
+
 **Experiment ID:** EXP_5301_DISTILLATION
+
 **Date:** 2026-02-04
+
 **Status:** Completed
 
 ---
@@ -22,8 +27,8 @@ Difficulty: Advanced
 | Field | Value |
 |-------|-------|
 | **Title** | Knowledge Distillation: Large to Small |
-| **Objective** | Distill knowledge from Llama-2-70B to 7B |
-| **Hypothesis** | Distilled 7B retains ~90% of 70B performance |
+| **Objective** | Distill knowledge from Llama-3.1-70B to 8B |
+| **Hypothesis** | Distilled 8B retains ~90% of 70B performance |
 | **Category** | Performance |
 | **Priority** | Medium |
 | **Estimated Duration** | 16 hours |
@@ -50,6 +55,7 @@ Difficulty: Advanced
 ## Recommendations
 
 **Use Distillation When:**
+
 - Need to deploy large models on limited hardware
 - Want to reduce inference costs
 - Have access to teacher model
