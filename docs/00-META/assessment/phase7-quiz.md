@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE7-QUIZ
 Title: "Phase 7: Agentic Systems Quiz"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['assessment', 'quiz', 'agents']
@@ -317,8 +317,38 @@ d) Accuracy
 
 ## Answer Key
 
-1\. a, 2. a, 3. a, 4. d, 5. d, 6. a, 7. c, 8. a, 9. c, 10. c,
-11\. a, 12. a, 13. a, 14. b, 15. b, 16. d, 17. c, 18. c, 19. b, 20. b,
-21\. d, 22. c, 23. b, 24. d, 25. b, 26. d, 27. c, 28. b, 29. d, 30. b
+| Question | Answer | Explanation |
+|----------|--------|-------------|
+| 1 | A | An AI agent is an autonomous system that perceives its environment and acts toward goals |
+| 2 | A | ReAct stands for the Reasoning and Acting loop |
+| 3 | A | Tool calling is the agent using external functions and APIs |
+| 4 | D | A multi-agent system is multiple agents working together |
+| 5 | D | Agent memory stores and retrieves past interactions |
+| 6 | A | Short-term memory is the recent conversation history |
+| 7 | C | Long-term memory is persistent knowledge storage beyond a single session |
+| 8 | A | Episodic memory stores specific events and experiences |
+| 9 | C | Hierarchical memory is multi-level memory organization |
+| 10 | C | Agent orchestration coordinates multiple agents |
+| 11 | A | A planning agent decomposes complex tasks into steps |
+| 12 | A | Task decomposition breaks complex tasks into subtasks |
+| 13 | A | A code interpreter agent executes code as its primary tool |
+| 14 | B | Prompt injection is malicious input crafted to manipulate the agent |
+| 15 | B | Tool use validation verifies tool calls are safe before executing them |
+| 16 | D | A tool schema is the definition of the tool's interface |
+| 17 | C | An autonomous agent is self-directed |
+| 18 | C | A reflex agent reacts to the current state only, without history or planning |
+| 19 | B | A utility-based agent maximizes a utility function |
+| 20 | B | Agent communication is agents exchanging information |
+| 21 | D | Tool use is the broader concept; function calling is one mechanism inside it |
+| 22 | C | The ReAct loop is the Think-Act-Observe cycle |
+| 23 | B | Chain-of-thought prompting asks the model to show its reasoning |
+| 24 | D | Self-reflection is the agent reviewing its own actions to correct course |
+| 25 | B | A state machine agent moves through defined states and transitions |
+| 26 | D | BDI is the Belief-Desire-Intention model |
+| 27 | C | A singleton agent is a single instance agent |
+| 28 | B | Agent swarming is many simple agents acting collectively |
+| 29 | D | Uncontrolled tool execution is the main security concern with agents |
+| 30 | B | The main challenge of multi-agent systems is coordination and communication |
 
 **Passing: 24/30 (80%)**
+

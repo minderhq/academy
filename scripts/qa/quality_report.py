@@ -147,8 +147,10 @@ stand today?" without running each tool by hand.
                        AS-20 the answer-key
                        written-numbering contract -
                        the phase quiz's "## Answer
-                       Key" comma-pair entries must
-                       run exactly 1..N, no gap,
+                       Key" entries (comma-pair
+                       until tick-781, since then
+                       the module table canon)
+                       must run exactly 1..N, no gap,
                        repeat or broken order (the
                        dict collapses duplicates at
                        capture, AS-08 compares only

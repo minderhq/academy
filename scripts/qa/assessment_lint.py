@@ -35,7 +35,9 @@ the same AS-04/AS-08/AS-09 standards in their own "### N." shape):
          the platform renders it as the per-question review text,
          and a bare | N | X | row grades without teaching
          (born tick-514 at zero: the tick-505..513 explanation
-         drain left 33/33 banks explained, so hard gate from birth)
+         drain left 33/33 banks explained, so hard gate from birth;
+         joined tick-781 by the seven phase quizzes' table-form
+         Answer Keys - born 180/180 rows explained)
   AS-12  where a quiz carries a "Need to Review?" map, the cited
          question numbers must all exist in the bank and must cover
          every question, so no wrong answer strands a learner
@@ -154,7 +156,8 @@ the same AS-04/AS-08/AS-09 standards in their own "### N." shape):
          single-segment contiguous, 184 exercises (169 H3 +
          15 H2 headings; the H2 shape lives in 2300/4300/4400)
   AS-20  the phase quiz's answer-key written numbering - the
-         comma-pair entries after "## Answer Key" must run exactly
+         comma-pair entries (or, since tick-781, the table rows)
+         after "## Answer Key" must run exactly
          1..N (N = the quiz's question count), no gap, repeat or
          broken order: the key dict collapses duplicates at
          capture time and AS-08 compares only the intersection,
@@ -167,7 +170,11 @@ the same AS-04/AS-08/AS-09 standards in their own "### N." shape):
          RM-00's (review_map_check). Scoped to the seven phase
          quizzes. Joined tick-635 - born census 7/7 keys write
          exact 1..N (15/20/25/30/30/30/30, 180 entries),
-         born-at-zero
+         born-at-zero; migrated to the module table canon
+         tick-781 (the escaped comma blobs rendered as one
+         paragraph - the OL-01 tick-468 escape only stopped the
+         broken-list rendering), the capture now reads both
+         surfaces in document order
   AS-21  the phase README's learner-facing quiz claim - the
          Assessment bullet "- **[Phase N Quiz](...)** - Test
          your understanding (NN questions, PP% to pass)" must
@@ -739,14 +746,42 @@ class Linter:
 
         # The Answer Key block mirrors the inline answers: where it
         # exists it must cite only real questions and agree with them.
+        # Two written surfaces are captured in document order - the
+        # comma-pair form the block carried until tick-781 and the
+        # module-bank table canon (| N | X | explanation |) it joined
+        # that tick, which also brings AS-11's explanation-cell
+        # contract to the phase shape (born tick-781, 7/7 explained,
+        # 180/180 rows).
         key: dict = {}
         ak_idx = next((i for i, l in nf if AK_SECTION.match(l)), None)
         if ak_idx is None:
             self.report(rel, "AS-04", "no ## Answer Key section")
         else:
-            body = "\n".join(l for i, l in nf if i > ak_idx)
-            key = {int(n): L.upper()
-                   for n, L in PHASE_KEY_PAIR.findall(body)}
+            entries: list = []
+            for i, l in nf:
+                if i <= ak_idx:
+                    continue
+                h = HEADING.match(l)
+                if h and len(h.group(1)) <= 2:
+                    break
+                mrow = AK_ROW.match(l)
+                if mrow:
+                    entries.append((int(mrow.group(1)),
+                                    mrow.group(2)))
+                    cells = [c.strip()
+                             for c in l.strip().strip("|").split("|")]
+                    # AS-11: the row must carry a filled explanation
+                    # cell - the module banks' rule extended to the
+                    # phase table surface.
+                    if len(cells) < 3 or not cells[2]:
+                        self.report(rel, "AS-11",
+                                    "question %d answer-key row has "
+                                    "no explanation cell"
+                                    % int(mrow.group(1)))
+                else:
+                    entries.extend((int(n), L.upper()) for n, L
+                                   in PHASE_KEY_PAIR.findall(l))
+            key = dict(entries)
             stale = sorted(set(key) - qnums)
             if stale:
                 self.report(rel, "AS-08",
@@ -764,9 +799,10 @@ class Linter:
                 # key - AS-08's stale branch names it; inside the
                 # set the written sequence must be exactly 1..N.
                 # RM-00 owns the module banks' key-table rows; this
-                # is the phase-quiz comma-pair surface's contract.
-                written = [int(n) for n, _ in
-                           PHASE_KEY_PAIR.findall(body)]
+                # is the phase-quiz key surfaces' contract (both the
+                # comma-pair form and, since tick-781, the table
+                # form the module canon uses).
+                written = [n for n, _ in entries]
                 if written != list(range(1, len(qnums) + 1)):
                     self.report(rel, "AS-20",
                                 "answer-key entries are numbered %s, "

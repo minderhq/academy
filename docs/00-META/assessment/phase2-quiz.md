@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE2-QUIZ
 Title: "Phase 2: AI/ML Foundations Quiz"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Tags: ['assessment', 'quiz', 'pytorch']
@@ -217,7 +217,28 @@ d) Stochastic Gradient Descent
 
 ## Answer Key
 
-1\. a, 2. c, 3. a, 4. a, 5. a, 6. b, 7. a, 8. c, 9. c, 10. b,
-11\. b, 12. b, 13. b, 14. c, 15. c, 16. d, 17. d, 18. d, 19. d, 20. d
+| Question | Answer | Explanation |
+|----------|--------|-------------|
+| 1 | A | The backward pass computes gradients of the loss with respect to each parameter |
+| 2 | C | PyTorch builds its computational graph dynamically as operations execute |
+| 3 | A | einsum expresses tensor operations such as products and contractions compactly |
+| 4 | A | autograd records operations and differentiates through them automatically |
+| 5 | A | The chain rule multiplies local gradients through the layered functions of backpropagation |
+| 6 | B | XLA is the Accelerated Linear Algebra compiler |
+| 7 | A | CUDA is NVIDIA's parallel computing platform for GPUs |
+| 8 | C | A tensor is a multi-dimensional array |
+| 9 | C | Broadcasting expands smaller tensors' dimensions so arithmetic between shapes lines up |
+| 10 | B | Gradient checkpointing trades recomputation for less stored activation memory |
+| 11 | B | Vanishing gradients shrink toward zero through many layers, stalling learning early in the stack |
+| 12 | B | A CUDA kernel is a function executed on the GPU by many threads at once |
+| 13 | B | JIT stands for Just-In-Time compilation |
+| 14 | C | Momentum accumulates past gradients to smooth and accelerate parameter updates |
+| 15 | C | The loss function measures model error - the quantity training minimizes |
+| 16 | D | Batch normalization normalizes each layer's inputs over the batch |
+| 17 | D | The learning rate is the step size of each weight update |
+| 18 | D | Overfitting is memorizing the training data at the cost of generalization |
+| 19 | D | Regularization constrains the model to prevent overfitting |
+| 20 | D | SGD stands for Stochastic Gradient Descent |
 
 **Passing: 16/20 (80%)**
+

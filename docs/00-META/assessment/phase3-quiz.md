@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE3-QUIZ
 Title: "Phase 3: Transformer Physics Quiz"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['assessment', 'quiz', 'transformers']
@@ -267,8 +267,33 @@ d) Faster training
 
 ## Answer Key
 
-1\. c, 2. c, 3. c, 4. a, 5. a, 6. a, 7. c, 8. a, 9. b, 10. d,
-11\. b, 12. d, 13. b, 14. d, 15. b, 16. c, 17. d, 18. b, 19. d, 20. d,
-21\. c, 22. a, 23. b, 24. a, 25. a
+| Question | Answer | Explanation |
+|----------|--------|-------------|
+| 1 | C | Self-attention replaced recurrence, letting every token attend to every other in parallel |
+| 2 | C | Multiple heads let the model learn different attention patterns in parallel |
+| 3 | C | RoPE stands for Rotary Position Embedding |
+| 4 | A | Causal masking hides future tokens so generation stays autoregressive |
+| 5 | A | Flash Attention computes exact attention with a memory-efficient tiling, not by reordering softmax inputs |
+| 6 | A | Scaled dot-product attention is softmax(QK^T / sqrt(d_k))V |
+| 7 | C | The KV cache stores computed keys and values so each decode step skips recomputing them |
+| 8 | A | BPE is a subword tokenization algorithm that merges frequent byte pairs |
+| 9 | B | GELU stands for Gaussian Error Linear Unit |
+| 10 | D | SwiGLU's gated form gives better gradient flow and avoids dead neurons |
+| 11 | B | LayerNorm normalizes across the feature dimension of each token |
+| 12 | D | Decoder-only models use causal masking to generate; encoder-decoder reads bidirectionally first |
+| 13 | B | ALiBi stands for Attention with Linear Biases |
+| 14 | D | SentencePiece is a unigram language-model tokenizer |
+| 15 | B | tiktoken is OpenAI's tokenizer for its GPT models |
+| 16 | C | Pre-Norm applies normalization before the residual branch, post-Norm after it |
+| 17 | D | MoE is a model with sparse activation of expert sub-networks, not an ensemble |
+| 18 | B | RoPE's rotary form extrapolates to longer sequences than a fixed learned embedding table |
+| 19 | D | Cross-attention lets decoder queries attend to the encoder's outputs |
+| 20 | D | GPT is decoder-only, BERT is encoder-only |
+| 21 | C | The per-head dimension is d_model divided by num_heads |
+| 22 | A | The FFN is a two-layer MLP with an activation between the layers |
+| 23 | B | Residual connections give gradients a short path through deep stacks |
+| 24 | A | A VLM processes both images and text |
+| 25 | A | Autoregressive generation is the decoder-only architecture's native mode |
 
 **Passing: 20/25 (80%)**
+

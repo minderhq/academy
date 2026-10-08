@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE6-QUIZ
 Title: "Phase 6: Data Nexus (RAG) Quiz"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['assessment', 'quiz', 'rag']
@@ -317,8 +317,38 @@ d) Simpler implementation
 
 ## Answer Key
 
-1\. c, 2. b, 3. b, 4. c, 5. a, 6. b, 7. c, 8. c, 9. a, 10. a,
-11\. b, 12. a, 13. a, 14. b, 15. a, 16. b, 17. c, 18. c, 19. a, 20. c,
-21\. a, 22. b, 23. d, 24. d, 25. d, 26. d, 27. d, 28. d, 29. d, 30. b
+| Question | Answer | Explanation |
+|----------|--------|-------------|
+| 1 | C | RAG stands for Retrieval-Augmented Generation |
+| 2 | B | RAG grounds LLM answers in external knowledge without retraining the model |
+| 3 | B | A vector database is optimized for similarity search over embeddings |
+| 4 | C | HNSW stands for Hierarchical Navigable Small World graph |
+| 5 | A | Qdrant is a vector database for embeddings |
+| 6 | B | Semantic similarity measures meaning similarity between texts via their embeddings |
+| 7 | C | An embedding is a numerical (vector) representation of text |
+| 8 | C | Hybrid search combines dense vector retrieval with sparse keyword retrieval |
+| 9 | A | Re-ranking reorders retrieved results by relevance using a better scorer |
+| 10 | A | GraphRAG retrieves over a knowledge graph rather than flat vector collections |
+| 11 | B | Neo4j is a graph database |
+| 12 | A | A knowledge graph is a network of entities and their relationships |
+| 13 | A | Chunking splits documents into smaller pieces that can be embedded and retrieved |
+| 14 | B | 512-1024 tokens balances context carried against retrieval precision for typical corpora |
+| 15 | A | Overlap preserves context that straddles chunk boundaries |
+| 16 | B | BM25 is the classic sparse keyword retrieval algorithm |
+| 17 | C | Dense retrieval uses embedding similarity to find related text |
+| 18 | C | Sparse retrieval matches exact keywords between query and document |
+| 19 | A | The context window is the maximum input length the model can read at once |
+| 20 | C | Even with long contexts, finding the genuinely relevant information stays the hard part |
+| 21 | A | Metadata filtering narrows search by attributes such as source or date |
+| 22 | B | Multi-vector retrieval stores multiple embeddings per document |
+| 23 | D | The document store keeps the original documents the vectors point back to |
+| 24 | D | The reranking pipeline retrieves candidates first, then reranks them |
+| 25 | D | Cross-encoder reranking encodes query and document jointly for better relevance scoring |
+| 26 | D | Query expansion enriches the query with related terms before retrieval |
+| 27 | D | Fusion retrieval combines the results of multiple retrieval methods |
+| 28 | D | Parent-document retrieval embeds small chunks but returns their full parent documents |
+| 29 | D | Recursive retrieval walks hierarchical chunks, retrieving deeper levels as needed |
+| 30 | B | GraphRAG captures relationships between entities that flat vector search misses |
 
 **Passing: 24/30 (80%)**
+

@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE5-QUIZ
 Title: "Phase 5: Fine-Tuning & Alignment Quiz"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['assessment', 'quiz', 'finetuning']
@@ -317,8 +317,38 @@ d) Simpler implementation
 
 ## Answer Key
 
-1\. d, 2. a, 3. d, 4. a, 5. d, 6. a, 7. d, 8. a, 9. a, 10. d,
-11\. c, 12. a, 13. a, 14. a, 15. d, 16. b, 17. c, 18. b, 19. b, 20. c,
-21\. b, 22. b, 23. c, 24. c, 25. c, 26. d, 27. b, 28. b, 29. c, 30. b
+| Question | Answer | Explanation |
+|----------|--------|-------------|
+| 1 | D | LoRA is Low-Rank Adaptation: it trains small rank-decomposed updates instead of all weights |
+| 2 | A | LoRA trains far fewer parameters, so optimizer state and checkpoints shrink dramatically |
+| 3 | D | The Q stands for Quantization - a 4-bit quantized base model with LoRA adapters on top |
+| 4 | A | The rank is the dimension of the low-rank update matrices |
+| 5 | D | DPO stands for Direct Preference Optimization |
+| 6 | A | DPO optimizes preferences directly and needs no separately trained reward model |
+| 7 | D | RLHF stands for Reinforcement Learning from Human Feedback |
+| 8 | A | The reward model is trained on human preference pairs to score candidate outputs |
+| 9 | A | Knowledge distillation trains a smaller model to mimic a larger teacher model |
+| 10 | D | PEFT stands for Parameter-Efficient Fine-Tuning |
+| 11 | C | 7B models commonly use LoRA ranks in the 8-64 range |
+| 12 | A | Alpha is the scaling factor applied to the LoRA update relative to the frozen weights |
+| 13 | A | Target modules name which layers get LoRA adapters |
+| 14 | A | Instruction tuning fine-tunes the model on instruction/response pairs |
+| 15 | D | SFT stands for Supervised Fine-Tuning |
+| 16 | B | Synthetic data generation produces training examples with LLMs |
+| 17 | C | Synthetic data avoids the cost of collecting and labeling real examples |
+| 18 | B | Federated learning trains across distributed data sources without centralizing them |
+| 19 | B | Data parallelism splits the batch across GPUs, each holding a full model copy |
+| 20 | C | Model parallelism splits the model itself across GPUs |
+| 21 | B | Distributed training spreads one run across multiple devices |
+| 22 | B | The dominant challenge is the memory footprint of the large model's states |
+| 23 | C | Gradient accumulation sums micro-batches to simulate a larger batch size |
+| 24 | C | Learning rate scheduling adjusts the learning rate during training |
+| 25 | C | Warmup gradually increases the learning rate at the start of training |
+| 26 | D | Weight decay is L2 regularization applied to the weights |
+| 27 | B | LoRA modifies existing weights with low-rank deltas; adapters insert new layers |
+| 28 | B | Prompt tuning learns continuous soft prompts while the model stays frozen |
+| 29 | C | Prefix tuning trains virtual prefix tokens prepended at every layer |
+| 30 | B | The quantized 4-bit base lets QLoRA fine-tune larger models in the same memory |
 
 **Passing: 24/30 (80%)**
+

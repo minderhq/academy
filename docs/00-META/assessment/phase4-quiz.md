@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE4-QUIZ
 Title: "Phase 4: Quantization & Compression Quiz"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['assessment', 'quiz', 'quantization']
@@ -317,8 +317,38 @@ d) Better accuracy with same bit-width
 
 ## Answer Key
 
-1\. b, 2. b, 3. a, 4. b, 5. a, 6. a, 7. b, 8. d, 9. d, 10. a,
-11\. a, 12. c, 13. a, 14. b, 15. c, 16. c, 17. b, 18. c, 19. c, 20. a,
-21\. d, 22. d, 23. a, 24. b, 25. b, 26. c, 27. d, 28. c, 29. d, 30. d
+| Question | Answer | Explanation |
+|----------|--------|-------------|
+| 1 | B | Quantization reduces the precision of model weights (FP16 to INT4) to shrink memory |
+| 2 | B | 16-bit to 4-bit weights is a 4x memory reduction |
+| 3 | A | GGUF is the quantized model format used by llama.cpp |
+| 4 | B | EXL2 is a quantization format optimized for GPU inference |
+| 5 | A | AWQ stands for Activation-aware Weight Quantization |
+| 6 | A | GPTQ is accurate post-training quantization driven by calibration |
+| 7 | B | Double quantization quantizes the quantization parameters themselves for further savings |
+| 8 | D | The KV cache stores computed keys and values so generation does not recompute them |
+| 9 | D | Quantizing the KV cache cuts per-token memory, which matters most for long contexts |
+| 10 | A | Speculative decoding drafts tokens with a small model and verifies them with the target model |
+| 11 | A | QAT trains with simulated quantization in the forward pass |
+| 12 | C | Fake quantization simulates quantize/dequantize during training so the model adapts to the precision |
+| 13 | A | Well-tuned INT4 typically costs a few percent of accuracy (2-5%) |
+| 14 | B | Context window extension increases the maximum sequence length the model handles |
+| 15 | C | PagedAttention pages KV cache memory for memory-efficient long-context attention |
+| 16 | C | GGUF's main benefit is CPU/GPU hybrid inference on consumer hardware |
+| 17 | B | Calibration data drives the search for optimal quantization parameters |
+| 18 | C | Asymmetric quantization uses a zero point; symmetric centers at zero without one |
+| 19 | C | Per-channel quantization computes scales for each output channel separately |
+| 20 | A | The core trade-off is memory saved versus accuracy lost |
+| 21 | D | 1.58-bit quantization restricts weights to the set {-1, 0, 1} |
+| 22 | D | Sparsity with quantization removes zero weights before quantizing the rest |
+| 23 | A | Very large models need far more calibration data to quantize without accuracy loss |
+| 24 | B | Batch quantization quantizes multiple models together in one pipeline run |
+| 25 | B | Quantization cuts both memory and compute requirements on constrained edge devices |
+| 26 | C | Dynamic quantization quantizes activations at inference time |
+| 27 | D | Static quantization fixes scales on calibration data before deployment |
+| 28 | C | INT4 kernels typically deliver a 2-4x inference speedup |
+| 29 | D | Layer-wise quantization applies different quantization settings per layer |
+| 30 | D | QAT reaches better accuracy than post-training quantization at the same bit-width |
 
 **Passing: 24/30 (80%)**
+

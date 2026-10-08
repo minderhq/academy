@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE1-QUIZ
 Title: "Phase 1: Infrastructure Quiz"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Beginner
 Tags: ['assessment', 'quiz', 'infrastructure']
@@ -167,7 +167,23 @@ d) Lightweight Kubernetes distribution
 
 ## Answer Key
 
-1\. a, 2. a, 3. a, 4. a, 5. c, 6. b, 7. d, 8. c, 9. b, 10. c,
-11\. b, 12. d, 13. b, 14. c, 15. d
+| Question | Answer | Explanation |
+|----------|--------|-------------|
+| 1 | A | Jumbo frames (MTU 9000) carry more payload per packet, cutting framing overhead on transfers |
+| 2 | A | The Kubernetes device plugin advertises GPU resources so the scheduler can place GPU workloads |
+| 3 | A | MTU 9000 enables jumbo frames, the high-throughput transfer setting used across the course's infrastructure |
+| 4 | A | Core pinning assigns specific CPU cores to a VM for predictable performance |
+| 5 | C | PCIe passthrough hands the physical GPU to the VM directly instead of emulating it |
+| 6 | B | NFS shares the central storage server's volumes over the network |
+| 7 | D | Ollama Enterprise's value is serving model APIs locally rather than hosting in the cloud |
+| 8 | C | PagedAttention pages the KV cache in and out, cutting the memory waste that limits throughput |
+| 9 | B | Loki aggregates logs in the Minder stack; Prometheus does metrics and Grafana dashboards |
+| 10 | C | Drift is model performance degrading over time as inputs shift away from training data |
+| 11 | B | TTFT is a latency metric: how long the user waits until the first token arrives |
+| 12 | D | A container is an isolated application environment sharing the host kernel, not a VM or physical server |
+| 13 | B | Docker Compose orchestrates multi-container applications from a single declarative file |
+| 14 | C | NFS stands for Network File System |
+| 15 | D | K3s is a lightweight Kubernetes distribution built for edge and small hosts |
 
 **Passing: 12/15 (80%)**
+
