@@ -98,7 +98,7 @@ docker run -d \
   -e NEO4J_AUTH=neo4j/graphrag \
   -e NEO4J_PLUGINS='["apoc"]' \
   -v ~/lab-005-graphrag/data/graph:/data \
-  neo4j:5-community
+  neo4j:2026.09.0
 
 # Wait for Neo4j to start (about 30 seconds)
 sleep 30
@@ -618,7 +618,7 @@ if __name__ == "__main__":
 services:
   # Neo4j Graph Database
   neo4j:
-    image: neo4j:5-community
+    image: neo4j:2026.09.0
     container_name: neo4j
     ports:
       - "7474:7474"

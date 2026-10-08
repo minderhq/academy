@@ -114,7 +114,7 @@ mkdir -p scripts
 services:
   # Neo4j Knowledge Graph
   neo4j:
-    image: neo4j:5-community
+    image: neo4j:2026.09.0
     container_name: neo4j
     ports:
       - "7474:7474"

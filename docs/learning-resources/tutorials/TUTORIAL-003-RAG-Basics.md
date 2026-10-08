@@ -522,7 +522,7 @@ GraphRAG service alongside it when you need graph-aware retrieval:
 # Add to configs/docker-compose.yml (or a separate override file)
 services:
   neo4j:
-    image: neo4j:5.15-community
+    image: neo4j:2026.09.0
     ports:
       - "7474:7474"
       - "7687:7687"

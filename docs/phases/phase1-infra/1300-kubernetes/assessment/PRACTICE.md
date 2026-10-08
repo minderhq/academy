@@ -407,7 +407,7 @@ kubectl get hpa
 # manifest already has changes nothing and no rollout starts
 # (--record is deprecated and ignored; revision history is tracked
 # automatically)
-kubectl set image deployment/test-app nginx=nginx:1.27-alpine
+kubectl set image deployment/test-app nginx=nginx:1.28-alpine
 
 # Watch rollout status in real-time
 kubectl rollout status deployment/test-app --watch
@@ -458,7 +458,7 @@ kubectl wait --for=condition=available deployment/test-app --timeout=60s
 echo "✓ Scaled to 5 replicas"
 
 # 3. Update image (a tag different from the manifest, so a rollout starts)
-kubectl set image deployment/test-app nginx=nginx:1.27-alpine
+kubectl set image deployment/test-app nginx=nginx:1.28-alpine
 echo "✓ Image update initiated"
 
 # 4. Monitor rollout

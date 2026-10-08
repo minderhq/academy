@@ -690,7 +690,7 @@ services:
       start_period: 15s   # model import + first forward pass take a moment
 
   nginx:
-    image: nginx:1.27-alpine
+    image: nginx:1.28-alpine
     ports:
       - "80:80"
     volumes:

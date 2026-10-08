@@ -560,21 +560,21 @@
       }
     },
     "docs/learning-resources/labs/LAB-005-GraphRAG.md": {
-      "mtime": 1791440871.766049,
-      "size": 26509,
+      "mtime": 1791492282.0184941,
+      "size": 26505,
       "bad": {
-        "127": "ENV-GAP:neo4j",
-        "353": "ENV-GAP:fastapi",
-        "706": "ENV-GAP:requests",
-        "774": "ENV-GAP:neo4j",
-        "892": "UN-LEAK"
+        "127": "SIDE-EFFECT",
+        "353": "ENV-GAP:sentence_transformers",
+        "706": "SIDE-EFFECT",
+        "774": "SIDE-EFFECT",
+        "892": "SIDE-EFFECT"
       },
       "notes": {
-        "127": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "353": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "706": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "774": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "892": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically"
+        "127": "wrong-interpreter baseline artifact: the baseline-era run died at the neo4j import in a minimal venv; the kurulu-stack census interpreter has it, so the fence proceeds and reaches its external service (tick-798 tag-alignment dirty re-run; first correct-interpreter run for this file)",
+        "353": "wrong-interpreter baseline artifact: the baseline-era run died at the fastapi import in a minimal venv; the kurulu-stack census interpreter has it, so the fence proceeds and dies at the next missing module instead (tick-798 tag-alignment dirty re-run; first correct-interpreter run for this file)",
+        "706": "wrong-interpreter baseline artifact: the baseline-era run died at the requests import in a minimal venv; the kurulu-stack census interpreter has it, so the fence proceeds and reaches its external service (tick-798 tag-alignment dirty re-run; first correct-interpreter run for this file)",
+        "774": "wrong-interpreter baseline artifact: the baseline-era run died at the neo4j import in a minimal venv; the kurulu-stack census interpreter has it, so the fence proceeds and reaches its external service (tick-798 tag-alignment dirty re-run; first correct-interpreter run for this file)",
+        "892": "baseline-era UN-LEAK was recorded under the minimal venv where the fence leaked before its imports bit; the kurulu-stack census interpreter has them, so the fence proceeds to its neo4j daemon connection instead (tick-798 tag-alignment dirty re-run; first correct-interpreter run for this file)"
       }
     },
     "docs/learning-resources/labs/LAB-006-Train-Model-From-Scratch.md": {
@@ -872,8 +872,8 @@
       "size": 2316
     },
     "docs/learning-resources/projects/PROJECT-001-AI-Assistant.md": {
-      "mtime": 1791485459.1311667,
-      "size": 36835,
+      "mtime": 1791492282.01927,
+      "size": 36833,
       "bad": {
         "668": "TIMEOUT"
       },
@@ -1244,21 +1244,21 @@
       }
     },
     "docs/learning-resources/tutorials/TUTORIAL-003-RAG-Basics.md": {
-      "mtime": 1791440871.7902477,
-      "size": 17329,
+      "mtime": 1791492282.0200145,
+      "size": 17324,
       "bad": {
         "98": "ENV-GAP:sentence_transformers",
         "154": "ENV-GAP:sentence_transformers",
-        "264": "ENV-GAP:fastapi",
+        "264": "ENV-GAP:vector_store",
         "359": "UN-LEAK",
         "568": "ENV-GAP:sentence_transformers"
       },
       "notes": {
         "98": "optional third-party package the QA environment does not install; the fence documents the install requirement",
         "154": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "264": "optional third-party package the QA environment does not install; the fence documents the install requirement",
         "359": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
-        "568": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "568": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "264": "wrong-interpreter baseline artifact: the baseline-era run died at the fastapi import in a minimal venv; the kurulu-stack census interpreter has it, so the fence proceeds and dies at the next missing module instead (tick-798 tag-alignment dirty re-run; first correct-interpreter run for this file)"
       }
     },
     "docs/learning-resources/tutorials/TUTORIAL-004-Monitoring.md": {
@@ -1980,7 +1980,7 @@
       "size": 22668
     },
     "docs/phases/phase2-foundations/2300-framework-engineering/guides/2306-Building-Production-Framework.md": {
-      "mtime": 1791051517.1762943,
+      "mtime": 1791492282.021049,
       "size": 35701,
       "bad": {
         "217": "ENV-GAP:core",

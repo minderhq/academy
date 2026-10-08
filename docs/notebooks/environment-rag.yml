@@ -82,7 +82,7 @@ dependencies:
 # Service Requirements:
 # - Qdrant: docker run -p 6333:6333 qdrant/qdrant
 # - ChromaDB: pip install chromadb (runs locally)
-# - Neo4j (for GraphRAG): docker run -p 7474:7474 -p 7687:7687 neo4j:5-community
+# - Neo4j (for GraphRAG): docker run -p 7474:7474 -p 7687:7687 neo4j:2026.09.0
 
 # Notes:
 # - For production RAG, use dedicated vector database instances
