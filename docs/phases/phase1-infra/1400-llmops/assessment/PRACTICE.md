@@ -1,7 +1,7 @@
 ---
 Document ID: 1400-PRACTICE
 Title: "1400: LLMOps - Practice"
-Last Updated: 2026-09-29
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 6 hours
@@ -964,6 +964,7 @@ This practice guide covers:
 5. **Drift Detection:** Performance monitoring and alerting system
 
 **Expected Learning Outcomes:**
+
 - Deploy and manage LLM inference servers
 - Implement monitoring and observability
 - Setup load balancing for high availability

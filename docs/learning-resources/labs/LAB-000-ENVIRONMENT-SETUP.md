@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-000
 Title: "LAB-000: Environment Setup"
-Last Updated: 2026-10-07
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 1 hour
@@ -19,6 +19,7 @@ Tags: ['lab', 'setup', 'docker', 'hands-on']
 ## Lab Objectives
 
 After completing this lab, you will:
+
 - ✅ Have a working AI development environment
 - ✅ Understand how to verify each component
 - ✅ Know how to troubleshoot common issues
@@ -74,6 +75,7 @@ uname -r
 ```
 
 **Verification:**
+
 - [ ] OS version recorded
 - [ ] Architecture noted (x86_64 vs ARM64)
 - [ ] WSL2 installed (Windows)
@@ -123,6 +125,7 @@ nvidia-smi
 ```
 
 **Verification:**
+
 - [ ] RAM meets minimum (16GB+ ideal)
 - [ ] 100GB+ free storage
 - [ ] GPU detected (if available)
@@ -170,6 +173,7 @@ sudo systemctl start docker
 ```
 
 **Verification:**
+
 - [ ] Docker version displayed
 - [ ] `docker ps` works without error
 - [ ] `hello-world` container ran successfully
@@ -249,6 +253,7 @@ python -c "import transformers; print('Transformers installed')"
 ```
 
 **Verification:**
+
 - [ ] Python 3.13+ installed
 - [ ] Virtual environment created
 - [ ] Virtual environment activated
@@ -292,18 +297,22 @@ The answer is 4.
 **Troubleshooting:**
 
 **"Connection refused":**
+
 - Make sure `ollama serve` is running
 - Check firewall settings
 
 **Download stuck:**
+
 - Check internet connection
 - Try again (Ollama resumes automatically)
 
 **"Out of memory":**
+
 - Use smaller model: `ollama pull phi4-mini`
 - Close other applications
 
 **Verification:**
+
 - [ ] Ollama installed
 - [ ] Ollama server running
 - [ ] Model downloaded
@@ -346,6 +355,7 @@ python test_env.py
 ```
 
 **Verification:**
+
 - [ ] Test script runs without errors
 - [ ] All imports successful
 - [ ] LLM generates response

@@ -1,7 +1,7 @@
 ---
 Document ID: 1500-MONITORING-README
 Title: "1500: Monitoring and Observability for LLM Systems"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
@@ -177,6 +177,7 @@ With monitoring:
 ### Pillar 1: Metrics
 
 **What are Metrics?**
+
 - Time-series data (timestamp + value)
 - Numerical measurements
 - Aggregatable (sum, avg, max, min)
@@ -198,6 +199,7 @@ With monitoring:
 ### Pillar 2: Logs
 
 **What are Logs?**
+
 - Discrete events
 - Text-based records
 - Contextual information
@@ -240,6 +242,7 @@ Error log:
 ### Pillar 3: Traces
 
 **What are Traces?**
+
 - Request journey through system
 - Parent-child relationships
 - Distributed context
@@ -913,17 +916,20 @@ tempo              # High-performance tracing
 ### Further Reading
 
 **Documentation:**
+
 - [Prometheus Documentation](https://prometheus.io/docs/)
 - [Grafana Documentation](https://grafana.com/docs/)
 - [NVIDIA DCGM](https://developer.nvidia.com/dcgm/)
 - [OpenTelemetry](https://opentelemetry.io/docs/)
 
 **Books:**
+
 - "Monitoring Distributed Systems" by B. B. Jones
 - "Site Reliability Engineering" by Google SRE team
 - "Observability Engineering" by Charity Majors
 
 **Online Courses:**
+
 - [Prometheus Tutorials](https://prometheus.io/docs/tutorials/)
 - [Grafana Fundamentals](https://grafana.com/tutorials/)
 - [SRE Fundamentals](https://www.skills.google/paths)
@@ -931,11 +937,13 @@ tempo              # High-performance tracing
 ### Community Resources
 
 **Forums:**
+
 - [Prometheus Users](https://groups.google.com/g/prometheus-users)
 - [Grafana Community](https://community.grafana.com/)
 - [r/prometheus on Reddit](https://www.reddit.com/r/prometheus/)
 
 **Blogs:**
+
 - [Grafana Blog](https://grafana.com/blog/)
 - [Prometheus Blog](https://prometheus.io/blog/)
 - [Observability Blog](https://www.honeycomb.io/blog/)

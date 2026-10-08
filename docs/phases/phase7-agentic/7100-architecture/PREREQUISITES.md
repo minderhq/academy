@@ -1,7 +1,7 @@
 ---
 Document ID: 7100-PREREQUISITES
 Title: "Prerequisites: AI Agents"
-Last Updated: 2026-09-24
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['prerequisites', 'agents', 'react']
@@ -18,16 +18,19 @@ Tags: ['prerequisites', 'agents', 'react']
 ### Essential Concepts
 
 **1. LLM Basics**
+
 - How LLMs generate text
 - Prompt engineering
 - Token-based generation
 
 **2. Function Calling**
+
 - LLMs can call external functions
 - Structured output from LLMs
 - Tool use patterns
 
 **3. State Management**
+
 - Tracking conversation history
 - Multi-turn interactions
 - Context preservation

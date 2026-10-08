@@ -3,7 +3,7 @@ Document ID: 5501
 Title: "5501: Optimizer Variants"
 Phase: 5
 Module: 5500
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -365,5 +365,6 @@ The optimizer is the quietest but largest consumer of GPU memory at LLM scale: A
 ---
 
 **Related:**
+
 - [5102: QLoRA Pipelines](../5100-peft/5102-QLoRA-Pipelines.md)
 - [4401: GPTQ](../../phase4-quantization/4400-advanced-techniques/4401-GPTQ.md)

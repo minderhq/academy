@@ -1,7 +1,7 @@
 ---
 Document ID: NOTEBOOKS-README
 Title: "Minder Academy Notebooks"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Beginner
 Tags: ['notebook', 'pytorch', 'training']
@@ -232,18 +232,21 @@ model.to(device)
 ### Learning Path
 
 **Beginner Path:**
+
 1. Start with NB-201 (PyTorch Basics)
 2. Move to NB-202 (Deep Learning Fundamentals)
 3. Try NB-203 (NLP for LLMs)
 4. Complete NB-204 (Data Loading) and NB-205 (Evaluation Metrics)
 
 **Intermediate Path:**
+
 1. Begin with NB-301 (Self-Attention)
 2. Move to NB-302 (Transformer Architecture)
 3. Try NB-401 (Quantization)
 4. Complete NB-601 (Building RAG)
 
 **Advanced Path:**
+
 1. Start with NB-303 (GPT Implementation)
 2. Move to NB-501 (LoRA Fine-tuning)
 3. Try NB-502 (DPO Alignment)
@@ -254,6 +257,7 @@ model.to(device)
 ## Keeping Notebooks Updated
 
 Notebooks are regularly updated with:
+
 - Bug fixes
 - Performance improvements
 - New examples

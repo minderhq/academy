@@ -1,7 +1,7 @@
 ---
 Document ID: 2300-PREREQUISITES
 Title: "2300: Framework Engineering - Prerequisites"
-Last Updated: 2026-09-29
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['framework-engineering', 'prerequisites', 'preparation']
@@ -31,6 +31,7 @@ Tags: ['framework-engineering', 'prerequisites', 'preparation']
 ## Before You Start
 
 This module assumes you have knowledge of:
+
 - **Object-Oriented Programming** - Classes, inheritance, abstraction
 - **Python Design Patterns** - Strategy, Factory, Observer patterns
 - **Basic ML Concepts** - Training, inference, model evaluation
@@ -44,6 +45,7 @@ This module assumes you have knowledge of:
 ### 1. Object-Oriented Programming in Python
 
 **What you should know:**
+
 - Classes and inheritance
 - Abstract base classes (ABC)
 - Decorators
@@ -80,6 +82,7 @@ class MyModel(Model):
 ```
 
 **If you're not familiar:**
+
 - Review: [Python OOP Tutorial](https://docs.python.org/3/tutorial/classes.html)
 - Practice: Create abstract base class with 2 implementations
 - Estimated time: 2 hours
@@ -89,6 +92,7 @@ class MyModel(Model):
 ### 2. Design Patterns
 
 **What you should know:**
+
 - **Strategy Pattern** - Runtime algorithm selection
 - **Factory Pattern** - Object creation encapsulation
 - **Observer Pattern** - Event-driven callbacks
@@ -168,6 +172,7 @@ model_class = registry.get("model1")
 ```
 
 **If you're not familiar:**
+
 - Review: [Refactoring.Guru Patterns](https://refactoring.guru/design-patterns)
 - Practice: Implement strategy pattern for model selection
 - Estimated time: 3 hours
@@ -177,6 +182,7 @@ model_class = registry.get("model1")
 ### 3. ML Model Basics
 
 **What you should know:**
+
 - Model training vs inference
 - Batch processing
 - Model serialization (save/load)
@@ -228,6 +234,7 @@ model.load_state_dict(torch.load("model.pt", weights_only=True))
 ```
 
 **If you're not familiar:**
+
 - Review: [2201: PyTorch Computational Graphs and Dynamic Execution](../2200-frameworks/2201-PyTorch-Computational-Graphs.md)
 - Practice: Train and save a simple model
 - Estimated time: 2 hours
@@ -237,6 +244,7 @@ model.load_state_dict(torch.load("model.pt", weights_only=True))
 ### 4. REST API Concepts
 
 **What you should know:**
+
 - HTTP methods (GET, POST, PUT, DELETE)
 - Status codes (200, 400, 404, 500)
 - Request/response format (JSON)
@@ -281,6 +289,7 @@ async def health():
 ```
 
 **If you're not familiar:**
+
 - Review: [FastAPI Tutorial](https://fastapi.tiangolo.com/tutorial/)
 - Practice: Build a simple API with 3 endpoints
 - Estimated time: 2 hours
@@ -290,6 +299,7 @@ async def health():
 ### 5. Docker Fundamentals
 
 **What you should know:**
+
 - Docker images and containers
 - Dockerfiles
 - Docker Compose
@@ -336,6 +346,7 @@ services:
 ```
 
 **If you're not familiar:**
+
 - Review: [TUTORIAL-002: Docker Essentials for AI](../../../learning-resources/tutorials/TUTORIAL-002-Docker-Essentials.md)
 - Practice: Complete [LAB-001: Docker & LLM Fundamentals](../../../learning-resources/labs/LAB-001-Docker-LLM.md)
 - Estimated time: 2 hours
@@ -345,6 +356,7 @@ services:
 ### 6. Async Python (Helpful but not required)
 
 **What you should know:**
+
 - async/await syntax
 - Event loops
 - Concurrent execution
@@ -372,6 +384,7 @@ async def predict(items: list[int]):
 ```
 
 **If you're not familiar:**
+
 - Review: [Real Python Async](https://realpython.com/async-io-python/)
 - Estimated time: 1.5 hours
 
@@ -483,6 +496,7 @@ You're ready to start! Begin with [2301: Framework Design Patterns](./2301-Frame
 **Symptoms:** Uncomfortable with `@abstractmethod`, don't know when to use ABC
 
 **Fix:**
+
 1. Complete Python OOP tutorial (2 hours)
 2. Practice: Create ABC for different model types
 3. Implement 2-3 concrete classes
@@ -492,6 +506,7 @@ You're ready to start! Begin with [2301: Framework Design Patterns](./2301-Frame
 **Symptoms:** Haven't used strategy, factory, or registry patterns
 
 **Fix:**
+
 1. Read strategy pattern guide (1 hour)
 2. Implement strategy for ML framework
 3. Build registry for components (1 hour)
@@ -501,6 +516,7 @@ You're ready to start! Begin with [2301: Framework Design Patterns](./2301-Frame
 **Symptoms:** Never built REST API, don't know FastAPI/Flask
 
 **Fix:**
+
 1. Complete FastAPI tutorial (2 hours)
 2. Build 3-endpoint API
 3. Add authentication and error handling
@@ -510,6 +526,7 @@ You're ready to start! Begin with [2301: Framework Design Patterns](./2301-Frame
 **Symptoms:** Don't know how to containerize applications
 
 **Fix:**
+
 1. Complete TUTORIAL-002 (1.5 hours)
 2. Complete LAB-001 (2 hours)
 3. Build your own Dockerfile
@@ -521,27 +538,32 @@ You're ready to start! Begin with [2301: Framework Design Patterns](./2301-Frame
 Use this checklist to verify you're ready:
 
 **Python OOP**
+
 - [ ] Can create classes with inheritance
 - [ ] Understand abstract base classes
 - [ ] Can use decorators
 - [ ] Can write context managers
 
 **Design Patterns**
+
 - [ ] Understand strategy pattern
 - [ ] Can implement factory pattern
 - [ ] Know when to use registry pattern
 
 **ML Basics**
+
 - [ ] Can train a simple model
 - [ ] Can save/load model checkpoints
 - [ ] Understand batch processing
 
 **APIs**
+
 - [ ] Can create FastAPI endpoints
 - [ ] Understand HTTP methods
 - [ ] Can handle errors properly
 
 **Docker**
+
 - [ ] Can write a Dockerfile
 - [ ] Can use Docker Compose
 - [ ] Understand volumes and networks

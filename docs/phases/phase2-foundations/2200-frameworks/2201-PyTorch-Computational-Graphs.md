@@ -3,7 +3,7 @@ Document ID: 2201
 Title: "2201: PyTorch Computational Graphs and Dynamic Execution"
 Phase: 2
 Module: 2200
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 4 hours
@@ -632,6 +632,7 @@ PyTorch builds its computational graph dynamically - define-by-run - while stati
 ---
 
 **Related:**
+
 - [2101: Tensor Algebra and Linear Algebra for AI](../2100-calculus/2101-Tensor-Algebra.md)
 - [2102: Backpropagation and Automatic Differentiation](../2100-calculus/2102-Backpropagation-and-Derivatives.md)
 - [2202: TensorFlow XLA and Compiler Optimizations](./2202-TensorFlow-XLA-Compilers.md)

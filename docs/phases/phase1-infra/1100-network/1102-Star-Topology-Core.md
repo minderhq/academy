@@ -3,7 +3,7 @@ Document ID: 1102
 Title: "1102: Network Topology Design"
 Phase: 1
 Module: 1100
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 2 hours
@@ -376,6 +376,7 @@ The original build ran a 16-port 2.5G managed switch through a small apartment w
 ---
 
 **Related Documents:**
+
 - [1101: Internet Uplink & Modem Configuration](./1101-Fiber-GPON-Modem.md)
 - [1103: Jumbo Frames and MTU](./1103-Jumbo-Frames-and-MTU.md)
 - [1201: Proxmox Hypervisor SOP](../1200-virtualization/1201-Proxmox-Hypervisor-SOP.md)

@@ -1,7 +1,7 @@
 ---
 Document ID: VOLUME-5
 Title: "Volume 5: Model Adaptation"
-Last Updated: 2026-10-07
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['volume', 'finetuning', 'lora', 'dpo']
@@ -22,6 +22,7 @@ Tags: ['volume', 'finetuning', 'lora', 'dpo']
 ### What You'll Learn
 
 After completing this volume, you will be able to:
+
 - ✅ Understand LoRA (Low-Rank Adaptation) theory
 - ✅ Implement LoRA from scratch
 - ✅ Fine-tune models with QLoRA (4-bit)
@@ -242,6 +243,7 @@ completion = "AI is artificial intelligence..."
 ```
 
 **Best Practices:**
+
 - Quality > Quantity
 - Cover your target domain
 - Include edge cases
@@ -460,6 +462,7 @@ merged_model.save_pretrained("./merged-model")
 **Difficulty:** ⭐⭐⭐⭐
 
 **Tasks:**
+
 1. Collect domain-specific dataset (medical, legal, technical)
 2. Clean and format data
 3. Fine-tune with QLoRA
@@ -467,6 +470,7 @@ merged_model.save_pretrained("./merged-model")
 5. Deploy with vLLM
 
 **Skills Demonstrated:**
+
 - Dataset preparation ✅
 - QLoRA training ✅
 - Evaluation ✅
@@ -478,6 +482,7 @@ merged_model.save_pretrained("./merged-model")
 **Difficulty:** ⭐⭐⭐⭐
 
 **Tasks:**
+
 1. Implement LoRA layer class
 2. Apply to transformer model
 3. Train on simple task
@@ -485,6 +490,7 @@ merged_model.save_pretrained("./merged-model")
 5. Document differences
 
 **Skills Demonstrated:**
+
 - LoRA implementation ✅
 - PyTorch mastery ✅
 - Algorithm understanding ✅
@@ -495,6 +501,7 @@ merged_model.save_pretrained("./merged-model")
 **Difficulty:** ⭐⭐⭐⭐⭐
 
 **Tasks:**
+
 1. Collect preference data
 2. Train SFT model
 3. Apply DPO alignment
@@ -502,6 +509,7 @@ merged_model.save_pretrained("./merged-model")
 5. Compare with baseline
 
 **Skills Demonstrated:**
+
 - Full alignment pipeline ✅
 - Preference modeling ✅
 - Evaluation ✅
@@ -537,6 +545,7 @@ Use this checklist to track your progress:
 ### How Volume 5 Connects to Other Volumes:
 
 **LoRA (5101, 5104) →**
+
 - Volume 2: Linear algebra foundations
 - Volume 3: Understanding model architecture
 - Volume 4: QLoRA uses 4-bit quantization
@@ -544,11 +553,13 @@ Use this checklist to track your progress:
 - Volume 7: Deploy fine-tuned models
 
 **DPO (5201, 5202) →**
+
 - Volume 3: Understanding model behavior
 - Volume 4: Quantized alignment
 - Volume 7: Production alignment
 
 **Synthetic Data (5301, 5302) →**
+
 - Volume 6: Generate training data for RAG
 - Volume 7: Continuous improvement
 
@@ -632,15 +643,19 @@ Each stage specializes the model further.
 ### Common Issues in Volume 5
 
 **Problem:** LoRA not learning
+
 - **Solution:** Increase rank, check learning rate, verify data quality
 
 **Problem:** QLoRA OOM
+
 - **Solution:** Reduce batch size, enable gradient checkpointing, reduce rank
 
 **Problem:** DPO makes model worse
+
 - **Solution:** Check preference data quality, adjust beta, reduce learning rate
 
 **Problem:** Synthetic data low quality
+
 - **Solution:** Filter rigorously, use diverse prompts, verify outputs
 
 For more help, see **[TROUBLESHOOTING-Common-Issues.md](../learning-resources/troubleshooting/TROUBLESHOOTING-Common-Issues.md)**
@@ -679,6 +694,7 @@ For more help, see **[TROUBLESHOOTING-Common-Issues.md](../learning-resources/tr
 ---
 
 **Recommended Resources:**
+
 - **[PEFT Library](https://huggingface.co/docs/peft)** - LoRA implementation
 - **[TRL Library](https://huggingface.co/docs/trl)** - DPO and SFT trainers
 - **[LoRA Paper](https://arxiv.org/abs/2106.09685)** - Original LoRA paper

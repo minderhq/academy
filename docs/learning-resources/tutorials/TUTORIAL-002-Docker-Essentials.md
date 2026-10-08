@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-002
 Title: "TUTORIAL-002: Docker Essentials for AI"
-Last Updated: 2026-10-07
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 45 minutes
@@ -20,6 +20,7 @@ Tags: ['tutorial', 'docker', 'hands-on']
 ## Learning Objectives
 
 By the end of this tutorial, you will:
+
 - ✅ Understand what Docker is
 - ✅ Build your first Docker image
 - ✅ Run containers with GPUs
@@ -32,6 +33,7 @@ By the end of this tutorial, you will:
 **Docker** = Container platform
 
 Think of containers like **lightweight virtual machines**:
+
 - Share the host OS kernel (more efficient)
 - Package app + dependencies together
 - Run anywhere (dev = prod)
@@ -108,6 +110,7 @@ docker run -it python:3.13 bash
 ```
 
 **What happened?**
+
 1. Downloaded `python:3.13` image
 2. Started container with bash shell
 3. `-it` = interactive + TTY
@@ -360,6 +363,7 @@ CMD ["python", "app.py"]
 ```
 
 **Problems:**
+
 - Installs dependencies every time (if code changes)
 - No layer caching optimization
 - Uses plain `pip` instead of the uv standard (see the good Dockerfile below)
@@ -407,6 +411,7 @@ CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
 ```
 
 **Improvements:**
+
 - ✅ Separate dependency layer (manifest + lockfile first)
 - ✅ Cleanup apt cache
 - ✅ Run as non-root user (security)

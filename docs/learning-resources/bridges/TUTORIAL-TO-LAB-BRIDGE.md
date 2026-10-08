@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-TO-LAB-BRIDGE
 Title: Tutorial to Lab Bridge Guide
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Tags: ['bridge', 'tutorial', 'lab', 'hands-on']
@@ -46,6 +46,7 @@ ENVIRONMENT SETUP
 **LAB-001: Docker & LLM** (2 hours)
 
 **What You Learn:**
+
 - Tutorial: Basic Ollama usage
 - LAB-000: Complete environment setup
 - LAB-001: Containerized LLM deployment
@@ -70,6 +71,7 @@ docker run -d -p 11434:11434 ollama/ollama
 **LAB-001: Docker & LLM** (2 hours)
 
 **What You Learn:**
+
 - Tutorial: Docker commands and concepts
 - LAB-000: Verify Docker installation
 - LAB-001: Build and run LLM containers
@@ -96,6 +98,7 @@ FROM python:3.13-alpine
 **LAB-005: GraphRAG** (5 hours)
 
 **What You Learn:**
+
 - Tutorial: RAG concepts and simple example
 - LAB-002: Build RAG with Qdrant
 - LAB-005: Add knowledge graphs
@@ -129,6 +132,7 @@ class ProductionRAG:
 **LAB-010: DPO Alignment** (5 hours)
 
 **What You Learn:**
+
 - Tutorial: LoRA concepts
 - LAB-003: Fine-tune with QLoRA
 - LAB-010: Apply DPO alignment
@@ -160,6 +164,7 @@ model = get_peft_model(base_model, config)
 **Lab:** Real-world complexity, multiple tools
 
 **Bridge Strategy:**
+
 1. LAB-000 ensures identical setup
 2. Troubleshooting guides for common issues
 3. Verification checklists
@@ -170,6 +175,7 @@ model = get_peft_model(base_model, config)
 **Lab:** Production-ready implementation
 
 **Bridge Strategy:**
+
 1. Show progression from simple → complex
 2. Explain each addition
 3. Comment why each line matters
@@ -293,6 +299,7 @@ PROJECT Difficulty:
 - Lab assumes knowledge you don't have
 
 **Where to get help:**
+
 - [TROUBLESHOOTING-QUICKSTART.md](../../00-META/TROUBLESHOOTING-QUICKSTART.md)
 - [Troubleshooting Guide](../troubleshooting/TROUBLESHOOTING-Common-Issues.md)
 - Community forums

@@ -3,7 +3,7 @@ Document ID: 2302
 Title: "2302: Model Serving Architectures"
 Phase: 2
 Module: 2300
-Last Updated: 2026-09-29
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -50,6 +50,7 @@ After completing this lesson, you will be able to:
 Serving machine learning models in production requires specialized architectural patterns to maximize throughput, minimize latency, and ensure reliability. This document covers the essential serving architectures used in production ML systems like OpenAI, Anthropic, and enterprise ML platforms.
 
 **What You'll Learn:**
+
 - Request batching for GPU optimization
 - Model and data parallelism strategies
 - Load balancing algorithms
@@ -102,6 +103,7 @@ max abs diff: 6.10e-04 (values reach 420.1 - float32 rounding, not a bug)
 ```
 
 **Why batching wins:**
+
 - One batched call replaces 32 separate kernel launches - less dispatch overhead
 - GPUs are throughput machines: a wide matmul saturates the cores, a thin one idles them
 - Batching changes how the math is scheduled, not what it computes - the results
@@ -379,11 +381,13 @@ near the 20 ms inference time.
 ### Trade-offs
 
 **Advantages:**
+
 - Much higher throughput
 - Better GPU utilization
 - Lower cost per request
 
 **Disadvantages:**
+
 - Increased latency for first request in batch
 - More complex implementation
 - Need result tracking system
@@ -1357,6 +1361,7 @@ batch size to drain.
 ### Task
 
 Implement a production-ready model server with:
+
 1. Dynamic batching (timeout-based)
 2. GPU memory monitoring
 3. Response caching
@@ -1448,6 +1453,7 @@ See: [2306: Building a Production Framework](./guides/2306-Building-Production-F
 4. **Caching** - Avoid redundant computation
 
 **Production Systems:**
+
 - vLLM (PagedAttention + Continuous Batching)
 - TGI (Tensor Parallelism + Flash Attention)
 - Triton Inference Server (Multi-framework support)

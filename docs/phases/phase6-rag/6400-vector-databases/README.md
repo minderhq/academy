@@ -1,7 +1,7 @@
 ---
 Document ID: 6400-VECTOR-DATABASES-README
 Title: "6400: Vector Databases"
-Last Updated: 2026-10-07
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Prerequisites: []
@@ -16,6 +16,7 @@ Tags: ['module', 'rag', 'vector-db']
 This module covers production vector database systems for RAG applications. You'll learn to deploy, scale, and optimize vector databases like Qdrant, Pinecone, and Weaviate. Lesson 6404 adds the compression mechanics underneath: scalar, binary, and product quantization with the oversampling and rescore economics that make a lossy index useful.
 
 **Why This Matters:**
+
 - Vector databases power scalable RAG systems
 - Production deployment requires performance, reliability, and security
 - Different databases excel at different use cases
@@ -44,6 +45,7 @@ After completing this module, you will be able to:
 - Snapshots, backups, and troubleshooting
 
 **Experiments:**
+
 - Deploy Qdrant locally
 - Create and populate collections
 - Implement filtered search
@@ -59,6 +61,7 @@ After completing this module, you will be able to:
 - Selection criteria and migration paths
 
 **Experiments:**
+
 - Deploy both databases
 - Compare query performance
 - Test scalability
@@ -74,6 +77,7 @@ After completing this module, you will be able to:
 - The oversampling and rescore campaign
 
 **Experiments:**
+
 - Re-run product quantization with m=16 instead of 8
 - Run the campaign with limit=5 and check the os=1 no-op row
 - Measure recall on your own collection before choosing quantile bounds
@@ -122,6 +126,7 @@ Before starting this module, ensure you have:
 ## Related Modules
 
 This module connects to:
+
 - **[6100: Vector Embeddings](../6100-vector/README.md)** (embedding generation)
 - **[6200: Retrieval Strategies](../6200-retrieval/README.md)** (retrieval strategies)
 - **[6300: Context Management](../6300-context/README.md)** (context management)
@@ -142,6 +147,7 @@ This module connects to:
 ## Resources
 
 **Vector Databases:**
+
 - Qdrant (self-hosted)
 - Pinecone (managed)
 - Weaviate (self-hosted)
@@ -149,6 +155,7 @@ This module connects to:
 - pgvector (PostgreSQL extension)
 
 **Essential Tools:**
+
 - Docker / Docker Compose
 - Python client libraries
 - Monitoring tools (Prometheus, Grafana)
@@ -252,6 +259,7 @@ hnsw_index:
 ## Production Checklist
 
 Before deploying to production:
+
 - [ ] HNSW parameters tuned
 - [ ] Backup strategy configured
 - [ ] Monitoring set up

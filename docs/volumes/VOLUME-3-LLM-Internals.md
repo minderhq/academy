@@ -1,7 +1,7 @@
 ---
 Document ID: VOLUME-3
 Title: "Volume 3: LLM Internals & Architecture"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['volume', 'transformers', 'attention', 'tokenization']
@@ -22,6 +22,7 @@ Tags: ['volume', 'transformers', 'attention', 'tokenization']
 ### What You'll Learn
 
 After completing this volume, you will be able to:
+
 - ✅ Explain the transformer architecture in detail
 - ✅ Implement self-attention from scratch
 - ✅ Understand Flash Attention optimization
@@ -235,6 +236,7 @@ class SwiGLU(nn.Module):
 ```
 
 **Practice:**
+
 - Compare activation performance
 - Analyze gradient flow
 - Benchmark training speed
@@ -319,6 +321,7 @@ Encoder-only (BERT):
 **Difficulty:** ⭐⭐⭐⭐
 
 **Tasks:**
+
 1. Implement multi-head self-attention
 2. Build transformer block (attention + FFN)
 3. Stack blocks to create full model
@@ -326,6 +329,7 @@ Encoder-only (BERT):
 5. Test on text generation
 
 **Skills Demonstrated:**
+
 - Understanding of transformer architecture ✅
 - PyTorch implementation ✅
 - Model debugging ✅
@@ -336,6 +340,7 @@ Encoder-only (BERT):
 **Difficulty:** ⭐⭐⭐
 
 **Tasks:**
+
 1. Extract attention weights from trained model
 2. Visualize attention patterns
 3. Analyze multi-head diversity
@@ -343,6 +348,7 @@ Encoder-only (BERT):
 5. Document findings
 
 **Skills Demonstrated:**
+
 - Attention analysis ✅
 - Visualization ✅
 - Pattern recognition ✅
@@ -353,6 +359,7 @@ Encoder-only (BERT):
 **Difficulty:** ⭐⭐⭐
 
 **Tasks:**
+
 1. Implement BPE tokenizer from scratch
 2. Train on custom corpus
 3. Compare with standard tokenizers
@@ -360,6 +367,7 @@ Encoder-only (BERT):
 5. Optimize for domain
 
 **Skills Demonstrated:**
+
 - Tokenizer implementation ✅
 - Algorithm understanding ✅
 - Domain adaptation ✅
@@ -398,26 +406,31 @@ Use this checklist to track your progress:
 ### How Volume 3 Connects to Other Volumes:
 
 **Self-Attention (3101) →**
+
 - Volume 4: Flash Attention for long contexts
 - Volume 6: Cross-attention in RAG
 - Volume 7: Efficient inference
 
 **Flash Attention (3102) →**
+
 - Volume 4: Context window optimization
 - Volume 6: Long-context RAG
 - Volume 7: Production deployment
 
 **RoPE (3201) →**
+
 - Volume 4: Position encoding in quantization
 - Volume 5: Fine-tuning with RoPE scaling
 - Volume 6: Position-aware retrieval
 
 **Tokenizers (3202) →**
+
 - Volume 5: Domain-specific tokenization
 - Volume 6: Token-efficient RAG
 - Volume 7: Token optimization
 
 **Architecture (3401-3403) →**
+
 - Volume 4: Model-specific optimization
 - Volume 5: Architecture-aware fine-tuning
 - Volume 7: Production model selection
@@ -451,11 +464,13 @@ Where:
 ```
 
 **Multi-Head Attention:**
+
 - Parallel attention mechanisms
 - Each head learns different patterns
 - Concatenated and projected
 
 **Causal Masking:**
+
 - Prevents looking at future tokens
 - Essential for autoregressive generation
 - Upper triangular mask
@@ -463,6 +478,7 @@ Where:
 ### Flash Attention
 
 **Key Innovation:**
+
 - Tiled attention computation
 - Reduces memory from O(N²) to O(N)
 - IO-aware algorithm design
@@ -471,11 +487,13 @@ Where:
 ### Positional Embeddings
 
 **Absolute vs Relative:**
+
 - Absolute: Learn position indices
 - Relative: Learn position differences
 - RoPE: Rotary position encoding (state-of-the-art)
 
 **RoPE Benefits:**
+
 - Relative position encoding
 - Extrapolates to longer sequences
 - No learned parameters
@@ -483,10 +501,12 @@ Where:
 ### Tokenization
 
 **Trade-offs:**
+
 - Larger vocab → Fewer tokens, larger embedding matrix
 - Smaller vocab → More tokens, smaller model
 
 **Popular Tokenizers:**
+
 - BPE: GPT-2, GPT-3, RoBERTa
 - Unigram: T5, mT5
 - TikToken: GPT-3.5, GPT-4
@@ -498,15 +518,19 @@ Where:
 ### Common Issues in Volume 3
 
 **Problem:** Attention pattern visualization confusing
+
 - **Solution:** Start with single head, simple input
 
 **Problem:** Flash Attention not available
+
 - **Solution:** Check CUDA version, try xformers alternative
 
 **Problem:** RoPE implementation complex
+
 - **Solution:** Use Hugging Face implementation first, then customize
 
 **Problem:** Tokenizer produces different results
+
 - **Solution:** Check version, special tokens, preprocessing
 
 For more help, see **[TROUBLESHOOTING-Common-Issues.md](../learning-resources/troubleshooting/TROUBLESHOOTING-Common-Issues.md)**
@@ -546,6 +570,7 @@ For more help, see **[TROUBLESHOOTING-Common-Issues.md](../learning-resources/tr
 ---
 
 **Recommended Resources:**
+
 - **[Attention Is All You Need](https://arxiv.org/abs/1706.03762)** - Original transformer paper
 - **[Illustrated Transformer](http://jalammar.github.io/illustrated-transformer/)** - Visual guide
 - **[Flash Attention Paper](https://arxiv.org/abs/2205.14135)** - Flash Attention details

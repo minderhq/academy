@@ -1,7 +1,7 @@
 ---
 Document ID: 5300-SYNTHETIC-README
 Title: "5300: Synthetic Data & Advanced Training"
-Last Updated: 2026-10-01
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
@@ -16,6 +16,7 @@ Tags: ['module', 'finetuning', 'synthetic-data']
 This module covers advanced training techniques including synthetic data generation, knowledge distillation, distributed training, and federated learning. You'll learn to train and deploy models at scale with limited resources.
 
 **Why This Matters:**
+
 - Real data is expensive, private, or scarce
 - Synthetic data can augment or replace training data
 - Distributed training enables large-scale model training
@@ -44,6 +45,7 @@ After completing this module, you will be able to:
 - Evaluation of distilled models
 
 **Experiments:**
+
 - Implement knowledge distillation
 - Train student model from teacher
 - Compare distillation strategies
@@ -59,6 +61,7 @@ After completing this module, you will be able to:
 - Monitoring, logging, and performance optimization
 
 **Experiments:**
+
 - Set up DDP training
 - Implement FSDP for large models
 - Optimize communication overhead
@@ -74,6 +77,7 @@ After completing this module, you will be able to:
 - Federated LLM fine-tuning and orchestration with Flower
 
 **Experiments:**
+
 - Implement federated averaging
 - Simulate federated training
 - Apply differential privacy
@@ -89,6 +93,7 @@ After completing this module, you will be able to:
 - The campaign ledger: $1,603 to generate against $524,450 to write
 
 **Experiments:**
+
 - Run the four-round bootstrap and read the filter-rejection curve
 - Walk the recursion and count the type extinction
 - Price the anchor against the collapse tax
@@ -126,6 +131,7 @@ Before starting this module, ensure you have:
 ## Related Modules
 
 This module connects to:
+
 - **[2400: LLM Pretraining](../../phase2-foundations/2400-pretraining/README.md)** (large-scale training)
 - **[4100: Low-Bit Quantization](../../phase4-quantization/4100-low-bit/README.md)** (model compression)
 - **[5200: LLM Alignment](../5200-alignment/README.md)** (synthetic preference data)
@@ -146,12 +152,14 @@ This module connects to:
 ## Resources
 
 **Essential Libraries:**
+
 - PyTorch DDP / FSDP
 - DeepSpeed / Megatron
 - Flower (federated learning)
 - Hugging Face Accelerate
 
 **Essential Papers:**
+
 - "Distilling the Knowledge in a Neural Network"
 - "DeepSpeed: System Optimizations for Training"
 - "Communication-Efficient Learning of Deep Networks"

@@ -1,7 +1,7 @@
 ---
 Document ID: 1100-PREREQUISITES
 Title: "1100: Network - Prerequisites"
-Last Updated: 2026-10-01
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Beginner
 Tags: ['prerequisites', 'networking', 'wan']
@@ -40,6 +40,7 @@ This module covers network fundamentals for LLM infrastructure, from internet up
 ### If you're not familiar:
 
 **Review Resources:**
+
 - "Computer Networking: A Top-Down Approach" (Kurose-Ross) - Chapters 1-3
 - AWS VPC documentation
 - Cloudflare CDN learning resources
@@ -52,6 +53,7 @@ This module covers network fundamentals for LLM infrastructure, from internet up
 ## Self-Assessment
 
 Can you:
+
 - [ ] Explain the OSI model layers?
 - [ ] Configure DNS records?
 - [ ] Understand TCP vs UDP?

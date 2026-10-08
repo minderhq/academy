@@ -3,7 +3,7 @@ Document ID: 3403
 Title: "3403: Model Architecture Comparison Guide"
 Phase: 3
 Module: 3400
-Last Updated: 2026-10-07
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -175,6 +175,7 @@ print(tokenizer.decode(outputs[0]))
 ```
 
 **Best For:**
+
 - Translation (EN→TR, EN→DE, etc.)
 - Document Summarization
 - Question Answering with context
@@ -204,6 +205,7 @@ print(tokenizer.decode(outputs[0]))
 ```
 
 **Best For:**
+
 - Chatbots / Assistant applications
 - Code generation
 - Creative writing
@@ -462,6 +464,7 @@ This guide is the architecture decision table: encoder-decoder (T5, BART) versus
 ---
 
 **Related:**
+
 - [3401: Encoder-Decoder Architectures](../3401-Encoder-Decoder-Architectures.md)
 - [3402: Decoder-Only Models](../3402-Decoder-Only-Models.md)
 - [4101: GGUF Physics](../../../phase4-quantization/4100-low-bit/4101-GGUF-Physics.md)

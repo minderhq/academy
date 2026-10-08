@@ -1,7 +1,7 @@
 ---
 Document ID: PROJECT-002
 Title: "CAPSTONE PROJECT-002: Train Neural Network from Scratch"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Tags: ['project', 'pytorch', 'training', 'tensors']
@@ -16,6 +16,7 @@ Tags: ['project', 'pytorch', 'training', 'tensors']
 ## Project Overview
 
 Build and train a neural network completely from scratch, implementing:
+
 - Manual backpropagation with the chain rule
 - Custom tensor operations and autograd
 - Training loops with optimization algorithms
@@ -30,6 +31,7 @@ Build and train a neural network completely from scratch, implementing:
 ## Prerequisites
 
 Complete these before starting:
+
 - ✅ EXP 2101: Tensor Algebra
 - ✅ EXP 2102: Backpropagation
 - ✅ EXP 2201: PyTorch Computational Graphs
@@ -1130,6 +1132,7 @@ for epoch in range(n_epochs):
 ---
 
 **Congratulations!** You've built a deep learning framework from scratch:
+
 - 🧮 Custom tensor library with autograd
 - 🧠 Neural network modules
 - 📈 Training loops and optimizers

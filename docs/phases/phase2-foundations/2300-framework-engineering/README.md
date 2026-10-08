@@ -1,7 +1,7 @@
 ---
 Document ID: 2300-FRAMEWORK-ENGINEERING-README
 Title: "Phase 2: Module 2300 - Framework Engineering"
-Last Updated: 2026-09-29
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Prerequisites: [2200]
@@ -38,6 +38,7 @@ This module covers framework design patterns and production deployment strategie
 **Learning Objectives**
 
 After completing this module, you will be able to:
+
 - Design extensible ML frameworks with abstraction layers
 - Implement model serving architectures for high throughput
 - Build production ML APIs with proper error handling
@@ -48,12 +49,14 @@ After completing this module, you will be able to:
 ## Prerequisites
 
 **Required Knowledge:**
+
 - Python object-oriented programming (classes, inheritance, ABC)
 - Basic ML model training (PyTorch or TensorFlow)
 - REST API concepts (HTTP, JSON, endpoints)
 - Docker fundamentals (containers, images, compose)
 
 **If you're not familiar:**
+
 - Review: [2201: PyTorch Computational Graphs and Dynamic Execution](../2200-frameworks/2201-PyTorch-Computational-Graphs.md)
 - Practice: [TUTORIAL-002: Docker Essentials for AI](../../../learning-resources/tutorials/TUTORIAL-002-Docker-Essentials.md)
 - Estimated time: 30 minutes
@@ -229,6 +232,7 @@ You have completed this module when you can:
 **Q: Do I need to build my own framework?**
 
 A: Not necessarily. But understanding these patterns helps you:
+
 - Use existing frameworks more effectively
 - Debug framework internals
 - Extend frameworks with custom components
@@ -237,6 +241,7 @@ A: Not necessarily. But understanding these patterns helps you:
 **Q: Which framework should I use in production?**
 
 A: Depends on your use case:
+
 - **Hugging Face:** Pre-trained models, standard NLP/CV
 - **LangChain:** RAG, agents, LLM apps
 - **PyTorch Lightning:** Training custom models
@@ -246,6 +251,7 @@ A: Depends on your use case:
 **Q: When should I use batching vs streaming?**
 
 A:
+
 - **Batching:** High throughput, offline processing, batch inference
 - **Streaming:** Real-time responses, chatbots, interactive apps
 

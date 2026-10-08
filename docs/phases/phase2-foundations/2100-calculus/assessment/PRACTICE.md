@@ -1,7 +1,7 @@
 ---
 Document ID: 2100-PRACTICE
 Title: "2100: Calculus - Practice"
-Last Updated: 2026-09-25
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 4 hours
@@ -464,6 +464,7 @@ This practice guide covers:
 5. **Chain Rule:** Understanding and implementing the chain rule
 
 **Expected Learning Outcomes:**
+
 - Understand the mathematical foundation of derivatives and gradients
 - Implement automatic differentiation using PyTorch
 - Apply gradient descent for optimization

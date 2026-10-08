@@ -1,7 +1,7 @@
 ---
 Document ID: 6300-CONTEXT-README
 Title: "6300: Context Management"
-Last Updated: 2026-10-01
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
@@ -16,6 +16,7 @@ Tags: ['module', 'rag', 'context']
 This module covers advanced context management techniques for RAG systems, including knowledge graphs, GraphRAG, and long-context architectures. You'll learn to structure and retrieve context beyond simple vector search.
 
 **Why This Matters:**
+
 - Structured knowledge improves retrieval accuracy
 - Knowledge graphs capture relationships vector search misses
 - Long-context models require careful context organization
@@ -44,6 +45,7 @@ After completing this module, you will be able to:
 - Advanced: traversal and pattern matching
 
 **Experiments:**
+
 - Set up Neo4j database
 - Extract entities from documents
 - Build knowledge graph
@@ -59,6 +61,7 @@ After completing this module, you will be able to:
 - Optimization techniques
 
 **Experiments:**
+
 - Implement CAG pipeline
 - Optimize context compression
 - Build hierarchical retrieval
@@ -74,6 +77,7 @@ After completing this module, you will be able to:
 - Context distillation: the context moving into the weights
 
 **Experiments:**
+
 - Simulate S²-Attn reachability with and without the shift
 - Verify ring attention equals full attention exactly
 - Price the LoRA-only vs LoRA+ parameter ledger
@@ -89,6 +93,7 @@ After completing this module, you will be able to:
 - The month campaign: max-window losing $43,250.00, routed winning
 
 **Experiments:**
+
 - Walk the marginal-accuracy table and locate the negative tail
 - Fit the NoLiMa decay and derive the effective length at 95 percent of baseline
 - Price the window walk in dollars, KV gigabytes, and accuracy per dollar
@@ -149,6 +154,7 @@ Before starting this module, ensure you have:
 ## Related Modules
 
 This module connects to:
+
 - **[6100: Vector Embeddings](../6100-vector/README.md)** (unstructured retrieval)
 - **[6200: Retrieval Strategies](../6200-retrieval/README.md)** (retrieval strategies)
 - **[6400: Vector Databases](../6400-vector-databases/README.md)** (data storage)
@@ -171,6 +177,7 @@ This module connects to:
 ## Resources
 
 **Essential Tools:**
+
 - Neo4j (graph database)
 - Neo4j Python Driver
 - LangChain GraphCypherQAChain
@@ -178,6 +185,7 @@ This module connects to:
 - GraphRAG (Microsoft)
 
 **Essential Papers:**
+
 - "GraphRAG: Enhancing Retrieval with Knowledge Graphs"
 - "From Local to Global: A Graph RAG Approach"
 - "Dense X Retrieval: What Retrieval Granularity"

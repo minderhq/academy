@@ -3,7 +3,7 @@ Document ID: 1302
 Title: "1302: GPU Scheduler Configuration"
 Phase: 1
 Module: 1300
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -486,6 +486,7 @@ The K3s GPU scheduler turns an 11GB-class card into a schedulable cluster resour
 ---
 
 **Related Documents:**
+
 - [1202: GPU Passthrough (IOMMU/VFIO)](../1200-virtualization/1202-TB3-UT3G-Passthrough.md)
 - [1203: NVIDIA Kernel Module Management](../1200-virtualization/1203-Nvidia-Kernel-Module.md)
 - [1301: K3s Master-Worker Architecture](./1301-K3s-Master-Worker-Arch.md)

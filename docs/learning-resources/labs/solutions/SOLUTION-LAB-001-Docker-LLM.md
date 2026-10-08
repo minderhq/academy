@@ -1,7 +1,7 @@
 ---
 Document ID: SOLUTION-LAB-001
 Title: "SOLUTION-LAB-001: Docker & LLM Fundamentals"
-Last Updated: 2026-10-07
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Beginner
 Tags: ['solution', 'docker', 'ollama']
@@ -618,6 +618,7 @@ Support switching between multiple models without restarting.
 **Symptoms:** API returns "Failed to connect to Ollama"
 
 **Causes:**
+
 1. Ollama container not running
 2. Wrong URL in configuration
 3. Network not set up correctly
@@ -639,6 +640,7 @@ docker exec api ping -c 3 ollama
 **Symptoms:** Requests take >10 seconds
 
 **Causes:**
+
 1. CPU-only mode
 2. Large model size
 3. No batching
@@ -659,6 +661,7 @@ docker exec ollama ollama pull phi4-mini
 ## Learning Objectives Check
 
 After completing this lab, you should:
+
 - [x] Run LLMs in Docker containers
 - [x] Build a custom LLM API server
 - [x] Connect multiple services with Docker Compose
@@ -667,6 +670,7 @@ After completing this lab, you should:
 ---
 
 **Related Topics:**
+
 - [TUTORIAL-002: Docker Essentials](../../tutorials/TUTORIAL-002-Docker-Essentials.md)
 - [TUTORIAL-003: RAG Basics](../../tutorials/TUTORIAL-003-RAG-Basics.md)
 - [LAB-002: RAG Implementation](../LAB-002-RAG-Implementation.md)

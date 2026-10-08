@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-013
 Title: "TUTORIAL-013: AI Security and Safety"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -40,6 +40,7 @@ This tutorial covers AI security including prompt injection protection, output s
 ## Learning Objectives
 
 After this tutorial, you will:
+
 - Identify and prevent prompt injection attacks
 - Implement content filtering and moderation
 - Set up access control and authentication

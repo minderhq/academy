@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-003
 Title: "LAB-003: LoRA Fine-Tuning with QLoRA"
-Last Updated: 2026-10-07
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -89,6 +89,7 @@ python -c "import torch; print(f'CUDA available: {torch.cuda.is_available()}')"
 ## Lab Objectives
 
 After completing this lab, you will be able to:
+
 - ✅ Understand LoRA (Low-Rank Adaptation) architecture
 - ✅ Prepare datasets for fine-tuning
 - ✅ Fine-tune models with QLoRA (4-bit quantization)
@@ -125,6 +126,7 @@ mkdir -p scripts
 3. **Forward Pass:** `output = Wx + BAx` where B×A << W
 
 **Why LoRA Works:**
+
 - Pre-trained models have low "intrinsic dimension"
 - Adaptations can be learned in low-rank subspace
 - Reduces trainable parameters from billions to thousands

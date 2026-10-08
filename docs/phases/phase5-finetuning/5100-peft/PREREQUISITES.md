@@ -1,7 +1,7 @@
 ---
 Document ID: 5100-PREREQUISITES
 Title: "Prerequisites: LoRA & Fine-Tuning"
-Last Updated: 2026-09-24
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['prerequisites', 'finetuning', 'peft']
@@ -18,16 +18,19 @@ Tags: ['prerequisites', 'finetuning', 'peft']
 ### Essential Concepts
 
 **1. Neural Network Training**
+
 - Forward pass: input → output
 - Backward pass: gradients
 - Weight updates via gradient descent
 
 **2. Model Parameters**
+
 - Weights and biases
 - Millions/Billions of parameters
 - Full fine-tuning updates all parameters
 
 **3. Computational Constraints**
+
 - GPU memory limitations
 - Training time and cost
 - Storage for model checkpoints

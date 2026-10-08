@@ -1,7 +1,7 @@
 ---
 Document ID: 3400-ARCHITECTURES-README
 Title: "[3400]: Model Architectures"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
@@ -31,6 +31,7 @@ This module covers the major Transformer architecture families: encoder-decoder 
 ## Learning Objectives
 
 After completing this module, you will:
+
 - ✅ Understand encoder-decoder, decoder-only, and encoder-only architectures
 - ✅ Compare T5, BART, GPT, BERT, and LLaMA
 - ✅ Choose the right architecture for your task

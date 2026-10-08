@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE6-RAG-README
 Title: "Phase 6: Data Nexus - RAG, CAG & External Memory [6000]"
-Last Updated: 2026-10-07
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['phase', 'rag', 'retrieval', 'hybrid-search']
@@ -35,6 +35,7 @@ Tags: ['phase', 'rag', 'retrieval', 'hybrid-search']
 **Augmenting LLMs with external knowledge from your data.**
 
 This phase covers Retrieval-Augmented Generation (RAG), Context-Augmented Generation (CAG), and external memory systems to integrate your own data into the LLM logic flow, enabling you to:
+
 - Build enterprise knowledge bases from your documents
 - Implement hybrid search (vector + keyword)
 - Create knowledge graphs with Neo4j
@@ -325,6 +326,7 @@ Conclusion: Self-hosted pays for itself within a few months
 | [6105: Contextual and Multilingual Embeddings](./6100-vector/6105-Contextual-and-Multilingual-Embeddings.md) | Anisotropy, Procrustes alignment, shared spaces | 3h | Advanced |
 
 **What You'll Learn:**
+
 - HNSW (Hierarchical Navigable Small World) indexing
 - Embedding model selection and comparison
 - Semantic similarity metrics (cosine, dot-product)
@@ -333,6 +335,7 @@ Conclusion: Self-hosted pays for itself within a few months
 - Contextual-vs-static embeddings, anisotropy, and multilingual shared spaces
 
 **Hands-On Practice:**
+
 - Implement HNSW indexing from scratch
 - Benchmark embedding models
 - Optimize index parameters
@@ -350,6 +353,7 @@ Conclusion: Self-hosted pays for itself within a few months
 | [6204: Diversification and Boosting](./6200-retrieval/6204-Diversification-and-Boosting.md) | MMR diversification + source boosting | 3h | Advanced |
 
 **What You'll Learn:**
+
 - Hybrid search (dense + sparse retrieval)
 - BM25 keyword search implementation
 - Re-ranking with cross-encoders
@@ -358,6 +362,7 @@ Conclusion: Self-hosted pays for itself within a few months
 - Diversity-aware retrieval (MMR) and document boosting
 
 **Hands-On Practice:**
+
 - Build hybrid search pipeline
 - Implement re-ranking layer
 - Optimize retrieval precision/recall
@@ -376,6 +381,7 @@ Conclusion: Self-hosted pays for itself within a few months
 | [6306: Context Window Economics](./6300-context/6306-Context-Window-Economics.md) | The window as a priced allocation | 3h | Advanced |
 
 **What You'll Learn:**
+
 - Knowledge graph construction
 - GraphRAG vs Vector RAG
 - Context window optimization
@@ -385,6 +391,7 @@ Conclusion: Self-hosted pays for itself within a few months
 - Context window economics (the accuracy curve, the priced allocation)
 
 **Hands-On Practice:**
+
 - Build knowledge graph with Neo4j
 - Implement GraphRAG pipeline
 - Optimize long-context usage
@@ -402,6 +409,7 @@ Conclusion: Self-hosted pays for itself within a few months
 | [6403: Qdrant Production Deployment](./6400-vector-databases/guides/6403-Qdrant-Production-Deployment.md) | Production deployment guide | 2h | Intermediate |
 
 **What You'll Learn:**
+
 - Qdrant architecture and configuration
 - Vector database comparison
 - Vector compression: scalar, binary, and product quantization
@@ -410,6 +418,7 @@ Conclusion: Self-hosted pays for itself within a few months
 - Performance optimization
 
 **Hands-On Practice:**
+
 - Deploy Qdrant with Docker Compose
 - Configure collections and indexes
 - Run the quantization memory ledger and the oversampling-rescore campaign
@@ -427,6 +436,7 @@ Conclusion: Self-hosted pays for itself within a few months
 | [6505: Response Caching and Stage Scaling](./6500-mlops-pipelines/6505-Response-Caching-and-Stage-Scaling.md) | Cache tiers, threshold trade, versioned invalidation, per-stage scaling | 3h | Advanced |
 
 **What You'll Learn:**
+
 - ML lifecycle management for RAG systems
 - CI/CD pipelines with automated testing
 - Model registries, versioning, and lineage
@@ -436,6 +446,7 @@ Conclusion: Self-hosted pays for itself within a few months
 - Production deployment strategies
 
 **Hands-On Practice:**
+
 - Build an ML pipeline for RAG
 - Set up GitHub Actions for ML
 - Implement automated model testing
@@ -821,6 +832,7 @@ After completing this phase:
 **Additional Diagrams:**
 
 **ML Lifecycle & MLOps Diagrams:**
+
 - [ML-LIFECYCLE.md](../../diagrams/ML-LIFECYCLE.md) - Complete ML lifecycle from development to production
   - CI/CD Pipeline for ML
   - Model Evaluation Framework

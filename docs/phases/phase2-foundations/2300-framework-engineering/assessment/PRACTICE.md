@@ -1,7 +1,7 @@
 ---
 Document ID: 2300-PRACTICE
 Title: "2300: Framework Engineering - Practice Exercises"
-Last Updated: 2026-09-29
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 2.5 hours
@@ -990,6 +990,7 @@ This practice guide provides complete, production-ready implementations for:
 3. **Batching Server:** Production inference server with priority queuing, monotonic-clock deadlines, and honest running-average statistics
 
 **Expected Learning Outcomes:**
+
 - Build framework-agnostic ML systems
 - Implement plugin architectures — including dynamic loading, not just decoration
 - Create production inference servers with correct timeout and priority semantics

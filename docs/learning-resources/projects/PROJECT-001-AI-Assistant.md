@@ -1,7 +1,7 @@
 ---
 Document ID: PROJECT-001
 Title: "CAPSTONE PROJECT-001: Build Your AI Assistant"
-Last Updated: 2026-10-07
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['project', 'rag', 'llm']
@@ -16,6 +16,7 @@ Tags: ['project', 'rag', 'llm']
 ## Project Overview
 
 Build a fully-functional AI assistant that can:
+
 - Answer questions using your own knowledge base (RAG)
 - Remember previous conversations (Agent Memory)
 - Perform tasks using tools (Tool Calling)
@@ -42,6 +43,7 @@ Build a fully-functional AI assistant that can:
 
 ### Required Skills (from TUTORIAL-000):
 ⚠️ **This project requires INTERMEDIATE Python skills:**
+
 - Classes and OOP (`class VectorStore:`, `def __init__`)
 - Async/await (`async def query()`, `await client.search()`)
 - Type hints (`def query(self, text: str) -> list[dict]`)
@@ -1224,6 +1226,7 @@ curl -X POST http://localhost:8002/chat \
 ---
 
 **Congratulations!** You've built a production-ready AI assistant combining:
+
 - 🧠 Knowledge retrieval (RAG)
 - 🤖 Reasoning and action (ReAct)
 - 🛠️ Tool execution

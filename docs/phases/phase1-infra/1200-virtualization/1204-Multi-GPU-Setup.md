@@ -3,7 +3,7 @@ Document ID: 1204
 Title: "1204: Multi-GPU Setup"
 Phase: 1
 Module: 1200
-Last Updated: 2026-10-07
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -535,6 +535,7 @@ Multi-GPU starts from an honest single card - 8 to 16GB of VRAM is enough for 7B
 ---
 
 **Related:**
+
 - [1202: GPU Passthrough (IOMMU/VFIO)](./1202-TB3-UT3G-Passthrough.md)
 - [1203: NVIDIA Kernel Module Management](./1203-Nvidia-Kernel-Module.md)
 - [1301: K3s Master-Worker Architecture](../1300-kubernetes/1301-K3s-Master-Worker-Arch.md)

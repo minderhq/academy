@@ -1,7 +1,7 @@
 ---
 Document ID: SOL-001
 Title: "SOL-001: Enterprise Knowledge Base - Complete Implementation"
-Last Updated: 2026-10-07
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Tags: ['enterprise', 'solution', 'rag', 'qdrant']
@@ -69,12 +69,14 @@ End-to-end implementation guide for building an enterprise knowledge base using 
 ### 1.1 Hardware Requirements
 
 **Minimum (Homelab):**
+
 - CPU: a mini-PC or equivalent (4+ cores)
 - RAM: 16GB
 - Storage: 500GB SSD
 - GPU: 11GB VRAM GPU (for Qwen 2.5 7B 4-bit)
 
 **Recommended:**
+
 - CPU: 8+ cores
 - RAM: 32GB
 - Storage: 1TB NVMe SSD

@@ -1,7 +1,7 @@
 ---
 Document ID: 5200-PREREQUISITES
 Title: "5200: Alignment - Prerequisites"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['prerequisites', 'finetuning', 'alignment']
@@ -34,6 +34,7 @@ This module covers AI alignment using RLHF and DPO.
 ### If you're not familiar:
 
 **Review Resources:**
+
 - "Aligning AI with Human Intent" (OpenAI blog)
 - "Training a Helpful and Harmless Assistant with RLHF" (Anthropic)
 - "Constitutional AI" (Anthropic)
@@ -45,6 +46,7 @@ This module covers AI alignment using RLHF and DPO.
 ## Self-Assessment
 
 Can you:
+
 - [ ] Explain what RLHF does?
 - [ ] Describe preference learning?
 - [ ] Understand KL divergence?

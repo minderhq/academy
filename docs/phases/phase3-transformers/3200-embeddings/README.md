@@ -1,7 +1,7 @@
 ---
 Document ID: 3200-EMBEDDINGS-README
 Title: "[3200]: Embedding Latent Spaces"
-Last Updated: 2026-10-07
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Prerequisites: []
@@ -30,6 +30,7 @@ This module covers how Transformers represent text as continuous vectors - the f
 ## Learning Objectives
 
 After completing this module, you will:
+
 - ✅ Understand the embedding space and token representations
 - ✅ Explain why positional encodings are necessary
 - ✅ Compare absolute vs relative position representations

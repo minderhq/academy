@@ -3,7 +3,7 @@ Document ID: 4202
 Title: "4202: Speculative Decoding - Accelerating Large Models"
 Phase: 4
 Module: 4200
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -514,6 +514,7 @@ Speculative decoding buys speed with a division of labor: a small draft model pr
 ---
 
 **Related Documents:**
+
 - [4201: Context Window](./4201-Context-Window-Physics.md)
 - [1402: vLLM and TGI](../../phase1-infra/1400-llmops/1402-vLLM-and-TGI.md)
 - [3102: Flash Attention](../../phase3-transformers/3100-attention/3102-Flash-Attention.md)

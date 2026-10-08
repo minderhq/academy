@@ -1,7 +1,7 @@
 ---
 Document ID: PROJECT-005
 Title: "CAPSTONE PROJECT-005: Fine-Tune Domain Model"
-Last Updated: 2026-10-07
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['project', 'lora', 'finetuning', 'peft']
@@ -16,6 +16,7 @@ Tags: ['project', 'lora', 'finetuning', 'peft']
 ## Project Overview
 
 Fine-tune a large language model for a specific domain using modern techniques:
+
 - LoRA and QLoRA fine-tuning
 - Custom dataset preparation and cleaning
 - Training with distributed GPUs
@@ -30,6 +31,7 @@ Fine-tune a large language model for a specific domain using modern techniques:
 ## Prerequisites
 
 Complete these before starting:
+
 - ✅ 5101: LoRA Logic
 - ✅ 5102: QLoRA Pipelines
 - ✅ 5201: DPO Theory
@@ -536,6 +538,7 @@ echo "Model deployed at http://localhost:8000"
 ---
 
 **Congratulations!** You've fine-tuned a domain-specific LLM:
+
 - 📊 Domain dataset prepared
 - 🎯 QLoRA fine-tuning completed
 - 📈 Performance evaluated

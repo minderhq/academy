@@ -3,7 +3,7 @@ Document ID: 4403
 Title: "4403: GGUF Format"
 Phase: 4
 Module: 4400
-Last Updated: 2026-10-07
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -54,6 +54,7 @@ GGUF (GPT-Generated Unified Format) is the file format used by llama.cpp, enabli
 ## What is GGUF?
 
 GGUF is a binary file format that stores:
+
 - Quantized model weights
 - Model metadata (architecture, hyperparameters)
 - Tokenizer vocabulary

@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-000
 Title: "TUTORIAL-000: Python for AI (Complete Beginner)"
-Last Updated: 2026-10-07
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 20 hours
@@ -65,6 +65,7 @@ This tutorial is designed for **complete beginners** with zero programming exper
 ## After This Tutorial
 
 You'll be ready for:
+
 - ✅ TUTORIAL-001: Hello LLM
 - ✅ TUTORIAL-002: Docker Essentials
 - ✅ TUTORIAL-003: RAG Basics
@@ -78,11 +79,13 @@ You'll be ready for:
 ### 1.1 What is Python?
 
 **Python** is a programming language that:
+
 - Easy to read and write
 - Powerful and widely used
 - The #1 language for AI/ML
 
 **Why Python for AI?**
+
 - Simple syntax → focus on logic, not syntax
 - Huge ecosystem → libraries for everything
 - Great community → help is everywhere
@@ -1023,6 +1026,7 @@ uvx ruff format .
 ```
 
 What ruff catches for you:
+
 - **Bugs:** unused variables and imports, undefined names, f-string mistakes
 - **Style:** inconsistent quotes, spacing and import order (no more bikeshedding)
 - **Modernization:** old idioms that have cleaner Python 3.13 replacements

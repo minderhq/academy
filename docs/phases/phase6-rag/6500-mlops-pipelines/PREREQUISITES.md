@@ -1,7 +1,7 @@
 ---
 Document ID: 6500-PREREQUISITES
 Title: "6500: RAG MLOps - Prerequisites"
-Last Updated: 2026-10-01
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['prerequisites', 'mlops', 'model-registry']
@@ -40,6 +40,7 @@ This module covers MLOps specifically for RAG systems: lifecycle management, CI/
 ### If you're not familiar:
 
 **Review Resources:**
+
 - "Production RAG Systems" case studies
 - "MLOps for RAG" blog posts
 - LangChain production guides
@@ -52,6 +53,7 @@ This module covers MLOps specifically for RAG systems: lifecycle management, CI/
 ## Self-Assessment
 
 Can you:
+
 - [ ] Deploy a production RAG system?
 - [ ] Monitor RAG performance?
 - [ ] Handle embedding updates?

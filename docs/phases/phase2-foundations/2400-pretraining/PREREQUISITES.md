@@ -1,7 +1,7 @@
 ---
 Document ID: 2400-PREREQUISITES
 Title: "2400: LLM Pretraining - Prerequisites"
-Last Updated: 2026-09-28
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['pretraining', 'prerequisites', 'preparation']
@@ -47,6 +47,7 @@ Every section below has a runnable example. **Run them, don't just read them** �
 ### 1. ML Fundamentals
 
 **What you should know:**
+
 - Cross-entropy loss (and why it is negative log-likelihood)
 - SGD vs Adam
 - Overfitting and regularization
@@ -103,6 +104,7 @@ print(f"training worked: {train_loss < first_loss}")
 ```
 
 **If you're not familiar:**
+
 - Review: [2201: PyTorch Computational Graphs and Dynamic Execution](../2200-frameworks/2201-PyTorch-Computational-Graphs.md)
 - Practice: Retrain the loop with `lr=0.1` and with SGD instead of Adam; watch what changes
 - Estimated time: 2 hours
@@ -112,6 +114,7 @@ print(f"training worked: {train_loss < first_loss}")
 ### 2. Tokenization Basics
 
 **What you should know:**
+
 - Why models consume tokens, not raw characters or words
 - Vocabulary: a fixed mapping token ↔ integer id
 - Encode/decode as inverse operations
@@ -158,6 +161,7 @@ assert decode(encode("the model trains on text")) == "the model trains on text"
 This word-level scheme breaks on real corpora: vocabularies explode, rare words become `<unk>`, and morphology is lost. Real LLMs use **subword** methods — BPE, SentencePiece, Unigram — which Lesson 2401 builds and trains from scratch.
 
 **If you're not familiar:**
+
 - Review: the [Hugging Face LLM Course](https://huggingface.co/learn/llm-course) tokenization chapter
 - Practice: Add punctuation handling to `tokenize()` so "text." and "text" map to the same token
 - Estimated time: 1.5 hours
@@ -167,6 +171,7 @@ This word-level scheme breaks on real corpora: vocabularies explode, rare words 
 ### 3. Language Modeling Objective
 
 **What you should know:**
+
 - The objective: predict `tokens[t+1]` from `tokens[:t+1]`
 - The causal shift — inputs drop the last token, targets drop the first
 - Cross-entropy over the vocabulary at **every** position
@@ -202,6 +207,7 @@ print(f"loss {loss.item():.3f}   ln({vocab_size}) = "
 ```
 
 **If you're not familiar:**
+
 - Review: the [Language Models are Few-Shot Learners](https://arxiv.org/abs/2005.14165) paper, Section 2 (the objective at scale)
 - Practice: Compute `exp(loss)` by hand for a couple of loss values and sanity-check the "effective vocabulary" intuition
 - Estimated time: 1.5 hours
@@ -211,6 +217,7 @@ print(f"loss {loss.item():.3f}   ln({vocab_size}) = "
 ### 4. Attention and the Transformer Block
 
 **What you should know:**
+
 - Queries, keys, values — three learned linear projections
 - Scaled dot-product attention: `softmax(QKᵀ/√d)V`
 - The causal mask: position `t` may only attend to positions `≤ t`
@@ -253,6 +260,7 @@ print("causal: outputs at positions 0-2 unchanged when token 3 changes")
 If the `assert` surprises you, trace the mask: row `t` of the score matrix only has finite entries for columns `≤ t`. Multi-head variants, positional encodings, and the full block are 2401/Phase 3 territory — this prerequisite is the shape-and-masking intuition.
 
 **If you're not familiar:**
+
 - Review: [Attention Is All You Need](https://arxiv.org/abs/1706.03762), Section 3.2
 - Practice: Remove the mask line and watch the causality assert fail — then explain why
 - Estimated time: 2 hours
@@ -262,6 +270,7 @@ If the `assert` surprises you, trace the mask: row `t` of the score matrix only 
 ### 5. Data Processing Basics
 
 **What you should know:**
+
 - Cleaning and filtering (length, language, quality heuristics)
 - Deduplication — and why duplicates bias evaluation
 - Formatting text into fixed-length token blocks for training
@@ -298,6 +307,7 @@ print(f"kept {len(kept)}, dropped {dropped}")
 ```
 
 **If you're not familiar:**
+
 - Review: [Speech and Language Processing](https://web.stanford.edu/~jurafsky/slp3/) (Jurafsky & Martin), the corpus-processing chapter
 - Practice: Add a minimum-length filter and a near-duplicate rule (e.g. drop pages sharing 90% of tokens with an already-kept page)
 - Estimated time: 1 hour
@@ -307,6 +317,7 @@ print(f"kept {len(kept)}, dropped {dropped}")
 ### 6. Distributed Training Primer (Helpful, not required)
 
 **What you should know:**
+
 - `rank` (this worker's id) and `world_size` (worker count)
 - The backend choice: `gloo` (CPU) vs `nccl` (GPU)
 - Collectives — `all_reduce`, `broadcast` — the primitives DDP/FSDP are built from
@@ -338,6 +349,7 @@ dist.destroy_process_group()
 Everything in 2402 that needs real multi-GPU hardware is marked there; the concepts (rank, world_size, collectives) are what this primer establishes.
 
 **If you're not familiar:**
+
 - Review: the PyTorch distributed docs (torch.distributed overview)
 - Practice: Run the block, then explain what `all_reduce` would return with `world_size=4` and every rank holding `rank+1`
 - Estimated time: 1 hour
@@ -440,6 +452,7 @@ You're ready! Start with [2401: Pre-training Fundamentals](./2401-Pre-training-F
 **Symptoms:** Only ever called pretrained models; unclear on what the optimizer actually does
 
 **Fix:**
+
 1. Run the Section 1 loop (30 minutes)
 2. Swap Adam for SGD, then tune the learning rate until it trains (1 hour)
 3. Break it on purpose: shuffle the split labels, watch validation accuracy collapse
@@ -449,6 +462,7 @@ You're ready! Start with [2401: Pre-training Fundamentals](./2401-Pre-training-F
 **Symptoms:** Can recite "softmax(QKᵀ/√d)V" but can't say what the mask does to the score matrix
 
 **Fix:**
+
 1. Run the Section 4 block; print the weights matrix and find the -inf pattern (1 hour)
 2. Remove the mask, watch the causality assert fail (30 minutes)
 3. Rederive the (T, d) shapes for q/k/v by hand
@@ -458,6 +472,7 @@ You're ready! Start with [2401: Pre-training Fundamentals](./2401-Pre-training-F
 **Symptoms:** Never built a dedup/filter pipeline; assume "the dataset comes clean"
 
 **Fix:**
+
 1. Run the Section 5 dedup (30 minutes)
 2. Add a near-duplicate rule and a length filter (30 minutes)
 
@@ -466,6 +481,7 @@ You're ready! Start with [2401: Pre-training Fundamentals](./2401-Pre-training-F
 **Symptoms:** The words rank/world_size/all_reduce don't conjure a picture
 
 **Fix:**
+
 1. Run the Section 6 primer (30 minutes)
 2. Answer the practice question: 4 ranks holding rank+1 → all_reduce yields 10 (30 minutes)
 
@@ -476,25 +492,30 @@ You're ready! Start with [2401: Pre-training Fundamentals](./2401-Pre-training-F
 Use this checklist to verify you're ready:
 
 **ML Fundamentals**
+
 - [ ] Can train a model with CrossEntropyLoss + Adam
 - [ ] Split train/val before training, and know why
 - [ ] Recognize overfitting from the loss gap
 
 **Tokenization & LM Objective**
+
 - [ ] Can build a vocab and encode/decode with `<unk>` handling
 - [ ] Know the causal shift: inputs `[:-1]`, targets `[1:]`
 - [ ] Can compute perplexity from loss
 
 **Attention**
+
 - [ ] Can implement scaled dot-product attention
 - [ ] Know what the causal mask does to the score matrix
 - [ ] Can name the shapes of q, k, v and the output
 
 **Data**
+
 - [ ] Can deduplicate a corpus (exact match)
 - [ ] Know what exact dedup misses
 
 **Distributed (helpful)**
+
 - [ ] Know rank vs world_size
 - [ ] Know gloo vs nccl
 - [ ] Know what `all_reduce` computes

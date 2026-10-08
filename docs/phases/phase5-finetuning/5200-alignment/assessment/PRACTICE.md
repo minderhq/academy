@@ -1,7 +1,7 @@
 ---
 Document ID: 5200-PRACTICE
 Title: "5200: LLM Alignment - Practice"
-Last Updated: 2026-09-29
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 10 hours
@@ -1199,6 +1199,7 @@ Best Practices:
 ---
 
 **Solutions Provided:**
+
 - Complete RLHF pipeline implementation
 - Reward model training with ranking loss
 - Full PPO implementation with KL penalty

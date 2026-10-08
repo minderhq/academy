@@ -1,7 +1,7 @@
 ---
 Document ID: GUIDE-RESUME
 Title: RESUME TEMPLATES & EXAMPLES
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Tags: ['career', 'guide', 'llm']
@@ -11,7 +11,7 @@ Tags: ['career', 'guide', 'llm']
 
 **For:** Minder Academy graduates seeking AI Engineering roles
 **Templates Included:** Entry-level, Mid-level, Senior
-**Last Updated:** 2026-09-30
+**Last Updated:** 2026-10-08
 
 ---
 
@@ -487,6 +487,7 @@ AWARDS & RECOGNITION
 ### Before Submitting
 
 **Content:**
+
 - [ ] No typos or grammatical errors
 - [ ] All numbers are accurate
 - [ ] Links work (GitHub, LinkedIn, portfolio)
@@ -494,6 +495,7 @@ AWARDS & RECOGNITION
 - [ ] No buzzwords without context
 
 **Format:**
+
 - [ ] Consistent formatting (fonts, spacing, bullets)
 - [ ] Clean, readable layout
 - [ ] One page (two only if senior)
@@ -501,6 +503,7 @@ AWARDS & RECOGNITION
 - [ ] Filename: `FirstName_LastName_Role_Resume.pdf`
 
 **Keywords (for ATS):**
+
 - [ ] LLM, Large Language Model, Transformer
 - [ ] RAG, Retrieval Augmented Generation
 - [ ] Fine-tuning, LoRA, QLoRA

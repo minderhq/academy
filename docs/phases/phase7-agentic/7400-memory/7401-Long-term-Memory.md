@@ -3,7 +3,7 @@ Document ID: 7401
 Title: "7401: Long-term Memory for Agents"
 Phase: 7
 Module: 7400
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -1050,11 +1050,13 @@ Long-term memory systems enable AI agents to:
 4. **Provide continuity** in ongoing relationships
 
 **Key Technologies:**
+
 - **VectorStore** (LangChain) - Basic memory with vector search
 - **Mem0** - Production memory system with auto-categorization
 - **ChromaDB** - Persistent storage with advanced filtering
 
 **Implementation Considerations:**
+
 - Use hierarchical memory (hot/warm/cold) for scalability
 - Implement consolidation to avoid redundancy
 - Set TTL policies for automatic cleanup
@@ -1079,6 +1081,7 @@ Long-term memory systems enable AI agents to:
 ---
 
 **Related:**
+
 - [6101: HNSW](../../phase6-rag/6100-vector/6101-HNSW-Indexing.md)
 - [7101: ReAct](../7100-architecture/7101-ReAct-Loop-System.md)
 - [6201: Hybrid Search](../../phase6-rag/6200-retrieval/6201-Hybrid-Search.md)

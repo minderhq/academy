@@ -1,7 +1,7 @@
 ---
 Document ID: 4400-PREREQUISITES
 Title: "4400: Advanced Quantization Techniques - Prerequisites"
-Last Updated: 2026-10-01
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['prerequisites', 'quantization', 'advanced']
@@ -39,6 +39,7 @@ This module covers post-training quantization methods (GPTQ, AWQ, GGUF, EXL2) pl
 ### If you're not familiar:
 
 **Review Resources:**
+
 - "GPTQ: Accurate Post-Training Quantization" (Frantar et al., 2022)
 - "AWQ: Activation-aware Weight Quantization" (Lin et al., 2023)
 - GGUF documentation (llama.cpp)
@@ -51,6 +52,7 @@ This module covers post-training quantization methods (GPTQ, AWQ, GGUF, EXL2) pl
 ## Self-Assessment
 
 Can you:
+
 - [ ] Explain the difference between PTQ and QAT?
 - [ ] Calculate optimal scale for quantization?
 - [ ] Describe what makes a layer "sensitive" to quantization?
@@ -59,5 +61,6 @@ Can you:
 **If YES:** Start with [4401: GPTQ](./4401-GPTQ.md)
 
 **If NO:** Review the resources above first, especially:
+
 - [4100: Low-Bit Quantization](../4100-low-bit/README.md)
 - [4300: Quantization Aware Training (QAT)](../4300-quantization-aware-training/README.md)

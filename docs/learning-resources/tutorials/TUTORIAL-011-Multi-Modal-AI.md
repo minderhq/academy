@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-011
 Title: "TUTORIAL-011: Multi-Modal AI"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -41,6 +41,7 @@ This tutorial covers multi-modal AI systems that can understand and generate con
 ## Learning Objectives
 
 After this tutorial, you will:
+
 - Understand multi-modal model architectures
 - Use vision-language models (CLIP, BLIP)
 - Build image captioning systems

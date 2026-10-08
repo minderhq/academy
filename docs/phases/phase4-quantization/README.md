@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE4-QUANTIZATION-README
 Title: "Phase 4: Quantization & Compression [4000]"
-Last Updated: 2026-10-07
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['phase', 'quantization', 'qat', 'quantization-aware-training']
@@ -31,6 +31,7 @@ Tags: ['phase', 'quantization', 'qat', 'quantization-aware-training']
 **Maximizing constrained VRAM for 8B-70B model execution.**
 
 This phase covers quantization techniques to run larger models on limited hardware, enabling you to:
+
 - Run 70B parameter models on consumer GPUs (RTX 3090/4090)
 - Reduce memory footprint by 4-8x while maintaining accuracy
 - Achieve faster inference through optimized formats
@@ -98,6 +99,7 @@ graph LR
 | [4104: MXFP4 and NVFP4](./4100-low-bit/4104-MXFP4-and-NVFP4.md) | Microscaling 4-bit: the gpt-oss formats | 2h | Advanced |
 
 **What You'll Learn:**
+
 - GGUF format internals and optimization strategies
 - EXL2 quantile-based quantization for maximum accuracy
 - AWQ activation-aware weight quantization
@@ -105,6 +107,7 @@ graph LR
 - MXFP4 and NVFP4 microscaling formats as working code
 
 **Hands-On Practice:**
+
 - Convert models to GGUF format
 - Optimize EXL2 calibration datasets
 - Implement AWQ quantization pipelines
@@ -121,12 +124,14 @@ graph LR
 | [4203: Context Optimization](./4200-kv-cache/guides/4203-Context-Window-Optimization.md) | KV cache optimization | 2h | Intermediate |
 
 **What You'll Learn:**
+
 - KV cache memory management strategies
 - Speculative decoding for 2-3x speedup
 - Context window extension techniques
 - PagedAttention for long sequences
 
 **Hands-On Practice:**
+
 - Implement KV cache quantization
 - Set up speculative decoding pipelines
 - Extend context windows beyond 32k
@@ -143,12 +148,14 @@ graph LR
 | [4305: Quantization Configuration](./4300-quantization-aware-training/4305-Quantization-Configuration.md) | AutoGPTQ, GPTQ, AWQ configs | 2h | Intermediate |
 
 **What You'll Learn:**
+
 - Quantization-aware training workflows
 - Fake quantization for seamless deployment
 - Layer-wise quantization strategies
 - Low-bit training (2-bit, 3-bit, 4-bit)
 
 **Hands-On Practice:**
+
 - Implement QAT pipelines for transformers
 - Apply layer-wise quantization
 - Train with fake quantization
@@ -169,6 +176,7 @@ graph LR
 | [4409: Hardware-Specific Optimization](./4400-advanced-techniques/guides/4409-Hardware-Specific-Optimization.md) | CPU, GPU, NPU, mobile | 3h | Advanced |
 
 **What You'll Learn:**
+
 - GPTQ for accurate post-training quantization
 - AWQ activation-aware quantization
 - GGUF and EXL2 ecosystem internals
@@ -176,6 +184,7 @@ graph LR
 - Hardware-specific optimizations
 
 **Hands-On Practice:**
+
 - Apply GPTQ to large language models
 - Implement AWQ quantization pipelines
 - Convert models to GGUF and EXL2

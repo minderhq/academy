@@ -3,7 +3,7 @@ Document ID: 4101
 Title: "4101: GGUF Physics - CPU/GPU Hybrid Offloading"
 Phase: 4
 Module: 4100
-Last Updated: 2026-10-01
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -44,6 +44,7 @@ GGUF (GPT-Generated Unified Format) is a file format that enables running large 
 ### 1.1 Purpose
 
 GGUF enables running 7B-30B parameter models on consumer hardware by:
+
 - Quantizing weights to 4-8 bits (4x+ compression)
 - Offloading layers between CPU and GPU
 - Using memory-mapped file loading
@@ -63,6 +64,7 @@ GGUF enables running 7B-30B parameter models on consumer hardware by:
 
 ## Learning Objectives
 After completing this document, you will:
+
 - ✅ Understand the GGUF file format structure
 - ✅ Implement Q4_0 and Q4_K quantization algorithms
 - ✅ Explain when I-quants (IQ formats + imatrix) beat K-quants below 4 bits per weight
@@ -196,6 +198,7 @@ def dequantize_q4_0(block: dict) -> np.ndarray:
 ```
 
 **Where:**
+
 - **d**: per-block scale, maps the 4-bit integer range back to weight range
 - **q**: integer codes clamped to [-8, 7]
 - Error per weight is bounded by `d / 2` — smaller blocks adapt to local weight distributions
@@ -356,6 +359,7 @@ python convert_hf_to_gguf.py ./my-model-hf \
 ```
 
 **Requirements and pitfalls:**
+
 - The HF directory must contain tokenizer files (`tokenizer.json` /
   `tokenizer.model`) and the model config
 - **Merge LoRA adapters first** (`model.merge_and_unload()` in PEFT) —

@@ -1,7 +1,7 @@
 ---
 Document ID: UC-001
 Title: "UC-001: Vector Database Practical Use Cases"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Tags: ['use-case', 'vector-db', 'rag']
@@ -110,11 +110,13 @@ results = search.semantic_search(
 ```
 
 **Business Impact:**
+
 - 40% increase in conversion rate
 - 60% reduction in "no results" searches
 - 25% increase in average order value
 
 **When NOT to Use:**
+
 - Small catalog (<1000 products) → Postgres FULLTEXT is sufficient
 - Pure exact match needs (SKU lookup) → Traditional DB is better
 
@@ -228,11 +230,13 @@ restrictions preventing performance of obligations
 ```
 
 **Business Impact:**
+
 - 80% reduction in research time
 - 40% improvement in case outcome prediction
 - Discovery of precedents missed by keyword search
 
 **When NOT to Use:**
+
 - Small firm (<10,000 documents)
 - Pure citation lookup (case number search)
 
@@ -354,6 +358,7 @@ def fetch_json_data(url):
 ```
 
 **Business Impact:**
+
 - 50% reduction in code duplication
 - 30% faster onboarding for new developers
 - Discovery of existing solutions vs reinventing

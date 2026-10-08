@@ -1,7 +1,7 @@
 ---
 Document ID: 3100-PREREQUISITES
 Title: "Prerequisites: Attention Mechanisms"
-Last Updated: 2026-09-24
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['prerequisites', 'transformers', 'attention']
@@ -18,16 +18,19 @@ Tags: ['prerequisites', 'transformers', 'attention']
 ### Essential Concepts
 
 **1. Sequence Processing**
+
 - How to process sequences (text, time series)
 - Fixed-size vectors for variable-length input
 - Limitations of simple approaches
 
 **2. Neural Network Basics**
+
 - Fully connected layers
 - Matrix multiplication
 - Non-linear activations
 
 **3. Embeddings**
+
 - Converting discrete tokens to vectors
 - Word embeddings capture meaning
 - Similarity in vector space
@@ -39,11 +42,13 @@ Tags: ['prerequisites', 'transformers', 'attention']
 ### The Problem Attention Solves
 
 **Before Attention (RNNs/LSTMs):**
+
 - Process sequences step-by-step
 - Early information gets "forgotten"
 - Hard to parallelize
 
 **With Attention:**
+
 - Look at all positions at once
 - Focus on relevant parts
 - Fully parallelizable

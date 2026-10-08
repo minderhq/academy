@@ -1,7 +1,7 @@
 ---
 Document ID: 6400-PREREQUISITES
 Title: "6400: Vector Databases - Prerequisites"
-Last Updated: 2026-10-01
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Tags: ['prerequisites', 'rag', 'vector-db']
@@ -40,6 +40,7 @@ This module covers production vector database deployment: hands-on Qdrant setup,
 ### If you're not familiar:
 
 **Review Resources:**
+
 - "Approximate Nearest Neighbor Search" survey
 - "Efficient Retrieval for RAG" tutorials
 - Pinecone, Weaviate, Qdrant documentation
@@ -52,6 +53,7 @@ This module covers production vector database deployment: hands-on Qdrant setup,
 ## Self-Assessment
 
 Can you:
+
 - [ ] Explain HNSW algorithm?
 - [ ] Design ANN indexes?
 - [ ] Implement hybrid search?

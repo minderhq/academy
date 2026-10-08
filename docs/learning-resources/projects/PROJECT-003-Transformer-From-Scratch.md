@@ -1,7 +1,7 @@
 ---
 Document ID: PROJECT-003
 Title: "CAPSTONE PROJECT-003: Transformer from Scratch"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['project', 'transformers', 'attention', 'pytorch']
@@ -16,6 +16,7 @@ Tags: ['project', 'transformers', 'attention', 'pytorch']
 ## Project Overview
 
 Implement a complete Transformer model from scratch, including:
+
 - Multi-head self-attention mechanism
 - Positional encodings (sinusoidal and RoPE)
 - Feed-forward networks
@@ -31,6 +32,7 @@ Implement a complete Transformer model from scratch, including:
 ## Prerequisites
 
 Complete these before starting:
+
 - ✅ EXP 2101: Tensor Algebra
 - ✅ 3101: Self-Attention Deep Dive
 - ✅ 3102: Flash Attention
@@ -1070,6 +1072,7 @@ print(f"Generated: {generated}")
 ---
 
 **Congratulations!** You've built a Transformer from scratch:
+
 - 🧠 Multi-head self-attention
 - 📍 Positional encoding (sinusoidal & RoPE)
 - 🏗️ Complete encoder/decoder blocks

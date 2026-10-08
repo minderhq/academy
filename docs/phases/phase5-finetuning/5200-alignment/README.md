@@ -1,7 +1,7 @@
 ---
 Document ID: 5200-ALIGNMENT-README
 Title: "5200: LLM Alignment"
-Last Updated: 2026-10-01
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
@@ -16,6 +16,7 @@ Tags: ['module', 'finetuning', 'alignment']
 This module covers techniques for aligning language models with human preferences and safety requirements. You'll learn RLHF, DPO, and modern alignment approaches that make models helpful, harmless, and honest.
 
 **Why This Matters:**
+
 - Base models can generate toxic, biased, or harmful content
 - Alignment is critical for real-world deployment
 - RLHF/DPO significantly improves instruction following
@@ -44,6 +45,7 @@ After completing this module, you will be able to:
 - Beta hyperparameter tuning
 
 **Experiments:**
+
 - Implement DPO from scratch
 - Train on preference datasets
 - Compare DPO vs PPO
@@ -59,6 +61,7 @@ After completing this module, you will be able to:
 - Practical alignment pipeline and evaluation
 
 **Experiments:**
+
 - Build end-to-end alignment pipeline
 - Compare reward modeling vs DPO vs KTO
 - Evaluate alignment quality
@@ -74,6 +77,7 @@ After completing this module, you will be able to:
 - Hands-on: minimal RLHF with TRL
 
 **Experiments:**
+
 - Train a reward model
 - Run PPO optimization
 - Diagnose reward hacking
@@ -89,6 +93,7 @@ After completing this module, you will be able to:
 - Synthetic preferences and how much data you need
 
 **Experiments:**
+
 - Collect and annotate preference pairs
 - Apply quality control to a dataset
 - Generate synthetic preferences
@@ -104,6 +109,7 @@ After completing this module, you will be able to:
 - Saturation, entropy collapse, and verifier gaming
 
 **Experiments:**
+
 - Write verifiable reward functions
 - Run a GRPO stage on a small instruct model
 - Diagnose prompt saturation from training logs
@@ -119,6 +125,7 @@ After completing this module, you will be able to:
 - The campaign ledger: best quality and cheapest row on the same board
 
 **Experiments:**
+
 - Verify the BoN KL identity against Monte-Carlo
 - Walk the Goodhart curve and locate the peak N
 - Run the RSFT climb and compare raw vs reranked service
@@ -157,6 +164,7 @@ Before starting this module, ensure you have:
 ## Related Modules
 
 This module connects to:
+
 - **[5100: Parameter-Efficient Fine-Tuning (PEFT)](../5100-peft/README.md)** (efficient alignment training)
 - **[5300: Synthetic Data & Advanced Training](../5300-synthetic/README.md)** (generating preference data)
 - **[7400: Agent Memory Systems](../../phase7-agentic/7400-memory/README.md)** (aligning memory-driven agents)
@@ -179,12 +187,14 @@ This module connects to:
 ## Resources
 
 **Essential Libraries:**
+
 - TRL (Transformer Reinforcement Learning)
 - Hugging Face PEFT
 - Axolotl (alignment support)
 - Reward Model API
 
 **Essential Papers:**
+
 - "Training Language Models to Follow Instructions with Human Feedback"
 - "Direct Preference Optimization: Your Language Model is Secretly a Reward Model"
 - "Constitutional AI: Harmlessness from AI Feedback"
@@ -271,6 +281,7 @@ This module connects to:
 ## Safety Considerations
 
 Alignment is not enough. Deploy with:
+
 - [ ] Content filtering layers
 - [ ] Output monitoring
 - [ ] Jailbreak detection

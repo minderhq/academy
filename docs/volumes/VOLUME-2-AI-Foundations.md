@@ -1,7 +1,7 @@
 ---
 Document ID: VOLUME-2
 Title: "Volume 2: AI/ML Foundations"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Tags: ['volume', 'pytorch', 'tensors', 'math']
@@ -22,6 +22,7 @@ Tags: ['volume', 'pytorch', 'tensors', 'math']
 ### What You'll Learn
 
 After completing this volume, you will be able to:
+
 - ✅ Understand tensor operations and einsum notation
 - ✅ Implement backpropagation from scratch
 - ✅ Optimize PyTorch computational graphs
@@ -286,6 +287,7 @@ Stage 4 (10%): Annealing on highest quality
 **Difficulty:** ⭐⭐⭐
 
 **Tasks:**
+
 1. Implement a Tensor class with automatic differentiation
 2. Support basic operations (add, mul, matmul)
 3. Implement backpropagation
@@ -293,6 +295,7 @@ Stage 4 (10%): Annealing on highest quality
 5. Compare with PyTorch autograd
 
 **Skills Demonstrated:**
+
 - Understanding of computational graphs ✅
 - Gradient computation ✅
 - Python programming ✅
@@ -303,6 +306,7 @@ Stage 4 (10%): Annealing on highest quality
 **Difficulty:** ⭐⭐
 
 **Tasks:**
+
 1. Profile a PyTorch model
 2. Identify bottlenecks
 3. Apply optimizations:
@@ -312,6 +316,7 @@ Stage 4 (10%): Annealing on highest quality
 4. Benchmark improvements
 
 **Skills Demonstrated:**
+
 - PyTorch optimization ✅
 - Profiling and debugging ✅
 - Performance analysis ✅
@@ -322,6 +327,7 @@ Stage 4 (10%): Annealing on highest quality
 **Difficulty:** ⭐⭐⭐⭐
 
 **Tasks:**
+
 1. Design a custom operation (e.g., specialized attention)
 2. Implement CUDA kernel
 3. Optimize memory access
@@ -329,6 +335,7 @@ Stage 4 (10%): Annealing on highest quality
 5. Document performance
 
 **Skills Demonstrated:**
+
 - CUDA programming ✅
 - GPU optimization ✅
 - Performance engineering ✅
@@ -371,21 +378,25 @@ Use this checklist to track your progress:
 ### How Volume 2 Connects to Other Volumes:
 
 **Tensor Algebra (2101) →**
+
 - Volume 3: Understanding attention mechanisms
 - Volume 4: Quantization arithmetic
 - Volume 5: LoRA low-rank decomposition
 
 **Backpropagation (2102) →**
+
 - Volume 3: Training dynamics
 - Volume 5: Fine-tuning and DPO
 - Volume 7: Optimization strategies
 
 **PyTorch Graphs (2201) →**
+
 - Volume 3: Model architecture implementation
 - Volume 4: Efficient inference
 - Volume 6: RAG optimization
 
 **CUDA Kernels (2203) →**
+
 - Volume 3: Flash Attention implementation
 - Volume 4: Custom quantization kernels
 - Volume 7: Production optimization
@@ -435,6 +446,7 @@ Then dL/dx = dL/dy × dy/dx
 ```
 
 **Gradient Flow:**
+
 - Forward: Build computation graph
 - Backward: Compute gradients via chain rule
 - Update: Adjust weights using gradients
@@ -442,6 +454,7 @@ Then dL/dx = dL/dy × dy/dx
 ### CUDA Programming
 
 **Key Concepts:**
+
 - **Grid:** Collection of blocks
 - **Block:** Collection of threads
 - **Warp:** 32 threads executing together
@@ -454,15 +467,19 @@ Then dL/dx = dL/dy × dy/dx
 ### Common Issues in Volume 2
 
 **Problem:** Einstein summation confusing
+
 - **Solution:** Start with simple examples, use torch.einsum's debugging mode
 
 **Problem:** Gradients are None
+
 - **Solution:** Ensure `requires_grad=True` and operation is differentiable
 
 **Problem:** CUDA kernel slower than PyTorch
+
 - **Solution:** Profile memory access, check coalescing, consider shared memory
 
 **Problem:** XLA not improving performance
+
 - **Solution:** Check operation fusion, ensure compatible operations
 
 For more help, see **[TROUBLESHOOTING-Common-Issues.md](../learning-resources/troubleshooting/TROUBLESHOOTING-Common-Issues.md)**
@@ -505,6 +522,7 @@ For more help, see **[TROUBLESHOOTING-Common-Issues.md](../learning-resources/tr
 ---
 
 **Recommended Resources:**
+
 - **[PyTorch Documentation](https://pytorch.org/docs/stable/)**
 - **[CUDA Programming Guide](https://docs.nvidia.com/cuda/cuda-programming-guide/index.html)**
 - **[Einstein Summation](https://rockt.ai/2018/04/30/einsum)** - Excellent einsum tutorial

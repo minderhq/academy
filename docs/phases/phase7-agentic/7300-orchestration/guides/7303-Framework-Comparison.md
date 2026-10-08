@@ -3,7 +3,7 @@ Document ID: 7303
 Title: "7303: Multi-Agent Framework Comparison"
 Phase: 7
 Module: 7300
-Last Updated: 2026-10-07
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -373,6 +373,7 @@ print(result)
 ### Primary Framework: LangGraph
 
 **Reasons:**
+
 1. State machine model is more predictable
 2. Checkpoint/resume for long tasks
 3. Better visualization and debugging
@@ -382,6 +383,7 @@ print(result)
 ### Secondary Framework: AutoGen
 
 **Use for:**
+
 1. Quick prototyping
 2. Conversation-heavy tasks
 3. Code generation workflows

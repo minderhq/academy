@@ -3,7 +3,7 @@ Document ID: 4305
 Title: "4305: Quantization Configuration"
 Phase: 4
 Module: 4300
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -146,16 +146,19 @@ Weight [out_channels, in_channels]
 ```
 
 **Advantages:**
+
 - Faster computation
 - Less metadata
 - Simpler implementation
 
 **Disadvantages:**
+
 - Lower accuracy
 - Sensitive to outliers
 - Not ideal for weights
 
 **Use when:**
+
 - Quantizing activations
 - Inference speed is critical
 - Target is 8-bit (higher precision)
@@ -171,16 +174,19 @@ Weight [out_channels, in_channels]
 ```
 
 **Advantages:**
+
 - Better accuracy
 - Handles channel variance
 - Essential for low-bit QAT
 
 **Disadvantages:**
+
 - Slightly slower
 - More metadata
 - More complex implementation
 
 **Use when:**
+
 - Quantizing weights
 - Target is 4-bit or below
 - Accuracy is critical
@@ -239,11 +245,13 @@ Example (INT8): [-127, 127]
 ```
 
 **Advantages:**
+
 - Simpler computation (no zero-point)
 - Faster inference
 - Better for weights
 
 **Disadvantages:**
+
 - Wastes range if data is asymmetric
 - Less efficient for activations (often ReLU-activated)
 
@@ -256,15 +264,18 @@ Example (INT8): [-128, 127] with zp = -10
 ```
 
 **Advantages:**
+
 - Better fits data distribution
 - More efficient for activations (non-negative)
 - Better range utilization
 
 **Disadvantages:**
+
 - Extra zero-point calculation
 - Slightly slower inference
 
 **Recommendation:**
+
 - **Weights:** Symmetric (centered around 0)
 - **Activations:** Asymmetric (often non-negative after ReLU)
 
@@ -295,6 +306,7 @@ class StaticScaleQuantizer(nn.Module):
 ```
 
 **Use when:**
+
 - Data distribution is stable
 - Inference speed is critical
 - Deploying on fixed-point hardware
@@ -316,6 +328,7 @@ class DynamicScaleQuantizer(nn.Module):
 ```
 
 **Use when:**
+
 - Activation ranges vary widely
 - Can afford runtime computation
 - Accuracy is critical

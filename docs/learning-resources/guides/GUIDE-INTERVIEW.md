@@ -1,7 +1,7 @@
 ---
 Document ID: GUIDE-INTERVIEW
 Title: INTERVIEW PREPARATION GUIDE
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Tags: ['career', 'guide', 'llm']
@@ -11,7 +11,7 @@ Tags: ['career', 'guide', 'llm']
 
 **For:** Minder Academy graduates preparing for AI Engineering interviews
 **Read Time:** 30 minutes
-**Last Updated:** 2026-09-30
+**Last Updated:** 2026-10-08
 
 ---
 
@@ -25,6 +25,7 @@ Tags: ['career', 'guide', 'llm']
 - ⚠️ Practice is MORE important than studying
 
 **This guide focuses on:**
+
 1. Technical interview preparation
 2. System design for AI systems
 3. Behavioral interviews
@@ -58,6 +59,7 @@ squares_gen = (x**2 for x in range(1000000))  # Memory efficient
 ```
 
 **Practice questions:**
+
 - What's the difference between `==` and `is`?
 - Explain GIL in Python
 - How does garbage collection work?
@@ -77,6 +79,7 @@ result = a + b  # (2, 3) - b is "broadcast" to match a's shape
 ```
 
 **Practice questions:**
+
 - What's the difference between NumPy array and Python list?
 - Explain gradient computation in PyTorch
 - How does `autograd` work?
@@ -95,6 +98,7 @@ def attention(query, key, value):
 ```
 
 **Practice questions:**
+
 - Explain the transformer architecture
 - What's the difference between encoder-only and decoder-only?
 - How does positional encoding work?
@@ -105,6 +109,7 @@ def attention(query, key, value):
 
 #### RAG Systems (Expect 5-10 questions)
 **Practice questions:**
+
 - How do you choose chunk size for RAG?
 - What's the difference between dense and sparse retrieval?
 - Explain re-ranking and when to use it
@@ -166,6 +171,7 @@ def merge_sorted(arr1, arr2):
 ```
 
 **Practice:**
+
 - LeetCode: Arrays & Hashing (10 problems)
 - LeetCode: Two Pointers (5 problems)
 - LeetCode: Sliding Window (5 problems)
@@ -178,12 +184,14 @@ def merge_sorted(arr1, arr2):
 ### 2.1 How System Design Works
 
 **Format:**
+
 1. Clarify requirements (5 min)
 2. High-level design (10 min)
 3. Deep dive on components (20 min)
 4. Trade-offs and discussion (10 min)
 
 **What they're looking for:**
+
 - ✅ Logical thinking
 - ✅ Scalability awareness
 - ✅ Trade-off analysis
@@ -196,6 +204,7 @@ def merge_sorted(arr1, arr2):
 #### Question 1: Design a RAG System
 
 **Requirements:**
+
 - 1M documents, average 5KB each
 - 1000 QPS (queries per second)
 - Sub-second latency
@@ -232,6 +241,7 @@ def merge_sorted(arr1, arr2):
 ```
 
 **Key Components:**
+
 - **Ingest Pipeline:** Async workers for document processing
 - **Vector DB:** Qdrant with sharding for scale
 - **Cache:** Redis for frequent queries
@@ -239,6 +249,7 @@ def merge_sorted(arr1, arr2):
 - **Monitoring:** Prometheus + Grafana
 
 **Trade-offs:**
+
 - Chunk size: Larger = more context, less precise
 - Embedding model: Larger = better, slower
 - Re-ranking: Better accuracy, more latency
@@ -248,6 +259,7 @@ def merge_sorted(arr1, arr2):
 #### Question 2: Design an LLM Serving Platform
 
 **Requirements:**
+
 - Support multiple models (Llama, Mistral, etc.)
 - 10K concurrent users
 - <500ms TTFT (time to first token)
@@ -268,6 +280,7 @@ def merge_sorted(arr1, arr2):
 ```
 
 **Key Components:**
+
 - **API Gateway:** Rate limiting, auth, routing
 - **Model Router:** Load balance across instances
 - **Model Servers:** vLLM or TGI for inference
@@ -275,6 +288,7 @@ def merge_sorted(arr1, arr2):
 - **Monitoring:** Track latency, throughput, errors
 
 **Scale Considerations:**
+
 - **Horizontal scaling:** Add more model servers
 - **GPU management:** Kubernetes with device plugins
 - **Request batching:** Improve throughput
@@ -387,6 +401,7 @@ we achieved a 15% improvement in domain-specific benchmarks."
 ### 4.2 Assignment Tips
 
 **DO:**
+
 - [ ] Read requirements carefully (twice!)
 - [ ] Ask clarifying questions
 - [ ] Write clean, documented code
@@ -396,6 +411,7 @@ we achieved a 15% improvement in domain-specific benchmarks."
 - [ ] Include basic error handling
 
 **DON'T:**
+
 - [ ] Over-engineer simple solutions
 - [ ] Skip documentation
 - [ ] Ignore error handling
@@ -426,6 +442,7 @@ project/
 ```
 
 **Key Components to Demonstrate:**
+
 1. Document ingestion (PDF parsing)
 2. Chunking strategy
 3. Embedding and vector storage
@@ -440,18 +457,21 @@ project/
 ### 5.1 Self-Practice
 
 **Technical (Daily, 30 min):**
+
 - Pick 1 LeetCode problem
 - Solve without looking at solution
 - Time yourself (20 min max)
 - Review solution and optimize
 
 **Concepts (Daily, 15 min):**
+
 - Pick 1 concept (e.g., attention)
 - Explain it out loud
 - Draw diagrams on whiteboard
 - Practice with simple examples
 
 **System Design (Weekly, 1 hour):**
+
 - Pick 1 design question
 - Design solution in 30 min
 - Review trade-offs
@@ -462,12 +482,14 @@ project/
 ### 5.2 Peer Mock Interviews
 
 **Setup:**
+
 - Find a study partner or use online platforms
 - Schedule 2-3 sessions per week
 - Rotate roles (interviewer/interviewee)
 - Record and review sessions
 
 **Platforms:**
+
 - [Pramp](https://www.pramp.com/) - Free peer interviews
 - [Interviewing.io](https://interviewing.io/) - Mock coding interviews
 - [Discord/Slack communities] - AI/ML study groups
@@ -477,11 +499,13 @@ project/
 ### 5.3 Professional Mock Interviews
 
 **When to use:**
+
 - Before onsite interviews
 - For senior roles
 - If you lack confidence
 
 **Services:**
+
 - [AlgoExpert](https://www.algoexpert.io/) - Paid mock interviews
 - [Interview Kickstart](https://www.interviewkickstart.com/) - Professional coaching
 - [Exponent](https://www.tryexponent.com/) - System design practice
@@ -493,6 +517,7 @@ project/
 ### 6.1 Before the Interview
 
 **1 Day Before:**
+
 - [ ] Review your portfolio projects
 - [ ] Practice explaining your resume
 - [ ] Prepare questions to ask them
@@ -500,6 +525,7 @@ project/
 - [ ] Set up quiet environment
 
 **Questions to Ask Them:**
+
 - "What does the day-to-day work look like?"
 - "How does the team handle technical disagreements?"
 - "What's the biggest challenge the team is facing?"
@@ -511,6 +537,7 @@ project/
 ### 6.2 During the Interview
 
 **Technical:**
+
 - Think out loud
 - Ask clarifying questions
 - Start with brute force, then optimize
@@ -518,6 +545,7 @@ project/
 - Admit when you don't know something
 
 **Behavioral:**
+
 - Use STAR method
 - Be specific (use numbers)
 - Focus on YOUR contributions
@@ -525,6 +553,7 @@ project/
 - Ask follow-up questions
 
 **System Design:**
+
 - Clarify requirements first
 - Draw diagrams
 - Discuss trade-offs
@@ -536,6 +565,7 @@ project/
 ### 6.3 After the Interview
 
 **Same Day:**
+
 - [ ] Send thank you note (within 24 hours)
 - [ ] Write down questions you were asked
 - [ ] Note areas to improve
@@ -568,6 +598,7 @@ Best,
 ### 7.1 When to Negotiate
 
 **Best Times:**
+
 - ✅ After offer but before accepting
 - ✅ After they mention salary first
 - ❌ Never during initial screening
@@ -578,6 +609,7 @@ Best,
 ### 7.2 Research First
 
 **Know your market value:**
+
 - [Levels.fyi](https://www.levels.fyi/) - Salary data
 - [Glassdoor](https://www.glassdoor.com/) - Company salaries
 - [Reddit r/cscareerquestions](https://www.reddit.com/r/cscareerquestions/) - Industry insights
@@ -611,6 +643,7 @@ Perhaps equity, signing bonus, or additional PTO?"
 ### 7.4 Red Flags
 
 **Walk away if:**
+
 - Salary is below market by 20%+
 - No equity for startup role
 - No clear growth path
@@ -624,24 +657,28 @@ Perhaps equity, signing bonus, or additional PTO?"
 ### Technical Concepts to Review
 
 **NumPy:**
+
 - Array creation and manipulation
 - Broadcasting rules
 - Matrix multiplication
 - Statistical operations
 
 **PyTorch:**
+
 - Tensor operations
 - Autograd and gradients
 - Model building
 - Training loops
 
 **LLMs:**
+
 - Transformer architecture
 - Attention mechanisms
 - Tokenization
 - Generation strategies
 
 **RAG:**
+
 - Vector databases
 - Chunking strategies
 - Retrieval methods
@@ -664,12 +701,14 @@ Perhaps equity, signing bonus, or additional PTO?"
 ### System Design Checklist
 
 **Requirements:**
+
 - [ ] Scale (users, data, QPS)
 - [ ] Latency requirements
 - [ ] Consistency needs
 - [ ] Budget constraints
 
 **Components:**
+
 - [ ] Load balancer
 - [ ] API gateway
 - [ ] Application servers
@@ -678,6 +717,7 @@ Perhaps equity, signing bonus, or additional PTO?"
 - [ ] Monitoring
 
 **Trade-offs:**
+
 - [ ] CAP theorem implications
 - [ ] SQL vs NoSQL
 - [ ] Strong vs eventual consistency
@@ -688,12 +728,14 @@ Perhaps equity, signing bonus, or additional PTO?"
 ## Conclusion
 
 **Remember:**
+
 - ✅ Preparation beats talent
 - ✅ Practice makes confident
 - ✅ Authenticity wins over perfection
 - ✅ Every interview is learning experience
 
 **Final Checklist:**
+
 - [ ] Complete technical preparation
 - [ ] Practice system design
 - [ ] Prepare behavioral stories
@@ -707,6 +749,7 @@ Perhaps equity, signing bonus, or additional PTO?"
 ---
 
 **Related Resources:**
+
 - [GUIDE-CAREER.md](./GUIDE-CAREER.md) - Career planning
 - [GUIDE-RESUME.md](./GUIDE-RESUME.md) - Resume templates
 

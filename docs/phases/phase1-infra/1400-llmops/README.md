@@ -1,7 +1,7 @@
 ---
 Document ID: 1400-LLMOPS-README
 Title: "1400: LLMOps and Model Serving"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
@@ -200,6 +200,7 @@ Savings: 52%!
 ### 1. vLLM (Highest Performance)
 
 **Key Features:**
+
 - **PagedAttention:** Efficient memory management
 - **Continuous Batching:** Dynamic batch sizing
 - **High Throughput:** 200-300 tokens/sec per GPU
@@ -265,6 +266,7 @@ services:
 ### 2. Text Generation Inference (TGI)
 
 **Key Features:**
+
 - **Production Hardened:** Battle-tested by Hugging Face
 - **Easy Setup:** One-command deployment
 - **Features:** Quantization, Flash Attention, Streaming
@@ -325,6 +327,7 @@ spec:
 ### 3. Ollama (Simplicity)
 
 **Key Features:**
+
 - **Zero Configuration:** Works out of the box
 - **Local First:** Runs on your machine
 - **Easy API:** Simple REST API
@@ -861,27 +864,32 @@ locust             # Python load testing
 ### Further Reading
 
 **Documentation:**
+
 - [vLLM Documentation](https://docs.vllm.ai/)
 - [TGI Documentation](https://huggingface.co/docs/text-generation-inference)
 - [Ollama Documentation](https://docs.ollama.com)
 
 **Books:**
+
 - "Designing Machine Learning Systems" by Chip Huyen
 - "Introducing MLOps" by Mark Treveil
 - "Building Machine Learning Pipelines" by Hannes Hapke
 
 **Online Courses:**
+
 - [LLMOps with LangChain](https://www.deeplearning.ai/courses)
 - [Production ML Systems](https://fullstackdeeplearning.com/)
 
 ### Community Resources
 
 **Forums:**
+
 - [vLLM Discord](https://discord.gg/vllm)
 - [Hugging Face Forums](https://discuss.huggingface.co/)
 - [r/LocalLLaMA on Reddit](https://www.reddit.com/r/LocalLLaMA/)
 
 **Blogs:**
+
 - [vLLM Blog](https://vllm.ai/blog)
 - [Hugging Face Blog](https://huggingface.co/blog)
 - [LlamaIndex Blog](https://www.llamaindex.ai/blog)

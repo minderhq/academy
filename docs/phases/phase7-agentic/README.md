@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE7-AGENTIC-README
 Title: "Phase 7: Agentic Cognition & Autonomy [7000]"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['phase', 'agents', 'security', 'prompt-injection']
@@ -38,6 +38,7 @@ Tags: ['phase', 'agents', 'security', 'prompt-injection']
 **Creating autonomous AI systems that can reason, plan, and execute complex tasks.**
 
 This phase covers AI agent architectures, tool use, multi-agent orchestration, and memory systems for building autonomous AI systems that can manage your infrastructure and code, enabling you to:
+
 - Build autonomous agents that reason and plan
 - Implement tool calling for real-world actions
 - Orchestrate multi-agent teams
@@ -503,6 +504,7 @@ tools_researcher = {
 | [7106: Function-Calling Training and Constrained Decoding](./7100-architecture/7106-Function-Calling-Training-and-Constrained-Decoding.md) | The grammar-to-mask mechanism, prompting-vs-masking, the pair-trained call | 4h | Advanced |
 
 **What You'll Learn:**
+
 - ReAct (Reasoning + Acting) pattern
 - Task decomposition and planning
 - State machines for agent control
@@ -512,6 +514,7 @@ tools_researcher = {
 - Function-calling training and constrained decoding: the grammar-to-mask mechanism and the pair-trained call
 
 **Hands-On Practice:**
+
 - Implement ReAct loop from scratch
 - Build task planning system
 - Create state machine for complex workflows
@@ -530,6 +533,7 @@ tools_researcher = {
 | [7204: Timeouts, Retries, and Rate Limits](./7200-tools/7204-Timeouts-Retries-and-Rate-Limits.md) | The client-side resilience triad as working code | 4h | Intermediate |
 
 **What You'll Learn:**
+
 - Function calling with LLMs
 - Tool schema definition
 - Sandboxed code execution
@@ -538,6 +542,7 @@ tools_researcher = {
 - Timeout budgets, idempotent retries, jittered backoff, and the caller-side rate-limit bucket
 
 **Hands-On Practice:**
+
 - Implement tool calling system
 - Build code interpreter
 - Create custom tools
@@ -554,6 +559,7 @@ tools_researcher = {
 | [7304: Event Buses, Deadlocks, and Human Gates](./7300-orchestration/7304-Event-Buses-Deadlocks-and-Human-Gates.md) | Orchestration runtime mechanics | 3h | Advanced |
 
 **What You'll Learn:**
+
 - Multi-agent patterns (hierarchical, sequential, parallel)
 - Agent communication protocols
 - Orchestration strategies
@@ -561,6 +567,7 @@ tools_researcher = {
 - Delivery semantics, deadlock detection, and mid-run human gates
 
 **Hands-On Practice:**
+
 - Build multi-agent system
 - Implement agent communication
 - Create specialized agent roles
@@ -578,6 +585,7 @@ tools_researcher = {
 | [7405: Key-Value Memory and Checkpoint Stores](./7400-memory/7405-Key-Value-Memory-and-Checkpoint-Stores.md) | Exact-key stores, TTL leases, eviction, checkpoints | 3h | Advanced |
 
 **What You'll Learn:**
+
 - Memory architectures (short-term, long-term, episodic)
 - Vector-based memory systems
 - Memory retrieval and ranking
@@ -586,6 +594,7 @@ tools_researcher = {
 - Read the exact-key store underneath: the address space, TTL lease mechanics, eviction budgets, and the checkpoint contract
 
 **Hands-On Practice:**
+
 - Implement memory system
 - Build vector memory store
 - Create memory retrieval mechanisms
@@ -603,6 +612,7 @@ tools_researcher = {
 | [7505: Temperature Zero and Deterministic Security Testing](./7500-security/7505-Temperature-Zero-and-Deterministic-Security-Testing.md) | Deterministic decoding for reproducible security tests | 3h | Advanced |
 
 **What You'll Learn:**
+
 - Prompt injection techniques and defense layers
 - PII detection, redaction, and compliance (GDPR, HIPAA)
 - Adversarial attack types (jailbreak, DAN, roleplay)
@@ -612,6 +622,7 @@ tools_researcher = {
 - Deterministic decoding: temperature zero as argmax, seed limits, pass@k
 
 **Hands-On Practice:**
+
 - Build an injection detector
 - Implement a PII redaction system
 - Test agents with adversarial prompts
@@ -1122,6 +1133,7 @@ Example:
 **Additional Diagrams:**
 
 **ReAct Agent Diagrams:**
+
 - [REACT-LOOP.md](../../diagrams/REACT-LOOP.md) - Complete ReAct loop visualization
   - ReAct Loop Architecture (State Diagram)
   - Detailed ReAct Sequence
@@ -1131,6 +1143,7 @@ Example:
   - Error Handling in ReAct
 
 **Project Architecture Diagrams:**
+
 - [PROJECT-001-ARCHITECTURE.md](../../diagrams/PROJECT-001-ARCHITECTURE.md) - AI Assistant system architecture
 
 ---

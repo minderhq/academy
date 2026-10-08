@@ -1,7 +1,7 @@
 ---
 Document ID: 3500-PRACTICE
 Title: "3500: Multimodal AI - Practice"
-Last Updated: 2026-09-25
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -64,12 +64,14 @@ print(f"\nBest match: \"{texts[best_idx]}\" with score {similarity[best_idx]:.4f
 ```
 
 **Explanation:**
+
 - CLIP learns joint image-text representations
 - Uses contrastive learning to align vision and language
 - Can compute similarity between images and text
 - Zero-shot transfer capabilities
 
 **Use Cases:**
+
 - Image classification (via text prompts)
 - Image-text retrieval
 - Zero-shot classification
@@ -116,12 +118,14 @@ for idx, score in zip(top5_idx, top5_scores):
 ```
 
 **Explanation:**
+
 - ViT applies transformer architecture to images
 - Splits image into patches (e.g., 16x16 pixels)
 - Treats patches like tokens in text models
 - Achieves SOTA on many vision tasks
 
 **Architecture:**
+
 1. Split image into patches
 2. Linear projection of patches
 3. Add position embeddings
@@ -245,11 +249,13 @@ for fusion_type in ['concat', 'gate', 'add']:
 ```
 
 **Explanation:**
+
 - Multimodal fusion combines features from different modalities
 - Common strategies: concatenation, gating, attention
 - Critical for tasks requiring multiple input types
 
 **Fusion Strategies:**
+
 1. **Concatenation**: Simple, preserves all information
 2. **Gated**: Learns modality importance
 3. **Attention**: Cross-modal attention
@@ -298,6 +304,7 @@ print(f"Unconditional caption: \"{unconditional_caption}\"")
 ```
 
 **Explanation:**
+
 - BLIP unifies vision-language understanding and generation
 - Uses bootstrapping for noisy data filtering
 - State-of-the-art image captioning
@@ -358,6 +365,7 @@ for question in questions:
 ```
 
 **Explanation:**
+
 - VQA requires understanding both image and question
 - ViLT uses late fusion of vision and language
 - Trained on VQA v2 dataset
@@ -399,6 +407,7 @@ print(f"\nTranscription: {transcription}")
 ```
 
 **Explanation:**
+
 - Whisper is a robust speech recognition model
 - Trained on 680k hours of multilingual data
 - Handles multiple languages and translation

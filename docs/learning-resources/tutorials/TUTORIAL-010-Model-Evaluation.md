@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-010
 Title: "TUTORIAL-010: Model Evaluation and Benchmarking"
-Last Updated: 2026-10-07
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 4 hours
@@ -40,6 +40,7 @@ This tutorial covers comprehensive model evaluation including metrics, benchmark
 ## Learning Objectives
 
 After this tutorial, you will:
+
 - Understand key LLM evaluation metrics
 - Implement custom evaluation pipelines
 - Use benchmark datasets (MMLU, GSM8K, etc.)

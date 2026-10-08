@@ -1,7 +1,7 @@
 ---
 Document ID: 6100-VECTOR-README
 Title: "6100: Vector Embeddings"
-Last Updated: 2026-10-01
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
@@ -16,6 +16,7 @@ Tags: ['module', 'rag', 'vectors']
 This module covers vector embeddings and similarity search, the foundation of modern retrieval-augmented generation (RAG) systems. You'll learn to embed documents, find similar content, and build efficient vector indexes.
 
 **Why This Matters:**
+
 - Embeddings transform text into semantic meaning representations
 - Vector search powers ChatGPT's browsing, code assistants, and recommendation systems
 - Efficient similarity search is critical for RAG performance
@@ -45,6 +46,7 @@ After completing this module, you will be able to:
 - Integration and evaluation
 
 **Experiments:**
+
 - Implement HNSW from scratch
 - Compare HNSW vs brute force search
 - Tune HNSW parameters
@@ -60,6 +62,7 @@ After completing this module, you will be able to:
 - Hands-on practice with similarity computation
 
 **Experiments:**
+
 - Generate embeddings for documents
 - Compare similarity metrics
 - Test different embedding models
@@ -86,6 +89,7 @@ After completing this module, you will be able to:
 - Reading MTEB: the benchmark mean as a function of the task menu
 
 **Experiments:**
+
 - Compare CLS vs mean pooling on your own model
 - Truncate and measure recall at 1/4 and 1/16 of the dimensions
 - Price the storage ledger before shipping a fleet
@@ -100,6 +104,7 @@ After completing this module, you will be able to:
 - Three retrieval stacks priced: mono index, translate-then-retrieve, shared space
 
 **Experiments:**
+
 - Center your raw states and re-measure every threshold policy
 - Fit a Procrustes map on translation pairs and verify orthogonality
 - Probe your multilingual embedder's bands before trusting it
@@ -137,6 +142,7 @@ Before starting this module, ensure you have:
 ## Related Modules
 
 This module connects to:
+
 - **[3200: Embedding Latent Spaces](../../phase3-transformers/3200-embeddings/README.md)** (embedding model architectures)
 - **[6200: Retrieval Strategies](../6200-retrieval/README.md)** (advanced retrieval techniques)
 - **[6400: Vector Databases](../6400-vector-databases/README.md)** (production vector stores)
@@ -158,12 +164,14 @@ This module connects to:
 ## Resources
 
 **Essential Libraries:**
+
 - sentence-transformers
 - hnswlib / faiss
 - numpy / scipy
 - langchain embeddings
 
 **Essential Models:**
+
 - all-MiniLM-L6-v2 (fast, English)
 - bge-base-en-v1.5 (quality, English)
 - e5-large-v2 (multilingual)

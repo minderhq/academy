@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-004
 Title: "LAB-004: Building ReAct Agents"
-Last Updated: 2026-10-07
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -37,6 +37,7 @@ Tags: ['lab', 'react', 'agents', 'hands-on']
 ## Lab Objectives
 
 After completing this lab, you will be able to:
+
 - ✅ Understand the ReAct (Reasoning + Acting) pattern
 - ✅ Build agents that can reason before acting
 - ✅ Implement tool calling for agents
@@ -68,6 +69,7 @@ mkdir -p data/memory
 **ReAct = Reasoning + Acting**
 
 The pattern follows this loop:
+
 1. **Thought:** Reason about what to do
 2. **Action:** Choose and execute a tool
 3. **Observation:** Observe the result

@@ -3,7 +3,7 @@ Document ID: 1301
 Title: "1301: K3s Master-Worker Architecture"
 Phase: 1
 Module: 1300
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -389,6 +389,7 @@ K3s is a lightweight Kubernetes distribution built for edge and homelab scale, a
 ---
 
 **Related Documents:**
+
 - [1201: Proxmox Hypervisor Standard Operating Procedures](../1200-virtualization/1201-Proxmox-Hypervisor-SOP.md)
 - [1302: GPU Scheduler Configuration](./1302-GPU-Scheduler.md)
 - [1303: Storage Classes for Dynamic Provisioning](./1303-Storage-Classes.md)

@@ -1,7 +1,7 @@
 ---
 Document ID: GLOSSARY
 Title: "Minder Academy Glossary"
-Last Updated: 2026-10-07
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Beginner
 Tags: ['glossary', 'llm', 'transformers']
@@ -11,7 +11,7 @@ Tags: ['glossary', 'llm', 'transformers']
 
 **Official Terminology Reference**
 
-**Last Updated:** 2026-10-07
+**Last Updated:** 2026-10-08
 **Purpose:** Standardize terminology across all Minder Academy documentation
 
 ---
@@ -300,6 +300,7 @@ docs/transformers/3101-self-attention.md
 ## Contributing
 
 Found an inconsistency? Suggest changes by:
+
 1. Checking if term is listed here
 2. Proposing standardized usage
 3. Updating all affected documentation

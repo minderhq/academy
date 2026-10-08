@@ -1,7 +1,7 @@
 ---
 Document ID: 3300-PRACTICE
 Title: "3300: Decoding - Practice"
-Last Updated: 2026-09-25
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -93,6 +93,7 @@ print(f"\nGenerated text:\n{text}\n")
 ```
 
 **Explanation:**
+
 - Greedy decoding always selects the highest probability token
 - Fast but can lead to repetitive or suboptimal text
 - No exploration of alternative paths
@@ -200,6 +201,7 @@ for num_beams in [1, 3, 5]:
 ```
 
 **Explanation:**
+
 - Beam search keeps multiple candidate sequences
 - Explores more possibilities than greedy
 - Length normalization prevents preference for short sequences
@@ -288,11 +290,13 @@ for top_k in [10, 50, 100]:
 ```
 
 **Explanation:**
+
 - Top-k sampling restricts sampling to top-k most likely tokens
 - Temperature controls randomness (lower = more deterministic)
 - Introduces diversity while maintaining quality
 
 **Temperature Effects:**
+
 - Low temperature (0.1-0.5): More deterministic, focused
 - Medium temperature (0.7-1.0): Balanced diversity and coherence
 - High temperature (1.5-2.0): Very diverse, potentially incoherent
@@ -392,11 +396,13 @@ for top_p in [0.5, 0.9, 0.95]:
 ```
 
 **Explanation:**
+
 - Nucleus sampling adaptively selects vocabulary based on cumulative probability
 - More flexible than fixed top-k
 - Adapts to the probability distribution of each step
 
 **Comparison Top-k vs Nucleus:**
+
 - Top-k: Fixed vocabulary size
 - Nucleus: Adaptive vocabulary size
 - Nucleus often produces better quality text
@@ -576,6 +582,7 @@ for penalty in [1.0, 1.2, 1.5]:
 5. **Repetition Penalty**: Prevents loops
 
 **Production Tips:**
+
 - Use beam search for factual content
 - Use nucleus sampling for creative tasks
 - Adjust temperature based on desired diversity

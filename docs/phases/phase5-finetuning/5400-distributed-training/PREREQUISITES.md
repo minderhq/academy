@@ -1,7 +1,7 @@
 ---
 Document ID: 5400-PREREQUISITES
 Title: "5400: Distributed Training - Prerequisites"
-Last Updated: 2026-10-01
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['prerequisites', 'training', 'distributed']
@@ -40,6 +40,7 @@ This module covers the parallelism strategies themselves (data, model, pipeline,
 ### If you're not familiar:
 
 **Review Resources:**
+
 - [PyTorch Distributed Documentation](https://pytorch.org/docs/stable/distributed.html)
 - "Distributed Deep Learning" papers
 - NCCL Library documentation
@@ -51,6 +52,7 @@ This module covers the parallelism strategies themselves (data, model, pipeline,
 ## Self-Assessment
 
 Can you:
+
 - [ ] Write a basic PyTorch training loop?
 - [ ] Explain gradient accumulation?
 - [ ] Understand what "all-reduce" means?

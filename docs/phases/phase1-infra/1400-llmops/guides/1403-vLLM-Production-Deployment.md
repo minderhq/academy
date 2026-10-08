@@ -3,7 +3,7 @@ Document ID: 1403
 Title: "1403: vLLM Production Deployment Guide"
 Phase: 1
 Module: 1400
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 5 hours
@@ -806,6 +806,7 @@ vLLM in production is PagedAttention plus continuous batching: the KV cache is s
 ---
 
 **Related:**
+
 - [1402: vLLM and TGI](../1402-vLLM-and-TGI.md)
 - [1401: Ollama Enterprise](../1401-Ollama-Enterprise.md)
 - [4101: GGUF Physics](../../../phase4-quantization/4100-low-bit/4101-GGUF-Physics.md)

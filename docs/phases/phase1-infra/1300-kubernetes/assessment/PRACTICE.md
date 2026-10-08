@@ -1,7 +1,7 @@
 ---
 Document ID: 1300-PRACTICE
 Title: "1300: Kubernetes - Practice"
-Last Updated: 2026-09-28
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -489,6 +489,7 @@ This practice guide covers:
 5. **Scaling and Updates:** Manual scaling, autoscaling, and rolling updates with rollback
 
 **Expected Learning Outcomes:**
+
 - Deploy and manage containerized applications in Kubernetes
 - Handle GPU resources for ML/AI workloads
 - Implement proper networking and exposure strategies

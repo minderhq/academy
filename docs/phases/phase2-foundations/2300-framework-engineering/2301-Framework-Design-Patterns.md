@@ -3,7 +3,7 @@ Document ID: 2301
 Title: "2301: Framework Design Patterns"
 Phase: 2
 Module: 2300
-Last Updated: 2026-10-04
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -49,6 +49,7 @@ After completing this lesson, you will be able to:
 Machine learning frameworks require careful architectural design to ensure flexibility, maintainability, and scalability. This document covers essential design patterns used in production ML frameworks like Hugging Face Transformers, PyTorch Lightning, and LangChain.
 
 **What You'll Learn:**
+
 - Model abstraction layers for framework-agnostic code
 - Configuration management for reproducible experiments
 - Plugin architectures for extensible systems
@@ -79,6 +80,7 @@ ML frameworks typically use these architectural patterns:
 ### Purpose
 
 Different ML frameworks (PyTorch, TensorFlow, JAX) have different APIs. An abstraction layer provides a unified interface, allowing you to:
+
 - Switch frameworks without changing application code
 - Test different implementations easily
 - Standardize model interfaces across your codebase
@@ -352,6 +354,7 @@ print(issubclass(BertModel, PreTrainedModel))        # True
 ### Purpose
 
 Reproducible experiments require:
+
 - Versioned configuration files
 - Easy parameter tuning
 - Clear documentation of hyperparameters
@@ -619,6 +622,7 @@ args = TrainingArguments(**json.loads(Path("config.json").read_text()))
 ### Purpose
 
 ML frameworks need to be extensible:
+
 - Custom layer types
 - Different optimizers
 - Data augmentation strategies
@@ -854,6 +858,7 @@ print(search_api.args)         # {'query': {'title': 'Query', 'type': 'string'}}
 ### Purpose
 
 Model versioning ensures:
+
 - Backward compatibility
 - Graceful degradation
 - Clear migration paths
@@ -1148,6 +1153,7 @@ Now it's your turn to apply these patterns!
 ### Task
 
 Create a mini ML framework with:
+
 1. Model abstraction layer (BaseModel class)
 2. Configuration management (ModelConfig class)
 3. One plugin type (custom metrics)
@@ -1232,6 +1238,7 @@ See: [2306: Building a Production Framework](./guides/2306-Building-Production-F
 4. **Version Handling** - Manage model compatibility
 
 **Real-World Frameworks Using These Patterns:**
+
 - Hugging Face Transformers (model abstraction + configs)
 - PyTorch Lightning (abstraction + plugins)
 - LangChain (plugins + versioning)
@@ -1263,6 +1270,7 @@ See: [2306: Building a Production Framework](./guides/2306-Building-Production-F
 - Assessment: **[2300: Framework Engineering - Quiz](./assessment/QUIZ.md)**
 
 **Related:**
+
 - [2201: PyTorch Computational Graphs and Dynamic Execution](../2200-frameworks/2201-PyTorch-Computational-Graphs.md)
 - [2202: TensorFlow XLA and Compiler Optimizations](../2200-frameworks/2202-TensorFlow-XLA-Compilers.md)
 - [2203: CUDA Kernel Programming and GPU Architecture](../2200-frameworks/2203-CUDA-Kernel-Programming.md)

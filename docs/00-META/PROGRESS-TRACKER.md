@@ -1,7 +1,7 @@
 ---
 Document ID: PROGRESS-TRACKER
 Title: "PROGRESS TRACKER: Minder Academy Learning Journey"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Beginner
 Tags: ['roadmap', 'guide', 'practice']
@@ -42,26 +42,31 @@ Total: [░░░░░░░░░░░░░░░░░] 0% (0/442 core file
 - [ ] **LAB-001: Docker & LLM** (2 hours)
 
 **Network Topology [1100]:**
+
 - [ ] 1101: Internet Uplink & Modem Configuration (1101-Fiber-GPON-Modem.md)
 - [ ] 1102: Network Topology Design (1102-Star-Topology-Core.md)
 - [ ] 1103-Jumbo-Frames-and-MTU.md
 
 **Virtualization [1200]:**
+
 - [ ] 1201-Proxmox-Hypervisor-SOP.md
 - [ ] 1202: GPU Passthrough (IOMMU/VFIO) (1202-TB3-UT3G-Passthrough.md)
 - [ ] 1203-Nvidia-Kernel-Module.md
 - [ ] 1204-Multi-GPU-Setup.md
 
 **Kubernetes [1300]:**
+
 - [ ] 1301-K3s-Master-Worker-Arch.md
 - [ ] 1302-GPU-Scheduler.md
 - [ ] 1303-Storage-Classes.md
 
 **LLMOps [1400]:**
+
 - [ ] 1401-Ollama-Enterprise.md
 - [ ] 1402-vLLM-and-TGI.md
 
 **Monitoring [1500]:**
+
 - [ ] 1501-Monitoring-and-Observability.md
 
 **Volume 1 Progress:** [ ] 0/15 (0%) | **Capstone:** [ ] PROJECT-001
@@ -78,31 +83,38 @@ Total: [░░░░░░░░░░░░░░░░░] 0% (0/442 core file
 - [ ] **CHEAT-SHEET-004: Linux** (reference)
 
 **Tensor Algebra [2100]:**
+
 - [ ] 2101-Tensor-Algebra.md
 - [ ] **EXP_2101: Tensor Algebra** (experiment)
 
 **Backpropagation [2100]:**
+
 - [ ] 2102-Backpropagation-and-Derivatives.md
 - [ ] **EXP_2102: Backpropagation** (experiment)
 
 **PyTorch [2200]:**
+
 - [ ] 2201-PyTorch-Computational-Graphs.md
 - [ ] **EXP_2201: PyTorch Graphs** (experiment)
 
 **TensorFlow [2200]:**
+
 - [ ] 2202-TensorFlow-XLA-Compilers.md
 - [ ] **EXP_2202: XLA Optimization** (experiment)
 
 **CUDA [2200]:**
+
 - [ ] 2203-CUDA-Kernel-Programming.md
 - [ ] **EXP_2203: CUDA Kernels** (experiment)
 
 **Pre-training [2400]:**
+
 - [ ] 2401-Pre-training-Fundamentals.md
 - [ ] 2402-Large-Scale-Training.md
 - [ ] 2403-Evaluation-Frameworks.md
 
 **Hands-on Lab:**
+
 - [ ] **LAB-006: Train Model from Scratch** (6-8 hours)
 
 **Volume 2 Progress:** [ ] 0/17 (0%) | **Capstone:** [ ] Choose Project A, B, or C
@@ -119,18 +131,22 @@ Total: [░░░░░░░░░░░░░░░░░] 0% (0/442 core file
 - [ ] **LAB-002: RAG Implementation** (3 hours)
 
 **Attention [3100]:**
+
 - [ ] 3101-Self-Attention-DeepDive.md
 - [ ] 3102-Flash-Attention.md
 
 **Embeddings [3200]:**
+
 - [ ] 3201-Rotary-Positional-Embeddings-RoPE.md
 - [ ] 3202-Tokenizer-Sciences.md
 
 **Activation & Normalization [3300]:**
+
 - [ ] 3301-Activation-Functions.md
 - [ ] 3302-Normalization-Layers.md
 
 **Model Architectures [3400]:**
+
 - [ ] 3401-Encoder-Decoder-Architectures.md
 - [ ] 3402-Decoder-Only-Models.md
 
@@ -144,15 +160,18 @@ Total: [░░░░░░░░░░░░░░░░░] 0% (0/442 core file
 - [ ] **VOLUME-4-Quantization.md** - Volume guide (read first!)
 
 **Low-Bit Quantization [4100]:**
+
 - [ ] 4101-GGUF-Physics.md
 - [ ] 4102-EXL2-and-AWQ.md
 - [ ] 4103-Double-Quantization.md
 
 **KV-Cache Optimization [4200]:**
+
 - [ ] 4201-Context-Window-Physics.md
 - [ ] 4202-Speculative-Decoding.md
 
 **Labs & Experiments:**
+
 - [ ] **EXP_4101: GGUF Quantization** (experiment)
 - [ ] **EXP_4102: EXL2 vs AWQ** (experiment)
 - [ ] **EXP_4201: Speculative Decoding** (experiment)
@@ -167,18 +186,22 @@ Total: [░░░░░░░░░░░░░░░░░] 0% (0/442 core file
 - [ ] **VOLUME-5-Fine-Tuning.md** - Volume guide (read first!)
 
 **PEFT [5100]:**
+
 - [ ] 5101-LoRA-Logic.md
 - [ ] 5102-QLoRA-Pipelines.md
 
 **SFT & Preference [5200]:**
+
 - [ ] 5201-DPO-Theory.md
 - [ ] 5202-Alignment-Orchestration.md
 
 **Synthetic Data [5300]:**
+
 - [ ] 5301-Knowledge-Distillation.md
 - [ ] 5302-Distributed-Training.md
 
 **Labs:**
+
 - [ ] **LAB-003: LoRA Fine-Tuning** (4 hours)
 - [ ] **LAB-010: DPO Alignment** (5-6 hours)
 
@@ -192,22 +215,27 @@ Total: [░░░░░░░░░░░░░░░░░] 0% (0/442 core file
 - [ ] **VOLUME-6-Data-Nexus.md** - Volume guide (read first!)
 
 **Vector Search [6100]:**
+
 - [ ] 6101-HNSW-Indexing.md
 - [ ] 6102-Semantic-Similarity.md
 
 **RAG 2.0 [6200]:**
+
 - [ ] 6201-Hybrid-Search.md
 - [ ] 6202-Re-ranking-and-Retrieval-Logistics.md
 
 **GraphRAG [6300]:**
+
 - [ ] 6301-Neo4j-and-Knowledge-Graphs.md
 - [ ] 6302-CAG-Long-Context-Architectures.md
 
 **Vector Databases [6400]:**
+
 - [ ] 6401-Qdrant-Setup.md
 - [ ] 6402-Pinecone-vs-Weaviate.md
 
 **Experiments & Labs:**
+
 - [ ] **EXP_6101: HNSW Benchmarking** (experiment)
 - [ ] **EXP_6201: Hybrid Search** (experiment)
 - [ ] **EXP_6301: GraphRAG** (experiment)
@@ -224,19 +252,24 @@ Total: [░░░░░░░░░░░░░░░░░] 0% (0/442 core file
 - [ ] **TUTORIAL-004: Monitoring** (90 min)
 
 **Agent Frameworks [7100]:**
+
 - [ ] 7101-ReAct-Loop-System.md
 - [ ] 7102-Planning-Decomposition.md
 
 **Tool-Calling [7200]:**
+
 - [ ] 7201-Tool-Calling.md
 
 **Multi-Agent Orchestration [7300]:**
+
 - [ ] 7301-Orchestration.md
 
 **Agent Memory [7400]:**
+
 - [ ] 7401-Long-term-Memory.md
 
 **Experiments & Labs:**
+
 - [ ] **EXP_7101: ReAct Agent** (experiment)
 - [ ] **EXP_7201: Multi-Agent** (experiment)
 - [ ] **LAB-004: ReAct Agent** (4 hours)
@@ -244,6 +277,7 @@ Total: [░░░░░░░░░░░░░░░░░] 0% (0/442 core file
 - [ ] **LAB-009: Production Deployment** (8-10 hours)
 
 **Production Topics:**
+
 - [ ] Scaling strategies
 - [ ] Monitoring & observability
 - [ ] Cost optimization
@@ -432,6 +466,7 @@ Notes:
 
 ### Fast Track (3-4 months)
 For experienced developers who want to get productive quickly:
+
 1. Volume 1 (skip if you have infrastructure)
 2. Volume 2 (focus on tensors and backprop)
 3. Volume 5 (jump to fine-tuning)
@@ -439,6 +474,7 @@ For experienced developers who want to get productive quickly:
 
 ### Deep Learning (6-12 months)
 For complete mastery of AI systems:
+
 1. Complete all volumes in order (1 → 7)
 2. Do all experiments and labs
 3. Complete all capstone projects
@@ -446,6 +482,7 @@ For complete mastery of AI systems:
 
 ### RAG Specialist (2-3 months)
 Focus on retrieval-augmented generation:
+
 1. Volume 1 (infrastructure basics)
 2. Volume 3 (embeddings and attention)
 3. Volume 6 (complete RAG focus)
@@ -453,6 +490,7 @@ Focus on retrieval-augmented generation:
 
 ### Multi-Modal AI Specialist (3-4 months)
 Focus on vision, audio, and advanced AI:
+
 1. Volume 1 (infrastructure basics)
 2. Volume 3 (transformer architecture)
 3. LAB-011: Multi-Modal AI
@@ -462,6 +500,7 @@ Focus on vision, audio, and advanced AI:
 
 ### AI Safety & Evaluation (2-3 months)
 Focus on evaluation, safety, and reliability:
+
 1. Volume 2 (AI foundations)
 2. Volume 5 (fine-tuning and alignment)
 3. LAB-014: AI Evaluation & Safety
@@ -469,6 +508,7 @@ Focus on evaluation, safety, and reliability:
 
 ### Fine-Tuning Expert (2-3 months)
 Focus on model adaptation:
+
 1. Volume 2 (AI foundations)
 2. Volume 3 (model architecture)
 3. Volume 5 (complete fine-tuning focus)

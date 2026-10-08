@@ -1,7 +1,7 @@
 ---
 Document ID: PROJECT-004
 Title: "CAPSTONE PROJECT-004: Quantize LLM from Scratch"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['project', 'quantization', 'gguf']
@@ -16,6 +16,7 @@ Tags: ['project', 'quantization', 'gguf']
 ## Project Overview
 
 Implement model quantization from scratch to run large language models efficiently:
+
 - Manual quantization algorithms (GPTQ, AWQ)
 - Custom kernel implementation for quantized operations
 - GGUF file format and serialization
@@ -30,6 +31,7 @@ Implement model quantization from scratch to run large language models efficient
 ## Prerequisites
 
 Complete these before starting:
+
 - ✅ 4101: GGUF Physics
 - ✅ 4102: EXL2 and AWQ
 - ✅ 4201: Context Window Physics
@@ -605,6 +607,7 @@ if __name__ == '__main__':
 ---
 
 **Congratulations!** You've implemented model quantization:
+
 - 🎯 GPTQ and AWQ algorithms
 - 📦 GGUF file format
 - ⚡ Quantized inference kernels

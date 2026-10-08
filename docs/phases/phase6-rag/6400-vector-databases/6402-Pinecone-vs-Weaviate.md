@@ -3,7 +3,7 @@ Document ID: 6402
 Title: "6402: Vector Database Comparison"
 Phase: 6
 Module: 6400
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -87,6 +87,7 @@ Choosing the right vector database is crucial for RAG applications. This documen
 **Best For:** Production RAG systems requiring high performance and filtering
 
 **Key Features:**
+
 - Written in Rust for performance
 - Native hybrid search (vector + keyword)
 - Powerful filtering with payload indexing
@@ -95,6 +96,7 @@ Choosing the right vector database is crucial for RAG applications. This documen
 - Replication and sharding
 
 **Pros:**
+
 - ⚡ Fast queries (HNSW optimization)
 - 🔍 Powerful metadata filtering
 - 🔄 Real-time updates
@@ -103,11 +105,13 @@ Choosing the right vector database is crucial for RAG applications. This documen
 - 💾 Efficient memory usage
 
 **Cons:**
+
 - 📚 Smaller community than Weaviate
 - 🔧 Steeper learning curve for advanced features
 - 🌐 Cloud service newer than competitors
 
 **When to choose:**
+
 - Self-hosting with high performance needs
 - Complex filtering requirements
 - Real-time data updates
@@ -164,6 +168,7 @@ results = client.query_points(
 **Best For:** Feature-rich RAG applications with built-in vectorization
 
 **Key Features:**
+
 - GraphQL API for flexible querying
 - Modular architecture (modules for different features)
 - Built-in vectorization (integration with Cohere, OpenAI, etc.)
@@ -172,6 +177,7 @@ results = client.query_points(
 - Backup and restore tools
 
 **Pros:**
+
 - 🎨 Intuitive GraphQL API
 - 🧩 Modular and extensible
 - 🌐 Large and active community
@@ -180,12 +186,14 @@ results = client.query_points(
 - 🔄 Automatic vectorization
 
 **Cons:**
+
 - 💾 Higher memory usage (Go garbage collection)
 - 🐌 Slower for pure vector search than Qdrant
 - 🔧 Configuration can be complex
 - 📊 Scaling requires understanding of modules
 
 **When to choose:**
+
 - Need GraphQL for complex querying
 - Want built-in vectorization
 - Building knowledge graph applications
@@ -239,6 +247,7 @@ for obj in response.objects:
 **Best For:** Production RAG without infrastructure management
 
 **Key Features:**
+
 - Fully managed service
 - Excellent performance and reliability
 - Simple Python API
@@ -247,6 +256,7 @@ for obj in response.objects:
 - Free tier for testing
 
 **Pros:**
+
 - ☁️ Zero infrastructure management
 - 🚀 Very fast and reliable
 - 🎯 Simple API (easy to get started)
@@ -255,6 +265,7 @@ for obj in response.objects:
 - 📚 Great documentation
 
 **Cons:**
+
 - 💰 Expensive at scale
 - 🔒 Vendor lock-in (proprietary)
 - 🏢 No self-hosted option
@@ -262,6 +273,7 @@ for obj in response.objects:
 - 💳 Data residency concerns
 
 **When to choose:**
+
 - Don't want to manage infrastructure
 - Need production quickly
 - Budget is not a constraint
@@ -313,6 +325,7 @@ for result in results['matches']:
 **Best For:** Enterprise-scale vector search with huge datasets
 
 **Key Features:**
+
 - Designed for billion-scale vector search
 - Multiple index types (HNSW, IVF, ANNOY, DiskANN)
 - Supports GPU acceleration
@@ -321,6 +334,7 @@ for result in results['matches']:
 - Tunable consistency levels (strong, bounded, session, eventually)
 
 **Pros:**
+
 - 📊 Scales to billions of vectors
 - 🎮 GPU acceleration support
 - ☸️ Kubernetes integration
@@ -329,6 +343,7 @@ for result in results['matches']:
 - 📈 Built for production at scale
 
 **Cons:**
+
 - 🔧 Complex to set up and configure
 - 📚 Steep learning curve
 - 💾 High resource requirements
@@ -336,6 +351,7 @@ for result in results['matches']:
 - 🧩 Not as developer-friendly
 
 **When to choose:**
+
 - Have massive datasets (100M+ vectors)
 - Need GPU acceleration
 - Enterprise environment with Kubernetes
@@ -396,6 +412,7 @@ for result in results[0]:
 **Best For:** Prototyping and learning vector databases
 
 **Key Features:**
+
 - Pure Python, easy to install
 - Built-in embedding support
 - Simple and intuitive API
@@ -404,6 +421,7 @@ for result in results[0]:
 - Growing feature set
 
 **Pros:**
+
 - 🎯 Easiest to get started
 - 🐳 Great Jupyter notebook support
 - 📚 Excellent for learning
@@ -412,6 +430,7 @@ for result in results[0]:
 - 🌐 Active development
 
 **Cons:**
+
 - 📊 Not for production at scale
 - 🐌 Slower than specialized databases
 - 🔧 Limited enterprise features
@@ -419,6 +438,7 @@ for result in results[0]:
 - 🌐 Newer, less mature
 
 **When to choose:**
+
 - Learning vector databases
 - Prototyping RAG applications
 - Small to medium datasets (<1M vectors)
@@ -464,6 +484,7 @@ for result in results['documents'][0]:
 **Best For:** Adding vector search to existing PostgreSQL databases
 
 **Key Features:**
+
 - Extension for PostgreSQL
 - Integrates vector search with relational data
 - SQL-based queries
@@ -471,6 +492,7 @@ for result in results['documents'][0]:
 - Leverages PostgreSQL ecosystem
 
 **Pros:**
+
 - 🗄️ Native PostgreSQL integration
 - 🔄 ACID transactions
 - 📊 Familiar SQL interface
@@ -478,12 +500,14 @@ for result in results['documents'][0]:
 - 💾 No separate infrastructure
 
 **Cons:**
+
 - 🐌 Slower than specialized databases
 - 🔧 Limited index types (IVF, HNSW)
 - 📊 Not optimized for billions of vectors
 - 🌐 Limited vector-specific features
 
 **When to choose:**
+
 - Already using PostgreSQL
 - Need ACID transactions
 - Simple RAG use cases
@@ -967,6 +991,7 @@ class VectorDBImporter:
 6. **pgvector** - Best when you already use PostgreSQL
 
 **Selection Criteria:**
+
 - Use **Chroma** for POCs and learning
 - Use **Qdrant** for production self-hosting
 - Use **Pinecone** if budget allows
@@ -993,6 +1018,7 @@ class VectorDBImporter:
 ---
 
 **Related:**
+
 - [6401: Qdrant Setup](./6401-Qdrant-Setup.md)
 - [6101: HNSW](../6100-vector/6101-HNSW-Indexing.md)
 - [6201: Hybrid Search](../6200-retrieval/6201-Hybrid-Search.md)

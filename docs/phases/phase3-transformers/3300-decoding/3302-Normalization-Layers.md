@@ -3,7 +3,7 @@ Document ID: 3302
 Title: "3302: Normalization Layers - BatchNorm vs LayerNorm vs RMSNorm"
 Phase: 3
 Module: 3300
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 2 hours
@@ -454,6 +454,7 @@ Normalization layers keep training stable by keeping activations in a sane range
 ---
 
 **Related Documents:**
+
 - [3301: Activation Functions](./3301-Activation-Functions.md)
 - [3101: Self-Attention](../3100-attention/3101-Self-Attention-DeepDive.md)
 - [2202: TensorFlow XLA](../../phase2-foundations/2200-frameworks/2202-TensorFlow-XLA-Compilers.md)

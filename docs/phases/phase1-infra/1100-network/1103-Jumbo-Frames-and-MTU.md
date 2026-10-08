@@ -3,7 +3,7 @@ Document ID: 1103
 Title: "1103: Jumbo Frames and MTU Optimization"
 Phase: 1
 Module: 1100
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 2 hours
@@ -299,6 +299,7 @@ Jumbo frames raise the Ethernet MTU from the standard 1500 bytes to 9000, cuttin
 ---
 
 **Related Documents:**
+
 - [1102: Network Topology Design](./1102-Star-Topology-Core.md)
 - [1201: Proxmox Hypervisor](../1200-virtualization/1201-Proxmox-Hypervisor-SOP.md)
 - [1301: K3s Master-Worker Architecture](../1300-kubernetes/1301-K3s-Master-Worker-Arch.md)

@@ -1,7 +1,7 @@
 ---
 Document ID: 1200-PREREQUISITES
 Title: "1200: Virtualization - Prerequisites"
-Last Updated: 2026-10-01
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Tags: ['prerequisites', 'infrastructure', 'virtualization']
@@ -40,6 +40,7 @@ This module covers virtualization and GPU passthrough for ML infrastructure, fro
 ### If you're not familiar:
 
 **Review Resources:**
+
 - "Linux Command Line and Shell Scripting Bible"
 - Docker documentation - "Understanding containers"
 - "Virtual Machines vs Containers" comparison guides
@@ -52,6 +53,7 @@ This module covers virtualization and GPU passthrough for ML infrastructure, fro
 ## Self-Assessment
 
 Can you:
+
 - [ ] Navigate Linux command line?
 - [ ] Explain VM vs container?
 - [ ] Manage Linux services?

@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-009
 Title: "TUTORIAL-009: Advanced RAG Techniques"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -41,6 +41,7 @@ This tutorial covers advanced Retrieval-Augmented Generation techniques includin
 ## Learning Objectives
 
 After this tutorial, you will:
+
 - Implement hybrid search (vector + keyword)
 - Add re-ranking for better retrieval
 - Build GraphRAG with Neo4j

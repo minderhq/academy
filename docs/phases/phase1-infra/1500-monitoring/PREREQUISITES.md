@@ -1,7 +1,7 @@
 ---
 Document ID: 1500-PREREQUISITES
 Title: "1500: Monitoring - Prerequisites"
-Last Updated: 2026-10-01
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['prerequisites', 'infrastructure', 'monitoring']
@@ -40,6 +40,7 @@ This module covers monitoring and observability for LLM systems, from metrics an
 ### If you're not familiar:
 
 **Review Resources:**
+
 - "Site Reliability Engineering" (Google SRE book) - Chapters 4-6
 - Prometheus documentation - "Getting started"
 - "Monitoring Distributed Systems" (O'Reilly)
@@ -52,6 +53,7 @@ This module covers monitoring and observability for LLM systems, from metrics an
 ## Self-Assessment
 
 Can you:
+
 - [ ] Set up Prometheus metrics?
 - [ ] Create Grafana dashboards?
 - [ ] Define SLIs and SLOs?

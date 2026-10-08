@@ -3,7 +3,7 @@ Document ID: 7403
 Title: "7403: Vector Memory and Embedding-Based Storage"
 Phase: 7
 Module: 7400
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -52,6 +52,7 @@ and a reference long-term memory architecture with token-budgeted recall.
 
 ## Learning Objectives
 After completing this document, you will:
+
 - ✅ Distinguish episodic, semantic, and procedural memories and store each appropriately
 - ✅ Implement the write path: consolidation → embed → metadata-indexed store
 - ✅ Implement budgeted recall: embed query → filtered top-k → inject
@@ -70,6 +71,7 @@ After completing this document, you will:
 | **Procedural** | How to do things | "Their release flow: tag → CI → staged rollout" | Checklist/playbook text |
 
 Two design rules fall out of the taxonomy:
+
 - **Episodic → semantic consolidation**: episodes are raw; periodically
   distill them into semantic facts (Section 6) — recall of facts beats
   recall of transcripts
@@ -106,6 +108,7 @@ def remember(llm, store, embed, exchange: str, session_id: str):
 ```
 
 **Where:**
+
 - **One atomic statement per memory**: "prefers TypeScript" and "uses
   GCP" are two memories — atomic memories dedup and decay independently
 - **Write-time LLM extraction** costs one small-model call per exchange;
@@ -141,6 +144,7 @@ def recall(embed, query: str, k=5, token_budget=400,
 ```
 
 **Where:**
+
 - **Filters before similarity**: type and recency constraints prune the
   candidate set; similarity ranks within it
 - **Token budget cap**: recall text competes with retrieved documents and

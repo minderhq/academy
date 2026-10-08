@@ -1,7 +1,7 @@
 ---
 Document ID: GUIDE-CAREER
 Title: "CAREER GUIDE: From Learning to Job-Ready"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Tags: ['career', 'guide', 'roadmap']
@@ -11,7 +11,7 @@ Tags: ['career', 'guide', 'roadmap']
 
 **Target Audience:** Minder Academy learners preparing for AI Engineering careers
 **Read Time:** 25 minutes
-**Last Updated:** 2026-09-30
+**Last Updated:** 2026-10-08
 
 ---
 
@@ -131,6 +131,7 @@ After completing Minder Academy, build **3 portfolio projects**:
 **What:** Chatbot that answers questions from your own documents
 
 **Requirements:**
+
 - [x] Upload and index PDF/text documents
 - [x] Vector search (Qdrant/Chroma)
 - [x] Re-ranking for better results
@@ -142,6 +143,7 @@ After completing Minder Academy, build **3 portfolio projects**:
 **Difficulty:** ⭐⭐ Intermediate
 
 **Bonus Points:**
+
 - Add citations (show source chunks)
 - Multi-modal (images + text)
 - GraphRAG for complex queries
@@ -152,6 +154,7 @@ After completing Minder Academy, build **3 portfolio projects**:
 **What:** LoRA fine-tune for a specific domain
 
 **Requirements:**
+
 - [x] Curate your own dataset (100+ examples)
 - [x] Fine-tune using QLoRA
 - [x] Evaluation metrics (before/after)
@@ -163,6 +166,7 @@ After completing Minder Academy, build **3 portfolio projects**:
 **Difficulty:** ⭐ ⭐ ⭐
 
 **Bonus Points:**
+
 - DPO alignment
 - Quantization (GGUF/EXL2)
 - Domain: medical, legal, code, etc.
@@ -173,6 +177,7 @@ After completing Minder Academy, build **3 portfolio projects**:
 **What:** Autonomous agent that completes complex tasks
 
 **Requirements:**
+
 - [x] Multi-step reasoning (ReAct loop)
 - [x] Tool calling (search, calculator, APIs)
 - [x] Memory system (short + long term)
@@ -184,6 +189,7 @@ After completing Minder Academy, build **3 portfolio projects**:
 **Difficulty:** ⭐ ⭐ ⭐ ⭐
 
 **Bonus Points:**
+
 - Multi-agent collaboration
 - Custom tools
 - Real-world integration (Gmail, Slack, etc.)
@@ -223,11 +229,13 @@ After completing Minder Academy, build **3 portfolio projects**:
 **Good:** "Built and deployed RAG chatbot for technical documentation, achieving 85% answer accuracy and reducing support tickets by 40%"
 
 Use the **XYZ formula**:
+
 - **X** = What you built/did
 - **Y** = Why it mattered (business value)
 - **Z** = Quantifiable result (numbers!)
 
 **Examples:**
+
 - "Fine-tuned Llama-3-8B on medical Q&A dataset using QLoRA, improving F1 score from 0.62 to 0.79"
 - "Deployed quantized LLM (INT4) using vLLM, reducing inference costs by 65% while maintaining 98% of base model accuracy"
 - "Built multi-agent system for automated research, synthesizing information from 10+ sources in <30 seconds"
@@ -293,6 +301,7 @@ Data: Python, NumPy, Pandas, SQL (PostgreSQL), PostgreSQL + pgvector
 ### 4.2 LinkedIn Optimization
 
 **Profile Checklist:**
+
 - [x] Professional headshot
 - [x] Headline: "AI Engineer | RAG & Fine-Tuning | [Specialty]"
 - [x] About section: 2-3 paragraphs, keywords (RAG, LLM, PyTorch)
@@ -302,6 +311,7 @@ Data: Python, NumPy, Pandas, SQL (PostgreSQL), PostgreSQL + pgvector
 - [x] Recommendations: 2-3 from colleagues/managers
 
 **Posting Strategy:**
+
 - 1-2x per week minimum
 - Share project updates
 - Comment on AI news
@@ -316,6 +326,7 @@ Data: Python, NumPy, Pandas, SQL (PostgreSQL), PostgreSQL + pgvector
 **Duration:** 45-60 minutes
 
 **Common Questions:**
+
 - "Explain how attention works"
 - "How would you build a RAG system?"
 - "What's the difference between LoRA and full fine-tuning?"
@@ -331,6 +342,7 @@ Data: Python, NumPy, Pandas, SQL (PostgreSQL), PostgreSQL + pgvector
 
 **Example Prompt:**
 "Design and implement a RAG system for a legal document search engine. Consider:
+
 - Document ingestion and chunking strategy
 - Vector database schema
 - Re-ranking approach
@@ -346,6 +358,7 @@ Data: Python, NumPy, Pandas, SQL (PostgreSQL), PostgreSQL + pgvector
 **Duration:** 4-6 hours
 
 **Interviews:**
+
 1. Coding (LeetCode-style)
 2. System design
 3. AI deep-dive
@@ -392,21 +405,25 @@ Data: Python, NumPy, Pandas, SQL (PostgreSQL), PostgreSQL + pgvector
 ### 6.1 Staying Current (Post-Minder Academy)
 
 **Daily (15 min):**
+
 - Skim arXiv papers (cs.CL, cs.LG)
 - Check Hacker News for AI news
 - Scroll Twitter/X for AI researchers
 
 **Weekly (2 hours):**
+
 - Read 1-2 papers in depth
 - Try a new library or technique
 - Contribute to open source
 
 **Monthly (4 hours):**
+
 - Attend virtual meetup or conference
 - Write a blog post or tutorial
 - Update portfolio project
 
 **Quarterly (1 day):**
+
 - Reflect on learning goals
 - Plan next quarter's focus
 - Consider new job opportunities
@@ -416,6 +433,7 @@ Data: Python, NumPy, Pandas, SQL (PostgreSQL), PostgreSQL + pgvector
 ### 6.2 Recommended Resources
 
 **Papers to Read:**
+
 - "Attention Is All You Need" (2017)
 - "Language Models are Few-Shot Learners" (2020)
 - "Training Verifier to Solve Math Word Problems" (2021)
@@ -423,17 +441,20 @@ Data: Python, NumPy, Pandas, SQL (PostgreSQL), PostgreSQL + pgvector
 - "Llama 2" (2023)
 
 **Newsletters:**
+
 - The Batch (DeepLearning.AI)
 - Import AI
 - TLDR AI
 - Machine Learning Mastery
 
 **Podcasts:**
+
 - The Cognitive Revolution
 - Machine Learning Street Talk
 - Latent Space
 
 **Conferences:**
+
 - NeurIPS (December)
 - ICML (June/July)
 - ACL (July)
@@ -495,12 +516,14 @@ Data: Python, NumPy, Pandas, SQL (PostgreSQL), PostgreSQL + pgvector
 **Your advantage:** Practical skills + ability to learn quickly.
 
 **Minder Academy gives you:**
+
 - ✅ Foundational knowledge
 - ✅ Hands-on experience
 - ✅ Portfolio-worthy projects
 - ✅ Community support
 
 **You must add:**
+
 - ✅ Unique projects (not tutorials)
 - ✅ Real deployment (not localhost)
 - ✅ Networking (not just applying)
@@ -511,6 +534,7 @@ Data: Python, NumPy, Pandas, SQL (PostgreSQL), PostgreSQL + pgvector
 ---
 
 **Next Steps:**
+
 1. Read [GUIDE-RESUME.md](./GUIDE-RESUME.md) for resume templates
 2. Read [GUIDE-INTERVIEW.md](./GUIDE-INTERVIEW.md) for interview prep
 3. Start building your portfolio today!

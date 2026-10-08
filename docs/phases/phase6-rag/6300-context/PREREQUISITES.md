@@ -1,7 +1,7 @@
 ---
 Document ID: 6300-PREREQUISITES
 Title: "6300: Context - Prerequisites"
-Last Updated: 2026-10-01
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['prerequisites', 'rag', 'context']
@@ -40,6 +40,7 @@ This module covers knowledge graphs with Neo4j, GraphRAG, and long-context manag
 ### If you're not familiar:
 
 **Review Resources:**
+
 - "Retrieval-Augmented Generation for Large Language Models" survey
 - "Context Management for LLMs" research papers
 - LangChain context management documentation
@@ -52,6 +53,7 @@ This module covers knowledge graphs with Neo4j, GraphRAG, and long-context manag
 ## Self-Assessment
 
 Can you:
+
 - [ ] Build a basic RAG pipeline?
 - [ ] Optimize context usage?
 - [ ] Implement context compression?

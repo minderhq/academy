@@ -3,7 +3,7 @@ Document ID: 2103
 Title: "2103: Loss Landscape Geometry - Curvature, Saddles, and the Shape of Optimization"
 Phase: 2
 Module: 2100
-Last Updated: 2026-10-07
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 4 hours
@@ -299,6 +299,7 @@ The second derivative is not bookkeeping after the gradient - it is the shape of
 ---
 
 **Related:**
+
 - [2101: Tensor Algebra and Linear Algebra for AI](./2101-Tensor-Algebra.md)
 - [2102: Backpropagation and Automatic Differentiation](./2102-Backpropagation-and-Derivatives.md)
 - [5501: Optimizer Variants](../../phase5-finetuning/5500-advanced-optimization/5501-Optimizer-Variants.md)

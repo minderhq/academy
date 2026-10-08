@@ -3,7 +3,7 @@ Document ID: 1303
 Title: "1303: Storage Classes for Dynamic Provisioning"
 Phase: 1
 Module: 1300
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -442,6 +442,7 @@ Dynamic provisioning lets a pod ask for storage and get it: a PVC states the nee
 ---
 
 **Related Documents:**
+
 - [1301: K3s Master-Worker Architecture](./1301-K3s-Master-Worker-Arch.md)
 - [1401: Ollama Enterprise Deployment](../1400-llmops/1401-Ollama-Enterprise.md)
 - [6101: HNSW Indexing - Efficient Semantic Search at Scale](../../phase6-rag/6100-vector/6101-HNSW-Indexing.md)

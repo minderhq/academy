@@ -1,7 +1,7 @@
 ---
 Document ID: PROJECT-006
 Title: "CAPSTONE PROJECT-006: Build Production RAG System"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['project', 'rag', 'production', 'qdrant']
@@ -16,6 +16,7 @@ Tags: ['project', 'rag', 'production', 'qdrant']
 ## Project Overview
 
 Build a production-ready Retrieval-Augmented Generation system:
+
 - Multi-source document ingestion
 - Vector + hybrid search
 - Advanced re-ranking strategies
@@ -30,6 +31,7 @@ Build a production-ready Retrieval-Augmented Generation system:
 ## Prerequisites
 
 Complete these before starting:
+
 - ✅ 6101: HNSW Indexing
 - ✅ 6201: Hybrid Search
 - ✅ 6202: Re-ranking
@@ -672,6 +674,7 @@ if __name__ == "__main__":
 ---
 
 **Congratulations!** You've built a production RAG system:
+
 - 📄 Multi-format document ingestion
 - 🔍 Hybrid search with reranking
 - 🧠 GraphRAG integration

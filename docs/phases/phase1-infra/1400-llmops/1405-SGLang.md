@@ -3,7 +3,7 @@ Document ID: 1405
 Title: "1405: SGLang RadixAttention Serving"
 Phase: 1
 Module: 1400
-Last Updated: 2026-10-06
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -456,6 +456,7 @@ SGLang is the serving engine whose organizing idea is reuse: RadixAttention keep
 ---
 
 **Related Documents:**
+
 - [1302: GPU Scheduler](../1300-kubernetes/1302-GPU-Scheduler.md)
 - [1402: vLLM and TGI](./1402-vLLM-and-TGI.md)
 - [4202: Speculative Decoding](../../phase4-quantization/4200-kv-cache/4202-Speculative-Decoding.md)

@@ -1,7 +1,7 @@
 ---
 Document ID: 1300-KUBERNETES-README
 Title: "1300: Kubernetes for LLM Deployment"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Prerequisites: []
@@ -135,6 +135,7 @@ Automatically consolidates workloads:
 ```
 
 **Benefits:**
+
 - **Isolation:** Each model in separate container
 - **Versioning:** Run A/B tests of different model versions
 - **Resource quotas:** Prevent one model from starving others
@@ -213,6 +214,7 @@ Automatically consolidates workloads:
 ```
 
 **Best For:**
+
 - Home labs
 - Edge inference
 - Development environments
@@ -253,6 +255,7 @@ systemctl restart k3s
 ```
 
 **Best For:**
+
 - Production clusters
 - Multi-node deployments
 - Enterprises with dedicated ops teams
@@ -277,6 +280,7 @@ systemctl restart k3s
 ```
 
 **Best For:**
+
 - Cloud-native deployments
 - Enterprises with cloud budget
 - Teams wanting managed operations
@@ -759,6 +763,7 @@ kubectl describe pod ${POD_NAME}
 ```
 
 **Solutions:**
+
 1. **Check GPU availability**
    ```bash
    kubectl describe nodes | grep nvidia.com/gpu
@@ -782,6 +787,7 @@ kubectl logs ${POD_NAME}
 ```
 
 **Solutions:**
+
 1. **Increase memory limits**
 2. **Check model path in PVC**
 3. **Verify PVC permissions**
@@ -799,6 +805,7 @@ kubectl top pods
 ```
 
 **Solutions:**
+
 1. **Use local storage for models**
 2. **Check for network bottlenecks**
 3. **Verify GPU utilization**
@@ -951,27 +958,32 @@ ab/hey/wrk         # Load testing tools
 ### Further Reading
 
 **Documentation:**
+
 - [Kubernetes Official Docs](https://kubernetes.io/docs/)
 - [K3s Documentation](https://docs.k3s.io/)
 - [NVIDIA Kubernetes Device Plugin](https://github.com/NVIDIA/k8s-device-plugin)
 
 **Books:**
+
 - "Kubernetes in Action" by Marko Luksa
 - "The Kubernetes Book" by Nigel Poulton
 - "Cloud Native DevOps with Kubernetes" by Justin Garrison
 
 **Online Courses:**
+
 - [Kubernetes for Beginners](https://www.youtube.com/watch?v=X48VuDVwjeo)
 - [Certified Kubernetes Administrator (CKA)](https://www.udemy.com/course/certified-kubernetes-administrator-with-practice-tests/)
 
 ### Community Resources
 
 **Forums:**
+
 - [Kubernetes Slack](https://slack.k8s.io/)
 - [Kubernetes Discussion](https://discuss.kubernetes.io/)
 - [r/kubernetes on Reddit](https://www.reddit.com/r/kubernetes/)
 
 **GPU-Specific:**
+
 - [NVIDIA Cloud Native](https://docs.nvidia.com/datacenter/cloud-native/)
 - [GPU Operator](https://github.com/NVIDIA/gpu-operator)
 

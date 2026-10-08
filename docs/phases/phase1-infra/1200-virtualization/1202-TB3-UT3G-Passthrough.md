@@ -3,7 +3,7 @@ Document ID: 1202
 Title: "1202: GPU Passthrough (IOMMU/VFIO)"
 Phase: 1
 Module: 1200
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -449,6 +449,7 @@ GPU passthrough assigns a physical NVIDIA GPU to one virtual machine, giving it 
 ---
 
 **Related Documents:**
+
 - [1201: Proxmox Hypervisor Standard Operating Procedures](./1201-Proxmox-Hypervisor-SOP.md)
 - [1203: NVIDIA Kernel Module Management](./1203-Nvidia-Kernel-Module.md)
 - [1204: Multi-GPU Setup](./1204-Multi-GPU-Setup.md)

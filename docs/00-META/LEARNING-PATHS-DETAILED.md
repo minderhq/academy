@@ -1,7 +1,7 @@
 ---
 Document ID: LEARNING-PATHS-DETAILED
 Title: "Detailed Learning Paths"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Beginner
 Tags: ['roadmap', 'guide', 'llm']
@@ -34,6 +34,7 @@ Tags: ['roadmap', 'guide', 'llm']
 **"Get productive quickly"** - For experienced developers who want to build AI applications fast.
 
 **Requirements:**
+
 - 2+ years software development experience
 - Comfortable with Python and command line
 - Basic understanding of ML concepts
@@ -121,6 +122,7 @@ Checkpoint: Fine-tuned domain-specific model
 
 ### Fast Track Capstone
 **Build a production RAG system** (2 weeks)
+
 - Integrate your fine-tuned model
 - Add vector search
 - Deploy with monitoring
@@ -135,6 +137,7 @@ Checkpoint: Fine-tuned domain-specific model
 **"Become an AI expert"** - The comprehensive path for complete understanding.
 
 **Requirements:**
+
 - No prior ML experience required
 - Basic programming knowledge helpful
 - Commitment to 10-15 hours/week for 12+ months
@@ -778,41 +781,48 @@ Each path has a completion certificate:
 ### Path-Specific Tips
 
 **Fast Track:**
+
 - Focus on practical skills
 - Skip deep theory initially
 - Build something immediately
 
 **Complete Mastery:**
+
 - Take your time
 - Understand deeply
 - Do all exercises
 - Build capstone projects
 
 **RAG Specialist:**
+
 - Focus on data quality
 - Master vector search
 - Learn evaluation metrics
 - Practice with real data
 
 **Fine-Tuning Expert:**
+
 - Understand gradients deeply
 - Practice with different models
 - Learn evaluation thoroughly
 - Experiment with hyperparameters
 
 **Infrastructure Engineer:**
+
 - Hands-on hardware practice
 - Learn monitoring well
 - Understand networking
 - Practice deployment
 
 **Agent Builder:**
+
 - Start simple
 - Master ReAct first
 - Add complexity gradually
 - Test thoroughly
 
 **Research Path:**
+
 - Read papers
 - Implement from scratch
 - Run extensive experiments

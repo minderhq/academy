@@ -1,7 +1,7 @@
 ---
 Document ID: 7100-ARCHITECTURE-README
 Title: "7100: Agent Architecture"
-Last Updated: 2026-10-01
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
@@ -16,6 +16,7 @@ Tags: ['module', 'agents', 'react']
 This module covers the fundamental architectures of AI agents, from ReAct loops to planning systems. You'll learn to design and implement agents that can reason, act, and achieve complex goals.
 
 **Why This Matters:**
+
 - Agents are the future of AI interaction
 - ReAct and planning enable complex multi-step tasks
 - Agent architecture determines capabilities and limitations
@@ -45,6 +46,7 @@ After completing this module, you will be able to:
 - Production use and advanced patterns
 
 **Experiments:**
+
 - Implement ReAct loop from scratch
 - Build tool-calling agent
 - Add memory and context
@@ -60,6 +62,7 @@ After completing this module, you will be able to:
 - Distributed planning
 
 **Experiments:**
+
 - Implement planning agent
 - Build task decomposition system
 - Add replanning logic
@@ -87,6 +90,7 @@ After completing this module, you will be able to:
 - Regression gates in CI with an aggregate threshold and a golden set
 
 **Experiments:**
+
 - Score recorded trajectories at all three ladder rungs
 - Bootstrap a success-rate interval for your own run log
 - Flip a pairwise judge with answer order, then cancel the bias
@@ -102,6 +106,7 @@ After completing this module, you will be able to:
 - The campaign ledger: one batch, five policies, five bills
 
 **Experiments:**
+
 - Run the refine loop and read the accuracy walk as a defect-class ledger
 - Watch the vote converge on the wrong mode when the wrong mode is plural
 - Price intrinsic vs verifier-gated correction on the same batch
@@ -116,6 +121,7 @@ After completing this module, you will be able to:
 - The campaign ledger: four stacks, one-time training bill, per-request mask guarantee
 
 **Experiments:**
+
 - Compile the call grammar and flip validity with the mask alone
 - Price prompting vs masking on the same request stream
 - Train the tool choice and watch the walk plateau at the vocabulary ceiling
@@ -154,6 +160,7 @@ Before starting this module, ensure you have:
 ## Related Modules
 
 This module connects to:
+
 - **[7200: Tool Calling and Function Execution](../7200-tools/README.md)** (function calling and tools)
 - **[7300: Multi-Agent Orchestration](../7300-orchestration/README.md)** (multi-agent workflows)
 - **[7400: Agent Memory Systems](../7400-memory/README.md)** (agent memory systems)
@@ -176,12 +183,14 @@ This module connects to:
 ## Resources
 
 **Essential Frameworks:**
+
 - LangChain (agents)
 - AutoGen (multi-agent)
 - CrewAI (role-playing agents)
 - LangGraph (agent workflows)
 
 **Essential Papers:**
+
 - "ReAct: Synergizing Reasoning and Acting in Language Models"
 - "Reflexion: Language Agents with Verbal Reinforcement Learning"
 - "Tree of Thoughts: Deliberate Problem Solving with Large Language Models"

@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE1-INFRA-README
 Title: "Phase 1: Infrastructure Fabric [1000]"
-Last Updated: 2026-10-07
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['phase', 'infrastructure', 'gpu', 'networking']
@@ -36,6 +36,7 @@ Tags: ['phase', 'infrastructure', 'gpu', 'networking']
 **Converting hardware into a programmable, scalable, high-throughput AI factory.**
 
 This phase covers the foundational infrastructure needed to run enterprise-grade AI systems on commodity hardware - a dedicated desktop, a mini PC, a repurposed server, or a cloud VM - enabling you to:
+
 - Build a high-throughput star topology network
 - Configure GPU passthrough for VM access
 - Deploy multi-node K3s Kubernetes cluster
@@ -297,6 +298,7 @@ graph LR
 | [1104: The Protocol Stack - OSI Layers, TCP, and DNS](./1100-network/1104-Protocol-Stack-TCP-and-DNS.md) | OSI layers, TCP vs UDP, DNS, ports and TLS handshakes | 2h | Beginner |
 
 **What You'll Learn:**
+
 - WAN uplink and bridge mode configuration
 - Star topology with a managed switch
 - Jumbo frames (MTU 9000) for throughput optimization
@@ -304,6 +306,7 @@ graph LR
 - Network latency optimization
 
 **Hands-On Practice:**
+
 - Configure the modem in bridge mode
 - Set up star topology network
 - Enable jumbo frames end-to-end
@@ -320,12 +323,14 @@ graph LR
 | [1204: Multi-GPU Setup](./1200-virtualization/1204-Multi-GPU-Setup.md) | Multiple GPU configuration | 3h | Advanced |
 
 **What You'll Learn:**
+
 - Proxmox VE installation and configuration
 - CPU pinning and memory ballooning
 - GPU passthrough via IOMMU/VFIO
 - Nvidia driver management in VMs
 
 **Hands-On Practice:**
+
 - Install Proxmox VE on bare metal
 - Configure VM with GPU passthrough
 - Verify GPU access in VM with nvidia-smi
@@ -340,12 +345,14 @@ graph LR
 | [1303: Storage Classes](./1300-kubernetes/1303-Storage-Classes.md) | Dynamic NFS provisioning | 2h | Intermediate |
 
 **What You'll Learn:**
+
 - K3s multi-node cluster deployment
 - GPU scheduling with Nvidia device plugin
 - Dynamic storage provisioning with NFS
 - Pod deployment and scaling
 
 **Hands-On Practice:**
+
 - Deploy K3s master and worker nodes
 - Configure GPU scheduler
 - Create storage class for dynamic provisioning
@@ -362,12 +369,14 @@ graph LR
 | [1404: TGI Deployment](./1400-llmops/guides/1404-TGI-Deployment-Guide.md) | TGI setup guide | 3h | Advanced |
 
 **What You'll Learn:**
+
 - Ollama for local model serving
 - vLLM PagedAttention mechanism
 - TGI deployment (maintenance-mode reference; vLLM is the production default)
 - Model quantization (AWQ, GPTQ)
 
 **Hands-On Practice:**
+
 - Deploy Ollama on K3s
 - Configure vLLM with quantized model
 - Set up vLLM for production (1404's TGI guide kept as a maintenance-mode reference)
@@ -381,6 +390,7 @@ graph LR
 | [1501: Monitoring Stack](./1500-monitoring/1501-Monitoring-and-Observability.md) | Prometheus + Grafana + Loki | 4h | Intermediate |
 
 **What You'll Learn:**
+
 - Prometheus metrics collection
 - Grafana dashboard creation
 - Loki log aggregation
@@ -388,6 +398,7 @@ graph LR
 - Alert configuration
 
 **Hands-On Practice:**
+
 - Deploy Prometheus on K3s
 - Create Grafana dashboards
 - Set up Loki for log aggregation

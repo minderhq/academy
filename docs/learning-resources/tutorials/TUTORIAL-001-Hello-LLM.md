@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-001
 Title: "TUTORIAL-001: Hello LLM! - Your First AI Model"
-Last Updated: 2026-10-07
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 30 minutes
@@ -14,6 +14,7 @@ Tags: ['tutorial', 'llm', 'ollama', 'hands-on']
 **Difficulty:** ⭐ Beginner
 **Time:** 30 minutes
 **Prerequisites:**
+
 - **Basic Python knowledge** (variables, functions, loops)
 - **Python 3.13+ installed**
 
@@ -24,6 +25,7 @@ Tags: ['tutorial', 'llm', 'ollama', 'hands-on']
 ## Learning Objectives
 
 By the end of this tutorial, you will:
+
 - ✅ Understand what an LLM is
 - ✅ Run your first local LLM
 - ✅ Generate text with AI
@@ -36,6 +38,7 @@ By the end of this tutorial, you will:
 **LLM** = **Large Language Model**
 
 Think of it as a very smart text-completion engine:
+
 - Trained on billions of words from the internet
 - Can write stories, code, poetry, and more
 - Understands context and follows instructions
@@ -83,6 +86,7 @@ ollama pull mistral
 ```
 
 **What's happening?**
+
 - Downloading ~4GB model file
 - This will take a few minutes depending on your internet
 
@@ -314,6 +318,7 @@ ollama pull phi4-mini  # 3.8B model, very light
 ## Step 10: What's Next?
 
 You've just:
+
 - ✅ Installed Ollama
 - ✅ Run your first LLM
 - ✅ Generated text with AI

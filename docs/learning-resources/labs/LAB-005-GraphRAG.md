@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-005
 Title: "LAB-005: GraphRAG Implementation with Neo4j & Qdrant"
-Last Updated: 2026-10-07
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -19,6 +19,7 @@ Tags: ['lab', 'graphrag', 'neo4j', 'qdrant', 'hands-on']
 ## Lab Objectives
 
 After completing this lab, you will be able to:
+
 - ✅ Understand GraphRAG vs Vector RAG
 - ✅ Deploy Neo4j graph database
 - ✅ Build knowledge graphs from documents

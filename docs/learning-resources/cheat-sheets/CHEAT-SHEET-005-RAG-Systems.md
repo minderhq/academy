@@ -1,7 +1,7 @@
 ---
 Document ID: CHEAT-SHEET-005
 Title: "CHEAT-SHEET-005: RAG Systems"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Tags: ['cheatsheet', 'rag', 'retrieval']
@@ -11,7 +11,7 @@ Tags: ['cheatsheet', 'rag', 'retrieval']
 ## Retrieval-Augmented Generation Quick Reference
 
 **Version:** 1.2
-**Last Updated:** 2026-09-30
+**Last Updated:** 2026-10-08
 
 ---
 
@@ -549,11 +549,13 @@ uv pip install prometheus-client
 ---
 
 **Related Cheat Sheets:**
+
 - [CHEAT-SHEET-001: Docker](CHEAT-SHEET-001-Docker.md)
 - [CHEAT-SHEET-002: Python AI](CHEAT-SHEET-002-Python-AI.md)
 - [CHEAT-SHEET-004: Linux](CHEAT-SHEET-004-Linux.md)
 
 **Next Steps:**
+
 - [TUTORIAL-003: RAG Basics](../tutorials/TUTORIAL-003-RAG-Basics.md)
 - [TUTORIAL-009: Advanced RAG Techniques](../tutorials/TUTORIAL-009-Advanced-RAG-Techniques.md)
 - [LAB-002: RAG Implementation](../labs/LAB-002-RAG-Implementation.md)

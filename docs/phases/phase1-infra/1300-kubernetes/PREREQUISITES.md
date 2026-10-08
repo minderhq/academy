@@ -1,7 +1,7 @@
 ---
 Document ID: 1300-PREREQUISITES
 Title: "1300: Kubernetes - Prerequisites"
-Last Updated: 2026-10-01
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Tags: ['prerequisites', 'infrastructure', 'kubernetes']
@@ -40,6 +40,7 @@ This module covers Kubernetes for LLM deployment, from K3s cluster setup to cont
 ### If you're not familiar:
 
 **Review Resources:**
+
 - Kubernetes documentation - "Concepts" section
 - Docker documentation - Get started guides
 - "Kubernetes Up and Running" (Burgos, Hightower) - Chapters 1-4
@@ -52,6 +53,7 @@ This module covers Kubernetes for LLM deployment, from K3s cluster setup to cont
 ## Self-Assessment
 
 Can you:
+
 - [ ] Build and run Docker containers?
 - [ ] Write a Dockerfile?
 - [ ] Explain pod vs deployment?

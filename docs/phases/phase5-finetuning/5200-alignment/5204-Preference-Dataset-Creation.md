@@ -3,7 +3,7 @@ Document ID: 5204
 Title: "5204: Preference Dataset Creation"
 Phase: 5
 Module: 5200
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -52,6 +52,7 @@ dataset sizing, and bootstrapping with synthetic (AI) feedback.
 
 ## Learning Objectives
 After completing this document, you will:
+
 - ✅ Design a prompt-sourcing strategy with real coverage and diversity
 - ✅ Generate comparable response pairs (the conditions for a *meaningful* preference)
 - ✅ Write annotation guidelines and measure annotator agreement
@@ -73,6 +74,7 @@ One training example for DPO / reward modeling is a **triple**:
 
 The learning signal is the *contrast*. Two properties make the contrast
 informative:
+
 - **Comparable**: responses answer the same prompt with similar scope
 - **Non-degenerate**: y_l is not obviously broken (otherwise the model
   learns to avoid a trivial failure, not to prefer good behavior)
@@ -255,6 +257,7 @@ def synth_label(judge_model, prompt, a, b, principle):
 ```
 
 **Controls that make synthetic labels usable:**
+
 - **Position-debias**: judge each pair as (A,B) and (B,A); keep only
   consistent judgments
 - **Human calibration**: measure judge-vs-human agreement on a held-out

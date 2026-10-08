@@ -3,7 +3,7 @@ Document ID: 6401
 Title: "6401: Qdrant Setup Guide"
 Phase: 6
 Module: 6400
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -356,5 +356,6 @@ Qdrant is the open-source vector database this curriculum standardizes on: Rust-
 ---
 
 **Related:**
+
 - [6101: HNSW](../6100-vector/6101-HNSW-Indexing.md)
 - [6201: Hybrid Search](../6200-retrieval/6201-Hybrid-Search.md)

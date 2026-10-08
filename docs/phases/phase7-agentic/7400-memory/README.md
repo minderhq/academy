@@ -1,7 +1,7 @@
 ---
 Document ID: 7400-MEMORY-README
 Title: "7400: Agent Memory Systems"
-Last Updated: 2026-10-06
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
@@ -16,6 +16,7 @@ Tags: ['module', 'agents', 'memory']
 This module covers memory systems for AI agents, enabling them to remember past interactions, learn from experience, and maintain context across sessions. You'll learn to build agents with short-term, long-term, and semantic memory.
 
 **Why This Matters:**
+
 - Memory transforms stateless chatbots into intelligent agents
 - Long-term memory enables learning and personalization
 - Context management is critical for complex tasks
@@ -45,6 +46,7 @@ After completing this module, you will be able to:
 - Implementations and best practices
 
 **Experiments:**
+
 - Implement episodic memory
 - Build semantic memory system
 - Create importance scoring
@@ -121,6 +123,7 @@ Before starting this module, ensure you have:
 ## Related Modules
 
 This module connects to:
+
 - **[6100: Vector Embeddings](../../phase6-rag/6100-vector/README.md)** (semantic memory)
 - **[6300: Context Management](../../phase6-rag/6300-context/README.md)** (context window)
 - **[7100: Agent Architecture](../7100-architecture/README.md)** (agent design)
@@ -142,12 +145,14 @@ This module connects to:
 ## Resources
 
 **Essential Tools:**
+
 - Vector databases (Qdrant, Pinecone)
 - LangChain memory
 - Mem0 (memory framework)
 - Redis (fast key-value store)
 
 **Essential Papers:**
+
 - "MemGPT: Towards LLMs as Operating Systems"
 - "Reflexion: Language Agents with Verbal Reinforcement Learning"
 - "Large Language Models Can Be Easily Distracted by Irrelevant Context"

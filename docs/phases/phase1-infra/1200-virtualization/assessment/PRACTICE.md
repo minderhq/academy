@@ -1,7 +1,7 @@
 ---
 Document ID: 1200-PRACTICE
 Title: "1200: Virtualization - Practice"
-Last Updated: 2026-09-28
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 6 hours
@@ -81,6 +81,7 @@ nvidia-smi
 ```
 
 **Expected Output:**
+
 - VM boots with GPU visible
 - `lspci` inside VM shows passed-through GPU
 - Nvidia driver installs successfully

@@ -3,7 +3,7 @@ Document ID: 7302
 Title: "7302: Multi-Agent Communication Protocols"
 Phase: 7
 Module: 7300
-Last Updated: 2026-10-04
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -52,6 +52,7 @@ that keeps a fleet of LLM agents debuggable in production.
 
 ## Learning Objectives
 After completing this document, you will:
+
 - ✅ Design a typed message envelope with correlation IDs
 - ✅ Choose a coordination topology from task structure, not hype
 - ✅ Implement voting/debate consensus and know when it helps
@@ -99,6 +100,7 @@ class Message:
 ```
 
 **Envelope rules:**
+
 - Every request carries a fresh `message_id`; the result echoes the
   request's `correlation_id` — this is what makes traces reconstructable
 - `payload` schema is per-`type` and versioned (`payload_schema: "1.2"`)
@@ -216,6 +218,7 @@ def handoff(from_agent, to_agent, task_state):
 ```
 
 **Where:**
+
 - **facts vs open_questions** split stops receivers from redoing settled work
 - **artifacts by reference** (storage keys, not inlined blobs) keeps
   messages small and cache-friendly
@@ -333,6 +336,7 @@ async def send_with_jitter(bus, msg, retries: int = 4, base_s: float = 0.5):
 ```
 
 Fleet-level rules:
+
 - **Timeouts everywhere**: an agent that can hang must not be able to
   hang a pipeline — per-message `ttl_s` plus per-task wall-clock budgets
 - **Retry idempotently**: workers key on `message_id` so replays are safe

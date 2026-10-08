@@ -1,7 +1,7 @@
 ---
 Document ID: STYLE-GUIDE
 Title: "Minder Academy Style Guide"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Beginner
 Tags: ['maintenance', 'guide']
@@ -11,7 +11,7 @@ Tags: ['maintenance', 'guide']
 
 **Official Documentation Standards**
 
-**Last Updated:** 2026-09-30
+**Last Updated:** 2026-10-08
 **Version:** 1.0
 
 ---
@@ -126,6 +126,7 @@ Every document SHOULD end with:
 ```
 
 **Rules:**
+
 - H1: Document title only
 - H2: First level under H1
 - Don't skip levels (H1 → H3)
@@ -237,6 +238,7 @@ Code: "docs/00-META/README.md"
 ```
 
 **Rules:**
+
 - Header row required
 - Alignment pipes: `|` on both ends
 - Consistent spacing
@@ -358,6 +360,7 @@ graph LR
 
 The `Tags:` field in the YAML front matter is the machine-readable
 layer the platform's tag filter and related-content navigation read
+
 - it is separate from the visual badges above. Canonical syntax:
 
 ```markdown
@@ -549,6 +552,7 @@ concept-definition rows keep the prose form.
 ### When to Break Rules
 
 Break formatting rules IF:
+
 - Significantly improves clarity
 - Required by specific tool/constraint
 - Documenting legacy code with existing style
@@ -661,6 +665,7 @@ After this tutorial, you will:
 ### Contributions
 
 Improvements welcome! Submit PR with:
+
 - Clear description of change
 - Reasoning for improvement
 - Examples of before/after

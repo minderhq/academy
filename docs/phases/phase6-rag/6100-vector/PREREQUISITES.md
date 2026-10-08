@@ -1,7 +1,7 @@
 ---
 Document ID: 6100-PREREQUISITES
 Title: "Prerequisites: Vector Databases"
-Last Updated: 2026-09-28
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['prerequisites', 'rag', 'vectors']
@@ -18,16 +18,19 @@ Tags: ['prerequisites', 'rag', 'vectors']
 ### Essential Concepts
 
 **1. Information Retrieval**
+
 - Traditional keyword search
 - Why keyword search fails for semantic meaning
 - Need for similarity-based search
 
 **2. Vector Embeddings**
+
 - Text/images → vectors
 - Similarity = cosine distance
 - High-dimensional vector spaces
 
 **3. Database Basics**
+
 - What databases do (store, retrieve, query)
 - Indexing for speed
 - Tradeoffs: space vs time

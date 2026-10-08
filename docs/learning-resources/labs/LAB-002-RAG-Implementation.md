@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-002
 Title: "LAB-002: RAG Implementation with Qdrant & Ollama"
-Last Updated: 2026-10-07
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 4 hours
@@ -11,6 +11,7 @@ Tags: ['lab', 'rag', 'qdrant', 'ollama', 'hands-on']
 # LAB-002: RAG Implementation with Qdrant & Ollama
 
 **Prerequisites:**
+
 - **[TUTORIAL-001: Hello LLM](../tutorials/TUTORIAL-001-Hello-LLM.md)** - LLM basics
 - **[TUTORIAL-002: Docker Essentials](../tutorials/TUTORIAL-002-Docker-Essentials.md)** - Docker fundamentals
 - **[TUTORIAL-003: RAG Basics](../tutorials/TUTORIAL-003-RAG-Basics.md)** - RAG concepts
@@ -27,6 +28,7 @@ Tags: ['lab', 'rag', 'qdrant', 'ollama', 'hands-on']
 ## Lab Objectives
 
 After completing this lab, you will be able to:
+
 - ✅ Deploy Qdrant vector database in Docker
 - ✅ Implement document chunking strategies
 - ✅ Build a complete RAG pipeline

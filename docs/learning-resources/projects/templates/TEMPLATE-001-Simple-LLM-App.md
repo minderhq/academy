@@ -1,7 +1,7 @@
 ---
 Document ID: TEMPLATE-001-Simple-LLM-App
 Title: "PROJECT TEMPLATE: Simple LLM App"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Beginner
 Tags: ['template', 'llm', 'fastapi']
@@ -62,6 +62,7 @@ curl -X POST "http://localhost:8000/generate" \
 ## Configuration
 
 Edit `config.yaml` to customize:
+
 - Model name/path
 - Generation parameters
 - API settings

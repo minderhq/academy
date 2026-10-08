@@ -1,7 +1,7 @@
 ---
 Document ID: 3100-ATTENTION-README
 Title: "[3100]: Attention Architectures"
-Last Updated: 2026-10-01
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Prerequisites: [3200]
@@ -30,6 +30,7 @@ This module covers the attention mechanism - the core innovation behind Transfor
 ## Learning Objectives
 
 After completing this module, you will:
+
 - ✅ Understand the mathematical foundation of scaled dot-product attention
 - ✅ Implement multi-head attention from scratch
 - ✅ Explain causal vs bidirectional attention
@@ -70,6 +71,7 @@ Multiple heads: Each token attends with multiple patterns simultaneously
 ```
 
 **Why multiple heads?**
+
 - Head 1: Subject-verb agreement ("cat" ↔ "sat")
 - Head 2: Noun phrase structure ("The" ↔ "cat")
 - Head 3: Preposition relationships ("sat" ↔ "on")

@@ -1,7 +1,7 @@
 ---
 Document ID: TROUBLESHOOTING-QUICKSTART
 Title: "Quick Start Troubleshooting Guide"
-Last Updated: 2026-10-07
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Beginner
 Tags: ['troubleshooting', 'quickstart', 'llm']
@@ -11,7 +11,7 @@ Tags: ['troubleshooting', 'quickstart', 'llm']
 
 **Common Issues & Solutions for Quick Start**
 
-**Last Updated:** 2026-10-07
+**Last Updated:** 2026-10-08
 **Reading Time:** 5 minutes
 
 ---
@@ -36,6 +36,7 @@ Tags: ['troubleshooting', 'quickstart', 'llm']
 ### Issue: "Ollama not found" after installation
 
 **Windows:**
+
 1. Check if Ollama is in PATH:
    ```powershell
    where ollama
@@ -70,6 +71,7 @@ curl -fsSL https://ollama.com/install.sh | sh
 ### Issue: Installation fails halfway
 
 **Symptoms:**
+
 - Download stops at random percentage
 - "Network error" or "Connection lost"
 
@@ -101,6 +103,7 @@ curl -fsSL https://ollama.com/install.sh | sh
 ### Issue: Model download stuck at 0%
 
 **Symptoms:**
+
 - `ollama pull mistral` hangs
 - No progress for minutes
 
@@ -133,6 +136,7 @@ curl -fsSL https://ollama.com/install.sh | sh
 ### Issue: Download very slow
 
 **Symptoms:**
+
 - Download progresses at <1MB/s
 - Takes hours for 4GB model
 
@@ -163,6 +167,7 @@ curl -fsSL https://ollama.com/install.sh | sh
 ### Issue: "Out of disk space"
 
 **Symptoms:**
+
 - "No space left on device"
 - Download fails near completion
 
@@ -203,6 +208,7 @@ curl -fsSL https://ollama.com/install.sh | sh
 ### Issue: "Connection refused" when running Ollama
 
 **Symptoms:**
+
 - `ollama run mistral` fails
 - Error: "connection refused" or "dial tcp: lookup ollama.com"
 
@@ -237,6 +243,7 @@ curl -fsSL https://ollama.com/install.sh | sh
 ### Issue: WSL2 network problems (Windows)
 
 **Symptoms:**
+
 - WSL2 can't access internet
 - Ollama works in Windows but not WSL2
 
@@ -274,6 +281,7 @@ curl -fsSL https://ollama.com/install.sh | sh
 ### Issue: "Out of memory" error
 
 **Symptoms:**
+
 - "Cannot allocate memory"
 - Model fails to load
 - System becomes unresponsive
@@ -314,6 +322,7 @@ curl -fsSL https://ollama.com/install.sh | sh
 ### Issue: GPU out of memory (VRAM)
 
 **Symptoms:**
+
 - "CUDA out of memory"
 - Model loads but fails on inference
 
@@ -347,6 +356,7 @@ curl -fsSL https://ollama.com/install.sh | sh
 ### Issue: Model very slow on CPU
 
 **Symptoms:**
+
 - Takes >30 seconds for each response
 - 100% CPU usage
 
@@ -377,14 +387,17 @@ curl -fsSL https://ollama.com/install.sh | sh
 ### Issue: First response very slow
 
 **Symptoms:**
+
 - First prompt takes >1 minute
 - Subsequent prompts faster
 
 **Explanation:**
+
 - First load requires reading model from disk
 - Model stays in RAM after first load
 
 **Solution:**
+
 - This is normal behavior
 - Model loads faster on subsequent runs
 
@@ -395,6 +408,7 @@ curl -fsSL https://ollama.com/install.sh | sh
 ### Issue: 'ollama' command not found
 
 **Symptoms:**
+
 - `bash: ollama: command not found`
 - Command doesn't autocomplete
 
@@ -442,10 +456,12 @@ rm -rf ~/.ollama
 ```
 
 **Windows:**
+
 - Uninstall via Apps & Features
 - Delete `%USERPROFILE%\.ollama`
 
 **2. Reinstall:**
+
 - Follow [QUICK-START.md](QUICK-START.md) from scratch
 
 **3. Test with smallest model:**

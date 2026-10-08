@@ -1,7 +1,7 @@
 ---
 Document ID: VOLUME-4
 Title: "Volume 4: Quantization & Optimization"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['volume', 'quantization', 'gguf', 'kv-cache']
@@ -22,6 +22,7 @@ Tags: ['volume', 'quantization', 'gguf', 'kv-cache']
 ### What You'll Learn
 
 After completing this volume, you will be able to:
+
 - ✅ Understand quantization arithmetic (FP32 → FP16 → INT8 → INT4)
 - ✅ Run 70B models on 11GB VRAM using GGUF
 - ✅ Optimize context windows and KV cache
@@ -405,6 +406,7 @@ docker run --gpus all \
 **Difficulty:** ⭐⭐⭐⭐
 
 **Tasks:**
+
 1. Download 70B model (Llama-2-70B or similar)
 2. Convert to GGUF Q4_K_M
 3. Configure optimal GPU offloading
@@ -412,6 +414,7 @@ docker run --gpus all \
 5. Compare with smaller models
 
 **Skills Demonstrated:**
+
 - GGUF conversion ✅
 - Memory optimization ✅
 - Performance analysis ✅
@@ -422,6 +425,7 @@ docker run --gpus all \
 **Difficulty:** ⭐⭐⭐
 
 **Tasks:**
+
 1. Benchmark context window limits
 2. Implement sliding window
 3. Quantize KV cache
@@ -429,6 +433,7 @@ docker run --gpus all \
 5. Document memory savings
 
 **Skills Demonstrated:**
+
 - Context optimization ✅
 - Memory management ✅
 - Benchmarking ✅
@@ -439,6 +444,7 @@ docker run --gpus all \
 **Difficulty:** ⭐⭐⭐⭐⭐
 
 **Tasks:**
+
 1. Set up vLLM/TGI on multiple GPUs
 2. Configure load balancing
 3. Implement monitoring
@@ -446,6 +452,7 @@ docker run --gpus all \
 5. Document deployment
 
 **Skills Demonstrated:**
+
 - Production deployment ✅
 - Multi-GPU setup ✅
 - Performance optimization ✅
@@ -483,21 +490,25 @@ Use this checklist to track your progress:
 ### How Volume 4 Connects to Other Volumes:
 
 **Quantization (4101-4103) →**
+
 - Volume 3: Understanding model internals helps quantization
 - Volume 5: QLoRA uses 4-bit quantization
 - Volume 6: Quantized models for RAG
 - Volume 7: Production quantization strategies
 
 **Context Window (4201, 4203) →**
+
 - Volume 3: Attention mechanisms
 - Volume 6: Long-context RAG
 - Volume 7: Production context optimization
 
 **Speculative Decoding (4202) →**
+
 - Volume 3: Understanding generation
 - Volume 7: Production acceleration
 
 **vLLM/TGI (1402, 1403, 1404) →**
+
 - Volume 1: Docker deployment
 - Volume 7: Production monitoring, scaling
 
@@ -582,15 +593,19 @@ Solution: Quantize KV cache to INT8 = 50% savings
 ### Common Issues in Volume 4
 
 **Problem:** GGUF conversion fails
+
 - **Solution:** Check model format, convert to GGUF first
 
 **Problem:** vLLM OOM even after quantization
+
 - **Solution:** Reduce max_model_len, enable KV cache quantization
 
 **Problem:** Speculative decoding slower
+
 - **Solution:** Check draft model size, reduce num_speculative_tokens
 
 **Problem:** TB3 bus bottleneck
+
 - **Solution:** Use EXL2 for VRAM-only, minimize CPU offloading
 
 For more help, see **[TROUBLESHOOTING-Common-Issues.md](../learning-resources/troubleshooting/TROUBLESHOOTING-Common-Issues.md)**
@@ -630,6 +645,7 @@ For more help, see **[TROUBLESHOOTING-Common-Issues.md](../learning-resources/tr
 ---
 
 **Recommended Resources:**
+
 - **[llama.cpp](https://github.com/ggml-org/llama.cpp)** - GGUF implementation
 - **[vLLM Docs](https://docs.vllm.ai/)** - vLLM documentation
 - **[TGI Docs](https://huggingface.co/docs/text-generation-inference)** - TGI documentation

@@ -1,7 +1,7 @@
 ---
 Document ID: 4300-PREREQUISITES
 Title: "4300: Quantization Aware Training - Prerequisites"
-Last Updated: 2026-09-29
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['prerequisites', 'quantization', 'qat']
@@ -36,6 +36,7 @@ This module covers Quantization Aware Training for optimizing models for low-pre
 ### If you're not familiar:
 
 **Review Resources:**
+
 - "Quantization and Training of Neural Networks for Efficient Integer-Arithmetic-Only Inference" (Jacob et al.)
 - "Post-Training Quantization" (from 4100 module)
 - Hugging Face quantization documentation
@@ -48,6 +49,7 @@ This module covers Quantization Aware Training for optimizing models for low-pre
 ## Self-Assessment
 
 Can you:
+
 - [ ] Explain symmetric vs asymmetric quantization?
 - [ ] Calculate quantization scale and zero-point?
 - [ ] Describe transformer attention mechanism?

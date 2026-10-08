@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE2-FOUNDATIONS-README
 Title: "Phase 2: Cognitive Science & Frameworks [2000]"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['phase', 'frameworks', 'architecture', 'api-design']
@@ -34,6 +34,7 @@ Tags: ['phase', 'frameworks', 'architecture', 'api-design']
 **Deep-diving into the "Laws of Physics" of AI and Deep Learning.**
 
 This phase covers the mathematical foundations and framework engineering needed to understand how AI systems work, enabling you to:
+
 - Master tensor algebra and Einstein summation
 - Understand backpropagation and automatic differentiation
 - Learn PyTorch and TensorFlow computational graphs
@@ -293,6 +294,7 @@ metrics = {
 | [2103: Loss Landscape Geometry](./2100-calculus/2103-Loss-Landscape-Geometry.md) | Curvature, saddles, convexity, momentum | 4h | Intermediate |
 
 **What You'll Learn:**
+
 - Tensor operations and broadcasting
 - Einstein summation notation
 - Gradient computation and chain rule
@@ -300,6 +302,7 @@ metrics = {
 - Reading curvature, saddles, and convexity off the Hessian's signs
 
 **Hands-On Practice:**
+
 - Implement einsum from scratch
 - Build autograd engine
 - Visualize gradient flow
@@ -315,12 +318,14 @@ metrics = {
 | [2203: CUDA Kernels](./2200-frameworks/2203-CUDA-Kernel-Programming.md) | Python to 11GB-class GPU CUDA cores | 4h | Intermediate |
 
 **What You'll Learn:**
+
 - PyTorch dynamic computation graphs
 - TensorFlow XLA compilation
 - Custom CUDA kernel development
 - GPU memory management
 
 **Hands-On Practice:**
+
 - Build custom PyTorch autograd function
 - Optimize with XLA
 - Write CUDA kernel for matrix multiply
@@ -336,12 +341,14 @@ metrics = {
 | [2304: Production Deployment](./2300-framework-engineering/2304-Production-Deployment-Patterns.md) | Blue-green, canary, rolling updates | 5h | Advanced |
 
 **What You'll Learn:**
+
 - Extensible ML framework design
 - Model serving architectures
 - Production ML API design
 - Zero-downtime deployment strategies
 
 **Hands-On Practice:**
+
 - Design a mini ML framework
 - Build a model serving pipeline
 - Create a clean ML API
@@ -356,12 +363,14 @@ metrics = {
 | [2403: Evaluation Frameworks](./2400-pretraining/2403-Evaluation-Frameworks.md) | Metrics and benchmarks | 3h | Advanced |
 
 **What You'll Learn:**
+
 - Pre-training pipeline architecture
 - Data parallelism and distributed training
 - Evaluation metrics and benchmarks
 - Checkpointing and recovery
 
 **Hands-On Practice:**
+
 - Build training loop from scratch
 - Implement distributed training
 - Create evaluation framework

@@ -3,7 +3,7 @@ Document ID: 5401
 Title: "5401: Data Parallelism"
 Phase: 5
 Module: 5400
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -341,5 +341,6 @@ Data parallelism is the workhorse of multi-GPU training: replicate the model on 
 ---
 
 **Related:**
+
 - [5501: Optimizer Variants](../5500-advanced-optimization/5501-Optimizer-Variants.md)
 - [5102: QLoRA Pipelines](../5100-peft/5102-QLoRA-Pipelines.md)

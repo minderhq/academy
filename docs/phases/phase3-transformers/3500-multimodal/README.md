@@ -1,7 +1,7 @@
 ---
 Document ID: 3500-MULTIMODAL-README
 Title: "[3500]: Multimodal Models"
-Last Updated: 2026-09-28
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
@@ -29,6 +29,7 @@ This module covers vision-language models (CLIP, BLIP, LLaVA) and audio models (
 ## Learning Objectives
 
 After completing this module, you will:
+
 - Understand vision-language model architectures
 - Implement CLIP-style contrastive learning
 - Build multimodal RAG systems
@@ -188,6 +189,7 @@ Text Output (with timestamps)
 ```
 
 **Key Features:**
+
 - **680k hours** of weakly supervised training data
 - **Robust** to accents, background noise, technical language
 - **Multilingual** (99 languages)

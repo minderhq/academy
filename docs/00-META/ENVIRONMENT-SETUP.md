@@ -1,7 +1,7 @@
 ---
 Document ID: ENVIRONMENT-SETUP
 Title: "Environment Setup Guide"
-Last Updated: 2026-10-01
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Beginner
 Tags: ['setup', 'docker', 'infrastructure']
@@ -9,7 +9,7 @@ Tags: ['setup', 'docker', 'infrastructure']
 
 # Environment Setup Guide
 
-**Last Updated:** 2026-10-01
+**Last Updated:** 2026-10-08
 **Reading Time:** 15 minutes
 **Difficulty:** ⭐ Beginner
 
@@ -214,6 +214,7 @@ uv run uvicorn main:app --reload
 ```
 
 How the two layers relate:
+
 - `uv pip install -r requirements.txt` — imperative, like pip;
   fine for labs and one-off installs
 - `uv add` / `uv sync` + `uv.lock` — declarative and reproducible
@@ -328,6 +329,7 @@ uv pip install requests tqdm
 ### Issue 1: Ollama Download Fails
 
 **Symptoms:**
+
 - Download hangs at 0%
 - "Connection refused" error
 - Very slow download speed
@@ -378,6 +380,7 @@ sudo chmod 666 /var/run/docker.sock
 ### Issue 3: CUDA Out of Memory (GPU)
 
 **Symptoms:**
+
 - "CUDA out of memory" error
 - Model fails to load
 
@@ -407,6 +410,7 @@ model.to(device)
 ### Issue 4: Python Version Conflicts
 
 **Symptoms:**
+
 - "Module not found" errors
 - Version incompatibility
 
@@ -444,6 +448,7 @@ uv pip install --python 3.13 package-name
 ### Issue 5: WSL2 Issues on Windows
 
 **Symptoms:**
+
 - WSL won't start
 - Network issues between WSL and Windows
 
@@ -471,6 +476,7 @@ New-NetFirewallRule -DisplayName "WSL" -Direction Inbound -InterfaceAlias "vEthe
 ### Issue 6: UnicodeEncodeError: 'charmap' codec on Windows
 
 **Symptoms:**
+
 - `UnicodeEncodeError: 'charmap' codec can't encode character '✓'`
 - Example code that prints symbols or emoji (`✓`, `→`, `🚀`) crashes only when the output is piped, redirected to a file, or captured by a tool — the same code works when typed interactively
 

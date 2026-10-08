@@ -1,7 +1,7 @@
 ---
 Document ID: 5100-PEFT-README
 Title: "5100: Parameter-Efficient Fine-Tuning (PEFT)"
-Last Updated: 2026-10-01
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Prerequisites: [4100]
@@ -16,6 +16,7 @@ Tags: ['module', 'finetuning', 'peft']
 This module covers Parameter-Efficient Fine-Tuning techniques that enable adapting large language models to specific tasks with minimal computational resources. You'll master LoRA, QLoRA, and other PEFT methods.
 
 **Why This Matters:**
+
 - Fine-tuning a 70B model normally requires hundreds of GBs of VRAM
 - PEFT methods reduce memory by 10-100x while maintaining quality
 - Critical for customizing LLMs for specific domains or tasks
@@ -44,6 +45,7 @@ After completing this module, you will be able to:
 - Merging adapters with base models
 
 **Experiments:**
+
 - Implement LoRA from scratch
 - Compare different rank configurations
 - Measure quality vs parameter tradeoffs
@@ -59,6 +61,7 @@ After completing this module, you will be able to:
 - Merging QLoRA weights back into the base model
 
 **Experiments:**
+
 - Set up QLoRA training pipeline
 - Fine-tune a quantized 7B model
 - Compare QLoRA vs full fine-tuning
@@ -74,6 +77,7 @@ After completing this module, you will be able to:
 - Method comparison and choosing a method
 
 **Experiments:**
+
 - Compare adapter architectures
 - Apply prompt/prefix tuning
 - Benchmark IA³ vs LoRA
@@ -100,6 +104,7 @@ After completing this module, you will be able to:
 - Checkpoint soups and the mergekit surface
 
 **Experiments:**
+
 - Sweep lambda on a two-task merge
 - Break naive addition with sign conflicts
 - Verify DARE's expectation preservation in Monte Carlo
@@ -138,6 +143,7 @@ Before starting this module, ensure you have:
 ## Related Modules
 
 This module connects to:
+
 - **[4100: Low-Bit Quantization](../../phase4-quantization/4100-low-bit/README.md)** (quantization fundamentals)
 - **[5200: LLM Alignment](../5200-alignment/README.md)** (fine-tuning for alignment)
 - **[6100: Vector Embeddings](../../phase6-rag/6100-vector/README.md)** (embedding adaptation)
@@ -159,12 +165,14 @@ This module connects to:
 ## Resources
 
 **Essential Libraries:**
+
 - Hugging Face PEFT
 - bitsandbytes
 - Axolotl (training framework)
 - AutoTrain Advanced
 
 **Essential Papers:**
+
 - "LoRA: Low-Rank Adaptation of Large Language Models"
 - "QLoRA: Efficient Finetuning of Quantized LLMs"
 - "PEFT: Parameter-Efficient Fine-Tuning"

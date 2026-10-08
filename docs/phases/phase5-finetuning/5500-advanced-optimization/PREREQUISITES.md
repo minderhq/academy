@@ -1,7 +1,7 @@
 ---
 Document ID: 5500-PREREQUISITES
 Title: "5500: Advanced Optimization - Prerequisites"
-Last Updated: 2026-10-01
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['prerequisites', 'training', 'memory']
@@ -34,6 +34,7 @@ This module covers optimizer variants, learning rate scheduling, and advanced op
 ### If you're not familiar:
 
 **Review Resources:**
+
 - "Optimization for Deep Learning" (Goodfellow et al.)
 - PyTorch Optimizer documentation
 - "The Marginal Value of Adaptive Gradient Methods" (Wilson et al.)
@@ -45,6 +46,7 @@ This module covers optimizer variants, learning rate scheduling, and advanced op
 ## Self-Assessment
 
 Can you:
+
 - [ ] Explain the difference between SGD and Adam?
 - [ ] Describe what learning rate warmup does?
 - [ ] Understand momentum in optimization?

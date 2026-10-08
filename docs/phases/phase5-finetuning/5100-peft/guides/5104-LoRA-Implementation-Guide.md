@@ -3,7 +3,7 @@ Document ID: 5104
 Title: "5104: LoRA Implementation Guide"
 Phase: 5
 Module: 5100
-Last Updated: 2026-10-07
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -104,6 +104,7 @@ where:
 ```
 
 **Initialization:**
+
 - A ~ N(0, σ²) (random normal)
 - B = 0 (zero initialization)
 - This ensures ΔW = BA starts at zero, preserving pre-trained behavior

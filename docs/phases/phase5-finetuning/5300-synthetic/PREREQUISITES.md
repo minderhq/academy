@@ -1,7 +1,7 @@
 ---
 Document ID: 5300-PREREQUISITES
 Title: "5300: Synthetic Data - Prerequisites"
-Last Updated: 2026-09-29
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['prerequisites', 'finetuning', 'synthetic-data']
@@ -36,6 +36,7 @@ This module covers synthetic data generation for AI training.
 ### If you're not familiar:
 
 **Review Resources:**
+
 - "Synthetic Data for Deep Learning" survey papers
 - "Data-centric AI" research (Andrew Ng)
 - "The Synthetic Data Vault" paper
@@ -48,6 +49,7 @@ This module covers synthetic data generation for AI training.
 ## Self-Assessment
 
 Can you:
+
 - [ ] Design effective prompts?
 - [ ] Evaluate generation quality?
 - [ ] Validate synthetic data?

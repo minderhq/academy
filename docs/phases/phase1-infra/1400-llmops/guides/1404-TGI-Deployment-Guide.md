@@ -3,7 +3,7 @@ Document ID: 1404
 Title: "1404: Text Generation Inference (TGI) Deployment Guide"
 Phase: 1
 Module: 1400
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 6 hours
@@ -963,6 +963,7 @@ TGI is Hugging Face's production serving stack, and its shape matters: a Rust HT
 ---
 
 **Related:**
+
 - [1402: vLLM and TGI](../1402-vLLM-and-TGI.md)
 - [1403: vLLM Production Deployment](./1403-vLLM-Production-Deployment.md)
 - [1401: Ollama Enterprise](../1401-Ollama-Enterprise.md)

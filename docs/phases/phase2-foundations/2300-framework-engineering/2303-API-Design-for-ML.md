@@ -3,7 +3,7 @@ Document ID: 2303
 Title: "2303: API Design for ML Systems"
 Phase: 2
 Module: 2300
-Last Updated: 2026-10-07
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -52,6 +52,7 @@ After completing this lesson, you will be able to:
 ML models in production need well-designed APIs that are fast, reliable, and easy to use. This document covers API design patterns specific to ML systems.
 
 **What You'll Learn:**
+
 - REST vs GraphQL vs gRPC for ML
 - Streaming APIs for real-time inference
 - Error handling and rate limiting
@@ -75,17 +76,20 @@ ML models in production need well-designed APIs that are fast, reliable, and eas
 ### When to Use Each
 
 **REST:**
+
 - Simple ML models
 - Web applications
 - Mobile apps
 - General purpose APIs
 
 **GraphQL:**
+
 - Complex nested data (RAG with sources)
 - Flexible query requirements
 - Multiple data sources
 
 **gRPC:**
+
 - High-throughput inference
 - Microservices
 - Internal ML pipelines
@@ -1138,6 +1142,7 @@ async def metrics():
 ### Task
 
 Create a complete ML API with:
+
 1. Predict endpoint (single and batch)
 2. Streaming endpoint
 3. Error handling

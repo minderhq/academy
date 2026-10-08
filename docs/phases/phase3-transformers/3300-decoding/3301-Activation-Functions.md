@@ -3,7 +3,7 @@ Document ID: 3301
 Title: "3301: Activation Functions - GELU, SwiGLU, and Beyond"
 Phase: 3
 Module: 3300
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 2 hours
@@ -455,6 +455,7 @@ Activation functions are where networks get their non-linearity, and the transfo
 ---
 
 **Related Documents:**
+
 - [3302: Normalization Layers](./3302-Normalization-Layers.md)
 - [3101: Self-Attention](../3100-attention/3101-Self-Attention-DeepDive.md)
 - [5101: LoRA Logic](../../phase5-finetuning/5100-peft/5101-LoRA-Logic.md)

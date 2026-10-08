@@ -1,7 +1,7 @@
 ---
 Document ID: 7400-PREREQUISITES
 Title: "7400: Memory - Prerequisites"
-Last Updated: 2026-10-01
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['prerequisites', 'agents', 'memory']
@@ -40,6 +40,7 @@ This module covers long-term and vector-backed memory systems for AI agents, wit
 ### If you're not familiar:
 
 **Review Resources:**
+
 - "Memory Systems for AI Agents" research
 - LangChain memory documentation
 - "Conversational AI" memory patterns
@@ -52,6 +53,7 @@ This module covers long-term and vector-backed memory systems for AI agents, wit
 ## Self-Assessment
 
 Can you:
+
 - [ ] Design a memory schema?
 - [ ] Implement semantic memory?
 - [ ] Handle memory retrieval and ranking?

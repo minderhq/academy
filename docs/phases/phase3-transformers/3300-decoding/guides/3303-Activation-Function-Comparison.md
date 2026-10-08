@@ -3,7 +3,7 @@ Document ID: 3303
 Title: "3303: Activation Function Comparison"
 Phase: 3
 Module: 3300
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 2 hours
@@ -386,6 +386,7 @@ This guide is the activation-function decision table: ReLU, GELU, SwiGLU, and fr
 ---
 
 **Related:**
+
 - [3301: Activation Functions](../3301-Activation-Functions.md)
 - [3402: Decoder-Only Models](../../3400-architectures/3402-Decoder-Only-Models.md)
 - [2201: PyTorch Graphs](../../../phase2-foundations/2200-frameworks/2201-PyTorch-Computational-Graphs.md)

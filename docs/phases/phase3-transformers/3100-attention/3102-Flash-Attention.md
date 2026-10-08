@@ -3,7 +3,7 @@ Document ID: 3102
 Title: "3102: Flash Attention - IO-Aware Exact Attention"
 Phase: 3
 Module: 3100
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -418,6 +418,7 @@ Flash Attention reorganizes the attention computation rather than approximating 
 ---
 
 **Related Documents:**
+
 - [3101: Self-Attention](./3101-Self-Attention-DeepDive.md)
 - [4201: Context Window](../../phase4-quantization/4200-kv-cache/4201-Context-Window-Physics.md)
 - [2203: CUDA Kernels](../../phase2-foundations/2200-frameworks/2203-CUDA-Kernel-Programming.md)

@@ -1,7 +1,7 @@
 ---
 Document ID: 7500-SECURITY-README
 Title: "7500: AI Agent Security"
-Last Updated: 2026-10-01
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
@@ -16,6 +16,7 @@ Tags: ['module', 'agents', 'security']
 This module covers security and safety considerations for AI agents, including prompt injection defense, PII redaction, and protection against adversarial attacks. You'll learn to build secure, trustworthy agent systems.
 
 **Why This Matters:**
+
 - Agents are high-value targets for attacks
 - Prompt injection can leak sensitive data
 - PII exposure has legal and ethical implications
@@ -45,6 +46,7 @@ After completing this module, you will be able to:
 - The security checklist
 
 **Experiments:**
+
 - Implement injection detector
 - Build input sanitizer
 - Create output filter
@@ -60,6 +62,7 @@ After completing this module, you will be able to:
 - Production deployment and testing
 
 **Experiments:**
+
 - Build PII detector
 - Implement redaction system
 - Create compliance reports
@@ -75,6 +78,7 @@ After completing this module, you will be able to:
 - Production considerations
 
 **Experiments:**
+
 - Simulate adversarial attacks
 - Test defense mechanisms
 - Build monitoring system
@@ -89,6 +93,7 @@ After completing this module, you will be able to:
 - Defense in depth on one campaign
 
 **Experiments:**
+
 - Break a fixed-window limiter at the seam
 - Forge an agent identity on an unsigned bus
 - Detect beacon periodicity with the coefficient of variation
@@ -104,6 +109,7 @@ After completing this module, you will be able to:
 - One red-team CI gate priced four ways on a month of runs
 
 **Experiments:**
+
 - Walk the temperature knob from 0.0 to 1.5 on one fixed decision
 - Run the same red-team suite fifty times at T=0.7 and at T=0
 - Flip near-tie greedy decisions with simulated batch noise and a fingerprint bump
@@ -142,6 +148,7 @@ Before starting this module, ensure you have:
 ## Related Modules
 
 This module connects to:
+
 - **[7100: Agent Architecture](../7100-architecture/README.md)** (secure agent design)
 - **[7200: Tool Calling and Function Execution](../7200-tools/README.md)** (tool security)
 - **[7400: Agent Memory Systems](../7400-memory/README.md)** (data privacy)
@@ -163,12 +170,14 @@ This module connects to:
 ## Resources
 
 **Essential Tools:**
+
 - Microsoft Presidio (PII redaction)
 - LangChain security tools
 - Rebuff (prompt injection defense)
 - Llama Guard (content moderation)
 
 **Essential Papers:**
+
 - "Not what you've signed up for: Compromising Real-World LLM-Integrated Applications with Prompt Injection"
 - "Ignore Previous Prompt: Attack Techniques For Language Models"
 - "Jailbreak: A Novel Black-box Method for Jailbreaking Large Language Models"
@@ -206,6 +215,7 @@ This module connects to:
 ## Security Checklist
 
 Before deploying agents:
+
 - [ ] Input validation implemented
 - [ ] Output filtering enabled
 - [ ] PII redaction configured

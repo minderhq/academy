@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-010
 Title: "LAB-010: DPO Alignment"
-Last Updated: 2026-10-07
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 6 hours
@@ -13,6 +13,7 @@ Tags: ['lab', 'dpo', 'alignment', 'rlhf', 'preference-learning', 'hands-on']
 **Align language models with human preferences using Direct Preference Optimization**
 
 **Prerequisites:**
+
 - [LAB-003: LoRA Fine-Tuning](LAB-003-LoRA-FineTuning.md) - adapter-based efficient fine-tuning
 - [5201: DPO Theory](../../phases/phase5-finetuning/5200-alignment/5201-DPO-Theory.md) - the math behind the loss
 - [5202: Alignment Orchestration](../../phases/phase5-finetuning/5200-alignment/5202-Alignment-Orchestration.md)
@@ -42,6 +43,7 @@ Tags: ['lab', 'dpo', 'alignment', 'rlhf', 'preference-learning', 'hands-on']
 **DPO (Direct Preference Optimization)** is a method for aligning language models with human preferences without training a separate reward model. It's simpler and more stable than traditional RLHF (PPO).
 
 **Key advantages:**
+
 - No reward model needed
 - More stable training
 - Simpler implementation
@@ -62,6 +64,7 @@ Data -> Direct Preference Optimization -> Aligned Model
 ### What You Will Do
 
 After completing this lab, you will be able to:
+
 - Understand what the DPO objective optimizes and why it replaces the reward-model + RL pipeline
 - Create and validate preference datasets from model outputs
 - Compute the DPO loss, its implicit rewards, and reward accuracy from raw log-probabilities
@@ -112,6 +115,7 @@ hf auth login  # only needed for gated models
 ### Understanding Preference Data
 
 DPO requires paired examples for the same prompt:
+
 - **Chosen:** Better response
 - **Rejected:** Worse response
 
@@ -766,6 +770,7 @@ DPO Training Results:
 ### Step 5.2: Read Beta as the KL Anchor
 
 Beta controls the strength of the pull toward the reference model:
+
 - Lower beta (0.01-0.05): weaker anchor, larger drift from the reference - aggressive, less stable
 - Higher beta (0.5-1.0): stronger anchor, stays close to the reference - conservative, may barely move the model
 - beta = 0.1 is the common default and a good starting point
@@ -877,15 +882,19 @@ Use this checklist to track your progress:
 ### Common Issues
 
 **Issue 1: Training is unstable**
+
 - Solution: Reduce learning rate or increase beta
 
 **Issue 2: Model overfits to training data**
+
 - Solution: Add regularization, reduce training epochs
 
 **Issue 3: Aligned model is too conservative**
+
 - Solution: Reduce beta value
 
 **Issue 4: No improvement over baseline**
+
 - Solution: Check preference data quality (run the Part 2 validator), increase training data
 
 ### Best Practices
@@ -905,6 +914,7 @@ Use this checklist to track your progress:
 - **[LAB-007: Production RAG]** - a different axis of model quality: grounding ([LAB-007-Production-RAG.md](LAB-007-Production-RAG.md))
 
 Further reading:
+
 - [DPO Paper: Direct Preference Optimization](https://arxiv.org/abs/2305.18290)
 - [TRL DPOTrainer Documentation](https://huggingface.co/docs/trl/main/en/dpo_trainer)
 - **[5201: DPO Theory]** - the full derivation of the loss you optimized in Part 3 ([5201-DPO-Theory.md](../../phases/phase5-finetuning/5200-alignment/5201-DPO-Theory.md))

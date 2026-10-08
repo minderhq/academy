@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE6-PRACTICE
 Title: "Phase 6: Data Nexus - Practice Exercises"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['assessment', 'practice', 'rag']
@@ -14,6 +14,7 @@ Tags: ['assessment', 'practice', 'rag']
 This document provides hands-on practice exercises for Phase 6: Data Nexus (RAG & Vector Systems). These exercises reinforce the concepts learned in modules 6100-6500.
 
 **Prerequisites:**
+
 - Completed Phase 1-5 modules
 - Basic understanding of vectors and embeddings
 - Familiarity with Python and Docker
@@ -572,6 +573,7 @@ class RAGPipeline:
 ### Challenge 1: GraphRAG Implementation
 
 Build a complete GraphRAG system combining:
+
 - Entity extraction
 - Knowledge graph construction
 - Graph-augmented retrieval
@@ -580,6 +582,7 @@ Build a complete GraphRAG system combining:
 ### Challenge 2: Multi-Query RAG
 
 Implement multi-query retrieval:
+
 - Query decomposition
 - Parallel retrieval
 - Result fusion
@@ -588,6 +591,7 @@ Implement multi-query retrieval:
 ### Challenge 3: Adaptive Retrieval
 
 Create adaptive retrieval system that:
+
 - Analyzes query complexity
 - Selects optimal retrieval strategy
 - Adjusts context size dynamically
@@ -628,7 +632,7 @@ Create adaptive retrieval system that:
 
 ---
 
-**Last Updated:** 2026-09-30
+**Last Updated:** 2026-10-08
 **Phase:** 6 - Data Nexus
 **Status:** Ready for Practice
 

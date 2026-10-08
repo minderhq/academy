@@ -3,7 +3,7 @@ Document ID: 4103
 Title: "4103: Double Quantization - BitsAndBytes (bnb) Logic"
 Phase: 4
 Module: 4100
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -447,6 +447,7 @@ Double quantization squeezes the leftover bytes: the per-block scales that ordin
 ---
 
 **Related Documents:**
+
 - [4101: GGUF Physics](./4101-GGUF-Physics.md)
 - [4102: EXL2 and AWQ](./4102-EXL2-and-AWQ.md)
 - [5102: QLoRA Pipelines](../../phase5-finetuning/5100-peft/5102-QLoRA-Pipelines.md)

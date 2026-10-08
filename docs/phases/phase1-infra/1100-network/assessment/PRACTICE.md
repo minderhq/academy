@@ -1,7 +1,7 @@
 ---
 Document ID: 1100-PRACTICE
 Title: "Module 1100: Network Infrastructure Practice"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 1 hour
@@ -26,17 +26,20 @@ Tags: ['assessment', 'practice', 'networking', 'wan']
 **Task:** Analyze network requirements for an AI training setup.
 
 **Scenario:** You're setting up a home AI lab with:
+
 - 1 GPU workstation (3090/4090)
 - 1 CPU-only inference server
 - 1 NAS for model storage
 
 **Questions:**
+
 1. What minimum bandwidth do you need between workstation and NAS?
 2. Do you need a fiber uplink (e.g., GPON) for this setup?
 3. What latency is acceptable for training?
 4. When would fiber be necessary?
 
 **Answer:**
+
 1. 1Gbps is sufficient (model weights load once per session)
 2. No, copper Ethernet is adequate for home setup
 3. Latency doesn't affect training (only distributed training needs low latency)
@@ -49,12 +52,14 @@ Tags: ['assessment', 'practice', 'networking', 'wan']
 **Task:** Design network topology for small AI team (5 people).
 
 **Requirements:**
+
 - Shared GPU server (4x A100)
 - Individual workstations
 - Model storage (50TB)
 - Internet connectivity
 
 **Draw diagram showing:**
+
 - Switch placement
 - VLAN separation (if needed)
 - Backup considerations
@@ -103,15 +108,18 @@ Internet (Fiber 1Gbps)
 **Task:** Calculate download time for Llama 3.3 70B (Q4_K_M).
 
 **Given:**
+
 - Model size: ~42 GB
 - Connection: GPON 2.5 Gbps (actual ~200 MB/s)
 
 **Calculate:**
+
 - Download time at 100% speed
 - Realistic time (80% efficiency)
 - At 1Gbps copper Ethernet
 
 **Solution:**
+
 - Theoretical: 42 GB / 200 MB/s = 210 seconds = 3.5 minutes
 - Realistic: 42 GB / 160 MB/s = ~4.4 minutes
 - 1Gbps: 42 GB / 100 MB/s = ~7 minutes
@@ -123,17 +131,20 @@ Internet (Fiber 1Gbps)
 **Scenario:** Training job failing with timeout errors.
 
 **Symptoms:**
+
 - Training to network storage
 - Random timeouts during checkpoint saves
 - Local training works fine
 
 **Debug steps:**
+
 1. Check network stats: `iperf3` between GPU server and NAS
 2. Monitor errors: `dmesg | grep -i error`
 3. Check cable quality (CAT6 vs CAT5e)
 4. Verify switch port settings (duplex, speed)
 
 **Common fixes:**
+
 - Replace CAT5e with CAT6a
 - Enable flow control on switch
 - Use local SSD for checkpoints, sync to NAS later

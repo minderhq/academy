@@ -3,7 +3,7 @@ Document ID: 4203
 Title: "4203: Context Window Optimization Guide"
 Phase: 4
 Module: 4200
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 6 hours
@@ -823,6 +823,7 @@ Long context on an 11GB card is a budgeting exercise, and this guide is its work
 ---
 
 **Related:**
+
 - [4201: Context Window Physics](../4201-Context-Window-Physics.md)
 - [4202: Speculative Decoding](../4202-Speculative-Decoding.md)
 - [4101: GGUF Physics](../../4100-low-bit/4101-GGUF-Physics.md)

@@ -1,7 +1,7 @@
 ---
 Document ID: 3200-PRACTICE
 Title: "3200: Embeddings - Practice"
-Last Updated: 2026-09-29
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -108,12 +108,14 @@ print("\nModel saved to 'word2vec.model'")
 ```
 
 **Explanation:**
+
 - Word2Vec learns word representations from context
 - CBOW predicts target word from context
 - Skip-gram predicts context from target word
 - Analogies demonstrate captured semantic relationships
 
 **Troubleshooting Tips:**
+
 - Increase epochs or data if similarities are low
 - Use larger vector_size (100-300) for better quality
 - Ensure min_count isn't filtering out important words
@@ -205,11 +207,13 @@ for i, j, sim in top_pairs:
 ```
 
 **Explanation:**
+
 - Sentence transformers create fixed-size embeddings for variable-length text
 - Based on BERT architecture with fine-tuning for similarity tasks
 - Cosine similarity measures semantic relatedness
 
 **Use Cases:**
+
 - Semantic search
 - Document clustering
 - Duplicate detection
@@ -317,11 +321,13 @@ for i, s1 in enumerate(sentences):
 ```
 
 **Explanation:**
+
 - BERT provides contextualized word embeddings
 - Each token's embedding depends on entire context
 - Multiple pooling strategies for sentence-level representation
 
 **Pooling Strategies:**
+
 1. **CLS token**: Special first token, trained for classification
 2. **Mean pooling**: Average of all token embeddings
 3. **Max pooling**: Maximum value across each dimension
@@ -466,6 +472,7 @@ print("- t-SNE often shows better separation than PCA")
 ```
 
 **Explanation:**
+
 - Dimensionality reduction visualizes high-dimensional embeddings
 - PCA: linear, faster, preserves global structure
 - t-SNE: non-linear, slower, preserves local neighborhoods
@@ -637,12 +644,14 @@ else:
 ```
 
 **Explanation:**
+
 - Semantic search finds meaning-based matches, not keyword matches
 - Pre-computing embeddings enables fast querying
 - Cosine similarity measures semantic relatedness
 - Threshold filtering ensures quality results
 
 **Performance Tips:**
+
 - Pre-compute embeddings for static document sets
 - Use approximate nearest neighbor (ANN) for large datasets
 - Consider FAISS or Milvus for production systems

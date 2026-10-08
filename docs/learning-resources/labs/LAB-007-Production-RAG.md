@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-007
 Title: "LAB-007: Production RAG System"
-Last Updated: 2026-10-07
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 6 hours
@@ -15,6 +15,7 @@ Tags: ['lab', 'rag', 'production', 'hands-on']
 **Time:** 6-8 hours
 **Difficulty:** ⭐⭐⭐ Advanced
 **Prerequisites:**
+
 - LAB-002: RAG Implementation
 - 6101-HNSW-Indexing.md
 - 6201-Hybrid-Search.md
@@ -26,6 +27,7 @@ Tags: ['lab', 'rag', 'production', 'hands-on']
 ## Lab Objectives
 
 After completing this lab, you will be able to:
+
 - ✅ Build hybrid search (vector + keyword)
 - ✅ Implement re-ranking with cross-encoders
 - ✅ Create multi-tenant RAG system
@@ -39,6 +41,7 @@ After completing this lab, you will be able to:
 ### What is Production RAG?
 
 **Production RAG** goes beyond basic RAG with:
+
 - **Hybrid Search:** Vector + keyword combined
 - **Re-ranking:** Cross-encoder for quality
 - **Multi-tenancy:** Isolated data per client
@@ -1205,6 +1208,7 @@ Re-ranking improvement: +15-20% accuracy
 ### Monitoring Dashboard
 
 Grafana dashboards should show:
+
 - **Search latency:** P50, P95, P99
 - **Throughput:** Queries per second
 - **Error rate:** <1%

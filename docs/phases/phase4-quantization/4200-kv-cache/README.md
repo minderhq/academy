@@ -1,7 +1,7 @@
 ---
 Document ID: 4200-KV-CACHE-README
 Title: "4200: KV Cache Optimization"
-Last Updated: 2026-10-07
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
@@ -16,6 +16,7 @@ Tags: ['module', 'quantization', 'kv-cache']
 This module covers advanced techniques for optimizing the Key-Value cache in transformer models, enabling efficient handling of long contexts and faster inference.
 
 **Why This Matters:**
+
 - KV cache dominates memory during generation (often >80% of memory)
 - Context window is a key differentiator for LLM applications
 - Efficient caching enables larger batch sizes and longer sequences
@@ -45,6 +46,7 @@ After completing this module, you will be able to:
 - OOM prevention and memory optimization strategies
 
 **Experiments:**
+
 - Profile KV cache memory usage
 - Test context window limits
 - Benchmark long-context performance
@@ -59,6 +61,7 @@ After completing this module, you will be able to:
 - Integration with sampling
 
 **Experiments:**
+
 - Implement speculative decoding
 - Compare draft model strategies
 - Measure speedup vs quality
@@ -74,6 +77,7 @@ After completing this module, you will be able to:
 - Chunked prefill and the decode token budget
 
 **Experiments:**
+
 - Implement PagedAttention
 - Trace a block table across appends into a fourth physical block
 - Price MHA-versus-GQA-versus-MQA cache at an 8k, batch-32 decode
@@ -123,6 +127,7 @@ Before starting this module, ensure you have:
 ## Related Modules
 
 This module connects to:
+
 - **[3100: Attention Architectures](../../phase3-transformers/3100-attention/README.md)** (foundational attention mechanisms)
 - **[3300: The Decoding Block](../../phase3-transformers/3300-decoding/README.md)** (generation strategies)
 - **[4100: Low-Bit Quantization](../4100-low-bit/README.md)** (cache quantization)
@@ -143,12 +148,14 @@ This module connects to:
 ## Resources
 
 **Essential Tools:**
+
 - vLLM (PagedAttention)
 - TGI (Text Generation Inference)
 - llama.cpp (cache quantization)
 - TensorRT-LLM
 
 **Essential Papers:**
+
 - "Accelerating Large Language Model Decoding with Speculative Sampling"
 - "Efficient Attention: Attention with Linear Complexities"
 - "PagedAttention: Efficient Attention for LLMs"
@@ -156,6 +163,7 @@ This module connects to:
 ## KV Cache Memory Analysis
 
 For a model with:
+
 - Hidden size: 4096
 - Layers: 32
 - Context length: 8192
@@ -205,12 +213,14 @@ KV Cache Memory = 2 × layers × hidden × context × bytes_per_param
 ## Cache Optimization Strategy
 
 **Start here:**
+
 1. Profile current KV cache memory
 2. Apply INT8 quantization to cache
 3. Enable PagedAttention if using vLLM
 4. Consider MQA/GQA if training models
 
 **Advanced:**
+
 5. Implement speculative decoding
 6. Add prefix caching for repeated prompts
 7. Experiment with cache eviction policies

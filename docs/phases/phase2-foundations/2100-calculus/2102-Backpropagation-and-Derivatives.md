@@ -3,7 +3,7 @@ Document ID: 2102
 Title: "2102: Backpropagation and Automatic Differentiation"
 Phase: 2
 Module: 2100
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 4 hours
@@ -535,6 +535,7 @@ Backpropagation is the algorithm that makes networks learn: apply the chain rule
 ---
 
 **Related:**
+
 - [2101: Tensor Algebra and Linear Algebra for AI](./2101-Tensor-Algebra.md)
 - [2201: PyTorch Computational Graphs and Dynamic Execution](../2200-frameworks/2201-PyTorch-Computational-Graphs.md)
 - [3301: Activation Functions - GELU, SwiGLU, and Beyond](../../phase3-transformers/3300-decoding/3301-Activation-Functions.md)

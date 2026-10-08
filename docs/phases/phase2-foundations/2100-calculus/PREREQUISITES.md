@@ -1,7 +1,7 @@
 ---
 Document ID: 2100-PREREQUISITES
 Title: "2100: Calculus for Deep Learning - Prerequisites"
-Last Updated: 2026-09-26
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Tags: ['math', 'prerequisites', 'preparation']
@@ -361,6 +361,7 @@ You're ready! Start with [2101: Tensor Algebra and Linear Algebra for AI](./2101
 **Symptoms:** Can multiply matrices by hand but freeze when shapes appear in code
 
 **Fix:**
+
 1. Run the Section 1 block and predict each shape before printing (30 minutes)
 2. Write `x @ a` for five random `(2,)`/`(2, 2)` pairs, predicting the result each time (30 minutes)
 3. Verify the transpose identity with your own 2x2 matrices (30 minutes)
@@ -370,6 +371,7 @@ You're ready! Start with [2101: Tensor Algebra and Linear Algebra for AI](./2101
 **Symptoms:** Comfortable with `f'(x)` but no reflex for gradients of multi-parameter losses
 
 **Fix:**
+
 1. Run the Section 3 block; trace which parameter each finite difference perturbs (30 minutes)
 2. Add the `w3` bias parameter and derive its gradient by hand (30 minutes)
 
@@ -378,6 +380,7 @@ You're ready! Start with [2101: Tensor Algebra and Linear Algebra for AI](./2101
 **Symptoms:** Can recite the rule but can't say which intermediate gets differentiated against which
 
 **Fix:**
+
 1. Run the Section 4 block; write `u = x + 1`, `v = 2u`, `w = v^2`, `y = w - 4` and differentiate edge by edge (30 minutes)
 2. Compare with the computational graph Lesson 2102 opens with (30 minutes)
 
@@ -386,6 +389,7 @@ You're ready! Start with [2101: Tensor Algebra and Linear Algebra for AI](./2101
 **Symptoms:** `backward()` feels like magic; broken gradients go unnoticed
 
 **Fix:**
+
 1. Run both Quick Refresher blocks (30 minutes)
 2. Break the closed form on purpose (drop the factor of 2) and watch `grad_check` catch it (30 minutes)
 
@@ -396,21 +400,25 @@ You're ready! Start with [2101: Tensor Algebra and Linear Algebra for AI](./2101
 Use this checklist to verify you're ready:
 
 **Linear Algebra**
+
 - [ ] Can predict matmul output shapes
 - [ ] Can verify the transpose identity numerically
 - [ ] Understand why associativity matters for computation order
 
 **Derivatives**
+
 - [ ] Can differentiate polynomials in closed form
 - [ ] Can implement the central-difference formula
 - [ ] Know that residual errors are float rounding, not math
 
 **Gradients & the Chain Rule**
+
 - [ ] Can compute partial derivatives of a two-parameter loss
 - [ ] Can differentiate a composite function analytically, numerically, and with autograd
 - [ ] Can check autograd gradients against finite differences in float64
 
 **Tools**
+
 - [ ] Can broadcast `(3, 1) + (1, 4)` and predict the result
 - [ ] Know `reshape` preserves element count
 - [ ] Know float-to-int casts truncate

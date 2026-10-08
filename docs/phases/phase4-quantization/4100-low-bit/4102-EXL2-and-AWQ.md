@@ -3,7 +3,7 @@ Document ID: 4102
 Title: "4102: EXL2 and AWQ - Extreme Quantization"
 Phase: 4
 Module: 4100
-Last Updated: 2026-10-07
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -453,6 +453,7 @@ EXL2 and AWQ are the GPU-only end of the 4-bit world: both land near-fp16 qualit
 ---
 
 **Related Documents:**
+
 - [4101: GGUF Physics](./4101-GGUF-Physics.md)
 - [4103: Double Quantization](./4103-Double-Quantization.md)
 - [1402: vLLM and TGI](../../phase1-infra/1400-llmops/1402-vLLM-and-TGI.md)

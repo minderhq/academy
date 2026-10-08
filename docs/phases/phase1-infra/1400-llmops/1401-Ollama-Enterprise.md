@@ -3,7 +3,7 @@ Document ID: 1401
 Title: "1401: Ollama Enterprise Deployment"
 Phase: 1
 Module: 1400
-Last Updated: 2026-10-07
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -520,6 +520,7 @@ Ollama is the lab's default inference backend: it runs large language models loc
 ---
 
 **Related Documents:**
+
 - [1302: GPU Scheduler](../1300-kubernetes/1302-GPU-Scheduler.md)
 - [1402: vLLM and TGI](./1402-vLLM-and-TGI.md)
 - [4101: GGUF Physics](../../phase4-quantization/4100-low-bit/4101-GGUF-Physics.md)

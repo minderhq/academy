@@ -1,7 +1,7 @@
 ---
 Document ID: 7200-PREREQUISITES
 Title: "7200: Tools - Prerequisites"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Tags: ['prerequisites', 'agents', 'tool-calling']
@@ -34,6 +34,7 @@ This module covers tool calling for AI agents.
 ### If you're not familiar:
 
 **Review Resources:**
+
 - OpenAI Function Calling documentation
 - LangChain Tools documentation
 - "ReAct: Synergizing Reasoning and Acting in Language Models" paper
@@ -45,6 +46,7 @@ This module covers tool calling for AI agents.
 ## Self-Assessment
 
 Can you:
+
 - [ ] Define a Python function with type hints?
 - [ ] Parse JSON responses from LLM?
 - [ ] Design a tool interface?

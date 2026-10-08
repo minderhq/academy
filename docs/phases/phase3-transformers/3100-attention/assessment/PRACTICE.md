@@ -1,7 +1,7 @@
 ---
 Document ID: 3100-PRACTICE
 Title: "3100: Attention - Practice"
-Last Updated: 2026-09-29
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -75,11 +75,13 @@ print(f"Output shape: {output.shape}")  # Should be torch.Size([2, 10, 64])
 ```
 
 **Explanation:**
+
 - Multi-head attention allows the model to attend to different representation subspaces
 - Scaled dot-product attention prevents vanishing gradients
 - Output projection mixes information from all heads
 
 **Troubleshooting Tips:**
+
 - If embed_dim is not divisible by num_heads, you'll get an error
 - For causal attention, pass a lower triangular mask
 - Gradient issues: check that scale is applied correctly
@@ -148,11 +150,13 @@ plt.show()
 ```
 
 **Explanation:**
+
 - Causal masking ensures each position can only attend to previous positions
 - Essential for autoregressive generation (like GPT)
 - Lower triangular matrix: True where row >= col
 
 **Use Cases:**
+
 - Language modeling
 - Text generation
 - Time series forecasting
@@ -308,11 +312,13 @@ plt.show()
 ```
 
 **Explanation:**
+
 - Attention visualization reveals what tokens the model focuses on
 - Multi-head visualization shows different learned patterns
 - Causal mask shows autoregressive behavior
 
 **Interpretation Guide:**
+
 - Brighter colors = higher attention weight
 - Rows = queries (what's being predicted)
 - Columns = keys (what's being attended to)

@@ -1,7 +1,7 @@
 ---
 Document ID: TROUBLESHOOTING-Common-Issues
 Title: "TROUBLESHOOTING: Common Issues & Solutions"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Tags: ['troubleshooting', 'docker', 'llm']
@@ -200,6 +200,7 @@ torch.cuda.empty_cache()
 ### Issue: Slow inference
 
 **Symptoms:**
+
 - Model takes >10 seconds per token
 - GPU utilization is low
 
@@ -242,6 +243,7 @@ model = AutoModelForCausalLM.from_pretrained(
 ### Issue: Poor retrieval quality
 
 **Symptoms:**
+
 - Retrieved documents not relevant to query
 - Answers are generic or unhelpful
 
@@ -335,6 +337,7 @@ curl http://localhost:6333/health
 ### Issue: Training loss not decreasing
 
 **Symptoms:**
+
 - Loss stays flat or increases
 - Model doesn't learn
 
@@ -607,6 +610,7 @@ rm -rf ~/.ollama/models
 ### Issue: High GPU memory usage
 
 **Symptoms:**
+
 - nvidia-smi shows high memory usage
 - Other applications can't use GPU
 
@@ -648,6 +652,7 @@ kill -9 ${PID}
 ### Issue: Grafana dashboards not loading
 
 **Symptoms:**
+
 - Dashboard shows "No data"
 - Panel errors
 

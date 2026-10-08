@@ -1,7 +1,7 @@
 ---
 Document ID: 3400-PRACTICE
 Title: "3400: Architectures - Practice"
-Last Updated: 2026-09-29
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -86,12 +86,14 @@ print(f"Output shape: {output.shape}")
 ```
 
 **Explanation:**
+
 - BERT uses bidirectional attention (can see entire sequence)
 - Layer normalization AFTER residual connections (Post-LN)
 - GELU activation instead of ReLU
 - No causal masking - sees full context
 
 **Key Components:**
+
 1. Multi-head self-attention
 2. Position-wise feed-forward network
 3. Residual connections
@@ -197,12 +199,14 @@ print(f"Output shape: {output.shape}")
 ```
 
 **Explanation:**
+
 - GPT uses causal (autoregressive) masking
 - Pre-LN: normalization before attention/FF
 - Can only attend to previous positions
 - Designed for text generation
 
 **Key Differences from BERT:**
+
 - Causal masking (no look-ahead)
 - Pre-LN instead of Post-LN
 - Designed for autoregressive generation
@@ -293,12 +297,14 @@ print(f"Output shape: {output.shape}")
 ```
 
 **Explanation:**
+
 - T5 uses encoder-decoder architecture
 - Encoder: bidirectional attention
 - Decoder: causal self-attention + cross-attention
 - Cross-attention allows decoder to attend to encoder output
 
 **Use Cases:**
+
 - Translation
 - Summarization
 - Question answering
@@ -437,11 +443,13 @@ print(f"LM logits shape: {logits.shape}")
 ```
 
 **Explanation:**
+
 - **BERT**: Bidirectional encoder, good for understanding tasks
 - **GPT**: Autoregressive decoder, good for generation tasks
 - Both use transformer layers with different masking strategies
 
 **Architecture Comparison:**
+
 | Feature | BERT | GPT |
 |---------|------|-----|
 | Attention | Bidirectional | Causal |

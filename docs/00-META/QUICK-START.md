@@ -1,7 +1,7 @@
 ---
 Document ID: QUICK-START
 Title: "QUICK START GUIDE: Get Started in 30 Minutes"
-Last Updated: 2026-10-07
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Beginner
 Tags: ['quickstart', 'tutorial', 'llm']
@@ -16,6 +16,7 @@ Tags: ['quickstart', 'tutorial', 'llm']
 ## What You'll Achieve
 
 In the next 30 minutes, you will:
+
 1. ✅ Install Ollama (easiest LLM runner)
 2. ✅ Run your first local AI model
 3. ✅ Chat with Mistral 7B
@@ -39,11 +40,13 @@ In the next 30 minutes, you will:
 ### Before You Start
 
 **If you're new to command line:**
+
 - Windows: Use PowerShell or Terminal
 - Mac: Use Terminal (Applications → Utilities)
 - Linux: Use your default terminal
 
 **If you have limited resources:**
+
 - 8GB RAM: Use `mistral:7b` or `phi4-mini`
 - CPU-only: Models will run slower but work
 - Limited disk: Start with one model at a time
@@ -51,6 +54,7 @@ In the next 30 minutes, you will:
 ### Need Help with Setup?
 
 If you encounter any issues:
+
 1. **Complete Setup Guide:** [ENVIRONMENT-SETUP.md](ENVIRONMENT-SETUP.md) - Detailed installation and troubleshooting
 2. **Quick Start Troubleshooting:** [TROUBLESHOOTING-QUICKSTART.md](TROUBLESHOOTING-QUICKSTART.md) - Common issues and solutions
 3. **Environment Lab:** [LAB-000-ENVIRONMENT-SETUP.md](../learning-resources/labs/LAB-000-ENVIRONMENT-SETUP.md) - Hands-on setup practice
@@ -322,6 +326,7 @@ You're now ready for the full learning journey!
 ### Issue: "Command not found: ollama"
 
 **Solution:**
+
 - Make sure Ollama is installed
 - Restart your terminal
 - On Windows, use PowerShell or Command Prompt
@@ -329,6 +334,7 @@ You're now ready for the full learning journey!
 ### Issue: "Not enough memory"
 
 **Solution:**
+
 - Close other applications
 - Try a smaller model: `ollama pull phi4-mini`
 - Add more RAM to your computer
@@ -336,6 +342,7 @@ You're now ready for the full learning journey!
 ### Issue: "Model download is slow"
 
 **Solution:**
+
 - Be patient, models are large (4GB+)
 - Try a different network
 - Use a download manager if needed
@@ -389,12 +396,14 @@ pip install ollama
 You just completed your first step into the world of local AI!
 
 **What you can do now:**
+
 - ✅ Run AI models on your computer
 - ✅ Chat with Mistral 7B
 - ✅ Build basic AI scripts
 - ✅ Understand the fundamentals
 
 **What's next:**
+
 - 📚 Complete the tutorials
 - 🧪 Do the hands-on labs
 - 🏆 Build the capstone project

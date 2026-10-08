@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-003
 Title: "TUTORIAL-003: RAG Basics - Give Your LLM Knowledge"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 60 minutes
@@ -14,6 +14,7 @@ Tags: ['tutorial', 'rag', 'qdrant', 'hands-on']
 **Difficulty:** ⭐⭐ Intermediate
 **Time:** 60 minutes
 **Prerequisites:**
+
 - **[TUTORIAL-001: Hello LLM](TUTORIAL-001-Hello-LLM.md)** - LLM basics
 - **[TUTORIAL-000: Python for AI](TUTORIAL-000-Python-for-AI.md)** - Classes, functions, error handling
 
@@ -24,6 +25,7 @@ Tags: ['tutorial', 'rag', 'qdrant', 'hands-on']
 ## Learning Objectives
 
 By the end of this tutorial, you will:
+
 - ✅ Understand what RAG is
 - ✅ Build a simple vector database
 - ✅ Implement semantic search
@@ -480,6 +482,7 @@ Vector RAG:              GraphRAG:
 **Symptoms:** RAG returns irrelevant documents
 
 **Solutions:**
+
 1. Better chunking strategy
 2. Use hybrid search (keyword + semantic)
 3. Add re-ranking step
@@ -489,6 +492,7 @@ Vector RAG:              GraphRAG:
 **Symptoms:** RAG takes too long
 
 **Solutions:**
+
 1. Limit retrieval count (top_k=3 instead of 10)
 2. Use faster embedding model
 3. Cache embeddings
@@ -498,6 +502,7 @@ Vector RAG:              GraphRAG:
 **Symptoms:** LLM makes things up even with context
 
 **Solutions:**
+
 1. Improve prompt engineering
 2. Add citations to sources
 3. Use constrained generation

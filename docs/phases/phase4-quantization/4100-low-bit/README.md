@@ -1,7 +1,7 @@
 ---
 Document ID: 4100-LOW-BIT-README
 Title: "4100: Low-Bit Quantization"
-Last Updated: 2026-10-01
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Prerequisites: [1500]
@@ -16,6 +16,7 @@ Tags: ['module', 'quantization', 'gguf']
 This module covers cutting-edge techniques for quantizing LLMs to extremely low bit widths (4-bit, 3-bit, and beyond). You'll learn how to run massive models on consumer hardware while preserving quality.
 
 **Why This Matters:**
+
 - Low-bit quantization enables LLMs on laptops and phones
 - Memory reduction: 16-bit → 4-bit = 4x less memory
 - Inference speedup: 2-4x faster with quantized kernels
@@ -44,6 +45,7 @@ After completing this module, you will be able to:
 - GGUF conversion and performance optimization
 
 **Experiments:**
+
 - Convert models to GGUF format
 - Compare different quantization levels
 - Measure quality vs size tradeoffs
@@ -59,6 +61,7 @@ After completing this module, you will be able to:
 - Format comparison and hardware fit
 
 **Experiments:**
+
 - Apply EXL2 quantization to models
 - Implement AWQ quantization
 - Compare AWQ vs GPTQ quality
@@ -74,6 +77,7 @@ After completing this module, you will be able to:
 - Training with quantized weights (bnb)
 
 **Experiments:**
+
 - Implement double quantization
 - Measure memory savings
 - Analyze quality impact
@@ -89,6 +93,7 @@ After completing this module, you will be able to:
 - transformers' Mxfp4Config and torchao's MXTensor surfaces
 
 **Experiments:**
+
 - Emulate e2m1 round-to-nearest in plain torch
 - Quantize one weight both ways and compare relative error
 - Measure the pow2 tax with per-block scale-use histograms
@@ -127,6 +132,7 @@ Before starting this module, ensure you have:
 ## Related Modules
 
 This module connects to:
+
 - **4200: KV Cache** (memory optimization techniques)
 - **4300: Quantization-Aware Training** (training for quantization)
 - **1400: LLMOps** (deploying quantized models)
@@ -147,12 +153,14 @@ This module connects to:
 ## Resources
 
 **Essential Tools:**
+
 - llama.cpp (GGUF format)
 - AutoGPTQ / AutoAWQ
 - exllamav2 (EXL2 format)
 - bitsandbytes
 
 **Essential Papers:**
+
 - "GPTQ: Accurate Post-Training Quantization"
 - "AWQ: Activation-aware Weight Quantization"
 - "QLoRA: Efficient Finetuning of Quantized LLMs"

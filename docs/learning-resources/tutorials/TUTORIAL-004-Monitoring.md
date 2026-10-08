@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-004
 Title: "TUTORIAL-004: Monitoring & Observability for AI Systems"
-Last Updated: 2026-10-07
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 90 minutes
@@ -20,6 +20,7 @@ Tags: ['tutorial', 'monitoring', 'observability']
 ## Tutorial Goals
 
 After this tutorial, you will:
+
 - ✅ Understand observability pillars (Metrics, Logs, Traces)
 - ✅ Deploy Prometheus for metrics collection
 - ✅ Set up Grafana for visualization
@@ -34,16 +35,19 @@ After this tutorial, you will:
 ### The Three Pillars
 
 **1. Metrics (Prometheus)**
+
 - Numerical measurements over time
 - Examples: CPU usage, memory, request rate, GPU utilization
 - Great for: Alerts, dashboards, trend analysis
 
 **2. Logs (Loki)**
+
 - Discrete events with timestamps
 - Examples: Error messages, debug output, API calls
 - Great for: Debugging, auditing, troubleshooting
 
 **3. Traces (Tempo)**
+
 - Request journey through distributed systems
 - Examples: User request → API → LLM → Database → Response
 - Great for: Performance analysis, bottleneck identification

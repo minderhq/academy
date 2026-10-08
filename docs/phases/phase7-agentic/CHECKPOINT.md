@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE7-CHECKPOINT
 Title: "Progress Checkpoint: Phase 7 - Agentic Systems"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['checkpoint', 'agents', 'security', 'prompt-injection']
@@ -25,6 +25,7 @@ Tags: ['checkpoint', 'agents', 'security', 'prompt-injection']
 ## Phase Completion Goal
 
 After completing Phase 7, you will:
+
 - Build ReAct agents
 - Implement tool calling
 - Create multi-agent systems
@@ -39,11 +40,13 @@ After completing Phase 7, you will:
 ### Module 7100: Agent Architecture & Cognitive Systems (Required)
 
 **Checkpoint Quiz:**
+
 1. What is the ReAct loop?
 2. How do agents plan and decompose tasks?
 3. What distinguishes agents from LLMs?
 
 **Lab Verification:**
+
 - [ ] Completed [LAB-004: ReAct Agent](../../learning-resources/labs/LAB-004-ReAct-Agent.md)
 - [ ] Completed [LAB-008: Agent Fleet](../../learning-resources/labs/LAB-008-Agent-Fleet.md)
 - [ ] Can trace a ReAct loop end to end and explain each step's role
@@ -53,11 +56,13 @@ After completing Phase 7, you will:
 ### Module 7200: Tool Use & Function Calling (Required)
 
 **Checkpoint Quiz:**
+
 1. What problem does function calling solve?
 2. How do agents use external tools?
 3. What are the tool calling patterns?
 
 **Practical Verification:**
+
 - [ ] Can explain what problem function calling solves
 - [ ] Has wired an external tool into an agent loop
 - [ ] Can name the tool calling patterns and when each fits
@@ -67,11 +72,13 @@ After completing Phase 7, you will:
 ### Module 7300: Multi-Agent Orchestration (Required)
 
 **Checkpoint Quiz:**
+
 1. What are the multi-agent orchestration patterns (hierarchical, sequential, parallel)?
 2. How do agents communicate with each other?
 3. How do AutoGen and LangGraph differ for orchestration?
 
 **Practical Verification:**
+
 - [ ] Can compare hierarchical, sequential and parallel orchestration
 - [ ] Can design agent-to-agent communication for a workflow
 - [ ] Can pick AutoGen vs LangGraph for an orchestration need
@@ -81,11 +88,13 @@ After completing Phase 7, you will:
 ### Module 7400: Agent Memory (Required)
 
 **Checkpoint Quiz:**
+
 1. Why do agents need memory?
 2. What is long-term vs short-term memory?
 3. How does vector store memory work?
 
 **Practical Verification:**
+
 - [ ] Can justify why agents need memory beyond the context window
 - [ ] Can contrast long-term and short-term memory designs
 - [ ] Has implemented vector-store-backed agent memory
@@ -95,11 +104,13 @@ After completing Phase 7, you will:
 ### Module 7500: AI Agent Security (Required)
 
 **Checkpoint Quiz:**
+
 1. What is prompt injection?
 2. How do you detect and prevent it?
 3. What is PII redaction?
 
 **Practical Verification:**
+
 - [ ] Can explain a prompt injection attack end to end
 - [ ] Has applied injection detection and prevention measures
 - [ ] Can redact PII from prompts before they reach a model
@@ -120,6 +131,7 @@ After completing Phase 7, you will:
 **Badge:** Production Architect
 
 **You've earned it when:**
+
 - All required modules completed
 - Can build agent systems
 - Can deploy to production

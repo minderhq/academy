@@ -3,7 +3,7 @@ Document ID: 3402
 Title: "3402: Decoder-Only Models (GPT, LLaMA, Mistral)"
 Phase: 3
 Module: 3400
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 4 hours
@@ -242,6 +242,7 @@ Decoder-only models generate the entire sequence autoregressively through causal
 ---
 
 **Related:**
+
 - [3401: Encoder-Decoder](./3401-Encoder-Decoder-Architectures.md)
 - [3101: Self-Attention](../3100-attention/3101-Self-Attention-DeepDive.md)
 - [3201: RoPE](../3200-embeddings/3201-Rotary-Positional-Embeddings-RoPE.md)

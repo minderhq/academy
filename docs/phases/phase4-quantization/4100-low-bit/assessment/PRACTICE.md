@@ -1,7 +1,7 @@
 ---
 Document ID: 4100-PRACTICE
 Title: "4100: Low-Bit Quantization - Practice"
-Last Updated: 2026-09-28
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -97,6 +97,7 @@ print(f"Compression ratio: {compression:.2f}x")
 ```
 
 **Explanation:**
+
 - PTQ converts trained models to lower precision
 - Scale and zero_point map float to int range
 - Dequantization restores to float for computation
@@ -198,12 +199,14 @@ for name, module in quantized_model.named_modules():
 ```
 
 **Explanation:**
+
 - Dynamic quantization happens at runtime
 - Weights quantized ahead of time
 - Activations quantized dynamically
 - Good for LSTMs, Transformers
 
 **Best Practices:**
+
 - Quantize Linear layers
 - Leave embeddings in FP32/FP16
 - Test accuracy after quantization
@@ -293,12 +296,14 @@ print(f"\nOutput difference: {output_diff:.6f}")
 ```
 
 **Explanation:**
+
 - Static quantization uses calibration data
 - Determines activation ranges beforehand
 - Better accuracy than dynamic
 - Requires representative dataset
 
 **Calibration Tips:**
+
 - Use ~100-1000 representative samples
 - Cover data distribution
 - Avoid outliers in calibration set
@@ -382,12 +387,14 @@ print("- Typical compression: ~8x (FP32 to INT4)")
 ```
 
 **Explanation:**
+
 - BitsAndBytes enables on-the-fly 4-bit quantization
 - NF4: optimal for normally distributed weights
 - Double quantization: saves additional memory
 - No need for pre-quantized models
 
 **Use Cases:**
+
 - Running large models on limited GPU memory
 - LLaMA, Falcon, Mistral models
 - Inference with minimal accuracy loss

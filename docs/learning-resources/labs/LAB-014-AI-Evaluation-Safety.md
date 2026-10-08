@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-014
 Title: "LAB-014: AI Evaluation & Safety"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 6 hours
@@ -19,11 +19,13 @@ Tags: ['lab', 'evaluation', 'security', 'hands-on']
 **Time:** 4-5 hours
 **Difficulty:** ⭐⭐⭐ Advanced
 **Prerequisites:**
+
 - LAB-002: RAG Implementation
 - LAB-004: ReAct Agent
 - LAB-013: Advanced Function Calling
 
 **Learning Objectives:**
+
 - Master AI evaluation metrics and methodologies
 - Implement comprehensive benchmarking systems
 - Build safety guardrails and content filters

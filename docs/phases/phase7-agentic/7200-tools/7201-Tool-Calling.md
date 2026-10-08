@@ -3,7 +3,7 @@ Document ID: 7201
 Title: "7201: Tool Calling & Function Execution"
 Phase: 7
 Module: 7200
-Last Updated: 2026-10-07
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -56,6 +56,7 @@ Tool calling enables Large Language Models to interact with external systems, ex
 ## What is Tool Calling?
 
 Tool calling (also called function calling) allows LLMs to:
+
 - **Execute external functions** based on user requests
 - **Interact with APIs** and databases
 - **Perform computations** and data processing
@@ -750,11 +751,13 @@ tools = {
 **Objective:** Test tool calling accuracy and parameter extraction
 
 **Methodology:**
+
 1. Define 10 tools with varying complexity
 2. Create 50 test queries
 3. Measure: tool selection accuracy, parameter extraction F1
 
 **Expected Results:**
+
 - Tool selection: >95% accuracy
 - Parameter extraction: >90% F1 score
 

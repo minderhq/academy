@@ -1,7 +1,7 @@
 ---
 Document ID: 4100-PREREQUISITES
 Title: "Prerequisites: GGUF & Quantization"
-Last Updated: 2026-09-24
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['prerequisites', 'quantization', 'gguf']
@@ -18,16 +18,19 @@ Tags: ['prerequisites', 'quantization', 'gguf']
 ### Essential Concepts
 
 **1. Neural Network Basics**
+
 - What are neural network parameters (weights)?
 - How models make predictions (forward pass)
 - Why large models need lots of memory
 
 **2. Number Representation**
+
 - Floating-point numbers (FP32, FP16, BF16)
 - How computers store decimals
 - Precision vs memory tradeoff
 
 **3. Model Inference**
+
 - What happens during inference
 - GPU memory (VRAM) basics
 - Bottlenecks in running large models

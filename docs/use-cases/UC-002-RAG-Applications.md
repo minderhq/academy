@@ -1,7 +1,7 @@
 ---
 Document ID: UC-002
 Title: "UC-002: RAG (Retrieval-Augmented Generation) Practical Use Cases"
-Last Updated: 2026-10-07
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Tags: ['use-case', 'rag', 'retrieval']
@@ -154,11 +154,13 @@ query = "What's our remote work policy for IT department?"
 ```
 
 **Business Impact:**
+
 - 70% reduction in helpdesk tickets
 - 50% faster employee onboarding
 - 90% employee satisfaction with information access
 
 **Why RAG and NOT Fine-Tuning:**
+
 - Documents updated frequently (weekly)
 - Need source citations
 - Must be accurate
@@ -296,6 +298,7 @@ for priority handling. Is there anything else I can help with?"
 ```
 
 **Business Impact:**
+
 - 60% reduction in average handle time
 - 40% increase in first-contact resolution
 - 35% improvement in customer satisfaction

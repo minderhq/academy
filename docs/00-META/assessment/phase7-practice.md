@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE7-PRACTICE
 Title: "Phase 7: Agentic Systems - Practice Exercises"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['assessment', 'practice', 'agents']
@@ -14,6 +14,7 @@ Tags: ['assessment', 'practice', 'agents']
 This document provides hands-on practice exercises for Phase 7: Agentic Systems. These exercises reinforce the concepts learned in modules 7100-7500.
 
 **Prerequisites:**
+
 - Completed Phase 1-6 modules
 - Strong Python programming skills
 - Understanding of LLM APIs
@@ -1192,6 +1193,7 @@ async def get_status():
 ### Challenge 1: Autonomous Research Agent
 
 Build an agent that can:
+
 - Research a topic autonomously
 - Synthesize findings
 - Generate comprehensive report
@@ -1200,6 +1202,7 @@ Build an agent that can:
 ### Challenge 2: Code Generation Agent
 
 Create a coding assistant with:
+
 - File system understanding
 - Code generation and modification
 - Test generation and execution
@@ -1208,6 +1211,7 @@ Create a coding assistant with:
 ### Challenge 3: Creative Writing Agent
 
 Implement a creative system for:
+
 - Story generation with consistency
 - Character development
 - Plot construction
@@ -1248,7 +1252,7 @@ Implement a creative system for:
 
 ---
 
-**Last Updated:** 2026-09-30
+**Last Updated:** 2026-10-08
 **Phase:** 7 - Agentic Systems
 **Status:** Ready for Practice
 

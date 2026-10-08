@@ -1,7 +1,7 @@
 ---
 Document ID: 6200-RETRIEVAL-README
 Title: "6200: Retrieval Strategies"
-Last Updated: 2026-09-28
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
@@ -16,6 +16,7 @@ Tags: ['module', 'rag', 'retrieval']
 This module covers advanced retrieval techniques for RAG systems, including hybrid search, re-ranking, and retrieval optimization. You'll learn to build high-quality retrieval pipelines that find the most relevant context.
 
 **Why This Matters:**
+
 - Pure vector search misses keyword-specific information
 - Re-ranking can significantly improve retrieval quality
 - Hybrid search combines the best of semantic and lexical search
@@ -44,6 +45,7 @@ After completing this module, you will be able to:
 - Query understanding and expansion
 
 **Experiments:**
+
 - Implement BM25 keyword search
 - Build hybrid search pipeline
 - Compare fusion strategies
@@ -59,6 +61,7 @@ After completing this module, you will be able to:
 - Retrieval evaluation metrics
 
 **Experiments:**
+
 - Implement re-ranking pipeline
 - Compare chunking strategies
 - Optimize retrieval parameters
@@ -76,6 +79,7 @@ After completing this module, you will be able to:
 - Measuring diversity: intra-list similarity and distinct-fact coverage
 
 **Experiments:**
+
 - Tune MMR lambda until the paraphrase cluster breaks
 - Compute the λ crossover instead of dialing by taste
 - Apply provenance boosts to the fused score and to one channel
@@ -114,6 +118,7 @@ Before starting this module, ensure you have:
 ## Related Modules
 
 This module connects to:
+
 - **6100: Vector Embeddings** (semantic search)
 - **6300: Context** (context window management)
 - **6400: Vector Databases** (production retrieval)
@@ -136,6 +141,7 @@ This module connects to:
 ## Resources
 
 **Essential Libraries:**
+
 - LangChain (retrievers)
 - LlamaIndex (hybrid search)
 - rank-bm25 (keyword search)
@@ -143,6 +149,7 @@ This module connects to:
 - ColBERT (late interaction)
 
 **Essential Papers:**
+
 - "Dense Passage Retrieval for Open-Domain Question Answering"
 - "ColBERT: Late Interaction via BERT"
 - "Reciprocal Rank Fusion outperforms Condorcet and individual Rank Learning"

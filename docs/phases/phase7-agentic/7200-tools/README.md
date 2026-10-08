@@ -1,7 +1,7 @@
 ---
 Document ID: 7200-TOOLS-README
 Title: "7200: Tool Calling and Function Execution"
-Last Updated: 2026-10-07
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Prerequisites: []
@@ -16,6 +16,7 @@ Tags: ['module', 'agents', 'tool-calling']
 This module covers tool calling and function execution for AI agents, enabling LLMs to interact with external systems, APIs, and code execution environments. You'll learn to build agents that can take real-world actions.
 
 **Why This Matters:**
+
 - Tool calling transforms LLMs from chatbots to agents
 - Agents need to interact with APIs, databases, and systems
 - Code execution enables computation and analysis
@@ -43,6 +44,7 @@ After completing this module, you will be able to:
 - Tool calling security
 
 **Experiments:**
+
 - Implement tool calling from scratch
 - Build custom tools
 - Create tool router
@@ -70,6 +72,7 @@ After completing this module, you will be able to:
 - The v1 `FastMCP` to v2 `MCPServer` rename and the `<2` pin for legacy code
 
 **Experiments:**
+
 - Build an MCP tool server
 - Walk the client loop against it
 - Replay the JSON-RPC wire messages by hand
@@ -86,6 +89,7 @@ After completing this module, you will be able to:
 - The circuit breaker and the composed brownout campaign
 
 **Experiments:**
+
 - Price the hung read against the bounded one on a fake clock
 - Dedupe a retried charge with an idempotency-key ledger
 - Spread 40 lockstep retries with seeded jitter
@@ -125,6 +129,7 @@ Before starting this module, ensure you have:
 ## Related Modules
 
 This module connects to:
+
 - **[7100: Agent Architecture](../7100-architecture/README.md)** (agent loops)
 - **[7300: Multi-Agent Orchestration](../7300-orchestration/README.md)** (multi-agent workflows)
 - **[7400: Agent Memory Systems](../7400-memory/README.md)** (tool results storage)
@@ -145,12 +150,14 @@ This module connects to:
 ## Resources
 
 **Essential Frameworks:**
+
 - OpenAI Function Calling
 - Anthropic Tool Use
 - LangChain Tools
 - CrewAI Tools
 
 **Code Execution:**
+
 - E2B (code interpreter)
 - Pyodide (Python in browser)
 - RestrictedPython (sandboxed Python)

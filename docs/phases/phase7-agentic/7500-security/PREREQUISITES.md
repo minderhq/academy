@@ -1,7 +1,7 @@
 ---
 Document ID: 7500-PREREQUISITES
 Title: "7500: Security - Prerequisites"
-Last Updated: 2026-10-01
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['prerequisites', 'agents', 'security']
@@ -40,6 +40,7 @@ This module covers prompt injection defense, PII redaction, and adversarial-atta
 ### If you're not familiar:
 
 **Review Resources:**
+
 - "Not what you've signed up for: Compromising Real-World LLM-Integrated Applications with Prompt Injection"
 - OWASP Top 10 for LLMs
 - "AI Security" papers and guidelines
@@ -52,6 +53,7 @@ This module covers prompt injection defense, PII redaction, and adversarial-atta
 ## Self-Assessment
 
 Can you:
+
 - [ ] Identify prompt injection attempts?
 - [ ] Implement input validation?
 - [ ] Design secure agent tools?

@@ -1,7 +1,7 @@
 ---
 Document ID: VOLUME-1
 Title: "Volume 1: Infrastructure Fundamentals"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Beginner
 Tags: ['volume', 'infrastructure', 'docker', 'kubernetes']
@@ -22,6 +22,7 @@ Tags: ['volume', 'infrastructure', 'docker', 'kubernetes']
 ### What You'll Learn
 
 After completing this volume, you will be able to:
+
 - ✅ Run LLMs locally on your computer
 - ✅ Containerize applications with Docker
 - ✅ Build basic AI applications
@@ -31,6 +32,7 @@ After completing this volume, you will be able to:
 ### Why This Volume Matters
 
 Before diving into model internals, fine-tuning, or RAG, you need a solid foundation. This volume gets you:
+
 - **Running models locally** - No API costs, full privacy
 - **Containerized deployments** - Reproducible, portable AI applications
 - **Network understanding** - Essential for distributed AI systems
@@ -159,18 +161,21 @@ Before diving into model internals, fine-tuning, or RAG, you need a solid founda
 **[PROJECT-001: AI Assistant](../learning-resources/projects/PROJECT-001-AI-Assistant.md)** (4-6 hours)
 
 **What You'll Build:**
+
 - Complete AI assistant with memory
 - Dockerized deployment
 - API endpoints
 - Web interface
 
 **Skills Demonstrated:**
+
 - Docker containerization ✅
 - Ollama API integration ✅
 - FastAPI development ✅
 - Basic conversation memory ✅
 
 **Requirements:**
+
 - Complete TUTORIAL-001
 - Complete LAB-001
 - Understand Docker Compose
@@ -212,20 +217,24 @@ Use this checklist to track your progress:
 ### Topics Covered in Volume 1 That Connect Later:
 
 **Docker & Containers:**
+
 - Volume 2: Docker for ML experiments
 - Volume 4: Docker for inference engines
 - Volume 7: Production Docker Compose
 
 **Ollama & Local Models:**
+
 - Volume 3: Understanding model internals
 - Volume 4: Quantization for larger models
 - Volume 5: Fine-tuning local models
 
 **Network & Infrastructure:**
+
 - Volume 6: Distributed RAG systems
 - Volume 7: Production deployment
 
 **Kubernetes:**
+
 - Volume 4: vLLM on K3s
 - Volume 7: Production orchestration
 
@@ -251,12 +260,15 @@ Use this checklist to track your progress:
 ### Common Issues in Volume 1
 
 **Problem:** Docker won't start
+
 - **Solution:** Check [CHEAT-SHEET-001-Docker.md](../learning-resources/cheat-sheets/CHEAT-SHEET-001-Docker.md) for troubleshooting
 
 **Problem:** Ollama slow on CPU
+
 - **Solution:** Use smaller models (phi, gemma:2b) - see TUTORIAL-001
 
 **Problem:** GPU not detected
+
 - **Solution:** Check [1203: Nvidia Kernel Module](../phases/phase1-infra/1200-virtualization/1203-Nvidia-Kernel-Module.md)
 
 For more help, see **[TROUBLESHOOTING-Common-Issues.md](../learning-resources/troubleshooting/TROUBLESHOOTING-Common-Issues.md)**

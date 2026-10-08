@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-006
 Title: "TUTORIAL-006: Real-time AI"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 60 minutes
@@ -20,11 +20,13 @@ Tags: ['tutorial', 'inference', 'serving']
 **Time:** 60 minutes
 **Difficulty:** ⭐⭐ Intermediate
 **Prerequisites:**
+
 - LAB-002: RAG Implementation
 - Basic FastAPI knowledge
 - Understanding of async/await
 
 **Learning Objectives:**
+
 - Implement streaming LLM responses
 - Build WebSocket connections
 - Use Server-Sent Events (SSE)
@@ -38,6 +40,7 @@ Tags: ['tutorial', 'inference', 'serving']
 ### Understanding Streaming
 
 Traditional LLM API calls wait for the complete response before returning. Streaming returns tokens as they're generated, providing:
+
 - Faster perceived response time
 - Better user experience
 - Real-time feedback

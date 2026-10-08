@@ -3,7 +3,7 @@ Document ID: 3101
 Title: "3101: Self-Attention Deep Dive"
 Phase: 3
 Module: 3100
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -58,6 +58,7 @@ This document provides an in-depth exploration of self-attention—the fundament
 
 ## Learning Objectives
 After completing this document, you will:
+
 - ✅ Understand the scaled dot-product attention formula
 - ✅ Implement attention from scratch in PyTorch
 - ✅ Explain why multi-head attention improves performance

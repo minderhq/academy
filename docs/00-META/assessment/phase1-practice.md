@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE1-PRACTICE
 Title: "Phase 1: Infrastructure Practice"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Beginner
 Tags: ['assessment', 'practice', 'infrastructure']
@@ -63,11 +63,13 @@ echo "=== Network Setup Complete ==="
 ```
 
 **Expected Results:**
+
 - MTU set to 9000
 - Latency <1ms
 - Throughput near line rate
 
 **Troubleshooting:**
+
 - If MTU change fails: Check if driver supports jumbo frames
 - If throughput is low: Check cable category (Cat6+ required)
 - If latency is high: Check for network congestion
@@ -139,6 +141,7 @@ echo "After reboot, verify with: dmesg | grep -e DMAR -e IOMMU"
 ```
 
 **Expected Results:**
+
 - IOMMU enabled in dmesg
 - GPU in isolated IOMMU group
 - VFIO modules loaded
@@ -197,11 +200,13 @@ echo "=== K3s Cluster Setup Complete ==="
 ```
 
 **Expected Results:**
+
 - 2 nodes in cluster (1 master, 1 worker)
 - All nodes Ready
 - Core pods running
 
 **Troubleshooting:**
+
 - If nodes can't join: Check firewall (ports 6443, 10250)
 - If pods not starting: Check resource availability
 - If token invalid: Regenerate on master node
@@ -295,6 +300,7 @@ if __name__ == "__main__":
 ```
 
 **Expected Results:**
+
 - vLLM container running
 - Health check passes
 - Inference returns response

@@ -3,7 +3,7 @@ Document ID: 4303
 Title: "4303: QAT for Transformers"
 Phase: 4
 Module: 4300
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -297,6 +297,7 @@ scale = weight.abs().max(dim=1, keepdim=True).values / 127
 ```
 
 **Impact:**
+
 - Per-tensor QAT: ~5% accuracy loss at 4-bit
 - Per-channel QAT: ~1% accuracy loss at 4-bit
 
@@ -402,11 +403,13 @@ self.embed_quant = FakeQuantize(bit_width=16)  # wider int16 grid for the fragil
 ## Results Expectations
 
 For a well-tuned QAT transformer at 8-bit:
+
 - **Accuracy loss:** <1% vs FP32
 - **Model size:** 4x smaller
 - **Inference speed:** 2-4x faster (with optimized kernels)
 
 For 4-bit QAT:
+
 - **Accuracy loss:** 1-3% vs FP32
 - **Model size:** 8x smaller
 - **Inference speed:** 4-8x faster

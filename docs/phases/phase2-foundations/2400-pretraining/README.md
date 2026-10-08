@@ -1,7 +1,7 @@
 ---
 Document ID: 2400-PRETRAINING-README
 Title: "2400: LLM Pretraining"
-Last Updated: 2026-09-29
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Prerequisites: [2200]
@@ -42,6 +42,7 @@ Pretrain a language model from scratch — data, tokenization, training objectiv
 This module covers the complete journey of pretraining large language models, from fundamentals to distributed training at scale. You'll learn how modern LLMs like GPT and LLaMA are trained from scratch.
 
 **Why This Matters:**
+
 - Pretraining is the foundation of all LLM capabilities
 - Understanding training dynamics helps with fine-tuning and debugging
 - Scale brings unique challenges (distributed training, optimization)
@@ -171,12 +172,14 @@ Each lesson is written around runnable code — work through the examples, don't
 ## Resources
 
 **Essential Papers:**
+
 - [Attention Is All You Need](https://arxiv.org/abs/1706.03762) (Vaswani et al.) — the transformer architecture
 - [Language Models are Few-Shot Learners](https://arxiv.org/abs/2005.14165) (Brown et al.) — GPT-3 and what scale buys
 - [LLaMA: Open and Efficient Foundation Language Models](https://arxiv.org/abs/2302.13971) (Touvron et al.) — open-weights pretraining at scale
 - [Training Compute-Optimal Large Language Models](https://arxiv.org/abs/2203.15556) (Hoffmann et al.) — the Chinchilla token-budget scaling laws
 
 **Essential Tools:**
+
 - PyTorch Distributed (DDP, FSDP)
 - Hugging Face Transformers
 - Weights & Biases / MLflow

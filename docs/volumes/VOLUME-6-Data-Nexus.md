@@ -1,7 +1,7 @@
 ---
 Document ID: VOLUME-6
 Title: "Volume 6: Data Nexus - RAG & Memory"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['volume', 'rag', 'vector-db', 'graphrag']
@@ -46,6 +46,7 @@ Tags: ['volume', 'rag', 'vector-db', 'graphrag']
 ### What You'll Learn
 
 After completing this volume, you will be able to:
+
 - ✅ Build production RAG systems with Qdrant
 - ✅ Implement knowledge graphs with Neo4j
 - ✅ Create hybrid search (vector + keyword)
@@ -639,6 +640,7 @@ def multi_hop_reasoning(query):
 **Difficulty:** ⭐⭐⭐⭐
 
 **Tasks:**
+
 1. Ingest document collection (100+ docs)
 2. Implement hybrid search (vector + BM25)
 3. Add re-ranking with cross-encoder
@@ -646,6 +648,7 @@ def multi_hop_reasoning(query):
 5. Deploy with Docker
 
 **Skills Demonstrated:**
+
 - RAG implementation ✅
 - Hybrid search ✅
 - Production deployment ✅
@@ -656,6 +659,7 @@ def multi_hop_reasoning(query):
 **Difficulty:** ⭐⭐⭐⭐⭐
 
 **Tasks:**
+
 1. Extract entities and relationships
 2. Build knowledge graph in Neo4j
 3. Implement GraphRAG retrieval
@@ -663,6 +667,7 @@ def multi_hop_reasoning(query):
 5. Visualize knowledge graph
 
 **Skills Demonstrated:**
+
 - Knowledge graphs ✅
 - GraphRAG implementation ✅
 - Multi-hop reasoning ✅
@@ -673,6 +678,7 @@ def multi_hop_reasoning(query):
 **Difficulty:** ⭐⭐⭐⭐
 
 **Tasks:**
+
 1. Choose domain (medical, legal, technical)
 2. Fine-tune embedding model
 3. Optimize chunking strategy
@@ -680,6 +686,7 @@ def multi_hop_reasoning(query):
 5. Evaluate on domain queries
 
 **Skills Demonstrated:**
+
 - Domain adaptation ✅
 - RAG optimization ✅
 - Evaluation ✅
@@ -717,24 +724,29 @@ Use this checklist to track your progress:
 ### How Volume 6 Connects to Other Volumes:
 
 **Semantic Similarity (6102) →**
+
 - Volume 2: Vector operations and embeddings
 - Volume 3: Embedding layers in transformers
 - Volume 5: Fine-tune embedding models
 
 **HNSW Indexing (6101) →**
+
 - Volume 1: Vector database deployment
 - Volume 4: Quantized vector search
 
 **RAG Systems (TUTORIAL-003, LAB-002) →**
+
 - Volume 1: Docker deployment
 - Volume 4: Optimized inference
 - Volume 7: Production RAG
 
 **Knowledge Graphs (6301, LAB-005) →**
+
 - Volume 3: Understanding model reasoning
 - Volume 7: Agent knowledge systems
 
 **GraphRAG (6304) →**
+
 - Volume 5: Fine-tune for graph tasks
 - Volume 7: Agent reasoning
 
@@ -1175,15 +1187,19 @@ Network: 10 Gbps
 ### Common Issues in Volume 6
 
 **Problem:** Poor retrieval quality
+
 - **Solution:** Try hybrid search, adjust chunk size, add re-ranking
 
 **Problem:** Neo4j connection issues
+
 - **Solution:** Check bolt://7687 port, verify credentials
 
 **Problem:** Multi-hop too slow
+
 - **Solution:** Limit hop depth, cache results, use subgraph
 
 **Problem:** Long context slow
+
 - **Solution:** Use vLLM, quantize model, consider RAG instead
 
 For more help, see **[TROUBLESHOOTING-Common-Issues.md](../learning-resources/troubleshooting/TROUBLESHOOTING-Common-Issues.md)**
@@ -1221,6 +1237,7 @@ For more help, see **[TROUBLESHOOTING-Common-Issues.md](../learning-resources/tr
 ---
 
 **Recommended Resources:**
+
 - **[Qdrant Docs](https://qdrant.tech/documentation/)** - Vector database
 - **[Neo4j Docs](https://neo4j.com/docs/)** - Graph database
 - **[LangChain RAG](https://docs.langchain.com/oss/python/deepagents/rag)** - RAG framework

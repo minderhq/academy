@@ -1,7 +1,7 @@
 ---
 Document ID: 3500-PREREQUISITES
 Title: "3500: Multimodal - Prerequisites"
-Last Updated: 2026-09-29
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['prerequisites', 'transformers', 'multimodal']
@@ -36,6 +36,7 @@ This module covers multimodal AI systems combining text, images, audio, and vide
 ### If you're not familiar:
 
 **Review Resources:**
+
 - "Attention Is All You Need" (Vaswani et al.)
 - "Learning Transferable Visual Models From Natural Language Supervision" (CLIP paper)
 - "Multimodal Deep Learning" textbook chapters
@@ -48,6 +49,7 @@ This module covers multimodal AI systems combining text, images, audio, and vide
 ## Self-Assessment
 
 Can you:
+
 - [ ] Explain how CNNs work?
 - [ ] Describe attention mechanisms?
 - [ ] Understand contrastive learning?

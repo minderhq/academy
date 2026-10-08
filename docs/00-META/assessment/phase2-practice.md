@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE2-PRACTICE
 Title: "Phase 2: AI/ML Foundations Practice"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Tags: ['assessment', 'practice', 'pytorch']
@@ -167,11 +167,13 @@ if __name__ == "__main__":
 ```
 
 **Expected Output:**
+
 - All operations complete without errors
 - Shapes match expected dimensions
 - Complex attention mechanism works correctly
 
 **Key Concepts:**
+
 - Repeated indices: diagonal or dot product (`i,i`)
 - Unique indices: sum along dimension (`ij->i`)
 - Order of letters: output shape (`ij,jk->ik`)
@@ -380,6 +382,7 @@ if __name__ == "__main__":
 ```
 
 **Key Concepts:**
+
 - Computational graph building
 - Chain rule application
 - Gradient accumulation

@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE3-TRANSFORMERS-README
 Title: "Phase 3: Transformer Physics & LLM Internals [3000]"
-Last Updated: 2026-10-07
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['phase', 'transformers', 'embeddings', 'rope']
@@ -34,6 +34,7 @@ Tags: ['phase', 'transformers', 'embeddings', 'rope']
 **Dismantling the Generative Pre-trained Transformer architecture.**
 
 This phase covers the internal mechanics of transformer models, from attention mechanisms to decoding strategies, enabling you to:
+
 - Understand the self-attention mechanism that powers modern LLMs
 - Implement attention from scratch for deeper understanding
 - Learn Flash Attention optimization for memory efficiency
@@ -189,6 +190,7 @@ graph TD
 | [3103: SDPA and torch.compile](./3100-attention/3103-SDPA-and-torch-compile.md) | Fused kernels and compiled execution | 4h | Advanced |
 
 **What You'll Learn:**
+
 - Scaled dot-product attention mechanism
 - Multi-head attention and its benefits
 - Causal masking for autoregressive generation
@@ -199,6 +201,7 @@ graph TD
 - SDPA backend dispatch and torch.compile guard behavior
 
 **Hands-On Practice:**
+
 - Implement self-attention from scratch
 - Visualize attention patterns
 - Compare standard vs Flash Attention
@@ -215,6 +218,7 @@ graph TD
 | [3203: Word-Embedding Tradition](./3200-embeddings/3203-Word-Embedding-Tradition.md) | Skip-gram, negative sampling, CBOW, GloVe | 3h | Intermediate |
 
 **What You'll Learn:**
+
 - Rotary Position Embeddings (RoPE)
 - Absolute vs relative position encoding
 - Sinusoidal embeddings
@@ -227,6 +231,7 @@ graph TD
 - The word-embedding tradition: skip-gram, negative sampling, CBOW, and GloVe's co-occurrence ratio
 
 **Hands-On Practice:**
+
 - Implement RoPE from scratch
 - Compare absolute vs relative encoding
 - Visualize rotation matrices
@@ -246,6 +251,7 @@ graph TD
 | [3304: Decoding Sampling Strategies](./3300-decoding/3304-Decoding-Sampling-Strategies.md) | Temperature, top-k, nucleus, min-p, typical-p | 2h | Beginner |
 
 **What You'll Learn:**
+
 - ReLU and its limitations
 - GELU (Gaussian Error Linear Unit)
 - SwiGLU (Swish-Gated Linear Unit)
@@ -256,6 +262,7 @@ graph TD
 - Temperature, top-k, nucleus, min-p, and typical-p sampling
 
 **Hands-On Practice:**
+
 - Compare activation performance
 - Analyze gradient flow
 - Benchmark training speed
@@ -273,6 +280,7 @@ graph TD
 | [3403: Architecture Comparison](./3400-architectures/guides/3403-Model-Architecture-Comparison.md) | Comparative guide | 2h | Advanced |
 
 **What You'll Learn:**
+
 - Decoder-only (GPT, LLaMA, Mistral)
 - Encoder-decoder (T5, BART)
 - Encoder-only (BERT)
@@ -283,6 +291,7 @@ graph TD
 - State-space models (Mamba) and multi-head latent attention (MLA)
 
 **Hands-On Practice:**
+
 - Load and analyze different architectures
 - Compare parameter counts
 - Benchmark inference speed
@@ -297,6 +306,7 @@ graph TD
 | [3502: Audio Models](./3500-multimodal/3502-Audio-Models.md) | Whisper, AudioLM, voice assistants | 5h | Advanced |
 
 **What You'll Learn:**
+
 - Vision-language architectures (CLIP, BLIP, LLaVA)
 - Contrastive image-text learning
 - Multimodal RAG systems
@@ -304,6 +314,7 @@ graph TD
 - Applying multimodal models to real-world tasks
 
 **Hands-On Practice:**
+
 - Implement CLIP-style contrastive encoding
 - Build multimodal RAG pipelines
 - Transcribe and analyze audio with Whisper

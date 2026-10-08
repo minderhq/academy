@@ -1,7 +1,7 @@
 ---
 Document ID: 3400-PREREQUISITES
 Title: "3400: Architectures - Prerequisites"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['prerequisites', 'transformers', 'architecture']
@@ -33,6 +33,7 @@ This module covers encoder-decoder and decoder-only architectures.
 ### If you're not familiar:
 
 **Review Resources:**
+
 - "Attention Is All You Need" (Vaswani et al., 2017)
 - "BERT: Pre-training of Deep Bidirectional Transformers"
 - "Improving Language Understanding by Generative Pre-Training"
@@ -44,6 +45,7 @@ This module covers encoder-decoder and decoder-only architectures.
 ## Self-Assessment
 
 Can you:
+
 - [ ] Explain self-attention mechanism?
 - [ ] Describe difference between encoder and decoder?
 - [ ] Understand masked language modeling?

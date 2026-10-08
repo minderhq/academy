@@ -1,7 +1,7 @@
 ---
 Document ID: 6200-PREREQUISITES
 Title: "6200: Retrieval - Prerequisites"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['prerequisites', 'rag', 'retrieval']
@@ -34,6 +34,7 @@ This module covers retrieval strategies for RAG systems.
 ### If you're not familiar:
 
 **Review Resources:**
+
 - "Information Retrieval" (Manning et al.) - Chapters 1-6
 - "Introduction to Information Retrieval" (Croft et al.)
 - Weaviate documentation on vector search
@@ -45,6 +46,7 @@ This module covers retrieval strategies for RAG systems.
 ## Self-Assessment
 
 Can you:
+
 - [ ] Calculate TF-IDF for documents?
 - [ ] Explain BM25 ranking?
 - [ ] Describe HNSW algorithm?

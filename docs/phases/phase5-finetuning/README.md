@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE5-FINETUNING-README
 Title: "Phase 5: Fine-Tuning & Alignment [5000]"
-Last Updated: 2026-10-07
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['phase', 'finetuning', 'training', 'distributed']
@@ -32,6 +32,7 @@ Tags: ['phase', 'finetuning', 'training', 'distributed']
 **Adapting pre-trained models to your specific domain and tasks.**
 
 This phase covers fine-tuning and alignment techniques to transform general-purpose LLMs into specialized, domain-expert models, enabling you to:
+
 - Fine-tune models on consumer hardware (RTX 3090/4090)
 - Use parameter-efficient methods (LoRA, QLoRA, PEFT)
 - Align models with human preferences (DPO, RLHF)
@@ -147,6 +148,7 @@ Recommended Hardware:
 | [5105: Model Merging](./5100-peft/5105-Model-Merging.md) | Task vectors, TIES, DARE, soups | 3h | Advanced |
 
 **What You'll Learn:**
+
 - LoRA (Low-Rank Adaptation) theory and implementation
 - QLoRA for 4-bit quantized fine-tuning
 - Adapter layers and bottleneck architectures
@@ -154,6 +156,7 @@ Recommended Hardware:
 - Model merging: task vectors, TIES sign election, DARE, checkpoint soups
 
 **Hands-On Practice:**
+
 - Implement LoRA from scratch
 - Fine-tune Llama 3.1 with QLoRA on RTX 3090
 - Compare LoRA vs full fine-tuning quality
@@ -172,6 +175,7 @@ Recommended Hardware:
 | [5206: Best-of-N and Rejection Sampling](./5200-alignment/5206-Best-of-N-and-Rejection-Sampling.md) | Inference-time reranking, overoptimization, and RSFT | 4h | Advanced |
 
 **What You'll Learn:**
+
 - Direct Preference Optimization (DPO) theory
 - RLHF vs DPO comparison and trade-offs
 - Reward model training and evaluation
@@ -181,6 +185,7 @@ Recommended Hardware:
 - Best-of-N reranking, the overoptimization curve, and rejection-sampling fine-tuning
 
 **Hands-On Practice:**
+
 - Implement DPO from scratch
 - Train reward models for RLHF
 - Build preference datasets
@@ -198,6 +203,7 @@ Recommended Hardware:
 | [5304: Self-Instruct and Model Collapse](./5300-synthetic/5304-Self-Instruct-and-Model-Collapse.md) | Instruction bootstrap and the recursion's collapse tax | 4h | Advanced |
 
 **What You'll Learn:**
+
 - Knowledge distillation from large to small models
 - Synthetic data generation techniques
 - Data augmentation strategies for LLMs
@@ -206,6 +212,7 @@ Recommended Hardware:
 - Model collapse: the recursion tax, the ten-percent anchor, the downstream proof
 
 **Hands-On Practice:**
+
 - Distill 70B model to 7B
 - Generate synthetic training data
 - Augment small datasets
@@ -224,6 +231,7 @@ Recommended Hardware:
 | [5406: Distributed LR Scaling](./5400-distributed-training/5406-Distributed-LR-Scaling.md) | Linear rule, stability wall, warmup sizing, critical batch | 4h | Advanced |
 
 **What You'll Learn:**
+
 - Distributed training fundamentals (DDP, FSDP)
 - Data parallelism vs model parallelism
 - Pipeline parallelism for large models
@@ -234,6 +242,7 @@ Recommended Hardware:
 - Scale the learning rate across world sizes: the linear rule, its wall, warmup sizing, and the critical batch size
 
 **Hands-On Practice:**
+
 - Set up multi-GPU training with DDP
 - Implement pipeline parallelism
 - Apply mixed precision training
@@ -249,6 +258,7 @@ Recommended Hardware:
 | [5503: Advanced Techniques](./5500-advanced-optimization/5503-Advanced-Techniques.md) | Gradient clipping, SAM, regularization | 4h | Advanced |
 
 **What You'll Learn:**
+
 - Hyperparameter optimization strategies
 - Learning rate scheduling (warmup, cosine, cyclic)
 - Advanced optimization techniques (SAM, AdEM)
@@ -257,6 +267,7 @@ Recommended Hardware:
 - Multi-task and curriculum learning
 
 **Hands-On Practice:**
+
 - Perform hyperparameter sweeps
 - Implement custom learning rate schedulers
 - Apply advanced optimization techniques

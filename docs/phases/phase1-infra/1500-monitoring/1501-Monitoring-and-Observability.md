@@ -3,7 +3,7 @@ Document ID: 1501
 Title: "1501: Monitoring and Observability"
 Phase: 1
 Module: 1500
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -693,6 +693,7 @@ Observability is five components with one job each: Prometheus collects metrics,
 ---
 
 **Related:**
+
 - [1102: Network Topology Design](../1100-network/1102-Star-Topology-Core.md)
 - [1301: K3s Architecture](../1300-kubernetes/1301-K3s-Master-Worker-Arch.md)
 - [1402: vLLM and TGI](../1400-llmops/1402-vLLM-and-TGI.md)

@@ -1,7 +1,7 @@
 ---
 Document ID: 1400-PREREQUISITES
 Title: "1400: LLMOps - Prerequisites"
-Last Updated: 2026-10-01
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['prerequisites', 'infrastructure', 'llmops']
@@ -40,6 +40,7 @@ This module covers LLMOps and model serving, from Ollama enterprise deployment t
 ### If you're not familiar:
 
 **Review Resources:**
+
 - "Introducing MLOps" (O'Reilly)
 - "LLMOps: Operationalizing Large Language Models" papers
 - GitHub Actions documentation
@@ -52,6 +53,7 @@ This module covers LLMOps and model serving, from Ollama enterprise deployment t
 ## Self-Assessment
 
 Can you:
+
 - [ ] Design a CI/CD pipeline?
 - [ ] Track model experiments?
 - [ ] Monitor model performance?

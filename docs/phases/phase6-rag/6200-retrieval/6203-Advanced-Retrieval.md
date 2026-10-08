@@ -3,7 +3,7 @@ Document ID: 6203
 Title: "6203: Advanced Retrieval Techniques"
 Phase: 6
 Module: 6200
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -51,6 +51,7 @@ measure each stage's contribution with retrieval metrics.
 
 ## Learning Objectives
 After completing this document, you will:
+
 - ✅ Diagnose which pipeline stage causes bad retrieval (query vs index vs rank)
 - ✅ Apply query rewriting, multi-query, and HyDE with cost awareness
 - ✅ Configure a retrieve-then-rerank pipeline within a latency budget
@@ -182,6 +183,7 @@ End-to-end budget: ~1.5 s
 ```
 
 **Where:**
+
 - **Recall stage** is deliberately loose (large k, cheap scoring) — its
   job is to not miss the answer
 - **Precision stage** is expensive per item but sees few items

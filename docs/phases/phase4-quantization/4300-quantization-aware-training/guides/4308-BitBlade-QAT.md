@@ -3,7 +3,7 @@ Document ID: 4308
 Title: "4308: BitBlade QAT Guide"
 Phase: 4
 Module: 4300
-Last Updated: 2026-09-27
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -55,6 +55,7 @@ BitBlade is this curriculum's pedagogical composite of the low-bit quantization 
 ## What is BitBlade?
 
 BitBlade combines multiple quantization techniques:
+
 - **NF4 (NormalFloat 4)**: Optimal 4-bit data type
 - **Double Quantization**: Quantizing the quantization parameters
 - **Mixed Precision**: Different bits for different layers
@@ -510,6 +511,7 @@ BitBlade's composite toolkit covers the techniques production libraries use for 
 - **Production Ready:** Export to ONNX, GGUF
 
 Use these techniques (via their production homes) when you need:
+
 - Maximum compression
 - State-of-the-art accuracy
 - Easy export to production

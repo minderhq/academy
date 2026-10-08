@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE2-CHECKPOINT
 Title: "Progress Checkpoint: Phase 2 - Cognitive Science & Frameworks"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Tags: ['checkpoint', 'frameworks', 'architecture', 'api-design']
@@ -25,6 +25,7 @@ Tags: ['checkpoint', 'frameworks', 'architecture', 'api-design']
 ## Phase Completion Goal
 
 After completing Phase 2, you will:
+
 - Understand tensor operations
 - Implement backpropagation
 - Know ML framework internals
@@ -38,11 +39,13 @@ After completing Phase 2, you will:
 ### Module 2100: The Calculus of AI (Required)
 
 **Checkpoint Quiz:**
+
 1. What is a tensor and how does it differ from an array?
 2. Explain the dot product and its geometric interpretation
 3. What is gradient descent?
 
 **Practical Verification:**
+
 - [ ] Can implement matrix multiplication from scratch
 - [ ] Understand PyTorch tensor operations
 - [ ] Can compute gradients
@@ -52,11 +55,13 @@ After completing Phase 2, you will:
 ### Module 2200: Deep Learning Frameworks (Required)
 
 **Checkpoint Quiz:**
+
 1. What is a computational graph?
 2. How does PyTorch track gradients?
 3. What is XLA compilation?
 
 **Practical Verification:**
+
 - [ ] Can build neural network in PyTorch
 - [ ] Understand automatic differentiation
 - [ ] Can optimize computation
@@ -66,11 +71,13 @@ After completing Phase 2, you will:
 ### Module 2300: Framework Engineering (Required)
 
 **Checkpoint Quiz:**
+
 1. How does a reverse-mode autograd engine propagate gradients through a computational graph?
 2. What bookkeeping does a Tensor class need to support backward passes?
 3. How do you validate custom operations against PyTorch reference results?
 
 **Practical Verification:**
+
 - [ ] Can implement a minimal autograd engine from scratch
 - [ ] Understand graph construction and topological sort for backward passes
 - [ ] Can validate custom tensor ops against reference outputs
@@ -80,11 +87,13 @@ After completing Phase 2, you will:
 ### Module 2400: Pre-training (Required)
 
 **Checkpoint Quiz:**
+
 1. What are the key stages of a pre-training pipeline?
 2. How do data parallel and model parallel sharding differ?
 3. What metrics are used to evaluate a pretrained language model?
 
 **Practical Verification:**
+
 - [ ] Understand the pre-training data pipeline
 - [ ] Can explain distributed training strategies
 - [ ] Know how to evaluate a pretrained checkpoint
@@ -105,6 +114,7 @@ After completing Phase 2, you will:
 **Badge:** Tensor Master
 
 **You've earned it when:**
+
 - All required modules completed
 - Can implement backpropagation
 - Understand framework internals

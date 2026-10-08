@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-013
 Title: "LAB-013: Advanced Function Calling"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 7 hours
@@ -19,12 +19,14 @@ Tags: ['lab', 'function-calling', 'agents', 'hands-on']
 **Time:** 5-6 hours
 **Difficulty:** ⭐⭐⭐ Advanced
 **Prerequisites:**
+
 - LAB-004: ReAct Agent
 - LAB-008: Agent Fleet
 - Understanding of JSON schemas
 - API development experience
 
 **Learning Objectives:**
+
 - Master OpenAI function calling
 - Build sophisticated LangChain tools
 - Design custom tool systems

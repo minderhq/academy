@@ -1,7 +1,7 @@
 ---
 Document ID: 4200-PRACTICE
 Title: "4200: KV Cache Optimization - Practice"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -123,12 +123,14 @@ print(f"Value cache shape: {cached_values.shape}")
 ```
 
 **Explanation:**
+
 - KV cache stores computed keys and values during generation
 - Avoids recomputing for all previous tokens at each step
 - Essential for efficient autoregressive generation
 - Reduces complexity from O(n²) to O(n)
 
 **Memory Usage:**
+
 - Proportional to batch_size × num_heads × seq_len × head_dim
 - For LLaMA-7B in FP16: ~1 GB at 2K sequence length (see Exercise 3)
 
@@ -223,12 +225,14 @@ for i in range(3):
 ```
 
 **Explanation:**
+
 - Multi-Query Attention (MQA): Single key/value head for all query heads
 - Reduces cache size by factor of num_heads
 - Used in PaLM, Llama 2, and other modern LLMs
 - Trade-off: Slight quality decrease for significant memory savings
 
 **Benefits:**
+
 - Cache size: O(batch × seq_len × head_dim) instead of O(batch × num_heads × seq_len × head_dim)
 - Faster inference due to reduced memory bandwidth
 - Enables longer sequences and larger batch sizes

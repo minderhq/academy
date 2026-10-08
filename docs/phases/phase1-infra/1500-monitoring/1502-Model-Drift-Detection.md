@@ -3,7 +3,7 @@ Document ID: 1502
 Title: "1502: Model Drift Detection"
 Phase: 1
 Module: 1500
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -775,6 +775,7 @@ Models decay silently: as the world's data distribution drifts from training dat
 ---
 
 **Related:**
+
 - [1501: Monitoring and Observability](./1501-Monitoring-and-Observability.md)
 - [1402: vLLM and TGI](../1400-llmops/1402-vLLM-and-TGI.md)
 - **Experiment:** [EXP_1502: Model Drift](../../../../experiments/EXP_1502_MODEL_DRIFT.md)

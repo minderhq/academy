@@ -1,7 +1,7 @@
 ---
 Document ID: 1200-VIRTUALIZATION-README
 Title: "1200: Virtualization and GPU Passthrough"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Prerequisites: []
@@ -180,6 +180,7 @@ Total: 2 servers, 8 GPUs (50% hardware savings!)
 ```
 
 **Best For:**
+
 - Production deployments
 - Multi-GPU systems
 - Users comfortable with Linux CLI
@@ -202,6 +203,7 @@ Total: 2 servers, 8 GPUs (50% hardware savings!)
 ```
 
 **Best For:**
+
 - Advanced users
 - Custom deployments
 - Learning hypervisor internals
@@ -225,6 +227,7 @@ Total: 2 servers, 8 GPUs (50% hardware savings!)
 ```
 
 **Best For:**
+
 - Enterprise environments
 - Users with budget for licenses
 - Teams needing commercial support
@@ -246,6 +249,7 @@ Total: 2 servers, 8 GPUs (50% hardware savings!)
 ```
 
 **Best For:**
+
 - Security-focused deployments
 - Cloud-like infrastructure
 
@@ -720,6 +724,7 @@ dmesg | grep -i vfio
 ```
 
 **Solutions:**
+
 1. **Ensure all GPU functions are passed through**
 2. **Check BIOS IOMMU settings**
 3. **Verify VFIO binding**
@@ -749,6 +754,7 @@ nvidia-smi -q -d THERMAL
 ```
 
 **Solutions:**
+
 1. **Enable CPU pinning**
 2. **Enable huge pages**
 3. **Set VM to high priority**
@@ -776,6 +782,7 @@ tail -f /var/log/qemu-server/100.log
 ```
 
 **Solutions:**
+
 1. **Verify VFIO binding on host**
 2. **Check all GPU functions are added**
 3. **Ensure ROM file is loaded (if needed)**
@@ -802,6 +809,7 @@ sensors
 ```
 
 **Solutions:**
+
 1. **Test RAM with memtest86+**
 2. **Check PSU capacity (GPU power spikes)**
 3. **Disable power management in BIOS**
@@ -1109,26 +1117,31 @@ nvidia-smi         # NVIDIA GPU monitoring
 ### Further Reading
 
 **Documentation:**
+
 - [Proxmox VE Admin Guide](https://pve.proxmox.com/pve-docs/)
 - [KVM Documentation](https://www.linux-kvm.org/page/Documents)
 - [VFIO Documentation](https://www.kernel.org/doc/Documentation/vfio.txt)
 
 **Books:**
+
 - "KVM Virtualization Cookbook" by Konstantin Ivanov
 - "Mastering Proxmox VE" by Rik Jaeger
 
 **Online Courses:**
+
 - [Proxmox VE Full Course](https://www.youtube.com/watch?v=ZEjO9g4l6Ww)
 - [Linux Virtualization](https://www.redhat.com/en/topics/virtualization)
 
 ### Community Resources
 
 **Forums:**
+
 - [Proxmox Forums](https://forum.proxmox.com/)
 - [r/Proxmox on Reddit](https://www.reddit.com/r/Proxmox/)
 - [r/homelab](https://www.reddit.com/r/homelab/)
 
 **GPU Passthrough Specific:**
+
 - [Arch Wiki: PCIe Passthrough](https://wiki.archlinux.org/title/PCI_passthrough_via_OVMF)
 - [Proxmox GPU Passthrough Guide](https://pve.proxmox.com/wiki/Pci_passthrough)
 

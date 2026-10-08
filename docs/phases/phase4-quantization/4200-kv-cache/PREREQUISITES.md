@@ -1,7 +1,7 @@
 ---
 Document ID: 4200-PREREQUISITES
 Title: "4200: KV Cache - Prerequisites"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['prerequisites', 'quantization', 'kv-cache']
@@ -33,6 +33,7 @@ This module covers KV cache optimization and context window management.
 ### If you're not familiar:
 
 **Review Resources:**
+
 - "KV Cache: Unlocking Efficiency in Large Language Models" (blog posts)
 - "Efficient Attention: Attention with Linear Complexities" paper
 - vLLM documentation on PagedAttention
@@ -44,6 +45,7 @@ This module covers KV cache optimization and context window management.
 ## Self-Assessment
 
 Can you:
+
 - [ ] Explain why naive attention is O(n²)?
 - [ ] Describe how KV cache reduces computation?
 - [ ] Understand context window limitations?

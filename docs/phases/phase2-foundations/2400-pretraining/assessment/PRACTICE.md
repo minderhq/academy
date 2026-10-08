@@ -1,7 +1,7 @@
 ---
 Document ID: 2400-PRACTICE
 Title: "2400: Pretraining - Practice"
-Last Updated: 2026-09-29
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 5 hours
@@ -773,6 +773,7 @@ This practice guide covers:
 6. **Advanced Techniques:** Mixed precision, gradient accumulation, and learning rate scheduling
 
 **Expected Learning Outcomes:**
+
 - Prepare datasets for language model pretraining
 - Implement efficient data loading pipelines
 - Write complete training loops for LMs

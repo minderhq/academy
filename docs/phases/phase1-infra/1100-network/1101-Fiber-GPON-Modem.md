@@ -3,7 +3,7 @@ Document ID: 1101
 Title: "1101: Internet Uplink & Modem Configuration"
 Phase: 1
 Module: 1100
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 2 hours
@@ -379,6 +379,7 @@ Out-of-range Rx power shows up as LOS light loss or intermittent drops long befo
 ---
 
 **Related Documents:**
+
 - [1102: Network Topology Design](./1102-Star-Topology-Core.md) - LAN design behind the uplink
 - [1103: Jumbo Frames and MTU](./1103-Jumbo-Frames-and-MTU.md) - LAN MTU optimization
 - [1201: Proxmox Hypervisor SOP](../1200-virtualization/1201-Proxmox-Hypervisor-SOP.md) - The server that sits behind this uplink

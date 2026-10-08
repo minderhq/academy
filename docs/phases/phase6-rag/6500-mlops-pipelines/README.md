@@ -1,7 +1,7 @@
 ---
 Document ID: 6500-MLOPS-PIPELINES-README
 Title: "6500: MLOps Pipelines for RAG"
-Last Updated: 2026-10-01
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
@@ -16,6 +16,7 @@ Tags: ['module', 'mlops', 'model-registry']
 This module covers MLOps practices specifically for RAG systems, including lifecycle management, CI/CD, and model registries. You'll learn to build production-ready ML pipelines for retrieval-augmented generation.
 
 **Why This Matters:**
+
 - RAG systems require continuous updates and monitoring
 - CI/CD ensures reliable model deployments
 - Model registries track model versions and lineage
@@ -45,6 +46,7 @@ After completing this module, you will be able to:
 - The stage-by-stage checklist
 
 **Experiments:**
+
 - Build ML pipeline for RAG
 - Implement data versioning
 - Set up model evaluation
@@ -60,6 +62,7 @@ After completing this module, you will be able to:
 - Validation gates and deployment
 
 **Experiments:**
+
 - Set up GitHub Actions for ML
 - Implement automated testing
 - Build deployment pipeline
@@ -75,6 +78,7 @@ After completing this module, you will be able to:
 - Registries in practice: MLflow and Weights & Biases
 
 **Experiments:**
+
 - Set up MLflow model registry
 - Track model versions
 - Implement model promotion
@@ -90,6 +94,7 @@ After completing this module, you will be able to:
 - Human evaluation with chance-corrected kappa
 
 **Experiments:**
+
 - Price a re-embedding cadence for your own corpus churn
 - Run the shadow-window gate on a golden set
 - Size an embedder migration before opening the window
@@ -105,6 +110,7 @@ After completing this module, you will be able to:
 - One fleet day priced: token bill, search bill, replica bill
 
 **Experiments:**
+
 - Key a response cache on (query, index_version) and re-run the cutover
 - Tune a semantic threshold on both error types with near-topic negatives
 - Price per-stage autoscaling against peak provisioning on your own traffic curve
@@ -142,6 +148,7 @@ Before starting this module, ensure you have:
 ## Related Modules
 
 This module connects to:
+
 - **[1400: LLMOps and Model Serving](../../phase1-infra/1400-llmops/README.md)** (MLOps fundamentals)
 - **[2400: LLM Pretraining](../../phase2-foundations/2400-pretraining/README.md)** (training pipelines)
 - **[6400: Vector Databases](../6400-vector-databases/README.md)** (data infrastructure)
@@ -163,6 +170,7 @@ This module connects to:
 ## Resources
 
 **Essential Tools:**
+
 - MLflow (experiment tracking and registry)
 - GitHub Actions (CI/CD)
 - Docker / Kubernetes (deployment)
@@ -170,6 +178,7 @@ This module connects to:
 - DVC (data versioning)
 
 **Essential Concepts:**
+
 - Feature stores
 - Model serving
 - A/B testing
@@ -261,6 +270,7 @@ This module connects to:
 ## Production Checklist
 
 Before deploying to production:
+
 - [ ] Automated tests passing
 - [ ] Model evaluated on test set
 - [ ] Performance benchmarks met

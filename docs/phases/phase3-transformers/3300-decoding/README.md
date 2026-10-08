@@ -1,7 +1,7 @@
 ---
 Document ID: 3300-DECODING-README
 Title: "[3300]: The Decoding Block"
-Last Updated: 2026-09-28
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Beginner
 Prerequisites: []
@@ -31,6 +31,7 @@ This module covers the feed-forward networks, activation functions, and normaliz
 ## Learning Objectives
 
 After completing this module, you will:
+
 - ✅ Understand the role of activation functions in Transformers
 - ✅ Compare ReLU, GELU, Swish, and SwiGLU
 - ✅ Explain why LLMs use specific activation functions
@@ -157,6 +158,7 @@ RMS(x) = √(mean(x²) + ε)
 ```
 
 **Why RMSNorm?**
+
 - Faster (no mean computation)
 - Fewer parameters (no β)
 - Similar performance

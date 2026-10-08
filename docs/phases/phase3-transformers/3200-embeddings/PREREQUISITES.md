@@ -1,7 +1,7 @@
 ---
 Document ID: 3200-PREREQUISITES
 Title: "3200: Embeddings - Prerequisites"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Tags: ['prerequisites', 'transformers', 'embeddings']
@@ -34,6 +34,7 @@ This module covers word embeddings, positional encodings, and tokenization.
 ### If you're not familiar:
 
 **Review Resources:**
+
 - "Word2Vec" paper (Mikolov et al.)
 - "GloVe: Global Vectors for Word Representation" paper
 - 3Blue1Brown: Dot products and duality
@@ -45,6 +46,7 @@ This module covers word embeddings, positional encodings, and tokenization.
 ## Self-Assessment
 
 Can you:
+
 - [ ] Explain why one-hot encoding is inefficient?
 - [ ] Calculate cosine similarity between vectors?
 - [ ] Describe training objective for Word2Vec?

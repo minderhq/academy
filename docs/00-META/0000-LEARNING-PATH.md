@@ -1,7 +1,7 @@
 ---
 Document ID: 0000
 Title: "Minder Academy Learning Path"
-Last Updated: 2026-10-05
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Beginner
 Tags: ['roadmap', 'guide', 'llm']
@@ -32,7 +32,7 @@ Tags: ['roadmap', 'guide', 'llm']
 
 ## Complete AI/LLM Infrastructure Curriculum - From Zero to Hero
 
-**Last Updated:** 2026-10-05
+**Last Updated:** 2026-10-08
 **Estimated Time:** 6-12 months (part-time) - 48 study weeks + capstone
 **Prerequisites:** None! We start from absolute zero.
 
@@ -136,6 +136,7 @@ Learning Path:
 **Deliverable:** Complete all exercises in TUTORIAL-000
 
 **Why Phase 0?**
+
 - **Complete beginners** start here (no experience needed)
 - **Bootcamp grads** can skip or review quickly
 - **Self-taught devs** can fill knowledge gaps
@@ -184,6 +185,7 @@ Learning Path:
 ```
 
 **Projects:**
+
 1. Create a Proxmox cluster with 2 nodes
 2. Configure ZFS with compression; pin CPU cores for a GPU VM
 3. Enable IOMMU in BIOS, configure VFIO, pass the GPU to a VM
@@ -202,6 +204,7 @@ Learning Path:
 ```
 
 **Projects:**
+
 1. Deploy a K3s cluster
 2. Create a deployment and expose it with Ingress
 3. Schedule a GPU workload with the NVIDIA device plugin
@@ -220,6 +223,7 @@ Learning Path:
 ```
 
 **Projects:**
+
 1. Serve a quantized model with Ollama, then with vLLM
 2. Benchmark throughput and latency
 3. Compare serving stacks on your own hardware
@@ -240,6 +244,7 @@ Learning Path:
 ```
 
 **Projects:**
+
 1. Deploy the full monitoring stack
 2. Create custom dashboards
 3. Set up alerting and trace inference calls end-to-end
@@ -272,6 +277,7 @@ Learning Path:
 ```
 
 **Projects:**
+
 1. Implement a simple neural network from scratch
 2. Visualize backpropagation
 3. Train on MNIST
@@ -290,6 +296,7 @@ Learning Path:
 ```
 
 **Projects:**
+
 1. Benchmark eager vs compiled execution
 2. Read and modify a framework serving path
 
@@ -307,6 +314,7 @@ Learning Path:
 ```
 
 **Projects:**
+
 1. Estimate the FLOPs/cost of a known training run
 2. Train a small BPE tokenizer
 
@@ -330,6 +338,7 @@ Learning Path:
 ```
 
 **Projects:**
+
 1. Implement self-attention from scratch
 2. Compare Flash Attention vs standard
 3. Profile attention computation
@@ -348,6 +357,7 @@ Learning Path:
 ```
 
 **Projects:**
+
 1. Implement RoPE embeddings
 2. Inspect a real tokenizer's vocabulary behavior
 
@@ -364,6 +374,7 @@ Learning Path:
 ```
 
 **Projects:**
+
 1. Compare activation functions on a small model
 2. Explain the KV-cache role of each block
 
@@ -381,6 +392,7 @@ Learning Path:
 ```
 
 **Projects:**
+
 1. Implement a GPT-style decoder
 2. Implement a T5-style encoder-decoder
 3. Compare performance
@@ -398,6 +410,7 @@ Learning Path:
 ```
 
 **Projects:**
+
 1. Compute a VLM token budget for your VRAM
 2. Run a small VLM locally
 
@@ -420,6 +433,7 @@ Learning Path:
 ```
 
 **Projects:**
+
 1. Quantize a model to Q4_K and verify perplexity drift
 2. Map the VRAM ledger block by block
 
@@ -436,6 +450,7 @@ Learning Path:
 ```
 
 **Projects:**
+
 1. Measure KV-cache growth per token
 2. Try context-extension scaling (PI / YaRN)
 
@@ -450,6 +465,7 @@ Learning Path:
 ```
 
 **Projects:**
+
 1. Run a QAT loop on a small model
 2. Compare QAT vs PTQ quality at the same bit width
 
@@ -464,6 +480,7 @@ Learning Path:
 ```
 
 **Projects:**
+
 1. Produce GPTQ/AWQ/EXL2 variants of the same model
 2. Benchmark them under one serving stack
 
@@ -487,6 +504,7 @@ Learning Path:
 ```
 
 **Projects:**
+
 1. Implement LoRA from scratch
 2. Fine-tune a 7B-class model with QLoRA
 3. Evaluate against the base model
@@ -505,6 +523,7 @@ Learning Path:
 ```
 
 **Projects:**
+
 1. Implement DPO from scratch
 2. Create a preference dataset
 3. Align your fine-tuned model
@@ -521,6 +540,7 @@ Learning Path:
 ```
 
 **Projects:**
+
 1. Generate and filter a synthetic instruction set
 2. Read the ZeRO ladder; plan a multi-GPU run
 
@@ -544,6 +564,7 @@ Learning Path:
 ```
 
 **Projects:**
+
 1. Deploy Qdrant on a Linux host (Docker)
 2. Index 10K documents
 3. Implement semantic search
@@ -562,6 +583,7 @@ Learning Path:
 ```
 
 **Projects:**
+
 1. Implement BM25 + vector hybrid with RRF
 2. Add re-ranking
 3. Build a golden-set evaluation
@@ -581,6 +603,7 @@ Learning Path:
 ```
 
 **Projects:**
+
 1. Deploy Neo4j on a Linux host (Docker)
 2. Build a knowledge graph from documents
 3. Build a GraphRAG pipeline with multi-hop reasoning
@@ -599,6 +622,7 @@ Learning Path:
 ```
 
 **Projects:**
+
 1. Harden your vector DB deployment
 2. Build a CI/CD pipeline for the RAG stack
 3. Load-test the endpoint
@@ -623,6 +647,7 @@ Learning Path:
 ```
 
 **Projects:**
+
 1. Implement the ReAct loop
 2. Add planning decomposition
 3. Build a query agent
@@ -639,6 +664,7 @@ Learning Path:
 ```
 
 **Projects:**
+
 1. Implement safe code execution
 2. Add file operations and API tools
 
@@ -653,6 +679,7 @@ Learning Path:
 ```
 
 **Projects:**
+
 1. Build a 3-agent system
 2. Implement agent communication patterns
 
@@ -669,6 +696,7 @@ Learning Path:
 ```
 
 **Projects:**
+
 1. Implement vector-store memory
 2. Add episodic memory
 
@@ -683,6 +711,7 @@ Learning Path:
 ```
 
 **Projects:**
+
 1. Red-team your own agent with prompt injection
 2. Add input validation and tool-call sandboxing
 
@@ -861,6 +890,7 @@ Complete each phase to earn its level:
 ---
 
 **Next Steps:**
+
 1. Start with [Phase 1: Infrastructure Fabric](#phase-1-infrastructure-fabric-weeks-2-17)
 2. Set up your learning environment with the [Environment Setup guide](ENVIRONMENT-SETUP.md)
 3. Track your progress in the checklist above

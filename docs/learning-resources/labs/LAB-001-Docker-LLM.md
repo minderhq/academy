@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-001
 Title: "LAB-001: Docker & LLM Fundamentals"
-Last Updated: 2026-10-07
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 2 hours
@@ -11,6 +11,7 @@ Tags: ['lab', 'docker', 'ollama', 'hands-on']
 # LAB-001: Docker & LLM Fundamentals
 
 **Prerequisites:**
+
 - **[TUTORIAL-001: Hello LLM](../tutorials/TUTORIAL-001-Hello-LLM.md)** - LLM basics
 - **[TUTORIAL-002: Docker Essentials](../tutorials/TUTORIAL-002-Docker-Essentials.md)** - Docker fundamentals
 - **[TUTORIAL-000: Python for AI](../tutorials/TUTORIAL-000-Python-for-AI.md)** (recommended) - For custom API code
@@ -38,6 +39,7 @@ Tags: ['lab', 'docker', 'ollama', 'hands-on']
 ## Lab Objectives
 
 After completing this lab, you will be able to:
+
 - ✅ Run LLMs in Docker containers
 - ✅ Build a custom LLM API server
 - ✅ Connect multiple services with Docker Compose
@@ -96,6 +98,7 @@ curl http://localhost:11434/api/generate -d '{
 ```
 
 **Troubleshooting:**
+
 - `container not found`: Make sure Ollama is running
 - `no GPUs`: Remove `--gpus all` flag (CPU-only mode)
 

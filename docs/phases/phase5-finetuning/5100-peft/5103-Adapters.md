@@ -3,7 +3,7 @@ Document ID: 5103
 Title: "5103: Adapters & Parameter-Efficient Adaptation Methods"
 Phase: 5
 Module: 5100
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -52,6 +52,7 @@ mechanics, and gives a decision guide for picking the right method.
 
 ## Learning Objectives
 After completing this document, you will:
+
 - ✅ Classify PEFT methods: additive modules vs soft prompts vs activation scaling
 - ✅ Implement bottleneck adapter, prefix tuning, and IA³ from first principles
 - ✅ Quantify trainable-parameter and inference-latency trade-offs
@@ -111,6 +112,7 @@ class BottleneckAdapter(nn.Module):
 ```
 
 **Where:**
+
 - **reduction (r)**: bottleneck factor; r=16 is standard
 - **Zero-init up-projection**: the adapter starts as a no-op, so training
   begins from the pretrained behavior instead of a random perturbation
@@ -167,6 +169,7 @@ Cost: 2 × L_layers × L_p × d_model parameters
 ```
 
 **Trade-offs:**
+
 - Steals context window (prefix tokens consume KV cache)
 - Re-parameterizing the prefix through a small MLP (P-tuning v2 style)
   stabilizes optimization vs raw embeddings
@@ -257,6 +260,7 @@ class AdapterFusion(nn.Module):
 ```
 
 **Where:**
+
 - Per-task adapters stay **frozen**; only the fusion attention trains
 - Avoids catastrophic forgetting between tasks vs multi-task joint training
 - Adds all adapters' compute at inference — the same serial-overhead caveat

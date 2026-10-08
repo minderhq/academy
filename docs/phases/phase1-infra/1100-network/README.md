@@ -1,7 +1,7 @@
 ---
 Document ID: 1100-NETWORK-README
 Title: "1100: Network Fundamentals for LLM Infrastructure"
-Last Updated: 2026-10-07
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Beginner
 Prerequisites: []
@@ -20,6 +20,7 @@ This module covers networking fundamentals essential for deploying and operating
 ### 1. Model Serving & Inference
 
 **Bandwidth Requirements:**
+
 - **Small models (1-7B):** 100-500 Mbps per concurrent user
 - **Medium models (13-34B):** 500 Mbps - 2 Gbps per concurrent user
 - **Large models (70B+):** 2-10 Gbps per concurrent user
@@ -36,6 +37,7 @@ Serving Llama-3.3-70B with 4-bit quantization:
 ### 2. Distributed Training
 
 **Network Types for Training:**
+
 - **InfiniBand:** 200-400 Gbps, low latency (1µs) - Best for large clusters
 - **RoCE (RDMA over Converged Ethernet):** 100-200 Gbps - Cost-effective alternative
 - **Standard Ethernet:** 25-100 Gbps - Suitable for small clusters
@@ -53,6 +55,7 @@ Lesson: Network speed can make training 100x slower
 ### 3. API Access & Production Deployment
 
 **Latency Requirements:**
+
 - **Chat applications:** <200ms total latency
 - **Real-time translation:** <100ms total latency
 - **Batch processing:** <1s acceptable
@@ -72,6 +75,7 @@ Network optimization saves 60ms (30% of budget!)
 ### 4. Multi-GPU & Multi-Node Setups
 
 **GPU-to-GPU Communication:**
+
 - **NVLink:** 300-600 GB/s (within same node)
 - **PCIe 4.0 x16:** 32 GB/s (within same node)
 - **100Gb Ethernet:** 12.5 GB/s (between nodes)
@@ -252,6 +256,7 @@ Impact on LLMs:
 ```
 
 **Solution:**
+
 - Always check upload speeds
 - For training, aim for symmetric connections (1:1 ratio)
 - For inference, minimum 100 Mbps upload per 10 concurrent users
@@ -269,6 +274,7 @@ Impact: Inconsistent latency, packet loss, interference
 ```
 
 **Solution:**
+
 - **Never** use WiFi for training nodes
 - **Never** use WiFi for production inference servers
 - Use WiFi only for development/testing
@@ -289,6 +295,7 @@ If MTU mismatch:
 ```
 
 **Solution:**
+
 - Test MTU before enabling jumbo frames
 - Ensure all network devices support jumbo frames
 - See [1103: Jumbo Frames and MTU](./1103-Jumbo-Frames-and-MTU.md)
@@ -383,6 +390,7 @@ cat /proc/sys/net/ipv4/tcp_available_congestion_control
 ```
 
 **Solutions:**
+
 1. **ISP Throttling:** Contact ISP or upgrade plan
 2. **Bad Cable:** Replace Ethernet cable
 3. **Router Limitation:** Upgrade to 10Gbps router
@@ -413,6 +421,7 @@ export NCCL_IB_TIMEOUT=22
 ```
 
 **Solutions:**
+
 1. **Upgrade Network:** 1Gbps → 10Gbps minimum
 2. **Enable GPUDirect:** Bypass CPU for GPU-GPU transfers
 3. **Use NCCL:** Optimized for multi-GPU training
@@ -439,6 +448,7 @@ ss -s | grep "retransmits"
 ```
 
 **Solutions:**
+
 1. **Increase Timeout:** Adjust API client timeouts
 2. **Enable Keep-Alive:** Reuse connections
 3. **Load Balancing:** Distribute across multiple servers
@@ -563,12 +573,14 @@ groups:
 ### When to Invest
 
 **Worth the money:**
+
 - ✅ High-quality Ethernet cables (Cat6a)
 - ✅ Managed switches with monitoring
 - ✅ Enterprise router for production
 - ✅ Fiber for runs >100m
 
 **Not worth it:**
+
 - ❌ "Gaming" network cards
 - ❌ Expensive "AI-optimized" switches
 - ❌ Gold-plated Ethernet cables
@@ -731,14 +743,17 @@ node_exporter   # System metrics
 ### Further Reading
 
 **Books:**
+
 - "Network Warrior" by Gary A. Donahue
 - "Computer Networking: A Top-Down Approach" by Kurose & Ross
 
 **Online Courses:**
+
 - [Networking Fundamentals - NetworkChuck](https://www.youtube.com/@NetworkChuck)
 - [Practical Networking](https://www.youtube.com/watch?v=1jM4v5iSOD4)
 
 **Community:**
+
 - [/r/homelab](https://www.reddit.com/r/homelab/) - Home lab enthusiasts
 - [/r/networking](https://www.reddit.com/r/networking/) - Networking professionals
 - [Network Engineering Stack Exchange](https://networkengineering.stackexchange.com/)

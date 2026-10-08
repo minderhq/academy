@@ -1,7 +1,7 @@
 ---
 Document ID: 4300-PRACTICE
 Title: "4300: Quantization Aware Training - Practice"
-Last Updated: 2026-09-29
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -257,6 +257,7 @@ print(f"Accuracy drop: {acc_fp32 - acc_qat:.2f} percentage points")
 ```
 
 **Success Criteria:**
+
 - QAT model achieves >95% accuracy
 - Accuracy loss <1% vs FP32
 
