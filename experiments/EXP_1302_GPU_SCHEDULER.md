@@ -22,7 +22,7 @@ metadata:
 spec:
   containers:
   - name: vllm
-    image: vllm/vllm-openai:latest
+    image: vllm/vllm-openai:v0.30.0
     resources:
       limits:
         nvidia.com/gpu: 1

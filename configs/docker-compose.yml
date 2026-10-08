@@ -44,7 +44,7 @@ services:
   # Requires: NVIDIA Container Toolkit on the host
   # ============================================
   vllm:
-    image: vllm/vllm-openai:latest
+    image: vllm/vllm-openai:v0.30.0
     container_name: academy-vllm
     ports:
       - "8000:8000"

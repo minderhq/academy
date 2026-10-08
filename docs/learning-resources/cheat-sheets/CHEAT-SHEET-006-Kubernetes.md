@@ -78,7 +78,7 @@ spec:
     spec:
       containers:
       - name: vllm
-        image: vllm/vllm-openai:latest
+        image: vllm/vllm-openai:v0.30.0
         ports:
         - containerPort: 8000
         resources:

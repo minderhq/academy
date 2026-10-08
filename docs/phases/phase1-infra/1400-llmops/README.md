@@ -246,7 +246,7 @@ curl http://localhost:8000/v1/chat/completions \
 # docker-compose.yml
 services:
   vllm:
-    image: vllm/vllm-openai:latest
+    image: vllm/vllm-openai:v0.30.0
     ports:
       - "8000:8000"
     environment:
@@ -280,7 +280,7 @@ volume=$PWD/data # share a volume with the Docker container to avoid downloading
 
 docker run --gpus all --shm-size 1g -p 8080:80 \
   -v $volume:/data \
-  ghcr.io/huggingface/text-generation-inference:latest \
+  ghcr.io/huggingface/text-generation-inference:3.3.7 \
   --model-id $model \
   --num-shard 2 \
   --quantize bitsandbytes-nf4
@@ -309,7 +309,7 @@ spec:
     spec:
       containers:
       - name: tgi
-        image: ghcr.io/huggingface/text-generation-inference:latest
+        image: ghcr.io/huggingface/text-generation-inference:3.3.7
         args:
           - --model-id
           - meta-llama/Llama-3.3-70B-Instruct

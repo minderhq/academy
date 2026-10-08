@@ -975,13 +975,13 @@ dmesg | grep -e DMAR -e IOMMU
 # Wrong: No resource limits
 services:
   vllm:
-    image: vllm/vllm-openai:latest
+    image: vllm/vllm-openai:v0.30.0
     # Will crash with large models!
 
 # Right: Set appropriate limits
 services:
   vllm:
-    image: vllm/vllm-openai:latest
+    image: vllm/vllm-openai:v0.30.0
     deploy:
       resources:
         reservations:

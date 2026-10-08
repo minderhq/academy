@@ -100,7 +100,7 @@ sudo systemctl restart docker
 
 2. **Test GPU container:**
 ```bash
-docker run --rm --gpus all nvidia/cuda:12.1.0-base nvidia-smi
+docker run --rm --gpus all nvidia/cuda:13.0.2-base-ubuntu24.04 nvidia-smi
 ```
 
 3. **Check GPU availability on host:**

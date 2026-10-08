@@ -340,7 +340,7 @@ services:
       - ./models:/models
 
   redis:
-    image: redis:latest
+    image: redis:8-alpine
     ports:
       - "6379:6379"
 ```

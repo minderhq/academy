@@ -250,7 +250,7 @@ answer = generator.generate(**tokenizer(prompt, return_tensors="pt"))
 # docker-compose.yml
 services:
   flan-t5:
-    image: vllm/vllm-openai:latest
+    image: vllm/vllm-openai:v0.30.0
     container_name: academy-flan-t5
     ports:
       - "8001:8000"
@@ -279,7 +279,7 @@ services:
 ```yaml
 services:
   mistral:
-    image: vllm/vllm-openai:latest
+    image: vllm/vllm-openai:v0.30.0
     container_name: academy-mistral
     ports:
       - "8002:8000"
@@ -344,7 +344,7 @@ services:
 docker run -d --gpus all \
   -p 8002:8000 \
   -e CUDA_VISIBLE_DEVICES=0 \
-  vllm/vllm-openai:latest \
+  vllm/vllm-openai:v0.30.0 \
   --model mistralai/Mistral-7B-Instruct-v0.2 \
   --quantization awq \
   --max-model-len 4096
@@ -356,7 +356,7 @@ docker run -d --gpus all \
 docker run -d --gpus all \
   -p 8001:8000 \
   -e CUDA_VISIBLE_DEVICES=0 \
-  vllm/vllm-openai:latest \
+  vllm/vllm-openai:v0.30.0 \
   --model google/flan-t5-large \
   --quantization awq \
   --max-model-len 2048

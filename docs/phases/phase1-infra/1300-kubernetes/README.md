@@ -377,7 +377,7 @@ metadata:
 spec:
   containers:
   - name: gpu-test
-    image: nvidia/cuda:12.1.0-base-ubuntu22.04
+    image: nvidia/cuda:13.0.2-runtime-ubuntu24.04
     command: ["nvidia-smi"]
     resources:
       limits:

@@ -147,7 +147,7 @@ services:
   # host port: replicas would all try to bind 8000 on the host, and
   # nginx reaches them over the compose network)
   vllm:
-    image: vllm/vllm-openai:latest
+    image: vllm/vllm-openai:v0.30.0
     deploy:
       resources:
         reservations:
@@ -352,7 +352,7 @@ spec:
     spec:
       containers:
       - name: vllm
-        image: vllm/vllm-openai:latest
+        image: vllm/vllm-openai:v0.30.0
         ports:
         - containerPort: 8000
         env:

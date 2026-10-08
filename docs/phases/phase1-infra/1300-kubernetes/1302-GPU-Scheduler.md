@@ -154,7 +154,7 @@ spec:
   nodeName: academy-worker-gpu  # Direct to GPU node
   containers:
   - name: inference
-    image: vllm/vllm-openai:latest
+    image: vllm/vllm-openai:v0.30.0
     resources:
       limits:
         nvidia.com/gpu: 1
@@ -334,7 +334,7 @@ spec:
   priorityClassName: gpu-critical  # Value: 1000
   containers:
   - name: inference
-    image: vllm/vllm-openai:latest
+    image: vllm/vllm-openai:v0.30.0
     resources:
       limits:
         nvidia.com/gpu: 1
@@ -396,7 +396,7 @@ spec:
         gpu.memory: 11GB
       containers:
       - name: vllm
-        image: vllm/vllm-openai:latest
+        image: vllm/vllm-openai:v0.30.0
         args:
           # ~6GB fp16 weights - fits the 11GB card at 0.9 utilization
           # (a 7B fp16 model needs ~14GB and would OOM on one card):

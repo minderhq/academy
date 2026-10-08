@@ -348,7 +348,7 @@ outputs = llm.generate(prompts, sampling_params)
 docker run --gpus all \
   -v ~/.cache/huggingface:/root/.cache/huggingface \
   -p 8000:8000 \
-  vllm/vllm-openai:latest \
+  vllm/vllm-openai:v0.30.0 \
   --model mistralai/Mistral-7B-v0.1 \
   --tensor-parallel-size 2 \
   --gpu-memory-utilization 0.9
@@ -390,7 +390,7 @@ Choose TGI when:
 docker run --gpus all \
   -p 8080:80 \
   -v ~/.cache/huggingface:/data \
-  ghcr.io/huggingface/text-generation-inference:latest \
+  ghcr.io/huggingface/text-generation-inference:3.3.7 \
   --model-id mistralai/Mistral-7B-v0.1 \
   --quantize awq \
   --flash-attention

@@ -577,14 +577,14 @@ if __name__ == "__main__":
 
 ```bash
 # Pull TGI Docker image
-docker pull ghcr.io/huggingface/text-generation-inference:latest
+docker pull ghcr.io/huggingface/text-generation-inference:3.3.7
 
 # Start TGI server
 docker run -d --gpus all \
   -p 8080:80 \
   -v /srv/models:/models \
   --name tgi-mistral \
-  ghcr.io/huggingface/text-generation-inference:latest \
+  ghcr.io/huggingface/text-generation-inference:3.3.7 \
   --model-id mistralai/Mistral-7B-Instruct-v0.2 \
   --quantize awq \
   --max-total-tokens 4096

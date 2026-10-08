@@ -36,7 +36,7 @@ docker run -d -v $(pwd)/data:/app/data nginx
 docker run -e LOG_LEVEL=debug nginx
 
 # With GPU support
-docker run --gpus all nvidia/cuda:12.1.0-base
+docker run --gpus all nvidia/cuda:13.0.2-base-ubuntu24.04
 
 # Remove container on exit
 docker run --rm nginx
@@ -244,13 +244,13 @@ docker system prune -a --volumes
 nvidia-smi
 
 # Run with specific GPU
-docker run --gpus '"device=0"' nvidia/cuda:12.1.0-base
+docker run --gpus '"device=0"' nvidia/cuda:13.0.2-base-ubuntu24.04
 
 # Run with multiple GPUs
-docker run --gpus 2 nvidia/cuda:12.1.0-base
+docker run --gpus 2 nvidia/cuda:13.0.2-base-ubuntu24.04
 
 # Run with all GPUs but limit memory
-docker run --gpus all --shm-size=1g nvidia/cuda:12.1.0-base
+docker run --gpus all --shm-size=1g nvidia/cuda:13.0.2-base-ubuntu24.04
 
 # Check GPU inside container
 docker exec ${CONTAINER} nvidia-smi
@@ -342,7 +342,7 @@ volumes:
 #### Multi-Stage Build
 ```dockerfile
 # Build stage
-FROM golang:1.21 as builder
+FROM golang:1.27 as builder
 WORKDIR /app
 COPY . .
 RUN go build -o app

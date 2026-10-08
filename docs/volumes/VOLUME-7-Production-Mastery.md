@@ -342,7 +342,7 @@ services:
           memory: 2G
 
   vllm:
-    image: vllm/vllm-openai:latest
+    image: vllm/vllm-openai:v0.30.0
     command: >
       --model /models/mistral-7b-instruct
       --gpu-memory-utilization 0.9
@@ -1127,13 +1127,13 @@ def run_agent(query, max_steps=10, max_time=300):
 # Wrong: No limits
 services:
   vllm:
-    image: vllm/vllm-openai:latest
+    image: vllm/vllm-openai:v0.30.0
     # Can consume all CPU/RAM, crash system
 
 # Right: Set limits and reservations
 services:
   vllm:
-    image: vllm/vllm-openai:latest
+    image: vllm/vllm-openai:v0.30.0
     deploy:
       resources:
         limits:

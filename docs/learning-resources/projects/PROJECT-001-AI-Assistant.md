@@ -142,7 +142,7 @@ services:
 
   # vLLM Inference Engine
   vllm:
-    image: vllm/vllm-openai:latest
+    image: vllm/vllm-openai:v0.30.0
     container_name: vllm
     ports:
       - "8000:8000"

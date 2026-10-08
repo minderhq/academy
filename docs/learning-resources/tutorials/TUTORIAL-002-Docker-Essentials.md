@@ -335,7 +335,7 @@ sudo systemctl restart docker
 ### Run GPU Container:
 ```bash
 docker run --gpus all -it --rm \
-  nvidia/cuda:12.1.0-base-ubuntu22.04 \
+  nvidia/cuda:13.0.2-base-ubuntu24.04 \
   nvidia-smi
 ```
 

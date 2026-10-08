@@ -229,11 +229,11 @@ def deploy_vllm():
 
     print("=== vLLM Server Deployment ===")
 
-    # Pull latest image
+    # Pull the pinned vLLM image
     print("Step 1: Pulling vLLM image...")
     subprocess.run([
         "docker", "pull",
-        "vllm/vllm-openai:latest"
+        "vllm/vllm-openai:v0.30.0"
     ])
 
     # Start vLLM server
@@ -243,7 +243,7 @@ def deploy_vllm():
         "--gpus", "all",
         "-p", "8000:8000",
         "-v", "/srv/models/vllm:/models",
-        "vllm/vllm-openai:latest",
+        "vllm/vllm-openai:v0.30.0",
         # --quantization awq requires an AWQ-quantized repo, not the fp16 checkpoint
         "--model", "Qwen/Qwen3-8B-AWQ",
         "--quantization", "awq",

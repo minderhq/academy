@@ -236,7 +236,7 @@ spec:
     spec:
       containers:
       - name: vllm
-        image: vllm/vllm-openai:latest
+        image: vllm/vllm-openai:v0.30.0
         resources:
           limits:
             nvidia.com/gpu: 4
@@ -273,7 +273,7 @@ spec:
     spec:
       containers:
       - name: tgi
-        image: ghcr.io/huggingface/text-generation-inference:latest
+        image: ghcr.io/huggingface/text-generation-inference:3.3.7
         resources:
           limits:
             nvidia.com/gpu: 4

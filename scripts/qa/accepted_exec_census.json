@@ -59,8 +59,8 @@
       }
     },
     "docs/00-META/assessment/phase1-practice.md": {
-      "mtime": 1791485459.1361682,
-      "size": 14605,
+      "mtime": 1791493932.2682679,
+      "size": 14616,
       "bad": {
         "220": "TIMEOUT"
       },
@@ -872,8 +872,8 @@
       "size": 2316
     },
     "docs/learning-resources/projects/PROJECT-001-AI-Assistant.md": {
-      "mtime": 1791492282.01927,
-      "size": 36833,
+      "mtime": 1791493932.271269,
+      "size": 36834,
       "bad": {
         "668": "TIMEOUT"
       },
@@ -1162,8 +1162,8 @@
       }
     },
     "docs/learning-resources/troubleshooting/TROUBLESHOOTING-Common-Issues.md": {
-      "mtime": 1791485459.1341672,
-      "size": 13544,
+      "mtime": 1791493932.2732673,
+      "size": 13556,
       "bad": {
         "403": "TIMEOUT"
       },
@@ -1378,8 +1378,8 @@
       }
     },
     "docs/learning-resources/tutorials/TUTORIAL-012-Production-LLMOps.md": {
-      "mtime": 1791485459.1351678,
-      "size": 26101,
+      "mtime": 1791493932.2732673,
+      "size": 26103,
       "bad": {}
     },
     "docs/learning-resources/tutorials/TUTORIAL-013-AI-Security.md": {
@@ -1507,14 +1507,9 @@
       }
     },
     "docs/phases/phase1-infra/1400-llmops/README.md": {
-      "mtime": 1791442052.569415,
-      "size": 25511,
-      "bad": {
-        "537": "ENV-GAP:fastapi"
-      },
-      "notes": {
-        "537": "optional third-party package the QA environment does not install; the fence documents the install requirement"
-      }
+      "mtime": 1791493932.2747717,
+      "size": 25510,
+      "bad": {}
     },
     "docs/phases/phase1-infra/1400-llmops/assessment/PRACTICE.md": {
       "mtime": 1791490939.290357,
@@ -1935,18 +1930,9 @@
       }
     },
     "docs/phases/phase2-foundations/2300-framework-engineering/PREREQUISITES.md": {
-      "mtime": 1791436051.5656006,
-      "size": 16002,
-      "bad": {
-        "193": "ENV-GAP:torch",
-        "255": "ENV-GAP:fastapi",
-        "366": "ENV-GAP:fastapi"
-      },
-      "notes": {
-        "193": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "255": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "366": "optional third-party package the QA environment does not install; the fence documents the install requirement"
-      }
+      "mtime": 1791493717.0838873,
+      "size": 16004,
+      "bad": {}
     },
     "docs/phases/phase2-foundations/2300-framework-engineering/assessment/PRACTICE.md": {
       "mtime": 1791436051.5640953,
@@ -2390,23 +2376,17 @@
       }
     },
     "docs/phases/phase3-transformers/3400-architectures/guides/3403-Model-Architecture-Comparison.md": {
-      "mtime": 1791436051.5873778,
-      "size": 19107,
+      "mtime": 1791493932.2747717,
+      "size": 19111,
       "bad": {
-        "156": "ENV-GAP:transformers",
-        "187": "ENV-GAP:transformers",
-        "219": "ENV-GAP:transformers",
-        "370": "ENV-GAP:transformers",
-        "390": "ENV-GAP:transformers",
-        "406": "ENV-GAP:torch"
+        "187": "ENV-GAP:Using `bitsandbytes` 4-bit quantization requires bitsandbyte",
+        "390": "ENV-GAP:Using `bitsandbytes` 8-bit quantization requires bitsandbyte",
+        "406": "ENV-GAP:pynvml"
       },
       "notes": {
-        "156": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "187": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "219": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "370": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "390": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "406": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "187": "wrong-interpreter baseline artifact: the baseline-era run died at the transformers import in a minimal venv; the kurulu-stack census interpreter has it, so the fence proceeds and dies at the next missing dependency instead (bitsandbytes 4-bit quantization) (tick-799 inference-engine pin-alignment dirty re-run; first correct-interpreter run for this file)",
+        "390": "wrong-interpreter baseline artifact: the baseline-era run died at the transformers import in a minimal venv; the kurulu-stack census interpreter has it, so the fence proceeds and dies at the next missing dependency instead (bitsandbytes 8-bit quantization) (tick-799 inference-engine pin-alignment dirty re-run; first correct-interpreter run for this file)",
+        "406": "wrong-interpreter baseline artifact: the baseline-era run died at the torch import in a minimal venv; the kurulu-stack census interpreter has it, so the fence proceeds and dies at the next missing module instead (pynvml) (tick-799 inference-engine pin-alignment dirty re-run; first correct-interpreter run for this file)"
       }
     },
     "docs/phases/phase3-transformers/3500-multimodal/3501-Vision-Language-Models.md": {
@@ -4030,19 +4010,19 @@
       }
     },
     "docs/volumes/VOLUME-4-Quantization.md": {
-      "mtime": 1791440871.826552,
+      "mtime": 1791493932.269267,
       "size": 16001,
       "bad": {
         "115": "ENV-GAP:exllamav2",
-        "159": "ENV-GAP:torch",
+        "159": "ENV-GAP:Using `bitsandbytes` 4-bit quantization requires bitsandbyte",
         "281": "ENV-GAP:vllm",
         "325": "ENV-GAP:vllm"
       },
       "notes": {
         "115": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "159": "optional third-party package the QA environment does not install; the fence documents the install requirement",
         "281": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "325": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "325": "optional third-party package the QA environment does not install; the fence documents the install requirement",
+        "159": "wrong-interpreter baseline artifact: the baseline-era run died at the torch import in a minimal venv; the kurulu-stack census interpreter has it, so the fence proceeds and dies at the next missing dependency instead (bitsandbytes 4-bit quantization) (tick-799 inference-engine pin-alignment dirty re-run; first correct-interpreter run for this file)"
       }
     },
     "docs/volumes/VOLUME-5-Model-Adaptation.md": {
@@ -4082,21 +4062,13 @@
       }
     },
     "docs/volumes/VOLUME-7-Production-Mastery.md": {
-      "mtime": 1791440871.829551,
-      "size": 51512,
+      "mtime": 1791493932.269267,
+      "size": 51515,
       "bad": {
-        "208": "ENV-GAP:prometheus_client",
-        "661": "ENV-GAP:langchain_core",
-        "716": "ENV-GAP:qdrant_client",
-        "1263": "ENV-GAP:prometheus_client",
-        "1307": "ENV-GAP:langchain_core"
+        "1263": "ENV-GAP:pynvml"
       },
       "notes": {
-        "208": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "661": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "716": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "1263": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "1307": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "1263": "wrong-interpreter baseline artifact: the baseline-era run died at the prometheus_client import in a minimal venv; the kurulu-stack census interpreter has it, so the fence proceeds and dies at the next missing module instead (pynvml) (tick-799 inference-engine pin-alignment dirty re-run; first correct-interpreter run for this file)"
       }
     }
   }
