@@ -101,7 +101,7 @@ services:
     # command: overrides CMD — the image ENTRYPOINT (the OpenAI-compatible
     # API server) is preserved, so these are server arguments:
     command: >
-      --model Qwen/Qwen2.5-7B-Instruct-AWQ
+      --model Qwen/Qwen3-8B-AWQ
       --tensor-parallel-size 1
       --gpu-memory-utilization 0.9
       --max-model-len 4096
@@ -201,7 +201,7 @@ spec:
         # args (not command:) — command: would replace the image ENTRYPOINT
         args:
           - --model
-          - Qwen/Qwen2.5-7B-Instruct-AWQ   # pre-quantized AWQ: fits 11GB
+          - Qwen/Qwen3-8B-AWQ   # pre-quantized AWQ: fits 11GB
           - --tensor-parallel-size
           - "1"
           - --gpu-memory-utilization
@@ -288,7 +288,7 @@ spec:
 |-----------|---------|-------------|------------------------|
 | `--tensor-parallel-size` | 1 | GPUs used for tensor parallelism | 1 (single GPU) |
 | `--gpu-memory-utilization` | 0.9 | Fraction of total VRAM vLLM may use (weights + KV cache + activations) | 0.9 — lower only when other processes share the GPU |
-| `--max-model-len` | model's `max_position_embeddings` | Max sequence length. Qwen2.5-7B-Instruct's ceiling is 32768 — left at the default it over-runs the 11GB KV budget, so set it explicitly | 4096 |
+| `--max-model-len` | model's `max_position_embeddings` | Max sequence length. Qwen3-8B's ceiling is 40960 — left at the default it over-runs the 11GB KV budget, so set it explicitly | 4096 |
 | `--dtype` | auto (from checkpoint config) | Compute dtype for activations/KV | `half` for AWQ checkpoints |
 | `--quantization` | auto-detected for pre-quantized checkpoints | awq/gptq — requires a pre-quantized checkpoint repo | pre-quantized AWQ |
 | `--block-size` | 16 | KV cache block size | leave the default |
@@ -299,7 +299,7 @@ spec:
 
 ```bash
 # High Throughput Configuration (pre-quantized AWQ: ~5.5GB weights)
---model Qwen/Qwen2.5-7B-Instruct-AWQ \
+--model Qwen/Qwen3-8B-AWQ \
 --gpu-memory-utilization 0.9 \
 --max-model-len 2048 \
 --max-num-seqs 128 \
@@ -307,19 +307,19 @@ spec:
 # prefix caching stays on for shared system prompts
 
 # Long Context Configuration
---model Qwen/Qwen2.5-7B-Instruct-AWQ \
+--model Qwen/Qwen3-8B-AWQ \
 --gpu-memory-utilization 0.9 \
 --max-model-len 8192 \
 --max-num-seqs 16 \
 --dtype half
-# budget check: 0.9 x 11GB ~ 9.9GB, minus ~5.5GB weights and ~1.2GB
-# activations leaves ~3.2GB for KV. Qwen2.5-7B's GQA keeps KV cheap:
-# ~57KB/token fp16 (2 x 28 layers x 512 kv-dim x 2 bytes), so an
-# 8k-token sequence needs ~0.5GB — roughly six fit at once, and
-# concurrency saturates the budget before context length does.
+# budget check: 0.9 x 11GB ~ 9.9GB, minus ~6.1GB weights and ~1.2GB
+# activations leaves ~2.6GB for KV. Qwen3-8B's GQA is roomier per
+# token (8 KV heads vs 4): ~144KB fp16 (2 x 36 layers x 1024 kv-dim
+# x 2 bytes), so an 8k sequence needs ~1.2GB — roughly two fit, and
+# context length joins concurrency as a first-order budget term.
 
 # Balanced Configuration (11GB VRAM)
---model Qwen/Qwen2.5-7B-Instruct-AWQ \
+--model Qwen/Qwen3-8B-AWQ \
 --gpu-memory-utilization 0.9 \
 --max-model-len 4096 \
 --max-num-seqs 64 \
@@ -344,7 +344,7 @@ client = OpenAI(
 
 # Chat completion
 response = client.chat.completions.create(
-    model="Qwen/Qwen2.5-7B-Instruct-AWQ",
+    model="Qwen/Qwen3-8B-AWQ",
     messages=[
         {"role": "system", "content": "You are a helpful assistant for academy."},
         {"role": "user", "content": "Explain quantum computing in simple terms."},
@@ -361,7 +361,7 @@ for chunk in response:
 
 # Non-streaming response
 response = client.chat.completions.create(
-    model="Qwen/Qwen2.5-7B-Instruct-AWQ",
+    model="Qwen/Qwen3-8B-AWQ",
     messages=[{"role": "user", "content": "What is AI?"}],
     max_tokens=100,
 )
@@ -382,7 +382,7 @@ curl -X POST http://192.168.1.100:8000/v1/chat/completions \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer ${VLLM_API_KEY:?export VLLM_API_KEY first}" \
   -d '{
-    "model": "Qwen/Qwen2.5-7B-Instruct-AWQ",
+    "model": "Qwen/Qwen3-8B-AWQ",
     "messages": [
       {"role": "user", "content": "Hello!"}
     ],
@@ -394,7 +394,7 @@ curl -X POST http://192.168.1.100:8000/v1/chat/completions \
 curl -X POST http://192.168.1.100:8000/v1/completions \
   -H "Content-Type: application/json" \
   -d '{
-    "model": "Qwen/Qwen2.5-7B-Instruct-AWQ",
+    "model": "Qwen/Qwen3-8B-AWQ",
     "prompt": "The future of AI is",
     "max_tokens": 50
   }'
@@ -413,7 +413,7 @@ const client = new OpenAI({
 
 async function chat() {
   const response = await client.chat.completions.create({
-    model: 'Qwen/Qwen2.5-7B-Instruct-AWQ',
+    model: 'Qwen/Qwen3-8B-AWQ',
     messages: [
       { role: 'system', content: 'You are a helpful assistant.' },
       { role: 'user', content: 'Explain Docker.' },
@@ -428,7 +428,7 @@ async function chat() {
 // Streaming
 async function chatStream() {
   const stream = await client.chat.completions.create({
-    model: 'Qwen/Qwen2.5-7B-Instruct-AWQ',
+    model: 'Qwen/Qwen3-8B-AWQ',
     messages: [
       { role: 'user', content: 'Write a short poem.' },
     ],
@@ -470,7 +470,7 @@ services:
     ports:
       - "8001:8000"
     command: >
-      --model Qwen/Qwen2.5-7B-Instruct-AWQ
+      --model Qwen/Qwen3-8B-AWQ
       --gpu-memory-utilization 0.9 --max-model-len 4096 --dtype half
     environment:
       - CUDA_VISIBLE_DEVICES=0
@@ -592,10 +592,10 @@ app = FastAPI()
 # Route by the full repo name the server was started with — the "model"
 # field in requests carries exactly that name
 VLLM_ENDPOINTS = {
-    "Qwen/Qwen2.5-7B-Instruct-AWQ": "http://vllm-qwen:8000/v1",
+    "Qwen/Qwen3-8B-AWQ": "http://vllm-qwen:8000/v1",
     "hugging-quants/Meta-Llama-3.1-8B-Instruct-AWQ-INT4": "http://vllm-llama:8000/v1",
 }
-DEFAULT_ENDPOINT = VLLM_ENDPOINTS["Qwen/Qwen2.5-7B-Instruct-AWQ"]
+DEFAULT_ENDPOINT = VLLM_ENDPOINTS["Qwen/Qwen3-8B-AWQ"]
 
 # Drop empty entries: with API_KEYS unset, "".split(",") yields [""] —
 # an empty-key entry would let requests without an Authorization
@@ -644,7 +644,7 @@ your own hardware with the concurrency techniques below.
 
 Model              Quant      Context    Aggregate tok/s
 ──────────────────────────────────────────────────────────
-Qwen2.5-7B         AWQ 4-bit  2048       ~40-80
+Qwen3-8B           AWQ 4-bit  2048       ~40-80
 Llama-3.1-8B       AWQ 4-bit  2048       ~30-60
 Phi-2              fp16       2048       ~60-100 (2.7B weights)
 Llama-3.1-8B       fp16       —          does not fit 11GB (~16GB weights)
@@ -672,7 +672,7 @@ client = AsyncOpenAI(
 
 async def ask(question: str) -> str:
     response = await client.chat.completions.create(
-        model="Qwen/Qwen2.5-7B-Instruct-AWQ",
+        model="Qwen/Qwen3-8B-AWQ",
         messages=[{"role": "user", "content": question}],
         max_tokens=256,
     )
@@ -703,7 +703,7 @@ Error: CUDA out of memory
 ```bash
 # Serve a pre-quantized checkpoint — fp16 7B weights (~15GB) are over
 # budget; --quantization awq is auto-detected from the checkpoint config
---model Qwen/Qwen2.5-7B-Instruct-AWQ
+--model Qwen/Qwen3-8B-AWQ
 
 # Shorter sequences shrink the KV cache
 --max-model-len 2048
@@ -768,18 +768,18 @@ docker run -d --gpus all \
   -p 8000:8000 \
   --name vllm-qwen \
   vllm/vllm-openai:v0.30.0 \
-  --model Qwen/Qwen2.5-7B-Instruct-AWQ \
+  --model Qwen/Qwen3-8B-AWQ \
   --gpu-memory-utilization 0.9 \
   --max-model-len 4096
 
 # 3. Test with curl (no --api-key above, so no auth is required)
 curl http://localhost:8000/v1/chat/completions \
   -H "Content-Type: application/json" \
-  -d '{"model": "Qwen/Qwen2.5-7B-Instruct-AWQ", "messages": [{"role": "user", "content": "Hello!"}]}'
+  -d '{"model": "Qwen/Qwen3-8B-AWQ", "messages": [{"role": "user", "content": "Hello!"}]}'
 
 # 4. Test with Python
 uv pip install openai
-python -c "from openai import OpenAI; client = OpenAI(base_url='http://localhost:8000/v1', api_key='dummy'); print(client.chat.completions.create(model='Qwen/Qwen2.5-7B-Instruct-AWQ', messages=[{'role': 'user', 'content': 'Hello!'}]).choices[0].message.content)"
+python -c "from openai import OpenAI; client = OpenAI(base_url='http://localhost:8000/v1', api_key='dummy'); print(client.chat.completions.create(model='Qwen/Qwen3-8B-AWQ', messages=[{'role': 'user', 'content': 'Hello!'}]).choices[0].message.content)"
 ```
 
 

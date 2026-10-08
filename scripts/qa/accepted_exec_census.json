@@ -1511,8 +1511,8 @@
       "bad": {}
     },
     "docs/phases/phase1-infra/1200-virtualization/1204-Multi-GPU-Setup.md": {
-      "mtime": 1791436051.5323634,
-      "size": 15963,
+      "mtime": 1791484342.1016102,
+      "size": 15932,
       "bad": {
         "115": "ENV-GAP:torch",
         "135": "ENV-GAP:torch",
@@ -1563,8 +1563,8 @@
       }
     },
     "docs/phases/phase1-infra/1400-llmops/1402-vLLM-and-TGI.md": {
-      "mtime": 1791436051.5410879,
-      "size": 16437,
+      "mtime": 1791484457.3037696,
+      "size": 16325,
       "bad": {
         "179": "ENV-GAP:vllm",
         "288": "UN-LEAK",
@@ -1585,8 +1585,8 @@
       }
     },
     "docs/phases/phase1-infra/1400-llmops/1405-SGLang.md": {
-      "mtime": 1791436051.5420878,
-      "size": 22814,
+      "mtime": 1791484457.3045082,
+      "size": 22759,
       "bad": {
         "173": "ENV-GAP:openai",
         "212": "ENV-GAP:sglang",
@@ -1609,8 +1609,8 @@
       }
     },
     "docs/phases/phase1-infra/1400-llmops/assessment/PRACTICE.md": {
-      "mtime": 1791436051.5430868,
-      "size": 27798,
+      "mtime": 1791484457.3059225,
+      "size": 27688,
       "bad": {
         "78": "ENV-GAP:requests",
         "261": "ENV-GAP:requests",
@@ -1625,8 +1625,8 @@
       }
     },
     "docs/phases/phase1-infra/1400-llmops/guides/1403-vLLM-Production-Deployment.md": {
-      "mtime": 1791436051.5440867,
-      "size": 28750,
+      "mtime": 1791484457.3070219,
+      "size": 28536,
       "bad": {
         "333": "ENV-GAP:openai",
         "584": "ENV-GAP:fastapi",

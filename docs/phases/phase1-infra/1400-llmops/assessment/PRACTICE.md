@@ -168,7 +168,7 @@ uv pip install "vllm>=0.6.0"
 
 # 2. Start vLLM server with optimized settings
 echo "Starting vLLM server..."
-vllm serve Qwen/Qwen2.5-7B-Instruct \
+vllm serve Qwen/Qwen3-8B \
     --tensor-parallel-size 1 \
     --dtype half \
     --host 0.0.0.0 \
@@ -222,7 +222,7 @@ echo -e "\n=== Chat Completion ==="
 curl -X POST http://localhost:8000/v1/chat/completions \
     -H "Content-Type: application/json" \
     -d '{
-        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "model": "Qwen/Qwen3-8B",
         "messages": [
             {"role": "system", "content": "You are a helpful assistant."},
             {"role": "user", "content": "Explain neural networks in one sentence."}
@@ -238,7 +238,7 @@ echo -e "\n=== Streaming Completion ==="
 curl -X POST http://localhost:8000/v1/chat/completions \
     -H "Content-Type: application/json" \
     -d '{
-        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "model": "Qwen/Qwen3-8B",
         "messages": [{"role": "user", "content": "Count to 5"}],
         "stream": true
     }'
@@ -250,7 +250,7 @@ echo -e "\n=== Performance Test ==="
 time curl -X POST http://localhost:8000/v1/completions \
     -H "Content-Type: application/json" \
     -d '{
-        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "model": "Qwen/Qwen3-8B",
         "prompt": "Write a short story about AI",
         "max_tokens": 200
     }' > /dev/null
@@ -287,7 +287,7 @@ class VLLMClient:
     def chat_completion(
         self,
         messages: list[dict[str, str]],
-        model: str = "Qwen/Qwen2.5-7B-Instruct",
+        model: str = "Qwen/Qwen3-8B",
         temperature: float = 0.7,
         max_tokens: int = 100,
         stream: bool = False
@@ -309,7 +309,7 @@ class VLLMClient:
     def completion(
         self,
         prompt: str,
-        model: str = "Qwen/Qwen2.5-7B-Instruct",
+        model: str = "Qwen/Qwen3-8B",
         temperature: float = 0.7,
         max_tokens: int = 100
     ) -> dict:
@@ -604,7 +604,7 @@ services:
     ports:
       - "8001:8000"
     command: >
-      --model Qwen/Qwen2.5-7B-Instruct
+      --model Qwen/Qwen3-8B
       --host 0.0.0.0
       --port 8000
       --gpu-memory-utilization 0.9
@@ -624,7 +624,7 @@ services:
     ports:
       - "8002:8000"
     command: >
-      --model Qwen/Qwen2.5-7B-Instruct
+      --model Qwen/Qwen3-8B
       --host 0.0.0.0
       --port 8000
       --gpu-memory-utilization 0.9
@@ -644,7 +644,7 @@ services:
     ports:
       - "8003:8000"
     command: >
-      --model Qwen/Qwen2.5-7B-Instruct
+      --model Qwen/Qwen3-8B
       --host 0.0.0.0
       --port 8000
       --gpu-memory-utilization 0.9
@@ -690,7 +690,7 @@ for i in {1..10}; do
   response=$(curl -s -X POST $ENDPOINT \
     -H "Content-Type: application/json" \
     -d '{
-      "model": "Qwen/Qwen2.5-7B-Instruct",
+      "model": "Qwen/Qwen3-8B",
       "messages": [{"role": "user", "content": "Hello"}]
     }')
 

@@ -401,7 +401,7 @@ spec:
           # ~6GB fp16 weights - fits the 11GB card at 0.9 utilization
           # (a 7B fp16 model needs ~14GB and would OOM on one card):
           - --model
-          - Qwen/Qwen2.5-3B-Instruct
+          - Qwen/Qwen3-4B
           - --tensor-parallel-size
           - "1"
           - --gpu-memory-utilization

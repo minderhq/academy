@@ -128,7 +128,7 @@ spec:
         # ignored. The model here is ungated; a gated model (Llama-2
         # etc.) would also need an HF token injected as HF_TOKEN.
         args:
-        - --model=Qwen/Qwen2.5-7B-Instruct
+        - --model=Qwen/Qwen3-8B
         - --tensor-parallel-size=1
         - --dtype=half
         - --max-model-len=4096
@@ -288,7 +288,7 @@ metadata:
   labels:
     app: llm-serving
 data:
-  MODEL_NAME: "Qwen/Qwen2.5-7B-Instruct"
+  MODEL_NAME: "Qwen/Qwen3-8B"
   MAX_TOKENS: "2048"
   TEMPERATURE: "0.7"
   TOP_P: "0.9"

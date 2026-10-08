@@ -285,8 +285,8 @@ model = dispatch_model(model, device_map=device_map)
 # across the cards. `vllm serve` replaces the long-deprecated
 # python -m vllm.entrypoints.api_server entrypoint.
 # Sizing note: Gemma-3-27B at fp16 needs ~27GB per shard - too big for
-# two 11GB cards. The 7B below fits (~8GB per shard):
-vllm serve Qwen/Qwen2.5-7B-Instruct \
+# two 11GB cards. The 8B below fits (~8.2GB per shard):
+vllm serve Qwen/Qwen3-8B \
     --tensor-parallel-size 2 \
     --gpu-memory-utilization 0.9 \
     --port 8000
@@ -305,9 +305,9 @@ export CUDA_VISIBLE_DEVICES=0
 ### Text Generation Inference (TGI)
 ```bash
 # Multi-GPU inference (num-shard splits the weights; the shard must
-# fit - 7B fp16 = ~8GB per shard across two 11GB cards, while 13B
+# fit - 8B fp16 = ~8.2GB per shard across two 11GB cards, while 13B
 # needs ~13GB per shard, i.e. 24GB-class cards):
-model=Qwen/Qwen2.5-7B-Instruct
+model=Qwen/Qwen3-8B
 
 text-generation-launcher \
     --model-id $model \
@@ -369,12 +369,12 @@ deepspeed --num_gpus=2 train.py --deepspeed ds_config.json
 from transformers import AutoModelForCausalLM, TrainingArguments, Trainer, BitsAndBytesConfig
 from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
 
-# Load the model sharded across both GPUs. Qwen2.5-7B's top-level
-# modules are model.embed_tokens, model.layers.{0..27} (28 decoder
+# Load the model sharded across both GPUs. Qwen3-8B's top-level
+# modules are model.embed_tokens, model.layers.{0..35} (36 decoder
 # layers), model.norm and lm_head - device_map="auto" places them by
-# the per-card budget (a hand-written map would need all 28 keys):
+# the per-card budget (a hand-written map would need all 36 keys):
 model = AutoModelForCausalLM.from_pretrained(
-    "Qwen/Qwen2.5-7B-Instruct",
+    "Qwen/Qwen3-8B",
     device_map="auto",
     max_memory={0: "9GiB", 1: "9GiB"},
     quantization_config=BitsAndBytesConfig(load_in_4bit=True),

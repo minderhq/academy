@@ -538,12 +538,12 @@ kubectl describe node | grep nvidia.com/gpu
 
 **Pitfall:** Loading full model without quantization
 ```bash
-# Wrong: Load full model (11GB+)
-vllm serve Qwen/Qwen2.5-7B-Instruct
+# Wrong: Load full model (16GB+)
+vllm serve Qwen/Qwen3-8B
 # Error: CUDA out of memory
 
 # Right: Use quantized model
-vllm serve Qwen/Qwen2.5-7B-Instruct \
+vllm serve Qwen/Qwen3-8B \
   --quantization awq \
   --max-model-len 4096 \
   --gpu-memory-utilization 0.9

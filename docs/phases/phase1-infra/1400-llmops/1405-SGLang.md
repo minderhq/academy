@@ -149,7 +149,7 @@ The hard pins are deliberate: the engine's kernels (`sglang-kernel`, flashinfer)
 # python -m sglang.launch_server is the long form; `sglang serve` is the
 # newer alias for the same entrypoint.
 python -m sglang.launch_server \
-  --model-path Qwen/Qwen2.5-7B-Instruct-AWQ \  # pre-quantized AWQ: ungated, fits 11GB
+  --model-path Qwen/Qwen3-8B-AWQ \  # pre-quantized AWQ: ungated, fits 11GB
   --mem-fraction-static 0.85 \                 # fraction of VRAM for weights + KV
   --context-length 8192 \                      # slice below the checkpoint's ceiling
   --port 30000
@@ -178,7 +178,7 @@ from openai import OpenAI
 client = OpenAI(base_url="http://localhost:30000/v1", api_key="dummy")
 
 response = client.chat.completions.create(
-    model="Qwen/Qwen2.5-7B-Instruct-AWQ",
+    model="Qwen/Qwen3-8B-AWQ",
     messages=[{"role": "user", "content": "Hello!"}],
     max_tokens=512,
 )
@@ -191,15 +191,15 @@ The knobs differ from vLLM's by name and behave the same in kind: `--mem-fractio
 ```text
 GPU VRAM (11GB, --mem-fraction-static 0.85 → ~9.35GB budget):
 ┌────────────────────────────────────────────────────┐
-│ Model weights         ~5.5GB (Qwen2.5-7B AWQ 4-bit)│
+│ Model weights           ~6.1GB (Qwen3-8B AWQ 4-bit)│
 ├────────────────────────────────────────────────────┤
-│ Radix-tree KV cache   ~2.5-3.5GB (the reuse pool)  │
+│ Radix-tree KV cache   ~1.5-2.5GB (the reuse pool)  │
 ├────────────────────────────────────────────────────┤
 │ Activations + graphs  ~1-2GB                       │
 └────────────────────────────────────────────────────┘
 
-KV math (Qwen2.5-7B, fp16 KV, GQA): 2 (K+V) × 28 layers × 512
-kv-dim × 2 bytes ≈ 57KB per token — one 8k sequence ≈ 0.5GB.
+KV math (Qwen3-8B, fp16 KV, GQA): 2 (K+V) × 36 layers × 1024
+kv-dim × 2 bytes ≈ 144KB per token — one 8k sequence ≈ 1.2GB.
 The radix tree spends this same budget, but re-sells it as
 prefix hits. Halve the cache bytes with --kv-cache-dtype fp8_e4m3
 (latency-quality tradeoff: measure before shipping it).
@@ -214,7 +214,7 @@ import sglang as sgl
 
 # Offline engine: same scheduler, no HTTP layer.
 llm = sgl.Engine(
-    model_path="Qwen/Qwen2.5-7B-Instruct-AWQ",  # ungated pre-quantized AWQ
+    model_path="Qwen/Qwen3-8B-AWQ",  # ungated pre-quantized AWQ
     mem_fraction_static=0.85,                    # server flags become ctor kwargs,
     context_length=8192,                         # dashes -> underscores
 )
@@ -309,7 +309,7 @@ The flags mirror 4202's theory — a small draft model proposes, the target veri
 ```bash
 # EAGLE-family speculation: topk 1 draft path, 3 steps, 4 draft tokens
 python -m sglang.launch_server \
-  --model-path Qwen/Qwen2.5-7B-Instruct-AWQ \
+  --model-path Qwen/Qwen3-8B-AWQ \
   --speculative-algorithm EAGLE \
   --speculative-eagle-topk 1 \
   --speculative-num-steps 3 \
@@ -368,7 +368,7 @@ spec:
         image: lmsysorg/sglang:v0.5.21-cu130   # pinned release, not latest
         args:
           - --model-path
-          - Qwen/Qwen2.5-7B-Instruct-AWQ   # ungated pre-quantized AWQ
+          - Qwen/Qwen3-8B-AWQ   # ungated pre-quantized AWQ
           - --mem-fraction-static
           - "0.85"
           - --context-length
