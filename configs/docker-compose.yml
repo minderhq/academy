@@ -51,15 +51,15 @@ services:
     volumes:
       - ./data/hf-cache:/root/.cache/huggingface
     environment:
-      # Model must fit your VRAM. A 7B AWQ-quantized model fits comfortably
+      # Model must fit your VRAM. An 8B AWQ-quantized model fits comfortably
       # on an 11GB VRAM GPU; pick a larger model for bigger cards.
-      - MODEL=${MODEL:-Qwen/Qwen2.5-7B-Instruct-AWQ}
+      - MODEL=${MODEL:-Qwen/Qwen3-8B-AWQ}
       - HF_TOKEN=${HF_TOKEN:-}
       - TENSOR_PARALLEL_SIZE=1
       - GPU_MEMORY_UTILIZATION=0.85
       - MAX_MODEL_LEN=${MAX_MODEL_LEN:-8192}
     command: >
-      --model ${MODEL:-Qwen/Qwen2.5-7B-Instruct-AWQ}
+      --model ${MODEL:-Qwen/Qwen3-8B-AWQ}
       --tensor-parallel-size 1
       --gpu-memory-utilization 0.85
       --max-model-len ${MAX_MODEL_LEN:-8192}
