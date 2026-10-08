@@ -7,11 +7,11 @@
 # fence_exec_gate re-executes census-blessed fences whose blessed
 # outcomes were recorded under that stack (a partial interpreter
 # re-executes them as ENV-GAP verdicts). --skip is the documented CI
-# shape. Action majors mirror the corpus registry in
-# scripts/qa/action_version_scan.py, with one divergence: the registry
-# teaches astral-sh/setup-uv@v9, the action's newest published major is
-# v7 - the workflow pins what resolves; the registry tick is the corpus's
-# own to land.
+# shape. Action pins mirror the corpus registry in
+# scripts/qa/action_version_scan.py, including its one full-tag
+# entry: astral-sh/setup-uv publishes no resolvable major ref, so
+# registry and workflow share the exact pin setup-uv@v10.2.0 (the
+# corpus side of the old divergence, landed tick-800).
 name: QA fleet
 
 on:
@@ -29,7 +29,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      - uses: astral-sh/setup-uv@v7
+      - uses: astral-sh/setup-uv@v10.2.0
         with:
           python-version: "3.13"
           enable-cache: true

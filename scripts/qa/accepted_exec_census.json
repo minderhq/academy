@@ -636,8 +636,8 @@
       }
     },
     "docs/learning-resources/labs/LAB-009-Production-Deployment.md": {
-      "mtime": 1791490939.2875538,
-      "size": 43457,
+      "mtime": 1791495742.6360111,
+      "size": 43462,
       "bad": {
         "175": "TIMEOUT"
       },
@@ -980,20 +980,9 @@
       }
     },
     "docs/learning-resources/projects/PROJECT-007-Production-AI-System.md": {
-      "mtime": 1791440871.7812605,
-      "size": 24100,
-      "bad": {
-        "112": "ENV-GAP:langgraph",
-        "213": "UN-LEAK",
-        "287": "ENV-GAP:fastapi",
-        "530": "ENV-GAP:prometheus_client"
-      },
-      "notes": {
-        "112": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "213": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
-        "287": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "530": "optional third-party package the QA environment does not install; the fence documents the install requirement"
-      }
+      "mtime": 1791495742.6360111,
+      "size": 24105,
+      "bad": {}
     },
     "docs/learning-resources/projects/templates/TEMPLATE-004-Agent-Framework.md": {
       "mtime": 1791441227.305136,
@@ -1397,8 +1386,8 @@
       }
     },
     "docs/learning-resources/tutorials/TUTORIAL-014-Production-LLM-Systems.md": {
-      "mtime": 1791490939.2885623,
-      "size": 29027,
+      "mtime": 1791495742.6370184,
+      "size": 29032,
       "bad": {}
     },
     "docs/notebooks/README.md": {
@@ -3544,8 +3533,8 @@
       "bad": {}
     },
     "docs/phases/phase6-rag/6500-mlops-pipelines/6502-CI-CD-for-ML.md": {
-      "mtime": 1791109464.2623022,
-      "size": 23888,
+      "mtime": 1791495742.6380184,
+      "size": 23898,
       "bad": {}
     },
     "docs/phases/phase6-rag/6500-mlops-pipelines/6503-Model-Registry.md": {
@@ -3564,22 +3553,22 @@
       "bad": {}
     },
     "docs/phases/phase6-rag/6500-mlops-pipelines/assessment/PRACTICE.md": {
+      "mtime": 1791495742.6370184,
+      "size": 16462,
       "bad": {
-        "101": "UN-LEAK",
         "19": "ENV-GAP:ragas",
+        "101": "UN-LEAK",
         "223": "UN-LEAK",
         "295": "ENV-GAP:mlflow",
         "476": "UN-LEAK"
       },
-      "mtime": 1790745763.7696588,
       "notes": {
         "101": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
         "19": "optional third-party package the QA environment does not install; the fence documents the install requirement",
         "223": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically",
         "295": "optional third-party package the QA environment does not install; the fence documents the install requirement",
         "476": "downstream cascade: an upstream fence died on its env-gap/service before binding this name; fence_namecheck accepts the name statically"
-      },
-      "size": 16457
+      }
     },
     "docs/phases/phase6-rag/README.md": {
       "mtime": 1791440871.819509,
@@ -4062,8 +4051,8 @@
       }
     },
     "docs/volumes/VOLUME-7-Production-Mastery.md": {
-      "mtime": 1791493932.269267,
-      "size": 51515,
+      "mtime": 1791495742.6345062,
+      "size": 51525,
       "bad": {
         "1263": "ENV-GAP:pynvml"
       },

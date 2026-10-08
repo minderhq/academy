@@ -21,6 +21,21 @@ AV-01  a ``uses: owner/repo@vN`` pin on any line of a docs/*.md file
          actions/download-artifact@v8,
          gaurav-nelson/github-action-markdown-link-check@v1.
 
+       Full-tag entries (tick-800): a registry value may be an int
+       (major-pin contract, verified against the moving major tag)
+       or a string (exact full-tag pin, required when the action
+       publishes no resolvable major ref). astral-sh/setup-uv is the
+       born case: its tags are full versions only (v10.2.0 latest,
+       2026-10 verification), its branches carry no vN major branch,
+       and its own README pins by commit SHA - so ``@v9``-style
+       majors simply do not resolve, and the corpus teaches the
+       readable middle ground ``setup-uv@v10.2.0``. The tick-800
+       re-verification against the live release pages also bumped
+       cache 4->6, codecov 5->7, buildx 3->4, login 3->4, metadata
+       5->6 and build-push 6->7 (the 6502 prose had already taught
+       cache@v6 from its own 2026-09 page check - the registry was
+       the stale half of that split).
+
 Same change-means-update-the-registry contract as the fence-class
 gate: an action NOT in the registry is also a finding - either the
 pin is stale or the action is new and needs its current major
@@ -43,25 +58,33 @@ import sys
 from pathlib import Path
 
 # action (owner/repo) -> current major taught by the corpus.
-REGISTRY: dict[str, int] = {
+# An int value is a major-pin contract (the moving major tag exists,
+# verified); a str value is an exact full-tag pin (no resolvable
+# major ref exists - see the setup-uv note below).
+REGISTRY: dict[str, int | str] = {
     "actions/checkout": 7,
-    "astral-sh/setup-uv": 9,
-    "actions/cache": 4,
-    "codecov/codecov-action": 5,
-    "docker/setup-buildx-action": 3,
-    "docker/login-action": 3,
-    "docker/metadata-action": 5,
-    "docker/build-push-action": 6,
+    # setup-uv publishes full-version tags only - no major tag and no
+    # vN major branch (verified 2026-10 against the tag and branch
+    # lists; its own README pins by commit SHA), so @v9-style majors
+    # do not resolve. The corpus teaches the full-version pin.
+    "astral-sh/setup-uv": "v10.2.0",
+    "actions/cache": 6,
+    "codecov/codecov-action": 7,
+    "docker/setup-buildx-action": 4,
+    "docker/login-action": 4,
+    "docker/metadata-action": 6,
+    "docker/build-push-action": 7,
     "actions/upload-artifact": 7,
     "actions/download-artifact": 8,
     "gaurav-nelson/github-action-markdown-link-check": 1,
     # recorded at birth: TUTORIAL-005 deploy notify steps; v3 is the
-    # action's current major (no v4 exists as of 2026-09)
+    # action's current major (no v4 exists as of 2026-09). v3 resolves
+    # as a moving branch (there is no v3 tag), verified 2026-10.
     "8398a7/action-slack": 3,
 }
 
 USES_RE = re.compile(
-    r"^\s*(?:-\s+)?uses:\s*([A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+)@v(\d+)\s*$"
+    r"^\s*(?:-\s+)?uses:\s*([A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+)@v(\d+(?:\.\d+)*)\s*$"
 )
 
 
@@ -73,11 +96,20 @@ def scan_file(root: Path, path: Path, findings: list[str]) -> None:
         m = USES_RE.match(code)
         if not m:
             continue
-        action, major = m.group(1), int(m.group(2))
-        if REGISTRY.get(action) != major:
+        action, ver = m.group(1), m.group(2)
+        expected = REGISTRY.get(action)
+        if isinstance(expected, int):
+            ok = int(ver.split(".")[0]) == expected
+        elif isinstance(expected, str):
+            ok = f"v{ver}" == expected
+        else:
+            ok = False
+        if not ok:
+            want = f"v{expected}" if isinstance(expected, int) else expected
             findings.append(
-                f"{rel}:{ln}: AV-01 action pin {action}@v{major} not "
-                f"in the canonical registry (or a stale major) - "
+                f"{rel}:{ln}: AV-01 action pin {action}@v{ver} not "
+                f"in the canonical registry (or a stale major; "
+                f"expected {action}@{want}) - "
                 f"update the pin or record its current major"
             )
 

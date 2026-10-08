@@ -77,7 +77,7 @@ Two differences from classic software CI/CD shape everything below:
 
 ## Pipeline Configuration
 
-The workflow below is a GitHub Actions sketch — it needs a repository, runners, and scripts to exist — but the keys are the real contract. Action pins are major-version tags verified against the release pages as of 2026-09: `checkout@v7` (v7.0.1), `setup-python@v7` (v7.0.0), `cache@v6` (v6.1.0), `upload-artifact@v7` (v7.0.1), `download-artifact@v8` (v8.0.1). Copying snippets with stale pins (`checkout@v3`, `setup-python@v4`, `upload-artifact@v3`) is the most common way tutorials rot — check the release page, pin the major, and let renovate/dependabot keep it current.
+The workflow below is a GitHub Actions sketch — it needs a repository, runners, and scripts to exist — but the keys are the real contract. Action pins are major-version tags verified against the release pages as of 2026-10: `checkout@v7` (v7.0.1), `setup-python@v7` (v7.0.0), `cache@v6` (v6.1.0), `upload-artifact@v7` (v7.0.2), `download-artifact@v8` (v8.0.2). Copying snippets with stale pins (`checkout@v3`, `setup-python@v4`, `upload-artifact@v3`) is the most common way tutorials rot — check the release page, pin the major, and let renovate/dependabot keep it current.
 
 ```text
 # .github/workflows/ml-pipeline.yml (sketch - needs a repo + runners)
@@ -96,7 +96,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - uses: astral-sh/setup-uv@v9
+      - uses: astral-sh/setup-uv@v10.2.0
       - name: Install dependencies
         # The repo commits pyproject.toml + uv.lock (uv init --bare + uv add).
         run: uv sync --locked
@@ -478,7 +478,7 @@ apps.create_namespaced_deployment(namespace="staging", body=canary_spec)
 1. **Path filters on triggers.** A docs-only change must not trigger a training run — `on.push.paths` is the cheapest cost control you have.
 2. **Cheapest gates first.** Schema and leakage checks cost milliseconds and prevent the most expensive failures; order the DAG so they run before training.
 3. **Fail the step, not just the log.** A gate that prints a warning but exits 0 protects nobody. Every gate's failure must be visible to `needs`.
-4. **Pin action majors from release pages.** `checkout@v7`, `astral-sh/setup-uv@v9`, `upload-artifact@v7`, `download-artifact@v8` — verified, not copied from a stale tutorial.
+4. **Pin action majors from release pages.** `checkout@v7`, `astral-sh/setup-uv@v10.2.0`, `upload-artifact@v7`, `download-artifact@v8` — verified, not copied from a stale tutorial.
 5. **Cache dependencies and artifacts.** `setup-uv` caches the uv package cache, so `uv sync --locked` skips reinstall on unchanged lockfiles; model artifacts move between jobs via upload/download-artifact.
 6. **Promote through evidence, not hope.** Floor gates admit a challenger; live canary stages promote it. Never wire training accuracy straight to production.
 7. **Rollback is a repoint.** Because [6503: Model Registry](6503-Model-Registry.md) aliases point at versions, undoing a bad promotion is one write — design deployments to exploit that.

@@ -377,7 +377,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: astral-sh/setup-uv@v9
+      - uses: astral-sh/setup-uv@v10.2.0
 
       - name: Install dependencies
         # The repo commits pyproject.toml + uv.lock (uv init --bare + uv add).
@@ -387,7 +387,7 @@ jobs:
         run: uv run pytest tests/ --cov=app --cov-report=xml
 
       - name: Upload coverage
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@v7
 
   build:
     needs: test
@@ -396,17 +396,17 @@ jobs:
       - uses: actions/checkout@v7
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+        uses: docker/setup-buildx-action@v4
 
       - name: Login to GitHub Container Registry
-        uses: docker/login-action@v3
+        uses: docker/login-action@v4
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: ./services/api
           push: true
@@ -1396,11 +1396,11 @@ jobs:
 
       # Cache dependencies - setup-uv caches the uv package cache
       # automatically, so uv sync skips reinstall on unchanged lockfiles
-      - uses: astral-sh/setup-uv@v9
+      - uses: astral-sh/setup-uv@v10.2.0
 
       # Cache Docker layers
       - name: Cache Docker layers
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: /tmp/.buildx-cache
           key: ${{ runner.os }}-buildx-${{ github.sha }}
@@ -1417,7 +1417,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Build and push
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: ./services/${{ matrix.component }}
           push: true

@@ -189,7 +189,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: astral-sh/setup-uv@v9
+      - uses: astral-sh/setup-uv@v10.2.0
 
       - name: Install dependencies
         # The repo commits pyproject.toml + uv.lock (uv init --bare + uv add).
@@ -209,7 +209,7 @@ jobs:
             --eval-data data/eval_set.json
 
       - name: Upload coverage
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@v7
 
 # Expected usage:
 # - Runs on every push/PR

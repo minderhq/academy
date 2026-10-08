@@ -559,7 +559,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      - uses: astral-sh/setup-uv@v9
+      - uses: astral-sh/setup-uv@v10.2.0
 
       - name: Install dependencies
         # The repo commits pyproject.toml + uv.lock (uv init --bare + uv add).
