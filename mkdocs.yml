@@ -46,6 +46,9 @@ theme:
         name: Switch to light mode
   features:
     - navigation.instant
+    # progress bar on instant-navigation page loads - lesson pages are
+    # large, the bar gives visible feedback between route swaps
+    - navigation.instant.progress
     - navigation.sections
     - navigation.top
     - navigation.tracking
