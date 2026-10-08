@@ -66,8 +66,9 @@ LETTERS = "ABCD"
 # phase quizzes answer inline in lowercase under "### N." headings with
 # lowercase "a) text" option rows - a shape the module-bank exporter
 # does not cover, parsed locally (texts needed here, not just letters).
+# Option rows are "- " list items since tick-783.
 PHASE_Q = re.compile(r"^###\s+(\d+)\.\s")
-PHASE_OPT = re.compile(r"^\s*([A-Da-d])\)\s+(.+?)\s*$")
+PHASE_OPT = re.compile(r"^\s*[-*]?\s*\*{0,2}([A-Da-d])\)\s+(.+?)\s*$")
 PHASE_INLINE = re.compile(r"\*\*Answer:\*\*\s*([A-Da-d])\b")
 
 

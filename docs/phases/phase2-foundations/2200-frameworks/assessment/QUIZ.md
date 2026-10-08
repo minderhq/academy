@@ -1,7 +1,7 @@
 ---
 Document ID: 2200-QUIZ
 Title: "2200: Frameworks - Quiz"
-Last Updated: 2026-10-07
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 30 minutes
@@ -23,178 +23,178 @@ Tags: ['assessment', 'quiz', 'frameworks', 'pytorch']
 
 **1. PyTorch Tensors are similar to:**
 
-A) NumPy arrays with GPU support
-B) Python lists
-C) SQL tables
-D) Pandas DataFrames, built for tabular data with a very different internal memory layout
+- A) NumPy arrays with GPU support
+- B) Python lists
+- C) SQL tables
+- D) Pandas DataFrames, built for tabular data with a very different internal memory layout
 
 **2. `requires_grad=True` enables:**
 
-A) GPU acceleration, which comes from device placement rather than this flag
-B) Model saving
-C) Automatic gradient computation
-D) Data loading
+- A) GPU acceleration, which comes from device placement rather than this flag
+- B) Model saving
+- C) Automatic gradient computation
+- D) Data loading
 
 **3. The `backward()` function:**
 
-A) Updates parameters
-B) Computes gradients
-C) Trains the model
-D) Loads data
+- A) Updates parameters
+- B) Computes gradients
+- C) Trains the model
+- D) Loads data
 
 **4. A DataLoader provides:**
 
-A) Model storage
-B) Gradient computation, which autograd handles without any loader involvement
-C) Visualization
-D) Batched data iteration
+- A) Model storage
+- B) Gradient computation, which autograd handles without any loader involvement
+- C) Visualization
+- D) Batched data iteration
 
 **5. `torch.nn.Module` is the base class for:**
 
-A) All neural network modules
-B) Datasets, which follow the torch.utils.data interface instead of this base class
-C) Optimizers
-D) Loss functions
+- A) All neural network modules
+- B) Datasets, which follow the torch.utils.data interface instead of this base class
+- C) Optimizers
+- D) Loss functions
 
 **6. The `optimizer.step()` function:**
 
-A) Loads data
-B) Clears gradients
-C) Computes gradients, work that happens in backward() before step() ever runs
-D) Updates model parameters
+- A) Loads data
+- B) Clears gradients
+- C) Computes gradients, work that happens in backward() before step() ever runs
+- D) Updates model parameters
 
 **7. `optimizer.zero_grad()` is used to:**
 
-A) Initialize model, a job for the constructor and its weight setup code
-B) Clear previous gradients
-C) Reset learning rate
-D) Stop training
+- A) Initialize model, a job for the constructor and its weight setup code
+- B) Clear previous gradients
+- C) Reset learning rate
+- D) Stop training
 
 **8. `model.train()` sets the model to:**
 
-A) CPU mode
-B) GPU mode
-C) Training mode
-D) Evaluation mode
+- A) CPU mode
+- B) GPU mode
+- C) Training mode
+- D) Evaluation mode
 
 **9. Which is NOT a PyTorch component?**
 
-A) nn module
-B) Tensors
-C) DataFrames
-D) autograd
+- A) nn module
+- B) Tensors
+- C) DataFrames
+- D) autograd
 
 **10. CUDA in PyTorch refers to:**
 
-A) A loss function, which is a math object with nothing to do with hardware
-B) A dataset format
-C) NVIDIA GPU support
-D) An optimizer
+- A) A loss function, which is a math object with nothing to do with hardware
+- B) A dataset format
+- C) NVIDIA GPU support
+- D) An optimizer
 
 **11. `torch.save()` typically saves:**
 
-A) Only the model architecture, which pickled modules lose the code for anyway
-B) Model state dict (parameters)
-C) Training logs
-D) Only the optimizer
+- A) Only the model architecture, which pickled modules lose the code for anyway
+- B) Model state dict (parameters)
+- C) Training logs
+- D) Only the optimizer
 
 **12. `view()` and `reshape()` are used to:**
 
-A) Load tensors
-B) Save tensors
-C) Compute gradients, which the autograd engine records during the forward pass
-D) Change tensor shape
+- A) Load tensors
+- B) Save tensors
+- C) Compute gradients, which the autograd engine records during the forward pass
+- D) Change tensor shape
 
 **13. A neural network layer in PyTorch is:**
 
-A) A list
-B) A function
-C) A class inheriting from nn.Module
-D) A dictionary, which can hold weights but cannot run a forward pass by itself
+- A) A list
+- B) A function
+- C) A class inheriting from nn.Module
+- D) A dictionary, which can hold weights but cannot run a forward pass by itself
 
 **14. `.to(device)` is used to:**
 
-A) Save model, a persistence job that belongs to torch.save() instead
-B) Move tensors/models to GPU or CPU
-C) Compute gradients
-D) Load data
+- A) Save model, a persistence job that belongs to torch.save() instead
+- B) Move tensors/models to GPU or CPU
+- C) Compute gradients
+- D) Load data
 
 **15. CrossEntropyLoss expects:**
 
-A) Raw logits as input
-B) Probabilities as input
-C) String labels
-D) One-hot encoded labels
+- A) Raw logits as input
+- B) Probabilities as input
+- C) String labels
+- D) One-hot encoded labels
 
 **16. The `forward()` method in a Module defines:**
 
-A) The computation flow
-B) How parameters are updated
-C) How data is loaded
-D) How gradients are computed
+- A) The computation flow
+- B) How parameters are updated
+- C) How data is loaded
+- D) How gradients are computed
 
 **17. `torch.no_grad()` context manager:**
 
-A) Stops model saving, which torch.no_grad() has no authority over whatsoever
-B) Stops training
-C) Stops data loading
-D) Stops gradient computation
+- A) Stops model saving, which torch.no_grad() has no authority over whatsoever
+- B) Stops training
+- C) Stops data loading
+- D) Stops gradient computation
 
 **18. Which loss function for regression?**
 
-A) CrossEntropyLoss
-B) BCELoss
-C) NLLLoss
-D) MSELoss
+- A) CrossEntropyLoss
+- B) BCELoss
+- C) NLLLoss
+- D) MSELoss
 
 **19. Batch size affects:**
 
-A) Only training time, leaving hardware footprint completely untouched somehow
-B) Training time and memory
-C) Only model accuracy
-D) Only memory
+- A) Only training time, leaving hardware footprint completely untouched somehow
+- B) Training time and memory
+- C) Only model accuracy
+- D) Only memory
 
 **20. `torch.cuda.is_available()` checks:**
 
-A) If a GPU is available
-B) If the model is trained
-C) If data is loaded
-D) If CUDA is installed
+- A) If a GPU is available
+- B) If the model is trained
+- C) If data is loaded
+- D) If CUDA is installed
 
 **21. XLA is best described as:**
 
-A) A data-loading library for TensorFlow input pipelines
-B) A machine-learning compiler that fuses operations and lowers them through HLO and LLVM to device code
-C) A distributed-training coordinator built into Keras
-D) A profiling visualizer for TensorBoard traces
+- A) A data-loading library for TensorFlow input pipelines
+- B) A machine-learning compiler that fuses operations and lowers them through HLO and LLVM to device code
+- C) A distributed-training coordinator built into Keras
+- D) A profiling visualizer for TensorBoard traces
 
 **22. Three separate kernels computing `(x + 1) * 2` move how much memory traffic compared to one fused kernel?**
 
-A) The same traffic - fusion changes kernel count, not memory
-B) Half the traffic, because intermediates shrink
-C) Six full memory passes against the fused kernel's single read and single write
-D) Zero traffic, since intermediates stay in registers either way
+- A) The same traffic - fusion changes kernel count, not memory
+- B) Half the traffic, because intermediates shrink
+- C) Six full memory passes against the fused kernel's single read and single write
+- D) Zero traffic, since intermediates stay in registers either way
 
 **23. A jitted function compiled for input shape (32, 64) is called with (64, 64). What happens?**
 
-A) The cached executable handles both shapes automatically
-B) XLA recompiles a new executable for the new shape
-C) The call falls back to eager mode permanently
-D) The extra rows are silently dropped
+- A) The cached executable handles both shapes automatically
+- B) XLA recompiles a new executable for the new shape
+- C) The call falls back to eager mode permanently
+- D) The extra rows are silently dropped
 
 **24. `experimental_get_compiler_ir` raises on your function. The most likely reason:**
 
-A) The function was not compiled with jit_compile=True
-B) The profiler was not running during the call
-C) The function returns a Python float instead of a Tensor
-D) The batch size is not divisible by 8
+- A) The function was not compiled with jit_compile=True
+- B) The profiler was not running during the call
+- C) The function returns a Python float instead of a Tensor
+- D) The batch size is not divisible by 8
 
 **25. For Tensor Cores, a matmul should be cast to and shaped as:**
 
-A) FP32 with dimensions divisible by 16
-B) INT8 with per-channel scales
-C) TF32 with any dimension
-D) FP16 or BF16 with dimensions divisible by 8
+- A) FP32 with dimensions divisible by 16
+- B) INT8 with per-channel scales
+- C) TF32 with any dimension
+- D) FP16 or BF16 with dimensions divisible by 8
 
 ---
 

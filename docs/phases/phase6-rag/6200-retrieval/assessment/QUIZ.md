@@ -1,7 +1,7 @@
 ---
 Document ID: 6200-QUIZ
 Title: "6200: Retrieval - Quiz"
-Last Updated: 2026-10-01
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 30 minutes
@@ -23,143 +23,143 @@ Tags: ['assessment', 'quiz', 'rag', 'retrieval']
 
 **1. Hybrid search combines:**
 
-A) Only vector search
-B) Only keyword search
-C) Vector and keyword search
-D) No search, a stance that would empty the pipeline entirely
+- A) Only vector search
+- B) Only keyword search
+- C) Vector and keyword search
+- D) No search, a stance that would empty the pipeline entirely
 
 **2. BM25 is:**
 
-A) A vector search method, a family BM25 predates by decades
-B) A database
-C) An embedding model
-D) A keyword ranking algorithm
+- A) A vector search method, a family BM25 predates by decades
+- B) A database
+- C) An embedding model
+- D) A keyword ranking algorithm
 
 **3. Reciprocal Rank Fusion (RRF):**
 
-A) Filters results
-B) Ranks documents
-C) Creates embeddings, a job fusion never performs on any input
-D) Combines multiple result lists
+- A) Filters results
+- B) Ranks documents
+- C) Creates embeddings, a job fusion never performs on any input
+- D) Combines multiple result lists
 
 **4. Dense retrieval uses:**
 
-A) Keywords
-B) Vector embeddings
-C) Character n-grams
-D) Neither, a claim every dense encoder output contradicts
+- A) Keywords
+- B) Vector embeddings
+- C) Character n-grams
+- D) Neither, a claim every dense encoder output contradicts
 
 **5. Sparse retrieval uses:**
 
-A) Embeddings, the dense-side artifact sparse lookup never touches
-B) Keywords/Terms
-C) Dense vector indexes
-D) Random vectors
+- A) Embeddings, the dense-side artifact sparse lookup never touches
+- B) Keywords/Terms
+- C) Dense vector indexes
+- D) Random vectors
 
 **6. HNSW is:**
 
-A) A database
-B) A keyword index
-C) A vector index
-D) A scoring method
+- A) A database
+- B) A keyword index
+- C) A vector index
+- D) A scoring method
 
 **7. Re-ranking:**
 
-A) Is not useful
-B) Replaces retrieval, a swap reranking cannot perform
-C) Improves initial retrieval
-D) Slower only
+- A) Is not useful
+- B) Replaces retrieval, a swap reranking cannot perform
+- C) Improves initial retrieval
+- D) Slower only
 
 **8. Cross-encoders:**
 
-A) Don't encode
-B) Encode separately, a two-tower isolation this joint pass refuses
-C) Encode query and document together
-D) Are slower than bi-encoders
+- A) Don't encode
+- B) Encode separately, a two-tower isolation this joint pass refuses
+- C) Encode query and document together
+- D) Are slower than bi-encoders
 
 **9. Maximal Marginal Relevance (MMR):**
 
-A) Is not used
-B) Only ranks by relevance
-C) Diversifies results
-D) Reduces diversity
+- A) Is not used
+- B) Only ranks by relevance
+- C) Diversifies results
+- D) Reduces diversity
 
 **10. Query expansion:**
 
-A) Improves recall
-B) Reduces recall
-C) Has no effect
-D) Only for keywords
+- A) Improves recall
+- B) Reduces recall
+- C) Has no effect
+- D) Only for keywords
 
 **11. Hybrid search alpha parameter:**
 
-A) Controls dense vs sparse weight
-B) Controls top-k
-C) Controls score threshold
-D) No effect, a dismissal every weighted blend output refutes
+- A) Controls dense vs sparse weight
+- B) Controls top-k
+- C) Controls score threshold
+- D) No effect, a dismissal every weighted blend output refutes
 
 **12. Approximate nearest neighbor:**
 
-A) Is exact but slow
-B) Is fast but approximate
-C) Is both fast and exact
-D) Doesn't work
+- A) Is exact but slow
+- B) Is fast but approximate
+- C) Is both fast and exact
+- D) Doesn't work
 
 **13. IVF (Inverted File Index):**
 
-A) Partitions vector space
-B) Only works for text
-C) Is a keyword index
-D) Doesn't scale
+- A) Partitions vector space
+- B) Only works for text
+- C) Is a keyword index
+- D) Doesn't scale
 
 **14. RRF formula uses:**
 
-A) Sum of scores
-B) No formula
-C) Probability
-D) Rank positions
+- A) Sum of scores
+- B) No formula
+- C) Probability
+- D) Rank positions
 
 **15. Semantic search:**
 
-A) Uses meaning
-B) Uses keywords
-C) Uses both
-D) Uses neither
+- A) Uses meaning
+- B) Uses keywords
+- C) Uses both
+- D) Uses neither
 
 **16. Lexical search:**
 
-A) Uses meaning
-B) Uses neither, a denial that erases the term matching itself
-C) Uses embeddings
-D) Uses exact terms
+- A) Uses meaning
+- B) Uses neither, a denial that erases the term matching itself
+- C) Uses embeddings
+- D) Uses exact terms
 
 **17. Boosting in retrieval:**
 
-A) Increases certain document scores
-B) Decreases scores
-C) No effect, a nullity boost factors never settle for
-D) Filters results
+- A) Increases certain document scores
+- B) Decreases scores
+- C) No effect, a nullity boost factors never settle for
+- D) Filters results
 
 **18. Retrieval augmented generation (RAG) needs:**
 
-A) No retrieval
-B) Only training
-C) Only generation
-D) Good retrieval
+- A) No retrieval
+- B) Only training
+- C) Only generation
+- D) Good retrieval
 
 **19. Context window affects:**
 
-A) Only speed
-B) How much retrieved info can be used
-C) No effect, an indifference every filled context disproves
-D) Only memory
+- A) Only speed
+- B) How much retrieved info can be used
+- C) No effect, an indifference every filled context disproves
+- D) Only memory
 
 **20. Fusion of retrieval methods:**
 
-A) Always improves
-B) Can improve if done well
-C) Always worsens, a pessimism no fusion benchmark sustains
-D) No effect
+- A) Always improves
+- B) Can improve if done well
+- C) Always worsens, a pessimism no fusion benchmark sustains
+- D) No effect
 
 ---
 

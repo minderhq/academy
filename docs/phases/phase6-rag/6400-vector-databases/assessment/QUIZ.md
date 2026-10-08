@@ -1,7 +1,7 @@
 ---
 Document ID: 6400-QUIZ
 Title: "6400: Vector Databases - Quiz"
-Last Updated: 2026-10-07
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 30 minutes
@@ -23,143 +23,143 @@ Tags: ['assessment', 'quiz', 'rag', 'vector-db']
 
 **1. Vector databases store:**
 
-A) Text documents with metadata
-B) Vector embeddings with payloads
-C) Images with extracted captions
-D) Text, embeddings, and images
+- A) Text documents with metadata
+- B) Vector embeddings with payloads
+- C) Images with extracted captions
+- D) Text, embeddings, and images
 
 **2. Qdrant uses:**
 
-A) HNSW index
-B) IVF index
-C) No index
-D) A fixed hash index
+- A) HNSW index
+- B) IVF index
+- C) No index
+- D) A fixed hash index
 
 **3. Collection in vector DB:**
 
-A) Stores vectors
-B) Stores metadata
-C) Both vectors and metadata
-D) Neither vector nor metadata
+- A) Stores vectors
+- B) Stores metadata
+- C) Both vectors and metadata
+- D) Neither vector nor metadata
 
 **4. Payload in Qdrant:**
 
-A) Vector data
-B) Metadata
-C) Indexing configuration
-D) API keys
+- A) Vector data
+- B) Metadata
+- C) Indexing configuration
+- D) API keys
 
 **5. Upsert operation:**
 
-A) Only inserts
-B) Only updates
-C) Inserts or updates
-D) Deletes
+- A) Only inserts
+- B) Only updates
+- C) Inserts or updates
+- D) Deletes
 
 **6. Vector search returns:**
 
-A) Exact matches
-B) All vectors
-C) Random vectors
-D) Nearest neighbors
+- A) Exact matches
+- B) All vectors
+- C) Random vectors
+- D) Nearest neighbors
 
 **7. Filtering in vector DB:**
 
-A) Only on vectors
-B) Only on metadata
-C) On both
-D) Not possible
+- A) Only on vectors
+- B) Only on metadata
+- C) On both
+- D) Not possible
 
 **8. Hybrid search in vector DB:**
 
-A) Vector only
-B) Keyword only
-C) Vector + keyword
-D) No search
+- A) Vector only
+- B) Keyword only
+- C) Vector + keyword
+- D) No search
 
 **9. HNSW parameter ef_construct:**
 
-A) No measurable effect
-B) Query-time latency alone
-C) Graph memory footprint
-D) Index speed vs accuracy
+- A) No measurable effect
+- B) Query-time latency alone
+- C) Graph memory footprint
+- D) Index speed vs accuracy
 
 **10. Quantization in vector DB:**
 
-A) Increases memory
-B) Increases accuracy
-C) No effect
-D) Reduces memory
+- A) Increases memory
+- B) Increases accuracy
+- C) No effect
+- D) Reduces memory
 
 **11. Distance metric cosine:**
 
-A) Euclidean distance
-B) Angular distance
-C) Manhattan distance
-D) Dot product
+- A) Euclidean distance
+- B) Angular distance
+- C) Manhattan distance
+- D) Dot product
 
 **12. Weaviate uses:**
 
-A) Only flat
-B) Multiple index types
-C) No index
-D) Only HNSW
+- A) Only flat
+- B) Multiple index types
+- C) No index
+- D) Only HNSW
 
 **13. Milvus is:**
 
-A) A vector database
-B) An embedding model
-C) A training tool
-D) Not related
+- A) A vector database
+- B) An embedding model
+- C) A training tool
+- D) Not related
 
 **14. Sharding in vector DB:**
 
-A) Distributes data
-B) Replicates data
-C) No distribution
-D) Only for backup
+- A) Distributes data
+- B) Replicates data
+- C) No distribution
+- D) Only for backup
 
 **15. Replication in vector DB:**
 
-A) Copies data
-B) Distributes data
-C) No copies
-D) Deletes data
+- A) Copies data
+- B) Distributes data
+- C) No copies
+- D) Deletes data
 
 **16. Consistency level:**
 
-A) Strong vs eventual
-B) Only strong
-C) Only eventual
-D) No consistency
+- A) Strong vs eventual
+- B) Only strong
+- C) Only eventual
+- D) No consistency
 
 **17. Batch upsert:**
 
-A) One vector at a time
-B) Multiple vectors
-C) No upsert
-D) Only delete
+- A) One vector at a time
+- B) Multiple vectors
+- C) No upsert
+- D) Only delete
 
 **18. Scroll/search API:**
 
-A) Returns all results
-B) Paginates results
-C) No pagination
-D) Only first page
+- A) Returns all results
+- B) Paginates results
+- C) No pagination
+- D) Only first page
 
 **19. Vector DB for RAG:**
 
-A) Stores documents
-B) Stores embeddings
-C) Stores documents and embeddings
-D) Stores query logs and cache entries
+- A) Stores documents
+- B) Stores embeddings
+- C) Stores documents and embeddings
+- D) Stores query logs and cache entries
 
 **20. Performance tuning:**
 
-A) Not needed until queries slow down noticeably
-B) Index parameters, quantization, sharding
-C) Only the hardware budget matters
-D) Only the query side needs work
+- A) Not needed until queries slow down noticeably
+- B) Index parameters, quantization, sharding
+- C) Only the hardware budget matters
+- D) Only the query side needs work
 
 ---
 

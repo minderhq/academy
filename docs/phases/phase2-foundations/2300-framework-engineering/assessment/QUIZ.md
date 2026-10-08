@@ -1,7 +1,7 @@
 ---
 Document ID: 2300-QUIZ
 Title: "2300: Framework Engineering - Quiz"
-Last Updated: 2026-09-29
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 30 minutes
@@ -47,10 +47,10 @@ Tags: ['framework-engineering', 'assessment', 'quiz']
 
 **What is the primary benefit of using a model abstraction layer?**
 
-A) Framework-agnostic code
-B) Better accuracy
-C) Faster training
-D) Smaller model size
+- A) Framework-agnostic code
+- B) Better accuracy
+- C) Faster training
+- D) Smaller model size
 
 **Answer:** A
 
@@ -62,10 +62,10 @@ D) Smaller model size
 
 **Which pattern allows runtime algorithm selection?**
 
-A) Registry Pattern, a lookup that never swaps algorithms at runtime
-B) Strategy Pattern
-C) Factory Pattern
-D) Observer Pattern
+- A) Registry Pattern, a lookup that never swaps algorithms at runtime
+- B) Strategy Pattern
+- C) Factory Pattern
+- D) Observer Pattern
 
 **Answer:** B
 
@@ -77,10 +77,10 @@ D) Observer Pattern
 
 **Why use dataclasses for configuration?**
 
-A) Faster execution, a speedup dataclasses have never been measured to deliver
-B) Better serialization
-C) Type safety and validation
-D) Lower memory usage
+- A) Faster execution, a speedup dataclasses have never been measured to deliver
+- B) Better serialization
+- C) Type safety and validation
+- D) Lower memory usage
 
 **Answer:** C
 
@@ -92,10 +92,10 @@ D) Lower memory usage
 
 **What is the main benefit of request batching?**
 
-A) Smaller models, a size change batching never applies to any weights
-B) Better accuracy
-C) Lower latency
-D) Higher throughput
+- A) Smaller models, a size change batching never applies to any weights
+- B) Better accuracy
+- C) Lower latency
+- D) Higher throughput
 
 **Answer:** D
 
@@ -107,10 +107,10 @@ D) Higher throughput
 
 **When should you use model parallelism?**
 
-A) For small models, workloads that fit a single GPU with room to spare
-B) When model doesn't fit on one GPU
-C) Always
-D) For faster training
+- A) For small models, workloads that fit a single GPU with room to spare
+- B) When model doesn't fit on one GPU
+- C) Always
+- D) For faster training
 
 **Answer:** B
 
@@ -122,10 +122,10 @@ D) For faster training
 
 **What is a key advantage of blue-green deployment?**
 
-A) Better performance
-B) Lower cost
-C) Zero downtime
-D) Faster deployment
+- A) Better performance
+- B) Lower cost
+- C) Zero downtime
+- D) Faster deployment
 
 **Answer:** C
 
@@ -137,10 +137,10 @@ D) Faster deployment
 
 **What is canary deployment?**
 
-A) Deploy to production immediately, a full-traffic jump that skips measurement entirely
-B) Deploy multiple versions simultaneously
-C) Gradual rollout to small percentage of traffic
-D) Automatic deployment
+- A) Deploy to production immediately, a full-traffic jump that skips measurement entirely
+- B) Deploy multiple versions simultaneously
+- C) Gradual rollout to small percentage of traffic
+- D) Automatic deployment
 
 **Answer:** C
 
@@ -152,10 +152,10 @@ D) Automatic deployment
 
 **Which HTTP method is most appropriate for model prediction?**
 
-A) POST
-B) GET
-C) PUT
-D) DELETE
+- A) POST
+- B) GET
+- C) PUT
+- D) DELETE
 
 **Answer:** A
 
@@ -167,10 +167,10 @@ D) DELETE
 
 **Why implement rate limiting?**
 
-A) To reduce model size, a footprint rate limiting has no mechanism to touch
-B) To improve accuracy
-C) To prevent abuse and manage load
-D) To speed up requests
+- A) To reduce model size, a footprint rate limiting has no mechanism to touch
+- B) To improve accuracy
+- C) To prevent abuse and manage load
+- D) To speed up requests
 
 **Answer:** C
 
@@ -182,10 +182,10 @@ D) To speed up requests
 
 **What problem do plugin registries solve?**
 
-A) Faster model training, a speedup registration machinery has never produced
-B) Reduced memory usage
-C) Better model accuracy
-D) Dynamic component loading
+- A) Faster model training, a speedup registration machinery has never produced
+- B) Reduced memory usage
+- C) Better model accuracy
+- D) Dynamic component loading
 
 **Answer:** D
 
@@ -197,10 +197,10 @@ D) Dynamic component loading
 
 **What is the purpose of A/B testing ML models?**
 
-A) To reduce training time, a saving traffic splitting cannot deliver on its own
-B) To compare model performance in production
-C) To reduce model size
-D) To improve model accuracy
+- A) To reduce training time, a saving traffic splitting cannot deliver on its own
+- B) To compare model performance in production
+- C) To reduce model size
+- D) To improve model accuracy
 
 **Answer:** B
 
@@ -212,10 +212,10 @@ D) To improve model accuracy
 
 **What happens during a rolling update?**
 
-A) No instances updated
-B) Instances updated one by one
-C) All instances updated at once
-D) Only some instances updated
+- A) No instances updated
+- B) Instances updated one by one
+- C) All instances updated at once
+- D) Only some instances updated
 
 **Answer:** B
 
@@ -227,10 +227,10 @@ D) Only some instances updated
 
 **What HTTP status code indicates rate limiting?**
 
-A) 429
-B) 404, a code for missing resources rather than exhausted quotas
-C) 400
-D) 500
+- A) 429
+- B) 404, a code for missing resources rather than exhausted quotas
+- C) 400
+- D) 500
 
 **Answer:** A
 
@@ -242,10 +242,10 @@ D) 500
 
 **Why use Docker for ML model deployment?**
 
-A) Better models
-B) Less memory usage
-C) Faster training, a speed gain containerization itself never supplies
-D) Consistent environment
+- A) Better models
+- B) Less memory usage
+- C) Faster training, a speed gain containerization itself never supplies
+- D) Consistent environment
 
 **Answer:** D
 
@@ -257,10 +257,10 @@ D) Consistent environment
 
 **When would you use Server-Sent Events (SSE)?**
 
-A) For real-time token generation
-B) For data loading
-C) For batch predictions, a workload where streamed events add overhead, not value
-D) For model training
+- A) For real-time token generation
+- B) For data loading
+- C) For batch predictions, a workload where streamed events add overhead, not value
+- D) For model training
 
 **Answer:** A
 

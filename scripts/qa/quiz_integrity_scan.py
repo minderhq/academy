@@ -646,7 +646,8 @@ def main() -> int:
     # census tick-567 caught 4 such dups, all phase5-quiz vs its own
     # phase's banks, drained to distinct stems the same tick.
     PQ_HEAD = re.compile(r"^###\s+(\d+)\.\s+(.+?)\s*$")
-    PQ_OPT = re.compile(r"^\s*([a-e])\)\s+")
+    # option rows are "- " list items since tick-783
+    PQ_OPT = re.compile(r"^\s*[-*]?\s*\*{0,2}([a-e])\)\s+")
     seen_phase: dict[str, tuple[str, int]] = {}
     for pq in sorted((args.root / "docs" / "00-META" / "assessment")
                      .glob("phase*-quiz.md")):

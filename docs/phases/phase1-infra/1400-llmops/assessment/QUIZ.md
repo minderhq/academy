@@ -1,7 +1,7 @@
 ---
 Document ID: 1400-QUIZ
 Title: "1400: LLMOps - Quiz"
-Last Updated: 2026-09-29
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 30 minutes
@@ -23,143 +23,143 @@ Tags: ['assessment', 'quiz', 'infrastructure', 'llmops']
 
 **1. LLMOps is:**
 
-A) Only model training
-B) Not needed
-C) Infrastructure only
-D) MLOps for LLMs
+- A) Only model training
+- B) Not needed
+- C) Infrastructure only
+- D) MLOps for LLMs
 
 **2. Ollama is designed for:**
 
-A) Training only
-B) Cloud deployment, a job the local-first runtime was never architected to lead
-C) Local LLM inference
-D) Data processing
+- A) Training only
+- B) Cloud deployment, a job the local-first runtime was never architected to lead
+- C) Local LLM inference
+- D) Data processing
 
 **3. vLLM optimizes:**
 
-A) Training speed, an axis the PagedAttention serving stack does not optimize
-B) Data loading
-C) Model size
-D) Inference throughput with PagedAttention
+- A) Training speed, an axis the PagedAttention serving stack does not optimize
+- B) Data loading
+- C) Model size
+- D) Inference throughput with PagedAttention
 
 **4. TGI stands for:**
 
-A) Text Generation Inference
-B) Training Gateway Interface
-C) Tensor Gateway Interface
-D) A tensor-granular graph interface used by ONNX
+- A) Text Generation Inference
+- B) Training Gateway Interface
+- C) Tensor Gateway Interface
+- D) A tensor-granular graph interface used by ONNX
 
 **5. Continuous batching:**
 
-A) Batches all requests, a fixed static group that never admits late arrivals
-B) No batching
-C) Dynamically adds/removes requests from batch
-D) Only for training
+- A) Batches all requests, a fixed static group that never admits late arrivals
+- B) No batching
+- C) Dynamically adds/removes requests from batch
+- D) Only for training
 
 **6. PagedAttention is inspired by:**
 
-A) CPU paging, a hardware mechanism rather than the virtual-memory design the paper credits
-B) Network paging
-C) Database paging
-D) Operating system virtual memory paging
+- A) CPU paging, a hardware mechanism rather than the virtual-memory design the paper credits
+- B) Network paging
+- C) Database paging
+- D) Operating system virtual memory paging
 
 **7. KV cache stores:**
 
-A) Model weights, tensors that live outside the per-sequence attention cache
-B) Training data
-C) Key and value matrices
-D) Queries
+- A) Model weights, tensors that live outside the per-sequence attention cache
+- B) Training data
+- C) Key and value matrices
+- D) Queries
 
 **8. Speculative decoding uses:**
 
-A) A smaller model to draft
-B) Random tokens, drafts the verifier would reject every single time
-C) No decoding
-D) Only large models
+- A) A smaller model to draft
+- B) Random tokens, drafts the verifier would reject every single time
+- C) No decoding
+- D) Only large models
 
 **9. Tensor parallelism splits:**
 
-A) Data
-B) Sequences, a split that belongs to data and pipeline parallelism instead
-C) Batches
-D) Model across GPUs
+- A) Data
+- B) Sequences, a split that belongs to data and pipeline parallelism instead
+- C) Batches
+- D) Model across GPUs
 
 **10. Quantization in serving:**
 
-A) Increases model size
-B) Reduces memory and increases speed
-C) Only affects accuracy, a framing that ignores the speed and memory wins
-D) Not useful
+- A) Increases model size
+- B) Reduces memory and increases speed
+- C) Only affects accuracy, a framing that ignores the speed and memory wins
+- D) Not useful
 
 **11. Ollama models are stored:**
 
-A) In memory
-B) As GGUF files
-C) As PyTorch models
-D) In databases
+- A) In memory
+- B) As GGUF files
+- C) As PyTorch models
+- D) In databases
 
 **12. vLLM's block manager:**
 
-A) Manages KV cache blocks
-B) Manages GPU memory
-C) Manages model loading, a job that belongs to the scheduler and weight loader
-D) Manages requests
+- A) Manages KV cache blocks
+- B) Manages GPU memory
+- C) Manages model loading, a job that belongs to the scheduler and weight loader
+- D) Manages requests
 
 **13. Prefix caching:**
 
-A) Caches entire prompts, a blanket copy the shared-prefix design never makes
-B) Caches common prompt prefixes
-C) No caching
-D) Only caches outputs
+- A) Caches entire prompts, a blanket copy the shared-prefix design never makes
+- B) Caches common prompt prefixes
+- C) No caching
+- D) Only caches outputs
 
 **14. Model loading speed affects:**
 
-A) Only startup time, a claim that misses the first-token delay users actually feel
-B) First token latency
-C) All tokens
-D) No effect
+- A) Only startup time, a claim that misses the first-token delay users actually feel
+- B) First token latency
+- C) All tokens
+- D) No effect
 
 **15. Request batching:**
 
-A) Always increases throughput
-B) Can increase latency
-C) Raises throughput but adds queueing latency
-D) Reduces model accuracy
+- A) Always increases throughput
+- B) Can increase latency
+- C) Raises throughput but adds queueing latency
+- D) Reduces model accuracy
 
 **16. A/B testing for models:**
 
-A) Deploys multiple models
-B) Compares model versions
-C) Deploys model variants side by side and compares them on real traffic
-D) Routes all traffic to one model
+- A) Deploys multiple models
+- B) Compares model versions
+- C) Deploys model variants side by side and compares them on real traffic
+- D) Routes all traffic to one model
 
 **17. Canary deployment:**
 
-A) Deploys to all users, a full-traffic rollout that removes the canary's blast radius
-B) Deploys to subset of users
-C) No deployment
-D) Only testing
+- A) Deploys to all users, a full-traffic rollout that removes the canary's blast radius
+- B) Deploys to subset of users
+- C) No deployment
+- D) Only testing
 
 **18. Model versioning:**
 
-A) Tracks model changes
-B) Only for training
-C) Not needed, a stance no reproducible model registry can afford
-D) Only for Git
+- A) Tracks model changes
+- B) Only for training
+- C) Not needed, a stance no reproducible model registry can afford
+- D) Only for Git
 
 **19. Load balancer for LLMs:**
 
-A) Distributes requests
-B) Only monitors, a passive role no request router ever plays
-C) Only caches
-D) Not useful
+- A) Distributes requests
+- B) Only monitors, a passive role no request router ever plays
+- C) Only caches
+- D) Not useful
 
 **20. Monitoring LLMs includes:**
 
-A) Token throughput and cost per million tokens
-B) Latency
-C) GPU utilization
-D) Token throughput and cost, latency and GPU utilization together
+- A) Token throughput and cost per million tokens
+- B) Latency
+- C) GPU utilization
+- D) Token throughput and cost, latency and GPU utilization together
 
 ---
 

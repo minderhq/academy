@@ -1,7 +1,7 @@
 ---
 Document ID: 1200-QUIZ
 Title: "1200: Virtualization - Quiz"
-Last Updated: 2026-10-07
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 30 minutes
@@ -24,178 +24,178 @@ Tags: ['assessment', 'quiz', 'infrastructure', 'virtualization']
 
 **1. Type 1 hypervisors run:**
 
-A) On top of an operating system
-B) Only in containers
-C) Directly on hardware
-D) Only on Windows
+- A) On top of an operating system
+- B) Only in containers
+- C) Directly on hardware
+- D) Only on Windows
 
 **2. GPU passthrough allows:**
 
-A) Multiple VMs to share one GPU
-B) No GPU access
-C) Only CPU access
-D) A VM to directly access GPU hardware
+- A) Multiple VMs to share one GPU
+- B) No GPU access
+- C) Only CPU access
+- D) A VM to directly access GPU hardware
 
 **3. A GPU passed through to a VM connects to the CPU via:**
 
-A) HDMI connection
-B) USB connection
-C) PCIe lanes
-D) Ethernet
+- A) HDMI connection
+- B) USB connection
+- C) PCIe lanes
+- D) Ethernet
 
 **4. IOMMU is required for:**
 
-A) CPU passthrough
-B) Storage passthrough
-C) Network passthrough
-D) GPU passthrough
+- A) CPU passthrough
+- B) Storage passthrough
+- C) Network passthrough
+- D) GPU passthrough
 
 **5. Proxmox is based on:**
 
-A) Red Hat Enterprise Linux
-B) CentOS
-C) Ubuntu
-D) Debian
+- A) Red Hat Enterprise Linux
+- B) CentOS
+- C) Ubuntu
+- D) Debian
 
 **6. A virtual machine differs from a container because:**
 
-A) VMs use less memory
-B) Containers are faster
-C) VMs have full OS, containers share kernel
-D) No difference
+- A) VMs use less memory
+- B) Containers are faster
+- C) VMs have full OS, containers share kernel
+- D) No difference
 
 **7. VFIO stands for:**
 
-A) Virtual Function I/O
-B) Video File Input Output
-C) Virtual File System Only
-D) A framebuffer compression standard for guest GPUs
+- A) Virtual Function I/O
+- B) Video File Input Output
+- C) Virtual File System Only
+- D) A framebuffer compression standard for guest GPUs
 
 **8. The VGA arbiter controls:**
 
-A) Storage access
-B) Network access
-C) GPU access between host and VM
-D) CPU access
+- A) Storage access
+- B) Network access
+- C) GPU access between host and VM
+- D) CPU access
 
 **9. For multi-GPU passthrough, you need:**
 
-A) No IOMMU
-B) One IOMMU group
-C) Multiple IOMMU groups
-D) Special hardware only
+- A) No IOMMU
+- B) One IOMMU group
+- C) Multiple IOMMU groups
+- D) Special hardware only
 
 **10. OVMF is:**
 
-A) A type of hypervisor
-B) A container runtime
-C) A GPU driver
-D) UEFI firmware for VMs
+- A) A type of hypervisor
+- B) A container runtime
+- C) A GPU driver
+- D) UEFI firmware for VMs
 
 **11. Blacklisting Nouveau is necessary because:**
 
-A) It's buggy
-B) It conflicts with Nvidia drivers
-C) It's not open source
-D) It uses too much memory
+- A) It's buggy
+- B) It conflicts with Nvidia drivers
+- C) It's not open source
+- D) It uses too much memory
 
 **12. PCIe passthrough requires:**
 
-A) ACS enablement
-B) Disabled IOMMU
-C) No configuration
-D) Windows host
+- A) ACS enablement
+- B) Disabled IOMMU
+- C) No configuration
+- D) Windows host
 
 **13. Looking glass is used for:**
 
-A) VM console access
-B) GPU video forwarding
-C) Network monitoring
-D) Storage management
+- A) VM console access
+- B) GPU video forwarding
+- C) Network monitoring
+- D) Storage management
 
 **14. A GPU in an IOMMU group with other devices:**
 
-A) Can't be passed through
-B) Can be passed through
-C) Requires special configuration
-D) Is not supported
+- A) Can't be passed through
+- B) Can be passed through
+- C) Requires special configuration
+- D) Is not supported
 
 **15. Virtual machine memory:**
 
-A) Can be overcommitted
-B) Must be exactly physical RAM
-C) Can't exceed host RAM
-D) Is unlimited
+- A) Can be overcommitted
+- B) Must be exactly physical RAM
+- C) Can't exceed host RAM
+- D) Is unlimited
 
 **16. vCPUs in a VM:**
 
-A) Map 1:1 to physical CPUs
-B) Can be overcommitted
-C) Must be less than physical cores
-D) Are always slower
+- A) Map 1:1 to physical CPUs
+- B) Can be overcommitted
+- C) Must be less than physical cores
+- D) Are always slower
 
 **17. When setting up GPU passthrough, you should:**
 
-A) Enable both physical GPUs in the host for exclusive host rendering and display
-B) Disable host GPU driver
-C) Use integrated graphics for host
-D) Disabling the host GPU driver and using integrated graphics for the host
+- A) Enable both physical GPUs in the host for exclusive host rendering and display
+- B) Disable host GPU driver
+- C) Use integrated graphics for host
+- D) Disabling the host GPU driver and using integrated graphics for the host
 
 **18. The EFI disk in Proxmox:**
 
-A) Contains VM configuration
-B) Is for booting VMs in UEFI mode
-C) Stores GPU drivers
-D) Is not needed
+- A) Contains VM configuration
+- B) Is for booting VMs in UEFI mode
+- C) Stores GPU drivers
+- D) Is not needed
 
 **19. For passthrough, the GPU should be in:**
 
-A) The first PCIe slot
-B) Its own IOMMU group
-C) A shared IOMMU group
-D) Any slot
+- A) The first PCIe slot
+- B) Its own IOMMU group
+- C) A shared IOMMU group
+- D) Any slot
 
 **20. After configuring passthrough, the VM:**
 
-A) Sees the GPU as physical hardware
-B) Sees a virtual GPU
-C) Can't use the GPU
-D) Needs special drivers
+- A) Sees the GPU as physical hardware
+- B) Sees a virtual GPU
+- C) Can't use the GPU
+- D) Needs special drivers
 
 **21. You need to serve one model while fine-tuning another on the same machine. Per the lesson's single-GPU limits, this is:**
 
-A) Fine on one 11GB card with memory growth enabled
-B) Not practical on one card - add a second accelerator instead
-C) Only possible with nn.DataParallel
-D) Possible if the model is quantized to 4-bit
+- A) Fine on one 11GB card with memory growth enabled
+- B) Not practical on one card - add a second accelerator instead
+- C) Only possible with nn.DataParallel
+- D) Possible if the model is quantized to 4-bit
 
 **22. For production multi-GPU training on one node, the lesson recommends:**
 
-A) nn.DataParallel, which splits each batch automatically
-B) A single GPU with gradient accumulation
-C) DistributedDataParallel, launched with torchrun
-D) Pipeline parallelism for every workload
+- A) nn.DataParallel, which splits each batch automatically
+- B) A single GPU with gradient accumulation
+- C) DistributedDataParallel, launched with torchrun
+- D) Pipeline parallelism for every workload
 
 **23. Launching with `torchrun --nproc_per_node=2 train.py` gives each process:**
 
-A) RANK, WORLD_SIZE, MASTER_ADDR, and MASTER_PORT in its environment
-B) A pre-built DistributedDataParallel model instance
-C) Its own copy of the dataset on local disk
-D) A CUDA graph of the training step
+- A) RANK, WORLD_SIZE, MASTER_ADDR, and MASTER_PORT in its environment
+- B) A pre-built DistributedDataParallel model instance
+- C) Its own copy of the dataset on local disk
+- D) A CUDA graph of the training step
 
 **24. Llama-2-13B at fp16 will not serve on two 11GB cards with vLLM `--tensor-parallel-size 2` because:**
 
-A) Tensor parallelism requires identical GPU models
-B) vLLM only supports 7B-class models
-C) The KV cache alone exceeds 22GB
-D) Each shard needs about 13GB - more than one card holds
+- A) Tensor parallelism requires identical GPU models
+- B) vLLM only supports 7B-class models
+- C) The KV cache alone exceeds 22GB
+- D) Each shard needs about 13GB - more than one card holds
 
 **25. Two GPUs sit in different IOMMU groups and cannot peer directly. The lesson's NCCL fix is:**
 
-A) Upgrading to the newest NCCL version
-B) Setting NCCL_P2P_DISABLE=1
-C) Switching the backend to MPI
-D) Moving both GPUs into one VM
+- A) Upgrading to the newest NCCL version
+- B) Setting NCCL_P2P_DISABLE=1
+- C) Switching the backend to MPI
+- D) Moving both GPUs into one VM
 
 ---
 

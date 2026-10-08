@@ -246,7 +246,9 @@ REV_ITEM = re.compile(r"^\s*-\s+\*\*Questions?\s+([\d,\s\-]+):\*\*")
 AK_ROW = re.compile(r"^\|\s*(\d+)\s*\|\s*([A-D])\b")
 INLINE_ANSWER = re.compile(r"\*\*Answer:\*\*\s*([A-D])\b")
 SCORE_MARKER = re.compile(r"\*\*Score:\*\*\s*__")
-OPT_LINE = re.compile(r"^\s*([A-E])\) ")
+# Options render as list items since tick-783 ("- A) text") - the
+# optional "- " marker is tolerated like quiz_export's OPTION.
+OPT_LINE = re.compile(r"^\s*[-*]?\s*\*{0,2}([A-E])\) ")
 ANSWER_MARKER = re.compile(
     r"expected\s+\w+|solution|success criteria|\*\*answer", re.IGNORECASE)
 MODULE_DIR = re.compile(r"^\d{4}-")
@@ -280,8 +282,9 @@ README_QUIZ_CLAIM = re.compile(
     r"^- \*\*\[Phase \d+ Quiz\]\([^)]+assessment/phase\d+-quiz\.md\)\*\*"
     r" - Test your understanding \((\d+) questions, (\d+)% to pass\)\s*$")
 # AS-15: option text with its letter, both quiz shapes (module banks
-# render "A) text", phase quizzes render lowercase "a) text").
-OPT_TEXT = re.compile(r"^\s*([A-Ea-e])\)\s+(.+?)\s*$")
+# render "A) text", phase quizzes render lowercase "a) text"; both as
+# "- " list items since tick-783).
+OPT_TEXT = re.compile(r"^\s*[-*]?\s*\*{0,2}([A-Ea-e])\)\s+(.+?)\s*$")
 # AS-15 shares QI-10's corpus line exactly (quiz_integrity_scan,
 # tick-290): tied-or-longer on both axes in >= 50% of the bank's
 # >= 4-option answered questions, banks under 10 mcq exempt.

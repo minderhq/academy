@@ -1,7 +1,7 @@
 ---
 Document ID: 5100-QUIZ
 Title: "5100: PEFT Methods - Quiz"
-Last Updated: 2026-10-01
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 30 minutes
@@ -23,143 +23,143 @@ Tags: ['assessment', 'quiz', 'finetuning', 'peft']
 
 **1. What is the primary advantage of PEFT methods?**
 
-A) Faster training
-B) Simpler architecture
-C) Better model accuracy, which PEFT never promises over full fine-tuning
-D) Train only a small subset of parameters
+- A) Faster training
+- B) Simpler architecture
+- C) Better model accuracy, which PEFT never promises over full fine-tuning
+- D) Train only a small subset of parameters
 
 **2. What does LoRA stand for?**
 
-A) Low-Rank Adaptation
-B) Linear Optimization for Recurrent Architectures
-C) Layer-wise Optimization for Rapid Adaptation
-D) A quantization format for frozen base weights
+- A) Low-Rank Adaptation
+- B) Linear Optimization for Recurrent Architectures
+- C) Layer-wise Optimization for Rapid Adaptation
+- D) A quantization format for frozen base weights
 
 **3. How many trainable parameters does LoRA typically add?**
 
-A) 50% of original model
-B) 10% - 20% of original model, a share far too large for any practical LoRA adapter
-C) 0.1% - 3% of original model
-D) Same as original model
+- A) 50% of original model
+- B) 10% - 20% of original model, a share far too large for any practical LoRA adapter
+- C) 0.1% - 3% of original model
+- D) Same as original model
 
 **4. What is the core idea behind LoRA?**
 
-A) Compress the model
-B) Replace weights with smaller matrices, discarding the pretrained knowledge they carry
-C) Add low-rank matrices to existing weights
-D) Remove unnecessary layers
+- A) Compress the model
+- B) Replace weights with smaller matrices, discarding the pretrained knowledge they carry
+- C) Add low-rank matrices to existing weights
+- D) Remove unnecessary layers
 
 **5. What is QLoRA?**
 
-A) Quantized LoRA
-B) Quick LoRA
-C) Quality LoRA
-D) Query-based LoRA
+- A) Quantized LoRA
+- B) Quick LoRA
+- C) Quality LoRA
+- D) Query-based LoRA
 
 **6. What rank is typically used for LoRA?**
 
-A) 1-4
-B) 256-1024
-C) 64-256
-D) 4-64
+- A) 1-4
+- B) 256-1024
+- C) 64-256
+- D) 4-64
 
 **7. What happens during LoRA inference?**
 
-A) LoRA weights are used separately, so every token pays a second matrix multiply
-B) Model is retrained
-C) LoRA weights are discarded
-D) LoRA weights are merged with base model
+- A) LoRA weights are used separately, so every token pays a second matrix multiply
+- B) Model is retrained
+- C) LoRA weights are discarded
+- D) LoRA weights are merged with base model
 
 **8. What is Adapter in PEFT context?**
 
-A) Data loading adapter
-B) Training script adapter, a wrapper around loops that adds no learned layers at all
-C) Hardware adapter
-D) Small bottleneck layers added to transformer
+- A) Data loading adapter
+- B) Training script adapter, a wrapper around loops that adds no learned layers at all
+- C) Hardware adapter
+- D) Small bottleneck layers added to transformer
 
 **9. What is Prefix Tuning?**
 
-A) Tuning the vocabulary prefix
-B) Quick tuning method
-C) Tuning only first N layers, a depth-wise scheme prefix tuning never uses
-D) Learning virtual tokens prepended to input
+- A) Tuning the vocabulary prefix
+- B) Quick tuning method
+- C) Tuning only first N layers, a depth-wise scheme prefix tuning never uses
+- D) Learning virtual tokens prepended to input
 
 **10. Why is PEFT important for LLMs?**
 
-A) Only small models can be fine-tuned
-B) Makes fine-tuning 70B+ models feasible
-C) Required by law
-D) Improves training speed only
+- A) Only small models can be fine-tuned
+- B) Makes fine-tuning 70B+ models feasible
+- C) Required by law
+- D) Improves training speed only
 
 **11. In LoRA, alpha controls:**
 
-A) The scaling of the low-rank update (ΔW = α/r · BA)
-B) The learning rate
-C) The batch size
-D) The quantization bit-width, which LoRA itself never sets at any point in its lifecycle
+- A) The scaling of the low-rank update (ΔW = α/r · BA)
+- B) The learning rate
+- C) The batch size
+- D) The quantization bit-width, which LoRA itself never sets at any point in its lifecycle
 
 **12. LoRA updates are most commonly applied to:**
 
-A) Embedding tables only, leaving every attention projection permanently frozen
-B) Layer norms
-C) Attention projection matrices (e.g., q_proj, v_proj)
-D) The LM head only
+- A) Embedding tables only, leaving every attention projection permanently frozen
+- B) Layer norms
+- C) Attention projection matrices (e.g., q_proj, v_proj)
+- D) The LM head only
 
 **13. QLoRA's base model is stored in:**
 
-A) FP32
-B) 4-bit NF4
-C) INT8 per-channel
-D) FP16
+- A) FP32
+- B) 4-bit NF4
+- C) INT8 per-channel
+- D) FP16
 
 **14. Double quantization in QLoRA:**
 
-A) Applies quantization twice for accuracy, a double pass that QLoRA never performs
-B) Quantizes the quantization constants themselves to save memory
-C) Duplicates weights across GPUs
-D) Quantizes gradients
+- A) Applies quantization twice for accuracy, a double pass that QLoRA never performs
+- B) Quantizes the quantization constants themselves to save memory
+- C) Duplicates weights across GPUs
+- D) Quantizes gradients
 
 **15. A higher LoRA rank (r) generally:**
 
-A) Always reduces quality
-B) Has no effect
-C) Increases capacity and the adapter's memory footprint
-D) Reduces training time proportionally, though larger ranks usually cost more steps, not fewer
+- A) Always reduces quality
+- B) Has no effect
+- C) Increases capacity and the adapter's memory footprint
+- D) Reduces training time proportionally, though larger ranks usually cost more steps, not fewer
 
 **16. Compared with full fine-tuning, LoRA saves the most memory on:**
 
-A) Activation memory only, which LoRA actually leaves untouched at equal batch sizes
-B) Optimizer states for the frozen weights
-C) Data loading buffers
-D) Logits storage
+- A) Activation memory only, which LoRA actually leaves untouched at equal batch sizes
+- B) Optimizer states for the frozen weights
+- C) Data loading buffers
+- D) Logits storage
 
 **17. Multiple task-specific LoRA adapters on one base model can be:**
 
-A) Swapped at serving time without keeping full weight copies
-B) Merged into the tokenizer
-C) Used only one at a time per datacenter
-D) Trained simultaneously on one GPU at no cost, a claim no real training loop has ever satisfied
+- A) Swapped at serving time without keeping full weight copies
+- B) Merged into the tokenizer
+- C) Used only one at a time per datacenter
+- D) Trained simultaneously on one GPU at no cost, a claim no real training loop has ever satisfied
 
 **18. Which PEFT method trains only continuous prompt vectors while keeping the model frozen?**
 
-A) Full fine-tuning
-B) Prompt tuning / soft prompting
-C) LoRA on all layers, which still trains weight matrices rather than prompt vectors
-D) Knowledge distillation
+- A) Full fine-tuning
+- B) Prompt tuning / soft prompting
+- C) LoRA on all layers, which still trains weight matrices rather than prompt vectors
+- D) Knowledge distillation
 
 **19. Merging LoRA as W' = W + (α/r)BA is valid because:**
 
-A) BA has the same shape as W
-B) LoRA changes the tokenizer
-C) Alpha equals the learning rate
-D) B and A are orthogonal by construction
+- A) BA has the same shape as W
+- B) LoRA changes the tokenizer
+- C) Alpha equals the learning rate
+- D) B and A are orthogonal by construction
 
 **20. IA³ / BitFit-style PEFT methods differ from LoRA by:**
 
-A) Rewriting the attention math
-B) Requiring more trainable parameters than full fine-tuning, which inverts their actual bargain
-C) Tuning very small vectors/biases instead of low-rank matrices
-D) Only working on encoder models
+- A) Rewriting the attention math
+- B) Requiring more trainable parameters than full fine-tuning, which inverts their actual bargain
+- C) Tuning very small vectors/biases instead of low-rank matrices
+- D) Only working on encoder models
 
 ---
 

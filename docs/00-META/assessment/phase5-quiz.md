@@ -16,300 +16,300 @@ Tags: ['assessment', 'quiz', 'finetuning']
 ## Questions
 
 ### 1. What is LoRA?
-a) Learning Rate Optimization
-b) Large Model Optimization
-c) Linear Regression Adaptation with frozen projection heads
-d) Low-Rank Adaptation for efficient fine-tuning
+- a) Learning Rate Optimization
+- b) Large Model Optimization
+- c) Linear Regression Adaptation with frozen projection heads
+- d) Low-Rank Adaptation for efficient fine-tuning
 
 **Answer:** d
 
 ---
 
 ### 2. What is the main benefit of LoRA over full fine-tuning?
-a) Trains fewer parameters
-b) Faster training
-c) Better accuracy
-d) Simpler implementation
+- a) Trains fewer parameters
+- b) Faster training
+- c) Better accuracy
+- d) Simpler implementation
 
 **Answer:** a
 
 ---
 
 ### 3. What does the Q in QLoRA stand for?
-a) Quick LoRA
-b) Quality LoRA
-c) Quantum LoRA
-d) Quantization-aware LoRA
+- a) Quick LoRA
+- b) Quality LoRA
+- c) Quantum LoRA
+- d) Quantization-aware LoRA
 
 **Answer:** d
 
 ---
 
 ### 4. What is the rank parameter in LoRA?
-a) Dimension of low-rank matrices
-b) Overall rank of the frozen base model
-c) Training rank
-d) Data rank
+- a) Dimension of low-rank matrices
+- b) Overall rank of the frozen base model
+- c) Training rank
+- d) Data rank
 
 **Answer:** a
 
 ---
 
 ### 5. What does DPO stand for?
-a) Data Processing Optimization
-b) Deep Parameter Optimization
-c) Distributed Parallel Optimization
-d) Direct Preference Optimization
+- a) Data Processing Optimization
+- b) Deep Parameter Optimization
+- c) Distributed Parallel Optimization
+- d) Direct Preference Optimization
 
 **Answer:** d
 
 ---
 
 ### 6. What is the difference between DPO and RLHF?
-a) DPO doesn't require reward model
-b) DPO is faster
-c) DPO is more accurate
-d) DPO uses less data because preference pairs share cached rewards
+- a) DPO doesn't require reward model
+- b) DPO is faster
+- c) DPO is more accurate
+- d) DPO uses less data because preference pairs share cached rewards
 
 **Answer:** a
 
 ---
 
 ### 7. What is RLHF?
-a) Rapid Learning from Features
-b) Recursive Learning with Human Feedback
-c) Reinforced Learning Heuristic Framework from earlier RL papers
-d) Reinforcement Learning from Human Feedback
+- a) Rapid Learning from Features
+- b) Recursive Learning with Human Feedback
+- c) Reinforced Learning Heuristic Framework from earlier RL papers
+- d) Reinforcement Learning from Human Feedback
 
 **Answer:** d
 
 ---
 
 ### 8. What is a reward model in RLHF?
-a) Model trained to predict human preferences
-b) Model that gives rewards whenever the policy beats its baseline run
-c) Bonus model
-d) Scoring model
+- a) Model trained to predict human preferences
+- b) Model that gives rewards whenever the policy beats its baseline run
+- c) Bonus model
+- d) Scoring model
 
 **Answer:** a
 
 ---
 
 ### 9. What is knowledge distillation?
-a) Training smaller model to mimic larger model
-b) Compressing knowledge
-c) Knowledge transfer sessions scheduled between teacher and student checkpoints
-d) Model compression
+- a) Training smaller model to mimic larger model
+- b) Compressing knowledge
+- c) Knowledge transfer sessions scheduled between teacher and student checkpoints
+- d) Model compression
 
 **Answer:** a
 
 ---
 
 ### 10. What is PEFT?
-a) Partial Effect Fine-Tuning
-b) Performance Enhanced Fine-Tuning
-c) Parallel Efficient Fine-Tuning
-d) Parameter-Efficient Fine-Tuning
+- a) Partial Effect Fine-Tuning
+- b) Performance Enhanced Fine-Tuning
+- c) Parallel Efficient Fine-Tuning
+- d) Parameter-Efficient Fine-Tuning
 
 **Answer:** d
 
 ---
 
 ### 11. What is the typical LoRA rank used for 7B models?
-a) 1-4
-b) 512-1024
-c) 8-64
-d) 128-256
+- a) 1-4
+- b) 512-1024
+- c) 8-64
+- d) 128-256
 
 **Answer:** c
 
 ---
 
 ### 12. What is alpha in LoRA?
-a) Scaling factor for LoRA weights
-b) Learning rate
-c) Rank parameter
-d) Regularization strength
+- a) Scaling factor for LoRA weights
+- b) Learning rate
+- c) Rank parameter
+- d) Regularization strength
 
 **Answer:** a
 
 ---
 
 ### 13. What are target modules in LoRA?
-a) Which layers to apply LoRA to
-b) Model targets
-c) Training targets tracked by the optimizer's projection buffers
-d) Loss targets
+- a) Which layers to apply LoRA to
+- b) Model targets
+- c) Training targets tracked by the optimizer's projection buffers
+- d) Loss targets
 
 **Answer:** a
 
 ---
 
 ### 14. What is instruction tuning?
-a) Fine-tuning to follow instructions
-b) Training instructions
-c) Prompt tuning
-d) Task tuning
+- a) Fine-tuning to follow instructions
+- b) Training instructions
+- c) Prompt tuning
+- d) Task tuning
 
 **Answer:** a
 
 ---
 
 ### 15. What is SFT?
-a) Semi-supervised Fine-Tuning
-b) Sequential Fine-Tuning
-c) Sparse Fine-Tuning
-d) Supervised Fine-Tuning
+- a) Semi-supervised Fine-Tuning
+- b) Sequential Fine-Tuning
+- c) Sparse Fine-Tuning
+- d) Supervised Fine-Tuning
 
 **Answer:** d
 
 ---
 
 ### 16. What is synthetic data generation?
-a) Creating fake data
-b) Generating training data with LLMs
-c) Data augmentation
-d) Sample generation
+- a) Creating fake data
+- b) Generating training data with LLMs
+- c) Data augmentation
+- d) Sample generation
 
 **Answer:** b
 
 ---
 
 ### 17. What is the main benefit of synthetic data?
-a) Better quality
-b) More diversity
-c) Reduce cost of data collection
-d) Faster training enabled by skipping validation splits altogether
+- a) Better quality
+- b) More diversity
+- c) Reduce cost of data collection
+- d) Faster training enabled by skipping validation splits altogether
 
 **Answer:** c
 
 ---
 
 ### 18. What best describes federated learning?
-a) Federated training
-b) Training across distributed data sources
-c) Distributed training
-d) Collaborative learning
+- a) Federated training
+- b) Training across distributed data sources
+- c) Distributed training
+- d) Collaborative learning
 
 **Answer:** b
 
 ---
 
 ### 19. What is data parallelism?
-a) Splitting model across GPUs
-b) Splitting data across GPUs
-c) Parallel data processing
-d) Batch parallelism
+- a) Splitting model across GPUs
+- b) Splitting data across GPUs
+- c) Parallel data processing
+- d) Batch parallelism
 
 **Answer:** b
 
 ---
 
 ### 20. What is model parallelism?
-a) Splitting data across GPUs
-b) Parallel models
-c) Splitting model across GPUs
-d) Model replication across every rank with synchronized broadcasts
+- a) Splitting data across GPUs
+- b) Parallel models
+- c) Splitting model across GPUs
+- d) Model replication across every rank with synchronized broadcasts
 
 **Answer:** c
 
 ---
 
 ### 21. What is distributed training?
-a) Fast training
-b) Training across multiple devices
-c) Parallel training
-d) Cluster training
+- a) Fast training
+- b) Training across multiple devices
+- c) Parallel training
+- d) Cluster training
 
 **Answer:** b
 
 ---
 
 ### 22. What is the main challenge of fine-tuning large models?
-a) Training time
-b) Memory footprint
-c) Data requirements
-d) Overfitting
+- a) Training time
+- b) Memory footprint
+- c) Data requirements
+- d) Overfitting
 
 **Answer:** b
 
 ---
 
 ### 23. What is gradient accumulation?
-a) Accumulating gradients
-b) Gradient storage
-c) Simulating larger batch sizes
-d) Batch accumulation
+- a) Accumulating gradients
+- b) Gradient storage
+- c) Simulating larger batch sizes
+- d) Batch accumulation
 
 **Answer:** c
 
 ---
 
 ### 24. What is learning rate scheduling?
-a) Scheduling learning
-b) Rate optimization
-c) Adjusting learning rate during training
-d) Learning optimization
+- a) Scheduling learning
+- b) Rate optimization
+- c) Adjusting learning rate during training
+- d) Learning optimization
 
 **Answer:** c
 
 ---
 
 ### 25. What is warmup in training?
-a) Pre-heating GPU kernels before the first optimizer step
-b) Data preparation
-c) Gradually increasing learning rate
-d) Model initialization
+- a) Pre-heating GPU kernels before the first optimizer step
+- b) Data preparation
+- c) Gradually increasing learning rate
+- d) Model initialization
 
 **Answer:** c
 
 ---
 
 ### 26. What is weight decay?
-a) Weight reduction
-b) Decay of learning rate
-c) Model compression
-d) L2 regularization
+- a) Weight reduction
+- b) Decay of learning rate
+- c) Model compression
+- d) L2 regularization
 
 **Answer:** d
 
 ---
 
 ### 27. What is the difference between LoRA and adapter layers?
-a) LoRA is faster
-b) LoRA modifies weights, adapters add layers
-c) Adapters are more efficient
-d) No difference
+- a) LoRA is faster
+- b) LoRA modifies weights, adapters add layers
+- c) Adapters are more efficient
+- d) No difference
 
 **Answer:** b
 
 ---
 
 ### 28. What is prompt tuning?
-a) Tuning prompts
-b) Learning soft prompts
-c) Prompt optimization sweeps over curated instruction templates
-d) Prompt engineering
+- a) Tuning prompts
+- b) Learning soft prompts
+- c) Prompt optimization sweeps over curated instruction templates
+- d) Prompt engineering
 
 **Answer:** b
 
 ---
 
 ### 29. In PEFT, what does prefix tuning train?
-a) Adding prefix to prompts
-b) Prefix optimization
-c) Tuning prefix tokens
-d) Context tuning
+- a) Adding prefix to prompts
+- b) Prefix optimization
+- c) Tuning prefix tokens
+- d) Context tuning
 
 **Answer:** c
 
 ---
 
 ### 30. What is the main advantage of QLoRA over LoRA?
-a) Faster training
-b) Can fine-tune larger models in same memory
-c) Better accuracy
-d) Simpler implementation
+- a) Faster training
+- b) Can fine-tune larger models in same memory
+- c) Better accuracy
+- d) Simpler implementation
 
 **Answer:** b
 

@@ -1,7 +1,7 @@
 ---
 Document ID: 6100-QUIZ
 Title: "6100: Vector Embeddings - Quiz"
-Last Updated: 2026-10-01
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 30 minutes
@@ -23,143 +23,143 @@ Tags: ['assessment', 'quiz', 'rag', 'vectors']
 
 **1. Vector embeddings represent:**
 
-A) Text as strings
-B) Text as one-hot vectors
-C) Text as numbers
-D) Text as categories
+- A) Text as strings
+- B) Text as one-hot vectors
+- C) Text as numbers
+- D) Text as categories
 
 **2. Word2Vec uses:**
 
-A) TF-IDF
-B) Count vectors
-C) Neural networks
-D) Co-occurrence matrices only
+- A) TF-IDF
+- B) Count vectors
+- C) Neural networks
+- D) Co-occurrence matrices only
 
 **3. Cosine similarity measures:**
 
-A) Euclidean distance, a length-based measure cosine is normalized to ignore
-B) Manhattan distance
-C) Dot product
-D) Angle between vectors
+- A) Euclidean distance, a length-based measure cosine is normalized to ignore
+- B) Manhattan distance
+- C) Dot product
+- D) Angle between vectors
 
 **4. BERT produces:**
 
-A) Static embeddings
-B) Sparse embeddings
-C) Random embeddings, which no trained checkpoint would ever emit deliberately
-D) Contextual embeddings
+- A) Static embeddings
+- B) Sparse embeddings
+- C) Random embeddings, which no trained checkpoint would ever emit deliberately
+- D) Contextual embeddings
 
 **5. Sentence-BERT is fine-tuned for:**
 
-A) Language modeling
-B) Text generation, a decoder job its bi-encoder architecture never performs
-C) Sentence similarity
-D) Translation
+- A) Language modeling
+- B) Text generation, a decoder job its bi-encoder architecture never performs
+- C) Sentence similarity
+- D) Translation
 
 **6. Embedding dimension is typically:**
 
-A) 10-50
-B) Doesn't matter
-C) 5000+
-D) 100-1000
+- A) 10-50
+- B) Doesn't matter
+- C) 5000+
+- D) 100-1000
 
 **7. Normalization of vectors:**
 
-A) Should never be done, a prohibition no retrieval pipeline follows in practice
-B) Is optional
-C) Is required for cosine similarity
-D) Only for images
+- A) Should never be done, a prohibition no retrieval pipeline follows in practice
+- B) Is optional
+- C) Is required for cosine similarity
+- D) Only for images
 
 **8. Mean pooling:**
 
-A) Averages token embeddings
-B) Takes the first token
-C) Takes the last token
-D) Doesn't work
+- A) Averages token embeddings
+- B) Takes the first token
+- C) Takes the last token
+- D) Doesn't work
 
 **9. OpenAI embeddings have dimension:**
 
-A) 512
-B) 768
-C) 1536
-D) 2048, a figure no shipping OpenAI text-embedding endpoint has ever matched
+- A) 512
+- B) 768
+- C) 1536
+- D) 2048, a figure no shipping OpenAI text-embedding endpoint has ever matched
 
 **10. BGE (BAAI General Embedding) is:**
 
-A) A training method
-B) A loss function, a mathematical object with no weights or checkpoints at all
-C) A dataset
-D) An open-source embedding model
+- A) A training method
+- B) A loss function, a mathematical object with no weights or checkpoints at all
+- C) A dataset
+- D) An open-source embedding model
 
 **11. Matryoshka embeddings:**
 
-A) Use nested dimensions
-B) Are Russian dolls
-C) Don't work
-D) Are only for images
+- A) Use nested dimensions
+- B) Are Russian dolls
+- C) Don't work
+- D) Are only for images
 
 **12. ColBERT uses:**
 
-A) A single vector, the exact design ColBERT's late-interaction scheme rejects
-B) Sparse vectors
-C) No vectors
-D) Multiple token vectors
+- A) A single vector, the exact design ColBERT's late-interaction scheme rejects
+- B) Sparse vectors
+- C) No vectors
+- D) Multiple token vectors
 
 **13. Embeddings for retrieval should:**
 
-A) Capture semantics
-B) Be random
-C) Be sparse
-D) Use only keywords
+- A) Capture semantics
+- B) Be random
+- C) Be sparse
+- D) Use only keywords
 
 **14. The CLIP model:**
 
-A) Embeds text only, which its dual-encoder training on image-caption pairs refutes
-B) Embeds images and text
-C) Embeds audio
-D) Doesn't use embeddings
+- A) Embeds text only, which its dual-encoder training on image-caption pairs refutes
+- B) Embeds images and text
+- C) Embeds audio
+- D) Doesn't use embeddings
 
 **15. Fine-tuning embeddings requires:**
 
-A) No data
-B) Labeled similarity pairs
-C) Only text, with no notion of which pairs should land close together
-D) Only images
+- A) No data
+- B) Labeled similarity pairs
+- C) Only text, with no notion of which pairs should land close together
+- D) Only images
 
 **16. MTEB benchmark:**
 
-A) Tests embedding quality
-B) Tests language models, a suite MTEB was designed specifically not to duplicate
-C) Tests image models
-D) Doesn't exist
+- A) Tests embedding quality
+- B) Tests language models, a suite MTEB was designed specifically not to duplicate
+- C) Tests image models
+- D) Doesn't exist
 
 **17. Multi-lingual embeddings:**
 
-A) Work on one language, a restriction no multilingual checkpoint actually carries
-B) Work on multiple languages
-C) Don't exist
-D) Are worse
+- A) Work on one language, a restriction no multilingual checkpoint actually carries
+- B) Work on multiple languages
+- C) Don't exist
+- D) Are worse
 
 **18. Long documents can be embedded by:**
 
-A) Using the first sentence, which discards nearly every detail the rest contains
-B) Chunking and embedding each chunk
-C) Not possible
-D) Using only title
+- A) Using the first sentence, which discards nearly every detail the rest contains
+- B) Chunking and embedding each chunk
+- C) Not possible
+- D) Using only title
 
 **19. Query-document similarity:**
 
-A) Uses different embedding models
-B) Uses same embedding model
-C) Doesn't use embeddings
-D) Uses random vectors
+- A) Uses different embedding models
+- B) Uses same embedding model
+- C) Doesn't use embeddings
+- D) Uses random vectors
 
 **20. Bi-encoders:**
 
-A) Encode query and document separately
-B) Encode together
-C) Don't encode
-D) Use cross-attention, which is precisely the cross-encoder design these models avoid
+- A) Encode query and document separately
+- B) Encode together
+- C) Don't encode
+- D) Use cross-attention, which is precisely the cross-encoder design these models avoid
 
 ---
 

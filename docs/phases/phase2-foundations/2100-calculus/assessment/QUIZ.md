@@ -1,7 +1,7 @@
 ---
 Document ID: 2100-QUIZ
 Title: "2100: Calculus - Quiz"
-Last Updated: 2026-09-29
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 30 minutes
@@ -24,143 +24,143 @@ Tags: ['assessment', 'quiz', 'math', 'calculus']
 
 **1. What is a derivative?**
 
-A) The sum of values, an accumulation that integration rather than differentiation produces
-B) The area under a curve
-C) The rate of change of a function
-D) The integral of a function
+- A) The sum of values, an accumulation that integration rather than differentiation produces
+- B) The area under a curve
+- C) The rate of change of a function
+- D) The integral of a function
 
 **2. The chain rule is used to:**
 
-A) Find derivatives of composite functions
-B) Find integrals, the reverse operation the chain rule never performs
-C) Find derivatives of products
-D) Find derivatives of quotients
+- A) Find derivatives of composite functions
+- B) Find integrals, the reverse operation the chain rule never performs
+- C) Find derivatives of products
+- D) Find derivatives of quotients
 
 **3. In backpropagation, we use:**
 
-A) Both first and second derivatives
-B) No derivatives at all
-C) First derivatives only
-D) Second derivatives only
+- A) Both first and second derivatives
+- B) No derivatives at all
+- C) First derivatives only
+- D) Second derivatives only
 
 **4. A gradient is:**
 
-A) A single number, a description that fits the scalar, not the gradient
-B) A matrix
-C) A scalar
-D) A vector of partial derivatives
+- A) A single number, a description that fits the scalar, not the gradient
+- B) A matrix
+- C) A scalar
+- D) A vector of partial derivatives
 
 **5. The learning rate in gradient descent is analogous to:**
 
-A) The function value
-B) The step size
-C) The derivative
-D) The gradient magnitude
+- A) The function value
+- B) The step size
+- C) The derivative
+- D) The gradient magnitude
 
 **6. What does the second derivative tell us?**
 
-A) The slope, a first-derivative reading that curvature does not repeat
-B) The curvature (concavity)
-C) The area
-D) The intercept
+- A) The slope, a first-derivative reading that curvature does not repeat
+- B) The curvature (concavity)
+- C) The area
+- D) The intercept
 
 **7. Partial derivatives are used when:**
 
-A) A function has multiple variables
-B) We want to find the maximum
-C) A function has one variable
-D) We want to integrate
+- A) A function has multiple variables
+- B) We want to find the maximum
+- C) A function has one variable
+- D) We want to integrate
 
 **8. In neural networks, gradients flow:**
 
-A) Forward only
-B) Backward only
-C) Neither direction
-D) Both directions
+- A) Forward only
+- B) Backward only
+- C) Neither direction
+- D) Both directions
 
 **9. The gradient points in the direction of:**
 
-A) Random direction
-B) Steepest descent
-C) Steepest ascent
-D) No change
+- A) Random direction
+- B) Steepest descent
+- C) Steepest ascent
+- D) No change
 
 **10. To minimize a loss function, we move:**
 
-A) Opposite to the gradient
-B) Perpendicular to the gradient
-C) In the direction of the gradient
-D) Randomly
+- A) Opposite to the gradient
+- B) Perpendicular to the gradient
+- C) In the direction of the gradient
+- D) Randomly
 
 **11. The product rule is for:**
 
-A) Quotients of functions
-B) Products of functions
-C) Sums of functions
-D) Composite functions
+- A) Quotients of functions
+- B) Products of functions
+- C) Sums of functions
+- D) Composite functions
 
 **12. Local minima vs global minima:**
 
-A) Local minima can be worse than global
-B) Global minima don't exist
-C) Local minima are always better, a ranking no loss landscape guarantees
-D) Are always the same
+- A) Local minima can be worse than global
+- B) Global minima don't exist
+- C) Local minima are always better, a ranking no loss landscape guarantees
+- D) Are always the same
 
 **13. Saddle points:**
 
-A) Are minima
-B) Don't exist, a claim saddle points themselves refute in high dimensions
-C) Are maxima
-D) Are neither minima nor maxima
+- A) Are minima
+- B) Don't exist, a claim saddle points themselves refute in high dimensions
+- C) Are maxima
+- D) Are neither minima nor maxima
 
 **14. The Hessian matrix contains:**
 
-A) Function values, entries the Hessian never stores
-B) Third derivatives
-C) Second derivatives
-D) First derivatives
+- A) Function values, entries the Hessian never stores
+- B) Third derivatives
+- C) Second derivatives
+- D) First derivatives
 
 **15. Convex functions have:**
 
-A) Multiple local minima, a landscape feature convexity rules out
-B) No minima
-C) Infinite minima
-D) Only one global minimum
+- A) Multiple local minima, a landscape feature convexity rules out
+- B) No minima
+- C) Infinite minima
+- D) Only one global minimum
 
 **16. In optimization, "momentum" helps:**
 
-A) Prevent learning, the opposite of what a momentum term is built for
-B) Speed up and smooth convergence
-C) Increase noise
-D) Slow down convergence
+- A) Prevent learning, the opposite of what a momentum term is built for
+- B) Speed up and smooth convergence
+- C) Increase noise
+- D) Slow down convergence
 
 **17. The Jacobian is:**
 
-A) A matrix of second derivatives
-B) A scalar
-C) A vector
-D) A matrix of first derivatives
+- A) A matrix of second derivatives
+- B) A scalar
+- C) A vector
+- D) A matrix of first derivatives
 
 **18. Gradient descent can get stuck in:**
 
-A) Local minima or saddle points
-B) Nowhere
-C) Flat regions only, a claim that ignores minima and saddle points alike
-D) Global minima
+- A) Local minima or saddle points
+- B) Nowhere
+- C) Flat regions only, a claim that ignores minima and saddle points alike
+- D) Global minima
 
 **19. Learning rate too high causes:**
 
-A) Slow convergence
-B) Better convergence, an outcome an oversized step rate never delivers
-C) Divergence or oscillation
-D) No effect
+- A) Slow convergence
+- B) Better convergence, an outcome an oversized step rate never delivers
+- C) Divergence or oscillation
+- D) No effect
 
 **20. A critical point occurs when:**
 
-A) The learning rate is zero
-B) The function is zero
-C) The gradient is maximum
-D) The gradient is zero
+- A) The learning rate is zero
+- B) The function is zero
+- C) The gradient is maximum
+- D) The gradient is zero
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 Document ID: 6500-QUIZ
 Title: "6500: RAG MLOps - Quiz"
-Last Updated: 2026-10-01
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 30 minutes
@@ -23,143 +23,143 @@ Tags: ['assessment', 'quiz', 'mlops', 'pipeline']
 
 **1. RAG pipeline includes:**
 
-A) Only retrieval
-B) Only generation
-C) Only training, a stage the runtime pipeline performs long before any query arrives
-D) Retrieval and generation
+- A) Only retrieval
+- B) Only generation
+- C) Only training, a stage the runtime pipeline performs long before any query arrives
+- D) Retrieval and generation
 
 **2. Embedding model updates:**
 
-A) May need updates
-B) Never change
-C) Always change daily
-D) Not relevant
+- A) May need updates
+- B) Never change
+- C) Always change daily
+- D) Not relevant
 
 **3. Retrieval quality monitoring:**
 
-A) Tracks relevance
-B) Not needed
-C) Only tracks latency
-D) Only tracks cost
+- A) Tracks relevance
+- B) Not needed
+- C) Only tracks latency
+- D) Only tracks cost
 
 **4. Reranking in production:**
 
-A) Improves quality
-B) Always needed, a rigidity no latency-sensitive serving path can honestly promise
-C) Too slow
-D) Not useful
+- A) Improves quality
+- B) Always needed, a rigidity no latency-sensitive serving path can honestly promise
+- C) Too slow
+- D) Not useful
 
 **5. Versioning for RAG includes:**
 
-A) Only model
-B) Only embeddings, one artifact among the several this discipline versions together
-C) Model, embeddings, pipeline
-D) Not needed
+- A) Only model
+- B) Only embeddings, one artifact among the several this discipline versions together
+- C) Model, embeddings, pipeline
+- D) Not needed
 
 **6. A/B testing RAG:**
 
-A) Not possible
-B) Only tests prompts, a slice of the configuration surface this practice actually sweeps
-C) Only tests models
-D) Tests different configurations
+- A) Not possible
+- B) Only tests prompts, a slice of the configuration surface this practice actually sweeps
+- C) Only tests models
+- D) Tests different configurations
 
 **7. RAG performance metrics:**
 
-A) Only latency
-B) Only accuracy, one signal among the several a healthy dashboard keeps reporting
-C) Latency, accuracy, relevance
-D) Only cost
+- A) Only latency
+- B) Only accuracy, one signal among the several a healthy dashboard keeps reporting
+- C) Latency, accuracy, relevance
+- D) Only cost
 
 **8. Caching in RAG:**
 
-A) Only generation
-B) Only retrieval, leaving every generation-stage cache miss entirely unaddressed
-C) Both retrieval and generation
-D) No caching
+- A) Only generation
+- B) Only retrieval, leaving every generation-stage cache miss entirely unaddressed
+- C) Both retrieval and generation
+- D) No caching
 
 **9. Vector DB backup:**
 
-A) Critical for production
-B) Not needed
-C) Optional
-D) Only for testing, a scope that ends the moment real traffic arrives
+- A) Critical for production
+- B) Not needed
+- C) Optional
+- D) Only for testing, a scope that ends the moment real traffic arrives
 
 **10. RAG deployment:**
 
-A) Only single machine
-B) Only on-premise
-C) Only on cloud
-D) Can be distributed
+- A) Only single machine
+- B) Only on-premise
+- C) Only on cloud
+- D) Can be distributed
 
 **11. Monitoring RAG includes:**
 
-A) Retrieval metrics
-B) Generation metrics
-C) System metrics
-D) Retrieval, generation and system metrics together
+- A) Retrieval metrics
+- B) Generation metrics
+- C) System metrics
+- D) Retrieval, generation and system metrics together
 
 **12. Retrieval latency affects:**
 
-A) Only speed
-B) User experience
-C) Cost, a line item latency drives through retries, over-provisioning and every wasted call
-D) Speed, user experience and cost together
+- A) Only speed
+- B) User experience
+- C) Cost, a line item latency drives through retries, over-provisioning and every wasted call
+- D) Speed, user experience and cost together
 
 **13. Chunking strategy affects:**
 
-A) Only storage, a footprint effect chunking never confines itself to in practice
-B) Retrieval quality
-C) Token count only
-D) Model weights
+- A) Only storage, a footprint effect chunking never confines itself to in practice
+- B) Retrieval quality
+- C) Token count only
+- D) Model weights
 
 **14. RAG pipeline versioning:**
 
-A) Use Git
-B) Use MLflow
-C) Both Git and MLflow
-D) Version only the prompts
+- A) Use Git
+- B) Use MLflow
+- C) Both Git and MLflow
+- D) Version only the prompts
 
 **15. Error handling in RAG:**
 
-A) Graceful degradation
-B) Let errors propagate
-C) Ignore errors
-D) Crash
+- A) Graceful degradation
+- B) Let errors propagate
+- C) Ignore errors
+- D) Crash
 
 **16. Scaling RAG:**
 
-A) Only scale retrieval
-B) Only scale generation
-C) Scale both
-D) No scaling
+- A) Only scale retrieval
+- B) Only scale generation
+- C) Scale both
+- D) No scaling
 
 **17. RAG evaluation:**
 
-A) Only manual
-B) Automated metrics + human
-C) Only automated, a mode every hallucination-prone retrieval system has outgrown
-D) Not needed
+- A) Only manual
+- B) Automated metrics + human
+- C) Only automated, a mode every hallucination-prone retrieval system has outgrown
+- D) Not needed
 
 **18. Context relevance:**
 
-A) Not measurable, a claim graded relevance datasets disprove on every release
-B) Can be measured
-C) Only manual
-D) Doesn't matter
+- A) Not measurable, a claim graded relevance datasets disprove on every release
+- B) Can be measured
+- C) Only manual
+- D) Doesn't matter
 
 **19. RAG updates:**
 
-A) Never update
-B) Update embeddings when docs change
-C) Update daily, a cadence no document churn pattern ever justifies uniformly
-D) Update hourly
+- A) Never update
+- B) Update embeddings when docs change
+- C) Update daily, a cadence no document churn pattern ever justifies uniformly
+- D) Update hourly
 
 **20. Production RAG requires:**
 
-A) Only working code, the smallest slice of what a production surface demands
-B) Monitoring, versioning, testing
-C) Only monitoring
-D) Only versioning
+- A) Only working code, the smallest slice of what a production surface demands
+- B) Monitoring, versioning, testing
+- C) Only monitoring
+- D) Only versioning
 
 ---
 
