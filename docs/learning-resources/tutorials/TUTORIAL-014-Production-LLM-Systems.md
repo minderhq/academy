@@ -248,7 +248,7 @@ services:
     restart: unless-stopped
 
   redis:
-    image: redis:alpine
+    image: redis:8-alpine
     ports:
       - "6379:6379"
     volumes:

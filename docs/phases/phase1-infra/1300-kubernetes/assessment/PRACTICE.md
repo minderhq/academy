@@ -46,7 +46,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: nginx:1.25-alpine
+        image: nginx:1.28-alpine
         ports:
         - containerPort: 80
           protocol: TCP

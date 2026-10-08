@@ -447,7 +447,7 @@ services:
     restart: unless-stopped
 
   redis:
-    image: redis:alpine
+    image: redis:8-alpine
     networks:
       - backend
     restart: unless-stopped

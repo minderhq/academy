@@ -659,7 +659,7 @@ services:
       - vllm-network
 
   nginx:
-    image: nginx:1.25-alpine
+    image: nginx:1.28-alpine
     container_name: nginx-lb
     ports:
       - "80:80"

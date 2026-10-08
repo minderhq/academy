@@ -1303,7 +1303,7 @@ services:
       - postgres_data:/var/lib/postgresql/data
 
   redis:
-    image: redis:alpine
+    image: redis:8-alpine
     restart: unless-stopped
 
 volumes:

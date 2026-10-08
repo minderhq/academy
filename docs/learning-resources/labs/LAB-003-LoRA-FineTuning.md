@@ -870,7 +870,7 @@ cat > ~/lab-003-lora/docker-compose.yml << 'EOF'
 
 services:
   vllm-ft:
-    image: vllm/vllm-openai:v0.6.6.post1  # ⚠️ PIN SPECIFIC VERSION in production!
+    image: vllm/vllm-openai:v0.30.0  # ⚠️ PIN SPECIFIC VERSION in production!
     container_name: vllm-finetuned
     ports:
       - "8002:8000"

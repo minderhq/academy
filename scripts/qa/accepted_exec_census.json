@@ -528,8 +528,8 @@
       }
     },
     "docs/learning-resources/labs/LAB-003-LoRA-FineTuning.md": {
-      "mtime": 1791485459.1281674,
-      "size": 29339,
+      "mtime": 1791490939.2865467,
+      "size": 29334,
       "bad": {
         "675": "TIMEOUT"
       },
@@ -636,8 +636,8 @@
       }
     },
     "docs/learning-resources/labs/LAB-009-Production-Deployment.md": {
-      "mtime": 1791485459.1291664,
-      "size": 43455,
+      "mtime": 1791490939.2875538,
+      "size": 43457,
       "bad": {
         "175": "TIMEOUT"
       },
@@ -714,14 +714,9 @@
       }
     },
     "docs/learning-resources/labs/LAB-014-AI-Evaluation-Safety.md": {
-      "mtime": 1791440871.7717457,
-      "size": 38086,
-      "bad": {
-        "56": "ENV-GAP:torch"
-      },
-      "notes": {
-        "56": "optional third-party package the QA environment does not install; the fence documents the install requirement"
-      }
+      "mtime": 1791490939.2885623,
+      "size": 38088,
+      "bad": {}
     },
     "docs/learning-resources/labs/solutions/SOLUTION-LAB-000-Environment-Setup.md": {
       "mtime": 1791483013.8045673,
@@ -1277,17 +1272,13 @@
       }
     },
     "docs/learning-resources/tutorials/TUTORIAL-006-Real-time-AI.md": {
-      "mtime": 1791440871.7922535,
-      "size": 13053,
+      "mtime": 1791490939.2885623,
+      "size": 13055,
       "bad": {
-        "50": "ENV-GAP:openai",
-        "146": "ENV-GAP:fastapi",
-        "299": "ENV-GAP:fastapi"
+        "146": "TIMEOUT"
       },
       "notes": {
-        "50": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "146": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "299": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "146": "wrong-interpreter baseline artifact: the baseline-era run died at the fastapi import in a minimal venv; the kurulu-stack census interpreter has it, so the fence proceeds into real work that exceeds the 90s budget (tick-797 tag-alignment dirty re-run; this file escaped the tick-796 correct-interpreter sweep)"
       }
     },
     "docs/learning-resources/tutorials/TUTORIAL-007-LoRA-Basics.md": {
@@ -1406,8 +1397,8 @@
       }
     },
     "docs/learning-resources/tutorials/TUTORIAL-014-Production-LLM-Systems.md": {
-      "mtime": 1791485459.1361682,
-      "size": 29025,
+      "mtime": 1791490939.2885623,
+      "size": 29027,
       "bad": {}
     },
     "docs/notebooks/README.md": {
@@ -1526,19 +1517,15 @@
       }
     },
     "docs/phases/phase1-infra/1400-llmops/assessment/PRACTICE.md": {
-      "mtime": 1791484457.3059225,
+      "mtime": 1791490939.290357,
       "size": 27688,
       "bad": {
-        "78": "ENV-GAP:requests",
-        "261": "ENV-GAP:requests",
-        "358": "ENV-GAP:prometheus_client",
-        "717": "ENV-GAP:numpy"
+        "78": "SIDE-EFFECT",
+        "261": "SIDE-EFFECT"
       },
       "notes": {
-        "78": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "261": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "358": "optional third-party package the QA environment does not install; the fence documents the install requirement",
-        "717": "optional third-party package the QA environment does not install; the fence documents the install requirement"
+        "78": "wrong-interpreter baseline artifact: the baseline-era run died at the requests import in a minimal venv; the kurulu-stack census interpreter has it, so the fence proceeds and reaches its external service (tick-797 tag-alignment dirty re-run; first correct-interpreter run for this file)",
+        "261": "wrong-interpreter baseline artifact: the baseline-era run died at the requests import in a minimal venv; the kurulu-stack census interpreter has it, so the fence proceeds and reaches its external service (tick-797 tag-alignment dirty re-run; first correct-interpreter run for this file)"
       }
     },
     "docs/phases/phase1-infra/1400-llmops/guides/1403-vLLM-Production-Deployment.md": {
