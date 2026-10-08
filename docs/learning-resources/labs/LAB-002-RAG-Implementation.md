@@ -460,7 +460,7 @@ Provide a helpful answer based on the context. If the context doesn't contain en
         response = await asyncio.to_thread(requests.post,
             f"{OLLAMA_URL}/api/generate",
             json={
-                "model": "mistral",
+                "model": "mistral:7b",
                 "prompt": prompt,
                 "stream": False
             },
@@ -677,7 +677,7 @@ cd ~/lab-002-rag
 
 # Pull Mistral model first (faster than in container)
 docker run --rm -v ~/lab-002-rag/data/models:/root/.ollama \
-  ollama/ollama:latest ollama pull mistral
+  ollama/ollama:latest ollama pull mistral:7b
 
 # Build and start
 docker compose build
@@ -978,7 +978,7 @@ Provide a helpful answer based on the context."""
         response = await asyncio.to_thread(requests.post,
             f"{OLLAMA_URL}/api/generate",
             json={
-                "model": "mistral",
+                "model": "mistral:7b",
                 "prompt": prompt,
                 "stream": False
             },

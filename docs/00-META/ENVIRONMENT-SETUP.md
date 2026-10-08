@@ -286,10 +286,10 @@ curl -fsSL https://ollama.com/install.sh | sh
 ollama serve
 
 # In another terminal, pull a model
-ollama pull mistral
+ollama pull mistral:7b
 
 # Test chat
-ollama run mistral "Hello, can you help me learn AI?"
+ollama run mistral:7b "Hello, can you help me learn AI?"
 ```
 
 ---
@@ -514,12 +514,12 @@ Before starting tutorials, verify:
 - [ ] uv installed: `uv --version`
 - [ ] Virtual environment active: `which python` (or `.venv` exists in the project)
 - [ ] Ollama running: `ollama list`
-- [ ] Model downloaded: `ollama pull mistral`
+- [ ] Model downloaded: `ollama pull mistral:7b`
 
 ### Functionality Verification
 - [ ] Can run Docker container: `docker run hello-world`
 - [ ] Can import PyTorch: `python -c "import torch"`
-- [ ] Can chat with model: `ollama run mistral "test"`
+- [ ] Can chat with model: `ollama run mistral:7b "test"`
 - [ ] Can create notebook: `jupyter notebook`
 
 ---

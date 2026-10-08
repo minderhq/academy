@@ -53,7 +53,7 @@ ENVIRONMENT SETUP
 
 **Bridge Content:**
 ```bash
-# From Tutorial: ollama run mistral "hello"
+# From Tutorial: ollama run mistral:7b "hello"
 # To Lab: Docker container with Ollama
 
 # Bridge: Understanding containers

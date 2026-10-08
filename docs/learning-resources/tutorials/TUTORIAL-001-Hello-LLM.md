@@ -84,7 +84,7 @@ ollama --version
 We'll use **Mistral 7B** - a powerful, efficient model.
 
 ```bash
-ollama pull mistral
+ollama pull mistral:7b
 ```
 
 **What's happening?**
@@ -103,7 +103,7 @@ ollama pull mistral
 
 ### Interactive Chat:
 ```bash
-ollama run mistral
+ollama run mistral:7b
 ```
 
 **Try these prompts:**
@@ -134,7 +134,7 @@ ollama serve
 ### Test with curl:
 ```bash
 curl http://localhost:11434/api/generate -d '{
-  "model": "mistral",
+  "model": "mistral:7b",
   "prompt": "Why is the sky blue?",
   "stream": false
 }'
@@ -143,7 +143,7 @@ curl http://localhost:11434/api/generate -d '{
 ### Response:
 ```json
 {
-  "model": "mistral",
+  "model": "mistral:7b",
   "response": "The sky appears blue due to a phenomenon called Rayleigh scattering...",
   "done": true
 }
@@ -155,7 +155,7 @@ curl http://localhost:11434/api/generate -d '{
 
 ```bash
 curl http://localhost:11434/api/chat -d '{
-  "model": "mistral",
+  "model": "mistral:7b",
   "messages": [
     {
       "role": "user",
@@ -198,7 +198,7 @@ def chat(message):
     """Send a message to the LLM and get a response"""
 
     payload = {
-        "model": "mistral",
+        "model": "mistral:7b",
         "messages": [
             {
                 "role": "user",
@@ -304,7 +304,7 @@ Now create one for: "Alice, 25, London"
 ## Step 9: Common Issues
 
 ### Issue: "Model not found"
-**Solution:** Run `ollama pull mistral` first
+**Solution:** Run `ollama pull mistral:7b` first
 
 ### Issue: "Out of memory"
 **Solution:** Try a smaller model:

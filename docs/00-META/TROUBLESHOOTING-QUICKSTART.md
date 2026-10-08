@@ -105,7 +105,7 @@ curl -fsSL https://ollama.com/install.sh | sh
 
 **Symptoms:**
 
-- `ollama pull mistral` hangs
+- `ollama pull mistral:7b` hangs
 - No progress for minutes
 
 **Solutions:**
@@ -124,7 +124,7 @@ curl -fsSL https://ollama.com/install.sh | sh
 
 3. **In another terminal, pull model:**
    ```bash
-   ollama pull mistral
+   ollama pull mistral:7b
    ```
 
 4. **Check firewall:**
@@ -210,7 +210,7 @@ curl -fsSL https://ollama.com/install.sh | sh
 
 **Symptoms:**
 
-- `ollama run mistral` fails
+- `ollama run mistral:7b` fails
 - Error: "connection refused" or "dial tcp: lookup ollama.com"
 
 **Solutions:**
@@ -300,7 +300,7 @@ curl -fsSL https://ollama.com/install.sh | sh
 
 2. **Use smaller model:**
    ```bash
-   # Instead of mistral (7B)
+   # Instead of mistral:7b (7B)
    ollama pull phi4-mini  # 3.8B parameters
    ollama pull gemma3:1b # 1B parameters
    ```
@@ -312,10 +312,10 @@ curl -fsSL https://ollama.com/install.sh | sh
 4. **Adjust Ollama memory settings:**
    ```bash
    # Set maximum memory (in GB)
-   CUDA_VISIBLE_DEVICES=-1 ollama run mistral  # Force CPU mode (NVIDIA)
+   CUDA_VISIBLE_DEVICES=-1 ollama run mistral:7b  # Force CPU mode (NVIDIA)
 
    # Limit context length (less memory)
-   ollama run mistral  # then in REPL: /set parameter num_ctx 512
+   ollama run mistral:7b  # then in REPL: /set parameter num_ctx 512
    ```
 
 ---
@@ -336,7 +336,7 @@ curl -fsSL https://ollama.com/install.sh | sh
 
 2. **Use CPU mode:**
    ```bash
-   CUDA_VISIBLE_DEVICES=-1 ollama run mistral
+   CUDA_VISIBLE_DEVICES=-1 ollama run mistral:7b
    ```
 
 3. **Use quantized model:**
@@ -347,7 +347,7 @@ curl -fsSL https://ollama.com/install.sh | sh
 
 4. **Reduce context size:**
    ```bash
-   ollama run mistral  # then in REPL: /set parameter num_ctx 1024
+   ollama run mistral:7b  # then in REPL: /set parameter num_ctx 1024
    ```
 
 ---

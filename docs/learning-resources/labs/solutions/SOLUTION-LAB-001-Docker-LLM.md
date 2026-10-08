@@ -37,11 +37,11 @@ docker run -d \
 docker ps | grep ollama
 
 # Pull a model inside the container
-docker exec ollama ollama pull mistral
+docker exec ollama ollama pull mistral:7b
 
 # Test the API
 curl http://localhost:11434/api/generate -d '{
-  "model": "mistral",
+  "model": "mistral:7b",
   "prompt": "Hello from Docker!",
   "stream": false
 }'
@@ -51,7 +51,7 @@ curl http://localhost:11434/api/generate -d '{
 
 ```json
 {
-  "model": "mistral",
+  "model": "mistral:7b",
   "created_at": "2026-02-04T10:30:00.000Z",
   "response": "Hello! How can I help you today?",
   "done": true
@@ -134,7 +134,7 @@ class Message(BaseModel):
 
 
 class ChatRequest(BaseModel):
-    model: str = Field(default="mistral", description="Model name")
+    model: str = Field(default="mistral:7b", description="Model name")
     messages: list[Message] = Field(..., min_length=1)
     stream: bool = Field(default=False)
     temperature: float | None = Field(default=0.7, ge=0.0, le=2.0)
@@ -576,7 +576,7 @@ mkdir -p services/app data/models data/chat nginx
 docker compose up -d
 
 # 4. Pull model
-docker exec ollama ollama pull mistral
+docker exec ollama ollama pull mistral:7b
 
 # 5. Test the API
 curl http://localhost:8000/health
@@ -585,7 +585,7 @@ curl http://localhost:8000/health
 curl -X POST http://localhost:8000/chat/session123 \
   -H "Content-Type: application/json" \
   -d '{
-    "model": "mistral",
+    "model": "mistral:7b",
     "messages": [{"role": "user", "content": "Hello!"}]
   }'
 

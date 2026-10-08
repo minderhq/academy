@@ -105,7 +105,7 @@ Thought:"""
         response = requests.post(
             f"{self.llm_url}/api/generate",
             json={
-                "model": "mistral",
+                "model": "mistral:7b",
                 "prompt": prompt,
                 "stream": False
             }
@@ -135,7 +135,7 @@ Response:"""
         response = requests.post(
             f"{self.llm_url}/api/generate",
             json={
-                "model": "mistral",
+                "model": "mistral:7b",
                 "prompt": prompt,
                 "stream": False
             }
@@ -268,7 +268,7 @@ Provide a clear, concise answer:"""
         response = requests.post(
             f"{self.llm_url}/api/generate",
             json={
-                "model": "mistral",
+                "model": "mistral:7b",
                 "prompt": prompt,
                 "stream": False
             }
@@ -284,7 +284,7 @@ Provide a clear, concise answer:"""
 if __name__ == "__main__":
     # Start Ollama first
     # docker run -d --name ollama -p 11434:11434 ollama/ollama
-    # docker exec ollama ollama pull mistral
+    # docker exec ollama ollama pull mistral:7b
 
     agent = ReActLoop(llm_url="http://localhost:11434")
 
@@ -640,7 +640,7 @@ Thought:"""
 
         response = requests.post(
             f"{LLM_URL}/api/generate",
-            json={"model": "mistral", "prompt": prompt, "stream": False}, timeout=120
+            json={"model": "mistral:7b", "prompt": prompt, "stream": False}, timeout=120
         )
 
         return response.json().get("response", "").strip()
@@ -673,7 +673,7 @@ Response:"""
 
         response = requests.post(
             f"{LLM_URL}/api/generate",
-            json={"model": "mistral", "prompt": prompt, "stream": False}, timeout=120
+            json={"model": "mistral:7b", "prompt": prompt, "stream": False}, timeout=120
         )
 
         result = response.json().get("response", "").strip()
@@ -720,7 +720,7 @@ Provide a clear, helpful answer:"""
 
         response = requests.post(
             f"{LLM_URL}/api/generate",
-            json={"model": "mistral", "prompt": prompt, "stream": False}, timeout=120
+            json={"model": "mistral:7b", "prompt": prompt, "stream": False}, timeout=120
         )
 
         return response.json().get("response", "").strip()
@@ -879,7 +879,7 @@ cd ~/lab-004-react
 
 # Pull model first
 docker run --rm -v ~/lab-004-react/data/models:/root/.ollama \
-  ollama/ollama ollama pull mistral
+  ollama/ollama ollama pull mistral:7b
 
 # Start services
 docker compose up -d --build
@@ -1021,7 +1021,7 @@ Reflection:"""
 
         response = requests.post(
             f"{LLM_URL}/api/generate",
-            json={"model": "mistral", "prompt": prompt, "stream": False}, timeout=120
+            json={"model": "mistral:7b", "prompt": prompt, "stream": False}, timeout=120
         )
 
         return response.json().get("response", "").strip()
@@ -1128,7 +1128,7 @@ Provide a helpful answer:"""
 
         response = requests.post(
             f"{LLM_URL}/api/generate",
-            json={"model": "mistral", "prompt": prompt, "stream": False}, timeout=120
+            json={"model": "mistral:7b", "prompt": prompt, "stream": False}, timeout=120
         )
 
         return response.json().get("response", "").strip()
@@ -1173,7 +1173,7 @@ Respond with only the specialist name:"""
 
         response = requests.post(
             f"{LLM_URL}/api/generate",
-            json={"model": "mistral", "prompt": prompt, "stream": False}, timeout=120
+            json={"model": "mistral:7b", "prompt": prompt, "stream": False}, timeout=120
         )
 
         specialist_name = response.json().get("response", "").strip().lower()

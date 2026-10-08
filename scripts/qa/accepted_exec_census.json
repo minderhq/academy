@@ -15,8 +15,8 @@
       "bad": {}
     },
     "docs/00-META/ENVIRONMENT-SETUP.md": {
-      "mtime": 1791440871.7459083,
-      "size": 13961,
+      "mtime": 1791483012.7958946,
+      "size": 13973,
       "bad": {
         "403": "ENV-GAP:torch"
       },
@@ -35,8 +35,8 @@
       "bad": {}
     },
     "docs/00-META/QUICK-START.md": {
-      "mtime": 1791436051.467783,
-      "size": 10185,
+      "mtime": 1791483012.7968957,
+      "size": 10193,
       "bad": {
         "189": "ENV-GAP:ollama",
         "218": "ENV-GAP:ollama"
@@ -285,8 +285,8 @@
       }
     },
     "docs/learning-resources/bridges/TUTORIAL-TO-LAB-BRIDGE.md": {
-      "mtime": 1791440871.7550006,
-      "size": 8106,
+      "mtime": 1791483012.7988963,
+      "size": 8109,
       "bad": {}
     },
     "docs/learning-resources/case-studies/REAL-WORLD-EXAMPLES.md": {
@@ -514,8 +514,8 @@
       }
     },
     "docs/learning-resources/labs/LAB-001-Docker-LLM.md": {
-      "mtime": 1791440871.763,
-      "size": 20030,
+      "mtime": 1791483012.8004012,
+      "size": 20060,
       "bad": {
         "114": "ENV-GAP:fastapi",
         "526": "ENV-GAP:fastapi",
@@ -528,8 +528,8 @@
       }
     },
     "docs/learning-resources/labs/LAB-002-RAG-Implementation.md": {
-      "mtime": 1791440871.763,
-      "size": 30623,
+      "mtime": 1791483012.8014064,
+      "size": 30632,
       "bad": {
         "257": "ENV-GAP:chunker",
         "293": "ENV-GAP:fastapi",
@@ -568,8 +568,8 @@
       }
     },
     "docs/learning-resources/labs/LAB-004-ReAct-Agent.md": {
-      "mtime": 1791440871.764505,
-      "size": 35391,
+      "mtime": 1791483012.8035665,
+      "size": 35424,
       "bad": {
         "82": "ENV-GAP:requests",
         "311": "ENV-GAP:requests",
@@ -764,18 +764,18 @@
       }
     },
     "docs/learning-resources/labs/solutions/SOLUTION-LAB-000-Environment-Setup.md": {
-      "mtime": 1791219257.9004638,
-      "size": 1904,
+      "mtime": 1791483012.8045673,
+      "size": 1913,
       "bad": {
-        "90": "SIDE-EFFECT"
+        "90": "ENV-GAP:ollama"
       },
       "notes": {
-        "90": "external service/credential required at runtime (API key, Ollama daemon, vector-DB server, gated model); environment requirement, not a code defect"
+        "90": "ollama python client not installed in the QA environment - the fence needs the Ollama runtime; the pre-touch baseline recorded SIDE-EFFECT because the older QA env had the client installed and generate() hit a missing daemon instead. Same environment-requirement class, not a code defect; reclassified on the touch-driven first true re-execution (tick-796 mistral:7b pin)"
       }
     },
     "docs/learning-resources/labs/solutions/SOLUTION-LAB-001-Docker-LLM.md": {
-      "mtime": 1791440871.7727506,
-      "size": 15760,
+      "mtime": 1791483012.8055675,
+      "size": 15778,
       "bad": {
         "108": "ENV-GAP:fastapi",
         "479": "ENV-GAP:storage"
@@ -1313,8 +1313,8 @@
       }
     },
     "docs/learning-resources/tutorials/TUTORIAL-001-Hello-LLM.md": {
-      "mtime": 1791440871.7887423,
-      "size": 6929,
+      "mtime": 1791483012.8065653,
+      "size": 6950,
       "bad": {
         "191": "ENV-GAP:requests"
       },

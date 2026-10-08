@@ -97,7 +97,7 @@ Ollama makes it incredibly easy:
 
 ```bash
 # Pull Mistral 7B (recommended for beginners)
-ollama pull mistral
+ollama pull mistral:7b
 
 # This downloads ~4GB - may take a few minutes
 ```
@@ -123,7 +123,7 @@ ollama pull phi4            # Small & fast
 ping google.com
 
 # Try again (Ollama resumes automatically)
-ollama pull mistral
+ollama pull mistral:7b
 ```
 
 **"Connection refused" error?**
@@ -148,7 +148,7 @@ ollama pull mistral:7b      # Explicit 7B version
 **Verify model downloaded successfully:**
 ```bash
 ollama list
-# Should show: mistral    latest    ${SIZE}
+# Should show: mistral:7b    ${SIZE}
 ```
 
 ---
@@ -157,7 +157,7 @@ ollama list
 
 ### Simple Chat
 ```bash
-ollama run mistral
+ollama run mistral:7b
 ```
 
 Type your message and press Enter!
@@ -191,7 +191,7 @@ pip install ollama
 import ollama
 
 # Simple chat
-response = ollama.chat(model='mistral', messages=[
+response = ollama.chat(model='mistral:7b', messages=[
     {
         'role': 'user',
         'content': 'Why is the sky blue?'
@@ -233,7 +233,7 @@ class AIAssistant:
 
         # Get response from AI
         response = ollama.chat(
-            model='mistral',
+            model='mistral:7b',
             messages=self.history
         )
 

@@ -1,7 +1,7 @@
 ---
 Document ID: SOLUTION-LAB-000
 Title: "SOLUTION-LAB-000: Environment Setup"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Beginner
 Tags: ['solution', 'setup', 'docker']
@@ -77,10 +77,10 @@ curl -fsSL https://ollama.com/install.sh | sh
 ollama serve
 
 # Pull model (another terminal)
-ollama pull mistral
+ollama pull mistral:7b
 
 # Test
-ollama run mistral "Hello!"
+ollama run mistral:7b "Hello!"
 ```
 
 ---
@@ -91,7 +91,7 @@ ollama run mistral "Hello!"
 import ollama
 
 # Test connection
-response = ollama.generate(model='mistral', prompt='Write a haiku about AI:')
+response = ollama.generate(model='mistral:7b', prompt='Write a haiku about AI:')
 print(response['response'])
 
 # Expected: A haiku about AI

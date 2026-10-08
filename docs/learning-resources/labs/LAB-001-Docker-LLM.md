@@ -82,11 +82,11 @@ docker run -d \
 docker ps | grep ollama
 
 # Pull a model inside the container
-docker exec ollama ollama pull mistral
+docker exec ollama ollama pull mistral:7b
 
 # Test the API
 curl http://localhost:11434/api/generate -d '{
-  "model": "mistral",
+  "model": "mistral:7b",
   "prompt": "Hello from Docker!",
   "stream": false
 }'
@@ -97,7 +97,7 @@ curl http://localhost:11434/api/generate -d '{
 
 **Expected Output:**
 ```text
-{"model": "mistral", "response": "Hello from Docker!", ...}
+{"model": "mistral:7b", "response": "Hello from Docker!", ...}
 ```
 
 **Troubleshooting:**
@@ -129,7 +129,7 @@ class Message(BaseModel):
     content: str
 
 class ChatRequest(BaseModel):
-    model: str = "mistral"
+    model: str = "mistral:7b"
     messages: list[Message]
     stream: bool = False
     temperature: float | None = 0.7
@@ -143,7 +143,7 @@ class ChatResponse(BaseModel):
 def root():
     return {
         "service": "LLM API",
-        "models": ["mistral", "phi4-mini", "llama3.2"],
+        "models": ["mistral:7b", "phi4-mini", "llama3.2"],
         "endpoints": {
             "/v1/chat/completions": "OpenAI-compatible chat",
             "/models": "List available models",
@@ -301,7 +301,7 @@ curl http://localhost:8000/v1/models
 curl -X POST http://localhost:8000/v1/chat/completions \
   -H "Content-Type: application/json" \
   -d '{
-    "model": "mistral",
+    "model": "mistral:7b",
     "messages": [
       {"role": "user", "content": "What is Docker?"}
     ],
@@ -327,7 +327,7 @@ while True:
     messages.append({"role": "user", "content": user_input})
 
     response = requests.post(API_URL, json={
-        "model": "mistral",
+        "model": "mistral:7b",
         "messages": messages
     })
 
@@ -548,7 +548,7 @@ class Message(BaseModel):
     content: str
 
 class ChatRequest(BaseModel):
-    model: str = "mistral"
+    model: str = "mistral:7b"
     messages: list[Message]
     stream: bool = False
     temperature: float | None = 0.7
@@ -649,7 +649,7 @@ docker compose up -d --build
 curl -X POST http://localhost:8000/v1/chat/completions \
   -H "Content-Type: application/json" \
   -d '{
-    "model": "mistral",
+    "model": "mistral:7b",
     "messages": [{"role": "user", "content": "Remember: My favorite color is blue"}],
     "session_id": "user123"
   }'
@@ -658,7 +658,7 @@ curl -X POST http://localhost:8000/v1/chat/completions \
 curl -X POST http://localhost:8000/v1/chat/completions \
   -H "Content-Type: application/json" \
   -d '{
-    "model": "mistral",
+    "model": "mistral:7b",
     "messages": [{"role": "user", "content": "What is my favorite color?"}],
     "session_id": "user123"
   }'
