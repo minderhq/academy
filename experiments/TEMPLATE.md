@@ -1,7 +1,7 @@
 ---
 Document ID: EXP-TEMPLATE
 Title: "EXPERIMENT TEMPLATE"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Beginner
 ---
@@ -9,10 +9,15 @@ Difficulty: Beginner
 # EXPERIMENT TEMPLATE
 
 **Project:** Minder Academy
+
 **Phase:** [1000-7000]
+
 **Document ID:** [DOC-ID]
+
 **Experiment ID:** EXP_[NUM]_[ID]
+
 **Date:** YYYY-MM-DD
+
 **Status:** [Planned/Running/Completed/Failed]
 
 ---

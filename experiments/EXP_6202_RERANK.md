@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_6202
 Title: "EXP_6202: Re-ranking Experiment"
-Last Updated: 2026-09-24
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 ---
@@ -9,10 +9,15 @@ Difficulty: Advanced
 # EXP_6202: Re-ranking Experiment
 
 **Project:** Minder Academy
+
 **Phase:** [6200] Retrieval
+
 **Document ID:** 6202
+
 **Experiment ID:** EXP_6202_RERANK
+
 **Date:** 2026-02-04
+
 **Status:** Completed
 
 ---
@@ -60,11 +65,13 @@ Dataset: MS MARCO passages
 ## Recommendations
 
 **Use Re-ranking When:**
+
 - High accuracy is critical
 - Query complexity is high
 - User satisfaction is priority
 
 **Skip Re-ranking When:**
+
 - Speed is priority
 - Queries are simple lookups
 - Cost constraints exist

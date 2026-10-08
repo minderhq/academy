@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_4101
 Title: "EXP-4101: GGUF Quantization"
-Last Updated: 2026-10-01
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 ---
@@ -15,13 +15,17 @@ Difficulty: Advanced
 ## 🎯 Experiment Overview
 
 **Time:** 60-90 minutes
+
 **Difficulty:** ⭐⭐⭐ Advanced
+
 **Prerequisites:**
+
 - 4101: GGUF Physics (theory)
 - Basic Python knowledge
 - Understanding of model quantization
 
 **Learning Objectives:**
+
 - Understand GGUF file format
 - Implement 4-bit quantization
 - Create GGUF files from scratch
@@ -491,7 +495,10 @@ print(f"\nMean Output Difference: {output_diff:.6f}")
 
 ---
 
-**Last Updated:** 2026-10-01
+**Last Updated:** 2026-10-08
+
 **Experiment:** 4101 - GGUF Quantization
+
 **Time Estimate:** 60-90 minutes
+
 **Difficulty:** ⭐⭐⭐ Advanced

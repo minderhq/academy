@@ -1,7 +1,7 @@
 ---
 Document ID: README
 Title: "Minder Academy"
-Last Updated: 2026-10-07
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Beginner
 ---
@@ -406,6 +406,7 @@ graph TB
 | Labs | Hands-on Practice | Ongoing | LAB-001 to LAB-014 completed |
 
 **What you'll build:**
+
 - ✅ High-throughput network design
 - ✅ GPU passthrough VM with Proxmox
 - ✅ K3s Kubernetes cluster
@@ -421,6 +422,7 @@ graph TB
 | 4 | Quantization | 4-6 weeks | Optimized model deployment |
 
 **What you'll master:**
+
 - ✅ Self-attention and transformer architectures
 - ✅ Embeddings and tokenization
 - ✅ Quantization (GGUF, EXL2, AWQ)
@@ -437,6 +439,7 @@ graph TB
 | 7 | Agentic AI | 4-6 weeks | Multi-agent systems |
 
 **What you'll deploy:**
+
 - ✅ Custom fine-tuned models (LoRA, QLoRA, DPO)
 - ✅ Production RAG systems (GraphRAG)
 - ✅ Multi-agent systems (ReAct, Hierarchical)
@@ -785,6 +788,7 @@ graph TB
 
 #### [UC-001: Vector Database Applications](./docs/use-cases/UC-001-Vector-Database-Applications.md)
 When to use vector databases with decision matrices:
+
 - E-Commerce product recommendation
 - Legal document search
 - Semantic code search
@@ -792,12 +796,14 @@ When to use vector databases with decision matrices:
 
 #### [UC-002: RAG Applications](./docs/use-cases/UC-002-RAG-Applications.md)
 Retrieval-Augmented Generation use cases:
+
 - Enterprise knowledge base assistant
 - Customer support with context
 - Technical documentation assistant
 
 #### [UC-003: Agent Applications](./docs/use-cases/UC-003-Agent-Applications.md)
 AI agent implementations:
+
 - DevOps operations agent
 - Multi-agent customer service
 - Research assistant agent
@@ -826,33 +832,39 @@ Each technical document has an associated experiment file for hands-on validatio
 <summary><b>🔬 47 Experiment Files</b></summary>
 
 **Infrastructure (8):**
+
 - [EXP_1101: Internet Uplink (case study)](./experiments/EXP_1101_GPON.md) | [EXP_1102: Star Topology](./experiments/EXP_1102_STAR_TOPOLOGY.md)
 - [EXP_1302: GPU Scheduler](./experiments/EXP_1302_GPU_SCHEDULER.md) | [EXP_1403: TGI Tuning](./experiments/EXP_1403_TGI_TUNING.md)
 - [EXP_1404: vLLM Tuning](./experiments/EXP_1404_VLLM_TUNING.md) | [EXP_1501: Monitoring](./experiments/EXP_1501_MONITORING.md)
 - [EXP_1502: Model Drift](./experiments/EXP_1502_MODEL_DRIFT.md) | [EXP_1503: Drift Detection](./experiments/EXP_1503_DRIFT_DETECTION.md)
 
 **Frameworks (5):**
+
 - [EXP_2101: Tensor Algebra](./experiments/EXP_2101_TENSOR_ALGEBRA.md) | [EXP_2102: Backpropagation](./experiments/EXP_2102_BACKPROPAGATION.md)
 - [EXP_2201: PyTorch Graphs](./experiments/EXP_2201_PYTORCH_GRAPHS.md) | [EXP_2202: TensorFlow XLA](./experiments/EXP_2202_TENSORFLOW_XLA.md)
 - [EXP_2203: CUDA Kernels](./experiments/EXP_2203_CUDA_KERNELS.md)
 
 **Transformers (6):**
+
 - [EXP_3101: Self-Attention](./experiments/EXP_3101_SELF_ATTENTION.md) | [EXP_3102: Flash Attention](./experiments/EXP_3102_FLASH_ATTENTION.md)
 - [EXP_3201: RoPE](./experiments/EXP_3201_ROPE.md) | [EXP_3202: Tokenizer](./experiments/EXP_3202_TOKENIZER.md)
 - [EXP_3401: Encoder-Decoder](./experiments/EXP_3401_ENCODER_DECODER.md) | [EXP_3501: Multimodal RAG](./experiments/EXP_3501_MULTIMODAL_RAG.md)
 
 **Quantization (5):**
+
 - [EXP_4101: GGUF](./experiments/EXP_4101_GGUF.md) | [EXP_4102: EXL2/AWQ](./experiments/EXP_4102_EXL2_AWQ.md)
 - [EXP_4103: Double Quant](./experiments/EXP_4103_DOUBLE_QUANT.md) | [EXP_4201: Context Window](./experiments/EXP_4201_CONTEXT_WINDOW.md)
 - [EXP_4202: Speculative Decoding](./experiments/EXP_4202_SPECULATIVE_DECODING.md)
 
 **Fine-Tuning (7):**
+
 - [EXP_5101: LoRA](./experiments/EXP_5101_LORA.md) | [EXP_5102: QLoRA](./experiments/EXP_5102_QLORA.md)
 - [EXP_5201: DPO](./experiments/EXP_5201_DPO.md) | [EXP_5202: Alignment](./experiments/EXP_5202_ALIGNMENT.md)
 - [EXP_5301: Distillation](./experiments/EXP_5301_DISTILLATION.md) | [EXP_5302: Distributed Training](./experiments/EXP_5302_DISTRIBUTED.md)
 - [EXP_5303: Federated Learning](./experiments/EXP_5303_FEDERATED_LEARNING.md)
 
 **RAG (9):**
+
 - [EXP_6101: HNSW](./experiments/EXP_6101_HNSW.md) | [EXP_6102: Semantic Similarity](./experiments/EXP_6102_SIMILARITY.md)
 - [EXP_6201: Hybrid Search](./experiments/EXP_6201_HYBRID_SEARCH.md) | [EXP_6202: Re-ranking](./experiments/EXP_6202_RERANK.md)
 - [EXP_6301: GraphRAG](./experiments/EXP_6301_GRAPHRAG.md) | [EXP_6302: Long Context](./experiments/EXP_6302_CAG.md)
@@ -860,6 +872,7 @@ Each technical document has an associated experiment file for hands-on validatio
 - [EXP_6501: MLOps Pipeline](./experiments/EXP_6501_MLOPS_PIPELINE.md)
 
 **Agents (7):**
+
 - [EXP_7101: ReAct](./experiments/EXP_7101_REACT.md) | [EXP_7102: Planning & Decomposition](./experiments/EXP_7102_PLANNING.md)
 - [EXP_7201: Multi-Agent](./experiments/EXP_7201_MULTI_AGENT.md) | [EXP_7202: Code Sandbox](./experiments/EXP_7202_SANDBOX.md)
 - [EXP_7301: Multi-Agent Collaboration](./experiments/EXP_7301_COLLABORATION.md) | [EXP_7401: Agent Memory](./experiments/EXP_7401_AGENT_MEMORY.md)

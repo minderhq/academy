@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_4102
 Title: "EXP-4102: EXL2 vs AWQ"
-Last Updated: 2026-10-01
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 ---
@@ -15,12 +15,16 @@ Difficulty: Advanced
 ## 🎯 Experiment Overview
 
 **Time:** 75-90 minutes
+
 **Difficulty:** ⭐⭐⭐ Advanced
+
 **Prerequisites:**
+
 - EXP_4101: GGUF Quantization
 - Understanding of model quantization
 
 **Learning Objectives:**
+
 - Understand EXL2 quantization
 - Implement AWQ (Activation-aware Quantization)
 - Compare both methods
@@ -401,11 +405,13 @@ for name, weights in layer_weights.items():
 ### When to Use Each
 
 **Use EXL2 when:**
+
 - Maximum inference speed needed
 - No activation data available
 - Simple deployment
 
 **Use AWQ when:**
+
 - Better accuracy needed
 - Activation data available
 - Willing to trade speed for quality
@@ -439,7 +445,10 @@ for name, weights in layer_weights.items():
 
 ---
 
-**Last Updated:** 2026-10-01
+**Last Updated:** 2026-10-08
+
 **Experiment:** 4102 - EXL2 vs AWQ
+
 **Time Estimate:** 75-90 minutes
+
 **Difficulty:** ⭐⭐⭐ Advanced

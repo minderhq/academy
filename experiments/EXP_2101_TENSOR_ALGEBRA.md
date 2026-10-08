@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_2101
 Title: "EXP-2101: Tensor Algebra"
-Last Updated: 2026-10-01
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -15,13 +15,17 @@ Difficulty: Intermediate
 ## 🎯 Experiment Overview
 
 **Time:** 45-60 minutes
+
 **Difficulty:** ⭐⭐ Intermediate
+
 **Prerequisites:**
+
 - Basic Python knowledge
 - Understanding of linear algebra basics
 - NumPy familiarity helpful
 
 **Learning Objectives:**
+
 - Master tensor operations and broadcasting
 - Understand einsum notation
 - Implement tensor contractions
@@ -541,7 +545,10 @@ print(f"Difference: {np.abs(num_grad - x_test.grad.data).max()}")
 
 ---
 
-**Last Updated:** 2026-10-01
+**Last Updated:** 2026-10-08
+
 **Experiment:** 2101 - Tensor Algebra
+
 **Time Estimate:** 45-60 minutes
+
 **Difficulty:** ⭐⭐ Intermediate

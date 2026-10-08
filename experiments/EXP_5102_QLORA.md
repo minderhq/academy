@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_5102
 Title: "EXP_5102: QLoRA Pipelining Experiment"
-Last Updated: 2026-09-24
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 ---
@@ -9,10 +9,15 @@ Difficulty: Advanced
 # EXP_5102: QLoRA Pipelining Experiment
 
 **Project:** Minder Academy
+
 **Phase:** [5100] PEFT
+
 **Document ID:** 5102
+
 **Experiment ID:** EXP_5102_QLORA
+
 **Date:** 2026-02-04
+
 **Status:** Completed
 
 ---

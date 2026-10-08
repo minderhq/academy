@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_4103
 Title: "EXP_4103: Double Quantization Experiment"
-Last Updated: 2026-09-24
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 ---
@@ -9,10 +9,15 @@ Difficulty: Advanced
 # EXP_4103: Double Quantization Experiment
 
 **Project:** Minder Academy
+
 **Phase:** [4100] Low-Bit Quantization
+
 **Document ID:** 4103
+
 **Experiment ID:** EXP_4103_DOUBLE_QUANT
+
 **Date:** 2026-02-04
+
 **Status:** Completed
 
 ---
@@ -199,6 +204,7 @@ if __name__ == '__main__':
 ### Recommendations
 
 **For Production:**
+
 - Use double quantization by default for 4-bit models
 - Enables running larger models on limited VRAM
 - No downside for most use cases

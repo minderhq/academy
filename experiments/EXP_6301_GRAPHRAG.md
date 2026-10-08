@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_6301
 Title: "EXP-6301: GraphRAG"
-Last Updated: 2026-10-01
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 ---
@@ -15,13 +15,17 @@ Difficulty: Advanced
 ## 🎯 Experiment Overview
 
 **Time:** 75-90 minutes
+
 **Difficulty:** ⭐⭐⭐ Advanced
+
 **Prerequisites:**
+
 - 6301: Neo4j and Knowledge Graphs
 - 6302: CAG Long Context Architectures
 - LAB-002: RAG Implementation
 
 **Learning Objectives:**
+
 - Understand GraphRAG architecture
 - Build knowledge graphs from text
 - Implement graph-enhanced retrieval
@@ -474,7 +478,10 @@ print(f"\nImprovement: {(graphrag_relevance/vanilla_relevance - 1)*100:.1f}% rel
 
 ---
 
-**Last Updated:** 2026-10-01
+**Last Updated:** 2026-10-08
+
 **Experiment:** 6301 - GraphRAG
+
 **Time Estimate:** 75-90 minutes
+
 **Difficulty:** ⭐⭐⭐ Advanced

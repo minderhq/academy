@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_2201
 Title: "EXP-2201: PyTorch Computational Graphs"
-Last Updated: 2026-10-01
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -15,13 +15,17 @@ Difficulty: Intermediate
 ## 🎯 Experiment Overview
 
 **Time:** 60-75 minutes
+
 **Difficulty:** ⭐⭐ Intermediate
+
 **Prerequisites:**
+
 - EXP_2101: Tensor Algebra
 - Basic PyTorch knowledge
 - Understanding of backpropagation
 
 **Learning Objectives:**
+
 - Understand PyTorch's dynamic computation graph
 - Master automatic differentiation (autograd)
 - Build custom computational graphs
@@ -556,7 +560,10 @@ loss.grad → ∂loss/∂b → ∂loss/∂a → ∂loss/∂x
 
 ---
 
-**Last Updated:** 2026-10-01
+**Last Updated:** 2026-10-08
+
 **Experiment:** 2201 - PyTorch Computational Graphs
+
 **Time Estimate:** 60-75 minutes
+
 **Difficulty:** ⭐⭐ Intermediate

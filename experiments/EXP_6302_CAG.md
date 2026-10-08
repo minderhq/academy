@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_6302
 Title: "EXP_6302: Long Context Architecture Experiment"
-Last Updated: 2026-09-24
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 ---
@@ -9,10 +9,15 @@ Difficulty: Advanced
 # EXP_6302: Long Context Architecture Experiment
 
 **Project:** Minder Academy
+
 **Phase:** [6300] Context Management
+
 **Document ID:** 6302
+
 **Experiment ID:** EXP_6302_CAG
+
 **Date:** 2026-02-04
+
 **Status:** Completed
 
 ---
@@ -62,12 +67,14 @@ Difficulty: Advanced
 ## Recommendations
 
 **Use Long Context When:**
+
 - Context < 8K tokens
 - Knowledge is static
 - Simplicity is priority
 - Have 16GB+ VRAM
 
 **Use RAG When:**
+
 - Context > 8K tokens
 - Knowledge updates frequently
 - Need high accuracy

@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_7501
 Title: "EXP_7501: Prompt Injection Experiments"
-Last Updated: 2026-09-24
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 ---
@@ -9,8 +9,11 @@ Difficulty: Advanced
 # EXP_7501: Prompt Injection Experiments
 
 **Project:** Minder Academy
+
 **Phase:** [7500] Security
+
 **Experiment ID:** EXP_7501_PROMPT_INJECTION
+
 **Status:** Blueprint - the numbers below are illustrative targets from the red-teaming literature, not a measured run
 
 ---
@@ -75,6 +78,7 @@ against your model and logging per-attack outcomes.
 ## Recommendations
 
 **Implement All Defense Layers:**
+
 1. Input pattern filtering
 2. Perplexity-based anomaly detection
 3. Secure prompt engineering
@@ -82,6 +86,7 @@ against your model and logging per-attack outcomes.
 5. Human oversight for critical outputs
 
 **Red Team Regularly:**
+
 - Test against new attack patterns
 - Update detection rules
 - Train team on latest threats

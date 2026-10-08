@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_6101
 Title: "EXP-6101: HNSW Benchmarking"
-Last Updated: 2026-10-01
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 ---
@@ -15,13 +15,17 @@ Difficulty: Advanced
 ## 🎯 Experiment Overview
 
 **Time:** 60-75 minutes
+
 **Difficulty:** ⭐⭐⭐ Advanced
+
 **Prerequisites:**
+
 - 6101: HNSW Indexing (theory)
 - Understanding of vector similarity search
 - Basic benchmarking knowledge
 
 **Learning Objectives:**
+
 - Understand HNSW algorithm
 - Implement HNSW index
 - Benchmark vs alternative methods
@@ -461,7 +465,10 @@ print("✓ Saved plot to hnsw_tuning.png")
 
 ---
 
-**Last Updated:** 2026-10-01
+**Last Updated:** 2026-10-08
+
 **Experiment:** 6101 - HNSW Benchmarking
+
 **Time Estimate:** 60-75 minutes
+
 **Difficulty:** ⭐⭐⭐ Advanced

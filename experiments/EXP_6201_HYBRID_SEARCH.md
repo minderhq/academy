@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_6201
 Title: "EXP-6201: Hybrid Search"
-Last Updated: 2026-10-01
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 ---
@@ -15,13 +15,17 @@ Difficulty: Advanced
 ## 🎯 Experiment Overview
 
 **Time:** 60-75 minutes
+
 **Difficulty:** ⭐⭐⭐ Advanced
+
 **Prerequisites:**
+
 - 6101: HNSW Indexing
 - 6202: Re-ranking and Retrieval Logistics
 - Understanding of vector search
 
 **Learning Objectives:**
+
 - Understand hybrid search approaches
 - Implement dense + sparse retrieval
 - Learn scoring and fusion strategies
@@ -430,7 +434,10 @@ for name, t in times.items():
 
 ---
 
-**Last Updated:** 2026-10-01
+**Last Updated:** 2026-10-08
+
 **Experiment:** 6201 - Hybrid Search
+
 **Time Estimate:** 60-75 minutes
+
 **Difficulty:** ⭐⭐⭐ Advanced

@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_7101
 Title: "EXP-7101: ReAct Agent"
-Last Updated: 2026-10-01
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 ---
@@ -15,13 +15,17 @@ Difficulty: Advanced
 ## 🎯 Experiment Overview
 
 **Time:** 60-75 minutes
+
 **Difficulty:** ⭐⭐⭐ Advanced
+
 **Prerequisites:**
+
 - 7101: ReAct Loop System (theory)
 - LAB-004: ReAct Agent (basic)
 - Understanding of LLM prompting
 
 **Learning Objectives:**
+
 - Understand ReAct (Reasoning + Acting) paradigm
 - Implement ReAct loop from scratch
 - Add tool calling capabilities
@@ -530,7 +534,10 @@ print(f"\n{result['answer']}")
 
 ---
 
-**Last Updated:** 2026-10-01
+**Last Updated:** 2026-10-08
+
 **Experiment:** 7101 - ReAct Agent
+
 **Time Estimate:** 60-75 minutes
+
 **Difficulty:** ⭐⭐⭐ Advanced

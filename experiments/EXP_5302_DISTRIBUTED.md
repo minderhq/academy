@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_5302
 Title: "EXP_5302: Distributed Training Experiment"
-Last Updated: 2026-09-24
+Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 ---
@@ -9,10 +9,15 @@ Difficulty: Advanced
 # EXP_5302: Distributed Training Experiment
 
 **Project:** Minder Academy
+
 **Phase:** [5300] Synthetic Data
+
 **Document ID:** 5302
+
 **Experiment ID:** EXP_5302_DISTRIBUTED
+
 **Date:** 2026-02-04
+
 **Status:** Completed
 
 ---
@@ -54,6 +59,7 @@ Difficulty: Advanced
 ## Recommendations
 
 **For Homelab:**
+
 - Use DDP for 2 GPUs (1.7x speedup)
 - Use FSDP for models >13B parameters
 - Consider gradient checkpointing to save memory
