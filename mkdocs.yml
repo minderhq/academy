@@ -605,6 +605,15 @@ markdown_extensions:
       permalink: true
       slugify: !!python/name:gh_slugify.slugify
   - pymdownx.highlight:
+      # line_spans deliberately ABSENT (tick-848): Material's copy button
+      # does NOT need it - the 9.7.6 bundle mounts a .md-code__button on
+      # every pre under content.code.copy alone, live-DOM-verified 94/94
+      # on TUTORIAL-000 without any span wrapping (an early static grep for
+      # the legacy .md-clipboard class false-alarmed here - buttons are
+      # JS-injected, never in built HTML). line_spans only feeds the
+      # :scope > span[id] gate behind content.code.select, which this
+      # config does not enable, and wrapping every line cost +47KB (+7.6%)
+      # on the heaviest page for zero visible change.
       anchor_linenums: true
   - pymdownx.inlinehilite
   - pymdownx.snippets

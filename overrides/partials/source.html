@@ -1,0 +1,21 @@
+{#-
+  Header/nav repository widget, minus the JS enhancement hook. The stock
+  partial carries data-md-component="source", which mounts Material's
+  repository-facts enhancement: it fetches
+  api.github.com/repos/<owner>/<repo>/releases/latest from every visitor's
+  browser to render stars/forks/latest-release under the repo button. This
+  repo is PRIVATE, so that request 404s on every page load (console error,
+  unauthenticated GitHub API pings, nothing ever displayed - the catch
+  handler discards the result). Dropping the single data attribute keeps
+  the icon + repo name as plain links (same classes, same styling) and the
+  component never mounts - tick-848.
+-#}
+<a href="{{ config.repo_url }}" title="{{ lang.t('source') }}" class="md-source">
+  <div class="md-source__icon md-icon">
+    {% set icon = config.theme.icon.repo or "fontawesome/brands/git-alt" %}
+    {% include ".icons/" ~ icon ~ ".svg" %}
+  </div>
+  <div class="md-source__repository">
+    {{ config.repo_name }}
+  </div>
+</a>
