@@ -805,7 +805,7 @@ Each experiment corresponds to a documentation topic:
 | RAG | [EXP_6201_HYBRID_SEARCH.md](../../experiments/EXP_6201_HYBRID_SEARCH.md) | Hybrid search |
 | Agents | [EXP_7101_REACT.md](../../experiments/EXP_7101_REACT.md) | ReAct loop |
 
-The full inventory lives in the [README Experiments section](../../README.md#experiments) and the [SITEMAP](SITEMAP.md).
+The full inventory lives in the [SITEMAP Experiments section](SITEMAP.md#experiments-48-files-47-experiments--1-template).
 
 ---
 
