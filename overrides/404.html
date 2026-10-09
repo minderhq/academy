@@ -1,0 +1,25 @@
+{#-
+  404 override (tick-817) - Material's stock 404 template prints a bare
+  h1 and nothing else, so every visitor who lands on a dead URL sees an
+  empty content area with no way back. This adds recovery guidance:
+  fixed entry points (homepage, full page inventory, quick start) plus
+  a pointer to the header search. Pure template, no build dependencies;
+  extends our main.html so the OpenGraph extrahead block and the whole
+  theme shell (nav, header, footer, back-to-top) stay in place. Jinja
+  note: the base template renders this block INSIDE the
+  md-content__inner article wrapper, same as the stock 404 does.
+-#}
+{% extends "main.html" %}
+{% block content %}
+  <h1>404 - Not found</h1>
+  <div class="admonition note">
+    <p class="admonition-title">The page you were looking for doesn't exist</p>
+    <p>The link may be outdated or mistyped. The fastest ways back:</p>
+    <ul>
+      <li><a href="{{ base_url.rstrip("/") }}/">Return to the homepage</a></li>
+      <li><a href="{{ base_url.rstrip("/") }}/00-META/SITEMAP/">Browse the full page inventory</a></li>
+      <li><a href="{{ base_url.rstrip("/") }}/00-META/QUICK-START/">Start with the Quick Start guide</a></li>
+    </ul>
+    <p>Or use the search (magnifier icon in the header) - it covers every page of the academy.</p>
+  </div>
+{% endblock %}
