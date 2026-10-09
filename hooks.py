@@ -85,6 +85,7 @@ def on_page_context(context, page, config, nav):
 
 
 def on_post_build(config, **kwargs):
+    import html as _html
     import shutil
     from pathlib import Path
 
@@ -159,9 +160,26 @@ def on_post_build(config, **kwargs):
     #    configured site_name ahead of og:type, guarded on absence so an
     #    upstream emission can never be doubled.
     og_site_re = re.compile(r'(<meta\s+property="og:type")')
+    # 6) 152 pages carry a generic front-matter title (Overview x46,
+    #    Prerequisites x33, Practice x33, Quiz x33, Checkpoint x7) while the
+    #    page's rendered h1 is informative and different - browser tabs,
+    #    history and share previews (og:title) all present that single
+    #    generic word, so 46 module indexes are indistinguishable ("Overview
+    #    - Minder Academy" x46). This is the title sibling of the tick-847
+    #    meta-description disease (one generic value, many pages). Same
+    #    corpus-untouched treatment: when the <title> prefix is one of the
+    #    generic set AND the rendered h1 differs, rewrite the <title> tag
+    #    and the og:title meta to the h1 (keeping Material's
+    #    "{title} - {site_name}" tab format). Sidebar nav labels, the search
+    #    index and the social cards keep the front-matter title - only the
+    #    tab/share face changes, so a deliberate short nav label survives.
+    generic_titles = {"Overview", "Prerequisites", "Practice", "Quiz", "Checkpoint"}
+    title_re = re.compile(r"<title>([^<]*)</title>")
+    og_title_re = re.compile(r'(<meta\s+property="og:title"\s+content=")([^"]*)(")')
+    h1_re = re.compile(r"<h1[^>]*>(.*?)</h1>", re.S)
     line_anchor_re = re.compile(r'<a\b[^>]*\bid="__codelineno[^>]*>')
     edit_anchor_re = re.compile(r'<a\b[^>]*\brel="edit"[^>]*>')
-    bridged = untabbed = named = current = enlarged = sited = 0
+    bridged = untabbed = named = current = enlarged = sited = retitled = 0
     site_name = (config.get("site_name") or "").replace('"', "&quot;")
     for html in site.rglob("*.html"):
         depth = len(html.parent.relative_to(site).parts)
@@ -219,9 +237,24 @@ def on_post_build(config, **kwargs):
         new_text = tw_card_re.sub(_tw, new_text)
         if site_name:
             new_text = og_site_re.sub(_og_site, new_text)
+        # generic-title rewrite (6): h1 -> tab title + og:title
+        mh1 = h1_re.search(new_text)
+        mt = title_re.search(new_text)
+        if mh1 and mt:
+            h1 = _html.unescape(re.sub(r"<[^>]+>", " ", mh1.group(1)))
+            h1 = re.sub(r"\s+", " ", h1).replace("¶", "").strip()
+            fm_title = re.sub(r"\s*-\s*" + re.escape(site_name) + r"$", "", mt.group(1)).strip()
+            if h1 and fm_title in generic_titles and h1 != fm_title:
+                esc = h1.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
+                new_text = new_text.replace(mt.group(0), f"<title>{esc} - {site_name}</title>", 1)
+                mog = og_title_re.search(new_text)
+                if mog and _html.unescape(mog.group(2)) == fm_title:
+                    new_text = new_text.replace(mog.group(0), f"{mog.group(1)}{esc}{mog.group(3)}", 1)
+                retitled += 1
         if new_text != text:
             html.write_bytes(new_text.encode("utf-8"))
     print(f"[hooks] bridged {bridged} experiments link(s) from repo depth to site depth")
     print(f"[hooks] a11y: {untabbed} codelineno anchor(s) untabbed, {named} edit button(s) named, {current} nav link(s) aria-current")
     print(f"[hooks] share: {enlarged} twitter:card meta(s) enlarged to summary_large_image")
     print(f"[hooks] share: {sited} og:site_name meta(s) injected")
+    print(f"[hooks] titles: {retitled} generic tab/og title(s) set from the page h1")
