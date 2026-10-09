@@ -51,7 +51,7 @@ cd docs/notebooks
 jupyter lab
 ```
 
-This will open Jupyter Lab in your browser at `http://localhost:8888`
+This will open Jupyter Lab in your browser at [`http://localhost:8888`](http://localhost:8888)
 
 ### 3. Verify Installation
 

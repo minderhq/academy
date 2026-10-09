@@ -793,7 +793,7 @@ Deploy the stack end to end:
 
 Wire observability and prove the alerts fire:
 
-- [ ] Reach `http://localhost:9090/targets` and confirm the `llm-api` scrape is UP
+- [ ] Reach [`http://localhost:9090/targets`](http://localhost:9090/targets) and confirm the `llm-api` scrape is UP
 - [ ] Create a Grafana dashboard from `api_requests_total` and `api_request_duration_seconds`
 - [ ] Force `HighErrorRate`: point a load generator at a route that 500s, watch the alert go pending → firing
 - [ ] Explain (then observe) why removing the `except` branch in the metrics middleware stops 500s from being counted at all
