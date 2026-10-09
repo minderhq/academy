@@ -751,44 +751,44 @@ under `docs/volumes/` - start there, then dive into the module docs.
 
 ### Volume 1: Infrastructure Fundamentals
 1. [VOLUME-1: Infrastructure](../volumes/VOLUME-1-Infrastructure.md) - the guided route
-2. [1100: Network Topology](../phases/phase1-infra/1100-network/)
-3. [1200: Virtualization](../phases/phase1-infra/1200-virtualization/)
-4. [1300: Kubernetes](../phases/phase1-infra/1300-kubernetes/)
-5. [1400: LLMOps](../phases/phase1-infra/1400-llmops/)
-6. [1500: Monitoring](../phases/phase1-infra/1500-monitoring/)
+2. [1100: Network Topology](../phases/phase1-infra/1100-network/README.md)
+3. [1200: Virtualization](../phases/phase1-infra/1200-virtualization/README.md)
+4. [1300: Kubernetes](../phases/phase1-infra/1300-kubernetes/README.md)
+5. [1400: LLMOps](../phases/phase1-infra/1400-llmops/README.md)
+6. [1500: Monitoring](../phases/phase1-infra/1500-monitoring/README.md)
 
 ### Volume 2: AI/ML Foundations
 7. [VOLUME-2: AI Foundations](../volumes/VOLUME-2-AI-Foundations.md) - the guided route
-8. [2100: Calculus of AI](../phases/phase2-foundations/2100-calculus/)
-9. [2000: Frameworks & Engineering](../phases/phase2-foundations/)
-10. [2400: Pre-training](../phases/phase2-foundations/2400-pretraining/)
+8. [2100: Calculus of AI](../phases/phase2-foundations/2100-calculus/README.md)
+9. [2000: Frameworks & Engineering](../phases/phase2-foundations/README.md)
+10. [2400: Pre-training](../phases/phase2-foundations/2400-pretraining/README.md)
 
 ### Volume 3: LLM Internals & Architecture
 11. [VOLUME-3: LLM Internals](../volumes/VOLUME-3-LLM-Internals.md) - the guided route
-12. [3100: Attention](../phases/phase3-transformers/3100-attention/)
-13. [3200: Embeddings](../phases/phase3-transformers/3200-embeddings/)
-14. [3400: Model Architectures](../phases/phase3-transformers/3400-architectures/)
+12. [3100: Attention](../phases/phase3-transformers/3100-attention/README.md)
+13. [3200: Embeddings](../phases/phase3-transformers/3200-embeddings/README.md)
+14. [3400: Model Architectures](../phases/phase3-transformers/3400-architectures/README.md)
 
 ### Volume 4: Quantization & Optimization
 15. [VOLUME-4: Quantization](../volumes/VOLUME-4-Quantization.md) - the guided route
-16. [4100: Low-Bit Quantization](../phases/phase4-quantization/4100-low-bit/)
-17. [4200: KV-Cache Engineering](../phases/phase4-quantization/4200-kv-cache/)
+16. [4100: Low-Bit Quantization](../phases/phase4-quantization/4100-low-bit/README.md)
+17. [4200: KV-Cache Engineering](../phases/phase4-quantization/4200-kv-cache/README.md)
 
 ### Volume 5: Model Adaptation
 18. [VOLUME-5: Model Adaptation](../volumes/VOLUME-5-Model-Adaptation.md) - the guided route
-19. [5100: PEFT](../phases/phase5-finetuning/5100-peft/)
-20. [5200: Alignment](../phases/phase5-finetuning/5200-alignment/)
+19. [5100: PEFT](../phases/phase5-finetuning/5100-peft/README.md)
+20. [5200: Alignment](../phases/phase5-finetuning/5200-alignment/README.md)
 
 ### Volume 6: Data Nexus: RAG & Memory
 21. [VOLUME-6: Data Nexus](../volumes/VOLUME-6-Data-Nexus.md) - the guided route
-22. [6100: Vector Architectures](../phases/phase6-rag/6100-vector/)
-23. [6200: Retrieval](../phases/phase6-rag/6200-retrieval/)
-24. [6300: GraphRAG](../phases/phase6-rag/6300-context/)
+22. [6100: Vector Architectures](../phases/phase6-rag/6100-vector/README.md)
+23. [6200: Retrieval](../phases/phase6-rag/6200-retrieval/README.md)
+24. [6300: GraphRAG](../phases/phase6-rag/6300-context/README.md)
 
 ### Volume 7: Production Mastery
 25. [VOLUME-7: Production Mastery](../volumes/VOLUME-7-Production-Mastery.md) - the guided route
-26. [7100: Agentic Architecture](../phases/phase7-agentic/7100-architecture/)
-27. [7500: Agent Security](../phases/phase7-agentic/7500-security/)
+26. [7100: Agentic Architecture](../phases/phase7-agentic/7100-architecture/README.md)
+27. [7500: Agent Security](../phases/phase7-agentic/7500-security/README.md)
 
 ---
 
