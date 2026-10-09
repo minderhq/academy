@@ -93,6 +93,7 @@ def on_page_context(context, page, config, nav):
 
 def on_post_build(config, **kwargs):
     import html as _html
+    import posixpath
     import shutil
     from pathlib import Path
 
@@ -181,15 +182,44 @@ def on_post_build(config, **kwargs):
     #    index and the social cards keep the front-matter title - only the
     #    tab/share face changes, so a deliberate short nav label survives.
     generic_titles = {"Overview", "Prerequisites", "Practice", "Quiz", "Checkpoint"}
+    # 7) Material 9.7.6 labels the footer prev/next links with the neighboring
+    #    page's raw front-matter title (page.previous_page.title), while the
+    #    sidebar shows the explicit nav label from mkdocs.yml. For the generic
+    #    front-matter set (tick-864's five words) the two faces disagree on
+    #    the SAME page: the tick-870 census measured 92 footer anchors whose
+    #    visible md-ellipsis and aria-label read "Overview" while the sidebar
+    #    - on that very page - names the identical destination "7500 ·
+    #    Security" (46 distinct target pages). The footer name is
+    #    content-blind: "Next: Overview" says nothing about which module is
+    #    next. Rewrite both faces from the sidebar nav label when the raw
+    #    label is one of the generic words - the label map comes from the
+    #    built home page's own nav tree (the one place hrefs are
+    #    root-relative and resolve unambiguously; deep pages carry ../
+    #    relative hrefs that only resolve from their own location). Non-
+    #    generic label/title divergences are deliberate short nav names and
+    #    stay authoring decisions.
+    nav_label = {}
+    index_html = site / "index.html"
+    if index_html.is_file():
+        for m in re.finditer(r'<a\b[^>]*\bclass="md-nav__link[^"]*"[^>]*>(.*?)</a>',
+                             index_html.read_bytes().decode("utf-8"), re.S):
+            h = re.search(r'href="([^"]*)"', m.group(0))
+            if not h or h.group(1).startswith(("http", "mailto:", "#")):
+                continue
+            label = re.sub(r"\s+", " ", _html.unescape(re.sub(r"<[^>]+>", " ", m.group(1)))).strip()
+            if label:
+                nav_label.setdefault(posixpath.normpath(h.group(1)), label)
+    footer_re = re.compile(r'<a\b[^>]*\bclass="md-footer__link md-footer__link--(?:prev|next)"[^>]*>.*?</a>', re.S)
     title_re = re.compile(r"<title>([^<]*)</title>")
     og_title_re = re.compile(r'(<meta\s+property="og:title"\s+content=")([^"]*)(")')
     h1_re = re.compile(r"<h1[^>]*>(.*?)</h1>", re.S)
     line_anchor_re = re.compile(r'<a\b[^>]*\bid="__codelineno[^>]*>')
     edit_anchor_re = re.compile(r'<a\b[^>]*\brel="edit"[^>]*>')
-    bridged = untabbed = named = current = enlarged = sited = retitled = 0
+    bridged = untabbed = named = current = enlarged = sited = retitled = footered = 0
     site_name = (config.get("site_name") or "").replace('"', "&quot;")
     for html in site.rglob("*.html"):
         depth = len(html.parent.relative_to(site).parts)
+        rel_posix = html.relative_to(site).as_posix()
 
         def _bridge(m, depth=depth):
             nonlocal bridged
@@ -236,6 +266,28 @@ def on_post_build(config, **kwargs):
             sited += 1
             return f'<meta property="og:site_name" content="{site_name}">' + m.group(0)
 
+        def _footer(m):
+            nonlocal footered
+            tag = m.group(0)
+            ma = re.search(r'aria-label="((?:Previous|Next): )([^"]*)"', tag)
+            mh = re.search(r'href="([^"]*)"', tag)
+            if not ma or not mh or ma.group(2) not in generic_titles:
+                return tag
+            href = mh.group(1)
+            if href.startswith(("http", "mailto:", "#")):
+                return tag
+            label = nav_label.get(posixpath.normpath(posixpath.join(posixpath.dirname(rel_posix), href)))
+            if not label or label == ma.group(2):
+                return tag
+            footered += 1
+            esc = label.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
+            new_tag = tag.replace(ma.group(0), f'aria-label="{ma.group(1)}{esc}"', 1)
+            me = re.search(r'(<div class="md-ellipsis">\s*)([^<]*?)(\s*</div>)', new_tag)
+            if me and _html.unescape(me.group(2)).strip() == ma.group(2):
+                esc_t = label.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+                new_tag = new_tag.replace(me.group(0), f"{me.group(1)}{esc_t}{me.group(3)}", 1)
+            return new_tag
+
         text = html.read_bytes().decode("utf-8")
         new_text = href_re.sub(_bridge, text)
         new_text = line_anchor_re.sub(_line, new_text)
@@ -258,6 +310,7 @@ def on_post_build(config, **kwargs):
                 if mog and _html.unescape(mog.group(2)) == fm_title:
                     new_text = new_text.replace(mog.group(0), f"{mog.group(1)}{esc}{mog.group(3)}", 1)
                 retitled += 1
+        new_text = footer_re.sub(_footer, new_text)
         if new_text != text:
             html.write_bytes(new_text.encode("utf-8"))
     print(f"[hooks] bridged {bridged} experiments link(s) from repo depth to site depth")
@@ -265,3 +318,4 @@ def on_post_build(config, **kwargs):
     print(f"[hooks] share: {enlarged} twitter:card meta(s) enlarged to summary_large_image")
     print(f"[hooks] share: {sited} og:site_name meta(s) injected")
     print(f"[hooks] titles: {retitled} generic tab/og title(s) set from the page h1")
+    print(f"[hooks] footer: {footered} generic prev/next label(s) set from the sidebar nav label")
