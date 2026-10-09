@@ -394,8 +394,8 @@ Use this checklist to track your progress:
 - [ ] **EXP_3202: Tokenizer Experiment** (2 hours)
 - [ ] **3301: Activation Functions** (2 hours)
 - [ ] **3302: Normalization Layers** (1-2 hours)
-- [ ] **3401: Decoder-only Models** (2 hours)
-- [ ] **3402: Encoder-Decoder Models** (2 hours)
+- [ ] **3401: Encoder-Decoder Architectures** (2 hours)
+- [ ] **3402: Decoder-Only Models** (2 hours)
 
 **Total Core Time:** ~30-35 hours
 
