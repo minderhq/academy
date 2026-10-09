@@ -68,8 +68,17 @@ jobs:
 
       - name: Install MkDocs Material
         # [imaging] pulls in pillow for the social plugin's per-page
-        # share cards (og:image) that mkdocs.yml enables
-        run: pip install "mkdocs-material[imaging]>=9.6,<10"
+        # share cards (og:image) that mkdocs.yml enables.
+        # Exact pin: CI must build the SAME theme version the local fleet
+        # gates verify - the previous >=9.6,<10 range resolved 9.7.7 on its
+        # own while local builds ran 9.7.6, so deploys shipped a theme the
+        # fleet had never tested (proven: live generator meta read
+        # mkdocs-material-9.7.7 vs locally built 9.7.6). 9.7.7 is the
+        # search-suggestions DOM-XSS fix release, so local was upgraded to
+        # match and BOTH sides are pinned here. Bump the pin only after
+        # testing the new version in a local build - local moves first,
+        # CI follows.
+        run: pip install "mkdocs-material[imaging]==9.7.7"
 
       - name: Build the site
         env:
