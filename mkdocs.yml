@@ -104,7 +104,7 @@ nav:
       - "Prerequisites": phases/phase1-infra/1200-virtualization/PREREQUISITES.md
       - "Proxmox Hypervisor SOP": phases/phase1-infra/1200-virtualization/1201-Proxmox-Hypervisor-SOP.md
       - "TB3 UT3G Passthrough": phases/phase1-infra/1200-virtualization/1202-TB3-UT3G-Passthrough.md
-      - "Nvidia Kernel Module": phases/phase1-infra/1200-virtualization/1203-Nvidia-Kernel-Module.md
+      - "NVIDIA Kernel Module": phases/phase1-infra/1200-virtualization/1203-Nvidia-Kernel-Module.md
       - "Multi-GPU Setup": phases/phase1-infra/1200-virtualization/1204-Multi-GPU-Setup.md
       - "Practice": phases/phase1-infra/1200-virtualization/assessment/PRACTICE.md
       - "Quiz": phases/phase1-infra/1200-virtualization/assessment/QUIZ.md
@@ -116,7 +116,7 @@ nav:
       - "Storage Classes": phases/phase1-infra/1300-kubernetes/1303-Storage-Classes.md
       - "Practice": phases/phase1-infra/1300-kubernetes/assessment/PRACTICE.md
       - "Quiz": phases/phase1-infra/1300-kubernetes/assessment/QUIZ.md
-    - "1400 · Llmops":
+    - "1400 · LLMOps":
       - "Overview": phases/phase1-infra/1400-llmops/README.md
       - "Prerequisites": phases/phase1-infra/1400-llmops/PREREQUISITES.md
       - "Ollama Enterprise": phases/phase1-infra/1400-llmops/1401-Ollama-Enterprise.md
@@ -167,8 +167,8 @@ nav:
     - "2400 · Pretraining":
       - "Overview": phases/phase2-foundations/2400-pretraining/README.md
       - "Prerequisites": phases/phase2-foundations/2400-pretraining/PREREQUISITES.md
-      - "Pre-Training Fundamentals": phases/phase2-foundations/2400-pretraining/2401-Pre-training-Fundamentals.md
-      - "Large Scale Training": phases/phase2-foundations/2400-pretraining/2402-Large-Scale-Training.md
+      - "Pre-training Fundamentals": phases/phase2-foundations/2400-pretraining/2401-Pre-training-Fundamentals.md
+      - "Large-Scale Training": phases/phase2-foundations/2400-pretraining/2402-Large-Scale-Training.md
       - "Evaluation Frameworks": phases/phase2-foundations/2400-pretraining/2403-Evaluation-Frameworks.md
       - "Practice": phases/phase2-foundations/2400-pretraining/assessment/PRACTICE.md
       - "Quiz": phases/phase2-foundations/2400-pretraining/assessment/QUIZ.md
@@ -178,7 +178,7 @@ nav:
     - "3100 · Attention":
       - "Overview": phases/phase3-transformers/3100-attention/README.md
       - "Prerequisites": phases/phase3-transformers/3100-attention/PREREQUISITES.md
-      - "Self Attention DeepDive": phases/phase3-transformers/3100-attention/3101-Self-Attention-DeepDive.md
+      - "Self-Attention Deep Dive": phases/phase3-transformers/3100-attention/3101-Self-Attention-DeepDive.md
       - "Flash Attention": phases/phase3-transformers/3100-attention/3102-Flash-Attention.md
       - "SDPA and torch.compile": phases/phase3-transformers/3100-attention/3103-SDPA-and-torch-compile.md
       - "Practice": phases/phase3-transformers/3100-attention/assessment/PRACTICE.md
@@ -203,8 +203,8 @@ nav:
     - "3400 · Architectures":
       - "Overview": phases/phase3-transformers/3400-architectures/README.md
       - "Prerequisites": phases/phase3-transformers/3400-architectures/PREREQUISITES.md
-      - "Encoder Decoder Architectures": phases/phase3-transformers/3400-architectures/3401-Encoder-Decoder-Architectures.md
-      - "Decoder Only Models": phases/phase3-transformers/3400-architectures/3402-Decoder-Only-Models.md
+      - "Encoder-Decoder Architectures": phases/phase3-transformers/3400-architectures/3401-Encoder-Decoder-Architectures.md
+      - "Decoder-Only Models": phases/phase3-transformers/3400-architectures/3402-Decoder-Only-Models.md
       - "Beyond Attention SSMs and MLA": phases/phase3-transformers/3400-architectures/3404-Beyond-Attention-SSMs-and-MLA.md
       - "Guide · Model Architecture Comparison": phases/phase3-transformers/3400-architectures/guides/3403-Model-Architecture-Comparison.md
       - "Practice": phases/phase3-transformers/3400-architectures/assessment/PRACTICE.md
@@ -212,14 +212,14 @@ nav:
     - "3500 · Multimodal":
       - "Overview": phases/phase3-transformers/3500-multimodal/README.md
       - "Prerequisites": phases/phase3-transformers/3500-multimodal/PREREQUISITES.md
-      - "Vision Language Models": phases/phase3-transformers/3500-multimodal/3501-Vision-Language-Models.md
+      - "Vision-Language Models": phases/phase3-transformers/3500-multimodal/3501-Vision-Language-Models.md
       - "Audio Models": phases/phase3-transformers/3500-multimodal/3502-Audio-Models.md
       - "Practice": phases/phase3-transformers/3500-multimodal/assessment/PRACTICE.md
       - "Quiz": phases/phase3-transformers/3500-multimodal/assessment/QUIZ.md
   - "4 · Quantization":
     - "Overview": phases/phase4-quantization/README.md
     - "Checkpoint": phases/phase4-quantization/CHECKPOINT.md
-    - "4100 · Low Bit":
+    - "4100 · Low-Bit":
       - "Overview": phases/phase4-quantization/4100-low-bit/README.md
       - "Prerequisites": phases/phase4-quantization/4100-low-bit/PREREQUISITES.md
       - "GGUF Physics": phases/phase4-quantization/4100-low-bit/4101-GGUF-Physics.md
@@ -228,12 +228,12 @@ nav:
       - "MXFP4 and NVFP4": phases/phase4-quantization/4100-low-bit/4104-MXFP4-and-NVFP4.md
       - "Practice": phases/phase4-quantization/4100-low-bit/assessment/PRACTICE.md
       - "Quiz": phases/phase4-quantization/4100-low-bit/assessment/QUIZ.md
-    - "4200 · Kv Cache":
+    - "4200 · KV Cache":
       - "Overview": phases/phase4-quantization/4200-kv-cache/README.md
       - "Prerequisites": phases/phase4-quantization/4200-kv-cache/PREREQUISITES.md
       - "Context Window Physics": phases/phase4-quantization/4200-kv-cache/4201-Context-Window-Physics.md
       - "Speculative Decoding": phases/phase4-quantization/4200-kv-cache/4202-Speculative-Decoding.md
-      - "KV Cache Paging and Prefix Caching": phases/phase4-quantization/4200-kv-cache/4204-KV-Cache-Paging-and-Prefix-Caching.md
+      - "KV-Cache Paging and Prefix Caching": phases/phase4-quantization/4200-kv-cache/4204-KV-Cache-Paging-and-Prefix-Caching.md
       - "Guide · Context Window Optimization": phases/phase4-quantization/4200-kv-cache/guides/4203-Context-Window-Optimization.md
       - "Practice": phases/phase4-quantization/4200-kv-cache/assessment/PRACTICE.md
       - "Quiz": phases/phase4-quantization/4200-kv-cache/assessment/QUIZ.md
@@ -267,7 +267,7 @@ nav:
   - "5 · Fine-Tuning":
     - "Overview": phases/phase5-finetuning/README.md
     - "Checkpoint": phases/phase5-finetuning/CHECKPOINT.md
-    - "5100 · Peft":
+    - "5100 · PEFT":
       - "Overview": phases/phase5-finetuning/5100-peft/README.md
       - "Prerequisites": phases/phase5-finetuning/5100-peft/PREREQUISITES.md
       - "LoRA Logic": phases/phase5-finetuning/5100-peft/5101-LoRA-Logic.md
@@ -285,7 +285,7 @@ nav:
       - "RLHF": phases/phase5-finetuning/5200-alignment/5203-RLHF.md
       - "Preference Dataset Creation": phases/phase5-finetuning/5200-alignment/5204-Preference-Dataset-Creation.md
       - "GRPO RLVR": phases/phase5-finetuning/5200-alignment/5205-GRPO-RLVR.md
-      - "Best of N and Rejection Sampling": phases/phase5-finetuning/5200-alignment/5206-Best-of-N-and-Rejection-Sampling.md
+      - "Best-of-N and Rejection Sampling": phases/phase5-finetuning/5200-alignment/5206-Best-of-N-and-Rejection-Sampling.md
       - "Practice": phases/phase5-finetuning/5200-alignment/assessment/PRACTICE.md
       - "Quiz": phases/phase5-finetuning/5200-alignment/assessment/QUIZ.md
     - "5300 · Synthetic":
@@ -358,7 +358,7 @@ nav:
       - "Guide · Qdrant Production Deployment": phases/phase6-rag/6400-vector-databases/guides/6403-Qdrant-Production-Deployment.md
       - "Practice": phases/phase6-rag/6400-vector-databases/assessment/PRACTICE.md
       - "Quiz": phases/phase6-rag/6400-vector-databases/assessment/QUIZ.md
-    - "6500 · Mlops Pipelines":
+    - "6500 · MLOps Pipelines":
       - "Overview": phases/phase6-rag/6500-mlops-pipelines/README.md
       - "Prerequisites": phases/phase6-rag/6500-mlops-pipelines/PREREQUISITES.md
       - "ML Lifecycle Management": phases/phase6-rag/6500-mlops-pipelines/6501-ML-Lifecycle-Management.md
@@ -377,8 +377,8 @@ nav:
       - "ReAct Loop System": phases/phase7-agentic/7100-architecture/7101-ReAct-Loop-System.md
       - "Planning Decomposition": phases/phase7-agentic/7100-architecture/7102-Planning-Decomposition.md
       - "Agent Evaluation and Observability": phases/phase7-agentic/7100-architecture/7104-Agent-Evaluation-and-Observability.md
-      - "Reflection and Self Correction": phases/phase7-agentic/7100-architecture/7105-Reflection-and-Self-Correction.md
-      - "Function Calling Training and Constrained Decoding": phases/phase7-agentic/7100-architecture/7106-Function-Calling-Training-and-Constrained-Decoding.md
+      - "Reflection and Self-Correction": phases/phase7-agentic/7100-architecture/7105-Reflection-and-Self-Correction.md
+      - "Function-Calling Training and Constrained Decoding": phases/phase7-agentic/7100-architecture/7106-Function-Calling-Training-and-Constrained-Decoding.md
       - "Guide · ReAct Implementation Guide": phases/phase7-agentic/7100-architecture/guides/7103-ReAct-Implementation-Guide.md
       - "Practice": phases/phase7-agentic/7100-architecture/assessment/PRACTICE.md
       - "Quiz": phases/phase7-agentic/7100-architecture/assessment/QUIZ.md
@@ -406,7 +406,7 @@ nav:
       - "Long-term Memory": phases/phase7-agentic/7400-memory/7401-Long-term-Memory.md
       - "Vector Memory": phases/phase7-agentic/7400-memory/7403-Vector-Memory.md
       - "Reflective Memory and Context Paging": phases/phase7-agentic/7400-memory/7404-Reflective-Memory-and-Context-Paging.md
-      - "Key Value Memory and Checkpoint Stores": phases/phase7-agentic/7400-memory/7405-Key-Value-Memory-and-Checkpoint-Stores.md
+      - "Key-Value Memory and Checkpoint Stores": phases/phase7-agentic/7400-memory/7405-Key-Value-Memory-and-Checkpoint-Stores.md
       - "Guide · Agent Memory Implementation": phases/phase7-agentic/7400-memory/guides/7402-Agent-Memory-Implementation.md
       - "Practice": phases/phase7-agentic/7400-memory/assessment/PRACTICE.md
       - "Quiz": phases/phase7-agentic/7400-memory/assessment/QUIZ.md
