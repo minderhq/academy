@@ -581,6 +581,20 @@ nav:
         - "Phase 6 Quiz": 00-META/assessment/phase6-quiz.md
         - "Phase 7 Practice": 00-META/assessment/phase7-practice.md
         - "Phase 7 Quiz": 00-META/assessment/phase7-quiz.md
+# Explicit search plugin: stock-default config was the bare [\s\-]+ separator and
+# stopWordFilter only, which tokenizes technical queries poorly ("torch.compile",
+# "O(1)", "k3s" swallow punctuation) and has no stemming, so "containers" never
+# matches "container". This is the separator/pipeline Material documents for
+# English technical docs. Declaring plugins: replaces the implicit default set,
+# and the only implicit default is search itself, so the surface is unchanged.
+plugins:
+  - search:
+      lang: en
+      separator: '[\s\-,:!=\[\]()"`/]+|\.(?!\d)|&(?!\w)|[?]+(\s|$)'
+      pipeline:
+        - stemmer
+        - stopWordFilter
+        - trimmer
 markdown_extensions:
   - admonition
   - attr_list
