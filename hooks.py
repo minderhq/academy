@@ -163,10 +163,19 @@ def on_post_build(config, **kwargs):
     #    alone.
     tw_card_re = re.compile(r'(<meta\s+name="twitter:card"\s+content=")summary(")')
     # 5) Material 9.7.6's og: block carries title/description/type/url but NO
-    #    og:site_name on any page, so share previews label the link with the
-    #    bare host (minderhq.github.io) instead of the brand. Inject the
-    #    configured site_name ahead of og:type, guarded on absence so an
-    #    upstream emission can never be doubled.
+    #    og:site_name on any page (nor does the social plugin's own meta set -
+    #    its default layout tags are og:type/title/description/image±dims/url
+    #    plus twitter:*), so share previews label the link with the bare host
+    #    (minderhq.github.io) instead of the brand. Inject the configured
+    #    site_name ahead of og:type. The social plugin runs before these hooks
+    #    (mkdocs loads hooks after configured plugins) and appends its block
+    #    before </head>, so CI builds carry TWO og:type per page while local
+    #    builds (social off - no cairosvg runtime on Windows) carry one; an
+    #    unbounded sub injected a duplicate og:site_name into the social block
+    #    too (tick-887 live census: og:site_name 2x on all 442 live pages vs
+    #    1x locally). count=1 anchors the injection to the first og:type - the
+    #    template block's - so exactly one og:site_name ships per page on
+    #    either side.
     og_site_re = re.compile(r'(<meta\s+property="og:type")')
     # 6) 152 pages carry a generic front-matter title (Overview x46,
     #    Prerequisites x33, Practice x33, Quiz x33, Checkpoint x7) while the
@@ -310,7 +319,7 @@ def on_post_build(config, **kwargs):
         new_text = nav_active_re.sub(_nav, new_text)
         new_text = tw_card_re.sub(_tw, new_text)
         if site_name:
-            new_text = og_site_re.sub(_og_site, new_text)
+            new_text = og_site_re.sub(_og_site, new_text, count=1)
         # generic-title rewrite (6): h1 -> tab title + og:title
         mh1 = h1_re.search(new_text)
         mt = title_re.search(new_text)
