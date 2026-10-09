@@ -884,7 +884,7 @@ locust             # Python load testing
 
 **Forums:**
 
-- [vLLM Discord](https://discord.gg/vllm)
+- [vLLM Forum](https://discuss.vllm.ai)
 - [Hugging Face Forums](https://discuss.huggingface.co/)
 - [r/LocalLLaMA on Reddit](https://www.reddit.com/r/LocalLLaMA/)
 
