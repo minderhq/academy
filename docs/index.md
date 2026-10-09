@@ -56,7 +56,7 @@ The curriculum also ships as seven print-style volumes, each a curated route
 through its phases:
 
 - [VOLUME-1 - Infrastructure](volumes/VOLUME-1-Infrastructure.md)
-- [VOLUME-2 - AI Foundations](volumes/VOLUME-2-AI-Foundations.md)
+- [VOLUME-2 - AI/ML Foundations](volumes/VOLUME-2-AI-Foundations.md)
 - [VOLUME-3 - LLM Internals](volumes/VOLUME-3-LLM-Internals.md)
 - [VOLUME-4 - Quantization](volumes/VOLUME-4-Quantization.md)
 - [VOLUME-5 - Model Adaptation](volumes/VOLUME-5-Model-Adaptation.md)

@@ -244,13 +244,13 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **[CHEAT-SHEET-004](../learning-resources/cheat-sheets/CHEAT-SHEET-004-Linux.md)** | Linux Commands for AI/ML | Commands, System Admin, Performance |
 | **[CHEAT-SHEET-005](../learning-resources/cheat-sheets/CHEAT-SHEET-005-RAG-Systems.md)** | RAG Systems | Embeddings, Vector DB, Evaluation |
 | **[CHEAT-SHEET-006](../learning-resources/cheat-sheets/CHEAT-SHEET-006-Kubernetes.md)** | Kubernetes for LLM Deployment | Installation, Deployments, Services, GPU Scheduling, Scaling, Troubleshooting |
-| **[QUICK-REF-V1](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-1.md)** | Infrastructure Mastery - Quick Reference | Phase 1 Quick Reference |
+| **[QUICK-REF-V1](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-1.md)** | Infrastructure Fundamentals - Quick Reference | Phase 1 Quick Reference |
 | **[QUICK-REF-V2](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-2.md)** | AI/ML Foundations - Quick Reference | Phase 2 Quick Reference |
 | **[QUICK-REF-V3](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-3.md)** | LLM Internals - Quick Reference | Phase 3 Quick Reference |
-| **[QUICK-REF-V4](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-4.md)** | Quantization Mastery - Quick Reference | Phase 4 Quick Reference |
-| **[QUICK-REF-V5](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-5.md)** | Fine-Tuning Expert - Quick Reference | Phase 5 Quick Reference |
-| **[QUICK-REF-V6](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-6.md)** | RAG & Data Systems - Quick Reference | Phase 6 Quick Reference |
-| **[QUICK-REF-V7](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-7.md)** | Production Systems - Quick Reference | Phase 7 Quick Reference |
+| **[QUICK-REF-V4](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-4.md)** | Quantization & Optimization - Quick Reference | Phase 4 Quick Reference |
+| **[QUICK-REF-V5](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-5.md)** | Model Adaptation - Quick Reference | Phase 5 Quick Reference |
+| **[QUICK-REF-V6](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-6.md)** | Data Nexus: RAG & Memory - Quick Reference | Phase 6 Quick Reference |
+| **[QUICK-REF-V7](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-7.md)** | Production Mastery - Quick Reference | Phase 7 Quick Reference |
 
 ---
 

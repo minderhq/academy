@@ -1,13 +1,13 @@
 ---
 Document ID: QUICK-REF-VOLUME-5
-Title: "Volume 5: Fine-Tuning Expert - Quick Reference"
+Title: "Volume 5: Model Adaptation - Quick Reference"
 Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Tags: ['cheatsheet', 'finetuning', 'lora']
 ---
 
-# Volume 5: Fine-Tuning Expert - Quick Reference
+# Volume 5: Model Adaptation - Quick Reference
 
 **Adapt Models to Your Needs** - LoRA, QLoRA, DPO, and alignment
 
@@ -490,6 +490,6 @@ TRAINING_HYPERPARAMETERS = {
 
 ---
 
-**Volume:** 5 - Fine-Tuning Expert
+**Volume:** 5 - Model Adaptation
 
 **Estimated Time:** 35-40 hours

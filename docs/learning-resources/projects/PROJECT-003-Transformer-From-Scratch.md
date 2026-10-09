@@ -1082,4 +1082,4 @@ print(f"Generated: {generated}")
 
 ## Next Steps
 
-- **[Volume 4: Quantization Mastery](../../volumes/VOLUME-4-Quantization.md)**
+- **[Volume 4: Quantization & Optimization](../../volumes/VOLUME-4-Quantization.md)**

@@ -1,13 +1,13 @@
 ---
 Document ID: QUICK-REF-VOLUME-4
-Title: "Volume 4: Quantization Mastery - Quick Reference"
+Title: "Volume 4: Quantization & Optimization - Quick Reference"
 Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Tags: ['cheatsheet', 'quantization', 'gguf']
 ---
 
-# Volume 4: Quantization Mastery - Quick Reference
+# Volume 4: Quantization & Optimization - Quick Reference
 
 **Run Models Anywhere** - Quantization, compression, and optimization
 
@@ -533,6 +533,6 @@ class SpeculativeDecoding:
 
 ---
 
-**Volume:** 4 - Quantization Mastery
+**Volume:** 4 - Quantization & Optimization
 
 **Estimated Time:** 30-35 hours

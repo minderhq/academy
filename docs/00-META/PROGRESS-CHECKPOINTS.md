@@ -86,7 +86,7 @@ Total: _____ months
 - 🚀 **Local LLM Runner:** Complete TUTORIAL-001
 - 📊 **Monitoring Master:** Complete Phase 1
 
-### AI Foundations Badges
+### AI/ML Foundations Badges
 - 📐 **Tensor Master:** Complete Phase 2
 - 🤖 **Transformer Expert:** Complete Phase 3
 

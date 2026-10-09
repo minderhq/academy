@@ -16,13 +16,13 @@ Tags: ['roadmap', 'guide', 'practice']
 ## Overall Progress
 
 ```text
-Volume 1: Infrastructure Mastery  [░░░░░░░░░░░] 0% (0/41)
-Volume 2: AI Foundations          [░░░░░░░░░░░] 0% (0/33)
-Volume 3: LLM Internals           [░░░░░░░░░░░] 0% (0/38)
-Volume 4: Quantization Mastery    [░░░░░░░░░░░] 0% (0/43)
-Volume 5: Fine-Tuning Expert      [░░░░░░░░░░░] 0% (0/46)
-Volume 6: RAG & Data Systems      [░░░░░░░░░░░] 0% (0/46)
-Volume 7: Production Systems      [░░░░░░░░░░░] 0% (0/46)
+Volume 1: Infrastructure Fundamentals  [░░░░░░░░░░░] 0% (0/41)
+Volume 2: AI/ML Foundations            [░░░░░░░░░░░] 0% (0/33)
+Volume 3: LLM Internals                [░░░░░░░░░░░] 0% (0/38)
+Volume 4: Quantization & Optimization  [░░░░░░░░░░░] 0% (0/43)
+Volume 5: Model Adaptation             [░░░░░░░░░░░] 0% (0/46)
+Volume 6: Data Nexus: RAG & Memory     [░░░░░░░░░░░] 0% (0/46)
+Volume 7: Production Mastery           [░░░░░░░░░░░] 0% (0/46)
 
 Total: [░░░░░░░░░░░░░░░░░] 0% (0/442 core files)
 ```
@@ -31,7 +31,7 @@ Total: [░░░░░░░░░░░░░░░░░] 0% (0/442 core file
 
 ## Volume-Based Progress Tracking
 
-### Volume 1: Infrastructure Mastery (41 files)
+### Volume 1: Infrastructure Fundamentals (41 files)
 **"Build Your AI Laboratory"** - 75-100 hours | Difficulty: ⭐ Beginner
 
 **Note:** Time estimate includes reading (25h), hands-on practice (35h), labs (15h), and capstone project (15h). Adjust based on your prior experience with networking, Linux, and Docker.
@@ -154,7 +154,7 @@ Total: [░░░░░░░░░░░░░░░░░] 0% (0/442 core file
 
 ---
 
-### Volume 4: Quantization Mastery (43 files)
+### Volume 4: Quantization & Optimization (43 files)
 **"Run Models Anywhere"** - 30-35 hours | Difficulty: ⭐⭐⭐ Advanced
 
 - [ ] **VOLUME-4-Quantization.md** - Volume guide (read first!)
@@ -180,7 +180,7 @@ Total: [░░░░░░░░░░░░░░░░░] 0% (0/442 core file
 
 ---
 
-### Volume 5: Fine-Tuning Expert (46 files)
+### Volume 5: Model Adaptation (46 files)
 **"Adapt Models to Your Needs"** - 35-40 hours | Difficulty: ⭐⭐⭐ Advanced
 
 - [ ] **VOLUME-5-Fine-Tuning.md** - Volume guide (read first!)
@@ -209,7 +209,7 @@ Total: [░░░░░░░░░░░░░░░░░] 0% (0/442 core file
 
 ---
 
-### Volume 6: RAG & Data Systems (46 files)
+### Volume 6: Data Nexus: RAG & Memory (46 files)
 **"Build Intelligent Data Systems"** - 40-45 hours | Difficulty: ⭐⭐⭐ Advanced
 
 - [ ] **VOLUME-6-Data-Nexus.md** - Volume guide (read first!)
@@ -245,7 +245,7 @@ Total: [░░░░░░░░░░░░░░░░░] 0% (0/442 core file
 
 ---
 
-### Volume 7: Production Systems (46 files)
+### Volume 7: Production Mastery (46 files)
 **"Deploy at Scale"** - 45-50 hours | Difficulty: ⭐⭐⭐ Advanced
 
 - [ ] **VOLUME-7-Production-Mastery.md** - Volume guide (read first!)

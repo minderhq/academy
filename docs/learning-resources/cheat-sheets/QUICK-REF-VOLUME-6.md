@@ -1,13 +1,13 @@
 ---
 Document ID: QUICK-REF-VOLUME-6
-Title: "Volume 6: RAG & Data Systems - Quick Reference"
+Title: "Volume 6: Data Nexus: RAG & Memory - Quick Reference"
 Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Tags: ['cheatsheet', 'rag', 'vector-db']
 ---
 
-# Volume 6: RAG & Data Systems - Quick Reference
+# Volume 6: Data Nexus: RAG & Memory - Quick Reference
 
 **Build Intelligent Data Systems** - Vector search, RAG, GraphRAG, and vector databases
 
@@ -626,6 +626,6 @@ print(result)
 
 ---
 
-**Volume:** 6 - RAG & Data Systems
+**Volume:** 6 - Data Nexus: RAG & Memory
 
 **Estimated Time:** 40-45 hours

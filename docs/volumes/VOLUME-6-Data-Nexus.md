@@ -1,13 +1,13 @@
 ---
 Document ID: VOLUME-6
-Title: "Volume 6: Data Nexus - RAG & Memory"
+Title: "Volume 6: Data Nexus: RAG & Memory"
 Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['volume', 'rag', 'vector-db', 'graphrag']
 ---
 
-# Volume 6: Data Nexus - RAG & Memory
+# Volume 6: Data Nexus: RAG & Memory
 
 **"Beyond Training Data"** - Give LLMs access to external knowledge and long-term memory.
 

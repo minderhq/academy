@@ -1,13 +1,13 @@
 ---
 Document ID: QUICK-REF-VOLUME-1
-Title: "Volume 1: Infrastructure Mastery - Quick Reference"
+Title: "Volume 1: Infrastructure Fundamentals - Quick Reference"
 Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
 Tags: ['cheatsheet', 'infrastructure', 'docker', 'kubernetes']
 ---
 
-# Volume 1: Infrastructure Mastery - Quick Reference
+# Volume 1: Infrastructure Fundamentals - Quick Reference
 
 **Build Your AI Laboratory** - Essential commands and concepts
 
@@ -391,6 +391,6 @@ kubectl get -n longhorn volume
 
 ---
 
-**Volume:** 1 - Infrastructure Mastery
+**Volume:** 1 - Infrastructure Fundamentals
 
 **Estimated Time:** 40-50 hours

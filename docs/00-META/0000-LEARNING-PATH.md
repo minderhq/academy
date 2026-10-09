@@ -758,7 +758,7 @@ under `docs/volumes/` - start there, then dive into the module docs.
 6. [1500: Monitoring](../phases/phase1-infra/1500-monitoring/README.md)
 
 ### Volume 2: AI/ML Foundations
-7. [VOLUME-2: AI Foundations](../volumes/VOLUME-2-AI-Foundations.md) - the guided route
+7. [VOLUME-2: AI/ML Foundations](../volumes/VOLUME-2-AI-Foundations.md) - the guided route
 8. [2100: Calculus for Deep Learning](../phases/phase2-foundations/2100-calculus/README.md)
 9. [2000: Frameworks & Engineering](../phases/phase2-foundations/README.md)
 10. [2400: Pre-training](../phases/phase2-foundations/2400-pretraining/README.md)
