@@ -28,8 +28,9 @@
      section whose link list leaked into the strip-tags excerpt, so share
      previews carried menu text instead of prose. first_lede (hooks.py)
      returns the first <p> after the h1 - TOC entries render as <li> - and
-     skips a leading "Last Updated:" meta line; no-paragraph pages fall
-     back to the previous strip-tags behavior. #}
+     skips leading key-value meta lines ("Last Updated:", "Difficulty:",
+     "Time:", ...) that some pages chain three to five deep; no-paragraph
+     pages fall back to the previous strip-tags behavior. #}
   {%- set raw_content = page.content | default('') -%}
   {%- set after_h1 = raw_content.split('</h1>', 1)[1] if '</h1>' in raw_content else raw_content -%}
   {%- set lede = after_h1 | first_lede | truncate(160, false, '…') -%}

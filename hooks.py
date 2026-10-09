@@ -12,7 +12,11 @@ import re
 
 _P_RE = re.compile(r"<p(?:\s[^>]*)?>")
 _P_END = "</p>"
-_META_LEDE = re.compile(r"^(?:Last Updated|Updated|Last updated)\s*:", re.I)
+_META_LEDE = re.compile(
+    r"^(?:Last Updated|Updated|Last updated|Difficulty|Time|Estimated Time|"
+    r"Reading Time|Prerequisites|Document ID|Module|Duration)\s*:",
+    re.I,
+)
 
 
 def first_lede(value):
@@ -24,14 +28,17 @@ def first_lede(value):
     Contents heading plus a link list), so share previews on Discord/Slack/X
     showed menu text instead of prose. Instead return the text inside the
     first <p> after the h1: TOC entries render as <li>, never <p>, so the
-    first paragraph is the page's actual lede. A leading "Last Updated:"
-    meta line is skipped in favor of the next paragraph, and pages without
-    any <p> fall back to plain tag-stripping (the previous behavior).
+    first paragraph is the page's actual lede. Leading key-value meta lines
+    ("Last Updated:", "Difficulty:", "Time:", "Prerequisites:", ...) are
+    skipped in favor of the first prose paragraph - some pages (assessment
+    banks, tutorials) open with a chain of three to five of them - and
+    pages without any <p> fall back to plain tag-stripping (the previous
+    behavior).
     """
     import html as _html
 
     text = value or ""
-    for _ in range(4):
+    for _ in range(8):
         m = _P_RE.search(text)
         if not m:
             break
