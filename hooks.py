@@ -138,9 +138,16 @@ def on_post_build(config, **kwargs):
     # 2) Material 9.7.6's edit-this-page button is icon-only (svg) with a
     #    title but NO accessible name on all 442 pages - screen readers
     #    announce a bare "link". Copy the existing title into aria-label.
+    # 3) Material 9.7.6 marks the current page's sidebar link with the
+    #    md-nav__link--active class only - a purely visual signal (CSS
+    #    highlight). No aria-current on any of the 442 pages, so screen
+    #    readers get no programmatic "you are here" cue - the location
+    #    signal exists only as color/weight. aria-current="page" is the
+    #    exact ARIA token for a link pointing at the page it's on.
+    nav_active_re = re.compile(r'<a\b[^>]*\bclass="[^"]*md-nav__link--active[^"]*"[^>]*>')
     line_anchor_re = re.compile(r'<a\b[^>]*\bid="__codelineno[^>]*>')
     edit_anchor_re = re.compile(r'<a\b[^>]*\brel="edit"[^>]*>')
-    bridged = untabbed = named = 0
+    bridged = untabbed = named = current = 0
     for html in site.rglob("*.html"):
         depth = len(html.parent.relative_to(site).parts)
 
@@ -171,11 +178,20 @@ def on_post_build(config, **kwargs):
             named += 1
             return f"{tag[:-1]} aria-label=\"{t.group(1)}\">"
 
+        def _nav(m):
+            nonlocal current
+            tag = m.group(0)
+            if "aria-current" in tag:
+                return tag
+            current += 1
+            return f"{tag[:-1]} aria-current=\"page\">"
+
         text = html.read_bytes().decode("utf-8")
         new_text = href_re.sub(_bridge, text)
         new_text = line_anchor_re.sub(_line, new_text)
         new_text = edit_anchor_re.sub(_edit, new_text)
+        new_text = nav_active_re.sub(_nav, new_text)
         if new_text != text:
             html.write_bytes(new_text.encode("utf-8"))
     print(f"[hooks] bridged {bridged} experiments link(s) from repo depth to site depth")
-    print(f"[hooks] a11y: {untabbed} codelineno anchor(s) untabbed, {named} edit button(s) named")
+    print(f"[hooks] a11y: {untabbed} codelineno anchor(s) untabbed, {named} edit button(s) named, {current} nav link(s) aria-current")
