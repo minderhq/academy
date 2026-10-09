@@ -182,6 +182,16 @@ def on_post_build(config, **kwargs):
     #    index and the social cards keep the front-matter title - only the
     #    tab/share face changes, so a deliberate short nav label survives.
     generic_titles = {"Overview", "Prerequisites", "Practice", "Quiz", "Checkpoint"}
+    # 8) python-markdown's tables extension emits every header cell as a bare
+    #    <th> with no scope attribute - the tick-886 census measured 2,027 th
+    #    across 581 tables on 213 pages, 0 with scope - so screen readers
+    #    lose the column-header mapping (WCAG 1.3.1) and every data cell is
+    #    announced without its column context. The extension puts EVERY th in
+    #    <thead> (first-row-header model), so each one is a column header and
+    #    scope="col" is the exact token; row-header th (tbody) does not occur
+    #    in this corpus. Guarded on absence of scope= so an upstream emission
+    #    can never be doubled.
+    th_re = re.compile(r"<th\b(?![^>]*\bscope=)([^>]*)>")
     # 7) Material 9.7.6 labels the footer prev/next links with the neighboring
     #    page's raw front-matter title (page.previous_page.title), while the
     #    sidebar shows the explicit nav label from mkdocs.yml. For the generic
@@ -215,7 +225,7 @@ def on_post_build(config, **kwargs):
     h1_re = re.compile(r"<h1[^>]*>(.*?)</h1>", re.S)
     line_anchor_re = re.compile(r'<a\b[^>]*\bid="__codelineno[^>]*>')
     edit_anchor_re = re.compile(r'<a\b[^>]*\brel="edit"[^>]*>')
-    bridged = untabbed = named = current = enlarged = sited = retitled = footered = 0
+    bridged = untabbed = named = current = enlarged = sited = retitled = footered = scoped = 0
     site_name = (config.get("site_name") or "").replace('"', "&quot;")
     for html in site.rglob("*.html"):
         depth = len(html.parent.relative_to(site).parts)
@@ -266,6 +276,11 @@ def on_post_build(config, **kwargs):
             sited += 1
             return f'<meta property="og:site_name" content="{site_name}">' + m.group(0)
 
+        def _th(m):
+            nonlocal scoped
+            scoped += 1
+            return f'<th{m.group(1)} scope="col">'
+
         def _footer(m):
             nonlocal footered
             tag = m.group(0)
@@ -310,6 +325,7 @@ def on_post_build(config, **kwargs):
                 if mog and _html.unescape(mog.group(2)) == fm_title:
                     new_text = new_text.replace(mog.group(0), f"{mog.group(1)}{esc}{mog.group(3)}", 1)
                 retitled += 1
+        new_text = th_re.sub(_th, new_text)
         new_text = footer_re.sub(_footer, new_text)
         if new_text != text:
             html.write_bytes(new_text.encode("utf-8"))
@@ -319,3 +335,4 @@ def on_post_build(config, **kwargs):
     print(f"[hooks] share: {sited} og:site_name meta(s) injected")
     print(f"[hooks] titles: {retitled} generic tab/og title(s) set from the page h1")
     print(f"[hooks] footer: {footered} generic prev/next label(s) set from the sidebar nav label")
+    print(f"[hooks] tables: {scoped} table header cell(s) scoped to col")
