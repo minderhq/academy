@@ -69,8 +69,15 @@ def on_page_context(context, page, config, nav):
     inject it as the page description unless the FM carries one (the corpus
     carries no Description today; the key is future-proofing per tick-844).
     Mutating page.meta before render means Material's if/elif picks it up
-    natively - no duplicate tag, no post-build rewrite.
+    natively - no duplicate tag, no post-build rewrite. The value must be
+    attribute-escaped here: mkdocs' Jinja env renders with autoescape off
+    (proven by the tick-867 census - 17 pages whose lede carries straight
+    double quotes shipped a raw " inside content="...", breaking the
+    attribute so crawlers read an empty description), while the og:description
+    path escapes its own copy with the | e filter, so no double escape.
     """
+    import html as _html
+
     meta = getattr(page, "meta", None)
     if not isinstance(meta, dict) or "Description" in meta or "description" in meta:
         return context
@@ -80,7 +87,7 @@ def on_page_context(context, page, config, nav):
     if lede and len(lede) > 20:
         if len(lede) > 160:
             lede = lede[:157].rsplit(" ", 1)[0].rstrip(",;: ") + "…"
-        meta["description"] = lede
+        meta["description"] = _html.escape(lede, quote=True)
     return context
 
 
