@@ -79,12 +79,12 @@ and transform it per-position (the MLP). Attention's mixing cost has two parts:
 
 1. **Compute:** the score matrix is L × L for a sequence of length L. Doubling the
    context quadruples the attention FLOPs. Techniques like FlashAttention (see
-   [3100: Attention](../3100-attention/)) make the constant smaller, but the
+   [3100: Attention](../3100-attention/README.md)) make the constant smaller, but the
    quadratic shape stays.
 2. **State:** autoregressive inference caches K and V for every past token at every
    layer. The cache grows linearly with context length and with `heads × head_dim`,
    and at long context it — not the weights — dominates the memory budget. Phase 4's
-   [4200: KV Cache](../../phase4-quantization/4200-kv-cache/) module is entirely
+   [4200: KV Cache](../../phase4-quantization/4200-kv-cache/README.md) module is entirely
    about shrinking that cache for a *fixed* attention shape.
 
 Post-Transformer architectures attack the shape itself. SSMs change the mixer so the
@@ -510,10 +510,10 @@ you need."
 
 ## Next Steps
 
-- [4200: KV Cache](../../phase4-quantization/4200-kv-cache/) — the cache-side
+- [4200: KV Cache](../../phase4-quantization/4200-kv-cache/README.md) — the cache-side
   toolbox (quantization, paging, eviction) that applies to whatever mixer you kept.
-- [3300: Decoding](../../phase3-transformers/3300-decoding/) — decode-loop
+- [3300: Decoding](../../phase3-transformers/3300-decoding/README.md) — decode-loop
   mechanics that make the per-token cache arithmetic above binding.
-- [3100: Attention](../3100-attention/) — the attention internals MLA modifies.
+- [3100: Attention](../3100-attention/README.md) — the attention internals MLA modifies.
 - Write a recall stress test: run an MQAR-style needle task over a toy fixed-state
   model and an equal-size attention model, and watch the curves cross.

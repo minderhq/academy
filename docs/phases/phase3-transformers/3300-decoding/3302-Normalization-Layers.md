@@ -447,7 +447,7 @@ Normalization layers keep training stable by keeping activations in a sane range
 
 ## Next Steps
 
-- Next Module: **[3400: Architectures](../3400-architectures/)**
+- Next Module: **[3400: Architectures](../3400-architectures/README.md)**
 - Continue with: **[3401: Encoder-Decoder Architectures](../3400-architectures/3401-Encoder-Decoder-Architectures.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 

@@ -507,7 +507,7 @@ Speculative decoding buys speed with a division of labor: a small draft model pr
 
 ## Next Steps
 
-- Next Module: **[4300: QAT](../4300-quantization-aware-training/)**
+- Next Module: **[4300: QAT](../4300-quantization-aware-training/README.md)**
 - Continue with: **[4301: QAT Foundations](../4300-quantization-aware-training/4301-QAT-Foundations.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 

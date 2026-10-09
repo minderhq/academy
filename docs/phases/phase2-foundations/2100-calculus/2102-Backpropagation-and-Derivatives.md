@@ -528,7 +528,7 @@ Backpropagation is the algorithm that makes networks learn: apply the chain rule
 
 ## Next Steps
 
-- Next Module: **[2200: Frameworks](../2200-frameworks/)**
+- Next Module: **[2200: Frameworks](../2200-frameworks/README.md)**
 - Continue with: **[2201: PyTorch Computational Graphs and Dynamic Execution](../2200-frameworks/2201-PyTorch-Computational-Graphs.md)**
 - Assessment: **[2100: Calculus - Quiz](./assessment/QUIZ.md)**
 

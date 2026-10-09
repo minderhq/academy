@@ -507,7 +507,7 @@ XLA is a machine-learning compiler embedded in TensorFlow, PyTorch, and JAX: it 
 ## Next Steps
 
 - Continue with: **[2203: CUDA Kernel Programming and GPU Architecture](./2203-CUDA-Kernel-Programming.md)**
-- Next Module: **[2300: Framework Engineering](../2300-framework-engineering/)**
+- Next Module: **[2300: Framework Engineering](../2300-framework-engineering/README.md)**
 - Assessment: **[2200: Frameworks - Quiz](./assessment/QUIZ.md)**
 
 ---

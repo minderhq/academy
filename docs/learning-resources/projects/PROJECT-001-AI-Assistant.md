@@ -1236,4 +1236,4 @@ curl -X POST http://localhost:8002/chat \
 
 ## Next Steps
 
-- Explore advanced topics in **[7000: Agentic Systems](../../phases/phase7-agentic/)** or build your own project!
+- Explore advanced topics in **[7000: Agentic Systems](../../phases/phase7-agentic/README.md)** or build your own project!

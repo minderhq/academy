@@ -450,7 +450,7 @@ SGLang is the serving engine whose organizing idea is reuse: RadixAttention keep
 
 ## Next Steps
 
-- Next Module: **[1500: Monitoring](../1500-monitoring/)**
+- Next Module: **[1500: Monitoring](../1500-monitoring/README.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 
 ---

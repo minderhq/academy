@@ -572,7 +572,7 @@ for Inductor codegen, no Triton, no CUDA.
 
 ## Next Steps
 
-- Next Module: **[3200: Embeddings](../3200-embeddings/)**
+- Next Module: **[3200: Embeddings](../3200-embeddings/README.md)**
 - Continue with: **[3201: RoPE](../3200-embeddings/3201-Rotary-Positional-Embeddings-RoPE.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 - Turn the backend probe into a benchmark: time all four SDPA backends at your own

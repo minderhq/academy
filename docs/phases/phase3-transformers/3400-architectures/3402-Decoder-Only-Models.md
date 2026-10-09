@@ -235,7 +235,7 @@ Decoder-only models generate the entire sequence autoregressively through causal
 
 ## Next Steps
 
-- Next Module: **[3500: Multimodal](../3500-multimodal/)**
+- Next Module: **[3500: Multimodal](../3500-multimodal/README.md)**
 - Continue with: **[3501: Vision-Language Models](../3500-multimodal/3501-Vision-Language-Models.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 

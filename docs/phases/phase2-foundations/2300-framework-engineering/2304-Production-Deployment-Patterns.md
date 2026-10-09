@@ -1147,7 +1147,7 @@ Implement a complete blue-green deployment system with:
 
 ## Next Steps
 
-- Next Module: **[2400: LLM Pretraining](../2400-pretraining/)**
+- Next Module: **[2400: LLM Pretraining](../2400-pretraining/README.md)**
 - Assessment: **[2300: Framework Engineering - Quiz](./assessment/QUIZ.md)**
 
 **Related:** [LAB-009: Production Deployment](../../../learning-resources/labs/LAB-009-Production-Deployment.md), [TUTORIAL-005: Production Deployment with CI/CD](../../../learning-resources/tutorials/TUTORIAL-005-Production-Deployment.md), [1501: Monitoring and Observability](../../phase1-infra/1500-monitoring/1501-Monitoring-and-Observability.md)

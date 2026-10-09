@@ -440,7 +440,7 @@ Double quantization squeezes the leftover bytes: the per-block scales that ordin
 
 ## Next Steps
 
-- Next Module: **[4200: KV Cache](../4200-kv-cache/)**
+- Next Module: **[4200: KV Cache](../4200-kv-cache/README.md)**
 - Continue with: **[4201: Context Window Physics](../4200-kv-cache/4201-Context-Window-Physics.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 

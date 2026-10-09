@@ -436,7 +436,7 @@ Dynamic provisioning lets a pod ask for storage and get it: a PVC states the nee
 
 ## Next Steps
 
-- Next Module: **[1400: LLMOps](../1400-llmops/)**
+- Next Module: **[1400: LLMOps](../1400-llmops/README.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 
 ---

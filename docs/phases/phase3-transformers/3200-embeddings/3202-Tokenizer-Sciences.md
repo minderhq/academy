@@ -526,7 +526,7 @@ The tokenizer is the model's first and last mile: raw text flows through normali
 
 ## Next Steps
 
-- Next Module: **[3300: Decoding](../3300-decoding/)**
+- Next Module: **[3300: Decoding](../3300-decoding/README.md)**
 - Continue with: **[3301: Activation Functions](../3300-decoding/3301-Activation-Functions.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 

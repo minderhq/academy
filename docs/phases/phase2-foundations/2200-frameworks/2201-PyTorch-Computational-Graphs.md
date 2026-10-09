@@ -626,7 +626,7 @@ PyTorch builds its computational graph dynamically - define-by-run - while stati
 ## Next Steps
 
 - Continue with: **[2202: TensorFlow XLA and Compiler Optimizations](./2202-TensorFlow-XLA-Compilers.md)**
-- Next Module: **[2300: Framework Engineering](../2300-framework-engineering/)**
+- Next Module: **[2300: Framework Engineering](../2300-framework-engineering/README.md)**
 - Assessment: **[2200: Frameworks - Quiz](./assessment/QUIZ.md)**
 
 ---

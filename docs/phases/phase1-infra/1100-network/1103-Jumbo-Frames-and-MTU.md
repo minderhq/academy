@@ -292,7 +292,7 @@ Jumbo frames raise the Ethernet MTU from the standard 1500 bytes to 9000, cuttin
 
 ## Next Steps
 
-- Next Module: **[1200: Virtualization](../1200-virtualization/)**
+- Next Module: **[1200: Virtualization](../1200-virtualization/README.md)**
 - Continue with: **[1201: Proxmox Hypervisor SOP](../1200-virtualization/1201-Proxmox-Hypervisor-SOP.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 

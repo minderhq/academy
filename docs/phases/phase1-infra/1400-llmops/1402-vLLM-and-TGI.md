@@ -500,7 +500,7 @@ vLLM and TGI are the optimized inference engines for high-throughput serving, an
 
 ## Next Steps
 
-- Next Module: **[1500: Monitoring](../1500-monitoring/)**
+- Next Module: **[1500: Monitoring](../1500-monitoring/README.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 
 ---

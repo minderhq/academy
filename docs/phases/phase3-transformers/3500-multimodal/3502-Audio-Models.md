@@ -344,7 +344,7 @@ Audio became a first-class modality once two representations matured: the mel-sp
 
 ## Next Steps
 
-- Phase 3 Complete! Next: **[Phase 4: Quantization](../../phase4-quantization/)**
+- Phase 3 Complete! Next: **[Phase 4: Quantization](../../phase4-quantization/README.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 
 ---

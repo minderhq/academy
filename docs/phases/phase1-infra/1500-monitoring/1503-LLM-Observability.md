@@ -813,7 +813,7 @@ LLM systems fail in LLM-specific ways, so they need LLM-specific metrics: token 
 
 ## Next Steps
 
-- Phase 1 Complete! Next: **[Phase 2: Foundations](../../phase2-foundations/)**
+- Phase 1 Complete! Next: **[Phase 2: Foundations](../../phase2-foundations/README.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 
 ---

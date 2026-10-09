@@ -220,7 +220,7 @@ After completing Phase 1, you will:
 
 **Ready for Phase 2?**
 
-- If YES → Continue to [Phase 2](../../phases/phase2-foundations/)
+- If YES → Continue to [Phase 2](../../phases/phase2-foundations/README.md)
 - If NO → Review [1501-Monitoring-and-Observability.md](../../phases/phase1-infra/1500-monitoring/1501-Monitoring-and-Observability.md)
 
 ---

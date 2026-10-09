@@ -17,7 +17,7 @@ Tags: ['lab', 'lora', 'qlora', 'finetuning', 'hands-on']
 - **[TUTORIAL-002: Docker Essentials](../tutorials/TUTORIAL-002-Docker-Essentials.md)** - Docker fundamentals
 - **[LAB-001: Docker & LLM](LAB-001-Docker-LLM.md)** - Docker practice
 - **[TUTORIAL-000: Python for AI](../tutorials/TUTORIAL-000-Python-for-AI.md)** - REQUIRED for training code
-- **Phase 2 (Recommended):** [2100-Calculus](../../phases/phase2-foundations/2100-calculus/) - PyTorch knowledge helpful
+- **Phase 2 (Recommended):** [2100-Calculus](../../phases/phase2-foundations/2100-calculus/README.md) - PyTorch knowledge helpful
 
 ⚠️ **Strong Python Required:** This lab involves PyTorch, training loops, and model architecture. Complete **TUTORIAL-000** and review **Phase 2** content first.
 
