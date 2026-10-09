@@ -125,7 +125,22 @@ def on_post_build(config, **kwargs):
     # lesson-file pages, whose file-as-dir render depth compensates the docs/
     # prefix) are left alone.
     href_re = re.compile(r'href="((?:\.\./)+)experiments/(EXP_[A-Z0-9_]+\.md)"')
-    bridged = 0
+    # Accessibility repairs on the built DOM (site plumbing, corpus untouched):
+    # 1) pymdownx anchor_linenums emits one EMPTY focusable link per code line
+    #    (<a id="__codelineno-N-M" name=... href="#__codelineno-N-M"></a>) -
+    #    132,856 across the built corpus - so keyboard users tab through tens
+    #    of blank stops inside every line-numbered block and screen readers
+    #    announce bare links. The bundle only consumes them as hash-selection
+    #    targets (no DOM mutation), so they must stay anchor targets but leave
+    #    the tab order and the AT tree: tabindex="-1" + aria-hidden="true".
+    #    Guard on id= so a hypothetical authored link to a code line (href
+    #    without id) is never muted - census: 0 such links today.
+    # 2) Material 9.7.6's edit-this-page button is icon-only (svg) with a
+    #    title but NO accessible name on all 442 pages - screen readers
+    #    announce a bare "link". Copy the existing title into aria-label.
+    line_anchor_re = re.compile(r'<a\b[^>]*\bid="__codelineno[^>]*>')
+    edit_anchor_re = re.compile(r'<a\b[^>]*\brel="edit"[^>]*>')
+    bridged = untabbed = named = 0
     for html in site.rglob("*.html"):
         depth = len(html.parent.relative_to(site).parts)
 
@@ -137,8 +152,30 @@ def on_post_build(config, **kwargs):
             bridged += 1
             return f'href="{"../" * depth}experiments/{m.group(2)}"'
 
+        def _line(m):
+            nonlocal untabbed
+            tag = m.group(0)
+            if "tabindex" in tag:
+                return tag
+            untabbed += 1
+            return f"{tag[:-1]} tabindex=\"-1\" aria-hidden=\"true\">"
+
+        def _edit(m):
+            nonlocal named
+            tag = m.group(0)
+            if "aria-label" in tag:
+                return tag
+            t = re.search(r'title="([^"]*)"', tag)
+            if not t:
+                return tag
+            named += 1
+            return f"{tag[:-1]} aria-label=\"{t.group(1)}\">"
+
         text = html.read_bytes().decode("utf-8")
         new_text = href_re.sub(_bridge, text)
+        new_text = line_anchor_re.sub(_line, new_text)
+        new_text = edit_anchor_re.sub(_edit, new_text)
         if new_text != text:
             html.write_bytes(new_text.encode("utf-8"))
     print(f"[hooks] bridged {bridged} experiments link(s) from repo depth to site depth")
+    print(f"[hooks] a11y: {untabbed} codelineno anchor(s) untabbed, {named} edit button(s) named")
