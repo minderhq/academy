@@ -6,6 +6,7 @@ on:
     paths:
       - "docs/**"
       - "mkdocs.yml"
+      - "overrides/**"
       - "hooks.py"
       - "gh_slugify.py"
       - "README.md"
