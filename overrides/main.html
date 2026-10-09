@@ -16,8 +16,18 @@
      are case-preserved by mkdocs's own meta parser, hence the Title/title
      double lookup. #}
   {%- set fm_title = (page.meta.get('Title') or page.meta.get('title')) if page and page.meta else none -%}
+  {# og:description chain: FM Description (the corpus carries none today,
+     so this branch is future-proofing) -> the page's own lede paragraph,
+     derived at build time from the rendered content after the first h1 so
+     the excerpt adds information instead of echoing og:title -> the global
+     site_description, which would otherwise make all 442 share previews
+     identical. #}
+  {%- set fm_desc = (page.meta.get('Description') or page.meta.get('description')) if page and page.meta else none -%}
+  {%- set raw_content = page.content | default('') -%}
+  {%- set after_h1 = raw_content.split('</h1>', 1)[1] if '</h1>' in raw_content else raw_content -%}
+  {%- set lede = after_h1 | striptags | replace('\n', ' ') | replace('¶', '') | trim | truncate(160, false, '…') -%}
   <meta property="og:title" content="{{ (fm_title or page.title or config.site_name) | striptags | e }}">
-  <meta property="og:description" content="{{ (page.meta.description if page and page.meta.description else config.site_description or '') | striptags | e }}">
+  <meta property="og:description" content="{{ (fm_desc or (lede if lede | length > 20 else none) or config.site_description or '') | striptags | e }}">
   <meta property="og:type" content="website">
   {% if page and page.canonical_url %}
   <meta property="og:url" content="{{ page.canonical_url }}">
