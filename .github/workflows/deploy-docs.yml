@@ -10,6 +10,11 @@ on:
       - "hooks.py"
       - "gh_slugify.py"
       - "README.md"
+      # hooks.py copies experiments/ and configs/ verbatim into site/ after
+      # the build - they are live site content (served as raw .md/.yml), so
+      # changes to them must trigger the deploy like any other site face
+      - "experiments/**"
+      - "configs/**"
       - ".github/workflows/deploy-docs.yml"
   workflow_dispatch:
 
