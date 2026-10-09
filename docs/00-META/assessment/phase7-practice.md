@@ -176,7 +176,7 @@ print(result["answer"])
 
 **Time:** 60 minutes
 
-**Module:** 7200 - Tool Use
+**Module:** 7200 - Tool Calling
 
 ### Task
 
@@ -673,7 +673,7 @@ class AgentMemorySystem:
 
 **Time:** 75 minutes
 
-**Module:** 7200 - Tool Use (Security)
+**Module:** 7200 - Tool Calling (Security)
 
 ### Task
 

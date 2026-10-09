@@ -27,7 +27,7 @@ Tags: ['industry', 'manufacturing', 'llm']
 
 ## Overview
 
-Manufacturing is the industry where AI pays back fastest — the data is machine-generated (no consent issues), the failure modes are physical and repeatable, and the cost of a miss is measured in scrap and downtime rather than lawsuits. This survey walks the four application families that dominate real deployments: predictive maintenance on windowed sensor signals, computer-vision quality control, scheduling/optimization, and LLM-assisted decision support over historical episodes, plus the digital-twin pattern that ties monitoring together. Each section is a runnable skeleton with its provenance stated honestly — which model detects what, which thresholds are policy, and which parts must come from your plant. The multi-modal inspection pipeline this survey summarizes is built out in full in [SOL-002](../enterprise-solutions/SOL-002-Industry-Solution.md); the RAG and agent foundations live in [6100: Vector Databases](../phases/phase6-rag/6100-vector/README.md) and [7100: Agent Architecture](../phases/phase7-agentic/7100-architecture/README.md).
+Manufacturing is the industry where AI pays back fastest — the data is machine-generated (no consent issues), the failure modes are physical and repeatable, and the cost of a miss is measured in scrap and downtime rather than lawsuits. This survey walks the four application families that dominate real deployments: predictive maintenance on windowed sensor signals, computer-vision quality control, scheduling/optimization, and LLM-assisted decision support over historical episodes, plus the digital-twin pattern that ties monitoring together. Each section is a runnable skeleton with its provenance stated honestly — which model detects what, which thresholds are policy, and which parts must come from your plant. The multi-modal inspection pipeline this survey summarizes is built out in full in [SOL-002](../enterprise-solutions/SOL-002-Industry-Solution.md); the RAG and agent foundations live in [6100: Vector Embeddings](../phases/phase6-rag/6100-vector/README.md) and [7100: Agent Architecture](../phases/phase7-agentic/7100-architecture/README.md).
 
 ## The Manufacturing AI Landscape
 
@@ -526,6 +526,6 @@ Read the wiring, not the loop
 ## Next Steps
 
 - Full inspection pipeline (vision + fusion + knowledge base + report agent): **[SOL-002: Multi-Modal Industrial Inspection System](../enterprise-solutions/SOL-002-Industry-Solution.md)**
-- RAG foundations: **[6100: Vector Databases](../phases/phase6-rag/6100-vector/README.md)**
+- RAG foundations: **[6100: Vector Embeddings](../phases/phase6-rag/6100-vector/README.md)**
 - Agent architecture: **[7100: Agent Architecture](../phases/phase7-agentic/7100-architecture/README.md)**
 - Sibling surveys: **[IND-001: Healthcare](./IND-001-Healthcare-AI-Applications.md)** · **[IND-002: Finance](./IND-002-Finance-AI-Applications.md)**

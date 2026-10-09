@@ -346,7 +346,7 @@ def multimodal_rag_query(query: str, vector_store, vision_llm):
 ## See Also
 
 - **Previous Module:** [3400: Model Architectures](../3400-architectures/)
-- **Related:** [6200: RAG 2.0](../../phase6-rag/6200-retrieval/) - For multimodal RAG
+- **Related:** [6200: Retrieval Strategies](../../phase6-rag/6200-retrieval/) - For multimodal RAG
 - **Related:** [7500: AI Security](../../phase7-agentic/7500-security/) - Multimodal threats
 - **Phase Overview:** [Phase 3 README](../README.md)
 

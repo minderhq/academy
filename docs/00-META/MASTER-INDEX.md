@@ -57,7 +57,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 | Module | Topic | Files | Status |
 |--------|-------|-------|--------|
-| **[1100](../phases/phase1-infra/1100-network/README.md)** | Network Topology | 4 docs | ✅ |
+| **[1100](../phases/phase1-infra/1100-network/README.md)** | Network Fundamentals | 4 docs | ✅ |
 | **[1200](../phases/phase1-infra/1200-virtualization/README.md)** | Virtualization | 4 docs | ✅ |
 | **[1300](../phases/phase1-infra/1300-kubernetes/README.md)** | Kubernetes | 3 docs | ✅ |
 | **[1400](../phases/phase1-infra/1400-llmops/README.md)** | LLMOps | 5 docs | ✅ |
@@ -73,7 +73,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 | Module | Topic | Files | Status |
 |--------|-------|-------|--------|
-| **[2100](../phases/phase2-foundations/2100-calculus/README.md)** | Tensor Algebra | 3 docs | ✅ |
+| **[2100](../phases/phase2-foundations/2100-calculus/README.md)** | Calculus | 3 docs | ✅ |
 | **[2200](../phases/phase2-foundations/2200-frameworks/README.md)** | Frameworks | 3 docs | ✅ |
 | **[2300](../phases/phase2-foundations/2300-framework-engineering/README.md)** | Framework Engineering | 6 docs | ✅ |
 | **[2400](../phases/phase2-foundations/2400-pretraining/README.md)** | Pre-training | 3 docs | ✅ |
@@ -105,7 +105,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | Module | Topic | Files | Status |
 |--------|-------|-------|--------|
 | **[4100](../phases/phase4-quantization/4100-low-bit/README.md)** | Low-Bit Quantization | 4 docs | ✅ |
-| **[4200](../phases/phase4-quantization/4200-kv-cache/README.md)** | KV-Cache Engineering | 4 docs | ✅ |
+| **[4200](../phases/phase4-quantization/4200-kv-cache/README.md)** | KV Cache | 4 docs | ✅ |
 | **[4300](../phases/phase4-quantization/4300-quantization-aware-training/README.md)** | QAT | 8 docs | ✅ |
 | **[4400](../phases/phase4-quantization/4400-advanced-techniques/README.md)** | Advanced Quantization | 9 docs | ✅ |
 
@@ -135,7 +135,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 | Module | Topic | Files | Status |
 |--------|-------|-------|--------|
-| **[6100](../phases/phase6-rag/6100-vector/README.md)** | Vector Architectures | 5 docs | ✅ |
+| **[6100](../phases/phase6-rag/6100-vector/README.md)** | Vector Embeddings | 5 docs | ✅ |
 | **[6200](../phases/phase6-rag/6200-retrieval/README.md)** | Retrieval | 4 docs | ✅ |
 | **[6300](../phases/phase6-rag/6300-context/README.md)** | Context Management | 6 docs | ✅ |
 | **[6400](../phases/phase6-rag/6400-vector-databases/README.md)** | Vector Databases | 4 docs | ✅ |
@@ -152,7 +152,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | Module | Topic | Files | Status |
 |--------|-------|-------|--------|
 | **[7100](../phases/phase7-agentic/7100-architecture/README.md)** | Agent Architecture | 6 docs | ✅ |
-| **[7200](../phases/phase7-agentic/7200-tools/README.md)** | Tool Use | 4 docs | ✅ |
+| **[7200](../phases/phase7-agentic/7200-tools/README.md)** | Tool Calling | 4 docs | ✅ |
 | **[7300](../phases/phase7-agentic/7300-orchestration/README.md)** | Orchestration | 4 docs | ✅ |
 | **[7400](../phases/phase7-agentic/7400-memory/README.md)** | Agent Memory | 5 docs | ✅ |
 | **[7500](../phases/phase7-agentic/7500-security/README.md)** | Security | 5 docs | ✅ |

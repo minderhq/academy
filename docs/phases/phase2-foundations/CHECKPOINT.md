@@ -39,7 +39,7 @@ After completing Phase 2, you will:
 
 ## Module Checkpoints
 
-### Module 2100: The Calculus of AI (Required)
+### Module 2100: Calculus for Deep Learning (Required)
 
 **Checkpoint Quiz:**
 

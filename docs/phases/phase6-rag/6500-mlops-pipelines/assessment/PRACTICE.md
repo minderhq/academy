@@ -1,6 +1,6 @@
 ---
 Document ID: 6500-PRACTICE
-Title: "6500: RAG MLOps - Practice"
+Title: "6500: MLOps Pipelines for RAG - Practice"
 Last Updated: 2026-09-29
 Status: Complete
 Difficulty: Intermediate
@@ -10,7 +10,7 @@ Related: See module README
 Tags: ['assessment', 'practice', 'mlops', 'pipeline']
 ---
 
-# 6500: RAG MLOps - Practice
+# 6500: MLOps Pipelines for RAG - Practice
 
 ## Exercises
 

@@ -1060,7 +1060,7 @@ Before starting this phase, ensure you understand:
 
 - **LLM Fundamentals** (from 2400: Pre-training)
 - **Prompt Engineering** (from 2500: Prompt Engineering)
-- **RAG Systems** (from 6100: Vector Architectures)
+- **RAG Systems** (from 6100: Vector Embeddings)
 - **API Design** (REST, webhooks)
 
 See [PREREQUISITES](../../00-META/ENVIRONMENT-SETUP.md) for details.

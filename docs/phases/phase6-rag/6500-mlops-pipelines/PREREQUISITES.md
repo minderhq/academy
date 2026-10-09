@@ -1,13 +1,13 @@
 ---
 Document ID: 6500-PREREQUISITES
-Title: "6500: RAG MLOps - Prerequisites"
+Title: "6500: MLOps Pipelines for RAG - Prerequisites"
 Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['prerequisites', 'mlops', 'model-registry']
 ---
 
-# 6500: RAG MLOps - Prerequisites
+# 6500: MLOps Pipelines for RAG - Prerequisites
 
 **For:** [6501: ML Lifecycle Management](./6501-ML-Lifecycle-Management.md)
 

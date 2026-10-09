@@ -219,7 +219,7 @@ Total: [░░░░░░░░░░░░░░░░░] 0% (0/442 core file
 - [ ] 6101-HNSW-Indexing.md
 - [ ] 6102-Semantic-Similarity.md
 
-**RAG 2.0 [6200]:**
+**Retrieval Strategies [6200]:**
 
 - [ ] 6201-Hybrid-Search.md
 - [ ] 6202-Re-ranking-and-Retrieval-Logistics.md

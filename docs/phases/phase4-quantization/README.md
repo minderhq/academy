@@ -114,7 +114,7 @@ graph LR
 - Apply double quantization to large models
 - Quantize one weight MXFP4 and NVFP4 and compare the error
 
-### [4200] KV-Cache Engineering
+### [4200] KV Cache Optimization
 
 | Document | Description | Time | Difficulty |
 |----------|-------------|------|------------|
@@ -202,7 +202,7 @@ graph TD
     A[Start: Phase 3 Complete] --> B{Your Goal?}
 
     B -->|Run 70B on RTX 3090| C[4100: Low-Bit Quantization]
-    B -->|Extend Context Window| D[4200: KV-Cache Engineering]
+    B -->|Extend Context Window| D[4200: KV Cache Optimization]
     B -->|Train Quantized Models| E[4300: QAT]
     B -->|Extreme Compression| F[4400: Advanced Techniques]
 
@@ -230,7 +230,7 @@ graph TD
 | Module | Reading | Practice | Total |
 |--------|---------|----------|-------|
 | 4100: Low-Bit Quantization | 9h | 4h | 13h |
-| 4200: KV-Cache Engineering | 12h | 6h | 18h |
+| 4200: KV Cache Optimization | 12h | 6h | 18h |
 | 4300: QAT | 12h | 8h | 20h |
 | 4400: Advanced Techniques | 18h | 12h | 30h |
 | **Total** | **51h** | **30h** | **81h** |

@@ -39,7 +39,7 @@ After completing Phase 1, you will:
 
 ## Module Checkpoints
 
-### Module 1100: Network Topology (Optional)
+### Module 1100: Network Fundamentals for LLM Infrastructure (Optional)
 
 **After completing 1101-1103, you should:**
 

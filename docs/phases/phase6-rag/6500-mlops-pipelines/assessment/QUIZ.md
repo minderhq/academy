@@ -1,6 +1,6 @@
 ---
 Document ID: 6500-QUIZ
-Title: "6500: RAG MLOps - Quiz"
+Title: "6500: MLOps Pipelines for RAG - Quiz"
 Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
@@ -10,7 +10,7 @@ Related: See module README
 Tags: ['assessment', 'quiz', 'mlops', 'pipeline']
 ---
 
-# 6500: RAG MLOps - Quiz
+# 6500: MLOps Pipelines for RAG - Quiz
 
 ## Instructions
 

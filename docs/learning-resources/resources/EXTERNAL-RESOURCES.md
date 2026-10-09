@@ -289,7 +289,7 @@ Curated list of videos, courses, and external resources to complement the learni
 - [Qdrant Documentation](https://qdrant.tech/documentation/)
 - [ChromaDB Documentation](https://docs.trychroma.com/)
 
-### 6500: RAG MLOps
+### 6500: MLOps Pipelines
 **Video:**
 
 - [Production RAG Systems](https://www.youtube.com/watch?v=w0HNaVYQpjE)

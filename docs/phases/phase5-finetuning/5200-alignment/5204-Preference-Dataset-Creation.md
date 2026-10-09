@@ -298,7 +298,7 @@ DPO and reward models are only as good as the preference data beneath them, and 
 ### Related Minder Academy Documents
 - [5201: DPO Theory](./5201-DPO-Theory.md) - trains on this data
 - [5202: Alignment Orchestration](./5202-Alignment-Orchestration.md) - pipeline integration
-- [5300: Synthetic Data & Advanced Methods](../5300-synthetic/README.md) - synthetic data generation
+- [5300: Synthetic Data & Advanced Training](../5300-synthetic/README.md) - synthetic data generation
 
 ---
 

@@ -28,7 +28,7 @@ This document provides hands-on practice exercises for Phase 6: Data Nexus (RAG 
 
 **Time:** 30 minutes
 
-**Module:** 6100 - Vector Architectures
+**Module:** 6100 - Vector Embeddings
 
 ### Task
 

@@ -39,7 +39,7 @@ After completing Phase 6, you will:
 
 ## Module Checkpoints
 
-### Module 6100: Vector Architectures (Required)
+### Module 6100: Vector Embeddings (Required)
 
 **Checkpoint Quiz:**
 
@@ -55,7 +55,7 @@ After completing Phase 6, you will:
 
 ---
 
-### Module 6200: Retrieval-Augmented Generation (RAG 2.0) (Required)
+### Module 6200: Retrieval Strategies (Required)
 
 **Checkpoint Quiz:**
 

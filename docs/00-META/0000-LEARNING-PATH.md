@@ -91,7 +91,7 @@ not carry: a week-by-week study calendar with projects and deliverables.
 │  └── Synthetic Data & Distributed Training                              │
 │                                                                          │
 │  Phase 6: Data Nexus (Weeks 36-41)                                       │
-│  ├── Vector Architectures (HNSW)                                        │
+│  ├── Vector Embeddings (HNSW)                                           │
 │  ├── Hybrid Search & Re-ranking                                         │
 │  ├── Knowledge Graphs & GraphRAG                                        │
 │  └── MLOps Pipelines (CI/CD for ML)                                     │
@@ -554,7 +554,7 @@ Learning Path:
 
 **Integrating your data into the LLM logic flow.**
 
-### Weeks 36-37: Vector Architectures
+### Weeks 36-37: Vector Embeddings
 **Goal:** Master semantic search
 
 ```text
@@ -751,7 +751,7 @@ under `docs/volumes/` - start there, then dive into the module docs.
 
 ### Volume 1: Infrastructure Fundamentals
 1. [VOLUME-1: Infrastructure](../volumes/VOLUME-1-Infrastructure.md) - the guided route
-2. [1100: Network Topology](../phases/phase1-infra/1100-network/README.md)
+2. [1100: Network Fundamentals for LLM Infrastructure](../phases/phase1-infra/1100-network/README.md)
 3. [1200: Virtualization](../phases/phase1-infra/1200-virtualization/README.md)
 4. [1300: Kubernetes](../phases/phase1-infra/1300-kubernetes/README.md)
 5. [1400: LLMOps](../phases/phase1-infra/1400-llmops/README.md)
@@ -759,7 +759,7 @@ under `docs/volumes/` - start there, then dive into the module docs.
 
 ### Volume 2: AI/ML Foundations
 7. [VOLUME-2: AI Foundations](../volumes/VOLUME-2-AI-Foundations.md) - the guided route
-8. [2100: Calculus of AI](../phases/phase2-foundations/2100-calculus/README.md)
+8. [2100: Calculus for Deep Learning](../phases/phase2-foundations/2100-calculus/README.md)
 9. [2000: Frameworks & Engineering](../phases/phase2-foundations/README.md)
 10. [2400: Pre-training](../phases/phase2-foundations/2400-pretraining/README.md)
 
@@ -772,7 +772,7 @@ under `docs/volumes/` - start there, then dive into the module docs.
 ### Volume 4: Quantization & Optimization
 15. [VOLUME-4: Quantization](../volumes/VOLUME-4-Quantization.md) - the guided route
 16. [4100: Low-Bit Quantization](../phases/phase4-quantization/4100-low-bit/README.md)
-17. [4200: KV-Cache Engineering](../phases/phase4-quantization/4200-kv-cache/README.md)
+17. [4200: KV Cache Optimization](../phases/phase4-quantization/4200-kv-cache/README.md)
 
 ### Volume 5: Model Adaptation
 18. [VOLUME-5: Model Adaptation](../volumes/VOLUME-5-Model-Adaptation.md) - the guided route
@@ -781,13 +781,13 @@ under `docs/volumes/` - start there, then dive into the module docs.
 
 ### Volume 6: Data Nexus: RAG & Memory
 21. [VOLUME-6: Data Nexus](../volumes/VOLUME-6-Data-Nexus.md) - the guided route
-22. [6100: Vector Architectures](../phases/phase6-rag/6100-vector/README.md)
+22. [6100: Vector Embeddings](../phases/phase6-rag/6100-vector/README.md)
 23. [6200: Retrieval](../phases/phase6-rag/6200-retrieval/README.md)
-24. [6300: GraphRAG](../phases/phase6-rag/6300-context/README.md)
+24. [6300: Context Management](../phases/phase6-rag/6300-context/README.md)
 
 ### Volume 7: Production Mastery
 25. [VOLUME-7: Production Mastery](../volumes/VOLUME-7-Production-Mastery.md) - the guided route
-26. [7100: Agentic Architecture](../phases/phase7-agentic/7100-architecture/README.md)
+26. [7100: Agent Architecture](../phases/phase7-agentic/7100-architecture/README.md)
 27. [7500: Agent Security](../phases/phase7-agentic/7500-security/README.md)
 
 ---
@@ -850,7 +850,7 @@ Track your learning journey:
     [ ] Week 35: Synthetic Data & Distributed Training
 
 [ ] Phase 6: Data Nexus (Weeks 36-41)
-    [ ] Weeks 36-37: Vector Architectures
+    [ ] Weeks 36-37: Vector Embeddings
     [ ] Week 38: Retrieval & Re-ranking
     [ ] Weeks 39-40: Knowledge Graphs & GraphRAG
     [ ] Week 41: Vector Databases & MLOps Pipelines

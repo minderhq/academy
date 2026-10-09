@@ -315,7 +315,7 @@ Conclusion: Self-hosted pays for itself within a few months
 
 ## Module Structure
 
-### [6100] Vector Architectures
+### [6100] Vector Embeddings
 
 | Document | Description | Time | Difficulty |
 |----------|-------------|------|------------|
@@ -343,7 +343,7 @@ Conclusion: Self-hosted pays for itself within a few months
 - Truncate embeddings and price the storage ledger
 - Probe a multilingual space's score bands and price the three retrieval stacks
 
-### [6200] Retrieval-Augmented Generation (RAG 2.0)
+### [6200] Retrieval Strategies
 
 | Document | Description | Time | Difficulty |
 |----------|-------------|------|------------|
@@ -464,8 +464,8 @@ Conclusion: Self-hosted pays for itself within a few months
 graph TD
     A[Start: Phase 5 Complete] --> B{Your Goal?}
 
-    B -->|Build knowledge base| C[6100: Vector Architectures]
-    B -->|Improve retrieval| D[6200: RAG 2.0]
+    B -->|Build knowledge base| C[6100: Vector Embeddings]
+    B -->|Improve retrieval| D[6200: Retrieval Strategies]
     B -->|Use knowledge graphs| E[6300: Context Augmentation]
     B -->|Deploy vector DB| F[6400: Vector Databases]
     B -->|Automate MLOps| O[6500: MLOps Pipelines]
@@ -496,8 +496,8 @@ graph TD
 
 | Module | Reading | Practice | Total |
 |--------|---------|----------|-------|
-| 6100: Vector Architectures | 14h | 6h | 20h |
-| 6200: RAG 2.0 | 11h | 6h | 17h |
+| 6100: Vector Embeddings | 14h | 6h | 20h |
+| 6200: Retrieval Strategies | 11h | 6h | 17h |
 | 6300: Context Augmentation | 22h | 10h | 32h |
 | 6400: Vector Databases | 11h | 4h | 15h |
 | 6500: MLOps Pipelines | 18h | — | 18h |

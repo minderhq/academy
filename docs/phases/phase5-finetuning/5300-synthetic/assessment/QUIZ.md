@@ -1,6 +1,6 @@
 ---
 Document ID: 5300-QUIZ
-Title: "5300: Synthetic Data & Advanced Methods - Quiz"
+Title: "5300: Synthetic Data & Advanced Training - Quiz"
 Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
@@ -10,7 +10,7 @@ Related: See module README
 Tags: ['assessment', 'quiz', 'finetuning', 'synthetic-data']
 ---
 
-# 5300: Synthetic Data & Advanced Methods - Quiz
+# 5300: Synthetic Data & Advanced Training - Quiz
 
 ## Instructions
 

@@ -285,7 +285,7 @@ metrics = {
 
 ## Module Structure
 
-### [2100] The Calculus of AI (Foundation)
+### [2100] Calculus for Deep Learning (Foundation)
 
 | Document | Description | Time | Difficulty |
 |----------|-------------|------|------------|

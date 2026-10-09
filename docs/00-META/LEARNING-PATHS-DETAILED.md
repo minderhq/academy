@@ -292,7 +292,7 @@ Week 1-2: Vector Search
 ├── EXP_6101: HNSW Benchmarking
 └── Practice: Implement vector search
 
-Week 3-4: RAG 2.0
+Week 3-4: Retrieval Strategies
 ├── 6201-Hybrid-Search.md
 ├── 6202-Re-ranking-and-Retrieval-Logistics.md
 ├── EXP_6201: Hybrid Search

@@ -56,7 +56,7 @@ After completing Phase 4, you will:
 
 ---
 
-### Module 4200: KV-Cache Engineering (Required)
+### Module 4200: KV Cache Optimization (Required)
 
 **Checkpoint Quiz:**
 
