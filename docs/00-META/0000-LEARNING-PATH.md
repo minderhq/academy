@@ -118,7 +118,7 @@ not carry: a week-by-week study calendar with projects and deliverables.
 
 ```text
 Learning Path:
-├── [TUTORIAL-000: Python for AI](../learning-resources/tutorials/TUTORIAL-000-Python-for-AI.md)
+├── TUTORIAL-000: Python for AI
 ├── Part 1: Python Basics (2 hours)
 ├── Part 2: Data Structures (2 hours)
 ├── Part 3: OOP Fundamentals (1 hour)
@@ -180,10 +180,10 @@ Learning Path:
 
 ```text
 Learning Path:
-├── [1201: Proxmox Hypervisor SOP](../phases/phase1-infra/1200-virtualization/1201-Proxmox-Hypervisor-SOP.md)
-├── [1202: TB3/UT3G Passthrough (IOMMU/VFIO)](../phases/phase1-infra/1200-virtualization/1202-TB3-UT3G-Passthrough.md)
-├── [1203: Nvidia Kernel Module](../phases/phase1-infra/1200-virtualization/1203-Nvidia-Kernel-Module.md)
-└── [1204: Multi-GPU Setup](../phases/phase1-infra/1200-virtualization/1204-Multi-GPU-Setup.md)
+├── 1201: Proxmox Hypervisor SOP
+├── 1202: TB3/UT3G Passthrough (IOMMU/VFIO)
+├── 1203: Nvidia Kernel Module
+└── 1204: Multi-GPU Setup
 ```
 
 **Projects:**
@@ -199,8 +199,8 @@ Learning Path:
 
 ```text
 Learning Path:
-├── [1301: K3s Master-Worker Architecture](../phases/phase1-infra/1300-kubernetes/1301-K3s-Master-Worker-Arch.md)
-├── [1302: GPU Scheduler](../phases/phase1-infra/1300-kubernetes/1302-GPU-Scheduler.md)
+├── 1301: K3s Master-Worker Architecture
+├── 1302: GPU Scheduler
 ├── Pod, Service, Ingress concepts
 └── Helm Charts
 ```
@@ -218,10 +218,10 @@ Learning Path:
 
 ```text
 Learning Path:
-├── [1401: Ollama Enterprise](../phases/phase1-infra/1400-llmops/1401-Ollama-Enterprise.md)
-├── [1402: vLLM and TGI](../phases/phase1-infra/1400-llmops/1402-vLLM-and-TGI.md)
-├── [1403: vLLM Production Deployment](../phases/phase1-infra/1400-llmops/guides/1403-vLLM-Production-Deployment.md)
-└── [1404: TGI Deployment Guide](../phases/phase1-infra/1400-llmops/guides/1404-TGI-Deployment-Guide.md)
+├── 1401: Ollama Enterprise
+├── 1402: vLLM and TGI
+├── 1403: vLLM Production Deployment
+└── 1404: TGI Deployment Guide
 ```
 
 **Projects:**
@@ -237,9 +237,9 @@ Learning Path:
 
 ```text
 Learning Path:
-├── [1501: Monitoring and Observability](../phases/phase1-infra/1500-monitoring/1501-Monitoring-and-Observability.md)
-├── [1502: Model Drift Detection](../phases/phase1-infra/1500-monitoring/1502-Model-Drift-Detection.md)
-├── [1503: LLM Observability](../phases/phase1-infra/1500-monitoring/1503-LLM-Observability.md)
+├── 1501: Monitoring and Observability
+├── 1502: Model Drift Detection
+├── 1503: LLM Observability
 ├── Prometheus metrics
 ├── Grafana dashboards
 └── Loki logs + Tempo traces
@@ -272,9 +272,9 @@ hypervisor to K3s to a vLLM endpoint under full observability.
 
 ```text
 Learning Path:
-├── [2101: Tensor Algebra](../phases/phase2-foundations/2100-calculus/2101-Tensor-Algebra.md)
-├── [2102: Backpropagation and Derivatives](../phases/phase2-foundations/2100-calculus/2102-Backpropagation-and-Derivatives.md)
-├── [2201: PyTorch Computational Graphs](../phases/phase2-foundations/2200-frameworks/2201-PyTorch-Computational-Graphs.md)
+├── 2101: Tensor Algebra
+├── 2102: Backpropagation and Derivatives
+├── 2201: PyTorch Computational Graphs
 └── EXP_2201_PYTORCH_GRAPHS.md
 ```
 
@@ -291,8 +291,8 @@ Learning Path:
 
 ```text
 Learning Path:
-├── [2200: Frameworks](../phases/phase2-foundations/2200-frameworks/README.md)
-├── [2300: Framework Engineering](../phases/phase2-foundations/2300-framework-engineering/README.md)
+├── 2200: Frameworks
+├── 2300: Framework Engineering
 ├── Compilation paths (XLA, torch.compile)
 └── CUDA kernel basics
 ```
@@ -309,8 +309,8 @@ Learning Path:
 
 ```text
 Learning Path:
-├── [2400: Pre-training](../phases/phase2-foundations/2400-pretraining/README.md)
-├── [2401: Pre-training Fundamentals](../phases/phase2-foundations/2400-pretraining/2401-Pre-training-Fundamentals.md)
+├── 2400: Pre-training
+├── 2401: Pre-training Fundamentals
 ├── Data curation & tokenization
 └── Scaling-law arithmetic
 ```
@@ -333,8 +333,8 @@ Learning Path:
 
 ```text
 Learning Path:
-├── [3101: Self-Attention Deep Dive](../phases/phase3-transformers/3100-attention/3101-Self-Attention-DeepDive.md)
-├── [3102: Flash Attention](../phases/phase3-transformers/3100-attention/3102-Flash-Attention.md)
+├── 3101: Self-Attention Deep Dive
+├── 3102: Flash Attention
 ├── EXP_3101_SELF_ATTENTION.md
 └── EXP_3102_FLASH_ATTENTION.md
 ```
@@ -352,8 +352,8 @@ Learning Path:
 
 ```text
 Learning Path:
-├── [3201: Rotary Positional Embeddings](../phases/phase3-transformers/3200-embeddings/3201-Rotary-Positional-Embeddings-RoPE.md)
-├── [3202: Tokenizer Sciences](../phases/phase3-transformers/3200-embeddings/3202-Tokenizer-Sciences.md)
+├── 3201: Rotary Positional Embeddings
+├── 3202: Tokenizer Sciences
 ├── EXP_3201_ROPE.md
 └── EXP_3202_TOKENIZER.md
 ```
@@ -370,7 +370,7 @@ Learning Path:
 
 ```text
 Learning Path:
-├── [3300: Decoding](../phases/phase3-transformers/3300-decoding/README.md)
+├── 3300: Decoding
 ├── Activation functions (GELU, SwiGLU)
 └── Normalization (pre-norm vs post-norm)
 ```
@@ -387,9 +387,9 @@ Learning Path:
 
 ```text
 Learning Path:
-├── [3401: Encoder-Decoder Architectures](../phases/phase3-transformers/3400-architectures/3401-Encoder-Decoder-Architectures.md)
-├── [3402: Decoder-Only Models](../phases/phase3-transformers/3400-architectures/3402-Decoder-Only-Models.md)
-├── [3403: Model Architecture Comparison](../phases/phase3-transformers/3400-architectures/guides/3403-Model-Architecture-Comparison.md)
+├── 3401: Encoder-Decoder Architectures
+├── 3402: Decoder-Only Models
+├── 3403: Model Architecture Comparison
 └── EXP_3401_ENCODER_DECODER.md
 ```
 
@@ -406,7 +406,7 @@ Learning Path:
 
 ```text
 Learning Path:
-├── [3500: Multimodal](../phases/phase3-transformers/3500-multimodal/README.md)
+├── 3500: Multimodal
 ├── Vision-language models
 └── Audio models
 ```
@@ -429,8 +429,8 @@ Learning Path:
 
 ```text
 Learning Path:
-├── [4101: GGUF Physics](../phases/phase4-quantization/4100-low-bit/4101-GGUF-Physics.md)
-├── [4103: Double Quantization](../phases/phase4-quantization/4100-low-bit/4103-Double-Quantization.md)
+├── 4101: GGUF Physics
+├── 4103: Double Quantization
 └── EXP_4101_GGUF.md
 ```
 
@@ -446,9 +446,9 @@ Learning Path:
 
 ```text
 Learning Path:
-├── [4201: Context Window Physics](../phases/phase4-quantization/4200-kv-cache/4201-Context-Window-Physics.md)
-├── [4202: Speculative Decoding](../phases/phase4-quantization/4200-kv-cache/4202-Speculative-Decoding.md)
-└── [4203: Context Window Optimization](../phases/phase4-quantization/4200-kv-cache/guides/4203-Context-Window-Optimization.md)
+├── 4201: Context Window Physics
+├── 4202: Speculative Decoding
+└── 4203: Context Window Optimization
 ```
 
 **Projects:**
@@ -463,7 +463,7 @@ Learning Path:
 
 ```text
 Learning Path:
-└── [4300: Quantization-Aware Training](../phases/phase4-quantization/4300-quantization-aware-training/README.md)
+└── 4300: Quantization-Aware Training
 ```
 
 **Projects:**
@@ -478,7 +478,7 @@ Learning Path:
 
 ```text
 Learning Path:
-└── [4400: Advanced Quantization Techniques](../phases/phase4-quantization/4400-advanced-techniques/README.md)
+└── 4400: Advanced Quantization Techniques
 ```
 
 **Projects:**
@@ -499,9 +499,9 @@ Learning Path:
 
 ```text
 Learning Path:
-├── [5101: LoRA Logic](../phases/phase5-finetuning/5100-peft/5101-LoRA-Logic.md)
-├── [5102: QLoRA Pipelines](../phases/phase5-finetuning/5100-peft/5102-QLoRA-Pipelines.md)
-├── [5104: LoRA Implementation Guide](../phases/phase5-finetuning/5100-peft/guides/5104-LoRA-Implementation-Guide.md)
+├── 5101: LoRA Logic
+├── 5102: QLoRA Pipelines
+├── 5104: LoRA Implementation Guide
 └── EXP_5101_LORA.md
 ```
 
@@ -518,9 +518,9 @@ Learning Path:
 
 ```text
 Learning Path:
-├── [5201: DPO Theory](../phases/phase5-finetuning/5200-alignment/5201-DPO-Theory.md)
-├── [5202: Alignment Orchestration](../phases/phase5-finetuning/5200-alignment/5202-Alignment-Orchestration.md)
-├── [5203: RLHF](../phases/phase5-finetuning/5200-alignment/5203-RLHF.md)
+├── 5201: DPO Theory
+├── 5202: Alignment Orchestration
+├── 5203: RLHF
 └── EXP_5201_DPO.md
 ```
 
@@ -537,8 +537,8 @@ Learning Path:
 
 ```text
 Learning Path:
-├── [5300: Synthetic Data](../phases/phase5-finetuning/5300-synthetic/README.md)
-└── [5400: Distributed Training](../phases/phase5-finetuning/5400-distributed-training/README.md)
+├── 5300: Synthetic Data
+└── 5400: Distributed Training
 ```
 
 **Projects:**
@@ -559,9 +559,9 @@ Learning Path:
 
 ```text
 Learning Path:
-├── [6101: HNSW Indexing](../phases/phase6-rag/6100-vector/6101-HNSW-Indexing.md)
-├── [6102: Semantic Similarity](../phases/phase6-rag/6100-vector/6102-Semantic-Similarity.md)
-├── [6103: HNSW Tuning Guide](../phases/phase6-rag/6100-vector/guides/6103-HNSW-Tuning-Guide.md)
+├── 6101: HNSW Indexing
+├── 6102: Semantic Similarity
+├── 6103: HNSW Tuning Guide
 └── EXP_6101_HNSW.md
 ```
 
@@ -578,9 +578,9 @@ Learning Path:
 
 ```text
 Learning Path:
-├── [6201: Hybrid Search](../phases/phase6-rag/6200-retrieval/6201-Hybrid-Search.md)
-├── [6202: Re-ranking and Retrieval Logistics](../phases/phase6-rag/6200-retrieval/6202-Re-ranking-and-Retrieval-Logistics.md)
-├── [6203: Advanced Retrieval](../phases/phase6-rag/6200-retrieval/6203-Advanced-Retrieval.md)
+├── 6201: Hybrid Search
+├── 6202: Re-ranking and Retrieval Logistics
+├── 6203: Advanced Retrieval
 └── EXP_6201_HYBRID_SEARCH.md
 ```
 
@@ -597,10 +597,10 @@ Learning Path:
 
 ```text
 Learning Path:
-├── [6301: Neo4j and Knowledge Graphs](../phases/phase6-rag/6300-context/6301-Neo4j-and-Knowledge-Graphs.md)
-├── [6302: CAG Long-Context Architectures](../phases/phase6-rag/6300-context/6302-CAG-Long-Context-Architectures.md)
-├── [6303: Neo4j Deployment Guide](../phases/phase6-rag/6300-context/guides/6303-Neo4j-Deployment-Guide.md)
-├── [6304: GraphRAG Implementation](../phases/phase6-rag/6300-context/guides/6304-GraphRAG-Implementation.md)
+├── 6301: Neo4j and Knowledge Graphs
+├── 6302: CAG Long-Context Architectures
+├── 6303: Neo4j Deployment Guide
+├── 6304: GraphRAG Implementation
 └── EXP_6303_NEO4J.md
 ```
 
@@ -617,10 +617,10 @@ Learning Path:
 
 ```text
 Learning Path:
-├── [6401: Qdrant Setup](../phases/phase6-rag/6400-vector-databases/6401-Qdrant-Setup.md)
-├── [6403: Qdrant Production Deployment](../phases/phase6-rag/6400-vector-databases/guides/6403-Qdrant-Production-Deployment.md)
-├── [6500: MLOps Pipelines](../phases/phase6-rag/6500-mlops-pipelines/README.md)
-└── Load testing: [k6 load-test.js](../../configs/performance-testing/k6/load-test.js)
+├── 6401: Qdrant Setup
+├── 6403: Qdrant Production Deployment
+├── 6500: MLOps Pipelines
+└── Load testing: k6 load-test.js
 ```
 
 **Projects:**
@@ -642,9 +642,9 @@ Learning Path:
 
 ```text
 Learning Path:
-├── [7101: ReAct Loop System](../phases/phase7-agentic/7100-architecture/7101-ReAct-Loop-System.md)
-├── [7102: Planning Decomposition](../phases/phase7-agentic/7100-architecture/7102-Planning-Decomposition.md)
-├── [7103: ReAct Implementation Guide](../phases/phase7-agentic/7100-architecture/guides/7103-ReAct-Implementation-Guide.md)
+├── 7101: ReAct Loop System
+├── 7102: Planning Decomposition
+├── 7103: ReAct Implementation Guide
 └── EXP_7101_REACT.md
 ```
 
@@ -661,8 +661,8 @@ Learning Path:
 
 ```text
 Learning Path:
-├── [7201: Tool Calling](../phases/phase7-agentic/7200-tools/7201-Tool-Calling.md)
-└── [7202: Code Interpreter](../phases/phase7-agentic/7200-tools/guides/7202-Code-Interpreter.md)
+├── 7201: Tool Calling
+└── 7202: Code Interpreter
 ```
 
 **Projects:**
@@ -677,7 +677,7 @@ Learning Path:
 
 ```text
 Learning Path:
-└── [7300: Orchestration](../phases/phase7-agentic/7300-orchestration/README.md)
+└── 7300: Orchestration
 ```
 
 **Projects:**
@@ -692,8 +692,8 @@ Learning Path:
 
 ```text
 Learning Path:
-├── [7401: Long-term Memory](../phases/phase7-agentic/7400-memory/7401-Long-term-Memory.md)
-├── [7402: Agent Memory Implementation](../phases/phase7-agentic/7400-memory/guides/7402-Agent-Memory-Implementation.md)
+├── 7401: Long-term Memory
+├── 7402: Agent Memory Implementation
 └── EXP_7401_AGENT_MEMORY.md
 ```
 
@@ -709,7 +709,7 @@ Learning Path:
 
 ```text
 Learning Path:
-└── [7500: Security](../phases/phase7-agentic/7500-security/README.md)
+└── 7500: Security
 ```
 
 **Projects:**

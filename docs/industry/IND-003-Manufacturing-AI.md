@@ -211,9 +211,10 @@ What the fine-tuned production version changes
 - the threshold: chosen on a validation set at the FALSE-
   POSITIVE rate your rework station can absorb - recall at a
   fixed FPR, not accuracy, is the number that matters
+```
+
 Deep dive with segmentation, thermal fusion, and a knowledge
 base: [SOL-002](../enterprise-solutions/SOL-002-Industry-Solution.md)
-```
 
 ## 3. Production Scheduling with RL
 
