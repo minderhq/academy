@@ -15,7 +15,7 @@ Tags: ['checkpoint', 'finetuning', 'training', 'distributed']
 
 ## Phase 5 Overview
 
-**Phase:** [5000] Model Adaptation: Fine-Tuning & Alignment
+**Phase:** [5000] Fine-Tuning & Alignment
 
 **Modules:** 5 (5100, 5200, 5300, 5400, 5500)
 

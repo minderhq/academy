@@ -16,7 +16,7 @@ Curated list of videos, courses, and external resources to complement the learni
 - [Phase 2: Foundations](#phase-2-foundations)
 - [Phase 3: Transformers](#phase-3-transformers)
 - [Phase 4: Quantization](#phase-4-quantization)
-- [Phase 5: Fine-tuning](#phase-5-fine-tuning)
+- [Phase 5: Fine-Tuning](#phase-5-fine-tuning)
 - [Phase 6: RAG](#phase-6-rag)
 - [Phase 7: Agentic](#phase-7-agentic)
 - [Additional Learning Platforms](#additional-learning-platforms)
@@ -213,7 +213,7 @@ Curated list of videos, courses, and external resources to complement the learni
 
 ---
 
-## Phase 5: Fine-tuning
+## Phase 5: Fine-Tuning
 
 ### 5100: PEFT
 **Video:**

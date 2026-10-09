@@ -148,7 +148,7 @@ docs/phases/
 │   ├── 6400-vector-databases/
 │   └── 6500-mlops-pipelines/
 │
-└── phase7-agentic/                   # Phase 7: Agentic Systems [7000]
+└── phase7-agentic/                   # Phase 7: Agentic Cognition [7000]
     ├── 7100-architecture/
     ├── 7200-tools/
     ├── 7300-orchestration/

@@ -1,13 +1,13 @@
 ---
 Document ID: PHASE7-CHECKPOINT
-Title: "Progress Checkpoint: Phase 7 - Agentic Systems"
+Title: "Progress Checkpoint: Phase 7 - Agentic Cognition"
 Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['checkpoint', 'agents', 'security', 'prompt-injection']
 ---
 
-# Progress Checkpoint: Phase 7 - Agentic Systems
+# Progress Checkpoint: Phase 7 - Agentic Cognition
 
 **Track your progress through Phase 7 modules**
 

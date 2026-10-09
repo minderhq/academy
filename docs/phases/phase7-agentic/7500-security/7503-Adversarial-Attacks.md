@@ -726,4 +726,4 @@ Adversarial attacks move an input a hair's width - bounded by epsilon in the L-i
 
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 - Return to: **[Module README](./README.md)**
-- Curriculum checkpoint: **[Progress Checkpoint: Phase 7 - Agentic Systems](../CHECKPOINT.md)** — this lesson closes Module 7500 and Phase 7, the final phase of the curriculum.
+- Curriculum checkpoint: **[Progress Checkpoint: Phase 7 - Agentic Cognition](../CHECKPOINT.md)** — this lesson closes Module 7500 and Phase 7, the final phase of the curriculum.

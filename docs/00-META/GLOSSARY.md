@@ -158,7 +158,7 @@ Phase 3: [3000] Transformer Physics
 Phase 4: [4000] Quantization & Compression
 Phase 5: [5000] Fine-Tuning & Alignment
 Phase 6: [6000] Data Nexus
-Phase 7: [7000] Agentic Systems
+Phase 7: [7000] Agentic Cognition
 ```
 
 ### Volume Names (consistent usage)

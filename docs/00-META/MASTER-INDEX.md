@@ -82,7 +82,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 ---
 
-### Phase 3: Transformer Physics [3000]
+### Phase 3: Transformer Physics & LLM Internals [3000]
 
 **Status:** ✅ Complete | **Modules:** 5 | **Documents:** 38
 
@@ -129,7 +129,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 ---
 
-### Phase 6: Data Nexus [6000]
+### Phase 6: Data Nexus - RAG, CAG & External Memory [6000]
 
 **Status:** ✅ Complete | **Modules:** 5 | **Documents:** 46
 
@@ -145,7 +145,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 ---
 
-### Phase 7: Agentic Systems [7000]
+### Phase 7: Agentic Cognition & Autonomy [7000]
 
 **Status:** ✅ Complete | **Modules:** 5 | **Documents:** 46
 

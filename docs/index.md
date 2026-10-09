@@ -46,9 +46,9 @@ code locally - the paths below are ordered the way the curriculum teaches.
 | 2 | [Cognitive Science & Frameworks](phases/phase2-foundations/README.md) | Math foundations, deep-learning frameworks, pretraining |
 | 3 | [Transformer Physics & LLM Internals](phases/phase3-transformers/README.md) | Attention, embeddings, architectures, multimodal |
 | 4 | [Quantization & Compression](phases/phase4-quantization/README.md) | Low-bit quantization, KV cache, QAT, advanced techniques |
-| 5 | [Model Adaptation: Fine-Tuning & Alignment](phases/phase5-finetuning/README.md) | PEFT, alignment, synthetic data, distributed training |
-| 6 | [RAG & Data Nexus](phases/phase6-rag/README.md) | Vector retrieval, context engineering, serving pipelines |
-| 7 | [Agentic Systems](phases/phase7-agentic/README.md) | Agent architecture, tools, orchestration, memory, security |
+| 5 | [Fine-Tuning & Alignment](phases/phase5-finetuning/README.md) | PEFT, alignment, synthetic data, distributed training |
+| 6 | [Data Nexus - RAG, CAG & External Memory](phases/phase6-rag/README.md) | Vector retrieval, context engineering, serving pipelines |
+| 7 | [Agentic Cognition & Autonomy](phases/phase7-agentic/README.md) | Agent architecture, tools, orchestration, memory, security |
 
 ## Beyond the Phases
 

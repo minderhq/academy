@@ -153,7 +153,7 @@ through phase7). Phase quiz sizes: 15 / 20 / 25 / 30 / 30 / 30 / 30 questions.
 [... 28 more questions ...]
 ```
 
-### Phase 5: Fine-tuning (30 Questions)
+### Phase 5: Fine-Tuning (30 Questions)
 
 ```markdown
 1. What is the rank 'r' in LoRA?
@@ -335,7 +335,7 @@ After completing each phase, learners should be able to:
 - [ ] Optimize context windows
 - [ ] Benchmark quantized models
 
-**Phase 5 - Fine-tuning:**
+**Phase 5 - Fine-Tuning:**
 
 - [ ] Implement LoRA fine-tuning
 - [ ] Use QLoRA for efficient training

@@ -252,7 +252,7 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [assessment: PRACTICE](../phases/phase4-quantization/4400-advanced-techniques/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase4-quantization/4400-advanced-techniques/assessment/QUIZ.md)
 
-## Phase 5 - Model Adaptation: Fine-Tuning & Alignment (46 files)
+## Phase 5 - Fine-Tuning & Alignment (46 files)
 
 - [CHECKPOINT](../phases/phase5-finetuning/CHECKPOINT.md)
 - [README](../phases/phase5-finetuning/README.md)
@@ -316,7 +316,7 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [assessment: PRACTICE](../phases/phase5-finetuning/5500-advanced-optimization/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase5-finetuning/5500-advanced-optimization/assessment/QUIZ.md)
 
-## Phase 6 - RAG & Data Nexus (46 files)
+## Phase 6 - Data Nexus - RAG, CAG & External Memory (46 files)
 
 - [CHECKPOINT](../phases/phase6-rag/CHECKPOINT.md)
 - [README](../phases/phase6-rag/README.md)
@@ -380,7 +380,7 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [assessment: PRACTICE](../phases/phase6-rag/6500-mlops-pipelines/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase6-rag/6500-mlops-pipelines/assessment/QUIZ.md)
 
-## Phase 7 - Agentic Systems (46 files)
+## Phase 7 - Agentic Cognition & Autonomy (46 files)
 
 - [CHECKPOINT](../phases/phase7-agentic/CHECKPOINT.md)
 - [README](../phases/phase7-agentic/README.md)
@@ -747,11 +747,11 @@ Learning modules (topics): 33
 Phase files (lessons, guides, assessments, topic README/PREREQUISITES): 293
   Phase 1 - Infrastructure Fabric: 41
   Phase 2 - Cognitive Science & Frameworks: 33
-  Phase 3 - Transformer Physics: 38
+  Phase 3 - Transformer Physics & LLM Internals: 38
   Phase 4 - Quantization & Compression: 43
   Phase 5 - Fine-Tuning & Alignment: 46
-  Phase 6 - Data Nexus: 46
-  Phase 7 - Agentic Systems: 46
+  Phase 6 - Data Nexus - RAG, CAG & External Memory: 46
+  Phase 7 - Agentic Cognition & Autonomy: 46
 Volume guides: 7
 Phase assessment sets: 14 (7 phases x quiz + practice)
 Experiments: 47 (+ TEMPLATE)

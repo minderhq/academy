@@ -107,7 +107,7 @@ if torch.cuda.is_available():
 | **[NB-502: DPO Alignment](./NB-502-DPO-Alignment.ipynb)** | DPO training | ⭐⭐⭐ Advanced | 4 hours | `environment-finetuning.yml` |
 | **[NB-503: Synthetic Data Generation](./NB-503-Synthetic-Data-Generation.ipynb)** | Generate training data | ⭐⭐⭐ Advanced | 3 hours | `environment-finetuning.yml` |
 
-### Phase 6: RAG & Data Systems
+### Phase 6: Data Nexus
 
 | Notebook | Topic | Difficulty | Time | Environment |
 |----------|-------|------------|------|-------------|

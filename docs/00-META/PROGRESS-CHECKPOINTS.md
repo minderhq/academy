@@ -29,7 +29,7 @@ Phase 3: ☐ Transformer Physics (3-4 weeks)
 Phase 4: ☐ Quantization & Compression (4-5 weeks)
 Phase 5: ☐ Model Adaptation (4-5 weeks)
 Phase 6: ☐ Data Nexus (4-5 weeks)
-Phase 7: ☐ Agentic Systems (5-6 weeks)
+Phase 7: ☐ Agentic Cognition (5-6 weeks)
 ```
 
 ---
@@ -135,13 +135,13 @@ Total: _____ months
 - [ ] Can implement LoRA from scratch
 - [ ] Can apply DPO alignment
 
-### Phase 6: RAG & Memory
+### Phase 6: Data Nexus
 - [ ] Module 6100 (Vector) completed
 - [ ] Module 6200 (Retrieval) completed
 - [ ] Module 6300 (Context) completed
 - [ ] Can build production RAG system
 
-### Phase 7: Agentic Systems
+### Phase 7: Agentic Cognition
 - [ ] Module 7100 (Architecture) completed
 - [ ] Module 7200 (Tools) completed
 - [ ] Module 7400 (Memory) completed
