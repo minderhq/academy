@@ -1,7 +1,7 @@
 ---
 Document ID: 4400-ADVANCED-TECHNIQUES-README
 Title: "4400: Advanced Quantization Techniques"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-09
 Status: Complete
 Difficulty: Advanced
 Prerequisites: [4100, 4300]
@@ -38,6 +38,17 @@ This module covers advanced quantization techniques beyond basic QAT, including 
 ### Practical Guides
 8. **[guides/4408: Quantizing for Production](./guides/4408-Quantizing-for-Production.md)** - End-to-end quantization workflow
 9. **[guides/4409: Hardware-Specific Optimization](./guides/4409-Hardware-Specific-Optimization.md)** - CPU, GPU, NPU, mobile
+
+## Research Spotlight: GSQ-RCO (2026)
+
+The newest entry in extreme low-bit quantization is **GSQ-RCO** from ISTA-DASLab, a two-part pipeline that pushes below uniform 4-bit without the usual accuracy cliff:
+
+- **GSQ (Gumbel-Softmax Quantization)** - a post-training method that makes the discrete choice of quantization grid differentiable via a Gumbel-Softmax relaxation, so per-group scales are *learned* rather than searched. It matches vector-quantization accuracy at low bits while staying pure scalar quantization. Paper: [arXiv:2604.18556](https://arxiv.org/abs/2604.18556) - Code: [IST-DASLab/GSQ](https://github.com/IST-DASLab/GSQ)
+- **RCO (Riemannian Constrained Optimization)** - the budget allocator: it treats the total size budget as a Riemannian manifold and assigns one of K quantization types to each tensor under an *exact* budget, using projected updates plus binary search. Paper: [arXiv:2605.00649](https://arxiv.org/abs/2605.00649)
+
+Together, GSQ-RCO releases report ~3.5 bits-per-weight models that match or beat uniform 4-bit - the released GGUFs (for example [ISTA-DASLab/Qwen3.8-27B-GSQ-RCO-GGUF](https://huggingface.co/ISTA-DASLab/Qwen3.8-27B-GSQ-RCO-GGUF)) fit a 27B model with 128K context into roughly 12 GB of VRAM. This is the same value proposition 4100 covers for uniform formats (GGUF, EXL2), applied per-tensor instead of per-model.
+
+**Where it fits in this module:** read this after 4405-4407 - GSQ-RCO is the production-grade answer to the question those lessons raise: how low can bits go before accuracy collapses, and who decides which layer gets how many bits.
 
 ## Prerequisites
 
