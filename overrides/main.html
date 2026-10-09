@@ -9,7 +9,14 @@
 {% extends "base.html" %}
 
 {% block extrahead %}
-  <meta property="og:title" content="{{ (page.title if page and page.title else config.site_name) | striptags | e }}">
+  {# og:title reads the front-matter Title, not page.title: explicit nav
+     titles (mkdocs.yml) override page.title, so shares would carry short
+     sidebar labels ("Overview", "Docker LLM") or the pre-fix "index_file"
+     junk instead of the authored full titles every doc carries. FM keys
+     are case-preserved by mkdocs's own meta parser, hence the Title/title
+     double lookup. #}
+  {%- set fm_title = (page.meta.get('Title') or page.meta.get('title')) if page and page.meta else none -%}
+  <meta property="og:title" content="{{ (fm_title or page.title or config.site_name) | striptags | e }}">
   <meta property="og:description" content="{{ (page.meta.description if page and page.meta.description else config.site_description or '') | striptags | e }}">
   <meta property="og:type" content="website">
   {% if page and page.canonical_url %}

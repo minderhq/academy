@@ -84,10 +84,10 @@ nav:
     - "Troubleshooting Quickstart": 00-META/TROUBLESHOOTING-QUICKSTART.md
     - "Resources": 00-META/RESOURCES.md
   - "1 · Infrastructure":
-    - index_file: phases/phase1-infra/README.md
+    - "Overview": phases/phase1-infra/README.md
     - "Checkpoint": phases/phase1-infra/CHECKPOINT.md
     - "1100 · Network":
-      - index_file: phases/phase1-infra/1100-network/README.md
+      - "Overview": phases/phase1-infra/1100-network/README.md
       - "Prerequisites": phases/phase1-infra/1100-network/PREREQUISITES.md
       - "Fiber GPON Modem": phases/phase1-infra/1100-network/1101-Fiber-GPON-Modem.md
       - "Star Topology Core": phases/phase1-infra/1100-network/1102-Star-Topology-Core.md
@@ -96,7 +96,7 @@ nav:
       - "Practice": phases/phase1-infra/1100-network/assessment/PRACTICE.md
       - "Quiz": phases/phase1-infra/1100-network/assessment/QUIZ.md
     - "1200 · Virtualization":
-      - index_file: phases/phase1-infra/1200-virtualization/README.md
+      - "Overview": phases/phase1-infra/1200-virtualization/README.md
       - "Prerequisites": phases/phase1-infra/1200-virtualization/PREREQUISITES.md
       - "Proxmox Hypervisor SOP": phases/phase1-infra/1200-virtualization/1201-Proxmox-Hypervisor-SOP.md
       - "TB3 UT3G Passthrough": phases/phase1-infra/1200-virtualization/1202-TB3-UT3G-Passthrough.md
@@ -105,7 +105,7 @@ nav:
       - "Practice": phases/phase1-infra/1200-virtualization/assessment/PRACTICE.md
       - "Quiz": phases/phase1-infra/1200-virtualization/assessment/QUIZ.md
     - "1300 · Kubernetes":
-      - index_file: phases/phase1-infra/1300-kubernetes/README.md
+      - "Overview": phases/phase1-infra/1300-kubernetes/README.md
       - "Prerequisites": phases/phase1-infra/1300-kubernetes/PREREQUISITES.md
       - "K3s Master Worker Arch": phases/phase1-infra/1300-kubernetes/1301-K3s-Master-Worker-Arch.md
       - "GPU Scheduler": phases/phase1-infra/1300-kubernetes/1302-GPU-Scheduler.md
@@ -113,7 +113,7 @@ nav:
       - "Practice": phases/phase1-infra/1300-kubernetes/assessment/PRACTICE.md
       - "Quiz": phases/phase1-infra/1300-kubernetes/assessment/QUIZ.md
     - "1400 · Llmops":
-      - index_file: phases/phase1-infra/1400-llmops/README.md
+      - "Overview": phases/phase1-infra/1400-llmops/README.md
       - "Prerequisites": phases/phase1-infra/1400-llmops/PREREQUISITES.md
       - "Ollama Enterprise": phases/phase1-infra/1400-llmops/1401-Ollama-Enterprise.md
       - "vLLM and TGI": phases/phase1-infra/1400-llmops/1402-vLLM-and-TGI.md
@@ -123,7 +123,7 @@ nav:
       - "Practice": phases/phase1-infra/1400-llmops/assessment/PRACTICE.md
       - "Quiz": phases/phase1-infra/1400-llmops/assessment/QUIZ.md
     - "1500 · Monitoring":
-      - index_file: phases/phase1-infra/1500-monitoring/README.md
+      - "Overview": phases/phase1-infra/1500-monitoring/README.md
       - "Prerequisites": phases/phase1-infra/1500-monitoring/PREREQUISITES.md
       - "Monitoring and Observability": phases/phase1-infra/1500-monitoring/1501-Monitoring-and-Observability.md
       - "Model Drift Detection": phases/phase1-infra/1500-monitoring/1502-Model-Drift-Detection.md
@@ -131,10 +131,10 @@ nav:
       - "Practice": phases/phase1-infra/1500-monitoring/assessment/PRACTICE.md
       - "Quiz": phases/phase1-infra/1500-monitoring/assessment/QUIZ.md
   - "2 · Foundations":
-    - index_file: phases/phase2-foundations/README.md
+    - "Overview": phases/phase2-foundations/README.md
     - "Checkpoint": phases/phase2-foundations/CHECKPOINT.md
     - "2100 · Calculus":
-      - index_file: phases/phase2-foundations/2100-calculus/README.md
+      - "Overview": phases/phase2-foundations/2100-calculus/README.md
       - "Prerequisites": phases/phase2-foundations/2100-calculus/PREREQUISITES.md
       - "Tensor Algebra": phases/phase2-foundations/2100-calculus/2101-Tensor-Algebra.md
       - "Backpropagation and Derivatives": phases/phase2-foundations/2100-calculus/2102-Backpropagation-and-Derivatives.md
@@ -142,7 +142,7 @@ nav:
       - "Practice": phases/phase2-foundations/2100-calculus/assessment/PRACTICE.md
       - "Quiz": phases/phase2-foundations/2100-calculus/assessment/QUIZ.md
     - "2200 · Frameworks":
-      - index_file: phases/phase2-foundations/2200-frameworks/README.md
+      - "Overview": phases/phase2-foundations/2200-frameworks/README.md
       - "Prerequisites": phases/phase2-foundations/2200-frameworks/PREREQUISITES.md
       - "PyTorch Computational Graphs": phases/phase2-foundations/2200-frameworks/2201-PyTorch-Computational-Graphs.md
       - "TensorFlow XLA Compilers": phases/phase2-foundations/2200-frameworks/2202-TensorFlow-XLA-Compilers.md
@@ -150,7 +150,7 @@ nav:
       - "Practice": phases/phase2-foundations/2200-frameworks/assessment/PRACTICE.md
       - "Quiz": phases/phase2-foundations/2200-frameworks/assessment/QUIZ.md
     - "2300 · Framework Engineering":
-      - index_file: phases/phase2-foundations/2300-framework-engineering/README.md
+      - "Overview": phases/phase2-foundations/2300-framework-engineering/README.md
       - "Prerequisites": phases/phase2-foundations/2300-framework-engineering/PREREQUISITES.md
       - "Framework Design Patterns": phases/phase2-foundations/2300-framework-engineering/2301-Framework-Design-Patterns.md
       - "Model Serving Architectures": phases/phase2-foundations/2300-framework-engineering/2302-Model-Serving-Architectures.md
@@ -161,7 +161,7 @@ nav:
       - "Practice": phases/phase2-foundations/2300-framework-engineering/assessment/PRACTICE.md
       - "Quiz": phases/phase2-foundations/2300-framework-engineering/assessment/QUIZ.md
     - "2400 · Pretraining":
-      - index_file: phases/phase2-foundations/2400-pretraining/README.md
+      - "Overview": phases/phase2-foundations/2400-pretraining/README.md
       - "Prerequisites": phases/phase2-foundations/2400-pretraining/PREREQUISITES.md
       - "Pre-Training Fundamentals": phases/phase2-foundations/2400-pretraining/2401-Pre-training-Fundamentals.md
       - "Large Scale Training": phases/phase2-foundations/2400-pretraining/2402-Large-Scale-Training.md
@@ -169,10 +169,10 @@ nav:
       - "Practice": phases/phase2-foundations/2400-pretraining/assessment/PRACTICE.md
       - "Quiz": phases/phase2-foundations/2400-pretraining/assessment/QUIZ.md
   - "3 · Transformers":
-    - index_file: phases/phase3-transformers/README.md
+    - "Overview": phases/phase3-transformers/README.md
     - "Checkpoint": phases/phase3-transformers/CHECKPOINT.md
     - "3100 · Attention":
-      - index_file: phases/phase3-transformers/3100-attention/README.md
+      - "Overview": phases/phase3-transformers/3100-attention/README.md
       - "Prerequisites": phases/phase3-transformers/3100-attention/PREREQUISITES.md
       - "Self Attention DeepDive": phases/phase3-transformers/3100-attention/3101-Self-Attention-DeepDive.md
       - "Flash Attention": phases/phase3-transformers/3100-attention/3102-Flash-Attention.md
@@ -180,7 +180,7 @@ nav:
       - "Practice": phases/phase3-transformers/3100-attention/assessment/PRACTICE.md
       - "Quiz": phases/phase3-transformers/3100-attention/assessment/QUIZ.md
     - "3200 · Embeddings":
-      - index_file: phases/phase3-transformers/3200-embeddings/README.md
+      - "Overview": phases/phase3-transformers/3200-embeddings/README.md
       - "Prerequisites": phases/phase3-transformers/3200-embeddings/PREREQUISITES.md
       - "Rotary Positional Embeddings RoPE": phases/phase3-transformers/3200-embeddings/3201-Rotary-Positional-Embeddings-RoPE.md
       - "Tokenizer Sciences": phases/phase3-transformers/3200-embeddings/3202-Tokenizer-Sciences.md
@@ -188,7 +188,7 @@ nav:
       - "Practice": phases/phase3-transformers/3200-embeddings/assessment/PRACTICE.md
       - "Quiz": phases/phase3-transformers/3200-embeddings/assessment/QUIZ.md
     - "3300 · Decoding":
-      - index_file: phases/phase3-transformers/3300-decoding/README.md
+      - "Overview": phases/phase3-transformers/3300-decoding/README.md
       - "Prerequisites": phases/phase3-transformers/3300-decoding/PREREQUISITES.md
       - "Activation Functions": phases/phase3-transformers/3300-decoding/3301-Activation-Functions.md
       - "Normalization Layers": phases/phase3-transformers/3300-decoding/3302-Normalization-Layers.md
@@ -197,7 +197,7 @@ nav:
       - "Practice": phases/phase3-transformers/3300-decoding/assessment/PRACTICE.md
       - "Quiz": phases/phase3-transformers/3300-decoding/assessment/QUIZ.md
     - "3400 · Architectures":
-      - index_file: phases/phase3-transformers/3400-architectures/README.md
+      - "Overview": phases/phase3-transformers/3400-architectures/README.md
       - "Prerequisites": phases/phase3-transformers/3400-architectures/PREREQUISITES.md
       - "Encoder Decoder Architectures": phases/phase3-transformers/3400-architectures/3401-Encoder-Decoder-Architectures.md
       - "Decoder Only Models": phases/phase3-transformers/3400-architectures/3402-Decoder-Only-Models.md
@@ -206,17 +206,17 @@ nav:
       - "Practice": phases/phase3-transformers/3400-architectures/assessment/PRACTICE.md
       - "Quiz": phases/phase3-transformers/3400-architectures/assessment/QUIZ.md
     - "3500 · Multimodal":
-      - index_file: phases/phase3-transformers/3500-multimodal/README.md
+      - "Overview": phases/phase3-transformers/3500-multimodal/README.md
       - "Prerequisites": phases/phase3-transformers/3500-multimodal/PREREQUISITES.md
       - "Vision Language Models": phases/phase3-transformers/3500-multimodal/3501-Vision-Language-Models.md
       - "Audio Models": phases/phase3-transformers/3500-multimodal/3502-Audio-Models.md
       - "Practice": phases/phase3-transformers/3500-multimodal/assessment/PRACTICE.md
       - "Quiz": phases/phase3-transformers/3500-multimodal/assessment/QUIZ.md
   - "4 · Quantization":
-    - index_file: phases/phase4-quantization/README.md
+    - "Overview": phases/phase4-quantization/README.md
     - "Checkpoint": phases/phase4-quantization/CHECKPOINT.md
     - "4100 · Low Bit":
-      - index_file: phases/phase4-quantization/4100-low-bit/README.md
+      - "Overview": phases/phase4-quantization/4100-low-bit/README.md
       - "Prerequisites": phases/phase4-quantization/4100-low-bit/PREREQUISITES.md
       - "GGUF Physics": phases/phase4-quantization/4100-low-bit/4101-GGUF-Physics.md
       - "EXL2 and AWQ": phases/phase4-quantization/4100-low-bit/4102-EXL2-and-AWQ.md
@@ -225,7 +225,7 @@ nav:
       - "Practice": phases/phase4-quantization/4100-low-bit/assessment/PRACTICE.md
       - "Quiz": phases/phase4-quantization/4100-low-bit/assessment/QUIZ.md
     - "4200 · Kv Cache":
-      - index_file: phases/phase4-quantization/4200-kv-cache/README.md
+      - "Overview": phases/phase4-quantization/4200-kv-cache/README.md
       - "Prerequisites": phases/phase4-quantization/4200-kv-cache/PREREQUISITES.md
       - "Context Window Physics": phases/phase4-quantization/4200-kv-cache/4201-Context-Window-Physics.md
       - "Speculative Decoding": phases/phase4-quantization/4200-kv-cache/4202-Speculative-Decoding.md
@@ -234,7 +234,7 @@ nav:
       - "Practice": phases/phase4-quantization/4200-kv-cache/assessment/PRACTICE.md
       - "Quiz": phases/phase4-quantization/4200-kv-cache/assessment/QUIZ.md
     - "4300 · Quantization Aware Training":
-      - index_file: phases/phase4-quantization/4300-quantization-aware-training/README.md
+      - "Overview": phases/phase4-quantization/4300-quantization-aware-training/README.md
       - "Prerequisites": phases/phase4-quantization/4300-quantization-aware-training/PREREQUISITES.md
       - "QAT Foundations": phases/phase4-quantization/4300-quantization-aware-training/4301-QAT-Foundations.md
       - "Fake Quantization": phases/phase4-quantization/4300-quantization-aware-training/4302-Fake-Quantization.md
@@ -247,7 +247,7 @@ nav:
       - "Practice": phases/phase4-quantization/4300-quantization-aware-training/assessment/PRACTICE.md
       - "Quiz": phases/phase4-quantization/4300-quantization-aware-training/assessment/QUIZ.md
     - "4400 · Advanced Techniques":
-      - index_file: phases/phase4-quantization/4400-advanced-techniques/README.md
+      - "Overview": phases/phase4-quantization/4400-advanced-techniques/README.md
       - "Prerequisites": phases/phase4-quantization/4400-advanced-techniques/PREREQUISITES.md
       - "GPTQ": phases/phase4-quantization/4400-advanced-techniques/4401-GPTQ.md
       - "AWQ": phases/phase4-quantization/4400-advanced-techniques/4402-AWQ.md
@@ -261,10 +261,10 @@ nav:
       - "Practice": phases/phase4-quantization/4400-advanced-techniques/assessment/PRACTICE.md
       - "Quiz": phases/phase4-quantization/4400-advanced-techniques/assessment/QUIZ.md
   - "5 · Fine-Tuning":
-    - index_file: phases/phase5-finetuning/README.md
+    - "Overview": phases/phase5-finetuning/README.md
     - "Checkpoint": phases/phase5-finetuning/CHECKPOINT.md
     - "5100 · Peft":
-      - index_file: phases/phase5-finetuning/5100-peft/README.md
+      - "Overview": phases/phase5-finetuning/5100-peft/README.md
       - "Prerequisites": phases/phase5-finetuning/5100-peft/PREREQUISITES.md
       - "LoRA Logic": phases/phase5-finetuning/5100-peft/5101-LoRA-Logic.md
       - "QLoRA Pipelines": phases/phase5-finetuning/5100-peft/5102-QLoRA-Pipelines.md
@@ -274,7 +274,7 @@ nav:
       - "Practice": phases/phase5-finetuning/5100-peft/assessment/PRACTICE.md
       - "Quiz": phases/phase5-finetuning/5100-peft/assessment/QUIZ.md
     - "5200 · Alignment":
-      - index_file: phases/phase5-finetuning/5200-alignment/README.md
+      - "Overview": phases/phase5-finetuning/5200-alignment/README.md
       - "Prerequisites": phases/phase5-finetuning/5200-alignment/PREREQUISITES.md
       - "DPO Theory": phases/phase5-finetuning/5200-alignment/5201-DPO-Theory.md
       - "Alignment Orchestration": phases/phase5-finetuning/5200-alignment/5202-Alignment-Orchestration.md
@@ -285,7 +285,7 @@ nav:
       - "Practice": phases/phase5-finetuning/5200-alignment/assessment/PRACTICE.md
       - "Quiz": phases/phase5-finetuning/5200-alignment/assessment/QUIZ.md
     - "5300 · Synthetic":
-      - index_file: phases/phase5-finetuning/5300-synthetic/README.md
+      - "Overview": phases/phase5-finetuning/5300-synthetic/README.md
       - "Prerequisites": phases/phase5-finetuning/5300-synthetic/PREREQUISITES.md
       - "Knowledge Distillation": phases/phase5-finetuning/5300-synthetic/5301-Knowledge-Distillation.md
       - "Distributed Training": phases/phase5-finetuning/5300-synthetic/5302-Distributed-Training.md
@@ -294,7 +294,7 @@ nav:
       - "Practice": phases/phase5-finetuning/5300-synthetic/assessment/PRACTICE.md
       - "Quiz": phases/phase5-finetuning/5300-synthetic/assessment/QUIZ.md
     - "5400 · Distributed Training":
-      - index_file: phases/phase5-finetuning/5400-distributed-training/README.md
+      - "Overview": phases/phase5-finetuning/5400-distributed-training/README.md
       - "Prerequisites": phases/phase5-finetuning/5400-distributed-training/PREREQUISITES.md
       - "Data Parallelism": phases/phase5-finetuning/5400-distributed-training/5401-Data-Parallelism.md
       - "Model Parallelism": phases/phase5-finetuning/5400-distributed-training/5402-Model-Parallelism.md
@@ -305,7 +305,7 @@ nav:
       - "Practice": phases/phase5-finetuning/5400-distributed-training/assessment/PRACTICE.md
       - "Quiz": phases/phase5-finetuning/5400-distributed-training/assessment/QUIZ.md
     - "5500 · Advanced Optimization":
-      - index_file: phases/phase5-finetuning/5500-advanced-optimization/README.md
+      - "Overview": phases/phase5-finetuning/5500-advanced-optimization/README.md
       - "Prerequisites": phases/phase5-finetuning/5500-advanced-optimization/PREREQUISITES.md
       - "Optimizer Variants": phases/phase5-finetuning/5500-advanced-optimization/5501-Optimizer-Variants.md
       - "Learning Rate Scheduling": phases/phase5-finetuning/5500-advanced-optimization/5502-Learning-Rate-Scheduling.md
@@ -313,10 +313,10 @@ nav:
       - "Practice": phases/phase5-finetuning/5500-advanced-optimization/assessment/PRACTICE.md
       - "Quiz": phases/phase5-finetuning/5500-advanced-optimization/assessment/QUIZ.md
   - "6 · RAG & Data":
-    - index_file: phases/phase6-rag/README.md
+    - "Overview": phases/phase6-rag/README.md
     - "Checkpoint": phases/phase6-rag/CHECKPOINT.md
     - "6100 · Vector":
-      - index_file: phases/phase6-rag/6100-vector/README.md
+      - "Overview": phases/phase6-rag/6100-vector/README.md
       - "Prerequisites": phases/phase6-rag/6100-vector/PREREQUISITES.md
       - "HNSW Indexing": phases/phase6-rag/6100-vector/6101-HNSW-Indexing.md
       - "Semantic Similarity": phases/phase6-rag/6100-vector/6102-Semantic-Similarity.md
@@ -326,7 +326,7 @@ nav:
       - "Practice": phases/phase6-rag/6100-vector/assessment/PRACTICE.md
       - "Quiz": phases/phase6-rag/6100-vector/assessment/QUIZ.md
     - "6200 · Retrieval":
-      - index_file: phases/phase6-rag/6200-retrieval/README.md
+      - "Overview": phases/phase6-rag/6200-retrieval/README.md
       - "Prerequisites": phases/phase6-rag/6200-retrieval/PREREQUISITES.md
       - "Hybrid Search": phases/phase6-rag/6200-retrieval/6201-Hybrid-Search.md
       - "Re-ranking and Retrieval Logistics": phases/phase6-rag/6200-retrieval/6202-Re-ranking-and-Retrieval-Logistics.md
@@ -335,7 +335,7 @@ nav:
       - "Practice": phases/phase6-rag/6200-retrieval/assessment/PRACTICE.md
       - "Quiz": phases/phase6-rag/6200-retrieval/assessment/QUIZ.md
     - "6300 · Context":
-      - index_file: phases/phase6-rag/6300-context/README.md
+      - "Overview": phases/phase6-rag/6300-context/README.md
       - "Prerequisites": phases/phase6-rag/6300-context/PREREQUISITES.md
       - "Neo4j and Knowledge Graphs": phases/phase6-rag/6300-context/6301-Neo4j-and-Knowledge-Graphs.md
       - "CAG Long Context Architectures": phases/phase6-rag/6300-context/6302-CAG-Long-Context-Architectures.md
@@ -346,7 +346,7 @@ nav:
       - "Practice": phases/phase6-rag/6300-context/assessment/PRACTICE.md
       - "Quiz": phases/phase6-rag/6300-context/assessment/QUIZ.md
     - "6400 · Vector Databases":
-      - index_file: phases/phase6-rag/6400-vector-databases/README.md
+      - "Overview": phases/phase6-rag/6400-vector-databases/README.md
       - "Prerequisites": phases/phase6-rag/6400-vector-databases/PREREQUISITES.md
       - "Qdrant Setup": phases/phase6-rag/6400-vector-databases/6401-Qdrant-Setup.md
       - "Pinecone vs Weaviate": phases/phase6-rag/6400-vector-databases/6402-Pinecone-vs-Weaviate.md
@@ -355,7 +355,7 @@ nav:
       - "Practice": phases/phase6-rag/6400-vector-databases/assessment/PRACTICE.md
       - "Quiz": phases/phase6-rag/6400-vector-databases/assessment/QUIZ.md
     - "6500 · Mlops Pipelines":
-      - index_file: phases/phase6-rag/6500-mlops-pipelines/README.md
+      - "Overview": phases/phase6-rag/6500-mlops-pipelines/README.md
       - "Prerequisites": phases/phase6-rag/6500-mlops-pipelines/PREREQUISITES.md
       - "ML Lifecycle Management": phases/phase6-rag/6500-mlops-pipelines/6501-ML-Lifecycle-Management.md
       - "CI/CD for ML": phases/phase6-rag/6500-mlops-pipelines/6502-CI-CD-for-ML.md
@@ -365,10 +365,10 @@ nav:
       - "Practice": phases/phase6-rag/6500-mlops-pipelines/assessment/PRACTICE.md
       - "Quiz": phases/phase6-rag/6500-mlops-pipelines/assessment/QUIZ.md
   - "7 · Agentic":
-    - index_file: phases/phase7-agentic/README.md
+    - "Overview": phases/phase7-agentic/README.md
     - "Checkpoint": phases/phase7-agentic/CHECKPOINT.md
     - "7100 · Architecture":
-      - index_file: phases/phase7-agentic/7100-architecture/README.md
+      - "Overview": phases/phase7-agentic/7100-architecture/README.md
       - "Prerequisites": phases/phase7-agentic/7100-architecture/PREREQUISITES.md
       - "ReAct Loop System": phases/phase7-agentic/7100-architecture/7101-ReAct-Loop-System.md
       - "Planning Decomposition": phases/phase7-agentic/7100-architecture/7102-Planning-Decomposition.md
@@ -379,7 +379,7 @@ nav:
       - "Practice": phases/phase7-agentic/7100-architecture/assessment/PRACTICE.md
       - "Quiz": phases/phase7-agentic/7100-architecture/assessment/QUIZ.md
     - "7200 · Tools":
-      - index_file: phases/phase7-agentic/7200-tools/README.md
+      - "Overview": phases/phase7-agentic/7200-tools/README.md
       - "Prerequisites": phases/phase7-agentic/7200-tools/PREREQUISITES.md
       - "Tool Calling": phases/phase7-agentic/7200-tools/7201-Tool-Calling.md
       - "MCP Hands-On": phases/phase7-agentic/7200-tools/7203-MCP-Hands-On.md
@@ -388,7 +388,7 @@ nav:
       - "Practice": phases/phase7-agentic/7200-tools/assessment/PRACTICE.md
       - "Quiz": phases/phase7-agentic/7200-tools/assessment/QUIZ.md
     - "7300 · Orchestration":
-      - index_file: phases/phase7-agentic/7300-orchestration/README.md
+      - "Overview": phases/phase7-agentic/7300-orchestration/README.md
       - "Prerequisites": phases/phase7-agentic/7300-orchestration/PREREQUISITES.md
       - "Orchestration": phases/phase7-agentic/7300-orchestration/7301-Orchestration.md
       - "Communication Protocols": phases/phase7-agentic/7300-orchestration/7302-Communication-Protocols.md
@@ -397,7 +397,7 @@ nav:
       - "Practice": phases/phase7-agentic/7300-orchestration/assessment/PRACTICE.md
       - "Quiz": phases/phase7-agentic/7300-orchestration/assessment/QUIZ.md
     - "7400 · Memory":
-      - index_file: phases/phase7-agentic/7400-memory/README.md
+      - "Overview": phases/phase7-agentic/7400-memory/README.md
       - "Prerequisites": phases/phase7-agentic/7400-memory/PREREQUISITES.md
       - "Long-term Memory": phases/phase7-agentic/7400-memory/7401-Long-term-Memory.md
       - "Vector Memory": phases/phase7-agentic/7400-memory/7403-Vector-Memory.md
@@ -407,7 +407,7 @@ nav:
       - "Practice": phases/phase7-agentic/7400-memory/assessment/PRACTICE.md
       - "Quiz": phases/phase7-agentic/7400-memory/assessment/QUIZ.md
     - "7500 · Security":
-      - index_file: phases/phase7-agentic/7500-security/README.md
+      - "Overview": phases/phase7-agentic/7500-security/README.md
       - "Prerequisites": phases/phase7-agentic/7500-security/PREREQUISITES.md
       - "Prompt Injection Defense": phases/phase7-agentic/7500-security/7501-Prompt-Injection-Defense.md
       - "PII Redaction": phases/phase7-agentic/7500-security/7502-PII-Redaction.md
