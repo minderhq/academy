@@ -527,7 +527,7 @@ You're ready to start! Begin with [2301: Framework Design Patterns](./2301-Frame
 
 **Fix:**
 
-1. Complete TUTORIAL-002 (1.5 hours)
+1. Complete TUTORIAL-002 (45 minutes)
 2. Complete LAB-001 (2 hours)
 3. Build your own Dockerfile
 

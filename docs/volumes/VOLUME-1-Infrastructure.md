@@ -62,7 +62,7 @@ Before diving into model internals, fine-tuning, or RAG, you need a solid founda
 #### Day 3-5: Docker Essentials
 **Containerize your first AI application**
 
-1. **[TUTORIAL-002: Docker Essentials](../learning-resources/tutorials/TUTORIAL-002-Docker-Essentials.md)** (90 min)
+1. **[TUTORIAL-002: Docker Essentials](../learning-resources/tutorials/TUTORIAL-002-Docker-Essentials.md)** (45 min)
    - Docker concepts
    - Container basics
    - Docker Compose
@@ -71,7 +71,7 @@ Before diving into model internals, fine-tuning, or RAG, you need a solid founda
    - Common Docker commands
    - Troubleshooting tips
 
-3. **[LAB-001: Docker & LLM](../learning-resources/labs/LAB-001-Docker-LLM.md)** (3 hours)
+3. **[LAB-001: Docker & LLM](../learning-resources/labs/LAB-001-Docker-LLM.md)** (2 hours)
    - Deploy Ollama with Docker
    - Build containerized AI service
    - Practice: Complete all 5 exercises
@@ -90,7 +90,7 @@ Before diving into model internals, fine-tuning, or RAG, you need a solid founda
    - How they work
    - Your first conversation
 
-2. **[1401: Ollama Enterprise](../phases/phase1-infra/1400-llmops/1401-Ollama-Enterprise.md)** (45 min)
+2. **[1401: Ollama Enterprise](../phases/phase1-infra/1400-llmops/1401-Ollama-Enterprise.md)** (4 hours)
    - Running localized model APIs
    - Model management
    - API server setup
@@ -190,12 +190,12 @@ Use this checklist to track your progress:
 
 ### Core Content (Required)
 - [ ] **QUICK-START.md** - Run your first LLM (30 min)
-- [ ] **TUTORIAL-002: Docker Essentials** (90 min)
+- [ ] **TUTORIAL-002: Docker Essentials** (45 min)
 - [ ] **CHEAT-SHEET-001: Docker** (reference)
 - [ ] **CHEAT-SHEET-002: Python AI** (reference)
-- [ ] **LAB-001: Docker & LLM** (3 hours)
-- [ ] **TUTORIAL-001: Hello LLM** (60 min)
-- [ ] **1401: Ollama Enterprise** (45 min)
+- [ ] **LAB-001: Docker & LLM** (2 hours)
+- [ ] **TUTORIAL-001: Hello LLM** (30 min)
+- [ ] **1401: Ollama Enterprise** (4 hours)
 - [ ] **PROJECT-001: AI Assistant** (4-6 hours)
 
 **Total Core Time:** ~12-15 hours

@@ -242,7 +242,7 @@ search_params = {
 #### Day 1-3: Building RAG Systems
 **Retrieval-Augmented Generation**
 
-1. **[TUTORIAL-003: RAG Basics](../learning-resources/tutorials/TUTORIAL-003-RAG-Basics.md)** (90 min)
+1. **[TUTORIAL-003: RAG Basics](../learning-resources/tutorials/TUTORIAL-003-RAG-Basics.md)** (60 min)
    - RAG concepts
    - Document chunking
    - Vector database setup
@@ -705,7 +705,7 @@ Use this checklist to track your progress:
 ### Core Content (Required)
 - [ ] **6102: Semantic Similarity** (2-3 hours)
 - [ ] **6101: HNSW Indexing** (3-4 hours)
-- [ ] **TUTORIAL-003: RAG Basics** (90 min)
+- [ ] **TUTORIAL-003: RAG Basics** (60 min)
 - [ ] **LAB-002: RAG Implementation** (3 hours)
 - [ ] **6201: Hybrid Search** (2-3 hours)
 - [ ] **6202: Re-ranking** (2-3 hours)

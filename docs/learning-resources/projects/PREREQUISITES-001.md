@@ -123,7 +123,7 @@ git --version
 
 **Before starting PROJECT-001, complete:**
 
-1. [TUTORIAL-003: RAG Basics](../tutorials/TUTORIAL-003-RAG-Basics.md) (2 hours)
+1. [TUTORIAL-003: RAG Basics](../tutorials/TUTORIAL-003-RAG-Basics.md) (60 minutes)
 2. [LAB-002: RAG Implementation](../labs/LAB-002-RAG-Implementation.md) (3 hours)
 3. [LAB-004: ReAct Agent](../labs/LAB-004-ReAct-Agent.md) (4 hours)
 
