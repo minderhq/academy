@@ -62,7 +62,9 @@ jobs:
           python-version: "3.13"
 
       - name: Install MkDocs Material
-        run: pip install "mkdocs-material>=9.6,<10"
+        # [imaging] pulls in pillow for the social plugin's per-page
+        # share cards (og:image) that mkdocs.yml enables
+        run: pip install "mkdocs-material[imaging]>=9.6,<10"
 
       - name: Build the site
         env:

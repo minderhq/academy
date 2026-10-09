@@ -595,6 +595,18 @@ plugins:
         - stemmer
         - stopWordFilter
         - trimmer
+
+  # Social cards: one branded PNG per page, wired to og:image /
+  # twitter:image - the last missing piece of the share-preview stack
+  # (og:title/og:description are per-page since the earlier head work,
+  # og:image measured 0/442). Indigo background is the same brand value
+  # the theme-color meta pins (primary: indigo in both schemes). Needs
+  # pillow at build time: the deploy workflow installs
+  # mkdocs-material[imaging].
+  - social:
+      cards: true
+      cards_layout_options:
+        background_color: "#3f51b5"
 markdown_extensions:
   - admonition
   - attr_list

@@ -30,3 +30,6 @@ node_modules/
 
 # MkDocs site build output
 site/
+
+# Social plugin build cache (font downloads)
+.cache/
