@@ -23,9 +23,16 @@
      site_description, which would otherwise make all 442 share previews
      identical. #}
   {%- set fm_desc = (page.meta.get('Description') or page.meta.get('description')) if page and page.meta else none -%}
+  {# the lede comes from the first real prose paragraph after the h1, not
+     from stripping all tags: 158/443 pages open with a "Table of Contents"
+     section whose link list leaked into the strip-tags excerpt, so share
+     previews carried menu text instead of prose. first_lede (hooks.py)
+     returns the first <p> after the h1 - TOC entries render as <li> - and
+     skips a leading "Last Updated:" meta line; no-paragraph pages fall
+     back to the previous strip-tags behavior. #}
   {%- set raw_content = page.content | default('') -%}
   {%- set after_h1 = raw_content.split('</h1>', 1)[1] if '</h1>' in raw_content else raw_content -%}
-  {%- set lede = after_h1 | striptags | replace('\n', ' ') | replace('¶', '') | trim | truncate(160, false, '…') -%}
+  {%- set lede = after_h1 | first_lede | truncate(160, false, '…') -%}
   <meta property="og:title" content="{{ (fm_title or page.title or config.site_name) | striptags | e }}">
   <meta property="og:description" content="{{ (fm_desc or (lede if lede | length > 20 else none) or config.site_description or '') | striptags | e }}">
   <meta property="og:type" content="website">

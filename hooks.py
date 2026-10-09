@@ -8,6 +8,47 @@ companion material into site/ after the build so every link resolves; GitHub
 Pages serves the raw .md/.yml/.js files as plain text.
 """
 
+import re
+
+_P_RE = re.compile(r"<p(?:\s[^>]*)?>")
+_P_END = "</p>"
+_META_LEDE = re.compile(r"^(?:Last Updated|Updated|Last updated)\s*:", re.I)
+
+
+def first_lede(value):
+    """Jinja filter: first real prose paragraph from rendered page content.
+
+    overrides/main.html derives og:description from the rendered content after
+    the first h1. Stripping all tags there yields the in-page Table of
+    Contents text on 158/443 pages (the corpus opens most pages with a
+    Contents heading plus a link list), so share previews on Discord/Slack/X
+    showed menu text instead of prose. Instead return the text inside the
+    first <p> after the h1: TOC entries render as <li>, never <p>, so the
+    first paragraph is the page's actual lede. A leading "Last Updated:"
+    meta line is skipped in favor of the next paragraph, and pages without
+    any <p> fall back to plain tag-stripping (the previous behavior).
+    """
+    import html as _html
+
+    text = value or ""
+    for _ in range(4):
+        m = _P_RE.search(text)
+        if not m:
+            break
+        inner = text[m.end(): text.find(_P_END, m.end())]
+        stripped = _html.unescape(re.sub(r"<[^>]+>", " ", inner))
+        stripped = re.sub(r"\s+", " ", stripped).strip()
+        if stripped and not _META_LEDE.match(stripped):
+            return stripped
+        text = text[text.find(_P_END, m.end()) + len(_P_END):]
+    stripped = re.sub(r"<[^>]+>", " ", value or "")
+    return re.sub(r"\s+", " ", stripped).strip()
+
+
+def on_env(env, config, files):
+    env.filters["first_lede"] = first_lede
+    return env
+
 
 def on_post_build(config, **kwargs):
     import shutil
@@ -37,8 +78,6 @@ def on_post_build(config, **kwargs):
     # site/experiments/; links that already resolve inside the site (e.g. the
     # lesson-file pages, whose file-as-dir render depth compensates the docs/
     # prefix) are left alone.
-    import re
-
     href_re = re.compile(r'href="((?:\.\./)+)experiments/(EXP_[A-Z0-9_]+\.md)"')
     bridged = 0
     for html in site.rglob("*.html"):
