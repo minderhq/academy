@@ -41,5 +41,12 @@
   <meta property="og:url" content="{{ page.canonical_url }}">
   {% endif %}
   <meta name="twitter:card" content="summary">
+  {# theme-color tints the mobile browser chrome (Android Chrome URL bar,
+     iOS Safari) to the header color. Material 9.7.6's base.html emits no
+     theme-color meta at all (census: 0/443 pages), and mobile browsers
+     fall back to their default chrome. The palette sets primary: indigo on
+     both the light (default) and dark (slate) schemes, so the header is
+     indigo in every scheme - one constant value is the honest tint. #}
+  <meta name="theme-color" content="#3f51b5">
   {{ super() }}
 {% endblock %}

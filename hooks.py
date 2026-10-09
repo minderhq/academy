@@ -73,6 +73,18 @@ def on_post_build(config, **kwargs):
     if readme.is_file():
         shutil.copy2(readme, site / "README.md")
         copied.append("README.md")
+    # robots.txt for the crawler entry point: allow all + point at the
+    # sitemap.xml mkdocs itself emits into site/. Generated here rather than
+    # shipped as docs/robots.txt - mkdocs copies non-md docs/ files verbatim,
+    # and a file under docs/ inflates the corpus file counts that the README
+    # footer and SITEMAP statistics pin (the fleet's claims gates read them:
+    # tick-846 added docs/robots.txt and the claims gates flagged 496 -> 497).
+    # A crawler policy file is site plumbing, not documentation - it belongs
+    # in the same completion layer as the companion copy and the bridge below.
+    site_url = (config.get("site_url") or "").rstrip("/")
+    if site_url:
+        robots = f"User-agent: *\nAllow: /\n\nSitemap: {site_url}/sitemap.xml\n"
+        (site / "robots.txt").write_bytes(robots.encode("utf-8"))
     print(f"[hooks] copied companion material into site/: {', '.join(copied)}")
 
     # Bridging repo link depth to site link depth: repo paths carry the extra
