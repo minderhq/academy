@@ -1,0 +1,20 @@
+{#-
+  OpenGraph/Twitter share-preview metadata for every page - the academy is
+  shared as bare links in Discord/Slack/X and without these tags those
+  clients render no preview at all. Dependency-free on purpose: the social
+  plugin (og:image cards) needs cairosvg in every build environment, so we
+  ship the text-only preview tags and let Material's own description
+  resolution (page meta, else site_description) fill og:description.
+-#}
+{% extends "base.html" %}
+
+{% block extrahead %}
+  <meta property="og:title" content="{{ (page.title if page and page.title else config.site_name) | striptags | e }}">
+  <meta property="og:description" content="{{ (page.meta.description if page and page.meta.description else config.site_description or '') | striptags | e }}">
+  <meta property="og:type" content="website">
+  {% if page and page.canonical_url %}
+  <meta property="og:url" content="{{ page.canonical_url }}">
+  {% endif %}
+  <meta name="twitter:card" content="summary">
+  {{ super() }}
+{% endblock %}

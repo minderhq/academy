@@ -25,6 +25,10 @@ validation:
 
 theme:
   name: material
+  # overrides/ carries the OpenGraph share-preview meta (main.html) -
+  # Discord/Slack/X show a text preview instead of a bare URL; og:image
+  # social cards stay out (cairosvg dependency in every build env)
+  custom_dir: overrides
   language: en
   logo: material/school
   icon:
