@@ -1,13 +1,13 @@
 ---
 Document ID: 3100-PREREQUISITES
-Title: "Prerequisites: Attention Mechanisms"
+Title: "3100: Attention Architectures - Prerequisites"
 Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['prerequisites', 'transformers', 'attention']
 ---
 
-# Prerequisites: Attention Mechanisms
+# 3100: Attention Architectures - Prerequisites
 
 **For:** [3101-Self-Attention-DeepDive.md](./3101-Self-Attention-DeepDive.md)
 

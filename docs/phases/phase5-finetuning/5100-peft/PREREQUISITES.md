@@ -1,13 +1,13 @@
 ---
 Document ID: 5100-PREREQUISITES
-Title: "Prerequisites: LoRA & Fine-Tuning"
+Title: "5100: Parameter-Efficient Fine-Tuning - Prerequisites"
 Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['prerequisites', 'finetuning', 'peft']
 ---
 
-# Prerequisites: LoRA & Fine-Tuning
+# 5100: Parameter-Efficient Fine-Tuning - Prerequisites
 
 **For:** [5101-LoRA-Logic.md](./5101-LoRA-Logic.md)
 

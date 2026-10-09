@@ -1,13 +1,13 @@
 ---
 Document ID: 4100-PREREQUISITES
-Title: "Prerequisites: GGUF & Quantization"
+Title: "4100: Low-Bit Quantization - Prerequisites"
 Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['prerequisites', 'quantization', 'gguf']
 ---
 
-# Prerequisites: GGUF & Quantization
+# 4100: Low-Bit Quantization - Prerequisites
 
 **For:** [4101-GGUF-Physics.md](./4101-GGUF-Physics.md)
 

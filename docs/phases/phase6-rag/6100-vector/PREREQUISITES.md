@@ -1,13 +1,13 @@
 ---
 Document ID: 6100-PREREQUISITES
-Title: "Prerequisites: Vector Databases"
+Title: "6100: Vector Embeddings - Prerequisites"
 Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
 Tags: ['prerequisites', 'rag', 'vectors']
 ---
 
-# Prerequisites: Vector Databases
+# 6100: Vector Embeddings - Prerequisites
 
 **For:** [6101-HNSW-Indexing.md](./6101-HNSW-Indexing.md)
 
