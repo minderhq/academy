@@ -57,6 +57,33 @@ def on_env(env, config, files):
     return env
 
 
+def on_page_context(context, page, config, nav):
+    """Per-page <meta name="description"> via Material's own emission path.
+
+    Material's base.html emits page.meta.description when present, else the
+    identical site_description on EVERY page - the tick-847 census measured
+    443/443 pages carrying the same one-line site blurb, so search engines
+    (which prefer the meta description for snippets) showed a single generic
+    sentence for the whole corpus. Derive the same lede the og:description
+    chain uses (first prose paragraph after the h1, meta-line skip) and
+    inject it as the page description unless the FM carries one (the corpus
+    carries no Description today; the key is future-proofing per tick-844).
+    Mutating page.meta before render means Material's if/elif picks it up
+    natively - no duplicate tag, no post-build rewrite.
+    """
+    meta = getattr(page, "meta", None)
+    if not isinstance(meta, dict) or "Description" in meta or "description" in meta:
+        return context
+    content = page.content or ""
+    after_h1 = content.split("</h1>", 1)[1] if "</h1>" in content else content
+    lede = first_lede(after_h1)
+    if lede and len(lede) > 20:
+        if len(lede) > 160:
+            lede = lede[:157].rsplit(" ", 1)[0].rstrip(",;: ") + "…"
+        meta["description"] = lede
+    return context
+
+
 def on_post_build(config, **kwargs):
     import shutil
     from pathlib import Path
