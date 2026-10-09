@@ -1,6 +1,6 @@
 ---
 Document ID: 1100-PRACTICE
-Title: "Module 1100: Network Infrastructure Practice"
+Title: "1100: Network - Practice"
 Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Beginner
@@ -10,7 +10,7 @@ Related: See module README
 Tags: ['assessment', 'practice', 'networking', 'wan']
 ---
 
-# Module 1100: Network Infrastructure Practice
+# 1100: Network - Practice
 
 **Module:** Network Infrastructure for AI
 
