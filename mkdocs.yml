@@ -30,8 +30,12 @@ theme:
   # social cards stay out (cairosvg dependency in every build env)
   custom_dir: overrides
   language: en
-  logo: material/school
   icon:
+    # theme.logo takes a FILE path, not a built-in icon name - the old
+    # "logo: material/school" shipped <img src=".../material/school"> which
+    # 404s on every page, leaving the header without a logo (tick-815).
+    # icon.logo accepts built-in icon names and inlines the SVG.
+    logo: material/school
     repo: fontawesome/brands/github
   palette:
     - media: "(prefers-color-scheme: light)"
