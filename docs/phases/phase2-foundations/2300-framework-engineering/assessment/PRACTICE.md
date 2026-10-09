@@ -1001,7 +1001,7 @@ This practice guide provides complete, production-ready implementations for:
 
 ### Related Documents
 
-- [Phase 2: Module 2300 - Framework Engineering](../README.md) — module overview and learning path
+- [2300: Framework Engineering](../README.md) — module overview and learning path
 - [2301: Framework Design Patterns](../2301-Framework-Design-Patterns.md) — abstraction layers, registries (Exercises 1-2)
 - [2302: Model Serving Architectures](../2302-Model-Serving-Architectures.md) — batching theory (Exercise 3)
 - [2303: API Design for ML Systems](../2303-API-Design-for-ML.md) — serving the batching layer over HTTP
@@ -1025,6 +1025,6 @@ This practice guide provides complete, production-ready implementations for:
 2. **Apply it:** [LAB-007: Production RAG System](../../../../learning-resources/labs/LAB-007-Production-RAG.md) and [LAB-009: Production Deployment](../../../../learning-resources/labs/LAB-009-Production-Deployment.md) use the batching and deployment patterns from Exercises 1 and 3.
 3. **Next Module:** [2400: LLM Pretraining](../../2400-pretraining/README.md)
 
-**Related:** [Phase 2: Module 2300 - Framework Engineering](../README.md) · [2306: Building a Production Framework](../guides/2306-Building-Production-Framework.md) · [1402: vLLM and TGI High-Concurrency Inference](../../../phase1-infra/1400-llmops/1402-vLLM-and-TGI.md)
+**Related:** [2300: Framework Engineering](../README.md) · [2306: Building a Production Framework](../guides/2306-Building-Production-Framework.md) · [1402: vLLM and TGI High-Concurrency Inference](../../../phase1-infra/1400-llmops/1402-vLLM-and-TGI.md)
 
 **Experiment:** No EXP_23xx exists yet — nearest relevant: [EXP_1404: vLLM Production Tuning Experiments](../../../../../experiments/EXP_1404_VLLM_TUNING.md) (dynamic batching and throughput tuning in a real serving engine, Exercise 3's themes at production scale).

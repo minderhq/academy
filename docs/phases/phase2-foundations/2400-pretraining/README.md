@@ -115,7 +115,7 @@ Each lesson is written around runnable code — work through the examples, don't
 
 - [ ] [2100: Calculus for Deep Learning](../2100-calculus/README.md) — backpropagation, optimization
 - [ ] [2200: Deep Learning Frameworks](../2200-frameworks/README.md) — PyTorch proficiency
-- [ ] [Phase 2: Module 2300 - Framework Engineering](../2300-framework-engineering/README.md) — ML system design
+- [ ] [2300: Framework Engineering](../2300-framework-engineering/README.md) — ML system design
 
 **Helpful:**
 
@@ -147,7 +147,7 @@ Each lesson is written around runnable code — work through the examples, don't
 
 ## Related Modules
 
-- [\[3100\]: Attention Architectures](../../phase3-transformers/3100-attention/README.md) — the architecture every pretrained model is built from, studied in depth
+- [3100: Attention Architectures](../../phase3-transformers/3100-attention/README.md) — the architecture every pretrained model is built from, studied in depth
 - [4100: Low-Bit Quantization](../../phase4-quantization/4100-low-bit/README.md) — making the pretrained result cheap to store and serve
 - [5100: Parameter-Efficient Fine-Tuning (PEFT)](../../phase5-finetuning/5100-peft/README.md) — adapting pretrained weights without re-pretraining
 - [1400: LLMOps and Model Serving](../../phase1-infra/1400-llmops/README.md) — operating the models this module trains
@@ -252,7 +252,7 @@ Before starting pretraining:
 - [2402: Large-Scale Training for Language Models](./2402-Large-Scale-Training.md) — DDP/FSDP, tensor and pipeline parallelism, mixed precision
 - [2403: Evaluation Frameworks for Language Models](./2403-Evaluation-Frameworks.md) — perplexity, benchmarks, safety evaluation
 - [2400: LLM Pretraining - Prerequisites](./PREREQUISITES.md) — readiness check with runnable self-test examples
-- [Phase 2: Module 2300 - Framework Engineering](../2300-framework-engineering/README.md) — previous module; the engineering practices this module applies
+- [2300: Framework Engineering](../2300-framework-engineering/README.md) — previous module; the engineering practices this module applies
 
 ### External References
 
@@ -268,8 +268,8 @@ Before starting pretraining:
 1. **Not reviewed yet?** Start with [2400: LLM Pretraining - Prerequisites](./PREREQUISITES.md) and run its self-check examples.
 2. **Work the lessons in order:** [2401](./2401-Pre-training-Fundamentals.md) → [2402](./2402-Large-Scale-Training.md) → [2403](./2403-Evaluation-Frameworks.md) — each builds on the previous one.
 3. **Close the loop:** take the [quiz](./assessment/QUIZ.md), then the [practice exercises](./assessment/PRACTICE.md).
-4. **Continue to Phase 3:** [\[3100\]: Attention Architectures](../../phase3-transformers/3100-attention/README.md)
+4. **Continue to Phase 3:** [3100: Attention Architectures](../../phase3-transformers/3100-attention/README.md)
 
-**Related:** [Phase 2: Module 2300 - Framework Engineering](../2300-framework-engineering/README.md) · [2401: Pre-training Fundamentals](./2401-Pre-training-Fundamentals.md) · [\[3100\]: Attention Architectures](../../phase3-transformers/3100-attention/README.md)
+**Related:** [2300: Framework Engineering](../2300-framework-engineering/README.md) · [2401: Pre-training Fundamentals](./2401-Pre-training-Fundamentals.md) · [3100: Attention Architectures](../../phase3-transformers/3100-attention/README.md)
 
 **Experiment:** No EXP_24xx exists yet — nearest relevant: [EXP-2201: PyTorch Computational Graphs](../../../../experiments/EXP_2201_PYTORCH_GRAPHS.md) (the autograd mechanics every training loop in this module rests on).

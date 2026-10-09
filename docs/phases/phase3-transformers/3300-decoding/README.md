@@ -1,6 +1,6 @@
 ---
 Document ID: 3300-DECODING-README
-Title: "[3300]: The Decoding Block"
+Title: "3300: The Decoding Block"
 Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
@@ -9,7 +9,7 @@ Estimated Time: 6 hours
 Tags: ['module', 'transformers', 'activation']
 ---
 
-# [3300]: The Decoding Block
+# 3300: The Decoding Block
 
 ## Overview
 

@@ -1,6 +1,6 @@
 ---
 Document ID: 7300-ORCHESTRATION-README
-Title: "[7300]: Multi-Agent Orchestration"
+Title: "7300: Multi-Agent Orchestration"
 Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
@@ -9,7 +9,7 @@ Estimated Time: 11 hours
 Tags: ['module', 'agents', 'orchestration']
 ---
 
-# [7300]: Multi-Agent Orchestration
+# 7300: Multi-Agent Orchestration
 
 ## Overview
 

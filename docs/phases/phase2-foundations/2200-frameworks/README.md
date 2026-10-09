@@ -141,9 +141,9 @@ Each lesson is written around runnable code — work through the examples, don't
 ## Related Modules
 
 - [2100: Calculus for Deep Learning](../2100-calculus/README.md) — the backward-pass math these frameworks automate
-- [Phase 2: Module 2300 - Framework Engineering](../2300-framework-engineering/README.md) — turn framework knowledge into engineered training systems
+- [2300: Framework Engineering](../2300-framework-engineering/README.md) — turn framework knowledge into engineered training systems
 - [2400: LLM Pretraining](../2400-pretraining/README.md) — run the stack at pretraining scale
-- [\[3100\]: Attention Architectures](../../phase3-transformers/3100-attention/README.md) — graph and kernel behavior inside attention workloads
+- [3100: Attention Architectures](../../phase3-transformers/3100-attention/README.md) — graph and kernel behavior inside attention workloads
 - [4100: Low-Bit Quantization](../../phase4-quantization/4100-low-bit/README.md) — compiler and kernel implications of quantized compute
 
 ---
@@ -215,7 +215,7 @@ Each lesson is written around runnable code — work through the examples, don't
 - [EXP-2201: PyTorch Computational Graphs](../../../../experiments/EXP_2201_PYTORCH_GRAPHS.md) — hands-on graph exercises
 - [EXP-2202: TensorFlow XLA Optimization](../../../../experiments/EXP_2202_TENSORFLOW_XLA.md) — hands-on XLA exercises
 - [EXP-2203: CUDA Kernels](../../../../experiments/EXP_2203_CUDA_KERNELS.md) — hands-on CUDA exercises
-- [Phase 2: Module 2300 - Framework Engineering](../2300-framework-engineering/README.md) — the next module that builds on this one
+- [2300: Framework Engineering](../2300-framework-engineering/README.md) — the next module that builds on this one
 
 ### External References
 
@@ -232,7 +232,7 @@ Each lesson is written around runnable code — work through the examples, don't
 1. **Not reviewed yet?** Start with [2200: Deep Learning Frameworks - Prerequisites](./PREREQUISITES.md) and run its self-check examples.
 2. **Work the lessons in order:** [2201](./2201-PyTorch-Computational-Graphs.md) → [2202](./2202-TensorFlow-XLA-Compilers.md) → [2203](./2203-CUDA-Kernel-Programming.md) — each layer builds on the previous one.
 3. **Close the loop:** take the [quiz](./assessment/QUIZ.md), then the [practice exercises](./assessment/PRACTICE.md).
-4. **Continue to the next module:** [Phase 2: Module 2300 - Framework Engineering](../2300-framework-engineering/README.md)
+4. **Continue to the next module:** [2300: Framework Engineering](../2300-framework-engineering/README.md)
 
 **Related:** [2201: PyTorch Computational Graphs and Dynamic Execution](./2201-PyTorch-Computational-Graphs.md) · [2202: TensorFlow XLA and Compiler Optimizations](./2202-TensorFlow-XLA-Compilers.md) · [2203: CUDA Kernel Programming and GPU Architecture](./2203-CUDA-Kernel-Programming.md)
 

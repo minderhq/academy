@@ -1,6 +1,6 @@
 ---
 Document ID: 2300-FRAMEWORK-ENGINEERING-README
-Title: "Phase 2: Module 2300 - Framework Engineering"
+Title: "2300: Framework Engineering"
 Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
@@ -10,7 +10,7 @@ Estimated Time: 20 hours
 Tags: ['framework-engineering', 'module', 'serving', 'deployment']
 ---
 
-# Phase 2: Module 2300 - Framework Engineering
+# 2300: Framework Engineering
 
 ---
 

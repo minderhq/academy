@@ -371,7 +371,7 @@ What just happened: LangChain's chain machinery calls `pipe` exactly as the raw 
 
 ### Related Documents
 
-- [Phase 2: Module 2300 - Framework Engineering](../README.md)
+- [2300: Framework Engineering](../README.md)
 - [2301: Framework Design Patterns](../2301-Framework-Design-Patterns.md)
 - [2302: Model Serving Architectures](../2302-Model-Serving-Architectures.md)
 - [2303: API Design for ML Systems](../2303-API-Design-for-ML.md)

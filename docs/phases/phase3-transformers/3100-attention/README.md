@@ -1,6 +1,6 @@
 ---
 Document ID: 3100-ATTENTION-README
-Title: "[3100]: Attention Architectures"
+Title: "3100: Attention Architectures"
 Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
@@ -9,7 +9,7 @@ Estimated Time: 12 hours
 Tags: ['module', 'transformers', 'attention']
 ---
 
-# [3100]: Attention Architectures
+# 3100: Attention Architectures
 
 ## Overview
 

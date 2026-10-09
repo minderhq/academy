@@ -463,7 +463,7 @@ Each question maps to the lesson that teaches it:
 
 ### Related Documents
 
-- [Phase 2: Module 2300 - Framework Engineering](../README.md) — module overview and learning path
+- [2300: Framework Engineering](../README.md) — module overview and learning path
 - [2301: Framework Design Patterns](../2301-Framework-Design-Patterns.md) — Questions 1-3, 10
 - [2302: Model Serving Architectures](../2302-Model-Serving-Architectures.md) — Questions 4-5
 - [2303: API Design for ML Systems](../2303-API-Design-for-ML.md) — Questions 8-9, 13, 15
@@ -487,6 +487,6 @@ Each question maps to the lesson that teaches it:
    - [LAB-009: Production Deployment](../../../../learning-resources/labs/LAB-009-Production-Deployment.md)
 3. **Next Module:** [2400: LLM Pretraining](../../2400-pretraining/README.md)
 
-**Related:** [Phase 2: Module 2300 - Framework Engineering](../README.md) · [2304: Production Deployment Patterns](../2304-Production-Deployment-Patterns.md) · [TUTORIAL-003: RAG Basics - Give Your LLM Knowledge](../../../../learning-resources/tutorials/TUTORIAL-003-RAG-Basics.md)
+**Related:** [2300: Framework Engineering](../README.md) · [2304: Production Deployment Patterns](../2304-Production-Deployment-Patterns.md) · [TUTORIAL-003: RAG Basics - Give Your LLM Knowledge](../../../../learning-resources/tutorials/TUTORIAL-003-RAG-Basics.md)
 
 **Experiment:** No EXP_23xx exists yet — nearest relevant: [EXP_1403: TGI (Text Generation Inference) Tuning Experiments](../../../../../experiments/EXP_1403_TGI_TUNING.md) (serving-layer performance, matches this module's serving themes).

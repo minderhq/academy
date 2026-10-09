@@ -1,6 +1,6 @@
 ---
 Document ID: 3500-MULTIMODAL-README
-Title: "[3500]: Multimodal Models"
+Title: "3500: Multimodal Models"
 Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
@@ -9,7 +9,7 @@ Estimated Time: 10 hours
 Tags: ['module', 'transformers', 'multimodal']
 ---
 
-# [3500]: Multimodal Models
+# 3500: Multimodal Models
 
 ## Overview
 

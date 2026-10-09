@@ -1,6 +1,6 @@
 ---
 Document ID: 3200-EMBEDDINGS-README
-Title: "[3200]: Embedding Latent Spaces"
+Title: "3200: Embedding Latent Spaces"
 Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Intermediate
@@ -9,7 +9,7 @@ Estimated Time: 9 hours
 Tags: ['module', 'transformers', 'embeddings']
 ---
 
-# [3200]: Embedding Latent Spaces
+# 3200: Embedding Latent Spaces
 
 ## Overview
 

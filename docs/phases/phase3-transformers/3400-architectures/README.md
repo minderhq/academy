@@ -1,6 +1,6 @@
 ---
 Document ID: 3400-ARCHITECTURES-README
-Title: "[3400]: Model Architectures"
+Title: "3400: Model Architectures"
 Last Updated: 2026-10-08
 Status: Complete
 Difficulty: Advanced
@@ -9,7 +9,7 @@ Estimated Time: 12 hours
 Tags: ['module', 'transformers', 'architecture']
 ---
 
-# [3400]: Model Architectures
+# 3400: Model Architectures
 
 ## Overview
 

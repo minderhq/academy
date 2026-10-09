@@ -584,7 +584,7 @@ Use this checklist to verify you're ready:
 
 ### Related Documents
 
-- [Phase 2: Module 2300 - Framework Engineering](./README.md) — module overview and learning path
+- [2300: Framework Engineering](./README.md) — module overview and learning path
 - [2201: PyTorch Computational Graphs and Dynamic Execution](../2200-frameworks/2201-PyTorch-Computational-Graphs.md) — deeper PyTorch review (Section 3)
 - [2301: Framework Design Patterns](./2301-Framework-Design-Patterns.md) — where the ABC and Registry patterns pay off
 - [TUTORIAL-002: Docker Essentials for AI](../../../learning-resources/tutorials/TUTORIAL-002-Docker-Essentials.md) — Docker review (Section 5)
@@ -606,6 +606,6 @@ Use this checklist to verify you're ready:
 2. **Ready?** Start the module with [2301: Framework Design Patterns](./2301-Framework-Design-Patterns.md).
 3. **After the module:** take the [2300: Framework Engineering - Quiz](./assessment/QUIZ.md), then the [2300: Framework Engineering - Practice Exercises](./assessment/PRACTICE.md).
 
-**Related:** [Phase 2: Module 2300 - Framework Engineering](./README.md) · [2301: Framework Design Patterns](./2301-Framework-Design-Patterns.md) · [TUTORIAL-002: Docker Essentials for AI](../../../learning-resources/tutorials/TUTORIAL-002-Docker-Essentials.md)
+**Related:** [2300: Framework Engineering](./README.md) · [2301: Framework Design Patterns](./2301-Framework-Design-Patterns.md) · [TUTORIAL-002: Docker Essentials for AI](../../../learning-resources/tutorials/TUTORIAL-002-Docker-Essentials.md)
 
 **Experiment:** No EXP_23xx exists yet — nearest relevant: [EXP_1403: TGI (Text Generation Inference) Tuning Experiments](../../../../experiments/EXP_1403_TGI_TUNING.md) (serving-stack fundamentals, the direction this module prepares you for).

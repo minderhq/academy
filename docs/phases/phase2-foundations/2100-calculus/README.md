@@ -146,8 +146,8 @@ Each lesson is written around runnable code — work through the examples, don't
 ## Related Modules
 
 - [2200: Deep Learning Frameworks](../2200-frameworks/README.md) — implement the tensor operations and autograd you just understood
-- [Phase 2: Module 2300 - Framework Engineering](../2300-framework-engineering/README.md) — build them into working ML systems
-- [\[3100\]: Attention Architectures](../../phase3-transformers/3100-attention/README.md) — gradient flow through attention layers
+- [2300: Framework Engineering](../2300-framework-engineering/README.md) — build them into working ML systems
+- [3100: Attention Architectures](../../phase3-transformers/3100-attention/README.md) — gradient flow through attention layers
 - [4100: Low-Bit Quantization](../../phase4-quantization/4100-low-bit/README.md) — calculus in quantization-aware training
 
 ---
@@ -222,7 +222,7 @@ Each lesson is written around runnable code — work through the examples, don't
 - [2100: Calculus for Deep Learning - Prerequisites](./PREREQUISITES.md) — readiness check with runnable self-test examples
 - [EXP-2101: Tensor Algebra](../../../../experiments/EXP_2101_TENSOR_ALGEBRA.md) — hands-on tensor exercises
 - [EXP-2102: Backpropagation Experiment](../../../../experiments/EXP_2102_BACKPROPAGATION.md) — hands-on backprop exercises
-- [Phase 2: Module 2300 - Framework Engineering](../2300-framework-engineering/README.md) — the next module that builds on this one
+- [2300: Framework Engineering](../2300-framework-engineering/README.md) — the next module that builds on this one
 
 ### External References
 
