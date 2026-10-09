@@ -153,9 +153,16 @@ def on_post_build(config, **kwargs):
     #    matches the exact literal, so an upstream value change is left
     #    alone.
     tw_card_re = re.compile(r'(<meta\s+name="twitter:card"\s+content=")summary(")')
+    # 5) Material 9.7.6's og: block carries title/description/type/url but NO
+    #    og:site_name on any page, so share previews label the link with the
+    #    bare host (minderhq.github.io) instead of the brand. Inject the
+    #    configured site_name ahead of og:type, guarded on absence so an
+    #    upstream emission can never be doubled.
+    og_site_re = re.compile(r'(<meta\s+property="og:type")')
     line_anchor_re = re.compile(r'<a\b[^>]*\bid="__codelineno[^>]*>')
     edit_anchor_re = re.compile(r'<a\b[^>]*\brel="edit"[^>]*>')
-    bridged = untabbed = named = current = enlarged = 0
+    bridged = untabbed = named = current = enlarged = sited = 0
+    site_name = (config.get("site_name") or "").replace('"', "&quot;")
     for html in site.rglob("*.html"):
         depth = len(html.parent.relative_to(site).parts)
 
@@ -199,14 +206,22 @@ def on_post_build(config, **kwargs):
             enlarged += 1
             return f"{m.group(1)}summary_large_image{m.group(2)}"
 
+        def _og_site(m):
+            nonlocal sited
+            sited += 1
+            return f'<meta property="og:site_name" content="{site_name}">' + m.group(0)
+
         text = html.read_bytes().decode("utf-8")
         new_text = href_re.sub(_bridge, text)
         new_text = line_anchor_re.sub(_line, new_text)
         new_text = edit_anchor_re.sub(_edit, new_text)
         new_text = nav_active_re.sub(_nav, new_text)
         new_text = tw_card_re.sub(_tw, new_text)
+        if site_name:
+            new_text = og_site_re.sub(_og_site, new_text)
         if new_text != text:
             html.write_bytes(new_text.encode("utf-8"))
     print(f"[hooks] bridged {bridged} experiments link(s) from repo depth to site depth")
     print(f"[hooks] a11y: {untabbed} codelineno anchor(s) untabbed, {named} edit button(s) named, {current} nav link(s) aria-current")
     print(f"[hooks] share: {enlarged} twitter:card meta(s) enlarged to summary_large_image")
+    print(f"[hooks] share: {sited} og:site_name meta(s) injected")
