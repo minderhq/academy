@@ -450,7 +450,7 @@ Use this checklist to track your progress:
 | **Experiments** | 4 experiments |
 | **Capstone Projects** | 3 projects |
 | **Estimated Time** | 30-35 hours (core) + 4-10 hours (project) |
-| **Difficulty** | ⭐⭐ Intermediate |
+| **Difficulty** | ⭐⭐⭐ Advanced |
 
 ---
 

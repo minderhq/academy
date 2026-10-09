@@ -974,7 +974,7 @@ Use this checklist to track your progress:
 | **Labs** | 1 lab |
 | **Capstone Projects** | 3 projects |
 | **Estimated Time** | 25-30 hours (core) + 15-30 hours (project) |
-| **Difficulty** | ⭐⭐⭐⭐ Expert |
+| **Difficulty** | ⭐⭐⭐ Advanced |
 
 ---
 

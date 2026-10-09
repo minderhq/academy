@@ -32,7 +32,7 @@ Total: [░░░░░░░░░░░░░░░░░] 0% (0/442 core file
 ## Volume-Based Progress Tracking
 
 ### Volume 1: Infrastructure Mastery (41 files)
-**"Build Your AI Laboratory"** - 75-100 hours | Difficulty: ⭐⭐ Intermediate
+**"Build Your AI Laboratory"** - 75-100 hours | Difficulty: ⭐ Beginner
 
 **Note:** Time estimate includes reading (25h), hands-on practice (35h), labs (15h), and capstone project (15h). Adjust based on your prior experience with networking, Linux, and Docker.
 
@@ -74,7 +74,7 @@ Total: [░░░░░░░░░░░░░░░░░] 0% (0/442 core file
 ---
 
 ### Volume 2: AI/ML Foundations (33 files)
-**"The Mathematics of Intelligence"** - 100-130 hours | Difficulty: ⭐⭐⭐ Advanced
+**"The Mathematics of Intelligence"** - 100-130 hours | Difficulty: ⭐⭐ Intermediate
 
 **Note:** Time estimate includes reading (40h), hands-on practice (50h), experiments (20h), and labs (15h). Strong math background (calculus, linear algebra) recommended.
 
@@ -246,7 +246,7 @@ Total: [░░░░░░░░░░░░░░░░░] 0% (0/442 core file
 ---
 
 ### Volume 7: Production Systems (46 files)
-**"Deploy at Scale"** - 45-50 hours | Difficulty: ⭐⭐⭐⭐ Expert
+**"Deploy at Scale"** - 45-50 hours | Difficulty: ⭐⭐⭐ Advanced
 
 - [ ] **VOLUME-7-Production-Mastery.md** - Volume guide (read first!)
 - [ ] **TUTORIAL-004: Monitoring** (90 min)
