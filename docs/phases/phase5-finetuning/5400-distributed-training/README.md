@@ -55,7 +55,7 @@ After this module, you will be able to:
 
 ---
 
-**Module Duration:** 10-12 hours
+**Module Duration:** 21 hours
 
 **Difficulty:** ⭐⭐⭐ Advanced
 

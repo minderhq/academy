@@ -933,7 +933,7 @@ Production Ready:
 
 ---
 
-**Module Duration:** 12-15 hours
+**Module Duration:** 12 hours
 
 **Difficulty:** ⭐⭐⭐ Advanced
 

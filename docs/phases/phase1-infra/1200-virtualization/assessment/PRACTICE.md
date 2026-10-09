@@ -84,7 +84,7 @@ nvidia-smi
 
 - VM boots with GPU visible
 - `lspci` inside VM shows passed-through GPU
-- Nvidia driver installs successfully
+- NVIDIA driver installs successfully
 
 **Troubleshooting:**
 ```bash

@@ -275,6 +275,6 @@ class RotaryPositionalEmbedding(nn.Module):
 
 ---
 
-**Module Difficulty:** ⭐⭐⭐ Intermediate
+**Module Difficulty:** ⭐⭐ Intermediate
 
 **Estimated Time:** 9 hours total

@@ -802,7 +802,7 @@ Production Ready:
 
 ---
 
-**Module Duration:** 8-10 hours
+**Module Duration:** 8 hours
 
 **Difficulty:** ⭐ Beginner
 

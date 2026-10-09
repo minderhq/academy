@@ -95,7 +95,7 @@ Tags: ['assessment', 'quiz', 'infrastructure', 'virtualization']
 **11. Blacklisting Nouveau is necessary because:**
 
 - A) It's buggy
-- B) It conflicts with Nvidia drivers
+- B) It conflicts with NVIDIA drivers
 - C) It's not open source
 - D) It uses too much memory
 
@@ -224,7 +224,7 @@ Each question maps to the closest lesson for review:
 | 8 | C | The VGA arbiter decides which side (host or VM) owns VGA output |
 | 9 | C | Each passed device needs a clean IOMMU group; multi-GPU means multiple groups |
 | 10 | D | OVMF is the UEFI firmware build for QEMU/KVM VMs |
-| 11 | B | Nouveau is the open Nvidia driver; blacklisted so the vendor driver can bind to the card |
+| 11 | B | Nouveau is the open NVIDIA driver; blacklisted so the vendor driver can bind to the card |
 | 12 | A | ACS lets the IOMMU isolate devices sharing a bridge, enabling clean passthrough |
 | 13 | B | Looking Glass forwards the VM's GPU framebuffer to the host display near-natively |
 | 14 | A | A shared group passes all-or-nothing; the GPU must be alone in its group |

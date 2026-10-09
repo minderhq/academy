@@ -750,9 +750,9 @@ class MultiAgentOrchestrator:
 
 ---
 
-**Module Difficulty:** ⭐⭐⭐⭐ Advanced
+**Module Difficulty:** ⭐⭐⭐ Advanced
 
-**Estimated Time:** 10 hours total
+**Estimated Time:** 11 hours total
 
 ## Module Contents
 

@@ -49,7 +49,7 @@ After this module, you will be able to:
 
 ---
 
-**Module Duration:** 4-6 hours
+**Module Duration:** 10 hours
 
 **Difficulty:** ⭐⭐⭐ Advanced
 

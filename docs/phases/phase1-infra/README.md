@@ -184,7 +184,7 @@ graph TB
 ### K3s Benefits
 
 - **Lightweight**: Single binary, minimal dependencies
-- **GPU Support**: Nvidia device plugin for GPU scheduling
+- **GPU Support**: NVIDIA device plugin for GPU scheduling
 - **Storage**: Dynamic NFS provisioning
 - **Networking**: Flannel CNI overlay network
 
@@ -319,7 +319,7 @@ graph LR
 |----------|-------------|------|------------|
 | [1201: Proxmox Hypervisor SOP](./1200-virtualization/1201-Proxmox-Hypervisor-SOP.md) | Core pinning, RAM balloons | 3h | Intermediate |
 | [1202: GPU Passthrough (IOMMU/VFIO)](./1200-virtualization/1202-TB3-UT3G-Passthrough.md) | IOMMU groups, VFIO binding, qm passthrough | 4h | Advanced |
-| [1203: Nvidia Kernel Module](./1200-virtualization/1203-Nvidia-Kernel-Module.md) | DKMS, driver stability | 2h | Intermediate |
+| [1203: NVIDIA Kernel Module](./1200-virtualization/1203-Nvidia-Kernel-Module.md) | DKMS, driver stability | 2h | Intermediate |
 | [1204: Multi-GPU Setup](./1200-virtualization/1204-Multi-GPU-Setup.md) | Multiple GPU configuration | 3h | Advanced |
 
 **What You'll Learn:**
@@ -327,7 +327,7 @@ graph LR
 - Proxmox VE installation and configuration
 - CPU pinning and memory ballooning
 - GPU passthrough via IOMMU/VFIO
-- Nvidia driver management in VMs
+- NVIDIA driver management in VMs
 
 **Hands-On Practice:**
 
@@ -341,13 +341,13 @@ graph LR
 | Document | Description | Time | Difficulty |
 |----------|-------------|------|------------|
 | [1301: K3s Architecture](./1300-kubernetes/1301-K3s-Master-Worker-Arch.md) | Multi-node cluster setup | 4h | Intermediate |
-| [1302: GPU Scheduler](./1300-kubernetes/1302-GPU-Scheduler.md) | Nvidia device plugin | 3h | Advanced |
+| [1302: GPU Scheduler](./1300-kubernetes/1302-GPU-Scheduler.md) | NVIDIA device plugin | 3h | Advanced |
 | [1303: Storage Classes](./1300-kubernetes/1303-Storage-Classes.md) | Dynamic NFS provisioning | 2h | Intermediate |
 
 **What You'll Learn:**
 
 - K3s multi-node cluster deployment
-- GPU scheduling with Nvidia device plugin
+- GPU scheduling with NVIDIA device plugin
 - Dynamic storage provisioning with NFS
 - Pod deployment and scaling
 
@@ -521,13 +521,13 @@ dmesg | grep -e DMAR -e IOMMU
 
 ### Pitfall 3: K3s GPU Not Available
 
-**Pitfall:** Nvidia device plugin not installed
+**Pitfall:** NVIDIA device plugin not installed
 ```bash
 # Wrong: GPU not visible to K8s
 kubectl get nodes
 # Shows no GPU resources
 
-# Right: Install Nvidia device plugin
+# Right: Install NVIDIA device plugin
 kubectl apply -f https://raw.githubusercontent.com/NVIDIA/k8s-device-plugin/v0.20.1/nvidia-device-plugin.yml
 
 # Verify GPU is available

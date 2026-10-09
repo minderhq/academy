@@ -1030,7 +1030,7 @@ Production Ready:
 
 ---
 
-**Module Duration:** 8-10 hours
+**Module Duration:** 9 hours
 
 **Difficulty:** ⭐⭐ Intermediate
 

@@ -40,7 +40,7 @@ Tags: ['assessment', 'quiz', 'infrastructure', 'kubernetes']
 - A) Device plugins
 - B) Special scheduler
 - C) No configuration
-- D) Only Nvidia GPUs
+- D) Only NVIDIA GPUs
 
 **4. A node is:**
 

@@ -130,7 +130,7 @@ Before diving into model internals, fine-tuning, or RAG, you need a solid founda
    - IOMMU/VFIO GPU passthrough
    - eGPU configuration
 
-3. **[1203: Nvidia Kernel Module](../phases/phase1-infra/1200-virtualization/1203-Nvidia-Kernel-Module.md)**
+3. **[1203: NVIDIA Kernel Module](../phases/phase1-infra/1200-virtualization/1203-Nvidia-Kernel-Module.md)**
    - DKMS setup
    - Driver stability
 
@@ -206,7 +206,7 @@ Use this checklist to track your progress:
 - [ ] **1103: Jumbo Frames and MTU**
 - [ ] **1201: Proxmox Hypervisor SOP**
 - [ ] **1202: TB3 Passthrough**
-- [ ] **1203: Nvidia Kernel Module**
+- [ ] **1203: NVIDIA Kernel Module**
 - [ ] **1204: Multi-GPU Setup**
 - [ ] **1301: K3s Architecture**
 - [ ] **1302: GPU Scheduler**
@@ -271,7 +271,7 @@ Use this checklist to track your progress:
 
 **Problem:** GPU not detected
 
-- **Solution:** Check [1203: Nvidia Kernel Module](../phases/phase1-infra/1200-virtualization/1203-Nvidia-Kernel-Module.md)
+- **Solution:** Check [1203: NVIDIA Kernel Module](../phases/phase1-infra/1200-virtualization/1203-Nvidia-Kernel-Module.md)
 
 For more help, see **[TROUBLESHOOTING-Common-Issues.md](../learning-resources/troubleshooting/TROUBLESHOOTING-Common-Issues.md)**
 

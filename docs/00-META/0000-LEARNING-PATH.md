@@ -182,7 +182,7 @@ Learning Path:
 Learning Path:
 ├── 1201: Proxmox Hypervisor SOP
 ├── 1202: TB3/UT3G Passthrough (IOMMU/VFIO)
-├── 1203: Nvidia Kernel Module
+├── 1203: NVIDIA Kernel Module
 └── 1204: Multi-GPU Setup
 ```
 

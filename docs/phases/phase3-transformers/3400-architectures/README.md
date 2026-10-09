@@ -364,6 +364,6 @@ class EncoderDecoderBlock(nn.Module):
 
 ---
 
-**Module Difficulty:** ⭐⭐⭐ Intermediate
+**Module Difficulty:** ⭐⭐⭐ Advanced
 
-**Estimated Time:** 11 hours total
+**Estimated Time:** 12 hours total
