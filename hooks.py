@@ -587,6 +587,7 @@ def on_post_build(config, **kwargs):
     alertlive = 0
     navlab = tocdead = 0
     navtitle = 0
+    svgdec = 0
     site_name = (config.get("site_name") or "").replace('"', "&quot;")
     for html in site.rglob("*.html"):
         depth = len(html.parent.relative_to(site).parts)
@@ -769,6 +770,28 @@ def on_post_build(config, **kwargs):
         if "</body>" in new_text and alert_live_html not in new_text:
             new_text = new_text.replace("</body>", alert_live_html + "</body>", 1)
             alertlive += 1
+        # decorative icon svgs (19): Material emits every icon as a bare
+        # <svg xmlns="http://www.w3.org/2000/svg" viewBox=...> with no role,
+        # no <title> and no aria-hidden - 7,083 across the built corpus, and
+        # every one of them is a chrome/content icon sitting inside a control
+        # that already carries its accessible name (upstream aria-label, the
+        # label's own text, or blocks 2/11/12 above). A bare inline svg
+        # computes no accessible name and conveys nothing on its own, so
+        # this is not a 1.1.1 hard fail - but some AT combos surface an
+        # unmarked inline svg as an unlabeled "graphic" between the named
+        # controls, and the standard decorative marker aria-hidden="true"
+        # is missing corpus-wide. The literal prefix
+        # '<svg xmlns="http://www.w3.org/2000/svg"' is corpus-unique
+        # (7,083/7,083 open tags carry xmlns as the first attribute - census
+        # before the fix), so a prefix rewrite covers every svg and only
+        # svgs; runtime-created svgs (mermaid diagrams) are not in the
+        # static HTML and are untouched. The negative lookahead keeps the
+        # rewrite idempotent if it ever sees already-patched text.
+        new_text, _nsvg = re.subn(
+            r'<svg xmlns="http://www\.w3\.org/2000/svg"(?! aria-hidden=)',
+            '<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true"',
+            new_text)
+        svgdec += _nsvg
         # sidebar index-toggle labels (12a): name the bare icon-only section
         # toggles from their sibling <a> title, and (12b) drop the dead
         # __toc for= on pages whose __toc input was never emitted
@@ -810,4 +833,5 @@ def on_post_build(config, **kwargs):
     print(f"[hooks] highlight-fix: {hlf} guard script(s) injected")
     print(f"[hooks] label-in-name: {labelname} footer prev/next aria-label(s) colon-aligned")
     print(f"[hooks] alert-live: {alertlive} status region script(s) injected")
+    print(f"[hooks] svg decorative: {svgdec} icon svg(s) marked aria-hidden")
     print(f"[hooks] nav labels: {navlab} index toggle(s) named; {tocdead} dead __toc for= dropped; {navtitle} broken panel aria-labelledby re-pointed")
