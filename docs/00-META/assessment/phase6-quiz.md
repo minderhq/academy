@@ -21,8 +21,6 @@ Tags: ['assessment', 'quiz', 'rag']
 - c) Retrieval-Augmented Generation
 - d) Recursive Augmented Generation
 
-**Answer:** c
-
 ---
 
 ### 2. What is the main benefit of RAG?
@@ -30,8 +28,6 @@ Tags: ['assessment', 'quiz', 'rag']
 - b) Adding external knowledge to LLMs
 - c) Smaller models
 - d) Better training without touching the corpus layout
-
-**Answer:** b
 
 ---
 
@@ -41,8 +37,6 @@ Tags: ['assessment', 'quiz', 'rag']
 - c) Mathematical database storing symbolic proofs alongside embeddings
 - d) Embedded database
 
-**Answer:** b
-
 ---
 
 ### 4. What is HNSW?
@@ -50,8 +44,6 @@ Tags: ['assessment', 'quiz', 'rag']
 - b) Hash-based Network Search Window
 - c) Hierarchical Navigable Small World graph
 - d) Hierarchical Node Search Window with pruned frontier levels
-
-**Answer:** c
 
 ---
 
@@ -61,8 +53,6 @@ Tags: ['assessment', 'quiz', 'rag']
 - c) Quick data retrieval over compressed columnar shards
 - d) Query database
 
-**Answer:** a
-
 ---
 
 ### 6. What is semantic similarity?
@@ -70,8 +60,6 @@ Tags: ['assessment', 'quiz', 'rag']
 - b) Measuring meaning similarity between texts
 - c) Text matching
 - d) Pattern matching over character n-grams of the raw corpus
-
-**Answer:** b
 
 ---
 
@@ -81,8 +69,6 @@ Tags: ['assessment', 'quiz', 'rag']
 - c) Numerical representation of text
 - d) Character encoding
 
-**Answer:** c
-
 ---
 
 ### 8. What is hybrid search?
@@ -90,8 +76,6 @@ Tags: ['assessment', 'quiz', 'rag']
 - b) Mixed search blending cached suggestions into every query
 - c) Combining dense and sparse retrieval
 - d) Parallel search
-
-**Answer:** c
 
 ---
 
@@ -101,8 +85,6 @@ Tags: ['assessment', 'quiz', 'rag']
 - c) Scoring results
 - d) Searching again
 
-**Answer:** a
-
 ---
 
 ### 10. What is GraphRAG?
@@ -110,8 +92,6 @@ Tags: ['assessment', 'quiz', 'rag']
 - b) Visual RAG
 - c) Network RAG
 - d) Graph-based RAG limited to visualization dashboards
-
-**Answer:** a
 
 ---
 
@@ -121,8 +101,6 @@ Tags: ['assessment', 'quiz', 'rag']
 - c) Vector database
 - d) Relational database
 
-**Answer:** b
-
 ---
 
 ### 12. What is a knowledge graph?
@@ -130,8 +108,6 @@ Tags: ['assessment', 'quiz', 'rag']
 - b) Knowledge network
 - c) Information graph
 - d) Graph of knowledge
-
-**Answer:** a
 
 ---
 
@@ -141,8 +117,6 @@ Tags: ['assessment', 'quiz', 'rag']
 - c) Document parsing
 - d) Data compression applied before every indexing pass
 
-**Answer:** a
-
 ---
 
 ### 14. What is the optimal chunk size for RAG?
@@ -150,8 +124,6 @@ Tags: ['assessment', 'quiz', 'rag']
 - b) 512-1024 tokens
 - c) 2048-4096 tokens
 - d) 64-128 tokens
-
-**Answer:** b
 
 ---
 
@@ -161,8 +133,6 @@ Tags: ['assessment', 'quiz', 'rag']
 - c) Improve compression
 - d) Increase chunk count until every chunk fits one sentence
 
-**Answer:** a
-
 ---
 
 ### 16. What is BM25?
@@ -170,8 +140,6 @@ Tags: ['assessment', 'quiz', 'rag']
 - b) Sparse retrieval algorithm
 - c) Hybrid retrieval
 - d) Neural retrieval
-
-**Answer:** b
 
 ---
 
@@ -181,8 +149,6 @@ Tags: ['assessment', 'quiz', 'rag']
 - c) Using embedding similarity for retrieval
 - d) Deep retrieval
 
-**Answer:** c
-
 ---
 
 ### 18. What is sparse retrieval?
@@ -190,8 +156,6 @@ Tags: ['assessment', 'quiz', 'rag']
 - b) Fast retrieval
 - c) Using keyword matching for retrieval
 - d) Light retrieval
-
-**Answer:** c
 
 ---
 
@@ -201,8 +165,6 @@ Tags: ['assessment', 'quiz', 'rag']
 - c) Attention window
 - d) Context storage reserved on the serving host per session
 
-**Answer:** a
-
 ---
 
 ### 20. What is the main challenge of long-context RAG?
@@ -210,8 +172,6 @@ Tags: ['assessment', 'quiz', 'rag']
 - b) Slow retrieval
 - c) Finding relevant information
 - d) Poor accuracy
-
-**Answer:** c
 
 ---
 
@@ -221,8 +181,6 @@ Tags: ['assessment', 'quiz', 'rag']
 - c) Attribute search
 - d) Data cleaning of ingested records before embedding
 
-**Answer:** a
-
 ---
 
 ### 22. What is multi-vector retrieval?
@@ -230,8 +188,6 @@ Tags: ['assessment', 'quiz', 'rag']
 - b) Storing multiple embeddings per document
 - c) Multiple queries
 - d) Parallel retrieval
-
-**Answer:** b
 
 ---
 
@@ -241,8 +197,6 @@ Tags: ['assessment', 'quiz', 'rag']
 - c) Document cache
 - d) Storage for original documents
 
-**Answer:** d
-
 ---
 
 ### 24. What is the reranking pipeline?
@@ -250,8 +204,6 @@ Tags: ['assessment', 'quiz', 'rag']
 - b) Retrieve and rank
 - c) Search and score
 - d) Retrieve then rerank
-
-**Answer:** d
 
 ---
 
@@ -261,8 +213,6 @@ Tags: ['assessment', 'quiz', 'rag']
 - c) Parallel encoding
 - d) Using joint query-document encoding
 
-**Answer:** d
-
 ---
 
 ### 26. What is query expansion?
@@ -270,8 +220,6 @@ Tags: ['assessment', 'quiz', 'rag']
 - b) Query enhancement macros rewritten by the serving middleware
 - c) Search expansion
 - d) Enriching query with related terms
-
-**Answer:** d
 
 ---
 
@@ -281,8 +229,6 @@ Tags: ['assessment', 'quiz', 'rag']
 - c) Hybrid retrieval
 - d) Combining multiple retrieval methods
 
-**Answer:** d
-
 ---
 
 ### 28. What is parent document retrieval?
@@ -290,8 +236,6 @@ Tags: ['assessment', 'quiz', 'rag']
 - b) Hierarchical retrieval
 - c) Multi-level retrieval
 - d) Retrieve small chunks, return parent documents
-
-**Answer:** d
 
 ---
 
@@ -301,8 +245,6 @@ Tags: ['assessment', 'quiz', 'rag']
 - c) Nested retrieval loops terminated by fixed depth quotas
 - d) Hierarchical chunking and retrieval
 
-**Answer:** d
-
 ---
 
 ### 30. What is the main advantage of GraphRAG over vector RAG?
@@ -310,8 +252,6 @@ Tags: ['assessment', 'quiz', 'rag']
 - b) Captures relationships between entities
 - c) Better accuracy
 - d) Simpler implementation
-
-**Answer:** b
 
 ---
 

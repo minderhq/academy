@@ -21,8 +21,6 @@ Tags: ['assessment', 'quiz', 'agents']
 - c) Virtual assistant
 - d) Chatbot with tools replaying scripted customer dialogs
 
-**Answer:** a
-
 ---
 
 ### 2. What is the ReAct pattern?
@@ -30,8 +28,6 @@ Tags: ['assessment', 'quiz', 'agents']
 - b) Recursive acting
 - c) React framework
 - d) Reactive actions
-
-**Answer:** a
 
 ---
 
@@ -41,8 +37,6 @@ Tags: ['assessment', 'quiz', 'agents']
 - c) Calling tools by name without any runtime binding
 - d) Function calling
 
-**Answer:** a
-
 ---
 
 ### 4. What is a multi-agent system?
@@ -50,8 +44,6 @@ Tags: ['assessment', 'quiz', 'agents']
 - b) Agent swarm
 - c) Agent cluster sharing one rotating session key
 - d) Multiple agents working together
-
-**Answer:** d
 
 ---
 
@@ -61,8 +53,6 @@ Tags: ['assessment', 'quiz', 'agents']
 - c) Context memory mirrored from the prompt template defaults
 - d) Storing and retrieving past interactions
 
-**Answer:** d
-
 ---
 
 ### 6. What is short-term memory in agents?
@@ -70,8 +60,6 @@ Tags: ['assessment', 'quiz', 'agents']
 - b) Temporary storage
 - c) Working memory
 - d) Active memory
-
-**Answer:** a
 
 ---
 
@@ -81,8 +69,6 @@ Tags: ['assessment', 'quiz', 'agents']
 - c) Persistent knowledge storage
 - d) Durable memory
 
-**Answer:** c
-
 ---
 
 ### 8. What is episodic memory in agents?
@@ -90,8 +76,6 @@ Tags: ['assessment', 'quiz', 'agents']
 - b) Episode storage
 - c) Event memory
 - d) Experience memory aggregated from peer agents every cycle
-
-**Answer:** a
 
 ---
 
@@ -101,8 +85,6 @@ Tags: ['assessment', 'quiz', 'agents']
 - c) Multi-level memory organization
 - d) Tiered storage
 
-**Answer:** c
-
 ---
 
 ### 10. What is agent orchestration?
@@ -110,8 +92,6 @@ Tags: ['assessment', 'quiz', 'agents']
 - b) Agent coordination
 - c) Coordinating multiple agents
 - d) Agent scheduling
-
-**Answer:** c
 
 ---
 
@@ -121,8 +101,6 @@ Tags: ['assessment', 'quiz', 'agents']
 - c) Task planner
 - d) Goal-oriented agent that optimizes a fixed reward curve
 
-**Answer:** a
-
 ---
 
 ### 12. What is task decomposition?
@@ -130,8 +108,6 @@ Tags: ['assessment', 'quiz', 'agents']
 - b) Task splitting
 - c) Goal decomposition
 - d) Problem breaking measured in tickets closed per sprint
-
-**Answer:** a
 
 ---
 
@@ -141,8 +117,6 @@ Tags: ['assessment', 'quiz', 'agents']
 - c) Code runner
 - d) Execution agent forwarding shell transcripts to reviewers
 
-**Answer:** a
-
 ---
 
 ### 14. What is prompt injection?
@@ -150,8 +124,6 @@ Tags: ['assessment', 'quiz', 'agents']
 - b) Malicious input to manipulate agent
 - c) Prompt hacking
 - d) Input manipulation
-
-**Answer:** b
 
 ---
 
@@ -161,8 +133,6 @@ Tags: ['assessment', 'quiz', 'agents']
 - c) Use validation
 - d) Function validation performed by the model's tokenizer
 
-**Answer:** b
-
 ---
 
 ### 16. What is a tool schema?
@@ -170,8 +140,6 @@ Tags: ['assessment', 'quiz', 'agents']
 - b) API schema
 - c) Function definition
 - d) Definition of tool interface
-
-**Answer:** d
 
 ---
 
@@ -181,8 +149,6 @@ Tags: ['assessment', 'quiz', 'agents']
 - c) Self-directed agent
 - d) Self-governing agent
 
-**Answer:** c
-
 ---
 
 ### 18. What is a reflex agent?
@@ -190,8 +156,6 @@ Tags: ['assessment', 'quiz', 'agents']
 - b) Immediate response agent
 - c) Agent that reacts to current state
 - d) Simple agent restricted to a single hardcoded response
-
-**Answer:** c
 
 ---
 
@@ -201,8 +165,6 @@ Tags: ['assessment', 'quiz', 'agents']
 - c) Useful agent
 - d) Benefit agent reporting savings from retired endpoints
 
-**Answer:** b
-
 ---
 
 ### 20. What is agent communication?
@@ -210,8 +172,6 @@ Tags: ['assessment', 'quiz', 'agents']
 - b) Agents exchanging information
 - c) Inter-agent communication
 - d) Agent dialogue streamed through a shared audit log
-
-**Answer:** b
 
 ---
 
@@ -221,8 +181,6 @@ Tags: ['assessment', 'quiz', 'agents']
 - c) Tool use is for AI only
 - d) Tool use is broader concept
 
-**Answer:** d
-
 ---
 
 ### 22. What is a ReAct loop?
@@ -230,8 +188,6 @@ Tags: ['assessment', 'quiz', 'agents']
 - b) Thinking loop
 - c) Think-Act-Observe cycle
 - d) Reasoning cycle
-
-**Answer:** c
 
 ---
 
@@ -241,8 +197,6 @@ Tags: ['assessment', 'quiz', 'agents']
 - c) Reasoning chain
 - d) Logic chain
 
-**Answer:** b
-
 ---
 
 ### 24. What is self-reflection in agents?
@@ -250,8 +204,6 @@ Tags: ['assessment', 'quiz', 'agents']
 - b) Introspection
 - c) Self-analysis
 - d) Agent reviewing its own actions
-
-**Answer:** d
 
 ---
 
@@ -261,8 +213,6 @@ Tags: ['assessment', 'quiz', 'agents']
 - c) Status agent
 - d) Machine agent wrapping firmware update routines for devices
 
-**Answer:** b
-
 ---
 
 ### 26. What is BDI architecture?
@@ -270,8 +220,6 @@ Tags: ['assessment', 'quiz', 'agents']
 - b) Behavior-Decision-Interaction
 - c) Basic-Design-Interface
 - d) Belief-Desire-Intention model
-
-**Answer:** d
 
 ---
 
@@ -281,8 +229,6 @@ Tags: ['assessment', 'quiz', 'agents']
 - c) Single instance agent
 - d) Lone agent
 
-**Answer:** c
-
 ---
 
 ### 28. What is agent swarming?
@@ -290,8 +236,6 @@ Tags: ['assessment', 'quiz', 'agents']
 - b) Many simple agents acting collectively
 - c) Agent flock
 - d) Agent group provisioned from one shared config template
-
-**Answer:** b
 
 ---
 
@@ -301,8 +245,6 @@ Tags: ['assessment', 'quiz', 'agents']
 - c) Prompt leakage
 - d) Uncontrolled tool execution
 
-**Answer:** d
-
 ---
 
 ### 30. What is the main challenge of multi-agent systems?
@@ -310,8 +252,6 @@ Tags: ['assessment', 'quiz', 'agents']
 - b) Coordination and communication
 - c) Memory
 - d) Accuracy
-
-**Answer:** b
 
 ---
 

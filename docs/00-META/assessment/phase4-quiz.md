@@ -21,8 +21,6 @@ Tags: ['assessment', 'quiz', 'quantization']
 - c) Compressing model architecture
 - d) Optimizing model speed
 
-**Answer:** b
-
 ---
 
 ### 2. What is the memory reduction from FP16 to INT4 quantization?
@@ -30,8 +28,6 @@ Tags: ['assessment', 'quiz', 'quantization']
 - b) 4x reduction
 - c) 2x reduction
 - d) 8x reduction
-
-**Answer:** b
 
 ---
 
@@ -41,8 +37,6 @@ Tags: ['assessment', 'quiz', 'quantization']
 - c) Gradient compression format
 - d) GPU memory format
 
-**Answer:** a
-
 ---
 
 ### 4. What is EXL2 format?
@@ -50,8 +44,6 @@ Tags: ['assessment', 'quiz', 'quantization']
 - b) Quantization format optimized for GPU inference
 - c) Execution layer format
 - d) Extended learning format carrying auxiliary training heads
-
-**Answer:** b
 
 ---
 
@@ -61,8 +53,6 @@ Tags: ['assessment', 'quiz', 'quantization']
 - c) Accelerated workflow quantization
 - d) Automatic weight quantization that skips calibration entirely
 
-**Answer:** a
-
 ---
 
 ### 6. What is GPTQ?
@@ -70,8 +60,6 @@ Tags: ['assessment', 'quiz', 'quantization']
 - b) Gradient-based post-training quantization
 - c) Global parameter transformer quantization
 - d) General purpose transformer quantization
-
-**Answer:** a
 
 ---
 
@@ -81,8 +69,6 @@ Tags: ['assessment', 'quiz', 'quantization']
 - c) Two-stage quantization
 - d) Dual precision quantization alternating scales every second layer
 
-**Answer:** b
-
 ---
 
 ### 8. What is the KV cache?
@@ -90,8 +76,6 @@ Tags: ['assessment', 'quiz', 'quantization']
 - b) Kernel verification cache
 - c) Knowledge verification cache reused across checkpoints and exported runs
 - d) Cached keys and values for faster generation
-
-**Answer:** d
 
 ---
 
@@ -101,8 +85,6 @@ Tags: ['assessment', 'quiz', 'quantization']
 - c) Smaller model size achieved by pruning cached entries mid-flight
 - d) Reduced memory usage for long contexts
 
-**Answer:** d
-
 ---
 
 ### 10. What is speculative decoding?
@@ -110,8 +92,6 @@ Tags: ['assessment', 'quiz', 'quantization']
 - b) Parallel decoding
 - c) Predicting next tokens
 - d) Speculative inference
-
-**Answer:** a
 
 ---
 
@@ -121,8 +101,6 @@ Tags: ['assessment', 'quiz', 'quantization']
 - c) Quick model training
 - d) Quantization after training
 
-**Answer:** a
-
 ---
 
 ### 12. What is fake quantization?
@@ -130,8 +108,6 @@ Tags: ['assessment', 'quiz', 'quantization']
 - b) Dummy quantization
 - c) Simulating quantization during training
 - d) Testing quantization
-
-**Answer:** c
 
 ---
 
@@ -141,8 +117,6 @@ Tags: ['assessment', 'quiz', 'quantization']
 - c) No loss
 - d) 20-30%
 
-**Answer:** a
-
 ---
 
 ### 14. What is context window extension?
@@ -150,8 +124,6 @@ Tags: ['assessment', 'quiz', 'quantization']
 - b) Increasing maximum sequence length
 - c) Adding more context
 - d) Extending training schedules beyond the announced token budget
-
-**Answer:** b
 
 ---
 
@@ -161,8 +133,6 @@ Tags: ['assessment', 'quiz', 'quantization']
 - c) Memory-efficient attention for long contexts
 - d) Page-based attention
 
-**Answer:** c
-
 ---
 
 ### 16. What is the main benefit of GGUF format?
@@ -170,8 +140,6 @@ Tags: ['assessment', 'quiz', 'quantization']
 - b) Fastest speed
 - c) CPU/GPU hybrid inference
 - d) Best accuracy
-
-**Answer:** c
 
 ---
 
@@ -181,8 +149,6 @@ Tags: ['assessment', 'quiz', 'quantization']
 - c) Training models
 - d) Validating results
 
-**Answer:** b
-
 ---
 
 ### 18. What is the difference between symmetric and asymmetric quantization?
@@ -190,8 +156,6 @@ Tags: ['assessment', 'quiz', 'quantization']
 - b) Symmetric is faster
 - c) Asymmetric uses zero point, symmetric doesn't
 - d) Asymmetric is more accurate
-
-**Answer:** c
 
 ---
 
@@ -201,8 +165,6 @@ Tags: ['assessment', 'quiz', 'quantization']
 - c) Quantizing each output channel separately
 - d) Partial quantization
 
-**Answer:** c
-
 ---
 
 ### 20. What is the main trade-off in quantization?
@@ -210,8 +172,6 @@ Tags: ['assessment', 'quiz', 'quantization']
 - b) Speed vs memory
 - c) Accuracy vs speed
 - d) Size vs speed traded against hardware uptime targets
-
-**Answer:** a
 
 ---
 
@@ -221,8 +181,6 @@ Tags: ['assessment', 'quiz', 'quantization']
 - c) Theoretical concept
 - d) Extreme quantization to {-1, 0, 1}
 
-**Answer:** d
-
 ---
 
 ### 22. What is sparsity combined with quantization?
@@ -230,8 +188,6 @@ Tags: ['assessment', 'quiz', 'quantization']
 - b) Sparse quantization
 - c) Partial quantization
 - d) Removing zero weights before quantization
-
-**Answer:** d
 
 ---
 
@@ -241,8 +197,6 @@ Tags: ['assessment', 'quiz', 'quantization']
 - c) Memory for calibration
 - d) Accuracy loss
 
-**Answer:** a
-
 ---
 
 ### 24. What is batch quantization?
@@ -250,8 +204,6 @@ Tags: ['assessment', 'quiz', 'quantization']
 - b) Quantizing multiple models together
 - c) Batch size optimization
 - d) Group quantization
-
-**Answer:** b
 
 ---
 
@@ -261,8 +213,6 @@ Tags: ['assessment', 'quiz', 'quantization']
 - c) Faster training
 - d) Simpler deployment on constrained devices
 
-**Answer:** b
-
 ---
 
 ### 26. What is dynamic quantization?
@@ -270,8 +220,6 @@ Tags: ['assessment', 'quiz', 'quantization']
 - b) Changing quantization
 - c) Quantizing during inference
 - d) Adaptive quantization
-
-**Answer:** c
 
 ---
 
@@ -281,8 +229,6 @@ Tags: ['assessment', 'quiz', 'quantization']
 - c) Constant quantization
 - d) Quantizing after calibration with fixed data
 
-**Answer:** d
-
 ---
 
 ### 28. What is the impact of quantization on inference speed?
@@ -290,8 +236,6 @@ Tags: ['assessment', 'quiz', 'quantization']
 - b) 10x speedup
 - c) 2-4x speedup
 - d) Slower inference
-
-**Answer:** c
 
 ---
 
@@ -301,8 +245,6 @@ Tags: ['assessment', 'quiz', 'quantization']
 - c) Hierarchical quantization
 - d) Different quantization per layer
 
-**Answer:** d
-
 ---
 
 ### 30. What is the main advantage of QAT over post-training quantization?
@@ -310,8 +252,6 @@ Tags: ['assessment', 'quiz', 'quantization']
 - b) No calibration needed
 - c) Simpler process once calibration curves are pre-baked offline
 - d) Better accuracy with same bit-width
-
-**Answer:** d
 
 ---
 

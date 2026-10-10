@@ -21,8 +21,6 @@ Tags: ['assessment', 'quiz', 'pytorch']
 - c) Learning rate
 - d) Forward predictions replayed to refresh validation loss baselines each epoch
 
-**Answer:** a
-
 ---
 
 ### 2. In PyTorch, what is a computational graph?
@@ -30,8 +28,6 @@ Tags: ['assessment', 'quiz', 'pytorch']
 - b) Data storage structure
 - c) Dynamic representation of computations
 - d) Static memory allocation graphs frozen before each forward pass
-
-**Answer:** c
 
 ---
 
@@ -41,8 +37,6 @@ Tags: ['assessment', 'quiz', 'pytorch']
 - c) Model compression
 - d) Network optimization
 
-**Answer:** a
-
 ---
 
 ### 4. What does autograd in PyTorch do?
@@ -50,8 +44,6 @@ Tags: ['assessment', 'quiz', 'pytorch']
 - b) Automatic data loading
 - c) Automatic model selection
 - d) Automatic optimization
-
-**Answer:** a
 
 ---
 
@@ -61,8 +53,6 @@ Tags: ['assessment', 'quiz', 'pytorch']
 - c) Regularizing weights
 - d) Normalizing inputs
 
-**Answer:** a
-
 ---
 
 ### 6. What is XLA in TensorFlow?
@@ -70,8 +60,6 @@ Tags: ['assessment', 'quiz', 'pytorch']
 - b) Accelerated Linear Algebra compiler
 - c) Extended Learning Architecture
 - d) Execution Layer Abstraction
-
-**Answer:** b
 
 ---
 
@@ -81,8 +69,6 @@ Tags: ['assessment', 'quiz', 'pytorch']
 - c) Network protocol
 - d) CPU optimization technique for scheduling CUDA-aware kernels on cores
 
-**Answer:** a
-
 ---
 
 ### 8. What is a tensor?
@@ -90,8 +76,6 @@ Tags: ['assessment', 'quiz', 'pytorch']
 - b) Matrix operation
 - c) Multi-dimensional array
 - d) Data frame
-
-**Answer:** c
 
 ---
 
@@ -101,8 +85,6 @@ Tags: ['assessment', 'quiz', 'pytorch']
 - c) Expanding dimensions for arithmetic
 - d) Network communication
 
-**Answer:** c
-
 ---
 
 ### 10. What is gradient checkpointing?
@@ -110,8 +92,6 @@ Tags: ['assessment', 'quiz', 'pytorch']
 - b) Trading computation for memory
 - c) Data compression of activations between training steps
 - d) Model pruning
-
-**Answer:** b
 
 ---
 
@@ -121,8 +101,6 @@ Tags: ['assessment', 'quiz', 'pytorch']
 - c) Weight decay
 - d) Learning rate decay
 
-**Answer:** b
-
 ---
 
 ### 12. What is a kernel in CUDA?
@@ -130,8 +108,6 @@ Tags: ['assessment', 'quiz', 'pytorch']
 - b) Function executed on GPU
 - c) Control structure
 - d) Data type
-
-**Answer:** b
 
 ---
 
@@ -141,8 +117,6 @@ Tags: ['assessment', 'quiz', 'pytorch']
 - c) JSON Interchange Tool
 - d) Joint Integration Test
 
-**Answer:** b
-
 ---
 
 ### 14. What is momentum in optimization?
@@ -150,8 +124,6 @@ Tags: ['assessment', 'quiz', 'pytorch']
 - b) Weight initialization
 - c) Accumulating past gradients
 - d) Data augmentation
-
-**Answer:** c
 
 ---
 
@@ -161,8 +133,6 @@ Tags: ['assessment', 'quiz', 'pytorch']
 - c) Measure model error
 - d) Reduce memory
 
-**Answer:** c
-
 ---
 
 ### 16. What is batch normalization?
@@ -170,8 +140,6 @@ Tags: ['assessment', 'quiz', 'pytorch']
 - b) Normalizing weights
 - c) Normalizing gradients
 - d) Normalizing layer inputs
-
-**Answer:** d
 
 ---
 
@@ -181,8 +149,6 @@ Tags: ['assessment', 'quiz', 'pytorch']
 - c) Data size
 - d) Step size for weight updates
 
-**Answer:** d
-
 ---
 
 ### 18. What is overfitting?
@@ -190,8 +156,6 @@ Tags: ['assessment', 'quiz', 'pytorch']
 - b) Model convergence
 - c) Model stability
 - d) Model memorizing training data
-
-**Answer:** d
 
 ---
 
@@ -201,8 +165,6 @@ Tags: ['assessment', 'quiz', 'pytorch']
 - c) Reducing data
 - d) Preventing overfitting
 
-**Answer:** d
-
 ---
 
 ### 20. What is SGD?
@@ -210,8 +172,6 @@ Tags: ['assessment', 'quiz', 'pytorch']
 - b) Structured Grid Design
 - c) Static Graph Definition
 - d) Stochastic Gradient Descent
-
-**Answer:** d
 
 ---
 

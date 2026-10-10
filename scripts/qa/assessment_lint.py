@@ -265,8 +265,9 @@ PHASE_QUIZ_ROW = re.compile(
     r"^\|\s*\*\*(\d+)\*\*\s*\|\s*\[[^\]]+\]\(([^)]+)\)\s*\|"
     r"\s*(\d+)\s+questions\s*\|\s*$")
 PHASE_Q = re.compile(r"^###\s+(\d+)\.\s")
-# phase quizzes answer inline in lowercase and summarize in an Answer
-# Key block ("1\. c, 2. b, ...", escaped dots); both tolerate a-d.
+# phase quizzes carry their answers ONLY in the end-of-file Answer Key
+# block since tick-958 (inline answers banned); these patterns still
+# tolerate a stray inline letter for AS-08's agreement check.
 PHASE_INLINE = re.compile(r"\*\*Answer:\*\*\s*([A-Da-d])\b")
 PHASE_KEY_PAIR = re.compile(r"(?<!\d)(\d+)\\?\. ([A-Da-d])\b")
 # the learner-facing pass contract: "**Passing: 12/15 (80%)**"
@@ -686,8 +687,9 @@ class Linter:
         """The seven phase quizzes (docs/00-META/assessment/phaseN-quiz.md)
         under the same AS-04/AS-08/AS-09 standards as the module banks,
         in their own shape: "### N." headings, lowercase a)-d) options,
-        an inline answer per question plus an Answer Key block that
-        mirrors them."""
+        and an end-of-file Answer Key block that cites every question
+        (no inline answers - the platform standard moved them behind
+        the key in tick-958 so learners attempt before peeking)."""
         rel = quiz.relative_to(root).as_posix()
         lines = quiz.read_text(encoding="utf-8").split("\n")
         nf = [(i, l) for i, (l, f) in enumerate(fence_aware(lines)) if not f]
@@ -742,11 +744,12 @@ class Linter:
             self.report(rel, "AS-18",
                         "header claims %d questions, quiz carries %d"
                         % (claim, len(qnums)))
-        uncovered = sorted(qnums - set(inline))
-        if uncovered:
-            self.report(rel, "AS-04",
-                        "questions %s carry no inline answer" % uncovered)
-
+        # Inline answers are BANNED on the phase shape since tick-958:
+        # the platform standard puts every answer in the end-of-file
+        # Answer Key block so a learner can attempt before peeking, so
+        # an absent inline answer is expected here, not a finding. Where
+        # a stray inline answer does survive, AS-08's intersection
+        # comparison below still holds it to the key's letter.
         # The Answer Key block mirrors the inline answers: where it
         # exists it must cite only real questions and agree with them.
         # Two written surfaces are captured in document order - the

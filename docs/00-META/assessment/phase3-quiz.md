@@ -21,8 +21,6 @@ Tags: ['assessment', 'quiz', 'transformers']
 - c) Self-attention mechanism
 - d) Pooling layers stacked to shorten sequences
 
-**Answer:** c
-
 ---
 
 ### 2. What is the purpose of multi-head attention?
@@ -30,8 +28,6 @@ Tags: ['assessment', 'quiz', 'transformers']
 - b) Simplifying the overall model architecture
 - c) Learning multiple attention patterns
 - d) Increase model speed
-
-**Answer:** c
 
 ---
 
@@ -41,8 +37,6 @@ Tags: ['assessment', 'quiz', 'transformers']
 - c) Rotary Position Embedding
 - d) Random Parameter Estimation
 
-**Answer:** c
-
 ---
 
 ### 4. What is causal masking used for?
@@ -50,8 +44,6 @@ Tags: ['assessment', 'quiz', 'transformers']
 - b) Speed up training
 - c) Reduce overfitting through masked dropout schedules
 - d) Increase model capacity
-
-**Answer:** a
 
 ---
 
@@ -61,8 +53,6 @@ Tags: ['assessment', 'quiz', 'transformers']
 - c) Smaller model size
 - d) Faster model training
 
-**Answer:** a
-
 ---
 
 ### 6. What is the formula for scaled dot-product attention?
@@ -70,8 +60,6 @@ Tags: ['assessment', 'quiz', 'transformers']
 - b) QK^TV
 - c) softmax(Q + K) * V
 - d) softmax(QK)V
-
-**Answer:** a
 
 ---
 
@@ -81,8 +69,6 @@ Tags: ['assessment', 'quiz', 'transformers']
 - c) Storing computed keys and values for faster generation
 - d) Data augmentation
 
-**Answer:** c
-
 ---
 
 ### 8. What is BPE (Byte Pair Encoding)?
@@ -90,8 +76,6 @@ Tags: ['assessment', 'quiz', 'transformers']
 - b) Batch Processing Engine
 - c) Backward Propagation Encoder shipped with older tokenizers
 - d) Binary Pattern Extraction
-
-**Answer:** a
 
 ---
 
@@ -101,8 +85,6 @@ Tags: ['assessment', 'quiz', 'transformers']
 - c) Gradient Enhanced Learning Unit
 - d) Gated Excitation Layer Unit
 
-**Answer:** b
-
 ---
 
 ### 10. Why is SwiGLU preferred over ReLU in transformers?
@@ -110,8 +92,6 @@ Tags: ['assessment', 'quiz', 'transformers']
 - b) Simpler implementation
 - c) Faster computation
 - d) Better gradient flow and no dead neurons
-
-**Answer:** d
 
 ---
 
@@ -121,8 +101,6 @@ Tags: ['assessment', 'quiz', 'transformers']
 - c) Normalization across time steps within each sequence window
 - d) Normalization across layers
 
-**Answer:** b
-
 ---
 
 ### 12. What is the difference between decoder-only and encoder-decoder models?
@@ -130,8 +108,6 @@ Tags: ['assessment', 'quiz', 'transformers']
 - b) Encoder-decoder cannot generate text
 - c) Encoder-decoder is faster
 - d) Decoder-only uses causal masking for generation
-
-**Answer:** d
 
 ---
 
@@ -141,8 +117,6 @@ Tags: ['assessment', 'quiz', 'transformers']
 - c) Associative Learning Interface
 - d) Automated Linear Integration
 
-**Answer:** b
-
 ---
 
 ### 14. What is SentencePiece?
@@ -150,8 +124,6 @@ Tags: ['assessment', 'quiz', 'transformers']
 - b) Text classifier
 - c) Language model
 - d) Unigram language model tokenizer
-
-**Answer:** d
 
 ---
 
@@ -161,8 +133,6 @@ Tags: ['assessment', 'quiz', 'transformers']
 - c) Text generation library bundled with token counting utilities
 - d) Token encryption method
 
-**Answer:** b
-
 ---
 
 ### 16. What is pre-Norm vs post-Norm?
@@ -170,8 +140,6 @@ Tags: ['assessment', 'quiz', 'transformers']
 - b) Normalization of first vs last layers
 - c) Normalization before vs after residual connection
 - d) Early vs late stopping
-
-**Answer:** c
 
 ---
 
@@ -181,8 +149,6 @@ Tags: ['assessment', 'quiz', 'transformers']
 - c) Knowledge distillation
 - d) Model with sparse activation of expert sub-networks
 
-**Answer:** d
-
 ---
 
 ### 18. What is the benefit of RoPE over learned positional embeddings?
@@ -190,8 +156,6 @@ Tags: ['assessment', 'quiz', 'transformers']
 - b) Better extrapolation to longer sequences
 - c) Less memory
 - d) Faster training
-
-**Answer:** b
 
 ---
 
@@ -201,8 +165,6 @@ Tags: ['assessment', 'quiz', 'transformers']
 - c) Attention across layers
 - d) Attending to encoder outputs in encoder-decoder models
 
-**Answer:** d
-
 ---
 
 ### 20. What is the key difference between GPT and BERT?
@@ -210,8 +172,6 @@ Tags: ['assessment', 'quiz', 'transformers']
 - b) BERT generates text
 - c) GPT classifies text while BERT drafts continuations token by token
 - d) GPT is decoder-only, BERT is encoder-only
-
-**Answer:** d
 
 ---
 
@@ -221,8 +181,6 @@ Tags: ['assessment', 'quiz', 'transformers']
 - c) d_model / num_heads
 - d) d_model + num_heads
 
-**Answer:** c
-
 ---
 
 ### 22. What is feed-forward network (FFN) in transformers?
@@ -230,8 +188,6 @@ Tags: ['assessment', 'quiz', 'transformers']
 - b) Attention mechanism
 - c) Output layer
 - d) Embedding layer
-
-**Answer:** a
 
 ---
 
@@ -241,8 +197,6 @@ Tags: ['assessment', 'quiz', 'transformers']
 - c) Speed up inference
 - d) Improve accuracy
 
-**Answer:** b
-
 ---
 
 ### 24. What is a vision-language model (VLM)?
@@ -251,8 +205,6 @@ Tags: ['assessment', 'quiz', 'transformers']
 - c) Language model for vision
 - d) Visualization tool for models
 
-**Answer:** a
-
 ---
 
 ### 25. What is the main advantage of decoder-only models for text generation?
@@ -260,8 +212,6 @@ Tags: ['assessment', 'quiz', 'transformers']
 - b) Less memory
 - c) Simpler architecture without an encoder
 - d) Faster training
-
-**Answer:** a
 
 ---
 

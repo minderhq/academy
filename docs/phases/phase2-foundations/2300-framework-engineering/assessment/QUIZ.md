@@ -52,10 +52,6 @@ Tags: ['framework-engineering', 'assessment', 'quiz']
 - C) Faster training
 - D) Smaller model size
 
-**Answer:** A
-
-**Explanation:** Abstraction layers allow you to switch between PyTorch, TensorFlow, etc. without changing application code.
-
 ---
 
 ### Question 2: Design Patterns
@@ -66,10 +62,6 @@ Tags: ['framework-engineering', 'assessment', 'quiz']
 - B) Strategy Pattern
 - C) Factory Pattern
 - D) Observer Pattern
-
-**Answer:** B
-
-**Explanation:** Strategy Pattern enables selecting algorithms at runtime, like choosing between different optimizers.
 
 ---
 
@@ -82,10 +74,6 @@ Tags: ['framework-engineering', 'assessment', 'quiz']
 - C) Type safety and validation
 - D) Lower memory usage
 
-**Answer:** C
-
-**Explanation:** Dataclasses provide type hints, validation, and clean serialization to/from dict.
-
 ---
 
 ### Question 4: Throughput via Batching
@@ -96,10 +84,6 @@ Tags: ['framework-engineering', 'assessment', 'quiz']
 - B) Better accuracy
 - C) Lower latency
 - D) Higher throughput
-
-**Answer:** D
-
-**Explanation:** Batching increases GPU utilization, resulting in much higher throughput (requests/second).
 
 ---
 
@@ -112,10 +96,6 @@ Tags: ['framework-engineering', 'assessment', 'quiz']
 - C) Always
 - D) For faster training
 
-**Answer:** B
-
-**Explanation:** Model parallelism splits a large model across multiple GPUs when it won't fit on a single GPU.
-
 ---
 
 ### Question 6: Blue-Green Deployment
@@ -126,10 +106,6 @@ Tags: ['framework-engineering', 'assessment', 'quiz']
 - B) Lower cost
 - C) Zero downtime
 - D) Faster deployment
-
-**Answer:** C
-
-**Explanation:** Blue-green keeps old version (blue) running while deploying new (green), enabling instant rollback.
 
 ---
 
@@ -142,10 +118,6 @@ Tags: ['framework-engineering', 'assessment', 'quiz']
 - C) Gradual rollout to small percentage of traffic
 - D) Automatic deployment
 
-**Answer:** C
-
-**Explanation:** Canary deploys new version to small percentage (e.g., 5%) and gradually increases if metrics look good.
-
 ---
 
 ### Question 8: REST API Design
@@ -156,10 +128,6 @@ Tags: ['framework-engineering', 'assessment', 'quiz']
 - B) GET
 - C) PUT
 - D) DELETE
-
-**Answer:** A
-
-**Explanation:** POST is used for prediction as it sends complex data that doesn't fit in URL parameters.
 
 ---
 
@@ -172,10 +140,6 @@ Tags: ['framework-engineering', 'assessment', 'quiz']
 - C) To prevent abuse and manage load
 - D) To speed up requests
 
-**Answer:** C
-
-**Explanation:** Rate limiting prevents API abuse, ensures fair access, and protects server resources.
-
 ---
 
 ### Question 10: Plugin Architecture
@@ -186,10 +150,6 @@ Tags: ['framework-engineering', 'assessment', 'quiz']
 - B) Reduced memory usage
 - C) Better model accuracy
 - D) Dynamic component loading
-
-**Answer:** D
-
-**Explanation:** Plugin registries allow dynamic loading and discovery of components like custom layers and metrics.
 
 ---
 
@@ -202,10 +162,6 @@ Tags: ['framework-engineering', 'assessment', 'quiz']
 - C) To reduce model size
 - D) To improve model accuracy
 
-**Answer:** B
-
-**Explanation:** A/B testing compares two model versions in production to determine which performs better on real traffic.
-
 ---
 
 ### Question 12: Rolling Updates
@@ -216,10 +172,6 @@ Tags: ['framework-engineering', 'assessment', 'quiz']
 - B) Instances updated one by one
 - C) All instances updated at once
 - D) Only some instances updated
-
-**Answer:** B
-
-**Explanation:** Rolling updates update instances one at a time (or in small groups) to maintain availability.
 
 ---
 
@@ -232,10 +184,6 @@ Tags: ['framework-engineering', 'assessment', 'quiz']
 - C) 400
 - D) 500
 
-**Answer:** A
-
-**Explanation:** 429 Too Many Requests is the standard status code for rate limiting (defined in RFC 6585).
-
 ---
 
 ### Question 14: Docker in ML
@@ -247,10 +195,6 @@ Tags: ['framework-engineering', 'assessment', 'quiz']
 - C) Faster training, a speed gain containerization itself never supplies
 - D) Consistent environment
 
-**Answer:** D
-
-**Explanation:** Docker ensures consistent environments across development, testing, and production.
-
 ---
 
 ### Question 15: Streaming APIs
@@ -261,10 +205,6 @@ Tags: ['framework-engineering', 'assessment', 'quiz']
 - B) For data loading
 - C) For batch predictions, a workload where streamed events add overhead, not value
 - D) For model training
-
-**Answer:** A
-
-**Explanation:** SSE is ideal for streaming responses like token-by-token text generation from LLMs.
 
 ---
 

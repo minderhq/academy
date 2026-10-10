@@ -21,8 +21,6 @@ Tags: ['assessment', 'quiz', 'infrastructure']
 - c) Increase security
 - d) Reduce latency
 
-**Answer:** a
-
 ---
 
 ### 2. Which Kubernetes component manages GPU scheduling?
@@ -30,8 +28,6 @@ Tags: ['assessment', 'quiz', 'infrastructure']
 - b) controller-manager
 - c) kubelet
 - d) kube-scheduler
-
-**Answer:** a
 
 ---
 
@@ -41,8 +37,6 @@ Tags: ['assessment', 'quiz', 'infrastructure']
 - c) Security filtering of oversized datagrams at the edge
 - d) Load balancing
 
-**Answer:** a
-
 ---
 
 ### 4. In Proxmox, what is core pinning?
@@ -50,8 +44,6 @@ Tags: ['assessment', 'quiz', 'infrastructure']
 - b) Network configuration
 - c) Memory allocation
 - d) Storage management policies that pin volumes to hosts
-
-**Answer:** a
 
 ---
 
@@ -61,8 +53,6 @@ Tags: ['assessment', 'quiz', 'infrastructure']
 - c) GPU passthrough to VM
 - d) Storage expansion
 
-**Answer:** c
-
 ---
 
 ### 6. Which storage protocol is used to share the central storage server over the network?
@@ -70,8 +60,6 @@ Tags: ['assessment', 'quiz', 'infrastructure']
 - b) NFS
 - c) iSCSI
 - d) FC
-
-**Answer:** b
 
 ---
 
@@ -81,8 +69,6 @@ Tags: ['assessment', 'quiz', 'infrastructure']
 - c) Auto-scaling of licensed cloud seats per tenant
 - d) Localized model APIs
 
-**Answer:** d
-
 ---
 
 ### 8. What does PagedAttention in vLLM optimize?
@@ -90,8 +76,6 @@ Tags: ['assessment', 'quiz', 'infrastructure']
 - b) CPU utilization
 - c) Memory usage for KV cache
 - d) Storage I/O
-
-**Answer:** c
 
 ---
 
@@ -101,8 +85,6 @@ Tags: ['assessment', 'quiz', 'infrastructure']
 - c) Grafana
 - d) Tempo
 
-**Answer:** b
-
 ---
 
 ### 10. What is model drift?
@@ -110,8 +92,6 @@ Tags: ['assessment', 'quiz', 'infrastructure']
 - b) Training speed decrease
 - c) Model performance degradation over time
 - d) Inference latency spikes from hardware contention
-
-**Answer:** c
 
 ---
 
@@ -121,8 +101,6 @@ Tags: ['assessment', 'quiz', 'infrastructure']
 - c) Tokens per second
 - d) Memory usage
 
-**Answer:** b
-
 ---
 
 ### 12. In Docker, what is a container?
@@ -130,8 +108,6 @@ Tags: ['assessment', 'quiz', 'infrastructure']
 - b) Physical server
 - c) Network switch
 - d) Isolated application environment
-
-**Answer:** d
 
 ---
 
@@ -141,8 +117,6 @@ Tags: ['assessment', 'quiz', 'infrastructure']
 - c) Network security
 - d) Storage management
 
-**Answer:** b
-
 ---
 
 ### 14. What does NFS stand for?
@@ -151,8 +125,6 @@ Tags: ['assessment', 'quiz', 'infrastructure']
 - c) Network File System
 - d) Network File Service
 
-**Answer:** c
-
 ---
 
 ### 15. What is K3s?
@@ -160,8 +132,6 @@ Tags: ['assessment', 'quiz', 'infrastructure']
 - b) Network protocol
 - c) Storage system
 - d) Lightweight Kubernetes distribution
-
-**Answer:** d
 
 ---
 
