@@ -567,6 +567,86 @@ def on_post_build(config, **kwargs):
         '})();'
         '}catch(e){}'
         '})();</script>')
+    # 22) search status announcement, measured by the tick-942
+    #     search-keyboard+empty-results census. The bundle's arrow-key result
+    #     navigation turned out to be a roving-focus pattern (focus moves onto
+    #     the result links themselves, no aria-activedescendant) and Enter
+    #     opens the focused result - fine. The GAP is the empty-results
+    #     surface: "No matching documents" ships in __config translations
+    #     (443/443 pages) and the search worker renders it into
+    #     .md-search-result__list at runtime with NO aria-live anywhere in
+    #     the search UI, so a screen-reader user typing a query that returns
+    #     nothing gets no signal at all - the list swaps silently (WCAG
+    #     4.1.3 Status Messages; ACT ds1e3e names result counts as status).
+    #     Fix is script-only, mirroring block 18's hidden polite region
+    #     pattern: a MutationObserver on .md-search-result__list mirrors
+    #     "Search: N results" / "Search: no matching documents" into a
+    #     visually-hidden aria-live=polite region; debounced 80ms for the
+    #     worker's batched DOM writes, re-armed on every document$ emission
+    #     so instant-nav swaps never leave a stale observer, every layer in
+    #     try/catch so a failure degrades to the shipped silent behavior,
+    #     and the __mdSearchStatus guard makes double-install impossible.
+    search_status_html = (
+        '<script>(function(){'
+        'try{'
+        'if(window.__mdSearchStatus)return;'
+        'window.__mdSearchStatus=1;'
+        'function mirror(){'
+        'try{'
+        'var m=document.getElementById("__mdSearchStatusRegion");'
+        'if(!m){'
+        'm=document.createElement("div");'
+        'm.id="__mdSearchStatusRegion";'
+        'm.setAttribute("aria-live","polite");'
+        'm.setAttribute("role","status");'
+        'm.style.cssText="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;";'
+        '(document.body||document.documentElement).appendChild(m);'
+        '}'
+        'return m;'
+        '}catch(e){return null;}'
+        '}'
+        'function scan(){'
+        'try{'
+        'var list=document.querySelector(".md-search-result__list");'
+        'if(!list)return;'
+        'var n=list.querySelectorAll(".md-search-result__link").length;'
+        'var t=null;'
+        'if(n===0){'
+        'if(/No matching documents/.test(list.textContent||""))t="Search: no matching documents";'
+        '} else {'
+        't="Search: "+n+" result"+(n===1?"":"s");'
+        '}'
+        'if(!t)return;'
+        'var m=mirror();'
+        'if(m&&m.textContent!==t)m.textContent=t;'
+        '}catch(e){}'
+        '}'
+        'var mo=null;'
+        'function arm(){'
+        'try{'
+        'var list=document.querySelector(".md-search-result__list");'
+        'if(!list)return;'
+        'if(!mo){'
+        'if(typeof MutationObserver!=="function")return;'
+        'mo=new MutationObserver(function(){setTimeout(scan,80);});'
+        '}'
+        'mo.disconnect();'
+        'mo.observe(list,{childList:true,subtree:true,characterData:true});'
+        'scan();'
+        '}catch(e){}'
+        '}'
+        'var tries=0;'
+        '(function boot(){'
+        'try{'
+        'if(document.querySelector(".md-search-result__list")){arm();return;}'
+        '}catch(e){}'
+        'if(++tries<50)setTimeout(boot,100);'
+        '})();'
+        'if(window.document$&&typeof window.document$.subscribe==="function"){'
+        'try{window.document$.subscribe(function(){setTimeout(arm,50);});}catch(e){}'
+        '}'
+        '}catch(e){}'
+        '})();</script>')
     # 12) label-hygiene face, two upstream gaps measured by the tick-904
     #     label[for]->input[id] wiring census. (a) With navigation.indexes
     #     active, every nested sidebar section's expand/collapse control is
@@ -640,6 +720,7 @@ def on_post_build(config, **kwargs):
     svgdec = 0
     mermfix = mermblocks = 0
     navfocus = 0
+    searchstatus = 0
     site_name = (config.get("site_name") or "").replace('"', "&quot;")
     for html in site.rglob("*.html"):
         depth = len(html.parent.relative_to(site).parts)
@@ -899,6 +980,10 @@ def on_post_build(config, **kwargs):
         if "</body>" in new_text and nav_focus_html not in new_text:
             new_text = new_text.replace("</body>", nav_focus_html + "</body>", 1)
             navfocus += 1
+        # search status mirror (22): see search_status_html above
+        if "</body>" in new_text and search_status_html not in new_text:
+            new_text = new_text.replace("</body>", search_status_html + "</body>", 1)
+            searchstatus += 1
         if new_text != text:
             html.write_bytes(new_text.encode("utf-8"))
     print(f"[hooks] bridged {bridged} experiments link(s) from repo depth to site depth")
@@ -918,5 +1003,6 @@ def on_post_build(config, **kwargs):
     print(f"[hooks] alert-live: {alertlive} status region script(s) injected")
     print(f"[hooks] svg decorative: {svgdec} icon svg(s) marked aria-hidden")
     print(f"[hooks] nav focus: {navfocus} navigation focus restore script(s) injected")
+    print(f"[hooks] search status: {searchstatus} search result status mirror script(s) injected")
     print(f"[hooks] mermaid arrows: {mermfix} unicode arrow(s) normalized to --> in {mermblocks} diagram(s)")
     print(f"[hooks] nav labels: {navlab} index toggle(s) named; {tocdead} dead __toc for= dropped; {navtitle} broken panel aria-labelledby re-pointed")
