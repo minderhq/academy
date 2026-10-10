@@ -41,12 +41,7 @@ Tags: ['assessment', 'practice', 'networking', 'wan']
 3. What latency is acceptable for training?
 4. When would fiber be necessary?
 
-**Answer:**
-
-1. 1Gbps is sufficient (model weights load once per session)
-2. No, copper Ethernet is adequate for home setup
-3. Latency doesn't affect training (only distributed training needs low latency)
-4. When training across locations or downloading huge datasets frequently
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
 
 ---
 
@@ -67,18 +62,7 @@ Tags: ['assessment', 'practice', 'networking', 'wan']
 - VLAN separation (if needed)
 - Backup considerations
 
-**Solution:**
-```text
-Internet (Fiber 1Gbps)
-    |
-[Router/Firewall]
-    |
-[10Gbps Switch]
-    |
-    +--[VLAN 10: Workstations]-- 5x Workstations
-    +--[VLAN 20: GPU Server]-- 4x A100 Server
-    +--[VLAN 30: Storage]-- NAS (50TB)
-```
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
 
 ---
 
@@ -95,14 +79,7 @@ Internet (Fiber 1Gbps)
 | Cost | ? | ? |
 | Use Case | ? | ? |
 
-**Solution:**
-
-| Feature | GPON | Dedicated Fiber |
-|---------|------|-----------------|
-| Bandwidth | 2.5Gbps shared | 1-10Gbps dedicated |
-| Latency | 10-20ms | 1-5ms |
-| Cost | Low ($50-100/mo) | High ($500-2000/mo) |
-| Use Case | Home, small lab | Data center, multi-site training |
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
 
 ---
 
@@ -121,11 +98,7 @@ Internet (Fiber 1Gbps)
 - Realistic time (80% efficiency)
 - At 1Gbps copper Ethernet
 
-**Solution:**
-
-- Theoretical: 42 GB / 200 MB/s = 210 seconds = 3.5 minutes
-- Realistic: 42 GB / 160 MB/s = ~4.4 minutes
-- 1Gbps: 42 GB / 100 MB/s = ~7 minutes
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
 
 ---
 
@@ -155,6 +128,46 @@ Internet (Fiber 1Gbps)
 **Success Criteria:** Checkpoint saves complete without timeouts; `iperf3` sustains expected throughput between GPU server and NAS for 60+ minutes.
 
 ---
+
+## Answer Key
+
+Full solutions for every exercise above. Work through your own attempt before comparing.
+
+### Exercise 1: Network Requirements Analysis
+
+1. 1Gbps is sufficient (model weights load once per session)
+2. No, copper Ethernet is adequate for home setup
+3. Latency doesn't affect training (only distributed training needs low latency)
+4. When training across locations or downloading huge datasets frequently
+
+### Exercise 2: Network Topology Design
+
+```text
+Internet (Fiber 1Gbps)
+    |
+[Router/Firewall]
+    |
+[10Gbps Switch]
+    |
+    +--[VLAN 10: Workstations]-- 5x Workstations
+    +--[VLAN 20: GPU Server]-- 4x A100 Server
+    +--[VLAN 30: Storage]-- NAS (50TB)
+```
+
+### Exercise 3: Shared vs Dedicated Uplink
+
+| Feature | GPON | Dedicated Fiber |
+|---------|------|-----------------|
+| Bandwidth | 2.5Gbps shared | 1-10Gbps dedicated |
+| Latency | 10-20ms | 1-5ms |
+| Cost | Low ($50-100/mo) | High ($500-2000/mo) |
+| Use Case | Home, small lab | Data center, multi-site training |
+
+### Exercise 4: Bandwidth Calculation
+
+- Theoretical: 42 GB / 200 MB/s = 210 seconds = 3.5 minutes
+- Realistic: 42 GB / 160 MB/s = ~4.4 minutes
+- 1Gbps: 42 GB / 100 MB/s = ~7 minutes
 
 ## Project
 

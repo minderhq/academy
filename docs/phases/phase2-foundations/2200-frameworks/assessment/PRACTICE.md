@@ -18,7 +18,45 @@ Tags: ['assessment', 'practice', 'frameworks', 'pytorch']
 
 **Objective:** Implement a neural network with specific architecture.
 
-**Solution:**
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 2: Complete Training Loop
+
+**Objective:** Implement a complete training loop with all necessary components.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 3: GPU Training
+
+**Objective:** Modify training loop to work on GPU when available.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 4: Save and Load Models
+
+**Objective:** Implement model checkpointing and loading.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 5: Evaluation Metrics
+
+**Objective:** Implement comprehensive evaluation metrics.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 6: Batch Normalization
+
+**Objective:** Add batch normalization to improve training stability.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+---
+
+## Answer Key
+
+Full solutions for every exercise above. Work through your own attempt before comparing.
+
+### Exercise 1: Create a Simple Neural Network
 
 ```python
 import torch
@@ -103,10 +141,6 @@ print(f"Expected output shape: torch.Size([{batch_size}, 5])")
 
 ### Exercise 2: Complete Training Loop
 
-**Objective:** Implement a complete training loop with all necessary components.
-
-**Solution:**
-
 ```python
 import torch
 import torch.nn as nn
@@ -190,10 +224,6 @@ with torch.no_grad():
 ```
 
 ### Exercise 3: GPU Training
-
-**Objective:** Modify training loop to work on GPU when available.
-
-**Solution:**
 
 ```python
 import torch
@@ -286,10 +316,6 @@ with torch.no_grad():
 
 ### Exercise 4: Save and Load Models
 
-**Objective:** Implement model checkpointing and loading.
-
-**Solution:**
-
 ```python
 import os
 
@@ -354,10 +380,6 @@ print("Restored model and optimizer from checkpoint")
 ```
 
 ### Exercise 5: Evaluation Metrics
-
-**Objective:** Implement comprehensive evaluation metrics.
-
-**Solution:**
 
 ```python
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
@@ -445,10 +467,6 @@ print("\nConfusion matrix saved to confusion_matrix.png")
 
 ### Exercise 6: Batch Normalization
 
-**Objective:** Add batch normalization to improve training stability.
-
-**Solution:**
-
 ```python
 class SimpleNetWithBN(nn.Module):
     """SimpleNet with batch normalization."""
@@ -533,8 +551,6 @@ print("\nComparison plot saved to batch_norm_comparison.png")
 # Model with batch norm typically trains faster and more stably
 # Loss curves show smoother convergence with batch norm
 ```
-
----
 
 ## Summary
 

@@ -47,7 +47,11 @@ the same AS-04/AS-08/AS-09 standards in their own "### N." shape):
   AS-05  assessment/PRACTICE.md exists
   AS-06  PRACTICE holds >= 3 exercises ("## / ### Exercise N")
   AS-07  each exercise carries a solution marker (Expected Output,
-         Success Criteria, Solution, **Answer)
+         Success Criteria, Solution, **Answer) or a same-numbered
+         entry under the end-of-file "## Answer Key" - since
+         tick-959 module practice solutions live behind that key
+         (attempt-before-peeking), so a marker under the exercise
+         still counts but is no longer required
   AS-13  the MASTER-INDEX "Phase Practice Files" / "Phase Quiz
          Files" tables are claims a learner plans from: each row's
          exercise/question count must equal the real count in the
@@ -972,27 +976,49 @@ class Linter:
                  for i, l in nf if (m := HEADING.match(l))]
         exercises = [(i, lvl, int(EXERCISE_TITLE.match(t).group(1)))
                      for i, lvl, t in heads if EXERCISE_TITLE.match(t)]
-        if not exercises:
+
+        # The end-of-file Answer Key (born tick-959) mirrors the body's
+        # exercise numbers as solution entries - its "### Exercise N"
+        # headings are not new exercises for AS-19's 1..K run, and a
+        # same-numbered entry satisfies AS-07 for an exercise whose
+        # solution moved behind the key.
+        key_at = next((h[0] for h in heads if h[1] == 2 and
+                       h[2].strip().lower() == "answer key"), None)
+        body_ex = [(i, lvl, num) for i, lvl, num in exercises
+                   if key_at is None or i < key_at]
+        key_nums = {num for i, lvl, num in exercises
+                    if key_at is not None and i > key_at}
+
+        # AS-06 counts the exercise body only - the key's entries are
+        # not additional exercises.
+        if not body_ex:
             self.report(rel, "AS-06", "no Exercise headings found")
             return
-        if len(exercises) < 3:
+        if len(body_ex) < 3:
             self.report(rel, "AS-06",
-                        "only %d exercises (>= 3 required)" % len(exercises))
+                        "only %d exercises (>= 3 required)" % len(body_ex))
 
-        # AS-19 (module surface): one 1..K run per file - the same
-        # numbering contract the phase practice files vouch per segment.
-        nums = [num for _, _, num in exercises]
+        # AS-19 (module surface): one 1..K run per file over the
+        # exercise body - the same numbering contract the phase
+        # practice files vouch per segment. Key entries that name a
+        # missing exercise are AS-19's orphan face.
+        nums = [num for _, _, num in body_ex]
         if nums != list(range(1, len(nums) + 1)):
             self.report(rel, "AS-19",
                         "exercise numbering runs %s, expected 1..%d"
                         % (", ".join(str(n) for n in nums), len(nums)))
+        orphans = sorted(key_nums - {num for _, _, num in body_ex})
+        if orphans:
+            self.report(rel, "AS-19",
+                        "Answer Key has entries for missing exercise(s) %s"
+                        % ", ".join(str(n) for n in orphans))
 
-        for i, lvl, num in exercises:
+        for i, lvl, num in body_ex:
             stop = next((h[0] for h in heads if h[0] > i and h[1] <= lvl),
                         len(lines))
             # Raw slice: solution markers may live inside code fences.
             body = "\n".join(lines[i + 1:stop])
-            if not ANSWER_MARKER.search(body):
+            if not ANSWER_MARKER.search(body) and num not in key_nums:
                 self.report(rel, "AS-07",
                             "Exercise %d has no solution/answer marker" % num)
 

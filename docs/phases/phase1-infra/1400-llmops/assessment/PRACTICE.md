@@ -18,7 +18,39 @@ Tags: ['assessment', 'practice', 'infrastructure', 'llmops']
 
 **Objective:** Install Ollama, pull a model, and run inference locally.
 
-**Solution:**
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 2: vLLM Serving
+
+**Objective:** Start a vLLM server and test it with OpenAI-compatible API.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 3: Monitoring Setup
+
+**Objective:** Setup Prometheus metrics for vLLM monitoring.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 4: Load Balancing
+
+**Objective:** Setup Nginx load balancer for multiple vLLM backends.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 5: Model Drift Detection
+
+**Objective:** Monitor model performance and detect drift.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+---
+
+## Answer Key
+
+Full solutions for every exercise above. Work through your own attempt before comparing.
+
+### Exercise 1: Ollama Setup
 
 ```bash
 #!/bin/bash
@@ -151,10 +183,6 @@ if __name__ == "__main__":
 ```
 
 ### Exercise 2: vLLM Serving
-
-**Objective:** Start a vLLM server and test it with OpenAI-compatible API.
-
-**Solution:**
 
 ```bash
 #!/bin/bash
@@ -351,10 +379,6 @@ if __name__ == "__main__":
 
 ### Exercise 3: Monitoring Setup
 
-**Objective:** Setup Prometheus metrics for vLLM monitoring.
-
-**Solution:**
-
 ```python
 # vllm_metrics.py - Complete Prometheus monitoring setup
 from prometheus_client import Counter, Gauge, Histogram, start_http_server
@@ -506,10 +530,6 @@ scrape_configs:
 ```
 
 ### Exercise 4: Load Balancing
-
-**Objective:** Setup Nginx load balancer for multiple vLLM backends.
-
-**Solution:**
 
 ```nginx
 # nginx.conf - Complete Nginx load balancer configuration
@@ -709,10 +729,6 @@ docker logs nginx-lb --tail=50 2>&1 | grep -o "upstream=vllm-[0-9]*" | sort | un
 ```
 
 ### Exercise 5: Model Drift Detection
-
-**Objective:** Monitor model performance and detect drift.
-
-**Solution:**
 
 ```python
 # model_drift.py - Complete model drift detection system
@@ -950,8 +966,6 @@ if __name__ == "__main__":
 # Alerts with severity levels
 # Performance statistics
 ```
-
----
 
 ## Summary
 

@@ -18,7 +18,39 @@ Tags: ['assessment', 'practice', 'infrastructure', 'kubernetes']
 
 **Objective:** Deploy a 3-replica nginx application with resource limits and verify deployment.
 
-**Solution:**
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 2: GPU Deployment
+
+**Objective:** Deploy an LLM serving application with GPU resource allocation.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 3: Service and Ingress
+
+**Objective:** Expose the LLM service internally and externally.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 4: ConfigMap and Secrets
+
+**Objective:** Externalize configuration using ConfigMaps and Secrets.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 5: Scaling and Rollout
+
+**Objective:** Scale deployments and perform rolling updates with rollback capability.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+---
+
+## Answer Key
+
+Full solutions for every exercise above. Work through your own attempt before comparing.
+
+### Exercise 1: Deploy Simple Application
 
 ```yaml
 # deployment.yaml - Complete deployment manifest
@@ -96,10 +128,6 @@ kubectl logs -l app=test --tail=20
 ```
 
 ### Exercise 2: GPU Deployment
-
-**Objective:** Deploy an LLM serving application with GPU resource allocation.
-
-**Solution:**
 
 ```yaml
 # gpu-deployment.yaml - GPU-enabled deployment
@@ -187,10 +215,6 @@ kubectl exec -it deployment/llm-serving -- nvidia-smi
 
 ### Exercise 3: Service and Ingress
 
-**Objective:** Expose the LLM service internally and externally.
-
-**Solution:**
-
 ```yaml
 # service.yaml - LoadBalancer service
 apiVersion: v1
@@ -274,10 +298,6 @@ curl https://llm.example.com/v1/models
 ```
 
 ### Exercise 4: ConfigMap and Secrets
-
-**Objective:** Externalize configuration using ConfigMaps and Secrets.
-
-**Solution:**
 
 ```yaml
 # configmap.yaml - Application configuration
@@ -382,10 +402,6 @@ kubectl exec deployment/llm-serving-configured -- cat /etc/config/prompt.txt
 
 ### Exercise 5: Scaling and Rollout
 
-**Objective:** Scale deployments and perform rolling updates with rollback capability.
-
-**Solution:**
-
 ```bash
 # Scaling operations
 
@@ -475,8 +491,6 @@ echo "✓ History displayed"
 
 echo "=== Workflow Complete ==="
 ```
-
----
 
 ## Summary
 

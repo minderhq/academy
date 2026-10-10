@@ -18,7 +18,45 @@ Tags: ['assessment', 'practice', 'training', 'pretraining']
 
 **Objective:** Load and prepare a dataset for language model pretraining.
 
-**Solution:**
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 2: Data Loading
+
+**Objective:** Create a PyTorch DataLoader for pretraining.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 3: Training Loop
+
+**Objective:** Implement a complete training loop for language model pretraining.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 4: Checkpointing
+
+**Objective:** Implement model checkpointing and resuming.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 5: Evaluation
+
+**Objective:** Evaluate trained language model using perplexity.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 6: Advanced Training Techniques
+
+**Objective:** Implement advanced pretraining techniques.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+---
+
+## Answer Key
+
+Full solutions for every exercise above. Work through your own attempt before comparing.
+
+### Exercise 1: Dataset Preparation
 
 ```python
 from datasets import load_dataset
@@ -81,10 +119,6 @@ print(f"Tokenized dataset size: {len(tokenized_dataset)}")
 ```
 
 ### Exercise 2: Data Loading
-
-**Objective:** Create a PyTorch DataLoader for pretraining.
-
-**Solution:**
 
 ```python
 import torch
@@ -178,10 +212,6 @@ print(f"  Total batches per epoch: {len(dataloader)}")
 ```
 
 ### Exercise 3: Training Loop
-
-**Objective:** Implement a complete training loop for language model pretraining.
-
-**Solution:**
 
 ```python
 import torch
@@ -298,10 +328,6 @@ print("\n✓ Training complete!")
 ```
 
 ### Exercise 4: Checkpointing
-
-**Objective:** Implement model checkpointing and resuming.
-
-**Solution:**
 
 ```python
 import json
@@ -438,10 +464,6 @@ print(f"\n✓ Resuming from epoch {epoch + 1}")
 ```
 
 ### Exercise 5: Evaluation
-
-**Objective:** Evaluate trained language model using perplexity.
-
-**Solution:**
 
 ```python
 import math
@@ -601,10 +623,6 @@ print(f"  Diversity: {diversity:.2%}")
 
 ### Exercise 6: Advanced Training Techniques
 
-**Objective:** Implement advanced pretraining techniques.
-
-**Solution:**
-
 ```python
 # Mixed Precision Training
 # torch.cuda.amp is deprecated since PyTorch 2.4 - the canonical home
@@ -758,8 +776,6 @@ print("3. Warmup + Cosine Scheduling (better convergence)")
 # - Gradient accumulation: Simulate larger batch sizes
 # - Warmup + cosine: More stable and better final loss
 ```
-
----
 
 ## Summary
 

@@ -18,7 +18,39 @@ Tags: ['assessment', 'practice', 'infrastructure', 'monitoring']
 
 **Objective:** Configure and run Prometheus for monitoring LLM applications.
 
-**Solution:**
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 2: Grafana Dashboard
+
+**Objective:** Create a comprehensive monitoring dashboard for LLM applications.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 3: Custom Metrics
+
+**Objective:** Implement comprehensive metrics collection for LLM applications.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 4: Alert Rules
+
+**Objective:** Configure comprehensive alerting for LLM applications.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 5: Log Aggregation
+
+**Objective:** Implement structured logging with JSON output and log aggregation.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+---
+
+## Answer Key
+
+Full solutions for every exercise above. Work through your own attempt before comparing.
+
+### Exercise 1: Prometheus Setup
 
 ```yaml
 # prometheus.yml - Complete Prometheus configuration
@@ -132,10 +164,6 @@ curl -s http://localhost:9090/api/v1/targets | jq '.data.activeTargets[] | {job:
 ```
 
 ### Exercise 2: Grafana Dashboard
-
-**Objective:** Create a comprehensive monitoring dashboard for LLM applications.
-
-**Solution:**
 
 ```python
 # create_grafana_dashboard.py - Complete dashboard configuration
@@ -341,10 +369,6 @@ echo "- Refresh every 10 seconds"
 ```
 
 ### Exercise 3: Custom Metrics
-
-**Objective:** Implement comprehensive metrics collection for LLM applications.
-
-**Solution:**
 
 ```python
 # llm_metrics_collector.py - Complete metrics collection system
@@ -597,10 +621,6 @@ if __name__ == "__main__":
 
 ### Exercise 4: Alert Rules
 
-**Objective:** Configure comprehensive alerting for LLM applications.
-
-**Solution:**
-
 ```yaml
 # alerts.yml - Complete alert configuration
 groups:
@@ -827,10 +847,6 @@ curl -s http://localhost:9090/api/v1/alerts | jq '.data.alerts[] | {alert: .labe
 ```
 
 ### Exercise 5: Log Aggregation
-
-**Objective:** Implement structured logging with JSON output and log aggregation.
-
-**Solution:**
 
 ```python
 # structured_logging.py - Complete structured logging system
@@ -1217,8 +1233,6 @@ echo "- Structured JSON logs searchable"
 # - If connection errors: Verify Loki is accessible at http://localhost:3100
 # - If parsing errors: Check log format matches Promtail configuration
 ```
-
----
 
 ## Summary
 

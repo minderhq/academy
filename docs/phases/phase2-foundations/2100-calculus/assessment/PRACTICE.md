@@ -18,7 +18,39 @@ Tags: ['assessment', 'practice', 'math', 'calculus']
 
 **Objective:** Implement derivative computation both analytically and using PyTorch autograd.
 
-**Solution:**
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 2: Gradient Descent
+
+**Objective:** Implement gradient descent to minimize f(x) = (x-3)².
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 3: Partial Derivatives
+
+**Objective:** Compute partial derivatives of multivariate function f(x,y) = x² + y² + 2xy.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 4: Gradient Descent in 2D
+
+**Objective:** Extend gradient descent to minimize multivariate function.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 5: Chain Rule
+
+**Objective:** Implement and verify the chain rule for composite functions.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+---
+
+## Answer Key
+
+Full solutions for every exercise above. Work through your own attempt before comparing.
+
+### Exercise 1: Compute Derivatives
 
 ```python
 import torch
@@ -70,10 +102,6 @@ print(f"Autograd derivative at x=2: df/dx = {deriv_autograd}")
 ```
 
 ### Exercise 2: Gradient Descent
-
-**Objective:** Implement gradient descent to minimize f(x) = (x-3)².
-
-**Solution:**
 
 ```python
 import torch
@@ -181,10 +209,6 @@ print("\nVisualization saved to gradient_descent_convergence.png")
 
 ### Exercise 3: Partial Derivatives
 
-**Objective:** Compute partial derivatives of multivariate function f(x,y) = x² + y² + 2xy.
-
-**Solution:**
-
 ```python
 import torch
 
@@ -260,10 +284,6 @@ print(f"Gradient direction: ∇f = ({df_dx_analytical}, {df_dy_analytical})")
 ```
 
 ### Exercise 4: Gradient Descent in 2D
-
-**Objective:** Extend gradient descent to minimize multivariate function.
-
-**Solution:**
 
 ```python
 import torch
@@ -377,10 +397,6 @@ print("\nVisualization saved to gradient_descent_2d.png")
 
 ### Exercise 5: Chain Rule
 
-**Objective:** Implement and verify the chain rule for composite functions.
-
-**Solution:**
-
 ```python
 import torch
 
@@ -450,8 +466,6 @@ print(f"Result verification: {abs(analytical_chain_rule(x_value) - expected) < 1
 # Expected output:
 # All methods should yield df/dx = 12 at x = 3
 ```
-
----
 
 ## Summary
 
