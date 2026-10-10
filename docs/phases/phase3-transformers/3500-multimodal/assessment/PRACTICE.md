@@ -16,6 +16,66 @@ Tags: ['assessment', 'practice', 'transformers', 'multimodal']
 
 ### Exercise 1: CLIP Image-Text Encoding
 
+Load `openai/clip-vit-base-patch32`, encode a COCO image and five candidate captions, L2-normalize both feature sets, and compute image-text cosine similarities to find the best-matching caption. The cats photo should match 'a cat'-style texts over unrelated concepts like car or bird.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+---
+
+### Exercise 2: Vision Transformer (ViT)
+
+Run `google/vit-base-patch16-224` on the image and print the top-5 predictions with their softmax confidences. The top label should be cat-related with high confidence (>0.8).
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+---
+
+### Exercise 3: Multimodal Fusion
+
+Implement a `MultimodalFusion` module that projects text (768-d) and image (512-d) features into a shared space and fuses them through three selectable strategies — concatenation, gated blending, and addition — before a classification head. Test each strategy on dummy batch features; every path must output `(4, 10)` logits.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+---
+
+### Exercise 4: Image Captioning with BLIP
+
+Generate captions for the image with `Salesforce/blip-image-captioning-base`, first conditioned on the prompt 'a photo of' and then unconditionally. Both captions should describe the two cats; the conditional one follows the prompt format.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+---
+
+### Exercise 5: Visual Question Answering
+
+Ask `dandelin/vilt-b32-finetuned-vqa` a set of questions about the image — what is in it, how many animals, whether they are awake — and print the predicted answer for each. Expect 'cat(s)' for the animal question, 'two' for the count, and 'no' for awake.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+---
+
+### Exercise 6: Audio-Text Processing (Whisper)
+
+Load `openai/whisper-base` and transcribe one second of random 16 kHz audio as a stand-in for real input. Gibberish output is expected here — with real audio loaded via torchaudio, the same pipeline produces an accurate transcript.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+---
+
+### Exercise 7: Cross-Modal Retrieval System
+
+Build a `CrossModalRetrieval` system that caches normalized CLIP embeddings for an image set and retrieves the top-k images for a text query (or captions for an image query) through a single matrix product. The demo prints the sample query texts and the usage steps; the encode/retrieve methods follow Exercise 1's normalize-matmul-top-k flow.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+---
+
+## Answer Key
+
+Full solutions for every exercise above. Work through your own attempt before comparing.
+
+### Exercise 1: CLIP Image-Text Encoding
+
 ```python
 import torch
 from transformers import CLIPProcessor, CLIPModel
@@ -77,8 +137,6 @@ print(f"\nBest match: \"{texts[best_idx]}\" with score {similarity[best_idx]:.4f
 - Zero-shot classification
 - Visual grounding
 
----
-
 ### Exercise 2: Vision Transformer (ViT)
 
 ```python
@@ -131,8 +189,6 @@ for idx, score in zip(top5_idx, top5_scores):
 3. Add position embeddings
 4. Pass through transformer encoder
 5. Classification head on [CLS] token
-
----
 
 ### Exercise 3: Multimodal Fusion
 
@@ -261,8 +317,6 @@ for fusion_type in ['concat', 'gate', 'add']:
 3. **Attention**: Cross-modal attention
 4. **Tensor Fusion**: Captures interactions
 
----
-
 ### Exercise 4: Image Captioning with BLIP
 
 ```python
@@ -309,8 +363,6 @@ print(f"Unconditional caption: \"{unconditional_caption}\"")
 - Uses bootstrapping for noisy data filtering
 - State-of-the-art image captioning
 - Can also do VQA and visual reasoning
-
----
 
 ### Exercise 5: Visual Question Answering
 
@@ -371,8 +423,6 @@ for question in questions:
 - Trained on VQA v2 dataset
 - Applications in accessibility, education, robotics
 
----
-
 ### Exercise 6: Audio-Text Processing (Whisper)
 
 ```python
@@ -412,8 +462,6 @@ print(f"\nTranscription: {transcription}")
 - Trained on 680k hours of multilingual data
 - Handles multiple languages and translation
 - Strong performance on diverse accents
-
----
 
 ### Exercise 7: Cross-Modal Retrieval System
 
@@ -490,8 +538,6 @@ print("4. Get top-k most similar images")
 # (no retrieval runs here - the encode/retrieve methods follow
 # the same flow as Exercise 1: normalize, matmul, top-k)
 ```
-
----
 
 ## Summary: Multimodal AI Applications
 

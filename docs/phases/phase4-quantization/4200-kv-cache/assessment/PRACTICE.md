@@ -16,6 +16,42 @@ Tags: ['assessment', 'practice', 'quantization', 'kv-cache']
 
 ### Exercise 1: Implement Basic KV Cache
 
+Implement a `KVCache` class with preallocated key/value buffers on the right device and dtype, an `update()` that appends a chunk of new K/V and returns the cache so far, and a `current_len` counter. Feed it five 10-token chunks and confirm the final cache length is 50 with shape `[1, 4, 50, 64]`.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+---
+
+### Exercise 2: Multi-Query Attention with KV Cache
+
+Build `MultiQueryAttentionWithCache`, where all query heads share a single K/V head: project Q to every head but K and V to one head each, expand the cached K/V across the query heads (a view, not a copy), and decode in three 5-token chunks, watching the cache length grow from 5 to 10 to 15.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+---
+
+### Exercise 3: Cache Size Calculation
+
+Write `calculate_cache_memory()` computing `2 * n_layers * hidden_size * bytes * batch * seq` in GB, then tabulate it for GPT-2 sizes through LLaMA-70B across sequence lengths 512-16384. Verify the linear growth: each token costs 512 KB for LLaMA-7B in FP16.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+---
+
+### Exercise 4: Streaming Generation with Cache
+
+Sketch `generate_with_cache()`, which feeds the prompt once and then decodes token-by-token while reusing the model's KV cache instead of re-encoding the prefix — the runnable part stays commented out, since it needs transformers and a GPT-2 download — and print the key-benefits list: speed, memory cost, scalability, and production relevance.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+---
+
+## Answer Key
+
+Full solutions for every exercise above. Work through your own attempt before comparing.
+
+### Exercise 1: Implement Basic KV Cache
+
 ```python
 import torch
 import torch.nn as nn
@@ -134,8 +170,6 @@ print(f"Value cache shape: {cached_values.shape}")
 - Proportional to batch_size × num_heads × seq_len × head_dim
 - For LLaMA-7B in FP16: ~1 GB at 2K sequence length (see Exercise 3)
 
----
-
 ### Exercise 2: Multi-Query Attention with KV Cache
 
 ```python
@@ -237,8 +271,6 @@ for i in range(3):
 - Faster inference due to reduced memory bandwidth
 - Enables longer sequences and larger batch sizes
 
----
-
 ### Exercise 3: Cache Size Calculation
 
 ```python
@@ -309,8 +341,6 @@ for seq_len in seq_lengths:
 # LLaMA-7B 1.00, 13B 1.56, 70B 5.00 GB
 # Seq table (LLaMA-7B): 0.25 / 0.50 / 1.00 / 2.00 / 4.00 / 8.00 GB
 ```
-
----
 
 ### Exercise 4: Streaming Generation with Cache
 
@@ -386,8 +416,6 @@ Implementation Tips:
 # directly; the generate_with_cache block above is commented out -
 # uncommenting needs transformers and the gpt2 download
 ```
-
----
 
 ## Summary: KV Cache Optimization
 

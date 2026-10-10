@@ -16,6 +16,34 @@ Tags: ['assessment', 'practice', 'transformers', 'attention']
 
 ### Exercise 1: Implement Self-Attention
 
+Write a `SelfAttention` module that projects the input through one fused QKV linear layer, splits it into the configured number of heads, applies scaled dot-product attention with optional masking and dropout, then concatenates the heads and applies the output projection. Verify with a `(2, 10, 64)` tensor: the output shape must be `torch.Size([2, 10, 64])`.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+---
+
+### Exercise 2: Implement Causal Mask
+
+Implement two causal-mask helpers — a boolean mask that marks future positions `False` and a float mask that writes `-inf` above the diagonal — then visualize both with matplotlib so the lower-triangular structure is visible.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+---
+
+### Exercise 3: Visualize Attention
+
+Build plotting helpers that render a single attention matrix as a heatmap and multi-head attention as one heatmap per head, then run them on the weights from Exercise 1 to see which token pairs each head attends to.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+---
+
+## Answer Key
+
+Full solutions for every exercise above. Work through your own attempt before comparing.
+
+### Exercise 1: Implement Self-Attention
+
 ```python
 import torch
 import torch.nn as nn
@@ -85,8 +113,6 @@ print(f"Output shape: {output.shape}")  # Should be torch.Size([2, 10, 64])
 - If embed_dim is not divisible by num_heads, you'll get an error
 - For causal attention, pass a lower triangular mask
 - Gradient issues: check that scale is applied correctly
-
----
 
 ### Exercise 2: Implement Causal Mask
 
@@ -160,8 +186,6 @@ plt.show()
 - Language modeling
 - Text generation
 - Time series forecasting
-
----
 
 ### Exercise 3: Visualize Attention
 
@@ -324,8 +348,6 @@ plt.show()
 - Columns = keys (what's being attended to)
 - Diagonal focus = self-attention pattern
 - Off-diagonal = cross-token dependencies
-
----
 
 ## Bonus: Attention Mechanism Comparison
 

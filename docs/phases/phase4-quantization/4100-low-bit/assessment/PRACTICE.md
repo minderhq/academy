@@ -16,6 +16,50 @@ Tags: ['assessment', 'practice', 'quantization', 'gguf']
 
 ### Exercise 1: Manual Post-Training Quantization
 
+Implement `quantize_per_tensor()` by hand — derive scale and zero-point from the tensor's min/max, map values onto the int8 grid, and write the matching `dequantize()` — then measure the mean absolute error (it should sit near scale/4) and the compression ratio (4.00x from float32 to int8).
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+---
+
+### Exercise 2: Dynamic Quantization
+
+Apply `torch.ao.quantization.quantize_dynamic` to a three-layer MLP and inspect which modules were converted to qint8. Expect roughly 4x compression from the Linear weights; at this tiny batch-1 shape the speedup is hardware-dependent and can be modest or even negative.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+---
+
+### Exercise 3: Static Quantization
+
+Build a calibration DataLoader, define a small MNIST-style model, run static post-training quantization, and compare model sizes plus the outputs of the fp32 and int8 models on a random input. Compression should be about 4x with a small but nonzero output difference.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+---
+
+### Exercise 4: BitsAndBytes 4-bit Quantization
+
+Configure 4-bit NF4 quantization with double quantization and a float16 compute dtype via `BitsAndBytesConfig`. The model-load step stays commented out — it needs a GPU and the bitsandbytes package — so the exercise prints the banner and the key points, including the ~8x memory reduction.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+---
+
+### Exercise 5: Quantization Error Analysis
+
+Write `analyze_quantization_error()` to compute absolute, relative, MSE, MAE, max error, and SQNR for a quantized tensor, then sweep bit widths and plot SQNR against bits. SQNR should climb roughly 6 dB per added bit, with 4-bit visibly coarse and 16/32-bit near-lossless.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+---
+
+## Answer Key
+
+Full solutions for every exercise above. Work through your own attempt before comparing.
+
+### Exercise 1: Manual Post-Training Quantization
+
 ```python
 import torch
 import torch.nn as nn
@@ -106,8 +150,6 @@ print(f"Compression ratio: {compression:.2f}x")
 **Pros:** Fast, no retraining needed
 
 **Cons:** Can lose accuracy at low bit-widths
-
----
 
 ### Exercise 2: Dynamic Quantization
 
@@ -212,8 +254,6 @@ for name, module in quantized_model.named_modules():
 - Leave embeddings in FP32/FP16
 - Test accuracy after quantization
 
----
-
 ### Exercise 3: Static Quantization
 
 ```python
@@ -309,8 +349,6 @@ print(f"\nOutput difference: {output_diff:.6f}")
 - Cover data distribution
 - Avoid outliers in calibration set
 
----
-
 ### Exercise 4: BitsAndBytes 4-bit Quantization
 
 ```python
@@ -399,8 +437,6 @@ print("- Typical compression: ~8x (FP32 to INT4)")
 - Running large models on limited GPU memory
 - LLaMA, Falcon, Mistral models
 - Inference with minimal accuracy loss
-
----
 
 ### Exercise 5: Quantization Error Analysis
 
@@ -515,8 +551,6 @@ plt.show()
 # near-lossless. The histogram's 4-bit curve shows the same coarse
 # binning next to the 8-bit one
 ```
-
----
 
 ## Summary: Quantization Trade-offs
 

@@ -16,6 +16,50 @@ Tags: ['assessment', 'practice', 'transformers', 'architecture']
 
 ### Exercise 1: BERT-style Encoder
 
+Build a `BERTLayer` encoder block: bidirectional multi-head self-attention followed by a GELU feed-forward network, each wrapped with a residual connection and layer normalization. Pass a `(2, 10, 256)` tensor through and confirm the output shape is unchanged.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+---
+
+### Exercise 2: GPT-style Decoder
+
+Construct `CausalMultiHeadAttention`, which masks future positions before the softmax, then stack it into a `GPTLayer` decoder block with the same residual/FFN skeleton as the encoder. Verify with a `(2, 10, 256)` input that shapes are preserved.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+---
+
+### Exercise 3: Encoder-Decoder (T5-style)
+
+Assemble a T5-style `EncoderDecoderLayer`: a bidirectional encoder pass, then a decoder step that runs causal self-attention, cross-attends to the encoder output, and applies the feed-forward. Feed encoder input `(2, 10, 256)` and decoder input `(2, 5, 256)` and confirm the output matches the decoder length.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+---
+
+### Exercise 4: Build Complete Models
+
+Wrap the layers into complete models: a `BERT` with token/positional embeddings, stacked encoder layers, and language-model plus pooled-classification heads; and a `GPT` whose LM head is tied to its token embedding. Run both on random input IDs and check the logits and pooled-output shapes.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+---
+
+### Exercise 5: Model Comparison & Analysis
+
+Write `compare_architectures()` to instantiate both models at identical capacity and report parameter counts, memory footprint, and a use-case summary. At the same config GPT comes out roughly 20% smaller: its LM head is tied to the embeddings, while BERT carries a separate LM head plus the classification head.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+---
+
+## Answer Key
+
+Full solutions for every exercise above. Work through your own attempt before comparing.
+
+### Exercise 1: BERT-style Encoder
+
 ```python
 import torch
 import torch.nn as nn
@@ -99,8 +143,6 @@ print(f"Output shape: {output.shape}")
 3. Residual connections
 4. Layer normalization
 5. Dropout for regularization
-
----
 
 ### Exercise 2: GPT-style Decoder
 
@@ -211,8 +253,6 @@ print(f"Output shape: {output.shape}")
 - Pre-LN instead of Post-LN
 - Designed for autoregressive generation
 
----
-
 ### Exercise 3: Encoder-Decoder (T5-style)
 
 ```python
@@ -309,8 +349,6 @@ print(f"Output shape: {output.shape}")
 - Summarization
 - Question answering
 - Seq2seq tasks
-
----
 
 ### Exercise 4: Build Complete Models
 
@@ -457,8 +495,6 @@ print(f"LM logits shape: {logits.shape}")
 | Training | Masked LM | Autoregressive |
 | Inference | Single pass | Sequential generation |
 
----
-
 ### Exercise 5: Model Comparison & Analysis
 
 ```python
@@ -566,8 +602,6 @@ bert, gpt = compare_architectures()
 # to the token embedding, while BERT carries a separate lm_head plus
 # the 2-class cls_head
 ```
-
----
 
 ## Bonus: Advanced Features
 

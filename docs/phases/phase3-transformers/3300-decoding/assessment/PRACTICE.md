@@ -16,6 +16,50 @@ Tags: ['assessment', 'practice', 'transformers', 'activation']
 
 ### Exercise 1: Implement Greedy Decoding
 
+Implement `greedy_decode()`, which autoregressively appends the argmax token each step until `max_new_tokens` or the EOS id is reached, then continue the prompt 'The future of artificial intelligence'. Expect coherent but possibly repetitive text — greedy decoding often loops.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+---
+
+### Exercise 2: Implement Beam Search
+
+Implement `beam_search()`, which keeps the `num_beams` highest log-probability sequences at every step and returns the best one, then generate with several beam sizes. Beam size 1 must reproduce greedy output; more beams trade speed for coherence.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+---
+
+### Exercise 3: Implement Top-k Sampling
+
+Implement `top_k_sampling()`, which truncates the distribution to the k most likely tokens, rescales with temperature, and samples from what remains. Generate with several k values and observe the focus/diversity trade-off.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+---
+
+### Exercise 4: Implement Nucleus Sampling
+
+Implement `nucleus_sampling()`, which samples from the smallest token set whose cumulative probability reaches `top_p`, so the cut-off adapts to the distribution's shape. Sweep p from focused (0.5) to diverse (0.95) and compare against fixed-k truncation.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+---
+
+### Exercise 5: Compare All Methods
+
+Write `compare_decoding_methods()` to run greedy, beam, top-k, and nucleus on the same prompt and print the continuations side by side, then summarize when each fits: beam for factual text, nucleus for creative writing, low-temperature beam for code.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+---
+
+## Answer Key
+
+Full solutions for every exercise above. Work through your own attempt before comparing.
+
+### Exercise 1: Implement Greedy Decoding
+
 ```python
 import torch
 import torch.nn.functional as F
@@ -101,8 +145,6 @@ print(f"\nGenerated text:\n{text}\n")
 **Pros:** Simple, deterministic, fast
 
 **Cons:** Can get stuck in loops, misses better sequences
-
----
 
 ### Exercise 2: Implement Beam Search
 
@@ -211,8 +253,6 @@ for num_beams in [1, 3, 5]:
 
 **Cons:** Can still be repetitive, more compute than greedy
 
----
-
 ### Exercise 3: Implement Top-k Sampling
 
 ```python
@@ -302,8 +342,6 @@ for top_k in [10, 50, 100]:
 - Low temperature (0.1-0.5): More deterministic, focused
 - Medium temperature (0.7-1.0): Balanced diversity and coherence
 - High temperature (1.5-2.0): Very diverse, potentially incoherent
-
----
 
 ### Exercise 4: Implement Nucleus Sampling
 
@@ -409,8 +447,6 @@ for top_p in [0.5, 0.9, 0.95]:
 - Nucleus: Adaptive vocabulary size
 - Nucleus often produces better quality text
 
----
-
 ### Exercise 5: Compare All Methods
 
 ```python
@@ -505,8 +541,6 @@ RECOMMENDATIONS:
 # Beam search: most coherent but possibly repetitive
 # Sampling methods: more diverse and creative
 ```
-
----
 
 ## Bonus: Advanced Techniques
 

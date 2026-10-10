@@ -16,6 +16,50 @@ Tags: ['assessment', 'practice', 'transformers', 'embeddings']
 
 ### Exercise 1: Word2Vec Training
 
+Train a gensim `Word2Vec` model on a small hand-written corpus that contains every word your probes will query, then check `similarity()` scores for related pairs (cat/dog, france/paris), run the classic `king - man + woman` analogy via `most_similar()`, and save the model. On a toy corpus the numbers are illustrative, not reproducible — read the qualitative direction.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+---
+
+### Exercise 2: Sentence Embeddings
+
+Load the `all-MiniLM-L6-v2` sentence transformer, embed a list of sentences, and write `find_most_similar_pairs()` to score every pair with cosine similarity and return the top-k most similar. Semantically close pairs (a cat on a mat vs. a kitten on a rug) should score above 0.7, unrelated pairs below 0.3.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+---
+
+### Exercise 3: BERT Embeddings
+
+Encode sentences with `bert-base-uncased`, pool the token embeddings with an attention-mask-weighted mean, and print the pairwise cosine-similarity matrix. Paraphrases should stay highly similar regardless of word order.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+---
+
+### Exercise 4: Embedding Visualization
+
+Take embeddings for words from three semantic categories and project them to 2-D with both PCA and t-SNE, drawing annotated scatter plots side by side plus a 3-D PCA figure. Same-category words should form loose clusters, with t-SNE usually separating them more cleanly.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+---
+
+### Exercise 5: Similarity Search
+
+Build a small semantic search engine: implement `find_most_similar()` returning the top-k documents for a query, wrap it in a `SemanticSearchEngine` that pre-embeds its document corpus, and add `search_with_threshold()` so matches below a cosine cutoff are dropped.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+---
+
+## Answer Key
+
+Full solutions for every exercise above. Work through your own attempt before comparing.
+
+### Exercise 1: Word2Vec Training
+
 ```python
 from gensim.models import Word2Vec
 
@@ -121,8 +165,6 @@ print("\nModel saved to 'word2vec.model'")
 - Ensure min_count isn't filtering out important words
 - More training data = better embeddings
 
----
-
 ### Exercise 2: Sentence Embeddings
 
 ```python
@@ -218,8 +260,6 @@ for i, j, sim in top_pairs:
 - Document clustering
 - Duplicate detection
 - Recommendation systems
-
----
 
 ### Exercise 3: BERT Embeddings
 
@@ -331,8 +371,6 @@ for i, s1 in enumerate(sentences):
 1. **CLS token**: Special first token, trained for classification
 2. **Mean pooling**: Average of all token embeddings
 3. **Max pooling**: Maximum value across each dimension
-
----
 
 ### Exercise 4: Embedding Visualization
 
@@ -477,8 +515,6 @@ print("- t-SNE often shows better separation than PCA")
 - PCA: linear, faster, preserves global structure
 - t-SNE: non-linear, slower, preserves local neighborhoods
 - Clusters reveal semantic relationships
-
----
 
 ### Exercise 5: Similarity Search
 
@@ -655,8 +691,6 @@ else:
 - Pre-compute embeddings for static document sets
 - Use approximate nearest neighbor (ANN) for large datasets
 - Consider FAISS or Milvus for production systems
-
----
 
 ## Bonus: Embedding Comparison
 
