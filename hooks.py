@@ -546,6 +546,7 @@ def on_post_build(config, **kwargs):
     edit_anchor_re = re.compile(r'<a\b[^>]*\brel="edit"[^>]*>')
     bridged = untabbed = named = current = enlarged = sited = retitled = footered = scoped = skipped = tabbed = 0
     searchlab = drawerlab = drawertab = drawerkey = motionin = searchfocus = hlf = 0
+    labelname = 0
     navlab = tocdead = 0
     navtitle = 0
     site_name = (config.get("site_name") or "").replace('"', "&quot;")
@@ -710,6 +711,20 @@ def on_post_build(config, **kwargs):
         if "</body>" in new_text and highlight_fix_html not in new_text:
             new_text = new_text.replace("</body>", highlight_fix_html + "</body>", 1)
             hlf += 1
+        # label-in-name parity (17): upstream renders the footer prev/next
+        # links as visible "Previous"/"Next" + page title but names them
+        # aria-label="Previous: {title}" - the inserted colon breaks WCAG
+        # 2.5.3 containment (ACT afw4f7: the accessible name must contain
+        # the visible label text; punctuation is not ignored) - drop the
+        # colon so the name reads exactly like the visible text. The
+        # literal prefixes are corpus-unique to the footer links (census:
+        # 441+441 hits, zero elsewhere).
+        for _pre, _rep in (('aria-label="Previous: ', 'aria-label="Previous '),
+                           ('aria-label="Next: ', 'aria-label="Next ')):
+            _n = new_text.count(_pre)
+            if _n:
+                labelname += _n
+                new_text = new_text.replace(_pre, _rep)
         # sidebar index-toggle labels (12a): name the bare icon-only section
         # toggles from their sibling <a> title, and (12b) drop the dead
         # __toc for= on pages whose __toc input was never emitted
@@ -749,4 +764,5 @@ def on_post_build(config, **kwargs):
     print(f"[hooks] reduced-motion: {motionin} scroll shim(s) injected")
     print(f"[hooks] search-focus: {searchfocus} return handler(s) injected")
     print(f"[hooks] highlight-fix: {hlf} guard script(s) injected")
+    print(f"[hooks] label-in-name: {labelname} footer prev/next aria-label(s) colon-aligned")
     print(f"[hooks] nav labels: {navlab} index toggle(s) named; {tocdead} dead __toc for= dropped; {navtitle} broken panel aria-labelledby re-pointed")
