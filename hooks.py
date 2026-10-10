@@ -299,6 +299,67 @@ def on_post_build(config, **kwargs):
         'var t=e.target;'
         't&&t.matches&&t.matches(\'label.md-header__button[for="__drawer"]\')'
         '&&(e.preventDefault(),t.click())});</script>')
+    # 14) reduced-motion JS-scroll shim, the one live gap measured by the
+    #     tick-926 prefers-reduced-motion coverage census. The CSS face of
+    #     this axis is already TOTAL upstream: the shipped 9.7.7 stylesheet
+    #     carries exactly one @media (prefers-reduced-motion) block and it
+    #     is the universal nuker - *,:after,:before{transition:none
+    #     !important} - which defeats all 118 transition declarations in
+    #     the file at once; the six @keyframes animations (consent, overlay,
+    #     facts, fact, pulse, hoverfix) are outside it, but every owner is
+    #     a config-dead surface on this site (consent overlay, repo facts,
+    #     version selector, count annotations all zero-hit in the corpus),
+    #     so no animation actually plays anywhere to reduce. The gap is the
+    #     JS face: the bundle contains zero occurrences of the media query,
+    #     and toc.follow (mkdocs.yml, live in every page's embedded config)
+    #     scrolls the sidebar to the active TOC entry with an explicit
+    #     behavior:"smooth" 250ms after scrolling starts - and per the
+    #     CSSOM-View spec an explicit behavior in the options object
+    #     OVERRIDES the container's computed scroll-behavior, so no CSS
+    #     rule can ever downgrade it (the other two bundle smooth scrolls
+    #     belong to the tabbed-set indicator, a zero-block dead surface
+    #     here). For a user with reduce set, the browser silences every
+    #     color/opacity/transform transition on the page and then the
+    #     sidebar keeps performing its own smooth scroll on every scroll
+    #     tick - the one motion the preference never reaches. Fix: a
+    #     document-level shim that patches Element.prototype.scrollTo/
+    #     scrollBy ONLY while the media query matches: calls carrying a
+    #     behavior get a copied options object with behavior:"auto"
+    #     (instant), calls without one forward byte-identically, and
+    #     nothing else on the page is touched - window.scrollTo calls in
+    #     the bundle carry no behavior and need nothing. The patch installs
+    #     and uninstalls on matchMedia change events so the preference can
+    #     flip at runtime, and stays inert in a normal-motion browser
+    #     (prototypes untouched). Same guarded-injection pattern as the
+    #     drawer delegate: string-absence per document, no listener state.
+    motion_scroll_html = (
+        '<script>(function(){'
+        'var q=window.matchMedia?matchMedia("(prefers-reduced-motion: reduce)"):null;'
+        'if(!q)return;'
+        'function on(r){'
+        'if(r){'
+        'if(!Element.prototype.__rmScrollTo){'
+        'Element.prototype.__rmScrollTo=Element.prototype.scrollTo;'
+        'Element.prototype.scrollTo=function(o){'
+        'return o&&"behavior"in o?'
+        'Element.prototype.__rmScrollTo.call(this,Object.assign({},o,{behavior:"auto"})):'
+        'Element.prototype.__rmScrollTo.apply(this,arguments)};'
+        'Element.prototype.__rmScrollBy=Element.prototype.scrollBy;'
+        'Element.prototype.scrollBy=function(o){'
+        'return o&&"behavior"in o?'
+        'Element.prototype.__rmScrollBy.call(this,Object.assign({},o,{behavior:"auto"})):'
+        'Element.prototype.__rmScrollBy.apply(this,arguments)};'
+        '}'
+        '}else if(Element.prototype.__rmScrollTo){'
+        'Element.prototype.scrollTo=Element.prototype.__rmScrollTo;'
+        'delete Element.prototype.__rmScrollTo;'
+        'Element.prototype.scrollBy=Element.prototype.__rmScrollBy;'
+        'delete Element.prototype.__rmScrollBy;'
+        '}'
+        '}'
+        'on(q.matches);'
+        'if(q.addEventListener)q.addEventListener("change",function(){on(q.matches)});'
+        '})();</script>')
     # 12) label-hygiene face, two upstream gaps measured by the tick-904
     #     label[for]->input[id] wiring census. (a) With navigation.indexes
     #     active, every nested sidebar section's expand/collapse control is
@@ -363,7 +424,7 @@ def on_post_build(config, **kwargs):
     line_anchor_re = re.compile(r'<a\b[^>]*\bid="__codelineno[^>]*>')
     edit_anchor_re = re.compile(r'<a\b[^>]*\brel="edit"[^>]*>')
     bridged = untabbed = named = current = enlarged = sited = retitled = footered = scoped = skipped = tabbed = 0
-    searchlab = drawerlab = drawertab = drawerkey = 0
+    searchlab = drawerlab = drawertab = drawerkey = motionin = 0
     navlab = tocdead = 0
     navtitle = 0
     site_name = (config.get("site_name") or "").replace('"', "&quot;")
@@ -510,6 +571,12 @@ def on_post_build(config, **kwargs):
         if drawertab and "</body>" in new_text and drawer_keys_html not in new_text:
             new_text = new_text.replace("</body>", drawer_keys_html + "</body>", 1)
             drawerkey += 1
+        # reduced-motion scroll shim (14): patch scrollTo/scrollBy while the
+        # user prefers reduced motion, so the bundle's toc.follow smooth
+        # scroll cannot override it
+        if "</body>" in new_text and motion_scroll_html not in new_text:
+            new_text = new_text.replace("</body>", motion_scroll_html + "</body>", 1)
+            motionin += 1
         # sidebar index-toggle labels (12a): name the bare icon-only section
         # toggles from their sibling <a> title, and (12b) drop the dead
         # __toc for= on pages whose __toc input was never emitted
@@ -546,4 +613,5 @@ def on_post_build(config, **kwargs):
     print(f"[hooks] tabs: {tabbed} active header tab(s) marked aria-current")
     print(f"[hooks] header labels: {searchlab} search + {drawerlab} drawer icon toggle(s) named")
     print(f"[hooks] drawer keyboard: {drawertab} toggle(s) made focusable; {drawerkey} key handler(s) injected")
+    print(f"[hooks] reduced-motion: {motionin} scroll shim(s) injected")
     print(f"[hooks] nav labels: {navlab} index toggle(s) named; {tocdead} dead __toc for= dropped; {navtitle} broken panel aria-labelledby re-pointed")
