@@ -360,6 +360,54 @@ def on_post_build(config, **kwargs):
         'on(q.matches);'
         'if(q.addEventListener)q.addEventListener("change",function(){on(q.matches)});'
         '})();</script>')
+    # 15) search-overlay focus management, the interaction-parity gap the
+    #     tick-928 overlay-focus census measured live. Opening the search is
+    #     focus-correct on every path - the bundle moves focus into the
+    #     query input on open whether the search was opened by the mobile
+    #     magnifier, the desktop "s" shortcut, or a Tab onto the
+    #     focus-to-open mobile input (focusing it checks __search and the
+    #     overlay opens) - but every close path strands the keyboard user:
+    #     Escape closes and blurs (live-verified: focus drops to body on
+    #     both mobile and desktop), and on the mobile overlay a Tab is the
+    #     bundle's own dismiss gesture (close + focus to the results
+    #     scrollwrap), leaving focus on an element the close animation
+    #     turns invisible (live: focus-visible class on an opacity-0
+    #     scrollwrap). The drawer already got its trigger-return fix in
+    #     tick-925; the search never restores anywhere. Fix: a document-
+    #     level pair of capture listeners - focusin records the last real
+    #     focus target outside .md-search (the anchor), keydown watches
+    #     Escape/Tab while __search is checked, and 120ms later - the
+    #     bundle's close and blur having settled - the anchor is refocused
+    #     ONLY if the search did close and focus is still stranded (body,
+    #     or inside the search element). Keydown detection instead of a
+    #     change listener because the bundle may uncheck the checkbox
+    #     programmatically, which fires no change event. The anchor can
+    #     never be the input itself (inside-search targets are skipped),
+    #     so a restore can never re-open the search; a stale anchor after
+    #     an instant-navigation swap fails the isConnected check and is
+    #     skipped; a close where focus already moved somewhere real
+    #     (result-link navigation, the tick-925 drawer restore) is a
+    #     no-op. Same guarded-injection pattern as blocks 13 and 14.
+    search_focus_html = (
+        '<script>(function(){'
+        'var d=document,anchor=null;'
+        'd.addEventListener("focusin",function(e){'
+        'var t=e.target;'
+        'if(!t||!t.classList||t===d.body||(t.closest&&t.closest(".md-search")))return;'
+        'anchor=t},!0);'
+        'd.addEventListener("keydown",function(e){'
+        'if("Escape"!==e.key&&"Tab"!==e.key)return;'
+        'var c=document.getElementById("__search");'
+        'if(!c||!c.checked)return;'
+        'var a0=anchor;'
+        'setTimeout(function(){'
+        'if(c.checked)return;'
+        'var a=d.activeElement;'
+        'if(!a0||a0===d.body||!a0.isConnected)return;'
+        'if(!a||a===d.body||(a.closest&&a.closest(".md-search")))'
+        '{try{a0.focus({preventScroll:!0})}catch(_){a0.focus()}}'
+        '},120)},!0);'
+        '})();</script>')
     # 12) label-hygiene face, two upstream gaps measured by the tick-904
     #     label[for]->input[id] wiring census. (a) With navigation.indexes
     #     active, every nested sidebar section's expand/collapse control is
@@ -424,7 +472,7 @@ def on_post_build(config, **kwargs):
     line_anchor_re = re.compile(r'<a\b[^>]*\bid="__codelineno[^>]*>')
     edit_anchor_re = re.compile(r'<a\b[^>]*\brel="edit"[^>]*>')
     bridged = untabbed = named = current = enlarged = sited = retitled = footered = scoped = skipped = tabbed = 0
-    searchlab = drawerlab = drawertab = drawerkey = motionin = 0
+    searchlab = drawerlab = drawertab = drawerkey = motionin = searchfocus = 0
     navlab = tocdead = 0
     navtitle = 0
     site_name = (config.get("site_name") or "").replace('"', "&quot;")
@@ -577,6 +625,12 @@ def on_post_build(config, **kwargs):
         if "</body>" in new_text and motion_scroll_html not in new_text:
             new_text = new_text.replace("</body>", motion_scroll_html + "</body>", 1)
             motionin += 1
+        # search focus-return (15): refocus the last real anchor after the
+        # search overlay closes, so Escape/Tab dismissals do not strand
+        # keyboard focus on body or an invisible element
+        if "</body>" in new_text and search_focus_html not in new_text:
+            new_text = new_text.replace("</body>", search_focus_html + "</body>", 1)
+            searchfocus += 1
         # sidebar index-toggle labels (12a): name the bare icon-only section
         # toggles from their sibling <a> title, and (12b) drop the dead
         # __toc for= on pages whose __toc input was never emitted
@@ -614,4 +668,5 @@ def on_post_build(config, **kwargs):
     print(f"[hooks] header labels: {searchlab} search + {drawerlab} drawer icon toggle(s) named")
     print(f"[hooks] drawer keyboard: {drawertab} toggle(s) made focusable; {drawerkey} key handler(s) injected")
     print(f"[hooks] reduced-motion: {motionin} scroll shim(s) injected")
+    print(f"[hooks] search-focus: {searchfocus} return handler(s) injected")
     print(f"[hooks] nav labels: {navlab} index toggle(s) named; {tocdead} dead __toc for= dropped; {navtitle} broken panel aria-labelledby re-pointed")
