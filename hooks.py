@@ -518,6 +518,55 @@ def on_post_build(config, **kwargs):
         '})();'
         '}catch(e){}'
         '})();</script>')
+    # 21) instant-nav focus restore (tick-940): on a Material instant
+    #     navigation the bundle swaps the DOM in place and the link the
+    #     user just activated is removed with it, so document.activeElement
+    #     falls to <body> - live-verified on both faces (synthetic click
+    #     and a real Enter keypress on a focused header tab): after the
+    #     swap no element is focused, the new page's heading is never
+    #     announced to assistive tech, and nothing marks the context
+    #     change beyond the visual swap - a screen-reader user pressing
+    #     Enter on a nav link loses their place entirely (the same
+    #     upstream-inherited ownership class as the alert toast). The
+    #     bundle's own ten .focus() calls are search/clipboard/annotation
+    #     only; there is no navigation focus handoff. Standard SPA practice
+    #     (WAI-ARIA AP, GOV.UK) moves focus to the new page's main heading
+    #     on route change; every corpus h1 already carries tabindex="-1"
+    #     (block 9's skip-target rewrite), so the target is focusable.
+    #     Upstream exports the document stream itself as window.document$
+    #     (bundle-verified), which emits once on load and once per swap:
+    #     the first emission is skipped so initial page-load behavior is
+    #     byte-identical, later ones focus the new h1 (preventScroll - the
+    #     swap already restores scroll to top) only when focus actually
+    #     fell to body, so a live focus target is never stolen. Bounded
+    #     polling for the export, every layer in try/catch: a failed
+    #     subscription degrades to the shipped behavior, never to a
+    #     broken page.
+    nav_focus_html = (
+        '<script>(function(){'
+        'try{'
+        'if(window.__mdNavFocus)return;'
+        'window.__mdNavFocus=1;'
+        'var seen=0;'
+        'function onDoc(){'
+        'try{'
+        'seen++;'
+        'if(seen===1)return;'
+        'if(document.activeElement&&document.activeElement!==document.body)return;'
+        'var h1=document.querySelector(".md-content h1");'
+        'if(!h1)return;'
+        'if(!h1.hasAttribute("tabindex"))h1.setAttribute("tabindex","-1");'
+        'h1.focus({preventScroll:true});'
+        '}catch(e){}'
+        '}'
+        'var tries=0;'
+        '(function arm(){'
+        'if(window.document$&&typeof window.document$.subscribe==="function"){'
+        'try{window.document$.subscribe(onDoc);}catch(e){}'
+        '} else if(++tries<50){setTimeout(arm,100);}'
+        '})();'
+        '}catch(e){}'
+        '})();</script>')
     # 12) label-hygiene face, two upstream gaps measured by the tick-904
     #     label[for]->input[id] wiring census. (a) With navigation.indexes
     #     active, every nested sidebar section's expand/collapse control is
@@ -590,6 +639,7 @@ def on_post_build(config, **kwargs):
     navtitle = 0
     svgdec = 0
     mermfix = mermblocks = 0
+    navfocus = 0
     site_name = (config.get("site_name") or "").replace('"', "&quot;")
     for html in site.rglob("*.html"):
         depth = len(html.parent.relative_to(site).parts)
@@ -845,6 +895,10 @@ def on_post_build(config, **kwargs):
                     navtitle += new_text.count(old)
                     new_text = new_text.replace(
                         old, f'<label class="md-nav__title" id="{p}" for="{base}">')
+        # instant-nav focus restore (21): see nav_focus_html above
+        if "</body>" in new_text and nav_focus_html not in new_text:
+            new_text = new_text.replace("</body>", nav_focus_html + "</body>", 1)
+            navfocus += 1
         if new_text != text:
             html.write_bytes(new_text.encode("utf-8"))
     print(f"[hooks] bridged {bridged} experiments link(s) from repo depth to site depth")
@@ -863,5 +917,6 @@ def on_post_build(config, **kwargs):
     print(f"[hooks] label-in-name: {labelname} footer prev/next aria-label(s) colon-aligned")
     print(f"[hooks] alert-live: {alertlive} status region script(s) injected")
     print(f"[hooks] svg decorative: {svgdec} icon svg(s) marked aria-hidden")
+    print(f"[hooks] nav focus: {navfocus} navigation focus restore script(s) injected")
     print(f"[hooks] mermaid arrows: {mermfix} unicode arrow(s) normalized to --> in {mermblocks} diagram(s)")
     print(f"[hooks] nav labels: {navlab} index toggle(s) named; {tocdead} dead __toc for= dropped; {navtitle} broken panel aria-labelledby re-pointed")
