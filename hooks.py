@@ -481,6 +481,43 @@ def on_post_build(config, **kwargs):
         'window.RegExp.prototype=NR.prototype;'
         '}catch(e){}'
         '})();</script>')
+    # 18) alert-live region (tick-931): the bundle renders async status
+    #     messages ("Copied to clipboard" and friends) as a transient
+    #     role="dialog" toast that never receives focus and carries no
+    #     aria-live/role=status - visually visible for ~2s, programmatically
+    #     invisible to assistive tech (WCAG 4.1.3). Upstream exports the
+    #     message stream itself as window.alert$, so subscribe to it and
+    #     mirror every message into a visually-hidden polite live region.
+    alert_live_html = (
+        '<script>(function(){'
+        'try{'
+        'if(window.__mdAlertLive)return;'
+        'window.__mdAlertLive=1;'
+        'var live;'
+        'function ensure(){'
+        'if(live&&live.isConnected)return live;'
+        'live=document.createElement("div");'
+        'live.setAttribute("role","status");'
+        'live.setAttribute("aria-live","polite");'
+        'live.style.cssText="position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap";'
+        '(document.body||document.documentElement).appendChild(live);'
+        'return live;'
+        '}'
+        'var tries=0;'
+        '(function arm(){'
+        'if(window.alert$&&typeof window.alert$.subscribe==="function"){'
+        'ensure();'
+        'window.alert$.subscribe(function(msg){'
+        'try{'
+        'var r=ensure();'
+        'r.textContent="";'
+        'setTimeout(function(){try{r.textContent=String(msg);}catch(e){}},50);'
+        '}catch(e){}'
+        '});'
+        '} else if(++tries<50){setTimeout(arm,100);}'
+        '})();'
+        '}catch(e){}'
+        '})();</script>')
     # 12) label-hygiene face, two upstream gaps measured by the tick-904
     #     label[for]->input[id] wiring census. (a) With navigation.indexes
     #     active, every nested sidebar section's expand/collapse control is
@@ -547,6 +584,7 @@ def on_post_build(config, **kwargs):
     bridged = untabbed = named = current = enlarged = sited = retitled = footered = scoped = skipped = tabbed = 0
     searchlab = drawerlab = drawertab = drawerkey = motionin = searchfocus = hlf = 0
     labelname = 0
+    alertlive = 0
     navlab = tocdead = 0
     navtitle = 0
     site_name = (config.get("site_name") or "").replace('"', "&quot;")
@@ -725,6 +763,12 @@ def on_post_build(config, **kwargs):
             if _n:
                 labelname += _n
                 new_text = new_text.replace(_pre, _rep)
+        # alert-live region (18): mirror the bundle's alert$ status stream
+        # ("Copied to clipboard" etc.) into a polite live region so WCAG
+        # 4.1.3 status messages reach assistive tech without focus
+        if "</body>" in new_text and alert_live_html not in new_text:
+            new_text = new_text.replace("</body>", alert_live_html + "</body>", 1)
+            alertlive += 1
         # sidebar index-toggle labels (12a): name the bare icon-only section
         # toggles from their sibling <a> title, and (12b) drop the dead
         # __toc for= on pages whose __toc input was never emitted
@@ -765,4 +809,5 @@ def on_post_build(config, **kwargs):
     print(f"[hooks] search-focus: {searchfocus} return handler(s) injected")
     print(f"[hooks] highlight-fix: {hlf} guard script(s) injected")
     print(f"[hooks] label-in-name: {labelname} footer prev/next aria-label(s) colon-aligned")
+    print(f"[hooks] alert-live: {alertlive} status region script(s) injected")
     print(f"[hooks] nav labels: {navlab} index toggle(s) named; {tocdead} dead __toc for= dropped; {navtitle} broken panel aria-labelledby re-pointed")
