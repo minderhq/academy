@@ -29,3 +29,18 @@
 .md-typeset {
   overflow-wrap: break-word;
 }
+
+/* tick-917: the header palette toggle's keyboard-focus indicator must be
+   VISIBLE (WCAG 2.4.7). Upstream Material draws the focus ring on the
+   focus-visible radio's NEXT SIBLING, but the form is cross-structured
+   (input0, label1, input1, label0) and the bundle never syncs the radio
+   checked state with the active theme (both radios stay unchecked), so a
+   real Tab always lands on the first radio and the ring lands on the
+   OTHER theme's icon - the one display:none'd in the active theme. Net
+   effect: in slate the outline (auto/3px/accent, verified live) is drawn
+   on an invisible label while the visible toggle shows nothing; default
+   theme happens to work. Drawing the ring on BOTH sibling labels fixes
+   it theme-agnostically: the hidden one stays invisible anyway. */
+.md-header__option:has(.md-option.focus-visible) label.md-header__button {
+  outline: 3px auto var(--md-accent-fg-color);
+}
