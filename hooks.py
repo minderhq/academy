@@ -243,6 +243,45 @@ def on_post_build(config, **kwargs):
         r'<label\b(?![^>]*\baria-label=)([^>]*\bclass="md-header__button md-icon"[^>]*\bfor="__search"[^>]*)>')
     hdr_drawer_label_re = re.compile(
         r'<label\b(?![^>]*\baria-label=)([^>]*\bclass="md-header__button md-icon"[^>]*\bfor="__drawer"[^>]*)>')
+    # 13) The header drawer toggle is the one visible header control with no
+    #     keyboard path at all (WCAG 2.1.1, tick-924 census): Material emits
+    #     it as a bare <label for="__drawer"> driving the hidden __drawer
+    #     checkbox through native label semantics, and the bundle contains
+    #     ZERO references to __drawer - no JS wiring, unlike the search label
+    #     (its click focuses the input) and the palette form (upstream ships
+    #     it its own Enter handler that clicks the radios). Native behavior
+    #     makes labels keyboard-inert even when focusable: Enter and Space
+    #     fire no activation on a <label>. On mobile viewports the label is
+    #     the ONLY way to open the navigation drawer (the __drawer checkbox
+    #     itself is display:none), so without this fix a keyboard user could
+    #     not open site navigation at all - pointer-only operation. Two-part
+    #     fix, both guarded so an upstream fix cannot be doubled: (a)
+    #     tabindex="0" puts the label in the tab order on exactly the
+    #     viewports where it is visible (desktop hides it with display:none,
+    #     and hidden elements drop out of the tab order, so desktop tab
+    #     sequence is unchanged); (b) a document-level keydown delegate
+    #     translates Enter/Space on the label into click() - the same idiom
+    #     upstream's palette handler uses (Enter -> click + focus) - and
+    #     label.click() activates the labeled checkbox through the native
+    #     path, so the #__drawer:checked CSS cascade opens the drawer exactly
+    #     as a pointer tap does. The script is injected before </body>,
+    #     outside the data-md-component="container" element that instant
+    #     navigation re-scripts on every route change, so the listener
+    #     attaches once per document and survives instant navigation as a
+    #     delegate. No window-level re-entry guard: window properties
+    #     outlive the document across same-tab navigations, so a flag set
+    #     by one page load would silently skip attaching the listener on
+    #     the next reload (the listener dies with the document, the flag
+    #     does not). The hooks-side "not already injected" check is the
+    #     only dedup needed - per document, there is exactly one run.
+    hdr_drawer_tab_re = re.compile(
+        r'<label\b(?![^>]*\btabindex=)([^>]*\bclass="md-header__button md-icon"[^>]*\bfor="__drawer"[^>]*)>')
+    drawer_keys_html = (
+        '<script>document.addEventListener("keydown",function(e){'
+        'if("Enter"!==e.key&&" "!==e.key)return;'
+        'var t=e.target;'
+        't&&t.matches&&t.matches(\'label.md-header__button[for="__drawer"]\')'
+        '&&(e.preventDefault(),t.click())});</script>')
     # 12) label-hygiene face, two upstream gaps measured by the tick-904
     #     label[for]->input[id] wiring census. (a) With navigation.indexes
     #     active, every nested sidebar section's expand/collapse control is
@@ -307,7 +346,7 @@ def on_post_build(config, **kwargs):
     line_anchor_re = re.compile(r'<a\b[^>]*\bid="__codelineno[^>]*>')
     edit_anchor_re = re.compile(r'<a\b[^>]*\brel="edit"[^>]*>')
     bridged = untabbed = named = current = enlarged = sited = retitled = footered = scoped = skipped = tabbed = 0
-    searchlab = drawerlab = 0
+    searchlab = drawerlab = drawertab = drawerkey = 0
     navlab = tocdead = 0
     navtitle = 0
     site_name = (config.get("site_name") or "").replace('"', "&quot;")
@@ -442,6 +481,17 @@ def on_post_build(config, **kwargs):
             return m.group(0)[:-1] + ' aria-label="Menu" title="Menu">'
         new_text = hdr_search_label_re.sub(_slabel, new_text)
         new_text = hdr_drawer_label_re.sub(_dlabel, new_text)
+        # drawer keyboard path (13): mint tabindex on the toggle label and,
+        # when any was made focusable, inject the Enter/Space delegate that
+        # clicks it through the native label->checkbox path
+        def _dtab(m):
+            nonlocal drawertab
+            drawertab += 1
+            return m.group(0)[:-1] + ' tabindex="0">'
+        new_text = hdr_drawer_tab_re.sub(_dtab, new_text)
+        if drawertab and "</body>" in new_text and drawer_keys_html not in new_text:
+            new_text = new_text.replace("</body>", drawer_keys_html + "</body>", 1)
+            drawerkey += 1
         # sidebar index-toggle labels (12a): name the bare icon-only section
         # toggles from their sibling <a> title, and (12b) drop the dead
         # __toc for= on pages whose __toc input was never emitted
@@ -477,4 +527,5 @@ def on_post_build(config, **kwargs):
     print(f"[hooks] tables: {scoped} table header cell(s) scoped to col")
     print(f"[hooks] tabs: {tabbed} active header tab(s) marked aria-current")
     print(f"[hooks] header labels: {searchlab} search + {drawerlab} drawer icon toggle(s) named")
+    print(f"[hooks] drawer keyboard: {drawertab} toggle(s) made focusable; {drawerkey} key handler(s) injected")
     print(f"[hooks] nav labels: {navlab} index toggle(s) named; {tocdead} dead __toc for= dropped; {navtitle} broken panel aria-labelledby re-pointed")
