@@ -214,6 +214,19 @@ def on_post_build(config, **kwargs):
     #    Tab. Guarded on absence of tabindex= and anchored to the exact id
     #    the skip link references, so an upstream change cannot be doubled.
     skip_re = re.compile(r'<a\b(?=[^>]*\bclass="[^"]*md-skip)[^>]*\bhref="#([^"]*)"')
+    # 10) Material 9.7.7 marks the active header tab with the
+    #     md-tabs__item--active class on the <li> only - a purely visual CSS
+    #     signal, exactly the disease the sidebar fix (3) cured there: no
+    #     aria-current on any tab link, so screen readers get no programmatic
+    #     "current section" cue on any of the 442 pages (census: 4,420 tab
+    #     links, 0 aria-current, exactly one --active li per page, 0 broken
+    #     hrefs). Token is aria-current="true" - "current item within a set":
+    #     the active tab points at the section root, not always this page
+    #     (the sidebar's "page" token stays exact for its face; here the link
+    #     is current-section, which "true" states in both cases). Guarded on
+    #     absence of aria-current= so an upstream change cannot be doubled.
+    tabs_active_re = re.compile(
+        r'(<li class="md-tabs__item md-tabs__item--active">\s*<a\b)(?![^>]*\baria-current=)([^>]*>)')
     # 7) Material 9.7.6 labels the footer prev/next links with the neighboring
     #    page's raw front-matter title (page.previous_page.title), while the
     #    sidebar shows the explicit nav label from mkdocs.yml. For the generic
@@ -247,7 +260,7 @@ def on_post_build(config, **kwargs):
     h1_re = re.compile(r"<h1[^>]*>(.*?)</h1>", re.S)
     line_anchor_re = re.compile(r'<a\b[^>]*\bid="__codelineno[^>]*>')
     edit_anchor_re = re.compile(r'<a\b[^>]*\brel="edit"[^>]*>')
-    bridged = untabbed = named = current = enlarged = sited = retitled = footered = scoped = skipped = 0
+    bridged = untabbed = named = current = enlarged = sited = retitled = footered = scoped = skipped = tabbed = 0
     site_name = (config.get("site_name") or "").replace('"', "&quot;")
     for html in site.rglob("*.html"):
         depth = len(html.parent.relative_to(site).parts)
@@ -361,6 +374,14 @@ def on_post_build(config, **kwargs):
             new_text = re.sub(
                 r'<h1\b(?![^>]*\btabindex=)(?=[^>]*\bid="' + re.escape(frag) + r'")([^>]*)>',
                 _h1, new_text, count=1)
+        # active header tab (10): aria-current="true" on the link inside the
+        # active md-tabs__item li, the programmatic counterpart of the CSS
+        # highlight
+        def _tabs(m):
+            nonlocal tabbed
+            tabbed += 1
+            return m.group(1) + m.group(2)[:-1] + ' aria-current="true">'
+        new_text = tabs_active_re.sub(_tabs, new_text)
         if new_text != text:
             html.write_bytes(new_text.encode("utf-8"))
     print(f"[hooks] bridged {bridged} experiments link(s) from repo depth to site depth")
@@ -370,3 +391,4 @@ def on_post_build(config, **kwargs):
     print(f"[hooks] titles: {retitled} generic tab/og title(s) set from the page h1")
     print(f"[hooks] footer: {footered} generic prev/next label(s) set from the sidebar nav label")
     print(f"[hooks] tables: {scoped} table header cell(s) scoped to col")
+    print(f"[hooks] tabs: {tabbed} active header tab(s) marked aria-current")
