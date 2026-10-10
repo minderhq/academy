@@ -408,6 +408,79 @@ def on_post_build(config, **kwargs):
         '{try{a0.focus({preventScroll:!0})}catch(_){a0.focus()}}'
         '},120)},!0);'
         '})();</script>')
+    # 16) search-highlight "undefined" fix, the upstream bug the user
+    #     reported live ("gsq-rco diye aratınca ... gsq yerine undefined
+    #     yazıyor"), reproduced locally and root-caused to the bundle's
+    #     own highlighter: xi() builds the match regex as
+    #     (^|{separator}|)(query) and its replace callback reads only
+    #     (match, p1, p2) - but the shipped separator from
+    #     search_index.json carries a capture group of its own
+    #     ([?]+(\s|$)), which shifts every later group right, so the
+    #     term actually lands in p3 and p2 is undefined in the common
+    #     case; the template then stringifies it and every mark on every
+    #     ?h= page reads the literal text "undefined" (node repro:
+    #     "GSQ-RCO" -> "<mark>undefined</mark>-RCO", matches the live
+    #     DOM exactly; match POSITIONS are all correct - only the text
+    #     inside the mark is lost). The original term cannot be repaired
+    #     afterwards because the replacement has already consumed it,
+    #     so the fix must run before xi() compiles its regex: a guarded
+    #     RegExp wrapper - armed only when the URL has ?h= (zero risk on
+    #     every other page) - intercepts the one shape xi() produces
+    #     (string pattern starting "(^|", containing "|)(", flags
+    #     exactly "img"; the bundle's only two "img" RegExp sites are
+    #     xi's own, grep-verified) and rewrites the capture groups
+    #     INSIDE the leading (^|...|) group to non-capturing, which
+    #     restores p2 to the term. The decap walk is escape- and
+    #     character-class-aware, leaves lookaheads ((?= (?! (?:)
+    #     untouched, never touches the query group, and on any failure
+    #     the wrapper compiles the original pattern unchanged, so a
+    #     pathological input degrades to the shipped bug instead of a
+    #     broken page. Instant navigation re-runs Ai() per swap with the
+    #     wrapper already installed; the wrapper is a plain function
+    #     with RegExp.prototype re-linked, so instanceof and species
+    #     semantics are preserved. Same guarded-injection pattern as
+    #     blocks 13-15.
+    highlight_fix_html = (
+        '<script>(function(){'
+        'try{'
+        'if(!new URLSearchParams(location.search).has("h"))return;'
+        'var NR=RegExp;'
+        'function decap(p){'
+        'var depth=0,i=0,sIn=-1,sOut=-1,c;'
+        'for(i=0;i<p.length;i++){'
+        'c=p[i];'
+        'if(c==="\\\\"){i++;continue;}'
+        'if(c==="["){i++;while(i<p.length&&p[i]!=="]"){if(p[i]==="\\\\")i++;i++;}continue;}'
+        'if(c==="("){depth++;if(depth===2&&sIn<0)sIn=i;}'
+        'else if(c===")"){depth--;if(depth===0){sOut=i;break;}}'
+        '}'
+        'if(sIn<0||sOut<0)return p;'
+        'var inner=p.slice(sIn+1,sOut),out="",j=0,ch,k;'
+        'while(j<inner.length){'
+        'ch=inner[j];'
+        'if(ch==="\\\\"){out+=inner.substr(j,2);j+=2;continue;}'
+        'if(ch==="["){k=j+1;while(k<inner.length&&inner[k]!=="]"){if(inner[k]==="\\\\")k++;k++;}out+=inner.slice(j,k+1);j=k+1;continue;}'
+        'if(ch==="("){'
+        'if(inner[j+1]==="?"){out+=inner.substr(j,3);j+=3;continue;}'
+        'out+="(?:";j++;continue;'
+        '}'
+        'out+=ch;j++;'
+        '}'
+        'return p.slice(0,sIn)+"("+out+")"+p.slice(sOut+1);'
+        '}'
+        'window.RegExp=function(p,f){'
+        'var o=p;'
+        'try{'
+        'if(typeof p==="string"&&f==="img"&&p.indexOf("(^|")===0&&p.indexOf("|)(")>0){'
+        'var cut=p.lastIndexOf("(");'
+        'p=decap(p.slice(0,cut))+p.slice(cut);'
+        '}'
+        '}catch(e){p=o}'
+        'try{return new NR(p,f)}catch(e){return new NR(o,f)}'
+        '};'
+        'window.RegExp.prototype=NR.prototype;'
+        '}catch(e){}'
+        '})();</script>')
     # 12) label-hygiene face, two upstream gaps measured by the tick-904
     #     label[for]->input[id] wiring census. (a) With navigation.indexes
     #     active, every nested sidebar section's expand/collapse control is
@@ -472,7 +545,7 @@ def on_post_build(config, **kwargs):
     line_anchor_re = re.compile(r'<a\b[^>]*\bid="__codelineno[^>]*>')
     edit_anchor_re = re.compile(r'<a\b[^>]*\brel="edit"[^>]*>')
     bridged = untabbed = named = current = enlarged = sited = retitled = footered = scoped = skipped = tabbed = 0
-    searchlab = drawerlab = drawertab = drawerkey = motionin = searchfocus = 0
+    searchlab = drawerlab = drawertab = drawerkey = motionin = searchfocus = hlf = 0
     navlab = tocdead = 0
     navtitle = 0
     site_name = (config.get("site_name") or "").replace('"', "&quot;")
@@ -631,6 +704,12 @@ def on_post_build(config, **kwargs):
         if "</body>" in new_text and search_focus_html not in new_text:
             new_text = new_text.replace("</body>", search_focus_html + "</body>", 1)
             searchfocus += 1
+        # search-highlight fix (16): intercept the bundle highlighter's
+        # regex construction on ?h= pages so the term lands in p2 and
+        # marks carry the matched text instead of the string "undefined"
+        if "</body>" in new_text and highlight_fix_html not in new_text:
+            new_text = new_text.replace("</body>", highlight_fix_html + "</body>", 1)
+            hlf += 1
         # sidebar index-toggle labels (12a): name the bare icon-only section
         # toggles from their sibling <a> title, and (12b) drop the dead
         # __toc for= on pages whose __toc input was never emitted
@@ -669,4 +748,5 @@ def on_post_build(config, **kwargs):
     print(f"[hooks] drawer keyboard: {drawertab} toggle(s) made focusable; {drawerkey} key handler(s) injected")
     print(f"[hooks] reduced-motion: {motionin} scroll shim(s) injected")
     print(f"[hooks] search-focus: {searchfocus} return handler(s) injected")
+    print(f"[hooks] highlight-fix: {hlf} guard script(s) injected")
     print(f"[hooks] nav labels: {navlab} index toggle(s) named; {tocdead} dead __toc for= dropped; {navtitle} broken panel aria-labelledby re-pointed")
