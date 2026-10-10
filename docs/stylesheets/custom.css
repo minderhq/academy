@@ -58,3 +58,20 @@
   text-decoration: underline;
   text-underline-offset: 0.2em;
 }
+
+/* tick-936: keyboard-focused elements must not hide under the sticky
+   header (WCAG 2.4.11, Minimum). The header is ~96px tall and overlaps
+   the scrolling article, but the built CSS ships no scroll-padding-top
+   and its only scroll-margin rules are for :target fragment jumps - so
+   a Shift+Tab target that is already "in" the viewport (top edge a few
+   px down) triggers NO native focus-scroll and lands fully covered by
+   the header; live-verified: a mid-page link focused at y=29 rendered
+   entirely behind the header. scroll-margin-top on content focusables
+   makes the focus-scroll algorithm keep a clear band below the header
+   (6.5rem > 96px header). Headings are deliberately excluded: they are
+   the :target elements and keep upstream's fragment landing (116px)
+   byte-identical. */
+.md-content a,
+.md-content button {
+  scroll-margin-top: 6.5rem;
+}
