@@ -274,10 +274,27 @@ def on_post_build(config, **kwargs):
     #     the next reload (the listener dies with the document, the flag
     #     does not). The hooks-side "not already injected" check is the
     #     only dedup needed - per document, there is exactly one run.
+    #     Tick-925 adds the Escape arm: with the drawer OPEN, Escape did
+    #     nothing live (verified: checkbox stayed checked) because the
+    #     bundle's only case"Escape" handler is the search overlay's - the
+    #     open trigger had no keyboard counterpart for closing. Not a WCAG
+    #     2.1.2 trap (the drawer is not modal; focus roams freely and
+    #     Space/Enter on the toggle still toggles), so this is UX polish on
+    #     the user's own bar, not a hard violation: Escape while the drawer
+    #     is checked unchecks it directly (the bundle never observes the
+    #     checkbox, so a plain write is safe and the :checked CSS cascade
+    #     animates the close) and returns focus to the toggle label - the
+    #     trigger-return focus idiom. The arm no-ops when the drawer is
+    #     closed, so the search overlay's own Escape behavior is untouched.
     hdr_drawer_tab_re = re.compile(
         r'<label\b(?![^>]*\btabindex=)([^>]*\bclass="md-header__button md-icon"[^>]*\bfor="__drawer"[^>]*)>')
     drawer_keys_html = (
         '<script>document.addEventListener("keydown",function(e){'
+        'if("Escape"===e.key){'
+        'var c=document.getElementById("__drawer");'
+        'if(c&&c.checked){c.checked=!1;'
+        'var l=document.querySelector(\'label.md-header__button[for="__drawer"]\');'
+        'l&&l.focus();e.preventDefault()}return}'
         'if("Enter"!==e.key&&" "!==e.key)return;'
         'var t=e.target;'
         't&&t.matches&&t.matches(\'label.md-header__button[for="__drawer"]\')'
@@ -483,7 +500,8 @@ def on_post_build(config, **kwargs):
         new_text = hdr_drawer_label_re.sub(_dlabel, new_text)
         # drawer keyboard path (13): mint tabindex on the toggle label and,
         # when any was made focusable, inject the Enter/Space delegate that
-        # clicks it through the native label->checkbox path
+        # clicks it through the native label->checkbox path, plus the
+        # Escape arm that closes an open drawer and refocuses the toggle
         def _dtab(m):
             nonlocal drawertab
             drawertab += 1
