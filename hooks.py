@@ -227,6 +227,22 @@ def on_post_build(config, **kwargs):
     #     absence of aria-current= so an upstream change cannot be doubled.
     tabs_active_re = re.compile(
         r'(<li class="md-tabs__item md-tabs__item--active">\s*<a\b)(?![^>]*\baria-current=)([^>]*>)')
+    # 11) Material 9.7.7 emits the two visible header icon toggles - search
+    #     ("for=__search") and drawer/menu ("for=__drawer") - as bare
+    #     <label class="md-header__button md-icon"> wrapping an icon svg: no
+    #     title, no aria-label, no tabindex (census: 443+443 BARE page-wide).
+    #     Material's own convention for the SAME element type in the SAME
+    #     header names the palette labels with title="Switch to ...", and the
+    #     en locale ships the "Search" string - the bare pair is an upstream
+    #     naming gap, the visible pointer affordance carrying no name. Fix
+    #     mirrors the palette precedent: aria-label (explicit name) plus title
+    #     (tooltip + AT fallback) - "Search" from the en locale, "Menu" the
+    #     standard drawer token. Guarded on absence of aria-label= so an
+    #     upstream change cannot be doubled.
+    hdr_search_label_re = re.compile(
+        r'<label\b(?![^>]*\baria-label=)([^>]*\bclass="md-header__button md-icon"[^>]*\bfor="__search"[^>]*)>')
+    hdr_drawer_label_re = re.compile(
+        r'<label\b(?![^>]*\baria-label=)([^>]*\bclass="md-header__button md-icon"[^>]*\bfor="__drawer"[^>]*)>')
     # 7) Material 9.7.6 labels the footer prev/next links with the neighboring
     #    page's raw front-matter title (page.previous_page.title), while the
     #    sidebar shows the explicit nav label from mkdocs.yml. For the generic
@@ -261,6 +277,7 @@ def on_post_build(config, **kwargs):
     line_anchor_re = re.compile(r'<a\b[^>]*\bid="__codelineno[^>]*>')
     edit_anchor_re = re.compile(r'<a\b[^>]*\brel="edit"[^>]*>')
     bridged = untabbed = named = current = enlarged = sited = retitled = footered = scoped = skipped = tabbed = 0
+    searchlab = drawerlab = 0
     site_name = (config.get("site_name") or "").replace('"', "&quot;")
     for html in site.rglob("*.html"):
         depth = len(html.parent.relative_to(site).parts)
@@ -382,6 +399,17 @@ def on_post_build(config, **kwargs):
             tabbed += 1
             return m.group(1) + m.group(2)[:-1] + ' aria-current="true">'
         new_text = tabs_active_re.sub(_tabs, new_text)
+        # header icon toggle labels (11): name the bare search/drawer labels
+        def _slabel(m):
+            nonlocal searchlab
+            searchlab += 1
+            return m.group(0)[:-1] + ' aria-label="Search" title="Search">'
+        def _dlabel(m):
+            nonlocal drawerlab
+            drawerlab += 1
+            return m.group(0)[:-1] + ' aria-label="Menu" title="Menu">'
+        new_text = hdr_search_label_re.sub(_slabel, new_text)
+        new_text = hdr_drawer_label_re.sub(_dlabel, new_text)
         if new_text != text:
             html.write_bytes(new_text.encode("utf-8"))
     print(f"[hooks] bridged {bridged} experiments link(s) from repo depth to site depth")
@@ -392,3 +420,4 @@ def on_post_build(config, **kwargs):
     print(f"[hooks] footer: {footered} generic prev/next label(s) set from the sidebar nav label")
     print(f"[hooks] tables: {scoped} table header cell(s) scoped to col")
     print(f"[hooks] tabs: {tabbed} active header tab(s) marked aria-current")
+    print(f"[hooks] header labels: {searchlab} search + {drawerlab} drawer icon toggle(s) named")
