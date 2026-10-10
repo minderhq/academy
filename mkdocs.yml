@@ -622,10 +622,14 @@ markdown_extensions:
       # every pre under content.code.copy alone, live-DOM-verified 94/94
       # on TUTORIAL-000 without any span wrapping (an early static grep for
       # the legacy .md-clipboard class false-alarmed here - buttons are
-      # JS-injected, never in built HTML). line_spans only feeds the
-      # :scope > span[id] gate behind content.code.select, which this
-      # config does not enable, and wrapping every line cost +47KB (+7.6%)
-      # on the heaviest page for zero visible change.
+      # JS-injected, never in built HTML). content.code.select IS enabled
+      # (features list) and works Range-based - selectNodeContents in the
+      # 9.7.7 bundle - without any line spans; line_spans would only feed
+      # per-line anchor permalinks, and wrapping every line cost +47KB
+      # (+7.6%) on the heaviest page for zero visible change. (tick-912
+      # config-usage census: anchor_linenums itself is currently dead
+      # weight - zero linenums fences corpus-wide - kept as authoring
+      # vocabulary, recorded not removed.)
       anchor_linenums: true
   - pymdownx.inlinehilite
   - pymdownx.snippets
