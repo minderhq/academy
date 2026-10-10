@@ -573,16 +573,22 @@ def on_post_build(config, **kwargs):
     #     the result links themselves, no aria-activedescendant) and Enter
     #     opens the focused result - fine. The GAP is the empty-results
     #     surface: "No matching documents" ships in __config translations
-    #     (443/443 pages) and the search worker renders it into
-    #     .md-search-result__list at runtime with NO aria-live anywhere in
-    #     the search UI, so a screen-reader user typing a query that returns
-    #     nothing gets no signal at all - the list swaps silently (WCAG
-    #     4.1.3 Status Messages; ACT ds1e3e names result counts as status).
+    #     (443/443 pages) and the search worker renders it at runtime into
+    #     .md-search-result__meta - the list's SIBLING, live-verified on the
+    #     deployed site where an empty query leaves .md-search-result__list
+    #     fully cleared (the local census had wrongly assumed list-internal)
+    #     - with NO aria-live anywhere in the search UI, so a screen-reader
+    #     user typing a query that returns nothing gets no signal at all -
+    #     the surface swaps silently (WCAG 4.1.3 Status Messages; ACT ds1e3e
+    #     names result counts as status).
     #     Fix is script-only, mirroring block 18's hidden polite region
-    #     pattern: a MutationObserver on .md-search-result__list mirrors
-    #     "Search: N results" / "Search: no matching documents" into a
-    #     visually-hidden aria-live=polite region; debounced 80ms for the
-    #     worker's batched DOM writes, re-armed on every document$ emission
+    #     pattern: a MutationObserver on .md-search-result__list (whose
+    #     clear-on-empty mutation fires in the same worker write batch as
+    #     the meta text) mirrors "Search: N results" / "Search: no matching
+    #     documents" into a visually-hidden aria-live=polite region, scanning
+    #     the .md-search-result container for the empty message since the
+    #     worker writes it to the meta sibling; debounced 80ms, re-armed on
+    #     every document$ emission
     #     so instant-nav swaps never leave a stale observer, every layer in
     #     try/catch so a failure degrades to the shipped silent behavior,
     #     and the __mdSearchStatus guard makes double-install impossible.
@@ -612,7 +618,8 @@ def on_post_build(config, **kwargs):
         'var n=list.querySelectorAll(".md-search-result__link").length;'
         'var t=null;'
         'if(n===0){'
-        'if(/No matching documents/.test(list.textContent||""))t="Search: no matching documents";'
+        'var box=list.closest(".md-search-result")||list.parentElement;'
+        'if(box&&/no matching documents/i.test(box.textContent||""))t="Search: no matching documents";'
         '} else {'
         't="Search: "+n+" result"+(n===1?"":"s");'
         '}'
