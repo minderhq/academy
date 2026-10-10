@@ -16,6 +16,52 @@ Tags: ['assessment', 'practice', 'agents', 'react']
 
 ### Exercise 1: Implement Chain-of-Thought Prompting
 
+Write `chain_of_thought_prompt()` that wraps a question with few-shot reasoning examples and asks the model to think step by step before answering, then contrast it with the same question prompted directly to see the reasoning difference.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 2: Self-Consistency Reasoning
+
+Implement `self_consistency_solve()`: sample n completions at temperature, extract each final answer, take the majority vote, and report the vote distribution alongside the winning answer.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 3: Tree-of-Thoughts Implementation
+
+Build a `TreeOfThoughts` search: generate candidate thoughts per node, prune weak branches with a value function, expand breadth-first to a depth limit, and backtrack the best path for the final answer.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 4: ReAct Pattern (Reasoning + Acting)
+
+Implement a `ReActAgent` interleaving Thought/Action/Observation turns: parse each action call the model proposes, dispatch it through a tool registry, append the observation to the context, and stop on a Finish action or a step budget.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 5: Reflexion Pattern (Self-Reflection)
+
+Implement a `ReflexionAgent` that attempts a task, critiques its own failure with a self-reflection prompt, stores the reflection in episodic memory, and retries with the reflection appended to its context.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 6: Multi-Step Reasoning with Planning
+
+Write `plan_and_solve()`: first ask the model for an explicit step list for the problem, then execute the steps one by one, feeding each step's result into the next prompt.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 7: Evaluate Reasoning Quality
+
+Write `evaluate_reasoning_quality()` scoring responses on answer correctness against ground truth, reasoning-step coherence, and completeness, returning a weighted report across a batch of question-answer pairs.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+## Answer Key
+
+Full solutions for every exercise above. Work through your own attempt before comparing.
+
+### Exercise 1: Implement Chain-of-Thought Prompting
+
 ```python
 def chain_of_thought_prompt(question):
     """Generate CoT prompt for reasoning tasks."""

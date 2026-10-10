@@ -16,6 +16,52 @@ Tags: ['assessment', 'practice', 'agents', 'orchestration']
 
 ### Exercise 1: Single Agent with Memory
 
+Create a single agent with `create_agent()`, attach short-term conversational memory, and run a multi-turn dialogue proving the agent recalls earlier turns.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 2: Multi-Agent Collaboration
+
+Wire two collaborating agents - a researcher and a writer - through `create_agent()`, passing the researcher's findings into the writer's context and printing both transcripts.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 3: Sequential Agent Pipeline
+
+Build a graph-style sequential pipeline over a typed state: planner, executor, and reviewer nodes update the shared state in order, and the final state carries the reviewed output.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 4: Hierarchical Agent System
+
+Implement a `SupervisorAgent` that routes tasks to worker agents by capability, collects their results, and synthesizes a final answer, logging each handoff.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 5: Agent Communication Protocol
+
+Define a message-passing protocol between agents - structured envelopes with sender, recipient, type, payload, and correlation id - and run a request/response exchange with timeout and retry.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 6: Agent Team with Shared Memory
+
+Coordinate an agent team over a thread-safe shared memory store: workers read and write a common context under locks, and a coordinator merges contributions once every worker finishes.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 7: AutoGPT-style Autonomous Agent
+
+Implement an autonomous loop: the agent derives sub-goals from a main objective, executes tools per sub-goal, critiques its progress, and iterates until the objective is met or the step budget runs out.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+## Answer Key
+
+Full solutions for every exercise above. Work through your own attempt before comparing.
+
+### Exercise 1: Single Agent with Memory
+
 ```python
 from langchain.agents import create_agent
 from langchain_openai import ChatOpenAI

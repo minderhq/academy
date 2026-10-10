@@ -16,6 +16,52 @@ Tags: ['assessment', 'practice', 'agents', 'security']
 
 ### Exercise 1: Implement Input Validation
 
+Implement an input validator for agent-facing text: strip control characters, cap length, detect injection-adjacent patterns and suspicious URLs, and return a verdict with reasons.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 2: Implement Output Filtering
+
+Implement output filtering: scan model responses for secrets and API keys, PII patterns, and banned-content signatures, redacting or blocking before the response leaves the system.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 3: Implement Sandboxed Code Execution
+
+Implement sandboxed code execution: run untrusted snippets in a restricted subprocess with resource limits, no network, and a timeout, classifying each outcome as ok, denied, or timed out.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 4: Implement Prompt Injection Defense
+
+Implement prompt-injection defense: marker-wrap untrusted content, neutralize role-mimicking phrases and ignore-instruction patterns, and verify the defended prompts against a battery of injection attempts.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 5: Implement Rate Limiting
+
+Implement a sliding-window rate limiter keyed by client id with per-window quotas, exercise it with bursty callers, and confirm rejections plus recovery once the window passes.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 6: Implement Audit Logging
+
+Implement structured audit logging for agent actions: JSON envelopes with timestamp, actor, action, input hash, and outcome, written append-only and validated by a replay check.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 7: Implement Security Monitoring
+
+Implement security monitoring: aggregate audit events into anomaly counters (injection attempts, rate-limit trips, sandbox denials) with alert thresholds and a summary report.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+## Answer Key
+
+Full solutions for every exercise above. Work through your own attempt before comparing.
+
+### Exercise 1: Implement Input Validation
+
 ```python
 import re
 from typing import Any

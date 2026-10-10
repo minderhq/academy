@@ -16,6 +16,52 @@ Tags: ['assessment', 'practice', 'agents', 'tool-calling']
 
 ### Exercise 1: Define Custom Tools
 
+Define tools with the LangChain `@tool` decorator - a calculator, a search stub, and a file reader - each with typed arguments and docstrings, then invoke them directly and print the results.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 2: Implement Tool Calling with OpenAI
+
+Wire OpenAI-style tool calling: describe the tools in schema form, send a user query, parse the returned tool calls, execute them, and loop the results back into the conversation until the model produces a final answer.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 3: Build Tool-Using Agent
+
+Build the whole agent loop with the LangChain `create_agent()` factory: bind the tools and a model, run a query end to end, and print the intermediate tool messages plus the final answer.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 4: Multi-Step Tool Execution
+
+Implement a `ToolExecutor` that runs a dependency chain of tool calls - each step consuming earlier steps' results - with step logging and a short-circuit on the first failure.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 5: Tool Result Validation
+
+Write `validate_tool_result()` checking a tool's output against its contract: type/schema checks, empty and None guards, and range/consistency rules, returning a structured verdict per call.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 6: Parallel Tool Execution
+
+Run independent tools concurrently with `asyncio.gather`, merge their results, and contrast the wall-clock time against a sequential run of the same calls.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 7: Dynamic Tool Selection
+
+Implement dynamic tool selection: score the available tools against the query, pick the top-k, execute only those, and log why each tool was chosen.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+## Answer Key
+
+Full solutions for every exercise above. Work through your own attempt before comparing.
+
+### Exercise 1: Define Custom Tools
+
 ```python
 from langchain_core.tools import tool
 

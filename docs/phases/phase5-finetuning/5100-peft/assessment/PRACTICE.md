@@ -16,6 +16,63 @@ Tags: ['assessment', 'practice', 'finetuning', 'peft']
 
 ### Exercise 1: Implement LoRA from Scratch
 
+Implement a `LoRALinear` module from scratch: freeze the original linear weights, add trainable low-rank A/B projections (Kaiming init on A, zeros on B) with a scaling factor of alpha/rank, and wire the forward pass to add the scaled LoRA output. Then write `apply_lora_to_model()` that swaps every target `nn.Linear` for a LoRA layer and copies the frozen weights over; verify with a small model and print each replaced layer's name.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 2: Apply LoRA with Hugging Face
+
+Configure LoRA through `LoraConfig` (rank 8, alpha 16, dropout 0.1, causal-LM task type) and wrap a small GPT-2 with `get_peft_model()`. Print `print_trainable_parameters()` and compare against the full model's count - only a tiny fraction of parameters should train.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 3: QLoRA (Quantized LoRA)
+
+Combine 4-bit `BitsAndBytesConfig` (NF4, double quantization, float16 compute) with LoRA: prepare the quantized model with `prepare_model_for_kbit_training()` and attach adapters via `get_peft_model()`. The model-load step stays commented out - it needs a GPU and bitsandbytes - so the script prints the config and the memory math for QLoRA vs full fine-tuning.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 4: Prefix Tuning
+
+Attach trainable virtual-token prefixes to every attention layer with `PrefixTuningConfig` instead of weight deltas, wrap a small causal LM with `get_peft_model()`, and print the trainable-parameter summary - only the prefix parameters should train, no model weights.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 5: Prompt Tuning
+
+Use `PromptTuningConfig` with `PromptTuningInit.TEXT` so the model learns a soft prompt initialized from a text prompt, wrap the model with `get_peft_model()`, and generate from the initialized prompt. Print the trainable-parameter summary and a sample generation.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 6: AdapterHub Style Adapters
+
+Implement bottleneck-style adapters: a down-project -> activation -> up-project residual module, an `inject_adapters()` walk that wraps each transformer layer's attention output, and `train_adapters_only()` freezing everything except adapter parameters. Print per-module trainable counts to confirm the freeze.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 7: Compare PEFT Methods
+
+Write `compare_peft_methods()` that instantiates LoRA, prefix tuning, prompt tuning, and adapter variants over the same base model, then prints trainable-parameter counts, memory estimates, and a guidance table for when each method fits.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+---
+
+**Solutions Provided:**
+
+- Complete implementations for all 7 exercises
+- Detailed explanations of PEFT concepts
+- Production-ready code examples
+- Expected outputs and performance metrics
+- Best practices and recommendations
+- Comparison tables and decision guides
+
+## Answer Key
+
+Full solutions for every exercise above. Work through your own attempt before comparing.
+
+### Exercise 1: Implement LoRA from Scratch
+
 ```python
 import torch
 import torch.nn as nn
@@ -1045,14 +1102,3 @@ Need max quality?
 # efficiency-vs-quality table, the cost table and the decision
 # tree all print directly - no model runs in this exercise
 ```
-
----
-
-**Solutions Provided:**
-
-- Complete implementations for all 7 exercises
-- Detailed explanations of PEFT concepts
-- Production-ready code examples
-- Expected outputs and performance metrics
-- Best practices and recommendations
-- Comparison tables and decision guides

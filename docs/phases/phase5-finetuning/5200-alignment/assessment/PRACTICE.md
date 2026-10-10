@@ -16,6 +16,64 @@ Tags: ['assessment', 'practice', 'finetuning', 'alignment']
 
 ### Exercise 1: Preference Dataset Creation
 
+Build a preference dataset: define a schema of prompt/chosen/rejected rows (with scores and metadata), synthesize a handful of examples with `datasets.Dataset.from_dict`, split into train and validation, and verify schema integrity over the split.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 2: Reward Model Training
+
+Implement a reward model: a transformer backbone with a pooled scalar head, a pairwise ranking loss that pushes chosen above rejected by a margin, and a compact AdamW training loop reporting loss and pairwise accuracy per epoch.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 3: PPO Implementation
+
+Implement the PPO loop for LLM alignment: sample responses from the policy, score them with a frozen reward model, compute advantages against a value baseline, and apply the clipped surrogate objective with a KL penalty against the reference policy - logging reward, entropy, and KL per step.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 4: DPO (Direct Preference Optimization)
+
+Run `DPOTrainer` with `DPOConfig` (beta 0.1) over a preference dataset: prepare prompt/chosen/rejected columns, train a small model for a demo epoch, and confirm the trainer reports policy and reference log-probability metrics.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 5: ORPO (Odds Ratio Preference Optimization)
+
+Implement ORPO's combined objective: an SFT term on chosen responses plus an odds-ratio preference term penalizing rejected ones, then a compact training loop showing the loss decomposition and preference accuracy.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 6: KTO (Kahneman-Tversky Optimization)
+
+Implement KTO: a Kahneman-Tversky value function over desirable/undesirable examples, separate loss faces for each, and the KL term inside the value transform, wrapped in a short training loop that logs both losses.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 7: Alignment Evaluation
+
+Write an alignment evaluation suite: regex-based toxicity and harmfulness screeners, a helpfulness heuristic over response length and format, and a `win_rate()` comparison between two models' outputs with a judge tie-break. Run it over sample responses and print the report.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+---
+
+**Solutions Provided:**
+
+- Complete RLHF pipeline implementation
+- Reward model training with ranking loss
+- Full PPO implementation with KL penalty
+- DPO, ORPO, and KTO implementations
+- Comprehensive evaluation framework
+- Production-ready code examples
+- Detailed explanations and best practices
+
+## Answer Key
+
+Full solutions for every exercise above. Work through your own attempt before comparing.
+
+### Exercise 1: Preference Dataset Creation
+
 ```python
 from datasets import Dataset
 
@@ -1195,15 +1253,3 @@ Best Practices:
 # are defined but need a real model to run; the test cases show
 # the expected structure (query + optional reference/instructions)
 ```
-
----
-
-**Solutions Provided:**
-
-- Complete RLHF pipeline implementation
-- Reward model training with ranking loss
-- Full PPO implementation with KL penalty
-- DPO, ORPO, and KTO implementations
-- Comprehensive evaluation framework
-- Production-ready code examples
-- Detailed explanations and best practices

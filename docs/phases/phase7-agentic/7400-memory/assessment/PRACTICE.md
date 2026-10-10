@@ -16,6 +16,52 @@ Tags: ['assessment', 'practice', 'agents', 'memory']
 
 ### Exercise 1: Implement Short-Term Memory
 
+Implement short-term conversational memory with a dataclass turn record: append turns, window the last N, and serialize and deserialize the buffer for resuming a session.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 2: Implement Long-Term Memory (Vector Store)
+
+Build long-term memory on a sentence-transformer embedding store: embed each memory entry, retrieve the top-k relevant entries for a query by cosine similarity, and deduplicate near-identical entries.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 3: Implement Entity Memory
+
+Implement entity memory: extract named entities from each turn, accumulate per-entity facts, and answer a query about one entity from its accumulated profile.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 4: Implement Summary Memory
+
+Implement summary memory with a chat model: once the conversation exceeds a threshold, condense the older turns into a rolling summary while keeping the latest turns verbatim.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 5: Hybrid Memory System
+
+Build a `HybridMemory` combining a short-term window with a vector-backed long-term store: recent turns stay verbatim, older salient facts are embedded and recalled on demand by relevance.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 6: Memory with Reflection
+
+Add reflection to memory: periodically prompt the model to derive high-level insights from accumulated memories, store the insights as first-class entries, and inject them into new-context prompts.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 7: Persistent Memory Storage
+
+Implement persistent memory storage: save the full memory state (turns, summaries, entities) as JSON, reload it into a fresh session, and verify the restored context answers a question from the prior session.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+## Answer Key
+
+Full solutions for every exercise above. Work through your own attempt before comparing.
+
+### Exercise 1: Implement Short-Term Memory
+
 ```python
 
 from dataclasses import dataclass
