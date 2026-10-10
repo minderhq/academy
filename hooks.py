@@ -243,6 +243,36 @@ def on_post_build(config, **kwargs):
         r'<label\b(?![^>]*\baria-label=)([^>]*\bclass="md-header__button md-icon"[^>]*\bfor="__search"[^>]*)>')
     hdr_drawer_label_re = re.compile(
         r'<label\b(?![^>]*\baria-label=)([^>]*\bclass="md-header__button md-icon"[^>]*\bfor="__drawer"[^>]*)>')
+    # 12) label-hygiene face, two upstream gaps measured by the tick-904
+    #     label[for]->input[id] wiring census. (a) With navigation.indexes
+    #     active, every nested sidebar section's expand/collapse control is
+    #     a bare <label class="md-nav__link" for="__nav_X" id="__nav_X_label"
+    #     tabindex="0"> containing ONLY the icon span - no text, no
+    #     aria-label (19,890 site-wide). The label is focusable and unnamed
+    #     (WCAG 4.1.2), and each panel's aria-labelledby points at its id,
+    #     so the nested nav panel computes an empty accessible name too.
+    #     Fix: copy the section title from the sibling <a>'s md-ellipsis
+    #     text into aria-label on the bare label - the panel's
+    #     aria-labelledby then resolves to a real name through the same id.
+    #     (b) On the 46 section-root pages whose own nav item takes the
+    #     indexes branch, the TOC panel title carries for="__toc" while the
+    #     __toc checkbox input is never emitted - a dead for= (WCAG 1.3.1
+    #     wiring; the click was already a no-op). Fix: drop the for= on
+    #     title labels only on pages with no __toc input - zero behavior
+    #     change, wiring made honest. Both guarded so an upstream fix can
+    #     never be doubled.
+    nav_idx_container_re = re.compile(
+        r'(<div class="md-nav__link md-nav__container">\s*<a\b[^>]*>(.*?)</a>\s*<label\b)'
+        r'(?![^>]*\baria-label=)([^>]*\bid="__nav_\d+(?:_\d+)*_label"[^>]*)>'
+        r'(\s*<span class="md-nav__icon md-icon"></span>\s*</label>)', re.S)
+    toc_title_label = '<label class="md-nav__title" for="__toc">'
+    # (12c) companion: upstream also writes aria-labelledby="{{path}}_label"
+    # on every nested panel unconditionally, but skips emitting the toggle
+    # label when the index container has a single child (children|length > 1
+    # guard) - a broken idref on all 443 pages for that one section
+    # (__nav_10_3_6). The minted id below re-points the panel at its own
+    # md-nav__title text.
+    lly_re = re.compile(r'aria-labelledby="(__nav_\d+(?:_\d+)*_label)"')
     # 7) Material 9.7.6 labels the footer prev/next links with the neighboring
     #    page's raw front-matter title (page.previous_page.title), while the
     #    sidebar shows the explicit nav label from mkdocs.yml. For the generic
@@ -278,6 +308,8 @@ def on_post_build(config, **kwargs):
     edit_anchor_re = re.compile(r'<a\b[^>]*\brel="edit"[^>]*>')
     bridged = untabbed = named = current = enlarged = sited = retitled = footered = scoped = skipped = tabbed = 0
     searchlab = drawerlab = 0
+    navlab = tocdead = 0
+    navtitle = 0
     site_name = (config.get("site_name") or "").replace('"', "&quot;")
     for html in site.rglob("*.html"):
         depth = len(html.parent.relative_to(site).parts)
@@ -410,6 +442,30 @@ def on_post_build(config, **kwargs):
             return m.group(0)[:-1] + ' aria-label="Menu" title="Menu">'
         new_text = hdr_search_label_re.sub(_slabel, new_text)
         new_text = hdr_drawer_label_re.sub(_dlabel, new_text)
+        # sidebar index-toggle labels (12a): name the bare icon-only section
+        # toggles from their sibling <a> title, and (12b) drop the dead
+        # __toc for= on pages whose __toc input was never emitted
+        def _navlab(m):
+            nonlocal navlab
+            title = re.sub(r"\s+", " ", _html.unescape(re.sub(r"<[^>]+>", " ", m.group(2)))).strip()
+            if not title:
+                return m.group(0)
+            navlab += 1
+            return m.group(1) + m.group(3) + f' aria-label="{_html.escape(title, quote=True)}">' + m.group(4)
+        new_text = nav_idx_container_re.sub(_navlab, new_text)
+        if toc_title_label in new_text and 'id="__toc"' not in new_text:
+            tocdead += new_text.count(toc_title_label)
+            new_text = new_text.replace(toc_title_label, '<label class="md-nav__title">')
+        # broken panel aria-labelledby (12c): mint the missing id on the
+        # panel's own title label so the reference resolves to real text
+        for p in set(lly_re.findall(new_text)):
+            if f'id="{p}"' not in new_text:
+                base = p[:-len("_label")]
+                old = f'<label class="md-nav__title" for="{base}">'
+                if old in new_text:
+                    navtitle += new_text.count(old)
+                    new_text = new_text.replace(
+                        old, f'<label class="md-nav__title" id="{p}" for="{base}">')
         if new_text != text:
             html.write_bytes(new_text.encode("utf-8"))
     print(f"[hooks] bridged {bridged} experiments link(s) from repo depth to site depth")
@@ -421,3 +477,4 @@ def on_post_build(config, **kwargs):
     print(f"[hooks] tables: {scoped} table header cell(s) scoped to col")
     print(f"[hooks] tabs: {tabbed} active header tab(s) marked aria-current")
     print(f"[hooks] header labels: {searchlab} search + {drawerlab} drawer icon toggle(s) named")
+    print(f"[hooks] nav labels: {navlab} index toggle(s) named; {tocdead} dead __toc for= dropped; {navtitle} broken panel aria-labelledby re-pointed")
