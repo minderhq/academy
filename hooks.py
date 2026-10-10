@@ -580,6 +580,7 @@ def on_post_build(config, **kwargs):
     og_title_re = re.compile(r'(<meta\s+property="og:title"\s+content=")([^"]*)(")')
     h1_re = re.compile(r"<h1[^>]*>(.*?)</h1>", re.S)
     line_anchor_re = re.compile(r'<a\b[^>]*\bid="__codelineno[^>]*>')
+    _mermaid_seg_re = re.compile(r'<pre class="mermaid"><code>.*?</code></pre>', re.S)
     edit_anchor_re = re.compile(r'<a\b[^>]*\brel="edit"[^>]*>')
     bridged = untabbed = named = current = enlarged = sited = retitled = footered = scoped = skipped = tabbed = 0
     searchlab = drawerlab = drawertab = drawerkey = motionin = searchfocus = hlf = 0
@@ -588,6 +589,7 @@ def on_post_build(config, **kwargs):
     navlab = tocdead = 0
     navtitle = 0
     svgdec = 0
+    mermfix = mermblocks = 0
     site_name = (config.get("site_name") or "").replace('"', "&quot;")
     for html in site.rglob("*.html"):
         depth = len(html.parent.relative_to(site).parts)
@@ -792,6 +794,33 @@ def on_post_build(config, **kwargs):
             '<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true"',
             new_text)
         svgdec += _nsvg
+        # mermaid unicode arrows (20): the corpus ships one flowchart whose
+        # edges use the literal character "→" - mermaid 11 has no unicode
+        # arrow syntax, so the browser side (which lazily loads mermaid@11
+        # from unpkg and renders every <pre class="mermaid"> into a closed
+        # shadow root) throws a lexical parse error for this block alone.
+        # The failure is silent-by-default: the diagram never renders,
+        # sighted readers see raw "graph TD ..." source text where a
+        # flowchart should be, an uncaught promise error lands in the
+        # console, and mermaid's own error graphic ("Syntax error in text",
+        # aria-roledescription="error") renders ~10,700px down at the page
+        # bottom - exposed to AT, invisible to the eye. " --> " is the
+        # exact equivalent edge with the same arrowhead, so this is a
+        # build-time syntax repair of the built output that preserves the
+        # author's intent (a rendered flowchart); no docs/ source is
+        # touched. Scoped to <pre class="mermaid"><code> segments only
+        # (census: the character appears in exactly 1 of the corpus's 54
+        # diagram blocks - prose and ASCII art elsewhere are untouched);
+        # naturally idempotent, after the rewrite no arrow remains.
+        def _mfix(m):
+            nonlocal mermfix, mermblocks
+            seg = m.group(0)
+            if "→" in seg:
+                mermfix += seg.count("→")
+                mermblocks += 1
+                return seg.replace("→", "-->")
+            return seg
+        new_text = _mermaid_seg_re.sub(_mfix, new_text)
         # sidebar index-toggle labels (12a): name the bare icon-only section
         # toggles from their sibling <a> title, and (12b) drop the dead
         # __toc for= on pages whose __toc input was never emitted
@@ -834,4 +863,5 @@ def on_post_build(config, **kwargs):
     print(f"[hooks] label-in-name: {labelname} footer prev/next aria-label(s) colon-aligned")
     print(f"[hooks] alert-live: {alertlive} status region script(s) injected")
     print(f"[hooks] svg decorative: {svgdec} icon svg(s) marked aria-hidden")
+    print(f"[hooks] mermaid arrows: {mermfix} unicode arrow(s) normalized to --> in {mermblocks} diagram(s)")
     print(f"[hooks] nav labels: {navlab} index toggle(s) named; {tocdead} dead __toc for= dropped; {navtitle} broken panel aria-labelledby re-pointed")
