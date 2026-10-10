@@ -44,3 +44,17 @@
 .md-header__option:has(.md-option.focus-visible) label.md-header__button {
   outline: 3px auto var(--md-accent-fg-color);
 }
+
+/* tick-935: links in prose are differentiated from surrounding text by
+   COLOR ALONE (WCAG 1.4.1, technique G183) - the base anchor rule sets
+   only --md-typeset-a-color and the hover rule swaps to the accent, with
+   no text-decoration at rest or on hover, so the "this is a link" signal
+   is lost on a color-blind reader. A matching underline adds the second
+   visual channel and follows the link color automatically (currentColor).
+   Permalinks (.headerlink) are chrome glyphs revealed on heading hover and
+   the icon-only edit/share buttons (.md-content__button) carry their own
+   affordance, so both stay unlined. */
+.md-typeset a:not(.headerlink):not(.md-content__button) {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
