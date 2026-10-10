@@ -16,6 +16,28 @@ Tags: ['assessment', 'practice', 'rag', 'vectors']
 
 ### Exercise 1: Compute Embeddings
 
+Compute sentence embeddings for a small document set with `all-MiniLM-L6-v2`, build the pairwise cosine-similarity matrix, report the most similar document pair, and render the matrix as an annotated heatmap.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 2: Compare Embedding Models
+
+Benchmark three sentence-embedding models (MiniLM, MPNet, BGE-small) on the same documents and query: measure encoding time, record embedding dimensionality and memory footprint, compute query-to-document similarities, and compare retrieval quality side by side.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 3: Chunking Strategy
+
+Implement two chunking strategies: fixed-size word windows with configurable overlap (guard the loop so the final chunk terminates instead of oscillating at the tail), and semantic chunking that packs whole sentences up to a sentence budget. Verify each strategy's chunks against its contract.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+## Answer Key
+
+Full solutions for every exercise above. Work through your own attempt before comparing.
+
+### Exercise 1: Compute Embeddings
+
 ```python
 from sentence_transformers import SentenceTransformer
 import numpy as np

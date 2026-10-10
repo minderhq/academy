@@ -16,6 +16,52 @@ Tags: ['assessment', 'practice', 'finetuning', 'synthetic-data']
 
 ### Exercise 1: Generate Instruction Data
 
+Build a synthetic instruction-dataset generator: define instruction templates with fillable slots (domain, topic, concept, task, language), sample the slot values at random, and generate a response for each completed prompt with a small causal LM - then swap in a stronger instruct checkpoint for production quality. Persist every (instruction, response) pair as JSON.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 2: Data Augmentation with Back Translation
+
+Implement paraphrase-based augmentation with back-translation: load the Helsinki-NLP English-German and German-English MarianMT tokenizers and models directly as seq2seq checkpoints, translate each sentence to German and back with `do_sample=True` so the round-trips differ, and print each paraphrase next to the original.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 3: Generate Conversation Data
+
+Write a multi-turn conversation generator: seed each conversation from random starter phrases and topics, alternate user and assistant messages for five turns, rebuild the running transcript into a plain-text prompt every turn, and generate the assistant reply with sampling. Save the finished conversations with their role tags.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 4: Synthetic Data for Reasoning
+
+Create chain-of-thought training data: prompt a causal LM with step-by-step reasoning templates over a set of logic questions, decode only the newly generated tokens so the prompt text stays out of the response, extract the final answer from the reasoning text, and store question, reasoning, and answer per sample.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 5: Generate Code-Text Pairs
+
+Build a code-explanation dataset: for each snippet in a varied list - one-liners, comprehensions, pandas calls, a recursive function - embed the snippet in an explanation prompt, generate the natural-language description decoding only the new tokens, and collect the (code, explanation) pairs. The prompt itself contains triple backticks, so the whole script needs a four-backtick fence.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 6: Quality Filtering
+
+Implement a heuristic quality filter for synthetic samples: score each item on output length band, word-level uniqueness, absence of generation artifacts, and basic coherence with partial credit along the way, keep the samples above a configurable threshold with their scores attached, and report how many survived.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 7: Mix Real and Synthetic Data
+
+Write a dataset mixer combining real and synthetic samples at a chosen synthetic share of the FINAL mix: size the synthetic draw from its pool correctly (a pool-sized sample can dominate a small real set), shuffle the union, and tag every item with its source so origins stay auditable.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+## Answer Key
+
+Full solutions for every exercise above. Work through your own attempt before comparing.
+
+### Exercise 1: Generate Instruction Data
+
 ```python
 from transformers import AutoModelForCausalLM, AutoTokenizer
 import json

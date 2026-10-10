@@ -16,6 +16,28 @@ Tags: ['assessment', 'practice', 'finetuning', 'optimizers']
 
 ### Exercise 1: Implement Learning Rate Schedule
 
+Implement a learning-rate schedule with linear warmup followed by cosine decay, clamping the progress term so the rate keeps decaying past the total step count instead of rising again. Print the rate at sample steps and plot the full curve with matplotlib.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 2: Compare Optimizers
+
+Build an optimizer comparison harness: train a small MLP for several epochs under AdamW, Adafactor, Adam, and SGD at matched learning rates (pin Adafactor's `relative_step=False` so it honors `lr`), record each loss curve, and plot them together for a like-for-like comparison.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 3: Implement Gradient Clipping
+
+Add gradient clipping to a training loop: compute the global gradient norm before clipping, apply `clip_grad_norm_` at a configurable maximum, log loss and pre-clip norm per batch, and return both histories so the clipping threshold's effect is visible in a plot.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+## Answer Key
+
+Full solutions for every exercise above. Work through your own attempt before comparing.
+
+### Exercise 1: Implement Learning Rate Schedule
+
 ```python
 import math
 

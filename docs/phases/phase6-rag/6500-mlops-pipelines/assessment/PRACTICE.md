@@ -16,6 +16,52 @@ Tags: ['assessment', 'practice', 'mlops', 'pipeline']
 
 ### Exercise 1: Build RAG Evaluation Pipeline
 
+Build a RAG evaluation harness around RAGAS: assemble a Dataset of question, generated answer, retrieved contexts, and ground truth through mock retriever and generator classes, then run faithfulness and answer relevancy scoring - noting both are LLM-judged metrics that require a judge API key.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 2: A/B Testing Framework
+
+Implement an A/B testing class for two RAG systems: run both on a query set, score each answer with simple quality metrics, record a winner per query, and summarize win rates across the whole test.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 3: CI/CD for RAG Pipeline
+
+Write a GitHub Actions workflow in YAML that runs on every push and pull request: sync dependencies from a committed lockfile with uv, run unit and integration test suites with coverage, execute a RAG evaluation script against a fixed eval set, and upload the coverage report to Codecov.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 4: Monitoring RAG Performance
+
+Instrument a RAG pipeline with Prometheus: define a request counter, latency histograms for retrieval, generation, and the total, a retrieved-docs histogram, and gauges for faithfulness and relevancy, then wrap the pipeline so every request times its stages and records all metrics.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 5: Model Registry for RAG Components
+
+Build an MLflow-backed registry for RAG components: log retriever and generator runs with params and metrics under registered model names, and provide a loader that reconstructs the pipeline from two pinned versions through their `models:/` URIs.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 6: Canary Deployment
+
+Implement a canary deployment router: send a configurable percentage of traffic to the canary model and the rest to production, tag every response with its source, and produce a metrics comparison - latency, quality, error rate - between the two models.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 7: Automated Retraining Pipeline
+
+Write an automated retraining pipeline: compare current faithfulness and relevancy against their thresholds independently, fetch fresh data and retrain the affected component when a metric drops, log the new model, and deploy only when retraining actually occurred.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+## Answer Key
+
+Full solutions for every exercise above. Work through your own attempt before comparing.
+
+### Exercise 1: Build RAG Evaluation Pipeline
+
 ```python
 from datasets import Dataset
 from ragas import evaluate

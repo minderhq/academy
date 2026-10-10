@@ -16,6 +16,52 @@ Tags: ['assessment', 'practice', 'rag', 'vector-db']
 
 ### Exercise 1: Qdrant Setup and Operations
 
+Stand up a Qdrant collection end to end: create a 384-dim cosine collection, embed documents with `all-MiniLM-L6-v2`, upsert points carrying text payloads, and run a vector query that prints the ranked results.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 2: Milvus Operations
+
+Repeat the pipeline in Milvus: define a schema with an auto-id primary key, a 384-dim float-vector field, and a text field; insert the documents; build an IVF_FLAT cosine index; then load the collection and search it with a tuned `nprobe`.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 3: ChromaDB Operations
+
+Repeat the pipeline in ChromaDB with a persistent on-disk client: create a collection, add documents with embeddings and metadata, and query it - the removed `duckdb+parquet` settings keys raise on modern versions, so construct the client through `PersistentClient`.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 4: Multi-Vector Collection
+
+Create a Qdrant collection carrying both a named dense vector and a named sparse vector: implement a toy hash-based sparse encoder standing in for BM25/SPLADE, upsert every point with both vectors plus a text payload, and query the collection.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 5: Filtering with Metadata
+
+Attach category, year, and popularity payloads to points, then run filtered Qdrant searches: an exact category match, and a compound filter combining a year range with a match condition, printing each result set with its payload.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 6: Hybrid Search (Vector + Keyword)
+
+Combine vector and keyword search over one Qdrant collection: fetch vector results, scroll-filter keyword hits, blend the two score sets under a weight `alpha`, and return the top documents fetched back by id.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 7: Performance Optimization
+
+Optimize a Qdrant collection for load: tune HNSW parameters at creation time, add payload indexes for the filtered fields through separate `create_payload_index` calls (collection kwargs silently ignore them), and batch a large upsert with per-batch progress logging, then measure search throughput.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+## Answer Key
+
+Full solutions for every exercise above. Work through your own attempt before comparing.
+
+### Exercise 1: Qdrant Setup and Operations
+
 ```python
 from qdrant_client import QdrantClient
 from qdrant_client.models import Distance, VectorParams, PointStruct

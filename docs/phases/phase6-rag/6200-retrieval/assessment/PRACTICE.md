@@ -16,6 +16,52 @@ Tags: ['assessment', 'practice', 'rag', 'retrieval']
 
 ### Exercise 1: Hybrid Search (Dense + Sparse)
 
+Build a hybrid retriever class that indexes documents both densely (sentence-transformer embeddings) and sparsely (TF-IDF with bigrams), normalizes both score vectors into [0, 1], blends them under a weight `alpha`, and returns the top-k documents with their dense and sparse components.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 2: Query Expansion
+
+Add LLM query expansion to retrieval: prompt an instruction-tuned model to rewrite a query into several alternative phrasings, merge the variants with the original, retrieve for each, and fuse the pooled results into one deduplicated ranking.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 3: Cross-Encoder Re-ranking
+
+Implement two-stage retrieval: fetch a wider candidate set with a fast retriever, re-score every (query, document) pair with a cross-encoder relevance model, sort by the re-rank scores, and return only the top few documents.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 4: Query Understanding with LLM
+
+Build LLM-based query understanding: ask a language model to classify a query's intent and emit keywords, entities, and a reformulated version as strict JSON, parse the reply defensively with a keyword-split fallback, then feed the reformulated query into an enhanced retrieval flow.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 5: Hierarchical Retrieval
+
+Implement parent-child retrieval: group chunks into larger parent documents, index both levels, search at the chunk level, then return parent documents with scores aggregated over their member chunks, deduplicating parents that several top chunks share.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 6: Multi-Vector Retrieval
+
+Score documents against a query over multiple representations at once - first-sentence title, stopword-stripped keywords, and full text - embed each view, normalize and weight the three similarity vectors, and return the top-k documents under the blended score.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 7: Recursive Retrieval
+
+Build a retriever that chooses its own granularity: split documents into sentences and index both levels, retrieve broadly first, then switch between sentence-level and chunk-level results based on how concentrated the top hits are, while allowing an explicit granularity override.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+## Answer Key
+
+Full solutions for every exercise above. Work through your own attempt before comparing.
+
+### Exercise 1: Hybrid Search (Dense + Sparse)
+
 ```python
 from sentence_transformers import SentenceTransformer
 from sklearn.feature_extraction.text import TfidfVectorizer

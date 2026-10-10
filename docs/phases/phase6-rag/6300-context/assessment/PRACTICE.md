@@ -16,6 +16,52 @@ Tags: ['assessment', 'practice', 'rag', 'context']
 
 ### Exercise 1: Long Context Benchmarking
 
+Benchmark a causal LM across increasing context lengths: feed random token inputs at each length, measure peak GPU memory per forward pass, and plot memory against context length.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 2: Context Compression via Summarization
+
+Implement context compression: when an input exceeds a word budget, split it into word-sized chunks, replace the older half with LLM summaries (prompt an instruction-tuned model - the task-specific summarization pipeline is retired in transformers 5.x), keep the recent chunks verbatim, and return the compressed context.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 3: Sliding Window Attention
+
+Implement sliding-window self-attention as an `nn.Module`: project QKV, build the causal mask, then restrict each position's attention to a bounded window of preceding tokens, and verify the module forward-passes a long test sequence.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 4: Context Chunking Strategies
+
+Write a context chunking function with three strategies - fixed word windows with overlap, semantic packing by paragraph, and recursive splitting - plus the recursive splitter behind the third mode, which falls through separators from coarsest to finest and hard-cuts on characters as a last resort.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 5: Context Relevance Scoring
+
+Score context chunks by embedding similarity to the query, rank them, and assemble an optimal context window: keep selecting ranked chunks until a token budget is exhausted.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 6: LongContext LLM (Llama-2-Long style)
+
+Wire up long-context generation: concatenate a large document set into one prompt, tokenize with truncation at the model's 32K-token ceiling, generate the response, and strip the prompt scaffolding so only the generated answer returns.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 7: Context Distillation
+
+Build a context-distillation pipeline: have a long-context teacher answer each query over the full context, compress the contexts, and prepare student training examples that pair the compressed context, the query, and the teacher's answer.
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+## Answer Key
+
+Full solutions for every exercise above. Work through your own attempt before comparing.
+
+### Exercise 1: Long Context Benchmarking
+
 ```python
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer

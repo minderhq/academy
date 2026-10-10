@@ -18,6 +18,32 @@ Tags: ['assessment', 'practice', 'distributed', 'ddp']
 
 Convert this single-GPU training loop to use DDP:
 
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 2: Implement Gradient Accumulation
+
+Implement gradient accumulation to simulate larger batch sizes:
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 3: FSDP Configuration
+
+Configure FSDP for a large model:
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+### Exercise 4: Benchmark Distributed Training
+
+Compare single-GPU vs multi-GPU training speed:
+
+*Attempt it yourself first — the full worked answer is in the [Answer Key](#answer-key) at the end of this file.*
+
+## Answer Key
+
+Full solutions for every exercise above. Work through your own attempt before comparing.
+
+### Exercise 1: Convert Single-GPU Training to DDP
+
 ```python
 import os
 
@@ -116,8 +142,6 @@ if __name__ == "__main__":
 
 ### Exercise 2: Implement Gradient Accumulation
 
-Implement gradient accumulation to simulate larger batch sizes:
-
 ```python
 import torch
 from torch.utils.data import DataLoader
@@ -195,8 +219,6 @@ train_with_gradient_accumulation(
 ```
 
 ### Exercise 3: FSDP Configuration
-
-Configure FSDP for a large model:
 
 ```python
 import torch
@@ -286,8 +308,6 @@ if __name__ == "__main__":
 ```
 
 ### Exercise 4: Benchmark Distributed Training
-
-Compare single-GPU vs multi-GPU training speed:
 
 ```python
 import os
