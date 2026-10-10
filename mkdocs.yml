@@ -530,28 +530,28 @@ nav:
         - "External Resources": learning-resources/resources/EXTERNAL-RESOURCES.md
     - Case Studies:
       - "Industry":
+        - "Overview": industry/README.md
         - "Healthcare AI Applications": industry/IND-001-Healthcare-AI-Applications.md
         - "Finance AI Applications": industry/IND-002-Finance-AI-Applications.md
         - "Manufacturing AI": industry/IND-003-Manufacturing-AI.md
-        - "Overview": industry/README.md
       - "Use Cases":
         - "Overview": use-cases/README.md
         - "Vector Database Applications": use-cases/UC-001-Vector-Database-Applications.md
         - "RAG Applications": use-cases/UC-002-RAG-Applications.md
         - "Agent Applications": use-cases/UC-003-Agent-Applications.md
       - "Comparisons":
+        - "Overview": comparisons/README.md
         - "RAG vs FineTuning vs Agents": comparisons/CP-001-RAG-vs-FineTuning-vs-Agents.md
         - "Vector Database Comparison": comparisons/CP-002-Vector-Database-Comparison.md
-        - "Overview": comparisons/README.md
       - "Enterprise Solutions":
         - "Overview": enterprise-solutions/README.md
         - "Enterprise Knowledge Base": enterprise-solutions/SOL-001-Enterprise-Knowledge-Base.md
         - "Industry Solution": enterprise-solutions/SOL-002-Industry-Solution.md
       - "Diagrams":
+        - "Overview": diagrams/README.md
         - "ML Lifecycle": diagrams/ML-LIFECYCLE.md
         - "Project 001 Architecture": diagrams/PROJECT-001-ARCHITECTURE.md
         - "ReAct Loop": diagrams/REACT-LOOP.md
-        - "Overview": diagrams/README.md
       - "Notebooks":
         - "Overview": notebooks/README.md
     - Reference:
