@@ -585,13 +585,28 @@ def on_post_build(config, **kwargs):
     #     pattern: a MutationObserver on .md-search-result__list (whose
     #     clear-on-empty mutation fires in the same worker write batch as
     #     the meta text) mirrors "Search: N results" / "Search: no matching
-    #     documents" into a visually-hidden aria-live=polite region, scanning
-    #     the .md-search-result container for the empty message since the
-    #     worker writes it to the meta sibling; debounced 80ms, re-armed on
-    #     every document$ emission
+    #     documents" / "Search: type to start searching" into a
+    #     visually-hidden aria-live=polite region, scanning the
+    #     .md-search-result container for the empty message and the hint
+    #     since the worker writes both to the meta sibling; debounced 80ms,
+    #     re-armed on every document$ emission
     #     so instant-nav swaps never leave a stale observer, every layer in
     #     try/catch so a failure degrades to the shipped silent behavior,
     #     and the __mdSearchStatus guard makes double-install impossible.
+    #     The hint face was found by the tick-947 live matrix: deleting the
+    #     query with the keyboard (Ctrl+A, Backspace) re-runs the worker,
+    #     which clears the list and writes "Type to start searching" into
+    #     the meta sibling - the original scan()'s n===0 branch only
+    #     recognized "no matching documents", so the region kept the STALE
+    #     "Search: N results" from the previous query while the visible UI
+    #     showed the hint (stale status message, WCAG 4.1.3). The
+    #     clear-button face is its sibling wart: the reset button empties
+    #     the input but a native form reset fires no input event, so the
+    #     worker never re-runs and BOTH list and region stay stale; a reset
+    #     listener now dispatches a synthetic input event so Clear lands in
+    #     the same hint face the keyboard path does (verified live:
+    #     form.md-search__form[name=search] > button[type=reset], Material
+    #     9.7.7 partial).
     search_status_html = (
         '<script>(function(){'
         'try{'
@@ -620,6 +635,7 @@ def on_post_build(config, **kwargs):
         'if(n===0){'
         'var box=list.closest(".md-search-result")||list.parentElement;'
         'if(box&&/no matching documents/i.test(box.textContent||""))t="Search: no matching documents";'
+        'else if(box&&/type to start searching/i.test(box.textContent||""))t="Search: type to start searching";'
         '} else {'
         't="Search: "+n+" result"+(n===1?"":"s");'
         '}'
@@ -649,6 +665,13 @@ def on_post_build(config, **kwargs):
         '}catch(e){}'
         'if(++tries<50)setTimeout(boot,100);'
         '})();'
+        'try{'
+        'var form=document.querySelector(".md-search__form");'
+        'var inp=form?form.querySelector(".md-search__input"):null;'
+        'if(form&&inp){'
+        'form.addEventListener("reset",function(){setTimeout(function(){try{inp.dispatchEvent(new Event("input",{bubbles:true}));}catch(e){}},0);});'
+        '}'
+        '}catch(e){}'
         'if(window.document$&&typeof window.document$.subscribe==="function"){'
         'try{window.document$.subscribe(function(){setTimeout(arm,50);});}catch(e){}'
         '}'
