@@ -246,15 +246,31 @@ def on_post_build(config, **kwargs):
     # 13) The header drawer toggle is the one visible header control with no
     #     keyboard path at all (WCAG 2.1.1, tick-924 census): Material emits
     #     it as a bare <label for="__drawer"> driving the hidden __drawer
-    #     checkbox through native label semantics, and the bundle contains
-    #     ZERO references to __drawer - no JS wiring, unlike the search label
-    #     (its click focuses the input) and the palette form (upstream ships
-    #     it its own Enter handler that clicks the radios). Native behavior
-    #     makes labels keyboard-inert even when focusable: Enter and Space
-    #     fire no activation on a <label>. On mobile viewports the label is
+    #     checkbox through native label semantics. Native behavior makes
+    #     labels keyboard-inert even when focusable: Enter and Space fire no
+    #     NATIVE activation on a <label>. On mobile viewports the label is
     #     the ONLY way to open the navigation drawer (the __drawer checkbox
     #     itself is display:none), so without this fix a keyboard user could
-    #     not open site navigation at all - pointer-only operation. Two-part
+    #     not open site navigation at all - pointer-only operation.
+    #     Tick-951 amendment - the bundle DOES wire the drawer, via the
+    #     attribute selector, and it nearly ate this fix whole: grep for the
+    #     literal "__drawer" finds nothing, but `var yr={drawer:j("[data-
+    #     md-toggle=drawer]"),...}` plus `at(e,t){yr[e].checked!==t&&yr[e]
+    #     .click()}` and - the lethal one - a GLOBAL keyboard stream
+    #     `mo.pipe(filter(mode==="global")).subscribe(... case "Enter":
+    #     activeElement.click())` that clicks whatever focused label Enter
+    #     lands on. So a real Enter on this label runs TWO toggles: ours
+    #     (document bubble, fires first) and the bundle's (window bubble,
+    #     fires after), and the drawer lands back closed - measured live on
+    #     the DEPLOYED site with a real CDP Enter (checked stayed false),
+    #     meaning the tick-924 keyboard-open fix has been net-zero in
+    #     production since it shipped; Space worked all along because the
+    #     bundle's global switch handles Enter only. The delegate therefore
+    #     stopPropagation()s after preventDefault(): document-bubble runs
+    #     before window-bubble, so stopping there keeps the bundle's label
+    #     click out of the event for good and the toggle is single-shot.
+    #     Escape is untouched - it writes the checkbox directly and the
+    #     bundle's only Escape arm belongs to the search overlay. Two-part
     #     fix, both guarded so an upstream fix cannot be doubled: (a)
     #     tabindex="0" puts the label in the tab order on exactly the
     #     viewports where it is visible (desktop hides it with display:none,
@@ -298,7 +314,7 @@ def on_post_build(config, **kwargs):
         'if("Enter"!==e.key&&" "!==e.key)return;'
         'var t=e.target;'
         't&&t.matches&&t.matches(\'label.md-header__button[for="__drawer"]\')'
-        '&&(e.preventDefault(),t.click())});</script>')
+        '&&(e.preventDefault(),e.stopPropagation(),t.click())});</script>')
     # 14) reduced-motion JS-scroll shim, the one live gap measured by the
     #     tick-926 prefers-reduced-motion coverage census. The CSS face of
     #     this axis is already TOTAL upstream: the shipped 9.7.7 stylesheet
@@ -682,6 +698,79 @@ def on_post_build(config, **kwargs):
         '}'
         '}catch(e){}'
         '})();</script>')
+    # 23) sidebar fold keyboard path, the gap measured by the tick-951
+    #     live matrix. Every sidebar section expands/collapses through the
+    #     same pair: a hidden checkbox (display:none, itself unreachable)
+    #     plus a <label class="md-nav__link" for="__nav_X"> that the
+    #     pointer clicks into the checkbox via native label semantics.
+    #     Keyboard gets neither half. The label's tabindex is upstream-
+    #     minted as "0" ONLY for sections that are not is_section on the
+    #     rendering page (nav-item.html: {% set tabindex = "0" if not
+    #     is_section %}; with navigation.tabs, is_section is exactly the
+    #     ACTIVE top-level section), so the same "Start Here" fold is
+    #     Tab-reachable on inactive pages and carries an empty tabindex=""
+    #     - not focusable at all - wherever it is active. And even on the
+    #     focusable variant, the keyboard story needs the tick-951
+    #     amendment's full picture. Space is dead everywhere: HTML gives
+    #     <label> no keyboard activation, and the bundle's global keyboard
+    #     switch handles Enter only. Enter has ONE live upstream path: the
+    #     same global stream that the tick-951 drawer amendment exposed -
+    #     `mo.pipe(mode==="global")` clicks the focused element when it is
+    #     an HTMLLabelElement - so a real Enter on a tabindex="0" fold
+    #     label already toggles the fold (re-measured clean on the
+    #     deployed site after the first cut of this fix: checked flips,
+    #     focus stays; the first cut's "Enter dead" reading was a probe
+    #     artifact, the label[for] selector had caught the interactivity-
+    #     free md-nav__title copy). That leaves the real defects: Space on
+    #     every fold, and - the hard one - the tabindex="" variants.
+    #     Because is_section is exactly the ACTIVE section, the fold you
+    #     would most want to collapse (the section you are reading,
+    #     including the desktop lifted-sidebar's one visible fold at
+    #     >=76.25em) is precisely the copy that renders unfocusable, so
+    #     no amount of key handling can reach it. Net effect measured:
+    #     expanding a section by keyboard works only via Enter on the
+    #     inactive-page variants; collapsing it, and every Space press,
+    #     are pointer-only (WCAG 2.1.1). Two-part fix mirroring block
+    #     13's idiom, both guarded so an upstream fix cannot double: (a)
+    #     the corpus rewrite mints
+    #     tabindex="0" on fold labels whose tabindex came up empty - the
+    #     selector requires class="md-nav__link" plus for="__nav*"/
+    #     for="__toc" somewhere in the tag so only these labels and
+    #     nothing else match, at any attribute position (block 12a's
+    #     aria-label append leaves tabindex mid-tag on the indexes-form
+    #     labels), and it is naturally idempotent (the match requires
+    #     tabindex="");
+    #     hidden copies (display:none at desktop widths) drop out of the
+    #     tab order on their own, so visible sequences are unchanged
+    #     beyond the fold labels that were already visible stops;
+    #     (b) the document-level keydown delegate translates Enter/Space
+    #     on either fold-label form into click() on its labeled checkbox
+    #     - the :checked CSS cascade opens/closes the fold exactly as a
+    #     pointer click does, the change event fires for the AT state
+    #     carrier (the checkbox is the real state expose; the nav's
+    #     server-rendered aria-expanded is never updated at runtime and
+    #     is ignored on role=navigation, recorded upstream, untouched).
+    #     The single-shot guarantee comes from stopPropagation, not from
+    #     label-click choice: on a real Enter the bundle's global stream
+    #     would click the focused label a second time (see block 13) and
+    #     the two toggles would cancel; the delegate fires at document
+    #     bubble, before the bundle's window-bubble listener, so
+    #     stopPropagation keeps it out and click-on-checkbox (never
+    #     label.click()) makes ours the only toggle in the chain. Same
+    #     injection point and dedup law as block 13: before </body>,
+    #     outside the instant-nav container, string-absence per document,
+    #     no window guard. The selector shares the label.md-nav__link
+    #     class but no for= value with the burger delegate (for="__drawer"
+    #     on label.md-header__button), so the two delegates are disjoint.
+    fold_tab_re = re.compile(
+        r'(<label\b(?=[^>]*\bclass="md-nav__link)(?=[^>]*\bfor="__(?:nav|toc))[^>]*?)\stabindex=""([^>]*>)')
+    fold_keys_html = (
+        '<script>document.addEventListener("keydown",function(e){'
+        'if("Enter"!==e.key&&" "!==e.key)return;'
+        'var t=e.target;'
+        'if(!(t&&t.matches&&t.matches(\'label.md-nav__link[for^="__nav"],label.md-nav__link[for^="__toc"]\')))return;'
+        'var c=document.getElementById(t.getAttribute("for"));'
+        'c&&(e.preventDefault(),e.stopPropagation(),c.click())});</script>')
     # 12) label-hygiene face, two upstream gaps measured by the tick-904
     #     label[for]->input[id] wiring census. (a) With navigation.indexes
     #     active, every nested sidebar section's expand/collapse control is
@@ -756,6 +845,7 @@ def on_post_build(config, **kwargs):
     mermfix = mermblocks = 0
     navfocus = 0
     searchstatus = 0
+    foldtab = foldkey = 0
     site_name = (config.get("site_name") or "").replace('"', "&quot;")
     for html in site.rglob("*.html"):
         depth = len(html.parent.relative_to(site).parts)
@@ -1019,6 +1109,16 @@ def on_post_build(config, **kwargs):
         if "</body>" in new_text and search_status_html not in new_text:
             new_text = new_text.replace("</body>", search_status_html + "</body>", 1)
             searchstatus += 1
+        # sidebar fold keyboard path (23): mint tabindex on the empty-
+        # tabindex fold labels and, when any label exists at all (the
+        # delegate must ship on every page - it serves the already-
+        # focusable tabindex="0" variants too), inject the Enter/Space
+        # delegate that clicks the labeled checkbox
+        new_text, _nfold = fold_tab_re.subn(lambda m: m.group(1) + ' tabindex="0"' + m.group(2), new_text)
+        foldtab += _nfold
+        if "</body>" in new_text and fold_keys_html not in new_text:
+            new_text = new_text.replace("</body>", fold_keys_html + "</body>", 1)
+            foldkey += 1
         if new_text != text:
             html.write_bytes(new_text.encode("utf-8"))
     print(f"[hooks] bridged {bridged} experiments link(s) from repo depth to site depth")
@@ -1039,5 +1139,6 @@ def on_post_build(config, **kwargs):
     print(f"[hooks] svg decorative: {svgdec} icon svg(s) marked aria-hidden")
     print(f"[hooks] nav focus: {navfocus} navigation focus restore script(s) injected")
     print(f"[hooks] search status: {searchstatus} search result status mirror script(s) injected")
+    print(f"[hooks] fold keyboard: {foldtab} section fold label(s) made focusable; {foldkey} key handler(s) injected")
     print(f"[hooks] mermaid arrows: {mermfix} unicode arrow(s) normalized to --> in {mermblocks} diagram(s)")
     print(f"[hooks] nav labels: {navlab} index toggle(s) named; {tocdead} dead __toc for= dropped; {navtitle} broken panel aria-labelledby re-pointed")
