@@ -601,12 +601,17 @@ def on_post_build(config, **kwargs):
     #     "Search: N results" from the previous query while the visible UI
     #     showed the hint (stale status message, WCAG 4.1.3). The
     #     clear-button face is its sibling wart: the reset button empties
-    #     the input but a native form reset fires no input event, so the
-    #     worker never re-runs and BOTH list and region stay stale; a reset
-    #     listener now dispatches a synthetic input event so Clear lands in
-    #     the same hint face the keyboard path does (verified live:
-    #     form.md-search__form[name=search] > button[type=reset], Material
-    #     9.7.7 partial).
+    #     the input but the worker never re-runs, so BOTH list and region
+    #     stay stale. Bundle archaeology pinpoints why a synthetic input
+    #     event cannot work here at all: the worker's query stream feeds
+    #     from keyup ONLY (ws(): L(workerReady, h(e,"keyup"), focus$)
+    #     .pipe(map(()=>e.value)) - no "input" event exists anywhere in
+    #     the search pipeline), so the reset listener dispatches a
+    #     synthetic keyup (KeyboardEvent, key Backspace) after the reset
+    #     settles, landing Clear in the same hint face the keyboard path
+    #     takes (verified live: synthetic keyup alone re-runs the worker
+    #     and mirrors the hint; form.md-search__form[name=search] >
+    #     button[type=reset], Material 9.7.7 partial).
     search_status_html = (
         '<script>(function(){'
         'try{'
@@ -669,7 +674,7 @@ def on_post_build(config, **kwargs):
         'var form=document.querySelector(".md-search__form");'
         'var inp=form?form.querySelector(".md-search__input"):null;'
         'if(form&&inp){'
-        'form.addEventListener("reset",function(){setTimeout(function(){try{inp.dispatchEvent(new Event("input",{bubbles:true}));}catch(e){}},0);});'
+        'form.addEventListener("reset",function(){setTimeout(function(){try{inp.dispatchEvent(new KeyboardEvent("keyup",{key:"Backspace",bubbles:true}));}catch(e){}},0);});'
         '}'
         '}catch(e){}'
         'if(window.document$&&typeof window.document$.subscribe==="function"){'
