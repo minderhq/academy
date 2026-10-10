@@ -201,6 +201,19 @@ def on_post_build(config, **kwargs):
     #    in this corpus. Guarded on absence of scope= so an upstream emission
     #    can never be doubled.
     th_re = re.compile(r"<th\b(?![^>]*\bscope=)([^>]*)>")
+    # 9) Material's skip link ("Skip to content", the first focusable element)
+    #    targets the page h1 by id, but the h1 carries no tabindex - the
+    #    tick-893 census measured 442/442 pages. Activating the link scrolls
+    #    the viewport without moving keyboard focus: browsers that do not
+    #    transfer focus to non-interactive targets (Safari) leave focus on
+    #    the skip link itself, and screen readers that follow focus rather
+    #    than scroll stay at the top - the skip becomes a visual-only jump
+    #    (WCAG 2.4.1 bypass blocks). tabindex="-1" on the target makes it
+    #    programmatically focusable, the canonical skip-link pattern
+    #    (WAI tutorials); no visual change, the attribute is not focusable by
+    #    Tab. Guarded on absence of tabindex= and anchored to the exact id
+    #    the skip link references, so an upstream change cannot be doubled.
+    skip_re = re.compile(r'<a\b(?=[^>]*\bclass="[^"]*md-skip)[^>]*\bhref="#([^"]*)"')
     # 7) Material 9.7.6 labels the footer prev/next links with the neighboring
     #    page's raw front-matter title (page.previous_page.title), while the
     #    sidebar shows the explicit nav label from mkdocs.yml. For the generic
@@ -234,7 +247,7 @@ def on_post_build(config, **kwargs):
     h1_re = re.compile(r"<h1[^>]*>(.*?)</h1>", re.S)
     line_anchor_re = re.compile(r'<a\b[^>]*\bid="__codelineno[^>]*>')
     edit_anchor_re = re.compile(r'<a\b[^>]*\brel="edit"[^>]*>')
-    bridged = untabbed = named = current = enlarged = sited = retitled = footered = scoped = 0
+    bridged = untabbed = named = current = enlarged = sited = retitled = footered = scoped = skipped = 0
     site_name = (config.get("site_name") or "").replace('"', "&quot;")
     for html in site.rglob("*.html"):
         depth = len(html.parent.relative_to(site).parts)
@@ -336,10 +349,22 @@ def on_post_build(config, **kwargs):
                 retitled += 1
         new_text = th_re.sub(_th, new_text)
         new_text = footer_re.sub(_footer, new_text)
+        # skip-link focus target (9): tabindex="-1" on the exact h1 the skip
+        # link references, so activating the skip moves focus, not just scroll
+        mskip = skip_re.search(new_text)
+        if mskip:
+            frag = mskip.group(1)
+            def _h1(m):
+                nonlocal skipped
+                skipped += 1
+                return m.group(0)[:-1] + ' tabindex="-1">'
+            new_text = re.sub(
+                r'<h1\b(?![^>]*\btabindex=)(?=[^>]*\bid="' + re.escape(frag) + r'")([^>]*)>',
+                _h1, new_text, count=1)
         if new_text != text:
             html.write_bytes(new_text.encode("utf-8"))
     print(f"[hooks] bridged {bridged} experiments link(s) from repo depth to site depth")
-    print(f"[hooks] a11y: {untabbed} codelineno anchor(s) untabbed, {named} edit button(s) named, {current} nav link(s) aria-current")
+    print(f"[hooks] a11y: {untabbed} codelineno anchor(s) untabbed, {named} edit button(s) named, {current} nav link(s) aria-current, {skipped} skip target(s) made focusable")
     print(f"[hooks] share: {enlarged} twitter:card meta(s) enlarged to summary_large_image")
     print(f"[hooks] share: {sited} og:site_name meta(s) injected")
     print(f"[hooks] titles: {retitled} generic tab/og title(s) set from the page h1")
