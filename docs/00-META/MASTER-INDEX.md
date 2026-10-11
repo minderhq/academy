@@ -14,7 +14,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 **Last Updated:** 2026-10-08
 
-**Total Files:** 486 markdown files (docs/)
+**Total Files:** 487 markdown files (docs/)
 
 ---
 
@@ -234,7 +234,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 ---
 
-### Cheat Sheets (46 files)
+### Cheat Sheets (47 files)
 
 | ID | Topic | Coverage |
 |----|-------|----------|
@@ -277,6 +277,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **[CHEAT-SHEET-037](../learning-resources/cheat-sheets/CHEAT-SHEET-037-Reflection-Self-Correction.md)** | Reflection & Self-Correction - the Loop That Grades Its Own Work | The three in-run families priced on the surface-versus-logic defect split, the refine loop that gains only where its critique can see, self-consistency as the plurality amplifier that never consults the truth, the intrinsic-versus-informed boundary where hunt-mode rewriting decays, the retry split that demands new information, and the campaign ledger where the same 900-call bill lands +0.130 or -0.160 |
 | **[CHEAT-SHEET-038](../learning-resources/cheat-sheets/CHEAT-SHEET-038-SDPA-and-torch-compile.md)** | SDPA & torch.compile - the Kernel Choice and the Execution Choice | The two levers that make trained-transformer execution 2-5x faster without moving a weight, the four-backend SDPA dispatch with its viability honesty, the Dynamo/AOTAutograd/Inductor pipeline and the toolchain boundary, the guard cache that prices shapes with the bucketing cure, FlexAttention's compile-time score_mod programmability, and the generate() re-key trap |
 | **[CHEAT-SHEET-039](../learning-resources/cheat-sheets/CHEAT-SHEET-039-Word-Embeddings-Tradition.md)** | Word Embeddings - the Tradition That Turned Co-occurrence into Coordinates | The storage ledger that killed the one-hot table (33.3x fewer numbers, every one learnable), skip-gram with negative sampling trained from scratch (loss 2.7725 to 1.3743, cat-dog 0.9977 against an animal-vs-food mean of 0.1674 with the cat-fish first-order outlier 0.6308), CBOW the mirror objective that converges deeper at the price of blur, GloVe's co-occurrence ratio table where inf/0.0000/1.0000 carries the meaning, and the analogy arithmetic that worked until the static bank vector exposed the 0.7071/0.7071-versus-0.9945/0.1047 split the contextual turn answered |
+| **[CHEAT-SHEET-040](../learning-resources/cheat-sheets/CHEAT-SHEET-040-Model-Merging.md)** | Model Merging - the Arithmetic That Combines Trained Models | The task vector and its dose dial (loss 5.000 down to 0.000 as lambda walks to 1.0 while the forgetting proxy pays the squared length of tau, 4.986), TIES' trim-elect-merge that rescues the coordinate naive addition cancels to exactly 0.0 (norm 3.713 naive against 3.519 elected), DARE's drop-and-rescale keeping the expected tau while variance pays the price (std 2.713 on the predicted 2.700), SLERP holding the norm at 1.0000 where the chord sags to 0.8660 at 60 degrees, and the sixteen-seed soup whose 12.2x guarantee is versus the average ingredient, never the best seed |
 | **[QUICK-REF-V1](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-1.md)** | Infrastructure Fundamentals - Quick Reference | Phase 1 Quick Reference |
 | **[QUICK-REF-V2](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-2.md)** | AI/ML Foundations - Quick Reference | Phase 2 Quick Reference |
 | **[QUICK-REF-V3](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-3.md)** | LLM Internals - Quick Reference | Phase 3 Quick Reference |
@@ -436,7 +437,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **Jupyter Notebooks** | 20 |
 | **Practice Files** | 33 |
 | **Quiz Files** | 33 |
-| **Cheat Sheets** | 47 |
+| **Cheat Sheets** | 48 |
 | **Projects** | 7 |
 | **Experiments** | 47 |
 | **Comparisons** | 3 |
@@ -445,7 +446,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **Solutions** | 3 |
 | **Diagrams** | 4 |
 | **Meta Docs** | 20 |
-| **TOTAL** | **605** |
+| **TOTAL** | **606** |
 
 ### Content Statistics
 

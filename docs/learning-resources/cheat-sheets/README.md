@@ -9,7 +9,7 @@ Tags: ['cheatsheet', 'reference']
 
 # Quick Reference Cheat Sheets
 
-Forty-six single-page references: thirty-nine tool cheat sheets (Docker, Python, Git, Linux, RAG, Kubernetes, vLLM, Reasoning, llama.cpp, Alignment, Evaluation, Guardrails, Structured Output, Sampling, Quantization, LoRA, KV Cache, Speculative Decoding, Tokenizers, Flash Attention, RoPE Positional Encoding, Multimodal Models, ReAct Agent Loop, Multi-Agent Orchestration, Agent Memory Systems, Agent Security, Tool Calling and MCP, Agent Evaluation and Observability, Function Calling Training and Constrained Decoding, Multi-Agent Communication Protocols, Multi-Agent Framework Comparison, Code Interpreter Sandbox, LLM Observability, SGLang RadixAttention Serving, Beyond Attention - SSMs and MLA, Vector Memory - the Embedding-Backed Store, Reflection & Self-Correction - the Loop That Grades Its Own Work, SDPA & torch.compile - the Kernel Choice and the Execution Choice, Word Embeddings - the Tradition That Turned Co-occurrence into Coordinates) and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
+Forty-seven single-page references: forty tool cheat sheets (Docker, Python, Git, Linux, RAG, Kubernetes, vLLM, Reasoning, llama.cpp, Alignment, Evaluation, Guardrails, Structured Output, Sampling, Quantization, LoRA, KV Cache, Speculative Decoding, Tokenizers, Flash Attention, RoPE Positional Encoding, Multimodal Models, ReAct Agent Loop, Multi-Agent Orchestration, Agent Memory Systems, Agent Security, Tool Calling and MCP, Agent Evaluation and Observability, Function Calling Training and Constrained Decoding, Multi-Agent Communication Protocols, Multi-Agent Framework Comparison, Code Interpreter Sandbox, LLM Observability, SGLang RadixAttention Serving, Beyond Attention - SSMs and MLA, Vector Memory - the Embedding-Backed Store, Reflection & Self-Correction - the Loop That Grades Its Own Work, SDPA & torch.compile - the Kernel Choice and the Execution Choice, Word Embeddings - the Tradition That Turned Co-occurrence into Coordinates, Model Merging - the Arithmetic That Combines Trained Models) and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
 
 ## Tool Cheat Sheets
 
@@ -126,6 +126,9 @@ The two execution levers that leave the math untouched: SDPA as the kernel choic
 ### [CHEAT-SHEET-039: Word Embeddings - the Tradition That Turned Co-occurrence into Coordinates](./CHEAT-SHEET-039-Word-Embeddings-Tradition.md)
 The layer beneath every embedding the curriculum uses later: the one-hot storage ledger and its dead geometry, skip-gram with negative sampling trained from scratch (2.7725 to 1.3743 with the cat-fish first-order outlier), CBOW the mirror objective and its blur, GloVe's ratio table where frequency cancels, and the analogy arithmetic that ends at the static limit the contextual turn answered.
 
+### [CHEAT-SHEET-040: Model Merging - the Arithmetic That Combines Trained Models](./CHEAT-SHEET-040-Model-Merging.md)
+The arithmetic that combines trained checkpoints without retraining: the task vector and its dose dial (5.000 to 0.000 down the lambda walk while the forgetting proxy pays the squared length of tau), TIES' trim-elect-merge against the naive sum that cancels a skill coordinate to exactly 0.0, DARE's drop-and-rescale keeping the expected tau while variance pays, SLERP's arc holding 1.0000 where the chord sags to 0.8660 at 60 degrees, and the sixteen-seed soup ledger whose guarantee is distributional - 12.2x versus the average ingredient, never versus the best seed.
+
 ## Volume Quick References
 
 - [1: Infrastructure Fundamentals - Quick Reference](./QUICK-REF-VOLUME-1.md)
@@ -146,4 +149,4 @@ One condensed page per volume: the formulas, flags and commands each volume's mo
 
 ---
 
-**Total Cheat Sheets:** 46 documents
+**Total Cheat Sheets:** 47 documents
