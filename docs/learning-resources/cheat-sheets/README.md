@@ -9,7 +9,7 @@ Tags: ['cheatsheet', 'reference']
 
 # Quick Reference Cheat Sheets
 
-Nineteen single-page references: twelve tool cheat sheets (Docker, Python, Git, Linux, RAG, Kubernetes, vLLM, Reasoning, llama.cpp, Alignment, Evaluation, Guardrails) and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
+Twenty single-page references: thirteen tool cheat sheets (Docker, Python, Git, Linux, RAG, Kubernetes, vLLM, Reasoning, llama.cpp, Alignment, Evaluation, Guardrails, Structured Output) and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
 
 ## Tool Cheat Sheets
 
@@ -49,6 +49,9 @@ The everyday benchmark map, lm-evaluation-harness commands, pass@k estimator mat
 ### [CHEAT-SHEET-012: LLM Guardrails & Agent Security](./CHEAT-SHEET-012-LLM-Guardrails-Agent-Security.md)
 The guardrail map from input filter to signed agent bus, Presidio operator vocabulary, and the window-seam rate-limit trap.
 
+### [CHEAT-SHEET-013: Structured Output & Function Calling](./CHEAT-SHEET-013-Structured-Output-Function-Calling.md)
+The grammar-to-mask mechanism, the schema knob per serving stack, and the syntax-guarantees-semantics-trains ledger.
+
 ## Volume Quick References
 
 - [1: Infrastructure Fundamentals - Quick Reference](./QUICK-REF-VOLUME-1.md)
@@ -69,4 +72,4 @@ One condensed page per volume: the formulas, flags and commands each volume's mo
 
 ---
 
-**Total Cheat Sheets:** 19 documents
+**Total Cheat Sheets:** 20 documents
