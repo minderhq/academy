@@ -469,6 +469,7 @@ nav:
         - "Guardrails": learning-resources/cheat-sheets/CHEAT-SHEET-012-LLM-Guardrails-Agent-Security.md
         - "Structured Output": learning-resources/cheat-sheets/CHEAT-SHEET-013-Structured-Output-Function-Calling.md
         - "Sampling": learning-resources/cheat-sheets/CHEAT-SHEET-014-Decoding-Sampling-Strategies.md
+        - "Quantization": learning-resources/cheat-sheets/CHEAT-SHEET-015-Quantization-Formats-Methods.md
         - "Quick Ref Volume 1": learning-resources/cheat-sheets/QUICK-REF-VOLUME-1.md
         - "Quick Ref Volume 2": learning-resources/cheat-sheets/QUICK-REF-VOLUME-2.md
         - "Quick Ref Volume 3": learning-resources/cheat-sheets/QUICK-REF-VOLUME-3.md

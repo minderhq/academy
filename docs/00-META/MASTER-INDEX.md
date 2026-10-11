@@ -14,7 +14,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 **Last Updated:** 2026-10-08
 
-**Total Files:** 461 markdown files (docs/)
+**Total Files:** 462 markdown files (docs/)
 
 ---
 
@@ -234,7 +234,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 ---
 
-### Cheat Sheets (21 files)
+### Cheat Sheets (22 files)
 
 | ID | Topic | Coverage |
 |----|-------|----------|
@@ -252,6 +252,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **[CHEAT-SHEET-012](../learning-resources/cheat-sheets/CHEAT-SHEET-012-LLM-Guardrails-Agent-Security.md)** | LLM Guardrails & Agent Security | Input filtering, PII redaction, rate limits, agent identity |
 | **[CHEAT-SHEET-013](../learning-resources/cheat-sheets/CHEAT-SHEET-013-Structured-Output-Function-Calling.md)** | Structured Output & Function Calling | Grammar-to-mask, JSON schema knobs, tool training |
 | **[CHEAT-SHEET-014](../learning-resources/cheat-sheets/CHEAT-SHEET-014-Decoding-Sampling-Strategies.md)** | Decoding & Sampling Strategies | Temperature, top-k, nucleus, min-p, stack order |
+| **[CHEAT-SHEET-015](../learning-resources/cheat-sheets/CHEAT-SHEET-015-Quantization-Formats-Methods.md)** | Quantization Formats & Methods | GGUF families, bpw arithmetic, EXL2/AWQ/GPTQ |
 | **[QUICK-REF-V1](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-1.md)** | Infrastructure Fundamentals - Quick Reference | Phase 1 Quick Reference |
 | **[QUICK-REF-V2](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-2.md)** | AI/ML Foundations - Quick Reference | Phase 2 Quick Reference |
 | **[QUICK-REF-V3](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-3.md)** | LLM Internals - Quick Reference | Phase 3 Quick Reference |
@@ -411,7 +412,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **Jupyter Notebooks** | 20 |
 | **Practice Files** | 33 |
 | **Quiz Files** | 33 |
-| **Cheat Sheets** | 22 |
+| **Cheat Sheets** | 23 |
 | **Projects** | 7 |
 | **Experiments** | 47 |
 | **Comparisons** | 3 |
@@ -420,7 +421,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **Solutions** | 3 |
 | **Diagrams** | 4 |
 | **Meta Docs** | 20 |
-| **TOTAL** | **580** |
+| **TOTAL** | **581** |
 
 ### Content Statistics
 
