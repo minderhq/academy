@@ -14,7 +14,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 **Last Updated:** 2026-10-08
 
-**Total Files:** 465 markdown files (docs/)
+**Total Files:** 466 markdown files (docs/)
 
 ---
 
@@ -234,7 +234,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 ---
 
-### Cheat Sheets (25 files)
+### Cheat Sheets (26 files)
 
 | ID | Topic | Coverage |
 |----|-------|----------|
@@ -256,6 +256,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **[CHEAT-SHEET-016](../learning-resources/cheat-sheets/CHEAT-SHEET-016-LoRA-QLoRA.md)** | LoRA & QLoRA | Low-rank arithmetic, three knobs, 4-bit base, merge rules |
 | **[CHEAT-SHEET-017](../learning-resources/cheat-sheets/CHEAT-SHEET-017-KV-Cache.md)** | KV Cache | Per-token formula, head ledger, paging, prefix caching |
 | **[CHEAT-SHEET-018](../learning-resources/cheat-sheets/CHEAT-SHEET-018-Speculative-Decoding.md)** | Speculative Decoding | Draft-target bet, acceptance math, draft ladder, length tuning |
+| **[CHEAT-SHEET-019](../learning-resources/cheat-sheets/CHEAT-SHEET-019-Tokenizers.md)** | Tokenizers | BPE merge loop, byte-level twist, Unigram vs BPE, vocab ladder |
 | **[QUICK-REF-V1](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-1.md)** | Infrastructure Fundamentals - Quick Reference | Phase 1 Quick Reference |
 | **[QUICK-REF-V2](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-2.md)** | AI/ML Foundations - Quick Reference | Phase 2 Quick Reference |
 | **[QUICK-REF-V3](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-3.md)** | LLM Internals - Quick Reference | Phase 3 Quick Reference |
@@ -415,7 +416,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **Jupyter Notebooks** | 20 |
 | **Practice Files** | 33 |
 | **Quiz Files** | 33 |
-| **Cheat Sheets** | 26 |
+| **Cheat Sheets** | 27 |
 | **Projects** | 7 |
 | **Experiments** | 47 |
 | **Comparisons** | 3 |
@@ -424,7 +425,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **Solutions** | 3 |
 | **Diagrams** | 4 |
 | **Meta Docs** | 20 |
-| **TOTAL** | **584** |
+| **TOTAL** | **585** |
 
 ### Content Statistics
 

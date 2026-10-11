@@ -473,6 +473,7 @@ nav:
         - "LoRA": learning-resources/cheat-sheets/CHEAT-SHEET-016-LoRA-QLoRA.md
         - "KV Cache": learning-resources/cheat-sheets/CHEAT-SHEET-017-KV-Cache.md
         - "Speculative Decoding": learning-resources/cheat-sheets/CHEAT-SHEET-018-Speculative-Decoding.md
+        - "Tokenizers": learning-resources/cheat-sheets/CHEAT-SHEET-019-Tokenizers.md
         - "Quick Ref Volume 1": learning-resources/cheat-sheets/QUICK-REF-VOLUME-1.md
         - "Quick Ref Volume 2": learning-resources/cheat-sheets/QUICK-REF-VOLUME-2.md
         - "Quick Ref Volume 3": learning-resources/cheat-sheets/QUICK-REF-VOLUME-3.md
