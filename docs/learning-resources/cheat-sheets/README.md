@@ -9,7 +9,7 @@ Tags: ['cheatsheet', 'reference']
 
 # Quick Reference Cheat Sheets
 
-Forty-five single-page references: thirty-eight tool cheat sheets (Docker, Python, Git, Linux, RAG, Kubernetes, vLLM, Reasoning, llama.cpp, Alignment, Evaluation, Guardrails, Structured Output, Sampling, Quantization, LoRA, KV Cache, Speculative Decoding, Tokenizers, Flash Attention, RoPE Positional Encoding, Multimodal Models, ReAct Agent Loop, Multi-Agent Orchestration, Agent Memory Systems, Agent Security, Tool Calling and MCP, Agent Evaluation and Observability, Function Calling Training and Constrained Decoding, Multi-Agent Communication Protocols, Multi-Agent Framework Comparison, Code Interpreter Sandbox, LLM Observability, SGLang RadixAttention Serving, Beyond Attention - SSMs and MLA, Vector Memory - the Embedding-Backed Store, Reflection & Self-Correction - the Loop That Grades Its Own Work, SDPA & torch.compile - the Kernel Choice and the Execution Choice) and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
+Forty-six single-page references: thirty-nine tool cheat sheets (Docker, Python, Git, Linux, RAG, Kubernetes, vLLM, Reasoning, llama.cpp, Alignment, Evaluation, Guardrails, Structured Output, Sampling, Quantization, LoRA, KV Cache, Speculative Decoding, Tokenizers, Flash Attention, RoPE Positional Encoding, Multimodal Models, ReAct Agent Loop, Multi-Agent Orchestration, Agent Memory Systems, Agent Security, Tool Calling and MCP, Agent Evaluation and Observability, Function Calling Training and Constrained Decoding, Multi-Agent Communication Protocols, Multi-Agent Framework Comparison, Code Interpreter Sandbox, LLM Observability, SGLang RadixAttention Serving, Beyond Attention - SSMs and MLA, Vector Memory - the Embedding-Backed Store, Reflection & Self-Correction - the Loop That Grades Its Own Work, SDPA & torch.compile - the Kernel Choice and the Execution Choice, Word Embeddings - the Tradition That Turned Co-occurrence into Coordinates) and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
 
 ## Tool Cheat Sheets
 
@@ -123,6 +123,9 @@ The in-run self-improvement family: the draft-critique-revise loop whose gains t
 ### [CHEAT-SHEET-038: SDPA & torch.compile - the Kernel Choice and the Execution Choice](./CHEAT-SHEET-038-SDPA-and-torch-compile.md)
 The two execution levers that leave the math untouched: SDPA as the kernel choice with its four-backend dispatch honesty and the sdpa_kernel pin, torch.compile as the execution choice with its Dynamo-AOTAutograd-Inductor pipeline, the guard cache that makes shapes expensive and bucket padding that makes them cheap (58 compiles to 4), FlexAttention's compile-time score_mod programmability, and the generate() re-key trap that silently undoes both.
 
+### [CHEAT-SHEET-039: Word Embeddings - the Tradition That Turned Co-occurrence into Coordinates](./CHEAT-SHEET-039-Word-Embeddings-Tradition.md)
+The layer beneath every embedding the curriculum uses later: the one-hot storage ledger and its dead geometry, skip-gram with negative sampling trained from scratch (2.7725 to 1.3743 with the cat-fish first-order outlier), CBOW the mirror objective and its blur, GloVe's ratio table where frequency cancels, and the analogy arithmetic that ends at the static limit the contextual turn answered.
+
 ## Volume Quick References
 
 - [1: Infrastructure Fundamentals - Quick Reference](./QUICK-REF-VOLUME-1.md)
@@ -143,4 +146,4 @@ One condensed page per volume: the formulas, flags and commands each volume's mo
 
 ---
 
-**Total Cheat Sheets:** 45 documents
+**Total Cheat Sheets:** 46 documents
