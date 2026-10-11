@@ -9,7 +9,7 @@ Tags: ['cheatsheet', 'reference']
 
 # Quick Reference Cheat Sheets
 
-Thirty-nine single-page references: thirty-two tool cheat sheets (Docker, Python, Git, Linux, RAG, Kubernetes, vLLM, Reasoning, llama.cpp, Alignment, Evaluation, Guardrails, Structured Output, Sampling, Quantization, LoRA, KV Cache, Speculative Decoding, Tokenizers, Flash Attention, RoPE Positional Encoding, Multimodal Models, ReAct Agent Loop, Multi-Agent Orchestration, Agent Memory Systems, Agent Security, Tool Calling and MCP, Agent Evaluation and Observability, Function Calling Training and Constrained Decoding, Multi-Agent Communication Protocols, Multi-Agent Framework Comparison, Code Interpreter Sandbox) and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
+Forty single-page references: thirty-three tool cheat sheets (Docker, Python, Git, Linux, RAG, Kubernetes, vLLM, Reasoning, llama.cpp, Alignment, Evaluation, Guardrails, Structured Output, Sampling, Quantization, LoRA, KV Cache, Speculative Decoding, Tokenizers, Flash Attention, RoPE Positional Encoding, Multimodal Models, ReAct Agent Loop, Multi-Agent Orchestration, Agent Memory Systems, Agent Security, Tool Calling and MCP, Agent Evaluation and Observability, Function Calling Training and Constrained Decoding, Multi-Agent Communication Protocols, Multi-Agent Framework Comparison, Code Interpreter Sandbox, LLM Observability) and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
 
 ## Tool Cheat Sheets
 
@@ -109,6 +109,9 @@ The 8-row comparison matrix and its boolean scorecards (tool calling 4/4, human-
 ### [CHEAT-SHEET-032: Code Interpreter Sandbox](./CHEAT-SHEET-032-Code-Interpreter-Sandbox.md)
 The four-tier sandbox ladder - process, container, in-process, managed microVM - under the weakest-tier rule, the resource limits that bind the child via preexec_fn (setrlimit in-process never restores), the regex screen over real import lines with the position-versus-os false positive, the ok/failed/blocked envelope, the Jupyter kernel's IOPUB protocol and persistent scratch memory, and the duration-plus-success-rate telemetry that catches runaway agents.
 
+### [CHEAT-SHEET-033: LLM Observability](./CHEAT-SHEET-033-LLM-Observability.md)
+The four LLM-specific metric families and their alert thresholds, the timing trio with the decode-rate formula trap (16.7x inflated on long prompts), the TTFT=0.0 histogram guard that keeps fake sub-ms samples out of the percentiles, the quality heuristics with their honest limits, the four-indicator hallucination ladder with its 0.4/0.7 confidence steps, the nearest-rank rule that keeps p95 from being p100 on small samples, and the seven-day cost rollup with its three levers.
+
 ## Volume Quick References
 
 - [1: Infrastructure Fundamentals - Quick Reference](./QUICK-REF-VOLUME-1.md)
@@ -129,4 +132,4 @@ One condensed page per volume: the formulas, flags and commands each volume's mo
 
 ---
 
-**Total Cheat Sheets:** 39 documents
+**Total Cheat Sheets:** 40 documents

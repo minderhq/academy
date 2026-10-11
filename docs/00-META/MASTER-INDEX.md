@@ -14,7 +14,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 **Last Updated:** 2026-10-08
 
-**Total Files:** 479 markdown files (docs/)
+**Total Files:** 480 markdown files (docs/)
 
 ---
 
@@ -234,7 +234,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 ---
 
-### Cheat Sheets (39 files)
+### Cheat Sheets (40 files)
 
 | ID | Topic | Coverage |
 |----|-------|----------|
@@ -270,6 +270,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **[CHEAT-SHEET-030](../learning-resources/cheat-sheets/CHEAT-SHEET-030-Multi-Agent-Communication-Protocols.md)** | Multi-Agent Communication Protocols | The typed message envelope and its correlation contract, the three coordination topologies and their message complexity, consensus versus unanimity theater, the context-capsule handoff, backoff with jitter and the dead-letter tripwire, and budget propagation |
 | **[CHEAT-SHEET-031](../learning-resources/cheat-sheets/CHEAT-SHEET-031-Multi-Agent-Framework-Comparison.md)** | Multi-Agent Framework Comparison | The 8-row comparison matrix with its boolean scorecards, the version reality (Swarm archived for the Agents SDK; AG2 versus the 0.4+ rewrite), the executable decision table and the 24-combination grid sweep, the hybrid graph-owns-flow agent-owns-talk split, and the honest resource ledger |
 | **[CHEAT-SHEET-032](../learning-resources/cheat-sheets/CHEAT-SHEET-032-Code-Interpreter-Sandbox.md)** | Code Interpreter Sandbox | The four-tier sandbox ladder from process to managed microVM, the resource limits that belong to the child via preexec_fn, the regex screen over real import lines, the ok/failed/blocked envelope, the Jupyter kernel's IOPUB protocol, and the telemetry that catches runaway agents |
+| **[CHEAT-SHEET-033](../learning-resources/cheat-sheets/CHEAT-SHEET-033-LLM-Observability.md)** | LLM Observability | The four metric families with their alert thresholds, the timing trio and the decode-rate trap 16.7x inflated, the TTFT=0.0 publishing guard, the quality heuristics with honest limits, the hallucination indicator ladder, the nearest-rank p95 rule, and the seven-day cost rollup with its three levers |
 | **[QUICK-REF-V1](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-1.md)** | Infrastructure Fundamentals - Quick Reference | Phase 1 Quick Reference |
 | **[QUICK-REF-V2](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-2.md)** | AI/ML Foundations - Quick Reference | Phase 2 Quick Reference |
 | **[QUICK-REF-V3](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-3.md)** | LLM Internals - Quick Reference | Phase 3 Quick Reference |
@@ -429,7 +430,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **Jupyter Notebooks** | 20 |
 | **Practice Files** | 33 |
 | **Quiz Files** | 33 |
-| **Cheat Sheets** | 40 |
+| **Cheat Sheets** | 41 |
 | **Projects** | 7 |
 | **Experiments** | 47 |
 | **Comparisons** | 3 |
@@ -438,7 +439,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **Solutions** | 3 |
 | **Diagrams** | 4 |
 | **Meta Docs** | 20 |
-| **TOTAL** | **598** |
+| **TOTAL** | **599** |
 
 ### Content Statistics
 
