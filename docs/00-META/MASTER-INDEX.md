@@ -14,7 +14,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 **Last Updated:** 2026-10-08
 
-**Total Files:** 471 markdown files (docs/)
+**Total Files:** 472 markdown files (docs/)
 
 ---
 
@@ -234,7 +234,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 ---
 
-### Cheat Sheets (31 files)
+### Cheat Sheets (32 files)
 
 | ID | Topic | Coverage |
 |----|-------|----------|
@@ -262,6 +262,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **[CHEAT-SHEET-022](../learning-resources/cheat-sheets/CHEAT-SHEET-022-Multimodal-Models.md)** | Multimodal Models | Two-generation split, CLIP contrastive objective, VLM recipe and token math, LLaVA discipline, multimodal RAG, audio spectrogram/codec split, Whisper prompt tokens, voice-pipeline budget |
 | **[CHEAT-SHEET-023](../learning-resources/cheat-sheets/CHEAT-SHEET-023-ReAct-Agent-Loop.md)** | ReAct Agent Loop | Thought-Action-Observation loop, ReAct vs chain-of-thought, tool contract with errors as observations, hard iteration cap, trace-as-memory state, plan-then-execute |
 | **[CHEAT-SHEET-024](../learning-resources/cheat-sheets/CHEAT-SHEET-024-Multi-Agent-Orchestration.md)** | Multi-Agent Orchestration | Specialist roster with review-retry flow, topology complexity ledger, message envelope and handoff capsule, delivery semantics with dedup ledger, wait-for-graph deadlock, mid-run human gate, consensus by arbitration and key-voting |
+| **[CHEAT-SHEET-025](../learning-resources/cheat-sheets/CHEAT-SHEET-025-Agent-Memory-Systems.md)** | Agent Memory Systems | Four-tier memory map with the two readers, the recency-relevance-importance retrieval blend, write and read paths, the consolidation lifecycle, context paging, the reflexion loop, TTL leases and eviction policy, and the checkpoint-store contract |
 | **[QUICK-REF-V1](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-1.md)** | Infrastructure Fundamentals - Quick Reference | Phase 1 Quick Reference |
 | **[QUICK-REF-V2](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-2.md)** | AI/ML Foundations - Quick Reference | Phase 2 Quick Reference |
 | **[QUICK-REF-V3](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-3.md)** | LLM Internals - Quick Reference | Phase 3 Quick Reference |
@@ -421,7 +422,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **Jupyter Notebooks** | 20 |
 | **Practice Files** | 33 |
 | **Quiz Files** | 33 |
-| **Cheat Sheets** | 32 |
+| **Cheat Sheets** | 33 |
 | **Projects** | 7 |
 | **Experiments** | 47 |
 | **Comparisons** | 3 |
@@ -430,7 +431,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **Solutions** | 3 |
 | **Diagrams** | 4 |
 | **Meta Docs** | 20 |
-| **TOTAL** | **590** |
+| **TOTAL** | **591** |
 
 ### Content Statistics
 
