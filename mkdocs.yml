@@ -463,6 +463,7 @@ nav:
         - "Kubernetes": learning-resources/cheat-sheets/CHEAT-SHEET-006-Kubernetes.md
         - "vLLM": learning-resources/cheat-sheets/CHEAT-SHEET-007-vLLM-Serving.md
         - "Reasoning": learning-resources/cheat-sheets/CHEAT-SHEET-008-Reasoning-Models.md
+        - "llama.cpp": learning-resources/cheat-sheets/CHEAT-SHEET-009-Local-Inference.md
         - "Quick Ref Volume 1": learning-resources/cheat-sheets/QUICK-REF-VOLUME-1.md
         - "Quick Ref Volume 2": learning-resources/cheat-sheets/QUICK-REF-VOLUME-2.md
         - "Quick Ref Volume 3": learning-resources/cheat-sheets/QUICK-REF-VOLUME-3.md
