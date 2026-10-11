@@ -9,7 +9,7 @@ Tags: ['cheatsheet', 'reference']
 
 # Quick Reference Cheat Sheets
 
-Thirty-eight single-page references: thirty-one tool cheat sheets (Docker, Python, Git, Linux, RAG, Kubernetes, vLLM, Reasoning, llama.cpp, Alignment, Evaluation, Guardrails, Structured Output, Sampling, Quantization, LoRA, KV Cache, Speculative Decoding, Tokenizers, Flash Attention, RoPE Positional Encoding, Multimodal Models, ReAct Agent Loop, Multi-Agent Orchestration, Agent Memory Systems, Agent Security, Tool Calling and MCP, Agent Evaluation and Observability, Function Calling Training and Constrained Decoding, Multi-Agent Communication Protocols, Multi-Agent Framework Comparison) and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
+Thirty-nine single-page references: thirty-two tool cheat sheets (Docker, Python, Git, Linux, RAG, Kubernetes, vLLM, Reasoning, llama.cpp, Alignment, Evaluation, Guardrails, Structured Output, Sampling, Quantization, LoRA, KV Cache, Speculative Decoding, Tokenizers, Flash Attention, RoPE Positional Encoding, Multimodal Models, ReAct Agent Loop, Multi-Agent Orchestration, Agent Memory Systems, Agent Security, Tool Calling and MCP, Agent Evaluation and Observability, Function Calling Training and Constrained Decoding, Multi-Agent Communication Protocols, Multi-Agent Framework Comparison, Code Interpreter Sandbox) and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
 
 ## Tool Cheat Sheets
 
@@ -106,6 +106,9 @@ The typed message envelope and its correlation contract, the topology ledger at 
 ### [CHEAT-SHEET-031: Multi-Agent Framework Comparison](./CHEAT-SHEET-031-Multi-Agent-Framework-Comparison.md)
 The 8-row comparison matrix and its boolean scorecards (tool calling 4/4, human-in-the-loop 3/4, local models 3/4), the version reality - Swarm archived for the OpenAI Agents SDK, AG2 versus the 0.4+ rewrite - the executable decision table with its 24-combination grid sweep (AutoGen 13 / LangGraph 11 / CrewAI 0), the hybrid split of graph-owns-flow and agent-owns-talk, and the resource ledger whose ranking is stable even where the values are estimates.
 
+### [CHEAT-SHEET-032: Code Interpreter Sandbox](./CHEAT-SHEET-032-Code-Interpreter-Sandbox.md)
+The four-tier sandbox ladder - process, container, in-process, managed microVM - under the weakest-tier rule, the resource limits that bind the child via preexec_fn (setrlimit in-process never restores), the regex screen over real import lines with the position-versus-os false positive, the ok/failed/blocked envelope, the Jupyter kernel's IOPUB protocol and persistent scratch memory, and the duration-plus-success-rate telemetry that catches runaway agents.
+
 ## Volume Quick References
 
 - [1: Infrastructure Fundamentals - Quick Reference](./QUICK-REF-VOLUME-1.md)
@@ -126,4 +129,4 @@ One condensed page per volume: the formulas, flags and commands each volume's mo
 
 ---
 
-**Total Cheat Sheets:** 38 documents
+**Total Cheat Sheets:** 39 documents
