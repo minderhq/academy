@@ -9,7 +9,7 @@ Tags: ['cheatsheet', 'reference']
 
 # Quick Reference Cheat Sheets
 
-Forty single-page references: thirty-three tool cheat sheets (Docker, Python, Git, Linux, RAG, Kubernetes, vLLM, Reasoning, llama.cpp, Alignment, Evaluation, Guardrails, Structured Output, Sampling, Quantization, LoRA, KV Cache, Speculative Decoding, Tokenizers, Flash Attention, RoPE Positional Encoding, Multimodal Models, ReAct Agent Loop, Multi-Agent Orchestration, Agent Memory Systems, Agent Security, Tool Calling and MCP, Agent Evaluation and Observability, Function Calling Training and Constrained Decoding, Multi-Agent Communication Protocols, Multi-Agent Framework Comparison, Code Interpreter Sandbox, LLM Observability) and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
+Forty-one single-page references: thirty-four tool cheat sheets (Docker, Python, Git, Linux, RAG, Kubernetes, vLLM, Reasoning, llama.cpp, Alignment, Evaluation, Guardrails, Structured Output, Sampling, Quantization, LoRA, KV Cache, Speculative Decoding, Tokenizers, Flash Attention, RoPE Positional Encoding, Multimodal Models, ReAct Agent Loop, Multi-Agent Orchestration, Agent Memory Systems, Agent Security, Tool Calling and MCP, Agent Evaluation and Observability, Function Calling Training and Constrained Decoding, Multi-Agent Communication Protocols, Multi-Agent Framework Comparison, Code Interpreter Sandbox, LLM Observability, SGLang RadixAttention Serving) and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
 
 ## Tool Cheat Sheets
 
@@ -112,6 +112,9 @@ The four-tier sandbox ladder - process, container, in-process, managed microVM -
 ### [CHEAT-SHEET-033: LLM Observability](./CHEAT-SHEET-033-LLM-Observability.md)
 The four LLM-specific metric families and their alert thresholds, the timing trio with the decode-rate formula trap (16.7x inflated on long prompts), the TTFT=0.0 histogram guard that keeps fake sub-ms samples out of the percentiles, the quality heuristics with their honest limits, the four-indicator hallucination ladder with its 0.4/0.7 confidence steps, the nearest-rank rule that keeps p95 from being p100 on small samples, and the seven-day cost rollup with its three levers.
 
+### [CHEAT-SHEET-034: SGLang RadixAttention Serving](./CHEAT-SHEET-034-SGLang-RadixAttention-Serving.md)
+The radix tree KV reuse engine: the 9576->432 prefill ledger behind one shared 768-token prefix (95% saved), the KV budget on an 11GB card, the one-constraint rule that keeps json_schema, regex and ebnf exclusive, the 17x TTFT radix dividend, the cache_hit_rate zones, and the EAGLE speculation bet priced 0.81x versus 1.69x by acceptance rate.
+
 ## Volume Quick References
 
 - [1: Infrastructure Fundamentals - Quick Reference](./QUICK-REF-VOLUME-1.md)
@@ -132,4 +135,4 @@ One condensed page per volume: the formulas, flags and commands each volume's mo
 
 ---
 
-**Total Cheat Sheets:** 40 documents
+**Total Cheat Sheets:** 41 documents
