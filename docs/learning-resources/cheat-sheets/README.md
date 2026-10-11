@@ -9,7 +9,7 @@ Tags: ['cheatsheet', 'reference']
 
 # Quick Reference Cheat Sheets
 
-Thirty-three single-page references: twenty-six tool cheat sheets (Docker, Python, Git, Linux, RAG, Kubernetes, vLLM, Reasoning, llama.cpp, Alignment, Evaluation, Guardrails, Structured Output, Sampling, Quantization, LoRA, KV Cache, Speculative Decoding, Tokenizers, Flash Attention, RoPE Positional Encoding, Multimodal Models, ReAct Agent Loop, Multi-Agent Orchestration, Agent Memory Systems, Agent Security) and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
+Thirty-four single-page references: twenty-seven tool cheat sheets (Docker, Python, Git, Linux, RAG, Kubernetes, vLLM, Reasoning, llama.cpp, Alignment, Evaluation, Guardrails, Structured Output, Sampling, Quantization, LoRA, KV Cache, Speculative Decoding, Tokenizers, Flash Attention, RoPE Positional Encoding, Multimodal Models, ReAct Agent Loop, Multi-Agent Orchestration, Agent Memory Systems, Agent Security, Tool Calling and MCP) and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
 
 ## Tool Cheat Sheets
 
@@ -91,6 +91,9 @@ The four-tier memory map and the two readers, the recency-relevance-importance b
 ### [CHEAT-SHEET-026: Agent Security](./CHEAT-SHEET-026-Agent-Security.md)
 The five-layer defense stack with the honest 5/7 red-team bill, the regex-floor and NER-ceiling PII pipeline, the FGSM flip rule, the HMAC-nonce identity contract and the beacon-CV egress monitor, and the T=0 versus pass@k deterministic-testing ledger.
 
+### [CHEAT-SHEET-027: Tool Calling and MCP](./CHEAT-SHEET-027-Tool-Calling-and-MCP.md)
+The N+M integration economics, the JSON-RPC wire with its two error doors, the v2 decorator contract and the client-side validation gate, the result triple, the v1 to v2 rename ledger, and the caller-side resilience stack.
+
 ## Volume Quick References
 
 - [1: Infrastructure Fundamentals - Quick Reference](./QUICK-REF-VOLUME-1.md)
@@ -111,4 +114,4 @@ One condensed page per volume: the formulas, flags and commands each volume's mo
 
 ---
 
-**Total Cheat Sheets:** 33 documents
+**Total Cheat Sheets:** 34 documents
