@@ -14,7 +14,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 **Last Updated:** 2026-10-08
 
-**Total Files:** 469 markdown files (docs/)
+**Total Files:** 470 markdown files (docs/)
 
 ---
 
@@ -234,7 +234,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 ---
 
-### Cheat Sheets (29 files)
+### Cheat Sheets (30 files)
 
 | ID | Topic | Coverage |
 |----|-------|----------|
@@ -260,6 +260,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **[CHEAT-SHEET-020](../learning-resources/cheat-sheets/CHEAT-SHEET-020-Flash-Attention.md)** | Flash Attention | Memory-hierarchy argument, online softmax block update, FA1-FA2-FA3 ladder, enablement paths, when-not rules |
 | **[CHEAT-SHEET-021](../learning-resources/cheat-sheets/CHEAT-SHEET-021-RoPE-Positional-Encoding.md)** | RoPE Positional Encoding | Three failure modes, rotation construction, relative-position property, wiring discipline, PI vs YaRN extension |
 | **[CHEAT-SHEET-022](../learning-resources/cheat-sheets/CHEAT-SHEET-022-Multimodal-Models.md)** | Multimodal Models | Two-generation split, CLIP contrastive objective, VLM recipe and token math, LLaVA discipline, multimodal RAG, audio spectrogram/codec split, Whisper prompt tokens, voice-pipeline budget |
+| **[CHEAT-SHEET-023](../learning-resources/cheat-sheets/CHEAT-SHEET-023-ReAct-Agent-Loop.md)** | ReAct Agent Loop | Thought-Action-Observation loop, ReAct vs chain-of-thought, tool contract with errors as observations, hard iteration cap, trace-as-memory state, plan-then-execute |
 | **[QUICK-REF-V1](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-1.md)** | Infrastructure Fundamentals - Quick Reference | Phase 1 Quick Reference |
 | **[QUICK-REF-V2](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-2.md)** | AI/ML Foundations - Quick Reference | Phase 2 Quick Reference |
 | **[QUICK-REF-V3](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-3.md)** | LLM Internals - Quick Reference | Phase 3 Quick Reference |
@@ -419,7 +420,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **Jupyter Notebooks** | 20 |
 | **Practice Files** | 33 |
 | **Quiz Files** | 33 |
-| **Cheat Sheets** | 30 |
+| **Cheat Sheets** | 31 |
 | **Projects** | 7 |
 | **Experiments** | 47 |
 | **Comparisons** | 3 |
@@ -428,7 +429,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **Solutions** | 3 |
 | **Diagrams** | 4 |
 | **Meta Docs** | 20 |
-| **TOTAL** | **588** |
+| **TOTAL** | **589** |
 
 ### Content Statistics
 
