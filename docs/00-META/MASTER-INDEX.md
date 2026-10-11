@@ -14,7 +14,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 **Last Updated:** 2026-10-08
 
-**Total Files:** 477 markdown files (docs/)
+**Total Files:** 478 markdown files (docs/)
 
 ---
 
@@ -234,7 +234,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 ---
 
-### Cheat Sheets (37 files)
+### Cheat Sheets (38 files)
 
 | ID | Topic | Coverage |
 |----|-------|----------|
@@ -268,6 +268,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **[CHEAT-SHEET-028](../learning-resources/cheat-sheets/CHEAT-SHEET-028-Agent-Evaluation-and-Observability.md)** | Agent Evaluation and Observability | The three-rung evaluation ladder, trajectories as the unit of record, the four deterministic scorers, bootstrap CIs on small samples, the pairwise judge's position bias and swap cure, the OpenTelemetry GenAI trace schema, trace-to-budget attribution, and the two-tripwire regression gate |
 | **[CHEAT-SHEET-029](../learning-resources/cheat-sheets/CHEAT-SHEET-029-Function-Calling-Training-and-Constrained-Decoding.md)** | Function Calling Training and Constrained Decoding | The grammar-to-mask mechanism and its per-state legal-set ladder, prompting versus constraining, the Gorilla pair-training recipe and its plateau, the syntax-vs-semantics 2x2 trap, the campaign ledger with the one-time train bill, and the five known failure modes |
 | **[CHEAT-SHEET-030](../learning-resources/cheat-sheets/CHEAT-SHEET-030-Multi-Agent-Communication-Protocols.md)** | Multi-Agent Communication Protocols | The typed message envelope and its correlation contract, the three coordination topologies and their message complexity, consensus versus unanimity theater, the context-capsule handoff, backoff with jitter and the dead-letter tripwire, and budget propagation |
+| **[CHEAT-SHEET-031](../learning-resources/cheat-sheets/CHEAT-SHEET-031-Multi-Agent-Framework-Comparison.md)** | Multi-Agent Framework Comparison | The 8-row comparison matrix with its boolean scorecards, the version reality (Swarm archived for the Agents SDK; AG2 versus the 0.4+ rewrite), the executable decision table and the 24-combination grid sweep, the hybrid graph-owns-flow agent-owns-talk split, and the honest resource ledger |
 | **[QUICK-REF-V1](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-1.md)** | Infrastructure Fundamentals - Quick Reference | Phase 1 Quick Reference |
 | **[QUICK-REF-V2](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-2.md)** | AI/ML Foundations - Quick Reference | Phase 2 Quick Reference |
 | **[QUICK-REF-V3](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-3.md)** | LLM Internals - Quick Reference | Phase 3 Quick Reference |
@@ -427,7 +428,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **Jupyter Notebooks** | 20 |
 | **Practice Files** | 33 |
 | **Quiz Files** | 33 |
-| **Cheat Sheets** | 38 |
+| **Cheat Sheets** | 39 |
 | **Projects** | 7 |
 | **Experiments** | 47 |
 | **Comparisons** | 3 |
@@ -436,7 +437,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **Solutions** | 3 |
 | **Diagrams** | 4 |
 | **Meta Docs** | 20 |
-| **TOTAL** | **596** |
+| **TOTAL** | **597** |
 
 ### Content Statistics
 

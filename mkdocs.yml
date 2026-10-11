@@ -480,6 +480,7 @@ nav:
         - "ReAct Agent Loop": learning-resources/cheat-sheets/CHEAT-SHEET-023-ReAct-Agent-Loop.md
         - "Multi-Agent Orchestration": learning-resources/cheat-sheets/CHEAT-SHEET-024-Multi-Agent-Orchestration.md
         - "Multi-Agent Communication Protocols": learning-resources/cheat-sheets/CHEAT-SHEET-030-Multi-Agent-Communication-Protocols.md
+        - "Multi-Agent Framework Comparison": learning-resources/cheat-sheets/CHEAT-SHEET-031-Multi-Agent-Framework-Comparison.md
         - "Agent Memory Systems": learning-resources/cheat-sheets/CHEAT-SHEET-025-Agent-Memory-Systems.md
         - "Agent Security": learning-resources/cheat-sheets/CHEAT-SHEET-026-Agent-Security.md
         - "Tool Calling and MCP": learning-resources/cheat-sheets/CHEAT-SHEET-027-Tool-Calling-and-MCP.md

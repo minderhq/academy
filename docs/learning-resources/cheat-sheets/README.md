@@ -9,7 +9,7 @@ Tags: ['cheatsheet', 'reference']
 
 # Quick Reference Cheat Sheets
 
-Thirty-seven single-page references: thirty tool cheat sheets (Docker, Python, Git, Linux, RAG, Kubernetes, vLLM, Reasoning, llama.cpp, Alignment, Evaluation, Guardrails, Structured Output, Sampling, Quantization, LoRA, KV Cache, Speculative Decoding, Tokenizers, Flash Attention, RoPE Positional Encoding, Multimodal Models, ReAct Agent Loop, Multi-Agent Orchestration, Agent Memory Systems, Agent Security, Tool Calling and MCP, Agent Evaluation and Observability, Function Calling Training and Constrained Decoding, Multi-Agent Communication Protocols) and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
+Thirty-eight single-page references: thirty-one tool cheat sheets (Docker, Python, Git, Linux, RAG, Kubernetes, vLLM, Reasoning, llama.cpp, Alignment, Evaluation, Guardrails, Structured Output, Sampling, Quantization, LoRA, KV Cache, Speculative Decoding, Tokenizers, Flash Attention, RoPE Positional Encoding, Multimodal Models, ReAct Agent Loop, Multi-Agent Orchestration, Agent Memory Systems, Agent Security, Tool Calling and MCP, Agent Evaluation and Observability, Function Calling Training and Constrained Decoding, Multi-Agent Communication Protocols, Multi-Agent Framework Comparison) and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
 
 ## Tool Cheat Sheets
 
@@ -103,6 +103,9 @@ The grammar-to-mask mechanism and its per-state legal-set ladder, prompting (0.7
 ### [CHEAT-SHEET-030: Multi-Agent Communication Protocols](./CHEAT-SHEET-030-Multi-Agent-Communication-Protocols.md)
 The typed message envelope and its correlation contract, the topology ledger at N=8 (orchestrator 8 / peer-to-peer 28 / hierarchical 10), voting versus the judge model, the max_rounds=2 debate loop, the context-capsule handoff at 0-of-4 rework, jitter against synchronized retry waves, and budget propagation with fail-fast children.
 
+### [CHEAT-SHEET-031: Multi-Agent Framework Comparison](./CHEAT-SHEET-031-Multi-Agent-Framework-Comparison.md)
+The 8-row comparison matrix and its boolean scorecards (tool calling 4/4, human-in-the-loop 3/4, local models 3/4), the version reality - Swarm archived for the OpenAI Agents SDK, AG2 versus the 0.4+ rewrite - the executable decision table with its 24-combination grid sweep (AutoGen 13 / LangGraph 11 / CrewAI 0), the hybrid split of graph-owns-flow and agent-owns-talk, and the resource ledger whose ranking is stable even where the values are estimates.
+
 ## Volume Quick References
 
 - [1: Infrastructure Fundamentals - Quick Reference](./QUICK-REF-VOLUME-1.md)
@@ -123,4 +126,4 @@ One condensed page per volume: the formulas, flags and commands each volume's mo
 
 ---
 
-**Total Cheat Sheets:** 37 documents
+**Total Cheat Sheets:** 38 documents
