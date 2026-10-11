@@ -14,7 +14,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 **Last Updated:** 2026-10-08
 
-**Total Files:** 474 markdown files (docs/)
+**Total Files:** 475 markdown files (docs/)
 
 ---
 
@@ -234,7 +234,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 ---
 
-### Cheat Sheets (34 files)
+### Cheat Sheets (35 files)
 
 | ID | Topic | Coverage |
 |----|-------|----------|
@@ -265,6 +265,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **[CHEAT-SHEET-025](../learning-resources/cheat-sheets/CHEAT-SHEET-025-Agent-Memory-Systems.md)** | Agent Memory Systems | Four-tier memory map with the two readers, the recency-relevance-importance retrieval blend, write and read paths, the consolidation lifecycle, context paging, the reflexion loop, TTL leases and eviction policy, and the checkpoint-store contract |
 | **[CHEAT-SHEET-026](../learning-resources/cheat-sheets/CHEAT-SHEET-026-Agent-Security.md)** | Agent Security | Five-layer defense stack with the honest 5/7 red-team bill, the regex-floor NER-ceiling PII pipeline, the FGSM flip rule, the HMAC-nonce identity contract, the beacon-CV egress monitor, and the T=0 versus pass@k deterministic-testing ledger |
 | **[CHEAT-SHEET-027](../learning-resources/cheat-sheets/CHEAT-SHEET-027-Tool-Calling-and-MCP.md)** | Tool Calling and MCP | The N+M integration economics, the JSON-RPC wire and its two error doors, the v2 decorator contract, the client-side validation gate, the result triple, the v1 to v2 rename ledger, and the caller-side resilience stack |
+| **[CHEAT-SHEET-028](../learning-resources/cheat-sheets/CHEAT-SHEET-028-Agent-Evaluation-and-Observability.md)** | Agent Evaluation and Observability | The three-rung evaluation ladder, trajectories as the unit of record, the four deterministic scorers, bootstrap CIs on small samples, the pairwise judge's position bias and swap cure, the OpenTelemetry GenAI trace schema, trace-to-budget attribution, and the two-tripwire regression gate |
 | **[QUICK-REF-V1](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-1.md)** | Infrastructure Fundamentals - Quick Reference | Phase 1 Quick Reference |
 | **[QUICK-REF-V2](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-2.md)** | AI/ML Foundations - Quick Reference | Phase 2 Quick Reference |
 | **[QUICK-REF-V3](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-3.md)** | LLM Internals - Quick Reference | Phase 3 Quick Reference |
@@ -424,7 +425,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **Jupyter Notebooks** | 20 |
 | **Practice Files** | 33 |
 | **Quiz Files** | 33 |
-| **Cheat Sheets** | 35 |
+| **Cheat Sheets** | 36 |
 | **Projects** | 7 |
 | **Experiments** | 47 |
 | **Comparisons** | 3 |
@@ -433,7 +434,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **Solutions** | 3 |
 | **Diagrams** | 4 |
 | **Meta Docs** | 20 |
-| **TOTAL** | **593** |
+| **TOTAL** | **594** |
 
 ### Content Statistics
 
