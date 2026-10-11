@@ -14,7 +14,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 **Last Updated:** 2026-10-08
 
-**Total Files:** 481 markdown files (docs/)
+**Total Files:** 482 markdown files (docs/)
 
 ---
 
@@ -234,7 +234,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 ---
 
-### Cheat Sheets (41 files)
+### Cheat Sheets (42 files)
 
 | ID | Topic | Coverage |
 |----|-------|----------|
@@ -272,6 +272,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **[CHEAT-SHEET-032](../learning-resources/cheat-sheets/CHEAT-SHEET-032-Code-Interpreter-Sandbox.md)** | Code Interpreter Sandbox | The four-tier sandbox ladder from process to managed microVM, the resource limits that belong to the child via preexec_fn, the regex screen over real import lines, the ok/failed/blocked envelope, the Jupyter kernel's IOPUB protocol, and the telemetry that catches runaway agents |
 | **[CHEAT-SHEET-033](../learning-resources/cheat-sheets/CHEAT-SHEET-033-LLM-Observability.md)** | LLM Observability | The four metric families with their alert thresholds, the timing trio and the decode-rate trap 16.7x inflated, the TTFT=0.0 publishing guard, the quality heuristics with honest limits, the hallucination indicator ladder, the nearest-rank p95 rule, and the seven-day cost rollup with its three levers |
 | **[CHEAT-SHEET-034](../learning-resources/cheat-sheets/CHEAT-SHEET-034-SGLang-RadixAttention-Serving.md)** | SGLang RadixAttention Serving | The radix prefill ledger 9576->432 tokens on one shared 768-token prefix, the KV budget on an 11GB card, the one-constraint rule, the 17x TTFT radix dividend, the cache_hit_rate zones, and the EAGLE speculation bet priced 0.81x versus 1.69x |
+| **[CHEAT-SHEET-035](../learning-resources/cheat-sheets/CHEAT-SHEET-035-Beyond-Attention-SSMs-and-MLA.md)** | Beyond Attention - SSMs and MLA | The two costs attention pays, the fixed-state SSM recurrence with its ZOH discretization, Mamba's selectivity gate, Mamba-2's SSD trade, the recall weakness behind the hybrid landscape, and MLA's 576-element latent cache 56.9x below full MHA |
 | **[QUICK-REF-V1](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-1.md)** | Infrastructure Fundamentals - Quick Reference | Phase 1 Quick Reference |
 | **[QUICK-REF-V2](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-2.md)** | AI/ML Foundations - Quick Reference | Phase 2 Quick Reference |
 | **[QUICK-REF-V3](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-3.md)** | LLM Internals - Quick Reference | Phase 3 Quick Reference |
@@ -431,7 +432,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **Jupyter Notebooks** | 20 |
 | **Practice Files** | 33 |
 | **Quiz Files** | 33 |
-| **Cheat Sheets** | 42 |
+| **Cheat Sheets** | 43 |
 | **Projects** | 7 |
 | **Experiments** | 47 |
 | **Comparisons** | 3 |
@@ -440,7 +441,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **Solutions** | 3 |
 | **Diagrams** | 4 |
 | **Meta Docs** | 20 |
-| **TOTAL** | **600** |
+| **TOTAL** | **601** |
 
 ### Content Statistics
 

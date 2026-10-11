@@ -484,6 +484,7 @@ nav:
         - "Code Interpreter Sandbox": learning-resources/cheat-sheets/CHEAT-SHEET-032-Code-Interpreter-Sandbox.md
         - "LLM Observability": learning-resources/cheat-sheets/CHEAT-SHEET-033-LLM-Observability.md
         - "SGLang RadixAttention Serving": learning-resources/cheat-sheets/CHEAT-SHEET-034-SGLang-RadixAttention-Serving.md
+        - "Beyond Attention - SSMs and MLA": learning-resources/cheat-sheets/CHEAT-SHEET-035-Beyond-Attention-SSMs-and-MLA.md
         - "Agent Memory Systems": learning-resources/cheat-sheets/CHEAT-SHEET-025-Agent-Memory-Systems.md
         - "Agent Security": learning-resources/cheat-sheets/CHEAT-SHEET-026-Agent-Security.md
         - "Tool Calling and MCP": learning-resources/cheat-sheets/CHEAT-SHEET-027-Tool-Calling-and-MCP.md

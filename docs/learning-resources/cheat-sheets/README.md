@@ -9,7 +9,7 @@ Tags: ['cheatsheet', 'reference']
 
 # Quick Reference Cheat Sheets
 
-Forty-one single-page references: thirty-four tool cheat sheets (Docker, Python, Git, Linux, RAG, Kubernetes, vLLM, Reasoning, llama.cpp, Alignment, Evaluation, Guardrails, Structured Output, Sampling, Quantization, LoRA, KV Cache, Speculative Decoding, Tokenizers, Flash Attention, RoPE Positional Encoding, Multimodal Models, ReAct Agent Loop, Multi-Agent Orchestration, Agent Memory Systems, Agent Security, Tool Calling and MCP, Agent Evaluation and Observability, Function Calling Training and Constrained Decoding, Multi-Agent Communication Protocols, Multi-Agent Framework Comparison, Code Interpreter Sandbox, LLM Observability, SGLang RadixAttention Serving) and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
+Forty-two single-page references: thirty-five tool cheat sheets (Docker, Python, Git, Linux, RAG, Kubernetes, vLLM, Reasoning, llama.cpp, Alignment, Evaluation, Guardrails, Structured Output, Sampling, Quantization, LoRA, KV Cache, Speculative Decoding, Tokenizers, Flash Attention, RoPE Positional Encoding, Multimodal Models, ReAct Agent Loop, Multi-Agent Orchestration, Agent Memory Systems, Agent Security, Tool Calling and MCP, Agent Evaluation and Observability, Function Calling Training and Constrained Decoding, Multi-Agent Communication Protocols, Multi-Agent Framework Comparison, Code Interpreter Sandbox, LLM Observability, SGLang RadixAttention Serving, Beyond Attention - SSMs and MLA) and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
 
 ## Tool Cheat Sheets
 
@@ -114,6 +114,8 @@ The four LLM-specific metric families and their alert thresholds, the timing tri
 
 ### [CHEAT-SHEET-034: SGLang RadixAttention Serving](./CHEAT-SHEET-034-SGLang-RadixAttention-Serving.md)
 The radix tree KV reuse engine: the 9576->432 prefill ledger behind one shared 768-token prefix (95% saved), the KV budget on an 11GB card, the one-constraint rule that keeps json_schema, regex and ebnf exclusive, the 17x TTFT radix dividend, the cache_hit_rate zones, and the EAGLE speculation bet priced 0.81x versus 1.69x by acceptance rate.
+### [CHEAT-SHEET-035: Beyond Attention - SSMs and MLA](./CHEAT-SHEET-035-Beyond-Attention-SSMs-and-MLA.md)
+The post-attention architectures: the fixed-state SSM recurrence and its ZOH discretization, Mamba's selectivity gate where delta_t decides write versus forget, Mamba-2's SSD trade, the MQAR recall weakness that makes every production model a hybrid, the six-model hybrid landscape, and MLA - DeepSeek's compressed cache at 576 elements per token, 56.9x below full MHA and 3.6x below GQA-8.
 
 ## Volume Quick References
 
@@ -135,4 +137,4 @@ One condensed page per volume: the formulas, flags and commands each volume's mo
 
 ---
 
-**Total Cheat Sheets:** 41 documents
+**Total Cheat Sheets:** 42 documents
