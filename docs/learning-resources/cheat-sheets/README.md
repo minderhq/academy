@@ -9,7 +9,7 @@ Tags: ['cheatsheet', 'reference']
 
 # Quick Reference Cheat Sheets
 
-Forty-seven single-page references: forty tool cheat sheets (Docker, Python, Git, Linux, RAG, Kubernetes, vLLM, Reasoning, llama.cpp, Alignment, Evaluation, Guardrails, Structured Output, Sampling, Quantization, LoRA, KV Cache, Speculative Decoding, Tokenizers, Flash Attention, RoPE Positional Encoding, Multimodal Models, ReAct Agent Loop, Multi-Agent Orchestration, Agent Memory Systems, Agent Security, Tool Calling and MCP, Agent Evaluation and Observability, Function Calling Training and Constrained Decoding, Multi-Agent Communication Protocols, Multi-Agent Framework Comparison, Code Interpreter Sandbox, LLM Observability, SGLang RadixAttention Serving, Beyond Attention - SSMs and MLA, Vector Memory - the Embedding-Backed Store, Reflection & Self-Correction - the Loop That Grades Its Own Work, SDPA & torch.compile - the Kernel Choice and the Execution Choice, Word Embeddings - the Tradition That Turned Co-occurrence into Coordinates, Model Merging - the Arithmetic That Combines Trained Models) and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
+Forty-eight single-page references: forty-one tool cheat sheets (Docker, Python, Git, Linux, RAG, Kubernetes, vLLM, Reasoning, llama.cpp, Alignment, Evaluation, Guardrails, Structured Output, Sampling, Quantization, LoRA, KV Cache, Speculative Decoding, Tokenizers, Flash Attention, RoPE Positional Encoding, Multimodal Models, ReAct Agent Loop, Multi-Agent Orchestration, Agent Memory Systems, Agent Security, Tool Calling and MCP, Agent Evaluation and Observability, Function Calling Training and Constrained Decoding, Multi-Agent Communication Protocols, Multi-Agent Framework Comparison, Code Interpreter Sandbox, LLM Observability, SGLang RadixAttention Serving, Beyond Attention - SSMs and MLA, Vector Memory - the Embedding-Backed Store, Reflection & Self-Correction - the Loop That Grades Its Own Work, SDPA & torch.compile - the Kernel Choice and the Execution Choice, Word Embeddings - the Tradition That Turned Co-occurrence into Coordinates, Model Merging - the Arithmetic That Combines Trained Models, Activations & Normalization - the Nonlinearity and the Statistics) and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
 
 ## Tool Cheat Sheets
 
@@ -128,6 +128,8 @@ The layer beneath every embedding the curriculum uses later: the one-hot storage
 
 ### [CHEAT-SHEET-040: Model Merging - the Arithmetic That Combines Trained Models](./CHEAT-SHEET-040-Model-Merging.md)
 The arithmetic that combines trained checkpoints without retraining: the task vector and its dose dial (5.000 to 0.000 down the lambda walk while the forgetting proxy pays the squared length of tau), TIES' trim-elect-merge against the naive sum that cancels a skill coordinate to exactly 0.0, DARE's drop-and-rescale keeping the expected tau while variance pays, SLERP's arc holding 1.0000 where the chord sags to 0.8660 at 60 degrees, and the sixteen-seed soup ledger whose guarantee is distributional - 12.2x versus the average ingredient, never versus the best seed.
+### [CHEAT-SHEET-041: Activations & Normalization - the Nonlinearity and the Statistics](./CHEAT-SHEET-041-Activations-and-Normalization.md)
+The nonlinearity and the statistics every transformer block stands on: ReLU's three named deaths against the smooth curve family, GELU exact versus the GPT-2 tanh approximation (max err 0.000473, r = 0.99999999), SwiGLU's third projection and its 1.5x bill with the LLaMA 8/3 sizing rule on the 256 grid, the gate zoo (GEGLU, ReGLU, SwiGLU) kept apart from the MoE router that picks experts rather than gating activations, LayerNorm versus RMSNorm at cosine 0.9987 with the mean surviving at +0.050273, Pre-LN's random-walk stream against Post-LN's pin and DeepNorm's alpha-squared fixed point, and the fp32-upcast law - RMSNorm without it zeroes every activation at offset 1000.
 
 ## Volume Quick References
 
@@ -149,4 +151,4 @@ One condensed page per volume: the formulas, flags and commands each volume's mo
 
 ---
 
-**Total Cheat Sheets:** 47 documents
+**Total Cheat Sheets:** 48 documents

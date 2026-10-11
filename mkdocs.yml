@@ -490,6 +490,7 @@ nav:
         - "SDPA & torch.compile - the Kernel Choice and the Execution Choice": learning-resources/cheat-sheets/CHEAT-SHEET-038-SDPA-and-torch-compile.md
         - "Word Embeddings - the Tradition That Turned Co-occurrence into Coordinates": learning-resources/cheat-sheets/CHEAT-SHEET-039-Word-Embeddings-Tradition.md
         - "Model Merging - the Arithmetic That Combines Trained Models": learning-resources/cheat-sheets/CHEAT-SHEET-040-Model-Merging.md
+        - "Activations & Normalization - the Nonlinearity and the Statistics": learning-resources/cheat-sheets/CHEAT-SHEET-041-Activations-and-Normalization.md
         - "Agent Memory Systems": learning-resources/cheat-sheets/CHEAT-SHEET-025-Agent-Memory-Systems.md
         - "Agent Security": learning-resources/cheat-sheets/CHEAT-SHEET-026-Agent-Security.md
         - "Tool Calling and MCP": learning-resources/cheat-sheets/CHEAT-SHEET-027-Tool-Calling-and-MCP.md
