@@ -465,6 +465,7 @@ nav:
         - "Reasoning": learning-resources/cheat-sheets/CHEAT-SHEET-008-Reasoning-Models.md
         - "llama.cpp": learning-resources/cheat-sheets/CHEAT-SHEET-009-Local-Inference.md
         - "Alignment": learning-resources/cheat-sheets/CHEAT-SHEET-010-Alignment-Methods.md
+        - "Evaluation": learning-resources/cheat-sheets/CHEAT-SHEET-011-Evaluation-Benchmarking.md
         - "Quick Ref Volume 1": learning-resources/cheat-sheets/QUICK-REF-VOLUME-1.md
         - "Quick Ref Volume 2": learning-resources/cheat-sheets/QUICK-REF-VOLUME-2.md
         - "Quick Ref Volume 3": learning-resources/cheat-sheets/QUICK-REF-VOLUME-3.md
