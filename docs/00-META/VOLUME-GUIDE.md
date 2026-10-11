@@ -450,7 +450,7 @@ Minder Academy/docs/
 │   ├── VOLUME-GUIDE.md          # This file - volume overview
 │   ├── QUICK-START.md           # 30-minute quick start
 │   ├── PROGRESS-TRACKER.md      # Track your learning
-│   ├── SITEMAP.md               # All 456 documents
+│   ├── SITEMAP.md               # All 457 documents
 │   └── 0000-LEARNING-PATH.md    # Curriculum roadmap
 │
 ├── phases/                      # Phase-based technical documentation
@@ -465,7 +465,7 @@ Minder Academy/docs/
 ├── learning-resources/          # Additional learning materials
 │   ├── tutorials/               # Step-by-step tutorials (16 files)
 │   ├── labs/                    # Hands-on lab exercises (16 labs + 15 solutions)
-│   ├── cheat-sheets/            # Quick reference guides (17 files)
+│   ├── cheat-sheets/            # Quick reference guides (18 files)
 │   ├── troubleshooting/         # Common issues & solutions
 │   └── projects/                # Capstone projects (7 files)
 │
@@ -508,4 +508,4 @@ Minder Academy/
 
 **Ready to begin?** Start with **[QUICK-START.md](QUICK-START.md)** and track your progress in **[PROGRESS-TRACKER.md](PROGRESS-TRACKER.md)**!
 
-**Total Documents:** 456 files across 7 volumes
+**Total Documents:** 457 files across 7 volumes
