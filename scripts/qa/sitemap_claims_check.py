@@ -132,6 +132,19 @@ def m_configs(root: Path) -> int:
     return len([p for p in cfg.rglob("*") if p.is_file()])
 
 
+def m_capstone_fleet(root: Path) -> int:
+    # tick-963: the SITEMAP Capstone section header scopes the
+    # SL-04 registered fleet (PROJECT-* + PREREQUISITES-* +
+    # SETUP-GUIDE) - the section-index README is chrome, listed
+    # in Meta & Reference instead (SL-02 corpus completeness),
+    # not a fleet member (SL-01). The statistics block keeps the
+    # plain directory glob.
+    return sum(len(list((root / "docs" / "learning-resources"
+                         / "projects").glob(pat))) for pat in
+               ("PROJECT-*.md", "PREREQUISITES-*.md",
+                "SETUP-GUIDE.md"))
+
+
 def m_case_study(root: Path) -> int:
     return sum(1 for n in CASE_STUDY_FILES
                if (root / "experiments" / n).exists())
@@ -151,7 +164,7 @@ HEADLINE_MEASURES = [
     ("Tutorials", _rel("learning-resources/tutorials")),
     ("Labs (", _rel("learning-resources/labs")),
     ("Lab Solutions", _rel("learning-resources/labs/solutions")),
-    ("Capstone Projects", _rel("learning-resources/projects")),
+    ("Capstone Projects", m_capstone_fleet),
     ("Cheat Sheets", _rel("learning-resources/cheat-sheets")),
     ("Learning Guides", _rel("learning-resources/guides")),
     ("Comparisons", _rel("comparisons")),

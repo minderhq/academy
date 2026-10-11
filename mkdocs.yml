@@ -422,6 +422,7 @@ nav:
       - "Quiz": phases/phase7-agentic/7500-security/assessment/QUIZ.md
   - "Library":
     - Volumes:
+      - "Overview": volumes/README.md
       - "Volume 1 · Infrastructure": volumes/VOLUME-1-Infrastructure.md
       - "Volume 2 · AI Foundations": volumes/VOLUME-2-AI-Foundations.md
       - "Volume 3 · LLM Internals": volumes/VOLUME-3-LLM-Internals.md
@@ -431,6 +432,7 @@ nav:
       - "Volume 7 · Production Mastery": volumes/VOLUME-7-Production-Mastery.md
     - Resources:
       - "Tutorials":
+        - "Overview": learning-resources/tutorials/README.md
         - "Python for AI": learning-resources/tutorials/TUTORIAL-000-Python-for-AI.md
         - "Hello LLM": learning-resources/tutorials/TUTORIAL-001-Hello-LLM.md
         - "Docker Essentials": learning-resources/tutorials/TUTORIAL-002-Docker-Essentials.md
@@ -447,10 +449,12 @@ nav:
         - "AI Security": learning-resources/tutorials/TUTORIAL-013-AI-Security.md
         - "Production LLM Systems": learning-resources/tutorials/TUTORIAL-014-Production-LLM-Systems.md
       - "Guides":
+        - "Overview": learning-resources/guides/README.md
         - "Career Guide": learning-resources/guides/GUIDE-CAREER.md
         - "Interview Guide": learning-resources/guides/GUIDE-INTERVIEW.md
         - "Resume Guide": learning-resources/guides/GUIDE-RESUME.md
       - "Cheat Sheets":
+        - "Overview": learning-resources/cheat-sheets/README.md
         - "Docker": learning-resources/cheat-sheets/CHEAT-SHEET-001-Docker.md
         - "Python AI": learning-resources/cheat-sheets/CHEAT-SHEET-002-Python-AI.md
         - "Git": learning-resources/cheat-sheets/CHEAT-SHEET-003-Git.md
@@ -465,6 +469,7 @@ nav:
         - "Quick Ref Volume 6": learning-resources/cheat-sheets/QUICK-REF-VOLUME-6.md
         - "Quick Ref Volume 7": learning-resources/cheat-sheets/QUICK-REF-VOLUME-7.md
       - "Labs":
+        - "Overview": learning-resources/labs/README.md
         - "Environment Setup": learning-resources/labs/LAB-000-ENVIRONMENT-SETUP.md
         - "Docker LLM": learning-resources/labs/LAB-001-Docker-LLM.md
         - "RAG Implementation": learning-resources/labs/LAB-002-RAG-Implementation.md
@@ -496,6 +501,7 @@ nav:
         - "Solution · Advanced Function Calling": learning-resources/labs/solutions/SOLUTION-LAB-013-Advanced-Function-Calling.md
         - "Solution · AI Evaluation Safety": learning-resources/labs/solutions/SOLUTION-LAB-014-AI-Evaluation-Safety.md
       - "Projects":
+        - "Overview": learning-resources/projects/README.md
         - "Prerequisites · Project 001": learning-resources/projects/PREREQUISITES-001.md
         - "Prerequisites · Project 007": learning-resources/projects/PREREQUISITES-007.md
         - "AI Assistant": learning-resources/projects/PROJECT-001-AI-Assistant.md
@@ -519,14 +525,19 @@ nav:
         - "Template · Model Merging MoE": learning-resources/projects/templates/TEMPLATE-011-Model-Merging-MoE.md
         - "Template · End-to-End LLM Pipeline": learning-resources/projects/templates/TEMPLATE-012-End-to-End-LLM-Pipeline.md
       - "Interactive":
+        - "Overview": learning-resources/interactive/README.md
         - "Flashcards": learning-resources/interactive/FLASHCARDS.md
       - "Troubleshooting":
+        - "Overview": learning-resources/troubleshooting/README.md
         - "Troubleshooting Common Issues": learning-resources/troubleshooting/TROUBLESHOOTING-Common-Issues.md
       - "Bridges":
+        - "Overview": learning-resources/bridges/README.md
         - "Tutorial to Lab Bridge": learning-resources/bridges/TUTORIAL-TO-LAB-BRIDGE.md
       - "Case Studies":
+        - "Overview": learning-resources/case-studies/README.md
         - "Real-World Examples": learning-resources/case-studies/REAL-WORLD-EXAMPLES.md
       - "Resources":
+        - "Overview": learning-resources/resources/README.md
         - "External Resources": learning-resources/resources/EXTERNAL-RESOURCES.md
     - Case Studies:
       - "Industry":

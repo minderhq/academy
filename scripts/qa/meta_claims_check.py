@@ -256,6 +256,16 @@ def m_labs(root: Path) -> int:
     return _md_count(root / "docs" / "learning-resources" / "labs")
 
 
+def m_labs_members(root: Path) -> int:
+    # tick-963: member-scoped - the MASTER-INDEX Labs section header
+    # scopes the lab id table (lab_index_parity_check LI-04 measures
+    # it against LAB-* + solutions/*), so it counts lab files, not
+    # directory files - the section-index README is chrome. m_labs
+    # stays dir-scoped for the File Counts row, FAQ, ORG and PT faces.
+    return len(list((root / "docs" / "learning-resources"
+                     / "labs").glob("LAB-*.md")))
+
+
 def m_solutions(root: Path) -> int:
     return _md_count(root / "docs" / "learning-resources"
                      / "labs" / "solutions")
@@ -271,11 +281,37 @@ def m_notebooks(root: Path) -> int:
 # MASTER-INDEX numbered section prefix -> disk measurement. Sections
 # without a natural disk measure (Bridges, topic guides) never match a
 # prefix and are skipped deliberately.
+def m_tutorials_members(root: Path) -> int:
+    # tick-963: the MASTER-INDEX Tutorials section header scopes
+    # the tutorial id table (tutorial_index_parity_check TI-06
+    # measures it against TUTORIAL-*.md), so it counts tutorial
+    # files, not directory files - the section-index README is
+    # chrome. The File Counts row keeps the plain glob.
+    return len(list((root / "docs" / "learning-resources"
+                     / "tutorials").glob("TUTORIAL-*.md")))
+
+
+def m_cheat_sheets_fleet(root: Path) -> int:
+    # tick-963: fleet-scoped - cheat-sheets/ gained its own
+    # section-index README (the nav Overview page). The
+    # MASTER-INDEX section header scopes the id table, so it
+    # counts cheat sheets, not directory files - the README is
+    # chrome, skipped by cheatsheet_index_parity_check for the
+    # same reason. The File Counts row and the FAQ sentence keep
+    # the plain directory glob.
+    return sum(1 for p in (root / "docs" / "learning-resources"
+                           / "cheat-sheets").glob("*.md")
+               if p.name != "README.md")
+
+
 SECTION_MEASURES = [
-    ("Tutorials", _rel("learning-resources/tutorials")),
-    ("Labs (", lambda root: m_labs(root) + m_solutions(root)),
+    ("Tutorials", m_tutorials_members),
+    # tick-963: LI-04 scopes the Labs header to its member files
+    # (LAB-* + solutions/*); m_labs/m_solutions themselves stay
+    # dir-scoped for the File Counts row, FAQ, ORG and PT faces.
+    ("Labs (", lambda root: m_labs_members(root) + m_solutions(root)),
     ("Notebooks", m_notebooks),
-    ("Cheat Sheets", _rel("learning-resources/cheat-sheets")),
+    ("Cheat Sheets", m_cheat_sheets_fleet),
     ("Projects", m_projects),
     ("Career Guides", _rel("learning-resources/guides")),
     ("Phase Practice Files", m_assessment("practice")),
@@ -411,14 +447,17 @@ def main() -> int:
              "MASTER-INDEX header '%s' claims %s but disk measures %d"
              % (title, num_m.group(1), actual))
 
-    # the Lab header's 3-way split ("N files: L labs + S solutions")
+    # the Lab header's 3-way split ("N files: L labs + S solutions"),
+    # member-scoped like the section loop above (LI-04 measures the
+    # same header against LAB-* + solutions/*)
     match = LAB_HEADER.search(text)
     if match is not None:
         for value, label, mfn in zip(match.groups(),
                                      ("lab files total", "labs",
                                       "lab solutions"),
-                                     (lambda r: m_labs(r) + m_solutions(r),
-                                      m_labs, m_solutions)):
+                                     (lambda r: m_labs_members(r)
+                                      + m_solutions(r),
+                                      m_labs_members, m_solutions)):
             actual = measure("MASTER-INDEX lab header %s" % label, mfn)
             if actual is None:
                 continue

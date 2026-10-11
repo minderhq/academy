@@ -31,7 +31,7 @@ Minder Academy/
 │   ├── docker-compose.yml
 │   ├── .env.example
 │   └── performance-testing/k6/
-├── docs/                              # All documentation (442 files)
+├── docs/                              # All documentation (453 files)
 │   ├── 00-META/                      # Meta documentation
 │   ├── phases/                       # Phase documentation (33 modules)
 │   ├── learning-resources/           # Learning materials
@@ -164,7 +164,7 @@ docs/phases/
 
 ```text
 docs/learning-resources/
-├── tutorials/                        # 15 tutorial files
+├── tutorials/                        # 16 tutorial files
 │   ├── TUTORIAL-001-Hello-LLM.md
 │   ├── TUTORIAL-002-Docker-Essentials.md
 │   ├── TUTORIAL-003-RAG-Basics.md
@@ -183,7 +183,7 @@ docs/learning-resources/
 │   ├── SOLUTION-LAB-001-Docker-LLM.md
 │   └── ...
 │
-├── cheat-sheets/                     # 13 cheat sheets
+├── cheat-sheets/                     # 14 cheat sheets
 │   ├── CHEAT-SHEET-001-Docker.md
 │   ├── CHEAT-SHEET-002-Python-AI.md
 │   ├── CHEAT-SHEET-003-Git.md

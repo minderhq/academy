@@ -128,7 +128,10 @@ DEFS = [
     ("Module READMEs", "docs/phases/phase*/*/README.md"),
     ("Phase Documents", "rglob:docs/phases"),
     ("Tutorials", "docs/learning-resources/tutorials/*.md"),
-    ("Labs", "docs/learning-resources/labs/LAB-*.md"),
+    # tick-963: labs/ gained its own section-index README (the nav
+    # Overview page) - counted like the Tutorials/Cheat Sheets
+    # globs, which already include their directory's README.
+    ("Labs", "docs/learning-resources/labs/*.md"),
     ("Lab Solutions", "docs/learning-resources/labs/solutions/*.md"),
     ("Jupyter Notebooks", "docs/notebooks/*.ipynb"),
     ("Practice Files", "rglob-assessment:PRACTICE.md"),

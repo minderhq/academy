@@ -14,7 +14,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 **Last Updated:** 2026-10-08
 
-**Total Files:** 442 markdown files (docs/)
+**Total Files:** 453 markdown files (docs/)
 
 ---
 
@@ -271,16 +271,18 @@ Tags: ['maintenance', 'navigation', 'llm']
 - **[PREREQUISITES-001](../learning-resources/projects/PREREQUISITES-001.md)** - PROJECT-001 environment setup walkthrough
 - **[PREREQUISITES-007](../learning-resources/projects/PREREQUISITES-007.md)** - PROJECT-007 environment setup walkthrough
 - **[SETUP-GUIDE](../learning-resources/projects/SETUP-GUIDE.md)** - Common environment setup for all projects
+- **[README](../learning-resources/projects/README.md)** - section overview: how to pick and plan a capstone
 
 ---
 
-### Career Guides (3 files)
+### Career Guides (4 files)
 
 | Guide | Topic | Coverage |
 |-------|-------|----------|
 | **[GUIDE-CAREER](../learning-resources/guides/GUIDE-CAREER.md)** | CAREER GUIDE: From Learning to Job-Ready | Job roles, portfolio, networking, salary |
 | **[GUIDE-RESUME](../learning-resources/guides/GUIDE-RESUME.md)** | RESUME TEMPLATES & EXAMPLES | Entry, mid, senior, career switcher |
 | **[GUIDE-INTERVIEW](../learning-resources/guides/GUIDE-INTERVIEW.md)** | INTERVIEW PREPARATION GUIDE | Technical, behavioral, system design, negotiation |
+| **[README](../learning-resources/guides/README.md)** | Career and Job-Readiness Guides | Section overview - how the three guides fit together |
 
 ---
 
@@ -395,13 +397,13 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **Phase READMEs** | 7 |
 | **Module READMEs** | 33 |
 | **Phase Documents** | 293 |
-| **Tutorials** | 15 |
-| **Labs** | 15 |
+| **Tutorials** | 16 |
+| **Labs** | 16 |
 | **Lab Solutions** | 15 |
 | **Jupyter Notebooks** | 20 |
 | **Practice Files** | 33 |
 | **Quiz Files** | 33 |
-| **Cheat Sheets** | 13 |
+| **Cheat Sheets** | 14 |
 | **Projects** | 7 |
 | **Experiments** | 47 |
 | **Comparisons** | 3 |
@@ -410,7 +412,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **Solutions** | 3 |
 | **Diagrams** | 4 |
 | **Meta Docs** | 20 |
-| **TOTAL** | **569** |
+| **TOTAL** | **572** |
 
 ### Content Statistics
 

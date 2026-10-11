@@ -444,8 +444,9 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [assessment: PRACTICE](../phases/phase7-agentic/7500-security/assessment/PRACTICE.md)
 - [assessment: QUIZ](../phases/phase7-agentic/7500-security/assessment/QUIZ.md)
 
-## Volumes (7 files)
+## Volumes (8 files)
 
+- [README](../volumes/README.md)
 - [VOLUME-1-Infrastructure](../volumes/VOLUME-1-Infrastructure.md)
 - [VOLUME-2-AI-Foundations](../volumes/VOLUME-2-AI-Foundations.md)
 - [VOLUME-3-LLM-Internals](../volumes/VOLUME-3-LLM-Internals.md)
@@ -526,8 +527,9 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 
 ---
 
-## Tutorials (15 files)
+## Tutorials (16 files)
 
+- [README](../learning-resources/tutorials/README.md)
 - [TUTORIAL-000-Python-for-AI](../learning-resources/tutorials/TUTORIAL-000-Python-for-AI.md)
 - [TUTORIAL-001-Hello-LLM](../learning-resources/tutorials/TUTORIAL-001-Hello-LLM.md)
 - [TUTORIAL-002-Docker-Essentials](../learning-resources/tutorials/TUTORIAL-002-Docker-Essentials.md)
@@ -544,8 +546,9 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [TUTORIAL-013-AI-Security](../learning-resources/tutorials/TUTORIAL-013-AI-Security.md)
 - [TUTORIAL-014-Production-LLM-Systems](../learning-resources/tutorials/TUTORIAL-014-Production-LLM-Systems.md)
 
-## Labs (15 files)
+## Labs (16 files)
 
+- [README](../learning-resources/labs/README.md)
 - [LAB-000-ENVIRONMENT-SETUP](../learning-resources/labs/LAB-000-ENVIRONMENT-SETUP.md)
 - [LAB-001-Docker-LLM](../learning-resources/labs/LAB-001-Docker-LLM.md)
 - [LAB-002-RAG-Implementation](../learning-resources/labs/LAB-002-RAG-Implementation.md)
@@ -593,8 +596,9 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [PROJECT-007-Production-AI-System](../learning-resources/projects/PROJECT-007-Production-AI-System.md)
 - [SETUP-GUIDE](../learning-resources/projects/SETUP-GUIDE.md)
 
-## Cheat Sheets (13 files)
+## Cheat Sheets (14 files)
 
+- [README](../learning-resources/cheat-sheets/README.md)
 - [CHEAT-SHEET-001-Docker](../learning-resources/cheat-sheets/CHEAT-SHEET-001-Docker.md)
 - [CHEAT-SHEET-002-Python-AI](../learning-resources/cheat-sheets/CHEAT-SHEET-002-Python-AI.md)
 - [CHEAT-SHEET-003-Git](../learning-resources/cheat-sheets/CHEAT-SHEET-003-Git.md)
@@ -609,20 +613,24 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [QUICK-REF-VOLUME-6](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-6.md)
 - [QUICK-REF-VOLUME-7](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-7.md)
 
-## Interactive (1 file)
+## Interactive (2 files)
 
+- [README](../learning-resources/interactive/README.md)
 - [FLASHCARDS](../learning-resources/interactive/FLASHCARDS.md)
 
-## Troubleshooting (1 file)
+## Troubleshooting (2 files)
 
+- [README](../learning-resources/troubleshooting/README.md)
 - [TROUBLESHOOTING-Common-Issues](../learning-resources/troubleshooting/TROUBLESHOOTING-Common-Issues.md)
 
-## Case Studies (1 file)
+## Case Studies (2 files)
 
+- [README](../learning-resources/case-studies/README.md)
 - [REAL-WORLD-EXAMPLES](../learning-resources/case-studies/REAL-WORLD-EXAMPLES.md)
 
-## Learning Guides (3 files)
+## Learning Guides (4 files)
 
+- [README](../learning-resources/guides/README.md)
 - [GUIDE-CAREER](../learning-resources/guides/GUIDE-CAREER.md)
 - [GUIDE-INTERVIEW](../learning-resources/guides/GUIDE-INTERVIEW.md)
 - [GUIDE-RESUME](../learning-resources/guides/GUIDE-RESUME.md)
@@ -713,7 +721,7 @@ build's written walkthroughs live inside the lessons themselves - see the
 - [EXP_1101_GPON](../../experiments/EXP_1101_GPON.md)
 - [EXP_1102_STAR_TOPOLOGY](../../experiments/EXP_1102_STAR_TOPOLOGY.md)
 
-## Meta & Reference (11 files: 9 reference docs + 2 companion indexes)
+## Meta & Reference (14 files: 9 reference docs + 2 companion indexes + 3 section overviews)
 
 - [ORGANIZATION-GUIDE](../00-META/ORGANIZATION-GUIDE.md)
 - [TUTORIAL-TO-LAB-BRIDGE](../learning-resources/bridges/TUTORIAL-TO-LAB-BRIDGE.md)
@@ -726,6 +734,9 @@ build's written walkthroughs live inside the lessons themselves - see the
 - [RESOURCES](../00-META/RESOURCES.md)
 - [STYLE-GUIDE](../00-META/STYLE-GUIDE.md)
 - [TROUBLESHOOTING-QUICKSTART](../00-META/TROUBLESHOOTING-QUICKSTART.md)
+- [BRIDGES-README](../learning-resources/bridges/README.md)
+- [RESOURCES-README](../learning-resources/resources/README.md)
+- [PROJECTS-README](../learning-resources/projects/README.md)
 
 ---
 
@@ -740,8 +751,8 @@ build's written walkthroughs live inside the lessons themselves - see the
 ## Statistics
 
 ```text
-Total markdown files: 496
-  docs/: 442, experiments/: 48, configs/: 4, repo root: 2
+Total markdown files: 507
+  docs/: 453, experiments/: 48, configs/: 4, repo root: 2
 Phases: 7
 Learning modules (topics): 33
 Phase files (lessons, guides, assessments, topic README/PREREQUISITES): 293
@@ -752,15 +763,15 @@ Phase files (lessons, guides, assessments, topic README/PREREQUISITES): 293
   Phase 5 - Fine-Tuning & Alignment: 46
   Phase 6 - Data Nexus - RAG, CAG & External Memory: 46
   Phase 7 - Agentic Cognition & Autonomy: 46
-Volume guides: 7
+Volume guides: 8
 Phase assessment sets: 14 (7 phases x quiz + practice)
 Experiments: 47 (+ TEMPLATE)
-Tutorials: 15
-Labs: 15 (+ 15 solutions)
-Capstone projects: 10
+Tutorials: 16
+Labs: 16 (+ 15 solutions)
+Capstone projects: 11
 Project templates: 12
-Cheat sheets: 13
-Learning guides: 3
+Cheat sheets: 14
+Learning guides: 4
 Comparisons: 3 | Diagrams: 4 | Enterprise solutions: 3
 Industry applications: 4 | Use cases: 4 | Notebooks: 21
 ```

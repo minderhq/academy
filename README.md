@@ -15,7 +15,7 @@ Difficulty: Beginner
 ## Master Documentation
 
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
-[![Documentation](https://img.shields.io/badge/Docs-442%20Files-orange?style=flat-square)](./docs)
+[![Documentation](https://img.shields.io/badge/Docs-453%20Files-orange?style=flat-square)](./docs)
 [![Phases](https://img.shields.io/badge/Phases-7-purple?style=flat-square)](#-learning-phases)
 [![Modules](https://img.shields.io/badge/Modules-33-success?style=flat-square)](#-summary-statistics)
 
@@ -158,7 +158,7 @@ After completing Minder Academy, you will be able to:
 | Challenge | Minder Academy Solution |
 |:----------:|:----------------------:|
 | 💸 **AI infrastructure is expensive** | Run production-grade AI on affordable hardware or modest cloud instances |
-| 📚 **Documentation is scattered** | **496 files** in one organized, cross-referenced repository |
+| 📚 **Documentation is scattered** | **507 files** in one organized, cross-referenced repository |
 | 🎯 **Learning gaps exist** | Complete curriculum from infrastructure to agentic systems |
 | 📝 **Theory without practice** | **33 PRACTICE files** with runnable solutions, **47 experiments** |
 | 🗺️ **No clear path forward** | **7 phases**, **3 learning tracks**, progress tracking built-in |
@@ -181,10 +181,10 @@ After completing Minder Academy, you will be able to:
 - Monitoring and observability recipes (Prometheus, Grafana, Loki) in the Phase 1 curriculum
 
 ### 📚 Rich Learning Resources
-- **15 hands-on lab files** with solutions (LAB-000 setup + LAB-001 to LAB-014 system)
-- **15 tutorials** with step-by-step instructions
-- **22 project files** for capstone projects
-- **13 cheat sheets** for quick reference
+- **16 hands-on lab files** with solutions (LAB-000 setup + LAB-001 to LAB-014 system, incl. section overview)
+- **16 tutorials** with step-by-step instructions (incl. section overview)
+- **23 project files** for capstone projects (incl. section overview)
+- **14 cheat sheets** for quick reference (incl. section overview)
 
 ### 🔧 Real-World Applications
 - Vector database implementation guides
@@ -1358,8 +1358,8 @@ docker compose -f configs/docker-compose.yml up -d qdrant
 
 | Resource | Count |
 |----------|------:|
-| Learning Resources (labs, tutorials, projects, cheat sheets) | 88 |
-| Hands-on Labs (LAB-000 setup + LAB-001 to LAB-014 system) | 15 |
+| Learning Resources (labs, tutorials, projects, cheat sheets) | 98 |
+| Hands-on Labs (LAB-000 setup + LAB-001 to LAB-014 system) | 16 |
 | Experiments | 47 |
 | QUIZ Files | 33 |
 | PRACTICE Files | 33 |
@@ -1499,7 +1499,7 @@ SOFTWARE.
 
 *Last Updated: 2026-09-29*
 
-*496 Documentation Files | 33 Technical Modules | 7 Learning Phases*
+*507 Documentation Files | 33 Technical Modules | 7 Learning Phases*
 
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
 [![Contact](https://img.shields.io/badge/Contact-FAQ-blue?style=flat-square)](./docs/00-META/FAQ.md)

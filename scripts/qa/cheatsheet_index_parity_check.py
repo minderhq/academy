@@ -78,6 +78,11 @@ def main() -> int:
     cs_dir = args.root / "docs" / "learning-resources" / "cheat-sheets"
     fm: dict[str, tuple[str, str]] = {}  # id -> (title, filename)
     for p in sorted(cs_dir.glob("*.md")):
+        if p.name == "README.md":
+            # tick-963: the section-index README is chrome (its own nav
+            # Overview page), not a cheat sheet - skipped from the id-set
+            # parity like nav_coverage_check skips README-shaped files.
+            continue
         t = p.read_text(encoding="utf-8")
         did = FM_ID.search(t)
         ttl = FM_TITLE.search(t)
