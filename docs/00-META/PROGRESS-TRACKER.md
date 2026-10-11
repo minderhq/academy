@@ -24,7 +24,7 @@ Volume 5: Model Adaptation             [░░░░░░░░░░░] 0% (0
 Volume 6: Data Nexus: RAG & Memory     [░░░░░░░░░░░] 0% (0/46)
 Volume 7: Production Mastery           [░░░░░░░░░░░] 0% (0/46)
 
-Total: [░░░░░░░░░░░░░░░░░] 0% (0/472 core files)
+Total: [░░░░░░░░░░░░░░░░░] 0% (0/473 core files)
 ```
 
 ---
@@ -421,7 +421,7 @@ Notes:
 ### Essential Reading
 - **[VOLUME-GUIDE.md](VOLUME-GUIDE.md)** - Start here! Overview of all 7 volumes
 - **[0000-LEARNING-PATH.md](0000-LEARNING-PATH.md)** - Recommended learning paths
-- **[SITEMAP.md](SITEMAP.md)** - Full document list (472 files)
+- **[SITEMAP.md](SITEMAP.md)** - Full document list (473 files)
 - **[README.md](../../README.md)** - Project overview
 
 ### Troubleshooting
@@ -441,7 +441,7 @@ Notes:
 | Metric | Target | Current | % |
 |--------|--------|---------|---|
 | **Volumes Completed** | 7 | 0 | 0% |
-| **Core Documents** | 472 | 0 | 0% |
+| **Core Documents** | 473 | 0 | 0% |
 | **Labs Completed** | 16 | 0 | 0% |
 | **Experiments** | 47 | 0 | 0% |
 | **Tutorials** | 16 | 0 | 0% |

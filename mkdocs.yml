@@ -480,6 +480,7 @@ nav:
         - "ReAct Agent Loop": learning-resources/cheat-sheets/CHEAT-SHEET-023-ReAct-Agent-Loop.md
         - "Multi-Agent Orchestration": learning-resources/cheat-sheets/CHEAT-SHEET-024-Multi-Agent-Orchestration.md
         - "Agent Memory Systems": learning-resources/cheat-sheets/CHEAT-SHEET-025-Agent-Memory-Systems.md
+        - "Agent Security": learning-resources/cheat-sheets/CHEAT-SHEET-026-Agent-Security.md
         - "Quick Ref Volume 1": learning-resources/cheat-sheets/QUICK-REF-VOLUME-1.md
         - "Quick Ref Volume 2": learning-resources/cheat-sheets/QUICK-REF-VOLUME-2.md
         - "Quick Ref Volume 3": learning-resources/cheat-sheets/QUICK-REF-VOLUME-3.md

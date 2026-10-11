@@ -9,7 +9,7 @@ Tags: ['cheatsheet', 'reference']
 
 # Quick Reference Cheat Sheets
 
-Thirty-two single-page references: twenty-five tool cheat sheets (Docker, Python, Git, Linux, RAG, Kubernetes, vLLM, Reasoning, llama.cpp, Alignment, Evaluation, Guardrails, Structured Output, Sampling, Quantization, LoRA, KV Cache, Speculative Decoding, Tokenizers, Flash Attention, RoPE Positional Encoding, Multimodal Models, ReAct Agent Loop, Multi-Agent Orchestration, Agent Memory Systems) and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
+Thirty-three single-page references: twenty-six tool cheat sheets (Docker, Python, Git, Linux, RAG, Kubernetes, vLLM, Reasoning, llama.cpp, Alignment, Evaluation, Guardrails, Structured Output, Sampling, Quantization, LoRA, KV Cache, Speculative Decoding, Tokenizers, Flash Attention, RoPE Positional Encoding, Multimodal Models, ReAct Agent Loop, Multi-Agent Orchestration, Agent Memory Systems, Agent Security) and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
 
 ## Tool Cheat Sheets
 
@@ -88,6 +88,9 @@ The specialist roster and review-retry flow, the topology complexity ledger, the
 ### [CHEAT-SHEET-025: Agent Memory Systems](./CHEAT-SHEET-025-Agent-Memory-Systems.md)
 The four-tier memory map and the two readers, the recency-relevance-importance blend, write and read paths, the consolidation lifecycle, MemGPT-style context paging, the reflexion loop, and the TTL-eviction-checkpoint contract.
 
+### [CHEAT-SHEET-026: Agent Security](./CHEAT-SHEET-026-Agent-Security.md)
+The five-layer defense stack with the honest 5/7 red-team bill, the regex-floor and NER-ceiling PII pipeline, the FGSM flip rule, the HMAC-nonce identity contract and the beacon-CV egress monitor, and the T=0 versus pass@k deterministic-testing ledger.
+
 ## Volume Quick References
 
 - [1: Infrastructure Fundamentals - Quick Reference](./QUICK-REF-VOLUME-1.md)
@@ -108,4 +111,4 @@ One condensed page per volume: the formulas, flags and commands each volume's mo
 
 ---
 
-**Total Cheat Sheets:** 32 documents
+**Total Cheat Sheets:** 33 documents
