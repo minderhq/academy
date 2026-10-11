@@ -9,7 +9,7 @@ Tags: ['cheatsheet', 'reference']
 
 # Quick Reference Cheat Sheets
 
-Thirty single-page references: twenty-three tool cheat sheets (Docker, Python, Git, Linux, RAG, Kubernetes, vLLM, Reasoning, llama.cpp, Alignment, Evaluation, Guardrails, Structured Output, Sampling, Quantization, LoRA, KV Cache, Speculative Decoding, Tokenizers, Flash Attention, RoPE Positional Encoding, Multimodal Models, ReAct Agent Loop) and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
+Thirty-one single-page references: twenty-four tool cheat sheets (Docker, Python, Git, Linux, RAG, Kubernetes, vLLM, Reasoning, llama.cpp, Alignment, Evaluation, Guardrails, Structured Output, Sampling, Quantization, LoRA, KV Cache, Speculative Decoding, Tokenizers, Flash Attention, RoPE Positional Encoding, Multimodal Models, ReAct Agent Loop, Multi-Agent Orchestration) and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
 
 ## Tool Cheat Sheets
 
@@ -82,6 +82,9 @@ The two-generation split, CLIP's contrastive objective, the VLM recipe and its t
 ### [CHEAT-SHEET-023: ReAct Agent Loop](./CHEAT-SHEET-023-ReAct-Agent-Loop.md)
 The Thought-Action-Observation loop, the ReAct vs chain-of-thought split, the tool contract that feeds errors back as observations, the hard iteration cap, trace-as-memory state discipline, and plan-then-execute.
 
+### [CHEAT-SHEET-024: Multi-Agent Orchestration](./CHEAT-SHEET-024-Multi-Agent-Orchestration.md)
+The specialist roster and review-retry flow, the topology complexity ledger, the message envelope and handoff capsule, delivery semantics with the dedup ledger, the wait-for-graph deadlock, the mid-run human gate, and consensus by key-voting.
+
 ## Volume Quick References
 
 - [1: Infrastructure Fundamentals - Quick Reference](./QUICK-REF-VOLUME-1.md)
@@ -102,4 +105,4 @@ One condensed page per volume: the formulas, flags and commands each volume's mo
 
 ---
 
-**Total Cheat Sheets:** 30 documents
+**Total Cheat Sheets:** 31 documents

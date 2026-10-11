@@ -478,6 +478,7 @@ nav:
         - "RoPE Positional Encoding": learning-resources/cheat-sheets/CHEAT-SHEET-021-RoPE-Positional-Encoding.md
         - "Multimodal Models": learning-resources/cheat-sheets/CHEAT-SHEET-022-Multimodal-Models.md
         - "ReAct Agent Loop": learning-resources/cheat-sheets/CHEAT-SHEET-023-ReAct-Agent-Loop.md
+        - "Multi-Agent Orchestration": learning-resources/cheat-sheets/CHEAT-SHEET-024-Multi-Agent-Orchestration.md
         - "Quick Ref Volume 1": learning-resources/cheat-sheets/QUICK-REF-VOLUME-1.md
         - "Quick Ref Volume 2": learning-resources/cheat-sheets/QUICK-REF-VOLUME-2.md
         - "Quick Ref Volume 3": learning-resources/cheat-sheets/QUICK-REF-VOLUME-3.md
