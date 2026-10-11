@@ -14,7 +14,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 **Last Updated:** 2026-10-08
 
-**Total Files:** 463 markdown files (docs/)
+**Total Files:** 464 markdown files (docs/)
 
 ---
 
@@ -234,7 +234,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 ---
 
-### Cheat Sheets (23 files)
+### Cheat Sheets (24 files)
 
 | ID | Topic | Coverage |
 |----|-------|----------|
@@ -254,6 +254,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **[CHEAT-SHEET-014](../learning-resources/cheat-sheets/CHEAT-SHEET-014-Decoding-Sampling-Strategies.md)** | Decoding & Sampling Strategies | Temperature, top-k, nucleus, min-p, stack order |
 | **[CHEAT-SHEET-015](../learning-resources/cheat-sheets/CHEAT-SHEET-015-Quantization-Formats-Methods.md)** | Quantization Formats & Methods | GGUF families, bpw arithmetic, EXL2/AWQ/GPTQ |
 | **[CHEAT-SHEET-016](../learning-resources/cheat-sheets/CHEAT-SHEET-016-LoRA-QLoRA.md)** | LoRA & QLoRA | Low-rank arithmetic, three knobs, 4-bit base, merge rules |
+| **[CHEAT-SHEET-017](../learning-resources/cheat-sheets/CHEAT-SHEET-017-KV-Cache.md)** | KV Cache | Per-token formula, head ledger, paging, prefix caching |
 | **[QUICK-REF-V1](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-1.md)** | Infrastructure Fundamentals - Quick Reference | Phase 1 Quick Reference |
 | **[QUICK-REF-V2](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-2.md)** | AI/ML Foundations - Quick Reference | Phase 2 Quick Reference |
 | **[QUICK-REF-V3](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-3.md)** | LLM Internals - Quick Reference | Phase 3 Quick Reference |
@@ -413,7 +414,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **Jupyter Notebooks** | 20 |
 | **Practice Files** | 33 |
 | **Quiz Files** | 33 |
-| **Cheat Sheets** | 24 |
+| **Cheat Sheets** | 25 |
 | **Projects** | 7 |
 | **Experiments** | 47 |
 | **Comparisons** | 3 |
@@ -422,7 +423,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **Solutions** | 3 |
 | **Diagrams** | 4 |
 | **Meta Docs** | 20 |
-| **TOTAL** | **582** |
+| **TOTAL** | **583** |
 
 ### Content Statistics
 
