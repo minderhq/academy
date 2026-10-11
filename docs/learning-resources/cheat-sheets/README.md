@@ -9,7 +9,7 @@ Tags: ['cheatsheet', 'reference']
 
 # Quick Reference Cheat Sheets
 
-Fourteen single-page references: seven tool cheat sheets (Docker, Python, Git, Linux, RAG, Kubernetes, vLLM) and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
+Fifteen single-page references: eight tool cheat sheets (Docker, Python, Git, Linux, RAG, Kubernetes, vLLM, Reasoning) and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
 
 ## Tool Cheat Sheets
 
@@ -34,6 +34,9 @@ Deployments, services, scaling and GPU scheduling for LLM serving.
 ### [CHEAT-SHEET-007: vLLM Serving & Inference](./CHEAT-SHEET-007-vLLM-Serving.md)
 Serving, quantization, parallelism and tuning flags for the vLLM inference server.
 
+### [CHEAT-SHEET-008: Reasoning Models & Test-Time Compute](./CHEAT-SHEET-008-Reasoning-Models.md)
+Reasoning-effort levels, thinking budgets, reasoning parsers and self-consistency patterns for reasoning models.
+
 ## Volume Quick References
 
 - [1: Infrastructure Fundamentals - Quick Reference](./QUICK-REF-VOLUME-1.md)
@@ -54,4 +57,4 @@ One condensed page per volume: the formulas, flags and commands each volume's mo
 
 ---
 
-**Total Cheat Sheets:** 14 documents
+**Total Cheat Sheets:** 15 documents
