@@ -476,6 +476,7 @@ nav:
         - "Tokenizers": learning-resources/cheat-sheets/CHEAT-SHEET-019-Tokenizers.md
         - "Flash Attention": learning-resources/cheat-sheets/CHEAT-SHEET-020-Flash-Attention.md
         - "RoPE Positional Encoding": learning-resources/cheat-sheets/CHEAT-SHEET-021-RoPE-Positional-Encoding.md
+        - "Multimodal Models": learning-resources/cheat-sheets/CHEAT-SHEET-022-Multimodal-Models.md
         - "Quick Ref Volume 1": learning-resources/cheat-sheets/QUICK-REF-VOLUME-1.md
         - "Quick Ref Volume 2": learning-resources/cheat-sheets/QUICK-REF-VOLUME-2.md
         - "Quick Ref Volume 3": learning-resources/cheat-sheets/QUICK-REF-VOLUME-3.md
