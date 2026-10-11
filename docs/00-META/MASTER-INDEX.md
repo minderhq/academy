@@ -14,7 +14,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 **Last Updated:** 2026-10-08
 
-**Total Files:** 453 markdown files (docs/)
+**Total Files:** 454 markdown files (docs/)
 
 ---
 
@@ -234,7 +234,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 ---
 
-### Cheat Sheets (13 files)
+### Cheat Sheets (14 files)
 
 | ID | Topic | Coverage |
 |----|-------|----------|
@@ -244,6 +244,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **[CHEAT-SHEET-004](../learning-resources/cheat-sheets/CHEAT-SHEET-004-Linux.md)** | Linux Commands for AI/ML | Commands, System Admin, Performance |
 | **[CHEAT-SHEET-005](../learning-resources/cheat-sheets/CHEAT-SHEET-005-RAG-Systems.md)** | RAG Systems | Embeddings, Vector DB, Evaluation |
 | **[CHEAT-SHEET-006](../learning-resources/cheat-sheets/CHEAT-SHEET-006-Kubernetes.md)** | Kubernetes for LLM Deployment | Installation, Deployments, Services, GPU Scheduling, Scaling, Troubleshooting |
+| **[CHEAT-SHEET-007](../learning-resources/cheat-sheets/CHEAT-SHEET-007-vLLM-Serving.md)** | vLLM Serving & Inference | Serving, Quantization, Parallelism, Tuning |
 | **[QUICK-REF-V1](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-1.md)** | Infrastructure Fundamentals - Quick Reference | Phase 1 Quick Reference |
 | **[QUICK-REF-V2](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-2.md)** | AI/ML Foundations - Quick Reference | Phase 2 Quick Reference |
 | **[QUICK-REF-V3](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-3.md)** | LLM Internals - Quick Reference | Phase 3 Quick Reference |
@@ -403,7 +404,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **Jupyter Notebooks** | 20 |
 | **Practice Files** | 33 |
 | **Quiz Files** | 33 |
-| **Cheat Sheets** | 14 |
+| **Cheat Sheets** | 15 |
 | **Projects** | 7 |
 | **Experiments** | 47 |
 | **Comparisons** | 3 |
@@ -412,7 +413,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **Solutions** | 3 |
 | **Diagrams** | 4 |
 | **Meta Docs** | 20 |
-| **TOTAL** | **572** |
+| **TOTAL** | **573** |
 
 ### Content Statistics
 
