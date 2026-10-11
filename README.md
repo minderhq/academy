@@ -15,7 +15,7 @@ Difficulty: Beginner
 ## Master Documentation
 
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
-[![Documentation](https://img.shields.io/badge/Docs-458%20Files-orange?style=flat-square)](./docs)
+[![Documentation](https://img.shields.io/badge/Docs-459%20Files-orange?style=flat-square)](./docs)
 [![Phases](https://img.shields.io/badge/Phases-7-purple?style=flat-square)](#-learning-phases)
 [![Modules](https://img.shields.io/badge/Modules-33-success?style=flat-square)](#-summary-statistics)
 
@@ -158,7 +158,7 @@ After completing Minder Academy, you will be able to:
 | Challenge | Minder Academy Solution |
 |:----------:|:----------------------:|
 | 💸 **AI infrastructure is expensive** | Run production-grade AI on affordable hardware or modest cloud instances |
-| 📚 **Documentation is scattered** | **512 files** in one organized, cross-referenced repository |
+| 📚 **Documentation is scattered** | **513 files** in one organized, cross-referenced repository |
 | 🎯 **Learning gaps exist** | Complete curriculum from infrastructure to agentic systems |
 | 📝 **Theory without practice** | **33 PRACTICE files** with runnable solutions, **47 experiments** |
 | 🗺️ **No clear path forward** | **7 phases**, **3 learning tracks**, progress tracking built-in |
@@ -184,7 +184,7 @@ After completing Minder Academy, you will be able to:
 - **16 hands-on lab files** with solutions (LAB-000 setup + LAB-001 to LAB-014 system, incl. section overview)
 - **16 tutorials** with step-by-step instructions (incl. section overview)
 - **23 project files** for capstone projects (incl. section overview)
-- **19 cheat sheets** for quick reference (incl. section overview)
+- **20 cheat sheets** for quick reference (incl. section overview)
 
 ### 🔧 Real-World Applications
 - Vector database implementation guides
@@ -1358,7 +1358,7 @@ docker compose -f configs/docker-compose.yml up -d qdrant
 
 | Resource | Count |
 |----------|------:|
-| Learning Resources (labs, tutorials, projects, cheat sheets) | 103 |
+| Learning Resources (labs, tutorials, projects, cheat sheets) | 104 |
 | Hands-on Labs (LAB-000 setup + LAB-001 to LAB-014 system) | 16 |
 | Experiments | 47 |
 | QUIZ Files | 33 |
@@ -1499,7 +1499,7 @@ SOFTWARE.
 
 *Last Updated: 2026-09-29*
 
-*512 Documentation Files | 33 Technical Modules | 7 Learning Phases*
+*513 Documentation Files | 33 Technical Modules | 7 Learning Phases*
 
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
 [![Contact](https://img.shields.io/badge/Contact-FAQ-blue?style=flat-square)](./docs/00-META/FAQ.md)

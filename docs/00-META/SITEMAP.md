@@ -596,7 +596,7 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [PROJECT-007-Production-AI-System](../learning-resources/projects/PROJECT-007-Production-AI-System.md)
 - [SETUP-GUIDE](../learning-resources/projects/SETUP-GUIDE.md)
 
-## Cheat Sheets (19 files)
+## Cheat Sheets (20 files)
 
 - [README](../learning-resources/cheat-sheets/README.md)
 - [CHEAT-SHEET-001-Docker](../learning-resources/cheat-sheets/CHEAT-SHEET-001-Docker.md)
@@ -610,6 +610,7 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [CHEAT-SHEET-009-Local-Inference](../learning-resources/cheat-sheets/CHEAT-SHEET-009-Local-Inference.md)
 - [CHEAT-SHEET-010-Alignment-Methods](../learning-resources/cheat-sheets/CHEAT-SHEET-010-Alignment-Methods.md)
 - [CHEAT-SHEET-011-Evaluation-Benchmarking](../learning-resources/cheat-sheets/CHEAT-SHEET-011-Evaluation-Benchmarking.md)
+- [CHEAT-SHEET-012-LLM-Guardrails-Agent-Security](../learning-resources/cheat-sheets/CHEAT-SHEET-012-LLM-Guardrails-Agent-Security.md)
 - [QUICK-REF-VOLUME-1](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-1.md)
 - [QUICK-REF-VOLUME-2](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-2.md)
 - [QUICK-REF-VOLUME-3](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-3.md)
@@ -756,8 +757,8 @@ build's written walkthroughs live inside the lessons themselves - see the
 ## Statistics
 
 ```text
-Total markdown files: 512
-  docs/: 458, experiments/: 48, configs/: 4, repo root: 2
+Total markdown files: 513
+  docs/: 459, experiments/: 48, configs/: 4, repo root: 2
 Phases: 7
 Learning modules (topics): 33
 Phase files (lessons, guides, assessments, topic README/PREREQUISITES): 293
@@ -775,7 +776,7 @@ Tutorials: 16
 Labs: 16 (+ 15 solutions)
 Capstone projects: 11
 Project templates: 12
-Cheat sheets: 19
+Cheat sheets: 20
 Learning guides: 4
 Comparisons: 3 | Diagrams: 4 | Enterprise solutions: 3
 Industry applications: 4 | Use cases: 4 | Notebooks: 21
