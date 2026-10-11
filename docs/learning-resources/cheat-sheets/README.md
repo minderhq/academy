@@ -9,7 +9,7 @@ Tags: ['cheatsheet', 'reference']
 
 # Quick Reference Cheat Sheets
 
-Thirty-six single-page references: twenty-nine tool cheat sheets (Docker, Python, Git, Linux, RAG, Kubernetes, vLLM, Reasoning, llama.cpp, Alignment, Evaluation, Guardrails, Structured Output, Sampling, Quantization, LoRA, KV Cache, Speculative Decoding, Tokenizers, Flash Attention, RoPE Positional Encoding, Multimodal Models, ReAct Agent Loop, Multi-Agent Orchestration, Agent Memory Systems, Agent Security, Tool Calling and MCP, Agent Evaluation and Observability, Function Calling Training and Constrained Decoding) and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
+Thirty-seven single-page references: thirty tool cheat sheets (Docker, Python, Git, Linux, RAG, Kubernetes, vLLM, Reasoning, llama.cpp, Alignment, Evaluation, Guardrails, Structured Output, Sampling, Quantization, LoRA, KV Cache, Speculative Decoding, Tokenizers, Flash Attention, RoPE Positional Encoding, Multimodal Models, ReAct Agent Loop, Multi-Agent Orchestration, Agent Memory Systems, Agent Security, Tool Calling and MCP, Agent Evaluation and Observability, Function Calling Training and Constrained Decoding, Multi-Agent Communication Protocols) and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
 
 ## Tool Cheat Sheets
 
@@ -100,6 +100,9 @@ The three-rung evaluation ladder, trajectories as the unit of record, the four d
 ### [CHEAT-SHEET-029: Function Calling Training and Constrained Decoding](./CHEAT-SHEET-029-Function-Calling-Training-and-Constrained-Decoding.md)
 The grammar-to-mask mechanism and its per-state legal-set ladder, prompting (0.7940) versus masking (1.0000), the Gorilla pair-training walk to 0.8917, the 1.0000-valid / 0.3033-correct 2x2 trap, and the $2.3760 one-time train bill that buys every later request its 2.1x.
 
+### [CHEAT-SHEET-030: Multi-Agent Communication Protocols](./CHEAT-SHEET-030-Multi-Agent-Communication-Protocols.md)
+The typed message envelope and its correlation contract, the topology ledger at N=8 (orchestrator 8 / peer-to-peer 28 / hierarchical 10), voting versus the judge model, the max_rounds=2 debate loop, the context-capsule handoff at 0-of-4 rework, jitter against synchronized retry waves, and budget propagation with fail-fast children.
+
 ## Volume Quick References
 
 - [1: Infrastructure Fundamentals - Quick Reference](./QUICK-REF-VOLUME-1.md)
@@ -120,4 +123,4 @@ One condensed page per volume: the formulas, flags and commands each volume's mo
 
 ---
 
-**Total Cheat Sheets:** 36 documents
+**Total Cheat Sheets:** 37 documents
