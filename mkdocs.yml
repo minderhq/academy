@@ -493,6 +493,7 @@ nav:
         - "Activations & Normalization - the Nonlinearity and the Statistics": learning-resources/cheat-sheets/CHEAT-SHEET-041-Activations-and-Normalization.md
         - "Extreme Quantization - the Method Choice, the File Choice, the Training-Time Frontier": learning-resources/cheat-sheets/CHEAT-SHEET-042-Extreme-Quantization.md
         - "4-Bit Residuals - the Metadata Squeeze and the Hardware-Native Grid": learning-resources/cheat-sheets/CHEAT-SHEET-043-4-Bit-Residuals.md
+        - "Quantization-Aware Training - the Straight-Through Estimator and the Layer Map": learning-resources/cheat-sheets/CHEAT-SHEET-044-Quantization-Aware-Training.md
         - "Agent Memory Systems": learning-resources/cheat-sheets/CHEAT-SHEET-025-Agent-Memory-Systems.md
         - "Agent Security": learning-resources/cheat-sheets/CHEAT-SHEET-026-Agent-Security.md
         - "Tool Calling and MCP": learning-resources/cheat-sheets/CHEAT-SHEET-027-Tool-Calling-and-MCP.md

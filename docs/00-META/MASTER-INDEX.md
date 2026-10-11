@@ -14,7 +14,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 **Last Updated:** 2026-10-08
 
-**Total Files:** 490 markdown files (docs/)
+**Total Files:** 491 markdown files (docs/)
 
 ---
 
@@ -234,7 +234,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 ---
 
-### Cheat Sheets (50 files)
+### Cheat Sheets (51 files)
 
 | ID | Topic | Coverage |
 |----|-------|----------|
@@ -281,6 +281,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **[CHEAT-SHEET-041](../learning-resources/cheat-sheets/CHEAT-SHEET-041-Activations-and-Normalization.md)** | Activations & Normalization - the Nonlinearity and the Statistics | ReLU's three failure modes and the smooth replacements (max tanh-approx err 0.000473 at x = -2.70, pearson 0.99999999), SwiGLU's three bias-free projections and the 1.5x parameter bill (3,145,728 vs 2,097,152 at equal width, 1.125x at the LLaMA 1536 grid, equal-param parity at width 1365), the gate zoo kept separate from the MoE router that is not a gate (no SMGeLU exists), LayerNorm versus RMSNorm one subtraction apart (cosine 0.9987, mean +0.050273 surviving, 1024 vs 512 params), Pre-LN's sqrt(1+L) walk against Post-LN's pinned 1.0000 and DeepNorm's alpha^2 fixed point 0.005380, and the fp32-upcast law where RMSNorm's uncentered square saturates fp16 to inf at offset 1000 (zeros out) while LayerNorm pays only a +10.9% quantization bias |
 | **[CHEAT-SHEET-042](../learning-resources/cheat-sheets/CHEAT-SHEET-042-Extreme-Quantization.md)** | Extreme Quantization - the Method Choice, the File Choice, the Training-Time Frontier | GPTQ's error compensation through the inverse Hessian's upper Cholesky (weight err 1.4806 vs RTN 1.3969 while output err drops to 0.9541x; 7.13x disk 32.10 to 4.50 GB at ppl 12.4 to 13.1), AWQ's activation-weighted salience where the same 32-coordinate FP16 budget mis-spent buys half (0.8409x vs 0.9269x on 34% overlap), the file choice GGUF (magic 0x46554747, Q4_K_M ~4.9 GB sitting ~+0.9 above the flat 4-bit floor) versus EXL2's per-layer 2-8 bit mix on NVIDIA, sparsity's break-even (FP16+CSR 67%, INT4+CSR 89%, 2:4 on Ampere+ at ~1.4-1.8x end-to-end), and the training-time frontier: 1.58-bit ternary (H = log2(3) = 1.58496 on 2 storage bits, absmean shrugging a +8.0 outlier at 1.04x where absmax zeroes 100.0% of the row at 5.28x, XNOR+popcount exact at 0.000000) |
 | **[CHEAT-SHEET-043](../learning-resources/cheat-sheets/CHEAT-SHEET-043-4-Bit-Residuals.md)** | 4-Bit Residuals - the Metadata Squeeze and the Hardware-Native Grid | The 4-bit invoice that lives outside the elements: double quantization re-quantizing the scales themselves (32768 scales land in 32770 bytes at max deviation one 8-bit step, <0.5% ppl, the 70B squeeze banking ~0.5 GB), the two grids (NF4's sixteen normal-matched levels at mean nearest-level distance 0.0391, e2m1's eight magnitudes whose 4-to-6 leap forces every MX scale round-UP), MXFP4's pow2 tax against NVFP4's full-precision scale (rel err 0.1163 vs 0.0947 = 1.23x tighter, mean scale-use 4.48 vs 5.94 of 6.0), one planted 100.0 flushing 31/31 block neighbors at a 1/128 blast radius versus 15/15 at 1/256, and gpt-oss-20b's selective census: 19.11B expert parameters (91.4%) carrying MXFP4 to 12.8 GB against bf16's 38.9 GB (3.04x) while attention, router and embeddings keep bf16 |
+| **[CHEAT-SHEET-044](../learning-resources/cheat-sheets/CHEAT-SHEET-044-Quantization-Aware-Training.md)** | Quantization-Aware Training - the Straight-Through Estimator and the Layer Map | The training pass that makes low bit-widths survivable: fake quantization's round trip maxing out at half a step (mean abs err 0.00374) with the straight-through estimator passing gradients through a rounding whose true derivative is exactly 0 (64/64 census; RoundSTE 1000/1000, ClampedSTE 930/1000, HardTanhSTE 965/1000 grads survive), the momentum-0.01 observer EMA whose first batch must seed against inf buffers (sym 0.021631 vs asym 0.021492, 1e-5 floor, eval freezes by design), the priced decision (INT8 routes inside 0.3 of each other, QAT earning its bill at INT4 91.5 and INT3 88.2), the transformer layer map where 6 Linears carry 99.967% of a block's weights while softmax/GELU/LayerNorm stay FP32 (per-channel ~1% vs per-tensor ~5% at 4 bits), the outlier tax (one planted 100.0 inflating the min-max scale 32x over the quantile scale), 4304's five low-bit techniques, the progressive 8->4->3 schedule at [5, 5, 10] epochs with KL*T^2 distillation, and the six config dimensions behind the Conservative/Balanced/Aggressive templates |
 | **[QUICK-REF-V1](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-1.md)** | Infrastructure Fundamentals - Quick Reference | Phase 1 Quick Reference |
 | **[QUICK-REF-V2](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-2.md)** | AI/ML Foundations - Quick Reference | Phase 2 Quick Reference |
 | **[QUICK-REF-V3](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-3.md)** | LLM Internals - Quick Reference | Phase 3 Quick Reference |
@@ -440,7 +441,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **Jupyter Notebooks** | 20 |
 | **Practice Files** | 33 |
 | **Quiz Files** | 33 |
-| **Cheat Sheets** | 51 |
+| **Cheat Sheets** | 52 |
 | **Projects** | 7 |
 | **Experiments** | 47 |
 | **Comparisons** | 3 |
@@ -449,7 +450,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **Solutions** | 3 |
 | **Diagrams** | 4 |
 | **Meta Docs** | 20 |
-| **TOTAL** | **609** |
+| **TOTAL** | **610** |
 
 ### Content Statistics
 
