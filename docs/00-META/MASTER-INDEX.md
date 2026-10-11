@@ -14,7 +14,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 **Last Updated:** 2026-10-08
 
-**Total Files:** 484 markdown files (docs/)
+**Total Files:** 485 markdown files (docs/)
 
 ---
 
@@ -234,7 +234,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 ---
 
-### Cheat Sheets (44 files)
+### Cheat Sheets (45 files)
 
 | ID | Topic | Coverage |
 |----|-------|----------|
@@ -275,6 +275,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **[CHEAT-SHEET-035](../learning-resources/cheat-sheets/CHEAT-SHEET-035-Beyond-Attention-SSMs-and-MLA.md)** | Beyond Attention - SSMs and MLA | The two costs attention pays, the fixed-state SSM recurrence with its ZOH discretization, Mamba's selectivity gate, Mamba-2's SSD trade, the recall weakness behind the hybrid landscape, and MLA's 576-element latent cache 56.9x below full MHA |
 | **[CHEAT-SHEET-036](../learning-resources/cheat-sheets/CHEAT-SHEET-036-Vector-Memory-Embedding-Backed-Store.md)** | Vector Memory - the Embedding-Backed Store | The four memory types and their storage shapes, the write path behind the importance gate, the read path ranked similarity x decay x importance stopped at a token budget, the Qdrant contract of guarded create plus payload indexes plus versioned collections, the three lifecycle jobs, and the ledger where 1M memories cost 1.5 GB but 300-500 recall tokens per turn are the real currency |
 | **[CHEAT-SHEET-037](../learning-resources/cheat-sheets/CHEAT-SHEET-037-Reflection-Self-Correction.md)** | Reflection & Self-Correction - the Loop That Grades Its Own Work | The three in-run families priced on the surface-versus-logic defect split, the refine loop that gains only where its critique can see, self-consistency as the plurality amplifier that never consults the truth, the intrinsic-versus-informed boundary where hunt-mode rewriting decays, the retry split that demands new information, and the campaign ledger where the same 900-call bill lands +0.130 or -0.160 |
+| **[CHEAT-SHEET-038](../learning-resources/cheat-sheets/CHEAT-SHEET-038-SDPA-and-torch-compile.md)** | SDPA & torch.compile - the Kernel Choice and the Execution Choice | The two levers that make trained-transformer execution 2-5x faster without moving a weight, the four-backend SDPA dispatch with its viability honesty, the Dynamo/AOTAutograd/Inductor pipeline and the toolchain boundary, the guard cache that prices shapes with the bucketing cure, FlexAttention's compile-time score_mod programmability, and the generate() re-key trap |
 | **[QUICK-REF-V1](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-1.md)** | Infrastructure Fundamentals - Quick Reference | Phase 1 Quick Reference |
 | **[QUICK-REF-V2](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-2.md)** | AI/ML Foundations - Quick Reference | Phase 2 Quick Reference |
 | **[QUICK-REF-V3](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-3.md)** | LLM Internals - Quick Reference | Phase 3 Quick Reference |
@@ -434,7 +435,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **Jupyter Notebooks** | 20 |
 | **Practice Files** | 33 |
 | **Quiz Files** | 33 |
-| **Cheat Sheets** | 45 |
+| **Cheat Sheets** | 46 |
 | **Projects** | 7 |
 | **Experiments** | 47 |
 | **Comparisons** | 3 |
@@ -443,7 +444,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **Solutions** | 3 |
 | **Diagrams** | 4 |
 | **Meta Docs** | 20 |
-| **TOTAL** | **603** |
+| **TOTAL** | **604** |
 
 ### Content Statistics
 

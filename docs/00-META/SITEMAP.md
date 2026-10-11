@@ -596,7 +596,7 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [PROJECT-007-Production-AI-System](../learning-resources/projects/PROJECT-007-Production-AI-System.md)
 - [SETUP-GUIDE](../learning-resources/projects/SETUP-GUIDE.md)
 
-## Cheat Sheets (45 files)
+## Cheat Sheets (46 files)
 
 - [README](../learning-resources/cheat-sheets/README.md)
 - [CHEAT-SHEET-001-Docker](../learning-resources/cheat-sheets/CHEAT-SHEET-001-Docker.md)
@@ -636,6 +636,7 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 - [CHEAT-SHEET-035-Beyond-Attention-SSMs-and-MLA](../learning-resources/cheat-sheets/CHEAT-SHEET-035-Beyond-Attention-SSMs-and-MLA.md)
 - [CHEAT-SHEET-036-Vector-Memory-Embedding-Backed-Store](../learning-resources/cheat-sheets/CHEAT-SHEET-036-Vector-Memory-Embedding-Backed-Store.md)
 - [CHEAT-SHEET-037-Reflection-Self-Correction](../learning-resources/cheat-sheets/CHEAT-SHEET-037-Reflection-Self-Correction.md)
+- [CHEAT-SHEET-038-SDPA-and-torch-compile](../learning-resources/cheat-sheets/CHEAT-SHEET-038-SDPA-and-torch-compile.md)
 - [QUICK-REF-VOLUME-1](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-1.md)
 - [QUICK-REF-VOLUME-2](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-2.md)
 - [QUICK-REF-VOLUME-3](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-3.md)
@@ -782,8 +783,8 @@ build's written walkthroughs live inside the lessons themselves - see the
 ## Statistics
 
 ```text
-Total markdown files: 538
-  docs/: 484, experiments/: 48, configs/: 4, repo root: 2
+Total markdown files: 539
+  docs/: 485, experiments/: 48, configs/: 4, repo root: 2
 Phases: 7
 Learning modules (topics): 33
 Phase files (lessons, guides, assessments, topic README/PREREQUISITES): 293
@@ -801,7 +802,7 @@ Tutorials: 16
 Labs: 16 (+ 15 solutions)
 Capstone projects: 11
 Project templates: 12
-Cheat sheets: 45
+Cheat sheets: 46
 Learning guides: 4
 Comparisons: 3 | Diagrams: 4 | Enterprise solutions: 3
 Industry applications: 4 | Use cases: 4 | Notebooks: 21
