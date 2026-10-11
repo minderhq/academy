@@ -109,7 +109,10 @@ WHITELIST = frozenset([
     # tick-735 deliberate same-commit extension: 'reflection' joins for
     # the reflection and self-correction lesson (7105) - the tag vocabulary grows with the corpus
     'reflection', 'reranking', 'retrieval', 'rlhf',
-    'roadmap', 'rope', 'sam', 'scheduling', 'security', 'self-attention',
+    'roadmap', 'rope', 'sam',
+    # tick-971 deliberate same-commit extension: 'sampling' and 'decoding' join for
+    # the decoding and sampling strategies cheat sheet (CHEAT-SHEET-014) - the tag vocabulary grows with the corpus
+    'sampling', 'decoding', 'scheduling', 'security', 'self-attention',
     # tick-735 deliberate same-commit extension: 'self-correction' joins for
     # the reflection and self-correction lesson (7105) - the tag vocabulary grows with the corpus
     'self-correction', 'serving',
