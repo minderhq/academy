@@ -9,7 +9,7 @@ Tags: ['cheatsheet', 'reference']
 
 # Quick Reference Cheat Sheets
 
-Forty-three single-page references: thirty-six tool cheat sheets (Docker, Python, Git, Linux, RAG, Kubernetes, vLLM, Reasoning, llama.cpp, Alignment, Evaluation, Guardrails, Structured Output, Sampling, Quantization, LoRA, KV Cache, Speculative Decoding, Tokenizers, Flash Attention, RoPE Positional Encoding, Multimodal Models, ReAct Agent Loop, Multi-Agent Orchestration, Agent Memory Systems, Agent Security, Tool Calling and MCP, Agent Evaluation and Observability, Function Calling Training and Constrained Decoding, Multi-Agent Communication Protocols, Multi-Agent Framework Comparison, Code Interpreter Sandbox, LLM Observability, SGLang RadixAttention Serving, Beyond Attention - SSMs and MLA, Vector Memory - the Embedding-Backed Store) and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
+Forty-four single-page references: thirty-seven tool cheat sheets (Docker, Python, Git, Linux, RAG, Kubernetes, vLLM, Reasoning, llama.cpp, Alignment, Evaluation, Guardrails, Structured Output, Sampling, Quantization, LoRA, KV Cache, Speculative Decoding, Tokenizers, Flash Attention, RoPE Positional Encoding, Multimodal Models, ReAct Agent Loop, Multi-Agent Orchestration, Agent Memory Systems, Agent Security, Tool Calling and MCP, Agent Evaluation and Observability, Function Calling Training and Constrained Decoding, Multi-Agent Communication Protocols, Multi-Agent Framework Comparison, Code Interpreter Sandbox, LLM Observability, SGLang RadixAttention Serving, Beyond Attention - SSMs and MLA, Vector Memory - the Embedding-Backed Store, Reflection & Self-Correction - the Loop That Grades Its Own Work) and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
 
 ## Tool Cheat Sheets
 
@@ -118,6 +118,8 @@ The radix tree KV reuse engine: the 9576->432 prefill ledger behind one shared 7
 The post-attention architectures: the fixed-state SSM recurrence and its ZOH discretization, Mamba's selectivity gate where delta_t decides write versus forget, Mamba-2's SSD trade, the MQAR recall weakness that makes every production model a hybrid, the six-model hybrid landscape, and MLA - DeepSeek's compressed cache at 576 elements per token, 56.9x below full MHA and 3.6x below GQA-8.
 ### [CHEAT-SHEET-036: Vector Memory - the Embedding-Backed Store](./CHEAT-SHEET-036-Vector-Memory-Embedding-Backed-Store.md)
 The embedding-backed store: the four memory types and their storage shapes, the write path that extracts one atomic statement per memory behind an importance gate, the read path ranked by similarity x decay x importance and stopped at a token budget, the Qdrant contract of guarded create and payload indexes and versioned collections, the three lifecycle jobs, and the ledger where 1M memories cost ~1.5 GB but 300-500 recall tokens per turn are the real currency.
+### [CHEAT-SHEET-037: Reflection & Self-Correction - the Loop That Grades Its Own Work](./CHEAT-SHEET-037-Reflection-Self-Correction.md)
+The in-run self-improvement family: the draft-critique-revise loop whose gains track the critique's recall on surface defects, self-consistency as the plurality amplifier that never consults the truth, the intrinsic-versus-informed boundary where hunt-mode rewrites decay and verifier-gated repairs climb, the retry split that prices new information over re-rolls, and the campaign ledger where the same 900-call bill lands +0.130 or -0.160 depending entirely on critique discipline.
 
 ## Volume Quick References
 
@@ -139,4 +141,4 @@ One condensed page per volume: the formulas, flags and commands each volume's mo
 
 ---
 
-**Total Cheat Sheets:** 43 documents
+**Total Cheat Sheets:** 44 documents
