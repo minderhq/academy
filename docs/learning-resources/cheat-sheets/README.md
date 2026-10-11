@@ -9,7 +9,7 @@ Tags: ['cheatsheet', 'reference']
 
 # Quick Reference Cheat Sheets
 
-Forty-two single-page references: thirty-five tool cheat sheets (Docker, Python, Git, Linux, RAG, Kubernetes, vLLM, Reasoning, llama.cpp, Alignment, Evaluation, Guardrails, Structured Output, Sampling, Quantization, LoRA, KV Cache, Speculative Decoding, Tokenizers, Flash Attention, RoPE Positional Encoding, Multimodal Models, ReAct Agent Loop, Multi-Agent Orchestration, Agent Memory Systems, Agent Security, Tool Calling and MCP, Agent Evaluation and Observability, Function Calling Training and Constrained Decoding, Multi-Agent Communication Protocols, Multi-Agent Framework Comparison, Code Interpreter Sandbox, LLM Observability, SGLang RadixAttention Serving, Beyond Attention - SSMs and MLA) and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
+Forty-three single-page references: thirty-six tool cheat sheets (Docker, Python, Git, Linux, RAG, Kubernetes, vLLM, Reasoning, llama.cpp, Alignment, Evaluation, Guardrails, Structured Output, Sampling, Quantization, LoRA, KV Cache, Speculative Decoding, Tokenizers, Flash Attention, RoPE Positional Encoding, Multimodal Models, ReAct Agent Loop, Multi-Agent Orchestration, Agent Memory Systems, Agent Security, Tool Calling and MCP, Agent Evaluation and Observability, Function Calling Training and Constrained Decoding, Multi-Agent Communication Protocols, Multi-Agent Framework Comparison, Code Interpreter Sandbox, LLM Observability, SGLang RadixAttention Serving, Beyond Attention - SSMs and MLA, Vector Memory - the Embedding-Backed Store) and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
 
 ## Tool Cheat Sheets
 
@@ -116,6 +116,8 @@ The four LLM-specific metric families and their alert thresholds, the timing tri
 The radix tree KV reuse engine: the 9576->432 prefill ledger behind one shared 768-token prefix (95% saved), the KV budget on an 11GB card, the one-constraint rule that keeps json_schema, regex and ebnf exclusive, the 17x TTFT radix dividend, the cache_hit_rate zones, and the EAGLE speculation bet priced 0.81x versus 1.69x by acceptance rate.
 ### [CHEAT-SHEET-035: Beyond Attention - SSMs and MLA](./CHEAT-SHEET-035-Beyond-Attention-SSMs-and-MLA.md)
 The post-attention architectures: the fixed-state SSM recurrence and its ZOH discretization, Mamba's selectivity gate where delta_t decides write versus forget, Mamba-2's SSD trade, the MQAR recall weakness that makes every production model a hybrid, the six-model hybrid landscape, and MLA - DeepSeek's compressed cache at 576 elements per token, 56.9x below full MHA and 3.6x below GQA-8.
+### [CHEAT-SHEET-036: Vector Memory - the Embedding-Backed Store](./CHEAT-SHEET-036-Vector-Memory-Embedding-Backed-Store.md)
+The embedding-backed store: the four memory types and their storage shapes, the write path that extracts one atomic statement per memory behind an importance gate, the read path ranked by similarity x decay x importance and stopped at a token budget, the Qdrant contract of guarded create and payload indexes and versioned collections, the three lifecycle jobs, and the ledger where 1M memories cost ~1.5 GB but 300-500 recall tokens per turn are the real currency.
 
 ## Volume Quick References
 
@@ -137,4 +139,4 @@ One condensed page per volume: the formulas, flags and commands each volume's mo
 
 ---
 
-**Total Cheat Sheets:** 42 documents
+**Total Cheat Sheets:** 43 documents
