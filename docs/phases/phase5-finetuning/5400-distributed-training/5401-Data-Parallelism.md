@@ -330,6 +330,7 @@ Data parallelism is the workhorse of multi-GPU training: replicate the model on 
 - [5402: Model Parallelism](5402-Model-Parallelism.md)
 - [5403: Mixed Precision Training](5403-Mixed-Precision.md)
 - [5404: Distributed Optimization](5404-Distributed-Optimization.md)
+- [CHEAT-SHEET-051: Distributed Training - the Memory Bill, the Stability Wall, and the Campaign](../../../learning-resources/cheat-sheets/CHEAT-SHEET-051-Distributed-Training.md)
 
 ---
 

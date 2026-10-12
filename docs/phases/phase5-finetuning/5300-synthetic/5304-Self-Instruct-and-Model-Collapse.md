@@ -448,6 +448,7 @@ Self-instruct grows a 40-seed pool to 124 instructions at a 0.350 keep-rate with
 - [5204: Preference Dataset Creation](../5200-alignment/5204-Preference-Dataset-Creation.md) - judge-scored preference pairs with held-out human calibration; the alignment-side sibling of this lesson's instruction-tuple synthesis
 - [5101: LoRA (Low-Rank Adaptation) Logic](../5100-peft/5101-LoRA-Logic.md) - Alpaca as the canonical instruction-tuning dataset; this lesson owns the pipeline that produced data like it
 - [5303: Federated Learning](./5303-Federated-Learning.md) - the other data-never-leaves-home regime; both make data provenance the load-bearing property
+- [CHEAT-SHEET-045: Synthetic Data & Advanced Training - the Distilled Student, the Federated Fleet, and the Recursion Tax](../../../learning-resources/cheat-sheets/CHEAT-SHEET-045-Synthetic-Data-Advanced-Training.md)
 
 ### Primary Sources
 

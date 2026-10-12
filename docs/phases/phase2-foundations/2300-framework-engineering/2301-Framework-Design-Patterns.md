@@ -1253,6 +1253,7 @@ See: [2306: Building a Production Framework](./guides/2306-Building-Production-F
 - [2302: Model Serving Architectures](./2302-Model-Serving-Architectures.md)
 - [2303: API Design for ML Systems](./2303-API-Design-for-ML.md)
 - [2304: Production Deployment Patterns](./2304-Production-Deployment-Patterns.md)
+- [CHEAT-SHEET-052: Framework Engineering - the Registry, the Batching Flush, and the Rollout Gate](../../../learning-resources/cheat-sheets/CHEAT-SHEET-052-Framework-Engineering.md)
 
 ### External References
 

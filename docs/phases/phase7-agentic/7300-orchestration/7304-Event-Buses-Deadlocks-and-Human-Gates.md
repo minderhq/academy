@@ -400,6 +400,7 @@ The ledger reads clean on every line. The bus: 11 executions produced 10 effects
 - [7303: Framework Comparison](./guides/7303-Framework-Comparison.md) — where LangGraph's typed state graph, conditional edges and checkpoint-backed resume sit among the frameworks
 - [7101: ReAct Loop System](../7100-architecture/7101-ReAct-Loop-System.md) — the runtime cycle that lives inside a compiled-acyclic workflow
 - [7503: Adversarial Attacks & Defense](../7500-security/7503-Adversarial-Attacks.md) — quarantine and human review as the escalation path when the gate's answer is deny
+- [CHEAT-SHEET-024: Multi-Agent Orchestration](../../../learning-resources/cheat-sheets/CHEAT-SHEET-024-Multi-Agent-Orchestration.md)
 
 ### Primary Sources
 

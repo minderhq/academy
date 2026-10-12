@@ -441,6 +441,7 @@ Re-ranking improves retrieval quality by separating candidate generation from fi
 - [6101: HNSW Indexing - Efficient Semantic Search at Scale](../6100-vector/6101-HNSW-Indexing.md)
 - [6201: Hybrid Search - Combining Keyword and Semantic Search](6201-Hybrid-Search.md)
 - [6203: Advanced Retrieval Techniques](6203-Advanced-Retrieval.md)
+- [CHEAT-SHEET-047: Retrieval Strategies - the Two-Channel Fusion, the Rerank Funnel, and the Diversity Dial](../../../learning-resources/cheat-sheets/CHEAT-SHEET-047-Retrieval-Strategies.md)
 
 ---
 

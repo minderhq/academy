@@ -521,6 +521,7 @@ The tokenizer is the model's first and last mile: raw text flows through normali
 ### Related Minder Academy Documents
 
 - [3201: Rotary Positional Embeddings (RoPE)](3201-Rotary-Positional-Embeddings-RoPE.md)
+- [CHEAT-SHEET-019: Tokenizers](../../../learning-resources/cheat-sheets/CHEAT-SHEET-019-Tokenizers.md)
 
 ---
 

@@ -339,6 +339,7 @@ Audio became a first-class modality once two representations matured: the mel-sp
 ### Related Minder Academy Documents
 
 - [3501: Vision-Language Models](3501-Vision-Language-Models.md)
+- [CHEAT-SHEET-022: Multimodal Models](../../../learning-resources/cheat-sheets/CHEAT-SHEET-022-Multimodal-Models.md)
 
 ---
 

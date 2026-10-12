@@ -287,6 +287,7 @@ Jumbo frames raise the Ethernet MTU from the standard 1500 bytes to 9000, cuttin
 
 - [1101: Internet Uplink & Modem Configuration](1101-Fiber-GPON-Modem.md)
 - [1102: Network Topology Design](1102-Star-Topology-Core.md)
+- [CHEAT-SHEET-054: Network Foundations - the Wire-Efficiency Bill, the Handshake Ledger, and the First-Token Budget](../../../learning-resources/cheat-sheets/CHEAT-SHEET-054-Network-Foundations.md)
 
 ---
 

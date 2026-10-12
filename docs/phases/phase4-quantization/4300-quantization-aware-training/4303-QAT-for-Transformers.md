@@ -426,6 +426,7 @@ Transformers tolerate QAT well but not uniformly: the recipe this lesson built q
 - [4302: Fake Quantization](4302-Fake-Quantization.md)
 - [4304: Low-bit QAT](4304-Low-bit-QAT.md)
 - [4305: Quantization Configuration](4305-Quantization-Configuration.md)
+- [CHEAT-SHEET-044: Quantization-Aware Training - the Straight-Through Estimator and the Layer Map](../../../learning-resources/cheat-sheets/CHEAT-SHEET-044-Quantization-Aware-Training.md)
 
 ---
 

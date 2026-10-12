@@ -530,6 +530,7 @@ Distillation compresses a large teacher into a small student by training the stu
 
 - [5302: Distributed Training Orchestration](5302-Distributed-Training.md)
 - [5303: Federated Learning](5303-Federated-Learning.md)
+- [CHEAT-SHEET-045: Synthetic Data & Advanced Training - the Distilled Student, the Federated Fleet, and the Recursion Tax](../../../learning-resources/cheat-sheets/CHEAT-SHEET-045-Synthetic-Data-Advanced-Training.md)
 
 ---
 

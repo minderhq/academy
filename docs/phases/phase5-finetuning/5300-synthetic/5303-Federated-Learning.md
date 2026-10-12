@@ -407,6 +407,7 @@ Federated learning trains a shared model across many data holders without the da
 - [5301: Knowledge Distillation](5301-Knowledge-Distillation.md)
 - [5302: Distributed Training Orchestration](5302-Distributed-Training.md)
 - [5102: QLoRA Pipelines](../5100-peft/5102-QLoRA-Pipelines.md)
+- [CHEAT-SHEET-045: Synthetic Data & Advanced Training - the Distilled Student, the Federated Fleet, and the Recursion Tax](../../../learning-resources/cheat-sheets/CHEAT-SHEET-045-Synthetic-Data-Advanced-Training.md)
 
 ---
 

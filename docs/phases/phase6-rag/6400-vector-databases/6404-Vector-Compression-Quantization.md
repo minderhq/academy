@@ -492,6 +492,7 @@ A 5,000,000-vector, 768-dim collection is 15.36 GB of float32 - and compression 
 - [6104: Embedding Sciences](../6100-vector/6104-Embedding-Sciences.md) - the normalize-then-calibrate row this lesson's outlier trap turns into numbers.
 - [6202: Re-ranking and Retrieval Logistics](../6200-retrieval/6202-Re-ranking-and-Retrieval-Logistics.md) - the same over-fetch-then-rescore shape at cross-encoder cost.
 - [4103: Double Quantization](../../phase4-quantization/4100-low-bit/4103-Double-Quantization.md) - quantization of model weights, the different domain sharing the vocabulary.
+- [CHEAT-SHEET-053: Vector Databases - the RAM Ledger, the Quantile Trap, and the Rescore Ladder](../../../learning-resources/cheat-sheets/CHEAT-SHEET-053-Vector-Databases.md)
 
 ### Primary Sources
 

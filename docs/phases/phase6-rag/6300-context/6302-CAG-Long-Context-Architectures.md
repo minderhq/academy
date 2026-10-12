@@ -633,6 +633,7 @@ CAG (Context-Augmented Generation) bets on the growing context window: instead o
 - [6301: Neo4j and Knowledge Graphs for Multi-Hop Reasoning](6301-Neo4j-and-Knowledge-Graphs.md)
 - [4201: Context Window](../../phase4-quantization/4200-kv-cache/4201-Context-Window-Physics.md)
 - [6202: Re-ranking](../6200-retrieval/6202-Re-ranking-and-Retrieval-Logistics.md)
+- [CHEAT-SHEET-049: Context Engineering - the Dilution Curve, the Stuffing Bet, and the Distilled Prompt](../../../learning-resources/cheat-sheets/CHEAT-SHEET-049-Context-Engineering.md)
 
 ---
 

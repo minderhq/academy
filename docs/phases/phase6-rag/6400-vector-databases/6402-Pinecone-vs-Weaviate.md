@@ -1006,6 +1006,7 @@ class VectorDBImporter:
 ### Related Minder Academy Documents
 
 - [6401: Qdrant Setup Guide](6401-Qdrant-Setup.md)
+- [CHEAT-SHEET-053: Vector Databases - the RAM Ledger, the Quantile Trap, and the Rescore Ladder](../../../learning-resources/cheat-sheets/CHEAT-SHEET-053-Vector-Databases.md)
 
 ---
 

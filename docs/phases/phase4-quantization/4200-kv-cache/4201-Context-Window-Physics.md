@@ -476,6 +476,8 @@ The KV cache is the physics of the context window: memory grows linearly with se
 ### Related Minder Academy Documents
 
 - [4202: Speculative Decoding - Accelerating Large Models](4202-Speculative-Decoding.md)
+- [CHEAT-SHEET-020: Flash Attention](../../../learning-resources/cheat-sheets/CHEAT-SHEET-020-Flash-Attention.md)
+- [CHEAT-SHEET-021: RoPE Positional Encoding](../../../learning-resources/cheat-sheets/CHEAT-SHEET-021-RoPE-Positional-Encoding.md)
 
 ---
 

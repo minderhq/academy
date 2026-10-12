@@ -471,6 +471,7 @@ Semantic similarity metrics quantify how close two embeddings are, and the choic
 ### Related Minder Academy Documents
 
 - [6101: HNSW Indexing - Efficient Semantic Search at Scale](6101-HNSW-Indexing.md)
+- [CHEAT-SHEET-048: Semantic Vectors - the HNSW Ledger, the Recall Dial, and the Truncation Contract](../../../learning-resources/cheat-sheets/CHEAT-SHEET-048-Semantic-Vectors.md)
 
 ---
 

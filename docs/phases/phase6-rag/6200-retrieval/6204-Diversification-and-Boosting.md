@@ -308,6 +308,7 @@ Relevance ranking maximizes relevance, and one fact five times is the optimum. D
 - [6101: HNSW Indexing - Efficient Semantic Search at Scale](../6100-vector/6101-HNSW-Indexing.md) — the ANN index producing the candidate pool
 - [6102: Semantic Similarity](../6100-vector/6102-Semantic-Similarity.md) — cosine similarity mechanics behind every sim term above
 - [6302: CAG - Context Augmented Generation and Long Context Architectures](../6300-context/6302-CAG-Long-Context-Architectures.md) — what the diversified, boosted window feeds
+- [CHEAT-SHEET-047: Retrieval Strategies - the Two-Channel Fusion, the Rerank Funnel, and the Diversity Dial](../../../learning-resources/cheat-sheets/CHEAT-SHEET-047-Retrieval-Strategies.md)
 
 ### Primary Sources
 

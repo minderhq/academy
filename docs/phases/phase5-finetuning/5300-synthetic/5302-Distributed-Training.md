@@ -782,6 +782,7 @@ Distributed training in a homelab starts honest: single-GPU constraints first, w
 
 - [5301: Knowledge Distillation - Training Small Models Using Big Model Outputs](5301-Knowledge-Distillation.md)
 - [5303: Federated Learning](5303-Federated-Learning.md)
+- [CHEAT-SHEET-045: Synthetic Data & Advanced Training - the Distilled Student, the Federated Fleet, and the Recursion Tax](../../../learning-resources/cheat-sheets/CHEAT-SHEET-045-Synthetic-Data-Advanced-Training.md)
 
 ### External References
 

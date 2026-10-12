@@ -813,6 +813,7 @@ This guide takes Qdrant from first container to production: deployment targets b
 - [6101: HNSW Indexing](../../6100-vector/6101-HNSW-Indexing.md)
 - [6103: HNSW Tuning Guide](../../6100-vector/guides/6103-HNSW-Tuning-Guide.md)
 - [6201: Hybrid Search](../../6200-retrieval/6201-Hybrid-Search.md)
+- [CHEAT-SHEET-053: Vector Databases - the RAM Ledger, the Quantile Trap, and the Rescore Ladder](../../../../learning-resources/cheat-sheets/CHEAT-SHEET-053-Vector-Databases.md)
 
 ---
 

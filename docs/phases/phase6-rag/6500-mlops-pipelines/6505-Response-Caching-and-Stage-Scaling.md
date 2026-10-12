@@ -445,6 +445,7 @@ Scaling is the second half of the bill, and its answer is per-stage: two policie
 - [1402: vLLM and TGI](../../phase1-infra/1400-llmops/1402-vLLM-and-TGI.md) — the engine internals (PagedAttention, continuous batching) behind the generation stage's per-request cost
 - [1405: SGLang](../../phase1-infra/1400-llmops/1405-SGLang.md) — the RadixAttention prefix cache, the engine-level cache beneath the response-level one
 - [6403: Qdrant Production Deployment](../6400-vector-databases/guides/6403-Qdrant-Production-Deployment.md) — the retrieval store's own capacity tiers and replication
+- [CHEAT-SHEET-050: MLOps Pipelines - the Lifecycle State Machine, the Challenger Verdict, and the Fleet Bill](../../../learning-resources/cheat-sheets/CHEAT-SHEET-050-MLOps-Pipelines.md)
 
 ### Primary Sources
 

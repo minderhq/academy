@@ -445,6 +445,7 @@ ReAct (Reasoning + Acting) is the foundational agent loop: the model alternates 
 - [7201: Tool Calling](../7200-tools/7201-Tool-Calling.md) - Tool implementation
 - [7301: Orchestration](../7300-orchestration/7301-Orchestration.md) - Multi-agent coordination
 - [7401: Long-term Memory](../7400-memory/7401-Long-term-Memory.md) - Persistent memory systems
+- [CHEAT-SHEET-023: ReAct Agent Loop](../../../learning-resources/cheat-sheets/CHEAT-SHEET-023-ReAct-Agent-Loop.md)
 
 ### Experiments
 - [EXP_7101: ReAct](../../../../experiments/EXP_7101_REACT.md) - Build ReAct agent from scratch

@@ -438,6 +438,7 @@ GPU passthrough assigns a physical NVIDIA GPU to one virtual machine, giving it 
 - [1201: Proxmox Hypervisor Standard Operating Procedures](1201-Proxmox-Hypervisor-SOP.md)
 - [1203: NVIDIA Kernel Module Management](1203-Nvidia-Kernel-Module.md)
 - [1204: Multi-GPU Setup](1204-Multi-GPU-Setup.md)
+- [CHEAT-SHEET-055: Virtualization and GPU Passthrough - the Hypervisor RAM Ledger, the Passthrough Gate Chain, and the Multi-GPU Scaling Wall](../../../learning-resources/cheat-sheets/CHEAT-SHEET-055-Virtualization-and-GPU-Passthrough.md)
 
 ---
 

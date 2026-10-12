@@ -373,6 +373,7 @@ NVIDIA GPU stability across reboots and kernel updates is a kernel-module manage
 - [1201: Proxmox Hypervisor Standard Operating Procedures](1201-Proxmox-Hypervisor-SOP.md)
 - [1202: GPU Passthrough (IOMMU/VFIO)](1202-TB3-UT3G-Passthrough.md)
 - [1204: Multi-GPU Setup](1204-Multi-GPU-Setup.md)
+- [CHEAT-SHEET-055: Virtualization and GPU Passthrough - the Hypervisor RAM Ledger, the Passthrough Gate Chain, and the Multi-GPU Scaling Wall](../../../learning-resources/cheat-sheets/CHEAT-SHEET-055-Virtualization-and-GPU-Passthrough.md)
 
 ---
 

@@ -400,6 +400,10 @@ The v1 import path no longer exists in v2: importing `mcp.server.fastmcp` raises
 - [2] MCP Python SDK documentation (v2) - [https://pypi.org/project/mcp/](https://pypi.org/project/mcp/)
 - [3] modelcontextprotocol/python-sdk repository - [https://github.com/modelcontextprotocol/python-sdk](https://github.com/modelcontextprotocol/python-sdk)
 
+### Related Minder Academy Documents
+
+- [CHEAT-SHEET-027: Tool Calling and MCP](../../../learning-resources/cheat-sheets/CHEAT-SHEET-027-Tool-Calling-and-MCP.md)
+
 ---
 
 ## Next Steps

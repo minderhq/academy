@@ -806,6 +806,7 @@ Planning and task decomposition turn one impossible prompt into a tree of execut
 - [7101: ReAct (Reasoning + Acting) Loop System](7101-ReAct-Loop-System.md)
 - [7301: Collaborative Tasking](../7300-orchestration/7301-Orchestration.md)
 - [7303: Framework Comparison](../7300-orchestration/guides/7303-Framework-Comparison.md)
+- [CHEAT-SHEET-023: ReAct Agent Loop](../../../learning-resources/cheat-sheets/CHEAT-SHEET-023-ReAct-Agent-Loop.md)
 
 ---
 

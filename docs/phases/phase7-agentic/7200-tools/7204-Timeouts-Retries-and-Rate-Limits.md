@@ -302,6 +302,7 @@ Same timeline, two agents. The unguarded one spends all 30 attempts and eats all
 - [2303: API Design for ML](../../phase2-foundations/2300-framework-engineering/2303-API-Design-for-ML.md) — the server's half of the contract: return 429 with `Retry-After` so the client's half has something to honor.
 - [7504: Agent Abuse Prevention and Identity Threats](../7500-security/7504-Agent-Abuse-Prevention-and-Identity-Threats.md) — the bucket as defense: fixed-window versus token-bucket on the server's side of the wire.
 - [QUIZ](./assessment/QUIZ.md) — question 17's production triad, with this lesson as its review pointer.
+- [CHEAT-SHEET-027: Tool Calling and MCP](../../../learning-resources/cheat-sheets/CHEAT-SHEET-027-Tool-Calling-and-MCP.md)
 
 ### Primary Sources
 

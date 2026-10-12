@@ -293,6 +293,7 @@ Single-stage dense retrieval leaves accuracy on the table, and this lesson is th
 - [6202: Re-ranking and Retrieval Logistics](./6202-Re-ranking-and-Retrieval-Logistics.md) - reranker operations
 - [6301: Neo4j and Knowledge Graphs](../6300-context/6301-Neo4j-and-Knowledge-Graphs.md) - graph-based retrieval
 - [6302: CAG Long Context Architectures](../6300-context/6302-CAG-Long-Context-Architectures.md) - long-context alternative
+- [CHEAT-SHEET-047: Retrieval Strategies - the Two-Channel Fusion, the Rerank Funnel, and the Diversity Dial](../../../learning-resources/cheat-sheets/CHEAT-SHEET-047-Retrieval-Strategies.md)
 
 ---
 

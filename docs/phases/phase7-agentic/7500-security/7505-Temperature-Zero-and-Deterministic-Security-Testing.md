@@ -387,6 +387,7 @@ The ledger's four rows are four different failures. C1, the suite at serving tem
 - [7504: Agent Abuse Prevention and Identity Threats](7504-Agent-Abuse-Prevention-and-Identity-Threats.md) — the traffic-side mechanics where deterministic detector thresholds meet sampled traffic
 - [7104: Agent Evaluation and Observability](../7100-architecture/7104-Agent-Evaluation-and-Observability.md) — the regression gate and its pin-sampling caveat, implemented here as arithmetic
 - [1402: vLLM and TGI](../../phase1-infra/1400-llmops/1402-vLLM-and-TGI.md) — the serving stacks whose sampling parameters this lesson pins
+- [CHEAT-SHEET-026: Agent Security](../../../learning-resources/cheat-sheets/CHEAT-SHEET-026-Agent-Security.md)
 
 ### Primary Sources
 

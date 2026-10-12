@@ -247,6 +247,10 @@ The ordering is strict - A (640 ms, 88 percent transport) over B (164 ms, 51 per
 - ISO/IEC 7498-1 (ITU-T X.200), The Basic Model - the seven-layer reference this lesson's classification follows
 - Kurose & Ross, Computer Networking: A Top-Down Approach, chapters 1-3 - the deeper treatment the module README already recommends
 
+### Related Minder Academy Documents
+
+- [CHEAT-SHEET-054: Network Foundations - the Wire-Efficiency Bill, the Handshake Ledger, and the First-Token Budget](../../../learning-resources/cheat-sheets/CHEAT-SHEET-054-Network-Foundations.md)
+
 ## Next Steps
 
 - [1103: Jumbo Frames and MTU Optimization](./1103-Jumbo-Frames-and-MTU.md) - the MTU boundary this lesson's segment counts assumed

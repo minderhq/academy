@@ -254,6 +254,7 @@ Reading the output, line by line. Attention at 65,536 tokens monolithically mate
 - [4201: Context Window Physics and OOM Prevention](../../phase4-quantization/4200-kv-cache/4201-Context-Window-Physics.md) — the KV-cache arithmetic of the extended window at inference.
 - [5301: Knowledge Distillation - Training Small Models Using Big Model Outputs](../../phase5-finetuning/5300-synthetic/5301-Knowledge-Distillation.md) — the distillation family's compress-into-a-smaller-form pattern.
 - [5104: LoRA Implementation Guide](../../phase5-finetuning/5100-peft/guides/5104-LoRA-Implementation-Guide.md) — the rank-decomposed update mechanics LongLoRA builds on.
+- [CHEAT-SHEET-049: Context Engineering - the Dilution Curve, the Stuffing Bet, and the Distilled Prompt](../../../learning-resources/cheat-sheets/CHEAT-SHEET-049-Context-Engineering.md)
 
 ### Primary Sources
 

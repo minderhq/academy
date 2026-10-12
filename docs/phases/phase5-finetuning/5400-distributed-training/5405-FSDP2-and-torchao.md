@@ -341,6 +341,7 @@ FSDP2 rebuilt fully sharded data parallelism on `DTensor`: parameters stay inspe
 - [3103: SDPA and torch.compile](../../phase3-transformers/3100-attention/3103-SDPA-and-torch-compile.md) - the compiler half of the torchtitan recipe
 - [1402: vLLM and TGI](../../phase1-infra/1400-llmops/1402-vLLM-and-TGI.md) - serving the consolidated checkpoint
 - [1405: SGLang RadixAttention Serving](../../phase1-infra/1400-llmops/1405-SGLang.md) - the serving engine for quantized artifacts
+- [CHEAT-SHEET-051: Distributed Training - the Memory Bill, the Stability Wall, and the Campaign](../../../learning-resources/cheat-sheets/CHEAT-SHEET-051-Distributed-Training.md)
 
 ### Primary Sources
 

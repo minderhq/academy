@@ -802,6 +802,7 @@ LLM systems fail in LLM-specific ways, so they need LLM-specific metrics: token 
 
 - [1501: Monitoring and Observability](./1501-Monitoring-and-Observability.md)
 - [1502: Model Drift Detection](./1502-Model-Drift-Detection.md)
+- [CHEAT-SHEET-028: Agent Evaluation and Observability](../../../learning-resources/cheat-sheets/CHEAT-SHEET-028-Agent-Evaluation-and-Observability.md)
 
 ### External References
 

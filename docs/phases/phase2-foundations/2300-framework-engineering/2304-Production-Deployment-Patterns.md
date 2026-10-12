@@ -1136,6 +1136,7 @@ Implement a complete blue-green deployment system with:
 - [2301: Framework Design Patterns](./2301-Framework-Design-Patterns.md)
 - [2302: Model Serving Architectures](./2302-Model-Serving-Architectures.md)
 - [2303: API Design for ML Systems](./2303-API-Design-for-ML.md)
+- [CHEAT-SHEET-052: Framework Engineering - the Registry, the Batching Flush, and the Rollout Gate](../../../learning-resources/cheat-sheets/CHEAT-SHEET-052-Framework-Engineering.md)
 
 ### External References
 

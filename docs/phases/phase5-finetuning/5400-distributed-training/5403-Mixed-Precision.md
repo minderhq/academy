@@ -348,6 +348,7 @@ Mixed precision runs most of the training step in 16-bit while keeping the numer
 - [5402: Model Parallelism](5402-Model-Parallelism.md)
 - [5404: Distributed Optimization](5404-Distributed-Optimization.md)
 - [5501: Optimizer Variants](../5500-advanced-optimization/5501-Optimizer-Variants.md)
+- [CHEAT-SHEET-046: Advanced Optimization - the Optimizer Memory Ledger, the Schedule Arc, and the Failure Toolbox](../../../learning-resources/cheat-sheets/CHEAT-SHEET-046-Advanced-Optimization.md)
 
 ---
 

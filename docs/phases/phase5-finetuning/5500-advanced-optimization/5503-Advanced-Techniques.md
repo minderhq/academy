@@ -424,6 +424,7 @@ Beyond optimizer and schedule sits a toolbox that fixes specific failures: gradi
 - [5501: Optimizer Variants](5501-Optimizer-Variants.md)
 - [5502: Learning Rate Scheduling](5502-Learning-Rate-Scheduling.md)
 - [5403: Mixed Precision Training](../5400-distributed-training/5403-Mixed-Precision.md)
+- [CHEAT-SHEET-046: Advanced Optimization - the Optimizer Memory Ledger, the Schedule Arc, and the Failure Toolbox](../../../learning-resources/cheat-sheets/CHEAT-SHEET-046-Advanced-Optimization.md)
 
 ---
 

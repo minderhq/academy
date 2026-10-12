@@ -367,6 +367,7 @@ Out-of-range Rx power shows up as LOS light loss or intermittent drops long befo
 - [1102: Network Topology Design](1102-Star-Topology-Core.md)
 - [1103: Jumbo Frames and MTU Optimization](1103-Jumbo-Frames-and-MTU.md)
 - [1201: Proxmox Hypervisor Standard Operating Procedures](../1200-virtualization/1201-Proxmox-Hypervisor-SOP.md)
+- [CHEAT-SHEET-054: Network Foundations - the Wire-Efficiency Bill, the Handshake Ledger, and the First-Token Budget](../../../learning-resources/cheat-sheets/CHEAT-SHEET-054-Network-Foundations.md)
 
 ---
 

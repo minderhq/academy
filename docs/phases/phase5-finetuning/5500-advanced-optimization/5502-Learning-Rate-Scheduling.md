@@ -417,6 +417,7 @@ The learning rate is the one hyperparameter that changes meaning mid-run: the va
 - [5501: Optimizer Variants](5501-Optimizer-Variants.md)
 - [5503: Advanced Optimization Techniques](5503-Advanced-Techniques.md)
 - [5403: Mixed Precision Training](../5400-distributed-training/5403-Mixed-Precision.md)
+- [CHEAT-SHEET-046: Advanced Optimization - the Optimizer Memory Ledger, the Schedule Arc, and the Failure Toolbox](../../../learning-resources/cheat-sheets/CHEAT-SHEET-046-Advanced-Optimization.md)
 
 ---
 

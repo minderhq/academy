@@ -440,6 +440,7 @@ GGUF is what makes large models runnable on consumer hardware: a single file car
 - [4102: EXL2 and AWQ](./4102-EXL2-and-AWQ.md) - VRAM-only quantization
 - [4103: Double Quantization](./4103-Double-Quantization.md) - BitsAndBytes 4-bit
 - [4201: Context Window Physics](../4200-kv-cache/4201-Context-Window-Physics.md) - KV cache optimization
+- [CHEAT-SHEET-043: 4-Bit Residuals - the Metadata Squeeze and the Hardware-Native Grid](../../../learning-resources/cheat-sheets/CHEAT-SHEET-043-4-Bit-Residuals.md)
 
 ### Experiments
 - [EXP_4101: GGUF](../../../../experiments/EXP_4101_GGUF.md) - Hands-on GGUF experiments

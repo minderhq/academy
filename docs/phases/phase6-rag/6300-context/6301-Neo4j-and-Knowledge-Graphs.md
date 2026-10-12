@@ -505,6 +505,7 @@ Knowledge graphs represent information as entities and relationships, which is e
 - [6201: Hybrid Search](../6200-retrieval/6201-Hybrid-Search.md)
 - [6302: CAG - Context Augmented Generation and Long Context Architectures](6302-CAG-Long-Context-Architectures.md)
 - [7301: Collaborative Tasking](../../phase7-agentic/7300-orchestration/7301-Orchestration.md)
+- [CHEAT-SHEET-049: Context Engineering - the Dilution Curve, the Stuffing Bet, and the Distilled Prompt](../../../learning-resources/cheat-sheets/CHEAT-SHEET-049-Context-Engineering.md)
 
 ---
 

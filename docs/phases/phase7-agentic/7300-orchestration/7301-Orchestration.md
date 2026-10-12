@@ -754,6 +754,7 @@ Collaborative multi-agent systems work when each agent is specialized and the co
 - [7303: Multi-Agent Framework Comparison](./guides/7303-Framework-Comparison.md)
 - [7102: Planning and Task Decomposition](../7100-architecture/7102-Planning-Decomposition.md)
 - [7202: Code Interpreter - Sandbox Execution for Agent Code Testing](../7200-tools/guides/7202-Code-Interpreter.md)
+- [CHEAT-SHEET-024: Multi-Agent Orchestration](../../../learning-resources/cheat-sheets/CHEAT-SHEET-024-Multi-Agent-Orchestration.md)
 
 **Experiment Template:** [EXP_7301: Collaboration](../../../../experiments/EXP_7301_COLLABORATION.md)
 

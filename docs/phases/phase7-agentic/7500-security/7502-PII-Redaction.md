@@ -1004,6 +1004,7 @@ PII in prompts, tool outputs, and logs is a compliance exposure - GDPR, CCPA, HI
 - [7503: Adversarial Attacks & Defense](7503-Adversarial-Attacks.md)
 - [1503: LLM Observability](../../phase1-infra/1500-monitoring/1503-LLM-Observability.md)
 - **Module Experiment:** [EXP_7501: Prompt Injection Experiments](../../../../experiments/EXP_7501_PROMPT_INJECTION.md)
+- [CHEAT-SHEET-026: Agent Security](../../../learning-resources/cheat-sheets/CHEAT-SHEET-026-Agent-Security.md)
 
 ---
 

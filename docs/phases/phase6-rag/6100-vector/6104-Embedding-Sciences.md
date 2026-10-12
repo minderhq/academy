@@ -309,6 +309,7 @@ An embedding is three decisions stacked on a transformer. Pooling decides which 
 - [6202: Re-ranking and Retrieval Logistics](../6200-retrieval/6202-Re-ranking-and-Retrieval-Logistics.md) — the same over-fetch-then-rescore shape one abstraction up, at cross-encoder cost
 - [6401: Qdrant Setup Guide](../6400-vector-databases/6401-Qdrant-Setup.md) — where the storage ledger meets a deployment: scalar and binary quantization configs
 - [3202: Tokenizer Sciences - BPE, SentencePiece, and Tiktoken](../../phase3-transformers/3200-embeddings/3202-Tokenizer-Sciences.md) — the token side of the same pipeline, upstream of pooling
+- [CHEAT-SHEET-048: Semantic Vectors - the HNSW Ledger, the Recall Dial, and the Truncation Contract](../../../learning-resources/cheat-sheets/CHEAT-SHEET-048-Semantic-Vectors.md)
 
 ### Primary Sources
 

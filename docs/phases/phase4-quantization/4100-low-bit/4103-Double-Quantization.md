@@ -435,6 +435,7 @@ Double quantization squeezes the leftover bytes: the per-block scales that ordin
 
 - [4101: GGUF Physics - CPU/GPU Hybrid Offloading](4101-GGUF-Physics.md)
 - [4102: EXL2 and AWQ - Extreme Quantization](4102-EXL2-and-AWQ.md)
+- [CHEAT-SHEET-043: 4-Bit Residuals - the Metadata Squeeze and the Hardware-Native Grid](../../../learning-resources/cheat-sheets/CHEAT-SHEET-043-4-Bit-Residuals.md)
 
 ---
 

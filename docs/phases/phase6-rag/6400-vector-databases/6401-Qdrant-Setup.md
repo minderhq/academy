@@ -345,6 +345,8 @@ Qdrant is the open-source vector database this curriculum standardizes on: Rust-
 ### Related Minder Academy Documents
 
 - [6402: Vector Database Comparison](6402-Pinecone-vs-Weaviate.md)
+- [CHEAT-SHEET-022: Multimodal Models](../../../learning-resources/cheat-sheets/CHEAT-SHEET-022-Multimodal-Models.md)
+- [CHEAT-SHEET-053: Vector Databases - the RAM Ledger, the Quantile Trap, and the Rescore Ladder](../../../learning-resources/cheat-sheets/CHEAT-SHEET-053-Vector-Databases.md)
 
 ---
 

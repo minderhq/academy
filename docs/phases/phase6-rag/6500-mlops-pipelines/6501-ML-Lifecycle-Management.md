@@ -365,6 +365,7 @@ A model's life does not end at the first deploy - it begins there, and this less
 - [6503: Model Registry](6503-Model-Registry.md)
 - [1502: Model Drift Detection](../../phase1-infra/1500-monitoring/1502-Model-Drift-Detection.md)
 - [LAB-007: Production RAG](../../../learning-resources/labs/LAB-007-Production-RAG.md)
+- [CHEAT-SHEET-050: MLOps Pipelines - the Lifecycle State Machine, the Challenger Verdict, and the Fleet Bill](../../../learning-resources/cheat-sheets/CHEAT-SHEET-050-MLOps-Pipelines.md)
 
 ### External References
 

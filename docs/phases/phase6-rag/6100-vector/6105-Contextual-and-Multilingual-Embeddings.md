@@ -321,6 +321,7 @@ A contextual model emits one vector per token use, not one per type: the static 
 - [6101: HNSW Indexing - Efficient Semantic Search at Scale](./6101-HNSW-Indexing.md) — the index that stores whichever space you ship, shared or not
 - [6103: HNSW Tuning Guide](./guides/6103-HNSW-Tuning-Guide.md) — tuning the index around a multilingual fleet's dimensionality and query mix
 - [3202: Tokenizer Sciences - BPE, SentencePiece, and Tiktoken](../../phase3-transformers/3200-embeddings/3202-Tokenizer-Sciences.md) — the vocabulary side of multilingual models: one SentencePiece table serving 100 languages, upstream of every shared space here
+- [CHEAT-SHEET-048: Semantic Vectors - the HNSW Ledger, the Recall Dial, and the Truncation Contract](../../../learning-resources/cheat-sheets/CHEAT-SHEET-048-Semantic-Vectors.md)
 
 ### Primary Sources
 

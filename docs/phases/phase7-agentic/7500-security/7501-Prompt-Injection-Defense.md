@@ -748,6 +748,7 @@ Prompt injection tricks an LLM into treating untrusted text as instructions, and
 - [7503: Adversarial Attacks & Defense](7503-Adversarial-Attacks.md)
 - [1503: LLM Observability](../../phase1-infra/1500-monitoring/1503-LLM-Observability.md)
 - **Experiment Template:** [EXP_7501: Prompt Injection Experiments](../../../../experiments/EXP_7501_PROMPT_INJECTION.md)
+- [CHEAT-SHEET-026: Agent Security](../../../learning-resources/cheat-sheets/CHEAT-SHEET-026-Agent-Security.md)
 
 ---
 

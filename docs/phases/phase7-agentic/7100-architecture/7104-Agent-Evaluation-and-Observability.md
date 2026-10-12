@@ -340,6 +340,7 @@ The loop from [7101](./7101-ReAct-Loop-System.md) becomes shippable when its run
 - [7301: Orchestration](../7300-orchestration/7301-Orchestration.md) - nightly evals over orchestration variants
 - [1503: LLM Observability](../../phase1-infra/1500-monitoring/1503-LLM-Observability.md) - request-level metrics; the aggregates these traces explain
 - [2403: Evaluation Frameworks](../../phase2-foundations/2400-pretraining/2403-Evaluation-Frameworks.md) - pretraining-era benchmark batteries; the ladder's ancestor
+- [CHEAT-SHEET-028: Agent Evaluation and Observability](../../../learning-resources/cheat-sheets/CHEAT-SHEET-028-Agent-Evaluation-and-Observability.md)
 
 ### Primary Sources
 

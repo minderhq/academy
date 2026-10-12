@@ -1194,6 +1194,7 @@ class PredictResponse(BaseModel):
 - [2301: Framework Design Patterns](./2301-Framework-Design-Patterns.md)
 - [2302: Model Serving Architectures](./2302-Model-Serving-Architectures.md)
 - [2304: Production Deployment Patterns](./2304-Production-Deployment-Patterns.md)
+- [CHEAT-SHEET-052: Framework Engineering - the Registry, the Batching Flush, and the Rollout Gate](../../../learning-resources/cheat-sheets/CHEAT-SHEET-052-Framework-Engineering.md)
 
 ### External References
 

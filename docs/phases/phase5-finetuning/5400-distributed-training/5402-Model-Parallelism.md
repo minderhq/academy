@@ -346,6 +346,7 @@ When the model no longer fits, model parallelism splits it along two axes: pipel
 - [5401: Data Parallelism](5401-Data-Parallelism.md)
 - [5403: Mixed Precision Training](5403-Mixed-Precision.md)
 - [5404: Distributed Optimization](5404-Distributed-Optimization.md)
+- [CHEAT-SHEET-051: Distributed Training - the Memory Bill, the Stability Wall, and the Campaign](../../../learning-resources/cheat-sheets/CHEAT-SHEET-051-Distributed-Training.md)
 
 ---
 

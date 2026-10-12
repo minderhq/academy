@@ -344,6 +344,7 @@ MXFP4 and NVFP4 are one idea in two calibrations: split every weight into 4-bit 
 - [4301: QAT Foundations](../4300-quantization-aware-training/4301-QAT-Foundations.md) - training through a quantizer; the bridge from post-training MXFP4 to quantization-aware training
 - [5405: FSDP2 and torchao](../../phase5-finetuning/5400-distributed-training/5405-FSDP2-and-torchao.md) - the `DTensor` world `MXTensor` composes with via `local_map`
 - [1402: vLLM and TGI](../../phase1-infra/1400-llmops/1402-vLLM-and-TGI.md) - serving engines for the shipped MXFP4 checkpoints
+- [CHEAT-SHEET-043: 4-Bit Residuals - the Metadata Squeeze and the Hardware-Native Grid](../../../learning-resources/cheat-sheets/CHEAT-SHEET-043-4-Bit-Residuals.md)
 
 ### Primary Sources
 

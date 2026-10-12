@@ -493,6 +493,7 @@ The one-line summary of the ledger: **the TTL length is the resume budget, the a
 - [7304: Event Buses, Deadlocks and Human Gates](../7300-orchestration/7304-Event-Buses-Deadlocks-and-Human-Gates.md) - the orchestration interrupt/resume mechanics whose run state the checkpoint store persists
 - [7101: ReAct Loop System](../7100-architecture/7101-ReAct-Loop-System.md) - the loop whose per-step state one checkpoint per super-step captures
 - [6505: Response Caching and Stage Scaling](../../phase6-rag/6500-mlops-pipelines/6505-Response-Caching-and-Stage-Scaling.md) - the other request-keyed store in the stack: caching economics at the serving layer versus the agent-state store this lesson owns
+- [CHEAT-SHEET-025: Agent Memory Systems](../../../learning-resources/cheat-sheets/CHEAT-SHEET-025-Agent-Memory-Systems.md)
 
 ### Primary Sources
 

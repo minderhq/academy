@@ -265,6 +265,7 @@ Quantization Aware Training is the answer to a simple failure mode: post-trainin
 - [4303: QAT for Transformers](4303-QAT-for-Transformers.md)
 - [4304: Low-bit QAT](4304-Low-bit-QAT.md)
 - [4305: Quantization Configuration](4305-Quantization-Configuration.md)
+- [CHEAT-SHEET-044: Quantization-Aware Training - the Straight-Through Estimator and the Layer Map](../../../learning-resources/cheat-sheets/CHEAT-SHEET-044-Quantization-Aware-Training.md)
 
 ---
 

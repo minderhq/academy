@@ -270,6 +270,7 @@ Reading the output: config A is the honest price of the spec-sheet reflex — $4
 - [6302: CAG and Long-Context Architectures](./6302-CAG-Long-Context-Architectures.md) — the serving-side curation strategies and the 2026 model-window table; states the budget-100-200k reliable-zone rule this lesson measures.
 - [4201: Context Window Physics and OOM Prevention](../../phase4-quantization/4200-kv-cache/4201-Context-Window-Physics.md) — the KV-cache formula this lesson reuses at 512 KB/token and the OOM side of the 62.5 GB row.
 - [6305: LongLoRA, Ring Attention, and Context Distillation](./6305-LongLoRA-Ring-Attention-and-Context-Distillation.md) — the training-side extension that moves the ceiling this lesson prices under.
+- [CHEAT-SHEET-049: Context Engineering - the Dilution Curve, the Stuffing Bet, and the Distilled Prompt](../../../learning-resources/cheat-sheets/CHEAT-SHEET-049-Context-Engineering.md)
 
 ### Primary Sources
 

@@ -497,6 +497,7 @@ ML CI/CD is a software pipeline with two extra failure modes: the artifact is pr
 - [6501: ML Model Lifecycle Management](6501-ML-Lifecycle-Management.md)
 - [6503: Model Registry](6503-Model-Registry.md)
 - [1502: Model Drift Detection](../../phase1-infra/1500-monitoring/1502-Model-Drift-Detection.md)
+- [CHEAT-SHEET-050: MLOps Pipelines - the Lifecycle State Machine, the Challenger Verdict, and the Fleet Bill](../../../learning-resources/cheat-sheets/CHEAT-SHEET-050-MLOps-Pipelines.md)
 
 ### External References
 

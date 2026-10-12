@@ -383,6 +383,7 @@ A multi-agent system is only as reliable as the contracts between its agents: th
 - [7101: ReAct Loop System](../7100-architecture/7101-ReAct-Loop-System.md) - single-agent foundation
 - [7200: Tool Calling](../7200-tools/README.md) - MCP tool layer
 - [7303: Framework Comparison](./guides/7303-Framework-Comparison.md) - framework support matrix
+- [CHEAT-SHEET-024: Multi-Agent Orchestration](../../../learning-resources/cheat-sheets/CHEAT-SHEET-024-Multi-Agent-Orchestration.md)
 
 ---
 

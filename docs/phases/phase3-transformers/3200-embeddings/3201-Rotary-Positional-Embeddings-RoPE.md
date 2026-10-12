@@ -413,6 +413,8 @@ Transformers are permutation invariant, so position must be injected explicitly 
 ### Related Minder Academy Documents
 
 - [3202: Tokenizer Sciences - BPE, SentencePiece, and Tiktoken](3202-Tokenizer-Sciences.md)
+- [CHEAT-SHEET-019: Tokenizers](../../../learning-resources/cheat-sheets/CHEAT-SHEET-019-Tokenizers.md)
+- [CHEAT-SHEET-021: RoPE Positional Encoding](../../../learning-resources/cheat-sheets/CHEAT-SHEET-021-RoPE-Positional-Encoding.md)
 
 ---
 

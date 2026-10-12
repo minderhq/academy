@@ -394,6 +394,7 @@ The linear scaling rule is one line with four pieces of fine print. The mechanis
 - [5501: Optimizer Variants](../5500-advanced-optimization/5501-Optimizer-Variants.md) - LARS and LAMB as optimizers: update rules and hyperparameters
 - [5502: Learning Rate Scheduling](../5500-advanced-optimization/5502-Learning-Rate-Scheduling.md) - the schedule shapes the linear rule feeds
 - [2402: Large-Scale Training](../../../phases/phase2-foundations/2400-pretraining/2402-Large-Scale-Training.md) - pretraining-scale training runs and their stability practices
+- [CHEAT-SHEET-051: Distributed Training - the Memory Bill, the Stability Wall, and the Campaign](../../../learning-resources/cheat-sheets/CHEAT-SHEET-051-Distributed-Training.md)
 
 ### Primary Sources
 

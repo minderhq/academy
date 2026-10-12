@@ -309,6 +309,7 @@ Vision-language models come in two generations: CLIP aligns images and text in o
 
 - [3502: Audio Models](3502-Audio-Models.md)
 - [6401: Qdrant Setup Guide](../../phase6-rag/6400-vector-databases/6401-Qdrant-Setup.md)
+- [CHEAT-SHEET-022: Multimodal Models](../../../learning-resources/cheat-sheets/CHEAT-SHEET-022-Multimodal-Models.md)
 
 ---
 

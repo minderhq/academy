@@ -775,6 +775,9 @@ Tool calling is how an LLM's text becomes action: the model emits a structured r
 - [7200: Tool Calling and Function Execution](README.md)
 - [7202: Code Interpreter](guides/7202-Code-Interpreter.md)
 - [7101: ReAct (Reasoning + Acting) Loop System](../7100-architecture/7101-ReAct-Loop-System.md)
+- [CHEAT-SHEET-023: ReAct Agent Loop](../../../learning-resources/cheat-sheets/CHEAT-SHEET-023-ReAct-Agent-Loop.md)
+- [CHEAT-SHEET-027: Tool Calling and MCP](../../../learning-resources/cheat-sheets/CHEAT-SHEET-027-Tool-Calling-and-MCP.md)
+- [CHEAT-SHEET-028: Agent Evaluation and Observability](../../../learning-resources/cheat-sheets/CHEAT-SHEET-028-Agent-Evaluation-and-Observability.md)
 
 ---
 
