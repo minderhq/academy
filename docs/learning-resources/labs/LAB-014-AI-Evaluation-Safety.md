@@ -1337,8 +1337,8 @@ In this lab, you learned:
 
 ## Next Steps
 
-1. **TUTORIAL-006: Real-time AI** - Streaming responses
-2. **PROJECT-002: Complete AI System** - Integrate everything
+1. **[TUTORIAL-006: Real-time AI](../tutorials/TUTORIAL-006-Real-time-AI.md)** - Streaming responses
+2. **[PROJECT-007: Deploy Production AI System](../projects/PROJECT-007-Production-AI-System.md)** - Integrate everything
 3. Deploy production evaluation pipeline
 
 ---

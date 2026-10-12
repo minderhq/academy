@@ -1765,7 +1765,7 @@ In this lab, you learned:
 
 ## Next Steps
 
-1. **LAB-010**: Advanced Topics
+1. **[LAB-010](LAB-010-DPO-Alignment.md)**: Advanced Topics
 2. Deploy your own production system
 3. Set up comprehensive monitoring
 4. Implement sophisticated cost optimization

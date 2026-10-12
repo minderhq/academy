@@ -1222,9 +1222,9 @@ Grafana dashboards should show:
 
 After completing this lab:
 
-1. **LAB-008: Agent Fleet** - Build multi-agent systems
-2. **LAB-009: Production Deployment** - Deploy to production
-3. **6302-CAG-Long-Context-Architectures.md** - Advanced RAG techniques
+1. **[LAB-008: Agent Fleet](LAB-008-Agent-Fleet.md)** - Build multi-agent systems
+2. **[LAB-009: Production Deployment](LAB-009-Production-Deployment.md)** - Deploy to production
+3. **[6302-CAG-Long-Context-Architectures.md](../../phases/phase6-rag/6300-context/6302-CAG-Long-Context-Architectures.md)** - Advanced RAG techniques
 
 ---
 

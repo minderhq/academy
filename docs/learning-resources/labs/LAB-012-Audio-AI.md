@@ -1512,8 +1512,8 @@ In this lab, you learned:
 
 ## Next Steps
 
-1. **LAB-013: Advanced Function Calling** - Enhance your assistant
-2. **LAB-014: AI Evaluation** - Test your voice system
+1. **[LAB-013: Advanced Function Calling](LAB-013-Advanced-Function-Calling.md)** - Enhance your assistant
+2. **[LAB-014: AI Evaluation](LAB-014-AI-Evaluation-Safety.md)** - Test your voice system
 3. Build multi-modal voice + vision assistant
 
 ---

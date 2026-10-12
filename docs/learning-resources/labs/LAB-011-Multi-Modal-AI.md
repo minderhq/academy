@@ -1459,8 +1459,8 @@ In this lab, you learned:
 
 ## Next Steps
 
-1. **LAB-012: Audio AI** - Add speech capabilities
-2. **LAB-013: Advanced Function Calling** - Enhance agent tools
+1. **[LAB-012: Audio AI](LAB-012-Audio-AI.md)** - Add speech capabilities
+2. **[LAB-013: Advanced Function Calling](LAB-013-Advanced-Function-Calling.md)** - Enhance agent tools
 3. Build a complete multi-modal assistant
 
 ---

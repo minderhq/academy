@@ -1471,8 +1471,8 @@ In this lab, you learned:
 
 ## Next Steps
 
-1. **LAB-014: AI Evaluation & Safety** - Test your tools
-2. **LAB-011: Multi-Modal** - Add vision tools
+1. **[LAB-014: AI Evaluation & Safety](LAB-014-AI-Evaluation-Safety.md)** - Test your tools
+2. **[LAB-011: Multi-Modal](LAB-011-Multi-Modal-AI.md)** - Add vision tools
 3. Build complete agent with 20+ tools
 
 ---
