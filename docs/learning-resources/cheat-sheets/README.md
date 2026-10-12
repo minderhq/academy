@@ -9,7 +9,7 @@ Tags: ['cheatsheet', 'reference']
 
 # Quick Reference Cheat Sheets
 
-Fifty-six single-page references: forty-nine tool cheat sheets and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
+Fifty-seven single-page references: fifty tool cheat sheets and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
 
 ## Tool Cheat Sheets
 
@@ -148,6 +148,9 @@ What the vector is, how cosine and dot measure closeness, the HNSW walk with its
 
 ### [CHEAT-SHEET-049: Context Engineering - the Dilution Curve, the Stuffing Bet, and the Distilled Prompt](./CHEAT-SHEET-049-Context-Engineering.md)
 The dilution curve behind the advertised window, the two-ledger price and the stuffing bet against retrieval, the routed budget, ring attention's group shift, and the distilled prompt.
+
+### [CHEAT-SHEET-050: MLOps Pipelines - the Lifecycle State Machine, the Challenger Verdict, and the Fleet Bill](./CHEAT-SHEET-050-MLOps-Pipelines.md)
+The MLOps pipeline surface in seven priced exhibits - lifecycle gates, challenger statistics, registry mechanics, re-embedding policy, and the fleet's three bills.
 ## Volume Quick References
 
 - [1: Infrastructure Fundamentals - Quick Reference](./QUICK-REF-VOLUME-1.md)
@@ -168,4 +171,4 @@ One condensed page per volume: the formulas, flags and commands each volume's mo
 
 ---
 
-**Total Cheat Sheets:** 56 documents
+**Total Cheat Sheets:** 57 documents

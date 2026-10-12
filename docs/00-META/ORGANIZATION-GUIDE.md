@@ -31,7 +31,7 @@ Minder Academy/
 │   ├── docker-compose.yml
 │   ├── .env.example
 │   └── performance-testing/k6/
-├── docs/                              # All documentation (496 files)
+├── docs/                              # All documentation (497 files)
 │   ├── 00-META/                      # Meta documentation
 │   ├── phases/                       # Phase documentation (33 modules)
 │   ├── learning-resources/           # Learning materials
@@ -183,7 +183,7 @@ docs/learning-resources/
 │   ├── SOLUTION-LAB-001-Docker-LLM.md
 │   └── ...
 │
-├── cheat-sheets/                     # 57 cheat sheets
+├── cheat-sheets/                     # 58 cheat sheets
 │   ├── CHEAT-SHEET-001-Docker.md
 │   ├── CHEAT-SHEET-002-Python-AI.md
 │   ├── CHEAT-SHEET-003-Git.md
@@ -660,7 +660,7 @@ if __name__ == "__main__":
 | Category | Files | Percentage |
 |----------|-----:|----------:|
 | Phase Docs | 111 | 24% |
-| Learning Resources | 57 | 12% |
+| Learning Resources | 58 | 12% |
 | Experiments | 44 | 10% |
 | Meta Docs | 30 | 6% |
 | Reference | 220 | 48% |
