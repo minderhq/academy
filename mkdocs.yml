@@ -497,6 +497,7 @@ nav:
         - "Synthetic Data & Advanced Training - the Distilled Student, the Federated Fleet, and the Recursion Tax": learning-resources/cheat-sheets/CHEAT-SHEET-045-Synthetic-Data-Advanced-Training.md
         - "Advanced Optimization - the Optimizer Memory Ledger, the Schedule Arc, and the Failure Toolbox": learning-resources/cheat-sheets/CHEAT-SHEET-046-Advanced-Optimization.md
         - "Retrieval Strategies - the Two-Channel Fusion, the Rerank Funnel, and the Diversity Dial": learning-resources/cheat-sheets/CHEAT-SHEET-047-Retrieval-Strategies.md
+        - "Semantic Vectors - the HNSW Ledger, the Recall Dial, and the Truncation Contract": learning-resources/cheat-sheets/CHEAT-SHEET-048-Semantic-Vectors.md
         - "Agent Memory Systems": learning-resources/cheat-sheets/CHEAT-SHEET-025-Agent-Memory-Systems.md
         - "Agent Security": learning-resources/cheat-sheets/CHEAT-SHEET-026-Agent-Security.md
         - "Tool Calling and MCP": learning-resources/cheat-sheets/CHEAT-SHEET-027-Tool-Calling-and-MCP.md
