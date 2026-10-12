@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE1-QUIZ
 Title: "Phase 1: Infrastructure Quiz"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-12
 Status: Complete
 Difficulty: Beginner
 Tags: ['assessment', 'quiz', 'infrastructure']
@@ -132,6 +132,24 @@ Tags: ['assessment', 'quiz', 'infrastructure']
 - b) Network protocol
 - c) Storage system
 - d) Lightweight Kubernetes distribution
+
+---
+
+## Need to Review?
+
+Each question maps to the closest lesson for review:
+
+- **Questions 1, 3:** [1103: Jumbo Frames and MTU](../../phases/phase1-infra/1100-network/1103-Jumbo-Frames-and-MTU.md) — MTU sizing, jumbo frames and the packet-overhead math of big transfers
+- **Question 2:** [1302: GPU Scheduler](../../phases/phase1-infra/1300-kubernetes/1302-GPU-Scheduler.md) — how the GPU scheduler places pods on device-capable nodes
+- **Question 4:** [1201: Proxmox Hypervisor SOP](../../phases/phase1-infra/1200-virtualization/1201-Proxmox-Hypervisor-SOP.md) — Proxmox core pinning and the hypervisor SOP
+- **Question 5:** [1202: TB3 UT3G Passthrough](../../phases/phase1-infra/1200-virtualization/1202-TB3-UT3G-Passthrough.md) — PCIe passthrough for TB3/UT3G-attached GPUs
+- **Questions 6, 14:** [1303: Storage Classes](../../phases/phase1-infra/1300-kubernetes/1303-Storage-Classes.md) — NFS-backed shared storage and storage classes
+- **Question 7:** [1401: Ollama Enterprise](../../phases/phase1-infra/1400-llmops/1401-Ollama-Enterprise.md) — Ollama Enterprise local model APIs
+- **Question 8:** [1402: vLLM and TGI](../../phases/phase1-infra/1400-llmops/1402-vLLM-and-TGI.md) — PagedAttention and serving throughput in vLLM and TGI
+- **Question 9:** [1501: Monitoring and Observability](../../phases/phase1-infra/1500-monitoring/1501-Monitoring-and-Observability.md) — Loki log aggregation and the observability stack
+- **Question 10:** [1502: Model Drift Detection](../../phases/phase1-infra/1500-monitoring/1502-Model-Drift-Detection.md) — model drift detection over time
+- **Question 11:** [1503: LLM Observability](../../phases/phase1-infra/1500-monitoring/1503-LLM-Observability.md) — TTFT and the LLM latency metrics
+- **Questions 12-13, 15:** [1301: K3s Master Worker Arch](../../phases/phase1-infra/1300-kubernetes/1301-K3s-Master-Worker-Arch.md) — containers, multi-container orchestration and the lightweight K3s control plane
 
 ---
 

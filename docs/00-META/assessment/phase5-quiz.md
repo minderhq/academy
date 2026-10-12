@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE5-QUIZ
 Title: "Phase 5: Fine-Tuning & Alignment Quiz"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-12
 Status: Complete
 Difficulty: Advanced
 Tags: ['assessment', 'quiz', 'finetuning']
@@ -252,6 +252,29 @@ Tags: ['assessment', 'quiz', 'finetuning']
 - b) Can fine-tune larger models in same memory
 - c) Better accuracy
 - d) Simpler implementation
+
+---
+
+## Need to Review?
+
+Each question maps to the closest lesson for review:
+
+- **Questions 1-2, 4, 11-13:** [5101: LoRA Logic](../../phases/phase5-finetuning/5100-peft/5101-LoRA-Logic.md) — the rank hypothesis, alpha scaling, rank budgets and target modules
+- **Questions 3, 22, 30:** [5102: QLoRA Pipelines](../../phases/phase5-finetuning/5100-peft/5102-QLoRA-Pipelines.md) — the 4-bit quantized base, the memory footprint and larger models on the same GPU
+- **Questions 5-6:** [5201: DPO Theory](../../phases/phase5-finetuning/5200-alignment/5201-DPO-Theory.md) — DPO and preference optimization without a reward model
+- **Questions 7-8:** [5203: RLHF](../../phases/phase5-finetuning/5200-alignment/5203-RLHF.md) — RLHF from human feedback and the reward models that score it
+- **Question 9:** [5301: Knowledge Distillation](../../phases/phase5-finetuning/5300-synthetic/5301-Knowledge-Distillation.md) — knowledge distillation from a teacher
+- **Questions 10, 27-29:** [5103: Adapters](../../phases/phase5-finetuning/5100-peft/5103-Adapters.md) — the PEFT family: adapter layers, prompt tuning and prefix tuning
+- **Questions 14, 16-17:** [5304: Self Instruct and Model Collapse](../../phases/phase5-finetuning/5300-synthetic/5304-Self-Instruct-and-Model-Collapse.md) — instruction tuning and synthetic data generation
+- **Question 15:** [5202: Alignment Orchestration](../../phases/phase5-finetuning/5200-alignment/5202-Alignment-Orchestration.md) — supervised fine-tuning inside the alignment pipeline
+- **Question 18:** [5303: Federated Learning](../../phases/phase5-finetuning/5300-synthetic/5303-Federated-Learning.md) — federated learning across data sources
+- **Question 19:** [5401: Data Parallelism](../../phases/phase5-finetuning/5400-distributed-training/5401-Data-Parallelism.md) — data parallelism splitting the batch
+- **Question 20:** [5402: Model Parallelism](../../phases/phase5-finetuning/5400-distributed-training/5402-Model-Parallelism.md) — model parallelism splitting the model
+- **Question 21:** [5302: Distributed Training](../../phases/phase5-finetuning/5300-synthetic/5302-Distributed-Training.md) — distributed training across devices
+- **Question 23:** [5404: Distributed Optimization](../../phases/phase5-finetuning/5400-distributed-training/5404-Distributed-Optimization.md) — gradient accumulation over micro-batches
+- **Question 24:** [5502: Learning Rate Scheduling](../../phases/phase5-finetuning/5500-advanced-optimization/5502-Learning-Rate-Scheduling.md) — learning rate schedules
+- **Question 25:** [5406: Distributed LR Scaling](../../phases/phase5-finetuning/5400-distributed-training/5406-Distributed-LR-Scaling.md) — the warmup ramp that stabilizes the start
+- **Question 26:** [5501: Optimizer Variants](../../phases/phase5-finetuning/5500-advanced-optimization/5501-Optimizer-Variants.md) — weight decay as L2 regularization
 
 ---
 

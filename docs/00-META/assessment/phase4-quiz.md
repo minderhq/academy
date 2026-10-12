@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE4-QUIZ
 Title: "Phase 4: Quantization & Compression Quiz"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-12
 Status: Complete
 Difficulty: Advanced
 Tags: ['assessment', 'quiz', 'quantization']
@@ -252,6 +252,29 @@ Tags: ['assessment', 'quiz', 'quantization']
 - b) No calibration needed
 - c) Simpler process once calibration curves are pre-baked offline
 - d) Better accuracy with same bit-width
+
+---
+
+## Need to Review?
+
+Each question maps to the closest lesson for review:
+
+- **Questions 1-2, 13, 16, 20:** [4101: GGUF Physics](../../phases/phase4-quantization/4100-low-bit/4101-GGUF-Physics.md) — precision reduction, the FP16-to-INT4 memory bill, hybrid inference and the accuracy tax
+- **Question 3:** [4403: GGUF Format](../../phases/phase4-quantization/4400-advanced-techniques/4403-GGUF-Format.md) — the GGUF file format for llama.cpp
+- **Questions 4, 28:** [4102: EXL2 and AWQ](../../phases/phase4-quantization/4100-low-bit/4102-EXL2-and-AWQ.md) — EXL2 GPU inference and the speedup story
+- **Question 5:** [4402: AWQ](../../phases/phase4-quantization/4400-advanced-techniques/4402-AWQ.md) — activation-aware weight quantization
+- **Questions 6, 29:** [4401: GPTQ](../../phases/phase4-quantization/4400-advanced-techniques/4401-GPTQ.md) — post-training quantization, calibration and the layer-wise pass
+- **Question 7:** [4103: Double Quantization](../../phases/phase4-quantization/4100-low-bit/4103-Double-Quantization.md) — double quantization of the quantization constants
+- **Questions 8, 14:** [4201: Context Window Physics](../../phases/phase4-quantization/4200-kv-cache/4201-Context-Window-Physics.md) — the KV cache and the context-window bill
+- **Questions 9, 15:** [4204: KV Cache Paging and Prefix Caching](../../phases/phase4-quantization/4200-kv-cache/4204-KV-Cache-Paging-and-Prefix-Caching.md) — PagedAttention and quantized KV memory for long contexts
+- **Question 10:** [4202: Speculative Decoding](../../phases/phase4-quantization/4200-kv-cache/4202-Speculative-Decoding.md) — speculative decoding with draft models
+- **Questions 11, 18-19, 30:** [4301: QAT Foundations](../../phases/phase4-quantization/4300-quantization-aware-training/4301-QAT-Foundations.md) — simulated quantization, zero points, per-channel scales and QAT vs post-training
+- **Question 12:** [4302: Fake Quantization](../../phases/phase4-quantization/4300-quantization-aware-training/4302-Fake-Quantization.md) — fake quantization during training
+- **Questions 17, 24, 26-27:** [4305: Quantization Configuration](../../phases/phase4-quantization/4300-quantization-aware-training/4305-Quantization-Configuration.md) — calibration data, batch pipelines and dynamic vs static modes
+- **Question 21:** [4406: 1.58 bit Quantization](../../phases/phase4-quantization/4400-advanced-techniques/4406-1.58-bit-Quantization.md) — 1.58-bit ternary weights
+- **Question 22:** [4405: Sparsity Quantization](../../phases/phase4-quantization/4400-advanced-techniques/4405-Sparsity-Quantization.md) — sparsity combined with quantization
+- **Question 23:** [4104: MXFP4 and NVFP4](../../phases/phase4-quantization/4100-low-bit/4104-MXFP4-and-NVFP4.md) — quantizing very large models with microscaling formats
+- **Question 25:** [4407: Ternary Binary](../../phases/phase4-quantization/4400-advanced-techniques/4407-Ternary-Binary.md) — ternary and binary weights for edge deployment
 
 ---
 

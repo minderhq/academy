@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE6-QUIZ
 Title: "Phase 6: Data Nexus (RAG) Quiz"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-12
 Status: Complete
 Difficulty: Advanced
 Tags: ['assessment', 'quiz', 'rag']
@@ -252,6 +252,23 @@ Tags: ['assessment', 'quiz', 'rag']
 - b) Captures relationships between entities
 - c) Better accuracy
 - d) Simpler implementation
+
+---
+
+## Need to Review?
+
+Each question maps to the closest lesson for review:
+
+- **Questions 1-3, 5, 21, 23:** [6401: Qdrant Setup](../../phases/phase6-rag/6400-vector-databases/6401-Qdrant-Setup.md) — RAG end to end: the vector store, metadata filters and the document store
+- **Question 4:** [6101: HNSW Indexing](../../phases/phase6-rag/6100-vector/6101-HNSW-Indexing.md) — the HNSW graph index
+- **Questions 6, 17:** [6102: Semantic Similarity](../../phases/phase6-rag/6100-vector/6102-Semantic-Similarity.md) — similarity of meaning and dense retrieval
+- **Question 7:** [6104: Embedding Sciences](../../phases/phase6-rag/6100-vector/6104-Embedding-Sciences.md) — embeddings as numerical representations of text
+- **Questions 8, 16, 18, 27:** [6201: Hybrid Search](../../phases/phase6-rag/6200-retrieval/6201-Hybrid-Search.md) — hybrid search: dense plus sparse, BM25 and fusion
+- **Questions 9, 24-25:** [6202: Re-ranking and Retrieval Logistics](../../phases/phase6-rag/6200-retrieval/6202-Re-ranking-and-Retrieval-Logistics.md) — the reranking pipeline and cross-encoders
+- **Questions 10-12, 30:** [6301: Neo4j and Knowledge Graphs](../../phases/phase6-rag/6300-context/6301-Neo4j-and-Knowledge-Graphs.md) — GraphRAG over entities and relations in Neo4j
+- **Questions 13-15, 22, 26, 28-29:** [6203: Advanced Retrieval](../../phases/phase6-rag/6200-retrieval/6203-Advanced-Retrieval.md) — chunking, chunk overlap, multi-vector, query expansion, parent-document and recursive retrieval
+- **Question 19:** [6306: Context Window Economics](../../phases/phase6-rag/6300-context/6306-Context-Window-Economics.md) — the context window as a priced input length
+- **Question 20:** [6302: CAG Long Context Architectures](../../phases/phase6-rag/6300-context/6302-CAG-Long-Context-Architectures.md) — long-context RAG and relevance decay
 
 ---
 
