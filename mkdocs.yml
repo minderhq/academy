@@ -495,6 +495,7 @@ nav:
         - "4-Bit Residuals - the Metadata Squeeze and the Hardware-Native Grid": learning-resources/cheat-sheets/CHEAT-SHEET-043-4-Bit-Residuals.md
         - "Quantization-Aware Training - the Straight-Through Estimator and the Layer Map": learning-resources/cheat-sheets/CHEAT-SHEET-044-Quantization-Aware-Training.md
         - "Synthetic Data & Advanced Training - the Distilled Student, the Federated Fleet, and the Recursion Tax": learning-resources/cheat-sheets/CHEAT-SHEET-045-Synthetic-Data-Advanced-Training.md
+        - "Advanced Optimization - the Optimizer Memory Ledger, the Schedule Arc, and the Failure Toolbox": learning-resources/cheat-sheets/CHEAT-SHEET-046-Advanced-Optimization.md
         - "Agent Memory Systems": learning-resources/cheat-sheets/CHEAT-SHEET-025-Agent-Memory-Systems.md
         - "Agent Security": learning-resources/cheat-sheets/CHEAT-SHEET-026-Agent-Security.md
         - "Tool Calling and MCP": learning-resources/cheat-sheets/CHEAT-SHEET-027-Tool-Calling-and-MCP.md
