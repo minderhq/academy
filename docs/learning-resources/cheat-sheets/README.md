@@ -9,7 +9,7 @@ Tags: ['cheatsheet', 'reference']
 
 # Quick Reference Cheat Sheets
 
-Sixty single-page references: fifty-three tool cheat sheets and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
+Sixty-One single-page references: fifty-four tool cheat sheets and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
 
 ## Tool Cheat Sheets
 
@@ -157,6 +157,8 @@ The per-rank memory bill, the sharding ladder, the pipeline bubble, FSDP2's thre
 The registry economy, the deep-merge config resolve, the batching flush law, the paged KV bill, the limiter trio, the rollout ladder, and the chi-squared verdict.
 ### [CHEAT-SHEET-053: Vector Databases - the RAM Ledger, the Quantile Trap, and the Rescore Ladder](./CHEAT-SHEET-053-Vector-Databases.md)
 The RAM ledger arithmetic, the distance trio, the SQ quantile trap, binary and product quantization floors, the oversample x rescore ladder, and the snapshot RPO bill.
+### [CHEAT-SHEET-054: Network Foundations - the Wire-Efficiency Bill, the Handshake Ledger, and the First-Token Budget](./CHEAT-SHEET-054-Network-Foundations.md)
+The wire-efficiency bill, the MTU ladder, the 2.5G throughput ledger, the VLAN plan, the segment fold, the loss bill, and the handshake-plus-first-token budget.
 ## Volume Quick References
 
 - [1: Infrastructure Fundamentals - Quick Reference](./QUICK-REF-VOLUME-1.md)
@@ -177,4 +179,4 @@ One condensed page per volume: the formulas, flags and commands each volume's mo
 
 ---
 
-**Total Cheat Sheets:** 60 documents
+**Total Cheat Sheets:** 61 documents

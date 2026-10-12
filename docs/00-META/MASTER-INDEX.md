@@ -14,7 +14,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 **Last Updated:** 2026-10-08
 
-**Total Files:** 500 markdown files (docs/)
+**Total Files:** 501 markdown files (docs/)
 
 ---
 
@@ -234,7 +234,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 ---
 
-### Cheat Sheets (60 files)
+### Cheat Sheets (61 files)
 
 | ID | Topic | Coverage |
 |----|-------|----------|
@@ -291,6 +291,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **[CHEAT-SHEET-051](../learning-resources/cheat-sheets/CHEAT-SHEET-051-Distributed-Training.md)** | Distributed Training - the Memory Bill, the Stability Wall, and the Campaign | Per-rank memory bill, sharding ladder, pipeline bubble, tensor-pairing law, FSDP2 states, float8 dead zone, LR wall, warmup sizing, five-bill campaign |
 | **[CHEAT-SHEET-052](../learning-resources/cheat-sheets/CHEAT-SHEET-052-Framework-Engineering.md)** | Framework Engineering - the Registry, the Batching Flush, and the Rollout Gate | Registry economy, config deep-merge, batching flush, KV page bill, limiter trio, rollout ladder, chi-squared verdict |
 | **[CHEAT-SHEET-053](../learning-resources/cheat-sheets/CHEAT-SHEET-053-Vector-Databases.md)** | Vector Databases - the RAM Ledger, the Quantile Trap, and the Rescore Ladder | RAM ledger, distance trio, SQ quantile trap, binary floor, PQ codebooks and ADC, oversample ladder, vendor bill, snapshot RPO |
+| **[CHEAT-SHEET-054](../learning-resources/cheat-sheets/CHEAT-SHEET-054-Network-Foundations.md)** | Network Foundations - the Wire-Efficiency Bill, the Handshake Ledger, and the First-Token Budget | Wire-efficiency bill, MTU ladder, 2.5G throughput ledger, VLAN plan, segment fold, loss bill, handshake ledger, first-token budget |
 | **[QUICK-REF-V1](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-1.md)** | Infrastructure Fundamentals - Quick Reference | Phase 1 Quick Reference |
 | **[QUICK-REF-V2](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-2.md)** | AI/ML Foundations - Quick Reference | Phase 2 Quick Reference |
 | **[QUICK-REF-V3](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-3.md)** | LLM Internals - Quick Reference | Phase 3 Quick Reference |
@@ -450,7 +451,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **Jupyter Notebooks** | 20 |
 | **Practice Files** | 33 |
 | **Quiz Files** | 33 |
-| **Cheat Sheets** | 61 |
+| **Cheat Sheets** | 62 |
 | **Projects** | 7 |
 | **Experiments** | 47 |
 | **Comparisons** | 3 |
@@ -459,7 +460,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **Solutions** | 3 |
 | **Diagrams** | 4 |
 | **Meta Docs** | 20 |
-| **TOTAL** | **619** |
+| **TOTAL** | **620** |
 
 ### Content Statistics
 
