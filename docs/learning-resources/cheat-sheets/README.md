@@ -9,7 +9,7 @@ Tags: ['cheatsheet', 'reference']
 
 # Quick Reference Cheat Sheets
 
-Sixty-One single-page references: fifty-four tool cheat sheets and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
+Sixty-Two single-page references: fifty-five tool cheat sheets and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
 
 ## Tool Cheat Sheets
 
@@ -159,6 +159,8 @@ The registry economy, the deep-merge config resolve, the batching flush law, the
 The RAM ledger arithmetic, the distance trio, the SQ quantile trap, binary and product quantization floors, the oversample x rescore ladder, and the snapshot RPO bill.
 ### [CHEAT-SHEET-054: Network Foundations - the Wire-Efficiency Bill, the Handshake Ledger, and the First-Token Budget](./CHEAT-SHEET-054-Network-Foundations.md)
 The wire-efficiency bill, the MTU ladder, the 2.5G throughput ledger, the VLAN plan, the segment fold, the loss bill, and the handshake-plus-first-token budget.
+### [CHEAT-SHEET-055: Virtualization and GPU Passthrough - the Hypervisor RAM Ledger, the Passthrough Gate Chain, and the Multi-GPU Scaling Wall](./CHEAT-SHEET-055-Virtualization-and-GPU-Passthrough.md)
+The hypervisor RAM ledger, the IOMMU group verdict, the passthrough gate chain, the Thunderbolt tunnel bill, the kernel module ledger, the multi-GPU scaling wall, and the NCCL peer wall.
 ## Volume Quick References
 
 - [1: Infrastructure Fundamentals - Quick Reference](./QUICK-REF-VOLUME-1.md)
@@ -179,4 +181,4 @@ One condensed page per volume: the formulas, flags and commands each volume's mo
 
 ---
 
-**Total Cheat Sheets:** 61 documents
+**Total Cheat Sheets:** 62 documents

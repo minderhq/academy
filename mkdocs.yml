@@ -513,6 +513,7 @@ nav:
         - "Framework Engineering - the Registry, the Batching Flush, and the Rollout Gate": learning-resources/cheat-sheets/CHEAT-SHEET-052-Framework-Engineering.md
         - "Vector Databases - the RAM Ledger, the Quantile Trap, and the Rescore Ladder": learning-resources/cheat-sheets/CHEAT-SHEET-053-Vector-Databases.md
         - "Network Foundations - the Wire-Efficiency Bill, the Handshake Ledger, and the First-Token Budget": learning-resources/cheat-sheets/CHEAT-SHEET-054-Network-Foundations.md
+        - "Virtualization and GPU Passthrough - the Hypervisor RAM Ledger, the Passthrough Gate Chain, and the Multi-GPU Scaling Wall": learning-resources/cheat-sheets/CHEAT-SHEET-055-Virtualization-and-GPU-Passthrough.md
         - "Agent Memory Systems": learning-resources/cheat-sheets/CHEAT-SHEET-025-Agent-Memory-Systems.md
         - "Agent Security": learning-resources/cheat-sheets/CHEAT-SHEET-026-Agent-Security.md
         - "Tool Calling and MCP": learning-resources/cheat-sheets/CHEAT-SHEET-027-Tool-Calling-and-MCP.md
