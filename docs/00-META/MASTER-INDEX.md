@@ -14,7 +14,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 **Last Updated:** 2026-10-08
 
-**Total Files:** 491 markdown files (docs/)
+**Total Files:** 492 markdown files (docs/)
 
 ---
 
@@ -234,7 +234,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 ---
 
-### Cheat Sheets (51 files)
+### Cheat Sheets (52 files)
 
 | ID | Topic | Coverage |
 |----|-------|----------|
@@ -282,6 +282,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **[CHEAT-SHEET-042](../learning-resources/cheat-sheets/CHEAT-SHEET-042-Extreme-Quantization.md)** | Extreme Quantization - the Method Choice, the File Choice, the Training-Time Frontier | GPTQ's error compensation through the inverse Hessian's upper Cholesky (weight err 1.4806 vs RTN 1.3969 while output err drops to 0.9541x; 7.13x disk 32.10 to 4.50 GB at ppl 12.4 to 13.1), AWQ's activation-weighted salience where the same 32-coordinate FP16 budget mis-spent buys half (0.8409x vs 0.9269x on 34% overlap), the file choice GGUF (magic 0x46554747, Q4_K_M ~4.9 GB sitting ~+0.9 above the flat 4-bit floor) versus EXL2's per-layer 2-8 bit mix on NVIDIA, sparsity's break-even (FP16+CSR 67%, INT4+CSR 89%, 2:4 on Ampere+ at ~1.4-1.8x end-to-end), and the training-time frontier: 1.58-bit ternary (H = log2(3) = 1.58496 on 2 storage bits, absmean shrugging a +8.0 outlier at 1.04x where absmax zeroes 100.0% of the row at 5.28x, XNOR+popcount exact at 0.000000) |
 | **[CHEAT-SHEET-043](../learning-resources/cheat-sheets/CHEAT-SHEET-043-4-Bit-Residuals.md)** | 4-Bit Residuals - the Metadata Squeeze and the Hardware-Native Grid | The 4-bit invoice that lives outside the elements: double quantization re-quantizing the scales themselves (32768 scales land in 32770 bytes at max deviation one 8-bit step, <0.5% ppl, the 70B squeeze banking ~0.5 GB), the two grids (NF4's sixteen normal-matched levels at mean nearest-level distance 0.0391, e2m1's eight magnitudes whose 4-to-6 leap forces every MX scale round-UP), MXFP4's pow2 tax against NVFP4's full-precision scale (rel err 0.1163 vs 0.0947 = 1.23x tighter, mean scale-use 4.48 vs 5.94 of 6.0), one planted 100.0 flushing 31/31 block neighbors at a 1/128 blast radius versus 15/15 at 1/256, and gpt-oss-20b's selective census: 19.11B expert parameters (91.4%) carrying MXFP4 to 12.8 GB against bf16's 38.9 GB (3.04x) while attention, router and embeddings keep bf16 |
 | **[CHEAT-SHEET-044](../learning-resources/cheat-sheets/CHEAT-SHEET-044-Quantization-Aware-Training.md)** | Quantization-Aware Training - the Straight-Through Estimator and the Layer Map | The training pass that makes low bit-widths survivable: fake quantization's round trip maxing out at half a step (mean abs err 0.00374) with the straight-through estimator passing gradients through a rounding whose true derivative is exactly 0 (64/64 census; RoundSTE 1000/1000, ClampedSTE 930/1000, HardTanhSTE 965/1000 grads survive), the momentum-0.01 observer EMA whose first batch must seed against inf buffers (sym 0.021631 vs asym 0.021492, 1e-5 floor, eval freezes by design), the priced decision (INT8 routes inside 0.3 of each other, QAT earning its bill at INT4 91.5 and INT3 88.2), the transformer layer map where 6 Linears carry 99.967% of a block's weights while softmax/GELU/LayerNorm stay FP32 (per-channel ~1% vs per-tensor ~5% at 4 bits), the outlier tax (one planted 100.0 inflating the min-max scale 32x over the quantile scale), 4304's five low-bit techniques, the progressive 8->4->3 schedule at [5, 5, 10] epochs with KL*T^2 distillation, and the six config dimensions behind the Conservative/Balanced/Aggressive templates |
+| **[CHEAT-SHEET-045](../learning-resources/cheat-sheets/CHEAT-SHEET-045-Synthetic-Data-Advanced-Training.md)** | Synthetic Data & Advanced Training - the Distilled Student, the Federated Fleet, and the Recursion Tax | Distillation's temperature law (top 0.986/dark 0.014 at T=1 vs top 0.478/dark 0.522 at T=5, Hinton blend 0.5 KL x T^2 + 0.5 CE = 0.1420), FedAvg's sample weighting ([1.1850, 0.8550] weighted vs [1.2000, 0.8833] unweighted, int buffer 142 carried, FedProx (mu/2) x norm(w-wg)^2 = 0.000681), the fleet arithmetic (4x2x4 = 32 global batch identity, Amdahl s=0.176 predicting 1.70x/2.62x/3.58x at N=2/4/8, FSDP wrap at the 100,000 threshold, 1.31 MB bf16 per GPU on 4-way FULL_SHARD), DP-SGD per-sample clipping (factors [0.435, 1.0, 0.323, 1.0, 0.526], noised sum 5.1702 = 4.3 + 0.8702 to avg 1.0340, the batch-mean 1.72 trap, the rank-16 adapter 38 MB vs 14,000 MB = 371x), the self-instruct bootstrap (16 seeds, 3x40 candidates, keep-rate 32/120 = 0.267 at Jaccard 0.7, vocab 74 to 92), the model-collapse walk (types 1082 to 557, tail 154 to 70, singletons 548 to 100 in 4 ungated cycles; the 10% anchor buys +165 types and +22 tail at gen 4, control loses 302 types vs anchored 194) and the four-bill campaign (human $524,450, self-instruct $1,603 = 327x cheaper, anchor $52,440 to anchored $54,043, ungated collapse tax $238,608 = 4.4x the anchored bill) - the 5300-synthetic track's single-page closure. |
 | **[QUICK-REF-V1](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-1.md)** | Infrastructure Fundamentals - Quick Reference | Phase 1 Quick Reference |
 | **[QUICK-REF-V2](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-2.md)** | AI/ML Foundations - Quick Reference | Phase 2 Quick Reference |
 | **[QUICK-REF-V3](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-3.md)** | LLM Internals - Quick Reference | Phase 3 Quick Reference |
@@ -441,7 +442,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **Jupyter Notebooks** | 20 |
 | **Practice Files** | 33 |
 | **Quiz Files** | 33 |
-| **Cheat Sheets** | 52 |
+| **Cheat Sheets** | 53 |
 | **Projects** | 7 |
 | **Experiments** | 47 |
 | **Comparisons** | 3 |
@@ -450,7 +451,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **Solutions** | 3 |
 | **Diagrams** | 4 |
 | **Meta Docs** | 20 |
-| **TOTAL** | **610** |
+| **TOTAL** | **611** |
 
 ### Content Statistics
 
