@@ -11,6 +11,13 @@ Tags: ['assessment', 'quiz', 'pytorch']
 
 **20 Questions | Passing Score: 80% | Time: 45 minutes**
 
+## Instructions
+
+- **20 questions**, one best answer each
+- **Passing score: 80%** (16/20 correct)
+- Answers live only in the Answer Key at the end of this quiz - attempt every question before checking it
+- Graded below the line? The Need to Review? map above the Answer Key links every question to its closest lesson - rework those before your next attempt
+
 ---
 
 ## Questions

@@ -11,6 +11,13 @@ Tags: ['assessment', 'quiz', 'infrastructure']
 
 **15 Questions | Passing Score: 80% | Time: 30 minutes**
 
+## Instructions
+
+- **15 questions**, one best answer each
+- **Passing score: 80%** (12/15 correct)
+- Answers live only in the Answer Key at the end of this quiz - attempt every question before checking it
+- Graded below the line? The Need to Review? map above the Answer Key links every question to its closest lesson - rework those before your next attempt
+
 ---
 
 ## Questions

@@ -11,6 +11,13 @@ Tags: ['assessment', 'quiz', 'quantization']
 
 **30 Questions | Passing Score: 80% | Time: 60 minutes**
 
+## Instructions
+
+- **30 questions**, one best answer each
+- **Passing score: 80%** (24/30 correct)
+- Answers live only in the Answer Key at the end of this quiz - attempt every question before checking it
+- Graded below the line? The Need to Review? map above the Answer Key links every question to its closest lesson - rework those before your next attempt
+
 ---
 
 ## Questions
