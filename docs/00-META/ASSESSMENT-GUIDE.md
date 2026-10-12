@@ -1,7 +1,7 @@
 ---
 Document ID: ASSESSMENT-GUIDE
 Title: "Assessment Guide"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Beginner
 Tags: ['assessment', 'quiz', 'practice']
@@ -73,6 +73,8 @@ through phase7). Phase quiz sizes: 15 / 20 / 25 / 30 / 30 / 30 / 30 questions.
 
 ## Phase Quizzes
 
+- Answers live only in the Answer Key at the end of each quiz - attempt every question before checking it
+
 ### Phase 1: Infrastructure (15 Questions)
 
 ```markdown
@@ -81,17 +83,17 @@ through phase7). Phase quiz sizes: 15 / 20 / 25 / 30 / 30 / 30 / 30 questions.
    b) Increase security
    c) Improve encryption
    d) Reduce latency
-   Answer: a
 
 2. Which Kubernetes component manages GPU scheduling?
    a) kube-scheduler
    b) device plugin
    c) kubelet
    d) controller-manager
-   Answer: b
 
 [... 13 more questions ...]
 ```
+
+**Quiz:** [Phase 1 Quiz](assessment/phase1-quiz.md)
 
 ### Phase 2: Foundations (20 Questions)
 
@@ -101,17 +103,17 @@ through phase7). Phase quiz sizes: 15 / 20 / 25 / 30 / 30 / 30 / 30 questions.
    b) Forward predictions
    c) Activation values
    d) Learning rate
-   Answer: a
 
 2. In PyTorch, what is a computational graph?
    a) Dynamic representation of computations
    b) Static memory allocation
    c) Data storage structure
    d) Network architecture
-   Answer: a
 
 [... 18 more questions ...]
 ```
+
+**Quiz:** [Phase 2 Quiz](assessment/phase2-quiz.md)
 
 ### Phase 3: Transformers (25 Questions)
 
@@ -121,17 +123,17 @@ through phase7). Phase quiz sizes: 15 / 20 / 25 / 30 / 30 / 30 / 30 questions.
    b) Reducing model size
    c) Faster training
    d) Less memory usage
-   Answer: a
 
 2. What problem does RoPE (Rotary Position Embedding) solve?
    a) Position encoding for long sequences
    b) Memory optimization
    c) Faster inference
    d) Better generalization
-   Answer: a
 
 [... 23 more questions ...]
 ```
+
+**Quiz:** [Phase 3 Quiz](assessment/phase3-quiz.md)
 
 ### Phase 4: Quantization (30 Questions)
 
@@ -141,17 +143,17 @@ through phase7). Phase quiz sizes: 15 / 20 / 25 / 30 / 30 / 30 / 30 questions.
    b) Improves accuracy
    c) Faster training
    d) Smaller model file
-   Answer: a
 
 2. What does double quantization reduce?
    a) Memory footprint of quantization constants
    b) Model size
    c) Training time
    d) Inference latency
-   Answer: a
 
 [... 28 more questions ...]
 ```
+
+**Quiz:** [Phase 4 Quiz](assessment/phase4-quiz.md)
 
 ### Phase 5: Fine-Tuning (30 Questions)
 
@@ -161,17 +163,17 @@ through phase7). Phase quiz sizes: 15 / 20 / 25 / 30 / 30 / 30 / 30 questions.
    b) Learning rate
    c) Batch size
    d) Number of layers
-   Answer: a
 
 2. What makes DPO simpler than PPO?
    a) No reward model needed
    b) Faster training
    c) Better data
    d) More accurate
-   Answer: a
 
 [... 28 more questions ...]
 ```
+
+**Quiz:** [Phase 5 Quiz](assessment/phase5-quiz.md)
 
 ### Phase 6: RAG (30 Questions)
 
@@ -181,17 +183,17 @@ through phase7). Phase quiz sizes: 15 / 20 / 25 / 30 / 30 / 30 / 30 questions.
    b) Hash-based index
    c) Tree structure
    d) Linear scan
-   Answer: a
 
 2. What is the benefit of hybrid search?
    a) Combines keyword and semantic search
    b) Faster queries
    c) Less memory
    d) Simpler code
-   Answer: a
 
 [... 28 more questions ...]
 ```
+
+**Quiz:** [Phase 6 Quiz](assessment/phase6-quiz.md)
 
 ### Phase 7: Agents (30 Questions)
 
@@ -201,17 +203,17 @@ through phase7). Phase quiz sizes: 15 / 20 / 25 / 30 / 30 / 30 / 30 questions.
    b) Multi-agent system
    c) Tool calling
    d) Memory management
-   Answer: a
 
 2. What does a sandboxed code executor provide?
    a) Safe code execution environment
    b) Faster execution
    c) Better accuracy
    d) Less memory
-   Answer: a
 
 [... 28 more questions ...]
 ```
+
+**Quiz:** [Phase 7 Quiz](assessment/phase7-quiz.md)
 
 ---
 

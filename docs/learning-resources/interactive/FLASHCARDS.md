@@ -1,7 +1,7 @@
 ---
 Document ID: FLASHCARDS
 Title: "Minder Academy: Interactive Learning Components"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Intermediate
 Tags: ['flashcards', 'llm', 'practice']
@@ -56,10 +56,6 @@ B) [ ] To provide position information since self-attention is permutation invar
 C) [ ] To increase model capacity
 D) [ ] To regularize the model
 
-**Answer:** B
-
-**Explanation:** Self-attention processes all tokens in parallel and doesn't inherently know about position. Positional encodings add position information using sine/cosine functions or learned embeddings.
-
 ---
 
 **Question 2:** What is the main difference between BERT and GPT?
@@ -69,10 +65,15 @@ B) [ ] BERT is encoder-only, GPT is decoder-only
 C) [ ] BERT is for images, GPT is for text
 D) [ ] No difference
 
-**Answer:** B
-
-**Explanation:** BERT uses only the encoder stack (bidirectional attention), while GPT uses only the decoder stack (causal/masked attention).
+---
 ```
+
+## Answer Key
+
+| Question | Answer | Explanation |
+|----------|--------|-------------|
+| 1 | B | Self-attention processes all tokens in parallel and doesn't inherently know about position. Positional encodings add position information using sine/cosine functions or learned embeddings. |
+| 2 | B | BERT uses only the encoder stack (bidirectional attention), while GPT uses only the decoder stack (causal/masked attention). |
 
 ## Code Challenges
 
