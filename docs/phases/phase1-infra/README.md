@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE1-INFRA-README
 Title: "Phase 1: Infrastructure Fabric [1000]"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-12
 Status: Complete
 Difficulty: Advanced
 Tags: ['phase', 'infrastructure', 'gpu', 'networking']
@@ -21,6 +21,7 @@ Tags: ['phase', 'infrastructure', 'gpu', 'networking']
 - [Hardware Requirements](#hardware-requirements)
 - [Module Structure](#module-structure)
 - [Learning Path](#learning-path)
+- [Cheat Sheets](#cheat-sheets)
 - [Key Takeaways](#key-takeaways)
 - [Common Pitfalls](#common-pitfalls)
 - [Pro Tips](#pro-tips)
@@ -445,6 +446,26 @@ graph TD
 | **Total** | **50h** | **31h** | **81h** |
 
 ---
+
+## Cheat Sheets
+
+Single-page references for the surfaces this phase teaches:
+
+- **[CHEAT-SHEET-001: Docker Commands](../../learning-resources/cheat-sheets/CHEAT-SHEET-001-Docker.md)**
+- **[CHEAT-SHEET-006: Kubernetes for LLM Deployment](../../learning-resources/cheat-sheets/CHEAT-SHEET-006-Kubernetes.md)**
+- **[CHEAT-SHEET-007: vLLM Serving & Inference](../../learning-resources/cheat-sheets/CHEAT-SHEET-007-vLLM-Serving.md)**
+- **[CHEAT-SHEET-008: Reasoning Models & Test-Time Compute](../../learning-resources/cheat-sheets/CHEAT-SHEET-008-Reasoning-Models.md)**
+- **[CHEAT-SHEET-009: Local Inference with llama.cpp & Ollama](../../learning-resources/cheat-sheets/CHEAT-SHEET-009-Local-Inference.md)**
+- **[CHEAT-SHEET-013: Structured Output & Function Calling](../../learning-resources/cheat-sheets/CHEAT-SHEET-013-Structured-Output-Function-Calling.md)**
+- **[CHEAT-SHEET-014: Decoding & Sampling Strategies](../../learning-resources/cheat-sheets/CHEAT-SHEET-014-Decoding-Sampling-Strategies.md)**
+- **[CHEAT-SHEET-018: Speculative Decoding](../../learning-resources/cheat-sheets/CHEAT-SHEET-018-Speculative-Decoding.md)**
+- **[CHEAT-SHEET-028: Agent Evaluation and Observability](../../learning-resources/cheat-sheets/CHEAT-SHEET-028-Agent-Evaluation-and-Observability.md)**
+- **[CHEAT-SHEET-029: Function Calling Training and Constrained Decoding](../../learning-resources/cheat-sheets/CHEAT-SHEET-029-Function-Calling-Training-and-Constrained-Decoding.md)**
+- **[CHEAT-SHEET-033: LLM Observability](../../learning-resources/cheat-sheets/CHEAT-SHEET-033-LLM-Observability.md)**
+- **[CHEAT-SHEET-034: SGLang RadixAttention Serving](../../learning-resources/cheat-sheets/CHEAT-SHEET-034-SGLang-RadixAttention-Serving.md)**
+- **[CHEAT-SHEET-038: SDPA & torch.compile - the Kernel Choice and the Execution Choice](../../learning-resources/cheat-sheets/CHEAT-SHEET-038-SDPA-and-torch-compile.md)**
+- **[CHEAT-SHEET-054: Network Foundations - the Wire-Efficiency Bill, the Handshake Ledger, and the First-Token Budget](../../learning-resources/cheat-sheets/CHEAT-SHEET-054-Network-Foundations.md)**
+- **[Volume 1: Infrastructure Fundamentals - Quick Reference](../../learning-resources/cheat-sheets/QUICK-REF-VOLUME-1.md)** - the full command companion for this phase
 
 ## Key Takeaways
 

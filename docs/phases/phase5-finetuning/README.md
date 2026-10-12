@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE5-FINETUNING-README
 Title: "Phase 5: Fine-Tuning & Alignment [5000]"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-12
 Status: Complete
 Difficulty: Advanced
 Tags: ['phase', 'finetuning', 'training', 'distributed']
@@ -16,6 +16,7 @@ Tags: ['phase', 'finetuning', 'training', 'distributed']
 - [Fine-Tuning Methods Comparison](#fine-tuning-methods-comparison)
 - [Module Structure](#module-structure)
 - [Learning Path](#learning-path)
+- [Cheat Sheets](#cheat-sheets)
 - [Key Takeaways](#key-takeaways)
 - [Common Pitfalls](#common-pitfalls)
 - [Pro Tips](#pro-tips)
@@ -325,6 +326,20 @@ graph TD
 | **Total** | **79h** | **40h** | **119h** |
 
 ---
+
+## Cheat Sheets
+
+Single-page references for the surfaces this phase teaches:
+
+- **[CHEAT-SHEET-008: Reasoning Models & Test-Time Compute](../../learning-resources/cheat-sheets/CHEAT-SHEET-008-Reasoning-Models.md)**
+- **[CHEAT-SHEET-010: Alignment Methods — DPO, RLHF & GRPO](../../learning-resources/cheat-sheets/CHEAT-SHEET-010-Alignment-Methods.md)**
+- **[CHEAT-SHEET-016: LoRA & QLoRA](../../learning-resources/cheat-sheets/CHEAT-SHEET-016-LoRA-QLoRA.md)**
+- **[CHEAT-SHEET-029: Function Calling Training and Constrained Decoding](../../learning-resources/cheat-sheets/CHEAT-SHEET-029-Function-Calling-Training-and-Constrained-Decoding.md)**
+- **[CHEAT-SHEET-040: Model Merging - the Arithmetic That Combines Trained Models](../../learning-resources/cheat-sheets/CHEAT-SHEET-040-Model-Merging.md)**
+- **[CHEAT-SHEET-045: Synthetic Data & Advanced Training - the Distilled Student, the Federated Fleet, and the Recursion Tax](../../learning-resources/cheat-sheets/CHEAT-SHEET-045-Synthetic-Data-Advanced-Training.md)**
+- **[CHEAT-SHEET-046: Advanced Optimization - the Optimizer Memory Ledger, the Schedule Arc, and the Failure Toolbox](../../learning-resources/cheat-sheets/CHEAT-SHEET-046-Advanced-Optimization.md)**
+- **[CHEAT-SHEET-051: Distributed Training - the Memory Bill, the Stability Wall, and the Campaign](../../learning-resources/cheat-sheets/CHEAT-SHEET-051-Distributed-Training.md)**
+- **[Volume 5: Model Adaptation - Quick Reference](../../learning-resources/cheat-sheets/QUICK-REF-VOLUME-5.md)** - the full command companion for this phase
 
 ## Key Takeaways
 

@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE6-RAG-README
 Title: "Phase 6: Data Nexus - RAG, CAG & External Memory [6000]"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-12
 Status: Complete
 Difficulty: Advanced
 Tags: ['phase', 'rag', 'retrieval', 'hybrid-search']
@@ -19,6 +19,7 @@ Tags: ['phase', 'rag', 'retrieval', 'hybrid-search']
 - [Cost Analysis](#cost-analysis)
 - [Module Structure](#module-structure)
 - [Learning Path](#learning-path)
+- [Cheat Sheets](#cheat-sheets)
 - [Key Takeaways](#key-takeaways)
 - [Common Pitfalls](#common-pitfalls)
 - [Pro Tips](#pro-tips)
@@ -506,6 +507,20 @@ graph TD
 *6500 practice time is not yet estimated in its PRACTICE.md; phase totals cover the estimated modules.*
 
 ---
+
+## Cheat Sheets
+
+Single-page references for the surfaces this phase teaches:
+
+- **[CHEAT-SHEET-022: Multimodal Models](../../learning-resources/cheat-sheets/CHEAT-SHEET-022-Multimodal-Models.md)**
+- **[CHEAT-SHEET-036: Vector Memory - the Embedding-Backed Store](../../learning-resources/cheat-sheets/CHEAT-SHEET-036-Vector-Memory-Embedding-Backed-Store.md)**
+- **[CHEAT-SHEET-039: Word Embeddings - the Tradition That Turned Co-occurrence into Coordinates](../../learning-resources/cheat-sheets/CHEAT-SHEET-039-Word-Embeddings-Tradition.md)**
+- **[CHEAT-SHEET-047: Retrieval Strategies - the Two-Channel Fusion, the Rerank Funnel, and the Diversity Dial](../../learning-resources/cheat-sheets/CHEAT-SHEET-047-Retrieval-Strategies.md)**
+- **[CHEAT-SHEET-048: Semantic Vectors - the HNSW Ledger, the Recall Dial, and the Truncation Contract](../../learning-resources/cheat-sheets/CHEAT-SHEET-048-Semantic-Vectors.md)**
+- **[CHEAT-SHEET-049: Context Engineering - the Dilution Curve, the Stuffing Bet, and the Distilled Prompt](../../learning-resources/cheat-sheets/CHEAT-SHEET-049-Context-Engineering.md)**
+- **[CHEAT-SHEET-050: MLOps Pipelines - the Lifecycle State Machine, the Challenger Verdict, and the Fleet Bill](../../learning-resources/cheat-sheets/CHEAT-SHEET-050-MLOps-Pipelines.md)**
+- **[CHEAT-SHEET-053: Vector Databases - the RAM Ledger, the Quantile Trap, and the Rescore Ladder](../../learning-resources/cheat-sheets/CHEAT-SHEET-053-Vector-Databases.md)**
+- **[Volume 6: Data Nexus: RAG & Memory - Quick Reference](../../learning-resources/cheat-sheets/QUICK-REF-VOLUME-6.md)** - the full command companion for this phase
 
 ## Key Takeaways
 

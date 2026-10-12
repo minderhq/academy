@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE7-AGENTIC-README
 Title: "Phase 7: Agentic Cognition & Autonomy [7000]"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-12
 Status: Complete
 Difficulty: Advanced
 Tags: ['phase', 'agents', 'security', 'prompt-injection']
@@ -21,6 +21,7 @@ Tags: ['phase', 'agents', 'security', 'prompt-injection']
 - [Tool Registry](#tool-registry)
 - [Module Structure](#module-structure)
 - [Learning Path](#learning-path)
+- [Cheat Sheets](#cheat-sheets)
 - [Key Takeaways](#key-takeaways)
 - [Common Pitfalls](#common-pitfalls)
 - [Pro Tips](#pro-tips)
@@ -682,6 +683,27 @@ graph TD
 *7500 practice time is not yet estimated in its PRACTICE.md; phase totals cover the estimated modules.*
 
 ---
+
+## Cheat Sheets
+
+Single-page references for the surfaces this phase teaches:
+
+- **[CHEAT-SHEET-012: LLM Guardrails & Agent Security](../../learning-resources/cheat-sheets/CHEAT-SHEET-012-LLM-Guardrails-Agent-Security.md)**
+- **[CHEAT-SHEET-013: Structured Output & Function Calling](../../learning-resources/cheat-sheets/CHEAT-SHEET-013-Structured-Output-Function-Calling.md)**
+- **[CHEAT-SHEET-014: Decoding & Sampling Strategies](../../learning-resources/cheat-sheets/CHEAT-SHEET-014-Decoding-Sampling-Strategies.md)**
+- **[CHEAT-SHEET-023: ReAct Agent Loop](../../learning-resources/cheat-sheets/CHEAT-SHEET-023-ReAct-Agent-Loop.md)**
+- **[CHEAT-SHEET-024: Multi-Agent Orchestration](../../learning-resources/cheat-sheets/CHEAT-SHEET-024-Multi-Agent-Orchestration.md)**
+- **[CHEAT-SHEET-025: Agent Memory Systems](../../learning-resources/cheat-sheets/CHEAT-SHEET-025-Agent-Memory-Systems.md)**
+- **[CHEAT-SHEET-026: Agent Security](../../learning-resources/cheat-sheets/CHEAT-SHEET-026-Agent-Security.md)**
+- **[CHEAT-SHEET-027: Tool Calling and MCP](../../learning-resources/cheat-sheets/CHEAT-SHEET-027-Tool-Calling-and-MCP.md)**
+- **[CHEAT-SHEET-028: Agent Evaluation and Observability](../../learning-resources/cheat-sheets/CHEAT-SHEET-028-Agent-Evaluation-and-Observability.md)**
+- **[CHEAT-SHEET-029: Function Calling Training and Constrained Decoding](../../learning-resources/cheat-sheets/CHEAT-SHEET-029-Function-Calling-Training-and-Constrained-Decoding.md)**
+- **[CHEAT-SHEET-030: Multi-Agent Communication Protocols](../../learning-resources/cheat-sheets/CHEAT-SHEET-030-Multi-Agent-Communication-Protocols.md)**
+- **[CHEAT-SHEET-031: Multi-Agent Framework Comparison](../../learning-resources/cheat-sheets/CHEAT-SHEET-031-Multi-Agent-Framework-Comparison.md)**
+- **[CHEAT-SHEET-032: Code Interpreter Sandbox](../../learning-resources/cheat-sheets/CHEAT-SHEET-032-Code-Interpreter-Sandbox.md)**
+- **[CHEAT-SHEET-036: Vector Memory - the Embedding-Backed Store](../../learning-resources/cheat-sheets/CHEAT-SHEET-036-Vector-Memory-Embedding-Backed-Store.md)**
+- **[CHEAT-SHEET-037: Reflection & Self-Correction - the Loop That Grades Its Own Work](../../learning-resources/cheat-sheets/CHEAT-SHEET-037-Reflection-Self-Correction.md)**
+- **[Volume 7: Production Mastery - Quick Reference](../../learning-resources/cheat-sheets/QUICK-REF-VOLUME-7.md)** - the full command companion for this phase
 
 ## Key Takeaways
 

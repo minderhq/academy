@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE4-QUANTIZATION-README
 Title: "Phase 4: Quantization & Compression [4000]"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-12
 Status: Complete
 Difficulty: Advanced
 Tags: ['phase', 'quantization', 'qat', 'quantization-aware-training']
@@ -15,6 +15,7 @@ Tags: ['phase', 'quantization', 'qat', 'quantization-aware-training']
 - [Why Quantization Matters](#why-quantization-matters)
 - [Module Structure](#module-structure)
 - [Learning Path](#learning-path)
+- [Cheat Sheets](#cheat-sheets)
 - [Key Takeaways](#key-takeaways)
 - [Common Pitfalls](#common-pitfalls)
 - [Pro Tips](#pro-tips)
@@ -236,6 +237,22 @@ graph TD
 | **Total** | **51h** | **30h** | **81h** |
 
 ---
+
+## Cheat Sheets
+
+Single-page references for the surfaces this phase teaches:
+
+- **[CHEAT-SHEET-009: Local Inference with llama.cpp & Ollama](../../learning-resources/cheat-sheets/CHEAT-SHEET-009-Local-Inference.md)**
+- **[CHEAT-SHEET-015: Quantization Formats & Methods](../../learning-resources/cheat-sheets/CHEAT-SHEET-015-Quantization-Formats-Methods.md)**
+- **[CHEAT-SHEET-017: KV Cache](../../learning-resources/cheat-sheets/CHEAT-SHEET-017-KV-Cache.md)**
+- **[CHEAT-SHEET-018: Speculative Decoding](../../learning-resources/cheat-sheets/CHEAT-SHEET-018-Speculative-Decoding.md)**
+- **[CHEAT-SHEET-020: Flash Attention](../../learning-resources/cheat-sheets/CHEAT-SHEET-020-Flash-Attention.md)**
+- **[CHEAT-SHEET-021: RoPE Positional Encoding](../../learning-resources/cheat-sheets/CHEAT-SHEET-021-RoPE-Positional-Encoding.md)**
+- **[CHEAT-SHEET-034: SGLang RadixAttention Serving](../../learning-resources/cheat-sheets/CHEAT-SHEET-034-SGLang-RadixAttention-Serving.md)**
+- **[CHEAT-SHEET-042: Extreme Quantization - the Method Choice, the File Choice, the Training-Time Frontier](../../learning-resources/cheat-sheets/CHEAT-SHEET-042-Extreme-Quantization.md)**
+- **[CHEAT-SHEET-043: 4-Bit Residuals - the Metadata Squeeze and the Hardware-Native Grid](../../learning-resources/cheat-sheets/CHEAT-SHEET-043-4-Bit-Residuals.md)**
+- **[CHEAT-SHEET-044: Quantization-Aware Training - the Straight-Through Estimator and the Layer Map](../../learning-resources/cheat-sheets/CHEAT-SHEET-044-Quantization-Aware-Training.md)**
+- **[Volume 4: Quantization & Optimization - Quick Reference](../../learning-resources/cheat-sheets/QUICK-REF-VOLUME-4.md)** - the full command companion for this phase
 
 ## Key Takeaways
 

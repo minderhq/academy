@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE3-TRANSFORMERS-README
 Title: "Phase 3: Transformer Physics & LLM Internals [3000]"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-12
 Status: Complete
 Difficulty: Advanced
 Tags: ['phase', 'transformers', 'embeddings', 'rope']
@@ -18,6 +18,7 @@ Tags: ['phase', 'transformers', 'embeddings', 'rope']
 - [Tokenization Pipeline](#tokenization-pipeline)
 - [Module Structure](#module-structure)
 - [Learning Path](#learning-path)
+- [Cheat Sheets](#cheat-sheets)
 - [Key Takeaways](#key-takeaways)
 - [Common Pitfalls](#common-pitfalls)
 - [Pro Tips](#pro-tips)
@@ -368,6 +369,22 @@ graph TD
 *3500 practice time is not yet estimated in its PRACTICE.md; phase totals cover the estimated modules.*
 
 ---
+
+## Cheat Sheets
+
+Single-page references for the surfaces this phase teaches:
+
+- **[CHEAT-SHEET-008: Reasoning Models & Test-Time Compute](../../learning-resources/cheat-sheets/CHEAT-SHEET-008-Reasoning-Models.md)**
+- **[CHEAT-SHEET-014: Decoding & Sampling Strategies](../../learning-resources/cheat-sheets/CHEAT-SHEET-014-Decoding-Sampling-Strategies.md)**
+- **[CHEAT-SHEET-019: Tokenizers](../../learning-resources/cheat-sheets/CHEAT-SHEET-019-Tokenizers.md)**
+- **[CHEAT-SHEET-020: Flash Attention](../../learning-resources/cheat-sheets/CHEAT-SHEET-020-Flash-Attention.md)**
+- **[CHEAT-SHEET-021: RoPE Positional Encoding](../../learning-resources/cheat-sheets/CHEAT-SHEET-021-RoPE-Positional-Encoding.md)**
+- **[CHEAT-SHEET-022: Multimodal Models](../../learning-resources/cheat-sheets/CHEAT-SHEET-022-Multimodal-Models.md)**
+- **[CHEAT-SHEET-035: Beyond Attention - SSMs and MLA](../../learning-resources/cheat-sheets/CHEAT-SHEET-035-Beyond-Attention-SSMs-and-MLA.md)**
+- **[CHEAT-SHEET-038: SDPA & torch.compile - the Kernel Choice and the Execution Choice](../../learning-resources/cheat-sheets/CHEAT-SHEET-038-SDPA-and-torch-compile.md)**
+- **[CHEAT-SHEET-039: Word Embeddings - the Tradition That Turned Co-occurrence into Coordinates](../../learning-resources/cheat-sheets/CHEAT-SHEET-039-Word-Embeddings-Tradition.md)**
+- **[CHEAT-SHEET-041: Activations & Normalization - the Nonlinearity and the Statistics](../../learning-resources/cheat-sheets/CHEAT-SHEET-041-Activations-and-Normalization.md)**
+- **[Volume 3: LLM Internals - Quick Reference](../../learning-resources/cheat-sheets/QUICK-REF-VOLUME-3.md)** - the full command companion for this phase
 
 ## Key Takeaways
 

@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE2-FOUNDATIONS-README
 Title: "Phase 2: Cognitive Science & Frameworks [2000]"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-12
 Status: Complete
 Difficulty: Advanced
 Tags: ['phase', 'frameworks', 'architecture', 'api-design']
@@ -18,6 +18,7 @@ Tags: ['phase', 'frameworks', 'architecture', 'api-design']
 - [Training Fundamentals](#training-fundamentals)
 - [Module Structure](#module-structure)
 - [Learning Path](#learning-path)
+- [Cheat Sheets](#cheat-sheets)
 - [Key Takeaways](#key-takeaways)
 - [Common Pitfalls](#common-pitfalls)
 - [Pro Tips](#pro-tips)
@@ -421,6 +422,15 @@ graph TD
 | **Total** | **64.5h** | **30.5-37.5h** | **95-102h** |
 
 ---
+
+## Cheat Sheets
+
+Single-page references for the surfaces this phase teaches:
+
+- **[CHEAT-SHEET-002: Python for AI/ML](../../learning-resources/cheat-sheets/CHEAT-SHEET-002-Python-AI.md)**
+- **[CHEAT-SHEET-011: Evaluation & Benchmarking](../../learning-resources/cheat-sheets/CHEAT-SHEET-011-Evaluation-Benchmarking.md)**
+- **[CHEAT-SHEET-052: Framework Engineering - the Registry, the Batching Flush, and the Rollout Gate](../../learning-resources/cheat-sheets/CHEAT-SHEET-052-Framework-Engineering.md)**
+- **[Volume 2: AI/ML Foundations - Quick Reference](../../learning-resources/cheat-sheets/QUICK-REF-VOLUME-2.md)** - the full command companion for this phase
 
 ## Key Takeaways
 
