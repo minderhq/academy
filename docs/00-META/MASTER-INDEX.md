@@ -14,7 +14,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 **Last Updated:** 2026-10-08
 
-**Total Files:** 495 markdown files (docs/)
+**Total Files:** 496 markdown files (docs/)
 
 ---
 
@@ -234,7 +234,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 ---
 
-### Cheat Sheets (55 files)
+### Cheat Sheets (56 files)
 
 | ID | Topic | Coverage |
 |----|-------|----------|
@@ -286,6 +286,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **[CHEAT-SHEET-046](../learning-resources/cheat-sheets/CHEAT-SHEET-046-Advanced-Optimization.md)** | Advanced Optimization - the Optimizer Memory Ledger, the Schedule Arc, and the Failure Toolbox | the optimizer memory ledger (16N = 112.0 GB at 7B, overhead 84.0; AdamW8bit ~14.0, Lion 28.0, Adafactor ~56.0, the 8-bit route 70.0 with 10.0 headroom, LoRA 0.84 on the frozen base), Adam's scale-free first step (0.00010000 at gradient norm 0.3 and 30.0 alike) and the decay that lives outside (Adam+L2 rides the normalization 2.000e-07 vs 2.000e-05, ratio 0.0100; AdamW uniform 1.000e-06, ratio 1.0000), the schedule arc (cosine lingers 2056 vs linear 951 steps above 0.9 = 2.16x, floor 0.1000 vs 0.0001; LLRD 0.95 puts embeddings at 0.5404), the failure toolbox (norm-clip cosine 1.000000 vs value-clip 0.5149, accumulation 12+1 windows x3 = 39 real steps vs naive 37, undivided loss = lr x8), SAM's flat-minima search (per-tensor rho over-perturbs the small tensor 100.00x, the missing zero_grad trains the SUM at 1.9836x) and the LR range test (steepest 2.057e-04, ceiling 1.592e-03, max_lr 5.214e-04, OneCycle start max_lr/25) - the 5500-advanced-optimization track's single-page closure. |
 | **[CHEAT-SHEET-047](../learning-resources/cheat-sheets/CHEAT-SHEET-047-Retrieval-Strategies.md)** | Retrieval Strategies - the Two-Channel Fusion, the Rerank Funnel, and the Diversity Dial | the two channels and the fusion that joins them (BM25's exact-term tie 0.8338 at the same df=2/dl=6, the rare-term idf lever 1.5694, the dense paraphrase blind spot scoring 0; RRF 1/(k+rank+1) at k=60 fusing ranks never scores, B 0.032522 over A 0.032266; the alpha dial over per-query min-max channels - winner A at 0.9, B at 0.5, D at 0.1, sweep on MAP@10), the rerank funnel (retrieve_n=100 through the bi-encoder, the cross-encoder's 200-800 ms dominating the ~1.5 s budget, top_k=10 kept; ColBERT MaxSim 1.9000 vs 0.4000), AP and NDCG on one labeled window (good 1.0000/1.0000; bad 0.5833/0.6653 with both relevant documents found), the MMR dial over the redundancy corpus (cosine five-paraphrase coverage 1/4 ILS 0.89; lam 0.5 all four facts at rel_sum 2.13 ILS 0.15; lam 0.0 admits junk at cosine -0.661) and the provenance boost placement (fused +0.30 flips 0.90 vs 0.88; clause +0.25 rewrites effective alpha and loses - boost reorders, it never conjures) - the 6200-retrieval track's single-page closure. |
 | **[CHEAT-SHEET-048](../learning-resources/cheat-sheets/CHEAT-SHEET-048-Semantic-Vectors.md)** | Semantic Vectors - the HNSW Ledger, the Recall Dial, and the Truncation Contract | the brute-force bill that makes ANN non-optional (1M x 768 = 768.0M MACs per query, 0.768 s at a 1e9 MAC/s budget, 3.07 GB fp32 resident), the layer census P(l)=0.5^l (share 0.4906 at L0, 0.8704 within L0-L2, top observed 15 against log2(1M) 19.93), the walk on the 12-point toy (true NN id 2 after 9 evals where brute force pays 12), the ef dial over the exact-4NN sweep (ef=1 caps recall at 0.0233 because ef < k cannot return k results; 0.2167/0.4900/0.6533 at ef 4/8/16, 0.8633 at 32), the metric dial (dot 300.0 vs cos 1.0000 on [1,1,1]x[100,100,100]; king-queen 0.88 against king-man 0.66 on dot but 0.9877 vs 0.9830 on cosine; squared L2 preserves the order, law of cosines gap 2.29e-16; normalize_L2 both sides + METRIC_INNER_PRODUCT because 1-L2 is not cosine), the truncation contract (MRL-trained order keeps recall@5 at 0.95 with 4 of 64 dims where the shuffled control lands 0.00 - truncation is a property of orderings; 1536-d 6.14 GB vs 256-d 1.02 GB per 1M docs, 0.8333 of the bill deleted) and the anisotropy trap (raw unrelated mean 0.9574 with threshold 0.9 firing on 193/200 pairs against 0/200 centered, related pair 0.9797->0.9762, margin 0.0223 raw vs 0.9924 centered - rankings survive, thresholds die) - the 6100-vector track's single-page closure. |
+| **[CHEAT-SHEET-049](../learning-resources/cheat-sheets/CHEAT-SHEET-049-Context-Engineering.md)** | Context Engineering - the Dilution Curve, the Stuffing Bet, and the Distilled Prompt | the dilution curve behind the advertised window, the two-ledger price and the stuffing bet against retrieval, the routed budget, ring attention's group shift, and the distilled prompt - the 6300-context track's single-page closure. |
 | **[QUICK-REF-V1](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-1.md)** | Infrastructure Fundamentals - Quick Reference | Phase 1 Quick Reference |
 | **[QUICK-REF-V2](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-2.md)** | AI/ML Foundations - Quick Reference | Phase 2 Quick Reference |
 | **[QUICK-REF-V3](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-3.md)** | LLM Internals - Quick Reference | Phase 3 Quick Reference |
@@ -445,7 +446,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **Jupyter Notebooks** | 20 |
 | **Practice Files** | 33 |
 | **Quiz Files** | 33 |
-| **Cheat Sheets** | 56 |
+| **Cheat Sheets** | 57 |
 | **Projects** | 7 |
 | **Experiments** | 47 |
 | **Comparisons** | 3 |
@@ -454,7 +455,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **Solutions** | 3 |
 | **Diagrams** | 4 |
 | **Meta Docs** | 20 |
-| **TOTAL** | **614** |
+| **TOTAL** | **615** |
 
 ### Content Statistics
 
