@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-001
 Title: "LAB-001: Docker & LLM Fundamentals"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 2 hours
@@ -786,3 +786,7 @@ You should have a working chat interface with memory!
 **Earned:** Docker & LLM Fundamentals Badge 🏅
 
 Next: **[LAB-002: RAG Implementation](LAB-002-RAG-Implementation.md)**
+
+---
+
+*Attempt it yourself first — the full reference solution is in [SOLUTION-LAB-001: Docker & LLM Fundamentals](./solutions/SOLUTION-LAB-001-Docker-LLM.md).*

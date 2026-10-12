@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-008
 Title: "LAB-008: Multi-Agent Fleet"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 6 hours
@@ -1224,3 +1224,7 @@ After completing this lab:
 **Lab Status:** ✅ Complete
 
 **Maintainer:** Minder Academy Team
+
+---
+
+*Attempt it yourself first — the full reference solution is in [SOLUTION-LAB-008: Agent Fleet](./solutions/SOLUTION-LAB-008-Agent-Fleet.md).*

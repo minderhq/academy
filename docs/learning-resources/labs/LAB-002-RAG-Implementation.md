@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-002
 Title: "LAB-002: RAG Implementation with Qdrant & Ollama"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 4 hours
@@ -1140,3 +1140,7 @@ python ~/lab-002-rag/chatbot.py
 **Earned:** RAG Implementation Badge 🏅
 
 Next: **[LAB-003: LoRA Fine-Tuning](LAB-003-LoRA-FineTuning.md)**
+
+---
+
+*Attempt it yourself first — the full reference solution is in [SOLUTION-LAB-002: RAG Implementation](./solutions/SOLUTION-LAB-002-RAG-Implementation.md).*

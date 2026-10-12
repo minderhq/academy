@@ -1,13 +1,15 @@
 ---
 Document ID: SOLUTION-LAB-000
 Title: "SOLUTION-LAB-000: Environment Setup"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Beginner
 Tags: ['solution', 'setup', 'docker']
 ---
 
 # SOLUTION-LAB-000: Environment Setup
+
+*Reference solution for [LAB-000: Environment Setup](../LAB-000-ENVIRONMENT-SETUP.md).*
 
 ## Overview
 Complete solution for environment verification and setup.

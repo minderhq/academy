@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-004
 Title: "LAB-004: Building ReAct Agents"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -1237,3 +1237,7 @@ if __name__ == "__main__":
 **Earned:** ReAct Agent Badge 🏅
 
 Next: **[LAB-005: GraphRAG Implementation](LAB-005-GraphRAG.md)**
+
+---
+
+*Attempt it yourself first — the full reference solution is in [SOLUTION-LAB-004: ReAct Agent](./solutions/SOLUTION-LAB-004-ReAct-Agent.md).*

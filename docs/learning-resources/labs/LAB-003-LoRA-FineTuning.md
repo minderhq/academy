@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-003
 Title: "LAB-003: LoRA Fine-Tuning with QLoRA"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -1065,3 +1065,7 @@ python ~/lab-003-lora/chatbot.py
 **Earned:** LoRA Fine-Tuning Badge 🏅
 
 Next: **[LAB-004: ReAct Agent](LAB-004-ReAct-Agent.md)**
+
+---
+
+*Attempt it yourself first — the full reference solution is in [SOLUTION-LAB-003: LoRA Fine-Tuning](./solutions/SOLUTION-LAB-003-LoRA-FineTuning.md).*

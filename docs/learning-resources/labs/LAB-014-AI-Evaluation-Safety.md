@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-014
 Title: "LAB-014: AI Evaluation & Safety"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 6 hours
@@ -1348,3 +1348,7 @@ In this lab, you learned:
 **Time Estimate:** 6 hours
 
 **Difficulty:** ⭐⭐⭐ Advanced
+
+---
+
+*Attempt it yourself first — the full reference solution is in [SOLUTION-LAB-014: AI Evaluation & Safety](./solutions/SOLUTION-LAB-014-AI-Evaluation-Safety.md).*

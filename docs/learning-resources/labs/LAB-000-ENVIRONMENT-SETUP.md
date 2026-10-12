@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-000
 Title: "LAB-000: Environment Setup"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 1 hour
@@ -472,3 +472,7 @@ A: 7B model ~4GB, 13B ~8GB, 70B ~40GB. Start with 7B.
 **Date:** _____________
 
 **Next Lab:** [LAB-001: Docker & LLM](./LAB-001-Docker-LLM.md)
+
+---
+
+*Attempt it yourself first — the full reference solution is in [SOLUTION-LAB-000: Environment Setup](./solutions/SOLUTION-LAB-000-Environment-Setup.md).*

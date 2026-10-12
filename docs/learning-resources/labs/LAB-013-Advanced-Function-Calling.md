@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-013
 Title: "LAB-013: Advanced Function Calling"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 7 hours
@@ -1482,3 +1482,7 @@ In this lab, you learned:
 **Time Estimate:** 7 hours
 
 **Difficulty:** ⭐⭐⭐ Advanced
+
+---
+
+*Attempt it yourself first — the full reference solution is in [SOLUTION-LAB-013: Advanced Function Calling](./solutions/SOLUTION-LAB-013-Advanced-Function-Calling.md).*

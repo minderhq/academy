@@ -1,13 +1,15 @@
 ---
 Document ID: SOLUTION-LAB-002
 Title: "SOLUTION-LAB-002: RAG Implementation"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Intermediate
 Tags: ['solution', 'rag', 'qdrant']
 ---
 
 # SOLUTION-LAB-002: RAG Implementation
+
+*Reference solution for [LAB-002: RAG Implementation with Qdrant & Ollama](../LAB-002-RAG-Implementation.md).*
 
 ## Overview
 Complete solution for building a RAG system with embeddings, vector database, and LLM.

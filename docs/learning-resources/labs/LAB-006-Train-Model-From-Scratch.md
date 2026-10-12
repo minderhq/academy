@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-006
 Title: "LAB-006: Train a Small Language Model from Scratch"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 7 hours
@@ -1180,3 +1180,7 @@ Final Perplexity:  8-10, dataset-dependent
 - **[Volume 5: Model Adaptation](../../volumes/VOLUME-5-Model-Adaptation.md)** — fine-tune the model you just trained
 - **[Volume 7: Production Mastery](../../volumes/VOLUME-7-Production-Mastery.md)** — deploy it
 - **[2402: Large-Scale Training](../../phases/phase2-foundations/2400-pretraining/2402-Large-Scale-Training.md)** — the same loop, at industrial scale
+
+---
+
+*Attempt it yourself first — the full reference solution is in [SOLUTION-LAB-006: Train Model From Scratch](./solutions/SOLUTION-LAB-006-Train-Model-From-Scratch.md).*

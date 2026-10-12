@@ -1,13 +1,15 @@
 ---
 Document ID: SOLUTION-LAB-007
 Title: "SOLUTION-LAB-007: Production RAG"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Advanced
 Tags: ['solution', 'rag', 'production']
 ---
 
 # SOLUTION-LAB-007: Production RAG
+
+*Reference solution for [LAB-007: Production RAG System](../LAB-007-Production-RAG.md).*
 
 ## Overview
 Complete solution for deploying a production-ready RAG system.

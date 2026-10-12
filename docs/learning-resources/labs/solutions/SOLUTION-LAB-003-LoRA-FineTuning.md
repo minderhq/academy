@@ -1,13 +1,15 @@
 ---
 Document ID: SOLUTION-LAB-003
 Title: "SOLUTION-LAB-003: LoRA Fine-Tuning"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Advanced
 Tags: ['solution', 'lora', 'qlora']
 ---
 
 # SOLUTION-LAB-003: LoRA Fine-Tuning
+
+*Reference solution for [LAB-003: LoRA Fine-Tuning with QLoRA](../LAB-003-LoRA-FineTuning.md).*
 
 ## Overview
 Complete solution for fine-tuning language models using LoRA (Low-Rank Adaptation) and QLoRA (Quantized LoRA).

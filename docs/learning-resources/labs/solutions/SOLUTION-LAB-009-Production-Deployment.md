@@ -1,13 +1,15 @@
 ---
 Document ID: SOLUTION-LAB-009
 Title: "SOLUTION-LAB-009: Production Deployment"
-Last Updated: 2026-10-07
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Advanced
 Tags: ['solution', 'production', 'deployment']
 ---
 
 # SOLUTION-LAB-009: Production Deployment
+
+*Reference solution for [LAB-009: Production Deployment](../LAB-009-Production-Deployment.md).*
 
 ## Overview
 Complete solution for deploying ML models with blue-green strategy.

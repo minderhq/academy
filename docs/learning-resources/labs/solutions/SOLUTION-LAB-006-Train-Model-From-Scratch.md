@@ -1,13 +1,15 @@
 ---
 Document ID: SOLUTION-LAB-006
 Title: "SOLUTION-LAB-006: Train Model From Scratch"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Advanced
 Tags: ['solution', 'pytorch', 'pretraining']
 ---
 
 # SOLUTION-LAB-006: Train Model From Scratch
+
+*Reference solution for [LAB-006: Train a Small Language Model from Scratch](../LAB-006-Train-Model-From-Scratch.md).*
 
 ## Overview
 Complete solution for training neural networks from scratch using PyTorch.

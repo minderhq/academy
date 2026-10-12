@@ -1,13 +1,15 @@
 ---
 Document ID: SOLUTION-LAB-013
 Title: "SOLUTION-LAB-013: Advanced Function Calling"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Advanced
 Tags: ['solution', 'function-calling', 'agents']
 ---
 
 # SOLUTION-LAB-013: Advanced Function Calling
+
+*Reference solution for [LAB-013: Advanced Function Calling](../LAB-013-Advanced-Function-Calling.md).*
 
 ## Overview
 Complete solution for complex function calling with validation.

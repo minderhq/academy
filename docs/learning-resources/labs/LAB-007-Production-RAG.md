@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-007
 Title: "LAB-007: Production RAG System"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 6 hours
@@ -1231,3 +1231,7 @@ After completing this lab:
 **Lab Status:** ✅ Complete
 
 **Maintainer:** Minder Academy Team
+
+---
+
+*Attempt it yourself first — the full reference solution is in [SOLUTION-LAB-007: Production RAG](./solutions/SOLUTION-LAB-007-Production-RAG.md).*

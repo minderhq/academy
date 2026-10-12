@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-005
 Title: "LAB-005: GraphRAG Implementation with Neo4j & Qdrant"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -952,3 +952,7 @@ for test in complex_questions:
 ## Next Steps
 
 - **[PROJECT-001: Build Your AI Assistant](../projects/PROJECT-001-AI-Assistant.md)** - Combine everything!
+
+---
+
+*Attempt it yourself first — the full reference solution is in [SOLUTION-LAB-005: GraphRAG](./solutions/SOLUTION-LAB-005-GraphRAG.md).*

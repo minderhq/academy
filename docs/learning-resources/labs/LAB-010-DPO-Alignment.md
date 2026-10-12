@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-010
 Title: "LAB-010: DPO Alignment"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 6 hours
@@ -918,3 +918,7 @@ Further reading:
 - [DPO Paper: Direct Preference Optimization](https://arxiv.org/abs/2305.18290)
 - [TRL DPOTrainer Documentation](https://huggingface.co/docs/trl/main/en/dpo_trainer)
 - **[5201: DPO Theory]** - the full derivation of the loss you optimized in Part 3 ([5201-DPO-Theory.md](../../phases/phase5-finetuning/5200-alignment/5201-DPO-Theory.md))
+
+---
+
+*Attempt it yourself first — the full reference solution is in [SOLUTION-LAB-010: DPO Alignment](./solutions/SOLUTION-LAB-010-DPO-Alignment.md).*

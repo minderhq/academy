@@ -1,13 +1,15 @@
 ---
 Document ID: SOLUTION-LAB-005
 Title: "SOLUTION-LAB-005: GraphRAG"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Advanced
 Tags: ['solution', 'graphrag', 'neo4j']
 ---
 
 # SOLUTION-LAB-005: GraphRAG
+
+*Reference solution for [LAB-005: GraphRAG Implementation with Neo4j & Qdrant](../LAB-005-GraphRAG.md).*
 
 ## Overview
 Complete solution for implementing GraphRAG with knowledge graphs and Neo4j.
