@@ -217,14 +217,12 @@ INT8 activations, and that asymmetry is the design.
 | Sign layer trains but stalls at zero | torch.sign(0) = 0 kills the third state; use the STE estimator and handle zero explicitly |
 | 2:4 pruning shows no speedup | pre-Ampere GPU; the pattern needs Ampere+ sparse tensor cores (~1.4-1.8x end-to-end, not 2x) |
 
-## Quick Reference
+## Quick Reference For
 
-| For | See |
-|---|---|
-| The GPTQ walk: damping, upper-Cholesky order, error feed-forward | [Module 4401: GPTQ](../../phases/phase4-quantization/4400-advanced-techniques/4401-GPTQ.md) |
-| The AWQ config and the activation-weighted salience pre-hook | [Module 4402: AWQ](../../phases/phase4-quantization/4400-advanced-techniques/4402-AWQ.md) |
-| The 1.58-bit BitLinear, the ternary training recipe, the binary substrate | [Module 4406: 1.58-bit Quantization](../../phases/phase4-quantization/4400-advanced-techniques/4406-1.58-bit-Quantization.md) |
-| The 4/8/16-bit format zoo this sheet goes below | [CHEAT-SHEET-015: Quantization Formats & Methods](./CHEAT-SHEET-015-Quantization-Formats-Methods.md) |
+- [Module 4401: GPTQ](../../phases/phase4-quantization/4400-advanced-techniques/4401-GPTQ.md) - the GPTQ walk: damping, upper-Cholesky order, error feed-forward.
+- [Module 4402: AWQ](../../phases/phase4-quantization/4400-advanced-techniques/4402-AWQ.md) - the AWQ config and the activation-weighted salience pre-hook.
+- [Module 4406: 1.58-bit Quantization](../../phases/phase4-quantization/4400-advanced-techniques/4406-1.58-bit-Quantization.md) - the 1.58-bit BitLinear, the ternary training recipe, the binary substrate.
+- [CHEAT-SHEET-015: Quantization Formats & Methods](./CHEAT-SHEET-015-Quantization-Formats-Methods.md) - the 4/8/16-bit format zoo this sheet goes below.
 
 ## Reproduction Fence
 

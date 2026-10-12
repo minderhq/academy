@@ -257,14 +257,12 @@ the cast is in the forward pass.
 | FFN has 1.5x the parameters it used to | three SwiGLU projections; resize width to 2/3 of 4d (multiple-of-256 grid) if the budget is fixed |
 | Output distribution shifted after a "harmless" activation swap | the non-monotonic Swish dip (-0.2785 at x = -1.2785) changes the activation statistics; re-profile, do not assume translation |
 
-## Quick Reference
+## Quick Reference For
 
-| For | See |
-|---|---|
-| The activation deep-dive: GELU derivation, SwiGLU implementation, MoE-router separation | [Module 3301: Activation Functions](../../phases/phase3-transformers/3300-decoding/3301-Activation-Functions.md) |
-| The normalization deep-dive: BatchNorm/LayerNorm/RMSNorm, DeepNorm, mixed precision | [Module 3302: Normalization Layers](../../phases/phase3-transformers/3300-decoding/3302-Normalization-Layers.md) |
-| The execution layer these blocks run on: SDPA backends, torch.compile, kernel choice | [CHEAT-SHEET-020: Flash Attention](./CHEAT-SHEET-020-Flash-Attention.md) |
-| What the token stream does after the final norm: decoding and sampling strategies | [CHEAT-SHEET-014: Decoding & Sampling Strategies](./CHEAT-SHEET-014-Decoding-Sampling-Strategies.md) |
+- [Module 3301: Activation Functions](../../phases/phase3-transformers/3300-decoding/3301-Activation-Functions.md) - the activation deep-dive: GELU derivation, SwiGLU implementation, MoE-router separation.
+- [Module 3302: Normalization Layers](../../phases/phase3-transformers/3300-decoding/3302-Normalization-Layers.md) - the normalization deep-dive: BatchNorm/LayerNorm/RMSNorm, DeepNorm, mixed precision.
+- [CHEAT-SHEET-020: Flash Attention](./CHEAT-SHEET-020-Flash-Attention.md) - the execution layer these blocks run on: SDPA backends, torch.compile, kernel choice.
+- [CHEAT-SHEET-014: Decoding & Sampling Strategies](./CHEAT-SHEET-014-Decoding-Sampling-Strategies.md) - what the token stream does after the final norm: decoding and sampling strategies.
 
 ## Reproduction Fence
 

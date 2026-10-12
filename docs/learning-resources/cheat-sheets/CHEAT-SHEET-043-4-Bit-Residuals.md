@@ -449,11 +449,9 @@ F6  the DQ quality table (WikiText-2 ppl) and the triple-quant rejection
 | NVFP4 benchmarks look awful off NVIDIA | fast kernels are Blackwell SM100 targets | benchmark on SM100 or against the emulated baseline, never BF16 kernels |
 | "CUDA out of memory" mid-LoRA | batch or cache pressure, not DQ | shrink batch, gradient checkpointing, offload some layers |
 
-## Quick Reference
+## Quick Reference For
 
-| Target | Where |
-|--------|-------|
-| module 4103 | `docs/phases/phase4-quantization/4100-low-bit/4103-Double-Quantization.md` |
-| module 4104 | `docs/phases/phase4-quantization/4100-low-bit/4104-MXFP4-and-NVFP4.md` |
-| module 4101 | `docs/phases/phase4-quantization/4100-low-bit/4101-GGUF-Physics.md` |
-| CHEAT-SHEET-015 | `docs/learning-resources/cheat-sheets/CHEAT-SHEET-015-Quantization-Formats-Methods.md` |
+- [Module 4103: Double Quantization - BitsAndBytes (bnb) Logic](../../phases/phase4-quantization/4100-low-bit/4103-Double-Quantization.md) - the 32768-scales fold into 32770 bytes that halves the metadata bill at 50.00 percent.
+- [Module 4104: MXFP4 and NVFP4 - Microscaling Formats as Working Code](../../phases/phase4-quantization/4100-low-bit/4104-MXFP4-and-NVFP4.md) - the MXFP4-vs-NVFP4 bill (0.1163 vs 0.0947) and the rounding ladder behind hardware-native 4-bit.
+- [Module 4101: GGUF Physics - CPU/GPU Hybrid Offloading](../../phases/phase4-quantization/4100-low-bit/4101-GGUF-Physics.md) - the GGUF container physics these residuals ship inside.
+- [CHEAT-SHEET-015: Quantization Formats & Methods](./CHEAT-SHEET-015-Quantization-Formats-Methods.md) - the 4/8/16-bit format zoo these residuals sit below.

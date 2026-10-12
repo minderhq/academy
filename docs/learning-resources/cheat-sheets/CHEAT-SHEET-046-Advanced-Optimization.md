@@ -378,11 +378,9 @@ FENCE-046-OK
 | Embeddings overfit while the body holds | one lr for 12 depths: embeddings deserve 0.5404x at decay 0.95 | layer-wise decay 0.95 fine-tune, 0.9 aggressive |
 | Small tensors jitter under SAM | per-tensor rho over-perturbs them 100.00x | global-norm perturbation |
 
-## Quick Reference
+## Quick Reference For
 
-| Target | Where |
-| --- | --- |
-| Module 5501 Optimizer Variants | docs/phases/phase5-finetuning/5500-advanced-optimization/5501-Optimizer-Variants.md |
-| Module 5502 Learning Rate Scheduling | docs/phases/phase5-finetuning/5500-advanced-optimization/5502-Learning-Rate-Scheduling.md |
-| Module 5503 Advanced Techniques | docs/phases/phase5-finetuning/5500-advanced-optimization/5503-Advanced-Techniques.md |
-| Module 5403 Mixed Precision | docs/phases/phase5-finetuning/5400-distributed-training/5403-Mixed-Precision.md |
+- [Module 5501: Optimizer Variants](../../phases/phase5-finetuning/5500-advanced-optimization/5501-Optimizer-Variants.md) - the optimizer zoo and the scale-free step this sheet's ledger prices.
+- [Module 5502: Learning Rate Scheduling](../../phases/phase5-finetuning/5500-advanced-optimization/5502-Learning-Rate-Scheduling.md) - the cosine floor, the remainder window and layer-wise decay this sheet schedules.
+- [Module 5503: Advanced Optimization Techniques](../../phases/phase5-finetuning/5500-advanced-optimization/5503-Advanced-Techniques.md) - the accumulation, norm-clip and per-tensor rho fixes this sheet prices.
+- [Module 5403: Mixed Precision Training](../../phases/phase5-finetuning/5400-distributed-training/5403-Mixed-Precision.md) - the mixed-precision sandwich these optimizers run on.

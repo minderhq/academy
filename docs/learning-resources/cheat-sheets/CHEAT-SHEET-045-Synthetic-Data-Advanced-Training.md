@@ -656,11 +656,9 @@ FENCE-045-OK
 | Self-instruct pool fills with near-duplicates | the filter compares against the seed, not the pool | Jaccard 0.7 against every pool member; keep-rate near 0.5 means the bar is loose |
 | Synthetic fine-tune drops below gold-only | generation depth 3 with keyword flips at 80% | cap recursion at depth 1 or anchor 10% real and re-measure (+0.005, not -0.135) |
 
-## Quick Reference
+## Quick Reference For
 
-| Target | Where |
-| --- | --- |
-| 5301 Knowledge Distillation | docs/phases/phase5-finetuning/5300-synthetic/5301-Knowledge-Distillation.md |
-| 5302 Distributed Training | docs/phases/phase5-finetuning/5300-synthetic/5302-Distributed-Training.md |
-| 5303 Federated Learning | docs/phases/phase5-finetuning/5300-synthetic/5303-Federated-Learning.md |
-| 5304 Self-Instruct and Model Collapse | docs/phases/phase5-finetuning/5300-synthetic/5304-Self-Instruct-and-Model-Collapse.md |
+- [Module 5301: Knowledge Distillation - Training Small Models Using Big Model Outputs](../../phases/phase5-finetuning/5300-synthetic/5301-Knowledge-Distillation.md) - dark knowledge at temperature and the KL-times-T-squared blend this sheet prices.
+- [Module 5302: Distributed Training Orchestration](../../phases/phase5-finetuning/5300-synthetic/5302-Distributed-Training.md) - the fleet identity (4x2x4 = 32) this sheet's Amdahl bill asserts.
+- [Module 5303: Federated Learning](../../phases/phase5-finetuning/5300-synthetic/5303-Federated-Learning.md) - FedAvg's weighted mean and the FedProx escalation order.
+- [Module 5304: Self-Instruct and Model Collapse - Growing Instruction Data Without Losing the Distribution](../../phases/phase5-finetuning/5300-synthetic/5304-Self-Instruct-and-Model-Collapse.md) - the self-instruct loop and the collapse tax its anchors pay.

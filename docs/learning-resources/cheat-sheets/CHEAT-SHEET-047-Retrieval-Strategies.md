@@ -431,11 +431,9 @@ FENCE-047-OK
 | The winner flips between queries | the alpha dial moved: 0.9 -> A, 0.5 -> B, 0.1 -> D | sweep alpha on MAP@10, min-max per query |
 | P95 blows past 1.5 s | the cross-encoder's 200-800 ms at 50 pairs dominates | cap retrieve_n, MiniLM-class CE on GPU, cache query embeddings |
 
-## Quick Reference
+## Quick Reference For
 
-| Target | Where |
-| --- | --- |
-| Module 6201 Hybrid Search | docs/phases/phase6-rag/6200-retrieval/6201-Hybrid-Search.md |
-| Module 6202 Re-ranking and Retrieval Logistics | docs/phases/phase6-rag/6200-retrieval/6202-Re-ranking-and-Retrieval-Logistics.md |
-| Module 6203 Advanced Retrieval | docs/phases/phase6-rag/6200-retrieval/6203-Advanced-Retrieval.md |
-| Module 6204 Diversification and Boosting | docs/phases/phase6-rag/6200-retrieval/6204-Diversification-and-Boosting.md |
+- [Module 6201: Hybrid Search - Combining Keyword and Semantic Search](../../phases/phase6-rag/6200-retrieval/6201-Hybrid-Search.md) - the keyword-plus-semantic fusion this sheet's retrieval dial prices.
+- [Module 6202: Re-ranking and Retrieval Logistics](../../phases/phase6-rag/6200-retrieval/6202-Re-ranking-and-Retrieval-Logistics.md) - the re-rank stage and the logistics it adds to the path.
+- [Module 6203: Advanced Retrieval Techniques](../../phases/phase6-rag/6200-retrieval/6203-Advanced-Retrieval.md) - the multi-hop and query-expansion moves this sheet schedules.
+- [Module 6204: Diversification and Boosting](../../phases/phase6-rag/6200-retrieval/6204-Diversification-and-Boosting.md) - the diversification and boosting dials that keep the result list honest.

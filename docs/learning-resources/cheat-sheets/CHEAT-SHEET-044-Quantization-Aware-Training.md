@@ -575,11 +575,9 @@ FENCE-044-OK
 | INT8 fine, INT4 collapses | heavy-tailed distribution under per-tensor scales | per-channel scales or the quantile scale (32x tighter under a planted outlier) |
 | QAT accuracy below PTQ at INT8 | training overhead without low-bit pressure | ship the PTQ model at 8 bits; QAT earns its bill at 4 bits and below |
 
-## Quick Reference
+## Quick Reference For
 
-| Target | Where |
-|--------|-------|
-| module 4301 | `docs/phases/phase4-quantization/4300-quantization-aware-training/4301-QAT-Foundations.md` |
-| module 4303 | `docs/phases/phase4-quantization/4300-quantization-aware-training/4303-QAT-for-Transformers.md` |
-| module 4304 | `docs/phases/phase4-quantization/4300-quantization-aware-training/4304-Low-bit-QAT.md` |
-| module 4305 | `docs/phases/phase4-quantization/4300-quantization-aware-training/4305-Quantization-Configuration.md` |
+- [Module 4301: QAT Foundations](../../phases/phase4-quantization/4300-quantization-aware-training/4301-QAT-Foundations.md) - the STE and the observer rules that let training survive the round.
+- [Module 4303: QAT for Transformers](../../phases/phase4-quantization/4300-quantization-aware-training/4303-QAT-for-Transformers.md) - the FP32 softmax line and the layer map that keep a transformer trainable at low bits.
+- [Module 4304: Low-bit QAT](../../phases/phase4-quantization/4300-quantization-aware-training/4304-Low-bit-QAT.md) - the bit-ledger and the progressive schedule this sheet's KL blend prices.
+- [Module 4305: Quantization Configuration](../../phases/phase4-quantization/4300-quantization-aware-training/4305-Quantization-Configuration.md) - the configuration surface the QAT recipes ship through.
