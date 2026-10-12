@@ -14,7 +14,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 **Last Updated:** 2026-10-08
 
-**Total Files:** 498 markdown files (docs/)
+**Total Files:** 499 markdown files (docs/)
 
 ---
 
@@ -234,7 +234,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 ---
 
-### Cheat Sheets (58 files)
+### Cheat Sheets (59 files)
 
 | ID | Topic | Coverage |
 |----|-------|----------|
@@ -289,6 +289,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **[CHEAT-SHEET-049](../learning-resources/cheat-sheets/CHEAT-SHEET-049-Context-Engineering.md)** | Context Engineering - the Dilution Curve, the Stuffing Bet, and the Distilled Prompt | Dilution curve behind the advertised window, two-ledger price, stuffing bet against retrieval, routed budget, ring attention group shift, distilled prompt |
 | **[CHEAT-SHEET-050](../learning-resources/cheat-sheets/CHEAT-SHEET-050-MLOps-Pipelines.md)** | MLOps Pipelines - the Lifecycle State Machine, the Challenger Verdict, and the Fleet Bill | Five-stage lifecycle state machine, McNemar challenger verdicts, pipeline data and quality gates, canary promote-or-rollback loop, registry aliases, version-keyed cache, per-stage fleet bill |
 | **[CHEAT-SHEET-051](../learning-resources/cheat-sheets/CHEAT-SHEET-051-Distributed-Training.md)** | Distributed Training - the Memory Bill, the Stability Wall, and the Campaign | Per-rank memory bill, sharding ladder, pipeline bubble, tensor-pairing law, FSDP2 states, float8 dead zone, LR wall, warmup sizing, five-bill campaign |
+| **[CHEAT-SHEET-052](../learning-resources/cheat-sheets/CHEAT-SHEET-052-Framework-Engineering.md)** | Framework Engineering - the Registry, the Batching Flush, and the Rollout Gate | Registry economy, config deep-merge, batching flush, KV page bill, limiter trio, rollout ladder, chi-squared verdict |
 | **[QUICK-REF-V1](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-1.md)** | Infrastructure Fundamentals - Quick Reference | Phase 1 Quick Reference |
 | **[QUICK-REF-V2](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-2.md)** | AI/ML Foundations - Quick Reference | Phase 2 Quick Reference |
 | **[QUICK-REF-V3](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-3.md)** | LLM Internals - Quick Reference | Phase 3 Quick Reference |
@@ -448,7 +449,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **Jupyter Notebooks** | 20 |
 | **Practice Files** | 33 |
 | **Quiz Files** | 33 |
-| **Cheat Sheets** | 59 |
+| **Cheat Sheets** | 60 |
 | **Projects** | 7 |
 | **Experiments** | 47 |
 | **Comparisons** | 3 |
@@ -457,7 +458,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **Solutions** | 3 |
 | **Diagrams** | 4 |
 | **Meta Docs** | 20 |
-| **TOTAL** | **617** |
+| **TOTAL** | **618** |
 
 ### Content Statistics
 

@@ -510,6 +510,7 @@ nav:
         - "Context Engineering - the Dilution Curve, the Stuffing Bet, and the Distilled Prompt": learning-resources/cheat-sheets/CHEAT-SHEET-049-Context-Engineering.md
         - "MLOps Pipelines - the Lifecycle State Machine, the Challenger Verdict, and the Fleet Bill": learning-resources/cheat-sheets/CHEAT-SHEET-050-MLOps-Pipelines.md
         - "Distributed Training - the Memory Bill, the Stability Wall, and the Campaign": learning-resources/cheat-sheets/CHEAT-SHEET-051-Distributed-Training.md
+        - "Framework Engineering - the Registry, the Batching Flush, and the Rollout Gate": learning-resources/cheat-sheets/CHEAT-SHEET-052-Framework-Engineering.md
         - "Agent Memory Systems": learning-resources/cheat-sheets/CHEAT-SHEET-025-Agent-Memory-Systems.md
         - "Agent Security": learning-resources/cheat-sheets/CHEAT-SHEET-026-Agent-Security.md
         - "Tool Calling and MCP": learning-resources/cheat-sheets/CHEAT-SHEET-027-Tool-Calling-and-MCP.md
