@@ -65,6 +65,13 @@ jobs:
       - uses: actions/setup-python@v7
         with:
           python-version: "3.13"
+          # tick-1019 health pass: cache the pip wheelhouse across deploys -
+          # mkdocs-material[imaging] (pillow included) is the build job's
+          # whole install step and re-downloads every run otherwise. Keyed
+          # on THIS workflow file, where the version pin lives, so a pin
+          # bump invalidates the cache by construction.
+          cache: pip
+          cache-dependency-path: .github/workflows/deploy-docs.yml
 
       - name: Install MkDocs Material
         # [imaging] pulls in pillow for the social plugin's per-page

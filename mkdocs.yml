@@ -72,8 +72,17 @@ theme:
     - navigation.footer
     - content.tabs.link
     - navigation.path
-    - header.autohide
     - content.code.select
+    # link previews on hover (title attribute) - reading a cross-reference
+    # no longer requires deciding whether to leave the page
+    - content.tooltips
+    # header.autohide was REMOVED (tick-1019): it slid the search box and
+    # page title out of view the moment a reader scrolled into a lesson,
+    # silently cancelling navigation.tabs.sticky's promise - a study
+    # surface of 495 pages wants the header (search + phase tabs) pinned
+    # for the whole session, not revealed only on scroll-up. The fixed
+    # header costs one bar of vertical space; losing search mid-lesson
+    # cost more.
 
 nav:
   - Home: index.md
@@ -669,6 +678,12 @@ markdown_extensions:
   - toc:
       permalink: true
       slugify: !!python/name:gh_slugify.slugify
+      # tick-1019: the sidebar TOC stops at H3 - 5201 H3 entries across
+      # the corpus are already two scrollbars deep on lesson pages and
+      # the ~290 H4+ entries added noise, not navigation. Anchors and
+      # permalinks stay on EVERY heading; only the sidebar list is
+      # trimmed, so deep links keep working.
+      toc_depth: 2-3
   - pymdownx.highlight:
       # line_spans deliberately ABSENT (tick-848): Material's copy button
       # does NOT need it - the 9.7.6 bundle mounts a .md-code__button on

@@ -8,6 +8,24 @@
 -#}
 {% extends "base.html" %}
 
+{% block announce %}
+  {#- tick-1019 announcement bar - the one strip of chrome every page
+     shares, so it carries the two links a new reader needs before
+     anything else: where to start (the Learning Path) and where the
+     one-page references live (the Cheat Sheets library). Deliberately
+     number-free: any count here would join the 30-face sync
+     choreography. base_url is mkdocs's per-page relative path to the
+     site root, so both links resolve at any depth (GitHub Pages serves
+     the site under /academy/). Material 9.7.7 renders the banner from
+     THIS block (self.announce() must be non-empty) - the old
+     partials/announce.html override is a pre-9.6 pattern and renders
+     nothing here. -#}
+  <span class="md-announce-docs">
+    New here? Follow the <a href="{{ base_url }}/00-META/0000-LEARNING-PATH/"><strong>Learning Path</strong></a>
+    &middot; One-page references in the <a href="{{ base_url }}/learning-resources/cheat-sheets/"><strong>Cheat Sheets</strong></a> library
+  </span>
+{% endblock %}
+
 {% block extrahead %}
   {# og:title reads the front-matter Title, not page.title: explicit nav
      titles (mkdocs.yml) override page.title, so shares would carry short
