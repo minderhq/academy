@@ -9,7 +9,7 @@ Tags: ['cheatsheet', 'reference']
 
 # Quick Reference Cheat Sheets
 
-Fifty-seven single-page references: fifty tool cheat sheets and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
+Fifty-eight single-page references: fifty-one tool cheat sheets and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
 
 ## Tool Cheat Sheets
 
@@ -151,6 +151,8 @@ The dilution curve behind the advertised window, the two-ledger price and the st
 
 ### [CHEAT-SHEET-050: MLOps Pipelines - the Lifecycle State Machine, the Challenger Verdict, and the Fleet Bill](./CHEAT-SHEET-050-MLOps-Pipelines.md)
 The MLOps pipeline surface in seven priced exhibits - lifecycle gates, challenger statistics, registry mechanics, re-embedding policy, and the fleet's three bills.
+### [CHEAT-SHEET-051: Distributed Training - the Memory Bill, the Stability Wall, and the Campaign](./CHEAT-SHEET-051-Distributed-Training.md)
+The per-rank memory bill, the sharding ladder, the pipeline bubble, FSDP2's three states, the float8 dead zone, and the warmup-sized LR wall with the five-bill campaign.
 ## Volume Quick References
 
 - [1: Infrastructure Fundamentals - Quick Reference](./QUICK-REF-VOLUME-1.md)
@@ -171,4 +173,4 @@ One condensed page per volume: the formulas, flags and commands each volume's mo
 
 ---
 
-**Total Cheat Sheets:** 57 documents
+**Total Cheat Sheets:** 58 documents
