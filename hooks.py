@@ -57,6 +57,37 @@ def on_env(env, config, files):
     return env
 
 
+_title_bridge = 0
+
+
+def on_page_content(content, page, config, files):
+    """tick-1023: bridge capital `Title:` into lowercase `title` in page meta.
+
+    mkdocs parses front matter with a YAML SafeLoader, so keys stay
+    case-preserved: every corpus page carries `Title:` (capital), while
+    mkdocs's Page.title property looks up meta['title'] (lowercase) and the
+    lookup silently misses. Explicit nav labels shadow the property anyway
+    (Page.__init__ stores the nav label as an instance attribute), but
+    Material's search plugin and social-card templates read
+    page.meta.get("title", page.title) directly, and Material's own comment
+    names the intended order: a front-matter title beats the h1 AND the nav
+    label. Setting meta['title'] restores that documented behavior for every
+    meta-reading consumer - the search index section fallback and the og:image
+    share cards - with zero effect on the sidebar label (it lives in the
+    instance attribute) and no change to the tab-title / footer post-build
+    patches below. Runs at page_content so the value is in place before every
+    page_context consumer indexes the page: hooks merge into the plugins
+    collection (Hooks('plugins')) and register after the real plugins, so a
+    page_context hook would run after the search plugin and miss the index.
+    """
+    global _title_bridge
+    meta = getattr(page, "meta", None)
+    if isinstance(meta, dict) and "title" not in meta and "Title" in meta:
+        meta["title"] = meta["Title"]
+        _title_bridge += 1
+    return content
+
+
 def on_page_context(context, page, config, nav):
     """Per-page <meta name="description"> via Material's own emission path.
 
@@ -1127,6 +1158,7 @@ def on_post_build(config, **kwargs):
     print(f"[hooks] share: {sited} og:site_name meta(s) injected")
     print(f"[hooks] titles: {retitled} generic tab/og title(s) set from the page h1")
     print(f"[hooks] footer: {footered} generic prev/next label(s) set from the sidebar nav label")
+    print(f"[hooks] title bridge: {_title_bridge} page(s) handed a lowercase title from their capital Title front matter")
     print(f"[hooks] tables: {scoped} table header cell(s) scoped to col")
     print(f"[hooks] tabs: {tabbed} active header tab(s) marked aria-current")
     print(f"[hooks] header labels: {searchlab} search + {drawerlab} drawer icon toggle(s) named")
