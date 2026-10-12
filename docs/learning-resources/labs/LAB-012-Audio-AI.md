@@ -1527,3 +1527,5 @@ In this lab, you learned:
 ---
 
 *Attempt it yourself first — the full reference solution is in [SOLUTION-LAB-012: Audio AI](./solutions/SOLUTION-LAB-012-Audio-AI.md).*
+
+Next: **[LAB-013: Advanced Function Calling](LAB-013-Advanced-Function-Calling.md)**

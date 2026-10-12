@@ -922,3 +922,5 @@ Further reading:
 ---
 
 *Attempt it yourself first — the full reference solution is in [SOLUTION-LAB-010: DPO Alignment](./solutions/SOLUTION-LAB-010-DPO-Alignment.md).*
+
+Next: **[LAB-011: Multi-Modal AI](LAB-011-Multi-Modal-AI.md)**

@@ -1781,3 +1781,5 @@ In this lab, you learned:
 ---
 
 *Attempt it yourself first — the full reference solution is in [SOLUTION-LAB-009: Production Deployment](./solutions/SOLUTION-LAB-009-Production-Deployment.md).*
+
+Next: **[LAB-010: DPO Alignment](LAB-010-DPO-Alignment.md)**

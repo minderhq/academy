@@ -1235,3 +1235,5 @@ After completing this lab:
 ---
 
 *Attempt it yourself first — the full reference solution is in [SOLUTION-LAB-007: Production RAG](./solutions/SOLUTION-LAB-007-Production-RAG.md).*
+
+Next: **[LAB-008: Multi-Agent Fleet](LAB-008-Agent-Fleet.md)**

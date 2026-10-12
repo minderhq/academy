@@ -1474,3 +1474,5 @@ In this lab, you learned:
 ---
 
 *Attempt it yourself first — the full reference solution is in [SOLUTION-LAB-011: Multi-Modal AI](./solutions/SOLUTION-LAB-011-Multi-Modal-AI.md).*
+
+Next: **[LAB-012: Audio AI](LAB-012-Audio-AI.md)**

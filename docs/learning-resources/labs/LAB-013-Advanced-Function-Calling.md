@@ -1486,3 +1486,5 @@ In this lab, you learned:
 ---
 
 *Attempt it yourself first — the full reference solution is in [SOLUTION-LAB-013: Advanced Function Calling](./solutions/SOLUTION-LAB-013-Advanced-Function-Calling.md).*
+
+Next: **[LAB-014: AI Evaluation & Safety](LAB-014-AI-Evaluation-Safety.md)**

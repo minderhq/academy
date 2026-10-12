@@ -1184,3 +1184,5 @@ Final Perplexity:  8-10, dataset-dependent
 ---
 
 *Attempt it yourself first — the full reference solution is in [SOLUTION-LAB-006: Train Model From Scratch](./solutions/SOLUTION-LAB-006-Train-Model-From-Scratch.md).*
+
+Next: **[LAB-007: Production RAG System](LAB-007-Production-RAG.md)**

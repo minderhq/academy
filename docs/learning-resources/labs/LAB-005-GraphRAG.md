@@ -956,3 +956,5 @@ for test in complex_questions:
 ---
 
 *Attempt it yourself first — the full reference solution is in [SOLUTION-LAB-005: GraphRAG](./solutions/SOLUTION-LAB-005-GraphRAG.md).*
+
+Next: **[LAB-006: Train a Small Language Model from Scratch](LAB-006-Train-Model-From-Scratch.md)**

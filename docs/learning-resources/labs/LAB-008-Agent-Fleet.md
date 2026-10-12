@@ -1228,3 +1228,5 @@ After completing this lab:
 ---
 
 *Attempt it yourself first — the full reference solution is in [SOLUTION-LAB-008: Agent Fleet](./solutions/SOLUTION-LAB-008-Agent-Fleet.md).*
+
+Next: **[LAB-009: Production Deployment](LAB-009-Production-Deployment.md)**
