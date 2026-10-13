@@ -705,6 +705,7 @@ Single-page references for the surfaces this phase teaches:
 - **[CHEAT-SHEET-037: Reflection & Self-Correction - the Loop That Grades Its Own Work](../../learning-resources/cheat-sheets/CHEAT-SHEET-037-Reflection-Self-Correction.md)**
 - **[CHEAT-SHEET-057: Browser and Computer-Use Agents - the Grounding Verdict, the Step Budget, and the Sandbox Gate Chain](../../learning-resources/cheat-sheets/CHEAT-SHEET-057-Browser-and-Computer-Use-Agents.md)**
 - **[CHEAT-SHEET-058: Agent Skills - the Loading Ladder, the Trigger Verdict, and the Packaging Gate](../../learning-resources/cheat-sheets/CHEAT-SHEET-058-Agent-Skills.md)**
+- **[CHEAT-SHEET-060: Agentic RAG - the Escalation Gate, the Loop Budget, and the Trajectory Audit](../../learning-resources/cheat-sheets/CHEAT-SHEET-060-Agentic-RAG.md)**
 - **[Volume 7: Production Mastery - Quick Reference](../../learning-resources/cheat-sheets/QUICK-REF-VOLUME-7.md)** - the full command companion for this phase
 
 ## Key Takeaways
