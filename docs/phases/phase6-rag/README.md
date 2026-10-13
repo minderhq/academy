@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE6-RAG-README
 Title: "Phase 6: Data Nexus - RAG, CAG & External Memory [6000]"
-Last Updated: 2026-10-12
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Advanced
 Tags: ['phase', 'rag', 'retrieval', 'hybrid-search']
@@ -520,6 +520,7 @@ Single-page references for the surfaces this phase teaches:
 - **[CHEAT-SHEET-049: Context Engineering - the Dilution Curve, the Stuffing Bet, and the Distilled Prompt](../../learning-resources/cheat-sheets/CHEAT-SHEET-049-Context-Engineering.md)**
 - **[CHEAT-SHEET-050: MLOps Pipelines - the Lifecycle State Machine, the Challenger Verdict, and the Fleet Bill](../../learning-resources/cheat-sheets/CHEAT-SHEET-050-MLOps-Pipelines.md)**
 - **[CHEAT-SHEET-053: Vector Databases - the RAM Ledger, the Quantile Trap, and the Rescore Ladder](../../learning-resources/cheat-sheets/CHEAT-SHEET-053-Vector-Databases.md)**
+- **[CHEAT-SHEET-059: Citation and Grounding - the Citation Bill, the Refusal Gate, and the Consistency Audit](../../learning-resources/cheat-sheets/CHEAT-SHEET-059-Citation-and-Grounding.md)**
 - **[Volume 6: Data Nexus: RAG & Memory - Quick Reference](../../learning-resources/cheat-sheets/QUICK-REF-VOLUME-6.md)** - the full command companion for this phase
 
 ## Key Takeaways

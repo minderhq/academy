@@ -9,7 +9,7 @@ Tags: ['cheatsheet', 'reference']
 
 # Quick Reference Cheat Sheets
 
-Sixty-Five single-page references: fifty-eight tool cheat sheets and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
+Sixty-Six single-page references: fifty-nine tool cheat sheets and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
 
 ## Find a Cheat Sheet by Phase
 
@@ -90,6 +90,7 @@ Standing in one volume's material and need the matching sheet fast? Each group l
   - [CHEAT-SHEET-037: Reflection & Self-Correction - the Loop That Grades Its Own Work](./CHEAT-SHEET-037-Reflection-Self-Correction.md)
   - [CHEAT-SHEET-057: Browser and Computer-Use Agents - the Grounding Verdict, the Step Budget, and the Sandbox Gate Chain](./CHEAT-SHEET-057-Browser-and-Computer-Use-Agents.md)
   - [CHEAT-SHEET-058: Agent Skills - the Loading Ladder, the Trigger Verdict, and the Packaging Gate](./CHEAT-SHEET-058-Agent-Skills.md)
+  - [CHEAT-SHEET-059: Citation and Grounding - the Citation Bill, the Refusal Gate, and the Consistency Audit](./CHEAT-SHEET-059-Citation-and-Grounding.md)
 
 - **Cross-volume: not tied to one phase**
   - [CHEAT-SHEET-003: Git & Version Control](./CHEAT-SHEET-003-Git.md)
@@ -252,6 +253,8 @@ The fallback cascade, the price ladder, the router verdict, the affinity ledger,
 The perception loop bill, the action space ledger, the grounding verdict, the verifier gate, the step budget, the sandbox gate chain, and the DOM-versus-screenshot verdict.
 ### [CHEAT-SHEET-058: Agent Skills - the Loading Ladder, the Trigger Verdict, and the Packaging Gate](./CHEAT-SHEET-058-Agent-Skills.md)
 The boot bill, the loading ladder, the trigger verdict, the invocation ledger, the budget cap split, the packaging gate, and the composition bill.
+### [CHEAT-SHEET-059: Citation and Grounding - the Citation Bill, the Refusal Gate, and the Consistency Audit](./CHEAT-SHEET-059-Citation-and-Grounding.md)
+The citation bill, the attribution ladder, the faithfulness verdict, the refusal gate, the evidence floor, the consistency gate, and the composition bill.
 ## Volume Quick References
 
 - [1: Infrastructure Fundamentals - Quick Reference](./QUICK-REF-VOLUME-1.md)
