@@ -1,7 +1,7 @@
 ---
 Document ID: GUIDE-INTERVIEW
 Title: INTERVIEW PREPARATION GUIDE
-Last Updated: 2026-10-08
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Intermediate
 Tags: ['career', 'guide', 'llm']
@@ -13,7 +13,7 @@ Tags: ['career', 'guide', 'llm']
 
 **Read Time:** 30 minutes
 
-**Last Updated:** 2026-10-08
+**Last Updated:** 2026-10-13
 
 ---
 
@@ -754,5 +754,10 @@ Perhaps equity, signing bonus, or additional PTO?"
 
 - [GUIDE-CAREER.md](./GUIDE-CAREER.md) - Career planning
 - [GUIDE-RESUME.md](./GUIDE-RESUME.md) - Resume templates
+- [CHEAT-SHEET-017: KV Cache](../cheat-sheets/CHEAT-SHEET-017-KV-Cache.md) - The per-token memory formula, the MHA/GQA/MQA head ledger, paged allocation, and prefix caching with copy-on-write. The common question asks what the KV cache is and why it matters.
+- [CHEAT-SHEET-047: Retrieval Strategies - the Two-Channel Fusion, the Rerank Funnel, and the Diversity Dial](../cheat-sheets/CHEAT-SHEET-047-Retrieval-Strategies.md) - BM25 and the dense channel, RRF and the alpha dial joining them, the cross-encoder rerank funnel, the MMR diversity dial, and the provenance boost. The RAG drill asks chunk size and dense versus sparse retrieval.
+- [CHEAT-SHEET-011: Evaluation & Benchmarking](../cheat-sheets/CHEAT-SHEET-011-Evaluation-Benchmarking.md) - The everyday benchmark map, lm-evaluation-harness commands, pass@k estimator math, and LLM-as-judge hygiene rules. The RAG drill asks how you evaluate a RAG system.
+- [CHEAT-SHEET-019: Tokenizers](../cheat-sheets/CHEAT-SHEET-019-Tokenizers.md) - The BPE merge loop with the byte-level twist, the Unigram contrast, SentencePiece settings, and the vocab ladder. The LLM review list names tokenization.
+- [CHEAT-SHEET-020: Flash Attention](../cheat-sheets/CHEAT-SHEET-020-Flash-Attention.md) - The memory-hierarchy argument, the online-softmax block update, the FA1-FA2-FA3 ladder, the three enablement paths, and the when-not rules. The coding challenge is scaled dot-product attention.
 
 **© 2026 Minder Academy. All rights reserved.**

@@ -1,7 +1,7 @@
 ---
 Document ID: GUIDE-CAREER
 Title: "CAREER GUIDE: From Learning to Job-Ready"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Intermediate
 Tags: ['career', 'guide', 'roadmap']
@@ -13,7 +13,7 @@ Tags: ['career', 'guide', 'roadmap']
 
 **Read Time:** 25 minutes
 
-**Last Updated:** 2026-10-08
+**Last Updated:** 2026-10-13
 
 ---
 
@@ -548,5 +548,8 @@ Data: Python, NumPy, Pandas, SQL (PostgreSQL), PostgreSQL + pgvector
 1. Read [GUIDE-RESUME.md](./GUIDE-RESUME.md) for resume templates
 2. Read [GUIDE-INTERVIEW.md](./GUIDE-INTERVIEW.md) for interview prep
 3. Start building your portfolio today!
+4. [CHEAT-SHEET-005: RAG Systems](../cheat-sheets/CHEAT-SHEET-005-RAG-Systems.md) - portfolio Project 1 is a RAG chatbot; this is its core loop.
+5. [CHEAT-SHEET-053: Vector Databases - the RAM Ledger, the Quantile Trap, and the Rescore Ladder](../cheat-sheets/CHEAT-SHEET-053-Vector-Databases.md) - the project checklist names vector search (Qdrant/Chroma).
+6. [CHEAT-SHEET-001: Docker Commands](../cheat-sheets/CHEAT-SHEET-001-Docker.md) - the portfolio rule is a live deployment, not localhost.
 
 **© 2026 Minder Academy. All rights reserved.**

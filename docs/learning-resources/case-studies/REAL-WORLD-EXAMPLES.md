@@ -1,7 +1,7 @@
 ---
 Document ID: REAL-WORLD-EXAMPLES
 Title: Real-World Examples & Case Studies
-Last Updated: 2026-10-08
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Intermediate
 Tags: ['case-study', 'production', 'llm']
@@ -13,7 +13,7 @@ Tags: ['case-study', 'production', 'llm']
 
 **Category:** Case Studies
 
-**Last Updated:** 2026-10-08
+**Last Updated:** 2026-10-13
 
 **Status:** Complete
 
@@ -354,6 +354,13 @@ Query → Embed → Retrieve → Rerank → LLM → Response
 - **Experiments:**
   - [EXP_6201: Hybrid Search](../../../experiments/EXP_6201_HYBRID_SEARCH.md)
   - [EXP_7301: Multi-Agent Collaboration](../../../experiments/EXP_7301_COLLABORATION.md)
+
+- **Cheat Sheets:**
+  - [CHEAT-SHEET-005: RAG Systems](../cheat-sheets/CHEAT-SHEET-005-RAG-Systems.md)
+  - [CHEAT-SHEET-047: Retrieval Strategies - the Two-Channel Fusion, the Rerank Funnel, and the Diversity Dial](../cheat-sheets/CHEAT-SHEET-047-Retrieval-Strategies.md)
+  - [CHEAT-SHEET-056: LLM Gateway and Model Routing - the Fallback Cascade, the Price Ladder, and the Affinity Ledger](../cheat-sheets/CHEAT-SHEET-056-LLM-Gateway-and-Model-Routing.md)
+  - [CHEAT-SHEET-024: Multi-Agent Orchestration](../cheat-sheets/CHEAT-SHEET-024-Multi-Agent-Orchestration.md)
+  - [CHEAT-SHEET-023: ReAct Agent Loop](../cheat-sheets/CHEAT-SHEET-023-ReAct-Agent-Loop.md)
 
 ---
 

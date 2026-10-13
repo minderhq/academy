@@ -1,7 +1,7 @@
 ---
 Document ID: GUIDE-RESUME
 Title: RESUME TEMPLATES & EXAMPLES
-Last Updated: 2026-10-08
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Intermediate
 Tags: ['career', 'guide', 'llm']
@@ -13,7 +13,7 @@ Tags: ['career', 'guide', 'llm']
 
 **Templates Included:** Entry-level, Mid-level, Senior
 
-**Last Updated:** 2026-10-08
+**Last Updated:** 2026-10-13
 
 ---
 
@@ -567,5 +567,8 @@ Best,
 1. Use [GUIDE-INTERVIEW.md](./GUIDE-INTERVIEW.md) for interview prep
 2. Practice explaining your projects out loud
 3. Get feedback from 2-3 people in AI
+4. [CHEAT-SHEET-053: Vector Databases - the RAM Ledger, the Quantile Trap, and the Rescore Ladder](../cheat-sheets/CHEAT-SHEET-053-Vector-Databases.md) - the skills section names Qdrant, ChromaDB and FAISS.
+5. [CHEAT-SHEET-001: Docker Commands](../cheat-sheets/CHEAT-SHEET-001-Docker.md) - the same section names Docker under Deployment and MLOps.
+6. [CHEAT-SHEET-015: Quantization Formats & Methods](../cheat-sheets/CHEAT-SHEET-015-Quantization-Formats-Methods.md) - the project bullets name INT4 and GGUF quantization.
 
 **© 2026 Minder Academy. All rights reserved.**
