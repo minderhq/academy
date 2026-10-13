@@ -1,7 +1,7 @@
 ---
 Document ID: TROUBLESHOOTING-Common-Issues
 Title: "TROUBLESHOOTING: Common Issues & Solutions"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Intermediate
 Tags: ['troubleshooting', 'docker', 'llm']
@@ -107,6 +107,9 @@ docker run --rm --gpus all nvidia/cuda:13.0.2-base-ubuntu24.04 nvidia-smi
 ```bash
 nvidia-smi
 ```
+
+- **[Docker Commands](../cheat-sheets/CHEAT-SHEET-001-Docker.md)** - Containers, images, volumes and networking in one page.
+- **[Virtualization and GPU Passthrough - the Hypervisor RAM Ledger, the Passthrough Gate Chain, and the Multi-GPU Scaling Wall](../cheat-sheets/CHEAT-SHEET-055-Virtualization-and-GPU-Passthrough.md)** - The hypervisor RAM ledger, the IOMMU group verdict, the passthrough gate chain, the Thunderbolt tunnel bill, the kernel module ledger, the multi-GPU scaling wall, and the NCCL peer wall.
 
 ---
 
@@ -236,6 +239,11 @@ model = AutoModelForCausalLM.from_pretrained(
 )
 ```
 
+- **[Local Inference with llama.cpp & Ollama](../cheat-sheets/CHEAT-SHEET-009-Local-Inference.md)** - GGUF downloads, llama.cpp build/serve flags, Ollama run and Modelfile customization, and offload tuning for local machines.
+- **[Quantization Formats & Methods](../cheat-sheets/CHEAT-SHEET-015-Quantization-Formats-Methods.md)** - The bpw block arithmetic behind Q4_0/Q4_K, the three GGUF families, and the EXL2/AWQ/GPTQ GPU-only map.
+- **[vLLM Serving & Inference](../cheat-sheets/CHEAT-SHEET-007-vLLM-Serving.md)** - Serving, quantization, parallelism and tuning flags for the vLLM inference server.
+- **[Flash Attention](../cheat-sheets/CHEAT-SHEET-020-Flash-Attention.md)** - The memory-hierarchy argument, the online-softmax block update, the FA1-FA2-FA3 ladder, the three enablement paths, and the when-not rules.
+
 ---
 
 ## RAG Issues
@@ -330,6 +338,11 @@ netstat -tulpn | grep 6333
 curl http://localhost:6333/health
 ```
 
+- **[Retrieval Strategies - the Two-Channel Fusion, the Rerank Funnel, and the Diversity Dial](../cheat-sheets/CHEAT-SHEET-047-Retrieval-Strategies.md)** - BM25 and the dense channel, RRF and the alpha dial joining them, the cross-encoder rerank funnel, the MMR diversity dial, and the provenance boost.
+- **[RAG Systems](../cheat-sheets/CHEAT-SHEET-005-RAG-Systems.md)** - Chunking, embedding, retrieval and generation parameters at a glance.
+- **[Semantic Vectors - the HNSW Ledger, the Recall Dial, and the Truncation Contract](../cheat-sheets/CHEAT-SHEET-048-Semantic-Vectors.md)** - What the vector is, how cosine and dot measure closeness, the HNSW walk with its ef dial, the MRL truncation contract, and the anisotropy trap.
+- **[Vector Databases - the RAM Ledger, the Quantile Trap, and the Rescore Ladder](../cheat-sheets/CHEAT-SHEET-053-Vector-Databases.md)** - The RAM ledger arithmetic, the distance trio, the SQ quantile trap, binary and product quantization floors, the oversample x rescore ladder, and the snapshot RPO bill.
+
 ---
 
 ## Fine-Tuning Issues
@@ -407,6 +420,9 @@ from peft import PeftModel
 model = AutoModelForCausalLM.from_pretrained(base_model)
 model = PeftModel.from_pretrained(model, adapter_path)
 ```
+
+- **[Advanced Optimization - the Optimizer Memory Ledger, the Schedule Arc, and the Failure Toolbox](../cheat-sheets/CHEAT-SHEET-046-Advanced-Optimization.md)** - The optimizer memory ledger, Adam's scale-free first step, the warmup-decay schedule arc, the failure toolbox, SAM's flat-minima search, and the LR range test.
+- **[LoRA & QLoRA](../cheat-sheets/CHEAT-SHEET-016-LoRA-QLoRA.md)** - The low-rank arithmetic and the three knobs, the QLoRA 4-bit pipeline, and the merge-on-FP16 rule.
 
 ---
 
@@ -493,6 +509,8 @@ conda activate ml-env
 conda install pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia
 pip install transformers
 ```
+
+- **[Python for AI/ML](../cheat-sheets/CHEAT-SHEET-002-Python-AI.md)** - The Python idioms, libraries and snippets used across the curriculum.
 
 ---
 
@@ -603,6 +621,8 @@ rm -rf ~/.cache/huggingface
 rm -rf ~/.ollama/models
 ```
 
+- **[Linux Commands for AI/ML](../cheat-sheets/CHEAT-SHEET-004-Linux.md)** - Shell commands, permissions and process management on the lab machines.
+
 ---
 
 ## Performance Issues
@@ -645,6 +665,8 @@ nvidia-smi
 kill -9 ${PID}
 ```
 
+- **[Quantization Formats & Methods](../cheat-sheets/CHEAT-SHEET-015-Quantization-Formats-Methods.md)** - The bpw block arithmetic behind Q4_0/Q4_K, the three GGUF families, and the EXL2/AWQ/GPTQ GPU-only map.
+
 ---
 
 ## Monitoring Issues
@@ -678,6 +700,8 @@ curl http://localhost:9090/api/v1/targets
 ```bash
 docker restart grafana
 ```
+
+- **[LLM Observability](../cheat-sheets/CHEAT-SHEET-033-LLM-Observability.md)** - The four LLM-specific metric families and their alert thresholds, the timing trio with its decode-rate trap, the hallucination ladder, and the nearest-rank percentile rule.
 
 ---
 
