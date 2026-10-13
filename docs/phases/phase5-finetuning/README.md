@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE5-FINETUNING-README
 Title: "Phase 5: Fine-Tuning & Alignment [5000]"
-Last Updated: 2026-10-12
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Advanced
 Tags: ['phase', 'finetuning', 'training', 'distributed']
@@ -334,6 +334,7 @@ Single-page references for the surfaces this phase teaches:
 - **[CHEAT-SHEET-008: Reasoning Models & Test-Time Compute](../../learning-resources/cheat-sheets/CHEAT-SHEET-008-Reasoning-Models.md)**
 - **[CHEAT-SHEET-010: Alignment Methods — DPO, RLHF & GRPO](../../learning-resources/cheat-sheets/CHEAT-SHEET-010-Alignment-Methods.md)**
 - **[CHEAT-SHEET-016: LoRA & QLoRA](../../learning-resources/cheat-sheets/CHEAT-SHEET-016-LoRA-QLoRA.md)**
+- **[CHEAT-SHEET-065: Multi-LoRA Serving and Adapter Scheduling - the Tenancy Bill, the KV Tax, and the Day Bill](../../learning-resources/cheat-sheets/CHEAT-SHEET-065-Multi-LoRA-Serving-and-Adapter-Scheduling.md)**
 - **[CHEAT-SHEET-029: Function Calling Training and Constrained Decoding](../../learning-resources/cheat-sheets/CHEAT-SHEET-029-Function-Calling-Training-and-Constrained-Decoding.md)**
 - **[CHEAT-SHEET-040: Model Merging - the Arithmetic That Combines Trained Models](../../learning-resources/cheat-sheets/CHEAT-SHEET-040-Model-Merging.md)**
 - **[CHEAT-SHEET-045: Synthetic Data & Advanced Training - the Distilled Student, the Federated Fleet, and the Recursion Tax](../../learning-resources/cheat-sheets/CHEAT-SHEET-045-Synthetic-Data-Advanced-Training.md)**
