@@ -533,6 +533,7 @@ nav:
         - "Continuous Batching and the Scheduler Budget": learning-resources/cheat-sheets/CHEAT-SHEET-067-Continuous-Batching-and-the-Scheduler-Budget.md
         - "Multi-Model Serving and the Weight-Residency Budget": learning-resources/cheat-sheets/CHEAT-SHEET-068-Multi-Model-Serving-and-the-Weight-Residency-Budget.md
         - "Cache-Aware Routing and the Session Affinity Budget": learning-resources/cheat-sheets/CHEAT-SHEET-069-Cache-Aware-Routing-and-the-Session-Affinity-Budget.md
+        - "Autoscaling and the Warm-Pool Budget": learning-resources/cheat-sheets/CHEAT-SHEET-070-Autoscaling-and-the-Warm-Pool-Budget.md
         - "Quick Ref Volume 1": learning-resources/cheat-sheets/QUICK-REF-VOLUME-1.md
         - "Quick Ref Volume 2": learning-resources/cheat-sheets/QUICK-REF-VOLUME-2.md
         - "Quick Ref Volume 3": learning-resources/cheat-sheets/QUICK-REF-VOLUME-3.md
