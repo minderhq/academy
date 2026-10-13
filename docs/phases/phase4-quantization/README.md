@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE4-QUANTIZATION-README
 Title: "Phase 4: Quantization & Compression [4000]"
-Last Updated: 2026-10-12
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Advanced
 Tags: ['phase', 'quantization', 'qat', 'quantization-aware-training']
@@ -245,6 +245,7 @@ Single-page references for the surfaces this phase teaches:
 - **[CHEAT-SHEET-009: Local Inference with llama.cpp & Ollama](../../learning-resources/cheat-sheets/CHEAT-SHEET-009-Local-Inference.md)**
 - **[CHEAT-SHEET-015: Quantization Formats & Methods](../../learning-resources/cheat-sheets/CHEAT-SHEET-015-Quantization-Formats-Methods.md)**
 - **[CHEAT-SHEET-017: KV Cache](../../learning-resources/cheat-sheets/CHEAT-SHEET-017-KV-Cache.md)**
+- **[CHEAT-SHEET-062: KV Offload and Tiered Caching - the Recompute Bill, the Tier Ladder, and the Routing Gate](../../learning-resources/cheat-sheets/CHEAT-SHEET-062-KV-Offload-and-Tiered-Caching.md)**
 - **[CHEAT-SHEET-018: Speculative Decoding](../../learning-resources/cheat-sheets/CHEAT-SHEET-018-Speculative-Decoding.md)**
 - **[CHEAT-SHEET-020: Flash Attention](../../learning-resources/cheat-sheets/CHEAT-SHEET-020-Flash-Attention.md)**
 - **[CHEAT-SHEET-021: RoPE Positional Encoding](../../learning-resources/cheat-sheets/CHEAT-SHEET-021-RoPE-Positional-Encoding.md)**
