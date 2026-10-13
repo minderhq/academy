@@ -535,6 +535,7 @@ nav:
         - "Cache-Aware Routing and the Session Affinity Budget": learning-resources/cheat-sheets/CHEAT-SHEET-069-Cache-Aware-Routing-and-the-Session-Affinity-Budget.md
         - "Autoscaling and the Warm-Pool Budget": learning-resources/cheat-sheets/CHEAT-SHEET-070-Autoscaling-and-the-Warm-Pool-Budget.md
         - "Load Shedding and the Admission Gate": learning-resources/cheat-sheets/CHEAT-SHEET-071-Load-Shedding-and-the-Admission-Gate.md
+        - "GPU Utilization and the MFU Budget": learning-resources/cheat-sheets/CHEAT-SHEET-072-GPU-Utilization-and-the-MFU-Budget.md
         - "Quick Ref Volume 1": learning-resources/cheat-sheets/QUICK-REF-VOLUME-1.md
         - "Quick Ref Volume 2": learning-resources/cheat-sheets/QUICK-REF-VOLUME-2.md
         - "Quick Ref Volume 3": learning-resources/cheat-sheets/QUICK-REF-VOLUME-3.md
