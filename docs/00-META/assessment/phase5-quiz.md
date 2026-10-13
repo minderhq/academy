@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE5-QUIZ
 Title: "Phase 5: Fine-Tuning & Alignment Quiz"
-Last Updated: 2026-10-12
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Advanced
 Tags: ['assessment', 'quiz', 'finetuning']
@@ -17,6 +17,7 @@ Tags: ['assessment', 'quiz', 'finetuning']
 - **Passing score: 80%** (24/30 correct)
 - Answers live only in the Answer Key at the end of this quiz - attempt every question before checking it
 - Graded below the line? The Need to Review? map above the Answer Key links every question to its closest lesson - rework those before your next attempt
+- **Practice:** [Phase 5 Practice](phase5-practice.md) - Hands-on exercises
 
 ---
 

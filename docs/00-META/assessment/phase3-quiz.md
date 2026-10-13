@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE3-QUIZ
 Title: "Phase 3: Transformer Physics Quiz"
-Last Updated: 2026-10-12
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Advanced
 Tags: ['assessment', 'quiz', 'transformers']
@@ -17,6 +17,7 @@ Tags: ['assessment', 'quiz', 'transformers']
 - **Passing score: 80%** (20/25 correct)
 - Answers live only in the Answer Key at the end of this quiz - attempt every question before checking it
 - Graded below the line? The Need to Review? map above the Answer Key links every question to its closest lesson - rework those before your next attempt
+- **Practice:** [Phase 3 Practice](phase3-practice.md) - Hands-on exercises
 
 ---
 

@@ -220,3 +220,5 @@ if __name__ == "__main__":
 - [ ] LoRA implemented from scratch
 - [ ] QLoRA configured and tested
 - [ ] DPO loss calculated
+
+**Quiz:** [Phase 5 Quiz](phase5-quiz.md) - Test your understanding (30 questions, 80% to pass)

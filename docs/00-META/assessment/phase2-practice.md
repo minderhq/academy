@@ -820,3 +820,5 @@ if __name__ == "__main__":
 - [ ] Transformer block constructed
 - [ ] Gradient flow verified
 - [ ] Memory optimization techniques learned
+
+**Quiz:** [Phase 2 Quiz](phase2-quiz.md) - Test your understanding (20 questions, 80% to pass)

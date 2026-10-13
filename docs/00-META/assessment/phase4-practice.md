@@ -293,3 +293,5 @@ if __name__ == "__main__":
 - [ ] Quantization methods compared
 - [ ] KV cache quantization working
 - [ ] Context window length tested
+
+**Quiz:** [Phase 4 Quiz](phase4-quiz.md) - Test your understanding (30 questions, 80% to pass)

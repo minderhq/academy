@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE4-QUIZ
 Title: "Phase 4: Quantization & Compression Quiz"
-Last Updated: 2026-10-12
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Advanced
 Tags: ['assessment', 'quiz', 'quantization']
@@ -17,6 +17,7 @@ Tags: ['assessment', 'quiz', 'quantization']
 - **Passing score: 80%** (24/30 correct)
 - Answers live only in the Answer Key at the end of this quiz - attempt every question before checking it
 - Graded below the line? The Need to Review? map above the Answer Key links every question to its closest lesson - rework those before your next attempt
+- **Practice:** [Phase 4 Practice](phase4-practice.md) - Hands-on exercises
 
 ---
 

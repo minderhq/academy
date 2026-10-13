@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE6-PRACTICE
 Title: "Phase 6: Data Nexus - Practice Exercises"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Advanced
 Tags: ['assessment', 'practice', 'rag']
@@ -646,7 +646,7 @@ Create adaptive retrieval system that:
 
 ---
 
-**Last Updated:** 2026-10-08
+**Last Updated:** 2026-10-13
 
 **Phase:** 6 - Data Nexus
 
@@ -1378,3 +1378,5 @@ if __name__ == "__main__":
 - [ ] Context building functional
 - [ ] RAG pipeline assembled
 - [ ] Retrieval quality evaluated
+
+**Quiz:** [Phase 6 Quiz](phase6-quiz.md) - Test your understanding (30 questions, 80% to pass)

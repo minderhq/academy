@@ -648,3 +648,5 @@ echo "Tempo: http://localhost:3200"
 - [ ] Log aggregation (Loki) configured
 - [ ] All services healthy
 - [ ] Infrastructure validated
+
+**Quiz:** [Phase 1 Quiz](phase1-quiz.md) - Test your understanding (15 questions, 80% to pass)

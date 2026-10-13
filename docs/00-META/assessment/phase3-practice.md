@@ -367,3 +367,5 @@ if __name__ == "__main__":
 - [ ] RoPE position embedding working
 - [ ] BPE tokenizer trained
 - [ ] SwiGLU activation tested
+
+**Quiz:** [Phase 3 Quiz](phase3-quiz.md) - Test your understanding (25 questions, 80% to pass)

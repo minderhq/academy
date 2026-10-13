@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE7-PRACTICE
 Title: "Phase 7: Agentic Systems - Practice Exercises"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Advanced
 Tags: ['assessment', 'practice', 'agents']
@@ -1266,7 +1266,7 @@ Implement a creative system for:
 
 ---
 
-**Last Updated:** 2026-10-08
+**Last Updated:** 2026-10-13
 
 **Phase:** 7 - Agentic Systems
 
@@ -2173,3 +2173,5 @@ if __name__ == "__main__":
 - [ ] Tool calling tested
 - [ ] Agent communication verified
 - [ ] Memory retrieval working
+
+**Quiz:** [Phase 7 Quiz](phase7-quiz.md) - Test your understanding (30 questions, 80% to pass)

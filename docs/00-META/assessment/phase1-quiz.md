@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE1-QUIZ
 Title: "Phase 1: Infrastructure Quiz"
-Last Updated: 2026-10-12
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Beginner
 Tags: ['assessment', 'quiz', 'infrastructure']
@@ -17,6 +17,7 @@ Tags: ['assessment', 'quiz', 'infrastructure']
 - **Passing score: 80%** (12/15 correct)
 - Answers live only in the Answer Key at the end of this quiz - attempt every question before checking it
 - Graded below the line? The Need to Review? map above the Answer Key links every question to its closest lesson - rework those before your next attempt
+- **Practice:** [Phase 1 Practice](phase1-practice.md) - Hands-on infrastructure exercises
 
 ---
 
