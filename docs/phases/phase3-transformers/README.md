@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE3-TRANSFORMERS-README
 Title: "Phase 3: Transformer Physics & LLM Internals [3000]"
-Last Updated: 2026-10-12
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Advanced
 Tags: ['phase', 'transformers', 'embeddings', 'rope']
@@ -380,6 +380,7 @@ Single-page references for the surfaces this phase teaches:
 - **[CHEAT-SHEET-020: Flash Attention](../../learning-resources/cheat-sheets/CHEAT-SHEET-020-Flash-Attention.md)**
 - **[CHEAT-SHEET-021: RoPE Positional Encoding](../../learning-resources/cheat-sheets/CHEAT-SHEET-021-RoPE-Positional-Encoding.md)**
 - **[CHEAT-SHEET-022: Multimodal Models](../../learning-resources/cheat-sheets/CHEAT-SHEET-022-Multimodal-Models.md)**
+- **[CHEAT-SHEET-063: Realtime Voice Agents - the Serial Bill, the Streaming Overlap, and the Turn-Taking Gate](../../learning-resources/cheat-sheets/CHEAT-SHEET-063-Realtime-Voice-Agents.md)**
 - **[CHEAT-SHEET-035: Beyond Attention - SSMs and MLA](../../learning-resources/cheat-sheets/CHEAT-SHEET-035-Beyond-Attention-SSMs-and-MLA.md)**
 - **[CHEAT-SHEET-038: SDPA & torch.compile - the Kernel Choice and the Execution Choice](../../learning-resources/cheat-sheets/CHEAT-SHEET-038-SDPA-and-torch-compile.md)**
 - **[CHEAT-SHEET-039: Word Embeddings - the Tradition That Turned Co-occurrence into Coordinates](../../learning-resources/cheat-sheets/CHEAT-SHEET-039-Word-Embeddings-Tradition.md)**

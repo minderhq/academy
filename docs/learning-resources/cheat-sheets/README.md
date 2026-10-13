@@ -9,7 +9,7 @@ Tags: ['cheatsheet', 'reference']
 
 # Quick Reference Cheat Sheets
 
-Sixty-Nine single-page references: sixty-two tool cheat sheets and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
+Seventy single-page references: sixty-three tool cheat sheets and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
 
 ## Find a Cheat Sheet by Phase
 
@@ -94,6 +94,7 @@ Standing in one volume's material and need the matching sheet fast? Each group l
   - [CHEAT-SHEET-060: Agentic RAG - the Escalation Gate, the Loop Budget, and the Trajectory Audit](./CHEAT-SHEET-060-Agentic-RAG.md)
   - [CHEAT-SHEET-061: Compound AI Systems - the Composition Ledger, the Verifier Gate, and the Ablation Audit](./CHEAT-SHEET-061-Compound-AI-Systems.md)
   - [CHEAT-SHEET-062: KV Offload and Tiered Caching - the Recompute Bill, the Tier Ladder, and the Routing Gate](./CHEAT-SHEET-062-KV-Offload-and-Tiered-Caching.md)
+  - [CHEAT-SHEET-063: Realtime Voice Agents - the Serial Bill, the Streaming Overlap, and the Turn-Taking Gate](./CHEAT-SHEET-063-Realtime-Voice-Agents.md)
 
 - **Cross-volume: not tied to one phase**
   - [CHEAT-SHEET-003: Git & Version Control](./CHEAT-SHEET-003-Git.md)
@@ -264,6 +265,8 @@ The escalation gate, the decomposition DAG, the loop budget, the verification ga
 The composition ledger, the repair ledger, the call bill, the verifier gate, the token bill, the router gate, and the ablation audit.
 ### [CHEAT-SHEET-062: KV Offload and Tiered Caching - the Recompute Bill, the Tier Ladder, and the Routing Gate](./CHEAT-SHEET-062-KV-Offload-and-Tiered-Caching.md)
 The recompute bill, the tier ladder, the reuse gate, the TTFT bill, the capacity bill, the routing gate, and the ablation audit.
+### [CHEAT-SHEET-063: Realtime Voice Agents - the Serial Bill, the Streaming Overlap, and the Turn-Taking Gate](./CHEAT-SHEET-063-Realtime-Voice-Agents.md)
+The serial bill, the streaming bill, the endpoint and barge-in gate, the prefix-cache bill, the TTS cutover, the turn ladder, and the ablation audit.
 ## Volume Quick References
 
 - [1: Infrastructure Fundamentals - Quick Reference](./QUICK-REF-VOLUME-1.md)
