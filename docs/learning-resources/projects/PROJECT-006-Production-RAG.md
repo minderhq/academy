@@ -1,7 +1,7 @@
 ---
 Document ID: PROJECT-006
 Title: "CAPSTONE PROJECT-006: Build Production RAG System"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Advanced
 Tags: ['project', 'rag', 'production', 'qdrant']
@@ -671,6 +671,10 @@ if __name__ == "__main__":
 - **[6101: HNSW Indexing](../../phases/phase6-rag/6100-vector/6101-HNSW-Indexing.md)** - Vector search theory
 - **[6201: Hybrid Search](../../phases/phase6-rag/6200-retrieval/6201-Hybrid-Search.md)** - Hybrid retrieval
 - **[LAB-002: RAG Implementation](../labs/LAB-002-RAG-Implementation.md)** - RAG basics
+
+- **[Vector Databases - the RAM Ledger, the Quantile Trap, and the Rescore Ladder](../cheat-sheets/CHEAT-SHEET-053-Vector-Databases.md)** - The RAM ledger arithmetic, the distance trio, the SQ quantile trap, binary and product quantization floors, the oversample x rescore ladder, and the snapshot RPO bill.
+- **[Retrieval Strategies - the Two-Channel Fusion, the Rerank Funnel, and the Diversity Dial](../cheat-sheets/CHEAT-SHEET-047-Retrieval-Strategies.md)** - BM25 and the dense channel, RRF and the alpha dial joining them, the cross-encoder rerank funnel, the MMR diversity dial, and the provenance boost.
+- **[LLM Gateway and Model Routing - the Fallback Cascade, the Price Ladder, and the Affinity Ledger](../cheat-sheets/CHEAT-SHEET-056-LLM-Gateway-and-Model-Routing.md)** - The fallback cascade, the price ladder, the router verdict, the affinity ledger, the 429 spill ledger, the SLO downgrade ladder, and the shadow verdict.
 
 ---
 

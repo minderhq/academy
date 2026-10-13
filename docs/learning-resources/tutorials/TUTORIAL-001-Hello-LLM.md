@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-001
 Title: "TUTORIAL-001: Hello LLM! - Your First AI Model"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 30 minutes
@@ -364,3 +364,5 @@ Test your understanding:
 ## Next Steps
 
 - **[TUTORIAL-002: Docker Essentials](TUTORIAL-002-Docker-Essentials.md)**
+
+- **[Local Inference with llama.cpp & Ollama](../cheat-sheets/CHEAT-SHEET-009-Local-Inference.md)** - GGUF downloads, llama.cpp build/serve flags, Ollama run and Modelfile customization, and offload tuning for local machines.

@@ -1,7 +1,7 @@
 ---
 Document ID: PROJECT-007
 Title: "CAPSTONE PROJECT-007: Deploy Production AI System"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Advanced
 Tags: ['project', 'production', 'deployment', 'agents']
@@ -733,6 +733,10 @@ jobs:
 - **[7101: ReAct Loop](../../phases/phase7-agentic/7100-architecture/7101-ReAct-Loop-System.md)** - Agent pattern
 - **[7301: Orchestration](../../phases/phase7-agentic/7300-orchestration/7301-Orchestration.md)** - Multi-agent orchestration
 - **[LAB-009: Production Deployment](../labs/LAB-009-Production-Deployment.md)** - Deployment
+
+- **[Multi-Agent Orchestration](../cheat-sheets/CHEAT-SHEET-024-Multi-Agent-Orchestration.md)** - The specialist roster and review-retry flow, the message envelope and handoff capsule, delivery semantics with the dedup ledger, and the mid-run human gate.
+- **[vLLM Serving & Inference](../cheat-sheets/CHEAT-SHEET-007-vLLM-Serving.md)** - Serving, quantization, parallelism and tuning flags for the vLLM inference server.
+- **[LLM Observability](../cheat-sheets/CHEAT-SHEET-033-LLM-Observability.md)** - The four LLM-specific metric families and their alert thresholds, the timing trio with its decode-rate trap, the hallucination ladder, and the nearest-rank percentile rule.
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 Document ID: PROJECT-004
 Title: "CAPSTONE PROJECT-004: Quantize LLM from Scratch"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Advanced
 Tags: ['project', 'quantization', 'gguf']
@@ -604,6 +604,10 @@ if __name__ == '__main__':
 - **[4101: GGUF Physics](../../phases/phase4-quantization/4100-low-bit/4101-GGUF-Physics.md)** - GGUF format theory
 - **[4102: EXL2 and AWQ](../../phases/phase4-quantization/4100-low-bit/4102-EXL2-and-AWQ.md)** - Advanced quantization
 - **[EXP_4101: GGUF Quantization](../../../experiments/EXP_4101_GGUF.md)** - Hands-on quantization
+
+- **[Quantization Formats & Methods](../cheat-sheets/CHEAT-SHEET-015-Quantization-Formats-Methods.md)** - The bpw block arithmetic behind Q4_0/Q4_K, the three GGUF families, and the EXL2/AWQ/GPTQ GPU-only map.
+- **[Extreme Quantization - the Method Choice, the File Choice, the Training-Time Frontier](../cheat-sheets/CHEAT-SHEET-042-Extreme-Quantization.md)** - GPTQ's forward error movement, AWQ's salience-weighted budget, the file choice as a deployment decision, sparsity's break-even, and ternary as a training-time commitment.
+- **[4-Bit Residuals - the Metadata Squeeze and the Hardware-Native Grid](../cheat-sheets/CHEAT-SHEET-043-4-Bit-Residuals.md)** - Double quantization of the scales themselves, the NF4 and e2m1 grids, MXFP4 versus NVFP4, the outlier blast radius, and gpt-oss's selective census.
 
 ---
 

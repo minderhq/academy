@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-009
 Title: "TUTORIAL-009: Advanced RAG Techniques"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -607,3 +607,6 @@ class CachedRetriever:
 
 - Hands-on: **[6201: Hybrid Search](../../phases/phase6-rag/6200-retrieval/6201-Hybrid-Search.md)**
 - Practice: **[LAB-005: GraphRAG](../labs/LAB-005-GraphRAG.md)**
+
+- **[Retrieval Strategies - the Two-Channel Fusion, the Rerank Funnel, and the Diversity Dial](../cheat-sheets/CHEAT-SHEET-047-Retrieval-Strategies.md)** - BM25 and the dense channel, RRF and the alpha dial joining them, the cross-encoder rerank funnel, the MMR diversity dial, and the provenance boost.
+- **[Evaluation & Benchmarking](../cheat-sheets/CHEAT-SHEET-011-Evaluation-Benchmarking.md)** - The everyday benchmark map, lm-evaluation-harness commands, pass@k estimator math, and LLM-as-judge hygiene rules.

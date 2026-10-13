@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-000
 Title: "TUTORIAL-000: Python for AI (Complete Beginner)"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 20 hours
@@ -2190,6 +2190,8 @@ Congratulations! You now have the Python skills needed for AI development!
 2. **[TUTORIAL-002: Docker Essentials](TUTORIAL-002-Docker-Essentials.md)** - Container fundamentals
 3. **[TUTORIAL-003: RAG Basics](TUTORIAL-003-RAG-Basics.md)** - Give your LLM knowledge
 4. **[LAB-001: Docker & LLM](../labs/LAB-001-Docker-LLM.md)** - Hands-on practice
+
+- **[Python for AI/ML](../cheat-sheets/CHEAT-SHEET-002-Python-AI.md)** - The Python idioms, libraries and snippets used across the curriculum.
 
 ### Recommended Learning Path:
 

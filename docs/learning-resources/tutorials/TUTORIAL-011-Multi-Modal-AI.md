@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-011
 Title: "TUTORIAL-011: Multi-Modal AI"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -674,3 +674,6 @@ class MultiModalRAG:
 
 - Hands-on: **[3501: Vision-Language Models](../../phases/phase3-transformers/3500-multimodal/3501-Vision-Language-Models.md)**
 - Practice: **[LAB-011: Multi-Modal AI](../labs/LAB-011-Multi-Modal-AI.md)**
+
+- **[Multimodal Models](../cheat-sheets/CHEAT-SHEET-022-Multimodal-Models.md)** - The two-generation split, CLIP's contrastive objective, the VLM recipe with its token math, and the audio spectrogram/codec split behind the voice pipeline.
+- **[Semantic Vectors - the HNSW Ledger, the Recall Dial, and the Truncation Contract](../cheat-sheets/CHEAT-SHEET-048-Semantic-Vectors.md)** - What the vector is, how cosine and dot measure closeness, the HNSW walk with its ef dial, the MRL truncation contract, and the anisotropy trap.

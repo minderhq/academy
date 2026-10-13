@@ -1,7 +1,7 @@
 ---
 Document ID: PROJECT-005
 Title: "CAPSTONE PROJECT-005: Fine-Tune Domain Model"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Advanced
 Tags: ['project', 'lora', 'finetuning', 'peft']
@@ -535,6 +535,10 @@ echo "Model deployed at http://localhost:8000"
 - **[5101: LoRA Logic](../../phases/phase5-finetuning/5100-peft/5101-LoRA-Logic.md)** - LoRA theory
 - **[5102: QLoRA Pipelines](../../phases/phase5-finetuning/5100-peft/5102-QLoRA-Pipelines.md)** - QLoRA techniques
 - **[LAB-003: LoRA Fine-Tuning](../labs/LAB-003-LoRA-FineTuning.md)** - Hands-on fine-tuning
+
+- **[LoRA & QLoRA](../cheat-sheets/CHEAT-SHEET-016-LoRA-QLoRA.md)** - The low-rank arithmetic and the three knobs, the QLoRA 4-bit pipeline, and the merge-on-FP16 rule.
+- **[Synthetic Data & Advanced Training - the Distilled Student, the Federated Fleet, and the Recursion Tax](../cheat-sheets/CHEAT-SHEET-045-Synthetic-Data-Advanced-Training.md)** - Distillation's temperature law, FedAvg's weighted fleet, the DP-SGD clip-noise adapter, the self-instruct bootstrap, and the model-collapse walk with its anchor.
+- **[Evaluation & Benchmarking](../cheat-sheets/CHEAT-SHEET-011-Evaluation-Benchmarking.md)** - The everyday benchmark map, lm-evaluation-harness commands, pass@k estimator math, and LLM-as-judge hygiene rules.
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-002
 Title: "TUTORIAL-002: Docker Essentials for AI"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 45 minutes
@@ -572,3 +572,5 @@ docker compose down                 # Stop services
 ## Next Steps
 
 - TUTORIAL-003: [RAG Basics](./TUTORIAL-003-RAG-Basics.md) - the next tutorial in the series
+
+- **[Docker Commands](../cheat-sheets/CHEAT-SHEET-001-Docker.md)** - Containers, images, volumes and networking in one page.

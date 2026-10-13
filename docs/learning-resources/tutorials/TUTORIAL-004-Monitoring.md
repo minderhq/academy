@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-004
 Title: "TUTORIAL-004: Monitoring & Observability for AI Systems"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 90 minutes
@@ -731,6 +731,8 @@ docker compose down
 - **[1501: Monitoring Stack](../../phases/phase1-infra/1500-monitoring/1501-Monitoring-and-Observability.md)** - Deep dive into monitoring
 - **[LAB-001: Docker & LLM](../labs/LAB-001-Docker-LLM.md)** - Add monitoring to LLM apps
 - **[TUTORIAL-005: Production Deployment](TUTORIAL-005-Production-Deployment.md)** - Deploy to production
+
+- **[LLM Observability](../cheat-sheets/CHEAT-SHEET-033-LLM-Observability.md)** - The four LLM-specific metric families and their alert thresholds, the timing trio with its decode-rate trap, the hallucination ladder, and the nearest-rank percentile rule.
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-003
 Title: "TUTORIAL-003: RAG Basics - Give Your LLM Knowledge"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 60 minutes
@@ -619,3 +619,6 @@ print(rag.query("What is Minder Academy?"))
 ## Next Steps
 
 - TUTORIAL-004: [Monitoring](./TUTORIAL-004-Monitoring.md)
+
+- **[RAG Systems](../cheat-sheets/CHEAT-SHEET-005-RAG-Systems.md)** - Chunking, embedding, retrieval and generation parameters at a glance.
+- **[Vector Databases - the RAM Ledger, the Quantile Trap, and the Rescore Ladder](../cheat-sheets/CHEAT-SHEET-053-Vector-Databases.md)** - The RAM ledger arithmetic, the distance trio, the SQ quantile trap, binary and product quantization floors, the oversample x rescore ladder, and the snapshot RPO bill.

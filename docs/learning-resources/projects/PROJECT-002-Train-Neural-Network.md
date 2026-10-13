@@ -1,7 +1,7 @@
 ---
 Document ID: PROJECT-002
 Title: "CAPSTONE PROJECT-002: Train Neural Network from Scratch"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Intermediate
 Tags: ['project', 'pytorch', 'training', 'tensors']
@@ -1129,6 +1129,9 @@ for epoch in range(n_epochs):
 - **[2102: Backpropagation](../../phases/phase2-foundations/2100-calculus/2102-Backpropagation-and-Derivatives.md)** - Gradient computation
 - **[2201: PyTorch Graphs](../../phases/phase2-foundations/2200-frameworks/2201-PyTorch-Computational-Graphs.md)** - PyTorch comparison
 - **[LAB-006: Train from Scratch](../labs/LAB-006-Train-Model-From-Scratch.md)** - Advanced training
+
+- **[Activations & Normalization - the Nonlinearity and the Statistics](../cheat-sheets/CHEAT-SHEET-041-Activations-and-Normalization.md)** - ReLU against the smooth curve family, GELU's tanh approximation, SwiGLU's 1.5x bill, the gate zoo, LayerNorm versus RMSNorm, and the Pre-LN stream.
+- **[Advanced Optimization - the Optimizer Memory Ledger, the Schedule Arc, and the Failure Toolbox](../cheat-sheets/CHEAT-SHEET-046-Advanced-Optimization.md)** - The optimizer memory ledger, Adam's scale-free first step, the warmup-decay schedule arc, the failure toolbox, SAM's flat-minima search, and the LR range test.
 
 ---
 

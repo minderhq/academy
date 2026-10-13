@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-014
 Title: "TUTORIAL-014: Production LLM Systems"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -849,3 +849,7 @@ Create the deployment pipeline:
 - Scale beyond one host: **[1301: K3s Master-Worker Architecture](../../phases/phase1-infra/1300-kubernetes/1301-K3s-Master-Worker-Arch.md)**
 - Dedicated inference serving: **[1404: TGI Deployment Guide](../../phases/phase1-infra/1400-llmops/guides/1404-TGI-Deployment-Guide.md)**
 - Pipeline automation theory: **[6502: CI/CD for ML](../../phases/phase6-rag/6500-mlops-pipelines/6502-CI-CD-for-ML.md)**
+
+- **[LLM Gateway and Model Routing - the Fallback Cascade, the Price Ladder, and the Affinity Ledger](../cheat-sheets/CHEAT-SHEET-056-LLM-Gateway-and-Model-Routing.md)** - The fallback cascade, the price ladder, the router verdict, the affinity ledger, the 429 spill ledger, the SLO downgrade ladder, and the shadow verdict.
+- **[MLOps Pipelines - the Lifecycle State Machine, the Challenger Verdict, and the Fleet Bill](../cheat-sheets/CHEAT-SHEET-050-MLOps-Pipelines.md)** - The MLOps pipeline surface in seven priced exhibits - lifecycle gates, challenger statistics, registry mechanics, re-embedding policy, and the fleet's three bills.
+- **[LLM Observability](../cheat-sheets/CHEAT-SHEET-033-LLM-Observability.md)** - The four LLM-specific metric families and their alert thresholds, the timing trio with its decode-rate trap, the hallucination ladder, and the nearest-rank percentile rule.

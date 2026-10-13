@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-005
 Title: "TUTORIAL-005: Production Deployment with CI/CD"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 90 minutes
@@ -685,6 +685,9 @@ curl http://localhost:9090/api/v1/query?query=up
 - **[1402: vLLM and TGI](../../phases/phase1-infra/1400-llmops/1402-vLLM-and-TGI.md)** - Production inference
 - **[1404: TGI Deployment Guide](../../phases/phase1-infra/1400-llmops/guides/1404-TGI-Deployment-Guide.md)** - TGI in production
 - **[PROJECT-001: AI Assistant](../projects/PROJECT-001-AI-Assistant.md)** - Complete production system
+
+- **[Docker Commands](../cheat-sheets/CHEAT-SHEET-001-Docker.md)** - Containers, images, volumes and networking in one page.
+- **[MLOps Pipelines - the Lifecycle State Machine, the Challenger Verdict, and the Fleet Bill](../cheat-sheets/CHEAT-SHEET-050-MLOps-Pipelines.md)** - The MLOps pipeline surface in seven priced exhibits - lifecycle gates, challenger statistics, registry mechanics, re-embedding policy, and the fleet's three bills.
 
 ---
 

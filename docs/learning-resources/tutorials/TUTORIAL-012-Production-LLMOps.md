@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-012
 Title: "TUTORIAL-012: Production LLMOps"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -1003,3 +1003,7 @@ print(f"Budget remaining: ${report['budget_remaining']:.2f}")
 
 - Hands-on: **[1403: vLLM Production Deployment](../../phases/phase1-infra/1400-llmops/guides/1403-vLLM-Production-Deployment.md)**
 - Practice: **[LAB-009: Production Deployment](../labs/LAB-009-Production-Deployment.md)**
+
+- **[LLM Gateway and Model Routing - the Fallback Cascade, the Price Ladder, and the Affinity Ledger](../cheat-sheets/CHEAT-SHEET-056-LLM-Gateway-and-Model-Routing.md)** - The fallback cascade, the price ladder, the router verdict, the affinity ledger, the 429 spill ledger, the SLO downgrade ladder, and the shadow verdict.
+- **[LLM Observability](../cheat-sheets/CHEAT-SHEET-033-LLM-Observability.md)** - The four LLM-specific metric families and their alert thresholds, the timing trio with its decode-rate trap, the hallucination ladder, and the nearest-rank percentile rule.
+- **[vLLM Serving & Inference](../cheat-sheets/CHEAT-SHEET-007-vLLM-Serving.md)** - Serving, quantization, parallelism and tuning flags for the vLLM inference server.

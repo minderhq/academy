@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-007
 Title: "TUTORIAL-007: LoRA Basics"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 1 hour
@@ -506,3 +506,6 @@ Loss barely moves
 - Hands-on: **[LAB-003: LoRA Fine-Tuning](../labs/LAB-003-LoRA-FineTuning.md)**
 - Theory: **[5101: LoRA Logic](../../phases/phase5-finetuning/5100-peft/5101-LoRA-Logic.md)**
 - Advanced: **[5102: QLoRA Pipelines](../../phases/phase5-finetuning/5100-peft/5102-QLoRA-Pipelines.md)** → **[5201: DPO Theory](../../phases/phase5-finetuning/5200-alignment/5201-DPO-Theory.md)**
+
+- **[LoRA & QLoRA](../cheat-sheets/CHEAT-SHEET-016-LoRA-QLoRA.md)** - The low-rank arithmetic and the three knobs, the QLoRA 4-bit pipeline, and the merge-on-FP16 rule.
+- **[Model Merging - the Arithmetic That Combines Trained Models](../cheat-sheets/CHEAT-SHEET-040-Model-Merging.md)** - The task vector and its dose dial, TIES' trim-elect-merge, DARE's drop-and-rescale, SLERP's arc, and the soup's distributional guarantee.

@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-008
 Title: "TUTORIAL-008: CUDA Programming for AI"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -443,3 +443,6 @@ def sum_reduction(array, result):
 
 - Hands-on: **[2203: CUDA Kernel Programming and GPU Architecture](../../phases/phase2-foundations/2200-frameworks/2203-CUDA-Kernel-Programming.md)**
 - Practice: **[LAB-006: Train Model From Scratch](../labs/LAB-006-Train-Model-From-Scratch.md)**
+
+- **[Flash Attention](../cheat-sheets/CHEAT-SHEET-020-Flash-Attention.md)** - The memory-hierarchy argument, the online-softmax block update, the FA1-FA2-FA3 ladder, the three enablement paths, and the when-not rules.
+- **[SDPA & torch.compile - the Kernel Choice and the Execution Choice](../cheat-sheets/CHEAT-SHEET-038-SDPA-and-torch-compile.md)** - SDPA as the kernel choice, torch.compile as the execution choice, FlexAttention's compile-time programmability, and the generate() re-key trap that undoes both.

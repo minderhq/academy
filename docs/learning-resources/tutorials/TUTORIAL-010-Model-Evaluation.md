@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-010
 Title: "TUTORIAL-010: Model Evaluation and Benchmarking"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 4 hours
@@ -734,3 +734,5 @@ class EvaluationTracker:
 
 - Hands-on: **[LAB-014: AI Evaluation Safety](../labs/LAB-014-AI-Evaluation-Safety.md)**
 - Practice: **[LAB-006: Train Model From Scratch](../labs/LAB-006-Train-Model-From-Scratch.md)**
+
+- **[Evaluation & Benchmarking](../cheat-sheets/CHEAT-SHEET-011-Evaluation-Benchmarking.md)** - The everyday benchmark map, lm-evaluation-harness commands, pass@k estimator math, and LLM-as-judge hygiene rules.

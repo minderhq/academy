@@ -1,7 +1,7 @@
 ---
 Document ID: PROJECT-001
 Title: "CAPSTONE PROJECT-001: Build Your AI Assistant"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Advanced
 Tags: ['project', 'rag', 'llm']
@@ -1223,6 +1223,10 @@ curl -X POST http://localhost:8002/chat \
 - **[1402: vLLM and TGI](../../phases/phase1-infra/1400-llmops/1402-vLLM-and-TGI.md)** - Production inference
 - **[LAB-002: RAG Implementation](../labs/LAB-002-RAG-Implementation.md)** - RAG basics
 - **[Volume 1: Infrastructure Fundamentals](../../volumes/VOLUME-1-Infrastructure.md)** - Phase 1 reading guide
+
+- **[RAG Systems](../cheat-sheets/CHEAT-SHEET-005-RAG-Systems.md)** - Chunking, embedding, retrieval and generation parameters at a glance.
+- **[ReAct Agent Loop](../cheat-sheets/CHEAT-SHEET-023-ReAct-Agent-Loop.md)** - The Thought-Action-Observation loop, the tool contract that feeds errors back as observations, and the hard iteration cap that bounds the agent.
+- **[Tool Calling and MCP](../cheat-sheets/CHEAT-SHEET-027-Tool-Calling-and-MCP.md)** - The N+M integration economics, the JSON-RPC wire with its two error doors, the v2 decorator contract, and the caller-side resilience stack.
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-006
 Title: "TUTORIAL-006: Real-time AI"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 60 minutes
@@ -489,9 +489,11 @@ In this tutorial, you learned:
 
 ## Next Steps
 
-1. **LAB-011: Multi-Modal AI** - Add streaming to vision systems
-2. **LAB-012: Audio AI** - Real-time speech recognition
-3. **PROJECT-003: Real-time Assistant** - Build complete real-time AI
+1. **[LAB-011: Multi-Modal AI](../labs/LAB-011-Multi-Modal-AI.md)** - Add streaming to vision systems
+2. **[LAB-012: Audio AI](../labs/LAB-012-Audio-AI.md)** - Real-time speech recognition
+3. **[PROJECT-007: Deploy Production AI System](../projects/PROJECT-007-Production-AI-System.md)** - Build complete real-time AI
+
+- **[vLLM Serving & Inference](../cheat-sheets/CHEAT-SHEET-007-vLLM-Serving.md)** - Serving, quantization, parallelism and tuning flags for the vLLM inference server.
 
 ---
 
