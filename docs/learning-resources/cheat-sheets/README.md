@@ -9,7 +9,7 @@ Tags: ['cheatsheet', 'reference']
 
 # Quick Reference Cheat Sheets
 
-Seventy-Seven single-page references: seventy tool cheat sheets and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
+Seventy-Eight single-page references: seventy-one tool cheat sheets and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
 
 ## Find a Cheat Sheet by Phase
 
@@ -102,6 +102,7 @@ Standing in one volume's material and need the matching sheet fast? Each group l
   - [CHEAT-SHEET-068: Multi-Model Serving and the Weight-Residency Budget - the Replication Bill, the Cold-Start Ladder, and the Hot-Set Proof](./CHEAT-SHEET-068-Multi-Model-Serving-and-the-Weight-Residency-Budget.md)
   - [CHEAT-SHEET-069: Cache-Aware Routing and the Session Affinity Budget - the Round-Robin Miss, the Seat Budget, and the Rebalance Bill](./CHEAT-SHEET-069-Cache-Aware-Routing-and-the-Session-Affinity-Budget.md)
   - [CHEAT-SHEET-070: Autoscaling and the Warm-Pool Budget - the Queue-Depth Trigger, the Cold-Start Gate, and the Scale-In Bill](./CHEAT-SHEET-070-Autoscaling-and-the-Warm-Pool-Budget.md)
+  - [CHEAT-SHEET-071: Load Shedding and the Admission Gate - the Queue-Full Bill, the Shedding Ladder, and the Retry Bill](./CHEAT-SHEET-071-Load-Shedding-and-the-Admission-Gate.md)
 
 - **Cross-volume: not tied to one phase**
   - [CHEAT-SHEET-003: Git & Version Control](./CHEAT-SHEET-003-Git.md)
@@ -288,6 +289,8 @@ The replication bill, the cold-start ladder, the first-request gate, the residen
 The round-robin miss, the sticky hash, the seat budget, the eviction bill, the rebalance bill, the day bill, and the ablation audit.
 ### [CHEAT-SHEET-070: Autoscaling and the Warm-Pool Budget - the Queue-Depth Trigger, the Cold-Start Gate, and the Scale-In Bill](./CHEAT-SHEET-070-Autoscaling-and-the-Warm-Pool-Budget.md)
 The fixed-fleet bill, the scale-trigger ladder, the cold-start gate, the warm-pool rent, the scale-in bill, the day bill, and the ablation audit.
+### [CHEAT-SHEET-071: Load Shedding and the Admission Gate - the Queue-Full Bill, the Shedding Ladder, and the Retry Bill](./CHEAT-SHEET-071-Load-Shedding-and-the-Admission-Gate.md)
+The queue-full bill, the admission gate, the shedding ladder, the retry bill, the shedding bill, the day bill, and the ablation audit.
 ## Volume Quick References
 
 - [1: Infrastructure Fundamentals - Quick Reference](./QUICK-REF-VOLUME-1.md)

@@ -14,7 +14,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 **Last Updated:** 2026-10-13
 
-**Total Files:** 517 markdown files (docs/)
+**Total Files:** 518 markdown files (docs/)
 
 ---
 
@@ -234,7 +234,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 ---
 
-### Cheat Sheets (77 files)
+### Cheat Sheets (78 files)
 
 | ID | Topic | Coverage |
 |----|-------|----------|
@@ -308,6 +308,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **[CHEAT-SHEET-068](../learning-resources/cheat-sheets/CHEAT-SHEET-068-Multi-Model-Serving-and-the-Weight-Residency-Budget.md)** | Multi-Model Serving and the Weight-Residency Budget - the Replication Bill, the Cold-Start Ladder, and the Hot-Set Proof | The replication bill, the cold-start ladder, the first-request gate, the residency rent, the swap bill, the day bill, and the ablation audit. |
 | **[CHEAT-SHEET-069](../learning-resources/cheat-sheets/CHEAT-SHEET-069-Cache-Aware-Routing-and-the-Session-Affinity-Budget.md)** | Cache-Aware Routing and the Session Affinity Budget - the Round-Robin Miss, the Seat Budget, and the Rebalance Bill | The round-robin miss, the sticky hash, the seat budget, the eviction bill, the rebalance bill, the day bill, and the ablation audit. |
 | **[CHEAT-SHEET-070](../learning-resources/cheat-sheets/CHEAT-SHEET-070-Autoscaling-and-the-Warm-Pool-Budget.md)** | Autoscaling and the Warm-Pool Budget - the Queue-Depth Trigger, the Cold-Start Gate, and the Scale-In Bill | The fixed-fleet bill, the scale-trigger ladder, the cold-start gate, the warm-pool rent, the scale-in bill, the day bill, and the ablation audit. |
+| **[CHEAT-SHEET-071](../learning-resources/cheat-sheets/CHEAT-SHEET-071-Load-Shedding-and-the-Admission-Gate.md)** | Load Shedding and the Admission Gate - the Queue-Full Bill, the Shedding Ladder, and the Retry Bill | The queue-full bill, the admission gate, the shedding ladder, the retry bill, the shedding bill, the day bill, and the ablation audit. |
 | **[QUICK-REF-V1](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-1.md)** | Infrastructure Fundamentals - Quick Reference | Phase 1 Quick Reference |
 | **[QUICK-REF-V2](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-2.md)** | AI/ML Foundations - Quick Reference | Phase 2 Quick Reference |
 | **[QUICK-REF-V3](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-3.md)** | LLM Internals - Quick Reference | Phase 3 Quick Reference |
@@ -467,7 +468,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **Jupyter Notebooks** | 20 |
 | **Practice Files** | 33 |
 | **Quiz Files** | 33 |
-| **Cheat Sheets** | 78 |
+| **Cheat Sheets** | 79 |
 | **Projects** | 7 |
 | **Experiments** | 47 |
 | **Comparisons** | 3 |
@@ -476,7 +477,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **Solutions** | 3 |
 | **Diagrams** | 4 |
 | **Meta Docs** | 20 |
-| **TOTAL** | **636** |
+| **TOTAL** | **637** |
 
 ### Content Statistics
 
