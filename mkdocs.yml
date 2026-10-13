@@ -520,6 +520,7 @@ nav:
         - "Tool Calling and MCP": learning-resources/cheat-sheets/CHEAT-SHEET-027-Tool-Calling-and-MCP.md
         - "Agent Evaluation and Observability": learning-resources/cheat-sheets/CHEAT-SHEET-028-Agent-Evaluation-and-Observability.md
         - "Function Calling Training and Constrained Decoding": learning-resources/cheat-sheets/CHEAT-SHEET-029-Function-Calling-Training-and-Constrained-Decoding.md
+        - "Browser and Computer-Use Agents": learning-resources/cheat-sheets/CHEAT-SHEET-057-Browser-and-Computer-Use-Agents.md
         - "Quick Ref Volume 1": learning-resources/cheat-sheets/QUICK-REF-VOLUME-1.md
         - "Quick Ref Volume 2": learning-resources/cheat-sheets/QUICK-REF-VOLUME-2.md
         - "Quick Ref Volume 3": learning-resources/cheat-sheets/QUICK-REF-VOLUME-3.md

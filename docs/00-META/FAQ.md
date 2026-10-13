@@ -17,7 +17,7 @@ Tags: ['faq', 'llm', 'llmops']
 
 ### What is Minder Academy?
 
-Minder Academy is a comprehensive 7-phase learning path for mastering AI infrastructure, model internals, quantization, fine-tuning, RAG systems, and production deployment. It consists of 503 documents across 7 phases, 16 hands-on labs (+15 solutions), 47 experiments, 16 tutorials, and 64 cheat sheets.
+Minder Academy is a comprehensive 7-phase learning path for mastering AI infrastructure, model internals, quantization, fine-tuning, RAG systems, and production deployment. It consists of 504 documents across 7 phases, 16 hands-on labs (+15 solutions), 47 experiments, 16 tutorials, and 65 cheat sheets.
 
 ### Who is this for?
 

@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE7-AGENTIC-README
 Title: "Phase 7: Agentic Cognition & Autonomy [7000]"
-Last Updated: 2026-10-12
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Advanced
 Tags: ['phase', 'agents', 'security', 'prompt-injection']
@@ -703,6 +703,7 @@ Single-page references for the surfaces this phase teaches:
 - **[CHEAT-SHEET-032: Code Interpreter Sandbox](../../learning-resources/cheat-sheets/CHEAT-SHEET-032-Code-Interpreter-Sandbox.md)**
 - **[CHEAT-SHEET-036: Vector Memory - the Embedding-Backed Store](../../learning-resources/cheat-sheets/CHEAT-SHEET-036-Vector-Memory-Embedding-Backed-Store.md)**
 - **[CHEAT-SHEET-037: Reflection & Self-Correction - the Loop That Grades Its Own Work](../../learning-resources/cheat-sheets/CHEAT-SHEET-037-Reflection-Self-Correction.md)**
+- **[CHEAT-SHEET-057: Browser and Computer-Use Agents - the Grounding Verdict, the Step Budget, and the Sandbox Gate Chain](../../learning-resources/cheat-sheets/CHEAT-SHEET-057-Browser-and-Computer-Use-Agents.md)**
 - **[Volume 7: Production Mastery - Quick Reference](../../learning-resources/cheat-sheets/QUICK-REF-VOLUME-7.md)** - the full command companion for this phase
 
 ## Key Takeaways

@@ -9,7 +9,7 @@ Tags: ['cheatsheet', 'reference']
 
 # Quick Reference Cheat Sheets
 
-Sixty-Three single-page references: fifty-six tool cheat sheets and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
+Sixty-Four single-page references: fifty-seven tool cheat sheets and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
 
 ## Find a Cheat Sheet by Phase
 
@@ -88,6 +88,7 @@ Standing in one volume's material and need the matching sheet fast? Each group l
   - [CHEAT-SHEET-032: Code Interpreter Sandbox](./CHEAT-SHEET-032-Code-Interpreter-Sandbox.md)
   - [CHEAT-SHEET-036: Vector Memory - the Embedding-Backed Store](./CHEAT-SHEET-036-Vector-Memory-Embedding-Backed-Store.md)
   - [CHEAT-SHEET-037: Reflection & Self-Correction - the Loop That Grades Its Own Work](./CHEAT-SHEET-037-Reflection-Self-Correction.md)
+  - [CHEAT-SHEET-057: Browser and Computer-Use Agents - the Grounding Verdict, the Step Budget, and the Sandbox Gate Chain](./CHEAT-SHEET-057-Browser-and-Computer-Use-Agents.md)
 
 - **Cross-volume: not tied to one phase**
   - [CHEAT-SHEET-003: Git & Version Control](./CHEAT-SHEET-003-Git.md)
@@ -246,6 +247,8 @@ The wire-efficiency bill, the MTU ladder, the 2.5G throughput ledger, the VLAN p
 The hypervisor RAM ledger, the IOMMU group verdict, the passthrough gate chain, the Thunderbolt tunnel bill, the kernel module ledger, the multi-GPU scaling wall, and the NCCL peer wall.
 ### [CHEAT-SHEET-056: LLM Gateway and Model Routing - the Fallback Cascade, the Price Ladder, and the Affinity Ledger](./CHEAT-SHEET-056-LLM-Gateway-and-Model-Routing.md)
 The fallback cascade, the price ladder, the router verdict, the affinity ledger, the 429 spill ledger, the SLO downgrade ladder, and the shadow verdict.
+### [CHEAT-SHEET-057: Browser and Computer-Use Agents - the Grounding Verdict, the Step Budget, and the Sandbox Gate Chain](./CHEAT-SHEET-057-Browser-and-Computer-Use-Agents.md)
+The perception loop bill, the action space ledger, the grounding verdict, the verifier gate, the step budget, the sandbox gate chain, and the DOM-versus-screenshot verdict.
 ## Volume Quick References
 
 - [1: Infrastructure Fundamentals - Quick Reference](./QUICK-REF-VOLUME-1.md)
