@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE1-PRACTICE
 Title: "Phase 1: Infrastructure Practice"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Beginner
 Tags: ['assessment', 'practice', 'infrastructure']
@@ -15,52 +15,7 @@ Tags: ['assessment', 'practice', 'infrastructure']
 
 **Objective:** Set up a star topology network with a central managed switch.
 
-```bash
-#!/bin/bash
-# network_setup.sh - Star Topology Configuration
-
-# Variables
-SWITCH_IP="192.168.1.1"
-NETMASK="255.255.255.0"
-NETWORK="192.168.1.0/24"
-
-echo "=== Star Topology Network Setup ==="
-echo "Switch IP: $SWITCH_IP"
-echo "Network: $NETWORK"
-
-# 1. Configure network interface
-echo "Step 1: Configuring network interface..."
-ip addr show eth0
-
-# Set IP address
-sudo ip addr add 192.168.1.100/24 dev eth0
-sudo ip link set eth0 up
-
-# Verify
-ip addr show eth0
-
-# 2. Configure jumbo frames (MTU 9000)
-echo "Step 2: Configuring jumbo frames..."
-sudo ip link set eth0 mtu 9000
-
-# Verify MTU
-ip link show eth0 | grep mtu
-
-# 3. Test connectivity to switch
-echo "Step 3: Testing connectivity..."
-ping -c 5 $SWITCH_IP
-
-# 4. Measure latency
-echo "Step 4: Measuring latency..."
-ping -c 100 $SWITCH_IP | tail -1
-
-# 5. Test throughput with iperf3
-echo "Step 5: Testing throughput..."
-iperf3 -c $SWITCH_IP -t 30
-
-# Expected output: near line rate (>900 Mbps on gigabit, higher on multi-gig)
-echo "=== Network Setup Complete ==="
-```
+Attempt this exercise on your own first - the complete reference implementation lives in the Appendix at the end of this file.
 
 **Expected Results:**
 
@@ -80,65 +35,7 @@ echo "=== Network Setup Complete ==="
 
 **Objective:** Configure GPU passthrough on Proxmox for VM access.
 
-```bash
-#!/bin/bash
-# gpu_passthrough.sh - GPU Passthrough Setup
-
-echo "=== GPU Passthrough Configuration ==="
-
-# 1. Enable IOMMU in GRUB
-echo "Step 1: Enabling IOMMU..."
-sudo nano /etc/default/grub
-# Add to GRUB_CMDLINE_LINUX_DEFAULT: "intel_iommu=on iommu=pt"
-
-# Update GRUB
-sudo update-grub
-
-# 2. Check IOMMU groups
-echo "Step 2: Checking IOMMU groups..."
-# Device symlinks under each group are named after the PCI address
-# (e.g. 0000:01:00.0) - list them per group with lspci
-for g in /sys/kernel/iommu_groups/*; do
-    echo "IOMMU Group ${g##*/}:"
-    for d in "$g"/devices/*; do
-        echo -e "\t$(lspci -nns ${d##*/})"
-    done
-done
-
-# Look for GPU in isolated group
-# Expected: GPU in its own IOMMU group
-
-# 3. Load VFIO modules
-echo "Step 3: Loading VFIO modules..."
-echo "vfio" | sudo tee /etc/modules-load.d/vfio.conf
-echo "vfio_pci" | sudo tee -a /etc/modules-load.d/vfio.conf
-echo "vfio_iommu_type1" | sudo tee -a /etc/modules-load.d/vfio.conf
-
-# 4. Configure VFIO for GPU
-echo "Step 4: Configuring VFIO..."
-sudo lspci -nnk -d 10de::  # NVIDIA vendor - the device ID comes from this output
-
-# Find GPU ID (e.g., 10de:1e82 for an 11GB-class GPU)
-echo "Add GPU ID to /etc/modprobe.d/vfio.conf:"
-echo "options vfio-pci ids=10de:1e82"
-
-# 5. Blacklist NVIDIA driver
-echo "Step 5: Blacklisting nouveau..."
-echo "blacklist nouveau" | sudo tee /etc/modprobe.d/blacklist-nouveau.conf
-echo "options nouveau modeset=0" | sudo tee -a /etc/modprobe.d/blacklist-nouveau.conf
-sudo update-initramfs -u
-
-# 6. Reboot
-echo "Step 6: Reboot to apply changes..."
-read -p "Reboot now? (y/n) " -n 1 -r
-echo
-if [[ $REPLY =~ ^[Yy]$ ]]; then
-    sudo reboot
-fi
-
-echo "=== GPU Passthrough Configuration Complete ==="
-echo "After reboot, verify with: dmesg | grep -e DMAR -e IOMMU"
-```
+Attempt this exercise on your own first - the complete reference implementation lives in the Appendix at the end of this file.
 
 **Expected Results:**
 
@@ -165,39 +62,7 @@ qm config 100  # Replace with your VM ID
 
 **Objective:** Deploy multi-node K3s cluster.
 
-```bash
-#!/bin/bash
-# k3s_cluster.sh - K3s Cluster Setup
-
-echo "=== K3s Multi-Node Cluster Setup ==="
-
-# Server 1 (Master)
-echo "Step 1: Installing K3s on master node..."
-curl -sfL https://get.k3s.io | sh -
-
-# Get cluster token
-TOKEN=$(sudo cat /var/lib/rancher/k3s/server/node-token)
-MASTER_IP=$(hostname -I | awk '{print $1}')
-
-echo "Master IP: $MASTER_IP"
-echo "Cluster Token: $TOKEN"
-
-# Server 2 (Worker)
-echo "Step 2: Joining worker node..."
-curl -sfL https://get.k3s.io | K3S_URL=https://$MASTER_IP:6443 K3S_TOKEN=$TOKEN sh -
-
-# Verify cluster
-echo "Step 3: Verifying cluster..."
-sudo k3s kubectl get nodes
-
-# Get cluster info
-sudo k3s kubectl cluster-info
-
-# Check pods
-sudo k3s kubectl get pods -A
-
-echo "=== K3s Cluster Setup Complete ==="
-```
+Attempt this exercise on your own first - the complete reference implementation lives in the Appendix at the end of this file.
 
 **Expected Results:**
 
@@ -217,87 +82,7 @@ echo "=== K3s Cluster Setup Complete ==="
 
 **Objective:** Deploy vLLM server with quantized model.
 
-```python
-# vllm_deploy.py - vLLM Server Deployment
-
-import subprocess
-import requests
-import time
-
-def deploy_vllm():
-    """Deploy vLLM server with AWQ quantization"""
-
-    print("=== vLLM Server Deployment ===")
-
-    # Pull the pinned vLLM image
-    print("Step 1: Pulling vLLM image...")
-    subprocess.run([
-        "docker", "pull",
-        "vllm/vllm-openai:v0.30.0"
-    ])
-
-    # Start vLLM server
-    print("Step 2: Starting vLLM server...")
-    cmd = [
-        "docker", "run", "-d", "--name", "vllm-server",
-        "--gpus", "all",
-        "-p", "8000:8000",
-        "-v", "/srv/models/vllm:/models",
-        "vllm/vllm-openai:v0.30.0",
-        # --quantization awq requires an AWQ-quantized repo, not the fp16 checkpoint
-        "--model", "Qwen/Qwen3-8B-AWQ",
-        "--quantization", "awq",
-        "--max-model-len", "4096",
-        "--gpu-memory-utilization", "0.9",
-        "--block-size", "16"
-    ]
-
-    subprocess.run(cmd, check=True)
-
-    # Wait for startup
-    print("Step 3: Waiting for server startup...")
-    time.sleep(30)
-
-    # Health check
-    print("Step 4: Health check...")
-    try:
-        response = requests.get("http://localhost:8000/health", timeout=5)
-        if response.status_code == 200:
-            print("✅ Server healthy!")
-        else:
-            print("❌ Server not responding")
-    except Exception as e:
-        print(f"❌ Error: {e}")
-
-    # Test inference
-    print("Step 5: Testing inference...")
-    try:
-        response = requests.post(
-            "http://localhost:8000/v1/chat/completions",
-            json={
-                # served model name follows --model
-                "model": "Qwen/Qwen3-8B-AWQ",
-                "messages": [{"role": "user", "content": "Hello!"}],
-                "max_tokens": 50
-            },
-            timeout=30
-        )
-
-        if response.status_code == 200:
-            result = response.json()
-            print("✅ Inference successful!")
-            print(f"Response: {result['choices'][0]['message']['content']}")
-        else:
-            print(f"❌ Inference failed: {response.text}")
-
-    except Exception as e:
-        print(f"❌ Error: {e}")
-
-    print("=== vLLM Deployment Complete ===")
-
-if __name__ == "__main__":
-    deploy_vllm()
-```
+Attempt this exercise on your own first - the complete reference implementation lives in the Appendix at the end of this file.
 
 **Expected Results:**
 
@@ -331,126 +116,7 @@ done
 
 **Objective:** Set up Prometheus for LLM infrastructure monitoring.
 
-```yaml
-# prometheus_config.yml - Prometheus Configuration
-
-global:
-  scrape_interval: 15s
-  evaluation_interval: 15s
-
-# Alertmanager configuration
-alerting:
-  alertmanagers:
-    - static_configs:
-        - targets: ['alertmanager:9093']
-
-# Rule files
-rule_files:
-  - "alerts.yml"
-
-# Scrape configurations
-scrape_configs:
-  # vLLM metrics
-  - job_name: 'vllm'
-    static_configs:
-      - targets: ['vllm-server:8000']
-    metrics_path: '/metrics'
-
-  # Qdrant metrics
-  - job_name: 'qdrant'
-    static_configs:
-      - targets: ['qdrant:6333']
-    metrics_path: '/metrics'
-
-  # Node exporter
-  - job_name: 'node'
-    static_configs:
-      - targets: ['node-exporter:9100']
-
-  # GPU metrics
-  - job_name: 'gpu'
-    static_configs:
-      - targets: ['gpu-exporter:9400']
-
-  # Docker stats
-  - job_name: 'docker'
-    static_configs:
-      - targets: ['cadvisor:8080']
-```
-
-```bash
-# monitoring_stack.sh - Deploy Monitoring Stack
-
-#!/bin/bash
-
-echo "=== Deploying Monitoring Stack ==="
-
-# Create network
-docker network create monitoring
-
-# Deploy Prometheus
-docker run -d \
-  --name prometheus \
-  --network monitoring \
-  -p 9090:9090 \
-  -v /srv/docker/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml \
-  -v /srv/docker/prometheus/alerts.yml:/etc/prometheus/alerts.yml \
-  prom/prometheus:latest
-
-# Deploy Grafana
-docker run -d \
-  --name grafana \
-  --network monitoring \
-  -p 3000:3000 \
-  -v /srv/docker/grafana:/var/lib/grafana \
-  grafana/grafana:latest
-
-# Deploy Loki
-docker run -d \
-  --name loki \
-  --network monitoring \
-  -p 3100:3100 \
-  -v /srv/docker/loki:/loki \
-  grafana/loki:latest
-
-# Deploy Tempo
-docker run -d \
-  --name tempo \
-  --network monitoring \
-  -p 3200:3200 \
-  -v /srv/docker/tempo:/etc/tempo \
-  grafana/tempo:latest
-
-# Deploy Node Exporter
-# Stays on the monitoring bridge so prometheus.yml can scrape
-# node-exporter:9100 by DNS name; --path.rootfs makes the /proc
-# and /sys mounts actually feed host metrics
-docker run -d \
-  --name node-exporter \
-  --network monitoring \
-  -p 9100:9100 \
-  -v /proc:/host/proc:ro \
-  -v /sys:/host/sys:ro \
-  prom/node-exporter:latest \
-  --path.rootfs=/host
-
-# Deploy cAdvisor
-docker run -d \
-  --name cadvisor \
-  --network monitoring \
-  -p 8080:8080 \
-  -v /:/rootfs:ro \
-  -v /var/run:/var/run:ro \
-  -v /sys:/sys:ro \
-  -v /var/lib/docker/:/var/lib/docker:ro \
-  gcr.io/cadvisor/cadvisor:latest
-
-echo "=== Monitoring Stack Deployed ==="
-echo "Prometheus: http://localhost:9090"
-echo "Grafana: http://localhost:3000 (admin/admin)"
-echo "Loki: http://localhost:3100"
-echo "Tempo: http://localhost:3200"
-```
+Attempt this exercise on your own first - the complete reference implementation lives in the Appendix at the end of this file.
 
 **Verification:**
 ```bash
@@ -603,6 +269,369 @@ else
     echo "❌ Some tests failed. Review logs above."
     exit 1
 fi
+```
+
+---
+
+## Appendix: Phase 1 - Complete Reference Implementations
+
+This appendix contains complete, working reference implementations of
+Exercises 1-5 for self-checking after you have attempted them on your
+own.
+
+
+### Exercise 1: Configure Star Topology Network
+
+```bash
+#!/bin/bash
+# network_setup.sh - Star Topology Configuration
+
+# Variables
+SWITCH_IP="192.168.1.1"
+NETMASK="255.255.255.0"
+NETWORK="192.168.1.0/24"
+
+echo "=== Star Topology Network Setup ==="
+echo "Switch IP: $SWITCH_IP"
+echo "Network: $NETWORK"
+
+# 1. Configure network interface
+echo "Step 1: Configuring network interface..."
+ip addr show eth0
+
+# Set IP address
+sudo ip addr add 192.168.1.100/24 dev eth0
+sudo ip link set eth0 up
+
+# Verify
+ip addr show eth0
+
+# 2. Configure jumbo frames (MTU 9000)
+echo "Step 2: Configuring jumbo frames..."
+sudo ip link set eth0 mtu 9000
+
+# Verify MTU
+ip link show eth0 | grep mtu
+
+# 3. Test connectivity to switch
+echo "Step 3: Testing connectivity..."
+ping -c 5 $SWITCH_IP
+
+# 4. Measure latency
+echo "Step 4: Measuring latency..."
+ping -c 100 $SWITCH_IP | tail -1
+
+# 5. Test throughput with iperf3
+echo "Step 5: Testing throughput..."
+iperf3 -c $SWITCH_IP -t 30
+
+# Expected output: near line rate (>900 Mbps on gigabit, higher on multi-gig)
+echo "=== Network Setup Complete ==="
+```
+
+### Exercise 2: GPU Passthrough Configuration
+
+```bash
+#!/bin/bash
+# gpu_passthrough.sh - GPU Passthrough Setup
+
+echo "=== GPU Passthrough Configuration ==="
+
+# 1. Enable IOMMU in GRUB
+echo "Step 1: Enabling IOMMU..."
+sudo nano /etc/default/grub
+# Add to GRUB_CMDLINE_LINUX_DEFAULT: "intel_iommu=on iommu=pt"
+
+# Update GRUB
+sudo update-grub
+
+# 2. Check IOMMU groups
+echo "Step 2: Checking IOMMU groups..."
+# Device symlinks under each group are named after the PCI address
+# (e.g. 0000:01:00.0) - list them per group with lspci
+for g in /sys/kernel/iommu_groups/*; do
+    echo "IOMMU Group ${g##*/}:"
+    for d in "$g"/devices/*; do
+        echo -e "\t$(lspci -nns ${d##*/})"
+    done
+done
+
+# Look for GPU in isolated group
+# Expected: GPU in its own IOMMU group
+
+# 3. Load VFIO modules
+echo "Step 3: Loading VFIO modules..."
+echo "vfio" | sudo tee /etc/modules-load.d/vfio.conf
+echo "vfio_pci" | sudo tee -a /etc/modules-load.d/vfio.conf
+echo "vfio_iommu_type1" | sudo tee -a /etc/modules-load.d/vfio.conf
+
+# 4. Configure VFIO for GPU
+echo "Step 4: Configuring VFIO..."
+sudo lspci -nnk -d 10de::  # NVIDIA vendor - the device ID comes from this output
+
+# Find GPU ID (e.g., 10de:1e82 for an 11GB-class GPU)
+echo "Add GPU ID to /etc/modprobe.d/vfio.conf:"
+echo "options vfio-pci ids=10de:1e82"
+
+# 5. Blacklist NVIDIA driver
+echo "Step 5: Blacklisting nouveau..."
+echo "blacklist nouveau" | sudo tee /etc/modprobe.d/blacklist-nouveau.conf
+echo "options nouveau modeset=0" | sudo tee -a /etc/modprobe.d/blacklist-nouveau.conf
+sudo update-initramfs -u
+
+# 6. Reboot
+echo "Step 6: Reboot to apply changes..."
+read -p "Reboot now? (y/n) " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    sudo reboot
+fi
+
+echo "=== GPU Passthrough Configuration Complete ==="
+echo "After reboot, verify with: dmesg | grep -e DMAR -e IOMMU"
+```
+
+### Exercise 3: K3s Cluster Setup
+
+```bash
+#!/bin/bash
+# k3s_cluster.sh - K3s Cluster Setup
+
+echo "=== K3s Multi-Node Cluster Setup ==="
+
+# Server 1 (Master)
+echo "Step 1: Installing K3s on master node..."
+curl -sfL https://get.k3s.io | sh -
+
+# Get cluster token
+TOKEN=$(sudo cat /var/lib/rancher/k3s/server/node-token)
+MASTER_IP=$(hostname -I | awk '{print $1}')
+
+echo "Master IP: $MASTER_IP"
+echo "Cluster Token: $TOKEN"
+
+# Server 2 (Worker)
+echo "Step 2: Joining worker node..."
+curl -sfL https://get.k3s.io | K3S_URL=https://$MASTER_IP:6443 K3S_TOKEN=$TOKEN sh -
+
+# Verify cluster
+echo "Step 3: Verifying cluster..."
+sudo k3s kubectl get nodes
+
+# Get cluster info
+sudo k3s kubectl cluster-info
+
+# Check pods
+sudo k3s kubectl get pods -A
+
+echo "=== K3s Cluster Setup Complete ==="
+```
+
+### Exercise 4: vLLM Server Deployment
+
+```python
+# vllm_deploy.py - vLLM Server Deployment
+
+import subprocess
+import requests
+import time
+
+def deploy_vllm():
+    """Deploy vLLM server with AWQ quantization"""
+
+    print("=== vLLM Server Deployment ===")
+
+    # Pull the pinned vLLM image
+    print("Step 1: Pulling vLLM image...")
+    subprocess.run([
+        "docker", "pull",
+        "vllm/vllm-openai:v0.30.0"
+    ])
+
+    # Start vLLM server
+    print("Step 2: Starting vLLM server...")
+    cmd = [
+        "docker", "run", "-d", "--name", "vllm-server",
+        "--gpus", "all",
+        "-p", "8000:8000",
+        "-v", "/srv/models/vllm:/models",
+        "vllm/vllm-openai:v0.30.0",
+        # --quantization awq requires an AWQ-quantized repo, not the fp16 checkpoint
+        "--model", "Qwen/Qwen3-8B-AWQ",
+        "--quantization", "awq",
+        "--max-model-len", "4096",
+        "--gpu-memory-utilization", "0.9",
+        "--block-size", "16"
+    ]
+
+    subprocess.run(cmd, check=True)
+
+    # Wait for startup
+    print("Step 3: Waiting for server startup...")
+    time.sleep(30)
+
+    # Health check
+    print("Step 4: Health check...")
+    try:
+        response = requests.get("http://localhost:8000/health", timeout=5)
+        if response.status_code == 200:
+            print("✅ Server healthy!")
+        else:
+            print("❌ Server not responding")
+    except Exception as e:
+        print(f"❌ Error: {e}")
+
+    # Test inference
+    print("Step 5: Testing inference...")
+    try:
+        response = requests.post(
+            "http://localhost:8000/v1/chat/completions",
+            json={
+                # served model name follows --model
+                "model": "Qwen/Qwen3-8B-AWQ",
+                "messages": [{"role": "user", "content": "Hello!"}],
+                "max_tokens": 50
+            },
+            timeout=30
+        )
+
+        if response.status_code == 200:
+            result = response.json()
+            print("✅ Inference successful!")
+            print(f"Response: {result['choices'][0]['message']['content']}")
+        else:
+            print(f"❌ Inference failed: {response.text}")
+
+    except Exception as e:
+        print(f"❌ Error: {e}")
+
+    print("=== vLLM Deployment Complete ===")
+
+if __name__ == "__main__":
+    deploy_vllm()
+```
+
+### Exercise 5: Prometheus Monitoring Setup
+
+```yaml
+# prometheus_config.yml - Prometheus Configuration
+
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: ['alertmanager:9093']
+
+# Rule files
+rule_files:
+  - "alerts.yml"
+
+# Scrape configurations
+scrape_configs:
+  # vLLM metrics
+  - job_name: 'vllm'
+    static_configs:
+      - targets: ['vllm-server:8000']
+    metrics_path: '/metrics'
+
+  # Qdrant metrics
+  - job_name: 'qdrant'
+    static_configs:
+      - targets: ['qdrant:6333']
+    metrics_path: '/metrics'
+
+  # Node exporter
+  - job_name: 'node'
+    static_configs:
+      - targets: ['node-exporter:9100']
+
+  # GPU metrics
+  - job_name: 'gpu'
+    static_configs:
+      - targets: ['gpu-exporter:9400']
+
+  # Docker stats
+  - job_name: 'docker'
+    static_configs:
+      - targets: ['cadvisor:8080']
+```
+
+```bash
+# monitoring_stack.sh - Deploy Monitoring Stack
+
+#!/bin/bash
+
+echo "=== Deploying Monitoring Stack ==="
+
+# Create network
+docker network create monitoring
+
+# Deploy Prometheus
+docker run -d \
+  --name prometheus \
+  --network monitoring \
+  -p 9090:9090 \
+  -v /srv/docker/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml \
+  -v /srv/docker/prometheus/alerts.yml:/etc/prometheus/alerts.yml \
+  prom/prometheus:latest
+
+# Deploy Grafana
+docker run -d \
+  --name grafana \
+  --network monitoring \
+  -p 3000:3000 \
+  -v /srv/docker/grafana:/var/lib/grafana \
+  grafana/grafana:latest
+
+# Deploy Loki
+docker run -d \
+  --name loki \
+  --network monitoring \
+  -p 3100:3100 \
+  -v /srv/docker/loki:/loki \
+  grafana/loki:latest
+
+# Deploy Tempo
+docker run -d \
+  --name tempo \
+  --network monitoring \
+  -p 3200:3200 \
+  -v /srv/docker/tempo:/etc/tempo \
+  grafana/tempo:latest
+
+# Deploy Node Exporter
+# Stays on the monitoring bridge so prometheus.yml can scrape
+# node-exporter:9100 by DNS name; --path.rootfs makes the /proc
+# and /sys mounts actually feed host metrics
+docker run -d \
+  --name node-exporter \
+  --network monitoring \
+  -p 9100:9100 \
+  -v /proc:/host/proc:ro \
+  -v /sys:/host/sys:ro \
+  prom/node-exporter:latest \
+  --path.rootfs=/host
+
+# Deploy cAdvisor
+docker run -d \
+  --name cadvisor \
+  --network monitoring \
+  -p 8080:8080 \
+  -v /:/rootfs:ro \
+  -v /var/run:/var/run:ro \
+  -v /sys:/sys:ro \
+  -v /var/lib/docker/:/var/lib/docker:ro \
+  gcr.io/cadvisor/cadvisor:latest
+
+echo "=== Monitoring Stack Deployed ==="
+echo "Prometheus: http://localhost:9090"
+echo "Grafana: http://localhost:3000 (admin/admin)"
+echo "Loki: http://localhost:3100"
+echo "Tempo: http://localhost:3200"
 ```
 
 ---

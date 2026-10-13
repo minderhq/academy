@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE2-PRACTICE
 Title: "Phase 2: AI/ML Foundations Practice"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Intermediate
 Tags: ['assessment', 'practice', 'pytorch']
@@ -14,6 +14,68 @@ Tags: ['assessment', 'practice', 'pytorch']
 ### Exercise 1: Tensor Operations with einsum
 
 **Objective:** Master Einstein summation notation for tensor operations.
+
+Attempt this exercise on your own first - the complete reference implementation lives in the Appendix at the end of this file.
+
+**Expected Output:**
+
+- All operations complete without errors
+- Shapes match expected dimensions
+- Complex attention mechanism works correctly
+
+**Key Concepts:**
+
+- Repeated indices: diagonal or dot product (`i,i`)
+- Unique indices: sum along dimension (`ij->i`)
+- Order of letters: output shape (`ij,jk->ik`)
+
+---
+
+### Exercise 2: Implement Backpropagation
+
+**Objective:** Implement automatic differentiation from scratch.
+
+Attempt this exercise on your own first - the complete reference implementation lives in the Appendix at the end of this file.
+
+**Key Concepts:**
+
+- Computational graph building
+- Chain rule application
+- Gradient accumulation
+- Operation differentiation rules
+
+---
+
+### Exercise 3: Implement Neural Network Layer
+
+**Objective:** Build custom neural network layer from scratch.
+
+Attempt this exercise on your own first - the complete reference implementation lives in the Appendix at the end of this file.
+
+---
+
+### Exercise 4: CUDA Kernel Basics
+
+**Objective:** Write and execute simple CUDA kernels.
+
+Attempt this exercise on your own first - the complete reference implementation lives in the Appendix at the end of this file.
+
+---
+
+### Bonus: Build Simple Transformer Block
+
+Attempt this exercise on your own first - the complete reference implementation lives in the Appendix at the end of this file.
+
+---
+
+## Appendix: Phase 2 - Complete Reference Implementations
+
+This appendix contains complete, working reference implementations of
+Exercises 1-4 and the Bonus transformer block for self-checking after
+you have attempted them on your own.
+
+
+### Exercise 1: Tensor Operations with einsum
 
 ```python
 import torch
@@ -166,23 +228,7 @@ if __name__ == "__main__":
     einsum_basics()
 ```
 
-**Expected Output:**
-
-- All operations complete without errors
-- Shapes match expected dimensions
-- Complex attention mechanism works correctly
-
-**Key Concepts:**
-
-- Repeated indices: diagonal or dot product (`i,i`)
-- Unique indices: sum along dimension (`ij->i`)
-- Order of letters: output shape (`ij,jk->ik`)
-
----
-
 ### Exercise 2: Implement Backpropagation
-
-**Objective:** Implement automatic differentiation from scratch.
 
 ```python
 import torch
@@ -381,18 +427,7 @@ if __name__ == "__main__":
     test_autograd()
 ```
 
-**Key Concepts:**
-
-- Computational graph building
-- Chain rule application
-- Gradient accumulation
-- Operation differentiation rules
-
----
-
 ### Exercise 3: Implement Neural Network Layer
-
-**Objective:** Build custom neural network layer from scratch.
 
 ```python
 import torch
@@ -556,11 +591,7 @@ if __name__ == "__main__":
     test_custom_layers()
 ```
 
----
-
 ### Exercise 4: CUDA Kernel Basics
-
-**Objective:** Write and execute simple CUDA kernels.
 
 ```python
 import torch
@@ -657,8 +688,6 @@ def simple_cuda_kernel():
 if __name__ == "__main__":
     simple_cuda_kernel()
 ```
-
----
 
 ## Bonus: Build Simple Transformer Block
 

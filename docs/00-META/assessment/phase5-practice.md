@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE5-PRACTICE
 Title: "Phase 5: Fine-Tuning Practice"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Advanced
 Tags: ['assessment', 'practice', 'finetuning']
@@ -10,6 +10,27 @@ Tags: ['assessment', 'practice', 'finetuning']
 # Phase 5: Fine-Tuning Practice
 
 ## Hands-On Exercises
+
+### Exercise 1: Implement LoRA from Scratch
+
+Attempt this exercise on your own first - the complete reference implementation lives in the Appendix at the end of this file.
+
+### Exercise 2: QLoRA Training
+
+Attempt this exercise on your own first - the complete reference implementation lives in the Appendix at the end of this file.
+
+### Exercise 3: DPO (Direct Preference Optimization)
+
+Attempt this exercise on your own first - the complete reference implementation lives in the Appendix at the end of this file.
+
+---
+
+## Appendix: Phase 5 - Complete Reference Implementations
+
+This appendix contains complete, working reference implementations of
+Exercises 1-3 for self-checking after you have attempted them on your
+own.
+
 
 ### Exercise 1: Implement LoRA from Scratch
 

@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE3-PRACTICE
 Title: "Phase 3: Transformer Physics Practice"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Advanced
 Tags: ['assessment', 'practice', 'transformers']
@@ -10,6 +10,31 @@ Tags: ['assessment', 'practice', 'transformers']
 # Phase 3: Transformer Physics Practice
 
 ## Hands-On Exercises
+
+### Exercise 1: Implement Multi-Head Attention
+
+Attempt this exercise on your own first - the complete reference implementation lives in the Appendix at the end of this file.
+
+### Exercise 2: Implement RoPE (Rotary Position Embedding)
+
+Attempt this exercise on your own first - the complete reference implementation lives in the Appendix at the end of this file.
+
+### Exercise 3: Build BPE Tokenizer
+
+Attempt this exercise on your own first - the complete reference implementation lives in the Appendix at the end of this file.
+
+### Exercise 4: Implement SwiGLU Activation
+
+Attempt this exercise on your own first - the complete reference implementation lives in the Appendix at the end of this file.
+
+---
+
+## Appendix: Phase 3 - Complete Reference Implementations
+
+This appendix contains complete, working reference implementations of
+Exercises 1-4 for self-checking after you have attempted them on your
+own.
+
 
 ### Exercise 1: Implement Multi-Head Attention
 

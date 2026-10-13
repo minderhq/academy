@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE4-PRACTICE
 Title: "Phase 4: Quantization Practice"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Advanced
 Tags: ['assessment', 'practice', 'quantization']
@@ -10,6 +10,31 @@ Tags: ['assessment', 'practice', 'quantization']
 # Phase 4: Quantization Practice
 
 ## Hands-On Exercises
+
+### Exercise 1: Implement 4-bit Quantization
+
+Attempt this exercise on your own first - the complete reference implementation lives in the Appendix at the end of this file.
+
+### Exercise 2: Compare Quantization Methods
+
+Attempt this exercise on your own first - the complete reference implementation lives in the Appendix at the end of this file.
+
+### Exercise 3: Implement KV Cache Quantization
+
+Attempt this exercise on your own first - the complete reference implementation lives in the Appendix at the end of this file.
+
+### Exercise 4: Context Window Length Test
+
+Attempt this exercise on your own first - the complete reference implementation lives in the Appendix at the end of this file.
+
+---
+
+## Appendix: Phase 4 - Complete Reference Implementations
+
+This appendix contains complete, working reference implementations of
+Exercises 1-4 for self-checking after you have attempted them on your
+own.
+
 
 ### Exercise 1: Implement 4-bit Quantization
 
