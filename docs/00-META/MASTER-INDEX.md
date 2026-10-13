@@ -14,7 +14,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 **Last Updated:** 2026-10-13
 
-**Total Files:** 504 markdown files (docs/)
+**Total Files:** 505 markdown files (docs/)
 
 ---
 
@@ -234,7 +234,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 ---
 
-### Cheat Sheets (64 files)
+### Cheat Sheets (65 files)
 
 | ID | Topic | Coverage |
 |----|-------|----------|
@@ -295,6 +295,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **[CHEAT-SHEET-055](../learning-resources/cheat-sheets/CHEAT-SHEET-055-Virtualization-and-GPU-Passthrough.md)** | Virtualization and GPU Passthrough - the Hypervisor RAM Ledger, the Passthrough Gate Chain, and the Multi-GPU Scaling Wall | Hypervisor RAM ledger, IOMMU group verdict, passthrough gate chain, Thunderbolt tunnel bill, kernel module ledger, multi-GPU scaling wall, NCCL peer wall |
 | **[CHEAT-SHEET-056](../learning-resources/cheat-sheets/CHEAT-SHEET-056-LLM-Gateway-and-Model-Routing.md)** | LLM Gateway and Model Routing - the Fallback Cascade, the Price Ladder, and the Affinity Ledger | Fallback cascade, price ladder, router verdict, affinity ledger, 429 spill ledger, SLO downgrade ladder, shadow verdict |
 | **[CHEAT-SHEET-057](../learning-resources/cheat-sheets/CHEAT-SHEET-057-Browser-and-Computer-Use-Agents.md)** | Browser and Computer-Use Agents - the Grounding Verdict, the Step Budget, and the Sandbox Gate Chain | Perception loop bill, action space ledger, grounding verdict, verifier gate, step budget, sandbox gate chain, DOM-versus-screenshot verdict |
+| **[CHEAT-SHEET-058](../learning-resources/cheat-sheets/CHEAT-SHEET-058-Agent-Skills.md)** | Agent Skills - the Loading Ladder, the Trigger Verdict, and the Packaging Gate | Boot bill, loading ladder, trigger verdict, invocation ledger, budget cap split, packaging gate, composition bill |
 | **[QUICK-REF-V1](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-1.md)** | Infrastructure Fundamentals - Quick Reference | Phase 1 Quick Reference |
 | **[QUICK-REF-V2](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-2.md)** | AI/ML Foundations - Quick Reference | Phase 2 Quick Reference |
 | **[QUICK-REF-V3](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-3.md)** | LLM Internals - Quick Reference | Phase 3 Quick Reference |
@@ -454,7 +455,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **Jupyter Notebooks** | 20 |
 | **Practice Files** | 33 |
 | **Quiz Files** | 33 |
-| **Cheat Sheets** | 65 |
+| **Cheat Sheets** | 66 |
 | **Projects** | 7 |
 | **Experiments** | 47 |
 | **Comparisons** | 3 |
@@ -463,7 +464,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **Solutions** | 3 |
 | **Diagrams** | 4 |
 | **Meta Docs** | 20 |
-| **TOTAL** | **623** |
+| **TOTAL** | **624** |
 
 ### Content Statistics
 
