@@ -9,7 +9,7 @@ Tags: ['cheatsheet', 'reference']
 
 # Quick Reference Cheat Sheets
 
-Seventy-Five single-page references: sixty-eight tool cheat sheets and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
+Seventy-Six single-page references: sixty-nine tool cheat sheets and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
 
 ## Find a Cheat Sheet by Phase
 
@@ -100,6 +100,7 @@ Standing in one volume's material and need the matching sheet fast? Each group l
   - [CHEAT-SHEET-066: Prefill-Decode Disaggregation and KV Handoff - the Interference Bill, the Handoff Ladder, and the Pool Split](./CHEAT-SHEET-066-Prefill-Decode-Disaggregation-and-KV-Handoff.md)
   - [CHEAT-SHEET-067: Continuous Batching and the Scheduler Budget - the Static Batching Bill, the Token-Budget Dial, and the No-Sweet-Spot Proof](./CHEAT-SHEET-067-Continuous-Batching-and-the-Scheduler-Budget.md)
   - [CHEAT-SHEET-068: Multi-Model Serving and the Weight-Residency Budget - the Replication Bill, the Cold-Start Ladder, and the Hot-Set Proof](./CHEAT-SHEET-068-Multi-Model-Serving-and-the-Weight-Residency-Budget.md)
+  - [CHEAT-SHEET-069: Cache-Aware Routing and the Session Affinity Budget - the Round-Robin Miss, the Seat Budget, and the Rebalance Bill](./CHEAT-SHEET-069-Cache-Aware-Routing-and-the-Session-Affinity-Budget.md)
 
 - **Cross-volume: not tied to one phase**
   - [CHEAT-SHEET-003: Git & Version Control](./CHEAT-SHEET-003-Git.md)
@@ -282,6 +283,8 @@ The interference bill, the disaggregation bill, the handoff ladder, the sizing g
 The static batching bill, the token-budget dial, the decode batch ladder, the KV watermark ceiling, the preemption bill, the no-sweet-spot proof, and the ablation audit.
 ### [CHEAT-SHEET-068: Multi-Model Serving and the Weight-Residency Budget - the Replication Bill, the Cold-Start Ladder, and the Hot-Set Proof](./CHEAT-SHEET-068-Multi-Model-Serving-and-the-Weight-Residency-Budget.md)
 The replication bill, the cold-start ladder, the first-request gate, the residency rent, the swap bill, the day bill, and the ablation audit.
+### [CHEAT-SHEET-069: Cache-Aware Routing and the Session Affinity Budget - the Round-Robin Miss, the Seat Budget, and the Rebalance Bill](./CHEAT-SHEET-069-Cache-Aware-Routing-and-the-Session-Affinity-Budget.md)
+The round-robin miss, the sticky hash, the seat budget, the eviction bill, the rebalance bill, the day bill, and the ablation audit.
 ## Volume Quick References
 
 - [1: Infrastructure Fundamentals - Quick Reference](./QUICK-REF-VOLUME-1.md)
