@@ -9,7 +9,7 @@ Tags: ['cheatsheet', 'reference']
 
 # Quick Reference Cheat Sheets
 
-Seventy single-page references: sixty-three tool cheat sheets and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
+Seventy-One single-page references: sixty-four tool cheat sheets and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
 
 ## Find a Cheat Sheet by Phase
 
@@ -95,6 +95,7 @@ Standing in one volume's material and need the matching sheet fast? Each group l
   - [CHEAT-SHEET-061: Compound AI Systems - the Composition Ledger, the Verifier Gate, and the Ablation Audit](./CHEAT-SHEET-061-Compound-AI-Systems.md)
   - [CHEAT-SHEET-062: KV Offload and Tiered Caching - the Recompute Bill, the Tier Ladder, and the Routing Gate](./CHEAT-SHEET-062-KV-Offload-and-Tiered-Caching.md)
   - [CHEAT-SHEET-063: Realtime Voice Agents - the Serial Bill, the Streaming Overlap, and the Turn-Taking Gate](./CHEAT-SHEET-063-Realtime-Voice-Agents.md)
+  - [CHEAT-SHEET-064: MoE Serving and Expert Offload - the Capacity Bill, the Residency Gate, and the Quantization Flip](./CHEAT-SHEET-064-MoE-Serving-and-Expert-Offload.md)
 
 - **Cross-volume: not tied to one phase**
   - [CHEAT-SHEET-003: Git & Version Control](./CHEAT-SHEET-003-Git.md)
@@ -267,6 +268,8 @@ The composition ledger, the repair ledger, the call bill, the verifier gate, the
 The recompute bill, the tier ladder, the reuse gate, the TTFT bill, the capacity bill, the routing gate, and the ablation audit.
 ### [CHEAT-SHEET-063: Realtime Voice Agents - the Serial Bill, the Streaming Overlap, and the Turn-Taking Gate](./CHEAT-SHEET-063-Realtime-Voice-Agents.md)
 The serial bill, the streaming bill, the endpoint and barge-in gate, the prefix-cache bill, the TTS cutover, the turn ladder, and the ablation audit.
+### [CHEAT-SHEET-064: MoE Serving and Expert Offload - the Capacity Bill, the Residency Gate, and the Quantization Flip](./CHEAT-SHEET-064-MoE-Serving-and-Expert-Offload.md)
+The capacity bill, the residency bill, the quantization gate, the batch dispatch bill, the shared-expert lever, the serving ladder, and the ablation audit.
 ## Volume Quick References
 
 - [1: Infrastructure Fundamentals - Quick Reference](./QUICK-REF-VOLUME-1.md)

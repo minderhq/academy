@@ -14,7 +14,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 **Last Updated:** 2026-10-13
 
-**Total Files:** 510 markdown files (docs/)
+**Total Files:** 511 markdown files (docs/)
 
 ---
 
@@ -234,7 +234,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 ---
 
-### Cheat Sheets (70 files)
+### Cheat Sheets (71 files)
 
 | ID | Topic | Coverage |
 |----|-------|----------|
@@ -301,6 +301,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **[CHEAT-SHEET-061](../learning-resources/cheat-sheets/CHEAT-SHEET-061-Compound-AI-Systems.md)** | Compound AI Systems - the Composition Ledger, the Verifier Gate, and the Ablation Audit | Composition ledger, repair ledger, call bill, verifier gate, token bill, router gate, ablation audit |
 | **[CHEAT-SHEET-062](../learning-resources/cheat-sheets/CHEAT-SHEET-062-KV-Offload-and-Tiered-Caching.md)** | KV Offload and Tiered Caching - the Recompute Bill, the Tier Ladder, and the Routing Gate | Recompute bill, tier ladder, reuse gate, TTFT bill, capacity bill, routing gate, ablation audit |
 | **[CHEAT-SHEET-063](../learning-resources/cheat-sheets/CHEAT-SHEET-063-Realtime-Voice-Agents.md)** | Realtime Voice Agents - the Serial Bill, the Streaming Overlap, and the Turn-Taking Gate | Serial bill, streaming bill, endpoint and barge-in gate, prefix-cache bill, TTS cutover, turn ladder, ablation audit |
+| **[CHEAT-SHEET-064](../learning-resources/cheat-sheets/CHEAT-SHEET-064-MoE-Serving-and-Expert-Offload.md)** | MoE Serving and Expert Offload - the Capacity Bill, the Residency Gate, and the Quantization Flip | Capacity bill, residency bill, quantization gate, batch dispatch bill, shared-expert lever, serving ladder, ablation audit |
 | **[QUICK-REF-V1](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-1.md)** | Infrastructure Fundamentals - Quick Reference | Phase 1 Quick Reference |
 | **[QUICK-REF-V2](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-2.md)** | AI/ML Foundations - Quick Reference | Phase 2 Quick Reference |
 | **[QUICK-REF-V3](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-3.md)** | LLM Internals - Quick Reference | Phase 3 Quick Reference |
@@ -460,7 +461,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **Jupyter Notebooks** | 20 |
 | **Practice Files** | 33 |
 | **Quiz Files** | 33 |
-| **Cheat Sheets** | 71 |
+| **Cheat Sheets** | 72 |
 | **Projects** | 7 |
 | **Experiments** | 47 |
 | **Comparisons** | 3 |
@@ -469,7 +470,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **Solutions** | 3 |
 | **Diagrams** | 4 |
 | **Meta Docs** | 20 |
-| **TOTAL** | **629** |
+| **TOTAL** | **630** |
 
 ### Content Statistics
 

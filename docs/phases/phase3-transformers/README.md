@@ -382,6 +382,7 @@ Single-page references for the surfaces this phase teaches:
 - **[CHEAT-SHEET-022: Multimodal Models](../../learning-resources/cheat-sheets/CHEAT-SHEET-022-Multimodal-Models.md)**
 - **[CHEAT-SHEET-063: Realtime Voice Agents - the Serial Bill, the Streaming Overlap, and the Turn-Taking Gate](../../learning-resources/cheat-sheets/CHEAT-SHEET-063-Realtime-Voice-Agents.md)**
 - **[CHEAT-SHEET-035: Beyond Attention - SSMs and MLA](../../learning-resources/cheat-sheets/CHEAT-SHEET-035-Beyond-Attention-SSMs-and-MLA.md)**
+- **[CHEAT-SHEET-064: MoE Serving and Expert Offload - the Capacity Bill, the Residency Gate, and the Quantization Flip](../../learning-resources/cheat-sheets/CHEAT-SHEET-064-MoE-Serving-and-Expert-Offload.md)**
 - **[CHEAT-SHEET-038: SDPA & torch.compile - the Kernel Choice and the Execution Choice](../../learning-resources/cheat-sheets/CHEAT-SHEET-038-SDPA-and-torch-compile.md)**
 - **[CHEAT-SHEET-039: Word Embeddings - the Tradition That Turned Co-occurrence into Coordinates](../../learning-resources/cheat-sheets/CHEAT-SHEET-039-Word-Embeddings-Tradition.md)**
 - **[CHEAT-SHEET-041: Activations & Normalization - the Nonlinearity and the Statistics](../../learning-resources/cheat-sheets/CHEAT-SHEET-041-Activations-and-Normalization.md)**

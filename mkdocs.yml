@@ -527,6 +527,7 @@ nav:
         - "Compound AI Systems": learning-resources/cheat-sheets/CHEAT-SHEET-061-Compound-AI-Systems.md
         - "KV Offload and Tiered Caching": learning-resources/cheat-sheets/CHEAT-SHEET-062-KV-Offload-and-Tiered-Caching.md
         - "Realtime Voice Agents": learning-resources/cheat-sheets/CHEAT-SHEET-063-Realtime-Voice-Agents.md
+        - "MoE Serving and Expert Offload": learning-resources/cheat-sheets/CHEAT-SHEET-064-MoE-Serving-and-Expert-Offload.md
         - "Quick Ref Volume 1": learning-resources/cheat-sheets/QUICK-REF-VOLUME-1.md
         - "Quick Ref Volume 2": learning-resources/cheat-sheets/QUICK-REF-VOLUME-2.md
         - "Quick Ref Volume 3": learning-resources/cheat-sheets/QUICK-REF-VOLUME-3.md
