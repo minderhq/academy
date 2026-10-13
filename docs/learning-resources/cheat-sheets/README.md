@@ -9,7 +9,7 @@ Tags: ['cheatsheet', 'reference']
 
 # Quick Reference Cheat Sheets
 
-Seventy-Three single-page references: sixty-six tool cheat sheets and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
+Seventy-Four single-page references: sixty-seven tool cheat sheets and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
 
 ## Find a Cheat Sheet by Phase
 
@@ -98,6 +98,7 @@ Standing in one volume's material and need the matching sheet fast? Each group l
   - [CHEAT-SHEET-064: MoE Serving and Expert Offload - the Capacity Bill, the Residency Gate, and the Quantization Flip](./CHEAT-SHEET-064-MoE-Serving-and-Expert-Offload.md)
   - [CHEAT-SHEET-065: Multi-LoRA Serving and Adapter Scheduling - the Tenancy Bill, the KV Tax, and the Day Bill](./CHEAT-SHEET-065-Multi-LoRA-Serving-and-Adapter-Scheduling.md)
   - [CHEAT-SHEET-066: Prefill-Decode Disaggregation and KV Handoff - the Interference Bill, the Handoff Ladder, and the Pool Split](./CHEAT-SHEET-066-Prefill-Decode-Disaggregation-and-KV-Handoff.md)
+  - [CHEAT-SHEET-067: Continuous Batching and the Scheduler Budget - the Static Batching Bill, the Token-Budget Dial, and the No-Sweet-Spot Proof](./CHEAT-SHEET-067-Continuous-Batching-and-the-Scheduler-Budget.md)
 
 - **Cross-volume: not tied to one phase**
   - [CHEAT-SHEET-003: Git & Version Control](./CHEAT-SHEET-003-Git.md)
@@ -276,6 +277,8 @@ The capacity bill, the residency bill, the quantization gate, the batch dispatch
 The tenancy bill, the KV tax, the residency ladder, the mixed-batch gate, the quantized-adapter gate, the day bill, and the ablation audit.
 ### [CHEAT-SHEET-066: Prefill-Decode Disaggregation and KV Handoff - the Interference Bill, the Handoff Ladder, and the Pool Split](./CHEAT-SHEET-066-Prefill-Decode-Disaggregation-and-KV-Handoff.md)
 The interference bill, the disaggregation bill, the handoff ladder, the sizing gate, the burst gate, the day bill, and the ablation audit.
+### [CHEAT-SHEET-067: Continuous Batching and the Scheduler Budget - the Static Batching Bill, the Token-Budget Dial, and the No-Sweet-Spot Proof](./CHEAT-SHEET-067-Continuous-Batching-and-the-Scheduler-Budget.md)
+The static batching bill, the token-budget dial, the decode batch ladder, the KV watermark ceiling, the preemption bill, the no-sweet-spot proof, and the ablation audit.
 ## Volume Quick References
 
 - [1: Infrastructure Fundamentals - Quick Reference](./QUICK-REF-VOLUME-1.md)
