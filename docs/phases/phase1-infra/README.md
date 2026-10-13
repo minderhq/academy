@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE1-INFRA-README
 Title: "Phase 1: Infrastructure Fabric [1000]"
-Last Updated: 2026-10-12
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Advanced
 Tags: ['phase', 'infrastructure', 'gpu', 'networking']
@@ -465,6 +465,8 @@ Single-page references for the surfaces this phase teaches:
 - **[CHEAT-SHEET-034: SGLang RadixAttention Serving](../../learning-resources/cheat-sheets/CHEAT-SHEET-034-SGLang-RadixAttention-Serving.md)**
 - **[CHEAT-SHEET-038: SDPA & torch.compile - the Kernel Choice and the Execution Choice](../../learning-resources/cheat-sheets/CHEAT-SHEET-038-SDPA-and-torch-compile.md)**
 - **[CHEAT-SHEET-054: Network Foundations - the Wire-Efficiency Bill, the Handshake Ledger, and the First-Token Budget](../../learning-resources/cheat-sheets/CHEAT-SHEET-054-Network-Foundations.md)**
+- **[CHEAT-SHEET-055: Virtualization and GPU Passthrough - the Hypervisor RAM Ledger, the Passthrough Gate Chain, and the Multi-GPU Scaling Wall](../../learning-resources/cheat-sheets/CHEAT-SHEET-055-Virtualization-and-GPU-Passthrough.md)**
+- **[CHEAT-SHEET-056: LLM Gateway and Model Routing - the Fallback Cascade, the Price Ladder, and the Affinity Ledger](../../learning-resources/cheat-sheets/CHEAT-SHEET-056-LLM-Gateway-and-Model-Routing.md)**
 - **[Volume 1: Infrastructure Fundamentals - Quick Reference](../../learning-resources/cheat-sheets/QUICK-REF-VOLUME-1.md)** - the full command companion for this phase
 
 ## Key Takeaways

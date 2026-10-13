@@ -514,6 +514,7 @@ nav:
         - "Vector Databases - the RAM Ledger, the Quantile Trap, and the Rescore Ladder": learning-resources/cheat-sheets/CHEAT-SHEET-053-Vector-Databases.md
         - "Network Foundations - the Wire-Efficiency Bill, the Handshake Ledger, and the First-Token Budget": learning-resources/cheat-sheets/CHEAT-SHEET-054-Network-Foundations.md
         - "Virtualization and GPU Passthrough - the Hypervisor RAM Ledger, the Passthrough Gate Chain, and the Multi-GPU Scaling Wall": learning-resources/cheat-sheets/CHEAT-SHEET-055-Virtualization-and-GPU-Passthrough.md
+        - "LLM Gateway and Model Routing - the Fallback Cascade, the Price Ladder, and the Affinity Ledger": learning-resources/cheat-sheets/CHEAT-SHEET-056-LLM-Gateway-and-Model-Routing.md
         - "Agent Memory Systems": learning-resources/cheat-sheets/CHEAT-SHEET-025-Agent-Memory-Systems.md
         - "Agent Security": learning-resources/cheat-sheets/CHEAT-SHEET-026-Agent-Security.md
         - "Tool Calling and MCP": learning-resources/cheat-sheets/CHEAT-SHEET-027-Tool-Calling-and-MCP.md

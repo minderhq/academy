@@ -1,7 +1,7 @@
 ---
 Document ID: CHEAT-SHEETS-README
 Title: "Quick Reference Cheat Sheets"
-Last Updated: 2026-10-12
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Beginner
 Tags: ['cheatsheet', 'reference']
@@ -9,7 +9,7 @@ Tags: ['cheatsheet', 'reference']
 
 # Quick Reference Cheat Sheets
 
-Sixty-Two single-page references: fifty-five tool cheat sheets and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
+Sixty-Three single-page references: fifty-six tool cheat sheets and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
 
 ## Find a Cheat Sheet by Phase
 
@@ -26,6 +26,7 @@ Standing in one volume's material and need the matching sheet fast? Each group l
   - [CHEAT-SHEET-034: SGLang RadixAttention Serving](./CHEAT-SHEET-034-SGLang-RadixAttention-Serving.md)
   - [CHEAT-SHEET-054: Network Foundations - the Wire-Efficiency Bill, the Handshake Ledger, and the First-Token Budget](./CHEAT-SHEET-054-Network-Foundations.md)
   - [CHEAT-SHEET-055: Virtualization and GPU Passthrough - the Hypervisor RAM Ledger, the Passthrough Gate Chain, and the Multi-GPU Scaling Wall](./CHEAT-SHEET-055-Virtualization-and-GPU-Passthrough.md)
+  - [CHEAT-SHEET-056: LLM Gateway and Model Routing - the Fallback Cascade, the Price Ladder, and the Affinity Ledger](./CHEAT-SHEET-056-LLM-Gateway-and-Model-Routing.md)
 
 - **Volume 2: AI/ML Foundations**
   - [2: AI/ML Foundations - Quick Reference](./QUICK-REF-VOLUME-2.md)
@@ -243,6 +244,8 @@ The RAM ledger arithmetic, the distance trio, the SQ quantile trap, binary and p
 The wire-efficiency bill, the MTU ladder, the 2.5G throughput ledger, the VLAN plan, the segment fold, the loss bill, and the handshake-plus-first-token budget.
 ### [CHEAT-SHEET-055: Virtualization and GPU Passthrough - the Hypervisor RAM Ledger, the Passthrough Gate Chain, and the Multi-GPU Scaling Wall](./CHEAT-SHEET-055-Virtualization-and-GPU-Passthrough.md)
 The hypervisor RAM ledger, the IOMMU group verdict, the passthrough gate chain, the Thunderbolt tunnel bill, the kernel module ledger, the multi-GPU scaling wall, and the NCCL peer wall.
+### [CHEAT-SHEET-056: LLM Gateway and Model Routing - the Fallback Cascade, the Price Ladder, and the Affinity Ledger](./CHEAT-SHEET-056-LLM-Gateway-and-Model-Routing.md)
+The fallback cascade, the price ladder, the router verdict, the affinity ledger, the 429 spill ledger, the SLO downgrade ladder, and the shadow verdict.
 ## Volume Quick References
 
 - [1: Infrastructure Fundamentals - Quick Reference](./QUICK-REF-VOLUME-1.md)
