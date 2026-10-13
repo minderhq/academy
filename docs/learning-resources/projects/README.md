@@ -1,7 +1,7 @@
 ---
 Document ID: PROJECTS-README
 Title: "Capstone Projects and Templates"
-Last Updated: 2026-10-11
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Intermediate
 Tags: ['project', 'template', 'hands-on']
@@ -86,6 +86,7 @@ Advanced - data, training, eval and serving in one pipeline.
 - [Career Guides](../guides/) - how to present these projects to employers
 - [Labs](../labs/) - the individual skills each project assembles
 - [Volumes](../../volumes/) - the curriculum behind every project
+- [Cheat Sheets](../cheat-sheets/) - command references for building the projects
 
 ---
 

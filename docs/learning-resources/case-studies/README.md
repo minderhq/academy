@@ -1,7 +1,7 @@
 ---
 Document ID: CASE-STUDIES-README
 Title: "Real-World Case Studies"
-Last Updated: 2026-10-11
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Intermediate
 Tags: ['case-study', 'reference']
@@ -21,6 +21,7 @@ The case-study collection - real-world examples of AI systems, from home-lab bui
 - [Industry Applications](../../industry/) - sector-specific deployments
 - [Use Cases](../../use-cases/) - general solution patterns
 - [Capstone Projects](../projects/) - practice the same trade-offs yourself
+- [Cheat Sheets](../cheat-sheets/) - command references behind the deployed systems
 
 ---
 

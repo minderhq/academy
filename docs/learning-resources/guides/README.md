@@ -1,7 +1,7 @@
 ---
 Document ID: GUIDES-README
 Title: "Career and Job-Readiness Guides"
-Last Updated: 2026-10-11
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Beginner
 Tags: ['guide', 'career', 'preparation']
@@ -27,6 +27,7 @@ For graduates seeking AI Engineering roles - resume structures and examples tune
 - [Capstone Projects](../projects/) - the portfolio pieces these guides help you present
 - [Real-World Case Studies](../case-studies/) - examples to reference in interviews
 - [Volumes](../../volumes/) - the full curriculum the guides build on
+- [Cheat Sheets](../cheat-sheets/) - the one-page references behind the skills the guides present
 
 ---
 

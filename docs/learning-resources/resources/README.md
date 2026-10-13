@@ -1,7 +1,7 @@
 ---
 Document ID: RESOURCES-README
 Title: "External Learning Resources"
-Last Updated: 2026-10-11
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Beginner
 Tags: ['reference', 'guide']
@@ -21,6 +21,7 @@ Curated list of videos, courses, and external resources to complement the learni
 - [Volumes](../../volumes/) - where each external resource plugs in
 - [Career Guides](../guides/) - the job-facing side of the same material
 - [Flashcards](../interactive/) - active recall on what you watched or read
+- [Cheat Sheets](../cheat-sheets/) - quick reference while you extend a topic
 
 ---
 

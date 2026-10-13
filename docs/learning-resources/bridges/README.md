@@ -1,7 +1,7 @@
 ---
 Document ID: BRIDGES-README
 Title: "The Tutorial-to-Lab Bridge"
-Last Updated: 2026-10-11
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Beginner
 Tags: ['bridge', 'roadmap']
@@ -21,6 +21,7 @@ Bridging the gap between tutorials and hands-on labs - the mapping from every TU
 - [Tutorials](../tutorials/) - the concept track
 - [Labs](../labs/) - the practice track
 - [Volumes](../../volumes/) - how both tracks fold into the curriculum
+- [Cheat Sheets](../cheat-sheets/) - one-page references for the skills both tracks practice
 
 ---
 

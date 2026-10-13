@@ -1,7 +1,7 @@
 ---
 Document ID: LABS-README
 Title: "Hands-On Labs"
-Last Updated: 2026-10-11
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Beginner
 Tags: ['lab', 'hands-on']
@@ -83,6 +83,7 @@ Every lab has a matching worked solution under `solutions/`. Open it only after 
 - [Tutorials](../tutorials/) - the concepts each lab exercises
 - [Troubleshooting](../troubleshooting/) - common lab failures and fixes
 - [Capstone Projects](../projects/) - where lab skills compound into portfolio work
+- [Cheat Sheets](../cheat-sheets/) - command references for the lab toolchains
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 Document ID: INTERACTIVE-README
 Title: "Interactive Learning Components"
-Last Updated: 2026-10-11
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Beginner
 Tags: ['flashcards', 'practice']
@@ -20,6 +20,7 @@ The flashcard deck - interactive elements to enhance the learning experience acr
 
 - [Volumes](../../volumes/) - the material the cards are drawn from
 - [Phase Quizzes](../../00-META/assessment/phase1-quiz.md) - graded self-checks after each phase
+- [Cheat Sheets](../cheat-sheets/) - the one-page reference behind each card's term
 
 ---
 
