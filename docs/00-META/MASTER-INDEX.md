@@ -14,7 +14,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 **Last Updated:** 2026-10-13
 
-**Total Files:** 507 markdown files (docs/)
+**Total Files:** 508 markdown files (docs/)
 
 ---
 
@@ -234,7 +234,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 ---
 
-### Cheat Sheets (67 files)
+### Cheat Sheets (68 files)
 
 | ID | Topic | Coverage |
 |----|-------|----------|
@@ -298,6 +298,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **[CHEAT-SHEET-058](../learning-resources/cheat-sheets/CHEAT-SHEET-058-Agent-Skills.md)** | Agent Skills - the Loading Ladder, the Trigger Verdict, and the Packaging Gate | Boot bill, loading ladder, trigger verdict, invocation ledger, budget cap split, packaging gate, composition bill |
 | **[CHEAT-SHEET-059](../learning-resources/cheat-sheets/CHEAT-SHEET-059-Citation-and-Grounding.md)** | Citation and Grounding - the Citation Bill, the Refusal Gate, and the Consistency Audit | Citation bill, attribution ladder, faithfulness verdict, refusal gate, evidence floor, consistency gate, composition bill |
 | **[CHEAT-SHEET-060](../learning-resources/cheat-sheets/CHEAT-SHEET-060-Agentic-RAG.md)** | Agentic RAG - the Escalation Gate, the Loop Budget, and the Trajectory Audit | Escalation gate, decomposition DAG, loop budget, verification gate, cost bill, wave bill, trajectory audit |
+| **[CHEAT-SHEET-061](../learning-resources/cheat-sheets/CHEAT-SHEET-061-Compound-AI-Systems.md)** | Compound AI Systems - the Composition Ledger, the Verifier Gate, and the Ablation Audit | Composition ledger, repair ledger, call bill, verifier gate, token bill, router gate, ablation audit |
 | **[QUICK-REF-V1](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-1.md)** | Infrastructure Fundamentals - Quick Reference | Phase 1 Quick Reference |
 | **[QUICK-REF-V2](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-2.md)** | AI/ML Foundations - Quick Reference | Phase 2 Quick Reference |
 | **[QUICK-REF-V3](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-3.md)** | LLM Internals - Quick Reference | Phase 3 Quick Reference |
@@ -457,7 +458,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **Jupyter Notebooks** | 20 |
 | **Practice Files** | 33 |
 | **Quiz Files** | 33 |
-| **Cheat Sheets** | 68 |
+| **Cheat Sheets** | 69 |
 | **Projects** | 7 |
 | **Experiments** | 47 |
 | **Comparisons** | 3 |
@@ -466,7 +467,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **Solutions** | 3 |
 | **Diagrams** | 4 |
 | **Meta Docs** | 20 |
-| **TOTAL** | **626** |
+| **TOTAL** | **627** |
 
 ### Content Statistics
 

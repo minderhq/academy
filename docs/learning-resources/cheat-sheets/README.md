@@ -9,7 +9,7 @@ Tags: ['cheatsheet', 'reference']
 
 # Quick Reference Cheat Sheets
 
-Sixty-Seven single-page references: sixty tool cheat sheets and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
+Sixty-Eight single-page references: sixty-one tool cheat sheets and seven volume quick-references, one per curriculum volume. Keep them open while working through labs and projects - every command is copy-paste ready.
 
 ## Find a Cheat Sheet by Phase
 
@@ -92,6 +92,7 @@ Standing in one volume's material and need the matching sheet fast? Each group l
   - [CHEAT-SHEET-058: Agent Skills - the Loading Ladder, the Trigger Verdict, and the Packaging Gate](./CHEAT-SHEET-058-Agent-Skills.md)
   - [CHEAT-SHEET-059: Citation and Grounding - the Citation Bill, the Refusal Gate, and the Consistency Audit](./CHEAT-SHEET-059-Citation-and-Grounding.md)
   - [CHEAT-SHEET-060: Agentic RAG - the Escalation Gate, the Loop Budget, and the Trajectory Audit](./CHEAT-SHEET-060-Agentic-RAG.md)
+  - [CHEAT-SHEET-061: Compound AI Systems - the Composition Ledger, the Verifier Gate, and the Ablation Audit](./CHEAT-SHEET-061-Compound-AI-Systems.md)
 
 - **Cross-volume: not tied to one phase**
   - [CHEAT-SHEET-003: Git & Version Control](./CHEAT-SHEET-003-Git.md)
@@ -258,6 +259,8 @@ The boot bill, the loading ladder, the trigger verdict, the invocation ledger, t
 The citation bill, the attribution ladder, the faithfulness verdict, the refusal gate, the evidence floor, the consistency gate, and the composition bill.
 ### [CHEAT-SHEET-060: Agentic RAG - the Escalation Gate, the Loop Budget, and the Trajectory Audit](./CHEAT-SHEET-060-Agentic-RAG.md)
 The escalation gate, the decomposition DAG, the loop budget, the verification gate, the cost bill, the wave bill, and the trajectory audit.
+### [CHEAT-SHEET-061: Compound AI Systems - the Composition Ledger, the Verifier Gate, and the Ablation Audit](./CHEAT-SHEET-061-Compound-AI-Systems.md)
+The composition ledger, the repair ledger, the call bill, the verifier gate, the token bill, the router gate, and the ablation audit.
 ## Volume Quick References
 
 - [1: Infrastructure Fundamentals - Quick Reference](./QUICK-REF-VOLUME-1.md)
