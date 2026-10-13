@@ -529,6 +529,7 @@ nav:
         - "Realtime Voice Agents": learning-resources/cheat-sheets/CHEAT-SHEET-063-Realtime-Voice-Agents.md
         - "MoE Serving and Expert Offload": learning-resources/cheat-sheets/CHEAT-SHEET-064-MoE-Serving-and-Expert-Offload.md
         - "Multi-LoRA Serving and Adapter Scheduling": learning-resources/cheat-sheets/CHEAT-SHEET-065-Multi-LoRA-Serving-and-Adapter-Scheduling.md
+        - "Prefill-Decode Disaggregation and KV Handoff": learning-resources/cheat-sheets/CHEAT-SHEET-066-Prefill-Decode-Disaggregation-and-KV-Handoff.md
         - "Quick Ref Volume 1": learning-resources/cheat-sheets/QUICK-REF-VOLUME-1.md
         - "Quick Ref Volume 2": learning-resources/cheat-sheets/QUICK-REF-VOLUME-2.md
         - "Quick Ref Volume 3": learning-resources/cheat-sheets/QUICK-REF-VOLUME-3.md
