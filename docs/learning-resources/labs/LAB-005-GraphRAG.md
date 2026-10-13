@@ -942,6 +942,7 @@ for test in complex_questions:
 - **[6302: CAG Long Context](../../phases/phase6-rag/6300-context/6302-CAG-Long-Context-Architectures.md)** - Long context as database
 - **[6304: GraphRAG Implementation](../../phases/phase6-rag/6300-context/guides/6304-GraphRAG-Implementation.md)** - Complete implementation
 - **[LAB-004: ReAct Agent](LAB-004-ReAct-Agent.md)** - Build reasoning agents
+- **[RAG Systems](../cheat-sheets/CHEAT-SHEET-005-RAG-Systems.md)** - Chunking, embedding, retrieval and generation parameters at a glance.
 
 ---
 

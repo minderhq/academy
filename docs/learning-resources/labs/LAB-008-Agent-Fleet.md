@@ -1211,6 +1211,11 @@ Use this checklist to track your progress:
 
 ---
 
+## Post-Lab Reading
+
+- **[Multi-Agent Orchestration](../cheat-sheets/CHEAT-SHEET-024-Multi-Agent-Orchestration.md)** - The specialist roster and review-retry flow, the message envelope and handoff capsule, delivery semantics with the dedup ledger, and the mid-run human gate.
+- **[Agent Memory Systems](../cheat-sheets/CHEAT-SHEET-025-Agent-Memory-Systems.md)** - The four-tier memory map, the recency-relevance-importance blend, the write and read paths behind their token budgets, and the consolidation lifecycle.
+
 ## Next Steps
 
 After completing this lab:

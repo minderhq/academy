@@ -1057,6 +1057,7 @@ python ~/lab-003-lora/chatbot.py
 - **[5101: LoRA Logic](../../phases/phase5-finetuning/5100-peft/5101-LoRA-Logic.md)** - Deep dive into LoRA
 - **[5102: QLoRA Pipelines](../../phases/phase5-finetuning/5100-peft/5102-QLoRA-Pipelines.md)** - 4-bit fine-tuning
 - **[5201: DPO Theory](../../phases/phase5-finetuning/5200-alignment/5201-DPO-Theory.md)** - Preference optimization
+- **[LoRA & QLoRA](../cheat-sheets/CHEAT-SHEET-016-LoRA-QLoRA.md)** - The low-rank arithmetic and the three knobs, the QLoRA 4-bit pipeline, and the merge-on-FP16 rule.
 
 ---
 

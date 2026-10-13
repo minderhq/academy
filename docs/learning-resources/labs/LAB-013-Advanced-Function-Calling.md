@@ -1457,6 +1457,10 @@ if __name__ == "__main__":
 
 ---
 
+## Post-Lab Reading
+
+- **[Structured Output & Function Calling](../cheat-sheets/CHEAT-SHEET-013-Structured-Output-Function-Calling.md)** - The grammar-to-mask mechanism, the schema knob per serving stack, and the syntax-guarantees-semantics-trains ledger.
+
 ## Summary
 
 In this lab, you learned:

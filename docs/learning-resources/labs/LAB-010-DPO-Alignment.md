@@ -31,6 +31,7 @@ Tags: ['lab', 'dpo', 'alignment', 'rlhf', 'preference-learning', 'hands-on']
 - [Part 4: Evaluate Alignment (60 minutes)](#part-4-evaluate-alignment-60-minutes)
 - [Part 5: Analyze Results (30 minutes)](#part-5-analyze-results-30-minutes)
 - [Lab Completion Checklist](#lab-completion-checklist)
+- [Post-Lab Reading](#post-lab-reading)
 - [Key Learnings](#key-learnings)
 - [You're Now Ready For](#youre-now-ready-for)
 
@@ -869,6 +870,10 @@ Use this checklist to track your progress:
 - [ ] Key learnings recorded
 
 ---
+
+## Post-Lab Reading
+
+- **[Alignment Methods — DPO, RLHF & GRPO](../cheat-sheets/CHEAT-SHEET-010-Alignment-Methods.md)** - DPO's implicit-reward loss, RLHF's three-stage pipeline, and GRPO's verifiable-reward loop with the knobs each family tunes.
 
 ## Key Learnings
 

@@ -1323,6 +1323,11 @@ volumes:
 
 ---
 
+## Post-Lab Reading
+
+- **[Evaluation & Benchmarking](../cheat-sheets/CHEAT-SHEET-011-Evaluation-Benchmarking.md)** - The everyday benchmark map, lm-evaluation-harness commands, pass@k estimator math, and LLM-as-judge hygiene rules.
+- **[LLM Guardrails & Agent Security](../cheat-sheets/CHEAT-SHEET-012-LLM-Guardrails-Agent-Security.md)** - The guardrail map from input filter to signed agent bus, Presidio operator vocabulary, and the window-seam rate-limit trap.
+
 ## Summary
 
 In this lab, you learned:

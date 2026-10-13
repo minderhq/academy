@@ -1132,6 +1132,8 @@ python ~/lab-002-rag/chatbot.py
 - **[6101: HNSW Indexing](../../phases/phase6-rag/6100-vector/6101-HNSW-Indexing.md)** - Vector search algorithms
 - **[6201: Hybrid Search](../../phases/phase6-rag/6200-retrieval/6201-Hybrid-Search.md)** - Combine keyword + semantic
 - **[6304: GraphRAG Implementation](../../phases/phase6-rag/6300-context/guides/6304-GraphRAG-Implementation.md)** - Add knowledge graphs
+- **[RAG Systems](../cheat-sheets/CHEAT-SHEET-005-RAG-Systems.md)** - Chunking, embedding, retrieval and generation parameters at a glance.
+- **[Vector Databases - the RAM Ledger, the Quantile Trap, and the Rescore Ladder](../cheat-sheets/CHEAT-SHEET-053-Vector-Databases.md)** - The RAM ledger arithmetic, the distance trio, the SQ quantile trap, binary and product quantization floors, the oversample x rescore ladder, and the snapshot RPO bill.
 
 ---
 

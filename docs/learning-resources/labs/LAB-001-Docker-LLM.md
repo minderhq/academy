@@ -778,6 +778,8 @@ You should have a working chat interface with memory!
 - **[1401: Ollama Enterprise](../../phases/phase1-infra/1400-llmops/1401-Ollama-Enterprise.md)** - Production Ollama deployment
 - **[1402: vLLM and TGI](../../phases/phase1-infra/1400-llmops/1402-vLLM-and-TGI.md)** - Advanced inference engines
 - **[TUTORIAL-003: RAG Basics](../tutorials/TUTORIAL-003-RAG-Basics.md)** - Add knowledge to your LLM
+- **[Docker Commands](../cheat-sheets/CHEAT-SHEET-001-Docker.md)** - Containers, images, volumes and networking in one page.
+- **[Local Inference with llama.cpp & Ollama](../cheat-sheets/CHEAT-SHEET-009-Local-Inference.md)** - GGUF downloads, llama.cpp build/serve flags, Ollama run and Modelfile customization, and offload tuning for local machines.
 
 ---
 

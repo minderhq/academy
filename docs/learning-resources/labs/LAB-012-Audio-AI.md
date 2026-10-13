@@ -1498,6 +1498,10 @@ if __name__ == "__main__":
 
 ---
 
+## Post-Lab Reading
+
+- **[Multimodal Models](../cheat-sheets/CHEAT-SHEET-022-Multimodal-Models.md)** - The two-generation split, CLIP's contrastive objective, the VLM recipe with its token math, and the audio spectrogram/codec split behind the voice pipeline.
+
 ## Summary
 
 In this lab, you learned:

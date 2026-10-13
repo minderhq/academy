@@ -1229,6 +1229,7 @@ if __name__ == "__main__":
 - **[7102: Planning Decomposition](../../phases/phase7-agentic/7100-architecture/7102-Planning-Decomposition.md)** - Advanced planning
 - **[7303: AutoGen vs LangGraph](../../phases/phase7-agentic/7300-orchestration/guides/7303-Framework-Comparison.md)** - Multi-agent frameworks
 - **[PROJECT-001: AI Assistant](../projects/PROJECT-001-AI-Assistant.md)** - Complete ReAct agent in production
+- **[ReAct Agent Loop](../cheat-sheets/CHEAT-SHEET-023-ReAct-Agent-Loop.md)** - The Thought-Action-Observation loop, the tool contract that feeds errors back as observations, and the hard iteration cap that bounds the agent.
 
 ---
 

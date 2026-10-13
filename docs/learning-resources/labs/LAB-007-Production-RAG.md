@@ -1196,6 +1196,10 @@ Use this checklist to track your progress:
 
 ---
 
+## Post-Lab Reading
+
+- **[Retrieval Strategies - the Two-Channel Fusion, the Rerank Funnel, and the Diversity Dial](../cheat-sheets/CHEAT-SHEET-047-Retrieval-Strategies.md)** - BM25 and the dense channel, RRF and the alpha dial joining them, the cross-encoder rerank funnel, the MMR diversity dial, and the provenance boost.
+
 ## Expected Results
 
 ### Performance Metrics

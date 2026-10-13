@@ -26,6 +26,7 @@ Tags: ['lab', 'pytorch', 'transformers', 'pretraining', 'tokenizer', 'hands-on']
 - [Part 7: Evaluation (30 minutes)](#part-7-evaluation-30-minutes)
 - [Part 8: Challenges (Optional)](#part-8-challenges-optional)
 - [Lab Completion Checklist](#lab-completion-checklist)
+- [Post-Lab Reading](#post-lab-reading)
 - [Summary](#summary)
 - [You're Now Ready For](#youre-now-ready-for)
 
@@ -1142,6 +1143,11 @@ Train on 2+ GPUs simultaneously
 - [ ] Part 7: Evaluation metrics recorded
 
 ---
+
+## Post-Lab Reading
+
+- **[Tokenizers](../cheat-sheets/CHEAT-SHEET-019-Tokenizers.md)** - The BPE merge loop with the byte-level twist, the Unigram contrast, SentencePiece settings, and the vocab ladder.
+- **[Activations & Normalization - the Nonlinearity and the Statistics](../cheat-sheets/CHEAT-SHEET-041-Activations-and-Normalization.md)** - ReLU against the smooth curve family, GELU's tanh approximation, SwiGLU's 1.5x bill, the gate zoo, LayerNorm versus RMSNorm, and the Pre-LN stream.
 
 ## Summary
 

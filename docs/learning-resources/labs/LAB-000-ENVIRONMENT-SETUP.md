@@ -403,6 +403,12 @@ You have successfully completed this lab if:
 
 ---
 
+## Post-Lab Reading
+
+- **[Docker Commands](../cheat-sheets/CHEAT-SHEET-001-Docker.md)** - Containers, images, volumes and networking in one page.
+- **[Python for AI/ML](../cheat-sheets/CHEAT-SHEET-002-Python-AI.md)** - The Python idioms, libraries and snippets used across the curriculum.
+- **[Local Inference with llama.cpp & Ollama](../cheat-sheets/CHEAT-SHEET-009-Local-Inference.md)** - GGUF downloads, llama.cpp build/serve flags, Ollama run and Modelfile customization, and offload tuning for local machines.
+
 ## Next Steps
 
 With your environment ready:

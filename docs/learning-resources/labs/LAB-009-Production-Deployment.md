@@ -1749,6 +1749,11 @@ def diagnose(symptoms: list) -> list:
 
 ---
 
+## Post-Lab Reading
+
+- **[Kubernetes for LLM Deployment](../cheat-sheets/CHEAT-SHEET-006-Kubernetes.md)** - Deployments, services, scaling and GPU scheduling for LLM serving.
+- **[LLM Observability](../cheat-sheets/CHEAT-SHEET-033-LLM-Observability.md)** - The four LLM-specific metric families and their alert thresholds, the timing trio with its decode-rate trap, the hallucination ladder, and the nearest-rank percentile rule.
+
 ## Summary
 
 In this lab, you learned:
