@@ -531,6 +531,7 @@ nav:
         - "Multi-LoRA Serving and Adapter Scheduling": learning-resources/cheat-sheets/CHEAT-SHEET-065-Multi-LoRA-Serving-and-Adapter-Scheduling.md
         - "Prefill-Decode Disaggregation and KV Handoff": learning-resources/cheat-sheets/CHEAT-SHEET-066-Prefill-Decode-Disaggregation-and-KV-Handoff.md
         - "Continuous Batching and the Scheduler Budget": learning-resources/cheat-sheets/CHEAT-SHEET-067-Continuous-Batching-and-the-Scheduler-Budget.md
+        - "Multi-Model Serving and the Weight-Residency Budget": learning-resources/cheat-sheets/CHEAT-SHEET-068-Multi-Model-Serving-and-the-Weight-Residency-Budget.md
         - "Quick Ref Volume 1": learning-resources/cheat-sheets/QUICK-REF-VOLUME-1.md
         - "Quick Ref Volume 2": learning-resources/cheat-sheets/QUICK-REF-VOLUME-2.md
         - "Quick Ref Volume 3": learning-resources/cheat-sheets/QUICK-REF-VOLUME-3.md

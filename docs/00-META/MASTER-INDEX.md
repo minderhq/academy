@@ -14,7 +14,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 **Last Updated:** 2026-10-13
 
-**Total Files:** 514 markdown files (docs/)
+**Total Files:** 515 markdown files (docs/)
 
 ---
 
@@ -234,7 +234,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 ---
 
-### Cheat Sheets (74 files)
+### Cheat Sheets (75 files)
 
 | ID | Topic | Coverage |
 |----|-------|----------|
@@ -305,6 +305,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **[CHEAT-SHEET-065](../learning-resources/cheat-sheets/CHEAT-SHEET-065-Multi-LoRA-Serving-and-Adapter-Scheduling.md)** | Multi-LoRA Serving and Adapter Scheduling - the Tenancy Bill, the KV Tax, and the Day Bill | Tenancy bill, KV tax, residency ladder, mixed-batch gate, quantized-adapter gate, day bill, ablation audit |
 | **[CHEAT-SHEET-066](../learning-resources/cheat-sheets/CHEAT-SHEET-066-Prefill-Decode-Disaggregation-and-KV-Handoff.md)** | Prefill-Decode Disaggregation and KV Handoff - the Interference Bill, the Handoff Ladder, and the Pool Split | The interference bill, the disaggregation bill, the handoff ladder, the sizing gate, the burst gate, the day bill, and the ablation audit. |
 | **[CHEAT-SHEET-067](../learning-resources/cheat-sheets/CHEAT-SHEET-067-Continuous-Batching-and-the-Scheduler-Budget.md)** | Continuous Batching and the Scheduler Budget - the Static Batching Bill, the Token-Budget Dial, and the No-Sweet-Spot Proof | The static batching bill, the token-budget dial, the decode batch ladder, the KV watermark ceiling, the preemption bill, the no-sweet-spot proof, and the ablation audit. |
+| **[CHEAT-SHEET-068](../learning-resources/cheat-sheets/CHEAT-SHEET-068-Multi-Model-Serving-and-the-Weight-Residency-Budget.md)** | Multi-Model Serving and the Weight-Residency Budget - the Replication Bill, the Cold-Start Ladder, and the Hot-Set Proof | The replication bill, the cold-start ladder, the first-request gate, the residency rent, the swap bill, the day bill, and the ablation audit. |
 | **[QUICK-REF-V1](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-1.md)** | Infrastructure Fundamentals - Quick Reference | Phase 1 Quick Reference |
 | **[QUICK-REF-V2](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-2.md)** | AI/ML Foundations - Quick Reference | Phase 2 Quick Reference |
 | **[QUICK-REF-V3](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-3.md)** | LLM Internals - Quick Reference | Phase 3 Quick Reference |
@@ -464,7 +465,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **Jupyter Notebooks** | 20 |
 | **Practice Files** | 33 |
 | **Quiz Files** | 33 |
-| **Cheat Sheets** | 75 |
+| **Cheat Sheets** | 76 |
 | **Projects** | 7 |
 | **Experiments** | 47 |
 | **Comparisons** | 3 |
@@ -473,7 +474,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **Solutions** | 3 |
 | **Diagrams** | 4 |
 | **Meta Docs** | 20 |
-| **TOTAL** | **633** |
+| **TOTAL** | **634** |
 
 ### Content Statistics
 
