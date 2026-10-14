@@ -3,7 +3,7 @@ Document ID: 3101
 Title: "3101: Self-Attention Deep Dive"
 Phase: 3
 Module: 3100
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -496,5 +496,5 @@ Self-attention is the mechanism the Transformer is built on: the scaled dot-prod
 
 ## Next Steps
 
-- Continue with: **[../3200-embeddings/3201-Rotary-Positional-Embeddings-RoPE.md](./../3200-embeddings/3201-Rotary-Positional-Embeddings-RoPE.md)**
+- Continue with: **[3102: Flash Attention - IO-Aware Exact Attention](./3102-Flash-Attention.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**

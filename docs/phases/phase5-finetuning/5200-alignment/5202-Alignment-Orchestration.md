@@ -3,7 +3,7 @@ Document ID: 5202
 Title: "5202: Alignment Orchestration - Reward Modeling vs Direct Preference"
 Phase: 5
 Module: 5200
-Last Updated: 2026-10-14
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -467,7 +467,7 @@ Alignment is a menu, and this lesson walks the table: reward modeling with RLHF,
 
 ## Next Steps
 
-- Continue with: **[5301: Knowledge Distillation](./../5300-synthetic/5301-Knowledge-Distillation.md)**
+- Continue with: **[5203: Reinforcement Learning from Human Feedback](./5203-RLHF.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 - Experiment: **[EXP_5202: Alignment](../../../../experiments/EXP_5202_ALIGNMENT.md)**
 - Practice DPO on top of QLoRA: **[5102: QLoRA Pipelines](../5100-peft/5102-QLoRA-Pipelines.md)**

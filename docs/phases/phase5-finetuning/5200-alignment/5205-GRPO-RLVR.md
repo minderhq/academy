@@ -3,7 +3,7 @@ Document ID: 5205
 Title: "5205: GRPO and Reinforcement Learning from Verifiable Rewards"
 Phase: 5
 Module: 5200
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -337,7 +337,7 @@ GRPO replaces PPO's learned critic with the cheapest baseline available — the 
 
 ## Next Steps
 
-- Continue with: **[5204: Preference Dataset Creation](./5204-Preference-Dataset-Creation.md)** for the data layer beneath a cold-start SFT stage
+- Continue with: **[5206: Best-of-N and Rejection Sampling](./5206-Best-of-N-and-Rejection-Sampling.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 
 ---

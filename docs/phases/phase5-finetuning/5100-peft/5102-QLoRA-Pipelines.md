@@ -3,7 +3,7 @@ Document ID: 5102
 Title: "5102: QLoRA Pipelines - 4-bit Fine-Tuning on Consumer Hardware"
 Phase: 5
 Module: 5100
-Last Updated: 2026-09-30
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -538,7 +538,7 @@ QLoRA combines 4-bit quantization with LoRA to make the headline real: a 65B mod
 
 ## Next Steps
 
-- Continue with: **[5201: DPO Theory](./../5200-alignment/5201-DPO-Theory.md)**
+- Continue with: **[5103: Adapters & Parameter-Efficient Adaptation Methods](./5103-Adapters.md)**
 - Double quantization deep-dive: **[4103: Double Quantization](../../phase4-quantization/4100-low-bit/4103-Double-Quantization.md)**
 - DPO training on QLoRA adapters: **[5202: Alignment Orchestration](../5200-alignment/5202-Alignment-Orchestration.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**

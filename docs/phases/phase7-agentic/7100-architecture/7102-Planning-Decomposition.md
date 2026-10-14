@@ -3,7 +3,7 @@ Document ID: 7102
 Title: "7102: Planning and Task Decomposition"
 Phase: 7
 Module: 7100
-Last Updated: 2026-09-30
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -812,6 +812,6 @@ Planning and task decomposition turn one impossible prompt into a tree of execut
 
 ## Next Steps
 
-- Continue with: **[7201: Tool Calling](../7200-tools/7201-Tool-Calling.md)**
+- Continue with: **[7104: Agent Evaluation and Observability - Measuring the Loop as Working Code](./7104-Agent-Evaluation-and-Observability.md)**
 - Assessment: **[QUIZ](./assessment/QUIZ.md)**
 - Experiment: **[EXP_7102: Planning](../../../../experiments/EXP_7102_PLANNING.md)**

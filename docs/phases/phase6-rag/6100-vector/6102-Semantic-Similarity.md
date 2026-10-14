@@ -3,7 +3,7 @@ Document ID: 6102
 Title: "6102: Semantic Similarity Metrics - Cosine, Dot Product, and Manifold Metrics"
 Phase: 6
 Module: 6100
-Last Updated: 2026-09-30
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -477,6 +477,6 @@ Semantic similarity metrics quantify how close two embeddings are, and the choic
 
 ## Next Steps
 
-- Continue with: **[6201: Hybrid Search](./../6200-retrieval/6201-Hybrid-Search.md)**
+- Continue with: **[6104: Embedding Sciences - Pooling, Matryoshka, and MTEB](./6104-Embedding-Sciences.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 - Experiment: **[EXP_6102: Semantic Similarity](../../../../experiments/EXP_6102_SIMILARITY.md)**

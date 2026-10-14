@@ -3,7 +3,7 @@ Document ID: 7301
 Title: "7301: Collaborative Tasking - Multi-Agent Synergy"
 Phase: 7
 Module: 7300
-Last Updated: 2026-09-30
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -762,5 +762,5 @@ Collaborative multi-agent systems work when each agent is specialized and the co
 
 ## Next Steps
 
-- Continue with: **[7401: Long-term Memory for Agents](./../7400-memory/7401-Long-term-Memory.md)**
+- Continue with: **[7302: Multi-Agent Communication Protocols](./7302-Communication-Protocols.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**

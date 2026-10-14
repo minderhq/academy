@@ -3,7 +3,7 @@ Document ID: 5103
 Title: "5103: Adapters & Parameter-Efficient Adaptation Methods"
 Phase: 5
 Module: 5100
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -321,7 +321,7 @@ LoRA dominates the PEFT conversation, but it is one point in a larger design spa
 
 ## Next Steps
 
-- Continue with: **[5104: LoRA Implementation Guide](./guides/5104-LoRA-Implementation-Guide.md)**
+- Continue with: **[5105: Model Merging - Task Vectors, TIES, and mergekit](./5105-Model-Merging.md)**
 - Alignment: **[5201: DPO Theory](../5200-alignment/5201-DPO-Theory.md)**
 - Assessment: **[assessment/QUIZ.md](assessment/QUIZ.md)**
 

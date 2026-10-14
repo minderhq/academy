@@ -3,7 +3,7 @@ Document ID: 6202
 Title: "6202: Re-ranking and Retrieval Logistics"
 Phase: 6
 Module: 6200
-Last Updated: 2026-09-30
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -447,6 +447,6 @@ Re-ranking improves retrieval quality by separating candidate generation from fi
 
 ## Next Steps
 
-- Continue with: **[6301: Neo4j and Knowledge Graphs](./../6300-context/6301-Neo4j-and-Knowledge-Graphs.md)**
+- Continue with: **[6203: Advanced Retrieval Techniques](./6203-Advanced-Retrieval.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 - Experiment: **[EXP_6202: Re-ranking](../../../../experiments/EXP_6202_RERANK.md)**

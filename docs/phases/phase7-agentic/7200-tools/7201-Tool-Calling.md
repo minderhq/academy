@@ -3,7 +3,7 @@ Document ID: 7201
 Title: "7201: Tool Calling & Function Execution"
 Phase: 7
 Module: 7200
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -783,5 +783,5 @@ Tool calling is how an LLM's text becomes action: the model emits a structured r
 
 ## Next Steps
 
-- Continue with: **[7301: Orchestration](../7300-orchestration/7301-Orchestration.md)**
+- Continue with: **[7203: MCP Hands-On — Tool Servers and Clients](./7203-MCP-Hands-On.md)**
 - Assessment: **[QUIZ](./assessment/QUIZ.md)**
