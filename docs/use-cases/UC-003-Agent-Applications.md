@@ -504,7 +504,7 @@ class TechnicalAgent:
         self.knowledge_base = QdrantVectorStore(
             client=client,
             collection_name="technical_docs",
-            embedding=OpenAIEmbeddings(),
+            embedding=OpenAIEmbeddings(model="text-embedding-3-small"),
         )
 
         kb = self.knowledge_base

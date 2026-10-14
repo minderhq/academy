@@ -109,7 +109,7 @@ from langchain_qdrant import QdrantVectorStore
 # Setup
 vectorstore = QdrantVectorStore.from_documents(
     documents=your_documents,
-    embedding=OpenAIEmbeddings(),
+    embedding=OpenAIEmbeddings(model="text-embedding-3-small"),
     url="localhost:6333",
 )
 retriever = vectorstore.as_retriever(search_kwargs={"k": 4})
@@ -604,7 +604,7 @@ from langchain_qdrant import QdrantVectorStore
 # 1. Index documents
 # langchain_qdrant: QdrantVectorStore replaced the old Qdrant class
 vectorstore = QdrantVectorStore.from_documents(
-    docs, OpenAIEmbeddings(), url="http://localhost:6333"
+    docs, OpenAIEmbeddings(model="text-embedding-3-small"), url="http://localhost:6333"
 )
 
 # 2. Create chain - LangChain 1.x composes LCEL steps instead of

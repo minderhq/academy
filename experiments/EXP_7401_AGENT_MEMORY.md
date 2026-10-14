@@ -47,7 +47,7 @@ except Exception:
     pass  # Collection exists
 
 # Setup embeddings
-embeddings = OpenAIEmbeddings(openai_api_key="your-api-key")
+embeddings = OpenAIEmbeddings(model="text-embedding-3-small", openai_api_key="your-api-key")
 
 # Create vector store
 vectorstore = Qdrant(

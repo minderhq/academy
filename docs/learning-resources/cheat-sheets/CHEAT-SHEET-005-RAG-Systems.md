@@ -28,7 +28,7 @@ from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_qdrant import QdrantVectorStore
 
 # Setup
-embeddings = OpenAIEmbeddings()
+embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
 # docs: a list of LangChain Document objects
 vectorstore = QdrantVectorStore.from_documents(
     docs, embeddings, url="localhost:6333", collection_name="docs"
@@ -164,7 +164,7 @@ from langchain_openai import OpenAIEmbeddings
 # NOTE: langchain-experimental is being sunset (no longer maintained)
 # but is still the documented home of SemanticChunker.
 # Embedding-based semantic chunking (breaks at topic shifts)
-splitter = SemanticChunker(OpenAIEmbeddings())
+splitter = SemanticChunker(OpenAIEmbeddings(model="text-embedding-3-small"))
 chunks = splitter.split_text(text)
 ```
 

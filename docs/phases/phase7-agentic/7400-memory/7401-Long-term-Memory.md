@@ -102,7 +102,7 @@ from langchain_core.runnables import RunnableParallel, RunnablePassthrough
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 
 # Initialize embeddings and vector store
-embeddings = OpenAIEmbeddings()
+embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
 vectorstore = FAISS.from_texts(
     texts=[
         "User prefers Python over JavaScript",
@@ -159,7 +159,7 @@ client = chromadb.PersistentClient(path="./db/memory")
 vectorstore = Chroma(
     client=client,
     collection_name="agent_memory",
-    embedding_function=OpenAIEmbeddings()
+    embedding_function=OpenAIEmbeddings(model="text-embedding-3-small")
 )
 
 # Add memories
@@ -868,13 +868,13 @@ class RAGAgentWithMemory:
         # Knowledge base vector store
         self.kb_store = Chroma(
             persist_directory=knowledge_base_path,
-            embedding_function=OpenAIEmbeddings()
+            embedding_function=OpenAIEmbeddings(model="text-embedding-3-small")
         )
 
         # Conversation memory
         self.memory_store = Chroma(
             persist_directory="./db/conversation_memory",
-            embedding_function=OpenAIEmbeddings(),
+            embedding_function=OpenAIEmbeddings(model="text-embedding-3-small"),
             collection_name="conversation_history"
         )
 
