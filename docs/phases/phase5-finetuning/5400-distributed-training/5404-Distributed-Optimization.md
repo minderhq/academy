@@ -3,7 +3,7 @@ Document ID: 5404
 Title: "5404: Distributed Optimization"
 Phase: 5
 Module: 5400
-Last Updated: 2026-09-30
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -504,7 +504,7 @@ Under every distributed run sits optimization-side machinery: the all-reduce col
 
 ## Next Steps
 
-- Module 5400 complete! Next: **[5501: Optimizer Variants](../5500-advanced-optimization/5501-Optimizer-Variants.md)**
+- Continue with: **[5405: FSDP2 and torchao](./5405-FSDP2-and-torchao.md)**
 - Practical: **[LAB-006: Train a Model From Scratch](../../../learning-resources/labs/LAB-006-Train-Model-From-Scratch.md)**
 - Assessment: **[assessment/PRACTICE.md](./assessment/PRACTICE.md)** and **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 

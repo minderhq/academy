@@ -3,7 +3,7 @@ Document ID: 3102
 Title: "3102: Flash Attention - IO-Aware Exact Attention"
 Phase: 3
 Module: 3100
-Last Updated: 2026-10-08
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -412,8 +412,7 @@ Flash Attention reorganizes the attention computation rather than approximating 
 
 ## Next Steps
 
-- Next Module: **[3200: Embeddings](../3200-embeddings/README.md)**
-- Continue with: **[3201: RoPE](../3200-embeddings/3201-Rotary-Positional-Embeddings-RoPE.md)**
+- Continue with: **[3103: SDPA and torch.compile](./3103-SDPA-and-torch-compile.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 
 ---

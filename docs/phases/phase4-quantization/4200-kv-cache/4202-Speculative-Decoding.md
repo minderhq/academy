@@ -3,7 +3,7 @@ Document ID: 4202
 Title: "4202: Speculative Decoding - Accelerating Large Models"
 Phase: 4
 Module: 4200
-Last Updated: 2026-10-08
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -507,8 +507,7 @@ Speculative decoding buys speed with a division of labor: a small draft model pr
 
 ## Next Steps
 
-- Next Module: **[4300: QAT](../4300-quantization-aware-training/README.md)**
-- Continue with: **[4301: QAT Foundations](../4300-quantization-aware-training/4301-QAT-Foundations.md)**
+- Continue with: **[4204: KV-Cache Paging and Prefix Caching](./4204-KV-Cache-Paging-and-Prefix-Caching.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 
 ---

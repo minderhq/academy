@@ -3,7 +3,7 @@ Document ID: 2102
 Title: "2102: Backpropagation and Automatic Differentiation"
 Phase: 2
 Module: 2100
-Last Updated: 2026-10-08
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 4 hours
@@ -528,8 +528,7 @@ Backpropagation is the algorithm that makes networks learn: apply the chain rule
 
 ## Next Steps
 
-- Next Module: **[2200: Frameworks](../2200-frameworks/README.md)**
-- Continue with: **[2201: PyTorch Computational Graphs and Dynamic Execution](../2200-frameworks/2201-PyTorch-Computational-Graphs.md)**
+- Continue with: **[2103: Loss Landscape Geometry](./2103-Loss-Landscape-Geometry.md)**
 - Assessment: **[2100: Calculus - Quiz](./assessment/QUIZ.md)**
 
 ---

@@ -3,7 +3,7 @@ Document ID: 6501
 Title: "6501: ML Model Lifecycle Management"
 Phase: 6
 Module: 6500
-Last Updated: 2026-09-30
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -378,7 +378,6 @@ A model's life does not end at the first deploy - it begins there, and this less
 ## Next Steps
 
 - The pipeline that automates these stage transitions: **[6502: CI/CD for Machine Learning](6502-CI-CD-for-ML.md)**
-- Phase 6 complete! Next: **[Phase 7: Agents](../../phase7-agentic/README.md)**
 - Assessment: **[assessment/PRACTICE.md](./assessment/PRACTICE.md)** and **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 
 **Related:** [6502](6502-CI-CD-for-ML.md) — the pipeline automating these stage transitions; [6503](6503-Model-Registry.md) — where every version's current state lives; [1502](../../phase1-infra/1500-monitoring/1502-Model-Drift-Detection.md) — the drift signal feeding Stage 4; [EXP_6501_MLOPS_PIPELINE](../../../../experiments/EXP_6501_MLOPS_PIPELINE.md)

@@ -3,7 +3,7 @@ Document ID: 1103
 Title: "1103: Jumbo Frames and MTU Optimization"
 Phase: 1
 Module: 1100
-Last Updated: 2026-10-08
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 2 hours
@@ -293,8 +293,7 @@ Jumbo frames raise the Ethernet MTU from the standard 1500 bytes to 9000, cuttin
 
 ## Next Steps
 
-- Next Module: **[1200: Virtualization](../1200-virtualization/README.md)**
-- Continue with: **[1201: Proxmox Hypervisor SOP](../1200-virtualization/1201-Proxmox-Hypervisor-SOP.md)**
+- Continue with: **[1104: The Protocol Stack - OSI Layers, TCP, and DNS](./1104-Protocol-Stack-TCP-and-DNS.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 
 ---

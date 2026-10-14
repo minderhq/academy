@@ -3,7 +3,7 @@ Document ID: 6305
 Title: "6305: LongLoRA, Ring Attention, and Context Distillation"
 Phase: 6
 Module: 6300
-Last Updated: 2026-10-06
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -265,6 +265,7 @@ Reading the output, line by line. Attention at 65,536 tokens monolithically mate
 
 ## Next Steps
 
-- **Next Module:** continue with [assessment/QUIZ.md](assessment/QUIZ.md) — Q6, Q7, Q8, Q16, and Q17 are the questions this lesson answers; the shift's reachability walk, the ring's exactness check, and the distillation KL curve are the mechanics behind them.
-- **Continue with:** the [6400: Vector Databases](../6400-vector-databases/README.md) module for where the extended-context pipeline's retrieval store lands in production.
-- **Assessment:** extend the S²-Attn fence to `group_size = 2` and `L = 8` — confirm reach still saturates and identify which layer first covers the full sequence; then re-run the campaign fence at `N = 131072` and watch the 17.2 GB line become the argument for ring attention on its own.
+- Continue with: **[6306: Context Window Economics](./6306-Context-Window-Economics.md)**
+- **Assessment:** [assessment/QUIZ.md](assessment/QUIZ.md) — Q6, Q7, Q8, Q16, and Q17 are the questions this lesson answers; the shift's reachability walk, the ring's exactness check, and the distillation KL curve are the mechanics behind them.
+- **Related:** the [6400: Vector Databases](../6400-vector-databases/README.md) module for where the extended-context pipeline's retrieval store lands in production.
+- **Hands-on:** extend the S²-Attn fence to `group_size = 2` and `L = 8` — confirm reach still saturates and identify which layer first covers the full sequence; then re-run the campaign fence at `N = 131072` and watch the 17.2 GB line become the argument for ring attention on its own.

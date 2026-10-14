@@ -3,7 +3,7 @@ Document ID: 4103
 Title: "4103: Double Quantization - BitsAndBytes (bnb) Logic"
 Phase: 4
 Module: 4100
-Last Updated: 2026-10-08
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -441,8 +441,7 @@ Double quantization squeezes the leftover bytes: the per-block scales that ordin
 
 ## Next Steps
 
-- Next Module: **[4200: KV Cache](../4200-kv-cache/README.md)**
-- Continue with: **[4201: Context Window Physics](../4200-kv-cache/4201-Context-Window-Physics.md)**
+- Continue with: **[4104: MXFP4 and NVFP4](./4104-MXFP4-and-NVFP4.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 
 ---

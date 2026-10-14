@@ -3,7 +3,7 @@ Document ID: 3202
 Title: "3202: Tokenizer Sciences - BPE, SentencePiece, and Tiktoken"
 Phase: 3
 Module: 3200
-Last Updated: 2026-10-08
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -527,8 +527,7 @@ The tokenizer is the model's first and last mile: raw text flows through normali
 
 ## Next Steps
 
-- Next Module: **[3300: Decoding](../3300-decoding/README.md)**
-- Continue with: **[3301: Activation Functions](../3300-decoding/3301-Activation-Functions.md)**
+- Continue with: **[3203: Word-Embedding Tradition](./3203-Word-Embedding-Tradition.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 
 ---

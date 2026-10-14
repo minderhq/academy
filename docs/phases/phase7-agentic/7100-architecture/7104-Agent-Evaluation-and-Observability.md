@@ -3,7 +3,7 @@ Document ID: 7104
 Title: "7104: Agent Evaluation and Observability - Measuring the Loop as Working Code"
 Phase: 7
 Module: 7100
-Last Updated: 2026-10-07
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -355,7 +355,6 @@ The loop from [7101](./7101-ReAct-Loop-System.md) becomes shippable when its run
 
 ## Next Steps
 
-- Next Module: **[7200: Tool Calling and Function Execution](../7200-tools/README.md)**
-- Continue with: **[7201: Tool Calling](../7200-tools/7201-Tool-Calling.md)** - the tool axis your scorer grades
+- Continue with: **[7105: Reflection and Self-Correction](./7105-Reflection-and-Self-Correction.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 - Reproduce the gate on your own runs: record ten trajectories of your agent, add one golden task, wire the two-tripwire gate into CI, then change a prompt on purpose and watch which rule catches it first.

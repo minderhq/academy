@@ -3,7 +3,7 @@ Document ID: 6503
 Title: "6503: Model Registry"
 Phase: 6
 Module: 6500
-Last Updated: 2026-09-30
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -454,8 +454,8 @@ A model registry is the versioned, queryable index between training and serving:
 
 ## Next Steps
 
+- Continue with: **[6504: Re-Embedding Policy and A/B Testing](./6504-Re-Embedding-Policy-and-AB-Testing.md)**
 - Review the pipeline around the registry: **[6502: CI/CD for ML](6502-CI-CD-for-ML.md)** wires registration and promotion into the delivery flow
-- Phase 6 complete! Next: **[Phase 7: Agents](../../phase7-agentic/README.md)**
 - Assessment: **[assessment/PRACTICE.md](./assessment/PRACTICE.md)** and **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 
 **Related:** [6501](6501-ML-Lifecycle-Management.md) — the lifecycle stage this registry serves; [6502](6502-CI-CD-for-ML.md) — automates registration and promotion; [1502](../../phase1-infra/1500-monitoring/1502-Model-Drift-Detection.md) — drift signals that trigger rollbacks; [EXP_6501_MLOPS_PIPELINE](../../../../experiments/EXP_6501_MLOPS_PIPELINE.md)

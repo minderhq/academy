@@ -3,7 +3,7 @@ Document ID: 6104
 Title: "6104: Embedding Sciences - Pooling, Matryoshka, and MTEB"
 Phase: 6
 Module: 6100
-Last Updated: 2026-10-06
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -322,7 +322,6 @@ An embedding is three decisions stacked on a transformer. Pooling decides which 
 
 ## Next Steps
 
-- **Next Module:** [6200: Retrieval Strategies](../6200-retrieval/README.md) — hybrid fusion and the query-side levers the vectors you just sized feed
-- **Continue with:** [6201: Hybrid Search - Combining Keyword and Semantic Search](../6200-retrieval/6201-Hybrid-Search.md)
+- **Continue with:** [6105: Contextual and Multilingual Embeddings](./6105-Contextual-and-Multilingual-Embeddings.md)
 - **Assessment:** [QUIZ](./assessment/QUIZ.md) — question 16 is this lesson's, and the pooling/matryoshka/MTEB review bullet now points here
 - **Hands-on:** truncate your production embedder to 1/4 and 1/16 of its dims and measure recall on your own query log; put the per-task table next to every leaderboard mean you quote

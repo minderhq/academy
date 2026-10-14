@@ -3,7 +3,7 @@ Document ID: 3302
 Title: "3302: Normalization Layers - BatchNorm vs LayerNorm vs RMSNorm"
 Phase: 3
 Module: 3300
-Last Updated: 2026-10-08
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 2 hours
@@ -448,8 +448,7 @@ Normalization layers keep training stable by keeping activations in a sane range
 
 ## Next Steps
 
-- Next Module: **[3400: Architectures](../3400-architectures/README.md)**
-- Continue with: **[3401: Encoder-Decoder Architectures](../3400-architectures/3401-Encoder-Decoder-Architectures.md)**
+- Continue with: **[3304: Decoding Sampling Strategies](./3304-Decoding-Sampling-Strategies.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 
 ---
