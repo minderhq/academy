@@ -11,6 +11,8 @@ Tags: ['roadmap', 'guide', 'practice']
 
 **Track your progress from beginner to expert through a 7-volume book series**
 
+> **Note:** This page is a personal-progress template, not a live tracker - the checkboxes and the 0% bars are static, and the published site does not save clicks. The bars measure your journey against the curriculum below, not the academy's build status. To track progress, copy this file into your own notes and check items off there.
+
 ---
 
 ## Overall Progress
