@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_4201
 Title: "EXP_4201: Context Window Physics Experiments"
-Last Updated: 2026-09-24
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Advanced
 ---
@@ -240,7 +240,7 @@ def benchmark_context_window():
         tokenizer = AutoTokenizer.from_pretrained(model_name)
         model = AutoModelForCausalLM.from_pretrained(
             model_name,
-            torch_dtype=torch.float16,
+            dtype=torch.float16,
             device_map="auto",
         )
 
@@ -528,7 +528,7 @@ def test_multi_round_conversation():
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     model = AutoModelForCausalLM.from_pretrained(
         model_name,
-        torch_dtype=torch.float16,
+        dtype=torch.float16,
         device_map="auto",
     )
 

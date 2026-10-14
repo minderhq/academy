@@ -3,7 +3,7 @@ Document ID: 4203
 Title: "4203: Context Window Optimization Guide"
 Phase: 4
 Module: 4200
-Last Updated: 2026-10-08
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 6 hours
@@ -768,7 +768,7 @@ CONFIG = {
     #                  cache_config={"nbits": 8, "backend": "hqq"})
 
     # Attention
-    "use_flash_attention_2": True,  # Faster attention
+    "attn_implementation": "flash_attention_2",  # Faster attention
     "sliding_window": 512,  # If context > 4K
 
     # Memory

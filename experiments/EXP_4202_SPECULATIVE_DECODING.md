@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_4202
 Title: "EXP_4202: Speculative Decoding Experiments"
-Last Updated: 2026-09-24
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Advanced
 ---
@@ -208,14 +208,14 @@ def test_speculative_decoding():
     # Target model (larger)
     target_model = AutoModelForCausalLM.from_pretrained(
         "mistralai/Mistral-7B-Instruct-v0.2",
-        torch_dtype=torch.float16,
+        dtype=torch.float16,
         device_map="auto",
     )
 
     # Draft model (smaller)
     draft_model = AutoModelForCausalLM.from_pretrained(
         "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
-        torch_dtype=torch.float16,
+        dtype=torch.float16,
         device_map="auto",
     )
 

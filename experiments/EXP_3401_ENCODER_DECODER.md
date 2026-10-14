@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_3401
 Title: "EXP_3401: Encoder-Decoder Architecture Experiments"
-Last Updated: 2026-09-24
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Advanced
 ---
@@ -203,7 +203,7 @@ model_name = "google-t5/t5-small"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 
 # Load dataset (example: CNN/DailyMail for summarization)
-dataset = load_dataset("cnn_dailymail", "3.0.0")
+dataset = load_dataset("abisee/cnn_dailymail", "3.0.0")
 
 # Preprocess
 def preprocess_function(examples):

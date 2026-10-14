@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_6303
 Title: "EXP_6303: Neo4j Knowledge Graph Experiments"
-Last Updated: 2026-09-24
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Advanced
 ---
@@ -27,11 +27,9 @@ cd /srv/neo4j
 
 # Create docker-compose.yml
 cat > docker-compose.yml << 'EOF'
-version: "3"
-
 services:
   neo4j:
-    image: neo4j:5.15-community
+    image: neo4j:2026.09.0
     container_name: neo4j
     ports:
       - 7474:7474  # HTTP

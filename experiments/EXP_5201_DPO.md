@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_5201
 Title: "EXP_5201: DPO (Direct Preference Optimization) Experiments"
-Last Updated: 2026-09-24
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Advanced
 ---
@@ -99,7 +99,7 @@ class DPOTrainer:
         rejected_attention_mask = batch["rejected_attention_mask"]
 
         # Compute policy log probs
-        with torch.cuda.amp.autocast():
+        with torch.amp.autocast("cuda"):
             policy_chosen_logps = self.compute_log_probs(
                 self.model, chosen_input_ids, chosen_attention_mask
             )

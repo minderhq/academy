@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_6401
 Title: "EXP_6401: Vector Database Performance Experiments"
-Last Updated: 2026-09-24
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -27,11 +27,9 @@ cd /srv/qdrant
 
 # Create docker-compose.yml
 cat > docker-compose.yml << 'EOF'
-version: "3"
-
 services:
   qdrant:
-    image: qdrant/qdrant:v1.7.4
+    image: qdrant/qdrant:v1.19.1
     container_name: qdrant
     ports:
       - 6333:6333  # HTTP (REST API)

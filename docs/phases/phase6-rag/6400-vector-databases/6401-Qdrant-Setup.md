@@ -3,7 +3,7 @@ Document ID: 6401
 Title: "6401: Qdrant Setup Guide"
 Phase: 6
 Module: 6400
-Last Updated: 2026-10-08
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -105,7 +105,7 @@ Port facts worth memorizing — they are the #1 source of setup confusion:
 `latest` is fine for a homelab; production images should be pinned:
 
 ```yaml
-    image: qdrant/qdrant:v1.12.4
+    image: qdrant/qdrant:v1.19.1
     deploy:
       resources:
         limits:

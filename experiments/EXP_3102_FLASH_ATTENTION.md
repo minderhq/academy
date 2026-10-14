@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_3102
 Title: "EXP_3102: Flash Attention Experiments"
-Last Updated: 2026-09-24
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Advanced
 ---
@@ -357,9 +357,9 @@ def test_long_context_generation():
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     model = AutoModelForCausalLM.from_pretrained(
         model_name,
-        torch_dtype=torch.float16,
+        dtype=torch.float16,
         device_map="auto",
-        use_flash_attention_2=True  # Enable Flash Attention 2
+        attn_implementation="flash_attention_2"  # Enable Flash Attention 2
     )
 
     # Test different context lengths

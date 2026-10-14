@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_3202
 Title: "EXP_3202: Tokenizer Performance Experiments"
-Last Updated: 2026-09-24
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Advanced
 ---
@@ -305,7 +305,7 @@ def train_custom_tokenizer():
     """Train a custom BPE tokenizer"""
 
     # Load dataset
-    dataset = load_dataset("wikitext", "wikitext-2-raw-v1", split="train")
+    dataset = load_dataset("Salesforce/wikitext", "wikitext-2-raw-v1", split="train")
 
     # Initialize tokenizer
     tokenizer = Tokenizer(models.BPE(unk_token="[UNK]"))
