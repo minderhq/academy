@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-008
 Title: "LAB-008: Multi-Agent Fleet"
-Last Updated: 2026-10-13
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 6 hours
@@ -127,7 +127,7 @@ AGENT_CONFIGS = [
     AgentConfig(
         role=AgentRole.ORCHESTRATOR,
         name="Fleet Commander",
-        model="gpt-4",
+        model="gpt-5-mini",
         capabilities=[
             AgentCapability.WEB_SEARCH,
             AgentCapability.API_CALL,
@@ -149,7 +149,7 @@ AGENT_CONFIGS = [
     AgentConfig(
         role=AgentRole.ANALYST,
         name="Data Analyst",
-        model="gpt-4",
+        model="gpt-5-mini",
         capabilities=[
             AgentCapability.CODE_EXECUTION,
             AgentCapability.CALCULATION,
@@ -172,7 +172,7 @@ AGENT_CONFIGS = [
     AgentConfig(
         role=AgentRole.CODER,
         name="Code Generator",
-        model="gpt-4",
+        model="gpt-5-mini",
         capabilities=[
             AgentCapability.CODE_EXECUTION,
             AgentCapability.FILE_IO,
@@ -184,7 +184,7 @@ AGENT_CONFIGS = [
     AgentConfig(
         role=AgentRole.REVIEWER,
         name="Quality Reviewer",
-        model="gpt-4",
+        model="gpt-5-mini",
         capabilities=[
             AgentCapability.FILE_IO,
             AgentCapability.API_CALL,
@@ -908,7 +908,7 @@ class AgentFleet:
             AgentRole.ORCHESTRATOR: AgentConfig(
                 role=AgentRole.ORCHESTRATOR,
                 name="Fleet Commander",
-                model="gpt-4",
+                model="gpt-5-mini",
                 capabilities=[],
                 max_concurrent=10,
             ),
@@ -925,7 +925,7 @@ class AgentFleet:
             AgentRole.ANALYST: AgentConfig(
                 role=AgentRole.ANALYST,
                 name="Data Analyst",
-                model="gpt-4",
+                model="gpt-5-mini",
                 capabilities=[
                     AgentCapability.CODE_EXECUTION,
                     AgentCapability.CALCULATION,

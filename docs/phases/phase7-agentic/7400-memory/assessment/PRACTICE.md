@@ -1,7 +1,7 @@
 ---
 Document ID: 7400-PRACTICE
 Title: "7400: Agent Memory Systems - Practice"
-Last Updated: 2026-09-29
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 6 hours
@@ -452,7 +452,7 @@ class SummaryMemory:
         self.max_tokens = max_tokens
         self.full_history = []
         self.summary = ""
-        self.llm = ChatOpenAI(model="gpt-4")
+        self.llm = ChatOpenAI(model="gpt-5-mini")
 
     def add_message(self, role: str, content: str):
         """
@@ -703,7 +703,7 @@ class ReflectiveMemory:
     def __init__(self):
         self.memories = []
         self.reflections = []
-        self.llm = ChatOpenAI(model="gpt-4")
+        self.llm = ChatOpenAI(model="gpt-5-mini")
 
     def add_memory(self, memory: str):
         """

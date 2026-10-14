@@ -1,7 +1,7 @@
 ---
 Document ID: 7300-PRACTICE
 Title: "7300: Agent Orchestration - Practice"
-Last Updated: 2026-10-04
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -94,7 +94,7 @@ def get_weather(location: str, unit: str = "celsius") -> str:
     return f"Weather in {location}: 22°C, Partly cloudy"
 
 # SOLUTION: Create agent with memory for conversation context
-llm = ChatOpenAI(model="gpt-4", temperature=0)
+llm = ChatOpenAI(model="gpt-5")
 
 agent = create_agent(
     llm,
@@ -142,7 +142,7 @@ def calculator(expression: str) -> str:
 
 def build_agent(system_prompt: str, tools):
     """Build a specialized agent with one create_agent call."""
-    llm = ChatOpenAI(model="gpt-4", temperature=0)
+    llm = ChatOpenAI(model="gpt-5")
     return create_agent(llm, tools, system_prompt=system_prompt)
 
 class ResearchAgent:
@@ -241,7 +241,7 @@ def synthesis_agent_node(state: AgentState) -> AgentState:
     research = state["research_output"]
     analysis = state["analysis_output"]
 
-    llm = ChatOpenAI(model="gpt-4")
+    llm = ChatOpenAI(model="gpt-5")
     prompt = f"""Synthesize a final answer from:
     Research: {research}
     Analysis: {analysis}
@@ -279,7 +279,7 @@ print(result["final_output"])
 class SupervisorAgent:
     def __init__(self, workers):
         self.workers = workers
-        self.llm = ChatOpenAI(model="gpt-4")
+        self.llm = ChatOpenAI(model="gpt-5")
 
     def delegate(self, task):
         """Decide which worker should handle the task."""
@@ -311,7 +311,7 @@ class WorkerAgent:
         self.name = name
         self.description = description
         self.tools = tools
-        self.llm = ChatOpenAI(model="gpt-4")
+        self.llm = ChatOpenAI(model="gpt-5")
 
         # LangChain 1.x: create_agent replaces create_openai_functions_agent
         # + AgentExecutor - system_prompt takes the place of the hub prompt.
@@ -375,7 +375,7 @@ class CommunicatingAgent:
         self.name = name
         self.inbox = inbox
         self.tools = tools
-        self.llm = ChatOpenAI(model="gpt-4")
+        self.llm = ChatOpenAI(model="gpt-5")
 
     def send_message(self, receiver, content):
         """Send message to another agent."""
@@ -474,7 +474,7 @@ class TeamAgent:
         self.agent_id = agent_id
         self.shared_memory = shared_memory
         self.tools = tools
-        self.llm = ChatOpenAI(model="gpt-4")
+        self.llm = ChatOpenAI(model="gpt-5")
 
     def execute_with_memory(self, task):
         """Execute task using shared memory."""
@@ -535,7 +535,7 @@ class AutonomousAgent:
     def __init__(self, goal, tools):
         self.goal = goal
         self.tools = {tool.name: tool for tool in tools}
-        self.llm = ChatOpenAI(model="gpt-4")
+        self.llm = ChatOpenAI(model="gpt-5")
         self.history = []
         self.completed_tasks = []
 

@@ -1,7 +1,7 @@
 ---
 Document ID: CHEAT-SHEET-005
 Title: "CHEAT-SHEET-005: RAG Systems"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Intermediate
 Tags: ['cheatsheet', 'rag', 'retrieval']
@@ -12,7 +12,7 @@ Tags: ['cheatsheet', 'rag', 'retrieval']
 
 **Version:** 1.2
 
-**Last Updated:** 2026-10-08
+**Last Updated:** 2026-10-14
 
 ---
 
@@ -34,7 +34,7 @@ vectorstore = QdrantVectorStore.from_documents(
     docs, embeddings, url="localhost:6333", collection_name="docs"
 )
 retriever = vectorstore.as_retriever(search_kwargs={"k": 5})
-llm = ChatOpenAI(model="gpt-4")
+llm = ChatOpenAI(model="gpt-5-mini")
 
 # Chain (LCEL)
 prompt = ChatPromptTemplate.from_messages([

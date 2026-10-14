@@ -1,7 +1,7 @@
 ---
 Document ID: 7200-PRACTICE
 Title: "7200: Tools & Function Calling - Practice"
-Last Updated: 2026-09-29
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -185,7 +185,7 @@ def run_with_tools(user_message):
 
     # SOLUTION: Get first completion with tool calls
     response = client.chat.completions.create(
-        model="gpt-4",
+        model="gpt-5",
         messages=messages,
         tools=tools_schema,
     )
@@ -219,7 +219,7 @@ def run_with_tools(user_message):
 
         # SOLUTION: Get final response after tool execution
         final_response = client.chat.completions.create(
-            model="gpt-4",
+            model="gpt-5",
             messages=messages,
         )
 
@@ -241,8 +241,8 @@ print(result)
 from langchain.agents import create_agent
 from langchain_openai import ChatOpenAI
 
-# SOLUTION: Initialize ChatOpenAI with GPT-4
-llm = ChatOpenAI(model="gpt-4", temperature=0)
+# SOLUTION: Initialize ChatOpenAI with GPT-5
+llm = ChatOpenAI(model="gpt-5")
 
 # SOLUTION: Create the agent loop with one create_agent call
 tools = [calculator, search_web, get_weather]

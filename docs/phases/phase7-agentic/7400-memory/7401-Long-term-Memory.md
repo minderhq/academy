@@ -3,7 +3,7 @@ Document ID: 7401
 Title: "7401: Long-term Memory for Agents"
 Phase: 7
 Module: 7400
-Last Updated: 2026-10-08
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -128,7 +128,7 @@ prompt = ChatPromptTemplate.from_messages([
     ("human", "{question}"),
 ])
 
-llm = ChatOpenAI(model="gpt-4", temperature=0)
+llm = ChatOpenAI(model="gpt-5-mini")
 
 conversation = (
     RunnableParallel(
@@ -787,7 +787,7 @@ Use these memories to provide personalized responses."""
         ]
 
         response = self.llm.chat.completions.create(
-            model="gpt-4",
+            model="gpt-5-mini",
             messages=messages
         )
 
@@ -820,7 +820,7 @@ Format as JSON list: {{"memories": ["memory 1", "memory 2"]}}"""
 
         try:
             response = self.llm.chat.completions.create(
-                model="gpt-4",
+                model="gpt-5-mini",
                 messages=[{"role": "user", "content": extraction_prompt}],
                 response_format={"type": "json_object"}
             )
@@ -878,7 +878,7 @@ class RAGAgentWithMemory:
             collection_name="conversation_history"
         )
 
-        self.llm = ChatOpenAI(model="gpt-4", temperature=0)
+        self.llm = ChatOpenAI(model="gpt-5-mini")
 
         # LangChain 1.x: RetrievalQA lives only in langchain_classic -
         # a RAG chain is plain LCEL.

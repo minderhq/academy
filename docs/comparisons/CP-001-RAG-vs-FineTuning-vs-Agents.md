@@ -1,7 +1,7 @@
 ---
 Document ID: CP-001
 Title: "CP-001: RAG vs Fine-Tuning vs Agents - Decision Guide"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Intermediate
 Tags: ['comparison', 'rag', 'finetuning', 'agents']
@@ -403,7 +403,7 @@ def database(query: str) -> str:
     return database_function(query)
 
 # Create agent
-llm = ChatOpenAI(model="gpt-4")
+llm = ChatOpenAI(model="gpt-5-mini")
 agent = create_agent(
     llm,
     [search, calculator, database],

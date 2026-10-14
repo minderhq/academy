@@ -1,7 +1,7 @@
 ---
 Document ID: SOLUTION-LAB-005
 Title: "SOLUTION-LAB-005: GraphRAG"
-Last Updated: 2026-10-13
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Advanced
 Tags: ['solution', 'graphrag', 'neo4j']
@@ -81,7 +81,7 @@ class GraphRAG:
         self._setup_schema()
 
         # Initialize LLM for generation
-        self.llm = ChatOpenAI(model="gpt-4", temperature=0.7)
+        self.llm = ChatOpenAI(model="gpt-5-mini")
 
     def _setup_schema(self):
         """Create Neo4j schema with indexes and constraints."""

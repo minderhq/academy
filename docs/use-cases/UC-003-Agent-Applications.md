@@ -1,7 +1,7 @@
 ---
 Document ID: UC-003
 Title: "UC-003: AI Agent Practical Use Cases"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Intermediate
 Tags: ['use-case', 'agents', 'function-calling']
@@ -363,7 +363,7 @@ class RouterAgent:
     """
 
     def __init__(self):
-        self.llm = ChatOpenAI(model="gpt-4")
+        self.llm = ChatOpenAI(model="gpt-5-mini")
 
         # Routing criteria
         self.routing_rules = {
@@ -433,7 +433,7 @@ class BillingAgent:
     """
 
     def __init__(self):
-        self.llm = ChatOpenAI(model="gpt-4")
+        self.llm = ChatOpenAI(model="gpt-5-mini")
 
         # LangChain 1.x: @tool replaces the Tool(name=, func=) constructor
         @tool
@@ -497,7 +497,7 @@ class TechnicalAgent:
     """
 
     def __init__(self):
-        self.llm = ChatOpenAI(model="gpt-4")
+        self.llm = ChatOpenAI(model="gpt-5-mini")
         # langchain_qdrant: QdrantVectorStore replaced the old Qdrant class;
         # it takes an explicit client and singular `embedding=`.
         client = QdrantClient(url="http://localhost:6333")
@@ -562,7 +562,7 @@ class SalesAgent:
     """
 
     def __init__(self):
-        self.llm = ChatOpenAI(model="gpt-4")
+        self.llm = ChatOpenAI(model="gpt-5-mini")
 
         @tool
         def get_pricing() -> str:
@@ -616,7 +616,7 @@ class GeneralAgent:
     """
 
     def __init__(self):
-        self.llm = ChatOpenAI(model="gpt-4")
+        self.llm = ChatOpenAI(model="gpt-5-mini")
         # A tool-less create_agent is valid - it is a plain chat agent.
         self.agent = create_agent(
             self.llm,
@@ -781,7 +781,7 @@ class ResearchAssistantAgent:
     """
 
     def __init__(self):
-        self.llm = ChatOpenAI(model="gpt-4")
+        self.llm = ChatOpenAI(model="gpt-5-mini")
 
         # LangChain 1.x: create_agent replaces initialize_agent +
         # AgentType.OPENAI_FUNCTIONS with a direct tool-calling agent.
