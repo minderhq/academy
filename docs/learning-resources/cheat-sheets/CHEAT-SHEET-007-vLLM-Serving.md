@@ -1,7 +1,7 @@
 ---
 Document ID: CHEAT-SHEET-007
 Title: "CHEAT-SHEET-007: vLLM Serving & Inference"
-Last Updated: 2026-10-11
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Intermediate
 Tags: ['cheatsheet', 'vllm', 'inference', 'serving']
@@ -52,8 +52,8 @@ vllm serve meta-llama/Llama-3.1-8B-Instruct \
 ### Common Serve Flags
 
 ```bash
-vllm serve Qwen/Qwen2.5-7B-Instruct \
-  --served-model-name qwen7b \            # alias clients request
+vllm serve Qwen/Qwen3-8B \
+  --served-model-name qwen8b \            # alias clients request
   --host 0.0.0.0 --port 8000 \
   --dtype bfloat16 \                      # or float16 / auto
   --max-model-len 16384 \                 # cap context to save KV memory
@@ -72,7 +72,7 @@ vllm serve Qwen/Qwen2.5-7B-Instruct \
 curl http://localhost:8000/v1/chat/completions \
   -H "Content-Type: application/json" \
   -d '{
-    "model": "qwen7b",
+    "model": "qwen8b",
     "messages": [{"role": "user", "content": "Explain KV cache in one line."}],
     "temperature": 0.2,
     "max_tokens": 128
@@ -94,7 +94,7 @@ curl http://localhost:8000/metrics            # Prometheus metrics
 ```python
 from vllm import LLM, SamplingParams
 
-llm = LLM(model="Qwen/Qwen2.5-7B-Instruct", max_model_len=8192)
+llm = LLM(model="Qwen/Qwen3-8B", max_model_len=8192)
 params = SamplingParams(temperature=0.2, top_p=0.9, max_tokens=256)
 
 prompts = ["Summarize attention.", "List three vector databases."]
@@ -112,7 +112,7 @@ for out in outputs:
 
 ```bash
 # AWQ / GPTQ checkpoints load with the right kernel automatically
-vllm serve Qwen/Qwen2.5-7B-Instruct-AWQ --max-model-len 8192
+vllm serve Qwen/Qwen3-8B-AWQ --max-model-len 8192
 ```
 
 ### Explicit Quantization and KV-Cache Quantization
@@ -146,7 +146,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 vllm serve ... --tensor-parallel-size 4
 ## Throughput Tuning
 
 ```bash
-vllm serve Qwen/Qwen2.5-7B-Instruct \
+vllm serve Qwen/Qwen3-8B \
   --enable-prefix-caching \               # reuse shared prompt KV (default on)
   --enable-chunked-prefill \              # interleave prefill with decode
   --max-num-batched-tokens 8192           # prefill chunk size
@@ -159,7 +159,7 @@ from openai import OpenAI
 
 client = OpenAI(base_url="http://localhost:8000/v1", api_key="EMPTY")
 resp = client.chat.completions.create(
-    model="qwen7b",
+    model="qwen8b",
     messages=[{"role": "user", "content": "Return a 3-item grocery list."}],
     extra_body={
         "guided_json": {
@@ -174,7 +174,7 @@ resp = client.chat.completions.create(
 ### Tool Calling
 
 ```bash
-vllm serve Qwen/Qwen2.5-7B-Instruct \
+vllm serve Qwen/Qwen3-8B \
   --enable-auto-tool-choice \
   --tool-call-parser hermes               # parser must match the model's format
 ```

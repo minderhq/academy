@@ -1,7 +1,7 @@
 ---
 Document ID: QUICK-START
 Title: "QUICK START GUIDE: Get Started in 30 Minutes"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Beginner
 Tags: ['quickstart', 'tutorial', 'llm']
@@ -111,7 +111,7 @@ ollama pull mistral:7b
 ### Other Options (for later)
 ```bash
 ollama pull llama3.2        # Meta's Llama 3.2
-ollama pull qwen2.5-coder   # Coding assistant
+ollama pull qwen3-coder     # Coding assistant
 ollama pull phi4            # Small & fast
 ```
 
