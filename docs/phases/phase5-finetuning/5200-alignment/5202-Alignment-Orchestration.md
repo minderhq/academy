@@ -3,7 +3,7 @@ Document ID: 5202
 Title: "5202: Alignment Orchestration - Reward Modeling vs Direct Preference"
 Phase: 5
 Module: 5200
-Last Updated: 2026-09-30
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -272,8 +272,8 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 # Dataset format — label is a BOOLEAN, not 0/1:
 # {"prompt": str, "completion": str, "label": True/False}
 
-model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen2-0.5B-Instruct")
-tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen2-0.5B-Instruct")
+model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen3-0.6B")
+tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen3-0.6B")
 
 dataset = load_dataset("trl-lib/kto-mix-14k", split="train")
 

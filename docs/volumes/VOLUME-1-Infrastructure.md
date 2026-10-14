@@ -1,7 +1,7 @@
 ---
 Document ID: VOLUME-1
 Title: "Volume 1: Infrastructure Fundamentals"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Beginner
 Tags: ['volume', 'infrastructure', 'docker', 'kubernetes']
@@ -267,7 +267,7 @@ Use this checklist to track your progress:
 
 **Problem:** Ollama slow on CPU
 
-- **Solution:** Use smaller models (phi, gemma:2b) - see TUTORIAL-001
+- **Solution:** Use smaller models (phi4-mini, gemma3:1b) - see TUTORIAL-001
 
 **Problem:** GPU not detected
 
