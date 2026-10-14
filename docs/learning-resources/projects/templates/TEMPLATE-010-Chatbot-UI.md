@@ -1,7 +1,7 @@
 ---
 Document ID: TEMPLATE-010-Chatbot-UI
 Title: "PROJECT TEMPLATE: Chatbot UI"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Intermediate
 Tags: ['template', 'llm', 'inference']
@@ -206,9 +206,9 @@ interface Conversation {
 ```tsx
 // frontend/src/components/ModelSelector.tsx
 const MODELS = [
-  { id: 'gpt-4', name: 'GPT-4', provider: 'OpenAI' },
-  { id: 'claude-3', name: 'Claude 3', provider: 'Anthropic' },
-  { id: 'llama-3.1', name: 'Llama 3.1', provider: 'Local' },
+  { id: 'gpt-5-mini', name: 'GPT-5-mini', provider: 'OpenAI' },
+  { id: 'claude-sonnet-5-5', name: 'Claude Sonnet 5.5', provider: 'Anthropic' },
+  { id: 'llama3.1', name: 'Llama 3.1', provider: 'Local' },
 ];
 ```
 

@@ -1,7 +1,7 @@
 ---
 Document ID: GLOSSARY
 Title: "Minder Academy Glossary"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Beginner
 Tags: ['glossary', 'llm', 'transformers']
@@ -11,7 +11,7 @@ Tags: ['glossary', 'llm', 'transformers']
 
 **Official Terminology Reference**
 
-**Last Updated:** 2026-10-08
+**Last Updated:** 2026-10-14
 
 **Purpose:** Standardize terminology across all Minder Academy documentation
 
@@ -109,7 +109,7 @@ Consistent terminology prevents confusion and makes learning easier. When you se
 
 | Term | Definition | Usage |
 |------|------------|-------|
-| **Baseline** | Reference model for comparison | GPT-4, Claude |
+| **Baseline** | Reference model for comparison | GPT-5, Claude |
 | **Benchmark** | Standardized test suite | MMLU, HellaSwag, GSM8K |
 | **Ablation Study** | Removing components to test necessity | "Without attention" |
 | **Hyperparameter** | Configuration setting not learned during training | Learning rate, Batch size |
@@ -226,7 +226,7 @@ EXP_6501_MLOPS_PIPELINE.md
 | **Mistral AI** | Mistral Large 4, Mistral Small 4 | - |
 | **Google** | Gemini 3, Gemma 3 | - |
 | **OpenAI** | GPT-5, GPT-5-mini | - |
-| **Anthropic** | Claude Opus 5.5, Claude Haiku 4.5 | - |
+| **Anthropic** | Claude Opus 5.5, Claude Haiku 5.5 | - |
 | **Cohere** | Command R+, Aya | - |
 
 ---

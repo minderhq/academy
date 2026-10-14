@@ -1,7 +1,7 @@
 ---
 Document ID: REAL-WORLD-EXAMPLES
 Title: Real-World Examples & Case Studies
-Last Updated: 2026-10-13
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Intermediate
 Tags: ['case-study', 'production', 'llm']
@@ -13,7 +13,7 @@ Tags: ['case-study', 'production', 'llm']
 
 **Category:** Case Studies
 
-**Last Updated:** 2026-10-13
+**Last Updated:** 2026-10-14
 
 **Status:** Complete
 
@@ -168,7 +168,7 @@ workflow = SequentialWorkflow(
 
 **Scale:** $50B AUM
 
-**Tech Stack:** Claude-3, GraphRAG, Neo4j, Custom Tools
+**Tech Stack:** Claude Opus 5.5, GraphRAG, Neo4j, Custom Tools
 
 ### Challenge
 - Analyze 10,000+ earnings reports quarterly
