@@ -14,7 +14,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 **Last Updated:** 2026-10-14
 
-**Total Files:** 519 markdown files (docs/)
+**Total Files:** 520 markdown files (docs/)
 
 ---
 
@@ -234,7 +234,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 ---
 
-### Cheat Sheets (79 files)
+### Cheat Sheets (80 files)
 
 | ID | Topic | Coverage |
 |----|-------|----------|
@@ -310,6 +310,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **[CHEAT-SHEET-070](../learning-resources/cheat-sheets/CHEAT-SHEET-070-Autoscaling-and-the-Warm-Pool-Budget.md)** | Autoscaling and the Warm-Pool Budget - the Queue-Depth Trigger, the Cold-Start Gate, and the Scale-In Bill | The fixed-fleet bill, the scale-trigger ladder, the cold-start gate, the warm-pool rent, the scale-in bill, the day bill, and the ablation audit. |
 | **[CHEAT-SHEET-071](../learning-resources/cheat-sheets/CHEAT-SHEET-071-Load-Shedding-and-the-Admission-Gate.md)** | Load Shedding and the Admission Gate - the Queue-Full Bill, the Shedding Ladder, and the Retry Bill | The queue-full bill, the admission gate, the shedding ladder, the retry bill, the shedding bill, the day bill, and the ablation audit. |
 | **[CHEAT-SHEET-072](../learning-resources/cheat-sheets/CHEAT-SHEET-072-GPU-Utilization-and-the-MFU-Budget.md)** | GPU Utilization and the MFU Budget - the Gauge Lie, the Weight-Stream Ladder, and the KV Re-Bind | The gauge lie, the weight-stream ladder, the KV re-bind, the serving point, the quantization unlocks, the fleet day in flops, and the ablation audit. |
+| **[CHEAT-SHEET-073](../learning-resources/cheat-sheets/CHEAT-SHEET-073-SLOs-and-the-Error-Budget.md)** | SLOs and the Error Budget - the Promise in Requests, the Burn Rate, and the Deploy Gate | The promise in requests, the spend ledger, the burn rate, the multi-window trip rule, the 28-day ledger, the deploy gate, and the ablation audit. |
 | **[QUICK-REF-V1](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-1.md)** | Infrastructure Fundamentals - Quick Reference | Phase 1 Quick Reference |
 | **[QUICK-REF-V2](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-2.md)** | AI/ML Foundations - Quick Reference | Phase 2 Quick Reference |
 | **[QUICK-REF-V3](../learning-resources/cheat-sheets/QUICK-REF-VOLUME-3.md)** | LLM Internals - Quick Reference | Phase 3 Quick Reference |
@@ -469,7 +470,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **Jupyter Notebooks** | 20 |
 | **Practice Files** | 33 |
 | **Quiz Files** | 33 |
-| **Cheat Sheets** | 80 |
+| **Cheat Sheets** | 81 |
 | **Projects** | 7 |
 | **Experiments** | 47 |
 | **Comparisons** | 3 |
@@ -478,7 +479,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **Solutions** | 3 |
 | **Diagrams** | 4 |
 | **Meta Docs** | 20 |
-| **TOTAL** | **638** |
+| **TOTAL** | **639** |
 
 ### Content Statistics
 

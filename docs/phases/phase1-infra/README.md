@@ -470,6 +470,7 @@ Single-page references for the surfaces this phase teaches:
 - **[CHEAT-SHEET-070: Autoscaling and the Warm-Pool Budget - the Queue-Depth Trigger, the Cold-Start Gate, and the Scale-In Bill](../../learning-resources/cheat-sheets/CHEAT-SHEET-070-Autoscaling-and-the-Warm-Pool-Budget.md)**
 - **[CHEAT-SHEET-071: Load Shedding and the Admission Gate - the Queue-Full Bill, the Shedding Ladder, and the Retry Bill](../../learning-resources/cheat-sheets/CHEAT-SHEET-071-Load-Shedding-and-the-Admission-Gate.md)**
 - **[CHEAT-SHEET-072: GPU Utilization and the MFU Budget - the Gauge Lie, the Weight-Stream Ladder, and the KV Re-Bind](../../learning-resources/cheat-sheets/CHEAT-SHEET-072-GPU-Utilization-and-the-MFU-Budget.md)**
+- **[CHEAT-SHEET-073: SLOs and the Error Budget - the Promise in Requests, the Burn Rate, and the Deploy Gate](../../learning-resources/cheat-sheets/CHEAT-SHEET-073-SLOs-and-the-Error-Budget.md)**
 - **[CHEAT-SHEET-038: SDPA & torch.compile - the Kernel Choice and the Execution Choice](../../learning-resources/cheat-sheets/CHEAT-SHEET-038-SDPA-and-torch-compile.md)**
 - **[CHEAT-SHEET-054: Network Foundations - the Wire-Efficiency Bill, the Handshake Ledger, and the First-Token Budget](../../learning-resources/cheat-sheets/CHEAT-SHEET-054-Network-Foundations.md)**
 - **[CHEAT-SHEET-055: Virtualization and GPU Passthrough - the Hypervisor RAM Ledger, the Passthrough Gate Chain, and the Multi-GPU Scaling Wall](../../learning-resources/cheat-sheets/CHEAT-SHEET-055-Virtualization-and-GPU-Passthrough.md)**
