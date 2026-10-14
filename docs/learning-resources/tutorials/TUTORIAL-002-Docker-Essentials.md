@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-002
 Title: "TUTORIAL-002: Docker Essentials for AI"
-Last Updated: 2026-10-13
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 45 minutes
@@ -343,7 +343,7 @@ docker run --gpus all -it --rm \
 ```bash
 docker run --gpus all -it --rm \
   -v $(pwd):/workspace \
-  python:3.13-cuda \
+  pytorch/pytorch:2.9.0-cuda13.0-cudnn9-runtime \
   python -c "import torch; print(f'CUDA available: {torch.cuda.is_available()}')"
 ```
 

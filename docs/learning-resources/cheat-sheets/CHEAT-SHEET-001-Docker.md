@@ -1,7 +1,7 @@
 ---
 Document ID: CHEAT-SHEET-001
 Title: "CHEAT-SHEET-001: Docker Commands"
-Last Updated: 2026-10-07
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Intermediate
 Tags: ['cheatsheet', 'docker', 'devops']
@@ -259,10 +259,10 @@ docker exec ${CONTAINER} nvidia-smi
 ### ML Frameworks
 ```bash
 # PyTorch with GPU
-docker run --gpus all --shm-size=1g pytorch/pytorch:2.1.0-cuda12.1-cudnn8-runtime
+docker run --gpus all --shm-size=1g pytorch/pytorch:2.9.0-cuda13.0-cudnn9-runtime
 
 # TensorFlow with GPU
-docker run --gpus all tensorflow/tensorflow:2.15.0-gpu
+docker run --gpus all tensorflow/tensorflow:2.21.0-gpu
 
 # Jupyter with GPU
 docker run --gpus all -p 8888:8888 -e JUPYTER_ENABLE_LAB=yes \

@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-006
 Title: "TUTORIAL-006: Real-time AI"
-Last Updated: 2026-10-13
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 60 minutes
@@ -69,8 +69,7 @@ class StreamingLLM:
     async def stream_completion(
         self,
         prompt: str,
-        model: str = "gpt-4",
-        temperature: float = 0.7,
+        model: str = "gpt-5-mini",
         max_tokens: int = 500
     ) -> AsyncGenerator[str, None]:
         """
@@ -79,7 +78,6 @@ class StreamingLLM:
         Args:
             prompt: User prompt
             model: Model name
-            temperature: Sampling temperature
             max_tokens: Maximum tokens to generate
 
         Yields:
@@ -88,8 +86,7 @@ class StreamingLLM:
         stream = await self.client.chat.completions.create(
             model=model,
             messages=[{"role": "user", "content": prompt}],
-            temperature=temperature,
-            max_tokens=max_tokens,
+            max_completion_tokens=max_tokens,  # replaces max_tokens on reasoning endpoints
             stream=True
         )
 
@@ -420,7 +417,7 @@ services:
       - "8000:8000"
     environment:
       - REDIS_URL=redis://redis:6379
-      - MODEL_NAME=gpt-4
+      - MODEL_NAME=gpt-5-mini
     depends_on:
       - redis
     deploy:

@@ -1,7 +1,7 @@
 ---
 Document ID: PROJECT-006
 Title: "CAPSTONE PROJECT-006: Build Production RAG System"
-Last Updated: 2026-10-13
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Advanced
 Tags: ['project', 'rag', 'production', 'qdrant']
@@ -513,7 +513,7 @@ from openai import OpenAI
 class RAGGenerator:
     """Generate responses with RAG"""
 
-    def __init__(self, model: str = "gpt-4"):
+    def __init__(self, model: str = "gpt-5-mini"):
         self.client = OpenAI()
         self.model = model
 
@@ -544,7 +544,7 @@ Answer:"""
             response = self.client.chat.completions.create(
                 model=self.model,
                 messages=[{"role": "user", "content": prompt}],
-                max_tokens=1024
+                max_completion_tokens=1024
             )
             return response.choices[0].message.content
 
@@ -553,7 +553,7 @@ Answer:"""
         stream = self.client.chat.completions.create(
             model=self.model,
             messages=[{"role": "user", "content": prompt}],
-            max_tokens=1024,
+            max_completion_tokens=1024,
             stream=True
         )
 

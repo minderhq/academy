@@ -278,7 +278,7 @@ def ai_ranking(candidates, judge_model_name="gpt-5-mini"):
         response = client.chat.completions.create(
             model=judge_model_name,
             messages=[{"role": "user", "content": rank_prompt}],
-            max_tokens=50,
+            max_completion_tokens=50,
         )
         ranking_str = response.choices[0].message.content.strip()
 
