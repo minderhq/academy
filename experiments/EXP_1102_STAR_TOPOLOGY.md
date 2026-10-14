@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_1102
 Title: "EXP_1102: Star Topology and Network Performance Experiments"
-Last Updated: 2026-09-24
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Beginner
 ---
@@ -22,7 +22,6 @@ Configure a star topology network with central switch for optimal throughput and
 # network_topology.py
 import subprocess
 import json
-from typing import Dict, List
 
 class StarTopologyConfig:
     """Configure star topology network"""

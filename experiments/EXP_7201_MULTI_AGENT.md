@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_7201
 Title: "EXP-7201: Multi-Agent Systems"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Advanced
 ---
@@ -57,7 +57,7 @@ Multi-Agent Framework
 =====================
 """
 
-from typing import List, Dict, Any, Optional
+from typing import Any
 from enum import Enum
 
 class AgentRole(Enum):
@@ -77,11 +77,11 @@ class Agent:
         self.expertise = expertise
         self.message_queue = []
 
-    def receive_message(self, message: Dict[str, Any]):
+    def receive_message(self, message: dict[str, Any]):
         """Receive message from another agent"""
         self.message_queue.append(message)
 
-    def process_messages(self) -> List[Dict[str, Any]]:
+    def process_messages(self) -> list[dict[str, Any]]:
         """Process pending messages"""
         responses = []
 
@@ -93,7 +93,7 @@ class Agent:
         self.message_queue = []
         return responses
 
-    def _handle_message(self, message: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+    def _handle_message(self, message: dict[str, Any]) -> dict[str, Any] | None:
         """Handle incoming message"""
         msg_type = message.get("type")
 
@@ -106,7 +106,7 @@ class Agent:
 
         return None
 
-    def _perform_task(self, task: str) -> Dict[str, Any]:
+    def _perform_task(self, task: str) -> dict[str, Any]:
         """Perform assigned task"""
         return {
             "type": "result",
@@ -114,7 +114,7 @@ class Agent:
             "content": f"Task '{task}' completed by {self.name}"
         }
 
-    def _answer_query(self, query: str) -> Dict[str, Any]:
+    def _answer_query(self, query: str) -> dict[str, Any]:
         """Answer query from another agent"""
         return {
             "type": "response",
@@ -122,7 +122,7 @@ class Agent:
             "content": f"Answer from {self.name}: {query}"
         }
 
-    def _process_result(self, result: str) -> Dict[str, Any]:
+    def _process_result(self, result: str) -> dict[str, Any]:
         """Process result from another agent"""
         return {
             "type": "acknowledgment",
@@ -142,7 +142,7 @@ class MultiAgentOrchestrator:
         """Add agent to system"""
         self.agents.append(agent)
 
-    def assign_task(self, task: str, role: Optional[AgentRole] = None):
+    def assign_task(self, task: str, role: AgentRole | None = None):
         """Assign task to appropriate agent"""
 
         if role:
@@ -180,7 +180,7 @@ class MultiAgentOrchestrator:
         # Default to first agent
         return self.agents[0]
 
-    def run_round(self) -> List[Dict]:
+    def run_round(self) -> list[dict]:
         """Run one round of agent communication"""
 
         all_responses = []
@@ -201,7 +201,7 @@ class MultiAgentOrchestrator:
 
         return all_responses
 
-    def execute_task(self, task: str, max_rounds: int = 5) -> Dict[str, Any]:
+    def execute_task(self, task: str, max_rounds: int = 5) -> dict[str, Any]:
         """Execute complex task using multiple agents"""
 
         self.task_queue.append(task)
@@ -225,7 +225,7 @@ class MultiAgentOrchestrator:
             "responses": responses
         }
 
-    def _is_task_complete(self, responses: List[Dict]) -> bool:
+    def _is_task_complete(self, responses: list[dict]) -> bool:
         """Check if task is complete"""
 
         # Check for completion signals
@@ -267,13 +267,13 @@ Specialized Multi-Agent System
 ==============================
 """
 
-from typing import Dict, Any
+from typing import Any
 from multi_agent import Agent, AgentRole, MultiAgentOrchestrator
 
 class ResearcherAgent(Agent):
     """Agent specialized in information gathering"""
 
-    def _perform_task(self, task: str) -> Dict[str, Any]:
+    def _perform_task(self, task: str) -> dict[str, Any]:
         """Perform research task"""
 
         # Simulate web search
@@ -293,7 +293,7 @@ class ResearcherAgent(Agent):
 class CoderAgent(Agent):
     """Agent specialized in programming"""
 
-    def _perform_task(self, task: str) -> Dict[str, Any]:
+    def _perform_task(self, task: str) -> dict[str, Any]:
         """Perform coding task"""
 
         # Simulate code generation
@@ -313,7 +313,7 @@ def solution():
 class AnalystAgent(Agent):
     """Agent specialized in analysis"""
 
-    def _perform_task(self, task: str) -> Dict[str, Any]:
+    def _perform_task(self, task: str) -> dict[str, Any]:
         """Perform analysis task"""
 
         # Simulate data analysis
@@ -422,7 +422,7 @@ Agent Debate Pattern
 """
 
 import numpy as np
-from typing import Dict, Any, List
+from typing import Any
 from multi_agent import Agent, AgentRole
 
 class DebateAgent(Agent):
@@ -433,7 +433,7 @@ class DebateAgent(Agent):
         self.position = position
         self.arguments = []
 
-    def participate_in_debate(self, topic: str, round_num: int) -> Dict[str, Any]:
+    def participate_in_debate(self, topic: str, round_num: int) -> dict[str, Any]:
         """Participate in debate round"""
 
         # Generate argument based on position
@@ -457,7 +457,7 @@ class DebateAgent(Agent):
         else:
             return f"Argument against '{topic}' (round {round_num}): This approach has limitations because..."
 
-    def vote(self, all_arguments: List[Dict]) -> Dict[str, Any]:
+    def vote(self, all_arguments: list[dict]) -> dict[str, Any]:
         """Vote based on debate"""
 
         # Simulated voting based on argument quality - confidence
@@ -490,7 +490,7 @@ class DebateOrchestrator:
         else:
             self.agents_against.append(agent)
 
-    def run_debate(self, topic: str, rounds: int = 3) -> Dict[str, Any]:
+    def run_debate(self, topic: str, rounds: int = 3) -> dict[str, Any]:
         """Run debate"""
 
         all_arguments = []

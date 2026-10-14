@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_1404
 Title: "EXP_1404: vLLM Production Tuning Experiments"
-Last Updated: 2026-09-24
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -411,7 +411,6 @@ import asyncio
 import aiohttp
 import time
 import statistics
-from typing import List
 
 class ConcurrentRequestTester:
     """Test concurrent request handling"""

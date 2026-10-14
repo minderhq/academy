@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_6101
 Title: "EXP-6101: HNSW Benchmarking"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Advanced
 ---
@@ -57,7 +57,6 @@ HNSW Implementation
 """
 
 import numpy as np
-from typing import List, Tuple
 import heapq
 
 class HNSWNode:
@@ -138,7 +137,7 @@ class HNSWIndex:
         return node_id
 
     def _search_level(self, entry_id: int, query: np.ndarray,
-                     level: int, ef: int) -> List[Tuple[int, float]]:
+                     level: int, ef: int) -> list[tuple[int, float]]:
         """Search at specific level
 
         Args:
@@ -186,8 +185,8 @@ class HNSWIndex:
         # Return node IDs and distances
         return [(node_id, -dist) for dist, node_id in w]
 
-    def _select_neighbors(self, candidates: List[Tuple[int, float]],
-                         M: int) -> List[int]:
+    def _select_neighbors(self, candidates: list[tuple[int, float]],
+                         M: int) -> list[int]:
         """Select M nearest neighbors"""
         return [node_id for node_id, _ in sorted(candidates, key=lambda x: x[1])[:M]]
 
@@ -207,7 +206,7 @@ class HNSWIndex:
         return np.linalg.norm(node1.vector - node2.vector)
 
     def search(self, query: np.ndarray, K: int = 10,
-               ef: int = None) -> List[Tuple[int, float]]:
+               ef: int = None) -> list[tuple[int, float]]:
         """Search for K nearest neighbors
 
         Args:

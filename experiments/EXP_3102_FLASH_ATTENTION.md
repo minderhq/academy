@@ -28,7 +28,6 @@ import torch
 import torch.nn as nn
 import time
 from dataclasses import dataclass
-from typing import Optional
 
 # Standard Attention Implementation
 class StandardAttention(nn.Module):
@@ -43,7 +42,7 @@ class StandardAttention(nn.Module):
         self.qkv = nn.Linear(dim, dim * 3, bias=False)
         self.out = nn.Linear(dim, dim)
 
-    def forward(self, x: torch.Tensor, mask: Optional[torch.Tensor] = None):
+    def forward(self, x: torch.Tensor, mask: torch.Tensor | None = None):
         B, N, C = x.shape
         qkv = self.qkv(x).reshape(B, N, 3, self.num_heads, self.head_dim).permute(2, 0, 3, 1, 4)
         q, k, v = qkv[0], qkv[1], qkv[2]
@@ -75,7 +74,7 @@ try:
             self.qkv = nn.Linear(dim, dim * 3, bias=False)
             self.out = nn.Linear(dim, dim)
 
-        def forward(self, x: torch.Tensor, mask: Optional[torch.Tensor] = None):
+        def forward(self, x: torch.Tensor, mask: torch.Tensor | None = None):
             B, N, C = x.shape
             qkv = self.qkv(x).reshape(B, N, 3, self.num_heads, self.head_dim)
 

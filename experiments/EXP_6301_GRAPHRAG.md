@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_6301
 Title: "EXP-6301: GraphRAG"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Advanced
 ---
@@ -59,7 +59,6 @@ Build Knowledge Graph for GraphRAG
 
 import spacy
 from neo4j import GraphDatabase
-from typing import List, Dict
 import re
 
 class KnowledgeGraphBuilder:
@@ -70,7 +69,7 @@ class KnowledgeGraphBuilder:
         self.driver = GraphDatabase.driver(neo4j_uri, auth=(username, password))
         self.nlp = spacy.load("en_core_web_sm")
 
-    def extract_entities(self, text: str) -> Dict[str, List[str]]:
+    def extract_entities(self, text: str) -> dict[str, list[str]]:
         """Extract entities from text"""
 
         doc = self.nlp(text)
@@ -100,7 +99,7 @@ class KnowledgeGraphBuilder:
 
         return entities
 
-    def build_graph(self, documents: List[Dict]):
+    def build_graph(self, documents: list[dict]):
         """Build knowledge graph from documents"""
 
         with self.driver.session() as session:
@@ -191,7 +190,6 @@ GraphRAG Retrieval
 """
 
 from neo4j import GraphDatabase
-from typing import List, Dict
 import spacy
 from sentence_transformers import SentenceTransformer
 
@@ -207,7 +205,7 @@ class GraphRAGRetriever:
         # Load the NER model once - reloading it per query dominates latency
         self.nlp = spacy.load("en_core_web_sm")
 
-    def retrieve(self, query: str, top_k: int = 5) -> List[Dict]:
+    def retrieve(self, query: str, top_k: int = 5) -> list[dict]:
         """Retrieve using GraphRAG"""
 
         # Step 1: Extract entities from query
@@ -228,7 +226,7 @@ class GraphRAGRetriever:
 
         return combined
 
-    def _extract_query_entities(self, query: str) -> List[str]:
+    def _extract_query_entities(self, query: str) -> list[str]:
         """Extract entities from query"""
 
         doc = self.nlp(query)
@@ -236,7 +234,7 @@ class GraphRAGRetriever:
         entities = [ent.text for ent in doc.ents]
         return entities
 
-    def _expand_entities(self, entities: List[str]) -> List[str]:
+    def _expand_entities(self, entities: list[str]) -> list[str]:
         """Expand entities through graph traversal"""
 
         related = []
@@ -258,7 +256,7 @@ class GraphRAGRetriever:
         # Deduplicate
         return list(set(entities + related))
 
-    def _find_documents_by_entities(self, entities: List[str]) -> List[Dict]:
+    def _find_documents_by_entities(self, entities: list[str]) -> list[dict]:
         """Find documents containing entities"""
 
         doc_scores = {}
@@ -289,7 +287,7 @@ class GraphRAGRetriever:
         results = sorted(doc_scores.values(), key=lambda x: x['score'], reverse=True)
         return results
 
-    def _vector_search(self, query: str, top_k: int) -> List[Dict]:
+    def _vector_search(self, query: str, top_k: int) -> list[dict]:
         """Vector search (simplified - would use actual vector DB)"""
 
         # In production, use Qdrant/Milvus
@@ -299,8 +297,8 @@ class GraphRAGRetriever:
             for i in range(top_k)
         ]
 
-    def _combine_results(self, graph_docs: List[Dict],
-                         vector_docs: List[Dict], top_k: int) -> List[Dict]:
+    def _combine_results(self, graph_docs: list[dict],
+                         vector_docs: list[dict], top_k: int) -> list[dict]:
         """Combine graph and vector results"""
 
         # Normalize scores
@@ -374,9 +372,8 @@ Benchmark GraphRAG vs Vanilla RAG
 
 import numpy as np
 import time
-from typing import List
 
-def simulate_vanilla_rag(queries: List[str]) -> List[dict]:
+def simulate_vanilla_rag(queries: list[str]) -> list[dict]:
     """Simulate vanilla RAG (vector only)"""
 
     results = []
@@ -389,7 +386,7 @@ def simulate_vanilla_rag(queries: List[str]) -> List[dict]:
         results.append(docs)
     return results
 
-def simulate_graphrag(queries: List[str]) -> List[dict]:
+def simulate_graphrag(queries: list[str]) -> list[dict]:
     """Simulate GraphRAG (vector + graph)"""
 
     results = []

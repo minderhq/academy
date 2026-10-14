@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_7101
 Title: "EXP-7101: ReAct Agent"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Advanced
 ---
@@ -59,13 +59,13 @@ ReAct Agent Implementation
 ========================
 """
 
-from typing import List, Dict, Any, Optional
+from typing import Any
 import re
 
 class ReActAgent:
     """ReAct: Reasoning + Acting Agent"""
 
-    def __init__(self, tools: Dict[str, callable]):
+    def __init__(self, tools: dict[str, callable]):
         """
         Args:
             tools: Dictionary of tool_name -> tool_function
@@ -121,7 +121,7 @@ class ReActAgent:
         else:
             return f"I need to understand what is being asked: '{query}'"
 
-    def _decide_action(self, thought: str, query: str) -> Dict[str, str]:
+    def _decide_action(self, thought: str, query: str) -> dict[str, str]:
         """Decide next action based on thought"""
 
         # Pattern matching for common actions
@@ -140,7 +140,7 @@ class ReActAgent:
         # If no clear action, finish
         return {"type": "finish", "content": self._generate_answer(query, self.history)}
 
-    def _execute_action(self, action: Dict[str, str]) -> str:
+    def _execute_action(self, action: dict[str, str]) -> str:
         """Execute action and return observation"""
 
         # Finish actions carry no tool - their content is the result itself
@@ -159,7 +159,7 @@ class ReActAgent:
 
         return f"Unknown tool: {tool_name}"
 
-    def _next_thought(self, prev_thought: str, action: Dict,
+    def _next_thought(self, prev_thought: str, action: dict,
                      observation: str, query: str) -> str:
         """Generate next thought based on action result"""
 
@@ -172,7 +172,7 @@ class ReActAgent:
         else:
             return f"I received: {observation}. Continuing to process the query."
 
-    def _generate_answer(self, query: str, history: List) -> str:
+    def _generate_answer(self, query: str, history: list) -> str:
         """Generate final answer from history"""
 
         # Simplified answer generation
@@ -192,7 +192,7 @@ class ReActAgent:
 
         return "Unable to determine answer"
 
-    def _extract_expression(self, text: str) -> Optional[str]:
+    def _extract_expression(self, text: str) -> str | None:
         """Extract mathematical expression"""
         # Match patterns like "2 + 2" or "calculate 5 * 3"
         patterns = [
@@ -208,7 +208,7 @@ class ReActAgent:
 
         return None
 
-    def _extract_search_query(self, text: str) -> Optional[str]:
+    def _extract_search_query(self, text: str) -> str | None:
         """Extract search query"""
         # Simple extraction
         if "search for" in text.lower():
@@ -271,17 +271,16 @@ Advanced ReAct with Multiple Tools
 """
 
 import re
-from typing import Dict, Optional
 from react_agent import ReActAgent
 
 class AdvancedReActAgent(ReActAgent):
     """ReAct agent with advanced tool selection"""
 
-    def __init__(self, tools: Dict[str, callable]):
+    def __init__(self, tools: dict[str, callable]):
         super().__init__(tools)
         self.tool_descriptions = self._build_tool_descriptions()
 
-    def _build_tool_descriptions(self) -> Dict[str, str]:
+    def _build_tool_descriptions(self) -> dict[str, str]:
         """Build descriptions for tools"""
         return {
             "calculator": "Performs mathematical calculations",
@@ -290,7 +289,7 @@ class AdvancedReActAgent(ReActAgent):
             "database": "Queries a database",
         }
 
-    def _decide_action(self, thought: str, query: str) -> Dict[str, str]:
+    def _decide_action(self, thought: str, query: str) -> dict[str, str]:
         """Decide action using tool descriptions"""
 
         # Check for calculator
@@ -314,7 +313,7 @@ class AdvancedReActAgent(ReActAgent):
         # Default: finish
         return {"type": "finish", "content": self._generate_answer(query, self.history)}
 
-    def _extract_code(self, text: str) -> Optional[str]:
+    def _extract_code(self, text: str) -> str | None:
         """Extract Python code"""
         # Extract code blocks
         code_match = re.search(r'```python\n(.*?)```', text, re.DOTALL)
@@ -374,14 +373,14 @@ Complex Multi-Step Tasks
 ========================
 """
 
-from typing import Dict, Any, List
+from typing import Any
 from advanced_react import AdvancedReActAgent
 from react_agent import calculator, web_search
 
 class TaskAgent(AdvancedReActAgent):
     """Agent for complex multi-step tasks"""
 
-    def run(self, task: str, max_iterations: int = 15) -> Dict[str, Any]:
+    def run(self, task: str, max_iterations: int = 15) -> dict[str, Any]:
         """Run complex task with planning"""
 
         # Plan decomposition
@@ -420,7 +419,7 @@ class TaskAgent(AdvancedReActAgent):
 
         return results
 
-    def _create_plan(self, task: str) -> List[Dict]:
+    def _create_plan(self, task: str) -> list[dict]:
         """Decompose task into steps"""
 
         # Simplified planning
@@ -440,7 +439,7 @@ class TaskAgent(AdvancedReActAgent):
 
         return [{"description": "Analyze task", "type": "analyze"}]
 
-    def _decide_action_for_step(self, step: Dict, task: str) -> Dict:
+    def _decide_action_for_step(self, step: dict, task: str) -> dict:
         """Decide action for specific step"""
 
         if step["type"] == "calculate":
@@ -453,7 +452,7 @@ class TaskAgent(AdvancedReActAgent):
 
         return {"type": "finish", "content": "Step complete"}
 
-    def _is_step_complete(self, step: Dict, observation: str) -> bool:
+    def _is_step_complete(self, step: dict, observation: str) -> bool:
         """Check if step is complete"""
 
         if "Error" in observation:
@@ -461,7 +460,7 @@ class TaskAgent(AdvancedReActAgent):
 
         return True
 
-    def _synthesize_results(self, results: Dict) -> str:
+    def _synthesize_results(self, results: dict) -> str:
         """Synthesize final answer from all steps"""
 
         answer_parts = [f"Task completed with {len(results['steps'])} steps:"]

@@ -126,7 +126,6 @@ Implement a hierarchical memory system with short-term, working, and long-term m
 # memoria_memory_system.py
 import json
 import time
-from typing import List, Dict, Optional
 from qdrant_client import QdrantClient
 from qdrant_client.models import Distance, VectorParams, PointStruct
 import numpy as np
@@ -155,8 +154,8 @@ class MemoriaMemorySystem:
         self._setup_collection()
 
         # Memory stores
-        self.short_term: List[Dict] = []  # Last 10 messages
-        self.working_memory: List[Dict] = []  # Current session
+        self.short_term: list[dict] = []  # Last 10 messages
+        self.working_memory: list[dict] = []  # Current session
         self.session_id = None
 
     def _setup_collection(self):
@@ -173,7 +172,7 @@ class MemoriaMemorySystem:
         except Exception:
             pass  # Collection exists
 
-    def remember(self, content: str, metadata: Dict = None, importance: float = 0.5):
+    def remember(self, content: str, metadata: dict = None, importance: float = 0.5):
         """
         Store information in appropriate memory layer
 
@@ -202,7 +201,7 @@ class MemoriaMemorySystem:
         if importance >= 0.5:
             self._store_longterm(memory_entry)
 
-    def _store_longterm(self, memory_entry: Dict):
+    def _store_longterm(self, memory_entry: dict):
         """Store in vector database"""
         # Generate embedding
         embedding = self.embedder.encode(memory_entry["content"])
@@ -220,7 +219,7 @@ class MemoriaMemorySystem:
             points=[point]
         )
 
-    def recall(self, query: str, k: int = 5) -> List[Dict]:
+    def recall(self, query: str, k: int = 5) -> list[dict]:
         """
         Retrieve relevant memories from all layers
 
@@ -289,7 +288,7 @@ class MemoriaMemorySystem:
         self.consolidate()
         self.session_id = None
 
-    def get_memory_stats(self) -> Dict:
+    def get_memory_stats(self) -> dict:
         """Get statistics about memory usage"""
         count = self.qdrant.count(self.collection)
 
@@ -363,7 +362,6 @@ Build a ReAct agent that uses memory for persistent knowledge.
 ### Implementation
 ```python
 # react_agent_with_memory.py
-from typing import List, Tuple, Optional
 import re
 from memoria_memory_system import MemoriaMemorySystem
 
@@ -434,7 +432,7 @@ class MemoryReActAgent:
 
         return "Max iterations reached"
 
-    def _format_memories(self, memories: List[Dict]) -> str:
+    def _format_memories(self, memories: list[dict]) -> str:
         """Format memories for prompt"""
         if not memories:
             return "No relevant memories found."
@@ -446,7 +444,7 @@ class MemoryReActAgent:
 
         return formatted
 
-    def _build_prompt(self, query: str, memory_context: str, history: List[Dict]) -> str:
+    def _build_prompt(self, query: str, memory_context: str, history: list[dict]) -> str:
         """Build prompt with memory and conversation history"""
         prompt = f"""You are a helpful AI agent with access to past memories.
 
@@ -473,7 +471,7 @@ Your response:"""
 
         return prompt
 
-    def _parse_response(self, response: str) -> Tuple[str, str]:
+    def _parse_response(self, response: str) -> tuple[str, str]:
         """Parse LLM response into thought and action"""
         thought_match = re.search(r"Thought: (.+)", response)
         action_match = re.search(r"Action: (.+)", response)
@@ -582,7 +580,6 @@ Measure memory recall accuracy and relevance scoring.
 ```python
 # memory_quality_test.py
 import numpy as np
-from typing import List, Dict
 from sklearn.metrics.pairwise import cosine_similarity
 from memoria_memory_system import MemoriaMemorySystem
 

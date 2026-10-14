@@ -22,7 +22,6 @@ Measure KV cache memory usage at different context lengths.
 import torch
 import torch.nn as nn
 from dataclasses import dataclass
-from typing import Optional, Tuple
 import matplotlib.pyplot as plt
 
 @dataclass
@@ -55,7 +54,7 @@ class KVCache:
         )
         self.seq_len = 0
 
-    def update(self, k: torch.Tensor, v: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor]:
+    def update(self, k: torch.Tensor, v: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:
         """
         Update cache with new key/value pairs
 
@@ -403,7 +402,7 @@ class StreamingKVCache:
         self.position = 0  # Current write position in ring buffer
         self.total_tokens = 0  # Total tokens processed
 
-    def update(self, k: torch.Tensor, v: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor]:
+    def update(self, k: torch.Tensor, v: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:
         """
         Update cache with sliding window
 

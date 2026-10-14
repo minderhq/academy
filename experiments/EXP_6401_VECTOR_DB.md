@@ -201,7 +201,6 @@ Compare Qdrant, Weaviate, and Chroma on the same hardware.
 # vector_db_comparison.py
 import time
 import numpy as np
-from typing import List, Dict
 
 class VectorDBBenchmark:
     """Unified benchmark for vector databases"""

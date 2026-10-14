@@ -1197,19 +1197,18 @@ model.print_trainable_parameters()
 
 **Tip:** Implement hierarchical memory for agents
 ```python
-from typing import List, Dict
 import chromadb
 
 class AgentMemory:
     def __init__(self):
         # Short-term: Recent conversations
-        self.short_term: List[Dict] = []
+        self.short_term: list[dict] = []
 
         # Long-term: Vector database
         self.vector_db = chromadb.Client()
 
         # Episode: Completed tasks
-        self.episodes: List[Dict] = []
+        self.episodes: list[dict] = []
 
     def store(self, content, metadata):
         # Add to short-term

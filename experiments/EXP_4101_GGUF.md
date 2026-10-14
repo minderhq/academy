@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_4101
 Title: "EXP-4101: GGUF Quantization"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Advanced
 ---
@@ -58,7 +58,7 @@ GGUF File Format Analysis
 
 import struct
 from pathlib import Path
-from typing import Dict, Any
+from typing import Any
 
 class GGUFReader:
     """Read GGUF files"""
@@ -69,7 +69,7 @@ class GGUFReader:
         self.header = self._read_header()
         self.tensors = self._read_tensor_info()
 
-    def _read_header(self) -> Dict[str, Any]:
+    def _read_header(self) -> dict[str, Any]:
         """Read GGUF header"""
         # Magic number
         magic = self.file.read(4)
@@ -156,9 +156,8 @@ class GGUFReader:
 """
 
 import numpy as np
-from typing import Tuple
 
-def quantize_q4_0(weights: np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
+def quantize_q4_0(weights: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
     """
     Quantize weights to 4-bit (Q4_0 format)
 
@@ -204,7 +203,7 @@ def quantize_q4_0(weights: np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
     return qweights, scales
 
 def dequantize_q4_0(qweights: np.ndarray, scales: np.ndarray,
-                    shape: Tuple[int, int]) -> np.ndarray:
+                    shape: tuple[int, int]) -> np.ndarray:
     """Dequantize Q4_0 weights"""
 
     n, m = shape

@@ -21,7 +21,6 @@ Implement speculative decoding from scratch.
 # speculative_decoding.py
 import torch
 import torch.nn as nn
-from typing import Tuple
 from time import time
 
 class SpeculativeDecoder:
@@ -138,7 +137,7 @@ class SpeculativeDecoder:
         input_ids: torch.Tensor,
         draft_ids: torch.Tensor,
         temperature: float,
-    ) -> Tuple[torch.Tensor, int]:
+    ) -> tuple[torch.Tensor, int]:
         """
         Verify draft tokens using target model
 

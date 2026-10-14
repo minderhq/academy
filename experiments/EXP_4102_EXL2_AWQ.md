@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_4102
 Title: "EXP-4102: EXL2 vs AWQ"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Advanced
 ---
@@ -62,9 +62,8 @@ EXL2 Quantization Implementation
 """
 
 import numpy as np
-from typing import Tuple
 
-def quantize_exl2(weights: np.ndarray, bits: int = 4) -> Tuple[np.ndarray, np.ndarray]:
+def quantize_exl2(weights: np.ndarray, bits: int = 4) -> tuple[np.ndarray, np.ndarray]:
     """
     Quantize weights using EXL2 format
 
@@ -146,10 +145,9 @@ AWQ Quantization Implementation
 """
 
 import numpy as np
-from typing import Tuple
 
 def quantize_awq(weights: np.ndarray, activations: np.ndarray,
-                bits: int = 4) -> Tuple[np.ndarray, np.ndarray]:
+                bits: int = 4) -> tuple[np.ndarray, np.ndarray]:
     """
     Activation-aware Weight Quantization
 

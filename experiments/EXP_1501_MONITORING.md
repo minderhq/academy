@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_1501
 Title: "EXP_1501: Monitoring and Observability Experiments"
-Last Updated: 2026-09-24
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -649,7 +649,7 @@ Monitor agent behavior and performance.
 ```python
 # agent_metrics.py
 from prometheus_client import Counter, Histogram, Gauge
-from typing import Dict, Any
+from typing import Any
 
 # Agent-specific metrics
 agent_tool_calls = Counter(

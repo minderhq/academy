@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_5101
 Title: "EXP_5101: LoRA Fine-Tuning Experiments"
-Last Updated: 2026-09-24
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Advanced
 ---
@@ -22,7 +22,6 @@ Implement LoRA from scratch to understand the mechanics.
 import torch
 import torch.nn as nn
 import math
-from typing import List, Tuple
 
 class LoRALinear(nn.Module):
     """

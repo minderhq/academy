@@ -23,7 +23,6 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from dataclasses import dataclass
-from typing import Optional
 
 @dataclass
 class DPOConfig:
@@ -249,19 +248,18 @@ Create preference pairs from model outputs.
 ```python
 # preference_dataset.py
 from datasets import load_dataset, Dataset
-from typing import List, Dict
 
 def create_preference_pairs(
-    prompts: List[str],
-    model_a_outputs: List[str],
-    model_b_outputs: List[str],
-    human_preferences: List[int] = None,
+    prompts: list[str],
+    model_a_outputs: list[str],
+    model_b_outputs: list[str],
+    human_preferences: list[int] = None,
 ) -> Dataset:
     """
     Create preference dataset
 
     Args:
-        prompts: List of prompts
+        prompts: list of prompts
         model_a_outputs: Outputs from model A
         model_b_outputs: Outputs from model B
         human_preferences: 0 if A preferred, 1 if B preferred (optional)

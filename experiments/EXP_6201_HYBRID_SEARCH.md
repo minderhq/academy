@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_6201
 Title: "EXP-6201: Hybrid Search"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Advanced
 ---
@@ -57,7 +57,6 @@ Hybrid Search Implementation
 """
 
 import numpy as np
-from typing import List, Tuple, Dict
 from collections import Counter
 import math
 
@@ -72,7 +71,7 @@ class BM25:
         self.avg_doc_len = 0
         self.documents = []
 
-    def add_document(self, doc: Dict[str, str]):
+    def add_document(self, doc: dict[str, str]):
         """Add document to index"""
         self.documents.append(doc)
         text = doc.get('title', '') + ' ' + doc.get('text', '')
@@ -86,11 +85,11 @@ class BM25:
         """Build BM25 index"""
         self.avg_doc_len = np.mean(self.doc_lens) if self.doc_lens else 1
 
-    def _tokenize(self, text: str) -> List[str]:
+    def _tokenize(self, text: str) -> list[str]:
         """Simple tokenization"""
         return text.lower().split()
 
-    def search(self, query: str, K: int = 10) -> List[Tuple[int, float]]:
+    def search(self, query: str, K: int = 10) -> list[tuple[int, float]]:
         """Search with BM25"""
 
         query_tokens = self._tokenize(query)
@@ -132,12 +131,12 @@ class DenseRetriever:
         self.vectors = []
         self.documents = []
 
-    def add_document(self, doc: Dict[str, str], vector: np.ndarray):
+    def add_document(self, doc: dict[str, str], vector: np.ndarray):
         """Add document with vector"""
         self.documents.append(doc)
         self.vectors.append(vector)
 
-    def search(self, query_vector: np.ndarray, K: int = 10) -> List[Tuple[int, float]]:
+    def search(self, query_vector: np.ndarray, K: int = 10) -> list[tuple[int, float]]:
         """Search with cosine similarity"""
 
         scores = []
@@ -164,7 +163,7 @@ class HybridSearch:
         self.bm25 = BM25()
         self.dense = DenseRetriever()
 
-    def add_document(self, doc: Dict[str, str], vector: np.ndarray):
+    def add_document(self, doc: dict[str, str], vector: np.ndarray):
         """Add document"""
         self.bm25.add_document(doc)
         self.dense.add_document(doc, vector)
@@ -174,7 +173,7 @@ class HybridSearch:
         self.bm25.build_index()
 
     def search(self, query: str, query_vector: np.ndarray,
-                K: int = 10) -> List[Tuple[int, float]]:
+                K: int = 10) -> list[tuple[int, float]]:
         """Hybrid search"""
 
         # Sparse search
@@ -190,7 +189,7 @@ class HybridSearch:
 
         # Min-max normalize each score dict to [0, 1] so the two scales
         # (BM25 unbounded, cosine [-1, 1]) are comparable
-        def normalize(scores: Dict[int, float]) -> Dict[int, float]:
+        def normalize(scores: dict[int, float]) -> dict[int, float]:
             if not scores:
                 return {}
             lo, hi = min(scores.values()), max(scores.values())
@@ -258,15 +257,14 @@ Reciprocal Rank Fusion
 ======================
 """
 
-from typing import List, Tuple, Dict
 
-def reciprocal_rank_fusion(results_list: List[List[Tuple[int, float]]],
-                          K: int = 60, k: int = 10) -> List[Tuple[int, float]]:
+def reciprocal_rank_fusion(results_list: list[list[tuple[int, float]]],
+                          K: int = 60, k: int = 10) -> list[tuple[int, float]]:
     """
     Reciprocal Rank Fusion
 
     Args:
-        results_list: List of result lists from different retrievers
+        results_list: list of result lists from different retrievers
         K: Constant to prevent division by zero
         k: Top k results to consider
 
@@ -289,8 +287,8 @@ def reciprocal_rank_fusion(results_list: List[List[Tuple[int, float]]],
     fused = sorted(fused_scores.items(), key=lambda x: x[1], reverse=True)
     return fused
 
-def weighted_rrf(results_list: List[List[Tuple[int, float]]],
-                 weights: List[float], k: int = 10) -> List[Tuple[int, float]]:
+def weighted_rrf(results_list: list[list[tuple[int, float]]],
+                 weights: list[float], k: int = 10) -> list[tuple[int, float]]:
     """Weighted RRF with custom weights per retriever"""
 
     fused_scores = {}
