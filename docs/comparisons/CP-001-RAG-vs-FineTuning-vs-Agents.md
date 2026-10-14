@@ -149,8 +149,8 @@ sources = [d.metadata["source"] for d in retriever.invoke(question)]
 |-----------|--------------|-------|
 | Embeddings (OpenAI) | $0.10 per 1M tokens | ~$10/month for 100M tokens |
 | Vector DB (Qdrant self-hosted) | $0 | Your HomeLab hardware |
-| LLM API (GPT-3.5) | $0.50 per 1M tokens | ~$20/month for moderate use |
-| **Total** | **~$30/month** | Or self-host for $0 |
+| LLM API (GPT-5-mini) | $0.25-2.00 per 1M tokens | ~$10/month for moderate use |
+| **Total** | **~$20/month** | Or self-host for $0 |
 
 ---
 
@@ -289,7 +289,7 @@ trainer.train()
 | Component | Cost | Notes |
 |-----------|------|-------|
 | GPU Training (11GB-class GPU, 3 epochs) | $0 (your hardware) | ~24-48 hours training time |
-| Base Model (Llama-2-7B) | $0 | Open source |
+| Base Model (Qwen3-8B) | $0 | Open source |
 | Electricity | ~$5-10 | Per training run |
 | **Total** | **~$5-10** | One-time cost |
 
@@ -424,11 +424,11 @@ print(result["messages"][-1].text)
 
 | Component | Monthly Cost | Notes |
 |-----------|--------------|-------|
-| LLM API (GPT-4) | $0.03-0.12 per 1K tokens | Higher due to reasoning loops |
+| LLM API (GPT-5-mini) | $0.25-2.00 per 1M tokens | Higher due to reasoning loops |
 | Average tokens per task | 5,000-15,000 | Depends on complexity |
-| Cost per task | $0.15-1.80 | Varies widely |
+| Cost per task | $0.00125-0.03 | Varies widely |
 | API calls (tools) | Varies | Depends on external APIs |
-| **Total** | **$50-500/month** | For 100-500 agent tasks |
+| **Total** | **$0.125-15/month** | For 100-500 agent tasks |
 
 ---
 
