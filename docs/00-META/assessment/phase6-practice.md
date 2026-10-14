@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE6-PRACTICE
 Title: "Phase 6: Data Nexus - Practice Exercises"
-Last Updated: 2026-10-13
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Advanced
 Tags: ['assessment', 'practice', 'rag']
@@ -423,7 +423,7 @@ Implement context building strategies for RAG applications.
 import tiktoken
 
 class ContextBuilder:
-    def __init__(self, max_tokens=4000, model="gpt-4o-mini"):
+    def __init__(self, max_tokens=4000, model="gpt-5-mini"):
         self.max_tokens = max_tokens
         self.tokenizer = tiktoken.encoding_for_model(model)
 
@@ -646,7 +646,7 @@ Create adaptive retrieval system that:
 
 ---
 
-**Last Updated:** 2026-10-13
+**Last Updated:** 2026-10-14
 
 **Phase:** 6 - Data Nexus
 

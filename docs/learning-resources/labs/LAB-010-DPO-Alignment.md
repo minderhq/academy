@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-010
 Title: "LAB-010: DPO Alignment"
-Last Updated: 2026-10-13
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 6 hours
@@ -249,7 +249,7 @@ def manual_ranking(candidates):
 
     return pairs
 
-def ai_ranking(candidates, judge_model_name="gpt-4o"):
+def ai_ranking(candidates, judge_model_name="gpt-5-mini"):
     """
     Use an AI model to rank responses.
     Uses the openai >= 1.0 client API (ChatCompletion.create was removed).

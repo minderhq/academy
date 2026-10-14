@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_7401
 Title: "EXP_7401: Agent Memory Systems Experiments"
-Last Updated: 2026-09-24
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Advanced
 ---
@@ -65,7 +65,7 @@ memory = VectorStoreMemory(
 )
 
 # Create conversation chain
-llm = ChatOpenAI(model="gpt-4o", temperature=0)
+llm = ChatOpenAI(model="gpt-5-mini")
 conversation = ConversationChain(llm=llm, memory=memory)
 
 # Test conversation
