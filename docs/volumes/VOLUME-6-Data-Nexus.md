@@ -1,7 +1,7 @@
 ---
 Document ID: VOLUME-6
 Title: "Volume 6: Data Nexus: RAG & Memory"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Advanced
 Tags: ['volume', 'rag', 'vector-db', 'graphrag']
@@ -292,8 +292,8 @@ def retrieve(query, top_k=5):
 
 # 3. Generate
 def generate(query, context):
-    tokenizer = AutoTokenizer.from_pretrained("mistralai/Mistral-7B-v0.1")
-    model = AutoModelForCausalLM.from_pretrained("mistralai/Mistral-7B-v0.1")
+    tokenizer = AutoTokenizer.from_pretrained("mistralai/Mistral-7B-Instruct-v0.2")
+    model = AutoModelForCausalLM.from_pretrained("mistralai/Mistral-7B-Instruct-v0.2")
 
     prompt = f"""Context: {context}
 

@@ -1,7 +1,7 @@
 ---
 Document ID: VOLUME-5
 Title: "Volume 5: Model Adaptation"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Advanced
 Tags: ['volume', 'finetuning', 'lora', 'dpo']
@@ -171,7 +171,7 @@ bnb_config = BitsAndBytesConfig(
 
 # Load model in 4-bit
 model = AutoModelForCausalLM.from_pretrained(
-    "mistralai/Mistral-7B-v0.1",
+    "mistralai/Mistral-7B-Instruct-v0.2",
     quantization_config=bnb_config,
     device_map="auto",
 )
@@ -374,7 +374,7 @@ evaluate_alignment(model, test_set)
 **Distillation Pipeline:**
 ```python
 # 1. Generate synthetic data with teacher
-teacher_model = load_model("mistralai/Mistral-7B-v0.1")
+teacher_model = load_model("mistralai/Mistral-7B-Instruct-v0.2")
 
 prompts = load_your_domain_prompts()
 synthetic_data = []
@@ -439,7 +439,7 @@ improvement = finetuned_score - base_model_score
 from peft import PeftModel
 
 # Load base model
-base_model = AutoModelForCausalLM.from_pretrained("mistralai/Mistral-7B-v0.1")
+base_model = AutoModelForCausalLM.from_pretrained("mistralai/Mistral-7B-Instruct-v0.2")
 
 # Load LoRA adapter
 adapter = PeftModel.from_pretrained(base_model, "./my-lora-adapter")

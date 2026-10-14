@@ -1,7 +1,7 @@
 ---
 Document ID: SOLUTION-LAB-003
 Title: "SOLUTION-LAB-003: LoRA Fine-Tuning"
-Last Updated: 2026-10-13
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Advanced
 Tags: ['solution', 'lora', 'qlora']
@@ -43,7 +43,7 @@ def setup_lora_finetuning():
     """Complete LoRA fine-tuning setup."""
 
     # Model and tokenizer
-    model_name = "mistralai/Mistral-7B-v0.1"
+    model_name = "mistralai/Mistral-7B-Instruct-v0.2"
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     tokenizer.pad_token = tokenizer.eos_token
 
@@ -226,7 +226,7 @@ from peft import LoraConfig, get_peft_model, TaskType
 def setup_qlora():
     """Complete QLoRA setup with 4-bit quantization."""
 
-    model_name = "mistralai/Mistral-7B-v0.1"
+    model_name = "mistralai/Mistral-7B-Instruct-v0.2"
 
     # 4-bit quantization config
     bnb_config = BitsAndBytesConfig(
@@ -309,7 +309,7 @@ def compare_memory():
 
     import gc
 
-    model_name = "mistralai/Mistral-7B-v0.1"
+    model_name = "mistralai/Mistral-7B-Instruct-v0.2"
 
     print("Memory Comparison:")
     print("=" * 50)
@@ -437,7 +437,7 @@ def gradient_checkpointing_lora():
     """LoRA with gradient checkpointing for memory efficiency."""
 
     model = AutoModelForCausalLM.from_pretrained(
-        "mistralai/Mistral-7B-v0.1",
+        "mistralai/Mistral-7B-Instruct-v0.2",
         dtype=torch.float16,
         device_map="auto",
     )

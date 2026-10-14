@@ -1,7 +1,7 @@
 ---
 Document ID: VOLUME-4
 Title: "Volume 4: Quantization & Optimization"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Advanced
 Tags: ['volume', 'quantization', 'gguf', 'kv-cache']
@@ -171,7 +171,7 @@ bnb_config = BitsAndBytesConfig(
 
 # Load model in 4-bit
 model = AutoModelForCausalLM.from_pretrained(
-    "mistralai/Mistral-7B-v0.1",
+    "mistralai/Mistral-7B-Instruct-v0.2",
     quantization_config=bnb_config,
     device_map="auto"
 )
@@ -283,7 +283,7 @@ from vllm import LLM, SamplingParams
 
 # Enable speculative decoding
 llm = LLM(
-    model="mistralai/Mistral-7B-v0.1",
+    model="mistralai/Mistral-7B-Instruct-v0.2",
     speculative_model="TinyLlama/TinyLlama-1.1B-Chat-v1.0",
     num_speculative_tokens=10,
 )
@@ -330,7 +330,7 @@ from vllm import LLM, SamplingParams
 # Tensor parallelism = Multi-GPU support
 
 llm = LLM(
-    model="mistralai/Mistral-7B-v0.1",
+    model="mistralai/Mistral-7B-Instruct-v0.2",
     tensor_parallel_size=2,  # 2 GPUs
     max_model_len=8192,
     gpu_memory_utilization=0.9,
@@ -349,7 +349,7 @@ docker run --gpus all \
   -v ~/.cache/huggingface:/root/.cache/huggingface \
   -p 8000:8000 \
   vllm/vllm-openai:v0.30.0 \
-  --model mistralai/Mistral-7B-v0.1 \
+  --model mistralai/Mistral-7B-Instruct-v0.2 \
   --tensor-parallel-size 2 \
   --gpu-memory-utilization 0.9
 ```
@@ -391,7 +391,7 @@ docker run --gpus all \
   -p 8080:80 \
   -v ~/.cache/huggingface:/data \
   ghcr.io/huggingface/text-generation-inference:3.3.7 \
-  --model-id mistralai/Mistral-7B-v0.1 \
+  --model-id mistralai/Mistral-7B-Instruct-v0.2 \
   --quantize awq \
   --flash-attention
 ```
