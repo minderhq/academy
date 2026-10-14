@@ -24,11 +24,11 @@ pip install langchain langchain-community langchain-openai sentence-transformers
 ### Implementation
 ```python
 # agent_memory_qdrant.py
-from langchain.memory import VectorStoreMemory
-from langchain.vectorstores import Qdrant
-from langchain_openai import OpenAIEmbeddings
-from langchain.chains import ConversationChain
-from langchain_openai import ChatOpenAI
+from langchain_community.vectorstores import Qdrant
+from langchain_core.output_parsers import StrOutputParser
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.runnables import RunnableParallel, RunnablePassthrough
+from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from qdrant_client import QdrantClient
 from qdrant_client.models import Distance, VectorParams
 
@@ -56,36 +56,60 @@ vectorstore = Qdrant(
     embeddings=embeddings
 )
 
-# Create memory with retrieval
-memory = VectorStoreMemory(
-    memory_key="chat_history",
-    vectorstore=vectorstore,
-    k=5,  # Retrieve top 5 relevant memories
-    return_only_outputs=False
+# Create memory with retrieval - LangChain 1.x: ConversationChain and
+# VectorStoreMemory are gone - memory is a retriever wired into the prompt.
+retriever = vectorstore.as_retriever(
+    search_kwargs={"k": 5}  # Retrieve top 5 relevant memories
 )
 
-# Create conversation chain
+# Create conversation chain - a stateless LCEL pipeline; the memory
+# lives in Qdrant, so the chain is rebuilt freely on restart.
+def format_memories(memories):
+    return "\n".join(f"- {m.page_content}" for m in memories)
+
+prompt = ChatPromptTemplate.from_messages([
+    ("system", "You are a helpful assistant. Facts you remember "
+               "about the user:\n{memories}"),
+    ("human", "{question}"),
+])
+
 llm = ChatOpenAI(model="gpt-5-mini")
-conversation = ConversationChain(llm=llm, memory=memory)
+
+def build_conversation():
+    return (
+        RunnableParallel(
+            memories=retriever | format_memories,
+            question=RunnablePassthrough(),
+        )
+        | prompt | llm | StrOutputParser()
+    )
+
+conversation = build_conversation()
+
+def remember(text):
+    vectorstore.add_texts([text])  # 1.x persists turns explicitly
 
 # Test conversation
 print("Agent with Long-term Memory")
 print("=" * 50)
 
-response1 = conversation.predict(input="Hi, I'm working on a machine learning project about image classification.")
+response1 = conversation.invoke("Hi, I'm working on a machine learning project about image classification.")
+remember("User is working on a machine learning project about image classification.")
 print(f"User: Hi, I'm working on a machine learning project about image classification.")
 print(f"Agent: {response1}\n")
 
-response2 = conversation.predict(input="What's the best architecture for that?")
+response2 = conversation.invoke("What's the best architecture for that?")
+remember("User asked about the best architecture for the project")
 print(f"User: What's the best architecture for that?")
 print(f"Agent: {response2}\n")
 
 # Start new session (simulate agent restart)
 print("\n--- New Session (Simulating Restart) ---\n")
 
-# New conversation with same memory
-new_conversation = ConversationChain(llm=llm, memory=memory)
-response3 = new_conversation.predict(input="What did I ask you about earlier?")
+# New conversation with same memory - restarting rebuilds the same
+# stateless pipeline; the memories persist in Qdrant, not the chain.
+new_conversation = build_conversation()
+response3 = new_conversation.invoke("What did I ask you about earlier?")
 print(f"User: What did I ask you about earlier?")
 print(f"Agent: {response3}\n")
 ```
