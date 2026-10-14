@@ -110,9 +110,9 @@ ollama pull mistral:7b
 
 ### Other Options (for later)
 ```bash
-ollama pull llama3.2        # Meta's Llama 3.2
+ollama pull llama3.2:3b    # Meta's Llama 3.2
 ollama pull qwen3-coder     # Coding assistant
-ollama pull phi4            # Small & fast
+ollama pull phi4-mini       # Small & fast
 ```
 
 ### Troubleshooting Model Download
