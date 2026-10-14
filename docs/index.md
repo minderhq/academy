@@ -1,7 +1,7 @@
 ---
 Document ID: INDEX
 Title: "Minder Academy"
-Last Updated: 2026-10-07
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Beginner
 Tags: ['maintenance', 'navigation']
@@ -28,6 +28,7 @@ code locally - the paths below are ordered the way the curriculum teaches.
 | **[Get Running in 30 Minutes](00-META/QUICK-START.md)** | Install Ollama, run your first local model, and start chatting - on an 8 GB laptop, no GPU required. |
 | **[Follow the Week-by-Week Roadmap](00-META/0000-LEARNING-PATH.md)** | A 48-week route from Python fundamentals (Phase 0) through all seven phases to production agentic systems. |
 | **[Track Your Progress](00-META/PROGRESS-TRACKER.md)** | Close every module with its practice set and quiz, then log the checkpoint so you always know where you stand. |
+| **[Keep a Cheat Sheet Open](learning-resources/cheat-sheets/README.md)** | Eighty single-page references, grouped by phase - one per tool, one per volume, every command copy-paste ready. |
 | **[Prepare for the Job Market](learning-resources/guides/GUIDE-CAREER.md)** | Career, interview, and resume guides that map the curriculum onto real AI engineering roles. |
 
 ## Start Here
