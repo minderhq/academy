@@ -318,17 +318,18 @@ nvidia-smi
 ### Install NVIDIA Container Toolkit:
 ```bash
 # Add NVIDIA repositories
-distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
-curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | \
-  sudo apt-key add -
-curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | \
-  sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | \
+  sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg
+curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | \
+  sed "s#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#" | \
+  sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
 
 # Install
 sudo apt-get update
 sudo apt-get install -y nvidia-container-toolkit
 
-# Restart Docker
+# Configure Docker runtime and restart
+sudo nvidia-ctk runtime configure --runtime=docker
 sudo systemctl restart docker
 ```
 
@@ -561,8 +562,8 @@ How Docker fits into Minder Academy:
 docker build -t ${NAME} .           # Build image
 docker run -d -p 80:80 ${NAME}      # Run container
 docker ps                           # List containers
-docker logs ${ID}                     # View logs
-docker exec -it ${ID} bash           # Enter container
+docker logs ${CONTAINER_ID}                     # View logs
+docker exec -it ${CONTAINER_ID} bash           # Enter container
 docker compose up -d                # Start services
 docker compose down                 # Stop services
 ```
