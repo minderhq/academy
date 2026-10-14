@@ -44,7 +44,7 @@ services:
 EOF
 
 # Start Qdrant
-docker-compose up -d
+docker compose up -d
 
 # Verify
 curl http://localhost:6333/health

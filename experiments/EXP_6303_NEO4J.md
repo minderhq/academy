@@ -48,7 +48,7 @@ services:
 EOF
 
 # Start Neo4j
-docker-compose up -d
+docker compose up -d
 
 # Verify
 curl http://localhost:7474
