@@ -1,7 +1,7 @@
 ---
 Document ID: IND-002
 Title: "IND-002: Finance AI Applications"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Intermediate
 Tags: ['industry', 'finance', 'llm']
@@ -531,7 +531,7 @@ class FinancialReportGenerator:
         # Generate report
         report = self.model.generate(
             prompt,
-            max_length=2000,
+            max_new_tokens=2000,
             temperature=0.3,  # Low temp for factual consistency
             top_p=0.95
         )
@@ -1322,7 +1322,7 @@ def generate_regulatory_report(financial_data: dict):
     # Generate executive summary
     summary = fine_tuned_llm.generate(
         prompt=f"Generate executive summary for: {financial_data}",
-        max_length=500
+        max_new_tokens=500
     )
 
     # Extract required sections

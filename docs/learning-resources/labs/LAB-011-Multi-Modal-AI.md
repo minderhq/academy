@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-011
 Title: "LAB-011: Multi-Modal AI"
-Last Updated: 2026-10-13
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 9 hours
@@ -653,7 +653,7 @@ class VisualQASystem:
 
         # Generate answer
         with torch.no_grad():
-            outputs = self.model.generate(**inputs, max_length=20)
+            outputs = self.model.generate(**inputs, max_new_tokens=20)
 
         # Decode answer
         answer = self.processor.decode(outputs[0], skip_special_tokens=True)

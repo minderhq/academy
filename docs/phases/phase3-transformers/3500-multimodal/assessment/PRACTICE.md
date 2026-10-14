@@ -1,7 +1,7 @@
 ---
 Document ID: 3500-PRACTICE
 Title: "3500: Multimodal AI - Practice"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -338,7 +338,7 @@ image = Image.open(requests.get(url, stream=True, timeout=30).raw)
 inputs = processor(image, text="a photo of", return_tensors="pt")
 
 with torch.no_grad():
-    outputs = model.generate(**inputs, max_length=20)
+    outputs = model.generate(**inputs, max_new_tokens=20)
 
 conditional_caption = processor.decode(outputs[0], skip_special_tokens=True)
 print(f"\nConditional caption: \"{conditional_caption}\"")
@@ -347,7 +347,7 @@ print(f"\nConditional caption: \"{conditional_caption}\"")
 inputs = processor(image, return_tensors="pt")
 
 with torch.no_grad():
-    outputs = model.generate(**inputs, max_length=20)
+    outputs = model.generate(**inputs, max_new_tokens=20)
 
 unconditional_caption = processor.decode(outputs[0], skip_special_tokens=True)
 print(f"Unconditional caption: \"{unconditional_caption}\"")

@@ -3,7 +3,7 @@ Document ID: 4308
 Title: "4308: BitBlade QAT Guide"
 Phase: 4
 Module: 4300
-Last Updated: 2026-10-08
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -415,7 +415,7 @@ test_cases = [
 
 for text in test_cases:
     inputs = tokenizer(text, return_tensors="pt")
-    outputs = model_quantized.generate(**inputs, max_length=50)
+    outputs = model_quantized.generate(**inputs, max_new_tokens=50)
     print(f"Input: {text[:50]}...")
     print(f"Output: {tokenizer.decode(outputs[0])}")
     print("-" * 50)

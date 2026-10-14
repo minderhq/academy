@@ -1,7 +1,7 @@
 ---
 Document ID: 2400-PRACTICE
 Title: "2400: Pretraining - Practice"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 5 hours
@@ -546,7 +546,7 @@ for prompt in prompts:
     with torch.no_grad():
         outputs = model.generate(
             **inputs,
-            max_length=50,
+            max_new_tokens=50,
             num_return_sequences=1,
             temperature=0.7,
             do_sample=True,
@@ -588,7 +588,7 @@ def compute_diversity(model, tokenizer, prompts, device):
             inputs = tokenizer(prompt, return_tensors="pt").to(device)
             outputs = model.generate(
                 **inputs,
-                max_length=50,
+                max_new_tokens=50,
                 num_return_sequences=5,
                 temperature=0.7,
                 do_sample=True,
