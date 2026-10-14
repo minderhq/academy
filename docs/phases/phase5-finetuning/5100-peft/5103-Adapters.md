@@ -3,7 +3,7 @@ Document ID: 5103
 Title: "5103: Adapters & Parameter-Efficient Adaptation Methods"
 Phase: 5
 Module: 5100
-Last Updated: 2026-10-15
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours

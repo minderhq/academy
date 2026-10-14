@@ -3,7 +3,7 @@ Document ID: 5102
 Title: "5102: QLoRA Pipelines - 4-bit Fine-Tuning on Consumer Hardware"
 Phase: 5
 Module: 5100
-Last Updated: 2026-10-15
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
