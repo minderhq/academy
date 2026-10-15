@@ -3,7 +3,7 @@ Document ID: 3101
 Title: "3101: Self-Attention Deep Dive"
 Phase: 3
 Module: 3100
-Last Updated: 2026-10-14
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -40,7 +40,7 @@ Self-attention is the core mechanism that powers Transformer models. This docume
 - [8. Attention Variants](#8-attention-variants)
 - [Summary](#summary)
 - [9. References](#9-references)
-- [10. Next Steps](#10-next-steps)
+- [Next Steps](#next-steps)
 
 ---
 
@@ -484,17 +484,9 @@ Self-attention is the mechanism the Transformer is built on: the scaled dot-prod
 
 ---
 
-## 10. Next Steps
+## Next Steps
 
 - Continue with: **[3102: Flash Attention](./3102-Flash-Attention.md)**
 - Next Module: **[3200: Embedding Latent Spaces](../3200-embeddings/README.md)**
 - Practical: **[EXP_3101: Self-Attention](../../../../experiments/EXP_3101_SELF_ATTENTION.md)**
-- Assessment: **[assessment/QUIZ.md](assessment/QUIZ.md)**
-
-
----
-
-## Next Steps
-
-- Continue with: **[3102: Flash Attention - IO-Aware Exact Attention](./3102-Flash-Attention.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
