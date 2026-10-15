@@ -3,7 +3,7 @@ Document ID: 1405
 Title: "1405: SGLang RadixAttention Serving"
 Phase: 1
 Module: 1400
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -450,7 +450,7 @@ SGLang is the serving engine whose organizing idea is reuse: RadixAttention keep
 
 ## Next Steps
 
-- Next Module: **[1500: Monitoring](../1500-monitoring/README.md)**
+- Next Module: **[1500: Monitoring and Observability for LLM Systems](../1500-monitoring/README.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 
 ---

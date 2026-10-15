@@ -3,7 +3,7 @@ Document ID: 2103
 Title: "2103: Loss Landscape Geometry - Curvature, Saddles, and the Shape of Optimization"
 Phase: 2
 Module: 2100
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 4 hours
@@ -292,7 +292,7 @@ The second derivative is not bookkeeping after the gradient - it is the shape of
 
 ## Next Steps
 
-- Next Module: **[2200: Frameworks](../2200-frameworks/README.md)**
+- Next Module: **[2200: Deep Learning Frameworks](../2200-frameworks/README.md)**
 - Continue with: **[2201: PyTorch Computational Graphs and Dynamic Execution](../2200-frameworks/2201-PyTorch-Computational-Graphs.md)**
 - Assessment: **[2100: Calculus - Quiz](./assessment/QUIZ.md)**
 

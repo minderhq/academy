@@ -3,7 +3,7 @@ Document ID: 1303
 Title: "1303: Storage Classes for Dynamic Provisioning"
 Phase: 1
 Module: 1300
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -436,7 +436,7 @@ Dynamic provisioning lets a pod ask for storage and get it: a PVC states the nee
 
 ## Next Steps
 
-- Next Module: **[1400: LLMOps](../1400-llmops/README.md)**
+- Next Module: **[1400: LLMOps and Model Serving](../1400-llmops/README.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 
 ---

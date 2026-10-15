@@ -3,7 +3,7 @@ Document ID: 3103
 Title: "3103: SDPA and torch.compile - The Same Math, Faster"
 Phase: 3
 Module: 3100
-Last Updated: 2026-10-06
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -572,7 +572,7 @@ for Inductor codegen, no Triton, no CUDA.
 
 ## Next Steps
 
-- Next Module: **[3200: Embeddings](../3200-embeddings/README.md)**
+- Next Module: **[3200: Embedding Latent Spaces](../3200-embeddings/README.md)**
 - Continue with: **[3201: RoPE](../3200-embeddings/3201-Rotary-Positional-Embeddings-RoPE.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 - Turn the backend probe into a benchmark: time all four SDPA backends at your own

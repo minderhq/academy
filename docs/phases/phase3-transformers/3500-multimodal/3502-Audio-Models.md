@@ -3,7 +3,7 @@ Document ID: 3502
 Title: "3502: Audio Models"
 Phase: 3
 Module: 3500
-Last Updated: 2026-09-30
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -345,7 +345,7 @@ Audio became a first-class modality once two representations matured: the mel-sp
 
 ## Next Steps
 
-- Phase 3 Complete! Next: **[Phase 4: Quantization](../../phase4-quantization/README.md)**
+- Phase 3 Complete! Next: **[Phase 4: Quantization & Compression](../../phase4-quantization/README.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 
 ---

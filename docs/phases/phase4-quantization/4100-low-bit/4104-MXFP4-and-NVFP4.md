@@ -3,7 +3,7 @@ Document ID: 4104
 Title: "4104: MXFP4 and NVFP4 - Microscaling Formats as Working Code"
 Phase: 4
 Module: 4100
-Last Updated: 2026-10-06
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -359,7 +359,7 @@ MXFP4 and NVFP4 are one idea in two calibrations: split every weight into 4-bit 
 
 ## Next Steps
 
-- Next Module: **[4200: KV Cache](../4200-kv-cache/README.md)**
+- Next Module: **[4200: KV Cache Optimization](../4200-kv-cache/README.md)**
 - Continue with: **[4301: QAT Foundations](../4300-quantization-aware-training/4301-QAT-Foundations.md)** - train through the quantizer instead of quantizing after
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 - Reproduce the pow2 tax at your own scale: quantize a real `nn.Linear` weight both ways, then plot per-block scale-use histograms for e8m0/32 and e4m3/16 - find the block size where the tax gap disappears.
