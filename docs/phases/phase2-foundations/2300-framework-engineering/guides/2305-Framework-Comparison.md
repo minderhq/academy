@@ -3,7 +3,7 @@ Document ID: 2305
 Title: "2305: Framework Comparison Guide"
 Phase: 2
 Module: 2300
-Last Updated: 2026-09-30
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 1.5 hours
@@ -388,9 +388,9 @@ What just happened: LangChain's chain machinery calls `pipe` exactly as the raw 
 
 ## Next Steps
 
-- **Next Guide:** [2306: Building a Production Framework](./2306-Building-Production-Framework.md) — build the custom framework this guide argued for, end to end.
-- **Practical:** [LAB-007: Production RAG System](../../../../learning-resources/labs/LAB-007-Production-RAG.md) — a LangChain-style retrieval application in production shape.
-- **Assessment:** [2300: Framework Engineering - Quiz](../assessment/QUIZ.md)
+- Next Guide: **[2306: Building a Production Framework](./2306-Building-Production-Framework.md)**
+- Practical: **[LAB-007: Production RAG System](../../../../learning-resources/labs/LAB-007-Production-RAG.md)**
+- Assessment: **[2300: Framework Engineering - Quiz](../assessment/QUIZ.md)**
 
 **Related:** [1402: vLLM and TGI High-Concurrency Inference](../../../phase1-infra/1400-llmops/1402-vLLM-and-TGI.md) · [TUTORIAL-003: RAG Basics - Give Your LLM Knowledge](../../../../learning-resources/tutorials/TUTORIAL-003-RAG-Basics.md) · [6101: HNSW Indexing - Efficient Semantic Search at Scale](../../../phase6-rag/6100-vector/6101-HNSW-Indexing.md)
 

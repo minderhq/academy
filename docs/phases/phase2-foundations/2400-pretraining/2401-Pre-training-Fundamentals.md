@@ -3,7 +3,7 @@ Document ID: 2401
 Title: "2401: Pre-training Fundamentals"
 Phase: 2
 Module: 2400
-Last Updated: 2026-10-07
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -1243,9 +1243,9 @@ Key takeaways:
 
 ## Next Steps
 
-- **Next Lesson:** [2402: Large-Scale Training for Language Models](./2402-Large-Scale-Training.md) — scale this loop to multi-GPU: data/tensor/pipeline parallelism, mixed precision, and checkpointing
-- **Practical:** [LAB-006: Train a Small Language Model from Scratch](../../../learning-resources/labs/LAB-006-Train-Model-From-Scratch.md) — build and pre-train a small LM yourself, following Part 8's shape
-- **Assessment:** [2400: Pretraining Fundamentals - Quiz](./assessment/QUIZ.md) and [2400: Pre-training - Practice](./assessment/PRACTICE.md)
+- Next Lesson: **[2402: Large-Scale Training for Language Models](./2402-Large-Scale-Training.md)**
+- Practical: **[LAB-006: Train a Small Language Model from Scratch](../../../learning-resources/labs/LAB-006-Train-Model-From-Scratch.md)**
+- Assessment: **[2400: Pretraining Fundamentals - Quiz](./assessment/QUIZ.md)** and **[2400: Pre-training - Practice](./assessment/PRACTICE.md)**
 
 **Related:** [3202: Tokenizer Sciences - BPE, SentencePiece, and Tiktoken](../../phase3-transformers/3200-embeddings/3202-Tokenizer-Sciences.md)
 

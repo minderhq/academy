@@ -3,7 +3,7 @@ Document ID: 2403
 Title: "2403: Evaluation Frameworks for Language Models"
 Phase: 2
 Module: 2400
-Last Updated: 2026-09-26
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -1040,8 +1040,8 @@ evaluation_checklist:
 ## Next Steps
 
 - **Next Module:** [3100: Attention Architectures](../../phase3-transformers/3100-attention/README.md) — the architecture layer underneath every model this lesson measured
-- **Practical:** [LAB-014: AI Evaluation & Safety](../../../learning-resources/labs/LAB-014-AI-Evaluation-Safety.md) — run a real evaluation suite and safety checks end to end
-- **Assessment:** [2400: Pretraining Fundamentals - Quiz](./assessment/QUIZ.md) and [2400: Pretraining - Practice](./assessment/PRACTICE.md) — check your understanding of the module
+- Practical: **[LAB-014: AI Evaluation & Safety](../../../learning-resources/labs/LAB-014-AI-Evaluation-Safety.md)**
+- Assessment: **[2400: Pretraining Fundamentals - Quiz](./assessment/QUIZ.md)** and **[2400: Pretraining - Practice](./assessment/PRACTICE.md)**
 
 **Related:** [1502: Model Drift Detection](../../phase1-infra/1500-monitoring/1502-Model-Drift-Detection.md) — evaluation against a moving distribution: detecting when the data a deployed model sees drifts away from what it was evaluated on
 

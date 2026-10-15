@@ -3,7 +3,7 @@ Document ID: 2306
 Title: "2306: Building a Production Framework"
 Phase: 2
 Module: 2300
-Last Updated: 2026-09-30
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -866,8 +866,8 @@ What a real framework would add beyond this guide's scope: authentication and ra
 
 ## Next Steps
 
-- **Assessment:** [2300: Framework Engineering - Quiz](../assessment/QUIZ.md)
-- **Practical:** [LAB-009: Production Deployment](../../../../learning-resources/labs/LAB-009-Production-Deployment.md) — take these deployment patterns to a real service.
+- Assessment: **[2300: Framework Engineering - Quiz](../assessment/QUIZ.md)**
+- Practical: **[LAB-009: Production Deployment](../../../../learning-resources/labs/LAB-009-Production-Deployment.md)**
 - **Next Module:** [2400: LLM Pretraining](../../2400-pretraining/README.md) — the training side of the systems you just learned to serve.
 
 **Related:** [2305: Framework Comparison Guide](./2305-Framework-Comparison.md) · [1402: vLLM and TGI High-Concurrency Inference](../../../phase1-infra/1400-llmops/1402-vLLM-and-TGI.md) · [6101: HNSW Indexing - Efficient Semantic Search at Scale](../../../phase6-rag/6100-vector/6101-HNSW-Indexing.md)

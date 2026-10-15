@@ -3,7 +3,7 @@ Document ID: 2402
 Title: "2402: Large-Scale Training for Language Models"
 Phase: 2
 Module: 2400
-Last Updated: 2026-09-26
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 6 hours
@@ -984,11 +984,11 @@ resilience: "atomic writes + rotation + resumability is not optional at scale"
 
 ## Next Steps
 
-**Next Lesson:** [2403: Evaluation Frameworks for Language Models](./2403-Evaluation-Frameworks.md) — the training run converged; now measure whether it is actually good.
+- Next Lesson: **[2403: Evaluation Frameworks for Language Models](./2403-Evaluation-Frameworks.md)**
 
-**Practical:** [LAB-006: Train a Small Language Model from Scratch](../../../learning-resources/labs/LAB-006-Train-Model-From-Scratch.md) — run the full pipeline end to end on hardware you own.
+- Practical: **[LAB-006: Train a Small Language Model from Scratch](../../../learning-resources/labs/LAB-006-Train-Model-From-Scratch.md)**
 
-**Assessment:** [2400: Pretraining Fundamentals - Quiz](./assessment/QUIZ.md) and [2400: Pre-training - Practice](./assessment/PRACTICE.md).
+- Assessment: **[2400: Pretraining Fundamentals - Quiz](./assessment/QUIZ.md)** and **[2400: Pre-training - Practice](./assessment/PRACTICE.md)**
 
 **Related:** [5404: Distributed Optimization](../../phase5-finetuning/5400-distributed-training/5404-Distributed-Optimization.md) — the same sharding and offload ideas applied to fine-tuning.
 
