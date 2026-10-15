@@ -3,7 +3,7 @@ Document ID: 5402
 Title: "5402: Model Parallelism"
 Phase: 5
 Module: 5400
-Last Updated: 2026-09-30
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -353,4 +353,4 @@ When the model no longer fits, model parallelism splits it along two axes: pipel
 ## Next Steps
 
 - Continue with: **[5403: Mixed Precision Training](./5403-Mixed-Precision.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[5400: Distributed Training - Quiz](./assessment/QUIZ.md)**

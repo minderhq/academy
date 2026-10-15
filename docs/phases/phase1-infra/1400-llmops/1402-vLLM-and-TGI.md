@@ -3,7 +3,7 @@ Document ID: 1402
 Title: "1402: vLLM and TGI High-Concurrency Inference"
 Phase: 1
 Module: 1400
-Last Updated: 2026-10-14
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -501,7 +501,7 @@ vLLM and TGI are the optimized inference engines for high-throughput serving, an
 ## Next Steps
 
 - Continue with: **[1405: SGLang RadixAttention](./1405-SGLang.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[1400: LLMOps - Quiz](./assessment/QUIZ.md)**
 
 ---
 

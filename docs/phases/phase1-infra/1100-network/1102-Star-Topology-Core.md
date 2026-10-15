@@ -3,7 +3,7 @@ Document ID: 1102
 Title: "1102: Network Topology Design"
 Phase: 1
 Module: 1100
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 2 hours
@@ -372,7 +372,7 @@ The original build ran a 16-port 2.5G managed switch through a small apartment w
 
 - Continue with: **[1103: Jumbo Frames and MTU](./1103-Jumbo-Frames-and-MTU.md)**
 - Practical: **[LAB-001: Docker & LLM](../../../learning-resources/labs/LAB-001-Docker-LLM.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[1100: Network - Quiz](./assessment/QUIZ.md)**
 
 ---
 

@@ -3,7 +3,7 @@ Document ID: 6101
 Title: "6101: HNSW Indexing - Efficient Semantic Search at Scale"
 Phase: 6
 Module: 6100
-Last Updated: 2026-09-30
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -518,5 +518,5 @@ HNSW (Hierarchical Navigable Small World) is the index that makes approximate ne
 ## Next Steps
 
 - Continue with: **[6102: Semantic Similarity](./6102-Semantic-Similarity.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[6100: Vector Embeddings - Quiz](./assessment/QUIZ.md)**
 - Experiment: **[EXP_6101: HNSW](../../../../experiments/EXP_6101_HNSW.md)**

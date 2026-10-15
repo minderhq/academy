@@ -3,7 +3,7 @@ Document ID: 6504
 Title: "6504: Re-Embedding Policy and A/B Testing"
 Phase: 6
 Module: 6500
-Last Updated: 2026-10-14
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -312,6 +312,6 @@ Version the decision, not just the artifact: [6503](6503-Model-Registry.md) reco
 ## Next Steps
 
 - Continue with: **[6505: Response Caching and Stage Scaling](./6505-Response-Caching-and-Stage-Scaling.md)**
-- **Assessment:** [assessment/QUIZ.md](assessment/QUIZ.md) — Q2, Q6, Q17, and Q19 are the four questions this lesson's fences answer with arithmetic
+- **Assessment:** [6500: MLOps Pipelines for RAG - Quiz](assessment/QUIZ.md) — Q2, Q6, Q17, and Q19 are the four questions this lesson's fences answer with arithmetic
 - **Related:** [6503: Model Registry](6503-Model-Registry.md) — record the challenger's promotion the gate just decided, with the golden-set scores attached to the version
 - **Hands-on:** re-run the shadow-window fence with your own golden set and champion/challenger hit counts; then run the sizing fence and write down the discordant-pair count your next embedder migration actually needs before you open the window

@@ -1,7 +1,7 @@
 ---
 Document ID: 6500-MLOPS-PIPELINES-README
 Title: "6500: MLOps Pipelines for RAG"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
@@ -133,7 +133,7 @@ Before starting this module, ensure you have:
 - **Format:** 20 multiple-choice questions
 - **Passing Score:** 80% (16/20)
 - **Topics:** ML lifecycle, CI/CD, model registry
-- **Location:** [assessment/QUIZ.md](./assessment/QUIZ.md)
+- **Location:** [6500: MLOps Pipelines for RAG - Quiz](./assessment/QUIZ.md)
 
 ### Practice Exercises
 - **Format:** MLOps pipeline projects
@@ -143,7 +143,7 @@ Before starting this module, ensure you have:
   - Set up CI/CD for RAG
   - Implement model registry
   - Deploy to production
-- **Location:** [assessment/PRACTICE.md](./assessment/PRACTICE.md)
+- **Location:** [6500: MLOps Pipelines for RAG - Practice](./assessment/PRACTICE.md)
 
 ## Related Modules
 

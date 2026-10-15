@@ -331,7 +331,7 @@ Agent memory becomes scalable when memories are embeddings: a fuzzy natural-lang
 - Continue with: **[7404: Reflective Memory and Context Paging](./7404-Reflective-Memory-and-Context-Paging.md)**
 - Review: **[7401: Long-term Memory](./7401-Long-term-Memory.md)**
 - Retrieval: **[6203: Advanced Retrieval Techniques](../../phase6-rag/6200-retrieval/6203-Advanced-Retrieval.md)**
-- Assessment: **[assessment/QUIZ.md](assessment/QUIZ.md)**
+- Assessment: **[7400: Memory Systems - Quiz](assessment/QUIZ.md)**
 
 ---
 

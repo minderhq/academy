@@ -1,7 +1,7 @@
 ---
 Document ID: 4100-LOW-BIT-README
 Title: "4100: Low-Bit Quantization"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Prerequisites: [1500]
@@ -117,7 +117,7 @@ Before starting this module, ensure you have:
 - **Format:** 20 multiple-choice questions
 - **Passing Score:** 80% (16/20)
 - **Topics:** Quantization methods, GGUF, EXL2, AWQ
-- **Location:** [assessment/QUIZ.md](./assessment/QUIZ.md)
+- **Location:** [4100: Low-bit Quantization - Quiz](./assessment/QUIZ.md)
 
 ### Practice Exercises
 - **Format:** Hands-on quantization projects
@@ -127,7 +127,7 @@ Before starting this module, ensure you have:
   - Implement EXL2 quantization
   - Apply double quantization
   - Benchmark and compare methods
-- **Location:** [assessment/PRACTICE.md](./assessment/PRACTICE.md)
+- **Location:** [4100: Low-Bit Quantization - Practice](./assessment/PRACTICE.md)
 
 ## Related Modules
 

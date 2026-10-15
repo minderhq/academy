@@ -1,7 +1,7 @@
 ---
 Document ID: 7200-TOOLS-README
 Title: "7200: Tool Calling and Function Execution"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Intermediate
 Prerequisites: []
@@ -114,7 +114,7 @@ Before starting this module, ensure you have:
 - **Format:** 20 multiple-choice questions
 - **Passing Score:** 80% (16/20)
 - **Topics:** Tool calling, function execution, code interpreters
-- **Location:** [assessment/QUIZ.md](./assessment/QUIZ.md)
+- **Location:** [7200: Tool Calling - Quiz](./assessment/QUIZ.md)
 
 ### Practice Exercises
 - **Format:** Tool implementation projects
@@ -124,7 +124,7 @@ Before starting this module, ensure you have:
   - Implement code interpreter
   - Create API integrations
   - Handle tool errors gracefully
-- **Location:** [assessment/PRACTICE.md](./assessment/PRACTICE.md)
+- **Location:** [7200: Tools & Function Calling - Practice](./assessment/PRACTICE.md)
 
 ## Related Modules
 
@@ -196,7 +196,7 @@ from the type hints. One source of truth: edit the hint and the
 schema follows, so schema drift (hand-maintained dict, drifted
 implementation) cannot happen. The practice exercises build every
 tool this way, and the orchestration module reuses the same
-definitions: [assessment/PRACTICE.md](./assessment/PRACTICE.md).
+definitions: [7200: Tools & Function Calling - Practice](./assessment/PRACTICE.md).
 
 The decorated function stays a function you can call, and becomes a
 tool object carrying its generated contract:

@@ -393,6 +393,6 @@ Three readings, one per row family. The `lowT0.2/p0.50` rows are greedy in disgu
 ## Next Steps
 
 - Next Module: **[3400: Model Architectures](../3400-architectures/README.md)**
-- **Assessment:** [assessment/QUIZ.md](assessment/QUIZ.md) - Q3-7 and 13-15 are the questions this lesson answers; the entropy walk 0.2128 to 1.8191, the never-empty nucleus at p=0.01, and the 0.4196 top_k cut on flat are the mechanics behind them.
+- **Assessment:** [3300: Decoding - Quiz](assessment/QUIZ.md) - Q3-7 and 13-15 are the questions this lesson answers; the entropy walk 0.2128 to 1.8191, the never-empty nucleus at p=0.01, and the 0.4196 top_k cut on flat are the mechanics behind them.
 - **Continue with:** [4202: Speculative Decoding](../../phase4-quantization/4200-kv-cache/4202-Speculative-Decoding.md) for how a draft sampler amortizes the verifier's steps, or [7505: Temperature Zero and Deterministic Security Testing](../../phase7-agentic/7500-security/7505-Temperature-Zero-and-Deterministic-Security-Testing.md) for the T=0 end of this lesson's temperature walk.
 - **Hands-on:** add a fourth config to the stack fence - T=1.0, top_k=0, top_p=1.0, min_p=0.15 - and predict the kept counts on all three shapes from the threshold rule BEFORE running; then extend the temperature walk to T=4.0 and state what p_top and the entropy approach.

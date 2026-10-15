@@ -3,7 +3,7 @@ Document ID: 1202
 Title: "1202: GPU Passthrough (IOMMU/VFIO)"
 Phase: 1
 Module: 1200
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -445,7 +445,7 @@ GPU passthrough assigns a physical NVIDIA GPU to one virtual machine, giving it 
 ## Next Steps
 
 - Continue with: **[1203: NVIDIA Kernel Module Management](./1203-Nvidia-Kernel-Module.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[1200: Virtualization - Quiz](./assessment/QUIZ.md)**
 
 ---
 

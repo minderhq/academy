@@ -3,7 +3,7 @@ Document ID: 6201
 Title: "6201: Hybrid Search - Combining Keyword and Semantic Search"
 Phase: 6
 Module: 6200
-Last Updated: 2026-09-30
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -561,5 +561,5 @@ Hybrid search combines BM25 keyword retrieval with semantic vector search so exa
 ## Next Steps
 
 - Continue with: **[6202: Re-ranking](./6202-Re-ranking-and-Retrieval-Logistics.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[6200: Retrieval - Quiz](./assessment/QUIZ.md)**
 - Experiment: **[EXP_6201: Hybrid Search](../../../../experiments/EXP_6201_HYBRID_SEARCH.md)**

@@ -3,7 +3,7 @@ Document ID: 6302
 Title: "6302: CAG - Context Augmented Generation and Long Context Architectures"
 Phase: 6
 Module: 6300
-Last Updated: 2026-10-14
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -640,5 +640,5 @@ CAG (Context-Augmented Generation) bets on the growing context window: instead o
 ## Next Steps
 
 - Continue with: **[6305: LongLoRA, Ring Attention, and Context Distillation](./6305-LongLoRA-Ring-Attention-and-Context-Distillation.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[6300: Context Window Management - Quiz](./assessment/QUIZ.md)**
 - Experiment: **[EXP_6302: CAG](../../../../experiments/EXP_6302_CAG.md)**

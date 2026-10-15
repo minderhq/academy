@@ -3,7 +3,7 @@ Document ID: 5501
 Title: "5501: Optimizer Variants"
 Phase: 5
 Module: 5500
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -361,7 +361,7 @@ The optimizer is the quietest but largest consumer of GPU memory at LLM scale: A
 ## Next Steps
 
 - Continue with: **[5502: Learning Rate Scheduling](./5502-Learning-Rate-Scheduling.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[5500: Advanced Optimization - Quiz](./assessment/QUIZ.md)**
 
 ---
 

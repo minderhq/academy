@@ -1,7 +1,7 @@
 ---
 Document ID: 3100-ATTENTION-README
 Title: "3100: Attention Architectures"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Prerequisites: [3200]
@@ -137,8 +137,8 @@ def scaled_dot_product_attention(Q, K, V, mask=None):
 
 ## Assessment
 
-- **Quiz:** [assessment/QUIZ.md](assessment/QUIZ.md) - Test your attention knowledge
-- **Practice:** [assessment/PRACTICE.md](assessment/PRACTICE.md) - Hands-on attention exercises
+- **Quiz:** [3100: Attention - Quiz](assessment/QUIZ.md) - Test your attention knowledge
+- **Practice:** [3100: Attention - Practice](assessment/PRACTICE.md) - Hands-on attention exercises
 
 ---
 

@@ -281,6 +281,6 @@ Reading the output: config A is the honest price of the spec-sheet reflex — $4
 
 ## Next Steps
 
-- **Assessment:** [assessment/QUIZ.md](assessment/QUIZ.md) — Q19 is the question this lesson answers; the marginal-accuracy table with its -0.0541 tail, the 27.6x advertised-versus-effective gap, and the +0.1000 routing gain are the mechanics behind it.
+- **Assessment:** [6300: Context Window Management - Quiz](assessment/QUIZ.md) — Q19 is the question this lesson answers; the marginal-accuracy table with its -0.0541 tail, the 27.6x advertised-versus-effective gap, and the +0.1000 routing gain are the mechanics behind it.
 - **Continue with:** the [6400: Vector Databases](../6400-vector-databases/README.md) module for where the retrieval layer that decides what enters the window lives in production.
 - **Hands-on:** extend the routing fence with a third query class — evidence spread to 128,000, 10 percent of traffic — and re-derive the allocation under the same 16,000 average budget; then re-run the campaign fence at $0.02 of value per correct answer and report which configs flip negative.

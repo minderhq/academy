@@ -1,7 +1,7 @@
 ---
 Document ID: 6300-CONTEXT-README
 Title: "6300: Context Management"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
@@ -139,7 +139,7 @@ Before starting this module, ensure you have:
 - **Format:** 20 multiple-choice questions
 - **Passing Score:** 80% (16/20)
 - **Topics:** Knowledge graphs, Neo4j, GraphRAG, long context
-- **Location:** [assessment/QUIZ.md](./assessment/QUIZ.md)
+- **Location:** [6300: Context Window Management - Quiz](./assessment/QUIZ.md)
 
 ### Practice Exercises
 - **Format:** Context management projects
@@ -149,7 +149,7 @@ Before starting this module, ensure you have:
   - Implement GraphRAG pipeline
   - Optimize long-context retrieval
   - Deploy Neo4j for production
-- **Location:** [assessment/PRACTICE.md](./assessment/PRACTICE.md)
+- **Location:** [6300: Context Window Optimization - Practice](./assessment/PRACTICE.md)
 
 ## Related Modules
 

@@ -3,7 +3,7 @@ Document ID: 7101
 Title: "7101: ReAct (Reasoning + Acting) Loop System"
 Phase: 7
 Module: 7100
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -460,7 +460,7 @@ ReAct (Reasoning + Acting) is the foundational agent loop: the model alternates 
 
 - Continue with: **[7102: Planning and Decomposition](./7102-Planning-Decomposition.md)**
 - Practical: **[LAB-004: ReAct Agent](../../../learning-resources/labs/LAB-004-ReAct-Agent.md)**
-- Assessment: **[assessment/QUIZ.md](assessment/QUIZ.md)**
+- Assessment: **[7100: Agent Architecture - Quiz](assessment/QUIZ.md)**
 
 ---
 

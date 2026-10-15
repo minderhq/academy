@@ -421,7 +421,7 @@ Transformers are permutation invariant, so position must be injected explicitly 
 ## Next Steps
 
 - Continue with: **[3202: Tokenizer Sciences](./3202-Tokenizer-Sciences.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[3200: Embeddings - Quiz](./assessment/QUIZ.md)**
 
 ---
 

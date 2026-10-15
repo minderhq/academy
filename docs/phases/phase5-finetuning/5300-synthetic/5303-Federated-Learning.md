@@ -3,7 +3,7 @@ Document ID: 5303
 Title: "5303: Federated Learning"
 Phase: 5
 Module: 5300
-Last Updated: 2026-10-14
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -414,7 +414,7 @@ Federated learning trains a shared model across many data holders without the da
 ## Next Steps
 
 - Continue with: **[5304: Self-Instruct and Model Collapse - Growing Instruction Data Without Losing the Distribution](./5304-Self-Instruct-and-Model-Collapse.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[5300: Synthetic Data & Advanced Training - Quiz](./assessment/QUIZ.md)**
 
 ---
 

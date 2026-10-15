@@ -1,7 +1,7 @@
 ---
 Document ID: 4300-QUIZ
 Title: "4300: Quantization Aware Training - Quiz"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 30 minutes
@@ -267,7 +267,7 @@ Each question maps to the closest lesson for review:
 
 If you passed (16+), proceed to:
 
-- **[PRACTICE.md](./PRACTICE.md)** - Hands-on exercises
+- **[4300: Quantization Aware Training - Practice](./PRACTICE.md)** - Hands-on exercises
 - **Next module** in the learning path
 
 If you didn't pass, review:

@@ -3,7 +3,7 @@ Document ID: 3401
 Title: "3401: Encoder-Decoder Architectures"
 Phase: 3
 Module: 3400
-Last Updated: 2026-09-30
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 4 hours
@@ -286,4 +286,4 @@ The original transformer was an encoder-decoder: one stack reads the input bidir
 ## Next Steps
 
 - Continue with: **[3402: Decoder-Only Models](./3402-Decoder-Only-Models.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[3400: Model Architectures - Quiz](./assessment/QUIZ.md)**

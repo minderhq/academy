@@ -489,4 +489,4 @@ Self-attention is the mechanism the Transformer is built on: the scaled dot-prod
 - Continue with: **[3102: Flash Attention](./3102-Flash-Attention.md)**
 - Next Module: **[3200: Embedding Latent Spaces](../3200-embeddings/README.md)**
 - Practical: **[EXP_3101: Self-Attention](../../../../experiments/EXP_3101_SELF_ATTENTION.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[3100: Attention - Quiz](./assessment/QUIZ.md)**

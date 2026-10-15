@@ -3,7 +3,7 @@ Document ID: 5403
 Title: "5403: Mixed Precision Training"
 Phase: 5
 Module: 5400
-Last Updated: 2026-09-30
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -355,4 +355,4 @@ Mixed precision runs most of the training step in 16-bit while keeping the numer
 ## Next Steps
 
 - Continue with: **[5404: Distributed Optimization](./5404-Distributed-Optimization.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[5400: Distributed Training - Quiz](./assessment/QUIZ.md)**

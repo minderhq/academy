@@ -3,7 +3,7 @@ Document ID: 5204
 Title: "5204: Preference Dataset Creation"
 Phase: 5
 Module: 5200
-Last Updated: 2026-10-14
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -306,7 +306,7 @@ DPO and reward models are only as good as the preference data beneath them, and 
 
 - Continue with: **[5205: GRPO and Reinforcement Learning from Verifiable Rewards](./5205-GRPO-RLVR.md)**
 - Orchestration: **[5202: Alignment Orchestration](./5202-Alignment-Orchestration.md)**
-- Assessment: **[assessment/QUIZ.md](assessment/QUIZ.md)**
+- Assessment: **[5200: Alignment Methods - Quiz](assessment/QUIZ.md)**
 
 ---
 

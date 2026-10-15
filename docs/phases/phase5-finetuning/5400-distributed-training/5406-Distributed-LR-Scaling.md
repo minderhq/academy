@@ -3,7 +3,7 @@ Document ID: 5406
 Title: "5406: Distributed LR Scaling - The Linear Rule, the Wall, and the Warmup"
 Phase: 5
 Module: 5400
-Last Updated: 2026-10-07
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -413,5 +413,5 @@ The linear scaling rule is one line with four pieces of fine print. The mechanis
 
 - Next Module: **[5500: Advanced Optimization](../5500-advanced-optimization/README.md)**
 - Continue with: **[5502: Learning Rate Scheduling](../5500-advanced-optimization/5502-Learning-Rate-Scheduling.md)** - the schedule shapes (cosine, step, polynomial) that ride on top of the rate this lesson scales
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[5400: Distributed Training - Quiz](./assessment/QUIZ.md)**
 - Reproduce the campaign at your own scale: take a config that converges on one GPU, scale the world, re-derive the warmup from Section 2's rule, and check the schedule's *endpoint* - not its shape - against the wall before the first launch.

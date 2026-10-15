@@ -3,7 +3,7 @@ Document ID: 5405
 Title: "5405: FSDP2 and torchao - Composable Sharding and Quantized Training"
 Phase: 5
 Module: 5400
-Last Updated: 2026-10-14
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -355,5 +355,5 @@ FSDP2 rebuilt fully sharded data parallelism on `DTensor`: parameters stay inspe
 ## Next Steps
 
 - Continue with: **[5406: Distributed LR Scaling](./5406-Distributed-LR-Scaling.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[5400: Distributed Training - Quiz](./assessment/QUIZ.md)**
 - Reproduce the outlier fence at your own scale: plant a single outlier row in a real `nn.Linear` weight, quantize tensorwise and rowwise, and plot the relative error against outlier magnitude - find the magnitude where tensorwise tips over.

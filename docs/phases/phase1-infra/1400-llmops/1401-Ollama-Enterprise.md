@@ -3,7 +3,7 @@ Document ID: 1401
 Title: "1401: Ollama Enterprise Deployment"
 Phase: 1
 Module: 1400
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -515,7 +515,7 @@ Ollama is the lab's default inference backend: it runs large language models loc
 ## Next Steps
 
 - Continue with: **[1402: vLLM and TGI](./1402-vLLM-and-TGI.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[1400: LLMOps - Quiz](./assessment/QUIZ.md)**
 
 ---
 

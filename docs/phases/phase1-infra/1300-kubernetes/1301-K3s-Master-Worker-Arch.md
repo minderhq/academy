@@ -3,7 +3,7 @@ Document ID: 1301
 Title: "1301: K3s Master-Worker Architecture"
 Phase: 1
 Module: 1300
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -384,7 +384,7 @@ K3s is a lightweight Kubernetes distribution built for edge and homelab scale, a
 ## Next Steps
 
 - Continue with: **[1302: GPU Scheduler Configuration](./1302-GPU-Scheduler.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[1300: Kubernetes - Quiz](./assessment/QUIZ.md)**
 
 ---
 

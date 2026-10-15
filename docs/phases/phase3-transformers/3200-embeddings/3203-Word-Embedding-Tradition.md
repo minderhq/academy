@@ -428,7 +428,7 @@ king - man + woman = [-1.00, 1.00, -0.06, 0.13] lands queen at cosine 0.9944, ab
 ## Next Steps
 
 - Next Module: **[3300: The Decoding Block](../3300-decoding/README.md)**
-- **Assessment:** [assessment/QUIZ.md](assessment/QUIZ.md) - Q1-6, 8-9, 11-13, 17-18 are the questions this lesson answers; the 33.3x ledger, the 0.9977 cluster, the 3.6492 direction win, the inf/0.0000 ratio pair, and the 0.7071-versus-0.1047 sense split are the mechanics behind them.
+- **Assessment:** [3200: Embeddings - Quiz](assessment/QUIZ.md) - Q1-6, 8-9, 11-13, 17-18 are the questions this lesson answers; the 33.3x ledger, the 0.9977 cluster, the 3.6492 direction win, the inf/0.0000 ratio pair, and the 0.7071-versus-0.1047 sense split are the mechanics behind them.
 - **Continue with:** [6102: Semantic Similarity Metrics](../../phase6-rag/6100-vector/6102-Semantic-Similarity.md) for the measurement layer that operates on these vectors, or [6104: Embedding Sciences](../../phase6-rag/6100-vector/6104-Embedding-Sciences.md) for what modern retrieval stacks build on top of them.
 - **Hands-on:** add a fourth relation to the F5 factorization - tense (walked/walk, saw/see) - and predict the analogy target before running; then re-run the skip-gram fence with NEG=8 instead of 3 and state what the stronger negative pressure does to the cat-fish first-order residue.
 

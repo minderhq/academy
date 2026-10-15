@@ -401,6 +401,6 @@ The ledger's four rows are four different failures. C1, the suite at serving tem
 
 ## Next Steps
 
-- **Assessment:** [assessment/QUIZ.md](assessment/QUIZ.md) — Q17 is the question this lesson's fences answer with mechanics
+- **Assessment:** [7500: Agent Security - Quiz](assessment/QUIZ.md) — Q17 is the question this lesson's fences answer with mechanics
 - **Continue with:** [7104: Agent Evaluation and Observability](../7100-architecture/7104-Agent-Evaluation-and-Observability.md) — the regression gate whose pin-sampling caveat this lesson turns into a priced design
 - **Hands-on:** extend the campaign fence with a fifth config — T=0 CI plus a pass@20 nightly — and price whether the tighter noise floor justifies four times the audit tokens

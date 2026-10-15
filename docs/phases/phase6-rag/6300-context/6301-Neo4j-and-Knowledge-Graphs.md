@@ -3,7 +3,7 @@ Document ID: 6301
 Title: "6301: Neo4j and Knowledge Graphs for Multi-Hop Reasoning"
 Phase: 6
 Module: 6300
-Last Updated: 2026-10-14
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -512,5 +512,5 @@ Knowledge graphs represent information as entities and relationships, which is e
 ## Next Steps
 
 - Continue with: **[6302: CAG - Context Augmented Generation and Long Context Architectures](./6302-CAG-Long-Context-Architectures.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[6300: Context Window Management - Quiz](./assessment/QUIZ.md)**
 - Experiment: **[EXP_6303: Neo4j](../../../../experiments/EXP_6303_NEO4J.md)**

@@ -3,7 +3,7 @@ Document ID: 7105
 Title: "7105: Reflection and Self-Correction - The Loop That Grades Its Own Work"
 Phase: 7
 Module: 7100
-Last Updated: 2026-10-14
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -338,5 +338,5 @@ The named reflection and self-correction patterns are now runnable code, and eve
 ## Next Steps
 
 - Continue with: **[7106: Function-Calling Training and Constrained Decoding](./7106-Function-Calling-Training-and-Constrained-Decoding.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[7100: Agent Architecture - Quiz](./assessment/QUIZ.md)**
 - Reproduce the boundary on your own runs: take five failed agent trajectories, extract each failure mode into a one-line rule, re-run with the rule injected into the retry, and record the attempt-2 lift; then delete the rules at run end and re-run - the lift that survives nowhere is the one that needs 7404's persistent memory.

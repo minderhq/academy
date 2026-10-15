@@ -1,7 +1,7 @@
 ---
 Document ID: 5100-PEFT-README
 Title: "5100: Parameter-Efficient Fine-Tuning (PEFT)"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Prerequisites: [4100]
@@ -128,7 +128,7 @@ Before starting this module, ensure you have:
 - **Format:** 20 multiple-choice questions
 - **Passing Score:** 80% (16/20)
 - **Topics:** LoRA theory, QLoRA pipelines, adapter methods
-- **Location:** [assessment/QUIZ.md](./assessment/QUIZ.md)
+- **Location:** [5100: PEFT Methods - Quiz](./assessment/QUIZ.md)
 
 ### Practice Exercises
 - **Format:** Complete fine-tuning projects
@@ -138,7 +138,7 @@ Before starting this module, ensure you have:
   - Fine-tune models with QLoRA
   - Build multi-adapter systems
   - Deploy PEFT models
-- **Location:** [assessment/PRACTICE.md](./assessment/PRACTICE.md)
+- **Location:** [5100: PEFT Techniques - Practice](./assessment/PRACTICE.md)
 
 ## Related Modules
 

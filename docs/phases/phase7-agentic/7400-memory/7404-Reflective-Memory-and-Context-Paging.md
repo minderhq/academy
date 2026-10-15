@@ -3,7 +3,7 @@ Document ID: 7404
 Title: "7404: Reflective Memory and Context Paging"
 Phase: 7
 Module: 7400
-Last Updated: 2026-10-14
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -455,6 +455,6 @@ The stacks fail differently and the differences are exactly one mechanism each. 
 ## Next Steps
 
 - Continue with: **[7405: Key-Value Memory and Checkpoint Stores](./7405-Key-Value-Memory-and-Checkpoint-Stores.md)**
-- **Assessment:** [assessment/QUIZ.md](assessment/QUIZ.md) - Questions 12, 15, and 16-17 are the questions this lesson answers; the 5.212-versus-3.483 blend flip, the pruned 4/6 versus distilled 6/6 split, the 7 page-outs against the 48-token budget, and the 20%-to-100% trial curve are the mechanics behind them.
+- **Assessment:** [7400: Memory Systems - Quiz](assessment/QUIZ.md) - Questions 12, 15, and 16-17 are the questions this lesson answers; the 5.212-versus-3.483 blend flip, the pruned 4/6 versus distilled 6/6 split, the 7 page-outs against the 48-token budget, and the 20%-to-100% trial curve are the mechanics behind them.
 - **Related:** [7500: Agent Security](../7500-security/README.md) - the memory store is an input surface like any other; what an attacker can do by planting memories (memory poisoning) is that module's data-privacy charter.
 - **Hands-on:** extend the fences - flip the blend fence's query to the fresh-trivial direction and confirm the ranking flips with it; drop the paging fence's budget to 32 and report whether the auth probe still comes back; add a fourth failure mode to the reflexion fence's task list and show trial 5 appear; then double the campaign's fact stream and re-price the three stacks.

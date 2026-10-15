@@ -574,6 +574,6 @@ for Inductor codegen, no Triton, no CUDA.
 
 - Next Module: **[3200: Embedding Latent Spaces](../3200-embeddings/README.md)**
 - Continue with: **[3201: RoPE](../3200-embeddings/3201-Rotary-Positional-Embeddings-RoPE.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[3100: Attention - Quiz](./assessment/QUIZ.md)**
 - Turn the backend probe into a benchmark: time all four SDPA backends at your own
   head counts and dtypes, and find where the default dispatch stops picking the winner.

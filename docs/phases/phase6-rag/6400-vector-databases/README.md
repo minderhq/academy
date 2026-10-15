@@ -1,7 +1,7 @@
 ---
 Document ID: 6400-VECTOR-DATABASES-README
 Title: "6400: Vector Databases"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Intermediate
 Prerequisites: []
@@ -111,7 +111,7 @@ Before starting this module, ensure you have:
 - **Format:** 20 multiple-choice questions
 - **Passing Score:** 80% (16/20)
 - **Topics:** Vector databases, Qdrant, Pinecone, Weaviate
-- **Location:** [assessment/QUIZ.md](./assessment/QUIZ.md)
+- **Location:** [6400: Vector Databases - Quiz](./assessment/QUIZ.md)
 
 ### Practice Exercises
 - **Format:** Vector database deployment projects
@@ -121,7 +121,7 @@ Before starting this module, ensure you have:
   - Compare Pinecone vs Weaviate
   - Optimize database performance
   - Set up backups and monitoring
-- **Location:** [assessment/PRACTICE.md](./assessment/PRACTICE.md)
+- **Location:** [6400: Vector Databases - Practice](./assessment/PRACTICE.md)
 
 ## Related Modules
 

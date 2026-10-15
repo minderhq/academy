@@ -3,7 +3,7 @@ Document ID: 7504
 Title: "7504: Agent Abuse Prevention and Identity Threats"
 Phase: 7
 Module: 7500
-Last Updated: 2026-10-14
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -290,6 +290,6 @@ Twenty-three accepted, seven rejected at the signature line — and the five bea
 ## Next Steps
 
 - Continue with: **[7505: Temperature Zero and Deterministic Security Testing](./7505-Temperature-Zero-and-Deterministic-Security-Testing.md)**
-- **Assessment:** [assessment/QUIZ.md](assessment/QUIZ.md) — Q7, Q8, and Q9 are the three questions this lesson's fences answer with mechanics
+- **Assessment:** [7500: Agent Security - Quiz](assessment/QUIZ.md) — Q7, Q8, and Q9 are the three questions this lesson's fences answer with mechanics
 - **Related:** [7100: Agent Architecture](../7100-architecture/README.md) for the loop-side view of what a compromised agent actually executes
 - **Hands-on:** extend the campaign fence with a fourth attack class — the authorized-reader exfiltration — and a layer that catches it

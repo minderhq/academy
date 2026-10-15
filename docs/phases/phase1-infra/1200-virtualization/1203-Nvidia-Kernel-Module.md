@@ -3,7 +3,7 @@ Document ID: 1203
 Title: "1203: NVIDIA Kernel Module Management"
 Phase: 1
 Module: 1200
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -380,7 +380,7 @@ NVIDIA GPU stability across reboots and kernel updates is a kernel-module manage
 ## Next Steps
 
 - Continue with: **[1204: Multi-GPU Setup](./1204-Multi-GPU-Setup.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[1200: Virtualization - Quiz](./assessment/QUIZ.md)**
 
 ---
 

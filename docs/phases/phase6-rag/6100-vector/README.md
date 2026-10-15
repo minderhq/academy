@@ -1,7 +1,7 @@
 ---
 Document ID: 6100-VECTOR-README
 Title: "6100: Vector Embeddings"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
@@ -127,7 +127,7 @@ Before starting this module, ensure you have:
 - **Format:** 20 multiple-choice questions
 - **Passing Score:** 80% (16/20)
 - **Topics:** Embeddings, similarity, HNSW
-- **Location:** [assessment/QUIZ.md](./assessment/QUIZ.md)
+- **Location:** [6100: Vector Embeddings - Quiz](./assessment/QUIZ.md)
 
 ### Practice Exercises
 - **Format:** Hands-on vector search projects
@@ -137,7 +137,7 @@ Before starting this module, ensure you have:
   - Build HNSW index
   - Implement semantic search
   - Optimize query performance
-- **Location:** [assessment/PRACTICE.md](./assessment/PRACTICE.md)
+- **Location:** [6100: Vector Embeddings - Practice](./assessment/PRACTICE.md)
 
 ## Related Modules
 

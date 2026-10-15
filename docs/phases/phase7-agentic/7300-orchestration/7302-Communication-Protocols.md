@@ -391,7 +391,7 @@ A multi-agent system is only as reliable as the contracts between its agents: th
 
 - Continue with: **[7303: Multi-Agent Framework Comparison](./guides/7303-Framework-Comparison.md)**
 - Memory: **[7401: Long-term Memory](../7400-memory/7401-Long-term-Memory.md)**
-- Assessment: **[assessment/QUIZ.md](assessment/QUIZ.md)**
+- Assessment: **[7300: Agent Orchestration - Quiz](assessment/QUIZ.md)**
 
 ---
 

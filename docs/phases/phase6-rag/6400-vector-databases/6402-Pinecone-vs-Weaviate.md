@@ -3,7 +3,7 @@ Document ID: 6402
 Title: "6402: Vector Database Comparison"
 Phase: 6
 Module: 6400
-Last Updated: 2026-10-14
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -1013,8 +1013,8 @@ class VectorDBImporter:
 ## Next Steps
 
 - Continue with: **[6404: Vector Compression and Quantization - Scalar, Binary, and Product as Working Code](./6404-Vector-Compression-Quantization.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
-- Practice: **[assessment/PRACTICE.md](./assessment/PRACTICE.md)**
+- Assessment: **[6400: Vector Databases - Quiz](./assessment/QUIZ.md)**
+- Practice: **[6400: Vector Databases - Practice](./assessment/PRACTICE.md)**
 
 ---
 

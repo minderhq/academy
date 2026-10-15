@@ -506,7 +506,7 @@ Under every distributed run sits optimization-side machinery: the all-reduce col
 
 - Continue with: **[5405: FSDP2 and torchao](./5405-FSDP2-and-torchao.md)**
 - Practical: **[LAB-006: Train a Model From Scratch](../../../learning-resources/labs/LAB-006-Train-Model-From-Scratch.md)**
-- Assessment: **[assessment/PRACTICE.md](./assessment/PRACTICE.md)** and **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[5400: Distributed Training - Practice](./assessment/PRACTICE.md)** and **[5400: Distributed Training - Quiz](./assessment/QUIZ.md)**
 
 **Related:** [5401: Data Parallelism](./5401-Data-Parallelism.md) — DDP/FSDP mechanics this lesson optimizes under; [5402: Model Parallelism](./5402-Model-Parallelism.md) — the splitting axes; [5403: Mixed Precision Training](./5403-Mixed-Precision.md) — bf16 before offload; [5501: Optimizer Variants](../5500-advanced-optimization/5501-Optimizer-Variants.md) — where the 12N optimizer cost comes from; [LAB-006](../../../learning-resources/labs/LAB-006-Train-Model-From-Scratch.md); [EXP_5302_DISTRIBUTED](../../../../experiments/EXP_5302_DISTRIBUTED.md)
 

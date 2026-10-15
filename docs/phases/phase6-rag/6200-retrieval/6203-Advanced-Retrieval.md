@@ -302,7 +302,7 @@ Single-stage dense retrieval leaves accuracy on the table, and this lesson is th
 - Continue with: **[6204: Diversification and Boosting](./6204-Diversification-and-Boosting.md)**
 - Deepen: **[6301: Neo4j and Knowledge Graphs](../6300-context/6301-Neo4j-and-Knowledge-Graphs.md)**
 - Alternative: **[6302: CAG Long Context Architectures](../6300-context/6302-CAG-Long-Context-Architectures.md)**
-- Assessment: **[assessment/QUIZ.md](assessment/QUIZ.md)**
+- Assessment: **[6200: Retrieval - Quiz](assessment/QUIZ.md)**
 
 ---
 

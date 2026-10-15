@@ -3,7 +3,7 @@ Document ID: 4101
 Title: "4101: GGUF Physics - CPU/GPU Hybrid Offloading"
 Phase: 4
 Module: 4100
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -454,7 +454,7 @@ GGUF is what makes large models runnable on consumer hardware: a single file car
 
 - Continue with: **[4102: EXL2 and AWQ](./4102-EXL2-and-AWQ.md)**
 - Practical: **[LAB-001: Docker & LLM](../../../learning-resources/labs/LAB-001-Docker-LLM.md)**
-- Assessment: **[assessment/QUIZ.md](assessment/QUIZ.md)**
+- Assessment: **[4100: Low-bit Quantization - Quiz](assessment/QUIZ.md)**
 
 ---
 

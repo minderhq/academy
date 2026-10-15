@@ -3,7 +3,7 @@ Document ID: 7502
 Title: "7502: PII Redaction & Privacy Filtering"
 Phase: 7
 Module: 7500
-Last Updated: 2026-09-30
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -1011,5 +1011,5 @@ PII in prompts, tool outputs, and logs is a compliance exposure - GDPR, CCPA, HI
 ## Next Steps
 
 - Continue with: **[7503: Adversarial Attacks & Defense](7503-Adversarial-Attacks.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[7500: Agent Security - Quiz](./assessment/QUIZ.md)**
 - Return to: **[Module README](./README.md)**

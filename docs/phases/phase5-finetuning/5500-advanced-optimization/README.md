@@ -1,7 +1,7 @@
 ---
 Document ID: 5500-ADVANCED-OPTIMIZATION-README
 Title: "5500: Advanced Optimization"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
@@ -56,5 +56,5 @@ After this module, you will be able to:
 
 ## Assessment
 
-- **Location:** [assessment/PRACTICE.md](./assessment/PRACTICE.md)
-- **Location:** [assessment/QUIZ.md](./assessment/QUIZ.md)
+- **Location:** [5500: Advanced Optimization - Practice](./assessment/PRACTICE.md)
+- **Location:** [5500: Advanced Optimization - Quiz](./assessment/QUIZ.md)

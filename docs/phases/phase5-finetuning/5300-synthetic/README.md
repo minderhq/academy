@@ -1,7 +1,7 @@
 ---
 Document ID: 5300-SYNTHETIC-README
 Title: "5300: Synthetic Data & Advanced Training"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
@@ -116,7 +116,7 @@ Before starting this module, ensure you have:
 - **Format:** 20 multiple-choice questions
 - **Passing Score:** 80% (16/20)
 - **Topics:** Distillation, distributed orchestration, federated learning
-- **Location:** [assessment/QUIZ.md](./assessment/QUIZ.md)
+- **Location:** [5300: Synthetic Data & Advanced Training - Quiz](./assessment/QUIZ.md)
 
 ### Practice Exercises
 - **Format:** Advanced training projects
@@ -126,7 +126,7 @@ Before starting this module, ensure you have:
   - Set up distributed training
   - Build federated learning system
   - Generate synthetic training data
-- **Location:** [assessment/PRACTICE.md](./assessment/PRACTICE.md)
+- **Location:** [5300: Synthetic Data Generation - Practice](./assessment/PRACTICE.md)
 
 ## Related Modules
 

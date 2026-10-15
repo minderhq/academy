@@ -1,7 +1,7 @@
 ---
 Document ID: 1100-PRACTICE
 Title: "1100: Network - Practice"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 1 hour
@@ -196,4 +196,4 @@ Internet (Fiber 1Gbps)
 
 ## Next Steps
 
-- Review **[QUIZ.md](./QUIZ.md)** to test your knowledge
+- Review **[1100: Network - Quiz](./QUIZ.md)** to test your knowledge

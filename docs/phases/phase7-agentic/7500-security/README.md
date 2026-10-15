@@ -1,7 +1,7 @@
 ---
 Document ID: 7500-SECURITY-README
 Title: "7500: AI Agent Security"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
@@ -133,7 +133,7 @@ Before starting this module, ensure you have:
 - **Format:** 20 multiple-choice questions
 - **Passing Score:** 80% (16/20)
 - **Topics:** Prompt injection, PII, adversarial attacks
-- **Location:** [assessment/QUIZ.md](./assessment/QUIZ.md)
+- **Location:** [7500: Agent Security - Quiz](./assessment/QUIZ.md)
 
 ### Practice Exercises
 - **Format:** Security implementation projects
@@ -143,7 +143,7 @@ Before starting this module, ensure you have:
   - Implement PII redaction
   - Create adversarial defenses
   - Design secure agent system
-- **Location:** [assessment/PRACTICE.md](./assessment/PRACTICE.md)
+- **Location:** [7500: AI Agent Security - Practice](./assessment/PRACTICE.md)
 
 ## Related Modules
 

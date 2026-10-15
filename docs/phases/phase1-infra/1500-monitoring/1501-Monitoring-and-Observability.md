@@ -3,7 +3,7 @@ Document ID: 1501
 Title: "1501: Monitoring and Observability"
 Phase: 1
 Module: 1500
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -688,7 +688,7 @@ Observability is five components with one job each: Prometheus collects metrics,
 ## Next Steps
 
 - Continue with: **[1502: Model Drift Detection](./1502-Model-Drift-Detection.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[1500: Monitoring - Quiz](./assessment/QUIZ.md)**
 
 ---
 

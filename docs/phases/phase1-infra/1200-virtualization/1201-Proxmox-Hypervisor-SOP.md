@@ -3,7 +3,7 @@ Document ID: 1201
 Title: "1201: Proxmox Hypervisor Standard Operating Procedures"
 Phase: 1
 Module: 1200
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -376,7 +376,7 @@ Proxmox VE is the virtualization layer at the center of this infrastructure: it 
 ## Next Steps
 
 - Continue with: **[1202: GPU Passthrough (IOMMU/VFIO)](./1202-TB3-UT3G-Passthrough.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[1200: Virtualization - Quiz](./assessment/QUIZ.md)**
 
 ---
 

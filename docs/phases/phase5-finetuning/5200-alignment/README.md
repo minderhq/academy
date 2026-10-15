@@ -1,7 +1,7 @@
 ---
 Document ID: 5200-ALIGNMENT-README
 Title: "5200: LLM Alignment"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
@@ -149,7 +149,7 @@ Before starting this module, ensure you have:
 - **Format:** 20 multiple-choice questions
 - **Passing Score:** 80% (16/20)
 - **Topics:** DPO theory, RLHF pipeline, preference datasets
-- **Location:** [assessment/QUIZ.md](./assessment/QUIZ.md)
+- **Location:** [5200: Alignment Methods - Quiz](./assessment/QUIZ.md)
 
 ### Practice Exercises
 - **Format:** Alignment projects
@@ -159,7 +159,7 @@ Before starting this module, ensure you have:
   - Build reward models
   - Create alignment datasets
   - Evaluate aligned models
-- **Location:** [assessment/PRACTICE.md](./assessment/PRACTICE.md)
+- **Location:** [5200: LLM Alignment - Practice](./assessment/PRACTICE.md)
 
 ## Related Modules
 

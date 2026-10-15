@@ -3,7 +3,7 @@ Document ID: 7501
 Title: "7501: Prompt Injection Defense"
 Phase: 7
 Module: 7500
-Last Updated: 2026-09-30
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -755,5 +755,5 @@ Prompt injection tricks an LLM into treating untrusted text as instructions, and
 ## Next Steps
 
 - Continue with: **[7502: PII Redaction & Privacy Filtering](7502-PII-Redaction.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[7500: Agent Security - Quiz](./assessment/QUIZ.md)**
 - Return to: **[Module README](./README.md)**

@@ -1,7 +1,7 @@
 ---
 Document ID: 3500-MULTIMODAL-README
 Title: "3500: Multimodal Models"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
@@ -338,8 +338,8 @@ def multimodal_rag_query(query: str, vector_store, vision_llm):
 
 ## Assessment
 
-- **Quiz:** [assessment/QUIZ.md](assessment/QUIZ.md) - Test your multimodal knowledge
-- **Practice:** [assessment/PRACTICE.md](assessment/PRACTICE.md) - Build multimodal applications
+- **Quiz:** [3500: Multimodal Models - Quiz](assessment/QUIZ.md) - Test your multimodal knowledge
+- **Practice:** [3500: Multimodal AI - Practice](assessment/PRACTICE.md) - Build multimodal applications
 
 ---
 

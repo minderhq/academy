@@ -456,7 +456,7 @@ A model registry is the versioned, queryable index between training and serving:
 
 - Continue with: **[6504: Re-Embedding Policy and A/B Testing](./6504-Re-Embedding-Policy-and-AB-Testing.md)**
 - Review the pipeline around the registry: **[6502: CI/CD for ML](6502-CI-CD-for-ML.md)** wires registration and promotion into the delivery flow
-- Assessment: **[assessment/PRACTICE.md](./assessment/PRACTICE.md)** and **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[6500: MLOps Pipelines for RAG - Practice](./assessment/PRACTICE.md)** and **[6500: MLOps Pipelines for RAG - Quiz](./assessment/QUIZ.md)**
 
 **Related:** [6501: ML Model Lifecycle Management](6501-ML-Lifecycle-Management.md) — the lifecycle stage this registry serves; [6502: CI/CD for Machine Learning](6502-CI-CD-for-ML.md) — automates registration and promotion; [1502: Model Drift Detection](../../phase1-infra/1500-monitoring/1502-Model-Drift-Detection.md) — drift signals that trigger rollbacks; [EXP_6501_MLOPS_PIPELINE](../../../../experiments/EXP_6501_MLOPS_PIPELINE.md)
 

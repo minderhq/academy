@@ -1,7 +1,7 @@
 ---
 Document ID: 7400-MEMORY-README
 Title: "7400: Agent Memory Systems"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
@@ -108,7 +108,7 @@ Before starting this module, ensure you have:
 - **Format:** 20 multiple-choice questions
 - **Passing Score:** 80% (16/20)
 - **Topics:** Memory systems, retrieval, storage
-- **Location:** [assessment/QUIZ.md](./assessment/QUIZ.md)
+- **Location:** [7400: Memory Systems - Quiz](./assessment/QUIZ.md)
 
 ### Practice Exercises
 - **Format:** Memory system projects
@@ -118,7 +118,7 @@ Before starting this module, ensure you have:
   - Build memory retrieval system
   - Create personalization
   - Optimize memory performance
-- **Location:** [assessment/PRACTICE.md](./assessment/PRACTICE.md)
+- **Location:** [7400: Agent Memory Systems - Practice](./assessment/PRACTICE.md)
 
 ## Related Modules
 

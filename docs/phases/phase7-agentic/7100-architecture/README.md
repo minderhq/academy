@@ -1,7 +1,7 @@
 ---
 Document ID: 7100-ARCHITECTURE-README
 Title: "7100: Agent Architecture"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
@@ -145,7 +145,7 @@ Before starting this module, ensure you have:
 - **Format:** 20 multiple-choice questions
 - **Passing Score:** 80% (16/20)
 - **Topics:** ReAct, planning, agent architectures
-- **Location:** [assessment/QUIZ.md](./assessment/QUIZ.md)
+- **Location:** [7100: Agent Architecture - Quiz](./assessment/QUIZ.md)
 
 ### Practice Exercises
 - **Format:** Agent implementation projects
@@ -155,7 +155,7 @@ Before starting this module, ensure you have:
   - Implement planning system
   - Create multi-agent coordination
   - Evaluate agent performance
-- **Location:** [assessment/PRACTICE.md](./assessment/PRACTICE.md)
+- **Location:** [7100: LLM Reasoning - Practice](./assessment/PRACTICE.md)
 
 ## Related Modules
 

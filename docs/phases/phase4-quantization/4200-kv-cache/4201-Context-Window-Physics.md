@@ -484,7 +484,7 @@ The KV cache is the physics of the context window: memory grows linearly with se
 ## Next Steps
 
 - Continue with: **[4202: Speculative Decoding](./4202-Speculative-Decoding.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[4200: KV Cache & Context Window - Quiz](./assessment/QUIZ.md)**
 
 ---
 

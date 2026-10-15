@@ -515,7 +515,7 @@ ML CI/CD is a software pipeline with two extra failure modes: the artifact is pr
 
 - Continue with: **[6503: Model Registry](./6503-Model-Registry.md)**
 - The registry these jobs promote into: **[6503: Model Registry](6503-Model-Registry.md)**
-- Assessment: **[assessment/PRACTICE.md](./assessment/PRACTICE.md)** and **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[6500: MLOps Pipelines for RAG - Practice](./assessment/PRACTICE.md)** and **[6500: MLOps Pipelines for RAG - Quiz](./assessment/QUIZ.md)**
 
 **Related:** [6501: ML Model Lifecycle Management](6501-ML-Lifecycle-Management.md) — the lifecycle stage this pipeline automates; [6503: Model Registry](6503-Model-Registry.md) — the registry the promote job writes into; [1502: Model Drift Detection](../../phase1-infra/1500-monitoring/1502-Model-Drift-Detection.md) — post-deploy monitoring feeding the next run; [EXP_6501_MLOPS_PIPELINE](../../../../experiments/EXP_6501_MLOPS_PIPELINE.md)
 

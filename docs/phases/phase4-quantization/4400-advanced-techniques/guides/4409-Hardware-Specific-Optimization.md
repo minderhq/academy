@@ -3,7 +3,7 @@ Document ID: 4409
 Title: "4409: Hardware-Specific Quantization Optimization"
 Phase: 4
 Module: 4400
-Last Updated: 2026-10-07
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -369,4 +369,4 @@ The same INT4 checkpoint can be fast on one device and unusable on another, beca
 ## Next Steps
 
 - Module 4400 complete — Return to: **[Module README](../README.md)**
-- Assessment: **[assessment/QUIZ.md](../assessment/QUIZ.md)**
+- Assessment: **[4400: Advanced Quantization Techniques - Quiz](../assessment/QUIZ.md)**

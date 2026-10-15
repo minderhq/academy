@@ -1,7 +1,7 @@
 ---
 Document ID: 1400-LLMOPS-README
 Title: "1400: LLMOps and Model Serving"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
@@ -807,8 +807,8 @@ See [PREREQUISITES.md](./PREREQUISITES.md) for detailed requirements.
 
 Validate your knowledge:
 
-- **[assessment/QUIZ.md](./assessment/QUIZ.md)** - Test your understanding (20 questions, 80% to pass)
-- **[assessment/PRACTICE.md](./assessment/PRACTICE.md)** - Hands-on LLMOps exercises
+- **[1400: LLMOps - Quiz](./assessment/QUIZ.md)** - Test your understanding (20 questions, 80% to pass)
+- **[1400: LLMOps - Practice](./assessment/PRACTICE.md)** - Hands-on LLMOps exercises
 
 ## Key Takeaways
 

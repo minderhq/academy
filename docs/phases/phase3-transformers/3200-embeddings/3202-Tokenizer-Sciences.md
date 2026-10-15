@@ -528,7 +528,7 @@ The tokenizer is the model's first and last mile: raw text flows through normali
 ## Next Steps
 
 - Continue with: **[3203: Word-Embedding Tradition](./3203-Word-Embedding-Tradition.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[3200: Embeddings - Quiz](./assessment/QUIZ.md)**
 
 ---
 

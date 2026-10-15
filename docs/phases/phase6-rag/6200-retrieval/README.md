@@ -1,7 +1,7 @@
 ---
 Document ID: 6200-RETRIEVAL-README
 Title: "6200: Retrieval Strategies"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
@@ -103,7 +103,7 @@ Before starting this module, ensure you have:
 - **Format:** 20 multiple-choice questions
 - **Passing Score:** 80% (16/20)
 - **Topics:** Hybrid search, re-ranking, retrieval optimization
-- **Location:** [assessment/QUIZ.md](./assessment/QUIZ.md)
+- **Location:** [6200: Retrieval - Quiz](./assessment/QUIZ.md)
 
 ### Practice Exercises
 - **Format:** Retrieval pipeline projects
@@ -113,7 +113,7 @@ Before starting this module, ensure you have:
   - Implement re-ranking
   - Optimize chunking strategies
   - Evaluate retrieval quality
-- **Location:** [assessment/PRACTICE.md](./assessment/PRACTICE.md)
+- **Location:** [6200: Advanced Retrieval - Practice](./assessment/PRACTICE.md)
 
 ## Related Modules
 

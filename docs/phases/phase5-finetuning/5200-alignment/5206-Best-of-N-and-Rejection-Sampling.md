@@ -513,6 +513,6 @@ Best-of-N is inference-time alignment: N draws, one reward-model argmax, zero we
 
 - Next Module: **[5300: Synthetic Data & Advanced Training](../5300-synthetic/README.md)**
 - Continue with: **[5204: Preference Dataset Creation](./5204-Preference-Dataset-Creation.md)** for the preference-data layer beneath the reward model every config in the campaign ledger shares
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[5200: Alignment Methods - Quiz](./assessment/QUIZ.md)**
 
 ---

@@ -1,7 +1,7 @@
 ---
 Document ID: 3200-EMBEDDINGS-README
 Title: "3200: Embedding Latent Spaces"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Intermediate
 Prerequisites: []
@@ -230,8 +230,8 @@ class RotaryPositionalEmbedding(nn.Module):
 
 ## Assessment
 
-- **Quiz:** [assessment/QUIZ.md](assessment/QUIZ.md) - Test your embedding knowledge
-- **Practice:** [assessment/PRACTICE.md](assessment/PRACTICE.md) - Hands-on tokenizer exercises
+- **Quiz:** [3200: Embeddings - Quiz](assessment/QUIZ.md) - Test your embedding knowledge
+- **Practice:** [3200: Embeddings - Practice](assessment/PRACTICE.md) - Hands-on tokenizer exercises
 
 ---
 

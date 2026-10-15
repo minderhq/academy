@@ -762,4 +762,4 @@ Collaborative multi-agent systems work when each agent is specialized and the co
 ## Next Steps
 
 - Continue with: **[7302: Multi-Agent Communication Protocols](./7302-Communication-Protocols.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[7300: Agent Orchestration - Quiz](./assessment/QUIZ.md)**

@@ -3,7 +3,7 @@ Document ID: 4408
 Title: "4408: Quantizing for Production"
 Phase: 4
 Module: 4400
-Last Updated: 2026-10-07
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -566,4 +566,4 @@ Quantizing a model for production is a pipeline, not a one-liner: six steps - mo
 ## Next Steps
 
 - Continue with: **[4409: Hardware-Specific Quantization Optimization](./4409-Hardware-Specific-Optimization.md)**
-- Assessment: **[assessment/QUIZ.md](../assessment/QUIZ.md)**
+- Assessment: **[4400: Advanced Quantization Techniques - Quiz](../assessment/QUIZ.md)**

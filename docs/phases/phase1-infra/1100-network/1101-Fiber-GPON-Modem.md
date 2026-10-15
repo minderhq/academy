@@ -3,7 +3,7 @@ Document ID: 1101
 Title: "1101: Internet Uplink & Modem Configuration"
 Phase: 1
 Module: 1100
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 2 hours
@@ -375,7 +375,7 @@ Out-of-range Rx power shows up as LOS light loss or intermittent drops long befo
 
 - Continue with: **[1102: Network Topology Design](./1102-Star-Topology-Core.md)**
 - Practical: **[LAB-001: Docker & LLM](../../../learning-resources/labs/LAB-001-Docker-LLM.md)**
-- Assessment: **[assessment/QUIZ.md](assessment/QUIZ.md)**
+- Assessment: **[1100: Network - Quiz](assessment/QUIZ.md)**
 
 ---
 

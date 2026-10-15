@@ -442,7 +442,7 @@ Double quantization squeezes the leftover bytes: the per-block scales that ordin
 ## Next Steps
 
 - Continue with: **[4104: MXFP4 and NVFP4](./4104-MXFP4-and-NVFP4.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[4100: Low-bit Quantization - Quiz](./assessment/QUIZ.md)**
 
 ---
 

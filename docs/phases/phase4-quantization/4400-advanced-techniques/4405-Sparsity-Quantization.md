@@ -3,7 +3,7 @@ Document ID: 4405
 Title: "4405: Sparsity + Quantization"
 Phase: 4
 Module: 4400
-Last Updated: 2026-09-30
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -346,4 +346,4 @@ Sparsity and quantization compose, but not by multiplying savings: sparse format
 ## Next Steps
 
 - Continue with: **[4406: 1.58-bit Quantization](./4406-1.58-bit-Quantization.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[4400: Advanced Quantization Techniques - Quiz](./assessment/QUIZ.md)**

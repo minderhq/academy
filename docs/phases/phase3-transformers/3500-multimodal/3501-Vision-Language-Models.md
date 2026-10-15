@@ -3,7 +3,7 @@ Document ID: 3501
 Title: "3501: Vision-Language Models"
 Phase: 3
 Module: 3500
-Last Updated: 2026-09-30
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -316,7 +316,7 @@ Vision-language models come in two generations: CLIP aligns images and text in o
 ## Next Steps
 
 - Continue with: **[3502: Audio Models](./3502-Audio-Models.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[3500: Multimodal Models - Quiz](./assessment/QUIZ.md)**
 
 ---
 

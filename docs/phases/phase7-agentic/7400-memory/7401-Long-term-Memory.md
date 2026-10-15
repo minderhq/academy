@@ -3,7 +3,7 @@ Document ID: 7401
 Title: "7401: Long-term Memory for Agents"
 Phase: 7
 Module: 7400
-Last Updated: 2026-10-14
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -1076,8 +1076,8 @@ Long-term memory systems enable AI agents to:
 ## Next Steps
 
 - Continue with: **[7403: Vector Memory and Embedding-Based Storage](./7403-Vector-Memory.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
-- Practice: **[assessment/PRACTICE.md](./assessment/PRACTICE.md)**
+- Assessment: **[7400: Memory Systems - Quiz](./assessment/QUIZ.md)**
+- Practice: **[7400: Agent Memory Systems - Practice](./assessment/PRACTICE.md)**
 
 ---
 

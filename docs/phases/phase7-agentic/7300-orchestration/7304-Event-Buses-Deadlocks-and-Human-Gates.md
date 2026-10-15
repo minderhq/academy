@@ -411,6 +411,6 @@ The ledger reads clean on every line. The bus: 11 executions produced 10 effects
 
 ## Next Steps
 
-- **Assessment:** [assessment/QUIZ.md](assessment/QUIZ.md) — Q7, Q8, Q15, and Q19 are the questions this lesson's fences answer with mechanics
+- **Assessment:** [7300: Agent Orchestration - Quiz](assessment/QUIZ.md) — Q7, Q8, Q15, and Q19 are the questions this lesson's fences answer with mechanics
 - **Continue with:** [7400: Agent Memory](../7400-memory/README.md) for the persistence layer the checkpointed run state sits beside
 - **Hands-on:** extend the composed fence with the naive lock acquisition (no global order), show the 2-cycle the monitor catches, and name the Coffman condition the fix removes

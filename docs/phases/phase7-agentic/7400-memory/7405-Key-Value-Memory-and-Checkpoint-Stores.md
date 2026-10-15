@@ -505,7 +505,7 @@ The one-line summary of the ledger: **the TTL length is the resume budget, the a
 
 ## Next Steps
 
-- **Assessment:** [assessment/QUIZ.md](assessment/QUIZ.md) - Question 4 is the question this lesson answers; the exact-key-versus-ANN split with the cart dict served verbatim against the refund doc, the 58.4%-to-18.3% expiration walk, and the 51-of-51 checkpoint eviction concentration are the mechanics behind the "direct lookup by key" answer.
+- **Assessment:** [7400: Memory Systems - Quiz](assessment/QUIZ.md) - Question 4 is the question this lesson answers; the exact-key-versus-ANN split with the cart dict served verbatim against the refund doc, the 58.4%-to-18.3% expiration walk, and the 51-of-51 checkpoint eviction concentration are the mechanics behind the "direct lookup by key" answer.
 - **Continue with:** [7500: Agent Security](../7500-security/README.md) - a shared KV store is a trust boundary: every agent thread's state sits behind one keyspace, and what a compromised writer can do to another agent's checkpoints (and how ACLs and namespace isolation bound it) is that module's charter.
 - **Hands-on:** extend the fences - raise the TTL fence's read rate to 10% and report whether passive-only still leaks; add `allkeys-random` to the eviction table and report where its 51-eviction analog lands; drop the campaign's resume fraction to 2% and re-read which config's bill changes; then halve the 7-day lease and find the resume-success cliff.
 

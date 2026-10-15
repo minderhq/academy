@@ -361,5 +361,5 @@ MXFP4 and NVFP4 are one idea in two calibrations: split every weight into 4-bit 
 
 - Next Module: **[4200: KV Cache Optimization](../4200-kv-cache/README.md)**
 - Continue with: **[4301: QAT Foundations](../4300-quantization-aware-training/4301-QAT-Foundations.md)** - train through the quantizer instead of quantizing after
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[4100: Low-bit Quantization - Quiz](./assessment/QUIZ.md)**
 - Reproduce the pow2 tax at your own scale: quantize a real `nn.Linear` weight both ways, then plot per-block scale-use histograms for e8m0/32 and e4m3/16 - find the block size where the tax gap disappears.

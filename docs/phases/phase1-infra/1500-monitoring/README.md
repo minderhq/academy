@@ -1,7 +1,7 @@
 ---
 Document ID: 1500-MONITORING-README
 Title: "1500: Monitoring and Observability for LLM Systems"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
@@ -852,8 +852,8 @@ See [PREREQUISITES.md](./PREREQUISITES.md) for detailed requirements.
 
 Validate your knowledge:
 
-- **[assessment/QUIZ.md](./assessment/QUIZ.md)** - Test your understanding (20 questions, 80% to pass)
-- **[assessment/PRACTICE.md](./assessment/PRACTICE.md)** - Hands-on monitoring exercises
+- **[1500: Monitoring - Quiz](./assessment/QUIZ.md)** - Test your understanding (20 questions, 80% to pass)
+- **[1500: Monitoring - Practice](./assessment/PRACTICE.md)** - Hands-on monitoring exercises
 
 ## Key Takeaways
 

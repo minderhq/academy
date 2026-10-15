@@ -3,7 +3,7 @@ Document ID: 5304
 Title: "5304: Self-Instruct and Model Collapse - Growing Instruction Data Without Losing the Distribution"
 Phase: 5
 Module: 5300
-Last Updated: 2026-10-06
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -462,5 +462,5 @@ Self-instruct grows a 40-seed pool to 124 instructions at a 0.350 keep-rate with
 
 - Next Module: **[5400: Distributed Training](../5400-distributed-training/README.md)**
 - Continue with: **[5401: Data Parallelism](../5400-distributed-training/5401-Data-Parallelism.md)** - the training infrastructure a grown instruction pool gets consumed by
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[5300: Synthetic Data & Advanced Training - Quiz](./assessment/QUIZ.md)**
 - Reproduce the campaign on your own corpus: grow a pool from 20 seed tasks with a 0.7 keep threshold for four rounds, train the tiny intent classifier on gold versus your pool's output, and record the spread; then reserve 10% of every round's budget for hand-written seeds and compare the fourth-round pool's type coverage - the difference is the anchor's bill, paid in instructions instead of dollars.

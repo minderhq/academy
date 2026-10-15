@@ -1,7 +1,7 @@
 ---
 Document ID: 3400-ARCHITECTURES-README
 Title: "3400: Model Architectures"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
@@ -325,8 +325,8 @@ class EncoderDecoderBlock(nn.Module):
 
 ## Assessment
 
-- **Quiz:** [assessment/QUIZ.md](assessment/QUIZ.md) - Test your architecture knowledge
-- **Practice:** [assessment/PRACTICE.md](assessment/PRACTICE.md) - Implement Transformer variants
+- **Quiz:** [3400: Model Architectures - Quiz](assessment/QUIZ.md) - Test your architecture knowledge
+- **Practice:** [3400: Architectures - Practice](assessment/PRACTICE.md) - Implement Transformer variants
 
 ---
 

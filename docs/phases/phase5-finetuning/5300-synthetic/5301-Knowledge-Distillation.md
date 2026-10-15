@@ -3,7 +3,7 @@ Document ID: 5301
 Title: "5301: Knowledge Distillation - Training Small Models Using Big Model Outputs"
 Phase: 5
 Module: 5300
-Last Updated: 2026-10-14
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -537,5 +537,5 @@ Distillation compresses a large teacher into a small student by training the stu
 ## Next Steps
 
 - Continue with: **[5302: Distributed Training Orchestration](./5302-Distributed-Training.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[5300: Synthetic Data & Advanced Training - Quiz](./assessment/QUIZ.md)**
 - Experiment: **[EXP_5301: Distillation](../../../../experiments/EXP_5301_DISTILLATION.md)**

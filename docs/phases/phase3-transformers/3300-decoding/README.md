@@ -1,7 +1,7 @@
 ---
 Document ID: 3300-DECODING-README
 Title: "3300: The Decoding Block"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Intermediate
 Prerequisites: []
@@ -272,8 +272,8 @@ class RMSNorm(nn.Module):
 
 ## Assessment
 
-- **Quiz:** [assessment/QUIZ.md](assessment/QUIZ.md) - Test your decoding knowledge
-- **Practice:** [assessment/PRACTICE.md](assessment/PRACTICE.md) - Implement activation functions
+- **Quiz:** [3300: Decoding - Quiz](assessment/QUIZ.md) - Test your decoding knowledge
+- **Practice:** [3300: Decoding - Practice](assessment/PRACTICE.md) - Implement activation functions
 
 ---
 

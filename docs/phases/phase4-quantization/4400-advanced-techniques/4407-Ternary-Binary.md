@@ -405,4 +405,4 @@ Binary and ternary networks push past bit-grid quantization into codebook-free a
 
 - Phase 4 Complete! Next: **[Phase 5: Fine-Tuning & Alignment](../../phase5-finetuning/README.md)**
 - Continue with: **[4408: Quantizing for Production](./guides/4408-Quantizing-for-Production.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[4400: Advanced Quantization Techniques - Quiz](./assessment/QUIZ.md)**

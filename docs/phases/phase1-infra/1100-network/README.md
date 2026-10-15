@@ -674,8 +674,8 @@ After completing this module:
 
 Validate your knowledge:
 
-- **[assessment/QUIZ.md](./assessment/QUIZ.md)** - Test your understanding (20 questions, 80% to pass)
-- **[assessment/PRACTICE.md](./assessment/PRACTICE.md)** - Hands-on exercises
+- **[1100: Network - Quiz](./assessment/QUIZ.md)** - Test your understanding (20 questions, 80% to pass)
+- **[1100: Network - Practice](./assessment/PRACTICE.md)** - Hands-on exercises
 
 ## Key Takeaways
 

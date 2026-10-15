@@ -1,7 +1,7 @@
 ---
 Document ID: 5400-DISTRIBUTED-TRAINING-README
 Title: "5400: Distributed Training"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Prerequisites: [5300]
@@ -62,5 +62,5 @@ After this module, you will be able to:
 
 ## Assessment
 
-- **Location:** [assessment/PRACTICE.md](./assessment/PRACTICE.md)
-- **Location:** [assessment/QUIZ.md](./assessment/QUIZ.md)
+- **Location:** [5400: Distributed Training - Practice](./assessment/PRACTICE.md)
+- **Location:** [5400: Distributed Training - Quiz](./assessment/QUIZ.md)

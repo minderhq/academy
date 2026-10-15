@@ -505,7 +505,7 @@ A 5,000,000-vector, 768-dim collection is 15.36 GB of float32 - and compression 
 ## Next Steps
 
 - Next Module: **[6500: MLOps Pipelines for RAG](../6500-mlops-pipelines/README.md)**
-- **Assessment:** [assessment/QUIZ.md](assessment/QUIZ.md) - Q10 and Q20 are the questions this lesson answers; the 4x/32x/64x ledger, the 0.9550-versus-0.7650 quantile inversion, the 11-versus-29.5 Hamming signal, and the os=1 rescore no-op are the mechanics behind them.
+- **Assessment:** [6400: Vector Databases - Quiz](assessment/QUIZ.md) - Q10 and Q20 are the questions this lesson answers; the 4x/32x/64x ledger, the 0.9550-versus-0.7650 quantile inversion, the 11-versus-29.5 Hamming signal, and the os=1 rescore no-op are the mechanics behind them.
 - **Continue with:** [6101: HNSW Indexing](../6100-vector/6101-HNSW-Indexing.md) for the graph walk the compressed scores feed, or [6202: Re-ranking and Retrieval Logistics](../6200-retrieval/6202-Re-ranking-and-Retrieval-Logistics.md) for the same rescore shape with cross-encoders.
 - **Hands-on:** re-run the product-quantization fence with m=16 instead of 8 and state what happens to the compression ratio (8x) and the recall floor; then re-run the campaign with limit=5 and check whether the os=1 no-op row still equals the rescore-off row - and explain why it must.
 

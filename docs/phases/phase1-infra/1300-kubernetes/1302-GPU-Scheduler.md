@@ -481,7 +481,7 @@ The K3s GPU scheduler turns an 11GB-class card into a schedulable cluster resour
 ## Next Steps
 
 - Continue with: **[1303: Storage Classes for Dynamic Provisioning](./1303-Storage-Classes.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[1300: Kubernetes - Quiz](./assessment/QUIZ.md)**
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 Document ID: 1300-KUBERNETES-README
 Title: "1300: Kubernetes for LLM Deployment"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Intermediate
 Prerequisites: []
@@ -897,8 +897,8 @@ See [PREREQUISITES.md](./PREREQUISITES.md) for detailed requirements.
 
 Validate your knowledge:
 
-- **[assessment/QUIZ.md](./assessment/QUIZ.md)** - Test your understanding (20 questions, 80% to pass)
-- **[assessment/PRACTICE.md](./assessment/PRACTICE.md)** - Hands-on Kubernetes exercises
+- **[1300: Kubernetes - Quiz](./assessment/QUIZ.md)** - Test your understanding (20 questions, 80% to pass)
+- **[1300: Kubernetes - Practice](./assessment/PRACTICE.md)** - Hands-on Kubernetes exercises
 
 ## Key Takeaways
 

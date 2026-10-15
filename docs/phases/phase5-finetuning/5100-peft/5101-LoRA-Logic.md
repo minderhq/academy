@@ -3,7 +3,7 @@ Document ID: 5101
 Title: "5101: LoRA (Low-Rank Adaptation) Logic"
 Phase: 5
 Module: 5100
-Last Updated: 2026-09-30
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -533,5 +533,5 @@ LoRA's bet is that fine-tuning updates live in a low-rank subspace: freeze the p
 - Continue with: **[5102: QLoRA Pipelines](./5102-QLoRA-Pipelines.md)**
 - DPO training on merged models: **[5201: DPO Theory](../5200-alignment/5201-DPO-Theory.md)**
 - QLoRA's memory trick, double quantization: **[4103: Double Quantization](../../phase4-quantization/4100-low-bit/4103-Double-Quantization.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[5100: PEFT Methods - Quiz](./assessment/QUIZ.md)**
 - Experiment: **[EXP_5101: LoRA](../../../../experiments/EXP_5101_LORA.md)**

@@ -379,7 +379,7 @@ A model's life does not end at the first deploy - it begins there, and this less
 
 - Continue with: **[6502: CI/CD for Machine Learning](./6502-CI-CD-for-ML.md)**
 - The pipeline that automates these stage transitions: **[6502: CI/CD for Machine Learning](6502-CI-CD-for-ML.md)**
-- Assessment: **[assessment/PRACTICE.md](./assessment/PRACTICE.md)** and **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[6500: MLOps Pipelines for RAG - Practice](./assessment/PRACTICE.md)** and **[6500: MLOps Pipelines for RAG - Quiz](./assessment/QUIZ.md)**
 
 **Related:** [6502: CI/CD for Machine Learning](6502-CI-CD-for-ML.md) — the pipeline automating these stage transitions; [6503: Model Registry](6503-Model-Registry.md) — where every version's current state lives; [1502: Model Drift Detection](../../phase1-infra/1500-monitoring/1502-Model-Drift-Detection.md) — the drift signal feeding Stage 4; [EXP_6501_MLOPS_PIPELINE](../../../../experiments/EXP_6501_MLOPS_PIPELINE.md)
 

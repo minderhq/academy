@@ -3,7 +3,7 @@ Document ID: 6401
 Title: "6401: Qdrant Setup Guide"
 Phase: 6
 Module: 6400
-Last Updated: 2026-10-14
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -353,7 +353,7 @@ Qdrant is the open-source vector database this curriculum standardizes on: Rust-
 ## Next Steps
 
 - Continue with: **[6402: Pinecone vs Weaviate](./6402-Pinecone-vs-Weaviate.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[6400: Vector Databases - Quiz](./assessment/QUIZ.md)**
 
 ---
 

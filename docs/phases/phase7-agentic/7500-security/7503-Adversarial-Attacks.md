@@ -725,6 +725,6 @@ Adversarial attacks move an input a hair's width - bounded by epsilon in the L-i
 ## Next Steps
 
 - Continue with: **[7504: Agent Abuse Prevention and Identity Threats](./7504-Agent-Abuse-Prevention-and-Identity-Threats.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[7500: Agent Security - Quiz](./assessment/QUIZ.md)**
 - Return to: **[Module README](./README.md)**
 - Curriculum checkpoint: **[Progress Checkpoint: Phase 7 - Agentic Cognition](../CHECKPOINT.md)**

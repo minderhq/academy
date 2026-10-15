@@ -3,7 +3,7 @@ Document ID: 5201
 Title: "5201: DPO (Direct Preference Optimization) Theory"
 Phase: 5
 Module: 5200
-Last Updated: 2026-09-30
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -538,6 +538,6 @@ DPO's insight is that the reward model RLHF trains is a middleman you can elimin
 ## Next Steps
 
 - Continue with: **[5202: Alignment Orchestration](./5202-Alignment-Orchestration.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[5200: Alignment Methods - Quiz](./assessment/QUIZ.md)**
 - Experiment: **[EXP_5201: DPO](../../../../experiments/EXP_5201_DPO.md)**
 - Practice DPO on top of QLoRA: **[5102: QLoRA Pipelines](../5100-peft/5102-QLoRA-Pipelines.md)**

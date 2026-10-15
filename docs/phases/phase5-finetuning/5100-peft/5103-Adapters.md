@@ -323,7 +323,7 @@ LoRA dominates the PEFT conversation, but it is one point in a larger design spa
 
 - Continue with: **[5105: Model Merging - Task Vectors, TIES, and mergekit](./5105-Model-Merging.md)**
 - Alignment: **[5201: DPO Theory](../5200-alignment/5201-DPO-Theory.md)**
-- Assessment: **[assessment/QUIZ.md](assessment/QUIZ.md)**
+- Assessment: **[5100: PEFT Methods - Quiz](assessment/QUIZ.md)**
 
 ---
 

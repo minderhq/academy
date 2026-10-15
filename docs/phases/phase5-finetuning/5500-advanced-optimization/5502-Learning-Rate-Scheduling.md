@@ -3,7 +3,7 @@ Document ID: 5502
 Title: "5502: Learning Rate Scheduling"
 Phase: 5
 Module: 5500
-Last Updated: 2026-09-30
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -424,4 +424,4 @@ The learning rate is the one hyperparameter that changes meaning mid-run: the va
 ## Next Steps
 
 - Continue with: **[5503: Advanced Optimization Techniques](./5503-Advanced-Techniques.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[5500: Advanced Optimization - Quiz](./assessment/QUIZ.md)**

@@ -702,8 +702,8 @@ class MultiAgentOrchestrator:
 
 ## Assessment
 
-- **Quiz:** [assessment/QUIZ.md](assessment/QUIZ.md) - Test your orchestration knowledge
-- **Practice:** [assessment/PRACTICE.md](assessment/PRACTICE.md) - Implement multi-agent patterns
+- **Quiz:** [7300: Agent Orchestration - Quiz](assessment/QUIZ.md) - Test your orchestration knowledge
+- **Practice:** [7300: Agent Orchestration - Practice](assessment/PRACTICE.md) - Implement multi-agent patterns
 
 ---
 

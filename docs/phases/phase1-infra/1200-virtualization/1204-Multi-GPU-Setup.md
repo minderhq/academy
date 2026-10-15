@@ -531,7 +531,7 @@ Multi-GPU starts from an honest single card - 8 to 16GB of VRAM is enough for 7B
 ## Next Steps
 
 - Next Module: **[1300: Kubernetes for LLM Deployment](../1300-kubernetes/README.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[1200: Virtualization - Quiz](./assessment/QUIZ.md)**
 
 ---
 

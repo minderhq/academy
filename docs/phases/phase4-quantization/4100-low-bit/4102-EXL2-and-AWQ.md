@@ -448,7 +448,7 @@ EXL2 and AWQ are the GPU-only end of the 4-bit world: both land near-fp16 qualit
 ## Next Steps
 
 - Continue with: **[4103: Double Quantization](./4103-Double-Quantization.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[4100: Low-bit Quantization - Quiz](./assessment/QUIZ.md)**
 
 ---
 

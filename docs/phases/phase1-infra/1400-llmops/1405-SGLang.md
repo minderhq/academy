@@ -451,7 +451,7 @@ SGLang is the serving engine whose organizing idea is reuse: RadixAttention keep
 ## Next Steps
 
 - Next Module: **[1500: Monitoring and Observability for LLM Systems](../1500-monitoring/README.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[1400: LLMOps - Quiz](./assessment/QUIZ.md)**
 
 ---
 

@@ -413,7 +413,7 @@ Flash Attention reorganizes the attention computation rather than approximating 
 ## Next Steps
 
 - Continue with: **[3103: SDPA and torch.compile](./3103-SDPA-and-torch-compile.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[3100: Attention - Quiz](./assessment/QUIZ.md)**
 
 ---
 

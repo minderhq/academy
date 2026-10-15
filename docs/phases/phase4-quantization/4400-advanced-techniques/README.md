@@ -1,7 +1,7 @@
 ---
 Document ID: 4400-ADVANCED-TECHNIQUES-README
 Title: "4400: Advanced Quantization Techniques"
-Last Updated: 2026-10-09
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Prerequisites: [4100, 4300]
@@ -65,8 +65,8 @@ See [PREREQUISITES.md](./PREREQUISITES.md) for details.
 
 Validate your knowledge with:
 
-- **[assessment/QUIZ.md](./assessment/QUIZ.md)** - Test your understanding (20 questions, 80% to pass)
-- **[assessment/PRACTICE.md](./assessment/PRACTICE.md)** - Hands-on exercises
+- **[4400: Advanced Quantization Techniques - Quiz](./assessment/QUIZ.md)** - Test your understanding (20 questions, 80% to pass)
+- **[4400: Advanced Quantization Techniques - Practice](./assessment/PRACTICE.md)** - Hands-on exercises
 
 ## Related Topics
 

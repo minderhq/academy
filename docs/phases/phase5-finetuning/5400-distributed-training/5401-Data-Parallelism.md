@@ -3,7 +3,7 @@ Document ID: 5401
 Title: "5401: Data Parallelism"
 Phase: 5
 Module: 5400
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -337,7 +337,7 @@ Data parallelism is the workhorse of multi-GPU training: replicate the model on 
 ## Next Steps
 
 - Continue with: **[5402: Model Parallelism](./5402-Model-Parallelism.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[5400: Distributed Training - Quiz](./assessment/QUIZ.md)**
 
 ---
 

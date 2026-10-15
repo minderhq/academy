@@ -1,7 +1,7 @@
 ---
 Document ID: 4200-KV-CACHE-README
 Title: "4200: KV Cache Optimization"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
@@ -112,7 +112,7 @@ Before starting this module, ensure you have:
 - **Format:** 20 multiple-choice questions
 - **Passing Score:** 80% (16/20)
 - **Topics:** KV cache memory, cache quantization, context windows, speculative decoding
-- **Location:** [assessment/QUIZ.md](./assessment/QUIZ.md)
+- **Location:** [4200: KV Cache & Context Window - Quiz](./assessment/QUIZ.md)
 
 ### Practice Exercises
 - **Format:** Advanced optimization projects
@@ -122,7 +122,7 @@ Before starting this module, ensure you have:
   - Build speculative decoding system
   - Optimize for long contexts
   - Compare cache strategies
-- **Location:** [assessment/PRACTICE.md](./assessment/PRACTICE.md)
+- **Location:** [4200: KV Cache Optimization - Practice](./assessment/PRACTICE.md)
 
 ## Related Modules
 

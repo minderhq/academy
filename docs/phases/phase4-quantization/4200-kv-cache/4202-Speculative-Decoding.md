@@ -508,7 +508,7 @@ Speculative decoding buys speed with a division of labor: a small draft model pr
 ## Next Steps
 
 - Continue with: **[4204: KV-Cache Paging and Prefix Caching](./4204-KV-Cache-Paging-and-Prefix-Caching.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[4200: KV Cache & Context Window - Quiz](./assessment/QUIZ.md)**
 
 ---
 

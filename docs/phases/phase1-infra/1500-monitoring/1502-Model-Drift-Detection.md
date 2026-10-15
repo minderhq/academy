@@ -770,7 +770,7 @@ Models decay silently: as the world's data distribution drifts from training dat
 ## Next Steps
 
 - Continue with: **[1503: LLM Observability](./1503-LLM-Observability.md)**
-- Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
+- Assessment: **[1500: Monitoring - Quiz](./assessment/QUIZ.md)**
 
 ---
 
