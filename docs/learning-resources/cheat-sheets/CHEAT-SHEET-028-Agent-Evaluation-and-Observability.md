@@ -1,7 +1,7 @@
 ---
 Document ID: CHEAT-SHEET-028
 Title: "CHEAT-SHEET-028: Agent Evaluation and Observability"
-Last Updated: 2026-10-11
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Intermediate
 Tags: ['cheatsheet', 'evaluation', 'observability', 'agents', 'benchmarks']
@@ -317,4 +317,4 @@ F5 tripwire aggregate=FIRE golden=FIRE gate=FAIL
 - [Module 7104: Agent Evaluation and Observability](../../phases/phase7-agentic/7100-architecture/7104-Agent-Evaluation-and-Observability.md)
 - [Module 1503: LLM Observability](../../phases/phase1-infra/1500-monitoring/1503-LLM-Observability.md)
 - [Module 7201: Tool Calling](../../phases/phase7-agentic/7200-tools/7201-Tool-Calling.md)
-- [CHEAT-SHEET-011: Evaluation Benchmarking](./CHEAT-SHEET-011-Evaluation-Benchmarking.md)
+- [CHEAT-SHEET-011: Evaluation & Benchmarking](./CHEAT-SHEET-011-Evaluation-Benchmarking.md)

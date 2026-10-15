@@ -275,7 +275,7 @@ Each question maps to the closest lesson for review:
 - **Question 8:** [7403: Vector Memory](../../phases/phase7-agentic/7400-memory/7403-Vector-Memory.md) — episodic memory stored as vectors
 - **Questions 11-12, 23:** [7102: Planning Decomposition](../../phases/phase7-agentic/7100-architecture/7102-Planning-Decomposition.md) — planning agents, task decomposition and chain-of-thought reasoning
 - **Question 14:** [7501: Prompt Injection Defense](../../phases/phase7-agentic/7500-security/7501-Prompt-Injection-Defense.md) — prompt injection attacks and defense
-- **Question 15:** [7204: Timeouts Retries and Rate Limits](../../phases/phase7-agentic/7200-tools/7204-Timeouts-Retries-and-Rate-Limits.md) — tool-use validation at the execution boundary
+- **Question 15:** [7204: Timeouts, Retries, and Rate Limits](../../phases/phase7-agentic/7200-tools/7204-Timeouts-Retries-and-Rate-Limits.md) — tool-use validation at the execution boundary
 - **Questions 20, 30:** [7302: Communication Protocols](../../phases/phase7-agentic/7300-orchestration/7302-Communication-Protocols.md) — agent communication and the coordination challenge
 - **Question 24:** [7105: Reflection and Self-Correction](../../phases/phase7-agentic/7100-architecture/7105-Reflection-and-Self-Correction.md) — self-reflection and correction loops
 - **Question 29:** [7504: Agent Abuse Prevention and Identity Threats](../../phases/phase7-agentic/7500-security/7504-Agent-Abuse-Prevention-and-Identity-Threats.md) — uncontrolled tool execution and abuse prevention

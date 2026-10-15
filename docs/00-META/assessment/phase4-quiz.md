@@ -280,7 +280,7 @@ Each question maps to the closest lesson for review:
 - **Question 12:** [4302: Fake Quantization](../../phases/phase4-quantization/4300-quantization-aware-training/4302-Fake-Quantization.md) — fake quantization during training
 - **Questions 17, 24, 26-27:** [4305: Quantization Configuration](../../phases/phase4-quantization/4300-quantization-aware-training/4305-Quantization-Configuration.md) — calibration data, batch pipelines and dynamic vs static modes
 - **Question 21:** [4406: 1.58-bit Quantization](../../phases/phase4-quantization/4400-advanced-techniques/4406-1.58-bit-Quantization.md) — 1.58-bit ternary weights
-- **Question 22:** [4405: Sparsity Quantization](../../phases/phase4-quantization/4400-advanced-techniques/4405-Sparsity-Quantization.md) — sparsity combined with quantization
+- **Question 22:** [4405: Sparsity + Quantization](../../phases/phase4-quantization/4400-advanced-techniques/4405-Sparsity-Quantization.md) — sparsity combined with quantization
 - **Question 23:** [4104: MXFP4 and NVFP4](../../phases/phase4-quantization/4100-low-bit/4104-MXFP4-and-NVFP4.md) — quantizing very large models with microscaling formats
 - **Question 25:** [4407: Ternary Binary](../../phases/phase4-quantization/4400-advanced-techniques/4407-Ternary-Binary.md) — ternary and binary weights for edge deployment
 

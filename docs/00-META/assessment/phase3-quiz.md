@@ -236,7 +236,7 @@ Each question maps to the closest lesson for review:
 - **Questions 9-10, 22:** [3301: Activation Functions](../../phases/phase3-transformers/3300-decoding/3301-Activation-Functions.md) — GELU, SwiGLU and the feed-forward block
 - **Questions 11, 16, 23:** [3302: Normalization Layers](../../phases/phase3-transformers/3300-decoding/3302-Normalization-Layers.md) — LayerNorm, pre-Norm vs post-Norm ordering and residual flow
 - **Questions 12, 19:** [3401: Encoder-Decoder Architectures](../../phases/phase3-transformers/3400-architectures/3401-Encoder-Decoder-Architectures.md) — cross-attention to encoder outputs
-- **Question 17:** [3404: Beyond Attention SSMs and MLA](../../phases/phase3-transformers/3400-architectures/3404-Beyond-Attention-SSMs-and-MLA.md) — mixture of experts and sparse activation
+- **Question 17:** [3404: Beyond Attention — SSMs and MLA](../../phases/phase3-transformers/3400-architectures/3404-Beyond-Attention-SSMs-and-MLA.md) — mixture of experts and sparse activation
 - **Questions 20, 25:** [3402: Decoder-Only Models (GPT, LLaMA, Mistral)](../../phases/phase3-transformers/3400-architectures/3402-Decoder-Only-Models.md) — GPT-style decoder-only autoregressive generation
 - **Question 24:** [3501: Vision-Language Models](../../phases/phase3-transformers/3500-multimodal/3501-Vision-Language-Models.md) — vision-language models
 

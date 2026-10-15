@@ -1,7 +1,7 @@
 ---
 Document ID: CHEAT-SHEET-057
 Title: "CHEAT-SHEET-057: Browser and Computer-Use Agents - the Grounding Verdict, the Step Budget, and the Sandbox Gate Chain"
-Last Updated: 2026-10-13
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Intermediate
 Tags: ['cheatsheet', 'agents', 'tool-calling', 'security', 'vision']
@@ -97,7 +97,7 @@ The same 50-task suite split by surface: the DOM agent scores 29/31 on forms but
 
 - [7201: Tool Calling](../../phases/phase7-agentic/7200-tools/7201-Tool-Calling.md) - the action space is a tool schema; the GUI verbs register like any other tool.
 - [7203: MCP Hands-On](../../phases/phase7-agentic/7200-tools/7203-MCP-Hands-On.md) - the browser tools this loop drives can arrive over MCP like any other server.
-- [7204: Timeouts, Retries and Rate Limits](../../phases/phase7-agentic/7200-tools/7204-Timeouts-Retries-and-Rate-Limits.md) - the step budget and the retry policy the loop runs under.
+- [7204: Timeouts, Retries, and Rate Limits](../../phases/phase7-agentic/7200-tools/7204-Timeouts-Retries-and-Rate-Limits.md) - the step budget and the retry policy the loop runs under.
 - [7501: Prompt Injection Defense](../../phases/phase7-agentic/7500-security/7501-Prompt-Injection-Defense.md) - the page is untrusted input; the sandbox gates assume the page attacks.
 - [7504: Agent Abuse Prevention and Identity Threats](../../phases/phase7-agentic/7500-security/7504-Agent-Abuse-Prevention-and-Identity-Threats.md) - the abuse surface the gate chain exists to close.
 

@@ -1,7 +1,7 @@
 ---
 Document ID: CHEAT-SHEET-012
 Title: "CHEAT-SHEET-012: LLM Guardrails & Agent Security"
-Last Updated: 2026-10-11
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Tags: ['cheatsheet', 'security', 'prompt-injection', 'pii', 'adversarial']
@@ -145,4 +145,4 @@ verifies live).
 - [Module 7501: Prompt Injection Defense](../../phases/phase7-agentic/7500-security/7501-Prompt-Injection-Defense.md)
 - [Module 7502: PII Redaction & Privacy Filtering](../../phases/phase7-agentic/7500-security/7502-PII-Redaction.md)
 - [TUTORIAL-013: AI Security](../tutorials/TUTORIAL-013-AI-Security.md)
-- [LAB-014: AI Evaluation Safety](../labs/LAB-014-AI-Evaluation-Safety.md)
+- [LAB-014: AI Evaluation & Safety](../labs/LAB-014-AI-Evaluation-Safety.md)

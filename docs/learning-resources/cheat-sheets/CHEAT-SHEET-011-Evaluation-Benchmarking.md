@@ -1,7 +1,7 @@
 ---
 Document ID: CHEAT-SHEET-011
 Title: "CHEAT-SHEET-011: Evaluation & Benchmarking"
-Last Updated: 2026-10-11
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Intermediate
 Tags: ['cheatsheet', 'evaluation', 'benchmarks']
@@ -135,5 +135,5 @@ against a rubric on a fixed scale. Rules that keep it honest:
 
 - [Module 2403: Evaluation Frameworks](../../phases/phase2-foundations/2400-pretraining/2403-Evaluation-Frameworks.md)
 - [TUTORIAL-010: Model Evaluation](../tutorials/TUTORIAL-010-Model-Evaluation.md)
-- [LAB-014: AI Evaluation Safety](../labs/LAB-014-AI-Evaluation-Safety.md)
+- [LAB-014: AI Evaluation & Safety](../labs/LAB-014-AI-Evaluation-Safety.md)
 - [CHEAT-SHEET-008: Reasoning Models & Test-Time Compute](./CHEAT-SHEET-008-Reasoning-Models.md)

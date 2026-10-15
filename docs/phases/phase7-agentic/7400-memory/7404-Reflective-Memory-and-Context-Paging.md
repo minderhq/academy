@@ -443,7 +443,7 @@ The stacks fail differently and the differences are exactly one mechanism each. 
 - [7101: ReAct (Reasoning + Acting) Loop System](../7100-architecture/7101-ReAct-Loop-System.md) - the actor whose context the paging policy manages
 - [7104: Agent Evaluation and Observability](../7100-architecture/7104-Agent-Evaluation-and-Observability.md) - the evaluator role in the reflexion loop, and how to measure whether memory helps at all
 - [6102: Semantic Similarity](../../phase6-rag/6100-vector/6102-Semantic-Similarity.md) - the cosine similarity every ranking and probe score in this lesson runs on
-- [6305: LongLoRA, Ring Attention and Context Distillation](../../phase6-rag/6300-context/6305-LongLoRA-Ring-Attention-and-Context-Distillation.md) - the training-side cousin: those methods extend the window itself, paging manages what is already in it
+- [6305: LongLoRA, Ring Attention, and Context Distillation](../../phase6-rag/6300-context/6305-LongLoRA-Ring-Attention-and-Context-Distillation.md) - the training-side cousin: those methods extend the window itself, paging manages what is already in it
 - [CHEAT-SHEET-025: Agent Memory Systems](../../../learning-resources/cheat-sheets/CHEAT-SHEET-025-Agent-Memory-Systems.md)
 
 ### Primary Sources

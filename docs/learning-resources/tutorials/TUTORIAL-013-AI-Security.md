@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-013
 Title: "TUTORIAL-013: AI Security and Safety"
-Last Updated: 2026-10-13
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -962,7 +962,7 @@ print(f"URL safe: {is_safe}, Reason: {reason}")
 
 - [TUTORIAL-004: Monitoring](TUTORIAL-004-Monitoring.md)
 - [LAB-013: Advanced Function Calling](../labs/LAB-013-Advanced-Function-Calling.md)
-- [LAB-014: AI Evaluation Safety](../labs/LAB-014-AI-Evaluation-Safety.md)
+- [LAB-014: AI Evaluation & Safety](../labs/LAB-014-AI-Evaluation-Safety.md)
 - [7501: Prompt Injection Defense](../../phases/phase7-agentic/7500-security/7501-Prompt-Injection-Defense.md)
 
 ---
@@ -970,7 +970,7 @@ print(f"URL safe: {is_safe}, Reason: {reason}")
 ## Next Steps
 
 - Hands-on: **[7501: Prompt Injection Defense](../../phases/phase7-agentic/7500-security/7501-Prompt-Injection-Defense.md)**
-- Practice: **[LAB-014: AI Evaluation Safety](../labs/LAB-014-AI-Evaluation-Safety.md)**
+- Practice: **[LAB-014: AI Evaluation & Safety](../labs/LAB-014-AI-Evaluation-Safety.md)**
 
 - **[LLM Guardrails & Agent Security](../cheat-sheets/CHEAT-SHEET-012-LLM-Guardrails-Agent-Security.md)** - The guardrail map from input filter to signed agent bus, Presidio operator vocabulary, and the window-seam rate-limit trap.
 - **[Agent Security](../cheat-sheets/CHEAT-SHEET-026-Agent-Security.md)** - The five-layer defense stack, the regex-floor and NER-ceiling PII pipeline, the HMAC-nonce identity contract, and the deterministic-testing ledger.

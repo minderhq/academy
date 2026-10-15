@@ -558,7 +558,7 @@ for Inductor codegen, no Triton, no CUDA.
 
 - [3101: Self-Attention Deep Dive](./3101-Self-Attention-DeepDive.md) - the math this lesson executes
 - [3102: Flash Attention](./3102-Flash-Attention.md) - the IO-aware algorithm behind the `FLASH_ATTENTION` backend
-- [3404: Beyond Attention - SSMs and MLA](../3400-architectures/3404-Beyond-Attention-SSMs-and-MLA.md) - the models that need `create_block_mask` and long-context tricks
+- [3404: Beyond Attention — SSMs and MLA](../3400-architectures/3404-Beyond-Attention-SSMs-and-MLA.md) - the models that need `create_block_mask` and long-context tricks
 - [1405: SGLang RadixAttention Serving](../../phase1-infra/1400-llmops/1405-SGLang.md) - production schedulers that keep shapes static for you
 
 ### Primary Sources
