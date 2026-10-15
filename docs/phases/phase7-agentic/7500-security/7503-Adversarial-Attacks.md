@@ -3,7 +3,7 @@ Document ID: 7503
 Title: "7503: Adversarial Attacks & Defense"
 Phase: 7
 Module: 7500
-Last Updated: 2026-09-30
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -724,6 +724,7 @@ Adversarial attacks move an input a hair's width - bounded by epsilon in the L-i
 
 ## Next Steps
 
+- Continue with: **[7504: Agent Abuse Prevention and Identity Threats](./7504-Agent-Abuse-Prevention-and-Identity-Threats.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 - Return to: **[Module README](./README.md)**
-- Curriculum checkpoint: **[Progress Checkpoint: Phase 7 - Agentic Cognition](../CHECKPOINT.md)** — this lesson closes Module 7500 and Phase 7, the final phase of the curriculum.
+- Curriculum checkpoint: **[Progress Checkpoint: Phase 7 - Agentic Cognition](../CHECKPOINT.md)**

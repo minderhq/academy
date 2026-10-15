@@ -3,7 +3,7 @@ Document ID: 6203
 Title: "6203: Advanced Retrieval Techniques"
 Phase: 6
 Module: 6200
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -299,6 +299,7 @@ Single-stage dense retrieval leaves accuracy on the table, and this lesson is th
 
 ## Next Steps
 
+- Continue with: **[6204: Diversification and Boosting](./6204-Diversification-and-Boosting.md)**
 - Deepen: **[6301: Neo4j and Knowledge Graphs](../6300-context/6301-Neo4j-and-Knowledge-Graphs.md)**
 - Alternative: **[6302: CAG Long Context Architectures](../6300-context/6302-CAG-Long-Context-Architectures.md)**
 - Assessment: **[assessment/QUIZ.md](assessment/QUIZ.md)**

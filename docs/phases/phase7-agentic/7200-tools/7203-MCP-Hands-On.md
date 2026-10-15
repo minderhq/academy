@@ -3,7 +3,7 @@ Document ID: 7203
 Title: "7203: MCP Hands-On — Tool Servers and Clients"
 Phase: 7
 Module: 7200
-Last Updated: 2026-10-05
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 4 hours
@@ -408,6 +408,7 @@ The v1 import path no longer exists in v2: importing `mcp.server.fastmcp` raises
 
 ## Next Steps
 
+- Continue with: **[7204: Timeouts, Retries, and Rate Limits](./7204-Timeouts-Retries-and-Rate-Limits.md)**
 - [7201: Tool Calling](./7201-Tool-Calling.md) — the per-provider round trip MCP standardizes; start here if the schema-and-dispatch contract above felt unfamiliar
 - [7302: Communication Protocols](../7300-orchestration/7302-Communication-Protocols.md) — where MCP stops (tool layer) and agent-to-agent protocols begin
 - [7500: AI Agent Security](../7500-security/README.md) — prompt injection and tool-safety defenses for the failure modes this lesson named

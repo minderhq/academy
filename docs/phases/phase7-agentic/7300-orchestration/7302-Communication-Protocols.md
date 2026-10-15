@@ -3,7 +3,7 @@ Document ID: 7302
 Title: "7302: Multi-Agent Communication Protocols"
 Phase: 7
 Module: 7300
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -389,7 +389,7 @@ A multi-agent system is only as reliable as the contracts between its agents: th
 
 ## Next Steps
 
-- Frameworks: **[7303: Framework Comparison](./guides/7303-Framework-Comparison.md)**
+- Continue with: **[7303: Multi-Agent Framework Comparison](./guides/7303-Framework-Comparison.md)**
 - Memory: **[7401: Long-term Memory](../7400-memory/7401-Long-term-Memory.md)**
 - Assessment: **[assessment/QUIZ.md](assessment/QUIZ.md)**
 
