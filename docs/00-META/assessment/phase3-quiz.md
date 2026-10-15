@@ -227,7 +227,7 @@ Tags: ['assessment', 'quiz', 'transformers']
 
 Each question maps to the closest lesson for review:
 
-- **Questions 1-2, 4, 21:** [3101: Self-Attention DeepDive](../../phases/phase3-transformers/3100-attention/3101-Self-Attention-DeepDive.md) — the attention core, multi-head splits, causal masking and head dimensions
+- **Questions 1-2, 4, 21:** [3101: Self-Attention Deep Dive](../../phases/phase3-transformers/3100-attention/3101-Self-Attention-DeepDive.md) — the attention core, multi-head splits, causal masking and head dimensions
 - **Questions 3, 13, 18:** [3201: Rotary Positional Embeddings (RoPE)](../../phases/phase3-transformers/3200-embeddings/3201-Rotary-Positional-Embeddings-RoPE.md) — rotary embeddings, ALiBi biases and length extrapolation
 - **Question 5:** [3102: Flash Attention](../../phases/phase3-transformers/3100-attention/3102-Flash-Attention.md) — Flash Attention and its memory efficiency
 - **Question 6:** [3103: SDPA and torch compile](../../phases/phase3-transformers/3100-attention/3103-SDPA-and-torch-compile.md) — the scaled dot-product attention formula

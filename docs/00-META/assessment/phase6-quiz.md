@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE6-QUIZ
 Title: "Phase 6: Data Nexus (RAG) Quiz"
-Last Updated: 2026-10-13
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Tags: ['assessment', 'quiz', 'rag']
@@ -276,7 +276,7 @@ Each question maps to the closest lesson for review:
 - **Questions 10-12, 30:** [6301: Neo4j and Knowledge Graphs](../../phases/phase6-rag/6300-context/6301-Neo4j-and-Knowledge-Graphs.md) — GraphRAG over entities and relations in Neo4j
 - **Questions 13-15, 22, 26, 28-29:** [6203: Advanced Retrieval](../../phases/phase6-rag/6200-retrieval/6203-Advanced-Retrieval.md) — chunking, chunk overlap, multi-vector, query expansion, parent-document and recursive retrieval
 - **Question 19:** [6306: Context Window Economics](../../phases/phase6-rag/6300-context/6306-Context-Window-Economics.md) — the context window as a priced input length
-- **Question 20:** [6302: CAG Long Context Architectures](../../phases/phase6-rag/6300-context/6302-CAG-Long-Context-Architectures.md) — long-context RAG and relevance decay
+- **Question 20:** [6302: CAG - Context Augmented Generation and Long Context Architectures](../../phases/phase6-rag/6300-context/6302-CAG-Long-Context-Architectures.md) — long-context RAG and relevance decay
 
 ---
 

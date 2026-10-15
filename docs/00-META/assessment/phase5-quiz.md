@@ -270,7 +270,7 @@ Each question maps to the closest lesson for review:
 - **Questions 1-2, 4, 11-13:** [5101: LoRA (Low-Rank Adaptation) Logic](../../phases/phase5-finetuning/5100-peft/5101-LoRA-Logic.md) — the rank hypothesis, alpha scaling, rank budgets and target modules
 - **Questions 3, 22, 30:** [5102: QLoRA Pipelines](../../phases/phase5-finetuning/5100-peft/5102-QLoRA-Pipelines.md) — the 4-bit quantized base, the memory footprint and larger models on the same GPU
 - **Questions 5-6:** [5201: DPO (Direct Preference Optimization) Theory](../../phases/phase5-finetuning/5200-alignment/5201-DPO-Theory.md) — DPO and preference optimization without a reward model
-- **Questions 7-8:** [5203: RLHF](../../phases/phase5-finetuning/5200-alignment/5203-RLHF.md) — RLHF from human feedback and the reward models that score it
+- **Questions 7-8:** [5203: Reinforcement Learning from Human Feedback](../../phases/phase5-finetuning/5200-alignment/5203-RLHF.md) — RLHF from human feedback and the reward models that score it
 - **Question 9:** [5301: Knowledge Distillation](../../phases/phase5-finetuning/5300-synthetic/5301-Knowledge-Distillation.md) — knowledge distillation from a teacher
 - **Questions 10, 27-29:** [5103: Adapters](../../phases/phase5-finetuning/5100-peft/5103-Adapters.md) — the PEFT family: adapter layers, prompt tuning and prefix tuning
 - **Questions 14, 16-17:** [5304: Self-Instruct and Model Collapse](../../phases/phase5-finetuning/5300-synthetic/5304-Self-Instruct-and-Model-Collapse.md) — instruction tuning and synthetic data generation

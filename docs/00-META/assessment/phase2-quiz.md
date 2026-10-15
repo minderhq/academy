@@ -187,10 +187,10 @@ Tags: ['assessment', 'quiz', 'pytorch']
 
 Each question maps to the closest lesson for review:
 
-- **Questions 1, 5, 11:** [2102: Backpropagation and Derivatives](../../phases/phase2-foundations/2100-calculus/2102-Backpropagation-and-Derivatives.md) — the backward pass, the chain rule and vanishing gradients
+- **Questions 1, 5, 11:** [2102: Backpropagation and Automatic Differentiation](../../phases/phase2-foundations/2100-calculus/2102-Backpropagation-and-Derivatives.md) — the backward pass, the chain rule and vanishing gradients
 - **Questions 2, 4:** [2201: PyTorch Computational Graphs](../../phases/phase2-foundations/2200-frameworks/2201-PyTorch-Computational-Graphs.md) — computational graphs and autograd
 - **Questions 3, 8-9:** [2101: Tensor Algebra](../../phases/phase2-foundations/2100-calculus/2101-Tensor-Algebra.md) — einsum notation, tensors and broadcasting
-- **Questions 6, 13:** [2202: TensorFlow XLA Compilers](../../phases/phase2-foundations/2200-frameworks/2202-TensorFlow-XLA-Compilers.md) — XLA and JIT compilation
+- **Questions 6, 13:** [2202: TensorFlow XLA and Compiler Optimizations](../../phases/phase2-foundations/2200-frameworks/2202-TensorFlow-XLA-Compilers.md) — XLA and JIT compilation
 - **Questions 7, 12:** [2203: CUDA Kernel Programming](../../phases/phase2-foundations/2200-frameworks/2203-CUDA-Kernel-Programming.md) — the CUDA platform and writing kernels
 - **Question 10:** [2402: Large-Scale Training](../../phases/phase2-foundations/2400-pretraining/2402-Large-Scale-Training.md) — gradient checkpointing and its memory-for-compute trade
 - **Questions 14-15:** [2103: Loss Landscape Geometry](../../phases/phase2-foundations/2100-calculus/2103-Loss-Landscape-Geometry.md) — loss functions and momentum moving over the loss surface
