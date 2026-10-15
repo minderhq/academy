@@ -3,7 +3,7 @@ Document ID: 2101
 Title: "2101: Tensor Algebra and Linear Algebra for AI"
 Phase: 2
 Module: 2100
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 4 hours
@@ -488,4 +488,4 @@ Tensor algebra is the mathematical foundation everything else in deep learning s
 - [2201: PyTorch Computational Graphs and Dynamic Execution](../2200-frameworks/2201-PyTorch-Computational-Graphs.md)
 - [2203: CUDA Kernel Programming and GPU Architecture](../2200-frameworks/2203-CUDA-Kernel-Programming.md)
 
-**Experiment:** [EXP-2101: Tensor Algebra](../../../../experiments/EXP_2101_TENSOR_ALGEBRA.md)
+- Experiment: **[EXP-2101: Tensor Algebra](../../../../experiments/EXP_2101_TENSOR_ALGEBRA.md)**

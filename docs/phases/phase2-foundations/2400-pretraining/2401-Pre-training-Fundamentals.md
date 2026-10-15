@@ -1247,6 +1247,6 @@ Key takeaways:
 - Practical: **[LAB-006: Train a Small Language Model from Scratch](../../../learning-resources/labs/LAB-006-Train-Model-From-Scratch.md)**
 - Assessment: **[2400: Pretraining Fundamentals - Quiz](./assessment/QUIZ.md)** and **[2400: Pre-training - Practice](./assessment/PRACTICE.md)**
 
-**Related:** [3202: Tokenizer Sciences - BPE, SentencePiece, and Tiktoken](../../phase3-transformers/3200-embeddings/3202-Tokenizer-Sciences.md)
+- Related: **[3202: Tokenizer Sciences - BPE, SentencePiece, and Tiktoken](../../phase3-transformers/3200-embeddings/3202-Tokenizer-Sciences.md)**
 
 **Experiment:** [EXP_3202: Tokenizer Performance Experiments](../../../../experiments/EXP_3202_TOKENIZER.md) (nearest-relevant - no EXP_24xx exists; this lesson trains a toy BPE tokenizer in Part 4, and EXP_3202 measures tokenizer performance trade-offs in depth)

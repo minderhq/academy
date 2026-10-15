@@ -3,7 +3,7 @@ Document ID: 4201
 Title: "4201: Context Window Physics and OOM Prevention"
 Phase: 4
 Module: 4200
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -494,4 +494,4 @@ The KV cache is the physics of the context window: memory grows linearly with se
 - [4101: GGUF Physics](../4100-low-bit/4101-GGUF-Physics.md)
 - [3102: Flash Attention](../../phase3-transformers/3100-attention/3102-Flash-Attention.md)
 
-**Experiment Template:** [EXP_4201: Context Window](../../../../experiments/EXP_4201_CONTEXT_WINDOW.md)
+- Experiment Template: **[EXP_4201: Context Window](../../../../experiments/EXP_4201_CONTEXT_WINDOW.md)**

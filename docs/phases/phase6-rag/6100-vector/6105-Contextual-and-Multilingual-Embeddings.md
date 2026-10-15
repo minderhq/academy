@@ -3,7 +3,7 @@ Document ID: 6105
 Title: "6105: Contextual and Multilingual Embeddings - Anisotropy, Alignment, and the Shared Space"
 Phase: 6
 Module: 6100
-Last Updated: 2026-10-06
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -336,6 +336,6 @@ A contextual model emits one vector per token use, not one per type: the static 
 ## Next Steps
 
 - **Next Module:** [6200: Retrieval Strategies](../6200-retrieval/README.md) — hybrid fusion and the query-side levers the shared (or unshared) space feeds
-- **Continue with:** [6201: Hybrid Search - Combining Keyword and Semantic Search](../6200-retrieval/6201-Hybrid-Search.md)
+- Continue with: **[6201: Hybrid Search - Combining Keyword and Semantic Search](../6200-retrieval/6201-Hybrid-Search.md)**
 - **Assessment:** [QUIZ](./assessment/QUIZ.md) — question 17 is this lesson's, and the contextual/multilingual review bullet now points here
 - **Hands-on:** run the Section 4 probe battery (bands + linear language probe) on your own multilingual embedder before trusting it; drop and restore the e5 prefixes and measure what the contract is worth

@@ -3,7 +3,7 @@ Document ID: 3201
 Title: "3201: Rotary Positional Embeddings (RoPE)"
 Phase: 3
 Module: 3200
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -431,4 +431,4 @@ Transformers are permutation invariant, so position must be injected explicitly 
 - [3202: Tokenizer Sciences](./3202-Tokenizer-Sciences.md)
 - [4201: Context Window](../../phase4-quantization/4200-kv-cache/4201-Context-Window-Physics.md)
 
-**Experiment Template:** [EXP_3201: RoPE](../../../../experiments/EXP_3201_ROPE.md)
+- Experiment Template: **[EXP_3201: RoPE](../../../../experiments/EXP_3201_ROPE.md)**

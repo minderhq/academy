@@ -3,7 +3,7 @@ Document ID: 6204
 Title: "6204: Diversification and Boosting"
 Phase: 6
 Module: 6200
-Last Updated: 2026-10-06
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -322,6 +322,6 @@ Relevance ranking maximizes relevance, and one fact five times is the optimum. D
 ## Next Steps
 
 - **Next Module:** [6300: Context Management](../6300-context/README.md) — windowing, caching, and long-context architectures for the retrieved evidence
-- **Continue with:** [6301: Neo4j and Knowledge Graphs](../6300-context/6301-Neo4j-and-Knowledge-Graphs.md)
+- Continue with: **[6301: Neo4j and Knowledge Graphs](../6300-context/6301-Neo4j-and-Knowledge-Graphs.md)**
 - **Assessment:** [QUIZ](./assessment/QUIZ.md) — questions 9 and 17 are this lesson's, now taught where they live
 - **Hands-on:** sweep λ on your own retrieval log, label distinct facts for one query type, and add an ILS budget alongside your NDCG gate

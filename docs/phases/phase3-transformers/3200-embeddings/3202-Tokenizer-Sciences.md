@@ -3,7 +3,7 @@ Document ID: 3202
 Title: "3202: Tokenizer Sciences - BPE, SentencePiece, and Tiktoken"
 Phase: 3
 Module: 3200
-Last Updated: 2026-10-14
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -538,4 +538,4 @@ The tokenizer is the model's first and last mile: raw text flows through normali
 - [3101: Self-Attention](../3100-attention/3101-Self-Attention-DeepDive.md)
 - [6201: Hybrid Search](../../phase6-rag/6200-retrieval/6201-Hybrid-Search.md)
 
-**Experiment Template:** [EXP_3202: Tokenizer](../../../../experiments/EXP_3202_TOKENIZER.md)
+- Experiment Template: **[EXP_3202: Tokenizer](../../../../experiments/EXP_3202_TOKENIZER.md)**
