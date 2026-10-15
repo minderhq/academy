@@ -1,7 +1,7 @@
 ---
 Document ID: 2400-PREREQUISITES
 Title: "2400: LLM Pretraining - Prerequisites"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Tags: ['pretraining', 'prerequisites', 'preparation']
@@ -556,7 +556,7 @@ Use this checklist to verify you're ready:
 
 1. **Gaps found?** Work the fix plans in [Common Gaps](#common-gaps), then re-run the [Self-Assessment](#self-assessment).
 2. **Ready?** Start the module with [2401: Pre-training Fundamentals](./2401-Pre-training-Fundamentals.md).
-3. **After the module:** take the [2400: Pretraining Fundamentals - Quiz](./assessment/QUIZ.md), then the [2400: Pre-training - Practice](./assessment/PRACTICE.md).
+3. **After the module:** take the [2400: Pretraining Fundamentals - Quiz](./assessment/QUIZ.md), then the [2400: Pretraining - Practice](./assessment/PRACTICE.md).
 
 **Related:** [2400: LLM Pretraining](./README.md) · [2201: PyTorch Computational Graphs and Dynamic Execution](../2200-frameworks/2201-PyTorch-Computational-Graphs.md) · [2401: Pre-training Fundamentals](./2401-Pre-training-Fundamentals.md)
 

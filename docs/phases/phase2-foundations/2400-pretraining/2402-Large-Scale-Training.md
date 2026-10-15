@@ -988,7 +988,7 @@ resilience: "atomic writes + rotation + resumability is not optional at scale"
 
 - Practical: **[LAB-006: Train a Small Language Model from Scratch](../../../learning-resources/labs/LAB-006-Train-Model-From-Scratch.md)**
 
-- Assessment: **[2400: Pretraining Fundamentals - Quiz](./assessment/QUIZ.md)** and **[2400: Pre-training - Practice](./assessment/PRACTICE.md)**
+- Assessment: **[2400: Pretraining Fundamentals - Quiz](./assessment/QUIZ.md)** and **[2400: Pretraining - Practice](./assessment/PRACTICE.md)**
 
 **Related:** [5404: Distributed Optimization](../../phase5-finetuning/5400-distributed-training/5404-Distributed-Optimization.md) — the same sharding and offload ideas applied to fine-tuning.
 

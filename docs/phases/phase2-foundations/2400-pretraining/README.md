@@ -105,7 +105,7 @@ Each lesson is written around runnable code — work through the examples, don't
 3. **[2402: Large-Scale Training for Language Models](./2402-Large-Scale-Training.md)** — scale the loop across devices
 4. **[2403: Evaluation Frameworks for Language Models](./2403-Evaluation-Frameworks.md)** — measure what you trained
 5. **Check understanding** with the [2400: Pretraining Fundamentals - Quiz](./assessment/QUIZ.md)
-6. **Apply it** with the [2400: Pre-training - Practice](./assessment/PRACTICE.md) exercises
+6. **Apply it** with the [2400: Pretraining - Practice](./assessment/PRACTICE.md) exercises
 
 ---
 
@@ -141,7 +141,7 @@ Each lesson is written around runnable code — work through the examples, don't
   - Implement distributed training
   - Create evaluation framework
   - Train and evaluate a small LLM
-- **Location:** [2400: Pre-training - Practice](./assessment/PRACTICE.md)
+- **Location:** [2400: Pretraining - Practice](./assessment/PRACTICE.md)
 
 ---
 
