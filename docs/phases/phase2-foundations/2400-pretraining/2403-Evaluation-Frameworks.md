@@ -1039,7 +1039,7 @@ evaluation_checklist:
 
 ## Next Steps
 
-- **Next Module:** [3100: Attention Architectures](../../phase3-transformers/3100-attention/README.md) — the architecture layer underneath every model this lesson measured
+- Next Module: **[3100: Attention Architectures](../../phase3-transformers/3100-attention/README.md)** — the architecture layer underneath every model this lesson measured
 - Practical: **[LAB-014: AI Evaluation & Safety](../../../learning-resources/labs/LAB-014-AI-Evaluation-Safety.md)**
 - Assessment: **[2400: Pretraining Fundamentals - Quiz](./assessment/QUIZ.md)** and **[2400: Pretraining - Practice](./assessment/PRACTICE.md)**
 

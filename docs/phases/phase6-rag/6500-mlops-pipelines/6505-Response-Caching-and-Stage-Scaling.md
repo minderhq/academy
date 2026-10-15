@@ -3,7 +3,7 @@ Document ID: 6505
 Title: "6505: Response Caching and Stage Scaling"
 Phase: 6
 Module: 6500
-Last Updated: 2026-10-06
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -457,7 +457,7 @@ Scaling is the second half of the bill, and its answer is per-stage: two policie
 
 ## Next Steps
 
-- **Next Module:** [7100: Agent Architecture](../../phase7-agentic/7100-architecture/README.md) — the tool calls agents make inherit every cache and queue this lesson prices
+- Next Module: **[7100: Agent Architecture](../../phase7-agentic/7100-architecture/README.md)** — the tool calls agents make inherit every cache and queue this lesson prices
 - **Continue with:** [7101: ReAct Loop System](../../phase7-agentic/7100-architecture/7101-ReAct-Loop-System.md) — the loop whose tool-call volume the caches and stage signals absorb
 - **Assessment:** [QUIZ](./assessment/QUIZ.md) — questions 8 and 16 are this lesson's, and the caching and scaling review bullets now point here
 - **Hands-on:** re-run the stage-scaling fence with your own traffic curve and replica costs, then key a response cache on (query, index_version) and watch the re-embedding cutover clear it — the re-bill you observe is Section 3's arithmetic at production size
