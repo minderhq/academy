@@ -3,7 +3,7 @@ Document ID: 6502
 Title: "6502: CI/CD for Machine Learning"
 Phase: 6
 Module: 6500
-Last Updated: 2026-10-14
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -513,6 +513,7 @@ ML CI/CD is a software pipeline with two extra failure modes: the artifact is pr
 
 ## Next Steps
 
+- Continue with: **[6503: Model Registry](./6503-Model-Registry.md)**
 - The registry these jobs promote into: **[6503: Model Registry](6503-Model-Registry.md)**
 - Assessment: **[assessment/PRACTICE.md](./assessment/PRACTICE.md)** and **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 

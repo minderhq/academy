@@ -3,7 +3,7 @@ Document ID: 6501
 Title: "6501: ML Model Lifecycle Management"
 Phase: 6
 Module: 6500
-Last Updated: 2026-10-14
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -377,6 +377,7 @@ A model's life does not end at the first deploy - it begins there, and this less
 
 ## Next Steps
 
+- Continue with: **[6502: CI/CD for Machine Learning](./6502-CI-CD-for-ML.md)**
 - The pipeline that automates these stage transitions: **[6502: CI/CD for Machine Learning](6502-CI-CD-for-ML.md)**
 - Assessment: **[assessment/PRACTICE.md](./assessment/PRACTICE.md)** and **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 
