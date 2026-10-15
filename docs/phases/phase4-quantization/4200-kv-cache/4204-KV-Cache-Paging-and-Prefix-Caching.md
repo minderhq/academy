@@ -3,7 +3,7 @@ Document ID: 4204
 Title: "4204: KV-Cache Paging and Prefix Caching"
 Phase: 4
 Module: 4200
-Last Updated: 2026-10-07
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -215,6 +215,7 @@ With 8 decodes in flight and a 512-token budget, the long prompt enters as five 
 
 ## Next Steps
 
+- Next Module: **[4300: Quantization Aware Training (QAT)](../4300-quantization-aware-training/README.md)**
 - [4201: Context Window Physics and OOM Prevention](./4201-Context-Window-Physics.md) - the per-token formula and the OOM budget this lesson's ledger instantiates
 - [4203: Context Window Optimization Guide](./guides/4203-Context-Window-Optimization.md) - the implementation cookbook: quantization, sliding windows, and context chunking
 - [1402: vLLM and TGI](../../phase1-infra/1400-llmops/1402-vLLM-and-TGI.md) - the engine that ships this page manager, and the flags that configure it

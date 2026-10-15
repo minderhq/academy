@@ -3,7 +3,7 @@ Document ID: 4407
 Title: "4407: Ternary & Binary Networks"
 Phase: 4
 Module: 4400
-Last Updated: 2026-09-30
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -403,5 +403,6 @@ Binary and ternary networks push past bit-grid quantization into codebook-free a
 
 ## Next Steps
 
+- Phase 4 Complete! Next: **[Phase 5: Fine-Tuning & Alignment](../../phase5-finetuning/README.md)**
 - Continue with: **[4408: Quantizing for Production](./guides/4408-Quantizing-for-Production.md)**
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**

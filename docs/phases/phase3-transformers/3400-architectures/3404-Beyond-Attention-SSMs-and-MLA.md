@@ -3,7 +3,7 @@ Document ID: 3404
 Title: "3404: Beyond Attention — SSMs and MLA"
 Phase: 3
 Module: 3400
-Last Updated: 2026-10-06
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -510,6 +510,7 @@ you need."
 
 ## Next Steps
 
+- Next Module: **[3500: Multimodal Models](../3500-multimodal/README.md)**
 - [4200: KV Cache](../../phase4-quantization/4200-kv-cache/README.md) — the cache-side
   toolbox (quantization, paging, eviction) that applies to whatever mixer you kept.
 - [3300: Decoding](../../phase3-transformers/3300-decoding/README.md) — decode-loop

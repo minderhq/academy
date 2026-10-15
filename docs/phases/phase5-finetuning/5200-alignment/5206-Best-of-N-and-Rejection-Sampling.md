@@ -3,7 +3,7 @@ Document ID: 5206
 Title: "5206: Best-of-N and Rejection Sampling"
 Phase: 5
 Module: 5200
-Last Updated: 2026-10-06
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -511,6 +511,7 @@ Best-of-N is inference-time alignment: N draws, one reward-model argmax, zero we
 
 ## Next Steps
 
+- Next Module: **[5300: Synthetic Data & Advanced Training](../5300-synthetic/README.md)**
 - Continue with: **[5204: Preference Dataset Creation](./5204-Preference-Dataset-Creation.md)** for the preference-data layer beneath the reward model every config in the campaign ledger shares
 - Assessment: **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 
