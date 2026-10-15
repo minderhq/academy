@@ -3,7 +3,7 @@ Document ID: 7204
 Title: "7204: Timeouts, Retries, and Rate Limits"
 Phase: 7
 Module: 7200
-Last Updated: 2026-10-06
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 4 hours
@@ -313,6 +313,6 @@ Same timeline, two agents. The unguarded one spends all 30 attempts and eats all
 
 ## Next Steps
 
-- **Next Module:** [QUIZ](./assessment/QUIZ.md) — question 17's answer is now a set of fences: the hung read bounded at +2.0s, the keyed ledger at 5 receipts, the jittered herd, the 5.0s bucket, and the breaker's OPEN.
+- **Assessment:** [QUIZ](./assessment/QUIZ.md) — question 17's answer is now a set of fences: the hung read bounded at +2.0s, the keyed ledger at 5 receipts, the jittered herd, the 5.0s bucket, and the breaker's OPEN.
 - **Continue with:** [7300: Multi-Agent Orchestration](../7300-orchestration/README.md) — where the same discipline meets message buses, deadlock analysis, and human gates (7304).
-- **Assessment:** extend the fences — retune the breaker's cooldown until the half-open probe closes on the first try, and price the retry budget the 400-wasting client burns.
+- **Hands-on:** extend the fences — retune the breaker's cooldown until the half-open probe closes on the first try, and price the retry budget the 400-wasting client burns.
