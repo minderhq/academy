@@ -197,7 +197,7 @@ Three facts come out of the fence. First, the suite's real decisions are robust 
 
 ## The Pass at k Fix
 
-Pinning to T=0 for CI answers the flapping gate, and the previous section shows why it cannot be the whole answer: the greedy path is one point in the output distribution, and it is not the point attackers sample from. The honest middle is what [7104's caveat](../7100-architecture/7104-Agent-Evaluation-and-Observability.md) already named — score pass@k over repeats. The estimator is Codex's ([Chen et al., arXiv 2107.03374](https://arxiv.org/abs/2107.03374), the same unbiased pass@k [2403's evaluation lesson](../../phase1-infra/1400-llmops/1402-vLLM-and-TGI.md) era tooling standardizes), and its sampling noise obeys a law the fence can verify:
+Pinning to T=0 for CI answers the flapping gate, and the previous section shows why it cannot be the whole answer: the greedy path is one point in the output distribution, and it is not the point attackers sample from. The honest middle is what [7104's caveat](../7100-architecture/7104-Agent-Evaluation-and-Observability.md) already named — score pass@k over repeats. The estimator is Codex's ([Chen et al., arXiv 2107.03374](https://arxiv.org/abs/2107.03374), the same unbiased pass@k [2403's evaluation lesson](../../phase2-foundations/2400-pretraining/2403-Evaluation-Frameworks.md) era tooling standardizes), and its sampling noise obeys a law the fence can verify:
 
 ```python
 import math
