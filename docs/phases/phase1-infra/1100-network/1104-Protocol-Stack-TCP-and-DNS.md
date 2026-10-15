@@ -3,7 +3,7 @@ Document ID: 1104
 Title: "1104: The Protocol Stack - OSI Layers, TCP, and DNS"
 Phase: 1
 Module: 1100
-Last Updated: 2026-10-07
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 2 hours
@@ -253,6 +253,7 @@ The ordering is strict - A (640 ms, 88 percent transport) over B (164 ms, 51 per
 
 ## Next Steps
 
+- Next Module: **[1200: Virtualization and GPU Passthrough](../1200-virtualization/README.md)**
 - [1103: Jumbo Frames and MTU Optimization](./1103-Jumbo-Frames-and-MTU.md) - the MTU boundary this lesson's segment counts assumed
 - [1201: Proxmox Hypervisor Standard Operating Procedures](../1200-virtualization/1201-Proxmox-Hypervisor-SOP.md) - the next module: virtualizing the machines this traffic runs between
 - [1402: vLLM and TGI](../1400-llmops/1402-vLLM-and-TGI.md) - the serving endpoint whose ports and handshakes this lesson priced
