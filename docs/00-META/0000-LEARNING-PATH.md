@@ -1,7 +1,7 @@
 ---
 Document ID: 0000
 Title: "Minder Academy Learning Path"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Beginner
 Tags: ['roadmap', 'guide', 'llm']
@@ -32,7 +32,7 @@ Tags: ['roadmap', 'guide', 'llm']
 
 ## Complete AI/LLM Infrastructure Curriculum - From Zero to Hero
 
-**Last Updated:** 2026-10-08
+**Last Updated:** 2026-10-15
 
 **Estimated Time:** 6-12 months (part-time) - 48 study weeks + capstone
 
@@ -894,7 +894,7 @@ Complete each phase to earn its level:
 **Next Steps:**
 
 1. Start with [Phase 1: Infrastructure Fabric](#phase-1-infrastructure-fabric-weeks-2-17)
-2. Set up your learning environment with the [Environment Setup guide](ENVIRONMENT-SETUP.md)
+2. Set up your learning environment with the [Environment Setup Guide](ENVIRONMENT-SETUP.md)
 3. Track your progress in the checklist above
 
 **Remember:** This is a marathon, not a sprint. Take your time with each concept and build a strong foundation before moving forward.
