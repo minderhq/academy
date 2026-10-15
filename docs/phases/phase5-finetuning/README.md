@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE5-FINETUNING-README
 Title: "Phase 5: Fine-Tuning & Alignment [5000]"
-Last Updated: 2026-10-13
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Tags: ['phase', 'finetuning', 'training', 'distributed']
@@ -668,7 +668,7 @@ scheduler = get_cosine_with_min_lr_schedule_with_warmup(
 
 Before starting this phase, ensure you understand:
 
-- **PyTorch Training Loops** (from 2400: Pre-training)
+- **PyTorch Training Loops** (from 2400: Pretraining)
 - **Transformer Architecture** (from 3400: Architectures)
 - **Gradient Descent** (from 2300: Optimization)
 - **Basic Linear Algebra** (from 2100: Calculus)

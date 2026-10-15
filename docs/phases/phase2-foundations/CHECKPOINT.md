@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE2-CHECKPOINT
 Title: "Progress Checkpoint: Phase 2 - Cognitive Science & Frameworks"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Intermediate
 Tags: ['checkpoint', 'frameworks', 'architecture', 'api-design']
@@ -87,7 +87,7 @@ After completing Phase 2, you will:
 
 ---
 
-### Module 2400: Pre-training (Required)
+### Module 2400: LLM Pretraining (Required)
 
 **Checkpoint Quiz:**
 

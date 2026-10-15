@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE7-AGENTIC-README
 Title: "Phase 7: Agentic Cognition & Autonomy [7000]"
-Last Updated: 2026-10-13
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Tags: ['phase', 'agents', 'security', 'prompt-injection']
@@ -1084,7 +1084,7 @@ message = AgentMessage(
 
 Before starting this phase, ensure you understand:
 
-- **LLM Fundamentals** (from 2400: Pre-training)
+- **LLM Fundamentals** (from 2400: Pretraining)
 - **Prompt Engineering** (from 2500: Prompt Engineering)
 - **RAG Systems** (from 6100: Vector Embeddings)
 - **API Design** (REST, webhooks)

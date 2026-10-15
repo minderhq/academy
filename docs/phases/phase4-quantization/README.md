@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE4-QUANTIZATION-README
 Title: "Phase 4: Quantization & Compression [4000]"
-Last Updated: 2026-10-13
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Tags: ['phase', 'quantization', 'qat', 'quantization-aware-training']
@@ -507,7 +507,7 @@ Before starting this phase, ensure you understand:
 
 - **PyTorch Basics** (from 2200: Frameworks)
 - **Transformer Architecture** (from 3400: Architectures)
-- **Model Training Loops** (from 2400: Pre-training)
+- **Model Training Loops** (from 2400: Pretraining)
 - **Basic Linear Algebra** (from 2100: Calculus)
 
 See [PREREQUISITES](../../00-META/ENVIRONMENT-SETUP.md) for details.
