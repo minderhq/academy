@@ -144,14 +144,14 @@ Follow the volumes below, in order.
 
 1. [3101: Self-Attention](../phases/phase3-transformers/3100-attention/3101-Self-Attention-DeepDive.md)
 2. [3102: Flash Attention](../phases/phase3-transformers/3100-attention/3102-Flash-Attention.md)
-3. [Experiment: Flash Attention](../../experiments/EXP_3102_FLASH_ATTENTION.md)
+3. [EXP_3102: Flash Attention](../../experiments/EXP_3102_FLASH_ATTENTION.md)
 
 **Step 2: Embeddings & Tokenization (1 week)**
 
 1. [3201: RoPE](../phases/phase3-transformers/3200-embeddings/3201-Rotary-Positional-Embeddings-RoPE.md)
 2. [3202: Tokenizer Sciences](../phases/phase3-transformers/3200-embeddings/3202-Tokenizer-Sciences.md)
-3. [Experiment: RoPE](../../experiments/EXP_3201_ROPE.md)
-4. [Experiment: Tokenizers](../../experiments/EXP_3202_TOKENIZER.md)
+3. [EXP_3201: RoPE](../../experiments/EXP_3201_ROPE.md)
+4. [EXP_3202: Tokenizer](../../experiments/EXP_3202_TOKENIZER.md)
 
 **Step 3: Decoding & Normalization (1 week)**
 
@@ -167,7 +167,7 @@ Follow the volumes below, in order.
 
 1. [3501: Vision-Language Models](../phases/phase3-transformers/3500-multimodal/3501-Vision-Language-Models.md)
 2. [3502: Audio Models](../phases/phase3-transformers/3500-multimodal/3502-Audio-Models.md)
-3. [Experiment: Multimodal RAG](../../experiments/EXP_3501_MULTIMODAL_RAG.md)
+3. [EXP_3501: Multimodal RAG](../../experiments/EXP_3501_MULTIMODAL_RAG.md)
 
 ### Volume 3 Capstone
 - Decode a transformer model step-by-step
