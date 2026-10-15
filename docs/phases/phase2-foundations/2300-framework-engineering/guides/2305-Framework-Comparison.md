@@ -388,7 +388,7 @@ What just happened: LangChain's chain machinery calls `pipe` exactly as the raw 
 
 ## Next Steps
 
-- Next Guide: **[2306: Building a Production Framework](./2306-Building-Production-Framework.md)**
+- Continue with: **[2306: Building a Production Framework](./2306-Building-Production-Framework.md)**
 - Practical: **[LAB-007: Production RAG System](../../../../learning-resources/labs/LAB-007-Production-RAG.md)**
 - Assessment: **[2300: Framework Engineering - Quiz](../assessment/QUIZ.md)**
 

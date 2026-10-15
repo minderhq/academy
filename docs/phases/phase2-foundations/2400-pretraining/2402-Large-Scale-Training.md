@@ -984,7 +984,7 @@ resilience: "atomic writes + rotation + resumability is not optional at scale"
 
 ## Next Steps
 
-- Next Lesson: **[2403: Evaluation Frameworks for Language Models](./2403-Evaluation-Frameworks.md)**
+- Continue with: **[2403: Evaluation Frameworks for Language Models](./2403-Evaluation-Frameworks.md)**
 
 - Practical: **[LAB-006: Train a Small Language Model from Scratch](../../../learning-resources/labs/LAB-006-Train-Model-From-Scratch.md)**
 

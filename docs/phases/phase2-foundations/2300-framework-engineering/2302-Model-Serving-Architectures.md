@@ -3,7 +3,7 @@ Document ID: 2302
 Title: "2302: Model Serving Architectures"
 Phase: 2
 Module: 2300
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -1483,7 +1483,7 @@ See: [2306: Building a Production Framework](./guides/2306-Building-Production-F
 
 ## Next Steps
 
-- Next Lesson: **[2303: API Design for ML Systems](./2303-API-Design-for-ML.md)**
+- Continue with: **[2303: API Design for ML Systems](./2303-API-Design-for-ML.md)**
 - Practical: **[LAB-009: Production Deployment](../../../learning-resources/labs/LAB-009-Production-Deployment.md)**
 - Assessment: **[2300: Framework Engineering - Quiz](./assessment/QUIZ.md)**
 

@@ -3,7 +3,7 @@ Document ID: 2303
 Title: "2303: API Design for ML Systems"
 Phase: 2
 Module: 2300
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -1205,7 +1205,7 @@ class PredictResponse(BaseModel):
 
 ## Next Steps
 
-- Next Lesson: **[2304: Production Deployment Patterns](./2304-Production-Deployment-Patterns.md)**
+- Continue with: **[2304: Production Deployment Patterns](./2304-Production-Deployment-Patterns.md)**
 - Practical: **[LAB-007: Production RAG System](../../../learning-resources/labs/LAB-007-Production-RAG.md)**
 - Assessment: **[2300: Framework Engineering - Quiz](./assessment/QUIZ.md)**
 

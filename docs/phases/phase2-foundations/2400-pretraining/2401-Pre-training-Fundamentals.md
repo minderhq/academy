@@ -1243,7 +1243,7 @@ Key takeaways:
 
 ## Next Steps
 
-- Next Lesson: **[2402: Large-Scale Training for Language Models](./2402-Large-Scale-Training.md)**
+- Continue with: **[2402: Large-Scale Training for Language Models](./2402-Large-Scale-Training.md)**
 - Practical: **[LAB-006: Train a Small Language Model from Scratch](../../../learning-resources/labs/LAB-006-Train-Model-From-Scratch.md)**
 - Assessment: **[2400: Pretraining Fundamentals - Quiz](./assessment/QUIZ.md)** and **[2400: Pre-training - Practice](./assessment/PRACTICE.md)**
 

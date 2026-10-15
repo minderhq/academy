@@ -1266,7 +1266,7 @@ See: [2306: Building a Production Framework](./guides/2306-Building-Production-F
 
 ## Next Steps
 
-- Next Lesson: **[2302: Model Serving Architectures](./2302-Model-Serving-Architectures.md)**
+- Continue with: **[2302: Model Serving Architectures](./2302-Model-Serving-Architectures.md)**
 - Practical: **[LAB-007: Production RAG System](../../../learning-resources/labs/LAB-007-Production-RAG.md)**
 - Assessment: **[2300: Framework Engineering - Quiz](./assessment/QUIZ.md)**
 

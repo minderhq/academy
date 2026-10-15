@@ -3,7 +3,7 @@ Document ID: 5302
 Title: "5302: Distributed Training Orchestration"
 Phase: 5
 Module: 5300
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -796,7 +796,7 @@ Distributed training in a homelab starts honest: single-GPU constraints first, w
 
 ## Next Steps
 
-- Next Lesson: **[5303: Federated Learning](./5303-Federated-Learning.md)**
+- Continue with: **[5303: Federated Learning](./5303-Federated-Learning.md)**
 - Practical: **[LAB-006: Train a Model From Scratch](../../../learning-resources/labs/LAB-006-Train-Model-From-Scratch.md)**
 - Assessment: **[5300: Synthetic Data & Advanced Training - Quiz](./assessment/QUIZ.md)**
 
