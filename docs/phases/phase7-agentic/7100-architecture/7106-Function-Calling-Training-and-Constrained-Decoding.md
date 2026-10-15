@@ -1041,9 +1041,9 @@ One toy grammar, five fences, and the two levers separate cleanly. The grammar c
 
 ## Next Steps
 
-- Next Module: **[7201](../7200-tools/7201-Tool-Calling.md)** owns the registry discipline that decides what the grammar compiles from - schema versioning and contract checks are the upstream of every mask this lesson builds.
-- [1405](../../phase1-infra/1400-llmops/1405-SGLang.md) serves these masks: the `xgrammar` backend flag and structured-output API are the production end of Section 1's mechanism.
-- [5205](../../phase5-finetuning/5200-alignment/5205-GRPO-RLVR.md) trains the same correctness this lesson's pairs supply, but from verifiable rewards instead of demonstrations - the alignment-side answer to "where does the right call come from."
-- [7105](./7105-Reflection-and-Self-Correction.md) owns what happens when a call fails anyway: the in-run detection and correction patterns that wrap this lesson's serving stack.
+- Next Module: **[7201: Tool Calling & Function Execution](../7200-tools/7201-Tool-Calling.md)** owns the registry discipline that decides what the grammar compiles from - schema versioning and contract checks are the upstream of every mask this lesson builds.
+- [1405: SGLang RadixAttention Serving](../../phase1-infra/1400-llmops/1405-SGLang.md) serves these masks: the `xgrammar` backend flag and structured-output API are the production end of Section 1's mechanism.
+- [5205: GRPO and Reinforcement Learning from Verifiable Rewards](../../phase5-finetuning/5200-alignment/5205-GRPO-RLVR.md) trains the same correctness this lesson's pairs supply, but from verifiable rewards instead of demonstrations - the alignment-side answer to "where does the right call come from."
+- [7105: Reflection and Self-Correction - The Loop That Grades Its Own Work](./7105-Reflection-and-Self-Correction.md) owns what happens when a call fails anyway: the in-run detection and correction patterns that wrap this lesson's serving stack.
 
 **Estimated Time:** 4 hours (1 hour reading, 3 hours hands-on with the fences)

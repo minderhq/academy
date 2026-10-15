@@ -381,6 +381,6 @@ A model's life does not end at the first deploy - it begins there, and this less
 - The pipeline that automates these stage transitions: **[6502: CI/CD for Machine Learning](6502-CI-CD-for-ML.md)**
 - Assessment: **[assessment/PRACTICE.md](./assessment/PRACTICE.md)** and **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 
-**Related:** [6502](6502-CI-CD-for-ML.md) — the pipeline automating these stage transitions; [6503](6503-Model-Registry.md) — where every version's current state lives; [1502](../../phase1-infra/1500-monitoring/1502-Model-Drift-Detection.md) — the drift signal feeding Stage 4; [EXP_6501_MLOPS_PIPELINE](../../../../experiments/EXP_6501_MLOPS_PIPELINE.md)
+**Related:** [6502: CI/CD for Machine Learning](6502-CI-CD-for-ML.md) — the pipeline automating these stage transitions; [6503: Model Registry](6503-Model-Registry.md) — where every version's current state lives; [1502: Model Drift Detection](../../phase1-infra/1500-monitoring/1502-Model-Drift-Detection.md) — the drift signal feeding Stage 4; [EXP_6501_MLOPS_PIPELINE](../../../../experiments/EXP_6501_MLOPS_PIPELINE.md)
 
 **Experiment:** [EXP_6501_MLOPS_PIPELINE.md](../../../../experiments/EXP_6501_MLOPS_PIPELINE.md) — nearest-relevant lifecycle experiment; the state machine, McNemar test, Prometheus emission and retirement review here run in-process, while MLflow tracking and metric scraping need their servers

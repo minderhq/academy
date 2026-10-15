@@ -517,6 +517,6 @@ ML CI/CD is a software pipeline with two extra failure modes: the artifact is pr
 - The registry these jobs promote into: **[6503: Model Registry](6503-Model-Registry.md)**
 - Assessment: **[assessment/PRACTICE.md](./assessment/PRACTICE.md)** and **[assessment/QUIZ.md](./assessment/QUIZ.md)**
 
-**Related:** [6501](6501-ML-Lifecycle-Management.md) — the lifecycle stage this pipeline automates; [6503](6503-Model-Registry.md) — the registry the promote job writes into; [1502](../../phase1-infra/1500-monitoring/1502-Model-Drift-Detection.md) — post-deploy monitoring feeding the next run; [EXP_6501_MLOPS_PIPELINE](../../../../experiments/EXP_6501_MLOPS_PIPELINE.md)
+**Related:** [6501: ML Model Lifecycle Management](6501-ML-Lifecycle-Management.md) — the lifecycle stage this pipeline automates; [6503: Model Registry](6503-Model-Registry.md) — the registry the promote job writes into; [1502: Model Drift Detection](../../phase1-infra/1500-monitoring/1502-Model-Drift-Detection.md) — post-deploy monitoring feeding the next run; [EXP_6501_MLOPS_PIPELINE](../../../../experiments/EXP_6501_MLOPS_PIPELINE.md)
 
 **Experiment:** [EXP_6501_MLOPS_PIPELINE.md](../../../../experiments/EXP_6501_MLOPS_PIPELINE.md) — nearest-relevant pipeline experiment; the gate and rollout mechanics here run in-process, and the GitHub Actions / MLflow / smoke-test flows need a repo, a tracking server, and a deployed endpoint respectively
