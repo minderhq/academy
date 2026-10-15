@@ -36,7 +36,7 @@ After completing this module, you will be able to:
 
 ## Module Contents
 
-### [7101: ReAct Loop System](./7101-ReAct-Loop-System.md)
+### [7101: ReAct (Reasoning + Acting) Loop System](./7101-ReAct-Loop-System.md)
 **Reasoning and Acting in Cycles**
 
 - The ReAct pattern: Thought → Action → Observation
@@ -170,7 +170,7 @@ This module connects to:
 
 | Activity | Time |
 |----------|------|
-| [7101: ReAct Loop System](./7101-ReAct-Loop-System.md) | 4 hours |
+| [7101: ReAct (Reasoning + Acting) Loop System](./7101-ReAct-Loop-System.md) | 4 hours |
 | [7102: Planning and Decomposition](./7102-Planning-Decomposition.md) | 4 hours |
 | [7104: Agent Evaluation and Observability](./7104-Agent-Evaluation-and-Observability.md) | 4 hours |
 | [7105: Reflection and Self-Correction](./7105-Reflection-and-Self-Correction.md) | 4 hours |

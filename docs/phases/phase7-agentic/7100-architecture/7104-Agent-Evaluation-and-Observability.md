@@ -334,7 +334,7 @@ The loop from [7101](./7101-ReAct-Loop-System.md) becomes shippable when its run
 
 ### Related Minder Academy Documents
 
-- [7101: ReAct Loop System](./7101-ReAct-Loop-System.md) - the loop whose runs this lesson scores
+- [7101: ReAct (Reasoning + Acting) Loop System](./7101-ReAct-Loop-System.md) - the loop whose runs this lesson scores
 - [7102: Planning and Decomposition](./7102-Planning-Decomposition.md) - plan quality is a trajectory property, scored step-wise
 - [7201: Tool Calling](../7200-tools/7201-Tool-Calling.md) - the tool-accuracy scorer's subject matter
 - [7301: Orchestration](../7300-orchestration/7301-Orchestration.md) - nightly evals over orchestration variants

@@ -35,7 +35,7 @@ After completing this module, you will be able to:
 
 ## Module Contents
 
-### [5201: DPO Theory](./5201-DPO-Theory.md)
+### [5201: DPO (Direct Preference Optimization) Theory](./5201-DPO-Theory.md)
 **Direct Preference Optimization**
 
 - RLHF vs DPO comparison
@@ -174,7 +174,7 @@ This module connects to:
 
 | Activity | Time |
 |----------|------|
-| [5201: DPO Theory](./5201-DPO-Theory.md) | 4 hours |
+| [5201: DPO (Direct Preference Optimization) Theory](./5201-DPO-Theory.md) | 4 hours |
 | [5202: Alignment Orchestration](./5202-Alignment-Orchestration.md) | 4 hours |
 | [5203: RLHF](./5203-RLHF.md) | 4 hours |
 | [5204: Preference Dataset Creation](./5204-Preference-Dataset-Creation.md) | 4 hours |

@@ -35,7 +35,7 @@ After completing this module, you will be able to:
 
 ## Module Contents
 
-### [5101: LoRA Logic](./5101-LoRA-Logic.md)
+### [5101: LoRA (Low-Rank Adaptation) Logic](./5101-LoRA-Logic.md)
 **Low-Rank Adaptation Theory and Practice**
 
 - LoRA mathematical foundation
@@ -153,7 +153,7 @@ This module connects to:
 
 | Activity | Time |
 |----------|------|
-| [5101: LoRA Logic](./5101-LoRA-Logic.md) | 5 hours |
+| [5101: LoRA (Low-Rank Adaptation) Logic](./5101-LoRA-Logic.md) | 5 hours |
 | [5102: QLoRA Pipelines](./5102-QLoRA-Pipelines.md) | 5 hours |
 | [5103: Adapters](./5103-Adapters.md) | 5 hours |
 | Guide ([5104](./guides/5104-LoRA-Implementation-Guide.md)) | 5 hours |

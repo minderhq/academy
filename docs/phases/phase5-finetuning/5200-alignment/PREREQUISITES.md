@@ -1,7 +1,7 @@
 ---
 Document ID: 5200-PREREQUISITES
 Title: "5200: Alignment - Prerequisites"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Tags: ['prerequisites', 'finetuning', 'alignment']
@@ -52,6 +52,6 @@ Can you:
 - [ ] Understand KL divergence?
 - [ ] Compare RLHF vs DPO?
 
-**If YES:** Start with [5201: DPO Theory](./5201-DPO-Theory.md)
+**If YES:** Start with [5201: DPO (Direct Preference Optimization) Theory](./5201-DPO-Theory.md)
 
 **If NO:** Review the resources above first.

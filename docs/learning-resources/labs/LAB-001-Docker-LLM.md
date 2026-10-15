@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-001
 Title: "LAB-001: Docker & LLM Fundamentals"
-Last Updated: 2026-10-13
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 2 hours
@@ -14,7 +14,7 @@ Tags: ['lab', 'docker', 'ollama', 'hands-on']
 
 - **[TUTORIAL-001: Hello LLM](../tutorials/TUTORIAL-001-Hello-LLM.md)** - LLM basics
 - **[TUTORIAL-002: Docker Essentials](../tutorials/TUTORIAL-002-Docker-Essentials.md)** - Docker fundamentals
-- **[TUTORIAL-000: Python for AI](../tutorials/TUTORIAL-000-Python-for-AI.md)** (recommended) - For custom API code
+- **[TUTORIAL-000: Python for AI (Complete Beginner)](../tutorials/TUTORIAL-000-Python-for-AI.md)** (recommended) - For custom API code
 
 **Time:** 2 hours
 

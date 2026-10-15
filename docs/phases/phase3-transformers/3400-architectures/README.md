@@ -22,7 +22,7 @@ This module covers the major Transformer architecture families: encoder-decoder 
 | Document | Description | Difficulty | Time |
 |----------|-------------|------------|------|
 | [3401: Encoder-Decoder Architectures](./3401-Encoder-Decoder-Architectures.md) | T5, BART, and sequence-to-sequence models | ⭐⭐ | 4 hrs |
-| [3402: Decoder-Only Models](./3402-Decoder-Only-Models.md) | GPT, LLaMA, Mistral architectures | ⭐⭐ | 4 hrs |
+| [3402: Decoder-Only Models (GPT, LLaMA, Mistral)](./3402-Decoder-Only-Models.md) | GPT, LLaMA, Mistral architectures | ⭐⭐ | 4 hrs |
 | [3404: Beyond Attention — SSMs and MLA](./3404-Beyond-Attention-SSMs-and-MLA.md) | State-space models, Mamba, DeepSeek MLA | ⭐⭐⭐ | 4 hrs |
 | [3403: Model Architecture Comparison](./guides/3403-Model-Architecture-Comparison.md) | Comparative guide with benchmarks | ⭐⭐⭐ | 3 hrs |
 

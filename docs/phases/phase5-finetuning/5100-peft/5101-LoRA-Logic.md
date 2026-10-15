@@ -531,7 +531,7 @@ LoRA's bet is that fine-tuning updates live in a low-rank subspace: freeze the p
 ## Next Steps
 
 - Continue with: **[5102: QLoRA Pipelines](./5102-QLoRA-Pipelines.md)**
-- DPO training on merged models: **[5201: DPO Theory](../5200-alignment/5201-DPO-Theory.md)**
+- DPO training on merged models: **[5201: DPO (Direct Preference Optimization) Theory](../5200-alignment/5201-DPO-Theory.md)**
 - QLoRA's memory trick, double quantization: **[4103: Double Quantization](../../phase4-quantization/4100-low-bit/4103-Double-Quantization.md)**
 - Assessment: **[5100: PEFT Methods - Quiz](./assessment/QUIZ.md)**
 - Experiment: **[EXP_5101: LoRA](../../../../experiments/EXP_5101_LORA.md)**

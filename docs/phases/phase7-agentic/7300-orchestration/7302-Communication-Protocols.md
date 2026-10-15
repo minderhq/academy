@@ -47,7 +47,7 @@ that keeps a fleet of LLM agents debuggable in production.
 ### 1.1 Prerequisites
 
 - [7301: Orchestration](./7301-Orchestration.md) - orchestration patterns
-- [7101: ReAct Loop System](../7100-architecture/7101-ReAct-Loop-System.md) - single-agent loop
+- [7101: ReAct (Reasoning + Acting) Loop System](../7100-architecture/7101-ReAct-Loop-System.md) - single-agent loop
 - [7102: Planning and Decomposition](../7100-architecture/7102-Planning-Decomposition.md) - task graphs
 
 ## Learning Objectives
@@ -380,7 +380,7 @@ A multi-agent system is only as reliable as the contracts between its agents: th
 
 ### Related Minder Academy Documents
 - [7301: Orchestration](./7301-Orchestration.md) - planning and routing
-- [7101: ReAct Loop System](../7100-architecture/7101-ReAct-Loop-System.md) - single-agent foundation
+- [7101: ReAct (Reasoning + Acting) Loop System](../7100-architecture/7101-ReAct-Loop-System.md) - single-agent foundation
 - [7200: Tool Calling](../7200-tools/README.md) - MCP tool layer
 - [7303: Framework Comparison](./guides/7303-Framework-Comparison.md) - framework support matrix
 - [CHEAT-SHEET-024: Multi-Agent Orchestration](../../../learning-resources/cheat-sheets/CHEAT-SHEET-024-Multi-Agent-Orchestration.md)

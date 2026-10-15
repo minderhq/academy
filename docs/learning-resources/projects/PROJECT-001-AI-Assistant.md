@@ -1,7 +1,7 @@
 ---
 Document ID: PROJECT-001
 Title: "CAPSTONE PROJECT-001: Build Your AI Assistant"
-Last Updated: 2026-10-13
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Tags: ['project', 'rag', 'llm']
@@ -34,7 +34,7 @@ Build a fully-functional AI assistant that can:
 📋 **[PREREQUISITES-001: Prerequisites & Setup Guide](./PREREQUISITES-001.md)** - step-by-step environment setup walkthrough for this project.
 
 ### Required Tutorials & Labs:
-- ✅ **[TUTORIAL-000: Python for AI](../tutorials/TUTORIAL-000-Python-for-AI.md)** - 🚨 **MANDATORY**
+- ✅ **[TUTORIAL-000: Python for AI (Complete Beginner)](../tutorials/TUTORIAL-000-Python-for-AI.md)** - 🚨 **MANDATORY**
 - ✅ **[TUTORIAL-001: Hello LLM](../tutorials/TUTORIAL-001-Hello-LLM.md)** - LLM basics
 - ✅ **[TUTORIAL-002: Docker Essentials](../tutorials/TUTORIAL-002-Docker-Essentials.md)** - Docker fundamentals
 - ✅ **[TUTORIAL-003: RAG Basics](../tutorials/TUTORIAL-003-RAG-Basics.md)** - RAG concepts
@@ -1218,7 +1218,7 @@ curl -X POST http://localhost:8002/chat \
 
 ## Related Resources
 
-- **[7101: ReAct Loop System](../../phases/phase7-agentic/7100-architecture/7101-ReAct-Loop-System.md)** - ReAct pattern theory
+- **[7101: ReAct (Reasoning + Acting) Loop System](../../phases/phase7-agentic/7100-architecture/7101-ReAct-Loop-System.md)** - ReAct pattern theory
 - **[6201: Hybrid Search](../../phases/phase6-rag/6200-retrieval/6201-Hybrid-Search.md)** - Vector + Graph RAG
 - **[1402: vLLM and TGI](../../phases/phase1-infra/1400-llmops/1402-vLLM-and-TGI.md)** - Production inference
 - **[LAB-002: RAG Implementation](../labs/LAB-002-RAG-Implementation.md)** - RAG basics

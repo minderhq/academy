@@ -470,7 +470,7 @@ Self-attention is the mechanism the Transformer is built on: the scaled dot-prod
 - [3102: Flash Attention](./3102-Flash-Attention.md) - Memory-efficient attention
 - [3201: RoPE](../3200-embeddings/3201-Rotary-Positional-Embeddings-RoPE.md) - Positional encoding
 - [3302: Normalization Layers](../3300-decoding/3302-Normalization-Layers.md) - LayerNorm, RMSNorm
-- [3402: Decoder-Only Models](../3400-architectures/3402-Decoder-Only-Models.md) - GPT, LLaMA
+- [3402: Decoder-Only Models (GPT, LLaMA, Mistral)](../3400-architectures/3402-Decoder-Only-Models.md) - GPT, LLaMA
 - [CHEAT-SHEET-019: Tokenizers](../../../learning-resources/cheat-sheets/CHEAT-SHEET-019-Tokenizers.md)
 - [CHEAT-SHEET-020: Flash Attention](../../../learning-resources/cheat-sheets/CHEAT-SHEET-020-Flash-Attention.md)
 - [CHEAT-SHEET-021: RoPE Positional Encoding](../../../learning-resources/cheat-sheets/CHEAT-SHEET-021-RoPE-Positional-Encoding.md)

@@ -1,7 +1,7 @@
 ---
 Document ID: SOLUTION-LAB-010
 Title: "SOLUTION-LAB-010: DPO Alignment"
-Last Updated: 2026-10-13
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Tags: ['solution', 'dpo', 'alignment']
@@ -11,7 +11,7 @@ Tags: ['solution', 'dpo', 'alignment']
 
 ## Overview
 
-Reference solution for [LAB-010: DPO Alignment](../LAB-010-DPO-Alignment.md): build a preference dataset, fine-tune with TRL's `DPOTrainer`, and evaluate whether alignment actually moved behavior. The theory (why a preference signal can replace a reward model) lives in [5201: DPO Theory](../../../phases/phase5-finetuning/5200-alignment/5201-DPO-Theory.md); the craft of building preference data in [5204: Preference Dataset Creation](../../../phases/phase5-finetuning/5200-alignment/5204-Preference-Dataset-Creation.md).
+Reference solution for [LAB-010: DPO Alignment](../LAB-010-DPO-Alignment.md): build a preference dataset, fine-tune with TRL's `DPOTrainer`, and evaluate whether alignment actually moved behavior. The theory (why a preference signal can replace a reward model) lives in [5201: DPO (Direct Preference Optimization) Theory](../../../phases/phase5-finetuning/5200-alignment/5201-DPO-Theory.md); the craft of building preference data in [5204: Preference Dataset Creation](../../../phases/phase5-finetuning/5200-alignment/5204-Preference-Dataset-Creation.md).
 
 The solution uses the **current TRL API**: `beta`, sequence lengths, and every training knob live in `DPOConfig`; the tokenizer is passed as `processing_class`. If you have seen older examples pass `beta=...` or `max_prompt_length=...` straight to `DPOTrainer` — those parameters were moved into the config and (for the length caps) removed entirely.
 
@@ -293,7 +293,7 @@ The pairs are probably indistinguishable (or the judge that built them was). Aud
 ### Related curriculum documents
 
 - [LAB-010: DPO Alignment](../LAB-010-DPO-Alignment.md)
-- [5201: DPO Theory](../../../phases/phase5-finetuning/5200-alignment/5201-DPO-Theory.md)
+- [5201: DPO (Direct Preference Optimization) Theory](../../../phases/phase5-finetuning/5200-alignment/5201-DPO-Theory.md)
 - [5202: Alignment Orchestration](../../../phases/phase5-finetuning/5200-alignment/5202-Alignment-Orchestration.md)
 - [5203: RLHF](../../../phases/phase5-finetuning/5200-alignment/5203-RLHF.md)
 - [5204: Preference Dataset Creation](../../../phases/phase5-finetuning/5200-alignment/5204-Preference-Dataset-Creation.md)

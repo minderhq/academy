@@ -1,7 +1,7 @@
 ---
 Document ID: DIAGRAMS-README
 Title: "Minder Academy Architecture Diagrams"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Beginner
 Tags: ['diagram', 'architecture', 'llm']
@@ -43,7 +43,7 @@ This directory contains Mermaid diagrams that illustrate complex concepts from t
 ### ReAct Loop Diagrams
 **File:** [REACT-LOOP.md](REACT-LOOP.md)
 
-**Related Documentation:** [7101: ReAct Loop System](../phases/phase7-agentic/7100-architecture/7101-ReAct-Loop-System.md)
+**Related Documentation:** [7101: ReAct (Reasoning + Acting) Loop System](../phases/phase7-agentic/7100-architecture/7101-ReAct-Loop-System.md)
 
 **Diagrams Include:**
 

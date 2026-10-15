@@ -447,7 +447,7 @@ project template scaffolds the whole pipeline.
 
 ### Related Minder Academy Documents
 
-- [5101: LoRA Logic](./5101-LoRA-Logic.md) — the merge-and-discard path this
+- [5101: LoRA (Low-Rank Adaptation) Logic](./5101-LoRA-Logic.md) — the merge-and-discard path this
   lesson slows down: what folding an adapter into base weights actually does
 - [5103: Adapters & Parameter-Efficient Adaptation Methods](./5103-Adapters.md)
   — adapter fusion, the learned routing alternative to weight merging
@@ -484,7 +484,7 @@ project template scaffolds the whole pipeline.
 
 - Next Module: **[5200: LLM Alignment](../5200-alignment/README.md)** — where
   the fine-tunes worth merging are made (DPO, RLHF, GRPO)
-- **Continue with**: [5201: DPO Theory](../5200-alignment/5201-DPO-Theory.md)
+- **Continue with**: [5201: DPO (Direct Preference Optimization) Theory](../5200-alignment/5201-DPO-Theory.md)
 - **Assessment**: [5100 QUIZ](./assessment/QUIZ.md) — and revisit the
   [5300 QUIZ](../5300-synthetic/assessment/QUIZ.md) merging questions (4, 5,
   18) after this lesson; they are now in-range

@@ -267,7 +267,7 @@ Tags: ['assessment', 'quiz', 'agents']
 
 Each question maps to the closest lesson for review:
 
-- **Questions 1-2, 17-19, 22, 26:** [7101: ReAct Loop System](../../phases/phase7-agentic/7100-architecture/7101-ReAct-Loop-System.md) — the ReAct loop, the classic agent taxonomy and BDI
+- **Questions 1-2, 17-19, 22, 26:** [7101: ReAct (Reasoning + Acting) Loop System](../../phases/phase7-agentic/7100-architecture/7101-ReAct-Loop-System.md) — the ReAct loop, the classic agent taxonomy and BDI
 - **Questions 3, 13, 16, 21:** [7201: Tool Calling](../../phases/phase7-agentic/7200-tools/7201-Tool-Calling.md) — tool schemas, code interpreters and tool use vs function calling
 - **Questions 4, 10, 25, 27-28:** [7301: Orchestration](../../phases/phase7-agentic/7300-orchestration/7301-Orchestration.md) — multi-agent systems, state machines, singletons and swarms
 - **Questions 5, 7:** [7401: Long-term Memory](../../phases/phase7-agentic/7400-memory/7401-Long-term-Memory.md) — agent memory and long-term persistence

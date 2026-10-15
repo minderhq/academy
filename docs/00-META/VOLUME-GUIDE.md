@@ -1,7 +1,7 @@
 ---
 Document ID: VOLUME-GUIDE
 Title: "Minder Academy: Volume Guide (Book Structure)"
-Last Updated: 2026-10-14
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Beginner
 Tags: ['volume', 'roadmap', 'llm']
@@ -161,7 +161,7 @@ Follow the volumes below, in order.
 **Step 4: Model Architectures (1 week)**
 
 1. [3401: Encoder-Decoder Architectures](../phases/phase3-transformers/3400-architectures/3401-Encoder-Decoder-Architectures.md)
-2. [3402: Decoder-Only Models](../phases/phase3-transformers/3400-architectures/3402-Decoder-Only-Models.md)
+2. [3402: Decoder-Only Models (GPT, LLaMA, Mistral)](../phases/phase3-transformers/3400-architectures/3402-Decoder-Only-Models.md)
 
 **Step 5: Multimodal Models (1 week)**
 
@@ -237,7 +237,7 @@ Follow the volumes below, in order.
 
 **Step 1: LoRA Fundamentals (1 week)**
 
-1. [5101: LoRA Logic](../phases/phase5-finetuning/5100-peft/5101-LoRA-Logic.md)
+1. [5101: LoRA (Low-Rank Adaptation) Logic](../phases/phase5-finetuning/5100-peft/5101-LoRA-Logic.md)
 2. [5104: LoRA Implementation Guide](../phases/phase5-finetuning/5100-peft/guides/5104-LoRA-Implementation-Guide.md)
 
 **Step 2: QLoRA Pipelines (2 weeks)**
@@ -247,7 +247,7 @@ Follow the volumes below, in order.
 
 **Step 3: Alignment (1 week)**
 
-1. [5201: DPO Theory](../phases/phase5-finetuning/5200-alignment/5201-DPO-Theory.md)
+1. [5201: DPO (Direct Preference Optimization) Theory](../phases/phase5-finetuning/5200-alignment/5201-DPO-Theory.md)
 2. [5202: Alignment Orchestration](../phases/phase5-finetuning/5200-alignment/5202-Alignment-Orchestration.md)
 3. [EXP_5201: DPO Experiments](../../experiments/EXP_5201_DPO.md)
 4. [EXP_5303: Federated Learning](../../experiments/EXP_5303_FEDERATED_LEARNING.md)

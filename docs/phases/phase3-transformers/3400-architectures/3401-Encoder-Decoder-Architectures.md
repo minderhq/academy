@@ -285,5 +285,5 @@ The original transformer was an encoder-decoder: one stack reads the input bidir
 
 ## Next Steps
 
-- Continue with: **[3402: Decoder-Only Models](./3402-Decoder-Only-Models.md)**
+- Continue with: **[3402: Decoder-Only Models (GPT, LLaMA, Mistral)](./3402-Decoder-Only-Models.md)**
 - Assessment: **[3400: Model Architectures - Quiz](./assessment/QUIZ.md)**

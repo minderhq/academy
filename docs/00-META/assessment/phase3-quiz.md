@@ -228,7 +228,7 @@ Tags: ['assessment', 'quiz', 'transformers']
 Each question maps to the closest lesson for review:
 
 - **Questions 1-2, 4, 21:** [3101: Self-Attention DeepDive](../../phases/phase3-transformers/3100-attention/3101-Self-Attention-DeepDive.md) — the attention core, multi-head splits, causal masking and head dimensions
-- **Questions 3, 13, 18:** [3201: Rotary Positional Embeddings RoPE](../../phases/phase3-transformers/3200-embeddings/3201-Rotary-Positional-Embeddings-RoPE.md) — rotary embeddings, ALiBi biases and length extrapolation
+- **Questions 3, 13, 18:** [3201: Rotary Positional Embeddings (RoPE)](../../phases/phase3-transformers/3200-embeddings/3201-Rotary-Positional-Embeddings-RoPE.md) — rotary embeddings, ALiBi biases and length extrapolation
 - **Question 5:** [3102: Flash Attention](../../phases/phase3-transformers/3100-attention/3102-Flash-Attention.md) — Flash Attention and its memory efficiency
 - **Question 6:** [3103: SDPA and torch compile](../../phases/phase3-transformers/3100-attention/3103-SDPA-and-torch-compile.md) — the scaled dot-product attention formula
 - **Question 7:** [4201: Context Window Physics](../../phases/phase4-quantization/4200-kv-cache/4201-Context-Window-Physics.md) — the KV cache that pays for fast generation
@@ -237,7 +237,7 @@ Each question maps to the closest lesson for review:
 - **Questions 11, 16, 23:** [3302: Normalization Layers](../../phases/phase3-transformers/3300-decoding/3302-Normalization-Layers.md) — LayerNorm, pre-Norm vs post-Norm ordering and residual flow
 - **Questions 12, 19:** [3401: Encoder-Decoder Architectures](../../phases/phase3-transformers/3400-architectures/3401-Encoder-Decoder-Architectures.md) — cross-attention to encoder outputs
 - **Question 17:** [3404: Beyond Attention SSMs and MLA](../../phases/phase3-transformers/3400-architectures/3404-Beyond-Attention-SSMs-and-MLA.md) — mixture of experts and sparse activation
-- **Questions 20, 25:** [3402: Decoder-Only Models](../../phases/phase3-transformers/3400-architectures/3402-Decoder-Only-Models.md) — GPT-style decoder-only autoregressive generation
+- **Questions 20, 25:** [3402: Decoder-Only Models (GPT, LLaMA, Mistral)](../../phases/phase3-transformers/3400-architectures/3402-Decoder-Only-Models.md) — GPT-style decoder-only autoregressive generation
 - **Question 24:** [3501: Vision-Language Models](../../phases/phase3-transformers/3500-multimodal/3501-Vision-Language-Models.md) — vision-language models
 
 ---

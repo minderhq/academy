@@ -459,5 +459,5 @@ Activation functions are where networks get their non-linearity, and the transfo
 
 - [3302: Normalization Layers](./3302-Normalization-Layers.md)
 - [3101: Self-Attention](../3100-attention/3101-Self-Attention-DeepDive.md)
-- [5101: LoRA Logic](../../phase5-finetuning/5100-peft/5101-LoRA-Logic.md)
+- [5101: LoRA (Low-Rank Adaptation) Logic](../../phase5-finetuning/5100-peft/5101-LoRA-Logic.md)
 

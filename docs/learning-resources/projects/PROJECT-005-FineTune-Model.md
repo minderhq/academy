@@ -1,7 +1,7 @@
 ---
 Document ID: PROJECT-005
 Title: "CAPSTONE PROJECT-005: Fine-Tune Domain Model"
-Last Updated: 2026-10-13
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Tags: ['project', 'lora', 'finetuning', 'peft']
@@ -532,7 +532,7 @@ echo "Model deployed at http://localhost:8000"
 
 ## Related Resources
 
-- **[5101: LoRA Logic](../../phases/phase5-finetuning/5100-peft/5101-LoRA-Logic.md)** - LoRA theory
+- **[5101: LoRA (Low-Rank Adaptation) Logic](../../phases/phase5-finetuning/5100-peft/5101-LoRA-Logic.md)** - LoRA theory
 - **[5102: QLoRA Pipelines](../../phases/phase5-finetuning/5100-peft/5102-QLoRA-Pipelines.md)** - QLoRA techniques
 - **[LAB-003: LoRA Fine-Tuning](../labs/LAB-003-LoRA-FineTuning.md)** - Hands-on fine-tuning
 

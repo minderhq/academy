@@ -318,7 +318,7 @@ The named reflection and self-correction patterns are now runnable code, and eve
 
 ### Related Minder Academy Documents
 
-- [7101: ReAct Loop System](./7101-ReAct-Loop-System.md) - the loop whose mechanical retry this lesson upgrades into critique-injected retries
+- [7101: ReAct (Reasoning + Acting) Loop System](./7101-ReAct-Loop-System.md) - the loop whose mechanical retry this lesson upgrades into critique-injected retries
 - [7102: Planning and Decomposition](./7102-Planning-Decomposition.md) - plans are the drafts the refine loop revises
 - [7104: Agent Evaluation and Observability](./7104-Agent-Evaluation-and-Observability.md) - the external evaluators and scorers that make correction informed
 - [7404: Reflective Memory and Context Paging](../7400-memory/7404-Reflective-Memory-and-Context-Paging.md) - the memory-side reflexion this lesson's run-local ceiling argues for

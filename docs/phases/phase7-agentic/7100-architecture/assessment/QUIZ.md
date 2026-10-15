@@ -1,7 +1,7 @@
 ---
 Document ID: 7100-QUIZ
 Title: "7100: Agent Architecture - Quiz"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 30 minutes
@@ -194,7 +194,7 @@ Tags: ['assessment', 'quiz', 'agents', 'react']
 
 Each question maps to the closest lesson for review:
 
-- **Questions 1-2, 5, 8, 10, 17-18:** [7101: ReAct Loop System](../7101-ReAct-Loop-System.md) — the Reasoning + Acting pattern with its Thought → Action → Observation loop, the state management that carries goals and tool results across iterations, the Thought steps reviewing each observation, RobustReActAgent's retry-on-failure execution, and the autonomous step-choosing that separates an agent from a fixed chain; [7105: Reflection and Self-Correction](../7105-Reflection-and-Self-Correction.md) now owns the named patterns Q5 and Q8 lean on - the refine loop's 0.590 -> 0.833 walk with 139 surface fixes against 22 logic fixes, the vote's 0.988 versus 0.062 plurality split, and the intrinsic 0.730 -> 0.613 versus gated 0.730 -> 0.907 correction boundary
+- **Questions 1-2, 5, 8, 10, 17-18:** [7101: ReAct (Reasoning + Acting) Loop System](../7101-ReAct-Loop-System.md) — the Reasoning + Acting pattern with its Thought → Action → Observation loop, the state management that carries goals and tool results across iterations, the Thought steps reviewing each observation, RobustReActAgent's retry-on-failure execution, and the autonomous step-choosing that separates an agent from a fixed chain; [7105: Reflection and Self-Correction](../7105-Reflection-and-Self-Correction.md) now owns the named patterns Q5 and Q8 lean on - the refine loop's 0.590 -> 0.833 walk with 139 surface fixes against 22 logic fixes, the vote's 0.988 versus 0.062 plurality split, and the intrinsic 0.730 -> 0.613 versus gated 0.730 -> 0.907 correction boundary
 - **Questions 3, 9, 11, 16:** [7201: Tool Calling & Function Execution](../../7200-tools/7201-Tool-Calling.md) — tools connecting agents to external systems, explicit parameter schemas with a ToolRegistry that generates API schemas from registrations, and the structured response formats behind a call; [7106: Function-Calling Training and Constrained Decoding](../7106-Function-Calling-Training-and-Constrained-Decoding.md) now owns the mechanics Q11 and Q16 lean on - the mask flipping 0.0000 to 1.0000 valid where prompting alone buys 0.7940, the pair walk 0.3333 -> 0.8917 that trains the tool choice, and the 2x2 grid where untrained-masked serves 1.0000 valid at 0.3033 correct
 - **Question 4:** [7401: Long-term Memory for Agents](../../7400-memory/7401-Long-term-Memory.md) — working memory as the short-term session context window sitting beside the long-term stores
 - **Questions 6, 13:** [7301: Collaborative Tasking - Multi-Agent Synergy](../../7300-orchestration/7301-Orchestration.md) — specialized agents collaborating toward shared goals, with hierarchical versus peer-to-peer coordination chosen by task coupling

@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-010
 Title: "LAB-010: DPO Alignment"
-Last Updated: 2026-10-14
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 6 hours
@@ -15,7 +15,7 @@ Tags: ['lab', 'dpo', 'alignment', 'rlhf', 'preference-learning', 'hands-on']
 **Prerequisites:**
 
 - [LAB-003: LoRA Fine-Tuning](LAB-003-LoRA-FineTuning.md) - adapter-based efficient fine-tuning
-- [5201: DPO Theory](../../phases/phase5-finetuning/5200-alignment/5201-DPO-Theory.md) - the math behind the loss
+- [5201: DPO (Direct Preference Optimization) Theory](../../phases/phase5-finetuning/5200-alignment/5201-DPO-Theory.md) - the math behind the loss
 - [5202: Alignment Orchestration](../../phases/phase5-finetuning/5200-alignment/5202-Alignment-Orchestration.md)
 - [VOLUME-3: LLM Internals](../../volumes/VOLUME-3-LLM-Internals.md) - log-probabilities and KL divergence
 - [VOLUME-5: Model Adaptation](../../volumes/VOLUME-5-Model-Adaptation.md)

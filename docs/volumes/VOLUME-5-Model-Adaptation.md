@@ -1,7 +1,7 @@
 ---
 Document ID: VOLUME-5
 Title: "Volume 5: Model Adaptation"
-Last Updated: 2026-10-14
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Tags: ['volume', 'finetuning', 'lora', 'dpo']
@@ -51,7 +51,7 @@ Pre-trained models are generalists. This volume teaches you to:
 #### Day 1-3: Understanding LoRA
 **Fine-tuning without full retraining**
 
-1. **[5101: LoRA Logic](../phases/phase5-finetuning/5100-peft/5101-LoRA-Logic.md)** (3-4 hours)
+1. **[5101: LoRA (Low-Rank Adaptation) Logic](../phases/phase5-finetuning/5100-peft/5101-LoRA-Logic.md)** (3-4 hours)
    - Parameter-efficient fine-tuning concepts
    - Low-rank matrix decomposition
    - Why LoRA works
@@ -261,7 +261,7 @@ completion = "AI is artificial intelligence..."
 #### Day 1-3: Direct Preference Optimization
 **Align models with human feedback**
 
-1. **[5201: DPO Theory](../phases/phase5-finetuning/5200-alignment/5201-DPO-Theory.md)** (3-4 hours)
+1. **[5201: DPO (Direct Preference Optimization) Theory](../phases/phase5-finetuning/5200-alignment/5201-DPO-Theory.md)** (3-4 hours)
    - RLHF vs DPO
    - Preference modeling
    - DPO algorithm

@@ -1,7 +1,7 @@
 ---
 Document ID: 7200-QUIZ
 Title: "7200: Tool Calling - Quiz"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 30 minutes
@@ -195,7 +195,7 @@ Tags: ['assessment', 'quiz', 'agents', 'tool-calling']
 Each question maps to the closest lesson for review:
 
 - **Questions 1-6, 8, 10, 13:** [7201: Tool Calling & Function Execution](../7201-Tool-Calling.md) — the request → tool_calls response → JSON arguments → external execution → tool-result cycle, tools as retrieval, computation and system-interaction functions and APIs, definitions carrying name, description and parameter schema, OpenAI-style JSON Schema with type, enum and required fields, the Tool Selection Process where descriptions drive the pick, and parallel tool calls executed from one response
-- **Questions 7, 15-16:** [7101: ReAct Loop System](../../7100-architecture/7101-ReAct-Loop-System.md) — the Thought → Action → Observation loop repeated until the task ends, where each tool result re-enters as an observation the model reasons over
+- **Questions 7, 15-16:** [7101: ReAct (Reasoning + Acting) Loop System](../../7100-architecture/7101-ReAct-Loop-System.md) — the Thought → Action → Observation loop repeated until the task ends, where each tool result re-enters as an observation the model reasons over
 - **Questions 9, 14:** [7201: Tool Calling & Function Execution](../7201-Tool-Calling.md) — the Sandboxing section's builtins-stripping isolation that contains side effects and protects the host, with the Code Execution tool running generated code inside it
 - **Questions 11, 19:** [7201: Tool Calling & Function Execution](../7201-Tool-Calling.md) — schema validation raising ValidationError on malformed or out-of-range arguments, and enum-constrained parameters pinning the model to valid values
 - **Question 12:** [7201: Tool Calling & Function Execution](../7201-Tool-Calling.md) — structured error statuses from execute_tool that return the failure as data the model can recover from

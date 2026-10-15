@@ -61,7 +61,7 @@ GGUF enables running 7B-30B parameter models on consumer hardware by:
 
 - **Math:** Understanding of quantization, fixed-point arithmetic
 - **Programming:** C/C++, Python
-- **Previous:** [3402: Decoder-Only Models](../../phase3-transformers/3400-architectures/3402-Decoder-Only-Models.md)
+- **Previous:** [3402: Decoder-Only Models (GPT, LLaMA, Mistral)](../../phase3-transformers/3400-architectures/3402-Decoder-Only-Models.md)
 
 ## Learning Objectives
 After completing this document, you will:

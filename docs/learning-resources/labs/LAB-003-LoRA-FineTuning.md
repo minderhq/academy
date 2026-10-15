@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-003
 Title: "LAB-003: LoRA Fine-Tuning with QLoRA"
-Last Updated: 2026-10-13
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -16,7 +16,7 @@ Tags: ['lab', 'lora', 'qlora', 'finetuning', 'hands-on']
 - **[TUTORIAL-001: Hello LLM](../tutorials/TUTORIAL-001-Hello-LLM.md)** - LLM basics
 - **[TUTORIAL-002: Docker Essentials](../tutorials/TUTORIAL-002-Docker-Essentials.md)** - Docker fundamentals
 - **[LAB-001: Docker & LLM](LAB-001-Docker-LLM.md)** - Docker practice
-- **[TUTORIAL-000: Python for AI](../tutorials/TUTORIAL-000-Python-for-AI.md)** - REQUIRED for training code
+- **[TUTORIAL-000: Python for AI (Complete Beginner)](../tutorials/TUTORIAL-000-Python-for-AI.md)** - REQUIRED for training code
 - **Phase 2 (Recommended):** [2100-Calculus](../../phases/phase2-foundations/2100-calculus/README.md) - PyTorch knowledge helpful
 
 ⚠️ **Strong Python Required:** This lab involves PyTorch, training loops, and model architecture. Complete **TUTORIAL-000** and review **Phase 2** content first.
@@ -1054,9 +1054,9 @@ python ~/lab-003-lora/chatbot.py
 
 ## Post-Lab Reading
 
-- **[5101: LoRA Logic](../../phases/phase5-finetuning/5100-peft/5101-LoRA-Logic.md)** - Deep dive into LoRA
+- **[5101: LoRA (Low-Rank Adaptation) Logic](../../phases/phase5-finetuning/5100-peft/5101-LoRA-Logic.md)** - Deep dive into LoRA
 - **[5102: QLoRA Pipelines](../../phases/phase5-finetuning/5100-peft/5102-QLoRA-Pipelines.md)** - 4-bit fine-tuning
-- **[5201: DPO Theory](../../phases/phase5-finetuning/5200-alignment/5201-DPO-Theory.md)** - Preference optimization
+- **[5201: DPO (Direct Preference Optimization) Theory](../../phases/phase5-finetuning/5200-alignment/5201-DPO-Theory.md)** - Preference optimization
 - **[LoRA & QLoRA](../cheat-sheets/CHEAT-SHEET-016-LoRA-QLoRA.md)** - The low-rank arithmetic and the three knobs, the QLoRA 4-bit pipeline, and the merge-on-FP16 rule.
 
 ---

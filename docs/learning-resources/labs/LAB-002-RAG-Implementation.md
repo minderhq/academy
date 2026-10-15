@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-002
 Title: "LAB-002: RAG Implementation with Qdrant & Ollama"
-Last Updated: 2026-10-13
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 4 hours
@@ -16,7 +16,7 @@ Tags: ['lab', 'rag', 'qdrant', 'ollama', 'hands-on']
 - **[TUTORIAL-002: Docker Essentials](../tutorials/TUTORIAL-002-Docker-Essentials.md)** - Docker fundamentals
 - **[TUTORIAL-003: RAG Basics](../tutorials/TUTORIAL-003-RAG-Basics.md)** - RAG concepts
 - **[LAB-001: Docker & LLM](LAB-001-Docker-LLM.md)** - Docker practice
-- **[TUTORIAL-000: Python for AI](../tutorials/TUTORIAL-000-Python-for-AI.md)** - REQUIRED for RAG code
+- **[TUTORIAL-000: Python for AI (Complete Beginner)](../tutorials/TUTORIAL-000-Python-for-AI.md)** - REQUIRED for RAG code
 
 **Time:** 3 hours
 

@@ -1,7 +1,7 @@
 ---
 Document ID: VOLUME-3
 Title: "Volume 3: LLM Internals & Architecture"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Tags: ['volume', 'transformers', 'attention', 'tokenization']
@@ -275,7 +275,7 @@ RMSNorm: x / sqrt(mean(x^2) + epsilon)
 #### Day 4-5: Model Architectures
 **Decoder-only vs Encoder-Decoder**
 
-1. **[3402: Decoder-Only Models](../phases/phase3-transformers/3400-architectures/3402-Decoder-Only-Models.md)** (2 hours)
+1. **[3402: Decoder-Only Models (GPT, LLaMA, Mistral)](../phases/phase3-transformers/3400-architectures/3402-Decoder-Only-Models.md)** (2 hours)
    - GPT family (GPT-2, GPT-3, GPT-4)
    - LLaMA and derivatives
    - Mistral and Mixtral

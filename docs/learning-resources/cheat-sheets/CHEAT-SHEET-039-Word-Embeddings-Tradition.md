@@ -1,7 +1,7 @@
 ---
 Document ID: CHEAT-SHEET-039
 Title: "CHEAT-SHEET-039: Word Embeddings - the Tradition That Turned Co-occurrence into Coordinates"
-Last Updated: 2026-10-11
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Intermediate
 Tags: ['cheatsheet', 'embeddings', 'similarity', 'transformers']
@@ -102,7 +102,7 @@ Then the limit. A static *bank* vector must average its river and money senses -
 ### Related Minder Academy Documents
 
 - [3203: The Word-Embedding Tradition](../../phases/phase3-transformers/3200-embeddings/3203-Word-Embedding-Tradition.md) - the module this sheet maps
-- [3201: Rotary Positional Embeddings](../../phases/phase3-transformers/3200-embeddings/3201-Rotary-Positional-Embeddings-RoPE.md) - what the transformer substituted for learned word identity when position had to be encoded
+- [3201: Rotary Positional Embeddings (RoPE)](../../phases/phase3-transformers/3200-embeddings/3201-Rotary-Positional-Embeddings-RoPE.md) - what the transformer substituted for learned word identity when position had to be encoded
 - [CHEAT-SHEET-036: Vector Memory - the Embedding-Backed Store](./CHEAT-SHEET-036-Vector-Memory-Embedding-Backed-Store.md) - the downstream consumer: these coordinates are what the store indexes and decays
 - [6104: Embedding Sciences](../../phases/phase6-rag/6100-vector/6104-Embedding-Sciences.md) - where the tradition meets modern embedding practice and evaluation
 

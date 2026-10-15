@@ -1,7 +1,7 @@
 ---
 Document ID: PROJECT-003
 Title: "CAPSTONE PROJECT-003: Transformer from Scratch"
-Last Updated: 2026-10-13
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Tags: ['project', 'transformers', 'attention', 'pytorch']
@@ -1068,7 +1068,7 @@ print(f"Generated: {generated}")
 - **[3101: Self-Attention](../../phases/phase3-transformers/3100-attention/3101-Self-Attention-DeepDive.md)** - Attention theory
 - **[3201: RoPE](../../phases/phase3-transformers/3200-embeddings/3201-Rotary-Positional-Embeddings-RoPE.md)** - Positional encoding
 - **[3302: Normalization](../../phases/phase3-transformers/3300-decoding/3302-Normalization-Layers.md)** - Layer normalization
-- **[3402: Decoder-Only Models](../../phases/phase3-transformers/3400-architectures/3402-Decoder-Only-Models.md)** - GPT architecture
+- **[3402: Decoder-Only Models (GPT, LLaMA, Mistral)](../../phases/phase3-transformers/3400-architectures/3402-Decoder-Only-Models.md)** - GPT architecture
 
 - **[Flash Attention](../cheat-sheets/CHEAT-SHEET-020-Flash-Attention.md)** - The memory-hierarchy argument, the online-softmax block update, the FA1-FA2-FA3 ladder, the three enablement paths, and the when-not rules.
 - **[RoPE Positional Encoding](../cheat-sheets/CHEAT-SHEET-021-RoPE-Positional-Encoding.md)** - The three failure modes, the rotation construction, the relative-position property, the wiring discipline, and the PI/YaRN extension knobs.

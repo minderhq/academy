@@ -418,7 +418,7 @@ spec:
 ## Fine-tuning Workflows
 
 ### QLoRA Distributed Training
-QLoRA freezes a 4-bit (NF4) base model and trains LoRA adapters on top — the recipe is developed in [5102: QLoRA Pipelines](../5100-peft/5102-QLoRA-Pipelines.md) and [5101: LoRA Logic](../5100-peft/5101-LoRA-Logic.md). The reference script needs `bitsandbytes` plus access to a gated 7B repo, so it cannot run in this lesson's environment; it is kept as a text reference with the two footguns that most often break it:
+QLoRA freezes a 4-bit (NF4) base model and trains LoRA adapters on top — the recipe is developed in [5102: QLoRA Pipelines](../5100-peft/5102-QLoRA-Pipelines.md) and [5101: LoRA (Low-Rank Adaptation) Logic](../5100-peft/5101-LoRA-Logic.md). The reference script needs `bitsandbytes` plus access to a gated 7B repo, so it cannot run in this lesson's environment; it is kept as a text reference with the two footguns that most often break it:
 
 ```text
 # uv pip install bitsandbytes peft transformers  (CUDA required for NF4)
@@ -800,6 +800,6 @@ Distributed training in a homelab starts honest: single-GPU constraints first, w
 - Practical: **[LAB-006: Train a Model From Scratch](../../../learning-resources/labs/LAB-006-Train-Model-From-Scratch.md)**
 - Assessment: **[5300: Synthetic Data & Advanced Training - Quiz](./assessment/QUIZ.md)**
 
-**Related:** [1204: Multi-GPU Setup](../../phase1-infra/1200-virtualization/1204-Multi-GPU-Setup.md) — the hardware half of this lesson: multiple GPUs in one box, driver and container setup; [1301: K3s Master-Worker Architecture](../../phase1-infra/1300-kubernetes/1301-K3s-Master-Worker-Arch.md) — the cluster layer the K3s Job/PyTorchJob manifests in this lesson land on; [5101: LoRA Logic](../5100-peft/5101-LoRA-Logic.md) — the adapter math behind the LoRA half of the QLoRA recipe; [5102: QLoRA Pipelines](../5100-peft/5102-QLoRA-Pipelines.md) — the full quantized fine-tuning pipeline this lesson distributes; [LAB-003: LoRA Fine-Tuning](../../../learning-resources/labs/LAB-003-LoRA-FineTuning.md) — run a real LoRA fine-tune end to end
+**Related:** [1204: Multi-GPU Setup](../../phase1-infra/1200-virtualization/1204-Multi-GPU-Setup.md) — the hardware half of this lesson: multiple GPUs in one box, driver and container setup; [1301: K3s Master-Worker Architecture](../../phase1-infra/1300-kubernetes/1301-K3s-Master-Worker-Arch.md) — the cluster layer the K3s Job/PyTorchJob manifests in this lesson land on; [5101: LoRA (Low-Rank Adaptation) Logic](../5100-peft/5101-LoRA-Logic.md) — the adapter math behind the LoRA half of the QLoRA recipe; [5102: QLoRA Pipelines](../5100-peft/5102-QLoRA-Pipelines.md) — the full quantized fine-tuning pipeline this lesson distributes; [LAB-003: LoRA Fine-Tuning](../../../learning-resources/labs/LAB-003-LoRA-FineTuning.md) — run a real LoRA fine-tune end to end
 
 **Experiment:** [EXP_5302: Distributed Training Experiments](../../../../experiments/EXP_5302_DISTRIBUTED.md) — benchmark the DDP smoke-test path and the accumulation/precision blocks from this lesson on real hardware, and record your own speedup/serial-fraction table (nearest-relevant — the lesson's cluster sections need multi-node hardware)

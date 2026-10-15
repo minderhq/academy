@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-003
 Title: "TUTORIAL-003: RAG Basics - Give Your LLM Knowledge"
-Last Updated: 2026-10-13
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 60 minutes
@@ -18,7 +18,7 @@ Tags: ['tutorial', 'rag', 'qdrant', 'hands-on']
 **Prerequisites:**
 
 - **[TUTORIAL-001: Hello LLM](TUTORIAL-001-Hello-LLM.md)** - LLM basics
-- **[TUTORIAL-000: Python for AI](TUTORIAL-000-Python-for-AI.md)** - Classes, functions, error handling
+- **[TUTORIAL-000: Python for AI (Complete Beginner)](TUTORIAL-000-Python-for-AI.md)** - Classes, functions, error handling
 
 ℹ️ **Not comfortable with Python classes?** Complete **TUTORIAL-000** first (Parts 3-4 cover OOP and practical skills).
 

@@ -3,7 +3,7 @@ Document ID: 3403
 Title: "3403: Model Architecture Comparison Guide"
 Phase: 3
 Module: 3400
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -466,6 +466,6 @@ This guide is the architecture decision table: encoder-decoder (T5, BART) versus
 **Related:**
 
 - [3401: Encoder-Decoder Architectures](../3401-Encoder-Decoder-Architectures.md)
-- [3402: Decoder-Only Models](../3402-Decoder-Only-Models.md)
+- [3402: Decoder-Only Models (GPT, LLaMA, Mistral)](../3402-Decoder-Only-Models.md)
 - [4101: GGUF Physics](../../../phase4-quantization/4100-low-bit/4101-GGUF-Physics.md)
 - [1402: vLLM and TGI](../../../phase1-infra/1400-llmops/1402-vLLM-and-TGI.md)

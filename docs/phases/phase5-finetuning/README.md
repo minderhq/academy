@@ -142,7 +142,7 @@ Recommended Hardware:
 
 | Document | Description | Time | Difficulty |
 |----------|-------------|------|------------|
-| [5101: LoRA Logic](./5100-peft/5101-LoRA-Logic.md) | Modifying without retraining 7B params | 3h | Intermediate |
+| [5101: LoRA (Low-Rank Adaptation) Logic](./5100-peft/5101-LoRA-Logic.md) | Modifying without retraining 7B params | 3h | Intermediate |
 | [5102: QLoRA Pipelines](./5100-peft/5102-QLoRA-Pipelines.md) | 4-bit fine-tuning on 11GB-class GPU | 3h | Intermediate |
 | [5103: Adapters](./5100-peft/5103-Adapters.md) | Adapter layers and bottleneck | 2h | Intermediate |
 | [5104: LoRA Implementation](./5100-peft/guides/5104-LoRA-Implementation-Guide.md) | Complete implementation guide | 3h | Advanced |
@@ -168,7 +168,7 @@ Recommended Hardware:
 
 | Document | Description | Time | Difficulty |
 |----------|-------------|------|------------|
-| [5201: DPO Theory](./5200-alignment/5201-DPO-Theory.md) | Direct Preference Optimization | 4h | Advanced |
+| [5201: DPO (Direct Preference Optimization) Theory](./5200-alignment/5201-DPO-Theory.md) | Direct Preference Optimization | 4h | Advanced |
 | [5202: Alignment Orchestration](./5200-alignment/5202-Alignment-Orchestration.md) | Reward vs DPO | 3h | Advanced |
 | [5203: RLHF](./5200-alignment/5203-RLHF.md) | Reinforcement Learning from Human Feedback | 4h | Advanced |
 | [5204: Preference Dataset Creation](./5200-alignment/5204-Preference-Dataset-Creation.md) | Building preference pairs | 2h | Intermediate |
@@ -716,4 +716,4 @@ After completing this phase:
 
 **Difficulty:** ⭐⭐⭐ Advanced
 
-**Ready to fine-tune LLMs?** Start with [5101: LoRA Logic](./5100-peft/5101-LoRA-Logic.md) or [5102: QLoRA Pipelines](./5100-peft/5102-QLoRA-Pipelines.md)
+**Ready to fine-tune LLMs?** Start with [5101: LoRA (Low-Rank Adaptation) Logic](./5100-peft/5101-LoRA-Logic.md) or [5102: QLoRA Pipelines](./5100-peft/5102-QLoRA-Pipelines.md)

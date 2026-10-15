@@ -46,7 +46,7 @@ mechanics, and gives a decision guide for picking the right method.
 
 ### 1.1 Prerequisites
 
-- [5101: LoRA Logic](./5101-LoRA-Logic.md) — low-rank decomposition basics
+- [5101: LoRA (Low-Rank Adaptation) Logic](./5101-LoRA-Logic.md) — low-rank decomposition basics
 - [5102: QLoRA Pipelines](./5102-QLoRA-Pipelines.md) — 4-bit base + adapters
 - Transformer architecture ([3402: Decoder-Only Models (GPT, LLaMA, Mistral)](../../phase3-transformers/3400-architectures/3402-Decoder-Only-Models.md))
 
@@ -313,7 +313,7 @@ LoRA dominates the PEFT conversation, but it is one point in a larger design spa
 - [6] Pfeiffer et al. "AdapterFusion: Non-Destructive Task Composition for Transfer Learning". EACL, 2021.
 
 ### Related Minder Academy Documents
-- [5101: LoRA Logic](./5101-LoRA-Logic.md) - the default PEFT method
+- [5101: LoRA (Low-Rank Adaptation) Logic](./5101-LoRA-Logic.md) - the default PEFT method
 - [5102: QLoRA Pipelines](./5102-QLoRA-Pipelines.md) - 4-bit base + adapters
 - [5104: LoRA Implementation Guide](./guides/5104-LoRA-Implementation-Guide.md) - practical guide
 
@@ -322,7 +322,7 @@ LoRA dominates the PEFT conversation, but it is one point in a larger design spa
 ## Next Steps
 
 - Continue with: **[5105: Model Merging - Task Vectors, TIES, and mergekit](./5105-Model-Merging.md)**
-- Alignment: **[5201: DPO Theory](../5200-alignment/5201-DPO-Theory.md)**
+- Alignment: **[5201: DPO (Direct Preference Optimization) Theory](../5200-alignment/5201-DPO-Theory.md)**
 - Assessment: **[5100: PEFT Methods - Quiz](assessment/QUIZ.md)**
 
 ---

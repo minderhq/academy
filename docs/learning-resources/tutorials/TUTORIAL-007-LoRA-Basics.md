@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-007
 Title: "TUTORIAL-007: LoRA Basics"
-Last Updated: 2026-10-13
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 1 hour
@@ -44,7 +44,7 @@ After completing this tutorial, you will be able to:
 
 ## Abstract
 
-LoRA (Low-Rank Adaptation) fine-tunes a model by learning a low-rank *update* to selected weight matrices while the original weights stay frozen — a few million trainable parameters instead of billions, saved as megabyte-scale adapter files instead of full checkpoints. This tutorial builds the mechanism from scratch (correct matrix shapes, zero-init, α/r scaling), then does the same job with the production stack: PEFT's `LoraConfig`, TRL's `SFTTrainer`, and QLoRA for consumer GPUs. For the theory behind why low-rank updates work, see [5101: LoRA Logic](../../phases/phase5-finetuning/5100-peft/5101-LoRA-Logic.md); for a guided hands-on lab, [LAB-003](../labs/LAB-003-LoRA-FineTuning.md).
+LoRA (Low-Rank Adaptation) fine-tunes a model by learning a low-rank *update* to selected weight matrices while the original weights stay frozen — a few million trainable parameters instead of billions, saved as megabyte-scale adapter files instead of full checkpoints. This tutorial builds the mechanism from scratch (correct matrix shapes, zero-init, α/r scaling), then does the same job with the production stack: PEFT's `LoraConfig`, TRL's `SFTTrainer`, and QLoRA for consumer GPUs. For the theory behind why low-rank updates work, see [5101: LoRA (Low-Rank Adaptation) Logic](../../phases/phase5-finetuning/5100-peft/5101-LoRA-Logic.md); for a guided hands-on lab, [LAB-003](../labs/LAB-003-LoRA-FineTuning.md).
 
 ## Why LoRA: The Numbers, Honestly
 
@@ -494,9 +494,9 @@ Loss barely moves
 
 ### Related Minder Academy Documents
 
-- [5101: LoRA Logic](../../phases/phase5-finetuning/5100-peft/5101-LoRA-Logic.md)
+- [5101: LoRA (Low-Rank Adaptation) Logic](../../phases/phase5-finetuning/5100-peft/5101-LoRA-Logic.md)
 - [5102: QLoRA Pipelines](../../phases/phase5-finetuning/5100-peft/5102-QLoRA-Pipelines.md)
-- [5201: DPO Theory](../../phases/phase5-finetuning/5200-alignment/5201-DPO-Theory.md)
+- [5201: DPO (Direct Preference Optimization) Theory](../../phases/phase5-finetuning/5200-alignment/5201-DPO-Theory.md)
 - [LAB-003: LoRA Fine-Tuning](../labs/LAB-003-LoRA-FineTuning.md)
 
 ---
@@ -504,8 +504,8 @@ Loss barely moves
 ## Next Steps
 
 - Hands-on: **[LAB-003: LoRA Fine-Tuning](../labs/LAB-003-LoRA-FineTuning.md)**
-- Theory: **[5101: LoRA Logic](../../phases/phase5-finetuning/5100-peft/5101-LoRA-Logic.md)**
-- Advanced: **[5102: QLoRA Pipelines](../../phases/phase5-finetuning/5100-peft/5102-QLoRA-Pipelines.md)** → **[5201: DPO Theory](../../phases/phase5-finetuning/5200-alignment/5201-DPO-Theory.md)**
+- Theory: **[5101: LoRA (Low-Rank Adaptation) Logic](../../phases/phase5-finetuning/5100-peft/5101-LoRA-Logic.md)**
+- Advanced: **[5102: QLoRA Pipelines](../../phases/phase5-finetuning/5100-peft/5102-QLoRA-Pipelines.md)** → **[5201: DPO (Direct Preference Optimization) Theory](../../phases/phase5-finetuning/5200-alignment/5201-DPO-Theory.md)**
 
 - **[LoRA & QLoRA](../cheat-sheets/CHEAT-SHEET-016-LoRA-QLoRA.md)** - The low-rank arithmetic and the three knobs, the QLoRA 4-bit pipeline, and the merge-on-FP16 rule.
 - **[Model Merging - the Arithmetic That Combines Trained Models](../cheat-sheets/CHEAT-SHEET-040-Model-Merging.md)** - The task vector and its dose dial, TIES' trim-elect-merge, DARE's drop-and-rescale, SLERP's arc, and the soup's distributional guarantee.
