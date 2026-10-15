@@ -3,7 +3,7 @@ Document ID: 4302
 Title: "4302: Fake Quantization"
 Phase: 4
 Module: 4300
-Last Updated: 2026-09-30
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -428,4 +428,4 @@ Fake quantization is the mechanism that makes QAT trainable: quantize in the for
 
 ## Next Steps
 
-→ **[4303: QAT for Transformers](./4303-QAT-for-Transformers.md)** - Apply QAT to transformer architectures
+- Continue with: **[4303: QAT for Transformers](./4303-QAT-for-Transformers.md)**

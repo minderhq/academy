@@ -3,7 +3,7 @@ Document ID: 4304
 Title: "4304: Low-bit QAT"
 Phase: 4
 Module: 4300
-Last Updated: 2026-09-30
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -400,4 +400,4 @@ Below 4 bits, quantization stops being a free lunch: 4-bit is the practical floo
 
 ## Next Steps
 
-→ **[4305: Quantization Configuration](./4305-Quantization-Configuration.md)** - Designing quantization schemes
+- Continue with: **[4305: Quantization Configuration](./4305-Quantization-Configuration.md)**

@@ -3,7 +3,7 @@ Document ID: 4307
 Title: "4307: Transformers QAT Guide"
 Phase: 4
 Module: 4300
-Last Updated: 2026-10-08
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 2 hours
@@ -468,4 +468,4 @@ Hugging Face puts four paths to quantized transformers on the table: bitsandbyte
 
 ## Next Steps
 
-→ **[guides/4308: BitBlade QAT](4308-BitBlade-QAT.md)** - Advanced quantization techniques
+- Continue with: **[4308: BitBlade QAT Guide](./4308-BitBlade-QAT.md)**

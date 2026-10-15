@@ -3,7 +3,7 @@ Document ID: 4404
 Title: "4404: EXL2 Format"
 Phase: 4
 Module: 4400
-Last Updated: 2026-10-07
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -399,4 +399,4 @@ EXL2 is ExLlamaV2's answer to one question: what does maximum inference speed on
 
 ## Next Steps
 
-→ **[4405: Sparsity + Quantization](./4405-Sparsity-Quantization.md)** - Combining pruning with quantization
+- Continue with: **[4405: Sparsity + Quantization](./4405-Sparsity-Quantization.md)**

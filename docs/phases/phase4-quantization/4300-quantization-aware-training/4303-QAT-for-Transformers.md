@@ -3,7 +3,7 @@ Document ID: 4303
 Title: "4303: QAT for Transformers"
 Phase: 4
 Module: 4300
-Last Updated: 2026-10-08
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -432,4 +432,4 @@ Transformers tolerate QAT well but not uniformly: the recipe this lesson built q
 
 ## Next Steps
 
-→ **[4304: Low-bit QAT](./4304-Low-bit-QAT.md)** - Techniques for 4-bit and below
+- Continue with: **[4304: Low-bit QAT](./4304-Low-bit-QAT.md)**

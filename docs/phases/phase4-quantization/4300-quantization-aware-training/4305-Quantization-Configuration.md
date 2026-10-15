@@ -3,7 +3,7 @@ Document ID: 4305
 Title: "4305: Quantization Configuration"
 Phase: 4
 Module: 4300
-Last Updated: 2026-10-08
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -557,4 +557,4 @@ A quantization configuration is a set of per-layer decisions: which layers to qu
 
 ## Next Steps
 
-→ **[guides/4306: PyTorch QAT](./guides/4306-PyTorch-QAT.md)** - Implementing QAT with PyTorch
+- Continue with: **[4306: PyTorch QAT Guide](./guides/4306-PyTorch-QAT.md)**

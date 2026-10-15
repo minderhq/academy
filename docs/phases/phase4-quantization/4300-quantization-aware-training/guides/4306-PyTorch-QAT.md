@@ -3,7 +3,7 @@ Document ID: 4306
 Title: "4306: PyTorch QAT Guide"
 Phase: 4
 Module: 4300
-Last Updated: 2026-09-30
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 2 hours
@@ -527,4 +527,4 @@ torch.ao.quantization gives you the whole QAT pipeline in three steps: prepare i
 
 ## Next Steps
 
-→ **[guides/4307: Transformers QAT](4307-Transformers-QAT.md)** - QAT with Hugging Face
+- Continue with: **[4307: Transformers QAT Guide](./4307-Transformers-QAT.md)**

@@ -3,7 +3,7 @@ Document ID: 4301
 Title: "4301: QAT Foundations"
 Phase: 4
 Module: 4300
-Last Updated: 2026-09-30
+Last Updated: 2026-10-14
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -271,4 +271,4 @@ Quantization Aware Training is the answer to a simple failure mode: post-trainin
 
 ## Next Steps
 
-→ **[4302: Fake Quantization](./4302-Fake-Quantization.md)** - Deep dive into STE and quantization simulation
+- Continue with: **[4302: Fake Quantization](./4302-Fake-Quantization.md)**
