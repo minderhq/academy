@@ -1,7 +1,7 @@
 ---
 Document ID: 2200-PREREQUISITES
 Title: "2200: Deep Learning Frameworks - Prerequisites"
-Last Updated: 2026-09-26
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Intermediate
 Tags: ['frameworks', 'pytorch', 'prerequisites', 'preparation']
@@ -30,7 +30,7 @@ Module 2200 takes frameworks apart: PyTorch's dynamic graphs, XLA's compiled gra
 
 ## Before You Start
 
-Module 2200 is three lessons about one stack: [2201](./2201-PyTorch-Computational-Graphs.md) (how frameworks execute), [2202](./2202-TensorFlow-XLA-Compilers.md) (how compilers optimize), and [2203](./2203-CUDA-Kernel-Programming.md) (how GPUs compute). The lessons assume you have already trained a model with PyTorch and now want to see underneath.
+Module 2200 is three lessons about one stack: [2201: PyTorch Computational Graphs and Dynamic Execution](./2201-PyTorch-Computational-Graphs.md) (how frameworks execute), [2202: TensorFlow XLA and Compiler Optimizations](./2202-TensorFlow-XLA-Compilers.md) (how compilers optimize), and [2203: CUDA Kernel Programming and GPU Architecture](./2203-CUDA-Kernel-Programming.md) (how GPUs compute). The lessons assume you have already trained a model with PyTorch and now want to see underneath.
 
 The five sections below test exactly what the lessons build on: Python fluency, `nn.Module` and the training loop, autograd as a graph, an intuition for kernel launches, and device awareness. Run every example — each one's output is described in the prose that follows it. All blocks run on CPU with a standard PyTorch install; a CUDA GPU is helpful but optional, and no CUDA toolchain is needed anywhere in this module.
 

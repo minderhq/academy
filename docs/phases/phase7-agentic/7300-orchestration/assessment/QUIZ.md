@@ -1,7 +1,7 @@
 ---
 Document ID: 7300-QUIZ
 Title: "7300: Agent Orchestration - Quiz"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 30 minutes
@@ -195,9 +195,9 @@ Tags: ['assessment', 'quiz', 'agents', 'orchestration']
 Each question maps to the closest lesson for review:
 
 - **Questions 1, 3, 10-12, 16, 20:** [7301: Collaborative Tasking - Multi-Agent Synergy](../7301-Orchestration.md) — specialized agents coordinated in one system, the plan → execute → review → retry → synthesize flow, LLM-driven task decomposition, hierarchical-versus-peer-to-peer patterns, the defined sequence of operations, and the adaptive routing-and-retry that separates orchestration from a fixed chain
-- **Questions 2, 5-6, 13-14:** [7303: Framework Comparison](../guides/7303-Framework-Comparison.md) — AutoGen, LangGraph and CrewAI as the orchestration frameworks, with LangGraph's typed state graph, conditional edges and checkpoint-backed resume; the DAG's no-cycle property as a formal definition lives in [7304](../7304-Event-Buses-Deadlocks-and-Human-Gates.md), where Kahn's stall names the exact four-node cycle set the feedback edge creates
+- **Questions 2, 5-6, 13-14:** [7303: Framework Comparison](../guides/7303-Framework-Comparison.md) — AutoGen, LangGraph and CrewAI as the orchestration frameworks, with LangGraph's typed state graph, conditional edges and checkpoint-backed resume; the DAG's no-cycle property as a formal definition lives in [7304: Event Buses, Deadlocks, and Human Gates](../7304-Event-Buses-Deadlocks-and-Human-Gates.md), where Kahn's stall names the exact four-node cycle set the feedback edge creates
 - **Question 4:** [7201: Tool Calling & Function Execution](../../7200-tools/7201-Tool-Calling.md) — Parallel Tool Execution, the phase's only simultaneous-execution teaching
-- **Questions 7, 15, 18-19:** [7304: Event Buses, Deadlocks, and Human Gates](../7304-Event-Buses-Deadlocks-and-Human-Gates.md) — the delivery ledger where the same six-task trace loses T3 under at-most-once, applies it twice under at-least-once, and skips the redelivery at the ledger under effectively-once, and the wait-for ring of length 3 that completes as six grants under a global acquisition order; the trigger-and-bound mechanics stay in [7301](../7301-Orchestration.md)
-- **Question 8:** [7304: Event Buses, Deadlocks, and Human Gates](../7304-Event-Buses-Deadlocks-and-Human-Gates.md) — the mid-run gate where an interrupt checkpoints 84 bytes of run state and the resume splits approve (execute runs) from deny (fallback runs, execute never appears); quarantine as the escalation path stays in [7503](../../7500-security/7503-Adversarial-Attacks.md)
+- **Questions 7, 15, 18-19:** [7304: Event Buses, Deadlocks, and Human Gates](../7304-Event-Buses-Deadlocks-and-Human-Gates.md) — the delivery ledger where the same six-task trace loses T3 under at-most-once, applies it twice under at-least-once, and skips the redelivery at the ledger under effectively-once, and the wait-for ring of length 3 that completes as six grants under a global acquisition order; the trigger-and-bound mechanics stay in [7301: Collaborative Tasking - Multi-Agent Synergy](../7301-Orchestration.md)
+- **Question 8:** [7304: Event Buses, Deadlocks, and Human Gates](../7304-Event-Buses-Deadlocks-and-Human-Gates.md) — the mid-run gate where an interrupt checkpoints 84 bytes of run state and the resume splits approve (execute runs) from deny (fallback runs, execute never appears); quarantine as the escalation path stays in [7503: Adversarial Attacks & Defense](../../7500-security/7503-Adversarial-Attacks.md)
 - **Question 9:** [7302: Multi-Agent Communication Protocols](../7302-Communication-Protocols.md) — the Handoff Protocol packaging agent-to-agent transfers without losing context
 - **Question 17:** [7302: Multi-Agent Communication Protocols](../7302-Communication-Protocols.md) — consensus and negotiation patterns carrying the communication-and-synchronization mix

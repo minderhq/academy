@@ -1,7 +1,7 @@
 ---
 Document ID: 7300-ORCHESTRATION-README
 Title: "7300: Multi-Agent Orchestration"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
@@ -314,7 +314,7 @@ async def poll(stop: asyncio.Event, out: asyncio.Queue) -> None:
 ```
 
 **Budget every task.** Awaited work can still hang forever. The fleet
-rule is *timeouts everywhere* ([7302](./7302-Communication-Protocols.md)):
+rule is *timeouts everywhere* ([7302: Multi-Agent Communication Protocols](./7302-Communication-Protocols.md)):
 `asyncio.wait_for` is the async mechanism — it cancels the
 wrapped awaitable itself when the budget expires and raises
 `TimeoutError`. On Python 3.11+ the scoped form
@@ -332,7 +332,7 @@ broad-handler lesson teaches.
 
 `asyncio.gather` schedules every call at once. A fleet that gathers
 500 document calls makes 500 simultaneous provider requests — the
-limiter trips ([7302](./7302-Communication-Protocols.md) teaches the
+limiter trips ([7302: Multi-Agent Communication Protocols](./7302-Communication-Protocols.md) teaches the
 429 answer), latency queues, and memory balloons with every in-flight
 task. The missing discipline is bounding the fan-out **before** the
 limiter trips: acquire an `asyncio.Semaphore(limit)` around each
@@ -429,7 +429,7 @@ each request carrying `custom_id` plus params, results fetched with
 waiting on an answer cannot wait 24 hours, so anything in the
 request path stays on the bounded live fan-out; anything the fleet
 can afford to defer moves to batch. The savings are measurable —
-the [1503](../../../phases/phase1-infra/1500-monitoring/1503-LLM-Observability.md)
+the [1503: LLM Observability](../../../phases/phase1-infra/1500-monitoring/1503-LLM-Observability.md)
 observability loop watching cost per document is where the discount
 shows up.
 

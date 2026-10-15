@@ -1,7 +1,7 @@
 ---
 Document ID: SOLUTION-LAB-011
 Title: "SOLUTION-LAB-011: Multi-Modal AI"
-Last Updated: 2026-10-13
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Tags: ['solution', 'multimodal', 'vision']
@@ -145,7 +145,7 @@ captioner = ImageCaptioner()
 print(captioner.caption("dog.jpg"))
 ```
 
-`max_new_tokens` (not `max_length`) caps generated length independently of any prompt tokens. Expect short, generic captions from the base checkpoint — that is its honest ceiling. When captions must *answer questions about* an image, that is a vision-language-model job ([3501](../../../phases/phase3-transformers/3500-multimodal/3501-Vision-Language-Models.md)), not a captioner upgrade.
+`max_new_tokens` (not `max_length`) caps generated length independently of any prompt tokens. Expect short, generic captions from the base checkpoint — that is its honest ceiling. When captions must *answer questions about* an image, that is a vision-language-model job ([3501: Vision-Language Models](../../../phases/phase3-transformers/3500-multimodal/3501-Vision-Language-Models.md)), not a captioner upgrade.
 
 ---
 

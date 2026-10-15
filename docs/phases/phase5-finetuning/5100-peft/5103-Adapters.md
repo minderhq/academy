@@ -3,7 +3,7 @@ Document ID: 5103
 Title: "5103: Adapters & Parameter-Efficient Adaptation Methods"
 Phase: 5
 Module: 5100
-Last Updated: 2026-10-14
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -48,7 +48,7 @@ mechanics, and gives a decision guide for picking the right method.
 
 - [5101: LoRA Logic](./5101-LoRA-Logic.md) — low-rank decomposition basics
 - [5102: QLoRA Pipelines](./5102-QLoRA-Pipelines.md) — 4-bit base + adapters
-- Transformer architecture ([3402](../../phase3-transformers/3400-architectures/3402-Decoder-Only-Models.md))
+- Transformer architecture ([3402: Decoder-Only Models (GPT, LLaMA, Mistral)](../../phase3-transformers/3400-architectures/3402-Decoder-Only-Models.md))
 
 ## Learning Objectives
 After completing this document, you will:

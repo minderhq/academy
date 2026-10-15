@@ -39,7 +39,7 @@ After completing this lesson, you will be able to:
 - Derive the XNOR + popcount identity that turns a ±1 matmul into bit operations
 - Implement a binary linear layer with a correct straight-through estimator and latent full-precision weights
 - Implement TTQ with learned scales flowing gradients through the masks — and say why the `.data`-mutation version is wrong
-- State the 2026 status: where binary networks live (edge vision, FPGA), why binary activations never reached LLMs, and how that differs from the ternary-weights path of [4406](4406-1.58-bit-Quantization.md)
+- State the 2026 status: where binary networks live (edge vision, FPGA), why binary activations never reached LLMs, and how that differs from the ternary-weights path of [4406: 1.58-bit Quantization](4406-1.58-bit-Quantization.md)
 
 ---
 

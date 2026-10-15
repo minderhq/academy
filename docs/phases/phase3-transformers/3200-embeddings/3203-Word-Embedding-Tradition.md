@@ -422,7 +422,7 @@ king - man + woman = [-1.00, 1.00, -0.06, 0.13] lands queen at cosine 0.9944, ab
 - Mikolov, T., Chen, K., Corrado, G., & Dean, J. (2013). *Efficient Estimation of Word Representations in Vector Space.* arXiv:1301.3781 - CBOW and skip-gram, the training-objective question this module's quiz asks and this lesson answers.
 - Mikolov, T., Sutskever, I., Chen, K., Corrado, G. S., & Dean, J. (2013). *Distributed Representations of Words and Phrases and their Compositionality.* arXiv:1310.4546 - negative sampling, the subsampling of frequent words, and the king-queen analogy table.
 - Pennington, J., Socher, R., & Manning, C. D. (2014). *GloVe: Global Vectors for Word Representation.* EMNLP 2014 (ACL Anthology D14-1162) - the co-occurrence ratio argument (ice/steam/fashion table) and the log-bilinear factorization; no arXiv version exists - cite the anthology entry.
-- Bojanowski, P., Grave, E., Joulin, A., & Mikolov, T. (2017). *Enriching Word Vectors with Subword Information.* TACL. arXiv:1607.04606 - fastText's subword n-grams, the improvement Q7 attributes to [3202](./3202-Tokenizer-Sciences.md)'s surface.
+- Bojanowski, P., Grave, E., Joulin, A., & Mikolov, T. (2017). *Enriching Word Vectors with Subword Information.* TACL. arXiv:1607.04606 - fastText's subword n-grams, the improvement Q7 attributes to [3202: Tokenizer Sciences - BPE, SentencePiece, and Tiktoken](./3202-Tokenizer-Sciences.md)'s surface.
 - Peters, M. E., Neumann, M., Iyyer, M., Gardner, M., Clark, C., Lee, K., & Zettlemoyer, L. (2018). *Deep Contextualized Word Representations.* NAACL 2018. arXiv:1802.05365 - ELMo and the per-use vectors this lesson's static-limit fence dramatizes.
 
 ## Next Steps

@@ -132,7 +132,7 @@ task_result payload:
  └─────────┘  └─────────┘  └─────────┘
 ```
 
-- All coordination flows through one planner agent ([7301](./7301-Orchestration.md))
+- All coordination flows through one planner agent ([7301: Collaborative Tasking - Multi-Agent Synergy](./7301-Orchestration.md))
 - Pros: traceable, bounded message complexity O(N)
 - Cons: orchestrator is a bottleneck and single point of failure
 

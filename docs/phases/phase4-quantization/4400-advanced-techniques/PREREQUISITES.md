@@ -1,7 +1,7 @@
 ---
 Document ID: 4400-PREREQUISITES
 Title: "4400: Advanced Quantization Techniques - Prerequisites"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Tags: ['prerequisites', 'quantization', 'advanced']
@@ -15,7 +15,7 @@ Tags: ['prerequisites', 'quantization', 'advanced']
 
 ## Before You Start
 
-This module covers post-training quantization methods (GPTQ, AWQ, GGUF, EXL2) plus sparsity, ternary, and production deployment — the techniques that run after training is done. Quantization-Aware Training itself is Module [4300](../4300-quantization-aware-training/README.md)'s subject.
+This module covers post-training quantization methods (GPTQ, AWQ, GGUF, EXL2) plus sparsity, ternary, and production deployment — the techniques that run after training is done. Quantization-Aware Training itself is Module [4300: Quantization Aware Training (QAT)](../4300-quantization-aware-training/README.md)'s subject.
 
 **Required Knowledge:**
 

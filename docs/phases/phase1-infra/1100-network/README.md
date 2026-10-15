@@ -1,7 +1,7 @@
 ---
 Document ID: 1100-NETWORK-README
 Title: "1100: Network Fundamentals for LLM Infrastructure"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Beginner
 Prerequisites: []
@@ -228,8 +228,8 @@ Cabling:
 Before starting this module, ensure you understand:
 
 ### Basic Knowledge
-- **TCP/IP Fundamentals:** Packets, ports, protocols (HTTP, HTTPS, SSH) - covered by [1104](./1104-Protocol-Stack-TCP-and-DNS.md)
-- **DNS:** How domain names resolve to IPs - covered by [1104](./1104-Protocol-Stack-TCP-and-DNS.md)
+- **TCP/IP Fundamentals:** Packets, ports, protocols (HTTP, HTTPS, SSH) - covered by [1104: The Protocol Stack - OSI Layers, TCP, and DNS](./1104-Protocol-Stack-TCP-and-DNS.md)
+- **DNS:** How domain names resolve to IPs - covered by [1104: The Protocol Stack - OSI Layers, TCP, and DNS](./1104-Protocol-Stack-TCP-and-DNS.md)
 - **IP Addressing:** IPv4 vs IPv6, subnets, CIDR notation
 - **Network Hardware:** Difference between routers, switches, modems
 

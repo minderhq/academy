@@ -1,7 +1,7 @@
 ---
 Document ID: 2100-CALCULUS-README
 Title: "2100: Calculus for Deep Learning"
-Last Updated: 2026-09-29
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Intermediate
 Prerequisites: []
@@ -238,7 +238,7 @@ Each lesson is written around runnable code — work through the examples, don't
 ## Next Steps
 
 1. **Not reviewed yet?** Start with [2100: Calculus for Deep Learning - Prerequisites](./PREREQUISITES.md) and run its self-check examples.
-2. **Work the lessons in order:** [2101](./2101-Tensor-Algebra.md) → [2102](./2102-Backpropagation-and-Derivatives.md) → [2103](./2103-Loss-Landscape-Geometry.md) — each builds on the previous one.
+2. **Work the lessons in order:** [2101: Tensor Algebra and Linear Algebra for AI](./2101-Tensor-Algebra.md) → [2102: Backpropagation and Automatic Differentiation](./2102-Backpropagation-and-Derivatives.md) → [2103: Loss Landscape Geometry - Curvature, Saddles, and the Shape of Optimization](./2103-Loss-Landscape-Geometry.md) — each builds on the previous one.
 3. **Close the loop:** take the [quiz](./assessment/QUIZ.md), then the [practice exercises](./assessment/PRACTICE.md).
 4. **Continue to the next module:** [2200: Deep Learning Frameworks](../2200-frameworks/README.md)
 

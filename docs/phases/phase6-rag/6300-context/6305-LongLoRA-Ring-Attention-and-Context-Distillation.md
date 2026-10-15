@@ -3,7 +3,7 @@ Document ID: 6305
 Title: "6305: LongLoRA, Ring Attention, and Context Distillation"
 Phase: 6
 Module: 6300
-Last Updated: 2026-10-14
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -238,7 +238,7 @@ Reading the output, line by line. Attention at 65,536 tokens monolithically mate
 
 ## Summary
 
-- **Context extension is three separate bills** — attention compute, per-device activation memory, and the serving-time prompt tax — and the position-level fixes of [3201](../../phase3-transformers/3200-embeddings/3201-Rotary-Positional-Embeddings-RoPE.md) pay none of them.
+- **Context extension is three separate bills** — attention compute, per-device activation memory, and the serving-time prompt tax — and the position-level fixes of [3201: Rotary Positional Embeddings (RoPE)](../../phase3-transformers/3200-embeddings/3201-Rotary-Positional-Embeddings-RoPE.md) pay none of them.
 - **Shifted sparse attention** splits the sequence into groups during training and rotates by half a group in alternating layers; without the shift a token's information reach is its group size forever, with it the reach walks 4 → 8 → 12 → 16 and covers the sequence by layer four, at a training-time attention cost of 0.125x.
 - **Ring attention** is exact sequence parallelism: four devices × four ring steps with blockwise online softmax reproduce full attention to 2.22e-16, holding N/P tokens per device and materializing one block of softmax at a time.
 - **LoRA+ is the parameter line**: LoRA-only at 3.8% of a toy transformer's parameters loses to full fine-tuning; adding the embedding and norm layers — 12.4% total — closes the gap, and 1.9% at the 7B scale.

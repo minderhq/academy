@@ -1,7 +1,7 @@
 ---
 Document ID: 2400-PRETRAINING-README
 Title: "2400: LLM Pretraining"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Prerequisites: [2200]
@@ -266,7 +266,7 @@ Before starting pretraining:
 ## Next Steps
 
 1. **Not reviewed yet?** Start with [2400: LLM Pretraining - Prerequisites](./PREREQUISITES.md) and run its self-check examples.
-2. **Work the lessons in order:** [2401](./2401-Pre-training-Fundamentals.md) → [2402](./2402-Large-Scale-Training.md) → [2403](./2403-Evaluation-Frameworks.md) — each builds on the previous one.
+2. **Work the lessons in order:** [2401: Pre-training Fundamentals](./2401-Pre-training-Fundamentals.md) → [2402: Large-Scale Training for Language Models](./2402-Large-Scale-Training.md) → [2403: Evaluation Frameworks for Language Models](./2403-Evaluation-Frameworks.md) — each builds on the previous one.
 3. **Close the loop:** take the [quiz](./assessment/QUIZ.md), then the [practice exercises](./assessment/PRACTICE.md).
 4. **Continue to Phase 3:** [3100: Attention Architectures](../../phase3-transformers/3100-attention/README.md)
 

@@ -1,7 +1,7 @@
 ---
 Document ID: SITEMAP
 Title: "Minder Academy - Complete Sitemap"
-Last Updated: 2026-10-14
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Beginner
 Tags: ['maintenance', 'navigation']
@@ -781,9 +781,9 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 Optional deep-dive: one person's full home-lab build (NUC 12th Gen, RTX 2080 Ti
 11GB eGPU, Synology NAS) kept as a worked example of the phase 1 concepts. The
 build's written walkthroughs live inside the lessons themselves - see the
-"Case Study" sections of [1101](../phases/phase1-infra/1100-network/1101-Fiber-GPON-Modem.md),
-[1102](../phases/phase1-infra/1100-network/1102-Star-Topology-Core.md), and
-[1202](../phases/phase1-infra/1200-virtualization/1202-TB3-UT3G-Passthrough.md).
+"Case Study" sections of [1101: Internet Uplink & Modem Configuration](../phases/phase1-infra/1100-network/1101-Fiber-GPON-Modem.md),
+[1102: Network Topology Design](../phases/phase1-infra/1100-network/1102-Star-Topology-Core.md), and
+[1202: GPU Passthrough (IOMMU/VFIO)](../phases/phase1-infra/1200-virtualization/1202-TB3-UT3G-Passthrough.md).
 
 - [EXP_1101_GPON](../../experiments/EXP_1101_GPON.md)
 - [EXP_1102_STAR_TOPOLOGY](../../experiments/EXP_1102_STAR_TOPOLOGY.md)

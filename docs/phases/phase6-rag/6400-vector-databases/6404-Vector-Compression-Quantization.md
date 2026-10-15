@@ -42,7 +42,7 @@ After this lesson you will be able to:
 - Implement product quantization the Jegou way - m=8 subvectors, 256-centroid codebooks trained by k-means, one byte per subvector, ADC scoring by per-query table lookups - and recover from its 0.6225 floor to 0.9900 with 40 exact rescores against the originals
 - Run the oversampling x rescore campaign and read its two honest laws: rescore with oversampling=1 is a no-op that pays 10 exact scores to return the same set (0.3900 both ways), and every 2x oversample buys back recall at 2x exact rescoring work - binary 0.6250 at 20 rescores, 0.8850 at 40, 0.9950 at 80
 - Name Qdrant's actual defaults from the live docs: rescoring is enabled by DEFAULT only for binary quantization (and TurboQuant's low-bit modes), the docs' own example ships oversampling=2.0, and asymmetric quantization (v1.15.0+) pairs binary stored vectors with scalar8bit queries because "every dimension contributes the same +/-1 vote" in a binary query
-- Place quantization in the stack: the HNSW walk ([6101](../6100-vector/6101-HNSW-Indexing.md)) is unchanged - compression changes the bytes, not the graph - and the same over-fetch-then-rescore shape returns in [6202](../6200-retrieval/6202-Re-ranking-and-Retrieval-Logistics.md) at cross-encoder cost
+- Place quantization in the stack: the HNSW walk ([6101: HNSW Indexing - Efficient Semantic Search at Scale](../6100-vector/6101-HNSW-Indexing.md)) is unchanged - compression changes the bytes, not the graph - and the same over-fetch-then-rescore shape returns in [6202: Re-ranking and Retrieval Logistics](../6200-retrieval/6202-Re-ranking-and-Retrieval-Logistics.md) at cross-encoder cost
 
 ## The Memory Ledger
 
