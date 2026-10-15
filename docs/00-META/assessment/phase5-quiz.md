@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE5-QUIZ
 Title: "Phase 5: Fine-Tuning & Alignment Quiz"
-Last Updated: 2026-10-13
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Tags: ['assessment', 'quiz', 'finetuning']
@@ -273,7 +273,7 @@ Each question maps to the closest lesson for review:
 - **Questions 7-8:** [5203: RLHF](../../phases/phase5-finetuning/5200-alignment/5203-RLHF.md) — RLHF from human feedback and the reward models that score it
 - **Question 9:** [5301: Knowledge Distillation](../../phases/phase5-finetuning/5300-synthetic/5301-Knowledge-Distillation.md) — knowledge distillation from a teacher
 - **Questions 10, 27-29:** [5103: Adapters](../../phases/phase5-finetuning/5100-peft/5103-Adapters.md) — the PEFT family: adapter layers, prompt tuning and prefix tuning
-- **Questions 14, 16-17:** [5304: Self Instruct and Model Collapse](../../phases/phase5-finetuning/5300-synthetic/5304-Self-Instruct-and-Model-Collapse.md) — instruction tuning and synthetic data generation
+- **Questions 14, 16-17:** [5304: Self-Instruct and Model Collapse](../../phases/phase5-finetuning/5300-synthetic/5304-Self-Instruct-and-Model-Collapse.md) — instruction tuning and synthetic data generation
 - **Question 15:** [5202: Alignment Orchestration](../../phases/phase5-finetuning/5200-alignment/5202-Alignment-Orchestration.md) — supervised fine-tuning inside the alignment pipeline
 - **Question 18:** [5303: Federated Learning](../../phases/phase5-finetuning/5300-synthetic/5303-Federated-Learning.md) — federated learning across data sources
 - **Question 19:** [5401: Data Parallelism](../../phases/phase5-finetuning/5400-distributed-training/5401-Data-Parallelism.md) — data parallelism splitting the batch

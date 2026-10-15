@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE2-QUIZ
 Title: "Phase 2: AI/ML Foundations Quiz"
-Last Updated: 2026-10-13
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Intermediate
 Tags: ['assessment', 'quiz', 'pytorch']
@@ -192,11 +192,11 @@ Each question maps to the closest lesson for review:
 - **Questions 3, 8-9:** [2101: Tensor Algebra](../../phases/phase2-foundations/2100-calculus/2101-Tensor-Algebra.md) — einsum notation, tensors and broadcasting
 - **Questions 6, 13:** [2202: TensorFlow XLA Compilers](../../phases/phase2-foundations/2200-frameworks/2202-TensorFlow-XLA-Compilers.md) — XLA and JIT compilation
 - **Questions 7, 12:** [2203: CUDA Kernel Programming](../../phases/phase2-foundations/2200-frameworks/2203-CUDA-Kernel-Programming.md) — the CUDA platform and writing kernels
-- **Question 10:** [2402: Large Scale Training](../../phases/phase2-foundations/2400-pretraining/2402-Large-Scale-Training.md) — gradient checkpointing and its memory-for-compute trade
+- **Question 10:** [2402: Large-Scale Training](../../phases/phase2-foundations/2400-pretraining/2402-Large-Scale-Training.md) — gradient checkpointing and its memory-for-compute trade
 - **Questions 14-15:** [2103: Loss Landscape Geometry](../../phases/phase2-foundations/2100-calculus/2103-Loss-Landscape-Geometry.md) — loss functions and momentum moving over the loss surface
 - **Question 16:** [3302: Normalization Layers](../../phases/phase3-transformers/3300-decoding/3302-Normalization-Layers.md) — batch normalization of layer inputs
 - **Question 17:** [5502: Learning Rate Scheduling](../../phases/phase5-finetuning/5500-advanced-optimization/5502-Learning-Rate-Scheduling.md) — the learning rate as the update step size
-- **Questions 18-19:** [2401: Pre training Fundamentals](../../phases/phase2-foundations/2400-pretraining/2401-Pre-training-Fundamentals.md) — overfitting as memorization and the regularization answer
+- **Questions 18-19:** [2401: Pre-training Fundamentals](../../phases/phase2-foundations/2400-pretraining/2401-Pre-training-Fundamentals.md) — overfitting as memorization and the regularization answer
 - **Question 20:** [5501: Optimizer Variants](../../phases/phase5-finetuning/5500-advanced-optimization/5501-Optimizer-Variants.md) — stochastic gradient descent and its variants
 
 ---

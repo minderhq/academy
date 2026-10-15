@@ -1,7 +1,7 @@
 ---
 Document ID: CHEAT-SHEET-029
 Title: "CHEAT-SHEET-029: Function Calling Training and Constrained Decoding"
-Last Updated: 2026-10-11
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Advanced
 Tags: ['cheatsheet', 'function-calling', 'constrained-decoding', 'agents', 'training']
@@ -117,7 +117,7 @@ The trained+masked stack is simultaneously the best and the cheapest: **2.1x** t
 
 | target | role on this surface |
 |---|---|
-| [Module 7106: Function Calling Training and Constrained Decoding](../../phases/phase7-agentic/7100-architecture/7106-Function-Calling-Training-and-Constrained-Decoding.md) | this sheet's source module - the full mechanism and recipe |
+| [Module 7106: Function-Calling Training and Constrained Decoding](../../phases/phase7-agentic/7100-architecture/7106-Function-Calling-Training-and-Constrained-Decoding.md) | this sheet's source module - the full mechanism and recipe |
 | [Module 1405: SGLang](../../phases/phase1-infra/1400-llmops/1405-SGLang.md) | the serving-side contract - xgrammar backend flag |
 | [Module 5205: GRPO-RLVR](../../phases/phase5-finetuning/5200-alignment/5205-GRPO-RLVR.md) | the alignment-side training - verifiable rewards beyond pairs |
 | [CHEAT-SHEET-013: Structured Output and Function Calling](CHEAT-SHEET-013-Structured-Output-Function-Calling.md) | the producer side - Outlines / XGrammar 2x2 |

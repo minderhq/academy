@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE1-QUIZ
 Title: "Phase 1: Infrastructure Quiz"
-Last Updated: 2026-10-13
+Last Updated: 2026-10-15
 Status: Complete
 Difficulty: Beginner
 Tags: ['assessment', 'quiz', 'infrastructure']
@@ -157,7 +157,7 @@ Each question maps to the closest lesson for review:
 - **Question 9:** [1501: Monitoring and Observability](../../phases/phase1-infra/1500-monitoring/1501-Monitoring-and-Observability.md) — Loki log aggregation and the observability stack
 - **Question 10:** [1502: Model Drift Detection](../../phases/phase1-infra/1500-monitoring/1502-Model-Drift-Detection.md) — model drift detection over time
 - **Question 11:** [1503: LLM Observability](../../phases/phase1-infra/1500-monitoring/1503-LLM-Observability.md) — TTFT and the LLM latency metrics
-- **Questions 12-13, 15:** [1301: K3s Master Worker Arch](../../phases/phase1-infra/1300-kubernetes/1301-K3s-Master-Worker-Arch.md) — containers, multi-container orchestration and the lightweight K3s control plane
+- **Questions 12-13, 15:** [1301: K3s Master-Worker Arch](../../phases/phase1-infra/1300-kubernetes/1301-K3s-Master-Worker-Arch.md) — containers, multi-container orchestration and the lightweight K3s control plane
 
 ---
 
