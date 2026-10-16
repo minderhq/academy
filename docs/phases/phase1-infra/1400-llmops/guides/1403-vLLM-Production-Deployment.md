@@ -3,7 +3,7 @@ Document ID: 1403
 Title: "1403: vLLM Production Deployment Guide"
 Phase: 1
 Module: 1400
-Last Updated: 2026-10-08
+Last Updated: 2026-10-16
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 5 hours
@@ -799,7 +799,7 @@ vLLM in production is PagedAttention plus continuous batching: the KV cache is s
 
 ## Next Steps
 
-- Continue with: **[1404-TGI-Deployment-Guide.md](./1404-TGI-Deployment-Guide.md)** — legacy
+- Continue with: **[1404: TGI Deployment Guide](./1404-TGI-Deployment-Guide.md)** — legacy
   reference only: the TGI repo was archived on GitHub (read-only) in March 2026; new production
   deployments default to vLLM (this guide)
 

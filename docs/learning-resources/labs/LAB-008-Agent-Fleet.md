@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-008
 Title: "LAB-008: Multi-Agent Fleet"
-Last Updated: 2026-10-14
+Last Updated: 2026-10-16
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 6 hours
@@ -1221,8 +1221,8 @@ Use this checklist to track your progress:
 After completing this lab:
 
 1. **[LAB-009: Production Deployment](LAB-009-Production-Deployment.md)** - Deploy agent fleet to production
-2. **[7401-Long-term-Memory.md](../../phases/phase7-agentic/7400-memory/7401-Long-term-Memory.md)** - Advanced memory systems
-3. **[7202-Code-Interpreter.md](../../phases/phase7-agentic/7200-tools/guides/7202-Code-Interpreter.md)** - Secure code execution
+2. **[7401: Long-term Memory](../../phases/phase7-agentic/7400-memory/7401-Long-term-Memory.md)** - Advanced memory systems
+3. **[7202: Code Interpreter](../../phases/phase7-agentic/7200-tools/guides/7202-Code-Interpreter.md)** - Secure code execution
 
 ---
 

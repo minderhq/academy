@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-007
 Title: "LAB-007: Production RAG System"
-Last Updated: 2026-10-13
+Last Updated: 2026-10-16
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 6 hours
@@ -1228,7 +1228,7 @@ After completing this lab:
 
 1. **[LAB-008: Agent Fleet](LAB-008-Agent-Fleet.md)** - Build multi-agent systems
 2. **[LAB-009: Production Deployment](LAB-009-Production-Deployment.md)** - Deploy to production
-3. **[6302-CAG-Long-Context-Architectures.md](../../phases/phase6-rag/6300-context/6302-CAG-Long-Context-Architectures.md)** - Advanced RAG techniques
+3. **[6302: CAG - Context Augmented Generation and Long Context Architectures](../../phases/phase6-rag/6300-context/6302-CAG-Long-Context-Architectures.md)** - Advanced RAG techniques
 
 ---
 
