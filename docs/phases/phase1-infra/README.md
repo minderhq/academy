@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE1-INFRA-README
 Title: "Phase 1: Infrastructure Fabric [1000]"
-Last Updated: 2026-10-14
+Last Updated: 2026-10-16
 Status: Complete
 Difficulty: Advanced
 Tags: ['phase', 'infrastructure', 'gpu', 'networking']
@@ -715,7 +715,7 @@ global:
 
 ### Hands-on Practice
 
-1. **[EXP_1101: WAN Uplink](../../../experiments/EXP_1101_GPON.md)** (case study)
+1. **[EXP_1101: GPON Configuration](../../../experiments/EXP_1101_GPON.md)** (case study)
    - Configure the uplink modem in bridge mode
    - Verify ISP handoff and internet connectivity
 

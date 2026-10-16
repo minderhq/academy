@@ -833,7 +833,7 @@ Each technical document has an associated experiment file for hands-on validatio
 
 **Infrastructure (8):**
 
-- [EXP_1101: Internet Uplink (case study)](./experiments/EXP_1101_GPON.md) | [EXP_1102: Star Topology](./experiments/EXP_1102_STAR_TOPOLOGY.md)
+- [EXP_1101: GPON Configuration (case study)](./experiments/EXP_1101_GPON.md) | [EXP_1102: Star Topology](./experiments/EXP_1102_STAR_TOPOLOGY.md)
 - [EXP_1302: GPU Scheduler](./experiments/EXP_1302_GPU_SCHEDULER.md) | [EXP_1403: TGI Tuning](./experiments/EXP_1403_TGI_TUNING.md)
 - [EXP_1404: vLLM Tuning](./experiments/EXP_1404_VLLM_TUNING.md) | [EXP_1501: Monitoring](./experiments/EXP_1501_MONITORING.md)
 - [EXP_1502: Model Drift](./experiments/EXP_1502_MODEL_DRIFT.md) | [EXP_1503: Drift Detection](./experiments/EXP_1503_DRIFT_DETECTION.md)
