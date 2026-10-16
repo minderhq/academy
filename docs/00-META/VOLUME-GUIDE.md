@@ -1,7 +1,7 @@
 ---
 Document ID: VOLUME-GUIDE
 Title: "Minder Academy: Volume Guide (Book Structure)"
-Last Updated: 2026-10-15
+Last Updated: 2026-10-16
 Status: Complete
 Difficulty: Beginner
 Tags: ['volume', 'roadmap', 'llm']
@@ -119,8 +119,8 @@ Follow the volumes below, in order.
 2. [CHEAT-SHEET-004: Linux](../learning-resources/cheat-sheets/CHEAT-SHEET-004-Linux.md)
 
 ### Volume 2 Experiments
-- [EXP_2101: Tensor Operations](../../experiments/EXP_2101_TENSOR_ALGEBRA.md)
-- [EXP_2102: Gradient Descent](../../experiments/EXP_2102_BACKPROPAGATION.md)
+- [EXP_2101: Tensor Algebra](../../experiments/EXP_2101_TENSOR_ALGEBRA.md)
+- [EXP_2102: Backpropagation](../../experiments/EXP_2102_BACKPROPAGATION.md)
 
 ### After Volume 2, you can:
 - ✅ Understand tensor operations
@@ -249,7 +249,7 @@ Follow the volumes below, in order.
 
 1. [5201: DPO (Direct Preference Optimization) Theory](../phases/phase5-finetuning/5200-alignment/5201-DPO-Theory.md)
 2. [5202: Alignment Orchestration](../phases/phase5-finetuning/5200-alignment/5202-Alignment-Orchestration.md)
-3. [EXP_5201: DPO Experiments](../../experiments/EXP_5201_DPO.md)
+3. [EXP_5201: DPO](../../experiments/EXP_5201_DPO.md)
 4. [EXP_5303: Federated Learning](../../experiments/EXP_5303_FEDERATED_LEARNING.md)
 
 **Step 4: Synthetic Data (1 week)**
@@ -362,7 +362,7 @@ Follow the volumes below, in order.
 1. [7501: Prompt Injection Defense](../phases/phase7-agentic/7500-security/7501-Prompt-Injection-Defense.md)
 2. [7502: PII Redaction](../phases/phase7-agentic/7500-security/7502-PII-Redaction.md)
 3. [7503: Adversarial Attacks](../phases/phase7-agentic/7500-security/7503-Adversarial-Attacks.md)
-4. [EXP_7501: Prompt Injection](../../experiments/EXP_7501_PROMPT_INJECTION.md)
+4. [EXP_7501: Prompt Injection Experiments](../../experiments/EXP_7501_PROMPT_INJECTION.md)
 
 ### Volume 7 Capstone
 - Deploy full AI system with monitoring
