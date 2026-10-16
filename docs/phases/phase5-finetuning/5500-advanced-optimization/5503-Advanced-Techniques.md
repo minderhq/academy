@@ -3,7 +3,7 @@ Document ID: 5503
 Title: "5503: Advanced Optimization Techniques"
 Phase: 5
 Module: 5500
-Last Updated: 2026-10-15
+Last Updated: 2026-10-16
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -430,5 +430,5 @@ Beyond optimizer and schedule sits a toolbox that fixes specific failures: gradi
 
 ## Next Steps
 
-- Module 5500 complete — Phase 5 (Fine-tuning) done! Next: **[6101: HNSW Indexing](../../phase6-rag/6100-vector/6101-HNSW-Indexing.md)**
+- Phase 5 Complete! Next: **[Phase 6: Data Nexus - RAG, CAG & External Memory](../../phase6-rag/README.md)**
 - Assessment: **[5500: Advanced Optimization - Quiz](./assessment/QUIZ.md)**
