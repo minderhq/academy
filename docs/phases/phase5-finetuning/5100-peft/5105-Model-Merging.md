@@ -3,7 +3,7 @@ Document ID: 5105
 Title: "5105: Model Merging - Task Vectors, TIES, and mergekit"
 Phase: 5
 Module: 5100
-Last Updated: 2026-10-15
+Last Updated: 2026-10-16
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -484,7 +484,7 @@ project template scaffolds the whole pipeline.
 
 - Next Module: **[5200: LLM Alignment](../5200-alignment/README.md)** — where
   the fine-tunes worth merging are made (DPO, RLHF, GRPO)
-- **Continue with**: [5201: DPO (Direct Preference Optimization) Theory](../5200-alignment/5201-DPO-Theory.md)
+- Continue with: **[5201: DPO (Direct Preference Optimization) Theory](../5200-alignment/5201-DPO-Theory.md)**
 - **Assessment**: [5100 QUIZ](./assessment/QUIZ.md) — and revisit the
   [5300 QUIZ](../5300-synthetic/assessment/QUIZ.md) merging questions (4, 5,
   18) after this lesson; they are now in-range
