@@ -1,12 +1,12 @@
 ---
 Document ID: EXP_7101
-Title: "EXP-7101: ReAct Agent"
-Last Updated: 2026-10-14
+Title: "EXP_7101: ReAct Agent"
+Last Updated: 2026-10-16
 Status: Complete
 Difficulty: Advanced
 ---
 
-# EXP-7101: ReAct Agent
+# EXP_7101: ReAct Agent
 
 **Implementing reasoning + acting agents from scratch**
 

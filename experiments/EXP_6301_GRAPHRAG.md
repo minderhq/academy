@@ -1,12 +1,12 @@
 ---
 Document ID: EXP_6301
-Title: "EXP-6301: GraphRAG"
-Last Updated: 2026-10-14
+Title: "EXP_6301: GraphRAG"
+Last Updated: 2026-10-16
 Status: Complete
 Difficulty: Advanced
 ---
 
-# EXP-6301: GraphRAG
+# EXP_6301: GraphRAG
 
 **Knowledge graph-enhanced retrieval augmented generation**
 

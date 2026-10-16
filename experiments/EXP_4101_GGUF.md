@@ -1,12 +1,12 @@
 ---
 Document ID: EXP_4101
-Title: "EXP-4101: GGUF Quantization"
-Last Updated: 2026-10-14
+Title: "EXP_4101: GGUF Quantization"
+Last Updated: 2026-10-16
 Status: Complete
 Difficulty: Advanced
 ---
 
-# EXP-4101: GGUF Quantization
+# EXP_4101: GGUF Quantization
 
 **Hands-on quantization to GGUF format**
 

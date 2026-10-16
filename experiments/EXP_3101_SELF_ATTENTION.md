@@ -1,12 +1,12 @@
 ---
 Document ID: EXP_3101
-Title: "EXP_3101_ATTENTION: Self-Attention Deep Dive"
-Last Updated: 2026-09-24
+Title: "EXP_3101: Self-Attention Deep Dive"
+Last Updated: 2026-10-16
 Status: Complete
 Difficulty: Advanced
 ---
 
-# EXP_3101_ATTENTION: Self-Attention Deep Dive
+# EXP_3101: Self-Attention Deep Dive
 
 ## Experiment Information
 - **Model:** Custom multi-head attention

@@ -1,12 +1,12 @@
 ---
 Document ID: EXP_1101
-Title: "EXP_1101_GPON: Fiber GPON Modem Configuration"
-Last Updated: 2026-09-24
+Title: "EXP_1101: Fiber GPON Modem Configuration"
+Last Updated: 2026-10-16
 Status: Complete
 Difficulty: Beginner
 ---
 
-# EXP_1101_GPON: Fiber GPON Modem Configuration
+# EXP_1101: Fiber GPON Modem Configuration
 
 ## Experiment Information
 - **Infrastructure Used:** GPON ONT → 2.5Gbps Switch #1 → Multiple endpoints

@@ -1,7 +1,7 @@
 ---
 Document ID: README
 Title: "Minder Academy"
-Last Updated: 2026-10-14
+Last Updated: 2026-10-16
 Status: Complete
 Difficulty: Beginner
 ---
@@ -1439,7 +1439,7 @@ Contributions are welcome! The fastest way to contribute:
 | **Changelog** | [CHANGELOG.md](./CHANGELOG.md) |
 | **Labs** | [docs/learning-resources/labs/](./docs/learning-resources/labs/) |
 | **Projects** | [docs/learning-resources/projects/](./docs/learning-resources/projects/) |
-| **Case Study** | [EXP_1101_GPON: Fiber GPON Modem Configuration](./experiments/EXP_1101_GPON.md) · [EXP_1102: Star Topology and Network Performance Experiments](./experiments/EXP_1102_STAR_TOPOLOGY.md) |
+| **Case Study** | [EXP_1101: Fiber GPON Modem Configuration](./experiments/EXP_1101_GPON.md) · [EXP_1102: Star Topology and Network Performance Experiments](./experiments/EXP_1102_STAR_TOPOLOGY.md) |
 
 ---
 
@@ -1496,7 +1496,7 @@ SOFTWARE.
 
 **Minder Academy**
 
-*Last Updated: 2026-10-14*
+*Last Updated: 2026-10-16*
 
 *574 Documentation Files | 33 Technical Modules | 7 Learning Phases*
 

@@ -1,12 +1,12 @@
 ---
 Document ID: EXP_1302
-Title: "EXP_1302_GPU_SCHEDULER: GPU Scheduler Configuration"
-Last Updated: 2026-10-07
+Title: "EXP_1302: GPU Scheduler Configuration"
+Last Updated: 2026-10-16
 Status: Complete
 Difficulty: Intermediate
 ---
 
-# EXP_1302_GPU_SCHEDULER: GPU Scheduler Configuration
+# EXP_1302: GPU Scheduler Configuration
 
 ## Experiment Information
 - **Infrastructure Used:** Kubernetes cluster with a GPU worker node
