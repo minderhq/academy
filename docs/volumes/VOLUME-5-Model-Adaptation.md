@@ -1,7 +1,7 @@
 ---
 Document ID: VOLUME-5
 Title: "Volume 5: Model Adaptation"
-Last Updated: 2026-10-15
+Last Updated: 2026-10-16
 Status: Complete
 Difficulty: Advanced
 Tags: ['volume', 'finetuning', 'lora', 'dpo']
@@ -313,7 +313,7 @@ dpo_trainer = DPOTrainer(
 dpo_trainer.train()
 ```
 
-2. **[EXP_5201: DPO Experiments](../../experiments/EXP_5201_DPO.md)** (3-4 hours)
+2. **[Experiment: DPO](../../experiments/EXP_5201_DPO.md)** (3-4 hours)
    - Collect preference data
    - Train with DPO
    - Compare with SFT
