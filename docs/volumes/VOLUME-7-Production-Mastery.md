@@ -651,7 +651,7 @@ def build_feature(feature_description):
 #### Day 4-5: Tool Calling & Sandboxes
 **Safe agent execution**
 
-1. **[7202: Safe Code Interpreter](../phases/phase7-agentic/7200-tools/guides/7202-Code-Interpreter.md)** (2-3 hours)
+1. **[7202: Code Interpreter](../phases/phase7-agentic/7200-tools/guides/7202-Code-Interpreter.md)** (2-3 hours)
    - Sandboxed execution
    - Security isolation
    - Resource limits
@@ -923,7 +923,7 @@ Use this checklist to track your progress:
 - [ ] **7102: Planning** (2-3 hours)
 - [ ] **7303: Framework Comparison** (2-3 hours)
 - [ ] **7301: Collaborative Tasking** (3-4 hours)
-- [ ] **7202: Safe Code Interpreter** (2-3 hours)
+- [ ] **7202: Code Interpreter** (2-3 hours)
 - [ ] **7402: Agent Memory Implementation** (3-4 hours)
 
 **Total Core Time:** ~25-30 hours
