@@ -531,7 +531,7 @@ Use this checklist to track your progress:
 - [ ] **5102: QLoRA Pipelines** (4-5 hours)
 - [ ] **LAB-003: LoRA Fine-Tuning** (4 hours)
 - [ ] **5201: DPO Theory** (3-4 hours)
-- [ ] **EXP_5201: DPO Experiments** (3-4 hours)
+- [ ] **EXP_5201: DPO** (3-4 hours)
 - [ ] **5202: Alignment Orchestration** (2-3 hours)
 - [ ] **5301: Knowledge Distillation** (3-4 hours)
 - [ ] **5302: Distributed Training** (2-3 hours)

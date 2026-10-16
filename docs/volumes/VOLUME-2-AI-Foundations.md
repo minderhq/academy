@@ -1,7 +1,7 @@
 ---
 Document ID: VOLUME-2
 Title: "Volume 2: AI/ML Foundations"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-16
 Status: Complete
 Difficulty: Intermediate
 Tags: ['volume', 'pytorch', 'tensors', 'math']
@@ -353,15 +353,15 @@ Use this checklist to track your progress:
 
 ### Core Content (Required)
 - [ ] **2101: Tensor Algebra** (2-3 hours)
-- [ ] **EXP_2101: Tensor Algebra Experiment** (2 hours)
+- [ ] **EXP-2101: Tensor Algebra** (2 hours)
 - [ ] **2102: Backpropagation** (2-3 hours)
-- [ ] **EXP_2102: Backpropagation Experiment** (2 hours)
+- [ ] **EXP-2102: Backpropagation Experiment** (2 hours)
 - [ ] **2201: PyTorch Graphs** (2-3 hours)
-- [ ] **EXP_2201: PyTorch Graphs Experiment** (2 hours)
+- [ ] **EXP-2201: PyTorch Computational Graphs** (2 hours)
 - [ ] **2202: TensorFlow XLA** (2 hours)
-- [ ] **EXP_2202: XLA Experiment** (1 hour)
+- [ ] **EXP-2202: TensorFlow XLA Optimization** (1 hour)
 - [ ] **2203: CUDA Kernels** (3-4 hours)
-- [ ] **EXP_2203: CUDA Experiment** (3-4 hours)
+- [ ] **EXP-2203: CUDA Kernels** (3-4 hours)
 - [ ] **2401: Pre-training Fundamentals** (4-5 hours)
 - [ ] **2402: Large-Scale Training** (4-5 hours)
 - [ ] **2403: Evaluation Frameworks** (3-4 hours)
