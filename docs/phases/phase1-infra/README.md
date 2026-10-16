@@ -388,7 +388,7 @@ graph LR
 
 | Document | Description | Time | Difficulty |
 |----------|-------------|------|------------|
-| [1501: Monitoring Stack](./1500-monitoring/1501-Monitoring-and-Observability.md) | Prometheus + Grafana + Loki | 4h | Intermediate |
+| [1501: Monitoring and Observability](./1500-monitoring/1501-Monitoring-and-Observability.md) | Prometheus + Grafana + Loki | 4h | Intermediate |
 
 **What You'll Learn:**
 

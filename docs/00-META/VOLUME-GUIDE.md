@@ -335,7 +335,7 @@ Follow the volumes below, in order.
 **Step 1: Monitoring & Observability (1 week)**
 
 1. [TUTORIAL-004: Monitoring](../learning-resources/tutorials/TUTORIAL-004-Monitoring.md)
-2. [1501: Monitoring Stack](../phases/phase1-infra/1500-monitoring/1501-Monitoring-and-Observability.md)
+2. [1501: Monitoring and Observability](../phases/phase1-infra/1500-monitoring/1501-Monitoring-and-Observability.md)
 3. [1502: Model Drift Detection](../phases/phase1-infra/1500-monitoring/1502-Model-Drift-Detection.md)
 4. [1503: LLM Observability](../phases/phase1-infra/1500-monitoring/1503-LLM-Observability.md)
 

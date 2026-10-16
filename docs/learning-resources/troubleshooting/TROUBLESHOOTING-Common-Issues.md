@@ -1,7 +1,7 @@
 ---
 Document ID: TROUBLESHOOTING-Common-Issues
 Title: "TROUBLESHOOTING: Common Issues & Solutions"
-Last Updated: 2026-10-14
+Last Updated: 2026-10-16
 Status: Complete
 Difficulty: Intermediate
 Tags: ['troubleshooting', 'docker', 'llm']
@@ -760,7 +760,7 @@ journalctl -u docker
 - **[TUTORIAL-001: Hello LLM](../tutorials/TUTORIAL-001-Hello-LLM.md)** - Getting started
 - **[TUTORIAL-002: Docker Essentials](../tutorials/TUTORIAL-002-Docker-Essentials.md)** - Docker basics
 - **[LAB-001: Docker & LLM](../labs/LAB-001-Docker-LLM.md)** - Troubleshooting in practice
-- **[1501: Monitoring Stack](../../phases/phase1-infra/1500-monitoring/1501-Monitoring-and-Observability.md)** - Debug with observability
+- **[1501: Monitoring and Observability](../../phases/phase1-infra/1500-monitoring/1501-Monitoring-and-Observability.md)** - Debug with observability
 
 ---
 

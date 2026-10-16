@@ -1,7 +1,7 @@
 ---
 Document ID: VOLUME-7
 Title: "Volume 7: Production Mastery"
-Last Updated: 2026-10-15
+Last Updated: 2026-10-16
 Status: Complete
 Difficulty: Advanced
 Tags: ['volume', 'agents', 'production', 'multi-agent']
@@ -157,7 +157,7 @@ graph TB
    - Loki for log aggregation
    - Tempo for distributed tracing
 
-2. **[1501: Monitoring Stack](../phases/phase1-infra/1500-monitoring/1501-Monitoring-and-Observability.md)** (2-3 hours)
+2. **[1501: Monitoring and Observability](../phases/phase1-infra/1500-monitoring/1501-Monitoring-and-Observability.md)** (2-3 hours)
    - Complete monitoring architecture
    - GPU monitoring setup
    - Alert configuration
@@ -916,7 +916,7 @@ Use this checklist to track your progress:
 
 ### Core Content (Required)
 - [ ] **TUTORIAL-004: Monitoring** (90 min)
-- [ ] **1501: Monitoring Stack** (2-3 hours)
+- [ ] **1501: Monitoring and Observability** (2-3 hours)
 - [ ] **TUTORIAL-005: Production Deployment** (90 min)
 - [ ] **7101: ReAct Loop** (3-4 hours)
 - [ ] **LAB-004: ReAct Agent** (4 hours)

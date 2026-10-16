@@ -582,7 +582,7 @@ graph TB
 - [1404: TGI Deployment](./docs/phases/phase1-infra/1400-llmops/guides/1404-TGI-Deployment-Guide.md)
 
 ### [1500: Monitoring](./docs/phases/phase1-infra/1500-monitoring/README.md)
-- [1501: Monitoring Stack](./docs/phases/phase1-infra/1500-monitoring/1501-Monitoring-and-Observability.md)
+- [1501: Monitoring and Observability](./docs/phases/phase1-infra/1500-monitoring/1501-Monitoring-and-Observability.md)
 - [1502: Model Drift Detection](./docs/phases/phase1-infra/1500-monitoring/1502-Model-Drift-Detection.md)
 - [1503: LLM Observability](./docs/phases/phase1-infra/1500-monitoring/1503-LLM-Observability.md)
 
