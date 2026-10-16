@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""notebook code-cell gate (NBC-01..24) for Minder Academy.
+"""notebook code-cell gate (NBC-01..25) for Minder Academy.
 
 The .md AST gate family never sees notebook code: codeblock_syntax_scan
 and fence_import_check walk CommonMark fences in docs/**/*.md, while
@@ -192,6 +192,18 @@ NBC-12..14  the secret/crypto twins (born tick-703): secret_shape_scan
                 value; the danger marker escapes per cell (the
                 md twins' escape).
 
+        NBC-25  the use_flash_attention_2 twin (born tick-1147):
+                the DA-06 md gate rule mirrored per cell - a
+                code cell passing use_flash_attention_2= (the
+                flash-attention kwarg, deprecated since
+                transformers 4.36) was invisible to the whole
+                fleet inside notebooks; the modern form
+                attn_implementation="flash_attention_2" is what
+                the md corpus already teaches (8 faces / 6
+                files, the tick-1146 census). Same per-line
+                face, DA rule order (last, after DA-05), and
+                #-split carve as the DA family.
+
 Structural health (unparseable JSON, malformed cells/sources) is
 NBH-03's jurisdiction - NBC silently skips what NBH flags, and the
 NEG face is the designed cross-gate agreement, not a gap.
@@ -281,10 +293,22 @@ values, never schema names, and cannot set path bounds, for
 any future notebook teaching graph queries) and completes the
 notebook query-injection pair (NBC-22..23 SQL, NBC-24 Cypher).
 
+NBC-25 born tick-1147 at zero the same born-at-zero way: the
+census measured use_flash_attention_2 absent from the
+notebook universe entirely (20 notebooks / 102 code cells:
+0 live-code faces, 0 comment faces, 0 raw-byte hits; the
+modern attn_implementation="flash_attention_2" form the md
+corpus teaches at 8 faces / 6 files is likewise absent from
+notebooks), so there was nothing to drain - the DA-06 md
+rule's notebook face closed, completing the deprecated-API
+mapping (DA-01..05 -> NBC-17..21, DA-06 -> NBC-25) for any
+future notebook teaching the flash-attention surface.
+
 Hard gate (exit 1 on findings): baseline 0 at birth (tick-691 for
 NBC-01..02, tick-702 for NBC-03..11, tick-703 for NBC-12..14,
 tick-704 for NBC-15, tick-706 for NBC-16, tick-707 for
-NBC-17..21, tick-708 for NBC-22..23, tick-709 for NBC-24).
+NBC-17..21, tick-708 for NBC-22..23, tick-709 for NBC-24,
+tick-1147 for NBC-25).
 
 Run over the whole corpus:
     python scripts/qa/notebook_code_scan.py --root .
@@ -758,6 +782,7 @@ _DA_V1_RE = re.compile(
     r"@validator\b|@root_validator\b|parse_obj_as\(")
 _DA_AMP_RE = re.compile(r"\btorch\.cuda\.amp\b")
 _DA_DTYPE_RE = re.compile(r"\btorch_dtype\s*=")
+_DA_FA2_RE = re.compile(r"\buse_flash_attention_2\s*=")
 _DA_DICT_RE = re.compile(r"\.dict\(\)")
 _PYD_IMPORT_RE = re.compile(
     r"^\s*from pydantic import|\bimport pydantic\b")
@@ -765,7 +790,7 @@ _PYD_IMPORT_RE = re.compile(
 
 def scan_deprecated(src: str, rel: str, idx: int, pyd: bool,
                     findings: list[str]) -> None:
-    """NBC-17..21 over one cell's joined source, per line (born
+    """NBC-17..21, 25 over one cell's joined source, per line (born
     tick-707 at zero; the DA judgment mirrored: per-line first
     match in rule order, the #-split carve first so a comment
     teaching the deprecation stays invisible, and the .dict()
@@ -803,6 +828,12 @@ def scan_deprecated(src: str, rel: str, idx: int, pyd: bool,
                 f"{rel}: NBC-21 transformers torch_dtype kwarg in "
                 f"code cell {idx} - deprecated, the stack warns "
                 f"on every load; write dtype=")
+            continue
+        if _DA_FA2_RE.search(code):
+            findings.append(
+                f"{rel}: NBC-25 transformers use_flash_attention_2 kwarg "
+                f"in code cell {idx} - deprecated since transformers "
+                f"4.36; write attn_implementation='flash_attention_2'")
             continue
         if pyd and _DA_DICT_RE.search(code):
             findings.append(
@@ -1305,7 +1336,7 @@ def main() -> int:
         print(f.encode("ascii", "backslashreplace").decode("ascii"))
     print(f"notebook_code_scan: {len(findings)} findings "
           f"(NBC-01 code-cell syntax / NBC-02 unresolvable import root "
-          f"/ NBC-03..24 the md twins: bare-broad except, "
+          f"/ NBC-03..25 the md twins: bare-broad except, "
           f"unsafe deserialize, eval-exec, empty mutable default, "
           f"shell-out, mktemp, trust_remote_code, open-no-encoding, "
           f"requests-no-timeout, insecure-tls, secret-shape literals, "
@@ -1331,7 +1362,8 @@ def main() -> int:
           f"census clean; NBC-24 born tick-709 at zero - the md "
           f"Cypher-interpolation gate's declared blind spot "
           f"closed, the census clean, the query-injection pair "
-          f"complete)")
+          f"complete, NBC-25 born tick-1147 at zero - the DA-06 "
+          f"md rule's notebook face closed, the census clean)")
     return 1 if findings else 0
 
 
