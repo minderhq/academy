@@ -66,6 +66,18 @@ DA-05  a ```python fence must not pass ``torch_dtype=``. Deprecated
        teaching fence ever lands, it is a census-accept, not a
        finding.
 
+DA-06  a ```python fence must not pass ``use_flash_attention_2=``.
+       The HF flash-attention kwarg is deprecated since
+       transformers 4.36; the modern form is
+       ``attn_implementation="flash_attention_2"`` - the form
+       the corpus itself teaches at every Flash Attention
+       surface (the CHEAT-SHEET-020 prose, TROUBLESHOOTING,
+       TUTORIAL-007, 3102, 4203 and EXP_3102). Born from the
+       tick-1146 census: 0 call sites across docs/ and
+       experiments/ - a born-at-zero rule that joins the gate
+       green (the tick-1144 pattern): the baseline stays 0
+       and no corpus byte moves.
+
 Comment-only mentions (a fence teaching that utcnow is deprecated,
 like the 2303 API-design lesson) are not findings: the check looks
 for the pattern position before any ``#`` on the line.
@@ -108,6 +120,10 @@ RULES = [
     (re.compile(r"\btorch_dtype\s*="),
      "DA-05 transformers torch_dtype kwarg (deprecated; the installed "
      "5.10.2 stack warns on every load) - use dtype="),
+    (re.compile(r"\buse_flash_attention_2\s*="),
+     "DA-06 transformers use_flash_attention_2 kwarg (deprecated "
+     "since transformers 4.36) - use attn_implementation="
+     "'flash_attention_2'"),
 ]
 
 # DA-03 continuation: ``.dict()`` is only flagged in files that import
@@ -181,7 +197,8 @@ def main() -> int:
           f"DA-02 use_auth_token, "
           f"DA-03 pydantic v1 API, "
           f"DA-04 torch.cuda.amp namespace, "
-          f"DA-05 torch_dtype kwarg) "
+          f"DA-05 torch_dtype kwarg, "
+          f"DA-06 use_flash_attention_2 kwarg) "
           f"in {len(n_files)} files across docs/")
     return 1 if findings else 0
 

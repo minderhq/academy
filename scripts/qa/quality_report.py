@@ -331,7 +331,11 @@ stand today?" without running each tool by hand.
                        kwarg - kept in v5 only as a BC shim, warns on
                        every load on the installed 5.10.2 stack; use
                        dtype=, born tick-639, drained same tick: 42
-                       sites across 24 files + 5 text/bash riders);
+                       sites across 24 files + 5 text/bash riders;
+                       DA-06: transformers use_flash_attention_2
+                       kwarg - deprecated since transformers 4.36;
+                       use attn_implementation="flash_attention_2",
+                       born tick-1146 born-at-zero: 0 sites);
                        comment-only mentions are not findings
     unsafe_exec_scan   unsafe dynamic execution in python fences
                        (UE-01: single-argument builtin eval()/exec()
