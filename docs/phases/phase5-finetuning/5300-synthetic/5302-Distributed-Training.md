@@ -3,7 +3,7 @@ Document ID: 5302
 Title: "5302: Distributed Training Orchestration"
 Phase: 5
 Module: 5300
-Last Updated: 2026-10-15
+Last Updated: 2026-10-16
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -802,4 +802,4 @@ Distributed training in a homelab starts honest: single-GPU constraints first, w
 
 **Related:** [1204: Multi-GPU Setup](../../phase1-infra/1200-virtualization/1204-Multi-GPU-Setup.md) — the hardware half of this lesson: multiple GPUs in one box, driver and container setup; [1301: K3s Master-Worker Architecture](../../phase1-infra/1300-kubernetes/1301-K3s-Master-Worker-Arch.md) — the cluster layer the K3s Job/PyTorchJob manifests in this lesson land on; [5101: LoRA (Low-Rank Adaptation) Logic](../5100-peft/5101-LoRA-Logic.md) — the adapter math behind the LoRA half of the QLoRA recipe; [5102: QLoRA Pipelines](../5100-peft/5102-QLoRA-Pipelines.md) — the full quantized fine-tuning pipeline this lesson distributes; [LAB-003: LoRA Fine-Tuning](../../../learning-resources/labs/LAB-003-LoRA-FineTuning.md) — run a real LoRA fine-tune end to end
 
-**Experiment:** [EXP_5302: Distributed Training Experiments](../../../../experiments/EXP_5302_DISTRIBUTED.md) — benchmark the DDP smoke-test path and the accumulation/precision blocks from this lesson on real hardware, and record your own speedup/serial-fraction table (nearest-relevant — the lesson's cluster sections need multi-node hardware)
+**Experiment:** [EXP_5302: Distributed Training Experiment](../../../../experiments/EXP_5302_DISTRIBUTED.md) — benchmark the DDP smoke-test path and the accumulation/precision blocks from this lesson on real hardware, and record your own speedup/serial-fraction table (nearest-relevant — the lesson's cluster sections need multi-node hardware)

@@ -3,7 +3,7 @@ Document ID: 6501
 Title: "6501: ML Model Lifecycle Management"
 Phase: 6
 Module: 6500
-Last Updated: 2026-10-15
+Last Updated: 2026-10-16
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -381,6 +381,6 @@ A model's life does not end at the first deploy - it begins there, and this less
 - The pipeline that automates these stage transitions: **[6502: CI/CD for Machine Learning](6502-CI-CD-for-ML.md)**
 - Assessment: **[6500: MLOps Pipelines for RAG - Practice](./assessment/PRACTICE.md)** and **[6500: MLOps Pipelines for RAG - Quiz](./assessment/QUIZ.md)**
 
-**Related:** [6502: CI/CD for Machine Learning](6502-CI-CD-for-ML.md) — the pipeline automating these stage transitions; [6503: Model Registry](6503-Model-Registry.md) — where every version's current state lives; [1502: Model Drift Detection](../../phase1-infra/1500-monitoring/1502-Model-Drift-Detection.md) — the drift signal feeding Stage 4; [EXP_6501_MLOPS_PIPELINE](../../../../experiments/EXP_6501_MLOPS_PIPELINE.md)
+**Related:** [6502: CI/CD for Machine Learning](6502-CI-CD-for-ML.md) — the pipeline automating these stage transitions; [6503: Model Registry](6503-Model-Registry.md) — where every version's current state lives; [1502: Model Drift Detection](../../phase1-infra/1500-monitoring/1502-Model-Drift-Detection.md) — the drift signal feeding Stage 4; [EXP_6501: MLOps Pipeline](../../../../experiments/EXP_6501_MLOPS_PIPELINE.md)
 
-**Experiment:** [EXP_6501_MLOPS_PIPELINE.md](../../../../experiments/EXP_6501_MLOPS_PIPELINE.md) — nearest-relevant lifecycle experiment; the state machine, McNemar test, Prometheus emission and retirement review here run in-process, while MLflow tracking and metric scraping need their servers
+**Experiment:** [EXP_6501: MLOps Pipeline](../../../../experiments/EXP_6501_MLOPS_PIPELINE.md) — nearest-relevant lifecycle experiment; the state machine, McNemar test, Prometheus emission and retirement review here run in-process, while MLflow tracking and metric scraping need their servers

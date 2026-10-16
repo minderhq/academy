@@ -3,7 +3,7 @@ Document ID: 5404
 Title: "5404: Distributed Optimization"
 Phase: 5
 Module: 5400
-Last Updated: 2026-10-15
+Last Updated: 2026-10-16
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -508,6 +508,6 @@ Under every distributed run sits optimization-side machinery: the all-reduce col
 - Practical: **[LAB-006: Train a Model From Scratch](../../../learning-resources/labs/LAB-006-Train-Model-From-Scratch.md)**
 - Assessment: **[5400: Distributed Training - Practice](./assessment/PRACTICE.md)** and **[5400: Distributed Training - Quiz](./assessment/QUIZ.md)**
 
-**Related:** [5401: Data Parallelism](./5401-Data-Parallelism.md) — DDP/FSDP mechanics this lesson optimizes under; [5402: Model Parallelism](./5402-Model-Parallelism.md) — the splitting axes; [5403: Mixed Precision Training](./5403-Mixed-Precision.md) — bf16 before offload; [5501: Optimizer Variants](../5500-advanced-optimization/5501-Optimizer-Variants.md) — where the 12N optimizer cost comes from; [LAB-006](../../../learning-resources/labs/LAB-006-Train-Model-From-Scratch.md); [EXP_5302_DISTRIBUTED](../../../../experiments/EXP_5302_DISTRIBUTED.md)
+**Related:** [5401: Data Parallelism](./5401-Data-Parallelism.md) — DDP/FSDP mechanics this lesson optimizes under; [5402: Model Parallelism](./5402-Model-Parallelism.md) — the splitting axes; [5403: Mixed Precision Training](./5403-Mixed-Precision.md) — bf16 before offload; [5501: Optimizer Variants](../5500-advanced-optimization/5501-Optimizer-Variants.md) — where the 12N optimizer cost comes from; [LAB-006](../../../learning-resources/labs/LAB-006-Train-Model-From-Scratch.md); [EXP_5302: Distributed Training Experiment](../../../../experiments/EXP_5302_DISTRIBUTED.md)
 
-**Experiment:** [EXP_5302_DISTRIBUTED.md](../../../../experiments/EXP_5302_DISTRIBUTED.md) — nearest-relevant distributed experiment; the ring/ZeRO/overlap exercises here want multi-node hardware, which this repo's single-GPU environment approximates with the gloo world_size=1 stand-ins above
+**Experiment:** [EXP_5302: Distributed Training Experiment](../../../../experiments/EXP_5302_DISTRIBUTED.md) — nearest-relevant distributed experiment; the ring/ZeRO/overlap exercises here want multi-node hardware, which this repo's single-GPU environment approximates with the gloo world_size=1 stand-ins above
