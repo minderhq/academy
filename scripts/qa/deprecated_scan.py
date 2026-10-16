@@ -91,7 +91,12 @@ the torch.amp namespace) and the tick-639 drain (42 torch_dtype
 kwarg sites across 24 files moved to dtype=, with 5 rider sites in
 text/bash fences outside this gate's universe).
 
-Run over the whole corpus:
+Run over the whole corpus - docs/ and, since tick-1148, the
+experiments/ tree (the second md tree the platform feeds
+already catalog; census at extension: 48 md, 125 python fences,
+born-at-zero 0/0/0 through the gate's own fence-state-machine
+scan - DA-01..DA-06 and the pydantic-import-activated
+.dict() rule all x0):
     python scripts/qa/deprecated_scan.py --root .
 """
 from __future__ import annotations
@@ -180,16 +185,18 @@ def main() -> int:
     parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parents[2])
     args = parser.parse_args()
     docs = args.root / "docs"
+    experiments = args.root / "experiments"
     findings: list[str] = []
     n_files: set[str] = set()
-    for path in sorted(docs.rglob("*.md")):
-        try:
-            before = len(findings)
-            scan_file(args.root, path, findings)
-            if len(findings) > before:
-                n_files.add(path.relative_to(args.root).as_posix())
-        except (UnicodeDecodeError, OSError):
-            continue
+    for area in (docs, experiments):
+        for path in sorted(area.rglob("*.md")):
+            try:
+                before = len(findings)
+                scan_file(args.root, path, findings)
+                if len(findings) > before:
+                    n_files.add(path.relative_to(args.root).as_posix())
+            except (UnicodeDecodeError, OSError):
+                continue
     for f in findings:
         print(f.encode("ascii", "backslashreplace").decode("ascii"))
     print(f"deprecated_scan: {len(findings)} findings "
@@ -199,7 +206,7 @@ def main() -> int:
           f"DA-04 torch.cuda.amp namespace, "
           f"DA-05 torch_dtype kwarg, "
           f"DA-06 use_flash_attention_2 kwarg) "
-          f"in {len(n_files)} files across docs/")
+          f"in {len(n_files)} files across docs/ + experiments/")
     return 1 if findings else 0
 
 
