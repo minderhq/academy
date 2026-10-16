@@ -1,7 +1,7 @@
 ---
 Document ID: 2200-FRAMEWORKS-README
 Title: "2200: Deep Learning Frameworks"
-Last Updated: 2026-10-15
+Last Updated: 2026-10-16
 Status: Complete
 Difficulty: Intermediate
 Prerequisites: [2100]
@@ -212,9 +212,9 @@ Each lesson is written around runnable code — work through the examples, don't
 - [2202: TensorFlow XLA and Compiler Optimizations](./2202-TensorFlow-XLA-Compilers.md) — fusion, HLO, profiling
 - [2203: CUDA Kernel Programming and GPU Architecture](./2203-CUDA-Kernel-Programming.md) — execution model, memory hierarchy
 - [2200: Deep Learning Frameworks - Prerequisites](./PREREQUISITES.md) — readiness check with runnable self-test examples
-- [EXP-2201: PyTorch Computational Graphs](../../../../experiments/EXP_2201_PYTORCH_GRAPHS.md) — hands-on graph exercises
-- [EXP-2202: TensorFlow XLA Optimization](../../../../experiments/EXP_2202_TENSORFLOW_XLA.md) — hands-on XLA exercises
-- [EXP-2203: CUDA Kernels](../../../../experiments/EXP_2203_CUDA_KERNELS.md) — hands-on CUDA exercises
+- [EXP_2201: PyTorch Computational Graphs](../../../../experiments/EXP_2201_PYTORCH_GRAPHS.md) — hands-on graph exercises
+- [EXP_2202: TensorFlow XLA Optimization](../../../../experiments/EXP_2202_TENSORFLOW_XLA.md) — hands-on XLA exercises
+- [EXP_2203: CUDA Kernels](../../../../experiments/EXP_2203_CUDA_KERNELS.md) — hands-on CUDA exercises
 - [2300: Framework Engineering](../2300-framework-engineering/README.md) — the next module that builds on this one
 
 ### External References
@@ -236,4 +236,4 @@ Each lesson is written around runnable code — work through the examples, don't
 
 **Related:** [2201: PyTorch Computational Graphs and Dynamic Execution](./2201-PyTorch-Computational-Graphs.md) · [2202: TensorFlow XLA and Compiler Optimizations](./2202-TensorFlow-XLA-Compilers.md) · [2203: CUDA Kernel Programming and GPU Architecture](./2203-CUDA-Kernel-Programming.md)
 
-**Experiment:** No EXP_22xx overview exists — start from [EXP-2201: PyTorch Computational Graphs](../../../../experiments/EXP_2201_PYTORCH_GRAPHS.md) (the hands-on companion to Lesson 2201).
+**Experiment:** No EXP_22xx overview exists — start from [EXP_2201: PyTorch Computational Graphs](../../../../experiments/EXP_2201_PYTORCH_GRAPHS.md) (the hands-on companion to Lesson 2201).

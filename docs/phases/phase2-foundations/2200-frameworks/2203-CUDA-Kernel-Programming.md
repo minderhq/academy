@@ -3,7 +3,7 @@ Document ID: 2203
 Title: "2203: CUDA Kernel Programming and GPU Architecture"
 Phase: 2
 Module: 2200
-Last Updated: 2026-10-15
+Last Updated: 2026-10-16
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 4 hours
@@ -527,4 +527,4 @@ The grid/block/warp model and the memory hierarchy decide how fast a GPU actuall
 - [2201: PyTorch Computational Graphs and Dynamic Execution](./2201-PyTorch-Computational-Graphs.md)
 - [2202: TensorFlow XLA and Compiler Optimizations](./2202-TensorFlow-XLA-Compilers.md)
 
-- Experiment: **[EXP-2203: CUDA Kernels](../../../../experiments/EXP_2203_CUDA_KERNELS.md)**
+- Experiment: **[EXP_2203: CUDA Kernels](../../../../experiments/EXP_2203_CUDA_KERNELS.md)**

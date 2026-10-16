@@ -1,12 +1,12 @@
 ---
 Document ID: EXP_2102
-Title: "EXP-2102: Backpropagation Experiment"
-Last Updated: 2026-10-08
+Title: "EXP_2102: Backpropagation Experiment"
+Last Updated: 2026-10-16
 Status: Complete
 Difficulty: Intermediate
 ---
 
-# EXP-2102: Backpropagation Experiment
+# EXP_2102: Backpropagation Experiment
 
 **Hands-on implementation of backpropagation algorithm**
 
@@ -335,7 +335,7 @@ print("✓ Saved visualization to backprop_results.png")
 
 ---
 
-**Last Updated:** 2026-10-08
+**Last Updated:** 2026-10-16
 
 **Experiment:** 2102 - Backpropagation
 

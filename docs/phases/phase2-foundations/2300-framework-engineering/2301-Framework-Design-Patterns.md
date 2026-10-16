@@ -3,7 +3,7 @@ Document ID: 2301
 Title: "2301: Framework Design Patterns"
 Phase: 2
 Module: 2300
-Last Updated: 2026-10-15
+Last Updated: 2026-10-16
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -1276,4 +1276,4 @@ See: [2306: Building a Production Framework](./guides/2306-Building-Production-F
 - [2202: TensorFlow XLA and Compiler Optimizations](../2200-frameworks/2202-TensorFlow-XLA-Compilers.md)
 - [2203: CUDA Kernel Programming and GPU Architecture](../2200-frameworks/2203-CUDA-Kernel-Programming.md)
 
-- Experiment: **[EXP-2201: PyTorch Computational Graphs](../../../../experiments/EXP_2201_PYTORCH_GRAPHS.md)**
+- Experiment: **[EXP_2201: PyTorch Computational Graphs](../../../../experiments/EXP_2201_PYTORCH_GRAPHS.md)**

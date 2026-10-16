@@ -1,7 +1,7 @@
 ---
 Document ID: 2400-PRETRAINING-README
 Title: "2400: LLM Pretraining"
-Last Updated: 2026-10-15
+Last Updated: 2026-10-16
 Status: Complete
 Difficulty: Advanced
 Prerequisites: [2200]
@@ -272,4 +272,4 @@ Before starting pretraining:
 
 **Related:** [2300: Framework Engineering](../2300-framework-engineering/README.md) · [2401: Pre-training Fundamentals](./2401-Pre-training-Fundamentals.md) · [3100: Attention Architectures](../../phase3-transformers/3100-attention/README.md)
 
-**Experiment:** No EXP_24xx exists yet — nearest relevant: [EXP-2201: PyTorch Computational Graphs](../../../../experiments/EXP_2201_PYTORCH_GRAPHS.md) (the autograd mechanics every training loop in this module rests on).
+**Experiment:** No EXP_24xx exists yet — nearest relevant: [EXP_2201: PyTorch Computational Graphs](../../../../experiments/EXP_2201_PYTORCH_GRAPHS.md) (the autograd mechanics every training loop in this module rests on).

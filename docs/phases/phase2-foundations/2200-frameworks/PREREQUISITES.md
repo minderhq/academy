@@ -1,7 +1,7 @@
 ---
 Document ID: 2200-PREREQUISITES
 Title: "2200: Deep Learning Frameworks - Prerequisites"
-Last Updated: 2026-10-15
+Last Updated: 2026-10-16
 Status: Complete
 Difficulty: Intermediate
 Tags: ['frameworks', 'pytorch', 'prerequisites', 'preparation']
@@ -417,7 +417,7 @@ If any box stays unchecked, the matching section above has the fix.
 - [2100: Calculus for Deep Learning](../2100-calculus/README.md) — the backward-pass math assumed throughout
 - [2200: Frameworks - Quiz](./assessment/QUIZ.md) — the knowledge check waiting at the end of the module
 - [2200: Frameworks - Practice](./assessment/PRACTICE.md) — the hands-on exercises waiting at the end of the module
-- [EXP-2201: PyTorch Computational Graphs](../../../../experiments/EXP_2201_PYTORCH_GRAPHS.md) — the first hands-on companion
+- [EXP_2201: PyTorch Computational Graphs](../../../../experiments/EXP_2201_PYTORCH_GRAPHS.md) — the first hands-on companion
 
 ### External References
 
@@ -436,4 +436,4 @@ If any box stays unchecked, the matching section above has the fix.
 
 **Related:** [2200: Deep Learning Frameworks](./README.md) · [2201: PyTorch Computational Graphs and Dynamic Execution](./2201-PyTorch-Computational-Graphs.md) · [2202: TensorFlow XLA and Compiler Optimizations](./2202-TensorFlow-XLA-Compilers.md)
 
-**Experiment:** No EXP_22xx overview exists — start from [EXP-2201: PyTorch Computational Graphs](../../../../experiments/EXP_2201_PYTORCH_GRAPHS.md) (the hands-on companion to Lesson 2201).
+**Experiment:** No EXP_22xx overview exists — start from [EXP_2201: PyTorch Computational Graphs](../../../../experiments/EXP_2201_PYTORCH_GRAPHS.md) (the hands-on companion to Lesson 2201).

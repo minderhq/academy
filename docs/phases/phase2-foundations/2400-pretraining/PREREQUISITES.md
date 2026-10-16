@@ -1,7 +1,7 @@
 ---
 Document ID: 2400-PREREQUISITES
 Title: "2400: LLM Pretraining - Prerequisites"
-Last Updated: 2026-10-15
+Last Updated: 2026-10-16
 Status: Complete
 Difficulty: Advanced
 Tags: ['pretraining', 'prerequisites', 'preparation']
@@ -560,4 +560,4 @@ Use this checklist to verify you're ready:
 
 **Related:** [2400: LLM Pretraining](./README.md) · [2201: PyTorch Computational Graphs and Dynamic Execution](../2200-frameworks/2201-PyTorch-Computational-Graphs.md) · [2401: Pre-training Fundamentals](./2401-Pre-training-Fundamentals.md)
 
-**Experiment:** No EXP_24xx exists yet — nearest relevant: [EXP-2201: PyTorch Computational Graphs](../../../../experiments/EXP_2201_PYTORCH_GRAPHS.md) (the autograd mechanics behind every training loop above).
+**Experiment:** No EXP_24xx exists yet — nearest relevant: [EXP_2201: PyTorch Computational Graphs](../../../../experiments/EXP_2201_PYTORCH_GRAPHS.md) (the autograd mechanics behind every training loop above).

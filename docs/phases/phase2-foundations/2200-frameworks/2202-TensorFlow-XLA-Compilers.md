@@ -3,7 +3,7 @@ Document ID: 2202
 Title: "2202: TensorFlow XLA and Compiler Optimizations"
 Phase: 2
 Module: 2200
-Last Updated: 2026-10-15
+Last Updated: 2026-10-16
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 4 hours
@@ -518,4 +518,4 @@ XLA is a machine-learning compiler embedded in TensorFlow, PyTorch, and JAX: it 
 - [2201: PyTorch Computational Graphs and Dynamic Execution](./2201-PyTorch-Computational-Graphs.md)
 - [2203: CUDA Kernel Programming and GPU Architecture](./2203-CUDA-Kernel-Programming.md)
 
-- Experiment: **[EXP-2202: TensorFlow XLA Optimization](../../../../experiments/EXP_2202_TENSORFLOW_XLA.md)**
+- Experiment: **[EXP_2202: TensorFlow XLA Optimization](../../../../experiments/EXP_2202_TENSORFLOW_XLA.md)**

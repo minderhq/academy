@@ -1,7 +1,7 @@
 ---
 Document ID: 2100-CALCULUS-README
 Title: "2100: Calculus for Deep Learning"
-Last Updated: 2026-10-15
+Last Updated: 2026-10-16
 Status: Complete
 Difficulty: Intermediate
 Prerequisites: []
@@ -220,8 +220,8 @@ Each lesson is written around runnable code — work through the examples, don't
 - [2102: Backpropagation and Automatic Differentiation](./2102-Backpropagation-and-Derivatives.md) — chain rule, autograd, gradient patterns
 - [2103: Loss Landscape Geometry](./2103-Loss-Landscape-Geometry.md) — curvature, saddles, convexity, and the optimizer campaign
 - [2100: Calculus for Deep Learning - Prerequisites](./PREREQUISITES.md) — readiness check with runnable self-test examples
-- [EXP-2101: Tensor Algebra](../../../../experiments/EXP_2101_TENSOR_ALGEBRA.md) — hands-on tensor exercises
-- [EXP-2102: Backpropagation Experiment](../../../../experiments/EXP_2102_BACKPROPAGATION.md) — hands-on backprop exercises
+- [EXP_2101: Tensor Algebra](../../../../experiments/EXP_2101_TENSOR_ALGEBRA.md) — hands-on tensor exercises
+- [EXP_2102: Backpropagation Experiment](../../../../experiments/EXP_2102_BACKPROPAGATION.md) — hands-on backprop exercises
 - [2300: Framework Engineering](../2300-framework-engineering/README.md) — the next module that builds on this one
 
 ### External References
@@ -244,4 +244,4 @@ Each lesson is written around runnable code — work through the examples, don't
 
 **Related:** [2101: Tensor Algebra and Linear Algebra for AI](./2101-Tensor-Algebra.md) · [2102: Backpropagation and Automatic Differentiation](./2102-Backpropagation-and-Derivatives.md) · [2103: Loss Landscape Geometry](./2103-Loss-Landscape-Geometry.md) · [2200: Deep Learning Frameworks](../2200-frameworks/README.md)
 
-**Experiment:** No EXP_21xx overview exists — start from [EXP-2101: Tensor Algebra](../../../../experiments/EXP_2101_TENSOR_ALGEBRA.md) (the hands-on companion to Lesson 2101).
+**Experiment:** No EXP_21xx overview exists — start from [EXP_2101: Tensor Algebra](../../../../experiments/EXP_2101_TENSOR_ALGEBRA.md) (the hands-on companion to Lesson 2101).

@@ -1,12 +1,12 @@
 ---
 Document ID: EXP_2203
-Title: "EXP-2203: CUDA Kernels"
-Last Updated: 2026-10-08
+Title: "EXP_2203: CUDA Kernels"
+Last Updated: 2026-10-16
 Status: Complete
 Difficulty: Advanced
 ---
 
-# EXP-2203: CUDA Kernels
+# EXP_2203: CUDA Kernels
 
 **Hands-on GPU Programming with CUDA**
 
@@ -567,7 +567,7 @@ if has_cuda:
 
 ---
 
-**Last Updated:** 2026-10-08
+**Last Updated:** 2026-10-16
 
 **Experiment:** 2203 - CUDA Kernels
 

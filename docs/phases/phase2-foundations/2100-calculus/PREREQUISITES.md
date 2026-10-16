@@ -1,7 +1,7 @@
 ---
 Document ID: 2100-PREREQUISITES
 Title: "2100: Calculus for Deep Learning - Prerequisites"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-16
 Status: Complete
 Difficulty: Intermediate
 Tags: ['math', 'prerequisites', 'preparation']
@@ -463,4 +463,4 @@ Use this checklist to verify you're ready:
 
 **Related:** [2100: Calculus for Deep Learning](./README.md) · [2101: Tensor Algebra and Linear Algebra for AI](./2101-Tensor-Algebra.md) · [2102: Backpropagation and Automatic Differentiation](./2102-Backpropagation-and-Derivatives.md)
 
-**Experiment:** No EXP_21xx prerequisites exist — nearest relevant: [EXP-2101: Tensor Algebra](../../../../experiments/EXP_2101_TENSOR_ALGEBRA.md) (the hands-on companion this guide prepares you for).
+**Experiment:** No EXP_21xx prerequisites exist — nearest relevant: [EXP_2101: Tensor Algebra](../../../../experiments/EXP_2101_TENSOR_ALGEBRA.md) (the hands-on companion this guide prepares you for).

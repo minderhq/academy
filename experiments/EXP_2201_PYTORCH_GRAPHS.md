@@ -1,12 +1,12 @@
 ---
 Document ID: EXP_2201
-Title: "EXP-2201: PyTorch Computational Graphs"
-Last Updated: 2026-10-08
+Title: "EXP_2201: PyTorch Computational Graphs"
+Last Updated: 2026-10-16
 Status: Complete
 Difficulty: Intermediate
 ---
 
-# EXP-2201: PyTorch Computational Graphs
+# EXP_2201: PyTorch Computational Graphs
 
 **Understanding dynamic computation graphs and autograd**
 
@@ -560,7 +560,7 @@ loss.grad → ∂loss/∂b → ∂loss/∂a → ∂loss/∂x
 
 ---
 
-**Last Updated:** 2026-10-08
+**Last Updated:** 2026-10-16
 
 **Experiment:** 2201 - PyTorch Computational Graphs
 

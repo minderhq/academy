@@ -1,12 +1,12 @@
 ---
 Document ID: EXP_2101
-Title: "EXP-2101: Tensor Algebra"
-Last Updated: 2026-10-08
+Title: "EXP_2101: Tensor Algebra"
+Last Updated: 2026-10-16
 Status: Complete
 Difficulty: Intermediate
 ---
 
-# EXP-2101: Tensor Algebra
+# EXP_2101: Tensor Algebra
 
 **Hands-on tensor operations and einsum notation**
 
@@ -545,7 +545,7 @@ print(f"Difference: {np.abs(num_grad - x_test.grad.data).max()}")
 
 ---
 
-**Last Updated:** 2026-10-08
+**Last Updated:** 2026-10-16
 
 **Experiment:** 2101 - Tensor Algebra
 
