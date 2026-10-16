@@ -1,7 +1,7 @@
 ---
 Document ID: CHEAT-SHEET-040
 Title: "CHEAT-SHEET-040: Model Merging - the Arithmetic That Combines Trained Models"
-Last Updated: 2026-10-11
+Last Updated: 2026-10-16
 Status: Complete
 Difficulty: Advanced
 Tags: ['cheatsheet', 'peft', 'mergekit', 'checkpoint']
@@ -205,8 +205,8 @@ so a merge never needs the full fleet resident.
 
 **Related:**
 
-- [Module 5105 - Model Merging](../../phases/phase5-finetuning/5100-peft/5105-Model-Merging.md) - the full walkthrough this sheet compresses
-- [Module 5101 - LoRA Logic](../../phases/phase5-finetuning/5100-peft/5101-LoRA-Logic.md) - where the task vectors come from
+- [Module 5105: Model Merging](../../phases/phase5-finetuning/5100-peft/5105-Model-Merging.md) - the full walkthrough this sheet compresses
+- [Module 5101: LoRA Logic](../../phases/phase5-finetuning/5100-peft/5101-LoRA-Logic.md) - where the task vectors come from
 - [CHEAT-SHEET-016: LoRA & QLoRA](./CHEAT-SHEET-016-LoRA-QLoRA.md) - the sibling PEFT sheet
 - [TEMPLATE-011: Model Merging MoE](../projects/templates/TEMPLATE-011-Model-Merging-MoE.md) - the project template that scaffolds the whole merge pipeline
 
@@ -237,8 +237,8 @@ models improves accuracy without increasing inference time" (arXiv
 
 | Target | Why |
 |---|---|
-| [Module 5105 - Model Merging](../../phases/phase5-finetuning/5100-peft/5105-Model-Merging.md) | the full walkthrough this sheet compresses |
-| [Module 5101 - LoRA Logic](../../phases/phase5-finetuning/5100-peft/5101-LoRA-Logic.md) | where the task vectors come from |
+| [Module 5105: Model Merging](../../phases/phase5-finetuning/5100-peft/5105-Model-Merging.md) | the full walkthrough this sheet compresses |
+| [Module 5101: LoRA Logic](../../phases/phase5-finetuning/5100-peft/5101-LoRA-Logic.md) | where the task vectors come from |
 | [CHEAT-SHEET-016: LoRA & QLoRA](./CHEAT-SHEET-016-LoRA-QLoRA.md) | the sibling PEFT sheet |
 | [TEMPLATE-011: Model Merging MoE](../projects/templates/TEMPLATE-011-Model-Merging-MoE.md) | the project template that scaffolds the whole merge pipeline |
 
