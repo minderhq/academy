@@ -1,7 +1,7 @@
 ---
 Document ID: 6200-RETRIEVAL-README
 Title: "6200: Retrieval Strategies"
-Last Updated: 2026-10-15
+Last Updated: 2026-10-16
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
@@ -89,8 +89,8 @@ After completing this module, you will be able to:
 
 Before starting this module, ensure you have:
 
-- [ ] Module 6100: Vector Embeddings (semantic search)
-- [ ] Module 3200: Embeddings (embedding models)
+- [ ] Module 6100: [Vector Embeddings](../6100-vector/README.md) (semantic search)
+- [ ] Module 3200: [Embedding Latent Spaces](../../phase3-transformers/3200-embeddings/README.md) (embedding models)
 - [ ] Python and information retrieval basics
 - [ ] Understanding of RAG fundamentals
 - [ ] Familiarity with search metrics
