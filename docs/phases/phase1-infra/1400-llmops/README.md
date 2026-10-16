@@ -1,7 +1,7 @@
 ---
 Document ID: 1400-LLMOPS-README
 Title: "1400: LLMOps and Model Serving"
-Last Updated: 2026-10-15
+Last Updated: 2026-10-16
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
@@ -783,8 +783,8 @@ Lessons Learned:
 3. **[1405: SGLang RadixAttention](./1405-SGLang.md)** - RadixAttention serving engine
 
 ### Production Guides
-4. **[guides/1403: vLLM Production Deployment](./guides/1403-vLLM-Production-Deployment.md)** - Complete vLLM setup
-5. **[guides/1404: TGI Deployment Guide](./guides/1404-TGI-Deployment-Guide.md)** - TGI production deployment
+4. **[1403: vLLM Production Deployment](./guides/1403-vLLM-Production-Deployment.md)** - Complete vLLM setup
+5. **[1404: TGI Deployment Guide](./guides/1404-TGI-Deployment-Guide.md)** - TGI production deployment
 
 ## Prerequisites
 

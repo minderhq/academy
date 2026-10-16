@@ -1,7 +1,7 @@
 ---
 Document ID: 4300-QUANTIZATION-AWARE-TRAINING-README
 Title: "4300: Quantization Aware Training (QAT)"
-Last Updated: 2026-10-15
+Last Updated: 2026-10-16
 Status: Complete
 Difficulty: Advanced
 Prerequisites: [4100]
@@ -34,9 +34,9 @@ This module covers Quantization Aware Training (QAT), a technique to train model
 5. **[4305: Quantization Configuration](./4305-Quantization-Configuration.md)** - Selecting which layers to quantize, per-channel vs per-tensor
 
 ### Practical Guides
-6. **[guides/4306-PyTorch-QAT](./guides/4306-PyTorch-QAT.md)** - QAT with PyTorch native support
-7. **[guides/4307-Transformers-QAT](./guides/4307-Transformers-QAT.md)** - QAT with Hugging Face Transformers
-8. **[guides/4308-BitBlade-QAT](./guides/4308-BitBlade-QAT.md)** - Advanced QAT with bitsandbytes
+6. **[4306: PyTorch QAT Guide](./guides/4306-PyTorch-QAT.md)** - QAT with PyTorch native support
+7. **[4307: Transformers QAT Guide](./guides/4307-Transformers-QAT.md)** - QAT with Hugging Face Transformers
+8. **[4308: BitBlade QAT Guide](./guides/4308-BitBlade-QAT.md)** - Advanced QAT with bitsandbytes
 
 ## Prerequisites
 

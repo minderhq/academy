@@ -1,7 +1,7 @@
 ---
 Document ID: 4400-ADVANCED-TECHNIQUES-README
 Title: "4400: Advanced Quantization Techniques"
-Last Updated: 2026-10-15
+Last Updated: 2026-10-16
 Status: Complete
 Difficulty: Advanced
 Prerequisites: [4100, 4300]
@@ -36,8 +36,8 @@ This module covers advanced quantization techniques beyond basic QAT, including 
 7. **[4407: Ternary & Binary Networks](./4407-Ternary-Binary.md)** - {-1, 0, +1} weights
 
 ### Practical Guides
-8. **[guides/4408: Quantizing for Production](./guides/4408-Quantizing-for-Production.md)** - End-to-end quantization workflow
-9. **[guides/4409: Hardware-Specific Optimization](./guides/4409-Hardware-Specific-Optimization.md)** - CPU, GPU, NPU, mobile
+8. **[4408: Quantizing for Production](./guides/4408-Quantizing-for-Production.md)** - End-to-end quantization workflow
+9. **[4409: Hardware-Specific Quantization Optimization](./guides/4409-Hardware-Specific-Optimization.md)** - CPU, GPU, NPU, mobile
 
 ## Research Spotlight: GSQ-RCO (2026)
 
