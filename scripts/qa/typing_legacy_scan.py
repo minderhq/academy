@@ -44,7 +44,9 @@ lines / 426 bare uses corpus-wide), drained per batch under the
 census->drain->gate pattern, and promoted to hard at tick-397
 once the final 7-file sweep (tick-396, 19776b6) took both queues
 to zero. Any regression now fails the gate. Run over the whole
-corpus:
+corpus - docs/ and, since tick-1144, the experiments/ tree (the
+second md tree the platform feeds already catalog; census at
+extension: 48 md, 125 python fences, born-at-zero 0/0/0):
     python scripts/qa/typing_legacy_scan.py
 """
 from __future__ import annotations
@@ -115,20 +117,22 @@ def main() -> int:
     parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parents[2])
     args = parser.parse_args()
     docs = args.root / "docs"
+    experiments = args.root / "experiments"
     findings: list[str] = []
     total = [0, 0, 0]
-    for path in sorted(docs.rglob("*.md")):
-        try:
-            lint_file(args.root, path, findings, total)
-        except (UnicodeDecodeError, OSError):
-            continue
+    for area in (docs, experiments):
+        for path in sorted(area.rglob("*.md")):
+            try:
+                lint_file(args.root, path, findings, total)
+            except (UnicodeDecodeError, OSError):
+                continue
     for f in findings:
         print(f.encode("ascii", "backslashreplace").decode("ascii"))
     n_files = len({f.split(":", 1)[0] for f in findings})
     n01, n02, n03 = total
     print(f"typing_legacy_scan: {n01} TL-01, {n02} TL-02 and {n03} "
           f"TL-03 hard findings (exit 1; TL-02/03 promoted from report "
-          f"queues at tick-397) in {n_files} files across docs/ "
+          f"queues at tick-397) in {n_files} files across docs/ + experiments/ "
           f"({sum(total)} python-fence lines matched)")
     return 1 if (n01 or n02 or n03) else 0
 
