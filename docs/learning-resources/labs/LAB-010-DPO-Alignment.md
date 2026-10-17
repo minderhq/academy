@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-010
 Title: "LAB-010: DPO Alignment"
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 6 hours
@@ -9,6 +9,10 @@ Tags: ['lab', 'dpo', 'alignment', 'rlhf', 'preference-learning', 'hands-on']
 ---
 
 # LAB-010: DPO Alignment
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 6 hours
 
 **Align language models with human preferences using Direct Preference Optimization**
 
