@@ -3,7 +3,7 @@ Document ID: 7501
 Title: "7501: Prompt Injection Defense"
 Phase: 7
 Module: 7500
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -13,6 +13,10 @@ Tags: ['agents', 'security', 'prompt-injection', 'pii', 'adversarial']
 ---
 
 # 7501: Prompt Injection Defense
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 3 hours
 
 ## Table of Contents
 

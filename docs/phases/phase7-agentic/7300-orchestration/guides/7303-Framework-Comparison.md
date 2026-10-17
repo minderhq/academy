@@ -3,7 +3,7 @@ Document ID: 7303
 Title: "7303: Multi-Agent Framework Comparison"
 Phase: 7
 Module: 7300
-Last Updated: 2026-10-08
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -13,6 +13,10 @@ Tags: ['agents', 'orchestration', 'multi-agent', 'autogen', 'langgraph', 'crewai
 ---
 
 # 7303: Multi-Agent Framework Comparison
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 3 hours
 
 ## Table of Contents
 

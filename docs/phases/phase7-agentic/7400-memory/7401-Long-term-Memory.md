@@ -3,7 +3,7 @@ Document ID: 7401
 Title: "7401: Long-term Memory for Agents"
 Phase: 7
 Module: 7400
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -13,6 +13,10 @@ Tags: ['agents', 'memory', 'vector-store', 'long-term-memory', 'mem0', 'chroma']
 ---
 
 # 7401: Long-term Memory for Agents
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 4 hours
 
 ## Learning Objectives
 

@@ -3,7 +3,7 @@ Document ID: 7202
 Title: "7202: Code Interpreter - Sandbox Execution for Agent Code Testing"
 Phase: 7
 Module: 7200
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -13,6 +13,10 @@ Tags: ['agents', 'tool-calling', 'code-interpreter']
 ---
 
 # 7202: Code Interpreter - Sandbox Execution for Agent Code Testing
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 5 hours
 
 ## Table of Contents
 

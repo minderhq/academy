@@ -3,7 +3,7 @@ Document ID: 7106
 Title: "7106: Function-Calling Training and Constrained Decoding - The Grammar Owns the Syntax, the Data Owns the Semantics"
 Phase: 7
 Module: 7100
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -11,6 +11,10 @@ Tags: ['agents', 'function-calling', 'constrained-decoding', 'inference', 'train
 ---
 
 # 7106: Function-Calling Training and Constrained Decoding - The Grammar Owns the Syntax, the Data Owns the Semantics
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 4 hours
 
 ## Table of Contents
 

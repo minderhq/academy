@@ -3,7 +3,7 @@ Document ID: 7101
 Title: "7101: ReAct (Reasoning + Acting) Loop System"
 Phase: 7
 Module: 7100
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -15,6 +15,10 @@ Software: [Python 3.13+, LangChain, LlamaIndex]
 ---
 
 # 7101: ReAct (Reasoning + Acting) Loop System
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 4 hours
 
 ## Abstract
 

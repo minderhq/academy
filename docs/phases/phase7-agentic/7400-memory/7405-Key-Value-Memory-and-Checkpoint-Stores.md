@@ -3,7 +3,7 @@ Document ID: 7405
 Title: "7405: Key-Value Memory and Checkpoint Stores"
 Phase: 7
 Module: 7400
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -13,6 +13,10 @@ Tags: ['agents', 'memory', 'checkpoint', 'infrastructure']
 ---
 
 # 7405: Key-Value Memory and Checkpoint Stores
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 3 hours
 
 ## Table of Contents
 

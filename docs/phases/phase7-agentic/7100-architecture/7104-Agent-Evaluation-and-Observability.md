@@ -3,7 +3,7 @@ Document ID: 7104
 Title: "7104: Agent Evaluation and Observability - Measuring the Loop as Working Code"
 Phase: 7
 Module: 7100
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -11,6 +11,10 @@ Tags: ['agents', 'evaluation', 'observability', 'benchmarks']
 ---
 
 # 7104: Agent Evaluation and Observability - Measuring the Loop as Working Code
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 4 hours
 
 ## Table of Contents
 

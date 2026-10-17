@@ -3,7 +3,7 @@ Document ID: 7105
 Title: "7105: Reflection and Self-Correction - The Loop That Grades Its Own Work"
 Phase: 7
 Module: 7100
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -11,6 +11,10 @@ Tags: ['agents', 'reflection', 'self-correction', 'reasoning', 'cognition']
 ---
 
 # 7105: Reflection and Self-Correction - The Loop That Grades Its Own Work
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 4 hours
 
 ## Table of Contents
 

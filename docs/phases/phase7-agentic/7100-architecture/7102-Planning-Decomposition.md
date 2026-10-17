@@ -3,7 +3,7 @@ Document ID: 7102
 Title: "7102: Planning and Task Decomposition"
 Phase: 7
 Module: 7100
-Last Updated: 2026-10-14
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -13,6 +13,10 @@ Tags: ['agents', 'react', 'planning', 'autonomy', 'cognition']
 ---
 
 # 7102: Planning and Task Decomposition
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 4 hours
 
 ## Table of Contents
 

@@ -3,7 +3,7 @@ Document ID: 7502
 Title: "7502: PII Redaction & Privacy Filtering"
 Phase: 7
 Module: 7500
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -13,6 +13,10 @@ Tags: ['agents', 'security', 'prompt-injection', 'pii', 'adversarial']
 ---
 
 # 7502: PII Redaction & Privacy Filtering
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 3 hours
 
 ## Table of Contents
 

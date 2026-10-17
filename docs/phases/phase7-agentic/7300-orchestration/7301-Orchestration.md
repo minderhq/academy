@@ -3,7 +3,7 @@ Document ID: 7301
 Title: "7301: Collaborative Tasking - Multi-Agent Synergy"
 Phase: 7
 Module: 7300
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -13,6 +13,10 @@ Tags: ['agents', 'orchestration', 'multi-agent', 'autogen', 'langgraph']
 ---
 
 # 7301: Collaborative Tasking - Multi-Agent Synergy
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 4 hours
 
 ## Table of Contents
 

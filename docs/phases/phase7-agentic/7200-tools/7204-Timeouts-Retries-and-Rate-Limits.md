@@ -3,7 +3,7 @@ Document ID: 7204
 Title: "7204: Timeouts, Retries, and Rate Limits"
 Phase: 7
 Module: 7200
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 4 hours
@@ -13,6 +13,10 @@ Tags: ['agents', 'tool-calling', 'production', 'api-design']
 ---
 
 # 7204: Timeouts, Retries, and Rate Limits
+
+**Difficulty:** ⭐⭐ Intermediate
+
+**Estimated Time:** 4 hours
 
 ## Table of Contents
 

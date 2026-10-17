@@ -3,7 +3,7 @@ Document ID: 7504
 Title: "7504: Agent Abuse Prevention and Identity Threats"
 Phase: 7
 Module: 7500
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -11,6 +11,10 @@ Tags: ['agents', 'security', 'prompt-injection', 'pii', 'adversarial']
 ---
 
 # 7504: Agent Abuse Prevention and Identity Threats
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 3 hours
 
 ## Table of Contents
 

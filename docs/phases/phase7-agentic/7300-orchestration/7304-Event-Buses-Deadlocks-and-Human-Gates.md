@@ -3,7 +3,7 @@ Document ID: 7304
 Title: "7304: Event Buses, Deadlocks, and Human Gates"
 Phase: 7
 Module: 7300
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -11,6 +11,10 @@ Tags: ['agents', 'orchestration', 'multi-agent', 'distributed', 'langgraph']
 ---
 
 # 7304: Event Buses, Deadlocks, and Human Gates
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 3 hours
 
 ## Table of Contents
 
