@@ -3,7 +3,7 @@ Document ID: 4305
 Title: "4305: Quantization Configuration"
 Phase: 4
 Module: 4300
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -13,6 +13,10 @@ Tags: ['quantization', 'qat', 'quantization-aware-training']
 ---
 
 # 4305: Quantization Configuration
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 4 hours
 
 ## Table of Contents
 

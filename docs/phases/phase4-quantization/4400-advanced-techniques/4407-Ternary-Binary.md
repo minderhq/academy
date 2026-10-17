@@ -3,7 +3,7 @@ Document ID: 4407
 Title: "4407: Ternary & Binary Networks"
 Phase: 4
 Module: 4400
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -13,6 +13,10 @@ Tags: ['quantization', 'binary', 'ternary', 'bnn', 'hardware']
 ---
 
 # 4407: Ternary & Binary Networks
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 4 hours
 
 ## Table of Contents
 

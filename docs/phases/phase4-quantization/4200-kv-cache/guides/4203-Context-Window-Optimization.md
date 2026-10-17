@@ -3,7 +3,7 @@ Document ID: 4203
 Title: "4203: Context Window Optimization Guide"
 Phase: 4
 Module: 4200
-Last Updated: 2026-10-14
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 6 hours
@@ -13,6 +13,10 @@ Tags: ['kv-cache', 'context-window', 'speculative-decoding']
 ---
 
 # 4203: Context Window Optimization Guide
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 6 hours
 
 ## Table of Contents
 

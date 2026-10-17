@@ -3,7 +3,7 @@ Document ID: 4408
 Title: "4408: Quantizing for Production"
 Phase: 4
 Module: 4400
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -13,6 +13,10 @@ Tags: ['quantization', 'production', 'deployment', 'gptq', 'gguf', 'serving']
 ---
 
 # 4408: Quantizing for Production
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 3 hours
 
 ## Table of Contents
 

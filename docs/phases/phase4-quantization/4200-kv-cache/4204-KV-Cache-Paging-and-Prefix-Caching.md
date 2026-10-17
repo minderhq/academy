@@ -3,7 +3,7 @@ Document ID: 4204
 Title: "4204: KV-Cache Paging and Prefix Caching"
 Phase: 4
 Module: 4200
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -13,6 +13,10 @@ Tags: ['quantization', 'kv-cache', 'inference', 'vllm']
 ---
 
 # 4204: KV-Cache Paging and Prefix Caching
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 4 hours
 
 ## Abstract
 

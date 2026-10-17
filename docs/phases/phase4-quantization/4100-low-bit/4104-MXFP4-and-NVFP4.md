@@ -3,7 +3,7 @@ Document ID: 4104
 Title: "4104: MXFP4 and NVFP4 - Microscaling Formats as Working Code"
 Phase: 4
 Module: 4100
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -11,6 +11,10 @@ Tags: ['quantization', 'mxfp4', 'nvfp4', 'compression']
 ---
 
 # 4104: MXFP4 and NVFP4 - Microscaling Formats as Working Code
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 4 hours
 
 ## Table of Contents
 

@@ -3,7 +3,7 @@ Document ID: 4304
 Title: "4304: Low-bit QAT"
 Phase: 4
 Module: 4300
-Last Updated: 2026-10-14
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -13,6 +13,10 @@ Tags: ['quantization', 'qat', 'quantization-aware-training']
 ---
 
 # 4304: Low-bit QAT
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 4 hours
 
 ## Table of Contents
 

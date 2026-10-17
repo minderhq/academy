@@ -3,7 +3,7 @@ Document ID: 4201
 Title: "4201: Context Window Physics and OOM Prevention"
 Phase: 4
 Module: 4200
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -13,6 +13,10 @@ Tags: ['quantization', 'kv-cache', 'context-window', 'speculative-decoding']
 ---
 
 # 4201: Context Window Physics and OOM Prevention
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 4 hours
 
 ## Table of Contents
 
