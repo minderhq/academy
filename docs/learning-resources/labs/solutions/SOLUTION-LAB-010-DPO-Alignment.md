@@ -1,7 +1,7 @@
 ---
 Document ID: SOLUTION-LAB-010
 Title: "SOLUTION-LAB-010: DPO Alignment"
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Tags: ['solution', 'dpo', 'alignment']
@@ -310,3 +310,7 @@ The pairs are probably indistinguishable (or the judge that built them was). Aud
 - Re-run [LAB-010](../LAB-010-DPO-Alignment.md) end-to-end with a real preference corpus (hundreds of pairs, not dozens)
 - Scale the recipe: [5202: Alignment Orchestration](../../../phases/phase5-finetuning/5200-alignment/5202-Alignment-Orchestration.md)
 - Compare against the two-model pipeline: [5203: RLHF](../../../phases/phase5-finetuning/5200-alignment/5203-RLHF.md)
+
+---
+
+**Difficulty:** ⭐⭐⭐ Advanced

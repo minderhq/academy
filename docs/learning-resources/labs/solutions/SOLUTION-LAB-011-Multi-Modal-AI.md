@@ -1,7 +1,7 @@
 ---
 Document ID: SOLUTION-LAB-011
 Title: "SOLUTION-LAB-011: Multi-Modal AI"
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Tags: ['solution', 'multimodal', 'vision']
@@ -265,3 +265,7 @@ Encoding a list of prompts without padding produces ragged tensors. Pass `paddin
 - Extend the store with per-modality vectors and query-time fusion
 - Move from captions to questions: [3501: Vision-Language Models](../../../phases/phase3-transformers/3500-multimodal/3501-Vision-Language-Models.md)
 - Complete the audio half: [3502: Audio Models](../../../phases/phase3-transformers/3500-multimodal/3502-Audio-Models.md) and [LAB-012: Audio AI](../LAB-012-Audio-AI.md)
+
+---
+
+**Difficulty:** ⭐⭐⭐ Advanced
