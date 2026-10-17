@@ -3,7 +3,7 @@ Document ID: 1202
 Title: "1202: GPU Passthrough (IOMMU/VFIO)"
 Phase: 1
 Module: 1200
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -15,6 +15,10 @@ Software: [Proxmox VE, Linux guest with NVIDIA drivers]
 ---
 
 # 1202: GPU Passthrough (IOMMU/VFIO)
+
+**Difficulty:** ⭐⭐ Intermediate
+
+**Estimated Time:** 3 hours
 
 ## Learning Objectives
 

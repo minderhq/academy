@@ -3,7 +3,7 @@ Document ID: 1405
 Title: "1405: SGLang RadixAttention Serving"
 Phase: 1
 Module: 1400
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -13,6 +13,10 @@ Tags: ['infrastructure', 'llmops', 'sglang', 'serving', 'vllm']
 ---
 
 # 1405: SGLang RadixAttention Serving
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 4 hours
 
 ## Table of Contents
 

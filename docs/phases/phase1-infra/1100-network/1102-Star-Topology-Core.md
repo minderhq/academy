@@ -3,7 +3,7 @@ Document ID: 1102
 Title: "1102: Network Topology Design"
 Phase: 1
 Module: 1100
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 2 hours
@@ -15,6 +15,10 @@ Software: [Switch management CLI or web UI]
 ---
 
 # 1102: Network Topology Design
+
+**Difficulty:** ⭐ Beginner
+
+**Estimated Time:** 2 hours
 
 ## Abstract
 

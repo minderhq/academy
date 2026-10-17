@@ -3,7 +3,7 @@ Document ID: 1404
 Title: "1404: Text Generation Inference (TGI) Deployment Guide"
 Phase: 1
 Module: 1400
-Last Updated: 2026-10-08
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 6 hours
@@ -13,6 +13,10 @@ Tags: ['infrastructure', 'llmops', 'tgi']
 ---
 
 # 1404: Text Generation Inference (TGI) Deployment Guide
+
+**Difficulty:** ⭐⭐ Intermediate
+
+**Estimated Time:** 6 hours
 
 ## Table of Contents
 

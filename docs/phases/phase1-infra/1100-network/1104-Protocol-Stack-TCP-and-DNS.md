@@ -3,7 +3,7 @@ Document ID: 1104
 Title: "1104: The Protocol Stack - OSI Layers, TCP, and DNS"
 Phase: 1
 Module: 1100
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 2 hours
@@ -13,6 +13,10 @@ Tags: ['networking', 'infrastructure', 'inference', 'performance']
 ---
 
 # 1104: The Protocol Stack - OSI Layers, TCP, and DNS
+
+**Difficulty:** ⭐ Beginner
+
+**Estimated Time:** 2 hours
 
 ## Abstract
 

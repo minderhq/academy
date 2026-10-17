@@ -3,7 +3,7 @@ Document ID: 1101
 Title: "1101: Internet Uplink & Modem Configuration"
 Phase: 1
 Module: 1100
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 2 hours
@@ -15,6 +15,10 @@ Software: [Web browser, terminal]
 ---
 
 # 1101: Internet Uplink & Modem Configuration
+
+**Difficulty:** ⭐ Beginner
+
+**Estimated Time:** 2 hours
 
 ## Abstract
 

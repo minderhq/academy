@@ -3,7 +3,7 @@ Document ID: 1201
 Title: "1201: Proxmox Hypervisor Standard Operating Procedures"
 Phase: 1
 Module: 1200
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -13,6 +13,10 @@ Tags: ['infrastructure', 'virtualization', 'proxmox', 'gpu']
 ---
 
 # 1201: Proxmox Hypervisor Standard Operating Procedures
+
+**Difficulty:** ⭐⭐ Intermediate
+
+**Estimated Time:** 3 hours
 
 ## Table of Contents
 

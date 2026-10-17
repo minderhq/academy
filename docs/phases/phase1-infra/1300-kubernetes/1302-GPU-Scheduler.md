@@ -3,7 +3,7 @@ Document ID: 1302
 Title: "1302: GPU Scheduler Configuration"
 Phase: 1
 Module: 1300
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -13,6 +13,10 @@ Tags: ['infrastructure', 'kubernetes', 'k3s', 'gpu']
 ---
 
 # 1302: GPU Scheduler Configuration
+
+**Difficulty:** ⭐⭐ Intermediate
+
+**Estimated Time:** 3 hours
 
 ## Table of Contents
 

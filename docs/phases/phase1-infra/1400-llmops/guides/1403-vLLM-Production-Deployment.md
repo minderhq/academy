@@ -3,7 +3,7 @@ Document ID: 1403
 Title: "1403: vLLM Production Deployment Guide"
 Phase: 1
 Module: 1400
-Last Updated: 2026-10-16
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 5 hours
@@ -13,6 +13,10 @@ Tags: ['infrastructure', 'llmops', 'vllm']
 ---
 
 # 1403: vLLM Production Deployment Guide
+
+**Difficulty:** ⭐⭐ Intermediate
+
+**Estimated Time:** 5 hours
 
 ## Table of Contents
 

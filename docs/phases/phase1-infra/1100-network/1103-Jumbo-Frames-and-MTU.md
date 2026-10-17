@@ -3,7 +3,7 @@ Document ID: 1103
 Title: "1103: Jumbo Frames and MTU Optimization"
 Phase: 1
 Module: 1100
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 2 hours
@@ -13,6 +13,10 @@ Tags: ['networking', 'mtu', 'jumbo-frames', 'performance']
 ---
 
 # 1103: Jumbo Frames and MTU Optimization
+
+**Difficulty:** ⭐ Beginner
+
+**Estimated Time:** 2 hours
 
 ## Table of Contents
 

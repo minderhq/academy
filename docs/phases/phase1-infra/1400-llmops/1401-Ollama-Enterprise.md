@@ -3,7 +3,7 @@ Document ID: 1401
 Title: "1401: Ollama Enterprise Deployment"
 Phase: 1
 Module: 1400
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -13,6 +13,10 @@ Tags: ['infrastructure', 'llmops', 'ollama', 'vllm', 'tgi']
 ---
 
 # 1401: Ollama Enterprise Deployment
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 4 hours
 
 ## Table of Contents
 

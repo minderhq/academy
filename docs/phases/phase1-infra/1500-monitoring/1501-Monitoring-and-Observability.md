@@ -3,7 +3,7 @@ Document ID: 1501
 Title: "1501: Monitoring and Observability"
 Phase: 1
 Module: 1500
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -13,6 +13,10 @@ Tags: ['infrastructure', 'monitoring', 'observability', 'prometheus']
 ---
 
 # 1501: Monitoring and Observability
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 3 hours
 
 ## Table of Contents
 
