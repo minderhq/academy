@@ -3,7 +3,7 @@ Document ID: 2401
 Title: "2401: Pre-training Fundamentals"
 Phase: 2
 Module: 2400
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -13,6 +13,10 @@ Tags: ['training', 'pretraining', 'data-curation', 'tokenization']
 ---
 
 # 2401: Pre-training Fundamentals
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 4 hours
 
 ---
 

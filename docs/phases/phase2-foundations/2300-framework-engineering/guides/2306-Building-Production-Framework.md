@@ -3,7 +3,7 @@ Document ID: 2306
 Title: "2306: Building a Production Framework"
 Phase: 2
 Module: 2300
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -13,6 +13,10 @@ Tags: ['production-framework', 'plugin-architecture', 'configuration', 'dynamic-
 ---
 
 # 2306: Building a Production Framework
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 3 hours
 
 ---
 

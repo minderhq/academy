@@ -3,7 +3,7 @@ Document ID: 2305
 Title: "2305: Framework Comparison Guide"
 Phase: 2
 Module: 2300
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 1.5 hours
@@ -13,6 +13,10 @@ Tags: ['framework-comparison', 'transformers', 'pytorch-lightning', 'langchain',
 ---
 
 # 2305: Framework Comparison Guide
+
+**Difficulty:** ⭐⭐ Intermediate
+
+**Estimated Time:** 1.5 hours
 
 ---
 

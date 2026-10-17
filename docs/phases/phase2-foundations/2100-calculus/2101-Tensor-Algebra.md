@@ -3,7 +3,7 @@ Document ID: 2101
 Title: "2101: Tensor Algebra and Linear Algebra for AI"
 Phase: 2
 Module: 2100
-Last Updated: 2026-10-16
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 4 hours
@@ -13,6 +13,10 @@ Tags: ['math', 'calculus', 'tensors', 'backpropagation']
 ---
 
 # 2101: Tensor Algebra and Linear Algebra for AI
+
+**Difficulty:** ⭐⭐ Intermediate
+
+**Estimated Time:** 4 hours
 
 ## Table of Contents
 

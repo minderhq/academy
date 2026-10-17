@@ -3,7 +3,7 @@ Document ID: 2403
 Title: "2403: Evaluation Frameworks for Language Models"
 Phase: 2
 Module: 2400
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -13,6 +13,10 @@ Tags: ['training', 'pretraining', 'evaluation', 'benchmarks']
 ---
 
 # 2403: Evaluation Frameworks for Language Models
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 3 hours
 
 ---
 

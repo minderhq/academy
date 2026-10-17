@@ -3,7 +3,7 @@ Document ID: 2302
 Title: "2302: Model Serving Architectures"
 Phase: 2
 Module: 2300
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -13,6 +13,10 @@ Tags: ['frameworks', 'architecture', 'api-design', 'production']
 ---
 
 # 2302: Model Serving Architectures
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 5 hours
 
 ---
 

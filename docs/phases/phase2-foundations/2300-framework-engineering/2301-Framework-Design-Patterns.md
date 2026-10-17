@@ -3,7 +3,7 @@ Document ID: 2301
 Title: "2301: Framework Design Patterns"
 Phase: 2
 Module: 2300
-Last Updated: 2026-10-16
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -13,6 +13,10 @@ Tags: ['frameworks', 'architecture', 'api-design', 'production']
 ---
 
 # 2301: Framework Design Patterns
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 5 hours
 
 ---
 

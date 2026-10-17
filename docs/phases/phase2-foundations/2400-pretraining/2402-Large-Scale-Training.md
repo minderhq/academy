@@ -3,7 +3,7 @@ Document ID: 2402
 Title: "2402: Large-Scale Training for Language Models"
 Phase: 2
 Module: 2400
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 6 hours
@@ -13,6 +13,10 @@ Tags: ['training', 'pretraining', 'distributed-training', 'fsdp', 'deepspeed']
 ---
 
 # 2402: Large-Scale Training for Language Models
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 6 hours
 
 ---
 

@@ -3,7 +3,7 @@ Document ID: 2203
 Title: "2203: CUDA Kernel Programming and GPU Architecture"
 Phase: 2
 Module: 2200
-Last Updated: 2026-10-16
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 4 hours
@@ -13,6 +13,10 @@ Tags: ['frameworks', 'pytorch', 'tensorflow', 'cuda']
 ---
 
 # 2203: CUDA Kernel Programming and GPU Architecture
+
+**Difficulty:** ⭐⭐ Intermediate
+
+**Estimated Time:** 4 hours
 
 ## Table of Contents
 

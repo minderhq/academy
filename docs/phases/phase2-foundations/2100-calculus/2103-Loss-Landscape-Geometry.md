@@ -3,7 +3,7 @@ Document ID: 2103
 Title: "2103: Loss Landscape Geometry - Curvature, Saddles, and the Shape of Optimization"
 Phase: 2
 Module: 2100
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 4 hours
@@ -13,6 +13,10 @@ Tags: ['math', 'calculus', 'optimization', 'training']
 ---
 
 # 2103: Loss Landscape Geometry - Curvature, Saddles, and the Shape of Optimization
+
+**Difficulty:** ⭐⭐ Intermediate
+
+**Estimated Time:** 4 hours
 
 ## Table of Contents
 
