@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-014
 Title: "TUTORIAL-014: Production LLM Systems"
-Last Updated: 2026-10-13
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -10,6 +10,10 @@ Tags: ['tutorial', 'production', 'deployment', 'monitoring', 'devops']
 ---
 
 # TUTORIAL-014: Production LLM Systems
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 4 hours
 
 ## Table of Contents
 
