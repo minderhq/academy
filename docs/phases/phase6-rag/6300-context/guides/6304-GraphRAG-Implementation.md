@@ -3,7 +3,7 @@ Document ID: 6304
 Title: "6304: GraphRAG Implementation Guide"
 Phase: 6
 Module: 6300
-Last Updated: 2026-10-08
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -13,6 +13,10 @@ Tags: ['rag', 'graphrag', 'knowledge-graphs', 'neo4j']
 ---
 
 # 6304: GraphRAG Implementation Guide
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 4 hours
 
 ## Table of Contents
 

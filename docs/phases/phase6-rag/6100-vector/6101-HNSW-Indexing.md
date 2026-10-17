@@ -3,7 +3,7 @@ Document ID: 6101
 Title: "6101: HNSW Indexing - Efficient Semantic Search at Scale"
 Phase: 6
 Module: 6100
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -13,6 +13,10 @@ Tags: ['rag', 'vectors', 'hnsw', 'embeddings', 'similarity']
 ---
 
 # 6101: HNSW Indexing - Efficient Semantic Search at Scale
+
+**Difficulty:** ⭐⭐ Intermediate
+
+**Estimated Time:** 3 hours
 
 ## Table of Contents
 

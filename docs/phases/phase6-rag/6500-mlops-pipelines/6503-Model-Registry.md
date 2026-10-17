@@ -3,7 +3,7 @@ Document ID: 6503
 Title: "6503: Model Registry"
 Phase: 6
 Module: 6500
-Last Updated: 2026-10-16
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -13,6 +13,10 @@ Tags: ['mlops', 'model-registry', 'versioning', 'aliases', 'lifecycle']
 ---
 
 # 6503: Model Registry
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 4 hours
 
 ---
 

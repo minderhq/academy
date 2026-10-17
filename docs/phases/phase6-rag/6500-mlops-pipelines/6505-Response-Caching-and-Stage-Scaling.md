@@ -3,7 +3,7 @@ Document ID: 6505
 Title: "6505: Response Caching and Stage Scaling"
 Phase: 6
 Module: 6500
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -13,6 +13,10 @@ Tags: ['rag', 'mlops', 'performance', 'serving']
 ---
 
 # 6505: Response Caching and Stage Scaling
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 3 hours
 
 ## Abstract
 

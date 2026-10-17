@@ -3,7 +3,7 @@ Document ID: 6305
 Title: "6305: LongLoRA, Ring Attention, and Context Distillation"
 Phase: 6
 Module: 6300
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -13,6 +13,10 @@ Tags: ['rag', 'context', 'long-context', 'finetuning', 'distributed']
 ---
 
 # 6305: LongLoRA, Ring Attention, and Context Distillation
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 3 hours
 
 ## Table of Contents
 

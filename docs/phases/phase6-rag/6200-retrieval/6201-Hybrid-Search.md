@@ -3,7 +3,7 @@ Document ID: 6201
 Title: "6201: Hybrid Search - Combining Keyword and Semantic Search"
 Phase: 6
 Module: 6200
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -13,6 +13,10 @@ Tags: ['rag', 'retrieval', 'hybrid-search', 'reranking']
 ---
 
 # 6201: Hybrid Search - Combining Keyword and Semantic Search
+
+**Difficulty:** ⭐⭐ Intermediate
+
+**Estimated Time:** 3 hours
 
 ## Table of Contents
 

@@ -3,7 +3,7 @@ Document ID: 6504
 Title: "6504: Re-Embedding Policy and A/B Testing"
 Phase: 6
 Module: 6500
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -13,6 +13,10 @@ Tags: ['rag', 'mlops', 'evaluation', 'embeddings']
 ---
 
 # 6504: Re-Embedding Policy and A/B Testing
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 3 hours
 
 ## Abstract
 

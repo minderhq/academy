@@ -3,7 +3,7 @@ Document ID: 6502
 Title: "6502: CI/CD for Machine Learning"
 Phase: 6
 Module: 6500
-Last Updated: 2026-10-16
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -13,6 +13,10 @@ Tags: ['mlops', 'pipeline', 'ci-cd', 'model-registry', 'lifecycle']
 ---
 
 # 6502: CI/CD for Machine Learning
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 4 hours
 
 ---
 

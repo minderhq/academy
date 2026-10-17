@@ -3,7 +3,7 @@ Document ID: 6404
 Title: "6404: Vector Compression and Quantization - Scalar, Binary, and Product as Working Code"
 Phase: 6
 Module: 6400
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -13,6 +13,10 @@ Tags: ['rag', 'vector-db', 'quantization', 'performance']
 ---
 
 # 6404: Vector Compression and Quantization - Scalar, Binary, and Product as Working Code
+
+**Difficulty:** ⭐⭐ Intermediate
+
+**Estimated Time:** 3 hours
 
 ## Abstract
 

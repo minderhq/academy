@@ -3,7 +3,7 @@ Document ID: 6401
 Title: "6401: Qdrant Setup Guide"
 Phase: 6
 Module: 6400
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -13,6 +13,10 @@ Tags: ['rag', 'vector-db', 'qdrant', 'docker', 'deployment']
 ---
 
 # 6401: Qdrant Setup Guide
+
+**Difficulty:** ⭐⭐ Intermediate
+
+**Estimated Time:** 3 hours
 
 ## Table of Contents
 

@@ -3,7 +3,7 @@ Document ID: 6105
 Title: "6105: Contextual and Multilingual Embeddings - Anisotropy, Alignment, and the Shared Space"
 Phase: 6
 Module: 6100
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -13,6 +13,10 @@ Tags: ['rag', 'embeddings', 'multilingual']
 ---
 
 # 6105: Contextual and Multilingual Embeddings - Anisotropy, Alignment, and the Shared Space
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 3 hours
 
 ## Abstract
 

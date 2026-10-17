@@ -3,7 +3,7 @@ Document ID: 6303
 Title: "6303: Neo4j Deployment Guide"
 Phase: 6
 Module: 6300
-Last Updated: 2026-09-30
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -13,6 +13,10 @@ Tags: ['rag', 'neo4j', 'deployment', 'docker']
 ---
 
 # 6303: Neo4j Deployment Guide
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 3 hours
 
 ## Table of Contents
 

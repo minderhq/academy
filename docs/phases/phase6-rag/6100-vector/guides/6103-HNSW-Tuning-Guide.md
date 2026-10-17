@@ -3,7 +3,7 @@ Document ID: 6103
 Title: "6103: HNSW Parameter Tuning Guide"
 Phase: 6
 Module: 6100
-Last Updated: 2026-09-30
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -13,6 +13,10 @@ Tags: ['rag', 'vectors', 'hnsw']
 ---
 
 # 6103: HNSW Parameter Tuning Guide
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 3 hours
 
 ## Table of Contents
 

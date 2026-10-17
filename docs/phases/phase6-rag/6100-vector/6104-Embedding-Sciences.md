@@ -3,7 +3,7 @@ Document ID: 6104
 Title: "6104: Embedding Sciences - Pooling, Matryoshka, and MTEB"
 Phase: 6
 Module: 6100
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -13,6 +13,10 @@ Tags: ['rag', 'embeddings', 'matryoshka', 'mteb']
 ---
 
 # 6104: Embedding Sciences - Pooling, Matryoshka, and MTEB
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 3 hours
 
 ## Abstract
 

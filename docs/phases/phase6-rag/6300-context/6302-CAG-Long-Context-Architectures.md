@@ -3,7 +3,7 @@ Document ID: 6302
 Title: "6302: CAG - Context Augmented Generation and Long Context Architectures"
 Phase: 6
 Module: 6300
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -13,6 +13,10 @@ Tags: ['rag', 'context', 'cag', 'long-context']
 ---
 
 # 6302: CAG - Context Augmented Generation and Long Context Architectures
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 5 hours
 
 ## Table of Contents
 

@@ -3,7 +3,7 @@ Document ID: 6306
 Title: "6306: Context Window Economics"
 Phase: 6
 Module: 6300
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -13,6 +13,10 @@ Tags: ['rag', 'context', 'context-window', 'inference']
 ---
 
 # 6306: Context Window Economics
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 3 hours
 
 ## Table of Contents
 

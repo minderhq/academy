@@ -3,7 +3,7 @@ Document ID: 6203
 Title: "6203: Advanced Retrieval Techniques"
 Phase: 6
 Module: 6200
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -13,6 +13,10 @@ Tags: ['rag', 'retrieval', 'hybrid-search', 'reranking']
 ---
 
 # 6203: Advanced Retrieval Techniques
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 3 hours
 
 ## Abstract
 

@@ -1,7 +1,7 @@
 ---
 Document ID: 6403
 Title: "6403: Qdrant Production Deployment"
-Last Updated: 2026-09-30
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 5 hours
@@ -13,6 +13,10 @@ Module: 6400
 ---
 
 # 6403: Qdrant Production Deployment
+
+**Difficulty:** ⭐⭐ Intermediate
+
+**Estimated Time:** 5 hours
 
 ## Table of Contents
 

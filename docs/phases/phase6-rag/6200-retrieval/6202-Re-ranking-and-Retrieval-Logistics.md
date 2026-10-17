@@ -3,7 +3,7 @@ Document ID: 6202
 Title: "6202: Re-ranking and Retrieval Logistics"
 Phase: 6
 Module: 6200
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -13,6 +13,10 @@ Tags: ['rag', 'retrieval', 'hybrid-search', 'reranking']
 ---
 
 # 6202: Re-ranking and Retrieval Logistics
+
+**Difficulty:** ⭐⭐ Intermediate
+
+**Estimated Time:** 3 hours
 
 ## Table of Contents
 

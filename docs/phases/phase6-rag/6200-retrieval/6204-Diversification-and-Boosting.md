@@ -3,7 +3,7 @@ Document ID: 6204
 Title: "6204: Diversification and Boosting"
 Phase: 6
 Module: 6200
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -13,6 +13,10 @@ Tags: ['rag', 'retrieval', 'hybrid-search', 'reranking']
 ---
 
 # 6204: Diversification and Boosting
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 3 hours
 
 ## Abstract
 
