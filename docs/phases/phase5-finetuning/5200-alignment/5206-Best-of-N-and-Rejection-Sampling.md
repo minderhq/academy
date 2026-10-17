@@ -3,7 +3,7 @@ Document ID: 5206
 Title: "5206: Best-of-N and Rejection Sampling"
 Phase: 5
 Module: 5200
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -13,6 +13,10 @@ Tags: ['finetuning', 'alignment', 'inference', 'reranking', 'rlhf']
 ---
 
 # 5206: Best-of-N and Rejection Sampling
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 4 hours
 
 ## Table of Contents
 

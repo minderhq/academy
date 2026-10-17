@@ -3,7 +3,7 @@ Document ID: 5502
 Title: "5502: Learning Rate Scheduling"
 Phase: 5
 Module: 5500
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -13,6 +13,10 @@ Tags: ['optimization', 'learning-rate', 'scheduling', 'warmup', 'training']
 ---
 
 # 5502: Learning Rate Scheduling
+
+**Difficulty:** ⭐⭐ Intermediate
+
+**Estimated Time:** 3 hours
 
 ## Table of Contents
 

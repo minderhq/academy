@@ -3,7 +3,7 @@ Document ID: 5404
 Title: "5404: Distributed Optimization"
 Phase: 5
 Module: 5400
-Last Updated: 2026-10-16
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -13,6 +13,10 @@ Tags: ['distributed', 'zero', 'deepspeed', 'communication', 'training']
 ---
 
 # 5404: Distributed Optimization
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 3 hours
 
 ## Table of Contents
 

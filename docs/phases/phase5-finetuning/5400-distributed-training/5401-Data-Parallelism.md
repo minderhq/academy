@@ -3,7 +3,7 @@ Document ID: 5401
 Title: "5401: Data Parallelism"
 Phase: 5
 Module: 5400
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -13,6 +13,10 @@ Tags: ['distributed', 'ddp', 'fsdp', 'training', 'gpu']
 ---
 
 # 5401: Data Parallelism
+
+**Difficulty:** ⭐⭐ Intermediate
+
+**Estimated Time:** 3 hours
 
 ## Table of Contents
 

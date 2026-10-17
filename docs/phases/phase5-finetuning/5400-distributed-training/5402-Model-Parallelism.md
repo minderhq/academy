@@ -3,7 +3,7 @@ Document ID: 5402
 Title: "5402: Model Parallelism"
 Phase: 5
 Module: 5400
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -13,6 +13,10 @@ Tags: ['distributed', 'pipeline-parallelism', 'tensor-parallelism', 'training', 
 ---
 
 # 5402: Model Parallelism
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 4 hours
 
 ## Table of Contents
 

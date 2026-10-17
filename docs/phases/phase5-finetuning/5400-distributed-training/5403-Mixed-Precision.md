@@ -3,7 +3,7 @@ Document ID: 5403
 Title: "5403: Mixed Precision Training"
 Phase: 5
 Module: 5400
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -13,6 +13,10 @@ Tags: ['training', 'mixed-precision', 'bf16', 'fp16', 'gpu']
 ---
 
 # 5403: Mixed Precision Training
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 3 hours
 
 ## Table of Contents
 

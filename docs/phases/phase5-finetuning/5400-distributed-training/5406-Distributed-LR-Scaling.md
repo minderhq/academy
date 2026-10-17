@@ -3,7 +3,7 @@ Document ID: 5406
 Title: "5406: Distributed LR Scaling - The Linear Rule, the Wall, and the Warmup"
 Phase: 5
 Module: 5400
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -11,6 +11,10 @@ Tags: ['training', 'distributed', 'optimization', 'learning-rate', 'warmup']
 ---
 
 # 5406: Distributed LR Scaling - The Linear Rule, the Wall, and the Warmup
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 4 hours
 
 ## Table of Contents
 

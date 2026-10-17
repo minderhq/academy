@@ -3,7 +3,7 @@ Document ID: 5405
 Title: "5405: FSDP2 and torchao - Composable Sharding and Quantized Training"
 Phase: 5
 Module: 5400
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -11,6 +11,10 @@ Tags: ['distributed', 'fsdp', 'torchao', 'training', 'quantization']
 ---
 
 # 5405: FSDP2 and torchao - Composable Sharding and Quantized Training
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 4 hours
 
 ## Table of Contents
 

@@ -3,7 +3,7 @@ Document ID: 5201
 Title: "5201: DPO (Direct Preference Optimization) Theory"
 Phase: 5
 Module: 5200
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -13,6 +13,10 @@ Tags: ['finetuning', 'alignment', 'dpo', 'rlhf', 'preference']
 ---
 
 # 5201: DPO (Direct Preference Optimization) Theory
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 4 hours
 
 ## Table of Contents
 

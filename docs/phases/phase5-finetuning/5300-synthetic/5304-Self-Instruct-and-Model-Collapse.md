@@ -3,7 +3,7 @@ Document ID: 5304
 Title: "5304: Self-Instruct and Model Collapse - Growing Instruction Data Without Losing the Distribution"
 Phase: 5
 Module: 5300
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -13,6 +13,10 @@ Tags: ['finetuning', 'synthetic-data', 'evaluation']
 ---
 
 # 5304: Self-Instruct and Model Collapse - Growing Instruction Data Without Losing the Distribution
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 4 hours
 
 ## Table of Contents
 

@@ -3,7 +3,7 @@ Document ID: 5204
 Title: "5204: Preference Dataset Creation"
 Phase: 5
 Module: 5200
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -13,6 +13,10 @@ Tags: ['finetuning', 'alignment', 'preference']
 ---
 
 # 5204: Preference Dataset Creation
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 4 hours
 
 ## Abstract
 

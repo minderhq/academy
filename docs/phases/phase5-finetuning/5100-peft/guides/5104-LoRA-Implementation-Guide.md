@@ -3,7 +3,7 @@ Document ID: 5104
 Title: "5104: LoRA Implementation Guide"
 Phase: 5
 Module: 5100
-Last Updated: 2026-10-08
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -13,6 +13,10 @@ Tags: ['finetuning', 'peft', 'lora']
 ---
 
 # 5104: LoRA Implementation Guide
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 5 hours
 
 ## Table of Contents
 

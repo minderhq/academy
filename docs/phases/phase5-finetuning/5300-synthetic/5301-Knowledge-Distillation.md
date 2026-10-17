@@ -3,7 +3,7 @@ Document ID: 5301
 Title: "5301: Knowledge Distillation - Training Small Models Using Big Model Outputs"
 Phase: 5
 Module: 5300
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -13,6 +13,10 @@ Tags: ['finetuning', 'synthetic-data', 'distillation', 'federated-learning']
 ---
 
 # 5301: Knowledge Distillation - Training Small Models Using Big Model Outputs
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 4 hours
 
 ## Table of Contents
 

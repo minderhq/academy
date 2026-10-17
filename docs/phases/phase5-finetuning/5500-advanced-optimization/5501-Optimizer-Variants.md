@@ -3,7 +3,7 @@ Document ID: 5501
 Title: "5501: Optimizer Variants"
 Phase: 5
 Module: 5500
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -13,6 +13,10 @@ Tags: ['finetuning', 'optimizers', 'adamw', 'memory', 'training']
 ---
 
 # 5501: Optimizer Variants
+
+**Difficulty:** ⭐⭐ Intermediate
+
+**Estimated Time:** 3 hours
 
 ## Table of Contents
 

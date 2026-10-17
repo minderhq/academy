@@ -3,7 +3,7 @@ Document ID: 5105
 Title: "5105: Model Merging - Task Vectors, TIES, and mergekit"
 Phase: 5
 Module: 5100
-Last Updated: 2026-10-16
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -13,6 +13,10 @@ Tags: ['finetuning', 'peft', 'checkpoint', 'mergekit']
 ---
 
 # 5105: Model Merging - Task Vectors, TIES, and mergekit
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 3 hours
 
 ## Abstract
 
