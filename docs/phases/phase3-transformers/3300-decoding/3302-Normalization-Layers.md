@@ -3,7 +3,7 @@ Document ID: 3302
 Title: "3302: Normalization Layers - BatchNorm vs LayerNorm vs RMSNorm"
 Phase: 3
 Module: 3300
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 2 hours
@@ -13,6 +13,10 @@ Tags: ['transformers', 'normalization']
 ---
 
 # 3302: Normalization Layers - BatchNorm vs LayerNorm vs RMSNorm
+
+**Difficulty:** ⭐⭐ Intermediate
+
+**Estimated Time:** 2 hours
 
 ## Table of Contents
 

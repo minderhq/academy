@@ -3,7 +3,7 @@ Document ID: 3303
 Title: "3303: Activation Function Comparison"
 Phase: 3
 Module: 3300
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 2 hours
@@ -13,6 +13,10 @@ Tags: ['transformers', 'activation', 'gelu', 'swiglu']
 ---
 
 # 3303: Activation Function Comparison
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 2 hours
 
 ## Table of Contents
 

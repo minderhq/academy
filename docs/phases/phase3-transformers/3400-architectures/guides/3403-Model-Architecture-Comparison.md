@@ -3,7 +3,7 @@ Document ID: 3403
 Title: "3403: Model Architecture Comparison Guide"
 Phase: 3
 Module: 3400
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -13,6 +13,10 @@ Tags: ['transformers', 'architecture', 'encoder-decoder']
 ---
 
 # 3403: Model Architecture Comparison Guide
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 3 hours
 
 ## Table of Contents
 

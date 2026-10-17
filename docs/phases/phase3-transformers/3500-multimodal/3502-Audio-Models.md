@@ -3,7 +3,7 @@ Document ID: 3502
 Title: "3502: Audio Models"
 Phase: 3
 Module: 3500
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -13,6 +13,10 @@ Tags: ['transformers', 'multimodal', 'audio', 'whisper', 'tts']
 ---
 
 # 3502: Audio Models
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 5 hours
 
 ## Table of Contents
 

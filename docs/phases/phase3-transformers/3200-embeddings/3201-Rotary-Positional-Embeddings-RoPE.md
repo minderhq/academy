@@ -3,7 +3,7 @@ Document ID: 3201
 Title: "3201: Rotary Positional Embeddings (RoPE)"
 Phase: 3
 Module: 3200
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -13,6 +13,10 @@ Tags: ['transformers', 'embeddings', 'rope', 'tokenization', 'bpe']
 ---
 
 # 3201: Rotary Positional Embeddings (RoPE)
+
+**Difficulty:** ⭐⭐ Intermediate
+
+**Estimated Time:** 3 hours
 
 ## Table of Contents
 

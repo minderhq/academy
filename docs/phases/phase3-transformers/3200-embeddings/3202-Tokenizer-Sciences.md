@@ -3,7 +3,7 @@ Document ID: 3202
 Title: "3202: Tokenizer Sciences - BPE, SentencePiece, and Tiktoken"
 Phase: 3
 Module: 3200
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -13,6 +13,10 @@ Tags: ['transformers', 'embeddings', 'rope', 'tokenization', 'bpe']
 ---
 
 # 3202: Tokenizer Sciences - BPE, SentencePiece, and Tiktoken
+
+**Difficulty:** ⭐⭐ Intermediate
+
+**Estimated Time:** 3 hours
 
 ## Table of Contents
 

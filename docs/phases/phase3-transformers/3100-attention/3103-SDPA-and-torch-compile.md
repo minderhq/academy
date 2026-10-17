@@ -3,7 +3,7 @@ Document ID: 3103
 Title: "3103: SDPA and torch.compile - The Same Math, Faster"
 Phase: 3
 Module: 3100
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -13,6 +13,10 @@ Tags: ['transformers', 'attention', 'pytorch', 'performance']
 ---
 
 # 3103: SDPA and torch.compile - The Same Math, Faster
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 4 hours
 
 ## Table of Contents
 

@@ -3,7 +3,7 @@ Document ID: 3102
 Title: "3102: Flash Attention - IO-Aware Exact Attention"
 Phase: 3
 Module: 3100
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -13,6 +13,10 @@ Tags: ['transformers', 'attention', 'self-attention', 'flash-attention']
 ---
 
 # 3102: Flash Attention - IO-Aware Exact Attention
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 4 hours
 
 ## Table of Contents
 

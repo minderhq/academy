@@ -3,7 +3,7 @@ Document ID: 3402
 Title: "3402: Decoder-Only Models (GPT, LLaMA, Mistral)"
 Phase: 3
 Module: 3400
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 4 hours
@@ -13,6 +13,10 @@ Tags: ['transformers', 'architecture', 'encoder-decoder', 'gpt', 'llama']
 ---
 
 # 3402: Decoder-Only Models (GPT, LLaMA, Mistral)
+
+**Difficulty:** ⭐⭐ Intermediate
+
+**Estimated Time:** 4 hours
 
 ## Table of Contents
 

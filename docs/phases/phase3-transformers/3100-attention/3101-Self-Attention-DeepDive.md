@@ -3,7 +3,7 @@ Document ID: 3101
 Title: "3101: Self-Attention Deep Dive"
 Phase: 3
 Module: 3100
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -15,6 +15,10 @@ Software: [Python 3.13+, PyTorch 2.0+, matplotlib]
 ---
 
 # 3101: Self-Attention Deep Dive
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 4 hours
 
 ## Abstract
 

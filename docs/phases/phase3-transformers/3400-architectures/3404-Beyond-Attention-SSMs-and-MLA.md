@@ -3,7 +3,7 @@ Document ID: 3404
 Title: "3404: Beyond Attention — SSMs and MLA"
 Phase: 3
 Module: 3400
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -13,6 +13,10 @@ Tags: ['transformers', 'architecture', 'attention', 'ssm', 'mla']
 ---
 
 # 3404: Beyond Attention — SSMs and MLA
+
+**Difficulty:** ⭐⭐⭐ Advanced
+
+**Estimated Time:** 4 hours
 
 ## Table of Contents
 

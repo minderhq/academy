@@ -3,7 +3,7 @@ Document ID: 3401
 Title: "3401: Encoder-Decoder Architectures"
 Phase: 3
 Module: 3400
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 4 hours
@@ -13,6 +13,10 @@ Tags: ['transformers', 'architecture', 'encoder-decoder', 't5', 'bart']
 ---
 
 # 3401: Encoder-Decoder Architectures
+
+**Difficulty:** ⭐⭐ Intermediate
+
+**Estimated Time:** 4 hours
 
 ## Table of Contents
 

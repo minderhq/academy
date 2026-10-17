@@ -3,7 +3,7 @@ Document ID: 3304
 Title: "3304: Decoding Sampling Strategies - Temperature, Top-k, Nucleus, Min-p, and Typical-p"
 Phase: 3
 Module: 3300
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 2 hours
@@ -13,6 +13,10 @@ Tags: ['transformers', 'inference', 'vllm']
 ---
 
 # 3304: Decoding Sampling Strategies - Temperature, Top-k, Nucleus, Min-p, and Typical-p
+
+**Difficulty:** ⭐⭐ Intermediate
+
+**Estimated Time:** 2 hours
 
 ## Table of Contents
 

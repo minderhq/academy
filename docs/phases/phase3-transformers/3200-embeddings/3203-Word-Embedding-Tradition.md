@@ -3,7 +3,7 @@ Document ID: 3203
 Title: "3203: The Word-Embedding Tradition - Skip-Gram, Negative Sampling, and GloVe"
 Phase: 3
 Module: 3200
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -13,6 +13,10 @@ Tags: ['transformers', 'embeddings', 'similarity', 'training']
 ---
 
 # 3203: The Word-Embedding Tradition - Skip-Gram, Negative Sampling, and GloVe
+
+**Difficulty:** ⭐⭐ Intermediate
+
+**Estimated Time:** 3 hours
 
 ## Abstract
 

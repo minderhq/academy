@@ -3,7 +3,7 @@ Document ID: 3301
 Title: "3301: Activation Functions - GELU, SwiGLU, and Beyond"
 Phase: 3
 Module: 3300
-Last Updated: 2026-10-15
+Last Updated: 2026-10-17
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 2 hours
@@ -13,6 +13,10 @@ Tags: ['transformers', 'activation', 'gelu', 'swiglu']
 ---
 
 # 3301: Activation Functions - GELU, SwiGLU, and Beyond
+
+**Difficulty:** ⭐⭐ Intermediate
+
+**Estimated Time:** 2 hours
 
 ## Table of Contents
 
