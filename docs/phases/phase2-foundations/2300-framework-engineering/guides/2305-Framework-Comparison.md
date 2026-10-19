@@ -3,7 +3,7 @@ Document ID: 2305
 Title: "2305: Framework Comparison Guide"
 Phase: 2
 Module: 2300
-Last Updated: 2026-10-17
+Last Updated: 2026-10-19
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 1.5 hours
@@ -384,7 +384,7 @@ What just happened: LangChain's chain machinery calls `pipe` exactly as the raw 
 ### External References
 
 - [Transformers Documentation](https://huggingface.co/docs/transformers/index)
-- [PyTorch Lightning Documentation](https://lightning.ai/docs/pytorch/stable/)
+- [PyTorch Lightning Documentation](https://pytorch-lightning.readthedocs.io/en/stable/)
 - [LangChain Overview](https://docs.langchain.com/oss/python/langchain/overview)
 - [langchain-ollama on PyPI](https://pypi.org/project/langchain-ollama/)
 - [langchain-huggingface on PyPI](https://pypi.org/project/langchain-huggingface/)
