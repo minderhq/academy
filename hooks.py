@@ -1197,7 +1197,27 @@ def on_post_build(config, **kwargs):
             foldkey += 1
         if new_text != text:
             html.write_bytes(new_text.encode("utf-8"))
+    # tick-1949: Lighthouse a11y (live phase1 page, desktop) measured two bare
+    # Material components: the search dialog (role="dialog" with NO accessible
+    # name - aria-dialog-name FAIL) and the instant-navigation progress bar
+    # (role="progressbar" with NO accessible name - aria-progressbar FAIL).
+    # Both are upstream markup emitted per page; name them at build time -
+    # the same corpus-untouched DOM-repair register as repairs 1-6 above.
+    # The accessible names match the components' visible purpose: the dialog
+    # IS the search, the bar IS the page-loading progress.
+    a11y_dlg_re = re.compile(r'(<div class="md-search" data-md-component="search" role="dialog")')
+    a11y_prog_re = re.compile(r'(<div class="md-progress" data-md-component="progress" role="progressbar")')
+    dlgname = progname = 0
+    for html in site.rglob("*.html"):
+        text = html.read_bytes().decode("utf-8")
+        new_text, n1 = a11y_dlg_re.subn(r'\1 aria-label="Search"', text)
+        new_text, n2 = a11y_prog_re.subn(r'\1 aria-label="Page loading progress"', new_text)
+        dlgname += n1
+        progname += n2
+        if new_text != text:
+            html.write_bytes(new_text.encode("utf-8"))
     print(f"[hooks] bridged {bridged} experiments link(s) from repo depth to site depth")
+    print(f"[hooks] a11y names: {dlgname} search dialog(s) + {progname} progress bar(s) named")
     print(f"[hooks] a11y: {untabbed} codelineno anchor(s) untabbed, {named} edit button(s) named, {current} nav link(s) aria-current, {skipped} skip target(s) made focusable")
     print(f"[hooks] share: {enlarged} twitter:card meta(s) enlarged to summary_large_image")
     print(f"[hooks] share: {sited} og:site_name meta(s) injected")
