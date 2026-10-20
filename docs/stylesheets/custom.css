@@ -100,3 +100,18 @@
 .md-tabs__link:not(.md-tabs__link--active) {
   opacity: 0.8;
 }
+
+/* tick-1949b: Lighthouse color-contrast FAIL on two pygments token classes
+   in SLATE mode - measured computed styles over the real code background
+   rgb(39,42,53): .nb rgb(147,131,226) = 4.48:1 and .m rgb(230,105,91) =
+   4.45:1, both a hair under 4.5:1 (light mode passes: 4.71 / 4.59 on
+   rgb(245,245,245), so the override is slate-scoped only). The values
+   lightened hue-preservingly and live-verified in the browser:
+   .nb rgb(160,146,232) = 5.29:1, .m rgb(238,120,106) = 5.13:1. */
+[data-md-color-scheme="slate"] .md-typeset .highlight .nb {
+  color: rgb(160, 146, 232);
+}
+
+[data-md-color-scheme="slate"] .md-typeset .highlight .m {
+  color: rgb(238, 120, 106);
+}
