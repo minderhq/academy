@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE5-FINETUNING-README
 Title: "Phase 5: Fine-Tuning & Alignment [5000]"
-Last Updated: 2026-10-15
+Last Updated: 2026-10-20
 Status: Complete
 Difficulty: Advanced
 Tags: ['phase', 'finetuning', 'training', 'distributed']
@@ -108,31 +108,26 @@ graph LR
 
 ### VRAM Requirements by Model Size
 
-```text
-┌──────────────────────────────────────────────────────────────────┐
-│                    VRAM Requirements (Training)                  │
-├──────────────────────────────────────────────────────────────────┤
-│ Model Size     │ Full FT │ LoRA  │ QLoRA │ DPO   │ Multi-GPU     │
-├──────────────────────────────────────────────────────────────────┤
-│ 1B (TinyLlama) │ 8 GB    │ 4 GB  │ 2 GB  │ 6 GB  │ Not needed    │
-│ 8B (Llama-3.1) │ 64 GB   │ 18 GB │ 9 GB  │ 20 GB │ 2× RTX 3090   │
-│ 12B (Gemma-3)  │ 96 GB   │ 22 GB │ 11 GB │ 26 GB │ 2× RTX 4090   │
-│ 34B (CodeLlama)│ 272 GB  │ 48 GB │ 24 GB │ 52 GB │ 4× A100 40GB  │
-│ 70B (Llama-3.1)│ 560 GB  │ 80 GB │ 40 GB │ 96 GB │ 8× A100 80GB  │
-└──────────────────────────────────────────────────────────────────┘
+**VRAM Requirements (Training)**
+
+| Model Size | Full FT | LoRA | QLoRA | DPO | Multi-GPU |
+|------------|---------|------|-------|-----|-----------|
+| 1B (TinyLlama) | 8 GB | 4 GB | 2 GB | 6 GB | Not needed |
+| 8B (Llama-3.1) | 64 GB | 18 GB | 9 GB | 20 GB | 2× RTX 3090 |
+| 12B (Gemma-3) | 96 GB | 22 GB | 11 GB | 26 GB | 2× RTX 4090 |
+| 34B (CodeLlama) | 272 GB | 48 GB | 24 GB | 52 GB | 4× A100 40GB |
+| 70B (Llama-3.1) | 560 GB | 80 GB | 40 GB | 96 GB | 8× A100 80GB |
 
 Recommended Hardware:
-┌──────────────────────────────────────────────────────────┐
-│ Hardware        │ Max Model (LoRA) │ Max Model (QLoRA)   │
-├─────────────────┼──────────────────┼─────────────────────┤
-│ RTX 3060 (12GB) │ 7B               │ 13B                 │
-│ RTX 3090 (24GB) │ 13B              │ 34B                 │
-│ RTX 4090 (24GB) │ 13B              │ 34B                 │
-│ A100 40GB       │ 34B              │ 70B                 │
-│ A100 80GB       │ 70B              │ 70B (with headroom) │
-│ 2× RTX 3090     │ 34B              │ 70B                 │
-└──────────────────────────────────────────────────────────┘
-```
+
+| Hardware | Max Model (LoRA) | Max Model (QLoRA) |
+|----------|------------------|-------------------|
+| RTX 3060 (12GB) | 7B | 13B |
+| RTX 3090 (24GB) | 13B | 34B |
+| RTX 4090 (24GB) | 13B | 34B |
+| A100 40GB | 34B | 70B |
+| A100 80GB | 70B | 70B (with headroom) |
+| 2× RTX 3090 | 34B | 70B |
 
 ---
 
@@ -594,33 +589,25 @@ scheduler = get_cosine_with_min_lr_schedule_with_warmup(
 
 ### Minimum Configuration
 
-```text
-┌───────────────────────────────────────────────────┐
-│              Minimum Requirements (QLoRA)         │
-├───────────────────────────────────────────────────┤
-│ Model Size │ GPU           │ System RAM │ Storage │
-├────────────┼───────────────┼────────────┼─────────┤
-│ 7B         │ RTX 3060 12GB │ 32 GB      │ 50 GB   │
-│ 13B        │ RTX 3090 24GB │ 64 GB      │ 100 GB  │
-│ 34B        │ 2× RTX 3090   │ 128 GB     │ 200 GB  │
-│ 70B        │ 4× A100 40GB  │ 256 GB     │ 400 GB  │
-└───────────────────────────────────────────────────┘
-```
+**Minimum Requirements (QLoRA)**
+
+| Model Size | GPU | System RAM | Storage |
+|------------|-----|------------|---------|
+| 7B | RTX 3060 12GB | 32 GB | 50 GB |
+| 13B | RTX 3090 24GB | 64 GB | 100 GB |
+| 34B | 2× RTX 3090 | 128 GB | 200 GB |
+| 70B | 4× A100 40GB | 256 GB | 400 GB |
 
 ### Recommended Configuration
 
-```text
-┌───────────────────────────────────────────────────┐
-│            Recommended Requirements (LoRA)        │
-├───────────────────────────────────────────────────┤
-│ Model Size │ GPU           │ System RAM │ Storage │
-├────────────┼───────────────┼────────────┼─────────┤
-│ 7B         │ RTX 4090 24GB │ 32 GB      │ 50 GB   │
-│ 13B        │ 2× RTX 3090   │ 64 GB      │ 100 GB  │
-│ 34B        │ 4× A100 40GB  │ 128 GB     │ 200 GB  │
-│ 70B        │ 8× A100 80GB  │ 512 GB     │ 500 GB  │
-└───────────────────────────────────────────────────┘
-```
+**Recommended Requirements (LoRA)**
+
+| Model Size | GPU | System RAM | Storage |
+|------------|-----|------------|---------|
+| 7B | RTX 4090 24GB | 32 GB | 50 GB |
+| 13B | 2× RTX 3090 | 64 GB | 100 GB |
+| 34B | 4× A100 40GB | 128 GB | 200 GB |
+| 70B | 8× A100 80GB | 512 GB | 500 GB |
 
 ### Training Performance Benchmarks
 
