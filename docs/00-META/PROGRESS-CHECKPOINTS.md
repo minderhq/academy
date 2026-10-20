@@ -27,7 +27,7 @@ Phase 1: ☐ Infrastructure Fabric (2-3 weeks)
 Phase 2: ☐ Cognitive Science & Frameworks (3-4 weeks)
 Phase 3: ☐ Transformer Physics (3-4 weeks)
 Phase 4: ☐ Quantization & Compression (4-5 weeks)
-Phase 5: ☐ Model Adaptation (4-5 weeks)
+Phase 5: ☐ Fine-Tuning & Alignment (4-5 weeks)
 Phase 6: ☐ Data Nexus (4-5 weeks)
 Phase 7: ☐ Agentic Cognition (5-6 weeks)
 ```
