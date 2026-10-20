@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE1-INFRA-README
 Title: "Phase 1: Infrastructure Fabric [1000]"
-Last Updated: 2026-10-16
+Last Updated: 2026-10-20
 Status: Complete
 Difficulty: Advanced
 Tags: ['phase', 'infrastructure', 'gpu', 'networking']
@@ -389,6 +389,8 @@ graph LR
 | Document | Description | Time | Difficulty |
 |----------|-------------|------|------------|
 | [1501: Monitoring and Observability](./1500-monitoring/1501-Monitoring-and-Observability.md) | Prometheus + Grafana + Loki | 4h | Intermediate |
+| [1502: Model Drift Detection](./1500-monitoring/1502-Model-Drift-Detection.md) | Detecting model degradation | 3h | Advanced |
+| [1503: LLM Observability](./1500-monitoring/1503-LLM-Observability.md) | Advanced observability techniques | 3h | Advanced |
 
 **What You'll Learn:**
 
