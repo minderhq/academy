@@ -59,6 +59,15 @@ def on_env(env, config, files):
 
 _title_bridge = 0
 
+# tick-1918 lede-meta strip: see on_page_content - the h1 locator, the
+# prose/word-cut helpers for the reading-time derivation, and the
+# rendered-face detectors that let an authored face keep its slot.
+_H1_RE = re.compile(r"(?is)<h1\b[^>]*>.*?</h1>")
+_PRE_BLOCK_RE = re.compile(r"(?is)<pre\b.*?</pre>")
+_TAG_RE = re.compile(r"<[^>]+>")
+_AUTHORED_RT_RE = re.compile(r"<strong>Reading Time:</strong>")
+_AUTHORED_LU_RE = re.compile(r"<strong>Last Updated:</strong>")
+
 
 def on_page_content(content, page, config, files):
     """tick-1023: bridge capital `Title:` into lowercase `title` in page meta.
@@ -85,6 +94,42 @@ def on_page_content(content, page, config, files):
     if isinstance(meta, dict) and "title" not in meta and "Title" in meta:
         meta["title"] = meta["Title"]
         _title_bridge += 1
+    # tick-1918: the STYLE-GUIDE lede faces ("**Reading Time:**" and
+    # "**Last Updated:**" under the h1) measured 2/520 and 18/520 in the
+    # corpus - the canon is declared but effectively unimplemented, and a
+    # hand-inserted value rots (the page's next edit moves the true value).
+    # Inject both as one strip under the h1 at render time instead: zero
+    # corpus bytes, one uniform face on every page, computed live from the
+    # page's own content/front matter each build. Reading time counts PROSE
+    # words only - pre blocks are dropped (code is not prose-reading; the
+    # per-lesson FM Estimated Time already carries the hands-on study
+    # signal, these faces measure different things) at 200 wpm, min 1,
+    # rounded. Authored faces win: a page that already carries a face keeps
+    # its hand value and gets no injected twin - the og:description dedup
+    # idiom (tick-847). The date is escaped by hand: autoescape is off (the
+    # tick-867 lesson).
+    import html as _html
+
+    h1 = _H1_RE.search(content)
+    if h1:
+        meta = meta if isinstance(meta, dict) else {}
+        prose = _TAG_RE.sub(" ", _PRE_BLOCK_RE.sub(" ", content))
+        minutes = max(1, round(len(prose.split()) / 200))
+        faces = []
+        after_h1 = content[h1.end():]
+        if not _AUTHORED_RT_RE.search(after_h1):
+            faces.append(f"⏱ {minutes} min read")
+        updated = (meta.get("Last Updated") or meta.get("Last updated")
+                   or meta.get("last_updated"))
+        if updated and not _AUTHORED_LU_RE.search(after_h1):
+            faces.append(
+                "📅 Last updated: " + _html.escape(str(updated), quote=True)
+            )
+        if faces:
+            node = ('<p class="md-lede-meta">'
+                    + '<span class="md-lede-meta-sep">·</span>'.join(faces)
+                    + "</p>")
+            content = content[:h1.end()] + node + content[h1.end():]
     return content
 
 

@@ -75,3 +75,19 @@
 .md-content button {
   scroll-margin-top: 6.5rem;
 }
+
+/* tick-1918: the lede-meta strip (hooks.py on_page_content) - one
+   reading-time + last-updated face under every page h1, computed at
+   build time from the page's own content/front matter (nothing corpus-
+   embedded to rot). Muted secondary text tucked against the h1:
+   metadata, not content. The 20 pages with an authored face keep it;
+   the hook never injects a twin. */
+.md-lede-meta {
+  color: var(--md-default-fg-color--light);
+  font-size: 0.75em;
+  margin: -0.6em 0 1.5em;
+}
+
+.md-lede-meta .md-lede-meta-sep {
+  margin: 0 0.45em;
+}
