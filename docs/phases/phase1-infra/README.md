@@ -107,18 +107,14 @@ graph LR
 
 ### Star Topology
 
-```text
-┌──────────────────────────────────────────────────────────────────────┐
-│                    Star Topology Benefits                            │
-├──────────────────────────────────────────────────────────────────────┤
-│ Component               │ Benefit                                    │
-├─────────────────────────┼────────────────────────────────────────────┤
-│ Central Switch          │ Single point of management, fast backplane │
-│ Jumbo Frames (MTU 9000) │ ~90% fewer packets per transfer            │
-│ Direct Connections      │ Minimal latency (<1ms)                     │
-│ Redundant Paths         │ No single point of failure                 │
-└──────────────────────────────────────────────────────────────────────┘
-```
+**Star Topology Benefits**
+
+| Component | Benefit |
+|-----------|---------|
+| Central Switch | Single point of management, fast backplane |
+| Jumbo Frames (MTU 9000) | ~90% fewer packets per transfer |
+| Direct Connections | Minimal latency (<1ms) |
+| Redundant Paths | No single point of failure |
 
 ---
 
@@ -195,20 +191,16 @@ graph TB
 
 ### vLLM and TGI
 
-```text
-┌───────────────────────────────────────────────────────────┐
-│                  Inference Engine Comparison              │
-├───────────────────────────────────────────────────────────┤
-│ Feature            │ Ollama   │ vLLM       │ TGI          │
-├────────────────────┼──────────┼────────────┼──────────────┤
-│ Concurrency        │ Low      │ Very High  │ High         │
-│ Throughput (tok/s) │ 30-50    │ 200-500    │ 150-300      │
-│ Memory Efficiency  │ Medium   │ Best       │ High         │
-│ PagedAttention     │ N        │ Y          │ Y            │
-│ Quantization       │ GGUF     │ AWQ/GPTQ   │ AWQ/GPTQ/BNB │
-│ Use Case           │ Dev/Test │ Production │ Production   │
-└───────────────────────────────────────────────────────────┘
-```
+**Inference Engine Comparison**
+
+| Feature | Ollama | vLLM | TGI |
+|---------|--------|------|-----|
+| Concurrency | Low | Very High | High |
+| Throughput (tok/s) | 30-50 | 200-500 | 150-300 |
+| Memory Efficiency | Medium | Best | High |
+| PagedAttention | N | Y | Y |
+| Quantization | GGUF | AWQ/GPTQ | AWQ/GPTQ/BNB |
+| Use Case | Dev/Test | Production | Production |
 
 ### Engine Selection
 
