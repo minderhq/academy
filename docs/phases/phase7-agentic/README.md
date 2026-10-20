@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE7-AGENTIC-README
 Title: "Phase 7: Agentic Cognition & Autonomy [7000]"
-Last Updated: 2026-10-15
+Last Updated: 2026-10-20
 Status: Complete
 Difficulty: Advanced
 Tags: ['phase', 'agents', 'security', 'prompt-injection']
@@ -306,24 +306,20 @@ graph LR
 
 ### Feature Comparison
 
-```text
-┌──────────────────────────────────────────────────────────────┐
-│                    Framework Feature Comparison              │
-├──────────────────────────────────────────────────────────────┤
-│ Feature          │ LangGraph │ AutoGen │ CrewAI │Agents │ LC │
-├──────────────────┼───────────┼─────────┼────────┼───────┼────┤
-│ Visual Builder   │    Y      │   N     │   N    │  N    │  N │
-│ Type Safety      │    Y      │   !     │   N    │  N    │  N │
-│ Persistence      │    Y      │   Y     │   Y    │  N    │  Y │
-│ Human-in-Loop    │    Y      │   Y     │   Y    │  Y    │  Y │
-│ Memory Systems   │    Y      │   !     │   !    │  N    │  Y │
-│ Tool Calling     │    Y      │   Y     │   Y    │  Y    │  Y │
-│ Multi-Modal      │    Y      │   Y     │   N    │  Y    │  Y │
-│ Streaming        │    Y      │   Y     │   !    │  Y    │  Y │
-│ Easy Debug       │    Y      │   Y     │   Y    │  Y    │  ! │
-│ Production Ready │    Y      │   Y     │   !    │  !    │  Y │
-└──────────────────────────────────────────────────────────────┘
-```
+**Framework Feature Comparison**
+
+| Feature | LangGraph | AutoGen | CrewAI | Agents | LC |
+|---------|-----------|---------|--------|--------|-----|
+| Visual Builder | Y | N | N | N | N |
+| Type Safety | Y | ! | N | N | N |
+| Persistence | Y | Y | Y | N | Y |
+| Human-in-Loop | Y | Y | Y | Y | Y |
+| Memory Systems | Y | ! | ! | N | Y |
+| Tool Calling | Y | Y | Y | Y | Y |
+| Multi-Modal | Y | Y | N | Y | Y |
+| Streaming | Y | Y | ! | Y | Y |
+| Easy Debug | Y | Y | Y | Y | ! |
+| Production Ready | Y | Y | ! | ! | Y |
 
 ### Recommended by Use Case
 

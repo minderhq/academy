@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE6-RAG-README
 Title: "Phase 6: Data Nexus - RAG, CAG & External Memory [6000]"
-Last Updated: 2026-10-13
+Last Updated: 2026-10-20
 Status: Complete
 Difficulty: Advanced
 Tags: ['phase', 'rag', 'retrieval', 'hybrid-search']
@@ -274,24 +274,20 @@ graph LR
 
 ### Cloud vs Self-Hosted (10M documents)
 
-```text
-┌────────────────────────────────────────────────────────────────┐
-│               Annual Cost Comparison (10M docs)                │
-├────────────────────────────────────────────────────────────────┤
-│ Provider             │ Storage │ Queries  │ Total/Year         │
-├──────────────────────┼─────────┼──────────┼────────────────────┤
-│ Pinecone (Starter)   │ $70/mo  │ Included │ $840               │
-│ Pinecone (Prod)      │ $200/mo │ $0.10/1M │ $2,400 + queries   │
-│ Weaviate Cloud       │ $150/mo │ Included │ $1,800             │
-│ Qdrant Cloud         │ $100/mo │ Included │ $1,200             │
-│ ──────────────────┼───────────┼───────────┼──────────────────  │
-│ Self-Hosted Qdrant   │ $0*     │ $0*      │ $0 (hardware only) │
-│ Self-Hosted pgvector │ $0*     │ $0*      │ $0 (hardware only) │
-└────────────────────────────────────────────────────────────────┘
+**Annual Cost Comparison (10M docs)**
 
-* Assumes an existing self-hosted machine (mini PC, used office PC, NAS, or VPS)
-* Example hardware: used mini PC $150-300; new entry-level mini PC $300-500; small VPS $60-120/year
-```
+| Provider | Storage | Queries | Total/Year |
+|----------|---------|---------|------------|
+| Pinecone (Starter) | $70/mo | Included | $840 |
+| Pinecone (Prod) | $200/mo | $0.10/1M | $2,400 + queries |
+| Weaviate Cloud | $150/mo | Included | $1,800 |
+| Qdrant Cloud | $100/mo | Included | $1,200 |
+| Self-Hosted Qdrant | $0* | $0* | $0 (hardware only) |
+| Self-Hosted pgvector | $0* | $0* | $0 (hardware only) |
+
+\* Assumes an existing self-hosted machine (mini PC, used office PC, NAS, or VPS)
+
+\* Example hardware: used mini PC $150-300; new entry-level mini PC $300-500; small VPS $60-120/year
 
 ### Break-Even Analysis
 
