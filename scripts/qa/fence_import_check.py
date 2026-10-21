@@ -113,8 +113,14 @@ ACCEPTED_PREFIXES = frozenset({
     "transformer_engine", "triton", "trl", "vllm", "wandb", "weaviate",
     "xformers",
     # lesson-local fragment modules (defined by the lesson itself)
+    # tick-1959 deliberate extension: LAB-011 (Multi-Modal AI) defines both
+    # modules in its own earlier fences (`# File: clip_model.py`,
+    # `# File: visual_qa.py`) and lazy-imports them inside the vision
+    # agent's __init__ - the lesson-local class exactly, the last 4
+    # unresolvable IC-01 findings corpus-wide
     "agent_types", "analyst_agent", "base_agent", "bitblade", "chunker",
-    "config", "core", "data", "drift_detection", "drift_monitor",
+    "clip_model", "config", "core", "data", "drift_detection",
+    "drift_monitor",
     "embeddings", "entity_extraction", "graph_construction", "graph_rag",
     "homelab_tools", "hybrid_search", "ingestion", "keyword_search",
     "llm_metrics", "memoria", "memory", "models", "multimodal_agent",
@@ -122,7 +128,8 @@ ACCEPTED_PREFIXES = frozenset({
     "researcher_agent", "reranker", "retrieval",
     "semantic_text_splitter", "serving", "src", "storage", "tensor",
     "tool_registry", "transformer", "tts_system", "unified_memory",
-    "vector_store", "voice_assistant", "whisper_system", "writer_agent",
+    "vector_store", "visual_qa", "voice_assistant", "whisper_system",
+    "writer_agent",
 })
 
 
