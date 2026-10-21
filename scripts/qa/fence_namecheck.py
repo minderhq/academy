@@ -158,6 +158,10 @@ docs/phases/phase5-finetuning/5100-peft/5102-QLoRA-Pipelines.md: Trainer train_d
 docs/phases/phase5-finetuning/5200-alignment/5202-Alignment-Orchestration.md: base_model instruction_dataset policy_model preference_dataset prompt_dataset reference_model sft_model value_model
 docs/phases/phase5-finetuning/5200-alignment/5204-Preference-Dataset-Creation.md: annotator_a_labels annotator_b_labels generate parse_choice prompt
 docs/phases/phase5-finetuning/5300-synthetic/5301-Knowledge-Distillation.md: dataloader student_acc student_hidden_states student_probs teacher_a teacher_acc teacher_b teacher_hidden_states teacher_probs
+# tick-1963 census-append - the 5302 sketch fragments consume reader-supplied
+# bindings (the fences name 'your torch nn.Module' and the lesson supplies
+# the dataloaders, losses and helpers in earlier sections)
+docs/phases/phase5-finetuning/5300-synthetic/5302-Distributed-Training.md: accuracy build_model compute_loss dataloader ds_config global_step loss model optimizer prepare_dataloader steps_per_epoch train_dataset train_step
 docs/phases/phase5-finetuning/5300-synthetic/5303-Federated-Learning.md: E build_model test train
 docs/phases/phase5-finetuning/5300-synthetic/assessment/PRACTICE.md: code
 docs/phases/phase5-finetuning/5400-distributed-training/5401-Data-Parallelism.md: ACC build_model ddp_model nullcontext optimizer step train_dataset

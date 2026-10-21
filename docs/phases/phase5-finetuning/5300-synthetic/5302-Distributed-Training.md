@@ -3,7 +3,7 @@ Document ID: 5302
 Title: "5302: Distributed Training Orchestration"
 Phase: 5
 Module: 5300
-Last Updated: 2026-10-17
+Last Updated: 2026-10-21
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -168,7 +168,7 @@ In a real training loop the dataset is wrapped in a `DistributedSampler` (one di
 ### 3. Fully Sharded Data Parallel (FSDP)
 FSDP goes further than replication: parameters, gradients, and optimizer states are *sharded* across GPUs (roughly DeepSpeed ZeRO stage 3), and each wrapped unit is all-gathered on demand, used, and freed. The wrap policy decides the shard granularity. Note that `size_based_auto_wrap_policy` is a plain predicate function, not a factory — pass it via `functools.partial`, and `sharding_strategy` takes the enum, not a string:
 
-```text
+```python
 import functools
 import torch
 import torch.distributed as dist
@@ -265,7 +265,7 @@ Once each `mlp` is wrapped (524k params ≥ 100k), the `blocks` container's *res
 ### 4. DeepSpeed ZeRO
 ZeRO shards optimizer states (stage 1), gradients (stage 2), and parameters (stage 3) to cut per-GPU memory — see the stage-by-stage memory calculator in [2302: Model Serving Architectures](../../phase2-foundations/2300-framework-engineering/2302-Model-Serving-Architectures.md). The `deepspeed` package is not part of this lesson environment, so the engine construction is a reference sketch ([DeepSpeed - Getting Started](https://www.deepspeed.ai/getting-started/)); the config arithmetic it depends on runs fine on plain Python:
 
-```text
+```python
 import deepspeed   # uv pip install deepspeed  (CUDA + Linux toolchain)
 
 model_engine, optimizer, _, _ = deepspeed.initialize(
@@ -424,7 +424,7 @@ spec:
 ### QLoRA Distributed Training
 QLoRA freezes a 4-bit (NF4) base model and trains LoRA adapters on top — the recipe is developed in [5102: QLoRA Pipelines](../5100-peft/5102-QLoRA-Pipelines.md) and [5101: LoRA (Low-Rank Adaptation) Logic](../5100-peft/5101-LoRA-Logic.md). The reference script needs `bitsandbytes` plus access to a gated 7B repo, so it cannot run in this lesson's environment; it is kept as a text reference with the two footguns that most often break it:
 
-```text
+```python
 # uv pip install bitsandbytes peft transformers  (CUDA required for NF4)
 import torch
 from transformers import (AutoModelForCausalLM, TrainingArguments,
@@ -508,7 +508,7 @@ Adapter weights scale roughly with `r x (in_dim + out_dim)` per targeted project
 
 For heterogeneous clusters (mixed GPU sizes, preemption, many concurrent jobs), Ray Train wraps the DDP loop with resource allocation, scaling, and fault tolerance. The `ray` package is not installed in this environment; the sketch is a reference ([Ray Train Documentation](https://docs.ray.io/en/latest/train/train.html)) — note the `zero_grad()` that the distributed loop must not forget:
 
-```text
+```python
 # uv pip install "ray[train]"
 import ray
 from ray.train import ScalingConfig
@@ -628,7 +628,7 @@ keys: ['lr', 'step', 'train_loss']
 ### Weights & Biases Integration
 `wandb` needs an account and API key (`wandb login`), so it is a reference here ([Weights & Biases Documentation](https://docs.wandb.ai/)):
 
-```text
+```python
 # uv pip install wandb  &&  wandb login
 import wandb
 
@@ -647,7 +647,7 @@ wandb.save("./checkpoints/model.pth")   # uploads an artifact; resuming a run
 ### TensorBoard
 PyTorch's `SummaryWriter` needs the `tensorboard` package installed even to write event files (it is not installed in this environment); the viewer is a separate process ([torch.utils.tensorboard - PyTorch docs](https://docs.pytorch.org/docs/2.14/tensorboard.html)):
 
-```text
+```python
 # uv pip install tensorboard     (torch.utils.tensorboard writes event files)
 from torch.utils.tensorboard import SummaryWriter
 
@@ -754,23 +754,20 @@ gradient scale 0.083 -> equal to rounding: True
 Numbers below are **planning targets**, not measurements of this lesson's environment. The VRAM column is derived from rules (bf16 + AdamW ≈ 16 B/param, NF4 base ≈ 0.5 B/param plus adapters and activations); throughput depends on sequence length, quantization, and kernel versions — benchmark your own stack (see the Experiment link at the bottom).
 
 ### 11GB-class GPU Planning Targets
-```text
 Task (7B model, 11 GB-class GPU)   | VRAM (rule-derived) | Feasible?
 -----------------------------------|---------------------|----------------------------
 QLoRA fine-tune (bs 2, 4-bit base) | ~7-9 GB             | yes
 LoRA fine-tune (bf16 base, bs 1)   | ~16+ GB             | no - 2 GPUs or ZeRO offload
 Full fine-tune (bf16 + AdamW)      | ~112 GB             | no - sharding territory
-```
 
 The full fine-tune row is the point of this whole lesson: a 7B model with optimizer states does not fit on an 11 GB card at any batch size, which is why the FSDP/ZeRO sections exist. QLoRA fits precisely because the frozen base shrinks ~4x and only adapters train.
 
 ### Scaling Efficiency
-```text
 Configuration | Target speedup | Implied serial fraction
+---|---|---
 1x 11GB GPU   | 1.0x           | -
 2x 11GB GPU   | 1.7x           | ~0.18
 4x 11GB GPU   | 3.0x           | ~0.11
-```
 
 The targets are representative for DDP over a 10 GbE-class cluster; the serial-fraction column comes from the Amdahl calculator above. Fit your own two-GPU data point first, then trust its prediction for the next size up.
 

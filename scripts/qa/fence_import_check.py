@@ -94,7 +94,11 @@ ACCEPTED_PREFIXES = frozenset({
     "mcp", "mlflow", "node2vec", "opacus",
     "opentelemetry", "optimum", "phonenumbers", "pinecone",
     "presidio_analyzer", "presidio_anonymizer", "pyannote", "pyaudio",
-    "pymilvus", "pynvml", "ragas", "rank_bm25", "restrictedpython",
+    "pymilvus", "pynvml", "ragas", "rank_bm25",
+    # tick-1963 deliberate same-commit extension: ray, the distributed
+    # training stack (5302 teaches TorchTrainer + ScalingConfig behind its
+    # own `uv pip install "ray[train]"` install line - optional-stack class)
+    "ray", "restrictedpython",
     "resource", "rouge", "rouge_score", "sacrebleu", "seaborn",
     "segment_anything", "sentence_transformers",
     # tick-719 deliberate same-commit extension: the SGLang serving
