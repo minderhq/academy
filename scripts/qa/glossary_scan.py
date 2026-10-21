@@ -42,7 +42,6 @@ Output is ASCII-escaped so it is safe on cp1254 consoles.
 from __future__ import annotations
 
 import argparse
-import os
 import re
 import sys
 from collections import Counter

@@ -99,7 +99,6 @@ def headings_with_slugs(text: str):
 
 def anchor_set(text: str) -> set:
     raw = [gh_slug(t) for t in headings_with_slugs(text)]
-    cnt = Counter(raw)
     seen = Counter()
     out = set()
     for s in raw:

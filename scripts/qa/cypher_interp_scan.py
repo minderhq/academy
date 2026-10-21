@@ -215,7 +215,6 @@ def _scan_fence(rel: str, start: int, fence_lines: list[tuple[int, str]],
 
     module_assigns: list[tuple[int, str, ast.expr]] = []
     _collect_assigns(tree.body, module_assigns)
-    func_assigns: dict[int, list[tuple[int, str, ast.expr]]] = {}
     collector = _CallCollector()
     collector.visit(tree)
 

@@ -102,7 +102,7 @@ def main() -> int:
     findings: list[str] = []
     n_files: set[str] = set()
     n_lessons = 0
-    for path in sorted(phases.glob(f"*/*")):
+    for path in sorted(phases.glob("*/*")):
         if not (path.is_dir() and PHASE_DIR.match(path.parent.name)
                 and MODULE_DIR.match(path.name)):
             continue

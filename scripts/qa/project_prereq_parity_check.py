@@ -67,8 +67,6 @@ def main() -> int:
     prj_dir = args.root / PRJ_DIR
     files = sorted(prj_dir.glob("*.md"))
     project_stems = {p.stem for p in files if PROJECT_FILE.match(p.name)}
-    project_ids = {PROJECT_FILE.match(p.stem + ".md").group(1)
-                   for p in files if PROJECT_FILE.match(p.name)}
     supporting = [p for p in files
                   if not PROJECT_FILE.match(p.name)]
 

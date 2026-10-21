@@ -81,7 +81,6 @@ def main() -> int:
     paths = sorted(docs.rglob("*.md"))
     index = build_index(paths, args.root)
 
-    ambiguous_tokens = {k: v for k, v in index.items() if len(v) > 1}
 
     findings: list[str] = []
     n_docs = 0
@@ -127,8 +126,6 @@ def main() -> int:
     rl03 = sum(1 for f in findings if " RL-03 " in f)
     for f in findings:
         print(f.encode("ascii", "backslashreplace").decode("ascii"))
-    amb = (f"; ambiguous index keys: "
-           f"{sorted(ambiguous_tokens)!r}" if ambiguous_tokens else "")
     print(f"related_census: docs={n_docs} tokens={n_tokens} "
           f"shapes={dict(shapes)} resolve0={token_targets[0]} "
           f"resolve1={token_targets[1]} "

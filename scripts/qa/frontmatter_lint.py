@@ -68,7 +68,6 @@ class Linter:
         rel = path.relative_to(root).as_posix()
         text = path.read_text(encoding="utf-8")
         base = path.name
-        lesson = "/phases/" in rel and LESSON_FILE.match(base)
 
         if not text.startswith("---\n"):
             self.report(rel, "FM-01", "markdown file has no frontmatter")
