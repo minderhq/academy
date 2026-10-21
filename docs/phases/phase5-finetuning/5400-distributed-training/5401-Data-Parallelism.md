@@ -3,7 +3,7 @@ Document ID: 5401
 Title: "5401: Data Parallelism"
 Phase: 5
 Module: 5400
-Last Updated: 2026-10-17
+Last Updated: 2026-10-21
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -266,13 +266,11 @@ with FSDP.state_dict_type(model, StateDictType.FULL_STATE_DICT):
 
 Per-GPU footprint for a 7B model, bf16 compute, fp32 master/moments (from the [5501](../5500-advanced-optimization/5501-Optimizer-Variants.md) ledger):
 
-```text
-Method      params   grads    optimizer   PEAK TOTAL (7B model)
-----------+--------+--------+-----------+----------------------
-DP          14 GB    14 GB     84 GB      ~112 GB  (does not fit)
-DDP         14 GB    14 GB     84 GB      ~112 GB  (same; DP != smaller)
-FSDP        14/W GB  14/W GB   84/W GB    ~16 GB at W=8 (+activations)
-```
+| Method | params | grads | optimizer | PEAK TOTAL (7B model) |
+|--------|--------|-------|-----------|-----------------------|
+| DP | 14 GB | 14 GB | 84 GB | ~112 GB (does not fit) |
+| DDP | 14 GB | 14 GB | 84 GB | ~112 GB (same; DP != smaller) |
+| FSDP | 14/W GB | 14/W GB | 84/W GB | ~16 GB at W=8 (+activations) |
 
 ```text
 Reading the ledger
