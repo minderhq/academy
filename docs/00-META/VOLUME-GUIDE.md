@@ -1,7 +1,7 @@
 ---
 Document ID: VOLUME-GUIDE
 Title: "Minder Academy: Volume Guide (Book Structure)"
-Last Updated: 2026-10-16
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Beginner
 Tags: ['volume', 'roadmap', 'llm']
@@ -30,13 +30,13 @@ Follow the volumes below, in order.
 
 | Volume | Title | Difficulty | Time | Focus |
 |--------|-------|------------|------|-------|
-| **[Volume 1](#volume-1-infrastructure-fundamentals)** | Infrastructure Fundamentals | ⭐ Beginner | 4-6 weeks | Docker, networks, local LLMs |
-| **[Volume 2](#volume-2-aiml-foundations)** | AI/ML Foundations | ⭐⭐ Intermediate | 8-12 weeks | Math, frameworks, model internals |
-| **[Volume 3](#volume-3-llm-internals--architecture)** | LLM Internals & Architecture | ⭐⭐⭐ Advanced | 6-8 weeks | Transformers, attention, embeddings |
-| **[Volume 4](#volume-4-quantization--optimization)** | Quantization & Optimization | ⭐⭐⭐ Advanced | 5-7 weeks | 4-bit, GGUF, context windows |
-| **[Volume 5](#volume-5-model-adaptation)** | Model Adaptation | ⭐⭐⭐ Advanced | 6-8 weeks | LoRA, QLoRA, DPO, alignment |
-| **[Volume 6](#volume-6-data-nexus-rag--memory)** | Data Nexus: RAG & Memory | ⭐⭐⭐ Advanced | 6-8 weeks | Vector DBs, GraphRAG, agents |
-| **[Volume 7](#volume-7-production-mastery)** | Production Mastery | ⭐⭐⭐ Advanced | 8-10 weeks | CI/CD, scaling, monitoring |
+| **[Volume 1](#volume-1-infrastructure-fundamentals)** | Infrastructure Fundamentals | ⭐ Beginner | 2-3 weeks | Docker, networks, local LLMs |
+| **[Volume 2](#volume-2-aiml-foundations)** | AI/ML Foundations | ⭐⭐ Intermediate | 3-4 weeks | Math, frameworks, model internals |
+| **[Volume 3](#volume-3-llm-internals--architecture)** | LLM Internals & Architecture | ⭐⭐⭐ Advanced | 3-4 weeks | Transformers, attention, embeddings |
+| **[Volume 4](#volume-4-quantization--optimization)** | Quantization & Optimization | ⭐⭐⭐ Advanced | 4-5 weeks | 4-bit, GGUF, context windows |
+| **[Volume 5](#volume-5-model-adaptation)** | Model Adaptation | ⭐⭐⭐ Advanced | 4-5 weeks | LoRA, QLoRA, DPO, alignment |
+| **[Volume 6](#volume-6-data-nexus-rag--memory)** | Data Nexus: RAG & Memory | ⭐⭐⭐ Advanced | 4-5 weeks | Vector DBs, GraphRAG, agents |
+| **[Volume 7](#volume-7-production-mastery)** | Production Mastery | ⭐⭐⭐ Advanced | 5-6 weeks | CI/CD, scaling, monitoring |
 
 **Total Time:** 12-18 months (realistic pace for 10-15 hours/week)
 
