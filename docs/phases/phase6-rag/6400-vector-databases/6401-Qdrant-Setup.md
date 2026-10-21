@@ -3,7 +3,7 @@ Document ID: 6401
 Title: "6401: Qdrant Setup Guide"
 Phase: 6
 Module: 6400
-Last Updated: 2026-10-17
+Last Updated: 2026-10-21
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -311,32 +311,14 @@ Restore on a new host: mount the snapshot directory, then `PUT /collections/{nam
 
 ## Troubleshooting
 
-```text
-Symptom                              Cause and fix
-------------------------------------+---------------------------------------------
-Connection refused on 6334           gRPC hit with HTTP client or proxy. Use 6333
-                                     for REST; ensure prefer_grpc only with the
-                                     grpc extra installed.
-
-"Vector dimension error" on upsert   Embedding dim != collection size. Recreate
-                                     the collection or re-embed; dims are fixed
-                                     at creation.
-
-Search returns irrelevant results    Distance metric mismatch with the embedding
-                                     model (e.g. EUCLID with cosine-trained
-                                     model). Check the model card.
-
-Slow queries after large imports     HNSW still building. Check /metrics and wait,
-                                     or raise build parallelism. Verify with
-                                     collection info: optimizer_status.
-
-Container OOM-killed                 RAM budget exceeded (see sizing rule above).
-                                     Enable scalar quantization, set on_disk=True,
-                                     raise the memory limit.
-
-Data lost after restart              Volume not mounted; ./data recreated empty.
-                                     Check `docker inspect` Mounts section.
-```
+| Symptom | Cause and fix |
+|---------|---------------|
+| Connection refused on 6334 | gRPC hit with HTTP client or proxy. Use 6333 for REST; ensure prefer_grpc only with the grpc extra installed. |
+| "Vector dimension error" on upsert | Embedding dim != collection size. Recreate the collection or re-embed; dims are fixed at creation. |
+| Search returns irrelevant results | Distance metric mismatch with the embedding model (e.g. EUCLID with cosine-trained model). Check the model card. |
+| Slow queries after large imports | HNSW still building. Check /metrics and wait, or raise build parallelism. Verify with collection info: optimizer_status. |
+| Container OOM-killed | RAM budget exceeded (see sizing rule above). Enable scalar quantization, set on_disk=True, raise the memory limit. |
+| Data lost after restart | Volume not mounted; ./data recreated empty. Check `docker inspect` Mounts section. |
 
 ---
 
