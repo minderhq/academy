@@ -1,7 +1,7 @@
 ---
 Document ID: EXP-TEMPLATE
 Title: "EXPERIMENT TEMPLATE"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-21
 Status: Complete
 Difficulty: Beginner
 ---
@@ -37,7 +37,7 @@ Difficulty: Beginner
 
 ## Infrastructure Used
 
-```yaml
+```text
 Hardware Path:
 [Switch 1] → [Component 1] → [Component 2]
 

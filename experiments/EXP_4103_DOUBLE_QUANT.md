@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_4103
 Title: "EXP_4103: Double Quantization Experiment"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-21
 Status: Complete
 Difficulty: Advanced
 ---
@@ -37,7 +37,7 @@ Difficulty: Advanced
 
 ## Infrastructure Used
 
-```yaml
+```text
 Hardware Path:
 Fiber Modem → Switch → a mini-PC → 11GB-class GPU (eGPU)
 
