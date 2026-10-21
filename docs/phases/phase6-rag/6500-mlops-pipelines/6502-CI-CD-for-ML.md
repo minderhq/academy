@@ -3,7 +3,7 @@ Document ID: 6502
 Title: "6502: CI/CD for Machine Learning"
 Phase: 6
 Module: 6500
-Last Updated: 2026-10-17
+Last Updated: 2026-10-21
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -190,7 +190,7 @@ One failing gate costs seconds and stops the chain; a missing gate costs a GPU t
 
 The training step's job in the pipeline is narrower than "train a model": it must also *register* the result and exit non-zero on failure, so the pipeline can act on it. The sketch uses MLflow for tracking + registration (MLflow is not installed in this environment, and the script needs real CSVs on disk — the structure is what matters):
 
-```text
+```python
 # sketch - scripts/train.py; needs `uv pip install mlflow` + data/ CSVs
 import argparse
 import mlflow
@@ -369,7 +369,7 @@ The floor and the champion play different roles: the floor is a *hard* gate (bel
 
 Smoke tests probe a deployed endpoint's shape — health, predict, batch predict, model info — before promotion. The real script needs a live staging URL; the checks themselves are plain request/response assertions:
 
-```text
+```python
 # sketch - tests/smoke_tests.py; needs `uv pip install requests` + a deployed endpoint
 import sys
 import requests

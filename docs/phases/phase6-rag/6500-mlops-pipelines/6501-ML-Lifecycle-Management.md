@@ -3,7 +3,7 @@ Document ID: 6501
 Title: "6501: ML Model Lifecycle Management"
 Phase: 6
 Module: 6500
-Last Updated: 2026-10-17
+Last Updated: 2026-10-21
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -137,7 +137,7 @@ The full history is the audit trail: when someone asks six months later why the 
 
 Development's deliverable is not a model file — it is a *reproducible run*: pinned parameters, logged metrics, and a registered artifact that the rest of the lifecycle can address. The sketch uses MLflow for the run + registration (needs a tracking server and data on disk):
 
-```text
+```python
 # sketch - needs `uv pip install mlflow` + a tracking server + data on disk
 import mlflow
 from sklearn.ensemble import GradientBoostingClassifier

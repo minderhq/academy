@@ -171,6 +171,9 @@ docs/phases/phase6-rag/6300-context/6301-Neo4j-and-Knowledge-Graphs.md: G
 docs/phases/phase6-rag/6300-context/6302-CAG-Long-Context-Architectures.md: content
 docs/phases/phase6-rag/6400-vector-databases/6401-Qdrant-Setup.md: chunked_docs embedding_384d query_embedding query_embedding_384d
 docs/phases/phase6-rag/6400-vector-databases/guides/6403-Qdrant-Production-Deployment.md: query_vector
+# tick-1960 census-append - 6501's mlflow sketch binds its data as
+# reader-supplied (the fence says it needs a tracking server and data on disk)
+docs/phases/phase6-rag/6500-mlops-pipelines/6501-ML-Lifecycle-Management.md: X_train X_val y_train y_val
 docs/phases/phase6-rag/README.md: HNSWIndex SentenceTransformer chunk_text cross_encoder_rerank generate_with_citations openai_embed sentence_transformers_embed text texts vector_db
 docs/phases/phase7-agentic/7100-architecture/7101-ReAct-Loop-System.md: Plan
 docs/phases/phase7-agentic/7100-architecture/7102-Planning-Decomposition.md: ReActAgent
