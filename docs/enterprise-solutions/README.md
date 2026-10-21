@@ -1,7 +1,7 @@
 ---
 Document ID: ENTERPRISE-SOLUTIONS-README
 Title: "End-to-End Solutions"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Beginner
 Tags: ['enterprise', 'solution', 'llm']
@@ -35,6 +35,19 @@ Complete implementation of a RAG-based enterprise knowledge base.
 - Docker (deployment)
 
 **Time to Complete:** 4-6 hours
+
+---
+
+### [SOL-002: Multi-Modal Industrial Inspection System](./SOL-002-Industry-Solution.md)
+AI-powered industrial inspection system fusing RGB defect detection, thermal anomaly screening, and an LLM reporting layer on a vector-database knowledge base of historical defects.
+
+**Technologies Used:**
+
+- Multi-Modal Vision
+- Vector DB
+- LLM Agents
+
+**Time to Complete:** 6-8 hours
 
 ---
 
@@ -97,7 +110,7 @@ Each solution is designed to be:
 
 | Solution | Complexity | Time | Technologies |
 |----------|-----------|------|--------------|
-| **SOL-001: Enterprise KB** | Intermediate | 4-6 hours | RAG, Qdrant, Llama 2 |
+| **SOL-001: Enterprise KB** | Intermediate | 4-6 hours | RAG, Qdrant, Qwen 2.5 7B |
 | **SOL-002: Industrial Inspection** | Advanced | 6-8 hours | Multi-Modal Vision, Vector DB, LLM Agents |
 
 ---
@@ -124,4 +137,4 @@ Want to add a solution?
 
 ---
 
-**Total Solutions:** 1 complete solution
+**Total Solutions:** 2 complete solutions
