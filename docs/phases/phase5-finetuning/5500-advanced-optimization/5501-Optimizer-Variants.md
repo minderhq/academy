@@ -3,7 +3,7 @@ Document ID: 5501
 Title: "5501: Optimizer Variants"
 Phase: 5
 Module: 5500
-Last Updated: 2026-10-17
+Last Updated: 2026-10-21
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -56,18 +56,15 @@ The optimizer is the quietest but largest consumer of GPU memory in a training j
 
 For a model with `N` parameters trained in mixed precision with AdamW:
 
-```text
-Component                          Bytes per param
----------------------------------+----------------
-Weights (bf16)                    |  2N
-Gradients (bf16)                  |  2N
-Master weights (fp32)             |  4N
-Adam moment 1  m  (fp32)          |  4N
-Adam moment 2  v  (fp32)          |  4N
----------------------------------+----------------
-Total                             | 16N
-Optimizer-only overhead           | 12N  (master + m + v)
-```
+| Component | Bytes per param |
+|-----------|-----------------|
+| Weights (bf16) | 2N |
+| Gradients (bf16) | 2N |
+| Master weights (fp32) | 4N |
+| Adam moment 1 m (fp32) | 4N |
+| Adam moment 2 v (fp32) | 4N |
+| Total | 16N |
+| Optimizer-only overhead | 12N (master + m + v) |
 
 ```text
 Consequence at scale (AdamW, mixed precision)
