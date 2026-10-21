@@ -3,7 +3,7 @@ Document ID: 3401
 Title: "3401: Encoder-Decoder Architectures"
 Phase: 3
 Module: 3400
-Last Updated: 2026-10-17
+Last Updated: 2026-10-21
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 4 hours
@@ -50,21 +50,11 @@ The original transformer was an encoder-decoder: one stack reads the input bidir
 
 ## The Three Architecture Families
 
-```text
-                 attention mask          sees             examples
----------------+----------------------+----------------+------------------
-encoder-only    bidirectional           input only       BERT, RoBERTa
-                (every token attends    never generates
-                to every token)
-
-decoder-only    causal                  input + own      GPT, LLaMA,
-                (token i sees 0..i-1)   output so far    Mistral
-
-encoder-        bidirectional encoder   input (enc) +    T5, BART,
-decoder         + causal decoder        output (dec)     mT5, FLAN-T5
-                + CROSS-attention
-                (dec -> enc states)
-```
+|  | attention mask | sees | examples |
+|--|----------------|------|----------|
+| encoder-only | bidirectional (every token attends to every token) | input only never generates | BERT, RoBERTa |
+| decoder-only | causal (token i sees 0..i-1) | input + own output so far | GPT, LLaMA, Mistral |
+| encoder-decoder | bidirectional encoder + causal decoder + CROSS-attention (dec -> enc states) | input (enc) + output (dec) | T5, BART, mT5, FLAN-T5 |
 
 ```text
 One sentence each
@@ -116,15 +106,12 @@ Why it matters
 
 T5's one big idea: every NLP task becomes **text in, text out**, and one model handles all of them by changing the prefix:
 
-```text
-Task                     Input                                    Target
------------------------+---------------------------------------+----------------
-translation           "translate English to German:            "Das Haus ist
-                       The house is small"                      klein"
-summarization         "summarize: <article 500 tokens>"        "<2-sentence gist>"
-sentiment             "sst2 sentence: A great, fun film"       "positive"
-QA                    "question: What is RLHF? context: ..."   "<answer>"
-```
+| Task | Input | Target |
+|------|-------|--------|
+| translation | "translate English to German: The house is small" | "Das Haus ist klein" |
+| summarization | `"summarize: <article 500 tokens>"` | `"<2-sentence gist>"` |
+| sentiment | "sst2 sentence: A great, fun film" | "positive" |
+| QA | "question: What is RLHF? context: ..." | `"<answer>"` |
 
 No task heads, no fine-tuning plumbing per task — the same `(input_ids -> labels)` interface everywhere. This framing directly shaped instruction-tuned decoder-only models (FLAN → instruction tuning → chat models).
 
