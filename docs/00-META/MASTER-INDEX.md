@@ -1,7 +1,7 @@
 ---
 Document ID: MASTER-INDEX
 Title: "Minder Academy Master Index"
-Last Updated: 2026-10-14
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Beginner
 Tags: ['maintenance', 'navigation', 'llm']
@@ -12,7 +12,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 **Version:** 4.5
 
-**Last Updated:** 2026-10-14
+**Last Updated:** 2026-10-22
 
 **Total Files:** 520 markdown files (docs/)
 
@@ -485,10 +485,10 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 | Metric | Value |
 |--------|------:|
-| **Total Lines** | 100,926 |
-| **Total Words** | ~2.5 million |
-| **Estimated Print Pages** | 4,060 |
-| **Condensed Book Pages** | ~400 |
+| **Total Lines** | 269,018 |
+| **Total Words** | ~1.24 million |
+| **Estimated Print Pages** | ~2,020 |
+| **Condensed Book Pages** | ~200 |
 | **Code Examples** | 2,000+ |
 | **Diagrams** | 100+ |
 
