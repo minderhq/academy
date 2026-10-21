@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE4-QUANTIZATION-README
 Title: "Phase 4: Quantization & Compression [4000]"
-Last Updated: 2026-10-15
+Last Updated: 2026-10-21
 Status: Complete
 Difficulty: Advanced
 Tags: ['phase', 'quantization', 'qat', 'quantization-aware-training']
@@ -44,29 +44,25 @@ This phase covers quantization techniques to run larger models on limited hardwa
 
 ### The Memory Challenge
 
-```text
-Model Size Comparison (FP16):
-┌──────────────────────────────────────────────────────┐
-│ Model         │ Parameters │ FP16 Size │ Typical GPU │
-├───────────────┼────────────┼───────────┼─────────────┤
-│ Gemma-3-4B    │ 4B         │ 8 GB      │ RTX 3060    │
-│ Gemma-3-12B   │ 12B        │ 24 GB     │ RTX 3090    │
-│ Llama-3.1-70B │ 70B        │ 140 GB    │ A100 40GB   │
-│ CodeLlama-34B │ 34B        │ 68 GB     │ A100 80GB   │
-│ Mixtral-8x7B  │ 46.7B      │ 93.4 GB   │ 2xA100      │
-└──────────────────────────────────────────────────────┘
+**Model Size Comparison (FP16):**
 
-After 4-bit Quantization:
-┌──────────────────────────────────────────────────┐
-│ Model         │ Q4 Size │ Reduction │ Can Run On │
-├───────────────┼─────────┼───────────┼────────────┤
-│ Gemma-3-4B    │ 3.3 GB  │ 2.4x      │ RTX 3060   │
-│ Gemma-3-12B   │ 8.1 GB  │ 3.0x      │ RTX 3090   │
-│ Llama-3.1-70B │ 43 GB   │ 3.3x      │ 2× RTX 4090│
-│ CodeLlama-34B │ 21 GB   │ 3.2x      │ RTX 4090   │
-│ Mixtral-8x7B  │ 29 GB   │ 3.2x      │ RTX 6000   │
-└──────────────────────────────────────────────────┘
-```
+| Model | Parameters | FP16 Size | Typical GPU |
+|-------|------------|-----------|-------------|
+| Gemma-3-4B | 4B | 8 GB | RTX 3060 |
+| Gemma-3-12B | 12B | 24 GB | RTX 3090 |
+| Llama-3.1-70B | 70B | 140 GB | A100 40GB |
+| CodeLlama-34B | 34B | 68 GB | A100 80GB |
+| Mixtral-8x7B | 46.7B | 93.4 GB | 2xA100 |
+
+**After 4-bit Quantization:**
+
+| Model | Q4 Size | Reduction | Can Run On |
+|-------|---------|-----------|------------|
+| Gemma-3-4B | 3.3 GB | 2.4x | RTX 3060 |
+| Gemma-3-12B | 8.1 GB | 3.0x | RTX 3090 |
+| Llama-3.1-70B | 43 GB | 3.3x | 2× RTX 4090 |
+| CodeLlama-34B | 21 GB | 3.2x | RTX 4090 |
+| Mixtral-8x7B | 29 GB | 3.2x | RTX 6000 |
 
 ### Performance vs Accuracy Trade-offs
 
