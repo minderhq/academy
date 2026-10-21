@@ -94,7 +94,13 @@ ACCEPTED_PREFIXES = frozenset({
     "mcp", "mlflow", "node2vec", "opacus",
     "opentelemetry", "optimum", "phonenumbers", "pinecone",
     "presidio_analyzer", "presidio_anonymizer", "pyannote", "pyaudio",
-    "pymilvus", "pynvml", "ragas", "rank_bm25",
+    # tick-1977 deliberate same-commit extension: the JSON log formatter
+    # (EXP_1501's Loki aggregation experiment teaches `from pythonjsonlogger
+    # import jsonlogger` in its own python fence; the package lives outside
+    # the kurulu stack and outside the docs/ gate universe - the tick-1977
+    # corpus-wide import census classifies it optional-stack, the last
+    # unclassified third-party reference corpus-wide)
+    "pythonjsonlogger", "pymilvus", "pynvml", "ragas", "rank_bm25",
     # tick-1963 deliberate same-commit extension: ray, the distributed
     # training stack (5302 teaches TorchTrainer + ScalingConfig behind its
     # own `uv pip install "ray[train]"` install line - optional-stack class)
