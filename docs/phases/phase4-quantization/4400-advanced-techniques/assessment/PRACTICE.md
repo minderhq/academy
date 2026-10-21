@@ -1,7 +1,7 @@
 ---
 Document ID: 4400-PRACTICE
 Title: "4400: Advanced Quantization Techniques - Practice"
-Last Updated: 2026-10-07
+Last Updated: 2026-10-21
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -594,20 +594,18 @@ Best Overall:
 
 ## Summary: Advanced Quantization Techniques
 
+**METHOD COMPARISON:**
+
+| Method | Size | Speed | Quality | Use Case |
+|--------|------|-------|---------|----------|
+| PTQ-INT8 | 2x | Fast | Excellent | Production |
+| GPTQ-4bit | 3.5x | Fast | Good | LLMs |
+| AWQ-4bit | 3.5x | Fast | Good | LLMs |
+| GGUF | 3.5x | Fastest | Good | CPU |
+| EXL2 | 3x | Fastest | Best | GPU |
+| BnB-4bit | 4x | Moderate | Good | Research |
+
 ```text
-METHOD COMPARISON:
-
-┌────────────┬──────────┬──────────┬──────────┬──────────┐
-│ Method     │ Size     │ Speed    │ Quality  │ Use Case │
-├────────────┼──────────┼──────────┼──────────┼──────────┤
-│ PTQ-INT8   │ 2x       │ Fast     │ Excellent │ Production│
-│ GPTQ-4bit  │ 3.5x     │ Fast     │ Good     │ LLMs     │
-│ AWQ-4bit   │ 3.5x     │ Fast     │ Good     │ LLMs     │
-│ GGUF       │ 3.5x     │ Fastest  │ Good     │ CPU      │
-│ EXL2       │ 3x       │ Fastest  │ Best     │ GPU      │
-│ BnB-4bit   │ 4x       │ Moderate │ Good     │ Research │
-└────────────┴──────────┴──────────┴──────────┴──────────┘
-
 SELECTION GUIDE:
 
 Edge Deployment:
