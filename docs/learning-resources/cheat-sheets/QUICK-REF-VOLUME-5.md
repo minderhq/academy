@@ -1,9 +1,9 @@
 ---
 Document ID: QUICK-REF-VOLUME-5
 Title: "Volume 5: Model Adaptation - Quick Reference"
-Last Updated: 2026-10-09
+Last Updated: 2026-10-22
 Status: Complete
-Difficulty: Intermediate
+Difficulty: Advanced
 Tags: ['cheatsheet', 'finetuning', 'lora']
 ---
 

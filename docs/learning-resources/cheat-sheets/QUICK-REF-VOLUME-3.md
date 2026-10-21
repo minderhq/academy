@@ -1,9 +1,9 @@
 ---
 Document ID: QUICK-REF-VOLUME-3
 Title: "Volume 3: LLM Internals - Quick Reference"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-22
 Status: Complete
-Difficulty: Intermediate
+Difficulty: Advanced
 Tags: ['cheatsheet', 'transformers', 'attention']
 ---
 

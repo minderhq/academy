@@ -1,9 +1,9 @@
 ---
 Document ID: QUICK-REF-VOLUME-6
 Title: "Volume 6: Data Nexus: RAG & Memory - Quick Reference"
-Last Updated: 2026-10-09
+Last Updated: 2026-10-22
 Status: Complete
-Difficulty: Intermediate
+Difficulty: Advanced
 Tags: ['cheatsheet', 'rag', 'vector-db']
 ---
 
