@@ -118,16 +118,22 @@ ACCEPTED_PREFIXES = frozenset({
     # `# File: visual_qa.py`) and lazy-imports them inside the vision
     # agent's __init__ - the lesson-local class exactly, the last 4
     # unresolvable IC-01 findings corpus-wide
+    # tick-1962 deliberate extension: LAB-006 (Train a Model From Scratch)
+    # defines its fragment modules in its own earlier fences (`# model.py`
+    # at 362, `# sketch - train.py` at 676) and its later sketches import
+    # them (`import model` in train/generate/evaluate, `import train` in
+    # evaluate) - the lesson-local class exactly
     "agent_types", "analyst_agent", "base_agent", "bitblade", "chunker",
     "clip_model", "config", "core", "data", "drift_detection",
     "drift_monitor",
     "embeddings", "entity_extraction", "graph_construction", "graph_rag",
     "homelab_tools", "hybrid_search", "ingestion", "keyword_search",
-    "llm_metrics", "memoria", "memory", "models", "multimodal_agent",
+    "llm_metrics", "memoria", "memory", "model", "models",
+    "multimodal_agent",
     "mymodule", "nn", "orchestrator", "production_rag",
     "researcher_agent", "reranker", "retrieval",
     "semantic_text_splitter", "serving", "src", "storage", "tensor",
-    "tool_registry", "transformer", "tts_system", "unified_memory",
+    "tool_registry", "train", "transformer", "tts_system", "unified_memory",
     "vector_store", "visual_qa", "voice_assistant", "whisper_system",
     "writer_agent",
 })

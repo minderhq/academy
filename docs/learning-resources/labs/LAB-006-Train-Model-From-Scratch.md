@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-006
 Title: "LAB-006: Train a Small Language Model from Scratch"
-Last Updated: 2026-10-13
+Last Updated: 2026-10-21
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 7 hours
@@ -134,14 +134,13 @@ python verify_gpu.py
 
 Ten thousand Wikipedia articles is a real corpus — large enough that tokenizer merges and model gradients mean something, small enough to download and train in an afternoon:
 
-```text
+```python
 # sketch - prepare_data.py
 # needs network + `uv pip install datasets`; the first run downloads a
 # slice of the wikimedia/wikipedia 20231101.en snapshot (gigabytes - be patient)
 import json
 import os
 import re
-from typing import Dict, List
 
 from datasets import load_dataset
 
@@ -185,7 +184,7 @@ def clean_text(text: str) -> str:
     return re.sub(r"[ \t]+", " ", "\n".join(lines))
 
 
-def filter_documents(data_path: str = "data/wiki_raw.jsonl") -> List[Dict]:
+def filter_documents(data_path: str = "data/wiki_raw.jsonl") -> list[dict]:
     """Keep documents with 100-5,000 words; truncate the rest."""
     filtered = []
     with open(data_path, "r", encoding="utf-8") as f:
@@ -247,7 +246,7 @@ Data preparation complete! File: data/wiki_filtered.jsonl
 
 The full script below trains a 10k-vocabulary BPE tokenizer over your filtered corpus (sketch — it reads `data/wiki_filtered.jsonl`, takes a few minutes):
 
-```text
+```python
 # sketch - train_tokenizer.py
 # needs data/wiki_filtered.jsonl from Part 2 (reads 5,000 documents;
 # a few minutes and about 1 GB of RAM)
@@ -672,7 +671,7 @@ This machine has no wandb, so the fallback path runs; on a machine with it insta
 
 Full script (sketch — hours of GPU time with the Part 2 corpus):
 
-```text
+```python
 # sketch - train.py
 # needs data/wiki_filtered.jsonl (Part 2) and tokenizer/tokenizer.json
 # (Part 3); 10 epochs - hours on a GPU, not seconds
@@ -898,7 +897,7 @@ Training complete!
 
 ### Task: Generate Text with Your Model
 
-```text
+```python
 # sketch - generate.py
 # needs checkpoints/best_model.pt + tokenizer/tokenizer.json (Parts 3+5)
 import torch
@@ -930,7 +929,7 @@ def main():
     # saved on a GPU machine and this one has none (and note: .to(device),
     # not .cuda() - the device is already a decision this script owns)
     model.load_state_dict(
-        torch.load("checkpoints/best_model.pt", map_location=device))
+        torch.load("checkpoints/best_model.pt", map_location=device, weights_only=True))
     model.eval()
 
     prompts = [
@@ -991,7 +990,7 @@ the output to the next layer.
 
 ### Task: Evaluate Model Quality
 
-```text
+```python
 # sketch - evaluate.py
 # needs checkpoints/best_model.pt + tokenizer/tokenizer.json (Parts 3+5)
 import math
@@ -1035,7 +1034,7 @@ def main():
     tokenizer = Tokenizer.from_file("tokenizer/tokenizer.json")
     model = SmallLanguageModel(TransformerConfig()).to(device)
     model.load_state_dict(
-        torch.load("checkpoints/best_model.pt", map_location=device))
+        torch.load("checkpoints/best_model.pt", map_location=device, weights_only=True))
 
     val_dataset = TextDataset("data/wiki_filtered.jsonl", tokenizer,
                               max_length=256)
