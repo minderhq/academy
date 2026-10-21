@@ -100,6 +100,10 @@ docs/learning-resources/cheat-sheets/QUICK-REF-VOLUME-7.md: AnalystAgent CriticA
 docs/learning-resources/guides/GUIDE-INTERVIEW.md: softmax
 docs/learning-resources/interactive/FLASHCARDS.md: compute_attention_scores my_lora_layer
 docs/learning-resources/labs/LAB-005-GraphRAG.md: text_lower
+# tick-1961 census-append - the auto_evaluate sketch consumes Step 4.1's
+# scope (models and tokenizers bind from the earlier fence), test_data is
+# reader-supplied per the sketch's own comment
+docs/learning-resources/labs/LAB-010-DPO-Alignment.md: test_data
 docs/learning-resources/labs/LAB-012-Audio-AI.md: whisper
 docs/learning-resources/labs/solutions/SOLUTION-LAB-002-RAG-Implementation.md: vector_store
 docs/learning-resources/labs/solutions/SOLUTION-LAB-004-ReAct-Agent.md: llm

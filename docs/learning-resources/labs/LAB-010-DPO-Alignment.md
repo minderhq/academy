@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-010
 Title: "LAB-010: DPO Alignment"
-Last Updated: 2026-10-17
+Last Updated: 2026-10-21
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 6 hours
@@ -133,7 +133,7 @@ Rejected: "Paris."
 
 ### Step 2.1: Generate Candidate Responses
 
-```text
+```python
 # sketch - generate_candidates.py (needs a 3-8B instruct model + GPU-hours)
 """
 Generate multiple candidate responses for a DPO dataset.
@@ -193,7 +193,7 @@ for prompt in prompts:
 
     candidates.append({"prompt": prompt, "responses": responses})
 
-with open("candidates.json", "w") as f:
+with open("candidates.json", "w", encoding="utf-8") as f:
     json.dump(candidates, f, indent=2)
 
 # len(responses), not len(prompts) - each group holds 3 responses
@@ -204,7 +204,7 @@ Two details matter for pair quality: an instruct model generates far better cand
 
 ### Step 2.2: Rank and Create Pairs
 
-```text
+```python
 # sketch - create_pairs.py (interactive; AI ranking needs an OpenAI API key)
 """
 Rank responses and create preference pairs.
@@ -312,7 +312,7 @@ print("2. AI-assisted ranking")
 choice = input("> ").strip()
 pairs = manual_ranking(candidates) if choice == "1" else ai_ranking(candidates)
 
-with open("preference_pairs.json", "w") as f:
+with open("preference_pairs.json", "w", encoding="utf-8") as f:
     json.dump(pairs, f, indent=2)
 
 print(f"\nCreated {len(pairs)} preference pairs")
@@ -321,7 +321,7 @@ print(f"Saved to preference_pairs.json")
 
 ### Step 2.3: Load a Standard Preference Dataset (Optional)
 
-```text
+```python
 # sketch - load_standard_dataset.py (needs HF account / dataset terms accepted)
 """
 Load a standard preference dataset.
@@ -494,7 +494,7 @@ Read the first line: loss 0.6931 is exactly ln(2) - with a zero margin, DPO's lo
 
 ### Step 3.1: Train with TRL's DPOTrainer
 
-```text
+```python
 # sketch - dpo_training.py (needs trl + a 3-8B model + GPU-hours)
 """
 Train model with DPO alignment.
@@ -617,7 +617,7 @@ You don't need a separate monitoring script: with `report_to` set, `DPOTrainer` 
 
 ### Step 4.1: Compare Before/After
 
-```text
+```python
 # sketch - evaluate_alignment.py (loads two 3-8B models + GPU;
 #          ~16 GB fp16 total - close other GPU workloads first)
 """
@@ -698,7 +698,7 @@ for prompt in test_prompts:
 
 The scoring model choice matters. A **relevance cross-encoder** (like `cross-encoder/ms-marco-MiniLM-L-6-v2`) scores query-document fit, not response quality - using it as a "reward model" measures the wrong thing. Use a model trained on human preference pairs instead. Also: cross-encoder outputs are **unbounded logits**, often near zero or negative - report the absolute delta, never a percentage change over a raw score.
 
-```text
+```python
 # sketch - auto_evaluate.py (needs sentence-transformers + GPU;
 #          base/aligned models come from Step 4.1's scope or reload them)
 """
