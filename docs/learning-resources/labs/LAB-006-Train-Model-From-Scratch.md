@@ -1,9 +1,9 @@
 ---
 Document ID: LAB-006
 Title: "LAB-006: Train a Small Language Model from Scratch"
-Last Updated: 2026-10-21
+Last Updated: 2026-10-22
 Status: Complete
-Difficulty: Intermediate
+Difficulty: Advanced
 Estimated Time: 7 hours
 Tags: ['lab', 'pytorch', 'transformers', 'pretraining', 'tokenizer', 'hands-on']
 ---
@@ -38,7 +38,7 @@ Tags: ['lab', 'pytorch', 'transformers', 'pretraining', 'tokenizer', 'hands-on']
 
 **Time:** 6-8 hours
 
-**Difficulty:** ⭐⭐ Intermediate
+**Difficulty:** ⭐⭐⭐ Advanced
 
 ### What You'll Build
 
