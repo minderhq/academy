@@ -3,7 +3,7 @@ Document ID: 5403
 Title: "5403: Mixed Precision Training"
 Phase: 5
 Module: 5400
-Last Updated: 2026-10-17
+Last Updated: 2026-10-21
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -53,15 +53,15 @@ Mixed precision runs most of the training step in 16-bit float while keeping the
 
 ## The Precision Zoo
 
-```text
-Format   Bits (S/E/M)    Max range        Mantissa precision   Hardware
--------+---------------+----------------+--------------------+----------------
-FP32     1/ 8/23         ~3.4e38          ~7 decimal digits    everywhere
-FP16     1/ 5/10         ~65,504          ~3 decimal digits    all GPUs
-BF16     1/ 8/ 7         ~3.4e38 (=FP32)  ~2 decimal digits    Ampere (2020)+
-FP8 E4M3 1/ 4/ 3         ~448             very coarse          Hopper (2022)+
-FP8 E5M2 1/ 5/ 2         ~57,344          coarser still        Hopper (2022)+
+| Format | Bits (S/E/M) | Max range | Mantissa precision | Hardware |
+|--------|--------------|-----------|--------------------|----------|
+| FP32 | 1/ 8/23 | ~3.4e38 | ~7 decimal digits | everywhere |
+| FP16 | 1/ 5/10 | ~65,504 | ~3 decimal digits | all GPUs |
+| BF16 | 1/ 8/ 7 | ~3.4e38 (=FP32) | ~2 decimal digits | Ampere (2020)+ |
+| FP8 E4M3 | 1/ 4/ 3 | ~448 | very coarse | Hopper (2022)+ |
+| FP8 E5M2 | 1/ 5/ 2 | ~57,344 | coarser still | Hopper (2022)+ |
 
+```text
 Reading the layouts
 - FP16 bets bits on PRECISION (10 mantissa) and starves RANGE
   (5 exponent bits) -> overflows at 65,504, underflows gradients
