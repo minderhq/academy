@@ -1,7 +1,7 @@
 ---
 Document ID: 1300-QUIZ
 Title: "1300: Kubernetes - Quiz"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-09
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 30 minutes

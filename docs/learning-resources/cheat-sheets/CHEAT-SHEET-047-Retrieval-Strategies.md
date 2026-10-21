@@ -1,7 +1,7 @@
 ---
 Document ID: CHEAT-SHEET-047
 Title: "CHEAT-SHEET-047: Retrieval Strategies - the Two-Channel Fusion, the Rerank Funnel, and the Diversity Dial"
-Last Updated: 2026-10-12
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Intermediate
 Tags: ['cheatsheet', 'rag', 'retrieval', 'hybrid-search']

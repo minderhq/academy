@@ -1,7 +1,7 @@
 ---
 Document ID: 1400-PRACTICE
 Title: "1400: LLMOps - Practice"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-11
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 6 hours

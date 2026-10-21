@@ -1,7 +1,7 @@
 ---
 Document ID: 6200-PRACTICE
 Title: "6200: Advanced Retrieval - Practice"
-Last Updated: 2026-09-25
+Last Updated: 2026-10-11
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours

@@ -1,7 +1,7 @@
 ---
 Document ID: 6400-PRACTICE
 Title: "6400: Vector Databases - Practice"
-Last Updated: 2026-09-25
+Last Updated: 2026-10-11
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours

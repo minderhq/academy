@@ -1,7 +1,7 @@
 ---
 Document ID: CHEAT-SHEET-046
 Title: "CHEAT-SHEET-046: Advanced Optimization - the Optimizer Memory Ledger, the Schedule Arc, and the Failure Toolbox"
-Last Updated: 2026-10-12
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Intermediate
 Tags: ['cheatsheet', 'optimization', 'adamw', 'scheduling']

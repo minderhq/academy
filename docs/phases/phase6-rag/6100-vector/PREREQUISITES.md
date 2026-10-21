@@ -1,7 +1,7 @@
 ---
 Document ID: 6100-PREREQUISITES
 Title: "6100: Vector Embeddings - Prerequisites"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-09
 Status: Complete
 Difficulty: Advanced
 Tags: ['prerequisites', 'rag', 'vectors']

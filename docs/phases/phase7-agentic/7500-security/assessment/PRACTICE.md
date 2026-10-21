@@ -1,7 +1,7 @@
 ---
 Document ID: 7500-PRACTICE
 Title: "7500: AI Agent Security - Practice"
-Last Updated: 2026-09-29
+Last Updated: 2026-10-11
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 13 hours

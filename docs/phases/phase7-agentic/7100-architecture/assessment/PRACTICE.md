@@ -1,7 +1,7 @@
 ---
 Document ID: 7100-PRACTICE
 Title: "7100: LLM Reasoning - Practice"
-Last Updated: 2026-09-25
+Last Updated: 2026-10-11
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 7 hours

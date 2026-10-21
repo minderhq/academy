@@ -1,7 +1,7 @@
 ---
 Document ID: 3300-PRACTICE
 Title: "3300: Decoding - Practice"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-11
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours

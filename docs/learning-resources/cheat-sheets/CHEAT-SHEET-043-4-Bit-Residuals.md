@@ -1,7 +1,7 @@
 ---
 Document ID: CHEAT-SHEET-043
 Title: "CHEAT-SHEET-043: 4-Bit Residuals - the Metadata Squeeze and the Hardware-Native Grid"
-Last Updated: 2026-10-12
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Intermediate
 Tags: ['cheatsheet', 'quantization', 'mxfp4', 'nvfp4']

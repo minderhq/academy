@@ -1,7 +1,7 @@
 ---
 Document ID: 1500-PRACTICE
 Title: "1500: Monitoring - Practice"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-11
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 7 hours

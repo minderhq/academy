@@ -1,7 +1,7 @@
 ---
 Document ID: 5500-PRACTICE
 Title: "5500: Advanced Optimization - Practice"
-Last Updated: 2026-09-25
+Last Updated: 2026-10-11
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours

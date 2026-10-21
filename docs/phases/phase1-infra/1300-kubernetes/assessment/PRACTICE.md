@@ -1,7 +1,7 @@
 ---
 Document ID: 1300-PRACTICE
 Title: "1300: Kubernetes - Practice"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-11
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours

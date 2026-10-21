@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_1403
 Title: "EXP_1403: TGI (Text Generation Inference) Tuning Experiments"
-Last Updated: 2026-09-24
+Last Updated: 2026-10-09
 Status: Complete
 Difficulty: Intermediate
 ---

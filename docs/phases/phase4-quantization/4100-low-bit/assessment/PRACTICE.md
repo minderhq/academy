@@ -1,7 +1,7 @@
 ---
 Document ID: 4100-PRACTICE
 Title: "4100: Low-Bit Quantization - Practice"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-11
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours

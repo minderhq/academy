@@ -1,7 +1,7 @@
 ---
 Document ID: CHEAT-SHEET-044
 Title: "CHEAT-SHEET-044: Quantization-Aware Training - the Straight-Through Estimator and the Layer Map"
-Last Updated: 2026-10-12
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Intermediate
 Tags: ['cheatsheet', 'qat', 'quantization', 'training']

@@ -1,7 +1,7 @@
 ---
 Document ID: EXTERNAL-RESOURCES
 Title: "Minder Academy: Video & External Resources"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-09
 Status: Complete
 Difficulty: Intermediate
 Tags: ['reference', 'llm', 'tutorial']

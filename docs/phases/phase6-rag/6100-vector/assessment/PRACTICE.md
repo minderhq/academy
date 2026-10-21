@@ -1,7 +1,7 @@
 ---
 Document ID: 6100-PRACTICE
 Title: "6100: Vector Embeddings - Practice"
-Last Updated: 2026-09-25
+Last Updated: 2026-10-11
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 2 hours

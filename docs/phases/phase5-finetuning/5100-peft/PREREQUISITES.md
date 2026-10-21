@@ -1,7 +1,7 @@
 ---
 Document ID: 5100-PREREQUISITES
 Title: "5100: Parameter-Efficient Fine-Tuning - Prerequisites"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-09
 Status: Complete
 Difficulty: Advanced
 Tags: ['prerequisites', 'finetuning', 'peft']

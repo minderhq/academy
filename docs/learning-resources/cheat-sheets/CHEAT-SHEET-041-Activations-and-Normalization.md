@@ -1,7 +1,7 @@
 ---
 Document ID: CHEAT-SHEET-041
 Title: "CHEAT-SHEET-041: Activations & Normalization - the Nonlinearity and the Statistics"
-Last Updated: 2026-10-11
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Intermediate
 Tags: ['cheatsheet', 'transformers', 'activation', 'normalization']

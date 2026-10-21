@@ -1,7 +1,7 @@
 ---
 Document ID: 5100-PEFT-README
 Title: "5100: Parameter-Efficient Fine-Tuning (PEFT)"
-Last Updated: 2026-10-15
+Last Updated: 2026-10-16
 Status: Complete
 Difficulty: Advanced
 Prerequisites: [4100]

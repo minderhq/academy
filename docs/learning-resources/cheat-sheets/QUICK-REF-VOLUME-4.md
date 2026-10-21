@@ -1,7 +1,7 @@
 ---
 Document ID: QUICK-REF-VOLUME-4
 Title: "Volume 4: Quantization & Optimization - Quick Reference"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-09
 Status: Complete
 Difficulty: Intermediate
 Tags: ['cheatsheet', 'quantization', 'gguf']

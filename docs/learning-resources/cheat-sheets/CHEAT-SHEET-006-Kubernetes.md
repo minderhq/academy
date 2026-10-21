@@ -1,7 +1,7 @@
 ---
 Document ID: CHEAT-SHEET-006
 Title: "CHEAT-SHEET-006: Kubernetes for LLM Deployment"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-09
 Status: Complete
 Difficulty: Intermediate
 Tags: ['cheatsheet', 'kubernetes', 'deployment']

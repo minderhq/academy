@@ -1,7 +1,7 @@
 ---
 Document ID: 5300-QUIZ
 Title: "5300: Synthetic Data & Advanced Training - Quiz"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-09
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 30 minutes

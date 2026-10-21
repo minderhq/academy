@@ -1,7 +1,7 @@
 ---
 Document ID: CHEAT-SHEET-042
 Title: "CHEAT-SHEET-042: Extreme Quantization - the Method Choice, the File Choice, the Training-Time Frontier"
-Last Updated: 2026-10-12
+Last Updated: 2026-10-13
 Status: Complete
 Difficulty: Intermediate
 Tags: ['cheatsheet', 'quantization', 'gguf', 'ternary']

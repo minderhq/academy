@@ -1,7 +1,7 @@
 ---
 Document ID: 6500-PRACTICE
 Title: "6500: MLOps Pipelines for RAG - Practice"
-Last Updated: 2026-09-29
+Last Updated: 2026-10-11
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
