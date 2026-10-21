@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_1302
 Title: "EXP_1302: GPU Scheduler Configuration"
-Last Updated: 2026-10-16
+Last Updated: 2026-10-21
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -70,7 +70,6 @@ gpu_memory_utilization=0.9  # Default
 ```
 
 ### Batch Size Optimization
-```text
 | Batch | Tokens/sec | VRAM Usage |
 |-------|------------|------------|
 | 1     | 90         | 8.2 GB     |
@@ -79,7 +78,6 @@ gpu_memory_utilization=0.9  # Default
 | 8     | OOM        | -          |
 
 Optimal batch size: 4 for an 11GB-class GPU
-```
 
 ## Lessons Learned
 - 7B model @ 4-bit fits comfortably
