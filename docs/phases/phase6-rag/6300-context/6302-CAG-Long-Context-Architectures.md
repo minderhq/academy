@@ -3,7 +3,7 @@ Document ID: 6302
 Title: "6302: CAG - Context Augmented Generation and Long Context Architectures"
 Phase: 6
 Module: 6300
-Last Updated: 2026-10-17
+Last Updated: 2026-10-21
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -74,7 +74,6 @@ CAG (Context Augmented Generation):
 ```
 
 ### Comparison
-```text
 | Aspect         | RAG                  | CAG                      |
 |----------------|----------------------|--------------------------|
 | Context window | Prompt budget (few chunks) | 128k-2M+ tokens    |
@@ -82,7 +81,6 @@ CAG (Context Augmented Generation):
 | Knowledge       | External DB          | In-context               |
 | Use case        | Large corpus         | Specific documents       |
 | Accuracy        | Retrieval dependent  | Context-length dependent |
-```
 
 ## Long Context Models
 
