@@ -1,7 +1,7 @@
 ---
 Document ID: LEARNING-PATHS-DETAILED
 Title: "Detailed Learning Paths"
-Last Updated: 2026-10-09
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Beginner
 Tags: ['roadmap', 'guide', 'llm']
@@ -65,12 +65,12 @@ Checkpoint: Running LLM locally in Docker
 
 ```text
 Day 1-5: Tensors
-├── 2101-Tensor-Algebra.md (2-3 hours)
+├── 2101-Tensor-Algebra.md (3-4 hours)
 ├── EXP_2101: Tensor Algebra (2 hours)
 └── Practice: einsum operations
 
 Day 6-10: Backpropagation
-├── 2102-Backpropagation-and-Derivatives.md (2-3 hours)
+├── 2102-Backpropagation-and-Derivatives.md (3-4 hours)
 ├── EXP_2102: Backpropagation (2 hours)
 └── Practice: Implement autograd
 
@@ -116,7 +116,7 @@ Checkpoint: Fine-tuned domain-specific model
 
 ```text
 ├── TUTORIAL-004: Monitoring (90 min)
-├── LAB-009: Production Deployment (8-10 hours)
+├── LAB-009: Production Deployment (10-12 hours)
 └── Practice: Deploy your fine-tuned model
 ```
 
