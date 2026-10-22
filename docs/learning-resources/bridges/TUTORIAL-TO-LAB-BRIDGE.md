@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-TO-LAB-BRIDGE
 Title: Tutorial to Lab Bridge Guide
-Last Updated: 2026-10-08
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Intermediate
 Tags: ['bridge', 'tutorial', 'lab', 'hands-on']
@@ -41,7 +41,7 @@ ENVIRONMENT SETUP
 
 **TUTORIAL-001: Hello LLM** (30 min)
 ↓
-**LAB-000: Environment Setup** (45 min)
+**LAB-000: Environment Setup** (1 hour)
 ↓
 **LAB-001: Docker & LLM** (2 hours)
 
@@ -66,7 +66,7 @@ docker run -d -p 11434:11434 ollama/ollama
 
 **TUTORIAL-002: Docker Essentials** (45 min)
 ↓
-**LAB-000: Environment Setup** (45 min)
+**LAB-000: Environment Setup** (1 hour)
 ↓
 **LAB-001: Docker & LLM** (2 hours)
 
@@ -93,7 +93,7 @@ FROM python:3.13-alpine
 
 **TUTORIAL-003: RAG Basics** (1 hour)
 ↓
-**LAB-002: RAG Implementation** (3 hours)
+**LAB-002: RAG Implementation** (4 hours)
 ↓
 **LAB-005: GraphRAG** (5 hours)
 
@@ -129,7 +129,7 @@ class ProductionRAG:
 ↓
 **LAB-003: LoRA Fine-Tuning** (4 hours)
 ↓
-**LAB-010: DPO Alignment** (5 hours)
+**LAB-010: DPO Alignment** (6 hours)
 
 **What You Learn:**
 
