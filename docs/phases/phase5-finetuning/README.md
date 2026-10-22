@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE5-FINETUNING-README
 Title: "Phase 5: Fine-Tuning & Alignment [5000]"
-Last Updated: 2026-10-20
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Advanced
 Tags: ['phase', 'finetuning', 'training', 'distributed']
@@ -699,7 +699,7 @@ After completing this phase:
 
 ---
 
-**Module Duration:** 96 hours (56 reading + 40 practice)
+**Module Duration:** 119 hours (79 reading + 40 practice)
 
 **Difficulty:** ⭐⭐⭐ Advanced
 

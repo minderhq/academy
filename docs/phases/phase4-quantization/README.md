@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE4-QUANTIZATION-README
 Title: "Phase 4: Quantization & Compression [4000]"
-Last Updated: 2026-10-21
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Advanced
 Tags: ['phase', 'quantization', 'qat', 'quantization-aware-training']
@@ -545,7 +545,7 @@ After completing this phase:
 
 ---
 
-**Module Duration:** 73 hours (43 reading + 30 practice)
+**Module Duration:** 81 hours (51 reading + 30 practice)
 
 **Difficulty:** ⭐⭐⭐ Advanced
 

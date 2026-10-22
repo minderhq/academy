@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE3-TRANSFORMERS-README
 Title: "Phase 3: Transformer Physics & LLM Internals [3000]"
-Last Updated: 2026-10-13
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Advanced
 Tags: ['phase', 'transformers', 'embeddings', 'rope']
@@ -364,7 +364,7 @@ graph TD
 | 3300: The Decoding Block | 7h | 3h | 10h |
 | 3400: Model Architectures | 14h | 4h | 18h |
 | 3500: Multimodal Models | 10h | — | 10h |
-| **Total** | **49h** | **15-17h** | **67-69h** |
+| **Total** | **52h** | **15-17h** | **67-69h** |
 
 *3500 practice time is not yet estimated in its PRACTICE.md; phase totals cover the estimated modules.*
 
@@ -817,7 +817,7 @@ After completing this phase:
 
 ---
 
-**Module Duration:** 54-56 hours (39 reading + 15-17 practice)
+**Module Duration:** 67-69 hours (52 reading + 15-17 practice)
 
 **Difficulty:** ⭐⭐⭐ Advanced
 
