@@ -368,8 +368,8 @@ learning_rate = 5e-4  # Higher if too slow
 ```
 
 2. **Increase dataset size:**
-- 10-100 samples for testing
-- 1000+ samples for real fine-tuning
+    - 10-100 samples for testing
+    - 1000+ samples for real fine-tuning
 
 3. **Check data quality:**
 ```python

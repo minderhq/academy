@@ -1,7 +1,7 @@
 ---
 Document ID: FLASHCARDS
 Title: "Minder Academy: Interactive Learning Components"
-Last Updated: 2026-10-13
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Intermediate
 Tags: ['flashcards', 'llm', 'practice']
@@ -374,6 +374,9 @@ GIF animations for complex topics.
 3. **Attention Flow**
 4. **Tokenization Process**
 5. **KV Cache Operation**
+
+**Related cheat-sheets:**
+
 - [CHEAT-SHEET-017: KV Cache](../cheat-sheets/CHEAT-SHEET-017-KV-Cache.md) - The per-token memory formula, the MHA/GQA/MQA head ledger, paged allocation, and prefix caching with copy-on-write. Animation topic five is the KV cache.
 - [CHEAT-SHEET-019: Tokenizers](../cheat-sheets/CHEAT-SHEET-019-Tokenizers.md) - The BPE merge loop with the byte-level twist, the Unigram contrast, SentencePiece settings, and the vocab ladder. Animation topic four is the tokenization process.
 
