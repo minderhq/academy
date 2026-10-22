@@ -1,7 +1,7 @@
 ---
 Document ID: 1300-KUBERNETES-README
 Title: "1300: Kubernetes for LLM Deployment"
-Last Updated: 2026-10-15
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Intermediate
 Prerequisites: []
@@ -715,16 +715,15 @@ priorityClassName: high-priority-inference
 **Best practices for LLMs:**
 ```yaml
 resources:
-  # For GPU: requests must equal limits
-  nvidia.com/gpu: "1"
+  requests:
+    nvidia.com/gpu: "1"  # For GPU: requests must equal limits
+    cpu: "2"             # For CPU: request low (minimum)
+    memory: "48Gi"       # For memory: request accurately (expected usage)
 
-  # For CPU: request low, limit high
-  cpu: "2"      # Minimum
-  cpu: "8"      # Maximum (burst)
-
-  # For memory: request accurately
-  memory: "48Gi"   # Expected usage
-  memory: "64Gi"   # Maximum allowed
+  limits:
+    nvidia.com/gpu: "1"  # GPU requests must equal limits
+    cpu: "8"             # limit high (maximum, burst)
+    memory: "64Gi"       # Maximum allowed
 ```
 
 ### 4. Batch Processing with Jobs
