@@ -1,7 +1,7 @@
 ---
 Document ID: 1100-PRACTICE
 Title: "1100: Network - Practice"
-Last Updated: 2026-10-15
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 1 hour
@@ -131,7 +131,7 @@ Tags: ['assessment', 'practice', 'networking', 'wan']
 
 ## Answer Key
 
-Full solutions for every exercise above. Work through your own attempt before comparing.
+Full solutions for Exercises 1-4 above. Work through your own attempt before comparing.
 
 ### Exercise 1: Network Requirements Analysis
 
