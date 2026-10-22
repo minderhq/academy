@@ -77,7 +77,7 @@ Tags: ['reference', 'llm', 'production']
 
 ### Advanced
 - **[Distributed Systems (MIT)](https://pdos.csail.mit.edu/6.824/)** - For understanding distributed ML
-- **[CS224n: NLP with Deep Learning (Stanford)](http://web.stanford.edu/class/cs224n/)** - NLP course
+- **[CS224n: NLP with Deep Learning (Stanford)](https://web.stanford.edu/class/cs224n/)** - NLP course
 - **[DeepMind x UCL RL Lecture Series](https://davidstarsilver.wordpress.com/teaching/)** - Reinforcement learning
 
 ### LLM Specific
