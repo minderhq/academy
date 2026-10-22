@@ -366,7 +366,7 @@ graph TD
 | 3500: Multimodal Models | 10h | — | 10h |
 | **Total** | **52h** | **15-17h** | **67-69h** |
 
-*3500 practice time is not yet estimated in its PRACTICE.md; phase totals cover the estimated modules.*
+*3500 practice time is not yet estimated; phase totals cover the estimated modules.*
 
 ---
 

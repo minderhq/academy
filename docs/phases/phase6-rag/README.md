@@ -500,7 +500,7 @@ graph TD
 | 6500: MLOps Pipelines | 18h | — | 18h |
 | **Total** | **76h** | **26h** | **102h** |
 
-*6500 practice time is not yet estimated in its PRACTICE.md; phase totals cover the estimated modules.*
+*6500 practice time is not yet estimated; phase totals cover the estimated modules.*
 
 ---
 

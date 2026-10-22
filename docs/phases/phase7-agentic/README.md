@@ -676,7 +676,7 @@ graph TD
 | 7500: Security | 15h | — | 15h |
 | **Total** | **78h** | **22h** | **100h** |
 
-*7500 practice time is not yet estimated in its PRACTICE.md; phase totals cover the estimated modules.*
+*7500 practice time is not yet estimated; phase totals cover the estimated modules.*
 
 ---
 
