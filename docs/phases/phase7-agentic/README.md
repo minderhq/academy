@@ -1081,7 +1081,6 @@ message = AgentMessage(
 Before starting this phase, ensure you understand:
 
 - **LLM Fundamentals** (from 2400: Pretraining)
-- **Prompt Engineering** (from 2500: Prompt Engineering)
 - **RAG Systems** (from 6100: Vector Embeddings)
 - **API Design** (REST, webhooks)
 
