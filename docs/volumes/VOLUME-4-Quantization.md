@@ -1,7 +1,7 @@
 ---
 Document ID: VOLUME-4
 Title: "Volume 4: Quantization & Optimization"
-Last Updated: 2026-10-22
+Last Updated: 2026-10-23
 Status: Complete
 Difficulty: Advanced
 Tags: ['volume', 'quantization', 'gguf', 'kv-cache']
@@ -238,7 +238,7 @@ reduce KV cache size by num_heads
 summarize older context
 ```
 
-2. **[4203: Context Window Optimization](../phases/phase4-quantization/4200-kv-cache/guides/4203-Context-Window-Optimization.md)]** (5-6 hours)
+2. **[4203: Context Window Optimization](../phases/phase4-quantization/4200-kv-cache/guides/4203-Context-Window-Optimization.md)** (5-6 hours)
     - Complete optimization guide
     - Sliding window implementation
     - KV cache quantization
@@ -307,14 +307,14 @@ outputs = llm.generate(["Hello, world!"])
 #### Day 1-3: vLLM Production Deployment
 **High-concurrency inference engine**
 
-1. **[1402: vLLM and TGI](../phases/phase1-infra/1400-llmops/1402-vLLM-and-TGI.md)]** (3-4 hours)
+1. **[1402: vLLM and TGI](../phases/phase1-infra/1400-llmops/1402-vLLM-and-TGI.md)** (3-4 hours)
     - vLLM architecture
     - PagedAttention
     - KV cache sharding
     - Continuous batching
     - Performance comparison
 
-2. **[1403: vLLM Production Deployment](../phases/phase1-infra/1400-llmops/guides/1403-vLLM-Production-Deployment.md)]** (4-5 hours)
+2. **[1403: vLLM Production Deployment](../phases/phase1-infra/1400-llmops/guides/1403-vLLM-Production-Deployment.md)** (4-5 hours)
     - Production setup
     - Docker deployment
     - Kubernetes configuration
@@ -361,7 +361,7 @@ docker run --gpus all \
 #### Day 4-5: TGI Deployment
 **Text Generation Inference by Hugging Face**
 
-1. **[1404: TGI Deployment Guide](../phases/phase1-infra/1400-llmops/guides/1404-TGI-Deployment-Guide.md)]** (5-6 hours)
+1. **[1404: TGI Deployment Guide](../phases/phase1-infra/1400-llmops/guides/1404-TGI-Deployment-Guide.md)** (5-6 hours)
     - TGI architecture
     - Deployment strategies
     - Flash Attention integration

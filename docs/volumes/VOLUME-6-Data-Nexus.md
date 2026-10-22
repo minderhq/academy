@@ -1,7 +1,7 @@
 ---
 Document ID: VOLUME-6
 Title: "Volume 6: Data Nexus: RAG & Memory"
-Last Updated: 2026-10-22
+Last Updated: 2026-10-23
 Status: Complete
 Difficulty: Advanced
 Tags: ['volume', 'rag', 'vector-db', 'graphrag']
@@ -249,7 +249,7 @@ search_params = {
     - Retrieval and generation
     - Evaluation
 
-2. **[LAB-002: RAG Implementation](../learning-resources/labs/LAB-002-RAG-Implementation.md)]** (4 hours)
+2. **[LAB-002: RAG Implementation](../learning-resources/labs/LAB-002-RAG-Implementation.md)** (4 hours)
     - Complete hands-on RAG system
     - Qdrant integration
     - Document processing
@@ -380,7 +380,7 @@ reranked = reranker.rank(query, candidates, top_k=10)
 #### Day 1-4: Neo4j and Knowledge Graphs
 **Structured knowledge representation**
 
-1. **[6301: Neo4j and Knowledge Graphs](../phases/phase6-rag/6300-context/6301-Neo4j-and-Knowledge-Graphs.md)]** (4-5 hours)
+1. **[6301: Neo4j and Knowledge Graphs](../phases/phase6-rag/6300-context/6301-Neo4j-and-Knowledge-Graphs.md)** (4-5 hours)
     - Graph database concepts
     - Neo4j setup and deployment
     - Cypher query language
@@ -537,7 +537,7 @@ def graphrag_retrieval(query):
 #### Day 1-3: CAG (Context-Augmented Generation)
 **Using 128k+ context windows effectively**
 
-1. **[6302: CAG Long Context](../phases/phase6-rag/6300-context/6302-CAG-Long-Context-Architectures.md)]** (4-5 hours)
+1. **[6302: CAG Long Context](../phases/phase6-rag/6300-context/6302-CAG-Long-Context-Architectures.md)** (4-5 hours)
     - Long context models (128k, 200k+)
     - Context window as temporary database
     - Placement strategies

@@ -1,7 +1,7 @@
 ---
 Document ID: VOLUME-7
 Title: "Volume 7: Production Mastery"
-Last Updated: 2026-10-22
+Last Updated: 2026-10-23
 Status: Complete
 Difficulty: Advanced
 Tags: ['volume', 'agents', 'production', 'multi-agent']
@@ -547,7 +547,7 @@ class ReActAgent:
 #### Day 5: Planning & Decomposition
 **Breaking down complex tasks**
 
-1. **[7102: Planning Decomposition](../phases/phase7-agentic/7100-architecture/7102-Planning-Decomposition.md)]** (3-4 hours)
+1. **[7102: Planning Decomposition](../phases/phase7-agentic/7100-architecture/7102-Planning-Decomposition.md)** (3-4 hours)
     - Task decomposition
     - Dependency analysis
     - Planning algorithms
@@ -651,7 +651,7 @@ def build_feature(feature_description):
 #### Day 4-5: Tool Calling & Sandboxes
 **Safe agent execution**
 
-1. **[7202: Code Interpreter](../phases/phase7-agentic/7200-tools/guides/7202-Code-Interpreter.md)]** (4-5 hours)
+1. **[7202: Code Interpreter](../phases/phase7-agentic/7200-tools/guides/7202-Code-Interpreter.md)** (4-5 hours)
     - Sandboxed execution
     - Security isolation
     - Resource limits

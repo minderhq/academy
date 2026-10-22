@@ -1,7 +1,7 @@
 ---
 Document ID: VOLUME-2
 Title: "Volume 2: AI/ML Foundations"
-Last Updated: 2026-10-22
+Last Updated: 2026-10-23
 Status: Complete
 Difficulty: Intermediate
 Tags: ['volume', 'pytorch', 'tensors', 'math']
@@ -49,7 +49,7 @@ Before understanding model architectures, fine-tuning, or optimization, you need
 #### Day 1-3: Tensor Operations
 **The fundamental data structure of AI**
 
-1. **[2101: Tensor Algebra](../phases/phase2-foundations/2100-calculus/2101-Tensor-Algebra.md)]** (3-4 hours)
+1. **[2101: Tensor Algebra](../phases/phase2-foundations/2100-calculus/2101-Tensor-Algebra.md)** (3-4 hours)
     - Tensor dimensions and shapes
     - Dot products and matrix multiplication
     - Einstein summation (einsum) notation
@@ -83,7 +83,7 @@ batch_result = torch.bmm(batch_A, batch_B)
 #### Day 4-5: Backpropagation & Derivatives
 **How neural networks learn**
 
-1. **[2102: Backpropagation](../phases/phase2-foundations/2100-calculus/2102-Backpropagation-and-Derivatives.md)]** (3-4 hours)
+1. **[2102: Backpropagation](../phases/phase2-foundations/2100-calculus/2102-Backpropagation-and-Derivatives.md)** (3-4 hours)
     - Chain rule in computational graphs
     - Gradient computation
     - Automatic differentiation
@@ -113,7 +113,7 @@ Update: Adjust weights using gradients
 #### Day 1-3: PyTorch Computational Graphs
 **Understanding dynamic computation**
 
-1. **[2201: PyTorch Graphs](../phases/phase2-foundations/2200-frameworks/2201-PyTorch-Computational-Graphs.md)]** (3-4 hours)
+1. **[2201: PyTorch Graphs](../phases/phase2-foundations/2200-frameworks/2201-PyTorch-Computational-Graphs.md)** (3-4 hours)
     - Dynamic vs Static graphs
     - Autograd engine
     - Computational graph tracing
@@ -153,7 +153,7 @@ output = checkpoint(custom_forward, input_tensor)
 #### Day 4-5: TensorFlow XLA & Acceleration
 **Compiler optimizations**
 
-1. **[2202: TensorFlow XLA](../phases/phase2-foundations/2200-frameworks/2202-TensorFlow-XLA-Compilers.md)]** (4 hours)
+1. **[2202: TensorFlow XLA](../phases/phase2-foundations/2200-frameworks/2202-TensorFlow-XLA-Compilers.md)** (4 hours)
     - XLA (Accelerated Linear Algebra)
     - JIT compilation
     - Fusion optimizations

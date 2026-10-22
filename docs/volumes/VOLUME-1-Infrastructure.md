@@ -1,7 +1,7 @@
 ---
 Document ID: VOLUME-1
 Title: "Volume 1: Infrastructure Fundamentals"
-Last Updated: 2026-10-22
+Last Updated: 2026-10-23
 Status: Complete
 Difficulty: Beginner
 Tags: ['volume', 'infrastructure', 'docker', 'kubernetes']
@@ -85,7 +85,7 @@ Before diving into model internals, fine-tuning, or RAG, you need a solid founda
 #### Day 1-3: Understanding Local LLMs
 **Learn how LLMs work on your hardware**
 
-1. **[TUTORIAL-001: Hello LLM](../learning-resources/tutorials/TUTORIAL-001-Hello-LLM.md)]** (30 min)
+1. **[TUTORIAL-001: Hello LLM](../learning-resources/tutorials/TUTORIAL-001-Hello-LLM.md)** (30 min)
     - What are LLMs?
     - How they work
     - Your first conversation
