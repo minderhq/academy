@@ -712,34 +712,34 @@ Single-page references for the surfaces this phase teaches:
 After completing this phase, you will be able to:
 
 1. **Build Autonomous Agents**
-   - Implement ReAct reasoning loops
-   - Create planning and task decomposition
-   - Build state machines for control flow
-   - Debug agent reasoning chains
+    - Implement ReAct reasoning loops
+    - Create planning and task decomposition
+    - Build state machines for control flow
+    - Debug agent reasoning chains
 
 2. **Implement Tool Calling**
-   - Define tool schemas
-   - Execute functions safely
-   - Build code interpreters
-   - Handle errors gracefully
+    - Define tool schemas
+    - Execute functions safely
+    - Build code interpreters
+    - Handle errors gracefully
 
 3. **Orchestrate Multi-Agent Systems**
-   - Design agent architectures
-   - Implement communication protocols
-   - Coordinate specialized agents
-   - Choose the right framework
+    - Design agent architectures
+    - Implement communication protocols
+    - Coordinate specialized agents
+    - Choose the right framework
 
 4. **Create Memory Systems**
-   - Build persistent memory
-   - Implement vector-based retrieval
-   - Store episodic memories
-   - Optimize memory performance
+    - Build persistent memory
+    - Implement vector-based retrieval
+    - Store episodic memories
+    - Optimize memory performance
 
 5. **Deploy Production Agents**
-   - Secure tool execution
-   - Monitor agent behavior
-   - Scale multi-agent systems
-   - Debug complex workflows
+    - Secure tool execution
+    - Monitor agent behavior
+    - Scale multi-agent systems
+    - Debug complex workflows
 
 ---
 
@@ -1050,29 +1050,29 @@ message = AgentMessage(
 ### Hands-on Practice
 
 1. **[EXP_7101: ReAct](../../../experiments/EXP_7101_REACT.md)**
-   - Implement ReAct loop from scratch
-   - Build task planning system
-   - Debug agent reasoning
+    - Implement ReAct loop from scratch
+    - Build task planning system
+    - Debug agent reasoning
 
 2. **[EXP_7202: Sandbox](../../../experiments/EXP_7202_SANDBOX.md)**
-   - Implement function calling
-   - Build code interpreter
-   - Create custom tools
+    - Implement function calling
+    - Build code interpreter
+    - Create custom tools
 
 3. **[EXP_7301: Collaboration](../../../experiments/EXP_7301_COLLABORATION.md)**
-   - Build multi-agent system
-   - Implement communication protocols
-   - Orchestrate complex workflow
+    - Build multi-agent system
+    - Implement communication protocols
+    - Orchestrate complex workflow
 
 4. **[EXP_7401: Agent Memory](../../../experiments/EXP_7401_AGENT_MEMORY.md)**
-   - Implement memory system
-   - Build vector memory store
-   - Optimize retrieval
+    - Implement memory system
+    - Build vector memory store
+    - Optimize retrieval
 
 5. **[EXP_7501: Prompt Injection](../../../experiments/EXP_7501_PROMPT_INJECTION.md)**
-   - Run injection attacks against an agent
-   - Measure multi-layer defense effectiveness
-   - Detect injections with perplexity
+    - Run injection attacks against an agent
+    - Measure multi-layer defense effectiveness
+    - Detect injections with perplexity
 
 ---
 
@@ -1114,14 +1114,14 @@ Validate your knowledge with:
 After completing this phase:
 
 1. **Build Your Agents**
-   - Create autonomous code assistant
-   - Build DevOps automation agent
-   - Deploy multi-agent team
+    - Create autonomous code assistant
+    - Build DevOps automation agent
+    - Deploy multi-agent team
 
 2. **Continue Learning**
-   - **Solutions:** End-to-end implementations
-   - **Industry Guides:** Domain-specific agents
-   - **Projects:** Real-world applications
+    - **Solutions:** End-to-end implementations
+    - **Industry Guides:** Domain-specific agents
+    - **Projects:** Real-world applications
 
 ---
 
@@ -1156,12 +1156,12 @@ Example:
 **ReAct Agent Diagrams:**
 
 - [REACT-LOOP.md](../../diagrams/REACT-LOOP.md) - Complete ReAct loop visualization
-  - ReAct Loop Architecture (State Diagram)
-  - Detailed ReAct Sequence
-  - Tool Calling Flow
-  - Multi-Step Reasoning Example
-  - ReAct vs Standard LLM
-  - Error Handling in ReAct
+    - ReAct Loop Architecture (State Diagram)
+    - Detailed ReAct Sequence
+    - Tool Calling Flow
+    - Multi-Step Reasoning Example
+    - ReAct vs Standard LLM
+    - Error Handling in ReAct
 
 **Project Architecture Diagrams:**
 

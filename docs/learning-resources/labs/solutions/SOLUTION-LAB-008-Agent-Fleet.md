@@ -1,7 +1,7 @@
 ---
 Document ID: SOLUTION-LAB-008
 Title: "SOLUTION-LAB-008: Agent Fleet"
-Last Updated: 2026-10-13
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Advanced
 Tags: ['solution', 'multi-agent', 'agents']
@@ -853,23 +853,23 @@ When running this solution:
 To extend this solution:
 
 1. **Add New Agent Types**:
-   - Create subclass of BaseAgent
-   - Implement process_task() method
-   - Add to fleet with add_agent()
+    - Create subclass of BaseAgent
+    - Implement process_task() method
+    - Add to fleet with add_agent()
 
 2. **Custom Workflows**:
-   - Define workflow templates in Coordinator
-   - Add execution logic in _execute_workflow()
+    - Define workflow templates in Coordinator
+    - Add execution logic in _execute_workflow()
 
 3. **Advanced Communication**:
-   - Implement message channels per topic
-   - Add reply-to message threading
-   - Create shared state management
+    - Implement message channels per topic
+    - Add reply-to message threading
+    - Create shared state management
 
 4. **Resource Management**:
-   - Add agent capacity tracking
-   - Implement load balancing
-   - Create agent priority queues
+    - Add agent capacity tracking
+    - Implement load balancing
+    - Create agent priority queues
 
 ---
 

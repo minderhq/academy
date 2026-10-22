@@ -1,7 +1,7 @@
 ---
 Document ID: 1100-NETWORK-README
 Title: "1100: Network Fundamentals for LLM Infrastructure"
-Last Updated: 2026-10-15
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Beginner
 Prerequisites: []
@@ -514,50 +514,50 @@ groups:
 ### DO
 
 1. **Always use wired connections for GPUs**
-   - WiFi is fine for development
-   - Never for production or training
+    - WiFi is fine for development
+    - Never for production or training
 
 2. **Oversize your network**
-   - If you need 1 Gbps, install 10 Gbps
-   - Future-proof your investment
+    - If you need 1 Gbps, install 10 Gbps
+    - Future-proof your investment
 
 3. **Monitor everything**
-   - Network metrics
-   - GPU metrics
-   - Application metrics
+    - Network metrics
+    - GPU metrics
+    - Application metrics
 
 4. **Test before deploying**
-   - Load test with synthetic traffic
-   - Test failover scenarios
-   - Validate MTU configuration
+    - Load test with synthetic traffic
+    - Test failover scenarios
+    - Validate MTU configuration
 
 5. **Document your network**
-   - IP address assignments
-   - Cable labeling
-   - Configuration backups
+    - IP address assignments
+    - Cable labeling
+    - Configuration backups
 
 ### DON'T
 
 1. **Don't mix WiFi and wired for training**
-   - Inconsistent performance
-   - Hard to debug
+    - Inconsistent performance
+    - Hard to debug
 
 2. **Don't forget upload speeds**
-   - Critical for distributed training
-   - Checkpoint uploads
+    - Critical for distributed training
+    - Checkpoint uploads
 
 3. **Don't ignore physical layer**
-   - Bad cables cause mysterious issues
-   - Cable test before deployment
+    - Bad cables cause mysterious issues
+    - Cable test before deployment
 
 4. **Don't skip redundancy**
-   - Single point of failure = downtime
-   - Always have backup paths
+    - Single point of failure = downtime
+    - Always have backup paths
 
 5. **Don't forget security**
-   - Isolate training network from internet
-   - Use VPNs for remote access
-   - Regular security updates
+    - Isolate training network from internet
+    - Use VPNs for remote access
+    - Regular security updates
 
 ## Cost Optimization
 
@@ -657,18 +657,18 @@ Lessons Learned:
 After completing this module:
 
 1. **Practice with your setup**
-   - Configure jumbo frames
-   - Test network performance
-   - Set up monitoring
+    - Configure jumbo frames
+    - Test network performance
+    - Set up monitoring
 
 2. **Move to Phase 1.2: Virtualization**
-   - Learn to set up VMs for isolation
-   - Practice with Proxmox/KVM
+    - Learn to set up VMs for isolation
+    - Practice with Proxmox/KVM
 
 3. **Build your first LLM server**
-   - Download a model
-   - Set up inference
-   - Test serving performance
+    - Download a model
+    - Set up inference
+    - Test serving performance
 
 ## Assessment
 

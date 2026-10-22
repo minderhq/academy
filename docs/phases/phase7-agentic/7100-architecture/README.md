@@ -1,7 +1,7 @@
 ---
 Document ID: 7100-ARCHITECTURE-README
 Title: "7100: Agent Architecture"
-Last Updated: 2026-10-16
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
@@ -151,10 +151,10 @@ Before starting this module, ensure you have:
 - **Format:** Agent implementation projects
 - **Duration:** 7 hours
 - **Topics:**
-  - Build ReAct agent from scratch
-  - Implement planning system
-  - Create multi-agent coordination
-  - Evaluate agent performance
+    - Build ReAct agent from scratch
+    - Implement planning system
+    - Create multi-agent coordination
+    - Evaluate agent performance
 - **Location:** [7100: LLM Reasoning - Practice](./assessment/PRACTICE.md)
 
 ## Related Modules

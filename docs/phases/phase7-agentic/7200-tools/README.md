@@ -1,7 +1,7 @@
 ---
 Document ID: 7200-TOOLS-README
 Title: "7200: Tool Calling and Function Execution"
-Last Updated: 2026-10-15
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Intermediate
 Prerequisites: []
@@ -120,10 +120,10 @@ Before starting this module, ensure you have:
 - **Format:** Tool implementation projects
 - **Duration:** 3 hours
 - **Topics:**
-  - Build custom tools
-  - Implement code interpreter
-  - Create API integrations
-  - Handle tool errors gracefully
+    - Build custom tools
+    - Implement code interpreter
+    - Create API integrations
+    - Handle tool errors gracefully
 - **Location:** [7200: Tools & Function Calling - Practice](./assessment/PRACTICE.md)
 
 ## Related Modules

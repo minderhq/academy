@@ -3,7 +3,7 @@ Document ID: 3101
 Title: "3101: Self-Attention Deep Dive"
 Phase: 3
 Module: 3100
-Last Updated: 2026-10-17
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -31,12 +31,12 @@ Self-attention is the core mechanism that powers Transformer models. This docume
 - [1. Overview](#1-overview)
 - [Learning Objectives](#learning-objectives)
 - [2. The Attention Mechanism](#2-the-attention-mechanism)
-  - [2.1 Scaled Dot-Product Attention](#21-scaled-dot-product-attention)
-  - [2.2 Step-by-Step Computation](#22-step-by-step-computation)
+    - [2.1 Scaled Dot-Product Attention](#21-scaled-dot-product-attention)
+    - [2.2 Step-by-Step Computation](#22-step-by-step-computation)
 - [3. Multi-Head Attention](#3-multi-head-attention)
-  - [3.1 Why Multiple Heads?](#31-why-multiple-heads)
-  - [3.2 Multi-Head Architecture](#32-multi-head-architecture)
-  - [3.3 Mathematical Formulation](#33-mathematical-formulation)
+    - [3.1 Why Multiple Heads?](#31-why-multiple-heads)
+    - [3.2 Multi-Head Architecture](#32-multi-head-architecture)
+    - [3.3 Mathematical Formulation](#33-mathematical-formulation)
 - [4. Attention Patterns Visualization](#4-attention-patterns-visualization)
 - [5. Masked (Causal) Attention](#5-masked-causal-attention)
 - [6. Attention as a Graph](#6-attention-as-a-graph)

@@ -1,7 +1,7 @@
 ---
 Document ID: 5300-SYNTHETIC-README
 Title: "5300: Synthetic Data & Advanced Training"
-Last Updated: 2026-10-15
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
@@ -122,10 +122,10 @@ Before starting this module, ensure you have:
 - **Format:** Advanced training projects
 - **Duration:** 5 hours
 - **Topics:**
-  - Implement knowledge distillation
-  - Set up distributed training
-  - Build federated learning system
-  - Generate synthetic training data
+    - Implement knowledge distillation
+    - Set up distributed training
+    - Build federated learning system
+    - Generate synthetic training data
 - **Location:** [5300: Synthetic Data Generation - Practice](./assessment/PRACTICE.md)
 
 ## Related Modules

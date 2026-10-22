@@ -1,7 +1,7 @@
 ---
 Document ID: 6300-CONTEXT-README
 Title: "6300: Context Management"
-Last Updated: 2026-10-15
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
@@ -145,10 +145,10 @@ Before starting this module, ensure you have:
 - **Format:** Context management projects
 - **Duration:** 4 hours
 - **Topics:**
-  - Build knowledge graph from documents
-  - Implement GraphRAG pipeline
-  - Optimize long-context retrieval
-  - Deploy Neo4j for production
+    - Build knowledge graph from documents
+    - Implement GraphRAG pipeline
+    - Optimize long-context retrieval
+    - Deploy Neo4j for production
 - **Location:** [6300: Context Window Optimization - Practice](./assessment/PRACTICE.md)
 
 ## Related Modules

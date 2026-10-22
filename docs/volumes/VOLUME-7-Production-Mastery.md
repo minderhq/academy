@@ -19,12 +19,12 @@ Tags: ['volume', 'agents', 'production', 'multi-agent']
 - [Why This Volume Matters](#why-this-volume-matters)
 - [Production vs Development](#production-vs-development)
 - [Learning Path](#learning-path)
-  - [Week 1: Monitoring & Observability](#week-1-monitoring--observability)
-  - [Week 2: Production Deployment](#week-2-production-deployment)
-  - [Week 3: CI/CD & Automation](#week-3-cicd--automation)
-  - [Week 4: Agentic Systems](#week-4-agentic-systems)
-  - [Week 5: Multi-Agent Systems](#week-5-multi-agent-systems)
-  - [Week 6: Advanced Production Topics](#week-6-advanced-production-topics)
+    - [Week 1: Monitoring & Observability](#week-1-monitoring--observability)
+    - [Week 2: Production Deployment](#week-2-production-deployment)
+    - [Week 3: CI/CD & Automation](#week-3-cicd--automation)
+    - [Week 4: Agentic Systems](#week-4-agentic-systems)
+    - [Week 5: Multi-Agent Systems](#week-5-multi-agent-systems)
+    - [Week 6: Advanced Production Topics](#week-6-advanced-production-topics)
 - [Volume 7 Capstone Projects](#volume-7-capstone-projects)
 - [Volume 7 Checklist](#volume-7-checklist)
 - [Cross-References](#cross-references)
@@ -151,17 +151,17 @@ graph TB
 **Metrics, Logs, Traces**
 
 1. **[TUTORIAL-004: Monitoring](../learning-resources/tutorials/TUTORIAL-004-Monitoring.md)** (90 min)
-   - Observability concepts
-   - Prometheus for metrics
-   - Grafana for visualization
-   - Loki for log aggregation
-   - Tempo for distributed tracing
+    - Observability concepts
+    - Prometheus for metrics
+    - Grafana for visualization
+    - Loki for log aggregation
+    - Tempo for distributed tracing
 
 2. **[1501: Monitoring and Observability](../phases/phase1-infra/1500-monitoring/1501-Monitoring-and-Observability.md)** (2-3 hours)
-   - Complete monitoring architecture
-   - GPU monitoring setup
-   - Alert configuration
-   - Dashboard creation
+    - Complete monitoring architecture
+    - GPU monitoring setup
+    - Alert configuration
+    - Dashboard creation
 
 **Monitoring Stack:**
 ```yaml
@@ -244,11 +244,11 @@ token_throughput.labels(model='mistral').set(tokens / duration)
 **Secure your AI services**
 
 1. **[TUTORIAL-005: Production Deployment](../learning-resources/tutorials/TUTORIAL-005-Production-Deployment.md)** (90 min)
-   - SSL certificate setup (Let's Encrypt, self-signed)
-   - Nginx reverse proxy
-   - Security headers
-   - Rate limiting
-   - Authentication
+    - SSL certificate setup (Let's Encrypt, self-signed)
+    - Nginx reverse proxy
+    - Security headers
+    - Rate limiting
+    - Authentication
 
 **SSL Setup:**
 ```bash
@@ -483,16 +483,16 @@ find $BACKUP_DIR -name "backup_*.tar.gz" -mtime +$RETENTION_DAYS -delete
 **Reasoning + Acting patterns**
 
 1. **[7101: ReAct (Reasoning + Acting) Loop System](../phases/phase7-agentic/7100-architecture/7101-ReAct-Loop-System.md)** (3-4 hours)
-   - ReAct pattern (Think → Act → Observe)
-   - Reasoning frameworks
-   - Tool execution
-   - Error handling
+    - ReAct pattern (Think → Act → Observe)
+    - Reasoning frameworks
+    - Tool execution
+    - Error handling
 
 2. **[LAB-004: ReAct Agent](../learning-resources/labs/LAB-004-ReAct-Agent.md)** (4 hours)
-   - Complete hands-on agent
-   - Tool system
-   - Memory implementation
-   - Docker deployment
+    - Complete hands-on agent
+    - Tool system
+    - Memory implementation
+    - Docker deployment
 
 **ReAct Pattern:**
 ```python
@@ -548,10 +548,10 @@ class ReActAgent:
 **Breaking down complex tasks**
 
 1. **[7102: Planning Decomposition](../phases/phase7-agentic/7100-architecture/7102-Planning-Decomposition.md)]** (3-4 hours)
-   - Task decomposition
-   - Dependency analysis
-   - Planning algorithms
-   - Re-planning on failure
+    - Task decomposition
+    - Dependency analysis
+    - Planning algorithms
+    - Re-planning on failure
 
 **Planning Example:**
 ```python
@@ -594,16 +594,16 @@ def decompose_task(query):
 **Agents working together**
 
 1. **[7303: Framework Comparison](../phases/phase7-agentic/7300-orchestration/guides/7303-Framework-Comparison.md)** (2-3 hours)
-   - Framework comparison
-   - Conversation patterns
-   - State machine flows
-   - Choose the right framework
+    - Framework comparison
+    - Conversation patterns
+    - State machine flows
+    - Choose the right framework
 
 2. **[7301: Collaborative Tasking](../phases/phase7-agentic/7300-orchestration/7301-Orchestration.md)** (3-4 hours)
-   - Multi-agent architectures
-   - Role specialization
-   - Communication protocols
-   - Coordination strategies
+    - Multi-agent architectures
+    - Role specialization
+    - Communication protocols
+    - Coordination strategies
 
 **Multi-Agent Example:**
 ```python
@@ -652,10 +652,10 @@ def build_feature(feature_description):
 **Safe agent execution**
 
 1. **[7202: Code Interpreter](../phases/phase7-agentic/7200-tools/guides/7202-Code-Interpreter.md)]** (4-5 hours)
-   - Sandboxed execution
-   - Security isolation
-   - Resource limits
-   - Error handling
+    - Sandboxed execution
+    - Security isolation
+    - Resource limits
+    - Error handling
 
 **Sandboxed Execution:**
 ```python
@@ -707,10 +707,10 @@ def python_tool(code: str) -> dict:
 **Long-term memory for agents**
 
 1. **[7402: Agent Memory Implementation](../phases/phase7-agentic/7400-memory/guides/7402-Agent-Memory-Implementation.md)** (3-4 hours)
-   - Memory types (episodic, semantic, procedural)
-   - Memory storage (Redis, PostgreSQL, Vector DB)
-   - Memory retrieval
-   - Forgetting mechanisms
+    - Memory types (episodic, semantic, procedural)
+    - Memory storage (Redis, PostgreSQL, Vector DB)
+    - Memory retrieval
+    - Forgetting mechanisms
 
 **Memory System:**
 ```python

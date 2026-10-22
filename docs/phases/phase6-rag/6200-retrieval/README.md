@@ -1,7 +1,7 @@
 ---
 Document ID: 6200-RETRIEVAL-README
 Title: "6200: Retrieval Strategies"
-Last Updated: 2026-10-16
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
@@ -109,10 +109,10 @@ Before starting this module, ensure you have:
 - **Format:** Retrieval pipeline projects
 - **Duration:** 6-8 hours
 - **Topics:**
-  - Build hybrid search system
-  - Implement re-ranking
-  - Optimize chunking strategies
-  - Evaluate retrieval quality
+    - Build hybrid search system
+    - Implement re-ranking
+    - Optimize chunking strategies
+    - Evaluate retrieval quality
 - **Location:** [6200: Advanced Retrieval - Practice](./assessment/PRACTICE.md)
 
 ## Related Modules

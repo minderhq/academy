@@ -1,7 +1,7 @@
 ---
 Document ID: 2300-QUIZ
 Title: "2300: Framework Engineering - Quiz"
-Last Updated: 2026-10-11
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 30 minutes
@@ -423,8 +423,8 @@ Each question maps to the lesson that teaches it:
 
 1. **Score below 20?** Work through the review map above, then retake.
 2. **Passed?** Deepen the hands-on skills with [2300: Framework Engineering - Practice Exercises](./PRACTICE.md), then do the practical labs:
-   - [LAB-007: Production RAG System](../../../../learning-resources/labs/LAB-007-Production-RAG.md)
-   - [LAB-009: Production Deployment](../../../../learning-resources/labs/LAB-009-Production-Deployment.md)
+    - [LAB-007: Production RAG System](../../../../learning-resources/labs/LAB-007-Production-RAG.md)
+    - [LAB-009: Production Deployment](../../../../learning-resources/labs/LAB-009-Production-Deployment.md)
 3. **Next Module:** [2400: LLM Pretraining](../../2400-pretraining/README.md)
 
 **Related:** [2300: Framework Engineering](../README.md) · [2304: Production Deployment Patterns](../2304-Production-Deployment-Patterns.md) · [TUTORIAL-003: RAG Basics - Give Your LLM Knowledge](../../../../learning-resources/tutorials/TUTORIAL-003-RAG-Basics.md)

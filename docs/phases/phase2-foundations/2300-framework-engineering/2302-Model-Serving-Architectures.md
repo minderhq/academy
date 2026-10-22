@@ -3,7 +3,7 @@ Document ID: 2302
 Title: "2302: Model Serving Architectures"
 Phase: 2
 Module: 2300
-Last Updated: 2026-10-17
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -1414,19 +1414,19 @@ class YourModelServer:
 ### Requirements
 
 1. **Dynamic Batching**
-   - Form batch when size reaches max_batch_size
-   - Form batch when oldest request exceeds timeout
-   - Track per-request latency
+    - Form batch when size reaches max_batch_size
+    - Form batch when oldest request exceeds timeout
+    - Track per-request latency
 
 2. **GPU Memory Monitoring**
-   - Use nvidia-smi to check free memory
-   - Reject requests if insufficient memory
-   - Log memory usage statistics
+    - Use nvidia-smi to check free memory
+    - Reject requests if insufficient memory
+    - Log memory usage statistics
 
 3. **Response Caching**
-   - Cache last 1000 responses
-   - Use SHA256 hash for cache keys
-   - Implement LRU eviction
+    - Cache last 1000 responses
+    - Use SHA256 hash for cache keys
+    - Implement LRU eviction
 
 ### Testing
 

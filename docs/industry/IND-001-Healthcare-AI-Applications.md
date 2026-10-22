@@ -1,7 +1,7 @@
 ---
 Document ID: IND-001
 Title: "IND-001: Healthcare AI Applications"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Intermediate
 Tags: ['industry', 'healthcare', 'llm']
@@ -14,10 +14,10 @@ Tags: ['industry', 'healthcare', 'llm']
 - [Overview](#overview)
 - [Healthcare AI Landscape](#part-1-healthcare-ai-landscape)
 - [Use Cases](#part-2-real-world-healthcare-use-cases)
-  - [Clinical Decision Support](#use-case-1-clinical-decision-support-system)
-  - [Medical Literature Search](#use-case-2-medical-literature-search-engine)
-  - [Medical Coding Automation](#use-case-3-automated-medical-coding)
-  - [Patient Triage](#use-case-4-patient-triage-chatbot)
+    - [Clinical Decision Support](#use-case-1-clinical-decision-support-system)
+    - [Medical Literature Search](#use-case-2-medical-literature-search-engine)
+    - [Medical Coding Automation](#use-case-3-automated-medical-coding)
+    - [Patient Triage](#use-case-4-patient-triage-chatbot)
 - [Implementation Considerations](#part-3-healthcare-ai-implementation-considerations)
 - [Performance Benchmarks](#performance-benchmarks)
 - [Common Pitfalls](#common-pitfalls)

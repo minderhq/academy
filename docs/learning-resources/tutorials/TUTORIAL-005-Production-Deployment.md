@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-005
 Title: "TUTORIAL-005: Production Deployment with CI/CD"
-Last Updated: 2026-10-13
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 90 minutes
@@ -623,11 +623,11 @@ EOF
 1. Go to your repository on GitHub
 2. Settings → Secrets and variables → Actions
 3. Add these secrets:
-   - `SERVER_HOST`: Your server IP/domain
-   - `SERVER_USER`: SSH username
-   - `SSH_PRIVATE_KEY`: Your SSH private key
-   - `SLACK_WEBHOOK`: Slack webhook URL (optional)
-   - `GRAFANA_PASSWORD`: Grafana admin password
+    - `SERVER_HOST`: Your server IP/domain
+    - `SERVER_USER`: SSH username
+    - `SSH_PRIVATE_KEY`: Your SSH private key
+    - `SLACK_WEBHOOK`: Slack webhook URL (optional)
+    - `GRAFANA_PASSWORD`: Grafana admin password
 
 ### Checkpoint: Part 5
 **Verify:** GitHub Actions workflow created

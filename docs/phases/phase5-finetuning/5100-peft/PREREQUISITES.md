@@ -1,7 +1,7 @@
 ---
 Document ID: 5100-PREREQUISITES
 Title: "5100: Parameter-Efficient Fine-Tuning - Prerequisites"
-Last Updated: 2026-10-09
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Advanced
 Tags: ['prerequisites', 'finetuning', 'peft']
@@ -81,16 +81,16 @@ Result: Best of both worlds!
 **If you're new to these concepts:**
 
 1. **Neural Network Training (45 min):**
-   - [Neural Networks: Zero to Hero](https://www.youtube.com/watch?v=Wo5rdMEISBw)
-   - Understand backpropagation
+    - [Neural Networks: Zero to Hero](https://www.youtube.com/watch?v=Wo5rdMEISBw)
+    - Understand backpropagation
 
 2. **Fine-Tuning Concepts (30 min):**
-   - [Fine-Tuning Explained](https://huggingface.co/docs/transformers/training)
-   - Understand why we fine-tune
+    - [Fine-Tuning Explained](https://huggingface.co/docs/transformers/training)
+    - Understand why we fine-tune
 
 3. **GPU Memory (20 min):**
-   - Read [4101-GGUF-Physics.md](../../phase4-quantization/4100-low-bit/4101-GGUF-Physics.md)
-   - Understand memory constraints
+    - Read [4101-GGUF-Physics.md](../../phase4-quantization/4100-low-bit/4101-GGUF-Physics.md)
+    - Understand memory constraints
 
 ---
 

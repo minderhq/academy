@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-002
 Title: "TUTORIAL-002: Docker Essentials for AI"
-Last Updated: 2026-10-14
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 45 minutes
@@ -533,17 +533,17 @@ How Docker fits into Minder Academy:
 ## Knowledge Check
 
 1. **What is the main benefit of containers over VMs?**
-   - More efficient resource usage (shared kernel)
+    - More efficient resource usage (shared kernel)
 
 2. **How do you persist container data?**
-   - Use volumes (bind mounts or named volumes)
+    - Use volumes (bind mounts or named volumes)
 
 3. **What's the difference between `docker run` and `docker compose up`?**
-   - `docker run` = single container
-   - `docker compose up` = multi-container orchestrator
+    - `docker run` = single container
+    - `docker compose up` = multi-container orchestrator
 
 4. **Why do we copy pyproject.toml + uv.lock before code in Dockerfile?**
-   - Better layer caching (dependencies only reinstall when changed)
+    - Better layer caching (dependencies only reinstall when changed)
 
 ---
 

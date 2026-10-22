@@ -3,7 +3,7 @@ Document ID: 2301
 Title: "2301: Framework Design Patterns"
 Phase: 2
 Module: 2300
-Last Updated: 2026-10-17
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 5 hours
@@ -1194,20 +1194,20 @@ METRIC_REGISTRY = {}
 ### Requirements
 
 1. **BaseModel** should have:
-   - `forward()` method
-   - `train_step()` method
-   - `save()` and `load()` methods
+    - `forward()` method
+    - `train_step()` method
+    - `save()` and `load()` methods
 
 2. **ModelConfig** should have:
-   - At least 5 model parameters
-   - `to_yaml()` and `from_yaml()` methods
-   - Validation in `__post_init__()`
+    - At least 5 model parameters
+    - `to_yaml()` and `from_yaml()` methods
+    - Validation in `__post_init__()`
 
 3. **Metric Registry** should have:
-   - `register()` decorator
-   - `get()` method
-   - `list_all()` method
-   - At least 2 metrics registered
+    - `register()` decorator
+    - `get()` method
+    - `list_all()` method
+    - At least 2 metrics registered
 
 ### Expected Output
 

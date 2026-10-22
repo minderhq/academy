@@ -50,31 +50,31 @@ Before diving into model internals, fine-tuning, or RAG, you need a solid founda
 **Start here if you're new to AI**
 
 1. **[QUICK-START.md](../00-META/QUICK-START.md)** (30 minutes)
-   - Install Ollama
-   - Run Mistral 7B
-   - First Python AI script
+    - Install Ollama
+    - Run Mistral 7B
+    - First Python AI script
 
 2. **[CHEAT-SHEET-002-Python-AI.md](../learning-resources/cheat-sheets/CHEAT-SHEET-002-Python-AI.md)** (reference)
-   - Python essentials for AI
-   - NumPy, PyTorch basics
-   - API integration patterns
+    - Python essentials for AI
+    - NumPy, PyTorch basics
+    - API integration patterns
 
 #### Day 3-5: Docker Essentials
 **Containerize your first AI application**
 
 1. **[TUTORIAL-002: Docker Essentials](../learning-resources/tutorials/TUTORIAL-002-Docker-Essentials.md)** (45 min)
-   - Docker concepts
-   - Container basics
-   - Docker Compose
+    - Docker concepts
+    - Container basics
+    - Docker Compose
 
 2. **[CHEAT-SHEET-001-Docker.md](../learning-resources/cheat-sheets/CHEAT-SHEET-001-Docker.md)** (reference)
-   - Common Docker commands
-   - Troubleshooting tips
+    - Common Docker commands
+    - Troubleshooting tips
 
 3. **[LAB-001: Docker & LLM](../learning-resources/labs/LAB-001-Docker-LLM.md)** (2 hours)
-   - Deploy Ollama with Docker
-   - Build containerized AI service
-   - Practice: Complete all 5 exercises
+    - Deploy Ollama with Docker
+    - Build containerized AI service
+    - Practice: Complete all 5 exercises
 
 **Checkpoint:** You have a running Dockerized LLM service
 
@@ -86,31 +86,31 @@ Before diving into model internals, fine-tuning, or RAG, you need a solid founda
 **Learn how LLMs work on your hardware**
 
 1. **[TUTORIAL-001: Hello LLM](../learning-resources/tutorials/TUTORIAL-001-Hello-LLM.md)]** (30 min)
-   - What are LLMs?
-   - How they work
-   - Your first conversation
+    - What are LLMs?
+    - How they work
+    - Your first conversation
 
 2. **[1401: Ollama Enterprise](../phases/phase1-infra/1400-llmops/1401-Ollama-Enterprise.md)** (4 hours)
-   - Running localized model APIs
-   - Model management
-   - API server setup
+    - Running localized model APIs
+    - Model management
+    - API server setup
 
 #### Day 4-5: Network & Hardware (Optional)
 **For those building HomeLab infrastructure**
 
 1. **[1101: Internet Uplink & Modem Configuration](../phases/phase1-infra/1100-network/1101-Fiber-GPON-Modem.md)**
-   - Understanding your internet connection
-   - Signal path optimization
-   - Bridge mode configuration
+    - Understanding your internet connection
+    - Signal path optimization
+    - Bridge mode configuration
 
 2. **[1102: Star Topology Core](../phases/phase1-infra/1100-network/1102-Star-Topology-Core.md)**
-   - Multi-gigabit network design
-   - Switch configuration
-   - Traffic management
+    - Multi-gigabit network design
+    - Switch configuration
+    - Traffic management
 
 3. **[1103: Jumbo Frames and MTU](../phases/phase1-infra/1100-network/1103-Jumbo-Frames-and-MTU.md)**
-   - MTU 9000 optimization
-   - Throughput improvement
+    - MTU 9000 optimization
+    - Throughput improvement
 
 **Checkpoint:** You understand network topology for AI systems
 
@@ -122,35 +122,35 @@ Before diving into model internals, fine-tuning, or RAG, you need a solid founda
 
 #### Day 1-2: Virtualization & GPU Passthrough
 1. **[1201: Proxmox Hypervisor SOP](../phases/phase1-infra/1200-virtualization/1201-Proxmox-Hypervisor-SOP.md)**
-   - Core pinning
-   - RAM balloons
-   - ZFS configurations
+    - Core pinning
+    - RAM balloons
+    - ZFS configurations
 
 2. **[1202: GPU Passthrough (IOMMU/VFIO)](../phases/phase1-infra/1200-virtualization/1202-TB3-UT3G-Passthrough.md)**
-   - IOMMU/VFIO GPU passthrough
-   - eGPU configuration
+    - IOMMU/VFIO GPU passthrough
+    - eGPU configuration
 
 3. **[1203: NVIDIA Kernel Module](../phases/phase1-infra/1200-virtualization/1203-Nvidia-Kernel-Module.md)**
-   - DKMS setup
-   - Driver stability
+    - DKMS setup
+    - Driver stability
 
 4. **[1204: Multi-GPU Setup](../phases/phase1-infra/1200-virtualization/1204-Multi-GPU-Setup.md)**
-   - Multi-GPU configuration
-   - Load balancing
+    - Multi-GPU configuration
+    - Load balancing
 
 #### Day 3-5: Kubernetes & Container Orchestration
 1. **[1301: K3s Architecture](../phases/phase1-infra/1300-kubernetes/1301-K3s-Master-Worker-Arch.md)**
-   - K3s cluster setup
-   - Master-worker architecture
-   - Service orchestration
+    - K3s cluster setup
+    - Master-worker architecture
+    - Service orchestration
 
 2. **[1302: GPU Scheduler](../phases/phase1-infra/1300-kubernetes/1302-GPU-Scheduler.md)**
-   - GPU allocation in K8s
-   - Resource management
+    - GPU allocation in K8s
+    - Resource management
 
 3. **[1303: Storage Classes](../phases/phase1-infra/1300-kubernetes/1303-Storage-Classes.md)**
-   - Dynamic provisioning
-   - NFS integration
+    - Dynamic provisioning
+    - NFS integration
 
 **Checkpoint:** You can deploy AI services to Kubernetes
 

@@ -1,7 +1,7 @@
 ---
 Document ID: GUIDE-CAREER
 Title: "CAREER GUIDE: From Learning to Job-Ready"
-Last Updated: 2026-10-13
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Intermediate
 Tags: ['career', 'guide', 'roadmap']
@@ -13,7 +13,7 @@ Tags: ['career', 'guide', 'roadmap']
 
 **Read Time:** 25 minutes
 
-**Last Updated:** 2026-10-13
+**Last Updated:** 2026-10-22
 
 ---
 
@@ -279,29 +279,29 @@ Data: Python, NumPy, Pandas, SQL (PostgreSQL), PostgreSQL + pgvector
 **Ranked by effectiveness:**
 
 1. **Referrals** (30-40% of hires)
-   - Ask friends in AI
-   - Engage with AI communities
-   - Attend meetups/conferences
+    - Ask friends in AI
+    - Engage with AI communities
+    - Attend meetups/conferences
 
 2. **Direct Applications** (25-30%)
-   - Company career pages
-   - LinkedIn Jobs
-   - Wellfound (AngelList)
+    - Company career pages
+    - LinkedIn Jobs
+    - Wellfound (AngelList)
 
 3. **Recruiters** (20-25%)
-   - AI-specialized recruiters
-   - LinkedIn DMs
-   - Recruiting firms
+    - AI-specialized recruiters
+    - LinkedIn DMs
+    - Recruiting firms
 
 4. **Cold Outreach** (10-15%)
-   - Message hiring managers directly
-   - Comment on their posts
-   - Share relevant content
+    - Message hiring managers directly
+    - Comment on their posts
+    - Share relevant content
 
 5. **Open Source** (5-10%)
-   - Contribute to AI libraries
-   - Build reputation on GitHub
-   - Get noticed by maintainers
+    - Contribute to AI libraries
+    - Build reputation on GitHub
+    - Get noticed by maintainers
 
 ---
 

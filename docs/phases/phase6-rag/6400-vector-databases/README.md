@@ -1,7 +1,7 @@
 ---
 Document ID: 6400-VECTOR-DATABASES-README
 Title: "6400: Vector Databases"
-Last Updated: 2026-10-15
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Intermediate
 Prerequisites: []
@@ -117,10 +117,10 @@ Before starting this module, ensure you have:
 - **Format:** Vector database deployment projects
 - **Duration:** 3 hours
 - **Topics:**
-  - Deploy Qdrant in production
-  - Compare Pinecone vs Weaviate
-  - Optimize database performance
-  - Set up backups and monitoring
+    - Deploy Qdrant in production
+    - Compare Pinecone vs Weaviate
+    - Optimize database performance
+    - Set up backups and monitoring
 - **Location:** [6400: Vector Databases - Practice](./assessment/PRACTICE.md)
 
 ## Related Modules

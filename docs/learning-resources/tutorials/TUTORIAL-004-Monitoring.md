@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-004
 Title: "TUTORIAL-004: Monitoring & Observability for AI Systems"
-Last Updated: 2026-10-16
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 90 minutes
@@ -679,8 +679,8 @@ curl -X POST http://localhost:8080/generate \
 2. Go to "Explore" → "Tempo"
 3. You should see traces for your requests
 4. Click on a trace to see the timeline:
-   - generate_text (parent span)
-   - ollama_request (child span)
+    - generate_text (parent span)
+    - ollama_request (child span)
 
 ### Checkpoint: Part 5
 **Verify:** Traces visible in Tempo

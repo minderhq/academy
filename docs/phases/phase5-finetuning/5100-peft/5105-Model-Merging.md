@@ -3,7 +3,7 @@ Document ID: 5105
 Title: "5105: Model Merging - Task Vectors, TIES, and mergekit"
 Phase: 5
 Module: 5100
-Last Updated: 2026-10-17
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -491,6 +491,6 @@ project template scaffolds the whole pipeline.
 - Continue with: **[5201: DPO (Direct Preference Optimization) Theory](../5200-alignment/5201-DPO-Theory.md)**
 - **Assessment**: [5100 QUIZ](./assessment/QUIZ.md) — and revisit the
   [5300 QUIZ](../5300-synthetic/assessment/QUIZ.md) merging questions (4, 5,
-  18) after this lesson; they are now in-range
+    18) after this lesson; they are now in-range
 - **Hands-on**: [TEMPLATE-011](../../../learning-resources/projects/templates/TEMPLATE-011-Model-Merging-MoE.md)
   — run a real two-model merge end to end with the config dialect above

@@ -1,7 +1,7 @@
 ---
 Document ID: 6500-MLOPS-PIPELINES-README
 Title: "6500: MLOps Pipelines for RAG"
-Last Updated: 2026-10-15
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
@@ -139,10 +139,10 @@ Before starting this module, ensure you have:
 - **Format:** MLOps pipeline projects
 - **Duration:** 3 hours
 - **Topics:**
-  - Build complete ML pipeline
-  - Set up CI/CD for RAG
-  - Implement model registry
-  - Deploy to production
+    - Build complete ML pipeline
+    - Set up CI/CD for RAG
+    - Implement model registry
+    - Deploy to production
 - **Location:** [6500: MLOps Pipelines for RAG - Practice](./assessment/PRACTICE.md)
 
 ## Related Modules

@@ -344,39 +344,39 @@ Single-page references for the surfaces this phase teaches:
 After completing this phase, you will be able to:
 
 1. **Fine-Tune on Consumer Hardware**
-   - Apply LoRA and QLoRA for efficient training
-   - Fine-tune 70B models on RTX 3090/4090
-   - Reduce VRAM requirements by 4-8x
+    - Apply LoRA and QLoRA for efficient training
+    - Fine-tune 70B models on RTX 3090/4090
+    - Reduce VRAM requirements by 4-8x
 
 2. **Choose the Right Fine-Tuning Method**
-   - LoRA for most use cases
-   - QLoRA for limited VRAM
-   - Full fine-tuning for maximum adaptation
-   - DPO for alignment
+    - LoRA for most use cases
+    - QLoRA for limited VRAM
+    - Full fine-tuning for maximum adaptation
+    - DPO for alignment
 
 3. **Align Models with Human Preferences**
-   - Implement DPO and RLHF
-   - Create preference datasets
-   - Evaluate alignment quality
-   - Balance helpfulness and safety
+    - Implement DPO and RLHF
+    - Create preference datasets
+    - Evaluate alignment quality
+    - Balance helpfulness and safety
 
 4. **Generate Synthetic Training Data**
-   - Distill knowledge from large models
-   - Augment small datasets
-   - Create instruction-tuning datasets
-   - Evaluate synthetic data quality
+    - Distill knowledge from large models
+    - Augment small datasets
+    - Create instruction-tuning datasets
+    - Evaluate synthetic data quality
 
 5. **Train Across Multiple GPUs**
-   - Apply data and model parallelism
-   - Use mixed precision training
-   - Optimize communication overhead
-   - Scale to 70B+ parameter models
+    - Apply data and model parallelism
+    - Use mixed precision training
+    - Optimize communication overhead
+    - Scale to 70B+ parameter models
 
 6. **Optimize Training Performance**
-   - Tune hyperparameters effectively
-   - Apply learning rate scheduling
-   - Use advanced optimization techniques
-   - Train on multiple tasks
+    - Tune hyperparameters effectively
+    - Apply learning rate scheduling
+    - Use advanced optimization techniques
+    - Train on multiple tasks
 
 ---
 
@@ -626,28 +626,28 @@ scheduler = get_cosine_with_min_lr_schedule_with_warmup(
 ### Hands-on Practice
 
 1. **[EXP_5101: LoRA](../../../experiments/EXP_5101_LORA.md)**
-   - Implement LoRA from scratch
-   - Fine-tune Llama 3.1 on custom dataset
-   - Compare rank configurations
+    - Implement LoRA from scratch
+    - Fine-tune Llama 3.1 on custom dataset
+    - Compare rank configurations
 
 2. **[EXP_5102: QLoRA](../../../experiments/EXP_5102_QLORA.md)**
-   - Apply QLoRA to 70B model
-   - Benchmark memory efficiency
-   - Compare quality vs full fine-tuning
+    - Apply QLoRA to 70B model
+    - Benchmark memory efficiency
+    - Compare quality vs full fine-tuning
 
 3. **[EXP_5201: DPO](../../../experiments/EXP_5201_DPO.md)**
-   - Implement DPO from scratch
-   - Create preference dataset
-   - Align model with preferences
+    - Implement DPO from scratch
+    - Create preference dataset
+    - Align model with preferences
 
 4. **[EXP_5301: Knowledge Distillation](../../../experiments/EXP_5301_DISTILLATION.md)**
-   - Distill 70B to 7B
-   - Compare teacher vs student
-   - Optimize distillation loss
+    - Distill 70B to 7B
+    - Compare teacher vs student
+    - Optimize distillation loss
 
-   - Set up multi-GPU training
-   - Benchmark scaling efficiency
-   - Optimize communication
+    - Set up multi-GPU training
+    - Benchmark scaling efficiency
+    - Optimize communication
 
 ---
 
@@ -688,14 +688,14 @@ Validate your knowledge with:
 After completing this phase:
 
 1. **Apply to Your Projects**
-   - Fine-tune models for your domain
-   - Create specialized AI assistants
-   - Optimize training for your hardware
+    - Fine-tune models for your domain
+    - Create specialized AI assistants
+    - Optimize training for your hardware
 
 2. **Continue Learning**
-   - **Phase 6:** Build RAG systems
-   - **Phase 7:** Create agentic AI systems
-   - **Industry Guides:** Domain-specific applications
+    - **Phase 6:** Build RAG systems
+    - **Phase 7:** Create agentic AI systems
+    - **Industry Guides:** Domain-specific applications
 
 ---
 

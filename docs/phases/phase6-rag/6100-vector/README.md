@@ -1,7 +1,7 @@
 ---
 Document ID: 6100-VECTOR-README
 Title: "6100: Vector Embeddings"
-Last Updated: 2026-10-15
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
@@ -133,10 +133,10 @@ Before starting this module, ensure you have:
 - **Format:** Hands-on vector search projects
 - **Duration:** 2 hours
 - **Topics:**
-  - Generate and compare embeddings
-  - Build HNSW index
-  - Implement semantic search
-  - Optimize query performance
+    - Generate and compare embeddings
+    - Build HNSW index
+    - Implement semantic search
+    - Optimize query performance
 - **Location:** [6100: Vector Embeddings - Practice](./assessment/PRACTICE.md)
 
 ## Related Modules

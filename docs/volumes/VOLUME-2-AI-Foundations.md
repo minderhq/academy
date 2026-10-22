@@ -50,11 +50,11 @@ Before understanding model architectures, fine-tuning, or optimization, you need
 **The fundamental data structure of AI**
 
 1. **[2101: Tensor Algebra](../phases/phase2-foundations/2100-calculus/2101-Tensor-Algebra.md)]** (3-4 hours)
-   - Tensor dimensions and shapes
-   - Dot products and matrix multiplication
-   - Einstein summation (einsum) notation
-   - Broadcasting rules
-   - GPU tensor operations
+    - Tensor dimensions and shapes
+    - Dot products and matrix multiplication
+    - Einstein summation (einsum) notation
+    - Broadcasting rules
+    - GPU tensor operations
 
 **Practice:**
 ```python
@@ -72,9 +72,9 @@ batch_result = torch.bmm(batch_A, batch_B)
 ```
 
 2. **[Experiment: Tensor Algebra](../../experiments/EXP_2101_TENSOR_ALGEBRA.md)** (2 hours)
-   - Hands-on tensor operations
-   - Performance benchmarks
-   - CPU vs GPU comparison
+    - Hands-on tensor operations
+    - Performance benchmarks
+    - CPU vs GPU comparison
 
 **Checkpoint:** You understand tensor operations and einsum
 
@@ -84,11 +84,11 @@ batch_result = torch.bmm(batch_A, batch_B)
 **How neural networks learn**
 
 1. **[2102: Backpropagation](../phases/phase2-foundations/2100-calculus/2102-Backpropagation-and-Derivatives.md)]** (3-4 hours)
-   - Chain rule in computational graphs
-   - Gradient computation
-   - Automatic differentiation
-   - Vanishing/exploding gradients
-   - Gradient clipping
+    - Chain rule in computational graphs
+    - Gradient computation
+    - Automatic differentiation
+    - Vanishing/exploding gradients
+    - Gradient clipping
 
 **Key Concepts:**
 ```text
@@ -100,9 +100,9 @@ Update: Adjust weights using gradients
 ```
 
 2. **[Experiment: Backpropagation](../../experiments/EXP_2102_BACKPROPAGATION.md)** (2 hours)
-   - Implement backprop from scratch
-   - Compare with PyTorch autograd
-   - Visualize gradient flow
+    - Implement backprop from scratch
+    - Compare with PyTorch autograd
+    - Visualize gradient flow
 
 **Checkpoint:** You understand how gradients are computed
 
@@ -114,11 +114,11 @@ Update: Adjust weights using gradients
 **Understanding dynamic computation**
 
 1. **[2201: PyTorch Graphs](../phases/phase2-foundations/2200-frameworks/2201-PyTorch-Computational-Graphs.md)]** (3-4 hours)
-   - Dynamic vs Static graphs
-   - Autograd engine
-   - Computational graph tracing
-   - Memory optimization
-   - Gradient checkpointing
+    - Dynamic vs Static graphs
+    - Autograd engine
+    - Computational graph tracing
+    - Memory optimization
+    - Gradient checkpointing
 
 **Practice:**
 ```python
@@ -142,9 +142,9 @@ output = checkpoint(custom_forward, input_tensor)
 ```
 
 2. **[Experiment: PyTorch Optimization](../../experiments/EXP_2201_PYTORCH_GRAPHS.md)** (2 hours)
-   - Profile computation graphs
-   - Optimize memory usage
-   - Compare dynamic vs static
+    - Profile computation graphs
+    - Optimize memory usage
+    - Compare dynamic vs static
 
 **Checkpoint:** You can optimize PyTorch code
 
@@ -154,10 +154,10 @@ output = checkpoint(custom_forward, input_tensor)
 **Compiler optimizations**
 
 1. **[2202: TensorFlow XLA](../phases/phase2-foundations/2200-frameworks/2202-TensorFlow-XLA-Compilers.md)]** (4 hours)
-   - XLA (Accelerated Linear Algebra)
-   - JIT compilation
-   - Fusion optimizations
-   - TPUs and accelerators
+    - XLA (Accelerated Linear Algebra)
+    - JIT compilation
+    - Fusion optimizations
+    - TPUs and accelerators
 
 **Key Concepts:**
 ```text
@@ -165,9 +165,9 @@ Python Code → TensorFlow Graph → XLA Compiler → Optimized HLO → Device C
 ```
 
 2. **[Experiment: XLA Optimization](../../experiments/EXP_2202_TENSORFLOW_XLA.md)** (1 hour)
-   - Benchmark XLA vs eager execution
-   - Profile fused operations
-   - Memory usage comparison
+    - Benchmark XLA vs eager execution
+    - Profile fused operations
+    - Memory usage comparison
 
 **Checkpoint:** You understand compilation optimization
 
@@ -179,12 +179,12 @@ Python Code → TensorFlow Graph → XLA Compiler → Optimized HLO → Device C
 **Bridging Python and GPU**
 
 1. **[2203: CUDA Kernels](../phases/phase2-foundations/2200-frameworks/2203-CUDA-Kernel-Programming.md)** (3-4 hours)
-   - CUDA programming model
-   - Kernel launch and execution
-   - Memory hierarchy (global, shared, registers)
-   - Thread blocks and grids
-   - Warp execution
-   - Memory coalescing
+    - CUDA programming model
+    - Kernel launch and execution
+    - Memory hierarchy (global, shared, registers)
+    - Thread blocks and grids
+    - Warp execution
+    - Memory coalescing
 
 **Practice:**
 ```python
@@ -207,10 +207,10 @@ def matmul_kernel(A, B, C):
 ```
 
 2. **[Experiment: CUDA Kernels](../../experiments/EXP_2203_CUDA_KERNELS.md)** (3-4 hours)
-   - Write custom CUDA kernels
-   - Profile kernel performance
-   - Optimize memory access patterns
-   - Compare with PyTorch implementations
+    - Write custom CUDA kernels
+    - Profile kernel performance
+    - Optimize memory access patterns
+    - Compare with PyTorch implementations
 
 **Checkpoint:** You can write basic CUDA kernels
 
@@ -220,11 +220,11 @@ def matmul_kernel(A, B, C):
 **Understanding the complete training pipeline**
 
 1. **[2401: Pre-training Fundamentals](../phases/phase2-foundations/2400-pretraining/2401-Pre-training-Fundamentals.md)** (4-5 hours)
-   - Data collection and curation
-   - Tokenizer training
-   - Training curriculum design
-   - Evaluation frameworks
-   - Infrastructure requirements
+    - Data collection and curation
+    - Tokenizer training
+    - Training curriculum design
+    - Evaluation frameworks
+    - Infrastructure requirements
 
 **Key Topics:**
 ```text
@@ -255,11 +255,11 @@ Stage 4 (10%): Annealing on highest quality
 ```
 
 2. **[LAB-006: Train Small Model](../learning-resources/labs/LAB-006-Train-Model-From-Scratch.md)** (6-8 hours)
-   - Prepare Wikipedia dataset
-   - Train BPE tokenizer
-   - Implement 10M parameter transformer
-   - Train end-to-end
-   - Evaluate and generate text
+    - Prepare Wikipedia dataset
+    - Train BPE tokenizer
+    - Implement 10M parameter transformer
+    - Train end-to-end
+    - Evaluate and generate text
 
 **Checkpoint:** You understand pre-training and can train a small model
 
@@ -268,14 +268,14 @@ Stage 4 (10%): Annealing on highest quality
 #### Day 8: Development Tools
 
 1. **[CHEAT-SHEET-003: Git](../learning-resources/cheat-sheets/CHEAT-SHEET-003-Git.md)** (reference)
-   - Git for AI/ML projects
-   - Version control workflows
-   - Git LFS for large models
+    - Git for AI/ML projects
+    - Version control workflows
+    - Git LFS for large models
 
 2. **[CHEAT-SHEET-004: Linux](../learning-resources/cheat-sheets/CHEAT-SHEET-004-Linux.md)** (reference)
-   - Process management
-   - GPU monitoring
-   - System optimization
+    - Process management
+    - GPU monitoring
+    - System optimization
 
 **Checkpoint:** You have essential development tools
 
@@ -314,9 +314,9 @@ Stage 4 (10%): Annealing on highest quality
 1. Profile a PyTorch model
 2. Identify bottlenecks
 3. Apply optimizations:
-   - Gradient checkpointing
-   - Mixed precision
-   - Memory-efficient attention
+    - Gradient checkpointing
+    - Mixed precision
+    - Memory-efficient attention
 4. Benchmark improvements
 
 **Skills Demonstrated:**

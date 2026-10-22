@@ -18,10 +18,10 @@ Tags: ['volume', 'rag', 'vector-db', 'graphrag']
 - [Volume Overview](#volume-overview)
 - [Why This Volume Matters](#why-this-volume-matters)
 - [Learning Path](#learning-path)
-  - [Week 1: Vector Similarity & Search](#week-1-vector-similarity--search)
-  - [Week 2: RAG Fundamentals](#week-2-rag-fundamentals)
-  - [Week 3: Knowledge Graphs & GraphRAG](#week-3-knowledge-graphs--graphrag)
-  - [Week 4: Long Context & Advanced Topics](#week-4-long-context--advanced-topics)
+    - [Week 1: Vector Similarity & Search](#week-1-vector-similarity--search)
+    - [Week 2: RAG Fundamentals](#week-2-rag-fundamentals)
+    - [Week 3: Knowledge Graphs & GraphRAG](#week-3-knowledge-graphs--graphrag)
+    - [Week 4: Long Context & Advanced Topics](#week-4-long-context--advanced-topics)
 - [Volume 6 Capstone Projects](#volume-6-capstone-projects)
 - [Volume 6 Checklist](#volume-6-checklist)
 - [Cross-References](#cross-references)
@@ -125,11 +125,11 @@ graph LR
 **The foundation of semantic search**
 
 1. **[6102: Semantic Similarity](../phases/phase6-rag/6100-vector/6102-Semantic-Similarity.md)** (2-3 hours)
-   - Embedding space concepts
-   - Cosine similarity vs dot product
-   - Euclidean distance
-   - Manifold metrics
-   - Normalization importance
+    - Embedding space concepts
+    - Cosine similarity vs dot product
+    - Euclidean distance
+    - Manifold metrics
+    - Normalization importance
 
 **Similarity Metrics:**
 ```python
@@ -193,11 +193,11 @@ similarities = cosine_similarity(query, embeddings)
 **Efficient search at scale**
 
 1. **[6101: HNSW Indexing](../phases/phase6-rag/6100-vector/6101-HNSW-Indexing.md)** (3-4 hours)
-   - Hierarchical Navigable Small World
-   - Approximate nearest neighbor (ANN)
-   - Index construction
-   - Performance tuning
-   - Memory vs speed trade-offs
+    - Hierarchical Navigable Small World
+    - Approximate nearest neighbor (ANN)
+    - Index construction
+    - Performance tuning
+    - Memory vs speed trade-offs
 
 **HNSW Concept:**
 ```text
@@ -243,18 +243,18 @@ search_params = {
 **Retrieval-Augmented Generation**
 
 1. **[TUTORIAL-003: RAG Basics](../learning-resources/tutorials/TUTORIAL-003-RAG-Basics.md)** (60 min)
-   - RAG concepts
-   - Document chunking
-   - Vector database setup
-   - Retrieval and generation
-   - Evaluation
+    - RAG concepts
+    - Document chunking
+    - Vector database setup
+    - Retrieval and generation
+    - Evaluation
 
 2. **[LAB-002: RAG Implementation](../learning-resources/labs/LAB-002-RAG-Implementation.md)]** (4 hours)
-   - Complete hands-on RAG system
-   - Qdrant integration
-   - Document processing
-   - Chatbot with memory
-   - Evaluation
+    - Complete hands-on RAG system
+    - Qdrant integration
+    - Document processing
+    - Chatbot with memory
+    - Evaluation
 
 **RAG Pipeline:**
 ```python
@@ -318,16 +318,16 @@ answer = generate(query, context)
 **Combine vector + keyword search**
 
 1. **[6201: Hybrid Search](../phases/phase6-rag/6200-retrieval/6201-Hybrid-Search.md)** (2-3 hours)
-   - Vector search (semantic)
-   - Keyword search (BM25)
-   - Reciprocal Rank Fusion (RRF)
-   - Best of both worlds
+    - Vector search (semantic)
+    - Keyword search (BM25)
+    - Reciprocal Rank Fusion (RRF)
+    - Best of both worlds
 
 2. **[6202: Re-ranking](../phases/phase6-rag/6200-retrieval/6202-Re-ranking-and-Retrieval-Logistics.md)** (2-3 hours)
-   - Cross-encoder re-ranking
-   - Multi-stage retrieval
-   - Reranking models
-   - Performance optimization
+    - Cross-encoder re-ranking
+    - Multi-stage retrieval
+    - Reranking models
+    - Performance optimization
 
 **Hybrid Search:**
 ```python
@@ -381,11 +381,11 @@ reranked = reranker.rank(query, candidates, top_k=10)
 **Structured knowledge representation**
 
 1. **[6301: Neo4j and Knowledge Graphs](../phases/phase6-rag/6300-context/6301-Neo4j-and-Knowledge-Graphs.md)]** (4-5 hours)
-   - Graph database concepts
-   - Neo4j setup and deployment
-   - Cypher query language
-   - Entity extraction
-   - Relationship building
+    - Graph database concepts
+    - Neo4j setup and deployment
+    - Cypher query language
+    - Entity extraction
+    - Relationship building
 
 **Knowledge Graph Structure:**
 ```text
@@ -432,11 +432,11 @@ RETURN e1.name as start, related.name as end, [node in nodes(path) | node.name] 
 ```
 
 2. **[LAB-005: GraphRAG](../learning-resources/labs/LAB-005-GraphRAG.md)** (5 hours)
-   - Complete GraphRAG system
-   - Entity and relationship extraction
-   - Neo4j + Qdrant hybrid
-   - Multi-hop reasoning
-   - Visualization
+    - Complete GraphRAG system
+    - Entity and relationship extraction
+    - Neo4j + Qdrant hybrid
+    - Multi-hop reasoning
+    - Visualization
 
 **Checkpoint:** You can build knowledge graphs
 
@@ -446,11 +446,11 @@ RETURN e1.name as start, related.name as end, [node in nodes(path) | node.name] 
 **Combine vector + graph search**
 
 1. **[6304: GraphRAG Implementation](../phases/phase6-rag/6300-context/guides/6304-GraphRAG-Implementation.md)** (3-4 hours)
-   - Complete GraphRAG pipeline
-   - Entity extraction with LLMs
-   - Relationship building
-   - Hybrid retrieval (Qdrant + Neo4j)
-   - Multi-hop reasoning
+    - Complete GraphRAG pipeline
+    - Entity extraction with LLMs
+    - Relationship building
+    - Hybrid retrieval (Qdrant + Neo4j)
+    - Multi-hop reasoning
 
 **GraphRAG Pipeline:**
 ```python
@@ -538,11 +538,11 @@ def graphrag_retrieval(query):
 **Using 128k+ context windows effectively**
 
 1. **[6302: CAG Long Context](../phases/phase6-rag/6300-context/6302-CAG-Long-Context-Architectures.md)]** (4-5 hours)
-   - Long context models (128k, 200k+)
-   - Context window as temporary database
-   - Placement strategies
-   - Lost in the middle problem
-   - Compression techniques
+    - Long context models (128k, 200k+)
+    - Context window as temporary database
+    - Placement strategies
+    - Lost in the middle problem
+    - Compression techniques
 
 **CAG vs RAG:**
 ```yaml

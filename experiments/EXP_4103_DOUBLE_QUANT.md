@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_4103
 Title: "EXP_4103: Double Quantization Experiment"
-Last Updated: 2026-10-21
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Advanced
 ---
@@ -156,20 +156,20 @@ if __name__ == '__main__':
 ## Procedure
 
 1. **Setup**
-   - [x] Verify GPU availability (nvidia-smi)
-   - [x] Install transformers, bitsandbytes, accelerate
-   - [x] Download models to local cache
+    - [x] Verify GPU availability (nvidia-smi)
+    - [x] Install transformers, bitsandbytes, accelerate
+    - [x] Download models to local cache
 
 2. **Execution**
-   - [x] Run standard 4-bit quantization
-   - [x] Run double quantization
-   - [x] Record memory usage for each
-   - [x] Test generation quality
+    - [x] Run standard 4-bit quantization
+    - [x] Run double quantization
+    - [x] Record memory usage for each
+    - [x] Test generation quality
 
 3. **Teardown**
-   - [x] Save results
-   - [x] Clear GPU memory
-   - [x] Archive logs
+    - [x] Save results
+    - [x] Clear GPU memory
+    - [x] Archive logs
 
 ---
 

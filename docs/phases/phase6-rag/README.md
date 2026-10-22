@@ -526,29 +526,29 @@ Single-page references for the surfaces this phase teaches:
 After completing this phase, you will be able to:
 
 1. **Build Enterprise Knowledge Bases**
-   - Index millions of documents efficiently
-   - Retrieve relevant context in milliseconds
-   - Scale to handle concurrent queries
+    - Index millions of documents efficiently
+    - Retrieve relevant context in milliseconds
+    - Scale to handle concurrent queries
 
 2. **Implement Hybrid Search**
-   - Combine vector and keyword search
-   - Apply re-ranking for precision
-   - Optimize retrieval parameters
+    - Combine vector and keyword search
+    - Apply re-ranking for precision
+    - Optimize retrieval parameters
 
 3. **Use Knowledge Graphs**
-   - Extract entities and relationships
-   - Build graph databases with Neo4j
-   - Implement GraphRAG for complex queries
+    - Extract entities and relationships
+    - Build graph databases with Neo4j
+    - Implement GraphRAG for complex queries
 
 4. **Choose the Right Vector Database**
-   - Compare Qdrant, Pinecone, Weaviate
-   - Deploy self-hosted with Docker
-   - Optimize for your use case
+    - Compare Qdrant, Pinecone, Weaviate
+    - Deploy self-hosted with Docker
+    - Optimize for your use case
 
 5. **Handle Long Contexts**
-   - Use 128k+ context windows effectively
-   - Implement caching strategies
-   - Reduce retrieval latency
+    - Use 128k+ context windows effectively
+    - Implement caching strategies
+    - Reduce retrieval latency
 
 ---
 
@@ -766,29 +766,29 @@ embeddings_fp32_reconstructed = (embeddings_uint8.astype(np.float32) - 128) / 12
 ### Hands-on Practice
 
 1. **[EXP_6101: HNSW](../../../experiments/EXP_6101_HNSW.md)**
-   - Implement HNSW indexing
-   - Benchmark index parameters
-   - Compare search algorithms
+    - Implement HNSW indexing
+    - Benchmark index parameters
+    - Compare search algorithms
 
 2. **[EXP_6201: Hybrid Search](../../../experiments/EXP_6201_HYBRID_SEARCH.md)**
-   - Build hybrid search pipeline
-   - Tune rank fusion weights
-   - Compare vs vector-only
+    - Build hybrid search pipeline
+    - Tune rank fusion weights
+    - Compare vs vector-only
 
 3. **[EXP_6303: Neo4j](../../../experiments/EXP_6303_NEO4J.md)**
-   - Deploy Neo4j with Docker
-   - Build knowledge graph
-   - Implement GraphRAG
+    - Deploy Neo4j with Docker
+    - Build knowledge graph
+    - Implement GraphRAG
 
 4. **[EXP_6401: Vector DB](../../../experiments/EXP_6401_VECTOR_DB.md)**
-   - Deploy Qdrant
-   - Index millions of documents
-   - Benchmark performance
+    - Deploy Qdrant
+    - Index millions of documents
+    - Benchmark performance
 
 5. **[EXP_6501: MLOps Pipeline](../../../experiments/EXP_6501_MLOPS_PIPELINE.md)**
-   - Set up a CI/CD pipeline for ML
-   - Measure deployment time reduction
-   - Configure canary deployment and rollback
+    - Set up a CI/CD pipeline for ML
+    - Measure deployment time reduction
+    - Configure canary deployment and rollback
 
 ---
 
@@ -830,14 +830,14 @@ Validate your knowledge with:
 After completing this phase:
 
 1. **Build Your Knowledge Base**
-   - Index your documents
-   - Deploy Qdrant self-hosted
-   - Create RAG application
+    - Index your documents
+    - Deploy Qdrant self-hosted
+    - Create RAG application
 
 2. **Continue Learning**
-   - **Phase 7:** Build agentic AI systems
-   - **SOL-001:** Complete enterprise solution
-   - **Industry Guides:** Domain-specific RAG
+    - **Phase 7:** Build agentic AI systems
+    - **SOL-001:** Complete enterprise solution
+    - **Industry Guides:** Domain-specific RAG
 
 ---
 
@@ -846,11 +846,11 @@ After completing this phase:
 **ML Lifecycle & MLOps Diagrams:**
 
 - [ML-LIFECYCLE.md](../../diagrams/ML-LIFECYCLE.md) - Complete ML lifecycle from development to production
-  - CI/CD Pipeline for ML
-  - Model Evaluation Framework
-  - Canary Deployment Strategy
-  - Model Drift Detection
-  - Experiment Tracking
+    - CI/CD Pipeline for ML
+    - Model Evaluation Framework
+    - Canary Deployment Strategy
+    - Model Drift Detection
+    - Experiment Tracking
 
 ---
 

@@ -295,21 +295,21 @@ Total: _____ months
 **Fell behind? Here's how to catch up:**
 
 1. **Assess where you are**
-   - Review last checkpoint
-   - Identify gaps
+    - Review last checkpoint
+    - Identify gaps
 
 2. **Prioritize core concepts**
-   - Focus on required modules
-   - Skip optional content temporarily
+    - Focus on required modules
+    - Skip optional content temporarily
 
 3. **Use accelerated learning**
-   - Increase study time temporarily
-   - Focus on one phase at a time
+    - Increase study time temporarily
+    - Focus on one phase at a time
 
 4. **Get help**
-   - Ask community
-   - Review troubleshooting guides
-   - Schedule 1-on-1 help (if available)
+    - Ask community
+    - Review troubleshooting guides
+    - Schedule 1-on-1 help (if available)
 
 ---
 

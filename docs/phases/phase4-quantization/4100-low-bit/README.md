@@ -1,7 +1,7 @@
 ---
 Document ID: 4100-LOW-BIT-README
 Title: "4100: Low-Bit Quantization"
-Last Updated: 2026-10-15
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Advanced
 Prerequisites: [1500]
@@ -123,10 +123,10 @@ Before starting this module, ensure you have:
 - **Format:** Hands-on quantization projects
 - **Duration:** 4 hours
 - **Topics:**
-  - Convert models to GGUF format
-  - Implement EXL2 quantization
-  - Apply double quantization
-  - Benchmark and compare methods
+    - Convert models to GGUF format
+    - Implement EXL2 quantization
+    - Apply double quantization
+    - Benchmark and compare methods
 - **Location:** [4100: Low-Bit Quantization - Practice](./assessment/PRACTICE.md)
 
 ## Related Modules

@@ -174,19 +174,19 @@ Internet (Fiber 1Gbps)
 **Build a home AI network:**
 
 1. **Hardware:**
-   - 10Gbps switch (used enterprise gear, e.g., Mikrotik/Ubiquiti)
-   - CAT6a cables
-   - WiFi 6 AP for management
+    - 10Gbps switch (used enterprise gear, e.g., Mikrotik/Ubiquiti)
+    - CAT6a cables
+    - WiFi 6 AP for management
 
 2. **Configuration:**
-   - Separate VLAN for GPU server
-   - Jumbo frames (9000 MTU) for internal traffic
-   - Bonded interfaces for NAS
+    - Separate VLAN for GPU server
+    - Jumbo frames (9000 MTU) for internal traffic
+    - Bonded interfaces for NAS
 
 3. **Test:**
-   - `iperf3` between all nodes
-   - Measure actual model download speeds
-   - Test checkpoint save/restore
+    - `iperf3` between all nodes
+    - Measure actual model download speeds
+    - Test checkpoint save/restore
 
 ---
 

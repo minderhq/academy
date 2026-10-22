@@ -1,7 +1,7 @@
 ---
 Document ID: 7500-SECURITY-README
 Title: "7500: AI Agent Security"
-Last Updated: 2026-10-15
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
@@ -139,10 +139,10 @@ Before starting this module, ensure you have:
 - **Format:** Security implementation projects
 - **Duration:** 13 hours
 - **Topics:**
-  - Build injection detector
-  - Implement PII redaction
-  - Create adversarial defenses
-  - Design secure agent system
+    - Build injection detector
+    - Implement PII redaction
+    - Create adversarial defenses
+    - Design secure agent system
 - **Location:** [7500: AI Agent Security - Practice](./assessment/PRACTICE.md)
 
 ## Related Modules

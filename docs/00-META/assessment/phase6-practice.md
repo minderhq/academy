@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE6-PRACTICE
 Title: "Phase 6: Data Nexus - Practice Exercises"
-Last Updated: 2026-10-14
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Advanced
 Tags: ['assessment', 'practice', 'rag']
@@ -37,9 +37,9 @@ Implement cosine similarity calculation from scratch without using libraries lik
 ### Requirements
 
 1. Create a function `cosine_similarity(vec1, vec2)` that:
-   - Takes two numpy arrays as input
-   - Returns cosine similarity score (-1 to 1)
-   - Handles edge cases (zero vectors, dimension mismatch)
+    - Takes two numpy arrays as input
+    - Returns cosine similarity score (-1 to 1)
+    - Handles edge cases (zero vectors, dimension mismatch)
 
 2. Test with:
    ```python
@@ -107,9 +107,9 @@ Implement BM25 (Best Matching 25) ranking algorithm for keyword search.
 ### Requirements
 
 1. Create a `BM25Retriever` class with:
-   - `index(documents)`: Build index from document list
-   - `search(query, k=10)`: Return top-k relevant documents
-   - Configurable parameters (k1, b)
+    - `index(documents)`: Build index from document list
+    - `search(query, k=10)`: Return top-k relevant documents
+    - Configurable parameters (k1, b)
 
 2. Use the following BM25 formula:
    ```text
@@ -189,9 +189,9 @@ Implement a hybrid search system combining vector and keyword search using Recip
 ### Requirements
 
 1. Create `HybridRetriever` class with:
-   - Vector search backend (using embeddings)
-   - BM25 keyword search backend
-   - RRF fusion algorithm
+    - Vector search backend (using embeddings)
+    - BM25 keyword search backend
+    - RRF fusion algorithm
 
 2. RRF formula:
    ```text
@@ -277,13 +277,13 @@ Set up Qdrant vector database and perform basic operations.
    ```
 
 2. Create a collection with:
-   - Vector size: 1536 (OpenAI embeddings)
-   - Distance: Cosine
-   - HNSW index with custom parameters
+    - Vector size: 1536 (OpenAI embeddings)
+    - Distance: Cosine
+    - HNSW index with custom parameters
 
 3. Insert sample documents with:
-   - Text payloads
-   - Metadata (category, date, source)
+    - Text payloads
+    - Metadata (category, date, source)
 
 4. Perform filtered search
 
@@ -346,9 +346,9 @@ Build a knowledge graph in Neo4j and query relationships.
    ```
 
 2. Create nodes and relationships:
-   - Entity nodes (Person, Organization, Concept)
-   - RELATES_TO relationships
-   - Properties (name, type, confidence)
+    - Entity nodes (Person, Organization, Concept)
+    - RELATES_TO relationships
+    - Properties (name, type, confidence)
 
 3. Implement graph traversal queries
 
@@ -409,9 +409,9 @@ Implement context building strategies for RAG applications.
 ### Requirements
 
 1. Create a `ContextBuilder` class with strategies:
-   - **Stuff**: Concatenate all context
-   - **Map-Reduce**: Summarize then combine
-   - **Refine**: Iteratively build context
+    - **Stuff**: Concatenate all context
+    - **Map-Reduce**: Summarize then combine
+    - **Refine**: Iteratively build context
 
 2. Handle token limits and context window management
 
@@ -502,12 +502,12 @@ Build an end-to-end RAG pipeline with all components.
 ### Requirements
 
 1. Create a `RAGPipeline` class with:
-   - Document ingestion and chunking
-   - Vector indexing (Qdrant)
-   - Hybrid search (vector + BM25)
-   - Re-ranking
-   - Context building
-   - LLM generation
+    - Document ingestion and chunking
+    - Vector indexing (Qdrant)
+    - Hybrid search (vector + BM25)
+    - Re-ranking
+    - Context building
+    - LLM generation
 
 2. Implement evaluation metrics
 
@@ -646,7 +646,7 @@ Create adaptive retrieval system that:
 
 ---
 
-**Last Updated:** 2026-10-14
+**Last Updated:** 2026-10-22
 
 **Phase:** 6 - Data Nexus
 

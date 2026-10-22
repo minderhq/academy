@@ -1,7 +1,7 @@
 ---
 Document ID: TROUBLESHOOTING-QUICKSTART
 Title: "Quick Start Troubleshooting Guide"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Beginner
 Tags: ['troubleshooting', 'quickstart', 'llm']
@@ -11,7 +11,7 @@ Tags: ['troubleshooting', 'quickstart', 'llm']
 
 **Common Issues & Solutions for Quick Start**
 
-**Last Updated:** 2026-10-08
+**Last Updated:** 2026-10-22
 
 **Reading Time:** 5 minutes
 
@@ -44,10 +44,10 @@ Tags: ['troubleshooting', 'quickstart', 'llm']
    ```
 
 2. If not found, add to PATH:
-   - Search "Environment Variables" in Windows
-   - Edit PATH variable
-   - Add: `C:\Users\[YourUser]\AppData\Local\Programs\Ollama`
-   - Restart terminal
+    - Search "Environment Variables" in Windows
+    - Edit PATH variable
+    - Add: `C:\Users\[YourUser]\AppData\Local\Programs\Ollama`
+    - Restart terminal
 
 **Mac:**
 ```bash
@@ -90,12 +90,12 @@ curl -fsSL https://ollama.com/install.sh | sh
    ```
 
 3. **Disable VPN/Proxy temporarily:**
-   - VPNs can block installation
-   - Disable and retry
+    - VPNs can block installation
+    - Disable and retry
 
 4. **Windows - Download manually:**
-   - Download installer from ollama.com
-   - Run installer as Administrator
+    - Download installer from ollama.com
+    - Run installer as Administrator
 
 ---
 
@@ -128,9 +128,9 @@ curl -fsSL https://ollama.com/install.sh | sh
    ```
 
 4. **Check firewall:**
-   - Windows: Allow Ollama through Windows Firewall
-   - Mac: Allow in Security & Privacy
-   - Linux: Check `ufw` or `iptables`
+    - Windows: Allow Ollama through Windows Firewall
+    - Mac: Allow in Security & Privacy
+    - Linux: Check `ufw` or `iptables`
 
 ---
 
@@ -150,8 +150,8 @@ curl -fsSL https://ollama.com/install.sh | sh
    ```
 
 2. **Try different time of day:**
-   - Off-peak hours (early morning/late night)
-   - Less network congestion
+    - Off-peak hours (early morning/late night)
+    - Less network congestion
 
 3. **Use smaller model first:**
    ```bash
@@ -160,8 +160,8 @@ curl -fsSL https://ollama.com/install.sh | sh
    ```
 
 4. **Check if ISP throttling:**
-   - Some ISPs limit large downloads
-   - Contact ISP if issue persists
+    - Some ISPs limit large downloads
+    - Contact ISP if issue persists
 
 ---
 
@@ -184,9 +184,9 @@ curl -fsSL https://ollama.com/install.sh | sh
    ```
 
 2. **Free up space:**
-   - Delete temporary files
-   - Empty trash/recycle bin
-   - Remove old models:
+    - Delete temporary files
+    - Empty trash/recycle bin
+    - Remove old models:
      ```bash
      ollama list
      ollama rm [model-name]
@@ -235,9 +235,9 @@ curl -fsSL https://ollama.com/install.sh | sh
    ```
 
 4. **Verify no firewall blocking:**
-   - Windows: Allow Ollama through Windows Firewall
-   - Mac: System Preferences → Security & Privacy → Firewall
-   - Linux: `sudo ufw allow 11434`
+    - Windows: Allow Ollama through Windows Firewall
+    - Mac: System Preferences → Security & Privacy → Firewall
+    - Linux: `sudo ufw allow 11434`
 
 ---
 
@@ -272,8 +272,8 @@ curl -fsSL https://ollama.com/install.sh | sh
    ```
 
 4. **Use Ollama from Windows PowerShell:**
-   - Ollama works fine in Windows
-   - Use PowerShell instead of WSL2
+    - Ollama works fine in Windows
+    - Use PowerShell instead of WSL2
 
 ---
 
@@ -306,8 +306,8 @@ curl -fsSL https://ollama.com/install.sh | sh
    ```
 
 3. **Close other applications:**
-   - Free up RAM by closing browser, other apps
-   - Check Task Manager / Activity Monitor
+    - Free up RAM by closing browser, other apps
+    - Check Task Manager / Activity Monitor
 
 4. **Adjust Ollama memory settings:**
    ```bash
@@ -380,8 +380,8 @@ curl -fsSL https://ollama.com/install.sh | sh
    ```
 
 4. **Accept slower performance:**
-   - CPU mode is 10-20x slower than GPU
-   - Still usable for learning
+    - CPU mode is 10-20x slower than GPU
+    - Still usable for learning
 
 ---
 
@@ -422,17 +422,17 @@ curl -fsSL https://ollama.com/install.sh | sh
    ```
 
 2. **Reinstall Ollama:**
-   - Mac: `brew reinstall ollama`
-   - Linux: `curl -fsSL https://ollama.com/install.sh | sh`
-   - Windows: Re-run installer
+    - Mac: `brew reinstall ollama`
+    - Linux: `curl -fsSL https://ollama.com/install.sh | sh`
+    - Windows: Re-run installer
 
 3. **Add to PATH (if not already):**
-   - Mac/Linux: Add `export PATH="$PATH:/usr/local/bin"`
-   - Windows: Add Ollama path to Environment Variables
+    - Mac/Linux: Add `export PATH="$PATH:/usr/local/bin"`
+    - Windows: Add Ollama path to Environment Variables
 
 4. **Restart terminal:**
-   - Close and reopen terminal
-   - Or run: `source ~/.bashrc` or `source ~/.zshrc`
+    - Close and reopen terminal
+    - Or run: `source ~/.bashrc` or `source ~/.zshrc`
 
 ---
 

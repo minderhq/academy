@@ -478,34 +478,34 @@ Single-page references for the surfaces this phase teaches:
 After completing this phase, you will be able to:
 
 1. **Build High-Speed Network**
-   - Design a star topology network
-   - Enable jumbo frames (MTU 9000)
-   - Optimize network latency
-   - Benchmark throughput performance
+    - Design a star topology network
+    - Enable jumbo frames (MTU 9000)
+    - Optimize network latency
+    - Benchmark throughput performance
 
 2. **Configure GPU Passthrough**
-   - Set up IOMMU in Proxmox
-   - Configure VFIO drivers
-   - Passthrough GPU to VM
-   - Verify with nvidia-smi
+    - Set up IOMMU in Proxmox
+    - Configure VFIO drivers
+    - Passthrough GPU to VM
+    - Verify with nvidia-smi
 
 3. **Deploy K3s Cluster**
-   - Install K3s master and workers
-   - Configure GPU scheduler
-   - Set up dynamic storage
-   - Deploy GPU workloads
+    - Install K3s master and workers
+    - Configure GPU scheduler
+    - Set up dynamic storage
+    - Deploy GPU workloads
 
 4. **Run Production Inference**
-   - Deploy vLLM with PagedAttention
-   - Configure the OpenAI-compatible endpoint for production
-   - Use quantized models (AWQ/GPTQ)
-   - Optimize throughput and latency
+    - Deploy vLLM with PagedAttention
+    - Configure the OpenAI-compatible endpoint for production
+    - Use quantized models (AWQ/GPTQ)
+    - Optimize throughput and latency
 
 5. **Monitor Everything**
-   - Set up Prometheus metrics
-   - Create Grafana dashboards
-   - Aggregate logs with Loki
-   - Configure alerts
+    - Set up Prometheus metrics
+    - Create Grafana dashboards
+    - Aggregate logs with Loki
+    - Configure alerts
 
 ---
 
@@ -710,13 +710,13 @@ global:
 ### Hands-on Practice
 
 1. **[EXP_1101: GPON Configuration](../../../experiments/EXP_1101_GPON.md)** (case study)
-   - Configure the uplink modem in bridge mode
-   - Verify ISP handoff and internet connectivity
+    - Configure the uplink modem in bridge mode
+    - Verify ISP handoff and internet connectivity
 
 2. **[EXP_1102: Star Topology](../../../experiments/EXP_1102_STAR_TOPOLOGY.md)** (case study)
-   - Build a star topology network
-   - Enable jumbo frames
-   - Benchmark network performance
+    - Build a star topology network
+    - Enable jumbo frames
+    - Benchmark network performance
 
 ---
 
@@ -744,14 +744,14 @@ Validate your knowledge with:
 After completing this phase:
 
 1. **Deploy Your Infrastructure**
-   - Set up network and virtualization
-   - Deploy K3s cluster
-   - Configure monitoring
+    - Set up network and virtualization
+    - Deploy K3s cluster
+    - Configure monitoring
 
 2. **Continue Learning**
-   - **Phase 2:** Learn AI/ML foundations
-   - **Phase 4:** Quantize models for efficiency
-   - **Phase 6:** Build RAG systems
+    - **Phase 2:** Learn AI/ML foundations
+    - **Phase 4:** Quantize models for efficiency
+    - **Phase 6:** Build RAG systems
 
 ---
 

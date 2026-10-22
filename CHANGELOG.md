@@ -4,7 +4,7 @@ Document ID: CHANGELOG
 
 Title: "CHANGELOG"
 
-Last Updated: 2026-10-21
+Last Updated: 2026-10-22
 
 Status: Complete
 
@@ -218,7 +218,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
   codes, the TGI guide's vLLM cross-reference, stale display labels)
 
-  - 58 replacements total, 0 residual
+    - 58 replacements total, 0 residual
 
 - **104 hard QA gates (total 110)**: census_note_gate (CN-01/02) makes
 
@@ -294,7 +294,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
   long / 4.2% short with 0 findings; negatively tested across 6 runs
 
-  - the born run fires exactly 7, the post-drain control 0, the
+    - the born run fires exactly 7, the post-drain control 0, the
 
   threshold crossing at --bank-threshold 0.39 fires BANK-LONG-SKEW
 
@@ -404,59 +404,59 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **10 QUIZ.md files** for Phase 6-7 modules (20 questions each, 80% passing score)
 
-  - 6100: Vector Embeddings
+    - 6100: Vector Embeddings
 
-  - 6200: Advanced Retrieval
+    - 6200: Advanced Retrieval
 
-  - 6300: Context Optimization
+    - 6300: Context Optimization
 
-  - 6400: Vector Databases
+    - 6400: Vector Databases
 
-  - 6500: RAG MLOps
+    - 6500: RAG MLOps
 
-  - 7100: LLM Reasoning
+    - 7100: LLM Reasoning
 
-  - 7200: Tools & Function Calling
+    - 7200: Tools & Function Calling
 
-  - 7300: Agent Orchestration
+    - 7300: Agent Orchestration
 
-  - 7400: Agent Memory
+    - 7400: Agent Memory
 
-  - 7500: Agent Security
+    - 7500: Agent Security
 
 
 
 - **15 PRACTICE.md files** with hands-on exercises
 
-  - 1300: Kubernetes exercises
+    - 1300: Kubernetes exercises
 
-  - 1400: LLMOps exercises
+    - 1400: LLMOps exercises
 
-  - 1500: Monitoring setup
+    - 1500: Monitoring setup
 
-  - 2400: Pretraining pipeline
+    - 2400: Pretraining pipeline
 
-  - 3200: Embedding implementations
+    - 3200: Embedding implementations
 
-  - 3300: Decoding strategies
+    - 3300: Decoding strategies
 
-  - 3400: Transformer architectures
+    - 3400: Transformer architectures
 
-  - 3500: Multimodal AI
+    - 3500: Multimodal AI
 
-  - 4100: Low-bit quantization
+    - 4100: Low-bit quantization
 
-  - 4200: KV cache optimization
+    - 4200: KV cache optimization
 
-  - 5100: PEFT techniques
+    - 5100: PEFT techniques
 
-  - 5200: Alignment methods
+    - 5200: Alignment methods
 
-  - 5300: Synthetic data generation
+    - 5300: Synthetic data generation
 
-  - 6200: Advanced retrieval
+    - 6200: Advanced retrieval
 
-  - 6300: Context optimization
+    - 6300: Context optimization
 
 
 

@@ -1,7 +1,7 @@
 ---
 Document ID: 5200-ALIGNMENT-README
 Title: "5200: LLM Alignment"
-Last Updated: 2026-10-16
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
@@ -155,10 +155,10 @@ Before starting this module, ensure you have:
 - **Format:** Alignment projects
 - **Duration:** 10 hours
 - **Topics:**
-  - Implement DPO training
-  - Build reward models
-  - Create alignment datasets
-  - Evaluate aligned models
+    - Implement DPO training
+    - Build reward models
+    - Create alignment datasets
+    - Evaluate aligned models
 - **Location:** [5200: LLM Alignment - Practice](./assessment/PRACTICE.md)
 
 ## Related Modules

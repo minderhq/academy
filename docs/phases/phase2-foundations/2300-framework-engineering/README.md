@@ -1,7 +1,7 @@
 ---
 Document ID: 2300-FRAMEWORK-ENGINEERING-README
 Title: "2300: Framework Engineering"
-Last Updated: 2026-10-09
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Advanced
 Prerequisites: [2200]
@@ -141,12 +141,12 @@ COMPLETE
 Apply your knowledge with these hands-on experiments:
 
 1. **[EXP_1403: TGI (Text Generation Inference) Tuning Experiments](../../../../experiments/EXP_1403_TGI_TUNING.md)**
-   - Tune a production serving stack (2302's serving concepts at real scale)
-   - Measure how batch size and concurrency shape throughput/latency
+    - Tune a production serving stack (2302's serving concepts at real scale)
+    - Measure how batch size and concurrency shape throughput/latency
 
 2. **[EXP_1404: vLLM Production Tuning Experiments](../../../../experiments/EXP_1404_VLLM_TUNING.md)**
-   - Dynamic batching and continuous batching in a real engine (2302 + 2306 themes)
-   - Compare configurations against the batching server you build in the practice exercises
+    - Dynamic batching and continuous batching in a real engine (2302 + 2306 themes)
+    - Compare configurations against the batching server you build in the practice exercises
 
 ---
 
@@ -157,19 +157,19 @@ Apply what you learned in real-world scenarios:
 ### Recommended Labs
 
 1. **[LAB-007: Production RAG System](../../../learning-resources/labs/LAB-007-Production-RAG.md)**
-   - Deploy RAG system with proper serving
-   - Implement batching for embeddings
-   - Add caching layer
+    - Deploy RAG system with proper serving
+    - Implement batching for embeddings
+    - Add caching layer
 
 2. **[LAB-008: Multi-Agent Fleet](../../../learning-resources/labs/LAB-008-Agent-Fleet.md)**
-   - Serve multiple agents efficiently
-   - Load balance across instances
-   - Monitor performance
+    - Serve multiple agents efficiently
+    - Load balance across instances
+    - Monitor performance
 
 3. **[LAB-009: Production Deployment](../../../learning-resources/labs/LAB-009-Production-Deployment.md)**
-   - Deploy with blue-green strategy
-   - Implement canary testing
-   - Set up monitoring
+    - Deploy with blue-green strategy
+    - Implement canary testing
+    - Set up monitoring
 
 ---
 
@@ -294,17 +294,17 @@ A:
 After completing this module:
 
 1. **Apply Immediately**
-   - Build a mini ML framework ([2306: Building a Production Framework](./guides/2306-Building-Production-Framework.md))
-   - Deploy a model with blue-green deployment
-   - Create a production API
+    - Build a mini ML framework ([2306: Building a Production Framework](./guides/2306-Building-Production-Framework.md))
+    - Deploy a model with blue-green deployment
+    - Create a production API
 
 2. **Continue Learning**
-   - Next: [2400: LLM Pretraining](../2400-pretraining/README.md)
-   - Apply patterns in Phase 3-7 projects
+    - Next: [2400: LLM Pretraining](../2400-pretraining/README.md)
+    - Apply patterns in Phase 3-7 projects
 
 3. **Build Projects**
-   - [CAPSTONE PROJECT-001: Build Your AI Assistant](../../../learning-resources/projects/PROJECT-001-AI-Assistant.md) (use serving patterns)
-   - [CAPSTONE PROJECT-007: Deploy Production AI System](../../../learning-resources/projects/PROJECT-007-Production-AI-System.md) (end-to-end deployment)
+    - [CAPSTONE PROJECT-001: Build Your AI Assistant](../../../learning-resources/projects/PROJECT-001-AI-Assistant.md) (use serving patterns)
+    - [CAPSTONE PROJECT-007: Deploy Production AI System](../../../learning-resources/projects/PROJECT-007-Production-AI-System.md) (end-to-end deployment)
 
 **Related:** [2200: Deep Learning Frameworks](../2200-frameworks/README.md) · [2400: LLM Pretraining](../2400-pretraining/README.md) · [LAB-009: Production Deployment](../../../learning-resources/labs/LAB-009-Production-Deployment.md)
 

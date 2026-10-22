@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-006
 Title: "TUTORIAL-006: Real-time AI"
-Last Updated: 2026-10-14
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 60 minutes
@@ -443,24 +443,24 @@ services:
 **Key Production Considerations:**
 
 1. **Connection Management**
-   - Limit concurrent connections
-   - Implement heartbeat/ping
-   - Handle graceful disconnects
+    - Limit concurrent connections
+    - Implement heartbeat/ping
+    - Handle graceful disconnects
 
 2. **Scaling**
-   - Use Redis for connection state sharing
-   - Load balance WebSocket connections
-   - Consider serverless for auto-scaling
+    - Use Redis for connection state sharing
+    - Load balance WebSocket connections
+    - Consider serverless for auto-scaling
 
 3. **Monitoring**
-   - Track connection metrics
-   - Monitor message latency
-   - Log errors and disconnections
+    - Track connection metrics
+    - Monitor message latency
+    - Log errors and disconnections
 
 4. **Security**
-   - Authenticate WebSocket connections
-   - Rate limit messages
-   - Validate all inputs
+    - Authenticate WebSocket connections
+    - Rate limit messages
+    - Validate all inputs
 
 ---
 

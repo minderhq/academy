@@ -1,7 +1,7 @@
 ---
 Document ID: TROUBLESHOOTING-Common-Issues
 Title: "TROUBLESHOOTING: Common Issues & Solutions"
-Last Updated: 2026-10-16
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Intermediate
 Tags: ['troubleshooting', 'docker', 'llm']
@@ -64,7 +64,7 @@ OCI runtime create failed: container_linux.go:370: starting container process ca
 **Solutions:**
 
 1. **Increase Docker memory limit (Docker Desktop):**
-   - Settings → Resources → Memory → Increase to 8GB+
+    - Settings → Resources → Memory → Increase to 8GB+
 
 2. **Check container memory usage:**
 ```bash
@@ -744,14 +744,14 @@ journalctl -u docker
 ```
 
 2. **Search error messages:**
-   - Google the exact error
-   - Check Stack Overflow
-   - GitHub Issues
+    - Google the exact error
+    - Check Stack Overflow
+    - GitHub Issues
 
 3. **Ask in communities:**
-   - Discord servers
-   - Reddit (r/LocalLLaMA, r/MachineLearning)
-   - Hugging Face Forums
+    - Discord servers
+    - Reddit (r/LocalLLaMA, r/MachineLearning)
+    - Hugging Face Forums
 
 ---
 

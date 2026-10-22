@@ -1,7 +1,7 @@
 ---
 Document ID: EXP-TEMPLATE
 Title: "EXPERIMENT TEMPLATE"
-Last Updated: 2026-10-21
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Beginner
 ---
@@ -129,19 +129,19 @@ Preprocessing: [Steps taken]
 ## Procedure
 
 1. **Setup**
-   - [ ] Verify hardware availability
-   - [ ] Load data to GPU memory if needed
-   - [ ] Initialize logging
+    - [ ] Verify hardware availability
+    - [ ] Load data to GPU memory if needed
+    - [ ] Initialize logging
 
 2. **Execution**
-   - [ ] Run training/inference
-   - [ ] Collect metrics at specified intervals
-   - [ ] Monitor GPU temperature/power
+    - [ ] Run training/inference
+    - [ ] Collect metrics at specified intervals
+    - [ ] Monitor GPU temperature/power
 
 3. **Teardown**
-   - [ ] Save results
-   - [ ] Clear GPU memory
-   - [ ] Archive logs
+    - [ ] Save results
+    - [ ] Clear GPU memory
+    - [ ] Archive logs
 
 ---
 

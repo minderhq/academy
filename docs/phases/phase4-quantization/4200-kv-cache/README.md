@@ -1,7 +1,7 @@
 ---
 Document ID: 4200-KV-CACHE-README
 Title: "4200: KV Cache Optimization"
-Last Updated: 2026-10-15
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
@@ -118,10 +118,10 @@ Before starting this module, ensure you have:
 - **Format:** Advanced optimization projects
 - **Duration:** 3 hours
 - **Topics:**
-  - Implement KV cache profiling
-  - Build speculative decoding system
-  - Optimize for long contexts
-  - Compare cache strategies
+    - Implement KV cache profiling
+    - Build speculative decoding system
+    - Optimize for long contexts
+    - Compare cache strategies
 - **Location:** [4200: KV Cache Optimization - Practice](./assessment/PRACTICE.md)
 
 ## Related Modules

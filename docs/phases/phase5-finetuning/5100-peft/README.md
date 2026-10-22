@@ -1,7 +1,7 @@
 ---
 Document ID: 5100-PEFT-README
 Title: "5100: Parameter-Efficient Fine-Tuning (PEFT)"
-Last Updated: 2026-10-16
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Advanced
 Prerequisites: [4100]
@@ -134,10 +134,10 @@ Before starting this module, ensure you have:
 - **Format:** Complete fine-tuning projects
 - **Duration:** 8 hours
 - **Topics:**
-  - Implement LoRA from scratch
-  - Fine-tune models with QLoRA
-  - Build multi-adapter systems
-  - Deploy PEFT models
+    - Implement LoRA from scratch
+    - Fine-tune models with QLoRA
+    - Build multi-adapter systems
+    - Deploy PEFT models
 - **Location:** [5100: PEFT Techniques - Practice](./assessment/PRACTICE.md)
 
 ## Related Modules

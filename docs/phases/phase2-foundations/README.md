@@ -439,34 +439,34 @@ Single-page references for the surfaces this phase teaches:
 After completing this phase, you will be able to:
 
 1. **Master Tensor Operations**
-   - Use einsum for complex operations
-   - Understand broadcasting rules
-   - Efficiently manipulate tensor shapes
-   - Write vectorized code
+    - Use einsum for complex operations
+    - Understand broadcasting rules
+    - Efficiently manipulate tensor shapes
+    - Write vectorized code
 
 2. **Understand Backpropagation**
-   - Compute gradients manually
-   - Build autograd engine
-   - Debug gradient issues
-   - Implement custom layers
+    - Compute gradients manually
+    - Build autograd engine
+    - Debug gradient issues
+    - Implement custom layers
 
 3. **Navigate Framework Internals**
-   - Understand computation graphs
-   - Write custom autograd functions
-   - Optimize with XLA/JIT
-   - Choose right framework
+    - Understand computation graphs
+    - Write custom autograd functions
+    - Optimize with XLA/JIT
+    - Choose right framework
 
 4. **Write CUDA Kernels**
-   - Understand GPU architecture
-   - Write custom CUDA kernels
-   - Optimize memory access
-   - Profile GPU performance
+    - Understand GPU architecture
+    - Write custom CUDA kernels
+    - Optimize memory access
+    - Profile GPU performance
 
 5. **Train at Scale**
-   - Implement distributed training
-   - Handle training failures
-   - Monitor training metrics
-   - Evaluate model performance
+    - Implement distributed training
+    - Handle training failures
+    - Monitor training metrics
+    - Evaluate model performance
 
 ---
 
@@ -729,29 +729,29 @@ with torch.profiler.profile(
 ### Hands-on Practice
 
 1. **[EXP_2101: Tensor Algebra](../../../experiments/EXP_2101_TENSOR_ALGEBRA.md)**
-   - Implement einsum operations
-   - Practice tensor reshaping
-   - Benchmark operations
+    - Implement einsum operations
+    - Practice tensor reshaping
+    - Benchmark operations
 
 2. **[EXP_2102: Backpropagation](../../../experiments/EXP_2102_BACKPROPAGATION.md)**
-   - Build autograd from scratch
-   - Implement custom layers
-   - Debug gradient flow
+    - Build autograd from scratch
+    - Implement custom layers
+    - Debug gradient flow
 
 3. **[EXP_2201: PyTorch Graphs](../../../experiments/EXP_2201_PYTORCH_GRAPHS.md)**
-   - Create computational graphs
-   - Write custom autograd functions
-   - Profile execution
+    - Create computational graphs
+    - Write custom autograd functions
+    - Profile execution
 
 4. **[EXP_2202: TensorFlow XLA](../../../experiments/EXP_2202_TENSORFLOW_XLA.md)**
-   - Compile with XLA
-   - Benchmark performance
-   - Optimize graphs
+    - Compile with XLA
+    - Benchmark performance
+    - Optimize graphs
 
 5. **[EXP_2203: CUDA Kernels](../../../experiments/EXP_2203_CUDA_KERNELS.md)**
-   - Write custom CUDA kernels
-   - Optimize memory access
-   - Profile GPU performance
+    - Write custom CUDA kernels
+    - Optimize memory access
+    - Profile GPU performance
 
 ---
 
@@ -779,14 +779,14 @@ Validate your knowledge with:
 After completing this phase:
 
 1. **Build Your Training Pipeline**
-   - Implement training loop
-   - Add distributed training
-   - Monitor metrics
+    - Implement training loop
+    - Add distributed training
+    - Monitor metrics
 
 2. **Continue Learning**
-   - **Phase 3:** Learn transformer architecture
-   - **Phase 4:** Optimize with quantization
-   - **Phase 5:** Fine-tune models
+    - **Phase 3:** Learn transformer architecture
+    - **Phase 4:** Optimize with quantization
+    - **Phase 5:** Fine-tune models
 
 ---
 

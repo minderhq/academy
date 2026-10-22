@@ -1,7 +1,7 @@
 ---
 Document ID: 6100-PREREQUISITES
 Title: "6100: Vector Embeddings - Prerequisites"
-Last Updated: 2026-10-09
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Advanced
 Tags: ['prerequisites', 'rag', 'vectors']
@@ -72,16 +72,16 @@ Semantic similarity ≈ 0.7-0.9
 **If you're new to these concepts:**
 
 1. **Information Retrieval (30 min):**
-   - [Introduction to Information Retrieval](https://nlp.stanford.edu/IR-book/)
-   - Chapters 1-3
+    - [Introduction to Information Retrieval](https://nlp.stanford.edu/IR-book/)
+    - Chapters 1-3
 
 2. **Vector Embeddings (45 min):**
-   - [Vector Similarity Search Explained](https://www.pinecone.io/learn/vector-similarity/)
-   - Understand embedding spaces
+    - [Vector Similarity Search Explained](https://www.pinecone.io/learn/vector-similarity/)
+    - Understand embedding spaces
 
 3. **Database Indexing (20 min):**
-   - [Database Indexing Explained](https://www.youtube.com/watch?v=aOtExK-uH6Y)
-   - Why indexes speed up queries
+    - [Database Indexing Explained](https://www.youtube.com/watch?v=aOtExK-uH6Y)
+    - Why indexes speed up queries
 
 ---
 

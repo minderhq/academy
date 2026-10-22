@@ -1,7 +1,7 @@
 ---
 Document ID: 2400-PRETRAINING-README
 Title: "2400: LLM Pretraining"
-Last Updated: 2026-10-16
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Advanced
 Prerequisites: [2200]
@@ -137,10 +137,10 @@ Each lesson is written around runnable code — work through the examples, don't
 - **Format:** End-to-end pretraining project
 - **Duration:** 8-12 hours
 - **Topics:**
-  - Build a complete pretraining pipeline
-  - Implement distributed training
-  - Create evaluation framework
-  - Train and evaluate a small LLM
+    - Build a complete pretraining pipeline
+    - Implement distributed training
+    - Create evaluation framework
+    - Train and evaluate a small LLM
 - **Location:** [2400: Pretraining - Practice](./assessment/PRACTICE.md)
 
 ---

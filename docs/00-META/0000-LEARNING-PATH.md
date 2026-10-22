@@ -1,7 +1,7 @@
 ---
 Document ID: 0000
 Title: "Minder Academy Learning Path"
-Last Updated: 2026-10-15
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Beginner
 Tags: ['roadmap', 'guide', 'llm']
@@ -32,7 +32,7 @@ Tags: ['roadmap', 'guide', 'llm']
 
 ## Complete AI/LLM Infrastructure Curriculum - From Zero to Hero
 
-**Last Updated:** 2026-10-15
+**Last Updated:** 2026-10-22
 
 **Estimated Time:** 6-12 months (part-time) - 48 study weeks + capstone
 
@@ -728,19 +728,19 @@ Learning Path:
 **Choose One:**
 
 1. **AI Research Assistant**
-   - Vector search over papers
-   - Graph-based citation network
-   - Multi-agent query processing
+    - Vector search over papers
+    - Graph-based citation network
+    - Multi-agent query processing
 
 2. **Code Generation System**
-   - RAG over codebase
-   - Tool calling for execution
-   - Memory for context
+    - RAG over codebase
+    - Tool calling for execution
+    - Memory for context
 
 3. **Knowledge Management System**
-   - Document ingestion
-   - GraphRAG for retrieval
-   - Agent for queries
+    - Document ingestion
+    - GraphRAG for retrieval
+    - Agent for queries
 
 ---
 

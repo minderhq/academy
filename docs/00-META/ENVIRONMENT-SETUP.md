@@ -1,7 +1,7 @@
 ---
 Document ID: ENVIRONMENT-SETUP
 Title: "Environment Setup Guide"
-Last Updated: 2026-10-09
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Beginner
 Tags: ['setup', 'docker', 'infrastructure']
@@ -9,7 +9,7 @@ Tags: ['setup', 'docker', 'infrastructure']
 
 # Environment Setup Guide
 
-**Last Updated:** 2026-10-09
+**Last Updated:** 2026-10-22
 
 **Reading Time:** 15 minutes
 
@@ -77,8 +77,8 @@ wsl --install
 2. **Install Windows Terminal** (from Microsoft Store)
 
 3. **Enable Virtualization** in BIOS:
-   - Intel: Intel VT-x
-   - AMD: AMD-V
+    - Intel: Intel VT-x
+    - AMD: AMD-V
 
 #### macOS
 1. **Update macOS** to latest version

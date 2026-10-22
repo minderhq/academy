@@ -52,11 +52,11 @@ Before fine-tuning, optimizing, or deploying LLMs, you need to understand **how 
 **The core innovation of transformers**
 
 1. **[3101: Self-Attention](../phases/phase3-transformers/3100-attention/3101-Self-Attention-DeepDive.md)** (3-4 hours)
-   - Scaled Dot-Product Attention
-   - Multi-Head Attention
-   - Masked Attention (causal)
-   - Attention patterns analysis
-   - KV cache optimization
+    - Scaled Dot-Product Attention
+    - Multi-Head Attention
+    - Masked Attention (causal)
+    - Attention patterns analysis
+    - KV cache optimization
 
 **Key Concepts:**
 ```text
@@ -95,9 +95,9 @@ def scaled_dot_product_attention(Q, K, V, mask=None):
 ```
 
 2. **[Experiment: Self-Attention](../../experiments/EXP_3101_SELF_ATTENTION.md)** (2 hours)
-   - Implement attention from scratch
-   - Visualize attention patterns
-   - Benchmark multi-head configurations
+    - Implement attention from scratch
+    - Visualize attention patterns
+    - Benchmark multi-head configurations
 
 **Checkpoint:** You understand and can implement self-attention
 
@@ -107,11 +107,11 @@ def scaled_dot_product_attention(Q, K, V, mask=None):
 **Memory-efficient attention**
 
 1. **[3102: Flash Attention](../phases/phase3-transformers/3100-attention/3102-Flash-Attention.md)]** (3-4 hours)
-   - IO-aware algorithm
-   - Tiling strategy
-   - Memory optimization
-   - Implementation details
-   - Speed benchmarks
+    - IO-aware algorithm
+    - Tiling strategy
+    - Memory optimization
+    - Implementation details
+    - Speed benchmarks
 
 **Key Innovation:**
 ```text
@@ -122,10 +122,10 @@ Trade-off: Approximate attention for 2-4x speedup
 ```
 
 2. **[Experiment: Flash Attention](../../experiments/EXP_3102_FLASH_ATTENTION.md)** (2-3 hours)
-   - Compare standard vs flash attention
-   - Profile memory usage
-   - Benchmark inference speed
-   - Test on long sequences
+    - Compare standard vs flash attention
+    - Profile memory usage
+    - Benchmark inference speed
+    - Test on long sequences
 
 **Checkpoint:** You understand Flash Attention optimization
 
@@ -137,11 +137,11 @@ Trade-off: Approximate attention for 2-4x speedup
 **How models understand token position**
 
 1. **[3201: RoPE](../phases/phase3-transformers/3200-embeddings/3201-Rotary-Positional-Embeddings-RoPE.md)** (2-3 hours)
-   - Absolute vs Relative positions
-   - Rotary Position Embeddings
-   - Sinusoidal embeddings
-   - Learned positional embeddings
-   - ALiBi (Attention with Linear Biases)
+    - Absolute vs Relative positions
+    - Rotary Position Embeddings
+    - Sinusoidal embeddings
+    - Learned positional embeddings
+    - ALiBi (Attention with Linear Biases)
 
 **RoPE Formula:**
 ```python
@@ -164,10 +164,10 @@ def rotate_position(x, seq_len, dim):
 ```
 
 2. **[Experiment: RoPE](../../experiments/EXP_3201_ROPE.md)** (2 hours)
-   - Implement RoPE from scratch
-   - Compare absolute vs relative
-   - Visualize rotation matrices
-   - Test position encoding
+    - Implement RoPE from scratch
+    - Compare absolute vs relative
+    - Visualize rotation matrices
+    - Test position encoding
 
 **Checkpoint:** You understand positional embeddings
 
@@ -177,12 +177,12 @@ def rotate_position(x, seq_len, dim):
 **How text becomes tokens**
 
 1. **[3202: Tokenizer Sciences](../phases/phase3-transformers/3200-embeddings/3202-Tokenizer-Sciences.md)** (2-3 hours)
-   - BPE (Byte Pair Encoding)
-   - SentencePiece (Unigram)
-   - TikToken (OpenAI)
-   - Tokenizer comparison
-   - Vocabulary size impact
-   - Special tokens handling
+    - BPE (Byte Pair Encoding)
+    - SentencePiece (Unigram)
+    - TikToken (OpenAI)
+    - Tokenizer comparison
+    - Vocabulary size impact
+    - Special tokens handling
 
 **Tokenization Examples:**
 ```text
@@ -199,10 +199,10 @@ Tokenization affects:
 ```
 
 2. **[Experiment: Tokenizers](../../experiments/EXP_3202_TOKENIZER.md)** (2 hours)
-   - Compare BPE vs SentencePiece
-   - Analyze token distributions
-   - Test on different languages
-   - Measure compression ratio
+    - Compare BPE vs SentencePiece
+    - Analyze token distributions
+    - Test on different languages
+    - Measure compression ratio
 
 **Checkpoint:** You understand tokenization strategies
 
@@ -214,11 +214,11 @@ Tokenization affects:
 **Why GELU and SwiGLU over ReLU?**
 
 1. **[3301: Activation Functions](../phases/phase3-transformers/3300-decoding/3301-Activation-Functions.md)** (2 hours)
-   - ReLU and its problems
-   - GELU (Gaussian Error Linear Unit)
-   - SwiGLU (Swish-Gated Linear Unit)
-   - GeLU vs SwiGLU comparison
-   - Performance impact
+    - ReLU and its problems
+    - GELU (Gaussian Error Linear Unit)
+    - SwiGLU (Swish-Gated Linear Unit)
+    - GeLU vs SwiGLU comparison
+    - Performance impact
 
 **Comparison:**
 ```python
@@ -251,10 +251,10 @@ class SwiGLU(nn.Module):
 **Stabilizing deep networks**
 
 1. **[3302: Normalization Layers](../phases/phase3-transformers/3300-decoding/3302-Normalization-Layers.md)** (1-2 hours)
-   - BatchNorm vs LayerNorm
-   - RMSNorm (Root Mean Square)
-   - Pre-Norm vs Post-Norm
-   - Stability in deep networks
+    - BatchNorm vs LayerNorm
+    - RMSNorm (Root Mean Square)
+    - Pre-Norm vs Post-Norm
+    - Stability in deep networks
 
 **Key Differences:**
 ```text
@@ -276,16 +276,16 @@ RMSNorm: x / sqrt(mean(x^2) + epsilon)
 **Decoder-only vs Encoder-Decoder**
 
 1. **[3402: Decoder-Only Models (GPT, LLaMA, Mistral)](../phases/phase3-transformers/3400-architectures/3402-Decoder-Only-Models.md)]** (4 hours)
-   - GPT family (GPT-2, GPT-3, GPT-4)
-   - LLaMA and derivatives
-   - Mistral and Mixtral
-   - Mixture of Experts (MoE)
+    - GPT family (GPT-2, GPT-3, GPT-4)
+    - LLaMA and derivatives
+    - Mistral and Mixtral
+    - Mixture of Experts (MoE)
 
 2. **[3401: Encoder-Decoder Architectures](../phases/phase3-transformers/3400-architectures/3401-Encoder-Decoder-Architectures.md)]** (4 hours)
-   - T5 family
-   - BERT and variants
-   - Sequence-to-sequence models
-   - When to use each
+    - T5 family
+    - BERT and variants
+    - Sequence-to-sequence models
+    - When to use each
 
 **Comparison:**
 ```text
@@ -306,10 +306,10 @@ Encoder-only (BERT):
 ```
 
 3. **[3403: Model Architecture Comparison](../phases/phase3-transformers/3400-architectures/guides/3403-Model-Architecture-Comparison.md)]** (2-3 hours)
-   - Sparse activation
-   - Load balancing
-   - Routing strategies
-   - Mixtral architecture
+    - Sparse activation
+    - Load balancing
+    - Routing strategies
+    - Mixtral architecture
 
 **Checkpoint:** You can choose the right architecture
 

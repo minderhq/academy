@@ -3,7 +3,7 @@ Document ID: 2305
 Title: "2305: Framework Comparison Guide"
 Phase: 2
 Module: 2300
-Last Updated: 2026-10-19
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 1.5 hours
@@ -309,17 +309,17 @@ Read this table as *profiles, not winners*. Transformers wins on ecosystem reach
 Answer these in order:
 
 1. **Are you training a model, or serving an existing one?**
-   - Training → Lightning structures your loop.
-   - Serving a hub model → Transformers is the loading interface; pair it with a real inference server for throughput ([1402: vLLM and TGI High-Concurrency Inference](../../../phase1-infra/1400-llmops/1402-vLLM-and-TGI.md)).
+    - Training → Lightning structures your loop.
+    - Serving a hub model → Transformers is the loading interface; pair it with a real inference server for throughput ([1402: vLLM and TGI High-Concurrency Inference](../../../phase1-infra/1400-llmops/1402-vLLM-and-TGI.md)).
 2. **Is the LLM a component of an application (RAG, agents, tools)?**
-   - Yes → LangChain composes the pieces; the model underneath is still Transformers/`ChatOllama`/whatever you choose.
-   - No → a framework here is overhead; call the model directly.
+    - Yes → LangChain composes the pieces; the model underneath is still Transformers/`ChatOllama`/whatever you choose.
+    - No → a framework here is overhead; call the model directly.
 3. **Is your problem shape standard (text in, text out, standard training)?**
-   - Yes → use the off-the-shelf framework.
-   - No → build custom, but copy the *designs* (registry, config, batching) from 2306 rather than inventing new ones.
+    - Yes → use the off-the-shelf framework.
+    - No → build custom, but copy the *designs* (registry, config, batching) from 2306 rather than inventing new ones.
 4. **Who maintains this in twelve months?**
-   - A team that knows framework X → that is a real criterion; score it deliberately.
-   - Only you, long-term → prefer fewer, larger, slower-moving dependencies.
+    - A team that knows framework X → that is a real criterion; score it deliberately.
+    - Only you, long-term → prefer fewer, larger, slower-moving dependencies.
 
 ## Combining Frameworks
 

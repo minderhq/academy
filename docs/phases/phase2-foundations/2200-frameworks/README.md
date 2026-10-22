@@ -1,7 +1,7 @@
 ---
 Document ID: 2200-FRAMEWORKS-README
 Title: "2200: Deep Learning Frameworks"
-Last Updated: 2026-10-16
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Intermediate
 Prerequisites: [2100]
@@ -131,9 +131,9 @@ Each lesson is written around runnable code — work through the examples, don't
 - **Format:** Hands-on coding exercises
 - **Duration:** 4-6 hours
 - **Topics:**
-  - Build custom autograd functions and inspect graph internals
-  - Enable XLA and measure fusion effects
-  - Profile a small model and attribute time to dispatch, memory, or kernels
+    - Build custom autograd functions and inspect graph internals
+    - Enable XLA and measure fusion effects
+    - Profile a small model and attribute time to dispatch, memory, or kernels
 - **Location:** [2200: Frameworks - Practice](./assessment/PRACTICE.md)
 
 ---

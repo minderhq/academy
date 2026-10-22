@@ -1,7 +1,7 @@
 ---
 Document ID: 7100-PREREQUISITES
 Title: "7100: Agent Architecture - Prerequisites"
-Last Updated: 2026-10-09
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Advanced
 Tags: ['prerequisites', 'agents', 'react']
@@ -69,16 +69,16 @@ Repeat: Until satisfied
 **If you're new to these concepts:**
 
 1. **LLM Fundamentals (45 min):**
-   - [How LLMs Work](https://www.youtube.com/watch?v=zjkBMFhNj_g)
-   - Understand token generation
+    - [How LLMs Work](https://www.youtube.com/watch?v=zjkBMFhNj_g)
+    - Understand token generation
 
 2. **Function Calling (30 min):**
-   - [OpenAI Function Calling](https://developers.openai.com/api/docs/guides/function-calling)
-   - Understand tool use
+    - [OpenAI Function Calling](https://developers.openai.com/api/docs/guides/function-calling)
+    - Understand tool use
 
 3. **Agent Basics (30 min):**
-   - [ReAct: Synergizing Reasoning and Acting](https://arxiv.org/abs/2210.03629)
-   - Read the paper abstract
+    - [ReAct: Synergizing Reasoning and Acting](https://arxiv.org/abs/2210.03629)
+    - Read the paper abstract
 
 ---
 

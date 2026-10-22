@@ -1,7 +1,7 @@
 ---
 Document ID: COMPARISONS-README
 Title: "Technology Comparisons"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Beginner
 Tags: ['comparison', 'frameworks', 'llm']
@@ -339,26 +339,26 @@ graph TD
    ```
 
 2. **Review Comparison Guides**
-   - Read relevant comparison document (CP-001, CP-002)
-   - Check feature matrix for your requirements
-   - Review performance benchmarks
-   - Analyze cost implications
+    - Read relevant comparison document (CP-001, CP-002)
+    - Check feature matrix for your requirements
+    - Review performance benchmarks
+    - Analyze cost implications
 
 3. **Make Decision**
-   - Use decision flowchart
-   - Score options based on your criteria
-   - Choose top 2 candidates
+    - Use decision flowchart
+    - Score options based on your criteria
+    - Choose top 2 candidates
 
 4. **Prototype**
-   - Follow implementation template
-   - Build minimal prototype
-   - Test with real data
-   - Measure performance
+    - Follow implementation template
+    - Build minimal prototype
+    - Test with real data
+    - Measure performance
 
 5. **Validate & Scale**
-   - Compare against requirements
-   - Adjust configuration if needed
-   - Plan for production deployment
+    - Compare against requirements
+    - Adjust configuration if needed
+    - Plan for production deployment
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 Document ID: 4100-PREREQUISITES
 Title: "4100: Low-Bit Quantization - Prerequisites"
-Last Updated: 2026-10-09
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Advanced
 Tags: ['prerequisites', 'quantization', 'gguf']
@@ -66,16 +66,16 @@ FP16: 7,000,000,000 × 2 bytes = 14 GB
 **If you're new to these concepts:**
 
 1. **Neural Network Basics (30 min):**
-   - [3 Minute Neural Network](https://www.youtube.com/watch?v=aircAruvnKk)
-   - Understand layers, weights, activations
+    - [3 Minute Neural Network](https://www.youtube.com/watch?v=aircAruvnKk)
+    - Understand layers, weights, activations
 
 2. **Floating Point Numbers (15 min):**
-   - [IEEE 754 Floating Point](https://www.youtube.com/watch?v=kO-1tMWkU6U)
-   - Understand FP32 vs FP16
+    - [IEEE 754 Floating Point](https://www.youtube.com/watch?v=kO-1tMWkU6U)
+    - Understand FP32 vs FP16
 
 3. **GPU Memory (20 min):**
-   - Read [1501: Monitoring and Observability](../../phase1-infra/1500-monitoring/1501-Monitoring-and-Observability.md)
-   - Understand VRAM, bandwidth, bottlenecks
+    - Read [1501: Monitoring and Observability](../../phase1-infra/1500-monitoring/1501-Monitoring-and-Observability.md)
+    - Understand VRAM, bandwidth, bottlenecks
 
 ---
 

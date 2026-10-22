@@ -52,11 +52,11 @@ Pre-trained models are generalists. This volume teaches you to:
 **Fine-tuning without full retraining**
 
 1. **[5101: LoRA (Low-Rank Adaptation) Logic](../phases/phase5-finetuning/5100-peft/5101-LoRA-Logic.md)]** (4-5 hours)
-   - Parameter-efficient fine-tuning concepts
-   - Low-rank matrix decomposition
-   - Why LoRA works
-   - Rank and alpha parameters
-   - Target module selection
+    - Parameter-efficient fine-tuning concepts
+    - Low-rank matrix decomposition
+    - Why LoRA works
+    - Rank and alpha parameters
+    - Target module selection
 
 **LoRA Concept:**
 ```python
@@ -95,10 +95,10 @@ lora_config = {
 **Build LoRA yourself**
 
 1. **[5104: LoRA Implementation Guide](../phases/phase5-finetuning/5100-peft/guides/5104-LoRA-Implementation-Guide.md)]** (4-5 hours)
-   - Implement LoRA layer from scratch
-   - Integrate with PyTorch modules
-   - Test on simple tasks
-   - Compare with PEFT library
+    - Implement LoRA layer from scratch
+    - Integrate with PyTorch modules
+    - Test on simple tasks
+    - Compare with PEFT library
 
 **Implementation:**
 ```python
@@ -146,11 +146,11 @@ lora_layer = LoRALayer(original_layer, r=16, alpha=32)
 **Train large models on consumer GPUs**
 
 1. **[5102: QLoRA Pipelines](../phases/phase5-finetuning/5100-peft/5102-QLoRA-Pipelines.md)** (4-5 hours)
-   - BitsAndBytes 4-bit loading
-   - QLoRA training setup
-   - Dataset preparation
-   - Training hyperparameters
-   - Evaluation metrics
+    - BitsAndBytes 4-bit loading
+    - QLoRA training setup
+    - Dataset preparation
+    - Training hyperparameters
+    - Evaluation metrics
 
 **QLoRA Configuration:**
 ```python
@@ -210,11 +210,11 @@ trainer.train()
 ```
 
 2. **[LAB-003: LoRA Fine-Tuning](../learning-resources/labs/LAB-003-LoRA-FineTuning.md)** (4 hours)
-   - Complete hands-on lab
-   - Prepare custom dataset
-   - Train with QLoRA
-   - Evaluate and compare
-   - Merge adapters
+    - Complete hands-on lab
+    - Prepare custom dataset
+    - Train with QLoRA
+    - Evaluate and compare
+    - Merge adapters
 
 **Checkpoint:** You can fine-tune with QLoRA
 
@@ -262,11 +262,11 @@ completion = "AI is artificial intelligence..."
 **Align models with human feedback**
 
 1. **[5201: DPO (Direct Preference Optimization) Theory](../phases/phase5-finetuning/5200-alignment/5201-DPO-Theory.md)** (3-4 hours)
-   - RLHF vs DPO
-   - Preference modeling
-   - DPO algorithm
-   - Reward-free optimization
-   - Implementation details
+    - RLHF vs DPO
+    - Preference modeling
+    - DPO algorithm
+    - Reward-free optimization
+    - Implementation details
 
 **DPO vs RLHF:**
 ```python
@@ -314,10 +314,10 @@ dpo_trainer.train()
 ```
 
 2. **[Experiment: DPO](../../experiments/EXP_5201_DPO.md)** (3-4 hours)
-   - Collect preference data
-   - Train with DPO
-   - Compare with SFT
-   - Evaluate alignment
+    - Collect preference data
+    - Train with DPO
+    - Compare with SFT
+    - Evaluate alignment
 
 **Checkpoint:** You understand and can apply DPO
 
@@ -327,11 +327,11 @@ dpo_trainer.train()
 **Putting it all together**
 
 1. **[5202: Alignment Orchestration](../phases/phase5-finetuning/5200-alignment/5202-Alignment-Orchestration.md)]** (3-4 hours)
-   - SFT (Supervised Fine-Tuning)
-   - Reward Modeling
-   - DPO vs RLHF
-   - Multi-stage alignment
-   - Evaluation metrics
+    - SFT (Supervised Fine-Tuning)
+    - Reward Modeling
+    - DPO vs RLHF
+    - Multi-stage alignment
+    - Evaluation metrics
 
 **Alignment Pipeline:**
 ```python
@@ -365,11 +365,11 @@ evaluate_alignment(model, test_set)
 **Train small models using large models**
 
 1. **[5301: Knowledge Distillation](../phases/phase5-finetuning/5300-synthetic/5301-Knowledge-Distillation.md)** (3-4 hours)
-   - Distillation concepts
-   - Teacher-student models
-   - Synthetic data generation
-   - Data quality filtering
-   - Domain adaptation
+    - Distillation concepts
+    - Teacher-student models
+    - Synthetic data generation
+    - Data quality filtering
+    - Domain adaptation
 
 **Distillation Pipeline:**
 ```python
@@ -402,10 +402,10 @@ trainer.train()
 ```
 
 2. **[5302: Distributed Training](../phases/phase5-finetuning/5300-synthetic/5302-Distributed-Training.md)]** (3-4 hours)
-   - Multi-GPU training
-   - FSDP (Fully Sharded Data Parallel)
-   - DeepSpeed integration
-   - Training orchestration
+    - Multi-GPU training
+    - FSDP (Fully Sharded Data Parallel)
+    - DeepSpeed integration
+    - Training orchestration
 
 **Checkpoint:** You can generate and use synthetic data
 

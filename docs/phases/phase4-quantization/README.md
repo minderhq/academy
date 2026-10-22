@@ -258,30 +258,30 @@ Single-page references for the surfaces this phase teaches:
 After completing this phase, you will be able to:
 
 1. **Run Large Models on Consumer Hardware**
-   - Deploy 70B+ parameter models on RTX 3090/4090
-   - Reduce memory footprint by 4-8x
-   - Maintain 92-98% of original accuracy
+    - Deploy 70B+ parameter models on RTX 3090/4090
+    - Reduce memory footprint by 4-8x
+    - Maintain 92-98% of original accuracy
 
 2. **Choose the Right Quantization Format**
-   - GGUF for CPU/GPU hybrid systems
-   - EXL2 for maximum GPU performance
-   - AWQ for balanced accuracy and speed
+    - GGUF for CPU/GPU hybrid systems
+    - EXL2 for maximum GPU performance
+    - AWQ for balanced accuracy and speed
 
 3. **Extend Context Windows**
-   - Apply KV cache quantization
-   - Implement speculative decoding
-   - Use PagedAttention for long sequences
-   - Manage the cache with block tables, prefix caching, and token budgets
+    - Apply KV cache quantization
+    - Implement speculative decoding
+    - Use PagedAttention for long sequences
+    - Manage the cache with block tables, prefix caching, and token budgets
 
 4. **Train Quantized Models**
-   - Implement quantization-aware training
-   - Apply layer-wise quantization
-   - Deploy QAT models to production
+    - Implement quantization-aware training
+    - Apply layer-wise quantization
+    - Deploy QAT models to production
 
 5. **Push to Extreme Quantization**
-   - Apply sparsity + quantization for 10x compression
-   - Experiment with 1.58-bit quantization
-   - Explore ternary and binary networks
+    - Apply sparsity + quantization for 10x compression
+    - Experiment with 1.58-bit quantization
+    - Explore ternary and binary networks
 
 ---
 
@@ -471,29 +471,29 @@ models:
 ### Hands-on Practice
 
 1. **[EXP_4101: GGUF](../../../experiments/EXP_4101_GGUF.md)**
-   - Convert Llama 3.1 to GGUF format
-   - Benchmark GGUF vs FP16
-   - Optimize GGUF settings
+    - Convert Llama 3.1 to GGUF format
+    - Benchmark GGUF vs FP16
+    - Optimize GGUF settings
 
 2. **[EXP_4102: EXL2/AWQ](../../../experiments/EXP_4102_EXL2_AWQ.md)**
-   - Apply EXL2 quantization
-   - Compare EXL2 vs AWQ accuracy
-   - Optimize calibration datasets
+    - Apply EXL2 quantization
+    - Compare EXL2 vs AWQ accuracy
+    - Optimize calibration datasets
 
 3. **[EXP_4201: Context Window](../../../experiments/EXP_4201_CONTEXT_WINDOW.md)**
-   - Extend context to 128k
-   - Implement KV cache quantization
-   - Benchmark memory usage
+    - Extend context to 128k
+    - Implement KV cache quantization
+    - Benchmark memory usage
 
 4. **[EXP_4202: Speculative Decoding](../../../experiments/EXP_4202_SPECULATIVE_DECODING.md)**
-   - Implement speculative decoding
-   - Benchmark speed improvements
-   - Tune draft model quality
+    - Implement speculative decoding
+    - Benchmark speed improvements
+    - Tune draft model quality
 
 5. **[4204: KV-Cache Paging and Prefix Caching](./4200-kv-cache/4204-KV-Cache-Paging-and-Prefix-Caching.md)**
-   - Price contiguous versus paged reservation on eight concurrent sequences
-   - Trace a block table across appends into a fourth physical block
-   - Chunk a 2,048-token prefill under a 512-token iteration budget
+    - Price contiguous versus paged reservation on eight concurrent sequences
+    - Trace a block table across appends into a fourth physical block
+    - Chunk a 2,048-token prefill under a 512-token iteration budget
 
 ---
 
@@ -534,14 +534,14 @@ Validate your knowledge with:
 After completing this phase:
 
 1. **Apply to Your Projects**
-   - Quantize your fine-tuned models
-   - Deploy to production with optimized formats
-   - Monitor accuracy and performance
+    - Quantize your fine-tuned models
+    - Deploy to production with optimized formats
+    - Monitor accuracy and performance
 
 2. **Continue Learning**
-   - **Phase 5:** Fine-tune quantized models
-   - **Phase 6:** Build RAG systems
-   - **Phase 7:** Create agentic AI systems
+    - **Phase 5:** Fine-tune quantized models
+    - **Phase 6:** Build RAG systems
+    - **Phase 7:** Create agentic AI systems
 
 ---
 

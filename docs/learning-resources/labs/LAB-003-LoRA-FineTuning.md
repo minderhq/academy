@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-003
 Title: "LAB-003: LoRA Fine-Tuning with QLoRA"
-Last Updated: 2026-10-15
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -649,19 +649,19 @@ Starting training...
 ### Training tips:
 
 1. **VRAM Management:**
-   - Use `MAX_SEQ_LENGTH=512` for 11GB VRAM
-   - Reduce `BATCH_SIZE` if OOM
-   - Increase `GRADIENT_ACCUMULATION_STEPS` to maintain effective batch size
+    - Use `MAX_SEQ_LENGTH=512` for 11GB VRAM
+    - Reduce `BATCH_SIZE` if OOM
+    - Increase `GRADIENT_ACCUMULATION_STEPS` to maintain effective batch size
 
 2. **Speed:**
-   - QLoRA on an 11GB-class GPU: ~1-2 samples/sec
-   - 10 samples × 3 epochs ≈ 15-30 seconds
-   - Real datasets (1000+ samples): several hours
+    - QLoRA on an 11GB-class GPU: ~1-2 samples/sec
+    - 10 samples × 3 epochs ≈ 15-30 seconds
+    - Real datasets (1000+ samples): several hours
 
 3. **Monitoring:**
-   - Loss should decrease steadily
-   - Watch for gradient explosions (grad_norm > 10)
-   - Check for overfitting on small datasets
+    - Loss should decrease steadily
+    - Watch for gradient explosions (grad_norm > 10)
+    - Check for overfitting on small datasets
 
 ### Checkpoint: Exercise 4
 **Verify:** Training completes, model checkpoint saved

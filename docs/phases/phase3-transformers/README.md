@@ -395,34 +395,34 @@ Single-page references for the surfaces this phase teaches:
 After completing this phase, you will be able to:
 
 1. **Implement Self-Attention from Scratch**
-   - Understand scaled dot-product attention
-   - Build multi-head attention mechanisms
-   - Apply causal masking for generation
-   - Optimize with KV cache
+    - Understand scaled dot-product attention
+    - Build multi-head attention mechanisms
+    - Apply causal masking for generation
+    - Optimize with KV cache
 
 2. **Optimize Memory Usage**
-   - Implement Flash Attention
-   - Use tiling strategies
-   - Apply IO-aware algorithms
-   - Reduce memory from O(N²) to O(N)
+    - Implement Flash Attention
+    - Use tiling strategies
+    - Apply IO-aware algorithms
+    - Reduce memory from O(N²) to O(N)
 
 3. **Master Positional Embeddings**
-   - Implement RoPE (state-of-the-art)
-   - Compare absolute vs relative encoding
-   - Apply ALiBi for extrapolation
-   - Extend context windows
+    - Implement RoPE (state-of-the-art)
+    - Compare absolute vs relative encoding
+    - Apply ALiBi for extrapolation
+    - Extend context windows
 
 4. **Choose Right Tokenization**
-   - Compare BPE, SentencePiece, TikToken
-   - Analyze vocabulary efficiency
-   - Optimize for specific domains
-   - Handle multilingual text
+    - Compare BPE, SentencePiece, TikToken
+    - Analyze vocabulary efficiency
+    - Optimize for specific domains
+    - Handle multilingual text
 
 5. **Select Architecture for Task**
-   - Decoder-only for generation
-   - Encoder-decoder for translation
-   - Encoder-only for understanding
-   - Mixture of Experts for scale
+    - Decoder-only for generation
+    - Encoder-decoder for translation
+    - Encoder-only for understanding
+    - Mixture of Experts for scale
 
 ---
 
@@ -732,37 +732,37 @@ def profile_model(model, input_ids):
 ### Hands-on Practice
 
 1. **[EXP_3101: Self-Attention](../../../experiments/EXP_3101_SELF_ATTENTION.md)**
-   - Implement attention from scratch
-   - Visualize attention patterns
-   - Benchmark multi-head configurations
+    - Implement attention from scratch
+    - Visualize attention patterns
+    - Benchmark multi-head configurations
 
 2. **[EXP_3102: Flash Attention](../../../experiments/EXP_3102_FLASH_ATTENTION.md)**
-   - Compare standard vs flash attention
-   - Profile memory usage
-   - Benchmark inference speed
-   - Test on long sequences
+    - Compare standard vs flash attention
+    - Profile memory usage
+    - Benchmark inference speed
+    - Test on long sequences
 
 3. **[EXP_3201: RoPE](../../../experiments/EXP_3201_ROPE.md)**
-   - Implement RoPE from scratch
-   - Compare absolute vs relative
-   - Visualize rotation matrices
-   - Test position encoding
+    - Implement RoPE from scratch
+    - Compare absolute vs relative
+    - Visualize rotation matrices
+    - Test position encoding
 
 4. **[EXP_3202: Tokenizer](../../../experiments/EXP_3202_TOKENIZER.md)**
-   - Compare BPE vs SentencePiece
-   - Analyze token distributions
-   - Test on different languages
-   - Measure compression ratio
+    - Compare BPE vs SentencePiece
+    - Analyze token distributions
+    - Test on different languages
+    - Measure compression ratio
 
 5. **[EXP_3401: Encoder-Decoder](../../../experiments/EXP_3401_ENCODER_DECODER.md)**
-   - Compare architecture types
-   - Benchmark performance
-   - Analyze use cases
+    - Compare architecture types
+    - Benchmark performance
+    - Analyze use cases
 
 6. **[EXP_3501: Multimodal RAG](../../../experiments/EXP_3501_MULTIMODAL_RAG.md)**
-   - Build CLIP-style image-text search
-   - Construct multimodal RAG pipelines
-   - Apply VLMs to real-world tasks
+    - Build CLIP-style image-text search
+    - Construct multimodal RAG pipelines
+    - Apply VLMs to real-world tasks
 
 ---
 
@@ -804,16 +804,16 @@ Validate your knowledge with:
 After completing this phase:
 
 1. **Apply to Your Projects**
-   - Implement custom attention mechanisms
-   - Optimize memory usage with Flash Attention
-   - Choose right tokenizer for your domain
-   - Select appropriate architecture
+    - Implement custom attention mechanisms
+    - Optimize memory usage with Flash Attention
+    - Choose right tokenizer for your domain
+    - Select appropriate architecture
 
 2. **Continue Learning**
-   - **Phase 4:** Quantize models for deployment
-   - **Phase 5:** Fine-tune models for your tasks
-   - **Phase 6:** Build RAG systems
-   - **Phase 7:** Create agentic AI systems
+    - **Phase 4:** Quantize models for deployment
+    - **Phase 5:** Fine-tune models for your tasks
+    - **Phase 6:** Build RAG systems
+    - **Phase 7:** Create agentic AI systems
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 Document ID: 3100-PREREQUISITES
 Title: "3100: Attention Architectures - Prerequisites"
-Last Updated: 2026-10-09
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Advanced
 Tags: ['prerequisites', 'transformers', 'attention']
@@ -72,16 +72,16 @@ Attention mechanism learns: "it" → "animal" (not "street")
 **If you're new to these concepts:**
 
 1. **Sequence Models (45 min):**
-   - [Understanding LSTM Networks](https://colah.github.io/posts/2015-08-Understanding-LSTMs/)
-   - Understand RNN limitations
+    - [Understanding LSTM Networks](https://colah.github.io/posts/2015-08-Understanding-LSTMs/)
+    - Understand RNN limitations
 
 2. **Word Embeddings (30 min):**
-   - [Word2Vec](https://www.tensorflow.org/text/tutorials/word2vec)
-   - Understand semantic meaning in vectors
+    - [Word2Vec](https://www.tensorflow.org/text/tutorials/word2vec)
+    - Understand semantic meaning in vectors
 
 3. **Matrix Multiplication (15 min):**
-   - Review: [3201-Rotary-Positional-Embeddings-RoPE.md](../3200-embeddings/3201-Rotary-Positional-Embeddings-RoPE.md)
-   - Understand dot product similarity
+    - Review: [3201-Rotary-Positional-Embeddings-RoPE.md](../3200-embeddings/3201-Rotary-Positional-Embeddings-RoPE.md)
+    - Understand dot product similarity
 
 ---
 

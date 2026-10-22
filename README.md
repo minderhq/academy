@@ -1,7 +1,7 @@
 ---
 Document ID: README
 Title: "Minder Academy"
-Last Updated: 2026-10-16
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Beginner
 ---
@@ -116,40 +116,40 @@ A structured curriculum taking you from foundations to production mastery. Each 
 After completing Minder Academy, you will be able to:
 
 1. **Build Production AI Infrastructure**
-   - Design a network that sustains AI workloads
-   - Configure GPU passthrough on Proxmox
-   - Set up a K3s Kubernetes cluster
-   - Implement monitoring (Prometheus, Grafana)
+    - Design a network that sustains AI workloads
+    - Configure GPU passthrough on Proxmox
+    - Set up a K3s Kubernetes cluster
+    - Implement monitoring (Prometheus, Grafana)
 
 2. **Understand LLM Internals**
-   - Implement self-attention from scratch
-   - Master Flash Attention for memory optimization
-   - Work with RoPE positional embeddings
-   - Compare tokenization strategies
+    - Implement self-attention from scratch
+    - Master Flash Attention for memory optimization
+    - Work with RoPE positional embeddings
+    - Compare tokenization strategies
 
 3. **Optimize Model Performance**
-   - Apply quantization (GGUF, EXL2, AWQ)
-   - Extend context windows
-   - Implement speculative decoding
-   - Profile and benchmark models
+    - Apply quantization (GGUF, EXL2, AWQ)
+    - Extend context windows
+    - Implement speculative decoding
+    - Profile and benchmark models
 
 4. **Fine-Tune Custom Models**
-   - Train with LoRA and QLoRA
-   - Apply DPO for alignment
-   - Generate synthetic data
-   - Use distributed training
+    - Train with LoRA and QLoRA
+    - Apply DPO for alignment
+    - Generate synthetic data
+    - Use distributed training
 
 5. **Build RAG Systems**
-   - Deploy vector databases (Qdrant)
-   - Implement hybrid search
-   - Build knowledge graphs (Neo4j)
-   - Create GraphRAG systems
+    - Deploy vector databases (Qdrant)
+    - Implement hybrid search
+    - Build knowledge graphs (Neo4j)
+    - Create GraphRAG systems
 
 6. **Create AI Agents**
-   - Implement ReAct pattern
-   - Build multi-agent systems
-   - Add memory and tools
-   - Secure against prompt injection
+    - Implement ReAct pattern
+    - Build multi-agent systems
+    - Add memory and tools
+    - Secure against prompt injection
 
 ---
 

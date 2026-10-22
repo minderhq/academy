@@ -51,11 +51,11 @@ This volume is **critical for HomeLab enthusiasts** with limited VRAM. You'll le
 **The most accessible quantization format**
 
 1. **[4101: GGUF Physics](../phases/phase4-quantization/4100-low-bit/4101-GGUF-Physics.md)** (3-4 hours)
-   - GGUF format explanation
-   - Quantization levels (Q8_0, Q5_K_M, Q4_K_M, Q3_K, etc.)
-   - CPU/GPU hybrid offloading
-   - TB3 bus optimization
-   - llama.cpp integration
+    - GGUF format explanation
+    - Quantization levels (Q8_0, Q5_K_M, Q4_K_M, Q3_K, etc.)
+    - CPU/GPU hybrid offloading
+    - TB3 bus optimization
+    - llama.cpp integration
 
 **Key Concept:**
 ```text
@@ -93,11 +93,11 @@ cd llama.cpp
 **Extreme quantization for VRAM-only execution**
 
 1. **[4102: EXL2 and AWQ](../phases/phase4-quantization/4100-low-bit/4102-EXL2-and-AWQ.md)** (3-4 hours)
-   - EXL2 format (exllamav2)
-   - AWQ (Activation-aware Weight Quantization)
-   - VRAM-only execution
-   - Speed comparison
-   - Quality benchmarks
+    - EXL2 format (exllamav2)
+    - AWQ (Activation-aware Weight Quantization)
+    - VRAM-only execution
+    - Speed comparison
+    - Quality benchmarks
 
 **EXL2 Advantages:**
 ```text
@@ -149,11 +149,11 @@ text = generator.generate(
 **4-bit quantization for fine-tuning**
 
 1. **[4103: Double Quantization](../phases/phase4-quantization/4100-low-bit/4103-Double-Quantization.md)** (3-4 hours)
-   - BitsAndBytes (bnb) library
-   - 4-bit quantization types (NF4, FP4)
-   - Double quantization concept
-   - Quantization-aware training
-   - QLoRA integration
+    - BitsAndBytes (bnb) library
+    - 4-bit quantization types (NF4, FP4)
+    - Double quantization concept
+    - Quantization-aware training
+    - QLoRA integration
 
 **Double Quantization:**
 ```python
@@ -202,11 +202,11 @@ Benefit: Saves ~0.5GB per 7B model
 **Dealing with OOM in long sequences**
 
 1. **[4201: Context Window Physics](../phases/phase4-quantization/4200-kv-cache/4201-Context-Window-Physics.md)** (3-4 hours)
-   - KV cache memory analysis
-   - Context window size vs memory
-   - Sliding window attention
-   - Memory optimization strategies
-   - Long context techniques
+    - KV cache memory analysis
+    - Context window size vs memory
+    - Sliding window attention
+    - Memory optimization strategies
+    - Long context techniques
 
 **KV Cache Memory:**
 ```python
@@ -239,10 +239,10 @@ summarize older context
 ```
 
 2. **[4203: Context Window Optimization](../phases/phase4-quantization/4200-kv-cache/guides/4203-Context-Window-Optimization.md)]** (5-6 hours)
-   - Complete optimization guide
-   - Sliding window implementation
-   - KV cache quantization
-   - Memory-efficient attention
+    - Complete optimization guide
+    - Sliding window implementation
+    - KV cache quantization
+    - Memory-efficient attention
 
 **Checkpoint:** You can optimize for long contexts
 
@@ -252,11 +252,11 @@ summarize older context
 **Accelerate generation with draft models**
 
 1. **[4202: Speculative Decoding](../phases/phase4-quantization/4200-kv-cache/4202-Speculative-Decoding.md)** (3-4 hours)
-   - Speculative decoding concept
-   - Draft model strategies
-   - Verification process
-   - Speed benchmarks
-   - Implementation details
+    - Speculative decoding concept
+    - Draft model strategies
+    - Verification process
+    - Speed benchmarks
+    - Implementation details
 
 **How It Works:**
 ```python
@@ -293,10 +293,10 @@ outputs = llm.generate(["Hello, world!"])
 ```
 
 2. **[Experiment: Speculative Decoding](../../experiments/EXP_4202_SPECULATIVE_DECODING.md)** (2-3 hours)
-   - Benchmark speculative vs normal
-   - Test different draft models
-   - Analyze acceptance rates
-   - Optimize K value
+    - Benchmark speculative vs normal
+    - Test different draft models
+    - Analyze acceptance rates
+    - Optimize K value
 
 **Checkpoint:** You understand speculative decoding
 
@@ -308,18 +308,18 @@ outputs = llm.generate(["Hello, world!"])
 **High-concurrency inference engine**
 
 1. **[1402: vLLM and TGI](../phases/phase1-infra/1400-llmops/1402-vLLM-and-TGI.md)]** (3-4 hours)
-   - vLLM architecture
-   - PagedAttention
-   - KV cache sharding
-   - Continuous batching
-   - Performance comparison
+    - vLLM architecture
+    - PagedAttention
+    - KV cache sharding
+    - Continuous batching
+    - Performance comparison
 
 2. **[1403: vLLM Production Deployment](../phases/phase1-infra/1400-llmops/guides/1403-vLLM-Production-Deployment.md)]** (4-5 hours)
-   - Production setup
-   - Docker deployment
-   - Kubernetes configuration
-   - Monitoring integration
-   - Scaling strategies
+    - Production setup
+    - Docker deployment
+    - Kubernetes configuration
+    - Monitoring integration
+    - Scaling strategies
 
 **vLLM Key Features:**
 ```python
@@ -362,11 +362,11 @@ docker run --gpus all \
 **Text Generation Inference by Hugging Face**
 
 1. **[1404: TGI Deployment Guide](../phases/phase1-infra/1400-llmops/guides/1404-TGI-Deployment-Guide.md)]** (5-6 hours)
-   - TGI architecture
-   - Deployment strategies
-   - Flash Attention integration
-   - Quantization support
-   - Performance tuning
+    - TGI architecture
+    - Deployment strategies
+    - Flash Attention integration
+    - Quantization support
+    - Performance tuning
 
 **TGI vs vLLM:**
 ```text

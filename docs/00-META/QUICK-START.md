@@ -1,7 +1,7 @@
 ---
 Document ID: QUICK-START
 Title: "QUICK START GUIDE: Get Started in 30 Minutes"
-Last Updated: 2026-10-14
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Beginner
 Tags: ['quickstart', 'tutorial', 'llm']
@@ -289,35 +289,35 @@ You're now ready for the full learning journey!
 ### Immediate Next Steps (Recommended Order)
 
 1. **[TUTORIAL-001: Hello LLM](../learning-resources/tutorials/TUTORIAL-001-Hello-LLM.md)** (30 min)
-   - Deeper dive into Ollama
-   - More model features
-   - Prompt engineering basics
+    - Deeper dive into Ollama
+    - More model features
+    - Prompt engineering basics
 
 2. **[TUTORIAL-002: Docker Essentials](../learning-resources/tutorials/TUTORIAL-002-Docker-Essentials.md)** (45 min)
-   - Containerize your AI
-   - Run multiple models
-   - Production basics
+    - Containerize your AI
+    - Run multiple models
+    - Production basics
 
 3. **[LAB-001: Docker & LLM](../learning-resources/labs/LAB-001-Docker-LLM.md)** (2 hours)
-   - Hands-on practice
-   - Build an AI API server
-   - Add chat interface
+    - Hands-on practice
+    - Build an AI API server
+    - Add chat interface
 
 ### After These Tutorials
 
 4. **[TUTORIAL-003: RAG Basics](../learning-resources/tutorials/TUTORIAL-003-RAG-Basics.md)** (1 hour)
-   - Add your own knowledge
-   - Build a smart assistant
+    - Add your own knowledge
+    - Build a smart assistant
 
 5. **[LAB-002: RAG Implementation](../learning-resources/labs/LAB-002-RAG-Implementation.md)** (3 hours)
-   - Deploy vector database
-   - Create knowledge base
-   - Build RAG pipeline
+    - Deploy vector database
+    - Create knowledge base
+    - Build RAG pipeline
 
 6. **[LAB-003: LoRA Fine-Tuning](../learning-resources/labs/LAB-003-LoRA-FineTuning.md)** (4 hours)
-   - Customize models
-   - Train on your data
-   - Deploy custom models
+    - Customize models
+    - Train on your data
+    - Deploy custom models
 
 ---
 

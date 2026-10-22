@@ -1,7 +1,7 @@
 ---
 Document ID: 2100-CALCULUS-README
 Title: "2100: Calculus for Deep Learning"
-Last Updated: 2026-10-16
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Intermediate
 Prerequisites: []
@@ -136,9 +136,9 @@ Each lesson is written around runnable code — work through the examples, don't
 - **Format:** Hands-on coding exercises
 - **Duration:** 2-3 hours
 - **Topics:**
-  - Compute derivatives analytically and with autograd
-  - Run gradient descent in 1D and 2D
-  - Apply the chain rule to composite functions
+    - Compute derivatives analytically and with autograd
+    - Run gradient descent in 1D and 2D
+    - Apply the chain rule to composite functions
 - **Location:** [2100: Calculus - Practice](./assessment/PRACTICE.md)
 
 ---

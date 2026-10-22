@@ -1,7 +1,7 @@
 ---
 Document ID: RESOURCES
 Title: "Minder Academy Resources"
-Last Updated: 2026-10-07
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Beginner
 Tags: ['reference', 'llm', 'production']
@@ -50,16 +50,16 @@ Tags: ['reference', 'llm', 'production']
 
 ### AI/ML Foundations
 1. **"Deep Learning"** by Ian Goodfellow, Yoshua Bengio, Aaron Courville
-   - Free online: [www.deeplearningbook.org](https://www.deeplearningbook.org/)
+    - Free online: [www.deeplearningbook.org](https://www.deeplearningbook.org/)
 
 2. **"Hands-On Machine Learning"** by Aurélien Géron
-   - Practical ML with Scikit-Learn, Keras, and TensorFlow
+    - Practical ML with Scikit-Learn, Keras, and TensorFlow
 
 3. **"Python Machine Learning"** by Sebastian Raschka and Vahid Mirjalili
 
 ### LLMs & Transformers
 4. **"Natural Language Processing with Transformers"** by Lewis Tunstall, Leandro von Werra, Thomas Wolf
-   - [Companion code & notebooks](https://github.com/nlp-with-transformers)
+    - [Companion code & notebooks](https://github.com/nlp-with-transformers)
 
 5. **"Transformers for Natural Language Processing"** by Denis Rothman
 
@@ -145,9 +145,9 @@ Tags: ['reference', 'llm', 'production']
 - **[r/LocalLLaMA](https://www.reddit.com/r/LocalLLaMA/)** - Local LLM community
 - **[r/MachineLearning](https://www.reddit.com/r/MachineLearning/)** - ML research discussion
 - **[Discord Servers]**:
-  - Hugging Face
-  - LangChain
-  - Modal (for deployment)
+    - Hugging Face
+    - LangChain
+    - Modal (for deployment)
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 Document ID: ORGANIZATION-GUIDE
 Title: "Minder Academy Organization Guide"
-Last Updated: 2026-10-14
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Beginner
 Tags: ['maintenance', 'navigation']
@@ -12,7 +12,7 @@ Tags: ['maintenance', 'navigation']
 
 **Version:** 4.2
 
-**Last Updated:** 2026-10-14
+**Last Updated:** 2026-10-22
 
 **Purpose:** Guide for understanding and maintaining the Minder Academy documentation structure
 
@@ -424,30 +424,30 @@ After this tutorial, you will:
 Every document must include:
 
 1. **Header Section**
-   - Title with ID (if applicable)
-   - Overview/Description
-   - Duration (for tutorials/labs)
-   - Difficulty level
-   - Prerequisites
+    - Title with ID (if applicable)
+    - Overview/Description
+    - Duration (for tutorials/labs)
+    - Difficulty level
+    - Prerequisites
 
 2. **Learning Objectives**
-   - Clear, measurable goals
-   - 3-5 objectives per document
+    - Clear, measurable goals
+    - 3-5 objectives per document
 
 3. **Structure**
-   - Table of Contents (for long docs)
-   - Numbered sections
-   - Code examples with syntax highlighting
-   - Diagrams where appropriate
+    - Table of Contents (for long docs)
+    - Numbered sections
+    - Code examples with syntax highlighting
+    - Diagrams where appropriate
 
 4. **Navigation**
-   - Links to related content
-   - Next steps/continuation links
-   - Back to parent/index
+    - Links to related content
+    - Next steps/continuation links
+    - Back to parent/index
 
 5. **Metadata** (YAML front matter - see Front Matter Standard below)
-   - Document ID, Title, Last Updated (ISO `YYYY-MM-DD`)
-   - Status, Difficulty, Tags (canonical quoted-list syntax)
+    - Document ID, Title, Last Updated (ISO `YYYY-MM-DD`)
+    - Status, Difficulty, Tags (canonical quoted-list syntax)
 
 ### Front Matter Standard
 
@@ -491,61 +491,61 @@ content actually changed.
 ### Adding New Content
 
 1. **Determine document type**
-   - Module documentation → `phases/phasex/modules/`
-   - Tutorial → `learning-resources/tutorials/`
-   - Lab → `learning-resources/labs/`
-   - Reference → `00-META/`
+    - Module documentation → `phases/phasex/modules/`
+    - Tutorial → `learning-resources/tutorials/`
+    - Lab → `learning-resources/labs/`
+    - Reference → `00-META/`
 
 2. **Follow naming conventions**
-   - Use established numbering system
-   - Follow file naming standards
+    - Use established numbering system
+    - Follow file naming standards
 
 3. **Use templates**
-   - Select appropriate template
-   - Fill in all required sections
+    - Select appropriate template
+    - Fill in all required sections
 
 4. **Add cross-references**
-   - Link from parent documents
-   - Link to related content
-   - Update index files
+    - Link from parent documents
+    - Link to related content
+    - Update index files
 
 5. **Update metadata**
-   - Add to SITEMAP.md
-   - Update file counts
-   - Update MASTER-INDEX.md
+    - Add to SITEMAP.md
+    - Update file counts
+    - Update MASTER-INDEX.md
 
 ### Updating Existing Content
 
 1. **Check dependencies**
-   - What links to this document?
-   - What documents does this link to?
+    - What links to this document?
+    - What documents does this link to?
 
 2. **Make changes**
-   - Edit content
-   - Update cross-references if needed
+    - Edit content
+    - Update cross-references if needed
 
 3. **Update metadata**
-   - Update "Last Updated" date
-   - Update version if major changes
+    - Update "Last Updated" date
+    - Update version if major changes
 
 4. **Test links**
-   - Verify all internal links work
-   - Verify all external links work
+    - Verify all internal links work
+    - Verify all external links work
 
 ### Removing Content
 
 1. **Check dependencies**
-   - Find all inbound links
-   - Update or remove references
+    - Find all inbound links
+    - Update or remove references
 
 2. **Archive if needed**
-   - Move to `archive/` directory
-   - Add deprecation notice
+    - Move to `archive/` directory
+    - Add deprecation notice
 
 3. **Update indexes**
-   - Remove from SITEMAP.md
-   - Update MASTER-INDEX.md
-   - Update file counts
+    - Remove from SITEMAP.md
+    - Update MASTER-INDEX.md
+    - Update file counts
 
 ---
 

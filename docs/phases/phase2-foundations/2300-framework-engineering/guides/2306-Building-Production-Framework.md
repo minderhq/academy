@@ -3,7 +3,7 @@ Document ID: 2306
 Title: "2306: Building a Production Framework"
 Phase: 2
 Module: 2300
-Last Updated: 2026-10-17
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -26,9 +26,9 @@ Tags: ['production-framework', 'plugin-architecture', 'configuration', 'dynamic-
 - [Abstract](#abstract)
 - [Project Overview](#project-overview)
 - [Step 1: Core Framework Components](#step-1-core-framework-components)
-  - [1.1 Configuration Management](#11-configuration-management)
-  - [1.2 The Component Registry](#12-the-component-registry)
-  - [1.3 Using the Plugin Registry](#13-using-the-plugin-registry)
+    - [1.1 Configuration Management](#11-configuration-management)
+    - [1.2 The Component Registry](#12-the-component-registry)
+    - [1.3 Using the Plugin Registry](#13-using-the-plugin-registry)
 - [Step 2: Model Implementations](#step-2-model-implementations)
 - [Step 3: Serving Layer](#step-3-serving-layer)
 - [Step 4: Containerization](#step-4-containerization)

@@ -1,7 +1,7 @@
 ---
 Document ID: IND-002
 Title: "IND-002: Finance AI Applications"
-Last Updated: 2026-10-14
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Intermediate
 Tags: ['industry', 'finance', 'llm']
@@ -14,10 +14,10 @@ Tags: ['industry', 'finance', 'llm']
 - [Overview](#overview)
 - [Finance AI Landscape](#part-1-finance-ai-landscape)
 - [Use Cases](#part-2-real-world-finance-use-cases)
-  - [Financial Document Analysis](#use-case-1-financial-document-analysis)
-  - [Fraud Detection](#use-case-2-fraud-detection-system)
-  - [Report Generation](#use-case-3-automated-financial-report-generation)
-  - [Regulatory Compliance](#use-case-4-regulatory-compliance-checker)
+    - [Financial Document Analysis](#use-case-1-financial-document-analysis)
+    - [Fraud Detection](#use-case-2-fraud-detection-system)
+    - [Report Generation](#use-case-3-automated-financial-report-generation)
+    - [Regulatory Compliance](#use-case-4-regulatory-compliance-checker)
 - [Implementation Considerations](#part-3-finance-ai-implementation-considerations)
 - [Performance Benchmarks](#performance-benchmarks)
 - [Common Pitfalls](#common-pitfalls)

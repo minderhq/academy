@@ -1,7 +1,7 @@
 ---
 Document ID: 7400-MEMORY-README
 Title: "7400: Agent Memory Systems"
-Last Updated: 2026-10-15
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
@@ -114,10 +114,10 @@ Before starting this module, ensure you have:
 - **Format:** Memory system projects
 - **Duration:** 6 hours
 - **Topics:**
-  - Implement multi-tier memory
-  - Build memory retrieval system
-  - Create personalization
-  - Optimize memory performance
+    - Implement multi-tier memory
+    - Build memory retrieval system
+    - Create personalization
+    - Optimize memory performance
 - **Location:** [7400: Agent Memory Systems - Practice](./assessment/PRACTICE.md)
 
 ## Related Modules

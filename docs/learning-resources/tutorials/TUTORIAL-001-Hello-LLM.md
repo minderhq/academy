@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-001
 Title: "TUTORIAL-001: Hello LLM! - Your First AI Model"
-Last Updated: 2026-10-15
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 30 minutes
@@ -339,17 +339,17 @@ You've just:
 Test your understanding:
 
 1. **What does LLM stand for?**
-   - Large Language Model
+    - Large Language Model
 
 2. **What is a prompt?**
-   - The input text you give to the LLM
+    - The input text you give to the LLM
 
 3. **Why is specificity important in prompts?**
-   - Clear, specific prompts get better, more accurate responses
+    - Clear, specific prompts get better, more accurate responses
 
 4. **What's the difference between `ollama run` and `ollama serve`?**
-   - `run` = interactive chat
-   - `serve` = API server
+    - `run` = interactive chat
+    - `serve` = API server
 
 ---
 

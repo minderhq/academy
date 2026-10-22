@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE7-PRACTICE
 Title: "Phase 7: Agentic Systems - Practice Exercises"
-Last Updated: 2026-10-13
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Advanced
 Tags: ['assessment', 'practice', 'agents']
@@ -37,15 +37,15 @@ Implement a basic ReAct (Reasoning + Acting) loop from scratch.
 ### Requirements
 
 1. Create a `ReActAgent` class with:
-   - `think()`: Generate reasoning thoughts
-   - `act()`: Execute actions
-   - `observe()`: Process observations
-   - `run()`: Main loop controller
+    - `think()`: Generate reasoning thoughts
+    - `act()`: Execute actions
+    - `observe()`: Process observations
+    - `run()`: Main loop controller
 
 2. Support these action types:
-   - `SEARCH`: Look up information
-   - `CALCULATE`: Perform calculations
-   - `FINISH`: Return final answer
+    - `SEARCH`: Look up information
+    - `CALCULATE`: Perform calculations
+    - `FINISH`: Return final answer
 
 3. Use an LLM for thought generation
 
@@ -185,17 +185,17 @@ Implement a robust tool registry with validation, error handling, and permission
 ### Requirements
 
 1. Create a `ToolRegistry` class with:
-   - Tool registration with metadata
-   - Input validation
-   - Permission checking
-   - Execution monitoring
-   - Error recovery
+    - Tool registration with metadata
+    - Input validation
+    - Permission checking
+    - Execution monitoring
+    - Error recovery
 
 2. Support tool features:
-   - Schema validation
-   - Rate limiting
-   - Timeout handling
-   - Logging
+    - Schema validation
+    - Rate limiting
+    - Timeout handling
+    - Logging
 
 ### Solution Template
 
@@ -346,16 +346,16 @@ Implement a multi-agent system with specialized agents and coordination.
 ### Requirements
 
 1. Create specialized agent types:
-   - `ResearchAgent`: Information gathering
-   - `AnalysisAgent`: Data analysis
-   - `WriterAgent`: Content generation
-   - `CoordinatorAgent`: Orchestrates others
+    - `ResearchAgent`: Information gathering
+    - `AnalysisAgent`: Data analysis
+    - `WriterAgent`: Content generation
+    - `CoordinatorAgent`: Orchestrates others
 
 2. Implement communication patterns:
-   - Message passing
-   - Task delegation
-   - Result aggregation
-   - Conflict resolution
+    - Message passing
+    - Task delegation
+    - Result aggregation
+    - Conflict resolution
 
 ### Solution Template
 
@@ -503,15 +503,15 @@ Implement a hierarchical memory system for agents with short-term, working, and 
 ### Requirements
 
 1. Create memory types:
-   - **Short-term**: Recent conversations (episodic)
-   - **Working**: Current task context
-   - **Long-term**: Persistent knowledge (semantic)
+    - **Short-term**: Recent conversations (episodic)
+    - **Working**: Current task context
+    - **Long-term**: Persistent knowledge (semantic)
 
 2. Implement memory operations:
-   - Store: Add information to memory
-   - Retrieve: Search memory by relevance
-   - Consolidate: Move short-term to long-term
-   - Forget: Prune irrelevant memories
+    - Store: Add information to memory
+    - Retrieve: Search memory by relevance
+    - Consolidate: Move short-term to long-term
+    - Forget: Prune irrelevant memories
 
 3. Use vector embeddings for semantic search
 
@@ -682,22 +682,22 @@ Implement a secure, sandboxed code execution environment for agents.
 ### Requirements
 
 1. Create a `SandboxExecutor` with:
-   - Resource limits (CPU, memory, time)
-   - Whitelisted imports
-   - Filesystem isolation
-   - Network restrictions
-   - Output sanitization
+    - Resource limits (CPU, memory, time)
+    - Whitelisted imports
+    - Filesystem isolation
+    - Network restrictions
+    - Output sanitization
 
 2. Support execution of:
-   - Python code snippets
-   - Mathematical expressions
-   - Data processing tasks
+    - Python code snippets
+    - Mathematical expressions
+    - Data processing tasks
 
 3. Implement safety measures:
-   - Timeout handling
-   - Memory monitoring
-   - Exception capture
-   - Result validation
+    - Timeout handling
+    - Memory monitoring
+    - Exception capture
+    - Result validation
 
 ### Solution Template
 
@@ -866,22 +866,22 @@ Implement prompt injection detection and defense mechanisms.
 ### Requirements
 
 1. Create a `PromptDefender` class with:
-   - Injection pattern detection
-   - Input sanitization
-   - Output validation
-   - Rate limiting per user
+    - Injection pattern detection
+    - Input sanitization
+    - Output validation
+    - Rate limiting per user
 
 2. Detect attack types:
-   - Direct injection ("Ignore previous instructions")
-   - Role playing ("Pretend you're...")
-   - Code injection ("Execute this...")
-   - Data exfiltration ("Print all data...")
+    - Direct injection ("Ignore previous instructions")
+    - Role playing ("Pretend you're...")
+    - Code injection ("Execute this...")
+    - Data exfiltration ("Print all data...")
 
 3. Implement defense strategies:
-   - Delimiters and formatting
-   - Instruction separation
-   - Output filtering
-   - Anomaly detection
+    - Delimiters and formatting
+    - Instruction separation
+    - Output filtering
+    - Anomaly detection
 
 ### Solution Template
 
@@ -1028,17 +1028,17 @@ Build a complete, production-ready agent system combining all components.
 ### Requirements
 
 1. Integrate all components:
-   - ReAct reasoning loop
-   - Tool registry with safety
-   - Multi-agent coordination
-   - Memory system
-   - Security defenses
+    - ReAct reasoning loop
+    - Tool registry with safety
+    - Multi-agent coordination
+    - Memory system
+    - Security defenses
 
 2. Implement features:
-   - Task planning and decomposition
-   - Progress tracking
-   - Error recovery
-   - Monitoring and logging
+    - Task planning and decomposition
+    - Progress tracking
+    - Error recovery
+    - Monitoring and logging
 
 3. Create API interface
 
@@ -1266,7 +1266,7 @@ Implement a creative system for:
 
 ---
 
-**Last Updated:** 2026-10-13
+**Last Updated:** 2026-10-22
 
 **Phase:** 7 - Agentic Systems
 

@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-003
 Title: "TUTORIAL-003: RAG Basics - Give Your LLM Knowledge"
-Last Updated: 2026-10-15
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 60 minutes
@@ -542,16 +542,16 @@ services:
 ## Knowledge Check
 
 1. **What does RAG stand for?**
-   - Retrieval-Augmented Generation
+    - Retrieval-Augmented Generation
 
 2. **What is the main benefit of RAG?**
-   - Gives LLM access to up-to-date, custom knowledge
+    - Gives LLM access to up-to-date, custom knowledge
 
 3. **What are embeddings?**
-   - Numerical representations of text meaning
+    - Numerical representations of text meaning
 
 4. **Why chunk documents before embedding?**
-   - Embedding models have token limits, and smaller chunks improve retrieval relevance
+    - Embedding models have token limits, and smaller chunks improve retrieval relevance
 
 ---
 

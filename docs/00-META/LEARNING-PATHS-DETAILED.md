@@ -695,25 +695,25 @@ Deliverables:
 ### Questions to Ask Yourself
 
 1. **What's your background?**
-   - Software developer → Fast Track
-   - ML engineer → Fine-Tuning Expert
-   - Data engineer → RAG Specialist
-   - DevOps/SRE → Infrastructure Engineer
-   - Researcher → Research Path
+    - Software developer → Fast Track
+    - ML engineer → Fine-Tuning Expert
+    - Data engineer → RAG Specialist
+    - DevOps/SRE → Infrastructure Engineer
+    - Researcher → Research Path
 
 2. **What's your goal?**
-   - Build AI apps fast → Fast Track
-   - Deep understanding → Complete Mastery
-   - Work with data → RAG Specialist
-   - Adapt models → Fine-Tuning Expert
-   - Deploy systems → Infrastructure Engineer
-   - Build agents → Agent Builder
-   - Do research → Research Path
+    - Build AI apps fast → Fast Track
+    - Deep understanding → Complete Mastery
+    - Work with data → RAG Specialist
+    - Adapt models → Fine-Tuning Expert
+    - Deploy systems → Infrastructure Engineer
+    - Build agents → Agent Builder
+    - Do research → Research Path
 
 3. **How much time do you have?**
-   - 2-3 months → Specialized paths
-   - 3-4 months → Fast Track or Agent Builder
-   - 6-12 months → Complete Mastery or Research
+    - 2-3 months → Specialized paths
+    - 3-4 months → Fast Track or Agent Builder
+    - 6-12 months → Complete Mastery or Research
 
 ### Path Switching
 
