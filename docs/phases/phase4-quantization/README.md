@@ -516,7 +516,7 @@ Validate your knowledge with:
 
 - **[Phase 4 Checkpoint](./CHECKPOINT.md)** - Module-by-module phase-exit review
 - **[Phase 4 Quiz](../../00-META/assessment/phase4-quiz.md)** - Test your understanding (30 questions, 80% to pass)
-- **[Phase n Practice](../../00-META/assessment/phase4-practice.md)** - Hands-on exercises
+- **[Phase 4 Practice](../../00-META/assessment/phase4-practice.md)** - Hands-on exercises
 
 ---
 
