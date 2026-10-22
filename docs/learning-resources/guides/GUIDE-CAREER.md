@@ -43,10 +43,10 @@ This guide bridges the gap between "completed Minder Academy" and "hired as AI E
 
 | Role | Focus | Key Skills | Salary Range* |
 |------|-------|------------|---------------|
-| **AI Engineer** | Building AI applications (LLMs, RAG, agents) | Python, PyTorch, deployment, APIs | \$120k-\$200k |
-| **ML Engineer** | Production ML systems (training, pipelines) | MLflow, Kubernetes, monitoring | \$130k-\$220k |
-| **Data Scientist** | Analytics, insights, basic ML | SQL, pandas, statistics, visualization | \$90k-\$160k |
-| **Research Scientist** | Pushing SOTA (papers, novel architectures) | Math, reading papers, experimentation | \$150k-\$350k |
+| **AI Engineer** | Building AI applications (LLMs, RAG, agents) | Python, PyTorch, deployment, APIs | $120k-$200k |
+| **ML Engineer** | Production ML systems (training, pipelines) | MLflow, Kubernetes, monitoring | $130k-$220k |
+| **Data Scientist** | Analytics, insights, basic ML | SQL, pandas, statistics, visualization | $90k-$160k |
+| **Research Scientist** | Pushing SOTA (papers, novel architectures) | Math, reading papers, experimentation | $150k-$350k |
 
 *US-based, 2026 estimates. Varies by location/experience.
 
@@ -387,9 +387,9 @@ Data: Python, NumPy, Pandas, SQL (PostgreSQL), PostgreSQL + pgvector
 
 | Level | Base | Bonus | Equity | Total |
 |-------|------|-------|--------|-------|
-| Junior (0-2 yrs) | \$120k-\$150k | 10-15% | \$20k-\$50k | \$140k-\$220k |
-| Mid (2-5 yrs) | \$160k-\$200k | 15-20% | \$50k-\$150k | \$200k-\$350k |
-| Senior (5+ yrs) | \$200k-\$280k | 20-25% | \$150k-\$400k | \$350k-\$600k |
+| Junior (0-2 yrs) | $120k-$150k | 10-15% | $20k-$50k | $140k-$220k |
+| Mid (2-5 yrs) | $160k-$200k | 15-20% | $50k-$150k | $200k-$350k |
+| Senior (5+ yrs) | $200k-$280k | 20-25% | $150k-$400k | $350k-$600k |
 
 *San Francisco/Bay Area. 20-30% lower in other metros.
 
@@ -406,7 +406,7 @@ Data: Python, NumPy, Pandas, SQL (PostgreSQL), PostgreSQL + pgvector
 5. **Get it in writing** - Offer letter, not verbal promises
 
 **Script:**
-"Thank you for the offer! I'm excited about the role and team. Based on my research and the value I can bring, I was hoping for a base of \$X and an equity grant of \$Y. Is there flexibility here?"
+"Thank you for the offer! I'm excited about the role and team. Based on my research and the value I can bring, I was hoping for a base of $X and an equity grant of $Y. Is there flexibility here?"
 
 ---
 
