@@ -32,7 +32,7 @@ spec:
 ## Measurements
 
 ### Memory Utilization
-```bash
+```text
 nvidia-smi dmon:
 
 # gpu    sm    mem    enc    dec    jpg    jpeg    frm
