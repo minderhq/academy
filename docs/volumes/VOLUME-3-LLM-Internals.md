@@ -1,7 +1,7 @@
 ---
 Document ID: VOLUME-3
 Title: "Volume 3: LLM Internals & Architecture"
-Last Updated: 2026-10-16
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Advanced
 Tags: ['volume', 'transformers', 'attention', 'tokenization']
@@ -106,7 +106,7 @@ def scaled_dot_product_attention(Q, K, V, mask=None):
 #### Day 4-5: Flash Attention
 **Memory-efficient attention**
 
-1. **[3102: Flash Attention](../phases/phase3-transformers/3100-attention/3102-Flash-Attention.md)** (2-3 hours)
+1. **[3102: Flash Attention](../phases/phase3-transformers/3100-attention/3102-Flash-Attention.md)]** (3-4 hours)
    - IO-aware algorithm
    - Tiling strategy
    - Memory optimization
@@ -275,13 +275,13 @@ RMSNorm: x / sqrt(mean(x^2) + epsilon)
 #### Day 4-5: Model Architectures
 **Decoder-only vs Encoder-Decoder**
 
-1. **[3402: Decoder-Only Models (GPT, LLaMA, Mistral)](../phases/phase3-transformers/3400-architectures/3402-Decoder-Only-Models.md)** (2 hours)
+1. **[3402: Decoder-Only Models (GPT, LLaMA, Mistral)](../phases/phase3-transformers/3400-architectures/3402-Decoder-Only-Models.md)]** (4 hours)
    - GPT family (GPT-2, GPT-3, GPT-4)
    - LLaMA and derivatives
    - Mistral and Mixtral
    - Mixture of Experts (MoE)
 
-2. **[3401: Encoder-Decoder Architectures](../phases/phase3-transformers/3400-architectures/3401-Encoder-Decoder-Architectures.md)** (2 hours)
+2. **[3401: Encoder-Decoder Architectures](../phases/phase3-transformers/3400-architectures/3401-Encoder-Decoder-Architectures.md)]** (4 hours)
    - T5 family
    - BERT and variants
    - Sequence-to-sequence models
@@ -305,7 +305,7 @@ Encoder-only (BERT):
 - Masked language modeling
 ```
 
-3. **[3403: Model Architecture Comparison](../phases/phase3-transformers/3400-architectures/guides/3403-Model-Architecture-Comparison.md)** (1-2 hours)
+3. **[3403: Model Architecture Comparison](../phases/phase3-transformers/3400-architectures/guides/3403-Model-Architecture-Comparison.md)]** (2-3 hours)
    - Sparse activation
    - Load balancing
    - Routing strategies

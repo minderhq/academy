@@ -1,7 +1,7 @@
 ---
 Document ID: VOLUME-5
 Title: "Volume 5: Model Adaptation"
-Last Updated: 2026-10-16
+Last Updated: 2026-10-22
 Status: Complete
 Difficulty: Advanced
 Tags: ['volume', 'finetuning', 'lora', 'dpo']
@@ -51,7 +51,7 @@ Pre-trained models are generalists. This volume teaches you to:
 #### Day 1-3: Understanding LoRA
 **Fine-tuning without full retraining**
 
-1. **[5101: LoRA (Low-Rank Adaptation) Logic](../phases/phase5-finetuning/5100-peft/5101-LoRA-Logic.md)** (3-4 hours)
+1. **[5101: LoRA (Low-Rank Adaptation) Logic](../phases/phase5-finetuning/5100-peft/5101-LoRA-Logic.md)]** (4-5 hours)
    - Parameter-efficient fine-tuning concepts
    - Low-rank matrix decomposition
    - Why LoRA works
@@ -94,7 +94,7 @@ lora_config = {
 #### Day 4-5: Implementing LoRA from Scratch
 **Build LoRA yourself**
 
-1. **[5104: LoRA Implementation Guide](../phases/phase5-finetuning/5100-peft/guides/5104-LoRA-Implementation-Guide.md)** (3-4 hours)
+1. **[5104: LoRA Implementation Guide](../phases/phase5-finetuning/5100-peft/guides/5104-LoRA-Implementation-Guide.md)]** (4-5 hours)
    - Implement LoRA layer from scratch
    - Integrate with PyTorch modules
    - Test on simple tasks
@@ -326,7 +326,7 @@ dpo_trainer.train()
 #### Day 4-5: Alignment Orchestration
 **Putting it all together**
 
-1. **[5202: Alignment Orchestration](../phases/phase5-finetuning/5200-alignment/5202-Alignment-Orchestration.md)** (2-3 hours)
+1. **[5202: Alignment Orchestration](../phases/phase5-finetuning/5200-alignment/5202-Alignment-Orchestration.md)]** (3-4 hours)
    - SFT (Supervised Fine-Tuning)
    - Reward Modeling
    - DPO vs RLHF
@@ -401,7 +401,7 @@ trainer.train()
 # Result: Student model with teacher's knowledge
 ```
 
-2. **[5302: Distributed Training](../phases/phase5-finetuning/5300-synthetic/5302-Distributed-Training.md)** (2-3 hours)
+2. **[5302: Distributed Training](../phases/phase5-finetuning/5300-synthetic/5302-Distributed-Training.md)]** (3-4 hours)
    - Multi-GPU training
    - FSDP (Fully Sharded Data Parallel)
    - DeepSpeed integration
