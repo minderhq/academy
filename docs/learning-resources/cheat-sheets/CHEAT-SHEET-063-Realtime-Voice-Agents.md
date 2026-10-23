@@ -1,7 +1,7 @@
 ---
 Document ID: CHEAT-SHEET-063
 Title: "CHEAT-SHEET-063: Realtime Voice Agents - the Serial Bill, the Streaming Overlap, and the Turn-Taking Gate"
-Last Updated: 2026-10-13
+Last Updated: 2026-10-23
 Status: Complete
 Difficulty: Intermediate
 Tags: ['cheatsheet', 'multimodal', 'serving', 'inference']
@@ -344,6 +344,7 @@ print("  -> no single lever carries the stack to %s ms; the audio stack "
 print()
 print("FENCE-063-OK")
 ```
+
 ```text
 ================================================================
 F1 | THE SERIAL BILL

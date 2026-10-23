@@ -1,7 +1,7 @@
 ---
 Document ID: CHEAT-SHEET-062
 Title: "CHEAT-SHEET-062: KV Offload and Tiered Caching - the Recompute Bill, the Tier Ladder, and the Routing Gate"
-Last Updated: 2026-10-13
+Last Updated: 2026-10-23
 Status: Complete
 Difficulty: Intermediate
 Tags: ['cheatsheet', 'kv-cache', 'serving', 'inference']
@@ -326,6 +326,7 @@ print("  -> the deltas order the build: tiers, affinity, then HBM alone")
 print()
 print("FENCE-062-OK")
 ```
+
 ```text
 ================================================================
 F1 THE RECOMPUTE BILL - a cold prefix costs two seconds
