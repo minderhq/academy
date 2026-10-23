@@ -1,7 +1,7 @@
 ---
 Document ID: 2400-PREREQUISITES
 Title: "2400: LLM Pretraining - Prerequisites"
-Last Updated: 2026-10-16
+Last Updated: 2026-10-23
 Status: Complete
 Difficulty: Advanced
 Tags: ['pretraining', 'prerequisites', 'preparation']
@@ -391,7 +391,7 @@ print([f"{lr_at(s, 100, 10):.2e}" for s in (0, 9, 10, 55, 99)])
 # -> ['3.00e-05', '3.00e-04', '3.00e-04', '1.65e-04', '3.01e-05']
 ```
 
-### Gradient accumulation
+### Gradient Accumulation
 
 ```python
 import torch
