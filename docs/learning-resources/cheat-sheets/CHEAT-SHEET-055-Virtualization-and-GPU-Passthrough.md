@@ -1,7 +1,7 @@
 ---
 Document ID: CHEAT-SHEET-055
 Title: "CHEAT-SHEET-055: Virtualization and GPU Passthrough - the Hypervisor RAM Ledger, the Passthrough Gate Chain, and the Multi-GPU Scaling Wall"
-Last Updated: 2026-10-12
+Last Updated: 2026-10-23
 Status: Complete
 Difficulty: Intermediate
 Tags: ['cheatsheet', 'infrastructure', 'virtualization', 'gpu']
@@ -94,7 +94,7 @@ Exhibits F2 and F4 draw the topology; F7 prices what it does to distributed trai
 | Symptom | Fix |
 | --- | --- |
 | VM writes stall the whole host | zfs_txg_timeout=1 commits every second instead of five - VM write latency trades against throughput |
-| Code 43 in the windows guest | above-4g decoding off, or the q35/OVMF pairing wrong; the nvidia block died with driver 465 in 2021 |
+| Code 43 in the Windows guest | above-4g decoding off, or the q35/OVMF pairing wrong; the nvidia block died with driver 465 in 2021 |
 | Hugepages come up as 2 MiB | 1 GiB pages are a kernel command line setting; vm.nr_hugepages allocates the 2 MiB default size |
 | Guest has no hdmi audio | the audio function stayed in the host; bind 10de:228b to vfio-pci alongside 10de:2503 |
 | NCCL hangs or crc errors across two gpus | p2p cannot cross iommu groups; NCCL_P2P_DISABLE=1 routes through host memory |
