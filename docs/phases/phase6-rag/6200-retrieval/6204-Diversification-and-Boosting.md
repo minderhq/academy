@@ -3,7 +3,7 @@ Document ID: 6204
 Title: "6204: Diversification and Boosting"
 Phase: 6
 Module: 6200
-Last Updated: 2026-10-17
+Last Updated: 2026-10-23
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 3 hours
@@ -149,7 +149,7 @@ for lam in (1.0, 0.7, 0.5, 0.0):
           f"coverage={len(set(labels))}/4  rel_sum={sum(float(rel[i]) for i in sel):.2f}  ILS={ils(sel):.2f}")
 ```
 
-Read the dial against the output. At **λ = 1.0** — pure relevance — the selection is the cosine list: one fact, rel_sum **4.73**, intra-list similarity **0.89**. At **λ = 0.7** nothing changes, and that is the fence's first lesson: the paraphrase cluster's self-similarity is ≈ 0.99, so the penalty term costs a cluster member about `(1 − λ) · 0.99 ≈ 0.30` while its relevance term retains `0.7 · 0.988 ≈ 0.69` — score **0.39** — against the best outsider's `0.7 · 0.205 ≈ 0.14`. A near-identical cluster defeats a 30 % penalty weight. At **λ = 0.5** the arithmetic flips: the cluster member now scores `0.494 − 0.498 ≈ 0.00` and the selection becomes **D1 D5 D6 D4 D9** — all four facts in five slots, rel_sum **2.13**, ILS **0.15**. Less than half the relevance budget buys four times the information; the generator reads facts, not cosine. At **λ = 0.0** the relevance term is gone entirely and the maximally-dissimilar junk enters: D8, cosine **−0.661**, drags rel_sum to **0.67** with ILS **−0.20**. Diversity without relevance is noise — λ = 0 is a diagnostic, not a configuration.
+Read the dial against the output. At **λ = 1.0** — pure relevance — the selection is the cosine list: one fact, rel_sum **4.73**, intra-list similarity **0.89**. At **λ = 0.7** nothing changes, and that is the fence's first lesson: the paraphrase cluster's self-similarity is ≈ 0.99, so the penalty term costs a cluster member about `(1 − λ) · 0.99 ≈ 0.30` while its relevance term retains `0.7 · 0.988 ≈ 0.69` — score **0.39** — against the best outsider's `0.7 · 0.205 ≈ 0.14`. A near-identical cluster defeats a 30% penalty weight. At **λ = 0.5** the arithmetic flips: the cluster member now scores `0.494 − 0.498 ≈ 0.00` and the selection becomes **D1 D5 D6 D4 D9** — all four facts in five slots, rel_sum **2.13**, ILS **0.15**. Less than half the relevance budget buys four times the information; the generator reads facts, not cosine. At **λ = 0.0** the relevance term is gone entirely and the maximally-dissimilar junk enters: D8, cosine **−0.661**, drags rel_sum to **0.67** with ILS **−0.20**. Diversity without relevance is noise — λ = 0 is a diagnostic, not a configuration.
 
 ---
 
@@ -266,7 +266,7 @@ for name, (x, a) in [("no boost               ", (base_x, base_a)),
     print(f"{name} X={x:.2f}  A={a:.2f}  winner={'X' if x > a else 'A'}")
 ```
 
-Same corpus, same ×1.5, three different verdicts. Unboosted, A wins **0.88 to 0.60**. Boost applied to the *fused score* — "this document matters 50 % more" — flips the winner: X **0.90** over A **0.88**. The same ×1.5 applied *inside the lexical channel* does not flip it: X reaches only **0.85** against A's unchanged **0.88**. The mechanism is exact, not numerical noise: a fused-score boost multiplies the whole score — +0.30 for X — and clears the +0.28 needed to pass A; a channel-scoped boost multiplies only the `(1−α)`-weighted slice, adding `(1−α)·(w−1)·lex` — +0.25 for X — and falls short. What the channel-scoped variant actually rewrites is the document's *effective α* — the page's own blend of the channels — instead of the page's importance. "This source is worth more" and "this source's lexical hits are worth more" are different statements; only one of them is a provenance policy. Place boosts on the fused score (or per-channel only when channel-scoping is the intent), and read any search-DSL clause boost as the channel-scoped variant it is.
+Same corpus, same ×1.5, three different verdicts. Unboosted, A wins **0.88 to 0.60**. Boost applied to the *fused score* — "this document matters 50% more" — flips the winner: X **0.90** over A **0.88**. The same ×1.5 applied *inside the lexical channel* does not flip it: X reaches only **0.85** against A's unchanged **0.88**. The mechanism is exact, not numerical noise: a fused-score boost multiplies the whole score — +0.30 for X — and clears the +0.28 needed to pass A; a channel-scoped boost multiplies only the `(1−α)`-weighted slice, adding `(1−α)·(w−1)·lex` — +0.25 for X — and falls short. What the channel-scoped variant actually rewrites is the document's *effective α* — the page's own blend of the channels — instead of the page's importance. "This source is worth more" and "this source's lexical hits are worth more" are different statements; only one of them is a provenance policy. Place boosts on the fused score (or per-channel only when channel-scoping is the intent), and read any search-DSL clause boost as the channel-scoped variant it is.
 
 ---
 
