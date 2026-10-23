@@ -1,7 +1,7 @@
 ---
 Document ID: README
 Title: "Minder Academy"
-Last Updated: 2026-10-22
+Last Updated: 2026-10-23
 Status: Complete
 Difficulty: Beginner
 ---
@@ -1307,8 +1307,8 @@ curl http://localhost:3000               # Grafana dashboard
 
 | Service | URL | Credentials |
 |---------|-----|-------------|
-| vLLM | http://localhost:8000 | - |
-| Qdrant | http://localhost:6333 | - |
+| vLLM | [http://localhost:8000](http://localhost:8000) | - |
+| Qdrant | [http://localhost:6333](http://localhost:6333) | - |
 
 Optional services (Ollama on :11434, Neo4j on :7474, Grafana on :3000) are covered in [configs/README.md](./configs/README.md) and the [Phase 1 curriculum](./docs/phases/phase1-infra/1500-monitoring/1501-Monitoring-and-Observability.md).
 
@@ -1333,8 +1333,8 @@ docker compose -f configs/docker-compose.yml up -d qdrant
 
 | Service | URL | Credentials |
 |---------|-----|-------------|
-| vLLM | http://localhost:8000 | - |
-| Qdrant | http://localhost:6333 | - |
+| vLLM | [http://localhost:8000](http://localhost:8000) | - |
+| Qdrant | [http://localhost:6333](http://localhost:6333) | - |
 
 ---
 
