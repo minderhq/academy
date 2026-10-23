@@ -3,7 +3,7 @@ Document ID: 6402
 Title: "6402: Vector Database Comparison"
 Phase: 6
 Module: 6400
-Last Updated: 2026-10-17
+Last Updated: 2026-10-23
 Status: Complete
 Difficulty: Intermediate
 Estimated Time: 3 hours
@@ -53,7 +53,7 @@ Choosing the right vector database is crucial for RAG applications. This documen
 
 ### 1.1 Quick Comparison Table
 
-| Feature | **Qdrant** | **Weaviate** | **Pinecone** | **Milvus** | **Chroma** | **pgvector** |
+| Feature | Qdrant | Weaviate | Pinecone | Milvus | Chroma | pgvector |
 |---------|-----------|------------|-----------|----------|----------|-------------|
 | **Open Source** | ✅ Yes | ✅ Yes | ❌ No | ✅ Yes | ✅ Yes | ✅ Yes |
 | **License** | Apache 2.0 | MIT | Proprietary | Apache 2.0 | Apache 2.0 | PostgreSQL |
