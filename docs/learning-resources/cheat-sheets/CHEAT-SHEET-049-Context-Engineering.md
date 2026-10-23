@@ -1,7 +1,7 @@
 ---
 Document ID: CHEAT-SHEET-049
 Title: "CHEAT-SHEET-049: Context Engineering - the Dilution Curve, the Stuffing Bet, and the Distilled Prompt"
-Last Updated: 2026-10-12
+Last Updated: 2026-10-24
 Status: Complete
 Difficulty: Intermediate
 Tags: ['cheatsheet', 'rag', 'context-window', 'long-context']
@@ -56,7 +56,7 @@ bill - it never touches the quality curve.
 
 ## The Routed Budget - Two Window Sizes Beat One at the Same Spend
 
-Route, do not scale. Split the traffic 70/30 between near queries and deep ones: the near class peaks at w*=9,000 (accuracy 0.8329), the deep class at w*=64,000 (0.4733). At a 16,000-token average budget the routed split lands near=0.8329 / deep=0.2692 for a weighted 0.6638, against the one-size 16k window's weighted 0.5638 - +0.1000 for the same spend (the routed average is 15,900 tokens, 100 under budget). The month campaign, at 300,000 queries and $0.05 of value per correct answer, is the whole sheet in one ledger: the max-window 128k plan burns $48,000.00 a month to earn $4,750.00 of value - net $-43,250.00; one-size 16k nets +$2,456.36; the routed plan nets +$3,993.96. And every routed window sits at or under 200k, so the $2.50 tier never fires - the routing also dodges the price jump.
+Route, do not scale. Split the traffic 70/30 between near queries and deep ones: the near class peaks at w\*=9,000 (accuracy 0.8329), the deep class at w\*=64,000 (0.4733). At a 16,000-token average budget the routed split lands near=0.8329 / deep=0.2692 for a weighted 0.6638, against the one-size 16k window's weighted 0.5638 - +0.1000 for the same spend (the routed average is 15,900 tokens, 100 under budget). The month campaign, at 300,000 queries and $0.05 of value per correct answer, is the whole sheet in one ledger: the max-window 128k plan burns $48,000.00 a month to earn $4,750.00 of value - net $-43,250.00; one-size 16k nets +$2,456.36; the routed plan nets +$3,993.96. And every routed window sits at or under 200k, so the $2.50 tier never fires - the routing also dodges the price jump.
 
 | Plan | Average window | Weighted acc | Monthly bill | Value | Net |
 | --- | --- | --- | --- | --- | --- |
