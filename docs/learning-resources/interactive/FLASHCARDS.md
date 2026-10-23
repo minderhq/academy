@@ -1,7 +1,7 @@
 ---
 Document ID: FLASHCARDS
 Title: "Minder Academy: Interactive Learning Components"
-Last Updated: 2026-10-22
+Last Updated: 2026-10-23
 Status: Complete
 Difficulty: Intermediate
 Tags: ['flashcards', 'llm', 'practice']
@@ -14,6 +14,7 @@ Interactive elements to enhance the learning experience.
 ## Flashcards
 
 Use flashcards for quick recall of key concepts.
+
 - [CHEAT-SHEET-054: Network Foundations - the Wire-Efficiency Bill, the Handshake Ledger, and the First-Token Budget](../cheat-sheets/CHEAT-SHEET-054-Network-Foundations.md) - The wire-efficiency bill, the MTU ladder, the 2.5G throughput ledger, the VLAN plan, the segment fold, the loss bill, and the handshake-plus-first-token budget. The Phase 1 cards quiz VLAN tagging and GPON versus EPON.
 - [CHEAT-SHEET-020: Flash Attention](../cheat-sheets/CHEAT-SHEET-020-Flash-Attention.md) - The memory-hierarchy argument, the online-softmax block update, the FA1-FA2-FA3 ladder, the three enablement paths, and the when-not rules. The Phase 3 cards are self-attention and Q, K, V.
 
@@ -46,6 +47,7 @@ CARD-3100-002:
 ## Quizzes
 
 Interactive quizzes for self-assessment.
+
 - [CHEAT-SHEET-021: RoPE Positional Encoding](../cheat-sheets/CHEAT-SHEET-021-RoPE-Positional-Encoding.md) - The three failure modes, the rotation construction, the relative-position property, the wiring discipline, and the PI/YaRN extension knobs. The transformer quiz asks why self-attention needs position information.
 
 ### Quick Quiz Format
@@ -268,6 +270,7 @@ visualize_attention(attn_weights, tokens)
 ## Comparison Tables
 
 Interactive comparison of methods/models.
+
 - [CHEAT-SHEET-015: Quantization Formats & Methods](../cheat-sheets/CHEAT-SHEET-015-Quantization-Formats-Methods.md) - The bpw block arithmetic behind Q4_0/Q4_K, the three GGUF families, and the EXL2/AWQ/GPTQ GPU-only map. The comparison table lines up dynamic, PTQ, GPTQ, AWQ and NF4.
 
 ```markdown
