@@ -1,7 +1,7 @@
 ---
 Document ID: CHEAT-SHEET-046
 Title: "CHEAT-SHEET-046: Advanced Optimization - the Optimizer Memory Ledger, the Schedule Arc, and the Failure Toolbox"
-Last Updated: 2026-10-13
+Last Updated: 2026-10-23
 Status: Complete
 Difficulty: Intermediate
 Tags: ['cheatsheet', 'optimization', 'adamw', 'scheduling']
@@ -33,12 +33,12 @@ grads 2N are the training state, master 4N plus m 4N plus v 4N are overhead -
 
 ## Adam Versus AdamW - the Scale-Free Step and the Decay That Lives Outside
 
-Adam's first step is scale-free: m and v start at zero, the bias correction at t=1 makes m_hat = g and v_hat = g squared, so the update is lr * g / (norm(g) + eps) - unit direction, lr magnitude, for ANY gradient. The census prices it: gradient norm 0.3 and gradient norm 30.0 both land 0.00010000, exactly 1.0 x lr. That machinery is why weight decay has to live outside it: Adam+L2 pushes g + lambda*theta through the same normalization, so the decay's effective strength becomes lr*lambda*theta/norm(g) - 2.000e-07 per step at gradient norm 5.0 against 2.000e-05 at gradient norm 0.05, a 0.0100 ratio between the two. L2 scales itself with the gradient it rides: big-gradient coordinates are barely regularized. AdamW subtracts lr*lambda*theta AFTER the adaptive update: 1.000e-06 for every parameter, ratio 1.0000, uniform by construction.
+Adam's first step is scale-free: m and v start at zero, the bias correction at t=1 makes m_hat = g and v_hat = g squared, so the update is lr * g / (norm(g) + eps) - unit direction, lr magnitude, for ANY gradient. The census prices it: gradient norm 0.3 and gradient norm 30.0 both land 0.00010000, exactly 1.0 x lr. That machinery is why weight decay has to live outside it: Adam+L2 pushes g + lambda * theta through the same normalization, so the decay's effective strength becomes lr * lambda * theta/norm(g) - 2.000e-07 per step at gradient norm 5.0 against 2.000e-05 at gradient norm 0.05, a 0.0100 ratio between the two. L2 scales itself with the gradient it rides: big-gradient coordinates are barely regularized. AdamW subtracts lr * lambda * theta AFTER the adaptive update: 1.000e-06 for every parameter, ratio 1.0000, uniform by construction.
 
 | Aspect | Adam + L2 | AdamW (decoupled) |
 | --- | --- | --- |
 | Where decay lives | inside g, rides the m/v normalization | after the update, direct subtraction |
-| Effective strength | lr*lambda*theta/norm(g): 2.000e-07 at norm 5.0, 2.000e-05 at 0.05 | lr*lambda = 1.000e-06, every parameter |
+| Effective strength | lr * lambda * theta/norm(g): 2.000e-07 at norm 5.0, 2.000e-05 at 0.05 | lr * lambda = 1.000e-06, every parameter |
 | Consequence | regularization shrinks where gradients are big | uniform decay by construction |
 
 ## The Schedule Arc - Linear, Cosine, and the Layer-Wise Split
@@ -88,11 +88,11 @@ scheduler.step() - one tick per optimizer step, never per micro batch.
 
 ## SAM - the Flat-Minima Search and Its Two Canonical Bugs
 
-SAM seeks flat minima: perturb w to the edge of its rho-ball along its own gradient, w' = w + rho*g/norm(g) with the norm taken GLOBALLY, then step using the gradient at w'. The anisotropic toy prices the mechanics: a = [1.0, 25.0], w0 = [0.0, 2.0], mu = [3.0, -1.0], rho = 0.05 gives g = [-3.0000, 75.0000], norm 75.0600, perturbation e_w = [-0.00200, 0.04996], and the correct second step lands w1 = [0.3002, -5.6249]. Two canonical bugs. Per-tensor rho on tensor norms [0.1, 10.0] gives both tensors a perturbation of 0.05 where the global rule gives [0.00050, 0.05000] - the small tensor over-perturbed 100.00x, because the rho-neighborhood is global. And the missing zero_grad between the two passes trains the SUM: g+g' = [-6.0020, 151.2490] with |g+g'|/|g'| = 1.9836 at cosine 1.00000 - the step lands at w1 = [0.6002, -13.1249], twice the intended distance in exactly the same direction.
+SAM seeks flat minima: perturb w to the edge of its rho-ball along its own gradient, w' = w + rho * g/norm(g) with the norm taken GLOBALLY, then step using the gradient at w'. The anisotropic toy prices the mechanics: a = [1.0, 25.0], w0 = [0.0, 2.0], mu = [3.0, -1.0], rho = 0.05 gives g = [-3.0000, 75.0000], norm 75.0600, perturbation e_w = [-0.00200, 0.04996], and the correct second step lands w1 = [0.3002, -5.6249]. Two canonical bugs. Per-tensor rho on tensor norms [0.1, 10.0] gives both tensors a perturbation of 0.05 where the global rule gives [0.00050, 0.05000] - the small tensor over-perturbed 100.00x, because the rho-neighborhood is global. And the missing zero_grad between the two passes trains the SUM: g+g' = [-6.0020, 151.2490] with |g+g'|/|g'| = 1.9836 at cosine 1.00000 - the step lands at w1 = [0.6002, -13.1249], twice the intended distance in exactly the same direction.
 
 ## The LR Range Test - Scouting the Peak Before the Run
 
-The range test finds the peak before the run does: ramp the lr exponentially from 1e-7 to 10.0 over 100 iterations and record the loss at each. On the closed-form curve loss(L) = 2.2 + 1.2*exp(-L/2e-4) + 3.0*(L/3e-3)^6, the steepest descent sits at lr 2.057e-04 - the peak-LR candidate. The curve bottoms at 2.2122 at lr 1.097e-03, and the ceiling, where loss exceeds the minimum by 0.05, arrives at 1.592e-03 - past that the sixth-power term takes over. The steep region's upper edge, where the exponential residual drops below 0.12, is 5.214e-04: the OneCycle max_lr. The wiring falls out of the same numbers - start at max_lr/25 = 2.086e-05, end at start/1e4 = 2.086e-09.
+The range test finds the peak before the run does: ramp the lr exponentially from 1e-7 to 10.0 over 100 iterations and record the loss at each. On the closed-form curve loss(L) = 2.2 + 1.2 * exp(-L/2e-4) + 3.0 * (L/3e-3)^6, the steepest descent sits at lr 2.057e-04 - the peak-LR candidate. The curve bottoms at 2.2122 at lr 1.097e-03, and the ceiling, where loss exceeds the minimum by 0.05, arrives at 1.592e-03 - past that the sixth-power term takes over. The steep region's upper edge, where the exponential residual drops below 0.12, is 5.214e-04: the OneCycle max_lr. The wiring falls out of the same numbers - start at max_lr/25 = 2.086e-05, end at start/1e4 = 2.086e-09.
 
 ## The Memory Bill and the Total-Steps Identity
 
@@ -360,7 +360,7 @@ FENCE-046-OK
 
 | Trap | What it costs | The honest move |
 | --- | --- | --- |
-| L2 regularization inside Adam | decay rides the normalization: 2.000e-07 per step at norm 5.0 vs 2.000e-05 at 0.05 | decouple it: AdamW subtracts lr*lambda*theta after the update |
+| L2 regularization inside Adam | decay rides the normalization: 2.000e-07 per step at norm 5.0 vs 2.000e-05 at 0.05 | decouple it: AdamW subtracts lr * lambda * theta after the update |
 | scheduler.step() per micro batch | the arc finishes 8x early and floors mid-run | tick once per optimizer step, after the flush |
 | Per-element value clipping | cosine collapses to 0.5149 on the outlier vector - direction erased | clip_grad_norm_: one scale, cosine 1.000000 |
 | total_steps = int(303/8) | 39 real steps vs 37 planned: linear sits at lr 0 for the last 2 | compute (12 + 1) x 3 = 39 with the remainder window in |
