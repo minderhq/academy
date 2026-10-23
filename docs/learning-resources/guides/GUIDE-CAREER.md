@@ -1,7 +1,7 @@
 ---
 Document ID: GUIDE-CAREER
 Title: "CAREER GUIDE: From Learning to Job-Ready"
-Last Updated: 2026-10-22
+Last Updated: 2026-10-23
 Status: Complete
 Difficulty: Intermediate
 Tags: ['career', 'guide', 'roadmap']
@@ -13,7 +13,7 @@ Tags: ['career', 'guide', 'roadmap']
 
 **Read Time:** 25 minutes
 
-**Last Updated:** 2026-10-22
+**Last Updated:** 2026-10-23
 
 ---
 
@@ -134,12 +134,12 @@ After completing Minder Academy, build **3 portfolio projects**:
 
 **Requirements:**
 
-- [x] Upload and index PDF/text documents
-- [x] Vector search (Qdrant/Chroma)
-- [x] Re-ranking for better results
-- [x] Deployed on Hugging Face Spaces or Railway
-- [x] API endpoint (FastAPI)
-- [x] README with architecture diagram
+- [ ] Upload and index PDF/text documents
+- [ ] Vector search (Qdrant/Chroma)
+- [ ] Re-ranking for better results
+- [ ] Deployed on Hugging Face Spaces or Railway
+- [ ] API endpoint (FastAPI)
+- [ ] README with architecture diagram
 
 **Time:** 20-30 hours
 
@@ -158,12 +158,12 @@ After completing Minder Academy, build **3 portfolio projects**:
 
 **Requirements:**
 
-- [x] Curate your own dataset (100+ examples)
-- [x] Fine-tune using QLoRA
-- [x] Evaluation metrics (before/after)
-- [x] Model card (Hugging Face style)
-- [x] Deployed inference API
-- [x] Blog post explaining your approach
+- [ ] Curate your own dataset (100+ examples)
+- [ ] Fine-tune using QLoRA
+- [ ] Evaluation metrics (before/after)
+- [ ] Model card (Hugging Face style)
+- [ ] Deployed inference API
+- [ ] Blog post explaining your approach
 
 **Time:** 40-60 hours
 
@@ -182,12 +182,12 @@ After completing Minder Academy, build **3 portfolio projects**:
 
 **Requirements:**
 
-- [x] Multi-step reasoning (ReAct loop)
-- [x] Tool calling (search, calculator, APIs)
-- [x] Memory system (short + long term)
-- [x] Error handling and recovery
-- [x] Deployed with monitoring
-- [x] Video demo (3-5 minutes)
+- [ ] Multi-step reasoning (ReAct loop)
+- [ ] Tool calling (search, calculator, APIs)
+- [ ] Memory system (short + long term)
+- [ ] Error handling and recovery
+- [ ] Deployed with monitoring
+- [ ] Video demo (3-5 minutes)
 
 **Time:** 60-80 hours
 
@@ -309,13 +309,13 @@ Data: Python, NumPy, Pandas, SQL (PostgreSQL), PostgreSQL + pgvector
 
 **Profile Checklist:**
 
-- [x] Professional headshot
-- [x] Headline: "AI Engineer | RAG & Fine-Tuning | [Specialty]"
-- [x] About section: 2-3 paragraphs, keywords (RAG, LLM, PyTorch)
-- [x] Featured section: Link to portfolio, GitHub, blog
-- [x] Experience: Quantifiable achievements
-- [x] Skills: Endorsements from connections
-- [x] Recommendations: 2-3 from colleagues/managers
+- [ ] Professional headshot
+- [ ] Headline: "AI Engineer | RAG & Fine-Tuning | [Specialty]"
+- [ ] About section: 2-3 paragraphs, keywords (RAG, LLM, PyTorch)
+- [ ] Featured section: Link to portfolio, GitHub, blog
+- [ ] Experience: Quantifiable achievements
+- [ ] Skills: Endorsements from connections
+- [ ] Recommendations: 2-3 from colleagues/managers
 
 **Posting Strategy:**
 
