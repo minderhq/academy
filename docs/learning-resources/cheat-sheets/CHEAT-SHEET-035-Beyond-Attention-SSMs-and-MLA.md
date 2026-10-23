@@ -1,7 +1,7 @@
 ---
 Document ID: CHEAT-SHEET-035
 Title: "CHEAT-SHEET-035: Beyond Attention - SSMs and MLA"
-Last Updated: 2026-10-11
+Last Updated: 2026-10-23
 Status: Complete
 Difficulty: Advanced
 Tags: ['cheatsheet', 'ssm', 'mla', 'transformers']
@@ -62,7 +62,7 @@ Production does not choose - it interleaves a few full-attention layers (the exa
 | Zamba2 | Zyphra | shared-attention-block Mamba hybrid |
 | Nemotron-H | NVIDIA | Mamba-2 hybrid, ~3x decode throughput vs equal-size Transformer |
 | Granite 4.0 | IBM | Mamba-2 + MoE (Bamba): 4 full-attention layers among 40 |
-| Qwen3-Next 80B-A3B | Alibaba | Gated DeltaNet (linear attention) in 3 of 4 layers, full attention in 1 of 4 |
+| Qwen3-Next 80B-A3B | Alibaba | Gated DeltaNet (linear attention) in 3 of 4 layers, gated full attention in 1 of 4 |
 | Kimi Linear | Moonshot AI | Gated DeltaNet interleaved with full attention |
 
 Qwen3-Next and Kimi Linear pick a different linear mixer (gated delta-rule attention), but the architectural pattern is identical: fixed state for cost, a few attention layers retained because of the recall row.
