@@ -1,7 +1,7 @@
 ---
 Document ID: 1400-LLMOPS-README
 Title: "1400: LLMOps and Model Serving"
-Last Updated: 2026-10-16
+Last Updated: 2026-10-23
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
@@ -512,7 +512,7 @@ After 1000 requests:
 ```
 
 **Solution:**
-```yaml
+```bash
 # Use vLLM with PagedAttention ✅
 vllm serve $MODEL_NAME \
   --gpu-memory-utilization 0.9 \
