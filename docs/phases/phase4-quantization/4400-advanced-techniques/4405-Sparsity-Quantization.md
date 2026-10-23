@@ -3,7 +3,7 @@ Document ID: 4405
 Title: "4405: Sparsity + Quantization"
 Phase: 4
 Module: 4400
-Last Updated: 2026-10-17
+Last Updated: 2026-10-23
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -180,7 +180,7 @@ denser-INT4 model on both size and speed.
 
 | Feature | NVIDIA | Intel | Apple/other |
 |---|---|---|---|
-| 2:4 sparse math | **Ampere+ (A100/H100/…)** — 2x tensor-core throughput | none | none |
+| 2:4 sparse math | **Ampere+ (A100/H100/...)** — 2x tensor-core throughput | none | none |
 | INT8 dot products | tensor cores | AMX / VNNI (fast INT8, **not** sparsity) | ANE |
 | BF16/FP16 | tensor cores | AMX (4th-gen Xeon+) | ANE / Metal |
 
