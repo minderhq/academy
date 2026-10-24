@@ -1,7 +1,7 @@
 ---
 Document ID: NOTEBOOKS-README
 Title: "Minder Academy Notebooks"
-Last Updated: 2026-10-09
+Last Updated: 2026-10-24
 Status: Complete
 Difficulty: Beginner
 Tags: ['notebook', 'pytorch', 'training']
@@ -294,6 +294,6 @@ Found an issue with a notebook? Contributions welcome!
 
 ---
 
-**Total Notebooks:** 22
+**Total Notebooks:** 20
 
-**Difficulty Levels:** Beginner (5), Intermediate (8), Advanced (9)
+**Difficulty Levels:** Beginner (1), Intermediate (7), Advanced (12)
