@@ -289,7 +289,7 @@ Module 1300: _____ hours
 Module 1400: _____ hours
 Module 1500: _____ hours
 
-Total Time: _____ hours (Expected: 20-40 hours)
+Total Time: _____ hours (Expected: 92 hours)
 ```
 
 ---
