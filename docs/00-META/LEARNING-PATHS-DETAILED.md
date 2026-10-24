@@ -1,7 +1,7 @@
 ---
 Document ID: LEARNING-PATHS-DETAILED
 Title: "Detailed Learning Paths"
-Last Updated: 2026-10-22
+Last Updated: 2026-10-24
 Status: Complete
 Difficulty: Beginner
 Tags: ['roadmap', 'guide', 'llm']
@@ -250,7 +250,7 @@ Week 1-2: Low-Bit Quantization
 Week 3: KV-Cache Optimization
 ├── 4201-Context-Window-Physics.md
 ├── 4202-Speculative-Decoding.md
-├── EXP_4201: Speculative Decoding
+├── EXP_4201: Context Window
 └── Capstone: Quantize 7B model to 4-bit
 
 Checkpoint: Optimized model running on consumer hardware

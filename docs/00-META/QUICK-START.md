@@ -1,7 +1,7 @@
 ---
 Document ID: QUICK-START
 Title: "QUICK START GUIDE: Get Started in 30 Minutes"
-Last Updated: 2026-10-22
+Last Updated: 2026-10-24
 Status: Complete
 Difficulty: Beginner
 Tags: ['quickstart', 'tutorial', 'llm']
@@ -309,7 +309,7 @@ You're now ready for the full learning journey!
     - Add your own knowledge
     - Build a smart assistant
 
-5. **[LAB-002: RAG Implementation](../learning-resources/labs/LAB-002-RAG-Implementation.md)** (3 hours)
+5. **[LAB-002: RAG Implementation](../learning-resources/labs/LAB-002-RAG-Implementation.md)** (4 hours)
     - Deploy vector database
     - Create knowledge base
     - Build RAG pipeline
@@ -426,7 +426,7 @@ Start Here (You are here)
     │
     ├─► LAB-001: Docker & LLM (2 hours)
     │
-    ├─► LAB-002: RAG Implementation (3 hours)
+    ├─► LAB-002: RAG Implementation (4 hours)
     │
     ├─► LAB-003: LoRA Fine-Tuning (4 hours)
     │

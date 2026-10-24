@@ -1,7 +1,7 @@
 ---
 Document ID: PROGRESS-TRACKER
 Title: "PROGRESS TRACKER: Minder Academy Learning Journey"
-Last Updated: 2026-10-14
+Last Updated: 2026-10-24
 Status: Complete
 Difficulty: Beginner
 Tags: ['roadmap', 'guide', 'practice']
@@ -130,7 +130,7 @@ Total: [░░░░░░░░░░░░░░░░░] 0% (0/520 core file
 
 - [ ] **VOLUME-3-LLM-Internals.md** - Volume guide (read first!)
 - [ ] **TUTORIAL-003: RAG Basics** (60 min)
-- [ ] **LAB-002: RAG Implementation** (3 hours)
+- [ ] **LAB-002: RAG Implementation** (4 hours)
 
 **Attention [3100]:**
 
@@ -176,7 +176,7 @@ Total: [░░░░░░░░░░░░░░░░░] 0% (0/520 core file
 
 - [ ] **EXP_4101: GGUF Quantization** (experiment)
 - [ ] **EXP_4102: EXL2 vs AWQ** (experiment)
-- [ ] **EXP_4201: Speculative Decoding** (experiment)
+- [ ] **EXP_4201: Context Window** (experiment)
 
 **Volume 4 Progress:** [ ] 0/11 (0%) | **Capstone:** [ ] Quantize 7B model to 4-bit
 
@@ -185,7 +185,7 @@ Total: [░░░░░░░░░░░░░░░░░] 0% (0/520 core file
 ### Volume 5: Model Adaptation (46 files)
 **"Adapt Models to Your Needs"** - 35-40 hours | Difficulty: ⭐⭐⭐ Advanced
 
-- [ ] **VOLUME-5-Fine-Tuning.md** - Volume guide (read first!)
+- [ ] **VOLUME-5-Model-Adaptation.md** - Volume guide (read first!)
 
 **PEFT [5100]:**
 
