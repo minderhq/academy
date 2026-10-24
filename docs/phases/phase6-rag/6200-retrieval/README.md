@@ -1,7 +1,7 @@
 ---
 Document ID: 6200-RETRIEVAL-README
 Title: "6200: Retrieval Strategies"
-Last Updated: 2026-10-22
+Last Updated: 2026-10-24
 Status: Complete
 Difficulty: Advanced
 Prerequisites: []
@@ -136,7 +136,7 @@ This module connects to:
 | Experiments (6204) | 2 hours |
 | Quiz | 30 minutes |
 | Practice | 6-8 hours |
-| **Total** | **24-26 hours** |
+| **Total** | **24.5-26.5 hours** |
 
 ## Resources
 
