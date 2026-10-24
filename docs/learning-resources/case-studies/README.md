@@ -1,7 +1,7 @@
 ---
 Document ID: CASE-STUDIES-README
 Title: "Real-World Case Studies"
-Last Updated: 2026-10-13
+Last Updated: 2026-10-24
 Status: Complete
 Difficulty: Intermediate
 Tags: ['case-study', 'reference']
@@ -14,7 +14,7 @@ Where the curriculum meets reality: worked examples of the exact systems this ac
 ## Available Case Studies
 
 ### [Real-World Examples & Case Studies](./REAL-WORLD-EXAMPLES.md)
-The case-study collection - real-world examples of AI systems, from home-lab builds to production deployments, annotated with the trade-offs behind each decision.
+The case-study collection - real-world examples of AI systems, from enterprise knowledge assistants to medical diagnostics, annotated with the trade-offs behind each decision.
 
 ## Related Documentation
 
