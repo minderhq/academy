@@ -1,7 +1,7 @@
 ---
 Document ID: VOLUME-GUIDE
 Title: "Minder Academy: Volume Guide (Book Structure)"
-Last Updated: 2026-10-22
+Last Updated: 2026-10-24
 Status: Complete
 Difficulty: Beginner
 Tags: ['volume', 'roadmap', 'llm']
@@ -70,7 +70,7 @@ Follow the volumes below, in order.
 2. [1102: Star Topology Core](../phases/phase1-infra/1100-network/1102-Star-Topology-Core.md)
 3. [1201: Proxmox Hypervisor SOP](../phases/phase1-infra/1200-virtualization/1201-Proxmox-Hypervisor-SOP.md)
 
-**Step 4: Ollama & Local Models (2 hours)**
+**Step 4: Ollama & Local Models (4.5 hours)**
 
 1. [1401: Ollama Enterprise](../phases/phase1-infra/1400-llmops/1401-Ollama-Enterprise.md)
 2. [TUTORIAL-001: Hello LLM](../learning-resources/tutorials/TUTORIAL-001-Hello-LLM.md)
