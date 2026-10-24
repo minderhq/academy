@@ -755,7 +755,7 @@ After completing this phase:
 
 ---
 
-**Module Duration:** 81 hours (50 reading + 31 practice)
+**Module Duration:** 92 hours (61 reading + 31 practice)
 
 **Difficulty:** ⭐⭐⭐ Advanced
 

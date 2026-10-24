@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE3-TRANSFORMERS-README
 Title: "Phase 3: Transformer Physics & LLM Internals [3000]"
-Last Updated: 2026-10-22
+Last Updated: 2026-10-24
 Status: Complete
 Difficulty: Advanced
 Tags: ['phase', 'transformers', 'embeddings', 'rope']
@@ -248,7 +248,7 @@ graph TD
 |----------|-------------|------|------------|
 | [3301: Activation Functions](./3300-decoding/3301-Activation-Functions.md) | GELU, SwiGLU vs RELU | 2h | Intermediate |
 | [3302: Normalization Layers](./3300-decoding/3302-Normalization-Layers.md) | BatchNorm vs LayerNorm vs RMSNorm | 2h | Intermediate |
-| [3303: Activation Comparison](./3300-decoding/guides/3303-Activation-Function-Comparison.md) | Comparative analysis | 1h | Advanced |
+| [3303: Activation Comparison](./3300-decoding/guides/3303-Activation-Function-Comparison.md) | Comparative analysis | 2h | Advanced |
 | [3304: Decoding Sampling Strategies](./3300-decoding/3304-Decoding-Sampling-Strategies.md) | Temperature, top-k, nucleus, min-p, typical-p | 2h | Intermediate |
 
 **What You'll Learn:**
@@ -278,7 +278,7 @@ graph TD
 | [3401: Encoder-Decoder](./3400-architectures/3401-Encoder-Decoder-Architectures.md) | T5, BART architectures | 4h | Intermediate |
 | [3402: Decoder-Only](./3400-architectures/3402-Decoder-Only-Models.md) | GPT, LLaMA architectures | 4h | Intermediate |
 | [3404: Beyond Attention — SSMs and MLA](./3400-architectures/3404-Beyond-Attention-SSMs-and-MLA.md) | SSMs, Mamba, and DeepSeek MLA | 4h | Advanced |
-| [3403: Architecture Comparison](./3400-architectures/guides/3403-Model-Architecture-Comparison.md) | Comparative guide | 2h | Advanced |
+| [3403: Architecture Comparison](./3400-architectures/guides/3403-Model-Architecture-Comparison.md) | Comparative guide | 3h | Advanced |
 
 **What You'll Learn:**
 
@@ -361,10 +361,10 @@ graph TD
 |--------|---------|----------|-------|
 | 3100: Attention Architectures | 12h | 4-6h | 16-18h |
 | 3200: Embedding Latent Spaces | 9h | 4h | 13h |
-| 3300: The Decoding Block | 7h | 3h | 10h |
-| 3400: Model Architectures | 14h | 4h | 18h |
+| 3300: The Decoding Block | 8h | 3h | 11h |
+| 3400: Model Architectures | 15h | 4h | 19h |
 | 3500: Multimodal Models | 10h | — | 10h |
-| **Total** | **52h** | **15-17h** | **67-69h** |
+| **Total** | **54h** | **15-17h** | **69-71h** |
 
 *3500 practice time is not yet estimated; phase totals cover the estimated modules.*
 
@@ -817,7 +817,7 @@ After completing this phase:
 
 ---
 
-**Module Duration:** 67-69 hours (52 reading + 15-17 practice)
+**Module Duration:** 69-71 hours (54 reading + 15-17 practice)
 
 **Difficulty:** ⭐⭐⭐ Advanced
 

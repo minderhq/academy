@@ -827,7 +827,7 @@ l2.backward()
 
 ---
 
-**Module Duration:** 95-102 hours (64.5 reading + 30.5-37.5 practice)
+**Module Duration:** 73.5-80.5 hours (57 reading + 16.5-23.5 practice)
 
 **Difficulty:** ⭐⭐⭐ Advanced
 
