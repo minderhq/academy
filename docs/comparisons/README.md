@@ -1,7 +1,7 @@
 ---
 Document ID: COMPARISONS-README
 Title: "Technology Comparisons"
-Last Updated: 2026-10-22
+Last Updated: 2026-10-24
 Status: Complete
 Difficulty: Beginner
 Tags: ['comparison', 'frameworks', 'llm']
@@ -207,7 +207,7 @@ Compare Qdrant, Weaviate, Pinecone, Chroma, Milvus, and pgvector.
 |---------|--------|----------|--------|----------|--------|
 | **Open Source** | ✅ | ❌ | ✅ | ✅ | ✅ |
 | **Self-Hosted** | ✅ | ❌ | ✅ | ✅ | ✅ |
-| **Managed Cloud** | ✅ | ✅ | ❌ | ✅ | ❌ |
+| **Managed Cloud** | ✅ | ✅ | ❌ | ✅ | ✅ |
 | **Hybrid Search** | ✅ | ❌ | ⚠️ | ✅ | ✅ |
 | **Filtering** | ✅ | ✅ | ⚠️ | ✅ | ✅ |
 | **GPU Support** | ✅ | ❌ | ❌ | ⚠️ | ✅ |
@@ -217,11 +217,11 @@ Compare Qdrant, Weaviate, Pinecone, Chroma, Milvus, and pgvector.
 
 | Database | QPS (1M vectors) | Recall@10 | Index Time (1M) | Memory |
 |----------|------------------|-----------|-----------------|--------|
-| **Qdrant** | 10,000 | 97% | 5 min | 1.2 GB |
-| **Pinecone** | 8,000 | 96% | N/A (managed) | 1.5 GB |
-| **Chroma** | 4,000 | 94% | 3 min | 2.0 GB |
-| **Weaviate** | 6,000 | 95% | 7 min | 1.8 GB |
-| **Milvus** | 12,000 | 98% | 4 min | 1.1 GB |
+| **Qdrant** | ~10,000 | 97% | 5 min | 4GB |
+| **Pinecone** | ~12,000 | 96% | N/A (managed) | N/A (managed) |
+| **Chroma** | ~5,000 | 94% | 3 min | 2GB |
+| **Weaviate** | ~8,000 | 95% | 7 min | 8GB |
+| **Milvus** | ~15,000 | 98% | 4 min | 16GB |
 
 **What's Inside:**
 

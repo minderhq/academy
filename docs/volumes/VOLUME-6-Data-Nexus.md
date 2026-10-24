@@ -1100,11 +1100,11 @@ def evaluate_rag_system(queries, ground_truth):
 
 | Database | Max Vectors | QPS (1M vectors) | Recall@10 | Memory (1M, 768d) | Best For |
 |----------|-------------|------------------|-----------|-------------------|----------|
-| **Qdrant** | Unlimited | 10,000 | 97% | 1.2 GB | Production, hybrid |
-| **Pinecone** | 5M (free) | 8,000 | 96% | 1.5 GB | Managed, easy setup |
-| **Weaviate** | Unlimited | 6,000 | 95% | 1.8 GB | Multi-modal, GraphQL |
-| **Milvus** | Unlimited | 12,000 | 98% | 1.1 GB | Scale, GPU support |
-| **Chroma** | Unlimited | 4,000 | 94% | 2.0 GB | Local, simple |
+| **Qdrant** | Unlimited | ~10,000 | 97% | 1.2 GB | Production, hybrid |
+| **Pinecone** | 5M (free) | ~12,000 | 96% | 1.5 GB | Managed, easy setup |
+| **Weaviate** | Unlimited | ~8,000 | 95% | 1.8 GB | Multi-modal, GraphQL |
+| **Milvus** | Unlimited | ~15,000 | 98% | 1.1 GB | Scale, GPU support |
+| **Chroma** | Unlimited | ~5,000 | 94% | 2.0 GB | Local, simple |
 
 ### Embedding Model Comparison
 
