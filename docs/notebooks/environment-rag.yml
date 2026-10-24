@@ -1,4 +1,4 @@
-# Environment Setup for RAG Notebooks (NB-601, NB-602, NB-603)
+# Environment Setup for RAG Notebooks (NB-601, NB-602, NB-603, NB-701, NB-702, NB-703)
 # Create conda environment: conda env create -f environment-rag.yml
 # Update environment: conda env update -f environment-rag.yml
 # Activate environment: conda activate academy-rag

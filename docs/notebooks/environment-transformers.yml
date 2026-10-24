@@ -1,4 +1,4 @@
-# Environment Setup for Transformer Notebooks (NB-301, NB-302, NB-303)
+# Environment Setup for Transformer Notebooks (NB-301, NB-302, NB-303, NB-401, NB-403)
 # Create conda environment: conda env create -f environment-transformers.yml
 # Update environment: conda env update -f environment-transformers.yml
 # Activate environment: conda activate academy-transformers

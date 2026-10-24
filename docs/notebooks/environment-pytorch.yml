@@ -1,4 +1,4 @@
-# Environment Setup for PyTorch Notebooks (NB-201, NB-202)
+# Environment Setup for PyTorch Notebooks (NB-201, NB-202, NB-203, NB-204, NB-205)
 # Create conda environment: conda env create -f environment-pytorch.yml
 # Update environment: conda env update -f environment-pytorch.yml
 # Activate environment: conda activate academy-pytorch
