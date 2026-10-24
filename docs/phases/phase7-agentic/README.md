@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE7-AGENTIC-README
 Title: "Phase 7: Agentic Cognition & Autonomy [7000]"
-Last Updated: 2026-10-22
+Last Updated: 2026-10-24
 Status: Complete
 Difficulty: Advanced
 Tags: ['phase', 'agents', 'security', 'prompt-injection']
@@ -495,7 +495,7 @@ tools_researcher = {
 |----------|-------------|------|------------|
 | [7101: Agent Architecture](./7100-architecture/7101-ReAct-Loop-System.md) | Thought, Action, Observation patterns | 4h | Advanced |
 | [7102: State Machines](./7100-architecture/7102-Planning-Decomposition.md) | Breaking down complex tasks | 4h | Advanced |
-| [7103: ReAct Implementation](./7100-architecture/guides/7103-ReAct-Implementation-Guide.md) | Complete ReAct implementation | 3h | Advanced |
+| [7103: ReAct Implementation](./7100-architecture/guides/7103-ReAct-Implementation-Guide.md) | Complete ReAct implementation | 4h | Advanced |
 | [7104: Agent Evaluation and Observability](./7100-architecture/7104-Agent-Evaluation-and-Observability.md) | Score trajectories, judge mechanics, trace budgets, regression gates | 4h | Advanced |
 | [7105: Reflection and Self-Correction](./7100-architecture/7105-Reflection-and-Self-Correction.md) | Refine loops, self-consistency votes, the intrinsic-vs-informed correction boundary | 4h | Advanced |
 | [7106: Function-Calling Training and Constrained Decoding](./7100-architecture/7106-Function-Calling-Training-and-Constrained-Decoding.md) | The grammar-to-mask mechanism, prompting-vs-masking, the pair-trained call | 4h | Advanced |
@@ -525,7 +525,7 @@ tools_researcher = {
 | Document | Description | Time | Difficulty |
 |----------|-------------|------|------------|
 | [7201: Tool Calling](./7200-tools/7201-Tool-Calling.md) | OpenAI-style function calling | 3h | Intermediate |
-| [7202: Code Interpreter](./7200-tools/guides/7202-Code-Interpreter.md) | Sandboxed code execution | 3h | Advanced |
+| [7202: Code Interpreter](./7200-tools/guides/7202-Code-Interpreter.md) | Sandboxed code execution | 5h | Advanced |
 | [7203: MCP Hands-On](./7200-tools/7203-MCP-Hands-On.md) | Tool servers and clients over MCP | 4h | Intermediate |
 | [7204: Timeouts, Retries, and Rate Limits](./7200-tools/7204-Timeouts-Retries-and-Rate-Limits.md) | The client-side resilience triad as working code | 4h | Intermediate |
 
@@ -551,8 +551,8 @@ tools_researcher = {
 | Document | Description | Time | Difficulty |
 |----------|-------------|------|------------|
 | [7301: Orchestration](./7300-orchestration/7301-Orchestration.md) | Multi-agent collaboration | 4h | Advanced |
-| [7302: Communication Protocols](./7300-orchestration/7302-Communication-Protocols.md) | Agent-to-agent messaging | 2h | Advanced |
-| [7303: Framework Comparison](./7300-orchestration/guides/7303-Framework-Comparison.md) | AutoGen vs LangGraph vs others | 2h | Advanced |
+| [7302: Communication Protocols](./7300-orchestration/7302-Communication-Protocols.md) | Agent-to-agent messaging | 4h | Advanced |
+| [7303: Framework Comparison](./7300-orchestration/guides/7303-Framework-Comparison.md) | AutoGen vs LangGraph vs others | 3h | Advanced |
 | [7304: Event Buses, Deadlocks, and Human Gates](./7300-orchestration/7304-Event-Buses-Deadlocks-and-Human-Gates.md) | Orchestration runtime mechanics | 3h | Advanced |
 
 **What You'll Learn:**
@@ -577,7 +577,7 @@ tools_researcher = {
 |----------|-------------|------|------------|
 | [7401: Long-term Memory](./7400-memory/7401-Long-term-Memory.md) | Persistent memory systems | 4h | Advanced |
 | [7402: Memory Implementation](./7400-memory/guides/7402-Agent-Memory-Implementation.md) | Memory architecture guide | 3h | Advanced |
-| [7403: Vector Memory](./7400-memory/7403-Vector-Memory.md) | Embedding-based memory | 2h | Advanced |
+| [7403: Vector Memory](./7400-memory/7403-Vector-Memory.md) | Embedding-based memory | 4h | Advanced |
 | [7404: Reflective Memory and Context Paging](./7400-memory/7404-Reflective-Memory-and-Context-Paging.md) | Reflection, paging, retrieval blend | 3h | Advanced |
 | [7405: Key-Value Memory and Checkpoint Stores](./7400-memory/7405-Key-Value-Memory-and-Checkpoint-Stores.md) | Exact-key stores, TTL leases, eviction, checkpoints | 3h | Advanced |
 
@@ -669,14 +669,13 @@ graph TD
 
 | Module | Reading | Practice | Total |
 |--------|---------|----------|-------|
-| 7100: Architecture | 23h | 6h | 29h |
-| 7200: Tool Use | 14h | 4h | 18h |
-| 7300: Orchestration | 11h | 6h | 17h |
-| 7400: Memory | 15h | 6h | 21h |
-| 7500: Security | 15h | — | 15h |
-| **Total** | **78h** | **22h** | **100h** |
+| 7100: Architecture | 24h | 7h | 31h |
+| 7200: Tool Use | 16h | 3h | 19h |
+| 7300: Orchestration | 14h | 6h | 20h |
+| 7400: Memory | 17h | 6h | 23h |
+| 7500: Security | 15h | 13h | 28h |
+| **Total** | **86h** | **35h** | **121h** |
 
-*7500 practice time is not yet estimated; phase totals cover the estimated modules.*
 
 ---
 
@@ -1169,7 +1168,7 @@ Example:
 
 ---
 
-**Module Duration:** 100 hours (78 reading + 22 practice)
+**Module Duration:** 121 hours (86 reading + 35 practice)
 
 **Difficulty:** ⭐⭐⭐ Advanced
 
