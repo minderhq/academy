@@ -485,7 +485,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 | Metric | Value |
 |--------|------:|
-| **Total Lines** | 269,918 |
+| **Total Lines** | 269,603 |
 | **Total Words** | ~1.24 million |
 | **Estimated Print Pages** | ~2,020 |
 | **Condensed Book Pages** | ~200 |
