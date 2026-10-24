@@ -1,7 +1,7 @@
 ---
 Document ID: VOLUME-3
 Title: "Volume 3: LLM Internals & Architecture"
-Last Updated: 2026-10-23
+Last Updated: 2026-10-24
 Status: Complete
 Difficulty: Advanced
 Tags: ['volume', 'transformers', 'attention', 'tokenization']
@@ -386,7 +386,7 @@ Use this checklist to track your progress:
 ### Core Content (Required)
 - [ ] **3101: Self-Attention** (3-4 hours)
 - [ ] **EXP_3101: Self-Attention** (2 hours)
-- [ ] **3102: Flash Attention** (2-3 hours)
+- [ ] **3102: Flash Attention** (3-4 hours)
 - [ ] **EXP_3102: Flash Attention** (2-3 hours)
 - [ ] **3201: RoPE** (2-3 hours)
 - [ ] **EXP_3201: RoPE** (2 hours)
@@ -394,8 +394,8 @@ Use this checklist to track your progress:
 - [ ] **EXP_3202: Tokenizer** (2 hours)
 - [ ] **3301: Activation Functions** (2 hours)
 - [ ] **3302: Normalization Layers** (1-2 hours)
-- [ ] **3401: Encoder-Decoder Architectures** (2 hours)
-- [ ] **3402: Decoder-Only Models** (2 hours)
+- [ ] **3401: Encoder-Decoder Architectures** (4 hours)
+- [ ] **3402: Decoder-Only Models** (4 hours)
 
 **Total Core Time:** ~30-35 hours
 

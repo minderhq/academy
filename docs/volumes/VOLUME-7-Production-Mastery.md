@@ -1,7 +1,7 @@
 ---
 Document ID: VOLUME-7
 Title: "Volume 7: Production Mastery"
-Last Updated: 2026-10-23
+Last Updated: 2026-10-24
 Status: Complete
 Difficulty: Advanced
 Tags: ['volume', 'agents', 'production', 'multi-agent']
@@ -920,10 +920,10 @@ Use this checklist to track your progress:
 - [ ] **TUTORIAL-005: Production Deployment** (90 min)
 - [ ] **7101: ReAct Loop** (3-4 hours)
 - [ ] **LAB-004: ReAct Agent** (4 hours)
-- [ ] **7102: Planning** (2-3 hours)
+- [ ] **7102: Planning** (3-4 hours)
 - [ ] **7303: Framework Comparison** (2-3 hours)
 - [ ] **7301: Collaborative Tasking** (3-4 hours)
-- [ ] **7202: Code Interpreter** (2-3 hours)
+- [ ] **7202: Code Interpreter** (4-5 hours)
 - [ ] **7402: Agent Memory Implementation** (3-4 hours)
 
 **Total Core Time:** ~25-30 hours

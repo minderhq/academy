@@ -1,7 +1,7 @@
 ---
 Document ID: VOLUME-5
 Title: "Volume 5: Model Adaptation"
-Last Updated: 2026-10-23
+Last Updated: 2026-10-24
 Status: Complete
 Difficulty: Advanced
 Tags: ['volume', 'finetuning', 'lora', 'dpo']
@@ -526,15 +526,15 @@ merged_model.save_pretrained("./merged-model")
 Use this checklist to track your progress:
 
 ### Core Content (Required)
-- [ ] **5101: LoRA Logic** (3-4 hours)
-- [ ] **5104: LoRA Implementation Guide** (3-4 hours)
+- [ ] **5101: LoRA Logic** (4-5 hours)
+- [ ] **5104: LoRA Implementation Guide** (4-5 hours)
 - [ ] **5102: QLoRA Pipelines** (4-5 hours)
 - [ ] **LAB-003: LoRA Fine-Tuning** (4 hours)
 - [ ] **5201: DPO Theory** (3-4 hours)
 - [ ] **EXP_5201: DPO** (3-4 hours)
-- [ ] **5202: Alignment Orchestration** (2-3 hours)
+- [ ] **5202: Alignment Orchestration** (3-4 hours)
 - [ ] **5301: Knowledge Distillation** (3-4 hours)
-- [ ] **5302: Distributed Training** (2-3 hours)
+- [ ] **5302: Distributed Training** (3-4 hours)
 
 **Total Core Time:** ~30-35 hours
 

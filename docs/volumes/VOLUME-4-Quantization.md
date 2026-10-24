@@ -1,7 +1,7 @@
 ---
 Document ID: VOLUME-4
 Title: "Volume 4: Quantization & Optimization"
-Last Updated: 2026-10-23
+Last Updated: 2026-10-24
 Status: Complete
 Difficulty: Advanced
 Tags: ['volume', 'quantization', 'gguf', 'kv-cache']
@@ -474,10 +474,10 @@ Use this checklist to track your progress:
 - [ ] **4103: Double Quantization** (3-4 hours)
 - [ ] **4201: Context Window Physics** (3-4 hours)
 - [ ] **4202: Speculative Decoding** (3-4 hours)
-- [ ] **4203: Context Window Optimization** (2-3 hours)
-- [ ] **1402: vLLM and TGI** (2-3 hours)
-- [ ] **1403: vLLM Production Deployment** (3-4 hours)
-- [ ] **1404: TGI Deployment Guide** (3-4 hours)
+- [ ] **4203: Context Window Optimization** (5-6 hours)
+- [ ] **1402: vLLM and TGI** (3-4 hours)
+- [ ] **1403: vLLM Production Deployment** (4-5 hours)
+- [ ] **1404: TGI Deployment Guide** (5-6 hours)
 - [ ] **EXP_4201: Context Window** (2 hours)
 - [ ] **EXP_4202: Speculative Decoding** (2-3 hours)
 

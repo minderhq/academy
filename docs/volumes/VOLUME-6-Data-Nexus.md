@@ -1,7 +1,7 @@
 ---
 Document ID: VOLUME-6
 Title: "Volume 6: Data Nexus: RAG & Memory"
-Last Updated: 2026-10-23
+Last Updated: 2026-10-24
 Status: Complete
 Difficulty: Advanced
 Tags: ['volume', 'rag', 'vector-db', 'graphrag']
@@ -706,13 +706,13 @@ Use this checklist to track your progress:
 - [ ] **6102: Semantic Similarity** (2-3 hours)
 - [ ] **6101: HNSW Indexing** (3-4 hours)
 - [ ] **TUTORIAL-003: RAG Basics** (60 min)
-- [ ] **LAB-002: RAG Implementation** (3 hours)
+- [ ] **LAB-002: RAG Implementation** (4 hours)
 - [ ] **6201: Hybrid Search** (2-3 hours)
 - [ ] **6202: Re-ranking** (2-3 hours)
-- [ ] **6301: Neo4j and Knowledge Graphs** (3-4 hours)
+- [ ] **6301: Neo4j and Knowledge Graphs** (4-5 hours)
 - [ ] **LAB-005: GraphRAG** (5 hours)
 - [ ] **6304: GraphRAG Implementation** (3-4 hours)
-- [ ] **6302: CAG Long Context** (3-4 hours)
+- [ ] **6302: CAG Long Context** (4-5 hours)
 - [ ] **EXP_6201: Hybrid Search** (2 hours)
 
 **Total Core Time:** ~35-40 hours
