@@ -1,7 +1,7 @@
 ---
 Document ID: UC-002
 Title: "UC-002: RAG (Retrieval-Augmented Generation) Practical Use Cases"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-24
 Status: Complete
 Difficulty: Intermediate
 Tags: ['use-case', 'rag', 'retrieval']
@@ -477,7 +477,7 @@ access_token = token_response.json()["access_token"]
 
 ---
 
-## Use Case 4: Legal Contract Analysis
+### Use Case 4: Legal Contract Analysis
 
 **Business Problem:**
 Lawyers need to analyze contracts for specific clauses, risks, and compliance issues across thousands of documents.
