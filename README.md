@@ -1,7 +1,7 @@
 ---
 Document ID: README
 Title: "Minder Academy"
-Last Updated: 2026-10-23
+Last Updated: 2026-10-24
 Status: Complete
 Difficulty: Beginner
 ---
@@ -1450,7 +1450,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ```text
 MIT License
 
-Copyright (c) 2026 Minder Academy
+Copyright (c) 2026 Minder Academy Contributors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
