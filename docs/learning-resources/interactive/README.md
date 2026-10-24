@@ -1,7 +1,7 @@
 ---
 Document ID: INTERACTIVE-README
 Title: "Interactive Learning Components"
-Last Updated: 2026-10-13
+Last Updated: 2026-10-24
 Status: Complete
 Difficulty: Beginner
 Tags: ['flashcards', 'practice']
@@ -9,12 +9,12 @@ Tags: ['flashcards', 'practice']
 
 # Interactive Learning Components
 
-Active-recall material for the whole curriculum. Currently one component: the flashcard deck covering every volume's key terms - use it after finishing a volume to lock the vocabulary in, and before assessments to spot weak areas early.
+Active-recall material for the whole curriculum. Currently one component: the flashcard deck covering Volume 1 network foundations and Volume 3 attention terms - use it after finishing a volume to lock the vocabulary in, and before assessments to spot weak areas early.
 
 ## Available Components
 
 ### [Minder Academy: Interactive Learning Components](./FLASHCARDS.md)
-The flashcard deck - interactive elements to enhance the learning experience across all seven volumes.
+The flashcard deck - interactive elements to enhance the learning experience across Volumes 1 and 3.
 
 ## Related Documentation
 
