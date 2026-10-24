@@ -1,7 +1,7 @@
 ---
 Document ID: LABS-README
 Title: "Hands-On Labs"
-Last Updated: 2026-10-13
+Last Updated: 2026-10-24
 Status: Complete
 Difficulty: Beginner
 Tags: ['lab', 'hands-on']
@@ -32,7 +32,7 @@ Advanced · 4 hours - reasoning-plus-acting agents with tool use.
 Advanced · 5 hours - combine graph structure with vector retrieval.
 
 ### [LAB-006: Train a Small Language Model from Scratch](./LAB-006-Train-Model-From-Scratch.md)
-Intermediate · 7 hours - tokenizer, pretraining loop and eval, all yours.
+Advanced · 7 hours - tokenizer, pretraining loop and eval, all yours.
 
 ### [LAB-007: Production RAG System](./LAB-007-Production-RAG.md)
 Advanced · 6 hours - harden RAG for real traffic and real data.
