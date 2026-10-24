@@ -1,7 +1,7 @@
 ---
 Document ID: SOL-001
 Title: "SOL-001: Enterprise Knowledge Base - Complete Implementation"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-24
 Status: Complete
 Difficulty: Intermediate
 Tags: ['enterprise', 'solution', 'rag', 'qdrant']
@@ -11,7 +11,7 @@ Tags: ['enterprise', 'solution', 'rag', 'qdrant']
 
 ## Overview
 
-End-to-end implementation guide for building an enterprise knowledge base using RAG (Retrieval-Augmented Generation) with Qdrant vector database and Llama 2.
+End-to-end implementation guide for building an enterprise knowledge base using RAG (Retrieval-Augmented Generation) with Qdrant vector database and Qwen3 8B.
 
 ---
 
@@ -73,7 +73,7 @@ End-to-end implementation guide for building an enterprise knowledge base using 
 - CPU: a mini-PC or equivalent (4+ cores)
 - RAM: 16GB
 - Storage: 500GB SSD
-- GPU: 11GB VRAM GPU (for Qwen 2.5 7B 4-bit)
+- GPU: 11GB VRAM GPU (for Qwen3 8B 4-bit)
 
 **Recommended:**
 

@@ -1,7 +1,7 @@
 ---
 Document ID: ENTERPRISE-SOLUTIONS-README
 Title: "End-to-End Solutions"
-Last Updated: 2026-10-22
+Last Updated: 2026-10-24
 Status: Complete
 Difficulty: Beginner
 Tags: ['enterprise', 'solution', 'llm']
@@ -21,7 +21,7 @@ Complete implementation of a RAG-based enterprise knowledge base.
 - Document ingestion pipeline
 - Qdrant vector database setup
 - Semantic search with filtering
-- Qwen 2.5 7B integration (4-bit)
+- Qwen3 8B integration (4-bit)
 - FastAPI REST interface
 - Web UI for querying
 - Docker deployment
@@ -29,7 +29,7 @@ Complete implementation of a RAG-based enterprise knowledge base.
 **Technologies Used:**
 
 - Qdrant (vector database)
-- Qwen 2.5 7B (quantized to 4-bit)
+- Qwen3 8B (quantized to 4-bit)
 - PostgreSQL (metadata)
 - FastAPI (REST API)
 - Docker (deployment)
@@ -110,7 +110,7 @@ Each solution is designed to be:
 
 | Solution | Complexity | Time | Technologies |
 |----------|-----------|------|--------------|
-| **SOL-001: Enterprise KB** | Intermediate | 4-6 hours | RAG, Qdrant, Qwen 2.5 7B |
+| **SOL-001: Enterprise KB** | Intermediate | 4-6 hours | RAG, Qdrant, Qwen3 8B |
 | **SOL-002: Industrial Inspection** | Advanced | 6-8 hours | Multi-Modal Vision, Vector DB, LLM Agents |
 
 ---
