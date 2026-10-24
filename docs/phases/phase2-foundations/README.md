@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE2-FOUNDATIONS-README
 Title: "Phase 2: Cognitive Science & Frameworks [2000]"
-Last Updated: 2026-10-22
+Last Updated: 2026-10-24
 Status: Complete
 Difficulty: Advanced
 Tags: ['phase', 'frameworks', 'architecture', 'api-design']
@@ -415,11 +415,11 @@ graph TD
 
 | Module | Reading | Practice | Total |
 |--------|---------|----------|-------|
-| 2100: Calculus | 13h | 2-3h | 15-16h |
-| 2200: Frameworks | 13h | 4-6h | 17-19h |
-| 2300: Framework Engineering | 25.5h | 2.5h | 28h |
-| 2400: Pretraining | 13h | 22-26h | 35-39h |
-| **Total** | **64.5h** | **30.5-37.5h** | **95-102h** |
+| 2100: Calculus | 12h | 2-3h | 14-15h |
+| 2200: Frameworks | 12h | 4-6h | 16-18h |
+| 2300: Framework Engineering | 20h | 2.5h | 22.5h |
+| 2400: Pretraining | 13h | 8-12h | 21-25h |
+| **Total** | **57h** | **16.5-23.5h** | **73.5-80.5h** |
 
 ---
 
